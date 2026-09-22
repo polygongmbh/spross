@@ -72,6 +72,22 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## App & UX
 
+- `composedAnyWordAudible()` walks every card calling `pronounceAction` at activate, measured
+  at ~200 ms on a 1116-card join, and drops to ~1 ms once the voice table loads and `hasVoice`
+  short-circuits (`App/Sources/Model/AppModel+Queries.swift:247`). Its answer depends on the
+  catalog, the join and the device voices, none of which move when a day is booked, so it
+  belongs with the foreground audio refresh rather than in `refreshStats()`.
+- `AppModel+Session.swift:133` `currentCard` reads `box?.cards[id]` on every session-screen
+  redraw — ~0.9 ms of whole-join copy per read, against this file's own per-frame budget
+  ("nothing that touches the box or the catalog"). Same defect class as the growth tally that
+  was fixed; the fix is caching the current card on the model.
+
+- The listening drill deals its words in an order nobody tuned for audibility: the owner expected
+  the first words to come in catalog order and heard them skip, because seeding is pure catalog
+  order (`Growth.kt`) with no audibility term, so a silent card takes its slot and the run sounds
+  shuffled. Either the drill's queue prefers cards a voice can actually say, or the ordering
+  expectation is wrong and the drill says so — a ruling, not a bug.
+
 - iOS drops what a scramble run earns: `TrainerHubView` builds both without an `onFinish`, so
   the no-op eats the `DrillRunSummary` where Android lands it on Home (`model.finishDrill`).
 - iOS still draws the `position/total` counter beside a round's progress, ruled 2026-09-19 to

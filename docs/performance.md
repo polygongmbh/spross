@@ -85,6 +85,15 @@ one number per area, there is one that answers for every area in a walk —
 a more expensive answer: an answer cheap enough to just ask for is one nothing has to
 remember to invalidate.
 
+A Kotlin collection read from Swift is COPIED WHOLE on every read,
+so `box.cards` is a rebuild of the entire dictionary and not a lookup —
+hoist it into a `let` before any walk and never index it per iteration.
+Indexed from inside a loop it turns a walk into a quadratic one:
+the summary's growth tally copied a 1116-card map once per card and cost 1.2 s,
+against 3 ms for the same walk over a hoisted binding.
+The cost scales with the JOIN, not with what is scheduled,
+so a fresh box is where it bites hardest and an empty profile is a fair test of it.
+
 ## Compose
 
 `remember` every kern call and every value derived from one, keyed on what actually moves
