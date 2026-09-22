@@ -2,9 +2,13 @@
 
 ## Unreleased
 
+## 7.4.1 — 2026-09-22
+
 - A new Celebrations shelf covers parties, weddings, births and gifts, and birthdays have moved into it.
 - Phrases now practice him, her, them and you all as objects, not only me and you.
 - German possessives now count as correct in every form, so meinem, meines and meiner no longer grade wrong.
+- Fifteen words that only German and Swahili had, among them tire, mistake, doubt and usually, now reach every other language.
+- Five phrases that could never unlock in your language, among them being lost and going home already, now open from the words they are built on.
 
 ## 7.4.0 — 2026-09-22
 
