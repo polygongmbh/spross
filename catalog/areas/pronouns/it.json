@@ -22,6 +22,8 @@
   "someone": { "text": "qualcuno" },
   "everyone": { "text": "ogni persona" },
   "no-one": { "text": "nessuno" },
-  "anyone": { "text": "chiunque" }
+  "anyone": { "text": "chiunque" },
+  "our": { "text": "nostro", "accepts": ["nostra", "nostri", "nostre"] },
+  "your-plural": { "text": "vostro", "accepts": ["vostra", "vostri", "vostre"] }
  }
 }

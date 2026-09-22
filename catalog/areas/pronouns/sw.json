@@ -33,6 +33,16 @@
   "someone": { "text": "mtu fulani" },
   "everyone": { "text": "kila mtu" },
   "no-one": { "text": "hakuna mtu" },
-  "anyone": { "text": "yeyote" }
+  "anyone": { "text": "yeyote" },
+  "our": {
+   "text": "-etu",
+   "accepts": ["wetu", "yetu", "letu", "chetu", "zetu", "vyetu"],
+   "notes": { "sw": "jina letu, lugha yetu, kitanda chetu, mji wetu." }
+  },
+  "your-plural": {
+   "text": "-enu",
+   "accepts": ["wenu", "yenu", "lenu", "chenu", "zenu", "vyenu"],
+   "notes": { "sw": "jina lenu, lugha yenu, kitanda chenu, mji wenu." }
+  }
  }
 }

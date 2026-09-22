@@ -24,6 +24,8 @@
   "someone": { "text": "jemand" },
   "everyone": { "text": "jeder Mensch" },
   "no-one": { "text": "niemand" },
-  "anyone": { "text": "irgendjemand" }
+  "anyone": { "text": "irgendjemand" },
+  "our": { "text": "unser", "accepts": ["unsere"] },
+  "your-plural": { "text": "euer", "accepts": ["eure"] }
  }
 }

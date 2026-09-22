@@ -19,6 +19,8 @@
   "someone": { "text": "alguien" },
   "everyone": { "text": "cada persona" },
   "no-one": { "text": "nadie" },
-  "anyone": { "text": "cualquiera" }
+  "anyone": { "text": "cualquiera" },
+  "our": { "text": "nuestro", "accepts": ["nuestra", "nuestros", "nuestras"] },
+  "your-plural": { "text": "vuestro", "accepts": ["vuestra", "vuestros", "vuestras"] }
  }
 }

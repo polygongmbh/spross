@@ -22,6 +22,8 @@
   "someone": { "text": "quelqu'un" },
   "everyone": { "text": "chaque personne" },
   "no-one": { "text": "aucune personne" },
-  "anyone": { "text": "qui que ce soit" }
+  "anyone": { "text": "qui que ce soit" },
+  "our": { "text": "notre", "accepts": ["nos"] },
+  "your-plural": { "text": "votre", "accepts": ["vos"] }
  }
 }

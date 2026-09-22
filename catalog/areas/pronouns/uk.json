@@ -23,6 +23,8 @@
   "someone": { "text": "хтось" },
   "everyone": { "text": "кожна людина" },
   "no-one": { "text": "ніхто" },
-  "anyone": { "text": "будь-хто" }
+  "anyone": { "text": "будь-хто" },
+  "our": { "text": "наш", "accepts": ["наша", "наше", "наші"] },
+  "your-plural": { "text": "ваш", "accepts": ["ваша", "ваше", "ваші"] }
  }
 }
