@@ -50,6 +50,7 @@
    "notes": { "es": "Se dice personas mayores; personas viejas suena mal." }
   },
   "many-friends": { "text": "muchos amigos", "accepts": ["muchas amigas"] },
-  "mom-help-me": { "text": "¡Mamá, ayúdame!" }
+  "mom-help-me": { "text": "¡Mamá, ayúdame!" },
+  "this-is-my-parents-house": { "text": "Esta es la casa de mis padres." }
  }
 }

@@ -64,6 +64,7 @@
    "notes": { "it": "si dice persone anziane · persone vecchie suona male." }
   },
   "many-friends": { "text": "molti amici", "accepts": ["molte amiche"] },
-  "mom-help-me": { "text": "Mamma, aiutami!" }
+  "mom-help-me": { "text": "Mamma, aiutami!" },
+  "this-is-my-parents-house": { "text": "Questa è la casa dei miei genitori." }
  }
 }

@@ -57,6 +57,7 @@
    "text": "Panjo, helpu min!",
    "notes": { "eo": "La objekto ricevas -n, ankaŭ post helpi: helpu vian fraton." },
    "orders": ["Helpu min, panjo!"]
-  }
+  },
+  "this-is-my-parents-house": { "text": "Tio estas la domo de miaj gepatroj." }
  }
 }

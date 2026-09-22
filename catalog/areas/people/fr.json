@@ -86,6 +86,7 @@
    "notes": { "fr": "on dit les personnes âgées · vieux peut blesser." }
   },
   "many-friends": { "text": "beaucoup d'amis" },
-  "mom-help-me": { "text": "Maman, aide-moi !" }
+  "mom-help-me": { "text": "Maman, aide-moi !" },
+  "this-is-my-parents-house": { "text": "C'est la maison de mes parents." }
  }
 }
