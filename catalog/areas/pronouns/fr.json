@@ -25,6 +25,6 @@
   "anyone": { "text": "qui que ce soit" },
   "our": { "text": "notre", "accepts": ["nos"] },
   "your-plural": { "text": "votre", "accepts": ["vos"] },
-  "is-that-your-house": { "text": "C'est votre maison ?" }
+  "children-where-are-your-shoes": { "text": "Les enfants, où sont vos chaussures ?" }
  }
 }

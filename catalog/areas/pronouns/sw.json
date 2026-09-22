@@ -44,6 +44,6 @@
    "accepts": ["wenu", "yenu", "lenu", "chenu", "zenu", "vyenu"],
    "notes": { "sw": "jina lenu, lugha yenu, kitanda chenu, mji wenu." }
   },
-  "is-that-your-house": { "text": "Je, hiyo ni nyumba yenu?", "accepts": ["Hiyo ni nyumba yenu?"] }
+  "children-where-are-your-shoes": { "text": "Watoto, viatu vyenu viko wapi?" }
  }
 }

@@ -20,5 +20,10 @@
  { "slug": "anyone", "kind": "adjective" },
  { "slug": "our", "kind": "adjective" },
  { "slug": "your-plural", "kind": "adjective" },
- { "slug": "is-that-your-house", "kind": "phrase", "components": ["your-plural"] }
+ {
+  "slug": "children-where-are-your-shoes",
+  "kind": "phrase",
+  "components": ["your-plural"],
+  "emoji": "👟"
+ }
 ]

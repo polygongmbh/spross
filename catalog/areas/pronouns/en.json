@@ -25,6 +25,6 @@
   "no-one": { "text": "no one", "accepts": ["nobody"] },
   "anyone": { "text": "anyone", "accepts": ["anybody"] },
   "our": { "text": "our" },
-  "is-that-your-house": { "text": "Is that your house?" }
+  "children-where-are-your-shoes": { "text": "Children, where are your shoes?" }
  }
 }

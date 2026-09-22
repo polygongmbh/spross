@@ -26,6 +26,6 @@
   "anyone": { "text": "будь-хто" },
   "our": { "text": "наш", "accepts": ["наша", "наше", "наші"] },
   "your-plural": { "text": "ваш", "accepts": ["ваша", "ваше", "ваші"] },
-  "is-that-your-house": { "text": "Це ваш дім?" }
+  "children-where-are-your-shoes": { "text": "Діти, де ваші черевики?" }
  }
 }

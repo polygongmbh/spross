@@ -22,6 +22,9 @@
   "anyone": { "text": "cualquiera" },
   "our": { "text": "nuestro", "accepts": ["nuestra", "nuestros", "nuestras"] },
   "your-plural": { "text": "vuestro", "accepts": ["vuestra", "vuestros", "vuestras"] },
-  "is-that-your-house": { "text": "¿Es esa vuestra casa?", "accepts": ["¿Es esa su casa?"] }
+  "children-where-are-your-shoes": {
+   "text": "Niños, ¿dónde están vuestros zapatos?",
+   "accepts": ["Niños, ¿dónde están sus zapatos?"]
+  }
  }
 }

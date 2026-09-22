@@ -27,6 +27,6 @@
   "anyone": { "text": "irgendjemand" },
   "our": { "text": "unser", "accepts": ["unsere", "unseren", "unserem", "unseres", "unserer"] },
   "your-plural": { "text": "euer", "accepts": ["eure", "euren", "eurem", "eures", "eurer"] },
-  "is-that-your-house": { "text": "Ist das euer Haus?" }
+  "children-where-are-your-shoes": { "text": "Kinder, wo sind eure Schuhe?" }
  }
 }
