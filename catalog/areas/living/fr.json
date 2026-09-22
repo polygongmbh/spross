@@ -78,6 +78,8 @@
   "the-curtains-hang-over-the-window": {
    "text": "Les rideaux pendent devant la fenêtre.",
    "accepts": ["Les rideaux sont devant la fenêtre."]
-  }
+  },
+  "the-window-is-closed": { "text": "La fenêtre est fermée." },
+  "the-window-is-open": { "text": "La fenêtre est ouverte." }
  }
 }

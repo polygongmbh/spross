@@ -49,6 +49,7 @@
    "text": "Vous rentrez déjà ?",
    "accepts": ["Tu rentres déjà ?"],
    "orders": ["Déjà, vous rentrez ?"]
-  }
+  },
+  "center": { "text": "centre", "grammar": { "gender": "le" } }
  }
 }

@@ -49,6 +49,7 @@
   "although": { "text": "kvankam" },
   "that-conj": { "text": "ke" },
   "if-you-want": { "text": "Se vi volas." },
-  "finally-done": { "text": "Fine finita!" }
+  "finally-done": { "text": "Fine finita!" },
+  "usually": { "text": "kutime" }
  }
 }

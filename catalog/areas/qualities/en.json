@@ -58,6 +58,7 @@
   "healthy": { "text": "healthy" },
   "firm": { "text": "firm", "teaches": ["sturdy"] },
   "liquid": { "text": "liquid" },
-  "a-lot-of-water": { "text": "a lot of water" }
+  "a-lot-of-water": { "text": "a lot of water" },
+  "safe": { "text": "safe" }
  }
 }

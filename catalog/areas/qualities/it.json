@@ -90,6 +90,7 @@
   "healthy": { "text": "sano", "accepts": ["sana"] },
   "firm": { "text": "solido", "accepts": ["solida"] },
   "liquid": { "text": "liquido", "accepts": ["liquida"] },
-  "a-lot-of-water": { "text": "molta acqua" }
+  "a-lot-of-water": { "text": "molta acqua" },
+  "safe": { "text": "sicuro" }
  }
 }

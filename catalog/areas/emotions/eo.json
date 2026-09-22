@@ -21,6 +21,9 @@
   },
   "to-cry": { "text": "plori" },
   "longing": { "text": "sopiro" },
-  "to-long-for": { "text": "sopiri" }
+  "to-long-for": { "text": "sopiri" },
+  "doubt": { "text": "dubo" },
+  "to-confuse": { "text": "konfuzi" },
+  "to-be-confused": { "text": "esti konfuzita" }
  }
 }

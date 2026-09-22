@@ -92,6 +92,8 @@
     "de": "Italienisch fragt die Herkunft meist mit essere: Di dov'è? · Da dove viene? geht ebenso."
    }
   },
-  "can-you-see-him": { "text": "Lo vedi?", "accepts": ["Lo vede?"] }
+  "can-you-see-him": { "text": "Lo vedi?", "accepts": ["Lo vede?"] },
+  "to-improve": { "text": "migliorare" },
+  "to-suggest": { "text": "suggerire" }
  }
 }

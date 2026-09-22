@@ -54,6 +54,8 @@
   "when-does-the-train-leave": { "text": "¿Cuándo sale el tren?", "accepts": ["¿A qué hora sale el tren?"] },
   "how-much-is-the-fare": { "text": "¿Cuál es la tarifa?", "accepts": ["¿Cuánto cuesta el pasaje?"] },
   "the-bus-has-already-departed": { "text": "El autobús ya ha salido.", "orders": ["Ya ha salido el autobús."] },
-  "my-parents-are-coming-by-train": { "text": "Mis padres vienen en tren.", "orders": ["En tren vienen mis padres."] }
+  "my-parents-are-coming-by-train": { "text": "Mis padres vienen en tren.", "orders": ["En tren vienen mis padres."] },
+  "tire": { "text": "neumático", "grammar": { "gender": "el" } },
+  "my-car-has-four-tires": { "text": "Mi coche tiene cuatro neumáticos." }
  }
 }

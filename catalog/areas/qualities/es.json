@@ -90,6 +90,7 @@
   },
   "firm": { "text": "firme" },
   "liquid": { "text": "líquido", "accepts": ["líquida"] },
-  "a-lot-of-water": { "text": "mucha agua", "notes": { "es": "el agua · mucha agua · el agua fría" } }
+  "a-lot-of-water": { "text": "mucha agua", "notes": { "es": "el agua · mucha agua · el agua fría" } },
+  "safe": { "text": "seguro" }
  }
 }

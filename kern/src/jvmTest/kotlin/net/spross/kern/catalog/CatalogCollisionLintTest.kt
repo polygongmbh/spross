@@ -297,6 +297,11 @@ class CatalogCollisionLintTest {
                 // split it (als/Messer, than/knife, ol/tranĉilo, que/cuchillo, que/couteau,
                 // di/coltello, kuliko/kisu). The area label tells them apart on produce.
                 "uk ніж: comparison/than, kitchen/knife",
+                // Reviewed 2026-09-22: uk `шина` is the car tyre AND the medical splint —
+                // de/en/eo/es/fr/it all split the pair (Reifen/Schiene, tire/splint, pneŭo/splinto,
+                // neumático/férula, pneu/attelle, pneumatico/stecca). `покришка` names only the
+                // outer casing and is not what a driver says, so both stay.
+                "uk шина: illness/splint, transport/tire",
                 "uk з: connectors/with, time/since",
                 // Reviewed 2026-09-14: uk `північ` is midnight AND the north — de/en/eo/es/fr/it/sw
                 // all split the pair (Mitternacht/Norden, midnight/north, noktomezo/nordo,

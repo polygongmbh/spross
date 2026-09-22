@@ -16,6 +16,9 @@
   "to-feel": { "text": "sentirsi", "notes": { "it": "come ti senti? · mi sento bene." } },
   "to-cry": { "text": "piangere" },
   "longing": { "text": "nostalgia", "grammar": { "gender": "la" } },
-  "to-long-for": { "text": "desiderare ardentemente" }
+  "to-long-for": { "text": "desiderare ardentemente" },
+  "doubt": { "text": "dubbio", "grammar": { "gender": "il" } },
+  "to-confuse": { "text": "confondere" },
+  "to-be-confused": { "text": "essere confuso" }
  }
 }

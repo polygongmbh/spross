@@ -43,6 +43,7 @@
   "healthy": { "text": "здоровий" },
   "firm": { "text": "міцний", "accepts": ["міцна", "міцне"] },
   "liquid": { "text": "рідкий", "accepts": ["рідка", "рідке"] },
-  "a-lot-of-water": { "text": "багато води" }
+  "a-lot-of-water": { "text": "багато води" },
+  "safe": { "text": "безпечний" }
  }
 }

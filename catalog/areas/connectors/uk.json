@@ -28,6 +28,7 @@
   "although": { "text": "хоча" },
   "that-conj": { "text": "що" },
   "if-you-want": { "text": "Якщо хочете.", "accepts": ["Якщо хочеш."] },
-  "finally-done": { "text": "Нарешті закінчив!", "accepts": ["Нарешті закінчила!"] }
+  "finally-done": { "text": "Нарешті закінчив!", "accepts": ["Нарешті закінчила!"] },
+  "usually": { "text": "зазвичай" }
  }
 }

@@ -74,6 +74,8 @@
    "text": "Le tende sono appese davanti alla finestra.",
    "accepts": ["Le tende pendono davanti alla finestra.", "Le tende sono davanti alla finestra."],
    "orders": ["Davanti alla finestra sono appese le tende."]
-  }
+  },
+  "the-window-is-closed": { "text": "La finestra è chiusa." },
+  "the-window-is-open": { "text": "La finestra è aperta." }
  }
 }

@@ -59,6 +59,8 @@
   "the-curtains-hang-over-the-window": {
    "text": "La kurtenoj pendas antaŭ la fenestro.",
    "orders": ["Antaŭ la fenestro pendas la kurtenoj."]
-  }
+  },
+  "the-window-is-closed": { "text": "La fenestro estas fermita." },
+  "the-window-is-open": { "text": "La fenestro estas malfermita." }
  }
 }

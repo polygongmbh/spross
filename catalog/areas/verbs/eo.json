@@ -57,6 +57,8 @@
    "text": "Ĉu vi vidas lin?",
    "notes": { "eo": "La objekto ricevas -n: mi vidas vin, vi vidas lin." },
    "orders": ["Ĉu lin vi vidas?"]
-  }
+  },
+  "to-improve": { "text": "plibonigi" },
+  "to-suggest": { "text": "proponi" }
  }
 }

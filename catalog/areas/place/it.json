@@ -45,6 +45,7 @@
    "text": "andare a scuola",
    "notes": { "it": "a vale per dove si sta e dove si va: sono a scuola, si va a scuola." }
   },
-  "are-you-going-home-already": { "text": "Andate già a casa?", "accepts": ["Vai già a casa?"], "orders": ["Già andate a casa?"] }
+  "are-you-going-home-already": { "text": "Andate già a casa?", "accepts": ["Vai già a casa?"], "orders": ["Già andate a casa?"] },
+  "center": { "text": "centro", "grammar": { "gender": "il" } }
  }
 }

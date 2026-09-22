@@ -95,6 +95,7 @@
   },
   "firm": { "text": "solide" },
   "liquid": { "text": "liquide" },
-  "a-lot-of-water": { "text": "beaucoup d'eau" }
+  "a-lot-of-water": { "text": "beaucoup d'eau" },
+  "safe": { "text": "sûr" }
  }
 }

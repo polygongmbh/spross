@@ -87,6 +87,8 @@
   },
   "i-have-a-good-grade": { "text": "Tengo una buena nota." },
   "we-go-to-the-classroom": { "text": "Vamos al aula." },
-  "the-exam-is-already-corrected": { "text": "El examen ya está corregido.", "orders": ["Ya está corregido el examen."] }
+  "the-exam-is-already-corrected": { "text": "El examen ya está corregido.", "orders": ["Ya está corregido el examen."] },
+  "mistake": { "text": "error", "grammar": { "gender": "el" } },
+  "to-be-wrong": { "text": "equivocarse" }
  }
 }

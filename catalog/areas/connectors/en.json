@@ -28,6 +28,7 @@
   "although": { "text": "although", "teaches": ["even though"] },
   "that-conj": { "text": "that" },
   "if-you-want": { "text": "If you want." },
-  "finally-done": { "text": "Finally done!" }
+  "finally-done": { "text": "Finally done!" },
+  "usually": { "text": "usually" }
  }
 }

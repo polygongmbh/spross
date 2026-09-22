@@ -37,6 +37,7 @@
    }
   },
   "go-to-school": { "text": "to go to school" },
-  "are-you-going-home-already": { "text": "Are you going home already?" }
+  "are-you-going-home-already": { "text": "Are you going home already?" },
+  "center": { "text": "center" }
  }
 }

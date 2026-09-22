@@ -42,6 +42,7 @@
    "text": "¿Ya se van a casa?",
    "accepts": ["¿Ya os vais a casa?", "¿Ya te vas a casa?"],
    "orders": ["¿Se van ya a casa?"]
-  }
+  },
+  "center": { "text": "centro", "grammar": { "gender": "el" } }
  }
 }

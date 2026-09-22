@@ -55,6 +55,8 @@
    "accepts": ["Quanto costa la corsa?", "Quanto costa il biglietto?"]
   },
   "the-bus-has-already-departed": { "text": "L'autobus è già partito." },
-  "my-parents-are-coming-by-train": { "text": "I miei genitori vengono in treno.", "orders": ["In treno vengono i miei genitori."] }
+  "my-parents-are-coming-by-train": { "text": "I miei genitori vengono in treno.", "orders": ["In treno vengono i miei genitori."] },
+  "tire": { "text": "pneumatico", "grammar": { "gender": "il" } },
+  "my-car-has-four-tires": { "text": "La mia macchina ha quattro gomme." }
  }
 }

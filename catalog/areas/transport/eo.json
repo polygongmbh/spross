@@ -49,6 +49,8 @@
    "orders": ["Kiom la veturo kostas?"]
   },
   "the-bus-has-already-departed": { "text": "La aŭtobuso jam forveturis.", "orders": ["Jam forveturis la aŭtobuso."] },
-  "my-parents-are-coming-by-train": { "text": "Miaj gepatroj venas per trajno.", "orders": ["Per trajno venas miaj gepatroj."] }
+  "my-parents-are-coming-by-train": { "text": "Miaj gepatroj venas per trajno.", "orders": ["Per trajno venas miaj gepatroj."] },
+  "tire": { "text": "pneŭo" },
+  "my-car-has-four-tires": { "text": "Mia aŭto havas kvar pneŭojn." }
  }
 }

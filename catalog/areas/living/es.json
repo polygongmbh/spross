@@ -65,6 +65,8 @@
    "text": "Las cortinas cuelgan delante de la ventana.",
    "accepts": ["Las cortinas están delante de la ventana."],
    "orders": ["Delante de la ventana cuelgan las cortinas."]
-  }
+  },
+  "the-window-is-closed": { "text": "La ventana está cerrada." },
+  "the-window-is-open": { "text": "La ventana está abierta." }
  }
 }

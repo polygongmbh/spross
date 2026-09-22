@@ -96,6 +96,8 @@
   },
   "i-have-a-good-grade": { "text": "Ho un buon voto.", "accepts": ["Ho un bel voto."] },
   "we-go-to-the-classroom": { "text": "Andiamo in aula.", "accepts": ["Andiamo in classe."] },
-  "the-exam-is-already-corrected": { "text": "L'esame è già stato corretto.", "orders": ["L'esame è stato già corretto."] }
+  "the-exam-is-already-corrected": { "text": "L'esame è già stato corretto.", "orders": ["L'esame è stato già corretto."] },
+  "mistake": { "text": "errore", "grammar": { "gender": "il" } },
+  "to-be-wrong": { "text": "sbagliarsi" }
  }
 }

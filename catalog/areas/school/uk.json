@@ -39,6 +39,8 @@
   "ask-the-teacher": { "text": "Запитай вчителя.", "accepts": ["Запитайте вчителя."] },
   "i-have-a-good-grade": { "text": "У мене гарна оцінка." },
   "we-go-to-the-classroom": { "text": "Ми йдемо до класу.", "orders": ["До класу ми йдемо."] },
-  "the-exam-is-already-corrected": { "text": "Іспит уже перевірений.", "accepts": ["Іспит уже перевірено."] }
+  "the-exam-is-already-corrected": { "text": "Іспит уже перевірений.", "accepts": ["Іспит уже перевірено."] },
+  "mistake": { "text": "помилка" },
+  "to-be-wrong": { "text": "помилятися" }
  }
 }

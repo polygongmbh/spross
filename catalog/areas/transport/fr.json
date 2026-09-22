@@ -46,6 +46,8 @@
   },
   "how-much-is-the-fare": { "text": "Quel est le tarif ?", "accepts": ["Combien coûte le billet ?"] },
   "the-bus-has-already-departed": { "text": "Le bus est déjà parti.", "orders": ["Déjà, le bus est parti."] },
-  "my-parents-are-coming-by-train": { "text": "Mes parents viennent en train." }
+  "my-parents-are-coming-by-train": { "text": "Mes parents viennent en train." },
+  "tire": { "text": "pneu", "grammar": { "gender": "le" } },
+  "my-car-has-four-tires": { "text": "Ma voiture a quatre pneus." }
  }
 }

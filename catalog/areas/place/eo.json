@@ -39,6 +39,7 @@
   "is-it-far": { "text": "Ĉu ĝi malproksimas?", "accepts": ["Ĉu estas malproksime?"] },
   "at-school": { "text": "en la lernejo" },
   "go-to-school": { "text": "iri al la lernejo", "notes": { "eo": "al la lernejo = kien · en la lernejo = kie." } },
-  "are-you-going-home-already": { "text": "Ĉu vi jam iras hejmen?" }
+  "are-you-going-home-already": { "text": "Ĉu vi jam iras hejmen?" },
+  "center": { "text": "centro" }
  }
 }

@@ -29,6 +29,8 @@
   "when-does-the-train-leave": { "text": "When does the train leave?" },
   "how-much-is-the-fare": { "text": "How much is the fare?" },
   "the-bus-has-already-departed": { "text": "The bus has already left." },
-  "my-parents-are-coming-by-train": { "text": "My parents are coming by train." }
+  "my-parents-are-coming-by-train": { "text": "My parents are coming by train." },
+  "tire": { "text": "tire" },
+  "my-car-has-four-tires": { "text": "My car has four tires." }
  }
 }

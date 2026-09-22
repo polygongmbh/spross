@@ -19,6 +19,9 @@
   "to-feel": { "text": "se sentir" },
   "to-cry": { "text": "pleurer" },
   "longing": { "text": "nostalgie", "grammar": { "gender": "la" } },
-  "to-long-for": { "text": "désirer ardemment" }
+  "to-long-for": { "text": "désirer ardemment" },
+  "doubt": { "text": "doute", "grammar": { "gender": "le" } },
+  "to-confuse": { "text": "embrouiller" },
+  "to-be-confused": { "text": "être confus" }
  }
 }

@@ -36,6 +36,7 @@
   "although": { "text": "anche se", "teaches": ["sebbene"] },
   "that-conj": { "text": "che" },
   "if-you-want": { "text": "Se vuole.", "accepts": ["Se vuoi."] },
-  "finally-done": { "text": "Finalmente finito!", "accepts": ["Finalmente finita!"] }
+  "finally-done": { "text": "Finalmente finito!", "accepts": ["Finalmente finita!"] },
+  "usually": { "text": "di solito" }
  }
 }

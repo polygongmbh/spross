@@ -81,6 +81,7 @@
     "fr": "c'est le repas qui est prêt · pour appeler : À table !",
     "de": "Fertig ist le repas (die Mahlzeit), nicht la nourriture; am Tisch ruft man À table !"
    }
-  }
+  },
+  "ugali": { "text": "ugali", "grammar": { "gender": "le" } }
  }
 }

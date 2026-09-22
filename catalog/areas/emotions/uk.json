@@ -22,6 +22,9 @@
   },
   "to-cry": { "text": "плакати" },
   "longing": { "text": "туга" },
-  "to-long-for": { "text": "тужити" }
+  "to-long-for": { "text": "тужити" },
+  "doubt": { "text": "сумнів" },
+  "to-confuse": { "text": "заплутувати" },
+  "to-be-confused": { "text": "бути розгубленим" }
  }
 }

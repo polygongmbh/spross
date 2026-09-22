@@ -60,6 +60,8 @@
   },
   "i-have-a-good-grade": { "text": "Mi havas bonan noton.", "orders": ["Bonan noton mi havas."] },
   "we-go-to-the-classroom": { "text": "Ni iras en la klasĉambron.", "orders": ["En la klasĉambron ni iras."] },
-  "the-exam-is-already-corrected": { "text": "La ekzameno jam estas korektita.", "orders": ["La ekzameno estas jam korektita."] }
+  "the-exam-is-already-corrected": { "text": "La ekzameno jam estas korektita.", "orders": ["La ekzameno estas jam korektita."] },
+  "mistake": { "text": "eraro" },
+  "to-be-wrong": { "text": "erari" }
  }
 }

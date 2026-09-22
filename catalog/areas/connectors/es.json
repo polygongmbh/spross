@@ -32,6 +32,7 @@
   "although": { "text": "aunque" },
   "that-conj": { "text": "que" },
   "if-you-want": { "text": "Si quiere.", "accepts": ["Si quieres."] },
-  "finally-done": { "text": "¡Por fin terminado!", "accepts": ["¡Por fin terminada!"] }
+  "finally-done": { "text": "¡Por fin terminado!", "accepts": ["¡Por fin terminada!"] },
+  "usually": { "text": "normalmente" }
  }
 }

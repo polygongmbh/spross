@@ -37,6 +37,8 @@
   "the-exam-is-already-corrected": {
    "text": "The exam is already corrected.",
    "accepts": ["The exam has already been corrected.", "The exam is already graded."]
-  }
+  },
+  "mistake": { "text": "mistake" },
+  "to-be-wrong": { "text": "to be wrong" }
  }
 }

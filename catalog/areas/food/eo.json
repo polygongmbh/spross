@@ -51,6 +51,7 @@
   "whats-for-dinner": { "text": "Kio estas por vespermanĝo?", "accepts": ["Kio estas por la vespermanĝo?"] },
   "i-dont-eat-meat": { "text": "Mi ne manĝas viandon.", "orders": ["Viandon mi ne manĝas."] },
   "i-eat-rice-with-sauce": { "text": "Mi manĝas rizon kun saŭco.", "orders": ["Rizon kun saŭco mi manĝas."] },
-  "the-food-is-ready": { "text": "La manĝaĵo estas preta!", "accepts": ["La manĝo estas preta!"] }
+  "the-food-is-ready": { "text": "La manĝaĵo estas preta!", "accepts": ["La manĝo estas preta!"] },
+  "ugali": { "text": "ugali" }
  }
 }

@@ -20,6 +20,9 @@
   },
   "to-cry": { "text": "llorar" },
   "longing": { "text": "anhelo", "grammar": { "gender": "el" } },
-  "to-long-for": { "text": "anhelar" }
+  "to-long-for": { "text": "anhelar" },
+  "doubt": { "text": "duda", "grammar": { "gender": "la" } },
+  "to-confuse": { "text": "confundir" },
+  "to-be-confused": { "text": "estar confundido" }
  }
 }

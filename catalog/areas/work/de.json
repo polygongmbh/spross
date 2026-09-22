@@ -43,7 +43,6 @@
   "worker": { "text": "Arbeiter", "grammar": { "gender": "der", "plural": "=" } },
   "employer": { "text": "Arbeitgeber", "grammar": { "gender": "der", "plural": "=" } },
   "customer": { "text": "Kunde", "grammar": { "gender": "der", "plural": "-n" } },
-  "feierabend": { "text": "Feierabend", "grammar": { "gender": "der" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Morgen stelle ich mich bei der Firma vor.",
    "orders": ["Ich stelle mich morgen bei der Firma vor."]
