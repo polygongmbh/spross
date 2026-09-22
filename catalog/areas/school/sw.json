@@ -43,11 +43,6 @@
    "notes": { "sw": "umeshasahihishwa = tayari umesahihishwa" }
   },
   "mistake": { "text": "kosa", "grammar": { "plural": "makosa" } },
-  "exercise": {
-   "text": "zoezi",
-   "grammar": { "plural": "mazoezi" },
-   "notes": { "sw": "Mazoezi hutumika pia kwa maana ya jumla: kufanya mazoezi." }
-  },
   "to-be-wrong": { "text": "kukosea" }
  }
 }

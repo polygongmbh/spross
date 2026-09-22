@@ -3,5 +3,8 @@
  { "slug": "to-try", "kind": "verb" },
  { "slug": "to-study", "kind": "verb", "emoji": "📚" },
  { "slug": "goal", "kind": "noun", "emoji": "🎯" },
+ { "slug": "vision", "kind": "noun", "emoji": "🔭" },
+ { "slug": "to-achieve", "kind": "verb", "emoji": "🌟" },
+ { "slug": "exercise", "kind": "noun" },
  { "slug": "you-can-do-it", "kind": "phrase", "emoji": "💪", "components": [] }
 ]

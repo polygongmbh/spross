@@ -5,6 +5,9 @@
   "to-try": { "text": "intentar", "variants": ["probar"] },
   "to-study": { "text": "estudiar", "notes": { "es": "estudiar para un examen · aprender algo nuevo." } },
   "goal": { "text": "meta", "grammar": { "gender": "la" } },
+  "vision": { "text": "visión", "grammar": { "gender": "la" } },
+  "to-achieve": { "text": "lograr", "synonyms": ["alcanzar"] },
+  "exercise": { "text": "ejercicio", "grammar": { "gender": "el" } },
   "you-can-do-it": { "text": "¡Seguro que lo consigues!", "variants": ["¡Tú puedes!", "¡Seguro que lo logras!"] }
  }
 }

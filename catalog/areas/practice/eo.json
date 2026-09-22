@@ -13,6 +13,9 @@
    "notes": { "eo": "studi por kurso aŭ ekzameno · lerni ion novan." }
   },
   "goal": { "text": "celo" },
+  "vision": { "text": "vizio" },
+  "to-achieve": { "text": "atingi" },
+  "exercise": { "text": "ekzerco" },
   "you-can-do-it": { "text": "Vi certe sukcesos!", "orders": ["Certe vi sukcesos!"] }
  }
 }

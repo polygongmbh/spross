@@ -9,6 +9,9 @@
    "notes": { "fr": "réviser ou étudier pour un examen · apprendre une chose nouvelle." }
   },
   "goal": { "text": "but", "grammar": { "gender": "le" } },
+  "vision": { "text": "vision", "grammar": { "gender": "la" } },
+  "to-achieve": { "text": "atteindre" },
+  "exercise": { "text": "exercice", "variants": ["l'exercice"], "grammar": { "gender": "l'" } },
   "you-can-do-it": {
    "text": "Tu vas sûrement y arriver !",
    "variants": ["Tu vas y arriver !", "Tu y arriveras !", "Tu peux le faire !"],

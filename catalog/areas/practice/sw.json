@@ -5,6 +5,13 @@
   "to-try": { "text": "kujaribu" },
   "to-study": { "text": "kujifunza" },
   "goal": { "text": "lengo", "grammar": { "plural": "malengo" } },
+  "vision": { "text": "maono" },
+  "to-achieve": { "text": "kufikia", "notes": { "sw": "kufikia lengo = kutimiza lengo." } },
+  "exercise": {
+   "text": "zoezi",
+   "grammar": { "plural": "mazoezi" },
+   "notes": { "sw": "Mazoezi hutumika pia kwa maana ya jumla: kufanya mazoezi." }
+  },
   "you-can-do-it": { "text": "Hakika utaweza!" }
  }
 }

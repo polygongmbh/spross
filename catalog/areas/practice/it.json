@@ -9,6 +9,9 @@
    "variants": ["l'obiettivo"],
    "grammar": { "gender": "l'", "plural": "obiettivi" }
   },
+  "vision": { "text": "visione", "grammar": { "gender": "la" } },
+  "to-achieve": { "text": "raggiungere" },
+  "exercise": { "text": "esercizio", "variants": ["l'esercizio"], "grammar": { "gender": "l'" } },
   "you-can-do-it": {
    "text": "Ce la farai di sicuro!",
    "variants": ["Ce la puoi fare!"],
