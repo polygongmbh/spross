@@ -104,6 +104,7 @@
    "notes": { "sw": "mzima = mwenye afya · nyumba nzima = nyumba yote" }
   },
   "firm": { "text": "imara", "notes": { "sw": "nyumba imara, msimamo imara, afya imara" } },
-  "a-lot-of-water": { "text": "maji mengi" }
+  "a-lot-of-water": { "text": "maji mengi" },
+  "safe": { "text": "salama" }
  }
 }

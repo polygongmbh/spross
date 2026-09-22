@@ -35,6 +35,8 @@
   "come-sit-with-me": { "text": "Njoo, kaa karibu nami!" },
   "shall-we-watch-a-movie": { "text": "Tutazame filamu?" },
   "lets-hang-the-picture": { "text": "Tutundike picha!" },
-  "the-curtains-hang-over-the-window": { "text": "Mapazia yananing'inia mbele ya dirisha." }
+  "the-curtains-hang-over-the-window": { "text": "Mapazia yananing'inia mbele ya dirisha." },
+  "the-window-is-closed": { "text": "Dirisha limefungwa." },
+  "the-window-is-open": { "text": "Dirisha liko wazi." }
  }
 }

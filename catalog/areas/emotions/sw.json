@@ -15,6 +15,9 @@
   "to-smile": { "text": "kutabasamu" },
   "to-feel": { "text": "kujisikia" },
   "to-hope": { "text": "kutumaini", "notes": { "sw": "Natumaini utapona · Tunatumaini mvua itanyesha" } },
-  "to-cry": { "text": "kulia" }
+  "to-cry": { "text": "kulia" },
+  "doubt": { "text": "shaka", "grammar": { "plural": "mashaka" } },
+  "to-confuse": { "text": "kuchanganya" },
+  "to-be-confused": { "text": "kuchanganyikiwa" }
  }
 }

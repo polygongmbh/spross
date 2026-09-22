@@ -39,6 +39,8 @@
   "the-curtains-hang-over-the-window": {
    "text": "Die Vorhänge hängen vor dem Fenster.",
    "orders": ["Vor dem Fenster hängen die Vorhänge."]
-  }
+  },
+  "the-window-is-closed": { "text": "Das Fenster ist geschlossen." },
+  "the-window-is-open": { "text": "Das Fenster ist offen." }
  }
 }

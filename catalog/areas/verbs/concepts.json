@@ -33,6 +33,8 @@
  { "slug": "to-put", "kind": "verb" },
  { "slug": "to-carry", "kind": "verb" },
  { "slug": "to-forget", "kind": "verb", "emoji": "💨" },
+ { "slug": "to-improve", "kind": "verb", "emoji": "📈" },
+ { "slug": "to-suggest", "kind": "verb", "emoji": "💡" },
  { "slug": "do-you-have-water", "kind": "phrase", "emoji": "💧", "components": ["to-have"] },
  { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["to-come"] },
  { "slug": "can-you-see-me", "kind": "phrase", "emoji": "👀", "components": ["to-see"] }

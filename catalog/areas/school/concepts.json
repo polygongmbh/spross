@@ -27,6 +27,9 @@
  { "slug": "exercise-book", "kind": "noun", "emoji": "📒" },
  { "slug": "class-schedule", "kind": "noun", "emoji": "🗓️" },
  { "slug": "to-teach", "kind": "verb", "emoji": "📣" },
+ { "slug": "mistake", "kind": "noun", "emoji": "❌" },
+ { "slug": "exercise", "kind": "noun" },
+ { "slug": "to-be-wrong", "kind": "verb" },
  { "slug": "do-the-homework", "kind": "phrase", "emoji": "✍️", "components": ["homework"] },
  {
   "slug": "look-at-the-class-schedule",

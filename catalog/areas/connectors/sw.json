@@ -46,6 +46,7 @@
   "although": { "text": "ingawa", "synonyms": ["japo"] },
   "that-conj": { "text": "kwamba", "notes": { "sw": "Nadhani kwamba atakuja = Nadhani atakuja" } },
   "if-you-want": { "text": "Kama unataka." },
-  "finally-done": { "text": "Hatimaye nimemaliza!" }
+  "finally-done": { "text": "Hatimaye nimemaliza!" },
+  "usually": { "text": "kwa kawaida" }
  }
 }

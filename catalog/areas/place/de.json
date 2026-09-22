@@ -56,6 +56,7 @@
    "text": "Geht ihr schon nach Hause?",
    "variants": ["Gehen Sie schon nach Hause?", "Gehst du schon nach Hause?"],
    "orders": ["Ihr geht schon nach Hause?"]
-  }
+  },
+  "center": { "text": "Mitte", "grammar": { "gender": "die", "plural": "-n" } }
  }
 }

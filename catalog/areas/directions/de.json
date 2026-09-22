@@ -35,6 +35,7 @@
    "orders": ["Sie biegen an der Ecke links ab."]
   },
   "how-do-i-get-to-the-station": { "text": "Wie komme ich zum Bahnhof?" },
-  "im-lost": { "text": "Ich habe mich verlaufen." }
+  "im-lost": { "text": "Ich habe mich verlaufen." },
+  "to-get-lost": { "text": "sich verirren" }
  }
 }

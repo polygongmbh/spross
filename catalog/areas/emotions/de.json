@@ -15,6 +15,9 @@
   "to-smile": { "text": "lächeln" },
   "to-feel": { "text": "sich fühlen" },
   "to-hope": { "text": "hoffen" },
-  "to-cry": { "text": "weinen" }
+  "to-cry": { "text": "weinen" },
+  "doubt": { "text": "Zweifel", "grammar": { "gender": "der", "plural": "=" } },
+  "to-confuse": { "text": "verwirren" },
+  "to-be-confused": { "text": "verwirrt sein" }
  }
 }

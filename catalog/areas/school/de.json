@@ -36,6 +36,9 @@
   "ask-the-teacher": { "text": "Frag den Lehrer.", "variants": ["Fragen Sie den Lehrer."] },
   "i-have-a-good-grade": { "text": "Ich habe eine gute Note." },
   "we-go-to-the-classroom": { "text": "Wir gehen ins Klassenzimmer.", "orders": ["Ins Klassenzimmer gehen wir."] },
-  "the-exam-is-already-corrected": { "text": "Die Prüfung ist schon korrigiert." }
+  "the-exam-is-already-corrected": { "text": "Die Prüfung ist schon korrigiert." },
+  "mistake": { "text": "Fehler", "grammar": { "gender": "der", "plural": "=" } },
+  "exercise": { "text": "Übung", "grammar": { "gender": "die", "plural": "-en" } },
+  "to-be-wrong": { "text": "sich irren" }
  }
 }

@@ -70,6 +70,8 @@
   "to-forget": { "text": "kusahau" },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" },
-  "can-you-see-me": { "text": "Unaniona?" }
+  "can-you-see-me": { "text": "Unaniona?" },
+  "to-improve": { "text": "kuboresha" },
+  "to-suggest": { "text": "kupendekeza" }
  }
 }

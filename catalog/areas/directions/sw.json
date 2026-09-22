@@ -24,6 +24,7 @@
   "go-straight-ahead": { "text": "Nenda moja kwa moja." },
   "turn-left-at-the-corner": { "text": "Geuka kushoto kwenye kona.", "orders": ["Kwenye kona geuka kushoto."] },
   "how-do-i-get-to-the-station": { "text": "Nifikaje kituo cha treni?", "variants": ["Naendaje kituo cha treni?"] },
-  "im-lost": { "text": "Nimepotea." }
+  "im-lost": { "text": "Nimepotea." },
+  "to-get-lost": { "text": "kupotea" }
  }
 }

@@ -49,6 +49,7 @@
   "although": { "text": "obwohl" },
   "that-conj": { "text": "dass" },
   "if-you-want": { "text": "Wenn Sie wollen.", "variants": ["Wenn du willst."] },
-  "finally-done": { "text": "Endlich fertig!" }
+  "finally-done": { "text": "Endlich fertig!" },
+  "usually": { "text": "normalerweise" }
  }
 }

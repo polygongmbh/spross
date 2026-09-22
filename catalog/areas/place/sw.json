@@ -50,6 +50,7 @@
    }
   },
   "go-to-school": { "text": "kwenda shuleni" },
-  "are-you-going-home-already": { "text": "Mnaenda nyumbani tayari?" }
+  "are-you-going-home-already": { "text": "Mnaenda nyumbani tayari?" },
+  "center": { "text": "katikati", "grammar": { "plural": "=" } }
  }
 }

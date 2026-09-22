@@ -14,6 +14,7 @@
  { "slug": "south", "kind": "noun", "emoji": "⬇️" },
  { "slug": "east", "kind": "noun", "emoji": "➡️" },
  { "slug": "west", "kind": "noun", "emoji": "⬅️" },
+ { "slug": "to-get-lost", "kind": "verb" },
  { "slug": "go-straight-ahead", "kind": "phrase", "emoji": "⬆️", "components": ["straight-ahead"] },
  {
   "slug": "turn-left-at-the-corner",
@@ -22,5 +23,5 @@
   "components": ["to-turn", "corner"]
  },
  { "slug": "how-do-i-get-to-the-station", "kind": "phrase", "emoji": "🚉", "components": [] },
- { "slug": "im-lost", "kind": "phrase", "components": [] }
+ { "slug": "im-lost", "kind": "phrase", "components": ["to-get-lost"] }
 ]
