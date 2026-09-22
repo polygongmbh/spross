@@ -1,0 +1,28 @@
+#!/bin/sh
+# `!` promises that state already on a device no longer loads — the one thing that obliges
+# a migration, and the one thing a catalog edit never does. Three commits carried it in one
+# session for a card removal and a field rename, neither of which touches a stored box,
+# because the rule said "the SHAPE of stored state" without naming what holds it.
+set -e
+
+SUBJECT=$(head -n 1 "$1")
+case "$SUBJECT" in
+  '#'*) exit 0 ;;
+esac
+
+# A merge carries the branch's own subject and stages nothing of its own to judge it by.
+if [ -e "$(git rev-parse --git-dir)/MERGE_HEAD" ]; then
+  exit 0
+fi
+
+if printf '%s' "$SUBJECT" | grep -qE '^[a-z]+(\([^)]*\))?!:'; then
+  STORE=kern/src/commonMain/kotlin/net/spross/kern/store/StoreDocument.kt
+  if ! git diff --cached -U0 -- "$STORE" | grep -q 'STORE_SCHEMA_VERSION'; then
+    echo "error: '!' promises a stored-state migration, and this commit does not bump" >&2
+    echo "       STORE_SCHEMA_VERSION in $STORE." >&2
+    echo "       Catalog content is never that: cards added, removed, renamed or re-gated," >&2
+    echo "       and the fields they are written with, all load on any box that exists." >&2
+    echo "       Drop the '!'." >&2
+    exit 1
+  fi
+fi
