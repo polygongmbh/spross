@@ -14,7 +14,7 @@
   "in": {
    "text": "katika",
    "notes": {
-    "sw": "katika sentensi hii · katika lugha yako",
+    "sw": "katika sentensi hii · katika lugha yako · katika pia ni kitenzi: kamba imekatika.",
     "de": "im Alltag hängt man stattdessen -ni an: nyumbani, mezani · katika steht vor Namen und Demonstrativa: katika mji huu."
    }
   },
@@ -35,11 +35,11 @@
   },
   "country": { "text": "nchi", "grammar": { "plural": "=" } },
   "in-front": { "text": "mbele", "notes": { "sw": "mbele ya nyumba · nyuma ya nyumba" } },
-  "next-to": { "text": "kando ya" },
+  "next-to": { "text": "kando ya", "variants": ["kando"] },
   "to-be-there": { "text": "kuwepo", "notes": { "sw": "nipo, upo, yupo, tupo, mpo, wapo · Yupo? = yuko hapa?" } },
   "on-the-table": { "text": "juu ya meza" },
   "under-the-bed": { "text": "chini ya kitanda" },
-  "in-the-city": { "text": "katika mji", "variants": ["mjini"] },
+  "in-the-city": { "text": "katika mji", "synonyms": ["mjini"] },
   "between-us": { "text": "kati yetu" },
   "is-it-far": { "text": "Ni mbali?" },
   "at-school": {
