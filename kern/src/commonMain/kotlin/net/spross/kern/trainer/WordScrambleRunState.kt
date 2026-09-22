@@ -125,7 +125,10 @@ data class WordScrambleRunState(
         fun storageKey(language: Language): String = "wordscramble.$language"
     }
 
-    /** The card opens: a slip and a miss each leave a spelling worth seeing whole. */
-    val showsAnswer: Boolean
-        get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
+    /**
+     * The card opens, whatever the spelling was graded.
+     * A clean one raises it too: the LETTERS were the question and the meaning never was,
+     * so a word that vanished the moment it landed was the one answer the drill never glossed.
+     */
+    val showsAnswer: Boolean get() = !owesAnswer
 }

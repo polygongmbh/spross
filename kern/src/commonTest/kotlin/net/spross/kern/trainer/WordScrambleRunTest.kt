@@ -126,6 +126,20 @@ class WordScrambleRunTest {
     }
 
     /**
+     * The gloss is what the scramble never said, so a clean spelling opens the card too:
+     * the letters were the question and the meaning never was.
+     */
+    @Test
+    fun aCleanSpellingIsGlossedToo() {
+        val state = open()
+        val task = assertNotNull(state.task)
+        val answered = reduce(state, WordScrambleIntent.Submit(task.display)).state
+        assertEquals(TurnFeedback.Correct, answered.feedback)
+        assertTrue(answered.showsAnswer, "a word spelled right is still worth glossing")
+        assertFalse(open().showsAnswer, "nothing to show while the turn is still open")
+    }
+
+    /**
      * A word spelled clean is not asked again at that Sprosse — but the SAME word at a harder
      * mixing is a question of its own, so the pool refills as the ladder rises.
      */
