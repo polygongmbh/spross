@@ -21,46 +21,19 @@ there. The app says the same thing per file — `Catalog.audioCredits()` feeds t
 screen on both platforms — and that, not a table, is where a speaker's name is discharged.
 `--check` fails where a manifest names a file git does not track.
 
-What a person has to write down is below: where each pack was fetched from, and what its
-licenses oblige.
+What each license asks of us, whichever pack a file came from:
 
-| Pack | Source | Obligation |
-|---|---|---|
-| `audio/de/` | Commons `De-*.ogg` | credit; share-alike on the BY-SA |
-| `audio/de/letters/` | Commons `De-<letter>.ogg` | credit + share-alike |
-| `audio/de/texts/` | Commons `De-*.ogg` | credit + share-alike |
-| `audio/de/articles/` | Lingua Libre, via Commons | credit + share-alike |
-| `audio/de/calendar/` | Commons `De-*.ogg` | credit + share-alike |
-| `audio/de/countries/` | Commons `De-*.ogg` | credit + share-alike |
-| `audio/eo/` | Lingua Libre + the Commons Esperanto phrasebook | credit; share-alike on the BY-SA |
-| `audio/eo/letters/` | Lingua Libre word recordings | credit + share-alike |
-| `audio/eo/texts/` | Lingua Libre, via Commons | credit + share-alike |
-| `audio/eo/calendar/` | Lingua Libre, via Commons | credit; share-alike on the BY-SA |
-| `audio/eo/countries/` | Lingua Libre, via Commons | credit; share-alike on the BY-SA |
-| `audio/es/` | Lingua Libre, via Commons | credit; share-alike on the BY-SA |
-| `audio/es/letters/` | Lingua Libre, via Commons | credit; share-alike on the BY-SA |
-| `audio/es/texts/` | Lingua Libre, via Commons | credit; share-alike on the BY-SA |
-| `audio/es/calendar/` | Lingua Libre, via Commons | credit; share-alike on the BY-SA |
-| `audio/es/countries/` | Lingua Libre + Commons | credit; share-alike on the BY-SA |
-| `audio/fr/` | Commons `Fr-*.ogg` (Shtooka Paris) + Lingua Libre | credit; share-alike on the BY-SA |
-| `audio/fr/letters/` | Lingua Libre, via Commons | credit + share-alike |
-| `audio/fr/texts/` | Lingua Libre, via Commons | credit; share-alike on the BY-SA |
-| `audio/fr/calendar/` | Shtooka + Lingua Libre | credit all but the CC0 |
-| `audio/fr/countries/` | Lingua Libre + Shtooka | credit; share-alike on the BY-SA |
-| `audio/it/` | Lingua Libre + Wiktionary `It-*.ogg` | credit; share-alike on the BY-SA |
-| `audio/it/letters/` | Lingua Libre, via Commons | none — a dedication |
-| `audio/it/texts/` | Commons | credit; share-alike on the BY-SA |
-| `audio/it/articles/` | Commons `It-<article> <word>.ogg` (Shtooka) | attribution only |
-| `audio/it/calendar/` | Lingua Libre + Shtooka | credit; share-alike on the BY-SA |
-| `audio/it/countries/` | Lingua Libre + Commons | credit; share-alike on the BY-SA |
-| `audio/sw/` | Commons `Sw-ke-*.flac` | credit + share-alike |
-| `audio/sw/calendar/` | Commons `Sw-ke-*.flac` | credit + share-alike |
-| `audio/sw/countries/` | Commons `Sw-ke-*.flac` | credit + share-alike |
-| `audio/uk/` | Commons `Uk-*.ogg` (Shtooka) | attribution only |
-| `audio/uk/letters/` | Commons `Аа – ukrainian.ogg` | credit + share-alike |
-| `audio/uk/texts/` | Commons `Uk-*.ogg` | attribution only |
-| `audio/uk/calendar/` | Commons `Uk-*.ogg` (Shtooka) | attribution only |
-| `audio/uk/countries/` | Lingua Libre, via Commons | credit; share-alike on the BY-SA |
+| License | What it obliges |
+|---|---|
+| CC BY-SA (4.0, 3.0, 2.5, 2.0) | name the speaker and link the deed; a derivative carries the same terms |
+| CC BY (4.0, 3.0, 3.0 us, 2.0 fr) | name the speaker and link the deed |
+| CC0 | nothing; credited anyway, because a dedication is not a reason to go quiet |
+| Public domain | nothing, and there is no deed to link |
+
+Nothing is per-pack about that, which is why there is no per-pack table: an obligation
+follows the license, the license is on the file, and the credits screen reads it from there.
+Where a pack was fetched from and what was rejected is the research record,
+`data/reference/audio/README.md`.
 
 The `articles/` sets are where a word may ship TWICE, and deliberately: the bare file is
 what the learner's own language is read with, the article one what the target is heard as

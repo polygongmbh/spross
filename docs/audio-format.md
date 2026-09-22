@@ -10,7 +10,8 @@ The engine rule is `../kern/docs/audio.md`, the manifest schema `../catalog/audi
 ## What ships
 
 Every file is 44.1 kHz stereo, VBR spanning 81–231 kbps with a median of 142,
-median clip 1.14 s. How many there are and what they weigh is `audio-licensing.md` §1.
+median clip 1.14 s. How many there are and what they weigh is
+`scripts/audio-coverage.py --credits`, counted from the manifests rather than written down.
 The ratios below are what the decision rests on, and they hold as the corpus grows.
 
 ## The codec is Wikimedia's choice, not ours
