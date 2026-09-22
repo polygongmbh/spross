@@ -15,6 +15,12 @@
    }
   },
   "present": { "text": "wakati uliopo", "notes": { "sw": "-na-: ninakuja" } },
-  "future": { "text": "wakati ujao", "notes": { "sw": "-ta-: nitakuja" } }
+  "future": { "text": "wakati ujao", "notes": { "sw": "-ta-: nitakuja" } },
+  "case": { "text": "uhusika", "grammar": { "plural": "=" } },
+  "conjugation": {
+   "text": "mnyambuliko",
+   "grammar": { "plural": "minyambuliko" },
+   "notes": { "sw": "kupika, kupikia, kupikiwa, kupikisha." }
+  }
  }
 }

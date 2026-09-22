@@ -9,6 +9,8 @@
   "affix": { "text": "affix", "grammar": { "plural": "affixes" } },
   "past": { "text": "past", "accepts": ["past tense"] },
   "present": { "text": "present", "accepts": ["present tense"] },
-  "future": { "text": "future", "accepts": ["future tense"] }
+  "future": { "text": "future", "accepts": ["future tense"] },
+  "case": { "text": "case" },
+  "conjugation": { "text": "conjugation" }
  }
 }

@@ -9,6 +9,8 @@
   "affix": { "text": "Affix", "grammar": { "gender": "das", "plural": "-e" } },
   "past": { "text": "Vergangenheit", "teaches": ["Präteritum"], "grammar": { "gender": "die" } },
   "present": { "text": "Gegenwart", "teaches": ["Präsens"], "grammar": { "gender": "die" } },
-  "future": { "text": "Zukunft", "teaches": ["Futur"], "grammar": { "gender": "die" } }
+  "future": { "text": "Zukunft", "teaches": ["Futur"], "grammar": { "gender": "die" } },
+  "case": { "text": "Fall", "accepts": ["Kasus"], "grammar": { "gender": "der", "plural": "Fälle" } },
+  "conjugation": { "text": "Konjugation", "grammar": { "gender": "die", "plural": "-en" } }
  }
 }

@@ -9,6 +9,8 @@
   "affix": { "text": "афікс" },
   "past": { "text": "минуле", "teaches": ["минулий час"] },
   "present": { "text": "теперішнє", "teaches": ["теперішній час"] },
-  "future": { "text": "майбутнє", "teaches": ["майбутній час"] }
+  "future": { "text": "майбутнє", "teaches": ["майбутній час"] },
+  "case": { "text": "відмінок" },
+  "conjugation": { "text": "дієвідміна" }
  }
 }

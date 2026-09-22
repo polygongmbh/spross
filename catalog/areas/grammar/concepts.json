@@ -6,5 +6,7 @@
  { "slug": "affix", "kind": "noun" },
  { "slug": "past", "kind": "noun" },
  { "slug": "present", "kind": "noun" },
- { "slug": "future", "kind": "noun" }
+ { "slug": "future", "kind": "noun" },
+ { "slug": "case", "kind": "noun" },
+ { "slug": "conjugation", "kind": "noun" }
 ]

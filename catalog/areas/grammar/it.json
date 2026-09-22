@@ -9,6 +9,8 @@
   "affix": { "text": "affisso", "accepts": ["l'affisso"], "grammar": { "gender": "l'" } },
   "past": { "text": "passato", "grammar": { "gender": "il" } },
   "present": { "text": "presente", "grammar": { "gender": "il" } },
-  "future": { "text": "futuro", "grammar": { "gender": "il" } }
+  "future": { "text": "futuro", "grammar": { "gender": "il" } },
+  "case": { "text": "caso", "grammar": { "gender": "il" } },
+  "conjugation": { "text": "coniugazione", "grammar": { "gender": "la" } }
  }
 }

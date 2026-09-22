@@ -9,6 +9,8 @@
   "affix": { "text": "afikso" },
   "past": { "text": "pasinteco" },
   "present": { "text": "estanteco" },
-  "future": { "text": "estonteco" }
+  "future": { "text": "estonteco" },
+  "case": { "text": "kazo" },
+  "conjugation": { "text": "konjugacio" }
  }
 }
