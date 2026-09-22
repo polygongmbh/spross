@@ -46,11 +46,17 @@ struct OrchardCanvas: View {
         let marks = OrchardLayout.marks(trees, width: width)
         return ZStack(alignment: .topLeading) {
             Canvas { context, _ in
-                for mark in marks { TreeShapes.draw(&context, mark) }
+                // why: the emoji is drawn WITH its own tree, in the one back-to-front
+                // order the marks carry — drawn afterwards it sat on top of the whole
+                // orchard, and a tree standing in front of an area was labeled through.
+                for mark in marks {
+                    TreeShapes.draw(&context, mark)
+                    emoji(&context, mark)
+                }
             }
             .accessibilityHidden(true)
             ForEach(marks, id: \.tree.id) { mark in
-                label(mark)
+                tapTarget(mark)
             }
         }
         // why: from the marks already laid out —
@@ -59,27 +65,34 @@ struct OrchardCanvas: View {
         .frame(width: width, height: OrchardLayout.height(of: marks), alignment: .topLeading)
     }
 
-    /// The area's emoji under its tree —
+    /// The area's emoji, on the strip of ground under its own tree —
     /// the identity the catalog already owns,
     /// and the only text small enough to sit under a 58pt cell.
     /// The name itself is in the accessibility label
     /// and on the screen the tree opens.
-    private func label(_ mark: TreeMark) -> some View {
-        VStack(spacing: 0) {
-            Spacer(minLength: 0)
-            Text(verbatim: mark.tree.emoji)
-                .font(.system(size: 13)) // card-parity: a mark under a 58pt cell, below every type role
-                .opacity(mark.tree.isBare ? 0.4 : 1)
-                .accessibilityHidden(true)
-                .frame(height: OrchardLayout.labelHeight)
+    private func emoji(_ context: inout GraphicsContext, _ mark: TreeMark) {
+        let text = Text(verbatim: mark.tree.emoji)
+            .font(.system(size: 13)) // card-parity: a mark under a 58pt cell, below every type role
+        let at = CGPoint(x: mark.foot.x, y: mark.baseline + OrchardLayout.labelHeight / 2)
+        guard mark.tree.isBare else { return context.draw(text, at: at, anchor: .center) }
+        context.drawLayer { faded in
+            faded.opacity = 0.4
+            faded.draw(text, at: at, anchor: .center)
         }
-        .frame(width: mark.cell.width, height: mark.cell.height)
-        .contentShape(Rectangle())
-        .offset(x: mark.cell.minX, y: mark.cell.minY)
-        .onTapGesture { open?(mark.tree.id) }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(describe?(mark.tree) ?? Text(mark.tree.title))
-        .accessibilityAddTraits(open == nil ? [] : .isButton)
+    }
+
+    /// What a learner taps, and what VoiceOver reads: one invisible element
+    /// on the cell the layout gave the tree, carrying everything the picture
+    /// itself cannot say.
+    private func tapTarget(_ mark: TreeMark) -> some View {
+        Color.clear
+            .frame(width: mark.cell.width, height: mark.cell.height)
+            .contentShape(Rectangle())
+            .offset(x: mark.cell.minX, y: mark.cell.minY)
+            .onTapGesture { open?(mark.tree.id) }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(describe?(mark.tree) ?? Text(mark.tree.title))
+            .accessibilityAddTraits(open == nil ? [] : .isButton)
     }
 }
 
