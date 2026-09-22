@@ -305,6 +305,7 @@ internal object ChromeEn : Chrome {
     override val boxOwnWordAdd = "Add"
     override val boxOwnWordRemove = "Delete word"
     override val boxOwnWordEdit = "Edit word"
+    override val boxOwnEntryEdit = "Edit entry"
     override val boxOwnWordSave = "Save"
     override val boxOwnWordSwap = "Swap direction"
     override val boxOwnWordExplainerSuggestion = "One side only: the word is kept as a " +

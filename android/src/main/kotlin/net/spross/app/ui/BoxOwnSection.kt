@@ -135,6 +135,9 @@ private fun OwnContentPanel(
     val context = LocalContext.current
     var briefingOpen by remember { mutableStateOf(false) }
     var matchOpen by remember { mutableStateOf(false) }
+    // The suggestion or note being rewritten, which opens as free text rather than as a
+    // word pair ([OwnEntrySheet]).
+    var editingEntry by remember { mutableStateOf<OwnWord?>(null) }
     Column(
         modifier = Modifier.fillMaxWidth().panel().padding(Theme.spacing.lg),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
@@ -162,14 +165,18 @@ private fun OwnContentPanel(
         }
         if (suggestions.isNotEmpty()) {
             BlockLabel(chrome.boxOwnSuggestions)
-            suggestions.forEach { word -> SuggestionRow(model, word, onWriteOwn) }
+            suggestions.forEach { word -> SuggestionRow(model, word) { editingEntry = word } }
             HorizontalDivider(color = Theme.colors.separator)
         }
         // A note names no word, so it suggests none: what it is about need not be in the
         // catalog at all, and it stands apart from the words the catalog owes an answer to.
         if (notes.isNotEmpty()) {
             BlockLabel(chrome.boxOwnNotes)
-            notes.forEach { note -> EntryRow(model, note, onWriteOwn, lines = 3) }
+            notes.forEach { note ->
+                EntryRow(model, note, lines = 3, editLabel = chrome.boxOwnEntryEdit) {
+                    editingEntry = note
+                }
+            }
             HorizontalDivider(color = Theme.colors.separator)
         }
         if (reported.isNotEmpty()) {
@@ -200,6 +207,7 @@ private fun OwnContentPanel(
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
     if (matchOpen) CatalogMatchSheet(model) { matchOpen = false }
+    editingEntry?.let { entry -> OwnEntrySheet(model, entry) { editingEntry = null } }
 }
 
 /** The entry into [BriefingSheet] — what it is, and what it is for, in two lines. */
@@ -239,13 +247,15 @@ private fun BlockLabel(text: String) {
  * the catalog owes — so the row says so rather than leaving a blank.
  */
 @Composable
-private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDraft) -> Unit) {
+private fun SuggestionRow(model: AppModel, word: OwnWord, onEdit: () -> Unit) {
     EntryRow(
-        model, word, onWriteOwn,
+        model, word,
         lines = 1,
         line = model.suggestionText(word),
         said = word.comment,
         tail = model.chrome.boxOwnWordNeedsTranslation,
+        editLabel = model.chrome.boxOwnEntryEdit,
+        onEdit = onEdit,
     )
 }
 
@@ -257,13 +267,16 @@ private fun SuggestionRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDr
  */
 @Composable
 private fun OtherPairRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDraft) -> Unit) {
+    val stamp = model.box?.joinStamp ?: return
     EntryRow(
-        model, word, onWriteOwn,
+        model, word,
         lines = 1,
         line = model.otherPairText(word),
         said = word.comment,
         tail = model.otherPairFlags(word),
         tailSaid = model.otherPairLanguageNames(word),
+        editLabel = model.chrome.boxOwnWordEdit,
+        onEdit = { onWriteOwn(OwnWordDraft.of(word, stamp.source, stamp.target)) },
     )
 }
 
@@ -276,21 +289,23 @@ private fun OtherPairRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDra
  * under the line where the entry has one, and [tail] what the row has left to say about it —
  * what the catalog still owes, or the flag of the language this pair cannot read it in.
  * [tailSaid] names a [tail] that is a picture, for a screen reader handed no picture at all.
+ * [editLabel] names what [onEdit] opens: a word form for a finished pair, the free-text
+ * editor for an entry that is half a word or none.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun EntryRow(
     model: AppModel,
     word: OwnWord,
-    onWriteOwn: (OwnWordDraft) -> Unit,
     lines: Int,
+    editLabel: String,
     line: String = word.comment.orEmpty(),
     said: String? = null,
     tail: String? = null,
     tailSaid: String? = null,
+    onEdit: () -> Unit,
 ) {
     val chrome = model.chrome
-    val stamp = model.box?.joinStamp ?: return
     var menuOpen by remember(word.id) { mutableStateOf(false) }
     Row(
         modifier = Modifier
@@ -298,7 +313,7 @@ private fun EntryRow(
             .sizeIn(minHeight = 48.dp)
             .background(MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.shapes.small)
             .combinedClickable(
-                onLongClickLabel = chrome.boxOwnWordEdit,
+                onLongClickLabel = editLabel,
                 onLongClick = { menuOpen = true },
                 onClick = {},
             )
@@ -329,9 +344,9 @@ private fun EntryRow(
             )
         }
         DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
-            MenuAction(chrome.boxOwnWordEdit) {
+            MenuAction(editLabel) {
                 menuOpen = false
-                onWriteOwn(OwnWordDraft.of(word, stamp.source, stamp.target))
+                onEdit()
             }
             MenuAction(chrome.boxOwnWordRemove, destructive = true) {
                 menuOpen = false

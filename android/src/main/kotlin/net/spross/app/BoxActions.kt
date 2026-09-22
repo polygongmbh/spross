@@ -58,6 +58,30 @@ fun AppModel.saveOwnWord(word: OwnWord, rewriting: Boolean) {
     }
 }
 
+/**
+ * Rewrite an entry the box holds no card for — a suggestion or a note — as the free text it
+ * is: the half it carries stays in the language it was WRITTEN in, whatever pair happens to
+ * be open, and the note is the rest of what the learner had to say. Both cleared would be an
+ * entry that says nothing, so it is refused; taking it out is [removeOwnWord].
+ */
+fun AppModel.saveOwnEntry(word: OwnWord, text: String, comment: String) {
+    val written = text.trim()
+    val said = comment.trim()
+    if (written.isEmpty() && said.isEmpty()) return
+    val texts = word.texts.toMutableMap()
+    word.languages.firstOrNull()?.let { language ->
+        if (written.isEmpty()) texts.remove(language) else texts[language] = written
+    }
+    val rewritten = OwnWords.write(
+        id = word.id,
+        kind = word.kind,
+        emoji = word.emoji,
+        texts = texts,
+        comment = said,
+    )
+    updateBox { BoxEngine.updateOwnWord(it, rewritten) }
+}
+
 /** Every word the learner wrote, oldest first — studiable ones and suggestions alike. */
 val AppModel.ownWords: List<OwnWord> get() = box?.ownWords.orEmpty()
 

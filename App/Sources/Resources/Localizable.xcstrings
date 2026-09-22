@@ -977,6 +977,23 @@
         }
       }
     },
+    "box.own.entry.edit" : {
+      "comment" : "The menu entry that opens a suggestion or a note for rewriting, and that editor’s title. An entry names half a word, or no word at all, so it is never “edit word”.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eintrag bearbeiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit entry"
+          }
+        }
+      }
+    },
     "box.own.match.action" : {
       "comment" : "row beside the clear that opens the merge screen; names WHAT it compares, since the other three actions name it by their verb alone",
       "localizations" : {

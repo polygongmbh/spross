@@ -331,6 +331,8 @@ interface Chrome {
     val boxOwnWordAdd: String
     val boxOwnWordRemove: String
     val boxOwnWordEdit: String
+    /** Rewriting a SUGGESTION or a note — half a word, or no word at all, never a pair. */
+    val boxOwnEntryEdit: String
     val boxOwnWordSave: String
     val boxOwnWordSwap: String
     val boxOwnWordExplainerSuggestion: String

@@ -94,6 +94,24 @@ extension AppModel {
         mutate { $0 = BoxEngine.shared.updateOwnWord(state: $0, word: rewritten) }
     }
 
+    /// Rewrite an entry the box holds no card for — a suggestion or a note — as the free
+    /// text it is: the half it carries stays in the language it was WRITTEN in, whatever
+    /// pair happens to be open, and the note is the rest of what the learner had to say.
+    /// Clearing both would be an entry that says nothing, so it is refused; deleting is
+    /// `removeOwnWord`.
+    func updateOwnEntry(_ word: OwnWord, text: String, comment: String) {
+        let written = text.trimmed
+        let said = comment.trimmed
+        guard !written.isEmpty || !said.isEmpty else { return }
+        var texts = word.texts
+        if let language = word.languages.first {
+            texts[language] = written.isEmpty ? nil : written
+        }
+        let rewritten = OwnWords.shared.write(id: word.id, kind: word.kind, emoji: word.emoji,
+                                              texts: texts, comment: said)
+        mutate { $0 = BoxEngine.shared.updateOwnWord(state: $0, word: rewritten) }
+    }
+
     /// Take one back out, with its schedule and its place in the queue. Reaches
     /// own words only — Kern refuses the rest.
     func removeOwnWord(_ cardID: String) {

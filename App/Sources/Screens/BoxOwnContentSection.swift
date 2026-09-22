@@ -30,9 +30,18 @@ struct BoxOwnContentSection: View {
     private enum Sheet: Identifiable {
         case writing
         case editing(OwnWord)
+        /// A suggestion or a note, which is free text and is edited as such.
+        case entry(OwnWord)
         case reporting(Card)
         case talking
         case matching
+
+        /// What the action that opens it is called: a word form rewrites a WORD, the
+        /// entry sheet an entry that names half of one or none at all.
+        var editLabel: LocalizedStringKey {
+            if case .entry = self { return "box.own.entry.edit" }
+            return "box.own.word.edit"
+        }
 
         var id: String {
             switch self {
@@ -40,6 +49,7 @@ struct BoxOwnContentSection: View {
             case .talking: return "talking"
             case .matching: return "matching"
             case .editing(let word): return "edit:\(word.id)"
+            case .entry(let word): return "entry:\(word.id)"
             case .reporting(let card): return "report:\(card.id)"
             }
         }
@@ -179,7 +189,8 @@ struct BoxOwnContentSection: View {
     /// carries that this pair does not name, which is the whole of why it stands here
     /// rather than as a card — and a flag says it in the space a sentence would not fit.
     private func otherPairRow(_ word: OwnWord) -> some View {
-        entryRow(word, lines: 1, said: word.comment, tail: model.otherPairFlags(word)) {
+        entryRow(word, lines: 1, said: word.comment, tail: model.otherPairFlags(word),
+                 opening: .editing(word)) {
             Text(verbatim: model.otherPairText(word))
         }
     }
@@ -200,7 +211,8 @@ struct BoxOwnContentSection: View {
         entryRow(word, lines: 1, said: word.comment,
                  // why: a missing half is not a shortcoming of the word, it is the whole
                  // point of the entry — it is what the catalog owes.
-                 tail: Text("box.own.word.needsTranslation")) {
+                 tail: Text("box.own.word.needsTranslation"),
+                 opening: .entry(word)) {
             Text(verbatim: model.suggestionText(word))
         }
     }
@@ -212,7 +224,7 @@ struct BoxOwnContentSection: View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             blockTitle("box.own.notes")
             ForEach(model.remarks, id: \.id) { note in
-                entryRow(note, lines: 3, said: nil, tail: nil) {
+                entryRow(note, lines: 3, said: nil, tail: nil, opening: .entry(note)) {
                     Text(verbatim: note.comment ?? "")
                 }
             }
@@ -223,7 +235,7 @@ struct BoxOwnContentSection: View {
     /// entry has one, `tail` what the row has left to say about it — what the catalog
     /// still owes, or the language this pair cannot read it in.
     private func entryRow<Lead: View>(
-        _ word: OwnWord, lines: Int, said: String?, tail: Text?,
+        _ word: OwnWord, lines: Int, said: String?, tail: Text?, opening: Sheet,
         @ViewBuilder lead: () -> Lead
     ) -> some View {
         HStack(spacing: Theme.spacing.md) {
@@ -258,7 +270,7 @@ struct BoxOwnContentSection: View {
         // A menu of its own, and a short one: with no card behind it there is
         // nothing to pack, forget or report — only the entry to fix or drop.
         .contextMenu {
-            Button("box.own.word.edit", systemImage: "pencil") { sheet = .editing(word) }
+            Button(opening.editLabel, systemImage: "pencil") { sheet = opening }
             Button("box.own.word.remove", systemImage: "trash", role: .destructive) {
                 model.removeOwnWord(word.id)
             }
@@ -324,6 +336,8 @@ struct BoxOwnContentSection: View {
             OwnWordFormView(model: model, seed: .query(""))
         case .editing(let word):
             OwnWordFormView(model: model, seed: .editing(word))
+        case .entry(let word):
+            OwnEntrySheet(model: model, entry: word)
         case .talking:
             BriefingSheet(model: model)
         case .matching:
