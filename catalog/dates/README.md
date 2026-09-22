@@ -15,8 +15,8 @@ the way `countries/atlas.json` sits beside its names —
   "months":   [ { "text": "März" } ],
   "numeric":  "{d}.{m}.{y}",
   "patterns": {
-    "dayMonth":     { "text": "der {day} {month}", "variants": ["den {day} {month}"] },
-    "date":         { "text": "{weekday}, der {day} {month}", "variants": ["{weekday}, den {day} {month}"] },
+    "dayMonth":     { "text": "der {day} {month}", "accepts": ["den {day} {month}"] },
+    "date":         { "text": "{weekday}, der {day} {month}", "accepts": ["{weekday}, den {day} {month}"] },
     "dateWithYear": { "text": "{weekday}, der {day} {month} {year}" } } }
 ```
 
@@ -35,10 +35,10 @@ The Ukrainian side, carrying what only Ukrainian needs:
   so the parser requires the full set rather than tolerating a hole
   (the `subtitle` rule, for the same reason — a partial calendar reads as a broken drill,
   not as a language that does not use August).
-- `text`, `synonyms` and `variants` behave exactly as a realization's do
-  (`../README.md` § Realization fields): a different lexeme is a synonym and takes its turn as a prompt,
-  a spelling is a variant and is only ever accepted.
-  Esperanto's x-system twins are variants; German `Sonnabend` is a synonym.
+- `text`, `teaches` and `accepts` behave exactly as a realization's do
+  (`../README.md` § Realization fields): a different lexeme goes in `teaches` and takes its turn as a prompt,
+  a spelling goes in `accepts` and is only ever accepted.
+  Esperanto's x-system twins are `accepts`; German `Sonnabend` is `teaches`.
 - `abbr` — REQUIRED on every weekday, authored on no month.
   It is the short form the PROMPT side wears in a dated line (`Mo, 3.3.`),
   never an answer, so it is not graded and never taught;
@@ -54,10 +54,10 @@ The Ukrainian side, carrying what only Ukrainian needs:
   a language that cannot read a year inside a date simply omits it and the ladder stops one Sprosse short.
   Each kind takes exactly its own markers, each exactly once, and no others.
   A pattern wears the realization schema a name does:
-  `synonyms` is a second assembly the language genuinely SAYS,
+  `teaches` is a second assembly the language genuinely SAYS,
   and the reveal turns between it and `text` with the day it asks about
   (en `March third` / `the third of March`),
-  while `variants` is accept-only — a form the drill tolerates without asking for it,
+  while `accepts` is accept-only — a form the drill tolerates without asking for it,
   which on a pattern is as often a governed case as a spelling
   (de `den dritten März`, the accusative only an *am* or a dateline assigns) — exactly as a frame's is,
   and crosses with every reading of every slot —

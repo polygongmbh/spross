@@ -125,7 +125,7 @@ Engine contract: `../README.md`.
   exposure tiers, capped at 60 entries (the ~60 KB `updateApplicationContext` limit).
   A second cap is a LEGIBILITY budget rather than a wire one: `MAX_TEXT_CHARS` (24) keeps a
   card off the watch entirely when any form it can render — both sides, plus the target
-  synonyms a rotated `promptForm` reaches for — runs longer than a tile in a 2×2 grid holds.
+  `teaches` a rotated `promptForm` reaches for — runs longer than a tile in a 2×2 grid holds.
   It gates the option pool as well as the entries, from the one predicate, so a distractor
   can never overflow a tile an answer could not have. It drops ~9% of a pair's cards, all of
   them long sentences: a four-way pick between those is exposure rather than recall, and the

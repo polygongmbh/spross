@@ -6,11 +6,11 @@ of it touches the schedule, and none of it names a screen position.
 Engine contract: `../README.md` §3.
 
 - **Synonym rotation** on recognition prompts: the prompted form cycles deterministically
-  through `text` + `synonyms` — index = (`count / 2` + id-hash offset) mod formCount
+  through `text` + `teaches` — index = (`count / 2` + id-hash offset) mod formCount
   (parity-independent: recognition happens every other review); first exposure always
-  prompts canonical text; variants never rotate.
+  prompts canonical text; `accepts` never rotates.
   Every form gets prompted at zero extra scheduling cost.
-  Reveal always shows the full family; the source-side reveal may show source synonyms
+  Reveal always shows the full family; the source-side reveal may show the source `teaches`
   informatively ("Amt / Verwaltung").
 - **Sound-prompted production**: `producePrompt(cardId, reviewCount, growing, audible)`
   answers whether a produce turn asks by sight or by ear. Not a third role — the role
@@ -26,7 +26,7 @@ Engine contract: `../README.md` §3.
   against `session.meaningSide` (the same card with its two sides swapped, so the whole
   grading pipeline is reused) by the SOURCE language's own `AnswerNormalizer`, articles and
   typo budget included. Hearing a word and writing it back down proves the ear worked and
-  nothing else; translating it is what the box is for. So the meaning side's synonyms are
+  nothing else; translating it is what the box is for. So the meaning side's `teaches` are
   simply the answer, and the word that played is a miss like any other — the reveal then
   teaches both, which is where the spelling still lands.
   The join is read from the other end here: a form more than one concept PRINTS carries

@@ -32,17 +32,17 @@ Sprosse, and the ladder tops out one Sprosse short. Every authored language carr
 `Montag, der 3. März` reads *Montag, der dritte März*.
 The ordinal is the weak `-e` after `der`;
 `den dritten März` is the accusative a learner meets in *am Mittwoch, den 3. März*.
-It grades as a pattern `variant` and is never taught, because it is never ungoverned:
+The pattern only `accepts` it and never teaches it, because it is never ungoverned:
 something else assigns that case, and a bare date with nothing before it is nominative
 — *Der Wievielte ist heute? Der dritte März.*
 That is what separates it from English's two orders, which are both complete readings of a
-bare date and so are both `synonyms`; the tier is a ruling about the form, not about
+bare date and so are both `teaches`; the tier is a ruling about the form, not about
 whether the difference happens to be a spelling.
 `GermanForms` already emits `-er`/`-en`/`-es` beside the canonical `-e` (`number-forms.md` § German),
 so the day form composes with nothing new.
 The year is the plain cardinal the pack reads, hundred-style variants included.
 
-`Sonnabend` and `Jänner` stand as `synonyms` beside `Samstag` and `Januar`, prompt turns and all —
+`Sonnabend` and `Jänner` stand as `teaches` beside `Samstag` and `Januar`, prompt turns and all —
 the first common across the north, the second the Austrian standard,
 each a register a learner will genuinely meet.
 
@@ -50,9 +50,9 @@ each a register a learner will genuinely meet.
 
 `March 3rd` / `the third of March`, both current, both ordinal, and English is the only
 language here that says its date two ways — so both are TAUGHT rather than one leading and
-the other merely tolerated: the pattern carries the `of` order as a `synonym`,
+the other merely tolerated: the pattern carries the `of` order in `teaches`,
 and the reveal turns between the two with the day it asks about.
-The article in that order is a `variant` — `third of March` grades too,
+The article in that order is only `accepts` — `third of March` grades too,
 since the skill the Sprosse tests is the order and the ordinal, not the determiner.
 The year takes the pack's year reading, so `2026` is *twenty twenty-six* and not *two thousand twenty-six*
 — but both are in `EnglishNumbers.yearVariants` already.
@@ -109,7 +109,7 @@ numeral the headlines print.
 every one of the twelve has its counted twin — `Mwezi wa Kwanza` through `Mwezi wa Kumi na
 Mbili`, `wa` throughout because *mwezi* is class 3. Only the first two carry a true ordinal
 stem (`kwanza`, `pili`); from the third on the bare cardinal stands and the concord alone
-says which one it is. They are authored `synonyms` and never generated, for exactly that
+says which one it is. They are authored `teaches` and never generated, for exactly that
 reason: the slot the pack refuses to fill for a bare numeral is the whole of the form.
 The reveal keeps the borrowed name, which is what a learner meets in print.
 
@@ -172,7 +172,7 @@ the multiplier's GENITIVE, so 1900 is *тисяча дев'ятисотого* (
 
 A year NAME also drops the `одна` the bare number keeps — *тисяча дев'ятсот дев'яносто
 першого*, not *одна тисяча …* — which is why `UkrainianNumbers.yearVariants` orders them
-the other way round from `variants`. The longer reading still grades: it names the same year.
+the other way round from `UkrainianNumbers.variants`. The longer reading still grades: it names the same year.
 
 Every Ukrainian reading uses the ASCII apostrophe `U+0027` (`п'ятниця`),
 for the reason `number-forms.md` § Ukrainian gives.

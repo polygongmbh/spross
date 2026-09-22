@@ -10,7 +10,7 @@ Per-language app metadata — the picker's self-name, the flag, the articles —
 
 ```json
 { "languageNames": {
-    "sw": { "name": "Suaheli", "in": "auf Suaheli", "variants": ["Kisuaheli"] },
+    "sw": { "name": "Suaheli", "in": "auf Suaheli", "accepts": ["Kisuaheli"] },
     "uk": { "name": "Ukrainisch", "in": "auf Ukrainisch" } } }
 ```
 - `name` — the citation form, and what `{language}` resolves to.
@@ -22,7 +22,7 @@ Per-language app metadata — the picker's self-name, the flag, the articles —
   a language whose object looks like the citation form authors neither.
   Ukrainian is the one that needs them: instrumental "німецькою" after *розмовляти*,
   accusative "німецьку" after *вчити*.
-- `variants` — accept-only alternates, never displayed (de "Kisuaheli" beside "Suaheli").
+- `accepts` — accept-only alternates, never displayed (de "Kisuaheli" beside "Suaheli").
 - `notes` — keyed by explanation language, as a realization's `notes` are; no fallback.
 
 **Language markers.** A realization may name the language being LEARNED instead of hardcoding

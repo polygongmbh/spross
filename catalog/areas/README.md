@@ -52,7 +52,7 @@ that mapping is how a learner works out which word did what,
 and it is worth re-cutting the source phrase to keep
 ("Das WLAN ist weg" became "Das Internet ist weg" so `intaneti` had something to answer to;
 "zu teuer" is `ghali mno`, not `ghali sana`, which is "sehr teuer").
-The replaced wording moves to `variants` so nobody's typed answer stops grading.
+The replaced wording moves to `accepts` so nobody's typed answer stops grading.
 Where a language genuinely has no equivalent —
 a greeting formula, `Feierabend`, the Swahili clock — a `notes` entry carries the gap.
 
@@ -86,15 +86,16 @@ Keep the merged language's private object only where the source really is unambi
 own and the others would sound wrong carrying one — and price the length in: a side over
 `WidgetSnapshotBuilder.MAX_TEXT_CHARS` still teaches, but stops reaching the widget.
 
-**An alternate is a `synonym` when it is knowledge, a `variant` when it is only a surface**
-(the fields are `../README.md`). The test is what a learner who knows `text` already knows.
+**An alternate the card TEACHES is knowledge; one it only ACCEPTS is a surface**
+(the fields are `../README.md`). The names say what becomes of each, so all that is left
+to decide is what a learner who knows `text` already knows.
 - **Spell the alternate out.** An abbreviation of a form the card already carries teaches nothing
-  the long form does not, so it is a variant and the full word is what gets shown (en `résumé`
-  names *curriculum vitae*, not CV). An abbreviation that IS the everyday word is a synonym like
-  any other (es `id-card` DNI, whose expansion nobody says).
-- **English is authored in American spelling and vocabulary.** A SPELLING is a variant
+  the long form does not, so it goes in `accepts` and the full word is what gets shown (en `résumé`
+  names *curriculum vitae*, not CV). An abbreviation that IS the everyday word goes in `teaches`
+  like any other (es `id-card` DNI, whose expansion nobody says).
+- **English is authored in American spelling and vocabulary.** A SPELLING goes in `accepts`
   (`color`/`colour`, `gray`/`grey`, `to practice`/`to practise`): accept it, never teach it.
-  A different WORD is a synonym (`truck`/`lorry`, `pants`/`trousers`, `faucet`/`tap`,
+  A different WORD goes in `teaches` (`truck`/`lorry`, `pants`/`trousers`, `faucet`/`tap`,
   `vacation`/`holiday`), because knowing "truck" does not tell anyone what a lorry is.
   Slugs and prose follow the American form, except where the everyday word already names another
   card (`tin-can`, beside the modal `can`) or the British word is simply the better one to teach
@@ -105,7 +106,7 @@ own and the others would sound wrong carrying one — and price the length in: a
   across `text` and every alternate, in both directions.
   Which register `text` carries is the **scene's** call — the counter, the surgery and the office
   say Sie, the kitchen and the hall say du — so a phrase whose scene fixes the register carries no
-  register variant at all, and only the phrases that travel between scenes (`whats-your-name`,
+  register alternate at all, and only the phrases that travel between scenes (`whats-your-name`,
   `where-is-your-father`) carry both.
 
 **Pick the word a speaker says, never the word that sits furthest from another card.**
@@ -143,7 +144,7 @@ The examples have to be words the card's own learner already holds — a note on
 reaching for one seeded forty cards later is unreadable exactly where it is needed, and naming the
 grammar instead (`pluriel`, `ngeli`) reaches for a word that is never a card at all.
 `../../scripts/notes-vocabulary.py` names both.
-So a shared note SHOWS its word in use and does not gloss it with other ones: a chain of synonyms
+So a shared note SHOWS its word in use and does not gloss it with other ones: a chain of teaches
 explains nothing to the learner who is missing the first link, and where those other words are
 worth having they earn cards rather than a mention. Where the distinction genuinely needs a
 second context the earliest shelves cannot furnish — sw `kusimama` is standing, standing up and
@@ -159,7 +160,7 @@ leaves every other with nothing.
 is cut, so is a form's invariance — nobody inflects a word they were never shown inflecting —
 and load-bearing teaching (which word for "rice") is destined to become first-class
 training content, not a permanent note.
-Which prefix a word DOES take is carried by the dashed stem and its variants (`../README.md`),
+Which prefix a word DOES take is carried by the dashed stem and its `accepts` (`../README.md`),
 never by a note claiming it: `tupu` and `kavu` each shipped a note swearing they took none,
 true-looking because every example was N-class, where the concord is silent.
 A note explains its own word and no other: what OTHER words do belongs on none of them.

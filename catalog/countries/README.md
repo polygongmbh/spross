@@ -28,16 +28,16 @@ no `atlas.json`, no drill; a language without `countries/<lang>.json` has no atl
 `countries/<lang>.json` is keyed by the manifest's slugs:
 
 ```json
-{ "switzerland": { "text": "die Schweiz", "variants": ["Schweiz"], "grammar": { "gender": "die" },
-                   "nationality": { "text": "Schweizer", "variants": ["Schweizerin"] } } }
+{ "switzerland": { "text": "die Schweiz", "accepts": ["Schweiz"], "grammar": { "gender": "die" },
+                   "nationality": { "text": "Schweizer", "accepts": ["Schweizerin"] } } }
 ```
 
-- `text` is the citation form and `variants` are accept-only, exactly as a realization's are.
-  German authors the article in `text` and the bare form as a variant; Spanish does the reverse,
+- `text` is the citation form and `accepts` are accept-only, exactly as a realization's are.
+  German authors the article in `text` and the bare form in `accepts`; Spanish does the reverse,
   because RAE treats *los* Estados Unidos as the optional one.
 - `nationality` is REQUIRED — each entry teaches the triple
   **country, nationality, language**: "Germany, being a German, speaking German".
-  The masculine is `text` and the feminine a variant; a common-gender word (es *belga*) carries none.
+  The masculine is `text` and the feminine an `accepts` entry; a common-gender word (es *belga*) carries none.
 - `grammar` and `notes` follow the realization schema.
 
 Every country is realized in **every** declared language, and every manifest language is

@@ -71,7 +71,7 @@ declarations cannot state are here.
   `promptFeminineMarker = true`; if the base's source realization is also absent, skip.
   Non-feminine concepts without a source realization are skipped.
   A feminine card additionally carries `baseAccepted` — the base concept's TARGET-side
-  `text ∪ synonyms ∪ variants` — empty when the target never realizes the base.
+  `text ∪ teaches ∪ accepts` — empty when the target never realizes the base.
 - **Homonyms / target-language merges**: after emitting, the join counts cards per
   *displayed* prompt key — NFC-normalized `source.text` plus the ♀ state — and sets
   `promptAmbiguous` on every member of a key shared by >1 card. Keying on what the learner
@@ -410,7 +410,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   is not writing it again.
 - **The catalog catching up** (`CatalogMatches`, `BoxEngine.mergeOwnWord`) — a word the
   learner wrote because the catalog had none, beside the catalog word that has since landed.
-  A match needs one side spelled EXACTLY as the catalog spells it (synonyms, variants and the
+  A match needs one side spelled EXACTLY as the catalog spells it (`teaches`, `accepts` and the
   articled form count), or both sides leaning; `MatchSide` says which agreed, and only `Both`
   is offered ticked. A lone leaning side is the noise `BoxForms` exists to reject, and the
   exact side is what makes a one-sided match readable as a correction rather than a neighbor.
@@ -481,7 +481,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   Move the expectation and say so in the commit;
   the zero-test-edit bar belongs to REFACTORS, where an unchanged test is the proof.
   Exhaustive coverage is not the goal either:
-  judge a variant by whether a learner would plausibly type it, not by whether it exists somewhere,
+  judge an `accepts` entry by whether a learner would plausibly type it, not by whether it exists somewhere,
   since a rare regional form costs the review attention the common ones deserve more.
 
 ## Rejected designs

@@ -45,7 +45,7 @@ Ready work comes first, then the items that end in a question for the owner, the
   (`data/orchestration/audio-langs-2026-07/es-content/final/REPORT.md` §5 A first, then the
   seven `drafts/*-notes.md` "Review disputes"; method `../../docs/sprachposter-learnings.md`),
   while five cross-cutting rulings stay with the catalog owner (REPORT §5 C: C2 `desk/internet`
-  ships without `gender`, C3 cross-gender synonyms under the wrong article tint, C6 `variants`
+  ships without `gender`, C3 cross-gender synonyms under the wrong article tint, C6 `accepts`
   as a demotion bucket, C7 Tatoeba-verbatim strings, C8 cross-area accept-set overlaps) — rule
   on each, or delegate them to the native reviewer with the disputes?
 - 38 open questions on `catalog/alphabet/{uk,de,es}.json` wait on a native sweep — 12 uk («йот»

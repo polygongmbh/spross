@@ -202,27 +202,29 @@ Realization fields — only `text` is required:
   A form that only ever appears bound carries its leading dash (sw `-zuri`, which takes the
   noun's class prefix): it is the citation convention, grading ignores the dash, and the
   engine takes it off again wherever the dash alone would identify the answer among plain
-  words (`../kern/docs/snapshots.md`). The agreement forms themselves go in `variants`.
-- `synonyms` — DISTINCT-KNOWLEDGE alternates of `text` (array; omit if none):
+  words (`../kern/docs/snapshots.md`). The agreement forms themselves go in `accepts`.
+- `teaches` — DISTINCT-KNOWLEDGE alternates of `text` (array; omit if none):
   genuinely different lexemes for the same concept that a learner must recognize
   on their own (uk `office` установа/відомство, uk `boss` шеф/керівник).
-  Each entry is **prompt-worthy**: it grades as correct when producing this language,
-  and takes its turn as the recognize prompt when learning FROM it — on the concept's
-  one schedule, never as a unit of its own (`../kern/README.md` §3).
+  The name is the behavior: the card TEACHES these, so each entry is **prompt-worthy** —
+  it grades as correct when producing this language, and takes its turn as the recognize
+  prompt when learning FROM it, on the concept's one schedule, never as a unit of its own
+  (`../kern/README.md` §3).
   NOT a home for distinct learnable items: feminine nouns belong to `feminineOf`
   concepts, and different-meaning words belong to their own concept.
-- `variants` — ACCEPTED surface forms of the SAME knowledge (array; omit if none):
+- `accepts` — ACCEPTED surface forms of the SAME knowledge (array; omit if none):
   alternate renderings a learner already knows if they know `text` — register pairs
   (de Sie-form in `text`, du-form here), gender-agreement forms of a phrase
   (uk `Ти завів/завела …?`), diminutives (uk миша/мишка), internationalism spellings
   (uk договір/контракт), and the noun-class agreement forms of a Swahili adjective
   stem (`-zuri` → nzuri/mzuri/kizuri/wazuri), which is what a learner meets in the wild.
-  **Accept-only, never scheduled and never shown**: they grade as correct on produce,
-  and that is the whole of it — `text` is the form prompted on recognize and the form the
-  reveal teaches, and `synonyms` are what rotate beside it.
+  The name is again the whole of the behavior: the card ACCEPTS them on produce and does
+  nothing else with them — **never scheduled, never shown**. `text` is the form prompted on
+  recognize and the form the reveal teaches, and the `teaches` entries rotate beside it.
 
-  Which of the two an alternate belongs in turns on one question — what a learner already
-  knows from `text` against what they do not — and `areas/README.md` decides it.
+  Which of the two an alternate belongs in is the question the two names ask — does the card
+  teach it, or merely accept it — against what a learner already knows from `text`;
+  `areas/README.md` works it through.
 - `orders` — alternative valid **word orders** of the same sentence (array; omit if none):
   grammatically valid rearrangements whose atoms are a permutation of `text`'s atoms
   (de "Gehen Sie geradeaus." → order "Sie gehen geradeaus.").
