@@ -375,7 +375,7 @@ struct IconButtonStyle: ButtonStyle {
     .background(Theme.colors.background)
 }
 
-private func swatch(_ name: String, _ color: Color) -> some View {
+@MainActor private func swatch(_ name: String, _ color: Color) -> some View {
     HStack {
         RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
             .fill(color)
