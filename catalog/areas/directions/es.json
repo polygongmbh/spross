@@ -52,6 +52,7 @@
    "orders": ["En la esquina gire a la izquierda."]
   },
   "how-do-i-get-to-the-station": { "text": "¿Cómo llego a la estación?" },
-  "im-lost": { "text": "Me he perdido.", "accepts": ["Estoy perdido.", "Estoy perdida."] }
+  "im-lost": { "text": "Me he perdido.", "accepts": ["Estoy perdido.", "Estoy perdida."] },
+  "to-get-lost": { "text": "perderse" }
  }
 }

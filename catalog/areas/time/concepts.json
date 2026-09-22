@@ -36,12 +36,7 @@
  { "slug": "millennium", "kind": "noun" },
  { "slug": "nowadays", "kind": "adjective" },
  { "slug": "i-have-no-time", "kind": "phrase", "emoji": "⏰", "components": ["time"] },
- {
-  "slug": "two-in-the-afternoon",
-  "kind": "phrase",
-  "emoji": "🕑",
-  "components": ["hour", "afternoon"]
- },
- { "slug": "nine-am-sharp", "kind": "phrase", "emoji": "🕘", "components": ["hour", "morning"] },
+ { "slug": "two-in-the-afternoon", "kind": "phrase", "emoji": "🕑", "components": ["hour"] },
+ { "slug": "nine-am-sharp", "kind": "phrase", "emoji": "🕘", "components": ["hour"] },
  { "slug": "next-week", "kind": "phrase", "emoji": "🗓️", "components": ["next", "week"] }
 ]

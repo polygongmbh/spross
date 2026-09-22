@@ -29,5 +29,5 @@
  { "slug": "is-it-far", "kind": "phrase", "components": ["far"] },
  { "slug": "at-school", "kind": "phrase", "emoji": "🏫", "components": ["in"] },
  { "slug": "go-to-school", "kind": "phrase", "emoji": "🏫", "components": ["in"] },
- { "slug": "are-you-going-home-already", "kind": "phrase", "components": ["home"] }
+ { "slug": "are-you-going-home-already", "kind": "phrase", "components": ["at-home"] }
 ]

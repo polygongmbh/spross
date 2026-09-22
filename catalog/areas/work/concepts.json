@@ -51,5 +51,5 @@
   "emoji": "📋",
   "components": ["contract"]
  },
- { "slug": "we-knock-off-at-5", "kind": "phrase", "emoji": "🕔", "components": ["feierabend"] }
+ { "slug": "we-knock-off-at-5", "kind": "phrase", "emoji": "🕔" }
 ]

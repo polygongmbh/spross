@@ -33,6 +33,7 @@
    "orders": ["Giri all'angolo a sinistra."]
   },
   "how-do-i-get-to-the-station": { "text": "Come arrivo alla stazione?" },
-  "im-lost": { "text": "Mi sono perso.", "accepts": ["Mi sono persa."] }
+  "im-lost": { "text": "Mi sono perso.", "accepts": ["Mi sono persa."] },
+  "to-get-lost": { "text": "perdersi" }
  }
 }
