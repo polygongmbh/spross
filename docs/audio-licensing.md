@@ -12,8 +12,8 @@ lives outside the repo in `data/reference/audio/README.md`.
 
 ## 1. What ships, and under what
 
-5791 mp3 files, ~121 MB, all of them Wikimedia Commons transcodes:
-**3520 CC BY-SA · 1321 CC BY · 945 CC0 · 5 public domain**.
+5790 mp3 files, ~121 MB, all of them Wikimedia Commons transcodes:
+**3519 CC BY-SA · 1321 CC BY · 945 CC0 · 5 public domain**.
 
 The totals above and the per-pack rows below are DERIVED, not typed:
 `scripts/audio-coverage.py --credits` emits them from the shipped manifests,
@@ -24,7 +24,7 @@ Coverage itself is the bare `audio-coverage.py`.
 
 | Pack | Files | Source | Licenses | Speakers | Obligation |
 |---|---|---|---|---|---|
-| `audio/de/` | 745 | Commons `De-*.ogg` | CC BY-SA 4.0 507 · CC BY-SA 3.0 215 · CC0 16 · CC BY 3.0 us 7 | Jeuwre 457, Kampy 156 | credit; share-alike on the BY-SA |
+| `audio/de/` | 744 | Commons `De-*.ogg` | CC BY-SA 4.0 506 · CC BY-SA 3.0 215 · CC0 16 · CC BY 3.0 us 7 | Jeuwre 456, Kampy 156 | credit; share-alike on the BY-SA |
 | `audio/de/letters/` | 8 | Commons `De-<letter>.ogg` | CC BY-SA 4.0 6 · CC BY-SA 3.0 2 | Jeuwre 6, T.Voekler 2 | credit + share-alike |
 | `audio/de/texts/` | 2 | Commons `De-*.ogg` | CC BY-SA 4.0 1 · CC BY-SA 3.0 1 | Jeuwre 1, joni 1 | credit + share-alike |
 | `audio/de/articles/` | 221 | Lingua Libre, via Commons | CC BY-SA 4.0 221 | Natschoba 221 | credit + share-alike |
