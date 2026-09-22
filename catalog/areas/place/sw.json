@@ -39,7 +39,7 @@
   "to-be-there": { "text": "kuwepo", "notes": { "sw": "nipo, upo, yupo, tupo, mpo, wapo · Yupo? = yuko hapa?" } },
   "on-the-table": { "text": "juu ya meza" },
   "under-the-bed": { "text": "chini ya kitanda" },
-  "in-the-city": { "text": "katika mji" },
+  "in-the-city": { "text": "katika mji", "variants": ["mjini"] },
   "between-us": { "text": "kati yetu" },
   "is-it-far": { "text": "Ni mbali?" },
   "at-school": {
