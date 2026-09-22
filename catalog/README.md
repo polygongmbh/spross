@@ -7,7 +7,8 @@ and potential future crowdsourced per-language contribution.
 This file owns the file shapes and what each field means.
 What earns a card and how it is worded is `areas/README.md`;
 every other folder below is documented by the `README.md` standing in it.
-Reference grammars and audit logs live in `../../data/` (the parent repo's content workspace).
+Reference grammars, audit logs and offline dictionaries live in `../../data/` (the parent repo's content workspace) —
+check a target-language fact there before the web: Wiktionary dumps, FreeDict and Tatoeba, inventoried in `reference/README.md`.
 
 ## The key modeling decision: everything is a concept
 

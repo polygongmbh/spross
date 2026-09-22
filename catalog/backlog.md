@@ -156,3 +156,8 @@ Ready work comes first, then the items that end in a question for the owner, the
   `hache`, `eñe`, `uve` (absent from the whole `Category:Lingua Libre pronunciation-spa` and
   the `Es-<name>.ogg` convention in every casing), which from one speaker would also stop the
   Spanish letter block changing voice row to row.
+- Swahili recordings stop before the function words: the whole `pronouns` area (17 concepts —
+  i/you/he/we/they/my/your/his …) and most of `connectors` carry no `catalog/audio/sw/manifest.json`
+  entry, so a learner meeting them at global cards #77–95 hears nothing where the surrounding
+  content words speak. Commons has clips for much of it; `data/reference/audio/sw-audio-kaikki.tsv`
+  is the index a fetch would draw on.
