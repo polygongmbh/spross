@@ -72,6 +72,7 @@ struct BoxSettingsSection: View {
                     Label("settings.feedback", systemImage: "envelope")
                         .font(Theme.typography.subheadline)
                         .foregroundStyle(Theme.colors.accent)
+                        .linkAffordance()
                         .frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .buttonStyle(.plain)
@@ -98,6 +99,7 @@ struct BoxSettingsSection: View {
             Label("credits.title", systemImage: "info.circle")
                 .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.accent)
+                .linkAffordance()
                 .frame(maxWidth: .infinity, minHeight: 44)
         }
         .buttonStyle(.plain)
@@ -309,6 +311,7 @@ struct BoxSettingsSection: View {
                 Label("settings.restartTutorial.button", systemImage: "book")
                     .font(Theme.typography.subheadline)
                     .foregroundStyle(Theme.colors.accent)
+                    .linkAffordance()
             }
             .buttonStyle(.plain)
             Text("settings.restartTutorial.hint")
@@ -329,6 +332,7 @@ struct BoxSettingsSection: View {
                 Label("settings.reset.button \(targetName)", systemImage: "arrow.counterclockwise")
                     .font(Theme.typography.subheadline)
                     .foregroundStyle(Theme.colors.wrong)
+                    .linkAffordance()
             }
             .buttonStyle(.plain)
             .fileExporter(isPresented: shown($pendingResetExport), document: pendingResetExport,

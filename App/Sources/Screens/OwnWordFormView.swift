@@ -199,6 +199,7 @@ struct OwnWordFormView: View {
             Label("box.own.word.swap", systemImage: "arrow.up.arrow.down")
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.accent)
+                .linkAffordance()
         }
         .frame(maxWidth: .infinity, alignment: .center)
     }

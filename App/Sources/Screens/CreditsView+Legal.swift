@@ -70,6 +70,7 @@ extension CreditsView {
         if let url = URL(string: "mailto:\(Legal.contactAddress)") {
             Link(Legal.contactAddress, destination: url)
                 .foregroundStyle(Theme.colors.accent)
+                .linkAffordance()
         } else {
             Text(verbatim: Legal.contactAddress)
         }
@@ -82,6 +83,7 @@ extension CreditsView {
                 Label("legal.privacy", systemImage: "hand.raised")
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.accent)
+                    .linkAffordance()
             }
         }
     }

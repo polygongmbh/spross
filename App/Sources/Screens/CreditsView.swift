@@ -148,6 +148,7 @@ private struct CreditGroupRow: View {
             Link(destination: url) {
                 Text(verbatim: credit.license)
                     .foregroundStyle(Theme.colors.accent)
+                    .linkAffordance()
             }
         } else {
             Text(verbatim: credit.license)

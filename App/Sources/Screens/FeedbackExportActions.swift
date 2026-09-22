@@ -141,6 +141,7 @@ struct FeedbackExportActions: View {
             Label("common.clear", systemImage: "trash")
                 .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.wrong)
+                .linkAffordance()
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
         }
@@ -156,6 +157,7 @@ struct FeedbackExportActions: View {
         Label(title, systemImage: icon)
             .font(Theme.typography.subheadline)
             .foregroundStyle(Theme.colors.accent)
+            .linkAffordance()
             .lineLimit(1)
             .minimumScaleFactor(0.7)
     }

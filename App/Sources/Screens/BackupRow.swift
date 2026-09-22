@@ -82,6 +82,7 @@ struct BackupRow: View {
         Label("settings.backup.export", systemImage: "square.and.arrow.up")
             .font(Theme.typography.subheadline)
             .foregroundStyle(Theme.colors.accent)
+            .linkAffordance()
     }
 
     /// The file the exporter then puts somewhere — named for what it carries, so two of
@@ -105,6 +106,7 @@ struct BackupRow: View {
             Label("settings.backup.import", systemImage: "square.and.arrow.down")
                 .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.accent)
+                .linkAffordance()
         }
         .buttonStyle(.plain)
         .fileImporter(isPresented: $importing, allowedContentTypes: [.json]) { result in
