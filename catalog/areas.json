@@ -185,14 +185,14 @@
  {
   "group": "advanced",
   "titles": {
-   "en": "Grammar & Idioms",
-   "de": "Grammatik & Redewendungen",
-   "eo": "Gramatiko kaj parolturnoj",
-   "es": "Gramática y modismos",
-   "fr": "Grammaire et expressions",
-   "it": "Grammatica e modi di dire",
-   "sw": "Sarufi na misemo",
-   "uk": "Граматика та ідіоми"
+   "en": "The Finer Points",
+   "de": "Feinheiten der Sprache",
+   "eo": "Lingvaj subtilaĵoj",
+   "es": "Los matices del idioma",
+   "fr": "Les subtilités de la langue",
+   "it": "Le sfumature della lingua",
+   "sw": "Undani wa lugha",
+   "uk": "Тонкощі мови"
   },
   "areas": [{ "area": "grammar", "emoji": "📐" }, { "area": "idioms", "emoji": "🎭" }]
  }
