@@ -437,9 +437,10 @@ so read what is already filed against whatever it was copied from (`backlog.md`)
   front overlaps it. Equal cells on one exact baseline read as a plantation, and the box is
   not one — but the roll stays a fraction of the height range, because heights are still
   what the row is for.
-  **An area nobody has opened draws nothing at all** — not even ground. A mark per
-  untouched word turns a catalog the learner did not choose into five hundred things they
-  have not done; the dimmed area emoji already says the place exists.
+  **An area nobody has opened stands as one faded seedling on bare ground** — one mark for
+  the whole place, never one per untouched word: a mark per word turns a catalog the learner
+  did not choose into five hundred things they have not done, where one plot with nothing
+  planted in it is somewhere to go.
   A lapse drops leaves at the foot and never shrinks the tree: the engine expects about a
   fifth of reviews to miss, and a picture that shrank for a routine Tuesday would overstate
   what a lapse costs. A suspended word is owed no space at all — waking it is the box's.
