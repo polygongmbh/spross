@@ -237,7 +237,7 @@ Connect rejects a build number it has already seen for a version.
 
 `ubuntu-latest` builds the APK behind the text lints, `:kern:jvmTest`
 and `:android:testDebugUnitTest`.
-`macos-15` pins Xcode 16.4 — the image's default moves — generates the project with
+`macos-26` pins Xcode 26.6 — the image's default moves — generates the project with
 `xcodegen` (`.xcodeproj` is never committed), caches `~/.konan` against the Kotlin
 version, then archives and exports. macOS minutes bill at ten times the Linux rate,
 which is why only a tag starts one.
