@@ -51,6 +51,7 @@ class TurnWiringTest {
     private val knife = card("knife", "Messer", "kisu")
     private val language = card("language", "Sprache", "lugha")
     private val car = card("car", "Auto", "gari", teaches = listOf("motokaa"))
+    private val swahili = card("swahili", "Suaheli", "lugha ya Kiswahili")
 
     /** The platform half, recorded: everything [TurnFlow] hands outside the turn. */
     private class Platform {
@@ -70,7 +71,7 @@ class TurnWiringTest {
     ): Pair<TurnFlow, Platform> {
         val normalizer = AnswerNormalizer(sw)
         val machine = TurnMachine(
-            CatalogAnswerGrader(normalizer, listOf(knife, language, car)),
+            CatalogAnswerGrader(normalizer, listOf(knife, language, car, swahili)),
             normalizer,
             // A card asked by ear is typed in the SOURCE language, and graded under its rules.
             AnswerNormalizer(de),
@@ -151,12 +152,12 @@ class TurnWiringTest {
     /** A miss primes the FIELD with the words already right — the retype starts there. */
     @Test
     fun aMissLeavesTheFieldOpenAndPrimed() {
-        val (flow, platform) = turn(language)
-        flow.type("lugha ya")
+        val (flow, platform) = turn(swahili)
+        flow.type("lugha ya Kiingereza")
         flow.primary()
 
         assertEquals(TurnFeedback.Revealed, flow.feedback)
-        assertEquals("lugha ", flow.input)
+        assertEquals("lugha ya ", flow.input)
         assertEquals(listOf(ToneKind.Wrong), platform.tones)
         assertTrue(platform.booked.isEmpty())
     }
