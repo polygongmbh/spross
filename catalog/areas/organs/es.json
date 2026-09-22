@@ -20,6 +20,7 @@
   "appendix": { "text": "apéndice", "grammar": { "gender": "el", "plural": "apéndices" } },
   "womb": { "text": "útero", "grammar": { "gender": "el" } },
   "pancreas": { "text": "páncreas", "grammar": { "gender": "el", "plural": "=" } },
-  "ovary": { "text": "ovario", "grammar": { "gender": "el" } }
+  "ovary": { "text": "ovario", "grammar": { "gender": "el" } },
+  "tendon": { "text": "tendón", "grammar": { "gender": "el" } }
  }
 }

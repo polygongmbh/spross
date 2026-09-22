@@ -14,6 +14,7 @@
   "spleen": { "text": "wengu", "grammar": { "plural": "mawengu" } },
   "bile": { "text": "nyongo", "grammar": { "plural": "=" } },
   "pancreas": { "text": "kongosho", "grammar": { "plural": "=" } },
-  "ovary": { "text": "ovari", "grammar": { "plural": "=" } }
+  "ovary": { "text": "ovari", "grammar": { "plural": "=" } },
+  "tendon": { "text": "kano" }
  }
 }

@@ -17,6 +17,8 @@
   "to-cry": { "text": "kulia" },
   "doubt": { "text": "shaka", "grammar": { "plural": "mashaka" } },
   "to-confuse": { "text": "kuchanganya" },
-  "to-be-confused": { "text": "kuchanganyikiwa" }
+  "to-be-confused": { "text": "kuchanganyikiwa" },
+  "longing": { "text": "hamu", "grammar": { "plural": "=" } },
+  "to-long-for": { "text": "kuwa na hamu" }
  }
 }

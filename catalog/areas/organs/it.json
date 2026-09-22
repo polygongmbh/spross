@@ -42,6 +42,7 @@
    "text": "ovaia",
    "accepts": ["l'ovaia", "ovario"],
    "grammar": { "gender": "l'", "plural": "ovaie" }
-  }
+  },
+  "tendon": { "text": "tendine", "grammar": { "gender": "il" } }
  }
 }

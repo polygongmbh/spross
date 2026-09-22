@@ -19,6 +19,8 @@
    "accepts": ["sin senti"],
    "notes": { "eo": "Mi sentas min malbone — senti sin kun vorto · Kiel vi fartas? sola." }
   },
-  "to-cry": { "text": "plori" }
+  "to-cry": { "text": "plori" },
+  "longing": { "text": "sopiro" },
+  "to-long-for": { "text": "sopiri" }
  }
 }

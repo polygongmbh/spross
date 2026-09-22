@@ -20,6 +20,8 @@
     "de": "Unpersönlich mit Dativ: Мені погано — mir ist schlecht."
    }
   },
-  "to-cry": { "text": "плакати" }
+  "to-cry": { "text": "плакати" },
+  "longing": { "text": "туга" },
+  "to-long-for": { "text": "тужити" }
  }
 }

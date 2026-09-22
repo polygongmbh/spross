@@ -14,6 +14,8 @@
   "smile": { "text": "sorriso", "grammar": { "gender": "il" } },
   "to-smile": { "text": "sorridere" },
   "to-feel": { "text": "sentirsi", "notes": { "it": "come ti senti? · mi sento bene." } },
-  "to-cry": { "text": "piangere" }
+  "to-cry": { "text": "piangere" },
+  "longing": { "text": "nostalgia", "grammar": { "gender": "la" } },
+  "to-long-for": { "text": "desiderare ardentemente" }
  }
 }

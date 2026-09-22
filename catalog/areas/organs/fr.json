@@ -20,6 +20,7 @@
   "appendix": { "text": "appendice", "grammar": { "gender": "l'" }, "accepts": ["l'appendice"] },
   "womb": { "text": "utérus", "grammar": { "gender": "l'", "plural": "=" }, "accepts": ["l'utérus"] },
   "pancreas": { "text": "pancréas", "grammar": { "gender": "le", "plural": "=" } },
-  "ovary": { "text": "ovaire", "grammar": { "gender": "l'" }, "accepts": ["l'ovaire"] }
+  "ovary": { "text": "ovaire", "grammar": { "gender": "l'" }, "accepts": ["l'ovaire"] },
+  "tendon": { "text": "tendon", "grammar": { "gender": "le" } }
  }
 }

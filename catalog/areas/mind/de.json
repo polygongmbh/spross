@@ -8,6 +8,8 @@
   "to-imagine-something": { "text": "sich etwas vorstellen" },
   "to-dream": { "text": "träumen" },
   "to-hope": { "text": "hoffen" },
-  "vision": { "text": "Vision", "grammar": { "gender": "die", "plural": "Visionen" } }
+  "vision": { "text": "Vision", "grammar": { "gender": "die", "plural": "Visionen" } },
+  "to-remind": { "text": "jemanden erinnern" },
+  "to-wish": { "text": "sich wünschen" }
  }
 }

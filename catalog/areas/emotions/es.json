@@ -18,6 +18,8 @@
    "accepts": ["encontrarse"],
    "notes": { "es": "¿Cómo se siente? · en la consulta, ¿Cómo se encuentra?" }
   },
-  "to-cry": { "text": "llorar" }
+  "to-cry": { "text": "llorar" },
+  "longing": { "text": "anhelo", "grammar": { "gender": "el" } },
+  "to-long-for": { "text": "anhelar" }
  }
 }

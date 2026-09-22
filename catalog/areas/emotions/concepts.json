@@ -14,5 +14,7 @@
  { "slug": "to-cry", "kind": "verb" },
  { "slug": "doubt", "kind": "noun", "emoji": "🤔" },
  { "slug": "to-confuse", "kind": "verb" },
- { "slug": "to-be-confused", "kind": "verb", "emoji": "😵‍💫" }
+ { "slug": "to-be-confused", "kind": "verb", "emoji": "😵‍💫" },
+ { "slug": "longing", "kind": "noun", "emoji": "🥺" },
+ { "slug": "to-long-for", "kind": "verb" }
 ]

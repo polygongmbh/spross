@@ -20,6 +20,7 @@
   "appendix": { "text": "appendix" },
   "womb": { "text": "womb", "teaches": ["uterus"] },
   "pancreas": { "text": "pancreas", "grammar": { "plural": "=" } },
-  "ovary": { "text": "ovary", "grammar": { "plural": "ovaries" } }
+  "ovary": { "text": "ovary", "grammar": { "plural": "ovaries" } },
+  "tendon": { "text": "tendon" }
  }
 }

@@ -17,6 +17,8 @@
    "notes": { "fr": "Le verbe est le même mot : sourire." }
   },
   "to-feel": { "text": "se sentir" },
-  "to-cry": { "text": "pleurer" }
+  "to-cry": { "text": "pleurer" },
+  "longing": { "text": "nostalgie", "grammar": { "gender": "la" } },
+  "to-long-for": { "text": "désirer ardemment" }
  }
 }

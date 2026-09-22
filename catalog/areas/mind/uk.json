@@ -8,6 +8,8 @@
   "to-imagine-something": { "text": "уявляти" },
   "to-dream": { "text": "бачити сни" },
   "to-hope": { "text": "сподіватися" },
-  "vision": { "text": "бачення" }
+  "vision": { "text": "бачення" },
+  "to-remind": { "text": "нагадувати" },
+  "to-wish": { "text": "бажати" }
  }
 }

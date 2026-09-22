@@ -28,6 +28,7 @@
   "appendix": { "text": "Blinddarm", "grammar": { "gender": "der", "plural": "Blinddärme" } },
   "womb": { "text": "Gebärmutter", "grammar": { "gender": "die", "plural": "Gebärmütter" } },
   "pancreas": { "text": "Bauchspeicheldrüse", "grammar": { "gender": "die", "plural": "-n" } },
-  "ovary": { "text": "Eierstock", "grammar": { "gender": "der", "plural": "Eierstöcke" } }
+  "ovary": { "text": "Eierstock", "grammar": { "gender": "der", "plural": "Eierstöcke" } },
+  "tendon": { "text": "Sehne", "grammar": { "gender": "die", "plural": "-n" } }
  }
 }
