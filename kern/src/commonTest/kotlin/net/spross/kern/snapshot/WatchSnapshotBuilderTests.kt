@@ -15,7 +15,7 @@ class WatchSnapshotBuilderTests {
     // fnv1a64("wf") is EVEN: recognize at count 0 and odd counts ≥ 3; produce at 1 and even.
     private val fem = Snap.card(
         "wf", 1, emoji = "👩", sourceText = "Kellner", targetText = "Kellnerin",
-        synonyms = listOf("Serviererin"), variants = listOf("Bedienung"),
+        teaches = listOf("Serviererin"), accepts = listOf("Bedienung"),
         gender = "die", feminineMarker = true,
     )
 
@@ -362,7 +362,7 @@ class WatchSnapshotBuilderTests {
             Snap.card("plain", 1),
             Snap.card(
                 "rotates", 2,
-                synonyms = listOf("d".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS + 1)),
+                teaches = listOf("d".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS + 1)),
             ),
         )
         val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries

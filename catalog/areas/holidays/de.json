@@ -12,13 +12,13 @@
   "overnight-stay": { "text": "Übernachtung", "grammar": { "gender": "die", "plural": "-en" } },
   "to-book-a-room": { "text": "ein Zimmer buchen" },
   "tourist": { "text": "Tourist", "grammar": { "gender": "der", "plural": "-en" } },
-  "souvenir": { "text": "Souvenir", "synonyms": ["Andenken"], "grammar": { "gender": "das", "plural": "-s" } },
+  "souvenir": { "text": "Souvenir", "teaches": ["Andenken"], "grammar": { "gender": "das", "plural": "-s" } },
   "sunscreen": { "text": "Sonnencreme", "grammar": { "gender": "die", "plural": "-s" } },
   "to-pack": { "text": "packen" },
   "campsite": { "text": "Campingplatz", "grammar": { "gender": "der", "plural": "Campingplätze" } },
   "lets-go-to-the-beach": {
    "text": "Gehen wir an den Strand!",
-   "variants": ["Lass uns an den Strand gehen!"],
+   "accepts": ["Lass uns an den Strand gehen!"],
    "orders": ["Wir gehen an den Strand!"]
   },
   "im-looking-for-a-hotel": { "text": "Ich suche ein Hotel." },
@@ -27,7 +27,7 @@
    "text": "Ich möchte nächste Woche Urlaub nehmen.",
    "orders": ["Nächste Woche möchte ich Urlaub nehmen."]
   },
-  "how-many-nights": { "text": "Wie viele Nächte?", "variants": ["Für wie viele Nächte?"] },
+  "how-many-nights": { "text": "Wie viele Nächte?", "accepts": ["Für wie viele Nächte?"] },
   "i-packed-too-much": { "text": "Ich habe zu viel eingepackt." }
  }
 }

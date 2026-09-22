@@ -43,8 +43,8 @@ answers a reviewer better than a partial age signal does.
 `text` carries the clinical word in every language and nothing else.
 The crude Swahili forms the corpus also holds — `mboo`, `zubu`, `dhakari`,
 `nyundo` for the penis, `kuma` for the vagina, which kaikki glosses plainly as
-"cunt" — are **deliberately absent**, and they must not be added as `synonyms`:
-a synonym is prompt-worthy and grades as correct, so listing one teaches it as
+"cunt" — are **deliberately absent**, and they must not be added as `teaches`:
+a `teaches` entry is prompt-worthy and grades as correct, so listing one teaches it as
 an equal. The same holds for German; `Scheide` is in because it is an ordinary
 second word, not a coarse one.
 

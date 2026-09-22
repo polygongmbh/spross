@@ -227,7 +227,7 @@ class LetterDrillRunTest {
      */
     @Test
     fun theDictationVerdictLadderPutsATaughtFormAheadOfTheGradersOwnVerdict() {
-        val mouse = LetterDrillFixture.card("mouse", "миша", synonyms = listOf("мишка"))
+        val mouse = LetterDrillFixture.card("mouse", "миша", teaches = listOf("мишка"))
         val closed = LetterDrillFixture.card("close", "kufunga")
         val opened = LetterDrillFixture.card("open", "kufungua")
         val rainbow = LetterDrillFixture.card("rainbow", "Regenbogen")

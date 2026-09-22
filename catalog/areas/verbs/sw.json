@@ -27,7 +27,7 @@
   "to-want": { "text": "kutaka", "notes": { "sw": "kutaka → sitaki, hutaki · kujua → sijui, hujui" } },
   "to-find": {
    "text": "kupata",
-   "synonyms": ["kukuta"],
+   "teaches": ["kukuta"],
    "notes": {
     "sw": "nimepata jibu · nimepata msaada · nilipata kazi = ich habe Arbeit bekommen · kukuta = kuona kwa bahati"
    }

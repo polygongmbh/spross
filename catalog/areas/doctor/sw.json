@@ -12,7 +12,7 @@
   "hospital": { "text": "hospitali", "grammar": { "plural": "mahospitali" } },
   "emergency": { "text": "dharura", "grammar": { "plural": "=" } },
   "doctors-note": { "text": "cheti cha daktari", "grammar": { "plural": "vyeti vya daktari" } },
-  "to-examine": { "text": "kuchunguza", "variants": ["kupima"] },
+  "to-examine": { "text": "kuchunguza", "accepts": ["kupima"] },
   "to-prescribe-medicine": { "text": "kuandika dawa" },
   "to-take-medicine": { "text": "kunywa dawa" },
   "to-call-in-sick": { "text": "kutoa taarifa ya ugonjwa" },
@@ -22,7 +22,7 @@
   "vaccination": { "text": "chanjo", "grammar": { "plural": "=" } },
   "ambulance": {
    "text": "gari la wagonjwa",
-   "synonyms": ["ambulensi"],
+   "teaches": ["ambulensi"],
    "grammar": { "plural": "magari ya wagonjwa" }
   },
   "to-look-after": { "text": "kutunza", "notes": { "sw": "kutunza mtoto, kutunza pesa, kutunza afya" } },
@@ -33,7 +33,7 @@
   "show-me-your-insurance-card": { "text": "Nionyeshe kadi yako ya bima ya afya." },
   "the-practice-is-closed": { "text": "Kliniki imefungwa." },
   "i-have-to-see-a-doctor": { "text": "Lazima niende kwa daktari." },
-  "call-an-ambulance": { "text": "Ita gari la wagonjwa!", "variants": ["Ita ambulensi!"] },
+  "call-an-ambulance": { "text": "Ita gari la wagonjwa!", "accepts": ["Ita ambulensi!"] },
   "the-doctor-will-examine-you-shortly": { "text": "Daktari atakuchunguza hivi punde.", "orders": ["Hivi punde daktari atakuchunguza."] }
  }
 }

@@ -3,17 +3,17 @@
  "subtitle": "Найближчі тобі люди.",
  "words": {
   "person": { "text": "людина", "grammar": { "plural": "люди" } },
-  "family": { "text": "сім'я", "variants": ["родина"] },
+  "family": { "text": "сім'я", "accepts": ["родина"] },
   "mother": { "text": "мама", "notes": { "uk": "мама — щодня · мати — офіційно, і це ще дієслово мати." } },
   "father": {
    "text": "тато",
-   "synonyms": ["батько"],
+   "teaches": ["батько"],
    "notes": { "uk": "тато — вдома · батько — офіційніше, обидва звичні." }
   },
   "parents": { "text": "батьки", "grammar": { "plural": "only" } },
   "child": { "text": "дитина", "grammar": { "plural": "діти" } },
   "son": { "text": "син" },
-  "daughter": { "text": "дочка", "variants": ["донька"] },
+  "daughter": { "text": "дочка", "accepts": ["донька"] },
   "brother": { "text": "брат" },
   "sister": { "text": "сестра" },
   "man": { "text": "чоловік" },
@@ -37,10 +37,10 @@
   "i-have-two-children": { "text": "У мене двоє дітей." },
   "how-is-your-grandmother": {
    "text": "Як справи у твоєї бабусі?",
-   "variants": ["Як справи у вашої бабусі?"],
+   "accepts": ["Як справи у вашої бабусі?"],
    "orders": ["Як у твоєї бабусі справи?"]
   },
-  "a-good-friend": { "text": "добрий друг", "variants": ["хороший друг"] },
+  "a-good-friend": { "text": "добрий друг", "accepts": ["хороший друг"] },
   "my-girlfriend": { "text": "моя дівчина" },
   "her-boyfriend": { "text": "її хлопець" },
   "old-people": { "text": "старі люди" },

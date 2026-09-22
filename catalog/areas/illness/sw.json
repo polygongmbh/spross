@@ -12,7 +12,7 @@
   "illness": { "text": "ugonjwa", "grammar": { "plural": "magonjwa" } },
   "tired": {
    "text": "-chovu",
-   "variants": ["mchovu", "wachovu"],
+   "accepts": ["mchovu", "wachovu"],
    "notes": {
     "sw": "Nimechoka = nina uchovu · mtu mchovu, watu wachovu",
     "de": "im Alltag sagt man meist das Verb: Nimechoka = ich bin müde."
@@ -22,7 +22,7 @@
   "dizziness": { "text": "kizunguzungu", "grammar": { "plural": "vizunguzungu" } },
   "wound": { "text": "jeraha", "grammar": { "plural": "majeraha" } },
   "to-hurt-oneself": { "text": "kujiumiza" },
-  "bandage": { "text": "bendeji", "variants": ["bandeji"], "grammar": { "plural": "=" } },
+  "bandage": { "text": "bendeji", "accepts": ["bandeji"], "grammar": { "plural": "=" } },
   "band-aid": { "text": "plasta", "grammar": { "plural": "=" } },
   "to-recover": { "text": "kupona" },
   "allergy": { "text": "mzio", "grammar": { "plural": "mizio" } },
@@ -36,7 +36,7 @@
   "ive-had-a-fever-since-yesterday": { "text": "Nina homa tangu jana.", "orders": ["Tangu jana nina homa."] },
   "get-well-soon": {
    "text": "Upone haraka!",
-   "variants": ["Pole! Upone haraka!"],
+   "accepts": ["Pole! Upone haraka!"],
    "notes": { "de": "pole = Mitgefühls-Wort ohne direktes deutsches Gegenstück" }
   },
   "the-wound-hurts": { "text": "Jeraha linauma." },

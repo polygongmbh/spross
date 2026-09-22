@@ -6,26 +6,26 @@
   "there": { "text": "там" },
   "left": { "text": "ліворуч" },
   "right": { "text": "праворуч" },
-  "up": { "text": "вгорі", "variants": ["нагорі", "вгору"] },
-  "down": { "text": "внизу", "variants": ["вниз"] },
+  "up": { "text": "вгорі", "accepts": ["нагорі", "вгору"] },
+  "down": { "text": "внизу", "accepts": ["вниз"] },
   "inside": { "text": "всередині" },
   "outdoors": { "text": "надворі" },
-  "at-home": { "text": "вдома", "variants": ["удома"] },
+  "at-home": { "text": "вдома", "accepts": ["удома"] },
   "home": { "text": "додому", "notes": { "uk": "Куди? — додому. Де? — вдома." } },
   "in": {
    "text": "в",
-   "variants": ["у"],
+   "accepts": ["у"],
    "notes": { "uk": "у Львові, в Одесі — в і у міняються за звучанням." }
   },
   "on": { "text": "на" },
   "under": { "text": "під" },
-  "behind": { "text": "за", "variants": ["позаду"] },
+  "behind": { "text": "за", "accepts": ["позаду"] },
   "between": { "text": "між" },
-  "near": { "text": "близько", "variants": ["поруч"] },
+  "near": { "text": "близько", "accepts": ["поруч"] },
   "far": { "text": "далеко" },
   "place": { "text": "місце", "grammar": { "plural": "місця" } },
   "country": { "text": "країна" },
-  "in-front": { "text": "спереду", "synonyms": ["попереду"] },
+  "in-front": { "text": "спереду", "teaches": ["попереду"] },
   "next-to": { "text": "поруч з" },
   "to-be-there": { "text": "бути присутнім" },
   "on-the-table": { "text": "на столі" },
@@ -43,7 +43,7 @@
   },
   "are-you-going-home-already": {
    "text": "Ви вже йдете додому?",
-   "variants": ["Ти вже йдеш додому?"],
+   "accepts": ["Ти вже йдеш додому?"],
    "orders": ["Ви вже додому йдете?"]
   }
  }

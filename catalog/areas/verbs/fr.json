@@ -45,13 +45,13 @@
    "text": "chercher",
    "notes": { "fr": "je cherche un train, je te cherche : chercher n'a pas de à." }
   },
-  "to-receive": { "text": "recevoir", "synonyms": ["obtenir"] },
+  "to-receive": { "text": "recevoir", "teaches": ["obtenir"] },
   "to-look": { "text": "regarder", "notes": { "fr": "regarde à gauche, à droite · regarder, c'est exprès." } },
   "to-open": { "text": "ouvrir" },
   "to-close": { "text": "fermer" },
   "to-stop": {
    "text": "arrêter",
-   "variants": ["s'arrêter", "arrêter de"],
+   "accepts": ["s'arrêter", "arrêter de"],
    "notes": { "fr": "arrêter de fumer · le bus s'arrête ici." }
   },
   "to-stand": {
@@ -75,13 +75,13 @@
   "to-carry": { "text": "porter" },
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
-   "variants": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],
+   "accepts": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],
    "notes": { "fr": "de l'eau, du bruit, de l'aide : une quantité non comptée." }
   },
   "where-are-you-from": {
    "text": "D'où venez-vous ?",
-   "variants": ["Vous venez d'où ?", "D'où viens-tu ?", "Tu viens d'où ?"]
+   "accepts": ["Vous venez d'où ?", "D'où viens-tu ?", "Tu viens d'où ?"]
   },
-  "can-you-see-me": { "text": "Tu me vois ?", "variants": ["Vous me voyez ?"] }
+  "can-you-see-me": { "text": "Tu me vois ?", "accepts": ["Vous me voyez ?"] }
  }
 }

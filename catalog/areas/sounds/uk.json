@@ -1,18 +1,18 @@
 {
  "title": "Звуки та слух",
  "words": {
-  "loud": { "text": "гучний", "variants": ["голосний", "гучно", "голосно"] },
+  "loud": { "text": "гучний", "accepts": ["голосний", "гучно", "голосно"] },
   "quiet": { "text": "тихий" },
   "noise": { "text": "шум" },
   "music": { "text": "музика" },
   "radio": { "text": "радіо" },
-  "speaker": { "text": "колонка", "variants": ["динамік"], "grammar": { "plural": "колонки" } },
+  "speaker": { "text": "колонка", "accepts": ["динамік"], "grammar": { "plural": "колонки" } },
   "headphones": { "text": "навушники", "grammar": { "plural": "only" } },
   "microphone": { "text": "мікрофон", "grammar": { "plural": "мікрофони" } },
   "volume": { "text": "гучність" },
   "to-listen-to": { "text": "слухати" },
   "to-listen-to-music": { "text": "слухати музику" },
   "to-play-instrument": { "text": "грати на інструменті", "notes": { "uk": "грати на гітарі, на піаніно." } },
-  "louder": { "text": "Голосніше!", "variants": ["Гучніше!"] }
+  "louder": { "text": "Голосніше!", "accepts": ["Гучніше!"] }
  }
 }

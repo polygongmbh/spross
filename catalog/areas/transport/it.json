@@ -3,37 +3,37 @@
  "subtitle": "Si parte!",
  "words": {
   "traffic-light": { "text": "semaforo", "grammar": { "gender": "il" } },
-  "bicycle": { "text": "bicicletta", "variants": ["bici"], "grammar": { "gender": "la" } },
+  "bicycle": { "text": "bicicletta", "accepts": ["bici"], "grammar": { "gender": "la" } },
   "bus": {
    "text": "autobus",
-   "variants": ["l'autobus", "bus"],
+   "accepts": ["l'autobus", "bus"],
    "grammar": { "gender": "l'", "plural": "=" }
   },
-  "bus-stop": { "text": "fermata", "variants": ["fermata dell'autobus"], "grammar": { "gender": "la" } },
+  "bus-stop": { "text": "fermata", "accepts": ["fermata dell'autobus"], "grammar": { "gender": "la" } },
   "train": { "text": "treno", "grammar": { "gender": "il" } },
   "car": {
    "text": "macchina",
-   "synonyms": ["auto"],
-   "variants": ["l'auto", "un'auto", "automobile"],
+   "teaches": ["auto"],
+   "accepts": ["l'auto", "un'auto", "automobile"],
    "grammar": { "gender": "la" },
    "notes": { "it": "l'auto viene da automobile ed è femminile: le auto." }
   },
-  "taxi": { "text": "taxi", "variants": ["tassì"], "grammar": { "gender": "il", "plural": "=" } },
-  "train-station": { "text": "stazione", "variants": ["stazione ferroviaria"], "grammar": { "gender": "la" } },
+  "taxi": { "text": "taxi", "accepts": ["tassì"], "grammar": { "gender": "il", "plural": "=" } },
+  "train-station": { "text": "stazione", "accepts": ["stazione ferroviaria"], "grammar": { "gender": "la" } },
   "ticket": { "text": "biglietto", "grammar": { "gender": "il" } },
-  "to-ride-bike": { "text": "andare in bicicletta", "variants": ["andare in bici", "pedalare"] },
-  "to-take-bus": { "text": "prendere l'autobus", "variants": ["prendere il bus"] },
+  "to-ride-bike": { "text": "andare in bicicletta", "accepts": ["andare in bici", "pedalare"] },
+  "to-take-bus": { "text": "prendere l'autobus", "accepts": ["prendere il bus"] },
   "to-depart": { "text": "partire", "notes": { "it": "il treno parte alle otto." } },
   "driver": {
    "text": "autista",
-   "variants": ["l'autista", "conducente"],
+   "accepts": ["l'autista", "conducente"],
    "grammar": { "gender": "l'", "plural": "autisti" }
   },
-  "plane": { "text": "aereo", "variants": ["l'aereo", "aeroplano"], "grammar": { "gender": "l'" } },
-  "airport": { "text": "aeroporto", "variants": ["l'aeroporto"], "grammar": { "gender": "l'" } },
+  "plane": { "text": "aereo", "accepts": ["l'aereo", "aeroplano"], "grammar": { "gender": "l'" } },
+  "airport": { "text": "aeroporto", "accepts": ["l'aeroporto"], "grammar": { "gender": "l'" } },
   "motorbike": {
    "text": "moto",
-   "variants": ["motocicletta"],
+   "accepts": ["motocicletta"],
    "grammar": { "gender": "la", "plural": "=" },
    "notes": { "it": "la moto viene da motocicletta ed è femminile: le moto." }
   },
@@ -42,17 +42,17 @@
   "wheel": { "text": "ruota", "grammar": { "gender": "la" } },
   "engine": { "text": "motore", "grammar": { "gender": "il" } },
   "rail": { "text": "rotaia", "grammar": { "gender": "la" } },
-  "fare": { "text": "tariffa", "variants": ["prezzo del biglietto"], "grammar": { "gender": "la" } },
+  "fare": { "text": "tariffa", "accepts": ["prezzo del biglietto"], "grammar": { "gender": "la" } },
   "to-get-off": { "text": "scendere" },
   "the-bus-is-coming-soon": {
    "text": "L'autobus arriva tra poco.",
-   "variants": ["L'autobus arriva fra poco.", "Il bus arriva tra poco."],
+   "accepts": ["L'autobus arriva fra poco.", "Il bus arriva tra poco."],
    "orders": ["Tra poco arriva l'autobus."]
   },
-  "when-does-the-train-leave": { "text": "Quando parte il treno?", "variants": ["A che ora parte il treno?"] },
+  "when-does-the-train-leave": { "text": "Quando parte il treno?", "accepts": ["A che ora parte il treno?"] },
   "how-much-is-the-fare": {
    "text": "Qual è la tariffa?",
-   "variants": ["Quanto costa la corsa?", "Quanto costa il biglietto?"]
+   "accepts": ["Quanto costa la corsa?", "Quanto costa il biglietto?"]
   },
   "the-bus-has-already-departed": { "text": "L'autobus è già partito." },
   "my-parents-are-coming-by-train": { "text": "I miei genitori vengono in treno.", "orders": ["In treno vengono i miei genitori."] }

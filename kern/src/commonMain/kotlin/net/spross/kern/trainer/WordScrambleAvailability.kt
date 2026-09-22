@@ -109,7 +109,7 @@ object WordScrambleAvailability {
     /**
      * What [card] may be asked to spell out of loose letters: its own text where that stands as
      * a word, else — and ONLY where that text is not [writtenInLetters] — the concrete forms
-     * its variants carry.
+     * its `accepts` carry.
      *
      * A Swahili bound stem ("-baya") is no citation form a learner could write down: it is a
      * dash and an agreement slot. Every form it agrees into ("mbaya", "wabaya", "vibaya") is a
@@ -127,7 +127,7 @@ object WordScrambleAvailability {
         if (ScrambleTokenizer.tokens(text).size != 1) return emptyList()
         if (spellable(text)) return listOf(text)
         if (writtenInLetters(text)) return emptyList()
-        return card.target.variants.filter(::spellable)
+        return card.target.accepts.filter(::spellable)
     }
 
     /** One token [writtenInLetters], carrying at least [MIN_LETTERS] of them. */

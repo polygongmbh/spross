@@ -20,19 +20,19 @@
   "to-cough": { "text": "tousser" },
   "sick": { "text": "malade" },
   "illness": { "text": "maladie", "grammar": { "gender": "la" } },
-  "tired": { "text": "fatigué", "variants": ["fatiguée"] },
+  "tired": { "text": "fatigué", "accepts": ["fatiguée"] },
   "weak": { "text": "faible" },
   "dizziness": {
    "text": "vertige",
-   "variants": ["vertiges"],
+   "accepts": ["vertiges"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "souvent au pluriel : j'ai des vertiges." }
   },
-  "wound": { "text": "blessure", "variants": ["plaie"], "grammar": { "gender": "la" } },
-  "to-hurt-oneself": { "text": "se blesser", "variants": ["se faire mal"] },
+  "wound": { "text": "blessure", "accepts": ["plaie"], "grammar": { "gender": "la" } },
+  "to-hurt-oneself": { "text": "se blesser", "accepts": ["se faire mal"] },
   "bandage": {
    "text": "pansement",
-   "variants": ["bandage"],
+   "accepts": ["bandage"],
    "grammar": { "gender": "le" },
    "notes": {
     "fr": "le pansement couvre la plaie · le bandage s'enroule et serre.",
@@ -47,17 +47,17 @@
   "splint": { "text": "attelle", "grammar": { "gender": "la" } },
   "to-recover": {
    "text": "guérir",
-   "variants": ["se remettre"],
+   "accepts": ["se remettre"],
    "notes": { "fr": "je guéris vite · le médecin me guérit." }
   },
-  "allergy": { "text": "allergie", "variants": ["l'allergie"], "grammar": { "gender": "l'" } },
-  "my-throat-hurts-a-lot": { "text": "J'ai très mal à la gorge.", "variants": ["Ma gorge me fait très mal."] },
+  "allergy": { "text": "allergie", "accepts": ["l'allergie"], "grammar": { "gender": "l'" } },
+  "my-throat-hurts-a-lot": { "text": "J'ai très mal à la gorge.", "accepts": ["Ma gorge me fait très mal."] },
   "ive-had-a-fever-since-yesterday": { "text": "J'ai de la fièvre depuis hier.", "orders": ["Depuis hier, j'ai de la fièvre."] },
-  "get-well-soon": { "text": "Bon rétablissement !", "variants": ["Remets-toi vite !"] },
-  "the-wound-hurts": { "text": "La blessure fait mal.", "variants": ["Ma blessure me fait mal."] },
+  "get-well-soon": { "text": "Bon rétablissement !", "accepts": ["Remets-toi vite !"] },
+  "the-wound-hurts": { "text": "La blessure fait mal.", "accepts": ["Ma blessure me fait mal."] },
   "i-hurt-myself-yesterday": {
    "text": "Je me suis blessé hier.",
-   "variants": ["Je me suis blessée hier."],
+   "accepts": ["Je me suis blessée hier."],
    "orders": ["Hier, je me suis blessé."]
   }
  }

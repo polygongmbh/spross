@@ -38,7 +38,7 @@
  ],
  "numeric": "{d}/{m}/{y}",
  "patterns": {
-  "dayMonth": { "text": "il {day} {month}", "variants": ["l'{day} {month}"] },
+  "dayMonth": { "text": "il {day} {month}", "accepts": ["l'{day} {month}"] },
   "date": { "text": "{weekday} {day} {month}" },
   "dateWithYear": { "text": "{weekday} {day} {month} {year}" }
  }

@@ -38,7 +38,7 @@ data class AtlasCountry(
 data class CountryName(
     val text: String,
     /** Accept-only alternates, never displayed (de bare "Schweiz" beside "die Schweiz"). */
-    val variants: List<String> = emptyList(),
+    val accepts: List<String> = emptyList(),
     /** Free-form grammatical metadata, as a realization carries it (de article, plural). */
     val grammar: Map<String, String> = emptyMap(),
     /** The person noun — every country carries one; the triple is country/nationality/language. */
@@ -50,7 +50,7 @@ data class CountryName(
 /** What someone from a country is CALLED, with its accept-only gender alternates. */
 data class NationalityName(
     val text: String,
-    val variants: List<String> = emptyList(),
+    val accepts: List<String> = emptyList(),
 )
 
 /**

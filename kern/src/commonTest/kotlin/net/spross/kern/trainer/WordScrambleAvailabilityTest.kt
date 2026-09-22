@@ -29,7 +29,7 @@ class WordScrambleAvailabilityTest {
             "-baya",
             CardKind.Adjective,
             seed = 11,
-            variants = listOf("mbi", "mbaya", "wabaya"),
+            accepts = listOf("mbi", "mbaya", "wabaya"),
         ),
     )
 

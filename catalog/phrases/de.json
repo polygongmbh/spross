@@ -26,12 +26,12 @@
   "we-have-n-chairs": { "text": "Wir haben {slot} Stühle." },
   "i-have-n-keys": { "text": "Ich habe {slot} Schlüssel." },
   "it-costs-n-euros": { "text": "Das kostet {slot} Euro." },
-  "repeat-please": { "text": "Wiederholen Sie bitte: {slot}.", "variants": ["Wiederhole bitte: {slot}."] },
+  "repeat-please": { "text": "Wiederholen Sie bitte: {slot}.", "accepts": ["Wiederhole bitte: {slot}."] },
   "write-please": { "text": "Schreib bitte: {slot}." },
   "learning-since-year": { "text": "Ich lerne seit {slot} {language}." },
   "repeat-the-year": {
    "text": "Wiederholen Sie bitte das Datum: {slot}.",
-   "variants": [
+   "accepts": [
     "Wiederhole bitte das Datum: {slot}.",
     "Wiederholen Sie bitte die Jahreszahl: {slot}.",
     "Wiederhole bitte die Jahreszahl: {slot}."
@@ -39,7 +39,7 @@
   },
   "write-the-year": {
    "text": "Schreib bitte das Datum: {slot}.",
-   "variants": ["Schreib bitte die Jahreszahl: {slot}."]
+   "accepts": ["Schreib bitte die Jahreszahl: {slot}."]
   },
   "i-need-n-kilo-of-flour": { "text": "Ich brauche {slot} Kilo Mehl." }
  }

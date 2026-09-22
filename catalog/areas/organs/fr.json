@@ -9,17 +9,17 @@
   "bladder": { "text": "vessie", "grammar": { "gender": "la" } },
   "nerve": { "text": "nerf", "grammar": { "gender": "le" } },
   "vein": { "text": "veine", "grammar": { "gender": "la" } },
-  "thyroid": { "text": "thyroïde", "variants": ["la thyroïde"], "grammar": { "gender": "la" } },
+  "thyroid": { "text": "thyroïde", "accepts": ["la thyroïde"], "grammar": { "gender": "la" } },
   "to-breathe": { "text": "respirer" },
   "stomach-organ": { "text": "estomac", "grammar": { "gender": "le" } },
-  "artery": { "text": "artère", "grammar": { "gender": "l'" }, "variants": ["l'artère"] },
-  "joint": { "text": "articulation", "grammar": { "gender": "l'" }, "variants": ["l'articulation"] },
+  "artery": { "text": "artère", "grammar": { "gender": "l'" }, "accepts": ["l'artère"] },
+  "joint": { "text": "articulation", "grammar": { "gender": "l'" }, "accepts": ["l'articulation"] },
   "gland": { "text": "glande", "grammar": { "gender": "la" } },
   "spleen": { "text": "rate", "grammar": { "gender": "la" } },
   "bile": { "text": "bile", "grammar": { "gender": "la" } },
-  "appendix": { "text": "appendice", "grammar": { "gender": "l'" }, "variants": ["l'appendice"] },
-  "womb": { "text": "utérus", "grammar": { "gender": "l'", "plural": "=" }, "variants": ["l'utérus"] },
+  "appendix": { "text": "appendice", "grammar": { "gender": "l'" }, "accepts": ["l'appendice"] },
+  "womb": { "text": "utérus", "grammar": { "gender": "l'", "plural": "=" }, "accepts": ["l'utérus"] },
   "pancreas": { "text": "pancréas", "grammar": { "gender": "le", "plural": "=" } },
-  "ovary": { "text": "ovaire", "grammar": { "gender": "l'" }, "variants": ["l'ovaire"] }
+  "ovary": { "text": "ovaire", "grammar": { "gender": "l'" }, "accepts": ["l'ovaire"] }
  }
 }

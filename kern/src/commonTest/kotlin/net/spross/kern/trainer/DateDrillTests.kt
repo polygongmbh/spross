@@ -119,7 +119,7 @@ class DateDrillTests {
         assertEquals("Saturday", back.display)
     }
 
-    /** Pattern variants cross-multiply with the day's readings — the accusative rides along. */
+    /** Pattern `accepts` cross-multiply with the day's readings — the accusative rides along. */
     @Test
     fun anAssembledDayAndMonthCrossMultipliesItsParts() {
         val task = DateDrillTasks.dayMonth(german, 3, 5)
@@ -412,13 +412,13 @@ class DateDrillTests {
 
         val english = DateDrillParsing.datedWithoutWeekday(
             DatePatterns(
-                dayMonth = DatePattern("{month} {day}", synonyms = listOf("the {day} of {month}")),
+                dayMonth = DatePattern("{month} {day}", teaches = listOf("the {day} of {month}")),
                 date = DatePattern("{weekday}, {month} {day}"),
                 dateWithYear = DatePattern("{weekday}, {month} {day}, {year}"),
             ),
         )
         assertEquals("{month} {day}, {year}", assertNotNull(english).text)
-        assertEquals(listOf("the {day} of {month}, {year}"), english.synonyms)
+        assertEquals(listOf("the {day} of {month}, {year}"), english.teaches)
 
         // A pair that reads no year has no such reading, and neither has one whose year is
         // joined by rearranging the date rather than by adding to the end of it.
@@ -497,7 +497,7 @@ class DateDrillTests {
         assertEquals("березень", march.target)
         assertEquals("березня", march.dateForm)
         val saturday = DateDrill.reference(german)[0].rows[5]
-        assertEquals(listOf("Sonnabend"), saturday.synonyms)
+        assertEquals(listOf("Sonnabend"), saturday.teaches)
         assertEquals("Sa", saturday.abbr)
     }
 

@@ -289,12 +289,12 @@ struct SessionView: View, LanguageNaming {
     }
 
     /// The reveal always shows the full family: produce reveals the target
-    /// citation + synonyms; recognize reveals the source meaning (synonyms
+    /// citation + `teaches`; recognize reveals the source meaning (its `teaches`
     /// joined informatively) + the remaining target forms as "auch: …".
     private func answerSide(_ card: Card, role: PresentationRole) -> VocabCardView.Side {
         switch role {
         case .produce:
-            let meaning = ([card.source.text] + card.source.synonyms).joined(separator: " / ")
+            let meaning = ([card.source.text] + card.source.teaches).joined(separator: " / ")
             let alternates = CardDisplay.alternates(of: card.target,
                                                     shown: card.target.text,
                                                     locale: locale)
@@ -317,7 +317,7 @@ struct SessionView: View, LanguageNaming {
                          pronounce: pronounceAction(for: card.target.text),
                          isPlaying: isPronouncing(card.target.text))
         case .recognize:
-            let meaning = ([card.source.text] + card.source.synonyms).joined(separator: " / ")
+            let meaning = ([card.source.text] + card.source.teaches).joined(separator: " / ")
             return .init(text: meaning,
                          alternates: CardDisplay.alternates(of: card.target,
                                                             shown: model.promptForm(for: card),

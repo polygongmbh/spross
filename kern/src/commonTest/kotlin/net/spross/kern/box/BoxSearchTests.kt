@@ -15,13 +15,13 @@ class BoxSearchTests {
         target: String,
         area: String = "kitchen",
         seedIndex: Int = 0,
-        sourceSynonyms: List<String> = emptyList(),
-        targetVariants: List<String> = emptyList(),
+        sourceTeaches: List<String> = emptyList(),
+        targetAccepts: List<String> = emptyList(),
     ): Card = Card(
         id = id, kind = CardKind.Noun, area = area, emoji = null, seedIndex = seedIndex,
         components = emptyList(), feminineOf = null,
-        source = Realization(lang = "de", text = source, synonyms = sourceSynonyms),
-        target = Realization(lang = "sw", text = target, variants = targetVariants),
+        source = Realization(lang = "de", text = source, teaches = sourceTeaches),
+        target = Realization(lang = "sw", text = target, accepts = targetAccepts),
         promptFeminineMarker = false,
     )
 
@@ -117,7 +117,7 @@ class BoxSearchTests {
     @Test
     fun aHeadwordOutranksAnAlternate() {
         val box = state(
-            card("viaSynonym", "Kühlgerät", "friji", sourceSynonyms = listOf("Eisschrank"), seedIndex = 1),
+            card("viaSynonym", "Kühlgerät", "friji", sourceTeaches = listOf("Eisschrank"), seedIndex = 1),
             card("viaHeadword", "Eisschrank", "friji ndogo", seedIndex = 9),
         )
         assertEquals(
@@ -128,7 +128,7 @@ class BoxSearchTests {
 
     @Test
     fun acceptedVariantsAreFindable() {
-        val box = state(card("photo", "Foto", "picha", targetVariants = listOf("pikcha")))
+        val box = state(card("photo", "Foto", "picha", targetAccepts = listOf("pikcha")))
         assertEquals(listOf("photo"), BoxSearch.search(box, areas, "pikcha").cards.map { it.id })
     }
 

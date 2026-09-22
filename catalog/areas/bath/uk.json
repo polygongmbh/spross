@@ -3,7 +3,7 @@
  "subtitle": "Свіжо й чисто.",
  "words": {
   "washing-machine": { "text": "пральна машина", "grammar": { "plural": "пральні машини" } },
-  "laundry": { "text": "білизна", "synonyms": ["прання"] },
+  "laundry": { "text": "білизна", "teaches": ["прання"] },
   "toilet": { "text": "туалет" },
   "shower": { "text": "душ" },
   "sink": { "text": "умивальник" },

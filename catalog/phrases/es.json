@@ -28,11 +28,11 @@
     "en": "literally „The alarm clock says that …“ — the time brings its own copula."
    }
   },
-  "repeat-please": { "text": "Repita, por favor: {slot}.", "variants": ["Repite, por favor: {slot}."] },
-  "write-please": { "text": "Escribe, por favor: {slot}.", "variants": ["Escriba, por favor: {slot}."] },
+  "repeat-please": { "text": "Repita, por favor: {slot}.", "accepts": ["Repite, por favor: {slot}."] },
+  "write-please": { "text": "Escribe, por favor: {slot}.", "accepts": ["Escriba, por favor: {slot}."] },
   "learning-since-year": {
    "text": "Aprendo {language} desde {slot}.",
-   "variants": ["Estoy aprendiendo {language} desde {slot}."],
+   "accepts": ["Estoy aprendiendo {language} desde {slot}."],
    "notes": {
     "de": "Jahreszahl als Kardinalzahl gelesen: „mil novecientos setenta y ocho“",
     "en": "The year is read as a plain cardinal: „mil novecientos setenta y ocho“."
@@ -40,11 +40,11 @@
   },
   "repeat-the-year": {
    "text": "Repita, por favor, la fecha: {slot}.",
-   "variants": ["Repite, por favor, la fecha: {slot}."]
+   "accepts": ["Repite, por favor, la fecha: {slot}."]
   },
   "write-the-year": {
    "text": "Escribe, por favor, la fecha: {slot}.",
-   "variants": ["Escriba, por favor, la fecha: {slot}."]
+   "accepts": ["Escriba, por favor, la fecha: {slot}."]
   },
   "i-need-n-kilo-of-flour": { "text": "Necesito {slot} de kilo de harina." }
  }

@@ -44,11 +44,11 @@
   "not": { "text": "nicht" },
   "only": { "text": "nur" },
   "together": { "text": "zusammen" },
-  "therefore": { "text": "deshalb", "synonyms": ["daher"] },
+  "therefore": { "text": "deshalb", "teaches": ["daher"] },
   "even": { "text": "sogar" },
   "although": { "text": "obwohl" },
   "that-conj": { "text": "dass" },
-  "if-you-want": { "text": "Wenn Sie wollen.", "variants": ["Wenn du willst."] },
+  "if-you-want": { "text": "Wenn Sie wollen.", "accepts": ["Wenn du willst."] },
   "finally-done": { "text": "Endlich fertig!" },
   "usually": { "text": "normalerweise" }
  }

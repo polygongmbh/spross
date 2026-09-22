@@ -2,7 +2,7 @@
  "title": "Al ristorante",
  "subtitle": "Dove qualcuno ti serve.",
  "words": {
-  "menu": { "text": "menu", "variants": ["menù"], "grammar": { "gender": "il" } },
+  "menu": { "text": "menu", "accepts": ["menù"], "grammar": { "gender": "il" } },
   "waiter": { "text": "cameriere", "grammar": { "gender": "il" } },
   "waiter-f": { "text": "cameriera", "grammar": { "gender": "la" } },
   "table": { "text": "tavolo", "grammar": { "gender": "il" } },
@@ -13,7 +13,7 @@
   "glass": { "text": "bicchiere", "grammar": { "gender": "il" } },
   "cutlery": { "text": "posate", "grammar": { "gender": "le", "plural": "only" } },
   "napkin": { "text": "tovagliolo", "grammar": { "gender": "il" } },
-  "dessert": { "text": "dolce", "grammar": { "gender": "il" }, "variants": ["dessert"] },
+  "dessert": { "text": "dolce", "grammar": { "gender": "il" }, "accepts": ["dessert"] },
   "beverage": { "text": "bevanda", "grammar": { "gender": "la" } },
   "restaurant": { "text": "ristorante", "grammar": { "gender": "il" } },
   "a-table-for-two": { "text": "Un tavolo per due, per favore." },

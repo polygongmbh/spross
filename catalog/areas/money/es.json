@@ -10,17 +10,17 @@
   "cash": { "text": "efectivo", "grammar": { "gender": "el" }, "notes": { "es": "pagar en efectivo." } },
   "bank-card": {
    "text": "tarjeta",
-   "variants": ["tarjeta bancaria", "tarjeta de crédito"],
+   "accepts": ["tarjeta bancaria", "tarjeta de crédito"],
    "grammar": { "gender": "la" }
   },
   "coin": { "text": "moneda", "grammar": { "gender": "la" } },
   "change-money": {
    "text": "cambio",
-   "variants": ["vuelto", "vuelta"],
+   "accepts": ["vuelto", "vuelta"],
    "grammar": { "gender": "el" },
    "notes": { "es": "En España el cambio; en gran parte de América, el vuelto." }
   },
-  "money": { "text": "dinero", "variants": ["plata"], "grammar": { "gender": "el" } },
+  "money": { "text": "dinero", "accepts": ["plata"], "grammar": { "gender": "el" } },
   "to-buy": { "text": "comprar" },
   "to-pay": { "text": "pagar" },
   "rich": { "text": "rico" },
@@ -28,12 +28,9 @@
   "free-of-charge": { "text": "gratis" },
   "how-much-does-this-cost": {
    "text": "¿Cuánto cuesta esto?",
-   "variants": ["¿Cuánto cuesta?", "¿Cuánto vale esto?", "¿Cuánto vale?"]
+   "accepts": ["¿Cuánto cuesta?", "¿Cuánto vale esto?", "¿Cuánto vale?"]
   },
-  "that-is-too-expensive": {
-   "text": "Eso es demasiado caro.",
-   "variants": ["Es demasiado caro.", "Esto es demasiado caro."]
-  },
+  "that-is-too-expensive": { "text": "Eso es demasiado caro.", "accepts": ["Es demasiado caro.", "Esto es demasiado caro."] },
   "i-have-no-money": { "text": "No tengo dinero." },
   "can-i-pay-by-card": { "text": "¿Puedo pagar con tarjeta?" },
   "ive-already-paid": { "text": "Ya he pagado.", "orders": ["He pagado ya."] }

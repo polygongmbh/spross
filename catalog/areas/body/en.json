@@ -15,7 +15,7 @@
   "arm": { "text": "arm" },
   "foot": { "text": "foot", "grammar": { "plural": "feet" } },
   "leg": { "text": "leg" },
-  "stomach": { "text": "belly", "variants": ["stomach", "tummy"] },
+  "stomach": { "text": "belly", "accepts": ["stomach", "tummy"] },
   "back": { "text": "back" },
   "throat": { "text": "throat" },
   "shoulder": { "text": "shoulder" },

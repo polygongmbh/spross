@@ -21,7 +21,7 @@
   "daughter": { "text": "binti", "grammar": { "plural": "=" } },
   "brother": { "text": "kaka", "grammar": { "plural": "=" } },
   "sister": { "text": "dada", "grammar": { "plural": "=" } },
-  "man": { "text": "mwanaume", "variants": ["mwanamume"], "grammar": { "plural": "wanaume" } },
+  "man": { "text": "mwanaume", "accepts": ["mwanamume"], "grammar": { "plural": "wanaume" } },
   "woman": { "text": "mwanamke", "grammar": { "plural": "wanawake" } },
   "boy": { "text": "mvulana", "grammar": { "plural": "wavulana" } },
   "girl": { "text": "msichana", "grammar": { "plural": "wasichana" } },

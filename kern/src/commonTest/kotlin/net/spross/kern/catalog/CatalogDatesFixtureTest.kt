@@ -39,10 +39,10 @@ class CatalogDatesFixtureTest {
         assertEquals(7, de.weekdays.size)
         assertEquals("Montag", de.weekdays.first().text)
         assertEquals("Mo", de.weekdays.first().abbr)
-        assertEquals(emptyList(), de.weekdays.first().synonyms)
+        assertEquals(emptyList(), de.weekdays.first().teaches)
         val saturday = de.weekdays[5]
         assertEquals("Samstag", saturday.text)
-        assertEquals(listOf("Sonnabend"), saturday.synonyms)
+        assertEquals(listOf("Sonnabend"), saturday.teaches)
         assertNull(saturday.dateForm)
     }
 
@@ -65,8 +65,8 @@ class CatalogDatesFixtureTest {
     @Test
     fun variantsFollowTheRealizationSchema() {
         val pt = assertNotNull(catalog.dateNames("pt"))
-        assertEquals(listOf("segunda"), pt.weekdays.first().variants)
-        assertEquals(listOf("sabado"), pt.weekdays[5].variants)
+        assertEquals(listOf("segunda"), pt.weekdays.first().accepts)
+        assertEquals(listOf("sabado"), pt.weekdays[5].accepts)
     }
 
     /**
@@ -86,7 +86,7 @@ class CatalogDatesFixtureTest {
     @Test
     fun patternsParseByKindAndTheYearOneIsOptional() {
         assertEquals("der {day} {month}", de.patterns.dayMonth.text)
-        assertEquals(listOf("den {day} {month}"), de.patterns.dayMonth.variants)
+        assertEquals(listOf("den {day} {month}"), de.patterns.dayMonth.accepts)
         assertEquals("{weekday}, der {day} {month}", de.patterns.date.text)
         assertEquals("{weekday}, der {day} {month} {year}", de.patterns.dateWithYear?.text)
         assertEquals("{d}.{m}.{y}", de.numeric)
@@ -177,7 +177,7 @@ class CatalogDatesFixtureTest {
     /** A variant fills exactly as its text does, so it is held to the same markers. */
     @Test
     fun aPatternVariantIsHeldToTheSameMarkers() {
-        val patterns = patterns(dayMonthVariants = """["den {day} {month} {year}"]""")
+        val patterns = patterns(dayMonthAccepts = """["den {day} {month} {year}"]""")
         assertTrue("takes no {year}" in rejects { DatesFixture.deCalendar(patterns = patterns) })
     }
 
@@ -209,10 +209,10 @@ class CatalogDatesFixtureTest {
 
         fun patterns(
             dayMonth: String = "der {day} {month}",
-            dayMonthVariants: String = """["den {day} {month}"]""",
+            dayMonthAccepts: String = """["den {day} {month}"]""",
             date: String = "{weekday}, der {day} {month}",
         ): String =
-            """{ "dayMonth": { "text": "$dayMonth", "variants": $dayMonthVariants },
+            """{ "dayMonth": { "text": "$dayMonth", "accepts": $dayMonthAccepts },
                  "date": { "text": "$date" } }"""
     }
 }

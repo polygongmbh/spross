@@ -14,7 +14,7 @@ internal object DatesFixture {
       { "text": "Mittwoch", "abbr": "Mi" },
       { "text": "Donnerstag", "abbr": "Do" },
       { "text": "Freitag", "abbr": "Fr" },
-      { "text": "Samstag", "abbr": "Sa", "synonyms": ["Sonnabend"] },
+      { "text": "Samstag", "abbr": "Sa", "teaches": ["Sonnabend"] },
       { "text": "Sonntag", "abbr": "So" }"""
 
     private const val DE_MONTHS = """
@@ -23,8 +23,8 @@ internal object DatesFixture {
       { "text": "September" }, { "text": "Oktober" }, { "text": "November" }, { "text": "Dezember" }"""
 
     private const val DE_PATTERNS = """
-     { "dayMonth": { "text": "der {day} {month}", "variants": ["den {day} {month}"] },
-       "date": { "text": "{weekday}, der {day} {month}", "variants": ["{weekday}, den {day} {month}"] },
+     { "dayMonth": { "text": "der {day} {month}", "accepts": ["den {day} {month}"] },
+       "date": { "text": "{weekday}, der {day} {month}", "accepts": ["{weekday}, den {day} {month}"] },
        "dateWithYear": { "text": "{weekday}, der {day} {month} {year}" } }"""
 
     val files: Map<String, String> = mapOf(
@@ -51,10 +51,10 @@ internal object DatesFixture {
                 "de": ["Der Montag ist der ZWEITE Wochentag — gezählt wird ab Sonntag.",
                        "Wochentags- und Monatsnamen bleiben kleingeschrieben."] },
               "weekdays": [
-              { "text": "segunda-feira", "abbr": "seg", "variants": ["segunda"] },
+              { "text": "segunda-feira", "abbr": "seg", "accepts": ["segunda"] },
               { "text": "terça-feira", "abbr": "ter" }, { "text": "quarta-feira", "abbr": "qua" },
               { "text": "quinta-feira", "abbr": "qui" }, { "text": "sexta-feira", "abbr": "sex" },
-              { "text": "sábado", "abbr": "sáb", "variants": ["sabado"] },
+              { "text": "sábado", "abbr": "sáb", "accepts": ["sabado"] },
               { "text": "domingo", "abbr": "dom" } ],
               "months": [
               { "text": "janeiro" }, { "text": "fevereiro" }, { "text": "março" }, { "text": "abril" },

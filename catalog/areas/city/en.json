@@ -6,7 +6,7 @@
   "park": { "text": "park" },
   "city": { "text": "city", "grammar": { "plural": "cities" } },
   "village": { "text": "village" },
-  "neighborhood": { "text": "neighborhood", "variants": ["neighbourhood"] },
+  "neighborhood": { "text": "neighborhood", "accepts": ["neighbourhood"] },
   "building": { "text": "building" },
   "bank": { "text": "bank" },
   "post-office": { "text": "post office" },
@@ -14,9 +14,9 @@
   "mosque": { "text": "mosque" },
   "library": { "text": "library", "grammar": { "plural": "libraries" } },
   "police": { "text": "police" },
-  "cinema": { "text": "cinema", "synonyms": ["movie theater"], "variants": ["movie theatre"] },
+  "cinema": { "text": "cinema", "teaches": ["movie theater"], "accepts": ["movie theatre"] },
   "bridge": { "text": "bridge" },
   "is-there-a-bank-here": { "text": "Is there a bank here?" },
-  "i-live-in-this-neighborhood": { "text": "I live in this neighborhood.", "variants": ["I live in this neighbourhood."] }
+  "i-live-in-this-neighborhood": { "text": "I live in this neighborhood.", "accepts": ["I live in this neighbourhood."] }
  }
 }

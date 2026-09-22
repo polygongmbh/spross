@@ -5,9 +5,9 @@
   "supermarket": { "text": "supermercado", "grammar": { "gender": "el" } },
   "mall": { "text": "centro comercial", "grammar": { "gender": "el" } },
   "checkout": { "text": "caja", "grammar": { "gender": "la" } },
-  "shop-assistant": { "text": "dependiente", "synonyms": ["vendedor"], "grammar": { "gender": "el" } },
-  "shop-assistant-f": { "text": "dependienta", "synonyms": ["vendedora"], "grammar": { "gender": "la" } },
-  "shopping-cart": { "text": "carrito", "grammar": { "gender": "el" }, "variants": ["carrito de la compra"] },
+  "shop-assistant": { "text": "dependiente", "teaches": ["vendedor"], "grammar": { "gender": "el" } },
+  "shop-assistant-f": { "text": "dependienta", "teaches": ["vendedora"], "grammar": { "gender": "la" } },
+  "shopping-cart": { "text": "carrito", "grammar": { "gender": "el" }, "accepts": ["carrito de la compra"] },
   "offer": { "text": "oferta", "grammar": { "gender": "la" } },
   "size": {
    "text": "talla",
@@ -16,12 +16,12 @@
   },
   "to-shop": {
    "text": "hacer la compra",
-   "synonyms": ["ir de compras"],
+   "teaches": ["ir de compras"],
    "notes": { "es": "hacer la compra es la comida; ir de compras es mirar tiendas." }
   },
   "store": { "text": "tienda", "grammar": { "gender": "la" } },
-  "open": { "text": "abierto", "variants": ["abierta"] },
+  "open": { "text": "abierto", "accepts": ["abierta"] },
   "the-store-is-still-open": { "text": "La tienda todavía está abierta.", "orders": ["Todavía está abierta la tienda."] },
-  "do-you-have-this-in-my-size": { "text": "¿Lo tiene en mi talla?", "variants": ["¿Lo tienes en mi talla?"] }
+  "do-you-have-this-in-my-size": { "text": "¿Lo tiene en mi talla?", "accepts": ["¿Lo tienes en mi talla?"] }
  }
 }

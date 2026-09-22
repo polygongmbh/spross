@@ -2,12 +2,12 @@
  "title": "Le travail",
  "subtitle": "Bon courage au boulot !",
  "words": {
-  "work": { "text": "travail", "variants": ["boulot"], "grammar": { "gender": "le", "plural": "travaux" } },
-  "job-application": { "text": "candidature", "variants": ["demande d'emploi"], "grammar": { "gender": "la" } },
+  "work": { "text": "travail", "accepts": ["boulot"], "grammar": { "gender": "le", "plural": "travaux" } },
+  "job-application": { "text": "candidature", "accepts": ["demande d'emploi"], "grammar": { "gender": "la" } },
   "cv": {
    "text": "CV",
-   "synonyms": ["curriculum vitae"],
-   "variants": ["curriculum"],
+   "teaches": ["curriculum vitae"],
+   "accepts": ["curriculum"],
    "grammar": { "gender": "le", "plural": "=" },
    "notes": { "fr": "on dit toujours le CV · en entier, le curriculum vitae." }
   },
@@ -21,20 +21,20 @@
   "boss": { "text": "chef", "grammar": { "gender": "le" } },
   "boss-f": {
    "text": "cheffe",
-   "variants": ["chef"],
+   "accepts": ["chef"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "on écrit la cheffe ; on entend aussi la chef." }
   },
   "shift": {
    "text": "service",
-   "variants": ["poste"],
+   "accepts": ["poste"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "je prends mon service à six heures · à l'usine, on dit le poste." }
   },
-  "company": { "text": "entreprise", "variants": ["l'entreprise", "boîte"], "grammar": { "gender": "l'" } },
+  "company": { "text": "entreprise", "accepts": ["l'entreprise", "boîte"], "grammar": { "gender": "l'" } },
   "to-apply": {
    "text": "postuler à un poste",
-   "variants": ["postuler", "poser sa candidature"],
+   "accepts": ["postuler", "poser sa candidature"],
    "notes": { "fr": "toujours avec à : postuler à un poste, postuler à une offre." }
   },
   "to-earn": {
@@ -44,52 +44,52 @@
     "de": "gagner heißt verdienen und gewinnen; nach dem Verdienst fragt man Tu gagnes combien ?"
    }
   },
-  "to-start": { "text": "commencer", "variants": ["débuter"] },
+  "to-start": { "text": "commencer", "accepts": ["débuter"] },
   "to-leave": {
    "text": "quitter",
    "notes": { "fr": "toujours un objet : quitter la maison, quitter son emploi." }
   },
-  "to-quit": { "text": "quitter son emploi", "variants": ["démissionner"] },
-  "to-hire": { "text": "embaucher", "variants": ["recruter"] },
+  "to-quit": { "text": "quitter son emploi", "accepts": ["démissionner"] },
+  "to-hire": { "text": "embaucher", "accepts": ["recruter"] },
   "to-help": { "text": "aider" },
-  "to-work-overtime": { "text": "faire des heures supplémentaires", "variants": ["faire des heures sup"] },
+  "to-work-overtime": { "text": "faire des heures supplémentaires", "accepts": ["faire des heures sup"] },
   "profession": {
    "text": "métier",
-   "synonyms": ["profession"],
+   "teaches": ["profession"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "mon métier, c'est boulanger · la profession se met sur le formulaire." }
   },
   "interview": {
    "text": "entretien d'embauche",
-   "variants": ["l'entretien d'embauche", "entretien"],
+   "accepts": ["l'entretien d'embauche", "entretien"],
    "grammar": { "gender": "l'" }
   },
   "working-hours": {
    "text": "horaires de travail",
-   "variants": ["horaire de travail", "temps de travail"],
+   "accepts": ["horaire de travail", "temps de travail"],
    "grammar": { "gender": "les" },
    "notes": { "fr": "au pluriel : mes horaires de travail · la durée, c'est le temps de travail." }
   },
   "full-time": {
    "text": "temps plein",
-   "variants": ["à temps plein", "plein temps"],
+   "accepts": ["à temps plein", "plein temps"],
    "grammar": { "gender": "le" }
   },
   "part-time": {
    "text": "temps partiel",
-   "variants": ["à temps partiel", "mi-temps"],
+   "accepts": ["à temps partiel", "mi-temps"],
    "grammar": { "gender": "le" }
   },
   "tax": {
    "text": "impôt",
-   "variants": ["l'impôt"],
+   "accepts": ["l'impôt"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "l'impôt sur le revenu · la taxe se paie pour un service précis." }
   },
   "work-permit": { "text": "permis de travail", "grammar": { "gender": "le", "plural": "=" } },
   "training": {
    "text": "formation professionnelle",
-   "variants": ["formation"],
+   "accepts": ["formation"],
    "grammar": { "gender": "la" },
    "notes": {
     "fr": "la formation professionnelle se fait à l'école, l'apprentissage en entreprise.",
@@ -102,7 +102,7 @@
    "notes": { "fr": "le patron licencie · le salarié, lui, donne sa démission." }
   },
   "worker": { "text": "travailleur", "grammar": { "gender": "le" } },
-  "employer": { "text": "employeur", "variants": ["l'employeur"], "grammar": { "gender": "l'" } },
+  "employer": { "text": "employeur", "accepts": ["l'employeur"], "grammar": { "gender": "l'" } },
   "customer": { "text": "client", "grammar": { "gender": "le" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Demain, je me présente à l'entreprise.",
@@ -110,7 +110,7 @@
   },
   "ill-send-the-doctors-note-right-away": {
    "text": "Je vous envoie l'arrêt de travail tout de suite.",
-   "variants": [
+   "accepts": [
     "Je t'envoie l'arrêt de travail tout de suite.",
     "Je vous envoie l'arrêt maladie tout de suite."
    ],
@@ -118,7 +118,7 @@
   },
   "can-you-help-me-briefly": {
    "text": "Pouvez-vous m'aider un instant ?",
-   "variants": [
+   "accepts": [
     "Peux-tu m'aider un instant ?",
     "Tu peux m'aider un instant ?",
     "Vous pouvez m'aider un instant ?"
@@ -126,7 +126,7 @@
   },
   "read-the-contract-carefully": {
    "text": "Lisez bien le contrat !",
-   "variants": ["Lis bien le contrat !", "Lisez attentivement le contrat !"]
+   "accepts": ["Lis bien le contrat !", "Lisez attentivement le contrat !"]
   },
   "we-knock-off-at-5": { "text": "Aujourd'hui, on débauche à 5h.", "orders": ["On débauche à 5h aujourd'hui."] },
   "workplace": {

@@ -2,7 +2,7 @@
  "title": "Основні дієслова",
  "subtitle": "Те, що потрібне всюди.",
  "words": {
-  "to-go": { "text": "йти", "variants": ["іти"] },
+  "to-go": { "text": "йти", "accepts": ["іти"] },
   "to-come": { "text": "приходити" },
   "to-have": { "text": "мати" },
   "to-give": { "text": "давати" },
@@ -24,30 +24,30 @@
   "to-close": { "text": "закривати" },
   "to-stop": {
    "text": "припиняти",
-   "synonyms": ["переставати"],
+   "teaches": ["переставати"],
    "notes": {
     "uk": "припинити розмову · перестань курити.",
     "de": "припиняти steht vor dem Substantiv, переставати vor dem Infinitiv: перестань курити."
    }
   },
   "to-stand": { "text": "стояти" },
-  "to-send": { "text": "надсилати", "variants": ["посилати", "відправляти"] },
+  "to-send": { "text": "надсилати", "accepts": ["посилати", "відправляти"] },
   "to-deliver": { "text": "доставляти" },
   "to-use": { "text": "використовувати" },
   "to-come-back": { "text": "повертатися" },
-  "to-go-away": { "text": "йти геть", "variants": ["піти геть"] },
+  "to-go-away": { "text": "йти геть", "accepts": ["піти геть"] },
   "to-lose": { "text": "губити" },
   "to-break": { "text": "ламати" },
   "to-push": { "text": "штовхати" },
   "to-pull": { "text": "тягнути" },
-  "to-have-to": { "text": "мусити", "synonyms": ["повинен"] },
-  "to-put": { "text": "класти", "synonyms": ["ставити"] },
+  "to-have-to": { "text": "мусити", "teaches": ["повинен"] },
+  "to-put": { "text": "класти", "teaches": ["ставити"] },
   "to-carry": { "text": "нести" },
-  "do-you-have-water": { "text": "У вас є вода?", "variants": ["У тебе є вода?"], "orders": ["Вода у вас є?"] },
+  "do-you-have-water": { "text": "У вас є вода?", "accepts": ["У тебе є вода?"], "orders": ["Вода у вас є?"] },
   "where-are-you-from": { "text": "Звідки ви?" },
   "can-you-see-me": {
    "text": "Ти мене бачиш?",
-   "variants": ["Ви мене бачите?"],
+   "accepts": ["Ви мене бачите?"],
    "notes": { "uk": "Бачиш мене, але допомагаєш мені — форма залежить від дієслова." },
    "orders": ["Ти бачиш мене?"]
   }

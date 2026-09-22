@@ -144,7 +144,7 @@ class RealCatalogGradingTest {
         val grader = CatalogAnswerGrader(AnswerNormalizer(catalog.languages.getValue("de")), cards)
         for (card in cards) {
             for (other in grader.conceptsSharing(card.target.text, card)) {
-                if (card.target.text !in listOf(other.target.text) + other.target.synonyms) continue
+                if (card.target.text !in listOf(other.target.text) + other.target.teaches) continue
                 assertEquals(
                     card.target.text, other.target.text,
                     "${card.id} and ${other.id} were merged across a case difference",

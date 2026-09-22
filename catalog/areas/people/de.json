@@ -20,8 +20,8 @@
   "baby": { "text": "Baby", "grammar": { "gender": "das", "plural": "-s" } },
   "friend": { "text": "Freund", "grammar": { "gender": "der", "plural": "-e" } },
   "friend-f": { "text": "Freundin", "grammar": { "gender": "die", "plural": "-nen" } },
-  "grandmother": { "text": "Oma", "variants": ["Großmutter"], "grammar": { "gender": "die", "plural": "-s" } },
-  "grandfather": { "text": "Opa", "variants": ["Großvater"], "grammar": { "gender": "der", "plural": "-s" } },
+  "grandmother": { "text": "Oma", "accepts": ["Großmutter"], "grammar": { "gender": "die", "plural": "-s" } },
+  "grandfather": { "text": "Opa", "accepts": ["Großvater"], "grammar": { "gender": "der", "plural": "-s" } },
   "husband": { "text": "Ehemann", "grammar": { "gender": "der", "plural": "Ehemänner" } },
   "wife": { "text": "Ehefrau", "grammar": { "gender": "die", "plural": "-en" } },
   "uncle": { "text": "Onkel", "grammar": { "gender": "der", "plural": "=" } },
@@ -31,9 +31,9 @@
   "to-visit": { "text": "besuchen" },
   "to-marry": { "text": "heiraten" },
   "this-is-my-mother": { "text": "Das ist meine Mutter.", "orders": ["Meine Mutter ist das."] },
-  "where-is-your-father": { "text": "Wo ist euer Vater?", "variants": ["Wo ist Ihr Vater?"] },
+  "where-is-your-father": { "text": "Wo ist euer Vater?", "accepts": ["Wo ist Ihr Vater?"] },
   "i-have-two-children": { "text": "Ich habe zwei Kinder." },
-  "how-is-your-grandmother": { "text": "Wie geht es deiner Oma?", "variants": ["Wie geht es Ihrer Oma?"] },
+  "how-is-your-grandmother": { "text": "Wie geht es deiner Oma?", "accepts": ["Wie geht es Ihrer Oma?"] },
   "a-good-friend": {
    "text": "ein guter Freund",
    "notes": {
@@ -44,7 +44,7 @@
   },
   "my-girlfriend": { "text": "meine Freundin" },
   "her-boyfriend": { "text": "ihr Freund" },
-  "old-people": { "text": "alte Leute", "variants": ["alte Menschen"] },
+  "old-people": { "text": "alte Leute", "accepts": ["alte Menschen"] },
   "many-friends": { "text": "viele Freunde" },
   "mom-help-me": {
    "text": "Mama, hilf mir!",

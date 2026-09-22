@@ -17,17 +17,17 @@
   "to-show": { "text": "montri" },
   "to-explain": { "text": "klarigi" },
   "to-say": { "text": "diri" },
-  "i-dont-understand": { "text": "Mi ne komprenas.", "variants": ["Mi ne komprenas vin."] },
+  "i-dont-understand": { "text": "Mi ne komprenas.", "accepts": ["Mi ne komprenas vin."] },
   "can-you-repeat-that": { "text": "Ĉu vi povas ripeti tion?", "orders": ["Ĉu tion vi povas ripeti?"] },
   "slower": { "text": "Pli malrapide!" },
   "i-cant-hear-you": {
    "text": "Mi ne povas aŭdi vin.",
-   "variants": ["Mi ne aŭdas vin."],
+   "accepts": ["Mi ne aŭdas vin."],
    "orders": ["Vin mi ne povas aŭdi."]
   },
   "do-you-speak-english": {
    "text": "Ĉu vi parolas la anglan?",
-   "variants": ["Ĉu vi parolas angle?"],
+   "accepts": ["Ĉu vi parolas angle?"],
    "orders": ["Ĉu la anglan vi parolas?"]
   },
   "i-need-help": { "text": "Mi bezonas helpon.", "orders": ["Helpon mi bezonas."] },
@@ -35,9 +35,9 @@
   "i-forgot": { "text": "Mi forgesis." },
   "what-is-this-called": {
    "text": "Kiel oni nomas tion?",
-   "variants": ["Kiel tio nomiĝas?"],
+   "accepts": ["Kiel tio nomiĝas?"],
    "orders": ["Kiel tion oni nomas?"]
   },
-  "to-introduce-oneself": { "text": "prezenti sin", "variants": ["sin prezenti"] }
+  "to-introduce-oneself": { "text": "prezenti sin", "accepts": ["sin prezenti"] }
  }
 }

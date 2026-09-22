@@ -13,14 +13,14 @@
   "neighborhood": { "text": "quartiere", "grammar": { "gender": "il" } },
   "building": {
    "text": "edificio",
-   "variants": ["l'edificio"],
+   "accepts": ["l'edificio"],
    "grammar": { "gender": "l'", "plural": "edifici" }
   },
   "bank": { "text": "banca", "grammar": { "gender": "la", "plural": "banche" } },
   "post-office": {
    "text": "posta",
-   "synonyms": ["ufficio postale"],
-   "variants": ["l'ufficio postale"],
+   "teaches": ["ufficio postale"],
+   "accepts": ["l'ufficio postale"],
    "grammar": { "gender": "la" }
   },
   "church": { "text": "chiesa", "grammar": { "gender": "la" } },
@@ -31,9 +31,9 @@
   "bridge": { "text": "ponte", "grammar": { "gender": "il" } },
   "is-there-a-bank-here": {
    "text": "C'è una banca qui?",
-   "variants": ["C'è una banca qui vicino?", "Qui c'è una banca?"],
+   "accepts": ["C'è una banca qui vicino?", "Qui c'è una banca?"],
    "orders": ["Qui c'è una banca?"]
   },
-  "i-live-in-this-neighborhood": { "text": "Abito in questo quartiere.", "variants": ["Vivo in questo quartiere."] }
+  "i-live-in-this-neighborhood": { "text": "Abito in questo quartiere.", "accepts": ["Vivo in questo quartiere."] }
  }
 }

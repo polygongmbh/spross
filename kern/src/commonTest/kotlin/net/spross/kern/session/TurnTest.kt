@@ -237,7 +237,7 @@ class TurnTest {
 
     @Test
     fun aSourceSynonymAnswersACardAskedByEar() {
-        // The meaning side's own synonyms are meanings, not near misses: nothing to forgive.
+        // The meaning side's own `teaches` are meanings, not near misses: nothing to forgive.
         assertEquals(TurnFeedback.Correct, TurnFixture.state(byEar(), TurnIntent.Submit("Wagen")).feedback)
     }
 
@@ -359,7 +359,7 @@ class TurnTest {
     @Test
     fun theEarComparesSpeechNotSpelling() {
         // The stem dash and the citation punctuation are spelling; what is said is the same word.
-        val nice = TurnFixture.card("nice", "schön", "zuri", CardKind.Adjective, synonyms = listOf("-Zuri!"))
+        val nice = TurnFixture.card("nice", "schön", "zuri", CardKind.Adjective, teaches = listOf("-Zuri!"))
         assertTrue(alsoAccepts(nice, "zuri"))
         assertFalse(alsoAccepts(nice, "mbaya"))
     }

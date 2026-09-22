@@ -17,12 +17,12 @@ class CardDisplayTest {
     private fun realization(
         text: String,
         plural: String? = null,
-        synonyms: List<String> = emptyList(),
+        teaches: List<String> = emptyList(),
         gender: String? = null,
     ) = Realization(
         lang = "de",
         text = text,
-        synonyms = synonyms,
+        teaches = teaches,
         grammar = buildMap {
             plural?.let { put("plural", it) }
             gender?.let { put("gender", it) }
@@ -48,7 +48,7 @@ class CardDisplayTest {
 
     @Test
     fun theAlsoLineNamesTheFamilyKernLeftStanding() {
-        val word = realization("die Verwaltung", synonyms = listOf("das Amt", "die Behörde"))
+        val word = realization("die Verwaltung", teaches = listOf("das Amt", "die Behörde"))
         assertEquals("auch: das Amt / die Behörde", CardDisplay.alsoLine(word, chrome, "die Verwaltung"))
     }
 
@@ -57,7 +57,7 @@ class CardDisplayTest {
         assertNull(CardDisplay.alsoLine(realization("nyumba"), chrome, "nyumba"))
         assertNull(
             CardDisplay.alsoLine(
-                realization("das Amt", synonyms = listOf("die Behörde")),
+                realization("das Amt", teaches = listOf("die Behörde")),
                 chrome,
                 listOf("das Amt", "die Behörde"),
             ),

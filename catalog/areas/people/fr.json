@@ -9,7 +9,7 @@
   },
   "human": {
    "text": "être humain",
-   "variants": ["l'être humain"],
+   "accepts": ["l'être humain"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "l'être humain face aux animaux · une personne, c'est quelqu'un." }
   },
@@ -21,7 +21,7 @@
    "grammar": { "gender": "les" },
    "notes": { "fr": "mes parents, c'est mon père et ma mère · un parent est de la famille." }
   },
-  "child": { "text": "enfant", "variants": ["l'enfant"], "grammar": { "gender": "l'" } },
+  "child": { "text": "enfant", "accepts": ["l'enfant"], "grammar": { "gender": "l'" } },
   "son": { "text": "fils", "grammar": { "gender": "le", "plural": "=" } },
   "daughter": {
    "text": "fille",
@@ -30,7 +30,7 @@
   },
   "brother": { "text": "frère", "grammar": { "gender": "le" } },
   "sister": { "text": "sœur", "grammar": { "gender": "la" } },
-  "man": { "text": "homme", "variants": ["l'homme"], "grammar": { "gender": "l'" } },
+  "man": { "text": "homme", "accepts": ["l'homme"], "grammar": { "gender": "l'" } },
   "woman": {
    "text": "femme",
    "grammar": { "gender": "la" },
@@ -38,29 +38,29 @@
   },
   "boy": { "text": "garçon", "grammar": { "gender": "le" } },
   "baby": { "text": "bébé", "grammar": { "gender": "le" } },
-  "friend": { "text": "ami", "variants": ["l'ami", "copain"], "grammar": { "gender": "l'" } },
-  "friend-f": { "text": "amie", "variants": ["l'amie", "copine"], "grammar": { "gender": "l'" } },
+  "friend": { "text": "ami", "accepts": ["l'ami", "copain"], "grammar": { "gender": "l'" } },
+  "friend-f": { "text": "amie", "accepts": ["l'amie", "copine"], "grammar": { "gender": "l'" } },
   "grandmother": {
    "text": "grand-mère",
-   "variants": ["mamie"],
+   "accepts": ["mamie"],
    "grammar": { "gender": "la", "plural": "grands-mères" }
   },
   "grandfather": {
    "text": "grand-père",
-   "variants": ["papi"],
+   "accepts": ["papi"],
    "grammar": { "gender": "le", "plural": "grands-pères" }
   },
-  "husband": { "text": "mari", "synonyms": ["époux"], "grammar": { "gender": "le" } },
+  "husband": { "text": "mari", "teaches": ["époux"], "grammar": { "gender": "le" } },
   "wife": {
    "text": "épouse",
-   "variants": ["l'épouse", "femme"],
+   "accepts": ["l'épouse", "femme"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "au quotidien on dit ma femme · épouse est plus officiel." }
   },
-  "uncle": { "text": "oncle", "variants": ["l'oncle"], "grammar": { "gender": "l'" } },
+  "uncle": { "text": "oncle", "accepts": ["l'oncle"], "grammar": { "gender": "l'" } },
   "aunt": { "text": "tante", "grammar": { "gender": "la" } },
   "to-be-born": { "text": "naître" },
-  "birthday": { "text": "anniversaire", "variants": ["l'anniversaire"], "grammar": { "gender": "l'" } },
+  "birthday": { "text": "anniversaire", "accepts": ["l'anniversaire"], "grammar": { "gender": "l'" } },
   "to-visit": { "text": "rendre visite" },
   "to-marry": { "text": "se marier" },
   "this-is-my-mother": { "text": "C'est ma mère." },
@@ -68,14 +68,14 @@
   "i-have-two-children": { "text": "J'ai deux enfants." },
   "how-is-your-grandmother": {
    "text": "Comment va ta grand-mère ?",
-   "variants": ["Comment va votre grand-mère ?"],
+   "accepts": ["Comment va votre grand-mère ?"],
    "orders": ["Ta grand-mère va comment ?"]
   },
   "a-good-friend": { "text": "un bon ami" },
-  "my-girlfriend": { "text": "ma copine", "variants": ["ma petite amie"] },
+  "my-girlfriend": { "text": "ma copine", "accepts": ["ma petite amie"] },
   "her-boyfriend": {
    "text": "son copain",
-   "variants": ["son petit ami"],
+   "accepts": ["son petit ami"],
    "notes": {
     "fr": "son copain, sa copine : c'est le mot qui compte, pas la personne.",
     "de": "son und sa folgen dem Geschlecht des Nomens: sa sœur ist seine wie ihre Schwester."
@@ -83,7 +83,7 @@
   },
   "old-people": {
    "text": "personnes âgées",
-   "variants": ["les gens âgés"],
+   "accepts": ["les gens âgés"],
    "notes": { "fr": "on dit les personnes âgées · vieux peut blesser." }
   },
   "many-friends": { "text": "beaucoup d'amis" },

@@ -73,7 +73,7 @@ struct DatesReference: View {
     private static func otherForms(_ row: DateReferenceRow) -> String? {
         var forms: [String] = []
         if let abbr = row.abbr { forms.append(abbr) }
-        forms += row.synonyms
+        forms += row.teaches
         if let dateForm = row.dateForm { forms.append(dateForm) }
         return forms.isEmpty ? nil : forms.joined(separator: " · ")
     }

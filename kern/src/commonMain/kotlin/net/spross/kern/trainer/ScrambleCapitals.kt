@@ -36,7 +36,7 @@ internal object ScrambleCapitals {
         val out = mutableSetOf<String>()
         for (card in cards) {
             val positional = card.kind == CardKind.Phrase || card.kind == CardKind.Idiom
-            val forms = listOf(card.target.text) + card.target.synonyms + card.target.variants
+            val forms = listOf(card.target.text) + card.target.teaches + card.target.accepts
             for (form in forms) {
                 val tokens = ScrambleTokenizer.atoms(form).map { it.text }
                 for ((index, token) in tokens.withIndex()) {

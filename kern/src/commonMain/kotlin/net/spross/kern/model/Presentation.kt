@@ -79,14 +79,14 @@ fun producePrompt(
 
 /**
  * The target form to PROMPT on a recognition review: rotates deterministically
- * through canonical text + synonyms at zero extra scheduling cost. First
+ * through canonical text + `teaches` at zero extra scheduling cost. First
  * exposure always prompts the canonical text; afterwards the index advances
  * once per recognition review (recognition happens every other review, so
  * `reviewCount / 2` is parity-independent), offset per card by the id hash.
- * Variants never rotate (accept/display-only). Produce prompts ignore this.
+ * `accepts` never rotates (accept-only). Produce prompts ignore this.
  */
 fun recognitionPromptForm(card: Card, reviewCount: Int): String {
-    val forms = listOf(card.target.text) + card.target.synonyms
+    val forms = listOf(card.target.text) + card.target.teaches
     if (forms.size == 1 || reviewCount == 0) return forms.first()
     val offset = (fnv1a64(card.id) % forms.size.toULong()).toInt()
     return forms[(reviewCount / 2 + offset) % forms.size]

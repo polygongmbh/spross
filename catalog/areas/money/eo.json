@@ -8,22 +8,22 @@
    "text": "multekosta",
    "notes": { "eo": "multe + kosti → multekosta · la malo estas malmultekosta." }
   },
-  "cheap": { "text": "malmultekosta", "variants": ["malkara"] },
+  "cheap": { "text": "malmultekosta", "accepts": ["malkara"] },
   "to-sell": { "text": "vendi" },
-  "cash": { "text": "kontanta mono", "variants": ["kontantmono"] },
-  "bank-card": { "text": "banka karto", "variants": ["pagokarto"] },
+  "cash": { "text": "kontanta mono", "accepts": ["kontantmono"] },
+  "bank-card": { "text": "banka karto", "accepts": ["pagokarto"] },
   "coin": { "text": "monero" },
-  "change-money": { "text": "restmono", "variants": ["redonmono"] },
+  "change-money": { "text": "restmono", "accepts": ["redonmono"] },
   "money": { "text": "mono" },
   "to-buy": { "text": "aĉeti" },
   "to-pay": { "text": "pagi" },
   "rich": { "text": "riĉa" },
   "poor": { "text": "malriĉa" },
   "free-of-charge": { "text": "senpaga" },
-  "how-much-does-this-cost": { "text": "Kiom kostas tio?", "variants": ["Kiom tio kostas?", "Kiom kostas ĉi tio?"] },
+  "how-much-does-this-cost": { "text": "Kiom kostas tio?", "accepts": ["Kiom tio kostas?", "Kiom kostas ĉi tio?"] },
   "that-is-too-expensive": {
    "text": "Tio estas tro multekosta.",
-   "variants": ["Tio estas tro kara.", "Tio tro multekostas."]
+   "accepts": ["Tio estas tro kara.", "Tio tro multekostas."]
   },
   "i-have-no-money": { "text": "Mi ne havas monon.", "orders": ["Monon mi ne havas."] },
   "can-i-pay-by-card": { "text": "Ĉu mi povas pagi per karto?", "orders": ["Ĉu per karto mi povas pagi?"] },

@@ -55,12 +55,12 @@ class CatalogFrameLintTest {
     @Test
     fun everyFrameAndVariantCarriesExactlyOneSlot() {
         forEachFrame { lang, slug, frame ->
-            for (text in listOf(frame.text) + frame.variants) {
+            for (text in listOf(frame.text) + frame.accepts) {
                 val where = "phrases/$lang.json $slug"
                 assertTrue(text.isNotBlank() && text.trim() == text, "$where: untrimmed \"$text\"")
                 assertEquals(1, occurrences(text, "{slot}"), "$where: \"$text\" slot count")
             }
-            assertTrue(frame.text !in frame.variants, "phrases/$lang.json $slug: variant equals text")
+            assertTrue(frame.text !in frame.accepts, "phrases/$lang.json $slug: accepts entry equals text")
         }
     }
 
@@ -73,7 +73,7 @@ class CatalogFrameLintTest {
         forEachFrame { lang, slug, frame ->
             val where = "phrases/$lang.json $slug"
             val expected = if (frame.count == null) 0 else 1
-            for (text in listOf(frame.text) + frame.variants) {
+            for (text in listOf(frame.text) + frame.accepts) {
                 assertEquals(expected, occurrences(text, "{count}"), "$where: \"$text\" count marker")
             }
             if (frame.count != null) {
@@ -109,21 +109,21 @@ class CatalogFrameLintTest {
     }
 
     /**
-     * A variant is graded against the same sentence the canonical frame produces, so the two
-     * must agree on naming the language: a variant that spells one language out while the
+     * An accepted frame is graded against the same sentence the canonical one produces, so the two
+     * must agree on naming the language: an accepted frame that spells one language out while the
      * text resolves the profile's would silently accept "learning German" from a Swahili
      * learner — the exact bug the marker exists to remove.
      */
     @Test
-    fun textAndVariantsAgreeOnCarryingALanguageMarker() {
+    fun textAndAcceptsAgreeOnCarryingALanguageMarker() {
         forEachFrame { lang, slug, frame ->
             val where = "phrases/$lang.json $slug"
             val marked = LanguageNames.hasLanguageMarker(frame.text)
-            for (variant in frame.variants) {
+            for (form in frame.accepts) {
                 assertEquals(
                     marked,
-                    LanguageNames.hasLanguageMarker(variant),
-                    "$where: \"$variant\" disagrees with \"${frame.text}\" on the language marker",
+                    LanguageNames.hasLanguageMarker(form),
+                    "$where: \"$form\" disagrees with \"${frame.text}\" on the language marker",
                 )
             }
         }

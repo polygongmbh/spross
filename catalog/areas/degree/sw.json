@@ -15,7 +15,7 @@
   "too": { "text": "mno", "notes": { "sw": "kubwa mno, ndogo mno, moto mno" } },
   "enough": {
    "text": "ya kutosha",
-   "variants": ["cha kutosha", "vya kutosha", "wa kutosha", "za kutosha"],
+   "accepts": ["cha kutosha", "vya kutosha", "wa kutosha", "za kutosha"],
    "notes": {
     "sw": "maji ya kutosha · msaada wa kutosha · meza za kutosha",
     "de": "Es reicht. heißt Inatosha."
@@ -24,12 +24,12 @@
   "partially": { "text": "kwa sehemu" },
   "gladly": { "text": "kwa furaha" },
   "completely": { "text": "kabisa" },
-  "all": { "text": "-ote", "variants": ["wote", "yote", "zote", "chote", "vyote", "lote", "pote"] },
+  "all": { "text": "-ote", "accepts": ["wote", "yote", "zote", "chote", "vyote", "lote", "pote"] },
   "some": { "text": "baadhi ya", "notes": { "sw": "baadhi ya maneno · baadhi ya siku · siku kadhaa" } },
   "every": { "text": "kila", "notes": { "sw": "kila siku, kila mtu, kila neno" } },
   "most": {
    "text": "-ingi zaidi",
-   "variants": [
+   "accepts": [
     "nyingi zaidi",
     "wengi zaidi",
     "mengi zaidi",
@@ -41,7 +41,7 @@
   },
   "almost": { "text": "takriban" },
   "a-little": { "text": "kidogo", "notes": { "sw": "Subiri kidogo · maji kidogo, moto kidogo" } },
-  "few": { "text": "-chache", "variants": ["wachache", "vichache", "machache", "michache"] },
+  "few": { "text": "-chache", "accepts": ["wachache", "vichache", "machache", "michache"] },
   "once": { "text": "mara moja", "notes": { "sw": "mara moja, mara nyingi · mara moja pia = papo hapo" } },
   "more-or-less": { "text": "zaidi au pungufu" },
   "i-am-always-there": { "text": "Niko pale daima.", "orders": ["Daima niko pale."] },

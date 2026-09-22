@@ -13,17 +13,17 @@
   "they": { "text": "wao", "notes": { "sw": "wa- (wa-nasikia) na -wa- (ni-na-wa-sikia)." } },
   "my": {
    "text": "-angu",
-   "variants": ["wangu", "yangu", "langu", "changu", "zangu", "vyangu"],
+   "accepts": ["wangu", "yangu", "langu", "changu", "zangu", "vyangu"],
    "notes": { "sw": "jina langu, lugha yangu, kitanda changu, mji wangu." }
   },
   "your": {
    "text": "-ako",
-   "variants": ["wako", "yako", "lako", "chako", "zako", "vyako"],
+   "accepts": ["wako", "yako", "lako", "chako", "zako", "vyako"],
    "notes": { "sw": "jina lako, nchi yako, kitanda chako, mji wako." }
   },
   "his": {
    "text": "-ake",
-   "variants": ["wake", "yake", "lake", "chake", "zake", "vyake"],
+   "accepts": ["wake", "yake", "lake", "chake", "zake", "vyake"],
    "notes": { "sw": "mama yake, jina lake, kitanda chake." }
   },
   "something": { "text": "kitu" },

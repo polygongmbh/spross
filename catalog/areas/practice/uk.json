@@ -2,7 +2,7 @@
  "title": "Вправи та цілі",
  "words": {
   "to-practice": { "text": "вправлятися" },
-  "to-try": { "text": "намагатися", "variants": ["пробувати"] },
+  "to-try": { "text": "намагатися", "accepts": ["пробувати"] },
   "to-study": { "text": "вчитися" },
   "goal": { "text": "мета" },
   "to-achieve": { "text": "досягати" },

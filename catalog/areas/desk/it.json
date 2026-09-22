@@ -5,12 +5,12 @@
   "desk": { "text": "scrivania", "grammar": { "gender": "la" } },
   "laptop": {
    "text": "portatile",
-   "variants": ["computer portatile", "laptop"],
+   "accepts": ["computer portatile", "laptop"],
    "grammar": { "gender": "il" },
    "notes": { "it": "il portatile è il computer portatile: ho il portatile in borsa." }
   },
   "keyboard": { "text": "tastiera", "grammar": { "gender": "la" } },
-  "screen": { "text": "schermo", "variants": ["monitor"], "grammar": { "gender": "lo" } },
+  "screen": { "text": "schermo", "accepts": ["monitor"], "grammar": { "gender": "lo" } },
   "mouse": { "text": "mouse", "grammar": { "gender": "il", "plural": "=" } },
   "cable": { "text": "cavo", "grammar": { "gender": "il" } },
   "pen": {
@@ -18,30 +18,30 @@
    "grammar": { "gender": "la" },
    "notes": { "it": "la penna scrive a inchiostro.", "de": "„Stift“ ist hier der Kugelschreiber: la penna." }
   },
-  "notebook": { "text": "taccuino", "variants": ["blocco note"], "grammar": { "gender": "il" } },
+  "notebook": { "text": "taccuino", "accepts": ["blocco note"], "grammar": { "gender": "il" } },
   "printer": { "text": "stampante", "grammar": { "gender": "la" } },
-  "socket": { "text": "presa", "variants": ["presa di corrente"], "grammar": { "gender": "la" } },
+  "socket": { "text": "presa", "accepts": ["presa di corrente"], "grammar": { "gender": "la" } },
   "to-work": { "text": "lavorare" },
-  "to-type": { "text": "digitare", "variants": ["battere a macchina", "scrivere a macchina"] },
+  "to-type": { "text": "digitare", "accepts": ["battere a macchina", "scrivere a macchina"] },
   "to-print": { "text": "stampare" },
-  "to-save": { "text": "salvare", "variants": ["memorizzare"] },
-  "to-take-break": { "text": "fare una pausa", "variants": ["prendersi una pausa"] },
+  "to-save": { "text": "salvare", "accepts": ["memorizzare"] },
+  "to-take-break": { "text": "fare una pausa", "accepts": ["prendersi una pausa"] },
   "to-write": { "text": "scrivere" },
-  "to-call": { "text": "chiamare", "variants": ["telefonare", "chiamare al telefono"] },
-  "to-delete": { "text": "cancellare", "synonyms": ["eliminare"] },
+  "to-call": { "text": "chiamare", "accepts": ["telefonare", "chiamare al telefono"] },
+  "to-delete": { "text": "cancellare", "teaches": ["eliminare"] },
   "to-repair": {
    "text": "riparare",
-   "synonyms": ["aggiustare"],
+   "teaches": ["aggiustare"],
    "notes": { "it": "parlando si dice aggiustare: mi aggiusti il rubinetto?" }
   },
   "phone": {
    "text": "cellulare",
-   "variants": ["telefonino", "telefono cellulare", "telefono"],
+   "accepts": ["telefonino", "telefono cellulare", "telefono"],
    "grammar": { "gender": "il" }
   },
   "email": {
    "text": "e-mail",
-   "variants": ["l'e-mail", "un'e-mail", "mail", "posta elettronica"],
+   "accepts": ["l'e-mail", "un'e-mail", "mail", "posta elettronica"],
    "grammar": { "gender": "l'", "plural": "=" },
    "notes": {
     "it": "l'e-mail è femminile e non cambia: un'e-mail, le e-mail.",
@@ -53,7 +53,7 @@
    "grammar": { "gender": "la" },
    "notes": { "it": "la carta è il materiale · il foglio è un pezzo di carta." }
   },
-  "folder": { "text": "cartella", "variants": ["raccoglitore"], "grammar": { "gender": "la" } },
+  "folder": { "text": "cartella", "accepts": ["raccoglitore"], "grammar": { "gender": "la" } },
   "password": { "text": "password", "grammar": { "gender": "la", "plural": "=" } },
   "internet": {
    "text": "internet",
@@ -61,19 +61,19 @@
   },
   "charger": {
    "text": "caricabatterie",
-   "variants": ["caricatore", "cavo di ricarica"],
+   "accepts": ["caricatore", "cavo di ricarica"],
    "grammar": { "gender": "il", "plural": "=" }
   },
   "calendar": {
    "text": "calendario",
-   "synonyms": ["agenda"],
+   "teaches": ["agenda"],
    "grammar": { "gender": "il", "plural": "calendari" },
    "notes": { "it": "il calendario sta al muro · l'agenda porta gli appuntamenti." }
   },
   "important": { "text": "importante" },
   "ready": {
    "text": "pronto",
-   "variants": ["pronta", "finito"],
+   "accepts": ["pronta", "finito"],
    "notes": {
     "it": "sono pronto = posso partire · ho finito = ho terminato.",
     "de": "sono pronto = ich bin fertig (bereit); ho finito = ich bin fertig (damit)."
@@ -81,20 +81,20 @@
   },
   "broken": {
    "text": "rotto",
-   "variants": ["rotta", "guasto"],
+   "accepts": ["rotta", "guasto"],
    "notes": { "it": "va con essere: il telefono è rotto · se non funziona è guasto." }
   },
-  "im-in-a-meeting": { "text": "Sono in riunione.", "variants": ["Sono in una riunione."] },
-  "dont-disturb-me": { "text": "Non disturbarmi!", "variants": ["Non disturbare!"] },
+  "im-in-a-meeting": { "text": "Sono in riunione.", "accepts": ["Sono in una riunione."] },
+  "dont-disturb-me": { "text": "Non disturbarmi!", "accepts": ["Non disturbare!"] },
   "the-laptop-wont-charge-anymore": {
    "text": "Il portatile non si carica più.",
-   "variants": ["Il portatile non carica più.", "Il computer portatile non si carica più."]
+   "accepts": ["Il portatile non carica più.", "Il computer portatile non si carica più."]
   },
-  "the-internet-is-gone": { "text": "Non c'è internet.", "variants": ["Internet non funziona.", "Non c'è il wifi."] },
-  "it-works": { "text": "Funziona.", "variants": ["Ora funziona.", "Funziona di nuovo."] },
-  "coffee-break": { "text": "Pausa caffè?", "variants": ["Andiamo a prendere un caffè?"] },
+  "the-internet-is-gone": { "text": "Non c'è internet.", "accepts": ["Internet non funziona.", "Non c'è il wifi."] },
+  "it-works": { "text": "Funziona.", "accepts": ["Ora funziona.", "Funziona di nuovo."] },
+  "coffee-break": { "text": "Pausa caffè?", "accepts": ["Andiamo a prendere un caffè?"] },
   "i-have-a-lot-to-do": { "text": "Ho molto da fare." },
-  "send-me-the-email": { "text": "Mandami l'e-mail.", "variants": ["Inviami l'e-mail.", "Mandami la mail."] },
+  "send-me-the-email": { "text": "Mandami l'e-mail.", "accepts": ["Inviami l'e-mail.", "Mandami la mail."] },
   "pencil": { "text": "matita", "grammar": { "gender": "la" } },
   "plug": { "text": "spina", "grammar": { "gender": "la" } }
  }

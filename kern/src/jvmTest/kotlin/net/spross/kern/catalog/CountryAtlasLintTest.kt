@@ -131,17 +131,17 @@ class CountryAtlasLintTest {
         forEachRealization { lang, slug, name ->
             val where = "countries/$lang.json $slug"
             val groups = listOf(
-                "name" to (listOf(name.text) to name.variants),
-                "nationality" to (listOf(name.nationality.text) to name.nationality.variants),
+                "name" to (listOf(name.text) to name.accepts),
+                "nationality" to (listOf(name.nationality.text) to name.nationality.accepts),
             )
             for ((what, forms) in groups) {
-                val (texts, variants) = forms
-                for (form in texts + variants) {
+                val (texts, accepts) = forms
+                for (form in texts + accepts) {
                     assertTrue(form.isNotBlank() && form.trim() == form, "$where: untrimmed $what \"$form\"")
                     assertTrue('|' !in form && '\n' !in form, "$where: bad char in $what \"$form\"")
                 }
-                assertTrue(texts.single() !in variants, "$where: $what variant repeats the text")
-                assertEquals(variants.toSet().size, variants.size, "$where: duplicate $what variants")
+                assertTrue(texts.single() !in accepts, "$where: $what accepts entry repeats the text")
+                assertEquals(accepts.toSet().size, accepts.size, "$where: duplicate $what accepts")
             }
         }
     }

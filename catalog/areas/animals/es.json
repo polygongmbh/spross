@@ -5,7 +5,7 @@
   "animal": { "text": "animal", "grammar": { "gender": "el" } },
   "dog": { "text": "perro", "grammar": { "gender": "el" } },
   "cat": { "text": "gato", "grammar": { "gender": "el" } },
-  "bird": { "text": "pájaro", "variants": ["ave"], "grammar": { "gender": "el" } },
+  "bird": { "text": "pájaro", "accepts": ["ave"], "grammar": { "gender": "el" } },
   "cow": { "text": "vaca", "grammar": { "gender": "la" } },
   "goat": { "text": "cabra", "grammar": { "gender": "la" } },
   "sheep": { "text": "oveja", "grammar": { "gender": "la" } },
@@ -18,23 +18,23 @@
   "look-a-bird": { "text": "¡Mira, un pájaro!" },
   "the-dog-is-barking": {
    "text": "El perro ladra.",
-   "variants": ["El perro está ladrando."],
+   "accepts": ["El perro está ladrando."],
    "orders": ["Ladra el perro."]
   },
   "the-cat-is-meowing": {
    "text": "El gato maúlla.",
-   "variants": ["El gato está maullando."],
+   "accepts": ["El gato está maullando."],
    "orders": ["Maúlla el gato."]
   },
   "the-bird-is-singing": {
    "text": "El pájaro canta.",
-   "variants": ["El pájaro está cantando."],
+   "accepts": ["El pájaro está cantando."],
    "orders": ["Canta el pájaro."]
   },
-  "the-lion-is-roaring": { "text": "El león ruge.", "variants": ["El león está rugiendo."], "orders": ["Ruge el león."] },
+  "the-lion-is-roaring": { "text": "El león ruge.", "accepts": ["El león está rugiendo."], "orders": ["Ruge el león."] },
   "the-mosquito-is-biting-me": {
    "text": "El mosquito me pica.",
-   "variants": ["El mosquito está picándome."],
+   "accepts": ["El mosquito está picándome."],
    "orders": ["Me pica el mosquito."]
   }
  }

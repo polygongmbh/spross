@@ -247,7 +247,7 @@ private fun ProduceReveal(model: AppModel, ui: SessionUi, heard: Boolean) {
             horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         ) {
             Headword(
-                (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
+                (listOf(card.source.text) + card.source.teaches).joinToString(" / "),
                 color = Theme.colors.accent,
                 modifier = Modifier.weight(1f, fill = false),
             )

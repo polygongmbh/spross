@@ -2,10 +2,10 @@
  "title": "El cuarto de baño",
  "subtitle": "Fresco y limpio.",
  "words": {
-  "washing-machine": { "text": "lavadora", "variants": ["lavarropas"], "grammar": { "gender": "la" } },
+  "washing-machine": { "text": "lavadora", "accepts": ["lavarropas"], "grammar": { "gender": "la" } },
   "laundry": {
    "text": "colada",
-   "variants": ["ropa sucia"],
+   "accepts": ["ropa sucia"],
    "grammar": { "gender": "la" },
    "notes": {
     "es": "La colada es la ropa que se lava o se tiende.",
@@ -14,68 +14,68 @@
   },
   "toilet": {
    "text": "inodoro",
-   "synonyms": ["váter"],
-   "variants": ["wáter", "retrete"],
+   "teaches": ["váter"],
+   "accepts": ["wáter", "retrete"],
    "grammar": { "gender": "el" },
    "notes": {
     "es": "En casa, el váter; en un bar se pregunta por los servicios o el aseo.",
     "de": "el inodoro ist das neutrale Wort für die Schüssel, umgangssprachlich sagt man in Spanien el váter; nach der öffentlichen Toilette fragt man mit los servicios oder el aseo"
    }
   },
-  "shower": { "text": "ducha", "variants": ["regadera"], "grammar": { "gender": "la" } },
-  "sink": { "text": "lavabo", "variants": ["lavamanos"], "grammar": { "gender": "el" } },
+  "shower": { "text": "ducha", "accepts": ["regadera"], "grammar": { "gender": "la" } },
+  "sink": { "text": "lavabo", "accepts": ["lavamanos"], "grammar": { "gender": "el" } },
   "mirror": { "text": "espejo", "grammar": { "gender": "el" } },
   "toothbrush": { "text": "cepillo de dientes", "grammar": { "gender": "el" } },
   "toothpaste": {
    "text": "pasta de dientes",
-   "synonyms": ["dentífrico"],
-   "variants": ["pasta dentífrica"],
+   "teaches": ["dentífrico"],
+   "accepts": ["pasta dentífrica"],
    "grammar": { "gender": "la" }
   },
   "towel": { "text": "toalla", "grammar": { "gender": "la" } },
   "soap": { "text": "jabón", "grammar": { "gender": "el" } },
   "shampoo": { "text": "champú", "grammar": { "gender": "el" } },
-  "hairdryer": { "text": "secador", "variants": ["secador de pelo"], "grammar": { "gender": "el" } },
+  "hairdryer": { "text": "secador", "accepts": ["secador de pelo"], "grammar": { "gender": "el" } },
   "to-take-shower": { "text": "ducharse" },
-  "to-do-laundry": { "text": "hacer la colada", "variants": ["lavar la ropa", "poner una lavadora"] },
-  "to-brush-teeth": { "text": "lavarse los dientes", "synonyms": ["cepillarse los dientes"] },
+  "to-do-laundry": { "text": "hacer la colada", "accepts": ["lavar la ropa", "poner una lavadora"] },
+  "to-brush-teeth": { "text": "lavarse los dientes", "teaches": ["cepillarse los dientes"] },
   "to-dry-off": { "text": "secarse" },
-  "to-hang-up-laundry": { "text": "tender la colada", "variants": ["tender la ropa", "colgar la ropa"] },
+  "to-hang-up-laundry": { "text": "tender la colada", "accepts": ["tender la ropa", "colgar la ropa"] },
   "to-clean": { "text": "limpiar" },
-  "to-shave": { "text": "afeitarse", "variants": ["rasurarse"] },
-  "to-comb-hair": { "text": "peinarse", "variants": ["peinarse el pelo"] },
-  "to-apply-lotion": { "text": "ponerse crema", "variants": ["echarse crema", "darse crema", "aplicarse crema"] },
-  "bathtub": { "text": "bañera", "variants": ["tina"], "grammar": { "gender": "la" } },
-  "toilet-paper": { "text": "papel higiénico", "variants": ["papel de váter"], "grammar": { "gender": "el" } },
+  "to-shave": { "text": "afeitarse", "accepts": ["rasurarse"] },
+  "to-comb-hair": { "text": "peinarse", "accepts": ["peinarse el pelo"] },
+  "to-apply-lotion": { "text": "ponerse crema", "accepts": ["echarse crema", "darse crema", "aplicarse crema"] },
+  "bathtub": { "text": "bañera", "accepts": ["tina"], "grammar": { "gender": "la" } },
+  "toilet-paper": { "text": "papel higiénico", "accepts": ["papel de váter"], "grammar": { "gender": "el" } },
   "razor": {
    "text": "maquinilla de afeitar",
-   "variants": ["maquinilla", "cuchilla de afeitar"],
+   "accepts": ["maquinilla", "cuchilla de afeitar"],
    "grammar": { "gender": "la" }
   },
   "sponge": { "text": "esponja", "grammar": { "gender": "la" } },
   "cream": { "text": "crema", "grammar": { "gender": "la" } },
-  "faucet": { "text": "grifo", "variants": ["canilla", "llave del agua"], "grammar": { "gender": "el" } },
+  "faucet": { "text": "grifo", "accepts": ["canilla", "llave del agua"], "grammar": { "gender": "el" } },
   "trash-can": {
    "text": "cubo de la basura",
-   "variants": ["papelera", "basurero", "bote de basura"],
+   "accepts": ["papelera", "basurero", "bote de basura"],
    "grammar": { "gender": "el" }
   },
-  "bucket": { "text": "cubo", "variants": ["balde"], "grammar": { "gender": "el" } },
+  "bucket": { "text": "cubo", "accepts": ["balde"], "grammar": { "gender": "el" } },
   "im-taking-a-quick-shower": {
    "text": "Me voy a duchar rápido.",
-   "variants": ["Voy a ducharme rápido.", "Me doy una ducha rápida."]
+   "accepts": ["Voy a ducharme rápido.", "Me doy una ducha rápida."]
   },
   "the-bathroom-is-occupied": { "text": "¡El baño está ocupado!", "orders": ["¡Está ocupado el baño!"] },
   "the-laundry-is-done": {
    "text": "La colada está lista.",
-   "variants": ["La ropa está lista.", "Ya está la colada."],
+   "accepts": ["La ropa está lista.", "Ya está la colada."],
    "orders": ["Está lista la colada."]
   },
   "wheres-my-towel": { "text": "¿Dónde está mi toalla?" },
-  "can-you-hang-the-laundry": { "text": "¿Puedes tender la colada?", "variants": ["¿Puedes tender la ropa?"] },
+  "can-you-hang-the-laundry": { "text": "¿Puedes tender la colada?", "accepts": ["¿Puedes tender la ropa?"] },
   "dont-forget-to-brush-teeth": {
    "text": "¡No te olvides de lavarte los dientes!",
-   "variants": ["¡No olvides lavarte los dientes!", "¡No te olvides de cepillarte los dientes!"]
+   "accepts": ["¡No olvides lavarte los dientes!", "¡No te olvides de cepillarte los dientes!"]
   },
   "wash-your-hands": { "text": "Lávate las manos." },
   "the-laundry-is-being-washed": {

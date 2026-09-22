@@ -21,7 +21,7 @@ Nothing pair-shaped is stored: `de→uk` and `en→uk` read the same Ukrainian f
 { "frames": {
     "train-departs-at": { "text": "Der Zug fährt um {slot} Uhr ab." },
     "repeat-please":    { "text": "Wiederholen Sie bitte: {slot}.",
-                          "variants": ["Wiederhole bitte: {slot}."] } } }
+                          "accepts": ["Wiederhole bitte: {slot}."] } } }
 ```
 
 The same frames on the Ukrainian side, carrying what only Ukrainian needs (`uk.json`):
@@ -80,7 +80,7 @@ met no numbers yet. So lint requires English of every language the trainer can g
 
 Realization fields — `text` is required, everything else is per-language:
 - `text` — the frame, carrying **exactly one `{slot}`** (and `{count}` iff `count` is authored).
-- `variants` — accept-only alternate frames, the same rule as a realization's `variants`:
+- `accepts` — accept-only alternate frames, the same rule as a realization's `accepts`:
   the du-form beside the Sie-form, graded as correct and never displayed.
 - `count` — counted-noun agreement (`one`/`few`/`many`) substituted for the `{count}` marker;
   `numbers` frames only, since there is otherwise no numeral to agree with.

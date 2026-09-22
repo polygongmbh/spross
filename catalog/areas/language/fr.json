@@ -10,14 +10,14 @@
   "mother-tongue": { "text": "langue maternelle", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {
    "text": "Que veut dire ce mot ?",
-   "variants": ["Que signifie ce mot ?", "Qu'est-ce que ce mot veut dire ?"]
+   "accepts": ["Que signifie ce mot ?", "Qu'est-ce que ce mot veut dire ?"]
   },
-  "how-do-you-say-this": { "text": "Comment dit-on ça {language-in} ?", "variants": ["Comment on dit ça {language-in} ?"] },
+  "how-do-you-say-this": { "text": "Comment dit-on ça {language-in} ?", "accepts": ["Comment on dit ça {language-in} ?"] },
   "im-learning-your-language": {
    "text": "J'apprends {language-learn}.",
-   "variants": ["Je suis en train d'apprendre {language-learn}."]
+   "accepts": ["Je suis en train d'apprendre {language-learn}."]
   },
-  "ready-to-learn": { "text": "Prêt à apprendre ?", "variants": ["Prête à apprendre ?"] },
+  "ready-to-learn": { "text": "Prêt à apprendre ?", "accepts": ["Prête à apprendre ?"] },
   "one-more-word": { "text": "Encore un mot ?" }
  }
 }

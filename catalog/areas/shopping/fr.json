@@ -8,7 +8,7 @@
   "shop-assistant": { "text": "vendeur", "grammar": { "gender": "le" } },
   "shop-assistant-f": { "text": "vendeuse", "grammar": { "gender": "la" } },
   "shopping-cart": { "text": "chariot", "grammar": { "gender": "le" } },
-  "offer": { "text": "promotion", "variants": ["promo"], "grammar": { "gender": "la" } },
+  "offer": { "text": "promotion", "accepts": ["promo"], "grammar": { "gender": "la" } },
   "size": {
    "text": "taille",
    "grammar": { "gender": "la" },
@@ -19,12 +19,12 @@
   },
   "to-shop": {
    "text": "faire les courses",
-   "synonyms": ["faire les magasins"],
+   "teaches": ["faire les magasins"],
    "notes": { "fr": "faire les courses, c'est acheter à manger · faire les magasins, se promener." }
   },
-  "store": { "text": "magasin", "variants": ["boutique"], "grammar": { "gender": "le" } },
-  "open": { "text": "ouvert", "variants": ["ouverte"] },
+  "store": { "text": "magasin", "accepts": ["boutique"], "grammar": { "gender": "le" } },
+  "open": { "text": "ouvert", "accepts": ["ouverte"] },
   "the-store-is-still-open": { "text": "Le magasin est encore ouvert." },
-  "do-you-have-this-in-my-size": { "text": "Vous l'avez à ma taille ?", "variants": ["Est-ce que vous l'avez à ma taille ?"] }
+  "do-you-have-this-in-my-size": { "text": "Vous l'avez à ma taille ?", "accepts": ["Est-ce que vous l'avez à ma taille ?"] }
  }
 }

@@ -4,8 +4,8 @@
  "words": {
   "hallway": {
    "text": "ingresso",
-   "synonyms": ["corridoio"],
-   "variants": ["l'ingresso"],
+   "teaches": ["corridoio"],
+   "accepts": ["l'ingresso"],
    "grammar": { "gender": "l'" },
    "notes": { "it": "l'ingresso è subito dopo la porta · il corridoio porta alle stanze." }
   },
@@ -13,38 +13,38 @@
   "key": { "text": "chiave", "grammar": { "gender": "la" } },
   "jacket": { "text": "giacca", "grammar": { "gender": "la", "plural": "giacche" } },
   "coat": { "text": "cappotto", "grammar": { "gender": "il" } },
-  "umbrella": { "text": "ombrello", "variants": ["l'ombrello"], "grammar": { "gender": "l'" } },
+  "umbrella": { "text": "ombrello", "accepts": ["l'ombrello"], "grammar": { "gender": "l'" } },
   "hat": {
    "text": "berretto",
-   "synonyms": ["cappello"],
+   "teaches": ["cappello"],
    "grammar": { "gender": "il" },
    "notes": { "it": "il berretto è morbido · il cappello ha la tesa." }
   },
   "mailbox": {
    "text": "cassetta della posta",
-   "variants": ["cassetta delle lettere", "buca delle lettere"],
+   "accepts": ["cassetta delle lettere", "buca delle lettere"],
    "grammar": { "gender": "la" }
   },
   "doorbell": { "text": "campanello", "grammar": { "gender": "il" } },
   "stairs": {
    "text": "scale",
-   "variants": ["scala"],
+   "accepts": ["scala"],
    "grammar": { "gender": "le", "plural": "only" },
    "notes": { "it": "le scale sono quelle di casa · la scala si appoggia al muro." }
   },
   "bag": {
    "text": "borsa",
-   "variants": ["borsetta"],
+   "accepts": ["borsetta"],
    "grammar": { "gender": "la" },
    "notes": { "it": "la borsa si porta a mano · il sacchetto è della spesa, lo zaino in spalla." }
   },
-  "to-lock": { "text": "chiudere a chiave", "variants": ["chiudere la porta a chiave"] },
+  "to-lock": { "text": "chiudere a chiave", "accepts": ["chiudere la porta a chiave"] },
   "to-ring": {
    "text": "suonare",
-   "variants": ["suonare il campanello"],
+   "accepts": ["suonare il campanello"],
    "notes": { "it": "il campanello suona e io lo suono · al passato: ha suonato." }
   },
-  "to-take-off-shoes": { "text": "togliersi le scarpe", "variants": ["levarsi le scarpe"] },
+  "to-take-off-shoes": { "text": "togliersi le scarpe", "accepts": ["levarsi le scarpe"] },
   "to-set-off": { "text": "uscire di casa" },
   "to-unlock": {
    "text": "aprire con la chiave",
@@ -55,20 +55,20 @@
   "to-greet": { "text": "salutare" },
   "to-say-goodbye": {
    "text": "dire arrivederci",
-   "variants": ["salutare", "congedarsi"],
+   "accepts": ["salutare", "congedarsi"],
    "notes": { "it": "salutare vale arrivando e andando via · chiaro è dire arrivederci." }
   },
   "shoe": { "text": "scarpa", "grammar": { "gender": "la" } },
-  "apartment": { "text": "appartamento", "variants": ["l'appartamento"], "grammar": { "gender": "l'" } },
+  "apartment": { "text": "appartamento", "accepts": ["l'appartamento"], "grammar": { "gender": "l'" } },
   "neighbor": {
    "text": "vicino di casa",
-   "variants": ["vicino", "vicina", "vicina di casa"],
+   "accepts": ["vicino", "vicina", "vicina di casa"],
    "grammar": { "gender": "il" },
    "notes": { "it": "vicino vuol dire anche non lontano: si dice il vicino di casa." }
   },
   "guest": {
    "text": "ospite",
-   "variants": ["l'ospite", "invitato", "invitata"],
+   "accepts": ["l'ospite", "invitato", "invitata"],
    "grammar": { "gender": "l'" },
    "notes": {
     "it": "l'ospite è chi arriva · chi è stato invitato è l'invitato.",
@@ -77,7 +77,7 @@
   },
   "wallet": {
    "text": "portafoglio",
-   "synonyms": ["portamonete"],
+   "teaches": ["portamonete"],
    "grammar": { "gender": "il", "plural": "portafogli" },
    "notes": { "it": "nel portafoglio stanno soldi e carte · le monete nel portamonete." }
   },
@@ -88,21 +88,21 @@
   "house": { "text": "casa", "grammar": { "gender": "la" } },
   "to-live": {
    "text": "abitare",
-   "variants": ["vivere"],
+   "accepts": ["vivere"],
    "notes": {
     "it": "abitare è stare in una casa · vivere è anche essere vivi.",
     "de": "abitare heißt wohnen; vivere heißt leben und kann auch wohnen bedeuten."
    }
   },
-  "do-you-have-the-keys": { "text": "Hai le chiavi?", "variants": ["Hai preso le chiavi?"] },
-  "ill-be-right-back": { "text": "Torno subito!", "variants": ["Torno tra un attimo!"] },
-  "take-off-your-shoes": { "text": "Togliti le scarpe.", "variants": ["Levati le scarpe."] },
-  "hurry-were-late": { "text": "Sbrigati, siamo in ritardo!", "variants": ["Fai presto, siamo in ritardo!"] },
-  "see-you-later": { "text": "A dopo!", "variants": ["Ci vediamo dopo!", "A più tardi!"] },
-  "welcome-home": { "text": "Benvenuto a casa!", "variants": ["Benvenuta a casa!"] },
+  "do-you-have-the-keys": { "text": "Hai le chiavi?", "accepts": ["Hai preso le chiavi?"] },
+  "ill-be-right-back": { "text": "Torno subito!", "accepts": ["Torno tra un attimo!"] },
+  "take-off-your-shoes": { "text": "Togliti le scarpe.", "accepts": ["Levati le scarpe."] },
+  "hurry-were-late": { "text": "Sbrigati, siamo in ritardo!", "accepts": ["Fai presto, siamo in ritardo!"] },
+  "see-you-later": { "text": "A dopo!", "accepts": ["Ci vediamo dopo!", "A più tardi!"] },
+  "welcome-home": { "text": "Benvenuto a casa!", "accepts": ["Benvenuta a casa!"] },
   "dont-forget-your-jacket": {
    "text": "Non dimenticare la giacca!",
-   "variants": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]
+   "accepts": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]
   },
   "put-on-the-jacket": { "text": "mettersi la giacca" }
  }

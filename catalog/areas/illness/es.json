@@ -7,8 +7,8 @@
   "cough": { "text": "tos", "grammar": { "gender": "la" } },
   "cold": {
    "text": "resfriado",
-   "synonyms": ["catarro"],
-   "variants": ["constipado"],
+   "teaches": ["catarro"],
+   "accepts": ["constipado"],
    "grammar": { "gender": "el" },
    "notes": {
     "es": "estar resfriado = estar constipado · constipado no es estreñido.",
@@ -23,9 +23,9 @@
    }
   },
   "to-cough": { "text": "toser" },
-  "sick": { "text": "enfermo", "variants": ["enferma"] },
+  "sick": { "text": "enfermo", "accepts": ["enferma"] },
   "illness": { "text": "enfermedad", "grammar": { "gender": "la" } },
-  "tired": { "text": "cansado", "variants": ["cansada"] },
+  "tired": { "text": "cansado", "accepts": ["cansada"] },
   "weak": { "text": "débil" },
   "dizziness": {
    "text": "mareo",
@@ -33,15 +33,15 @@
    "notes": { "es": "estar mareado en el coche, en el barco o de pie." }
   },
   "wound": { "text": "herida", "grammar": { "gender": "la" } },
-  "to-hurt-oneself": { "text": "hacerse daño", "variants": ["lesionarse"] },
-  "bandage": { "text": "venda", "variants": ["vendaje"], "grammar": { "gender": "la" } },
-  "band-aid": { "text": "tirita", "variants": ["curita"], "grammar": { "gender": "la" } },
+  "to-hurt-oneself": { "text": "hacerse daño", "accepts": ["lesionarse"] },
+  "bandage": { "text": "venda", "accepts": ["vendaje"], "grammar": { "gender": "la" } },
+  "band-aid": { "text": "tirita", "accepts": ["curita"], "grammar": { "gender": "la" } },
   "splint": { "text": "férula", "grammar": { "gender": "la" } },
-  "to-recover": { "text": "recuperarse", "variants": ["reponerse"] },
+  "to-recover": { "text": "recuperarse", "accepts": ["reponerse"] },
   "allergy": { "text": "alergia", "grammar": { "gender": "la" } },
   "my-throat-hurts-a-lot": { "text": "Me duele mucho la garganta.", "orders": ["La garganta me duele mucho."] },
   "ive-had-a-fever-since-yesterday": { "text": "Tengo fiebre desde ayer.", "orders": ["Desde ayer tengo fiebre."] },
-  "get-well-soon": { "text": "¡Que te mejores!", "variants": ["¡Que se mejore!", "¡Mejórate pronto!"] },
+  "get-well-soon": { "text": "¡Que te mejores!", "accepts": ["¡Que se mejore!", "¡Mejórate pronto!"] },
   "the-wound-hurts": { "text": "Me duele la herida.", "orders": ["La herida me duele."] },
   "i-hurt-myself-yesterday": { "text": "Ayer me hice daño.", "orders": ["Me hice daño ayer."] }
  }

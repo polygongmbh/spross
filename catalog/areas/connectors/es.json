@@ -4,8 +4,8 @@
  "words": {
   "but": { "text": "pero" },
   "also": { "text": "también" },
-  "and": { "text": "y", "variants": ["e"], "notes": { "es": "y → e con i-, hi-: hablar e imaginar" } },
-  "or": { "text": "o", "variants": ["u"], "notes": { "es": "o → u con o-, ho-: siete u ocho" } },
+  "and": { "text": "y", "accepts": ["e"], "notes": { "es": "y → e con i-, hi-: hablar e imaginar" } },
+  "or": { "text": "o", "accepts": ["u"], "notes": { "es": "o → u con o-, ho-: siete u ocho" } },
   "if": { "text": "si" },
   "because": { "text": "porque" },
   "so-that": { "text": "para que" },
@@ -16,22 +16,22 @@
   "with": { "text": "con" },
   "for": { "text": "para", "notes": { "es": "para = destino, por = causa: para ti · por el problema" } },
   "because-of": { "text": "por" },
-  "again": { "text": "otra vez", "variants": ["de nuevo"] },
-  "still": { "text": "todavía", "variants": ["aún"] },
-  "finally": { "text": "por fin", "variants": ["finalmente"] },
+  "again": { "text": "otra vez", "accepts": ["de nuevo"] },
+  "still": { "text": "todavía", "accepts": ["aún"] },
+  "finally": { "text": "por fin", "accepts": ["finalmente"] },
   "then": { "text": "luego" },
   "not": { "text": "no", "notes": { "es": "no hablo español · no está aquí · ¿Lo sabe? No." } },
-  "only": { "text": "solo", "variants": ["sólo", "solamente"] },
+  "only": { "text": "solo", "accepts": ["sólo", "solamente"] },
   "together": {
    "text": "juntos",
-   "variants": ["juntas"],
+   "accepts": ["juntas"],
    "notes": { "es": "juntos (ellos o mixto) · juntas (solo ellas)." }
   },
   "therefore": { "text": "por eso" },
   "even": { "text": "incluso" },
   "although": { "text": "aunque" },
   "that-conj": { "text": "que" },
-  "if-you-want": { "text": "Si quiere.", "variants": ["Si quieres."] },
-  "finally-done": { "text": "¡Por fin terminado!", "variants": ["¡Por fin terminada!"] }
+  "if-you-want": { "text": "Si quiere.", "accepts": ["Si quieres."] },
+  "finally-done": { "text": "¡Por fin terminado!", "accepts": ["¡Por fin terminada!"] }
  }
 }

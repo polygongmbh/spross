@@ -279,7 +279,7 @@ object CountryDrill {
             promptText = country.prompt(reverse).text,
             promptEmoji = country.flag,
             emojiIsGiveaway = reverse,
-            accepted = listOf(answer.text) + answer.variants,
+            accepted = listOf(answer.text) + answer.accepts,
             display = answer.text,
             gloss = answer.nationality.text,
         )
@@ -299,7 +299,7 @@ object CountryDrill {
             id = country.slug,
             promptText = null,
             promptEmoji = country.flag,
-            accepted = listOf(answer.text) + answer.variants,
+            accepted = listOf(answer.text) + answer.accepts,
             display = answer.text,
             gloss = country.prompt(reverse).text,
         )
@@ -313,7 +313,7 @@ object CountryDrill {
             promptText = country.prompt(reverse).nationality.text,
             promptEmoji = country.flag,
             emojiIsGiveaway = reverse,
-            accepted = listOf(answer.text) + answer.variants,
+            accepted = listOf(answer.text) + answer.accepts,
             display = answer.text,
             gloss = country.answer(reverse).text,
         )
@@ -326,7 +326,7 @@ object CountryDrill {
             id = language.code,
             promptText = language.prompt(reverse).name,
             promptEmoji = null,
-            accepted = listOf(answer.name) + answer.variants,
+            accepted = listOf(answer.name) + answer.accepts,
             display = answer.name,
             gloss = null,
         )
@@ -346,7 +346,7 @@ object CountryDrill {
         val spoken = content.languagesOf(country).ifEmpty { return null }
         val shown = spoken.firstOrNull { it.tier <= ceiling } ?: spoken.first()
         val display = shown.answer(reverse).name
-        val forms = spoken.flatMap { listOf(it.answer(reverse).name) + it.answer(reverse).variants }
+        val forms = spoken.flatMap { listOf(it.answer(reverse).name) + it.answer(reverse).accepts }
         return CountryDrillTask(
             kind = CountryTaskKind.SpokenIn,
             id = country.slug,
@@ -369,7 +369,7 @@ object CountryDrill {
         val spoken = content.countriesOf(language).ifEmpty { return null }
         val shown = spoken.firstOrNull { it.tier <= ceiling } ?: spoken.first()
         val display = shown.answer(reverse).text
-        val forms = spoken.flatMap { listOf(it.answer(reverse).text) + it.answer(reverse).variants }
+        val forms = spoken.flatMap { listOf(it.answer(reverse).text) + it.answer(reverse).accepts }
         return CountryDrillTask(
             kind = CountryTaskKind.SpokenWhere,
             id = language.code,
@@ -391,8 +391,8 @@ object CountryDrill {
      * accents, which makes "Peru"/"Perú" one name and "Kenia"/"Kenya" two.
      */
     private fun AtlasCountryEntry.namesDiffer(): Boolean {
-        val known = (listOf(source.text) + source.variants).mapTo(mutableSetOf()) { fold(it) }
-        return (listOf(target.text) + target.variants).none { fold(it) in known }
+        val known = (listOf(source.text) + source.accepts).mapTo(mutableSetOf()) { fold(it) }
+        return (listOf(target.text) + target.accepts).none { fold(it) in known }
     }
 
     /** Casefolded, stripped of accents and of everything that is not a letter or a digit. */

@@ -10,7 +10,7 @@ mapping file is `slug -> destination area`, TSV (`slug<TAB>area`, `#` comments) 
 (`{"slug": "area"}` or `[["slug", "area"], …]`); its ORDER is the order the concepts are
 appended in the destination.
 
-What is preserved: the realization is carried VERBATIM (grammar, synonyms, variants,
+What is preserved: the realization is carried VERBATIM (grammar, teaches, accepts,
 notes — the parsed value is re-emitted, never rebuilt), the source keeps the order of
 what stays, and the destination gets words before phrases
 (`CatalogLintTest.wordsPrecedeTheirPhrasesWithinEachArea`).
@@ -145,9 +145,9 @@ class Area:
 
 
 def prompt_forms(realization):
-    """What a card may SHOW — text plus rotating synonyms, NFC-folded, as the lint reads them."""
+    """What a card may SHOW — text plus rotating `teaches`, NFC-folded, as the lint reads them."""
     return [unicodedata.normalize('NFC', form).strip()
-            for form in [realization['text']] + realization.get('synonyms', [])]
+            for form in [realization['text']] + realization.get('teaches', [])]
 
 
 def check_collisions(areas, moves):

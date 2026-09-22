@@ -30,7 +30,7 @@
   { "text": "mai" },
   { "text": "juin" },
   { "text": "juillet" },
-  { "text": "août", "variants": ["aout"] },
+  { "text": "août", "accepts": ["aout"] },
   { "text": "septembre" },
   { "text": "octobre" },
   { "text": "novembre" },

@@ -19,38 +19,38 @@
   "to-call-in-sick": { "text": "sich krankmelden" },
   "medicine": {
    "text": "Medikament",
-   "variants": ["Arzneimittel"],
+   "accepts": ["Arzneimittel"],
    "grammar": { "gender": "das", "plural": "-e" }
   },
   "nurse": { "text": "Krankenpfleger", "grammar": { "gender": "der", "plural": "=" } },
   "nurse-f": {
    "text": "Krankenpflegerin",
-   "synonyms": ["Krankenschwester"],
+   "teaches": ["Krankenschwester"],
    "grammar": { "gender": "die", "plural": "-nen" }
   },
   "dentist": { "text": "Zahnarzt", "grammar": { "gender": "der", "plural": "Zahnärzte" } },
   "vaccination": { "text": "Impfung", "grammar": { "gender": "die", "plural": "-en" } },
   "ambulance": {
    "text": "Krankenwagen",
-   "variants": ["Rettungswagen"],
+   "accepts": ["Rettungswagen"],
    "grammar": { "gender": "der", "plural": "=" }
   },
   "to-look-after": { "text": "pflegen" },
   "take-the-pills-twice-daily": {
    "text": "Nehmen Sie die Tabletten zweimal täglich ein.",
-   "variants": ["Nimm die Tabletten zweimal täglich ein."],
+   "accepts": ["Nimm die Tabletten zweimal täglich ein."],
    "orders": ["Sie nehmen die Tabletten zweimal täglich ein."]
   },
   "show-me-your-insurance-card": {
    "text": "Zeigen Sie mir Ihre Versichertenkarte.",
-   "variants": ["Zeig mir deine Versichertenkarte."],
+   "accepts": ["Zeig mir deine Versichertenkarte."],
    "orders": ["Sie zeigen mir Ihre Versichertenkarte."]
   },
   "the-practice-is-closed": { "text": "Die Praxis ist geschlossen." },
   "i-have-to-see-a-doctor": { "text": "Ich muss zum Arzt.", "orders": ["Zum Arzt muss ich."] },
   "call-an-ambulance": {
    "text": "Rufen Sie einen Krankenwagen!",
-   "variants": ["Ruf einen Krankenwagen!"],
+   "accepts": ["Ruf einen Krankenwagen!"],
    "orders": ["Sie rufen einen Krankenwagen!"]
   },
   "the-doctor-will-examine-you-shortly": {

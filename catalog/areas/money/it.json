@@ -4,8 +4,8 @@
  "words": {
   "price": { "text": "prezzo", "grammar": { "gender": "il" } },
   "to-cost": { "text": "costare" },
-  "expensive": { "text": "caro", "synonyms": ["costoso"] },
-  "cheap": { "text": "economico", "variants": ["a buon mercato"] },
+  "expensive": { "text": "caro", "teaches": ["costoso"] },
+  "cheap": { "text": "economico", "accepts": ["a buon mercato"] },
   "to-sell": { "text": "vendere" },
   "cash": {
    "text": "contanti",
@@ -14,7 +14,7 @@
   },
   "bank-card": {
    "text": "bancomat",
-   "variants": ["carta", "carta di credito"],
+   "accepts": ["carta", "carta di credito"],
    "grammar": { "gender": "il" },
    "notes": { "it": "il bancomat è la carta e anche la macchina dei soldi." }
   },
@@ -22,7 +22,7 @@
   "change-money": { "text": "resto", "grammar": { "gender": "il" } },
   "money": {
    "text": "soldi",
-   "synonyms": ["denaro"],
+   "teaches": ["denaro"],
    "grammar": { "gender": "i", "plural": "only" },
    "notes": { "it": "soldi è sempre plurale: ho pochi soldi · il denaro è formale." }
   },
@@ -31,9 +31,9 @@
   "rich": { "text": "ricco" },
   "poor": { "text": "povero" },
   "free-of-charge": { "text": "gratuito" },
-  "how-much-does-this-cost": { "text": "Quanto costa questo?", "variants": ["Quanto costa?", "Quanto viene?"] },
-  "that-is-too-expensive": { "text": "Questo è troppo caro.", "variants": ["È troppo caro.", "Costa troppo."] },
-  "i-have-no-money": { "text": "Non ho soldi.", "variants": ["Non ho denaro."] },
+  "how-much-does-this-cost": { "text": "Quanto costa questo?", "accepts": ["Quanto costa?", "Quanto viene?"] },
+  "that-is-too-expensive": { "text": "Questo è troppo caro.", "accepts": ["È troppo caro.", "Costa troppo."] },
+  "i-have-no-money": { "text": "Non ho soldi.", "accepts": ["Non ho denaro."] },
   "can-i-pay-by-card": { "text": "Posso pagare con la carta?" },
   "ive-already-paid": { "text": "Ho già pagato." }
  }

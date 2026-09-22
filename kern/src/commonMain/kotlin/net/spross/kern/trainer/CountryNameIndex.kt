@@ -43,17 +43,17 @@ internal class CountryNameIndex(
         for (entry in content.countries) {
             val answer = if (reverse) entry.source else entry.target
             val prompt = if (reverse) entry.target else entry.source
-            put(countries, listOf(answer.text) + answer.variants, prompt.text)
+            put(countries, listOf(answer.text) + answer.accepts, prompt.text)
             put(
                 peoples,
-                listOf(answer.nationality.text) + answer.nationality.variants,
+                listOf(answer.nationality.text) + answer.nationality.accepts,
                 prompt.nationality.text,
             )
         }
         for (entry in content.languages) {
             val answer = if (reverse) entry.source else entry.target
             val prompt = if (reverse) entry.target else entry.source
-            put(languages, listOf(answer.name) + answer.variants, prompt.name)
+            put(languages, listOf(answer.name) + answer.accepts, prompt.name)
         }
         mapOf(Scope.Countries to countries, Scope.Peoples to peoples, Scope.Languages to languages)
     }

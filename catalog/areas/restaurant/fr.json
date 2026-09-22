@@ -11,14 +11,14 @@
   "waiter-f": { "text": "serveuse", "grammar": { "gender": "la" } },
   "table": { "text": "table", "grammar": { "gender": "la" } },
   "to-order": { "text": "commander" },
-  "bill": { "text": "addition", "variants": ["l'addition"], "grammar": { "gender": "l'" } },
+  "bill": { "text": "addition", "accepts": ["l'addition"], "grammar": { "gender": "l'" } },
   "tip": { "text": "pourboire", "grammar": { "gender": "le" } },
   "to-reserve": { "text": "réserver" },
   "glass": { "text": "verre", "grammar": { "gender": "le" } },
   "cutlery": { "text": "couverts", "grammar": { "gender": "les", "plural": "only" } },
   "napkin": {
    "text": "serviette de table",
-   "variants": ["serviette"],
+   "accepts": ["serviette"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "une serviette seule peut être celle de la salle de bains." }
   },

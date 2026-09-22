@@ -2,7 +2,7 @@
  "title": "Likizo",
  "subtitle": "Wakati wa likizo.",
  "words": {
-  "beach": { "text": "ufukwe", "synonyms": ["pwani"], "grammar": { "plural": "fukwe" } },
+  "beach": { "text": "ufukwe", "teaches": ["pwani"], "grammar": { "plural": "fukwe" } },
   "to-sunbathe": { "text": "kuota jua" },
   "hotel": {
    "text": "hoteli",
@@ -14,20 +14,20 @@
   "journey": { "text": "safari", "grammar": { "plural": "=" } },
   "vacation": { "text": "likizo", "grammar": { "plural": "=" } },
   "overnight-stay": { "text": "malazi", "grammar": { "plural": "=" } },
-  "to-book-a-room": { "text": "kuhifadhi chumba", "variants": ["kubuku chumba"] },
+  "to-book-a-room": { "text": "kuhifadhi chumba", "accepts": ["kubuku chumba"] },
   "tourist": { "text": "mtalii", "grammar": { "plural": "watalii" } },
   "souvenir": { "text": "kumbukumbu", "grammar": { "plural": "=" } },
   "sunscreen": { "text": "mafuta ya jua", "grammar": { "plural": "=" } },
   "to-pack": { "text": "kufunga mizigo" },
   "campsite": { "text": "kambi", "grammar": { "plural": "=" } },
-  "lets-go-to-the-beach": { "text": "Twende ufukweni!", "variants": ["Twende pwani!"] },
+  "lets-go-to-the-beach": { "text": "Twende ufukweni!", "accepts": ["Twende pwani!"] },
   "im-looking-for-a-hotel": { "text": "Natafuta hoteli." },
   "have-a-good-journey": { "text": "Safari njema!" },
   "i-want-vacation-next-week": {
    "text": "Ningependa kuchukua likizo wiki ijayo.",
    "orders": ["Wiki ijayo ningependa kuchukua likizo."]
   },
-  "how-many-nights": { "text": "Usiku ngapi?", "variants": ["Kwa usiku ngapi?"] },
+  "how-many-nights": { "text": "Usiku ngapi?", "accepts": ["Kwa usiku ngapi?"] },
   "i-packed-too-much": { "text": "Nimefunga mizigo mingi mno." }
  }
 }

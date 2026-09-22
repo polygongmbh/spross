@@ -7,7 +7,7 @@
   "expensive": { "text": "cher" },
   "cheap": {
    "text": "bon marché",
-   "variants": ["pas cher"],
+   "accepts": ["pas cher"],
    "notes": { "fr": "invariable : une robe bon marché, des chaussures bon marché." }
   },
   "to-sell": { "text": "vendre" },
@@ -15,12 +15,12 @@
    "text": "espèces",
    "grammar": { "gender": "les", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : payer en espèces." },
-   "synonyms": ["liquide"]
+   "teaches": ["liquide"]
   },
-  "bank-card": { "text": "carte bancaire", "variants": ["carte", "carte bleue"], "grammar": { "gender": "la" } },
+  "bank-card": { "text": "carte bancaire", "accepts": ["carte", "carte bleue"], "grammar": { "gender": "la" } },
   "coin": {
    "text": "pièce de monnaie",
-   "variants": ["pièce"],
+   "accepts": ["pièce"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "une pièce de deux euros · une pièce est aussi une salle." }
   },
@@ -29,7 +29,7 @@
    "grammar": { "gender": "la" },
    "notes": { "fr": "le vendeur rend la monnaie · l'euro, le dollar sont des devises." }
   },
-  "money": { "text": "argent", "variants": ["l'argent"], "grammar": { "gender": "l'" } },
+  "money": { "text": "argent", "accepts": ["l'argent"], "grammar": { "gender": "l'" } },
   "to-buy": { "text": "acheter" },
   "to-pay": { "text": "payer" },
   "rich": { "text": "riche" },
@@ -37,12 +37,12 @@
   "free-of-charge": { "text": "gratuit" },
   "how-much-does-this-cost": {
    "text": "Combien ça coûte ?",
-   "variants": ["Ça coûte combien ?", "Combien est-ce que ça coûte ?", "Combien cela coûte-t-il ?"],
+   "accepts": ["Ça coûte combien ?", "Combien est-ce que ça coûte ?", "Combien cela coûte-t-il ?"],
    "orders": ["Ça coûte combien ?"]
   },
   "that-is-too-expensive": { "text": "C'est trop cher." },
   "i-have-no-money": { "text": "Je n'ai pas d'argent." },
-  "can-i-pay-by-card": { "text": "Est-ce que je peux payer par carte ?", "variants": ["Je peux payer par carte ?"] },
+  "can-i-pay-by-card": { "text": "Est-ce que je peux payer par carte ?", "accepts": ["Je peux payer par carte ?"] },
   "ive-already-paid": { "text": "J'ai déjà payé.", "orders": ["Déjà, j'ai payé."] }
  }
 }

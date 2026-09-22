@@ -59,8 +59,8 @@ internal class BoxForms(state: BoxState) {
             val gloss = stems(card.source.text)
             put(card.target.text, shown, gloss)
             put(shown, shown, gloss)
-            card.target.synonyms.forEach { put(it, shown, gloss) }
-            card.target.variants.forEach { put(it, shown, gloss) }
+            card.target.teaches.forEach { put(it, shown, gloss) }
+            card.target.accepts.forEach { put(it, shown, gloss) }
         }
         for (word in state.ownWords) {
             val shown = word.texts[state.joinStamp.target] ?: continue

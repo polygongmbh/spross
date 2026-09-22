@@ -5,7 +5,7 @@
   "penis": { "text": "Penis", "grammar": { "gender": "der", "plural": "-se" } },
   "vagina": {
    "text": "Vagina",
-   "synonyms": ["Scheide"],
+   "teaches": ["Scheide"],
    "grammar": { "gender": "die", "plural": "Vaginen" },
    "notes": { "de": "Scheide ist auch die Hülle für ein Messer." }
   },

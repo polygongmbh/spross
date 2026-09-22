@@ -15,7 +15,7 @@
   "monkey": { "text": "Affe", "grammar": { "gender": "der", "plural": "-n" } },
   "snake": { "text": "Schlange", "grammar": { "gender": "die", "plural": "-n" } },
   "insect": { "text": "Insekt", "grammar": { "gender": "das", "plural": "-en" } },
-  "look-a-bird": { "text": "Schau mal, ein Vogel!", "variants": ["Schau, ein Vogel!"] },
+  "look-a-bird": { "text": "Schau mal, ein Vogel!", "accepts": ["Schau, ein Vogel!"] },
   "the-dog-is-barking": { "text": "Der Hund bellt." },
   "the-cat-is-meowing": { "text": "Die Katze miaut." },
   "the-bird-is-singing": { "text": "Der Vogel singt." },

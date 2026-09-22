@@ -10,29 +10,29 @@
    }
   },
   "date": { "text": "dato" },
-  "opening-hours": { "text": "malfermohoroj", "variants": ["malfermaj horoj", "malfermhoroj", "malfermtempo"] },
+  "opening-hours": { "text": "malfermohoroj", "accepts": ["malfermaj horoj", "malfermhoroj", "malfermtempo"] },
   "deadline": {
    "text": "limdato",
-   "synonyms": ["templimo"],
+   "teaches": ["templimo"],
    "notes": { "eo": "limdato estas la tago mem · templimo estas la daŭro ĝis ĝi." }
   },
   "plan": { "text": "plano" },
   "to-meet": { "text": "renkontiĝi" },
   "to-invite": { "text": "inviti" },
-  "to-arrange": { "text": "aranĝi", "synonyms": ["interkonsenti"], "variants": ["fiksi"] },
+  "to-arrange": { "text": "aranĝi", "teaches": ["interkonsenti"], "accepts": ["fiksi"] },
   "to-confirm": { "text": "konfirmi" },
-  "to-cancel": { "text": "nuligi", "variants": ["malmendi"] },
+  "to-cancel": { "text": "nuligi", "accepts": ["malmendi"] },
   "to-postpone": { "text": "prokrasti" },
   "to-register": {
    "text": "registriĝi",
-   "synonyms": ["aliĝi"],
-   "variants": ["enskribiĝi"],
+   "teaches": ["aliĝi"],
+   "accepts": ["enskribiĝi"],
    "notes": { "eo": "registri iun · registriĝi mem: Mi registriĝis ĉe la oficejo." }
   },
-  "to-be-late": { "text": "malfruiĝi", "variants": ["malfrui", "esti malfrua"] },
+  "to-be-late": { "text": "malfruiĝi", "accepts": ["malfrui", "esti malfrua"] },
   "punctual": {
    "text": "akurata",
-   "variants": ["ĝustatempa"],
+   "accepts": ["ĝustatempa"],
    "notes": { "eo": "akurata pri tempo kaj zorgo · preciza pri ekzakteco." }
   },
   "urgent": { "text": "urĝa" },
@@ -41,12 +41,12 @@
   "to-take-care-of": { "text": "prizorgi" },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Mi ŝatus aranĝi rendevuon.",
-   "variants": ["Mi volus aranĝi rendevuon.", "Mi ŝatus fiksi rendevuon."],
+   "accepts": ["Mi volus aranĝi rendevuon.", "Mi ŝatus fiksi rendevuon."],
    "orders": ["Rendevuon mi ŝatus aranĝi."]
   },
   "the-deadline-is-tomorrow": {
    "text": "La limdato estas morgaŭ.",
-   "variants": ["La templimo estas morgaŭ."],
+   "accepts": ["La templimo estas morgaŭ."],
    "orders": ["Morgaŭ estas la limdato."]
   },
   "can-we-postpone-the-appointment": {
@@ -55,7 +55,7 @@
   },
   "i-have-an-appointment-at-ten": {
    "text": "Mi havas rendevuon je la deka.",
-   "variants": ["Mi havas rendevuon je la deka horo."],
+   "accepts": ["Mi havas rendevuon je la deka horo."],
    "orders": ["Je la deka mi havas rendevuon."]
   },
   "ill-take-care-of-it": { "text": "Mi prizorgos tion.", "orders": ["Tion mi prizorgos."] }

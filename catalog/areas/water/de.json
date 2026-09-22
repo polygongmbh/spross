@@ -16,7 +16,7 @@
   "to-sail": { "text": "segeln" },
   "to-dive": { "text": "tauchen" },
   "to-fish": { "text": "angeln" },
-  "can-you-swim": { "text": "Kannst du schwimmen?", "variants": ["Können Sie schwimmen?"] },
+  "can-you-swim": { "text": "Kannst du schwimmen?", "accepts": ["Können Sie schwimmen?"] },
   "the-waves-are-big-today": { "text": "Die Wellen sind heute groß.", "orders": ["Heute sind die Wellen groß."] },
   "we-sailed-to-the-island": { "text": "Wir sind zur Insel gesegelt.", "orders": ["Zur Insel sind wir gesegelt."] }
  }

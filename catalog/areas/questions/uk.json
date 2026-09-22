@@ -10,7 +10,7 @@
   "when": { "text": "коли" },
   "why": { "text": "чому" },
   "how": { "text": "як" },
-  "which": { "text": "який", "variants": ["яка", "яке"] },
+  "which": { "text": "який", "accepts": ["яка", "яке"] },
   "how-many": { "text": "скільки" },
   "where-are-they": { "text": "Де вони?" },
   "who-is-there": { "text": "Хто там?" },

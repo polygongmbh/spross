@@ -5,13 +5,13 @@
   "lung": { "text": "легеня" },
   "liver": { "text": "печінка" },
   "kidney": { "text": "нирка" },
-  "intestine": { "text": "кишківник", "synonyms": ["кишка"] },
-  "bladder": { "text": "міхур", "variants": ["сечовий міхур"] },
+  "intestine": { "text": "кишківник", "teaches": ["кишка"] },
+  "bladder": { "text": "міхур", "accepts": ["сечовий міхур"] },
   "nerve": { "text": "нерв" },
   "vein": { "text": "вена" },
   "thyroid": {
    "text": "щитоподібна залоза",
-   "variants": ["щитовидна залоза"],
+   "accepts": ["щитовидна залоза"],
    "grammar": { "plural": "щитоподібні залози" }
   },
   "to-breathe": { "text": "дихати" },

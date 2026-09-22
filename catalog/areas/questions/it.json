@@ -4,18 +4,18 @@
  "words": {
   "where": { "text": "dove" },
   "who": { "text": "chi" },
-  "what": { "text": "che cosa", "variants": ["cosa", "che"] },
-  "this": { "text": "questo", "variants": ["questa"] },
-  "that": { "text": "quello", "variants": ["quella"] },
+  "what": { "text": "che cosa", "accepts": ["cosa", "che"] },
+  "this": { "text": "questo", "accepts": ["questa"] },
+  "that": { "text": "quello", "accepts": ["quella"] },
   "when": { "text": "quando" },
   "why": { "text": "perché" },
   "how": { "text": "come" },
-  "which": { "text": "quale", "variants": ["quali"] },
-  "how-many": { "text": "quanti", "variants": ["quante", "quanto"] },
+  "which": { "text": "quale", "accepts": ["quali"] },
+  "how-many": { "text": "quanti", "accepts": ["quante", "quanto"] },
   "where-are-they": { "text": "Dove sono?" },
-  "who-is-there": { "text": "Chi è?", "variants": ["Chi c'è?"] },
-  "do-you-need-this": { "text": "Ha bisogno di questo?", "variants": ["Hai bisogno di questo?"] },
-  "when-does-it-start": { "text": "Quando comincia?", "variants": ["Quando inizia?"] },
-  "what-time-is-it": { "text": "Che ore sono?", "variants": ["Che ora è?"] }
+  "who-is-there": { "text": "Chi è?", "accepts": ["Chi c'è?"] },
+  "do-you-need-this": { "text": "Ha bisogno di questo?", "accepts": ["Hai bisogno di questo?"] },
+  "when-does-it-start": { "text": "Quando comincia?", "accepts": ["Quando inizia?"] },
+  "what-time-is-it": { "text": "Che ore sono?", "accepts": ["Che ora è?"] }
  }
 }

@@ -1,209 +1,194 @@
 {
  "germany": {
   "text": "Німеччина",
-  "nationality": { "text": "німці", "variants": ["німець", "німкеня", "німкиня"] }
+  "nationality": { "text": "німці", "accepts": ["німець", "німкеня", "німкиня"] }
  },
  "austria": {
   "text": "Австрія",
-  "nationality": { "text": "австрійці", "variants": ["австрієць", "австрійка"] }
+  "nationality": { "text": "австрійці", "accepts": ["австрієць", "австрійка"] }
  },
  "switzerland": {
   "text": "Швейцарія",
-  "nationality": { "text": "швейцарці", "variants": ["швейцарець", "швейцарка"] }
+  "nationality": { "text": "швейцарці", "accepts": ["швейцарець", "швейцарка"] }
  },
  "united-kingdom": {
   "text": "Велика Британія",
-  "variants": ["Сполучене Королівство", "Великобританія", "Британія"],
-  "nationality": { "text": "британці", "variants": ["британець", "британка", "англієць", "англійка", "англійці"] }
+  "accepts": ["Сполучене Королівство", "Великобританія", "Британія"],
+  "nationality": { "text": "британці", "accepts": ["британець", "британка", "англієць", "англійка", "англійці"] }
  },
  "usa": {
   "text": "США",
-  "variants": ["Сполучені Штати", "Сполучені Штати Америки", "Америка"],
-  "nationality": { "text": "американці", "variants": ["американець", "американка"] }
+  "accepts": ["Сполучені Штати", "Сполучені Штати Америки", "Америка"],
+  "nationality": { "text": "американці", "accepts": ["американець", "американка"] }
  },
- "spain": { "text": "Іспанія", "nationality": { "text": "іспанці", "variants": ["іспанець", "іспанка"] } },
+ "spain": { "text": "Іспанія", "nationality": { "text": "іспанці", "accepts": ["іспанець", "іспанка"] } },
  "mexico": {
   "text": "Мексика",
-  "nationality": { "text": "мексиканці", "variants": ["мексиканець", "мексиканка"] }
+  "nationality": { "text": "мексиканці", "accepts": ["мексиканець", "мексиканка"] }
  },
- "kenya": { "text": "Кенія", "nationality": { "text": "кенійці", "variants": ["кенієць", "кенійка"] } },
+ "kenya": { "text": "Кенія", "nationality": { "text": "кенійці", "accepts": ["кенієць", "кенійка"] } },
  "tanzania": {
   "text": "Танзанія",
-  "nationality": { "text": "танзанійці", "variants": ["танзанієць", "танзанійка"] }
+  "nationality": { "text": "танзанійці", "accepts": ["танзанієць", "танзанійка"] }
  },
- "ukraine": { "text": "Україна", "nationality": { "text": "українці", "variants": ["українець", "українка"] } },
- "france": {
-  "text": "Франція",
-  "nationality": { "text": "французи", "variants": ["француз", "француженка"] }
- },
- "italy": { "text": "Італія", "nationality": { "text": "італійці", "variants": ["італієць", "італійка"] } },
+ "ukraine": { "text": "Україна", "nationality": { "text": "українці", "accepts": ["українець", "українка"] } },
+ "france": { "text": "Франція", "nationality": { "text": "французи", "accepts": ["француз", "француженка"] } },
+ "italy": { "text": "Італія", "nationality": { "text": "італійці", "accepts": ["італієць", "італійка"] } },
  "portugal": {
   "text": "Португалія",
-  "nationality": { "text": "португальці", "variants": ["португалець", "португалка"] }
+  "nationality": { "text": "португальці", "accepts": ["португалець", "португалка"] }
  },
  "brazil": {
   "text": "Бразилія",
-  "nationality": { "text": "бразильці", "variants": ["бразилець", "бразилійка"] }
+  "nationality": { "text": "бразильці", "accepts": ["бразилець", "бразилійка"] }
  },
  "netherlands": {
   "text": "Нідерланди",
-  "variants": ["Голландія"],
+  "accepts": ["Голландія"],
   "nationality": {
    "text": "нідерландці",
-   "variants": ["нідерландець", "нідерландка", "голландець", "голландка", "голландці"]
+   "accepts": ["нідерландець", "нідерландка", "голландець", "голландка", "голландці"]
   }
  },
  "belgium": {
   "text": "Бельгія",
-  "nationality": { "text": "бельгійці", "variants": ["бельгієць", "бельгійка"] }
+  "nationality": { "text": "бельгійці", "accepts": ["бельгієць", "бельгійка"] }
  },
- "poland": { "text": "Польща", "nationality": { "text": "поляки", "variants": ["поляк", "полька"] } },
+ "poland": { "text": "Польща", "nationality": { "text": "поляки", "accepts": ["поляк", "полька"] } },
  "turkey": {
   "text": "Туреччина",
-  "nationality": { "text": "турки", "variants": ["турок", "туркеня", "турчанка"] }
+  "nationality": { "text": "турки", "accepts": ["турок", "туркеня", "турчанка"] }
  },
  "greece": {
   "text": "Греція",
-  "nationality": { "text": "греки", "variants": ["грек", "грекиня", "гречанка"] }
+  "nationality": { "text": "греки", "accepts": ["грек", "грекиня", "гречанка"] }
  },
- "sweden": { "text": "Швеція", "nationality": { "text": "шведи", "variants": ["швед", "шведка"] } },
+ "sweden": { "text": "Швеція", "nationality": { "text": "шведи", "accepts": ["швед", "шведка"] } },
  "czechia": {
   "text": "Чехія",
-  "variants": ["Чеська Республіка"],
-  "nationality": { "text": "чехи", "variants": ["чех", "чешка"] }
+  "accepts": ["Чеська Республіка"],
+  "nationality": { "text": "чехи", "accepts": ["чех", "чешка"] }
  },
- "russia": { "text": "Росія", "nationality": { "text": "росіяни", "variants": ["росіянин", "росіянка"] } },
- "china": { "text": "Китай", "nationality": { "text": "китайці", "variants": ["китаєць", "китаянка"] } },
- "japan": { "text": "Японія", "nationality": { "text": "японці", "variants": ["японець", "японка"] } },
- "india": { "text": "Індія", "nationality": { "text": "індійці", "variants": ["індієць", "індійка"] } },
+ "russia": { "text": "Росія", "nationality": { "text": "росіяни", "accepts": ["росіянин", "росіянка"] } },
+ "china": { "text": "Китай", "nationality": { "text": "китайці", "accepts": ["китаєць", "китаянка"] } },
+ "japan": { "text": "Японія", "nationality": { "text": "японці", "accepts": ["японець", "японка"] } },
+ "india": { "text": "Індія", "nationality": { "text": "індійці", "accepts": ["індієць", "індійка"] } },
  "argentina": {
   "text": "Аргентина",
-  "nationality": { "text": "аргентинці", "variants": ["аргентинець", "аргентинка"] }
+  "nationality": { "text": "аргентинці", "accepts": ["аргентинець", "аргентинка"] }
  },
- "canada": { "text": "Канада", "nationality": { "text": "канадці", "variants": ["канадець", "канадка"] } },
- "egypt": { "text": "Єгипет", "nationality": { "text": "єгиптяни", "variants": ["єгиптянин", "єгиптянка"] } },
+ "canada": { "text": "Канада", "nationality": { "text": "канадці", "accepts": ["канадець", "канадка"] } },
+ "egypt": { "text": "Єгипет", "nationality": { "text": "єгиптяни", "accepts": ["єгиптянин", "єгиптянка"] } },
  "morocco": {
   "text": "Марокко",
-  "nationality": { "text": "марокканці", "variants": ["марокканець", "марокканка"] }
+  "nationality": { "text": "марокканці", "accepts": ["марокканець", "марокканка"] }
  },
  "colombia": {
   "text": "Колумбія",
-  "nationality": { "text": "колумбійці", "variants": ["колумбієць", "колумбійка"] }
+  "nationality": { "text": "колумбійці", "accepts": ["колумбієць", "колумбійка"] }
  },
- "ireland": {
-  "text": "Ірландія",
-  "nationality": { "text": "ірландці", "variants": ["ірландець", "ірландка"] }
- },
- "norway": {
-  "text": "Норвегія",
-  "nationality": { "text": "норвежці", "variants": ["норвежець", "норвежка"] }
- },
+ "ireland": { "text": "Ірландія", "nationality": { "text": "ірландці", "accepts": ["ірландець", "ірландка"] } },
+ "norway": { "text": "Норвегія", "nationality": { "text": "норвежці", "accepts": ["норвежець", "норвежка"] } },
  "denmark": {
   "text": "Данія",
-  "nationality": { "text": "данці", "variants": ["данець", "данка", "датчанин", "датчанка", "датчани"] }
+  "nationality": { "text": "данці", "accepts": ["данець", "данка", "датчанин", "датчанка", "датчани"] }
  },
- "finland": { "text": "Фінляндія", "nationality": { "text": "фіни", "variants": ["фін", "фінка"] } },
- "hungary": { "text": "Угорщина", "nationality": { "text": "угорці", "variants": ["угорець", "угорка"] } },
- "romania": { "text": "Румунія", "nationality": { "text": "румуни", "variants": ["румун", "румунка"] } },
- "bulgaria": { "text": "Болгарія", "nationality": { "text": "болгари", "variants": ["болгарин", "болгарка"] } },
- "croatia": { "text": "Хорватія", "nationality": { "text": "хорвати", "variants": ["хорват", "хорватка"] } },
- "serbia": { "text": "Сербія", "nationality": { "text": "серби", "variants": ["серб", "сербка"] } },
- "slovakia": { "text": "Словаччина", "nationality": { "text": "словаки", "variants": ["словак", "словачка"] } },
+ "finland": { "text": "Фінляндія", "nationality": { "text": "фіни", "accepts": ["фін", "фінка"] } },
+ "hungary": { "text": "Угорщина", "nationality": { "text": "угорці", "accepts": ["угорець", "угорка"] } },
+ "romania": { "text": "Румунія", "nationality": { "text": "румуни", "accepts": ["румун", "румунка"] } },
+ "bulgaria": { "text": "Болгарія", "nationality": { "text": "болгари", "accepts": ["болгарин", "болгарка"] } },
+ "croatia": { "text": "Хорватія", "nationality": { "text": "хорвати", "accepts": ["хорват", "хорватка"] } },
+ "serbia": { "text": "Сербія", "nationality": { "text": "серби", "accepts": ["серб", "сербка"] } },
+ "slovakia": { "text": "Словаччина", "nationality": { "text": "словаки", "accepts": ["словак", "словачка"] } },
  "luxembourg": {
   "text": "Люксембург",
-  "nationality": { "text": "люксембуржці", "variants": ["люксембуржець", "люксембурженка"] }
+  "nationality": { "text": "люксембуржці", "accepts": ["люксембуржець", "люксембурженка"] }
  },
  "south-korea": {
   "text": "Південна Корея",
-  "variants": ["Корея"],
+  "accepts": ["Корея"],
   "nationality": {
    "text": "корейці",
-   "variants": ["кореєць", "кореянка", "південнокореєць", "південнокореянка", "південнокорейці"]
+   "accepts": ["кореєць", "кореянка", "південнокореєць", "південнокореянка", "південнокорейці"]
   }
  },
  "vietnam": {
   "text": "В'єтнам",
-  "variants": ["В’єтнам"],
+  "accepts": ["В’єтнам"],
   "nationality": {
    "text": "в'єтнамці",
-   "variants": ["в'єтнамець", "в'єтнамка", "в’єтнамець", "в’єтнамка", "в’єтнамці"]
+   "accepts": ["в'єтнамець", "в'єтнамка", "в’єтнамець", "в’єтнамка", "в’єтнамці"]
   }
  },
- "thailand": { "text": "Таїланд", "nationality": { "text": "тайці", "variants": ["таєць", "тайка"] } },
+ "thailand": { "text": "Таїланд", "nationality": { "text": "тайці", "accepts": ["таєць", "тайка"] } },
  "indonesia": {
   "text": "Індонезія",
-  "nationality": { "text": "індонезійці", "variants": ["індонезієць", "індонезійка"] }
+  "nationality": { "text": "індонезійці", "accepts": ["індонезієць", "індонезійка"] }
  },
  "israel": {
   "text": "Ізраїль",
-  "nationality": { "text": "ізраїльтяни", "variants": ["ізраїльтянин", "ізраїльтянка"] }
+  "nationality": { "text": "ізраїльтяни", "accepts": ["ізраїльтянин", "ізраїльтянка"] }
  },
- "iran": { "text": "Іран", "nationality": { "text": "іранці", "variants": ["іранець", "іранка"] } },
+ "iran": { "text": "Іран", "nationality": { "text": "іранці", "accepts": ["іранець", "іранка"] } },
  "saudi-arabia": {
   "text": "Саудівська Аравія",
-  "nationality": { "text": "саудівці", "variants": ["саудівець", "саудівка"] }
+  "nationality": { "text": "саудівці", "accepts": ["саудівець", "саудівка"] }
  },
  "singapore": {
   "text": "Сінгапур",
-  "nationality": { "text": "сінгапурці", "variants": ["сінгапурець", "сінгапурка"] }
+  "nationality": { "text": "сінгапурці", "accepts": ["сінгапурець", "сінгапурка"] }
  },
  "nigeria": {
   "text": "Нігерія",
-  "nationality": { "text": "нігерійці", "variants": ["нігерієць", "нігерійка"] }
+  "nationality": { "text": "нігерійці", "accepts": ["нігерієць", "нігерійка"] }
  },
- "ethiopia": { "text": "Ефіопія", "nationality": { "text": "ефіопи", "variants": ["ефіоп", "ефіопка"] } },
+ "ethiopia": { "text": "Ефіопія", "nationality": { "text": "ефіопи", "accepts": ["ефіоп", "ефіопка"] } },
  "south-africa": {
   "text": "Південно-Африканська Республіка",
-  "variants": ["ПАР", "Південна Африка"],
-  "nationality": { "text": "південноафриканці", "variants": ["південноафриканець", "південноафриканка"] }
+  "accepts": ["ПАР", "Південна Африка"],
+  "nationality": { "text": "південноафриканці", "accepts": ["південноафриканець", "південноафриканка"] }
  },
- "ghana": { "text": "Гана", "nationality": { "text": "ганці", "variants": ["ганець", "ганка"] } },
- "uganda": {
-  "text": "Уганда",
-  "nationality": { "text": "угандійці", "variants": ["угандієць", "угандійка"] }
- },
- "rwanda": {
-  "text": "Руанда",
-  "nationality": { "text": "руандійці", "variants": ["руандієць", "руандійка"] }
- },
+ "ghana": { "text": "Гана", "nationality": { "text": "ганці", "accepts": ["ганець", "ганка"] } },
+ "uganda": { "text": "Уганда", "nationality": { "text": "угандійці", "accepts": ["угандієць", "угандійка"] } },
+ "rwanda": { "text": "Руанда", "nationality": { "text": "руандійці", "accepts": ["руандієць", "руандійка"] } },
  "senegal": {
   "text": "Сенегал",
-  "nationality": { "text": "сенегальці", "variants": ["сенегалець", "сенегалка"] }
+  "nationality": { "text": "сенегальці", "accepts": ["сенегалець", "сенегалка"] }
  },
- "algeria": { "text": "Алжир", "nationality": { "text": "алжирці", "variants": ["алжирець", "алжирка"] } },
- "tunisia": { "text": "Туніс", "nationality": { "text": "тунісці", "variants": ["тунісець", "туніска"] } },
+ "algeria": { "text": "Алжир", "nationality": { "text": "алжирці", "accepts": ["алжирець", "алжирка"] } },
+ "tunisia": { "text": "Туніс", "nationality": { "text": "тунісці", "accepts": ["тунісець", "туніска"] } },
  "dr-congo": {
   "text": "Демократична Республіка Конго",
-  "variants": ["ДР Конго", "Конго"],
-  "nationality": { "text": "конголезці", "variants": ["конголезець", "конголезка"] }
+  "accepts": ["ДР Конго", "Конго"],
+  "nationality": { "text": "конголезці", "accepts": ["конголезець", "конголезка"] }
  },
- "mozambique": { "text": "Мозамбік", "nationality": { "text": "мозамбікці", "variants": ["мозамбікець"] } },
- "angola": { "text": "Ангола", "nationality": { "text": "ангольці", "variants": ["анголець", "анголка"] } },
- "chile": { "text": "Чилі", "nationality": { "text": "чилійці", "variants": ["чилієць", "чилійка"] } },
- "peru": { "text": "Перу", "nationality": { "text": "перуанці", "variants": ["перуанець", "перуанка"] } },
- "cuba": { "text": "Куба", "nationality": { "text": "кубинці", "variants": ["кубинець", "кубинка"] } },
+ "mozambique": { "text": "Мозамбік", "nationality": { "text": "мозамбікці", "accepts": ["мозамбікець"] } },
+ "angola": { "text": "Ангола", "nationality": { "text": "ангольці", "accepts": ["анголець", "анголка"] } },
+ "chile": { "text": "Чилі", "nationality": { "text": "чилійці", "accepts": ["чилієць", "чилійка"] } },
+ "peru": { "text": "Перу", "nationality": { "text": "перуанці", "accepts": ["перуанець", "перуанка"] } },
+ "cuba": { "text": "Куба", "nationality": { "text": "кубинці", "accepts": ["кубинець", "кубинка"] } },
  "venezuela": {
   "text": "Венесуела",
-  "nationality": { "text": "венесуельці", "variants": ["венесуелець", "венесуелка"] }
+  "nationality": { "text": "венесуельці", "accepts": ["венесуелець", "венесуелка"] }
  },
  "ecuador": {
   "text": "Еквадор",
-  "nationality": { "text": "еквадорці", "variants": ["еквадорець", "еквадорка"] }
+  "nationality": { "text": "еквадорці", "accepts": ["еквадорець", "еквадорка"] }
  },
  "uruguay": {
   "text": "Уругвай",
-  "nationality": { "text": "уругвайці", "variants": ["уругваєць", "уругвайка", "уругвайець"] }
+  "nationality": { "text": "уругвайці", "accepts": ["уругваєць", "уругвайка", "уругвайець"] }
  },
  "costa-rica": {
   "text": "Коста-Рика",
-  "nationality": { "text": "костариканці", "variants": ["костариканець", "костариканка"] }
+  "nationality": { "text": "костариканці", "accepts": ["костариканець", "костариканка"] }
  },
  "australia": {
   "text": "Австралія",
-  "nationality": { "text": "австралійці", "variants": ["австралієць", "австралійка"] }
+  "nationality": { "text": "австралійці", "accepts": ["австралієць", "австралійка"] }
  },
  "new-zealand": {
   "text": "Нова Зеландія",
-  "nationality": { "text": "новозеландці", "variants": ["новозеландець", "новозеландка"] }
+  "nationality": { "text": "новозеландці", "accepts": ["новозеландець", "новозеландка"] }
  }
 }

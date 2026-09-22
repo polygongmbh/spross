@@ -16,10 +16,10 @@
   "snake": { "text": "snake" },
   "insect": { "text": "insect" },
   "look-a-bird": { "text": "Look, a bird!" },
-  "the-dog-is-barking": { "text": "The dog is barking.", "variants": ["The dog barks."] },
-  "the-cat-is-meowing": { "text": "The cat is meowing.", "variants": ["The cat meows."] },
-  "the-bird-is-singing": { "text": "The bird is singing.", "variants": ["The bird sings."] },
-  "the-lion-is-roaring": { "text": "The lion is roaring.", "variants": ["The lion roars."] },
-  "the-mosquito-is-biting-me": { "text": "The mosquito is biting me.", "variants": ["The mosquito bites me."] }
+  "the-dog-is-barking": { "text": "The dog is barking.", "accepts": ["The dog barks."] },
+  "the-cat-is-meowing": { "text": "The cat is meowing.", "accepts": ["The cat meows."] },
+  "the-bird-is-singing": { "text": "The bird is singing.", "accepts": ["The bird sings."] },
+  "the-lion-is-roaring": { "text": "The lion is roaring.", "accepts": ["The lion roars."] },
+  "the-mosquito-is-biting-me": { "text": "The mosquito is biting me.", "accepts": ["The mosquito bites me."] }
  }
 }

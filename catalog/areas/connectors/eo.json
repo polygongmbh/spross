@@ -34,12 +34,12 @@
     "en": "pro is the cause, por the purpose: pro la pluvo · por vi."
    }
   },
-  "again": { "text": "denove", "variants": ["refoje", "ree"] },
+  "again": { "text": "denove", "accepts": ["refoje", "ree"] },
   "still": {
    "text": "ankoraŭ",
    "notes": { "eo": "ankoraŭ = daŭre ĝis nun: Li ankoraŭ dormas · ne konfuzu kun ankaŭ." }
   },
-  "finally": { "text": "fine", "variants": ["finfine"] },
+  "finally": { "text": "fine", "accepts": ["finfine"] },
   "then": { "text": "poste" },
   "not": { "text": "ne", "notes": { "eo": "ne iras antaŭ sia vorto: Mi ne venas · Ne! = nea respondo." } },
   "only": { "text": "nur" },

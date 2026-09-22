@@ -17,18 +17,18 @@
   "to-show": { "text": "показувати" },
   "to-explain": { "text": "пояснювати" },
   "to-say": { "text": "казати" },
-  "i-dont-understand": { "text": "Я не розумію.", "variants": ["Я вас не розумію.", "Я тебе не розумію."] },
+  "i-dont-understand": { "text": "Я не розумію.", "accepts": ["Я вас не розумію.", "Я тебе не розумію."] },
   "can-you-repeat-that": {
    "text": "Чи можете ви це повторити?",
-   "variants": ["Можеш це повторити?"],
+   "accepts": ["Можеш це повторити?"],
    "orders": ["Чи можете ви повторити це?"]
   },
   "slower": { "text": "Повільніше!" },
-  "i-cant-hear-you": { "text": "Я вас не чую.", "variants": ["Я тебе не чую."], "orders": ["Я не чую вас."] },
+  "i-cant-hear-you": { "text": "Я вас не чую.", "accepts": ["Я тебе не чую."], "orders": ["Я не чую вас."] },
   "do-you-speak-english": { "text": "Ви розмовляєте англійською?", "orders": ["Ви англійською розмовляєте?"] },
   "i-need-help": { "text": "Мені потрібна допомога.", "orders": ["Допомога мені потрібна."] },
   "i-dont-know": { "text": "Я не знаю." },
-  "i-forgot": { "text": "Я забув.", "variants": ["Я забула."] },
+  "i-forgot": { "text": "Я забув.", "accepts": ["Я забула."] },
   "what-is-this-called": { "text": "Як це називається?" },
   "to-introduce-oneself": { "text": "представлятися" }
  }

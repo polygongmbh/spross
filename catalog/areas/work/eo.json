@@ -3,18 +3,18 @@
  "subtitle": "Multan sukceson!",
  "words": {
   "work": { "text": "laboro" },
-  "job-application": { "text": "kandidatiĝo", "variants": ["dungopeto", "laborpeto"] },
-  "cv": { "text": "vivresumo", "variants": ["vivpriskribo", "curriculum vitae", "CV"] },
+  "job-application": { "text": "kandidatiĝo", "accepts": ["dungopeto", "laborpeto"] },
+  "cv": { "text": "vivresumo", "accepts": ["vivpriskribo", "curriculum vitae", "CV"] },
   "contract": { "text": "kontrakto" },
   "salary": { "text": "salajro" },
   "colleague": { "text": "kolego" },
   "colleague-f": { "text": "kolegino" },
-  "boss": { "text": "estro", "synonyms": ["ĉefo"] },
+  "boss": { "text": "estro", "teaches": ["ĉefo"] },
   "boss-f": { "text": "estrino" },
-  "shift": { "text": "deĵoro", "variants": ["laborvico"] },
-  "company": { "text": "firmao", "synonyms": ["entrepreno"], "variants": ["kompanio"] },
-  "to-apply": { "text": "kandidatiĝi por posteno", "variants": ["kandidatiĝi"] },
-  "to-earn": { "text": "perlabori", "variants": ["enspezi"] },
+  "shift": { "text": "deĵoro", "accepts": ["laborvico"] },
+  "company": { "text": "firmao", "teaches": ["entrepreno"], "accepts": ["kompanio"] },
+  "to-apply": { "text": "kandidatiĝi por posteno", "accepts": ["kandidatiĝi"] },
+  "to-earn": { "text": "perlabori", "accepts": ["enspezi"] },
   "to-start": {
    "text": "komenci",
    "notes": { "eo": "komenci la laboron · sen objekto: la laboro komenciĝas." }
@@ -22,35 +22,35 @@
   "to-leave": { "text": "forlasi" },
   "to-quit": {
    "text": "eksiĝi el la laboro",
-   "variants": ["eksiĝi", "demisii"],
+   "accepts": ["eksiĝi", "demisii"],
    "notes": { "eo": "eksiĝi estas propra decido · maldungi faras la dunganto." }
   },
   "to-hire": { "text": "dungi" },
   "to-help": { "text": "helpi" },
-  "to-work-overtime": { "text": "fari kromhorojn", "variants": ["labori kromhorojn", "fari kromlaborhorojn"] },
-  "profession": { "text": "profesio", "variants": ["metio"] },
+  "to-work-overtime": { "text": "fari kromhorojn", "accepts": ["labori kromhorojn", "fari kromlaborhorojn"] },
+  "profession": { "text": "profesio", "accepts": ["metio"] },
   "interview": {
    "text": "labora intervjuo",
-   "variants": ["dunga intervjuo", "intervjuo pri laboro", "intervjuo"]
+   "accepts": ["dunga intervjuo", "intervjuo pri laboro", "intervjuo"]
   },
-  "working-hours": { "text": "laborhoroj", "variants": ["labortempo"] },
-  "full-time": { "text": "plentempa laboro", "variants": ["plena labortempo", "plentempe"] },
-  "part-time": { "text": "parttempa laboro", "variants": ["duontempa laboro", "parta labortempo"] },
+  "working-hours": { "text": "laborhoroj", "accepts": ["labortempo"] },
+  "full-time": { "text": "plentempa laboro", "accepts": ["plena labortempo", "plentempe"] },
+  "part-time": { "text": "parttempa laboro", "accepts": ["duontempa laboro", "parta labortempo"] },
   "tax": { "text": "imposto" },
   "work-permit": { "text": "laborpermeso" },
-  "training": { "text": "profesia trejnado", "variants": ["metilernado", "profesia edukado"] },
-  "notice": { "text": "maldungo", "variants": ["eksigo", "eksiĝo"] },
+  "training": { "text": "profesia trejnado", "accepts": ["metilernado", "profesia edukado"] },
+  "notice": { "text": "maldungo", "accepts": ["eksigo", "eksiĝo"] },
   "worker": { "text": "laboristo" },
-  "employer": { "text": "dunganto", "variants": ["labordonanto", "laborodonanto"] },
+  "employer": { "text": "dunganto", "accepts": ["labordonanto", "laborodonanto"] },
   "customer": { "text": "kliento" },
   "tomorrow-i-have-a-job-interview": {
    "text": "Morgaŭ mi prezentos min ĉe la firmao.",
-   "variants": ["Morgaŭ mi prezentos min ĉe la entrepreno."],
+   "accepts": ["Morgaŭ mi prezentos min ĉe la entrepreno."],
    "orders": ["Mi morgaŭ prezentos min ĉe la firmao."]
   },
   "ill-send-the-doctors-note-right-away": {
    "text": "Mi tuj sendos al vi la malsanateston.",
-   "variants": [
+   "accepts": [
     "Mi tuj sendos al vi la kuracistan atestilon.",
     "Mi tuj sendos al vi la malsanatestilon.",
     "Mi sendos al vi la kuracistan atestilon tuj.",
@@ -60,12 +60,12 @@
   },
   "can-you-help-me-briefly": {
    "text": "Ĉu vi povas helpi min momenton?",
-   "variants": ["Ĉu vi povus helpi min momenton?", "Ĉu vi povas mallonge helpi min?"],
+   "accepts": ["Ĉu vi povus helpi min momenton?", "Ĉu vi povas mallonge helpi min?"],
    "orders": ["Ĉu momenton vi povas helpi min?"]
   },
   "read-the-contract-carefully": {
    "text": "Tralegu la kontrakton!",
-   "variants": ["Legu atente la kontrakton!", "Legu la kontrakton!"],
+   "accepts": ["Legu atente la kontrakton!", "Legu la kontrakton!"],
    "orders": ["La kontrakton tralegu!"]
   },
   "we-knock-off-at-5": {

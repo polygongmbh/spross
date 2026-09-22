@@ -54,7 +54,7 @@ class ClockDayPartSweepTests {
     }
 
     private fun card(language: String, forms: List<String>): Card {
-        val side = Realization(lang = language, text = forms.first(), synonyms = forms.drop(1))
+        val side = Realization(lang = language, text = forms.first(), teaches = forms.drop(1))
         return Card(
             id = "drill", kind = CardKind.Noun, area = "drill", emoji = null, seedIndex = 0,
             components = emptyList(), feminineOf = null,

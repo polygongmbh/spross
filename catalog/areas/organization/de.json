@@ -19,7 +19,7 @@
   "urgent": { "text": "dringend" },
   "list": { "text": "Liste", "grammar": { "gender": "die", "plural": "-n" } },
   "to-finish": { "text": "beenden" },
-  "to-take-care-of": { "text": "erledigen", "synonyms": ["sich kümmern um"] },
+  "to-take-care-of": { "text": "erledigen", "teaches": ["sich kümmern um"] },
   "i-would-like-to-arrange-an-appointment": {
    "text": "Ich möchte einen Termin vereinbaren.",
    "orders": ["Einen Termin möchte ich vereinbaren."]

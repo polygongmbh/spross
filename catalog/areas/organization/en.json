@@ -19,7 +19,7 @@
   "urgent": { "text": "urgent" },
   "list": { "text": "list" },
   "to-finish": { "text": "to finish" },
-  "to-take-care-of": { "text": "to take care of", "synonyms": ["to deal with"] },
+  "to-take-care-of": { "text": "to take care of", "teaches": ["to deal with"] },
   "i-would-like-to-arrange-an-appointment": { "text": "I would like to arrange an appointment." },
   "the-deadline-is-tomorrow": { "text": "The deadline is tomorrow.", "orders": ["Tomorrow is the deadline."] },
   "can-we-postpone-the-appointment": { "text": "Can we postpone the appointment?" },

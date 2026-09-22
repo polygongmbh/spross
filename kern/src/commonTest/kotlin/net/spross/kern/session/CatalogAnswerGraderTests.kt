@@ -184,7 +184,7 @@ class CatalogAnswerGraderTests {
     }
 
     @Test
-    fun synonymsAndVariantsOfOtherConceptsCountAsOwned() {
+    fun teachesAndAcceptsOfOtherConceptsCountAsOwned() {
         val grader = CatalogAnswerGrader(uk, deToUk)
         val door = joined(deToUk, "door")
         // uk mouse carries synonym "мишеня" and variant "мишка".

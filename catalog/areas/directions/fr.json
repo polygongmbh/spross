@@ -8,13 +8,13 @@
   },
   "to-turn": { "text": "tourner" },
   "corner": { "text": "coin", "grammar": { "gender": "le" } },
-  "crossing": { "text": "carrefour", "variants": ["croisement"], "grammar": { "gender": "le" } },
+  "crossing": { "text": "carrefour", "accepts": ["croisement"], "grammar": { "gender": "le" } },
   "to-cross": { "text": "traverser" },
   "direction": { "text": "direction", "grammar": { "gender": "la" } },
-  "city-map": { "text": "plan de la ville", "variants": ["plan"], "grammar": { "gender": "le" } },
+  "city-map": { "text": "plan de la ville", "accepts": ["plan"], "grammar": { "gender": "le" } },
   "entrance": {
    "text": "entrée",
-   "variants": ["l'entrée"],
+   "accepts": ["l'entrée"],
    "grammar": { "gender": "l'" },
    "notes": {
     "fr": "l'entrée du bâtiment · au restaurant, le plat avant le plat principal.",
@@ -28,13 +28,13 @@
   "south": { "text": "sud", "grammar": { "gender": "le" } },
   "east": { "text": "est", "grammar": { "gender": "le" } },
   "west": { "text": "ouest", "grammar": { "gender": "le" } },
-  "go-straight-ahead": { "text": "Allez tout droit.", "variants": ["Va tout droit."] },
+  "go-straight-ahead": { "text": "Allez tout droit.", "accepts": ["Va tout droit."] },
   "turn-left-at-the-corner": {
    "text": "Tournez à gauche au coin.",
-   "variants": ["Tourne à gauche au coin."],
+   "accepts": ["Tourne à gauche au coin."],
    "orders": ["Au coin, tournez à gauche."]
   },
-  "how-do-i-get-to-the-station": { "text": "Comment aller à la gare ?", "variants": ["Comment je vais à la gare ?"] },
-  "im-lost": { "text": "Je me suis perdu.", "variants": ["Je me suis perdue.", "Je suis perdu."] }
+  "how-do-i-get-to-the-station": { "text": "Comment aller à la gare ?", "accepts": ["Comment je vais à la gare ?"] },
+  "im-lost": { "text": "Je me suis perdu.", "accepts": ["Je me suis perdue.", "Je suis perdu."] }
  }
 }

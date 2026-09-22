@@ -95,7 +95,7 @@ class CatalogAnswerGrader(
         val index = mutableMapOf<String, MutableList<Card>>()
         for (card in cards.sortedBy { it.seedIndex }) {
             val verb = card.kind == CardKind.Verb
-            val accepted = listOf(card.target.text) + card.target.synonyms + card.target.variants
+            val accepted = listOf(card.target.text) + card.target.teaches + card.target.accepts
             for (form in accepted) {
                 for (shape in normalizer.comparisonForms(form, verbLeniency = verb)) {
                     val holders = index.getOrPut(shape) { mutableListOf() }

@@ -65,13 +65,13 @@ class AnswerNormalizerTests {
         text: String,
         kind: CardKind = CardKind.Noun,
         grammar: Map<String, String> = emptyMap(),
-        synonyms: List<String> = emptyList(),
-        variants: List<String> = emptyList(),
+        teaches: List<String> = emptyList(),
+        accepts: List<String> = emptyList(),
     ): Card = Card(
         id = "test/x", kind = kind, area = "test", emoji = null, seedIndex = 0,
         components = emptyList(), feminineOf = null,
         source = Realization(lang = "xx", text = "prompt"),
-        target = Realization(lang = lang, text = text, synonyms = synonyms, variants = variants, grammar = grammar),
+        target = Realization(lang = lang, text = text, teaches = teaches, accepts = accepts, grammar = grammar),
         promptFeminineMarker = false,
     )
 
@@ -92,7 +92,7 @@ class AnswerNormalizerTests {
     }
 
     @Test
-    fun acceptedSetSpansTextSynonymsAndVariants() {
+    fun acceptedSetSpansTextTeachesAndAccepts() {
         val mouse = joined(deToUk, "mouse") // "миша" + synonym "мишеня" + variant "мишка"
         assertTrue(uk.matches("миша", mouse))
         assertTrue(uk.matches("мишеня", mouse))
@@ -101,7 +101,7 @@ class AnswerNormalizerTests {
     }
 
     @Test
-    fun sieAndDuVariantsBothAccepted() {
+    fun sieAndDuFormsBothAccepted() {
         val phrase = joined(swToDe, "the-mouse-runs")
         assertEquals(Match.Exact, de.evaluate("Sehen Sie die Maus?", phrase))
         assertEquals(Match.Exact, de.evaluate("Siehst du die Maus?", phrase))
@@ -162,12 +162,12 @@ class AnswerNormalizerTests {
     @Test
     fun theCorrectionNamesTheNearestAcceptedForm() {
         val fridge = card("de", "Gefrierschrank")
-        val plural = fridge.copy(target = fridge.target.copy(variants = listOf("Gefrierschränke")))
+        val plural = fridge.copy(target = fridge.target.copy(accepts = listOf("Gefrierschränke")))
         // One slip from the card's own text, two from the later form — both accepted.
         assertEquals(Match.Typo("Gefrierschrank"), de.evaluate("Gefrierschrenk", plural))
         // Equally near: the form the card leads with, not the one authored last.
         val white = card("sw", "nyeupe")
-        val stems = white.copy(target = white.target.copy(variants = listOf("cheupe", "myeupe")))
+        val stems = white.copy(target = white.target.copy(accepts = listOf("cheupe", "myeupe")))
         assertEquals(Match.Typo("nyeupe"), sw.evaluate("kyeupe", stems))
     }
 
@@ -259,17 +259,17 @@ class AnswerNormalizerTests {
         assertEquals(Match.Exact, de.evaluate("das Tisch", card("de", "Tisch")))
     }
 
-    /** A synonym is another word whose article the catalog does not know; text and variants share the card's. */
+    /** A `teaches` entry is another word whose article the catalog does not know; text and `accepts` share the card's. */
     @Test
-    fun aSynonymsOwnArticleNeverDemotes() {
-        val vaccine = card("it", "vaccino", grammar = mapOf("gender" to "il"), synonyms = listOf("vaccinazione"))
+    fun aTaughtAlternatesOwnArticleNeverDemotes() {
+        val vaccine = card("it", "vaccino", grammar = mapOf("gender" to "il"), teaches = listOf("vaccinazione"))
         assertEquals(Match.Exact, it.evaluate("la vaccinazione", vaccine))
         assertEquals(Match.Exact, it.evaluate("il vaccino", vaccine))
         assertEquals(Match.Typo("vaccino"), it.evaluate("la vaccino", vaccine))
-        val medicine = card("it", "medicina", grammar = mapOf("gender" to "la"), synonyms = listOf("farmaco"))
+        val medicine = card("it", "medicina", grammar = mapOf("gender" to "la"), teaches = listOf("farmaco"))
         assertEquals(Match.Exact, it.evaluate("il farmaco", medicine))
         // A variant is a surface of the same word, so the card's article still binds it.
-        val water = card("it", "acqua", grammar = mapOf("gender" to "l'"), variants = listOf("l'acqua"))
+        val water = card("it", "acqua", grammar = mapOf("gender" to "l'"), accepts = listOf("l'acqua"))
         assertEquals(Match.Exact, it.evaluate("l'acqua", water))
         assertEquals(Match.Typo("acqua"), it.evaluate("la acqua", water))
     }
@@ -382,7 +382,7 @@ class AnswerNormalizerTests {
             maxTyposPerWord = 1,
         )
         val base = card("de", "Ich habe 29 Hefte.", kind = CardKind.Phrase)
-        val hefte = base.copy(target = base.target.copy(variants = listOf("Ich habe neunundzwanzig Hefte.")))
+        val hefte = base.copy(target = base.target.copy(accepts = listOf("Ich habe neunundzwanzig Hefte.")))
         assertEquals(Match.Exact, drill.evaluate("Ich habe 29 Hefte.", hefte))
         assertEquals(Match.Exact, drill.evaluate("Ich habe neunundzwanzig Hefte.", hefte))
         // One digit off is one edit however long the frame — digit words grade exact-only.

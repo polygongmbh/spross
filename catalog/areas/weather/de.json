@@ -15,7 +15,7 @@
   "humid": { "text": "feucht" },
   "hows-the-weather-today": { "text": "Wie ist das Wetter heute?" },
   "its-raining": { "text": "Es regnet." },
-  "the-rain-has-stopped": { "text": "Der Regen hat aufgehört.", "variants": ["Es regnet nicht mehr."] },
+  "the-rain-has-stopped": { "text": "Der Regen hat aufgehört.", "accepts": ["Es regnet nicht mehr."] },
   "the-sun-is-shining": { "text": "Die Sonne scheint!" },
   "what-a-beautiful-day": { "text": "Was für ein schöner Tag!" },
   "we-are-staying-home-because-of-the-rain": {

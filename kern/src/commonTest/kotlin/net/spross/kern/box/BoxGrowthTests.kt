@@ -21,7 +21,7 @@ class BoxGrowthTests {
 
     @Test
     fun theRestIsDeferredNotWithdrawn() {
-        var state = Box.state((1..20).map { Box.word(it, synonyms = listOf("s$it")) })
+        var state = Box.state((1..20).map { Box.word(it, teaches = listOf("s$it")) })
         val plan = Box.candidates(state)
         assertEquals(NEW_CARDS_PER_ROUND, plan.newCards.size)
 

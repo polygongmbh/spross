@@ -4,57 +4,57 @@
  "words": {
   "hallway": {
    "text": "koridoro",
-   "synonyms": ["antaŭĉambro"],
+   "teaches": ["antaŭĉambro"],
    "notes": { "eo": "koridoro kondukas al la ĉambroj · antaŭĉambro estas tuj post la pordo." }
   },
   "door": { "text": "pordo" },
   "key": { "text": "ŝlosilo" },
   "jacket": { "text": "jako" },
   "coat": { "text": "mantelo" },
-  "umbrella": { "text": "ombrelo", "variants": ["pluvombrelo"] },
+  "umbrella": { "text": "ombrelo", "accepts": ["pluvombrelo"] },
   "hat": {
    "text": "ĉapo",
-   "synonyms": ["ĉapelo"],
+   "teaches": ["ĉapelo"],
    "notes": {
     "eo": "ĉapo estas sen rando · ĉapelo havas randon.",
     "en": "ĉapo is a brimless cap; ĉapelo is a hat with a brim."
    }
   },
-  "mailbox": { "text": "leterkesto", "variants": ["poŝtkesto"] },
-  "doorbell": { "text": "pordosonorilo", "variants": ["sonorilo", "pordsonorilo"] },
-  "stairs": { "text": "ŝtuparo", "variants": ["ŝtupoj"] },
+  "mailbox": { "text": "leterkesto", "accepts": ["poŝtkesto"] },
+  "doorbell": { "text": "pordosonorilo", "accepts": ["sonorilo", "pordsonorilo"] },
+  "stairs": { "text": "ŝtuparo", "accepts": ["ŝtupoj"] },
   "bag": {
    "text": "sako",
-   "variants": ["mansako"],
+   "accepts": ["mansako"],
    "notes": { "eo": "sako por porti kaj aĉeti · mansako estas la eta por la mano." }
   },
-  "to-lock": { "text": "ŝlosi", "variants": ["fermi per ŝlosilo"] },
+  "to-lock": { "text": "ŝlosi", "accepts": ["fermi per ŝlosilo"] },
   "to-ring": {
    "text": "sonorigi",
-   "variants": ["sonori"],
+   "accepts": ["sonori"],
    "notes": {
     "eo": "vi sonorigas la sonorilon · la sonorilo sonoras.",
     "en": "sonorigi is you pressing the bell; sonori is the bell itself sounding."
    }
   },
-  "to-take-off-shoes": { "text": "demeti la ŝuojn", "variants": ["demeti ŝuojn", "senŝuiĝi"] },
-  "to-set-off": { "text": "foriri de hejme", "variants": ["eliri el la hejmo", "ekiri de hejme"] },
+  "to-take-off-shoes": { "text": "demeti la ŝuojn", "accepts": ["demeti ŝuojn", "senŝuiĝi"] },
+  "to-set-off": { "text": "foriri de hejme", "accepts": ["eliri el la hejmo", "ekiri de hejme"] },
   "to-unlock": { "text": "malŝlosi" },
-  "to-get-dressed": { "text": "vesti sin", "variants": ["sin vesti", "vestiĝi"] },
+  "to-get-dressed": { "text": "vesti sin", "accepts": ["sin vesti", "vestiĝi"] },
   "to-arrive": { "text": "alveni" },
   "to-greet": { "text": "saluti" },
-  "to-say-goodbye": { "text": "adiaŭi", "variants": ["diri adiaŭ"] },
+  "to-say-goodbye": { "text": "adiaŭi", "accepts": ["diri adiaŭ"] },
   "shoe": { "text": "ŝuo" },
-  "apartment": { "text": "loĝejo", "variants": ["apartamento"] },
+  "apartment": { "text": "loĝejo", "accepts": ["apartamento"] },
   "neighbor": { "text": "najbaro" },
   "guest": { "text": "gasto" },
   "wallet": { "text": "monujo" },
   "glove": { "text": "ganto" },
   "letter": { "text": "letero" },
-  "to-knock-on-door": { "text": "frapi sur la pordon", "variants": ["frapi la pordon", "frapi ĉe la pordo"] },
+  "to-knock-on-door": { "text": "frapi sur la pordon", "accepts": ["frapi la pordon", "frapi ĉe la pordo"] },
   "to-enter": {
    "text": "eniri",
-   "variants": ["enveni"],
+   "accepts": ["enveni"],
    "notes": { "eo": "Eniru! invitas enveni · pli ĝentile: Bonvolu eniri!" }
   },
   "house": { "text": "domo" },
@@ -66,18 +66,18 @@
    }
   },
   "do-you-have-the-keys": { "text": "Ĉu vi havas la ŝlosilojn?", "orders": ["Ĉu la ŝlosilojn vi havas?"] },
-  "ill-be-right-back": { "text": "Mi tuj revenos!", "variants": ["Mi revenos tuj!"], "orders": ["Tuj mi revenos!"] },
+  "ill-be-right-back": { "text": "Mi tuj revenos!", "accepts": ["Mi revenos tuj!"], "orders": ["Tuj mi revenos!"] },
   "take-off-your-shoes": {
    "text": "Demetu viajn ŝuojn.",
-   "variants": ["Demetu la ŝuojn."],
+   "accepts": ["Demetu la ŝuojn."],
    "orders": ["Viajn ŝuojn demetu."]
   },
   "hurry-were-late": {
    "text": "Rapidu, ni malfruas!",
-   "variants": ["Rapidu, ni jam malfruas!"],
+   "accepts": ["Rapidu, ni jam malfruas!"],
    "orders": ["Ni malfruas, rapidu!"]
   },
-  "see-you-later": { "text": "Ĝis poste!", "variants": ["Ĝis baldaŭ!"] },
+  "see-you-later": { "text": "Ĝis poste!", "accepts": ["Ĝis baldaŭ!"] },
   "welcome-home": { "text": "Bonvenon hejmen!" },
   "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!", "orders": ["Vian jakon ne forgesu!"] },
   "put-on-the-jacket": { "text": "surmeti la jakon" }

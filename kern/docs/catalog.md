@@ -27,14 +27,14 @@ Engine contract: `../README.md`.
   one — a German learner of Swahili is not there to be told what `wegen` does to its case.
   Which of the two to author is a content decision, not the engine's —
   `../../catalog/areas/README.md` states it.
-- Realization: `variants: [String]` next to `synonyms` — a **display/accept distinction
-  only**, never a scheduling one (`../README.md` §3): synonyms rotate as recognition prompt forms and
-  show on reveal; variants are accepted silently and never prompted.
-  A form nobody can type is a variant, never a `text`: an embedded `" / "` is untypeable,
-  so a Sie/du pair is `text` = Sie-form + `variants` = [du-form].
+- Realization: `accepts: [String]` next to `teaches` — a **display/accept distinction
+  only**, never a scheduling one (`../README.md` §3): `teaches` rotates as recognition prompt forms and
+  shows on reveal; `accepts` grades silently and is never prompted.
+  A form nobody can type belongs in `accepts`, never in `text`: an embedded `" / "` is untypeable,
+  so a Sie/du pair is `text` = Sie-form + `accepts` = [du-form].
 - **CatalogLintTest** (permanent, on the real catalog) enforces:
-  parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, synonyms ≠ text,
-  no duplicate synonym/variant entries, no `" / "` in text, components resolve same-area,
+  parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, teaches ≠ text,
+  no duplicate `teaches`/`accepts` entries, no `" / "` in text, components resolve same-area,
   feminineOf resolves, concept emoji well-formed, every manifest area carries an emoji.
 - **Homonym gates** (**`CatalogCollisionLintTest`**; no schema field — the area label is the
   disambiguator, `../README.md` §2/§3).
@@ -104,7 +104,7 @@ Engine contract: `../README.md`.
   carries what content alone can break (registry, form hygiene, every ordered pair joining,
   the Sprosse-4 distance predicate, the pattern-word audit).
 - **Language markers** (`{language}`, `{language-in}`, `{language-speak}`, `{language-learn}`)
-  in a realization's text/synonyms/variants. No schema field declares them: the marker's
+  in a realization's text/teaches/accepts. No schema field declares them: the marker's
   presence is the declaration, and it always names the profile's TARGET, so each side of
   `join` resolves against ITS OWN table's target entry. A side that cannot name the target
   drops the concept — the honest-out a missing realization already has, extended to the
@@ -114,7 +114,7 @@ Engine contract: `../README.md`.
   reaches a note, a grammar value, a heading or a name table, where nothing would resolve it.
   A frame text may carry one too: `phraseTemplates` resolves before the `PhraseTemplate` is
   built, so `{slot}`/`{count}` filling never meets a marker, and `CatalogFrameLintTest` adds
-  the two rules only a frame can break — text and variants agree on carrying one, and a
+  the two rules only a frame can break — text and accepts agree on carrying one, and a
   marked frame joins every pair its realizations otherwise allow.
 - `catalog/phrases/` — the sentence frames, a top-level sibling outside `areas.json`
   (format owned by `../../catalog/phrases/README.md`). A frame is a concept + per-language realizations,
@@ -123,6 +123,6 @@ Engine contract: `../README.md`.
   fingerprinting wrapper** — the same exemption the audio manifest has, and for the same
   reason: a frame edit can never change the card join, so it must not restamp and recompose
   a running box. An absent `phrases/` folder is legal. Lint: **`CatalogFrameLintTest`**
-  (slug shape/uniqueness/disjointness from concepts, one `{slot}` per text and per variant,
+  (slug shape/uniqueness/disjointness from concepts, one `{slot}` per text and per `accepts` entry,
   `{count}` ⟺ `count` and only on a `numbers` frame, note keys are declared languages);
   vocab grounding of every answer side in **`PhraseVocabAuditTests`**.

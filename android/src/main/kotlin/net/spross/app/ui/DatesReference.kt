@@ -54,6 +54,6 @@ fun DateReferenceSection(model: AppModel, content: DateDrillContent, chrome: Chr
 
 /** What else the learned name answers to; null keeps the caption line off the row. */
 private fun otherForms(row: DateReferenceRow): String? {
-    val forms = listOfNotNull(row.abbr) + row.synonyms + listOfNotNull(row.dateForm)
+    val forms = listOfNotNull(row.abbr) + row.teaches + listOfNotNull(row.dateForm)
     return if (forms.isEmpty()) null else forms.joinToString(" · ")
 }

@@ -4,7 +4,7 @@
  "words": {
   "hallway": {
    "text": "pasillo",
-   "synonyms": ["recibidor"],
+   "teaches": ["recibidor"],
    "grammar": { "gender": "el" },
    "notes": { "es": "El pasillo va entre las habitaciones; la entrada es el recibidor." }
   },
@@ -15,27 +15,27 @@
   "umbrella": { "text": "paraguas", "grammar": { "gender": "el", "plural": "=" } },
   "hat": {
    "text": "gorro",
-   "synonyms": ["gorra"],
+   "teaches": ["gorra"],
    "grammar": { "gender": "el" },
    "notes": { "es": "El gorro es de lana, sin visera; con visera es la gorra." }
   },
   "mailbox": { "text": "buzón", "grammar": { "gender": "el" } },
   "doorbell": { "text": "timbre", "grammar": { "gender": "el" } },
-  "stairs": { "text": "escalera", "variants": ["escaleras"], "grammar": { "gender": "la" } },
+  "stairs": { "text": "escalera", "accepts": ["escaleras"], "grammar": { "gender": "la" } },
   "bag": {
    "text": "bolsa",
-   "synonyms": ["bolso"],
+   "teaches": ["bolso"],
    "grammar": { "gender": "la" },
    "notes": { "es": "La bolsa es de la compra; el bolso se lleva al hombro." }
   },
-  "to-lock": { "text": "cerrar con llave", "variants": ["echar la llave"] },
+  "to-lock": { "text": "cerrar con llave", "accepts": ["echar la llave"] },
   "to-ring": {
    "text": "sonar",
-   "synonyms": ["tocar el timbre"],
-   "variants": ["llamar al timbre"],
+   "teaches": ["tocar el timbre"],
+   "accepts": ["llamar al timbre"],
    "notes": { "es": "Suena el timbre · quien llama dice tocar el timbre." }
   },
-  "to-take-off-shoes": { "text": "quitarse los zapatos", "variants": ["sacarse los zapatos", "descalzarse"] },
+  "to-take-off-shoes": { "text": "quitarse los zapatos", "accepts": ["sacarse los zapatos", "descalzarse"] },
   "to-set-off": { "text": "salir de casa" },
   "to-unlock": { "text": "abrir con llave" },
   "to-get-dressed": { "text": "vestirse" },
@@ -45,26 +45,26 @@
   "shoe": { "text": "zapato", "grammar": { "gender": "el" } },
   "apartment": {
    "text": "piso",
-   "synonyms": ["apartamento"],
+   "teaches": ["apartamento"],
    "grammar": { "gender": "el" },
    "notes": { "es": "En España se vive en un piso; el apartamento es pequeño o de vacaciones." }
   },
-  "neighbor": { "text": "vecino", "variants": ["vecina"], "grammar": { "gender": "el" } },
+  "neighbor": { "text": "vecino", "accepts": ["vecina"], "grammar": { "gender": "el" } },
   "guest": {
    "text": "invitado",
-   "variants": ["invitada"],
+   "accepts": ["invitada"],
    "grammar": { "gender": "el" },
    "notes": { "es": "El invitado viene a casa; en el hotel es el huésped." }
   },
   "wallet": {
    "text": "cartera",
-   "synonyms": ["monedero"],
+   "teaches": ["monedero"],
    "grammar": { "gender": "la" },
    "notes": { "es": "La cartera lleva billetes y tarjetas; las monedas, el monedero." }
   },
   "glove": { "text": "guante", "grammar": { "gender": "el" } },
   "letter": { "text": "carta", "grammar": { "gender": "la" } },
-  "to-knock-on-door": { "text": "llamar a la puerta", "variants": ["tocar a la puerta"] },
+  "to-knock-on-door": { "text": "llamar a la puerta", "accepts": ["tocar a la puerta"] },
   "to-enter": { "text": "entrar", "notes": { "es": "Para invitar a entrar: ¡Pasa! · con usted, ¡Pase!" } },
   "house": { "text": "casa", "grammar": { "gender": "la" } },
   "to-live": {
@@ -74,16 +74,16 @@
     "de": "vivir = wohnen und leben."
    }
   },
-  "do-you-have-the-keys": { "text": "¿Tienes las llaves?", "variants": ["¿Llevas las llaves?"] },
-  "ill-be-right-back": { "text": "¡Ahora vuelvo!", "variants": ["¡Vuelvo enseguida!", "¡Enseguida vuelvo!"] },
-  "take-off-your-shoes": { "text": "Quítate los zapatos.", "variants": ["Sácate los zapatos."] },
+  "do-you-have-the-keys": { "text": "¿Tienes las llaves?", "accepts": ["¿Llevas las llaves?"] },
+  "ill-be-right-back": { "text": "¡Ahora vuelvo!", "accepts": ["¡Vuelvo enseguida!", "¡Enseguida vuelvo!"] },
+  "take-off-your-shoes": { "text": "Quítate los zapatos.", "accepts": ["Sácate los zapatos."] },
   "hurry-were-late": {
    "text": "¡Date prisa, llegamos tarde!",
-   "variants": ["¡Date prisa, que llegamos tarde!", "¡Apúrate, llegamos tarde!"]
+   "accepts": ["¡Date prisa, que llegamos tarde!", "¡Apúrate, llegamos tarde!"]
   },
-  "see-you-later": { "text": "¡Nos vemos luego!", "variants": ["¡Hasta luego!", "¡Hasta después!", "¡Nos vemos!"] },
-  "welcome-home": { "text": "¡Bienvenido a casa!", "variants": ["¡Bienvenida a casa!"] },
-  "dont-forget-your-jacket": { "text": "¡No olvides tu chaqueta!", "variants": ["¡No te olvides de la chaqueta!"] },
+  "see-you-later": { "text": "¡Nos vemos luego!", "accepts": ["¡Hasta luego!", "¡Hasta después!", "¡Nos vemos!"] },
+  "welcome-home": { "text": "¡Bienvenido a casa!", "accepts": ["¡Bienvenida a casa!"] },
+  "dont-forget-your-jacket": { "text": "¡No olvides tu chaqueta!", "accepts": ["¡No te olvides de la chaqueta!"] },
   "put-on-the-jacket": { "text": "ponerse la chaqueta" }
  }
 }

@@ -11,7 +11,7 @@
   "love": { "text": "любов" },
   "shame": { "text": "сором" },
   "jealousy": { "text": "ревнощі" },
-  "smile": { "text": "усмішка", "synonyms": ["посмішка"] },
+  "smile": { "text": "усмішка", "teaches": ["посмішка"] },
   "to-smile": { "text": "усміхатися" },
   "to-feel": {
    "text": "почуватися",

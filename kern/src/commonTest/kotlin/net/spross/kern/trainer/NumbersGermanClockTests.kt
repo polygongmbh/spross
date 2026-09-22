@@ -91,7 +91,7 @@ class NumbersGermanClockTests {
             for ((h, m) in grid) {
                 if (m == 0 && h % 12 == hour % 12) continue
                 val forms = clock(h, m).accepted
-                val side = Realization(lang = "de", text = forms.first(), synonyms = forms.drop(1))
+                val side = Realization(lang = "de", text = forms.first(), teaches = forms.drop(1))
                 val card = Card(
                     id = "drill", kind = CardKind.Noun, area = "drill", emoji = null, seedIndex = 0,
                     components = emptyList(), feminineOf = null,

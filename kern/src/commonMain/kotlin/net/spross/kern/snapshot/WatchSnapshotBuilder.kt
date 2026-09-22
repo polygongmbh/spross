@@ -126,12 +126,12 @@ object WatchSnapshotBuilder {
     /**
      * Whether every form [card] can put on the watch clears [MAX_TEXT_CHARS].
      * Both sides count, since either can be the option side once the role flips,
-     * and the target's synonyms count with them — a rotated prompt form
+     * and the target's `teaches` count with them — a rotated prompt form
      * (`recognitionPromptForm`) is rendered just as the canonical one is.
      */
     private fun fitsOnWatch(card: Card): Boolean =
         card.source.text.length <= MAX_TEXT_CHARS &&
-            (listOf(card.target.text) + card.target.synonyms).all { it.length <= MAX_TEXT_CHARS }
+            (listOf(card.target.text) + card.target.teaches).all { it.length <= MAX_TEXT_CHARS }
 
     private data class Ranked(
         val isDue: Boolean,

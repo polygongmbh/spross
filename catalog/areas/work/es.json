@@ -5,21 +5,21 @@
   "work": { "text": "trabajo", "grammar": { "gender": "el" } },
   "job-application": {
    "text": "solicitud de empleo",
-   "synonyms": ["candidatura"],
-   "variants": ["solicitud de trabajo"],
+   "teaches": ["candidatura"],
+   "accepts": ["solicitud de trabajo"],
    "grammar": { "gender": "la" }
   },
   "cv": {
    "text": "currículum",
-   "variants": ["currículum vítae", "currículum vitae", "CV"],
+   "accepts": ["currículum vítae", "currículum vitae", "CV"],
    "grammar": { "gender": "el", "plural": "currículums" }
   },
   "contract": { "text": "contrato", "grammar": { "gender": "el" } },
-  "salary": { "text": "sueldo", "synonyms": ["salario"], "grammar": { "gender": "el" } },
+  "salary": { "text": "sueldo", "teaches": ["salario"], "grammar": { "gender": "el" } },
   "colleague": {
    "text": "compañero",
-   "synonyms": ["colega"],
-   "variants": ["compañero de trabajo"],
+   "teaches": ["colega"],
+   "accepts": ["compañero de trabajo"],
    "grammar": { "gender": "el" },
    "notes": { "es": "El compañero de trabajo · colega en España es también amigo." }
   },
@@ -29,7 +29,7 @@
   "shift": { "text": "turno", "grammar": { "gender": "el" } },
   "company": {
    "text": "empresa",
-   "variants": ["compañía"],
+   "accepts": ["compañía"],
    "grammar": { "gender": "la" },
    "notes": {
     "es": "La empresa es donde trabajas; la firma es la del papel.",
@@ -38,7 +38,7 @@
   },
   "to-apply": {
    "text": "solicitar un puesto",
-   "variants": ["solicitar un empleo", "presentarse a un puesto", "echar el currículum"],
+   "accepts": ["solicitar un empleo", "presentarse a un puesto", "echar el currículum"],
    "notes": {
     "es": "Hace falta el objeto: solicitar un puesto, solicitar una beca.",
     "de": "solicitar allein heißt beantragen; erst mit Objekt wird daraus „sich bewerben“: solicitar un puesto."
@@ -46,52 +46,52 @@
   },
   "to-earn": {
    "text": "ganar",
-   "variants": ["cobrar"],
+   "accepts": ["cobrar"],
    "notes": { "es": "gano mil euros al mes · en preguntas suele usarse cobrar." }
   },
-  "to-start": { "text": "empezar", "synonyms": ["comenzar"] },
+  "to-start": { "text": "empezar", "teaches": ["comenzar"] },
   "to-leave": {
    "text": "dejar",
-   "synonyms": ["abandonar"],
+   "teaches": ["abandonar"],
    "notes": { "es": "dejar el trabajo, dejar las llaves en casa." }
   },
-  "to-quit": { "text": "dejar el trabajo", "variants": ["dimitir", "renunciar al trabajo", "dejar el empleo"] },
-  "to-hire": { "text": "contratar", "variants": ["emplear"] },
+  "to-quit": { "text": "dejar el trabajo", "accepts": ["dimitir", "renunciar al trabajo", "dejar el empleo"] },
+  "to-hire": { "text": "contratar", "accepts": ["emplear"] },
   "to-help": { "text": "ayudar" },
-  "to-work-overtime": { "text": "hacer horas extra", "variants": ["hacer horas extras", "hacer horas extraordinarias"] },
-  "profession": { "text": "profesión", "variants": ["oficio"], "grammar": { "gender": "la" } },
+  "to-work-overtime": { "text": "hacer horas extra", "accepts": ["hacer horas extras", "hacer horas extraordinarias"] },
+  "profession": { "text": "profesión", "accepts": ["oficio"], "grammar": { "gender": "la" } },
   "interview": {
    "text": "entrevista de trabajo",
-   "variants": ["entrevista laboral", "entrevista"],
+   "accepts": ["entrevista laboral", "entrevista"],
    "grammar": { "gender": "la" }
   },
   "working-hours": {
    "text": "horario de trabajo",
-   "variants": ["jornada laboral", "horario laboral"],
+   "accepts": ["jornada laboral", "horario laboral"],
    "grammar": { "gender": "el" },
    "notes": { "es": "El horario de trabajo es el del día; en el contrato, la jornada laboral." }
   },
   "full-time": {
    "text": "jornada completa",
-   "variants": ["a jornada completa", "tiempo completo"],
+   "accepts": ["a jornada completa", "tiempo completo"],
    "grammar": { "gender": "la" }
   },
   "part-time": {
    "text": "media jornada",
-   "variants": ["a media jornada", "jornada parcial", "tiempo parcial"],
+   "accepts": ["a media jornada", "jornada parcial", "tiempo parcial"],
    "grammar": { "gender": "la" }
   },
   "tax": { "text": "impuesto", "grammar": { "gender": "el" } },
   "work-permit": { "text": "permiso de trabajo", "grammar": { "gender": "el" } },
   "training": {
    "text": "formación profesional",
-   "variants": ["FP", "formación"],
+   "accepts": ["FP", "formación"],
    "grammar": { "gender": "la" },
    "notes": { "es": "La formación profesional (FP) mezcla clases y prácticas en la empresa." }
   },
   "notice": {
    "text": "despido",
-   "variants": ["carta de despido"],
+   "accepts": ["carta de despido"],
    "grammar": { "gender": "el" },
    "notes": { "es": "El despido lo decide la empresa; la dimisión la decide uno mismo." }
   },
@@ -100,21 +100,21 @@
   "customer": { "text": "cliente", "grammar": { "gender": "el" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Mañana me presento en la empresa.",
-   "variants": ["Mañana me presento en la compañía."],
+   "accepts": ["Mañana me presento en la compañía."],
    "orders": ["Me presento en la empresa mañana."]
   },
   "ill-send-the-doctors-note-right-away": {
    "text": "Le envío la baja enseguida.",
-   "variants": ["Te envío la baja enseguida.", "Le mando la baja enseguida."],
+   "accepts": ["Te envío la baja enseguida.", "Le mando la baja enseguida."],
    "orders": ["Enseguida le envío la baja."]
   },
   "can-you-help-me-briefly": {
    "text": "¿Puede ayudarme un momento?",
-   "variants": ["¿Puedes ayudarme un momento?", "¿Me puede ayudar un momento?"]
+   "accepts": ["¿Puedes ayudarme un momento?", "¿Me puede ayudar un momento?"]
   },
   "read-the-contract-carefully": {
    "text": "Lea bien el contrato.",
-   "variants": ["Lee bien el contrato.", "Lea el contrato con atención."],
+   "accepts": ["Lee bien el contrato.", "Lea el contrato con atención."],
    "orders": ["Lea el contrato bien."]
   },
   "we-knock-off-at-5": {

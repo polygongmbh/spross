@@ -2,20 +2,20 @@
  "title": "Trovare la strada",
  "subtitle": "La risposta alla domanda «come ci arrivo?».",
  "words": {
-  "straight-ahead": { "text": "dritto", "variants": ["diritto", "sempre dritto"] },
-  "to-turn": { "text": "girare", "synonyms": ["svoltare"] },
-  "corner": { "text": "angolo", "variants": ["l'angolo"], "grammar": { "gender": "l'" } },
-  "crossing": { "text": "incrocio", "variants": ["l'incrocio"], "grammar": { "gender": "l'" } },
+  "straight-ahead": { "text": "dritto", "accepts": ["diritto", "sempre dritto"] },
+  "to-turn": { "text": "girare", "teaches": ["svoltare"] },
+  "corner": { "text": "angolo", "accepts": ["l'angolo"], "grammar": { "gender": "l'" } },
+  "crossing": { "text": "incrocio", "accepts": ["l'incrocio"], "grammar": { "gender": "l'" } },
   "to-cross": { "text": "attraversare" },
   "direction": { "text": "direzione", "grammar": { "gender": "la" } },
-  "city-map": { "text": "pianta della città", "variants": ["pianta", "mappa"], "grammar": { "gender": "la" } },
+  "city-map": { "text": "pianta della città", "accepts": ["pianta", "mappa"], "grammar": { "gender": "la" } },
   "entrance": {
    "text": "entrata",
-   "variants": ["l'entrata"],
+   "accepts": ["l'entrata"],
    "grammar": { "gender": "l'" },
    "notes": { "it": "dall'entrata si entra · l'ingresso è lo spazio subito dentro." }
   },
-  "exit": { "text": "uscita", "variants": ["l'uscita"], "grammar": { "gender": "l'" } },
+  "exit": { "text": "uscita", "accepts": ["l'uscita"], "grammar": { "gender": "l'" } },
   "to-follow": { "text": "seguire" },
   "way": {
    "text": "cammino",
@@ -26,13 +26,13 @@
   "south": { "text": "sud", "grammar": { "gender": "il" } },
   "east": { "text": "est", "grammar": { "gender": "il" } },
   "west": { "text": "ovest", "grammar": { "gender": "il" } },
-  "go-straight-ahead": { "text": "Vada dritto.", "variants": ["Vai dritto.", "Prosegua dritto."] },
+  "go-straight-ahead": { "text": "Vada dritto.", "accepts": ["Vai dritto.", "Prosegua dritto."] },
   "turn-left-at-the-corner": {
    "text": "Giri a sinistra all'angolo.",
-   "variants": ["Gira a sinistra all'angolo."],
+   "accepts": ["Gira a sinistra all'angolo."],
    "orders": ["Giri all'angolo a sinistra."]
   },
   "how-do-i-get-to-the-station": { "text": "Come arrivo alla stazione?" },
-  "im-lost": { "text": "Mi sono perso.", "variants": ["Mi sono persa."] }
+  "im-lost": { "text": "Mi sono perso.", "accepts": ["Mi sono persa."] }
  }
 }

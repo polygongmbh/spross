@@ -38,20 +38,16 @@
  ],
  "numeric": "{m}/{d}/{y}",
  "patterns": {
-  "dayMonth": {
-   "text": "{month} {day}",
-   "synonyms": ["the {day} of {month}"],
-   "variants": ["{day} of {month}"]
-  },
+  "dayMonth": { "text": "{month} {day}", "teaches": ["the {day} of {month}"], "accepts": ["{day} of {month}"] },
   "date": {
    "text": "{weekday}, {month} {day}",
-   "synonyms": ["{weekday}, the {day} of {month}"],
-   "variants": ["{weekday}, {day} of {month}"]
+   "teaches": ["{weekday}, the {day} of {month}"],
+   "accepts": ["{weekday}, {day} of {month}"]
   },
   "dateWithYear": {
    "text": "{weekday}, {month} {day}, {year}",
-   "synonyms": ["{weekday}, the {day} of {month}, {year}"],
-   "variants": ["{weekday}, {day} of {month}, {year}"]
+   "teaches": ["{weekday}, the {day} of {month}, {year}"],
+   "accepts": ["{weekday}, {day} of {month}, {year}"]
   }
  }
 }

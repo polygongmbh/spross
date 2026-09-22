@@ -164,7 +164,7 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
                     ) {
                         Headword(
-                            (listOf(card.source.text) + card.source.synonyms).joinToString(" / "),
+                            (listOf(card.source.text) + card.source.teaches).joinToString(" / "),
                             color = Theme.colors.accent,
                             modifier = Modifier.weight(1f, fill = false),
                         )

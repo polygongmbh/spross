@@ -21,7 +21,7 @@
   "i-wake-up-at": { "text": "Ninaamka {slot}." },
   "we-eat-at": { "text": "Tunakula {slot}." },
   "meeting-is-at": { "text": "Mkutano ni {slot}." },
-  "it-is-now": { "text": "Sasa ni {slot}.", "variants": ["Ni {slot} sasa."] },
+  "it-is-now": { "text": "Sasa ni {slot}.", "accepts": ["Ni {slot} sasa."] },
   "we-have-n-plates": { "text": "Tuna sahani {slot}." },
   "i-have-n-notebooks": {
    "text": "Nina madaftari {slot}.",
@@ -44,19 +44,19 @@
    }
   },
   "it-costs-n-euros": { "text": "Ni euro {slot}.", "notes": { "de": "wörtl.: „Es sind … Euro.“" } },
-  "repeat-please": { "text": "Rudia, tafadhali: {slot}.", "variants": ["Tafadhali rudia: {slot}."] },
-  "write-please": { "text": "Andika, tafadhali: {slot}.", "variants": ["Tafadhali andika: {slot}."] },
+  "repeat-please": { "text": "Rudia, tafadhali: {slot}.", "accepts": ["Tafadhali rudia: {slot}."] },
+  "write-please": { "text": "Andika, tafadhali: {slot}.", "accepts": ["Tafadhali andika: {slot}."] },
   "learning-since-year": {
    "text": "Ninajifunza {language} tangu mwaka {slot}.",
    "notes": { "de": "Jahreszahl als Kardinalzahl gelesen — mwaka = Jahr" }
   },
   "repeat-the-year": {
    "text": "Rudia, tafadhali: {slot}.",
-   "variants": ["Tafadhali rudia: {slot}."],
+   "accepts": ["Tafadhali rudia: {slot}."],
    "notes": {
     "de": "Diktat-Rahmen ohne „Datum“: mwaka/tarehe vor der blanken Kardinalzahl liest sich nicht als Jahresangabe."
    }
   },
-  "write-the-year": { "text": "Andika, tafadhali: {slot}.", "variants": ["Tafadhali andika: {slot}."] }
+  "write-the-year": { "text": "Andika, tafadhali: {slot}.", "accepts": ["Tafadhali andika: {slot}."] }
  }
 }

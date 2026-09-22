@@ -48,9 +48,9 @@ data class Realization(
     /** Canonical answer/display form. */
     val text: String,
     /** Distinct-knowledge alternates — rotate through recognition prompts, all accepted. */
-    val synonyms: List<String> = emptyList(),
+    val teaches: List<String> = emptyList(),
     /** Accepted surface forms of the same knowledge — grading/display only, never prompted. */
-    val variants: List<String> = emptyList(),
+    val accepts: List<String> = emptyList(),
     /** Alternative valid word orders of the same sentence — scramble-only, never prompted. */
     val orders: List<String> = emptyList(),
     /** Language-specific bare facts (de `gender`/`plural`, …). */
@@ -86,7 +86,7 @@ data class Card(
     /** Base concept's card id when this is a feminine sibling concept. */
     val feminineOf: String?,
     /**
-     * TARGET-side accepted texts (`text ∪ synonyms ∪ variants`) of the base concept,
+     * TARGET-side accepted texts (`text ∪ teaches ∪ accepts`) of the base concept,
      * resolved at join time — non-empty only on feminine cards whose base the target
      * realizes. Grading demotes a base-word answer to typo, not failure (§3).
      */

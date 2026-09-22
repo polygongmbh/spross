@@ -2,7 +2,7 @@
  "title": "У передпокої",
  "subtitle": "Тут заходять і виходять.",
  "words": {
-  "hallway": { "text": "коридор", "synonyms": ["передпокій"] },
+  "hallway": { "text": "коридор", "teaches": ["передпокій"] },
   "door": { "text": "двері", "grammar": { "plural": "only" } },
   "key": { "text": "ключ" },
   "jacket": { "text": "куртка" },
@@ -33,13 +33,13 @@
   "to-enter": { "text": "заходити" },
   "house": {
    "text": "будинок",
-   "synonyms": ["дім"],
+   "teaches": ["дім"],
    "grammar": { "plural": "будинки" },
    "notes": { "uk": "будинок = будівля · дім = рідна домівка." }
   },
   "to-live": {
    "text": "жити",
-   "synonyms": ["мешкати"],
+   "teaches": ["мешкати"],
    "notes": {
     "uk": "жити в Києві, жити з мамою · мешкати — у документах.",
     "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich."
@@ -49,9 +49,9 @@
   "ill-be-right-back": { "text": "Я скоро повернуся!", "orders": ["Скоро я повернуся!"] },
   "hurry-were-late": { "text": "Поквапся, ми запізнюємось!", "orders": ["Ми запізнюємось, поквапся!"] },
   "see-you-later": { "text": "До зустрічі!" },
-  "welcome-home": { "text": "Ласкаво просимо додому!", "synonyms": ["З поверненням!"] },
+  "welcome-home": { "text": "Ласкаво просимо додому!", "teaches": ["З поверненням!"] },
   "dont-forget-your-jacket": { "text": "Не забудь куртку!", "orders": ["Куртку не забудь!"] },
   "put-on-the-jacket": { "text": "одягати куртку" },
-  "take-off-your-shoes": { "text": "Зніми своє взуття.", "variants": ["Роззуйся."], "orders": ["Своє взуття зніми."] }
+  "take-off-your-shoes": { "text": "Зніми своє взуття.", "accepts": ["Роззуйся."], "orders": ["Своє взуття зніми."] }
  }
 }

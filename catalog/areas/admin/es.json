@@ -4,33 +4,33 @@
  "words": {
   "office": {
    "text": "oficina pública",
-   "synonyms": ["administración"],
+   "teaches": ["administración"],
    "grammar": { "gender": "la" },
    "notes": { "es": "Cada oficina tiene su nombre: el ayuntamiento · la oficina de extranjería." }
   },
   "form": { "text": "formulario", "grammar": { "gender": "el" } },
-  "application": { "text": "solicitud", "variants": ["instancia", "petición"], "grammar": { "gender": "la" } },
+  "application": { "text": "solicitud", "accepts": ["instancia", "petición"], "grammar": { "gender": "la" } },
   "id-card": {
    "text": "carné de identidad",
-   "synonyms": ["DNI"],
-   "variants": ["carnet de identidad", "carné"],
+   "teaches": ["DNI"],
+   "accepts": ["carnet de identidad", "carné"],
    "grammar": { "gender": "el" },
    "notes": { "es": "En España es el DNI; para extranjeros, el NIE o la TIE." }
   },
   "residence-permit": {
    "text": "permiso de residencia",
-   "synonyms": ["tarjeta de residencia"],
+   "teaches": ["tarjeta de residencia"],
    "grammar": { "gender": "el" }
   },
   "signature": { "text": "firma", "grammar": { "gender": "la" } },
-  "ticket-number": { "text": "número de turno", "variants": ["turno", "número"], "grammar": { "gender": "el" } },
+  "ticket-number": { "text": "número de turno", "accepts": ["turno", "número"], "grammar": { "gender": "el" } },
   "case-worker": {
    "text": "funcionario",
-   "synonyms": ["tramitador"],
+   "teaches": ["tramitador"],
    "grammar": { "gender": "el" },
    "notes": { "es": "El funcionario atiende en ventanilla; el tramitador lleva el expediente." }
   },
-  "case-worker-f": { "text": "funcionaria", "synonyms": ["tramitadora"], "grammar": { "gender": "la" } },
+  "case-worker-f": { "text": "funcionaria", "teaches": ["tramitadora"], "grammar": { "gender": "la" } },
   "registration": {
    "text": "empadronamiento",
    "grammar": { "gender": "el" },
@@ -41,75 +41,75 @@
   },
   "documents": {
    "text": "documentación",
-   "synonyms": ["documentos"],
-   "variants": ["papeles"],
+   "teaches": ["documentos"],
+   "accepts": ["papeles"],
    "grammar": { "gender": "la" },
    "notes": {
     "es": "Singular para todos los papeles: trae toda la documentación.",
     "de": "la documentación ist Singular und steht für alle Papiere zusammen — anders als „die Unterlagen“."
    }
   },
-  "to-fill-in": { "text": "rellenar", "variants": ["completar", "llenar"] },
+  "to-fill-in": { "text": "rellenar", "accepts": ["completar", "llenar"] },
   "to-sign": { "text": "firmar" },
-  "to-apply-for": { "text": "solicitar", "variants": ["pedir"] },
+  "to-apply-for": { "text": "solicitar", "accepts": ["pedir"] },
   "to-submit": { "text": "entregar" },
   "to-hand-in": { "text": "presentar" },
   "to-pick-up": {
    "text": "recoger el carné de identidad",
-   "variants": ["recoger el carné", "recoger el DNI", "recoger el carnet de identidad"]
+   "accepts": ["recoger el carné", "recoger el DNI", "recoger el carnet de identidad"]
   },
-  "to-extend": { "text": "renovar", "variants": ["prolongar", "alargar"] },
+  "to-extend": { "text": "renovar", "accepts": ["prolongar", "alargar"] },
   "to-bring": { "text": "traer" },
-  "to-copy": { "text": "copiar", "variants": ["fotocopiar"] },
+  "to-copy": { "text": "copiar", "accepts": ["fotocopiar"] },
   "passport": { "text": "pasaporte", "grammar": { "gender": "el" } },
   "address": { "text": "dirección", "grammar": { "gender": "la" } },
   "certificate": { "text": "certificado", "grammar": { "gender": "el" } },
   "birth-certificate": {
    "text": "certificado de nacimiento",
-   "synonyms": ["partida de nacimiento"],
+   "teaches": ["partida de nacimiento"],
    "grammar": { "gender": "el" }
   },
   "notification": {
    "text": "resolución",
-   "synonyms": ["notificación"],
+   "teaches": ["notificación"],
    "grammar": { "gender": "la" },
    "notes": { "es": "La resolución es la decisión; la notificación, su entrega." }
   },
-  "fee": { "text": "tasa", "variants": ["tarifa"], "grammar": { "gender": "la" } },
+  "fee": { "text": "tasa", "accepts": ["tarifa"], "grammar": { "gender": "la" } },
   "office-hours": {
    "text": "horario de atención",
-   "synonyms": ["horario de atención al público"],
+   "teaches": ["horario de atención al público"],
    "grammar": { "gender": "el" }
   },
   "waiting-room": { "text": "sala de espera", "grammar": { "gender": "la" } },
-  "to-reject": { "text": "rechazar", "synonyms": ["denegar"] },
-  "to-approve": { "text": "aprobar", "variants": ["autorizar", "conceder"] },
+  "to-reject": { "text": "rechazar", "teaches": ["denegar"] },
+  "to-approve": { "text": "aprobar", "accepts": ["autorizar", "conceder"] },
   "law": { "text": "ley", "grammar": { "gender": "la" } },
-  "visa": { "text": "visado", "variants": ["visa"], "grammar": { "gender": "el" } },
+  "visa": { "text": "visado", "accepts": ["visa"], "grammar": { "gender": "el" } },
   "fine": { "text": "multa", "grammar": { "gender": "la" } },
   "receipt": { "text": "recibo", "grammar": { "gender": "el" } },
-  "where-do-i-sign": { "text": "¿Dónde firmo?", "variants": ["¿Dónde tengo que firmar?", "¿Dónde debo firmar?"] },
+  "where-do-i-sign": { "text": "¿Dónde firmo?", "accepts": ["¿Dónde tengo que firmar?", "¿Dónde debo firmar?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Quiero renovar el permiso de residencia.",
-   "variants": ["Quisiera renovar el permiso de residencia.", "Quería renovar el permiso de residencia."]
+   "accepts": ["Quisiera renovar el permiso de residencia.", "Quería renovar el permiso de residencia."]
   },
   "fill-out-the-form": {
    "text": "Rellene el formulario.",
-   "variants": ["Rellena el formulario.", "Complete el formulario.", "Llene el formulario."]
+   "accepts": ["Rellena el formulario.", "Complete el formulario.", "Llene el formulario."]
   },
   "i-need-an-interpreter-for-the-application": { "text": "Necesito un intérprete para la solicitud." },
   "did-you-bring-all-the-documents": {
    "text": "¿Ha traído toda la documentación?",
-   "variants": ["¿Has traído toda la documentación?", "¿Ha traído todos los documentos?"]
+   "accepts": ["¿Has traído toda la documentación?", "¿Ha traído todos los documentos?"]
   },
   "the-decision-comes-by-mail": {
    "text": "La resolución llega por correo.",
-   "variants": ["La notificación llega por correo."],
+   "accepts": ["La notificación llega por correo."],
    "orders": ["Llega la resolución por correo."]
   },
   "when-does-my-id-expire": {
    "text": "¿Cuándo caduca mi carné de identidad?",
-   "variants": ["¿Cuándo caduca mi DNI?", "¿Cuándo caduca mi carné?", "¿Cuándo vence mi carné de identidad?"]
+   "accepts": ["¿Cuándo caduca mi DNI?", "¿Cuándo caduca mi carné?", "¿Cuándo vence mi carné de identidad?"]
   }
  }
 }

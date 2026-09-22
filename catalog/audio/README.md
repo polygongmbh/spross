@@ -89,7 +89,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   The article must be the realization's own `grammar.gender`, because a recording is the
   only thing that teaches a gender aloud and a wrong one teaches it wrong; the `word` may
   be any form the realization carries, so a file saying "der Großvater" ships as a
-  recording of the variant it actually says.
+  recording of the form it actually says.
   Usually an addition beside a bare `words` entry — the source side reads the learner's
   own language, where the article is not what is being taught — but not dependent on one:
   five words ship the article recording alone and it answers both asks.
@@ -99,7 +99,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
 - `calendar` (optional) is keyed by the FORM it speaks like `texts`, and for the same
   reason: no concept covers a weekday, so there is no slug to key one by. Files are
   `calendar/<ascii stem>.mp3`. It holds the weekday and month names of `../dates/`, the
-  synonyms beside them included — a card may show `Sonnabend`, and a recording is only
+  `teaches` beside them included — a card may show `Sonnabend`, and a recording is only
   ever played for the form it actually says. `abbr` is never recorded: it is a written
   short form the prompt wears, and nothing says it aloud.
   It carries `gainPhone` where `texts` does not — these are words spoken on a drill card,
@@ -109,7 +109,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   the nationality name of every atlas row, under `countries/<ascii stem>.mp3`. Keyed by the
   form for a reason of its own: the countries DO carry slugs, but a slug holds one file
   while a row holds two names the drill shows and asks for — `Deutschland` and `Deutsche`.
-  `variants` are not recorded on either half, being accept-only and never displayed, so a
+  `accepts` are not recorded on either half, being accept-only and never displayed, so a
   recording keyed by one could never be reached.
 - `matches` — the surface form the recording actually SPEAKS, and the lookup key:
   playback is keyed by what stands on the card, never by the slug the file was fetched

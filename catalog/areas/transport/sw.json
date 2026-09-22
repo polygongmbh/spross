@@ -41,7 +41,7 @@
   "when-does-the-train-leave": { "text": "Treni inaondoka lini?" },
   "how-much-is-the-fare": { "text": "Nauli ni ngapi?" },
   "the-bus-has-already-departed": { "text": "Basi limeshaondoka.", "notes": { "sw": "limeshaondoka = tayari limeondoka" } },
-  "my-parents-are-coming-by-train": { "text": "Wazazi wangu wanakuja kwa treni.", "variants": ["Wazazi wangu wanakuja na treni."] },
+  "my-parents-are-coming-by-train": { "text": "Wazazi wangu wanakuja kwa treni.", "accepts": ["Wazazi wangu wanakuja na treni."] },
   "tire": { "text": "tairi", "grammar": { "plural": "matairi" } },
   "my-car-has-four-tires": {
    "text": "Gari langu lina matairi manne.",

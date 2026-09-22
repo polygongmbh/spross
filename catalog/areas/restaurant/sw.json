@@ -6,7 +6,7 @@
   "waiter": { "text": "mhudumu", "grammar": { "plural": "wahudumu" } },
   "table": { "text": "meza", "grammar": { "plural": "=" } },
   "to-order": { "text": "kuagiza" },
-  "bill": { "text": "bili", "grammar": { "plural": "=" }, "variants": ["hesabu"] },
+  "bill": { "text": "bili", "grammar": { "plural": "=" }, "accepts": ["hesabu"] },
   "tip": { "text": "bakshishi", "grammar": { "plural": "=" } },
   "to-reserve": { "text": "kuweka nafasi" },
   "glass": { "text": "glasi", "grammar": { "plural": "=" } },

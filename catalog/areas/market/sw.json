@@ -11,10 +11,10 @@
   "liter": { "text": "lita", "grammar": { "plural": "=" } },
   "fresh": {
    "text": "-bichi",
-   "variants": ["mbichi", "kibichi", "vibichi", "mabichi"],
+   "accepts": ["mbichi", "kibichi", "vibichi", "mabichi"],
    "notes": { "sw": "nyanya mbichi, matunda mabichi · nyama mbichi = isiyopikwa" }
   },
-  "ripe": { "text": "-bivu", "variants": ["mbivu", "kibivu", "vibivu", "mabivu"] },
+  "ripe": { "text": "-bivu", "accepts": ["mbivu", "kibivu", "vibivu", "mabivu"] },
   "to-haggle": { "text": "kupatana bei" },
   "market": { "text": "soko", "grammar": { "plural": "masoko" } },
   "lets-meet-at-the-market": { "text": "Tukutane sokoni." },

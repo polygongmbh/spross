@@ -1,11 +1,11 @@
 {
  "title": "Sons et audition",
  "words": {
-  "loud": { "text": "fort", "variants": ["forte"], "notes": { "fr": "parle fort ! · fort = puissant." } },
+  "loud": { "text": "fort", "accepts": ["forte"], "notes": { "fr": "parle fort ! · fort = puissant." } },
   "quiet": {
    "text": "bas",
-   "synonyms": ["silencieux"],
-   "variants": ["doucement", "basse"],
+   "teaches": ["silencieux"],
+   "accepts": ["doucement", "basse"],
    "notes": { "fr": "parle plus bas · une machine silencieuse ne fait pas de bruit." }
   },
   "noise": { "text": "bruit", "grammar": { "gender": "le" } },
@@ -14,16 +14,16 @@
   "speaker": { "text": "haut-parleur", "grammar": { "gender": "le", "plural": "haut-parleurs" } },
   "headphones": {
    "text": "écouteurs",
-   "variants": ["casque", "casque audio"],
+   "accepts": ["casque", "casque audio"],
    "grammar": { "gender": "les", "plural": "only" },
    "notes": { "fr": "au pluriel : les écouteurs dans les oreilles · le casque sur la tête." }
   },
-  "microphone": { "text": "microphone", "variants": ["micro"], "grammar": { "gender": "le" } },
+  "microphone": { "text": "microphone", "accepts": ["micro"], "grammar": { "gender": "le" } },
   "volume": { "text": "volume", "grammar": { "gender": "le" } },
   "to-listen-to": { "text": "écouter" },
   "to-listen-to-music": {
    "text": "écouter de la musique",
-   "variants": ["écouter la musique"],
+   "accepts": ["écouter la musique"],
    "notes": { "fr": "quantité non comptée : écouter de la musique, boire de l'eau." }
   },
   "to-play-instrument": { "text": "jouer d'un instrument", "notes": { "fr": "jouer du piano, de la guitare." } },

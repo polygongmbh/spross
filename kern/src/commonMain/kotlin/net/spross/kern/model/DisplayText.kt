@@ -38,13 +38,13 @@ fun pluralForm(realization: Realization): PluralForm? {
 }
 
 /**
- * The word's remaining family — its canonical text plus its synonyms — minus every form in [shown].
+ * The word's remaining family — its canonical text plus its `teaches` — minus every form in [shown].
  *
  * The exclusion is the whole point of the line: a recognition prompt rotates a synonym in,
  * so without it the reveal offers the learner the very word they are looking at as though
  * it were another one, while dropping the citation form they have not seen.
  * Empty where nothing is left to offer, which is a line the surface does not draw.
- * Variants never appear — they grade an answer, they do not teach a form.
+ * `accepts` never appears — it grades an answer, it does not teach a form.
  */
 fun alternates(realization: Realization, shown: List<String>): List<String> =
-    (listOf(realization.text) + realization.synonyms).filterNot { it in shown }
+    (listOf(realization.text) + realization.teaches).filterNot { it in shown }

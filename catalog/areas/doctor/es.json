@@ -2,21 +2,21 @@
  "title": "En el médico",
  "subtitle": "De la cita a la receta.",
  "words": {
-  "doctor": { "text": "médico", "variants": ["doctor"], "grammar": { "gender": "el" } },
-  "doctor-f": { "text": "médica", "variants": ["doctora"], "grammar": { "gender": "la" } },
+  "doctor": { "text": "médico", "accepts": ["doctor"], "grammar": { "gender": "el" } },
+  "doctor-f": { "text": "médica", "accepts": ["doctora"], "grammar": { "gender": "la" } },
   "practice": {
    "text": "consulta",
-   "variants": ["consultorio"],
+   "accepts": ["consultorio"],
    "grammar": { "gender": "la" },
    "notes": { "es": "La consulta es la sala del médico; la pública está en el centro de salud." }
   },
   "pill": {
    "text": "pastilla",
-   "variants": ["comprimido", "tableta"],
+   "accepts": ["comprimido", "tableta"],
    "grammar": { "gender": "la" },
    "notes": { "es": "Se dice pastilla; en la caja pone comprimido." }
   },
-  "prescription": { "text": "receta", "variants": ["receta médica"], "grammar": { "gender": "la" } },
+  "prescription": { "text": "receta", "accepts": ["receta médica"], "grammar": { "gender": "la" } },
   "pharmacy": { "text": "farmacia", "grammar": { "gender": "la" } },
   "insurance-card": {
    "text": "tarjeta sanitaria",
@@ -28,7 +28,7 @@
   },
   "health-insurance": {
    "text": "seguro médico",
-   "variants": ["seguro de salud"],
+   "accepts": ["seguro de salud"],
    "grammar": { "gender": "el" },
    "notes": {
     "es": "La sanidad pública va por la Seguridad Social; el seguro médico es privado.",
@@ -38,28 +38,28 @@
   "hospital": { "text": "hospital", "grammar": { "gender": "el" } },
   "emergency": {
    "text": "emergencia",
-   "synonyms": ["urgencia"],
+   "teaches": ["urgencia"],
    "grammar": { "gender": "la" },
    "notes": { "es": "En el hospital se llama urgencias: ir a urgencias." }
   },
   "doctors-note": {
    "text": "baja",
-   "variants": ["baja médica", "parte de baja"],
+   "accepts": ["baja médica", "parte de baja"],
    "grammar": { "gender": "la" },
    "notes": { "es": "Corto de la baja médica; el papel es el parte de baja." }
   },
-  "to-examine": { "text": "examinar", "variants": ["explorar", "reconocer"] },
-  "to-prescribe-medicine": { "text": "recetar medicamentos", "variants": ["prescribir medicamentos", "recetar medicinas"] },
-  "to-take-medicine": { "text": "tomar medicamentos", "variants": ["tomar la medicación", "tomar medicinas"] },
+  "to-examine": { "text": "examinar", "accepts": ["explorar", "reconocer"] },
+  "to-prescribe-medicine": { "text": "recetar medicamentos", "accepts": ["prescribir medicamentos", "recetar medicinas"] },
+  "to-take-medicine": { "text": "tomar medicamentos", "accepts": ["tomar la medicación", "tomar medicinas"] },
   "to-call-in-sick": {
    "text": "coger la baja",
-   "variants": ["pedir la baja", "darse de baja", "ponerse de baja"],
+   "accepts": ["pedir la baja", "darse de baja", "ponerse de baja"],
    "notes": { "es": "La da el médico: coger la baja, estar de baja · en América, coger es vulgar." }
   },
-  "medicine": { "text": "medicamento", "variants": ["medicina"], "grammar": { "gender": "el" } },
+  "medicine": { "text": "medicamento", "accepts": ["medicina"], "grammar": { "gender": "el" } },
   "nurse": { "text": "enfermero", "grammar": { "gender": "el" } },
   "nurse-f": { "text": "enfermera", "grammar": { "gender": "la" } },
-  "dentist": { "text": "dentista", "variants": ["odontólogo"], "grammar": { "gender": "el" } },
+  "dentist": { "text": "dentista", "accepts": ["odontólogo"], "grammar": { "gender": "el" } },
   "vaccination": {
    "text": "vacuna",
    "grammar": { "gender": "la" },
@@ -69,16 +69,16 @@
   "to-look-after": { "text": "cuidar" },
   "take-the-pills-twice-daily": {
    "text": "Tome las pastillas dos veces al día.",
-   "variants": ["Toma las pastillas dos veces al día.", "Tómese las pastillas dos veces al día."],
+   "accepts": ["Toma las pastillas dos veces al día.", "Tómese las pastillas dos veces al día."],
    "orders": ["Dos veces al día tome las pastillas."]
   },
   "show-me-your-insurance-card": {
    "text": "Enséñeme su tarjeta sanitaria.",
-   "variants": ["Enséñame tu tarjeta sanitaria.", "Muéstreme su tarjeta sanitaria."]
+   "accepts": ["Enséñame tu tarjeta sanitaria.", "Muéstreme su tarjeta sanitaria."]
   },
   "the-practice-is-closed": { "text": "La consulta está cerrada.", "orders": ["Está cerrada la consulta."] },
   "i-have-to-see-a-doctor": { "text": "Tengo que ir al médico." },
-  "call-an-ambulance": { "text": "¡Llame a una ambulancia!", "variants": ["¡Llama a una ambulancia!"] },
+  "call-an-ambulance": { "text": "¡Llame a una ambulancia!", "accepts": ["¡Llama a una ambulancia!"] },
   "the-doctor-will-examine-you-shortly": { "text": "El médico le examinará enseguida.", "orders": ["Le examinará el médico enseguida."] }
  }
 }

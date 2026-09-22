@@ -11,7 +11,7 @@
   "what-does-this-word-mean": { "text": "Що означає це слово?", "orders": ["Що це слово означає?"] },
   "how-do-you-say-this": { "text": "Як це сказати {language-in}?" },
   "im-learning-your-language": { "text": "Я вчу {language-learn}." },
-  "ready-to-learn": { "text": "Готовий вчитися?", "variants": ["Готова вчитися?"] },
+  "ready-to-learn": { "text": "Готовий вчитися?", "accepts": ["Готова вчитися?"] },
   "one-more-word": { "text": "Ще одне слово?" }
  }
 }

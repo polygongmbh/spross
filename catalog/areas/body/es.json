@@ -3,12 +3,12 @@
  "subtitle": "De la cabeza a los pies.",
  "words": {
   "head": { "text": "cabeza", "grammar": { "gender": "la" } },
-  "hair": { "text": "pelo", "synonyms": ["cabello"], "grammar": { "gender": "el" } },
-  "face": { "text": "cara", "variants": ["rostro"], "grammar": { "gender": "la" } },
+  "hair": { "text": "pelo", "teaches": ["cabello"], "grammar": { "gender": "el" } },
+  "face": { "text": "cara", "accepts": ["rostro"], "grammar": { "gender": "la" } },
   "eye": { "text": "ojo", "grammar": { "gender": "el" } },
   "ear": {
    "text": "oído",
-   "variants": ["oreja"],
+   "accepts": ["oreja"],
    "grammar": { "gender": "el" },
    "notes": { "es": "Me duele el oído (dentro) · la oreja es la parte de fuera." }
   },
@@ -26,8 +26,8 @@
   "leg": { "text": "pierna", "grammar": { "gender": "la" } },
   "stomach": {
    "text": "barriga",
-   "synonyms": ["tripa"],
-   "variants": ["vientre", "panza"],
+   "teaches": ["tripa"],
+   "accepts": ["vientre", "panza"],
    "grammar": { "gender": "la" },
    "notes": { "es": "Me duele la barriga o la tripa; el estómago es el órgano." }
   },
@@ -57,7 +57,7 @@
   "muscle": { "text": "músculo", "grammar": { "gender": "el" } },
   "nipple": { "text": "pezón", "grammar": { "gender": "el", "plural": "pezones" } },
   "my-head-hurts": { "text": "Me duele la cabeza.", "orders": ["La cabeza me duele."] },
-  "give-me-your-hand": { "text": "Dame la mano.", "variants": ["Dame tu mano."] },
+  "give-me-your-hand": { "text": "Dame la mano.", "accepts": ["Dame tu mano."] },
   "open-your-mouth": { "text": "Abre la boca." },
   "close-your-eyes": { "text": "Cierra los ojos." },
   "i-have-long-hair": { "text": "Tengo el pelo largo." },

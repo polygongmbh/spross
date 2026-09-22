@@ -3,8 +3,8 @@
  "subtitle": "C'est les vacances !",
  "words": {
   "beach": { "text": "plage", "grammar": { "gender": "la" } },
-  "to-sunbathe": { "text": "prendre le soleil", "variants": ["bronzer", "se faire bronzer"] },
-  "hotel": { "text": "hôtel", "variants": ["l'hôtel"], "grammar": { "gender": "l'" } },
+  "to-sunbathe": { "text": "prendre le soleil", "accepts": ["bronzer", "se faire bronzer"] },
+  "hotel": { "text": "hôtel", "accepts": ["l'hôtel"], "grammar": { "gender": "l'" } },
   "luggage": {
    "text": "bagages",
    "grammar": { "gender": "les", "plural": "only" },
@@ -14,7 +14,7 @@
   "journey": { "text": "voyage", "grammar": { "gender": "le" } },
   "vacation": {
    "text": "vacances",
-   "synonyms": ["congés"],
+   "teaches": ["congés"],
    "grammar": { "gender": "les", "plural": "only" },
    "notes": { "fr": "les vacances d'été · au travail, je prends des congés." }
   },
@@ -27,20 +27,20 @@
   "tourist": { "text": "touriste", "grammar": { "gender": "le" } },
   "souvenir": { "text": "souvenir", "grammar": { "gender": "le" } },
   "sunscreen": { "text": "crème solaire", "grammar": { "gender": "la" } },
-  "to-pack": { "text": "faire les valises", "variants": ["faire sa valise"] },
+  "to-pack": { "text": "faire les valises", "accepts": ["faire sa valise"] },
   "campsite": { "text": "camping", "grammar": { "gender": "le" } },
-  "lets-go-to-the-beach": { "text": "Allons à la plage !", "variants": ["On va à la plage !"] },
+  "lets-go-to-the-beach": { "text": "Allons à la plage !", "accepts": ["On va à la plage !"] },
   "im-looking-for-a-hotel": { "text": "Je cherche un hôtel." },
   "have-a-good-journey": { "text": "Bon voyage !" },
   "i-want-vacation-next-week": {
    "text": "Je voudrais prendre des vacances la semaine prochaine.",
-   "variants": [
+   "accepts": [
     "Je veux prendre des vacances la semaine prochaine.",
     "Je voudrais prendre des congés la semaine prochaine."
    ],
    "orders": ["La semaine prochaine, je voudrais prendre des vacances."]
   },
-  "how-many-nights": { "text": "Combien de nuits ?", "variants": ["Pour combien de nuits ?"] },
-  "i-packed-too-much": { "text": "J'ai trop rempli ma valise.", "variants": ["J'ai mis trop de choses dans ma valise."] }
+  "how-many-nights": { "text": "Combien de nuits ?", "accepts": ["Pour combien de nuits ?"] },
+  "i-packed-too-much": { "text": "J'ai trop rempli ma valise.", "accepts": ["J'ai mis trop de choses dans ma valise."] }
  }
 }

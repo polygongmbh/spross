@@ -32,8 +32,8 @@
     "en": "literally „The alarm clock says that it is …“ — the reading is a bare noun phrase, so it needs the copula around it."
    }
   },
-  "repeat-please": { "text": "Bonvolu ripeti: {slot}.", "variants": ["Ripetu, mi petas: {slot}."] },
-  "write-please": { "text": "Bonvolu skribi: {slot}.", "variants": ["Skribu, mi petas: {slot}."] },
+  "repeat-please": { "text": "Bonvolu ripeti: {slot}.", "accepts": ["Ripetu, mi petas: {slot}."] },
+  "write-please": { "text": "Bonvolu skribi: {slot}.", "accepts": ["Skribu, mi petas: {slot}."] },
   "learning-since-year": {
    "text": "Mi lernas {language-learn} ekde {slot}.",
    "notes": {
@@ -41,8 +41,8 @@
     "en": "The year is read as a plain cardinal: „mil naŭcent sepdek ok“."
    }
   },
-  "repeat-the-year": { "text": "Bonvolu ripeti la daton: {slot}.", "variants": ["Ripetu la daton, mi petas: {slot}."] },
-  "write-the-year": { "text": "Bonvolu skribi la daton: {slot}.", "variants": ["Skribu la daton, mi petas: {slot}."] },
+  "repeat-the-year": { "text": "Bonvolu ripeti la daton: {slot}.", "accepts": ["Ripetu la daton, mi petas: {slot}."] },
+  "write-the-year": { "text": "Bonvolu skribi la daton: {slot}.", "accepts": ["Skribu la daton, mi petas: {slot}."] },
   "i-need-n-kilo-of-flour": {
    "text": "Mi bakas panon el {slot} de kilogramo da faruno.",
    "notes": {

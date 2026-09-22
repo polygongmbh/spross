@@ -2,10 +2,10 @@
  "title": "Записи та терміни",
  "subtitle": "Щоб нічого не загубилося.",
  "words": {
-  "appointment": { "text": "запис на прийом", "synonyms": ["візит"], "grammar": { "plural": "записи на прийом" } },
+  "appointment": { "text": "запис на прийом", "teaches": ["візит"], "grammar": { "plural": "записи на прийом" } },
   "date": { "text": "дата" },
   "opening-hours": { "text": "години роботи", "grammar": { "plural": "only" } },
-  "deadline": { "text": "строк", "synonyms": ["термін"] },
+  "deadline": { "text": "строк", "teaches": ["термін"] },
   "plan": { "text": "план" },
   "to-meet": { "text": "зустрічатися" },
   "to-invite": { "text": "запрошувати" },
@@ -19,7 +19,7 @@
   "urgent": { "text": "терміновий" },
   "list": { "text": "список" },
   "to-finish": { "text": "закінчувати" },
-  "to-take-care-of": { "text": "подбати про", "synonyms": ["залагодити"] },
+  "to-take-care-of": { "text": "подбати про", "teaches": ["залагодити"] },
   "i-would-like-to-arrange-an-appointment": { "text": "Я хочу записатися на прийом." },
   "the-deadline-is-tomorrow": {
    "text": "Строк закінчується завтра.",

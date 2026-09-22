@@ -9,7 +9,7 @@
   "always": { "text": "sempre" },
   "never": { "text": "mai", "notes": { "it": "mai vuole non davanti: non parlo mai." } },
   "maybe": { "text": "forse" },
-  "sometimes": { "text": "a volte", "variants": ["qualche volta", "talvolta"] },
+  "sometimes": { "text": "a volte", "accepts": ["qualche volta", "talvolta"] },
   "often": { "text": "spesso" },
   "very": {
    "text": "molto",
@@ -23,17 +23,17 @@
   "partially": { "text": "parzialmente" },
   "gladly": { "text": "volentieri" },
   "completely": { "text": "completamente" },
-  "all": { "text": "tutti", "variants": ["tutte"] },
-  "some": { "text": "alcuni", "variants": ["alcune", "qualche"] },
+  "all": { "text": "tutti", "accepts": ["tutte"] },
+  "some": { "text": "alcuni", "accepts": ["alcune", "qualche"] },
   "every": { "text": "ogni" },
   "most": { "text": "la maggior parte" },
   "almost": { "text": "quasi" },
-  "a-little": { "text": "un po'", "variants": ["un poco"] },
-  "few": { "text": "pochi", "variants": ["poche"] },
+  "a-little": { "text": "un po'", "accepts": ["un poco"] },
+  "few": { "text": "pochi", "accepts": ["poche"] },
   "once": { "text": "una volta" },
   "more-or-less": { "text": "più o meno" },
   "i-am-always-there": { "text": "Ci sono sempre." },
-  "hang-it-higher": { "text": "Appendilo più in alto.", "variants": ["Appendilo più alto."] },
+  "hang-it-higher": { "text": "Appendilo più in alto.", "accepts": ["Appendilo più alto."] },
   "is-that-enough": { "text": "È abbastanza?" }
  }
 }

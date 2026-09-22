@@ -19,8 +19,8 @@ internal object Snap {
         emoji: String? = null,
         sourceText: String = "s-$id",
         targetText: String = "t-$id",
-        synonyms: List<String> = emptyList(),
-        variants: List<String> = emptyList(),
+        teaches: List<String> = emptyList(),
+        accepts: List<String> = emptyList(),
         gender: String? = null,
         feminineMarker: Boolean = false,
     ): Card = Card(
@@ -28,7 +28,7 @@ internal object Snap {
         components = emptyList(), feminineOf = null,
         source = Realization("de", sourceText),
         target = Realization(
-            "sw", targetText, synonyms = synonyms, variants = variants,
+            "sw", targetText, teaches = teaches, accepts = accepts,
             grammar = if (gender != null) mapOf("gender" to gender) else emptyMap(),
         ),
         promptFeminineMarker = feminineMarker,

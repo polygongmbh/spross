@@ -45,13 +45,13 @@
   },
   "to-find": { "text": "trovare" },
   "to-search": { "text": "cercare", "notes": { "it": "cercare una parola, cercare te: cercare non vuole a." } },
-  "to-receive": { "text": "ricevere", "synonyms": ["ottenere"] },
+  "to-receive": { "text": "ricevere", "teaches": ["ottenere"] },
   "to-look": { "text": "guardare", "notes": { "it": "guardare la TV · guarda qui!" } },
   "to-open": { "text": "aprire" },
   "to-close": { "text": "chiudere" },
   "to-stop": {
    "text": "smettere",
-   "variants": ["smettere di"],
+   "accepts": ["smettere di"],
    "notes": { "it": "smettere di fumare · smettere di parlare." }
   },
   "to-stand": {
@@ -63,7 +63,7 @@
   },
   "to-send": {
    "text": "inviare",
-   "variants": ["mandare", "spedire"],
+   "accepts": ["mandare", "spedire"],
    "notes": { "it": "inviare e mandare sono uguali · spedire è per i pacchi." }
   },
   "to-deliver": {
@@ -83,15 +83,15 @@
   "to-have-to": { "text": "dovere" },
   "to-put": { "text": "mettere" },
   "to-carry": { "text": "portare" },
-  "do-you-have-water": { "text": "Ha acqua?", "variants": ["Ha dell'acqua?", "Avete acqua?", "Hai acqua?"] },
+  "do-you-have-water": { "text": "Ha acqua?", "accepts": ["Ha dell'acqua?", "Avete acqua?", "Hai acqua?"] },
   "where-are-you-from": {
    "text": "Di dov'è?",
-   "variants": ["Da dove viene?", "Di dove sei?", "Da dove vieni?"],
+   "accepts": ["Da dove viene?", "Di dove sei?", "Da dove vieni?"],
    "notes": {
     "it": "Di dov'è? = Da dove viene?",
     "de": "Italienisch fragt die Herkunft meist mit essere: Di dov'è? · Da dove viene? geht ebenso."
    }
   },
-  "can-you-see-me": { "text": "Mi vedi?", "variants": ["Mi vede?"] }
+  "can-you-see-me": { "text": "Mi vedi?", "accepts": ["Mi vede?"] }
  }
 }

@@ -90,11 +90,11 @@ class CatalogFixtureTest {
     }
 
     @Test
-    fun sieDuVariantsLandInVariantsNotSynonyms() {
+    fun sieDuFormsLandInAcceptsNotTeaches() {
         val card = catalog.join("sw", "de").byId("the-mouse-runs")
         assertEquals("Sehen Sie die Maus?", card.target.text)
-        assertEquals(listOf("Siehst du die Maus?"), card.target.variants)
-        assertTrue(card.target.synonyms.isEmpty())
+        assertEquals(listOf("Siehst du die Maus?"), card.target.accepts)
+        assertTrue(card.target.teaches.isEmpty())
     }
 
     /**
@@ -133,11 +133,11 @@ class CatalogFixtureTest {
     // -- rotation forms ----------------------------------------------------------------
 
     @Test
-    fun synonymsJoinTheRotationVariantsDoNot() {
+    fun teachesJoinTheRotationAcceptsDoNot() {
         val mouse = catalog.join("de", "uk").byId("mouse")
         assertEquals("миша", mouse.target.text)
-        assertEquals(listOf("мишеня"), mouse.target.synonyms)
-        assertEquals(listOf("мишка"), mouse.target.variants) // grading/display only
+        assertEquals(listOf("мишеня"), mouse.target.teaches)
+        assertEquals(listOf("мишка"), mouse.target.accepts) // grading/display only
     }
 
     // -- grammar -----------------------------------------------------------------------
@@ -210,7 +210,7 @@ class CatalogFixtureTest {
         val suaheli = catalog.languageName("de", "sw")!!
         assertEquals("Suaheli", suaheli.name)
         assertEquals("auf Suaheli", suaheli.inForm)
-        assertEquals(listOf("Kisuaheli"), suaheli.variants)
+        assertEquals(listOf("Kisuaheli"), suaheli.accepts)
         // speak/learn unauthored: German's object form IS the citation form.
         assertEquals("Suaheli", suaheli.form(LanguageMarker.Speak))
         assertEquals("Suaheli", suaheli.form(LanguageMarker.Learn))

@@ -7,7 +7,7 @@
    "grammar": { "plural": "болі" },
    "notes": { "uk": "сильний біль — чоловічий рід." }
   },
-  "fever": { "text": "температура", "synonyms": ["гарячка"] },
+  "fever": { "text": "температура", "teaches": ["гарячка"] },
   "cough": { "text": "кашель" },
   "cold": { "text": "застуда" },
   "to-hurt": { "text": "боліти" },
@@ -18,11 +18,11 @@
   "weak": { "text": "слабкий" },
   "dizziness": { "text": "запаморочення", "grammar": { "plural": "=" } },
   "wound": { "text": "рана" },
-  "to-hurt-oneself": { "text": "поранитися", "synonyms": ["травмуватися"] },
+  "to-hurt-oneself": { "text": "поранитися", "teaches": ["травмуватися"] },
   "bandage": { "text": "бинт" },
   "band-aid": { "text": "пластир" },
   "splint": { "text": "шина" },
-  "to-recover": { "text": "одужувати", "variants": ["одужати"] },
+  "to-recover": { "text": "одужувати", "accepts": ["одужати"] },
   "allergy": { "text": "алергія" },
   "my-throat-hurts-a-lot": { "text": "У мене дуже болить горло.", "orders": ["У мене горло дуже болить."] },
   "ive-had-a-fever-since-yesterday": { "text": "У мене з учора температура.", "orders": ["З учора у мене температура."] },
@@ -30,7 +30,7 @@
   "the-wound-hurts": { "text": "Рана болить." },
   "i-hurt-myself-yesterday": {
    "text": "Я вчора поранився.",
-   "variants": ["Я вчора поранилася."],
+   "accepts": ["Я вчора поранилася."],
    "orders": ["Вчора я поранився."]
   }
  }

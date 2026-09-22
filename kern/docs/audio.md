@@ -43,7 +43,7 @@ Engine contract: `../README.md`.
   So a word with no article recording still plays bare, one with only an article recording still
   plays, and neither route can reach a file that says a different word —
   which is what keeps the canonical article off a rotated synonym, where 33 of the catalog's 90
-  synonyms would disagree with it (`data/reference/audio/README.md`).
+  `teaches` would disagree with it (`data/reference/audio/README.md`).
   A rotated synonym nobody recorded simply misses, and the app speaks it live:
   a card never plays a word it does not show.
 - **Collision rule.** Entries sharing a `speechKey` whose bytes are IDENTICAL are one recording fetched under two slugs, and resolve.

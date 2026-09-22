@@ -18,14 +18,14 @@ class CatalogMatchesTests {
         id: String,
         known: String,
         learning: String,
-        synonyms: List<String> = emptyList(),
+        teaches: List<String> = emptyList(),
         gender: String? = null,
     ) = Card(
         id = id, kind = CardKind.Noun, area = "area1", emoji = null, seedIndex = 1,
         components = emptyList(), feminineOf = null,
         source = Realization(lang = "de", text = known),
         target = Realization(
-            lang = "sw", text = learning, synonyms = synonyms,
+            lang = "sw", text = learning, teaches = teaches,
             grammar = gender?.let { mapOf("gender" to it) } ?: emptyMap(),
         ),
         promptFeminineMarker = false,
@@ -125,7 +125,7 @@ class CatalogMatchesTests {
     @Test
     fun aSynonymOrAnArticledFormCountsAsTheCatalogsSpelling() {
         val state = box(
-            listOf(card("umbrella", "Regenschirm", "mwavuli", synonyms = listOf("mwamvuli"))),
+            listOf(card("umbrella", "Regenschirm", "mwavuli", teaches = listOf("mwamvuli"))),
             own("mwamvuli", mapOf("de" to "Sonnenschutz", "sw" to "mwamvuli")),
         )
         assertEquals(MatchSide.LearningOnly, matchOf(state)?.side)

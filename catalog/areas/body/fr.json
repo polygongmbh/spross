@@ -8,13 +8,13 @@
    "grammar": { "gender": "les", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : j'ai les cheveux longs." }
   },
-  "face": { "text": "visage", "variants": ["figure"], "grammar": { "gender": "le" } },
+  "face": { "text": "visage", "accepts": ["figure"], "grammar": { "gender": "le" } },
   "eye": {
    "text": "œil",
-   "variants": ["l'œil", "oeil", "l'oeil"],
+   "accepts": ["l'œil", "oeil", "l'oeil"],
    "grammar": { "gender": "l'", "plural": "yeux" }
   },
-  "ear": { "text": "oreille", "variants": ["l'oreille"], "grammar": { "gender": "l'" } },
+  "ear": { "text": "oreille", "accepts": ["l'oreille"], "grammar": { "gender": "l'" } },
   "nose": { "text": "nez", "grammar": { "gender": "le", "plural": "=" } },
   "mouth": { "text": "bouche", "grammar": { "gender": "la" } },
   "tooth": { "text": "dent", "grammar": { "gender": "la" } },
@@ -37,13 +37,13 @@
     "de": "Französisch trennt, was „Hals“ zusammenfasst: la gorge ist der Rachen (Halsschmerzen), le cou der äußere Hals."
    }
   },
-  "shoulder": { "text": "épaule", "variants": ["l'épaule"], "grammar": { "gender": "l'" } },
+  "shoulder": { "text": "épaule", "accepts": ["l'épaule"], "grammar": { "gender": "l'" } },
   "knee": { "text": "genou", "grammar": { "gender": "le", "plural": "genoux" } },
   "chest": { "text": "poitrine", "grammar": { "gender": "la" } },
-  "heart": { "text": "cœur", "variants": ["coeur"], "grammar": { "gender": "le" } },
+  "heart": { "text": "cœur", "accepts": ["coeur"], "grammar": { "gender": "le" } },
   "blood": { "text": "sang", "grammar": { "gender": "le" } },
   "skin": { "text": "peau", "grammar": { "gender": "la", "plural": "-x" } },
-  "bone": { "text": "os", "variants": ["l'os"], "grammar": { "gender": "l'", "plural": "=" } },
+  "bone": { "text": "os", "accepts": ["l'os"], "grammar": { "gender": "l'", "plural": "=" } },
   "finger": {
    "text": "doigt",
    "grammar": { "gender": "le" },
@@ -53,12 +53,12 @@
   "brain": { "text": "cerveau", "grammar": { "gender": "le", "plural": "cerveaux" } },
   "muscle": { "text": "muscle", "grammar": { "gender": "le" } },
   "nipple": { "text": "mamelon", "grammar": { "gender": "le" } },
-  "my-head-hurts": { "text": "J'ai mal à la tête.", "variants": ["Ma tête me fait mal."] },
-  "give-me-your-hand": { "text": "Donne-moi la main.", "variants": ["Donne-moi ta main."] },
+  "my-head-hurts": { "text": "J'ai mal à la tête.", "accepts": ["Ma tête me fait mal."] },
+  "give-me-your-hand": { "text": "Donne-moi la main.", "accepts": ["Donne-moi ta main."] },
   "open-your-mouth": { "text": "Ouvre la bouche." },
   "close-your-eyes": { "text": "Ferme les yeux." },
   "i-have-long-hair": { "text": "J'ai les cheveux longs." },
-  "my-feet-are-cold": { "text": "J'ai les pieds froids.", "variants": ["J'ai froid aux pieds."] },
-  "my-heart-is-beating-fast": { "text": "Mon cœur bat vite.", "variants": ["Mon coeur bat vite."] }
+  "my-feet-are-cold": { "text": "J'ai les pieds froids.", "accepts": ["J'ai froid aux pieds."] },
+  "my-heart-is-beating-fast": { "text": "Mon cœur bat vite.", "accepts": ["Mon coeur bat vite."] }
  }
 }

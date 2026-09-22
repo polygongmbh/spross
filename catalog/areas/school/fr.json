@@ -4,7 +4,7 @@
  "words": {
   "school": {
    "text": "école",
-   "variants": ["l'école"],
+   "accepts": ["l'école"],
    "grammar": { "gender": "l'" },
    "notes": {
     "fr": "l'école est pour les petits · après vient le collège.",
@@ -13,25 +13,25 @@
   },
   "classroom": {
    "text": "salle de classe",
-   "variants": ["salle de cours"],
+   "accepts": ["salle de cours"],
    "grammar": { "gender": "la", "plural": "salles de classe" }
   },
   "teacher": {
    "text": "professeur",
-   "synonyms": ["enseignant"],
-   "variants": ["prof"],
+   "teaches": ["enseignant"],
+   "accepts": ["prof"],
    "grammar": { "gender": "le" },
    "notes": { "fr": "à l'école : le maître, la maîtresse · au collège : le professeur, le prof." }
   },
   "teacher-f": {
    "text": "professeure",
-   "synonyms": ["enseignante"],
-   "variants": ["prof"],
+   "teaches": ["enseignante"],
+   "accepts": ["prof"],
    "grammar": { "gender": "la" }
   },
   "board": {
    "text": "tableau",
-   "variants": ["tableau noir", "tableau blanc"],
+   "accepts": ["tableau noir", "tableau blanc"],
    "grammar": { "gender": "le", "plural": "-x" }
   },
   "exercise-book": { "text": "cahier", "grammar": { "gender": "le" } },
@@ -42,13 +42,13 @@
   },
   "exam": {
    "text": "examen",
-   "variants": ["l'examen", "contrôle"],
+   "accepts": ["l'examen", "contrôle"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "le contrôle se passe en classe · l'examen compte beaucoup plus." }
   },
   "break": {
    "text": "récréation",
-   "variants": ["la récréation", "récré", "pause"],
+   "accepts": ["la récréation", "récré", "pause"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "à l'école, la récréation (la récré) · ailleurs, la pause." }
   },
@@ -60,17 +60,17 @@
     "en": "réussir is to pass; passer un examen only means to sit it, and to fail is rater or échouer."
    }
   },
-  "to-raise-hand": { "text": "lever la main", "variants": ["lever le doigt"] },
+  "to-raise-hand": { "text": "lever la main", "accepts": ["lever le doigt"] },
   "pupil": {
    "text": "élève",
-   "variants": ["l'élève"],
+   "accepts": ["l'élève"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "l'élève va à l'école, l'étudiant à l'université." }
   },
   "course": { "text": "cours", "grammar": { "gender": "le", "plural": "=" } },
   "lesson": {
    "text": "classe",
-   "variants": ["leçon"],
+   "accepts": ["leçon"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "j'ai cours aujourd'hui · la classe est aussi la salle et le groupe." }
   },
@@ -80,27 +80,27 @@
   "book": { "text": "livre", "grammar": { "gender": "le" } },
   "university": {
    "text": "université",
-   "variants": ["l'université", "fac"],
+   "accepts": ["l'université", "fac"],
    "grammar": { "gender": "l'" },
    "notes": { "fr": "on dit la fac : je vais à la fac." }
   },
   "class-schedule": {
    "text": "emploi du temps",
-   "variants": ["l'emploi du temps"],
+   "accepts": ["l'emploi du temps"],
    "grammar": { "gender": "l'", "plural": "emplois du temps" }
   },
   "to-count": { "text": "compter" },
-  "to-learn-by-heart": { "text": "apprendre par cœur", "synonyms": ["mémoriser"], "variants": ["apprendre par coeur"] },
-  "to-read-aloud": { "text": "lire à voix haute", "variants": ["lire à haute voix"] },
+  "to-learn-by-heart": { "text": "apprendre par cœur", "teaches": ["mémoriser"], "accepts": ["apprendre par coeur"] },
+  "to-read-aloud": { "text": "lire à voix haute", "accepts": ["lire à haute voix"] },
   "dictionary": { "text": "dictionnaire", "grammar": { "gender": "le" } },
   "to-pronounce": { "text": "prononcer" },
   "to-teach": { "text": "enseigner" },
   "do-the-homework": { "text": "Je fais mes devoirs." },
-  "look-at-the-class-schedule": { "text": "Regarde l'emploi du temps.", "variants": ["Regardez l'emploi du temps."] },
-  "the-break-is-over": { "text": "La pause est finie.", "variants": ["La pause est terminée."] },
-  "ask-the-teacher": { "text": "Demande au professeur.", "variants": ["Demandez au professeur.", "Demande au prof."] },
+  "look-at-the-class-schedule": { "text": "Regarde l'emploi du temps.", "accepts": ["Regardez l'emploi du temps."] },
+  "the-break-is-over": { "text": "La pause est finie.", "accepts": ["La pause est terminée."] },
+  "ask-the-teacher": { "text": "Demande au professeur.", "accepts": ["Demandez au professeur.", "Demande au prof."] },
   "i-have-a-good-grade": { "text": "J'ai une bonne note." },
-  "we-go-to-the-classroom": { "text": "Nous allons dans la salle de classe.", "variants": ["On va dans la salle de classe."] },
+  "we-go-to-the-classroom": { "text": "Nous allons dans la salle de classe.", "accepts": ["On va dans la salle de classe."] },
   "the-exam-is-already-corrected": { "text": "L'examen est déjà corrigé.", "orders": ["Déjà, l'examen est corrigé."] }
  }
 }

@@ -7,7 +7,7 @@
   "lake": { "text": "lake" },
   "ship": { "text": "ship" },
   "boat": { "text": "boat" },
-  "port": { "text": "port", "synonyms": ["harbor"] },
+  "port": { "text": "port", "teaches": ["harbor"] },
   "island": { "text": "island" },
   "coast": { "text": "coast" },
   "wave": { "text": "wave" },

@@ -161,8 +161,8 @@ class LetterDrillDictationTests {
             target = Realization(
                 lang = "xx",
                 text = "Lehrerin",
-                synonyms = listOf("Dozentin"),
-                variants = listOf("Lehrerinnen"),
+                teaches = listOf("Dozentin"),
+                accepts = listOf("Lehrerinnen"),
             ),
             promptFeminineMarker = true,
         )
@@ -180,7 +180,7 @@ class LetterDrillDictationTests {
         assertEquals(real.kind, grading.kind)
         // Only the answer set narrows: a synonym is a different word than the one played.
         assertEquals("Lehrerin", grading.target.text)
-        assertTrue(grading.target.synonyms.isEmpty() && grading.target.variants.isEmpty())
+        assertTrue(grading.target.teaches.isEmpty() && grading.target.accepts.isEmpty())
         assertTrue(grading.baseAccepted.isEmpty(), "the base word is not what was spoken either")
     }
 }

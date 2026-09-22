@@ -2,24 +2,24 @@
  "title": "La nature",
  "subtitle": "Un bol d'air frais.",
  "words": {
-  "tree": { "text": "arbre", "variants": ["l'arbre"], "grammar": { "gender": "l'" } },
+  "tree": { "text": "arbre", "accepts": ["l'arbre"], "grammar": { "gender": "l'" } },
   "flower": { "text": "fleur", "grammar": { "gender": "la" } },
-  "to-go-for-walk": { "text": "se promener", "synonyms": ["faire une promenade"], "variants": ["se balader"] },
-  "to-jog": { "text": "faire du jogging", "variants": ["aller courir"] },
+  "to-go-for-walk": { "text": "se promener", "teaches": ["faire une promenade"], "accepts": ["se balader"] },
+  "to-jog": { "text": "faire du jogging", "accepts": ["aller courir"] },
   "to-plant-flowers": { "text": "planter des fleurs" },
-  "to-grill-meat": { "text": "griller de la viande", "variants": ["faire griller de la viande"] },
+  "to-grill-meat": { "text": "griller de la viande", "accepts": ["faire griller de la viande"] },
   "mountain": { "text": "montagne", "grammar": { "gender": "la" } },
   "forest": { "text": "forêt", "grammar": { "gender": "la" } },
   "stone": { "text": "pierre", "grammar": { "gender": "la" } },
   "stone-wall": { "text": "mur en pierre", "grammar": { "gender": "le" } },
   "moon": { "text": "lune", "grammar": { "gender": "la" } },
-  "star": { "text": "étoile", "variants": ["l'étoile"], "grammar": { "gender": "l'" } },
+  "star": { "text": "étoile", "accepts": ["l'étoile"], "grammar": { "gender": "l'" } },
   "wood": { "text": "bois", "grammar": { "gender": "le" } },
   "stick": { "text": "bâton", "grammar": { "gender": "le" } },
-  "shadow": { "text": "ombre", "variants": ["l'ombre"], "grammar": { "gender": "l'" } },
+  "shadow": { "text": "ombre", "accepts": ["l'ombre"], "grammar": { "gender": "l'" } },
   "we-are-going-to-the-mountains": {
    "text": "Nous allons à la montagne.",
-   "variants": ["On va à la montagne.", "Nous allons en montagne."]
+   "accepts": ["On va à la montagne.", "Nous allons en montagne."]
   },
   "its-cold-in-the-mountains": { "text": "Il fait froid à la montagne.", "orders": ["À la montagne, il fait froid."] }
  }

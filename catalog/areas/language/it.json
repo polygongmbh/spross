@@ -10,11 +10,11 @@
   "mother-tongue": { "text": "lingua madre", "grammar": { "gender": "la" } },
   "what-does-this-word-mean": {
    "text": "Che cosa significa questa parola?",
-   "variants": ["Cosa significa questa parola?", "Che cosa vuol dire questa parola?"]
+   "accepts": ["Cosa significa questa parola?", "Che cosa vuol dire questa parola?"]
   },
-  "how-do-you-say-this": { "text": "Come si dice questo {language-in}?", "variants": ["Come si dice {language-in}?"] },
-  "im-learning-your-language": { "text": "Imparo {language-learn}.", "variants": ["Sto imparando {language-learn}."] },
-  "ready-to-learn": { "text": "Pronto a imparare?", "variants": ["Pronta a imparare?"] },
-  "one-more-word": { "text": "Ancora una parola?", "variants": ["Un'altra parola?"] }
+  "how-do-you-say-this": { "text": "Come si dice questo {language-in}?", "accepts": ["Come si dice {language-in}?"] },
+  "im-learning-your-language": { "text": "Imparo {language-learn}.", "accepts": ["Sto imparando {language-learn}."] },
+  "ready-to-learn": { "text": "Pronto a imparare?", "accepts": ["Pronta a imparare?"] },
+  "one-more-word": { "text": "Ancora una parola?", "accepts": ["Un'altra parola?"] }
  }
 }

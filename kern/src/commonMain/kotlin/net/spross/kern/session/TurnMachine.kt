@@ -78,7 +78,7 @@ class TurnMachine(
         promptForm: String,
     ): List<String> {
         if (role != PresentationRole.Recognize && prompt != ProducePrompt.Sound) return emptyList()
-        val standing = (listOf(card.source.text) + card.source.synonyms).toSet()
+        val standing = (listOf(card.source.text) + card.source.teaches).toSet()
         return grader.conceptsSharing(promptForm, card)
             .map { it.source.text }
             .filterNot { it in standing }
@@ -267,7 +267,7 @@ class TurnMachine(
         shared.firstOrNull { it == Match.Exact }?.let { return Graded(it, merged = true) }
         // A slip is forgiven against the word it was aiming at, and the prompted card owns
         // its own slips first — the same order the normalizer keeps a card's text ahead of
-        // its variants in.
+        // its `accepts` in.
         if (own != Match.Wrong) return Graded(own)
         shared.firstOrNull { it is Match.Typo }?.let { return Graded(it, merged = true) }
         return Graded(own)

@@ -10,11 +10,11 @@
   "when": { "text": "cuándo" },
   "why": { "text": "por qué" },
   "how": { "text": "cómo" },
-  "which": { "text": "cuál", "variants": ["cuáles"] },
-  "how-many": { "text": "cuántos", "variants": ["cuántas"] },
+  "which": { "text": "cuál", "accepts": ["cuáles"] },
+  "how-many": { "text": "cuántos", "accepts": ["cuántas"] },
   "where-are-they": { "text": "¿Dónde están?" },
   "who-is-there": { "text": "¿Quién está ahí?" },
-  "do-you-need-this": { "text": "¿Necesita esto?", "variants": ["¿Necesitas esto?"] },
+  "do-you-need-this": { "text": "¿Necesita esto?", "accepts": ["¿Necesitas esto?"] },
   "when-does-it-start": { "text": "¿Cuándo empieza?" },
   "what-time-is-it": { "text": "¿Qué hora es?" }
  }

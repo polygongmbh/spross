@@ -18,12 +18,12 @@ class CatalogCollisionLintTest {
     private val catalog get() = RealCatalog.catalog
 
     /**
-     * Prompt forms as the learner SEES them — text plus synonyms (both rotate as prompts),
+     * Prompt forms as the learner SEES them — text plus `teaches` (both rotate as prompts),
      * NFC-folded. Case-SENSITIVE on purpose: `Husten`/`husten` and `jua`/`kujua` are real
      * visual distinctions that keep noun/verb homographs unambiguous.
      */
     private fun promptForms(raw: RawRealization): List<String> =
-        (listOf(raw.text) + raw.synonyms).map { nfcNormalized(it).trim() }
+        (listOf(raw.text) + raw.teaches).map { nfcNormalized(it).trim() }
 
     /** (lang, form) → concept ids sharing it, keeping only the genuine collisions. */
     private fun collisionClusters(): Map<Pair<String, String>, List<String>> {

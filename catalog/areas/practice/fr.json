@@ -1,19 +1,19 @@
 {
  "title": "Entraînement et objectifs",
  "words": {
-  "to-practice": { "text": "s'entraîner", "variants": ["s'exercer", "pratiquer"] },
-  "to-try": { "text": "essayer", "variants": ["tenter"] },
+  "to-practice": { "text": "s'entraîner", "accepts": ["s'exercer", "pratiquer"] },
+  "to-try": { "text": "essayer", "accepts": ["tenter"] },
   "to-study": {
    "text": "étudier",
-   "variants": ["réviser"],
+   "accepts": ["réviser"],
    "notes": { "fr": "réviser ou étudier pour un examen · apprendre une chose nouvelle." }
   },
   "goal": { "text": "but", "grammar": { "gender": "le" } },
   "to-achieve": { "text": "atteindre" },
-  "exercise": { "text": "exercice", "variants": ["l'exercice"], "grammar": { "gender": "l'" } },
+  "exercise": { "text": "exercice", "accepts": ["l'exercice"], "grammar": { "gender": "l'" } },
   "you-can-do-it": {
    "text": "Tu vas sûrement y arriver !",
-   "variants": ["Tu vas y arriver !", "Tu y arriveras !", "Tu peux le faire !"]
+   "accepts": ["Tu vas y arriver !", "Tu y arriveras !", "Tu peux le faire !"]
   }
  }
 }

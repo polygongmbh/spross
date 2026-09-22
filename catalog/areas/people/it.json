@@ -5,7 +5,7 @@
   "person": { "text": "persona", "grammar": { "gender": "la" } },
   "human": {
    "text": "essere umano",
-   "variants": ["l'essere umano"],
+   "accepts": ["l'essere umano"],
    "grammar": { "gender": "l'" },
    "notes": { "it": "l'essere umano è la specie · la persona è una sola." }
   },
@@ -22,20 +22,20 @@
   "daughter": { "text": "figlia", "grammar": { "gender": "la" } },
   "brother": { "text": "fratello", "grammar": { "gender": "il" } },
   "sister": { "text": "sorella", "grammar": { "gender": "la" } },
-  "man": { "text": "uomo", "variants": ["l'uomo"], "grammar": { "gender": "l'", "plural": "uomini" } },
+  "man": { "text": "uomo", "accepts": ["l'uomo"], "grammar": { "gender": "l'", "plural": "uomini" } },
   "woman": { "text": "donna", "grammar": { "gender": "la" } },
   "boy": { "text": "ragazzo", "grammar": { "gender": "il" } },
   "girl": { "text": "ragazza", "grammar": { "gender": "la" } },
   "baby": {
    "text": "neonato",
-   "variants": ["bebè"],
+   "accepts": ["bebè"],
    "grammar": { "gender": "il" },
    "notes": { "it": "il neonato è appena nato · dopo è un bambino piccolo." }
   },
-  "friend": { "text": "amico", "variants": ["l'amico"], "grammar": { "gender": "l'", "plural": "amici" } },
+  "friend": { "text": "amico", "accepts": ["l'amico"], "grammar": { "gender": "l'", "plural": "amici" } },
   "friend-f": {
    "text": "amica",
-   "variants": ["l'amica", "un'amica"],
+   "accepts": ["l'amica", "un'amica"],
    "grammar": { "gender": "l'", "plural": "amiche" }
   },
   "grandmother": { "text": "nonna", "grammar": { "gender": "la" } },
@@ -49,22 +49,22 @@
   "to-visit": { "text": "andare a trovare" },
   "to-marry": { "text": "sposarsi" },
   "this-is-my-mother": { "text": "Questa è mia madre." },
-  "where-is-your-father": { "text": "Dov'è vostro padre?", "variants": ["Dov'è Suo padre?"] },
-  "i-have-two-children": { "text": "Ho due figli.", "variants": ["Ho due bambini."] },
+  "where-is-your-father": { "text": "Dov'è vostro padre?", "accepts": ["Dov'è Suo padre?"] },
+  "i-have-two-children": { "text": "Ho due figli.", "accepts": ["Ho due bambini."] },
   "how-is-your-grandmother": {
    "text": "Come sta tua nonna?",
-   "variants": ["Come sta Sua nonna?"],
+   "accepts": ["Come sta Sua nonna?"],
    "orders": ["Tua nonna come sta?"]
   },
   "a-good-friend": { "text": "un buon amico" },
-  "my-girlfriend": { "text": "la mia ragazza", "variants": ["la mia fidanzata"] },
-  "her-boyfriend": { "text": "il suo ragazzo", "variants": ["il suo fidanzato"] },
+  "my-girlfriend": { "text": "la mia ragazza", "accepts": ["la mia fidanzata"] },
+  "her-boyfriend": { "text": "il suo ragazzo", "accepts": ["il suo fidanzato"] },
   "old-people": {
    "text": "le persone anziane",
-   "variants": ["gli anziani", "la gente anziana"],
+   "accepts": ["gli anziani", "la gente anziana"],
    "notes": { "it": "si dice persone anziane · persone vecchie suona male." }
   },
-  "many-friends": { "text": "molti amici", "variants": ["molte amiche"] },
+  "many-friends": { "text": "molti amici", "accepts": ["molte amiche"] },
   "mom-help-me": { "text": "Mamma, aiutami!" }
  }
 }

@@ -9,20 +9,20 @@
   "rain": { "text": "pluvo" },
   "snow": { "text": "neĝo" },
   "wind": { "text": "vento" },
-  "storm": { "text": "ŝtormo", "variants": ["tempesto"] },
+  "storm": { "text": "ŝtormo", "accepts": ["tempesto"] },
   "thunder": { "text": "tondro" },
   "lightning": { "text": "fulmo" },
   "humid": { "text": "humida" },
   "hows-the-weather-today": {
    "text": "Kia estas la vetero hodiaŭ?",
-   "variants": ["Kia vetero estas hodiaŭ?"],
+   "accepts": ["Kia vetero estas hodiaŭ?"],
    "orders": ["Kia estas hodiaŭ la vetero?"]
   },
   "its-raining": {
    "text": "Pluvas.",
    "notes": { "eo": "veteraj verboj ne bezonas subjekton: Pluvas. Neĝas. Ventas." }
   },
-  "the-rain-has-stopped": { "text": "La pluvo ĉesis.", "variants": ["Ne plu pluvas.", "Ĉesis pluvi."] },
+  "the-rain-has-stopped": { "text": "La pluvo ĉesis.", "accepts": ["Ne plu pluvas.", "Ĉesis pluvi."] },
   "the-sun-is-shining": { "text": "La suno brilas!" },
   "what-a-beautiful-day": { "text": "Kia bela tago!" },
   "we-are-staying-home-because-of-the-rain": { "text": "Pro la pluvo ni restas hejme.", "orders": ["Ni restas hejme pro la pluvo."] }

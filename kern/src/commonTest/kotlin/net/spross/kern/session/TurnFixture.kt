@@ -27,14 +27,14 @@ internal object TurnFixture {
         target: String,
         kind: CardKind,
         seedIndex: Int = 0,
-        synonyms: List<String> = emptyList(),
-        variants: List<String> = emptyList(),
-        sourceSynonyms: List<String> = emptyList(),
+        teaches: List<String> = emptyList(),
+        accepts: List<String> = emptyList(),
+        sourceTeaches: List<String> = emptyList(),
     ): Card = Card(
         id = id, kind = kind, area = "test", emoji = null, seedIndex = seedIndex,
         components = emptyList(), feminineOf = null,
-        source = Realization(lang = "de", text = source, synonyms = sourceSynonyms),
-        target = Realization(lang = "sw", text = target, synonyms = synonyms, variants = variants),
+        source = Realization(lang = "de", text = source, teaches = sourceTeaches),
+        target = Realization(lang = "sw", text = target, teaches = teaches, accepts = accepts),
         promptFeminineMarker = false,
     )
 
@@ -52,8 +52,8 @@ internal object TurnFixture {
      */
     val car = card(
         "car", "Auto", "gari", CardKind.Noun, seedIndex = 4,
-        synonyms = listOf("motokaa"), variants = listOf("Gari"),
-        sourceSynonyms = listOf("Wagen"),
+        teaches = listOf("motokaa"), accepts = listOf("Gari"),
+        sourceTeaches = listOf("Wagen"),
     )
 
     /** The merge the catalog documents: one Swahili verb printed by two German concepts. */

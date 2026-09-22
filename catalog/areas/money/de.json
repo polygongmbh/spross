@@ -7,14 +7,14 @@
   "expensive": { "text": "teuer" },
   "cheap": {
    "text": "billig",
-   "synonyms": ["günstig"],
+   "teaches": ["günstig"],
    "notes": { "de": "günstig lobt den Preis, billig kann abwertend klingen." }
   },
   "to-sell": { "text": "verkaufen" },
   "cash": { "text": "Bargeld", "grammar": { "gender": "das" } },
   "bank-card": {
    "text": "Bankkarte",
-   "variants": ["Karte", "EC-Karte"],
+   "accepts": ["Karte", "EC-Karte"],
    "grammar": { "gender": "die", "plural": "-n" }
   },
   "coin": { "text": "Münze", "grammar": { "gender": "die", "plural": "-n" } },
@@ -25,7 +25,7 @@
   },
   "money": { "text": "Geld", "grammar": { "gender": "das" } },
   "to-buy": { "text": "kaufen" },
-  "to-pay": { "text": "bezahlen", "variants": ["zahlen"] },
+  "to-pay": { "text": "bezahlen", "accepts": ["zahlen"] },
   "rich": { "text": "reich" },
   "poor": { "text": "arm" },
   "free-of-charge": { "text": "kostenlos" },
@@ -34,7 +34,7 @@
   "i-have-no-money": { "text": "Ich habe kein Geld." },
   "can-i-pay-by-card": {
    "text": "Kann ich mit Karte zahlen?",
-   "variants": ["Kann ich mit Karte bezahlen?"],
+   "accepts": ["Kann ich mit Karte bezahlen?"],
    "orders": ["Ich kann mit Karte zahlen?"]
   },
   "ive-already-paid": { "text": "Ich habe schon bezahlt." }

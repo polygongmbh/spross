@@ -4,10 +4,10 @@
  "words": {
   "tree": { "text": "árbol", "grammar": { "gender": "el" } },
   "flower": { "text": "flor", "grammar": { "gender": "la" } },
-  "to-go-for-walk": { "text": "pasear", "synonyms": ["dar un paseo"] },
-  "to-jog": { "text": "salir a correr", "synonyms": ["hacer footing"] },
-  "to-plant-flowers": { "text": "plantar flores", "variants": ["sembrar flores"] },
-  "to-grill-meat": { "text": "asar carne", "variants": ["asar carne a la parrilla", "hacer una barbacoa"] },
+  "to-go-for-walk": { "text": "pasear", "teaches": ["dar un paseo"] },
+  "to-jog": { "text": "salir a correr", "teaches": ["hacer footing"] },
+  "to-plant-flowers": { "text": "plantar flores", "accepts": ["sembrar flores"] },
+  "to-grill-meat": { "text": "asar carne", "accepts": ["asar carne a la parrilla", "hacer una barbacoa"] },
   "mountain": { "text": "montaña", "grammar": { "gender": "la" } },
   "forest": { "text": "bosque", "grammar": { "gender": "el" } },
   "stone": { "text": "piedra", "grammar": { "gender": "la" } },
@@ -17,10 +17,7 @@
   "wood": { "text": "madera", "grammar": { "gender": "la" } },
   "stick": { "text": "palo", "grammar": { "gender": "el" } },
   "shadow": { "text": "sombra", "grammar": { "gender": "la" } },
-  "we-are-going-to-the-mountains": {
-   "text": "Vamos a la montaña.",
-   "variants": ["Nos vamos a la montaña.", "Vamos a las montañas."]
-  },
+  "we-are-going-to-the-mountains": { "text": "Vamos a la montaña.", "accepts": ["Nos vamos a la montaña.", "Vamos a las montañas."] },
   "its-cold-in-the-mountains": { "text": "En la montaña hace frío.", "orders": ["Hace frío en la montaña."] }
  }
 }

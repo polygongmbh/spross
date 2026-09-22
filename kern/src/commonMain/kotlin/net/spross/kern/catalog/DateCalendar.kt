@@ -32,13 +32,13 @@ data class DateCalendar(
     val notes: Map<Language, List<String>> = emptyMap(),
 )
 
-/** One calendar name, on the realization schema: a synonym is taught, a variant only accepted. */
+/** One calendar name, on the realization schema: a `teaches` entry is taught, an `accepts` entry only accepted. */
 data class DateNames(
     val text: String,
     /** Distinct lexemes for the same day or month (de `Sonnabend`), prompt-worthy. */
-    val synonyms: List<String> = emptyList(),
+    val teaches: List<String> = emptyList(),
     /** Accept-only spellings, never displayed (eo's x-system twins). */
-    val variants: List<String> = emptyList(),
+    val accepts: List<String> = emptyList(),
     /** Weekdays only — the short form the PROMPT wears in a dated line (`Mo, 3.3.`). */
     val abbr: String? = null,
     /**
@@ -62,24 +62,24 @@ data class DatePatterns(
 
 /**
  * One assembly pattern, on the realization schema the calendar names already wear:
- * a [synonyms] entry is a second way the language genuinely SAYS the date and takes its
- * turn on the reveal (en `the third of March` beside `March third`), a [variants] entry is
+ * a [teaches] entry is a second way the language genuinely SAYS the date and takes its
+ * turn on the reveal (en `the third of March` beside `March third`), an [accepts] entry is
  * only ever accepted (the article that same order drops in speech).
  *
  * The tier rules on the FORM, not on how big the difference is: de `den dritten März` is a
- * whole case away from the canonical and still only a variant, because nothing governs a
+ * whole case away from the canonical and still only accepted, because nothing governs a
  * bare date and so nothing assigns that case (`docs/date-readings.md` § German).
  */
 data class DatePattern(
     val text: String,
-    val synonyms: List<String> = emptyList(),
-    val variants: List<String> = emptyList(),
+    val teaches: List<String> = emptyList(),
+    val accepts: List<String> = emptyList(),
 ) {
     /** Every assembly that grades, the taught ones first. */
-    val forms: List<String> get() = taught + variants
+    val forms: List<String> get() = taught + accepts
 
     /** The assemblies a reveal may teach. */
-    val taught: List<String> get() = listOf(text) + synonyms
+    val taught: List<String> get() = listOf(text) + teaches
 }
 
 /**

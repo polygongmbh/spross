@@ -4,7 +4,7 @@
  "words": {
   "time": {
    "text": "wakati",
-   "synonyms": ["muda"],
+   "teaches": ["muda"],
    "grammar": { "plural": "nyakati" },
    "notes": {
     "sw": "wakati wa jioni · muda mrefu, muda kidogo",
@@ -29,14 +29,14 @@
   "early": { "text": "mapema" },
   "soon": {
    "text": "hivi karibuni",
-   "synonyms": ["punde"],
+   "teaches": ["punde"],
    "notes": { "sw": "atakuja hivi karibuni · alikuja hivi karibuni = jana, juzi" }
   },
   "noon": { "text": "adhuhuri", "grammar": { "plural": "=" } },
   "midnight": { "text": "usiku wa manane", "grammar": { "plural": "=" } },
   "afternoon": {
    "text": "mchana",
-   "synonyms": ["alasiri"],
+   "teaches": ["alasiri"],
    "notes": {
     "sw": "mchana ni jua likiwa juu · alasiri ni baada ya saa tisa",
     "de": "mchana ist auch der helle Tag, alasiri der späte Nachmittag ab etwa 15 Uhr — gegrüßt wird mit „Habari za mchana“ bzw. „Habari za alasiri“."
@@ -47,17 +47,17 @@
   "night": { "text": "usiku", "grammar": { "plural": "=" } },
   "first": {
    "text": "kwanza",
-   "variants": ["wa kwanza", "ya kwanza", "cha kwanza"],
+   "accepts": ["wa kwanza", "ya kwanza", "cha kwanza"],
    "notes": { "sw": "mtu wa kwanza, siku ya kwanza · kwanza peke yake = mwanzoni" }
   },
   "second": {
    "text": "pili",
-   "variants": ["wa pili", "ya pili", "cha pili"],
+   "accepts": ["wa pili", "ya pili", "cha pili"],
    "notes": { "sw": "mtu wa pili, siku ya pili, neno la pili" }
   },
   "next": {
    "text": "-jayo",
-   "variants": ["ijayo", "ujao", "yajayo", "zijazo", "kijacho"],
+   "accepts": ["ijayo", "ujao", "yajayo", "zijazo", "kijacho"],
    "notes": { "sw": "wiki ijayo, mwezi ujao, mwaka ujao" }
   },
   "a-while-ago": {
@@ -68,13 +68,13 @@
   "later": { "text": "baadaye" },
   "last": {
    "text": "-a mwisho",
-   "variants": ["wa mwisho", "ya mwisho", "za mwisho", "cha mwisho", "la mwisho", "vya mwisho"],
+   "accepts": ["wa mwisho", "ya mwisho", "za mwisho", "cha mwisho", "la mwisho", "vya mwisho"],
    "notes": { "sw": "mwisho = ukomo · siku ya mwisho, mtu wa mwisho" }
   },
   "day-after-tomorrow": { "text": "kesho kutwa" },
   "since": { "text": "tangu" },
   "right-now": { "text": "sasa hivi" },
-  "weekend": { "text": "wikendi", "synonyms": ["mwishoni mwa wiki"], "grammar": { "plural": "=" } },
+  "weekend": { "text": "wikendi", "teaches": ["mwishoni mwa wiki"], "grammar": { "plural": "=" } },
   "century": { "text": "karne", "grammar": { "plural": "=" } },
   "decade": { "text": "mwongo", "grammar": { "plural": "miongo" } },
   "millennium": { "text": "milenia", "grammar": { "plural": "=" } },

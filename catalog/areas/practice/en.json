@@ -1,7 +1,7 @@
 {
  "title": "Practice & Goals",
  "words": {
-  "to-practice": { "text": "to practice", "variants": ["to practise"] },
+  "to-practice": { "text": "to practice", "accepts": ["to practise"] },
   "to-try": { "text": "to try" },
   "to-study": { "text": "to study" },
   "goal": { "text": "goal" },

@@ -31,8 +31,8 @@ internal object ScrambleFixture {
         text: String,
         kind: CardKind = CardKind.Noun,
         seed: Int = 0,
-        synonyms: List<String> = emptyList(),
-        variants: List<String> = emptyList(),
+        teaches: List<String> = emptyList(),
+        accepts: List<String> = emptyList(),
     ): Card = Card(
         id = id,
         kind = kind,
@@ -42,7 +42,7 @@ internal object ScrambleFixture {
         components = emptyList(),
         feminineOf = null,
         source = Realization(lang = "en", text = "en-$id"),
-        target = Realization(lang = TARGET, text = text, synonyms = synonyms, variants = variants),
+        target = Realization(lang = TARGET, text = text, teaches = teaches, accepts = accepts),
         promptFeminineMarker = false,
     )
 

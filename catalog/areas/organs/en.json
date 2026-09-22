@@ -18,7 +18,7 @@
   "spleen": { "text": "spleen" },
   "bile": { "text": "bile" },
   "appendix": { "text": "appendix" },
-  "womb": { "text": "womb", "synonyms": ["uterus"] },
+  "womb": { "text": "womb", "teaches": ["uterus"] },
   "pancreas": { "text": "pancreas", "grammar": { "plural": "=" } },
   "ovary": { "text": "ovary", "grammar": { "plural": "ovaries" } }
  }

@@ -20,7 +20,7 @@
   "to-give": { "text": "dar" },
   "to-take": {
    "text": "coger",
-   "variants": ["tomar", "agarrar"],
+   "accepts": ["tomar", "agarrar"],
    "notes": { "es": "En España, coger · en América es vulgar: tomar, agarrar." }
   },
   "to-see": { "text": "ver" },
@@ -37,20 +37,20 @@
   "to-want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
   "to-find": { "text": "encontrar" },
   "to-search": { "text": "buscar", "notes": { "es": "Sin preposición: buscar ayuda, buscar un lugar." } },
-  "to-receive": { "text": "recibir", "synonyms": ["conseguir"] },
+  "to-receive": { "text": "recibir", "teaches": ["conseguir"] },
   "to-look": { "text": "mirar", "notes": { "es": "¡Mira aquí! · Miro la ciudad." } },
   "to-open": { "text": "abrir" },
   "to-close": { "text": "cerrar" },
   "to-stop": {
    "text": "dejar de",
-   "variants": ["parar de"],
+   "accepts": ["parar de"],
    "notes": { "es": "Con infinitivo detrás: dejar de fumar." }
   },
   "to-stand": {
    "text": "estar de pie",
    "notes": { "de": "Spanisch hat kein eigenes Verb dafür · ponerse de pie = sich hinstellen." }
   },
-  "to-send": { "text": "enviar", "synonyms": ["mandar"] },
+  "to-send": { "text": "enviar", "teaches": ["mandar"] },
   "to-deliver": {
    "text": "repartir",
    "notes": {
@@ -65,13 +65,13 @@
   "to-break": { "text": "romper" },
   "to-push": { "text": "empujar" },
   "to-pull": { "text": "tirar" },
-  "to-have-to": { "text": "tener que", "synonyms": ["deber"] },
+  "to-have-to": { "text": "tener que", "teaches": ["deber"] },
   "to-put": { "text": "poner" },
   "to-carry": { "text": "llevar" },
-  "do-you-have-water": { "text": "¿Tiene agua?", "variants": ["¿Tiene usted agua?", "¿Tienes agua?"] },
+  "do-you-have-water": { "text": "¿Tiene agua?", "accepts": ["¿Tiene usted agua?", "¿Tienes agua?"] },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",
-   "variants": ["¿De dónde es?", "¿De dónde eres?"],
+   "accepts": ["¿De dónde es?", "¿De dónde eres?"],
    "notes": {
     "es": "El origen va con ser: soy de Alemania.",
     "de": "Spanisch fragt nach der Herkunft mit ser, nicht mit venir."

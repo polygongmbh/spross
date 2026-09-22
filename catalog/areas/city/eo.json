@@ -9,21 +9,21 @@
   "neighborhood": { "text": "kvartalo" },
   "building": { "text": "konstruaĵo" },
   "bank": { "text": "banko" },
-  "post-office": { "text": "poŝtoficejo", "variants": ["poŝtejo", "poŝto"] },
+  "post-office": { "text": "poŝtoficejo", "accepts": ["poŝtejo", "poŝto"] },
   "church": { "text": "preĝejo" },
   "mosque": { "text": "moskeo" },
   "library": { "text": "biblioteko" },
   "police": { "text": "polico" },
-  "cinema": { "text": "kinejo", "variants": ["kino"] },
+  "cinema": { "text": "kinejo", "accepts": ["kino"] },
   "bridge": { "text": "ponto" },
   "is-there-a-bank-here": {
    "text": "Ĉu estas banko ĉi tie?",
-   "variants": ["Ĉu ĉi tie estas banko?", "Ĉu troviĝas banko ĉi tie?"],
+   "accepts": ["Ĉu ĉi tie estas banko?", "Ĉu troviĝas banko ĉi tie?"],
    "orders": ["Ĉu banko estas ĉi tie?"]
   },
   "i-live-in-this-neighborhood": {
    "text": "Mi loĝas en ĉi tiu kvartalo.",
-   "variants": ["Mi loĝas en tiu ĉi kvartalo."],
+   "accepts": ["Mi loĝas en tiu ĉi kvartalo."],
    "orders": ["En ĉi tiu kvartalo mi loĝas."]
   }
  }

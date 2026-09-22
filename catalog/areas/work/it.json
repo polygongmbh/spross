@@ -5,18 +5,18 @@
   "work": { "text": "lavoro", "grammar": { "gender": "il" } },
   "job-application": {
    "text": "candidatura",
-   "variants": ["domanda di lavoro", "domanda di assunzione"],
+   "accepts": ["domanda di lavoro", "domanda di assunzione"],
    "grammar": { "gender": "la" }
   },
   "cv": {
    "text": "curriculum",
-   "variants": ["curriculum vitae", "CV"],
+   "accepts": ["curriculum vitae", "CV"],
    "grammar": { "gender": "il", "plural": "=" }
   },
   "contract": { "text": "contratto", "grammar": { "gender": "il" } },
   "salary": {
    "text": "stipendio",
-   "synonyms": ["salario"],
+   "teaches": ["salario"],
    "grammar": { "gender": "lo", "plural": "stipendi" },
    "notes": { "it": "lo stipendio arriva ogni mese · il salario si conta sul lavoro fatto." }
   },
@@ -29,8 +29,8 @@
   "shift": { "text": "turno", "grammar": { "gender": "il" } },
   "company": {
    "text": "azienda",
-   "synonyms": ["ditta"],
-   "variants": ["l'azienda", "un'azienda", "società"],
+   "teaches": ["ditta"],
+   "accepts": ["l'azienda", "un'azienda", "società"],
    "grammar": { "gender": "l'" },
    "notes": {
     "it": "l'azienda o la ditta è dove si lavora · la firma sta sul foglio.",
@@ -39,7 +39,7 @@
   },
   "to-apply": {
    "text": "candidarsi a un posto",
-   "variants": ["candidarsi", "fare domanda", "presentare la candidatura"],
+   "accepts": ["candidarsi", "fare domanda", "presentare la candidatura"],
    "notes": {
     "it": "candidarsi vuole a: mi candido a un posto.",
     "de": "candidarsi steht mit a: candidarsi a un'offerta · fare domanda passt auch für Anträge."
@@ -47,72 +47,72 @@
   },
   "to-earn": {
    "text": "guadagnare",
-   "variants": ["prendere"],
+   "accepts": ["prendere"],
    "notes": { "it": "per lo stipendio si chiede Quanto prendi?" }
   },
-  "to-start": { "text": "cominciare", "synonyms": ["iniziare"] },
+  "to-start": { "text": "cominciare", "teaches": ["iniziare"] },
   "to-leave": {
    "text": "lasciare",
-   "synonyms": ["abbandonare"],
+   "teaches": ["abbandonare"],
    "notes": { "it": "lasciare il lavoro è smettere · da un posto si esce." }
   },
   "to-quit": {
    "text": "lasciare il lavoro",
-   "variants": ["licenziarsi", "dare le dimissioni"],
+   "accepts": ["licenziarsi", "dare le dimissioni"],
    "notes": { "it": "licenziarsi è andarsene · licenziare qualcuno è mandarlo via." }
   },
   "to-hire": { "text": "assumere" },
   "to-help": { "text": "aiutare" },
-  "to-work-overtime": { "text": "fare gli straordinari", "variants": ["fare straordinari"] },
+  "to-work-overtime": { "text": "fare gli straordinari", "accepts": ["fare straordinari"] },
   "profession": {
    "text": "professione",
-   "synonyms": ["mestiere"],
+   "teaches": ["mestiere"],
    "grammar": { "gender": "la" },
    "notes": { "it": "la professione si studia · il mestiere si impara facendo." }
   },
   "interview": {
    "text": "colloquio di lavoro",
-   "variants": ["colloquio"],
+   "accepts": ["colloquio"],
    "grammar": { "gender": "il", "plural": "colloqui di lavoro" }
   },
   "working-hours": {
    "text": "orario di lavoro",
-   "variants": ["l'orario di lavoro"],
+   "accepts": ["l'orario di lavoro"],
    "grammar": { "gender": "l'", "plural": "orari di lavoro" }
   },
   "full-time": {
    "text": "tempo pieno",
-   "variants": ["a tempo pieno", "full-time"],
+   "accepts": ["a tempo pieno", "full-time"],
    "grammar": { "gender": "il" }
   },
   "part-time": {
    "text": "tempo parziale",
-   "variants": ["a tempo parziale", "part-time"],
+   "accepts": ["a tempo parziale", "part-time"],
    "grammar": { "gender": "il" },
    "notes": { "it": "sul contratto a tempo pieno o parziale · parlando full-time e part-time." }
   },
   "tax": {
    "text": "imposta",
-   "variants": ["l'imposta", "un'imposta", "tassa"],
+   "accepts": ["l'imposta", "un'imposta", "tassa"],
    "grammar": { "gender": "l'" },
    "notes": { "it": "l'imposta è quella sul reddito · la tassa si paga per un servizio." }
   },
   "work-permit": { "text": "permesso di lavoro", "grammar": { "gender": "il" } },
   "training": {
    "text": "formazione professionale",
-   "variants": ["formazione"],
+   "accepts": ["formazione"],
    "grammar": { "gender": "la" },
    "notes": { "it": "la formazione professionale è a scuola · l'apprendistato è in azienda." }
   },
   "notice": {
    "text": "licenziamento",
-   "variants": ["lettera di licenziamento"],
+   "accepts": ["lettera di licenziamento"],
    "grammar": { "gender": "il" },
    "notes": { "it": "il licenziamento viene dall'azienda · le dimissioni le dai tu." }
   },
   "worker": {
    "text": "lavoratore",
-   "synonyms": ["operaio"],
+   "teaches": ["operaio"],
    "grammar": { "gender": "il" },
    "notes": { "it": "il lavoratore è chiunque lavori · l'operaio sta in fabbrica." }
   },
@@ -120,23 +120,23 @@
   "customer": { "text": "cliente", "grammar": { "gender": "il" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Domani mi presento in azienda.",
-   "variants": ["Domani mi presento in ditta.", "Domani mi presento all'azienda."],
+   "accepts": ["Domani mi presento in ditta.", "Domani mi presento all'azienda."],
    "orders": ["Mi presento domani in azienda."]
   },
   "ill-send-the-doctors-note-right-away": {
    "text": "Le mando subito il certificato medico.",
-   "variants": ["Ti mando subito il certificato medico.", "Le invio subito il certificato medico."],
+   "accepts": ["Ti mando subito il certificato medico.", "Le invio subito il certificato medico."],
    "orders": ["Le mando il certificato medico subito."]
   },
   "can-you-help-me-briefly": {
    "text": "Può aiutarmi un momento?",
-   "variants": ["Puoi aiutarmi un momento?", "Mi può aiutare un momento?"]
+   "accepts": ["Puoi aiutarmi un momento?", "Mi può aiutare un momento?"]
   },
   "read-the-contract-carefully": {
    "text": "Legga bene il contratto.",
-   "variants": ["Leggi bene il contratto.", "Legga attentamente il contratto."]
+   "accepts": ["Leggi bene il contratto.", "Legga attentamente il contratto."]
   },
   "we-knock-off-at-5": { "text": "Oggi stacchiamo alle 5.", "orders": ["Stacchiamo oggi alle 5."] },
-  "workplace": { "text": "ufficio", "grammar": { "gender": "l'" }, "variants": ["l'ufficio"] }
+  "workplace": { "text": "ufficio", "grammar": { "gender": "l'" }, "accepts": ["l'ufficio"] }
  }
 }
