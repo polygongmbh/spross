@@ -14,7 +14,6 @@
   "to-need": { "text": "necesitar" },
   "to-know-something": { "text": "saber", "notes": { "es": "Sé la respuesta · Sabe hablar." } },
   "to-know-person": { "text": "conocer a alguien", "notes": { "es": "también los lugares: conocer Madrid." } },
-  "to-remember": { "text": "recordar" },
   "to-show": { "text": "mostrar" },
   "to-explain": { "text": "explicar" },
   "to-say": { "text": "decir" },
@@ -37,6 +36,7 @@
   "i-need-help": { "text": "Necesito ayuda." },
   "i-dont-know": { "text": "No lo sé.", "variants": ["No sé."] },
   "i-forgot": { "text": "Lo olvidé.", "variants": ["Se me olvidó."] },
-  "what-is-this-called": { "text": "¿Cómo se llama esto?" }
+  "what-is-this-called": { "text": "¿Cómo se llama esto?" },
+  "to-introduce-oneself": { "text": "presentarse" }
  }
 }

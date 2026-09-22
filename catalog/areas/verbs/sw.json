@@ -23,8 +23,6 @@
    "text": "kuweza",
    "notes": { "sw": "ni-na-weza, u-na-weza, a-na-weza · siwezi, huwezi, hawezi" }
   },
-  "to-think": { "text": "kufikiri", "notes": { "sw": "Nafikiri · kufikiria jambo = kulitafakari" } },
-  "to-imagine": { "text": "kuwazia" },
   "to-wait": { "text": "kusubiri" },
   "to-want": { "text": "kutaka", "notes": { "sw": "kutaka → sitaki, hutaki · kujua → sijui, hujui" } },
   "to-find": {
@@ -67,7 +65,6 @@
    }
   },
   "to-carry": { "text": "kubeba" },
-  "to-forget": { "text": "kusahau" },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" },
   "can-you-see-me": { "text": "Unaniona?" },

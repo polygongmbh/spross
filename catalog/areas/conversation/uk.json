@@ -14,7 +14,6 @@
   "to-need": { "text": "потребувати" },
   "to-know-something": { "text": "знати" },
   "to-know-person": { "text": "знати когось" },
-  "to-remember": { "text": "пам'ятати" },
   "to-show": { "text": "показувати" },
   "to-explain": { "text": "пояснювати" },
   "to-say": { "text": "казати" },
@@ -30,6 +29,7 @@
   "i-need-help": { "text": "Мені потрібна допомога.", "orders": ["Допомога мені потрібна."] },
   "i-dont-know": { "text": "Я не знаю." },
   "i-forgot": { "text": "Я забув.", "variants": ["Я забула."] },
-  "what-is-this-called": { "text": "Як це називається?" }
+  "what-is-this-called": { "text": "Як це називається?" },
+  "to-introduce-oneself": { "text": "представлятися" }
  }
 }

@@ -18,7 +18,6 @@
    "variants": ["encontrarse"],
    "notes": { "es": "¿Cómo se siente? · en la consulta, ¿Cómo se encuentra?" }
   },
-  "to-hope": { "text": "esperar" },
   "to-cry": { "text": "llorar" }
  }
 }

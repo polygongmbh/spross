@@ -20,7 +20,6 @@
   "t-shirt": { "text": "T-shirt", "variants": ["tee-shirt"], "grammar": { "gender": "le" } },
   "to-sleep": { "text": "dormir" },
   "to-wake-up": { "text": "se réveiller" },
-  "to-dream": { "text": "rêver" },
   "to-get-up": { "text": "se lever" },
   "to-get-undressed": { "text": "se déshabiller", "variants": ["enlever ses vêtements"] },
   "to-cuddle": { "text": "faire un câlin", "variants": ["se faire un câlin", "câliner"] },

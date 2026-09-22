@@ -14,8 +14,6 @@
    "notes": { "uk": "любити це слово · слабше — мені подобається · романтично — кохати." }
   },
   "to-can": { "text": "могти" },
-  "to-think": { "text": "думати" },
-  "to-imagine": { "text": "уявляти" },
   "to-wait": { "text": "чекати" },
   "to-want": { "text": "хотіти" },
   "to-find": { "text": "знаходити" },
@@ -45,7 +43,6 @@
   "to-have-to": { "text": "мусити", "synonyms": ["повинен"] },
   "to-put": { "text": "класти", "synonyms": ["ставити"] },
   "to-carry": { "text": "нести" },
-  "to-forget": { "text": "забувати" },
   "do-you-have-water": { "text": "У вас є вода?", "variants": ["У тебе є вода?"], "orders": ["Вода у вас є?"] },
   "where-are-you-from": { "text": "Звідки ви?" },
   "can-you-see-me": {

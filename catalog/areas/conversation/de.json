@@ -14,7 +14,6 @@
   "to-need": { "text": "brauchen" },
   "to-know-something": { "text": "wissen" },
   "to-know-person": { "text": "jemanden kennen", "notes": { "de": "auch Orte: Ich kenne Paris." } },
-  "to-remember": { "text": "sich erinnern" },
   "to-show": { "text": "zeigen" },
   "to-explain": { "text": "erklären" },
   "to-say": { "text": "sagen" },
@@ -37,6 +36,7 @@
   "i-need-help": { "text": "Ich brauche Hilfe." },
   "i-dont-know": { "text": "Ich weiß nicht." },
   "i-forgot": { "text": "Ich habe es vergessen.", "variants": ["Das habe ich vergessen."] },
-  "what-is-this-called": { "text": "Wie nennt man das?" }
+  "what-is-this-called": { "text": "Wie nennt man das?" },
+  "to-introduce-oneself": { "text": "sich vorstellen" }
  }
 }

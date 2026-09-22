@@ -14,7 +14,6 @@
   "smile": { "text": "sorriso", "grammar": { "gender": "il" } },
   "to-smile": { "text": "sorridere" },
   "to-feel": { "text": "sentirsi", "notes": { "it": "come ti senti? · mi sento bene." } },
-  "to-hope": { "text": "sperare" },
   "to-cry": { "text": "piangere" }
  }
 }

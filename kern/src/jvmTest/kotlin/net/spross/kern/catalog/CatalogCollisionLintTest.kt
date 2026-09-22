@@ -130,16 +130,6 @@ class CatalogCollisionLintTest {
                 // its own second sense (the small/vacation flat, see hall/apartment's own
                 // note) and is not the everyday word either, so there is no honest repick.
                 "es piso: hall/apartment, living/story",
-                // Reviewed 2026-08-29: de `sich vorstellen` is "to introduce oneself" AND "to
-                // imagine" — the infinitive citation doesn't distinguish the accusative
-                // reflexive (Ich stelle mich vor) from the dative one (Ich stelle mir das
-                // vor), so one phrase genuinely covers both German senses. en/es/fr/it/sw/uk
-                // all split the pair (introduce oneself/imagine, presentarse/imaginar,
-                // se présenter/imaginer, presentarsi/immaginare, kujitambulisha/kuwazia,
-                // представитися/уявляти); `sich einbilden` skews toward a delusion and
-                // `sich ausmalen` toward picturing something vividly, so neither is the
-                // plain word a learner reaches for.
-                "de sich vorstellen: verbs/to-imagine, work/to-introduce-oneself",
                 // Reviewed 2026-08-23: `cold` is the illness AND the adjective — English has
                 // one word where de/eo/es/fr/it/sw/uk all split it (Erkältung/kalt,
                 // malvarmumo/malvarma, resfriado/frío, rhume/froid, raffreddore/freddo,
@@ -165,7 +155,7 @@ class CatalogCollisionLintTest {
                 // Reviewed 2026-09-05: es `esperar` is to wait AND to hope — de/en/eo/fr/it/sw/uk
                 // all split the pair (warten/hoffen, attendre/espérer, kusubiri/kutumaini).
                 // `aguardar` for waiting is literary, so both stay one-language.
-                "es esperar: emotions/to-hope, verbs/to-wait",
+                "es esperar: mind/to-hope, verbs/to-wait",
                 // Reviewed 2026-09-17: es `que` is the comparative conjunction (más grande
                 // que) AND the declarative (sé que) — de/en/eo/it/sw/uk all split the pair
                 // (als/dass, than/that, ol/ke, di/che, kuliko/kwamba, ніж/що). No second

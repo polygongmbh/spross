@@ -25,7 +25,6 @@
   "t-shirt": { "text": "maglietta", "variants": ["t-shirt"], "grammar": { "gender": "la" } },
   "to-sleep": { "text": "dormire" },
   "to-wake-up": { "text": "svegliarsi" },
-  "to-dream": { "text": "sognare" },
   "to-get-up": { "text": "alzarsi" },
   "to-get-undressed": { "text": "spogliarsi", "variants": ["svestirsi"] },
   "to-cuddle": { "text": "coccolarsi", "variants": ["fare le coccole"] },

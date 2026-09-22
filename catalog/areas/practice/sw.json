@@ -5,7 +5,6 @@
   "to-try": { "text": "kujaribu" },
   "to-study": { "text": "kujifunza" },
   "goal": { "text": "lengo", "grammar": { "plural": "malengo" } },
-  "vision": { "text": "maono" },
   "to-achieve": { "text": "kufikia", "notes": { "sw": "kufikia lengo = kutimiza lengo." } },
   "exercise": {
    "text": "zoezi",

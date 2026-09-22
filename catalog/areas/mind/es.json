@@ -1,0 +1,13 @@
+{
+ "title": "La mente",
+ "subtitle": "Lo que pasa por la cabeza.",
+ "words": {
+  "to-think": { "text": "pensar", "notes": { "es": "pensar en alguien · pensar que algo es así." } },
+  "to-remember": { "text": "recordar" },
+  "to-forget": { "text": "olvidar" },
+  "to-imagine-something": { "text": "imaginar" },
+  "to-dream": { "text": "soñar" },
+  "to-hope": { "text": "esperar" },
+  "vision": { "text": "visión", "grammar": { "gender": "la" } }
+ }
+}

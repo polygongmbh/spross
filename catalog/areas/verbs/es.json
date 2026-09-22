@@ -33,8 +33,6 @@
    }
   },
   "to-can": { "text": "poder", "notes": { "es": "poder → puedo, puedes, puede · ¿Se puede?" } },
-  "to-think": { "text": "pensar", "notes": { "es": "pensar en alguien · pensar que algo es así." } },
-  "to-imagine": { "text": "imaginar" },
   "to-wait": { "text": "esperar", "notes": { "es": "esperar una respuesta · Espero que sí." } },
   "to-want": { "text": "querer", "notes": { "de": "querer heißt wollen und lieben: Te quiero." } },
   "to-find": { "text": "encontrar" },
@@ -70,7 +68,6 @@
   "to-have-to": { "text": "tener que", "synonyms": ["deber"] },
   "to-put": { "text": "poner" },
   "to-carry": { "text": "llevar" },
-  "to-forget": { "text": "olvidar" },
   "do-you-have-water": { "text": "¿Tiene agua?", "variants": ["¿Tiene usted agua?", "¿Tienes agua?"] },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",

@@ -1,0 +1,13 @@
+{
+ "title": "La mente",
+ "subtitle": "Quello che passa per la testa.",
+ "words": {
+  "to-think": { "text": "pensare", "notes": { "it": "penso a te · penso che tu sia a casa." } },
+  "to-remember": { "text": "ricordarsi" },
+  "to-forget": { "text": "dimenticare" },
+  "to-imagine-something": { "text": "immaginare" },
+  "to-dream": { "text": "sognare" },
+  "to-hope": { "text": "sperare" },
+  "vision": { "text": "visione", "grammar": { "gender": "la" } }
+ }
+}

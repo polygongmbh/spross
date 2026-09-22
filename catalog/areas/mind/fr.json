@@ -1,0 +1,13 @@
+{
+ "title": "L'esprit",
+ "subtitle": "Ce qui se passe dans la tête.",
+ "words": {
+  "to-think": { "text": "penser", "notes": { "fr": "penser à toi · je pense que c'est vrai." } },
+  "to-remember": { "text": "se souvenir" },
+  "to-forget": { "text": "oublier" },
+  "to-imagine-something": { "text": "imaginer" },
+  "to-dream": { "text": "rêver" },
+  "to-hope": { "text": "espérer" },
+  "vision": { "text": "vision", "grammar": { "gender": "la" } }
+ }
+}

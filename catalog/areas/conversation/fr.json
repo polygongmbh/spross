@@ -29,7 +29,6 @@
   "to-need": { "text": "avoir besoin de" },
   "to-know-something": { "text": "savoir", "notes": { "fr": "savoir nager, savoir où c'est." } },
   "to-know-person": { "text": "connaître quelqu'un", "notes": { "fr": "aussi les lieux : connaître Paris." } },
-  "to-remember": { "text": "se souvenir" },
   "to-show": { "text": "montrer" },
   "to-explain": { "text": "expliquer" },
   "to-say": { "text": "dire" },
@@ -50,6 +49,7 @@
   "i-need-help": { "text": "J'ai besoin d'aide." },
   "i-dont-know": { "text": "Je ne sais pas.", "variants": ["Je sais pas."] },
   "i-forgot": { "text": "J'ai oublié." },
-  "what-is-this-called": { "text": "Comment appelle-t-on ça ?", "variants": ["Comment ça s'appelle ?"] }
+  "what-is-this-called": { "text": "Comment appelle-t-on ça ?", "variants": ["Comment ça s'appelle ?"] },
+  "to-introduce-oneself": { "text": "se présenter" }
  }
 }

@@ -14,7 +14,6 @@
   "to-need": { "text": "bezoni" },
   "to-know-something": { "text": "scii", "notes": { "eo": "scii faktojn, ne homojn." } },
   "to-know-person": { "text": "koni iun", "notes": { "eo": "ankaŭ lokojn: koni Parizon." } },
-  "to-remember": { "text": "memori" },
   "to-show": { "text": "montri" },
   "to-explain": { "text": "klarigi" },
   "to-say": { "text": "diri" },
@@ -38,6 +37,7 @@
    "text": "Kiel oni nomas tion?",
    "variants": ["Kiel tio nomiĝas?"],
    "orders": ["Kiel tion oni nomas?"]
-  }
+  },
+  "to-introduce-oneself": { "text": "prezenti sin", "variants": ["sin prezenti"] }
  }
 }

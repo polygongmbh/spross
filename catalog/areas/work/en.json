@@ -12,7 +12,6 @@
   "shift": { "text": "shift" },
   "company": { "text": "company", "grammar": { "plural": "companies" } },
   "to-apply": { "text": "to apply for a job", "variants": ["to apply"] },
-  "to-introduce-oneself": { "text": "to introduce oneself" },
   "to-earn": { "text": "to earn" },
   "to-start": { "text": "to start" },
   "to-leave": { "text": "to leave" },

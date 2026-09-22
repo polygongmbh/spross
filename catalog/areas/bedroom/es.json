@@ -20,7 +20,6 @@
   "t-shirt": { "text": "camiseta", "variants": ["playera", "remera"], "grammar": { "gender": "la" } },
   "to-sleep": { "text": "dormir" },
   "to-wake-up": { "text": "despertarse" },
-  "to-dream": { "text": "soñar" },
   "to-get-up": { "text": "levantarse" },
   "to-get-undressed": { "text": "desvestirse", "synonyms": ["quitarse la ropa"], "variants": ["desnudarse"] },
   "to-cuddle": { "text": "acurrucarse", "synonyms": ["hacerse mimos"], "variants": ["achucharse", "abrazarse"] },

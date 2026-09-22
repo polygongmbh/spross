@@ -19,7 +19,6 @@
  { "slug": "employer", "kind": "noun" },
  { "slug": "job-application", "kind": "noun", "emoji": "📩" },
  { "slug": "interview", "kind": "noun", "emoji": "🤝" },
- { "slug": "to-introduce-oneself", "kind": "verb", "emoji": "🙋" },
  { "slug": "to-hire", "kind": "verb", "emoji": "🧑‍💼" },
  { "slug": "shift", "kind": "noun", "emoji": "🕗" },
  { "slug": "working-hours", "kind": "noun", "emoji": "⏰" },
@@ -37,7 +36,7 @@
   "slug": "tomorrow-i-have-a-job-interview",
   "kind": "phrase",
   "emoji": "👔",
-  "components": ["to-introduce-oneself", "company"]
+  "components": ["company"]
  },
  {
   "slug": "ill-send-the-doctors-note-right-away",

@@ -1,0 +1,9 @@
+[
+ { "slug": "to-think", "kind": "verb", "emoji": "🤔" },
+ { "slug": "to-remember", "kind": "verb", "emoji": "📌" },
+ { "slug": "to-forget", "kind": "verb", "emoji": "💨" },
+ { "slug": "to-imagine-something", "kind": "verb", "emoji": "💭" },
+ { "slug": "to-dream", "kind": "verb", "emoji": "🌙" },
+ { "slug": "to-hope", "kind": "verb" },
+ { "slug": "vision", "kind": "noun", "emoji": "🔭" }
+]

@@ -1,0 +1,19 @@
+{
+ "title": "La menso",
+ "subtitle": "Kio okazas en la kapo.",
+ "words": {
+  "to-think": { "text": "pensi", "notes": { "eo": "pensi pri io · pensi ke io estas vera." } },
+  "to-remember": { "text": "memori" },
+  "to-forget": { "text": "forgesi" },
+  "to-imagine-something": { "text": "imagi" },
+  "to-dream": {
+   "text": "sonĝi",
+   "notes": {
+    "eo": "sonĝi okazas dum dormo · revi estas deziri ion maldormante.",
+    "en": "sonĝi is dreaming in your sleep; daydreaming or longing for something is revi."
+   }
+  },
+  "to-hope": { "text": "esperi" },
+  "vision": { "text": "vizio" }
+ }
+}

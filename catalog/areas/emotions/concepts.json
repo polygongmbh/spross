@@ -11,7 +11,6 @@
  { "slug": "smile", "kind": "noun", "emoji": "🙂" },
  { "slug": "to-smile", "kind": "verb", "emoji": "🙂" },
  { "slug": "to-feel", "kind": "verb" },
- { "slug": "to-hope", "kind": "verb" },
  { "slug": "to-cry", "kind": "verb" },
  { "slug": "doubt", "kind": "noun", "emoji": "🤔" },
  { "slug": "to-confuse", "kind": "verb" },

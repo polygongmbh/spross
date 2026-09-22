@@ -35,8 +35,6 @@
    "text": "potere",
    "notes": { "it": "posso entrare? · puoi ripeterlo? · può parlare più forte?" }
   },
-  "to-think": { "text": "pensare", "notes": { "it": "penso a te · penso che tu sia a casa." } },
-  "to-imagine": { "text": "immaginare" },
   "to-wait": { "text": "aspettare", "notes": { "it": "aspettare fuori · aspettare una risposta." } },
   "to-want": {
    "text": "volere",
@@ -85,7 +83,6 @@
   "to-have-to": { "text": "dovere" },
   "to-put": { "text": "mettere" },
   "to-carry": { "text": "portare" },
-  "to-forget": { "text": "dimenticare" },
   "do-you-have-water": { "text": "Ha acqua?", "variants": ["Ha dell'acqua?", "Avete acqua?", "Hai acqua?"] },
   "where-are-you-from": {
    "text": "Di dov'è?",

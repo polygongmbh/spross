@@ -1,0 +1,13 @@
+{
+ "title": "The Mind",
+ "subtitle": "What goes on in your head.",
+ "words": {
+  "to-think": { "text": "to think" },
+  "to-remember": { "text": "to remember" },
+  "to-forget": { "text": "to forget" },
+  "to-imagine-something": { "text": "to imagine" },
+  "to-dream": { "text": "to dream" },
+  "to-hope": { "text": "to hope" },
+  "vision": { "text": "vision" }
+ }
+}

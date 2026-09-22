@@ -17,8 +17,6 @@
   "to-make": { "text": "fari" },
   "to-like": { "text": "ŝati" },
   "to-can": { "text": "povi", "notes": { "eo": "povi: Mi povas iri · scipovi: Mi scipovas la lingvon." } },
-  "to-think": { "text": "pensi", "notes": { "eo": "pensi pri io · pensi ke io estas vera." } },
-  "to-imagine": { "text": "imagi" },
   "to-wait": { "text": "atendi" },
   "to-want": { "text": "voli" },
   "to-find": { "text": "trovi" },
@@ -53,7 +51,6 @@
   "to-have-to": { "text": "devi" },
   "to-put": { "text": "meti" },
   "to-carry": { "text": "porti" },
-  "to-forget": { "text": "forgesi" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?", "orders": ["Ĉu akvon vi havas?"] },
   "where-are-you-from": { "text": "De kie vi venas?", "orders": ["De kie venas vi?"] },
   "can-you-see-me": {

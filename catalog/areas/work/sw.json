@@ -16,7 +16,6 @@
   "shift": { "text": "zamu", "grammar": { "plural": "=" } },
   "company": { "text": "kampuni", "grammar": { "plural": "=" } },
   "to-apply": { "text": "kuomba kazi" },
-  "to-introduce-oneself": { "text": "kujitambulisha" },
   "to-start": { "text": "kuanza" },
   "to-quit": { "text": "kuacha kazi" },
   "to-hire": { "text": "kuajiri" },

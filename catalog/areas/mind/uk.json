@@ -1,0 +1,13 @@
+{
+ "title": "Розум",
+ "subtitle": "Що діється в голові.",
+ "words": {
+  "to-think": { "text": "думати" },
+  "to-remember": { "text": "пам'ятати" },
+  "to-forget": { "text": "забувати" },
+  "to-imagine-something": { "text": "уявляти" },
+  "to-dream": { "text": "бачити сни" },
+  "to-hope": { "text": "сподіватися" },
+  "vision": { "text": "бачення" }
+ }
+}

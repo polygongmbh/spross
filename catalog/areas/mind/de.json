@@ -1,0 +1,13 @@
+{
+ "title": "Der Geist",
+ "subtitle": "Was im Kopf vorgeht.",
+ "words": {
+  "to-think": { "text": "denken" },
+  "to-remember": { "text": "sich erinnern" },
+  "to-forget": { "text": "vergessen" },
+  "to-imagine-something": { "text": "sich etwas vorstellen" },
+  "to-dream": { "text": "träumen" },
+  "to-hope": { "text": "hoffen" },
+  "vision": { "text": "Vision", "grammar": { "gender": "die", "plural": "Visionen" } }
+ }
+}

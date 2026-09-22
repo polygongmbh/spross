@@ -14,7 +14,6 @@
   "to-need": { "text": "kuhitaji" },
   "to-know-something": { "text": "kujua" },
   "to-know-person": { "text": "kumjua mtu" },
-  "to-remember": { "text": "kukumbuka" },
   "to-show": { "text": "kuonyesha" },
   "to-explain": { "text": "kueleza" },
   "to-say": { "text": "kusema" },
@@ -26,6 +25,7 @@
   "i-need-help": { "text": "Nahitaji msaada." },
   "i-dont-know": { "text": "Sijui." },
   "i-forgot": { "text": "Nimesahau." },
-  "what-is-this-called": { "text": "Hii inaitwaje?" }
+  "what-is-this-called": { "text": "Hii inaitwaje?" },
+  "to-introduce-oneself": { "text": "kujitambulisha" }
  }
 }

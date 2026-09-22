@@ -12,7 +12,6 @@
   "shift": { "text": "зміна" },
   "company": { "text": "фірма", "variants": ["компанія"] },
   "to-apply": { "text": "подаватися на роботу", "variants": ["подаватися", "податися на роботу"] },
-  "to-introduce-oneself": { "text": "представлятися" },
   "to-earn": { "text": "заробляти" },
   "to-start": { "text": "починати" },
   "to-leave": { "text": "залишати" },

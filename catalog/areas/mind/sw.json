@@ -1,0 +1,13 @@
+{
+ "title": "Akili",
+ "subtitle": "Yanayopita kichwani.",
+ "words": {
+  "to-think": { "text": "kufikiri", "notes": { "sw": "Nafikiri · kufikiria jambo = kulitafakari" } },
+  "to-remember": { "text": "kukumbuka" },
+  "to-forget": { "text": "kusahau" },
+  "to-imagine-something": { "text": "kuwazia" },
+  "to-dream": { "text": "kuota ndoto" },
+  "to-hope": { "text": "kutumaini", "notes": { "sw": "Natumaini utapona · Tunatumaini mvua itanyesha" } },
+  "vision": { "text": "maono" }
+ }
+}

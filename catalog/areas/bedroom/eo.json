@@ -22,13 +22,6 @@
     "en": "vekiĝi is waking up by yourself; veki is waking someone else."
    }
   },
-  "to-dream": {
-   "text": "sonĝi",
-   "notes": {
-    "eo": "sonĝi okazas dum dormo · revi estas deziri ion maldormante.",
-    "en": "sonĝi is dreaming in your sleep; daydreaming or longing for something is revi."
-   }
-  },
   "to-get-up": { "text": "ellitiĝi", "variants": ["leviĝi"] },
   "to-get-undressed": { "text": "senvestiĝi", "variants": ["malvestiĝi", "senvestigi sin"] },
   "to-cuddle": {

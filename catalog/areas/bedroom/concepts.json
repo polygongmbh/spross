@@ -13,7 +13,6 @@
  { "slug": "soft", "kind": "adjective", "emoji": "🧸" },
  { "slug": "wardrobe", "kind": "noun" },
  { "slug": "alarm-clock", "kind": "noun", "emoji": "⏰" },
- { "slug": "to-dream", "kind": "verb", "emoji": "💭" },
  { "slug": "to-get-undressed", "kind": "verb" },
  { "slug": "sweater", "kind": "noun", "emoji": "🧥" },
  { "slug": "t-shirt", "kind": "noun", "emoji": "👕" },

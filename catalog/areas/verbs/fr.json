@@ -35,8 +35,6 @@
    "text": "pouvoir",
    "notes": { "fr": "je peux entrer ? · tu peux répéter ? · vous pouvez parler." }
   },
-  "to-think": { "text": "penser", "notes": { "fr": "penser à toi · je pense que c'est vrai." } },
-  "to-imagine": { "text": "imaginer" },
   "to-wait": {
    "text": "attendre",
    "notes": { "fr": "j'attends le train, je t'attends : attendre n'a pas de à." }
@@ -75,7 +73,6 @@
   "to-have-to": { "text": "devoir" },
   "to-put": { "text": "mettre" },
   "to-carry": { "text": "porter" },
-  "to-forget": { "text": "oublier" },
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
    "variants": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],

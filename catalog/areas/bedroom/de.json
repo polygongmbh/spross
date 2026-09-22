@@ -16,7 +16,6 @@
   "t-shirt": { "text": "T-Shirt", "grammar": { "gender": "das", "plural": "-s" } },
   "to-sleep": { "text": "schlafen" },
   "to-wake-up": { "text": "aufwachen" },
-  "to-dream": { "text": "träumen" },
   "to-get-up": { "text": "aufstehen" },
   "to-get-undressed": { "text": "sich ausziehen" },
   "to-cuddle": { "text": "kuscheln" },

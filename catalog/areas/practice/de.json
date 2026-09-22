@@ -5,7 +5,6 @@
   "to-try": { "text": "versuchen" },
   "to-study": { "text": "lernen" },
   "goal": { "text": "Ziel", "grammar": { "gender": "das", "plural": "Ziele" } },
-  "vision": { "text": "Vision", "grammar": { "gender": "die", "plural": "Visionen" } },
   "to-achieve": { "text": "erreichen" },
   "exercise": { "text": "Übung", "grammar": { "gender": "die", "plural": "-en" } },
   "you-can-do-it": { "text": "Du schaffst das bestimmt!", "orders": ["Bestimmt schaffst du das!"] }
