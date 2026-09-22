@@ -12,8 +12,8 @@ lives outside the repo in `data/reference/audio/README.md`.
 
 ## 1. What ships, and under what
 
-5790 mp3 files, ~121 MB, all of them Wikimedia Commons transcodes:
-**3519 CC BY-SA · 1321 CC BY · 945 CC0 · 5 public domain**.
+5788 mp3 files, ~121 MB, all of them Wikimedia Commons transcodes:
+**3518 CC BY-SA · 1320 CC BY · 945 CC0 · 5 public domain**.
 
 The totals above and the per-pack rows below are DERIVED, not typed:
 `scripts/audio-coverage.py --credits` emits them from the shipped manifests,
@@ -30,7 +30,7 @@ Coverage itself is the bare `audio-coverage.py`.
 | `audio/de/articles/` | 221 | Lingua Libre, via Commons | CC BY-SA 4.0 221 | Natschoba 221 | credit + share-alike |
 | `audio/de/calendar/` | 13 | Commons `De-*.ogg` | CC BY-SA 3.0 7 · CC BY-SA 4.0 5 · CC BY-SA 2.5 1 | joni 5, Jeuwre 5 | credit + share-alike |
 | `audio/de/countries/` | 127 | Commons `De-*.ogg` | CC BY-SA 4.0 103 · CC BY-SA 3.0 19 · CC BY 3.0 5 | Jeuwre 101, Hedwig von Ebbel 7 | credit + share-alike |
-| `audio/eo/` | 715 | Lingua Libre + the Commons Esperanto phrasebook | CC BY-SA 4.0 492 · CC0 222 · CC BY 4.0 1 | Lepticed7 481, Poslovitch 117 | credit; share-alike on the BY-SA |
+| `audio/eo/` | 714 | Lingua Libre + the Commons Esperanto phrasebook | CC BY-SA 4.0 491 · CC0 222 · CC BY 4.0 1 | Lepticed7 480, Poslovitch 117 | credit; share-alike on the BY-SA |
 | `audio/eo/letters/` | 28 | Lingua Libre word recordings | CC BY-SA 4.0 28 | Lepticed7 28 | credit + share-alike |
 | `audio/eo/texts/` | 2 | Lingua Libre, via Commons | CC BY-SA 4.0 2 | NMaia 1, Lepticed7 1 | credit + share-alike |
 | `audio/eo/calendar/` | 3 | Lingua Libre, via Commons | CC0 1 · CC BY-SA 4.0 1 · Public domain 1 | Balamutick 1, Lepticed7 1 | credit; share-alike on the BY-SA |
@@ -54,7 +54,7 @@ Coverage itself is the bare `audio-coverage.py`.
 | `audio/sw/` | 621 | Commons `Sw-ke-*.flac` | CC BY-SA 4.0 621 | Waithera Were 620, Goethe-Institut Cameroon 1 | credit + share-alike |
 | `audio/sw/calendar/` | 19 | Commons `Sw-ke-*.flac` | CC BY-SA 4.0 19 | Waithera Were 19 | credit + share-alike |
 | `audio/sw/countries/` | 74 | Commons `Sw-ke-*.flac` | CC BY-SA 4.0 74 | Waithera Were 74 | credit + share-alike |
-| `audio/uk/` | 661 | Commons `Uk-*.ogg` (Shtooka) | CC BY 3.0 us 660 · CC BY 2.0 fr 1 | Галя Раптова, Nicolas Vion 646, Женя Музика, Nicolas Vion 8 | attribution only |
+| `audio/uk/` | 660 | Commons `Uk-*.ogg` (Shtooka) | CC BY 3.0 us 659 · CC BY 2.0 fr 1 | Галя Раптова, Nicolas Vion 645, Женя Музика, Nicolas Vion 8 | attribution only |
 | `audio/uk/letters/` | 33 | Commons `Аа – ukrainian.ogg` | CC BY-SA 4.0 33 | Tabrus 32, Tohaomg 1 | credit + share-alike |
 | `audio/uk/texts/` | 1 | Commons `Uk-*.ogg` | CC BY 3.0 us 1 | Галя Раптова, Nicolas Vion 1 | attribution only |
 | `audio/uk/calendar/` | 19 | Commons `Uk-*.ogg` (Shtooka) | CC BY 3.0 us 19 | Галя Раптова, Nicolas Vion 19 | attribution only |

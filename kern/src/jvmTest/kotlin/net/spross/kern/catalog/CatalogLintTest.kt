@@ -484,7 +484,7 @@ class CatalogLintTest {
         val anchors = mapOf(
             "go-to-school" to setOf("de", "eo", "es", "fr", "it", "uk"),
             "its-cold-in-the-mountains" to setOf("de", "eo", "uk"),
-            "home" to setOf("de", "eo", "uk"),
+            "at-home" to setOf("de", "eo", "uk"),
             "with" to setOf("de", "uk"),
             "for" to setOf("de", "es", "uk"),
             "because-of" to setOf("de", "eo", "uk"),

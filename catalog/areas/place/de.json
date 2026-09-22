@@ -13,17 +13,9 @@
   "at-home": {
    "text": "zu Hause",
    "notes": {
-    "de": "zu Hause heißt daheim, am Ort: Ich bin zu Hause.",
-    "en": "zu Hause is at home, the place you are: Ich bin zu Hause.",
-    "es": "zu Hause es en casa, el lugar donde estás: Ich bin zu Hause."
-   }
-  },
-  "home": {
-   "text": "nach Hause",
-   "notes": {
-    "de": "nach Hause heißt heimwärts, wohin: Sie geht nach Hause.",
-    "en": "nach Hause is homeward, the direction you move: Ich gehe nach Hause.",
-    "es": "nach Hause es hacia casa, la dirección: Ich gehe nach Hause."
+    "de": "zu Hause heißt daheim, am Ort; wohin man geht, ist nach Hause.",
+    "en": "zu Hause is at home, the place you are; the direction you move is nach Hause.",
+    "es": "zu Hause es en casa, el lugar donde estás; la dirección es nach Hause."
    }
   },
   "in": { "text": "in" },

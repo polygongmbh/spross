@@ -11,7 +11,6 @@
   "inside": { "text": "dentro", "accepts": ["adentro"] },
   "outdoors": { "text": "fuera", "accepts": ["afuera"] },
   "at-home": { "text": "en casa" },
-  "home": { "text": "a casa" },
   "in": { "text": "en", "notes": { "de": "en deckt in und auf ab: en la caja, en la mesa." } },
   "on": {
    "text": "sobre",

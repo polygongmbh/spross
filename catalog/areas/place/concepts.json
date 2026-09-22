@@ -13,7 +13,6 @@
  { "slug": "inside", "kind": "adjective", "emoji": "🏠" },
  { "slug": "outdoors", "kind": "adjective" },
  { "slug": "at-home", "kind": "adjective" },
- { "slug": "home", "kind": "adjective" },
  { "slug": "behind", "kind": "adjective" },
  { "slug": "between", "kind": "adjective" },
  { "slug": "place", "kind": "noun", "emoji": "📍" },

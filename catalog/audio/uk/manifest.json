@@ -3592,18 +3592,6 @@
       "snr": 38.7,
       "source": "Uk-вище.ogg"
     },
-    "home": {
-      "author": "Галя Раптова, Nicolas Vion",
-      "capPhone": 2.4,
-      "file": "home.mp3",
-      "gain": -3.6,
-      "gainPhone": 2.9,
-      "lead": 223,
-      "matches": "додому",
-      "sha256": "54ecb46c0f21c2852b20d55c96dc01803f9ce5f62baa23b3093c4f4dfd97e2a5",
-      "snr": 48.0,
-      "source": "Uk-додому.ogg"
-    },
     "hospital": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 0.3,

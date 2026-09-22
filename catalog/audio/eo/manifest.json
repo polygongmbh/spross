@@ -3603,18 +3603,6 @@
       "snr": 48.4,
       "source": "LL-Q143 (epo)-Lepticed7-helpo.wav"
     },
-    "home": {
-      "author": "Lepticed7",
-      "cap": 0.1,
-      "file": "home.mp3",
-      "gain": 5.1,
-      "gainPhone": -0.5,
-      "lead": 230,
-      "matches": "hejmen",
-      "sha256": "0f55dbee21c42d447556bf704ebfd72519232d670c21d4abc8d8dd1c22c44873",
-      "snr": 54.1,
-      "source": "LL-Q143 (epo)-Lepticed7-hejmen.wav"
-    },
     "homework": {
       "author": "Lepticed7",
       "file": "homework.mp3",
