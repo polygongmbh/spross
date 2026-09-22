@@ -94,7 +94,7 @@
   "it-works": { "text": "Funziona.", "accepts": ["Ora funziona.", "Funziona di nuovo."] },
   "coffee-break": { "text": "Pausa caffè?", "accepts": ["Andiamo a prendere un caffè?"] },
   "i-have-a-lot-to-do": { "text": "Ho molto da fare." },
-  "send-me-the-email": { "text": "Mandami l'e-mail.", "accepts": ["Inviami l'e-mail.", "Mandami la mail."] },
+  "send-him-the-email": { "text": "Mandagli l'e-mail.", "accepts": ["Inviagli l'e-mail.", "Mandagli la mail."] },
   "pencil": { "text": "matita", "grammar": { "gender": "la" } },
   "plug": { "text": "spina", "grammar": { "gender": "la" } }
  }

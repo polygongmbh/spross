@@ -70,9 +70,9 @@
   },
   "take-off-your-shoes": { "text": "Enlève tes chaussures.", "accepts": ["Retire tes chaussures."] },
   "hurry-were-late": {
-   "text": "Dépêche-toi, on est en retard !",
-   "accepts": ["Dépêche-toi, nous sommes en retard !"],
-   "orders": ["On est en retard, dépêche-toi !"]
+   "text": "Dépêchez-vous, on est en retard !",
+   "accepts": ["Dépêchez-vous, nous sommes en retard !"],
+   "orders": ["On est en retard, dépêchez-vous !"]
   },
   "see-you-later": { "text": "À plus tard !", "teaches": ["À tout à l'heure !", "À plus !", "À bientôt !"] },
   "welcome-home": { "text": "Bienvenue à la maison !" },

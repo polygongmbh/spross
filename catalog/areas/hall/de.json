@@ -39,7 +39,7 @@
   "to-live": { "text": "wohnen" },
   "do-you-have-the-keys": { "text": "Hast du die Schlüssel?", "orders": ["Du hast die Schlüssel?"] },
   "ill-be-right-back": { "text": "Ich bin gleich zurück!", "orders": ["Gleich bin ich zurück!"] },
-  "hurry-were-late": { "text": "Beeil dich, wir sind spät dran!" },
+  "hurry-were-late": { "text": "Beeilt euch, wir sind spät dran!" },
   "see-you-later": { "text": "Bis später!" },
   "welcome-home": { "text": "Willkommen zu Hause!" },
   "dont-forget-your-jacket": { "text": "Vergiss deine Jacke nicht!" },

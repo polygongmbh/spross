@@ -39,7 +39,7 @@
   "it-works": { "text": "Es funktioniert.", "accepts": ["Es geht wieder."] },
   "coffee-break": { "text": "Kaffeepause?" },
   "i-have-a-lot-to-do": { "text": "Ich habe viel zu tun." },
-  "send-me-the-email": { "text": "Schick mir die E-Mail." },
+  "send-him-the-email": { "text": "Schick ihm die E-Mail." },
   "pencil": { "text": "Bleistift", "grammar": { "gender": "der", "plural": "-e" } },
   "plug": { "text": "Stecker", "grammar": { "gender": "der", "plural": "=" } }
  }

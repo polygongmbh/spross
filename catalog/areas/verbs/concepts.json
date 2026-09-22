@@ -34,5 +34,5 @@
  { "slug": "to-suggest", "kind": "verb", "emoji": "💡" },
  { "slug": "do-you-have-water", "kind": "phrase", "emoji": "💧", "components": ["to-have"] },
  { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["to-come"] },
- { "slug": "can-you-see-me", "kind": "phrase", "emoji": "👀", "components": ["to-see"] }
+ { "slug": "can-you-see-him", "kind": "phrase", "emoji": "👀", "components": ["to-see"] }
 ]

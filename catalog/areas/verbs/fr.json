@@ -82,6 +82,6 @@
    "text": "D'où venez-vous ?",
    "accepts": ["Vous venez d'où ?", "D'où viens-tu ?", "Tu viens d'où ?"]
   },
-  "can-you-see-me": { "text": "Tu me vois ?", "accepts": ["Vous me voyez ?"] }
+  "can-you-see-him": { "text": "Tu le vois ?", "accepts": ["Vous le voyez ?"] }
  }
 }

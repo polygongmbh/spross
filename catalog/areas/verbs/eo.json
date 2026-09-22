@@ -53,10 +53,10 @@
   "to-carry": { "text": "porti" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?", "orders": ["Ĉu akvon vi havas?"] },
   "where-are-you-from": { "text": "De kie vi venas?", "orders": ["De kie venas vi?"] },
-  "can-you-see-me": {
-   "text": "Ĉu vi vidas min?",
-   "notes": { "eo": "La objekto ricevas -n: mi vidas vin, vi vidas min." },
-   "orders": ["Ĉu min vi vidas?"]
+  "can-you-see-him": {
+   "text": "Ĉu vi vidas lin?",
+   "notes": { "eo": "La objekto ricevas -n: mi vidas vin, vi vidas lin." },
+   "orders": ["Ĉu lin vi vidas?"]
   }
  }
 }

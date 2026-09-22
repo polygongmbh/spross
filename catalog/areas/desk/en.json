@@ -39,7 +39,7 @@
   "it-works": { "text": "It works.", "accepts": ["It works again."] },
   "coffee-break": { "text": "Coffee break?" },
   "i-have-a-lot-to-do": { "text": "I have a lot to do." },
-  "send-me-the-email": { "text": "Send me the email." },
+  "send-him-the-email": { "text": "Send him the email." },
   "pencil": { "text": "pencil" },
   "plug": { "text": "plug" }
  }

@@ -95,9 +95,9 @@
   "it-works": { "text": "Funciona.", "accepts": ["Ya funciona.", "Sí funciona."] },
   "coffee-break": { "text": "¿Pausa para el café?", "accepts": ["¿Nos tomamos un café?", "¿Un café?"] },
   "i-have-a-lot-to-do": { "text": "Tengo mucho que hacer." },
-  "send-me-the-email": {
-   "text": "Mándame el correo.",
-   "accepts": ["Envíame el correo.", "Mándame el correo electrónico.", "Mándame el email."]
+  "send-him-the-email": {
+   "text": "Mándale el correo.",
+   "accepts": ["Envíale el correo.", "Mándale el correo electrónico.", "Mándale el email."]
   },
   "pencil": { "text": "lápiz", "grammar": { "gender": "el", "plural": "lápices" } },
   "plug": { "text": "clavija", "grammar": { "gender": "la", "plural": "-s" } }

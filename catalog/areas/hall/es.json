@@ -78,8 +78,12 @@
   "ill-be-right-back": { "text": "¡Ahora vuelvo!", "accepts": ["¡Vuelvo enseguida!", "¡Enseguida vuelvo!"] },
   "take-off-your-shoes": { "text": "Quítate los zapatos.", "accepts": ["Sácate los zapatos."] },
   "hurry-were-late": {
-   "text": "¡Date prisa, llegamos tarde!",
-   "accepts": ["¡Date prisa, que llegamos tarde!", "¡Apúrate, llegamos tarde!"]
+   "text": "¡Daos prisa, llegamos tarde!",
+   "accepts": [
+    "¡Daos prisa, que llegamos tarde!",
+    "¡Apúrense, llegamos tarde!",
+    "¡Dense prisa, llegamos tarde!"
+   ]
   },
   "see-you-later": { "text": "¡Nos vemos luego!", "accepts": ["¡Hasta luego!", "¡Hasta después!", "¡Nos vemos!"] },
   "welcome-home": { "text": "¡Bienvenido a casa!", "accepts": ["¡Bienvenida a casa!"] },

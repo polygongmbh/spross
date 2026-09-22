@@ -36,7 +36,7 @@
  { "slug": "i-have-a-lot-to-do", "kind": "phrase", "emoji": "📋", "components": [] },
  { "slug": "im-in-a-meeting", "kind": "phrase", "emoji": "👥", "components": [] },
  { "slug": "dont-disturb-me", "kind": "phrase", "emoji": "🤫", "components": [] },
- { "slug": "send-me-the-email", "kind": "phrase", "emoji": "📧", "components": ["email"] },
+ { "slug": "send-him-the-email", "kind": "phrase", "emoji": "📧", "components": ["email"] },
  { "slug": "the-internet-is-gone", "kind": "phrase", "emoji": "📵", "components": ["internet"] },
  {
   "slug": "the-laptop-wont-charge-anymore",

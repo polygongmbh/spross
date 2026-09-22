@@ -96,7 +96,7 @@
   "it-works": { "text": "Ça marche.", "accepts": ["Ça fonctionne.", "Ça remarche."] },
   "coffee-break": { "text": "Pause café ?", "accepts": ["Une pause café ?", "On prend un café ?"] },
   "i-have-a-lot-to-do": { "text": "J'ai beaucoup à faire.", "accepts": ["J'ai beaucoup de choses à faire."] },
-  "send-me-the-email": { "text": "Envoie-moi l'e-mail.", "accepts": ["Envoie-moi le mail.", "Envoie-moi le courriel."] },
+  "send-him-the-email": { "text": "Envoie-lui l'e-mail.", "accepts": ["Envoie-lui le mail.", "Envoie-lui le courriel."] },
   "pencil": { "text": "crayon", "grammar": { "gender": "le", "plural": "-s" } },
   "plug": { "text": "fiche", "grammar": { "gender": "la", "plural": "-s" } }
  }

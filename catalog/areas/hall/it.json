@@ -97,7 +97,7 @@
   "do-you-have-the-keys": { "text": "Hai le chiavi?", "accepts": ["Hai preso le chiavi?"] },
   "ill-be-right-back": { "text": "Torno subito!", "accepts": ["Torno tra un attimo!"] },
   "take-off-your-shoes": { "text": "Togliti le scarpe.", "accepts": ["Levati le scarpe."] },
-  "hurry-were-late": { "text": "Sbrigati, siamo in ritardo!", "accepts": ["Fai presto, siamo in ritardo!"] },
+  "hurry-were-late": { "text": "Sbrigatevi, siamo in ritardo!", "accepts": ["Fate presto, siamo in ritardo!"] },
   "see-you-later": { "text": "A dopo!", "accepts": ["Ci vediamo dopo!", "A più tardi!"] },
   "welcome-home": { "text": "Benvenuto a casa!", "accepts": ["Benvenuta a casa!"] },
   "dont-forget-your-jacket": {

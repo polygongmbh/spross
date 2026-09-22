@@ -77,6 +77,6 @@
     "de": "Spanisch fragt nach der Herkunft mit ser, nicht mit venir."
    }
   },
-  "can-you-see-me": { "text": "¿Me ves?" }
+  "can-you-see-him": { "text": "¿Lo ves?", "accepts": ["¿Le ves?"] }
  }
 }

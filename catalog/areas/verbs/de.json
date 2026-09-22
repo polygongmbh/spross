@@ -42,7 +42,7 @@
   "to-carry": { "text": "tragen" },
   "do-you-have-water": { "text": "Haben Sie Wasser?", "accepts": ["Hast du Wasser?"], "orders": ["Sie haben Wasser?"] },
   "where-are-you-from": { "text": "Woher kommen Sie?", "accepts": ["Woher kommst du?"] },
-  "can-you-see-me": { "text": "Siehst du mich?", "accepts": ["Sehen Sie mich?"], "orders": ["Du siehst mich?"] },
+  "can-you-see-him": { "text": "Siehst du ihn?", "accepts": ["Sehen Sie ihn?"], "orders": ["Du siehst ihn?"] },
   "to-improve": { "text": "verbessern" },
   "to-suggest": { "text": "vorschlagen" }
  }

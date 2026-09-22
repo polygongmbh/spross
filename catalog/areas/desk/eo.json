@@ -74,10 +74,10 @@
    "accepts": ["Mi havas multe da laboro."],
    "orders": ["Multon mi havas por fari."]
   },
-  "send-me-the-email": {
-   "text": "Sendu al mi la retpoŝton.",
-   "accepts": ["Sendu al mi la retmesaĝon."],
-   "orders": ["La retpoŝton sendu al mi."]
+  "send-him-the-email": {
+   "text": "Sendu al li la retpoŝton.",
+   "accepts": ["Sendu al li la retmesaĝon."],
+   "orders": ["La retpoŝton sendu al li."]
   },
   "pencil": { "text": "krajono" },
   "plug": { "text": "ŝtopilo" }
