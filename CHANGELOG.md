@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- A new Celebrations shelf covers parties, weddings, births and gifts, and birthdays have moved into it.
+- Phrases now practice him, her, them and you all as objects, not only me and you.
+- German possessives now count as correct in every form, so meinem, meines and meiner no longer grade wrong.
+
 ## 7.4.0 — 2026-09-22
 
 - The wait between your last answer and the finished screen, and between that screen and Home, is gone.
