@@ -24,6 +24,7 @@
   "no-one": { "text": "aucune personne" },
   "anyone": { "text": "qui que ce soit" },
   "our": { "text": "notre", "accepts": ["nos"] },
-  "your-plural": { "text": "votre", "accepts": ["vos"] }
+  "your-plural": { "text": "votre", "accepts": ["vos"] },
+  "is-that-your-house": { "text": "C'est votre maison ?" }
  }
 }

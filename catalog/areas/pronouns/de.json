@@ -14,9 +14,9 @@
   "we": { "text": "wir" },
   "you-plural": { "text": "ihr" },
   "they": { "text": "sie" },
-  "my": { "text": "mein", "accepts": ["meine"] },
-  "your": { "text": "dein", "accepts": ["deine"] },
-  "his": { "text": "sein", "accepts": ["seine"] },
+  "my": { "text": "mein", "accepts": ["meine", "meinen", "meinem", "meines", "meiner"] },
+  "your": { "text": "dein", "accepts": ["deine", "deinen", "deinem", "deines", "deiner"] },
+  "his": { "text": "sein", "accepts": ["seine", "seinen", "seinem", "seines", "seiner"] },
   "something": { "text": "etwas" },
   "nothing": { "text": "nichts" },
   "everything": { "text": "alles" },
@@ -25,7 +25,8 @@
   "everyone": { "text": "jeder Mensch" },
   "no-one": { "text": "niemand" },
   "anyone": { "text": "irgendjemand" },
-  "our": { "text": "unser", "accepts": ["unsere"] },
-  "your-plural": { "text": "euer", "accepts": ["eure"] }
+  "our": { "text": "unser", "accepts": ["unsere", "unseren", "unserem", "unseres", "unserer"] },
+  "your-plural": { "text": "euer", "accepts": ["eure", "euren", "eurem", "eures", "eurer"] },
+  "is-that-your-house": { "text": "Ist das euer Haus?" }
  }
 }

@@ -23,6 +23,7 @@
   "everyone": { "text": "ĉiu homo" },
   "no-one": { "text": "neniu" },
   "anyone": { "text": "iu ajn" },
-  "our": { "text": "nia" }
+  "our": { "text": "nia" },
+  "is-that-your-house": { "text": "Ĉu tio estas via domo?" }
  }
 }

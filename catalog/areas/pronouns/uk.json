@@ -25,6 +25,7 @@
   "no-one": { "text": "ніхто" },
   "anyone": { "text": "будь-хто" },
   "our": { "text": "наш", "accepts": ["наша", "наше", "наші"] },
-  "your-plural": { "text": "ваш", "accepts": ["ваша", "ваше", "ваші"] }
+  "your-plural": { "text": "ваш", "accepts": ["ваша", "ваше", "ваші"] },
+  "is-that-your-house": { "text": "Це ваш дім?" }
  }
 }
