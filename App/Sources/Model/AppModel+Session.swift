@@ -164,9 +164,12 @@ extension AppModel {
     /// The area this round worked hardest — what the summary draws a tree of.
     var sessionArea: String? {
         guard let box, let touched = run?.answeredIds, !touched.isEmpty else { return nil }
+        // why: one read of `box.cards` carries the whole join across the bridge
+        // (`AreaTrees.growthByArea`), and the summary asks this on every redraw.
+        let cards = box.cards
         var byArea: [String: Int] = [:]
         for id in touched {
-            guard let area = box.cards[id]?.area else { continue }
+            guard let area = cards[id]?.area else { continue }
             byArea[area, default: 0] += 1
         }
         // why: walk in catalog order keeping a STRICT >, so a round split evenly

@@ -157,9 +157,13 @@ extension AppModel {
     private func growthByArea() -> [String: AreaGrowth] {
         guard let box else { return [:] }
         let maximumInterval = Double(box.config.maximumIntervalDays)
+        // why: `box.cards` is a Kotlin map, and every READ of it carries the whole
+        // join across the bridge — indexing it inside the walk made one tally of a
+        // thousand-card join a thousand copies of it.
+        let cards = box.cards
         var byArea: [String: AreaGrowth] = [:]
         for entry in growth {
-            guard let card = box.cards[entry.cardId] else { continue }
+            guard let card = cards[entry.cardId] else { continue }
             byArea[card.area, default: AreaGrowth()].add(entry, maximumInterval: maximumInterval)
         }
         return byArea
