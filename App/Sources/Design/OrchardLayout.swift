@@ -93,6 +93,12 @@ enum OrchardLayout {
     static let minHeight: CGFloat = 9
     static let maxHeight: CGFloat = 58
 
+    /// The shortest a tap target is ever made, label strip included —
+    /// a seedling is a few points of ink and a thumb is not.
+    static let minTapHeight: CGFloat = 44
+    /// The clear air a tap target keeps above the crown it belongs to.
+    static let tapMargin: CGFloat = 6
+
     /// Lays the trees out in rows across `width`, in the order given.
     ///
     /// Rows, not a grid:
@@ -190,8 +196,14 @@ enum OrchardLayout {
             for index in row {
                 let drift = CGFloat(noise(trees[index].id, 31) - 0.5) * min(gap, 10)
                 let stand = base + band
-                let cell = CGRect(x: x + drift, y: stand - band,
-                                  width: room[index], height: band + labelHeight)
+                // why: the cell follows THIS tree's own crown, never the row's band —
+                // a band is as tall as the tallest tree in the row, and giving every
+                // tree in it that height handed a seedling a tap target reaching up
+                // into the open air a whole row above where it is drawn.
+                let crown = max(treeHeight(trees[index]), minHeight) + tapMargin
+                let reach = max(crown, minTapHeight - labelHeight)
+                let cell = CGRect(x: x + drift, y: stand - reach,
+                                  width: room[index], height: reach + labelHeight)
                 marks.append(TreeMark(tree: trees[index],
                                       foot: CGPoint(x: cell.midX, y: stand),
                                       height: treeHeight(trees[index]),
