@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 7.4.0 — 2026-09-22
+
+- The wait between your last answer and the finished screen, and between that screen and Home, is gone.
+- A new Mind shelf gathers thinking, remembering, dreaming and hoping, and introducing yourself now comes up in Conversation instead of Work.
+- Words suggested from inside the app now reach the catalog, among them tires, mistakes, getting lost and being confused.
+- A suggestion written with a slash in it now arrives whole instead of stopping at the slash.
+- A suggestion or a note now opens as a notes box with a copy action, and no field grabs the keyboard when it opens.
+- What you have typed into the word form now survives leaving the app and coming back.
+- A word spelled right is now glossed with its meaning, in word scramble and the letter drill alike.
+- Tapping a tree in the orchard now hits the tree you aimed at.
+
 ## 7.3.0 — 2026-09-21
 
 - Home, the orchard and the settings now sit in a bar at the foot of the screen, always one tap apart, and out of the way while you are in a round or a drill.
