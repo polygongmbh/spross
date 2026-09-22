@@ -8,6 +8,6 @@
   "vision": { "text": "vision" },
   "to-achieve": { "text": "to achieve" },
   "exercise": { "text": "exercise" },
-  "you-can-do-it": { "text": "You can definitely do it!", "orders": ["Definitely, you can do it!"] }
+  "you-can-do-it": { "text": "You can definitely do it!" }
  }
 }
