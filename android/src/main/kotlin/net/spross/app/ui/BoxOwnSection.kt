@@ -282,10 +282,11 @@ private fun OtherPairRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDra
 
 /**
  * One entry the box holds no card for — a suggestion, or a note. With no card it has no
- * standing to show and no schedule to act on: its menu is the two things that still apply,
- * writing it over and taking it back out.
+ * standing to show and no schedule to act on: its menu is the three things that still apply,
+ * writing it over, taking what it says elsewhere, and dropping it.
  *
- * [line] defaults to the entry's comment, which is the whole of a note; [said] is the note
+ * [line] defaults to the entry's comment, which is the whole of a note, and is what the copy
+ * action hands out; [said] is the note
  * under the line where the entry has one, and [tail] what the row has left to say about it —
  * what the catalog still owes, or the flag of the language this pair cannot read it in.
  * [tailSaid] names a [tail] that is a picture, for a screen reader handed no picture at all.
@@ -306,6 +307,7 @@ private fun EntryRow(
     onEdit: () -> Unit,
 ) {
     val chrome = model.chrome
+    val context = LocalContext.current
     var menuOpen by remember(word.id) { mutableStateOf(false) }
     Row(
         modifier = Modifier
@@ -347,6 +349,10 @@ private fun EntryRow(
             MenuAction(editLabel) {
                 menuOpen = false
                 onEdit()
+            }
+            MenuAction(chrome.commonCopy) {
+                menuOpen = false
+                context.copyToClipboard(chrome.boxOwnTitle, line)
             }
             MenuAction(chrome.boxOwnWordRemove, destructive = true) {
                 menuOpen = false

@@ -190,7 +190,7 @@ struct BoxOwnContentSection: View {
     /// rather than as a card — and a flag says it in the space a sentence would not fit.
     private func otherPairRow(_ word: OwnWord) -> some View {
         entryRow(word, lines: 1, said: word.comment, tail: model.otherPairFlags(word),
-                 opening: .editing(word)) {
+                 copying: model.otherPairText(word), opening: .editing(word)) {
             Text(verbatim: model.otherPairText(word))
         }
     }
@@ -212,7 +212,7 @@ struct BoxOwnContentSection: View {
                  // why: a missing half is not a shortcoming of the word, it is the whole
                  // point of the entry — it is what the catalog owes.
                  tail: Text("box.own.word.needsTranslation"),
-                 opening: .entry(word)) {
+                 copying: model.suggestionText(word), opening: .entry(word)) {
             Text(verbatim: model.suggestionText(word))
         }
     }
@@ -224,7 +224,8 @@ struct BoxOwnContentSection: View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             blockTitle("box.own.notes")
             ForEach(model.remarks, id: \.id) { note in
-                entryRow(note, lines: 3, said: nil, tail: nil, opening: .entry(note)) {
+                entryRow(note, lines: 3, said: nil, tail: nil,
+                         copying: note.comment ?? "", opening: .entry(note)) {
                     Text(verbatim: note.comment ?? "")
                 }
             }
@@ -235,7 +236,8 @@ struct BoxOwnContentSection: View {
     /// entry has one, `tail` what the row has left to say about it — what the catalog
     /// still owes, or the language this pair cannot read it in.
     private func entryRow<Lead: View>(
-        _ word: OwnWord, lines: Int, said: String?, tail: Text?, opening: Sheet,
+        _ word: OwnWord, lines: Int, said: String?, tail: Text?,
+        copying: String, opening: Sheet,
         @ViewBuilder lead: () -> Lead
     ) -> some View {
         HStack(spacing: Theme.spacing.md) {
@@ -267,10 +269,14 @@ struct BoxOwnContentSection: View {
             RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
                 .fill(Theme.colors.surfaceTint)
         )
-        // A menu of its own, and a short one: with no card behind it there is
-        // nothing to pack, forget or report — only the entry to fix or drop.
+        // A menu of its own, and a short one: with no card behind it there is nothing to
+        // pack, forget or report — the entry to fix, what it says to take elsewhere, and
+        // the way to drop it.
         .contextMenu {
             Button(opening.editLabel, systemImage: "pencil") { sheet = opening }
+            Button("common.copy", systemImage: "doc.on.doc") {
+                UIPasteboard.general.string = copying
+            }
             Button("box.own.word.remove", systemImage: "trash", role: .destructive) {
                 model.removeOwnWord(word.id)
             }
