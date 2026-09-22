@@ -10,7 +10,7 @@
  { "slug": "internet", "kind": "noun", "emoji": "🌐" },
  { "slug": "laptop", "kind": "noun", "emoji": "💻" },
  { "slug": "desk", "kind": "noun", "emoji": "🗄️" },
- { "slug": "pen", "kind": "noun", "emoji": "✏️" },
+ { "slug": "pen", "kind": "noun", "emoji": "🖊️" },
  { "slug": "pencil", "kind": "noun", "emoji": "✏️" },
  { "slug": "to-take-break", "kind": "verb", "emoji": "☕" },
  { "slug": "screen", "kind": "noun", "emoji": "🖥️" },
