@@ -35,7 +35,6 @@
   "uncle": { "text": "tío", "grammar": { "gender": "el" } },
   "aunt": { "text": "tía", "grammar": { "gender": "la" } },
   "to-be-born": { "text": "nacer" },
-  "birthday": { "text": "cumpleaños", "grammar": { "gender": "el", "plural": "=" } },
   "to-visit": { "text": "visitar" },
   "to-marry": { "text": "casarse" },
   "this-is-my-mother": { "text": "Esta es mi madre." },

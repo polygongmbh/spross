@@ -45,7 +45,6 @@
   "uncle": { "text": "zio", "grammar": { "gender": "lo", "plural": "zii" } },
   "aunt": { "text": "zia", "grammar": { "gender": "la" } },
   "to-be-born": { "text": "nascere" },
-  "birthday": { "text": "compleanno", "grammar": { "gender": "il" } },
   "to-visit": { "text": "andare a trovare" },
   "to-marry": { "text": "sposarsi" },
   "this-is-my-mother": { "text": "Questa è mia madre." },

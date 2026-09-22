@@ -1,0 +1,17 @@
+{
+ "title": "Свята",
+ "subtitle": "Що ми святкуємо разом.",
+ "words": {
+  "celebration": { "text": "свято", "teaches": ["святкування"] },
+  "to-celebrate": { "text": "святкувати" },
+  "birthday": { "text": "день народження", "grammar": { "plural": "дні народження" } },
+  "birthday-party": { "text": "святкування дня народження" },
+  "gift": { "text": "подарунок" },
+  "to-give-a-present": { "text": "дарувати" },
+  "to-congratulate": { "text": "вітати", "accepts": ["поздоровляти"] },
+  "wedding": { "text": "весілля" },
+  "birth": { "text": "народження" },
+  "we-give-her-something-for-her-birthday": { "text": "Ми даруємо їй щось на день народження." },
+  "i-congratulate-them-on-their-wedding": { "text": "Я вітаю їх з весіллям." }
+ }
+}

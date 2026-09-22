@@ -49,7 +49,6 @@
    "notes": { "sw": "shangazi = dada wa baba · dada wa mama ni mama mdogo au mkubwa" }
   },
   "to-be-born": { "text": "kuzaliwa" },
-  "birthday": { "text": "siku ya kuzaliwa", "grammar": { "plural": "siku za kuzaliwa" } },
   "to-visit": { "text": "kutembelea" },
   "to-marry": { "text": "kuoa", "notes": { "sw": "mwanaume huoa · mwanamke huolewa" } },
   "this-is-my-mother": { "text": "Huyu ni mama yangu." },

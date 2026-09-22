@@ -1,0 +1,20 @@
+{
+ "title": "Celebrations",
+ "subtitle": "What we mark together.",
+ "words": {
+  "celebration": { "text": "celebration", "teaches": ["party"] },
+  "to-celebrate": { "text": "to celebrate" },
+  "birthday": { "text": "birthday" },
+  "birthday-party": { "text": "birthday party" },
+  "gift": { "text": "gift" },
+  "to-give-a-present": { "text": "to give as a present" },
+  "to-congratulate": { "text": "to congratulate" },
+  "wedding": { "text": "wedding" },
+  "birth": { "text": "birth" },
+  "we-give-her-something-for-her-birthday": {
+   "text": "We're giving her something for her birthday.",
+   "accepts": ["We are giving her something for her birthday."]
+  },
+  "i-congratulate-them-on-their-wedding": { "text": "I congratulate them on their wedding." }
+ }
+}

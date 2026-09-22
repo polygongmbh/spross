@@ -27,7 +27,6 @@
   "uncle": { "text": "Onkel", "grammar": { "gender": "der", "plural": "=" } },
   "aunt": { "text": "Tante", "grammar": { "gender": "die", "plural": "-n" } },
   "to-be-born": { "text": "geboren werden" },
-  "birthday": { "text": "Geburtstag", "grammar": { "gender": "der", "plural": "-e" } },
   "to-visit": { "text": "besuchen" },
   "to-marry": { "text": "heiraten" },
   "this-is-my-mother": { "text": "Das ist meine Mutter.", "orders": ["Meine Mutter ist das."] },

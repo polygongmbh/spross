@@ -75,7 +75,8 @@
    { "area": "body", "emoji": "🧍" },
    { "area": "emotions", "emoji": "🎢" },
    { "area": "mind", "emoji": "🧠" },
-   { "area": "life-death", "emoji": "🕯️" }
+   { "area": "life-death", "emoji": "🕯️" },
+   { "area": "celebrations", "emoji": "🎉" }
   ]
  },
  {

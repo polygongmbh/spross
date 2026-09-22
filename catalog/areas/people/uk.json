@@ -29,7 +29,6 @@
   "uncle": { "text": "дядько" },
   "aunt": { "text": "тітка" },
   "to-be-born": { "text": "народитися" },
-  "birthday": { "text": "день народження", "grammar": { "plural": "дні народження" } },
   "to-visit": { "text": "відвідувати" },
   "to-marry": { "text": "одружуватися" },
   "this-is-my-mother": { "text": "Це моя мама." },

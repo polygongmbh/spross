@@ -1,0 +1,17 @@
+{
+ "title": "Feste & Feiern",
+ "subtitle": "Was man gemeinsam begeht.",
+ "words": {
+  "celebration": { "text": "Feier", "teaches": ["Fest"], "grammar": { "gender": "die", "plural": "-n" } },
+  "to-celebrate": { "text": "feiern" },
+  "birthday": { "text": "Geburtstag", "grammar": { "gender": "der", "plural": "-e" } },
+  "birthday-party": { "text": "Geburtstagsfeier", "grammar": { "gender": "die", "plural": "-n" } },
+  "gift": { "text": "Geschenk", "grammar": { "gender": "das", "plural": "-e" } },
+  "to-give-a-present": { "text": "schenken" },
+  "to-congratulate": { "text": "gratulieren" },
+  "wedding": { "text": "Hochzeit", "grammar": { "gender": "die", "plural": "-en" } },
+  "birth": { "text": "Geburt", "grammar": { "gender": "die", "plural": "-en" } },
+  "we-give-her-something-for-her-birthday": { "text": "Wir schenken ihr etwas zum Geburtstag." },
+  "i-congratulate-them-on-their-wedding": { "text": "Ich gratuliere ihnen zu ihrer Hochzeit." }
+ }
+}

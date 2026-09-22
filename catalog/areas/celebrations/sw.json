@@ -1,0 +1,20 @@
+{
+ "title": "Sherehe",
+ "subtitle": "Tunachosherehekea pamoja.",
+ "words": {
+  "celebration": { "text": "sherehe", "grammar": { "plural": "=" } },
+  "to-celebrate": { "text": "kusherehekea" },
+  "birthday": { "text": "siku ya kuzaliwa", "grammar": { "plural": "siku za kuzaliwa" } },
+  "birthday-party": { "text": "sherehe ya siku ya kuzaliwa", "grammar": { "plural": "=" } },
+  "gift": { "text": "zawadi", "grammar": { "plural": "=" } },
+  "to-give-a-present": { "text": "kuzawadia", "accepts": ["kutoa zawadi"] },
+  "to-congratulate": { "text": "kupongeza" },
+  "wedding": { "text": "harusi", "accepts": ["arusi"], "grammar": { "plural": "=" } },
+  "birth": { "text": "uzazi" },
+  "we-give-her-something-for-her-birthday": {
+   "text": "Tunamzawadia kitu kwa siku yake ya kuzaliwa.",
+   "accepts": ["Tunampa zawadi kwa siku yake ya kuzaliwa."]
+  },
+  "i-congratulate-them-on-their-wedding": { "text": "Ninawapongeza kwa harusi yao.", "accepts": ["Nawapongeza kwa harusi yao."] }
+ }
+}

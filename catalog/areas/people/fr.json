@@ -60,7 +60,6 @@
   "uncle": { "text": "oncle", "accepts": ["l'oncle"], "grammar": { "gender": "l'" } },
   "aunt": { "text": "tante", "grammar": { "gender": "la" } },
   "to-be-born": { "text": "naître" },
-  "birthday": { "text": "anniversaire", "accepts": ["l'anniversaire"], "grammar": { "gender": "l'" } },
   "to-visit": { "text": "rendre visite" },
   "to-marry": { "text": "se marier" },
   "this-is-my-mother": { "text": "C'est ma mère." },

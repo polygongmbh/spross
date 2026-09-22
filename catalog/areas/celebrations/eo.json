@@ -1,0 +1,17 @@
+{
+ "title": "Festoj",
+ "subtitle": "Kion ni festas kune.",
+ "words": {
+  "celebration": { "text": "festo" },
+  "to-celebrate": { "text": "festi" },
+  "birthday": { "text": "naskiĝtago" },
+  "birthday-party": { "text": "naskiĝtaga festo" },
+  "gift": { "text": "donaco" },
+  "to-give-a-present": { "text": "donaci" },
+  "to-congratulate": { "text": "gratuli" },
+  "wedding": { "text": "nupto" },
+  "birth": { "text": "naskiĝo" },
+  "we-give-her-something-for-her-birthday": { "text": "Ni donacas al ŝi ion por ŝia naskiĝtago." },
+  "i-congratulate-them-on-their-wedding": { "text": "Mi gratulas ilin pro ilia nupto.", "accepts": ["Mi gratulas ilin pro ilia geedziĝo."] }
+ }
+}

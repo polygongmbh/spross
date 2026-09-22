@@ -1,0 +1,22 @@
+[
+ { "slug": "celebration", "kind": "noun", "emoji": "🎊" },
+ { "slug": "to-celebrate", "kind": "verb", "emoji": "🥂" },
+ { "slug": "birthday", "kind": "noun", "emoji": "🎂" },
+ { "slug": "birthday-party", "kind": "noun", "emoji": "🥳" },
+ { "slug": "gift", "kind": "noun", "emoji": "🎁" },
+ { "slug": "to-give-a-present", "kind": "verb" },
+ { "slug": "to-congratulate", "kind": "verb", "emoji": "👏" },
+ { "slug": "wedding", "kind": "noun", "emoji": "💒" },
+ { "slug": "birth", "kind": "noun", "emoji": "👶" },
+ {
+  "slug": "we-give-her-something-for-her-birthday",
+  "kind": "phrase",
+  "components": ["to-give-a-present", "birthday"]
+ },
+ {
+  "slug": "i-congratulate-them-on-their-wedding",
+  "kind": "phrase",
+  "emoji": "💐",
+  "components": ["to-congratulate", "wedding"]
+ }
+]

@@ -24,7 +24,6 @@
  { "slug": "uncle", "kind": "noun" },
  { "slug": "aunt", "kind": "noun" },
  { "slug": "to-be-born", "kind": "verb" },
- { "slug": "birthday", "kind": "noun", "emoji": "🎂" },
  { "slug": "to-visit", "kind": "verb", "emoji": "🏠" },
  { "slug": "to-marry", "kind": "verb", "emoji": "💍" },
  { "slug": "this-is-my-mother", "kind": "phrase", "emoji": "👩", "components": ["mother"] },
