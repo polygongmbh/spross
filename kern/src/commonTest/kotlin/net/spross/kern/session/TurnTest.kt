@@ -83,14 +83,19 @@ class TurnTest {
     }
 
     @Test
-    fun anotherConceptsWordRevealsAndKeepsTheWordsAlreadyRight() {
+    fun anotherConceptsWordRevealsAndPrimesNothingTheRetypeWouldFinish() {
         val missed = TurnFixture.step(TurnFixture.produce(TurnFixture.open), TurnIntent.Submit("kufunga"))
         assertEquals(TurnFeedback.Revealed, missed.state.feedback)
         assertEquals(Match.OtherWord("kufunga", listOf("schließen")), missed.state.otherWord)
-        assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField("kufunga ")),
-            missed.effects,
-        )
+        assertEquals(listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField("")), missed.effects)
+    }
+
+    @Test
+    fun aMissPrimesTheWordsAlreadyRightAsTheAnswerSpellsThem() {
+        val departs = TurnFixture.card("departs", "Wann fährt der Zug ab?", "Treni inaondoka lini?", CardKind.Phrase)
+        val missed = TurnFixture.step(TurnFixture.produce(departs), TurnIntent.Submit("treni linaondoka"))
+        assertEquals(TurnFeedback.Revealed, missed.state.feedback)
+        assertEquals(TurnEffect.PrimeField("Treni inaondoka "), missed.effects.last())
     }
 
     @Test

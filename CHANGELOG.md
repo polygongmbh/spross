@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- After a miss, the words you already had right come back in the answer field spelled correctly, not with your typo still in them.
+
 ## 7.4.1 — 2026-09-22
 
 - A new Celebrations shelf covers parties, weddings, births and gifts, and birthdays have moved into it.

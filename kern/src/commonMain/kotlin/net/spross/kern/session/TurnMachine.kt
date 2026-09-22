@@ -223,11 +223,15 @@ class TurnMachine(
     /**
      * Keep the leading WHOLE words that were already right and drop the wrong tail, so the
      * retype picks up where the slip started instead of from scratch. Nothing kept clears it.
+     * A kept word is written as the ANSWER spells it — a forgiven slip is not left for the
+     * learner to hunt down — and the last answer word is never primed, so the field cannot
+     * hand over a finished retype.
      */
     private fun primed(state: TurnState, text: String): String {
+        val expected = AnswerNormalizer.words(state.answerText)
         val count = answerNormalizer(state).matchingPrefixWordCount(text, state.answerText)
-        val kept = AnswerNormalizer.words(text)
-            .take(count)
+        val kept = expected
+            .take(minOf(count, expected.size - 1))
             .joinToString(" ")
         return if (kept.isEmpty()) "" else "$kept "
     }
