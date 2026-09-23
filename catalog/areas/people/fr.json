@@ -87,6 +87,9 @@
   },
   "many-friends": { "text": "beaucoup d'amis" },
   "mom-help-me": { "text": "Maman, aide-moi !" },
-  "this-is-my-parents-house": { "text": "C'est la maison de mes parents." }
+  "dad-where-are-you": { "text": "Papa, où es-tu ?", "accepts": ["Papa, tu es où ?"] },
+  "help-your-brother": { "text": "Aide ton frère !" },
+  "this-is-my-parents-house": { "text": "C'est la maison de mes parents." },
+  "im-looking-for-my-son": { "text": "Je cherche mon fils." }
  }
 }

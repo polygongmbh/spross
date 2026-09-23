@@ -67,6 +67,9 @@
   "old-people": { "text": "watu wazee" },
   "many-friends": { "text": "marafiki wengi", "notes": { "sw": "rafiki ni mtu: marafiki wazuri, marafiki wote" } },
   "mom-help-me": { "text": "Mama, nisaidie!" },
-  "this-is-my-parents-house": { "text": "Hii ni nyumba ya wazazi wangu." }
+  "dad-where-are-you": { "text": "Baba, uko wapi?" },
+  "help-your-brother": { "text": "Msaidie kaka yako!" },
+  "this-is-my-parents-house": { "text": "Hii ni nyumba ya wazazi wangu." },
+  "im-looking-for-my-son": { "text": "Namtafuta mwanangu.", "accepts": ["Ninamtafuta mwanangu.", "Namtafuta mwana wangu."] }
  }
 }

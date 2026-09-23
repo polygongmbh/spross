@@ -53,6 +53,9 @@
     "es": "Incluso en imperativo helfen mantiene el dativo: Hilf deinem Bruder!"
    }
   },
-  "this-is-my-parents-house": { "text": "Das ist das Haus meiner Eltern." }
+  "dad-where-are-you": { "text": "Papa, wo bist du?" },
+  "help-your-brother": { "text": "Hilf deinem Bruder!" },
+  "this-is-my-parents-house": { "text": "Das ist das Haus meiner Eltern." },
+  "im-looking-for-my-son": { "text": "Ich suche meinen Sohn." }
  }
 }

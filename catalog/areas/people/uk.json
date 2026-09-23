@@ -49,6 +49,9 @@
    "notes": { "uk": "Коли кличемо, слово міняється: мама → мамо, тато → тату, Іван → Іване." },
    "orders": ["Мамо, мені допоможи!"]
   },
-  "this-is-my-parents-house": { "text": "Це дім моїх батьків." }
+  "dad-where-are-you": { "text": "Тату, де ти?", "orders": ["Де ти, тату?"] },
+  "help-your-brother": { "text": "Допоможи братові!", "accepts": ["Допоможи брату!"] },
+  "this-is-my-parents-house": { "text": "Це дім моїх батьків." },
+  "im-looking-for-my-son": { "text": "Я шукаю свого сина.", "accepts": ["Я шукаю сина."] }
  }
 }

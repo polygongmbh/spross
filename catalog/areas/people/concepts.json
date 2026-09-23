@@ -41,5 +41,8 @@
  { "slug": "old-people", "kind": "phrase", "emoji": "🧓", "components": ["person"] },
  { "slug": "many-friends", "kind": "phrase", "emoji": "👥", "components": ["friend"] },
  { "slug": "mom-help-me", "kind": "phrase", "components": ["mother"] },
- { "slug": "this-is-my-parents-house", "kind": "phrase", "components": ["parents"] }
+ { "slug": "dad-where-are-you", "kind": "phrase", "components": ["father"] },
+ { "slug": "help-your-brother", "kind": "phrase", "components": ["brother"] },
+ { "slug": "this-is-my-parents-house", "kind": "phrase", "components": ["parents"] },
+ { "slug": "im-looking-for-my-son", "kind": "phrase", "components": ["son"] }
 ]

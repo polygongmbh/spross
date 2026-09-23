@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Three new family phrases practice the word forms Ukrainian, Esperanto and Spanish use when calling, helping or looking for someone.
 - Close to 800 more words now play a real speaker's recording, among them I, you, he, we and they in every language, and German Gast no longer drags out its vowel.
 - A time written back in digits now also counts with a dot, as in 18.05.
 - On Android, a fraction or a date written with a slash is no longer owed on a number pad that has no slash key.
