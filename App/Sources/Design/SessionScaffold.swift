@@ -26,7 +26,7 @@ struct SessionScaffold<Content: View>: View {
     /// segment per answer (green right / amber tough / brick wrong) with
     /// the unanswered remainder neutral.
     var outcomes: [SessionOutcome] = []
-    /// Overrides the "position/total" counter (endless drills show "right/done").
+    /// The figures beside the bar; nil where the bar alone says where the round stands.
     var counter: String?
     /// Opt-in: only runs that read words aloud show the switch for it.
     var showsMuteButton: Bool = false
@@ -77,7 +77,7 @@ struct SessionScaffold<Content: View>: View {
                     // The partings come off the row before any slot is measured,
                     // so the remainder takes its share of what is LEFT for
                     // segments — from the full width it charged every gap to the
-                    // answered side, drawing the fill short of the counter.
+                    // answered side, drawing the fill short of the bar.
                     let forSegments = max(geo.size.width - CGFloat(outcomes.count) * spacing, 0)
                     HStack(spacing: spacing) {
                         ForEach(Array(outcomes.enumerated()), id: \.offset) { _, outcome in
@@ -98,11 +98,13 @@ struct SessionScaffold<Content: View>: View {
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(progressAccessibility)
 
-            Text(counter ?? "\(position)/\(total)")
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
-                .monospacedDigit()
-                .accessibilityHidden(true)
+            if let counter {
+                Text(counter)
+                    .font(Theme.typography.caption)
+                    .foregroundStyle(Theme.colors.textSecondary)
+                    .monospacedDigit()
+                    .accessibilityHidden(true)
+            }
 
             if showsMuteButton { readAloudButton }
         }

@@ -90,8 +90,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 - iOS drops what a scramble run earns: `TrainerHubView` builds both without an `onFinish`, so
   the no-op eats the `DrillRunSummary` where Android lands it on Home (`model.finishDrill`).
-- iOS still draws the `position/total` counter beside a round's progress, ruled 2026-09-19 to
-  show on neither phone (`SessionScaffold`; Android's `RunScaffold` takes it as `counter`).
 - Two emoji sizes drift across the phones: the result tile's glyph is 40pt against 36sp and the
   completion 🎉 88pt against 64sp (`DrillChrome.swift`/`.kt`, `SessionCompletionView.swift`/
   `SessionSummary.kt`).
