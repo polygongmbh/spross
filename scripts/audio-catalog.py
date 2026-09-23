@@ -654,11 +654,12 @@ def fill_words(packs, languages):
             digest, index = analyzed[row['slug']]
             # why: the floor is applied AFTER the copy, because `snr` is measured off the
             # bytes that landed and nothing earlier knows it. The file is then removed
-            # again rather than left orphaned in the tree.
-            if index.get('snr', 0.0) < FILL_SNR_FLOOR_DB:
+            # again rather than left orphaned in the tree. No `snr` means a floor of
+            # digital silence, which is the cleanest a file can be, never the noisiest.
+            if index.get('snr', FILL_SNR_FLOOR_DB) < FILL_SNR_FLOOR_DB:
                 drops.append(('noisy', row['slug'],
                               '%.1f dB above its own hiss, floor is %.0f'
-                              % (index.get('snr', 0.0), FILL_SNR_FLOOR_DB)))
+                              % (index['snr'], FILL_SNR_FLOOR_DB)))
                 os.remove(os.path.join(out_dir, row['slug'] + '.mp3'))
                 continue
             shipped[row['slug']] = entry(row['slug'] + '.mp3', row['license'], row['author'],
