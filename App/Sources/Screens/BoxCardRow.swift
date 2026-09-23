@@ -160,6 +160,10 @@ struct BoxCardRow: View {
                     .foregroundStyle(Theme.colors.textSecondary)
                     .lineLimit(1)
             }
+            // why: the word's two lines are the one element that speaks; the row's
+            // wake and pack controls stay elements of their own beside it.
+            .accessibilityElement(children: .combine)
+            .pronounceOnTap(pronounce)
             Spacer(minLength: Theme.spacing.sm)
             // why: standing apart from `standing` on purpose — a report says
             // nothing about where the word stands, and a reported word keeps
@@ -178,7 +182,7 @@ struct BoxCardRow: View {
             RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
                 .fill(Theme.colors.surfaceTint)
         )
-        .pronounceOnTap(pronounce)
+        .saysOnTap(pronounce)
         .sheet(item: $sheet) { sheetBody($0) }
     }
 

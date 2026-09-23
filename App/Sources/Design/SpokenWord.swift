@@ -78,12 +78,19 @@ extension View {
     /// the element above it already names the sound,
     /// and a second copy only offers the rotor the same action twice.
     ///
+    /// It is a button to assistive tech and to nothing else:
+    /// Switch Control and Full Keyboard Access scan for controls and skip reading matter,
+    /// so without the trait and the default action the row is out of their reach,
+    /// while on screen it stays plain text with no speaker drawn.
+    ///
     /// No 44 pt floor: a floor per line would set the height of every row
     /// and space the whole table out.
     @ViewBuilder
     func pronounceOnTap(_ pronounce: (() -> Void)?) -> some View {
         if let pronounce {
             saysOnTap(pronounce)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityAction(.default, pronounce)
                 .accessibilityAction(named: Text("a11y.action.pronounce"), pronounce)
         } else {
             self

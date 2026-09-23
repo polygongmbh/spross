@@ -6,6 +6,7 @@
 - A time written back in digits now also counts with a dot, as in 18.05.
 - On Android, a fraction or a date written with a slash is no longer owed on a number pad that has no slash key.
 - Your typed answer now sits centered under the card instead of at the left edge.
+- On iPhone, Switch Control and Full Keyboard Access now reach the word rows that speak when tapped.
 
 ## 7.4.2 — 2026-09-22
 

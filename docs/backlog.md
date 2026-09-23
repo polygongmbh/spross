@@ -138,11 +138,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   card's growth is unbounded by design (`Theme.swift` reserves a minimum, never a maximum), it
   is the row below that has nowhere left to stand, and the note fallback plus the long grammar
   notes make it likelier now.
-- A row that speaks is a gesture on content rather than a control (`pronounceOnTap`,
-  `App/Sources/Design/SpokenWord.swift`; `clickable` on Android), so VoiceOver reaches it as a
-  named action while Switch Control and Full Keyboard Access, which scan for focusable
-  controls, reach nothing — on every surface on that modifier: the reference rows,
-  `BoxCardRow.swift`, the produce narration lines.
 - `android/.../AppModel.kt` is past the ~300-line budget; extracting the trainer hub's doors
   needs `screen`'s `private set` (:202, and eight more backers) widened or an internal verb minted.
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
