@@ -52,8 +52,9 @@ MIN_BODIES = 20
 
 # The primitives a face is built from. Two is the bar: a face that reaches for none of
 # them is not a card, it is a rectangle that happens to look like one today.
+# Android's `.panel(` is not one: it is the surface every block of a page wears there.
 IOS_PRIMS = ["cardSurface", "CardReveal", "CardEmoji", "SpokenWord"]
-DROID_PRIMS = ["CardFace", "CardReveal", "EmojiSlot", "SpokenWord", "Headword", ".panel("]
+DROID_PRIMS = ["CardFace", "CardReveal", "EmojiSlot", "SpokenWord", "Headword"]
 
 # Sizes a card may state inline: a hit target and a hairline are device facts, not design.
 ALLOW = {"0", "1", "44", "48"}

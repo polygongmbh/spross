@@ -119,8 +119,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   divergences (numbers and primitive names, not rendering) — is a snapshot gate
   (Roborazzi/Paparazzi + swift-snapshot-testing or simctl diff, versioned goldens) worth its
   cost, or does this bullet narrow to the residual non-numeric class?
-- `DROID_PRIMS` counts `.panel(` as a card primitive, so a file clears the composition bar on a
-  panel plus one card thing, and `IOS_PRIMS` names no panel at all.
 - A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
   duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
   screens, a second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`
