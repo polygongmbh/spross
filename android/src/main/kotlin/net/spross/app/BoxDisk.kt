@@ -1,9 +1,21 @@
 package net.spross.app
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
+import net.spross.kern.catalog.Catalog
+import net.spross.kern.catalog.CountryDrillContent
+import net.spross.kern.catalog.DateDrillContent
+import net.spross.kern.catalog.countryDrillContent
+import net.spross.kern.catalog.dateDrillContent
+import net.spross.kern.model.BoxConfig
+import net.spross.kern.model.JoinStamp
 import net.spross.kern.store.StoreCodec
+import net.spross.kern.store.StoreFormatException
 import net.spross.kern.store.StoredBox
 import net.spross.kern.store.StoredBoxes
+import net.spross.kern.store.rekeyingPrefixedVerbs
 
 /** Every language's stored box on disk ([files]), and what this launch has read or written of them. */
 class BoxDisk(val files: BoxFiles) {
@@ -53,4 +65,53 @@ class BoxDisk(val files: BoxFiles) {
     }
 
     fun write(target: String, box: StoredBox) = files.write(target, StoreCodec.encode(box))
+
+    /**
+     * Joins the pair and stands its box up on it, from disk where the device holds one —
+     * a failure carrying the [StoreFormatException] where it holds one it cannot read.
+     */
+    suspend fun join(cat: Catalog, source: String, target: String, tz: String): Result<JoinedPair> {
+        val stamp = JoinStamp(source, target, cat.fingerprint)
+        val opened = withContext(Dispatchers.IO) {
+            try {
+                Result.success(open(target))
+            } catch (e: StoreFormatException) {
+                Result.failure(e)
+            }
+        }
+        val saved = opened.getOrElse { return Result.failure(it) }
+        // why: the join builds every card the profile holds, replaying the logs re-applies
+        // every answer ever given, and the atlas walks the whole country manifest — none of
+        // it belongs on the thread that has to draw the first frame.
+        val loaded = withContext(Dispatchers.Default) {
+            val cards = cat.join(source, target)
+            // why: the pair only changes here — the hub reads the atlas and the
+            // calendars on every composition, and a sweep per frame is one no
+            // start-up should pay.
+            Triple(
+                // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
+                saved?.join(cards, stamp)?.rekeyingPrefixedVerbs()
+                    ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp),
+                cat.countryDrillContent(source, target),
+                cat.dateDrillContent(source, target),
+            )
+        }
+        val (joined, atlas, dates) = loaded
+        // why: resolved before `box` is published, so the Box screen's first recomposition
+        // against the new box already carries matching stats — an IO hop between the two
+        // let Compose draw the new box against the outgoing language's stats, which is
+        // what jumbled its scroll.
+        val days = withContext(Dispatchers.IO) { otherLanguagesDays(target, tz) }
+        return Result.success(JoinedPair(joined, saved == null, atlas, dates, days))
+    }
 }
+
+/** A pair joined with its box stood up on it — everything [AppModel.activate] publishes. */
+class JoinedPair(
+    val box: BoxState,
+    /** Whether the device held no box for the pair yet, which is what owes the disk a write. */
+    val fresh: Boolean,
+    val atlas: CountryDrillContent?,
+    val dates: DateDrillContent?,
+    val otherLanguagesAnswerDays: Map<String, Int>,
+)

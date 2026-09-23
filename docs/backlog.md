@@ -136,8 +136,9 @@ Catalog content — its forms, its audio and the per-language questions — live
   card's growth is unbounded by design (`Theme.swift` reserves a minimum, never a maximum), it
   is the row below that has nowhere left to stand, and the note fallback plus the long grammar
   notes make it likelier now.
-- `android/.../AppModel.kt` is past the ~300-line budget; extracting the trainer hub's doors
-  needs `screen`'s `private set` (:202, and eight more backers) widened or an internal verb minted.
+- `android/.../AppModel.kt` still stands at ~436 lines after its verbs moved out as extensions:
+  what remains is its state and the private setters' own verbs, so going under ~300 means state
+  holders (stats, session) read through `model.<holder>` or forwarding getters.
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
 - Compound/morpheme-boundary training for a compounding language (marking the component seams

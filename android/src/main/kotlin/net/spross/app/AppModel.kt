@@ -29,10 +29,6 @@ import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.DateDrillContent
-import net.spross.kern.catalog.countryDrillContent
-import net.spross.kern.catalog.dateDrillContent
-import net.spross.kern.model.BoxConfig
-import net.spross.kern.model.JoinStamp
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.SessionEffect
@@ -40,8 +36,6 @@ import net.spross.kern.session.SessionIntent
 import net.spross.kern.session.SessionOffers
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
-import net.spross.kern.store.StoreFormatException
-import net.spross.kern.store.rekeyingPrefixedVerbs
 
 class AppModel(app: Application) : AndroidViewModel(app) {
 
@@ -306,16 +300,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         switchingLanguage = true
         try {
             chrome = Chrome.forSource(source)
-            val stamp = JoinStamp(source, target, cat.fingerprint)
-            val opened = withContext(Dispatchers.IO) {
-                try {
-                    Result.success(disk.open(target))
-                } catch (e: StoreFormatException) {
-                    Result.failure(e)
-                }
-            }
-            val unreadable = opened.exceptionOrNull()
-            if (unreadable != null) {
+            val joined = disk.join(cat, source, target, tz()).getOrElse { unreadable ->
                 // why: a box that exists but cannot be read must never read as an EMPTY one —
                 // bootstrapping here would hand the learner a fresh box and hide the loss, so
                 // Home says so instead and the file on disk is left exactly as it stands.
@@ -326,41 +311,18 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 screen = Screen.Home
                 return
             }
-            val saved = opened.getOrThrow()
-            // why: the join builds every card the profile holds, replaying the logs re-applies
-            // every answer ever given, and the atlas walks the whole country manifest — none of
-            // it belongs on the thread that has to draw the first frame.
-            val loaded = withContext(Dispatchers.Default) {
-                val cards = cat.join(source, target)
-                // why: the pair only changes here — the hub reads the atlas and the
-                // calendars on every composition, and a sweep per frame is one no
-                // start-up should pay.
-                Triple(
-                    // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
-                    saved?.join(cards, stamp)?.rekeyingPrefixedVerbs()
-                        ?: BoxEngine.bootstrap(cards, BoxConfig.product(), stamp),
-                    cat.countryDrillContent(source, target),
-                    cat.dateDrillContent(source, target),
-                )
-            }
-            val (joined, joinedAtlas, joinedDates) = loaded
-            // why: resolved before `box` is published, so the Box screen's first recomposition
-            // against the new box already carries matching stats — an IO hop between the two
-            // let Compose draw the new box against the outgoing language's stats, which is
-            // what jumbled its scroll.
-            val days = withContext(Dispatchers.IO) { disk.otherLanguagesDays(target, tz()) }
             loadFailure = null
-            box = joined
-            atlas = joinedAtlas
-            dates = joinedDates
+            box = joined.box
+            atlas = joined.atlas
+            dates = joined.dates
             normalizer = AnswerNormalizer(cat.languages.getValue(target))
             meaningNormalizer = AnswerNormalizer(cat.languages.getValue(source))
-            otherLanguagesAnswerDays = days
+            otherLanguagesAnswerDays = joined.otherLanguagesAnswerDays
             refreshStats()
             refreshListening()
             // why: only a box that did not exist yet owes the disk anything here. A re-join
             // is derived from what is already stored and reproduces itself on the next launch.
-            if (saved == null) persist(joined)
+            if (joined.fresh) persist(joined.box)
             screen = landing
         } finally {
             switchingLanguage = false
