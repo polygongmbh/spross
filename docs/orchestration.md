@@ -8,6 +8,10 @@ Single-agent sessions do not need it.
 - Offload open-ended research and large implementations to subagents;
   hand each the full spec + the relevant `docs/` pointer.
 - Fewer, larger agents: batch 2–3 work packages per agent, share context via a short digest.
+- A sweep that is one script per language (an audio fill, a catalog format) is no agent work:
+  the conductor runs it language by language and reads the script's own report.
+  Seven audio agents in parallel tripped Commons' rate limit and took an hour
+  where one sequential session took minutes.
 
 ## Concurrency
 
