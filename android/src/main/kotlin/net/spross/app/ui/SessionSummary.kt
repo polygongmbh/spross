@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.SessionUi
+import net.spross.app.continueEndless
 import net.spross.app.hasBriefing
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.TallyPartKind

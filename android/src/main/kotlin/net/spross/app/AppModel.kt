@@ -38,7 +38,6 @@ import net.spross.kern.catalog.countryDrillContent
 import net.spross.kern.catalog.dateDrillContent
 import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.JoinStamp
-import net.spross.kern.model.Rating
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.SessionEffect
@@ -68,7 +67,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
 
     /** The run kern steps; null between sessions. The screen reads [sessionUi] instead. */
-    private var sessionRun: SessionRunState? = null
+    internal var sessionRun: SessionRunState? = null
+        private set
 
     /** The one door to a spoken target word — review cards and both drills. */
     val pronouncer = Pronouncer(app, prefs)
@@ -513,56 +513,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         return boxes.answerDaysExcept(target, tz())
     }
 
-    fun startSession() = begin(SessionIntent.Start)
-
-    /**
-     * The done card's extra round: kern composes the mixing round itself — everything due,
-     * packed vocab within the budget, then pull-aheads — and no-ops when that is empty.
-     */
-    fun startExtraSession() = begin(SessionIntent.StartExtra)
-
-    /**
-     * The session card's short round: the day's own round taken short — its due work
-     * alone, a round's worth of it — and a no-op when that is empty.
-     */
-    fun startShortSession() = begin(SessionIntent.StartShort)
-
-    private fun begin(intent: SessionIntent) {
-        val started = dispatch(intent) ?: return
-        // A round that came back empty never took the learner anywhere, and leaves no run
-        // behind for the next tap to inherit.
-        if (started.currentCardId == null) {
-            sessionRun = null
-            sessionUi = null
-            return
-        }
-        screen = Screen.Session
-    }
-
-    fun answerCurrent(rating: Rating) {
-        sessionRun ?: return
-        // why: the card is leaving — a word still sounding must not follow the learner
-        // onto the next one, the same cut iOS makes in resetCardState().
-        pronouncer.stop()
-        dispatch(SessionIntent.Answer(rating))
-    }
-
-    /**
-     * Take the card on screen out of the round: suspend it and step past with no rating
-     * at all. Never a grade — the learner is saying it should not be ASKED, not that
-     * they failed it ([SessionIntent.SuspendCurrent]).
-     */
-    fun suspendCurrentCard() {
-        sessionRun ?: return
-        pronouncer.stop()
-        dispatch(SessionIntent.SuspendCurrent)
-    }
-
-    fun continueEndless() {
-        sessionRun ?: return
-        dispatch(SessionIntent.ContinueEndless)
-    }
-
     /**
      * Backgrounding (`SprossActivity.onStop`): every answer is already in the box, so this
      * only makes sure it reaches disk before the process can be taken away.
@@ -576,8 +526,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         sessionRun ?: return
         pronouncer.stop() // the run is over: nothing keeps talking into Home
         dispatch(SessionIntent.Close)
-        sessionRun = null
-        sessionUi = null
+        dropRun()
         screen = Screen.Home
         // why: one round is what the coaching is for, and leaving is what says it was
         // read — a learner who quits after two cards still comes back to a quiet screen.
@@ -588,7 +537,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * Step the run and honor what it asks for. The whole session machine is kern's;
      * this is the platform half — the clock, the disk, and the observable state.
      */
-    private fun dispatch(intent: SessionIntent, blocking: Boolean = false): SessionRunState? {
+    internal fun dispatch(intent: SessionIntent, blocking: Boolean = false): SessionRunState? {
         val state = box ?: return null
         // The box may have moved outside the run (a fresh load, settings) — carry it in.
         val current = sessionRun?.let { SessionRun.withBox(it, state) } ?: SessionRun.idle(state)
@@ -604,6 +553,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         }
         refreshSessionUi()
         return reduction.state
+    }
+
+    /** Leaves no run behind: nothing on screen reads one, and the next start begins idle. */
+    internal fun dropRun() {
+        sessionRun = null
+        sessionUi = null
     }
 
     private fun refreshSessionUi() {

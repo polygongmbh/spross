@@ -29,6 +29,7 @@ import net.spross.app.AppModel
 import net.spross.app.dismissReportedIssue
 import net.spross.app.reportIssue
 import net.spross.app.reportedIssue
+import net.spross.app.suspendCurrentCard
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.Feedback
 import net.spross.kern.model.Card
