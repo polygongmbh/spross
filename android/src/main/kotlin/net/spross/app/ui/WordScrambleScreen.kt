@@ -35,15 +35,15 @@ fun WordScrambleScreen(model: AppModel) {
         model.newWordScramble(onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
     } ?: return
     val state = flow.state
-    // The scrambles have no page of their own to land on, so the figures go back to Home with
-    // the learner; this drill keeps no streak record, and no high-water Sprosse beside the
-    // mask, because nothing reads one back.
+    // The scrambles have no page of their own to land on, so a run closes onto Home with no
+    // figures; this drill keeps no streak record, and no high-water Sprosse beside the mask,
+    // because nothing reads one back.
     val leave = {
         val closed = flow.close()
         // why: what the NEXT run reads — it opens on the lowest Sprosse the mask does not
         // hold, so a Sprosse climbed clean is never asked for twice.
         model.trainer.store.bookCleared(flow.clearedKey, closed.clearedSprossen)
-        model.finishDrill(Screen.Home, closed.summary, chrome.trainerDrillWordScramble)
+        model.finishDrill(Screen.Home, null, "")
     }
 
     val inputFocus = remember { FocusRequester() }
