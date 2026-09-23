@@ -48,3 +48,25 @@ fun pluralForm(realization: Realization): PluralForm? {
  */
 fun alternates(realization: Realization, shown: List<String>): List<String> =
     (listOf(realization.text) + realization.teaches).filterNot { it in shown }
+
+/** What the card's last line says, once it has stopped asking; the label a surface puts on it is chrome. */
+sealed class ClosingNote {
+    /** The card's own authored note. */
+    data class Own(val text: String) : ClosingNote()
+
+    /** What the prompted form means besides this card, seed order (`session.TurnState.alsoMeans`). */
+    data class AlsoMeans(val meanings: List<String>) : ClosingNote()
+}
+
+/**
+ * The card's closing line, or null where it has nothing to close on.
+ *
+ * One line, never two: a card with something of its own to say says that,
+ * and what the word also means takes the slot only where the card had nothing —
+ * a second hint under the first is a line nobody reads (`docs/design.md`).
+ */
+fun closingNote(realization: Realization, alsoMeans: List<String>): ClosingNote? = when {
+    realization.note != null -> ClosingNote.Own(realization.note)
+    alsoMeans.isNotEmpty() -> ClosingNote.AlsoMeans(alsoMeans)
+    else -> null
+}

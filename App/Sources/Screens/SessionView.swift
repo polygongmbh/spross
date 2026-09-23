@@ -176,7 +176,9 @@ struct SessionView: View, LanguageNaming {
                         emojiCue: model.emojiCue(for: card),
                         prompt: promptSide(card, role: role),
                         answer: answerSide(card, role: role),
-                        note: card.target.note ?? meansAlsoLine,
+                        note: CardDisplay.closingNote(of: card.target,
+                                                      alsoMeans: turn?.alsoMeans ?? [],
+                                                      locale: locale),
                         revealed: cardRevealed,
                         // why: the input, the button and the keyboard share this
                         // screen with the card — the picture goes beside the words.

@@ -85,9 +85,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   circles carry only the entry mark where the atlas and calendar wear a record
   (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
   typed stages, which enumerate, file one and open above it too?
-- The card's closing line is decided once per phone (`CardDisplay.closingNote` on Android, its
-  iOS twin) where `kern/model/DisplayText.kt` owns that class of decision and already computes
-  `alsoMeans`.
 - Widget and watch snapshots ship the raw article string (`kern/.../snapshot/SnapshotSupport.kt`
   `articleTint`, `Widgets/Sources/WordWidgetView.swift`, `Watch/Sources/WatchTheme.swift`), so fr/it
   `le` cannot take its hue there until the snapshot carries a gender (a `!` change).

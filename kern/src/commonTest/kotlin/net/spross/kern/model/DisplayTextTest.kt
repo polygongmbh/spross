@@ -4,7 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-/** The two reveal lines both apps used to carry their own copy of: the plural, and the family beyond it. */
+/** The reveal lines both apps read: the plural, the family beyond it, and the line the card closes on. */
 class DisplayTextTest {
 
     @Test
@@ -67,6 +67,15 @@ class DisplayTextTest {
             accepts = listOf("die Tuer"),
         )
         assertEquals(listOf("die Türe"), alternates(word, listOf("die Tür")))
+    }
+
+    /** The card says its own thing where it has one; what the word also means takes the slot only where it has none. */
+    @Test
+    fun theClosingNoteIsOneLine() {
+        val bank = realization("die Bank")
+        assertEquals(ClosingNote.Own("Geldhaus"), closingNote(bank.copy(note = "Geldhaus"), listOf("Sitzbank")))
+        assertEquals(ClosingNote.AlsoMeans(listOf("Sitzbank")), closingNote(bank, listOf("Sitzbank")))
+        assertNull(closingNote(bank, emptyList()))
     }
 
     private fun realization(

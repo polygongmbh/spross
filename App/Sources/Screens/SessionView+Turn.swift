@@ -144,16 +144,6 @@ extension SessionView {
     /// exactly when a learner has something to say about the word.
     var answerOut: Bool { turn?.answerOut ?? false }
 
-    /// What the prompted word means BESIDES this card, where the target language
-    /// merges two of ours into one of its own. It takes the note's own line and
-    /// never crowds it: a card with something of its own to say says that, and
-    /// one line is all the reveal ever carries.
-    var meansAlsoLine: String? {
-        guard let also = turn?.alsoMeans, !also.isEmpty else { return nil }
-        return String(format: ChromeStrings.string("session.means.also %@", locale: locale),
-                      also.joined(separator: " / "))
-    }
-
     /// The form an amber hold owes back, and why it does: a slip's proper
     /// spelling, or the word that played where a form this card also accepts
     /// was written.

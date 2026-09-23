@@ -1,17 +1,20 @@
 package net.spross.app
 
+import net.spross.kern.model.ClosingNote
 import net.spross.kern.model.PluralForm
 import net.spross.kern.model.Realization
 import net.spross.kern.model.alternates
+import net.spross.kern.model.closingNote
 import net.spross.kern.model.pluralForm
 
 /**
- * The WORDS this platform wraps around kern's two reveal rules.
+ * The WORDS this platform wraps around kern's reveal rules.
  *
- * Which authored plural is a sentinel and which resolves against the word, and which forms
- * are left to offer once the ones on screen are taken out, are `model/DisplayText.kt`'s —
- * one definition for both apps, where these lines used to be written twice and drift.
- * The labels ("Pl. ", "= Pl.", "auch:") and the " / " between forms are chrome and stay here.
+ * Which authored plural is a sentinel and which resolves against the word, which forms
+ * are left to offer once the ones on screen are taken out, and which line closes the card
+ * are `model/DisplayText.kt`'s — one definition for both apps.
+ * The labels ("Pl. ", "= Pl.", "auch:", "bedeutet auch:") and the " / " between forms
+ * are chrome and stay here.
  */
 object CardDisplay {
 
@@ -39,17 +42,9 @@ object CardDisplay {
     fun alsoLine(realization: Realization, chrome: Chrome, shown: String): String? =
         alsoLine(realization, chrome, listOf(shown))
 
-    /** "bedeutet auch: …" — what the prompted form means besides what this card teaches. */
-    fun meansAlsoLine(alsoMeans: List<String>, chrome: Chrome): String? =
-        alsoMeans.takeIf { it.isNotEmpty() }
-            ?.let { chrome.sessionMeansAlso.format(it.joinToString(" / ")) }
-
     /**
      * The card's LAST line, which it grows only once it has stopped asking.
-     *
-     * One line, never two: a card with something of its own to say says that, and what the
-     * word also means takes the slot where the card had nothing — a second hint under the
-     * first is a line nobody reads (`docs/design.md`).
+     * Which line that is, is kern's `closingNote`; the "bedeutet auch:" label is chrome.
      */
     fun closingNote(
         realization: Realization,
@@ -58,6 +53,10 @@ object CardDisplay {
         revealed: Boolean,
     ): String? {
         if (!revealed) return null
-        return realization.note ?: meansAlsoLine(alsoMeans, chrome)
+        return when (val note = closingNote(realization, alsoMeans)) {
+            null -> null
+            is ClosingNote.Own -> note.text
+            is ClosingNote.AlsoMeans -> chrome.sessionMeansAlso.format(note.meanings.joinToString(" / "))
+        }
     }
 }

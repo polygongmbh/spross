@@ -70,15 +70,11 @@ class CardDisplayTest {
         assertNull(CardDisplay.article(realization("nyumba")))
     }
 
-    /** The card says its own thing where it has one, and nothing at all while it still asks. */
+    /** Which line closes the card is kern's (`DisplayTextTest`); here, its label, and nothing while the card still asks. */
     @Test
-    fun theClosingNoteIsOneLineAndOnlyAfterTheReveal() {
-        val own = realization("die Bank").copy(note = "Geldhaus")
-        assertEquals("Geldhaus", CardDisplay.closingNote(own, listOf("Sitzbank"), chrome, revealed = true))
-        assertEquals(
-            "bedeutet auch: Sitzbank",
-            CardDisplay.closingNote(realization("die Bank"), listOf("Sitzbank"), chrome, revealed = true),
-        )
-        assertNull(CardDisplay.closingNote(own, listOf("Sitzbank"), chrome, revealed = false))
+    fun theAlsoMeansLineWearsItsLabelOnlyAfterTheReveal() {
+        val bank = realization("die Bank")
+        assertEquals("bedeutet auch: Sitzbank", CardDisplay.closingNote(bank, listOf("Sitzbank"), chrome, revealed = true))
+        assertNull(CardDisplay.closingNote(bank, listOf("Sitzbank"), chrome, revealed = false))
     }
 }
