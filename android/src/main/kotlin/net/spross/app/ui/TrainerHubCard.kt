@@ -25,6 +25,12 @@ import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.offers
+import net.spross.app.openCountries
+import net.spross.app.openDates
+import net.spross.app.openLetters
+import net.spross.app.openNumbers
+import net.spross.app.startSentenceScramble
+import net.spross.app.startWordScramble
 import net.spross.app.trainerHubOffered
 import net.spross.kern.trainer.Drill
 

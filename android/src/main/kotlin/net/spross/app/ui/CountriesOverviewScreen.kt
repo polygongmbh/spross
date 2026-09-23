@@ -3,6 +3,7 @@ package net.spross.app.ui
 import androidx.compose.runtime.Composable
 import net.spross.app.AppModel
 import net.spross.app.countrySprosse
+import net.spross.app.startCountryDrill
 import net.spross.kern.trainer.CountryDrill
 
 /**

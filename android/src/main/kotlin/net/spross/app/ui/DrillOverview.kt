@@ -39,6 +39,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.closeOverview
 
 /**
  * The shape every drill's page wears — the letters, the numbers, the atlas, the calendar:

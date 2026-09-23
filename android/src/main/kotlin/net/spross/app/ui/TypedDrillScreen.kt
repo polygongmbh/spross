@@ -18,6 +18,7 @@ import net.spross.app.bookRecord
 import net.spross.app.Screen
 import net.spross.app.TypedDrill
 import net.spross.app.TypedDrillView
+import net.spross.app.finishDrill
 import net.spross.app.speakDrillAnswer
 import net.spross.app.speakFormOnTap
 import net.spross.kern.session.ToneKind

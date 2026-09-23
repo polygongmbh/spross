@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.name
+import net.spross.app.startLetterDrill
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.LetterStage
 

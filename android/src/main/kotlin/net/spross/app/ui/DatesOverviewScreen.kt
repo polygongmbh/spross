@@ -3,6 +3,7 @@ package net.spross.app.ui
 import androidx.compose.runtime.Composable
 import net.spross.app.AppModel
 import net.spross.app.dateSprosse
+import net.spross.app.startDateDrill
 import net.spross.kern.trainer.DateDrill
 
 /**

@@ -14,6 +14,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.SentenceScrambleFlow
+import net.spross.app.finishDrill
 import net.spross.app.newSentenceScramble
 import net.spross.app.speakFormOnTap
 import net.spross.kern.trainer.SentenceScrambleTask

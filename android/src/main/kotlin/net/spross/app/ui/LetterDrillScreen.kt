@@ -32,6 +32,7 @@ import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
 import net.spross.app.Screen
 import net.spross.app.audio.Pronouncer
+import net.spross.app.finishDrill
 import net.spross.app.letterReplay
 import net.spross.app.newLetterDrill
 import net.spross.app.playLetterPrompt

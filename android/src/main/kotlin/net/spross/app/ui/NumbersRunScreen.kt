@@ -16,6 +16,7 @@ import net.spross.app.NumbersFlow
 import net.spross.app.badge
 import net.spross.app.bookRecord
 import net.spross.app.countLine
+import net.spross.app.finishDrill
 import net.spross.app.name
 import net.spross.app.newTrainerRun
 import net.spross.app.speakDrillAnswer

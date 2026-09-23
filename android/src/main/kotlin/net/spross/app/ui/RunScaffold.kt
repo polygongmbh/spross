@@ -39,6 +39,7 @@ import net.spross.app.AppModel
 import net.spross.app.DrillRun
 import net.spross.app.Screen
 import net.spross.app.audio.Pronouncer
+import net.spross.app.finishDrill
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunProgress
