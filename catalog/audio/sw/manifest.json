@@ -1032,6 +1032,28 @@
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/"
   },
   "words": {
+    "a-little": {
+      "author": "Waithera Were",
+      "file": "a-little.mp3",
+      "gain": -4.0,
+      "gainPhone": -10.4,
+      "lead": 46,
+      "matches": "kidogo",
+      "sha256": "ef74a38c32dabdb3437f43fcf1b9cdcf8ecd434cd1f03c3755222c2450255b70",
+      "snr": 50.7,
+      "source": "Sw-ke-kidogo.flac"
+    },
+    "a-while-ago": {
+      "author": "Waithera Were",
+      "file": "a-while-ago.mp3",
+      "gain": -7.8,
+      "gainPhone": -15.4,
+      "lead": 43,
+      "matches": "kitambo",
+      "sha256": "f003b7ce94df1001d7605ad4bd2c8e32d5cc346fda97c133f3734aa1f8f1a8ae",
+      "snr": 45.4,
+      "source": "Sw-ke-kitambo.flac"
+    },
     "address": {
       "author": "Waithera Were",
       "file": "address.mp3",
@@ -1042,6 +1064,28 @@
       "sha256": "2fcbc34b4aa26ef703b0f2258160bffd6c3c69df703af98d3d107f3b69abd90d",
       "snr": 49.5,
       "source": "Sw-ke-anwani.flac"
+    },
+    "adjective": {
+      "author": "Waithera Were",
+      "file": "adjective.mp3",
+      "gain": 1.0,
+      "gainPhone": -0.5,
+      "lead": 49,
+      "matches": "kivumishi",
+      "sha256": "53a3b4bafcdb3e0cbe26b47ae57289723990449afb4076d04a25843b6539236d",
+      "snr": 51.5,
+      "source": "Sw-ke-kivumishi.flac"
+    },
+    "affix": {
+      "author": "Waithera Were",
+      "file": "affix.mp3",
+      "gain": -5.2,
+      "gainPhone": -11.5,
+      "lead": 44,
+      "matches": "kiambishi",
+      "sha256": "4c169f145389e1f4fb8d0d4a9e813c8c8ea6626b297cb7cf4d5d4461726f127b",
+      "snr": 48.8,
+      "source": "Sw-ke-kiambishi.flac"
     },
     "afternoon": {
       "author": "Waithera Were",
@@ -1098,6 +1142,17 @@
       "snr": 53.4,
       "source": "Sw-ke-mzio.flac"
     },
+    "almost": {
+      "author": "Waithera Were",
+      "file": "almost.mp3",
+      "gain": -6.6,
+      "gainPhone": -12.9,
+      "lead": 230,
+      "matches": "takriban",
+      "sha256": "97a2874b12a33211db86959c38c400a86593dc8f2ff332a566e5cb290e3383ab",
+      "snr": 82.9,
+      "source": "Sw-ke-takriban.flac"
+    },
     "also": {
       "author": "Waithera Were",
       "file": "also.mp3",
@@ -1108,6 +1163,17 @@
       "sha256": "14748772de3bc0bc88b38c62fb47f24f8eb11ca97381e8345a2f79eb6d09b82a",
       "snr": 49.2,
       "source": "Sw-ke-pia.flac"
+    },
+    "although": {
+      "author": "Waithera Were",
+      "file": "although.mp3",
+      "gain": -9.0,
+      "gainPhone": -15.0,
+      "lead": 39,
+      "matches": "ingawa",
+      "sha256": "348ced9e2b73befa9a0322f359b25a382bf881ea8fbc3ab7ee3c66ffca252228",
+      "snr": 54.7,
+      "source": "Sw-ke-ingawa.flac"
     },
     "always": {
       "author": "Waithera Were",
@@ -1163,6 +1229,17 @@
       "sha256": "3ccaa0a1f7d5e5db6130fcafdb80c02489622b06a6e280309c87f988c751db30",
       "snr": 49.6,
       "source": "Sw-ke-jibu.flac"
+    },
+    "anything": {
+      "author": "Waithera Were",
+      "file": "anything.mp3",
+      "gain": -6.2,
+      "gainPhone": -11.9,
+      "lead": 142,
+      "matches": "chochote",
+      "sha256": "cc76150edd383ab324405cecf76a0917b70295251e20082ae0b591031b29190e",
+      "snr": 82.7,
+      "source": "Sw-ke-chochote.flac"
     },
     "apartment": {
       "author": "Waithera Were",
@@ -1361,6 +1438,17 @@
       "snr": 53.4,
       "source": "Sw-ke-ufukwe.flac"
     },
+    "bean": {
+      "author": "Waithera Were",
+      "file": "bean.mp3",
+      "gain": -9.1,
+      "gainPhone": -17.2,
+      "lead": 33,
+      "matches": "haragwe",
+      "sha256": "378dbe747fd842b2e4eb72eda512488f2383bbc1354e40a6131c877463b5069f",
+      "snr": 50.7,
+      "source": "Sw-ke-haragwe.flac"
+    },
     "beautiful": {
       "author": "Waithera Were",
       "file": "beautiful.mp3",
@@ -1460,6 +1548,17 @@
       "snr": 43.9,
       "source": "Sw-ke-ndege.flac"
     },
+    "birth": {
+      "author": "Waithera Were",
+      "file": "birth.mp3",
+      "gain": -5.4,
+      "gainPhone": -13.3,
+      "lead": 40,
+      "matches": "uzazi",
+      "sha256": "8a66175e1d2fa131e0f96ad1a684690097ca154097603e4bc6ec380076af930c",
+      "snr": 53.3,
+      "source": "Sw-ke-uzazi.flac"
+    },
     "black": {
       "author": "Waithera Were",
       "file": "black.mp3",
@@ -1524,6 +1623,17 @@
       "sha256": "1d0883d096b060228e9fbc31caf2164b4e3c152aa4749d8fefc10602c41ccc2e",
       "snr": 51.4,
       "source": "Sw-ke-ubao.flac"
+    },
+    "boat": {
+      "author": "Waithera Were",
+      "file": "boat.mp3",
+      "gain": -9.7,
+      "gainPhone": -15.5,
+      "lead": 55,
+      "matches": "mashua",
+      "sha256": "57228799f98909fe67b8ef7efb52b7746699971e0c2f962665c3d53920aef00a",
+      "snr": 47.0,
+      "source": "Sw-ke-mashua.flac"
     },
     "bone": {
       "author": "Waithera Were",
@@ -1720,6 +1830,17 @@
       "snr": 53.6,
       "source": "Sw-ke-siagi.flac"
     },
+    "cabbage": {
+      "author": "Waithera Were",
+      "file": "cabbage.mp3",
+      "gain": 1.0,
+      "gainPhone": -4.2,
+      "lead": 43,
+      "matches": "kabichi",
+      "sha256": "ca8cb84f81ed069cac0772f8a816a4673c4cfc6daeaf1f0714c0ee2eb12d5044",
+      "snr": 53.2,
+      "source": "Sw-ke-kabichi.flac"
+    },
     "cable": {
       "author": "Waithera Were",
       "file": "cable.mp3",
@@ -1742,6 +1863,17 @@
       "snr": 51.5,
       "source": "Sw-ke-kalenda.flac"
     },
+    "campsite": {
+      "author": "Waithera Were",
+      "file": "campsite.mp3",
+      "gain": -7.5,
+      "gainPhone": -16.4,
+      "lead": 41,
+      "matches": "kambi",
+      "sha256": "65da8639a380319923e9537c0f325afa7e897f26de49f05c57bafdc5e6b2ba2e",
+      "snr": 53.6,
+      "source": "Sw-ke-kambi.flac"
+    },
     "car": {
       "author": "Waithera Were",
       "file": "car.mp3",
@@ -1763,6 +1895,17 @@
       "sha256": "11f1650ff29ab12db03627212b6c91df96bd07c6d22125dc470e36d561ba2ac6",
       "snr": 51.6,
       "source": "Sw-ke-zulia.flac"
+    },
+    "carrot": {
+      "author": "Waithera Were",
+      "file": "carrot.mp3",
+      "gain": -10.8,
+      "gainPhone": -16.7,
+      "lead": 45,
+      "matches": "karoti",
+      "sha256": "a3364fcaed3cdd24dba0dbb4735d08f7327bc386833e56058b36c9cf9025bc7a",
+      "snr": 47.8,
+      "source": "Sw-ke-karoti.flac"
     },
     "cassava": {
       "author": "Waithera Were",
@@ -1796,6 +1939,39 @@
       "sha256": "d90ff3313700db4e0d3a3aa526affc248187cbf7c1cdbdebeb58e4bfa9a1789c",
       "snr": 83.5,
       "source": "Sw-ke-tahadhari.flac"
+    },
+    "celebration": {
+      "author": "Waithera Were",
+      "file": "celebration.mp3",
+      "gain": -9.3,
+      "gainPhone": -16.2,
+      "lead": 34,
+      "matches": "sherehe",
+      "sha256": "b04b281e5323a450e957f11704c8b6c36733067cbbc80b9e171d2c6104c97bb3",
+      "snr": 49.8,
+      "source": "Sw-ke-sherehe.flac"
+    },
+    "center": {
+      "author": "Waithera Were",
+      "file": "center.mp3",
+      "gain": -7.2,
+      "gainPhone": -15.2,
+      "lead": 45,
+      "matches": "katikati",
+      "sha256": "f348e50276f1a4ad0c65786d36516ab9ed01b4c4d44a55c9bb3f4b2ddc8ee8e3",
+      "snr": 56.4,
+      "source": "Sw-ke-katikati.flac"
+    },
+    "century": {
+      "author": "Waithera Were",
+      "file": "century.mp3",
+      "gain": -8.7,
+      "gainPhone": -16.5,
+      "lead": 56,
+      "matches": "karne",
+      "sha256": "245b382df3dd146ffa882a56774a714d99157df047314e7a42ad93ad178f3e5d",
+      "snr": 48.7,
+      "source": "Sw-ke-karne.flac"
     },
     "certificate": {
       "author": "Waithera Were",
@@ -2005,6 +2181,17 @@
       "snr": 47.8,
       "source": "Sw-ke-wingu.flac"
     },
+    "coast": {
+      "author": "Waithera Were",
+      "file": "coast.mp3",
+      "gain": -8.1,
+      "gainPhone": -14.6,
+      "lead": 212,
+      "matches": "pwani",
+      "sha256": "280967092f1cd5faa196d995d07f9f8f77c890b5f389c530cfd3d01c14bfda1c",
+      "snr": 83.5,
+      "source": "Sw-ke-pwani.flac"
+    },
     "coat": {
       "author": "Waithera Were",
       "file": "coat.mp3",
@@ -2159,6 +2346,17 @@
       "snr": 56.1,
       "source": "Sw-ke-kozi.flac"
     },
+    "cow": {
+      "author": "Waithera Were",
+      "file": "cow.mp3",
+      "gain": -8.2,
+      "gainPhone": -11.6,
+      "lead": 48,
+      "matches": "ng'ombe",
+      "sha256": "2eb948d66fc6da81ddb03a3ba7a1297ccff6012c74f4e362b0072f6edf02cb6a",
+      "snr": 52.2,
+      "source": "Sw-ke-ng'ombe.flac"
+    },
     "cream": {
       "author": "Waithera Were",
       "file": "cream.mp3",
@@ -2267,6 +2465,17 @@
       "snr": 51.2,
       "source": "Sw-ke-kifo.flac"
     },
+    "decade": {
+      "author": "Waithera Were",
+      "file": "decade.mp3",
+      "gain": -7.7,
+      "gainPhone": -12.6,
+      "lead": 47,
+      "matches": "mwongo",
+      "sha256": "cbeb67be11ee365ff94be29895f8ebd5817ee95a70b4ef85bdac0d549edc9c61",
+      "snr": 57.0,
+      "source": "Sw-ke-mwongo.flac"
+    },
     "dictionary": {
       "author": "Waithera Were",
       "file": "dictionary.mp3",
@@ -2365,6 +2574,17 @@
       "snr": 49.1,
       "source": "Sw-ke-mbwa.flac"
     },
+    "donkey": {
+      "author": "Waithera Were",
+      "file": "donkey.mp3",
+      "gain": -2.1,
+      "gainPhone": -5.0,
+      "lead": 47,
+      "matches": "punda",
+      "sha256": "e50e420808ce6f75a3de4dfb51a6ff81c25f12b7b867d292b286e25156b3df36",
+      "snr": 55.6,
+      "source": "Sw-ke-punda.flac"
+    },
     "door": {
       "author": "Waithera Were",
       "file": "door.mp3",
@@ -2386,6 +2606,17 @@
       "sha256": "818aecf335ac223fd76d3c845e89c3e446a0f62b6ad11226fb7165adcfa1cf43",
       "snr": 48.6,
       "source": "Sw-ke-kengele.flac"
+    },
+    "doubt": {
+      "author": "Waithera Were",
+      "file": "doubt.mp3",
+      "gain": -7.2,
+      "gainPhone": -15.6,
+      "lead": 32,
+      "matches": "shaka",
+      "sha256": "655334d0f26af6f20f5caddf3d72f922987a30c7ea37c0c15e2556a28176f2cc",
+      "snr": 56.2,
+      "source": "Sw-ke-shaka.flac"
     },
     "down": {
       "author": "Waithera Were",
@@ -2497,6 +2728,17 @@
       "snr": 57.7,
       "source": "Sw-ke-uchaguzi.flac"
     },
+    "elephant": {
+      "author": "Waithera Were",
+      "file": "elephant.mp3",
+      "gain": -6.5,
+      "gainPhone": -13.6,
+      "lead": 48,
+      "matches": "tembo",
+      "sha256": "f58621a01f454000d4e82f185d9d10e8970cefb073022693bd24e9a0d35dec6f",
+      "snr": 52.7,
+      "source": "Sw-ke-tembo.flac"
+    },
     "emergency": {
       "author": "Waithera Were",
       "file": "emergency.mp3",
@@ -2541,6 +2783,28 @@
       "snr": 50.9,
       "source": "Sw-ke-injini.flac"
     },
+    "equality": {
+      "author": "Waithera Were",
+      "file": "equality.mp3",
+      "gain": -7.8,
+      "gainPhone": -15.1,
+      "lead": 49,
+      "matches": "usawa",
+      "sha256": "15aa8abfa96e809a0105ae7808f34d1300c995f4da4dd75496bbb9814234a2c0",
+      "snr": 55.6,
+      "source": "Sw-ke-usawa.flac"
+    },
+    "even": {
+      "author": "Waithera Were",
+      "file": "even.mp3",
+      "gain": -6.3,
+      "gainPhone": -14.9,
+      "lead": 27,
+      "matches": "hata",
+      "sha256": "c2c7ed756dd0ab418437f9abed1d3435a4ebcf42948cd03d2852b57c1423fb3e",
+      "snr": 54.4,
+      "source": "Sw-ke-hata.flac"
+    },
     "evening": {
       "author": "Waithera Were",
       "file": "evening.mp3",
@@ -2583,6 +2847,17 @@
       "sha256": "bf346ed0413a5c7f93b0e3df3a73c42b920e70e8b8d9ee7d3f04978f8638cbaa",
       "snr": 38.8,
       "source": "Sw-ke-samahani.flac"
+    },
+    "exercise": {
+      "author": "Waithera Were",
+      "file": "exercise.mp3",
+      "gain": -3.3,
+      "gainPhone": -7.8,
+      "lead": 39,
+      "matches": "zoezi",
+      "sha256": "84aba74fbed5269b3bfa20e6e43d52c8fdc25f5a875b9b3cef0752fa8dad916f",
+      "snr": 49.0,
+      "source": "Sw-ke-zoezi.flac"
     },
     "expensive": {
       "author": "Waithera Were",
@@ -2704,6 +2979,28 @@
       "snr": 45.4,
       "source": "Sw-ke-homa.flac"
     },
+    "few": {
+      "author": "Waithera Were",
+      "file": "few.mp3",
+      "gain": -7.4,
+      "gainPhone": -16.0,
+      "lead": 34,
+      "matches": "chache",
+      "sha256": "d8ddc4b5d3b73c99474decb90005a79b9c7c0ba7824cd289c9e8fa1fa6bb09bd",
+      "snr": 46.9,
+      "source": "Sw-ke-chache.flac"
+    },
+    "finally": {
+      "author": "Waithera Were",
+      "file": "finally.mp3",
+      "gain": 2.8,
+      "gainPhone": -3.7,
+      "lead": 18,
+      "matches": "hatimaye",
+      "sha256": "7a8c09ca838ed4c8984d3bc6e4e69e77a3bc08479371e94766c2b6ed659489f8",
+      "snr": 45.2,
+      "source": "Sw-ke-hatimaye.flac"
+    },
     "fine": {
       "author": "Waithera Were",
       "file": "fine.mp3",
@@ -2724,6 +3021,17 @@
       "sha256": "5ae95de15708a9b5b049b33ce5dd2d129f56892cc1b2b09460c23cd42830ac82",
       "snr": 47.5,
       "source": "Sw-ke-kidole.flac"
+    },
+    "firm": {
+      "author": "Waithera Were",
+      "file": "firm.mp3",
+      "gain": -9.4,
+      "gainPhone": -16.7,
+      "lead": 44,
+      "matches": "imara",
+      "sha256": "36e5a9211f72d211cc30210f63595d03f324ad1156cc395b9fe0814fd8a0d6af",
+      "snr": 56.0,
+      "source": "Sw-ke-imara.flac"
     },
     "first": {
       "author": "Waithera Were",
@@ -2857,6 +3165,17 @@
       "snr": 48.0,
       "source": "Sw-ke-fomu.flac"
     },
+    "formerly": {
+      "author": "Waithera Were",
+      "file": "formerly.mp3",
+      "gain": -9.3,
+      "gainPhone": -16.4,
+      "lead": 37,
+      "matches": "zamani",
+      "sha256": "f8d78e09c0aad9d7ef12fbbabfe569fba66c30bc3a2508391e97022b397a54d4",
+      "snr": 54.0,
+      "source": "Sw-ke-zamani.flac"
+    },
     "free-of-charge": {
       "author": "Waithera Were",
       "file": "free-of-charge.mp3",
@@ -2955,6 +3274,27 @@
       "snr": 55.3,
       "source": "Sw-ke-mchezo.flac"
     },
+    "gas": {
+      "author": "Waithera Were",
+      "file": "gas.mp3",
+      "gain": -3.7,
+      "gainPhone": -10.1,
+      "matches": "gesi",
+      "sha256": "77cdda1b01c30aebcdfbc1e85c1fbd555eedcd697aa65143f891f20b3d71ee90",
+      "snr": 49.1,
+      "source": "Sw-ke-gesi.flac"
+    },
+    "gift": {
+      "author": "Waithera Were",
+      "file": "gift.mp3",
+      "gain": -9.7,
+      "gainPhone": -16.0,
+      "lead": 31,
+      "matches": "zawadi",
+      "sha256": "300a7321130c1b0ad891792d01cb2972eb2c31e2fa27bf01c385a675f8d5c614",
+      "snr": 54.5,
+      "source": "Sw-ke-zawadi.flac"
+    },
     "girl": {
       "author": "Waithera Were",
       "file": "girl.mp3",
@@ -3009,6 +3349,17 @@
       "sha256": "1ebb5387e53ede8d2c97e9a917cb490cba767bb1f5bb7ea180b496a2646ef7aa",
       "snr": 54.3,
       "source": "Sw-ke-lengo.flac"
+    },
+    "goat": {
+      "author": "Waithera Were",
+      "file": "goat.mp3",
+      "gain": -6.8,
+      "gainPhone": -5.1,
+      "lead": 44,
+      "matches": "mbuzi",
+      "sha256": "2725c73fc638d9f759c2f870b8f081e124d8cd276ae04f19cb4fedf6dd8c7ab4",
+      "snr": 48.0,
+      "source": "Sw-ke-mbuzi.flac"
     },
     "good": {
       "author": "Waithera Were",
@@ -3175,6 +3526,17 @@
       "snr": 55.4,
       "source": "Sw-ke-kofia.flac"
     },
+    "he": {
+      "author": "Waithera Were",
+      "file": "he.mp3",
+      "gain": -6.8,
+      "gainPhone": -13.5,
+      "lead": 33,
+      "matches": "yeye",
+      "sha256": "dfc98174118c97bf7343086584241f277878119a8d791a7ee9a0dce06631ee63",
+      "snr": 52.9,
+      "source": "Sw-ke-yeye.flac"
+    },
     "head": {
       "author": "Waithera Were",
       "file": "head.mp3",
@@ -3262,6 +3624,27 @@
       "sha256": "105509d0c64d6657f9abea0baf63cd7da5fb0e1bc39e97fd59c96a1515571706",
       "snr": 56.2,
       "source": "Sw-ke-hapa.flac"
+    },
+    "his": {
+      "author": "Waithera Were",
+      "file": "his.mp3",
+      "gain": -8.0,
+      "gainPhone": -16.9,
+      "lead": 40,
+      "matches": "ake",
+      "sha256": "2c94ef67bfc7a1a77478191e003a902975f0dccd72d5f6bfe908f778911a6443",
+      "snr": 56.3,
+      "source": "Sw-ke-ake.flac"
+    },
+    "horse": {
+      "author": "Waithera Were",
+      "file": "horse.mp3",
+      "gain": -7.1,
+      "gainPhone": -15.0,
+      "matches": "farasi",
+      "sha256": "ea366f044935946cbc5cf1e7d8c27816689c2e1ed7ba3de78b934106682c0876",
+      "snr": 36.5,
+      "source": "Sw-ke-farasi.flac"
     },
     "hospital": {
       "author": "Waithera Were",
@@ -3373,6 +3756,17 @@
       "snr": 55.3,
       "source": "Sw-ke-mume.flac"
     },
+    "i": {
+      "author": "Waithera Were",
+      "file": "i.mp3",
+      "gain": -3.8,
+      "gainPhone": -4.1,
+      "lead": 39,
+      "matches": "mimi",
+      "sha256": "639f1ab805d48ca3bfd96a8d990306a777b8cfd5925d98e9953baf6a36e588f0",
+      "snr": 52.8,
+      "source": "Sw-ke-mimi.flac"
+    },
     "i-love-you": {
       "author": "Goethe-Institut Cameroon",
       "capPhone": 6.1,
@@ -3440,6 +3834,28 @@
       "snr": 45.3,
       "source": "Sw-ke-katika.flac"
     },
+    "in-front": {
+      "author": "Waithera Were",
+      "file": "in-front.mp3",
+      "gain": -5.9,
+      "gainPhone": -11.4,
+      "lead": 33,
+      "matches": "mbele",
+      "sha256": "09ffaa8a8fcfcee926e00b31a7c0882f7996d553edd014bddbd7b610c47b5cf8",
+      "snr": 55.2,
+      "source": "Sw-ke-mbele.flac"
+    },
+    "insect": {
+      "author": "Waithera Were",
+      "file": "insect.mp3",
+      "gain": -7.3,
+      "gainPhone": -6.0,
+      "lead": 47,
+      "matches": "mdudu",
+      "sha256": "e46b650810862108984bd107c408bf36122a613f82f7250ae80b7e64233b5293",
+      "snr": 51.3,
+      "source": "Sw-ke-mdudu.flac"
+    },
     "inside": {
       "author": "Waithera Were",
       "file": "inside.mp3",
@@ -3472,6 +3888,17 @@
       "sha256": "441825b7ddd7da61f49eb3ea9a8535c4254b447b1e11ab5bfe090258413898aa",
       "snr": 49.0,
       "source": "Sw-ke-utumbo.flac"
+    },
+    "island": {
+      "author": "Waithera Were",
+      "file": "island.mp3",
+      "gain": -3.8,
+      "gainPhone": -8.4,
+      "lead": 49,
+      "matches": "kisiwa",
+      "sha256": "feeb40aa840f8b320682a9697242f001c7cd65b6b2bddbb9e34b68a5ff8aa15d",
+      "snr": 50.8,
+      "source": "Sw-ke-kisiwa.flac"
     },
     "jacket": {
       "author": "Waithera Were",
@@ -3637,6 +4064,17 @@
       "snr": 54.9,
       "source": "Sw-ke-lugha.flac"
     },
+    "later": {
+      "author": "Waithera Were",
+      "file": "later.mp3",
+      "gain": -11.5,
+      "gainPhone": -19.2,
+      "lead": 26,
+      "matches": "baadaye",
+      "sha256": "fd550be855e41ecda262e1f7cce507bfb8c26e745f60da35a1ecf2e5ce6c3bc6",
+      "snr": 55.9,
+      "source": "Sw-ke-baadaye.flac"
+    },
     "law": {
       "author": "Waithera Were",
       "file": "law.mp3",
@@ -3780,6 +4218,17 @@
       "snr": 48.5,
       "source": "Sw-ke-refu.flac"
     },
+    "longing": {
+      "author": "Waithera Were",
+      "file": "longing.mp3",
+      "gain": -10.1,
+      "gainPhone": -18.4,
+      "lead": 31,
+      "matches": "hamu",
+      "sha256": "a4ac9b774d0443eaf088375df00c9fd7e6bc4954aabfc7399935a5d4f8f9109a",
+      "snr": 56.6,
+      "source": "Sw-ke-hamu.flac"
+    },
     "love": {
       "author": "Waithera Were",
       "file": "love.mp3",
@@ -3922,6 +4371,17 @@
       "snr": 50.1,
       "source": "Sw-ke-maziwa.flac"
     },
+    "millennium": {
+      "author": "Waithera Were",
+      "file": "millennium.mp3",
+      "gain": -1.5,
+      "gainPhone": -5.1,
+      "lead": 46,
+      "matches": "milenia",
+      "sha256": "a8d9d8cbb8e2973efe332d69d5e906afdf6ae2c92f6e9140df995695a4b5f44c",
+      "snr": 50.6,
+      "source": "Sw-ke-milenia.flac"
+    },
     "minute": {
       "author": "Waithera Were",
       "file": "minute.mp3",
@@ -3944,6 +4404,17 @@
       "snr": 56.0,
       "source": "Sw-ke-kioo.flac"
     },
+    "mistake": {
+      "author": "Waithera Were",
+      "file": "mistake.mp3",
+      "gain": -6.0,
+      "gainPhone": -11.9,
+      "lead": 49,
+      "matches": "kosa",
+      "sha256": "eee68c36e6fd4097bc28ab2c7649f57b493e1612d46681443cd2d14b3495233e",
+      "snr": 55.7,
+      "source": "Sw-ke-kosa.flac"
+    },
     "money": {
       "author": "Waithera Were",
       "file": "money.mp3",
@@ -3954,6 +4425,17 @@
       "sha256": "5572b1a762a24dd56fb0d9a0967b255f13fc7da428862da18a2ab331f3b60e2b",
       "snr": 53.6,
       "source": "Sw-ke-pesa.flac"
+    },
+    "monkey": {
+      "author": "Waithera Were",
+      "file": "monkey.mp3",
+      "gain": -2.7,
+      "gainPhone": -6.4,
+      "lead": 41,
+      "matches": "tumbili",
+      "sha256": "fe21edbf312b8d80343c6b36ef4a2b78cf51664e733a7e0c21c0decbdc000fe7",
+      "snr": 55.0,
+      "source": "Sw-ke-tumbili.flac"
     },
     "month": {
       "author": "Waithera Were",
@@ -4108,6 +4590,17 @@
       "snr": 54.1,
       "source": "Sw-ke-muziki.flac"
     },
+    "my": {
+      "author": "Waithera Were",
+      "file": "my.mp3",
+      "gain": -6.2,
+      "gainPhone": -14.9,
+      "lead": 42,
+      "matches": "angu",
+      "sha256": "b2a7358f730eddca209c750c25a0b253dbc477b493745771fa695a618b78c7c8",
+      "snr": 52.8,
+      "source": "Sw-ke-angu.flac"
+    },
     "name": {
       "author": "Waithera Were",
       "file": "name.mp3",
@@ -4239,6 +4732,17 @@
       "snr": 57.8,
       "source": "Sw-ke-hapana.flac"
     },
+    "noise": {
+      "author": "Waithera Were",
+      "file": "noise.mp3",
+      "gain": -7.7,
+      "gainPhone": -14.1,
+      "lead": 47,
+      "matches": "kelele",
+      "sha256": "eb24de469489186dc86ea6dad2e34ca692e70afc26a18b98c471e0601f81815c",
+      "snr": 48.7,
+      "source": "Sw-ke-kelele.flac"
+    },
     "noon": {
       "author": "Waithera Were",
       "file": "noon.mp3",
@@ -4292,6 +4796,28 @@
       "sha256": "3605b3c63261ed9eace90eb6a4c4694132fb5e745199d297009a9711be655805",
       "snr": 33.2,
       "source": "Sw-ke-daftari.flac"
+    },
+    "noun": {
+      "author": "Waithera Were",
+      "file": "noun.mp3",
+      "gain": -4.7,
+      "gainPhone": -7.9,
+      "lead": 38,
+      "matches": "nomino",
+      "sha256": "a1e56126b3a549d60735b2e236c24f18b376b74bebd84e7e5597c8d7d23290bd",
+      "snr": 52.4,
+      "source": "Sw-ke-nomino.flac"
+    },
+    "noun-class": {
+      "author": "Waithera Were",
+      "file": "noun-class.mp3",
+      "gain": -5.8,
+      "gainPhone": -9.4,
+      "lead": 39,
+      "matches": "ngeli",
+      "sha256": "c33fff576aa2369dd8c5f226d533acea491a8e41b6cbe4513689bc6e7ec21747",
+      "snr": 54.3,
+      "source": "Sw-ke-ngeli.flac"
     },
     "now": {
       "author": "Waithera Were",
@@ -4359,6 +4885,17 @@
       "snr": 52.5,
       "source": "Sw-ke-tu.flac"
     },
+    "open": {
+      "author": "Waithera Were",
+      "file": "open.mp3",
+      "gain": -8.8,
+      "gainPhone": -16.7,
+      "lead": 38,
+      "matches": "wazi",
+      "sha256": "797bc6fb57952e3a4fe847ddf6a12a94a159fa19e5d876a72d568d2317d64845",
+      "snr": 52.7,
+      "source": "Sw-ke-wazi.flac"
+    },
     "opposite": {
       "author": "Waithera Were",
       "file": "opposite.mp3",
@@ -4391,6 +4928,17 @@
       "snr": 51.2,
       "source": "Sw-ke-ingine.flac"
     },
+    "our": {
+      "author": "Waithera Were",
+      "file": "our.mp3",
+      "gain": -6.2,
+      "gainPhone": -10.4,
+      "lead": 41,
+      "matches": "etu",
+      "sha256": "c3cc1ded9e1e0f963c01322f3ef106cc1794b712f253ad642517d30b8064bd52",
+      "snr": 55.7,
+      "source": "Sw-ke-etu.flac"
+    },
     "outdoors": {
       "author": "Waithera Were",
       "file": "outdoors.mp3",
@@ -4412,6 +4960,17 @@
       "sha256": "423a279ce9e8b2ccaf42e28357714b75cc5d45f7b7ad9aa555ef01be94d957e3",
       "snr": 50.9,
       "source": "Sw-ke-oveni.flac"
+    },
+    "overnight-stay": {
+      "author": "Waithera Were",
+      "file": "overnight-stay.mp3",
+      "gain": -10.1,
+      "gainPhone": -17.3,
+      "lead": 43,
+      "matches": "malazi",
+      "sha256": "a3b7a8e6d8c92c589b1ca8446cb2cb00f1862854e4595ee6ff169255afb3caaf",
+      "snr": 55.0,
+      "source": "Sw-ke-malazi.flac"
     },
     "page": {
       "author": "Waithera Were",
@@ -4533,6 +5092,17 @@
       "sha256": "e8ad371104d42d3c06298d1a5b535571f043e5011198f995e5542f59c5437dc6",
       "snr": 50.1,
       "source": "Sw-ke-kalamu.flac"
+    },
+    "pencil": {
+      "author": "Waithera Were",
+      "file": "pencil.mp3",
+      "gain": -6.8,
+      "gainPhone": -13.5,
+      "lead": 41,
+      "matches": "penseli",
+      "sha256": "c3017cf363aece1637fbd7389a4dda5f873ac361a91d06024400001b20d85cb0",
+      "snr": 49.2,
+      "source": "Sw-ke-penseli.flac"
     },
     "period": {
       "author": "Waithera Were",
@@ -4666,6 +5236,17 @@
       "snr": 47.7,
       "source": "Sw-ke-tafadhali.flac"
     },
+    "plug": {
+      "author": "Waithera Were",
+      "file": "plug.mp3",
+      "gain": -8.3,
+      "gainPhone": -16.1,
+      "lead": 43,
+      "matches": "plagi",
+      "sha256": "1986d3d587361944c37c0052fdeac49e3c995902f3cbf5fb3ba07bcc077d53ec",
+      "snr": 56.1,
+      "source": "Sw-ke-plagi.flac"
+    },
     "police": {
       "author": "Waithera Were",
       "file": "police.mp3",
@@ -4687,6 +5268,27 @@
       "sha256": "3d280a6b425aef9783e1e03dc456182d4500d8df9ab7e96063b5f6a24f5eec10",
       "snr": 55.1,
       "source": "Sw-ke-maskini.flac"
+    },
+    "porridge": {
+      "author": "Waithera Were",
+      "file": "porridge.mp3",
+      "gain": 0.9,
+      "gainPhone": 1.0,
+      "lead": 46,
+      "matches": "uji",
+      "sha256": "874cf6c0a5c61fa4323e5876444103b4c423be652c597a5100001f674c1b8569",
+      "snr": 55.7,
+      "source": "Sw-ke-uji.flac"
+    },
+    "port": {
+      "author": "Waithera Were",
+      "file": "port.mp3",
+      "gain": -7.9,
+      "gainPhone": -15.3,
+      "matches": "bandari",
+      "sha256": "ee5b74e40b3d90553e5311aa551eb082684404614b841790edaa090bc756a6f9",
+      "snr": 39.6,
+      "source": "Sw-ke-bandari.flac"
     },
     "post-office": {
       "author": "Waithera Were",
@@ -4817,6 +5419,17 @@
       "sha256": "c9a4a7ddba177ee607dcc6043eda46c4f9634f7ee46784acd1d59084aa50b1d5",
       "snr": 53.7,
       "source": "Sw-ke-kimya.flac"
+    },
+    "radio": {
+      "author": "Waithera Were",
+      "file": "radio.mp3",
+      "gain": -4.5,
+      "gainPhone": -8.8,
+      "lead": 35,
+      "matches": "redio",
+      "sha256": "a1c00e22e21cf878ab13116a6c4e74077d7af6c2f45ea2f406808c1fae19c3bc",
+      "snr": 57.0,
+      "source": "Sw-ke-redio.flac"
     },
     "rail": {
       "author": "Waithera Were",
@@ -4994,6 +5607,17 @@
       "snr": 46.6,
       "source": "Sw-ke-huzuni.flac"
     },
+    "safe": {
+      "author": "Waithera Were",
+      "file": "safe.mp3",
+      "gain": -9.0,
+      "gainPhone": -16.2,
+      "lead": 32,
+      "matches": "salama",
+      "sha256": "63a5dd3713f2ed02029d2514cc9098f20a816335e31de1212a9cf38028573357",
+      "snr": 56.9,
+      "source": "Sw-ke-salama.flac"
+    },
     "salary": {
       "author": "Waithera Were",
       "file": "salary.mp3",
@@ -5026,6 +5650,17 @@
       "sha256": "ae14a9676236d00556822b46881952115eb39e8e9ca4cfd36b1f73466015e177",
       "snr": 49.7,
       "source": "Sw-ke-sawa.flac"
+    },
+    "samosa": {
+      "author": "Waithera Were",
+      "file": "samosa.mp3",
+      "gain": -3.8,
+      "gainPhone": -9.3,
+      "lead": 14,
+      "matches": "sambusa",
+      "sha256": "9e4fe89cc1ac4757589150279a2dce0ea385366e79cf8563c1df1c0c840d59e4",
+      "snr": 55.7,
+      "source": "Sw-ke-sambusa.flac"
     },
     "sauce": {
       "author": "Waithera Were",
@@ -5082,6 +5717,17 @@
       "snr": 47.2,
       "source": "Sw-ke-bahari.flac"
     },
+    "second": {
+      "author": "Waithera Were",
+      "file": "second.mp3",
+      "gain": -2.4,
+      "gainPhone": -5.4,
+      "lead": 42,
+      "matches": "pili",
+      "sha256": "3df099fba608678723682a173837185a7eac353eb46b84966af44ea45bf4b77d",
+      "snr": 57.9,
+      "source": "Sw-ke-pili.flac"
+    },
     "sentence": {
       "author": "Waithera Were",
       "file": "sentence.mp3",
@@ -5092,6 +5738,17 @@
       "sha256": "2728bf5a84e749fe44c7193af89b88f369c9f4cd9ecec6be4a774e4e2dd17c6c",
       "snr": 57.1,
       "source": "Sw-ke-sentensi.flac"
+    },
+    "shadow": {
+      "author": "Waithera Were",
+      "file": "shadow.mp3",
+      "gain": -3.0,
+      "gainPhone": -4.8,
+      "lead": 46,
+      "matches": "kivuli",
+      "sha256": "dcdcab1e32b39102d605f329fc5cbda60c0c2505703d880b6acaa68020095f3e",
+      "snr": 53.2,
+      "source": "Sw-ke-kivuli.flac"
     },
     "shame": {
       "author": "Waithera Were",
@@ -5114,6 +5771,17 @@
       "sha256": "5c01c86af561f5be771e2d5e396f35037f0fd643a75184b8bf3a102a86986b9c",
       "snr": 83.5,
       "source": "Sw-ke-kali.flac"
+    },
+    "sheep": {
+      "author": "Waithera Were",
+      "file": "sheep.mp3",
+      "gain": -5.2,
+      "gainPhone": -7.9,
+      "lead": 34,
+      "matches": "kondoo",
+      "sha256": "9d0ce71c34843494972144d900baf46aeb722db07d2a14b75cbddcf751695242",
+      "snr": 57.7,
+      "source": "Sw-ke-kondoo.flac"
     },
     "shelf": {
       "author": "Waithera Were",
@@ -5247,6 +5915,17 @@
       "snr": 47.3,
       "source": "Sw-ke-kufanana.flac"
     },
+    "since": {
+      "author": "Waithera Were",
+      "file": "since.mp3",
+      "gain": -8.6,
+      "gainPhone": -16.8,
+      "lead": 44,
+      "matches": "tangu",
+      "sha256": "e34b878cb26970f7077487477d177a6879a319c394ef3be85dad3a0e4b3347f2",
+      "snr": 55.2,
+      "source": "Sw-ke-tangu.flac"
+    },
     "sister": {
       "author": "Waithera Were",
       "file": "sister.mp3",
@@ -5311,6 +5990,17 @@
       "sha256": "e698d25615cf9a8e1d5a4041675918dd5091d16b96c68f3abab06b2dc912079a",
       "snr": 49.8,
       "source": "Sw-ke-dogo.flac"
+    },
+    "smile": {
+      "author": "Waithera Were",
+      "file": "smile.mp3",
+      "gain": -9.2,
+      "gainPhone": -16.0,
+      "lead": 47,
+      "matches": "tabasamu",
+      "sha256": "b25d0ef48ba72618a77ce8dff5d981f72435a0cbf6bf6ddc2f2637822ce1bbf6",
+      "snr": 55.1,
+      "source": "Sw-ke-tabasamu.flac"
     },
     "snow": {
       "author": "Waithera Were",
@@ -5388,6 +6078,17 @@
       "snr": 54.1,
       "source": "Sw-ke-laini.flac"
     },
+    "something": {
+      "author": "Waithera Were",
+      "file": "something.mp3",
+      "gain": -3.4,
+      "gainPhone": -3.5,
+      "lead": 46,
+      "matches": "kitu",
+      "sha256": "5b15be87877ddd41560501827e11caff19438a50470bd0044545b45fc405b455",
+      "snr": 51.8,
+      "source": "Sw-ke-kitu.flac"
+    },
     "son": {
       "author": "Waithera Were",
       "file": "son.mp3",
@@ -5442,6 +6143,28 @@
       "sha256": "a5f4527efbdd1cf46d44bfce6d6969b04a9688978718382758dd2601ad64bd9e",
       "snr": 45.7,
       "source": "Sw-ke-kusini.flac"
+    },
+    "souvenir": {
+      "author": "Waithera Were",
+      "file": "souvenir.mp3",
+      "gain": -0.1,
+      "gainPhone": 2.6,
+      "lead": 31,
+      "matches": "kumbukumbu",
+      "sha256": "84d305a2795ee571bb2b1dafc1bef0ff5228724a700d3ea44b1d6a7aea220c90",
+      "snr": 54.0,
+      "source": "Sw-ke-kumbukumbu.flac"
+    },
+    "speaker": {
+      "author": "Waithera Were",
+      "file": "speaker.mp3",
+      "gain": -2.3,
+      "gainPhone": -6.9,
+      "lead": 30,
+      "matches": "spika",
+      "sha256": "e3838a66ae143e7f5ad13b8a4a101e98bd02a39737e044a6d61e71935e2071da",
+      "snr": 54.6,
+      "source": "Sw-ke-spika.flac"
     },
     "spleen": {
       "author": "Waithera Were",
@@ -5661,6 +6384,17 @@
       "snr": 52.5,
       "source": "Sw-ke-meza.flac"
     },
+    "tasty": {
+      "author": "Waithera Were",
+      "file": "tasty.mp3",
+      "gain": -9.3,
+      "gainPhone": -17.2,
+      "lead": 59,
+      "matches": "tamu",
+      "sha256": "1e1cd2764b3c124ffd1743237df14602b9163fb9e09431ce9ce1636e5b2946b1",
+      "snr": 48.8,
+      "source": "Sw-ke-tamu.flac"
+    },
     "tax": {
       "author": "Waithera Were",
       "file": "tax.mp3",
@@ -5705,6 +6439,17 @@
       "snr": 50.7,
       "source": "Sw-ke-mwalimu.flac"
     },
+    "than": {
+      "author": "Waithera Were",
+      "file": "than.mp3",
+      "gain": -6.6,
+      "gainPhone": -7.0,
+      "lead": 145,
+      "matches": "kuliko",
+      "sha256": "87129e4709e55d4fa7a5b746662d2d38db3a7e4ff5d36538aa8ca22e097dfe6a",
+      "snr": 83.2,
+      "source": "Sw-ke-kuliko.flac"
+    },
     "that": {
       "author": "Waithera Were",
       "file": "that.mp3",
@@ -5715,6 +6460,17 @@
       "sha256": "a989a21439dce240e2ed40d2700d90944693d78d58ce18bd6cee98122d2964f7",
       "snr": 45.7,
       "source": "Sw-ke-hiyo.flac"
+    },
+    "that-conj": {
+      "author": "Waithera Were",
+      "file": "that-conj.mp3",
+      "gain": -7.0,
+      "gainPhone": -13.0,
+      "lead": 45,
+      "matches": "kwamba",
+      "sha256": "ad9232baf8e67b47366815152fafb0f3a8ba6fbbfb8d334abafa2beaeb6d8dde",
+      "snr": 49.1,
+      "source": "Sw-ke-kwamba.flac"
     },
     "then": {
       "author": "Waithera Were",
@@ -5737,6 +6493,17 @@
       "sha256": "62fda11280985950579e8670af6e493c632a1783916036b5541344a1cfc03e51",
       "snr": 82.9,
       "source": "Sw-ke-pale.flac"
+    },
+    "they": {
+      "author": "Waithera Were",
+      "file": "they.mp3",
+      "gain": -11.0,
+      "gainPhone": -19.1,
+      "lead": 39,
+      "matches": "wao",
+      "sha256": "40c23ff73219afa655cbc1dd109820859f6dd55d6eb383357165c3d2d3b4316c",
+      "snr": 49.9,
+      "source": "Sw-ke-wao.flac"
     },
     "thirst": {
       "author": "Waithera Were",
@@ -5825,6 +6592,28 @@
       "sha256": "90a763531474df89f82c03b9a92a4a498fc2ea932865c2b7648af4401621dfa3",
       "snr": 48.5,
       "source": "Sw-ke-bakshishi.flac"
+    },
+    "tire": {
+      "author": "Waithera Were",
+      "file": "tire.mp3",
+      "gain": -3.8,
+      "gainPhone": -10.7,
+      "lead": 43,
+      "matches": "tairi",
+      "sha256": "11671503c21db6d6a0b76e073a4b8415e45958955b240824044740d69d2f8b61",
+      "snr": 58.6,
+      "source": "Sw-ke-tairi.flac"
+    },
+    "to-achieve": {
+      "author": "Waithera Were",
+      "file": "to-achieve.mp3",
+      "gain": -5.3,
+      "gainPhone": -11.2,
+      "lead": 42,
+      "matches": "kufikia",
+      "sha256": "6c25958b651ad9fc88026244b145a5b20abbcf99ec6d145b817492fa2ae79fc6",
+      "snr": 48.2,
+      "source": "Sw-ke-kufikia.flac"
     },
     "to-apply-for": {
       "author": "Waithera Were",
@@ -5925,6 +6714,28 @@
       "snr": 50.3,
       "source": "Sw-ke-kuchelewa.flac"
     },
+    "to-be-there": {
+      "author": "Waithera Were",
+      "file": "to-be-there.mp3",
+      "gain": -6.7,
+      "gainPhone": -14.0,
+      "lead": 41,
+      "matches": "kuwepo",
+      "sha256": "36ee534503e4b365da7a8d8e0afb54d66eb3f2cc2ede682579e8aee2926f9626",
+      "snr": 53.9,
+      "source": "Sw-ke-kuwepo.flac"
+    },
+    "to-boil": {
+      "author": "Waithera Were",
+      "file": "to-boil.mp3",
+      "gain": -6.9,
+      "gainPhone": -11.5,
+      "lead": 49,
+      "matches": "kuchemsha",
+      "sha256": "d975256247710b8c59e7f72c53e26afa8c20d696c69f1b539078f571d12c6ec6",
+      "snr": 50.2,
+      "source": "Sw-ke-kuchemsha.flac"
+    },
     "to-break": {
       "author": "Waithera Were",
       "file": "to-break.mp3",
@@ -5991,6 +6802,28 @@
       "snr": 46.7,
       "source": "Sw-ke-kughairi.flac"
     },
+    "to-carry": {
+      "author": "Waithera Were",
+      "file": "to-carry.mp3",
+      "gain": -8.8,
+      "gainPhone": -14.0,
+      "lead": 46,
+      "matches": "kubeba",
+      "sha256": "f1bb9d9e9be73774b8816ca2f8d8a7f444a00ab2bbf37ca7d2e90d1aec742f7d",
+      "snr": 46.1,
+      "source": "Sw-ke-kubeba.flac"
+    },
+    "to-celebrate": {
+      "author": "Waithera Were",
+      "file": "to-celebrate.mp3",
+      "gain": -7.1,
+      "gainPhone": -12.5,
+      "lead": 45,
+      "matches": "kusherehekea",
+      "sha256": "9403654991fc07f04b48db34894d63d741d3eaf25c6909c653fa5b40e9ecbec9",
+      "snr": 47.5,
+      "source": "Sw-ke-kusherehekea.flac"
+    },
     "to-clean": {
       "author": "Waithera Were",
       "file": "to-clean.mp3",
@@ -6055,6 +6888,28 @@
       "sha256": "e91594c2ba178c0a00e55744ac0ddd158d772fc3561eadb96d2a60f97d416e42",
       "snr": 46.9,
       "source": "Sw-ke-kuthibitisha.flac"
+    },
+    "to-confuse": {
+      "author": "Waithera Were",
+      "file": "to-confuse.mp3",
+      "gain": -8.1,
+      "gainPhone": -14.7,
+      "lead": 46,
+      "matches": "kuchanganya",
+      "sha256": "2780c9ddc27c566d912f11cc52354ccebb9bde61e261293db05887f59dc7ef44",
+      "snr": 43.0,
+      "source": "Sw-ke-kuchanganya.flac"
+    },
+    "to-congratulate": {
+      "author": "Waithera Were",
+      "file": "to-congratulate.mp3",
+      "gain": -8.1,
+      "gainPhone": -14.5,
+      "lead": 45,
+      "matches": "kupongeza",
+      "sha256": "5884e6e59645a1eb89c46878e2df1418cea14ce43291d1864b3ac4c72db18578",
+      "snr": 45.7,
+      "source": "Sw-ke-kupongeza.flac"
     },
     "to-cook": {
       "author": "Waithera Were",
@@ -6132,6 +6987,17 @@
       "sha256": "6d7d5aa1db7a679d856c4d1e56b3d3edba59a2cb985099fa97a9fb8256143de4",
       "snr": 48.2,
       "source": "Sw-ke-kuvuka.flac"
+    },
+    "to-cry": {
+      "author": "Waithera Were",
+      "file": "to-cry.mp3",
+      "gain": -1.0,
+      "gainPhone": -6.3,
+      "lead": 43,
+      "matches": "kulia",
+      "sha256": "75482045af1ef077b4f1af00f74dacceafb188899813f257358ba46358d20bfe",
+      "snr": 56.1,
+      "source": "Sw-ke-kulia.flac"
     },
     "to-cut": {
       "author": "Waithera Were",
@@ -6331,6 +7197,17 @@
       "snr": 48.3,
       "source": "Sw-ke-kuvaa.flac"
     },
+    "to-get-lost": {
+      "author": "Waithera Were",
+      "file": "to-get-lost.mp3",
+      "gain": -7.1,
+      "gainPhone": -12.2,
+      "lead": 35,
+      "matches": "kupotea",
+      "sha256": "b1725c1dd762d5cf7b720e00720a59388a2bc8e82fb4e3893a321e38ec450811",
+      "snr": 46.1,
+      "source": "Sw-ke-kupotea.flac"
+    },
     "to-get-off": {
       "author": "Waithera Were",
       "file": "to-get-off.mp3",
@@ -6397,6 +7274,17 @@
       "snr": 48.3,
       "source": "Sw-ke-kusalimia.flac"
     },
+    "to-have-to": {
+      "author": "Waithera Were",
+      "file": "to-have-to.mp3",
+      "gain": -5.4,
+      "gainPhone": -11.9,
+      "lead": 34,
+      "matches": "lazima",
+      "sha256": "01da70a5bcd7451eb197f9aa78407501fcb37f0b61ec0bba818e78e3ad679549",
+      "snr": 57.1,
+      "source": "Sw-ke-lazima.flac"
+    },
     "to-hear": {
       "author": "Waithera Were",
       "file": "to-hear.mp3",
@@ -6430,6 +7318,17 @@
       "snr": 48.6,
       "source": "Sw-ke-kuajiri.flac"
     },
+    "to-hope": {
+      "author": "Waithera Were",
+      "file": "to-hope.mp3",
+      "gain": -7.8,
+      "gainPhone": -13.9,
+      "lead": 43,
+      "matches": "kutumaini",
+      "sha256": "9e9de457186ce50b927080e4aec93ea549e5eea51c41f9f68f82e4f37e0bf5d9",
+      "snr": 48.4,
+      "source": "Sw-ke-kutumaini.flac"
+    },
     "to-hurt": {
       "author": "Waithera Were",
       "file": "to-hurt.mp3",
@@ -6451,6 +7350,17 @@
       "sha256": "0ca8e2cf84fb423dd5f98cafd114be16971fa0171afdd04d90293c69fe4b7afa",
       "snr": 47.7,
       "source": "Sw-ke-kuwazia.flac"
+    },
+    "to-improve": {
+      "author": "Waithera Were",
+      "file": "to-improve.mp3",
+      "gain": -10.8,
+      "gainPhone": -16.7,
+      "lead": 43,
+      "matches": "kuboresha",
+      "sha256": "e005acf2cac74d5f9d8017289f27bf0aec60a73bfb319105573f6daf42b23cb1",
+      "snr": 46.9,
+      "source": "Sw-ke-kuboresha.flac"
     },
     "to-invite": {
       "author": "Waithera Were",
@@ -6507,6 +7417,17 @@
       "snr": 48.7,
       "source": "Sw-ke-kukariri.flac"
     },
+    "to-leave": {
+      "author": "Waithera Were",
+      "file": "to-leave.mp3",
+      "gain": -6.9,
+      "gainPhone": -11.4,
+      "lead": 9,
+      "matches": "kutoka",
+      "sha256": "26cb33efd6c09997184cdacd29fec4122480d3eacbb6c8f5bfbb5562da8659e5",
+      "snr": 45.5,
+      "source": "Sw-ke-kutoka.flac"
+    },
     "to-like": {
       "author": "Waithera Were",
       "file": "to-like.mp3",
@@ -6517,6 +7438,17 @@
       "sha256": "e070d8aeac2104cf6e2d1cd10a8bde148efc4d8b535b393e229819457af6309d",
       "snr": 49.5,
       "source": "Sw-ke-kupenda.flac"
+    },
+    "to-listen-to": {
+      "author": "Waithera Were",
+      "file": "to-listen-to.mp3",
+      "gain": -4.3,
+      "gainPhone": -10.0,
+      "lead": 22,
+      "matches": "kusikiliza",
+      "sha256": "991626412e759f6bf2eff60de8ba6d2750ca25cd8c7305344c9bfc0054f059fc",
+      "snr": 44.5,
+      "source": "Sw-ke-kusikiliza.flac"
     },
     "to-live": {
       "author": "Waithera Were",
@@ -6539,6 +7471,17 @@
       "sha256": "731f3aae1073266c1473987ed445b83c81c528c86a5fd12341b43fd83a26be6d",
       "snr": 46.4,
       "source": "Sw-ke-kuangalia.flac"
+    },
+    "to-look-after": {
+      "author": "Waithera Were",
+      "file": "to-look-after.mp3",
+      "gain": -6.5,
+      "gainPhone": -9.0,
+      "lead": 42,
+      "matches": "kutunza",
+      "sha256": "7030ec00d711d61c4a8308b16a8a9924b47f90dc82036ea88683c2a9cf14fa17",
+      "snr": 51.2,
+      "source": "Sw-ke-kutunza.flac"
     },
     "to-lose": {
       "author": "Waithera Were",
@@ -6694,6 +7637,17 @@
       "snr": 48.9,
       "source": "Sw-ke-kusukuma.flac"
     },
+    "to-put": {
+      "author": "Waithera Were",
+      "file": "to-put.mp3",
+      "gain": -5.6,
+      "gainPhone": -11.3,
+      "lead": 46,
+      "matches": "kuweka",
+      "sha256": "853b16fe19db242c1de418875fff633b85c31aeef2fb46e1369cd31dac4fa044",
+      "snr": 51.3,
+      "source": "Sw-ke-kuweka.flac"
+    },
     "to-read": {
       "author": "Waithera Were",
       "file": "to-read.mp3",
@@ -6748,6 +7702,17 @@
       "sha256": "536fd41bc7c9bbb0cd67e398f0b9cf986637879dff89663e3a1923ec95e7ebce",
       "snr": 46.5,
       "source": "Sw-ke-kukumbuka.flac"
+    },
+    "to-remind": {
+      "author": "Waithera Were",
+      "file": "to-remind.mp3",
+      "gain": -4.0,
+      "gainPhone": -5.2,
+      "lead": 37,
+      "matches": "kukumbusha",
+      "sha256": "e66694304f4474c4695f0e043b8f640c794c02f1670a8b171711c381936b3e00",
+      "snr": 47.8,
+      "source": "Sw-ke-kukumbusha.flac"
     },
     "to-repair": {
       "author": "Waithera Were",
@@ -6892,6 +7857,17 @@
       "snr": 47.1,
       "source": "Sw-ke-kulala.flac"
     },
+    "to-smile": {
+      "author": "Waithera Were",
+      "file": "to-smile.mp3",
+      "gain": -9.7,
+      "gainPhone": -16.3,
+      "lead": 49,
+      "matches": "kutabasamu",
+      "sha256": "cdcfb91baacba43a2bbbefaf4197e74d03fbdd6488bdb1c36bcbed99a3696492",
+      "snr": 50.0,
+      "source": "Sw-ke-kutabasamu.flac"
+    },
     "to-snore": {
       "author": "Waithera Were",
       "file": "to-snore.mp3",
@@ -6991,6 +7967,28 @@
       "snr": 48.0,
       "source": "Sw-ke-kukabidhi.flac"
     },
+    "to-suggest": {
+      "author": "Waithera Were",
+      "file": "to-suggest.mp3",
+      "gain": -8.6,
+      "gainPhone": -15.1,
+      "lead": 42,
+      "matches": "kupendekeza",
+      "sha256": "72cbc1c5ffeeabcb0dac25824f23ae9b28e03c1f5ee80cd41819659e7575e34a",
+      "snr": 47.8,
+      "source": "Sw-ke-kupendekeza.flac"
+    },
+    "to-swim": {
+      "author": "Waithera Were",
+      "file": "to-swim.mp3",
+      "gain": -3.8,
+      "gainPhone": -5.7,
+      "lead": 40,
+      "matches": "kuogelea",
+      "sha256": "18cb055b87d97a6190f0ac7d92bd723c02e666b834c0cca3123ff49d6d7c1002",
+      "snr": 46.5,
+      "source": "Sw-ke-kuogelea.flac"
+    },
     "to-take": {
       "author": "Waithera Were",
       "file": "to-take.mp3",
@@ -7001,6 +7999,17 @@
       "sha256": "53d524ba01a6c35ad9d55793fcd68823f686e56f2646eb2d225e7ccbdfb78758",
       "snr": 45.7,
       "source": "Sw-ke-kuchukua.flac"
+    },
+    "to-take-care-of": {
+      "author": "Waithera Were",
+      "file": "to-take-care-of.mp3",
+      "gain": -6.2,
+      "gainPhone": -9.3,
+      "lead": 39,
+      "matches": "kushughulikia",
+      "sha256": "9e6fcecfd9925c3917934a81aad1e72698a33ac2fd8a6b007d376b36b209cd55",
+      "snr": 51.5,
+      "source": "Sw-ke-kushughulikia.flac"
     },
     "to-take-shower": {
       "author": "Waithera Were",
@@ -7188,6 +8197,17 @@
       "snr": 82.9,
       "source": "Sw-ke-kupima.flac"
     },
+    "to-wish": {
+      "author": "Waithera Were",
+      "file": "to-wish.mp3",
+      "gain": -9.5,
+      "gainPhone": -16.3,
+      "lead": 48,
+      "matches": "kutamani",
+      "sha256": "d21d5e1afa4ba0ed032b22129ef4782e229f6b43ba6eb6e13dd5bd3905924770",
+      "snr": 42.8,
+      "source": "Sw-ke-kutamani.flac"
+    },
     "to-write": {
       "author": "Waithera Were",
       "file": "to-write.mp3",
@@ -7297,6 +8317,17 @@
       "sha256": "aa170d059e1c3e5e764ef547a32f73c2722d314ad3cb9d76de7b9faf76a73d16",
       "snr": 56.3,
       "source": "Sw-ke-mswaki.flac"
+    },
+    "tourist": {
+      "author": "Waithera Were",
+      "file": "tourist.mp3",
+      "gain": -3.9,
+      "gainPhone": -11.7,
+      "lead": 40,
+      "matches": "mtalii",
+      "sha256": "1af1747cf531f17af21dd5e90d88ff9b48654aebc03cf22035029352fde0b487",
+      "snr": 57.0,
+      "source": "Sw-ke-mtalii.flac"
     },
     "towel": {
       "author": "Waithera Were",
@@ -7451,6 +8482,17 @@
       "snr": 52.4,
       "source": "Sw-ke-mboga.flac"
     },
+    "verb": {
+      "author": "Waithera Were",
+      "file": "verb.mp3",
+      "gain": -10.2,
+      "gainPhone": -17.6,
+      "lead": 59,
+      "matches": "kitenzi",
+      "sha256": "fdf6d4013b9ee17a4bb7ffe070c213d3e967b42a8dcea2a3ce838af4a0034ebd",
+      "snr": 48.1,
+      "source": "Sw-ke-kitenzi.flac"
+    },
     "very": {
       "author": "Waithera Were",
       "file": "very.mp3",
@@ -7482,6 +8524,28 @@
       "sha256": "e5f03c46d9e3647181e1107fe5374b5eda1e75c5ba877bd9d69bdb15e44899f4",
       "snr": 50.8,
       "source": "Sw-ke-viza.flac"
+    },
+    "vision": {
+      "author": "Waithera Were",
+      "file": "vision.mp3",
+      "gain": -10.8,
+      "gainPhone": -16.7,
+      "lead": 52,
+      "matches": "maono",
+      "sha256": "b6745fc9ccecaf61ca6d5c911d4f43008cc08705cf9f749afbe67c3b7e8557ea",
+      "snr": 48.4,
+      "source": "Sw-ke-maono.flac"
+    },
+    "volume": {
+      "author": "Waithera Were",
+      "file": "volume.mp3",
+      "gain": -4.6,
+      "gainPhone": -13.1,
+      "lead": 27,
+      "matches": "sauti",
+      "sha256": "4a39624d83692b4881c70bb5841553e4c16ea2ee9034c8dbe54e382d8af1df65",
+      "snr": 55.6,
+      "source": "Sw-ke-sauti.flac"
     },
     "waiter": {
       "author": "Waithera Were",
@@ -7538,6 +8602,17 @@
       "snr": 50.5,
       "source": "Sw-ke-maji.flac"
     },
+    "wave": {
+      "author": "Waithera Were",
+      "file": "wave.mp3",
+      "gain": -4.1,
+      "gainPhone": -7.8,
+      "lead": 45,
+      "matches": "wimbi",
+      "sha256": "0000a68f27f959fd69ce72fa582cf7f85472fce4cc73b9b44d33556e635c3aeb",
+      "snr": 47.5,
+      "source": "Sw-ke-wimbi.flac"
+    },
     "way": {
       "author": "Waithera Were",
       "file": "way.mp3",
@@ -7549,6 +8624,17 @@
       "snr": 58.5,
       "source": "Sw-ke-njia.flac"
     },
+    "we": {
+      "author": "Waithera Were",
+      "file": "we.mp3",
+      "gain": -2.1,
+      "gainPhone": -6.8,
+      "lead": 30,
+      "matches": "sisi",
+      "sha256": "1625055081caf3af4f6d8e920a936156b791ba43eac987f1798ec30804fd054c",
+      "snr": 55.5,
+      "source": "Sw-ke-sisi.flac"
+    },
     "weak": {
       "author": "Waithera Were",
       "file": "weak.mp3",
@@ -7558,6 +8644,17 @@
       "sha256": "645dc661577b514485e0f7b0b2fd5edec091a17f89e0dd393e167abba03b3c14",
       "snr": 46.6,
       "source": "Sw-ke-dhaifu.flac"
+    },
+    "wedding": {
+      "author": "Waithera Were",
+      "file": "wedding.mp3",
+      "gain": -4.9,
+      "gainPhone": -9.3,
+      "lead": 32,
+      "matches": "harusi",
+      "sha256": "51529b6a66f612298988b2b19d437a358a150678ad0c6bc1b722ba1ac6b09b92",
+      "snr": 51.7,
+      "source": "Sw-ke-harusi.flac"
     },
     "week": {
       "author": "Waithera Were",
@@ -7569,6 +8666,17 @@
       "sha256": "15f5adf289b9be242b1f8545a946e79372b063d8f77a0014882b5c2f2caaac3b",
       "snr": 55.0,
       "source": "Sw-ke-wiki.flac"
+    },
+    "weekend": {
+      "author": "Waithera Were",
+      "file": "weekend.mp3",
+      "gain": -2.8,
+      "gainPhone": -8.9,
+      "lead": 41,
+      "matches": "wikendi",
+      "sha256": "7d00c987c52fc0546ea166165e91568b599b52636c2e3bd9721bbbf654e49fda",
+      "snr": 57.3,
+      "source": "Sw-ke-wikendi.flac"
     },
     "welcome": {
       "author": "Waithera Were",
@@ -7768,6 +8876,17 @@
       "snr": 58.9,
       "source": "Sw-ke-mfanyakazi.flac"
     },
+    "workplace": {
+      "author": "Waithera Were",
+      "file": "workplace.mp3",
+      "gain": -2.6,
+      "gainPhone": -5.6,
+      "lead": 47,
+      "matches": "ofisi",
+      "sha256": "3ea509e392bd420be66690c10e42ad14aa0be125dac646554b794432e94875f8",
+      "snr": 56.7,
+      "source": "Sw-ke-ofisi.flac"
+    },
     "worry": {
       "author": "Waithera Were",
       "file": "worry.mp3",
@@ -7833,6 +8952,50 @@
       "sha256": "706ba4f9735f1fb115a32ce1923be3cb9af0fbe4574fac18f1cc09f11b79ccee",
       "snr": 52.2,
       "source": "Sw-ke-jana.flac"
+    },
+    "you": {
+      "author": "Waithera Were",
+      "file": "you.mp3",
+      "gain": -6.1,
+      "gainPhone": -11.5,
+      "lead": 48,
+      "matches": "wewe",
+      "sha256": "c0556cea72a27b1ee63b948906f94ee71ae6bdd73ad0aa4973f8c053014525e3",
+      "snr": 58.6,
+      "source": "Sw-ke-wewe.flac"
+    },
+    "you-plural": {
+      "author": "Waithera Were",
+      "file": "you-plural.mp3",
+      "gain": 0.6,
+      "gainPhone": -2.7,
+      "lead": 38,
+      "matches": "ninyi",
+      "sha256": "e9bcd7d9a4b80965577d38d5c3bfb9131139ba8967a94f936bf08373996b348e",
+      "snr": 50.6,
+      "source": "Sw-ke-ninyi.flac"
+    },
+    "your": {
+      "author": "Waithera Were",
+      "file": "your.mp3",
+      "gain": -6.6,
+      "gainPhone": -15.3,
+      "lead": 43,
+      "matches": "ako",
+      "sha256": "993d65d5aab636cb181629b7820930223d163a1ad63adee5c80193c7c7b865bb",
+      "snr": 56.7,
+      "source": "Sw-ke-ako.flac"
+    },
+    "your-plural": {
+      "author": "Waithera Were",
+      "file": "your-plural.mp3",
+      "gain": -4.2,
+      "gainPhone": -11.0,
+      "lead": 44,
+      "matches": "enu",
+      "sha256": "38305d2142eccb515541de7029357e3e25cd2a186e003c709f76efaea2ecdb42",
+      "snr": 51.9,
+      "source": "Sw-ke-enu.flac"
     }
   }
 }
