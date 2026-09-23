@@ -79,8 +79,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   shuffled. Either the drill's queue prefers cards a voice can actually say, or the ordering
   expectation is wrong and the drill says so — a ruling, not a bug.
 
-- `App/Sources/Design/Theme.swift` is 388 lines, past the ~300 guide, and its shared-modifiers
-  and button-styles section is the clean seam to split on.
 - The letters ladder files no answered-out Sprossen (it has no storage key at all), so its
   circles carry only the entry mark where the atlas and calendar wear a record
   (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
