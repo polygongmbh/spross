@@ -6791,13 +6791,13 @@
     "guest": {
       "author": "Jeuwre",
       "file": "guest.mp3",
-      "gain": -0.1,
-      "gainPhone": -5.3,
-      "lead": 430,
+      "gain": 0.9,
+      "gainPhone": -2.3,
+      "lead": 428,
       "matches": "gast",
-      "sha256": "9d0d42805a7acca723bd6d5f80181f00383d7b5bb71ef9972697d65125273ebb",
-      "snr": 86.8,
-      "source": "De-gast.ogg"
+      "sha256": "1aece41b30c166ebbfaf662ee0dbb39dbf84fdc4928725bd2644b8020b931f80",
+      "snr": 85.8,
+      "source": "De-Gast2.ogg"
     },
     "hair": {
       "author": "Jeuwre",
