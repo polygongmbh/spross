@@ -164,3 +164,28 @@ private fun SheetSide(
         }
     }
 }
+
+/**
+ * What a sheet's rows cannot say: how the language assembles what it lists and what trips a
+ * learner up doing it, written in the known language. Nothing at all where the pair carries none.
+ */
+@Composable
+fun ReferenceNotes(lines: List<String>, chrome: Chrome) {
+    if (lines.isEmpty()) return
+    OverviewHeading(chrome.commonNotes)
+    OverviewPanel {
+        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+            for (line in lines) {
+                Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
+                    Text(
+                        "·",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Theme.colors.textSecondary,
+                        modifier = Modifier.clearAndSetSemantics { },
+                    )
+                    Text(line, style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+        }
+    }
+}

@@ -2,8 +2,6 @@ package net.spross.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -116,14 +114,7 @@ fun NumbersOverviewScreen(model: AppModel) {
         val notes = remember(stamp) {
             model.catalog?.numberNotes(language, stamp.source).orEmpty()
         }
-        if (notes.isNotEmpty()) {
-            OverviewHeading(chrome.commonNotes)
-            OverviewPanel {
-                for (note in notes) {
-                    Text(note, style = MaterialTheme.typography.bodyMedium)
-                }
-            }
-        }
+        ReferenceNotes(notes, chrome)
     }
 }
 

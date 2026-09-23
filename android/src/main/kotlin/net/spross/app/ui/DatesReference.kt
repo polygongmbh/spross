@@ -1,7 +1,5 @@
 package net.spross.app.ui
 
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import net.spross.app.AppModel
@@ -42,14 +40,7 @@ fun DateReferenceSection(model: AppModel, content: DateDrillContent, chrome: Chr
     ReferenceSection(model, chrome.datesReference, groups, content.source, content.target, chrome)
 
     val notes = remember(content) { model.catalog?.dateNotes(content.target, content.source).orEmpty() }
-    if (notes.isNotEmpty()) {
-        OverviewHeading(chrome.commonNotes)
-        OverviewPanel {
-            for (note in notes) {
-                Text(note, style = MaterialTheme.typography.bodyMedium)
-            }
-        }
-    }
+    ReferenceNotes(notes, chrome)
 }
 
 /** What else the learned name answers to; null keeps the caption line off the row. */
