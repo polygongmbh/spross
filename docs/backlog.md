@@ -90,7 +90,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 - iOS drops what a scramble run earns: `TrainerHubView` builds both without an `onFinish`, so
   the no-op eats the `DrillRunSummary` where Android lands it on Home (`model.finishDrill`).
-- The letter-drill body is spaced `md` on iOS against `lg` on Android.
 - `App/Sources/Design/Theme.swift` is 388 lines, past the ~300 guide, and its shared-modifiers
   and button-styles section is the clean seam to split on.
 - The letters ladder files no answered-out Sprossen (it has no storage key at all), so its
