@@ -79,8 +79,10 @@ Catalog content — its forms, its audio and the per-language questions — live
   shuffled. Either the drill's queue prefers cards a voice can actually say, or the ordering
   expectation is wrong and the drill says so — a ruling, not a bug.
 
-- iOS drops what a scramble run earns: `TrainerHubView` builds both without an `onFinish`, so
-  the no-op eats the `DrillRunSummary` where Android lands it on Home (`model.finishDrill`).
+- A scramble run's figures land nowhere on either phone: iOS builds both runs without an
+  `onFinish`, and Android's `finishDrill(Screen.Home, …)` fills a tile only the drill overview
+  pages draw (`DrillOverview.kt:93`), which opening one clears — does Home wear the tile, or
+  do the scrambles close silently by design?
 - `App/Sources/Design/Theme.swift` is 388 lines, past the ~300 guide, and its shared-modifiers
   and button-styles section is the clean seam to split on.
 - The letters ladder files no answered-out Sprossen (it has no storage key at all), so its
