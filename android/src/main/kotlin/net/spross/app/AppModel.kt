@@ -9,7 +9,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import java.io.File
-import java.util.Locale
 import java.util.TimeZone
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,14 +16,12 @@ import kotlinx.coroutines.withContext
 import net.spross.app.audio.CueSounds
 import net.spross.app.audio.Pronouncer
 import net.spross.app.listen.ListeningDriver
-import net.spross.app.ui.AreaNaming
 import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
-import net.spross.kern.box.CardGrowth
 import net.spross.kern.box.ShelfCounts
 import net.spross.kern.box.answerDays
 import net.spross.kern.box.mergeAnswerDays
@@ -244,14 +241,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = to
     }
 
-    /**
-     * Where ONE word stands on the growth ladder, for a surface holding that word —
-     * null where the join does not carry it. Stamped with the model's clock like
-     * every other box read, so two surfaces never disagree about the day.
-     */
-    fun cardGrowth(cardId: String): CardGrowth? =
-        box?.let { BoxEngine.cardGrowth(it, cardId, now(), tz()) }
-
     init {
         viewModelScope.launch {
             val loaded = withContext(Dispatchers.IO) {
@@ -268,13 +257,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             }
         }
     }
-
-    /**
-     * The source a fresh install opens with. Kern's rule, over the device's report:
-     * asking [Catalog.availableTargets] about an undeclared locale THROWS, so a French
-     * or Italian phone used to crash on launch here.
-     */
-    fun defaultSource(cat: Catalog): String = cat.defaultSource(Locale.getDefault().language)
 
     /**
      * The pair is settled. [thenPractice] is the FIRST-RUN path only — the picker is the
@@ -302,30 +284,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     fun renameLearner(raw: String?) {
         profile.name = raw
         learnerName = profile.name
-    }
-
-    /**
-     * The name the device suggests for the onboarding field, where it is named after
-     * somebody at all ([DeviceName]). Asked once, on the screen that offers it — nothing
-     * is stored until the learner leaves it standing.
-     */
-    fun suggestedLearnerName(): String? =
-        DeviceName.suggestedLearnerName(getApplication<Application>().contentResolver)
-
-    /**
-     * What a shelf is CALLED to this learner — the browser's own rule ([AreaNaming]),
-     * so the cue an ambiguous prompt carries and the heading it stands under in the box
-     * can never disagree about the name of an area.
-     */
-    fun areaTitle(area: String): String {
-        val cat = catalog
-        val source = box?.joinStamp?.source
-        return AreaNaming(
-            chrome = chrome,
-            catalogTitle = { if (source == null) null else cat?.areaTitle(it, source) },
-            catalogSubtitle = { if (source == null) null else cat?.areaSubtitle(it, source) },
-            catalogEmoji = { cat?.areaEmoji(it) },
-        ).title(area)
     }
 
     /**

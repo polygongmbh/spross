@@ -27,6 +27,7 @@ import net.spross.app.AppModel
 import net.spross.app.CardDisplay
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
+import net.spross.app.areaTitle
 import net.spross.app.audio.Pronouncer
 import net.spross.app.pronounceAction
 import net.spross.app.pronounceTarget

@@ -35,6 +35,8 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.defaultSource
+import net.spross.app.suggestedLearnerName
 import net.spross.kern.catalog.LanguageChoices
 
 /** The three pages of the first run, in the order they are walked. */

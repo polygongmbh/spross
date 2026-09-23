@@ -18,6 +18,7 @@ import kotlin.math.roundToInt
 import net.spross.app.AppModel
 import net.spross.app.CardDisplay
 import net.spross.app.Chrome
+import net.spross.app.cardGrowth
 import net.spross.app.forgetCard
 import net.spross.app.ownWords
 import net.spross.app.removeOwnWord
