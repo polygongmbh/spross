@@ -12,14 +12,12 @@ import java.io.File
 import java.util.Locale
 import java.util.TimeZone
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import net.spross.app.audio.CueSounds
 import net.spross.app.audio.Pronouncer
 import net.spross.app.listen.ListeningDriver
 import net.spross.app.ui.AreaNaming
-import net.spross.app.widget.WordWidget
 import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
@@ -45,17 +43,12 @@ import net.spross.kern.session.SessionIntent
 import net.spross.kern.session.SessionOffers
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
-import net.spross.kern.snapshot.WidgetSnapshotBuilder
-import net.spross.kern.store.BoxBackup
-import net.spross.kern.store.StoreCodec
 import net.spross.kern.store.StoreFormatException
-import net.spross.kern.store.StoredBox
-import net.spross.kern.store.StoredBoxes
 import net.spross.kern.store.rekeyingPrefixedVerbs
 
 class AppModel(app: Application) : AndroidViewModel(app) {
 
-    private val boxFiles = BoxFiles(File(app.filesDir, "box"))
+    internal val disk = BoxDisk(BoxFiles(File(app.filesDir, "box")))
     private val prefs = app.getSharedPreferences(ProfileStore.PREFS_NAME, Context.MODE_PRIVATE)
     private val profile = ProfileStore(prefs)
 
@@ -221,9 +214,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     var otherLanguagesAnswerDays by mutableStateOf<Map<String, Int>>(emptyMap())
         private set
 
-    /** What has been read or written this launch, by target ([StoredBoxes]). */
-    private var boxes: StoredBoxes = StoredBoxes.EMPTY
-
     /**
      * Produce grading with the whole join in view: a form the catalog owns
      * elsewhere is that word, never a typo of this card's answer (`kern/docs/grading.md`).
@@ -353,7 +343,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * Join the pair and stand the box up on it. [landing] is where the learner ends up —
      * the caller knows where they came FROM, and this has no back stack to read it off.
      */
-    private suspend fun activate(source: String, target: String, landing: Screen) {
+    internal suspend fun activate(source: String, target: String, landing: Screen) {
         val cat = catalog ?: return
         switchingLanguage = true
         try {
@@ -361,7 +351,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             val stamp = JoinStamp(source, target, cat.fingerprint)
             val opened = withContext(Dispatchers.IO) {
                 try {
-                    Result.success(openBox(target))
+                    Result.success(disk.open(target))
                 } catch (e: StoreFormatException) {
                     Result.failure(e)
                 }
@@ -400,7 +390,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             // against the new box already carries matching stats — an IO hop between the two
             // let Compose draw the new box against the outgoing language's stats, which is
             // what jumbled its scroll.
-            val days = withContext(Dispatchers.IO) { otherLanguagesDays(target) }
+            val days = withContext(Dispatchers.IO) { disk.otherLanguagesDays(target, tz()) }
             loadFailure = null
             box = joined
             atlas = joinedAtlas
@@ -448,78 +438,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         box = next
         persist(next)
         refreshStats()
-    }
-
-    /**
-     * The backup file's text: [only], or every language, without what belongs to this
-     * device ([BoxBackup]).
-     */
-    fun backupJson(only: String? = null): String = BoxBackup.encode(openEveryBox(), only)
-
-    /**
-     * The languages an export would carry: a box the learner only ever opened is not one of
-     * them, so the export neither offers it nor lands it empty on the other phone.
-     */
-    fun backupLanguages(): List<String> = BoxBackup.carried(openEveryBox())
-
-    /**
-     * Writes the languages a backup restored, then re-opens the pair on screen from the
-     * store, so the box drawn is the restored one and not the one it replaced.
-     *
-     * The pair it opens is the one the FILE names ([StoredBox.source]): the progress was
-     * made under that known language, and re-reading it under this device's would leave
-     * every own word written in the old one unpaired and untrained. A file from before the
-     * store recorded it names none, and the device's own setting stands.
-     */
-    fun restoreBoxes(imported: StoredBoxes) {
-        val stamp = box?.joinStamp ?: return
-        viewModelScope.launch {
-            boxes = boxes.restoring(imported)
-            withContext(Dispatchers.IO) {
-                imported.boxes.keys.forEach { target ->
-                    boxFiles.write(target, StoreCodec.encode(boxes.boxes.getValue(target)))
-                }
-            }
-            activate(imported.boxes[stamp.target]?.source ?: stamp.source, stamp.target, Screen.Box())
-        }
-    }
-
-    /** Every box the device holds, read in where this launch has not read it yet. */
-    private fun openEveryBox(): StoredBoxes {
-        boxFiles.targets().filter { it !in boxes.boxes }.forEach { runCatching { openBox(it) } }
-        return boxes
-    }
-
-    /**
-     * One language's stored box, or null where the device holds none. A v1 document
-     * converts as it is read and is written back under the same name — a conversion that
-     * never reaches disk would convert again on every launch.
-     */
-    private fun openBox(target: String): StoredBox? {
-        val json = boxFiles.read(target) ?: return null
-        val loaded = StoreCodec.load(json)
-        if (loaded.converted) boxFiles.write(target, StoreCodec.encode(loaded.box))
-        boxes = StoredBoxes(boxes.boxes + (target to loaded.box))
-        return loaded.box
-    }
-
-    /**
-     * Answers per day in every OTHER language. A sibling that cannot be read is skipped —
-     * its own load path surfaces the real error when the learner switches to it.
-     */
-    private fun otherLanguagesDays(target: String): Map<String, Int> {
-        boxFiles.targets().filter { it != target && it !in boxes.boxes }
-            .forEach { runCatching { openBox(it) } }
-        return boxes.answerDaysExcept(target, tz())
-    }
-
-    /**
-     * Backgrounding (`SprossActivity.onStop`): every answer is already in the box, so this
-     * only makes sure it reaches disk before the process can be taken away.
-     */
-    fun persistNow() {
-        val state = box ?: return
-        persist(state, blocking = true)
     }
 
     fun finishSession() {
@@ -595,73 +513,4 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         pronouncer.release()
         cues.release()
     }
-
-    /**
-     * Every answer persists (small doc, IO thread) — process death mid-session then costs
-     * at most the in-flight card, matching iOS's debounced-save guarantee.
-     *
-     * [blocking] is `onStop`'s fold asking to be on disk BEFORE the caller returns: the
-     * process may not live long enough for a queued write, and a fold that never reaches
-     * disk is no fold. Nothing else asks for it — the encode and the tile's snapshot
-     * together are the better part of a frame, and the last answer of a round would pay
-     * them where the summary is waiting to be drawn (`docs/performance.md`).
-     *
-     * [widget] rebuilds the tile's snapshot. Off for the answers inside a round and only
-     * those: building it walks the exposure ranking, every active card and every day the
-     * box has tallied, and the tile's worth is long-term exposure — a round's staleness
-     * does not touch it, while a rebuild per card is the same order of work as the box
-     * document itself (`kern/docs/snapshots.md`).
-     */
-    private fun persist(state: BoxState, widget: Boolean = true, blocking: Boolean = false) {
-        val target = state.joinStamp.target
-        boxes = boxes.with(state)
-        val box = boxes.boxes.getValue(target)
-        val stamp = now()
-        if (blocking) {
-            boxFiles.write(target, StoreCodec.encode(box))
-            if (widget) {
-                boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
-                nudgeWidget()
-            }
-            return
-        }
-        // why: NonCancellable — a write racing activity teardown must still land.
-        viewModelScope.launch(Dispatchers.IO + NonCancellable) {
-            // why: the encode is the expensive half — every card's log in this language —
-            // and it belongs on this thread with the write, not on the one that has to
-            // draw the next card.
-            boxFiles.write(target, StoreCodec.encode(box))
-            if (widget) {
-                boxFiles.writeWidgetSnapshot(widgetSnapshot(state, stamp))
-                WordWidget.refresh(getApplication())
-            }
-        }
-    }
-
-    /**
-     * Redraw of the placed tiles, for the path that cannot wait for one.
-     *
-     * `updateAll` suspends and `onStop` returns before it could finish; the snapshot is
-     * already on disk by then, so a nudge that loses the race costs nothing but
-     * promptness — the tile's own update period redraws it either way.
-     */
-    private fun nudgeWidget() {
-        viewModelScope.launch(Dispatchers.IO + NonCancellable) {
-            WordWidget.refresh(getApplication())
-        }
-    }
-
-    /**
-     * What the home-screen widget draws, resolved HERE because the widget cannot run
-     * the join (`kern/docs/snapshots.md`) — it decodes this and nothing else.
-     * Carries the other languages' days for the same reason Home's strip does: the
-     * run is one commitment across every box.
-     */
-    private fun widgetSnapshot(state: BoxState, nowEpochMillis: Long): String =
-        WidgetSnapshotBuilder.build(
-            state,
-            nowEpochMillis,
-            tz(),
-            otherLanguagesAnswerDays = otherLanguagesAnswerDays,
-        )
 }
