@@ -1275,6 +1275,18 @@
     }
   },
   "words": {
+    "a-little": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.9,
+      "file": "a-little.mp3",
+      "gain": -0.9,
+      "gainPhone": 3.0,
+      "lead": 71,
+      "matches": "трохи",
+      "sha256": "083fa1c8a1caa723019b3610a3c36de5b216ef629715fe0bb865aca6c3e4dd37",
+      "snr": 45.2,
+      "source": "Uk-трохи.ogg"
+    },
     "address": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "address.mp3",
@@ -1285,6 +1297,17 @@
       "sha256": "136f7e35a9ad05f23956523f969afd3282232f933e17fca877d440a5d62a44d0",
       "snr": 46.6,
       "source": "Uk-адреса.ogg"
+    },
+    "adjective": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "adjective.mp3",
+      "gain": -0.1,
+      "gainPhone": 1.8,
+      "lead": 113,
+      "matches": "прикметник",
+      "sha256": "e3f546f1979b341de66f41a8a7468a97f8e0dd9f6c1196b84b30a911e90655c2",
+      "snr": 46.7,
+      "source": "Uk-прикметник.ogg"
     },
     "after": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -1361,6 +1384,16 @@
       "snr": 41.8,
       "source": "Uk-всі.ogg"
     },
+    "almost": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "almost.mp3",
+      "gain": -2.0,
+      "gainPhone": -2.8,
+      "matches": "майже",
+      "sha256": "23d9042eb341986ee0a0d2bc965e3fcbde0c62c6de3aab08cf81b639273620f5",
+      "snr": 47.8,
+      "source": "Uk-майже.ogg"
+    },
     "also": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "also.mp3",
@@ -1371,6 +1404,16 @@
       "sha256": "5246614ca73b1541a87760cbfd9c6c7265f84ada2b0be9dd098d6a97727d42ff",
       "snr": 49.4,
       "source": "Uk-також.ogg"
+    },
+    "although": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "although.mp3",
+      "gainPhone": -1.7,
+      "lead": 91,
+      "matches": "хоча",
+      "sha256": "29554d0f21bd4f0ced073b392eece2d9ae00c55256225efeb0d8e632474dbb3f",
+      "snr": 46.3,
+      "source": "Uk-хоча.ogg"
     },
     "always": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -1416,6 +1459,26 @@
       "sha256": "5bb8cb11fefbf79f648ff604f9eec0c877a374ab27ae5a08c344cd06ea00d1f5",
       "snr": 38.8,
       "source": "Uk-відповідь.ogg"
+    },
+    "anyone": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "anyone.mp3",
+      "gain": -0.9,
+      "gainPhone": 2.8,
+      "matches": "будь-хто",
+      "sha256": "294fb3eecaa6277d0ec07a0f3e84f51d4fb0ff128be063bdbe8f77e6bc536d08",
+      "snr": 38.5,
+      "source": "Uk-будь-хто.ogg"
+    },
+    "anything": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "anything.mp3",
+      "gain": -1.4,
+      "gainPhone": -4.8,
+      "matches": "будь-що",
+      "sha256": "6bb382a1c5166bdea79780d33881f9656076e6db9f33b19878d13cfb4e72cbaf",
+      "snr": 39.7,
+      "source": "Uk-будь-що.ogg"
     },
     "apartment": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -1593,6 +1656,28 @@
       "snr": 44.2,
       "source": "Uk-пляж.ogg"
     },
+    "bean": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "bean.mp3",
+      "gain": 1.1,
+      "gainPhone": -1.6,
+      "lead": 168,
+      "matches": "квасоля",
+      "sha256": "f4a1ae2a0f1e680b0edb2e5b0f67353033dea0b38442a1f0b4b1d86cc8201ac7",
+      "snr": 44.6,
+      "source": "Uk-квасоля.ogg"
+    },
+    "beautiful": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "beautiful.mp3",
+      "gain": -2.5,
+      "gainPhone": -7.6,
+      "lead": 118,
+      "matches": "красивий",
+      "sha256": "0606366846d8b258bda995e4fcb9f5867e44a0943d50414bdfae9a47d6d9adc1",
+      "snr": 42.9,
+      "source": "Uk-красивий.ogg"
+    },
     "because-of": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "because-of.mp3",
@@ -1724,6 +1809,17 @@
       "snr": 45.6,
       "source": "Uk-птах.ogg"
     },
+    "birth": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "birth.mp3",
+      "gain": -3.0,
+      "gainPhone": 0.0,
+      "lead": 150,
+      "matches": "народження",
+      "sha256": "d548d0cd4a80abde6c465f01ad6794292a296d644e0b59600709c5e55ac1a0e2",
+      "snr": 38.2,
+      "source": "Uk-народження.ogg"
+    },
     "black": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "black.mp3",
@@ -1778,6 +1874,17 @@
       "sha256": "aa7f0efd7ff42c51889667dffcf10f88be957a1bcc4024b346118f4d44a66a28",
       "snr": 41.3,
       "source": "Uk-дошка.ogg"
+    },
+    "boat": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "boat.mp3",
+      "gain": -3.0,
+      "gainPhone": 0.4,
+      "lead": 245,
+      "matches": "човен",
+      "sha256": "343bbf05af56941a4e9a229bd9419f67d2e5d653cef9dd8f05e1721c2fd55395",
+      "snr": 50.3,
+      "source": "Uk-човен.ogg"
     },
     "bone": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -1984,6 +2091,17 @@
       "snr": 28.6,
       "source": "Uk-бувай.ogg"
     },
+    "cabbage": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "cabbage.mp3",
+      "gain": 1.6,
+      "gainPhone": -0.8,
+      "lead": 88,
+      "matches": "капуста",
+      "sha256": "3c18d9bca2c25be5815939975be8d799a8038cf06283b8252a0e0610e8173531",
+      "snr": 46.6,
+      "source": "Uk-капуста.ogg"
+    },
     "calendar": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "calendar.mp3",
@@ -2015,6 +2133,28 @@
       "sha256": "a62a243398b5b9760db8abd01fb4b84d01ad6e36c8be42d54f9b1e8191626e9e",
       "snr": 53.7,
       "source": "Uk-килим.ogg"
+    },
+    "carrot": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.9,
+      "file": "carrot.mp3",
+      "gain": -1.5,
+      "gainPhone": 2.9,
+      "matches": "морква",
+      "sha256": "09c842d4ed256511c677906f8c60b65ffd7529ce9c7692205f5b7d139a78ae69",
+      "snr": 40.7,
+      "source": "Uk-морква.ogg"
+    },
+    "case": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.6,
+      "file": "case.mp3",
+      "gain": -5.3,
+      "gainPhone": 3.0,
+      "matches": "відмінок",
+      "sha256": "3cc6a248b88eb49c7f5b7033b3b608b3f9179d53563f706471e1c7c699b8d87c",
+      "snr": 41.8,
+      "source": "Uk-відмінок.ogg"
     },
     "case-worker": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -2048,6 +2188,38 @@
       "sha256": "953add143ca9a82bcc6ecbf4693372060cf9a2bb37661eaade5508b5f4251c92",
       "snr": 42.9,
       "source": "Uk-обережно.ogg"
+    },
+    "celebration": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "celebration.mp3",
+      "gain": -0.5,
+      "gainPhone": -4.4,
+      "lead": 72,
+      "matches": "свято",
+      "sha256": "d417b2b0d64507973f3d1718a61b3322607c821356cffbbc01d68e2ecfc40734",
+      "snr": 45.8,
+      "source": "Uk-свято.ogg"
+    },
+    "center": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "center.mp3",
+      "gain": -1.3,
+      "gainPhone": -4.3,
+      "matches": "центр",
+      "sha256": "3c61d2b9ba653a4fa9ead11c51660c320e859ccfd87bd4fb9e1c66a6972d0a84",
+      "snr": 36.5,
+      "source": "Uk-центр.ogg"
+    },
+    "century": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "century.mp3",
+      "gain": 0.1,
+      "gainPhone": -0.3,
+      "lead": 199,
+      "matches": "століття",
+      "sha256": "e7534de5002690f1bf212395bf7f96ea4c830fdeb844d205a796860d1c5201e4",
+      "snr": 47.8,
+      "source": "Uk-століття.ogg"
     },
     "certificate": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -2259,6 +2431,16 @@
       "snr": 47.5,
       "source": "Uk-хмара.ogg"
     },
+    "coast": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "coast.mp3",
+      "gain": -3.4,
+      "gainPhone": -1.1,
+      "matches": "узбережжя",
+      "sha256": "e9ddcef091acd56d0bd954f8798184aab14a194dc37915f6c690df52689b32c9",
+      "snr": 41.5,
+      "source": "Uk-узбережжя.ogg"
+    },
     "coat": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 0.7,
@@ -2407,6 +2589,18 @@
       "snr": 45.9,
       "source": "Uk-курс.ogg"
     },
+    "cow": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.7,
+      "file": "cow.mp3",
+      "gain": -2.3,
+      "gainPhone": 2.9,
+      "lead": 230,
+      "matches": "корова",
+      "sha256": "d7cb0844304492ea73621904bc5bda90ccfacdc0c6f529e18189d6acd8dd2166",
+      "snr": 51.1,
+      "source": "Uk-корова.ogg"
+    },
     "cream": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cream.mp3",
@@ -2505,6 +2699,17 @@
       "snr": 47.4,
       "source": "Uk-день.ogg"
     },
+    "day-after-tomorrow": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "day-after-tomorrow.mp3",
+      "gain": -1.2,
+      "gainPhone": -3.0,
+      "lead": 142,
+      "matches": "післязавтра",
+      "sha256": "54aac544167c614d27571c85eb1240311c121c26385dd37209b8762eb9e46c76",
+      "snr": 45.4,
+      "source": "Uk-післязавтра.ogg"
+    },
     "day-before-yesterday": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "day-before-yesterday.mp3",
@@ -2537,6 +2742,16 @@
       "sha256": "b85c15a6bf21cb2cd1bc45f7ab932d5fea4c8b4a71920c94f9bebedec4b88922",
       "snr": 42.4,
       "source": "Uk-смерть.ogg"
+    },
+    "decade": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "decade.mp3",
+      "gain": 0.5,
+      "gainPhone": -0.4,
+      "matches": "десятиліття",
+      "sha256": "e67e6af4988312e97ecff9c81dde5e6d7a14e74191d32107a7334d29c3caf99e",
+      "snr": 43.5,
+      "source": "Uk-десятиліття.ogg"
     },
     "defensive": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -2668,6 +2883,16 @@
       "snr": 44.2,
       "source": "Uk-собака.ogg"
     },
+    "donkey": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "donkey.mp3",
+      "gain": -2.4,
+      "gainPhone": -6.4,
+      "matches": "осел",
+      "sha256": "19470ecda01922b28c1b049f62b56c9d0fab857303392f38a7d544215356af25",
+      "snr": 42.4,
+      "source": "Uk-осел.ogg"
+    },
     "door": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "door.mp3",
@@ -2689,6 +2914,16 @@
       "sha256": "a5014ee8fc27af8a89b693c429c88dea4e4cc9d31fc3a8e463ab49e1eda387a3",
       "snr": 41.0,
       "source": "Uk-дзвінок.ogg"
+    },
+    "doubt": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "doubt.mp3",
+      "gain": -3.2,
+      "gainPhone": -4.9,
+      "matches": "сумнів",
+      "sha256": "e0145c2abe85e1345d34a124727baf2c90a047da93dab027c5c39c2e6b3cdb9b",
+      "snr": 44.1,
+      "source": "Uk-сумнів.ogg"
     },
     "down": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -2800,6 +3035,17 @@
       "snr": 41.5,
       "source": "Uk-вибори.ogg"
     },
+    "elephant": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "elephant.mp3",
+      "gain": -2.0,
+      "gainPhone": -3.3,
+      "lead": 195,
+      "matches": "слон",
+      "sha256": "75ada553f4631dd6a61fd9fb4da0c7cbaaa6f31caa89b0d7e903757b410dfa83",
+      "snr": 41.1,
+      "source": "Uk-слон.ogg"
+    },
     "employer": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "employer.mp3",
@@ -2854,6 +3100,28 @@
       "snr": 40.2,
       "source": "Uk-вхід.ogg"
     },
+    "equality": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "equality.mp3",
+      "gain": -4.9,
+      "gainPhone": -1.9,
+      "lead": 106,
+      "matches": "рівність",
+      "sha256": "59f105880311860d9f2ca73892310c24eb5d751bec23af1bddf9656c5bd3fcda",
+      "snr": 42.6,
+      "source": "Uk-рівність.ogg"
+    },
+    "even": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "even.mp3",
+      "gain": -1.6,
+      "gainPhone": -0.8,
+      "lead": 225,
+      "matches": "навіть",
+      "sha256": "74c7dba5324204859d18b1034ccadae30b6c6591fb2a544a690c90191e1a8c70",
+      "snr": 43.5,
+      "source": "Uk-навіть.ogg"
+    },
     "evening": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "evening.mp3",
@@ -2875,6 +3143,17 @@
       "snr": 46.3,
       "source": "Uk-кожен.ogg"
     },
+    "everything": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "everything.mp3",
+      "gain": -0.2,
+      "gainPhone": -5.3,
+      "lead": 202,
+      "matches": "все",
+      "sha256": "cc49fa4c045aefe7c3c88861097c3049c6044098a5f649aaa16e35ce7844e576",
+      "snr": 47.3,
+      "source": "Uk-все.ogg"
+    },
     "exam": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "exam.mp3",
@@ -2885,6 +3164,16 @@
       "sha256": "a7afb0ea7a34583d62657cd73b41b9b98f0d9771d5494fd69f24dcd5341c5b23",
       "snr": 46.5,
       "source": "Uk-іспит.ogg"
+    },
+    "exercise": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "exercise.mp3",
+      "gain": -0.2,
+      "gainPhone": -1.7,
+      "matches": "вправа",
+      "sha256": "d56b8e1bbd3368610cf66abf453088d9a50b2ee34427a602cecddaacc9cebf63",
+      "snr": 42.1,
+      "source": "Uk-вправа.ogg"
     },
     "exercise-book": {
       "author": "Женя Музика, Nicolas Vion",
@@ -3030,6 +3319,27 @@
       "snr": 46.2,
       "source": "Uk-температура.ogg"
     },
+    "few": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "few.mp3",
+      "gain": -3.8,
+      "gainPhone": 0.1,
+      "matches": "мало",
+      "sha256": "07e9badec96547be0f99ee73aab1547398c9281b1635d29d1835db01c8864d56",
+      "snr": 40.7,
+      "source": "Uk-мало.ogg"
+    },
+    "finally": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "finally.mp3",
+      "gain": -2.0,
+      "gainPhone": -1.8,
+      "lead": 29,
+      "matches": "нарешті",
+      "sha256": "2af147ca98da229df9521dbd22cab57b31bd0d51fab6cebaf2b25cb4dcfccccf",
+      "snr": 47.8,
+      "source": "Uk-нарешті.ogg"
+    },
     "fine": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "fine.mp3",
@@ -3051,6 +3361,17 @@
       "sha256": "179e4d12559a2b436f20f652d246f382e0aaa4e675ce6f3eb2226ee7d94879b1",
       "snr": 49.7,
       "source": "Uk-палець.ogg"
+    },
+    "firm": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "firm.mp3",
+      "gain": -1.8,
+      "gainPhone": -1.4,
+      "lead": 88,
+      "matches": "міцний",
+      "sha256": "41e6b9a4de6e1f0bdf8807a4a1d4b630a7201e1ee697a1cd18273076c75b9ec6",
+      "snr": 46.8,
+      "source": "Uk-міцний.ogg"
     },
     "first": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -3183,6 +3504,17 @@
       "snr": 40.5,
       "source": "Uk-бланк.ogg"
     },
+    "formerly": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "formerly.mp3",
+      "gain": -1.6,
+      "gainPhone": 1.1,
+      "lead": 226,
+      "matches": "раніше",
+      "sha256": "b173e32f2e6e950712c9f37eec4176a02bbd5e022c7bd81854ac50bdb5097565",
+      "snr": 48.8,
+      "source": "Uk-раніше.ogg"
+    },
     "free-of-charge": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "free-of-charge.mp3",
@@ -3293,6 +3625,39 @@
       "snr": 40.5,
       "source": "Uk-гра.ogg"
     },
+    "garlic": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "garlic.mp3",
+      "gain": -2.5,
+      "gainPhone": -8.3,
+      "lead": 212,
+      "matches": "часник",
+      "sha256": "14f2f620c7f4cc3560e88baaa5c02844b3e82bb2fccab89b3d0eb40519f1717b",
+      "snr": 41.3,
+      "source": "Uk-часник.ogg"
+    },
+    "gas": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "gas.mp3",
+      "gain": -1.0,
+      "gainPhone": -0.9,
+      "lead": 99,
+      "matches": "газ",
+      "sha256": "870a6dfd0e44018c4041b39f504ce85ccc7b5d8a24a488cdb56c53affb82d200",
+      "snr": 45.2,
+      "source": "Uk-газ.ogg"
+    },
+    "gift": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "gift.mp3",
+      "gain": -1.1,
+      "gainPhone": 2.6,
+      "lead": 13,
+      "matches": "подарунок",
+      "sha256": "597d8d6badb1ea8a4e7fa362e6efe4d2b222feb12a5890eab3bdda8408326042",
+      "snr": 45.8,
+      "source": "Uk-подарунок.ogg"
+    },
     "girl": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "girl.mp3",
@@ -3346,6 +3711,17 @@
       "sha256": "d766ebcfc52e33e02a1946e91a27d798b87ccc4f74aed77a7509eecb825479ce",
       "snr": 45.9,
       "source": "Uk-мета.ogg"
+    },
+    "goat": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "goat.mp3",
+      "gain": -1.1,
+      "gainPhone": -0.1,
+      "lead": 29,
+      "matches": "коза",
+      "sha256": "09fb667ac80e5d0f381019dadaf915a5ee90fed8d3d30d9f8226d32c34719062",
+      "snr": 47.0,
+      "source": "Uk-коза.ogg"
     },
     "good": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -3491,6 +3867,18 @@
       "snr": 47.6,
       "source": "Uk-шапка.ogg"
     },
+    "he": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.3,
+      "file": "he.mp3",
+      "gain": -2.8,
+      "gainPhone": 2.8,
+      "lead": 202,
+      "matches": "він",
+      "sha256": "4e8b21ab103be635e26745318dad2df0b6f7716de6a1b8b6928b6ba907af280d",
+      "snr": 43.4,
+      "source": "Uk-він.ogg"
+    },
     "head": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "head.mp3",
@@ -3591,6 +3979,16 @@
       "sha256": "19ffa474056eed38bc5b739d3ae0e9b8fe8391f553d5c9001e9133a26b5dbd56",
       "snr": 38.7,
       "source": "Uk-вище.ogg"
+    },
+    "horse": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "horse.mp3",
+      "gain": -4.3,
+      "gainPhone": 0.7,
+      "matches": "кінь",
+      "sha256": "b0c24781eaed106d1380c9a5b0135df5361388655c504eddf50a608738fb90d4",
+      "snr": 43.7,
+      "source": "Uk-кінь.ogg"
     },
     "hospital": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -3696,6 +4094,17 @@
       "snr": 41.8,
       "source": "Uk-голод.ogg"
     },
+    "i": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "i.mp3",
+      "gain": -1.0,
+      "gainPhone": -2.9,
+      "lead": 225,
+      "matches": "я",
+      "sha256": "94cca25d0d80e80252d4d5873ecf3d735b46e0708965089372a3d99218282597",
+      "snr": 47.3,
+      "source": "Uk-я.ogg"
+    },
     "if": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "if.mp3",
@@ -3739,6 +4148,16 @@
       "snr": 40.6,
       "source": "Uk-в.ogg"
     },
+    "in-front": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "in-front.mp3",
+      "gain": 1.3,
+      "gainPhone": -3.5,
+      "matches": "спереду",
+      "sha256": "dee7a252476d468da78dd8ee59fab7651464d034668bfcabaffbd177bee543e5",
+      "snr": 43.7,
+      "source": "Uk-спереду.ogg"
+    },
     "inside": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "inside.mp3",
@@ -3760,6 +4179,29 @@
       "sha256": "5b063a70a5cc1aeaae710a9c4060a0776d2304a9cb532bbc66c2dbfb2058150d",
       "snr": 42.2,
       "source": "Uk-інтернет.ogg"
+    },
+    "island": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "island.mp3",
+      "gain": -2.9,
+      "gainPhone": -2.1,
+      "lead": 32,
+      "matches": "острів",
+      "sha256": "ed58066552cd65e931dfe66a79e4bf650c2a37dc3b210e8c4a71c757a612fb44",
+      "snr": 43.5,
+      "source": "Uk-острів.ogg"
+    },
+    "it": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.2,
+      "file": "it.mp3",
+      "gain": -4.6,
+      "gainPhone": 3.0,
+      "lead": 256,
+      "matches": "воно",
+      "sha256": "081f5520bb858e7f9c206e9696dc248092f97cffc5289e2244bc373fea2c006d",
+      "snr": 43.8,
+      "source": "Uk-воно.ogg"
     },
     "jacket": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -3914,6 +4356,17 @@
       "snr": 45.8,
       "source": "Uk-мова.ogg"
     },
+    "last": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "last.mp3",
+      "gain": 1.7,
+      "gainPhone": -3.1,
+      "lead": 264,
+      "matches": "останній",
+      "sha256": "6115f41b9adc02e972220c525d95ce8bb7673bcd629ea595e320150bb1836f39",
+      "snr": 48.9,
+      "source": "Uk-останній.ogg"
+    },
     "late": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "late.mp3",
@@ -3924,6 +4377,16 @@
       "sha256": "b9851e57d60f264fbc48d68f7ffafc1bf028665c86e1af10f4712abc0219e49b",
       "snr": 42.9,
       "source": "Uk-пізно.ogg"
+    },
+    "later": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "later.mp3",
+      "gain": -3.5,
+      "gainPhone": -3.3,
+      "matches": "пізніше",
+      "sha256": "97f8dbf7a09cf8796f2ded44c7ff9d156aed084886a201f4f8874eeb3465fbf1",
+      "snr": 41.4,
+      "source": "Uk-пізніше.ogg"
     },
     "laundry": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4057,6 +4520,17 @@
       "snr": 48.4,
       "source": "Uk-губа.ogg"
     },
+    "liquid": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.1,
+      "file": "liquid.mp3",
+      "gain": -0.4,
+      "gainPhone": 2.8,
+      "matches": "рідкий",
+      "sha256": "9d6ef82acdb93997920259207fe9a274b0e67d4d6beb0d96cd13e6c717db0f5b",
+      "snr": 46.8,
+      "source": "Uk-рідкий.ogg"
+    },
     "list": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "list.mp3",
@@ -4101,6 +4575,18 @@
       "sha256": "c1372af8787c4320bddd0063716b7c609626131998dde80e9460ef84f1afd630",
       "snr": 51.0,
       "source": "Uk-довгий.ogg"
+    },
+    "longing": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.3,
+      "file": "longing.mp3",
+      "gain": -4.3,
+      "gainPhone": 2.9,
+      "lead": 236,
+      "matches": "туга",
+      "sha256": "a40814f00fb7c1bf8ec0a2ee9b33a46d64ccd6fcaffd81e6d953e31db889c11e",
+      "snr": 47.1,
+      "source": "Uk-туга.ogg"
     },
     "loud": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4231,6 +4717,17 @@
       "snr": 42.3,
       "source": "Uk-меню.ogg"
     },
+    "midnight": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "midnight.mp3",
+      "gain": -4.5,
+      "gainPhone": 0.7,
+      "lead": 73,
+      "matches": "північ",
+      "sha256": "1d256b0e7871d2ce04d3eedc339767ebe267923d6628a4a4f66883e54674643c",
+      "snr": 46.3,
+      "source": "Uk-північ.ogg"
+    },
     "milk": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 2.7,
@@ -4265,6 +4762,17 @@
       "snr": 46.9,
       "source": "Uk-дзеркало.ogg"
     },
+    "mistake": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.8,
+      "file": "mistake.mp3",
+      "gain": -3.0,
+      "gainPhone": 2.8,
+      "matches": "помилка",
+      "sha256": "87369d39270e0721b7db399508243ae2b908ec9c4c28fc7d6dc9a4ce630b18d5",
+      "snr": 45.6,
+      "source": "Uk-помилка.ogg"
+    },
     "money": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "money.mp3",
@@ -4275,6 +4783,16 @@
       "sha256": "aa428a8af2a02f5cabde0802c2abc1e98b829855b106f0a15d74982a30620a2a",
       "snr": 47.4,
       "source": "Uk-гроші.ogg"
+    },
+    "monkey": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "monkey.mp3",
+      "gain": -1.8,
+      "gainPhone": 0.8,
+      "matches": "мавпа",
+      "sha256": "2090ddd3c1d43185afecb38cfe48faef22e8c0b0b6a7b64c6037fd9de5a385d8",
+      "snr": 39.6,
+      "source": "Uk-мавпа.ogg"
     },
     "month": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4319,6 +4837,17 @@
       "sha256": "80f30dadec624697436092338b453e4f35b9a1d2c4b4a76cb1dc5975bdfa2374",
       "snr": 48.1,
       "source": "Uk-ранок.ogg"
+    },
+    "most": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "most.mp3",
+      "gain": -1.6,
+      "gainPhone": -3.9,
+      "lead": 17,
+      "matches": "більшість",
+      "sha256": "4b487a2c272174d2dc253a64c398479178774b73ea90ae5f3318fef49437e895",
+      "snr": 40.0,
+      "source": "Uk-більшість.ogg"
     },
     "mother": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4415,6 +4944,17 @@
       "sha256": "2420286772e46ae64f34e3c162bd10b478ebc385aef2e3738397987916e8c6ca",
       "snr": 47.7,
       "source": "Uk-музика.ogg"
+    },
+    "my": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "my.mp3",
+      "gain": -5.3,
+      "gainPhone": 3.0,
+      "lead": 31,
+      "matches": "мій",
+      "sha256": "59cece80fc2c99525ba15a28028adf467ffcff29671504eaaeb5ac7a36dc4ff0",
+      "snr": 43.4,
+      "source": "Uk-мій.ogg"
     },
     "name": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4593,6 +5133,28 @@
       "snr": 48.2,
       "source": "Uk-ні.ogg"
     },
+    "no-one": {
+      "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "capPhone": 2.2,
+      "file": "no-one.mp3",
+      "gain": -2.8,
+      "gainPhone": 2.9,
+      "matches": "ніхто",
+      "sha256": "5194df47ca1a24c23c6d51a1a607117af55b5163be7cfc6c709c7e5c9b62cfcc",
+      "snr": 35.1,
+      "source": "Uk-ніхто.ogg"
+    },
+    "noise": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "noise.mp3",
+      "gain": -3.6,
+      "gainPhone": -4.6,
+      "lead": 112,
+      "matches": "шум",
+      "sha256": "d9a679245d0d8216da6dd51b279054521649cff50086d3a681fc0fdf9b306298",
+      "snr": 43.7,
+      "source": "Uk-шум.ogg"
+    },
     "noon": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 2.2,
@@ -4650,6 +5212,17 @@
       "snr": 40.6,
       "source": "Uk-блокнот.ogg"
     },
+    "nothing": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "nothing.mp3",
+      "gain": -1.6,
+      "gainPhone": 0.0,
+      "lead": 126,
+      "matches": "нічого",
+      "sha256": "da3b2e595f1a62f3baa7a8eb34c1a2171499b1aa9b7ad923790bce849a249f70",
+      "snr": 43.6,
+      "source": "Uk-нічого.ogg"
+    },
     "notice": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "notice.mp3",
@@ -4670,6 +5243,17 @@
       "snr": 33.6,
       "source": "Uk-рішення.ogg"
     },
+    "noun": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "noun.mp3",
+      "gain": -2.7,
+      "gainPhone": 2.7,
+      "lead": 257,
+      "matches": "іменник",
+      "sha256": "228a46f560a2ecee1deaccd7e37444731828a5bd2b4fbac0099298f90519325e",
+      "snr": 50.8,
+      "source": "Uk-іменник.ogg"
+    },
     "now": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "now.mp3",
@@ -4680,6 +5264,17 @@
       "sha256": "a0984794cdf52dac09925b499e95ae0fb7c075bb74bad7fc0d897136fd609356",
       "snr": 45.0,
       "source": "Uk-зараз.ogg"
+    },
+    "nowadays": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "nowadays.mp3",
+      "gain": 1.1,
+      "gainPhone": 2.0,
+      "lead": 98,
+      "matches": "тепер",
+      "sha256": "b03b462f4a913cf569d17965ebfbe4b25d588747ad9172722129091cd61a0d46",
+      "snr": 45.5,
+      "source": "Uk-тепер.ogg"
     },
     "nurse-f": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4778,6 +5373,16 @@
       "snr": 47.8,
       "source": "Uk-тільки.ogg"
     },
+    "open": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "open.mp3",
+      "gain": -1.9,
+      "gainPhone": -6.2,
+      "matches": "відчинений",
+      "sha256": "bb94218f446d5d8ffb25ec1760045e4f6a3342c7e2be7f6666d7d6cd7045b9ed",
+      "snr": 44.7,
+      "source": "Uk-відчинений.ogg"
+    },
     "opposite": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "opposite.mp3",
@@ -4809,6 +5414,17 @@
       "sha256": "9f857d338e200b30efc430e52f4bae5b6baa0987304ee31229f990d3b574bb73",
       "snr": 50.3,
       "source": "Uk-інший.ogg"
+    },
+    "our": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "our.mp3",
+      "gain": -1.1,
+      "gainPhone": -1.0,
+      "lead": 220,
+      "matches": "наш",
+      "sha256": "38d3231ff32f8346589eea12de0eb5a7949634d7a229fc015a10243acbfa86dd",
+      "snr": 47.9,
+      "source": "Uk-наш.ogg"
     },
     "outdoors": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4953,6 +5569,18 @@
       "snr": 45.6,
       "source": "Uk-пароль.ogg"
     },
+    "past": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.8,
+      "file": "past.mp3",
+      "gain": -4.0,
+      "gainPhone": 2.9,
+      "lead": 110,
+      "matches": "минуле",
+      "sha256": "e22523ebe50065f57a65332abb33fbad697e6a0e14cbd5941615b6490a9d7b6b",
+      "snr": 41.1,
+      "source": "Uk-минуле.ogg"
+    },
     "peace": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 0.9,
@@ -4974,6 +5602,17 @@
       "sha256": "5f9579e20d40bf8efeba651e34550c45c2e21c7eab0b98dfcef85dadde61e2dd",
       "snr": 44.6,
       "source": "Uk-ручка.ogg"
+    },
+    "pencil": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "pencil.mp3",
+      "gain": -2.6,
+      "gainPhone": 1.3,
+      "lead": 228,
+      "matches": "олівець",
+      "sha256": "2883f7e8f79821b573f0ec9138af3d0faa317b334709bb4a22c51bac97710983",
+      "snr": 50.6,
+      "source": "Uk-олівець.ogg"
     },
     "person": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -5100,6 +5739,16 @@
       "snr": 41.9,
       "source": "Uk-тарілка.ogg"
     },
+    "plug": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "plug.mp3",
+      "gain": -3.0,
+      "gainPhone": 3.0,
+      "matches": "вилка",
+      "sha256": "bace0556782d4affbfddf0175d9f7fbdda3d06e2e71bc8746b997e68bc7aecb4",
+      "snr": 43.2,
+      "source": "Uk-вилка.ogg"
+    },
     "poor": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "poor.mp3",
@@ -5109,6 +5758,28 @@
       "sha256": "85335e4ed755e81f04001596fd34bad8d4576e940d39334da1d07dceb17f4cdc",
       "snr": 40.6,
       "source": "Uk-бідний.ogg"
+    },
+    "porridge": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "porridge.mp3",
+      "gain": 0.6,
+      "gainPhone": -3.8,
+      "lead": 44,
+      "matches": "каша",
+      "sha256": "87d5e6ce937d33f94e0b7171410cdd01281dcce91de02c9367c9fdf7b729abbc",
+      "snr": 47.1,
+      "source": "Uk-каша.ogg"
+    },
+    "port": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "port.mp3",
+      "gain": -4.4,
+      "gainPhone": 2.2,
+      "lead": 72,
+      "matches": "порт",
+      "sha256": "371c8f91e952aa71e4f527ea211603f58598c51c8279c3d240d8a5f09bf26005",
+      "snr": 44.1,
+      "source": "Uk-порт.ogg"
     },
     "positive": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -5261,6 +5932,16 @@
       "sha256": "b4c47f0a88cc514198550c841ba3e93f92707c3fea633716c1869d4a19e895a6",
       "snr": 43.1,
       "source": "Uk-тихий.ogg"
+    },
+    "radio": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "radio.mp3",
+      "gain": -0.9,
+      "gainPhone": -1.5,
+      "matches": "радіо",
+      "sha256": "06823d1c294f1c649d226fa4d6deaa36ffae083329a6783af042f842478bb8e9",
+      "snr": 43.5,
+      "source": "Uk-радіо.ogg"
     },
     "rail": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -5438,6 +6119,17 @@
       "snr": 45.3,
       "source": "Uk-сум.ogg"
     },
+    "safe": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "safe.mp3",
+      "gain": 1.7,
+      "gainPhone": -1.9,
+      "lead": 118,
+      "matches": "безпечний",
+      "sha256": "53c9068cf6252553b973e38bb845a9c59fc950deacb2dd0a7f236b3a7dfb37b2",
+      "snr": 45.4,
+      "source": "Uk-безпечний.ogg"
+    },
     "salary": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "salary.mp3",
@@ -5513,6 +6205,18 @@
       "snr": 47.0,
       "source": "Uk-море.ogg"
     },
+    "second": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 3.9,
+      "file": "second.mp3",
+      "gain": -1.9,
+      "gainPhone": 2.7,
+      "lead": 228,
+      "matches": "другий",
+      "sha256": "85d48f797b125e854535d1d3c3cb7d1c8f499f1458ca7c44c32de58e3108381b",
+      "snr": 48.3,
+      "source": "Uk-другий.ogg"
+    },
     "sentence": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sentence.mp3",
@@ -5523,6 +6227,17 @@
       "sha256": "55e60b55da61d1f6a62b5e86c3feae6c269fdc9bbd72d96a613f98cce2e26b05",
       "snr": 47.6,
       "source": "Uk-речення.ogg"
+    },
+    "shadow": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "shadow.mp3",
+      "gain": -2.8,
+      "gainPhone": -1.9,
+      "lead": 56,
+      "matches": "тінь",
+      "sha256": "6620f21d6f58f11c2db407e879cabc28402a7bf56f4105c4a23b2f1aac6d23b7",
+      "snr": 46.0,
+      "source": "Uk-тінь.ogg"
     },
     "shame": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -5555,6 +6270,16 @@
       "sha256": "5c2819b1c07d405ceea70aa20472123dc4665efd86f2f8a505eca41fc032f79f",
       "snr": 46.7,
       "source": "Uk-гострий.ogg"
+    },
+    "sheep": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "sheep.mp3",
+      "gain": -1.0,
+      "gainPhone": -2.3,
+      "matches": "вівця",
+      "sha256": "b090ef65aace48dcc6a17f11ffbe5ec358556224eb3c84b34186ec1e050a8173",
+      "snr": 41.5,
+      "source": "Uk-вівця.ogg"
     },
     "shelf": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -5698,6 +6423,16 @@
       "snr": 47.3,
       "source": "Uk-схожий.ogg"
     },
+    "since": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "since.mp3",
+      "gain": -2.4,
+      "gainPhone": -5.8,
+      "matches": "з",
+      "sha256": "757d56d9ac410f34ad9bb24d3bddf02ca16a6e17a9465acab1a7e07612d40787",
+      "snr": 42.1,
+      "source": "Uk-з.ogg"
+    },
     "sink": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sink.mp3",
@@ -5772,6 +6507,27 @@
       "sha256": "1bfb47f3d0c3ce725a79df6aed246a3f98b55201d3c68e5ab208730129bd695e",
       "snr": 49.3,
       "source": "Uk-малий.ogg"
+    },
+    "smile": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "smile.mp3",
+      "gain": -2.5,
+      "gainPhone": -3.8,
+      "lead": 1,
+      "matches": "усмішка",
+      "sha256": "53e31490796314f7d22c837c97cc59b13c6293a3b92d50dd44b65cc1ddf3fc38",
+      "snr": 42.2,
+      "source": "Uk-усмішка.ogg"
+    },
+    "snake": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "snake.mp3",
+      "gain": -3.4,
+      "gainPhone": 1.5,
+      "matches": "змія",
+      "sha256": "321254894c8aaa5a17f15b2a7dae5f86952c9bc6f66e9dec4aca5d97097ff82a",
+      "snr": 43.5,
+      "source": "Uk-змія.ogg"
     },
     "snow": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -5850,6 +6606,27 @@
       "snr": 46.5,
       "source": "Uk-м'який.ogg"
     },
+    "someone": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "someone.mp3",
+      "gain": -2.8,
+      "gainPhone": 0.6,
+      "lead": 115,
+      "matches": "хтось",
+      "sha256": "26a8189b4449e9ab3345d9cba425ba9f3459aa61f3cd9baefc722bdd0257b5d0",
+      "snr": 44.3,
+      "source": "Uk-хтось.ogg"
+    },
+    "something": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "something.mp3",
+      "gain": -0.4,
+      "gainPhone": -2.6,
+      "matches": "щось",
+      "sha256": "7d077d82a5451a64029ed7d39e6869aa38fa0c7c403d3360bdaf16b9b516d6be",
+      "snr": 44.2,
+      "source": "Uk-щось.ogg"
+    },
     "sometimes": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 0.7,
@@ -5915,6 +6692,28 @@
       "sha256": "ea20092e451d2589d059ba050f3cd8a1b9ac879d5c83fa9205be69df3b55c6c9",
       "snr": 48.0,
       "source": "Uk-південь.ogg"
+    },
+    "souvenir": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "souvenir.mp3",
+      "gain": -2.8,
+      "gainPhone": -1.0,
+      "matches": "сувенір",
+      "sha256": "c1a67d1ddb80a4df7ba778770e29104f0afa5eba672c689ea0a2b329463c5483",
+      "snr": 45.6,
+      "source": "Uk-сувенір.ogg"
+    },
+    "speaker": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 3.8,
+      "file": "speaker.mp3",
+      "gain": -1.0,
+      "gainPhone": 2.9,
+      "lead": 202,
+      "matches": "колонка",
+      "sha256": "2ded49ff08275066c74eb50c0b90a74269ab16ebf80039fd9f8bd15dc51b6f67",
+      "snr": 44.9,
+      "source": "Uk-колонка.ogg"
     },
     "splint": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6157,6 +6956,17 @@
       "snr": 43.6,
       "source": "Uk-стіл.ogg"
     },
+    "tasty": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "tasty.mp3",
+      "gain": -1.1,
+      "gainPhone": -3.7,
+      "lead": 188,
+      "matches": "смачний",
+      "sha256": "72052eaebaf55797471eea23a10fc18f3a6bef75f36f030ab6a32e748d55ab21",
+      "snr": 46.7,
+      "source": "Uk-смачний.ogg"
+    },
     "tax": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 0.7,
@@ -6211,6 +7021,16 @@
       "snr": 45.8,
       "source": "Uk-вчителька.ogg"
     },
+    "than": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "than.mp3",
+      "gain": -5.5,
+      "gainPhone": -3.8,
+      "matches": "ніж",
+      "sha256": "0f50ed4b197a431177d7c7a64f587c39f7c7be2f7f156248904f827276d0bf84",
+      "snr": 39.3,
+      "source": "Uk-ніж.ogg"
+    },
     "that": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "that.mp3",
@@ -6221,6 +7041,16 @@
       "sha256": "50da20e263e216e9f78cf3c51fe286c4203b16caff1fba5f9b2db6e9336e11b9",
       "snr": 47.2,
       "source": "Uk-те.ogg"
+    },
+    "that-conj": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "that-conj.mp3",
+      "gain": 0.1,
+      "gainPhone": 0.9,
+      "matches": "що",
+      "sha256": "1c8bca5e89d29a95c38f6e5b54e0b08fcd95f0c6a752bf4d72be79daf9532f5c",
+      "snr": 45.2,
+      "source": "Uk-що.ogg"
     },
     "then": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6244,6 +7074,30 @@
       "sha256": "b189e34d9b442df171fe48d817876e95b80a718cb59771429e77cd8d5027c1ca",
       "snr": 47.9,
       "source": "Uk-там.ogg"
+    },
+    "therefore": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.2,
+      "file": "therefore.mp3",
+      "gain": -3.3,
+      "gainPhone": 2.9,
+      "lead": 74,
+      "matches": "тому",
+      "sha256": "bde7fab8721aeb75ae7c31b6b85f32bb4a13a3a3ecf58b7ddf5dbdf9f446b302",
+      "snr": 44.6,
+      "source": "Uk-тому.ogg"
+    },
+    "they": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.3,
+      "file": "they.mp3",
+      "gain": -4.9,
+      "gainPhone": 3.0,
+      "lead": 220,
+      "matches": "вони",
+      "sha256": "f6f179846763d700b1cab70e8c9d512f980ce88f3cbe8ab52f0658a7a223070b",
+      "snr": 45.0,
+      "source": "Uk-вони.ogg"
     },
     "thirst": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6323,6 +7177,17 @@
       "snr": 48.1,
       "source": "Uk-банка.ogg"
     },
+    "tire": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "tire.mp3",
+      "gain": -4.0,
+      "gainPhone": -9.2,
+      "lead": 158,
+      "matches": "шина",
+      "sha256": "bc1d25f1491ab444c10a6c90953222cc8339084de0cd811d1dc6eca0cb2bc01d",
+      "snr": 42.8,
+      "source": "Uk-шина.ogg"
+    },
     "tired": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
       "capPhone": 2.9,
@@ -6333,6 +7198,17 @@
       "sha256": "3b1d06d82095026aa55bfbbc8dc21569b5cc77c4d018af50f5296b060d7b0aed",
       "snr": 35.5,
       "source": "Uk-втомлений.ogg"
+    },
+    "to-achieve": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-achieve.mp3",
+      "gain": -1.1,
+      "gainPhone": -3.6,
+      "lead": 129,
+      "matches": "досягати",
+      "sha256": "7672f5f6d1452ee3147dfd9458da2e72d6b05d5a1c503c103e7f6b3f7d8a81f9",
+      "snr": 39.3,
+      "source": "Uk-досягати.ogg"
     },
     "to-approve": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6423,6 +7299,26 @@
       "snr": 42.2,
       "source": "Uk-запізнюватися.ogg"
     },
+    "to-be-wrong": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-be-wrong.mp3",
+      "gain": -2.5,
+      "gainPhone": -0.4,
+      "matches": "помилятися",
+      "sha256": "97c702fc13cdd5308206451cd051f31a20896e65833176dc0c6eb58bc02347f8",
+      "snr": 54.6,
+      "source": "Uk-помилятися.ogg"
+    },
+    "to-boil": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-boil.mp3",
+      "gain": -0.1,
+      "gainPhone": 0.2,
+      "matches": "варити",
+      "sha256": "76f9f5175054c2954f42275dfa0ef482a6d4a9a6c4e1db0e480391140cc57ba7",
+      "snr": 41.4,
+      "source": "Uk-варити.ogg"
+    },
     "to-break": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-break.mp3",
@@ -6490,6 +7386,27 @@
       "snr": 45.1,
       "source": "Uk-скасовувати.ogg"
     },
+    "to-carry": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-carry.mp3",
+      "gain": -1.6,
+      "gainPhone": -6.9,
+      "lead": 177,
+      "matches": "нести",
+      "sha256": "592185193dc2adb7d70feb04e649b8b4d4d5a8aaccb9d6e9e9b1fc56586410cc",
+      "snr": 47.5,
+      "source": "Uk-нести.ogg"
+    },
+    "to-celebrate": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-celebrate.mp3",
+      "gainPhone": 0.1,
+      "lead": 4,
+      "matches": "святкувати",
+      "sha256": "c86dfac5d959bd7b644277225cae465a4618af2025ad473db86520755a7e1ccd",
+      "snr": 38.7,
+      "source": "Uk-святкувати.ogg"
+    },
     "to-clean": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-clean.mp3",
@@ -6556,6 +7473,17 @@
       "sha256": "2ad668ccd96722f07db459705f31195e56adcc53c3644a592b85dcd9b58fd7a9",
       "snr": 45.6,
       "source": "Uk-підтверджувати.ogg"
+    },
+    "to-congratulate": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.8,
+      "file": "to-congratulate.mp3",
+      "gain": 0.3,
+      "gainPhone": 3.1,
+      "matches": "вітати",
+      "sha256": "1a605f79088d1756172f314e3c73bcbbc9285e99ec37e73d2ff70b3d5245c72f",
+      "snr": 32.9,
+      "source": "Uk-вітати.ogg"
     },
     "to-cook": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6636,6 +7564,17 @@
       "snr": 44.4,
       "source": "Uk-переходити.ogg"
     },
+    "to-cry": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-cry.mp3",
+      "gain": -0.3,
+      "gainPhone": -3.8,
+      "lead": 112,
+      "matches": "плакати",
+      "sha256": "f3fbd39c34a21170a7155a93f7d222c6feab8b90659c6e1cb093193b2b3c3159",
+      "snr": 49.1,
+      "source": "Uk-плакати.ogg"
+    },
     "to-cuddle": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-cuddle.mp3",
@@ -6702,6 +7641,18 @@
       "sha256": "e282e68e0ba8bdbb5fe51f8e51ccf25f541a73055473c564fddb38b070a7d0c3",
       "snr": 42.0,
       "source": "Uk-помирати.ogg"
+    },
+    "to-dive": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.5,
+      "file": "to-dive.mp3",
+      "gain": 0.7,
+      "gainPhone": 2.8,
+      "lead": 84,
+      "matches": "пірнати",
+      "sha256": "b28a10765a3e35b7b6b44b8b32d552a9c7c48fd00a3ffe0821d03ad56366e754",
+      "snr": 48.0,
+      "source": "Uk-пірнати.ogg"
     },
     "to-drink": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6825,6 +7776,17 @@
       "snr": 44.5,
       "source": "Uk-закінчувати.ogg"
     },
+    "to-fish": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-fish.mp3",
+      "gain": -0.5,
+      "gainPhone": 2.6,
+      "lead": 234,
+      "matches": "рибалити",
+      "sha256": "57009bd14177b58bb3d47ee8928ce2b3118ed4eedc4db85b3a14d0df95ddaa08",
+      "snr": 41.8,
+      "source": "Uk-рибалити.ogg"
+    },
     "to-forget": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-forget.mp3",
@@ -6857,6 +7819,18 @@
       "sha256": "87861c7c4b933461fd0015eb59110b55305b2905b7f5706ff62a9fd6860f0aa7",
       "snr": 32.2,
       "source": "Uk-одягатися.ogg"
+    },
+    "to-get-lost": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "cap": 0.3,
+      "file": "to-get-lost.mp3",
+      "gain": 2.9,
+      "gainPhone": 2.5,
+      "lead": 98,
+      "matches": "заблукати",
+      "sha256": "cc8821aba5967830bcd3badd77e5ba46cfda648cf0d00ce0d62ea213bc40a3a8",
+      "snr": 46.7,
+      "source": "Uk-заблукати.ogg"
     },
     "to-get-off": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6902,6 +7876,18 @@
       "snr": 47.3,
       "source": "Uk-давати.ogg"
     },
+    "to-give-a-present": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.5,
+      "file": "to-give-a-present.mp3",
+      "gain": 0.2,
+      "gainPhone": 3.0,
+      "lead": 132,
+      "matches": "дарувати",
+      "sha256": "c6a2dfc41781757c585b93184afa0936b5d8bebf942c73ebadb6944a10bd40e0",
+      "snr": 41.4,
+      "source": "Uk-дарувати.ogg"
+    },
     "to-go": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 1.0,
@@ -6945,6 +7931,16 @@
       "snr": 41.8,
       "source": "Uk-мати.ogg"
     },
+    "to-have-to": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-have-to.mp3",
+      "gain": -2.9,
+      "gainPhone": 0.7,
+      "matches": "мусити",
+      "sha256": "261a933e698cbc4e4baeafed4d7d83f15511e87bc5cb34ab869d2339d5a0f6db",
+      "snr": 40.6,
+      "source": "Uk-мусити.ogg"
+    },
     "to-hear": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-hear.mp3",
@@ -6967,6 +7963,17 @@
       "snr": 50.1,
       "source": "Uk-допомагати.ogg"
     },
+    "to-hope": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-hope.mp3",
+      "gain": -0.3,
+      "gainPhone": -2.0,
+      "lead": 34,
+      "matches": "сподіватися",
+      "sha256": "6b93d90d76e2bf3be5664b95e71d8f26db2ff807da15f95787d8f47c3a0d26ba",
+      "snr": 43.2,
+      "source": "Uk-сподіватися.ogg"
+    },
     "to-hurt": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 2.2,
@@ -6988,6 +7995,16 @@
       "sha256": "88c050c6a49eae03090860064da66ece2faa612f77b02c9ad65796e085076c6d",
       "snr": 41.6,
       "source": "Uk-уявляти.ogg"
+    },
+    "to-improve": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-improve.mp3",
+      "gain": -0.1,
+      "gainPhone": -1.7,
+      "matches": "покращувати",
+      "sha256": "32d8f5abd45079aa6e5eb39cf8908245235f7770fa9f05f4ef956ba2e1fc1b6f",
+      "snr": 40.6,
+      "source": "Uk-покращувати.ogg"
     },
     "to-invite": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -7057,6 +8074,17 @@
       "snr": 49.8,
       "source": "Uk-любити.ogg"
     },
+    "to-listen-to": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-listen-to.mp3",
+      "gain": -1.0,
+      "gainPhone": -2.0,
+      "lead": 191,
+      "matches": "слухати",
+      "sha256": "7a4e50f4b1ef565834b1e2993bc7e909d090a6c938e54ea0d698f8ae9bdb524d",
+      "snr": 45.5,
+      "source": "Uk-слухати.ogg"
+    },
     "to-live": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-live.mp3",
@@ -7068,6 +8096,16 @@
       "snr": 43.9,
       "source": "Uk-жити.ogg"
     },
+    "to-long-for": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-long-for.mp3",
+      "gain": -3.7,
+      "gainPhone": -5.5,
+      "matches": "тужити",
+      "sha256": "d910e016630c000c74597899fd40e2296c8a909f370adec5eba100405b5ca29f",
+      "snr": 38.0,
+      "source": "Uk-тужити.ogg"
+    },
     "to-look": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-look.mp3",
@@ -7078,6 +8116,18 @@
       "sha256": "28bcaabb1a428165374551d0cf1d05566482aa1d22a374d35267a073bb45596e",
       "snr": 48.8,
       "source": "Uk-дивитися.ogg"
+    },
+    "to-look-after": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.0,
+      "file": "to-look-after.mp3",
+      "gain": -1.3,
+      "gainPhone": 2.7,
+      "lead": 29,
+      "matches": "доглядати",
+      "sha256": "0677df28fa9d3af16562fa8769d12601b47f287315c4d7c010bf46901efe5338",
+      "snr": 42.8,
+      "source": "Uk-доглядати.ogg"
     },
     "to-lose": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -7223,6 +8273,16 @@
       "snr": 40.4,
       "source": "Uk-штовхати.ogg"
     },
+    "to-put": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-put.mp3",
+      "gain": -1.9,
+      "gainPhone": -5.8,
+      "matches": "класти",
+      "sha256": "6fcd2dc79ad21a91f2d6a97b563f260110474dc0e5a75a06dcaceab56759ebe2",
+      "snr": 42.6,
+      "source": "Uk-класти.ogg"
+    },
     "to-quit": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-quit.mp3",
@@ -7301,6 +8361,16 @@
       "sha256": "5b1c28d453aaa779ba33459d283589f5b6f8cdce692c341feaa8cf7af438c96b",
       "snr": 46.8,
       "source": "Uk-пам'ятати.ogg"
+    },
+    "to-remind": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-remind.mp3",
+      "gain": -2.5,
+      "gainPhone": 2.3,
+      "matches": "нагадувати",
+      "sha256": "b2e8316055a173c3b2ef2ea51976f5737d1c33c9174b5384e6b5136e2aa1b4e6",
+      "snr": 43.0,
+      "source": "Uk-нагадувати.ogg"
     },
     "to-repair": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -7475,6 +8545,17 @@
       "snr": 45.8,
       "source": "Uk-спати.ogg"
     },
+    "to-smile": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-smile.mp3",
+      "gain": -1.0,
+      "gainPhone": -2.8,
+      "lead": 150,
+      "matches": "усміхатися",
+      "sha256": "d33ef45bc2393b454a339e3a3cf581c24bc036eb5355c73c485f80ce80b84b81",
+      "snr": 43.7,
+      "source": "Uk-усміхатися.ogg"
+    },
     "to-solve": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-solve.mp3",
@@ -7550,6 +8631,18 @@
       "snr": 45.7,
       "source": "Uk-здавати.ogg"
     },
+    "to-suggest": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 2.4,
+      "file": "to-suggest.mp3",
+      "gain": -0.2,
+      "gainPhone": 2.8,
+      "lead": 119,
+      "matches": "пропонувати",
+      "sha256": "ed80c7b2518edf615c3d858b99a390c1bcad2aaa470b2fa7911875d05d4c783d",
+      "snr": 49.7,
+      "source": "Uk-пропонувати.ogg"
+    },
     "to-sunbathe": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-sunbathe.mp3",
@@ -7559,6 +8652,16 @@
       "sha256": "b793119be916860b48899eb35314237ce853d5484e37044086f293b3cc92f1f3",
       "snr": 37.4,
       "source": "Uk-засмагати.ogg"
+    },
+    "to-swim": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-swim.mp3",
+      "gain": -1.7,
+      "gainPhone": 0.3,
+      "matches": "плавати",
+      "sha256": "2fa3acece1119c38e1be08372c5f7c84f95b8aeb84d195d481adcf11f6a35a75",
+      "snr": 46.0,
+      "source": "Uk-плавати.ogg"
     },
     "to-take": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -7777,6 +8880,17 @@
       "snr": 36.4,
       "source": "Uk-важити.ogg"
     },
+    "to-wish": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-wish.mp3",
+      "gain": 0.5,
+      "gainPhone": 0.4,
+      "lead": 114,
+      "matches": "бажати",
+      "sha256": "67e7ad217cfaaa7d98f20f32cf5992c7808c7fee07e47a9b187d6453f5e09203",
+      "snr": 47.5,
+      "source": "Uk-бажати.ogg"
+    },
     "to-work": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-work.mp3",
@@ -7895,6 +9009,16 @@
       "sha256": "9afdd9b06675de74e0e82ebecb25f7ba69690c3ad4c92b96a5a7d25427027727",
       "snr": 39.9,
       "source": "Uk-зуб.ogg"
+    },
+    "tourist": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "tourist.mp3",
+      "gain": -3.6,
+      "gainPhone": -3.4,
+      "matches": "турист",
+      "sha256": "0486151a272dfc2d8927af59f4efd799599a8947f77e64ba7bdaf681de5c90b4",
+      "snr": 40.9,
+      "source": "Uk-турист.ogg"
     },
     "towel": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -8115,6 +9239,16 @@
       "snr": 43.5,
       "source": "Uk-вена.ogg"
     },
+    "verb": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "verb.mp3",
+      "gain": -2.1,
+      "gainPhone": -2.3,
+      "matches": "дієслово",
+      "sha256": "d1051b9105059859ddc89f7edeb070ced9d817cce030d8ae15a71613a73ca3fa",
+      "snr": 43.3,
+      "source": "Uk-дієслово.ogg"
+    },
     "very": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 1.8,
@@ -8148,6 +9282,28 @@
       "sha256": "4768f9b12b8c36195832dc236882289747bd6b0d92c979fa54d83f93bc411cf3",
       "snr": 45.5,
       "source": "Uk-віза.ogg"
+    },
+    "vision": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "vision.mp3",
+      "gain": -1.2,
+      "gainPhone": -3.0,
+      "lead": 133,
+      "matches": "бачення",
+      "sha256": "f15856231decaa5343d69dc76c98c4c00119076124481b09926c0fa225975c1b",
+      "snr": 45.0,
+      "source": "Uk-бачення.ogg"
+    },
+    "volume": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "volume.mp3",
+      "gain": -2.3,
+      "gainPhone": -0.9,
+      "lead": 131,
+      "matches": "гучність",
+      "sha256": "793a07e954237ff5b21fbb6d1ed5b32122b6736533d8573778f79cc2a478c7a9",
+      "snr": 47.3,
+      "source": "Uk-гучність.ogg"
     },
     "waiter": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -8216,6 +9372,17 @@
       "snr": 44.3,
       "source": "Uk-вода.ogg"
     },
+    "wave": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.1,
+      "file": "wave.mp3",
+      "gain": -2.6,
+      "gainPhone": 2.9,
+      "matches": "хвиля",
+      "sha256": "ae6e80d7a8f7449ef32b16552b0233d49ccb55428d14dc20abe6b4c113fe028b",
+      "snr": 46.9,
+      "source": "Uk-хвиля.ogg"
+    },
     "way": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 2.6,
@@ -8227,6 +9394,17 @@
       "sha256": "1d592252bffe266b4750bae4f752d26e31ca196ec1a514e4a54af03cd9662088",
       "snr": 49.2,
       "source": "Uk-дорога.ogg"
+    },
+    "we": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "we.mp3",
+      "gain": -2.8,
+      "gainPhone": 2.3,
+      "lead": 12,
+      "matches": "ми",
+      "sha256": "c72672f4e7cddaa43f1fb35c521905dd01c527690bbd2a02cbe59d5d1dc21602",
+      "snr": 41.4,
+      "source": "Uk-ми.ogg"
     },
     "weak": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -8250,6 +9428,16 @@
       "sha256": "4bf63ec3d0a9768ed7283cdd61141d0b948c14878ef69ba5fbf5979597c2ab51",
       "snr": 48.1,
       "source": "Uk-погода.ogg"
+    },
+    "wedding": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "wedding.mp3",
+      "gain": -4.3,
+      "gainPhone": -9.8,
+      "matches": "весілля",
+      "sha256": "dcd24ca4b513f0febb529e3e351603826d9900d947367b31ef23ccee120b1ad9",
+      "snr": 38.3,
+      "source": "Uk-весілля.ogg"
     },
     "week": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -8462,6 +9650,17 @@
       "snr": 44.0,
       "source": "Uk-робітник.ogg"
     },
+    "workplace": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "workplace.mp3",
+      "gain": -1.9,
+      "gainPhone": 0.1,
+      "lead": 43,
+      "matches": "офіс",
+      "sha256": "a74bf30bd884f5ca193761a63d17be445d1fdf79dd7b129824094bb41c769a41",
+      "snr": 42.2,
+      "source": "Uk-офіс.ogg"
+    },
     "worry": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 3.2,
@@ -8528,6 +9727,48 @@
       "sha256": "d9f3baf929c96fc16b7e55c51b58d892a407c4fa2bbc5900fa9710a55eb21734",
       "snr": 37.8,
       "source": "Uk-вчора.ogg"
+    },
+    "you": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "you.mp3",
+      "gain": -0.9,
+      "gainPhone": 2.0,
+      "matches": "ти",
+      "sha256": "bb3f503dba3964797400f0fc6bbac21c8789e0f00b130728582e76094f70f1df",
+      "snr": 45.7,
+      "source": "Uk-ти.ogg"
+    },
+    "you-plural": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.6,
+      "file": "you-plural.mp3",
+      "gain": -1.9,
+      "gainPhone": 2.9,
+      "lead": 173,
+      "matches": "ви",
+      "sha256": "ecc17915701564e62e3fe28a9d89da947294a4c489186daacff7568f75a2997c",
+      "snr": 44.9,
+      "source": "Uk-ви.ogg"
+    },
+    "your": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "your.mp3",
+      "gain": -4.3,
+      "gainPhone": -1.0,
+      "matches": "твій",
+      "sha256": "3a2e8ecb51776befe20b868734f3047fbe7ed95d13c2ac4ffa0eae977ca827cd",
+      "snr": 37.0,
+      "source": "Uk-твій.ogg"
+    },
+    "your-plural": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "your-plural.mp3",
+      "gain": -2.1,
+      "gainPhone": -2.3,
+      "matches": "ваш",
+      "sha256": "73bb18b7ad6e8cdbb906ab180db07324479c39f4b4d6da95285bb15a0919bfc2",
+      "snr": 44.4,
+      "source": "Uk-ваш.ogg"
     }
   }
 }
