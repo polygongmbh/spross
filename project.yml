@@ -120,6 +120,8 @@ targets:
       - Widgets/Sources
       - Shared/Sources/AppGroup.swift
       - Shared/Sources/SnapshotGender.swift
+      - Shared/Sources/GlanceChrome.swift
+      - Shared/Resources/Glance.xcstrings
       - path: Widgets/PrivacyInfo.xcprivacy
         buildPhase: resources
     entitlements:
@@ -150,6 +152,7 @@ targets:
       - Watch/Sources
       - Watch/Resources
       - Shared/Sources
+      - Shared/Resources/Glance.xcstrings
       - path: Watch/Fixtures
         buildPhase: resources
       - path: Watch/PrivacyInfo.xcprivacy
@@ -179,6 +182,7 @@ targets:
     sources:
       - WatchWidgets/Sources
       - Shared/Sources
+      - Shared/Resources/Glance.xcstrings
       - path: WatchWidgets/PrivacyInfo.xcprivacy
         buildPhase: resources
     entitlements:

@@ -20,9 +20,11 @@ struct WordWidget: Widget {
                 // host-app launch, so the tile still opens the app in the states where
                 // it has nothing of the learner's to show.
                 .widgetURL(URL(string: "spross://widget"))
+                .environment(\.locale, GlanceChrome.locale(entry.chromeLanguage))
         }
-        .configurationDisplayName("Wort des Moments")
-        .description("Zeigt alle 15 Minuten eine Vokabel aus deiner Box.")
+        // The gallery has no snapshot to follow, so these two read the device language.
+        .configurationDisplayName(Text("widget.name", tableName: GlanceChrome.table))
+        .description(Text("widget.description", tableName: GlanceChrome.table))
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge,
                             .accessoryRectangular, .accessoryInline])
     }
@@ -56,6 +58,8 @@ struct WordEntry: TimelineEntry {
     let consolidated: Int
     /// Trailing fortnight of review counts for the header strip.
     let activityDays: [ActivityDay]
+    /// The snapshot's chrome language; nil with no snapshot to read.
+    var chromeLanguage: String? = nil
 
     // Convenience accessors for the compact families.
     var emoji: String { primary.emoji }
@@ -160,7 +164,8 @@ struct WordProvider: TimelineProvider {
                              streak: streak,
                              flameState: flameState,
                              consolidated: snapshot.consolidatedCount,
-                             activityDays: activityDays)
+                             activityDays: activityDays,
+                             chromeLanguage: snapshot.chromeLanguage)
         }
     }
 

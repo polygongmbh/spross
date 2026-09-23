@@ -31,19 +31,19 @@ struct WordWidgetView: View {
     private var awaitingContent: some View {
         switch family {
         case .accessoryInline:
-            Text(verbatim: "🌱 Spross öffnen")
+            Text(verbatim: "🌱 ") + Text("widget.awaiting.title", tableName: GlanceChrome.table)
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: 1) {
-                Text("Spross öffnen").font(.headline)
-                Text("für frische Wörter").font(.caption).foregroundStyle(.secondary)
+                Text("widget.awaiting.title", tableName: GlanceChrome.table).font(.headline)
+                Text("widget.awaiting.body", tableName: GlanceChrome.table).font(.caption).foregroundStyle(.secondary)
             }
         default:
             VStack(spacing: 4) {
                 Spacer(minLength: 0)
                 Text(verbatim: "🌱").font(.system(size: 44))
-                Text("Spross öffnen")
+                Text("widget.awaiting.title", tableName: GlanceChrome.table)
                     .font(.title3.bold())
-                Text("für frische Wörter")
+                Text("widget.awaiting.body", tableName: GlanceChrome.table)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                 Spacer(minLength: 0)
@@ -125,13 +125,13 @@ struct WordWidgetView: View {
         }
     }
 
-    /// 🔥 streak · N fällig, with the fortnight's activity on the right — the
+    /// 🔥 streak · N due, with the fortnight's activity on the right — the
     /// header has the room the bottom of a tile does not.
     private var statsHeader: some View {
         HStack(spacing: 10) {
             flameLabel
             if entry.dueCount > 0 {
-                Label("\(entry.dueCount) fällig", systemImage: "tray.full")
+                Label { Text("widget.due \(entry.dueCount)", tableName: GlanceChrome.table) } icon: { Image(systemName: "tray.full") }
                     .foregroundStyle(.orange)
             }
             Spacer(minLength: 8)

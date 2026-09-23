@@ -1,0 +1,299 @@
+{
+  "sourceLanguage" : "de",
+  "strings" : {
+    "watch.allDone" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles sitzt 🎉"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All caught up 🎉"
+          }
+        }
+      },
+      "comment" : "Watch start screen with nothing due"
+    },
+    "watch.awaiting" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffne Spross auf dem iPhone, um zu starten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Spross on your iPhone to get started."
+          }
+        }
+      },
+      "comment" : "The watch has received nothing from the phone yet"
+    },
+    "watch.due" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "due"
+          }
+        }
+      },
+      "comment" : "Beside the big count of due cards on the watch's start screen"
+    },
+    "watch.practice" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice"
+          }
+        }
+      },
+      "comment" : "Button: free practice when nothing is due"
+    },
+    "watch.practiced %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Karte geübt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Karten geübt"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld card practiced"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld cards practiced"
+                }
+              }
+            }
+          }
+        }
+      },
+      "comment" : "The tally when the due cards are done"
+    },
+    "watch.start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        }
+      },
+      "comment" : "Button: starts the due cards"
+    },
+    "watch.tomorrow %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Morgen: %lld fällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tomorrow: %lld due"
+          }
+        }
+      }
+    },
+    "watch.verdict.right" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richtig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correct"
+          }
+        }
+      },
+      "comment" : "Spoken value of the tile holding the right answer"
+    },
+    "watch.verdict.wrong" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falsch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrong"
+          }
+        }
+      },
+      "comment" : "Spoken value of the wrongly picked tile"
+    },
+    "widget.activity %lld %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiv an %1$lld von %2$lld Tagen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active on %1$lld of %2$lld days"
+          }
+        }
+      },
+      "comment" : "Spoken label of the activity strip: days practiced, days shown"
+    },
+    "widget.allDone" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles sitzt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All caught up"
+          }
+        }
+      },
+      "comment" : "Complication label with nothing due"
+    },
+    "widget.awaiting.body" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "für frische Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "for fresh words"
+          }
+        }
+      }
+    },
+    "widget.awaiting.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spross öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Spross"
+          }
+        }
+      },
+      "comment" : "The widget has no box to show yet"
+    },
+    "widget.description" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeigt alle 15 Minuten ein Wort aus deinem Hain."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows a word from your orchard every 15 minutes."
+          }
+        }
+      },
+      "comment" : "Widget and complication description in the gallery"
+    },
+    "widget.due %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld fällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld due"
+          }
+        }
+      }
+    },
+    "widget.name" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wort des Moments"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Word of the Moment"
+          }
+        }
+      },
+      "comment" : "Widget and complication name in the gallery"
+    }
+  },
+  "version" : "1.0"
+}

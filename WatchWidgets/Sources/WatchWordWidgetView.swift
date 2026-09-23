@@ -54,7 +54,9 @@ struct WatchWordWidgetView: View {
         Text(entry.emoji)
             .font(.system(size: 24))
             .widgetLabel {
-                Text(entry.dueCount > 0 ? "\(entry.dueCount) fällig" : "Alles sitzt")
+                (entry.dueCount > 0
+                    ? Text("widget.due \(entry.dueCount)", tableName: GlanceChrome.table)
+                    : Text("widget.allDone", tableName: GlanceChrome.table))
                     .font(.system(.caption2, design: .rounded))
             }
     }

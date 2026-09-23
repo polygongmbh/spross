@@ -79,6 +79,10 @@ Strict dependency direction: App → SprossKern, never the reverse.
   What a string means is its catalog entry's `comment`.
   Where the layout differs the reader composes — the catalog holds the caption,
   each phone sets the form beside or below it.
+- The watch, the complication and the iOS widget are bundles that never see that catalog,
+  so they carry their own (`Shared/Resources/Glance.xcstrings`, table `Glance`, same rules)
+  and resolve it in the snapshot's `chromeLanguage` (`GlanceChrome`) — never the device's.
+  The Android widget reads the app's catalog like any other Android screen.
 - Area titles and area emoji both come from the catalog; the app carries no map.
   A title is a plain name usable as the produce prompt's area cue;
   the catalog's optional subtitle is the flavor line,

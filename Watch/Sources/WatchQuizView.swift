@@ -180,13 +180,12 @@ struct WatchQuizView: View {
 
     /// What the tint says, said aloud: correctness is never color alone. The
     /// rating stays unspoken (`WatchFeedback`) — a grade the learner hears is a
-    /// grade the learner can play to. German like the rest of this target,
-    /// which has no string catalog.
-    private func verdict(for index: Int, _ question: WatchPracticeQuestion) -> String {
-        guard let selected = model.selectedIndex else { return "" }
-        if index == question.correctIndex { return "Richtig" }
-        if index == selected { return "Falsch" }
-        return ""
+    /// grade the learner can play to.
+    private func verdict(for index: Int, _ question: WatchPracticeQuestion) -> Text {
+        guard let selected = model.selectedIndex else { return Text(verbatim: "") }
+        if index == question.correctIndex { return Text("watch.verdict.right", tableName: GlanceChrome.table) }
+        if index == selected { return Text("watch.verdict.wrong", tableName: GlanceChrome.table) }
+        return Text(verbatim: "")
     }
 
     /// Neutral until a choice; then the correct tile greens, a wrong pick reds,

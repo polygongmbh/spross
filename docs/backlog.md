@@ -147,10 +147,7 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Localization
 
-- Watch, widget, and complication chrome is hardcoded German with no string catalog
-  (`Watch/Sources/WatchHomeView.swift`, `Watch/Sources/WatchQuizView.swift`,
-  `Widgets/Sources/WordWidgetView.swift`, `WatchWidgets/Sources/WatchWordWidgetView.swift`) and needs its own catalog plus a
-  chrome-language field on the snapshot, since those surfaces never see `AppModel.knownLocale`.
+- The widget gallery's placeholder box shows German meanings on every device (`Widgets/Sources/WordWidget.swift`, `WatchWidgets/Sources/WatchWordWidget.swift`).
 
 ## Verification gaps
 

@@ -22,7 +22,7 @@ struct WatchCelebrationView: View {
     var body: some View {
         VStack(spacing: 2) {
             burstHero
-            Text("\(answered) Karten geübt")
+            Text("watch.practiced \(answered)", tableName: GlanceChrome.table)
                 .font(.system(.footnote, design: .rounded, weight: .semibold))
                 .foregroundStyle(WatchTheme.colors.textSecondary)
         }

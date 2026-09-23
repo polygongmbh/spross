@@ -35,6 +35,20 @@ if printf '%s\n' "$STAGED" | grep -qx "$CATALOG"; then
   fi
 fi
 
+# The glance surfaces' catalog has no generated tables behind it — formatting is all it owes here.
+GLANCE=Shared/Resources/Glance.xcstrings
+if printf '%s\n' "$STAGED" | grep -qx "$GLANCE"; then
+  GLANCE_BYTES=$(mktemp)
+  git show ":$GLANCE" > "$GLANCE_BYTES"
+  if ! scripts/strings.py --check-format "$GLANCE_BYTES" >/dev/null 2>&1; then
+    rm -f "$GLANCE_BYTES"
+    echo "error: $GLANCE is staged in some other formatting than Xcode's." >&2
+    echo "       Run 'scripts/strings.py --fix', then stage it again — your values are kept." >&2
+    exit 1
+  fi
+  rm -f "$GLANCE_BYTES"
+fi
+
 # The content catalog's layout is generated too, and its rule lived only in CLAUDE.md —
 # where 78% of catalog commits shipped off-layout anyway. Recorded audio carries no
 # layout, so a commit that only moves mp3s is not held up for it.

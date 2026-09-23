@@ -8,16 +8,18 @@ struct SprossWatchWidgets: WidgetBundle {
     }
 }
 
-/// "Wort des Moments" as a watch complication: passive exposure to
+/// The phone widget's rotating word as a watch complication: passive exposure to
 /// attention-worthy cards from the phone snapshot, fresh every 15 minutes.
 struct WatchWordWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "SprossWatchWordWidget", provider: WatchWordProvider()) { entry in
             WatchWordWidgetView(entry: entry)
                 .containerBackground(.black, for: .widget)
+                .environment(\.locale, GlanceChrome.locale(entry.chromeLanguage))
         }
-        .configurationDisplayName("Wort des Moments")
-        .description("Zeigt alle 15 Minuten eine Vokabel aus deiner Box.")
+        // The gallery has no snapshot to follow, so these two read the device language.
+        .configurationDisplayName(Text("widget.name", tableName: GlanceChrome.table))
+        .description(Text("widget.description", tableName: GlanceChrome.table))
         .supportedFamilies([.accessoryRectangular, .accessoryCircular, .accessoryCorner])
     }
 }
@@ -34,6 +36,8 @@ struct WatchWordEntry: TimelineEntry {
     /// Source meaning (the known language).
     let meaning: String
     let dueCount: Int
+    /// The snapshot's chrome language; nil with no snapshot to read.
+    var chromeLanguage: String? = nil
 
     static let placeholder = WatchWordEntry(date: .now, emoji: "🧊", article: nil, gender: nil,
                                             word: "friji", meaning: "Kühlschrank",
@@ -66,7 +70,8 @@ struct WatchWordProvider: TimelineProvider {
                                   gender: entry.gender,
                                   word: entry.targetText,
                                   meaning: entry.sourceText,
-                                  dueCount: due)
+                                  dueCount: due,
+                                  chromeLanguage: snapshot.chromeLanguage)
         }
     }
 }

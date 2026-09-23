@@ -57,6 +57,11 @@ from sibling import load
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'App/Sources/Resources/Localizable.xcstrings')
+# The watch app, the complication and the iOS widget: bundles that never see the app's
+# catalog, looked up by the snapshot's chrome language (kern/docs/snapshots.md). Held to
+# the same formatting, translation and plural rules; the %@ twins, the --built diff and
+# the Android tables are the app catalog's alone.
+GLANCE = os.path.join(ROOT, 'Shared/Resources/Glance.xcstrings')
 LANGUAGES = ('de', 'en')
 # CLDR plural categories per chrome language. Both are one/other today; a
 # language with more (uk: one/few/many/other) brings its own list, and every
@@ -172,13 +177,11 @@ def chrome():
     return load('chrome', 'chrome.py')
 
 
-def main():
-    if '--check-format' in sys.argv:
-        args = [a for a in sys.argv[1:] if not a.startswith('--')]
-        return check_format(args[0] if args else CATALOG)
-
-    fix = '--fix' in sys.argv
-    on_disk = open(CATALOG).read()
+def audit(path):
+    """What every catalog owes, whichever bundle it ships in: Xcode's formatting, every
+    chrome language, and whole plural blocks. Returns the parse with Xcode's stale flags
+    already cleared, the problems, and the keys that were flagged."""
+    on_disk = open(path).read()
     catalog = json.loads(on_disk)
     strings = catalog['strings']
     problems = []
@@ -192,6 +195,25 @@ def main():
     for key in stale:
         del strings[key]['extractionState']
 
+    for key, entry in sorted(strings.items()):
+        got = entry.get('localizations', {})
+        missing = [lang for lang in LANGUAGES if lang not in got]
+        if missing:
+            problems.append('%s: no %s translation' % (key, '/'.join(missing)))
+        for lang in sorted(set(LANGUAGES) & set(got)):
+            problems += plural_problems(key, lang, got[lang])
+    return catalog, problems, stale
+
+
+def main():
+    if '--check-format' in sys.argv:
+        args = [a for a in sys.argv[1:] if not a.startswith('--')]
+        return check_format(args[0] if args else CATALOG)
+
+    fix = '--fix' in sys.argv
+    catalog, problems, stale = audit(CATALOG)
+    strings = catalog['strings']
+
     # why: the index extractor writes %@ for every argument, so each counted key
     # comes back as a %@ twin the moment the project is opened. The twin is dead
     # weight — the compiler emits %lld — and taking it out is part of --fix.
@@ -201,14 +223,6 @@ def main():
             del strings[key]
         else:
             problems.append('%s: dead %%@ twin of a counted key' % key)
-
-    for key, entry in sorted(strings.items()):
-        got = entry.get('localizations', {})
-        missing = [lang for lang in LANGUAGES if lang not in got]
-        if missing:
-            problems.append('%s: no %s translation' % (key, '/'.join(missing)))
-        for lang in sorted(set(LANGUAGES) & set(got)):
-            problems += plural_problems(key, lang, got[lang])
 
     if '--built' in sys.argv:
         emitted = compiler_keys()
@@ -232,6 +246,15 @@ def main():
     for problem in problems:
         print(problem)
     print('%d keys%s' % (len(strings), '' if problems else ' — clean'))
+
+    glance, glance_problems, glance_stale = audit(GLANCE)
+    if fix:
+        with open(GLANCE, 'w') as f:
+            f.write(serialize(glance))
+    for problem in glance_problems:
+        print('Glance: %s' % problem)
+    print('Glance: %d keys%s' % (len(glance['strings']), '' if glance_problems else ' — clean'))
+    problems += glance_problems
 
     # why: the Android tables are generated from this file, so an edit that stops here
     # ships the two phones saying different things. Chained AFTER the write, and after

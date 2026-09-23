@@ -47,6 +47,6 @@ struct WidgetActivityStrip: View {
     }
 
     private var label: Text {
-        Text("\(days.filter { $0.reviews > 0 }.count) aktive Tage der letzten \(days.count)")
+        Text("widget.activity \(days.filter { $0.reviews > 0 }.count) \(days.count)", tableName: GlanceChrome.table)
     }
 }
