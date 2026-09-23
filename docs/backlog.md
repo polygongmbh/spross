@@ -90,9 +90,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 - iOS drops what a scramble run earns: `TrainerHubView` builds both without an `onFinish`, so
   the no-op eats the `DrillRunSummary` where Android lands it on Home (`model.finishDrill`).
-- Two emoji sizes drift across the phones: the result tile's glyph is 40pt against 36sp and the
-  completion 🎉 88pt against 64sp (`DrillChrome.swift`/`.kt`, `SessionCompletionView.swift`/
-  `SessionSummary.kt`).
 - iOS's `FeminineBadge` is cut smaller than Android's, which composes it from the shared `Pill`;
   iOS now has `pill(_:)` to compose from.
 - iOS prefixes each authored note with "·" where Android does not.

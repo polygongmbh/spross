@@ -99,7 +99,7 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
-        Text(tierEmoji(summary.tier), fontSize = 36.sp) // card-parity: the tier emoji's own size, not a prompt role
+        Text(tierEmoji(summary.tier), fontSize = 40.sp) // card-parity: the tier emoji's own size, not a prompt role
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(2.dp), // card-parity: the tally lines sit tighter than xs

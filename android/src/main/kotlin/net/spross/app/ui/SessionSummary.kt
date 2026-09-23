@@ -60,7 +60,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("🎉", fontSize = 64.sp) // card-parity: the done screen's own glyph, not a card prompt
+        Text("🎉", fontSize = 88.sp) // card-parity: the done screen's own glyph, not a card prompt
         Spacer(Modifier.height(16.dp))
         Text(chrome.sessionDoneTitle, style = MaterialTheme.typography.headlineMedium)
         Spacer(Modifier.height(8.dp))
