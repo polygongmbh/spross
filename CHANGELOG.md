@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Close to 800 more words now play a real speaker's recording, among them I, you, he, we and they in every language, and German Gast no longer drags out its vowel.
+
 ## 7.4.2 — 2026-09-22
 
 - After a miss, the words you already had right come back in the answer field spelled correctly, not with your typo still in them.

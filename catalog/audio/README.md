@@ -19,6 +19,18 @@ form a SHIPPED row already claims under different bytes: two files for one sound
 runtime nothing to pick, so filling one word would silence another. German `poor` is
 "arm", which the body part already speaks; French `entrance` and `fresh` are the same story.
 
+After authoring words, per language and one language at a time (Commons throttles parallel
+fetches), a matter of seconds:
+
+```sh
+../data/reference/audio/build-packs.sh words <lang>          # resolves only what the pack lacks
+scripts/audio-catalog.py --packs ../data/reference/audio --lang <lang> --fill
+scripts/audio-coverage.py --missing <lang>                   # what nobody has recorded
+```
+
+The fill's own drops are the quality check: `noisy` (under 30 dB above the hiss),
+`misnamed`, `unreachable` and `shipped-collision` each name the row and why.
+
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
 unversioned research input; what is committed here is the shipped bytes and the
 license record that has to travel with them. Both apps bundle the whole tree as it

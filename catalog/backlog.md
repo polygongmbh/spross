@@ -142,13 +142,9 @@ Ready work comes first, then the items that end in a question for the owner, the
   `../../docs/sprachposter-learnings.md`); uk carries 3 of 9 (сьоме небо, як з відра, тримати
   кулаки) and sw 0, and filling them needs a speaker finding real equivalents, not a
   translation pass.
-- Recordings nobody has made yet: pronunciation coverage is uneven across languages and absent
-  for phrases (no `catalog/audio/*/manifest.json` has a phrases section, so every phrase falls
-  to TTS, silent on sw-iOS; gaps per pack in `data/reference/audio/pack-*/missing.txt`), and
-  those unversioned packs have drifted from the catalog so
-  `scripts/audio-catalog.py --packs ../data/reference/audio` dies on `pack-es` — a re-fetch
-  from Lingua Libre (`../data/reference/audio/lingualibre.py`) precedes any fill, and phrases
-  need commissioning or a paid voice.
+- Recordings nobody has made yet: phrases have none (no `catalog/audio/*/manifest.json` has a
+  phrases section, so every phrase falls to TTS, silent on sw-iOS) and need commissioning or a
+  paid voice; single words sit at 83–99% per language, the rest in `audio-coverage.py --missing`.
 - Recordings nobody has made yet, seven letter-name clips: uk «мʼякий знак» (the
   `<Аа> – ukrainian.ogg` series has no soft-sign entry, Lingua Libre nothing for the phrase,
   and splicing `Uk-м'який.ogg` + `Uk-знак.ogg` would be a BY-SA adaptation of something nobody
@@ -156,8 +152,3 @@ Ready work comes first, then the items that end in a question for the owner, the
   `hache`, `eñe`, `uve` (absent from the whole `Category:Lingua Libre pronunciation-spa` and
   the `Es-<name>.ogg` convention in every casing), which from one speaker would also stop the
   Spanish letter block changing voice row to row.
-- Swahili recordings stop before the function words: the whole `pronouns` area (17 concepts —
-  i/you/he/we/they/my/your/his …) and most of `connectors` carry no `catalog/audio/sw/manifest.json`
-  entry, so a learner meeting them at global cards #77–95 hears nothing where the surrounding
-  content words speak. Commons has clips for much of it; `data/reference/audio/sw-audio-kaikki.tsv`
-  is the index a fetch would draw on.
