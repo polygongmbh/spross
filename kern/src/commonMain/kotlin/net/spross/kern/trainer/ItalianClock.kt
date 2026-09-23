@@ -128,7 +128,7 @@ internal object ItalianClock {
      * thirteen up, which is where the register stops repeating the 12-hour reading word
      * for word.
      */
-    private fun official(h: Int, m: Int): List<String> {
+    fun official(h: Int, m: Int): List<String> {
         if (h < 13) return emptyList()
         val hourWord = Forms.officialHour(h)
         if (m == 0) return listOf("sono le $hourWord", "le $hourWord")

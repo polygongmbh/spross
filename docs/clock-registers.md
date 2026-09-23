@@ -129,6 +129,8 @@ Nothing may treat a same-cycle pair as a collision.
 
 A reading that NAMES the part of the day must close it --
 `dayPartReadingsCloseTheTwelveHourCycle` holds it to that.
+So must the 24-hour register from thirteen up and at midnight, which names it by number --
+`twentyFourHourReadingsCloseTheTwelveHourCycle` holds it to that.
 
 Everything else is a bug: no reading may be accepted for a second time in the same cycle.
 The word pairs that sit one slip apart are gated as audited exceptions --
@@ -173,11 +175,11 @@ A further language takes all of:
 - a new `*Clock.kt` with its own `dayParts`;
 - its entry in `trainerPacks` (`TrainerLanguagePack.kt`) --
   without it the generator is dead code and every sweep skips it in silence;
-- `clockDayParts` on that pack, derived from its `dayParts` --
-  abstract, so forgetting it is a compile error;
+- `clockDayParts` on that pack, derived from its `dayParts`, and `clockTwentyFourHour` --
+  abstract, so forgetting either is a compile error;
 - a cap in `ClockRevealTests`, plus its gloss lead-in in `alternativeMarkers`
   or its name in `ruleHintGlosses`, and its gloss separator in the `separators`;
-- coverage by `dayPartReadingsCloseTheTwelveHourCycle`, which iterates every pack.
+- coverage by the two cycle sweeps above, which iterate every pack.
 
 ## English a.m./p.m., accepted knowingly
 

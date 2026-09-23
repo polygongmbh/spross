@@ -159,7 +159,7 @@ internal object SpanishClock {
     }
 
     /** "son las catorce treinta", "son las catorce horas treinta minutos". */
-    private fun official(h: Int, m: Int): List<String> {
+    fun official(h: Int, m: Int): List<String> {
         val hourWord = Forms.officialHour(h)
         val copula = if (h == 1) "es la" else "son las"
         val article = if (h == 1) "la" else "las"

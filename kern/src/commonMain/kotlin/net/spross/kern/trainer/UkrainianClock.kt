@@ -126,6 +126,9 @@ internal object UkrainianClock {
         return if (m in 1..9) listOf(Core("${Forms.nominative[cur]} нуль $count", h), plain) else listOf(plain)
     }
 
+    /** The 0–23 register's readings on their own. */
+    fun twentyFourHour(h: Int, m: Int): List<String> = official(h, m).map { it.text }
+
     /**
      * The 0–23 register. Hour zero has an ordinal (`нульова`) but no clipped reading —
      * "нульова п'ять" is not Ukrainian.

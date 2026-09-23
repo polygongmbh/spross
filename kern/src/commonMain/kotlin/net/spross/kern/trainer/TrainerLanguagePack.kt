@@ -35,6 +35,14 @@ internal interface TrainerLanguagePack {
     val clockDayParts: Set<String>
 
     /**
+     * The 24-hour register's readings of [hour]:[minute] — empty where the language has
+     * none. From thirteen up, and at midnight, the register names the half of the day by
+     * number, so abstract for [clockDayParts]'s reason: the sweep that holds that closure
+     * iterates every pack through this member.
+     */
+    fun clockTwentyFourHour(hour: Int, minute: Int): List<String>
+
+    /**
      * Accepted readings of a number form, canonical first — empty where the language
      * has no reading for it. Defaulted like [formLimits] and [decimalMark] so an
      * unauthored language quietly offers no Forms drill instead of forcing every pack
@@ -104,6 +112,7 @@ private object GermanPack : TrainerLanguagePack {
         "zehn", "hundert", "tausend", "zehntausend", "hunderttausend",
         "Million", "zehn Millionen", "hundert Millionen", "Milliarde",
     )
+    override fun clockTwentyFourHour(hour: Int, minute: Int) = GermanClock.twentyFourHour(hour, minute)
     override val clockDayParts: Set<String> = (0..23).flatMapTo(mutableSetOf(), GermanClock::dayParts)
     override fun formReading(value: NumberValue) = GermanForms.reading(value)
     // "der dritte März" is the weak ordinal, and the -en the accusative pattern wants is
@@ -126,6 +135,7 @@ private object EnglishPack : TrainerLanguagePack {
         "ten", "hundred", "thousand", "ten thousand", "hundred thousand",
         "million", "ten million", "hundred million", "billion",
     )
+    override fun clockTwentyFourHour(hour: Int, minute: Int) = EnglishClockRegisters.twentyFourHour(hour, minute)
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), EnglishClockRegisters::dayParts)
     override fun formReading(value: NumberValue) = EnglishForms.reading(value)
@@ -146,6 +156,7 @@ private object SpanishPack : TrainerLanguagePack {
         "diez", "cien", "mil", "diez mil", "cien mil",
         "millón", "diez millones", "cien millones", "mil millones",
     )
+    override fun clockTwentyFourHour(hour: Int, minute: Int) = SpanishClock.official(hour, minute)
     // why: Spanish decides on three arguments, so the vocabulary is the union over the
     // whole domain — a sentinel minute would miss a word a future rule keys on.
     override val clockDayParts: Set<String> = buildSet {
@@ -176,6 +187,8 @@ private object SwahiliPack : TrainerLanguagePack {
         "kumi", "mia", "elfu", "elfu kumi", "elfu mia",
         "milioni", "milioni kumi", "milioni mia", "bilioni",
     )
+    // The saa system counts twelve hours from dawn and dusk; it has no 24-hour register.
+    override fun clockTwentyFourHour(hour: Int, minute: Int) = emptyList<String>()
     override val clockDayParts: Set<String> = (0..23).flatMapTo(mutableSetOf(), SwahiliClock::dayParts)
     override fun formReading(value: NumberValue) = SwahiliForms.reading(value)
     override val formLimits = SwahiliForms.LIMITS
@@ -200,6 +213,7 @@ private object UkrainianPack : TrainerLanguagePack {
         "десять", "сто", "тисяча", "десять тисяч", "сто тисяч",
         "мільйон", "десять мільйонів", "сто мільйонів", "мільярд",
     )
+    override fun clockTwentyFourHour(hour: Int, minute: Int) = UkrainianClock.twentyFourHour(hour, minute)
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), UkrainianClockForms::dayParts)
     override fun formReading(value: NumberValue) = UkrainianForms.reading(value)
@@ -220,6 +234,7 @@ private object EsperantoPack : TrainerLanguagePack {
         "dek", "cent", "mil", "dek mil", "cent mil",
         "miliono", "dek milionoj", "cent milionoj", "miliardo",
     )
+    override fun clockTwentyFourHour(hour: Int, minute: Int) = EsperantoClock.twentyFourHour(hour, minute)
     // why: the countdown decides which hour a part of the day belongs to, so the
     // vocabulary is the union over both directions — and over the x-system twins, or a
     // reading spelled without ŭ would read as period-less to the cycle check.
@@ -247,6 +262,7 @@ private object FrenchPack : TrainerLanguagePack {
         "dix", "cent", "mille", "dix mille", "cent mille",
         "million", "dix millions", "cent millions", "milliard",
     )
+    override fun clockTwentyFourHour(hour: Int, minute: Int) = FrenchClock.official(hour, minute)
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), FrenchClockForms::dayParts)
     override fun formReading(value: NumberValue) = FrenchForms.reading(value)
@@ -273,6 +289,7 @@ private object ItalianPack : TrainerLanguagePack {
         "dieci", "cento", "mille", "diecimila", "centomila",
         "milione", "dieci milioni", "cento milioni", "miliardo",
     )
+    override fun clockTwentyFourHour(hour: Int, minute: Int) = ItalianClock.official(hour, minute)
     override val clockDayParts: Set<String> =
         (0..23).flatMapTo(mutableSetOf(), ItalianClockForms::dayParts)
     override fun formReading(value: NumberValue) = ItalianForms.reading(value)

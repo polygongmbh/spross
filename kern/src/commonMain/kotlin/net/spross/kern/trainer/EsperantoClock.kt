@@ -101,6 +101,9 @@ internal object EsperantoClock {
         return forms.leadWith(displayCore(h, m, cur, next, count, restCount)) { it.text }
     }
 
+    /** The 0–23 register's readings on their own. */
+    fun twentyFourHour(h: Int, m: Int): List<String> = official(h, m).map { it.text }
+
     /**
      * The 0–23 register. Below thirteen its ordinal is the conversational one, so only the
      * spelled-out `horo … minutoj` reading is new there and the bare one is left out.

@@ -13,7 +13,8 @@ import net.spross.kern.session.Match
 /**
  * Every authored clock is a 12-hour cycle the language leaves open — "quarter to five"
  * IS the right answer to 04:45 and to 16:45 alike. A reading that names the part of the
- * day is the one thing that closes it, and this sweep holds every such reading to that.
+ * day closes it, and so does the 24-hour register's hour from thirteen up; this sweep
+ * holds every such reading to that.
  */
 class ClockDayPartSweepTests {
 
@@ -49,6 +50,34 @@ class ClockDayPartSweepTests {
                 emptyList(), offenders.toList(),
                 "$language: day-part readings that still answer the other half of the day " +
                     "(markers: ${parts.sorted()})",
+            )
+        }
+    }
+
+    /**
+     * From thirteen up, and at midnight, the 24-hour register names the half of the day by
+     * number — `achtzehn Uhr` is 18:00 and never 06:00 — so the time twelve hours away
+     * must refuse it. Below that its hour word is the 12-hour one, open by design.
+     */
+    @Test
+    fun twentyFourHourReadingsCloseTheTwelveHourCycle() {
+        for ((language, pack) in trainerPacks) {
+            val normalizer = AnswerNormalizer.drill(
+                catalog.languages[language] ?: LanguageInfo(language, language, language, "🏳️"),
+            )
+            val offenders = sortedSetOf<String>()
+            for (h in listOf(0) + (13..23)) {
+                for (m in 0..59) {
+                    val other = Numbers.clock(h + 12, m, language)
+                    for (form in pack.clockTwentyFourHour(h, m)) {
+                        if (normalizer.evaluate(form, card(language, other.accepted)) == Match.Wrong) continue
+                        offenders += "\"$form\" accepted at ${other.prompt}"
+                    }
+                }
+            }
+            assertEquals(
+                emptyList(), offenders.toList(),
+                "$language: 24-hour readings that still answer the other half of the day",
             )
         }
     }

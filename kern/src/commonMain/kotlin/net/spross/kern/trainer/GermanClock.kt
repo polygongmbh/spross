@@ -122,7 +122,7 @@ internal object GermanClock {
      * "achtzehn Uhr", "achtzehn Uhr fünfunddreißig"; 0:00 reads "null Uhr"
      * and, equivalently, "vierundzwanzig Uhr".
      */
-    private fun twentyFourHour(hours: Int, minutes: Int): List<String> {
+    fun twentyFourHour(hours: Int, minutes: Int): List<String> {
         val minuteSuffix = if (minutes == 0) "" else " " + GermanNumbers.cardinal(minutes.toLong())
         val readings = mutableListOf(beforeUhr(GermanNumbers.cardinal(hours.toLong())) + " Uhr" + minuteSuffix)
         if (hours == 0 && minutes == 0) readings += "vierundzwanzig Uhr"

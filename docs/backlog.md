@@ -11,8 +11,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Engine & scheduling
 
-- The 24-hour register closes the twelve-hour cycle by NUMBER (`achtzehn Uhr` cannot answer 06:00),
-  a closure nothing holds, unlike the day parts' (`dayPartReadingsCloseTheTwelveHourCycle`).
 - `<pack>.cardinal(-n)` returns the digits rather than a reading — the negative reading lives
   in `formReading` deliberately, so nothing needs it today, but a caller that assumes
   `cardinal` covers every `Long` gets a digit string back with no error.

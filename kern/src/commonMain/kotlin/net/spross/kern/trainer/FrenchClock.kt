@@ -89,7 +89,7 @@ internal object FrenchClock {
     }
 
     /** `quatorze heures quinze`, `zéro heure trente` — timetables, news, announcements. */
-    private fun official(h: Int, m: Int): List<String> {
+    fun official(h: Int, m: Int): List<String> {
         val hour = Forms.officialHour(h)
         return if (m == 0) listOf(hour) else listOf("$hour ${FrenchNumbers.minute(m)}")
     }
