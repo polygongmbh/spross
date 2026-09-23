@@ -1,265 +1,162 @@
 # What the evidence says about new-word intake
 
-Why the box bounds new words the way it does, and why it stopped bounding them the other way.
-This doc owns the literature; `kern/README.md` §6 owns the resulting rules and points here.
+Why the box bounds new words the way it does.
+This doc owns the literature; `kern/README.md` §6 owns the resulting rules.
 
-The box is deliberately breadth-first: exposure to a lot of the language, accepting that any
-single word may not stick. That makes "how many new words is too many" the load-bearing
-question, so it is worth knowing how thin the evidence for a cap actually is.
+The box is breadth-first: exposure to a lot of the language, accepting that any
+single word may not stick.
 
 ## The short version
 
-Intake is bounded by **two** things: how many cards a sitting tests (`sessionCap`) and how many
-first sights one round offers (`NEW_CARDS_PER_ROUND`). Nothing throttles on how *shaky* the
-material is, and nothing throttles on how far behind the box has fallen. Both of those throttles
-existed and were removed on 2026-08-01 — `maxUnsettled` against `unsettledLoad`, and the
-`dueSoftCap` health gate. The sections below are why; the backlog one turns on the box's own
-arithmetic rather than literature, so it is
-[its own section](#a-standing-backlog-is-the-normal-state-and-no-gate-should-close-on-it).
+Intake is bounded by **two** things: how many cards a sitting tests (`sessionCap`)
+and how many first sights one round offers (`NEW_CARDS_PER_ROUND`).
+Nothing throttles on how shaky the material is,
+and nothing throttles on how far behind the box has fallen.
 
 ## Proactive interference does not survive spaced practice
 
-The classic case for "too much in flight hurts" is Underwood (1957): recall of a new list falls
-from ~80 % to ~20 % as prior lists accumulate. The load-bearing caveat is one line in the
-original — **studies were included only if the prior learning was massed**.
-
-Underwood's own lab then failed to extend it. Underwood & Postman (1960, *Psych Review* 67,
-73–95) predicted words rich in pre-experimental associations would decay faster than trigrams
-over a week; forgetting rates were identical. Underwood & Ekstrand (1966/67) got interference
-easily from massed prior learning and **none at all** when the same learning was spread over
-four days.
-
-Wixted's review is the summary to cite:
-[*Annual Review of Psychology* 55, 235–269](https://cenl.ucsd.edu/Jclub/Wixted_2004.pdf) —
+Underwood (1957): recall of a new list falls from ~80% to ~20% as prior lists accumulate.
+The caveat: studies were included only if prior learning was massed.
+Underwood & Ekstrand (1966/67) got interference from massed prior learning
+and none at all when the same learning was spread over four days.
+Wixted's review
+([*Annual Review of Psychology* 55, 235-269](https://cenl.ucsd.edu/Jclub/Wixted_2004.pdf)):
 if learning is typically distributed, proactive interference may not be a major source of
-everyday forgetting. **A spaced-repetition app is exactly the regime where this evidence
-evaporates.**
+everyday forgetting.
+A spaced-repetition app is exactly the regime where this evidence evaporates.
 
 ## List length: real, tiny, and not an encoding cost
 
-Yim, Dennis & Osth (2025), *JEP: General* 154(10), 2772–2799 — N = 3,612, list lengths
-8/16/32/64/80, retention interval equated, only the first 8 studied items analyzed so output
-interference cannot contaminate it
+Yim, Dennis & Osth (2025), *JEP: General* 154(10), 2772-2799 -- N = 3,612,
+list lengths 8/16/32/64/80, retention interval equated
 ([preprint](http://lapensee.ivyro.net/my_articles/published/YimDennisOsth_LL)):
 
-- d′ falls 1.41 → 1.04 (BF₁₀ = 1.95 × 10⁸) — the effect is real
-- **entirely false alarms**: FA .24 → .38, while **hits stay flat .73 → .73**, BF₁₀ = .029,
-  positive evidence *for* the null on hits
-- square-root form, so it flattens fast; no interaction with delay
+- d' falls 1.41 -> 1.04 (BF = 1.95x10^8) -- the effect is real
+- **entirely false alarms**: FA .24 -> .38, while **hits stay flat .73 -> .73**, BF = .029
+- square-root form, flattens fast; no interaction with delay
 
-Hits flat from 8 to 80 items is direct evidence that a longer list does not degrade encoding.
-The cost is discriminability against lures, and it is Δd′ ≈ 0.37 for a ten-fold increase.
+Hits flat from 8 to 80 items: a longer list does not degrade encoding.
+The cost is discriminability against lures, and it is small for a ten-fold increase.
 
-Brandt, Zaiser & Schnuerch (2019), *JEP:LMC* 45(5): the effect is present for **homogeneous**
-material (d = 0.97–1.16) and **absent for heterogeneous lists** (F < 1).
+Brandt, Zaiser & Schnuerch (2019), *JEP:LMC* 45(5):
+the effect is present for homogeneous material (d = 0.97-1.16)
+and absent for heterogeneous lists (F < 1).
 
 ## Working memory and cognitive load do not apply
 
-Both frameworks are routinely invoked for new-card limits, and both exclude this case by their
-authors' own scope statements.
-
-- **Cowan's "4"** is defined over *"sets of stimuli that are familiar so that each item is
-  represented in memory initially as an integrated chunk … **but not foreign or nonsense
-  words***"
+- **Cowan's "4"**: defined over familiar integrated chunks,
+  explicitly excludes foreign or nonsense words
   ([2005 chapter](https://memory.psych.missouri.edu/assets/doc/articles/2005/cowan-2005-izawa-volume-draft.pdf)).
-  Novel L2 word forms are explicitly outside the paradigm that produces the number.
-- **Cognitive load theory**: Sweller, van Merriënboer & Paas (2019) state it is *"only relevant
-  for complex learning"*, and Sweller (1994) calls foreign vocabulary **low element
-  interactivity**. Element interactivity is about simultaneity, not count, so CLT does not
-  predict that 30 independent word pairs is a heavy load. For low-EI material it partly
-  reverses: Chen, Kalyuga & Sweller (2015) find the generation effect beats worked examples.
-- Miller (1956) called his own number *"a pernicious, Pythagorean coincidence"* and does not
-  discuss learning at all.
+- **Cognitive load theory**: Sweller, van Merrienboer & Paas (2019) state it is
+  only relevant for complex learning; Sweller (1994) calls foreign vocabulary
+  low element interactivity. CLT does not predict that 30 independent word pairs
+  is a heavy load.
+- Miller (1956) called his own number a coincidence and does not discuss learning.
 
 ## The direct L2 test finds set size near-irrelevant
 
-Nakata & Webb (2016), *SSLA* 38(3) ([ERIC](https://eric.ed.gov/?id=EJ1113915)) — 169
-undergraduates, two experiments, 20-item sets against 4- and 10-item sets **with spacing
-matched**, receptive and productive posttests immediately and at one week:
+Nakata & Webb (2016), *SSLA* 38(3)
+([ERIC](https://eric.ed.gov/?id=EJ1113915)) -- 169 undergraduates,
+20-item sets against 4- and 10-item sets with spacing matched:
 
-> Part learning produced more correct retrievals during learning, but **not in posttests** …
-> as long as spacing is equivalent, the part–whole distinction has little effect on learning,
-> and spacing has a larger effect than the part–whole distinction.
+> Part learning produced more correct retrievals during learning,
+> but **not in posttests** ...
+> as long as spacing is equivalent, the part-whole distinction has little effect.
 
-This is the cleanest test of the actual question. With exposures fixed, **session size is lag**:
-a smaller batch mechanically shortens within-session spacing, so shrinking a round *is* massing.
+With exposures fixed, session size is lag:
+a smaller batch shortens within-session spacing, so shrinking a round is massing.
 
 Corroborating: Healy, Schneider & Kole (2025), *Behavioral Sciences* 15(5), 692
-([PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC12108878/)) — blocks of 6 vs 12 differ during
-first-session acquisition (η² = .180) and converge by session 2, with no difference immediately
-or at one week.
-
-The apparent counter-evidence, Pajkossy & Racsmány (2019)
-([PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC6938364/)), shows a steep drop across blocks of
-2/4/8 — but each pair was presented **once**, with no repetition, no feedback and no delayed
-test. It is a short-term interference result, not a claim about retention under a spaced
-schedule.
+([PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC12108878/)):
+blocks of 6 vs 12 differ during first-session acquisition and converge by session 2.
 
 ## What does survive: output interference
 
 Criss, Malmberg & Shiffrin (2011), *JML* 64(4)
 ([PDF](https://memolab.syr.edu/wp-content/uploads/2021/04/CrissMalmbergShiffrin_2011.pdf)):
-d′ declines ~0.82 → 0.42 across 150 test trials in a single sitting, F(14,770) = 6.24,
-p < .001. Present on the first study–test cycle, so not fatigue; survives a delay, constant
-study–test lag, feedback, and forced choice.
+d' declines ~0.82 -> 0.42 across 150 test trials in a single sitting.
+Present on first study-test cycle; survives delay, constant lag, feedback, forced choice.
 
-Note the signatures are mirror images — output interference knocks down **hits** with false
-alarms stable, while the list-length effect pushes up **false alarms** with hits stable — and
-output interference is by far the larger. Osth et al. (2018) conclude the number of items
-*tested* matters more than the number *studied*.
+Output interference knocks down hits with false alarms stable --
+the mirror image of the list-length effect -- and by far the larger.
+Osth et al. (2018): the number of items tested matters more than the number studied.
 
-**This is the one memory-based argument for a cap that survives scrutiny, and it argues for
-bounding the length of a sitting — `sessionCap` — not the intake.**
+**This argues for bounding the sitting length (`sessionCap`), not the intake.**
 
 ## A cap on the sitting is free; the floor under it needs a different argument
 
-Bounding the sitting is the one cap with support on both sides of the ledger. Output
-interference supplies the memory half; the engagement half is Welbers et al. (2019), a field
-experiment with N = 101 on a study app
-([DOI](https://journals.sagepub.com/doi/10.1177/2042753018818342)): a daily session limit
-**spread use over more unique days** (b = 0.62, p < .01) with **no loss in total sessions**
-(66 vs 41, n.s.). A cap is not a tax on engagement. It is one experiment on one app rather than
-a vocabulary SRS, so read it as "no evidence a cap costs adherence" rather than proof it helps.
+Output interference supplies the memory half.
+Welbers et al. (2019)
+([DOI](https://journals.sagepub.com/doi/10.1177/2042753018818342)):
+a daily session limit spread use over more unique days (b = 0.62, p < .01)
+with no loss in total sessions (66 vs 41, n.s.).
 
-`SESSION_FLOOR_CARDS` is the opposite direction and rests on a weaker footing than its own
-comment claims. "A round this short reads as the app having nothing to give" is a product
-judgement with **no evidence behind it** — nothing in this literature says short sessions feel
-worthless or drive anyone away. What does support a floor is Kornell (2009), on spacing rather
-than feeling: a 20-card stack beat four 5-card stacks, because the larger stack lengthens
-within-session spacing, and ~90 % of participants learned more spaced while ~72 % believed the
-reverse. That is the same mechanism as the Nakata & Webb result above — **a short round is a
-massed round** — and it is why the floor is filled out with reviews rather than left short.
-Habit research is sometimes offered here too and does not reach: Lally-lineage work
-([Springer](https://link.springer.com/article/10.1007/s10865-015-9640-7)) puts automaticity at
-~66 days with wide variance and ties habit strength to positive affect during the activity —
-an argument for ending a session before it turns aversive, not for any particular floor.
+`SESSION_FLOOR_CARDS` rests on Kornell (2009): a 20-card stack beat four 5-card stacks,
+because the larger stack lengthens within-session spacing -- a short round is a massed round.
+The floor is filled with reviews rather than left short.
 
 ## Pulling reviews forward is nearly free, if they are the soonest-due ones
 
-The floor and the quiet-day reservation both pull not-yet-due cards forward, so the question is
-what early review costs. FSRS answers it structurally: the stability gain from a successful
-review is larger at **low** retrievability, so reviewing a card while recall is still near-certain
-buys almost nothing ([Expertium's algorithm notes](https://expertium.github.io/Algorithm.html)),
-and the fsrs4anki helper frames its own Advance feature as damage minimisation rather than a
-benefit. There is no published cost curve for "k days early".
-
-This is why the ordering matters more than the count: soonest-due-first pulls the cards closest
-to needing the review anyway, where the loss rounds to nothing, while pulling an arbitrary undue
-card burns real spacing. The engine's rules already follow from this — `fillOut` sorts by due,
-and the quiet-day reservation reaches only as far as tomorrow.
+FSRS: stability gain from a successful review is larger at low retrievability,
+so reviewing near-certain recall buys almost nothing
+([Expertium's algorithm notes](https://expertium.github.io/Algorithm.html)).
+Soonest-due-first pulls cards closest to needing review anyway;
+the engine's `fillOut` sorts by due.
 
 ## Semantic clustering is weaker than the folklore
 
-Relevant to how new words are *ordered*, not how many enter. Nakata & Suzuki (2019),
-*SSLA* 41(2)
-([Cambridge](https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/effects-of-massing-and-spacing-on-the-learning-of-semantically-related-and-unrelated-words/F58BA8D70385603B9C42E408BFCB8A10))
-includes a small meta-analysis where **the outcome measure decides the answer**:
+Nakata & Suzuki (2019), *SSLA* 41(2)
+([Cambridge](https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/effects-of-massing-and-spacing-on-the-learning-of-semantically-related-and-unrelated-words/F58BA8D70385603B9C42E408BFCB8A10)):
+meta-analysis where the outcome measure decides the answer:
 
-- trials-to-criterion **d = 0.73 [0.41, 1.05]** — semantic sets cost more trials
-- posttests **d = −0.24 [−0.71, 0.23]** — crosses zero
+- trials-to-criterion d = 0.73 [0.41, 1.05] -- semantic sets cost more trials
+- posttests d = -0.24 [-0.71, 0.23] -- crosses zero
 
-Their own study (N = 133, matched on familiarity, frequency and pronounceability) found no
-relatedness effect immediately or at one week; what differed was within-set confusion during
-learning (8.22 % vs 2.69 %, d = 0.86). Two factors showed *larger* effects than category
-membership in the same literature: shared initial letters, and L1 familiarity. There is no
-meta-analysis of L2 semantic clustering, and Tinkham (1993), often cited as foundational, had
-N = 20 acquaintances of the researcher with presentation differing between groups.
+Their own study (N = 133): no relatedness effect at one week;
+within-set confusion during learning 8.22% vs 2.69% (d = 0.86).
 
 ## The tuning trap
 
-In-session accuracy is the metric that reliably improves when batches shrink and reliably fails
-to predict retention (Nakata & Webb above; Healy et al. 2025; Kornell's 90 %-better-but-72 %-
-believed-otherwise result). **A scheduler tuned to maximize in-session correctness is optimizing
-the illusion of a good round.**
-
-This is exactly what the retired `maxUnsettled` throttle did. `isSettled` was
-`phase == Review && stability >= settledStability` — a bar a single **Good** cleared
-(S₀(Good) = 2.3065 > 2.0), so `unsettledLoad` counted the words recently answered *wrong* and
-narrowed breadth in response. That the bar sat below S₀(Good) is also what eventually retired
-the threshold itself, merged into the one landed bar (`kern/README.md` §5). A breadth-first box can pick a metric that makes removing a cap
-look good just as easily as a depth-first one can pick one that makes keeping it look good;
-neither is a finding.
+In-session accuracy reliably improves when batches shrink
+and reliably fails to predict retention.
+A scheduler tuned to maximize in-session correctness is optimizing
+the illusion of a good round.
 
 ## A standing backlog is the normal state, and no gate should close on it
 
-The health gate shut growth off entirely once the projected post-session backlog
-(`dueCount − sessionCap`) reached `dueSoftCap`. It aimed at a real failure mode — a queue the
-learner never works off — and it still went, but not because intake is negligible against the
-queue. It is not.
+**What intake costs is the reviews it draws.**
+A new card accrues roughly four to five reviews in its first year at `desiredRetention` 0.85,
+putting the <= 4-card reserve near 18 reviews/day against a `sessionCap` of 24.
+The margin narrows as a box ages.
+A remainder left over is normal, not a debt.
 
-**What intake really costs is the reviews it draws.** A new card is not one card of load; it is
-every review it will pull for as long as it stays in the box, so sustained intake settles at
-`intake × reviews-per-card-so-far` a day. At `desiredRetention` 0.85 a card accrues roughly four
-to five reviews in its first year, putting the ≤ 4-card reserve near 18 reviews a day against a
-`sessionCap` of 24 — about three quarters of it, where 5 against 25 sat at ninety percent and left
-a box behind holding its backlog level rather than working it down. The margin narrows as a
-box ages, because that per-card count keeps climbing. The model is calibrated: at 0.9, where the
-interval is exactly `S`, it reproduces Anki's documented 20 new cards a day settling at about 200
-([deck options](https://docs.ankiweb.net/deck-options.html)).
+**Falling behind costs a settled word little and a young one plenty.**
+The tail of `R(t) = (1 + 0.98*t/S)^-0.1542` is flat in proportion to stability:
+30 days late leaves a mature card (S 60) at 0.79, a settling one (S 10) at 0.74,
+and a word met once (S 2.31) at 0.65.
 
-**So a remainder left over is normal, not a debt.** A box whose intake sits near what a sitting
-can service will usually have cards over, and should — the alternative is a box that runs dry.
-It also absorbs the days a learner skips or cuts short. Chrome names what is left as cards
-ready rather than cards owed for exactly this reason.
-
-**Falling behind costs a settled word little and a young one plenty.** The tail of
-`R(t) = (1 + 0.98·t/S)^−0.1542` is flat in proportion to STABILITY, so one delay reads four ways:
-thirty days late leaves a mature card (S 60) at 0.79 against its 0.80 target, a settling one
-(S 10) at 0.74, and a word met once (S 2.31, a first Good) at 0.65.
-
-Read the top of that range as an upper bound rather than a measurement. The weights are the
-shipped defaults, fitted over collections mostly made of mature cards, and one decay cannot
-describe both ends — so recall is over-predicted where stability is lowest, which is where a
-learner notices. Nothing throttles on how far behind the box has fallen because a backlog is
-mostly made of the settled end; the young end is where delay is actually paid for, and this
-curve is not evidence about it.
-
-**What the gate cost fell on was the returning learner.** Coming back after two weeks away is
-exactly when it shut, so the box that had been growing daily went silent at the moment the
-learner re-engaged, and stayed silent until the backlog cleared. That is why it is gone.
-
-**The order the queue drains in is not worth optimizing.** It is contested — Anki's manual
-recommends ascending retrievability for a backlog, while FSRS's own author found descending
-better under a daily cap
-([forum](https://forums.ankiweb.net/t/improving-sort-orders/50081)) — and the flat tail above
-makes it a few points either way. `kern/README.md` §6 fixes the order for de-correlation, which
-is a reason that does not turn on retention at all.
+**The health gate cost fell on the returning learner:**
+coming back after two weeks away was exactly when it shut,
+so the box went silent at the moment the learner re-engaged.
 
 ## What the other systems do is not evidence
 
-The obvious objection to all of the above is that every established SRS caps intake, so the
-numbers must mean something. They do not have data behind them.
+- **Anki** defaults to 20 new cards/day; its stated rationale is downstream load.
+- **Anki's FSRS FAQ**: no optimal number; FSRS works equally well at 5 or 50.
+- **SuperMemo** treats overload as a workload problem solved by postponing reviews.
+- **Memrise** defaults to ~5 words/session with no published rationale.
 
-- **Anki** defaults to 20 new cards a day, and the manual's only stated rationale is downstream
-  load — 20 a day settles at roughly 200 reviews a day
-  ([deck options](https://docs.ankiweb.net/deck-options.html)). That is an argument about
-  sitting length, which `sessionCap` already bounds.
-- **Anki's own FSRS FAQ** states there is no optimal number of new cards per day and that FSRS
-  "works equally well whether you are learning 5 or 50"
-  ([FAQ](https://faqs.ankiweb.net/frequently-asked-questions-about-fsrs.html)).
-- **SuperMemo** names overload the main cause of drop-outs
-  ([wiki](https://supermemo.guru/wiki/Overload)) but treats it as a workload problem solved by
-  postponing reviews, not by an intake cap.
-- **Memrise** defaults to about 5 words per session, with no published rationale.
-- The load-based approach the retired `maxUnsettled` throttle implemented exists as an Anki
-  add-on ("Limit New by Young"), whose case is purely structural — feed new cards at the rate
-  the learner matures them — with no data offered.
-
-Practitioner consensus converges on a number because everyone copied a number, and where its
-authors do say why, the reason is review load rather than retention.
+Practitioner consensus converges on a number because everyone copied one;
+where the authors say why, the reason is review load.
 
 ## Verification note
 
-The load-bearing findings above are from accessible primary sources. A few older figures could
-not be confirmed at source and are cited only where the direction, not the number, carries the
-argument: the exact recall percentages in Kornell (2009), and the statistics inside Tinkham
-(1993/1997), Waring (1997) and Erten & Tekin (2008), all of which are paywalled and reached via
-named secondaries. One supporting figure is deliberately weak evidence and is labeled as such
-where it appears: Welbers et al. (2019) is a single field experiment on a study app rather
-than a vocabulary SRS.
+The load-bearing findings above are from accessible primary sources.
+A few older figures could not be confirmed at source and are cited only where
+the direction, not the number, carries the argument.
 
-**The gap worth naming**: no peer-reviewed study manipulates new-card intake rate in a real
-spaced-repetition system over weeks or months with both retention *and* dropout as outcomes.
-The retention side of this literature is lab-scale and short; the dropout side is anecdote. Every
-number the box picks is therefore a product judgement, and the evidence's job is to say which
-judgements are *ruled out* rather than which one is right.
+**The gap worth naming**: no peer-reviewed study manipulates new-card intake rate
+in a real spaced-repetition system over weeks or months with both retention
+and dropout as outcomes.
+Every number the box picks is a product judgment,
+and the evidence's job is to say which judgments are ruled out.

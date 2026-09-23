@@ -4,223 +4,194 @@ The record for the ship/legal questions the bundled audio raises:
 what is in the app, whose it is, what each license asks for, and where the app answers it.
 
 The engine rule is `../kern/docs/audio.md`, the file format `../catalog/audio/README.md`,
-and the per-file truth is the per-language manifests themselves — this doc states the posture,
-not the schema.
-Why the bundled recordings are mp3, and what a different codec would cost, is `audio-format.md`.
+and the per-file truth is the per-language manifests themselves --
+this doc states the posture, not the schema.
+Why the recordings are mp3 is `audio-format.md`.
 The pack research (how each source was found, what was rejected, the coverage gaps)
 lives outside the repo in `data/reference/audio/README.md`.
 
 ## 1. What ships, and under what
 
-Every bundled recording is a Wikimedia Commons transcode under CC BY-SA, CC BY, CC0 or a
-public-domain dedication — no NC and no ND clause ships, in audio or anywhere else.
+Every bundled recording is a Wikimedia Commons transcode under CC BY-SA, CC BY, CC0
+or a public-domain dedication --
+no NC and no ND clause ships, in audio or anywhere else.
 
-How many files each pack holds, which licenses they carry and who spoke them are NOT written
-here: they are in the manifests, and `scripts/audio-coverage.py --credits` prints them from
-there. The app says the same thing per file — `Catalog.audioCredits()` feeds the credits
-screen on both platforms — and that, not a table, is where a speaker's name is discharged.
+How many files each pack holds, which licenses they carry and who spoke them
+are in the manifests;
+`scripts/audio-coverage.py --credits` prints them.
+The app says the same thing per file --
+`Catalog.audioCredits()` feeds the credits screen on both platforms --
+and that, not a table, is where a speaker's name is discharged.
 `--check` fails where a manifest names a file git does not track.
-
-What each license asks of us, whichever pack a file came from:
 
 | License | What it obliges |
 |---|---|
 | CC BY-SA (4.0, 3.0, 2.5, 2.0) | name the speaker and link the deed; a derivative carries the same terms |
 | CC BY (4.0, 3.0, 3.0 us, 2.0 fr) | name the speaker and link the deed |
-| CC0 | nothing; credited anyway, because a dedication is not a reason to go quiet |
+| CC0 | nothing; credited anyway |
 | Public domain | nothing, and there is no deed to link |
 
-Nothing is per-pack about that, which is why there is no per-pack table: an obligation
-follows the license, the license is on the file, and the credits screen reads it from there.
-Where a pack was fetched from and what was rejected is the research record,
-`data/reference/audio/README.md`.
+The `articles/` sets are where a word may ship TWICE:
+the bare file for the learner's own language, the article one for the target
+(`../catalog/audio/README.md`).
+Five words ship only the article recording, which answers both ways.
+Both carry their own author and license row.
 
-The `articles/` sets are where a word may ship TWICE, and deliberately: the bare file is
-what the learner's own language is read with, the article one what the target is heard as
-(`../catalog/audio/README.md`). Five words ship only the article recording, which then answers
-both ways it is asked rather than leaving the word silent. Both carry their own author and license row, so the credits
-screen names Natschoba beside the German pack's eight groups and Marta Carbone beside the
-Italian's fourteen — a second voice on 221 and 54 cards, not a replacement of the first.
-Nothing else on Commons could have been used: article-form recordings exist for German
-(one speaker) and Italian (one set), and for Spanish and French they do not exist at all —
-the research and its counts are `data/reference/audio/README.md`'s.
+**Three licenses are refused outright**
+(`scripts/audio-catalog.py`'s `UNSHIPPABLE_LICENSES`):
 
-**Three licenses are refused outright**, and the drills' own vocabularies are where Commons
-first offered them (`scripts/audio-catalog.py`'s `UNSHIPPABLE_LICENSES`). None is a CC
-license and none is shaped for media:
+- **GFDL** obliges shipping the full license text and a "Transparent copy" --
+  a document's terms, which a credits screen linking a deed does not meet.
+- **GPLv3** is a software license whose copyleft reaches the work as a whole,
+  and whose anti-tivoization terms are irreconcilable with App Store distribution.
+  It cost sixteen of the nineteen Esperanto names (one uploader, Kurso de Esperanto).
+- **"Attribution"**, Commons' legacy bare template, names no versioned license
+  and has no stated terms.
 
-- **GFDL** obliges shipping the full license text and keeping a "Transparent copy"
-  available — a document's terms, which a credits screen linking a deed does not meet.
-  It cost two German month and weekday names.
-- **GPLv3** is a software license whose copyleft reaches the work as a whole, and whose
-  anti-tivoization and Installation Information terms are irreconcilable with App Store
-  distribution. It cost sixteen of the nineteen Esperanto names, all one uploader
-  (Kurso de Esperanto) — which is why that row reads 3 and not 19.
-- **"Attribution"**, Commons' legacy bare template, asks for credit and names no versioned
-  license, so there are no stated terms and no deed to link. Public domain also has no deed,
-  but that is a waiver; this is a claim of rights without terms. It cost the Spanish `Chile`.
+A refused row is a printed decision and the word falls to the device voice;
+an *unlisted* license remains a hard stop.
 
-A refused row is a printed decision and the word falls to the device voice; an
-*unlisted* license remains a hard stop, because the difference is whether anyone has
-looked at it. Refusing only ever ships less, which is the safe side of the question —
-but the Esperanto cost is large enough to be worth revisiting deliberately.
+## Share-alike reach
 
-Share-alike reaches the **audio files only**.
 CC carries no GPL-style linking clause,
 so bundling BY-SA recordings leaves the Kotlin core, the UI and the catalog data unaffected.
-The Ukrainian WORDS are the one pack free of share-alike entirely, and that is one
-recording deep: a single BY-SA file taken for a gap the alphabet needed would end it,
-as one already did once before being re-cut away.
-That property is the `words` section's alone and stays intact — the fill added 174 words
-under the same Shtooka attribution-only terms — but the uk FOLDER is now share-alike in
-three places rather than one: the letters, and since the atlas landed, 63 of its 70 country
-names. Lingua Libre is where Ukrainian toponyms exist at all (the Shtooka convention found
-2 of 140), so this was the price of the atlas speaking Ukrainian, spent knowingly. Nothing else depends on the property,
-since every other pack carries the obligation anyway — but it is worth spending
-deliberately rather than by accident.
-The French words are the near-miss beside it: 442 of 511 are one Shtooka voice under
-BY 2.0 fr, attribution only, and each of those file pages states its own origin
-("Male voice. Speaker from Paris, France.") — the only pack that can name its accent;
-share-alike enters only through the 24-word Lingua Libre tail and the letters.
-The eo letters cost no extra credit because the letter names ARE ordinary lexemes
-(`bo`, `ĉo`, `ŭo`) — a phonemic orthography makes the word recording and the
-letter-name recording the same sound, so the alphabet rides the word pack's main voice.
-Ten of the eo word rows are the first PHRASE recordings any pack carries, matched
-exactly (edge punctuation folded, nothing fuzzy) against the Commons phrasebook.
+Share-alike reaches the **audio files only**.
+
+Per-pack share-alike status:
+- **uk words**: free of share-alike entirely (Shtooka attribution-only terms).
+  The uk FOLDER is share-alike in three places: the letters, and 63 of 70 atlas country names
+  (Lingua Libre, the only source where Ukrainian toponyms exist at scale).
+- **fr words**: 442 of 511 are one Shtooka voice under BY 2.0 fr (attribution only);
+  share-alike enters through the 24-word Lingua Libre tail and the letters.
+- **eo letters**: cost no extra credit because the letter names ARE ordinary lexemes
+  (`bo`, `co`, `uo`) -- the word recording and the letter-name recording are the same sound.
+- **eo phrases**: ten rows, the first PHRASE recordings any pack carries,
+  matched exactly against the Commons phrasebook.
+- Every other pack carries BY-SA anyway.
 
 ## 2. How the obligations are discharged
 
-- **Provenance is versioned per file.** Every manifest entry carries its `author`, the
-  original Commons filename as `source`, and the `sha256` of the shipped bytes; its license
-  and that license's deed come from the manifest's own `authors` and `licenses` maps, which
-  is where a voice's terms are authored once instead of on each of its hundreds of files
-  (`../catalog/audio/README.md`). Factored, not thinned: every recording still resolves to a
-  named speaker and a linked license, and the parser refuses a manifest whose maps do not
-  cover what it credits. The unversioned pack workspace is research input; `catalog/audio/`
-  is the record that ships.
+- **Provenance is versioned per file.**
+  Every manifest entry carries `author`, the original Commons filename as `source`,
+  and the `sha256` of the shipped bytes;
+  license and deed come from the manifest's `authors` and `licenses` maps
+  (`../catalog/audio/README.md`).
+  The parser refuses a manifest whose maps do not cover what it credits.
 - **Credits derive from the shipped manifests**, never from a hand-kept list:
   `Catalog.audioCredits()` groups per (language, author, license) with per-file rows,
-  rendered by `App/Sources/Screens/CreditsView.swift` (sheet off Box settings)
-  and `android/.../ui/AboutScreen.kt` (About screen) from that one API.
-  A group expands to its recordings, each linking `File:<source>` on Commons,
-  so attribution is checkable rather than merely present.
-  BY and BY-SA groups are separate rows by construction — there is no blanket notice,
-  and the screen can neither credit something not bundled nor miss something that is.
-- **The untouched-transcode gate is a test, not a promise.**
+  rendered by `App/Sources/Screens/CreditsView.swift` and `android/.../ui/AboutScreen.kt`
+  from that one API.
+  A group expands to its recordings, each linking `File:<source>` on Commons.
+  BY and BY-SA groups are separate rows by construction.
+- **The untouched-transcode gate is a test.**
   `CatalogAudioLintTest.audioFilesMatchTheirManifestHashes` re-hashes every committed mp3
-  against its manifest entry; the converter verified the same digest right after the byte-copy.
-  Re-encoding — loudness normalization included — would be an adaptation under BY-SA,
-  so the gate is what keeps the packs' loudness differences a playback problem (§3) rather than a license one.
+  against its manifest entry.
+  Re-encoding (loudness normalization included) would be an adaptation under BY-SA,
+  so the gate keeps the packs' loudness differences a playback problem (section 3)
+  rather than a license one.
 - **No file ships without a nameable author.**
-  `noAudioAuthorIsUnattributable` rejects the placeholder set (`Own work`, `myself`, empty),
-  which BY and BY-SA both make useless,
-  and Commons' `… assumed (based on copyright claims)` wording with it:
-  that names a bot's inference about the uploader, which reads as a credit and is a guess.
+  `noAudioAuthorIsUnattributable` rejects the placeholder set
+  (`Own work`, `myself`, empty),
+  and Commons' `assumed (based on copyright claims)` wording with it.
   `everyAudioFileShipsAndIsReferencedExactlyOnce` keeps uncredited bytes out of the bundle.
-- **The converter drops rather than guesses** (`scripts/audio-catalog.py` + `scripts/audio_gates.py`,
-  every decision printed): rows whose slug the catalog does not realize;
-  rows whose recording speaks a different word than any visible form;
+- **The converter drops rather than guesses**
+  (`scripts/audio-catalog.py` + `scripts/audio_gates.py`):
+  rows whose slug the catalog does not realize;
+  rows whose recording speaks a different word;
   rows colliding on one spoken form with differing bytes;
-  and rows still unattributable after resolution against the Commons API
-  (`extmetadata.Artist`, else the uploader as "Wikimedia Commons user X").
+  and rows unattributable after resolution against the Commons API.
 
-## 3. The analysis index — the "unmodified" claim stays true
+## 3. The analysis index -- the "unmodified" claim stays true
 
-The packs were recorded by different people on different equipment and share no loudness:
-the word packs sit at a median −18.0 LUFS, the uk letters at −31.4,
-and those letters open with about a second of dead air before they speak.
+The packs share no loudness:
+the word packs sit at a median -18.0 LUFS, the uk letters at -31.4.
 
 The correction is **not applied to the files**.
-Each entry carries the numbers our own generator measured off the shipped bytes —
-`gain` (dB from the full-range analysis target) and `gainPhone` (the phone-speaker plane, absent on letters and texts),
-plus `lead` (dead air at the head, ms) —
-and only a player ever applies them, picking the plane by its output route
+Each entry carries the numbers measured off the shipped bytes --
+`gain` (dB from the full-range analysis target)
+and `gainPhone` (phone-speaker plane, absent on letters and texts),
+plus `lead` (dead air at the head, ms) --
+and only a player ever applies them
 (iOS through an EQ node, Android through `LoudnessEnhancer` and a seek).
-Consequences, and this was the deciding argument:
+Consequences:
 
-- The shipped mp3 bytes remain **byte-identical Commons transcodes**, so **no adaptation is distributed**
-  and share-alike is never triggered by anything we did.
-- The credits' "Aufnahmen unverändert übernommen" / "Recordings shipped unmodified" line stays **accurate**.
+- The shipped mp3 bytes remain **byte-identical Commons transcodes**,
+  so no adaptation is distributed and share-alike is never triggered.
+- The credits' "Recordings shipped unmodified" line stays accurate.
 - The `sha256` gate keeps meaning exactly what it says.
-- A measurement of a file is our own factual data:
-  it carries no license of its own, and it grants nobody anything.
+- A measurement of a file is our own factual data: it carries no license of its own.
 
-What was measured, against which target and under which scheme is `scripts/audio-catalog.py`'s `ANALYSIS`.
-The player-side mechanics are the platforms' business, not this doc's.
+What was measured, against which target and under which scheme
+is `scripts/audio-catalog.py`'s `ANALYSIS`.
 
 ## 4. Text-to-speech: live only, never an asset
 
-TTS covers what no recording exists for — every phrase, and the unrecorded half of de.
-It is synthesized and spoken **at the moment the card asks**, and never written to a file:
+TTS covers what no recording exists for.
+It is synthesized and spoken **at the moment the card asks**, never written to a file:
 
-- Apple's System Voices are Apple IP; the macOS SLA §2(F) confines their output to personal,
-  non-commercial use and DTS is explicit that they cannot be commercialized as one's own.
-  Live synthesis through `AVSpeechSynthesizer` is ordinary sanctioned API use; pre-rendering is not.
+- Apple's System Voices: the macOS SLA confines their output to personal, non-commercial use.
+  Live synthesis through `AVSpeechSynthesizer` is ordinary sanctioned API use;
+  pre-rendering is not.
   No synthesis-to-file API is referenced anywhere in `App/Sources/Audio/`.
 - iOS speaks only voices the user has installed, and has no Swahili voice at any tier,
-  so an unrecorded Swahili word is silent rather than read in the wrong language.
+  so an unrecorded Swahili word is silent.
 - Android pins Google's engine (`com.google.android.tts`, offline Swahili included)
-  and likewise only ever calls `speak()`.
-  Its licensing question is the same shape as Apple's and is answered the same way.
+  and likewise only calls `speak()`.
 
 The moment a synthetic voice were ever **bundled** instead of spoken live,
-this posture would change (see §6.3).
+this posture would change (see section 6.3).
 
 ## 5. Catalog data posture
 
-**No non-commercial source was used anywhere, deliberately** — the app has product ambition,
-and NC would foreclose it.
-That cost the two richest morphology sources (VESUM for Ukrainian, Helsinki for Swahili).
+**No non-commercial source was used anywhere, deliberately** --
+the app has product ambition, and NC would foreclose it.
 
-Only one licensed source's output actually **ships**: Wikidata noun gender and plural, **CC0**,
-chosen because it is CC0 — no attribution, no share-alike, no burden on catalog content.
+Only one licensed source's output actually **ships**: Wikidata noun gender and plural, **CC0**.
 Everything else was consulted as evidence and left no expression behind:
-FreeDict (CC-BY-SA 3.0) generated candidate lists that were then re-picked and largely re-authored,
+FreeDict generated candidate lists that were re-picked and largely re-authored,
 frequency lists broke ties, Tatoeba attested phrase wording.
-Single dictionary headwords are facts, not expression — and the rule holds only while it holds:
+Single dictionary headwords are facts, not expression --
+and the rule holds only while it holds:
 a future language that *derives* `text` or `notes` from a BY-SA dictionary
-would put the whole catalog under share-alike, a far larger commitment than a per-pack audio notice.
-The evidence-only accounting for the newest language is
-`data/orchestration/audio-langs-2026-07/es-content/final/REPORT.md` §7.
+would put the whole catalog under share-alike.
 
-Notable rejections, one line each:
+Notable rejections:
 
-- **Forvo** — non-commercial terms, and API URLs expire after two hours; unbundleable either way.
-- **PanLex** — relicensed from CC0 to CC BY-NC-SA; treated as rejected, kept only as a historical pointer.
-- **Tatoeba audio** — 76.6% CC BY-NC-ND; the text corpus is fine, the recordings are not.
-- **Meta MMS-TTS** — weights CC-BY-NC 4.0, which blocks build-time use too.
-- **Coqui XTTS-v2** — CPML licenses "a model and its outputs" non-commercially, and the company is gone.
-- **eSpeak NG / piper1-gpl / sherpa-onnx v1.x** — GPL-3.0, or statically linking something that is;
-  fatal for a closed App Store binary (build-time phonemizing is fine, shipping it is not).
-- **Piper `sw_CD-lanfrica`** — finetuned from research-only voice data over a non-profit-restricted audio Bible.
-- **OPUS OpenSubtitles** — no explicit license at all; gray however good the volume.
+- **Forvo** -- non-commercial terms, and API URLs expire after two hours.
+- **PanLex** -- relicensed from CC0 to CC BY-NC-SA; treated as rejected.
+- **Tatoeba audio** -- 76.6% CC BY-NC-ND; the text corpus is fine, the recordings are not.
+- **Meta MMS-TTS** -- weights CC-BY-NC 4.0, which blocks build-time use too.
+- **Coqui XTTS-v2** -- CPML licenses model and outputs non-commercially, and the company is gone.
+- **eSpeak NG / piper1-gpl / sherpa-onnx v1.x** -- GPL-3.0 or statically linking it;
+  fatal for a closed App Store binary.
+- **Piper `sw_CD-lanfrica`** -- finetuned from research-only voice data.
+- **OPUS OpenSubtitles** -- no explicit license at all.
 
 ## 6. Open items for the owner
 
-1. **BY-SA §2(a)(5)(B) versus App Store DRM — the pre-submission gate.**
-   The license forbids applying "Effective Technological Measures" to the shared material,
+1. **BY-SA section 2(a)(5)(B) versus App Store DRM -- the pre-submission gate.**
+   The license forbids "Effective Technological Measures" on the shared material,
    and every App Store binary is FairPlay-encrypted;
-   2094 of the 3597 files are BY-SA — all 467 sw, all 580 de, 33 of 524 uk, 366 of 498 es,
-   239 of 451 it, 30 of 518 fr, 379 of 559 eo.
-   Attribution, the other obligation, is already covered (§2).
+   2094 of the 3597 files are BY-SA.
    **Mitigation on record:** additionally publish the same recordings at a public un-DRM'd URL
-   under the same licenses, in **separate per-language files** —
-   the `catalog/audio/<lang>/` split already prepares exactly that shape.
-   This needs a legal read before the first submission, not an engineering one.
+   under the same licenses, in **separate per-language files** --
+   the `catalog/audio/<lang>/` split already prepares that shape.
+   This needs a legal read before the first submission.
 2. **The es accent caveat.**
-   The catalog and the alphabet file are authored in Peninsular Spanish (distinción),
-   and the pack **does not claim to match it**: Commons states a license, a speaker and a recorder per file
-   and no country or variety, so nothing about accent is asserted anywhere.
-   Read each es file as "a native speaker says this word".
-   The consequence is audible where the two meet — an es-MX voice speaks /s/ where the alphabet's c and z rows
-   promise /θ/ — which is a content decision tracked in `../catalog/backlog.md`, not a license one.
+   The catalog is authored in Peninsular Spanish (distincion);
+   the pack does not claim to match it.
+   Commons states a license, a speaker and a recorder per file and no country or variety.
+   The consequence is audible where the two meet --
+   an es-MX voice speaks /s/ where the alphabet's c and z rows promise /theta/.
+   Tracked in `../catalog/backlog.md`.
 3. **Azure S0 terms, if the gaps are ever filled by synthesis.**
    Azure AI Speech is the only provider covering every target language including native `sw-KE`
-   with an express commercial grant to the output (~$1–4 for the whole catalog, one-off).
-   Conditions if it is ever used: the **paid S0 tier only** (F0 carries no commercial grant),
-   archive the dated Product Terms with the release, and disclose synthetic voices in-app.
-   Google Cloud TTS would additionally need counsel on Service Terms §20(d),
-   which bars generative-AI services in products likely accessed by under-18s — a learning app.
+   with an express commercial grant (~$1-4 for the whole catalog, one-off).
+   Conditions: the **paid S0 tier only** (F0 carries no commercial grant),
+   archive the dated Product Terms with the release,
+   and disclose synthetic voices in-app.
+   Google Cloud TTS would additionally need counsel on Service Terms section 20(d),
+   which bars generative-AI services in products likely accessed by under-18s.
 
 Coverage gaps, install size and the index's missing peak term are engineering debts,
-filed in `../catalog/backlog.md` and `backlog.md` rather than here.
+filed in `../catalog/backlog.md` and `backlog.md`.
