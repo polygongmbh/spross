@@ -205,9 +205,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Verification gaps
 
-- `CatalogAudioLintTest` and `CatalogAudioFixtureTest` are both past the ~300-line budget
-  and split cleanly: provenance/attribution rules apart from the playback
-  index and the naming rules, lookup apart from parse in the fixture half.
 - Real hardware still has to answer three things about the Android player
   (`android/.../audio/Pronouncer.kt`): how the boost and lead skip sound, one letter-drill run
   end to end, and whether `MODIFY_AUDIO_SETTINGS` is needed for a session-scoped effect.

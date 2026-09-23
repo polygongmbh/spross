@@ -6,7 +6,7 @@
     scripts/audio-coverage.py --credits     # who spoke what, under which license, per pack
     scripts/audio-coverage.py --check       # exit 1 if a manifest names an untracked file
 
-`--check` is the one a gate wants. `CatalogAudioLintTest.everyAudioFileShipsAndIsReferencedExactlyOnce`
+`--check` is the one a gate wants. `CatalogAudioProvenanceTest.everyAudioFileShipsAndIsReferencedExactlyOnce`
 walks the WORKING TREE, so a recording that was fetched but never `git add`ed looks exactly
 like one that ships — the manifests once named 517 files that existed on one machine and in
 no checkout, and nothing caught it. Reading `git ls-files` is the only way to tell.

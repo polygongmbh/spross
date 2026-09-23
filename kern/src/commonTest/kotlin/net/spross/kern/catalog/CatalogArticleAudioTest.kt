@@ -7,8 +7,7 @@ import kotlin.test.assertNull
 /**
  * Recordings that speak the card's ARTICLE — which one answers, and which card may hear it.
  *
- * A sibling of [CatalogAudioFixtureTest] rather than more of it: that file already carries
- * the parse, index and credit rules to its line budget, and this is one rule of its own —
+ * A sibling of [CatalogAudioLookupTest] rather than more of it: this is one rule of its own —
  * the target side hears "der Kellner", every other caller hears what it always did.
  */
 class CatalogArticleAudioTest {

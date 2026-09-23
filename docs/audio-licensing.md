@@ -84,7 +84,7 @@ Per-pack share-alike status:
   A group expands to its recordings, each linking `File:<source>` on Commons.
   BY and BY-SA groups are separate rows by construction.
 - **The untouched-transcode gate is a test.**
-  `CatalogAudioLintTest.audioFilesMatchTheirManifestHashes` re-hashes every committed mp3
+  `CatalogAudioProvenanceTest.audioFilesMatchTheirManifestHashes` re-hashes every committed mp3
   against its manifest entry.
   Re-encoding (loudness normalization included) would be an adaptation under BY-SA,
   so the gate keeps the packs' loudness differences a playback problem (section 3)

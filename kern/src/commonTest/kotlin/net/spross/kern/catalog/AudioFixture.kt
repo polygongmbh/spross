@@ -3,7 +3,7 @@ package net.spross.kern.catalog
 /**
  * Audio manifests over the [Fixture] catalog — one per declared language except `en`,
  * which stays recording-less so "no manifest at all" keeps its coverage. Synthetic
- * values, pinned by `CatalogAudioFixtureTest`; between them the entries carry every
+ * values, pinned by `CatalogAudioParseTest` and `CatalogAudioLookupTest`; between them the entries carry every
  * reachability class of `kern/docs/audio.md` (exact, caseless, NFD/NFC, edge punctuation, stem
  * dash) plus both collision shapes.
  *

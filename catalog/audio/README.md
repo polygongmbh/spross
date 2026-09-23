@@ -167,7 +167,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   earlier sweep removed. A floor per file would be dishonest: some words have nothing
   cleaner on Commons, so the rule is on the median and the size of the bad tail.
 
-Lint (`CatalogAudioLintTest`) holds the rest: every entry names a slug its language
+Lint (`CatalogAudioLintTest`, `CatalogAudioProvenanceTest`) holds the rest: every entry names a slug its language
 realizes and a form some card can show, no two entries claim one spoken form with
 different bytes, every file ships and is referenced exactly once, every `authors` and
 `licenses` row is used, and no author is a placeholder like "Own work" — BY and BY-SA

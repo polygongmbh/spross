@@ -58,7 +58,7 @@ Ready work comes first, then the items that end in a question for the owner, the
   is in `es-notes.md`), and the 33 uk letter clips (`catalog/audio/uk/manifest.json` `letters`,
   incl. ʼ) never heard against the names the file speaks, where a clip that says something else
   changes the `name` FIELD, never the audio (no lint pins a letter clip to its name by design,
-  `CatalogAudioLintTest.kt:187`) — and es's two scope calls are the owner's: do the en-only
+  `CatalogAudioProvenanceTest.audioEntryFieldsAreWellFormed`) — and es's two scope calls are the owner's: do the en-only
   vowel rows i/e/u (Q13) stay, and does a written-accent row (Q14) belong in an alphabet file?
 - `food` holds 47 concepts and `desk` and `admin` 41 each, all past the ~40 line
   (`catalog/areas/README.md` § which area a concept lives in), and `food`'s seam is raw
