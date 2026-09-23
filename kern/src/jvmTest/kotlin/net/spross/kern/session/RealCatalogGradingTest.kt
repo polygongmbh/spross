@@ -78,6 +78,9 @@ class RealCatalogGradingTest {
         val sugar = cards.first { it.id == "sugar" }
         assertEquals(Match.Exact, normalizer.evaluate("sucre", sugar))
         assertEquals(Match.Exact, normalizer.evaluate("le sucre", sugar))
+        // An accepted word of the other gender carries its own article.
+        val vaccination = cards.first { it.id == "vaccination" }
+        assertEquals(Match.Exact, normalizer.evaluate("le vaccin", vaccination))
     }
 
     /** The named pair, end to end on the shipping catalog. */

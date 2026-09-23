@@ -274,6 +274,16 @@ class AnswerNormalizerTests {
         assertEquals(Match.Typo("acqua"), it.evaluate("la acqua", water))
     }
 
+    /** An `accepts` entry authored with its own article is read back against that article, not the card's. */
+    @Test
+    fun anAcceptedFormsOwnArticleBindsIt() {
+        val vaccination = card("fr", "vaccination", grammar = mapOf("gender" to "la"), accepts = listOf("le vaccin"))
+        assertEquals(Match.Exact, fr.evaluate("le vaccin", vaccination))
+        assertEquals(Match.Exact, fr.evaluate("vaccin", vaccination))
+        assertEquals(Match.Typo("le vaccin"), fr.evaluate("la vaccin", vaccination))
+        assertEquals(Match.Exact, fr.evaluate("la vaccination", vaccination))
+    }
+
     @Test
     fun baseWordOnFeminineCardGradesAsTypoWithFeminineCorrection() {
         val waiterF = joined(swToDe, "waiter-f") // ♀-marker join; base target "Kellner"

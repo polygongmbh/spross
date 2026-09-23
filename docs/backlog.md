@@ -205,12 +205,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Verification gaps
 
-- A fully correct typed answer carrying a matched synonym's own article demotes Exact→Typo
-  because `AnswerNormalizer.evaluate` reads the leading article back against the card's single
-  `grammar.gender` instead of the accepted form it actually matched
-  (`kern/.../session/AnswerNormalizer.kt`), and Italian promotes many cross-article synonyms
-  (la vaccinazione on il vaccino, il farmaco on la medicina, il salario on lo stipendio), so
-  the reveal teaches forms the grader then punishes.
 - `CatalogAudioLintTest` and `CatalogAudioFixtureTest` are both past the ~300-line budget
   and split cleanly: provenance/attribution rules apart from the playback
   index and the naming rules, lookup apart from parse in the fixture half.

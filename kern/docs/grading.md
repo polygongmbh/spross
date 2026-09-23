@@ -16,6 +16,7 @@ Leniency is safe to the extent the catalog can disprove it — that rule is the 
   the same way, space-preserving — en `"to "`) optional on both sides → Damerau-Levenshtein
   typo budget → article-mismatch-demotes-to-typo only when the expected
   answer's grammar carries `gender` AND the form matched is the text or an `accepts` entry —
+  an `accepts` entry authored with its own article is read back against that article,
   a `teaches` entry is another word whose article the catalog does not carry;
   a leading word that reads as a **mistyped article**
   and, once dropped, makes the rest match is a typo.

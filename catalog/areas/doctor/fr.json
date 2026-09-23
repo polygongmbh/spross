@@ -74,7 +74,7 @@
   "dentist": { "text": "dentiste", "accepts": ["chirurgien-dentiste"], "grammar": { "gender": "le" } },
   "vaccination": {
    "text": "vaccination",
-   "accepts": ["vaccin"],
+   "accepts": ["le vaccin"],
    "grammar": { "gender": "la" },
    "notes": { "fr": "la vaccination est l'acte, le vaccin le produit : se faire vacciner." }
   },

@@ -166,7 +166,8 @@ class AnswerNormalizer(
      * Grade [input] against every accepted target form. Verb-prefix leniency applies
      * iff `kind == verb`; the article-mismatch demotion applies iff the target's
      * grammar carries `gender` and the form matched is the text or an `accepts` entry (a PRESENT
-     * leading article that disagrees is a typo, a missing one stays exact) — a `teaches` entry
+     * leading article that disagrees is a typo, a missing one stays exact; an `accepts` entry
+     * authored with its own article is read back against that one) — a `teaches` entry
      * is another word whose article the catalog does not carry, so its own article
      * never demotes. A leading word that reads as a mistyped article
      * and, once dropped, makes the rest match is a typo, not a failure — in vocab
@@ -234,9 +235,10 @@ class AnswerNormalizer(
             }
         }
 
-        if (best == Match.Exact && expectedArticle != null && bestForm in genderedForms) {
+        val formArticle = bestForm?.let(::leadingArticle) ?: expectedArticle
+        if (best == Match.Exact && formArticle != null && bestForm in genderedForms) {
             val typed = leadingArticle(input)
-            if (typed != null && typed != expectedArticle) {
+            if (typed != null && typed != formArticle) {
                 best = Match.Typo(corrected = bestForm ?: normalizedInput)
             }
         }

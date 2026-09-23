@@ -244,6 +244,8 @@ Realization fields — only `text` is required:
   That is not decoration: grading reads it back as an article and demotes an
   otherwise exact answer whose PRESENT leading article disagrees, so a singular
   article on a plural-only noun would mark the one right answer a typo.
+  An `accepts` entry of another gender carries its own article
+  (fr `le vaccin` on la vaccination), and grading reads that one back instead.
   Omit `gender` where the language allows both and neither is taught
   (es `internet`, which RAE writes without an article).
   `plural` is a bare full form (`"Wörter"`), a suffix (`"-n"`, `"-nen"`),
