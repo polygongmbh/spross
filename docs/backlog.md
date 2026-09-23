@@ -11,9 +11,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Engine & scheduling
 
-- `<pack>.cardinal(-n)` returns the digits rather than a reading — the negative reading lives
-  in `formReading` deliberately, so nothing needs it today, but a caller that assumes
-  `cardinal` covers every `Long` gets a digit string back with no error.
 - kern's audibility test is "the catalog names a recording path OR a voice
   exists", never whether the file resolves in the bundle, so on a voiceless language a row
   or dictation candidate whose authored recording is missing ships promptable with a dead

@@ -61,7 +61,7 @@ internal object UkrainianNumbers {
     }
 
     private fun compose(n: Long, feminineUnits: Boolean): String {
-        if (n < 0) return n.toString()
+        require(n >= 0) { "a negative is read by formReading, never by the cardinal: $n" }
         if (n == 0L) return "нуль"
         if (n < 1000) return subThousand(n.toInt(), feminineUnits).joinToString(" ")
         if (n / 1_000_000_000 > 9) return n.toString()

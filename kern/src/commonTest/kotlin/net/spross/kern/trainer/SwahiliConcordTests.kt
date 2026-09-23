@@ -115,7 +115,7 @@ class SwahiliConcordTests {
      */
     @Test
     fun readingsPastTheSourcedCeilingAreLeftPlain() {
-        for (n in listOf(0L, -4L, 10_014L, 1_000_000L)) {
+        for (n in listOf(0L, 10_014L, 1_000_000L)) {
             assertEquals(SwahiliNumbers.cardinal(n), kiVi(n))
             assertEquals(SwahiliNumbers.cardinal(n), jiMa(n))
         }

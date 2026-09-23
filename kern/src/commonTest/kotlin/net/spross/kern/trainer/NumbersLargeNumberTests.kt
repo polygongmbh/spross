@@ -2,6 +2,7 @@ package net.spross.kern.trainer
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 /**
@@ -111,12 +112,19 @@ class NumbersLargeNumberTests {
         }
     }
 
-    /** Below zero and past the ceiling every generator hands back the digits, never a throw. */
+    /** Past the ceiling every generator hands back the digits, never a throw. */
     @Test
-    fun outOfRangeValuesFallBackToDigits() {
+    fun valuesPastTheCeilingFallBackToDigits() {
         for (lang in Numbers.languages) {
-            assertEquals("-7", Numbers.pack(lang).number(-7).first(), lang)
             assertEquals("10000000000", Numbers.pack(lang).number(10_000_000_000).first(), lang)
+        }
+    }
+
+    /** A negative has one reading, the Forms one; the cardinal refuses it rather than answer in digits. */
+    @Test
+    fun theCardinalRefusesANegative() {
+        for (lang in Numbers.languages) {
+            assertFailsWith<IllegalArgumentException>(lang) { Numbers.pack(lang).number(-7) }
         }
     }
 }

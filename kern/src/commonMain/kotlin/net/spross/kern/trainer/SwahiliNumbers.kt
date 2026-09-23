@@ -7,7 +7,7 @@ internal object SwahiliNumbers {
 
     /** 0..9_999_999_999; values outside fall back to digits. */
     fun cardinal(n: Long): String {
-        if (n < 0) return n.toString()
+        require(n >= 0) { "a negative is read by formReading, never by the cardinal: $n" }
         if (n == 0L) return "sifuri"
         if (n < 10) return ones[n.toInt()]
         if (n == 10L) return "kumi"

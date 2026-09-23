@@ -56,7 +56,7 @@ internal object EsperantoNumbers {
         readings.flatMap { listOf(it, it.replace("ŭ", "ux")) }.distinct()
 
     private fun compose(n: Long): String {
-        if (n < 0) return n.toString()
+        require(n >= 0) { "a negative is read by formReading, never by the cardinal: $n" }
         if (n == 0L) return "nulo"
         if (n / 1_000_000_000 > 9) return n.toString()
         val words = mutableListOf<String>()

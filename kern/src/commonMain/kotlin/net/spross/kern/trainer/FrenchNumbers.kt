@@ -61,7 +61,8 @@ internal object FrenchNumbers {
     }
 
     private fun spellings(n: Long, feminine: Boolean): List<String> {
-        if (n < 0 || n / 1_000_000_000 > 9) return listOf(n.toString())
+        require(n >= 0) { "a negative is read by formReading, never by the cardinal: $n" }
+        if (n / 1_000_000_000 > 9) return listOf(n.toString())
         val out = mutableListOf<String>()
         for (style in Tens.entries) {
             val groups = groups(n, style, feminine)
