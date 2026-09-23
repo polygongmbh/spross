@@ -11,10 +11,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## Engine & scheduling
 
-- kern's audibility test is "the catalog names a recording path OR a voice
-  exists", never whether the file resolves in the bundle, so on a voiceless language a row
-  or dictation candidate whose authored recording is missing ships promptable with a dead
-  speaker (`kern/.../trainer/LetterDrillAvailability.kt`).
 - The letter drill's dictation Sprosse is dealt on a device silenced by its own volume slider
   and has no "can't listen right now?" of its own (`LetterDrillAvailability.report` takes only
   `hasVoice`; `AudioSession.silenced` exists but is unread there), where
