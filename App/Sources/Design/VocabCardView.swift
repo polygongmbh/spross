@@ -309,11 +309,7 @@ struct VocabCardView: View {
 struct FeminineBadge: View {
     var body: some View {
         Text(verbatim: "♀")
-            .font(Theme.typography.badge)
-            .foregroundStyle(Theme.colors.die)
-            .padding(.horizontal, Theme.spacing.sm)
-            .padding(.vertical, Theme.spacing.xs)
-            .background(Theme.colors.die.opacity(0.14), in: Capsule())
+            .pill(Theme.colors.die)
             .accessibilityLabel("a11y.glyph.feminineForm")
     }
 }

@@ -90,8 +90,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 - iOS drops what a scramble run earns: `TrainerHubView` builds both without an `onFinish`, so
   the no-op eats the `DrillRunSummary` where Android lands it on Home (`model.finishDrill`).
-- iOS's `FeminineBadge` is cut smaller than Android's, which composes it from the shared `Pill`;
-  iOS now has `pill(_:)` to compose from.
 - iOS prefixes each authored note with "·" where Android does not.
 - The letter-drill body is spaced `md` on iOS against `lg` on Android.
 - `App/Sources/Design/Theme.swift` is 388 lines, past the ~300 guide, and its shared-modifiers
