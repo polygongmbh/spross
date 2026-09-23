@@ -2,14 +2,18 @@
   "authors": {
     "AdrianAbdulBaha": "CC BY-SA 4.0",
     "Akhram": "CC0",
+    "Akrit0mythos": "CC0",
     "Alejandra": "CC0",
     "Anonymât": "CC BY-SA 4.0",
     "Arca~commonswiki": "CC BY-SA 3.0",
     "CaroEspinoza": "CC0",
     "Eavqwiki": "CC BY-SA 4.0",
+    "Elxavovel": "CC BY 4.0",
     "Emanuelps27": "CC BY 4.0",
     "Enohecruzl79": "CC BY 4.0",
+    "Fibonacci": "CC BY-SA 2.5",
     "GlyphEnjoyer": "CC0",
+    "Ivanhercaz": "CC BY-SA 4.0",
     "Julie Samothrace": "CC BY-SA 4.0",
     "Marreromarco": "CC BY-SA 4.0",
     "Mentxuwiki": "CC0",
@@ -22,7 +26,9 @@
     "Rubýñ": "CC0",
     "Sinaloa": "CC0",
     "Susana Freixeiro": "Public domain",
-    "Wikipedian-walker": "CC0"
+    "Tino_no": "CC BY-SA 4.0",
+    "Wikipedian-walker": "CC0",
+    "unjourparfait": "Public domain"
   },
   "calendar": {
     "abril": {
@@ -1090,6 +1096,7 @@
   },
   "licenses": {
     "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/",
+    "CC BY-SA 2.5": "https://creativecommons.org/licenses/by-sa/2.5/",
     "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
     "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
@@ -1149,6 +1156,28 @@
       "sha256": "4d7e3f738f91b9bb3c155b19d96ffc50dbc9c7df4ee65c4131560d87d2a9096e",
       "snr": 55.4,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-dirección.wav"
+    },
+    "adjective": {
+      "author": "AdrianAbdulBaha",
+      "file": "adjective.mp3",
+      "gain": 5.2,
+      "gainPhone": -0.6,
+      "lead": 228,
+      "matches": "adjetivo",
+      "sha256": "1746437c88f46dd97da6e0d89e984a0207008def64e2e86e9740e891efd76fb0",
+      "snr": 57.0,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-adjetivo.wav"
+    },
+    "affix": {
+      "author": "Marreromarco",
+      "file": "affix.mp3",
+      "gain": 3.8,
+      "gainPhone": -1.4,
+      "lead": 266,
+      "matches": "afijo",
+      "sha256": "c665dab6b57a3f0a751f0372fb34f51b26066b0c9ffb1a438513538c6fa735f0",
+      "snr": 53.3,
+      "source": "LL-Q1321 (spa)-Marreromarco-afijo.wav"
     },
     "aggressive": {
       "author": "Marreromarco",
@@ -1216,6 +1245,17 @@
       "snr": 59.4,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-alergia.wav"
     },
+    "almost": {
+      "author": "Precision27",
+      "file": "almost.mp3",
+      "gain": 1.8,
+      "gainPhone": -4.8,
+      "lead": 193,
+      "matches": "casi",
+      "sha256": "7b3a7d92f2d7dd8d7fa596ec45ad4625032481e541edd802cbccc2c9adae15af",
+      "snr": 71.3,
+      "source": "LL-Q1321 (spa)-Precision27-casi.wav"
+    },
     "also": {
       "author": "Precision27",
       "file": "also.mp3",
@@ -1226,6 +1266,17 @@
       "sha256": "15cefb9cdfd3d5f863aa621873f435fd8ca665fa87620b042b6b40f61f21d31a",
       "snr": 82.6,
       "source": "LL-Q1321 (spa)-Precision27-también.wav"
+    },
+    "although": {
+      "author": "Precision27",
+      "file": "although.mp3",
+      "gain": -0.1,
+      "gainPhone": -7.4,
+      "lead": 185,
+      "matches": "aunque",
+      "sha256": "2688f79a6af145d09596d1def8ece96c872023c4fe6e047b667979f7da28dfa5",
+      "snr": 76.1,
+      "source": "LL-Q1321 (spa)-Precision27-aunque.wav"
     },
     "always": {
       "author": "GlyphEnjoyer",
@@ -1291,6 +1342,17 @@
       "sha256": "d08fb8d8dcbf4cecab30bd45f2c4792e4d0298cd9e5ac254d24be945182808ad",
       "snr": 56.0,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-respuesta.wav"
+    },
+    "anyone": {
+      "author": "Eavqwiki",
+      "file": "anyone.mp3",
+      "gain": 2.0,
+      "gainPhone": 6.2,
+      "lead": 222,
+      "matches": "cualquiera",
+      "sha256": "3454c61fdae621283a1e27a49f303d118c8896b7fd5d67314b9721b63dda440d",
+      "snr": 62.3,
+      "source": "LL-Q1321 (spa)-Eavqwiki-cualquiera.wav"
     },
     "appendix": {
       "author": "Marreromarco",
@@ -1368,6 +1430,16 @@
       "sha256": "dad1cb363c23cd1d66a67590ffda60238e6938362443bea5374c3c6c5973b761",
       "snr": 55.9,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-tía.wav"
+    },
+    "available": {
+      "author": "Octavio Paniagua-Taboada (Mexico)",
+      "file": "available.mp3",
+      "gain": -1.8,
+      "gainPhone": -4.2,
+      "matches": "disponible",
+      "sha256": "2540782eb1954a476dc99fc8a1fe2290041da1b1c1135a592da19af88c34714e",
+      "snr": 35.6,
+      "source": "Es-disponible.ogg"
     },
     "baby": {
       "author": "AdrianAbdulBaha",
@@ -1491,6 +1563,28 @@
       "snr": 61.6,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-playa.wav"
     },
+    "bean": {
+      "author": "Millars",
+      "capPhone": 2.2,
+      "file": "bean.mp3",
+      "gain": 2.2,
+      "gainPhone": 7.1,
+      "lead": 229,
+      "matches": "frijol",
+      "sha256": "04b6765657139c496cdf17976efb854fd4fed536f6c17e04c84c9ff90ecb84c0",
+      "source": "LL-Q1321 (spa)-Millars-frijol.wav"
+    },
+    "beautiful": {
+      "author": "AdrianAbdulBaha",
+      "file": "beautiful.mp3",
+      "gain": 1.1,
+      "gainPhone": 0.8,
+      "lead": 228,
+      "matches": "hermoso",
+      "sha256": "3d7b42eb86410db5374f4504417c904fc0ef5395a51dd5a03da513fd58f94b49",
+      "snr": 51.2,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-hermoso.wav"
+    },
     "because": {
       "author": "Precision27",
       "file": "because.mp3",
@@ -1611,6 +1705,17 @@
       "snr": 77.0,
       "source": "LL-Q1321 (spa)-Sinaloa-pájaro.wav"
     },
+    "birth": {
+      "author": "AdrianAbdulBaha",
+      "file": "birth.mp3",
+      "gain": 5.5,
+      "gainPhone": -0.6,
+      "lead": 216,
+      "matches": "nacimiento",
+      "sha256": "11a174957b0d8ef551e45806f75d5b3a10e1244d99274fcbee54c419460dbab0",
+      "snr": 46.4,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-nacimiento.wav"
+    },
     "birthday": {
       "author": "AdrianAbdulBaha",
       "file": "birthday.mp3",
@@ -1687,6 +1792,17 @@
       "sha256": "6b2a26d400e927ebb03fda4bcd44403cefc734632e61fc62ffa5e85a1ba2358e",
       "snr": 51.4,
       "source": "LL-Q1321 (spa)-Marreromarco-pizarra.wav"
+    },
+    "boat": {
+      "author": "AdrianAbdulBaha",
+      "file": "boat.mp3",
+      "gain": 7.0,
+      "gainPhone": 7.4,
+      "lead": 143,
+      "matches": "bote",
+      "sha256": "325eb76fd20d64d0e417a1168a3f7f351089f2df329aa9715140a558af0cb0ea",
+      "snr": 58.0,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bote.wav"
     },
     "bone": {
       "author": "Rodelar",
@@ -1909,6 +2025,18 @@
       "snr": 57.7,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-mantequilla.wav"
     },
+    "cabbage": {
+      "author": "Millars",
+      "capPhone": 4.0,
+      "file": "cabbage.mp3",
+      "gain": 1.7,
+      "gainPhone": 6.4,
+      "lead": 221,
+      "matches": "col",
+      "sha256": "49b8cca3936cc648bc2b76a1a0fc3073a25fcce36c9b67d1c0e2bd24fd6736ac",
+      "snr": 147.3,
+      "source": "LL-Q1321 (spa)-Millars-col.wav"
+    },
     "cable": {
       "author": "Marreromarco",
       "file": "cable.mp3",
@@ -1952,6 +2080,27 @@
       "sha256": "37158b87ea57cbbbe8107b8799d3c997b8d0fe6be605871a20fdc7a7f6707616",
       "snr": 50.7,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-alfombra.wav"
+    },
+    "carrot": {
+      "author": "Millars",
+      "file": "carrot.mp3",
+      "gain": 0.8,
+      "gainPhone": 4.3,
+      "lead": 258,
+      "matches": "zanahoria",
+      "sha256": "b79edfdb7697ad8cb1205ce135f061e2509fa3d6a3747b9ebea825f37254ddf6",
+      "source": "LL-Q1321 (spa)-Millars-zanahoria.wav"
+    },
+    "case": {
+      "author": "Precision27",
+      "file": "case.mp3",
+      "gain": 0.2,
+      "gainPhone": -8.4,
+      "lead": 195,
+      "matches": "caso",
+      "sha256": "fb4e5b42cf48b97c1cf1e6384417604961837b1b120c3521e92ee3a6c24634a5",
+      "snr": 75.5,
+      "source": "LL-Q1321 (spa)-Precision27-caso.wav"
     },
     "case-worker": {
       "author": "Marreromarco",
@@ -2007,6 +2156,40 @@
       "sha256": "a11e7e8ae60e604b5752e44c35ea423cf400107c5c0195e657c9ad14fbc0d15c",
       "snr": 42.5,
       "source": "LL-Q1321 (spa)-Marreromarco-cuidado.wav"
+    },
+    "celebration": {
+      "author": "AdrianAbdulBaha",
+      "file": "celebration.mp3",
+      "gain": 2.4,
+      "gainPhone": -0.6,
+      "lead": 100,
+      "matches": "fiesta",
+      "sha256": "4208a9caa71ac8694894992e7fa61e269dc87c61c37e18ce8b1359260b3a1584",
+      "snr": 46.2,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-fiesta.wav"
+    },
+    "center": {
+      "author": "Rachlel",
+      "capPhone": 0.6,
+      "file": "center.mp3",
+      "gain": 4.9,
+      "gainPhone": 8.5,
+      "lead": 121,
+      "matches": "centro",
+      "sha256": "587fa06e8fc25fcd5248bbe13ff29213198242729579429afabd6851d4131e87",
+      "snr": 56.5,
+      "source": "LL-Q1321 (spa)-Rachlel-centro.wav"
+    },
+    "century": {
+      "author": "GlyphEnjoyer",
+      "file": "century.mp3",
+      "gain": 8.2,
+      "gainPhone": -0.2,
+      "lead": 183,
+      "matches": "siglo",
+      "sha256": "a6364a293ae88c1fca40cc94d500986553792ccb5278ed4f8f0bc8e34dd60587",
+      "snr": 57.5,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-siglo.wav"
     },
     "certificate": {
       "author": "Marreromarco",
@@ -2215,6 +2398,17 @@
       "sha256": "a7c73d2ddd00707070cedb0552899ba0564854ed3e01cc97b8764c03e60d2e95",
       "source": "LL-Q1321 (spa)-Rodelar-nube.wav"
     },
+    "coast": {
+      "author": "AdrianAbdulBaha",
+      "file": "coast.mp3",
+      "gain": 1.1,
+      "gainPhone": 3.9,
+      "lead": 207,
+      "matches": "costa",
+      "sha256": "27c71ec1e8ad969346d137e07c568d39a822ac5525a587b754539ce4fbabb625",
+      "snr": 52.3,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-costa.wav"
+    },
     "coat": {
       "author": "AdrianAbdulBaha",
       "file": "coat.mp3",
@@ -2314,6 +2508,17 @@
       "snr": 46.2,
       "source": "LL-Q1321 (spa)-Marreromarco-completamente.wav"
     },
+    "conjugation": {
+      "author": "Marreromarco",
+      "file": "conjugation.mp3",
+      "gain": 0.7,
+      "gainPhone": 0.8,
+      "lead": 162,
+      "matches": "conjugación",
+      "sha256": "48f3a38bfa90e440ac609997a6421594ac0ae27a21bd0ad62d300766f58b8760",
+      "snr": 51.5,
+      "source": "LL-Q1321 (spa)-Marreromarco-conjugación.wav"
+    },
     "contract": {
       "author": "Marreromarco",
       "file": "contract.mp3",
@@ -2366,6 +2571,17 @@
       "sha256": "f5aedb0c9e4be431e96341b3ae6c4634a0235655ca5fa8ff625cb85353ee6f8a",
       "snr": 50.4,
       "source": "LL-Q1321 (spa)-Marreromarco-curso.wav"
+    },
+    "cow": {
+      "author": "Millars",
+      "capPhone": 0.6,
+      "file": "cow.mp3",
+      "gain": 4.2,
+      "gainPhone": 8.1,
+      "lead": 167,
+      "matches": "vaca",
+      "sha256": "3fb935c0382a65a0c94f69869d30fd516f8e28bc9e99bc884e2405bb69e7205d",
+      "source": "LL-Q1321 (spa)-Millars-vaca.wav"
     },
     "cream": {
       "author": "Marreromarco",
@@ -2491,6 +2707,17 @@
       "snr": 60.9,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-muerte.wav"
     },
+    "decade": {
+      "author": "Marreromarco",
+      "file": "decade.mp3",
+      "gain": 2.2,
+      "gainPhone": 3.9,
+      "lead": 193,
+      "matches": "década",
+      "sha256": "887b8d53ed148ef80b9b67e36a252b02bba0f6c292c887321e6eb26916c020d9",
+      "snr": 51.1,
+      "source": "LL-Q1321 (spa)-Marreromarco-década.wav"
+    },
     "defensive": {
       "author": "Wikipedian-walker",
       "file": "defensive.mp3",
@@ -2555,6 +2782,16 @@
       "sha256": "b4df6a5eff30fadef1c7b8f01bb15a30ba3536e52b9a4225f61f43deb7a83961",
       "snr": 54.3,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-diferencia.wav"
+    },
+    "different": {
+      "author": "Octavio Paniagua-Taboada (Mexico)",
+      "file": "different.mp3",
+      "gain": 1.7,
+      "gainPhone": -2.6,
+      "matches": "diferente",
+      "sha256": "35e99e9a6e96ce9149ca7851196a68e19b25a39d472d558eab6f3e316595d396",
+      "snr": 37.0,
+      "source": "Es-diferente.ogg"
     },
     "difficult": {
       "author": "AdrianAbdulBaha",
@@ -2677,6 +2914,17 @@
       "snr": 75.1,
       "source": "LL-Q1321 (spa)-Sinaloa-perro.wav"
     },
+    "donkey": {
+      "author": "Millars",
+      "capPhone": 4.6,
+      "file": "donkey.mp3",
+      "gain": 2.7,
+      "gainPhone": 7.6,
+      "lead": 160,
+      "matches": "burro",
+      "sha256": "1ad61b774cc013a85d35aadc61b20e59805740cd055e844059ee0ee875d18656",
+      "source": "LL-Q1321 (spa)-Millars-burro.wav"
+    },
     "door": {
       "author": "AdrianAbdulBaha",
       "file": "door.mp3",
@@ -2698,6 +2946,17 @@
       "sha256": "007ff89495e07a342008d5f3f35fa877597aebed6f0af1a4d6bb220995992604",
       "snr": 47.0,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-timbre.wav"
+    },
+    "doubt": {
+      "author": "GlyphEnjoyer",
+      "file": "doubt.mp3",
+      "gain": 12.9,
+      "gainPhone": 13.7,
+      "lead": 182,
+      "matches": "duda",
+      "sha256": "36ccbf4331546eabc760a54f78e171cc5dafb06e2b4c73f826859d6473ea9d4e",
+      "snr": 52.7,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-duda.wav"
     },
     "down": {
       "author": "AdrianAbdulBaha",
@@ -2810,6 +3069,17 @@
       "snr": 54.3,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-elección.wav"
     },
+    "elephant": {
+      "author": "AdrianAbdulBaha",
+      "file": "elephant.mp3",
+      "gain": 4.6,
+      "gainPhone": -0.5,
+      "lead": 193,
+      "matches": "elefante",
+      "sha256": "437f1353c5dda56fd04c9c418ba226f1f80e1a9d4da8fd48f32eb59b00aa4a23",
+      "snr": 56.4,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-elefante.wav"
+    },
     "emergency": {
       "author": "AdrianAbdulBaha",
       "file": "emergency.mp3",
@@ -2864,6 +3134,27 @@
       "snr": 51.6,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-entrada.wav"
     },
+    "equality": {
+      "author": "Marreromarco",
+      "file": "equality.mp3",
+      "gain": 0.7,
+      "gainPhone": 5.5,
+      "lead": 236,
+      "matches": "igualdad",
+      "sha256": "bfa79a1de2b5db04cc4de5688ce2376da8b1cce6c8275bc7b6884de284576e64",
+      "snr": 51.9,
+      "source": "LL-Q1321 (spa)-Marreromarco-igualdad.wav"
+    },
+    "even": {
+      "author": "GlyphEnjoyer",
+      "file": "even.mp3",
+      "gain": 9.8,
+      "gainPhone": 2.2,
+      "matches": "incluso",
+      "sha256": "6a54e42e074eefad1c2b6952768d398c834a84df8224058d7ceb32892bd1fede",
+      "snr": 50.5,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-incluso.wav"
+    },
     "evening": {
       "author": "AdrianAbdulBaha",
       "file": "evening.mp3",
@@ -2886,6 +3177,17 @@
       "snr": 56.3,
       "source": "LL-Q1321 (spa)-Precision27-cada.wav"
     },
+    "everything": {
+      "author": "Sinaloa",
+      "file": "everything.mp3",
+      "gain": 7.1,
+      "gainPhone": 5.4,
+      "lead": 188,
+      "matches": "todo",
+      "sha256": "c0a86efe3702dce21973b1852211ad802e3ef8ae749ee70b4c8f59634d0cc0d9",
+      "snr": 74.7,
+      "source": "LL-Q1321 (spa)-Sinaloa-todo.wav"
+    },
     "exam": {
       "author": "Marreromarco",
       "file": "exam.mp3",
@@ -2896,6 +3198,27 @@
       "sha256": "299d4ec998924c80a0d23fc98f09d462b590c84fd3147a465c418af390c84114",
       "snr": 48.3,
       "source": "LL-Q1321 (spa)-Marreromarco-examen.wav"
+    },
+    "excuse-me": {
+      "author": "Fibonacci",
+      "file": "excuse-me.mp3",
+      "gain": 6.3,
+      "gainPhone": 6.7,
+      "lead": 34,
+      "matches": "perdón",
+      "sha256": "5e2f6cb0e2a623f8b18b978b613ab8aaf29beaac3c2fae37956846352b531dbb",
+      "source": "Es-perdón.ogg"
+    },
+    "exercise": {
+      "author": "AdrianAbdulBaha",
+      "file": "exercise.mp3",
+      "gain": 6.8,
+      "gainPhone": 1.4,
+      "lead": 199,
+      "matches": "ejercicio",
+      "sha256": "2c57611f27a4776961fafa073a396dc5f5527731678f26993b2bdb2395542e6e",
+      "snr": 55.1,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ejercicio.wav"
     },
     "exercise-book": {
       "author": "AdrianAbdulBaha",
@@ -3052,6 +3375,17 @@
       "snr": 51.3,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-fiebre.wav"
     },
+    "few": {
+      "author": "Rodelar",
+      "capPhone": 0.6,
+      "file": "few.mp3",
+      "gain": -0.8,
+      "gainPhone": 3.4,
+      "lead": 214,
+      "matches": "pocos",
+      "sha256": "599506a7dd1d1e2c60c560dffd83997bb01916895d3891d3ce9c8ddff6a584cd",
+      "source": "LL-Q1321 (spa)-Rodelar-pocos.wav"
+    },
     "fine": {
       "author": "AdrianAbdulBaha",
       "file": "fine.mp3",
@@ -3073,6 +3407,17 @@
       "sha256": "7ed87c9ea583ff2895f5bf626dde7f980591c26190dd83f5d748a6111d5a58d0",
       "snr": 54.1,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-dedo.wav"
+    },
+    "firm": {
+      "author": "Marreromarco",
+      "file": "firm.mp3",
+      "gain": 4.6,
+      "gainPhone": 3.9,
+      "lead": 176,
+      "matches": "firme",
+      "sha256": "546350c47927b29a1502cbd940d5b57729957110bfc2f807b434f3e6b4d50f53",
+      "snr": 49.4,
+      "source": "LL-Q1321 (spa)-Marreromarco-firme.wav"
     },
     "first": {
       "author": "GlyphEnjoyer",
@@ -3204,6 +3549,18 @@
       "snr": 46.7,
       "source": "LL-Q1321 (spa)-Marreromarco-formulario.wav"
     },
+    "formerly": {
+      "author": "Akrit0mythos",
+      "cap": 1.0,
+      "file": "formerly.mp3",
+      "gain": 5.7,
+      "gainPhone": 5.1,
+      "lead": 176,
+      "matches": "antes",
+      "sha256": "c594976ba8298605e80ea5500907dc361e08f1fec80e6b492d35dea4544f8de8",
+      "snr": 58.1,
+      "source": "LL-Q1321 (spa)-Akrit0mythos-antes.wav"
+    },
     "free-of-charge": {
       "author": "AdrianAbdulBaha",
       "file": "free-of-charge.mp3",
@@ -3293,6 +3650,17 @@
       "snr": 72.5,
       "source": "LL-Q1321 (spa)-Sinaloa-lleno.wav"
     },
+    "future": {
+      "author": "Precision27",
+      "file": "future.mp3",
+      "gain": -1.3,
+      "gainPhone": 3.9,
+      "lead": 139,
+      "matches": "futuro",
+      "sha256": "8de11b4f0669f684d71f43071aa2d572f98f8ff285493664fbc4c2db77b83d19",
+      "snr": 83.7,
+      "source": "LL-Q1321 (spa)-Precision27-futuro.wav"
+    },
     "game": {
       "author": "GlyphEnjoyer",
       "file": "game.mp3",
@@ -3303,6 +3671,38 @@
       "sha256": "ee551920e2a38730abe6bebbfff2a69840d85731894cc383b0f0526160154a60",
       "snr": 59.7,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-juego.wav"
+    },
+    "garlic": {
+      "author": "Millars",
+      "file": "garlic.mp3",
+      "gain": 10.6,
+      "gainPhone": 8.4,
+      "lead": 242,
+      "matches": "ajo",
+      "sha256": "e6b1e1381e457390542b045dc851def05e165ee0a88335500cbde40aa115b489",
+      "source": "LL-Q1321 (spa)-Millars-ajo.wav"
+    },
+    "gas": {
+      "author": "GlyphEnjoyer",
+      "file": "gas.mp3",
+      "gain": 4.3,
+      "gainPhone": -3.4,
+      "lead": 184,
+      "matches": "gas",
+      "sha256": "f202525c3e3c71fe23fdf16e42d8fdc9153b64f324755ab5be238fd898495df2",
+      "snr": 65.7,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-gas.wav"
+    },
+    "gift": {
+      "author": "AdrianAbdulBaha",
+      "file": "gift.mp3",
+      "gain": 5.0,
+      "gainPhone": -1.5,
+      "lead": 229,
+      "matches": "regalo",
+      "sha256": "ee304240026e02d9faed7cda7e979f420a3d7b393148f6a6162e3415bd94285e",
+      "snr": 53.5,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-regalo.wav"
     },
     "girl": {
       "author": "AdrianAbdulBaha",
@@ -3360,6 +3760,17 @@
       "snr": 51.4,
       "source": "LL-Q1321 (spa)-Marreromarco-meta.wav"
     },
+    "goat": {
+      "author": "Eavqwiki",
+      "file": "goat.mp3",
+      "gain": -0.5,
+      "gainPhone": -1.0,
+      "lead": 43,
+      "matches": "cabra",
+      "sha256": "439982b904c2b62179f5c9ee3a349f807de9b24903779788b18a1617c536498c",
+      "snr": 61.3,
+      "source": "LL-Q1321 (spa)-Eavqwiki-cabra.wav"
+    },
     "good": {
       "author": "Sinaloa",
       "file": "good.mp3",
@@ -3370,6 +3781,15 @@
       "sha256": "787a25214a357d186b975aad92ffda1735f8365aadfcd111b0178adae6aa555e",
       "snr": 67.2,
       "source": "LL-Q1321 (spa)-Sinaloa-bueno.wav"
+    },
+    "goodbye": {
+      "author": "Fibonacci",
+      "file": "goodbye.mp3",
+      "gain": 0.7,
+      "gainPhone": -1.4,
+      "matches": "adiós",
+      "sha256": "d9b4335a589c2552c6139598fda3d5cb6acbe83bcbbab9c584dc63b52e9b8cc2",
+      "source": "Es-adiós.ogg"
     },
     "government": {
       "author": "Precision27",
@@ -3505,6 +3925,17 @@
       "snr": 52.0,
       "source": "LL-Q1321 (spa)-Marreromarco-gorro.wav"
     },
+    "he": {
+      "author": "GlyphEnjoyer",
+      "file": "he.mp3",
+      "gain": 11.5,
+      "gainPhone": 5.8,
+      "lead": 200,
+      "matches": "él",
+      "sha256": "cfff9fabd8ddae79f4be0ec4128d81aa3bfdc97c8a5b1366fb8acce55ac5055f",
+      "snr": 58.2,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-él.wav"
+    },
     "head": {
       "author": "GlyphEnjoyer",
       "file": "head.mp3",
@@ -3594,6 +4025,28 @@
       "sha256": "da4a3ef59fbff39a866a1540230014fb2e47890a3622b5005e997086d6e45150",
       "snr": 66.2,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-aquí.wav"
+    },
+    "his": {
+      "author": "Precision27",
+      "file": "his.mp3",
+      "gain": -3.7,
+      "gainPhone": 3.9,
+      "lead": 16,
+      "matches": "su",
+      "sha256": "2133e4d48077c04f195a626ca17b53794af6f327f65c83e7c05c06cfe364bba0",
+      "snr": 53.2,
+      "source": "LL-Q1321 (spa)-Precision27-su.wav"
+    },
+    "horse": {
+      "author": "Julie Samothrace",
+      "file": "horse.mp3",
+      "gain": -1.3,
+      "gainPhone": -6.6,
+      "lead": 207,
+      "matches": "caballo",
+      "sha256": "0cc7bff9a2acd3de1bba6aa775405f90261d21db7c8dabe7ca46c4bb2bdecd4f",
+      "snr": 53.7,
+      "source": "LL-Q1321 (spa)-Julie Samothrace-caballo.wav"
     },
     "hospital": {
       "author": "Rubýñ",
@@ -3696,6 +4149,17 @@
       "snr": 63.0,
       "source": "LL-Q1321 (spa)-Sinaloa-marido.wav"
     },
+    "i": {
+      "author": "GlyphEnjoyer",
+      "file": "i.mp3",
+      "gain": 7.0,
+      "gainPhone": -0.1,
+      "lead": 146,
+      "matches": "yo",
+      "sha256": "7fbc78cf41486dfbbd28e6a5992b20afccc495962ebb0680fd05d2e8697c623b",
+      "snr": 58.2,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-yo.wav"
+    },
     "if": {
       "author": "Precision27",
       "file": "if.mp3",
@@ -3739,6 +4203,29 @@
       "snr": 70.9,
       "source": "LL-Q1321 (spa)-Sinaloa-en.wav"
     },
+    "in-front": {
+      "author": "Marreromarco",
+      "file": "in-front.mp3",
+      "gain": 1.4,
+      "gainPhone": 7.1,
+      "lead": 237,
+      "matches": "delante",
+      "sha256": "98d243c7697d25fe836054f189b1a9a92430ee828867cb4ea09a97696dcb23eb",
+      "snr": 53.5,
+      "source": "LL-Q1321 (spa)-Marreromarco-delante.wav"
+    },
+    "insect": {
+      "author": "AdrianAbdulBaha",
+      "cap": 0.3,
+      "file": "insect.mp3",
+      "gain": 4.3,
+      "gainPhone": -3.6,
+      "lead": 278,
+      "matches": "insecto",
+      "sha256": "1c43943c8fbbff107702821099c597f567ee46028c82d5673f439a36502ede54",
+      "snr": 59.4,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-insecto.wav"
+    },
     "inside": {
       "author": "GlyphEnjoyer",
       "file": "inside.mp3",
@@ -3771,6 +4258,17 @@
       "sha256": "0c682cab6753b1bf7e0b8f4c930f20f13e19704f5c8a87fccdc388fe50f65d2b",
       "snr": 55.1,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-intestino.wav"
+    },
+    "island": {
+      "author": "GlyphEnjoyer",
+      "file": "island.mp3",
+      "gain": 4.1,
+      "gainPhone": -4.7,
+      "lead": 191,
+      "matches": "isla",
+      "sha256": "5cfafe95984f7a9c28e87285c729bc805ce58fde07172830d01cb43e5cefeb93",
+      "snr": 60.0,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-isla.wav"
     },
     "jacket": {
       "author": "AdrianAbdulBaha",
@@ -3947,6 +4445,17 @@
       "snr": 52.7,
       "source": "LL-Q1321 (spa)-Marreromarco-portátil.wav"
     },
+    "last": {
+      "author": "AdrianAbdulBaha",
+      "file": "last.mp3",
+      "gain": 5.6,
+      "gainPhone": 6.0,
+      "lead": 197,
+      "matches": "último",
+      "sha256": "4dff58e141902532754c8f34fd13a4b87a11123f34179c3497b112fa6dd36e44",
+      "snr": 55.6,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-último.wav"
+    },
     "law": {
       "author": "GlyphEnjoyer",
       "file": "law.mp3",
@@ -4068,6 +4577,17 @@
       "snr": 51.2,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-labio.wav"
     },
+    "liquid": {
+      "author": "AdrianAbdulBaha",
+      "file": "liquid.mp3",
+      "gain": 5.4,
+      "gainPhone": 3.4,
+      "lead": 177,
+      "matches": "líquido",
+      "sha256": "40618fee9f8bf00237baef41ee0dca219096a8af411fb93b946b0ebbf912a7b6",
+      "snr": 55.4,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-líquido.wav"
+    },
     "list": {
       "author": "GlyphEnjoyer",
       "file": "list.mp3",
@@ -4112,6 +4632,17 @@
       "snr": 66.9,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-largo.wav"
     },
+    "longing": {
+      "author": "AdrianAbdulBaha",
+      "file": "longing.mp3",
+      "gain": -0.8,
+      "gainPhone": 2.9,
+      "lead": 240,
+      "matches": "anhelo",
+      "sha256": "8e45a09d3fd6502af348152307387281aa46ed58d8fb1177f5293c2e1ab23ce5",
+      "snr": 57.7,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-anhelo.wav"
+    },
     "loud": {
       "author": "GlyphEnjoyer",
       "cap": 5.6,
@@ -4123,6 +4654,18 @@
       "sha256": "9cd843c7f8977efcb90220b364e4fe0803c0ae265a1016463ed845f34e65e753",
       "snr": 62.5,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-alto.wav"
+    },
+    "love": {
+      "author": "unjourparfait",
+      "cap": 0.2,
+      "file": "love.mp3",
+      "gain": 12.3,
+      "gainPhone": 8.8,
+      "lead": 104,
+      "matches": "amor",
+      "sha256": "7ec910fd2ebdaaf117e11fa63f8bc37e46ba51039dd4226744d71e450632fc96",
+      "snr": 34.6,
+      "source": "Es-amor.ogg"
     },
     "luggage": {
       "author": "Marreromarco",
@@ -4247,6 +4790,17 @@
       "snr": 54.2,
       "source": "LL-Q1321 (spa)-Marreromarco-menú.wav"
     },
+    "midnight": {
+      "author": "Millars",
+      "capPhone": 1.5,
+      "file": "midnight.mp3",
+      "gain": -1.0,
+      "gainPhone": 5.5,
+      "lead": 200,
+      "matches": "medianoche",
+      "sha256": "7717b0a4d8ecefcf468a13844afb8e28c59fac9ca926a1ceab2840a03c107115",
+      "source": "LL-Q1321 (spa)-Millars-medianoche.wav"
+    },
     "milk": {
       "author": "Julie Samothrace",
       "file": "milk.mp3",
@@ -4257,6 +4811,17 @@
       "sha256": "ea0f50794208179f940a01b96b99144f95875b7350f1e1b3b871b1d7b8afba4f",
       "snr": 50.9,
       "source": "LL-Q1321 (spa)-Julie Samothrace-leche.wav"
+    },
+    "millennium": {
+      "author": "Marreromarco",
+      "file": "millennium.mp3",
+      "gain": -0.9,
+      "gainPhone": 5.0,
+      "lead": 248,
+      "matches": "milenio",
+      "sha256": "16afe1b6ceadfe77f038b8034955716ab4d773621bf6585b4a9c85d3dce39b00",
+      "snr": 52.4,
+      "source": "LL-Q1321 (spa)-Marreromarco-milenio.wav"
     },
     "minute": {
       "author": "AdrianAbdulBaha",
@@ -4280,6 +4845,17 @@
       "snr": 53.3,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-espejo.wav"
     },
+    "mistake": {
+      "author": "AdrianAbdulBaha",
+      "file": "mistake.mp3",
+      "gain": 5.5,
+      "gainPhone": 3.0,
+      "lead": 209,
+      "matches": "error",
+      "sha256": "82171ba02f2728d57eed0dd45a39aa1063abf03c1b0b0b41d4972126653cfef6",
+      "snr": 54.3,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-error.wav"
+    },
     "money": {
       "author": "Rodrigo5260",
       "file": "money.mp3",
@@ -4290,6 +4866,17 @@
       "sha256": "cb286c6b4d48aa8cf557db194c049a6b828429d44d7e5f26b2793aa7169e29fb",
       "snr": 61.5,
       "source": "LL-Q1321 (spa)-Rodrigo5260-dinero.wav"
+    },
+    "monkey": {
+      "author": "Millars",
+      "capPhone": 1.9,
+      "file": "monkey.mp3",
+      "gain": 3.4,
+      "gainPhone": 9.1,
+      "lead": 255,
+      "matches": "mono",
+      "sha256": "546606e94892cd94445296fd0a911b5ff04df2714a28963438e82d4a96fe25e4",
+      "source": "LL-Q1321 (spa)-Millars-mono.wav"
     },
     "month": {
       "author": "GlyphEnjoyer",
@@ -4433,6 +5020,18 @@
       "sha256": "1c47cd329170dc2915d34b198e9e9d574bf652f713ecf551575a785de4b353d5",
       "snr": 59.1,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-música.wav"
+    },
+    "my": {
+      "author": "Rachlel",
+      "capPhone": 3.4,
+      "file": "my.mp3",
+      "gain": 5.2,
+      "gainPhone": 11.6,
+      "lead": 192,
+      "matches": "mi",
+      "sha256": "2255c04d41447101a4b59bdb3de5e510f4e98b4cebc3e49b9c170e8cb556e942",
+      "snr": 52.5,
+      "source": "LL-Q1321 (spa)-Rachlel-mi.wav"
     },
     "name": {
       "author": "Rodelar",
@@ -4606,6 +5205,27 @@
       "snr": 68.8,
       "source": "LL-Q1321 (spa)-Sinaloa-no.wav"
     },
+    "no-one": {
+      "author": "GlyphEnjoyer",
+      "file": "no-one.mp3",
+      "gain": 7.5,
+      "gainPhone": 1.0,
+      "lead": 182,
+      "matches": "nadie",
+      "sha256": "af4ff7709dd1053c85b174ff8c3af758bf624f5fb7e7f6ffb47e716a79fe03f7",
+      "snr": 58.6,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-nadie.wav"
+    },
+    "noise": {
+      "author": "Marreromarco",
+      "file": "noise.mp3",
+      "gain": -1.0,
+      "gainPhone": 1.3,
+      "matches": "ruido",
+      "sha256": "8bddcdb284cde69c3797d333be8e95272e63c7a980a7099ffb0d21138ca1b061",
+      "snr": 39.4,
+      "source": "LL-Q1321 (spa)-Marreromarco-ruido.wav"
+    },
     "noon": {
       "author": "Eavqwiki",
       "capPhone": 1.0,
@@ -4662,6 +5282,17 @@
       "snr": 54.0,
       "source": "LL-Q1321 (spa)-Eavqwiki-libreta.wav"
     },
+    "nothing": {
+      "author": "Precision27",
+      "file": "nothing.mp3",
+      "gain": 1.2,
+      "gainPhone": -3.6,
+      "lead": 197,
+      "matches": "nada",
+      "sha256": "6948ae912133be5fbe10e3a3639e15eaf2e295ff03f7e82c7c5e2c40e2df392c",
+      "snr": 105.4,
+      "source": "LL-Q1321 (spa)-Precision27-nada.wav"
+    },
     "notification": {
       "author": "Marreromarco",
       "file": "notification.mp3",
@@ -4672,6 +5303,17 @@
       "sha256": "4e133430b1fd45e291dd265ecdac049367d407e844761dce6d458e0d26622c9e",
       "snr": 48.2,
       "source": "LL-Q1321 (spa)-Marreromarco-resolución.wav"
+    },
+    "noun": {
+      "author": "AdrianAbdulBaha",
+      "file": "noun.mp3",
+      "gain": 7.7,
+      "gainPhone": 4.2,
+      "lead": 164,
+      "matches": "sustantivo",
+      "sha256": "6646d5f9d44e49c47a089ef555226a7b11f5a2ab031b9058cedf2847d6ff931a",
+      "snr": 54.1,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sustantivo.wav"
     },
     "now": {
       "author": "AdrianAbdulBaha",
@@ -4761,6 +5403,17 @@
       "snr": 61.0,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-solo.wav"
     },
+    "open": {
+      "author": "Ivanhercaz",
+      "file": "open.mp3",
+      "gain": -0.2,
+      "gainPhone": -7.2,
+      "lead": 195,
+      "matches": "abierto",
+      "sha256": "1041ece7f88d0bbc64faa33ead0d069619bc8bb103c805f7ccf11b99e355666c",
+      "snr": 51.1,
+      "source": "LL-Q1321 (spa)-Ivanhercaz-abierto.wav"
+    },
     "opposite": {
       "author": "Emanuelps27",
       "file": "opposite.mp3",
@@ -4795,6 +5448,17 @@
       "snr": 73.0,
       "source": "LL-Q1321 (spa)-Sinaloa-otro.wav"
     },
+    "our": {
+      "author": "AdrianAbdulBaha",
+      "file": "our.mp3",
+      "gain": 6.1,
+      "gainPhone": 0.5,
+      "lead": 212,
+      "matches": "nuestro",
+      "sha256": "c0f3787e111748122d9a48ff48a7c8fe62c69191ce9cb02b1946d0022c8cc1cc",
+      "snr": 58.0,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-nuestro.wav"
+    },
     "outdoors": {
       "author": "GlyphEnjoyer",
       "file": "outdoors.mp3",
@@ -4827,6 +5491,17 @@
       "sha256": "bee1f00a6ea8d0bb8515844987c56096dd74a7e803cd232a2af2b8e9043f0bb0",
       "snr": 54.4,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-horno.wav"
+    },
+    "overnight-stay": {
+      "author": "AdrianAbdulBaha",
+      "file": "overnight-stay.mp3",
+      "gain": 7.7,
+      "gainPhone": 2.5,
+      "lead": 241,
+      "matches": "alojamiento",
+      "sha256": "397b563082a50161c61ad77cd2908da1681a9a997efcc468d26ab548ee277521",
+      "snr": 54.9,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-alojamiento.wav"
     },
     "page": {
       "author": "AdrianAbdulBaha",
@@ -4961,6 +5636,17 @@
       "snr": 54.9,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-contraseña.wav"
     },
+    "past": {
+      "author": "Precision27",
+      "file": "past.mp3",
+      "gain": 0.3,
+      "gainPhone": -5.6,
+      "lead": 193,
+      "matches": "pasado",
+      "sha256": "d7d202261b064a5846bbce7edfe378165bca30308a75de32093232fb785ba4f6",
+      "snr": 81.8,
+      "source": "LL-Q1321 (spa)-Precision27-pasado.wav"
+    },
     "peace": {
       "author": "GlyphEnjoyer",
       "file": "peace.mp3",
@@ -4982,6 +5668,17 @@
       "sha256": "07da7636984380a18886bdd36815fee5f746442ea61ed6ba639a966d3ae2a8a5",
       "snr": 58.3,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-bolígrafo.wav"
+    },
+    "pencil": {
+      "author": "AdrianAbdulBaha",
+      "file": "pencil.mp3",
+      "gain": 3.2,
+      "gainPhone": -3.9,
+      "lead": 147,
+      "matches": "lápiz",
+      "sha256": "d01421cfdf18fdb6411d1dfa8df04a1091146fbb989d183c8f070a2f4873ee2e",
+      "snr": 60.9,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-lápiz.wav"
     },
     "person": {
       "author": "GlyphEnjoyer",
@@ -5128,6 +5825,17 @@
       "snr": 54.9,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pobre.wav"
     },
+    "port": {
+      "author": "AdrianAbdulBaha",
+      "file": "port.mp3",
+      "gain": 2.6,
+      "gainPhone": 3.0,
+      "lead": 242,
+      "matches": "puerto",
+      "sha256": "44c13772c16edf724490e675f03bc6f956cb5206ca6680d6289118fb08bfb072",
+      "snr": 52.1,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-puerto.wav"
+    },
     "positive": {
       "author": "Marreromarco",
       "file": "positive.mp3",
@@ -5180,6 +5888,17 @@
       "sha256": "fae15522ca5e40549af9747de6dfcb071a1a244891377e7d417c6b916ae53083",
       "snr": 57.4,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-receta.wav"
+    },
+    "present": {
+      "author": "AdrianAbdulBaha",
+      "file": "present.mp3",
+      "gain": 5.9,
+      "gainPhone": 1.4,
+      "lead": 239,
+      "matches": "presente",
+      "sha256": "9f40a3b531ec97a29f5db0e06a12d4122c6d52fe3f5859a6e2732d558633010f",
+      "snr": 54.4,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-presente.wav"
     },
     "pretty": {
       "author": "AdrianAbdulBaha",
@@ -5302,6 +6021,17 @@
       "sha256": "2a35ef4bf5f2af6dc2dd5237def8a286fc625ffc4c124c109a3c658fb0460d70",
       "snr": 78.3,
       "source": "LL-Q1321 (spa)-Precision27-bajo.wav"
+    },
+    "radio": {
+      "author": "Millars",
+      "file": "radio.mp3",
+      "gain": 3.5,
+      "gainPhone": 2.8,
+      "lead": 175,
+      "matches": "radio",
+      "sha256": "5d7a640354cc35b4898621923525015080e808e2cf841b0089d09432b1c85d3e",
+      "snr": 59.5,
+      "source": "LL-Q1321 (spa)-Millars-radio.wav"
     },
     "rail": {
       "author": "Marreromarco",
@@ -5457,6 +6187,17 @@
       "snr": 51.4,
       "source": "LL-Q1321 (spa)-Marreromarco-tristeza.wav"
     },
+    "safe": {
+      "author": "GlyphEnjoyer",
+      "file": "safe.mp3",
+      "gain": 8.8,
+      "gainPhone": 2.7,
+      "lead": 160,
+      "matches": "seguro",
+      "sha256": "50e0579ce3b2fdd811ec8a695b78e43dce0dc139c9dc23459801e66b84df43e5",
+      "snr": 54.4,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-seguro.wav"
+    },
     "salary": {
       "author": "Marreromarco",
       "file": "salary.mp3",
@@ -5545,6 +6286,16 @@
       "snr": 67.0,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-mar.wav"
     },
+    "second": {
+      "author": "GlyphEnjoyer",
+      "file": "second.mp3",
+      "gain": 10.6,
+      "gainPhone": 3.3,
+      "matches": "segundo",
+      "sha256": "9191dc6b2e76dc61714139a99f108b57df528507631a434f377006284b2eac68",
+      "snr": 52.8,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-segundo.wav"
+    },
     "sentence": {
       "author": "AdrianAbdulBaha",
       "file": "sentence.mp3",
@@ -5555,6 +6306,17 @@
       "sha256": "10f4bcdf8aa16a70bb31c7256f359f91a818307f2a56d6c178fe5327d68c70b0",
       "snr": 61.2,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-frase.wav"
+    },
+    "shadow": {
+      "author": "AdrianAbdulBaha",
+      "file": "shadow.mp3",
+      "gain": 4.7,
+      "gainPhone": 2.9,
+      "lead": 122,
+      "matches": "sombra",
+      "sha256": "0a160af6e2f88fded08dbd320512cf96953f3ef11851e6953a70e2b42929efc5",
+      "snr": 50.0,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sombra.wav"
     },
     "shame": {
       "author": "AdrianAbdulBaha",
@@ -5588,6 +6350,17 @@
       "sha256": "1b68514bd515b894b3e917cf675ad7c599c341f334a8d33b391fb38765ff213f",
       "snr": 84.0,
       "source": "LL-Q1321 (spa)-Rodelar-afilado.wav"
+    },
+    "sheep": {
+      "author": "AdrianAbdulBaha",
+      "file": "sheep.mp3",
+      "gain": 3.2,
+      "gainPhone": -2.7,
+      "lead": 270,
+      "matches": "oveja",
+      "sha256": "29d45ad3269fcb3e3daf65d65908110ca26d67723e92ce3498c6ee5e45a88721",
+      "snr": 58.9,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-oveja.wav"
     },
     "shelf": {
       "author": "Marreromarco",
@@ -5723,6 +6496,17 @@
       "snr": 42.5,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-parecido.wav"
     },
+    "since": {
+      "author": "Rodrigo5260",
+      "file": "since.mp3",
+      "gain": 2.1,
+      "gainPhone": -6.8,
+      "lead": 144,
+      "matches": "desde",
+      "sha256": "b248b3e4de0fff210a9f9313afd9012f6d1d9489f7ca94498a937e3416345e72",
+      "snr": 58.1,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-desde.wav"
+    },
     "sink": {
       "author": "Marreromarco",
       "file": "sink.mp3",
@@ -5800,6 +6584,28 @@
       "sha256": "b10a12200ea078df05fb31eb7e5ca30b012ff620c1faf3fa1c2fb2a9b6730893",
       "snr": 64.9,
       "source": "LL-Q1321 (spa)-Sinaloa-pequeño.wav"
+    },
+    "smile": {
+      "author": "AdrianAbdulBaha",
+      "file": "smile.mp3",
+      "gain": 7.2,
+      "gainPhone": 2.4,
+      "lead": 147,
+      "matches": "sonrisa",
+      "sha256": "c6edc475611a4fbae61cea390b6c7a6b4bc0d9fed5ec6069eaba60d84afe0ac8",
+      "snr": 50.8,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sonrisa.wav"
+    },
+    "snake": {
+      "author": "Rodelar",
+      "file": "snake.mp3",
+      "gain": -1.0,
+      "gainPhone": -6.4,
+      "lead": 205,
+      "matches": "serpiente",
+      "sha256": "3777b85c6b265d85639aba0b1a780a4f5ed1095f5b79c1ea3b80630e6001af26",
+      "snr": 84.3,
+      "source": "LL-Q1321 (spa)-Rodelar-serpiente.wav"
     },
     "snow": {
       "author": "Rodelar",
@@ -5879,6 +6685,28 @@
       "snr": 80.6,
       "source": "LL-Q1321 (spa)-Precision27-algunos.wav"
     },
+    "someone": {
+      "author": "AdrianAbdulBaha",
+      "file": "someone.mp3",
+      "gain": 4.0,
+      "gainPhone": -2.4,
+      "lead": 257,
+      "matches": "alguien",
+      "sha256": "b4c5cfd3e62da0fb60f5fe6f2a9e8785bccd32708e1638d86d247e4f4466252a",
+      "snr": 54.4,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-alguien.wav"
+    },
+    "something": {
+      "author": "Precision27",
+      "file": "something.mp3",
+      "gain": 3.4,
+      "gainPhone": -3.9,
+      "lead": 43,
+      "matches": "algo",
+      "sha256": "13468553d9919023770035a10742ee96d1c46a2060915f4f12d3601f29b8ff05",
+      "snr": 55.9,
+      "source": "LL-Q1321 (spa)-Precision27-algo.wav"
+    },
     "son": {
       "author": "AdrianAbdulBaha",
       "file": "son.mp3",
@@ -5933,6 +6761,29 @@
       "sha256": "111dfc5b3d18ff0179b542cfe6cb39b9363eea3530906e2967c109c5ee2a479a",
       "snr": 55.0,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-sur.wav"
+    },
+    "souvenir": {
+      "author": "Marreromarco",
+      "capPhone": 1.0,
+      "file": "souvenir.mp3",
+      "gain": 2.3,
+      "gainPhone": 5.7,
+      "lead": 243,
+      "matches": "recuerdo",
+      "sha256": "1b5b1d4b6d8b28a8fd02be285756c7ad0dbb4187ce5abec6a3bc2110a656bca3",
+      "snr": 43.7,
+      "source": "LL-Q1321 (spa)-Marreromarco-recuerdo.wav"
+    },
+    "speaker": {
+      "author": "Marreromarco",
+      "file": "speaker.mp3",
+      "gain": 1.4,
+      "gainPhone": 1.0,
+      "lead": 35,
+      "matches": "altavoz",
+      "sha256": "6fdc80389bb80c804f1b7698459912e27eea302218bdb057470d2e898c771af2",
+      "snr": 47.3,
+      "source": "LL-Q1321 (spa)-Marreromarco-altavoz.wav"
     },
     "spleen": {
       "author": "Marreromarco",
@@ -6163,6 +7014,17 @@
       "snr": 69.6,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-camiseta.wav"
     },
+    "tasty": {
+      "author": "AdrianAbdulBaha",
+      "file": "tasty.mp3",
+      "gain": -0.8,
+      "gainPhone": -0.3,
+      "lead": 238,
+      "matches": "sabroso",
+      "sha256": "ddea3b8b3e2e39bd3d308707259df533c0d45ec9e8299d0af34731b541c98e14",
+      "snr": 56.9,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sabroso.wav"
+    },
     "tax": {
       "author": "Marreromarco",
       "file": "tax.mp3",
@@ -6219,6 +7081,29 @@
       "snr": 54.1,
       "source": "LL-Q1321 (spa)-Marreromarco-profesora.wav"
     },
+    "tendon": {
+      "author": "Marreromarco",
+      "capPhone": 0.6,
+      "file": "tendon.mp3",
+      "gain": 0.2,
+      "gainPhone": 8.2,
+      "lead": 199,
+      "matches": "tendón",
+      "sha256": "815ff2b60e4fee783a9d730c37706b9bf2678d08b52b885bd6fcf82ed961d8fc",
+      "snr": 51.7,
+      "source": "LL-Q1321 (spa)-Marreromarco-tendón.wav"
+    },
+    "than": {
+      "author": "Elxavovel",
+      "file": "than.mp3",
+      "gain": 6.0,
+      "gainPhone": 3.8,
+      "lead": 168,
+      "matches": "que",
+      "sha256": "df30444899ad3949a223ae715470ab8b0542fd739cc53d4115b7ecde5a7fa54d",
+      "snr": 64.9,
+      "source": "LL-Q1321 (spa)-Elxavovel-que.wav"
+    },
     "that": {
       "author": "Precision27",
       "file": "that.mp3",
@@ -6250,6 +7135,17 @@
       "matches": "ahí",
       "sha256": "59954d88f5b28226ce79138c60c2ae97e73d933815e63adb6538afc2cb68233b",
       "source": "LL-Q1321 (spa)-Rodelar-ahí.wav"
+    },
+    "they": {
+      "author": "Sinaloa",
+      "file": "they.mp3",
+      "gain": 6.7,
+      "gainPhone": 4.7,
+      "lead": 186,
+      "matches": "ellos",
+      "sha256": "8b7c676bec24a1c498be7d45b70fc03c7d3718c0380b3d9482278fd8c6633615",
+      "snr": 64.6,
+      "source": "LL-Q1321 (spa)-Sinaloa-ellos.wav"
     },
     "thirst": {
       "author": "AdrianAbdulBaha",
@@ -6350,6 +7246,18 @@
       "snr": 51.0,
       "source": "LL-Q1321 (spa)-Marreromarco-propina.wav"
     },
+    "tire": {
+      "author": "Marreromarco",
+      "capPhone": 1.8,
+      "file": "tire.mp3",
+      "gain": 1.0,
+      "gainPhone": 8.9,
+      "lead": 198,
+      "matches": "neumático",
+      "sha256": "ecfca8b58a72a94b88c32b3cb79b5c88a4c4875f3c60f6b3a6920897db3ffeae",
+      "snr": 53.3,
+      "source": "LL-Q1321 (spa)-Marreromarco-neumático.wav"
+    },
     "tired": {
       "author": "AdrianAbdulBaha",
       "file": "tired.mp3",
@@ -6360,6 +7268,17 @@
       "sha256": "67c7a227a0a858106d8f683fecc52809c16a5b849ca4a838f6d2b850377b4ec6",
       "snr": 55.5,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cansado.wav"
+    },
+    "to-achieve": {
+      "author": "Marreromarco",
+      "file": "to-achieve.mp3",
+      "gain": -0.6,
+      "gainPhone": 2.5,
+      "lead": 224,
+      "matches": "lograr",
+      "sha256": "f229fd9b0ae399df32b4bc2c6730e4e33179bd8492f8b43231ad400945ae99f1",
+      "snr": 48.8,
+      "source": "LL-Q1321 (spa)-Marreromarco-lograr.wav"
     },
     "to-apply-for": {
       "author": "Emanuelps27",
@@ -6439,6 +7358,29 @@
       "snr": 54.3,
       "source": "LL-Q1321 (spa)-Marreromarco-llamarse.wav"
     },
+    "to-be-there": {
+      "author": "Rodrigo5260",
+      "cap": 0.4,
+      "file": "to-be-there.mp3",
+      "gain": 4.0,
+      "gainPhone": -2.6,
+      "lead": 208,
+      "matches": "estar",
+      "sha256": "2c8f157f26287abf20f0f3997e95d0e0e3cb20905a08a6983743eb3015b6087b",
+      "snr": 52.2,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-estar.wav"
+    },
+    "to-boil": {
+      "author": "AdrianAbdulBaha",
+      "file": "to-boil.mp3",
+      "gain": 5.1,
+      "gainPhone": 1.8,
+      "lead": 203,
+      "matches": "hervir",
+      "sha256": "4056b04943886139a845c5ba22fd74597c8c77b682f9ee180b784e37460685a1",
+      "snr": 55.4,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-hervir.wav"
+    },
     "to-break": {
       "author": "Rodrigo5260",
       "file": "to-break.mp3",
@@ -6517,6 +7459,28 @@
       "snr": 53.6,
       "source": "LL-Q1321 (spa)-Marreromarco-cancelar.wav"
     },
+    "to-carry": {
+      "author": "GlyphEnjoyer",
+      "file": "to-carry.mp3",
+      "gain": 3.1,
+      "gainPhone": -3.9,
+      "lead": 174,
+      "matches": "llevar",
+      "sha256": "1efc5b394ad37e4972f3dc4f05f0c08a655c62790ac4c628d86d30a5a4a13d11",
+      "snr": 66.7,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-llevar.wav"
+    },
+    "to-celebrate": {
+      "author": "AdrianAbdulBaha",
+      "file": "to-celebrate.mp3",
+      "gain": 3.7,
+      "gainPhone": -2.2,
+      "lead": 209,
+      "matches": "celebrar",
+      "sha256": "e5e74fbe478b017cf7131811c34111b7e690fd801964d18dd595cdaa14312ea5",
+      "snr": 58.3,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-celebrar.wav"
+    },
     "to-clean": {
       "author": "Sinaloa",
       "file": "to-clean.mp3",
@@ -6581,6 +7545,28 @@
       "sha256": "ca49d1217585d5468440823865cec4b9e9e1e8f671f5dac0603965d5783b5ab3",
       "snr": 47.8,
       "source": "LL-Q1321 (spa)-Marreromarco-confirmar.wav"
+    },
+    "to-confuse": {
+      "author": "AdrianAbdulBaha",
+      "file": "to-confuse.mp3",
+      "gain": 8.2,
+      "gainPhone": 5.0,
+      "lead": 149,
+      "matches": "confundir",
+      "sha256": "7ed6718ef10353d145c05df52887582e9d95c6ec19d6dcbb51738b05ae653e22",
+      "snr": 52.5,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-confundir.wav"
+    },
+    "to-congratulate": {
+      "author": "Marreromarco",
+      "file": "to-congratulate.mp3",
+      "gain": 1.3,
+      "gainPhone": -0.8,
+      "lead": 108,
+      "matches": "felicitar",
+      "sha256": "34ade7d4a3e0a9f23838a6920b2633fbd8a3a9e2a8cafbe0fc0fdc8748a20c59",
+      "snr": 40.7,
+      "source": "LL-Q1321 (spa)-Marreromarco-felicitar.wav"
     },
     "to-cook": {
       "author": "AdrianAbdulBaha",
@@ -6724,6 +7710,17 @@
       "sha256": "64121cfaebdff8a6b93981e30e63c36b9831717c340ca29efd3f9dd0188e4c63",
       "source": "LL-Q1321 (spa)-Rodelar-morir.wav"
     },
+    "to-dive": {
+      "author": "Marreromarco",
+      "file": "to-dive.mp3",
+      "gain": 0.3,
+      "gainPhone": -4.8,
+      "lead": 243,
+      "matches": "bucear",
+      "sha256": "aad810ff5fe6ee0681f197087faa9b5b9c102ae4f11e575a5738c7d7e10364b3",
+      "snr": 55.7,
+      "source": "LL-Q1321 (spa)-Marreromarco-bucear.wav"
+    },
     "to-dream": {
       "author": "AdrianAbdulBaha",
       "file": "to-dream.mp3",
@@ -6821,6 +7818,17 @@
       "snr": 62.8,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-encontrar.wav"
     },
+    "to-fish": {
+      "author": "AdrianAbdulBaha",
+      "file": "to-fish.mp3",
+      "gain": 0.2,
+      "gainPhone": -6.0,
+      "lead": 197,
+      "matches": "pescar",
+      "sha256": "5039bfdd53d279fb5a39110ce569539185fa081434213c8d2602541b23a2a21c",
+      "snr": 60.8,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-pescar.wav"
+    },
     "to-follow": {
       "author": "GlyphEnjoyer",
       "file": "to-follow.mp3",
@@ -6888,6 +7896,17 @@
       "snr": 83.6,
       "source": "LL-Q1321 (spa)-Rodelar-dar.wav"
     },
+    "to-give-a-present": {
+      "author": "AdrianAbdulBaha",
+      "file": "to-give-a-present.mp3",
+      "gain": -0.1,
+      "gainPhone": -4.4,
+      "lead": 211,
+      "matches": "regalar",
+      "sha256": "3297ac6e88c228fab6e7ea6b6e3178951be033fb5edcf4496a5d2e8d076539ce",
+      "snr": 60.3,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-regalar.wav"
+    },
     "to-go": {
       "author": "Rodrigo5260",
       "file": "to-go.mp3",
@@ -6899,6 +7918,17 @@
       "sha256": "71bb129ad5df946f023dcd12041c3bf9356edfb5ddf07f3f331d305836cc2ebc",
       "snr": 54.7,
       "source": "LL-Q1321 (spa)-Rodrigo5260-ir.wav"
+    },
+    "to-go-away": {
+      "author": "Marreromarco",
+      "file": "to-go-away.mp3",
+      "gain": 0.7,
+      "gainPhone": -6.3,
+      "lead": 227,
+      "matches": "irse",
+      "sha256": "2874f9cc771cc0984c3f4510343daa4767dd82b5f4f4b726a389bc5ded25afcc",
+      "snr": 49.5,
+      "source": "LL-Q1321 (spa)-Marreromarco-irse.wav"
     },
     "to-go-for-walk": {
       "author": "AdrianAbdulBaha",
@@ -7009,6 +8039,17 @@
       "snr": 56.9,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-imaginar.wav"
     },
+    "to-improve": {
+      "author": "AdrianAbdulBaha",
+      "file": "to-improve.mp3",
+      "gain": 5.6,
+      "gainPhone": 0.1,
+      "lead": 212,
+      "matches": "mejorar",
+      "sha256": "8ca9fc204ef9400777c8e75132ab36e4a16a457d41624ba95f49263b8143f5d8",
+      "snr": 58.5,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-mejorar.wav"
+    },
     "to-invite": {
       "author": "AdrianAbdulBaha",
       "file": "to-invite.mp3",
@@ -7053,6 +8094,17 @@
       "snr": 60.4,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-gustar.wav"
     },
+    "to-listen-to": {
+      "author": "AdrianAbdulBaha",
+      "file": "to-listen-to.mp3",
+      "gain": 4.2,
+      "gainPhone": -2.5,
+      "lead": 197,
+      "matches": "escuchar",
+      "sha256": "699e9b7a737ad07116f369c39e1cb273af0ff69c725b19deff77a9455e3cf7aa",
+      "snr": 46.9,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-escuchar.wav"
+    },
     "to-live": {
       "author": "Rodelar",
       "file": "to-live.mp3",
@@ -7063,6 +8115,17 @@
       "sha256": "dcf7e24114d4206a6ac2848fac2e3f6c895f42444bc14ee7011ca0cda922ca55",
       "snr": 83.0,
       "source": "LL-Q1321 (spa)-Rodelar-vivir.wav"
+    },
+    "to-long-for": {
+      "author": "Marreromarco",
+      "file": "to-long-for.mp3",
+      "gain": -1.1,
+      "gainPhone": 1.7,
+      "lead": 254,
+      "matches": "anhelar",
+      "sha256": "a54df2bb10574a42c2433bb0ea330a2c6b1f17b1cfe3c80f175d706d0de74358",
+      "snr": 53.0,
+      "source": "LL-Q1321 (spa)-Marreromarco-anhelar.wav"
     },
     "to-look": {
       "author": "Rodrigo5260",
@@ -7075,6 +8138,17 @@
       "sha256": "ea0070de4011ffeabe18b173abb2ced64b726ef92c781dc448fe39adf16ece8f",
       "snr": 62.2,
       "source": "LL-Q1321 (spa)-Rodrigo5260-mirar.wav"
+    },
+    "to-look-after": {
+      "author": "Marreromarco",
+      "file": "to-look-after.mp3",
+      "gain": -2.2,
+      "gainPhone": -1.8,
+      "lead": 217,
+      "matches": "cuidar",
+      "sha256": "93c84be3449725d145475f1e46a12e25e482f36070b802e2458b13c4a8f21c71",
+      "snr": 52.8,
+      "source": "LL-Q1321 (spa)-Marreromarco-cuidar.wav"
     },
     "to-lose": {
       "author": "AdrianAbdulBaha",
@@ -7220,6 +8294,18 @@
       "snr": 39.0,
       "source": "LL-Q1321 (spa)-Anonymât (Kvardek du)-empujar.wav"
     },
+    "to-put": {
+      "author": "GlyphEnjoyer",
+      "cap": 0.1,
+      "file": "to-put.mp3",
+      "gain": 4.6,
+      "gainPhone": -2.4,
+      "lead": 180,
+      "matches": "poner",
+      "sha256": "e93d117fcdc25a8e1c45e45693e37edc1e5c4362f9351f0e5ca2c10be562d8d4",
+      "snr": 66.7,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-poner.wav"
+    },
     "to-read": {
       "author": "AdrianAbdulBaha",
       "file": "to-read.mp3",
@@ -7331,6 +8417,17 @@
       "snr": 49.3,
       "source": "LL-Q1321 (spa)-Marreromarco-sonar.wav"
     },
+    "to-sail": {
+      "author": "Marreromarco",
+      "file": "to-sail.mp3",
+      "gain": 0.5,
+      "gainPhone": 3.1,
+      "lead": 226,
+      "matches": "navegar",
+      "sha256": "1f2e50eed4d2bcafeb1667541d114b54867ed2d30ac3e20df9e21b87779e1130",
+      "snr": 45.0,
+      "source": "LL-Q1321 (spa)-Marreromarco-navegar.wav"
+    },
     "to-save": {
       "author": "AdrianAbdulBaha",
       "file": "to-save.mp3",
@@ -7362,6 +8459,18 @@
       "sha256": "0fd26b303d51e51a4dca3f370a61819b3416ea9c092f78924a58f614c7ebf6f2",
       "snr": 47.2,
       "source": "LL-Q1321 (spa)-Marreromarco-despedirse.wav"
+    },
+    "to-search": {
+      "author": "Octavio Paniagua-Taboada (Mexico)",
+      "cap": 1.4,
+      "file": "to-search.mp3",
+      "gain": 3.6,
+      "gainPhone": -0.6,
+      "lead": 31,
+      "matches": "buscar",
+      "sha256": "450ea467b8341e4fff5c5cd400694fb55684cc3b7119356487c8b2c70a982a92",
+      "snr": 41.5,
+      "source": "Es-buscar.ogg"
     },
     "to-see": {
       "author": "Precision27",
@@ -7450,6 +8559,17 @@
       "sha256": "942ae67dcad2db3a7403a92460915e4d9bfd2fcc1371823ae8e5eaea23eea424",
       "source": "LL-Q1321 (spa)-Rodelar-dormir.wav"
     },
+    "to-smile": {
+      "author": "AdrianAbdulBaha",
+      "file": "to-smile.mp3",
+      "gain": 5.8,
+      "gainPhone": 2.2,
+      "lead": 109,
+      "matches": "sonreír",
+      "sha256": "f9a9b87acd302aff5045a1d54642d4d1d1f45ef28e523c27db9d3f79f7425d37",
+      "snr": 51.7,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-sonreír.wav"
+    },
     "to-snore": {
       "author": "Marreromarco",
       "file": "to-snore.mp3",
@@ -7515,6 +8635,28 @@
       "sha256": "37e78f45e4d03ccd1eb35fdf9bb557542003ac7e9c59f5b45aa412edb7222699",
       "snr": 48.8,
       "source": "LL-Q1321 (spa)-Marreromarco-entregar.wav"
+    },
+    "to-suggest": {
+      "author": "Marreromarco",
+      "file": "to-suggest.mp3",
+      "gain": 4.5,
+      "gainPhone": 4.3,
+      "lead": 135,
+      "matches": "sugerir",
+      "sha256": "fba39c42f48398768e108959327f355c5c893f083f81f753b706cbe605befdab",
+      "snr": 48.9,
+      "source": "LL-Q1321 (spa)-Marreromarco-sugerir.wav"
+    },
+    "to-swim": {
+      "author": "Sinaloa",
+      "file": "to-swim.mp3",
+      "gain": 8.7,
+      "gainPhone": 4.7,
+      "lead": 155,
+      "matches": "nadar",
+      "sha256": "f2e538585684dd561397e3b5d0ede21af1d0595e56824211a4ce64de5c79d2ef",
+      "snr": 71.9,
+      "source": "LL-Q1321 (spa)-Sinaloa-nadar.wav"
     },
     "to-take": {
       "author": "AdrianAbdulBaha",
@@ -7728,6 +8870,17 @@
       "snr": 66.6,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-pesar.wav"
     },
+    "to-wish": {
+      "author": "AdrianAbdulBaha",
+      "file": "to-wish.mp3",
+      "gain": 2.1,
+      "gainPhone": -3.3,
+      "lead": 101,
+      "matches": "desear",
+      "sha256": "f09ecef9a1194f1239fd39cacd788d21062bb641d126ad2241b9844e3831282d",
+      "snr": 59.3,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-desear.wav"
+    },
     "to-work": {
       "author": "AdrianAbdulBaha",
       "file": "to-work.mp3",
@@ -7825,6 +8978,17 @@
       "sha256": "df27a3a22a6e8507fad2c9c74c068ce1b2057b4fdcabe9af42b7a527bdb9be3e",
       "snr": 65.5,
       "source": "LL-Q1321 (spa)-Sinaloa-diente.wav"
+    },
+    "tourist": {
+      "author": "Marreromarco",
+      "file": "tourist.mp3",
+      "gain": -0.3,
+      "gainPhone": -6.6,
+      "lead": 201,
+      "matches": "turista",
+      "sha256": "7c390f6930d285acbf11eb8c0a522485f5b6c6f353e1f1df1e57d40abea3abec",
+      "snr": 40.9,
+      "source": "LL-Q1321 (spa)-Marreromarco-turista.wav"
     },
     "towel": {
       "author": "AdrianAbdulBaha",
@@ -7969,6 +9133,17 @@
       "snr": 50.3,
       "source": "LL-Q1321 (spa)-Marreromarco-urgente.wav"
     },
+    "usually": {
+      "author": "AdrianAbdulBaha",
+      "file": "usually.mp3",
+      "gain": 3.4,
+      "gainPhone": 5.7,
+      "lead": 72,
+      "matches": "normalmente",
+      "sha256": "6214fa182aa86e70408530123a03fdd104977aaf26900bcfd1a1d7ba6ba76563",
+      "snr": 39.2,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-normalmente.wav"
+    },
     "vacation": {
       "author": "Marreromarco",
       "file": "vacation.mp3",
@@ -8013,6 +9188,17 @@
       "snr": 56.2,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-vena.wav"
     },
+    "verb": {
+      "author": "AdrianAbdulBaha",
+      "file": "verb.mp3",
+      "gain": 3.0,
+      "gainPhone": -4.2,
+      "lead": 128,
+      "matches": "verbo",
+      "sha256": "5f8664ee19b5d3240b78c8a41f564bdaf0b0267b5d97f3bbf8307b3b62bea3f4",
+      "snr": 57.4,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-verbo.wav"
+    },
     "very": {
       "author": "Precision27",
       "file": "very.mp3",
@@ -8035,6 +9221,29 @@
       "sha256": "554ec4830610f7275629e6d44e7195a7ad1cceee70d82f48a30953a66437813e",
       "snr": 61.1,
       "source": "LL-Q1321 (spa)-GlyphEnjoyer-pueblo.wav"
+    },
+    "vision": {
+      "author": "AdrianAbdulBaha",
+      "file": "vision.mp3",
+      "gain": 11.3,
+      "gainPhone": 5.2,
+      "lead": 181,
+      "matches": "visión",
+      "sha256": "425feb4af685f597617841de613caf18fe9caa29f61e2d7a96fbebdc78acd97c",
+      "snr": 51.8,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-visión.wav"
+    },
+    "volume": {
+      "author": "Marreromarco",
+      "capPhone": 1.2,
+      "file": "volume.mp3",
+      "gain": -0.1,
+      "gainPhone": 6.6,
+      "lead": 186,
+      "matches": "volumen",
+      "sha256": "b25505d1cdf4b9934dac25bc53a7b8ffad9b4e1b765a9f3161724f5ddc4daad8",
+      "snr": 51.6,
+      "source": "LL-Q1321 (spa)-Marreromarco-volumen.wav"
     },
     "waiter": {
       "author": "AdrianAbdulBaha",
@@ -8112,6 +9321,17 @@
       "sha256": "4a04114e81f72aa3cea60f17d56b790967edf21975194bbb1f73aef1c5f4c5f8",
       "source": "LL-Q1321 (spa)-Precision27-agua.wav"
     },
+    "wave": {
+      "author": "AdrianAbdulBaha",
+      "file": "wave.mp3",
+      "gain": 3.5,
+      "gainPhone": 0.0,
+      "lead": 249,
+      "matches": "ola",
+      "sha256": "64f3a9549a59c6abbd9f955e5a4dec7b61d06c6892a0d14997b883f21e86e1ce",
+      "snr": 56.3,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ola.wav"
+    },
     "way": {
       "author": "Rodelar",
       "file": "way.mp3",
@@ -8121,6 +9341,17 @@
       "matches": "camino",
       "sha256": "1e748d155b0b53f607fac0eced50e3fbac274d8007a3f1ffd78697a363308ae0",
       "source": "LL-Q1321 (spa)-Rodelar-camino.wav"
+    },
+    "we": {
+      "author": "Rodrigo5260",
+      "file": "we.mp3",
+      "gain": 7.7,
+      "gainPhone": 2.5,
+      "lead": 189,
+      "matches": "nosotros",
+      "sha256": "d5bdf8beb1a5821721c44bf3348ccb662b4c4ecbd9d961888ab65f0a96a238c1",
+      "snr": 61.3,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-nosotros.wav"
     },
     "weak": {
       "author": "AdrianAbdulBaha",
@@ -8143,6 +9374,17 @@
       "sha256": "2a9a195d3f2d37d13d48b069c082dcbac3a58a0061e46b1d499db7c54b968619",
       "snr": 75.4,
       "source": "LL-Q1321 (spa)-Precision27-tiempo.wav"
+    },
+    "wedding": {
+      "author": "AdrianAbdulBaha",
+      "file": "wedding.mp3",
+      "gain": 0.8,
+      "gainPhone": 1.5,
+      "lead": 145,
+      "matches": "boda",
+      "sha256": "a5d5efb8e4edafbfb782583e19847749cf7987cd134348b2682eece5bc029594",
+      "snr": 56.5,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-boda.wav"
     },
     "week": {
       "author": "Precision27",
@@ -8375,6 +9617,17 @@
       "snr": 55.4,
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-trabajador.wav"
     },
+    "workplace": {
+      "author": "GlyphEnjoyer",
+      "file": "workplace.mp3",
+      "gain": 7.3,
+      "gainPhone": -2.2,
+      "lead": 36,
+      "matches": "oficina",
+      "sha256": "e5bc122f5ac382b804811b1e53e446167a45911ff1135202dd9965f2ab84ddee",
+      "snr": 56.0,
+      "source": "LL-Q1321 (spa)-GlyphEnjoyer-oficina.wav"
+    },
     "worry": {
       "author": "Marreromarco",
       "file": "worry.mp3",
@@ -8427,6 +9680,73 @@
       "sha256": "746b540d08d8eb18a337cb02d072cd9f94165285aebf2c429852f90514b61dbc",
       "snr": 39.7,
       "source": "LL-Q1321 (spa)-Precision27-sí.wav"
+    },
+    "yesterday": {
+      "author": "Tino_no",
+      "file": "yesterday.mp3",
+      "gain": -1.4,
+      "gainPhone": -1.2,
+      "lead": 240,
+      "matches": "ayer",
+      "sha256": "734ec6b77f8e4f2dbf5aeb64846eb1b78d4c8aace282d63faf5550a9a1a08f7c",
+      "snr": 46.9,
+      "source": "Es-ayer.ogg"
+    },
+    "you": {
+      "author": "Rodrigo5260",
+      "capPhone": 1.9,
+      "file": "you.mp3",
+      "gain": 4.1,
+      "gainPhone": 10.1,
+      "lead": 239,
+      "matches": "tú",
+      "sha256": "90f3ffb97186df78711b635149ca08c3fa48344e1d55edafe37ca70482fce294",
+      "snr": 56.8,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-tú.wav"
+    },
+    "you-formal": {
+      "author": "Rodrigo5260",
+      "file": "you-formal.mp3",
+      "gain": 5.8,
+      "gainPhone": -1.4,
+      "lead": 218,
+      "matches": "usted",
+      "sha256": "658d52f6009f223ed095e8dd2e6842ed2ef5ce2aa6e800d3ef9a812e4ca84f1d",
+      "snr": 60.2,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-usted.wav"
+    },
+    "you-plural": {
+      "author": "Rodrigo5260",
+      "file": "you-plural.mp3",
+      "gain": 8.2,
+      "gainPhone": 3.3,
+      "lead": 191,
+      "matches": "ustedes",
+      "sha256": "d5f06b625c0d0551da235262bbe9ff49af22b0066457dd1db1f44f9cd8f61847",
+      "snr": 58.7,
+      "source": "LL-Q1321 (spa)-Rodrigo5260-ustedes.wav"
+    },
+    "your": {
+      "author": "AdrianAbdulBaha",
+      "file": "your.mp3",
+      "gain": 9.2,
+      "gainPhone": 14.3,
+      "lead": 256,
+      "matches": "tu",
+      "sha256": "092ae5bd34a0e42fd2918c6c5ceab824a425f46c3c913c576706cf85998391fd",
+      "snr": 43.6,
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-tu.wav"
+    },
+    "your-plural": {
+      "author": "Marreromarco",
+      "file": "your-plural.mp3",
+      "gain": 1.0,
+      "gainPhone": -5.0,
+      "lead": 207,
+      "matches": "vuestro",
+      "sha256": "ce9d2d02d0bbba44ce9c90a9dab3da4d446ce156b77147216b885027d0aaa5d7",
+      "snr": 52.4,
+      "source": "LL-Q1321 (spa)-Marreromarco-vuestro.wav"
     }
   }
 }
