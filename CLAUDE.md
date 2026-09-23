@@ -132,7 +132,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   is `docs/audio-licensing.md`; no other doc restates a license term.
 - Write plans into docs/plans/ and delete them once shipped, even if you did not write the plan;
   a plan or handoff doc stays UNCOMMITTED unless asked since it is working state
-- Never commit changes to markdown documentation files as separate commits, in doubt hold off on committing them
+- Never commit changes to markdown documentation files as separate commits, commit them with related code changes where sensible
 - Whenever you are corrected or do extensive research, tighten or replace the line that should
   have caught it before adding a new one; a new docs/ file only when no existing doc owns the topic
 - Do not document a removal or absence of something beyond the commits message unless it is likely to be accidentally reintroduced
