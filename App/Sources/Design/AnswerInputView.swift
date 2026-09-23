@@ -91,8 +91,12 @@ struct AnswerInputView: View {
 
     private var inputField: some View {
         HStack(spacing: Theme.spacing.sm) {
+            // why: mirrors the checkmark so the answer stays centered under the card
+            // when a verdict lands.
+            statusIcon.hidden()
             TextField(placeholder, text: $text)
                 .font(Theme.typography.body)
+                .multilineTextAlignment(.center)
                 .foregroundStyle(Theme.colors.textPrimary)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()

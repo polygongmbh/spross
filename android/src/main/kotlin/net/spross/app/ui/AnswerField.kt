@@ -1,9 +1,12 @@
 package net.spross.app.ui
 
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -19,6 +22,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
 import net.spross.app.audio.Pronouncer
 import net.spross.kern.session.TurnFeedback
@@ -83,11 +88,18 @@ fun AnswerField(
                     else -> {}
                 }
             },
-        placeholder = { Text(placeholder) },
+        placeholder = { Text(placeholder, Modifier.fillMaxWidth(), textAlign = TextAlign.Center) },
+        textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
         // why: correctness is never color alone — the mark says it on screen, the state
         // description says it to TalkBack, and the tint is the third telling of the same
         // thing. The mark says ACCEPTED and rides both accepted states, its color saying
         // how cleanly; a reveal gets none, because nothing about it was accepted.
+        // why: mirrors the mark so the answer stays centered under the card when a verdict lands.
+        leadingIcon = if (feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost) {
+            { Spacer(Modifier.size(24.dp)) }
+        } else {
+            null
+        },
         trailingIcon = when (feedback) {
             TurnFeedback.Correct -> {
                 { Icon(SprossIcons.Check, contentDescription = null, tint = palette.success) }

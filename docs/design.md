@@ -123,6 +123,8 @@ What licenses a second component is a parameter attempted and found not to carry
   Wrong → card expands onto the answer.
   Near miss → correction box under the field.
   Either way the owed form stands at a readable size with its speaker beside it.
+- The field's text is centered on the card's axis;
+  its checkmark is mirrored by an empty slot so a verdict never shifts it.
 - **Near miss runs amber** — field edge, checkmark and box agree.
   Green stays the clean answer's alone.
   Books Hard (same as a finished retry).
