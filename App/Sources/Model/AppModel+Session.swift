@@ -126,8 +126,11 @@ extension AppModel {
     }
 
     var currentCard: Card? {
-        guard let id = currentCardId else { return nil }
-        return box?.cards[id]
+        guard let id = currentCardId, let box else { return nil }
+        if let hit = cachedCurrentCard, hit.box === box, hit.card.id == id { return hit.card }
+        let card = box.cards[id]
+        cachedCurrentCard = card.map { (box, $0) }
+        return card
     }
 
     /// Whether the run is showing its summary rather than a card — the session

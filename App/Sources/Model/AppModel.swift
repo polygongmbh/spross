@@ -119,6 +119,11 @@ final class AppModel {
     // why: ignored by Observation — it is filled in on a READ, and a stored
     // property written during a view's body would invalidate that body.
     @ObservationIgnored var cachedProduceGrader: CatalogAnswerGrader?
+    /// The card the run stands on, with the box it was read from: reading one card
+    /// out of the join copies the whole map across, and the session screen asks on
+    /// every redraw. A new box is a new object, so an answer is what refreshes it.
+    // why: ignored by Observation for the same reason as the grader above.
+    @ObservationIgnored var cachedCurrentCard: (box: BoxState, card: Card)?
     /// Settable internally only so AppModel+Queries can report reset failures.
     var loadFailure: LoadFailure?
     private(set) var catalog: Catalog?

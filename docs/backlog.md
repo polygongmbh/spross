@@ -72,10 +72,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## App & UX
 
-- `AppModel+Session.swift:133` `currentCard` reads `box?.cards[id]` on every session-screen
-  redraw — ~0.9 ms of whole-join copy per read, against this file's own per-frame budget
-  ("nothing that touches the box or the catalog"). Same defect class as the growth tally that
-  was fixed; the fix is caching the current card on the model.
 
 - The listening drill deals its words in an order nobody tuned for audibility: the owner expected
   the first words to come in catalog order and heard them skip, because seeding is pure catalog
