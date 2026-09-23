@@ -53,6 +53,7 @@ import kotlinx.coroutines.withContext
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.audioSources
+import net.spross.app.restartOnboarding
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.catalog.AudioCapability

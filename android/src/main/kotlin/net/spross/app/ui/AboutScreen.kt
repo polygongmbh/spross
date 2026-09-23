@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import java.net.URLEncoder
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.closeAbout
 import net.spross.app.countLine
 import net.spross.kern.catalog.AudioCredit
 import net.spross.kern.catalog.audioCredits
