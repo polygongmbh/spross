@@ -91,7 +91,17 @@ data class TypedDrillPrompt(
      * and the placeholder are the only things that follow from it.
      */
     val digits: Boolean = false,
+    /** Whether the owed date can be written on the number pad — see [typableOnNumberPad]. */
+    val numberPad: Boolean = false,
 )
+
+/**
+ * Whether one of [accepted] needs nothing a number pad lacks. The pad carries digits,
+ * `.`, `,`, `-` and a space — no `:` and no `/`, so a time or a fraction written that
+ * way would be owed on a keyboard that cannot type it.
+ */
+fun typableOnNumberPad(accepted: List<String>): Boolean =
+    accepted.any { form -> form.all { it.isDigit() || it in ".,- \u202F\u00A0" } }
 
 /** One typed run as it stands: the question, the ladder under it, and the score line. */
 data class TypedDrillView(

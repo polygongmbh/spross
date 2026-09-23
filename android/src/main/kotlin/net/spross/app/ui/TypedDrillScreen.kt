@@ -233,7 +233,7 @@ private fun Controls(
         onEnter = flow::enter,
         onConfirm = flow::confirm,
         speakCorrection = speakCorrection,
-        digits = run.prompt.digits,
+        numberPad = run.prompt.numberPad,
     ) {
         if (run.offersFinish) DrillStopOffer(chrome, onFinish)
     }

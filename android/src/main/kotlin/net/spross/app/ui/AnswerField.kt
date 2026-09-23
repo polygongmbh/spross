@@ -50,8 +50,8 @@ fun AnswerField(
      * back on an amber hold and wants it again with the next question ([QuestionFocus]).
      */
     focus: FocusRequester? = null,
-    /** A task that owes digits — the keyboard is the one thing the direction decides. */
-    digits: Boolean = false,
+    /** A task that owes digits the number pad can type — the keyboard is the one thing this decides. */
+    numberPad: Boolean = false,
 ) {
     val palette = Theme.colors
     // The edge says how the answer landed: green where it was clean, amber for a near miss
@@ -103,7 +103,7 @@ fun AnswerField(
             OutlinedTextFieldDefaults.colors(focusedBorderColor = tint, unfocusedBorderColor = tint)
         },
         keyboardOptions = KeyboardOptions(
-            keyboardType = if (digits) KeyboardType.Number else KeyboardType.Text,
+            keyboardType = if (numberPad) KeyboardType.Number else KeyboardType.Text,
             imeAction = ImeAction.Done,
         ),
         keyboardActions = KeyboardActions(onDone = { onDone() }),

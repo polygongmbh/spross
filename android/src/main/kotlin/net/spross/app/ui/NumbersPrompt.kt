@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.TextUnit
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.NumbersFlow
+import net.spross.app.typableOnNumberPad
 import net.spross.app.speakFormOnTap
 import net.spross.kern.model.Language
 import net.spross.kern.session.Match
@@ -187,7 +188,7 @@ fun NumbersControls(
         onEnter = flow::enter,
         onConfirm = flow::confirm,
         speakCorrection = { model.speakFormOnTap(it, state.mode.language) },
-        digits = state.currentReversed,
+        numberPad = state.currentReversed && typableOnNumberPad(state.currentTask.accepted),
     ) {
         if (state.offersFinish) DrillStopOffer(chrome, onFinish)
         // Outside the verdict: a miss is exactly when a learner wants to look the word up,

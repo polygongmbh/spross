@@ -96,6 +96,7 @@ class DateDrillFlow(
             display = state.task.display,
             choices = state.task.choices,
             digits = state.task.digits,
+            numberPad = state.task.digits && typableOnNumberPad(state.task.accepted),
             newWord = state.patternWord,
         ),
     )

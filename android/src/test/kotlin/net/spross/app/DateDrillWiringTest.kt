@@ -138,4 +138,12 @@ class DateDrillWiringTest {
         assertTrue(summary.newRecord, "a first streak beats a standing record of none")
         assertEquals(flow.state.bestLevel, closed.bestLevel)
     }
+
+    /** The pad has no `/` or `:` key, so a date or time owed with one gets the full keyboard. */
+    @Test
+    fun theNumberPadIsOfferedOnlyWhereItCanTypeAnAnswer() {
+        assertTrue(typableOnNumberPad(listOf("3.6.", "3.6")))
+        assertTrue(typableOnNumberPad(listOf("18:05", "18.05")))
+        assertTrue(!typableOnNumberPad(listOf("6/3", "06/03")))
+    }
 }

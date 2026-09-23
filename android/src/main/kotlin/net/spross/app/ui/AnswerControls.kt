@@ -49,7 +49,7 @@ fun TypedAnswerControls(
     onEnter: () -> Unit,
     onConfirm: () -> Unit,
     speakCorrection: (String) -> (() -> Unit)? = { null },
-    digits: Boolean = false,
+    numberPad: Boolean = false,
     after: @Composable ColumnScope.() -> Unit = {},
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
@@ -61,7 +61,7 @@ fun TypedAnswerControls(
             chrome = chrome,
             onDone = onEnter,
             focus = focus,
-            digits = digits,
+            numberPad = numberPad,
         )
         // ONE primary action, and only while the answer is still owed.
         if (feedback == TurnFeedback.Neutral) PrimaryAction(input, chrome, onPrimary)
