@@ -114,11 +114,8 @@ Catalog content — its forms, its audio and the per-language questions — live
   card that was asked; the kern side is one field plus `SCHEMA_VERSION` 5→6, so where does
   the "auch: …" line live after a recognize tap — appended to the prompt line, below the 2x2
   grid, or a reserved slot — and does the 900 ms correct-advance hold longer when it is present?
-- At accessibility XXXL a card with a long note grows past the bottom of the screen and takes
-  the rating row with it, and nothing scrolls, so that card cannot be graded at all — the
-  card's growth is unbounded by design (`Theme.swift` reserves a minimum, never a maximum), it
-  is the row below that has nowhere left to stand, and the note fallback plus the long grammar
-  notes make it likelier now.
+- At accessibility XXXL the iOS session card breaks a headword inside a word ("Gute" / "n" /
+  "Tag!") rather than between words (`VocabCardView.swift` `headline`, `minimumScaleFactor(0.85)`).
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
 - Compound/morpheme-boundary training for a compounding language (marking the component seams
