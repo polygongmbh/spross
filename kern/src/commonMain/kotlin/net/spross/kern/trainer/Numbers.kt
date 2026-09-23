@@ -310,7 +310,9 @@ object Numbers {
             // why: the forward prompt showed "12 345", so the separator must grade.
             NumbersReading.Cardinal -> listOf(value, groupDigits(value)).distinct()
             NumbersReading.Year -> listOf(value)
-            NumbersReading.Clock -> clockDigitForms(value)
+            // why: "18.05" is how German writes a time, and the one separator a number
+            // pad without a colon key can type.
+            NumbersReading.Clock -> clockDigitForms(value).flatMap { listOf(it, it.replace(':', '.')) }
             // why: a form is written, not just spelled — "3,7" and "3.7" are the same
             // number, "20." and "20" the same rank, so the notation must not cost the Sprosse.
             NumbersReading.Form -> formDigitForms(task.prompt, task.promptDisplay)

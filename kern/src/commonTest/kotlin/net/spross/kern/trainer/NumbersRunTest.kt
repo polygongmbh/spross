@@ -105,6 +105,7 @@ class NumbersRunTest {
         val clock = Numbers.reversed(Numbers.clock(18, 5, "de"))
         assertEquals(Match.Exact, NumbersRun.grade("18:05", clock, normalizer))
         assertEquals(Match.Wrong, NumbersRun.grade("18:06", clock, normalizer))
+        assertEquals(Match.Exact, NumbersRun.grade("18.05", clock, normalizer))
 
         val number = Numbers.reversed(Numbers.number(12345, "de"))
         assertEquals(Match.Exact, NumbersRun.grade("12345", number, normalizer))

@@ -205,9 +205,9 @@ class DrillProgressionTests {
     @Test
     fun reversedClockTakesBothDigitalForms() {
         val back = Numbers.reversed(Numbers.clock(8, 5, "de"))
-        assertEquals(listOf("08:05", "8:05"), back.accepted)
+        assertEquals(listOf("08:05", "08.05", "8:05", "8.05"), back.accepted)
         assertEquals("08:05", back.display)
-        assertEquals(listOf("14:35"), Numbers.reversed(Numbers.clock(14, 35, "de")).accepted)
+        assertEquals(listOf("14:35", "14.35"), Numbers.reversed(Numbers.clock(14, 35, "de")).accepted)
     }
 
     @Test

@@ -110,7 +110,7 @@ class PhraseSlotInstantiationTests {
         val departure = Numbers.reversed(
             PhraseSlots.instantiate(frame("sw", "train-departs-at"), hour = 8, minute = 5),
         )
-        assertEquals(listOf("08:05", "8:05"), departure.accepted)
+        assertEquals(listOf("08:05", "08.05", "8:05", "8.05"), departure.accepted)
 
         val fraction = Numbers.reversed(
             RealFrames.instantiate(RealFrames.frame("de", "i-need-n-kilo-of-flour", source = "en"), value = 0L),
@@ -126,7 +126,7 @@ class PhraseSlotInstantiationTests {
             assertTrue(back.accepted.isNotEmpty(), where)
             assertTrue(back.display in back.accepted, where)
             assertTrue(
-                back.accepted.all { answer -> answer.all { c -> c.isDigit() || c == ':' || c == '/' } },
+                back.accepted.all { answer -> answer.all { c -> c.isDigit() || c in ":./" } },
                 "$where: ${back.accepted}",
             )
         }
