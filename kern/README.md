@@ -443,6 +443,8 @@ What was built and later removed is git's to remember.
   The meaning direction credits every owner (section 3): the merge is the target language's own.
   Also rejected: suppressing/deferring a cluster member
   (breaks composition determinism, and the collision returns once both are learned).
+- **Spreading a round's new cards across word class or sub-cluster** (user ruling 2026-09-23):
+  related words arriving together is the point, since a learner meeting them side by side can relate them.
 - **Number word tables in the catalog** (`catalog/numbers/<lang>.json`), assessed 2026-08:
   the packs are module-level objects in the `trainerPacks` registry,
   reachable from `Numbers.pack(language)` with no catalog in hand,

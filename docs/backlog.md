@@ -46,19 +46,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   early returns in `GermanClock.conversational`, en into `EnglishClockRegisters.anchors`, es
   and uk into hand-written `ClockReading` constants, sw has none by design) — still deferred,
   or drop the record and let git hold the deferral?
-- A per-card **defer** flag that sinks a word behind the whole catalog instead of switching it
-  off (unlike `setSuspended`, hard off until revived by hand), wanting a `BoxState` field (an
-  intent, not a `GrowthStage` standing), a `BoxEngine` verb, a Box-screen affordance on both
-  phones, and a sort ruling against `OwnWords.SEED_BASE`, which is already "behind every
-  catalog concept".
-- Automatic growth walks seed order (`Growth.newCandidates` step 2b), and seed order inside an
-  area runs in co-hyponym clusters (kitchen: four appliances, then six utensils, then the
-  cooking verbs), so a `NEW_CARDS_PER_ROUND` round lands inside ONE semantic set — the
-  interference the literature finds is an INTRODUCTION effect on mutually substitutable
-  same-class words (spoon/fork/knife) while a thematic area is neutral-to-helpful, so the fix
-  spreads a round's new cards WITHIN the area across word class and sub-cluster, never across
-  areas, and review is unaffected (once bound, contrasting near-neighbors is the useful case,
-  and `promptAmbiguous`/`CatalogAnswerGrader.OtherWord` already teach those apart).
 - Watch multiple-choice distractors carry no novelty or recency criterion
   (`kern/src/commonMain/kotlin/net/spross/kern/session/MultipleChoice.kt`): word class, area
   and shape rank them, but the newest entry can still be the odd one out — the class of
@@ -136,9 +123,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   card's growth is unbounded by design (`Theme.swift` reserves a minimum, never a maximum), it
   is the row below that has nowhere left to stand, and the note fallback plus the long grammar
   notes make it likelier now.
-- `android/.../AppModel.kt` still stands at ~436 lines after its verbs moved out as extensions:
-  what remains is its state and the private setters' own verbs, so going under ~300 means state
-  holders (stats, session) read through `model.<holder>` or forwarding getters.
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
 - Compound/morpheme-boundary training for a compounding language (marking the component seams
