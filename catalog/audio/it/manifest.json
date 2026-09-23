@@ -2619,6 +2619,17 @@
       "snr": 55.9,
       "source": "LL-Q652 (ita)-Ciampix-calendario.wav"
     },
+    "campsite": {
+      "author": "LangPao",
+      "cap": 0.9,
+      "file": "campsite.mp3",
+      "gain": 3.9,
+      "gainPhone": 3.6,
+      "lead": 267,
+      "matches": "campeggio",
+      "sha256": "cc889af6bc5a528c51e61533c68fb500f8813b81c9242daaf8ed5589c8b33afd",
+      "source": "LL-Q652 (ita)-LangPao-campeggio.wav"
+    },
     "car": {
       "author": "LangPao",
       "cap": 1.2,
@@ -3596,6 +3607,17 @@
       "snr": 82.6,
       "source": "LL-Q652 (ita)-XANA000-scusi.wav"
     },
+    "exercise": {
+      "author": "LangPao",
+      "cap": 0.9,
+      "file": "exercise.mp3",
+      "gain": 5.5,
+      "gainPhone": 5.0,
+      "lead": 179,
+      "matches": "esercizio",
+      "sha256": "1ba1454fd58bd8077052ea1c8c1070bfa2e7fcb2951a06b790fd7a267afc5303",
+      "source": "LL-Q652 (ita)-LangPao-esercizio.wav"
+    },
     "exercise-book": {
       "author": "LangPao",
       "cap": 2.3,
@@ -4269,6 +4291,17 @@
       "snr": 57.2,
       "source": "LL-Q652 (ita)-DivoLetto-berretto.wav"
     },
+    "he": {
+      "author": "LangPao",
+      "capPhone": 1.7,
+      "file": "he.mp3",
+      "gain": 10.1,
+      "gainPhone": 14.0,
+      "lead": 253,
+      "matches": "lui",
+      "sha256": "07700cf588193aebf06b06ee768a3d9474ee58e48dfc3f1d1aa21dc053e4877e",
+      "source": "LL-Q652 (ita)-LangPao-lui.wav"
+    },
     "head": {
       "author": "Ciampix",
       "file": "head.mp3",
@@ -4474,6 +4507,16 @@
       "sha256": "56693b2f0d49959bb244391fb9e3875027ba257fd17777dfba9448138258adba",
       "snr": 102.4,
       "source": "LL-Q652 (ita)-LangPao-marito.wav"
+    },
+    "i": {
+      "author": "XANA000",
+      "file": "i.mp3",
+      "gain": 3.0,
+      "gainPhone": 8.5,
+      "lead": 207,
+      "matches": "io",
+      "sha256": "d17b56437d3b02d7e655c64f377b67a2a8183a8014df4b05f1988474c3b280ec",
+      "source": "LL-Q652 (ita)-XANA000-io.wav"
     },
     "if": {
       "author": "XANA000",
@@ -4740,6 +4783,17 @@
       "sha256": "a2257e22bc4c33100c13a898747d952b4b5fa3e6de11e0e3ac5ac8fc1c3b8d22",
       "snr": 92.5,
       "source": "LL-Q652 (ita)-LangPao-lingua.wav"
+    },
+    "last": {
+      "author": "LangPao",
+      "capPhone": 1.2,
+      "file": "last.mp3",
+      "gain": 5.0,
+      "gainPhone": 10.6,
+      "lead": 256,
+      "matches": "ultimo",
+      "sha256": "4e8a2159a53f540b1f82b9a662ab4de7c2f1966d1db50a456ba3bfb6bdfa15bc",
+      "source": "LL-Q652 (ita)-LangPao-ultimo.wav"
     },
     "late": {
       "author": "LangPao",
@@ -5295,6 +5349,16 @@
       "snr": 107.5,
       "source": "LL-Q652 (ita)-LangPao-nome.wav"
     },
+    "near": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "near.mp3",
+      "gain": -0.1,
+      "gainPhone": -8.0,
+      "matches": "vicino",
+      "sha256": "2643d772f45e59c96b5f4da9a1e2f71455a3aca63e786ed68c40eb86ada7e593",
+      "snr": 54.5,
+      "source": "It-vicino.ogg"
+    },
     "neck": {
       "author": "LangPao",
       "file": "neck.mp3",
@@ -5487,6 +5551,16 @@
       "matches": "non",
       "sha256": "394417a060ccb53ea5444e4882941f3f684b049bed141cf593b79de697cd5184",
       "source": "LL-Q652 (ita)-XANA000-non.wav"
+    },
+    "nothing": {
+      "author": "LangPao",
+      "file": "nothing.mp3",
+      "gain": 3.9,
+      "gainPhone": 3.8,
+      "lead": 278,
+      "matches": "niente",
+      "sha256": "afb13d01b3674ed955afc3a9338626c381e7641f5cea05e1414b198c8da73826",
+      "source": "LL-Q652 (ita)-LangPao-niente.wav"
     },
     "notification": {
       "author": "DivoLetto",
@@ -5791,6 +5865,17 @@
       "sha256": "34d563f5ad4d8dadb7d208ceb6a4d8a84ba99b4f0d4cb69664737d7e21b53566",
       "source": "LL-Q652 (ita)-DanielParoliere-password.wav"
     },
+    "past": {
+      "author": "LangPao",
+      "cap": 1.1,
+      "file": "past.mp3",
+      "gain": 3.3,
+      "gainPhone": -0.6,
+      "lead": 243,
+      "matches": "passato",
+      "sha256": "fb6ca39dfd5ac25e5506fdc2f94cf35ed1c1dc02b50561355714ea5ea4f25dc6",
+      "source": "LL-Q652 (ita)-LangPao-passato.wav"
+    },
     "peace": {
       "author": "XANA000",
       "file": "peace.mp3",
@@ -5956,6 +6041,16 @@
       "sha256": "bc1078caf9bd7849f8ff742599b07954010b8b3fd6530e64d6fd471bb78187b7",
       "source": "LL-Q652 (ita)-LangPao-povero.wav"
     },
+    "port": {
+      "author": "LangPao",
+      "file": "port.mp3",
+      "gain": 0.5,
+      "gainPhone": 2.2,
+      "lead": 208,
+      "matches": "porto",
+      "sha256": "679f1e8bda7623aebe714477d830bf968870a89fe2d00c70406334ea5481c405",
+      "source": "LL-Q652 (ita)-LangPao-porto.wav"
+    },
     "post-office": {
       "author": "LangPao",
       "file": "post-office.mp3",
@@ -6020,6 +6115,17 @@
       "sha256": "03ffd683ae38be507e456b932218f5b33ab7f0436d529c7db83c69e1eaffaf7b",
       "snr": 91.4,
       "source": "LL-Q652 (ita)-XANA000-presente.wav"
+    },
+    "pretty": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "pretty.mp3",
+      "gain": -0.7,
+      "gainPhone": -1.3,
+      "lead": 260,
+      "matches": "carino",
+      "sha256": "6ecbd80a732805c044161d5a1cbf7104ad8fd20d97fddd919c9416f8e11c4eb0",
+      "snr": 47.6,
+      "source": "It-carino.ogg"
     },
     "price": {
       "author": "LangPao",
@@ -7122,6 +7228,16 @@
       "snr": 83.5,
       "source": "LL-Q652 (ita)-XANA000-lì.wav"
     },
+    "therefore": {
+      "author": "XANA000",
+      "file": "therefore.mp3",
+      "gain": -1.4,
+      "gainPhone": 0.7,
+      "lead": 159,
+      "matches": "quindi",
+      "sha256": "6d007df537f469eff926a8cb2f9090e57ced50bb01fcc313f09c3652896c0ea4",
+      "source": "LL-Q652 (ita)-XANA000-quindi.wav"
+    },
     "they": {
       "author": "XANA000",
       "capPhone": 0.1,
@@ -7285,6 +7401,16 @@
       "snr": 85.8,
       "source": "LL-Q652 (ita)-LangPao-nascere.wav"
     },
+    "to-boil": {
+      "author": "XANA000",
+      "file": "to-boil.mp3",
+      "gain": 1.9,
+      "gainPhone": 2.0,
+      "lead": 148,
+      "matches": "bollire",
+      "sha256": "79b81b1e8eb62fd0f5e59e9d635a758b6b811afdeb832f8a966edc815578e9d8",
+      "source": "LL-Q652 (ita)-XANA000-bollire.wav"
+    },
     "to-break": {
       "author": "LangPao",
       "file": "to-break.mp3",
@@ -7360,6 +7486,27 @@
       "sha256": "e5fea88235601cc146027de85f54b4c2bce2993db0aae35623a55630785f63bd",
       "snr": 120.7,
       "source": "LL-Q652 (ita)-XANA000-annullare.wav"
+    },
+    "to-carry": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "to-carry.mp3",
+      "gain": 0.2,
+      "gainPhone": -1.9,
+      "lead": 226,
+      "matches": "portare",
+      "sha256": "03f879af11513abca726cdcf59d2e90488630b9109c225139693aa0227b08985",
+      "snr": 48.7,
+      "source": "It-portare.ogg"
+    },
+    "to-celebrate": {
+      "author": "LangPao",
+      "file": "to-celebrate.mp3",
+      "gain": 4.2,
+      "gainPhone": 3.6,
+      "lead": 217,
+      "matches": "festeggiare",
+      "sha256": "68243a7c559c30daa616329235bd213e673129207c941a94f82ca66bc10dc85f",
+      "source": "LL-Q652 (ita)-LangPao-festeggiare.wav"
     },
     "to-clean": {
       "author": "Marta Carbone, Association Shtooka",
@@ -7712,6 +7859,16 @@
       "snr": 100.1,
       "source": "LL-Q652 (ita)-LangPao-dare.wav"
     },
+    "to-give-a-present": {
+      "author": "LangPao",
+      "file": "to-give-a-present.mp3",
+      "gain": 0.4,
+      "gainPhone": -3.1,
+      "lead": 228,
+      "matches": "regalare",
+      "sha256": "264d45bd34cab39b7db46c757ca334b870c9edcbae96fd50b95cb9b2c501e15e",
+      "source": "LL-Q652 (ita)-LangPao-regalare.wav"
+    },
     "to-go": {
       "author": "XANA000",
       "file": "to-go.mp3",
@@ -7752,6 +7909,16 @@
       "matches": "avere",
       "sha256": "07fddedfcd28d956309b71cf6000a7b4bbdbb85468baf3ae20b0b39f292c29b0",
       "source": "LL-Q652 (ita)-XANA000-avere.wav"
+    },
+    "to-have-to": {
+      "author": "LangPao",
+      "file": "to-have-to.mp3",
+      "gain": 2.4,
+      "gainPhone": 2.4,
+      "lead": 228,
+      "matches": "dovere",
+      "sha256": "4f3e29d3704d1b86571fc067ddb7faf6dd67607a52f27e613b5b303d0b4a077a",
+      "source": "LL-Q652 (ita)-LangPao-dovere.wav"
     },
     "to-hear": {
       "author": "LangPao",
@@ -7886,6 +8053,16 @@
       "sha256": "e0353cd9881bb5b4bfe480b5cd91e196b7f9f666a8f3b31c30e212bbdcda6784",
       "source": "LL-Q652 (ita)-LangPao-piacere.wav"
     },
+    "to-listen-to": {
+      "author": "XANA000",
+      "file": "to-listen-to.mp3",
+      "gain": 0.4,
+      "gainPhone": -1.2,
+      "lead": 202,
+      "matches": "ascoltare",
+      "sha256": "d9fecab75c58046c4d8f0732225bf78068b24aedcebcaba8fa7154e56d51470c",
+      "source": "LL-Q652 (ita)-XANA000-ascoltare.wav"
+    },
     "to-live": {
       "author": "XANA000",
       "file": "to-live.mp3",
@@ -8002,6 +8179,16 @@
       "sha256": "dfc26f5d888af7566f6eab12d9aff451fda20e096cee2c14c2dac9e1a9032cc8",
       "snr": 74.9,
       "source": "LL-Q652 (ita)-LangPao-spingere.wav"
+    },
+    "to-put": {
+      "author": "LangPao",
+      "file": "to-put.mp3",
+      "gain": 5.8,
+      "gainPhone": 5.6,
+      "lead": 241,
+      "matches": "mettere",
+      "sha256": "fbbb05c14382f2fdd3d23231f55a3fce18bd0a86d58a514a3898ce8b8adace8e",
+      "source": "LL-Q652 (ita)-LangPao-mettere.wav"
     },
     "to-quit": {
       "author": "LangPao",
@@ -8152,6 +8339,17 @@
       "matches": "vedere",
       "sha256": "d7323703ba95fead06b9cbf283b0b00c5de33eb5583bd6d6e7baab346c0c6030",
       "source": "LL-Q652 (ita)-LangPao-vedere.wav"
+    },
+    "to-sell": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "to-sell.mp3",
+      "gain": -4.3,
+      "gainPhone": -1.0,
+      "lead": 27,
+      "matches": "vendere",
+      "sha256": "72e393760a55c97fc16067c084645751dbd94a2e8e3e97456e4d284a7cf71977",
+      "snr": 46.7,
+      "source": "It-vendere.ogg"
     },
     "to-send": {
       "author": "LangPao",
@@ -8461,6 +8659,16 @@
       "snr": 87.2,
       "source": "LL-Q652 (ita)-LangPao-volere.wav"
     },
+    "to-wish": {
+      "author": "LangPao",
+      "file": "to-wish.mp3",
+      "gain": 1.1,
+      "gainPhone": 0.6,
+      "lead": 251,
+      "matches": "desiderare",
+      "sha256": "4bb974088f115a16c3033b57bdf0a42f6366c1335b47e565e5d7b4993c3d7948",
+      "source": "LL-Q652 (ita)-LangPao-desiderare.wav"
+    },
     "to-work": {
       "author": "LangPao",
       "file": "to-work.mp3",
@@ -8757,6 +8965,16 @@
       "sha256": "ae5824c5848dd4122f16944ef8ba5e957944a3f2b896195e6a86c82e0b99e927",
       "snr": 64.1,
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-verbo.wav"
+    },
+    "very": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "very.mp3",
+      "gain": -3.8,
+      "gainPhone": 0.0,
+      "matches": "molto",
+      "sha256": "79f7667851b106ae4d0eefb9fed60141469c0abeda2b46a4e81ab6d2578fb9a4",
+      "snr": 46.2,
+      "source": "It-molto.ogg"
     },
     "village": {
       "author": "XANA000",
@@ -9155,6 +9373,16 @@
       "sha256": "11849b75d3c3b13a64e5510c4c5ffd1642e0c5a51a8113004061a7a01d2080af",
       "snr": 85.2,
       "source": "LL-Q652 (ita)-LangPao-lavoratore.wav"
+    },
+    "workplace": {
+      "author": "LangPao",
+      "file": "workplace.mp3",
+      "gain": 6.6,
+      "gainPhone": 7.9,
+      "lead": 224,
+      "matches": "ufficio",
+      "sha256": "08762489058779cbf016688b2007bd5821ca85d2eafd837e0730dd620de4c237",
+      "source": "LL-Q652 (ita)-LangPao-ufficio.wav"
     },
     "wound": {
       "author": "LangPao",
