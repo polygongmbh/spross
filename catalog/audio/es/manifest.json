@@ -14,6 +14,7 @@
     "Fibonacci": "CC BY-SA 2.5",
     "GlyphEnjoyer": "CC0",
     "Ivanhercaz": "CC BY-SA 4.0",
+    "Juan de Vojníkov": "CC BY-SA 3.0",
     "Julie Samothrace": "CC BY-SA 4.0",
     "Marreromarco": "CC BY-SA 4.0",
     "Mentxuwiki": "CC0",
@@ -7646,6 +7647,16 @@
       "snr": 57.9,
       "source": "LL-Q1321 (spa)-Marreromarco-cruzar.wav"
     },
+    "to-cry": {
+      "author": "Juan de Vojníkov",
+      "file": "to-cry.mp3",
+      "gain": 1.4,
+      "gainPhone": -0.1,
+      "matches": "llorar",
+      "sha256": "d40ead282e8c974013763d98134d5adf38ced287a5d8cc8cea72c11f232a163e",
+      "snr": 52.4,
+      "source": "Es-llorar.ogg"
+    },
     "to-cuddle": {
       "author": "Marreromarco",
       "file": "to-cuddle.mp3",
@@ -8017,6 +8028,16 @@
       "sha256": "9463f20b9d7ef814c2b9d0a384f11ef9002b1a108faf5abe6db3d72b4b2b66e4",
       "snr": 61.1,
       "source": "LL-Q1321 (spa)-Marreromarco-contratar.wav"
+    },
+    "to-hope": {
+      "author": "Octavio Paniagua-Taboada (Mexico)",
+      "file": "to-hope.mp3",
+      "gain": -1.6,
+      "gainPhone": -3.9,
+      "matches": "esperar",
+      "sha256": "ab080a523dba5d3705791207a8b7518cc122d72f9e1d3e3ad58865664127badd",
+      "snr": 45.7,
+      "source": "Es-esperar.ogg"
     },
     "to-hurt": {
       "author": "Marreromarco",
@@ -8837,6 +8858,16 @@
       "sha256": "1bd9f2a3d3ca874ca71df19ba4ca56e692f229c420346a098ba6e52910001e02",
       "snr": 57.5,
       "source": "LL-Q1321 (spa)-Marreromarco-votar.wav"
+    },
+    "to-wait": {
+      "author": "Octavio Paniagua-Taboada (Mexico)",
+      "file": "to-wait.mp3",
+      "gain": -1.6,
+      "gainPhone": -3.9,
+      "matches": "esperar",
+      "sha256": "ab080a523dba5d3705791207a8b7518cc122d72f9e1d3e3ad58865664127badd",
+      "snr": 45.7,
+      "source": "Es-esperar.ogg"
     },
     "to-wake-up": {
       "author": "Marreromarco",

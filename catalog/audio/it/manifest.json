@@ -2668,6 +2668,16 @@
       "snr": 101.6,
       "source": "LL-Q652 (ita)-LangPao-carota.wav"
     },
+    "case": {
+      "author": "Accurimbono",
+      "file": "case.mp3",
+      "gain": 6.0,
+      "gainPhone": 1.0,
+      "matches": "caso",
+      "sha256": "5bbf77bb9fe080360a3922946d433ff137dd4b8f0ca0e815d9f19114c98d6299",
+      "snr": 61.9,
+      "source": "It-caso.ogg"
+    },
     "case-worker": {
       "author": "XANA000",
       "file": "case-worker.mp3",

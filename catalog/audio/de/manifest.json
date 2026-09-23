@@ -4323,6 +4323,16 @@
       "snr": 74.3,
       "source": "De-nach.ogg"
     },
+    "afternoon": {
+      "author": "Kampy",
+      "file": "afternoon.mp3",
+      "gain": 1.2,
+      "gainPhone": -1.0,
+      "matches": "nachmittag",
+      "sha256": "326f7f826d116a3d366ca529f5484933de9f5f65f42590acdd80efbbe5fd08e9",
+      "snr": 48.0,
+      "source": "De-Nachmittag.ogg"
+    },
     "again": {
       "author": "Dinock90",
       "file": "again.mp3",
@@ -4333,6 +4343,16 @@
       "sha256": "a0c83ec78b67663cf9643e80ea6fec2a39cbf4782c4859bb49c678211a06e271",
       "snr": 78.2,
       "source": "De-wieder.ogg"
+    },
+    "aggressive": {
+      "author": "Oceancetaceen Alice Chodura",
+      "file": "aggressive.mp3",
+      "gain": 10.3,
+      "gainPhone": 1.7,
+      "matches": "aggressiv",
+      "sha256": "1ee5a6a67a08763ac29db147f8ab71f0c1e50482722bb17565f7492d1528bd11",
+      "snr": 39.7,
+      "source": "De-aggressiv.ogg"
     },
     "airport": {
       "author": "Kampy",
@@ -4452,6 +4472,16 @@
       "sha256": "4c40a03cd7bb91d2bab7c973cfdbbfec8bc2554303fef5a831ceb702eeff99fd",
       "snr": 76.6,
       "source": "De-und.ogg"
+    },
+    "anger": {
+      "author": "Kampy",
+      "file": "anger.mp3",
+      "gain": -1.3,
+      "gainPhone": -0.1,
+      "matches": "wut",
+      "sha256": "77f08110138dcc71d4167848075c08ae62e63db1e1177129b4d4e0955421a1aa",
+      "snr": 52.8,
+      "source": "De-Wut.ogg"
     },
     "animal": {
       "author": "Jeuwre",
@@ -4884,6 +4914,17 @@
       "snr": 106.4,
       "source": "De-galle.ogg"
     },
+    "bill": {
+      "author": "Kampy",
+      "cap": 0.7,
+      "file": "bill.mp3",
+      "gain": -0.9,
+      "gainPhone": -1.8,
+      "matches": "rechnung",
+      "sha256": "fde625bc863ab29ff01f8cd26ef20ee3fce03563cd0f67948c70782ddc8ce0fc",
+      "snr": 51.5,
+      "source": "De-Rechnung.ogg"
+    },
     "bird": {
       "author": "T.Voekler",
       "capPhone": 2.8,
@@ -5097,6 +5138,16 @@
       "sha256": "3f04052ee9aeca0fd19b76241dc8544b50c635ee0274ce919180fa9efc6ba26b",
       "snr": 104.6,
       "source": "De-junge.ogg"
+    },
+    "brain": {
+      "author": "Kampy",
+      "file": "brain.mp3",
+      "gain": -3.3,
+      "gainPhone": 0.9,
+      "matches": "gehirn",
+      "sha256": "dbadd972be679c20bb19ea3ba78f4be921bc05f475b38923fbbd8cd57a8ff122",
+      "snr": 59.7,
+      "source": "De-Gehirn.ogg"
     },
     "bread": {
       "author": "Kampy",
@@ -5320,6 +5371,16 @@
       "snr": 106.0,
       "source": "De-Teppich.ogg"
     },
+    "carrot": {
+      "author": "Holunder Gabriel",
+      "file": "carrot.mp3",
+      "gain": 0.4,
+      "gainPhone": -1.6,
+      "matches": "karotte",
+      "sha256": "1e2708a74ddd55fda6fdb75014aa8fdf7b304e09a84a39209083dd770ff9e529",
+      "snr": 42.9,
+      "source": "De-Karotte.ogg"
+    },
     "case": {
       "author": "Jeuwre",
       "file": "case.mp3",
@@ -5418,6 +5479,16 @@
       "sha256": "6595e5e214600464315c6a7f5541a7bca1241c6d5a6a06b997a115b8b8757e0e",
       "snr": 88.0,
       "source": "De-Mitte.ogg"
+    },
+    "century": {
+      "author": "Kampy",
+      "file": "century.mp3",
+      "gain": 2.8,
+      "gainPhone": 1.7,
+      "matches": "jahrhundert",
+      "sha256": "32a8d6ae7b70e75d8e2f31e433fe6dc294a20004e0c93fc52bf65e78ff2ecdb2",
+      "snr": 41.8,
+      "source": "De-Jahrhundert.ogg"
     },
     "certificate": {
       "author": "Jeuwre",
@@ -5814,6 +5885,16 @@
       "snr": 78.7,
       "source": "De-husten.ogg"
     },
+    "country": {
+      "author": "Pill",
+      "file": "country.mp3",
+      "gain": 3.5,
+      "gainPhone": 0.0,
+      "matches": "land",
+      "sha256": "2dfc595f07bd71e0d5f1c34ffc9dc53014db63771aaecb0abb1b2c5881b8a839",
+      "snr": 50.4,
+      "source": "De-Land.ogg"
+    },
     "course": {
       "author": "Jeuwre",
       "file": "course.mp3",
@@ -5988,6 +6069,16 @@
       "sha256": "fcb3371904bd3b0f10ac8d8272e598d0dd553b8653e2975533a34beca6fef8c2",
       "snr": 81.3,
       "source": "De-Tod.ogg"
+    },
+    "decade": {
+      "author": "Kampy",
+      "file": "decade.mp3",
+      "gain": 1.5,
+      "gainPhone": -2.8,
+      "matches": "jahrzehnt",
+      "sha256": "7b9dc842f91d0579aa81cf27be20d55b2b516870a6dcd0b4764dad73e65ff46c",
+      "snr": 44.1,
+      "source": "De-Jahrzehnt.ogg"
     },
     "defensive": {
       "author": "Jeuwre",
@@ -6350,6 +6441,16 @@
       "sha256": "1ca93e5a78248ac952468cd1a28ea88b1b34f0723bed324ed79fd29faccc1efe",
       "snr": 105.7,
       "source": "De-Wahl.ogg"
+    },
+    "elephant": {
+      "author": "Kampy",
+      "file": "elephant.mp3",
+      "gain": -1.1,
+      "gainPhone": -2.8,
+      "matches": "elefant",
+      "sha256": "01ff2832a672d1ef1789b1ba4b171b6c31edef16443d7660ff86f4764a13042c",
+      "snr": 48.3,
+      "source": "De-Elefant.ogg"
     },
     "email": {
       "author": "Jeuwre",
@@ -6978,6 +7079,16 @@
       "snr": 84.2,
       "source": "De-Möbel.ogg"
     },
+    "future": {
+      "author": "Kampy",
+      "file": "future.mp3",
+      "gain": -1.6,
+      "gainPhone": -2.1,
+      "matches": "zukunft",
+      "sha256": "1442c0fa9057ea31601d0a8bda78c253fae771366e30d6432bf945f23c12a03c",
+      "snr": 46.5,
+      "source": "De-Zukunft.ogg"
+    },
     "game": {
       "author": "Jeuwre",
       "file": "game.mp3",
@@ -7431,6 +7542,16 @@
       "snr": 71.5,
       "source": "De-Krankenhaus.ogg"
     },
+    "hot": {
+      "author": "Kampy",
+      "file": "hot.mp3",
+      "gain": -3.6,
+      "gainPhone": -8.7,
+      "matches": "heiß",
+      "sha256": "3b34bc2f79893efc8b7e673416a4e90db72759760f91064c8e9b3cc7b38c9432",
+      "snr": 47.9,
+      "source": "De-heiß.ogg"
+    },
     "hotel": {
       "author": "Kampy",
       "file": "hotel.mp3",
@@ -7671,6 +7792,16 @@
       "sha256": "406e66cb703ee956a2e989eefe625f1b265771e2589e4f464370f8f2c54097ab",
       "snr": 52.0,
       "source": "De-Insel.ogg"
+    },
+    "it": {
+      "author": "joni",
+      "file": "it.mp3",
+      "gain": -2.9,
+      "gainPhone": -9.4,
+      "matches": "es",
+      "sha256": "f72fb4d34b2dbe7623b6b64908869e3d24a39b4a69978ba03ae84d91b7a4d381",
+      "snr": 47.8,
+      "source": "De-es.ogg"
     },
     "jacket": {
       "author": "Kampy",
@@ -8287,6 +8418,16 @@
       "snr": 105.4,
       "source": "De-Mikrofon.ogg"
     },
+    "midnight": {
+      "author": "Kampy",
+      "file": "midnight.mp3",
+      "gain": 1.3,
+      "gainPhone": 2.1,
+      "matches": "mitternacht",
+      "sha256": "219ce5a7bae068e7234547eed2f4bff651e12e55f39270122e571821da84d132",
+      "snr": 39.7,
+      "source": "De-Mitternacht.ogg"
+    },
     "milk": {
       "author": "Kampy",
       "file": "milk.mp3",
@@ -8296,6 +8437,16 @@
       "sha256": "9e9106d1ab42fce50927f36bd1167e6ee81c470d77909f81b26c0248584bce15",
       "snr": 47.6,
       "source": "De-Milch.ogg"
+    },
+    "millennium": {
+      "author": "Kampy",
+      "file": "millennium.mp3",
+      "gain": 3.3,
+      "gainPhone": 4.4,
+      "matches": "jahrtausend",
+      "sha256": "c219333d1fc1ef21fb02643c9aaebddd19a4a27c590ee2993e43342799612d26",
+      "snr": 46.4,
+      "source": "De-Jahrtausend.ogg"
     },
     "minute": {
       "author": "Kampy",
@@ -8669,6 +8820,16 @@
       "sha256": "fdec801c1dce4f941d4047b5ca801a7aed09b762c95c3af86e8d2ada3c3536c0",
       "snr": 104.6,
       "source": "De-nächste.ogg"
+    },
+    "next-to": {
+      "author": "Kampy",
+      "file": "next-to.mp3",
+      "gain": 2.2,
+      "gainPhone": 3.8,
+      "matches": "neben",
+      "sha256": "1235697989593490def68a0e20b61b94fd7ec0348fac82233d0917702385fed6",
+      "snr": 44.0,
+      "source": "De-neben.ogg"
     },
     "night": {
       "author": "Kampy",
@@ -9485,6 +9646,17 @@
       "snr": 114.2,
       "source": "De-Haferbrei.ogg"
     },
+    "port": {
+      "author": "Kampy",
+      "cap": 0.6,
+      "file": "port.mp3",
+      "gain": 4.9,
+      "gainPhone": 2.1,
+      "matches": "hafen",
+      "sha256": "ff3df8287be13dbab6b13072e4670bd4bb372edd39a5922ed6dbc3e0b77ca29a",
+      "snr": 52.7,
+      "source": "De-Hafen.ogg"
+    },
     "positive": {
       "author": "Katrin Boxberger, Bernadette Perrin-Riou",
       "capPhone": 2.6,
@@ -9683,6 +9855,16 @@
       "sha256": "a0c029cdc11f0eb90e67d6be416cf3d34d1f03bc81f54a44575a3103f5c5eecb",
       "snr": 75.9,
       "source": "De-leise.ogg"
+    },
+    "radio": {
+      "author": "Kampy",
+      "file": "radio.mp3",
+      "gain": -4.8,
+      "gainPhone": -7.8,
+      "matches": "radio",
+      "sha256": "27fd42dc834010f5fdaff423a061fd7427c6afe1bb78a5a21a5b4088d19eb8d9",
+      "snr": 50.3,
+      "source": "De-Radio.ogg"
     },
     "rail": {
       "author": "Jeuwre",
@@ -9892,6 +10074,16 @@
       "snr": 105.9,
       "source": "De-Traurigkeit.ogg"
     },
+    "safe": {
+      "author": "Kampy",
+      "file": "safe.mp3",
+      "gain": -4.6,
+      "gainPhone": -8.2,
+      "matches": "sicher",
+      "sha256": "7a537b4ee3020d65e0f3a2639697d9ab4e0db9e20de1c7e1c6daeb09ba415848",
+      "snr": 53.7,
+      "source": "De-sicher.ogg"
+    },
     "salary": {
       "author": "Kampy",
       "file": "salary.mp3",
@@ -10097,6 +10289,16 @@
       "snr": 100.9,
       "source": "De-schuh.ogg"
     },
+    "shop-assistant": {
+      "author": "Kampy",
+      "file": "shop-assistant.mp3",
+      "gain": -1.8,
+      "gainPhone": -1.8,
+      "matches": "verkäufer",
+      "sha256": "d78491dcf772b0efed9df5759181d8e4e047b0d83a8c4994ac8b619a0c0466f0",
+      "snr": 50.5,
+      "source": "De-Verkäufer.ogg"
+    },
     "shop-assistant-f": {
       "author": "Jeuwre",
       "file": "shop-assistant-f.mp3",
@@ -10289,6 +10491,16 @@
       "sha256": "7335d31d397f9209235dc2e052eb856408cb592f9908fd960a2fe2e6b87ef961",
       "snr": 50.9,
       "source": "De-lächeln.ogg"
+    },
+    "snake": {
+      "author": "Kampy",
+      "file": "snake.mp3",
+      "gain": -0.2,
+      "gainPhone": -3.5,
+      "matches": "schlange",
+      "sha256": "5ae02bdc26436ca7dd7806711203f0ac228a804b7653015aa8c568660aa96818",
+      "snr": 52.8,
+      "source": "De-Schlange.ogg"
     },
     "snow": {
       "author": "Jeuwre",
@@ -10708,6 +10920,16 @@
       "snr": 85.9,
       "source": "De-Sonnencreme.ogg"
     },
+    "supermarket": {
+      "author": "Kampy",
+      "file": "supermarket.mp3",
+      "gain": -4.5,
+      "gainPhone": -1.7,
+      "matches": "supermarkt",
+      "sha256": "63aa32e6f3c5eda2a0be6616a596c5bbc7f56153545fd7afa73fc5eab6385e61",
+      "snr": 51.5,
+      "source": "De-Supermarkt.ogg"
+    },
     "surprise": {
       "author": "Kampy",
       "file": "surprise.mp3",
@@ -10883,6 +11105,16 @@
       "sha256": "403a342cab04f05cbc39ddafcfedb2f6ec7b2f1dc5d03b43eaca821df8f3572e",
       "snr": 70.4,
       "source": "De-deshalb.ogg"
+    },
+    "they": {
+      "author": "joni",
+      "file": "they.mp3",
+      "gain": 8.0,
+      "gainPhone": 1.9,
+      "matches": "sie",
+      "sha256": "cad93e12f80606b34232ea836b8836c513e63daec9d0ee07efd80e02d679879b",
+      "snr": 46.3,
+      "source": "De-sie.ogg"
     },
     "thirst": {
       "author": "Jeuwre",
@@ -11256,6 +11488,16 @@
       "sha256": "35de456368324302c0a610e2620842e7c898b7e493abf22a32cc6a0d275fa2e5",
       "snr": 52.1,
       "source": "De-bestätigen.ogg"
+    },
+    "to-confuse": {
+      "author": "Kampy",
+      "file": "to-confuse.mp3",
+      "gain": -2.8,
+      "gainPhone": 0.3,
+      "matches": "verwirren",
+      "sha256": "126b4d331e0229a3dfc200e5bf8fb87a058be814c7dfc05740d9366f7ccb3a68",
+      "snr": 43.6,
+      "source": "De-verwirren.ogg"
     },
     "to-congratulate": {
       "author": "Kampy",
@@ -12426,6 +12668,16 @@
       "snr": 59.5,
       "source": "De-abgeben.ogg"
     },
+    "to-suggest": {
+      "author": "Kampy",
+      "file": "to-suggest.mp3",
+      "gain": -1.7,
+      "gainPhone": -3.2,
+      "matches": "vorschlagen",
+      "sha256": "c5e3bcaab952d2e56e2e3b04ba90f06bbbf373a8d60ac025e871c00c78c046f2",
+      "snr": 44.2,
+      "source": "De-vorschlagen.ogg"
+    },
     "to-surf": {
       "author": "Jeuwre",
       "file": "to-surf.mp3",
@@ -12622,6 +12874,16 @@
       "sha256": "24ca8fc6c95f6e9f2b25a1eddc7a5d24ae665f40c5d869329deefa94327b10ae",
       "snr": 56.9,
       "source": "De-aufschließen.ogg"
+    },
+    "to-use": {
+      "author": "Kampy",
+      "file": "to-use.mp3",
+      "gain": -4.0,
+      "gainPhone": -4.5,
+      "matches": "benutzen",
+      "sha256": "2f08a6aa997ece2836516af6079d13caef9ec17b746b34402347bcfdfc1f6318",
+      "snr": 50.5,
+      "source": "De-benutzen.ogg"
     },
     "to-visit": {
       "author": "Natschoba",
@@ -13023,6 +13285,16 @@
       "sha256": "12f0a2a6014e16a7005daf869598355a09d691311e6435c4632af5e2cbdeaa6b",
       "snr": 66.2,
       "source": "De-Onkel.ogg"
+    },
+    "under": {
+      "author": "Kampy",
+      "file": "under.mp3",
+      "gain": 4.8,
+      "gainPhone": 5.8,
+      "matches": "unter",
+      "sha256": "6c1adbd6ee426ea498402311858bf390ae721d76045e0d9567210a07c66188a3",
+      "snr": 42.5,
+      "source": "De-unter.ogg"
     },
     "underwear": {
       "author": "Kampy",
@@ -13641,6 +13913,16 @@
       "sha256": "1b1944c7c70d1b45661c3bb325ce7353bf7adb1296c8e7240e191774711d28ab",
       "source": "De-Arbeitszeit.ogg"
     },
+    "workplace": {
+      "author": "Kampy",
+      "file": "workplace.mp3",
+      "gain": -9.3,
+      "gainPhone": -1.3,
+      "matches": "büro",
+      "sha256": "4682f3cf63e0d7dee83dd684f0f00c2594b63d1a87cb342eed8f8cd5e558db2f",
+      "snr": 44.3,
+      "source": "De-Büro.ogg"
+    },
     "worry": {
       "author": "Jeuwre",
       "file": "worry.mp3",
@@ -13720,6 +14002,16 @@
       "sha256": "5b4d8193cf7a863d683e8381c3f1546bbf6e1bafe4216a44b40abb75bc64122d",
       "snr": 71.6,
       "source": "De-du.ogg"
+    },
+    "you-formal": {
+      "author": "joni",
+      "file": "you-formal.mp3",
+      "gain": 8.0,
+      "gainPhone": 1.9,
+      "matches": "sie",
+      "sha256": "cad93e12f80606b34232ea836b8836c513e63daec9d0ee07efd80e02d679879b",
+      "snr": 46.3,
+      "source": "De-sie.ogg"
     },
     "you-plural": {
       "author": "joni",
