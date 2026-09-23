@@ -28,7 +28,7 @@ scripts/audio-catalog.py --packs ../data/reference/audio --lang <lang> --fill
 scripts/audio-coverage.py --missing <lang>                   # what nobody has recorded
 ```
 
-The fill's own drops are the quality check: `noisy` (under 30 dB above the hiss),
+The fill's own drops are the quality check: `noisy` (under 39.5 dB above the noise),
 `misnamed`, `unreachable` and `shipped-collision` each name the row and why.
 
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
@@ -160,8 +160,9 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   headroom again — so a player under a fade hands back as much of the deficit as the ramp
   has taken off, and no more (`fadedGainDb`). It binds 5-25% of every pack but sw, which
   is the loud one and is capped almost nowhere.
-- `snr` (dB) is a third measurement of the same bytes — peak minus noise floor, how far
-  the word stands above the hiss under it — but nothing plays it. It is carried so lint
+- `snr` (dB) is a third measurement of the same bytes — how far the loudest moment stands
+  above the noise under the word, estimated band by band so a word with no pause around it
+  is not mistaken for noise (`scripts/audio_measure.py`'s `noise_margin`) — but nothing plays it. It is carried so lint
   can see the SHAPE of a pack and refuse a rebuild that quietly reintroduces noise an
   earlier sweep removed. A floor per file would be dishonest: some words have nothing
   cleaner on Commons, so the rule is on the median and the size of the bad tail.

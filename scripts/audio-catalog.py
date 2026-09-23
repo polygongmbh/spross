@@ -100,15 +100,13 @@ GAIN_LIMIT_DB = 20.0
 # stages add their own ringing on top of it.
 PEAK_CEILING_DBFS = -1.0
 
-# The quietest a FILLED word may stand above its own hiss. `CatalogAudioLintTest`
-# .noPackLosesItsRecordingQuality holds a pack to under 5% of entries below 30 dB, and a
-# fill that ignores it can walk a pack over that line one word at a time — which is exactly
-# what happened to German: 197 words went in and 57 entries ended up under the floor.
-# Resolution answers "is there a recording", never "is it worth hearing", so the floor
-# belongs on the way in. A word refused here is spoken by the device voice, which is what
+# The quietest a FILLED word may stand above its own noise (`audio_measure.noise_margin`).
+# Set low on purpose: a slightly noisy human recording beats the device voice, so only the
+# clearly noisy are refused — a listening pass heard 38.1–39.2 as noisy and 39.6 and up as
+# fine or better than nothing. A word refused here is spoken by the device voice, which is what
 # it was doing before the fill anyway; `requalify-pack.py` is how a pack finds a cleaner
 # take of the same word.
-FILL_SNR_FLOOR_DB = 30.0
+FILL_SNR_FLOOR_DB = 39.5
 
 # Every license the packs actually carry → its canonical deed. An unlisted one is a
 # hard stop: the credits screen links what it names, and PD has no deed to link.
@@ -249,7 +247,7 @@ def copy_verified(source, target):
     return digest
 
 
-def playback_index(loudness, speaker, leading, peak, floor, phone):
+def playback_index(loudness, speaker, leading, peak, noise, phone):
     """The optional `gain`/`gainPhone`/`lead` plus `snr` for one entry — absent when there is nothing to say.
 
     Two gains, one per playback plane (see [ANALYSIS]): `gain` moves a file toward the
@@ -258,7 +256,7 @@ def playback_index(loudness, speaker, leading, peak, floor, phone):
     phone-plane gain is measured against; the ceiling below still answers to the flat
     peak, because that is what clips on either plane.
 
-    `snr` is peak minus noise floor: how far the word stands above the hiss under it. Unlike
+    `snr` is how far the word stands above the noise under it (`audio_measure.noise_margin`). Unlike
     the other fields it changes no playback — it is carried so the lint can see the SHAPE of a
     pack and refuse a rebuild that quietly reintroduces the noise a previous one removed.
     Measured, never applied: filtering the file would be an adaptation under BY-SA and would
@@ -289,8 +287,8 @@ def playback_index(loudness, speaker, leading, peak, floor, phone):
     lead = max(0, round(leading * 1000) - LEAD_KEEP_MS)
     if lead:
         index['lead'] = lead
-    if floor is not None:
-        index['snr'] = round(peak - floor, 1)
+    if noise is not None:
+        index['snr'] = round(noise, 1)
     return index
 
 
@@ -309,12 +307,12 @@ def copy_and_analyze(copies, phone=False):
     measured = audio_measure.measure_all(FFMPEG, [target for _, _, target in copies])
     analyzed = {}
     for id, _, target in copies:
-        loudness, speaker, leading, peak, floor = measured[target]
+        loudness, speaker, leading, peak, noise = measured[target]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % target)
         if phone and speaker is None:
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % target)
-        analyzed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, floor, phone))
+        analyzed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, noise, phone))
     return analyzed
 
 
@@ -495,13 +493,13 @@ def reindex(lang):
         if digest_of(path) != item['sha256']:
             sys.exit('%s: sha256 no longer matches — the bytes changed, re-run the convert'
                      % path)
-        loudness, speaker, leading, peak, floor = measured[path]
+        loudness, speaker, leading, peak, noise = measured[path]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % path)
         phone = section in ('words', 'articles', 'calendar', 'countries')
         if phone and speaker is None:
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % path)
-        index = playback_index(loudness, speaker, leading, peak, floor, phone)
+        index = playback_index(loudness, speaker, leading, peak, noise, phone)
         was = item.get('gain', 0)
         for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'snr'):
             item.pop(field, None)
@@ -658,7 +656,7 @@ def fill_words(packs, languages):
             # digital silence, which is the cleanest a file can be, never the noisiest.
             if index.get('snr', FILL_SNR_FLOOR_DB) < FILL_SNR_FLOOR_DB:
                 drops.append(('noisy', row['slug'],
-                              '%.1f dB above its own hiss, floor is %.0f'
+                              '%.1f dB above its own noise, floor is %.1f'
                               % (index['snr'], FILL_SNR_FLOOR_DB)))
                 os.remove(os.path.join(out_dir, row['slug'] + '.mp3'))
                 continue

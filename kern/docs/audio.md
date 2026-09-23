@@ -76,7 +76,7 @@ Engine contract: `../README.md`.
   The mp3 bytes stay the untouched Commons transcode (`../../docs/audio-licensing.md` §3);
   the packs share no loudness and the uk letters open a second late, so what corrects them is a MEASUREMENT of the shipped bytes
   which only the player applies.
-  A third measurement, `snr` (peak minus noise floor), corrects nothing and reaches no player:
+  A third measurement, `snr` (how far the word stands above its noise), corrects nothing and reaches no player:
   it exists so lint can hold a pack's median and bad tail, and refuse a rebuild that reintroduces removed hiss.
   What was measured, against which target and under which scheme is `scripts/audio-catalog.py`'s `ANALYSIS`;
   the sha256 gate is untouched by any of it.

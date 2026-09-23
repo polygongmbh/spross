@@ -407,12 +407,12 @@ class CatalogAudioLintTest {
     /**
      * How clean a pack is, as a DISTRIBUTION rather than a floor per file.
      *
-     * A per-file minimum cannot be written honestly: twelve German rows sit under 30 dB
-     * because Commons has nothing cleaner for those words, and a rule that fails the build
-     * over an unimprovable file is a rule that gets suppressed. What a rebuild must not do
-     * is quietly undo the sweep that removed the hiss — a whole pack sliding down, or the
-     * bad tail growing. Both are visible in the shape and neither goes stale as content
-     * grows. Today: medians de 85, es 57, sw 51, uk 45; worst tail de at 3.7%.
+     * A per-file minimum cannot be written honestly: some rows sit low because Commons has
+     * nothing cleaner for those words, and a rule that fails the build over an unimprovable
+     * file is a rule that gets suppressed. What a rebuild must not do is quietly undo the
+     * sweep that removed the hiss — a whole pack sliding down, or the bad tail growing. Both
+     * are visible in the shape and neither goes stale as content grows. Today: medians uk 58
+     * to de 85; worst tail under 45 dB fr at 1.4%.
      *
      * `snr` changes no playback. It is carried purely so this can be asserted.
      */
@@ -425,11 +425,11 @@ class CatalogAudioLintTest {
                 .map { it.snr }.filter { it != 0.0 }
             assertTrue(measured.size > 10, "audio/$lang: only ${measured.size} entries carry an snr")
             val median = measured.sorted()[measured.size / 2]
-            assertTrue(median >= 40.0, "audio/$lang: median snr $median dB has fallen below 40")
-            val hissy = measured.count { it < 30.0 }
+            assertTrue(median >= 50.0, "audio/$lang: median snr $median dB has fallen below 50")
+            val hissy = measured.count { it < 45.0 }
             assertTrue(
                 hissy * 100 <= measured.size * 5,
-                "audio/$lang: $hissy of ${measured.size} entries are under 30 dB — over 5%",
+                "audio/$lang: $hissy of ${measured.size} entries are under 45 dB — over 5%",
             )
         }
     }
