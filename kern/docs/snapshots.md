@@ -85,14 +85,18 @@ Engine contract: `../README.md`.
   `distractors` (v3) are the multiple-choice tiles for that entry, picked by
   `session/MultipleChoice` and read on THIS entry's option side —
   so the watch only shuffles and cannot put the two languages in one question.
-  Nothing but MEANING may separate the answer from its company, and four rules keep it so:
+  Nothing but MEANING may separate the answer from its company, and five rules keep it so:
   same word class first (a lone verb among nouns is answerable off its `ku` alone),
   then the same `sentenceShape` (a lone question mark among full stops is answerable
   without the tile being read; the closing mark names the shape in every catalog language,
   since Spanish never writes `¿`/`¡` without its partner, and every single word is `Bare`),
+  then, for an answer not yet growing, company not yet growing either
+  (the one unrecognized tile among familiar words is the answer by elimination) —
+  whenever such company exists, the shortlist is cut to it plus two others,
+  so any three the watch draws hold one,
   then same area (four kitchen words test the kitchen),
   then shape (length gap + a heavy part-count penalty).
-  All four RANK and none filters, so a thin box still fills four tiles.
+  All five RANK and none filters, so a thin box still fills four tiles.
   The pool is every SCHEDULED card, not the capped entry list — the cap is a wire budget,
   and a pool that small leaves a question no same-class company to keep;
   unscheduled cards stay out, since a word first met as somebody else's wrong answer

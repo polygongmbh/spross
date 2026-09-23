@@ -100,7 +100,8 @@ object WatchSnapshotBuilder {
         // built per entry they were built sixty times over, which is most of what
         // a snapshot used to cost.
         val shared = SharedTargetForms(pool)
-        val options = OptionPool(pool, citationPrefixes)
+        val fresh = ranked.filterNot { Statistics.isGrowing(state, it.sched) }.map { it.sched.cardId }.toSet()
+        val options = OptionPool(pool, fresh, citationPrefixes)
         return WatchSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             generated = nowEpochMillis,
@@ -109,9 +110,13 @@ object WatchSnapshotBuilder {
     }
 
     /** Every pool card as it can be offered, both sides resolved once. */
-    private class OptionPool(pool: List<Card>, private val citationPrefixes: Map<Language, List<String>>) {
-        private val produce = pool.map { it.id to option(it, it.target, citationPrefixes) }
-        private val recognize = pool.map { it.id to option(it, it.source, citationPrefixes) }
+    private class OptionPool(
+        pool: List<Card>,
+        private val fresh: Set<String>,
+        private val citationPrefixes: Map<Language, List<String>>,
+    ) {
+        private val produce = pool.map { it.id to option(it, it.target, it.id in fresh, citationPrefixes) }
+        private val recognize = pool.map { it.id to option(it, it.source, it.id in fresh, citationPrefixes) }
 
         /** The pool on [role]'s side, minus the entry itself and anything it would also answer. */
         fun candidates(role: String, cardId: String, alsoRight: Set<String>): List<MultipleChoice.Option> =
@@ -120,7 +125,7 @@ object WatchSnapshotBuilder {
 
         /** [card]'s own answer, on the side a question in [role] asks for. */
         fun own(role: String, card: Card): MultipleChoice.Option =
-            option(card, if (role == RECOGNIZE) card.source else card.target, citationPrefixes)
+            option(card, if (role == RECOGNIZE) card.source else card.target, card.id in fresh, citationPrefixes)
     }
 
     /**
@@ -178,11 +183,13 @@ object WatchSnapshotBuilder {
     private fun option(
         card: Card,
         side: Realization,
+        fresh: Boolean,
         citationPrefixes: Map<Language, List<String>>,
     ): MultipleChoice.Option = MultipleChoice.Option(
         text = MultipleChoice.optionForm(side.text, card.kind, citationPrefixes[side.lang].orEmpty()),
         kind = card.kind,
         area = card.area,
+        fresh = fresh,
     )
 
     /** [dto]'s taught text on the side a question in [role] asks the learner to pick. */

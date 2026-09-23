@@ -123,6 +123,26 @@ class MultipleChoiceTests {
         assertEquals(listOf("kusoma"), picked)
     }
 
+    // why: the one tile the learner has never seen is the answer by elimination —
+    // whichever three tiles a question draws, one must be as new as the answer.
+    @Test
+    fun aFreshAnswerAlwaysDrawsFreshCompany() {
+        val older = listOf("Gabel", "Messer", "Teller", "Tasse", "Pfanne", "Topf", "Herd").map {
+            option(it).copy(fresh = false)
+        }
+        val picked = pick(option("Sieb").copy(fresh = true), older + option("Kelle").copy(fresh = true))
+        assertTrue("Kelle" in picked)
+        assertTrue(picked.size <= MultipleChoice.PER_QUESTION, "any draw of three must hold Kelle: $picked")
+    }
+
+    @Test
+    fun withoutRecencyDataTheRankingIsUnchanged() {
+        val candidates = listOf("Gabel", "Messer", "Kelle", "Teller").map { option(it) }
+        val flagged = candidates.map { it.copy(fresh = it.text == "Kelle") }
+        assertEquals(pick(option("Sieb"), candidates), pick(option("Sieb"), flagged))
+        assertEquals(pick(option("Sieb"), candidates), pick(option("Sieb").copy(fresh = false), flagged))
+    }
+
     @Test
     fun sentenceShapeIsReadOffTheClosingMark() {
         assertEquals(MultipleChoice.SentenceShape.Question, MultipleChoice.sentenceShape("Wo sind sie?"))

@@ -46,10 +46,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   early returns in `GermanClock.conversational`, en into `EnglishClockRegisters.anchors`, es
   and uk into hand-written `ClockReading` constants, sw has none by design) — still deferred,
   or drop the record and let git hold the deferral?
-- Watch multiple-choice distractors carry no novelty or recency criterion
-  (`kern/src/commonMain/kotlin/net/spross/kern/session/MultipleChoice.kt`): word class, area
-  and shape rank them, but the newest entry can still be the odd one out — the class of
-  problem the phone's due-order reshuffle fixed, on another surface.
 - Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch, but revisit the cap
   if the active box outgrows it (`../kern/docs/snapshots.md`).
 - Real hardware has to time the assembled dates accepted set, an uncapped cross-product graded

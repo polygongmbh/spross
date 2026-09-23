@@ -307,7 +307,7 @@ class WatchSnapshotBuilderTests {
         for (card in offCap) {
             state = Box.inject(
                 state,
-                Box.sched(card.id, stability = 99.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
+                Box.sched(card.id, stability = 1.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
             )
         }
         val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries

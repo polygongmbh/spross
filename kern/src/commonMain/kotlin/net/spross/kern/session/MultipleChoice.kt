@@ -13,12 +13,13 @@ import net.spross.kern.model.CardKind
  * instead of the prompt's would mix the two languages on screen.
  *
  * Nothing but MEANING may separate the answer from the options standing next to
- * it. Three things otherwise do: a word class the other options don't share —
+ * it. Four things otherwise do: a word class the other options don't share —
  * every Swahili verb wears `ku`, every German noun a capital — the sentence a
- * text closes itself as, and, within both, the shape of the string. [Option]
- * carries what the first needs; [optionForm] takes the marker off the writing
- * where the class can't be matched, [sentenceShape] keeps a question among
- * questions, and [shapeDistance] settles the rest.
+ * text closes itself as, a fresh answer among words the learner has long known
+ * (the one tile not yet recognized is the right one), and the shape of the
+ * string. [Option] carries what the first and third need; [optionForm] takes the
+ * marker off the writing where the class can't be matched, [sentenceShape] keeps
+ * a question among questions, and [shapeDistance] settles the rest.
  */
 object MultipleChoice {
 
@@ -32,6 +33,9 @@ object MultipleChoice {
      */
     const val SHORTLIST: Int = 10
 
+    /** Distractors one question shows — four tiles, one of them the answer. */
+    const val PER_QUESTION: Int = 3
+
     /** How much a differing part count outweighs a differing length. */
     private const val PART_PENALTY: Int = 6
 
@@ -42,8 +46,11 @@ object MultipleChoice {
      * One word as it can be offered: the [text] a learner reads on the asked
      * side, plus the two facts that decide whether it can stand beside the
      * answer without being told apart from it by anything but meaning.
+     *
+     * [fresh] is whether the word is still new to the learner — not yet
+     * growing, in the box's own sense — and null where nobody knows.
      */
-    data class Option(val text: String, val kind: CardKind, val area: String)
+    data class Option(val text: String, val kind: CardKind, val area: String, val fresh: Boolean? = null)
 
     /**
      * How a text closes itself — the one thing besides word class that a tile
@@ -90,11 +97,17 @@ object MultipleChoice {
     /**
      * Up to [limit] distractors for [answer], best company first: unique
      * case-insensitively, distinct from the answer, and ranked by word class,
-     * then [sentenceShape], then area, then [shapeDistance]. Same class first is
-     * what keeps the question about meaning; closing the same way keeps a
-     * statement from being ruled out beside a question without being read; same
-     * area makes it a question worth asking, since telling four kitchen words
+     * then [sentenceShape], then freshness, then area, then [shapeDistance]. Same
+     * class first is what keeps the question about meaning; closing the same way
+     * keeps a statement from being ruled out beside a question without being read;
+     * same area makes it a question worth asking, since telling four kitchen words
      * apart tests the kitchen. Empty when every candidate repeats the answer.
+     *
+     * A [Option.fresh] answer puts fresh company first, and whenever any exists
+     * the list is cut to it plus [PER_QUESTION] − 1 others: whichever
+     * [PER_QUESTION] tiles a caller draws, one of them is as new as the answer,
+     * so elimination by familiarity leaves two candidates, not one. A settled
+     * answer, or one without recency data, ranks as if freshness did not exist.
      *
      * Every key RANKS, none filters — a box with nothing well-matched left still
      * fills four tiles rather than offering three.
@@ -105,29 +118,36 @@ object MultipleChoice {
         // Every key is decided once per candidate rather than inside the comparator,
         // which asks for each of them O(log n) times over: `offer` ranks the whole
         // scheduled pool once per entry, and a snapshot holds sixty entries.
-        return candidates
+        val ranked = candidates
             .filter { seen.add(it.text.lowercase()) }
             .map {
                 Ranked(
                     text = it.text,
                     otherKind = it.kind != answer.kind,
                     otherShape = sentenceShape(it.text) != shape,
+                    staler = answer.fresh == true && it.fresh != true,
                     otherArea = it.area != answer.area,
                     distance = shapeDistance(it.text, answer.text),
                 )
             }
             .sortedWith(
-                compareBy({ it.otherKind }, { it.otherShape }, { it.otherArea }, { it.distance }),
+                compareBy({ it.otherKind }, { it.otherShape }, { it.staler }, { it.otherArea }, { it.distance }),
             )
             .take(limit)
-            .map { it.text }
+        if (answer.fresh != true) return ranked.map { it.text }
+        // Only fresh company of the same class and shape counts:
+        // a fresh verb beside a fresh noun is ruled out by its class first.
+        val peers = ranked.count { !it.otherKind && !it.otherShape && !it.staler }
+        val kept = if (peers == 0) ranked else ranked.take(peers + PER_QUESTION - 1)
+        return kept.map { it.text }
     }
 
-    /** One candidate with its four ranking keys already settled. */
+    /** One candidate with its five ranking keys already settled. */
     private data class Ranked(
         val text: String,
         val otherKind: Boolean,
         val otherShape: Boolean,
+        val staler: Boolean,
         val otherArea: Boolean,
         val distance: Int,
     )
