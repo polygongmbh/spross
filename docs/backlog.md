@@ -119,11 +119,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   divergences (numbers and primitive names, not rendering) — is a snapshot gate
   (Roborazzi/Paparazzi + swift-snapshot-testing or simctl diff, versioned goldens) worth its
   cost, or does this bullet narrow to the residual non-numeric class?
-- `card-parity.py`'s face and body lists are hand-kept, so a new file is never scanned (the
-  2026-09-03 choice grid merged unseen). BODIES derives — every UI file except `ui/Theme.kt`,
-  the one table whose own declarations match a rule — against a list now past forty names;
-  FACES does not, "the surface a question is asked on" being no property of the filesystem.
-  Carry `LayerBoundaryTest`'s vacuity guard over with it, or a bad glob turns the gate green.
 - `DROID_PRIMS` counts `.panel(` as a card primitive, so a file clears the composition bar on a
   panel plus one card thing, and `IOS_PRIMS` names no panel at all.
 - A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
