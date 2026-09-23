@@ -77,7 +77,7 @@ final class AppModel {
     /// Whether ANY word in the box can be said aloud on this device — the gate
     /// on the box's tap-to-hear hint. Where the target language has no device
     /// voice this is a walk of every card asking the catalog for a recording,
-    /// so it is answered with the rest and not per redraw.
+    /// so it is answered when the join or the device's voices can move, never per redraw.
     private(set) var anyWordAudible = false
     /// Whether the profile's pair joins a country atlas, and the sentence frames
     /// it joins. Both are catalog walks — the atlas one builds every country row
@@ -326,6 +326,7 @@ final class AppModel {
             box = state
             refreshTrainerContent()
             refreshStats()
+            anyWordAudible = composedAnyWordAudible()
             // why: only a box that did not exist yet owes the disk anything here.
             // A re-join is derived from what is already stored and reproduces
             // itself on the next launch, so writing it back buys nothing.
@@ -365,6 +366,7 @@ final class AppModel {
         persist(next, immediate: true)
         refreshTrainerContent()
         refreshStats()
+        anyWordAudible = composedAnyWordAudible()
         recomposeSessionIfStale()
     }
 
@@ -389,6 +391,9 @@ final class AppModel {
     func handleForeground() {
         recomposeSessionIfStale()
         refreshStats()
+        // why: a voice installed in Settings while the app slept can make the
+        // box audible; nothing else that moves the box changes this answer.
+        anyWordAudible = composedAnyWordAudible()
     }
 
     // MARK: - UI-chrome locale
@@ -450,7 +455,6 @@ final class AppModel {
         activity = composedActivityWindow(now: now, tzId: tz)
         areaGroupSections = composedAreaGroupSections()
         shelves = box.map { BoxBrowser.shared.shelfCounts(state: $0) } ?? [:]
-        anyWordAudible = composedAnyWordAudible()
         areaStatsByName = Dictionary(uniqueKeysWithValues: (stats?.areas ?? []).map { ($0.name, $0) })
         cardTotal = box?.cards.count ?? 0
         cardsByArea = box.map { BoxBrowser.shared.cardsByArea(state: $0) } ?? [:]

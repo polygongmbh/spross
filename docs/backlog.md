@@ -72,11 +72,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 
 ## App & UX
 
-- `composedAnyWordAudible()` walks every card calling `pronounceAction` at activate, measured
-  at ~200 ms on a 1116-card join, and drops to ~1 ms once the voice table loads and `hasVoice`
-  short-circuits (`App/Sources/Model/AppModel+Queries.swift:247`). Its answer depends on the
-  catalog, the join and the device voices, none of which move when a day is booked, so it
-  belongs with the foreground audio refresh rather than in `refreshStats()`.
 - `AppModel+Session.swift:133` `currentCard` reads `box?.cards[id]` on every session-screen
   redraw — ~0.9 ms of whole-join copy per read, against this file's own per-frame budget
   ("nothing that touches the box or the catalog"). Same defect class as the growth tally that
