@@ -23,17 +23,18 @@ internal object Snap {
         accepts: List<String> = emptyList(),
         gender: String? = null,
         feminineMarker: Boolean = false,
+        targetLang: String = "sw",
     ): Card = Card(
         id = id, kind = kind, area = area, emoji = emoji, seedIndex = seed,
         components = emptyList(), feminineOf = null,
         source = Realization("de", sourceText),
         target = Realization(
-            "sw", targetText, teaches = teaches, accepts = accepts,
+            targetLang, targetText, teaches = teaches, accepts = accepts,
             grammar = if (gender != null) mapOf("gender" to gender) else emptyMap(),
         ),
         promptFeminineMarker = feminineMarker,
     )
 
-    fun state(cards: List<Card>): BoxState =
-        BoxEngine.bootstrap(cards, BoxConfig(), JoinStamp("de", "sw", "snap"))
+    fun state(cards: List<Card>, source: String = "de"): BoxState =
+        BoxEngine.bootstrap(cards, BoxConfig(), JoinStamp(source, "sw", "snap"))
 }

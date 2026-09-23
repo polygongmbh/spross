@@ -20,7 +20,7 @@ import net.spross.kern.session.MultipleChoice
 import net.spross.kern.store.StoreJson
 
 /**
- * Phone-side builder of the watch application-context snapshot, v5:
+ * Phone-side builder of the watch application-context snapshot, v6:
  * one entry per CARD with BOTH sides pre-resolved, so the watch stays pure
  * Swift and never joins. [WatchEntryDto.nextRole]/[WatchEntryDto.promptForm]
  * are resolved from the log count at build time; the watch presents
@@ -32,7 +32,7 @@ import net.spross.kern.store.StoreJson
  * cannot hold.
  */
 object WatchSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 5
+    const val SCHEMA_VERSION: Int = 6
     const val ENTRY_CAP: Int = 60
 
     /**
@@ -104,6 +104,7 @@ object WatchSnapshotBuilder {
         val options = OptionPool(pool, fresh, citationPrefixes)
         return WatchSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
+            chromeLanguage = chromeLanguage(state),
             generated = nowEpochMillis,
             entries = entries.map { offer(it, state, options, shared) },
         )
@@ -209,7 +210,8 @@ object WatchSnapshotBuilder {
             // one of the two is ever set, and neither for a card with no emoji.
             emoji = card.emoji?.takeIf { cue == EmojiCue.Upfront },
             revealEmoji = card.emoji?.takeIf { cue == EmojiCue.OnReveal },
-            articleTint = articleTint(card),
+            article = article(card),
+            gender = wireGender(card),
             femMarker = card.promptFeminineMarker,
             due = sched.due!!.toEpochMilliseconds(),
             stability = sched.memory!!.stability,
@@ -226,6 +228,8 @@ object WatchSnapshotBuilder {
 @Serializable
 internal data class WatchSnapshotDoc(
     val schemaVersion: Int,
+    /** The language the watch's and the complication's chrome is written in (`chromeLanguage`). */
+    val chromeLanguage: String,
     val generated: Long,
     val entries: List<WatchEntryDto>,
 )
@@ -252,7 +256,10 @@ internal data class WatchEntryDto(
      * forgetting to read the flag.
      */
     val revealEmoji: String? = null,
-    val articleTint: String? = null,
+    /** The article shown in front of [targetText] — and only in front of it, never a rotated [promptForm]. */
+    val article: String? = null,
+    /** `masculine`/`feminine`/`neuter` ([wireGender]); the tint reads this, never [article]. */
+    val gender: String? = null,
     val femMarker: Boolean,
     val due: Long,
     val stability: Double,

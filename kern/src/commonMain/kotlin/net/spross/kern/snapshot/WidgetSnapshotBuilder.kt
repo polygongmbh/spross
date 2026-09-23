@@ -12,6 +12,7 @@ import net.spross.kern.box.mergeAnswerDays
 import net.spross.kern.box.streakHealth
 import net.spross.kern.box.streakWindow
 import net.spross.kern.model.Card
+import net.spross.kern.model.Gender
 import net.spross.kern.store.StoreJson
 
 /**
@@ -23,7 +24,7 @@ import net.spross.kern.store.StoreJson
  * `lastReviewDate` and "now" run at render time. Who decodes it how: `kern/docs/snapshots.md`.
  */
 object WidgetSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 3
+    const val SCHEMA_VERSION: Int = 4
 
     /** ~10 weeks of day keys — enough history for the widget's streak walk. */
     const val DAILY_STATS_TAIL_DAYS: Int = 70
@@ -87,7 +88,8 @@ object WidgetSnapshotBuilder {
                 text = card.target.text,
                 sourceText = decoratedSourceText(card),
                 emoji = card.emoji,
-                articleTint = articleTint(card),
+                article = article(card),
+                gender = wireGender(card),
             )
         }
         val active = Inventory.active(state)
@@ -102,6 +104,7 @@ object WidgetSnapshotBuilder {
         val tailKeys = combinedDailyStats.keys.sorted().takeLast(DAILY_STATS_TAIL_DAYS)
         return WidgetSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
+            chromeLanguage = chromeLanguage(state),
             entries = entries,
             cards = cards,
             consolidatedCount = active.count { Statistics.isConsolidated(state, it) },
@@ -129,7 +132,7 @@ class WidgetSnapshotView internal constructor(private val doc: WidgetSnapshotDoc
 
     /** Pre-resolved exposure rows, most attention-worthy first. */
     val entries: List<WidgetExposure> = doc.entries.map {
-        WidgetExposure(it.cardId, it.text, it.sourceText, it.emoji, it.articleTint)
+        WidgetExposure(it.cardId, it.text, it.sourceText, it.emoji, it.article, genderOf(it.gender))
     }
 
     /** Active cards that have consolidated — resolved phone-side, it does not move with the clock. */
@@ -157,14 +160,18 @@ data class WidgetExposure(
     val text: String,
     val sourceText: String,
     val emoji: String? = null,
-    /** The article word, which is also what tints the row. */
-    val articleTint: String? = null,
+    /** The article word shown in front of [text]. */
+    val article: String? = null,
+    /** The gender [article] marks, which is what tints the row; null where the box names none. */
+    val gender: Gender? = null,
 )
 
 /** Widget document; all dates are epoch millis for trivial Swift decoding. */
 @Serializable
 internal data class WidgetSnapshotDoc(
     val schemaVersion: Int,
+    /** The language the widget's own chrome is written in (`chromeLanguage`). */
+    val chromeLanguage: String,
     /** Pre-resolved exposure rows, most attention-worthy first. */
     val entries: List<WidgetEntryDto>,
     /** Every active card's due date — the render-time dueCount input. */
@@ -204,7 +211,9 @@ internal data class WidgetEntryDto(
     val text: String,
     val sourceText: String,
     val emoji: String? = null,
-    val articleTint: String? = null,
+    val article: String? = null,
+    /** `masculine`/`feminine`/`neuter` ([wireGender]); the tint reads this, never [article]. */
+    val gender: String? = null,
 )
 
 /** One active card schedule: `dueCount(now)` = cards with `due <= now`. */

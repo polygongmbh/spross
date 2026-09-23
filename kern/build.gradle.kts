@@ -56,7 +56,7 @@ val corpusSweeps = listOf("*ClockDayPartSweepTests")
 tasks.named<Test>("jvmTest") {
     maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
 
-    // why: the palette-parity, article-table, layer-boundary and catalog lints read these
+    // why: the palette-parity, layer-boundary and catalog lints read these
     // trees and stylesheets as text, which Gradle cannot see from the classpath — without
     // naming them the task reports up-to-date after a Swift, CSS or catalog edit, and the
     // gate silently stops running for exactly the change it guards. The layer gate reads

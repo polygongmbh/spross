@@ -22,12 +22,12 @@ struct WatchWordWidgetView: View {
         VStack(alignment: .leading, spacing: 1) {
             HStack(spacing: 4) {
                 Text(entry.emoji)
-                if let tint = entry.tint {
-                    Text(tint)
-                        .foregroundStyle(tintColor(tint))
+                if let article = entry.article {
+                    Text(article)
+                        .foregroundStyle(genderColor(entry.gender))
                 }
                 Text(entry.word)
-                    .foregroundStyle(entry.tint.map(tintColor) ?? .white)
+                    .foregroundStyle(genderColor(entry.gender))
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
             }
@@ -59,15 +59,13 @@ struct WatchWordWidgetView: View {
             }
     }
 
-    /// Article-tint colors; the article set each hue answers for is kern's `Article.kt`
-    /// (a two-gender language folds onto masculine-blue and feminine-berry, and
-    /// never reaches the neuter).
-    private func tintColor(_ tint: String) -> Color {
-        switch tint.lowercased() {
-        case "der", "el", "los", "un": return WatchWidgetColors.der
-        case "die", "la", "las", "una": return WatchWidgetColors.die
-        case "das": return WatchWidgetColors.das
-        default: return .white
+    /// The hue the entry's gender wears; a box that names no gender renders plain.
+    private func genderColor(_ gender: SnapshotGender?) -> Color {
+        switch gender {
+        case .masculine: return WatchWidgetColors.der
+        case .feminine: return WatchWidgetColors.die
+        case .neuter: return WatchWidgetColors.das
+        case nil: return .white
         }
     }
 }

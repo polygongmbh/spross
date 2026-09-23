@@ -25,15 +25,17 @@ struct WatchWordWidget: Widget {
 struct WatchWordEntry: TimelineEntry {
     let date: Date
     let emoji: String
-    /// Snapshot `articleTint` ("der"/"die"/"das"); doubles as the article word.
-    let tint: String?
+    /// The article shown in front of `word`, nil where the box names none.
+    let article: String?
+    /// What `article` marks — the tint reads this, never the article word.
+    let gender: SnapshotGender?
     /// TARGET-side text (exposure surfaces always show the learned language).
     let word: String
     /// Source meaning (the known language).
     let meaning: String
     let dueCount: Int
 
-    static let placeholder = WatchWordEntry(date: .now, emoji: "🧊", tint: nil,
+    static let placeholder = WatchWordEntry(date: .now, emoji: "🧊", article: nil, gender: nil,
                                             word: "friji", meaning: "Kühlschrank",
                                             dueCount: 0)
 }
@@ -60,7 +62,8 @@ struct WatchWordProvider: TimelineProvider {
             let entry = exposure[slot % exposure.count]
             return WatchWordEntry(date: start.addingTimeInterval(Double(slot) * 15 * 60),
                                   emoji: entry.emoji ?? "🗂️",
-                                  tint: entry.articleTint,
+                                  article: entry.article,
+                                  gender: entry.gender,
                                   word: entry.targetText,
                                   meaning: entry.sourceText,
                                   dueCount: due)

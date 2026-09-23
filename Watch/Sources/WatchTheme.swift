@@ -33,19 +33,15 @@ enum WatchTheme {
         let das = Color(watchHex: 0x6FDC85)
     }
 
-    /// Snapshot `articleTint` string → color (text carries meaning, color
-    /// reinforces). The tint is the TARGET grammar gender pre-resolved by the
-    /// phone; unknown/absent tints render neutral (genderless targets).
-    /// A two-gender language folds onto the phone's two hues — masculine
-    /// der-blue, feminine die-berry, plural and indefinite articles following
-    /// the gender they inflect (kern's `Article.kt` holds the canonical list), so the
-    /// watch never has to know which language the tint came from.
-    static func articleColor(_ tint: String?) -> Color {
-        switch tint?.lowercased() {
-        case "der", "el", "los", "un": return colors.der
-        case "die", "la", "las", "una": return colors.die
-        case "das": return colors.das
-        default: return .white
+    /// The hue an entry's gender wears (text carries meaning, color reinforces);
+    /// a box that names no gender renders neutral. Which article marks which
+    /// gender the phone already settled (`SnapshotGender`).
+    static func genderColor(_ gender: SnapshotGender?) -> Color {
+        switch gender {
+        case .masculine: return colors.der
+        case .feminine: return colors.die
+        case .neuter: return colors.das
+        case nil: return .white
         }
     }
 }

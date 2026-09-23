@@ -39,7 +39,8 @@ class WatchSnapshotBuilderTests {
         assertEquals("produce", entry.nextRole)
         assertEquals("👩", entry.emoji) // produce + learning → visible
         assertNull(entry.revealEmoji) // already upfront, so nothing is held back
-        assertEquals("die", entry.articleTint)
+        assertEquals("die", entry.article)
+        assertEquals("feminine", entry.gender)
         assertEquals(due, entry.due)
         assertEquals(1.5, entry.stability)
         // Rotation at count 2: index (2/2 + hash%2forms) % 2 = 1 → the synonym.
@@ -409,7 +410,7 @@ class WatchSnapshotBuilderTests {
     @Test
     fun schemaVersionAndGeneratedArePinned() {
         val doc = WatchSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1)
-        assertEquals(5, doc.schemaVersion)
+        assertEquals(6, doc.schemaVersion)
         assertEquals(Box.day1, doc.generated)
     }
 
@@ -424,6 +425,6 @@ class WatchSnapshotBuilderTests {
             WatchSnapshotBuilder.build(state, Box.day1),
             WatchSnapshotBuilder.build(state, Box.day1),
         )
-        assertTrue(WatchSnapshotBuilder.build(state, Box.day1).startsWith("{\"entries\":"))
+        assertTrue(WatchSnapshotBuilder.build(state, Box.day1).startsWith("{\"chromeLanguage\":"))
     }
 }

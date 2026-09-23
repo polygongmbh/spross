@@ -1,8 +1,10 @@
 {
   "answeredCardIDs": [],
+  "chromeLanguage": "de",
   "entries": [
     {
-      "articleTint": "der",
+      "article": "der",
+      "gender": "masculine",
       "cardId": "fixture-kuehlschrank",
       "distractors": [
         "Spülmaschine",
@@ -20,7 +22,8 @@
       "targetText": "Kühlschrank"
     },
     {
-      "articleTint": "die",
+      "article": "die",
+      "gender": "feminine",
       "cardId": "fixture-spuelmaschine",
       "distractors": [
         "fridge",
@@ -38,7 +41,8 @@
       "targetText": "Spülmaschine"
     },
     {
-      "articleTint": "die",
+      "article": "die",
+      "gender": "feminine",
       "cardId": "fixture-kellnerin",
       "distractors": [
         "fridge",
@@ -55,7 +59,8 @@
       "targetText": "Kellnerin"
     },
     {
-      "articleTint": "das",
+      "article": "das",
+      "gender": "neuter",
       "cardId": "fixture-sofa",
       "distractors": [
         "Kellnerin",
@@ -120,7 +125,8 @@
       "targetText": "kochen"
     },
     {
-      "articleTint": "der",
+      "article": "der",
+      "gender": "masculine",
       "cardId": "fixture-fernseher",
       "distractors": [
         "sofa",
@@ -139,5 +145,5 @@
     }
   ],
   "generated": 1782907200000,
-  "schemaVersion": 5
+  "schemaVersion": 6
 }

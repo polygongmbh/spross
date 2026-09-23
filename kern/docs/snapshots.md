@@ -56,11 +56,12 @@ Engine contract: `../README.md`.
   is long-term exposure, which a round's staleness does not touch. A widget decodes and
   draws (it cannot run the join: no catalog in its bundle, ~30 MB extension memory cap vs
   33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
-  entries (target-side text, emoji, article tint), per-card `{due}` for render-time
+  entries (target-side text, emoji, `article?`, `gender?`), per-card `{due}` for render-time
   `dueCount(now)`, the consolidated-card count (`consolidatedCount`, resolved phone-side —
   it does not move with the clock), a tail of per-day answer counts
   (~70 days, `{reviews}` a day) for the activity strip, `streak` and `lastReviewDate`
-  (the streak as of that day, resolved once by `Statistics.streak`), `schemaVersion`.
+  (the streak as of that day, resolved once by `Statistics.streak`), `chromeLanguage`,
+  `schemaVersion` (4).
   Built by `WidgetSnapshotBuilder.build`, written by the app.
   **Both sides of the wire are kern's answer, nowhere re-derived.**
   `WidgetSnapshotBuilder.decode` returns a public `WidgetSnapshotView` — the rows, plus
@@ -74,9 +75,11 @@ Engine contract: `../README.md`.
   thresholds (0 lit, 1 the one bridge day, 2 the bridge already spent) that mirror
   `Statistics.streakRun`'s own bridge rule, and shows `streak` unchanged for as long
   as the gap holds — never re-walking `dailyStats` itself.
-- **WatchSnapshot v5**: direction/pair/`german` are gone — one entry per CARD with BOTH
-  sides pre-resolved: `{cardId, sourceText, targetText, emoji?, revealEmoji?, articleTint?,
-  femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}` + `schemaVersion`.
+- **WatchSnapshot v6**: direction/pair/`german` are gone — one entry per CARD with BOTH
+  sides pre-resolved: `{cardId, sourceText, targetText, emoji?, revealEmoji?, article?, gender?,
+  femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}`
+  + `chromeLanguage` + `schemaVersion`.
+  The watch refuses any other version whole and waits for the phone's next push, as the widget does.
   **The wire carries only what a surface draws**: v4 dropped `accepted[]` (the full target
   family), which was shipped for a reveal the quiz does not have — the watch answers by
   picking a tile, so there is no second face to list alternates on. Should the watch ever
@@ -125,6 +128,14 @@ Engine contract: `../README.md`.
   an honest moment and no longer has to be withheld to stay honest. Two keys rather than one
   key plus a flag, so a surface that reads `emoji` and draws it immediately — the
   complication does exactly this — cannot leak a reveal-side picture by forgetting the flag.
+  **v6** (with widget v4) ships the gender beside the article, and the chrome language:
+  - `gender` (`masculine`/`feminine`/`neuter`) is `articleGender` resolved against the TARGET
+    language, and every decode-only surface tints from it, never from the article word —
+    fr `le` and it `le` are one string and two genders, and only the phone knows which language wrote it.
+    `article` is the word the surface prints in front of the target text.
+  - `chromeLanguage` is `LanguageChoices.chromeLanguage` of the box's known language —
+    the language the app's own chrome follows, which the watch, the complication and the
+    iOS widget cannot ask the phone's model for.
   Ranking is **due-first** (a due card is never evicted by a non-due lower tier), then
   exposure tiers, capped at 60 entries (the ~60 KB `updateApplicationContext` limit).
   A second cap is a LEGIBILITY budget rather than a wire one: `MAX_TEXT_CHARS` (24) keeps a

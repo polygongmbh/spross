@@ -11,7 +11,8 @@ import androidx.glance.unit.ColorProvider
 import net.spross.app.ui.ThemeColors
 import net.spross.app.ui.ThemeDark
 import net.spross.app.ui.ThemeLight
-import net.spross.app.ui.articleTint
+import net.spross.app.ui.genderTint
+import net.spross.kern.model.Gender
 
 /**
  * The tile's colors, read off the app's own table rather than copied: `ThemeLight`/`ThemeDark`
@@ -33,12 +34,12 @@ object WidgetColors {
         washed({ if (isToday) it.accent else it.success }, opacity)
 
     /**
-     * The hue an article wears, both columns at once. Which article marks which gender is
-     * kern's ([net.spross.app.ui.articleTint]); null where the box names no gender.
+     * The hue a gender wears, both columns at once — the snapshot names the gender, so the
+     * tile never reads one off the article word; null where the box names no gender.
      */
-    fun article(article: String?): ColorProvider? {
-        val day = ThemeLight.articleTint(article) ?: return null
-        val night = ThemeDark.articleTint(article) ?: return null
+    fun gender(gender: Gender?): ColorProvider? {
+        val day = ThemeLight.genderTint(gender) ?: return null
+        val night = ThemeDark.genderTint(gender) ?: return null
         return dayNight(day = day, night = night)
     }
 

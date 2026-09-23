@@ -10,13 +10,16 @@ import net.spross.app.ProfileStore
 import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.StreakHealth
+import net.spross.kern.model.Gender
 import net.spross.kern.snapshot.WidgetSnapshotBuilder
 
 /** One row of a tile: the picture, the article that tints the word, and the pair itself. */
 data class WidgetWord(
     val emoji: String,
-    /** The article word, which is also what colors it; null where the box names no gender. */
+    /** The article word shown in front of [word]; null where the box names none. */
     val article: String?,
+    /** What [article] marks, which is what colors it; null where the box names no gender. */
+    val gender: Gender?,
     /** TARGET-side text — an exposure surface always shows the language being learned. */
     val word: String,
     /** The source meaning, ♀ marker already baked in by the phone. */
@@ -72,7 +75,7 @@ object WidgetFaces {
         val json = BoxFiles(File(context.filesDir, "box")).readWidgetSnapshot() ?: return null
         val view = WidgetSnapshotBuilder.decode(json) ?: return null
         val words = view.entries.map {
-            WidgetWord(it.emoji ?: FALLBACK_PICTURE, it.articleTint, it.text, it.sourceText)
+            WidgetWord(it.emoji ?: FALLBACK_PICTURE, it.article, it.gender, it.text, it.sourceText)
         }
         if (words.isEmpty()) return null
         val tz = TimeZone.getDefault().id

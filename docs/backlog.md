@@ -57,9 +57,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   circles carry only the entry mark where the atlas and calendar wear a record
   (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
   typed stages, which enumerate, file one and open above it too?
-- Widget and watch snapshots ship the raw article string (`kern/.../snapshot/SnapshotSupport.kt`
-  `articleTint`, `Widgets/Sources/WordWidgetView.swift`, `Watch/Sources/WatchTheme.swift`), so fr/it
-  `le` cannot take its hue there until the snapshot carries a gender (a `!` change).
 - "Move noun class, word types and the tenses further back" — filed as a suggestion
   without a surface; the three are a card's Swahili plural/class grammar, its kind badge
   and the tense phrases' seed positions, which sit in three different places. Which one

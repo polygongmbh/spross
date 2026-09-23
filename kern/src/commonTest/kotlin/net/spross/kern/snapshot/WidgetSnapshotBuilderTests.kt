@@ -15,6 +15,7 @@ import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.streakWindow
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
+import net.spross.kern.model.Gender
 
 class WidgetSnapshotBuilderTests {
 
@@ -44,12 +45,36 @@ class WidgetSnapshotBuilderTests {
         assertEquals("ofisantka", femEntry.text)
         assertEquals("Kellner ♀", femEntry.sourceText)
         assertEquals("👩", femEntry.emoji)
-        assertNull(femEntry.articleTint)
+        assertNull(femEntry.article)
+        assertNull(femEntry.gender)
 
-        assertEquals("der", byCard.getValue("wg").articleTint)
+        assertEquals("der", byCard.getValue("wg").article)
+        assertEquals("masculine", byCard.getValue("wg").gender)
         assertEquals("Kühlschrank", byCard.getValue("wg").sourceText)
-        assertNull(byCard.getValue("wv").articleTint)
+        assertNull(byCard.getValue("wv").article)
         assertNull(byCard.getValue("wv").emoji)
+    }
+
+    @Test
+    fun theGenderIsTheOneTheArticleMarksInTheTargetLanguage() {
+        val french = Snap.card("fr", 7, targetText = "pain", gender = "le", targetLang = "fr")
+        val italian = Snap.card("it", 8, targetText = "mele", gender = "le", targetLang = "it")
+        val cards = listOf(french, italian)
+        val state = cards.fold(Snap.state(cards)) { s, card ->
+            Box.inject(s, Box.sched(card.id, dueMillis = Box.plusDays(Box.day1, 1.0), lastReviewMillis = Box.day1))
+        }
+
+        val byCard = WidgetSnapshotBuilder.doc(state, Box.day1, Box.TZ, exposureLimit = 10).entries.associateBy { it.cardId }
+        assertEquals("masculine", byCard.getValue("fr").gender)
+        assertEquals("feminine", byCard.getValue("it").gender)
+    }
+
+    @Test
+    fun chromeFollowsTheKnownLanguageAndFallsBackWhereThereIsNone() {
+        assertEquals("de", WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).chromeLanguage)
+        val swahili = Snap.state(emptyList(), source = "sw")
+        assertEquals("en", WidgetSnapshotBuilder.doc(swahili, Box.day1, Box.TZ, 5).chromeLanguage)
+        assertEquals("en", WatchSnapshotBuilder.doc(swahili, Box.day1).chromeLanguage)
     }
 
     @Test
@@ -137,7 +162,7 @@ class WidgetSnapshotBuilderTests {
 
     @Test
     fun schemaVersionIsPinned() {
-        assertEquals(3, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
+        assertEquals(4, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
     }
 
     @Test
@@ -198,7 +223,8 @@ class WidgetSnapshotBuilderTests {
         )
         assertEquals(doc.entries.map { it.cardId }, view.entries.map { it.cardId })
         assertEquals("Kellner ♀", view.entries.first { it.cardId == "wf" }.sourceText)
-        assertEquals("der", view.entries.first { it.cardId == "wg" }.articleTint)
+        assertEquals("der", view.entries.first { it.cardId == "wg" }.article)
+        assertEquals(Gender.Masculine, view.entries.first { it.cardId == "wg" }.gender)
         assertEquals(doc.consolidatedCount, view.consolidatedCount)
 
         // Every card is due tomorrow, so only a later clock counts them.
@@ -219,7 +245,7 @@ class WidgetSnapshotBuilderTests {
         assertNull(WidgetSnapshotBuilder.decode("not json at all"))
         assertNull(WidgetSnapshotBuilder.decode("{}")) // schemaVersion missing
         val current = WidgetSnapshotBuilder.build(scheduledState(), Box.day1, Box.TZ)
-        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":3", "\"schemaVersion\":4")))
+        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":4", "\"schemaVersion\":3")))
         assertNotNull(WidgetSnapshotBuilder.decode(current))
     }
 

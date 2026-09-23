@@ -253,7 +253,10 @@ object Theme {
  * every surface; only the three colors are this platform's, and they stay here. [lang]
  * settles the one form two languages share; a surface without it leaves that form neutral.
  */
-fun ThemeColors.articleTint(article: String?, lang: Language? = null): Color? = when (articleGender(article, lang)) {
+fun ThemeColors.articleTint(article: String?, lang: Language? = null): Color? = genderTint(articleGender(article, lang))
+
+/** The hue a [gender] wears; null where the box names none. */
+fun ThemeColors.genderTint(gender: Gender?): Color? = when (gender) {
     Gender.Masculine -> der
     Gender.Feminine -> die
     Gender.Neuter -> das

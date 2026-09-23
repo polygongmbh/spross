@@ -31,8 +31,10 @@ struct WordWidget: Widget {
 /// A single vocab card projected into the widget (no snapshot types in the view).
 struct WidgetWord {
     let emoji: String
-    /// Article tint ("der"/"die"/"das") — doubles as the rendered article word.
-    let tint: String?
+    /// The article shown in front of `word`, nil where the box names none.
+    var article: String? = nil
+    /// What `article` marks — the tint reads this, never the article word.
+    var gender: SnapshotGender? = nil
     /// TARGET-side text (exposure surfaces always show the learned language).
     let word: String
     /// Source meaning (♀ marker pre-baked by the phone).
@@ -57,7 +59,7 @@ struct WordEntry: TimelineEntry {
 
     // Convenience accessors for the compact families.
     var emoji: String { primary.emoji }
-    var tint: String? { primary.tint }
+    var article: String? { primary.article }
     var word: String { primary.word }
     var meaning: String { primary.meaning }
 
@@ -66,7 +68,7 @@ struct WordEntry: TimelineEntry {
     /// would pass for the learner's box here, so the sprout stands in instead.
     static let awaitingContent = WordEntry(
         date: .now,
-        primary: WidgetWord(emoji: "🌱", tint: nil, word: "", meaning: ""),
+        primary: WidgetWord(emoji: "🌱", word: "", meaning: ""),
         words: [], dueCount: 0, streak: 0, flameState: .unlit,
         consolidated: 0, activityDays: [])
 
@@ -76,7 +78,7 @@ struct WordEntry: TimelineEntry {
 
     static let placeholder = WordEntry(
         date: .now,
-        primary: WidgetWord(emoji: "🧊", tint: nil, word: "friji", meaning: "Kühlschrank"),
+        primary: WidgetWord(emoji: "🧊", word: "friji", meaning: "Kühlschrank"),
         // why: sorted like a real window, or the gallery would advertise a ragged
         // list the placed widget never shows.
         words: sortedForDisplay(placeholderWords),
@@ -84,12 +86,12 @@ struct WordEntry: TimelineEntry {
         activityDays: placeholderDays)
 
     private static let placeholderWords = [
-        WidgetWord(emoji: "🧊", tint: nil, word: "friji", meaning: "Kühlschrank"),
-        WidgetWord(emoji: "🍞", tint: nil, word: "mkate", meaning: "Brot"),
-        WidgetWord(emoji: "💧", tint: nil, word: "maji", meaning: "Wasser"),
-        WidgetWord(emoji: "🌙", tint: nil, word: "mwezi", meaning: "Mond"),
-        WidgetWord(emoji: "🏠", tint: nil, word: "nyumba", meaning: "Haus"),
-        WidgetWord(emoji: "☀️", tint: nil, word: "jua", meaning: "Sonne"),
+        WidgetWord(emoji: "🧊", word: "friji", meaning: "Kühlschrank"),
+        WidgetWord(emoji: "🍞", word: "mkate", meaning: "Brot"),
+        WidgetWord(emoji: "💧", word: "maji", meaning: "Wasser"),
+        WidgetWord(emoji: "🌙", word: "mwezi", meaning: "Mond"),
+        WidgetWord(emoji: "🏠", word: "nyumba", meaning: "Haus"),
+        WidgetWord(emoji: "☀️", word: "jua", meaning: "Sonne"),
     ]
 
     /// A hand-written fortnight so the gallery snapshot and the previews draw a
@@ -138,7 +140,7 @@ struct WordProvider: TimelineProvider {
         guard let snapshot = WidgetSnapshotReader.load(),
               !snapshot.entries.isEmpty else { return nil }
         let words = snapshot.entries.map {
-            WidgetWord(emoji: $0.emoji ?? "🗂️", tint: $0.articleTint,
+            WidgetWord(emoji: $0.emoji ?? "🗂️", article: $0.article, gender: $0.gender,
                        word: $0.text, meaning: $0.sourceText)
         }
         let dueCount = snapshot.dueCount(now: start)

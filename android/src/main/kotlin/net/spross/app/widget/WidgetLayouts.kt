@@ -204,7 +204,7 @@ private val WORD_SIZE = 16.sp
  */
 @Composable
 private fun WordLine(word: WidgetWord, style: TextStyle) {
-    val tint = WidgetColors.article(word.article)
+    val tint = WidgetColors.gender(word.gender)
     if (word.article == null || tint == null) {
         Text(word.word, style = style, maxLines = 1)
         return

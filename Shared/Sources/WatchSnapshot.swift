@@ -1,6 +1,6 @@
 import Foundation
 
-/// Compact phone → watch state transfer ("snapshot down, events up"), v5:
+/// Compact phone → watch state transfer ("snapshot down, events up"), v6:
 /// decode-only mirror of Kern's `WatchSnapshotBuilder` JSON. One entry per
 /// CARD with both sides pre-resolved — the watch never joins, never types,
 /// and links no Kotlin. The phone is the source of truth; the watch only
@@ -21,7 +21,11 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         /// out. Never rendered before a tile is tapped — that is the whole
         /// reason it travels under its own key instead of in `emoji`.
         var revealEmoji: String?
-        var articleTint: String?
+        /// The article shown in front of `targetText` — never in front of a
+        /// rotated `promptForm`, which may be a word of another gender.
+        var article: String?
+        /// What the article marks; the tint reads this, never `article`.
+        var gender: SnapshotGender?
         var femMarker: Bool
         /// Epoch milliseconds (trivial Swift decoding, no date strategy).
         var due: Int64
@@ -43,7 +47,13 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         var isRecognize: Bool { nextRole == "recognize" }
     }
 
+    /// The one version this build reads (kern `WatchSnapshotBuilder.SCHEMA_VERSION`).
+    static let currentSchemaVersion = 6
+
     var schemaVersion: Int
+    /// The language the watch's and the complication's chrome is written in,
+    /// the one the phone's own chrome follows.
+    var chromeLanguage: String
     /// Epoch milliseconds of the build.
     var generated: Int64
     var entries: [Entry]
@@ -52,12 +62,13 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
     var answeredCardIDs: [String] = []
 
     private enum CodingKeys: String, CodingKey {
-        case schemaVersion, generated, entries, answeredCardIDs
+        case schemaVersion, chromeLanguage, generated, entries, answeredCardIDs
     }
 
-    init(schemaVersion: Int, generated: Int64, entries: [Entry],
+    init(schemaVersion: Int, chromeLanguage: String, generated: Int64, entries: [Entry],
          answeredCardIDs: [String] = []) {
         self.schemaVersion = schemaVersion
+        self.chromeLanguage = chromeLanguage
         self.generated = generated
         self.entries = entries
         self.answeredCardIDs = answeredCardIDs
@@ -66,6 +77,14 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         schemaVersion = try container.decode(Int.self, forKey: .schemaVersion)
+        // why: a snapshot of another version — one the watch stored before an update —
+        // is refused whole, as the widget refuses its own: the watch shows its
+        // waiting face until the phone pushes a fresh one, never half a schema.
+        guard schemaVersion == Self.currentSchemaVersion else {
+            throw DecodingError.dataCorruptedError(forKey: .schemaVersion, in: container,
+                                                   debugDescription: "unsupported schemaVersion")
+        }
+        chromeLanguage = try container.decode(String.self, forKey: .chromeLanguage)
         generated = try container.decode(Int64.self, forKey: .generated)
         entries = try container.decode([Entry].self, forKey: .entries)
         answeredCardIDs = try container.decodeIfPresent([String].self,

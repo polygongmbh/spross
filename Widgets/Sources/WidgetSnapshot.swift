@@ -24,13 +24,14 @@ struct WidgetSnapshot: Codable {
     }
 
     /// One pre-resolved exposure row (TARGET-side text; ♀ baked into
-    /// `sourceText`; `articleTint` doubles as the article word).
+    /// `sourceText`; `gender` is what the `article` marks, and what tints the row).
     struct Entry: Codable {
         var cardId: String
         var text: String
         var sourceText: String
         var emoji: String?
-        var articleTint: String?
+        var article: String?
+        var gender: SnapshotGender?
     }
 
     /// One active card schedule — the render-time due-count input.
@@ -44,7 +45,12 @@ struct WidgetSnapshot: Codable {
         var reviews: Int
     }
 
+    /// The one version this build reads (kern `WidgetSnapshotBuilder.SCHEMA_VERSION`).
+    static let currentSchemaVersion = 4
+
     var schemaVersion: Int
+    /// The language the widget's chrome is written in, the one the app's own chrome follows.
+    var chromeLanguage: String
     var entries: [Entry]
     var cards: [CardInfo]
     /// Active cards that have consolidated (kern `Statistics.isConsolidated`); resolved
@@ -144,7 +150,7 @@ enum WidgetSnapshotReader {
             .appendingPathComponent("widget-snapshot.json")
         guard let data = try? Data(contentsOf: url),
               let snapshot = try? JSONDecoder().decode(WidgetSnapshot.self, from: data),
-              snapshot.schemaVersion == 3 else { return nil }
+              snapshot.schemaVersion == WidgetSnapshot.currentSchemaVersion else { return nil }
         return snapshot
     }
 }

@@ -127,15 +127,15 @@ struct WatchQuizView: View {
         return word + Text(" ♀").foregroundStyle(WatchTheme.colors.die)
     }
 
-    /// Target side, e.g. "die Kellnerin" — articleTint drives the article word
-    /// and its color, but only for the canonical text (a rotated synonym may
+    /// Target side, e.g. "die Kellnerin" — the article leads and the gender
+    /// colors the word, but only for the canonical text (a rotated synonym may
     /// carry a different gender); genderless targets render plain.
     private func targetLine(_ entry: WatchSnapshot.Entry, form: String) -> Text {
-        guard let tint = entry.articleTint, form == entry.targetText else {
+        guard let article = entry.article, form == entry.targetText else {
             return Text(form)
         }
-        return Text("\(tint) ").foregroundStyle(WatchTheme.colors.textSecondary)
-            + Text(form).foregroundStyle(WatchTheme.articleColor(tint))
+        return Text("\(article) ").foregroundStyle(WatchTheme.colors.textSecondary)
+            + Text(form).foregroundStyle(WatchTheme.genderColor(entry.gender))
     }
 
     // MARK: - Options

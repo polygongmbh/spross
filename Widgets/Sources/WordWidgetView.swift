@@ -198,38 +198,36 @@ struct WordWidgetView: View {
         }
     }
 
-    /// Single tint-only line for above the clock; no color or meaning.
+    /// One line for above the clock: picture, article and word — no color, no meaning.
     private var inline: some View {
-        Text("\(entry.emoji) \(entry.tint.map { "\($0) " } ?? "")\(entry.word)")
+        Text("\(entry.emoji) \(entry.article.map { "\($0) " } ?? "")\(entry.word)")
     }
 
     private func wordLine(font: Font) -> some View {
         wordLine(for: entry.primary, font: font)
     }
 
-    /// Target word with the article word prefixed and colored when the
-    /// snapshot carries an `articleTint`; genderless targets render plain.
+    /// Target word with the article word prefixed and colored by the gender it
+    /// marks; genderless targets render plain.
     private func wordLine(for word: WidgetWord, font: Font) -> some View {
-        (articleText(word.tint) + Text(word.word))
+        (articleText(word) + Text(word.word))
             .font(font)
             .lineLimit(1)
             .minimumScaleFactor(0.6)
     }
 
-    private func articleText(_ tint: String?) -> Text {
-        guard let tint else { return Text("") }
-        return Text("\(tint) ").foregroundStyle(tintColor(tint))
+    private func articleText(_ word: WidgetWord) -> Text {
+        guard let article = word.article else { return Text("") }
+        return Text("\(article) ").foregroundStyle(genderColor(word.gender))
     }
 
-    /// The article set each hue answers for is kern's `Article.kt`: a two-gender
-    /// language folds onto masculine-blue and feminine-berry (its plural and
-    /// indefinite articles with it) and never reaches the neuter.
-    private func tintColor(_ tint: String) -> Color {
-        switch tint.lowercased() {
-        case "der", "el", "los", "un": WidgetColors.der
-        case "die", "la", "las", "una": WidgetColors.die
-        case "das": WidgetColors.das
-        default: .secondary
+    /// The hue a gender wears; a box that names no gender leaves the article quiet.
+    private func genderColor(_ gender: SnapshotGender?) -> Color {
+        switch gender {
+        case .masculine: WidgetColors.der
+        case .feminine: WidgetColors.die
+        case .neuter: WidgetColors.das
+        case nil: .secondary
         }
     }
 }

@@ -119,6 +119,7 @@ targets:
     sources:
       - Widgets/Sources
       - Shared/Sources/AppGroup.swift
+      - Shared/Sources/SnapshotGender.swift
       - path: Widgets/PrivacyInfo.xcprivacy
         buildPhase: resources
     entitlements:
