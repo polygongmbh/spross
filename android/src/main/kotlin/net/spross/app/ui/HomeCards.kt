@@ -27,6 +27,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.app.hasBriefing
+import net.spross.app.startListening
 import net.spross.kern.box.StreakHealth
 
 /**

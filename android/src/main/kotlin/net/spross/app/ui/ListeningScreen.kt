@@ -37,6 +37,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.closeListening
 import net.spross.app.listen.ListeningBeat
 import net.spross.kern.listen.LISTENING_EMOJI_CUE
 import net.spross.kern.listen.ListeningTurn
