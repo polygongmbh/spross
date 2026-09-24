@@ -193,7 +193,7 @@ private fun Root(model: AppModel = viewModel()) {
                     Screen.Letters -> LettersOverviewScreen(model)
                     Screen.Countries -> CountriesOverviewScreen(model)
                     Screen.Dates -> DatesOverviewScreen(model)
-                    is Screen.NumbersRun -> NumbersRunScreen(model, screen.mode)
+                    is Screen.NumbersRun -> NumbersRunScreen(model, screen.mode, screen.challenge)
                     Screen.LetterDrill -> LetterDrillScreen(model)
                     Screen.WordScramble -> WordScrambleScreen(model)
                     Screen.SentenceScramble -> SentenceScrambleScreen(model)

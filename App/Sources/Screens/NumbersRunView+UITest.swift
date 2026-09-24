@@ -83,7 +83,8 @@ extension NumbersRunState {
                feedback: feedback ?? self.feedback,
                otherWord: self.otherWord,
                finished: finished,
-               score: score)
+               score: score,
+               challenge: challenge)
     }
 }
 #endif

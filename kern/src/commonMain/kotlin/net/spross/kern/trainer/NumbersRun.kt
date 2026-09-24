@@ -123,15 +123,18 @@ object NumbersRun {
         if (ended.done == 0) {
             return NumbersClose(ended, null, state.mode.recordKey, emptyMap(), effects)
         }
-        val bookings = ended.bestLevels
+        // why: a challenge's Sprossen are the script's, not climbed — it books no ladder and no
+        // record, and its score is measured against the other player instead.
+        val scripted = state.challenge != null
+        val bookings = if (scripted) emptyMap() else ended.bestLevels
             .map { (exercise, best) -> state.mode.progressKey(exercise) to best }
             .filter { (key, best) -> best > (standingProgress[key] ?: 0) }
             .toMap()
-        val timed = if (state.timed) TimedOutcome(ended.score) else null
+        val timed = if (state.timed) TimedOutcome(ended.score, state.challenge) else null
         val figure = timed?.score ?: ended.bestStreak
         return NumbersClose(
             state = ended,
-            summary = DrillRunSummary(ended.done, ended.bestStreak, figure > standingRecord, timed),
+            summary = DrillRunSummary(ended.done, ended.bestStreak, !scripted && figure > standingRecord, timed),
             recordKey = state.mode.recordKey,
             progressBookings = bookings,
             effects = effects,
@@ -259,7 +262,8 @@ object NumbersRun {
         rng: Random,
     ): NumbersReduction {
         val next = advanced(state, correct, outcome)
-        val draw = next.mode.draw(next.levels, state.currentTask.prompt, next.solved, rng)
+        val draw = next.challenge?.drawAt(state.index + 1, next.levels)
+            ?: next.mode.draw(next.levels, state.currentTask.prompt, next.solved, rng)
         return NumbersReduction(
             climbed(next, draw).copy(
                 // Nothing left to ask anywhere: end on the summary, never on a repeat.

@@ -24,7 +24,9 @@ extension NumbersRunView: DrillRunning {
 
     var advanceMove: NumbersIntent { NumbersIntent.AdvanceElapsed.shared }
 
-    var resultTitle: LocalizedStringKey { mode.titleKey }
+    var resultTitle: LocalizedStringKey {
+        run.challenge == nil ? mode.titleKey : "trainer.challenge.title"
+    }
 
     func silence() { hushAnswer() }
 

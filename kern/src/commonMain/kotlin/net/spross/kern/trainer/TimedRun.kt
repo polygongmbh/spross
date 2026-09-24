@@ -22,5 +22,27 @@ object TimedRun {
         if (correct && clean) maxOf(1, level) else 0
 }
 
-/** What a timed run came to. */
-data class TimedOutcome(val score: Int)
+/**
+ * What a timed run came to: its score, and — for a challenge — the challenge it answered,
+ * which is what the result tile compares against and what the reply is spelled from.
+ */
+data class TimedOutcome(
+    val score: Int,
+    val challenge: NumbersChallenge?,
+) {
+    /** The challenge's code carrying this score, for sending back; null outside a challenge. */
+    val replyCode: String? get() = challenge?.code(score)
+
+    /** How this score stands against the one the code arrived with; null where none came. */
+    val verdict: ChallengeVerdict?
+        get() = challenge?.opponentScore?.let { theirs ->
+            when {
+                score > theirs -> ChallengeVerdict.Won
+                score == theirs -> ChallengeVerdict.Tied
+                else -> ChallengeVerdict.Lost
+            }
+        }
+}
+
+/** A challenge answered against a score the code carried. */
+enum class ChallengeVerdict { Won, Tied, Lost }

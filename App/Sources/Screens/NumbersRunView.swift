@@ -62,13 +62,20 @@ struct NumbersRunView: View, LanguageNaming {
         self.init(mode: .slots(reading, language))
     }
 
-    init(mode: NumbersMode, normalizer: AnswerNormalizer? = nil, catalog: Catalog? = nil,
-         model: AppModel? = nil, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
-        self.mode = mode
+    /// `challenge` replaces the ramp with its script (`NumbersChallenge.open`), and
+    /// then `mode` is the challenge's own.
+    init(mode: NumbersMode, challenge: NumbersChallenge? = nil, normalizer: AnswerNormalizer? = nil,
+         catalog: Catalog? = nil, model: AppModel? = nil,
+         onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
+        self.mode = challenge?.mode ?? mode
         self.normalizer = normalizer
         self.catalog = catalog
         self.model = model
         self.onFinish = onFinish
+        if let challenge {
+            _run = State(initialValue: challenge.open())
+            return
+        }
         #if DEBUG
         // UI-test hook: `-uitest-level N` opens the run's first exercise at that
         // Sprosse, as the letter drill's `-uitest-letters-level` does. Kern clamps it.

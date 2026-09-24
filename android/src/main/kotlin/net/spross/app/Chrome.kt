@@ -191,6 +191,19 @@ interface Chrome {
     val trainerModifierMixHint: String
     val trainerModifierTimed: String
     val trainerModifierTimedHint: String  // %d
+    val trainerChallengeTitle: String
+    val trainerChallengeHint: String      // %d
+    val trainerChallengeStart: String
+    val trainerChallengeCode: String
+    val trainerChallengeAccept: String
+    val trainerChallengeUnreadable: String
+    val trainerChallengeOtherLanguage: String  // %s
+    val trainerChallengePhrases: String
+    val trainerChallengeWon: String       // %d
+    val trainerChallengeTied: String      // %d
+    val trainerChallengeLost: String      // %d
+    val trainerChallengeSend: String      // %s
+    val trainerChallengeMessage: String   // %d %s
     val numbersCombineLocked: String
     val numbersUnlock: String
     val numbersBest: String

@@ -4,6 +4,7 @@ import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.session.TurnFeedback
 
@@ -53,6 +54,7 @@ class TimedRunTest {
         assertTrue(summary.newRecord)
         assertEquals(5, summary.recordFigure)
         assertFalse(NumbersRun.close(run, standingRecord = 5, standingProgress = emptyMap()).summary!!.newRecord)
+        assertNull(summary.timed?.challenge)
     }
 
     @Test

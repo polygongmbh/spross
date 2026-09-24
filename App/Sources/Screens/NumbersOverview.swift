@@ -30,7 +30,12 @@ struct NumbersOverview: View {
     /// state collapses the same way on both platforms.
     @State var picked: [NumbersExercise] = [.counting]
     @State var modifiers: Set<DrillModifier> = []
-    @State private var launch: DrillLaunch<NumbersRunView.Mode>?
+    // why: internal, not private — +Challenge.swift launches a challenge through it.
+    @State var launch: DrillLaunch<NumbersLaunch>?
+    /// The code the learner is typing into the challenge section.
+    @State var challengeCode = ""
+    /// Why the last code could not be accepted; nil until one is refused.
+    @State var challengeRefusal: Text?
     /// What the run that just closed came to. Shown as one tile above the picks
     /// instead of a screen of its own — three figures do not earn a page, and a
     /// page they do not earn is one more ✕ before the next run.
@@ -47,6 +52,9 @@ struct NumbersOverview: View {
                           // readings get long enough to test the wrap.
                           scrollAnchor: DrillUITest.anchor(["table": .center, "notes": .bottom])) {
             practiceSection
+            // why: a challenge is timed, and a run ending under the learner is the
+            // timed change a screen reader is spared.
+            if !AutoAdvance.screenReaderOn { challengeSection }
             referenceSection
             notesSection
         }
@@ -54,7 +62,8 @@ struct NumbersOverview: View {
         // why: a closing run books its best Sprossen into TrainerProgress, so the
         // ladder behind it is stale the moment the cover comes down.
         .fullScreenCover(item: $launch, onDismiss: reloadProgress) { launch in
-            NumbersRunView(mode: launch.value, normalizer: launch.value.normalizer(model),
+            NumbersRunView(mode: launch.value.mode, challenge: launch.value.challenge,
+                           normalizer: launch.value.mode.normalizer(model),
                                catalog: model.catalog, model: model,
                                onFinish: { result in
                                    withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
@@ -77,7 +86,7 @@ struct NumbersOverview: View {
     }
 
     func start() {
-        launch = DrillLaunch(value: buildMode())
+        launch = DrillLaunch(value: NumbersLaunch(mode: buildMode()))
     }
 
     // MARK: - The ladder
@@ -103,6 +112,13 @@ struct NumbersOverview: View {
     var languageName: String {
         LanguageNames.display(language, catalog: model.catalog)
     }
+}
+
+/// What a start tap opens: the run the picks describe, or a challenge, whose
+/// script stands in for the ramp and whose mode is its own.
+struct NumbersLaunch {
+    let mode: NumbersMode
+    var challenge: NumbersChallenge?
 }
 
 #if DEBUG

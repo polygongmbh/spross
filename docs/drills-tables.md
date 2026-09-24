@@ -32,6 +32,12 @@ and what a language actually READS is its own doc:
   Its record is the score, under the run's own key,
   and it offers neither the look-up nor the early "Fertig": against a clock, one is a shortcut and the other is the clock's job.
   A screen reader never sees its switch, since a run ending under the learner is the timed change `../kern/docs/turns.md` keeps from one.
+- **A challenge is a timed run two learners play on the SAME questions** (`NumbersChallenge`),
+  carried between phones as a short code with no server behind it.
+  Its questions are a script rather than a ramp, which would part the two runs at the first miss,
+  and only what never shows the learner's own language travels, so Phrases stays home.
+  It books neither ladder nor record: the tile sets its score against the one the code arrived with,
+  and hands the code back carrying the new one.
 
 ## Länder — the atlas page
 

@@ -21,6 +21,7 @@ import net.spross.app.countLine
 import net.spross.app.name
 import net.spross.app.newTrainerRun
 import net.spross.app.speakDrillAnswer
+import net.spross.kern.trainer.NumbersChallenge
 import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
 import net.spross.kern.trainer.NumbersRunState
@@ -38,18 +39,22 @@ import net.spross.kern.trainer.TimedRun
  * badge on the card would be the third telling of what one tap said.
  */
 @Composable
-fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
+fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChallenge? = null) {
     val chrome = model.chrome
     val hooks = rememberTurnHooks(model)
-    val flow = rememberRun(model, Screen.Numbers, key = mode) {
-        model.newTrainerRun(mode, onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
+    val flow = rememberRun(model, Screen.Numbers, key = mode to challenge) {
+        model.newTrainerRun(mode, challenge, onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
     } ?: return
     val state = flow.state
     val store = model.trainer.store
 
-    // What the result tile says was drilled: a run that asks one thing names it, and one
-    // that interleaves several falls back to the hub card's own title.
-    val title = mode.exercises.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
+    // What the result tile says was drilled: a challenge is named as one, a run that asks one
+    // thing names it, and one that interleaves several falls back to the hub card's own title.
+    val title = if (challenge != null) {
+        chrome.trainerChallengeTitle
+    } else {
+        mode.exercises.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
+    }
 
     val leave = {
         val closed = flow.close(store.record(mode.recordKey), store.standing(mode.language))

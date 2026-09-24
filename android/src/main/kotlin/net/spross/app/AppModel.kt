@@ -69,6 +69,7 @@ import net.spross.kern.store.StoredBox
 import net.spross.kern.store.StoredBoxes
 import net.spross.kern.store.rekeyingPrefixedVerbs
 import net.spross.kern.trainer.DrillRunSummary
+import net.spross.kern.trainer.NumbersChallenge
 import net.spross.kern.trainer.NumbersMode
 
 sealed interface Screen {
@@ -96,8 +97,11 @@ sealed interface Screen {
 
     data object Dates : Screen
 
-    /** A slot run, carrying the spec the page it was started from spelled. */
-    data class NumbersRun(val mode: NumbersMode) : Screen
+    /**
+     * A slot run, carrying the spec the page it was started from spelled — and, for a
+     * challenge, the script that stands in for the ramp ([NumbersChallenge.mode] is then [mode]).
+     */
+    data class NumbersRun(val mode: NumbersMode, val challenge: NumbersChallenge? = null) : Screen
 
     data object LetterDrill : Screen
 
@@ -587,6 +591,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     fun startTrainerRun(mode: NumbersMode) {
         screen = Screen.NumbersRun(mode)
+    }
+
+    /** A challenge's timed run, on the questions its code spells. */
+    fun startChallenge(challenge: NumbersChallenge) {
+        screen = Screen.NumbersRun(challenge.mode, challenge)
     }
 
     fun startLetterDrill() {

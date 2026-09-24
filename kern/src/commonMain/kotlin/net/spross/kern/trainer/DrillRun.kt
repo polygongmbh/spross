@@ -71,7 +71,7 @@ data class DrillRunSummary(
      * false, which drops the record line and the celebration with it.
      */
     val newRecord: Boolean,
-    /** A timed run's score; null for a run that was not timed. */
+    /** A timed run's score, and the challenge it answered; null for a run that was not timed. */
     val timed: TimedOutcome? = null,
 ) {
     /**

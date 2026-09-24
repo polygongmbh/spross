@@ -3,6 +3,7 @@
 ## Unreleased
 
 - The numbers drill can now race a one-minute clock, each right answer scoring as many points as the Sprosse it was given on.
+- A numbers challenge can now be sent to someone as a short code, so both of you race the same questions and see whose score is higher.
 
 ## 7.4.2 — 2026-09-22
 
