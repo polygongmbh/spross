@@ -87,26 +87,27 @@ final class PronunciationPlayer {
     }
 
     /// Plays `url` under its analysis index, replacing whatever was sounding.
-    /// A file that will not open simply stays silent — the word is never worth
-    /// an error surface.
+    /// False when the file will not open or the engine will not run: nothing was
+    /// scheduled and `onFinish` will never fire, so the caller decides what stands in.
     ///
     /// `fadeDb` is the one level that is NOT a measurement: kern's bedtime ramp
     /// (`listeningGainDb`), which kern adds to the clamped index and holds at
     /// its own floor (`fadedGainDb`) — the clamp bounds how far a MEASUREMENT
     /// may be trusted and the floor is a level kern chose. 0 everywhere outside
     /// a listening run.
+    @discardableResult
     func play(url: URL, gainDb: Double = 0, capDb: Double = 0, leadMs: Int64 = 0,
-              fadeDb: Double = 0, onFinish: (@MainActor () -> Void)? = nil) {
+              fadeDb: Double = 0, onFinish: (@MainActor () -> Void)? = nil) -> Bool {
         rearms = 0
-        play(Request(url: url, gainDb: gainDb, capDb: capDb, leadMs: leadMs, fadeDb: fadeDb,
+        return play(Request(url: url, gainDb: gainDb, capDb: capDb, leadMs: leadMs, fadeDb: fadeDb,
                      onFinish: onFinish))
     }
 
-    private func play(_ request: Request) {
+    private func play(_ request: Request) -> Bool {
         stop()
         let (url, onFinish) = (request.url, request.onFinish)
         guard let file = try? AVAudioFile(forReading: url), file.length > 0, running()
-        else { return }
+        else { return false }
         pending = request
         let rate = file.processingFormat.sampleRate
         // How far a player may trust the analysis index is kern's (`catalog/Playback.kt`);
@@ -126,6 +127,7 @@ final class PronunciationPlayer {
             Task { @MainActor in self?.finish(current) }
         }
         node.play()
+        return true
     }
 
     func stop() {
@@ -141,7 +143,9 @@ final class PronunciationPlayer {
     private func rearm() {
         guard let request = pending, rearms < Self.rearmLimit else { return }
         rearms += 1
-        play(request)
+        // why: a word that cannot be put back still has to end, or a listening
+        // run waiting on it never advances.
+        if !play(request) { request.onFinish?() }
     }
 
     /// Pays the process's FIRST audio-session activation — implicit, on the

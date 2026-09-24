@@ -166,15 +166,20 @@ final class Pronouncer {
             // place they are ever applied, and never the file.
             playingKey = key
             let index = index(for: pronunciation)
-            player.play(url: recordingURL, gainDb: index.gain, capDb: index.cap,
-                        leadMs: pronunciation.leadMs, fadeDb: fadeDb) { [weak self] in
+            let started = player.play(url: recordingURL, gainDb: index.gain, capDb: index.cap,
+                                      leadMs: pronunciation.leadMs, fadeDb: fadeDb) { [weak self] in
                 self?.clearPlaying(key)
                 onFinish?()
             }
+            if started { return }
+            playingKey = nil
+        }
+        // Silent no-op when no voice exists for the language —
+        // but a recording that failed to open still ends, so a listening run moves on.
+        guard canSpeak(language: pronunciation.lang) else {
+            if recordingURL != nil { onFinish?() }
             return
         }
-        // Silent no-op when no voice exists for the language.
-        guard canSpeak(language: pronunciation.lang) else { return }
         say(key: key, text: spoken(pronunciation, article: article),
             language: pronunciation.lang, fadeDb: fadeDb, onFinish: onFinish)
     }
