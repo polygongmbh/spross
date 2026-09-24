@@ -100,6 +100,36 @@ class BriefingTests {
         assertTrue(newWords.size <= Briefings.NEW_LIMIT)
     }
 
+    /** A sown word is the learner's own ask: named on its own list, even past busy, and nowhere else. */
+    @Test
+    fun sownWordsLeadEvenForABusyLearner() {
+        val cards = (1..Briefings.LEARNING_BUSY + 5).map { Box.word(it) }
+        var box = state(cards)
+        for (n in 1..Briefings.LEARNING_BUSY) box = Box.inject(box, learning(Box.word(n).id))
+        box = BoxEngine.enqueue(box, listOf(Box.word(Briefings.LEARNING_BUSY + 3).id))
+
+        val brief = brief(box)
+        assertEquals(listOf("t${Briefings.LEARNING_BUSY + 3}"), brief.sown.map { it.target })
+        assertEquals(emptyList(), brief.newWords)
+
+        val quieter = BoxEngine.enqueue(state(listOf(Box.word(1), Box.word(2))), listOf("w02"))
+        val offered = brief(quieter)
+        assertEquals(listOf("t2"), offered.sown.map { it.target })
+        assertFalse(offered.newWords.any { it.target == "t2" })
+    }
+
+    /** Sown words set the opening story's topic; without any, the words in progress do. */
+    @Test
+    fun theStoryRevolvesAroundSownWords() {
+        val box = Box.inject(state(listOf(Box.word(1), Box.word(2))), learning("w01"))
+        assertFalse("words I chose" in brief(box).text)
+
+        val sown = brief(BoxEngine.enqueue(box, listOf("w02"))).text
+        assertTrue("story around the words I chose" in sown)
+        assertTrue("t2 (" in sown)
+        assertTrue("\nSTART HERE" in sown, "the opening turn keeps its left edge")
+    }
+
     /** The loop closes: the fence the brief prints is one [Harvest] reads back. */
     @Test
     fun theHarvestFenceRoundTrips() {

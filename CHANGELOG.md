@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Words you sow now lead the chat prompt, so its story and talk revolve around them, one or two at a time.
+
 ## 7.4.2 — 2026-09-22
 
 - After a miss, the words you already had right come back in the answer field spelled correctly, not with your typo still in them.
