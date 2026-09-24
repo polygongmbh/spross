@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,10 +21,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.em
 import net.spross.app.CardDisplay
 import net.spross.app.Chrome
 import net.spross.kern.model.Realization
@@ -80,15 +80,12 @@ fun SpokenWord(
 /**
  * THE headword of a card — the one word the whole card is about, on either side of it.
  *
- * It steps down to fit rather than breaking a word in half. The line bound is what makes
- * the step-down bite: with lines unbounded, a word wider than the card simply wraps
- * mid-word ("Sprach" / "e") and the paragraph reports no overflow at all, so the step
- * search would leave it at full size. A single token gets ONE line, because the only wrap
- * available to it IS a broken word; anything with a space keeps a second line and breaks
- * there. The verdict labels and the hub chips already wear the same pair.
+ * It steps down to fit rather than breaking a word in half ([WholeWordsAutoSize]):
+ * "Guten Tag!" wraps between its words, and a word wider than the line shrinks.
+ * Only past the floor does a word break, onto a second line rather than clipped.
  *
- * The floor is where iOS bottoms out — `minimumScaleFactor(0.85)` on its own headword
- * (`VocabCardView.swift`) — so a shrunken word never lands smaller here than it can there.
+ * The floor is where iOS bottoms out — its smallest text size (`WholeWords.swift`) —
+ * and holds at any font scale, where a scaled floor would clip a long word.
  * Both cuts treat this as insurance for the rare long word, not as the way words are sized.
  */
 @Composable
@@ -101,13 +98,15 @@ fun Headword(
     Text(
         text,
         modifier = modifier,
-        style = style,
+        // why: a relative line height shrinks with the words, or a stepped-down pair of
+        // lines keeps the full-size gap between them.
+        style = style.copy(lineHeight = (style.lineHeight.value / style.fontSize.value).em),
         color = color,
         textAlign = TextAlign.Center,
-        maxLines = if (text.text.any(Char::isWhitespace)) 2 else 1,
-        autoSize = TextAutoSize.StepBased(
-            minFontSize = HEADWORD_FLOOR,
-            maxFontSize = style.fontSize,
+        maxLines = 2,
+        autoSize = WholeWordsAutoSize(
+            min = with(LocalDensity.current) { HEADWORD_FLOOR.toSp() },
+            max = style.fontSize,
         ),
     )
 }
@@ -211,8 +210,5 @@ fun CardCue(text: String, modifier: Modifier = Modifier) {
     )
 }
 
-/**
- * Where a shrinking headword stops. iOS bottoms out at 0.85 of a 22 pt headword; this
- * lands no smaller, so the same long word is never tinier here than it is there.
- */
-private val HEADWORD_FLOOR = 19.sp
+/** Where a shrinking headword stops: iOS's headword at its smallest text size. */
+private val HEADWORD_FLOOR = 19.dp

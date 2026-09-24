@@ -228,9 +228,8 @@ struct VocabCardView: View {
             }
             headline(side, emphasized: emphasized)
                 .multilineTextAlignment(.center)
-                // why: a gentle floor keeps a long answer the same size as a
-                // short one (it wraps rather than shrinking); the factor is only
-                // overflow insurance for the rare word too long to wrap.
+                // why: overflow insurance for a word wider than the line even at the
+                // smallest text size (`WholeWords`); a long answer wraps between words.
                 .minimumScaleFactor(0.85)
         }
     }
@@ -285,20 +284,23 @@ struct VocabCardView: View {
     /// written in (`spoken`), article included, because that is how the line
     /// reads on screen.
     private func headlineWord(_ side: Side, emphasized: Bool) -> some View {
-        headlineText(side, emphasized: emphasized)
-            .spoken(articledForm(article: side.article?.text, form: side.text),
-                    language: side.language)
+        let spoken = articledForm(article: side.article?.text, form: side.text)
+        return WholeWords(text: headlineText(side, emphasized: emphasized),
+                          content: spoken, font: headlineFont)
+            .spoken(spoken, language: side.language)
     }
+
+    private var headlineFont: Font { shared ? Theme.typography.title : Theme.typography.hero }
 
     /// Both sides use the same font so a word never changes size just
     /// because the card flipped role.
     private func headlineText(_ side: Side, emphasized: Bool) -> Text {
         let word = Text(side.text)
-            .font(shared ? Theme.typography.title : Theme.typography.hero)
+            .font(headlineFont)
             .foregroundStyle(emphasized ? Theme.colors.accent : Theme.colors.textPrimary)
         guard let article = side.article else { return word }
         return Text(verbatim: articledForm(article: article.text, form: ""))
-            .font(shared ? Theme.typography.title : Theme.typography.hero)
+            .font(headlineFont)
             .foregroundStyle(Theme.genderColor(article.gender))
             + word
     }
