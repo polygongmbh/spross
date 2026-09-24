@@ -40,10 +40,12 @@ settings:
       DEVELOPMENT_TEAM: 2LDZV9286Q
       APP_GROUP_ID: group.net.spross.app
       APP_ID_PREFIX: net.spross.dev
+      APP_DISPLAY_NAME: Spross Dev
     Release:
       DEVELOPMENT_TEAM: AF77U46UQ6
       APP_GROUP_ID: group.net.spross.data
       APP_ID_PREFIX: net.spross.app
+      APP_DISPLAY_NAME: Spross
 targets:
   Spross:
     type: application
@@ -103,7 +105,7 @@ targets:
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
         GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_CFBundleDisplayName: Spross
+        INFOPLIST_KEY_CFBundleDisplayName: "$(APP_DISPLAY_NAME)"
         # why: files the app under Education on the App Store and in the
         # device's App Library / Screen Time grouping.
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.education
@@ -172,7 +174,7 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_WKApplication: YES
         INFOPLIST_KEY_WKCompanionAppBundleIdentifier: "$(APP_ID_PREFIX)"
-        INFOPLIST_KEY_CFBundleDisplayName: Spross
+        INFOPLIST_KEY_CFBundleDisplayName: "$(APP_DISPLAY_NAME)"
         TARGETED_DEVICE_FAMILY: "4"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
   SprossWatchWidgets:

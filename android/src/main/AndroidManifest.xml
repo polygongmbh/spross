@@ -33,7 +33,7 @@
     </queries>
 
     <application
-        android:label="Spross"
+        android:label="${appLabel}"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="true"
         android:supportsRtl="true"

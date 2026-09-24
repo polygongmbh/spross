@@ -70,6 +70,7 @@ android {
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = versionCodeFromName
         versionName = marketingVersion
+        manifestPlaceholders["appLabel"] = "Spross"
     }
 
     signingConfigs {
@@ -82,6 +83,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders["appLabel"] = "Spross Dev"
+        }
         release {
             isMinifyEnabled = false
             signingConfig = signingConfigs.findByName("release")
