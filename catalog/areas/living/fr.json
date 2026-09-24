@@ -63,7 +63,7 @@
   "furniture": {
    "text": "meubles",
    "grammar": { "gender": "les" },
-   "notes": { "fr": "au pluriel : les meubles · un meuble, c'est une armoire, une table." }
+   "notes": { "fr": "au pluriel : les meubles · un meuble, c'est une chaise, une table." }
   },
   "game": { "text": "jeu", "grammar": { "gender": "le", "plural": "-x" } },
   "come-sit-with-me": {

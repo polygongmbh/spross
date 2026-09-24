@@ -25,7 +25,7 @@
   "to-save": { "text": "konservi" },
   "to-take-break": { "text": "fari paŭzon", "accepts": ["paŭzi"] },
   "to-write": { "text": "skribi" },
-  "to-call": { "text": "telefoni", "notes": { "eo": "telefoni al iu: mi telefonas al la kuracisto." } },
+  "to-call": { "text": "telefoni", "notes": { "eo": "telefoni al iu: mi telefonas al mia amiko." } },
   "to-delete": { "text": "forigi", "accepts": ["forviŝi", "viŝi"] },
   "to-repair": { "text": "ripari" },
   "phone": {

@@ -5,7 +5,7 @@
   "price": { "text": "bei", "grammar": { "plural": "=" } },
   "to-cost": { "text": "kugharimu" },
   "expensive": { "text": "ghali", "notes": { "sw": "ghali sana = bei kubwa · ghali mno = bei kupita kiasi" } },
-  "cheap": { "text": "rahisi", "notes": { "sw": "nguo rahisi = bei ndogo · kazi rahisi = isiyo ngumu" } },
+  "cheap": { "text": "rahisi", "notes": { "sw": "gari rahisi = bei ndogo · kazi rahisi = isiyo ngumu" } },
   "to-sell": { "text": "kuuza" },
   "cash": { "text": "pesa taslimu", "grammar": { "plural": "=" } },
   "bank-card": { "text": "kadi ya benki", "grammar": { "plural": "kadi za benki" } },
