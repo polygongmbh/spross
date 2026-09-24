@@ -13,10 +13,6 @@ Ready work comes first, then the items that end in a question for the owner, the
 - sw `verbs/to-send` lost the `kutuma`/`kupeleka` contrast when its German note was cut, and it
   stays lost: `kupeleka` is `verbs/to-deliver`'s own card, so naming it here would break "a note
   explains its own word and no other". The pair wants a contrast card if it wants anything.
-- `scripts/notes-vocabulary.py` is clean for the first twelve areas only; areas 13+ still carry
-  ~340 notes leaning on a later card's word and ~55 naming a grammar term. The same three-agent
-  split does it, and the residue in the early areas (10, all function words that happen to be
-  cards) is the honest floor rather than a target.
 - `rufen` → sw `kuita` has no card: en/es/fr/it say one word for calling and phoning (to call,
   llamar, appeler, chiamare — all already `desk/to-call`), so a second card would author one
   meaning twice (`CatalogLintTest.noConceptPairCollidesInTwoLanguages`); `desk/to-call` would
