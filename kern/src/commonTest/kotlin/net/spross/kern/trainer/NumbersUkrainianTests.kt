@@ -171,4 +171,27 @@ class NumbersUkrainianTests {
         assertTrue("шістнадцята сорок п'ять" in clock(16, 45).accepted)
         assertTrue("двадцять перша година" in clock(21, 0).accepted)
     }
+
+    /**
+     * Saying WHEN, «о» governs the locative — «об» before a vowel — in both registers,
+     * the minute staying the count it is. Accepted, never taught by the bare drill.
+     */
+    @Test
+    fun theTimeWhenTakesTheLocativeAfterO() {
+        assertEquals("четверта година дня", clock(16, 0).display)
+        for ((time, readings) in listOf(
+            (1 to 0) to listOf("о першій ночі", "о першій годині"),
+            (11 to 0) to listOf("об одинадцятій ранку", "об одинадцятій"),
+            (16 to 0) to listOf("о четвертій дня", "о шістнадцятій", "о шістнадцятій годині"),
+            (16 to 30) to listOf("о четвертій тридцять дня", "о шістнадцятій тридцять"),
+            (13 to 5) to listOf("о першій нуль п'ять дня", "о тринадцятій годині п'ять хвилин"),
+            (23 to 21) to listOf("об одинадцятій двадцять одна", "о двадцять третій двадцять одна"),
+            (0 to 0) to listOf("о дванадцятій ночі"),
+            (12 to 0) to listOf("о дванадцятій дня"),
+        )) {
+            val (h, m) = time
+            for (reading in readings) assertTrue(reading in clock(h, m).accepted, "$h:$m $reading")
+        }
+        assertTrue("о одинадцятій" !in clock(11, 0).accepted)
+    }
 }

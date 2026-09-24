@@ -4,8 +4,8 @@ package net.spross.kern.trainer
  * The word tables [UkrainianClock] reads its hours and minutes out of.
  *
  * Hour ordinals are feminine, agreeing with година, and each construction takes its
- * own case: `друга година` (nominative), `на другу` (accusative), `по другій`
- * (locative), `до другої` / `пів другої` (genitive). Minutes count хвилина, also
+ * own case: `друга година` (nominative), `на другу` (accusative), `по другій` /
+ * `о другій` (locative), `до другої` / `пів другої` (genitive). Minutes count хвилина, also
  * feminine — the numeral agrees with it and the noun takes the Slavic count form.
  */
 internal object UkrainianClockForms {
@@ -23,6 +23,12 @@ internal object UkrainianClockForms {
         "чотирнадцята", "п'ятнадцята", "шістнадцята", "сімнадцята", "вісімнадцята",
         "дев'ятнадцята", "двадцята", "двадцять перша", "двадцять друга", "двадцять третя",
     )
+
+    /** [official] in the locative «о» governs: `двадцять перша` → `двадцять першій`. */
+    val officialLocative = official.map { it.dropLast(1) + "ій" }
+
+    /** The time-when preposition on a locative hour: «о» before a consonant, «об» before a vowel. */
+    fun at(locative: String): String = if (locative.first() in "аеєиіїоуюя") "об $locative" else "о $locative"
 
     /** 1..12 from a 24-hour hour, twelve for both noons. */
     fun index(hour: Int): Int = (hour % 12).let { if (it == 0) 12 else it }

@@ -99,9 +99,17 @@ internal interface TrainerLanguagePack {
      * copula "il est deux heures". Such a reading composes only where the frame already
      * carries that word — the duplicate is then dropped — and is skipped anywhere else:
      * "Es ist jetzt um acht." is not a time statement, and neither is "Le train part à il
-     * est deux heures." A list because one language may alternate by phonology (uk «о»/«об»).
+     * est deux heures." A list because one language may alternate by phonology (uk «о»/«об»):
+     * a frame saying any of them takes the one the reading leads with.
      */
     val readingPrepositions: List<String> get() = emptyList()
+
+    /**
+     * Whether [readingPrepositions] put the reading in a case of its own, so a frame saying
+     * one composes only the readings that lead with one: uk «о» takes the locative
+     * (`о четвертій`), where de «um» leaves `vier Uhr` as it is.
+     */
+    val readingPrepositionsGovernCase: Boolean get() = false
 }
 
 private object GermanPack : TrainerLanguagePack {
@@ -221,6 +229,8 @@ private object UkrainianPack : TrainerLanguagePack {
     override fun dateYear(y: Long) = UkrainianForms.dateYear(y)
     override val formLimits = UkrainianForms.LIMITS
     override val decimalMark = ','
+    override val readingPrepositions = listOf("о ", "об ")
+    override val readingPrepositionsGovernCase = true
 }
 
 private object EsperantoPack : TrainerLanguagePack {

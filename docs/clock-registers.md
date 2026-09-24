@@ -164,7 +164,8 @@ unions run over more than the hour.
 Esperanto is the one clock whose readings compose into a PREPOSITIONAL frame.
 `la tria` is a bare nominative noun phrase;
 `je` does not contract, so `je la tria`, `je tagmezo`, `je kvarono antaŭ la kvara`
-all read as written -- where Italian's `alle`/`all'` and Ukrainian's `о` + locative cannot.
+all read as written -- where Italian's `alle`/`all'` cannot,
+and Ukrainian's `о` takes only the locative readings of its own.
 The countdown is `kvarono antaŭ la kvara`,
 with `la kvara minus kvarono` accepted and never shown --
 it is a calque, attested only at the quarter,
@@ -212,8 +213,7 @@ The French reading is BARE -- `deux heures et quart`, `midi`, `minuit` --
 and `il est deux heures et quart` grades beside it as a reading of its own.
 The split keeps French's prepositional frames:
 `à` never contracts with an hour word,
-so `à deux heures et quart` composes for every draw
-where Ukrainian's `о` + locative cannot.
+so `à deux heures et quart` composes for every draw.
 The copula is declared in `TrainerLanguagePack.readingPrepositions`:
 dropped where a frame already says it,
 skipped where a frame would double it.
@@ -227,6 +227,19 @@ where an hour takes `et demie`.
 Every reading also grades fully spaced,
 because the comparison pipeline deletes hyphens
 (`docs/number-forms.md` owns that rule; the clock obeys it).
+
+## Ukrainian's time-when
+
+«о» governs the locative, so no nominative reading can follow it:
+`о четвертій дня`, `о шістнадцятій тридцять`, and `об` before a vowel, `об одинадцятій`.
+Both registers generate that time-when beside the nominative --
+the full hour and the face read out, the minute staying its nominative count --
+as accepted readings the bare drill never displays.
+The relative constructions (`пів на п'яту`, `за чверть п'ята`) stay predicate-only.
+`TrainerLanguagePack.readingPrepositions` lists `о` and `об`,
+and `readingPrepositionsGovernCase` holds a frame that says one
+to the readings leading with one, the reading's own preposition replacing the frame's;
+the frame displays the first of them.
 
 ## Rejected, and likely to be proposed again
 

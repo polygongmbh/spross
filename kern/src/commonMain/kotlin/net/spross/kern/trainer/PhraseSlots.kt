@@ -103,9 +103,12 @@ object PhraseSlots {
         val prompt = fillTarget(template.sourceTemplate, slot.prompt, sourceCount, template.target)
         val promptDisplay =
             fillTarget(template.sourceTemplate, slot.promptDisplay, sourceCount, template.target)
-        val display = fillWords(template, template.targetTemplate, slot.display, countWord)
-            ?: fillTarget(template.targetTemplate, slot.display, countWord, template.target)
         val words = slot.accepted.filterNot { isFilteredFeminine(template, it) }.distinct()
+        // why: a time-when frame composes none of the drill's own display (uk «о» + the
+        // nominative), so it shows the first accepted reading that does compose.
+        val display = (listOf(slot.display) + words)
+            .firstNotNullOfOrNull { fillWords(template, template.targetTemplate, it, countWord) }
+            ?: fillTarget(template.targetTemplate, slot.display, countWord, template.target)
         val digits = digitForms(slot)
         val frames = (listOf(template.targetTemplate) + template.acceptedFrames).distinct()
         val accepted = mutableListOf<String>()
@@ -137,7 +140,9 @@ object PhraseSlots {
      * ([TrainerLanguagePack.slotEcho]: "um {slot} Uhr" + "achtzehn Uhr fünfunddreißig" →
      * "um achtzehn Uhr fünfunddreißig"); a reading LEADING with a preposition
      * ([TrainerLanguagePack.readingPrepositions]) composes only where the frame already
-     * says it, and is skipped elsewhere. Both words come from the answer language's pack,
+     * says it, and is skipped elsewhere; where that preposition governs a case
+     * ([TrainerLanguagePack.readingPrepositionsGovernCase]) a reading without one is
+     * skipped after it. Both words come from the answer language's pack,
      * so a language whose readings carry none of them passes through untouched.
      * Null = this reading does not belong in this frame.
      */
@@ -154,10 +159,20 @@ object PhraseSlots {
         val pack = Numbers.pack(language)
         val marker = PhraseTemplate.SLOT_MARKER
         val absorbed = pack.slotEcho?.let { frame.replace("$marker $it", marker) } ?: frame
+        val before = absorbed.substringBefore(marker)
+        // why: a whole word only — uk "було {slot}" ends in «о» without saying it.
+        val framed = pack.readingPrepositions.firstOrNull {
+            before.endsWith(it) && before.dropLast(it.length).lastOrNull()?.isLetter() != true
+        }
         val preposition = pack.readingPrepositions.firstOrNull { reading.startsWith(it) }
-            ?: return fillTarget(absorbed, reading, countWord, language)
-        if (!absorbed.substringBefore(marker).endsWith(preposition)) return null
-        return fillTarget(absorbed, reading.removePrefix(preposition), countWord, language)
+        if (preposition == null) {
+            if (framed != null && pack.readingPrepositionsGovernCase) return null
+            return fillTarget(absorbed, reading, countWord, language)
+        }
+        if (framed == null) return null
+        // why: the reading's own preposition replaces the frame's — «о» becomes «об» before a vowel.
+        val unframed = before.dropLast(framed.length) + absorbed.substring(before.length)
+        return fillTarget(unframed, reading, countWord, language)
     }
 
     /**

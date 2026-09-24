@@ -17,6 +17,10 @@ import net.spross.kern.trainer.UkrainianClockForms as Forms
  * The official reading never takes one; it has 24 hours of its own.
  *
  * Naming the part of the day is optional: every reading is accepted without it too.
+ *
+ * Both registers also read the time WHEN, «о» + locative (`о четвертій дня`,
+ * `о шістнадцятій тридцять`): accepted, never the display, and the only readings a
+ * time-when frame composes ([TrainerLanguagePack.readingPrepositions]).
  */
 internal object UkrainianClock {
 
@@ -32,6 +36,7 @@ internal object UkrainianClock {
             for (part in parts) accepted += "${core.text} $part"
             accepted += core.text
         }
+        accepted += timeWhen(hours, minutes)
         val readings = accepted.distinct()
         return ClockReading(readings.first(), readings, gloss(hours, minutes, readings))
     }
@@ -126,8 +131,34 @@ internal object UkrainianClock {
         return if (m in 1..9) listOf(Core("${Forms.nominative[cur]} нуль $count", h), plain) else listOf(plain)
     }
 
-    /** The 0–23 register's readings on their own. */
-    fun twentyFourHour(h: Int, m: Int): List<String> = official(h, m).map { it.text }
+    /** The 0–23 register's readings on their own, time-when ones included. */
+    fun twentyFourHour(h: Int, m: Int): List<String> = official(h, m).map { it.text } + officialWhen(h, m)
+
+    /**
+     * The hour-first readings in the locative «о» governs — the full hour and the face read
+     * out, in both registers. The minute stays the nominative count it is in the digital
+     * reading: `о четвертій тридцять дня`, `о шістнадцятій годині тридцять хвилин`.
+     */
+    private fun timeWhen(h: Int, m: Int): List<String> {
+        val cur = Forms.index(h)
+        val hour = Forms.at(Forms.locative[cur])
+        val count = Forms.minuteNumeral(m)
+        val colloquial = when {
+            m == 0 -> listOf(hour, "$hour годині")
+            m < 10 -> listOf("$hour нуль $count", "$hour $count")
+            else -> listOf("$hour $count")
+        }
+        val parts = Forms.dayParts(h)
+        return colloquial.flatMap { core -> parts.map { "$core $it" } + core } + officialWhen(h, m)
+    }
+
+    /** [official] after «о»; hour zero again takes no clipped reading. */
+    private fun officialWhen(h: Int, m: Int): List<String> {
+        val hour = Forms.at(Forms.officialLocative[h])
+        if (m == 0) return if (h == 0) listOf("$hour годині") else listOf(hour, "$hour годині")
+        val full = "$hour годині ${Forms.minuteNumeral(m)} ${Forms.minuteNoun(m)}"
+        return if (h == 0) listOf(full) else listOf(full, "$hour ${Forms.minuteNumeral(m)}")
+    }
 
     /**
      * The 0–23 register. Hour zero has an ordinal (`нульова`) but no clipped reading —
@@ -189,6 +220,8 @@ internal object UkrainianClock {
         listOf(
             "північ", "опівночі", "дванадцята година ночі", "дванадцята ночі",
             "дванадцята година", "дванадцята", "нульова година", "двадцять четверта година",
+            "о дванадцятій ночі", "о дванадцятій годині ночі", "о дванадцятій", "о дванадцятій годині",
+            "о нульовій годині",
         ),
         "також: опівночі, нульова година",
     )
@@ -198,6 +231,7 @@ internal object UkrainianClock {
         listOf(
             "дванадцята година дня", "дванадцята дня", "полудень", "опівдні",
             "дванадцята година", "дванадцята", "дванадцять нуль нуль",
+            "о дванадцятій дня", "о дванадцятій годині дня", "о дванадцятій", "о дванадцятій годині",
         ),
         "також: полудень, опівдні",
     )
