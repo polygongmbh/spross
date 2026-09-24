@@ -10,7 +10,7 @@
    "text": "œuf",
    "accepts": ["l'œuf", "oeuf", "l'oeuf"],
    "grammar": { "gender": "l'" },
-   "notes": { "fr": "un œuf [œf] · des œufs [ø] : au pluriel, le f se tait." }
+   "notes": { "fr": "un œuf [œf] · des œufs [ø] : le f se tait." }
   },
   "cheese": { "text": "fromage", "grammar": { "gender": "le" } },
   "salt": { "text": "sel", "grammar": { "gender": "le" } },

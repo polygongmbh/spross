@@ -30,7 +30,7 @@
    "text": "vestiti",
    "accepts": ["abiti", "abbigliamento"],
    "grammar": { "gender": "i", "plural": "only" },
-   "notes": { "it": "i vestiti sono tutta la roba · il vestito al singolare è l'abito." }
+   "notes": { "it": "i vestiti sono tutta la roba · il vestito è l'abito." }
   },
   "shirt": { "text": "camicia", "grammar": { "gender": "la" } },
   "dress": { "text": "vestito", "accepts": ["abito"], "grammar": { "gender": "il" } },
