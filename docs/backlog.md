@@ -127,6 +127,11 @@ Catalog content — its forms, its audio and the per-language questions — live
   ranking in `Watch/Sources/WatchModel.swift`, latency-to-rating in `Shared/Sources/WatchGrading.swift`,
   shortlist sampling in `Shared/Sources/WatchPracticeQuestion.swift`) was deferred 2026-08-08 —
   reopen it as a series now (kern engine + tests + both consumers + `SCHEMA_VERSION`), or keep it parked?
+- Audio ships un-thinned: both installs copy all of `catalog/audio/` (129 MB, 13–25 MB per
+  language — `project.yml:35` folder reference, `android/build.gradle.kts:131` asset sync with
+  mp3/wav uncompressed), so a Swahili learner carries ~116 MB they can never hear, and
+  per-language delivery (on-demand resources / Play asset packs) is the fix, measured per
+  platform first.
 - A playback noise gate would quiet the steady hiss of the noisier recordings (Kampy's, most of the lower German `snr`) the way `gain` levels them: a per-file threshold from `audio_measure.noise_margin` in the manifest, applied by iOS's dynamics-processor audio unit and Android's `DynamicsProcessing` noise gate, never by editing the bytes.
 - No release has carried an IPA yet: the `ios` job needs the App Store Connect secrets
   (`docs/distribution.md` § Secrets) present to get past `App Store Connect API key from
