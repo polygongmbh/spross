@@ -91,16 +91,19 @@ fun Catalog.alphabetExample(entry: AlphabetEntry, lang: Language): AlphabetExamp
  * correctness argument: what is swept in was never in doubt.
  *
  * A candidate is one WORD — no space, no sentence punctuation — carrying the glyph
- * exactly once, the same predicate [gapWord] applies before a question is asked.
- * Recordings still line up because every element keeps its slug.
+ * exactly once, the same predicate [gapWord] applies before a question is asked —
+ * and that once as a grapheme of its own ([Alphabet.graphemeOccurrences]), never the
+ * tail of a longer row's glyph. Recordings still line up because every element keeps its slug.
  */
 fun Catalog.alphabetExamples(entry: AlphabetEntry, lang: Language): List<AlphabetExample> {
     val authored = alphabetExample(entry, lang)
-    if (alphabets[lang]?.minesExamples(entry) != true) return listOfNotNull(authored)
+    val alphabet = alphabets[lang]
+    if (alphabet?.minesExamples(entry) != true) return listOfNotNull(authored)
     val mined = slugIndex.asSequence().mapNotNull { (slug, concept) ->
         if (slug == authored?.slug) return@mapNotNull null
         val text = concept.realizations[lang]?.text ?: return@mapNotNull null
         if (!isGappableWord(text) || glyphOccurrences(text, entry.glyph) != 1) return@mapNotNull null
+        if (alphabet.graphemeOccurrences(text, entry.glyph) != 1) return@mapNotNull null
         AlphabetExample(slug, text, concept.emoji)
     }
     return listOfNotNull(authored) + mined

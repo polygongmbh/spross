@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- The French au letter drill now draws from fifteen words instead of one, and the German ie drill no longer blanks the wrong letters in Feier.
 - Three new family phrases practice the word forms Ukrainian, Esperanto and Spanish use when calling, helping or looking for someone.
 - Close to 800 more words now play a real speaker's recording, among them I, you, he, we and they in every language, and German Gast no longer drags out its vowel.
 - A time written back in digits now also counts with a dot, as in 18.05.

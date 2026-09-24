@@ -138,6 +138,31 @@ data class Alphabet(
             entry.context.isEmpty() &&
             byGlyph[entry.glyph.lowercase()]?.size == 1
 
+    /** Every row's glyph a word can be read into, longest first; rule rows are prose, not graphemes. */
+    private val graphemes: List<String> = entries
+        .filter { it.kind != AlphabetKind.Rule }
+        .map { apostropheFolded(nfcNormalized(it.glyph)) }
+        .distinct()
+        .sortedByDescending { it.length }
+
+    /**
+     * How often [glyph] stands as a grapheme of its own in [word], read left to right by
+     * this file's rows with the longest glyph winning — fr `au` inside `bateau` is part of
+     * `eau`, not an `au`. Same folding as [glyphOccurrences].
+     */
+    fun graphemeOccurrences(word: String, glyph: String): Int {
+        val haystack = apostropheFolded(nfcNormalized(word))
+        val needle = apostropheFolded(nfcNormalized(glyph))
+        var count = 0
+        var at = 0
+        while (at < haystack.length) {
+            val token = graphemes.firstOrNull { haystack.startsWith(it, at, ignoreCase = true) }
+            if (token != null && token.equals(needle, ignoreCase = true)) count++
+            at += token?.length ?: 1
+        }
+        return count
+    }
+
     /** The rows of one section, in authored order — empty for an id no row claims. */
     fun entries(of: String): List<AlphabetEntry> = bySection[of].orEmpty()
 

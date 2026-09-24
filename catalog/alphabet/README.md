@@ -60,6 +60,8 @@ fails it loudly instead of letting it sit.
   glyph two rows share. `"mine": false` is the author's own bar for a string that lies
   anyway (de `chs`, whose only catalog hit is a compound seam). A candidate is one bare
   word: no space, no sentence punctuation.
+  The sweep reads a word by the file's own rows, longest glyph first,
+  so a glyph nested in a longer row's is no occurrence (fr `au` inside `bateau` is `eau`).
 - **Gap rule** (lint): a drill-true `digraph`/`contextual` row's resolved example
   contains its glyph EXACTLY once — zero leaves nothing to blank, and with two the blank
   can land on the wrong, position-bound instance and teach the opposite of the entry.

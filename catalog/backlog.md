@@ -23,10 +23,6 @@ Ready work comes first, then the items that end in a question for the owner, the
   somewhere), not liefern; an honest re-cut touches all eight languages.
 - uk `the-exam-is-already-corrected` is built on `перевірити` (check) while the `to-correct`
   component it unlocks from is `виправляти` (fix errors) — phrase and gate name different verbs.
-- The gap sweep counts glyph occurrences with no longest-glyph-wins, so a glyph nested in a
-  longer row's glyph sweeps in that row's words (fr `au` would gap the a-u inside 13 `eau`
-  words — bateau, beaucoup …); fr `au` opts out via `mine: false` meanwhile, and an
-  engine-side exclusion would win its honest pool back (`Catalog.alphabetExamples`).
 - 58/212 phrases (27%) carry no `components`: 20 are greetings, component-free by design
   (`catalog/README.md:127`), 9 gained theirs in 2db13420, and ~29 (`im-tired`, `wash-your-hands`,
   `i-love-you`, …) have no same-area word to gate on — author the missing word in eight languages,
