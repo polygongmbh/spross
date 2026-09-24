@@ -41,6 +41,9 @@ data class NumbersMode(
     /** One clean win per Sprosse instead of two. */
     val isFast: Boolean get() = DrillModifier.Fast in modifiers
 
+    /** The run ends on [TimedRun.SECONDS] and is scored rather than streaked. */
+    val isTimed: Boolean get() = DrillModifier.Timed in modifiers
+
     /** How long a Sprosse is in this run. */
     val winsToAdvance: Int get() = Numbers.winsToAdvance(isFast)
 
@@ -296,6 +299,7 @@ internal val DrillModifier.storageTag: String
         DrillModifier.Reverse -> "rev"
         DrillModifier.Fast -> "fast"
         DrillModifier.Mix -> "mix"
+        DrillModifier.Timed -> "timed"
     }
 
 /**

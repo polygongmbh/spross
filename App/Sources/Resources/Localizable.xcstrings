@@ -6827,6 +6827,39 @@
         }
       }
     },
+    "trainer.modifier.timed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf Zeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timed"
+          }
+        }
+      }
+    },
+    "trainer.modifier.timed.hint %lld" : {
+      "comment" : "%lld — seconds on the clock, out of kern; never 1, so no singular",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Sekunden auf der Uhr, und jede saubere Antwort zählt so viel wie ihre Sprosse."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld seconds on the clock, and every clean answer scores the Sprosse it stands on."
+          }
+        }
+      }
+    },
     "trainer.overview.practice" : {
       "comment" : "the heading the picks stand under",
       "localizations" : {
@@ -6964,6 +6997,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Record %@"
+          }
+        }
+      }
+    },
+    "trainer.run.score %lld" : {
+      "comment" : "a timed run's score so far, or where it ended — each clean answer adds its Sprosse",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "⭐ %lld Punkt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "⭐ %lld Punkte"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "⭐ %lld point"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "⭐ %lld points"
+                }
+              }
+            }
           }
         }
       }

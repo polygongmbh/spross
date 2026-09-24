@@ -273,6 +273,7 @@ extension DrillModifier {
         case .reverse: return "trainer.modifier.reverse"
         case .fast: return "trainer.modifier.fast"
         case .mix: return "trainer.modifier.mix"
+        case .timed: return "trainer.modifier.timed"
         }
     }
 
@@ -283,6 +284,7 @@ extension DrillModifier {
         case .fast:
             return "trainer.modifier.fast.hint \(Int(Numbers.shared.winsToAdvance(fast: false)))"
         case .mix: return "trainer.modifier.mix.hint"
+        case .timed: return "trainer.modifier.timed.hint \(Int(TimedRun.shared.SECONDS))"
         }
     }
 }

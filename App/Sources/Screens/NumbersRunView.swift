@@ -51,6 +51,9 @@ struct NumbersRunView: View, LanguageNaming {
     @State var answerVoice = AnswerVoice()
     /// Second focus attempt for a field that remounts (see focusAnswerField).
     @State var focusRetry: Task<Void, Never>?
+    /// When a timed run's clock runs out; nil for every other run, and until the
+    /// run is on screen (NumbersRunView+Clock.swift).
+    @State var deadline: Date?
     @FocusState var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) var reduceMotion
     @Environment(\.locale) var locale
@@ -96,6 +99,7 @@ struct NumbersRunView: View, LanguageNaming {
             drillContent
         }
         .onAppear { focusAnswerField() }
+        .task { await runClock() }
         .onChange(of: run.index) { _, _ in focusAnswerField() }
         .saysOwedAnswer(spokenAnswer, lang: language, via: model, voice: answerVoice)
         .onDisappear {

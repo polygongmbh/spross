@@ -63,7 +63,7 @@ extension NumbersMode {
 private extension NumbersMode {
     /// Run-through hooks, applied wherever a mode is built out of picks: the
     /// overview starts with counting selected, so `-uitest-exercises
-    /// numbers,clock,forms,phrases` and `-uitest-modifiers rev,fast,mix` are the
+    /// numbers,clock,forms,phrases` and `-uitest-modifiers rev,fast,mix,timed` are the
     /// only way to photograph a selection or a modifier. An unknown word is ignored.
     static var uitestExercises: [NumbersExercise]? {
         let known: [String: NumbersExercise] = ["numbers": .counting, "clock": .clock,
@@ -73,7 +73,8 @@ private extension NumbersMode {
     }
 
     static var uitestModifiers: Set<DrillModifier> {
-        let known: [String: DrillModifier] = ["rev": .reverse, "fast": .fast, "mix": .mix]
+        let known: [String: DrillModifier] = ["rev": .reverse, "fast": .fast, "mix": .mix,
+                                             "timed": .timed]
         return Set(uitestWords("uitest-modifiers").compactMap { known[$0] })
     }
 

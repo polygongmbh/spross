@@ -60,9 +60,21 @@ extension NumbersRunView {
                        isPlaying: { model.isPronouncing($0, lang: language) })
     }
 
-    private var streakLine: some View {
-        DrillStreakLine(level: levelText, streak: Int(run.streak), bestStreak: Int(run.bestStreak),
-                        announcesRecord: true)
+    @ViewBuilder private var streakLine: some View {
+        if let deadline {
+            // why: the seconds left are a timeline, so the line redraws once a second
+            // and nothing else about the run has to.
+            TimelineView(.periodic(from: .now, by: 1)) { context in
+                scoreLine(timed: timedParts(left: deadline.timeIntervalSince(context.date)))
+            }
+        } else {
+            scoreLine(timed: [])
+        }
+    }
+
+    private func scoreLine(timed: [Text]) -> some View {
+        DrillStreakLine(level: levelText, timed: timed, streak: Int(run.streak),
+                        bestStreak: Int(run.bestStreak), announcesRecord: true)
     }
 
     /// The Sprosse part of the score line, for the exercise that just asked: numbers

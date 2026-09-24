@@ -49,6 +49,9 @@ class NumbersFlow(
         dispatch(NumbersIntent.LookUp)
     }
 
+    /** A timed run's clock ran out: kern ends the run, and the screen hands it back. */
+    fun timeUp() = dispatch(NumbersIntent.TimeUp)
+
     /**
      * Leaving. Kern books whatever is pending exactly as the explicit tap would and says
      * what the platform owes its stores; the caller writes them and shows the summary.

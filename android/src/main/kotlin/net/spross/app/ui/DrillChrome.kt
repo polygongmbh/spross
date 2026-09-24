@@ -35,6 +35,7 @@ import net.spross.kern.trainer.StreakTier
 /**
  * The score line above the card: which Sprosse the run stands on, how long the streak is, and
  * the standing record while the streak has fallen short of it.
+ * A timed run's clock and score ([timed]) stand after the Sprosse.
  *
  * [Sprosse] is worded by the drill that owns it — a digit count reads differently from a plain
  * level — and is null where a run has one Sprosse only. [announcesRecord] carries a real
@@ -47,14 +48,16 @@ fun DrillStreakLine(
     bestStreak: Int,
     chrome: Chrome,
     announcesRecord: Boolean = false,
+    timed: String? = null,
 ) {
     val showsRecord = bestStreak > streak
     val parts = listOfNotNull(
         sprosse,
+        timed,
         chrome.trainerRunStreak.format(streak),
         if (showsRecord) chrome.trainerRunRecord.format(bestStreak) else null,
     )
-    val spoken = chrome.a11yCountStreakInARow.format(streak) +
+    val spoken = listOfNotNull(timed, chrome.a11yCountStreakInARow.format(streak)).joinToString(", ") +
         if (announcesRecord && showsRecord) chrome.a11ySuffixRecord.format(bestStreak) else ""
     Text(
         parts.joinToString(" · "),
@@ -113,6 +116,12 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
                 style = MaterialTheme.typography.bodySmall,
                 color = Theme.colors.textSecondary,
             )
+            summary.timed?.let { timed ->
+                Text(
+                    countLine(chrome.trainerRunScoreOne, chrome.trainerRunScore, timed.score),
+                    style = MaterialTheme.typography.bodySmall,
+                )
+            }
             if (summary.newRecord) {
                 Text(
                     chrome.trainerResultNewRecord,

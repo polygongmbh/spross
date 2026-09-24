@@ -13,9 +13,9 @@ import net.spross.kern.session.TurnFeedback
  * The slot drill as pure state plus one reducer — the machine both apps used to re-derive.
  * The run's shape is [NumbersRunState]; what it is spelled out of is [NumbersMode].
  *
- * Kern never self-randomizes: every draw takes the caller's [Random]. No clock is needed
- * anywhere in the run, so none is taken. No default arguments: they do not cross the ObjC
- * boundary, so every entry point is explicit.
+ * Kern never self-randomizes: every draw takes the caller's [Random]. No clock is read
+ * anywhere in the run: a timed run's end arrives as [NumbersIntent.TimeUp]. No default
+ * arguments: they do not cross the ObjC boundary, so every entry point is explicit.
  */
 object NumbersRun {
 
@@ -60,7 +60,9 @@ object NumbersRun {
         NumbersIntent.LookUp -> lookUp(state)
         NumbersIntent.ConfirmPending -> confirm(state, rng)
         NumbersIntent.AdvanceElapsed -> elapsed(state, rng)
+        NumbersIntent.TimeUp -> timeUp(state)
     }
+
 
     /**
      * Grade [input] against a task the way a drill grades: word by word, one slip per word,
@@ -125,9 +127,11 @@ object NumbersRun {
             .map { (exercise, best) -> state.mode.progressKey(exercise) to best }
             .filter { (key, best) -> best > (standingProgress[key] ?: 0) }
             .toMap()
+        val timed = if (state.timed) TimedOutcome(ended.score) else null
+        val figure = timed?.score ?: ended.bestStreak
         return NumbersClose(
             state = ended,
-            summary = DrillRunSummary(ended.done, ended.bestStreak, ended.bestStreak > standingRecord),
+            summary = DrillRunSummary(ended.done, ended.bestStreak, figure > standingRecord, timed),
             recordKey = state.mode.recordKey,
             progressBookings = bookings,
             effects = effects,
@@ -229,6 +233,14 @@ object NumbersRun {
         TurnFeedback.Revealed -> booked(state, correct = false, outcome = AnswerOutcome.Wrong, rng = rng)
     }
 
+    /** The run is over; what is pending is the close's to book, as the ✕ would. */
+    private fun timeUp(state: NumbersRunState): NumbersReduction =
+        if (state.timed && !state.finished) {
+            NumbersReduction(state.copy(finished = true), listOf(DrillEffect.CancelAdvance, DrillEffect.Silence))
+        } else {
+            unchanged(state)
+        }
+
     /** The beat only ever arms on a clean answer, so nothing else may ride it. */
     private fun elapsed(state: NumbersRunState, rng: Random): NumbersReduction =
         if (state.feedback == TurnFeedback.Correct) {
@@ -303,6 +315,7 @@ object NumbersRun {
                 ?.let { state.seenDigitCounts + it }
                 ?: state.seenDigitCounts,
             core = state.core.book(correct, clean, DrillSolved.key(exercise, state.currentTask)),
+            score = state.score + TimedRun.points(state.currentLevel, correct, clean),
         )
     }
 

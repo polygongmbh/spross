@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- The numbers drill can now race a one-minute clock, each right answer scoring as many points as the Sprosse it was given on.
+
 ## 7.4.2 — 2026-09-22
 
 - After a miss, the words you already had right come back in the answer field spelled correctly, not with your typo still in them.

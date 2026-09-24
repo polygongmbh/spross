@@ -36,6 +36,8 @@ struct DrillStreakLine: View {
     /// The Sprosse, worded by the drill that owns it — a digit count reads
     /// differently from a plain level. nil where a run has one Sprosse only.
     var level: Text?
+    /// A timed run's clock and score, standing after the Sprosse; empty elsewhere.
+    var timed: [Text] = []
     let streak: Int
     let bestStreak: Int
     /// Whether the SPOKEN line names the record as well. Only the slot drill's
@@ -58,13 +60,15 @@ struct DrillStreakLine: View {
     private var text: Text {
         var parts: [Text] = []
         if let level { parts.append(level) }
+        parts += timed
         parts.append(Text("trainer.run.streak \(streak.formatted())"))
         if bestStreak > streak { parts.append(Text("trainer.run.record \(bestStreak.formatted())")) }
         return parts.joined() ?? Text(verbatim: "")
     }
 
     private var accessibility: Text {
-        let spoken = Text("a11y.count.streakInARow \(streak.formatted())")
+        let streakSpoken = Text("a11y.count.streakInARow \(streak.formatted())")
+        let spoken = timed.joined(separator: ", ").map { $0 + Text(verbatim: ", ") + streakSpoken } ?? streakSpoken
         guard announcesRecord, bestStreak > streak else { return spoken }
         return spoken + Text("a11y.suffix.record \(bestStreak.formatted())")
     }
@@ -104,6 +108,8 @@ struct DrillRunResult: Equatable {
     /// ladder is one table, and a second copy of it here is one coincidence away
     /// from praising a run the engine does not.
     var tier: StreakTier = .sprout
+    /// A timed run's score; nil for every other run.
+    var timed: TimedOutcome?
     /// What was drilled — the exercise's own name, since a page can host several.
     let title: LocalizedStringKey
 }
@@ -126,6 +132,11 @@ struct DrillResultTile: View {
                 Text("trainer.result.bestStreak \(result.bestStreak.formatted())")
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
+                if let timed = result.timed {
+                    Text("trainer.run.score \(Int(timed.score))")
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textPrimary)
+                }
                 if result.newRecord {
                     Text("trainer.result.newRecord")
                         .font(Theme.typography.caption)

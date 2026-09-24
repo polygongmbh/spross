@@ -136,6 +136,8 @@ internal object ChromeEn : Chrome {
     override val a11yTrainerSprosseReached = "reached"
     override val a11yTrainerSprosseCleared = "every question answered"
     override val trainerRunStreak = "🔥 %s in a row"
+    override val trainerRunScoreOne = "⭐ %d point"
+    override val trainerRunScore = "⭐ %d points"
     override val sessionAlmostTypo = "Almost! Correct spelling"
     override val sessionAlmostHeard = "You heard"
     override val sessionAlmostMerged = "Right — it also means"
@@ -179,6 +181,9 @@ internal object ChromeEn : Chrome {
     override val trainerModifierMix = "Mixed Up"
     override val trainerModifierMixHint = "The direction flips every task, and forms grow to " +
         "the size the numbers reached."
+    override val trainerModifierTimed = "Timed"
+    override val trainerModifierTimedHint = "%d seconds on the clock, and every clean answer " +
+        "scores the Sprosse it stands on."
     override val numbersCombineLocked = "Several in one run, once everything is unlocked."
     override val numbersUnlock = "Unlocks at:"
     override val numbersBest = "Best yet:"

@@ -98,7 +98,11 @@ fun NumbersOverviewScreen(model: AppModel) {
             if (!combining) OverviewNote(chrome.numbersCombineLocked)
         }
         OverviewPanel {
-            for (modifier in DrillModifier.entries) {
+            // why: a run that ends under the learner is the timed change a screen reader is spared.
+            val playable = DrillModifier.entries.filter {
+                it != DrillModifier.Timed || !model.pronouncer.readsScreenAloud
+            }
+            for (modifier in playable) {
                 ModifierRow(modifier, chrome, ladder, modifier in modifiers) { on ->
                     modifierNames = if (on) {
                         modifierNames + modifier.name

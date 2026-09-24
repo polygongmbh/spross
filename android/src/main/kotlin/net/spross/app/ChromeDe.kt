@@ -139,6 +139,8 @@ internal object ChromeDe : Chrome {
     override val a11yTrainerSprosseReached = "erreicht"
     override val a11yTrainerSprosseCleared = "alle Fragen beantwortet"
     override val trainerRunStreak = "🔥 %s in Folge"
+    override val trainerRunScoreOne = "⭐ %d Punkt"
+    override val trainerRunScore = "⭐ %d Punkte"
     override val sessionAlmostTypo = "Fast! Korrekte Schreibweise"
     override val sessionAlmostHeard = "Gehört war"
     override val sessionAlmostMerged = "Stimmt — heißt auch"
@@ -183,6 +185,9 @@ internal object ChromeDe : Chrome {
     override val trainerModifierMix = "Bunt gemischt"
     override val trainerModifierMixHint = "Die Richtung wechselt bei jeder Aufgabe, und " +
         "Formen werden so groß wie die Zahlen."
+    override val trainerModifierTimed = "Auf Zeit"
+    override val trainerModifierTimedHint = "%d Sekunden auf der Uhr, und jede saubere " +
+        "Antwort zählt so viel wie ihre Sprosse."
     override val numbersCombineLocked = "Mehreres in einem Lauf, sobald alles freigeschaltet " +
         "ist."
     override val numbersUnlock = "Freischalten:"
