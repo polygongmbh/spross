@@ -45,7 +45,7 @@
   "tire": { "text": "tairi", "grammar": { "plural": "matairi" } },
   "my-car-has-four-tires": {
    "text": "Gari langu lina matairi manne.",
-   "notes": { "sw": "Gari ni ngeli ya ji-/ma-: gari langu, magari yangu." }
+   "notes": { "sw": "gari → magari: gari langu, magari yangu." }
   }
  }
 }
