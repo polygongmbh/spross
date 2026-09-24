@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Words you sow now lead the chat prompt, so its story and talk revolve around them, one or two at a time.
+- The chat prompt now suggests only the words you sow, and its story and talk revolve around them, one or two at a time.
 
 ## 7.4.2 — 2026-09-22
 

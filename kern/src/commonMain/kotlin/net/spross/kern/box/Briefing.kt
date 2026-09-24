@@ -18,8 +18,8 @@ data class BriefArea(val title: String, val words: List<String>)
  * and written in English — neither of the learner's two languages, and the one every
  * assistant reads best. Those two are NAMED inside it, never translated around.
  *
- * [GrowthStage.Suspended] and everything unscheduled appear nowhere: what is listed is
- * where to reach FIRST, never a fence. [OwnWords] are out as well — the box's most
+ * [GrowthStage.Suspended] and every unscheduled word the learner did not sow appear
+ * nowhere: what is listed is where to reach FIRST, never a fence. [OwnWords] are out as well — the box's most
  * personal content, and this is the one text that leaves the device.
  */
 data class Briefing(
@@ -32,7 +32,6 @@ data class Briefing(
     val learning: List<BriefWord>,
     /** Words the learner sowed and no round has brought in yet — the talk's own subject. */
     val sown: List<BriefWord>,
-    val newWords: List<BriefWord>,
 ) {
     val maturedCount: Int get() = matured.sumOf { it.words.size }
 
@@ -57,11 +56,6 @@ data class Briefing(
                 appendLine()
                 appendLine("WORDS I CHOSE TO LEARN NEXT — build the story and our talk around these first")
                 for (word in sown) appendLine("${word.target} (${word.source})")
-            }
-            if (newWords.isNotEmpty()) {
-                appendLine()
-                appendLine("WHAT THE APP TEACHES ME NEXT — prefer these when you bring in a word")
-                for (word in newWords) appendLine("${word.target} (${word.source})")
             }
             appendLine()
             appendLine(firstTurn())
@@ -128,7 +122,7 @@ data class Briefing(
      * having to ask for it is the loop half closed.
      */
     private fun harvestAsk(): String {
-        val example = (sown + newWords).firstOrNull() ?: learning.firstOrNull()
+        val example = sown.firstOrNull() ?: learning.firstOrNull()
         return """
             Export for Spross: the key words that came up repeatedly and were not already
             in the lists above, one per line as `$targetName = $sourceName`, fenced ```spross,
@@ -149,14 +143,8 @@ data class Briefing(
 /** Building a [Briefing] out of a box; reading a conversation's answer back is [Harvest]'s. */
 object Briefings {
 
-    /** How wide the new-word preference is drawn — a round's worth, give or take. */
-    const val NEW_LIMIT: Int = 15
-
     /** How many sown words a brief names, most recently sown first. */
     const val SOWN_LIMIT: Int = 30
-
-    /** Words in learning past which the brief stops naming what is next. */
-    const val LEARNING_BUSY: Int = 30
 
     /**
      * Whether there is a conversation to be had: a box with nothing to name briefs nobody.
@@ -181,24 +169,13 @@ object Briefings {
                 )
             }
         val learning = learningCards.map { BriefWord(targetForm(it), it.source.text) }
-        // Sown words are the learner's own ask, so a busy learner still gets them — and a
-        // locked phrase too: a conversation needs none of the unlock a round waits for.
+        // Only the learner's own ask names what is next — a locked phrase too:
+        // a conversation needs none of the unlock a round waits for.
         val sownCards = state.enqueued.asReversed()
             .filter { state.scheduling[it] == null }
             .mapNotNull { state.cards[it] }
             .filter { it.area != OwnWords.AREA }
             .take(SOWN_LIMIT)
-        val sownIds = sownCards.mapTo(mutableSetOf()) { it.id }
-        val newWords = if (learning.size >= LEARNING_BUSY) {
-            emptyList()
-        } else {
-            val candidates = Growth.newCandidates(state, NEW_LIMIT, NEW_LIMIT)
-            (candidates.newCards + candidates.unlockedPhrases)
-                .filter { it !in sownIds }
-                .mapNotNull { state.cards[it] }
-                .filter { it.area != OwnWords.AREA }
-                .map { BriefWord(targetForm(it), it.source.text) }
-        }
         return Briefing(
             learnerName = learnerName,
             sourceName = languageName(catalog, state.joinStamp.source),
@@ -206,7 +183,6 @@ object Briefings {
             matured = matured,
             learning = learning,
             sown = sownCards.map { BriefWord(targetForm(it), it.source.text) },
-            newWords = newWords,
         )
     }
 

@@ -59,21 +59,21 @@ class BriefingTests {
         val brief = brief(box)
         assertEquals(emptyList(), brief.matured.flatMap { it.words })
         assertEquals(emptyList(), brief.learning.map { it.target })
-        // w03 was never introduced, so it can only turn up as something to teach next.
-        assertTrue(brief.newWords.any { it.target == "t3" })
+        assertEquals(emptyList(), brief.sown.map { it.target })
     }
 
     /** The box's most personal content stays on the device, on every list. */
     @Test
     fun ownWordsLeaveTheDeviceNowhere() {
-        var box = state(listOf(Box.word(1, area = OwnWords.AREA), Box.word(2, area = OwnWords.AREA)))
+        val own = (1..3).map { Box.word(it, area = OwnWords.AREA) }
+        var box = BoxEngine.enqueue(state(own), listOf("w03"))
         box = Box.inject(box, matured("w01"))
         box = Box.inject(box, learning("w02"))
 
         val brief = brief(box)
         assertEquals(emptyList(), brief.matured.flatMap { it.words })
         assertEquals(emptyList(), brief.learning.map { it.target })
-        assertEquals(emptyList(), brief.newWords.map { it.target })
+        assertEquals(emptyList(), brief.sown.map { it.target })
         assertFalse(Briefings.available(box))
     }
 
@@ -85,37 +85,14 @@ class BriefingTests {
         assertTrue(Briefings.available(Box.inject(fresh, learning("w01"))))
     }
 
-    /** What is next is an offer, and a learner already juggling enough is not made one. */
+    /** What is next is the learner's own ask: the sown words, and no word of the app's choosing. */
     @Test
-    fun aBusyLearnerIsOfferedNoNewWords() {
-        val cards = (1..Briefings.LEARNING_BUSY + 5).map { Box.word(it) }
-        var box = state(cards)
-        for (n in 1..Briefings.LEARNING_BUSY) box = Box.inject(box, learning(Box.word(n).id))
-
-        assertEquals(emptyList(), brief(box).newWords)
-
-        val quieter = Box.inject(state(cards), learning("w01"))
-        val newWords = brief(quieter).newWords
-        assertTrue(newWords.isNotEmpty())
-        assertTrue(newWords.size <= Briefings.NEW_LIMIT)
-    }
-
-    /** A sown word is the learner's own ask: named on its own list, even past busy, and nowhere else. */
-    @Test
-    fun sownWordsLeadEvenForABusyLearner() {
-        val cards = (1..Briefings.LEARNING_BUSY + 5).map { Box.word(it) }
-        var box = state(cards)
-        for (n in 1..Briefings.LEARNING_BUSY) box = Box.inject(box, learning(Box.word(n).id))
-        box = BoxEngine.enqueue(box, listOf(Box.word(Briefings.LEARNING_BUSY + 3).id))
+    fun onlySownWordsAreNamedAsNext() {
+        val box = BoxEngine.enqueue(state(listOf(Box.word(1), Box.word(2), Box.word(3))), listOf("w03"))
 
         val brief = brief(box)
-        assertEquals(listOf("t${Briefings.LEARNING_BUSY + 3}"), brief.sown.map { it.target })
-        assertEquals(emptyList(), brief.newWords)
-
-        val quieter = BoxEngine.enqueue(state(listOf(Box.word(1), Box.word(2))), listOf("w02"))
-        val offered = brief(quieter)
-        assertEquals(listOf("t2"), offered.sown.map { it.target })
-        assertFalse(offered.newWords.any { it.target == "t2" })
+        assertEquals(listOf("t3"), brief.sown.map { it.target })
+        assertFalse("t2" in brief.text)
     }
 
     /** A sown phrase is named before its words have unlocked it — a talk waits on no round. */
@@ -143,9 +120,10 @@ class BriefingTests {
     /** The loop closes: the fence the brief prints is one [Harvest] reads back. */
     @Test
     fun theHarvestFenceRoundTrips() {
-        val box = Box.inject(state(listOf(Box.word(1), Box.word(2))), learning("w01"))
+        val started = Box.inject(state(listOf(Box.word(1), Box.word(2))), learning("w01"))
+        val box = BoxEngine.enqueue(started, listOf("w02"))
         val brief = brief(box)
-        val example = brief.newWords.first()
+        val example = brief.sown.first()
 
         val read = Harvest.read(brief.text, box)
         assertTrue(read.any { it.word == example }, "no $example in ${read.map { it.word }}")
