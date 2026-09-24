@@ -1,0 +1,27 @@
+{
+ "title": "Навчання після школи",
+ "subtitle": "Після школи — що далі?",
+ "words": {
+  "university": { "text": "університет" },
+  "student": { "text": "студент" },
+  "student-f": { "text": "студентка" },
+  "studies": { "text": "навчання" },
+  "to-study-at-university": { "text": "навчатися в університеті", "accepts": ["вчитися в університеті"] },
+  "lecture": { "text": "лекція" },
+  "school-diploma": { "text": "атестат", "accepts": ["атестат про середню освіту"] },
+  "vocational-training": { "text": "професійне навчання" },
+  "vocational-school": { "text": "професійне училище", "accepts": ["училище", "профтехучилище", "професійний коледж"] },
+  "internship": { "text": "стажування", "accepts": ["практика"] },
+  "further-training": { "text": "підвищення кваліфікації" },
+  "counseling": { "text": "консультація" },
+  "skills": { "text": "знання" },
+  "to-finish-training": { "text": "закінчити навчання", "accepts": ["завершити навчання"] },
+  "she-completed-her-training-in-2015": {
+   "text": "Вона закінчила навчання у 2015 році.",
+   "accepts": ["Вона закінчила навчання в 2015 році."]
+  },
+  "are-you-doing-an-internship": { "text": "Ви проходите стажування?" },
+  "the-lecture-is-canceled-today": { "text": "Лекцію сьогодні скасовано." },
+  "no-prior-knowledge-needed": { "text": "Попередні знання не потрібні." }
+ }
+}

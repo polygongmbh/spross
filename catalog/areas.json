@@ -177,6 +177,7 @@
   "areas": [
    { "area": "organization", "emoji": "🗒️" },
    { "area": "school", "emoji": "🎒" },
+   { "area": "studies", "emoji": "🎓" },
    { "area": "work", "emoji": "💼" },
    { "area": "admin", "emoji": "🗂️" },
    { "area": "politics", "emoji": "🗳️" }

@@ -1,0 +1,27 @@
+{
+ "title": "Studium und Ausbildung",
+ "subtitle": "Schule, und dann?",
+ "words": {
+  "university": { "text": "Universität", "accepts": ["Uni"], "grammar": { "gender": "die", "plural": "-en" } },
+  "student": { "text": "Student", "grammar": { "gender": "der", "plural": "-en" } },
+  "student-f": { "text": "Studentin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "studies": { "text": "Studium", "grammar": { "gender": "das", "plural": "Studien" } },
+  "to-study-at-university": { "text": "an der Uni studieren", "accepts": ["studieren", "an der Universität studieren"] },
+  "lecture": { "text": "Vorlesung", "grammar": { "gender": "die", "plural": "-en" } },
+  "school-diploma": { "text": "Schulabschluss", "grammar": { "gender": "der", "plural": "Schulabschlüsse" } },
+  "vocational-training": { "text": "Ausbildung", "grammar": { "gender": "die", "plural": "-en" } },
+  "vocational-school": { "text": "Berufsschule", "grammar": { "gender": "die", "plural": "-n" } },
+  "internship": { "text": "Praktikum", "grammar": { "gender": "das", "plural": "Praktika" } },
+  "further-training": { "text": "Weiterbildung", "grammar": { "gender": "die", "plural": "-en" } },
+  "counseling": { "text": "Beratung", "grammar": { "gender": "die", "plural": "-en" } },
+  "skills": { "text": "Kenntnisse", "grammar": { "gender": "die", "plural": "only" } },
+  "to-finish-training": { "text": "die Ausbildung abschließen" },
+  "she-completed-her-training-in-2015": {
+   "text": "Sie hat ihre Ausbildung 2015 abgeschlossen.",
+   "orders": ["2015 hat sie ihre Ausbildung abgeschlossen."]
+  },
+  "are-you-doing-an-internship": { "text": "Macht ihr ein Praktikum?" },
+  "the-lecture-is-canceled-today": { "text": "Die Vorlesung fällt heute aus.", "orders": ["Heute fällt die Vorlesung aus."] },
+  "no-prior-knowledge-needed": { "text": "Sie brauchen keine Vorkenntnisse." }
+ }
+}

@@ -26,7 +26,6 @@
   "part-time": { "text": "часткова зайнятість" },
   "tax": { "text": "податок", "grammar": { "plural": "податки" } },
   "work-permit": { "text": "дозвіл на роботу", "grammar": { "plural": "дозволи на роботу" } },
-  "training": { "text": "професійне навчання" },
   "notice": { "text": "звільнення", "grammar": { "plural": "=" } },
   "worker": { "text": "робітник" },
   "employer": { "text": "роботодавець" },

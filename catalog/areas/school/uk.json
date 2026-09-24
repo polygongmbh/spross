@@ -21,7 +21,6 @@
   "grade": { "text": "оцінка" },
   "to-correct": { "text": "виправляти" },
   "book": { "text": "книжка", "accepts": ["книга"] },
-  "university": { "text": "університет" },
   "class-schedule": { "text": "розклад" },
   "to-count": { "text": "рахувати" },
   "to-learn-by-heart": { "text": "вчити напам'ять" },
@@ -29,6 +28,7 @@
   "dictionary": { "text": "словник" },
   "to-pronounce": { "text": "вимовляти" },
   "to-teach": { "text": "викладати" },
+  "report-card": { "text": "табель", "accepts": ["табель успішності"] },
   "do-the-homework": { "text": "Я роблю домашнє завдання.", "orders": ["Домашнє завдання я роблю."] },
   "look-at-the-class-schedule": {
    "text": "Подивись на розклад.",

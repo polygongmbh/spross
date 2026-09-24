@@ -1,0 +1,27 @@
+{
+ "title": "Chuo na mafunzo",
+ "subtitle": "Baada ya shule, nini kinafuata?",
+ "words": {
+  "university": { "text": "chuo kikuu", "grammar": { "plural": "vyuo vikuu" } },
+  "student": {
+   "text": "mwanachuo",
+   "accepts": ["mwanafunzi wa chuo kikuu"],
+   "grammar": { "plural": "wanachuo" }
+  },
+  "studies": { "text": "masomo ya chuo kikuu", "grammar": { "plural": "only" } },
+  "to-study-at-university": { "text": "kusoma chuo kikuu" },
+  "lecture": { "text": "mhadhara", "grammar": { "plural": "mihadhara" } },
+  "school-diploma": { "text": "cheti cha kumaliza shule", "grammar": { "plural": "vyeti vya kumaliza shule" } },
+  "vocational-training": { "text": "mafunzo ya kazi", "grammar": { "plural": "only" } },
+  "vocational-school": { "text": "chuo cha ufundi", "grammar": { "plural": "vyuo vya ufundi" } },
+  "internship": { "text": "mafunzo kwa vitendo", "grammar": { "plural": "only" } },
+  "further-training": { "text": "mafunzo ya kujiendeleza", "grammar": { "plural": "only" } },
+  "counseling": { "text": "ushauri" },
+  "skills": { "text": "ujuzi" },
+  "to-finish-training": { "text": "kumaliza mafunzo" },
+  "she-completed-her-training-in-2015": { "text": "Alimaliza mafunzo yake mwaka 2015." },
+  "are-you-doing-an-internship": { "text": "Mnafanya mafunzo kwa vitendo?" },
+  "the-lecture-is-canceled-today": { "text": "Mhadhara wa leo umefutwa." },
+  "no-prior-knowledge-needed": { "text": "Huhitaji ujuzi wa awali." }
+ }
+}

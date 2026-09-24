@@ -78,12 +78,6 @@
   "grade": { "text": "note", "grammar": { "gender": "la" } },
   "to-correct": { "text": "corriger" },
   "book": { "text": "livre", "grammar": { "gender": "le" } },
-  "university": {
-   "text": "université",
-   "accepts": ["l'université", "fac"],
-   "grammar": { "gender": "l'" },
-   "notes": { "fr": "on dit la fac : je vais à la fac." }
-  },
   "class-schedule": {
    "text": "emploi du temps",
    "accepts": ["l'emploi du temps"],
@@ -95,6 +89,7 @@
   "dictionary": { "text": "dictionnaire", "grammar": { "gender": "le" } },
   "to-pronounce": { "text": "prononcer" },
   "to-teach": { "text": "enseigner" },
+  "report-card": { "text": "bulletin scolaire", "accepts": ["bulletin"], "grammar": { "gender": "le" } },
   "do-the-homework": { "text": "Je fais mes devoirs." },
   "look-at-the-class-schedule": { "text": "Regarde l'emploi du temps.", "accepts": ["Regardez l'emploi du temps."] },
   "the-break-is-over": { "text": "La pause est finie.", "accepts": ["La pause est terminée."] },

@@ -1,0 +1,32 @@
+{
+ "title": "Estudios y formación",
+ "subtitle": "Terminado el colegio, ¿y ahora?",
+ "words": {
+  "university": { "text": "universidad", "grammar": { "gender": "la" } },
+  "student": { "text": "estudiante", "grammar": { "gender": "el" } },
+  "studies": { "text": "carrera", "accepts": ["estudios"], "grammar": { "gender": "la" } },
+  "to-study-at-university": { "text": "estudiar en la universidad" },
+  "lecture": { "text": "clase magistral", "grammar": { "gender": "la" } },
+  "school-diploma": { "text": "título de bachillerato", "accepts": ["bachillerato"], "grammar": { "gender": "el" } },
+  "vocational-training": {
+   "text": "formación profesional",
+   "accepts": ["FP", "formación"],
+   "grammar": { "gender": "la" },
+   "notes": { "es": "La formación profesional (FP) mezcla clases y prácticas en la empresa." }
+  },
+  "vocational-school": {
+   "text": "instituto de formación profesional",
+   "accepts": ["centro de FP", "escuela profesional"],
+   "grammar": { "gender": "el" }
+  },
+  "internship": { "text": "prácticas", "grammar": { "gender": "las", "plural": "only" } },
+  "further-training": { "text": "formación continua", "grammar": { "gender": "la" } },
+  "counseling": { "text": "asesoramiento", "accepts": ["orientación"], "grammar": { "gender": "el" } },
+  "skills": { "text": "conocimientos", "grammar": { "gender": "los", "plural": "only" } },
+  "to-finish-training": { "text": "terminar la formación", "accepts": ["acabar la formación"] },
+  "she-completed-her-training-in-2015": { "text": "Terminó su formación en 2015.", "accepts": ["Ella terminó su formación en 2015."] },
+  "are-you-doing-an-internship": { "text": "¿Hacéis prácticas?" },
+  "the-lecture-is-canceled-today": { "text": "Hoy se cancela la clase magistral." },
+  "no-prior-knowledge-needed": { "text": "No necesita conocimientos previos." }
+ }
+}

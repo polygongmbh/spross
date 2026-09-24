@@ -6197,17 +6197,6 @@
       "snr": 78.8,
       "source": "LL-Q652 (ita)-DiplomaticBadger-professione.wav"
     },
-    "pupil": {
-      "author": "LangPao",
-      "file": "pupil.mp3",
-      "gain": 1.7,
-      "gainPhone": 2.8,
-      "lead": 209,
-      "matches": "studente",
-      "sha256": "e8fd850c5ad5dd5b2d00ed7ae665ae4ad4e095566395a68ca860204d65bc264e",
-      "snr": 90.3,
-      "source": "LL-Q652 (ita)-LangPao-studente.wav"
-    },
     "purple": {
       "author": "LangPao",
       "file": "purple.mp3",
@@ -7075,6 +7064,17 @@
       "sha256": "abd7ba590ddfb347abb679a979ce15b48295d0fcea2d62dd3f7775246a800e3a",
       "snr": 101.7,
       "source": "LL-Q652 (ita)-LangPao-strada.wav"
+    },
+    "student": {
+      "author": "LangPao",
+      "file": "student.mp3",
+      "gain": 1.7,
+      "gainPhone": 2.8,
+      "lead": 209,
+      "matches": "studente",
+      "sha256": "e8fd850c5ad5dd5b2d00ed7ae665ae4ad4e095566395a68ca860204d65bc264e",
+      "snr": 90.3,
+      "source": "LL-Q652 (ita)-LangPao-studente.wav"
     },
     "sugar": {
       "author": "UofG Language Modules",

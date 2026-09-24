@@ -13195,17 +13195,6 @@
       "snr": 61.4,
       "source": "De-Bahnhof.ogg"
     },
-    "training": {
-      "author": "Jeuwre",
-      "file": "training.mp3",
-      "gain": -2.6,
-      "gainPhone": 1.4,
-      "lead": 338,
-      "matches": "ausbildung",
-      "sha256": "498b2cc4fb0c8e4fa22e3959180cfbb796fff5891e2fe4259d0fa38599b840b5",
-      "snr": 106.3,
-      "source": "De-Ausbildung.ogg"
-    },
     "trash-can": {
       "author": "Jeuwre",
       "file": "trash-can.mp3",
@@ -13458,6 +13447,17 @@
       "sha256": "b255952276b3a701e6bef53774620c00305e6e52b76de154da6451cfbad02f38",
       "snr": 103.6,
       "source": "De-Vision.ogg"
+    },
+    "vocational-training": {
+      "author": "Jeuwre",
+      "file": "vocational-training.mp3",
+      "gain": -2.6,
+      "gainPhone": 1.4,
+      "lead": 338,
+      "matches": "ausbildung",
+      "sha256": "498b2cc4fb0c8e4fa22e3959180cfbb796fff5891e2fe4259d0fa38599b840b5",
+      "snr": 106.3,
+      "source": "De-Ausbildung.ogg"
     },
     "volume": {
       "author": "Jeuwre",

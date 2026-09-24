@@ -1,0 +1,43 @@
+{
+ "title": "Studio e formazione",
+ "subtitle": "Finita la scuola, e poi?",
+ "words": {
+  "university": {
+   "text": "università",
+   "accepts": ["l'università", "un'università", "uni"],
+   "grammar": { "gender": "l'", "plural": "=" }
+  },
+  "student": { "text": "studente", "grammar": { "gender": "lo" } },
+  "student-f": { "text": "studentessa", "grammar": { "gender": "la" } },
+  "studies": { "text": "studi", "grammar": { "gender": "gli", "plural": "only" } },
+  "to-study-at-university": { "text": "studiare all'università" },
+  "lecture": { "text": "lezione frontale", "grammar": { "gender": "la" } },
+  "school-diploma": { "text": "diploma di maturità", "accepts": ["maturità"], "grammar": { "gender": "il" } },
+  "vocational-training": {
+   "text": "formazione professionale",
+   "accepts": ["formazione"],
+   "grammar": { "gender": "la" },
+   "notes": { "it": "la formazione professionale è a scuola · l'apprendistato è in azienda." }
+  },
+  "vocational-school": {
+   "text": "istituto professionale",
+   "accepts": ["l'istituto professionale"],
+   "grammar": { "gender": "l'" }
+  },
+  "internship": { "text": "tirocinio", "accepts": ["stage"], "grammar": { "gender": "il" } },
+  "further-training": { "text": "formazione continua", "grammar": { "gender": "la" } },
+  "counseling": { "text": "consulenza", "grammar": { "gender": "la" } },
+  "skills": { "text": "conoscenze", "grammar": { "gender": "le", "plural": "only" } },
+  "to-finish-training": {
+   "text": "finire la formazione",
+   "accepts": ["completare la formazione", "terminare la formazione"]
+  },
+  "she-completed-her-training-in-2015": {
+   "text": "Ha finito la sua formazione nel 2015.",
+   "accepts": ["Lei ha finito la sua formazione nel 2015."]
+  },
+  "are-you-doing-an-internship": { "text": "Fate un tirocinio?" },
+  "the-lecture-is-canceled-today": { "text": "Oggi la lezione frontale è annullata." },
+  "no-prior-knowledge-needed": { "text": "Non servono conoscenze pregresse." }
+ }
+}

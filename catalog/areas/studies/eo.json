@@ -1,0 +1,24 @@
+{
+ "title": "Studoj kaj trejnado",
+ "subtitle": "Post la lernejo — kio poste?",
+ "words": {
+  "university": { "text": "universitato" },
+  "student": { "text": "studento" },
+  "student-f": { "text": "studentino" },
+  "studies": { "text": "studado" },
+  "to-study-at-university": { "text": "studi en universitato" },
+  "lecture": { "text": "prelego" },
+  "school-diploma": { "text": "abiturienta atestilo", "accepts": ["abiturienta diplomo"] },
+  "vocational-training": { "text": "profesia trejnado", "accepts": ["metilernado", "profesia edukado"] },
+  "vocational-school": { "text": "metilernejo" },
+  "internship": { "text": "staĝo" },
+  "further-training": { "text": "plutrejnado" },
+  "counseling": { "text": "konsilado" },
+  "skills": { "text": "scioj" },
+  "to-finish-training": { "text": "fini la trejnadon" },
+  "she-completed-her-training-in-2015": { "text": "Ŝi finis sian trejnadon en 2015." },
+  "are-you-doing-an-internship": { "text": "Ĉu vi faras staĝon?" },
+  "the-lecture-is-canceled-today": { "text": "La prelego hodiaŭ ne okazas." },
+  "no-prior-knowledge-needed": { "text": "Vi ne bezonas antaŭajn sciojn." }
+ }
+}

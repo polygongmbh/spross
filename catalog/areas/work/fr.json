@@ -87,15 +87,6 @@
    "notes": { "fr": "l'impôt sur le revenu · la taxe se paie pour un service précis." }
   },
   "work-permit": { "text": "permis de travail", "grammar": { "gender": "le", "plural": "=" } },
-  "training": {
-   "text": "formation professionnelle",
-   "accepts": ["formation"],
-   "grammar": { "gender": "la" },
-   "notes": {
-    "fr": "la formation professionnelle se fait à l'école, l'apprentissage en entreprise.",
-    "de": "Die duale Ausbildung heißt in Frankreich l'apprentissage; la formation professionnelle ist die schulisch organisierte Berufsausbildung."
-   }
-  },
   "notice": {
    "text": "licenciement",
    "grammar": { "gender": "le" },

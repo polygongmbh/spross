@@ -32,7 +32,6 @@
   "grade": { "text": "noto", "notes": { "eo": "noto estas kaj la lerneja takso kaj skribita memorigo." } },
   "to-correct": { "text": "korekti" },
   "book": { "text": "libro" },
-  "university": { "text": "universitato" },
   "class-schedule": { "text": "horaro", "accepts": ["lerneja horaro"] },
   "to-count": {
    "text": "kalkuli",
@@ -46,6 +45,7 @@
   "dictionary": { "text": "vortaro" },
   "to-pronounce": { "text": "elparoli", "teaches": ["prononci"] },
   "to-teach": { "text": "instrui" },
+  "report-card": { "text": "lerneja atesto" },
   "do-the-homework": {
    "text": "Mi faras la hejmtaskojn.",
    "accepts": ["Mi faras la hejmtaskon."],

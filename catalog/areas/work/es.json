@@ -83,12 +83,6 @@
   },
   "tax": { "text": "impuesto", "grammar": { "gender": "el" } },
   "work-permit": { "text": "permiso de trabajo", "grammar": { "gender": "el" } },
-  "training": {
-   "text": "formación profesional",
-   "accepts": ["FP", "formación"],
-   "grammar": { "gender": "la" },
-   "notes": { "es": "La formación profesional (FP) mezcla clases y prácticas en la empresa." }
-  },
   "notice": {
    "text": "despido",
    "accepts": ["carta de despido"],

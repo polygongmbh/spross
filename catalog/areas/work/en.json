@@ -26,7 +26,6 @@
   "part-time": { "text": "part-time" },
   "tax": { "text": "tax", "grammar": { "plural": "taxes" } },
   "work-permit": { "text": "work permit" },
-  "training": { "text": "vocational training" },
   "notice": { "text": "notice of termination" },
   "worker": { "text": "worker" },
   "employer": { "text": "employer" },

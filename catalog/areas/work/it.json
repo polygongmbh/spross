@@ -98,12 +98,6 @@
    "notes": { "it": "l'imposta è quella sul reddito · la tassa si paga per un servizio." }
   },
   "work-permit": { "text": "permesso di lavoro", "grammar": { "gender": "il" } },
-  "training": {
-   "text": "formazione professionale",
-   "accepts": ["formazione"],
-   "grammar": { "gender": "la" },
-   "notes": { "it": "la formazione professionale è a scuola · l'apprendistato è in azienda." }
-  },
   "notice": {
    "text": "licenziamento",
    "accepts": ["lettera di licenziamento"],

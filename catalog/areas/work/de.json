@@ -38,7 +38,6 @@
   "part-time": { "text": "Teilzeit", "grammar": { "gender": "die" } },
   "tax": { "text": "Steuer", "grammar": { "gender": "die", "plural": "-n" } },
   "work-permit": { "text": "Arbeitserlaubnis", "grammar": { "gender": "die", "plural": "-se" } },
-  "training": { "text": "Ausbildung", "grammar": { "gender": "die", "plural": "-en" } },
   "notice": { "text": "Kündigung", "grammar": { "gender": "die", "plural": "-en" } },
   "worker": { "text": "Arbeiter", "grammar": { "gender": "der", "plural": "=" } },
   "employer": { "text": "Arbeitgeber", "grammar": { "gender": "der", "plural": "=" } },

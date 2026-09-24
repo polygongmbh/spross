@@ -49,17 +49,11 @@
   "to-raise-hand": { "text": "alzare la mano" },
   "pupil": {
    "text": "alunno",
-   "teaches": ["studente"],
    "grammar": { "gender": "l'" },
    "notes": { "it": "l'alunno va a scuola · lo studente anche all'università." },
    "accepts": ["l'alunno"]
   },
-  "pupil-f": {
-   "text": "alunna",
-   "teaches": ["studentessa"],
-   "grammar": { "gender": "l'" },
-   "accepts": ["l'alunna"]
-  },
+  "pupil-f": { "text": "alunna", "grammar": { "gender": "l'" }, "accepts": ["l'alunna"] },
   "course": { "text": "corso", "grammar": { "gender": "il" } },
   "lesson": {
    "text": "lezione",
@@ -70,11 +64,6 @@
   "grade": { "text": "voto", "grammar": { "gender": "il" } },
   "to-correct": { "text": "correggere" },
   "book": { "text": "libro", "grammar": { "gender": "il" } },
-  "university": {
-   "text": "università",
-   "accepts": ["l'università", "un'università", "uni"],
-   "grammar": { "gender": "l'", "plural": "=" }
-  },
   "class-schedule": {
    "text": "orario",
    "accepts": ["l'orario", "orario delle lezioni"],
@@ -87,6 +76,7 @@
   "dictionary": { "text": "dizionario", "grammar": { "gender": "il", "plural": "dizionari" } },
   "to-pronounce": { "text": "pronunciare" },
   "to-teach": { "text": "insegnare" },
+  "report-card": { "text": "pagella", "grammar": { "gender": "la" } },
   "do-the-homework": { "text": "Faccio i compiti." },
   "look-at-the-class-schedule": { "text": "Guarda l'orario.", "accepts": ["Guardi l'orario.", "Guarda l'orario delle lezioni."] },
   "the-break-is-over": { "text": "La pausa è finita." },

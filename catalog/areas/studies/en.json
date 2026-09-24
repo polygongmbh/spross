@@ -1,0 +1,26 @@
+{
+ "title": "Studies and Training",
+ "subtitle": "School is done, and then?",
+ "words": {
+  "university": { "text": "university", "grammar": { "plural": "universities" } },
+  "student": { "text": "student" },
+  "studies": { "text": "studies", "grammar": { "plural": "only" } },
+  "to-study-at-university": { "text": "to study at university", "accepts": ["to go to university"] },
+  "lecture": { "text": "lecture" },
+  "school-diploma": { "text": "high school diploma" },
+  "vocational-training": { "text": "vocational training" },
+  "vocational-school": { "text": "vocational school" },
+  "internship": { "text": "internship" },
+  "further-training": { "text": "further training", "accepts": ["continuing education"] },
+  "counseling": { "text": "counseling", "accepts": ["counselling", "guidance", "advice"] },
+  "skills": { "text": "skills", "accepts": ["knowledge"], "grammar": { "plural": "only" } },
+  "to-finish-training": { "text": "to complete the training", "accepts": ["to finish the training"] },
+  "she-completed-her-training-in-2015": {
+   "text": "She completed her training in 2015.",
+   "accepts": ["She finished her training in 2015."]
+  },
+  "are-you-doing-an-internship": { "text": "Are you doing an internship?" },
+  "the-lecture-is-canceled-today": { "text": "The lecture is canceled today.", "accepts": ["The lecture is cancelled today."] },
+  "no-prior-knowledge-needed": { "text": "You don't need any prior knowledge." }
+ }
+}

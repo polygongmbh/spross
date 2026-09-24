@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A new Studies and Training shelf covers university, lectures, internships, vocational school and further training, and school gains the report card.
 - Ukrainian clock sentences now practice saying when something happens, as in о шістнадцятій, in four new sentences such as the train leaving and waking up.
 - The French au letter drill now draws from fifteen words instead of one, and the German ie drill no longer blanks the wrong letters in Feier.
 - Three new family phrases practice the word forms Ukrainian, Esperanto and Spanish use when calling, helping or looking for someone.

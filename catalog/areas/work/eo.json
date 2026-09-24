@@ -38,7 +38,6 @@
   "part-time": { "text": "parttempa laboro", "accepts": ["duontempa laboro", "parta labortempo"] },
   "tax": { "text": "imposto" },
   "work-permit": { "text": "laborpermeso" },
-  "training": { "text": "profesia trejnado", "accepts": ["metilernado", "profesia edukado"] },
   "notice": { "text": "maldungo", "accepts": ["eksigo", "eksiĝo"] },
   "worker": { "text": "laboristo" },
   "employer": { "text": "dunganto", "accepts": ["labordonanto", "laborodonanto"] },

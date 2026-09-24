@@ -1,0 +1,37 @@
+{
+ "title": "Études et formation",
+ "subtitle": "Après l'école, on fait quoi ?",
+ "words": {
+  "university": {
+   "text": "université",
+   "accepts": ["l'université", "fac"],
+   "grammar": { "gender": "l'" },
+   "notes": { "fr": "on dit la fac : je vais à la fac." }
+  },
+  "student": { "text": "étudiant", "accepts": ["l'étudiant"], "grammar": { "gender": "l'" } },
+  "student-f": { "text": "étudiante", "accepts": ["l'étudiante"], "grammar": { "gender": "l'" } },
+  "studies": { "text": "études", "grammar": { "gender": "les", "plural": "only" } },
+  "to-study-at-university": { "text": "étudier à l'université", "accepts": ["faire des études"] },
+  "lecture": { "text": "cours magistral", "grammar": { "gender": "le", "plural": "cours magistraux" } },
+  "school-diploma": { "text": "baccalauréat", "accepts": ["bac"], "grammar": { "gender": "le" } },
+  "vocational-training": {
+   "text": "formation professionnelle",
+   "accepts": ["formation"],
+   "grammar": { "gender": "la" },
+   "notes": {
+    "fr": "la formation professionnelle se fait à l'école, l'apprentissage en entreprise.",
+    "de": "Die duale Ausbildung heißt in Frankreich l'apprentissage; la formation professionnelle ist die schulisch organisierte Berufsausbildung."
+   }
+  },
+  "vocational-school": { "text": "lycée professionnel", "grammar": { "gender": "le" } },
+  "internship": { "text": "stage", "grammar": { "gender": "le" } },
+  "further-training": { "text": "formation continue", "grammar": { "gender": "la" } },
+  "counseling": { "text": "conseil", "accepts": ["orientation"], "grammar": { "gender": "le" } },
+  "skills": { "text": "connaissances", "grammar": { "gender": "les", "plural": "only" } },
+  "to-finish-training": { "text": "terminer la formation", "accepts": ["finir la formation"] },
+  "she-completed-her-training-in-2015": { "text": "Elle a terminé sa formation en 2015." },
+  "are-you-doing-an-internship": { "text": "Vous faites un stage ?" },
+  "the-lecture-is-canceled-today": { "text": "Le cours magistral est annulé aujourd'hui." },
+  "no-prior-knowledge-needed": { "text": "Vous n'avez pas besoin de connaissances préalables." }
+ }
+}

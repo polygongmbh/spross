@@ -53,8 +53,8 @@
    "notes": { "es": "aprobar el examen · lo contrario es suspender." }
   },
   "to-raise-hand": { "text": "levantar la mano", "accepts": ["alzar la mano"] },
-  "pupil": { "text": "alumno", "accepts": ["estudiante"], "grammar": { "gender": "el" } },
-  "pupil-f": { "text": "alumna", "accepts": ["estudiante"], "grammar": { "gender": "la" } },
+  "pupil": { "text": "alumno", "grammar": { "gender": "el" } },
+  "pupil-f": { "text": "alumna", "grammar": { "gender": "la" } },
   "course": { "text": "curso", "grammar": { "gender": "el" } },
   "lesson": {
    "text": "clase",
@@ -65,7 +65,6 @@
   "grade": { "text": "nota", "grammar": { "gender": "la" } },
   "to-correct": { "text": "corregir" },
   "book": { "text": "libro", "grammar": { "gender": "el" } },
-  "university": { "text": "universidad", "grammar": { "gender": "la" } },
   "class-schedule": {
    "text": "horario",
    "grammar": { "gender": "el" },
@@ -77,6 +76,7 @@
   "dictionary": { "text": "diccionario", "grammar": { "gender": "el" } },
   "to-pronounce": { "text": "pronunciar" },
   "to-teach": { "text": "enseñar" },
+  "report-card": { "text": "boletín de notas", "accepts": ["notas"], "grammar": { "gender": "el" } },
   "do-the-homework": { "text": "Hago los deberes." },
   "look-at-the-class-schedule": { "text": "Mira el horario.", "accepts": ["Mire el horario."] },
   "the-break-is-over": { "text": "El descanso ha terminado.", "orders": ["Ha terminado el descanso."] },

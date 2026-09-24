@@ -20,7 +20,6 @@
  { "slug": "to-correct", "kind": "verb", "emoji": "✏️" },
  { "slug": "dictionary", "kind": "noun", "emoji": "🔤" },
  { "slug": "to-pass-exam", "kind": "verb", "emoji": "🏆" },
- { "slug": "university", "kind": "noun", "emoji": "🏛️" },
  { "slug": "board", "kind": "noun", "emoji": "📝" },
  { "slug": "to-learn-by-heart", "kind": "verb", "emoji": "🧠" },
  { "slug": "to-raise-hand", "kind": "verb", "emoji": "✋" },
@@ -29,6 +28,7 @@
  { "slug": "to-teach", "kind": "verb", "emoji": "📣" },
  { "slug": "mistake", "kind": "noun", "emoji": "❌" },
  { "slug": "to-be-wrong", "kind": "verb" },
+ { "slug": "report-card", "kind": "noun", "emoji": "📃" },
  { "slug": "do-the-homework", "kind": "phrase", "emoji": "✍️", "components": ["homework"] },
  {
   "slug": "look-at-the-class-schedule",

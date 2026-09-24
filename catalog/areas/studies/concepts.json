@@ -1,0 +1,25 @@
+[
+ { "slug": "university", "kind": "noun", "emoji": "🏛️" },
+ { "slug": "student", "kind": "noun", "emoji": "🧑‍🎓" },
+ { "slug": "student-f", "kind": "noun", "emoji": "👩‍🎓", "feminineOf": "student" },
+ { "slug": "studies", "kind": "noun", "emoji": "🎓" },
+ { "slug": "to-study-at-university", "kind": "verb" },
+ { "slug": "lecture", "kind": "noun" },
+ { "slug": "school-diploma", "kind": "noun", "emoji": "📜" },
+ { "slug": "vocational-training", "kind": "noun", "emoji": "🛠️" },
+ { "slug": "vocational-school", "kind": "noun" },
+ { "slug": "internship", "kind": "noun" },
+ { "slug": "further-training", "kind": "noun", "emoji": "📈" },
+ { "slug": "counseling", "kind": "noun" },
+ { "slug": "skills", "kind": "noun" },
+ { "slug": "to-finish-training", "kind": "verb", "emoji": "🏁" },
+ {
+  "slug": "she-completed-her-training-in-2015",
+  "kind": "phrase",
+  "emoji": "🏁",
+  "components": ["vocational-training", "to-finish-training"]
+ },
+ { "slug": "are-you-doing-an-internship", "kind": "phrase", "components": ["internship"] },
+ { "slug": "the-lecture-is-canceled-today", "kind": "phrase", "components": ["lecture"] },
+ { "slug": "no-prior-knowledge-needed", "kind": "phrase", "components": ["skills"] }
+]
