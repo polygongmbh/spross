@@ -18,8 +18,8 @@ data class BriefArea(val title: String, val words: List<String>)
  * and written in English — neither of the learner's two languages, and the one every
  * assistant reads best. Those two are NAMED inside it, never translated around.
  *
- * [GrowthStage.Suspended] and everything unscheduled appear nowhere: what is listed is
- * where to reach FIRST, never a fence. [OwnWords] are out as well — the box's most
+ * [GrowthStage.Suspended] and every unscheduled word the learner did not sow appear
+ * nowhere: what is listed is where to reach FIRST, never a fence. [OwnWords] are out as well — the box's most
  * personal content, and this is the one text that leaves the device.
  */
 data class Briefing(
@@ -30,7 +30,8 @@ data class Briefing(
     val matured: List<BriefArea>,
     /** Words scheduled but short of [GrowthStage.Matured] — still in progress, named so a partner goes gently. */
     val learning: List<BriefWord>,
-    val newWords: List<BriefWord>,
+    /** Words the learner sowed and no round has brought in yet — the talk's own subject. */
+    val sown: List<BriefWord>,
 ) {
     val maturedCount: Int get() = matured.sumOf { it.words.size }
 
@@ -51,10 +52,10 @@ data class Briefing(
                 appendLine("WORDS I AM LEARNING RIGHT NOW — ${learning.size}")
                 for (word in learning) appendLine("${word.target} = ${word.source}")
             }
-            if (newWords.isNotEmpty()) {
+            if (sown.isNotEmpty()) {
                 appendLine()
-                appendLine("WHAT THE APP TEACHES ME NEXT — prefer these when you bring in a word")
-                for (word in newWords) appendLine("${word.target} (${word.source})")
+                appendLine("WORDS I CHOSE TO LEARN NEXT — build the story and our talk around these first")
+                for (word in sown) appendLine("${word.target} (${word.source})")
             }
             appendLine()
             appendLine(firstTurn())
@@ -88,10 +89,13 @@ data class Briefing(
         explain only if asked or the mistake repeats.
     """.trimIndent()
 
-    /** The opening turn: something to read, before the learner has had to say anything. */
+    /**
+     * The opening turn: something to read, before the learner has had to say anything.
+     * Sown words are an explicit ask, so they set the topic whenever there are any.
+     */
     private fun firstTurn(): String = """
         START HERE, before I say anything:
-        write a short story on a topic suiting the words I am learning.
+        ${storyTopic()}
         Three to five blocks of two sentences:
         the same sentence in $targetName and $sourceName,
         line break between them, blank line between blocks.
@@ -101,6 +105,15 @@ data class Briefing(
         Then ask whether to go deeper, switch topic, or just talk.
     """.trimIndent()
 
+    /** One line: it is spliced into [firstTurn] before that trims its indent. */
+    private fun storyTopic(): String =
+        if (sown.isEmpty()) {
+            "write a short story on a topic suiting the words I am learning."
+        } else {
+            "write a short story around the words I chose to learn next, " +
+                "bringing them in one or two at a time, and keep coming back to them as we talk."
+        }
+
     /**
      * The ask that closes the loop: the words the conversation turned up, fenced for [Harvest].
      *
@@ -109,7 +122,7 @@ data class Briefing(
      * having to ask for it is the loop half closed.
      */
     private fun harvestAsk(): String {
-        val example = newWords.firstOrNull() ?: learning.firstOrNull()
+        val example = sown.firstOrNull() ?: learning.firstOrNull()
         return """
             Export for Spross: the key words that came up repeatedly and were not already
             in the lists above, one per line as `$targetName = $sourceName`, fenced ```spross,
@@ -130,11 +143,8 @@ data class Briefing(
 /** Building a [Briefing] out of a box; reading a conversation's answer back is [Harvest]'s. */
 object Briefings {
 
-    /** How wide the new-word preference is drawn — a round's worth, give or take. */
-    const val NEW_LIMIT: Int = 15
-
-    /** Words in learning past which the brief stops naming what is next. */
-    const val LEARNING_BUSY: Int = 30
+    /** How many sown words a brief names, most recently sown first. */
+    const val SOWN_LIMIT: Int = 30
 
     /**
      * Whether there is a conversation to be had: a box with nothing to name briefs nobody.
@@ -159,22 +169,20 @@ object Briefings {
                 )
             }
         val learning = learningCards.map { BriefWord(targetForm(it), it.source.text) }
-        val newWords = if (learning.size >= LEARNING_BUSY) {
-            emptyList()
-        } else {
-            val candidates = Growth.newCandidates(state, NEW_LIMIT, NEW_LIMIT)
-            (candidates.newCards + candidates.unlockedPhrases)
-                .mapNotNull { state.cards[it] }
-                .filter { it.area != OwnWords.AREA }
-                .map { BriefWord(targetForm(it), it.source.text) }
-        }
+        // Only the learner's own ask names what is next — a locked phrase too:
+        // a conversation needs none of the unlock a round waits for.
+        val sownCards = state.enqueued.asReversed()
+            .filter { state.scheduling[it] == null }
+            .mapNotNull { state.cards[it] }
+            .filter { it.area != OwnWords.AREA }
+            .take(SOWN_LIMIT)
         return Briefing(
             learnerName = learnerName,
             sourceName = languageName(catalog, state.joinStamp.source),
             targetName = languageName(catalog, state.joinStamp.target),
             matured = matured,
             learning = learning,
-            newWords = newWords,
+            sown = sownCards.map { BriefWord(targetForm(it), it.source.text) },
         )
     }
 
