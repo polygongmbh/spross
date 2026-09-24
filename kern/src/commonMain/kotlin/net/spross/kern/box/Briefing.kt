@@ -181,8 +181,10 @@ object Briefings {
                 )
             }
         val learning = learningCards.map { BriefWord(targetForm(it), it.source.text) }
-        // Sown words are the learner's own ask, so a busy learner still gets them.
-        val sownCards = Growth.enqueuedEligible(state)
+        // Sown words are the learner's own ask, so a busy learner still gets them — and a
+        // locked phrase too: a conversation needs none of the unlock a round waits for.
+        val sownCards = state.enqueued.asReversed()
+            .filter { state.scheduling[it] == null }
             .mapNotNull { state.cards[it] }
             .filter { it.area != OwnWords.AREA }
             .take(SOWN_LIMIT)

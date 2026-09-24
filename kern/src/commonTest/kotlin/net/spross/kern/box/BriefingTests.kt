@@ -118,6 +118,16 @@ class BriefingTests {
         assertFalse(offered.newWords.any { it.target == "t2" })
     }
 
+    /** A sown phrase is named before its words have unlocked it — a talk waits on no round. */
+    @Test
+    fun aSownPhraseIsNamedWhileStillLocked() {
+        val box = BoxEngine.enqueue(
+            state(listOf(Box.word(1), Box.word(2), Box.phrase("p1", components = listOf("w01", "w02")))),
+            listOf("p1"),
+        )
+        assertTrue(brief(box).sown.any { it.target == "p1" })
+    }
+
     /** Sown words set the opening story's topic; without any, the words in progress do. */
     @Test
     fun theStoryRevolvesAroundSownWords() {
