@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- New cards for from, message, to last and to happen come with the phrases From Monday to Friday and What happened?
 - Training in the sense of a workout or practice session now has its own card in Practice & Goals.
 - A new Studies and Training shelf covers university, lectures, internships, vocational school and further training, and school gains the report card.
 - Ukrainian clock sentences now practice saying when something happens, as in о шістнадцятій, in four new sentences such as the train leaving and waking up.

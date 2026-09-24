@@ -33,8 +33,10 @@
   "even": { "text": "même" },
   "although": { "text": "bien que" },
   "that-conj": { "text": "que" },
+  "from": { "text": "de" },
   "if-you-want": { "text": "Si vous voulez.", "accepts": ["Si tu veux."] },
   "finally-done": { "text": "Enfin fini !", "accepts": ["Enfin finie !"] },
-  "usually": { "text": "normalement" }
+  "usually": { "text": "normalement" },
+  "from-monday-to-friday": { "text": "Du lundi au vendredi." }
  }
 }

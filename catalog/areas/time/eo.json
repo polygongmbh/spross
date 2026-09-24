@@ -45,6 +45,7 @@
   "decade": { "text": "jardeko" },
   "millennium": { "text": "jarmilo" },
   "nowadays": { "text": "nuntempe" },
+  "to-last": { "text": "daŭri" },
   "i-have-no-time": { "text": "Mi ne havas tempon.", "orders": ["Tempon mi ne havas."] },
   "two-in-the-afternoon": {
    "text": "la dua posttagmeze",

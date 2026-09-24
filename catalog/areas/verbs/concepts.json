@@ -32,7 +32,9 @@
  { "slug": "to-carry", "kind": "verb" },
  { "slug": "to-improve", "kind": "verb", "emoji": "📈" },
  { "slug": "to-suggest", "kind": "verb", "emoji": "💡" },
+ { "slug": "to-happen", "kind": "verb" },
  { "slug": "do-you-have-water", "kind": "phrase", "emoji": "💧", "components": ["to-have"] },
  { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["to-come"] },
- { "slug": "can-you-see-him", "kind": "phrase", "emoji": "👀", "components": ["to-see"] }
+ { "slug": "can-you-see-him", "kind": "phrase", "emoji": "👀", "components": ["to-see"] },
+ { "slug": "what-happened", "kind": "phrase", "components": ["to-happen"] }
 ]

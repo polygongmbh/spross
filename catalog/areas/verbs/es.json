@@ -68,6 +68,7 @@
   "to-have-to": { "text": "tener que", "teaches": ["deber"] },
   "to-put": { "text": "poner" },
   "to-carry": { "text": "llevar" },
+  "to-happen": { "text": "pasar", "accepts": ["ocurrir"] },
   "do-you-have-water": { "text": "¿Tiene agua?", "accepts": ["¿Tiene usted agua?", "¿Tienes agua?"] },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",
@@ -79,6 +80,7 @@
   },
   "can-you-see-him": { "text": "¿Lo ves?", "accepts": ["¿Le ves?"] },
   "to-improve": { "text": "mejorar" },
-  "to-suggest": { "text": "sugerir" }
+  "to-suggest": { "text": "sugerir" },
+  "what-happened": { "text": "¿Qué ha pasado?", "accepts": ["¿Qué pasó?"] }
  }
 }

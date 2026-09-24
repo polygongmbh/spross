@@ -35,6 +35,7 @@
  { "slug": "decade", "kind": "noun" },
  { "slug": "millennium", "kind": "noun" },
  { "slug": "nowadays", "kind": "adjective" },
+ { "slug": "to-last", "kind": "verb" },
  { "slug": "i-have-no-time", "kind": "phrase", "emoji": "⏰", "components": ["time"] },
  { "slug": "two-in-the-afternoon", "kind": "phrase", "emoji": "🕑", "components": ["hour"] },
  { "slug": "nine-am-sharp", "kind": "phrase", "emoji": "🕘", "components": ["hour"] },

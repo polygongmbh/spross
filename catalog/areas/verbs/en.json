@@ -33,10 +33,12 @@
   "to-have-to": { "text": "must", "teaches": ["to have to"] },
   "to-put": { "text": "to put" },
   "to-carry": { "text": "to carry" },
+  "to-happen": { "text": "to happen" },
   "do-you-have-water": { "text": "Do you have water?" },
   "where-are-you-from": { "text": "Where are you from?" },
   "can-you-see-him": { "text": "Can you see him?" },
   "to-improve": { "text": "to improve" },
-  "to-suggest": { "text": "to suggest" }
+  "to-suggest": { "text": "to suggest" },
+  "what-happened": { "text": "What happened?" }
  }
 }

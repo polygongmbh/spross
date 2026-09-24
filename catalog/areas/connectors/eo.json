@@ -48,8 +48,10 @@
   "even": { "text": "eĉ" },
   "although": { "text": "kvankam" },
   "that-conj": { "text": "ke" },
+  "from": { "text": "de" },
   "if-you-want": { "text": "Se vi volas." },
   "finally-done": { "text": "Fine finita!" },
-  "usually": { "text": "kutime" }
+  "usually": { "text": "kutime" },
+  "from-monday-to-friday": { "text": "De lundo ĝis vendredo." }
  }
 }

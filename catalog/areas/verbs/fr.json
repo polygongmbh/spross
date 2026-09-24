@@ -73,6 +73,7 @@
   "to-have-to": { "text": "devoir" },
   "to-put": { "text": "mettre" },
   "to-carry": { "text": "porter" },
+  "to-happen": { "text": "se passer", "accepts": ["arriver"] },
   "do-you-have-water": {
    "text": "Avez-vous de l'eau ?",
    "accepts": ["Vous avez de l'eau ?", "As-tu de l'eau ?", "Tu as de l'eau ?"],
@@ -84,6 +85,7 @@
   },
   "can-you-see-him": { "text": "Tu le vois ?", "accepts": ["Vous le voyez ?"] },
   "to-improve": { "text": "améliorer" },
-  "to-suggest": { "text": "proposer" }
+  "to-suggest": { "text": "proposer" },
+  "what-happened": { "text": "Qu'est-ce qui s'est passé ?" }
  }
 }

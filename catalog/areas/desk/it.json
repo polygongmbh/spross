@@ -84,6 +84,7 @@
    "accepts": ["rotta", "guasto"],
    "notes": { "it": "va con essere: il telefono è rotto · se non funziona è guasto." }
   },
+  "message": { "text": "messaggio", "grammar": { "gender": "il" } },
   "im-in-a-meeting": { "text": "Sono in riunione.", "accepts": ["Sono in una riunione."] },
   "dont-disturb-me": { "text": "Non disturbarmi!", "accepts": ["Non disturbare!"] },
   "the-laptop-wont-charge-anymore": {

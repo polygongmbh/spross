@@ -55,6 +55,7 @@
   "decade": { "text": "décennie", "grammar": { "gender": "la" } },
   "millennium": { "text": "millénaire", "grammar": { "gender": "le" } },
   "nowadays": { "text": "de nos jours", "teaches": ["actuellement"] },
+  "to-last": { "text": "durer" },
   "i-have-no-time": { "text": "Je n'ai pas le temps." },
   "two-in-the-afternoon": { "text": "deux heures de l'après-midi" },
   "nine-am-sharp": {

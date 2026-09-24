@@ -51,6 +51,7 @@
   "to-have-to": { "text": "devi" },
   "to-put": { "text": "meti" },
   "to-carry": { "text": "porti" },
+  "to-happen": { "text": "okazi" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?", "orders": ["Ĉu akvon vi havas?"] },
   "where-are-you-from": { "text": "De kie vi venas?", "orders": ["De kie venas vi?"] },
   "can-you-see-him": {
@@ -59,6 +60,7 @@
    "orders": ["Ĉu lin vi vidas?"]
   },
   "to-improve": { "text": "plibonigi" },
-  "to-suggest": { "text": "proponi" }
+  "to-suggest": { "text": "proponi" },
+  "what-happened": { "text": "Kio okazis?" }
  }
 }

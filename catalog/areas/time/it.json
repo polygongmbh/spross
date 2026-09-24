@@ -50,6 +50,7 @@
   "decade": { "text": "decennio", "grammar": { "gender": "il" } },
   "millennium": { "text": "millennio", "grammar": { "gender": "il" } },
   "nowadays": { "text": "oggigiorno", "teaches": ["al giorno d'oggi"] },
+  "to-last": { "text": "durare" },
   "i-have-no-time": { "text": "Non ho tempo." },
   "two-in-the-afternoon": { "text": "le due del pomeriggio" },
   "nine-am-sharp": {

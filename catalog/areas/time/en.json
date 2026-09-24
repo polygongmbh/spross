@@ -38,6 +38,7 @@
   "decade": { "text": "decade" },
   "millennium": { "text": "millennium" },
   "nowadays": { "text": "nowadays", "teaches": ["these days"] },
+  "to-last": { "text": "to last" },
   "i-have-no-time": { "text": "I have no time." },
   "two-in-the-afternoon": { "text": "two in the afternoon" },
   "nine-am-sharp": { "text": "nine a.m. sharp" },

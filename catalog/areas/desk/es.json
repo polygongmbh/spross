@@ -81,6 +81,7 @@
     "de": "Mit estar: el móvil está roto. Ein Gerät, das nur nicht mehr geht, ist estropeado."
    }
   },
+  "message": { "text": "mensaje", "grammar": { "gender": "el" } },
   "im-in-a-meeting": { "text": "Estoy en una reunión." },
   "dont-disturb-me": { "text": "¡No me molestes!", "accepts": ["¡No molestar!"] },
   "the-laptop-wont-charge-anymore": {

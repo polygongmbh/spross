@@ -65,10 +65,12 @@
    }
   },
   "to-carry": { "text": "kubeba" },
+  "to-happen": { "text": "kutokea" },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" },
   "can-you-see-him": { "text": "Unamwona?" },
   "to-improve": { "text": "kuboresha" },
-  "to-suggest": { "text": "kupendekeza" }
+  "to-suggest": { "text": "kupendekeza" },
+  "what-happened": { "text": "Nini kimetokea?", "accepts": ["Kumetokea nini?"] }
  }
 }

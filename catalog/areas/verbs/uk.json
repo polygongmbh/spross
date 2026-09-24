@@ -43,6 +43,7 @@
   "to-have-to": { "text": "мусити", "teaches": ["повинен"] },
   "to-put": { "text": "класти", "teaches": ["ставити"] },
   "to-carry": { "text": "нести" },
+  "to-happen": { "text": "статися", "accepts": ["трапитися"] },
   "do-you-have-water": { "text": "У вас є вода?", "accepts": ["У тебе є вода?"], "orders": ["Вода у вас є?"] },
   "where-are-you-from": { "text": "Звідки ви?" },
   "can-you-see-him": {
@@ -52,6 +53,7 @@
    "orders": ["Ти бачиш його?"]
   },
   "to-improve": { "text": "покращувати" },
-  "to-suggest": { "text": "пропонувати" }
+  "to-suggest": { "text": "пропонувати" },
+  "what-happened": { "text": "Що сталося?" }
  }
 }

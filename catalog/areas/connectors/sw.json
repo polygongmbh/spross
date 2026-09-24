@@ -45,8 +45,13 @@
   "even": { "text": "hata", "notes": { "sw": "hata mimi = mimi pia · hata kidogo = hakuna kabisa" } },
   "although": { "text": "ingawa", "teaches": ["japo"] },
   "that-conj": { "text": "kwamba", "notes": { "sw": "Nadhani kwamba atakuja = Nadhani atakuja" } },
+  "from": { "text": "kutoka" },
   "if-you-want": { "text": "Kama unataka." },
   "finally-done": { "text": "Hatimaye nimemaliza!" },
-  "usually": { "text": "kwa kawaida" }
+  "usually": { "text": "kwa kawaida" },
+  "from-monday-to-friday": {
+   "text": "Kutoka Jumatatu hadi Ijumaa.",
+   "accepts": ["Kutoka Jumatatu mpaka Ijumaa.", "Kuanzia Jumatatu hadi Ijumaa."]
+  }
  }
 }

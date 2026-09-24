@@ -35,8 +35,10 @@
   "even": { "text": "persino", "teaches": ["addirittura"] },
   "although": { "text": "anche se", "teaches": ["sebbene"] },
   "that-conj": { "text": "che" },
+  "from": { "text": "da" },
   "if-you-want": { "text": "Se vuole.", "accepts": ["Se vuoi."] },
   "finally-done": { "text": "Finalmente finito!", "accepts": ["Finalmente finita!"] },
-  "usually": { "text": "di solito" }
+  "usually": { "text": "di solito" },
+  "from-monday-to-friday": { "text": "Dal lunedì al venerdì." }
  }
 }

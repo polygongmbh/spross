@@ -297,6 +297,14 @@ class CatalogCollisionLintTest {
                 // split it (als/Messer, than/knife, ol/tranĉilo, que/cuchillo, que/couteau,
                 // di/coltello, kuliko/kisu). The area label tells them apart on produce.
                 "uk ніж: comparison/than, kitchen/knife",
+                // Reviewed 2026-09-24: it `da` is from AND since (da lunedì, da ieri) —
+                // de/en/eo/es/fr/sw/uk all split the pair (von/seit, from/since, de/ekde,
+                // de/desde, de/depuis, kutoka/tangu, від/з). Italian has no second word for either.
+                "it da: connectors/from, time/since",
+                // Reviewed 2026-09-24: sw `kutoka` is the verb to leave AND the preposition from
+                // (kutoka Jumatatu) — the preposition is that verb's infinitive, and every other
+                // language splits the pair (von/verlassen, from/to leave, de/forlasi, …).
+                "sw kutoka: connectors/from, work/to-leave",
                 // Reviewed 2026-09-22: uk `шина` is the car tyre AND the medical splint —
                 // de/en/eo/es/fr/it all split the pair (Reifen/Schiene, tire/splint, pneŭo/splinto,
                 // neumático/férula, pneu/attelle, pneumatico/stecca). `покришка` names only the

@@ -37,6 +37,7 @@
   "decade": { "text": "десятиліття", "grammar": { "plural": "=" } },
   "millennium": { "text": "тисячоліття", "grammar": { "plural": "=" } },
   "nowadays": { "text": "тепер" },
+  "to-last": { "text": "тривати" },
   "i-have-no-time": { "text": "У мене немає часу.", "orders": ["Часу у мене немає."] },
   "two-in-the-afternoon": { "text": "друга дня" },
   "nine-am-sharp": {

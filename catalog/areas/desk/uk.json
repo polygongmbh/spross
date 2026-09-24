@@ -32,6 +32,7 @@
   "important": { "text": "важливий" },
   "ready": { "text": "готовий" },
   "broken": { "text": "зламаний", "accepts": ["поламаний"] },
+  "message": { "text": "повідомлення" },
   "im-in-a-meeting": { "text": "Я на зустрічі." },
   "dont-disturb-me": { "text": "Не заважай мені!", "orders": ["Мені не заважай!"] },
   "the-laptop-wont-charge-anymore": { "text": "Ноутбук більше не заряджається." },

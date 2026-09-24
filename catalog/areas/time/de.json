@@ -42,6 +42,7 @@
   "decade": { "text": "Jahrzehnt", "grammar": { "gender": "das", "plural": "-e" } },
   "millennium": { "text": "Jahrtausend", "grammar": { "gender": "das", "plural": "-e" } },
   "nowadays": { "text": "heutzutage" },
+  "to-last": { "text": "dauern" },
   "i-have-no-time": { "text": "Ich habe keine Zeit." },
   "two-in-the-afternoon": { "text": "zwei Uhr nachmittags" },
   "nine-am-sharp": { "text": "punkt neun Uhr morgens" },

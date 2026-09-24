@@ -32,6 +32,7 @@
   "important": { "text": "wichtig" },
   "ready": { "text": "fertig" },
   "broken": { "text": "kaputt", "accepts": ["defekt"] },
+  "message": { "text": "Nachricht", "grammar": { "gender": "die", "plural": "-en" } },
   "im-in-a-meeting": { "text": "Ich bin in einem Meeting." },
   "dont-disturb-me": { "text": "Stör mich nicht!", "accepts": ["Nicht stören!"] },
   "the-laptop-wont-charge-anymore": { "text": "Der Laptop lädt nicht mehr." },

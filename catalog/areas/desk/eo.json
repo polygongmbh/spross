@@ -52,6 +52,7 @@
    "accepts": ["rompita", "difekta"],
    "notes": { "eo": "difektita ne plu funkcias · rompita estas en pecoj." }
   },
+  "message": { "text": "mesaĝo" },
   "im-in-a-meeting": {
    "text": "Mi estas en kunsido.",
    "accepts": ["Mi estas en renkontiĝo."],

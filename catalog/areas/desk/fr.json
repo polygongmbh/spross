@@ -83,6 +83,7 @@
    "accepts": ["cassée", "en panne", "abîmé"],
    "notes": { "fr": "un verre cassé · un appareil qui ne marche plus est en panne." }
   },
+  "message": { "text": "message", "grammar": { "gender": "le" } },
   "im-in-a-meeting": { "text": "Je suis en réunion." },
   "dont-disturb-me": { "text": "Ne me dérange pas !", "accepts": ["Ne pas déranger !"] },
   "the-laptop-wont-charge-anymore": {
