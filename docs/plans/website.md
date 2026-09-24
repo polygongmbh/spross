@@ -1,5 +1,6 @@
 # spross.net — marketing site
 
+Parked on the `website` branch (the `../app-website` worktree) until picked up.
 Static landing page in `web/`, advertising Spross and letting visitors try the real numbers drill in the browser.
 Positioning: fun, playful, easy, effective breadth-first vocabulary growth —
 built to sit beside native-speaker conversation or a structured course, never to replace them.

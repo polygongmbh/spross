@@ -8,6 +8,7 @@ as short as that allows, longer only to carry evidence or reasoning a fixer woul
 Within a section, ready work comes first, then the items that end in a question for the owner,
 then open design work, then what waits on someone else, grouped by who that is.
 Catalog content — its forms, its audio and the per-language questions — lives in `../catalog/backlog.md`.
+Parked work is not an issue: its own doc says it is parked.
 
 ## Engine & scheduling
 
@@ -136,9 +137,7 @@ Catalog content — its forms, its audio and the per-language questions — live
   secret`, and iPhones are served by `scripts/deploy-devices.sh` until a run has published one.
 - A live spross.net gates the iPhone install link: GitHub renders the release notes'
   `itms-services://` URL as code, not a tappable link (`.github/workflows/release.yml:229`),
-  and a `web/install.html` taking `?v=` would make it a button (`docs/website.md`).
-- The `website` branch (16 commits in the `../app-website` worktree, `docs/website.md`) is
-  parked and will be picked up when wanted.
+  and a `web/install.html` taking `?v=` would make it a button (`docs/plans/website.md`).
 - The repo grants nobody anything — there is no `LICENSE` file, while `docs/sync.md` plans a
   paid service around a free and open app; the options and what constrains them are
   `docs/source-license.md`, and the decision is the owner's.
@@ -153,7 +152,6 @@ Catalog content — its forms, its audio and the per-language questions — live
 - Real hardware once: on the emulator with a hardware keyboard, Enter after `input text` could
   walk focus onto the session top-bar mute toggle and flip it, probably an emulator artifact
   (`android/.../ui/SessionScreen.kt` top bar).
-- `tools/FaceGen` (`docs/facegen.md`) is parked and will be picked up when wanted.
 
 ## Compliance
 

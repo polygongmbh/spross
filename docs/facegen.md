@@ -3,6 +3,7 @@
 `tools/FaceGen` is a macOS command-line tool
 that renders Spross vocabulary cards as poster-style PNG images,
 sized for the Apple Watch **Photos watch face**.
+It is parked until picked up.
 
 ## Why the Photos face
 
