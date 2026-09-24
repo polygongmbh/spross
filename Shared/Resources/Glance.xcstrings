@@ -293,6 +293,103 @@
         }
       },
       "comment" : "Widget and complication name in the gallery"
+    },
+    "widget.sample.bread" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brot"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bread"
+          }
+        }
+      }
+    },
+    "widget.sample.fridge" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kühlschrank"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fridge"
+          }
+        }
+      },
+      "comment" : "The meaning of a sample word in the widget gallery's placeholder box"
+    },
+    "widget.sample.house" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "house"
+          }
+        }
+      }
+    },
+    "widget.sample.moon" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mond"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "moon"
+          }
+        }
+      }
+    },
+    "widget.sample.sun" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonne"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sun"
+          }
+        }
+      }
+    },
+    "widget.sample.water" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wasser"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "water"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

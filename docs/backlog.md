@@ -145,10 +145,6 @@ Catalog content — its forms, its audio and the per-language questions — live
   paid service around a free and open app; the options and what constrains them are
   `docs/source-license.md`, and the decision is the owner's.
 
-## Localization
-
-- The widget gallery's placeholder box shows German meanings on every device (`Widgets/Sources/WordWidget.swift`, `WatchWidgets/Sources/WatchWordWidget.swift`).
-
 ## Verification gaps
 
 - Real hardware still has to answer three things about the Android player

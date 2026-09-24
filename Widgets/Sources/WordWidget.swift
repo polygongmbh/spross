@@ -82,7 +82,7 @@ struct WordEntry: TimelineEntry {
 
     static let placeholder = WordEntry(
         date: .now,
-        primary: WidgetWord(emoji: "🧊", word: "friji", meaning: "Kühlschrank"),
+        primary: placeholderWords[0],
         // why: sorted like a real window, or the gallery would advertise a ragged
         // list the placed widget never shows.
         words: sortedForDisplay(placeholderWords),
@@ -90,12 +90,12 @@ struct WordEntry: TimelineEntry {
         activityDays: placeholderDays)
 
     private static let placeholderWords = [
-        WidgetWord(emoji: "🧊", word: "friji", meaning: "Kühlschrank"),
-        WidgetWord(emoji: "🍞", word: "mkate", meaning: "Brot"),
-        WidgetWord(emoji: "💧", word: "maji", meaning: "Wasser"),
-        WidgetWord(emoji: "🌙", word: "mwezi", meaning: "Mond"),
-        WidgetWord(emoji: "🏠", word: "nyumba", meaning: "Haus"),
-        WidgetWord(emoji: "☀️", word: "jua", meaning: "Sonne"),
+        WidgetWord(emoji: "🧊", word: "friji", meaning: GlanceChrome.sample("widget.sample.fridge")),
+        WidgetWord(emoji: "🍞", word: "mkate", meaning: GlanceChrome.sample("widget.sample.bread")),
+        WidgetWord(emoji: "💧", word: "maji", meaning: GlanceChrome.sample("widget.sample.water")),
+        WidgetWord(emoji: "🌙", word: "mwezi", meaning: GlanceChrome.sample("widget.sample.moon")),
+        WidgetWord(emoji: "🏠", word: "nyumba", meaning: GlanceChrome.sample("widget.sample.house")),
+        WidgetWord(emoji: "☀️", word: "jua", meaning: GlanceChrome.sample("widget.sample.sun")),
     ]
 
     /// A hand-written fortnight so the gallery snapshot and the previews draw a

@@ -40,7 +40,8 @@ struct WatchWordEntry: TimelineEntry {
     var chromeLanguage: String? = nil
 
     static let placeholder = WatchWordEntry(date: .now, emoji: "🧊", article: nil, gender: nil,
-                                            word: "friji", meaning: "Kühlschrank",
+                                            word: "friji",
+                                            meaning: GlanceChrome.sample("widget.sample.fridge"),
                                             dueCount: 0)
 }
 

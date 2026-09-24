@@ -18,4 +18,10 @@ enum GlanceChrome {
         let carried = Bundle.main.localizations
         return Locale(identifier: device.flatMap { carried.contains($0) ? $0 : nil } ?? "en")
     }
+
+    /// A gallery sample's text in the language the placeholder's chrome resolves in —
+    /// the device's, or English — rather than the bundle's German development language.
+    static func sample(_ key: String.LocalizationValue) -> String {
+        String(localized: LocalizedStringResource(key, table: table, locale: locale(nil)))
+    }
 }
