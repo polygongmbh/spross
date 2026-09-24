@@ -11,6 +11,7 @@
   },
   "to-achieve": { "text": "raggiungere" },
   "exercise": { "text": "esercizio", "accepts": ["l'esercizio"], "grammar": { "gender": "l'" } },
+  "training": { "text": "allenamento", "accepts": ["l'allenamento"], "grammar": { "gender": "l'" } },
   "you-can-do-it": {
    "text": "Ce la farai di sicuro!",
    "accepts": ["Ce la puoi fare!"],

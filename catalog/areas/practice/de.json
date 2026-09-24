@@ -7,6 +7,7 @@
   "goal": { "text": "Ziel", "grammar": { "gender": "das", "plural": "Ziele" } },
   "to-achieve": { "text": "erreichen" },
   "exercise": { "text": "Übung", "grammar": { "gender": "die", "plural": "-en" } },
+  "training": { "text": "Training", "grammar": { "gender": "das", "plural": "-s" } },
   "you-can-do-it": { "text": "Du schaffst das bestimmt!", "orders": ["Bestimmt schaffst du das!"] }
  }
 }

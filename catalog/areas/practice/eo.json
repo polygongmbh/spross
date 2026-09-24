@@ -15,6 +15,7 @@
   "goal": { "text": "celo" },
   "to-achieve": { "text": "atingi" },
   "exercise": { "text": "ekzerco" },
+  "training": { "text": "trejnado" },
   "you-can-do-it": { "text": "Vi certe sukcesos!", "orders": ["Certe vi sukcesos!"] }
  }
 }

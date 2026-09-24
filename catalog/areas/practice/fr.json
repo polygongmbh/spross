@@ -11,6 +11,7 @@
   "goal": { "text": "but", "grammar": { "gender": "le" } },
   "to-achieve": { "text": "atteindre" },
   "exercise": { "text": "exercice", "accepts": ["l'exercice"], "grammar": { "gender": "l'" } },
+  "training": { "text": "entraînement", "accepts": ["l'entraînement"], "grammar": { "gender": "l'" } },
   "you-can-do-it": {
    "text": "Tu vas sûrement y arriver !",
    "accepts": ["Tu vas y arriver !", "Tu y arriveras !", "Tu peux le faire !"]

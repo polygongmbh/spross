@@ -7,6 +7,7 @@
   "goal": { "text": "meta", "grammar": { "gender": "la" } },
   "to-achieve": { "text": "lograr", "teaches": ["alcanzar"] },
   "exercise": { "text": "ejercicio", "grammar": { "gender": "el" } },
+  "training": { "text": "entrenamiento", "grammar": { "gender": "el" } },
   "you-can-do-it": { "text": "¡Seguro que lo consigues!", "accepts": ["¡Tú puedes!", "¡Seguro que lo logras!"] }
  }
 }

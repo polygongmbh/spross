@@ -11,6 +11,7 @@
    "grammar": { "plural": "mazoezi" },
    "notes": { "sw": "Mazoezi hutumika pia kwa maana ya jumla: kufanya mazoezi." }
   },
+  "training": { "text": "mazoezi", "grammar": { "plural": "only" } },
   "you-can-do-it": { "text": "Hakika utaweza!" }
  }
 }
