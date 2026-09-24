@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import kotlin.random.Random
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.ToneKind
+import net.spross.kern.trainer.NumbersChallenge
 import net.spross.kern.trainer.NumbersClose
 import net.spross.kern.trainer.NumbersIntent
 import net.spross.kern.trainer.NumbersMode
@@ -49,6 +50,9 @@ class NumbersFlow(
         dispatch(NumbersIntent.LookUp)
     }
 
+    /** A timed run's clock ran out: kern ends the run, and the screen hands it back. */
+    fun timeUp() = dispatch(NumbersIntent.TimeUp)
+
     /**
      * Leaving. Kern books whatever is pending exactly as the explicit tap would and says
      * what the platform owes its stores; the caller writes them and shows the summary.
@@ -69,20 +73,22 @@ class NumbersFlow(
 }
 
 /**
- * The run a mode opens, or null before the catalog has landed.
+ * The run a mode opens — or, for a [challenge], the one its script opens — or null before the
+ * catalog has landed.
  *
  * The normalizer is the STRICT drill one — no article leniency, one slip per word, nothing
  * forgiven inside a digit — built for the language being answered in.
  */
 fun AppModel.newTrainerRun(
     mode: NumbersMode,
+    challenge: NumbersChallenge? = null,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     rng: Random = Random.Default,
 ): NumbersFlow? {
     val info = catalog?.languages?.get(mode.language) ?: return null
     return NumbersFlow(
-        start = NumbersRun.open(mode, rng),
+        start = challenge?.open() ?: NumbersRun.open(mode, rng),
         normalizer = AnswerNormalizer.drill(info),
         rng = rng,
         onTone = onTone,

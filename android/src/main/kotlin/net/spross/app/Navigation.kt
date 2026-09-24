@@ -1,5 +1,6 @@
 package net.spross.app
 
+import net.spross.kern.trainer.NumbersChallenge
 import net.spross.kern.trainer.NumbersMode
 
 sealed interface Screen {
@@ -27,8 +28,11 @@ sealed interface Screen {
 
     data object Dates : Screen
 
-    /** A slot run, carrying the spec the page it was started from spelled. */
-    data class NumbersRun(val mode: NumbersMode) : Screen
+    /**
+     * A slot run, carrying the spec the page it was started from spelled — and, for a
+     * challenge, the script that stands in for the ramp ([NumbersChallenge.mode] is then [mode]).
+     */
+    data class NumbersRun(val mode: NumbersMode, val challenge: NumbersChallenge? = null) : Screen
 
     data object LetterDrill : Screen
 

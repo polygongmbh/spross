@@ -188,7 +188,8 @@ Engine contract: `../README.md`.
   so there is no shared `ScrambleRun<T>` however alike two of them read.
 - **One injected `Random` per run** feeds every draw — task, exercise, phrase frame, direction flip,
   the letters a word scramble mixes and the atoms a sentence scramble deals out —
-  so a seeded run is reproducible end to end and identical on both platforms.
+  so a seeded run is reproducible end to end and identical on both platforms —
+  which is the whole of what a challenge code needs to hand two phones one run (`NumbersChallenge`).
   A scramble that comes back reading as the answer is rolled again, boundedly:
   "tap them left to right" is not the question either drill asks.
 - **A prompt is asked once, and a Sprosse with nothing left is climbed past** (`DrillSolved`).
@@ -229,7 +230,8 @@ Engine contract: `../README.md`.
   `DrillTally` names the counter for every drill at once — clean wins over the answers
   judged either way, with almost in neither half for `DrillRamp.step`'s reason;
   the "2/3" string is rendering.
-- **Storage contract**: the streak record under `trainer.record.<key>`,
+- **Storage contract**: the streak record under `trainer.record.<key>` —
+  a timed run's is its score instead (`DrillRunSummary.recordFigure`), on a key its own modifier already separates —
   per-exercise Sprosse progress under `trainer.level.<key>`,
   the most answers one run took under `trainer.answers.<key>` (`DrillRunSummary.done`, right or wrong),
   and the cleared Sprossen as a bitmask under `trainer.cleared.<key>` —

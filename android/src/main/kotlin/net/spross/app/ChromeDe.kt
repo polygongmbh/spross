@@ -139,6 +139,8 @@ internal object ChromeDe : Chrome {
     override val a11yTrainerSprosseReached = "erreicht"
     override val a11yTrainerSprosseCleared = "alle Fragen beantwortet"
     override val trainerRunStreak = "🔥 %s in Folge"
+    override val trainerRunScoreOne = "⭐ %d Punkt"
+    override val trainerRunScore = "⭐ %d Punkte"
     override val sessionAlmostTypo = "Fast! Korrekte Schreibweise"
     override val sessionAlmostHeard = "Gehört war"
     override val sessionAlmostMerged = "Stimmt — heißt auch"
@@ -183,6 +185,27 @@ internal object ChromeDe : Chrome {
     override val trainerModifierMix = "Bunt gemischt"
     override val trainerModifierMixHint = "Die Richtung wechselt bei jeder Aufgabe, und " +
         "Formen werden so groß wie die Zahlen."
+    override val trainerModifierTimed = "Auf Zeit"
+    override val trainerModifierTimedHint = "%d Sekunden auf der Uhr, und jede saubere " +
+        "Antwort zählt so viel wie ihre Sprosse."
+    override val trainerChallengeTitle = "Herausforderung"
+    override val trainerChallengeHint = "%d Sekunden auf dieselben Aufgaben wie jemand " +
+        "anderes: Starte eine und schick den Code, oder gib den Code ein, den du bekommen " +
+        "hast."
+    override val trainerChallengeStart = "Neue Herausforderung"
+    override val trainerChallengeCode = "Code, den du bekommen hast"
+    override val trainerChallengeAccept = "Annehmen"
+    override val trainerChallengeUnreadable = "Dieser Code passt nicht. Prüf ihn – und beide " +
+        "Telefone brauchen dieselbe App-Version."
+    override val trainerChallengeOtherLanguage = "Diese Herausforderung ist für %s."
+    override val trainerChallengePhrases = "Eine Herausforderung fragt Zahlen, Uhrzeit oder " +
+        "Formen ab – keine Sätze."
+    override val trainerChallengeWon = "Mehr als die %d deines Gegenübers!"
+    override val trainerChallengeTied = "Gleichstand: Dein Gegenüber hatte auch %d."
+    override val trainerChallengeLost = "Dein Gegenüber hatte %d."
+    override val trainerChallengeSend = "Senden: %s"
+    override val trainerChallengeMessage = "Mein Ergebnis im Zahlentraining von Spross: %d. " +
+        "Schaffst du mehr? Gib diesen Code ein: %s"
     override val numbersCombineLocked = "Mehreres in einem Lauf, sobald alles freigeschaltet " +
         "ist."
     override val numbersUnlock = "Freischalten:"

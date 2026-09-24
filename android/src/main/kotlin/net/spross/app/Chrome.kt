@@ -145,6 +145,8 @@ interface Chrome {
     val a11yTrainerSprosseReached: String
     val a11yTrainerSprosseCleared: String
     val trainerRunStreak: String            // %d
+    val trainerRunScoreOne: String
+    val trainerRunScore: String            // %d
     // The two captions an amber hold wears; the form itself follows, composed by
     // the reader, so the words stay one string and the layout stays each phone's.
     val sessionAlmostTypo: String
@@ -187,6 +189,21 @@ interface Chrome {
     val trainerModifierFastHint: String   // %d
     val trainerModifierMix: String
     val trainerModifierMixHint: String
+    val trainerModifierTimed: String
+    val trainerModifierTimedHint: String  // %d
+    val trainerChallengeTitle: String
+    val trainerChallengeHint: String      // %d
+    val trainerChallengeStart: String
+    val trainerChallengeCode: String
+    val trainerChallengeAccept: String
+    val trainerChallengeUnreadable: String
+    val trainerChallengeOtherLanguage: String  // %s
+    val trainerChallengePhrases: String
+    val trainerChallengeWon: String       // %d
+    val trainerChallengeTied: String      // %d
+    val trainerChallengeLost: String      // %d
+    val trainerChallengeSend: String      // %s
+    val trainerChallengeMessage: String   // %d %s
     val numbersCombineLocked: String
     val numbersUnlock: String
     val numbersBest: String

@@ -23,6 +23,12 @@ sealed class NumbersIntent {
 
     /** The platform's armed beat elapsed. */
     data object AdvanceElapsed : NumbersIntent()
+
+    /**
+     * A timed run's clock ran out ([TimedRun.SECONDS]): the run is over, and its close books
+     * a pending answer exactly as the ✕ would. Ignored by a run that is not timed.
+     */
+    data object TimeUp : NumbersIntent()
 }
 
 /** The closed result of one intent: the next state plus what it asks for. */
@@ -86,7 +92,17 @@ data class NumbersRunState(
     /** What a refused answer actually NAMED ("setenta" is 70) — only beside a Revealed miss. */
     val otherWord: Match.OtherWord? = null,
     override val finished: Boolean,
+    /** Every clean answer's Sprosse, summed ([TimedRun.points]) — read only where [timed]. */
+    val score: Int = 0,
+    /** The script a challenge run asks from instead of the ramp's draw; null for every other run. */
+    val challenge: NumbersChallenge? = null,
 ) : DrillRunProgress {
+    /** The run ends on a clock and is scored ([TimedRun]). */
+    val timed: Boolean get() = mode.isTimed
+
+    /** A timed run ends on its clock, so it offers no way out of its own beyond the ✕. */
+    override val offersFinish: Boolean get() = !timed && super.offersFinish
+
     val currentTask: NumbersTask get() = current.task
 
     /** Which of the run's exercises asked what is on screen — what a win and a miss apply to. */
@@ -111,8 +127,11 @@ data class NumbersRunState(
      */
     val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
 
-    /** The numbers page is one tap away from a numbers task, and from no other. */
-    val offersLookUp: Boolean get() = currentExercise == NumbersExercise.Counting
+    /**
+     * The numbers page is one tap away from a numbers task, and from no other — and not
+     * against a clock, where reading the answer up would be the fastest way to score.
+     */
+    val offersLookUp: Boolean get() = currentExercise == NumbersExercise.Counting && !timed
 
     /**
      * Digit count of the numeric prompt on screen, null outside a forward numbers task: a

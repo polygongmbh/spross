@@ -6496,6 +6496,221 @@
         }
       }
     },
+    "trainer.challenge.accept" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annehmen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accept"
+          }
+        }
+      }
+    },
+    "trainer.challenge.code" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code, den du bekommen hast"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code you were sent"
+          }
+        }
+      }
+    },
+    "trainer.challenge.hint %lld" : {
+      "comment" : "%lld — seconds on the clock, out of kern; never 1, so no singular",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Sekunden auf dieselben Aufgaben wie jemand anderes: Starte eine und schick den Code, oder gib den Code ein, den du bekommen hast."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld seconds on the same questions as someone else: start one and send its code, or enter a code you were sent."
+          }
+        }
+      }
+    },
+    "trainer.challenge.lost %lld" : {
+      "comment" : "%lld — the other player's score, only carried, so no plural",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Gegenüber hatte %lld."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "They had %lld."
+          }
+        }
+      }
+    },
+    "trainer.challenge.message %lld %@" : {
+      "comment" : "the text the share sheet sends — %lld the sender's score, %@ the challenge code",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mein Ergebnis im Zahlentraining von Spross: %lld. Schaffst du mehr? Gib diesen Code ein: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My score in the Spross numbers drill: %lld. Can you beat it? Enter this code: %@"
+          }
+        }
+      }
+    },
+    "trainer.challenge.otherLanguage %@" : {
+      "comment" : "%@ — the name of the language the code was made for",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Herausforderung ist für %@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "That challenge is for %@."
+          }
+        }
+      }
+    },
+    "trainer.challenge.phrases" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Herausforderung fragt Zahlen, Uhrzeit oder Formen ab – keine Sätze."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A challenge asks numbers, the clock or forms — not sentences."
+          }
+        }
+      }
+    },
+    "trainer.challenge.send %@" : {
+      "comment" : "%@ — the challenge code, which the share sheet sends",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senden: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send: %@"
+          }
+        }
+      }
+    },
+    "trainer.challenge.start" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Herausforderung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New challenge"
+          }
+        }
+      }
+    },
+    "trainer.challenge.tied %lld" : {
+      "comment" : "%lld — the other player's score, only carried, so no plural",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gleichstand: Dein Gegenüber hatte auch %lld."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A tie: they had %lld too."
+          }
+        }
+      }
+    },
+    "trainer.challenge.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herausforderung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Challenge"
+          }
+        }
+      }
+    },
+    "trainer.challenge.unreadable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Code passt nicht. Prüf ihn – und beide Telefone brauchen dieselbe App-Version."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "That code does not match. Check it — and both phones need the same app version."
+          }
+        }
+      }
+    },
+    "trainer.challenge.won %lld" : {
+      "comment" : "%lld — the other player's score, only carried, so no plural",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehr als die %lld deines Gegenübers!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More than their %lld!"
+          }
+        }
+      }
+    },
     "trainer.drill.countries" : {
       "comment" : "the hub entry, and what the result tile says was drilled",
       "localizations" : {
@@ -6827,6 +7042,39 @@
         }
       }
     },
+    "trainer.modifier.timed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf Zeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timed"
+          }
+        }
+      }
+    },
+    "trainer.modifier.timed.hint %lld" : {
+      "comment" : "%lld — seconds on the clock, out of kern; never 1, so no singular",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Sekunden auf der Uhr, und jede saubere Antwort zählt so viel wie ihre Sprosse."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld seconds on the clock, and every clean answer scores the Sprosse it stands on."
+          }
+        }
+      }
+    },
     "trainer.overview.practice" : {
       "comment" : "the heading the picks stand under",
       "localizations" : {
@@ -6964,6 +7212,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Record %@"
+          }
+        }
+      }
+    },
+    "trainer.run.score %lld" : {
+      "comment" : "a timed run's score so far, or where it ended — each clean answer adds its Sprosse",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "⭐ %lld Punkt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "⭐ %lld Punkte"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "⭐ %lld point"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "⭐ %lld points"
+                }
+              }
+            }
           }
         }
       }

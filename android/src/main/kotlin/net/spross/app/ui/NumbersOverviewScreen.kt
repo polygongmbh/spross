@@ -65,20 +65,17 @@ fun NumbersOverviewScreen(model: AppModel) {
         .filter { DrillUnlocks.unlocked(it, ladder) }
         .toSet()
 
-    val start = {
-        model.startTrainerRun(
-            NumbersMode(
-                selection = picked,
-                language = language,
-                // The live quirk kern documents: the source rides along whenever the pair
-                // realizes frames, which is what the standing record keys are already
-                // written under.
-                phraseSource = if (templates.isEmpty()) null else stamp.source,
-                templates = templates,
-                modifiers = modifiers,
-            ),
-        )
-    }
+    val picks = NumbersMode(
+        selection = picked,
+        language = language,
+        // The live quirk kern documents: the source rides along whenever the pair
+        // realizes frames, which is what the standing record keys are already
+        // written under.
+        phraseSource = if (templates.isEmpty()) null else stamp.source,
+        templates = templates,
+        modifiers = modifiers,
+    )
+    val start = { model.startTrainerRun(picks) }
 
     OverviewScaffold(
         model = model,
@@ -97,7 +94,11 @@ fun NumbersOverviewScreen(model: AppModel) {
             if (!combining) OverviewNote(chrome.numbersCombineLocked)
         }
         OverviewPanel {
-            for (modifier in DrillModifier.entries) {
+            // why: a run that ends under the learner is the timed change a screen reader is spared.
+            val playable = DrillModifier.entries.filter {
+                it != DrillModifier.Timed || !model.pronouncer.readsScreenAloud
+            }
+            for (modifier in playable) {
                 ModifierRow(modifier, chrome, ladder, modifier in modifiers) { on ->
                     modifierNames = if (on) {
                         modifierNames + modifier.name
@@ -108,6 +109,9 @@ fun NumbersOverviewScreen(model: AppModel) {
             }
         }
         OverviewStartButton(chrome, picked.isNotEmpty(), start)
+        // why: a challenge is timed, and a run ending under the learner is the timed change a
+        // screen reader is spared.
+        if (!model.pronouncer.readsScreenAloud) NumbersChallengeSection(model, picks)
 
         OverviewHeading(chrome.numbersReference)
         NumberReferenceTable(language, chrome, speak = { model.speakFormOnTap(it, language) })

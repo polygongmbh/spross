@@ -1,5 +1,7 @@
 package net.spross.app.ui
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,9 +12,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -23,8 +27,10 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.kern.catalog.LanguageChoices
+import net.spross.kern.trainer.ChallengeVerdict
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.StreakTier
+import net.spross.kern.trainer.TimedOutcome
 
 /**
  * What a drill puts around whatever it happens to be asking, inside the shell every asking
@@ -35,6 +41,7 @@ import net.spross.kern.trainer.StreakTier
 /**
  * The score line above the card: which Sprosse the run stands on, how long the streak is, and
  * the standing record while the streak has fallen short of it.
+ * A timed run's clock and score ([timed]) stand after the Sprosse.
  *
  * [Sprosse] is worded by the drill that owns it — a digit count reads differently from a plain
  * level — and is null where a run has one Sprosse only. [announcesRecord] carries a real
@@ -47,14 +54,16 @@ fun DrillStreakLine(
     bestStreak: Int,
     chrome: Chrome,
     announcesRecord: Boolean = false,
+    timed: String? = null,
 ) {
     val showsRecord = bestStreak > streak
     val parts = listOfNotNull(
         sprosse,
+        timed,
         chrome.trainerRunStreak.format(streak),
         if (showsRecord) chrome.trainerRunRecord.format(bestStreak) else null,
     )
-    val spoken = chrome.a11yCountStreakInARow.format(streak) +
+    val spoken = listOfNotNull(timed, chrome.a11yCountStreakInARow.format(streak)).joinToString(", ") +
         if (announcesRecord && showsRecord) chrome.a11ySuffixRecord.format(bestStreak) else ""
     Text(
         parts.joinToString(" · "),
@@ -94,8 +103,9 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
             .fillMaxWidth()
             .background(Theme.colors.surfaceTint, MaterialTheme.shapes.medium)
             .padding(Theme.spacing.lg)
-            // why: one TalkBack stop — the figures describe a single run.
-            .semantics(mergeDescendants = true) { },
+            // why: one TalkBack stop — the figures describe a single run — unless it carries
+            // a code to send, whose button has to stay reachable.
+            .semantics(mergeDescendants = summary.timed?.replyCode == null) { },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
@@ -113,6 +123,7 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
                 style = MaterialTheme.typography.bodySmall,
                 color = Theme.colors.textSecondary,
             )
+            summary.timed?.let { timed -> TimedLines(timed, chrome) }
             if (summary.newRecord) {
                 Text(
                     chrome.trainerResultNewRecord,
@@ -123,6 +134,42 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
         }
         Text(title, style = MaterialTheme.typography.bodySmall, color = Theme.colors.textSecondary)
     }
+}
+
+/**
+ * What a timed run adds to the tile: its score, how it stands against the score a challenge's
+ * code arrived with, and the code to send back.
+ */
+@Composable
+private fun TimedLines(timed: TimedOutcome, chrome: Chrome) {
+    Text(
+        countLine(chrome.trainerRunScoreOne, chrome.trainerRunScore, timed.score),
+        style = MaterialTheme.typography.bodySmall,
+    )
+    val theirs = timed.challenge?.opponentScore
+    val verdict = when (timed.verdict) {
+        ChallengeVerdict.Won -> chrome.trainerChallengeWon
+        ChallengeVerdict.Tied -> chrome.trainerChallengeTied
+        ChallengeVerdict.Lost -> chrome.trainerChallengeLost
+        null -> null
+    }
+    if (verdict != null && theirs != null) {
+        Text(verdict.format(theirs), style = MaterialTheme.typography.bodySmall, color = Theme.colors.accent)
+    }
+    val reply = timed.replyCode ?: return
+    val context = LocalContext.current
+    TextButton(onClick = { context.shareChallenge(chrome.trainerChallengeMessage.format(timed.score, reply)) }) {
+        Text(chrome.trainerChallengeSend.format(reply), style = MaterialTheme.typography.bodySmall)
+    }
+}
+
+/** The share sheet, which is how a code reaches the other player without this app knowing how. */
+private fun Context.shareChallenge(text: String) {
+    val send = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, text)
+    }
+    startActivity(Intent.createChooser(send, null))
 }
 
 /**

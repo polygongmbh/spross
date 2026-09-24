@@ -71,7 +71,15 @@ data class DrillRunSummary(
      * false, which drops the record line and the celebration with it.
      */
     val newRecord: Boolean,
+    /** A timed run's score, and the challenge it answered; null for a run that was not timed. */
+    val timed: TimedOutcome? = null,
 ) {
+    /**
+     * What a record store holds for this run: a timed run's score, every other run's best
+     * streak — the figure [newRecord] was measured on.
+     */
+    val recordFigure: Int get() = timed?.score ?: bestStreak
+
     val tier: StreakTier
         get() = when {
             bestStreak >= TROPHY_STREAK -> StreakTier.Trophy

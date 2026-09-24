@@ -136,6 +136,8 @@ internal object ChromeEn : Chrome {
     override val a11yTrainerSprosseReached = "reached"
     override val a11yTrainerSprosseCleared = "every question answered"
     override val trainerRunStreak = "🔥 %s in a row"
+    override val trainerRunScoreOne = "⭐ %d point"
+    override val trainerRunScore = "⭐ %d points"
     override val sessionAlmostTypo = "Almost! Correct spelling"
     override val sessionAlmostHeard = "You heard"
     override val sessionAlmostMerged = "Right — it also means"
@@ -179,6 +181,26 @@ internal object ChromeEn : Chrome {
     override val trainerModifierMix = "Mixed Up"
     override val trainerModifierMixHint = "The direction flips every task, and forms grow to " +
         "the size the numbers reached."
+    override val trainerModifierTimed = "Timed"
+    override val trainerModifierTimedHint = "%d seconds on the clock, and every clean answer " +
+        "scores the Sprosse it stands on."
+    override val trainerChallengeTitle = "Challenge"
+    override val trainerChallengeHint = "%d seconds on the same questions as someone else: " +
+        "start one and send its code, or enter a code you were sent."
+    override val trainerChallengeStart = "New challenge"
+    override val trainerChallengeCode = "Code you were sent"
+    override val trainerChallengeAccept = "Accept"
+    override val trainerChallengeUnreadable = "That code does not match. Check it — and both " +
+        "phones need the same app version."
+    override val trainerChallengeOtherLanguage = "That challenge is for %s."
+    override val trainerChallengePhrases = "A challenge asks numbers, the clock or forms — " +
+        "not sentences."
+    override val trainerChallengeWon = "More than their %d!"
+    override val trainerChallengeTied = "A tie: they had %d too."
+    override val trainerChallengeLost = "They had %d."
+    override val trainerChallengeSend = "Send: %s"
+    override val trainerChallengeMessage = "My score in the Spross numbers drill: %d. Can " +
+        "you beat it? Enter this code: %s"
     override val numbersCombineLocked = "Several in one run, once everything is unlocked."
     override val numbersUnlock = "Unlocks at:"
     override val numbersBest = "Best yet:"

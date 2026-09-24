@@ -13,9 +13,9 @@ import net.spross.kern.session.TurnFeedback
  * The slot drill as pure state plus one reducer — the machine both apps used to re-derive.
  * The run's shape is [NumbersRunState]; what it is spelled out of is [NumbersMode].
  *
- * Kern never self-randomizes: every draw takes the caller's [Random]. No clock is needed
- * anywhere in the run, so none is taken. No default arguments: they do not cross the ObjC
- * boundary, so every entry point is explicit.
+ * Kern never self-randomizes: every draw takes the caller's [Random]. No clock is read
+ * anywhere in the run: a timed run's end arrives as [NumbersIntent.TimeUp]. No default
+ * arguments: they do not cross the ObjC boundary, so every entry point is explicit.
  */
 object NumbersRun {
 
@@ -60,7 +60,9 @@ object NumbersRun {
         NumbersIntent.LookUp -> lookUp(state)
         NumbersIntent.ConfirmPending -> confirm(state, rng)
         NumbersIntent.AdvanceElapsed -> elapsed(state, rng)
+        NumbersIntent.TimeUp -> timeUp(state)
     }
+
 
     /**
      * Grade [input] against a task the way a drill grades: word by word, one slip per word,
@@ -121,13 +123,18 @@ object NumbersRun {
         if (ended.done == 0) {
             return NumbersClose(ended, null, state.mode.recordKey, emptyMap(), effects)
         }
-        val bookings = ended.bestLevels
+        // why: a challenge's Sprossen are the script's, not climbed — it books no ladder and no
+        // record, and its score is measured against the other player instead.
+        val scripted = state.challenge != null
+        val bookings = if (scripted) emptyMap() else ended.bestLevels
             .map { (exercise, best) -> state.mode.progressKey(exercise) to best }
             .filter { (key, best) -> best > (standingProgress[key] ?: 0) }
             .toMap()
+        val timed = if (state.timed) TimedOutcome(ended.score, state.challenge) else null
+        val figure = timed?.score ?: ended.bestStreak
         return NumbersClose(
             state = ended,
-            summary = DrillRunSummary(ended.done, ended.bestStreak, ended.bestStreak > standingRecord),
+            summary = DrillRunSummary(ended.done, ended.bestStreak, !scripted && figure > standingRecord, timed),
             recordKey = state.mode.recordKey,
             progressBookings = bookings,
             effects = effects,
@@ -229,6 +236,14 @@ object NumbersRun {
         TurnFeedback.Revealed -> booked(state, correct = false, outcome = AnswerOutcome.Wrong, rng = rng)
     }
 
+    /** The run is over; what is pending is the close's to book, as the ✕ would. */
+    private fun timeUp(state: NumbersRunState): NumbersReduction =
+        if (state.timed && !state.finished) {
+            NumbersReduction(state.copy(finished = true), listOf(DrillEffect.CancelAdvance, DrillEffect.Silence))
+        } else {
+            unchanged(state)
+        }
+
     /** The beat only ever arms on a clean answer, so nothing else may ride it. */
     private fun elapsed(state: NumbersRunState, rng: Random): NumbersReduction =
         if (state.feedback == TurnFeedback.Correct) {
@@ -247,7 +262,8 @@ object NumbersRun {
         rng: Random,
     ): NumbersReduction {
         val next = advanced(state, correct, outcome)
-        val draw = next.mode.draw(next.levels, state.currentTask.prompt, next.solved, rng)
+        val draw = next.challenge?.drawAt(state.index + 1, next.levels)
+            ?: next.mode.draw(next.levels, state.currentTask.prompt, next.solved, rng)
         return NumbersReduction(
             climbed(next, draw).copy(
                 // Nothing left to ask anywhere: end on the summary, never on a repeat.
@@ -303,6 +319,7 @@ object NumbersRun {
                 ?.let { state.seenDigitCounts + it }
                 ?: state.seenDigitCounts,
             core = state.core.book(correct, clean, DrillSolved.key(exercise, state.currentTask)),
+            score = state.score + TimedRun.points(state.currentLevel, correct, clean),
         )
     }
 

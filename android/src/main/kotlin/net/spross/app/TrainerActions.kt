@@ -1,6 +1,7 @@
 package net.spross.app
 
 import net.spross.kern.trainer.DrillRunSummary
+import net.spross.kern.trainer.NumbersChallenge
 import net.spross.kern.trainer.NumbersMode
 
 /**
@@ -43,6 +44,11 @@ fun AppModel.closeOverview() {
 
 fun AppModel.startTrainerRun(mode: NumbersMode) {
     navigate(Screen.NumbersRun(mode))
+}
+
+/** A challenge's timed run, on the questions its code spells. */
+fun AppModel.startChallenge(challenge: NumbersChallenge) {
+    navigate(Screen.NumbersRun(challenge.mode, challenge))
 }
 
 fun AppModel.startLetterDrill() {

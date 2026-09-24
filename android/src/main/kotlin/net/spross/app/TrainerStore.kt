@@ -25,16 +25,19 @@ import net.spross.kern.trainer.WordScrambleRunState
  */
 class TrainerStore(private val prefs: SharedPreferences) {
 
-    /** The longest streak this run selection ever reached, 0 where it was never run. */
+    /**
+     * The best this run selection ever did, 0 where it was never run: the longest streak, or
+     * a timed run's score ([DrillRunSummary.recordFigure]).
+     */
     fun record(key: String): Int = prefs.getInt(NumbersMode.RECORD_PREFIX + key, 0)
 
     /**
-     * Books a streak as the new record. Strictly greater, so re-closing a resumed run
+     * Books a figure as the new record. Strictly greater, so re-closing a resumed run
      * never re-claims one that was already standing.
      */
-    fun bookRecord(key: String, streak: Int) {
-        if (streak <= record(key)) return
-        prefs.edit().putInt(NumbersMode.RECORD_PREFIX + key, streak).apply()
+    fun bookRecord(key: String, figure: Int) {
+        if (figure <= record(key)) return
+        prefs.edit().putInt(NumbersMode.RECORD_PREFIX + key, figure).apply()
     }
 
     /**
@@ -225,6 +228,6 @@ class TrainerStanding(val store: TrainerStore) {
  */
 fun AppModel.bookRecord(key: String, summary: DrillRunSummary) {
     if (!summary.newRecord) return
-    trainer.store.bookRecord(key, summary.bestStreak)
+    trainer.store.bookRecord(key, summary.recordFigure)
     cues.cheer()
 }

@@ -218,6 +218,8 @@ fun DrillRunScaffold(
     backLeaves: Boolean = true,
     showsMuteButton: Boolean = false,
     spacing: Dp = Theme.spacing.md,
+    /** A timed run's clock and score, for the score line; null for every other run. */
+    timed: String? = null,
     body: @Composable ColumnScope.() -> Unit,
 ) {
     BackHandler(enabled = backLeaves) { leave() }
@@ -231,7 +233,7 @@ fun DrillRunScaffold(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(spacing),
         ) {
-            DrillStreakLine(sprosse, streak, bestStreak, model.chrome, announcesRecord)
+            DrillStreakLine(sprosse, streak, bestStreak, model.chrome, announcesRecord, timed)
             body()
             Spacer(Modifier.height(Theme.spacing.sm))
         }
@@ -255,6 +257,7 @@ fun DrillRunScaffold(
     backLeaves: Boolean = true,
     showsMuteButton: Boolean = false,
     spacing: Dp = Theme.spacing.md,
+    timed: String? = null,
     body: @Composable ColumnScope.() -> Unit,
 ) = DrillRunScaffold(
     model = model,
@@ -266,6 +269,7 @@ fun DrillRunScaffold(
     streak = progress.streak,
     bestStreak = progress.bestStreak,
     announcesRecord = announcesRecord,
+    timed = timed,
     backLeaves = backLeaves,
     showsMuteButton = showsMuteButton,
     spacing = spacing,

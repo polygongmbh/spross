@@ -36,6 +36,8 @@ struct DrillStreakLine: View {
     /// The Sprosse, worded by the drill that owns it — a digit count reads
     /// differently from a plain level. nil where a run has one Sprosse only.
     var level: Text?
+    /// A timed run's clock and score, standing after the Sprosse; empty elsewhere.
+    var timed: [Text] = []
     let streak: Int
     let bestStreak: Int
     /// Whether the SPOKEN line names the record as well. Only the slot drill's
@@ -58,13 +60,15 @@ struct DrillStreakLine: View {
     private var text: Text {
         var parts: [Text] = []
         if let level { parts.append(level) }
+        parts += timed
         parts.append(Text("trainer.run.streak \(streak.formatted())"))
         if bestStreak > streak { parts.append(Text("trainer.run.record \(bestStreak.formatted())")) }
         return parts.joined() ?? Text(verbatim: "")
     }
 
     private var accessibility: Text {
-        let spoken = Text("a11y.count.streakInARow \(streak.formatted())")
+        let streakSpoken = Text("a11y.count.streakInARow \(streak.formatted())")
+        let spoken = timed.joined(separator: ", ").map { $0 + Text(verbatim: ", ") + streakSpoken } ?? streakSpoken
         guard announcesRecord, bestStreak > streak else { return spoken }
         return spoken + Text("a11y.suffix.record \(bestStreak.formatted())")
     }
@@ -104,6 +108,8 @@ struct DrillRunResult: Equatable {
     /// ladder is one table, and a second copy of it here is one coincidence away
     /// from praising a run the engine does not.
     var tier: StreakTier = .sprout
+    /// A timed run's score, and the challenge it answered; nil for every other run.
+    var timed: TimedOutcome?
     /// What was drilled — the exercise's own name, since a page can host several.
     let title: LocalizedStringKey
 }
@@ -112,6 +118,7 @@ struct DrillRunResult: Equatable {
 /// button that starts the next run already is.
 struct DrillResultTile: View {
     let result: DrillRunResult
+    @Environment(\.locale) private var locale
 
     var body: some View {
         HStack(alignment: .center, spacing: Theme.spacing.lg) {
@@ -126,6 +133,23 @@ struct DrillResultTile: View {
                 Text("trainer.result.bestStreak \(result.bestStreak.formatted())")
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
+                if let timed = result.timed {
+                    Text("trainer.run.score \(Int(timed.score))")
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textPrimary)
+                    if let verdict = verdictLine(timed) {
+                        verdict
+                            .font(Theme.typography.caption)
+                            .foregroundStyle(Theme.colors.accent)
+                    }
+                    if let reply = timed.replyCode {
+                        ShareLink(item: message(score: Int(timed.score), code: reply)) {
+                            Label { Text("trainer.challenge.send \(reply)") }
+                                icon: { Image(systemName: "square.and.arrow.up") }
+                        }
+                        .font(Theme.typography.caption)
+                    }
+                }
                 if result.newRecord {
                     Text("trainer.result.newRecord")
                         .font(Theme.typography.caption)
@@ -138,8 +162,27 @@ struct DrillResultTile: View {
                 .foregroundStyle(Theme.colors.textSecondary)
         }
         .panelSurface(Theme.colors.surfaceTint)
-        // why: one VoiceOver stop — the figures describe a single run.
-        .accessibilityElement(children: .combine)
+        // why: one VoiceOver stop — the figures describe a single run — unless
+        // it carries a code to send, whose button has to stay reachable.
+        .accessibilityElement(children: result.timed?.replyCode == nil ? .combine : .contain)
+    }
+
+    /// How the score stands against the one a challenge's code arrived with.
+    private func verdictLine(_ timed: TimedOutcome) -> Text? {
+        guard let verdict = timed.verdict,
+              let theirs = timed.challenge?.opponentScore.map({ Int(truncating: $0) }) else { return nil }
+        switch verdict {
+        case .won: return Text("trainer.challenge.won \(theirs)")
+        case .tied: return Text("trainer.challenge.tied \(theirs)")
+        case .lost: return Text("trainer.challenge.lost \(theirs)")
+        }
+    }
+
+    /// What the share sheet sends, in the chrome language — a String rather
+    /// than a Text, so it has to be resolved against the locale by hand.
+    private func message(score: Int, code: String) -> String {
+        let format = ChromeStrings.string("trainer.challenge.message %lld %@", locale: locale)
+        return String(format: format, score, code)
     }
 
     /// The face of the Sprosse kern says the run reached.

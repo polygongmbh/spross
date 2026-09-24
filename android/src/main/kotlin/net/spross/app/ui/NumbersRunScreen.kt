@@ -1,8 +1,10 @@
 package net.spross.app.ui
 
+import android.os.SystemClock
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -20,9 +22,11 @@ import net.spross.app.finishDrill
 import net.spross.app.name
 import net.spross.app.newTrainerRun
 import net.spross.app.speakDrillAnswer
+import net.spross.kern.trainer.NumbersChallenge
 import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
 import net.spross.kern.trainer.NumbersRunState
+import net.spross.kern.trainer.TimedRun
 
 /**
  * A stateless ENDLESS slot run — numbers, years, the clock, sentences, number forms.
@@ -36,18 +40,22 @@ import net.spross.kern.trainer.NumbersRunState
  * badge on the card would be the third telling of what one tap said.
  */
 @Composable
-fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
+fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChallenge? = null) {
     val chrome = model.chrome
     val hooks = rememberTurnHooks(model)
-    val flow = rememberRun(model, Screen.Numbers, key = mode) {
-        model.newTrainerRun(mode, onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
+    val flow = rememberRun(model, Screen.Numbers, key = mode to challenge) {
+        model.newTrainerRun(mode, challenge, onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
     } ?: return
     val state = flow.state
     val store = model.trainer.store
 
-    // What the result tile says was drilled: a run that asks one thing names it, and one
-    // that interleaves several falls back to the hub card's own title.
-    val title = mode.exercises.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
+    // What the result tile says was drilled: a challenge is named as one, a run that asks one
+    // thing names it, and one that interleaves several falls back to the hub card's own title.
+    val title = if (challenge != null) {
+        chrome.trainerChallengeTitle
+    } else {
+        mode.exercises.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
+    }
 
     val leave = {
         val closed = flow.close(store.record(mode.recordKey), store.standing(mode.language))
@@ -68,6 +76,7 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
 
     val inputFocus = remember { FocusRequester() }
     QuestionFocus(state.index, model.pronouncer, inputFocus)
+    val secondsLeft = timedClock(flow)
 
     DrillRunScaffold(
         model = model,
@@ -81,6 +90,7 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode) {
         // why: the run says its answers out loud, so it owes the learner a way to
         // silence them here, not in Settings.
         showsMuteButton = true,
+        timed = secondsLeft?.let { timedLine(it, state.score, chrome) },
     ) {
         DrillPromptCard(model, flow, chrome)
         NumbersControls(model, flow, chrome, inputFocus, leave)
@@ -109,3 +119,33 @@ private fun sprosseText(state: NumbersRunState, chrome: Chrome): String? {
     if (!state.severalExercises) return level
     return "${chrome.badge(state.currentExercise)} $level"
 }
+
+/**
+ * A timed run's clock: the seconds left, ticking once a second, and the kern intent once they
+ * are out. Kern names how long it lasts ([TimedRun.SECONDS]) and what running out does; the
+ * timer is this platform's. Null for a run that is not timed.
+ */
+@Composable
+private fun timedClock(flow: NumbersFlow): Int? {
+    if (!flow.state.timed) return null
+    var left by remember { mutableIntStateOf(TimedRun.SECONDS) }
+    LaunchedEffect(flow) {
+        val end = SystemClock.elapsedRealtime() + TimedRun.SECONDS * 1_000L
+        while (true) {
+            val remaining = end - SystemClock.elapsedRealtime()
+            left = ((remaining + 999) / 1_000).toInt().coerceAtLeast(0)
+            if (remaining <= 0) break
+            delay(remaining % 1_000 + 1)
+        }
+        flow.timeUp()
+    }
+    return left
+}
+
+/** The timed half of the score line: the seconds left, then the score so far. */
+private fun timedLine(secondsLeft: Int, score: Int, chrome: Chrome): String =
+    "⏱ %d:%02d · %s".format(
+        secondsLeft / 60,
+        secondsLeft % 60,
+        countLine(chrome.trainerRunScoreOne, chrome.trainerRunScore, score),
+    )
