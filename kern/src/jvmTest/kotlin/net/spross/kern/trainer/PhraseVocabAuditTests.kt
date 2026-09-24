@@ -104,6 +104,8 @@ class PhraseVocabAuditTests {
         // --- Ukrainian ------------------------------------------------------------
         "uk" to mapOf(
             "будильнику" to "будильник", // Lokativ nach «на»
+            "прибуває" to "прибувати", "їмо" to "їсти",  // 3. Sg. / 1. Pl. Präsens
+            "прокидаюся" to "прокидатися",              // 1. Person Singular
             "напиши" to "писати",        // Imperativ „schreib“
             "повторіть" to "повторити",  // Höflichkeitsimperativ
             "дату" to "дата",            // Akkusativ nach «Повторіть/Напиши … дату»

@@ -96,10 +96,7 @@ Ready work comes first, then the items that end in a question for the owner, the
   carry the rule in different wordings and 11 carry nothing, so turning them into phrases the
   way `colors/a-white-car` does (a `concepts.json` entry with emoji and `components` plus a
   realization in all eight language files) is a content project.
-- uk has no time-*when* clock frame (`о`/`об` + locative: "о шістнадцятій"), both shipped
-  frames being predicates; the composer side is ready (`TrainerLanguagePack.readingPrepositions`,
-  a list because uk alternates о/об), so what is left is the READING — `UkrainianClock`
-  generates the nominative only, and «о» governs the locative (`clock-registers.md`).
+- uk leaves the `meeting-is-at` clock frame unrealized until a `зустріч` card exists for `PhraseVocabAuditTests`.
 - Ordinal phrase frames ("Ich bin auf dem vierten Platz") wait on a numeral-side agreement
   field in every language, since the frame must decline the NUMERAL while the general device
   runs the other way (`PhraseTemplate.CountForms` inflects the noun from the numeral) and

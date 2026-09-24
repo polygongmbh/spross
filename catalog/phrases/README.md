@@ -101,12 +101,13 @@ and editing one never restamps a learner's box.
 - Swahili clock readings start "Saa …" and drop into mid-sentence adverbial position
   lowercased ("Treni inaondoka saa mbili usiku."),
   so a Swahili clock frame must read naturally with the value inline.
-- Ukrainian time-at ("о + Lokativ") does NOT compose with the nominative clock readings
-  the trainer generates, so Ukrainian clock frames are predicate frames
-  ("Зараз …", "На будильнику …") — fewer, but correct.
+- Ukrainian time-at is «о» + locative, so its frame says «о» ("Поїзд вирушає о {slot}.")
+  and composes only the locative readings, each bringing its own «о» or «об»;
+  a predicate frame ("Зараз …", "На будильнику …") takes the nominative ones
+  (`../../docs/clock-registers.md` § Ukrainian's time-when).
 - Italian time-at contracts the preposition with the hour's article
   ("alle due" but "all'una"), and a frame cannot know which of the two a draw will need,
-  so Italian clock frames are predicate frames too
+  so Italian clock frames are predicate frames
   ("Adesso …", "La sveglia dice che …") — the reading brings its own copula.
 - Ukrainian year frames use DICTATION framing, where a year is read back as the bare
   cardinal it is written as; the genitive ordinal a year takes once it stands inside a date

@@ -14,17 +14,28 @@
   ]
  },
  "frames": {
+  "train-departs-at": {
+   "text": "Поїзд вирушає о {slot}.",
+   "accepts": ["Потяг вирушає о {slot}."],
+   "notes": {
+    "de": "«о» + Lokativ sagt, WANN: о четвертій, о шістнадцятій — vor Vokal «об»: об одинадцятій.",
+    "en": "«о» + locative says WHEN: о четвертій, о шістнадцятій — «об» before a vowel: об одинадцятій."
+   }
+  },
+  "bus-arrives-at": { "text": "Автобус прибуває о {slot}." },
+  "i-wake-up-at": { "text": "Я прокидаюся о {slot}.", "accepts": ["Я прокидаюсь о {slot}."] },
+  "we-eat-at": { "text": "Ми їмо о {slot}." },
   "it-is-now": {
    "text": "Зараз {slot}.",
    "notes": {
-    "en": "Predicate frame: Ukrainian time-at («о» + locative) does not compose with the nominative reading, so the time stands as the predicate."
+    "en": "Saying what time it IS, the hour stays nominative: зараз четверта, but «о четвертій» for when."
    }
   },
   "alarm-clock-shows": {
    "text": "На будильнику {slot}.",
    "notes": {
     "de": "wörtl.: „Auf dem Wecker [ist] …“",
-    "en": "literally „On the alarm clock [is] …“ — a predicate frame, since «о» + locative does not compose with the nominative reading."
+    "en": "literally „On the alarm clock [is] …“ — the time stands as the predicate, in the nominative."
    }
   },
   "i-have-n-notebooks": {

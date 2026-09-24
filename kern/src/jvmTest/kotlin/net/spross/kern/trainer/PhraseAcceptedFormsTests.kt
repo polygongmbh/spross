@@ -93,6 +93,24 @@ class PhraseAcceptedFormsTests {
         assertFalse(alarm.accepted.any { "est il est" in it }, alarm.accepted.toString())
     }
 
+    // Ukrainian as the ANSWER side: «о» takes the locative, and «об» before a vowel
+
+    @Test
+    fun ukrainianTimeWhenFrameComposesOnlyTheLocative() {
+        val train = PhraseSlots.instantiate(RealFrames.frame("uk", "train-departs-at", source = "en"), 16, 30)
+        assertEquals("Поїзд вирушає о четвертій тридцять дня.", train.display)
+        assertTrue("Поїзд вирушає о шістнадцятій тридцять." in train.accepted)
+        assertTrue("Поїзд вирушає о 16:30." in train.accepted)
+        assertFalse(train.accepted.any { "пів на" in it || "о о" in it }, train.accepted.toString())
+
+        val eleven = PhraseSlots.instantiate(RealFrames.frame("uk", "train-departs-at", source = "en"), 11, 0)
+        assertEquals("Поїзд вирушає об одинадцятій ранку.", eleven.display)
+
+        // A predicate frame keeps the nominative and never takes the time-when reading.
+        val now = PhraseSlots.instantiate(RealFrames.frame("uk", "it-is-now", source = "en"), 16, 30)
+        assertFalse(now.accepted.any { " о " in it }, now.accepted.toString())
+    }
+
     // masculineNumeral filter holds across the widened accepted assembly
 
     @Test
