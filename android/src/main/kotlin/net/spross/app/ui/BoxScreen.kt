@@ -3,19 +3,14 @@ package net.spross.app.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,7 +18,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import net.spross.app.AppModel
@@ -46,19 +40,15 @@ import net.spross.kern.catalog.Catalog
  * where the screen OPENS, not where it stands afterwards, which is why it arrives as a
  * parameter and is read once.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BoxScreen(model: AppModel, openAt: String? = null) {
     val catalog = model.catalog
     val box = model.box
     val stats = model.stats
     if (catalog == null || box == null || stats == null) {
-        val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-        Scaffold(
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-            contentWindowInsets = WindowInsets(0, 0, 0, 0),
-            topBar = { BoxAppBar(model.chrome, onSearch = null, scrollBehavior) },
-        ) { }
+        Column(Modifier.fillMaxSize().padding(horizontal = Theme.spacing.xl)) {
+            BoxTitle(model.chrome, onSearch = null)
+        }
         return
     }
     BoxBrowserScreen(model, catalog, box, stats, openAt)
@@ -74,7 +64,6 @@ private sealed interface BoxItem {
     data object OwnContent : BoxItem
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun BoxBrowserScreen(
     model: AppModel,
@@ -188,71 +177,64 @@ private fun BoxBrowserScreen(
     val anyWordCanBeHeard = remember(catalog, box.cards) {
         box.cards.values.any { model.boxPronounceAction(it.target) != null }
     }
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        contentWindowInsets = WindowInsets(0, 0, 0, 0),
-        topBar = { BoxAppBar(chrome, onSearch = { searching = true }, scrollBehavior) },
-    ) { insets ->
-        Column(Modifier.fillMaxSize().padding(insets).padding(horizontal = Theme.spacing.xl)) {
-            LazyColumn(
-                state = listState,
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
-                contentPadding = PaddingValues(bottom = Theme.spacing.lg),
-            ) {
-                // The page's own lines scroll away with it, so nothing stands pinned between
-                // the collapsed bar and the shelves passing under it.
-                item(key = PAGE_HEADER_KEY) {
-                    Column {
-                        Text(
-                            chrome.boxSubtitle.format(stats.activeCount, box.cards.size),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                        // why: same disclosure as the number and country reference tables —
-                        // said once for the page rather than as a glyph competing with every
-                        // row. Withheld where not one word can be heard, so the box never
-                        // promises a tap that would do nothing.
-                        if (anyWordCanBeHeard) {
-                            TapToHearHint(chrome, chrome.boxTapToHear)
-                        }
+    Column(Modifier.fillMaxSize().padding(horizontal = Theme.spacing.xl)) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
+            contentPadding = PaddingValues(bottom = Theme.spacing.lg),
+        ) {
+            // The page's title and its own lines scroll away with the shelves.
+            item(key = PAGE_HEADER_KEY) {
+                Column {
+                    BoxTitle(chrome, onSearch = { searching = true })
+                    Text(
+                        chrome.boxSubtitle.format(stats.activeCount, box.cards.size),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    // why: same disclosure as the number and country reference tables —
+                    // said once for the page rather than as a glyph competing with every
+                    // row. Withheld where not one word can be heard, so the box never
+                    // promises a tap that would do nothing.
+                    if (anyWordCanBeHeard) {
+                        TapToHearHint(chrome, chrome.boxTapToHear)
                     }
                 }
-                itemsIndexed(items, key = { _, item -> itemKey(item) }) { _, item ->
-                    when (item) {
-                        is BoxItem.Group -> GroupHeader(
-                            section = item.section,
-                            emojis = item.section.areas.joinToString("") { naming.emoji(it) },
-                            open = item.section.id in openGroups,
-                            chrome = chrome,
-                            onToggle = {
-                                openGroups = if (item.section.id in openGroups) {
-                                    openGroups - item.section.id
-                                } else {
-                                    openGroups + item.section.id
-                                }
-                            },
-                        )
+            }
+            itemsIndexed(items, key = { _, item -> itemKey(item) }) { _, item ->
+                when (item) {
+                    is BoxItem.Group -> GroupHeader(
+                        section = item.section,
+                        emojis = item.section.areas.joinToString("") { naming.emoji(it) },
+                        open = item.section.id in openGroups,
+                        chrome = chrome,
+                        onToggle = {
+                            openGroups = if (item.section.id in openGroups) {
+                                openGroups - item.section.id
+                            } else {
+                                openGroups + item.section.id
+                            }
+                        },
+                    )
 
-                        is BoxItem.Area -> AreaSection(
-                            model = model,
-                            area = item.area,
-                            naming = naming,
-                            stats = areaStats[item.area],
-                            expanded = item.area in openAreas,
-                            onToggle = {
-                                openAreas = if (item.area in openAreas) {
-                                    openAreas - item.area
-                                } else {
-                                    openAreas + item.area
-                                }
-                            },
-                            onWriteOwn = { writing = it },
-                        )
+                    is BoxItem.Area -> AreaSection(
+                        model = model,
+                        area = item.area,
+                        naming = naming,
+                        stats = areaStats[item.area],
+                        expanded = item.area in openAreas,
+                        onToggle = {
+                            openAreas = if (item.area in openAreas) {
+                                openAreas - item.area
+                            } else {
+                                openAreas + item.area
+                            }
+                        },
+                        onWriteOwn = { writing = it },
+                    )
 
-                        BoxItem.OwnContent -> BoxOwnSection(model, onWriteOwn = { writing = it })
-                    }
+                    BoxItem.OwnContent -> BoxOwnSection(model, onWriteOwn = { writing = it })
                 }
             }
         }
@@ -265,17 +247,13 @@ private fun itemKey(item: BoxItem): String = when (item) {
     BoxItem.OwnContent -> "own"
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun BoxAppBar(chrome: Chrome, onSearch: (() -> Unit)?, scrollBehavior: TopAppBarScrollBehavior) {
-    PageTopBar(
-        scrollBehavior = scrollBehavior,
-        actions = {
-            onSearch?.let {
-                IconButton(onClick = it) {
-                    Text("🔍", Modifier.clearAndSetSemantics { contentDescription = chrome.boxSearchButton })
-                }
+private fun BoxTitle(chrome: Chrome, onSearch: (() -> Unit)?) {
+    PageTitle(chrome.boxTitle) {
+        onSearch?.let {
+            IconButton(onClick = it) {
+                Text("🔍", Modifier.clearAndSetSemantics { contentDescription = chrome.boxSearchButton })
             }
-        },
-    ) { Text(chrome.boxTitle) }
+        }
+    }
 }

@@ -4,28 +4,17 @@ import android.text.format.DateFormat
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.sp
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -44,7 +33,6 @@ import net.spross.kern.session.SessionOfferKind
  * trainers, the companion card, and the fortnight behind it. Which state card is a strict
  * precedence over the box's own answers ([homeCard]) — an offer outranks a done state.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(model: AppModel) {
     val chrome = model.chrome
@@ -82,84 +70,50 @@ fun HomeScreen(model: AppModel) {
         }
     }
 
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        contentWindowInsets = WindowInsets(0, 0, 0, 0),
-        topBar = {
-            PageTopBar(scrollBehavior) {
-                val expanded = isExpandedTitle()
-                Column {
-                    // The all-caps eyebrow reads as a LABEL over the greeting, so it
-                    // takes a label's tracking — the ramp's own tracking is zeroed
-                    // everywhere else ([Theme.kt]), which is right for running text but
-                    // reads cramped on three capitalized words this short.
-                    // Collapsed, the bar holds one line like every other page's.
-                    if (expanded || hello == null) Text(
-                        today,
-                        style = MaterialTheme.typography.bodySmall.copy(letterSpacing = 1.sp),
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    // A greeting is a phrase, not a headline word: it shrinks a step
-                    // rather than pushing the day's card down a third line.
-                    if (hello != null) Text(
-                        hello,
-                        maxLines = if (expanded) 2 else 1,
-                        overflow = TextOverflow.Ellipsis,
-                        autoSize = if (expanded) {
-                            TextAutoSize.StepBased(minFontSize = 20.sp, maxFontSize = LocalTextStyle.current.fontSize)
-                        } else {
-                            null
-                        },
-                    )
-                }
-            }
-        },
-    ) { insets ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(insets)
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = Theme.spacing.xl),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
-        ) {
-            val card = homeCard(
-                failed = model.loadFailure != null,
-                offerKind = standing?.offer?.kind ?: SessionOfferKind.Nothing,
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = Theme.spacing.xl),
+        verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
+    ) {
+        PageTitle(hello, eyebrow = today)
+
+        val card = homeCard(
+            failed = model.loadFailure != null,
+            offerKind = standing?.offer?.kind ?: SessionOfferKind.Nothing,
+        )
+        when (card) {
+            HomeCard.Failure -> StateCard(
+                emoji = "🫤",
+                title = chrome.errorTitle,
+                // The catalog is present — the box is what could not be read, so the card
+                // names the reason the decode gave rather than a missing content pack.
+                message = model.loadFailure
+                    ?.let { chrome.errorContentUnavailable.format(it) }
+                    ?: chrome.errorCatalogMissing,
             )
-            when (card) {
-                HomeCard.Failure -> StateCard(
-                    emoji = "🫤",
-                    title = chrome.errorTitle,
-                    // The catalog is present — the box is what could not be read, so the card
-                    // names the reason the decode gave rather than a missing content pack.
-                    message = model.loadFailure
-                        ?.let { chrome.errorContentUnavailable.format(it) }
-                        ?: chrome.errorCatalogMissing,
-                )
 
-                HomeCard.Session -> standing?.let {
-                    SessionCard(model, it, stats?.streak ?: 0, health)
-                }
-
-                HomeCard.Done -> standing?.let {
-                    DoneCard(model, it, stats?.streak ?: 0, health)
-                }
+            HomeCard.Session -> standing?.let {
+                SessionCard(model, it, stats?.streak ?: 0, health)
             }
 
-            ListenCard(model)
-
-            TrainerHubCard(model)
-
-            TalkCard(model) { briefingOpen = true }
-
-            // The same fortnight the streak was counted from, on the very refresh that
-            // produced it — the strip reads kern's walk, never one of its own. It names
-            // itself, so nothing announces it a second time above.
-            ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
-            Spacer(Modifier.height(Theme.spacing.lg))
+            HomeCard.Done -> standing?.let {
+                DoneCard(model, it, stats?.streak ?: 0, health)
+            }
         }
+
+        ListenCard(model)
+
+        TrainerHubCard(model)
+
+        TalkCard(model) { briefingOpen = true }
+
+        // The same fortnight the streak was counted from, on the very refresh that
+        // produced it — the strip reads kern's walk, never one of its own. It names
+        // itself, so nothing announces it a second time above.
+        ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
+        Spacer(Modifier.height(Theme.spacing.lg))
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
 }

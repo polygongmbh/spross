@@ -52,12 +52,13 @@ fun AboutScreen(model: AppModel) {
     val chrome = model.chrome
     BackHandler { model.closeAbout() }
 
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
-            PageTopBar(
+            PushedTopBar(
+                title = chrome.settingsAbout,
                 scrollBehavior = scrollBehavior,
                 // why: a push gets a leading back arrow, not the trailing X a dismissible
                 // sheet wears — [SprossIcons.ArrowLeft] is already the bar's own way out
@@ -71,7 +72,7 @@ fun AboutScreen(model: AppModel) {
                         )
                     }
                 },
-            ) { Text(chrome.settingsAbout) }
+            )
         },
     ) { insets ->
         LazyColumn(
