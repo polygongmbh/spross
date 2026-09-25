@@ -139,7 +139,7 @@ private fun VerdictTile(
             maxLines = 2,
             textAlign = TextAlign.Center,
             autoSize = TextAutoSize.StepBased(
-                minFontSize = 9.sp,
+                minFontSize = 11.sp,
                 maxFontSize = MaterialTheme.typography.bodySmall.fontSize,
             ),
         )
