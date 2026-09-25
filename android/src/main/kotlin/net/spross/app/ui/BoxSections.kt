@@ -219,11 +219,19 @@ fun AreaChip(
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically,
+            // why: a long area name wraps to a second line rather than clipping — Top keeps
+            // the emoji sitting with the FIRST line instead of floating mid-block.
+            verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         ) {
-            Text(emoji, style = MaterialTheme.typography.titleMedium)
-            Text(name, style = MaterialTheme.typography.titleLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(emoji, style = MaterialTheme.typography.titleLarge)
+            Text(
+                name,
+                style = MaterialTheme.typography.titleLarge,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f),
+            )
         }
         subtitle?.let {
             Text(
