@@ -1,5 +1,12 @@
 package net.spross.app.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -13,12 +20,18 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.semantics.Role
@@ -104,23 +117,26 @@ private fun AnswerCard(
         ScrambleVerdict.Correct -> Theme.colors.success
         ScrambleVerdict.Wrong -> Theme.colors.wrong
     }
+    // why: the border and the fill behind it ease into their verdict together, rather than
+    // the row snapping the instant an arrangement is graded.
+    val easedBorder by animateColorAsState(border, turnTween(), label = "scrambleBorder")
+    val fill by animateColorAsState(
+        if (verdict.locked) Theme.colors.surface else Color.Transparent,
+        turnTween(),
+        label = "scrambleFill",
+    )
     val radius = 28.dp
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .then(
-                if (verdict.locked) {
-                    Modifier.clip(RoundedCornerShape(radius)).background(Theme.colors.surface)
-                } else {
-                    Modifier
-                },
-            )
+            .clip(RoundedCornerShape(radius))
+            .background(fill)
             // why: AFTER the fill, so the stroke draws over it — a surface laid on top of the
             // stroke swallows the one tint saying how the arrangement was graded.
             .drawBehind {
                 val width = (if (verdict.locked) 2.dp else 1.dp).toPx()
                 drawRoundRect(
-                    color = border,
+                    color = easedBorder,
                     cornerRadius = CornerRadius(radius.toPx()),
                     style = Stroke(
                         width = width,
@@ -177,17 +193,34 @@ private fun AnswerCard(
                 }
                 ChipFlow {
                     placed.forEachIndexed { slot, atom ->
-                        ScrambleChip(
-                            word = atom.text,
-                            dimmed = false,
-                            enabled = !verdict.locked,
-                            // TalkBack's "double tap to …": what this chip's tap would DO.
-                            action = chrome.a11yActionTakeBack,
-                        ) { take(slot) }
+                        // why: keyed on the atom rather than the slot, so a chip taken back
+                        // out of the middle does not make every chip after it replay the
+                        // grow-in it already played — only a freshly placed atom grows.
+                        key(atom) {
+                            val grown = remember { Animatable(0f) }
+                            LaunchedEffect(Unit) { grown.animateTo(1f, turnTween()) }
+                            ScrambleChip(
+                                word = atom.text,
+                                dimmed = false,
+                                enabled = !verdict.locked,
+                                // TalkBack's "double tap to …": what this chip's tap would DO.
+                                action = chrome.a11yActionTakeBack,
+                                modifier = Modifier
+                                    .scale(0.85f + 0.15f * grown.value)
+                                    .alpha(grown.value),
+                            ) { take(slot) }
+                        }
                     }
                 }
             }
-            if (verdict.locked) reveal()
+            // why: the reveal fades and expands into the space the row's own
+            // animateContentSize already opened for it, on the turn's shared spec.
+            AnimatedVisibility(
+                visible = verdict.locked,
+                enter = fadeIn(turnTween()) + expandVertically(turnTween()),
+            ) {
+                reveal()
+            }
         }
     }
 }
@@ -214,11 +247,14 @@ private fun BankRow(
     }
 }
 
-/** Chips left to right, wrapping where the line runs out, each line centered. */
+/**
+ * Chips left to right, wrapping where the line runs out, each line centered — and the whole
+ * row's own size eases as chips are taken or given back, rather than reflowing in a jump.
+ */
 @Composable
 private fun ChipFlow(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
     FlowRow(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().animateContentSize(turnTween()),
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm, Alignment.CenterHorizontally),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
     ) {
@@ -236,11 +272,14 @@ private fun ScrambleChip(
     dimmed: Boolean,
     enabled: Boolean,
     action: String?,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
+    // why: spent eases to dimmed rather than snapping there the instant a chip is taken.
+    val dimAlpha by animateFloatAsState(if (dimmed) 0.35f else 1f, turnTween(), label = "chipDim")
     Box(
-        modifier = Modifier
-            .alpha(if (dimmed) 0.35f else 1f)
+        modifier = modifier
+            .alpha(dimAlpha)
             .clip(MaterialTheme.shapes.medium)
             .background(Theme.colors.surfaceTint)
             .clickable(enabled = enabled, onClickLabel = action, role = Role.Button, onClick = onClick)
