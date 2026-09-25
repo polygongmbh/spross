@@ -50,47 +50,53 @@ internal fun OwnEntrySheet(model: AppModel, entry: OwnWord, onDismiss: () -> Uni
     var comment by rememberSaveable(entry.id) { mutableStateOf(entry.comment.orEmpty()) }
 
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState()) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .padding(Theme.spacing.lg),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-        ) {
-            Text(chrome.boxOwnEntryEdit, style = MaterialTheme.typography.titleLarge)
-            if (language != null) {
+        // why: the save button stands OUTSIDE the scrolling half, so a long comment never
+        // scrolls it out of reach — matches the other sheets that share a growable list.
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                modifier = Modifier
+                    .weight(1f, fill = false)
+                    .verticalScroll(rememberScrollState())
+                    .padding(Theme.spacing.lg),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
+            ) {
+                Text(chrome.boxOwnEntryEdit, style = MaterialTheme.typography.titleLarge)
+                if (language != null) {
+                    WordField(
+                        label = chrome.boxOwnWordInLanguage
+                            .format(flaggedLanguage(catalog.languages[language], language)),
+                        value = text,
+                        onValueChange = { text = it },
+                        imeAction = ImeAction.Next,
+                        prose = true,
+                    )
+                }
                 WordField(
-                    label = chrome.boxOwnWordInLanguage
-                        .format(flaggedLanguage(catalog.languages[language], language)),
-                    value = text,
-                    onValueChange = { text = it },
-                    imeAction = ImeAction.Next,
+                    label = chrome.boxOwnWordComment,
+                    value = comment,
+                    onValueChange = { comment = it },
+                    imeAction = ImeAction.Done,
                     prose = true,
                 )
+                Text(
+                    if (text.isNotBlank()) {
+                        chrome.boxOwnWordExplainerSuggestion
+                    } else {
+                        chrome.boxOwnWordExplainerRemark
+                    },
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
-            WordField(
-                label = chrome.boxOwnWordComment,
-                value = comment,
-                onValueChange = { comment = it },
-                imeAction = ImeAction.Done,
-                prose = true,
-            )
-            Text(
-                if (text.isNotBlank()) {
-                    chrome.boxOwnWordExplainerSuggestion
-                } else {
-                    chrome.boxOwnWordExplainerRemark
-                },
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
             Button(
                 onClick = {
                     model.saveOwnEntry(entry, text, comment)
                     onDismiss()
                 },
                 enabled = text.isNotBlank() || comment.isNotBlank(),
-                modifier = Modifier.fillMaxWidth().pressSpring(),
+                modifier = Modifier.fillMaxWidth()
+                    .padding(horizontal = Theme.spacing.lg, vertical = Theme.spacing.md)
+                    .pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) { Text(chrome.boxOwnWordSave) }
         }

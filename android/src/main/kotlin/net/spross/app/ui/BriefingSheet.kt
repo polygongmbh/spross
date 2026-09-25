@@ -69,46 +69,50 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
     var pasteWasEmpty by remember { mutableStateOf(false) }
 
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState()) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .padding(Theme.spacing.lg),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-        ) {
-            Text(chrome.briefingTitle, style = MaterialTheme.typography.titleLarge)
-            Text(chrome.briefingLead, style = MaterialTheme.typography.bodyMedium)
-            BriefingSteps(chrome)
-            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                TextButton(onClick = {
-                    context.copyBrief(chrome.briefingTitle, briefing.text)
-                    copied = true
-                }) { Text(if (copied) chrome.briefingCopied else chrome.commonCopy) }
-                TextButton(onClick = { context.shareBrief(chrome.briefingTitle, briefing.text) }) {
-                    Text(chrome.briefingShare)
+        // why: the primary action stands OUTSIDE the scrolling half, so a harvest long
+        // enough to outgrow the sheet never scrolls the "keep" button out of reach.
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                modifier = Modifier
+                    .weight(1f, fill = false)
+                    .verticalScroll(rememberScrollState())
+                    .padding(Theme.spacing.lg),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
+            ) {
+                Text(chrome.briefingTitle, style = MaterialTheme.typography.titleLarge)
+                Text(chrome.briefingLead, style = MaterialTheme.typography.bodyMedium)
+                BriefingSteps(chrome)
+                Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+                    TextButton(onClick = {
+                        context.copyBrief(chrome.briefingTitle, briefing.text)
+                        copied = true
+                    }) { Text(if (copied) chrome.briefingCopied else chrome.commonCopy) }
+                    TextButton(onClick = { context.shareBrief(chrome.briefingTitle, briefing.text) }) {
+                        Text(chrome.briefingShare)
+                    }
                 }
-            }
-            HorizontalDivider(color = Theme.colors.separator)
-            Text(chrome.briefingReturnTitle, style = MaterialTheme.typography.titleMedium)
-            TextButton(onClick = {
-                val found = model.harvest(context.clipboardText())
-                harvested = found
-                picked = found.filter { it.kind == HarvestKind.New }
-                    .mapTo(mutableSetOf()) { it.word.target }
-                pasteWasEmpty = found.isEmpty()
-            }) { Text(chrome.briefingReturnPaste) }
-            if (pasteWasEmpty) {
-                Text(
-                    chrome.briefingReturnEmpty,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-            val toggle: (String) -> Unit = { target ->
-                picked = if (target in picked) picked - target else picked + target
-            }
-            harvested.groupBy { it.kind }.forEach { (kind, words) ->
-                HarvestGroup(heading(kind, chrome), words, picked, toggle)
+                HorizontalDivider(color = Theme.colors.separator)
+                Text(chrome.briefingReturnTitle, style = MaterialTheme.typography.titleMedium)
+                TextButton(onClick = {
+                    val found = model.harvest(context.clipboardText())
+                    harvested = found
+                    picked = found.filter { it.kind == HarvestKind.New }
+                        .mapTo(mutableSetOf()) { it.word.target }
+                    pasteWasEmpty = found.isEmpty()
+                }) { Text(chrome.briefingReturnPaste) }
+                if (pasteWasEmpty) {
+                    Text(
+                        chrome.briefingReturnEmpty,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                val toggle: (String) -> Unit = { target ->
+                    picked = if (target in picked) picked - target else picked + target
+                }
+                harvested.groupBy { it.kind }.forEach { (kind, words) ->
+                    HarvestGroup(heading(kind, chrome), words, picked, toggle)
+                }
             }
             if (harvested.isNotEmpty()) {
                 val kept = harvested.filter { it.word.target in picked }.map { it.word }
@@ -118,7 +122,8 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
                         onDismiss()
                     },
                     enabled = kept.isNotEmpty(),
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(horizontal = Theme.spacing.lg, vertical = Theme.spacing.md),
                     shape = MaterialTheme.shapes.small,
                 ) {
                     val label = if (kept.size == 1) chrome.briefingReturnKeepOne else chrome.briefingReturnKeep

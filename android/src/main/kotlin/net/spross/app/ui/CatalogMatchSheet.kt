@@ -57,42 +57,49 @@ internal fun CatalogMatchSheet(model: AppModel, onDismiss: () -> Unit) {
     }
 
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState()) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .padding(Theme.spacing.lg),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-        ) {
-            Text(chrome.boxOwnMatchTitle, style = MaterialTheme.typography.titleLarge)
-            if (matches.isEmpty()) {
-                Text(
-                    chrome.boxOwnMatchNone,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                return@Column
-            }
-            val toggle: (String) -> Unit = { id ->
-                picked = if (id in picked) picked - id else picked + id
-            }
-            // Kern hands the list back with the whole matches leading, so a run of one side
-            // is one heading — and a side kern grows later heads itself rather than going
-            // unshown.
-            matches.groupBy { it.side }.forEach { (side, run) ->
-                MatchGroup(model, heading(side, chrome), run, picked, toggle)
-            }
-            val kept = matches.filter { it.word.id in picked }
-            Button(
-                onClick = {
-                    model.merge(kept)
-                    onDismiss()
-                },
-                enabled = kept.isNotEmpty(),
-                modifier = Modifier.fillMaxWidth(),
-                shape = MaterialTheme.shapes.small,
+        // why: the primary action stands OUTSIDE the scrolling half, so a long run of
+        // matches never scrolls the "merge" button out of reach.
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                modifier = Modifier
+                    .weight(1f, fill = false)
+                    .verticalScroll(rememberScrollState())
+                    .padding(Theme.spacing.lg),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
             ) {
-                Text(chrome.boxOwnMatchMerge.format(kept.size))
+                Text(chrome.boxOwnMatchTitle, style = MaterialTheme.typography.titleLarge)
+                if (matches.isEmpty()) {
+                    Text(
+                        chrome.boxOwnMatchNone,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                } else {
+                    val toggle: (String) -> Unit = { id ->
+                        picked = if (id in picked) picked - id else picked + id
+                    }
+                    // Kern hands the list back with the whole matches leading, so a run of
+                    // one side is one heading — and a side kern grows later heads itself
+                    // rather than going unshown.
+                    matches.groupBy { it.side }.forEach { (side, run) ->
+                        MatchGroup(model, heading(side, chrome), run, picked, toggle)
+                    }
+                }
+            }
+            if (matches.isNotEmpty()) {
+                val kept = matches.filter { it.word.id in picked }
+                Button(
+                    onClick = {
+                        model.merge(kept)
+                        onDismiss()
+                    },
+                    enabled = kept.isNotEmpty(),
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(horizontal = Theme.spacing.lg, vertical = Theme.spacing.md),
+                    shape = MaterialTheme.shapes.small,
+                ) {
+                    Text(chrome.boxOwnMatchMerge.format(kept.size))
+                }
             }
         }
     }
