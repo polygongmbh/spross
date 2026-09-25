@@ -1,20 +1,30 @@
 package net.spross.app.ui
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
 
 /**
@@ -84,17 +94,23 @@ private fun Tile(
         else -> null
     }
     val palette = Theme.colors
-    val fill = when {
+    val target = when {
         answered && isAnswer -> palette.wash(palette.success)
         answered && isChosen -> palette.wash(palette.wrong)
         // A tile is a recessed slot, not a card: it takes the chip fill, so an unanswered
         // one still reads as a tile against the paper behind it.
         else -> palette.surfaceTint
     }
+    // why: the fill eases into its verdict instead of snapping the instant a pick lands.
+    val fill by animateColorAsState(target, turnTween(), label = "tileFill")
+    // why: the mark fades in rather than snapping alongside the fill.
+    val markAlpha by animateFloatAsState(if (mark != null) 1f else 0f, turnTween(), label = "tileMark")
+    val markColor = if (isAnswer) palette.success else palette.wrong
     OutlinedButton(
         onClick = onClick,
         enabled = !answered,
         shape = MaterialTheme.shapes.medium,
+        contentPadding = PaddingValues(0.dp),
         modifier = modifier.heightIn(min = Theme.reserve.tile).semantics {
             described?.let { contentDescription = it }
             if (answered && isAnswer) stateDescription = chrome.a11yVerdictCorrect
@@ -106,7 +122,16 @@ private fun Tile(
             disabledContentColor = MaterialTheme.colorScheme.onSurface,
         ),
     ) {
-        Text(option, style = optionStyle)
-        mark?.let { Text("  $it", style = MaterialTheme.typography.titleLarge) }
+        Box(Modifier.fillMaxSize().padding(Theme.spacing.sm), contentAlignment = Alignment.Center) {
+            Text(option, style = optionStyle)
+            // why: pinned to the tile's corner rather than appended after the word, and
+            // faded in rather than snapping in alongside the fill.
+            Text(
+                mark.orEmpty(),
+                style = MaterialTheme.typography.titleMedium,
+                color = markColor,
+                modifier = Modifier.align(Alignment.TopEnd).alpha(markAlpha),
+            )
+        }
     }
 }
