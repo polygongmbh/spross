@@ -67,16 +67,14 @@ class SprossActivity : ComponentActivity() {
     private val model: AppModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // why: the window's own theme resolves the status-bar icon polarity ONCE, at
-        // creation — and the manifest declares configChanges for uiMode, so a light/dark
-        // switch never recreates this activity. Compose recoloured underneath while the
-        // icons kept the old polarity. This owns both bars and re-applies on the change,
-        // and it is also the only thing that ever sets the NAVIGATION bar's icons, which
-        // the themes never named at all.
-        // Both bars fully transparent: the default styles lay a light SCRIM under the
-        // navigation bar, which paints a white band across the bottom of a stone-paper
-        // app. The window background is the paper (`@color/spross_window_background`),
-        // so with no scrim the bars simply show it.
+        // why: both bars fully transparent, and the navigation bar's own contrast scrim
+        // switched off — the default styles lay a light scrim under it, which paints a band
+        // across the bottom of a stone-paper app. The window background is the paper
+        // (`@color/spross_window_background`), so with no scrim the bars simply show it.
+        // `uiMode` is deliberately OUT of the manifest's configChanges: a live light/dark
+        // switch recreates the activity, which is what re-resolves the theme-qualified
+        // window background and reapplies this styling for the new column — the model
+        // survives the recreate ([viewModels]), so nothing the learner was doing is lost.
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
