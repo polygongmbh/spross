@@ -97,6 +97,16 @@ data class StoredBoxes(val boxes: Map<Language, StoredBox> = emptyMap()) {
      */
     fun restoring(imported: StoredBoxes): StoredBoxes = StoredBoxes(boxes + imported.boxes)
 
+    /**
+     * The language answered most recently — where a restore onto a phone with no box yet
+     * opens, being the one the learner was last in. A file with nothing answered opens on
+     * whichever language it lists first.
+     */
+    fun lastStudied(): Language? = boxes.maxByOrNull { (_, box) ->
+        box.scheduling.values.maxOfOrNull { it.log.lastOrNull()?.date ?: Instant.DISTANT_PAST }
+            ?: Instant.DISTANT_PAST
+    }?.key
+
     /** Answers per day across every language but [target] — the cross-language streak's input. */
     fun answerDaysExcept(target: Language, tzId: String): Map<String, Int> = mergeAnswerDays(
         boxes.filterKeys { it != target }.values.map { answerDays(it.scheduling, tzId) },

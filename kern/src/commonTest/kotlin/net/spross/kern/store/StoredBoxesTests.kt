@@ -4,6 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import net.spross.kern.box.Box
 import net.spross.kern.model.JoinStamp
+import net.spross.kern.model.Rating
 
 /** The store as a whole: writing one language back, restoring, and the cross-language days. */
 class StoredBoxesTests {
@@ -29,6 +30,15 @@ class StoredBoxesTests {
         assertEquals(setOf("uk", "sw"), restored.boxes.keys)
         assertEquals(emptyMap(), restored.boxes.getValue("uk").scheduling) // replaced
         assertEquals(sw.scheduling, restored.boxes.getValue("sw").scheduling) // untouched
+    }
+
+    @Test
+    fun aRestoreOpensOnTheLanguageAnsweredLast() {
+        val word = Box.word(1)
+        val later = Box.answered(Box.state(listOf(word)), word.id, Rating.Good, Box.plusSeconds(Box.day1, 86_400))
+            .copy(joinStamp = JoinStamp("de", "sw", "fixture"))
+        assertEquals("sw", StoredBoxes.EMPTY.with(uk).with(later).lastStudied())
+        assertEquals(null, StoredBoxes.EMPTY.lastStudied())
     }
 
     /** A day earns the streak whichever language it was spent on — but not twice. */
