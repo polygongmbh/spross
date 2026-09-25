@@ -407,6 +407,7 @@ interface Chrome {
     val briefingCopied: String
     val briefingShare: String
     val briefingReturnTitle: String
+    val briefingReturnLead: String
     val briefingReturnPaste: String
     val briefingReturnEmpty: String
     val briefingGroupNew: String

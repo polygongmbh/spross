@@ -48,6 +48,13 @@ struct BriefingSheet: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("common.done") { dismiss() }
                 }
+                // why: the paste can grow a long word list, so the accept action sits in
+                // the bar rather than below it — nobody scrolls the whole list to keep it.
+                if !harvested.isEmpty {
+                    ToolbarItem(placement: .confirmationAction) {
+                        keepButton
+                    }
+                }
             }
         }
         .tint(Theme.colors.accent)
@@ -109,6 +116,9 @@ struct BriefingSheet: View {
             Text("briefing.return.title")
                 .font(Theme.typography.headline)
                 .foregroundStyle(Theme.colors.textPrimary)
+            Text("briefing.return.lead")
+                .font(Theme.typography.subheadline)
+                .foregroundStyle(Theme.colors.textSecondary)
             Button {
                 paste()
             } label: {
@@ -122,7 +132,7 @@ struct BriefingSheet: View {
             }
             if !harvested.isEmpty {
                 harvestGroups
-                keepButton
+                bottomKeepButton
             }
         }
     }
@@ -196,7 +206,21 @@ struct BriefingSheet: View {
         return "\(found.word.source) · ≈ \(match)"
     }
 
+    /// Mirrors `bottomKeepButton` in the navigation bar (`.confirmationAction`) — a harvest
+    /// long enough to fill the sheet must never make the accept action a scroll away.
     private var keepButton: some View {
+        Button {
+            model.keepHarvested(kept)
+            dismiss()
+        } label: {
+            Text("briefing.return.keep \(kept.count)")
+        }
+        .disabled(kept.isEmpty)
+    }
+
+    /// Repeated below the list for a short harvest, where reaching up to the bar is
+    /// the extra step.
+    private var bottomKeepButton: some View {
         Button {
             model.keepHarvested(kept)
             dismiss()

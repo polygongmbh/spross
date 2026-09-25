@@ -93,6 +93,11 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
                 }
                 HorizontalDivider(color = Theme.colors.separator)
                 Text(chrome.briefingReturnTitle, style = MaterialTheme.typography.titleMedium)
+                Text(
+                    chrome.briefingReturnLead,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
                 TextButton(onClick = {
                     val found = model.harvest(context.clipboardText())
                     harvested = found

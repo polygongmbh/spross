@@ -373,6 +373,8 @@ internal object ChromeEn : Chrome {
     override val briefingCopied = "Copied"
     override val briefingShare = "Share"
     override val briefingReturnTitle = "Bring in the Harvest"
+    override val briefingReturnLead = "Paste the word list your chat sent back. New words " +
+        "are already picked — review them and keep the ones you want."
     override val briefingReturnPaste = "Paste"
     override val briefingReturnEmpty = "There is no word list in the clipboard."
     override val briefingGroupNew = "Brand new"
