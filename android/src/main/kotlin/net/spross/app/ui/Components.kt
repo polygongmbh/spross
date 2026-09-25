@@ -1,5 +1,8 @@
 package net.spross.app.ui
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -19,7 +22,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -87,13 +95,29 @@ fun SegmentsBar(
             .semantics { contentDescription = spoken },
         horizontalArrangement = Arrangement.spacedBy(if (slots > 40) 0.dp else 1.dp),
     ) {
-        segments.forEach { tone ->
+        segments.forEachIndexed { index, tone ->
             val color = when (tone) {
                 AnswerOutcome.Right -> palette.success
                 AnswerOutcome.Almost -> palette.amber
                 AnswerOutcome.Wrong -> palette.wrong
             }
-            Box(Modifier.weight(1f).fillMaxHeight().background(color))
+            // why: keyed on the index, so a segment already on screen holds its settled
+            // weight and color instead of replaying the entrance on every answer that
+            // follows it — only the newest slot grows in and eases into its tone.
+            key(index) {
+                val grown = remember { Animatable(0.001f) }
+                var settled by remember { mutableStateOf(false) }
+                LaunchedEffect(Unit) {
+                    settled = true
+                    grown.animateTo(1f, turnTween())
+                }
+                val eased by animateColorAsState(
+                    if (settled) color else palette.separator,
+                    turnTween(),
+                    label = "segmentColor",
+                )
+                Box(Modifier.weight(grown.value).fillMaxHeight().background(eased))
+            }
         }
         if (remaining > 0) {
             Box(Modifier.weight(remaining.toFloat()).fillMaxHeight().background(palette.separator))
@@ -211,7 +235,12 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
             stats.queued to palette.accent,
         ).filter { it.first > 0 }
         stretches.forEach { (count, color) ->
-            Box(Modifier.weight(count.toFloat()).fillMaxHeight().background(color, shape))
+            // why: keyed on the color, which is fixed per category — the stretch eases to
+            // a growing or shrinking share instead of jumping to it.
+            key(color) {
+                val weight by animateFloatAsState(count.toFloat(), turnTween(), label = "areaStretch")
+                Box(Modifier.weight(weight).fillMaxHeight().background(color, shape))
+            }
         }
         // The rest of the denominator holds the stretches to their true share of the
         // shelf, so a barely-packed area does not fill its bar.
