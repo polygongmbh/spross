@@ -10,10 +10,9 @@ import net.spross.kern.session.TurnFeedback
  * what it can ask is [WordScrambleAvailability.Report].
  *
  * It TYPES like the atlas and the slot run — writing the word out is the answer — so a Sprosse
- * changes how much help the cue gives and how much word there is to spell: the first three take
- * the anchors away one at a time ([WordScrambleMasking]) and every Sprosse, those included,
- * raises the length floor the pool is drawn against
- * ([WordScrambleAvailability.Report.lettersAt]). Nothing it does books a review; spelling a word
+ * changes how much help the cue gives and how much word there is to spell: the third takes the
+ * opening letter away ([WordScrambleMasking]) and every Sprosse, that one included, raises the
+ * length floor the pool is drawn against ([WordScrambleAvailability.Report.lettersAt]). Nothing it does books a review; spelling a word
  * back from its own letters is not the recall the schedule measures.
  *
  * Kern never self-randomizes: every draw and every mix takes the caller's [Random], so a seeded
@@ -22,11 +21,14 @@ import net.spross.kern.session.TurnFeedback
 object WordScrambleRun {
 
     /**
-     * Five clean spellings carry a Sprosse. Two made the ladder climb faster than the learner
-     * could feel it — a clean, an almost and a clean promoted on the third answer, which read
-     * as the almost having counted.
+     * Three clean spellings carry a Sprosse — the atlas', the calendar's and the sentence
+     * scramble's pacing ([CountryDrill.WINS_TO_ADVANCE]).
+     *
+     * The two the numbers and letter drills spend read wrong here: a clean, an almost and a
+     * clean promoted on the third answer, which looked like the almost having counted. Three
+     * keeps a clean answer between an almost and the Sprosse it does not buy.
      */
-    const val WINS_TO_ADVANCE: Int = 5
+    const val WINS_TO_ADVANCE: Int = 3
 
     /**
      * How wide the draw reaches into the shortest words the Sprosse still has unasked. The

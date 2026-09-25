@@ -17,6 +17,7 @@
 - The chat prompt now suggests only the words you sow, and its story and talk revolve around them, one or two at a time.
 - The numbers drill can now race a one-minute clock, each right answer scoring as many points as the Sprosse it was given on.
 - A numbers challenge can now be sent to someone as a short code, so both of you race the same questions and see whose score is higher.
+- Word scramble now climbs a Sprosse in three clean spellings instead of five, the pace the other drills keep.
 
 ## 7.4.2 — 2026-09-22
 
