@@ -171,7 +171,7 @@ private fun SprosseRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = 44.dp)
+            .heightIn(min = 48.dp)
             // why: one Sprosse is one TalkBack stop — the mark and the name describe a single
             // thing, and the state says what the circle's fill says.
             .then(if (open) Modifier.clickable(role = Role.Button, onClick = onClick) else Modifier)
