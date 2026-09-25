@@ -17,10 +17,13 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -30,6 +33,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.IntOffset
 import androidx.lifecycle.viewmodel.compose.viewModel
 import net.spross.app.ui.AboutScreen
@@ -48,6 +53,7 @@ import net.spross.app.ui.SentenceScrambleScreen
 import net.spross.app.ui.SessionScreen
 import net.spross.app.ui.SettingsScreen
 import net.spross.app.ui.SprossTheme
+import net.spross.app.ui.Theme
 import net.spross.app.ui.NumbersRunScreen
 import net.spross.app.ui.WordScrambleScreen
 
@@ -211,30 +217,27 @@ private fun Root(model: AppModel = viewModel()) {
  * The three sections, always one tap apart — and out of the way of anything the learner is
  * being asked to answer, which is every screen [asTab] returns null for.
  *
- * Glyph AND word on each: the bar is the one place a section's name is worth its room, and
- * the word is the whole reason the box does not need to be guessed from a plant.
+ * Glyph only; the section's name is what TalkBack reads.
+ * The bar is cut from the same fill as a card, so a hairline keeps a card above it apart.
  */
 @Composable
 private fun TabBar(model: AppModel, current: Tab) {
     val chrome = model.chrome
-    NavigationBar {
-        NavigationBarItem(
-            selected = current == Tab.Home,
-            onClick = { model.selectTab(Tab.Home) },
-            icon = { Text("\uD83C\uDFE0") },
-            label = { Text(chrome.homeName) },
-        )
-        NavigationBarItem(
-            selected = current == Tab.Box,
-            onClick = { model.selectTab(Tab.Box) },
-            icon = { Text("\uD83E\uDEB4") },
-            label = { Text(chrome.boxName) },
-        )
-        NavigationBarItem(
-            selected = current == Tab.Settings,
-            onClick = { model.selectTab(Tab.Settings) },
-            icon = { Text("\u2699\uFE0F") },
-            label = { Text(chrome.settingsTitle) },
-        )
+    Column {
+        HorizontalDivider(color = Theme.colors.separator)
+        NavigationBar {
+            TabItem(model, current, Tab.Home, "\uD83C\uDFE0", chrome.homeName)
+            TabItem(model, current, Tab.Box, "\uD83E\uDEB4", chrome.boxName)
+            TabItem(model, current, Tab.Settings, "\u2699\uFE0F", chrome.settingsTitle)
+        }
     }
+}
+
+@Composable
+private fun RowScope.TabItem(model: AppModel, current: Tab, tab: Tab, glyph: String, name: String) {
+    NavigationBarItem(
+        selected = current == tab,
+        onClick = { model.selectTab(tab) },
+        icon = { Text(glyph, Modifier.clearAndSetSemantics { contentDescription = name }) },
+    )
 }

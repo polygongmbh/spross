@@ -53,8 +53,8 @@ struct RootView: View {
     }
 
     private var home: some View {
-        // Each item is a glyph AND its section's name: the bar is the one place a name
-        // is worth its room. A grown tree rather than a leaf for the box — `leaf.fill`
+        // Each item is a glyph alone; its section's name is what VoiceOver reads.
+        // A grown tree rather than a leaf for the box — `leaf.fill`
         // is the learning tier's mark on the screen it opens, and the sprout is the
         // streak's. The bar fills the selected glyph itself.
         TabView(selection: $tab) {
@@ -65,19 +65,19 @@ struct RootView: View {
                 })
                 .toolbarBackground(.hidden, for: .navigationBar)
             }
-            .tabItem { Label("home.name", systemImage: "house") }
+            .tabItem { Image(systemName: "house").accessibilityLabel(Text("home.name")) }
             .tag(Tab.home)
 
             NavigationStack {
                 BoxView(model: model, revealArea: boxArea)
             }
-            .tabItem { Label("box.name", systemImage: "tree") }
+            .tabItem { Image(systemName: "tree").accessibilityLabel(Text("box.name")) }
             .tag(Tab.box)
 
             NavigationStack {
                 SettingsView(model: model)
             }
-            .tabItem { Label("settings.title", systemImage: "gearshape") }
+            .tabItem { Image(systemName: "gearshape").accessibilityLabel(Text("settings.title")) }
             .tag(Tab.settings)
         }
         .tint(Theme.colors.accent)

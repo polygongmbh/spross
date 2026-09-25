@@ -197,7 +197,7 @@ What licenses a second component is a parameter attempted and found not to carry
   every pair in new/near/held groups (`HarvestKind`), only the new group arrives ticked.
 - **Three peer sections** behind the tab bar: Home, Box, Settings.
   Bar is up on those three, gone for everything else.
-  Each item carries a glyph and its section's name.
+  Each item is a glyph alone; the section's name is its accessibility label.
 - **Home**: the day's line, session card (streak flame + counts or done state),
   listening card, trainer hub, companion card, 14-day strip, forest.
   Listening card under the round and above the trainers.
