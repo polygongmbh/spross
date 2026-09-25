@@ -82,13 +82,18 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
 
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(chrome.settingsBackupTitle, style = MaterialTheme.typography.titleMedium)
-        Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
+        // why: both buttons drop their own horizontal inset (SETTINGS_BUTTON_PADDING) to
+        // line up with the group's edge, so the gap between them is this arrangement's alone.
+        Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             // A plain button while the file can only say one thing, a choice once the
             // learner has a second language in the box: the whole box travels to a new
             // phone, one language is what they hand to someone learning it.
             val choosable = carried.size > 1 && target in carried
             Box {
-                TextButton(onClick = { if (choosable) menuOpen = true else start(null) }) {
+                TextButton(
+                    onClick = { if (choosable) menuOpen = true else start(null) },
+                    contentPadding = SETTINGS_BUTTON_PADDING,
+                ) {
                     Text(chrome.settingsBackupExport)
                 }
                 DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
@@ -104,7 +109,10 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
                 }
             }
             // Every type: providers label a .json file inconsistently, and the decode is the check.
-            TextButton(onClick = { import.launch(arrayOf("*/*")) }) {
+            TextButton(
+                onClick = { import.launch(arrayOf("*/*")) },
+                contentPadding = SETTINGS_BUTTON_PADDING,
+            ) {
                 Text(chrome.settingsBackupImport)
             }
         }

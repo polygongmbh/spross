@@ -3,10 +3,10 @@ package net.spross.app.ui
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -16,9 +16,10 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuAnchorType
+import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -38,7 +39,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -102,78 +102,77 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
         }
     }
 
+    val audioSources = model.audioSources(box.joinStamp.target)
+
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
         Text(chrome.settingsTitle, style = MaterialTheme.typography.headlineLarge)
-        Column(
-            modifier = Modifier.fillMaxWidth().panel(),
-        ) {
-            Column(
-                modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
-                verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
-            ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
-                    LanguageMenu(
-                        title = chrome.settingsKnownTitle,
-                        selected = selection.source,
-                        choices = catalog.coveredSources(),
-                        catalog = catalog,
-                        modifier = Modifier.weight(1f),
-                        enabled = !model.switchingLanguage,
-                        // The guard the whole picker rests on: only a language the catalog
-                        // DECLARES may be asked about its targets, so the rows come from
-                        // `coveredSources` and never from a device locale.
-                        onPick = { apply(LanguageChoices.pickSource(catalog, selection, it)) },
-                    )
-                    LanguageMenu(
-                        title = chrome.settingsLearningTitle,
-                        selected = selection.target ?: selection.source,
-                        choices = targets,
-                        catalog = catalog,
-                        modifier = Modifier.weight(1f),
-                        enabled = !model.switchingLanguage,
-                        onPick = { apply(LanguageChoices.pickTarget(selection, it)) },
-                    )
+        SettingsGroup {
+            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
+                LanguageMenu(
+                    title = chrome.settingsKnownTitle,
+                    selected = selection.source,
+                    choices = catalog.coveredSources(),
+                    catalog = catalog,
+                    modifier = Modifier.weight(1f),
+                    enabled = !model.switchingLanguage,
+                    // The guard the whole picker rests on: only a language the catalog
+                    // DECLARES may be asked about its targets, so the rows come from
+                    // `coveredSources` and never from a device locale.
+                    onPick = { apply(LanguageChoices.pickSource(catalog, selection, it)) },
+                )
+                LanguageMenu(
+                    title = chrome.settingsLearningTitle,
+                    selected = selection.target ?: selection.source,
+                    choices = targets,
+                    catalog = catalog,
+                    modifier = Modifier.weight(1f),
+                    enabled = !model.switchingLanguage,
+                    onPick = { apply(LanguageChoices.pickTarget(selection, it)) },
+                )
+            }
+            // why: the re-join and box walk behind a pick take a beat — said here rather
+            // than left silent, so a second tap while it settles reads as "still working"
+            // and not as the row having ignored the first one.
+            if (model.switchingLanguage) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    CircularProgressIndicator(modifier = Modifier.size(14.dp), strokeWidth = 2.dp)
+                    SettingHint(chrome.settingsProfileSwitching)
                 }
-                // why: the re-join and box walk behind a pick take a beat — said here rather
-                // than left silent, so a second tap while it settles reads as "still working"
-                // and not as the row having ignored the first one.
-                if (model.switchingLanguage) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        CircularProgressIndicator(modifier = Modifier.size(14.dp), strokeWidth = 2.dp)
-                        SettingHint(chrome.settingsProfileSwitching)
-                    }
-                } else {
-                    SettingHint(chrome.settingsProfileHint)
+            } else {
+                SettingHint(chrome.settingsProfileHint)
+            }
+        }
+        SettingsGroup { LearnerNameSetting(model) }
+        // why: a target with no voice at all offers nothing to group — see ReadAloudSetting.
+        if (!audioSources.silent) SettingsGroup { ReadAloudSetting(model, box.joinStamp.target) }
+        SettingsGroup {
+            BackupSetting(model, catalog, box.joinStamp.target)
+            Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
+                TextButton(
+                    onClick = { model.restartOnboarding() },
+                    contentPadding = SETTINGS_BUTTON_PADDING,
+                ) {
+                    Text(chrome.settingsRestartTutorialButton)
                 }
-                HorizontalDivider(color = Theme.colors.separator)
-                LearnerNameSetting(model)
-                HorizontalDivider(color = Theme.colors.separator)
-                ReadAloudSetting(model, box.joinStamp.target)
-                HorizontalDivider(color = Theme.colors.separator)
-                Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                    BackupSetting(model, catalog, box.joinStamp.target)
-                    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-                        TextButton(onClick = { model.restartOnboarding() }) {
-                            Text(chrome.settingsRestartTutorialButton)
+                SettingHint(chrome.settingsRestartTutorialHint)
+            }
+            Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
+                TextButton(
+                    onClick = {
+                        if ((model.stats?.consolidatedCount ?: 0) > 0) {
+                            resetExport.launch("Spross-${box.joinStamp.target}-${LocalDate.now()}.json")
+                        } else {
+                            confirmingReset = true
                         }
-                        SettingHint(chrome.settingsRestartTutorialHint)
-                    }
-                    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-                        TextButton(onClick = {
-                            if ((model.stats?.consolidatedCount ?: 0) > 0) {
-                                resetExport.launch("Spross-${box.joinStamp.target}-${LocalDate.now()}.json")
-                            } else {
-                                confirmingReset = true
-                            }
-                        }) {
-                            Text(chrome.settingsResetButton.format(targetName), color = Theme.colors.wrong)
-                        }
-                        SettingHint(chrome.settingsResetHint.format(targetName))
-                    }
+                    },
+                    contentPadding = SETTINGS_BUTTON_PADDING,
+                ) {
+                    Text(chrome.settingsResetButton.format(targetName), color = Theme.colors.wrong)
                 }
+                SettingHint(chrome.settingsResetHint.format(targetName))
             }
         }
         AboutFooter(model)
@@ -202,6 +201,28 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
 }
 
 /**
+ * One settings group: its own panel, replacing a `HorizontalDivider` that used to fake the
+ * seam inside one long card.
+ */
+@Composable
+private fun SettingsGroup(content: @Composable ColumnScope.() -> Unit) {
+    Column(modifier = Modifier.fillMaxWidth().panel()) {
+        Column(
+            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
+            content = content,
+        )
+    }
+}
+
+/**
+ * A settings `TextButton`'s own default inset reads as indented under the label above it;
+ * dropping the horizontal half lines its text up with the group's own edge instead.
+ * Shared with [BackupSetting], whose Export/Import buttons sit in the same groups.
+ */
+internal val SETTINGS_BUTTON_PADDING = PaddingValues(horizontal = 0.dp, vertical = Theme.spacing.sm)
+
+/**
  * One side of the pair. The collapsed label carries the flag and the English exonym — it
  * has half a row to live in — while the open menu has room for "🇺🇦 Українська · Ukrainian".
  *
@@ -209,7 +230,14 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
  * accent ink and centered it, so the name read as an action and a label too wide for half a
  * row was clipped from both ends down to its flag. Here the name is text on a control — ink
  * on the recessed fill, left where a value belongs, stepping down before it is cut.
+ *
+ * [ExposedDropdownMenuBox] carries the open/close and positioning — the menu now matches the
+ * field's own width and dismisses on the platform's own terms — but the anchor stays this
+ * row rather than a full M3 `TextField`: a filled field's fixed label gutter would cost the
+ * pill its 48 dp floor and the autosize step that keeps a long exonym ("Українська") on one
+ * line without shrinking below [PICKER_FLOOR].
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun LanguageMenu(
     title: String,
@@ -224,7 +252,7 @@ private fun LanguageMenu(
     val label = LanguageChoices.pickerLabel(selected, catalog.languages[selected])
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(title, style = MaterialTheme.typography.titleMedium)
-        Box {
+        ExposedDropdownMenuBox(expanded = open, onExpandedChange = { open = it }) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -233,7 +261,7 @@ private fun LanguageMenu(
                     .pressSpring()
                     .clip(MaterialTheme.shapes.small)
                     .background(Theme.colors.surfaceTint)
-                    .clickable(enabled = enabled, role = Role.DropdownList) { open = true }
+                    .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, enabled)
                     // why: one stable label, the pick as its VALUE — the field's own text is
                     // a merged child, so without this TalkBack announces which language but
                     // never which of the two questions it answers.
@@ -260,11 +288,16 @@ private fun LanguageMenu(
                     modifier = Modifier.size(16.dp),
                 )
             }
-            DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
+            ExposedDropdownMenu(expanded = open, onDismissRequest = { open = false }) {
                 choices.forEach { code ->
                     DropdownMenuItem(
                         text = { Text(LanguageChoices.pickerRow(code, catalog.languages[code])) },
                         onClick = { open = false; onPick(code) },
+                        // why: the open list marks the CURRENT pick — otherwise the only
+                        // trace of it is the field text now hidden behind the menu.
+                        trailingIcon = if (code == selected) {
+                            { Icon(SprossIcons.Check, contentDescription = null, tint = Theme.colors.accent) }
+                        } else null,
                     )
                 }
             }
