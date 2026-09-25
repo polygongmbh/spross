@@ -74,10 +74,7 @@ data class DrillRunSummary(
     /** A timed run's score, and the challenge it answered; null for a run that was not timed. */
     val timed: TimedOutcome? = null,
 ) {
-    /**
-     * What a record store holds for this run: a timed run's score, every other run's best
-     * streak — the figure [newRecord] was measured on.
-     */
+    /** The record figure: a timed run's score, otherwise the best streak. */
     val recordFigure: Int get() = timed?.score ?: bestStreak
 
     val tier: StreakTier

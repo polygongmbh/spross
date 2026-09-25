@@ -62,8 +62,7 @@ extension NumbersRunView {
 
     @ViewBuilder private var streakLine: some View {
         if let deadline {
-            // why: the seconds left are a timeline, so the line redraws once a second
-            // and nothing else about the run has to.
+            // why: a timeline redraws only this line each second.
             TimelineView(.periodic(from: .now, by: 1)) { context in
                 scoreLine(timed: timedParts(left: deadline.timeIntervalSince(context.date)))
             }

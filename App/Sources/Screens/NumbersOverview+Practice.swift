@@ -70,8 +70,7 @@ extension NumbersOverview {
 
     // MARK: - How it is played
 
-    /// Every modifier, bar Timed under VoiceOver or Switch Control: a run that
-    /// ends under the learner is the timed change a screen reader is spared.
+    /// Every modifier, minus Timed under VoiceOver or Switch Control.
     private var playable: [DrillModifier] {
         DrillModifier.allCases.filter { $0 != .timed || !AutoAdvance.screenReaderOn }
     }

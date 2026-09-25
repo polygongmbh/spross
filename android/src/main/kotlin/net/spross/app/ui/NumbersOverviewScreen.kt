@@ -94,7 +94,7 @@ fun NumbersOverviewScreen(model: AppModel) {
             if (!combining) OverviewNote(chrome.numbersCombineLocked)
         }
         OverviewPanel {
-            // why: a run that ends under the learner is the timed change a screen reader is spared.
+            // why: timed runs are hidden from screen reader users.
             val playable = DrillModifier.entries.filter {
                 it != DrillModifier.Timed || !model.pronouncer.readsScreenAloud
             }
@@ -109,8 +109,7 @@ fun NumbersOverviewScreen(model: AppModel) {
             }
         }
         OverviewStartButton(chrome, picked.isNotEmpty(), start)
-        // why: a challenge is timed, and a run ending under the learner is the timed change a
-        // screen reader is spared.
+        // why: challenges are timed, which screen reader users are spared.
         if (!model.pronouncer.readsScreenAloud) NumbersChallengeSection(model, picks)
 
         OverviewHeading(chrome.numbersReference)

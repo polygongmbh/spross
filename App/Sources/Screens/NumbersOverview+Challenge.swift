@@ -1,10 +1,8 @@
 import SwiftUI
 import SprossKern
 
-/// The challenge half of the numbers overview: a timed run two learners play on
-/// the same questions, started here and sent as a code, or started from a code
-/// someone sent. What a code carries, and what refuses one, is kern's
-/// (`NumbersChallenge`); state lives on NumbersOverview, split out for file size.
+/// The numbers overview's challenge section: start one and share its code, or enter a code.
+/// Code rules are kern's (`NumbersChallenge`); state lives on NumbersOverview.
 extension NumbersOverview {
 
     var challengeSection: some View {
@@ -32,8 +30,7 @@ extension NumbersOverview {
         }
     }
 
-    /// Whether the picks hold anything a code can carry — Phrases, prompted in
-    /// the learner's own language, stays home.
+    /// Whether the picks hold anything besides Phrases.
     private var challengeOffered: Bool {
         NumbersChallenge.companion.offered(mode: buildMode())
     }

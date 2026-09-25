@@ -1,16 +1,11 @@
 package net.spross.kern.trainer
 
 /**
- * A run played against a clock ([DrillModifier.Timed]): it ends when the time is up and is
- * worth a SCORE rather than a streak.
+ * A run against a clock ([DrillModifier.Timed]), scored instead of streaked.
  *
- * Each clean answer scores the Sprosse it was given on, so the ramp ([DrillRamp.step]) is
- * the whole of the scoring: a miss drops the run a Sprosse and every later answer is worth
- * less, and an almost scores nothing and still spends the seconds it took. No penalty of its
- * own is needed on top.
- *
- * The TIMER is the platform's, like every other timer a run arms; kern names how long it
- * runs and takes [NumbersIntent.TimeUp] when it elapses.
+ * Each clean answer scores its Sprosse, so the ramp ([DrillRamp.step]) is the penalty:
+ * a miss drops a Sprosse, an almost scores nothing.
+ * The platform owns the timer and sends [NumbersIntent.TimeUp].
  */
 object TimedRun {
 
@@ -22,10 +17,7 @@ object TimedRun {
         if (correct && clean) maxOf(1, level) else 0
 }
 
-/**
- * What a timed run came to: its score, and — for a challenge — the challenge it answered,
- * which is what the result tile compares against and what the reply is spelled from.
- */
+/** A timed run's score and, for a challenge, the challenge it answered. */
 data class TimedOutcome(
     val score: Int,
     val challenge: NumbersChallenge?,

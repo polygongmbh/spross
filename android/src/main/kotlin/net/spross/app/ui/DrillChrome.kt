@@ -103,8 +103,7 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
             .fillMaxWidth()
             .background(Theme.colors.surfaceTint, MaterialTheme.shapes.medium)
             .padding(Theme.spacing.lg)
-            // why: one TalkBack stop — the figures describe a single run — unless it carries
-            // a code to send, whose button has to stay reachable.
+            // why: one TalkBack stop, unless a share button must stay reachable.
             .semantics(mergeDescendants = summary.timed?.replyCode == null) { },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
@@ -136,10 +135,7 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
     }
 }
 
-/**
- * What a timed run adds to the tile: its score, how it stands against the score a challenge's
- * code arrived with, and the code to send back.
- */
+/** A timed run's tile additions: score, comparison with a challenge, and the reply code. */
 @Composable
 private fun TimedLines(timed: TimedOutcome, chrome: Chrome) {
     Text(
@@ -163,7 +159,7 @@ private fun TimedLines(timed: TimedOutcome, chrome: Chrome) {
     }
 }
 
-/** The share sheet, which is how a code reaches the other player without this app knowing how. */
+/** Shares a code through the system share sheet. */
 private fun Context.shareChallenge(text: String) {
     val send = Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"

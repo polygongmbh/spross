@@ -1,14 +1,10 @@
 import SwiftUI
 import SprossKern
 
-/// The clock of a timed run. Kern names how long it lasts (`TimedRun.SECONDS`)
-/// and what running out does (`NumbersIntent.TimeUp`: the run is over, and the
-/// close books a pending answer as the ✕ would); the timer and the seconds on
-/// screen are this side's. State lives on NumbersRunView; split out for file size.
+/// A timed run's clock; kern sets the length (`TimedRun.SECONDS`) and handles `NumbersIntent.TimeUp`.
 extension NumbersRunView {
 
-    /// Started once the run is on screen, and cancelled with it — a run closed
-    /// early must not be told its time is up.
+    /// Started with the run on screen and cancelled with it.
     func runClock() async {
         guard run.timed, deadline == nil else { return }
         let seconds = Int(TimedRun.shared.SECONDS)

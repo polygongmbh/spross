@@ -51,8 +51,7 @@ struct NumbersRunView: View, LanguageNaming {
     @State var answerVoice = AnswerVoice()
     /// Second focus attempt for a field that remounts (see focusAnswerField).
     @State var focusRetry: Task<Void, Never>?
-    /// When a timed run's clock runs out; nil for every other run, and until the
-    /// run is on screen (NumbersRunView+Clock.swift).
+    /// When a timed run's clock runs out; nil otherwise and until on screen.
     @State var deadline: Date?
     @FocusState var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) var reduceMotion
@@ -62,8 +61,7 @@ struct NumbersRunView: View, LanguageNaming {
         self.init(mode: .slots(reading, language))
     }
 
-    /// `challenge` replaces the ramp with its script (`NumbersChallenge.open`), and
-    /// then `mode` is the challenge's own.
+    /// `challenge` replaces the ramp with its script (`NumbersChallenge.open`).
     init(mode: NumbersMode, challenge: NumbersChallenge? = nil, normalizer: AnswerNormalizer? = nil,
          catalog: Catalog? = nil, model: AppModel? = nil,
          onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {

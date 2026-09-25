@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- The welcome screen now offers to import a backup from another phone, skipping straight to the restored box.
 - New cards for message, to last and to happen come with the phrases From Monday to Friday, My parents come from Italy and What happened?
 - Training in the sense of a workout or practice session now has its own card in Practice & Goals.
 - A new Studies and Training shelf covers university, lectures, internships, vocational school and further training, and school gains the report card.
@@ -14,10 +15,10 @@
 - Your typed answer now sits centered under the card instead of at the left edge.
 - On iPhone, Switch Control and Full Keyboard Access now reach the word rows that speak when tapped.
 - On the watch, a word you have only just met now shares its question with another new word whenever you have one, so it can no longer be picked as the one you don't recognize.
-- The chat prompt now suggests only the words you sow, and its story and talk revolve around them, one or two at a time.
-- The numbers drill can now race a one-minute clock, each right answer scoring as many points as the Sprosse it was given on.
-- A numbers challenge can now be sent to someone as a short code, so both of you race the same questions and see whose score is higher.
-- Word scramble now climbs a Sprosse in three clean spellings instead of five, the pace the other drills keep.
+- The chat prompt now suggests only the words you sow and builds its story around them.
+- The numbers drill can now race a one-minute clock, scoring each right answer by its Sprosse.
+- A numbers challenge can now be sent as a short code, so two people race the same questions.
+- Word scramble now climbs a Sprosse after three clean spellings instead of five.
 
 ## 7.4.2 — 2026-09-22
 

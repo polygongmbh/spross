@@ -32,17 +32,15 @@ import net.spross.kern.trainer.NumbersMode
 import net.spross.kern.trainer.TimedRun
 
 /**
- * The challenge half of the numbers overview: a timed run two learners play on the same
- * questions, started here and sent as a code, or started from a code someone sent. What a
- * code carries, and what refuses one, is kern's ([NumbersChallenge]); [picks] is the run the
- * page's picks describe, which a fresh challenge is cut from.
+ * The numbers overview's challenge section: start one from [picks] and share its code, or enter
+ * a code. Code rules are kern's ([NumbersChallenge]).
  */
 @Composable
 fun NumbersChallengeSection(model: AppModel, picks: NumbersMode) {
     val chrome = model.chrome
     var code by rememberSaveable { mutableStateOf("") }
     var refusal by remember { mutableStateOf<String?>(null) }
-    // Phrases, prompted in the learner's own language, stays home.
+    // Phrases cannot travel.
     val offered = NumbersChallenge.offered(picks)
     val accept = {
         refusal = when (val reading = NumbersChallenge.read(code, picks.language)) {

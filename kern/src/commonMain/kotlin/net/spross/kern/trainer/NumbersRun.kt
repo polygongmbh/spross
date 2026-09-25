@@ -123,8 +123,7 @@ object NumbersRun {
         if (ended.done == 0) {
             return NumbersClose(ended, null, state.mode.recordKey, emptyMap(), effects)
         }
-        // why: a challenge's Sprossen are the script's, not climbed — it books no ladder and no
-        // record, and its score is measured against the other player instead.
+        // why: a challenge follows its script, so it books no ladder and no record.
         val scripted = state.challenge != null
         val bookings = if (scripted) emptyMap() else ended.bestLevels
             .map { (exercise, best) -> state.mode.progressKey(exercise) to best }

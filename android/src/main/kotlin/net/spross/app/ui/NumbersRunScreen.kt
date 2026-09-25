@@ -49,8 +49,7 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
     val state = flow.state
     val store = model.trainer.store
 
-    // What the result tile says was drilled: a challenge is named as one, a run that asks one
-    // thing names it, and one that interleaves several falls back to the hub card's own title.
+    // The result tile's title: the challenge, the single exercise, or the hub card's title.
     val title = if (challenge != null) {
         chrome.trainerChallengeTitle
     } else {
@@ -120,11 +119,7 @@ private fun sprosseText(state: NumbersRunState, chrome: Chrome): String? {
     return "${chrome.badge(state.currentExercise)} $level"
 }
 
-/**
- * A timed run's clock: the seconds left, ticking once a second, and the kern intent once they
- * are out. Kern names how long it lasts ([TimedRun.SECONDS]) and what running out does; the
- * timer is this platform's. Null for a run that is not timed.
- */
+/** A timed run's seconds left, sending kern's intent at zero; null when untimed. */
 @Composable
 private fun timedClock(flow: NumbersFlow): Int? {
     if (!flow.state.timed) return null

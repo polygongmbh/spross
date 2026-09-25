@@ -162,8 +162,7 @@ struct DrillResultTile: View {
                 .foregroundStyle(Theme.colors.textSecondary)
         }
         .panelSurface(Theme.colors.surfaceTint)
-        // why: one VoiceOver stop — the figures describe a single run — unless
-        // it carries a code to send, whose button has to stay reachable.
+        // why: one VoiceOver stop, unless a share button must stay reachable.
         .accessibilityElement(children: result.timed?.replyCode == nil ? .combine : .contain)
     }
 
@@ -178,8 +177,7 @@ struct DrillResultTile: View {
         }
     }
 
-    /// What the share sheet sends, in the chrome language — a String rather
-    /// than a Text, so it has to be resolved against the locale by hand.
+    /// The share text, resolved by hand against the chrome locale.
     private func message(score: Int, code: String) -> String {
         let format = ChromeStrings.string("trainer.challenge.message %lld %@", locale: locale)
         return String(format: format, score, code)

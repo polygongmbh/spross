@@ -28,10 +28,7 @@ sealed interface Screen {
 
     data object Dates : Screen
 
-    /**
-     * A slot run, carrying the spec the page it was started from spelled — and, for a
-     * challenge, the script that stands in for the ramp ([NumbersChallenge.mode] is then [mode]).
-     */
+    /** A slot run with its page's spec, or a [challenge] whose script replaces the ramp. */
     data class NumbersRun(val mode: NumbersMode, val challenge: NumbersChallenge? = null) : Screen
 
     data object LetterDrill : Screen

@@ -73,8 +73,7 @@ class NumbersFlow(
 }
 
 /**
- * The run a mode opens — or, for a [challenge], the one its script opens — or null before the
- * catalog has landed.
+ * The run a mode or [challenge] opens; null before the catalog has loaded.
  *
  * The normalizer is the STRICT drill one — no article leniency, one slip per word, nothing
  * forgiven inside a digit — built for the language being answered in.

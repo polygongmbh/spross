@@ -52,8 +52,7 @@ struct NumbersOverview: View {
                           // readings get long enough to test the wrap.
                           scrollAnchor: DrillUITest.anchor(["table": .center, "notes": .bottom])) {
             practiceSection
-            // why: a challenge is timed, and a run ending under the learner is the
-            // timed change a screen reader is spared.
+            // why: challenges are timed, which screen reader users are spared.
             if !AutoAdvance.screenReaderOn { challengeSection }
             referenceSection
             notesSection
@@ -114,8 +113,7 @@ struct NumbersOverview: View {
     }
 }
 
-/// What a start tap opens: the run the picks describe, or a challenge, whose
-/// script stands in for the ramp and whose mode is its own.
+/// What a start tap opens: the picked run, or a challenge.
 struct NumbersLaunch {
     let mode: NumbersMode
     var challenge: NumbersChallenge?

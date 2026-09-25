@@ -55,8 +55,7 @@ extension NumbersRunView: DrillRunning {
                                              standingRecord: Int32(TrainerRecords.best(for: mode.recordKey)),
                                              standingProgress: standingProgress)
         if let summary = closed.summary {
-            // why: kern already measured the record — a timed run's is its score, and a
-            // challenge sets none — so only a fallen one is written.
+            // why: kern measures the record; only a broken one is written.
             if summary.newRecord { TrainerRecords.record(Int(summary.recordFigure), for: closed.recordKey) }
             TrainerProgress.book(closed.progressBookings)
         }

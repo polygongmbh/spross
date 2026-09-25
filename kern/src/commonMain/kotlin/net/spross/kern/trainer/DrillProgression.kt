@@ -57,8 +57,7 @@ object DrillUnlocks {
         // carries the numbers climb with it, and asking for the billions on top would
         // price a way of PLAYING a run above the exercises it plays.
         DrillModifier.Mix to mapOf(NumbersExercise.Forms to 5),
-        // why: a race scores the Sprosse each answer stands on, so it waits until there
-        // is a ladder worth racing up — the same four digits that open the clock.
+        // why: a race scores by Sprosse, so it opens with the clock, once the ladder has height.
         DrillModifier.Timed to mapOf(NumbersExercise.Counting to 4),
     )
 

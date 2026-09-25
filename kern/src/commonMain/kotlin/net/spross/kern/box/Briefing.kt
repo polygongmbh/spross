@@ -18,9 +18,8 @@ data class BriefArea(val title: String, val words: List<String>)
  * and written in English — neither of the learner's two languages, and the one every
  * assistant reads best. Those two are NAMED inside it, never translated around.
  *
- * [GrowthStage.Suspended] and every unscheduled word the learner did not sow appear
- * nowhere: what is listed is where to reach FIRST, never a fence. [OwnWords] are out as well — the box's most
- * personal content, and this is the one text that leaves the device.
+ * [GrowthStage.Suspended] and unsown unscheduled words are left out; the list is where to start, not a limit.
+ * [OwnWords] are left out too: this is the one text that leaves the device.
  */
 data class Briefing(
     val learnerName: String?,
@@ -89,10 +88,7 @@ data class Briefing(
         explain only if asked or the mistake repeats.
     """.trimIndent()
 
-    /**
-     * The opening turn: something to read, before the learner has had to say anything.
-     * Sown words are an explicit ask, so they set the topic whenever there are any.
-     */
+    /** The opening turn: something to read. Sown words set the topic when there are any. */
     private fun firstTurn(): String = """
         START HERE, before I say anything:
         ${storyTopic()}
@@ -169,8 +165,7 @@ object Briefings {
                 )
             }
         val learning = learningCards.map { BriefWord(targetForm(it), it.source.text) }
-        // Only the learner's own ask names what is next — a locked phrase too:
-        // a conversation needs none of the unlock a round waits for.
+        // Only sown words are named, locked phrases included.
         val sownCards = state.enqueued.asReversed()
             .filter { state.scheduling[it] == null }
             .mapNotNull { state.cards[it] }

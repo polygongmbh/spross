@@ -24,10 +24,7 @@ sealed class NumbersIntent {
     /** The platform's armed beat elapsed. */
     data object AdvanceElapsed : NumbersIntent()
 
-    /**
-     * A timed run's clock ran out ([TimedRun.SECONDS]): the run is over, and its close books
-     * a pending answer exactly as the ✕ would. Ignored by a run that is not timed.
-     */
+    /** The clock ran out: the run ends and books a pending answer as the ✕ would. Ignored untimed. */
     data object TimeUp : NumbersIntent()
 }
 
@@ -127,10 +124,7 @@ data class NumbersRunState(
      */
     val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
 
-    /**
-     * The numbers page is one tap away from a numbers task, and from no other — and not
-     * against a clock, where reading the answer up would be the fastest way to score.
-     */
+    /** The numbers page link shows on numbers tasks only, and never in a timed run. */
     val offersLookUp: Boolean get() = currentExercise == NumbersExercise.Counting && !timed
 
     /**

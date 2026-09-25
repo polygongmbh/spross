@@ -5,22 +5,16 @@ import net.spross.kern.model.Language
 import net.spross.kern.session.TurnFeedback
 
 /**
- * A timed numbers run two learners can play on the SAME questions, carried from one phone to
- * the other as a short code (`ES-K4F7-2Q7M`, optionally `-42` with the sender's score).
+ * A timed numbers run two learners play on the same questions, shared as a short code
+ * (`ES-K4F7-2Q7M`, optionally `-42` with the sender's score).
  *
- * No server: one seed spells the whole question list, and kern's [Random] draws the same
- * values on every platform. What the run cannot be is a ramp — a ramp answers the learner,
- * so two players' questions would part at the first miss. A challenge is a SCRIPT instead
- * ([tasks]): question k is drawn at Sprosse `1 + k / 2`, whatever was answered before it,
- * and scored like any timed run ([TimedRun.points]).
+ * The seed spells the whole question list, since kern's [Random] draws the same on every platform.
+ * Unlike a ramp it is a fixed SCRIPT ([tasks]): question k is at Sprosse `1 + k / 2` regardless
+ * of earlier answers, so both players' questions stay identical.
  *
- * Only exercises whose prompt never depends on the SOURCE language travel — digits one way,
- * the learned language's own reading the other — so a German and an English speaker who both
- * learn Spanish meet the same card. Phrases, prompted in the source, does not.
- *
- * The code's check is taken over the questions it spells, not only over its own letters, so
- * a code typed wrong and a code made by an app that draws differently are refused alike —
- * a challenge never silently hands two players two different runs.
+ * Only exercises independent of the source language travel; Phrases does not.
+ * The check covers the spelled questions too, so a mistyped code or one from a differently
+ * drawing app is refused.
  */
 data class NumbersChallenge(
     val language: Language,
@@ -49,10 +43,7 @@ data class NumbersChallenge(
     /** Every question of the run, in order, with the Sprosse it is scored at. */
     val tasks: List<ChallengeTask> by lazy { script() }
 
-    /**
-     * The run: the script's first question at the Sprosse it sets, and every later one out of
-     * the script rather than the ramp's draw ([drawAt]). Nothing random is left to take.
-     */
+    /** The run, every question taken from the script ([drawAt]). */
     fun open(): NumbersRunState {
         val opening = drawAt(0, emptyMap())
         return NumbersRunState(
@@ -79,10 +70,7 @@ data class NumbersChallenge(
         return if (score == null) base else "$base-$score"
     }
 
-    /**
-     * Question [index] as a draw — the Sprosse the script puts it at, with the exercise that
-     * asks it moved there; a null task past the end, which ends the run.
-     */
+    /** Question [index] as a draw at its Sprosse; a null task past the end ends the run. */
     internal fun drawAt(index: Int, levels: Map<NumbersExercise, Int>): NumbersDraw {
         val next = tasks.getOrNull(index) ?: return NumbersDraw(null, levels)
         return NumbersDraw(next.drawn, levels + (next.drawn.exercise to next.level))
@@ -140,10 +128,7 @@ data class NumbersChallenge(
         /** Whether [create] has anything to send out of these picks. */
         fun offered(mode: NumbersMode): Boolean = mode.exercises.any { it in TRAVELLING }
 
-        /**
-         * A fresh challenge out of the run the page describes: its exercises bar Phrases, and
-         * its direction. Null where nothing it picks can travel — a Phrases-only pick.
-         */
+        /** A fresh challenge from the page's picks, minus Phrases; null if nothing is left. */
         fun create(mode: NumbersMode, rng: Random): NumbersChallenge? {
             if (!offered(mode)) return null
             val exercises = mode.exercises.filter { it in TRAVELLING }
@@ -157,10 +142,7 @@ data class NumbersChallenge(
             )
         }
 
-        /**
-         * A code as a learner typed or pasted it, read for someone learning [language].
-         * Case, spaces and dashes are forgiven, and so are O for 0 and I or L for 1.
-         */
+        /** Parses a typed code for [language], forgiving case, spaces, dashes, O for 0 and I/L for 1. */
         fun read(text: String, language: Language): ChallengeReading {
             val plain = text.uppercase().filter { it.isLetterOrDigit() }
             if (plain.length < 2 + PAYLOAD_CHARS) return ChallengeReading.Unreadable
@@ -200,7 +182,7 @@ data class NumbersChallenge(
             else -> c
         }
 
-        /** FNV-1a over UTF-8: the same number on every platform, which [String.hashCode] is not promised to be. */
+        /** FNV-1a over UTF-8: stable across platforms, unlike [String.hashCode]. */
         private fun fnv1a(text: String): Int =
             text.encodeToByteArray().fold(FNV_OFFSET) { hash, byte ->
                 (hash xor (byte.toInt() and 0xFF)) * FNV_PRIME
@@ -218,7 +200,7 @@ data class ChallengeTask(val drawn: DrawnTask, val level: Int)
 sealed class ChallengeReading {
     data class Ready(val challenge: NumbersChallenge) : ChallengeReading()
 
-    /** A good code for another learned language — the page names it rather than refusing blind. */
+    /** A valid code for another learned language. */
     data class OtherLanguage(val language: Language) : ChallengeReading()
 
     /** Mistyped, cut short, or made by an app that would draw other questions from it. */
