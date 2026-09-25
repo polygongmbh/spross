@@ -24,8 +24,10 @@
   "married": { "text": "одружений", "accepts": ["заміжня"] },
   "divorced": { "text": "розлучений", "accepts": ["розлучена"] },
   "widowed": { "text": "вдівець", "accepts": ["вдова"] },
+  "age": { "text": "вік" },
   "fill-out-the-form": { "text": "Заповніть бланк." },
   "what-is-your-last-name": { "text": "Яке ваше прізвище?" },
-  "she-is-divorced": { "text": "Вона розлучена." }
+  "she-is-divorced": { "text": "Вона розлучена." },
+  "how-old-are-you": { "text": "Скільки вам років?", "accepts": ["Скільки тобі років?"] }
  }
 }

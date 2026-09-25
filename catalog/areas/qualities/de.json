@@ -36,6 +36,7 @@
   "healthy": { "text": "gesund" },
   "firm": { "text": "fest", "teaches": ["stabil"] },
   "liquid": { "text": "flüssig" },
+  "young": { "text": "jung" },
   "a-lot-of-water": {
    "text": "viel Wasser",
    "notes": {

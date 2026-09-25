@@ -24,8 +24,10 @@
   "married": { "text": "edziĝinta", "accepts": ["edziniĝinta"] },
   "divorced": { "text": "eksedziĝinta", "accepts": ["eksedziniĝinta"] },
   "widowed": { "text": "vidva" },
+  "age": { "text": "aĝo" },
   "fill-out-the-form": { "text": "Plenigu la formularon.", "accepts": ["Plenskribu la formularon."] },
   "what-is-your-last-name": { "text": "Kio estas via familia nomo?" },
-  "she-is-divorced": { "text": "Ŝi estas eksedziniĝinta." }
+  "she-is-divorced": { "text": "Ŝi estas eksedziniĝinta." },
+  "how-old-are-you": { "text": "Kiom aĝa vi estas?" }
  }
 }

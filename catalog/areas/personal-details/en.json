@@ -24,8 +24,10 @@
   "married": { "text": "married" },
   "divorced": { "text": "divorced" },
   "widowed": { "text": "widowed" },
+  "age": { "text": "age" },
   "fill-out-the-form": { "text": "Fill out the form." },
   "what-is-your-last-name": { "text": "What is your last name?" },
-  "she-is-divorced": { "text": "She is divorced." }
+  "she-is-divorced": { "text": "She is divorced." },
+  "how-old-are-you": { "text": "How old are you?" }
  }
 }

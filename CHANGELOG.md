@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Age and How old are you? join Personal Details, and young joins old among the qualities.
 - Life & Death grows into a shelf about the stages of life: childhood, youth, growing up and getting old, and the words and condolences around a funeral.
 - On Android, swiping back now previews the screen behind before you let go.
 - On Android, About gets a back arrow, Settings splits into separate cards, Box shelves show whether they are open, and drills animate their progress and answers.

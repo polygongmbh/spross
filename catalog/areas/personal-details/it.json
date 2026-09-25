@@ -28,8 +28,10 @@
   "married": { "text": "sposato", "accepts": ["sposata", "coniugato", "coniugata"] },
   "divorced": { "text": "divorziato", "accepts": ["divorziata"] },
   "widowed": { "text": "vedovo", "accepts": ["vedova"] },
+  "age": { "text": "età", "accepts": ["l'età"], "grammar": { "gender": "l'", "plural": "=" } },
   "fill-out-the-form": { "text": "Compili il modulo.", "accepts": ["Compila il modulo.", "Riempia il modulo."] },
   "what-is-your-last-name": { "text": "Qual è il suo cognome?" },
-  "she-is-divorced": { "text": "È divorziata.", "accepts": ["Lei è divorziata."] }
+  "she-is-divorced": { "text": "È divorziata.", "accepts": ["Lei è divorziata."] },
+  "how-old-are-you": { "text": "Quanti anni ha?", "accepts": ["Quanti anni hai?"] }
  }
 }

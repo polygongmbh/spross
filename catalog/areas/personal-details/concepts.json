@@ -5,6 +5,7 @@
  { "slug": "phone-number", "kind": "noun", "emoji": "📞" },
  { "slug": "email-address", "kind": "noun", "emoji": "📧" },
  { "slug": "date-of-birth", "kind": "noun", "emoji": "🎂" },
+ { "slug": "age", "kind": "noun" },
  { "slug": "place-of-birth", "kind": "noun" },
  { "slug": "nationality", "kind": "noun" },
  { "slug": "married", "kind": "adjective", "emoji": "💍" },
@@ -21,6 +22,7 @@
  { "slug": "form", "kind": "noun", "emoji": "📄" },
  { "slug": "to-fill-in", "kind": "verb", "emoji": "✏️" },
  { "slug": "signature", "kind": "noun", "emoji": "✍️" },
+ { "slug": "how-old-are-you", "kind": "phrase", "components": [] },
  { "slug": "what-is-your-last-name", "kind": "phrase", "components": ["surname"] },
  { "slug": "she-is-divorced", "kind": "phrase", "components": ["divorced"] },
  {
