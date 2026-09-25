@@ -59,7 +59,7 @@ fun AboutScreen(model: AppModel) {
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
             LargeTopAppBar(
-                title = { Text(chrome.settingsAbout) },
+                title = { Text(chrome.settingsAbout, PageBarTitle) },
                 // why: a push gets a leading back arrow, not the trailing X a dismissible
                 // sheet wears — [SprossIcons.ArrowLeft] is already the bar's own way out
                 // ("Back out of a screen the run pushed").
@@ -73,10 +73,7 @@ fun AboutScreen(model: AppModel) {
                     }
                 },
                 scrollBehavior = scrollBehavior,
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    scrolledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
+                colors = pageBarColors(),
             )
         },
     ) { insets ->

@@ -105,7 +105,6 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     val audioSources = model.audioSources(box.joinStamp.target)
 
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
-        Text(chrome.settingsTitle, style = MaterialTheme.typography.headlineLarge)
         SettingsGroup {
             Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
                 LanguageMenu(

@@ -260,7 +260,7 @@ private fun itemKey(item: BoxItem): String = when (item) {
 @Composable
 private fun BoxAppBar(chrome: Chrome, onSearch: (() -> Unit)?, scrollBehavior: TopAppBarScrollBehavior) {
     LargeTopAppBar(
-        title = { Text(chrome.boxTitle) },
+        title = { Text(chrome.boxTitle, PageBarTitle) },
         actions = {
             onSearch?.let {
                 IconButton(onClick = it) {
@@ -269,9 +269,6 @@ private fun BoxAppBar(chrome: Chrome, onSearch: (() -> Unit)?, scrollBehavior: T
             }
         },
         scrollBehavior = scrollBehavior,
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background,
-            scrolledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-        ),
+        colors = pageBarColors(),
     )
 }

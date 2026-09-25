@@ -88,7 +88,7 @@ fun HomeScreen(model: AppModel) {
         topBar = {
             LargeTopAppBar(
                 title = {
-                    Column {
+                    Column(PageBarTitle) {
                         // The all-caps eyebrow reads as a LABEL over the greeting, so it
                         // takes a label's tracking — the ramp's own tracking is zeroed
                         // everywhere else ([Theme.kt]), which is right for running text but
@@ -112,10 +112,7 @@ fun HomeScreen(model: AppModel) {
                     }
                 },
                 scrollBehavior = scrollBehavior,
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    scrolledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
+                colors = pageBarColors(),
             )
         },
     ) { insets ->
