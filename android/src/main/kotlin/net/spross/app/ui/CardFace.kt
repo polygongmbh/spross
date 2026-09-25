@@ -188,8 +188,9 @@ fun VocabCard(
         padding = if (shared) Theme.spacing.lg else Theme.spacing.xl,
     ) {
         // why: the growth is animated INSIDE the face, so the edge and the shadow
-        // are never clipped mid-reveal — the card simply gets taller under them.
-        val grow = Modifier.fillMaxWidth().animateContentSize()
+        // are never clipped mid-reveal — the card simply gets taller under them, on the
+        // same spec the rest of the turn's motion shares.
+        val grow = Modifier.fillMaxWidth().animateContentSize(turnTween())
         when (arrangement) {
             CardArrangement.Beside -> Column(
                 modifier = grow,
