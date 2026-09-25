@@ -1,0 +1,31 @@
+{
+ "title": "Особисті дані",
+ "subtitle": "Чорним по білому, клітинка за клітинкою.",
+ "words": {
+  "form": { "text": "бланк", "teaches": ["формуляр"] },
+  "to-fill-in": { "text": "заповнювати" },
+  "signature": { "text": "підпис" },
+  "address": { "text": "адреса" },
+  "first-name": { "text": "ім'я" },
+  "surname": { "text": "прізвище" },
+  "date-of-birth": { "text": "дата народження" },
+  "place-of-birth": { "text": "місце народження" },
+  "place-of-residence": { "text": "місце проживання" },
+  "house-number": { "text": "номер будинку" },
+  "zip-code": { "text": "поштовий індекс", "accepts": ["індекс"] },
+  "phone-number": { "text": "номер телефону" },
+  "email-address": { "text": "електронна адреса", "accepts": ["адреса електронної пошти"] },
+  "nationality": { "text": "громадянство" },
+  "sex": { "text": "стать" },
+  "male": { "text": "чоловіча", "accepts": ["чоловічий"] },
+  "female": { "text": "жіноча", "accepts": ["жіночий"] },
+  "marital-status": { "text": "сімейний стан" },
+  "single": { "text": "неодружений", "accepts": ["незаміжня"] },
+  "married": { "text": "одружений", "accepts": ["заміжня"] },
+  "divorced": { "text": "розлучений", "accepts": ["розлучена"] },
+  "widowed": { "text": "вдівець", "accepts": ["вдова"] },
+  "fill-out-the-form": { "text": "Заповніть бланк." },
+  "what-is-your-last-name": { "text": "Яке ваше прізвище?" },
+  "she-is-divorced": { "text": "Вона розлучена." }
+ }
+}

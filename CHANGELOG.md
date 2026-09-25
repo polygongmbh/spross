@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A new Personal Details shelf teaches what an official form asks for, and the office shelf adds the authority, being responsible, filing an application and taking a number.
 - A new Relatives shelf covers grandparents, siblings, cousins, nieces and nephews, grandchildren and in-laws.
 - The welcome screen now offers to import a backup from another phone, skipping straight to the restored box.
 - New cards for message, to last and to happen come with the phrases From Monday to Friday, My parents come from Italy and What happened?

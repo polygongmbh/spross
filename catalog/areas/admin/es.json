@@ -8,7 +8,6 @@
    "grammar": { "gender": "la" },
    "notes": { "es": "Cada oficina tiene su nombre: el ayuntamiento · la oficina de extranjería." }
   },
-  "form": { "text": "formulario", "grammar": { "gender": "el" } },
   "application": { "text": "solicitud", "accepts": ["instancia", "petición"], "grammar": { "gender": "la" } },
   "id-card": {
    "text": "carné de identidad",
@@ -22,7 +21,6 @@
    "teaches": ["tarjeta de residencia"],
    "grammar": { "gender": "el" }
   },
-  "signature": { "text": "firma", "grammar": { "gender": "la" } },
   "ticket-number": { "text": "número de turno", "accepts": ["turno", "número"], "grammar": { "gender": "el" } },
   "case-worker": {
    "text": "funcionario",
@@ -49,7 +47,6 @@
     "de": "la documentación ist Singular und steht für alle Papiere zusammen — anders als „die Unterlagen“."
    }
   },
-  "to-fill-in": { "text": "rellenar", "accepts": ["completar", "llenar"] },
   "to-sign": { "text": "firmar" },
   "to-apply-for": { "text": "solicitar", "accepts": ["pedir"] },
   "to-submit": { "text": "entregar" },
@@ -62,7 +59,6 @@
   "to-bring": { "text": "traer" },
   "to-copy": { "text": "copiar", "accepts": ["fotocopiar"] },
   "passport": { "text": "pasaporte", "grammar": { "gender": "el" } },
-  "address": { "text": "dirección", "grammar": { "gender": "la" } },
   "certificate": { "text": "certificado", "grammar": { "gender": "el" } },
   "birth-certificate": {
    "text": "certificado de nacimiento",
@@ -88,14 +84,18 @@
   "visa": { "text": "visado", "accepts": ["visa"], "grammar": { "gender": "el" } },
   "fine": { "text": "multa", "grammar": { "gender": "la" } },
   "receipt": { "text": "recibo", "grammar": { "gender": "el" } },
+  "authority": {
+   "text": "autoridad",
+   "accepts": ["organismo público", "administración"],
+   "grammar": { "gender": "la" }
+  },
+  "responsible": { "text": "responsable", "accepts": ["competente"] },
+  "to-submit-application": { "text": "presentar una solicitud" },
+  "to-take-a-number": { "text": "sacar número", "accepts": ["sacar un número"] },
   "where-do-i-sign": { "text": "¿Dónde firmo?", "accepts": ["¿Dónde tengo que firmar?", "¿Dónde debo firmar?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Quiero renovar el permiso de residencia.",
    "accepts": ["Quisiera renovar el permiso de residencia.", "Quería renovar el permiso de residencia."]
-  },
-  "fill-out-the-form": {
-   "text": "Rellene el formulario.",
-   "accepts": ["Rellena el formulario.", "Complete el formulario.", "Llene el formulario."]
   },
   "i-need-an-interpreter-for-the-application": { "text": "Necesito un intérprete para la solicitud." },
   "did-you-bring-all-the-documents": {
@@ -110,6 +110,7 @@
   "when-does-my-id-expire": {
    "text": "¿Cuándo caduca mi carné de identidad?",
    "accepts": ["¿Cuándo caduca mi DNI?", "¿Cuándo caduca mi carné?", "¿Cuándo vence mi carné de identidad?"]
-  }
+  },
+  "who-is-responsible-for-this": { "text": "¿Quién es responsable de esto?" }
  }
 }

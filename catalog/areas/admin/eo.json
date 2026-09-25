@@ -3,20 +3,17 @@
  "subtitle": "Paŝon post paŝo tra la paperoj.",
  "words": {
   "office": { "text": "publika oficejo", "teaches": ["administrejo"], "accepts": ["oficejo"] },
-  "form": { "text": "formularo" },
   "application": { "text": "peto", "accepts": ["petskribo"] },
   "id-card": {
    "text": "legitimilo",
    "accepts": ["identigilo", "identkarto", "identiga karto", "persona dokumento"]
   },
   "residence-permit": { "text": "loĝpermeso", "accepts": ["restadpermeso"] },
-  "signature": { "text": "subskribo" },
   "ticket-number": { "text": "vicnumero", "accepts": ["atendonumero", "numero"] },
   "case-worker": { "text": "oficisto", "accepts": ["funkciulo", "ofica komizo"] },
   "case-worker-f": { "text": "oficistino" },
   "registration": { "text": "registriĝo", "accepts": ["enskribiĝo", "anonciĝo"] },
   "documents": { "text": "dokumentoj", "accepts": ["dokumentaro", "paperoj"] },
-  "to-fill-in": { "text": "plenigi", "accepts": ["plenskribi"] },
   "to-sign": { "text": "subskribi" },
   "to-apply-for": { "text": "peti", "accepts": ["petskribi"] },
   "to-submit": { "text": "transdoni" },
@@ -29,7 +26,6 @@
   "to-bring": { "text": "kunporti" },
   "to-copy": { "text": "kopii", "accepts": ["fotokopii"] },
   "passport": { "text": "pasporto" },
-  "address": { "text": "adreso" },
   "certificate": { "text": "atestilo", "accepts": ["atesto"] },
   "birth-certificate": { "text": "naskiĝatestilo", "accepts": ["atestilo pri naskiĝo"] },
   "notification": { "text": "oficiala decido", "accepts": ["decido", "sciigo"] },
@@ -42,12 +38,15 @@
   "visa": { "text": "vizo" },
   "fine": { "text": "monpuno" },
   "receipt": { "text": "kvitanco" },
+  "authority": { "text": "aŭtoritato", "accepts": ["instanco"] },
+  "responsible": { "text": "respondeca", "accepts": ["kompetenta"] },
+  "to-submit-application": { "text": "prezenti peton", "accepts": ["submeti peton"] },
+  "to-take-a-number": { "text": "preni numeron" },
   "where-do-i-sign": { "text": "Kie mi subskribu?", "accepts": ["Kie mi devas subskribi?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Mi ŝatus plilongigi la loĝpermeson.",
    "accepts": ["Mi volas plilongigi la loĝpermeson.", "Mi ŝatus renovigi la loĝpermeson."]
   },
-  "fill-out-the-form": { "text": "Plenigu la formularon.", "accepts": ["Plenskribu la formularon."] },
   "i-need-an-interpreter-for-the-application": {
    "text": "Mi bezonas interpretiston por la peto.",
    "accepts": ["Mi bezonas interpretiston por la petskribo."],
@@ -75,6 +74,7 @@
     "Kiam eksvalidiĝas mia identkarto?"
    ],
    "orders": ["Kiam mia legitimilo eksvalidiĝas?"]
-  }
+  },
+  "who-is-responsible-for-this": { "text": "Kiu respondecas pri tio?" }
  }
 }

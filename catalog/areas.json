@@ -181,6 +181,7 @@
    { "area": "studies", "emoji": "🎓" },
    { "area": "work", "emoji": "💼" },
    { "area": "admin", "emoji": "🗂️" },
+   { "area": "personal-details", "emoji": "🪪" },
    { "area": "politics", "emoji": "🗳️" }
   ]
  },

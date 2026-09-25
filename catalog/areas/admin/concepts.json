@@ -1,10 +1,7 @@
 [
  { "slug": "office", "kind": "noun", "emoji": "🏛️" },
  { "slug": "documents", "kind": "noun", "emoji": "📂" },
- { "slug": "form", "kind": "noun", "emoji": "📄" },
- { "slug": "address", "kind": "noun", "emoji": "📍" },
  { "slug": "to-bring", "kind": "verb", "emoji": "🎒" },
- { "slug": "to-fill-in", "kind": "verb", "emoji": "✏️" },
  { "slug": "to-sign", "kind": "verb", "emoji": "🖊️" },
  { "slug": "to-apply-for", "kind": "verb", "emoji": "📮" },
  { "slug": "application", "kind": "noun", "emoji": "📝" },
@@ -16,7 +13,6 @@
  { "slug": "to-pick-up", "kind": "verb", "emoji": "📦" },
  { "slug": "to-extend", "kind": "verb", "emoji": "⏩" },
  { "slug": "to-copy", "kind": "verb", "emoji": "🖨️" },
- { "slug": "signature", "kind": "noun", "emoji": "✍️" },
  { "slug": "registration", "kind": "noun", "emoji": "🏠" },
  { "slug": "fee", "kind": "noun", "emoji": "💸" },
  { "slug": "receipt", "kind": "noun", "emoji": "🧾" },
@@ -33,18 +29,16 @@
  { "slug": "fine", "kind": "noun", "emoji": "💶" },
  { "slug": "birth-certificate", "kind": "noun", "emoji": "👶" },
  { "slug": "ticket-number", "kind": "noun", "emoji": "🎫" },
+ { "slug": "authority", "kind": "noun", "emoji": "🏛️" },
+ { "slug": "responsible", "kind": "adjective" },
+ { "slug": "to-submit-application", "kind": "verb" },
+ { "slug": "to-take-a-number", "kind": "verb" },
  { "slug": "where-do-i-sign", "kind": "phrase", "emoji": "🖊️", "components": ["to-sign"] },
  {
   "slug": "i-want-to-extend-my-residence-permit",
   "kind": "phrase",
   "emoji": "🛂",
   "components": ["residence-permit", "to-extend"]
- },
- {
-  "slug": "fill-out-the-form",
-  "kind": "phrase",
-  "emoji": "📋",
-  "components": ["to-fill-in", "form"]
  },
  {
   "slug": "i-need-an-interpreter-for-the-application",
@@ -59,5 +53,6 @@
   "components": ["documents"]
  },
  { "slug": "the-decision-comes-by-mail", "kind": "phrase", "emoji": "📬", "components": [] },
- { "slug": "when-does-my-id-expire", "kind": "phrase", "emoji": "📆", "components": ["id-card"] }
+ { "slug": "when-does-my-id-expire", "kind": "phrase", "emoji": "📆", "components": ["id-card"] },
+ { "slug": "who-is-responsible-for-this", "kind": "phrase", "components": ["responsible"] }
 ]

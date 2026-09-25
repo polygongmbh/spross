@@ -1,0 +1,39 @@
+{
+ "title": "Informations personnelles",
+ "subtitle": "Noir sur blanc, case par case.",
+ "words": {
+  "form": { "text": "formulaire", "grammar": { "gender": "le" } },
+  "to-fill-in": { "text": "remplir" },
+  "signature": { "text": "signature", "grammar": { "gender": "la" } },
+  "address": { "text": "adresse", "accepts": ["l'adresse"], "grammar": { "gender": "l'" } },
+  "first-name": { "text": "prénom", "grammar": { "gender": "le" } },
+  "surname": { "text": "nom de famille", "accepts": ["nom"], "grammar": { "gender": "le" } },
+  "date-of-birth": { "text": "date de naissance", "grammar": { "gender": "la" } },
+  "place-of-birth": { "text": "lieu de naissance", "grammar": { "gender": "le" } },
+  "place-of-residence": { "text": "lieu de résidence", "grammar": { "gender": "le" } },
+  "house-number": { "text": "numéro de rue", "accepts": ["numéro"], "grammar": { "gender": "le" } },
+  "zip-code": { "text": "code postal", "grammar": { "gender": "le" } },
+  "phone-number": { "text": "numéro de téléphone", "grammar": { "gender": "le" } },
+  "email-address": {
+   "text": "adresse e-mail",
+   "accepts": ["l'adresse e-mail", "adresse mail"],
+   "grammar": { "gender": "l'" }
+  },
+  "nationality": { "text": "nationalité", "grammar": { "gender": "la" } },
+  "sex": { "text": "sexe", "grammar": { "gender": "le" } },
+  "male": { "text": "masculin" },
+  "female": { "text": "féminin" },
+  "marital-status": {
+   "text": "situation familiale",
+   "accepts": ["situation de famille"],
+   "grammar": { "gender": "la" }
+  },
+  "single": { "text": "célibataire" },
+  "married": { "text": "marié", "accepts": ["mariée"] },
+  "divorced": { "text": "divorcé", "accepts": ["divorcée"] },
+  "widowed": { "text": "veuf", "accepts": ["veuve"] },
+  "fill-out-the-form": { "text": "Remplissez le formulaire.", "accepts": ["Remplis le formulaire."] },
+  "what-is-your-last-name": { "text": "Quel est votre nom de famille ?" },
+  "she-is-divorced": { "text": "Elle est divorcée." }
+ }
+}

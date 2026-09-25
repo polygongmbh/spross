@@ -1,0 +1,32 @@
+[
+ { "slug": "form", "kind": "noun", "emoji": "📄" },
+ { "slug": "to-fill-in", "kind": "verb", "emoji": "✏️" },
+ { "slug": "signature", "kind": "noun", "emoji": "✍️" },
+ { "slug": "address", "kind": "noun", "emoji": "📍" },
+ { "slug": "first-name", "kind": "noun" },
+ { "slug": "surname", "kind": "noun" },
+ { "slug": "date-of-birth", "kind": "noun", "emoji": "🎂" },
+ { "slug": "place-of-birth", "kind": "noun" },
+ { "slug": "place-of-residence", "kind": "noun" },
+ { "slug": "house-number", "kind": "noun" },
+ { "slug": "zip-code", "kind": "noun" },
+ { "slug": "phone-number", "kind": "noun", "emoji": "📞" },
+ { "slug": "email-address", "kind": "noun", "emoji": "📧" },
+ { "slug": "nationality", "kind": "noun" },
+ { "slug": "sex", "kind": "noun" },
+ { "slug": "male", "kind": "adjective", "emoji": "♂️" },
+ { "slug": "female", "kind": "adjective", "emoji": "♀️" },
+ { "slug": "marital-status", "kind": "noun" },
+ { "slug": "single", "kind": "adjective" },
+ { "slug": "married", "kind": "adjective", "emoji": "💍" },
+ { "slug": "divorced", "kind": "adjective" },
+ { "slug": "widowed", "kind": "adjective" },
+ {
+  "slug": "fill-out-the-form",
+  "kind": "phrase",
+  "emoji": "📋",
+  "components": ["to-fill-in", "form"]
+ },
+ { "slug": "what-is-your-last-name", "kind": "phrase", "components": ["surname"] },
+ { "slug": "she-is-divorced", "kind": "phrase", "components": ["divorced"] }
+]

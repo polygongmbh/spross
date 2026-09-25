@@ -1,0 +1,31 @@
+{
+ "title": "Personaj datumoj",
+ "subtitle": "Nigre sur blanko, rubriko post rubriko.",
+ "words": {
+  "form": { "text": "formularo" },
+  "to-fill-in": { "text": "plenigi", "accepts": ["plenskribi"] },
+  "signature": { "text": "subskribo" },
+  "address": { "text": "adreso" },
+  "first-name": { "text": "antaŭnomo" },
+  "surname": { "text": "familia nomo" },
+  "date-of-birth": { "text": "naskiĝdato" },
+  "place-of-birth": { "text": "naskiĝloko" },
+  "place-of-residence": { "text": "loĝloko" },
+  "house-number": { "text": "domnumero" },
+  "zip-code": { "text": "poŝtkodo" },
+  "phone-number": { "text": "telefonnumero" },
+  "email-address": { "text": "retpoŝtadreso" },
+  "nationality": { "text": "ŝtataneco", "accepts": ["nacieco"] },
+  "sex": { "text": "sekso" },
+  "male": { "text": "vira" },
+  "female": { "text": "ina" },
+  "marital-status": { "text": "civila stato" },
+  "single": { "text": "fraŭla" },
+  "married": { "text": "edziĝinta", "accepts": ["edziniĝinta"] },
+  "divorced": { "text": "eksedziĝinta", "accepts": ["eksedziniĝinta"] },
+  "widowed": { "text": "vidva" },
+  "fill-out-the-form": { "text": "Plenigu la formularon.", "accepts": ["Plenskribu la formularon."] },
+  "what-is-your-last-name": { "text": "Kio estas via familia nomo?" },
+  "she-is-divorced": { "text": "Ŝi estas eksedziniĝinta." }
+ }
+}

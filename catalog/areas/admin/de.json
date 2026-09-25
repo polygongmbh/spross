@@ -3,25 +3,18 @@
  "subtitle": "Schritt für Schritt durch den Papierkram.",
  "words": {
   "office": { "text": "Amt", "grammar": { "gender": "das", "plural": "Ämter" } },
-  "form": { "text": "Formular", "grammar": { "gender": "das", "plural": "-e" } },
   "application": { "text": "Antrag", "grammar": { "gender": "der", "plural": "Anträge" } },
   "id-card": { "text": "Ausweis", "grammar": { "gender": "der", "plural": "-e" } },
-  "residence-permit": { "text": "Aufenthaltstitel", "grammar": { "gender": "der", "plural": "=" } },
-  "signature": { "text": "Unterschrift", "grammar": { "gender": "die", "plural": "-en" } },
-  "ticket-number": {
-   "text": "Wartenummer",
-   "grammar": { "gender": "die", "plural": "-n" },
-   "notes": {
-    "de": "Man zieht eine Nummer: Ziehen Sie bitte eine Wartenummer.",
-    "en": "A number is DRAWN here: eine Nummer ziehen.",
-    "es": "Aquí se SACA un número: eine Nummer ziehen."
-   }
+  "residence-permit": {
+   "text": "Aufenthaltstitel",
+   "grammar": { "gender": "der", "plural": "=" },
+   "teaches": ["Aufenthaltserlaubnis"]
   },
+  "ticket-number": { "text": "Wartenummer", "grammar": { "gender": "die", "plural": "-n" } },
   "case-worker": { "text": "Sachbearbeiter", "grammar": { "gender": "der", "plural": "=" } },
   "case-worker-f": { "text": "Sachbearbeiterin", "grammar": { "gender": "die", "plural": "-nen" } },
   "registration": { "text": "Anmeldung", "grammar": { "gender": "die", "plural": "-en" } },
   "documents": { "text": "Unterlagen", "grammar": { "gender": "die", "plural": "only" } },
-  "to-fill-in": { "text": "ausfüllen" },
   "to-sign": { "text": "unterschreiben" },
   "to-apply-for": { "text": "beantragen" },
   "to-submit": { "text": "abgeben" },
@@ -35,7 +28,6 @@
    "accepts": ["Pass"],
    "grammar": { "gender": "der", "plural": "Reisepässe" }
   },
-  "address": { "text": "Adresse", "grammar": { "gender": "die", "plural": "-n" } },
   "certificate": { "text": "Bescheinigung", "grammar": { "gender": "die", "plural": "-en" } },
   "birth-certificate": { "text": "Geburtsurkunde", "grammar": { "gender": "die", "plural": "-n" } },
   "notification": { "text": "Bescheid", "grammar": { "gender": "der", "plural": "-e" } },
@@ -48,15 +40,14 @@
   "visa": { "text": "Visum", "grammar": { "gender": "das", "plural": "Visa" } },
   "fine": { "text": "Bußgeld", "grammar": { "gender": "das", "plural": "-er" } },
   "receipt": { "text": "Quittung", "grammar": { "gender": "die", "plural": "-en" } },
+  "authority": { "text": "Behörde", "grammar": { "gender": "die", "plural": "-n" } },
+  "responsible": { "text": "zuständig" },
+  "to-submit-application": { "text": "einen Antrag stellen" },
+  "to-take-a-number": { "text": "eine Nummer ziehen" },
   "where-do-i-sign": { "text": "Wo unterschreibe ich?", "accepts": ["Wo muss ich unterschreiben?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Ich möchte den Aufenthaltstitel verlängern.",
    "orders": ["Den Aufenthaltstitel möchte ich verlängern."]
-  },
-  "fill-out-the-form": {
-   "text": "Füllen Sie das Formular aus.",
-   "accepts": ["Fülle das Formular aus."],
-   "orders": ["Sie füllen das Formular aus."]
   },
   "i-need-an-interpreter-for-the-application": {
    "text": "Ich brauche für den Antrag einen Dolmetscher.",
@@ -68,6 +59,7 @@
    "orders": ["Sie haben alle Unterlagen mitgebracht?"]
   },
   "the-decision-comes-by-mail": { "text": "Der Bescheid kommt per Post." },
-  "when-does-my-id-expire": { "text": "Wann läuft mein Ausweis ab?" }
+  "when-does-my-id-expire": { "text": "Wann läuft mein Ausweis ab?" },
+  "who-is-responsible-for-this": { "text": "Wer ist dafür zuständig?" }
  }
 }

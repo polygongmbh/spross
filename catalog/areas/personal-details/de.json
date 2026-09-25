@@ -1,0 +1,43 @@
+{
+ "title": "Persönliche Angaben",
+ "subtitle": "Schwarz auf weiß, in jedes Kästchen.",
+ "words": {
+  "form": { "text": "Formular", "grammar": { "gender": "das", "plural": "-e" } },
+  "to-fill-in": { "text": "ausfüllen" },
+  "signature": { "text": "Unterschrift", "grammar": { "gender": "die", "plural": "-en" } },
+  "address": { "text": "Adresse", "grammar": { "gender": "die", "plural": "-n" } },
+  "first-name": { "text": "Vorname", "grammar": { "gender": "der", "plural": "-n" } },
+  "surname": {
+   "text": "Familienname",
+   "teaches": ["Nachname"],
+   "grammar": { "gender": "der", "plural": "-n" }
+  },
+  "date-of-birth": { "text": "Geburtsdatum", "grammar": { "gender": "das", "plural": "Geburtsdaten" } },
+  "place-of-birth": { "text": "Geburtsort", "grammar": { "gender": "der", "plural": "-e" } },
+  "place-of-residence": { "text": "Wohnort", "grammar": { "gender": "der", "plural": "-e" } },
+  "house-number": { "text": "Hausnummer", "grammar": { "gender": "die", "plural": "-n" } },
+  "zip-code": { "text": "Postleitzahl", "accepts": ["PLZ"], "grammar": { "gender": "die", "plural": "-en" } },
+  "phone-number": { "text": "Telefonnummer", "grammar": { "gender": "die", "plural": "-n" } },
+  "email-address": { "text": "E-Mail-Adresse", "grammar": { "gender": "die", "plural": "-n" } },
+  "nationality": {
+   "text": "Staatsangehörigkeit",
+   "accepts": ["Nationalität"],
+   "grammar": { "gender": "die", "plural": "-en" }
+  },
+  "sex": { "text": "Geschlecht", "grammar": { "gender": "das", "plural": "-er" } },
+  "male": { "text": "männlich" },
+  "female": { "text": "weiblich" },
+  "marital-status": { "text": "Familienstand", "grammar": { "gender": "der" } },
+  "single": { "text": "ledig" },
+  "married": { "text": "verheiratet" },
+  "divorced": { "text": "geschieden" },
+  "widowed": { "text": "verwitwet" },
+  "fill-out-the-form": {
+   "text": "Füllen Sie das Formular aus.",
+   "accepts": ["Fülle das Formular aus."],
+   "orders": ["Sie füllen das Formular aus."]
+  },
+  "what-is-your-last-name": { "text": "Wie ist Ihr Familienname?", "accepts": ["Wie ist Ihr Nachname?"] },
+  "she-is-divorced": { "text": "Sie ist geschieden." }
+ }
+}

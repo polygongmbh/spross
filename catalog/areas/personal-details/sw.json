@@ -1,0 +1,31 @@
+{
+ "title": "Taarifa binafsi",
+ "subtitle": "Kwa maandishi, kisanduku kimoja baada ya kingine.",
+ "words": {
+  "form": { "text": "fomu", "grammar": { "plural": "=" } },
+  "to-fill-in": { "text": "kujaza" },
+  "signature": { "text": "sahihi", "grammar": { "plural": "=" } },
+  "address": { "text": "anwani", "grammar": { "plural": "=" } },
+  "first-name": { "text": "jina la kwanza", "grammar": { "plural": "majina ya kwanza" } },
+  "surname": { "text": "jina la ukoo", "grammar": { "plural": "majina ya ukoo" } },
+  "date-of-birth": { "text": "tarehe ya kuzaliwa", "grammar": { "plural": "tarehe za kuzaliwa" } },
+  "place-of-birth": { "text": "mahali pa kuzaliwa" },
+  "place-of-residence": { "text": "mahali pa kuishi" },
+  "house-number": { "text": "namba ya nyumba", "grammar": { "plural": "namba za nyumba" } },
+  "zip-code": { "text": "msimbo wa posta", "grammar": { "plural": "misimbo ya posta" } },
+  "phone-number": { "text": "namba ya simu", "grammar": { "plural": "namba za simu" } },
+  "email-address": { "text": "anwani ya barua pepe", "grammar": { "plural": "anwani za barua pepe" } },
+  "nationality": { "text": "uraia" },
+  "sex": { "text": "jinsia" },
+  "male": { "text": "kiume", "accepts": ["me"] },
+  "female": { "text": "kike", "accepts": ["ke"] },
+  "marital-status": { "text": "hali ya ndoa" },
+  "single": { "text": "hajaoa", "accepts": ["hajaolewa"] },
+  "married": { "text": "ameoa", "accepts": ["ameolewa"] },
+  "divorced": { "text": "ametalikiwa" },
+  "widowed": { "text": "mjane", "grammar": { "plural": "wajane" } },
+  "fill-out-the-form": { "text": "Jaza fomu." },
+  "what-is-your-last-name": { "text": "Jina lako la ukoo ni nani?" },
+  "she-is-divorced": { "text": "Ametalikiwa." }
+ }
+}

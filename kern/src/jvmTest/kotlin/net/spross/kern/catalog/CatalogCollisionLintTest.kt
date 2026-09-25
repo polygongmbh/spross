@@ -151,7 +151,7 @@ class CatalogCollisionLintTest {
                 // names only the direction of travel and `el rumbo` a heading, so there is
                 // no honest alternative; directions/direction carries the de note naming
                 // the second sense, the ndege treatment.
-                "es dirección: admin/address, directions/direction",
+                "es dirección: directions/direction, personal-details/address",
                 // Reviewed 2026-09-05: es `esperar` is to wait AND to hope — de/en/eo/fr/it/sw/uk
                 // all split the pair (warten/hoffen, attendre/espérer, kusubiri/kutumaini).
                 // `aguardar` for waiting is literary, so both stay one-language.
@@ -297,6 +297,11 @@ class CatalogCollisionLintTest {
                 // split it (als/Messer, than/knife, ol/tranĉilo, que/cuchillo, que/couteau,
                 // di/coltello, kuliko/kisu). The area label tells them apart on produce.
                 "uk ніж: comparison/than, kitchen/knife",
+                // Reviewed 2026-09-25: uk `ім'я` is the name AND the first name on a form —
+                // de/en/eo/es/fr/it/sw all split the pair (Name/Vorname, name/first name,
+                // nomo/antaŭnomo, nombre/nombre de pila, nom/prénom, nome/nome di battesimo,
+                // jina/jina la kwanza). A Ukrainian form asks for `ім'я` itself, so both stay.
+                "uk ім'я: greetings/name, personal-details/first-name",
                 // Reviewed 2026-09-22: uk `шина` is the car tyre AND the medical splint —
                 // de/en/eo/es/fr/it all split the pair (Reifen/Schiene, tire/splint, pneŭo/splinto,
                 // neumático/férula, pneu/attelle, pneumatico/stecca). `покришка` names only the

@@ -1,0 +1,38 @@
+{
+ "title": "Datos personales",
+ "subtitle": "Negro sobre blanco, casilla por casilla.",
+ "words": {
+  "form": { "text": "formulario", "grammar": { "gender": "el" } },
+  "to-fill-in": { "text": "rellenar", "accepts": ["completar", "llenar"] },
+  "signature": { "text": "firma", "grammar": { "gender": "la" } },
+  "address": { "text": "dirección", "grammar": { "gender": "la" } },
+  "first-name": { "text": "nombre de pila", "accepts": ["nombre"], "grammar": { "gender": "el" } },
+  "surname": { "text": "apellido", "grammar": { "gender": "el" } },
+  "date-of-birth": { "text": "fecha de nacimiento", "grammar": { "gender": "la" } },
+  "place-of-birth": { "text": "lugar de nacimiento", "grammar": { "gender": "el" } },
+  "place-of-residence": { "text": "lugar de residencia", "grammar": { "gender": "el" } },
+  "house-number": { "text": "número de casa", "accepts": ["número"], "grammar": { "gender": "el" } },
+  "zip-code": { "text": "código postal", "grammar": { "gender": "el" } },
+  "phone-number": { "text": "número de teléfono", "grammar": { "gender": "el" } },
+  "email-address": {
+   "text": "dirección de correo electrónico",
+   "accepts": ["correo electrónico", "correo"],
+   "grammar": { "gender": "la" }
+  },
+  "nationality": { "text": "nacionalidad", "grammar": { "gender": "la" } },
+  "sex": { "text": "sexo", "grammar": { "gender": "el" } },
+  "male": { "text": "masculino" },
+  "female": { "text": "femenino" },
+  "marital-status": { "text": "estado civil", "grammar": { "gender": "el" } },
+  "single": { "text": "soltero", "accepts": ["soltera"] },
+  "married": { "text": "casado", "accepts": ["casada"] },
+  "divorced": { "text": "divorciado", "accepts": ["divorciada"] },
+  "widowed": { "text": "viudo", "accepts": ["viuda"] },
+  "fill-out-the-form": {
+   "text": "Rellene el formulario.",
+   "accepts": ["Rellena el formulario.", "Complete el formulario.", "Llene el formulario."]
+  },
+  "what-is-your-last-name": { "text": "¿Cuál es su apellido?" },
+  "she-is-divorced": { "text": "Está divorciada.", "accepts": ["Ella está divorciada."] }
+ }
+}

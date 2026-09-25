@@ -8,7 +8,6 @@
    "grammar": { "gender": "l'" },
    "notes": { "fr": "la mairie pour la commune, la préfecture pour les papiers." }
   },
-  "form": { "text": "formulaire", "grammar": { "gender": "le" } },
   "application": {
    "text": "demande",
    "grammar": { "gender": "la" },
@@ -29,7 +28,6 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "le titre de séjour est le droit, la carte de séjour le papier." }
   },
-  "signature": { "text": "signature", "grammar": { "gender": "la" } },
   "ticket-number": {
    "text": "numéro d'attente",
    "accepts": ["ticket d'attente", "numéro"],
@@ -58,7 +56,6 @@
    "grammar": { "gender": "les" },
    "notes": { "fr": "au guichet on demande vos papiers · à l'écrit, les documents." }
   },
-  "to-fill-in": { "text": "remplir" },
   "to-sign": { "text": "signer" },
   "to-apply-for": {
    "text": "faire une demande",
@@ -84,7 +81,6 @@
   },
   "to-copy": { "text": "copier", "accepts": ["photocopier"] },
   "passport": { "text": "passeport", "grammar": { "gender": "le" } },
-  "address": { "text": "adresse", "accepts": ["l'adresse"], "grammar": { "gender": "l'" } },
   "certificate": {
    "text": "attestation",
    "accepts": ["l'attestation", "certificat"],
@@ -126,6 +122,10 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "au guichet : un récépissé · au magasin : le ticket de caisse." }
   },
+  "authority": { "text": "autorité", "accepts": ["l'autorité", "administration"], "grammar": { "gender": "l'" } },
+  "responsible": { "text": "responsable", "accepts": ["compétent"] },
+  "to-submit-application": { "text": "déposer une demande", "accepts": ["faire une demande"] },
+  "to-take-a-number": { "text": "prendre un ticket", "accepts": ["prendre un numéro"] },
   "where-do-i-sign": {
    "text": "Où est-ce que je signe ?",
    "accepts": ["Où dois-je signer ?", "Où est-ce que je dois signer ?", "Je signe où ?"]
@@ -134,7 +134,6 @@
    "text": "Je voudrais renouveler mon titre de séjour.",
    "accepts": ["Je veux renouveler mon titre de séjour.", "Je voudrais renouveler ma carte de séjour."]
   },
-  "fill-out-the-form": { "text": "Remplissez le formulaire.", "accepts": ["Remplis le formulaire."] },
   "i-need-an-interpreter-for-the-application": { "text": "J'ai besoin d'un interprète pour la demande." },
   "did-you-bring-all-the-documents": {
    "text": "Avez-vous apporté tous les documents ?",
@@ -148,6 +147,7 @@
    "text": "Quand expire ma carte d'identité ?",
    "accepts": ["Quand est-ce que ma carte d'identité expire ?", "Ma carte d'identité expire quand ?"],
    "orders": ["Ma carte d'identité expire quand ?"]
-  }
+  },
+  "who-is-responsible-for-this": { "text": "Qui est responsable de ça ?", "accepts": ["Qui est responsable de cela ?"] }
  }
 }

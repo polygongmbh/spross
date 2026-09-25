@@ -3,11 +3,9 @@
  "subtitle": "Hatua kwa hatua, subiri zamu yako.",
  "words": {
   "office": { "text": "ofisi ya serikali", "grammar": { "plural": "ofisi za serikali" } },
-  "form": { "text": "fomu", "grammar": { "plural": "=" } },
   "application": { "text": "ombi", "grammar": { "plural": "maombi" } },
   "id-card": { "text": "kitambulisho", "grammar": { "plural": "vitambulisho" } },
   "residence-permit": { "text": "kibali cha ukaaji", "grammar": { "plural": "vibali vya ukaaji" } },
-  "signature": { "text": "sahihi", "grammar": { "plural": "=" } },
   "ticket-number": { "text": "namba ya foleni", "grammar": { "plural": "namba za foleni" } },
   "case-worker": {
    "text": "afisa mhusika",
@@ -17,7 +15,6 @@
   },
   "registration": { "text": "usajili", "grammar": { "plural": "=" } },
   "documents": { "text": "nyaraka", "grammar": { "plural": "only" } },
-  "to-fill-in": { "text": "kujaza" },
   "to-sign": { "text": "kutia sahihi" },
   "to-apply-for": { "text": "kuomba" },
   "to-submit": { "text": "kukabidhi" },
@@ -27,7 +24,6 @@
   "to-bring": { "text": "kuleta" },
   "to-copy": { "text": "kunakili" },
   "passport": { "text": "pasipoti", "grammar": { "plural": "=" } },
-  "address": { "text": "anwani", "grammar": { "plural": "=" } },
   "certificate": { "text": "cheti", "grammar": { "plural": "vyeti" } },
   "birth-certificate": { "text": "cheti cha kuzaliwa", "grammar": { "plural": "vyeti vya kuzaliwa" } },
   "notification": { "text": "barua ya uamuzi", "grammar": { "plural": "barua za uamuzi" } },
@@ -40,12 +36,16 @@
   "visa": { "text": "viza", "grammar": { "plural": "=" } },
   "fine": { "text": "faini", "grammar": { "plural": "=" } },
   "receipt": { "text": "resiti", "grammar": { "plural": "=" } },
+  "authority": { "text": "mamlaka", "grammar": { "plural": "=" } },
+  "responsible": { "text": "-husika" },
+  "to-submit-application": { "text": "kuwasilisha ombi", "accepts": ["kutuma ombi"] },
+  "to-take-a-number": { "text": "kuchukua namba" },
   "where-do-i-sign": { "text": "Nitie sahihi wapi?" },
   "i-want-to-extend-my-residence-permit": { "text": "Ningependa kuhuisha kibali cha ukaaji." },
-  "fill-out-the-form": { "text": "Jaza fomu." },
   "i-need-an-interpreter-for-the-application": { "text": "Nahitaji mkalimani kwa ombi." },
   "did-you-bring-all-the-documents": { "text": "Umeleta nyaraka zote?" },
   "the-decision-comes-by-mail": { "text": "Barua ya uamuzi itakuja kwa posta.", "orders": ["Kwa posta itakuja barua ya uamuzi."] },
-  "when-does-my-id-expire": { "text": "Kitambulisho changu kinaisha lini?" }
+  "when-does-my-id-expire": { "text": "Kitambulisho changu kinaisha lini?" },
+  "who-is-responsible-for-this": { "text": "Nani anahusika na hili?" }
  }
 }

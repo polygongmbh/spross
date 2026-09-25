@@ -1,0 +1,31 @@
+{
+ "title": "Personal Details",
+ "subtitle": "In black and white, one box at a time.",
+ "words": {
+  "form": { "text": "form" },
+  "to-fill-in": { "text": "to fill in" },
+  "signature": { "text": "signature" },
+  "address": { "text": "address", "grammar": { "plural": "addresses" } },
+  "first-name": { "text": "first name" },
+  "surname": { "text": "last name", "accepts": ["surname", "family name"] },
+  "date-of-birth": { "text": "date of birth", "accepts": ["birth date"] },
+  "place-of-birth": { "text": "place of birth", "accepts": ["birthplace"] },
+  "place-of-residence": { "text": "place of residence" },
+  "house-number": { "text": "house number" },
+  "zip-code": { "text": "zip code", "accepts": ["postal code", "postcode"] },
+  "phone-number": { "text": "phone number", "accepts": ["telephone number"] },
+  "email-address": { "text": "email address", "accepts": ["e-mail address"] },
+  "nationality": { "text": "nationality", "accepts": ["citizenship"] },
+  "sex": { "text": "sex", "accepts": ["gender"] },
+  "male": { "text": "male" },
+  "female": { "text": "female" },
+  "marital-status": { "text": "marital status" },
+  "single": { "text": "single" },
+  "married": { "text": "married" },
+  "divorced": { "text": "divorced" },
+  "widowed": { "text": "widowed" },
+  "fill-out-the-form": { "text": "Fill out the form." },
+  "what-is-your-last-name": { "text": "What is your last name?" },
+  "she-is-divorced": { "text": "She is divorced." }
+ }
+}

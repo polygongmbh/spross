@@ -9,7 +9,6 @@
    "grammar": { "gender": "l'", "plural": "uffici pubblici" },
    "notes": { "it": "il comune, l'anagrafe, la questura: ogni ufficio ha il suo nome." }
   },
-  "form": { "text": "modulo", "grammar": { "gender": "il" } },
   "application": {
    "text": "richiesta",
    "accepts": ["domanda", "istanza"],
@@ -23,7 +22,6 @@
    "notes": { "it": "la carta d'identità è di tutti · gli stranieri hanno il permesso di soggiorno." }
   },
   "residence-permit": { "text": "permesso di soggiorno", "grammar": { "gender": "il" } },
-  "signature": { "text": "firma", "grammar": { "gender": "la" } },
   "ticket-number": {
    "text": "numero di attesa",
    "accepts": ["numero", "numerino", "numero d'attesa"],
@@ -56,7 +54,6 @@
    "grammar": { "gender": "i" },
    "notes": { "it": "i documenti sono anche la carta d'identità: Documenti, per favore!" }
   },
-  "to-fill-in": { "text": "compilare", "accepts": ["riempire"] },
   "to-sign": { "text": "firmare" },
   "to-apply-for": { "text": "richiedere", "accepts": ["chiedere"] },
   "to-submit": { "text": "consegnare" },
@@ -73,7 +70,6 @@
   "to-bring": { "text": "portare" },
   "to-copy": { "text": "copiare", "accepts": ["fotocopiare"] },
   "passport": { "text": "passaporto", "grammar": { "gender": "il" } },
-  "address": { "text": "indirizzo", "accepts": ["l'indirizzo"], "grammar": { "gender": "l'" } },
   "certificate": { "text": "certificato", "accepts": ["attestato"], "grammar": { "gender": "il" } },
   "birth-certificate": {
    "text": "certificato di nascita",
@@ -109,12 +105,19 @@
   "visa": { "text": "visto", "grammar": { "gender": "il" } },
   "fine": { "text": "multa", "grammar": { "gender": "la" } },
   "receipt": { "text": "ricevuta", "accepts": ["scontrino"], "grammar": { "gender": "la" } },
+  "authority": {
+   "text": "autorità",
+   "accepts": ["l'autorità", "ente pubblico"],
+   "grammar": { "gender": "l'", "plural": "=" }
+  },
+  "responsible": { "text": "responsabile", "accepts": ["competente"] },
+  "to-submit-application": { "text": "presentare una domanda", "accepts": ["presentare una richiesta", "fare domanda"] },
+  "to-take-a-number": { "text": "prendere il numero", "accepts": ["prendere un numero"] },
   "where-do-i-sign": { "text": "Dove firmo?", "accepts": ["Dove devo firmare?", "Dove si firma?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Vorrei rinnovare il permesso di soggiorno.",
    "accepts": ["Voglio rinnovare il permesso di soggiorno."]
   },
-  "fill-out-the-form": { "text": "Compili il modulo.", "accepts": ["Compila il modulo.", "Riempia il modulo."] },
   "i-need-an-interpreter-for-the-application": {
    "text": "Ho bisogno di un interprete per la richiesta.",
    "accepts": ["Mi serve un interprete per la richiesta.", "Ho bisogno di un interprete per la domanda."]
@@ -127,6 +130,7 @@
   "when-does-my-id-expire": {
    "text": "Quando scade la mia carta d'identità?",
    "accepts": ["Quando scade la carta d'identità?"]
-  }
+  },
+  "who-is-responsible-for-this": { "text": "Chi è responsabile di questo?" }
  }
 }
