@@ -288,7 +288,13 @@ private fun LanguageMenu(
                     modifier = Modifier.size(16.dp),
                 )
             }
-            ExposedDropdownMenu(expanded = open, onDismissRequest = { open = false }) {
+            // why: the rows name each language twice ("Deutsch · German"); held to the
+            // half-width field they would wrap, so the list takes the width it needs.
+            ExposedDropdownMenu(
+                expanded = open,
+                onDismissRequest = { open = false },
+                matchAnchorWidth = false,
+            ) {
                 choices.forEach { code ->
                     DropdownMenuItem(
                         text = { Text(LanguageChoices.pickerRow(code, catalog.languages[code])) },
