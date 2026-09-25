@@ -61,7 +61,7 @@ fun OnboardingImport(model: AppModel, chrome: Chrome, source: String, modifier: 
             horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Icon(SprossIcons.PackIn, contentDescription = null, modifier = Modifier.size(16.dp))
+            Icon(SprossIcons.Import, contentDescription = null, modifier = Modifier.size(16.dp))
             Text(chrome.onboardingImport, style = MaterialTheme.typography.labelMedium)
         }
     }

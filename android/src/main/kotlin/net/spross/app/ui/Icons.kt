@@ -70,18 +70,28 @@ object SprossIcons {
         moveTo(5f, 12f); lineTo(19f, 12f)
     }
 
-    /** Something coming in: a tray, and what drops into it — a word packed, a backup imported. */
-    val PackIn = stroked("PackIn") {
+    /** Something brought in from outside: a backup imported. */
+    val Import = stroked("Import") {
         moveTo(5f, 14f); lineTo(5f, 19f); lineTo(19f, 19f); lineTo(19f, 14f)
         moveTo(12f, 4f); lineTo(12f, 14f)
         moveTo(8f, 10f); lineTo(12f, 14f); lineTo(16f, 10f)
     }
 
+    /**
+     * A word packed for a round: an inbox, and the arrow dropping into its tray. The closed
+     * box is what keeps it from reading as [Import]'s download.
+     */
+    val PackIn = stroked("PackIn") {
+        inbox()
+        moveTo(12f, 6.5f); lineTo(12f, 12f)
+        moveTo(9.5f, 9.5f); lineTo(12f, 12f); lineTo(14.5f, 9.5f)
+    }
+
     /** Take a word back out — [PackIn] run in reverse. */
     val PackOut = stroked("PackOut") {
-        moveTo(5f, 14f); lineTo(5f, 19f); lineTo(19f, 19f); lineTo(19f, 14f)
-        moveTo(12f, 14f); lineTo(12f, 4f)
-        moveTo(8f, 8f); lineTo(12f, 4f); lineTo(16f, 8f)
+        inbox()
+        moveTo(12f, 12f); lineTo(12f, 6.5f)
+        moveTo(9.5f, 9f); lineTo(12f, 6.5f); lineTo(14.5f, 9f)
     }
 
     /** What the answer owes back: the turn from what was written down to the form beside it. */
@@ -230,3 +240,11 @@ private fun filled(name: String, path: PathBuilder.() -> Unit): ImageVector =
     ).apply {
         path(fill = SolidColor(Color.Black), pathBuilder = path)
     }.build()
+
+/** The box [SprossIcons.PackIn] and [SprossIcons.PackOut] share, with its tray dipped in. */
+private fun PathBuilder.inbox() {
+    moveTo(4f, 4f); lineTo(20f, 4f); lineTo(20f, 20f); lineTo(4f, 20f); close()
+    moveTo(4f, 14f); lineTo(8.5f, 14f)
+    quadTo(9f, 17f, 12f, 17f); quadTo(15f, 17f, 15.5f, 14f)
+    lineTo(20f, 14f)
+}
