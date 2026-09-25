@@ -189,7 +189,9 @@ internal val SprossDark = darkColorScheme(
     surfaceTint = Color.Transparent,
     outline = ThemeDark.borderStrong, outlineVariant = ThemeDark.separator,
     surfaceContainerLowest = ThemeDark.background, surfaceContainerLow = ThemeDark.surface,
-    surfaceContainer = ThemeDark.surface,
+    // why: a shadow does not show on the dark paper, so a menu opened over a card would
+    // merge with it; one step lighter is how the dark scheme lifts it off.
+    surfaceContainer = ThemeDark.surfaceTint,
     surfaceContainerHigh = ThemeDark.surface, surfaceContainerHighest = ThemeDark.surfaceTint,
     surfaceBright = ThemeDark.surfaceTint, surfaceDim = ThemeDark.background,
 )
