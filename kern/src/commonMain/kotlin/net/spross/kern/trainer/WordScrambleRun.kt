@@ -10,10 +10,9 @@ import net.spross.kern.session.TurnFeedback
  * what it can ask is [WordScrambleAvailability.Report].
  *
  * It TYPES like the atlas and the slot run — writing the word out is the answer — so a Sprosse
- * changes how much help the cue gives and how much word there is to spell: the first three take
- * the anchors away one at a time ([WordScrambleMasking]) and every Sprosse, those included,
- * raises the length floor the pool is drawn against
- * ([WordScrambleAvailability.Report.lettersAt]). Nothing it does books a review; spelling a word
+ * changes how much help the cue gives and how much word there is to spell: the third takes the
+ * opening letter away ([WordScrambleMasking]) and every Sprosse, that one included, raises the
+ * length floor the pool is drawn against ([WordScrambleAvailability.Report.lettersAt]). Nothing it does books a review; spelling a word
  * back from its own letters is not the recall the schedule measures.
  *
  * Kern never self-randomizes: every draw and every mix takes the caller's [Random], so a seeded
