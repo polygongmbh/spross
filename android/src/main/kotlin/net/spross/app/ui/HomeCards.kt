@@ -43,7 +43,7 @@ private fun DayCard(content: @Composable ColumnScope.() -> Unit) {
         modifier = Modifier.fillMaxWidth().panel(MaterialTheme.shapes.large),
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.xl),
+            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
             content = content,
@@ -232,7 +232,7 @@ private fun WayInCard(glyph: String, title: String, subtitle: String, onOpen: ()
             .clip(MaterialTheme.shapes.large)
             .semantics(mergeDescendants = true) { }
             .clickable(role = Role.Button, onClick = onOpen)
-            .padding(Theme.spacing.xl),
+            .padding(Theme.spacing.lg),
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
