@@ -13,7 +13,7 @@
  { "slug": "contract", "kind": "noun", "emoji": "📑" },
  { "slug": "to-apply", "kind": "verb", "emoji": "📨" },
  { "slug": "to-leave", "kind": "verb", "emoji": "🚪" },
- { "slug": "to-quit", "kind": "verb", "emoji": "📃" },
+ { "slug": "to-quit", "kind": "verb" },
  { "slug": "customer", "kind": "noun", "emoji": "🛍️" },
  { "slug": "worker", "kind": "noun" },
  { "slug": "employer", "kind": "noun" },

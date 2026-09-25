@@ -5,7 +5,7 @@
  { "slug": "mouth", "kind": "noun", "emoji": "👄" },
  { "slug": "foot", "kind": "noun", "emoji": "🦶" },
  { "slug": "stomach", "kind": "noun" },
- { "slug": "back", "kind": "noun", "emoji": "🩻" },
+ { "slug": "back", "kind": "noun" },
  { "slug": "throat", "kind": "noun" },
  { "slug": "ear", "kind": "noun", "emoji": "👂" },
  { "slug": "nose", "kind": "noun", "emoji": "👃" },

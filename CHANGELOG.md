@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- About thirty cards lose a picture that pointed at the wrong thing, like the 💯 on grade and the cloud on blanket, and water now shows a drop instead of a wave.
 - The tab bar now shows its icons without labels, and on Android a thin line sets it apart from the cards above it.
 - A new Personal Details shelf teaches what an official form asks for, and the office shelf adds the authority, being responsible, filing an application and taking a number.
 - A new Relatives shelf covers grandparents, siblings, cousins, nieces and nephews, grandchildren and in-laws.
