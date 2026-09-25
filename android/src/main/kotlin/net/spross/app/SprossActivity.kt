@@ -10,6 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -135,7 +137,7 @@ class SprossActivity : ComponentActivity() {
 @Composable
 private fun Root(model: AppModel = viewModel()) {
     val tab = model.screen.asTab()
-    val transition = rememberScreenTransition(model)
+    val screens = rememberScreenTransition(model)
     // why: the Scaffold owns the insets rather than a padding around it, so the tab bar reaches
     // under the system navigation area instead of leaving a strip of paper below it.
     Scaffold(
@@ -143,31 +145,35 @@ private fun Root(model: AppModel = viewModel()) {
         contentWindowInsets = WindowInsets.safeDrawing,
     ) { insets ->
         Box(Modifier.padding(insets).consumeWindowInsets(insets).imePadding()) {
-            transition.AnimatedContent(transitionSpec = screenMotion) { screen ->
+            screens.transition.AnimatedContent(transitionSpec = screens.motion) { screen ->
                 // The screen is the lambda's own parameter rather than a property read, so the Box
                 // case can hand its area on: a `mutableStateOf` property is never smart-cast — and
                 // an outgoing screen keeps drawing the state it left with instead of the new one.
-                when (screen) {
-                    Screen.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
+                // why: each screen is its own page of paper, so a screen being backed out of
+                // hides the one behind it rather than showing through it.
+                Box(Modifier.fillMaxSize().clip(screenShape).background(MaterialTheme.colorScheme.background)) {
+                    when (screen) {
+                        Screen.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            CircularProgressIndicator()
+                        }
+                        Screen.Onboarding -> OnboardingScreen(model)
+                        Screen.Home -> HomeScreen(model)
+                        Screen.Session -> SessionScreen(model)
+                        Screen.Listening -> ListeningScreen(model)
+                        Screen.About -> AboutScreen(model)
+                        Screen.Numbers -> NumbersOverviewScreen(model)
+                        Screen.Letters -> LettersOverviewScreen(model)
+                        Screen.Countries -> CountriesOverviewScreen(model)
+                        Screen.Dates -> DatesOverviewScreen(model)
+                        is Screen.NumbersRun -> NumbersRunScreen(model, screen.mode, screen.challenge)
+                        Screen.LetterDrill -> LetterDrillScreen(model)
+                        Screen.WordScramble -> WordScrambleScreen(model)
+                        Screen.SentenceScramble -> SentenceScrambleScreen(model)
+                        is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast, screen.level)
+                        is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast, screen.level)
+                        Screen.Settings -> SettingsScreen(model)
+                        is Screen.Box -> BoxScreen(model, openAt = screen.area)
                     }
-                    Screen.Onboarding -> OnboardingScreen(model)
-                    Screen.Home -> HomeScreen(model)
-                    Screen.Session -> SessionScreen(model)
-                    Screen.Listening -> ListeningScreen(model)
-                    Screen.About -> AboutScreen(model)
-                    Screen.Numbers -> NumbersOverviewScreen(model)
-                    Screen.Letters -> LettersOverviewScreen(model)
-                    Screen.Countries -> CountriesOverviewScreen(model)
-                    Screen.Dates -> DatesOverviewScreen(model)
-                    is Screen.NumbersRun -> NumbersRunScreen(model, screen.mode, screen.challenge)
-                    Screen.LetterDrill -> LetterDrillScreen(model)
-                    Screen.WordScramble -> WordScrambleScreen(model)
-                    Screen.SentenceScramble -> SentenceScrambleScreen(model)
-                    is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast, screen.level)
-                    is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast, screen.level)
-                    Screen.Settings -> SettingsScreen(model)
-                    is Screen.Box -> BoxScreen(model, openAt = screen.area)
                 }
             }
         }
