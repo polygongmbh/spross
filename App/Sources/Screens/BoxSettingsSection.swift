@@ -55,7 +55,11 @@ struct BoxSettingsSection: View {
         // why: the build number is always 1 here — showing "(1)" reads odd;
         // the marketing version alone identifies feedback mails fine.
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
+        #if DEBUG
+        return "Spross Dev v\(version)"
+        #else
         return "Spross v\(version)"
+        #endif
     }
 
     private var aboutFooter: some View {
