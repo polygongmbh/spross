@@ -15,7 +15,7 @@ xcodebuild -project Spross.xcodeproj -scheme Spross \
 Install + launch (app binary lands in DerivedData `Build/Products/Debug-iphonesimulator/Spross.app`):
 
 ```sh
-xcrun simctl boot "iPhone 17"; open -a Simulator
+xcrun simctl boot "iPhone 17"; open -a DeviceHub || open -a Simulator  # DeviceHub from Xcode 27
 xcrun simctl install booted <path>/Spross.app
 xcrun simctl launch booted net.spross.app            # clean install ⇒ onboarding
 xcrun simctl uninstall booted net.spross.app         # reset to clean state
