@@ -107,8 +107,6 @@ Parked work is not an issue: its own doc says it is parked.
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
 - Android's swipe-back shows no predictive preview: `Root` drives one `AnimatedContent` off a
   single screen state (`SprossActivity.kt`), which cannot follow gesture progress without restructuring.
-- Android's session turn sits at the top and leaves the lower half empty (`SessionScreen.kt`) —
-  dock it lower for one-handed reach, or keep the shared top-anchored layout?
 - Compound/morpheme-boundary training for a compounding language (marking the component seams
   inside a German compound, the way Leichte Sprache's mediopunkt does) is a distinct unbuilt
   drill needing curated component-boundary data, and syllable data would not deliver it since a
