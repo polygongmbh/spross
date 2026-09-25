@@ -1,0 +1,24 @@
+{
+ "title": "I parenti",
+ "subtitle": "Tutti quelli che vengono alle feste di famiglia.",
+ "words": {
+  "grandparents": { "text": "nonni", "grammar": { "gender": "i", "plural": "only" } },
+  "siblings": { "text": "fratelli", "grammar": { "gender": "i", "plural": "only" } },
+  "cousin": { "text": "cugino", "grammar": { "gender": "il" } },
+  "cousin-f": { "text": "cugina", "grammar": { "gender": "la" } },
+  "nephew": {
+   "text": "nipote",
+   "notes": {
+    "it": "il nipote è il figlio del fratello, e anche il figlio del figlio: zio e nonno dicono la stessa parola."
+   },
+   "grammar": { "gender": "il" }
+  },
+  "brother-in-law": { "text": "cognato", "grammar": { "gender": "il" } },
+  "sister-in-law": { "text": "cognata", "grammar": { "gender": "la" } },
+  "parents-in-law": { "text": "suoceri", "grammar": { "gender": "i", "plural": "only" } },
+  "father-in-law": { "text": "suocero", "grammar": { "gender": "il" } },
+  "mother-in-law": { "text": "suocera", "grammar": { "gender": "la" } },
+  "do-you-have-siblings": { "text": "Avete fratelli?" },
+  "my-mother-in-law-lives-with-us": { "text": "Mia suocera abita da noi.", "accepts": ["Mia suocera vive con noi."] }
+ }
+}

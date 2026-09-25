@@ -1,0 +1,24 @@
+{
+ "title": "Die Verwandtschaft",
+ "subtitle": "Wer bei Festen alles dazukommt.",
+ "words": {
+  "grandparents": { "text": "Großeltern", "grammar": { "gender": "die", "plural": "only" } },
+  "siblings": { "text": "Geschwister", "grammar": { "gender": "die", "plural": "only" } },
+  "cousin": { "text": "Cousin", "grammar": { "gender": "der", "plural": "-s" } },
+  "cousin-f": { "text": "Cousine", "accepts": ["Kusine"], "grammar": { "gender": "die", "plural": "-n" } },
+  "nephew": { "text": "Neffe", "grammar": { "gender": "der", "plural": "-n" } },
+  "niece": { "text": "Nichte", "grammar": { "gender": "die", "plural": "-n" } },
+  "grandson": { "text": "Enkel", "grammar": { "gender": "der", "plural": "=" } },
+  "granddaughter": { "text": "Enkelin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "brother-in-law": { "text": "Schwager", "grammar": { "gender": "der", "plural": "Schwäger" } },
+  "sister-in-law": { "text": "Schwägerin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "parents-in-law": { "text": "Schwiegereltern", "grammar": { "gender": "die", "plural": "only" } },
+  "father-in-law": { "text": "Schwiegervater", "grammar": { "gender": "der", "plural": "Schwiegerväter" } },
+  "mother-in-law": { "text": "Schwiegermutter", "grammar": { "gender": "die", "plural": "Schwiegermütter" } },
+  "do-you-have-siblings": { "text": "Habt ihr Geschwister?" },
+  "my-mother-in-law-lives-with-us": {
+   "text": "Meine Schwiegermutter wohnt bei uns.",
+   "orders": ["Bei uns wohnt meine Schwiegermutter."]
+  }
+ }
+}

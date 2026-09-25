@@ -1,0 +1,24 @@
+{
+ "title": "La parencoj",
+ "subtitle": "Ĉiuj, kiuj venas al familiaj festoj.",
+ "words": {
+  "grandparents": { "text": "geavoj" },
+  "siblings": { "text": "gefratoj" },
+  "cousin": { "text": "kuzo" },
+  "cousin-f": { "text": "kuzino" },
+  "nephew": { "text": "nevo" },
+  "niece": { "text": "nevino" },
+  "grandson": { "text": "nepo" },
+  "granddaughter": { "text": "nepino" },
+  "brother-in-law": {
+   "text": "bofrato",
+   "notes": { "eo": "bo- signas parencon per geedziĝo: bofrato, bopatro, bopatrino." }
+  },
+  "sister-in-law": { "text": "bofratino" },
+  "parents-in-law": { "text": "bogepatroj" },
+  "father-in-law": { "text": "bopatro" },
+  "mother-in-law": { "text": "bopatrino" },
+  "do-you-have-siblings": { "text": "Ĉu vi havas gefratojn?" },
+  "my-mother-in-law-lives-with-us": { "text": "Mia bopatrino loĝas ĉe ni." }
+ }
+}

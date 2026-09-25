@@ -72,6 +72,7 @@
   },
   "areas": [
    { "area": "people", "emoji": "👪" },
+   { "area": "relatives", "emoji": "🌳" },
    { "area": "body", "emoji": "🧍" },
    { "area": "emotions", "emoji": "🎢" },
    { "area": "mind", "emoji": "🧠" },

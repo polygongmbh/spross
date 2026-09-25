@@ -1,0 +1,17 @@
+{
+ "title": "Ndugu na jamaa",
+ "subtitle": "Wote wanaokuja kwenye sherehe za familia.",
+ "words": {
+  "grandparents": { "text": "babu na bibi" },
+  "siblings": { "text": "ndugu", "grammar": { "plural": "=" } },
+  "cousin": { "text": "binamu", "grammar": { "plural": "=" } },
+  "nephew": { "text": "mpwa", "grammar": { "plural": "wapwa" } },
+  "grandson": { "text": "mjukuu", "grammar": { "plural": "wajukuu" } },
+  "brother-in-law": { "text": "shemeji", "grammar": { "plural": "mashemeji" } },
+  "parents-in-law": { "text": "wakwe", "grammar": { "plural": "only" } },
+  "father-in-law": { "text": "baba mkwe", "grammar": { "plural": "=" } },
+  "mother-in-law": { "text": "mama mkwe", "grammar": { "plural": "=" } },
+  "do-you-have-siblings": { "text": "Mna ndugu?" },
+  "my-mother-in-law-lives-with-us": { "text": "Mama mkwe wangu anaishi nasi.", "accepts": ["Mama mkwe wangu anaishi pamoja nasi."] }
+ }
+}

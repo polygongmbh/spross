@@ -1,0 +1,20 @@
+{
+ "title": "Relatives",
+ "subtitle": "Everyone who turns up at family parties.",
+ "words": {
+  "grandparents": { "text": "grandparents", "grammar": { "plural": "only" } },
+  "siblings": { "text": "siblings", "grammar": { "plural": "only" } },
+  "cousin": { "text": "cousin" },
+  "nephew": { "text": "nephew" },
+  "niece": { "text": "niece" },
+  "grandson": { "text": "grandson", "accepts": ["grandchild"] },
+  "granddaughter": { "text": "granddaughter" },
+  "brother-in-law": { "text": "brother-in-law", "grammar": { "plural": "brothers-in-law" } },
+  "sister-in-law": { "text": "sister-in-law", "grammar": { "plural": "sisters-in-law" } },
+  "parents-in-law": { "text": "parents-in-law", "accepts": ["in-laws"], "grammar": { "plural": "only" } },
+  "father-in-law": { "text": "father-in-law", "grammar": { "plural": "fathers-in-law" } },
+  "mother-in-law": { "text": "mother-in-law", "grammar": { "plural": "mothers-in-law" } },
+  "do-you-have-siblings": { "text": "Do you have siblings?", "accepts": ["Do you have any siblings?"] },
+  "my-mother-in-law-lives-with-us": { "text": "My mother-in-law lives with us." }
+ }
+}

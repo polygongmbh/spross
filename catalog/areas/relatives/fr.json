@@ -1,0 +1,21 @@
+{
+ "title": "La parenté",
+ "subtitle": "Tous ceux qui viennent aux fêtes de famille.",
+ "words": {
+  "grandparents": { "text": "grands-parents", "grammar": { "gender": "les", "plural": "only" } },
+  "siblings": { "text": "frères et sœurs", "grammar": { "gender": "les", "plural": "only" } },
+  "cousin": { "text": "cousin", "grammar": { "gender": "le" } },
+  "cousin-f": { "text": "cousine", "grammar": { "gender": "la" } },
+  "nephew": { "text": "neveu", "grammar": { "gender": "le", "plural": "neveux" } },
+  "niece": { "text": "nièce", "grammar": { "gender": "la" } },
+  "grandson": { "text": "petit-fils", "grammar": { "gender": "le", "plural": "petits-fils" } },
+  "granddaughter": { "text": "petite-fille", "grammar": { "gender": "la", "plural": "petites-filles" } },
+  "brother-in-law": { "text": "beau-frère", "grammar": { "gender": "le", "plural": "beaux-frères" } },
+  "sister-in-law": { "text": "belle-sœur", "grammar": { "gender": "la", "plural": "belles-sœurs" } },
+  "parents-in-law": { "text": "beaux-parents", "grammar": { "gender": "les", "plural": "only" } },
+  "father-in-law": { "text": "beau-père", "grammar": { "gender": "le", "plural": "beaux-pères" } },
+  "mother-in-law": { "text": "belle-mère", "grammar": { "gender": "la", "plural": "belles-mères" } },
+  "do-you-have-siblings": { "text": "Vous avez des frères et sœurs ?", "accepts": ["Avez-vous des frères et sœurs ?"] },
+  "my-mother-in-law-lives-with-us": { "text": "Ma belle-mère habite chez nous.", "accepts": ["Ma belle-mère vit chez nous."] }
+ }
+}

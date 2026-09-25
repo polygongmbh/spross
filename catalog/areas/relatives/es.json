@@ -1,0 +1,21 @@
+{
+ "title": "Los parientes",
+ "subtitle": "Todos los que vienen a las fiestas familiares.",
+ "words": {
+  "grandparents": { "text": "abuelos", "grammar": { "gender": "los", "plural": "only" } },
+  "siblings": { "text": "hermanos", "grammar": { "gender": "los", "plural": "only" } },
+  "cousin": { "text": "primo", "grammar": { "gender": "el" } },
+  "cousin-f": { "text": "prima", "grammar": { "gender": "la" } },
+  "nephew": { "text": "sobrino", "grammar": { "gender": "el" } },
+  "niece": { "text": "sobrina", "grammar": { "gender": "la" } },
+  "grandson": { "text": "nieto", "grammar": { "gender": "el" } },
+  "granddaughter": { "text": "nieta", "grammar": { "gender": "la" } },
+  "brother-in-law": { "text": "cuñado", "grammar": { "gender": "el" } },
+  "sister-in-law": { "text": "cuñada", "grammar": { "gender": "la" } },
+  "parents-in-law": { "text": "suegros", "grammar": { "gender": "los", "plural": "only" } },
+  "father-in-law": { "text": "suegro", "grammar": { "gender": "el" } },
+  "mother-in-law": { "text": "suegra", "grammar": { "gender": "la" } },
+  "do-you-have-siblings": { "text": "¿Tenéis hermanos?" },
+  "my-mother-in-law-lives-with-us": { "text": "Mi suegra vive con nosotros." }
+ }
+}

@@ -1,0 +1,17 @@
+[
+ { "slug": "grandparents", "kind": "noun" },
+ { "slug": "siblings", "kind": "noun" },
+ { "slug": "cousin", "kind": "noun" },
+ { "slug": "cousin-f", "kind": "noun", "feminineOf": "cousin" },
+ { "slug": "nephew", "kind": "noun" },
+ { "slug": "niece", "kind": "noun" },
+ { "slug": "grandson", "kind": "noun" },
+ { "slug": "granddaughter", "kind": "noun" },
+ { "slug": "brother-in-law", "kind": "noun" },
+ { "slug": "sister-in-law", "kind": "noun" },
+ { "slug": "parents-in-law", "kind": "noun" },
+ { "slug": "father-in-law", "kind": "noun" },
+ { "slug": "mother-in-law", "kind": "noun" },
+ { "slug": "do-you-have-siblings", "kind": "phrase", "components": ["siblings"] },
+ { "slug": "my-mother-in-law-lives-with-us", "kind": "phrase", "components": ["mother-in-law"] }
+]
