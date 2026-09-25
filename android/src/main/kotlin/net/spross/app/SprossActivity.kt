@@ -18,7 +18,6 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.WindowInsets
@@ -28,9 +27,9 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ShortNavigationBar
+import androidx.compose.material3.ShortNavigationBarItem
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -237,7 +236,7 @@ private fun TabBar(model: AppModel, current: Tab) {
     val chrome = model.chrome
     Column {
         HorizontalDivider(color = Theme.colors.separator)
-        NavigationBar(containerColor = Theme.colors.surface) {
+        ShortNavigationBar(containerColor = Theme.colors.surface) {
             TabItem(model, current, Tab.Home, "\uD83C\uDFE0", chrome.homeName)
             TabItem(model, current, Tab.Box, "\uD83E\uDEB4", chrome.boxName)
             TabItem(model, current, Tab.Settings, "\u2699\uFE0F", chrome.settingsTitle)
@@ -246,10 +245,11 @@ private fun TabBar(model: AppModel, current: Tab) {
 }
 
 @Composable
-private fun RowScope.TabItem(model: AppModel, current: Tab, tab: Tab, glyph: String, name: String) {
-    NavigationBarItem(
+private fun TabItem(model: AppModel, current: Tab, tab: Tab, glyph: String, name: String) {
+    ShortNavigationBarItem(
         selected = current == tab,
         onClick = { model.selectTab(tab) },
+        label = null,
         icon = {
             Text(
                 glyph,
