@@ -12,10 +12,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -28,8 +28,6 @@ import kotlinx.coroutines.withContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import net.spross.app.AppModel
@@ -109,10 +107,9 @@ fun BoxSearchScreen(
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.weight(1f),
             )
-            TextButton(
-                onClick = onClose,
-                modifier = Modifier.semantics { contentDescription = chrome.commonClose },
-            ) { Icon(SprossIcons.Close, contentDescription = null) }
+            IconButton(onClick = onClose) {
+                Icon(SprossIcons.Close, contentDescription = chrome.commonClose, tint = Theme.colors.textSecondary)
+            }
         }
         OutlinedTextField(
             value = query,
@@ -121,10 +118,9 @@ fun BoxSearchScreen(
             placeholder = { Text(chrome.boxSearchPlaceholder) },
             trailingIcon = {
                 if (query.isNotEmpty()) {
-                    TextButton(
-                        onClick = { query = "" },
-                        modifier = Modifier.semantics { contentDescription = chrome.a11yBoxSearchClear },
-                    ) { Icon(SprossIcons.Close, contentDescription = null) }
+                    IconButton(onClick = { query = "" }) {
+                        Icon(SprossIcons.Close, contentDescription = chrome.a11yBoxSearchClear)
+                    }
                 }
             },
             keyboardOptions = KeyboardOptions(

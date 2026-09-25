@@ -20,6 +20,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -99,10 +100,13 @@ internal fun BoxOwnSection(model: AppModel, onWriteOwn: (OwnWordDraft) -> Unit) 
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.weight(1f),
             )
-            TextButton(
-                onClick = { onWriteOwn(OwnWordDraft()) },
-                modifier = Modifier.semantics { contentDescription = chrome.a11yBoxOwnWordAddAction },
-            ) { Icon(SprossIcons.Plus, contentDescription = null) }
+            IconButton(onClick = { onWriteOwn(OwnWordDraft()) }) {
+                Icon(
+                    SprossIcons.Plus,
+                    contentDescription = chrome.a11yBoxOwnWordAddAction,
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+            }
         }
         // An empty panel is furniture: with nothing written and nothing filed, the header
         // and its one button are the whole section.

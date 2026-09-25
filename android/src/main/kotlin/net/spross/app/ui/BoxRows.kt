@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -248,13 +249,10 @@ enum class PackDirection { In, Out }
  */
 @Composable
 fun PackButton(direction: PackDirection, label: String, onClick: () -> Unit) {
-    TextButton(
-        onClick = onClick,
-        modifier = Modifier.semantics { contentDescription = label },
-    ) {
+    IconButton(onClick = onClick) {
         Icon(
             if (direction == PackDirection.In) SprossIcons.PackIn else SprossIcons.PackOut,
-            contentDescription = null,
+            contentDescription = label,
             tint = if (direction == PackDirection.In) Theme.colors.amber else Theme.colors.accent,
         )
     }
