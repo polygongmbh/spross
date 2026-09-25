@@ -100,9 +100,31 @@ jobs:
           fi
           printf '%s' "$ASC_PRIVATE_KEY" | base64 -d > "$RUNNER_TEMP/asc.p8"
 
+      # why: with the team's distribution certificate in a keychain, the export signs
+      # locally — Xcode's fallback is Apple's cloud-managed certificate, which only an
+      # Admin API key may use.
+      - name: Distribution certificate from secret
+        env:
+          DIST_P12: ${{ secrets.APPLE_DISTRIBUTION_P12 }}
+          DIST_P12_PASSWORD: ${{ secrets.APPLE_DISTRIBUTION_P12_PASSWORD }}
+        run: |
+          if [ -z "$DIST_P12" ]; then
+            echo "::error::APPLE_DISTRIBUTION_P12 is unset — the export has no certificate to sign with"
+            exit 1
+          fi
+          keychain="$RUNNER_TEMP/signing.keychain-db"
+          password="$(uuidgen)"
+          printf '%s' "$DIST_P12" | base64 -d > "$RUNNER_TEMP/dist.p12"
+          security create-keychain -p "$password" "$keychain"
+          security set-keychain-settings -lut 21600 "$keychain"
+          security unlock-keychain -p "$password" "$keychain"
+          security import "$RUNNER_TEMP/dist.p12" -k "$keychain" -P "$DIST_P12_PASSWORD" \
+            -T /usr/bin/codesign -T /usr/bin/security
+          security set-key-partition-list -S apple-tool:,apple: -k "$password" "$keychain" > /dev/null
+          security list-keychains -d user -s "$keychain" $(security list-keychains -d user | tr -d '"')
+
       # why: -allowProvisioningUpdates plus the API key lets Xcode mint the ad-hoc
-      # profile itself, covering the app, the widget and both watch targets — the
-      # alternative is four provisioning profiles and a .p12 kept as secrets.
+      # profile itself, covering the app, the widget and both watch targets.
       - name: Archive
         env:
           ASC_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}

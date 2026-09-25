@@ -84,6 +84,8 @@ Set once, in Settings › Secrets and variables › Actions.
 | `APPSTORE_API_PRIVATE_KEY` | App Store Connect API key `.p8`, base64 |
 | `APPSTORE_API_KEY_ID` | that key's ID |
 | `APPSTORE_API_ISSUER_ID` | the issuer UUID, one per Apple team |
+| `APPLE_DISTRIBUTION_P12` | the team's Apple Distribution certificate with its private key, `.p12`, base64 |
+| `APPLE_DISTRIBUTION_P12_PASSWORD` | the password the `.p12` was exported with |
 
 The first three are enough to ship Android: the release job waits for the iPhone build
 but does not depend on it, so an Apple credential that is missing or expired costs the
@@ -92,10 +94,16 @@ IPA and its install manifest, not the release.
 `scripts/release-keystore.sh <dir>` creates the Android key wherever you keep key
 files and writes the first three into `<dir>/github-secrets.txt` ready to paste.
 The App Store Connect key is generated in App Store Connect › Users and Access › Integrations
-with the **Admin** role, downloadable exactly once —
-the export signs with a cloud-managed distribution certificate, which any lower role
-is refused with "Cloud signing permission error", and a key's role cannot be changed later;
+with the **App Manager** role, downloadable exactly once;
 `base64 -i AuthKey_XXX.p8 | pbcopy` turns it into the secret.
+
+The distribution certificate is created once by an Admin or the Account Holder:
+Xcode › Settings › Accounts › the team › Manage Certificates › `+` › Apple Distribution.
+In Keychain Access, under My Certificates, the "Apple Distribution: …" entry with its key
+exports as `.p12`; `base64 -i dist.p12 | pbcopy` turns it into the secret.
+Without it in the runner's keychain, the export falls back to Apple's cloud-managed
+certificate, which an App Manager key is refused with "Cloud signing permission error".
+It expires after a year; a renewed one replaces both secrets.
 
 **The Android key is unrepeatable.** Android pins an app's signature: a differently-signed
 APK is a different app to every device that already has this one, with uninstall as the only
@@ -188,8 +196,8 @@ a free personal team cannot issue the distribution certificate, and the export s
 is where that shows up.
 
 Signing is automatic — `-allowProvisioningUpdates` with the API key lets Xcode mint
-the profile covering the app, the widget and both watch targets, so no certificate or
-profile is kept as a secret. `scripts/ExportOptions.plist` holds the export settings.
+the profile covering the app, the widget and both watch targets against the
+distribution certificate the workflow imports, so no profile is kept as a secret. `scripts/ExportOptions.plist` holds the export settings.
 
 Adding a tester means registering their device, not signing them up for anything —
 they never need an Apple developer account. Three steps:
