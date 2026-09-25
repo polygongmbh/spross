@@ -11,7 +11,6 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -259,8 +258,8 @@ private fun itemKey(item: BoxItem): String = when (item) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun BoxAppBar(chrome: Chrome, onSearch: (() -> Unit)?, scrollBehavior: TopAppBarScrollBehavior) {
-    LargeTopAppBar(
-        title = { Text(chrome.boxTitle, PageBarTitle) },
+    PageTopBar(
+        scrollBehavior = scrollBehavior,
         actions = {
             onSearch?.let {
                 IconButton(onClick = it) {
@@ -268,7 +267,5 @@ private fun BoxAppBar(chrome: Chrome, onSearch: (() -> Unit)?, scrollBehavior: T
                 }
             }
         },
-        scrollBehavior = scrollBehavior,
-        colors = pageBarColors(),
-    )
+    ) { Text(chrome.boxTitle) }
 }

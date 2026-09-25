@@ -15,7 +15,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -58,8 +57,8 @@ fun AboutScreen(model: AppModel) {
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
-            LargeTopAppBar(
-                title = { Text(chrome.settingsAbout, PageBarTitle) },
+            PageTopBar(
+                scrollBehavior = scrollBehavior,
                 // why: a push gets a leading back arrow, not the trailing X a dismissible
                 // sheet wears — [SprossIcons.ArrowLeft] is already the bar's own way out
                 // ("Back out of a screen the run pushed").
@@ -72,9 +71,7 @@ fun AboutScreen(model: AppModel) {
                         )
                     }
                 },
-                scrollBehavior = scrollBehavior,
-                colors = pageBarColors(),
-            )
+            ) { Text(chrome.settingsAbout) }
         },
     ) { insets ->
         LazyColumn(

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -33,11 +32,7 @@ fun SettingsScreen(model: AppModel) {
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
-            LargeTopAppBar(
-                title = { Text(model.chrome.settingsTitle, PageBarTitle) },
-                scrollBehavior = scrollBehavior,
-                colors = pageBarColors(),
-            )
+            PageTopBar(scrollBehavior) { Text(model.chrome.settingsTitle) }
         },
     ) { insets ->
         Column(

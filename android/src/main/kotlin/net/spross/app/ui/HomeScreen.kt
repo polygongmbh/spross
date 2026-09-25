@@ -12,7 +12,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -86,34 +87,33 @@ fun HomeScreen(model: AppModel) {
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         topBar = {
-            LargeTopAppBar(
-                title = {
-                    Column(PageBarTitle) {
-                        // The all-caps eyebrow reads as a LABEL over the greeting, so it
-                        // takes a label's tracking — the ramp's own tracking is zeroed
-                        // everywhere else ([Theme.kt]), which is right for running text but
-                        // reads cramped on three capitalized words this short.
-                        Text(
-                            today,
-                            style = MaterialTheme.typography.bodySmall.copy(letterSpacing = 1.sp),
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                        // A greeting is a phrase, not a headline word: it shrinks a step
-                        // rather than pushing the day's card down a third line.
-                        if (hello != null) Text(
-                            hello,
-                            style = MaterialTheme.typography.headlineLarge,
-                            maxLines = 2,
-                            autoSize = TextAutoSize.StepBased(
-                                minFontSize = 20.sp,
-                                maxFontSize = MaterialTheme.typography.headlineLarge.fontSize,
-                            ),
-                        )
-                    }
-                },
-                scrollBehavior = scrollBehavior,
-                colors = pageBarColors(),
-            )
+            PageTopBar(scrollBehavior) {
+                val expanded = isExpandedTitle()
+                Column {
+                    // The all-caps eyebrow reads as a LABEL over the greeting, so it
+                    // takes a label's tracking — the ramp's own tracking is zeroed
+                    // everywhere else ([Theme.kt]), which is right for running text but
+                    // reads cramped on three capitalized words this short.
+                    // Collapsed, the bar holds one line like every other page's.
+                    if (expanded || hello == null) Text(
+                        today,
+                        style = MaterialTheme.typography.bodySmall.copy(letterSpacing = 1.sp),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    // A greeting is a phrase, not a headline word: it shrinks a step
+                    // rather than pushing the day's card down a third line.
+                    if (hello != null) Text(
+                        hello,
+                        maxLines = if (expanded) 2 else 1,
+                        overflow = TextOverflow.Ellipsis,
+                        autoSize = if (expanded) {
+                            TextAutoSize.StepBased(minFontSize = 20.sp, maxFontSize = LocalTextStyle.current.fontSize)
+                        } else {
+                            null
+                        },
+                    )
+                }
+            }
         },
     ) { insets ->
         Column(
