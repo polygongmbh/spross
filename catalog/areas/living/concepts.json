@@ -24,7 +24,7 @@
  { "slug": "shelf", "kind": "noun" },
  { "slug": "furniture", "kind": "noun" },
  { "slug": "curtain", "kind": "noun" },
- { "slug": "carpet", "kind": "noun" },
+ { "slug": "carpet", "kind": "noun", "emoji": "🧶" },
  { "slug": "remote", "kind": "noun" },
  { "slug": "floor", "kind": "noun" },
  { "slug": "song", "kind": "noun", "emoji": "🎶" },

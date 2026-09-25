@@ -15,7 +15,7 @@
  { "slug": "dizziness", "kind": "noun", "emoji": "😵‍💫" },
  { "slug": "bandage", "kind": "noun", "emoji": "🩹" },
  { "slug": "band-aid", "kind": "noun" },
- { "slug": "splint", "kind": "noun" },
+ { "slug": "splint", "kind": "noun", "emoji": "🦴" },
  { "slug": "allergy", "kind": "noun" },
  { "slug": "my-throat-hurts-a-lot", "kind": "phrase", "emoji": "😣", "components": ["to-hurt"] },
  {

@@ -33,6 +33,11 @@ a phrase's `components` gate can then only name the side that HAS a card.
 **A picture only where it cannot mislead.**
 `emoji` is authored wherever an honest picture exists and left off where none does,
 because a wrong cue costs more than a missing one.
+A loose picture is not a wrong one:
+🌀 for the washing machine or 🥧 for the oven stays as a memory anchor.
+A picture misleads when it reads as another word
+(💯 as a hundred, 🎮 as a game)
+or repeats a picture the app or the same area already gives a meaning (🎭 is the idiom badge, 💤 the suspended one).
 A phrase takes its topic's picture,
 so sharing one with the word it is built from is expected;
 two distinct WORDS in one area sharing a picture is not,

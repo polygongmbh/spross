@@ -13,7 +13,7 @@
  { "slug": "to-pick-up", "kind": "verb", "emoji": "📦" },
  { "slug": "to-extend", "kind": "verb", "emoji": "⏩" },
  { "slug": "to-copy", "kind": "verb", "emoji": "🖨️" },
- { "slug": "registration", "kind": "noun" },
+ { "slug": "registration", "kind": "noun", "emoji": "🏠" },
  { "slug": "fee", "kind": "noun", "emoji": "💸" },
  { "slug": "receipt", "kind": "noun", "emoji": "🧾" },
  { "slug": "certificate", "kind": "noun", "emoji": "📜" },
