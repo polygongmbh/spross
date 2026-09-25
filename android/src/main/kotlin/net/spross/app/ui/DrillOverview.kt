@@ -1,6 +1,5 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -61,7 +60,6 @@ fun OverviewScaffold(
     val chrome = model.chrome
     val scroll = rememberScrollState()
     val onClose = { model.closeOverview() }
-    BackHandler { onClose() }
 
     val result = model.trainer.result
     // why: a tile inserted ABOVE the content keeps the scroll offset, so what a run came

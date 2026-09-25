@@ -1,6 +1,5 @@
 package net.spross.app.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -50,8 +49,6 @@ import net.spross.kern.catalog.audioCredits
 @Composable
 fun AboutScreen(model: AppModel) {
     val chrome = model.chrome
-    BackHandler { model.closeAbout() }
-
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),

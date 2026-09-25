@@ -86,10 +86,32 @@ fun AppModel.openAbout() {
     navigate(Screen.About)
 }
 
-/** The only way in is the settings' own footer ([net.spross.app.ui.AboutFooter]), so the
- *  way out is the settings. */
 fun AppModel.closeAbout() {
-    navigate(Screen.Settings)
+    goBack()
+}
+
+/**
+ * The screen behind this one: where back lands, and what a back swipe shows while it is
+ * dragged. The tabs and every drill's page sit on Home; About sits on the settings, the only
+ * way in being their own footer ([net.spross.app.ui.AboutFooter]).
+ *
+ * Null where back is not a plain step. Home, the story and Loading have nothing behind them,
+ * so back leaves the app. A session, a run and a listening run save or stop something on the
+ * way out, so each keeps its own handler and says where it goes itself.
+ */
+fun Screen.back(): Screen? = when (this) {
+    is Screen.Box, Screen.Settings -> Screen.Home
+    Screen.About -> Screen.Settings
+    Screen.Numbers, Screen.Letters, Screen.Countries, Screen.Dates -> Screen.Home
+    Screen.Loading, Screen.Onboarding, Screen.Home -> null
+    Screen.Session, Screen.Listening -> null
+    is Screen.NumbersRun, Screen.LetterDrill, Screen.WordScramble, Screen.SentenceScramble,
+    is Screen.CountryDrill, is Screen.DateDrill -> null
+}
+
+/** One step back to [Screen.back]; nothing where the screen has no plain step. */
+fun AppModel.goBack() {
+    screen.back()?.let { navigate(it) }
 }
 
 /**

@@ -37,9 +37,9 @@ fun AppModel.openDates() {
     navigate(Screen.Dates)
 }
 
-/** Back to Home from any of them. */
+/** The ✕ on any of them: one plain step back ([Screen.back]). */
 fun AppModel.closeOverview() {
-    navigate(Screen.Home)
+    goBack()
 }
 
 fun AppModel.startTrainerRun(mode: NumbersMode) {

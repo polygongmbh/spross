@@ -160,10 +160,10 @@ private const val SCREEN_MOTION_MS = 220
 @Composable
 private fun Root(model: AppModel = viewModel()) {
     val tab = model.screen.asTab()
-    // why: back off a tab goes to Home first and leaves the app from there. The screens that
-    // own a way out — a run, the story, the about page — register their own handler, which is
-    // composed after this one and stands in front of it for as long as it is up.
-    BackHandler(enabled = tab != null && tab != Tab.Home) { model.selectTab(Tab.Home) }
+    // why: back takes the one plain step [Screen.back] names, and leaves the app from where it
+    // names none. The screens that own a way out — a run, the story, the box's search — register
+    // their own handler, which is composed after this one and stands in front of it while it is up.
+    BackHandler(enabled = model.screen.back() != null) { model.goBack() }
     // why: the Scaffold owns the insets rather than a padding around it, so the tab bar reaches
     // under the system navigation area instead of leaving a strip of paper below it.
     Scaffold(
