@@ -57,6 +57,7 @@ so it rises on its own as long as minor and patch stay under 100.
 - Content earns an entry by the SHELF, not by the CARD.
   A new area, a pass across a language, a sweep that re-cuts a whole shelf is a change the
   learner meets; a single concept added, split or reworded is not,
+  nor a correction scattered across cards (a batch of emoji swapped),
   and stays in its commit message.
 - One entry per sweep, not one per finding.
   Before adding a second bullet from the same work, ask whether the learner would call it a
