@@ -145,8 +145,9 @@ private val SprossTypography: Typography by lazy {
             // point of it: a stat set Regular is the one thing on the screen that has to
             // be read at a glance and reads as body copy instead.
             headlineSmall = headlineSmall.rounded(FontWeight.Bold),
-            // title — a card's own heading.
-            titleLarge = titleLarge.rounded(FontWeight.Bold),
+            // title — a card's own heading, stepped between statValue (24 sp, unset) and
+            // headline (17 sp) rather than left at M3's stock 22 sp by omission.
+            titleLarge = titleLarge.rounded(FontWeight.Bold, 20.sp),
             // headline — the workhorse row label.
             titleMedium = titleMedium.rounded(FontWeight.SemiBold, 17.sp),
             // headline, minor.
