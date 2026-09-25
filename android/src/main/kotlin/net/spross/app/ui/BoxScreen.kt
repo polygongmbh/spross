@@ -64,6 +64,9 @@ fun BoxScreen(model: AppModel, openAt: String? = null) {
     BoxBrowserScreen(model, catalog, box, stats, openAt)
 }
 
+/** The list key of the page's own lines above the shelves. */
+private const val PAGE_HEADER_KEY = "page-header"
+
 /** One entry of the scrolling box; the flat list is what lets a reveal find its row. */
 private sealed interface BoxItem {
     data class Group(val section: AreaGroupSection) : BoxItem
@@ -150,7 +153,8 @@ private fun BoxBrowserScreen(
             }
         }
         // why: revealing is two moves — unfold, then bring the shelf up to the thumb.
-        if (index >= 0) listState.animateScrollToItem(index)
+        // The page header stands in front of the items in the list.
+        if (index >= 0) listState.animateScrollToItem(index + 1)
         scrollTo = null
     }
 
@@ -191,24 +195,30 @@ private fun BoxBrowserScreen(
         topBar = { BoxAppBar(chrome, onSearch = { searching = true }, scrollBehavior) },
     ) { insets ->
         Column(Modifier.fillMaxSize().padding(insets).padding(horizontal = Theme.spacing.xl)) {
-            Text(
-                chrome.boxSubtitle.format(stats.activeCount, box.cards.size),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            // why: same disclosure as the number and country reference tables — said once
-            // for the page rather than as a glyph competing with every row. Withheld where
-            // not one word can be heard, so the box never promises a tap that would do
-            // nothing.
-            if (anyWordCanBeHeard) {
-                TapToHearHint(chrome, chrome.boxTapToHear)
-            }
             LazyColumn(
                 state = listState,
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
-                contentPadding = PaddingValues(vertical = Theme.spacing.lg),
+                contentPadding = PaddingValues(bottom = Theme.spacing.lg),
             ) {
+                // The page's own lines scroll away with it, so nothing stands pinned between
+                // the collapsed bar and the shelves passing under it.
+                item(key = PAGE_HEADER_KEY) {
+                    Column {
+                        Text(
+                            chrome.boxSubtitle.format(stats.activeCount, box.cards.size),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        // why: same disclosure as the number and country reference tables —
+                        // said once for the page rather than as a glyph competing with every
+                        // row. Withheld where not one word can be heard, so the box never
+                        // promises a tap that would do nothing.
+                        if (anyWordCanBeHeard) {
+                            TapToHearHint(chrome, chrome.boxTapToHear)
+                        }
+                    }
+                }
                 itemsIndexed(items, key = { _, item -> itemKey(item) }) { _, item ->
                     when (item) {
                         is BoxItem.Group -> GroupHeader(
