@@ -56,18 +56,26 @@ echo "Paired devices:"
 xcrun devicectl list devices || true
 echo
 
-# The `devicectl list devices` row for a name, matched case-insensitively —
-# empty when it is not paired. Re-queried per lookup rather than reusing the
-# listing above, so a device that wakes up during the build is still reached.
-device_row() {
-  xcrun devicectl list devices 2>/dev/null |
-    awk -v n="$1" 'tolower($1) == tolower(n) { print; exit }'
+# One device's columns, looked up by name case-insensitively — empty when it is not
+# paired. Re-queried per lookup rather than reusing the listing above, so a device
+# that wakes up during the build is still reached.
+# why: named columns and a name filter, never positional fields of the default table —
+# Xcode 27 added an often-empty Hostname column and a " (UDID)" suffix, which shifted
+# every field and handed "(UDID)" to --device.
+device_query() {  # name  column…
+  n="$1"; shift
+  cols=''; for c in "$@"; do cols="$cols --columns $c"; done
+  # shellcheck disable=SC2086
+  xcrun devicectl list devices --filter "name ==[c] '$n'" --hide-default-columns \
+    $cols --hide-headers 2>/dev/null | grep -v '^No matching devices' || true
 }
+
+device_row() { device_query "$1" Name Model; }
 
 # UUID for a paired device name, or empty if it is not currently reachable:
 # every paired device stays listed, so the state column is what decides.
 device_id() {
-  device_row "$1" | awk '$4 ~ /^(available|connected)/ { print $3 }'
+  device_query "$1" Identifier State | awk '$3 ~ /^(available|connected)/ { print $1; exit }'
 }
 
 install_app() {  # name  app_path  launch(0|1)
@@ -127,7 +135,7 @@ if [ -n "$ONLY" ]; then
     echo "  no paired device named '$ONLY' — pick one from the list above" >&2
     exit 2
   fi
-  ONLY="$(printf '%s\n' "$ROW" | awk '{ print $1 }')"   # canonical casing
+  ONLY="$(device_query "$ONLY" Name | sed 's/ *$//')"   # canonical casing
   case "$ROW" in
     *"Apple Watch"*)
       if [ -d "$WATCH_APP" ] || [ "$DRY" -eq 1 ]; then
