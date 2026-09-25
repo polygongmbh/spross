@@ -6,6 +6,19 @@
   "to-be-alive": { "text": "vivi" },
   "alive": { "text": "viva" },
   "death": { "text": "morto" },
-  "to-die": { "text": "morti" }
+  "to-die": { "text": "morti" },
+  "to-be-born": { "text": "naskiĝi" },
+  "childhood": { "text": "infanaĝo" },
+  "youth": { "text": "juneco" },
+  "to-grow-up": { "text": "kreski", "accepts": ["plenkreski"] },
+  "to-get-old": { "text": "maljuniĝi" },
+  "dead": { "text": "morta" },
+  "funeral": { "text": "entombigo", "accepts": ["funebraĵo"] },
+  "grave": { "text": "tombo" },
+  "cemetery": { "text": "tombejo" },
+  "to-bury": { "text": "enterigi" },
+  "my-condolences": { "text": "Miajn sincerajn kondolencojn." },
+  "where-did-you-grow-up": { "text": "Kie vi kreskis?" },
+  "my-grandpa-died-last-year": { "text": "Mia avo mortis pasintjare.", "accepts": ["Mia avo mortis pasintan jaron."] }
  }
 }

@@ -25,7 +25,6 @@
   "wife": { "text": "wife", "grammar": { "plural": "wives" } },
   "uncle": { "text": "uncle" },
   "aunt": { "text": "aunt" },
-  "to-be-born": { "text": "to be born" },
   "to-visit": { "text": "to visit" },
   "to-marry": { "text": "to marry" },
   "this-is-my-mother": { "text": "This is my mother." },

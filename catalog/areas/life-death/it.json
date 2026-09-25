@@ -6,6 +6,19 @@
   "to-be-alive": { "text": "vivere" },
   "alive": { "text": "vivo", "accepts": ["viva"] },
   "death": { "text": "morte", "grammar": { "gender": "la" } },
-  "to-die": { "text": "morire" }
+  "to-die": { "text": "morire" },
+  "to-be-born": { "text": "nascere" },
+  "childhood": { "text": "infanzia", "accepts": ["l'infanzia"], "grammar": { "gender": "l'" } },
+  "youth": { "text": "giovinezza", "accepts": ["gioventù"], "grammar": { "gender": "la" } },
+  "to-grow-up": { "text": "crescere" },
+  "to-get-old": { "text": "invecchiare" },
+  "dead": { "text": "morto", "accepts": ["morta"] },
+  "funeral": { "text": "funerale", "grammar": { "gender": "il" } },
+  "grave": { "text": "tomba", "grammar": { "gender": "la" } },
+  "cemetery": { "text": "cimitero", "grammar": { "gender": "il" } },
+  "to-bury": { "text": "seppellire" },
+  "my-condolences": { "text": "Sentite condoglianze.", "accepts": ["Le mie condoglianze."] },
+  "where-did-you-grow-up": { "text": "Dove siete cresciuti?" },
+  "my-grandpa-died-last-year": { "text": "Mio nonno è morto l'anno scorso." }
  }
 }

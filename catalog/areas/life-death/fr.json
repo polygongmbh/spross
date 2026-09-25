@@ -6,6 +6,19 @@
   "to-be-alive": { "text": "vivre" },
   "alive": { "text": "vivant", "accepts": ["vivante"] },
   "death": { "text": "mort", "grammar": { "gender": "la" } },
-  "to-die": { "text": "mourir" }
+  "to-die": { "text": "mourir" },
+  "to-be-born": { "text": "naître" },
+  "childhood": { "text": "enfance", "accepts": ["l'enfance"], "grammar": { "gender": "l'" } },
+  "youth": { "text": "jeunesse", "grammar": { "gender": "la" } },
+  "to-grow-up": { "text": "grandir" },
+  "to-get-old": { "text": "vieillir" },
+  "dead": { "text": "décédé", "accepts": ["décédée", "mort", "morte"] },
+  "funeral": { "text": "enterrement", "accepts": ["l'enterrement", "obsèques"], "grammar": { "gender": "l'" } },
+  "grave": { "text": "tombe", "grammar": { "gender": "la" } },
+  "cemetery": { "text": "cimetière", "grammar": { "gender": "le" } },
+  "to-bury": { "text": "enterrer" },
+  "my-condolences": { "text": "Toutes mes condoléances.", "accepts": ["Sincères condoléances."] },
+  "where-did-you-grow-up": { "text": "Où avez-vous grandi ?" },
+  "my-grandpa-died-last-year": { "text": "Mon grand-père est mort l'année dernière." }
  }
 }

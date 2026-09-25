@@ -6,6 +6,19 @@
   "to-be-alive": { "text": "to be alive" },
   "alive": { "text": "alive" },
   "death": { "text": "death" },
-  "to-die": { "text": "to die" }
+  "to-die": { "text": "to die" },
+  "to-be-born": { "text": "to be born" },
+  "childhood": { "text": "childhood" },
+  "youth": { "text": "youth" },
+  "to-grow-up": { "text": "to grow up" },
+  "to-get-old": { "text": "to get old", "accepts": ["to grow old"] },
+  "dead": { "text": "dead" },
+  "funeral": { "text": "funeral" },
+  "grave": { "text": "grave" },
+  "cemetery": { "text": "cemetery", "accepts": ["graveyard"], "grammar": { "plural": "cemeteries" } },
+  "to-bury": { "text": "to bury" },
+  "my-condolences": { "text": "My deepest condolences.", "accepts": ["My condolences."] },
+  "where-did-you-grow-up": { "text": "Where did you grow up?" },
+  "my-grandpa-died-last-year": { "text": "My grandpa died last year.", "accepts": ["My grandfather died last year."] }
  }
 }

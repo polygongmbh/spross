@@ -44,7 +44,6 @@
   "wife": { "text": "moglie", "grammar": { "gender": "la", "plural": "mogli" } },
   "uncle": { "text": "zio", "grammar": { "gender": "lo", "plural": "zii" } },
   "aunt": { "text": "zia", "grammar": { "gender": "la" } },
-  "to-be-born": { "text": "nascere" },
   "to-visit": { "text": "andare a trovare" },
   "to-marry": { "text": "sposarsi" },
   "this-is-my-mother": { "text": "Questa è mia madre." },

@@ -6,6 +6,26 @@
   "to-be-alive": { "text": "leben" },
   "alive": { "text": "lebendig", "accepts": ["am Leben"] },
   "death": { "text": "Tod", "grammar": { "gender": "der" } },
-  "to-die": { "text": "sterben" }
+  "to-die": { "text": "sterben" },
+  "to-be-born": { "text": "geboren werden" },
+  "childhood": { "text": "Kindheit", "grammar": { "gender": "die", "plural": "-en" } },
+  "youth": { "text": "Jugend", "grammar": { "gender": "die" } },
+  "to-grow-up": { "text": "aufwachsen" },
+  "to-get-old": { "text": "alt werden" },
+  "dead": { "text": "tot" },
+  "funeral": {
+   "text": "Beerdigung",
+   "accepts": ["Begräbnis"],
+   "grammar": { "gender": "die", "plural": "-en" }
+  },
+  "grave": { "text": "Grab", "grammar": { "gender": "das", "plural": "Gräber" } },
+  "cemetery": { "text": "Friedhof", "grammar": { "gender": "der", "plural": "Friedhöfe" } },
+  "to-bury": { "text": "begraben", "accepts": ["beerdigen"] },
+  "my-condolences": { "text": "Mein herzliches Beileid." },
+  "where-did-you-grow-up": { "text": "Wo seid ihr aufgewachsen?" },
+  "my-grandpa-died-last-year": {
+   "text": "Mein Opa ist letztes Jahr gestorben.",
+   "orders": ["Letztes Jahr ist mein Opa gestorben."]
+  }
  }
 }

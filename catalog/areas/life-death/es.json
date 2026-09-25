@@ -6,6 +6,19 @@
   "to-be-alive": { "text": "estar vivo", "accepts": ["estar viva"] },
   "alive": { "text": "vivo", "accepts": ["viva"] },
   "death": { "text": "muerte", "grammar": { "gender": "la" } },
-  "to-die": { "text": "morir" }
+  "to-die": { "text": "morir" },
+  "to-be-born": { "text": "nacer" },
+  "childhood": { "text": "infancia", "accepts": ["niñez"], "grammar": { "gender": "la" } },
+  "youth": { "text": "juventud", "grammar": { "gender": "la" } },
+  "to-grow-up": { "text": "crecer" },
+  "to-get-old": { "text": "envejecer", "accepts": ["hacerse mayor"] },
+  "dead": { "text": "muerto", "accepts": ["muerta"] },
+  "funeral": { "text": "entierro", "accepts": ["funeral"], "grammar": { "gender": "el" } },
+  "grave": { "text": "tumba", "grammar": { "gender": "la" } },
+  "cemetery": { "text": "cementerio", "grammar": { "gender": "el" } },
+  "to-bury": { "text": "enterrar" },
+  "my-condolences": { "text": "Mi más sentido pésame.", "accepts": ["Mis condolencias."] },
+  "where-did-you-grow-up": { "text": "¿Dónde crecisteis?", "accepts": ["¿Dónde crecieron?"] },
+  "my-grandpa-died-last-year": { "text": "Mi abuelo murió el año pasado." }
  }
 }

@@ -3,5 +3,18 @@
  { "slug": "to-be-alive", "kind": "verb" },
  { "slug": "alive", "kind": "adjective" },
  { "slug": "death", "kind": "noun" },
- { "slug": "to-die", "kind": "verb" }
+ { "slug": "to-die", "kind": "verb" },
+ { "slug": "to-be-born", "kind": "verb" },
+ { "slug": "childhood", "kind": "noun" },
+ { "slug": "youth", "kind": "noun" },
+ { "slug": "to-grow-up", "kind": "verb" },
+ { "slug": "to-get-old", "kind": "verb", "emoji": "🧓" },
+ { "slug": "dead", "kind": "adjective" },
+ { "slug": "funeral", "kind": "noun" },
+ { "slug": "grave", "kind": "noun", "emoji": "🪦" },
+ { "slug": "cemetery", "kind": "noun" },
+ { "slug": "to-bury", "kind": "verb" },
+ { "slug": "my-condolences", "kind": "phrase", "components": [] },
+ { "slug": "where-did-you-grow-up", "kind": "phrase", "components": ["to-grow-up"] },
+ { "slug": "my-grandpa-died-last-year", "kind": "phrase", "components": ["to-die"] }
 ]

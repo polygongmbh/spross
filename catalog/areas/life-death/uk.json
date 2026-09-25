@@ -6,6 +6,19 @@
   "to-be-alive": { "text": "бути живим" },
   "alive": { "text": "живий" },
   "death": { "text": "смерть" },
-  "to-die": { "text": "помирати", "accepts": ["померти"] }
+  "to-die": { "text": "помирати", "accepts": ["померти"] },
+  "to-be-born": { "text": "народитися" },
+  "childhood": { "text": "дитинство" },
+  "youth": { "text": "юність", "accepts": ["молодість"] },
+  "to-grow-up": { "text": "вирости", "accepts": ["виростати"] },
+  "to-get-old": { "text": "старіти", "accepts": ["постаріти"] },
+  "dead": { "text": "мертвий", "accepts": ["мертва"] },
+  "funeral": { "text": "похорон" },
+  "grave": { "text": "могила" },
+  "cemetery": { "text": "кладовище", "accepts": ["цвинтар"] },
+  "to-bury": { "text": "поховати", "accepts": ["ховати"] },
+  "my-condolences": { "text": "Мої щирі співчуття.", "accepts": ["Щиро співчуваю."] },
+  "where-did-you-grow-up": { "text": "Де ви виросли?" },
+  "my-grandpa-died-last-year": { "text": "Мій дідусь помер минулого року." }
  }
 }
