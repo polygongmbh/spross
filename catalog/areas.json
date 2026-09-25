@@ -71,6 +71,7 @@
    "uk": "Люди і тіло"
   },
   "areas": [
+   { "area": "personal-details", "emoji": "🪪" },
    { "area": "people", "emoji": "👪" },
    { "area": "relatives", "emoji": "🌳" },
    { "area": "body", "emoji": "🧍" },
@@ -181,7 +182,6 @@
    { "area": "studies", "emoji": "🎓" },
    { "area": "work", "emoji": "💼" },
    { "area": "admin", "emoji": "🗂️" },
-   { "area": "personal-details", "emoji": "🪪" },
    { "area": "politics", "emoji": "🗳️" }
   ]
  },
