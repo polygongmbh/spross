@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
@@ -62,6 +63,7 @@ internal fun GroupHeader(
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.weight(1f),
             )
             Text(emojis, style = MaterialTheme.typography.bodyMedium, maxLines = 1)
@@ -221,7 +223,7 @@ fun AreaChip(
             horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         ) {
             Text(emoji, style = MaterialTheme.typography.titleMedium)
-            Text(name, style = MaterialTheme.typography.titleLarge, maxLines = 1)
+            Text(name, style = MaterialTheme.typography.titleLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
         }
         subtitle?.let {
             Text(
@@ -229,6 +231,7 @@ fun AreaChip(
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
             )
         }
         if (!hideProgress) {
@@ -256,6 +259,7 @@ private fun CountLabel(text: String, color: Color = MaterialTheme.colorScheme.on
         style = MaterialTheme.typography.bodySmall,
         color = color,
         maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
     )
 }
 

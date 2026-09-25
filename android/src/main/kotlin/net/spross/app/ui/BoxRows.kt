@@ -28,6 +28,7 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.CardDisplay
@@ -132,6 +133,7 @@ fun BoxCardRow(
                     localizedTarget(Theme.colors.articleColoredText(card.target), card.target.lang),
                     style = MaterialTheme.typography.bodyLarge,
                     maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f, fill = false),
                 )
                 // why: `pronounce` is nil for exactly the words neither a recording nor the
@@ -151,6 +153,7 @@ fun BoxCardRow(
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
         }
         // why: standing apart from the badge on purpose — a report says nothing about where
