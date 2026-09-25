@@ -21,7 +21,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -98,7 +101,7 @@ class SprossActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    Box(Modifier.safeDrawingPadding()) { Root(model) }
+                    Root(model)
                 }
             }
         }
@@ -164,8 +167,13 @@ private fun Root(model: AppModel = viewModel()) {
     // own a way out — a run, the story, the about page — register their own handler, which is
     // composed after this one and stands in front of it for as long as it is up.
     BackHandler(enabled = tab != null && tab != Tab.Home) { model.selectTab(Tab.Home) }
-    Scaffold(bottomBar = { if (tab != null) TabBar(model, tab) }) { insets ->
-        Box(Modifier.padding(insets)) {
+    // why: the Scaffold owns the insets rather than a padding around it, so the tab bar reaches
+    // under the system navigation area instead of leaving a strip of paper below it.
+    Scaffold(
+        bottomBar = { if (tab != null) TabBar(model, tab) },
+        contentWindowInsets = WindowInsets.safeDrawing,
+    ) { insets ->
+        Box(Modifier.padding(insets).consumeWindowInsets(insets).imePadding()) {
             AnimatedContent(
                 targetState = model.screen,
                 // why: a screen that cuts is the loudest thing separating this cut from the iOS one,
@@ -238,6 +246,12 @@ private fun RowScope.TabItem(model: AppModel, current: Tab, tab: Tab, glyph: Str
     NavigationBarItem(
         selected = current == tab,
         onClick = { model.selectTab(tab) },
-        icon = { Text(glyph, Modifier.clearAndSetSemantics { contentDescription = name }) },
+        icon = {
+            Text(
+                glyph,
+                Modifier.clearAndSetSemantics { contentDescription = name },
+                style = MaterialTheme.typography.titleLarge,
+            )
+        },
     )
 }
