@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Word scramble now climbs a Sprosse in three clean spellings instead of five, the pace the other drills keep.
+
 ## 7.4.2 — 2026-09-22
 
 - After a miss, the words you already had right come back in the answer field spelled correctly, not with your typo still in them.

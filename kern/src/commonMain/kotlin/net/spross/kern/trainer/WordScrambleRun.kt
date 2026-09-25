@@ -21,11 +21,14 @@ import net.spross.kern.session.TurnFeedback
 object WordScrambleRun {
 
     /**
-     * Five clean spellings carry a Sprosse. Two made the ladder climb faster than the learner
-     * could feel it — a clean, an almost and a clean promoted on the third answer, which read
-     * as the almost having counted.
+     * Three clean spellings carry a Sprosse — the atlas', the calendar's and the sentence
+     * scramble's pacing ([CountryDrill.WINS_TO_ADVANCE]).
+     *
+     * The two the numbers and letter drills spend read wrong here: a clean, an almost and a
+     * clean promoted on the third answer, which looked like the almost having counted. Three
+     * keeps a clean answer between an almost and the Sprosse it does not buy.
      */
-    const val WINS_TO_ADVANCE: Int = 5
+    const val WINS_TO_ADVANCE: Int = 3
 
     /**
      * How wide the draw reaches into the shortest words the Sprosse still has unasked. The
