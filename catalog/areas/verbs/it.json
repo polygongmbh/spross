@@ -96,6 +96,7 @@
   "can-you-see-him": { "text": "Lo vedi?", "accepts": ["Lo vede?"] },
   "to-improve": { "text": "migliorare" },
   "to-suggest": { "text": "suggerire" },
-  "what-happened": { "text": "Cos'è successo?", "accepts": ["Che cosa è successo?"] }
+  "what-happened": { "text": "Cos'è successo?", "accepts": ["Che cosa è successo?"] },
+  "my-parents-come-from-italy": { "text": "I miei genitori vengono dall'Italia.", "accepts": ["I miei genitori sono italiani."] }
  }
 }

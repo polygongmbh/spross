@@ -25,13 +25,7 @@
  { "slug": "although", "kind": "adjective" },
  { "slug": "that-conj", "kind": "adjective" },
  { "slug": "usually", "kind": "adjective" },
- { "slug": "from", "kind": "adjective" },
  { "slug": "if-you-want", "kind": "phrase", "components": ["if"] },
  { "slug": "finally-done", "kind": "phrase", "components": ["finally"] },
- {
-  "slug": "from-monday-to-friday",
-  "kind": "phrase",
-  "emoji": "📅",
-  "components": ["from", "until"]
- }
+ { "slug": "from-monday-to-friday", "kind": "phrase", "emoji": "📅", "components": ["until"] }
 ]

@@ -31,7 +31,6 @@
   "even": { "text": "incluso" },
   "although": { "text": "aunque" },
   "that-conj": { "text": "que" },
-  "from": { "text": "de", "accepts": ["desde"] },
   "if-you-want": { "text": "Si quiere.", "accepts": ["Si quieres."] },
   "finally-done": { "text": "¡Por fin terminado!", "accepts": ["¡Por fin terminada!"] },
   "usually": { "text": "normalmente" },

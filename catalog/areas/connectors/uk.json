@@ -27,7 +27,6 @@
   "even": { "text": "навіть" },
   "although": { "text": "хоча" },
   "that-conj": { "text": "що" },
-  "from": { "text": "від" },
   "if-you-want": { "text": "Якщо хочете.", "accepts": ["Якщо хочеш."] },
   "finally-done": { "text": "Нарешті закінчив!", "accepts": ["Нарешті закінчила!"] },
   "usually": { "text": "зазвичай" },

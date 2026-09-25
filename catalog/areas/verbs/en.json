@@ -39,6 +39,7 @@
   "can-you-see-him": { "text": "Can you see him?" },
   "to-improve": { "text": "to improve" },
   "to-suggest": { "text": "to suggest" },
-  "what-happened": { "text": "What happened?" }
+  "what-happened": { "text": "What happened?" },
+  "my-parents-come-from-italy": { "text": "My parents come from Italy.", "accepts": ["My parents are from Italy."] }
  }
 }

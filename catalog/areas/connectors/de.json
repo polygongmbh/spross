@@ -48,7 +48,6 @@
   "even": { "text": "sogar" },
   "although": { "text": "obwohl" },
   "that-conj": { "text": "dass" },
-  "from": { "text": "von" },
   "if-you-want": { "text": "Wenn Sie wollen.", "accepts": ["Wenn du willst."] },
   "finally-done": { "text": "Endlich fertig!" },
   "usually": { "text": "normalerweise" },

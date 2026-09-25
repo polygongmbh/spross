@@ -36,5 +36,6 @@
  { "slug": "do-you-have-water", "kind": "phrase", "emoji": "💧", "components": ["to-have"] },
  { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["to-come"] },
  { "slug": "can-you-see-him", "kind": "phrase", "emoji": "👀", "components": ["to-see"] },
- { "slug": "what-happened", "kind": "phrase", "components": ["to-happen"] }
+ { "slug": "what-happened", "kind": "phrase", "components": ["to-happen"] },
+ { "slug": "my-parents-come-from-italy", "kind": "phrase", "emoji": "🌍", "components": ["to-come"] }
 ]

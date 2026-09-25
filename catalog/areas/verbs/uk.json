@@ -54,6 +54,7 @@
   },
   "to-improve": { "text": "покращувати" },
   "to-suggest": { "text": "пропонувати" },
-  "what-happened": { "text": "Що сталося?" }
+  "what-happened": { "text": "Що сталося?" },
+  "my-parents-come-from-italy": { "text": "Мої батьки з Італії.", "accepts": ["Мої батьки походять з Італії."] }
  }
 }

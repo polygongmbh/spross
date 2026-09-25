@@ -46,6 +46,7 @@
   "can-you-see-him": { "text": "Siehst du ihn?", "accepts": ["Sehen Sie ihn?"], "orders": ["Du siehst ihn?"] },
   "to-improve": { "text": "verbessern" },
   "to-suggest": { "text": "vorschlagen" },
-  "what-happened": { "text": "Was ist passiert?" }
+  "what-happened": { "text": "Was ist passiert?" },
+  "my-parents-come-from-italy": { "text": "Meine Eltern kommen aus Italien.", "orders": ["Aus Italien kommen meine Eltern."] }
  }
 }

@@ -71,6 +71,7 @@
   "can-you-see-him": { "text": "Unamwona?" },
   "to-improve": { "text": "kuboresha" },
   "to-suggest": { "text": "kupendekeza" },
-  "what-happened": { "text": "Nini kimetokea?", "accepts": ["Kumetokea nini?"] }
+  "what-happened": { "text": "Nini kimetokea?", "accepts": ["Kumetokea nini?"] },
+  "my-parents-come-from-italy": { "text": "Wazazi wangu wanatoka Italia." }
  }
 }

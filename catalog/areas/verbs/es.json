@@ -81,6 +81,7 @@
   "can-you-see-him": { "text": "¿Lo ves?", "accepts": ["¿Le ves?"] },
   "to-improve": { "text": "mejorar" },
   "to-suggest": { "text": "sugerir" },
-  "what-happened": { "text": "¿Qué ha pasado?", "accepts": ["¿Qué pasó?"] }
+  "what-happened": { "text": "¿Qué ha pasado?", "accepts": ["¿Qué pasó?"] },
+  "my-parents-come-from-italy": { "text": "Mis padres vienen de Italia.", "accepts": ["Mis padres son de Italia."] }
  }
 }
