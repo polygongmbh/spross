@@ -25,7 +25,7 @@
   "skills": { "text": "conocimientos", "grammar": { "gender": "los", "plural": "only" } },
   "to-finish-training": { "text": "terminar la formación", "accepts": ["acabar la formación"] },
   "she-completed-her-training-in-2015": { "text": "Terminó su formación en 2015.", "accepts": ["Ella terminó su formación en 2015."] },
-  "are-you-doing-an-internship": { "text": "¿Hacéis prácticas?" },
+  "are-you-doing-an-internship": { "text": "¿Hacéis prácticas?", "accepts": ["¿Hacen prácticas?"] },
   "the-lecture-is-canceled-today": { "text": "Hoy se cancela la clase magistral." },
   "no-prior-knowledge-needed": { "text": "No necesita conocimientos previos." }
  }

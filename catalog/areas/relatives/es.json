@@ -15,7 +15,7 @@
   "parents-in-law": { "text": "suegros", "grammar": { "gender": "los", "plural": "only" } },
   "father-in-law": { "text": "suegro", "grammar": { "gender": "el" } },
   "mother-in-law": { "text": "suegra", "grammar": { "gender": "la" } },
-  "do-you-have-siblings": { "text": "¿Tenéis hermanos?" },
+  "do-you-have-siblings": { "text": "¿Tenéis hermanos?", "accepts": ["¿Tienen hermanos?"] },
   "my-mother-in-law-lives-with-us": { "text": "Mi suegra vive con nosotros." }
  }
 }
