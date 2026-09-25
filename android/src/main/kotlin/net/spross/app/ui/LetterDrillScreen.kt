@@ -18,6 +18,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.semantics.Role
@@ -181,6 +182,7 @@ private fun ReplayButton(chrome: Chrome, replay: (() -> Unit)?, focus: FocusRequ
                 if (enabled) Theme.colors.wash(Theme.colors.accent) else MaterialTheme.colorScheme.surfaceVariant,
                 CircleShape,
             )
+            .clip(CircleShape)
             // why: focusable in BOTH states — a disabled clickable carries no focus target,
             // and the screen reader's hand-off to this button would land nowhere on the one
             // device that can neither play nor say the prompt.

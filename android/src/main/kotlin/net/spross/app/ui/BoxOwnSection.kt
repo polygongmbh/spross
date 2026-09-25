@@ -31,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.platform.LocalContext
@@ -318,6 +319,7 @@ private fun EntryRow(
             .fillMaxWidth()
             .sizeIn(minHeight = 48.dp)
             .background(MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.shapes.small)
+            .clip(MaterialTheme.shapes.small)
             .combinedClickable(
                 onLongClickLabel = editLabel,
                 onLongClick = { menuOpen = true },
@@ -381,6 +383,7 @@ private fun ReportedRow(model: AppModel, card: Card) {
             .fillMaxWidth()
             .sizeIn(minHeight = 48.dp)
             .background(MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.shapes.small)
+            .clip(MaterialTheme.shapes.small)
             .combinedClickable(
                 onLongClickLabel = chrome.reportEdit,
                 onLongClick = { menuOpen = true },

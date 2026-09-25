@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -17,6 +18,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
@@ -160,6 +162,7 @@ private fun ReplayPrompt(model: AppModel, ui: SessionUi) {
     Box(
         modifier = Modifier
             .size(72.dp)
+            .clip(CircleShape)
             .clickable { model.pronounceTarget(card.target.text, Pronouncer.Trigger.TAP) }
             // why: merged, or the loudspeaker would be a node of its own and TalkBack
             // would read the picture after the button it belongs to.
