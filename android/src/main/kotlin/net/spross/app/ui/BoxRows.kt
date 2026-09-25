@@ -123,7 +123,7 @@ fun BoxCardRow(
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.clearAndSetSemantics {},
         )
-        Column(Modifier.weight(1f)) {
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
             // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
             Row(
                 verticalAlignment = Alignment.CenterVertically,
