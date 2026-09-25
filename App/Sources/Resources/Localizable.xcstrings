@@ -4631,6 +4631,22 @@
         }
       }
     },
+    "onboarding.import" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sicherung importieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import backup"
+          }
+        }
+      }
+    },
     "onboarding.known.question" : {
       "comment" : "What each picker ASKS on the first page. The box's own settings LABEL the same two lists instead (settings.known.title/settings.learning.title) — a settings sheet states, a first run asks, and the questions are the whole of what makes onboarding read as one.",
       "localizations" : {

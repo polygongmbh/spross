@@ -41,7 +41,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
 
     internal val disk = BoxDisk(BoxFiles(File(app.filesDir, "box")))
     private val prefs = app.getSharedPreferences(ProfileStore.PREFS_NAME, Context.MODE_PRIVATE)
-    private val profile = ProfileStore(prefs)
+    internal val profile = ProfileStore(prefs)
 
     /**
      * What to call the learner, or null where no name was given — what the greeting knows

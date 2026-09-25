@@ -70,7 +70,7 @@ object SprossIcons {
         moveTo(5f, 12f); lineTo(19f, 12f)
     }
 
-    /** Pack a word into the box: a tray, and the word dropping into it. */
+    /** Something coming in: a tray, and what drops into it — a word packed, a backup imported. */
     val PackIn = stroked("PackIn") {
         moveTo(5f, 14f); lineTo(5f, 19f); lineTo(19f, 19f); lineTo(19f, 14f)
         moveTo(12f, 4f); lineTo(12f, 14f)

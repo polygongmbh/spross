@@ -50,6 +50,9 @@ Strict dependency direction: App → SprossKern, never the reverse.
   the pair, what the box is for, what a round asks.
   Only the last page commits (joins the box and opens the session).
   The settings carry a restart-tutorial row.
+- The first page carries a small import link in its corner, on a first run only:
+  a backup brings its own pair, so importing one skips the pages
+  and opens its last-studied language, with no confirmation since nothing is replaced.
 - One picker list open at a time; the other folds on its pick.
   Onboarding opens with the known side folded.
 - The chooser is the first-launch screen.

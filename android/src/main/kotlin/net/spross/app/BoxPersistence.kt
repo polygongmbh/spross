@@ -109,16 +109,24 @@ fun AppModel.backupLanguages(): List<String> = BoxBackup.carried(disk.openEvery(
  * made under that known language, and re-reading it under this device's would leave
  * every own word written in the old one unpaired and untrained. A file from before the
  * store recorded it names none, and the device's own setting stands.
+ *
+ * On a first run there is no pair on screen yet: the file's last-studied language becomes
+ * it, with [firstRunSource] standing in for a file that names no known language, and the
+ * onboarding it was picked from gives way to Home.
  */
-fun AppModel.restoreBoxes(imported: StoredBoxes) {
-    val stamp = box?.joinStamp ?: return
+fun AppModel.restoreBoxes(imported: StoredBoxes, firstRunSource: String? = null) {
+    val stamp = box?.joinStamp
+    val target = stamp?.target ?: imported.lastStudied() ?: return
+    val source = imported.boxes[target]?.source ?: stamp?.source ?: firstRunSource ?: return
+    // why: a first run has no profile for the launch after this one to reopen.
+    if (stamp == null) profile.set(source, target)
     viewModelScope.launch {
         disk.restoring(imported)
         withContext(Dispatchers.IO) {
-            imported.boxes.keys.forEach { target ->
-                disk.write(target, disk.boxes.boxes.getValue(target))
+            imported.boxes.keys.forEach { language ->
+                disk.write(language, disk.boxes.boxes.getValue(language))
             }
         }
-        activate(imported.boxes[stamp.target]?.source ?: stamp.source, stamp.target, Screen.Box())
+        activate(source, target, if (stamp == null) Screen.Home else Screen.Box())
     }
 }

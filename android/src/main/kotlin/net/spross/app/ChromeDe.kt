@@ -33,6 +33,7 @@ internal object ChromeDe : Chrome {
     override val homeDoneTitle = "Für heute geschafft"
     override val boxCardDue = "fällig"
     override val onboardingWelcome = "Willkommen bei Spross!"
+    override val onboardingImport = "Sicherung importieren"
     override val onboardingKnownQuestion = "Welche Sprache sprichst du?"
     override val onboardingLearningQuestion = "Welche Sprache lernst du?"
     override val settingsKnownTitle = "Ich spreche"

@@ -108,6 +108,10 @@ struct OnboardingView: View {
     private var languagesPage: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
             OnboardingHero(emoji: "👋", title: "onboarding.welcome")
+                // why: a first run only — a restart already has a box the file would replace.
+                .overlay(alignment: .topTrailing) {
+                    if model.targetLanguage == nil { OnboardingImport(model: model, source: source) }
+                }
             sourceSection
             targetSection
             nameSection

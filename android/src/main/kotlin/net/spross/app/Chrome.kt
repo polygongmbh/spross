@@ -51,6 +51,7 @@ interface Chrome {
     val homeDoneTitle: String
     val boxCardDue: String
     val onboardingWelcome: String
+    val onboardingImport: String
     val onboardingKnownQuestion: String
     val onboardingLearningQuestion: String
     val settingsKnownTitle: String

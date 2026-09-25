@@ -29,10 +29,14 @@ extension AppModel {
     /// made under that known language, and re-reading it under this device's would leave
     /// every own word written in the old one unpaired and untrained. A file from before the
     /// store recorded it names none, and the device's own setting stands.
-    func restore(_ imported: StoredBoxes) async throws {
+    ///
+    /// On a first run there is no pair on screen yet: the file's last-studied language
+    /// becomes it, with `firstRunSource` standing in for a file that names no known
+    /// language, and the onboarding it was picked from closes behind the restored box.
+    func restore(_ imported: StoredBoxes, firstRunSource: String? = nil) async throws {
         try await store.restore(imported)
-        guard let target = targetLanguage else { return }
-        let restored = imported.boxes[target]?.source ?? sourceLanguage
+        guard let target = targetLanguage ?? imported.lastStudied() else { return }
+        let restored = imported.boxes[target]?.source ?? firstRunSource ?? sourceLanguage
         await activate(source: restored, target: target)
     }
 }
