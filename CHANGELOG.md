@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- On Android, swiping back now previews the screen behind before you let go.
 - On Android, About gets a back arrow, Settings splits into separate cards, Box shelves show whether they are open, and drills animate their progress and answers.
 - The tab bar now shows its icons without labels, and on Android a thin line sets it apart from the cards above it.
 - A new Personal Details shelf teaches what an official form asks for, and the office shelf adds the authority, being responsible, filing an application and taking a number.

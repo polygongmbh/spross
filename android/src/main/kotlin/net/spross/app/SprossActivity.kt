@@ -4,18 +4,11 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,7 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.unit.IntOffset
 import androidx.lifecycle.viewmodel.compose.viewModel
 import net.spross.app.ui.AboutScreen
 import net.spross.app.ui.BoxScreen
@@ -140,30 +132,10 @@ class SprossActivity : ComponentActivity() {
     }
 }
 
-/**
- * How far under Home a screen sits — the only thing a push or a pop needs to tell them apart.
- *
- * Not a route stack: the model holds ONE screen and the app has no back stack to read a
- * direction off, so depth is what says whether the learner went in or came back out. Home is
- * the floor, everything reached from it is one down, and About is one further because the only
- * way in is through the settings' own footer.
- */
-private fun Screen.depth(): Int = when (this) {
-    Screen.Loading, Screen.Onboarding, Screen.Home -> 0
-    Screen.About -> 2
-    else -> 1
-}
-
-/** Long enough to read as a move, short enough that a tap still feels answered. */
-private const val SCREEN_MOTION_MS = 220
-
 @Composable
 private fun Root(model: AppModel = viewModel()) {
     val tab = model.screen.asTab()
-    // why: back takes the one plain step [Screen.back] names, and leaves the app from where it
-    // names none. The screens that own a way out — a run, the story, the box's search — register
-    // their own handler, which is composed after this one and stands in front of it while it is up.
-    BackHandler(enabled = model.screen.back() != null) { model.goBack() }
+    val transition = rememberScreenTransition(model)
     // why: the Scaffold owns the insets rather than a padding around it, so the tab bar reaches
     // under the system navigation area instead of leaving a strip of paper below it.
     Scaffold(
@@ -171,29 +143,7 @@ private fun Root(model: AppModel = viewModel()) {
         contentWindowInsets = WindowInsets.safeDrawing,
     ) { insets ->
         Box(Modifier.padding(insets).consumeWindowInsets(insets).imePadding()) {
-            AnimatedContent(
-                targetState = model.screen,
-                // why: a screen that cuts is the loudest thing separating this cut from the iOS one,
-                // where every push is animated. Going deeper enters from the trailing edge and going
-                // back reverses it, so the motion says which way the learner moved. Two TABS swap
-                // sideways rather than in depth, so sliding them would read as a push either way —
-                // they crossfade instead, and the slide stays for every depth change.
-                transitionSpec = {
-                    if (initialState.asTab() != null && targetState.asTab() != null) {
-                        fadeIn(tween(SCREEN_MOTION_MS)).togetherWith(fadeOut(tween(SCREEN_MOTION_MS)))
-                    } else {
-                        val forward = targetState.depth() >= initialState.depth()
-                        val enterFrom = if (forward) 1 else -1
-                        val spec = tween<IntOffset>(SCREEN_MOTION_MS)
-                        (slideInHorizontally(spec) { it / 6 * enterFrom } + fadeIn(tween(SCREEN_MOTION_MS)))
-                            .togetherWith(
-                                slideOutHorizontally(spec) { it / 6 * -enterFrom } +
-                                    fadeOut(tween(SCREEN_MOTION_MS)),
-                            )
-                    }
-                },
-                label = "screen",
-            ) { screen ->
+            transition.AnimatedContent(transitionSpec = screenMotion) { screen ->
                 // The screen is the lambda's own parameter rather than a property read, so the Box
                 // case can hand its area on: a `mutableStateOf` property is never smart-cast — and
                 // an outgoing screen keeps drawing the state it left with instead of the new one.
