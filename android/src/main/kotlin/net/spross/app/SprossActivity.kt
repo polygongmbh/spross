@@ -176,16 +176,22 @@ private fun Root(model: AppModel = viewModel()) {
                 targetState = model.screen,
                 // why: a screen that cuts is the loudest thing separating this cut from the iOS one,
                 // where every push is animated. Going deeper enters from the trailing edge and going
-                // back reverses it, so the motion says which way the learner moved.
+                // back reverses it, so the motion says which way the learner moved. Two TABS swap
+                // sideways rather than in depth, so sliding them would read as a push either way —
+                // they crossfade instead, and the slide stays for every depth change.
                 transitionSpec = {
-                    val forward = targetState.depth() >= initialState.depth()
-                    val enterFrom = if (forward) 1 else -1
-                    val spec = tween<IntOffset>(SCREEN_MOTION_MS)
-                    (slideInHorizontally(spec) { it / 6 * enterFrom } + fadeIn(tween(SCREEN_MOTION_MS)))
-                        .togetherWith(
-                            slideOutHorizontally(spec) { it / 6 * -enterFrom } +
-                                fadeOut(tween(SCREEN_MOTION_MS)),
-                        )
+                    if (initialState.asTab() != null && targetState.asTab() != null) {
+                        fadeIn(tween(SCREEN_MOTION_MS)).togetherWith(fadeOut(tween(SCREEN_MOTION_MS)))
+                    } else {
+                        val forward = targetState.depth() >= initialState.depth()
+                        val enterFrom = if (forward) 1 else -1
+                        val spec = tween<IntOffset>(SCREEN_MOTION_MS)
+                        (slideInHorizontally(spec) { it / 6 * enterFrom } + fadeIn(tween(SCREEN_MOTION_MS)))
+                            .togetherWith(
+                                slideOutHorizontally(spec) { it / 6 * -enterFrom } +
+                                    fadeOut(tween(SCREEN_MOTION_MS)),
+                            )
+                    }
                 },
                 label = "screen",
             ) { screen ->
