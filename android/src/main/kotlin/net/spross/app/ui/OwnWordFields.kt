@@ -1,7 +1,6 @@
 package net.spross.app.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
@@ -85,7 +86,7 @@ internal fun PictureField(label: String, value: String, onValueChange: (String) 
                 val picked = value == emoji
                 Box(
                     modifier = Modifier
-                        .sizeIn(minWidth = 44.dp, minHeight = 44.dp)
+                        .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
                         .clip(MaterialTheme.shapes.small)
                         .background(
                             if (picked) {
@@ -94,7 +95,7 @@ internal fun PictureField(label: String, value: String, onValueChange: (String) 
                                 MaterialTheme.colorScheme.surfaceVariant
                             },
                         )
-                        .clickable { onValueChange(emoji) }
+                        .selectable(selected = picked, role = Role.RadioButton) { onValueChange(emoji) }
                         .padding(Theme.spacing.sm),
                     contentAlignment = Alignment.Center,
                 ) {
