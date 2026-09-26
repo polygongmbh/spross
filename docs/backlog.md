@@ -20,22 +20,7 @@ Parked work is not an issue: its own doc says it is parked.
   enum case, a `draw` arm, a `formReading` arm per pack and a Sprosse row
   (`kern/src/commonMain/kotlin/net/spross/kern/trainer/NumberForms.kt`) — do both become
   Sprossen, and which first?
-- `AnswerNormalizer.strayLeadingWordRecovery` tests the RAW leading token for letters, but its
-  own example never peels ("it" is two edits from every en article, so "it is half past two"
-  and "it's half past two" both grade Wrong today) — strike the bullet, or reword it to the
-  real case, a spaced elided article ("l' acqua") refused where "la acqua" is read back, and
-  release the elision ruling in `RealCatalogGradingTest.kt:44-48`?
-- `UkrainianClock.gloss` (lines 159-173) rebuilds its candidates from `Forms` instead of
-  selecting them out of `readings` the way es does, a third encoding of uk's minute grammar,
-  but `ClockRevealTests` already sweeps every uk gloss alternative into `accepted`, so a
-  `.filter { it in readings }` guard would only mask that gate — strike the bullet, or spend
-  an M refactor collapsing the third encoding the es way and accept a re-curated reveal order
-  (no uk golden gloss test exists)?
-- A `clockAnchors` slot for midnight/noon on `TrainerLanguagePack` is deferred because, unlike
-  the day parts, it would be a NEW authored copy rather than a removed one (de bakes them into
-  early returns in `GermanClock.conversational`, en into `EnglishClockRegisters.anchors`, es
-  and uk into hand-written `ClockReading` constants, sw has none by design) — still deferred,
-  or drop the record and let git hold the deferral?
+- `UkrainianClock` builds its minute grammar three times (`cores`, `displayText`, `gloss`); `cores` should return the display reading first and the two gloss alternatives next, so display and gloss read positions instead of rebuilding.
 - Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch, but revisit the cap
   if the active box outgrows it (`../kern/docs/snapshots.md`).
 - Real hardware has to time the assembled dates accepted set, an uncapped cross-product graded
@@ -59,20 +44,10 @@ Parked work is not an issue: its own doc says it is parked.
   without a surface; the three are a card's Swahili plural/class grammar, its kind badge
   and the tense phrases' seed positions, which sit in three different places. Which one
   arrives too early for the owner: the card's own lines, or the order content unlocks in?
-- Android still stores read-aloud as the boolean iOS calls its legacy key (`pronunciationMuted`,
-  `android/.../audio/Pronouncer.kt:313`, against iOS's three-state `readAloud` in
-  `App/Sources/Audio/AudioSession.swift`) and so has no `followsPhone` middle state, but on
-  Android `followsPhone` and `on` cannot differ (USAGE_MEDIA ignores the ringer, deliberately)
-  — store the enum for shape parity with a dead value, or rule the boolean the honest model
-  and add one sentence to `docs/read-aloud.md:145-153` saying the third state is iOS-only?
 - Nothing marks an unlock: a row silently stops being a padlock between openings
   (`App/Sources/Screens/NumbersOverview+Practice.swift:55-68`) and the full-screen ceremony
   was rejected for something that happens a handful of times — is a row-level transition or
   announcement wanted, and which?
-- Rating labels carry more weight on a first exposure now that Hard/Good/Easy graduate
-  immediately (`kern/docs/fsrs.md:26-27`) — should Knew it / Shaky / Not at all
-  (`App/Sources/Design/RatingButtonsView.swift:52-56`, `Localizable.xcstrings`) say what they
-  cost on a first meeting, or is the neutral wording right?
 - The letter drill needs a Check tap where `docs/design.md` rules that finishing the word IS the
   answer, because `LetterDrillIntent` has no `InputChanged` — the one thing `DrillRunning` could
   not carry (`typedMove` returns nil there alone). A new intent plus a live verdict in

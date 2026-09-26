@@ -74,6 +74,7 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   The top-bar switch turns it into a decision:
   OFF silences autoplay; ON lifts autoplay past a silenced phone.
   Three states, one setting for the device (not per language, not in the box).
+  The middle state is iOS's: Android's media stream ignores the ringer, so there it is ON.
   The silent switch cannot be read back (no API), so it is followed by deferring to it.
 - **A card whose only content is a sound is not dealt onto a silent phone.**
   iOS reads `outputVolume`, Android the media stream's volume and mute.
