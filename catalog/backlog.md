@@ -133,6 +133,7 @@ Ready work comes first, then the items that end in a question for the owner, the
   `../../docs/sprachposter-learnings.md`); uk carries 3 of 9 (сьоме небо, як з відра, тримати
   кулаки) and sw 0, and filling them needs a speaker finding real equivalents, not a
   translation pass.
+- Only German has vetted voices (`PREFERRED_SPEAKERS` in `data/reference/audio/build-audio-pack.py`, Jeuwre and Holunder Gabriel), so es, fr, it and uk still ride whoever recorded first: which of each pack's biggest voices should `consolidate-pack.py --preferred` move the rest onto, after a sample per speaker is heard? A good device voice (de, es, fr, it, uk) should raise the bar a recording must clear, but no noise score matched the ear between 42 and 52 dB, so the vetted voices are the bar until one does.
 - Recordings nobody has made yet: phrases have none (no `catalog/audio/*/manifest.json` has a
   phrases section, so every phrase falls to TTS, silent on sw-iOS) and need commissioning or a
   paid voice; single words sit at 83–99% per language, the rest in `audio-coverage.py --missing`.
