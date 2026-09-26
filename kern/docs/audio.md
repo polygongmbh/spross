@@ -1,6 +1,7 @@
 # Pronunciation
+When audio may play, what is spoken and how a recording is matched to a form, engine-side.
+Neighbors: when the app plays it `../../docs/read-aloud.md`.
 
-When audio may play, what is spoken, and how a recording is matched to a form.
 Engine contract: `../README.md`.
 
 - **When audio may play** — `PronunciationCue { Upfront, OnReveal }`,
@@ -78,6 +79,8 @@ Engine contract: `../README.md`.
   which only the player applies.
   A third measurement, `snr` (how far the word stands above its noise), corrects nothing and reaches no player:
   it exists so lint can hold a pack's median and bad tail, and refuse a rebuild that reintroduces removed hiss.
+  A fourth, `gate` (the file's noise level plus a margin, dBFS of the raw bytes, null where none was measured),
+  rides on `AudioIndex.gate` to a downward expander that quiets that hiss at playback.
   What was measured, against which target and under which scheme is `scripts/audio-catalog.py`'s `ANALYSIS`;
   the sha256 gate is untouched by any of it.
 - **Audio is exempt from the fingerprint.**
@@ -108,6 +111,10 @@ Engine contract: `../README.md`.
   `Playback.headMs(leadMs, durationMs)` answers the lead only where `0 < leadMs < durationMs`, else 0:
   a lead that would swallow the whole recording is a broken measurement,
   and the recording is still worth playing whole — as is one whose duration the platform will not report.
+  `Playback.gateThresholdDb(gate, appliedGainDb)` is the threshold for a gate placed after the gain stage (gate + applied gain);
+  a gate before the gain takes `gate` as it stands.
+  The expander's shape is `Playback`'s too — `GATE_EXPANSION_RATIO`, `GATE_MAX_ATTENUATION_DB` (gentle, so a tail is never chopped),
+  `GATE_ATTACK_MS`, `GATE_RELEASE_MS` — and the parser rejects a `gate` outside `GATE_FLOOR_DB..0`.
   Everything in device units — linear volume, millibels, sample frames — stays app-side.
 - **Which voice speaks a language** (`catalog/VoiceSelection.kt`).
   `preferredTag(lang)` widens "es" to "es-ES" and leaves every other code as it is:

@@ -64,7 +64,8 @@ internal object AudioFixture {
               "words": {
                 "door":   { "file": "door.mp3", "matches": "mlango",
                             "author": "Juma", "source": "Sw-mlango.ogg", "sha256": "s1",
-                            "gain": -5.4, "gainPhone": -9.8, "lead": 41, "snr": 62.3 },
+                            "gain": -5.4, "gainPhone": -9.8, "lead": 41, "snr": 62.3,
+                            "gate": -58.5 },
                 "mouse":  { "file": "mouse.mp3", "matches": "panya",
                             "author": "Juma", "source": "Sw-panya.ogg", "sha256": "s2" },
                 "waiter": { "file": "waiter.mp3", "matches": "Panya",

@@ -23,12 +23,14 @@ class CatalogAudioLookupTest {
         assertEquals(-5.4, spoken.gain)
         assertEquals(-9.8, spoken.gainPhone)
         assertEquals(41L, spoken.leadMs)
+        assertEquals(-58.5, spoken.gate)
         // Nothing to play means nothing to correct, not a stale index from elsewhere.
         val synthesized = catalog.pronunciation("de", "Kellnerin")
         assertNull(synthesized.recordingPath)
         assertEquals(0.0, synthesized.gain)
         assertNull(synthesized.gainPhone)
         assertEquals(0L, synthesized.leadMs)
+        assertNull(synthesized.gate)
     }
 
     @Test
@@ -38,6 +40,7 @@ class CatalogAudioLookupTest {
         assertEquals(20.0, letter.gain)
         assertNull(letter.gainPhone) // letters ship no phone plane
         assertEquals(1069L, letter.leadMs)
+        assertNull(letter.gate) // none measured
         assertNull(catalog.letterRecording("uk", "ь")) // no recording exists
         assertNull(catalog.letterRecording("en", "ж")) // no manifest at all
     }

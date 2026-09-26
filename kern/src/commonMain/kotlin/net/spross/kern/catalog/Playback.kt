@@ -3,8 +3,8 @@ package net.spross.kern.catalog
 /**
  * How far a player may trust a recording's ANALYSIS INDEX.
  *
- * The index (`gain`, `lead`) is a MEASUREMENT of the shipped bytes and never an edit to
- * them (`kern/docs/audio.md`), so both numbers can only ever be as good as the measurement:
+ * The index (`gain`, `lead`, `gate`) is a MEASUREMENT of the shipped bytes and never an edit to
+ * them (`kern/docs/audio.md`), so every number can only ever be as good as the measurement:
  * the bounds below are what a broken one is held to, stated once so the manifest parser,
  * an iOS equalizer and an Android loudness enhancer cannot drift apart about them.
  *
@@ -35,4 +35,36 @@ object Playback {
      */
     fun headMs(leadMs: Long, durationMs: Long): Long =
         if (leadMs > 0 && leadMs < durationMs) leadMs else 0
+
+    /** The lowest noise level a measurement may claim: below it the file is digital silence. */
+    const val GATE_FLOOR_DB: Double = -100.0
+
+    /**
+     * The threshold, in dBFS, for a noise gate that sits AFTER the gain stage:
+     * the raw [gate] moved by the [appliedGainDb] the player actually applies,
+     * so the threshold follows the noise wherever the gain put it.
+     * A gate before the gain stage takes [gate] as it stands.
+     * Null where [gate] is: no gate.
+     */
+    fun gateThresholdDb(gate: Double?, appliedGainDb: Double): Double? =
+        gate?.let { it + appliedGainDb }
+
+    /**
+     * Below the threshold, each dB the signal falls is played as this many dB of fall:
+     * a downward expander rather than a hard gate, so the word's own quiet tail fades
+     * instead of cutting off.
+     */
+    const val GATE_EXPANSION_RATIO: Double = 2.0
+
+    /**
+     * The most the gate ever takes off, in dB: enough to push the hiss under the word,
+     * never enough to chop a tail that dips below the threshold.
+     */
+    const val GATE_MAX_ATTENUATION_DB: Double = 15.0
+
+    /** How fast the gate opens when the word starts, in ms: quick enough to keep its onset. */
+    const val GATE_ATTACK_MS: Double = 5.0
+
+    /** How slowly the gate closes after the word, in ms: slow enough that a decay is not clipped. */
+    const val GATE_RELEASE_MS: Double = 150.0
 }

@@ -8,7 +8,7 @@ import net.spross.kern.model.Language
 internal object AudioManifestParser {
     private val WORD_KEYS =
         setOf("file", "matches", "license", "author", "source", "sha256",
-              "gain", "cap", "gainPhone", "capPhone", "lead", "snr")
+              "gain", "cap", "gainPhone", "capPhone", "lead", "snr", "gate")
     private val LETTER_KEYS = WORD_KEYS - "matches"
     private val ARTICLE_KEYS = WORD_KEYS + "word"
 
@@ -110,6 +110,7 @@ internal object AudioManifestParser {
                 capPhone = entry.optionalCap(path, context, "capPhone"),
                 leadMs = entry.leadMs(path, context),
                 snr = entry.optionalDouble(path, context, "snr") ?: 0.0,
+                gate = entry.gate(path, context),
             )
         }
     }
@@ -149,6 +150,19 @@ internal object AudioManifestParser {
             parseError(path, "$context: $key $cap dB is outside 0..${2 * Playback.GAIN_LIMIT_DB}")
         }
         return cap
+    }
+
+    /**
+     * Absent means no gate — the file measured as digital silence, or nothing was measured.
+     * A noise level is a level in dBFS, so it can never stand above full scale; the floor
+     * is playback's own ([Playback.GATE_FLOOR_DB]).
+     */
+    private fun JsonObject.gate(path: String, context: String): Double? {
+        val gate = optionalDouble(path, context, "gate") ?: return null
+        if (gate !in Playback.GATE_FLOOR_DB..0.0) {
+            parseError(path, "$context: gate $gate dB is outside ${Playback.GATE_FLOOR_DB}..0")
+        }
+        return gate
     }
 
     /** Absent means the recording starts speaking at once. */

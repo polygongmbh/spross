@@ -97,6 +97,15 @@ interface AudioIndex {
 
     /** Dead air at the head of the file, in ms — start here and the recording speaks at once. */
     val leadMs: Long
+
+    /**
+     * The recording's own noise level plus a margin, in dBFS of the RAW decoded file before
+     * any gain: a downward expander with its threshold here quiets the hiss in pauses and
+     * between syllables and leaves the word alone. A player whose gate sits after its gain
+     * stage asks [Playback.gateThresholdDb] for the threshold. Null means no gate — the file
+     * measured as digital silence, nothing was measured, or nothing plays.
+     */
+    val gate: Double?
 }
 
 /**
@@ -116,6 +125,7 @@ data class Pronunciation( // data class: Swift sees value equality
     override val cap: Double = 0.0,
     override val capPhone: Double? = null,
     override val leadMs: Long = 0,
+    override val gate: Double? = null,
 ) : AudioIndex
 
 /**
@@ -131,6 +141,7 @@ data class LetterRecording(
     override val cap: Double = 0.0,
     override val capPhone: Double? = null,
     override val leadMs: Long,
+    override val gate: Double? = null,
 ) : AudioIndex
 
 /** One credited recording: [label] is the form it speaks, or the letter's glyph. */

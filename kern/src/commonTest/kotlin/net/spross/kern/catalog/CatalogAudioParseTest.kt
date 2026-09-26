@@ -118,11 +118,15 @@ class CatalogAudioParseTest {
         // see how clean a pack is, and never reaches a player.
         assertEquals(62.3, loud.snr)
         assertEquals(0.0, plain.snr)
+        assertEquals(-58.5, loud.gate)
+        assertNull(plain.gate) // no gate, not a gate at some default level
     }
 
     @Test
     fun anIndexOutsideMeasurementRangeIsAParseError() {
-        for ((field, value) in listOf("gain" to "20.1", "gain" to "-40", "lead" to "5001", "lead" to "-1")) {
+        val wild = listOf("gain" to "20.1", "gain" to "-40", "lead" to "5001", "lead" to "-1",
+                          "gate" to "0.5", "gate" to "-101")
+        for ((field, value) in wild) {
             val error = assertFailsWith<CatalogFormatException>("$field=$value was accepted") {
                 AudioFixture.catalogWith("audio/uk/manifest.json", letterManifest("\"$field\": $value"))
             }

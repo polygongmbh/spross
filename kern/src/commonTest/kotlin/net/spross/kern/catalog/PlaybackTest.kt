@@ -2,6 +2,7 @@ package net.spross.kern.catalog
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 /**
  * What a player may believe of the ANALYSIS INDEX. The device arithmetic each platform
@@ -49,5 +50,14 @@ class PlaybackTest {
         assertEquals(0L, Playback.headMs(2000, 2000))
         assertEquals(0L, Playback.headMs(2001, 2000))
         assertEquals(0L, Playback.headMs(1285, -1)) // an unreported duration
+    }
+
+    /** A gate after the gain stage follows the noise to wherever the gain moved it. */
+    @Test
+    fun aGateAfterTheGainMovesWithTheGain() {
+        assertEquals(-52.0, Playback.gateThresholdDb(-60.0, 8.0)) // boosted: the hiss rose
+        assertEquals(-65.0, Playback.gateThresholdDb(-60.0, -5.0)) // cut: the hiss fell
+        assertEquals(-60.0, Playback.gateThresholdDb(-60.0, 0.0))
+        assertNull(Playback.gateThresholdDb(null, 8.0)) // unmeasured: no gate at any gain
     }
 }

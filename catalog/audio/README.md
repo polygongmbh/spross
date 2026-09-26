@@ -1,9 +1,6 @@
 # Audio
-
-The bundled recordings: file format, naming and provenance fields.
-What the engine does with them is `../../kern/docs/audio.md`,
-when one is heard `../../docs/read-aloud.md`,
-and whose they are `../../docs/audio-licensing.md`.
+The bundled recordings' file format, naming and provenance fields.
+Neighbors: engine `../../kern/docs/audio.md`, when one is heard `../../docs/read-aloud.md`, whose they are `../../docs/audio-licensing.md`.
 
 Bundled pronunciation recordings, one folder per language, **generated** by
 `app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
@@ -166,6 +163,10 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   can see the SHAPE of a pack and refuse a rebuild that quietly reintroduces noise an
   earlier sweep removed. A floor per file would be dishonest: some words have nothing
   cleaner on Commons, so the rule is on the median and the size of the bad tail.
+- `gate` (dB, negative) is the file's own noise level plus a small margin, in dBFS of the
+  raw decoded bytes before any gain; a player's downward expander sits there and quiets
+  the hiss in pauses and between syllables while the word plays untouched.
+  Absent means no gate: the file measured as digital silence, or nothing was measured.
 
 Lint (`CatalogAudioLintTest`, `CatalogAudioProvenanceTest`) holds the rest: every entry names a slug its language
 realizes and a form some card can show, no two entries claim one spoken form with

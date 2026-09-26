@@ -59,6 +59,11 @@ internal data class AudioRecording(
      * one removed. 0.0 where the converter recorded none.
      */
     val snr: Double,
+    /**
+     * The file's own noise level plus a margin, in dBFS of the RAW decoded bytes, before any
+     * gain — where a player's noise gate sits ([AudioIndex.gate]). Null means no gate.
+     */
+    val gate: Double?,
 )
 
 /**

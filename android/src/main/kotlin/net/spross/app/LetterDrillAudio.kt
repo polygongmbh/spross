@@ -82,6 +82,7 @@ fun AppModel.letterName(name: String, glyph: String, lang: Language): Pronunciat
         gain = recording?.gain ?: 0.0,
         gainPhone = recording?.gainPhone,
         leadMs = recording?.leadMs ?: 0,
+        gate = recording?.gate,
     )
 }
 
