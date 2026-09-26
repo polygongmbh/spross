@@ -53,7 +53,6 @@ class NoiseGate private constructor(private val effect: DynamicsProcessing) {
         }
 
         @RequiresApi(Build.VERSION_CODES.P)
-        // why: an MBC band has no range, so Playback.GATE_MAX_ATTENUATION_DB goes unheld — the expander keeps falling at its ratio.
         private fun mbcBand(band: GateBand) = DynamicsProcessing.MbcBand(
             true,
             FULL_BAND_HZ,

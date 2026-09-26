@@ -56,12 +56,6 @@ object Playback {
      */
     const val GATE_EXPANSION_RATIO: Double = 2.0
 
-    /**
-     * The most the gate ever takes off, in dB: enough to push the hiss under the word,
-     * never enough to chop a tail that dips below the threshold.
-     */
-    const val GATE_MAX_ATTENUATION_DB: Double = 15.0
-
     /** How fast the gate opens when the word starts, in ms: quick enough to keep its onset. */
     const val GATE_ATTACK_MS: Double = 5.0
 

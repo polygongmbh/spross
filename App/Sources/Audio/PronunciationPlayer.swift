@@ -123,7 +123,6 @@ final class PronunciationPlayer {
         set(kDynamicsProcessorParam_Threshold, 20)
         set(kDynamicsProcessorParam_HeadRoom, 40)
         set(kDynamicsProcessorParam_OverallGain, 0)
-        // why: this unit has no attenuation floor — `GATE_MAX_ATTENUATION_DB` goes unhonored, the ratio alone sets the fall.
         set(kDynamicsProcessorParam_ExpansionRatio, Playback.shared.GATE_EXPANSION_RATIO)
         set(kDynamicsProcessorParam_AttackTime, Playback.shared.GATE_ATTACK_MS / 1000)
         set(kDynamicsProcessorParam_ReleaseTime, Playback.shared.GATE_RELEASE_MS / 1000)

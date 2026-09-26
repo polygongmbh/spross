@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Recordings with a faint hiss now play with it quieted between words, and German comes almost entirely from one clear voice.
 - Age and How old are you? join Personal Details, and young joins old among the qualities.
 - Life & Death grows into a shelf about the stages of life: childhood, youth, growing up and getting old, and the words and condolences around a funeral.
 - On Android, swiping back now previews the screen behind before you let go.

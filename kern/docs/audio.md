@@ -113,7 +113,7 @@ Engine contract: `../README.md`.
   and the recording is still worth playing whole — as is one whose duration the platform will not report.
   `Playback.gateThresholdDb(gate, appliedGainDb)` is the threshold for a gate placed after the gain stage (gate + applied gain);
   a gate before the gain takes `gate` as it stands.
-  The expander's shape is `Playback`'s too — `GATE_EXPANSION_RATIO`, `GATE_MAX_ATTENUATION_DB` (gentle, so a tail is never chopped),
+  The expander's shape is `Playback`'s too — `GATE_EXPANSION_RATIO` (gentle, so a tail fades rather than cuts),
   `GATE_ATTACK_MS`, `GATE_RELEASE_MS` — and the parser rejects a `gate` outside `GATE_FLOOR_DB..0`.
   Everything in device units — linear volume, millibels, sample frames — stays app-side.
 - **Which voice speaks a language** (`catalog/VoiceSelection.kt`).
