@@ -10,8 +10,8 @@ import SprossKern
 /// the packs never agreed on is corrected HERE, at playback, out of our own
 /// measurement of those bytes. The uk letters need up to +20 dB of it, and
 /// `AVAudioPlayer.volume` only ever attenuates; it cannot start a file late
-/// either. So: one player node through one EQ into the main mixer, and
-/// nothing else.
+/// either. So: one player node through a noise gate and one EQ into the main
+/// mixer, and nothing else.
 ///
 /// The audio session's CATEGORY is chosen per fire (`AudioSession`) — that is
 /// the only lever over the ring/silent switch — but the session is NEVER
@@ -30,6 +30,10 @@ final class PronunciationPlayer {
     private let engine = AVAudioEngine()
     private let node = AVAudioPlayerNode()
     private let equalizer = AVAudioUnitEQ()
+    /// A downward expander ahead of the EQ, so its threshold is the raw `gate` as measured.
+    private let gate = AVAudioUnitEffect(audioComponentDescription: AudioComponentDescription(
+        componentType: kAudioUnitType_Effect, componentSubType: kAudioUnitSubType_DynamicsProcessor,
+        componentManufacturer: kAudioUnitManufacturer_Apple, componentFlags: 0, componentFlagsMask: 0))
     /// The ONE format the graph is wired in. An effect that is already running
     /// refuses to be re-wired into another one (`-10868`), so the wiring is
     /// fixed and the player node converts each file into it — measured: the
@@ -62,6 +66,8 @@ final class PronunciationPlayer {
         /// fade, which is the one thing that opens the headroom again (`fadedGainDb`).
         let capDb: Double
         let leadMs: Int64
+        /// The recording's noise level in dBFS of the raw file; nil plays it ungated.
+        let gate: Double?
         /// The listening run's bedtime ramp, applied OVER the analysis index —
         /// see `play(url:gainDb:leadMs:fadeDb:onFinish:)`.
         let fadeDb: Double
@@ -73,8 +79,11 @@ final class PronunciationPlayer {
     init() {
         guard let wiring else { return }
         engine.attach(node)
+        engine.attach(gate)
         engine.attach(equalizer)
-        engine.connect(node, to: equalizer, format: wiring)
+        configureGate()
+        engine.connect(node, to: gate, format: wiring)
+        engine.connect(gate, to: equalizer, format: wiring)
         engine.connect(equalizer, to: engine.mainMixerNode, format: wiring)
         // why: the engine stops itself when its I/O is rebuilt and takes any
         // scheduled segment with it — the word is put back here rather than
@@ -97,10 +106,27 @@ final class PronunciationPlayer {
     /// a listening run.
     @discardableResult
     func play(url: URL, gainDb: Double = 0, capDb: Double = 0, leadMs: Int64 = 0,
-              fadeDb: Double = 0, onFinish: (@MainActor () -> Void)? = nil) -> Bool {
+              gate: Double? = nil, fadeDb: Double = 0,
+              onFinish: (@MainActor () -> Void)? = nil) -> Bool {
         rearms = 0
-        return play(Request(url: url, gainDb: gainDb, capDb: capDb, leadMs: leadMs, fadeDb: fadeDb,
-                     onFinish: onFinish))
+        return play(Request(url: url, gainDb: gainDb, capDb: capDb, leadMs: leadMs, gate: gate,
+                            fadeDb: fadeDb, onFinish: onFinish))
+    }
+
+    /// The expander's shape is kern's (`Playback.GATE_*`); its compressor stage is held
+    /// where nothing decoded from a file can reach it, and it adds no gain of its own.
+    private func configureGate() {
+        let unit = gate.audioUnit
+        let set = { (id: AudioUnitParameterID, value: Double) in
+            AudioUnitSetParameter(unit, id, kAudioUnitScope_Global, 0, AudioUnitParameterValue(value), 0)
+        }
+        set(kDynamicsProcessorParam_Threshold, 20)
+        set(kDynamicsProcessorParam_HeadRoom, 40)
+        set(kDynamicsProcessorParam_OverallGain, 0)
+        // why: this unit has no attenuation floor — `GATE_MAX_ATTENUATION_DB` goes unhonored, the ratio alone sets the fall.
+        set(kDynamicsProcessorParam_ExpansionRatio, Playback.shared.GATE_EXPANSION_RATIO)
+        set(kDynamicsProcessorParam_AttackTime, Playback.shared.GATE_ATTACK_MS / 1000)
+        set(kDynamicsProcessorParam_ReleaseTime, Playback.shared.GATE_RELEASE_MS / 1000)
     }
 
     private func play(_ request: Request) -> Bool {
@@ -115,6 +141,13 @@ final class PronunciationPlayer {
         let headMs = Playback.shared.headMs(leadMs: request.leadMs,
                                             durationMs: Int64(Double(file.length) / rate * 1000))
         let head = AVAudioFramePosition(Double(headMs) / 1000 * rate)
+        // why: each recording carries its own noise level — a gated one expands below it,
+        // an ungated one passes the unit untouched.
+        if let threshold = request.gate {
+            AudioUnitSetParameter(gate.audioUnit, kDynamicsProcessorParam_ExpansionThreshold,
+                                  kAudioUnitScope_Global, 0, AudioUnitParameterValue(threshold), 0)
+        }
+        gate.bypass = request.gate == nil
         equalizer.globalGain = Float(fadedGainDb(gainDb: request.gainDb, capDb: request.capDb,
                                                  fadeDb: request.fadeDb))
         self.onFinish = onFinish
