@@ -1,8 +1,6 @@
 # Grading — how a typed answer becomes a rating
-
-The produce path only: a recognition turn is a button self-grade (`SelfGrading`).
-Leniency is safe to the extent the catalog can disprove it — that rule is the contract's
-(`../README.md`); what follows is the machinery that pays for it.
+The machinery that turns a typed answer on the produce path into a rating.
+Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGrading`.
 
 ## The normalizer
 

@@ -1,4 +1,5 @@
 # Distribution — getting builds onto other people's phones
+How builds reach other people's phones, how a release is cut, and what earns a changelog entry and how it is worded.
 
 Neither store is involved.
 Android installs the APK directly and tracks updates through Obtainium;

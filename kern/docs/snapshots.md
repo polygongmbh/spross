@@ -1,6 +1,6 @@
 # Store & snapshots
+The persisted box document and the watch/widget snapshots the phone precomputes.
 
-The persisted box document, and the watch/widget snapshots the phone precomputes.
 Engine contract: `../README.md`.
 
 - One document per TARGET: `box-<target>.json` (schema version 2, `store/StoreDocument.kt`)

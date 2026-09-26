@@ -1,7 +1,6 @@
 # FSRS-6 — parameters, provenance and graduation
-
-The reference implementation's own facts, kept where the golden vectors can be checked
-against them. What the PRODUCT decided on top is the contract's (`../README.md` §5).
+The FSRS-6 reference implementation's own facts, kept where the golden vectors can be checked against them.
+Neighbors: what the product decided on top `../README.md` §5.
 
 - 21 weights; defaults = ts-fsrs v5.4.1 / py-fsrs v6.3.1 (identical), **w20 decay 0.1542**
   (brief's 0.2 was a pre-release value). Formula set + cross-check resolutions per the

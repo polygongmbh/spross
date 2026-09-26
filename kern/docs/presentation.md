@@ -1,9 +1,6 @@
 # Presentation — what a prompt shows, and when
-
-Which form is prompted, whether the meaning is given or withdrawn, and when the picture
-appears. Every rule here is a render-time function of the card and its review count — none
-of it touches the schedule, and none of it names a screen position.
-Engine contract: `../README.md` §3.
+Which form a prompt shows, whether the meaning is given or withdrawn and when the picture appears: render-time rules only, never the schedule or a screen position.
+Neighbors: the contract `../README.md` §3.
 
 - **Synonym rotation** on recognition prompts: the prompted form cycles deterministically
   through `text` + `teaches` — index = (`count / 2` + id-hash offset) mod formCount

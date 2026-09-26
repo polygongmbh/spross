@@ -1,4 +1,5 @@
 # What may run when
+What is cached, where and keyed on what, and what may run when.
 
 Cache what is expensive, and key the cache on everything the answer depends on.
 

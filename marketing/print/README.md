@@ -1,8 +1,5 @@
 # Print materials
-
-Flyers, handbills and business cards for Spross, in German and English,
-each carrying the app icon and a QR code to spross.net.
-Sheets to print at home are imposed on A4; the shop exports are single-up with bleed.
+Flyers, handbills and business cards for Spross in German and English: their sources, how they are generated and how to print them.
 
 Everything in `out/` is generated. Edit the sources, never the PDFs:
 

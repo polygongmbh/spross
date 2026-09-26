@@ -1,8 +1,7 @@
 # SprossKern -- engine contract
+The engine's standing contract (scheduling, growth, sessions, grading, snapshots) and its product frame.
+Neighbors: app-layer rules `../docs/design.md`, each topic's machinery its page under `docs/`.
 
-The standing contract for the Kotlin Multiplatform core (`:kern`):
-scheduling, growth, sessions, grading, snapshots.
-App-layer UX rules stay in `../docs/design.md`; this doc owns the engine.
 Product frame:
 any source (known) / target (learning) language pair from the catalog;
 no user-facing direction concept;

@@ -1,4 +1,6 @@
 # Changelog
+Curated user-facing changes by version, newest first, one sentence per entry.
+Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
@@ -115,6 +117,5 @@
 - A word held on its spelling correction after a typo can now be reported or stopped like any other, instead of offering no menu at all.
 - Reopening a report you already filed now shows what you wrote instead of an empty field, and keeps the answer it was filed with.
 - Pressing Enter on an empty answer field now shows the answer, the same as tapping the button above it, instead of doing nothing.
-
 
 Older versions: `docs/archive/CHANGELOG-v5-v6.md`, `docs/archive/CHANGELOG-v2-v4.md`, `docs/archive/early-history-2026-07.md`.

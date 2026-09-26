@@ -1,4 +1,5 @@
 # Spross
+What Spross is, how to build and run it, and where each part is documented; the rules themselves live in `docs/` and `kern/`.
 
 A personal "growing box" vocabulary app:
 pick the language you know (source) and the one you learn (target)

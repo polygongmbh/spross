@@ -1,4 +1,5 @@
 # Runs — the turn machine, the drills, and listening
+The three pure run machines (the vocabulary turn, the drills, listening) and where they end and the platform begins.
 
 Three pure machines: immutable state plus `reduce(state, intent) -> state + effects`.
 The platform owns the field, the keyboard, focus, timers and playback,

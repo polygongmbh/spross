@@ -1,9 +1,6 @@
 # Reading aloud
-
-How the app speaks a word: which sound plays, when autoplay fires, and how the two
-mutes interact.
-Engine half: `../kern/docs/audio.md`;
-licensing: `audio-licensing.md`.
+How the app speaks a word: which sound plays, when autoplay fires, how the two mutes interact.
+Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
 
 - **Words are read aloud; a recording is only played for the word it actually says.**
   Kern matches recordings by the form on screen, never by concept,

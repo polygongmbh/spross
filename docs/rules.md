@@ -1,4 +1,5 @@
 # Where a rule lives, and how it is written
+Where a rule belongs (`CLAUDE.md`, a `docs/` page or a gate) and how each is written; the rules themselves live in those homes.
 
 `CLAUDE.md`, a `docs/` page and a gate all carry rules,
 and which one a rule lands in decides whether it holds.
@@ -29,6 +30,16 @@ and give the check a `--fix` and a per-line waiver
 The class that most needs a gate is the one that never shows up as a red:
 whether code was put in the right place surfaces weeks later as a consolidation commit.
 `LayerBoundaryTest` is that class made checkable.
+
+## Every markdown file opens with its scope
+
+Line 1 is the heading; line 2 says in one unbroken line what the file holds,
+and what it does not where a reader would otherwise look for it here.
+Line 3 is `Neighbors:` and the files owning what sits next to this one, or empty when none do.
+A session reads those three lines before editing the file,
+so what line 2 leaves out goes where line 3 points, never in.
+They are the one exception to semantic linebreaks: the head stays three lines whatever it says.
+`scripts/doc-header.py` holds the shape; plans and the archive are working state and exempt.
 
 ## CLAUDE.md states the rule and stops
 

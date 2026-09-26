@@ -1,7 +1,6 @@
 # Licensing the source
-
-What the repo has to grant, and what constrains the choice.
-The audio and catalog terms themselves are `audio-licensing.md` and are not restated here.
+What the repo has to grant and what constrains the choice of license.
+Neighbors: audio and catalog terms `audio-licensing.md`.
 
 ## Where it stands
 

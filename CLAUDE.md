@@ -1,4 +1,6 @@
 # Spross — growing-box vocabulary app
+The rules every session pays for on every edit (commands, commit rules, code and text standards, invariants), one terse line each; a topic's own rules live in the `docs/` page that owns it.
+Neighbors: where a rule belongs `docs/rules.md`.
 
 A personal spaced-repetition "growing box" app:
 FSRS-6-scheduled vocab that only grows while material sits, phrases unlock from their component words.
@@ -68,7 +70,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Simplicity over Perfection: Behavior correctness is important, but don't overcomplicate the code to handle every edge case.
 
 ### Text
-- ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line.
+- ALWAYS use **Semantic linebreaks** for text - in docs, markdown files, documentation comments: one sentence/clause per line — a markdown file's scope and neighbors lines excepted.
 - English is American spelling and vocabulary everywhere — docs, comments, chrome copy, catalog
   content (a British spelling goes in `accepts`, a British word in `teaches`; `catalog/areas/README.md`).
 - When working on localization, focus on idiomatic variants in each language rather than literal translation.
@@ -126,6 +128,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - **One fact, one home**: each topic owned by exactly one doc; narrative docs (history, status, plans) link into it, never restate it.
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
 - Negations and hardlines only where the opposite is what would otherwise happen.
+- Before editing any `.md` file, read its first three lines — heading, scope, neighbors — and put what the scope excludes where the neighbors point.
 - A doc states its content, never its own properties.
 - Out-of-scope discoveries go to `docs/backlog.md`, catalog content to `catalog/backlog.md` (one-liners with pointers); prune on fix.
 - Whose the bundled recordings are and what their licenses oblige — the ship/legal record —

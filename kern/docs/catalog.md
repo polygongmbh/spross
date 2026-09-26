@@ -1,6 +1,7 @@
 # Catalog schema — engine-side rules
+What the engine requires of the catalog and the lint that holds it.
+Neighbors: the file format `../../catalog/README.md`.
 
-What the engine requires of the catalog, and the lint that holds it. The file format itself is `../../catalog/README.md`'s.
 Engine contract: `../README.md`.
 
 - `languages.json`: `articles` (`../README.md` §1).

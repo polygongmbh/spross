@@ -1,6 +1,6 @@
 # Language names
-
-What each language calls the languages, in the forms a sentence needs.
+What each language calls every declared language, in the forms a sentence needs.
+Neighbors: per-language app metadata `languages.json`.
 
 One file per **naming** language, keyed by the language being **named** —
 `language-names/de.json` says how German names Swahili, `language-names/sw.json` how Swahili does.

@@ -1,4 +1,6 @@
 # Catalog backlog
+Open catalog work: content, forms, audio and questions for a native speaker.
+Neighbors: app and code issues `../docs/backlog.md`.
 
 Catalog content, its forms, its audio and the per-language questions that want a speaker are filed here,
 one item per bullet with a file or context pointer — as short as that allows,

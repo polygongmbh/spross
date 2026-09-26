@@ -1,6 +1,6 @@
 # KMP project & Apple integration
+Gradle and Kotlin pins, targets, the framework hand-off to Xcode, and the trainer packs.
 
-Gradle/Kotlin pins, targets, the framework hand-off to Xcode, and the trainer packs.
 Engine contract: `../README.md`.
 
 - Gradle root `app/` (wrapper committed; `.gitignore` += `build/`, `.gradle/`, `.kotlin/`,

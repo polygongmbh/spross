@@ -1,9 +1,6 @@
 # Country atlas
+The atlas drill's own content (which countries exist, which languages they carry, what each language calls them), the one catalog file that never joins a card.
 
-The atlas drill's own content, and the one catalog file that never joins a card.
-
-The atlas drill's own content: which countries exist, which languages they carry,
-and what each declared language calls them.
 Drill-only — nothing here ever joins a card, so editing it never restamps a running box.
 **File presence is the registry**, like the alphabet's:
 no `atlas.json`, no drill; a language without `countries/<lang>.json` has no atlas for any pair it is on.

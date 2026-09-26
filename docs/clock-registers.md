@@ -1,10 +1,6 @@
 # Clock registers
-
-How the hours drill decides what a time is CALLED, in each authored language.
-Owns the parts of the day, the display/accepted/gloss split, and the collision rule.
-The generators are `kern/src/commonMain/kotlin/net/spross/kern/trainer/*Clock.kt`;
-the grading pipeline they answer to is `kern/docs/grading.md`.
-The calendar sibling -- what a spoken date is called -- is `date-readings.md`.
+How the clock drill decides what a time is called in each authored language: the parts of the day, the display/accepted/gloss split, the collision rule.
+Neighbors: generators `*Clock.kt`, grading `../kern/docs/grading.md`, dates `date-readings.md`.
 
 ## The three slots
 

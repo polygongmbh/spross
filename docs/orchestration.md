@@ -1,7 +1,5 @@
 # Multi-agent orchestration
-
-Read this when launching or conducting a multi-agent wave.
-Single-agent sessions do not need it.
+How a multi-agent wave is launched and conducted; single-agent sessions do not need it.
 
 ## Agent sizing
 

@@ -1,13 +1,6 @@
 # Drills -- the hub, the Sprosse and the run
-
-What a Sprosse is, what earns a chip on the hub,
-and the shape every overview page and every run wears.
-What each drill asks stands with the drill:
-`drills-tables.md` for the three that grade against a table -- numbers, atlas, calendar --
-and `drills-words.md` for the three drawn from the words the box already holds --
-letters, word scramble, sentence scramble.
-The surfaces around them -- listening, the wrist, the Android companion -- are `surfaces.md`'s;
-the review loop these share their card and their answering rules with is `design.md`'s.
+What a Sprosse is, what earns a chip on the hub, and the shape every overview page and every run wears.
+Neighbors: each drill `drills-tables.md` and `drills-words.md`, surfaces around them `surfaces.md`, the review loop `design.md`.
 
 ## The words
 

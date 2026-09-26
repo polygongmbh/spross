@@ -1,11 +1,6 @@
 # Drills over the words the box holds — letters, word scramble, sentence scramble
-
-What the three drills drawn from the learner's own words ask and what their chrome holds,
-beyond the shape every drill page and every run wears (`drills.md`).
-None of them keeps a record, so none has a ladder to earn;
-what each may draw at all is kern's (`LetterDrillAvailability`, `WordScrambleAvailability`,
-`SentenceScrambleAvailability`), and which alphabet rows may lend a word is
-`../catalog/alphabet/README.md`.
+What the letter, word scramble and sentence scramble drills ask and what their chrome holds, beyond what every drill wears; none keeps a record, and what each may draw is kern's (`*Availability`).
+Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/alphabet/README.md`.
 
 ## Buchstaben — the letters page and the letter drill
 

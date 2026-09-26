@@ -1,11 +1,6 @@
 # Why the recordings are mp3
-
-What the bundled audio costs, why the codec is not ours to pick,
-and what switching it would actually buy -- measured 2026-08-22.
-
-Whose the recordings are and what each license obliges is `audio-licensing.md`;
-the engine rule is `../kern/docs/audio.md`,
-the manifest schema `../catalog/audio/README.md`.
+Why the recordings are mp3: what the bundled audio costs, why the codec is not ours to pick and what switching would buy, measured 2026-08-22.
+Neighbors: licenses `audio-licensing.md`, engine `../kern/docs/audio.md`, manifest schema `../catalog/audio/README.md`.
 
 ## What ships
 

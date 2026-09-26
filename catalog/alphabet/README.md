@@ -1,6 +1,5 @@
 # Alphabet
-
-The per-language letter sheets the reference screen renders and the letter drill samples from.
+The per-language letter sheets the reference screen renders and the letter drill samples from: their file shape, order and lint.
 
 One file per declared language, `alphabet/<lang>.json`, entries in teaching order and
 optionally grouped into `sections` — the reference sheet renders it, the letter drill

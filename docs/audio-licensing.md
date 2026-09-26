@@ -1,12 +1,7 @@
 # Audio & content licensing
+The ship/legal record for the bundled audio and content (what is in the app, whose it is, what each license asks, where the app answers it); the per-file truth is the manifests.
+Neighbors: schema `../catalog/audio/README.md`, engine `../kern/docs/audio.md`, codec `audio-format.md`, the source's license `source-license.md`.
 
-The record for the ship/legal questions the bundled audio raises:
-what is in the app, whose it is, what each license asks for, and where the app answers it.
-
-The engine rule is `../kern/docs/audio.md`, the file format `../catalog/audio/README.md`,
-and the per-file truth is the per-language manifests themselves --
-this doc states the posture, not the schema.
-Why the recordings are mp3 is `audio-format.md`.
 The pack research (how each source was found, what was rejected, the coverage gaps)
 lives outside the repo in `data/reference/audio/README.md`.
 

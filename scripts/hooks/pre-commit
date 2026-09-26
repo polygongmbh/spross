@@ -60,6 +60,15 @@ if printf '%s\n' "$STAGED" | grep -E '^catalog/' | grep -qv '^catalog/audio/'; t
   fi
 fi
 
+# A file's head is what a session reads before editing it, so a file without one gets
+# edited blind — the three lines are checked wherever markdown is staged.
+if printf '%s\n' "$STAGED" | grep -qE '\.md$'; then
+  if ! python3 scripts/doc-header.py; then
+    echo "error: a markdown file is missing its head (docs/rules.md § Every markdown file opens with its scope)." >&2
+    exit 1
+  fi
+fi
+
 # A recording carries no layout, but a manifest can name one that never left the machine
 # it was fetched on — `git ls-files` is the only reader that can tell the two apart.
 if printf '%s\n' "$STAGED" | grep -qE '^catalog/audio/'; then

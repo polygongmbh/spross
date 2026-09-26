@@ -1,8 +1,6 @@
 # What earns a slot, and where it lives
-
-Whether a concept deserves a card, how its realization is worded, and which area it belongs to --
-the content rules that cut across every language file.
-The file format they are written into is `../README.md`.
+Whether a concept earns a card, how its realization is worded and which area it belongs to, across every language file.
+Neighbors: the file format `../README.md`.
 
 ## What earns a card
 

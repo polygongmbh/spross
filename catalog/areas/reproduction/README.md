@@ -1,4 +1,6 @@
 # Parked area — `reproduction`
+Why the `reproduction` area is written and sourced yet parked, and what would ship it.
+Neighbors: what parking means `../../README.md`.
 
 An area written, sourced and deliberately NOT shipped.
 It sits in the catalog like any other and is absent from `areas.json` on purpose,

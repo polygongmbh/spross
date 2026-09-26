@@ -1,7 +1,6 @@
 # What the evidence says about new-word intake
-
-Why the box bounds new words the way it does.
-This doc owns the literature; `kern/README.md` §6 owns the resulting rules.
+The literature behind how the box bounds new words.
+Neighbors: the resulting rules `../kern/README.md` §6.
 
 The box is breadth-first: exposure to a lot of the language, accepting that any
 single word may not stick.

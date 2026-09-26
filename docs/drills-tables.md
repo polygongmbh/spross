@@ -1,11 +1,6 @@
 # Drills with a table — numbers, atlas, calendar
-
-What the three table-backed drills ask and what their pages hold,
-beyond the shape every drill page and every run wears (`drills.md`).
-Each ladder itself is kern's — `Numbers`/`DrillRamp`, `CountryDrill`, `DateDrill` —
-and what a language actually READS is its own doc:
-`number-forms.md` for the forms, `clock-registers.md` for the clock,
-`date-readings.md` for a date.
+What the numbers, atlas and calendar drills ask and what their pages hold, beyond what every drill wears; each ladder is kern's.
+Neighbors: every drill `drills.md`, readings `number-forms.md`, `clock-registers.md`, `date-readings.md`.
 
 ## Zahlen — the numbers page
 

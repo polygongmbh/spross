@@ -1,9 +1,6 @@
 # Spross — app design
-The app-layer rules every screen answers to (what the app composes, how an answer is asked, graded and shown, how copy speaks, the visual language); a single screen's layout, element order, sizes, timings and inventories belong to the code and the running app, not here.
-
-Drills: `drills.md`; listening/wrist/Android: `surfaces.md`;
-audio: `read-aloud.md`; budgets: `performance.md`.
-Engine: `../kern/README.md`.
+The app-layer rules every screen answers to: what the app composes, how an answer is asked, graded and shown, how copy speaks, the visual language; one screen's layout, element order, sizes, timings and inventories are the code's, not this page's.
+Neighbors: drills `drills.md`, listening/wrist/Android `surfaces.md`, audio `read-aloud.md`, engine `../kern/README.md`.
 
 ## North star
 

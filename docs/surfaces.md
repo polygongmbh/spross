@@ -1,7 +1,6 @@
 # Surfaces beyond the review loop
-
-Listening, the wrist and the Android companion. The hub's drills are `drills.md`'s;
-the review loop itself, and the auto-advance beats these share with it, are `design.md`'s.
+Listening, the wrist and the Android companion.
+Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `design.md`.
 
 ## Listening
 

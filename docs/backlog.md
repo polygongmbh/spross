@@ -1,13 +1,11 @@
 # Backlog — session-discovered, out-of-scope issues
+Out-of-scope issues found mid-session, pruned when fixed.
+Neighbors: catalog content `../catalog/backlog.md`.
 
-Issues discovered mid-session that fall outside the current scope:
-file them here instead of scattering notes across other docs;
-prune an item when it is fixed.
 One item per bullet, with a file or context pointer, filed under the section it belongs to —
 as short as that allows, longer only to carry evidence or reasoning a fixer would otherwise have to redo.
 Within a section, ready work comes first, then the items that end in a question for the owner,
 then open design work, then what waits on someone else, grouped by who that is.
-Catalog content — its forms, its audio and the per-language questions — lives in `../catalog/backlog.md`.
 Parked work is not an issue: its own doc says it is parked.
 
 ## Engine & scheduling
@@ -46,7 +44,6 @@ Parked work is not an issue: its own doc says it is parked.
   `NumberReadingIndex.INDEXED_CARDINALS` states the bound precedent).
 
 ## App & UX
-
 
 - The listening drill deals its words in an order nobody tuned for audibility: the owner expected
   the first words to come in catalog order and heard them skip, because seeding is pure catalog

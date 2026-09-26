@@ -1,12 +1,11 @@
 # Content catalog format (v2.1)
+The catalog's file shapes and what each field means.
+Neighbors: what earns a card and its wording `areas/README.md`, each subfolder's files its own README.
 
 Language learning content organized **one folder per area**.
 Designed for reuse (any language pair is a runtime join of shared parts)
 and potential future crowdsourced per-language contribution.
 
-This file owns the file shapes and what each field means.
-What earns a card and how it is worded is `areas/README.md`;
-every other folder below is documented by the `README.md` standing in it.
 Reference grammars, audit logs and offline dictionaries live in `../../data/` (the parent repo's content workspace) —
 check a target-language fact there before the web: Wiktionary dumps, FreeDict and Tatoeba, inventoried in `reference/README.md`.
 

@@ -1,9 +1,5 @@
 # Read models — what a surface draws the box from
-
-The reports the engine hands out so a surface never reads a schedule itself:
-the day's own numbers, one card's standing, the box as a browsable list, and the clock a
-greeting turns on. Nothing here changes what the box DOES — only how a surface reads what it
-already did. Engine contract: `../README.md`.
+The read models a surface draws the box from (the day, one card's standing, the browsable box, the greeting clock); nothing here changes what the box does.
 
 ## The day
 
