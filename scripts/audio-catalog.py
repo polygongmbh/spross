@@ -108,6 +108,12 @@ PEAK_CEILING_DBFS = -1.0
 # take of the same word.
 FILL_SNR_FLOOR_DB = 39.5
 
+# How far above its measured noise a recording's playback gate opens. Enough that the
+# noise's own swing does not flutter the gate, little enough that the word is never under it.
+GATE_MARGIN_DB = 6.0
+# kern `Playback.GATE_FLOOR_DB`: below it a file is digital silence and needs no gate.
+GATE_FLOOR_DB = -100.0
+
 # Every license the packs actually carry → its canonical deed. An unlisted one is a
 # hard stop: the credits screen links what it names, and PD has no deed to link.
 LICENSE_URLS = {
@@ -247,7 +253,7 @@ def copy_verified(source, target):
     return digest
 
 
-def playback_index(loudness, speaker, leading, peak, noise, phone):
+def playback_index(loudness, speaker, leading, peak, noise, loudest, phone):
     """The optional `gain`/`gainPhone`/`lead` plus `snr` for one entry — absent when there is nothing to say.
 
     Two gains, one per playback plane (see [ANALYSIS]): `gain` moves a file toward the
@@ -289,6 +295,11 @@ def playback_index(loudness, speaker, leading, peak, noise, phone):
         index['lead'] = lead
     if noise is not None:
         index['snr'] = round(noise, 1)
+        # why: the noise sits `noise` dB under the loudest frame; a gate a few dB above it
+        # quiets the hiss in the pauses and never reaches the word (kern `Playback`).
+        gate = round(loudest - noise + GATE_MARGIN_DB, 1)
+        if GATE_FLOOR_DB <= gate < 0:
+            index['gate'] = gate
     return index
 
 
@@ -307,12 +318,12 @@ def copy_and_analyze(copies, phone=False):
     measured = audio_measure.measure_all(FFMPEG, [target for _, _, target in copies])
     analyzed = {}
     for id, _, target in copies:
-        loudness, speaker, leading, peak, noise = measured[target]
+        loudness, speaker, leading, peak, noise, loudest = measured[target]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % target)
         if phone and speaker is None:
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % target)
-        analyzed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, noise, phone))
+        analyzed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, noise, loudest, phone))
     return analyzed
 
 
@@ -493,15 +504,15 @@ def reindex(lang):
         if digest_of(path) != item['sha256']:
             sys.exit('%s: sha256 no longer matches — the bytes changed, re-run the convert'
                      % path)
-        loudness, speaker, leading, peak, noise = measured[path]
+        loudness, speaker, leading, peak, noise, loudest = measured[path]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % path)
         phone = section in ('words', 'articles', 'calendar', 'countries')
         if phone and speaker is None:
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % path)
-        index = playback_index(loudness, speaker, leading, peak, noise, phone)
+        index = playback_index(loudness, speaker, leading, peak, noise, loudest, phone)
         was = item.get('gain', 0)
-        for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'snr'):
+        for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'snr', 'gate'):
             item.pop(field, None)
         item.update(index)
         if index.get('gain', 0) != was:

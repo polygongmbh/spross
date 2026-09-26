@@ -73,7 +73,8 @@ def version(binary):
 
 def measure(binary, path):
     """(integrated LUFS, the same through SPEAKER_LENS, leading silence in seconds, sample
-    peak dBFS, dB of speech above its noise); a silent file measures None for the levels.
+    peak dBFS, dB of speech above its noise, loudest frame RMS dBFS); a silent file measures
+    None for the levels.
 
     Two decodes: the plain one below, and one more through the lens — which is what the
     gain is actually derived from, the flat number staying as the figure the packs are
@@ -106,7 +107,7 @@ def measure(binary, path):
         lensed_loudness(binary, path),
         float(end.group(1)) if opens_silent and end else 0.0,
         float(peak[-1]) if peak and peak[-1] != '-inf' else None,
-        noise_margin(binary, path),
+        *noise(binary, path),
     )
 
 
@@ -125,21 +126,29 @@ def lensed_loudness(binary, path):
 def noise_margin(binary, path):
     """How far the loudest frame stands above the noise under the word, in dB (see NOISE_*);
     None where the estimate finds no noise at all — digital silence, the cleanest there is."""
+    return noise(binary, path)[0]
+
+
+def noise(binary, path):
+    """(`noise_margin`, the loudest frame's RMS in dBFS) — one decode for both, since the
+    noise LEVEL a playback gate sits on is the loudest frame less the margin; (None, None)
+    where no noise was found."""
     raw = subprocess.run(
         [binary, '-v', 'error', '-i', path, '-ac', '1', '-ar', str(NOISE_RATE), '-f', 'f32le', '-'],
         capture_output=True, check=True).stdout
     x = np.frombuffer(raw, dtype=np.float32)
     if len(x) < NOISE_FRAME:
-        return None
+        return None, None
     frames = np.lib.stride_tricks.sliding_window_view(x, NOISE_FRAME)[::NOISE_HOP]
+    rms = np.sqrt((frames.astype(np.float64) ** 2).mean(axis=1)).max()
     power = np.abs(np.fft.rfft(frames * np.hanning(NOISE_FRAME), axis=1)) ** 2
     hz = np.fft.rfftfreq(NOISE_FRAME, 1 / NOISE_RATE)
     power = power[:, (hz >= NOISE_BAND_HZ[0]) & (hz <= NOISE_BAND_HZ[1])]
     noise = np.percentile(power, NOISE_PERCENTILE, axis=0).sum()
     loudest = power.sum(axis=1).max()
-    if noise <= 0 or loudest <= 0:
-        return None
-    return float(10 * np.log10(loudest / noise))
+    if noise <= 0 or loudest <= 0 or rms <= 0:
+        return None, None
+    return float(10 * np.log10(loudest / noise)), float(20 * np.log10(rms))
 
 
 def measure_all(binary, paths):
