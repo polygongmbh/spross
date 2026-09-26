@@ -3,7 +3,9 @@ package net.spross.app.audio
 import kotlin.math.abs
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import net.spross.kern.catalog.Playback
 import net.spross.kern.listen.LISTENING_FADE_FLOOR_DB
 
 /**
@@ -109,5 +111,31 @@ class PlaybackIndexTest {
     fun aCapIsInertOutsideAFade() {
         assertVolume(1.0, 0.0, capDb = 12.0)
         assertVolume(0.2754, -11.2, capDb = 12.0)
+    }
+
+    /** No measured noise, no expander: the word plays exactly as it did. */
+    @Test
+    fun anUngatedRecordingGetsNoBand() {
+        assertNull(gateBand(null, 1f))
+        assertNull(gateBand(null, 0.5f))
+    }
+
+    /**
+     * The expander hears the noise after the volume and nothing else: a word turned down
+     * 6 dB has its threshold moved 6 dB with it, a boosted one (volume 1) keeps the raw gate.
+     */
+    @Test
+    fun theThresholdFollowsTheVolumeAlone() {
+        assertEquals(-60f, gateBand(-60.0, 1f)!!.thresholdDb)
+        assertEquals(-66.0206f, gateBand(-60.0, 0.5f)!!.thresholdDb, 1e-3f)
+    }
+
+    /** The band carries kern's shape as it stands, in the effect's own units. */
+    @Test
+    fun theBandIsKernsExpander() {
+        val band = gateBand(-60.0, 1f)!!
+        assertEquals(Playback.GATE_EXPANSION_RATIO.toFloat(), band.expanderRatio)
+        assertEquals(Playback.GATE_ATTACK_MS.toFloat(), band.attackMs)
+        assertEquals(Playback.GATE_RELEASE_MS.toFloat(), band.releaseMs)
     }
 }

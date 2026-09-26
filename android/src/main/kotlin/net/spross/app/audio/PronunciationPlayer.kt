@@ -73,11 +73,17 @@ class PronunciationPlayer {
     /** The boost half of the index, on [player]'s session; null where none was asked for. */
     private var enhancer: LoudnessEnhancer? = null
 
+    /** The expander on [player]'s session; null where no gate was asked for or none could be built. */
+    private var gate: NoiseGate? = null
+
+    /** The clip in hand's measured noise gate, which a replay's volume moves the threshold of. */
+    private var gateDb: Double? = null
+
     /** Where the clip in hand starts speaking, ms. */
     private var head = 0L
 
     /**
-     * Plays [afd] under its analysis index, replacing whatever was sounding. The
+     * Plays [afd] under its analysis index — [gate] included — replacing whatever was sounding. The
      * descriptor is consumed on the worker. A file that will not open simply stays
      * silent — a word is never worth an error surface.
      */
@@ -87,6 +93,7 @@ class PronunciationPlayer {
         capDb: Double,
         leadMs: Long,
         fadeDb: Double = 0.0,
+        gate: Double? = null,
         onFinish: (() -> Unit)? = null,
     ) {
         val current = request.incrementAndGet()
@@ -94,7 +101,7 @@ class PronunciationPlayer {
         pending = onFinish?.let { current to it }
         handler.post {
             clear()
-            load(current, afd, gainDb, capDb, leadMs, fadeDb)
+            load(current, afd, gainDb, capDb, leadMs, fadeDb, gate)
         }
     }
 
@@ -109,6 +116,7 @@ class PronunciationPlayer {
             // why: the fade may have moved since this clip was prepared — the boost on its
             // session is the catalog's correction and stands, the volume is the ramp.
             player?.setVolume(volume, volume)
+            gateBand(gateDb, volume)?.let { gate?.update(it) }
             // why: a prepare still on its way ends in this very clip sounding, so a
             // second ask while it lands is answered by letting it land, not twice.
             player?.takeIf { preparing == 0 }?.let(::sound)
@@ -140,6 +148,7 @@ class PronunciationPlayer {
         capDb: Double,
         leadMs: Long,
         fadeDb: Double,
+        gate: Double?,
     ) {
         val player = MediaPlayer()
         this.player = player
@@ -171,8 +180,11 @@ class PronunciationPlayer {
             afd.use { player.setDataSource(it) }
             // The attenuating half of the index rides the player and the boosting half
             // its session; the scheme leaves only one of the two ever doing anything.
-            playbackVolume(gainDb, capDb, fadeDb).let { player.setVolume(it, it) }
+            val volume = playbackVolume(gainDb, capDb, fadeDb)
+            player.setVolume(volume, volume)
             boost(player, playbackBoostMillibels(gainDb))
+            gateDb = gate
+            this.gate = gateBand(gate, volume)?.let { NoiseGate.attach(player.audioSessionId, it) }
             player.prepareAsync()
         } catch (_: IOException) {
             fail(current) // nothing readable behind the descriptor
@@ -204,11 +216,14 @@ class PronunciationPlayer {
     private fun clear() {
         preparing = 0
         head = 0
-        // why: the enhancer first — it hangs on the session this player owns. And release
+        // why: the effects first — they hang on the session this player owns. And release
         // rather than stop: it halts playback from EVERY state, the error one included,
         // and a two-second clip's codec is not worth holding past the card that asked.
         enhancer?.release()
         enhancer = null
+        gate?.release()
+        gate = null
+        gateDb = null
         player?.release()
         player = null
     }

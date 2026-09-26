@@ -1,13 +1,14 @@
 package net.spross.app.audio
 
+import kotlin.math.log10
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import net.spross.kern.catalog.Playback
 import net.spross.kern.listen.fadedGainDb
 
 /**
- * The catalog's ANALYSIS INDEX in the units an Android player takes: a linear volume and a
- * boost in millibels.
+ * The catalog's ANALYSIS INDEX in the units an Android player takes: a linear volume, a
+ * boost in millibels and a noise gate's expander band.
  *
  * The scheme is `scripts/audio-catalog.py`'s `ANALYSIS['scheme']` = **boost**. The uk
  * letters sit 14.7 dB under the word packs, so attenuating everything down to them would
@@ -49,3 +50,30 @@ fun fadeVolume(fadeDb: Double): Float = 10.0.pow(fadeDb / 20).toFloat()
  */
 fun playbackBoostMillibels(gainDb: Double): Int =
     if (gainDb <= 0) 0 else (Playback.gainDb(gainDb) * MILLIBELS_PER_DB).roundToInt()
+
+/**
+ * The one band of the downward expander a recording's gate asks for, in the units
+ * `DynamicsProcessing.MbcBand` takes: dBFS, a ratio, ms.
+ */
+data class GateBand(
+    val thresholdDb: Float,
+    val expanderRatio: Float,
+    val attackMs: Float,
+    val releaseMs: Float,
+)
+
+/** The band for a recording measured at [gate] and played at [volume]; null where [gate] is — no gate. */
+fun gateBand(gate: Double?, volume: Float): GateBand? =
+    // why: `setVolume` scales the track as AudioFlinger mixes it, before any session effect,
+    // so the expander always hears the noise moved by the volume — kern's after-the-gain
+    // threshold. Where the LoudnessEnhancer sits against it the platform never promises, so
+    // the boost stays out: run first, it only lifts the noise over the threshold and the word
+    // plays ungated, where counting it would set the threshold up into the word and cut its tail.
+    Playback.gateThresholdDb(gate, 20 * log10(volume.toDouble()))?.let {
+        GateBand(
+            thresholdDb = it.toFloat(),
+            expanderRatio = Playback.GATE_EXPANSION_RATIO.toFloat(),
+            attackMs = Playback.GATE_ATTACK_MS.toFloat(),
+            releaseMs = Playback.GATE_RELEASE_MS.toFloat(),
+        )
+    }
