@@ -4251,15 +4251,16 @@
       "source": "Fr-farine.ogg"
     },
     "flower": {
-      "author": "Mecanautes",
+      "author": "Poslovitch",
       "file": "flower.mp3",
-      "gain": 5.6,
-      "gainPhone": 6.2,
-      "gate": -78.3,
+      "gain": 0.3,
+      "gainPhone": 0.9,
+      "gate": -68.8,
+      "lead": 73,
       "matches": "fleur",
-      "sha256": "72151c634d7ac3bcb69af09adf2a4a0b0c1529fa2437396e890e6672dcd8cc29",
-      "snr": 69.2,
-      "source": "LL-Q150 (fra)-Mecanautes-fleur.wav"
+      "sha256": "b7ad68ec6b9ad0bb31481aa126f065cace3e2f8e4350b92fb8ed962dfe21b990",
+      "snr": 64.4,
+      "source": "LL-Q150 (fra)-Poslovitch-fleur.wav"
     },
     "folder": {
       "author": "Vion Nicolas",
