@@ -3,7 +3,7 @@ import UIKit
 
 /// Central timing + accessibility guard for every "a clean correct answer
 /// flips on its own" surface — vocab review, the trainer drills, the letter
-/// drill. Two tiers (docs/design.md § Review UX rules, "0.45-1.2 s"):
+/// drill. Two tiers (docs/design.md § Review UX rules):
 /// `scheduleLive` for a word confirmed by finishing typing it (no Check/Enter
 /// needed), `scheduleExplicit` for one confirmed through an explicit
 /// Check/tile tap. Both numbers are kern's `AdvanceTier`, so the turn machine

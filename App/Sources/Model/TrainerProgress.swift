@@ -15,7 +15,7 @@ import SprossKern
 // beat what was standing. This side only reads and writes.
 //
 // UserDefaults rather than the box document, for the same reason
-// TrainerRecords lives there (docs/design.md:156-159): a drill run touches
+// TrainerRecords lives there (docs/design.md § Persistence): a drill run touches
 // no card and no schedule, so it is not box state — losing a Sprosse costs a
 // climb, where anything in the box costs learning history.
 
