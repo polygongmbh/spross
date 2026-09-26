@@ -606,7 +606,7 @@ def convert_countries_only(packs, languages):
                        manifest.get('calendar', {}), countries)
 
 
-def fill_words(packs, languages):
+def fill_words(packs, languages, reseat=False):
     """Add words the shipped manifest LACKS, leaving every entry it already has untouched.
 
     The catalog roughly doubled after the word packs were resolved, so half of each language
@@ -631,6 +631,18 @@ def fill_words(packs, languages):
         manifest = read_manifest(out_dir)
         shipped = manifest.get('words', {})
         print('pack-%s fill' % lang)
+        if reseat:
+            # why: a pack row naming another Commons file than the shipped entry is a swap
+            # somebody decided (`consolidate-pack.py`, `requalify-pack.py`) — the entry goes,
+            # and the fill below ships the row as it would a new word, measured afresh.
+            # Run `sync-from-shipped.py` first, or a drifted pack reseats words nobody chose.
+            by_slug = {row['slug']: row for row in read_rows(os.path.join(pack, 'manifest.tsv'))}
+            for key, item in sorted(shipped.items()):
+                row = by_slug.get(key)
+                if row and row['file'].replace('_', ' ') != item['source']:
+                    print('  reseat %-18s %s -> %s' % (key, item['source'], row['file']))
+                    os.remove(os.path.join(out_dir, item['file']))
+                    del shipped[key]
 
         drops = []
         mp3_dir = os.path.join(pack, 'mp3')
@@ -751,6 +763,9 @@ def main():
     parser.add_argument('--fill', action='store_true',
                         help='add words pack-<lang> has and the shipped manifest lacks; '
                              'every entry already shipped is left exactly as it is')
+    parser.add_argument('--reseat', action='store_true',
+                        help='with --fill, also replace every shipped word whose pack row now '
+                             'names a different Commons file')
     args = parser.parse_args()
     if not args.packs and not args.reindex:
         parser.error('--packs is required unless --reindex re-measures what already ships')
@@ -773,7 +788,7 @@ def main():
         return convert_countries_only(args.packs, args.lang)
 
     if args.fill:
-        return fill_words(args.packs, args.lang)
+        return fill_words(args.packs, args.lang, args.reseat)
 
     if args.reindex:
         shipped = sorted(name for name in os.listdir(os.path.join(CATALOG, 'audio'))

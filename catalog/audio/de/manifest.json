@@ -9220,15 +9220,15 @@
       "source": "De-niemand.ogg"
     },
     "noise": {
-      "author": "Jeuwre",
+      "author": "Holunder Gabriel",
       "file": "noise.mp3",
       "gain": -1.5,
-      "gainPhone": -5.2,
-      "lead": 440,
+      "gainPhone": -4.9,
+      "gate": -52.6,
       "matches": "lärm",
-      "sha256": "f912c6d9c75ab33f8cbb20d7fe1f5a24baf764e49d20723e8301a7306fbf5318",
-      "snr": 104.5,
-      "source": "De-lärm.ogg"
+      "sha256": "fac42f51f94092595600c87f796ab3003955e6889461a5268da957ee5be93718",
+      "snr": 47.4,
+      "source": "De-Lärm.ogg"
     },
     "noon": {
       "author": "Jeuwre",
@@ -9731,15 +9731,14 @@
       "source": "De-teilweise.ogg"
     },
     "passenger": {
-      "author": "Jeuwre",
+      "author": "Holunder Gabriel",
       "file": "passenger.mp3",
-      "gain": -1.5,
-      "gainPhone": -6.3,
-      "lead": 448,
+      "gainPhone": -2.6,
+      "gate": -64.3,
       "matches": "passagier",
-      "sha256": "8ebde43f55d4bd8fe2dddca46c16e631c1fed9b6d7a48d906fa3ce576a8c6bbd",
-      "snr": 105.9,
-      "source": "De-Passagier2.ogg"
+      "sha256": "b4e5395745fd39accab2df91de7190949972b0ba00bcdf5a44f2f86b447431f4",
+      "snr": 58.8,
+      "source": "De-Passagier.ogg"
     },
     "passport": {
       "author": "Jeuwre",

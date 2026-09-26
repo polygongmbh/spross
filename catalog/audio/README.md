@@ -28,6 +28,22 @@ scripts/audio-coverage.py --missing <lang>                   # what nobody has r
 The fill's own drops are the quality check: `noisy` (under 39.5 dB above the noise),
 `misnamed`, `unreachable` and `shipped-collision` each name the row and why.
 
+A full sweep also re-checks what already ships, in any language: anything not by a vetted
+voice, or not clearly clean, has every other take of its word tried.
+The vetted voices (`PREFERRED_SPEAKERS` in the workspace's `build-audio-pack.py`) are chosen by
+ear per voice, because no noise score matched a listener, and every picker prefers them.
+
+```sh
+W=../data/reference/audio   # <route> is the language's from $W/build-packs.sh
+$W/sync-from-shipped.py <lang>                              # the pack says what ships
+$W/consolidate-pack.py --lang <lang> <route> --preferred --review <dir>   # onto vetted voices
+$W/requalify-pack.py --lang <lang> <route>                  # snr under 55: every other take
+scripts/audio-catalog.py --packs $W --lang <lang> --fill --reseat   # ships the chosen swaps
+```
+
+Both reseating scripts only report until given `--apply`. Listen to a sample of the
+`--review` pairs before applying, since a swap changes what a learner hears.
+
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
 unversioned research input; what is committed here is the shipped bytes and the
 license record that has to travel with them. Both apps bundle the whole tree as it
