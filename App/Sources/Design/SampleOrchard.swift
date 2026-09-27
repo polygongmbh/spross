@@ -8,16 +8,13 @@ import SprossKern
 // `-uitest-orchard <age>` stands on Home and on a round's summary.
 
 enum SampleOrchard {
-    private static let areas: [(String, String, String, Int)] = [
-        ("basics", "👋", "Die ersten Wörter", 27), ("essentials", "⭐", "Alltag", 62),
-        ("connectors", "🔗", "Verbindungswörter", 15), ("questions", "❓", "Fragewörter", 10),
-        ("kitchen", "🍳", "Die Küche", 41), ("living", "🛋️", "Wohnzimmer", 36),
-        ("bath", "🛁", "Bad", 39), ("bedroom", "🛏️", "Schlafzimmer", 37),
-        ("desk", "✏️", "Schreibtisch", 39), ("hall", "🚪", "Flur", 40),
-        ("outside", "🌳", "Draußen", 41), ("school", "🎒", "Schule", 33),
-        ("organization", "🗒️", "Termine", 21), ("admin", "🗂️", "Amt", 38),
-        ("health", "🩺", "Gesundheit", 36), ("work", "💼", "Arbeit", 38),
-        ("own", "📦", "Eigene Wörter", 4),
+    /// Catalog areas, so a DEBUG launch labels them with the catalog's own emoji.
+    private static let areas: [(String, String, Int)] = [
+        ("greetings", "🤝", 27), ("people", "🧑", 62), ("connectors", "🔗", 15),
+        ("questions", "❓", 10), ("kitchen", "🍳", 41), ("living", "🛋️", 36),
+        ("bath", "🛁", 39), ("bedroom", "🛏️", 37), ("desk", "✏️", 39), ("hall", "🚪", 40),
+        ("nature", "🌳", 41), ("school", "🎒", 33), ("organization", "🗒️", 21),
+        ("admin", "🗂️", 38), ("doctor", "🩺", 36), ("work", "💼", 38), ("food", "🥕", 4),
     ]
 
     /// Every area at `age`, 0…1 — areas fill in catalog order,
@@ -42,9 +39,9 @@ enum SampleOrchard {
                               after: tree(kitchen, reached: age, index: 4, tended: true))
     }
 
-    private static func tree(_ area: (String, String, String, Int), reached: Double,
+    private static func tree(_ area: (String, String, Int), reached: Double,
                              index: Int, tended: Bool? = nil) -> AreaTree {
-        let (id, _, _, total) = area
+        let (id, _, total) = area
         let started = Int(Double(total) * min(1, reached * 1.3))
         let settled = Int(Double(started) * max(0, reached - 0.25))
         let blossoms = Int(Double(settled) * max(0, reached - 0.55))

@@ -61,21 +61,21 @@ struct TreeMark {
         // the finished one, whatever moment is being drawn —
         // and never from the height it is drawn at.
         // A transition scales the height every frame,
-        // and a crown that grew a generation or a slot halfway through
+        // and a crown that grew a twig or a slot halfway through
         // would reshuffle every slot under the marks already hanging on them.
-        let depth = TreeSkeleton.generations(for: canopy)
+        let vigor = TreeSkeleton.vigor(for: canopy)
         let slots = TreeSkeleton.slots(for: canopy)
         let seed = SplitMix64(tree.area).seed
         let box = CGRect(x: foot.x - height * 0.72, y: foot.y - height,
                          width: max(height * 1.44, 1), height: max(height, 1))
-        let loose = TreeSkeleton.grown(seed: seed, depth: depth, slots: slots, in: box)
+        let loose = TreeSkeleton.grown(seed: seed, vigor: vigor, slots: slots, in: box)
         let spill = CanopyMark.spill(of: loose, canopy, id: tree.area, in: box)
         guard spill > 0.2 else { return loose }
         // Held back on three sides only:
         // the trunk stands on the bottom edge,
         // and a mark can never hang below the foot.
         return TreeSkeleton.grown(
-            seed: seed, depth: depth, slots: slots,
+            seed: seed, vigor: vigor, slots: slots,
             in: CGRect(x: box.minX + spill, y: box.minY + spill,
                        width: max(box.width - spill * 2, 1),
                        height: max(box.height - spill, 1)))

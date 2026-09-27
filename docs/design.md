@@ -187,6 +187,8 @@ What licenses a second component is a parameter attempted and found not to carry
   Which `GrowthStage` stands in which tier is kern's `areaTrees`;
   a tier is one mark — arriving a bud, growing a leaf, matured a blossom, long held fruit.
   What the round summary claims over its tree is kern's `growthHeadline`.
+  A tree grows from its branch tips only — a limb keeps its shape for life —
+  and its marks gather in clusters at the twig ends.
   A met word hangs as a bud until it settles into a leaf; merely packed hangs nothing.
   Size comes from what has grown, never from catalog count.
   An unopened area is one faded seedling.
