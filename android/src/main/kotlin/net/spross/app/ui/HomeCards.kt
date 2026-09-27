@@ -219,11 +219,11 @@ fun TalkCard(model: AppModel, onOpen: () -> Unit) {
 }
 
 /**
- * The face the ways in share: the glyph leads, the title names the mode once, and the
+ * The face the ways in share — listening, the companion, the suggested drill: the glyph leads, the title names the mode once, and the
  * subtitle carries what the name cannot. The whole card is the tap target.
  */
 @Composable
-private fun WayInCard(glyph: String, title: String, subtitle: String, onOpen: () -> Unit) {
+internal fun WayInCard(glyph: String, title: String, subtitle: String, onOpen: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

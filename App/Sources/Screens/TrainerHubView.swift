@@ -72,7 +72,10 @@ struct TrainerHubView: View, LanguageNaming {
     var body: some View {
         Group {
             if !chips.isEmpty {
-                card
+                VStack(spacing: Theme.spacing.xl) {
+                    suggestionCard
+                    card
+                }
             }
         }
         // The pages: a sheet, because an overview is read from and swiped away.

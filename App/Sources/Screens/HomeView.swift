@@ -53,7 +53,7 @@ struct HomeView: View {
     private var briefingCard: some View {
         if model.hasBriefing {
             Button { briefingPresented = true } label: {
-                wayInCard(emoji: "💬", title: "briefing.title", subtitle: "briefing.row.subtitle")
+                WayInCard(emoji: "💬", title: Text("briefing.title"), subtitle: Text("briefing.row.subtitle"))
             }
             .buttonStyle(.plain)
         }
@@ -70,43 +70,10 @@ struct HomeView: View {
         // run to open.
         if model.box?.cards.isEmpty == false, model.listeningOffered {
             Button { listeningPresented = true } label: {
-                wayInCard(emoji: "🎧", title: "listen.title", subtitle: "listen.subtitle")
+                WayInCard(emoji: "🎧", title: Text("listen.title"), subtitle: Text("listen.subtitle"))
             }
             .buttonStyle(.plain)
         }
-    }
-
-    /// The face the ways in share: the emoji leads, the title names the mode once, and
-    /// the subtitle carries what the name cannot. The whole card is the tap target.
-    private func wayInCard(emoji: String,
-                           title: LocalizedStringKey,
-                           subtitle: LocalizedStringKey) -> some View {
-        HStack(alignment: .top, spacing: Theme.spacing.md) {
-            Text(verbatim: emoji)
-                .font(.title2)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: Theme.spacing.xs) {
-                Text(title)
-                    .font(Theme.typography.title)
-                    .foregroundStyle(Theme.colors.textPrimary)
-                Text(subtitle)
-                    .font(Theme.typography.subheadline)
-                    .foregroundStyle(Theme.colors.textSecondary)
-                    .multilineTextAlignment(.leading)
-            }
-            Spacer(minLength: 0)
-            Image(systemName: "chevron.right")
-                .font(.title3)
-                .foregroundStyle(Theme.colors.textSecondary)
-                .accessibilityHidden(true)
-        }
-        .padding(Theme.spacing.xl)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
-        .cardShadow()
     }
 
     // MARK: - Voice upgrade

@@ -486,6 +486,15 @@ interface Chrome {
     val homeOfferStart: String
     val homeOfferShortRound: String
 
+    // ── The suggested drill (Home's one card naming a drill, and why) ─────────
+    val homeSuggestionTitle: String   // %s = the drill's hub name
+    val homeSuggestionReasonNewScript: String
+    val homeSuggestionReasonEarlyNumbers: String
+    val homeSuggestionReasonWordsGrown: String
+    val homeSuggestionReasonNeverRun: String
+    val homeSuggestionReasonNotLately: String   // %d
+    val homeSuggestionReasonVariety: String
+
     // ── Listening (Home's one row, and the run it opens) ───────────────────────
     val listenTitle: String
     val listenSubtitle: String

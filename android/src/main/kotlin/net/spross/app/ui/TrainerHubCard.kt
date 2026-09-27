@@ -128,7 +128,7 @@ fun hubChips(chrome: Chrome, offered: (Drill) -> Boolean, open: (Drill) -> Unit)
     }
 
 /** The face each entry wears on its chip. */
-private val Drill.emoji: String
+internal val Drill.emoji: String
     get() = when (this) {
         Drill.Numbers -> "🔢"
         Drill.Letters -> "🔤"
@@ -139,7 +139,7 @@ private val Drill.emoji: String
     }
 
 /** What each entry is called, in the chrome language. */
-private fun Drill.title(chrome: Chrome): String = when (this) {
+internal fun Drill.title(chrome: Chrome): String = when (this) {
     Drill.Numbers -> chrome.trainerDrillNumbers
     Drill.Letters -> chrome.trainerDrillLetters
     Drill.Countries -> chrome.trainerDrillCountries
@@ -152,7 +152,7 @@ private fun Drill.title(chrome: Chrome): String = when (this) {
  * Where each chip goes: the four with reading matter open their PAGE, the two scrambles —
  * whose material is the box itself — start their run.
  */
-private fun AppModel.open(drill: Drill): Unit = when (drill) {
+internal fun AppModel.open(drill: Drill): Unit = when (drill) {
     Drill.Numbers -> openNumbers()
     Drill.Letters -> openLetters()
     Drill.Countries -> openCountries()

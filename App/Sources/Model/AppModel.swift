@@ -87,6 +87,9 @@ final class AppModel {
     /// Whether the pair joins the two calendars the dates drill needs — the
     /// same kind of walk, resolved beside the atlas and never per composition.
     private(set) var datesJoinPair = false
+    /// How many Sprossen the joined calendars' forward ladder names — what the
+    /// suggestion reads "mastered" against, out of the same join.
+    private(set) var datesSprossen = 0
     private(set) var phraseTemplatesForPair: [PhraseTemplate] = []
     /// The target languages the settings picker offers. Resolving it is a full
     /// catalog JOIN per candidate language — every card of every pair built and
@@ -473,6 +476,7 @@ final class AppModel {
         else {
             atlasJoinsPair = false
             datesJoinPair = false
+            datesSprossen = 0
             phraseTemplatesForPair = []
             targetChoices = []
             areaChrome = [:]
@@ -482,7 +486,9 @@ final class AppModel {
         // returning empty, and a Kotlin throw crossing back is a crash — hence
         // the guard above.
         atlasJoinsPair = catalog.countryDrillContent(source: sourceLanguage, target: target) != nil
-        datesJoinPair = catalog.dateDrillContent(source: sourceLanguage, target: target) != nil
+        let dates = catalog.dateDrillContent(source: sourceLanguage, target: target)
+        datesJoinPair = dates != nil
+        datesSprossen = dates.map { DateDrill.shared.ceiling(content: $0, reverse: false) } ?? 0
         phraseTemplatesForPair = catalog.phraseTemplates(source: sourceLanguage, target: target)
         targetChoices = LanguageChoices.shared.targetChoices(
             catalog: catalog,

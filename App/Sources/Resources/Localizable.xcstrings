@@ -3530,6 +3530,125 @@
         }
       }
     },
+    "home.suggestion.reason.earlyNumbers" : {
+      "comment" : "Why the numbers drill is suggested: the box is young.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlen braucht man von Anfang an"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numbers come in handy from day one"
+          }
+        }
+      }
+    },
+    "home.suggestion.reason.neverRun" : {
+      "comment" : "Why a drill is suggested: no run of it has closed yet.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch nie ausprobiert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not tried yet"
+          }
+        }
+      }
+    },
+    "home.suggestion.reason.newScript" : {
+      "comment" : "Why the letters drill is suggested: the learned language writes in a script the learner does not, and the box is young.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine neue Schrift – am besten gleich zu Beginn"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A new script is best learned early on"
+          }
+        }
+      }
+    },
+    "home.suggestion.reason.notLately %lld" : {
+      "comment" : "Why a drill is suggested: %lld = local days since its last run, always 2 or more.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seit %lld Tagen nicht geübt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not practiced in %lld days"
+          }
+        }
+      }
+    },
+    "home.suggestion.reason.variety" : {
+      "comment" : "Why a drill is suggested when nothing else stands out: for the change of pace.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zur Abwechslung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For a change of pace"
+          }
+        }
+      }
+    },
+    "home.suggestion.reason.wordsGrown" : {
+      "comment" : "Why a scramble is suggested: enough words have grown to scramble.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genug Wörter gewachsen, um damit zu knobeln"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enough words have grown to puzzle with"
+          }
+        }
+      }
+    },
+    "home.suggestion.title %@" : {
+      "comment" : "The suggested drill card's title, asking: %@ = the drill's hub name.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute mal %@?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How about %@?"
+          }
+        }
+      }
+    },
     "home.tally.ahead %lld" : {
       "comment" : "Pull-aheads carrying the round on their own — the freshening-up. Named only in that case: everywhere else they count into home.tally.reviews.",
       "localizations" : {

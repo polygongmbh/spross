@@ -455,6 +455,13 @@ internal object ChromeEn : Chrome {
     override val homeOfferHeldBack = "%d more ready for you."
     override val homeOfferStart = "Let's go!"
     override val homeOfferShortRound = "Just a short one?"
+    override val homeSuggestionTitle = "How about %s?"
+    override val homeSuggestionReasonNewScript = "A new script is best learned early on"
+    override val homeSuggestionReasonEarlyNumbers = "Numbers come in handy from day one"
+    override val homeSuggestionReasonWordsGrown = "Enough words have grown to puzzle with"
+    override val homeSuggestionReasonNeverRun = "Not tried yet"
+    override val homeSuggestionReasonNotLately = "Not practiced in %d days"
+    override val homeSuggestionReasonVariety = "For a change of pace"
     override val listenTitle = "Hear Your Words"
     override val listenSubtitle = "Reinforces shaky words — in the background and with sleep " +
         "timer"

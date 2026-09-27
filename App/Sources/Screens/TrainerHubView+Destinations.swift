@@ -36,7 +36,11 @@ extension Drill {
         }
     }
 
-    var titleKey: LocalizedStringKey {
+    var titleKey: LocalizedStringKey { LocalizedStringKey(titleKeyName) }
+
+    /// The same key as a plain string, for a name resolved into a sentence
+    /// (`ChromeStrings`).
+    var titleKeyName: String {
         switch self {
         case .numbers: return "trainer.drill.numbers"
         case .letters: return "trainer.drill.letters"
