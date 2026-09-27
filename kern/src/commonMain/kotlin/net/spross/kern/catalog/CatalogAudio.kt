@@ -1,5 +1,6 @@
 package net.spross.kern.catalog
 
+import net.spross.kern.model.baseVowel
 import net.spross.kern.model.Language
 
 /**
@@ -122,7 +123,10 @@ fun Catalog.exampleMeaning(slug: String, lang: Language): String? =
  * Attribution for every bundled recording, grouped by (language, author, license) —
  * BY and BY-SA cannot share a notice, so the groups ARE the credit rows. Derived from
  * the shipped manifests, so the surface can never credit what is not bundled. Order is
- * stable: languages as declared, entries as the manifest lists them.
+ * stable: languages as declared, credits as the manifest first names them, and each
+ * credit's files alphabetically by the form they speak — case and accented vowels folded,
+ * so `Ägypten` files under A — since a manifest lists its words by concept slug, which
+ * reads as no order at all in any language but English.
  */
 fun Catalog.audioCredits(): List<AudioCredit> {
     val files = LinkedHashMap<CreditKey, MutableList<AudioCreditFile>>()
@@ -136,9 +140,12 @@ fun Catalog.audioCredits(): List<AudioCredit> {
         }
     }
     return files.map { (key, rows) ->
-        AudioCredit(key.language, key.author, key.license, deeds[key], rows)
+        AudioCredit(key.language, key.author, key.license, deeds[key],
+                    rows.sortedWith(compareBy({ creditSortKey(it.label) }, { it.label })))
     }
 }
+
+private fun creditSortKey(label: String): String = label.lowercase().map(::baseVowel).joinToString("")
 
 /** What a credit row plays: the file itself, labeled as the row is. */
 private fun AudioManifest.creditPronunciation(label: String, recording: AudioRecording) = Pronunciation(
