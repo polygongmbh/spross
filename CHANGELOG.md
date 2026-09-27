@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- On Android, a finished round now raises the tree of the area it grew over what it says, filling the screen as on iPhone.
 - On Android, the bottom of Home now shows your box as a forest, one tree per area, and tapping a tree opens that area.
 - Once the day's round is done, Home suggests one drill and says why, so you no longer have to pick among six.
 - Tapping a recording in Legal & Licenses now plays it, and a small link beside it opens its page on Wikimedia Commons.

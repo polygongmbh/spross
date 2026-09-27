@@ -1,6 +1,7 @@
 package net.spross.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -25,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -63,44 +65,57 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     }
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         // why: the actions stay on the bottom edge however far the results scroll.
-        Column(
-            modifier = Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text("🎉", fontSize = 88.sp) // card-parity: the done screen's own glyph, not a card prompt
-            val headline = ui.headline
-            val area = ui.grownArea?.takeIf { headline != null }
-            // why: one title and one line under it — the growth claim where the round grew
-            // an area, with the area LABELED ahead of the tally rather than named in the
-            // claim: what grew is what the learner can say, never the area itself.
-            val label = area?.let { "${model.areaEmoji(it)} ${model.areaTitle(it)}" }
-            Spacer(Modifier.height(16.dp))
-            Text(
-                if (headline != null && area != null) growthLine(chrome, headline) else chrome.sessionDoneTitle,
-                style = if (area != null) MaterialTheme.typography.headlineSmall else MaterialTheme.typography.headlineMedium,
-                textAlign = TextAlign.Center,
-            )
-            Spacer(Modifier.height(8.dp))
-            Text(
-                listOfNotNull(label, tally).joinToString(" · ").ifEmpty { chrome.sessionDoneTallyAllDone },
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center,
-            )
-            // The streak itself is Home's; a record is what this round did to it.
-            if (ui.streakIsRecord) {
+        BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
+            // why: a grown tree's box reaches 45 % of the screen it is given, so the summary
+            // fills a tall phone rather than leaving two-thirds of it empty.
+            val treeCeiling = maxHeight * 0.45f
+            Column(
+                modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                val headline = ui.headline
+                val grown = ui.grownArea?.takeIf { headline != null }
+                // why: the tree takes the hero slot when the round grew an area — a party popper
+                // is the same picture whatever the learner did, and two celebratory graphics on
+                // one screen is one too many.
+                if (grown != null) {
+                    GrowingTree(grown, ForestLayout.heroHeight(grown.after, treeCeiling.value).dp)
+                } else {
+                    Text("🎉", fontSize = 88.sp) // card-parity: the done screen's own glyph, not a card prompt
+                }
+                val area = grown?.after?.area
+                // why: one title and one line under it — the growth claim where the round grew
+                // an area, with the area LABELED ahead of the tally rather than named in the
+                // claim: what grew is what the learner can say, never the area itself.
+                val label = area?.let { "${model.areaEmoji(it)} ${model.areaTitle(it)}" }
                 Spacer(Modifier.height(16.dp))
-                Text(chrome.sessionDoneStreakRecord, style = MaterialTheme.typography.titleMedium,
-                    color = Theme.colors.accent)
-            }
-            if (ui.restSuggested) {
-                // why: a day the box itself is telling the learner to stop makes no growth
-                // claim — a screen that celebrates and is contradicted two lines down
-                // teaches the learner not to believe it.
-                Spacer(Modifier.height(16.dp))
-                Text(chrome.sessionDoneRestHint, style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    if (headline != null && area != null) growthLine(chrome, headline) else chrome.sessionDoneTitle,
+                    style = MaterialTheme.typography.headlineLarge,
+                    textAlign = TextAlign.Center,
+                )
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    listOfNotNull(label, tally).joinToString(" · ").ifEmpty { chrome.sessionDoneTallyAllDone },
+                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center,
+                )
+                // The streak itself is Home's; a record is what this round did to it.
+                if (ui.streakIsRecord) {
+                    Spacer(Modifier.height(16.dp))
+                    Text(chrome.sessionDoneStreakRecord, style = MaterialTheme.typography.titleMedium,
+                        color = Theme.colors.accent)
+                }
+                if (ui.restSuggested) {
+                    // why: a day the box itself is telling the learner to stop makes no growth
+                    // claim — a screen that celebrates and is contradicted two lines down
+                    // teaches the learner not to believe it.
+                    Spacer(Modifier.height(16.dp))
+                    Text(chrome.sessionDoneRestHint, style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
             }
         }
         Spacer(Modifier.height(16.dp))

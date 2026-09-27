@@ -235,5 +235,3 @@ every pairing clearing WCAG AA in both schemes.
 
 Couple mode, accounts/sync (`plans/sync.md`),
 UI chrome past de/en (every other source falls back to en).
-Android: no forest canvas, and no tree over the round summary's growth headline
-(`surfaces.md` § Android companion).
