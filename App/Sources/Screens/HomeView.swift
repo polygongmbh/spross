@@ -12,9 +12,14 @@ struct HomeView: View {
     @State private var listeningPresented = false
     /// The conversation the app does not host (`BriefingSheet`).
     @State private var briefingPresented = false
+    /// What the hub has open — here, so the day's card can open a drill too.
+    @State private var drillDestination: HubDestination?
 
     var body: some View {
         let offer = model.homeOffer
+        let hub = TrainerHubView(model: model, destination: $drillDestination)
+        let pick = hub.suggestedDrill
+        let lead = dayLead(offer, pick)
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.spacing.xl) {
                 header
@@ -23,13 +28,15 @@ struct HomeView: View {
                     stateCard(emoji: "🫤",
                               title: "error.title",
                               message: failure.text)
-                } else if offer.kind != .nothing {
+                } else if lead == .drill, let pick {
+                    drillLeadCard(offer, pick) { drillDestination = hub.destination(for: pick.drill) }
+                } else if lead == .round {
                     sessionCard(offer)
                 } else {
                     doneCard
                 }
                 listeningCard
-                TrainerHubView(model: model)
+                hub
                 briefingCard
                 OrchardSection(model: model, open: { openBox($0) })
             }
@@ -44,6 +51,18 @@ struct HomeView: View {
         .sheet(isPresented: $briefingPresented) {
             BriefingSheet(model: model)
         }
+    }
+
+    /// Kern's answer to what leads the day (`DayLead`).
+    private func dayLead(_ offer: SessionOffer, _ pick: DrillSuggestion.Pick?) -> DayLead {
+        #if DEBUG
+        // UI-test hook: `-uitest-suggestion 1` leads with the named drill
+        // whatever the day has answered, so a screenshot needs no worked day.
+        if pick != nil, UserDefaults.standard.bool(forKey: "uitest-suggestion") {
+            return .drill
+        }
+        #endif
+        return DayLead.companion.of(offer: offer, pick: pick)
     }
 
     // MARK: - Conversation

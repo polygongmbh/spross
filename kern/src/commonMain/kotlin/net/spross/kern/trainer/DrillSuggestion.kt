@@ -12,7 +12,6 @@ import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
 import net.spross.kern.model.fnv1a64
 import net.spross.kern.session.SessionOffer
-import net.spross.kern.session.SessionOfferKind
 
 /**
  * The ONE drill Home names, so the hub's six chips are a choice nobody has to make.
@@ -36,13 +35,6 @@ object DrillSuggestion {
     /** Where [drill]'s last closed run in [language] is stamped, as epoch millis. */
     fun lastRunKey(drill: Drill, language: Language): String = "${drill.name}.$language"
 
-    /**
-     * Rounds' worth of answers in a day past which the card shows with work still due:
-     * three full rounds is a backlog evening, and one spent entirely on recall has earned
-     * something else to do.
-     */
-    const val VARIETY_AFTER_ROUNDS: Int = 3
-
     /** Local days since a run after which recency adds nothing more. */
     const val RECENCY_DAYS: Int = 7
 
@@ -62,14 +54,10 @@ object DrillSuggestion {
     private const val STEER_NAMED_FROM: Double = 0.3
 
     /**
-     * Whether Home shows the card: the round is done — nothing left to recall, on a day
-     * that has seen answers, or nothing to compose at all — or the day has already taken
-     * [VARIETY_AFTER_ROUNDS] rounds' worth of answers, so a long backlog still meets some variety.
+     * Whether Home names a drill at all: once the day has answered more cards than are still
+     * due — none left is the plain case of that — and then only as what leads it ([DayLead]).
      */
-    fun shown(offer: SessionOffer, sessionCap: Int): Boolean =
-        offer.kind == SessionOfferKind.Nothing ||
-            (offer.reviews == 0 && offer.doneToday > 0) ||
-            offer.doneToday >= VARIETY_AFTER_ROUNDS * sessionCap
+    fun shown(offer: SessionOffer): Boolean = offer.doneToday > offer.dueNow
 
     /**
      * The drill to name, or null where every candidate's ladder is mastered or none is offered.

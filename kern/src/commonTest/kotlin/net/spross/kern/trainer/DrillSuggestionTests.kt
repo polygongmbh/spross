@@ -8,14 +8,12 @@ import kotlin.test.assertTrue
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
-import net.spross.kern.session.SessionOffer
-import net.spross.kern.session.SessionOfferKind
 import net.spross.kern.trainer.DrillSuggestion.BoxFacts
 import net.spross.kern.trainer.DrillSuggestion.Ladder
 import net.spross.kern.trainer.DrillSuggestion.Reason
 import net.spross.kern.trainer.DrillSuggestion.Standing
 
-/** Which drill Home names, when it names one, and how long the name holds. */
+/** Which drill Home names, and how long the name holds. */
 class DrillSuggestionTests {
 
     private val tz = "Europe/Berlin"
@@ -104,21 +102,6 @@ class DrillSuggestionTests {
         assertEquals(suggest(even, grown, at(20, 19)), suggest(even, grown, at(20, 19, 45)))
         val picks = (20..27).flatMap { day -> listOf(9, 14, 19).map { suggest(even, grown, at(day, it))?.drill } }
         assertEquals(setOf(Drill.Countries, Drill.Dates), picks.toSet())
-    }
-
-    // MARK: - When it shows
-
-    private fun offer(kind: SessionOfferKind, reviews: Int, doneToday: Int) =
-        SessionOffer(kind, reviews, 0, 0, 0, 0, doneToday)
-
-    @Test
-    fun theCardShowsOnceTheRoundIsDoneOrTheDayHasAnsweredALot() {
-        val cap = 24
-        assertTrue(DrillSuggestion.shown(offer(SessionOfferKind.Nothing, 0, 0), cap))
-        assertTrue(DrillSuggestion.shown(offer(SessionOfferKind.FreshSet, 0, 12), cap))
-        assertFalse(DrillSuggestion.shown(offer(SessionOfferKind.FreshSet, 0, 0), cap))
-        assertFalse(DrillSuggestion.shown(offer(SessionOfferKind.Reviews, 24, 48), cap))
-        assertTrue(DrillSuggestion.shown(offer(SessionOfferKind.Reviews, 24, 72), cap))
     }
 
     // MARK: - The ladders it reads

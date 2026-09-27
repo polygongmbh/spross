@@ -19,9 +19,9 @@ struct TrainerHubView: View, LanguageNaming {
     // language through it.
     @Environment(\.locale) var locale
 
-    // why: internal, not private — TrainerHubView+Destinations.swift (file-size
-    // split) drives this state from its extension.
-    @State var destination: HubDestination?
+    /// What is open. Home holds it, so the card leading the day opens a chip's
+    /// destination through the same presentations the chips use.
+    @Binding var destination: HubDestination?
 
     /// The language being learned — every drill runs in it.
     var drillLanguage: String? { model.targetLanguage }
@@ -72,10 +72,7 @@ struct TrainerHubView: View, LanguageNaming {
     var body: some View {
         Group {
             if !chips.isEmpty {
-                VStack(spacing: Theme.spacing.xl) {
-                    suggestionCard
-                    card
-                }
+                card
             }
         }
         // The pages: a sheet, because an overview is read from and swiped away.

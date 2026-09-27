@@ -78,10 +78,14 @@ Nothing wears a prefix one scope wider than what it serves.
 ## The suggestion
 
 - **Home names ONE drill, so six chips are never the question.**
-  It shows once the day's round is done --
-  nothing left to recall on a day that has seen answers, or nothing to compose at all --
-  or once the day has taken three rounds' worth of answers,
-  so a long backlog still meets some variety (`DrillSuggestion.shown`).
+  It is named once the day has answered more cards than are still due,
+  none left being the plain case of that (`DrillSuggestion.shown`).
+- **A named drill leads the day's card** (`DayLead`):
+  what the day has done on top, the drill and its reason as the card's body and first action,
+  and one more round as the button beneath it --
+  the rest of the due reviews while any are left, an extra round once none are.
+  It stands nowhere else on Home;
+  with no drill to name, the round card or the done card holds the slot as before.
 - **The candidates are the chips the hub offers, less every ladder that is mastered**,
   however long ago it last ran:
   a ladder with nothing left to clear has nothing to suggest.

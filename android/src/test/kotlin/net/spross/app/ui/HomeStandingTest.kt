@@ -10,9 +10,10 @@ import net.spross.kern.box.TomorrowNote
 import net.spross.kern.session.HeadlineKind
 import net.spross.kern.session.SessionOffer
 import net.spross.kern.session.SessionOfferKind
+import net.spross.kern.trainer.DayLead
 
 /**
- * The WORDS Home wraps around the box's answers, and the precedence between its three
+ * The WORDS Home wraps around the box's answers, and the precedence between its
  * cards. Which parts an offer or a day names, and in which order, is kern's
  * (`SessionOffer.summaryParts` / `TodayReport.tallyParts`) and tested there.
  */
@@ -29,19 +30,9 @@ class HomeStandingTest {
     )
 
     @Test
-    fun anOfferOutranksADoneState() {
-        assertEquals(
-            HomeCard.Session,
-            homeCard(failed = false, offerKind = SessionOfferKind.WarmUp),
-        )
-        assertEquals(
-            HomeCard.Done,
-            homeCard(failed = false, offerKind = SessionOfferKind.Nothing),
-        )
-        assertEquals(
-            HomeCard.Failure,
-            homeCard(failed = true, offerKind = SessionOfferKind.Reviews),
-        )
+    fun aFailureOutranksWhateverLeadsTheDay() {
+        assertEquals(HomeCard.Drill, homeCard(failed = false, lead = DayLead.Drill))
+        assertEquals(HomeCard.Failure, homeCard(failed = true, lead = DayLead.Drill))
     }
 
     @Test

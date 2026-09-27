@@ -24,14 +24,14 @@ import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.chromePart
 import net.spross.kern.box.dayPart
 import net.spross.kern.catalog.LanguageChoices
-import net.spross.kern.session.SessionOfferKind
+import net.spross.kern.trainer.DayLead
 
 /**
  * The north star screen: one glance = what to do right now.
  *
  * Top to bottom: the date and the day's name, ONE state card, the listening card, the
- * suggested drill, the trainers, the companion card, the fortnight behind it, and the forest. Which state card is a strict
- * precedence over the box's own answers ([homeCard]) — an offer outranks a done state.
+ * trainers, the companion card, the fortnight behind it, and the forest. Which state card is kern's
+ * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one.
  */
 @Composable
 fun HomeScreen(model: AppModel) {
@@ -79,10 +79,9 @@ fun HomeScreen(model: AppModel) {
     ) {
         PageTitle(hello, eyebrow = today)
 
-        val card = homeCard(
-            failed = model.loadFailure != null,
-            offerKind = standing?.offer?.kind ?: SessionOfferKind.Nothing,
-        )
+        val pick = rememberSuggestedDrill(model, standing)
+        val lead = standing?.let { DayLead.of(it.offer, pick) } ?: DayLead.Done
+        val card = homeCard(failed = model.loadFailure != null, lead = lead)
         when (card) {
             HomeCard.Failure -> StateCard(
                 emoji = "🫤",
@@ -98,14 +97,16 @@ fun HomeScreen(model: AppModel) {
                 SessionCard(model, it, stats?.streak ?: 0, health)
             }
 
+            HomeCard.Drill -> if (standing != null && pick != null) {
+                DrillLeadCard(model, standing, pick, stats?.streak ?: 0, health)
+            }
+
             HomeCard.Done -> standing?.let {
                 DoneCard(model, it, stats?.streak ?: 0, health)
             }
         }
 
         ListenCard(model)
-
-        DrillSuggestionCard(model, standing)
 
         TrainerHubCard(model)
 

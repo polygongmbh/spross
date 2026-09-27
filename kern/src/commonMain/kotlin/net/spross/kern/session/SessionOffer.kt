@@ -88,6 +88,8 @@ data class SessionOffer(
      * screen calling the day unworked.
      */
     val streakExposed: Boolean = false,
+    /** Every card due right now: the [reviews] this round takes and whatever the cap holds back. */
+    val dueNow: Int = 0,
 ) {
     /**
      * Which line names this round right now, and which of its phrasings it takes.
@@ -207,7 +209,8 @@ object SessionOffers {
             reviews >= SessionOffer.REVIEWS_LEAD_FROM -> SessionOfferKind.Reviews
             else -> SessionOfferKind.WarmUp
         }
-        val heldBack = max(0, BoxEngine.dueCount(state, nowEpochMillis) - reviews)
+        val due = BoxEngine.dueCount(state, nowEpochMillis)
+        val heldBack = max(0, due - reviews)
         val runDays =
             mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
         return SessionOffer(
@@ -221,6 +224,7 @@ object SessionOffers {
             // why: the merged days, so the warning and the flame it warns about are one
             // answer — the run is the commitment across every language, not per box.
             streakExposed = streakHealth(runDays, nowEpochMillis, tzId).isExposed,
+            dueNow = due,
         )
     }
 

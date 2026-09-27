@@ -167,8 +167,8 @@ What licenses a second component is a parameter attempted and found not to carry
     The spoken lines lead and may address the learner by name (`Greetings.addressed`).
     Every chrome line asks — never states.
     Holds through a render, moves on by the next opening.
-  - Once the round is done, one card under listening names ONE drill and why,
-    in the listening card's face, and opens what that drill's chip opens
+  - Once the day has answered more than is still due, the day's card leads with ONE drill and why,
+    opening what that drill's chip opens, the round a smaller button under it
     (`drills.md` § The suggestion).
   - The streak flame is one grade (`BoxStatistics.streakHealth`), merged across every language,
     and every surface that draws a flame reads it.

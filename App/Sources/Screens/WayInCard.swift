@@ -1,8 +1,8 @@
 import SwiftUI
 
-/// The face Home's ways in share — listening, the companion, the suggested
-/// drill: the emoji leads, the title names the mode once, and the subtitle
-/// carries what the name cannot. The whole card is the tap target.
+/// The face Home's ways in share — listening and the companion: the emoji
+/// leads, the title names the mode once, and the subtitle carries what the
+/// name cannot. The whole card is the tap target.
 struct WayInCard: View {
     let emoji: String
     let title: Text

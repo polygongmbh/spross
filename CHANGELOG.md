@@ -6,7 +6,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 - On Android, a finished round now raises the tree of the area it grew over what it says, filling the screen as on iPhone.
 - On Android, the bottom of Home now shows your box as a forest, one tree per area, and tapping a tree opens that area.
-- Once the day's round is done, Home suggests one drill and says why, so you no longer have to pick among six.
+- Once you have reviewed more today than is still due, Home leads with one suggested drill and says why, with one more round a tap below it.
 - Tapping a recording in Legal & Licenses now plays it, and a small link beside it opens its page on Wikimedia Commons.
 - Words asked by ear now come up even with the volume turned down, and any screen about to play words asks you to turn it up when it is too low.
 - Switching reading aloud off or on now lasts until you next open the app, which starts out following your phone again.

@@ -19,31 +19,24 @@ import net.spross.kern.trainer.SentenceScrambleAvailability
 import net.spross.kern.trainer.WordScrambleAvailability
 
 /**
- * The one drill Home names once the round is done (`docs/drills.md` § The suggestion),
- * under the listening card and over the hub it names a chip of.
+ * The one drill Home names (`docs/drills.md` § The suggestion), which leads the day's card
+ * wherever it is named ([DrillLeadCard]).
  *
  * WHICH drill, WHEN and WHY are kern's [DrillSuggestion]; this side reads the stores it is
- * asked about, words the answer, and opens what that drill's chip opens.
+ * asked about and words the answer.
  */
+/** Kern's pick for [standing], while one is named. */
 @Composable
-fun DrillSuggestionCard(model: AppModel, standing: HomeStanding?) {
-    val chrome = model.chrome
+fun rememberSuggestedDrill(model: AppModel, standing: HomeStanding?): DrillSuggestion.Pick? =
     // why: the facts and both scramble reports are walks over the box — asked once per box
     // and offer, never once per frame.
-    val pick = remember(model.box, standing?.offer, model.dates) { model.suggestedDrill(standing) }
-        ?: return
-    WayInCard(
-        glyph = pick.drill.emoji,
-        title = chrome.homeSuggestionTitle.format(pick.drill.title(chrome)),
-        subtitle = reason(chrome, pick),
-    ) { model.open(pick.drill) }
-}
+    remember(model.box, standing?.offer, model.dates) { model.suggestedDrill(standing) }
 
-/** Kern's pick among the chips this profile offers, while the card shows. */
+/** Kern's pick among the chips this profile offers, while one is named. */
 private fun AppModel.suggestedDrill(standing: HomeStanding?): DrillSuggestion.Pick? {
     val state = box ?: return null
     val offer = standing?.offer ?: return null
-    if (!trainerHubOffered || !DrillSuggestion.shown(offer, state.config.sessionCap)) return null
+    if (!trainerHubOffered || !DrillSuggestion.shown(offer)) return null
     val language = state.joinStamp.target
     val store = trainer.store
     val standings = Drill.entries.filter { offers(it) }.map { drill ->
@@ -86,7 +79,7 @@ private fun AppModel.ladder(
     }
 }
 
-private fun reason(chrome: Chrome, pick: DrillSuggestion.Pick): String = when (pick.reason) {
+internal fun reason(chrome: Chrome, pick: DrillSuggestion.Pick): String = when (pick.reason) {
     DrillSuggestion.Reason.NewScript -> chrome.homeSuggestionReasonNewScript
     DrillSuggestion.Reason.EarlyNumbers -> chrome.homeSuggestionReasonEarlyNumbers
     DrillSuggestion.Reason.WordsGrown -> chrome.homeSuggestionReasonWordsGrown

@@ -31,7 +31,7 @@ struct HomeStanding {
     static var none: HomeStanding {
         HomeStanding(
             offer: SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0,
-                                shortRound: 0, doneToday: 0, streakExposed: false),
+                                shortRound: 0, doneToday: 0, streakExposed: false, dueNow: 0),
             today: nil, sessionAvailable: false, canPracticeMore: false,
             hasPackedWords: false, tomorrowDue: 0)
     }

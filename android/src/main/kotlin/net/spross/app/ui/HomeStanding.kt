@@ -13,10 +13,10 @@ import net.spross.kern.session.HeadlineKind
 import net.spross.kern.session.OfferPartKind
 import net.spross.kern.session.SessionHeadline
 import net.spross.kern.session.SessionOffer
-import net.spross.kern.session.SessionOfferKind
 import net.spross.kern.session.SessionOffers
+import net.spross.kern.trainer.DayLead
 
-/** Which of Home's three cards the day is standing on. */
+/** Which of Home's four cards the day is standing on. */
 enum class HomeCard {
     /** The box could not be read at all; nothing else on the screen means anything. */
     Failure,
@@ -24,19 +24,21 @@ enum class HomeCard {
     /** There is a round to sit down to. */
     Session,
 
+    /** The day has done most of its work, and the named drill leads ([DayLead.Drill]). */
+    Drill,
+
     /** Nothing due — worked or merely clear, which the card itself distinguishes. */
     Done,
 }
 
 /**
- * Which card the day shows, in strict precedence.
- *
- * A failure outranks everything (the counts behind it are meaningless), and an offer outranks
- * a done state.
+ * Which card the day shows: a failure outranks everything (the counts behind it are
+ * meaningless), and otherwise kern's [DayLead] says.
  */
-fun homeCard(failed: Boolean, offerKind: SessionOfferKind): HomeCard = when {
+fun homeCard(failed: Boolean, lead: DayLead): HomeCard = when {
     failed -> HomeCard.Failure
-    offerKind != SessionOfferKind.Nothing -> HomeCard.Session
+    lead == DayLead.Round -> HomeCard.Session
+    lead == DayLead.Drill -> HomeCard.Drill
     else -> HomeCard.Done
 }
 

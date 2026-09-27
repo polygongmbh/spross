@@ -38,7 +38,7 @@ import net.spross.kern.box.StreakHealth
  * on, fine print. The four Home cards differ in their content, never in that order.
  */
 @Composable
-private fun DayCard(content: @Composable ColumnScope.() -> Unit) {
+internal fun DayCard(content: @Composable ColumnScope.() -> Unit) {
     Column(
         modifier = Modifier.fillMaxWidth().panel(MaterialTheme.shapes.large),
     ) {
@@ -62,7 +62,7 @@ private fun DayCard(content: @Composable ColumnScope.() -> Unit) {
  * wears the run's flame instead, at the grade [health] gives it.
  */
 @Composable
-private fun DayMark(emoji: String?, streak: Int, health: StreakHealth, chrome: Chrome) {
+internal fun DayMark(emoji: String?, streak: Int, health: StreakHealth, chrome: Chrome) {
     if (streak <= 0) {
         emoji?.let { Text(it, style = MaterialTheme.typography.displaySmall) }
         return
@@ -219,8 +219,8 @@ fun TalkCard(model: AppModel, onOpen: () -> Unit) {
 }
 
 /**
- * The face the ways in share — listening, the companion, the suggested drill: the glyph leads, the title names the mode once, and the
- * subtitle carries what the name cannot. The whole card is the tap target.
+ * The face the ways in share — listening and the companion: the glyph leads, the title names
+ * the mode once, and the subtitle carries what the name cannot. The whole card is the tap target.
  */
 @Composable
 internal fun WayInCard(glyph: String, title: String, subtitle: String, onOpen: () -> Unit) {
