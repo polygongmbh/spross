@@ -25,14 +25,17 @@ scripts/audio-catalog.py --packs ../data/reference/audio --lang <lang> --fill
 scripts/audio-coverage.py --missing <lang>                   # what nobody has recorded
 ```
 
-The fill's own drops are the quality check: `noisy` (under 39.5 dB above the noise),
-`misnamed`, `unreachable` and `shipped-collision` each name the row and why.
+The fill's own drops are the quality check: `noisy` (under its language's floor),
+`unmeasurable` (clipped), `misnamed`, `unreachable` and `shipped-collision` each name the
+row and why. The floor follows the device voice (`../../scripts/audio_voices.py`): where
+it is missing (eo, sw) only the clearly bad are refused, where it is good a recording has
+to beat it, and `--prune-noisy` hands anything shipped under the floor to it.
 
 A full sweep also re-checks what already ships, in any language: anything not in a gold
 voice and not clearly clean has every other take of its word fetched and compared.
-Gold voices (`PREFERRED_SPEAKERS` in the workspace's `build-audio-pack.py`) are only those a
-listener heard as consistently great, and every picker takes theirs first and never lets
-the score overrule them.
+Gold voices (`../../scripts/audio_voices.py`) are only those a listener heard as
+consistently great, and every picker takes theirs first and never lets the score overrule
+them.
 Everyone else is measured, because being a pack's biggest clean voice proved no promise:
 the worst takes of those voices were mostly okay, some bad.
 
@@ -42,8 +45,9 @@ $W/sync-from-shipped.py <lang>                              # the pack says what
 $W/consolidate-pack.py --lang <lang> <route> --preferred --rerank   # onto gold voices
 $W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <its siblings>
                                                             # voices with ≤3 takes onto established ones
-$W/requalify-pack.py --lang <lang> <route>                  # under 55: the best other take
+$W/requalify-pack.py --lang <lang> <route>                  # under 70: the best other take
 scripts/audio-catalog.py --packs $W --lang <lang> --fill --reseat   # ships the chosen swaps
+scripts/audio-catalog.py --lang <lang> --prune-noisy         # what is still under the floor
 ```
 
 Both reseating scripts only report until given `--apply`. The sections other than `words`

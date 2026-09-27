@@ -27,6 +27,7 @@ import shutil
 import sys
 
 import audio_measure
+from audio_voices import WELL_VOICED, is_noisy, is_trusted, snr_floor
 from audio_gates import (attribute, digest_of, keep_article_forms, keep_named_by_its_file,
                          keep_reachable, keep_unambiguous, speech_key)
 
@@ -100,13 +101,6 @@ GAIN_LIMIT_DB = 20.0
 # stages add their own ringing on top of it.
 PEAK_CEILING_DBFS = -1.0
 
-# The quietest a FILLED word may stand above its own noise (`audio_measure.noise_margin`).
-# Set low on purpose: a slightly noisy human recording beats the device voice, so only the
-# clearly noisy are refused — a listening pass heard 38.1–39.2 as noisy and 39.6 and up as
-# fine or better than nothing. A word refused here is spoken by the device voice, which is what
-# it was doing before the fill anyway; `requalify-pack.py` is how a pack finds a cleaner
-# take of the same word.
-FILL_SNR_FLOOR_DB = 39.5
 
 # How far above its measured noise a recording's playback gate opens. Enough that the
 # noise's own swing does not flutter the gate, little enough that the word is never under it.
@@ -639,7 +633,14 @@ def fill_words(packs, languages, reseat=False):
             by_slug = {row['slug']: row for row in read_rows(os.path.join(pack, 'manifest.tsv'))}
             for key, item in sorted(shipped.items()):
                 row = by_slug.get(key)
-                if row and row['file'].replace('_', ' ') != item['source']:
+                # A synced pack holds every shipped word, so a row gone is a decision too:
+                # the builder re-resolved it (a take saying more than the card) and found
+                # nothing shippable, and the device voice or silence takes over.
+                if not row:
+                    print('  unrecord %-16s %s' % (key, item['source']))
+                    os.remove(os.path.join(out_dir, item['file']))
+                    del shipped[key]
+                elif row['file'].replace('_', ' ') != item['source'].replace('_', ' '):
                     print('  reseat %-18s %s -> %s' % (key, item['source'], row['file']))
                     os.remove(os.path.join(out_dir, item['file']))
                     del shipped[key]
@@ -684,10 +685,13 @@ def fill_words(packs, languages, reseat=False):
                               % (index.get('gain', 0), GAIN_LIMIT_DB)))
                 os.remove(os.path.join(out_dir, row['slug'] + '.mp3'))
                 continue
-            if index.get('snr', FILL_SNR_FLOOR_DB) < FILL_SNR_FLOOR_DB:
+            # A word refused here is spoken by the device voice, as before the fill;
+            # `requalify-pack.py` is how a pack finds a cleaner take of it.
+            if (not is_trusted(lang, row['author'], index.get('snr'))
+                    and index.get('snr', snr_floor(lang)) < snr_floor(lang)):
                 drops.append(('noisy', row['slug'],
                               '%.1f dB above its own noise, floor is %.1f'
-                              % (index['snr'], FILL_SNR_FLOOR_DB)))
+                              % (index['snr'], snr_floor(lang))))
                 os.remove(os.path.join(out_dir, row['slug'] + '.mp3'))
                 continue
             shipped[row['slug']] = entry(row['slug'] + '.mp3', row['license'], row['author'],
@@ -737,6 +741,35 @@ def attributed(item, authors):
     return {key: value for key, value in item.items() if key not in dropped}
 
 
+def prune_noisy(languages):
+    """Remove every shipped recording under its language's `snr_floor`, and every take of a
+    NOISY voice where the device voice is good, file and entry, so the voice or silence takes
+    over. Gold voices are never pruned; run `requalify-pack.py` first, so such a word gets a
+    cleaner take where one exists."""
+    root = os.path.join(CATALOG, 'audio')
+    for lang in languages or sorted(os.listdir(root)):
+        out_dir = os.path.join(root, lang)
+        if not os.path.isdir(out_dir):
+            continue
+        manifest = read_manifest(out_dir)
+        floor, pruned = snr_floor(lang), []
+        for section in SECTIONS:
+            for key, item in list(manifest.get(section, {}).items()):
+                noisy = is_noisy(lang, item['author']) and lang in WELL_VOICED
+                if (not is_trusted(lang, item['author'], item.get('snr'))
+                        and (noisy or item.get('snr', floor) < floor)):
+                    os.remove(os.path.join(out_dir, item['file']))
+                    del manifest[section][key]
+                    pruned.append('%s/%s %s%s' % (section, key, item.get('snr', '-'),
+                                                  ' (noisy voice)' if noisy else ''))
+        print('  %s: %d pruned under %.1f dB%s' % (lang, len(pruned), floor,
+                                                   ''.join('\n    ' + p for p in pruned)))
+        if pruned:
+            write_manifest(lang, out_dir, manifest.get('words', {}), manifest.get('letters', {}),
+                           manifest.get('texts', {}), manifest.get('articles', {}),
+                           manifest.get('calendar', {}), manifest.get('countries', {}))
+
+
 def write_manifest(lang, out_dir, words, letters, texts, articles, calendar, countries):
     sections = [section for section in (words, letters, texts, articles, calendar, countries)
                 if section]
@@ -773,7 +806,12 @@ def main():
     parser.add_argument('--reseat', action='store_true',
                         help='with --fill, also replace every shipped word whose pack row now '
                              'names a different Commons file')
+    parser.add_argument('--prune-noisy', action='store_true',
+                        help="remove shipped recordings under their language's snr floor "
+                             '(scripts/audio_voices.py); no packs needed')
     args = parser.parse_args()
+    if args.prune_noisy:
+        return prune_noisy(args.lang)
     if not args.packs and not args.reindex:
         parser.error('--packs is required unless --reindex re-measures what already ships')
 
