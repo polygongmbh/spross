@@ -30,99 +30,90 @@ internal object UkrainianClock {
     fun task(hours: Int, minutes: Int): ClockReading {
         if (minutes == 0 && hours == 0) return NAMED_MIDNIGHT
         if (minutes == 0 && hours == 12) return NAMED_NOON
+        val cores = cores(hours, minutes)
         val accepted = mutableListOf<String>()
-        for (core in cores(hours, minutes)) {
+        for (core in cores) {
             val parts = core.namedHour?.let(Forms::dayParts).orEmpty()
             for (part in parts) accepted += "${core.text} $part"
             accepted += core.text
         }
         accepted += timeWhen(hours, minutes)
         val readings = accepted.distinct()
-        return ClockReading(readings.first(), readings, gloss(hours, minutes, readings))
+        // The alternatives worth naming on the reveal, each a different way of SAYING the
+        // time rather than the same one shorter ([ClockGloss]).
+        val gloss = ClockGloss.line(
+            readings.first(), cores.drop(1).take(2).map { it.text },
+            limit = 2, lead = "також: ", separator = ", ",
+        )
+        return ClockReading(readings.first(), readings, gloss)
     }
 
-    /** Every reading of the time, the one the reveal teaches first. */
+    /**
+     * Every reading of the time, in the order the reveal spends them: the display first,
+     * the two alternatives its gloss names second and third, everything else after.
+     *
+     * Round steps display the construction a speaker reaches for; a minute off that grid
+     * is simply read out (`друга сімнадцять`) — "сімнадцять хвилин на третю" is correct
+     * and almost never said, so it is glossed instead. Where the colloquial register has
+     * no alternative left, the official one fills the gloss: at the full hour its ordinal
+     * collapses into the display below thirteen — the same word, which [ClockGloss] drops —
+     * so the spoken-zero digital reading is the one register left to name there.
+     */
     private fun cores(h: Int, m: Int): List<Core> {
         val cur = Forms.index(h)
         val next = Forms.index(h + 1)
         val nextHour = (h + 1) % 24
-        val toAccusative = Forms.accusative[next]
-        val past = Forms.locative[cur]
+        fun into(label: String) = Core("$label на ${Forms.accusative[next]}", nextHour)
+        fun after(label: String) = Core("$label по ${Forms.locative[cur]}", h)
+        fun ahead(label: String) = Core("за $label ${Forms.nominative[next]}", nextHour)
+        fun before(label: String) = Core("$label до ${Forms.genitive[next]}", nextHour)
         val count = Forms.minuteNumeral(m)
+        val counted = "$count ${Forms.minuteNoun(m)}"
         val rest = 60 - m
-        val forms = mutableListOf<Core>()
+        val left = Forms.minuteNumeralAccusative(rest)
+        val leftCounted = "$left ${Forms.minuteNoun(rest, accusative = true)}"
+        val restCount = Forms.minuteNumeral(rest)
+        val restCounted = "$restCount ${Forms.minuteNoun(rest)}"
+        val digital = digital(h, m, cur)
+        val official = official(h, m)
 
-        when {
-            m == 0 -> {
-                forms += Core("${Forms.nominative[cur]} година", h)
-                forms += Core(Forms.nominative[cur], h)
-            }
+        val forms = when {
+            // why: the full hour has no colloquial alternative — counting zero minutes
+            // into the coming hour ("нуль хвилин на третю") is what nobody says.
+            m == 0 -> listOf(Core("${Forms.nominative[cur]} година", h)) + official +
+                Core(Forms.nominative[cur], h)
+            m == 15 -> listOf(into("чверть"), into(counted), after("чверть"), after(counted)) +
+                into(count) + after(count) + digital + official
+            m == 30 -> listOf(
+                into("пів"), Core("пів ${Forms.genitive[next]}", nextHour), into(counted),
+                after(counted), after(count),
+            ) + digital + official
+            m == 45 -> listOf(ahead("чверть"), ahead(leftCounted), before("чверть")) +
+                ahead(left) + before(restCounted) + before(restCount) + digital + official
             m < 30 -> {
-                if (m == 15) {
-                    forms += Core("чверть на $toAccusative", nextHour)
-                    forms += Core("чверть по $past", h)
-                }
+                val lead = if (m in ROUND_STEPS) into(counted) else digital.first()
+                val glossed = if (m in ROUND_STEPS) listOf(after(counted), official.first())
+                else listOf(into(counted), after(counted))
                 // why: at a count of one the numeral is dropped, not spelled — "хвилина
-                // на третю", the way Ukrainian counts a single anything.
-                if (m == 1) forms += Core("хвилина на $toAccusative", nextHour)
-                forms += Core("$count ${Forms.minuteNoun(m)} на $toAccusative", nextHour)
-                if (m == 1) forms += Core("хвилина по $past", h)
-                forms += Core("$count ${Forms.minuteNoun(m)} по $past", h)
-                // why: the noun carries the count of one on its own, so the bare numeral
-                // ("одна на третю") is not a reading anyone offers.
-                if (m > 1) {
-                    forms += Core("$count на $toAccusative", nextHour)
-                    forms += Core("$count по $past", h)
-                }
-                forms += digital(h, m, cur)
+                // на третю", the way Ukrainian counts a single anything — and the noun
+                // carries that count on its own, so the bare "одна на третю" is no reading.
+                val shortened = if (m == 1) listOf(into("хвилина"), after("хвилина"))
+                else listOf(into(count), after(count))
+                listOf(lead) + glossed + into(counted) + after(counted) + shortened + digital + official
             }
-            m == 30 -> {
-                forms += Core("пів на $toAccusative", nextHour)
-                forms += Core("пів ${Forms.genitive[next]}", nextHour)
-                forms += Core("тридцять хвилин на $toAccusative", nextHour)
-                forms += Core("тридцять хвилин по $past", h)
-                forms += Core("тридцять по $past", h)
-                forms += digital(h, m, cur)
-            }
+            rest == 1 -> listOf(digital.first(), ahead("одну хвилину"), before("хвилина"), ahead("хвилину")) +
+                digital + official
             else -> {
-                if (m == 45) {
-                    forms += Core("за чверть ${Forms.nominative[next]}", nextHour)
-                    forms += Core("чверть до ${Forms.genitive[next]}", nextHour)
-                }
-                val left = Forms.minuteNumeralAccusative(rest)
-                if (rest == 1) {
-                    forms += Core("за хвилину ${Forms.nominative[next]}", nextHour)
-                    forms += Core("за одну хвилину ${Forms.nominative[next]}", nextHour)
-                    forms += Core("хвилина до ${Forms.genitive[next]}", nextHour)
-                } else {
-                    forms += Core("за $left ${Forms.minuteNoun(rest, accusative = true)} ${Forms.nominative[next]}", nextHour)
-                    forms += Core("за $left ${Forms.nominative[next]}", nextHour)
-                    forms += Core("${Forms.minuteNumeral(rest)} ${Forms.minuteNoun(rest)} до ${Forms.genitive[next]}", nextHour)
-                    forms += Core("${Forms.minuteNumeral(rest)} до ${Forms.genitive[next]}", nextHour)
-                }
-                forms += digital(h, m, cur)
+                val lead = if (rest in ROUND_STEPS) ahead(left) else digital.first()
+                listOf(lead, ahead(leftCounted), before(restCounted)) +
+                    ahead(left) + before(restCount) + digital + official
             }
         }
-        forms += official(h, m)
-        return forms.leadWith(displayText(h, m, cur, next)) { it.text }
+        return forms.distinct()
     }
 
-    /**
-     * The reading the reveal teaches. Round steps take the construction a speaker
-     * reaches for; a minute off that grid is simply read out (`друга сімнадцять`) —
-     * "сімнадцять хвилин на третю" is correct and almost never said.
-     */
-    private fun displayText(h: Int, m: Int, cur: Int, next: Int): String = when {
-        m == 0 -> "${Forms.nominative[cur]} година"
-        m == 15 -> "чверть на ${Forms.accusative[next]}"
-        m == 30 -> "пів на ${Forms.accusative[next]}"
-        m == 45 -> "за чверть ${Forms.nominative[next]}"
-        m in setOf(5, 10, 20, 25) ->
-            "${Forms.minuteNumeral(m)} ${Forms.minuteNoun(m)} на ${Forms.accusative[next]}"
-        60 - m in setOf(5, 10, 20, 25) ->
-            "за ${Forms.minuteNumeralAccusative(60 - m)} ${Forms.nominative[next]}"
-        else -> digital(h, m, cur).first().text
-    }
+    /** The five-minute steps a reading counts toward or away from the coming hour. */
+    private val ROUND_STEPS = setOf(5, 10, 20, 25)
 
     /** Reading the face out: "друга тридцять п'ять", "п'ята нуль п'ять". */
     private fun digital(h: Int, m: Int, cur: Int): List<Core> {
@@ -176,43 +167,6 @@ internal object UkrainianClock {
         val full = Core("$hourWord година ${Forms.minuteNumeral(m)} ${Forms.minuteNoun(m)}", null)
         if (h == 0) return listOf(full)
         return listOf(full, Core("$hourWord ${Forms.minuteNumeral(m)}", null))
-    }
-
-    /**
-     * Alternatives worth naming on the reveal — each one already accepted, and each a
-     * different way of SAYING the time rather than the same one shorter ([ClockGloss]).
-     */
-    private fun gloss(h: Int, m: Int, readings: List<String>): String? {
-        val cur = Forms.index(h)
-        val next = Forms.index(h + 1)
-        val candidates = when {
-            // why: the full hour has no colloquial alternative — the official register
-            // below supplies its lines — and the `m < 30` arm would count zero minutes
-            // into the coming hour ("нуль хвилин на третю"), which nobody says.
-            m == 0 -> emptyList()
-            m == 15 -> listOf("п'ятнадцять хвилин на ${Forms.accusative[next]}", "чверть по ${Forms.locative[cur]}")
-            m == 30 -> listOf("пів ${Forms.genitive[next]}", "тридцять хвилин на ${Forms.accusative[next]}")
-            m == 45 -> listOf("за п'ятнадцять хвилин ${Forms.nominative[next]}", "чверть до ${Forms.genitive[next]}")
-            m < 30 -> listOf(
-                "${Forms.minuteNumeral(m)} ${Forms.minuteNoun(m)} на ${Forms.accusative[next]}",
-                "${Forms.minuteNumeral(m)} ${Forms.minuteNoun(m)} по ${Forms.locative[cur]}",
-            )
-            60 - m == 1 -> listOf("за одну хвилину ${Forms.nominative[next]}", "хвилина до ${Forms.genitive[next]}")
-            else -> listOf(
-                "за ${Forms.minuteNumeralAccusative(60 - m)} ${Forms.minuteNoun(60 - m, accusative = true)} ${Forms.nominative[next]}",
-                "${Forms.minuteNumeral(60 - m)} ${Forms.minuteNoun(60 - m)} до ${Forms.genitive[next]}",
-            )
-        }
-        // The official register closes the list wherever a colloquial alternative ran out.
-        // Its ordinal collapses into the display below thirteen — the two are the same
-        // word, which [ClockGloss] drops — so the full hour also offers the spoken-zero
-        // digital reading, the one register a learner cannot derive from the display there.
-        val official = if (m == 0) {
-            listOf("${Forms.official[h]} година", "${UkrainianNumbers.cardinal(h.toLong())} нуль нуль")
-        } else {
-            listOf("${Forms.official[h]} година ${Forms.minuteNumeral(m)} ${Forms.minuteNoun(m)}")
-        }.filter { it in readings }
-        return ClockGloss.line(readings.first(), candidates + official, limit = 2, lead = "також: ", separator = ", ")
     }
 
     private val NAMED_MIDNIGHT = ClockReading(
