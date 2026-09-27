@@ -76,6 +76,8 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   Three states, one setting for the device (not per language, not in the box).
   The middle state is iOS's: Android's media stream ignores the ringer, so there it is ON.
   The silent switch cannot be read back (no API), so it is followed by deferring to it.
+  A choice made with the switch holds for the current launch;
+  every launch starts back at following the phone, on both phones.
 - **A card whose only content is a sound is not dealt onto a silent phone.**
   iOS reads `outputVolume`, Android the media stream's volume and mute.
   Android's ringer mode is not read (silencing notifications leaves media playing).
@@ -86,7 +88,7 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   "Speech": voice preferred, recording only where no voice exists.
   The top-bar button is the mute only; it never changes the source.
   Choosing a voice lifts autoplay past a silenced phone.
-- **Source remembered per learning language, mute per device.**
+- **Source remembered per learning language; the mute is remembered nowhere.**
   A source is offered only where it can answer
   (`AudioCapability`, over `Catalog.hasRecordings` and the device voice table).
 - **Feedback chimes**: not silenced by the read-aloud switch,

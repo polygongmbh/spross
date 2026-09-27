@@ -83,9 +83,8 @@ scripts/run-emu.sh --avd spross-tablet   # another AVD by name
 ```
 
 `--mute` starts the app silent so a run nobody is sitting at never speaks up.
-It silences autoplay for that launch without storing anything,
-so the top-bar toggle turns sound back on and the next hand-launched run opens
-with whatever was last chosen. `--sound` opts a screenshot run back in.
+It silences autoplay for that launch,
+as the top-bar toggle would, and the top-bar toggle turns sound back on. `--sound` opts a screenshot run back in.
 
 One-time setup, once per machine:
 

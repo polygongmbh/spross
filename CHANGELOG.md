@@ -5,6 +5,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 ## Unreleased
 
 - Once the day's round is done, Home suggests one drill and says why, so you no longer have to pick among six.
+- Switching reading aloud off or on now lasts until you next open the app, which starts out following your phone again.
 - Listening now brings in everyday new words sooner, while words from deeper in the catalog still come up now and then.
 - Recordings with a faint hiss now play with it quieted between words, and German comes almost entirely from one clear voice.
 - Age and How old are you? join Personal Details, and young joins old among the qualities.

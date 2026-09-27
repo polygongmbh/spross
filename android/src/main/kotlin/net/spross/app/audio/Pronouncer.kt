@@ -65,7 +65,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     /** Path of the clip the player still holds — asking for it again needs no load. */
     private var loaded: String? = null
 
-    private var mutedState by mutableStateOf(prefs.getBoolean(KEY_MUTED, false))
+    private var mutedState by mutableStateOf(false)
 
     /**
      * What THIS launch has picked, per language — everything else answers from the
@@ -122,16 +122,15 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             ?: VoiceSource.RECORDINGS
 
     /**
-     * One device-scoped flag (never per target language, never in the box): silences
-     * AUTOPLAY only. Absent default = false, so words are read aloud on fresh installs
-     * and upgrades alike; the top-bar toggle is the off switch. Compose state, because
-     * a plain field would never recompose the toggle that shows it.
+     * One device-wide flag (never per target language, never in the box): silences
+     * AUTOPLAY only, and for this launch only — every launch starts read aloud, as iOS's
+     * `ReadAloud` starts at following the phone. Compose state, because a plain field would
+     * never recompose the toggle that shows it.
      */
     var muted: Boolean
         get() = mutedState
         set(value) {
             mutedState = value
-            prefs.edit().putBoolean(KEY_MUTED, value).apply()
             // why: muting is expected to take effect on the word in the air, not only
             // on the next card.
             if (value) stop()
@@ -154,19 +153,6 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             return manager.isStreamMute(AudioManager.STREAM_MUSIC) ||
                 manager.getStreamVolume(AudioManager.STREAM_MUSIC) == 0
         }
-
-    /**
-     * Silences autoplay for THIS launch, storing nothing — the mirror of iOS's
-     * `-readAloud off` launch argument, which lands in the argument domain and leaves the
-     * stored preference where it was. A script-driven run (`scripts/run-emu.sh --mute`)
-     * starts quiet so nothing speaks at an unattended machine, and because nothing was
-     * written, [muted]'s setter remains the only thing that changes what the app
-     * remembers: the top-bar toggle turns sound back on with no special case, and a
-     * hand-launched app is unaffected.
-     */
-    fun muteThisLaunch() {
-        mutedState = true
-    }
 
     /**
      * Whether the device has a voice for [lang] at all — Swahili has none without
@@ -310,8 +296,6 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         }
 
     private companion object {
-        const val KEY_MUTED = "pronunciationMuted"
-
         fun keyFor(lang: Language) = "pronunciationSource.$lang"
     }
 }

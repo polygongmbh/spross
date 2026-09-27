@@ -33,13 +33,11 @@ final class Pronouncer {
         case listening
     }
 
-    /// One device-scoped setting (never per target language, never in the box —
-    /// `withProductCalibration()` would reset it): governs AUTOPLAY only, and
-    /// starts at `.followsPhone`, so reading aloud is on for fresh installs
-    /// while the silent switch keeps its say.
+    /// One device-wide setting (never per target language, never in the box):
+    /// governs AUTOPLAY only, and every launch starts at `.followsPhone`, so
+    /// reading aloud is on while the silent switch keeps its say.
     var readAloud: ReadAloud {
         didSet {
-            readAloud.store()
             // why: the phone's switch acts on the CATEGORY, so a setting
             // flipped mid-session has to reach the session, not just this flag.
             AudioSession.adopt(readAloud)
@@ -73,7 +71,7 @@ final class Pronouncer {
     private(set) var playingKey: String?
 
     init() {
-        readAloud = .stored
+        readAloud = .atLaunch
     }
 
     /// The source in force for `language`.

@@ -134,9 +134,13 @@ enum AudioSession {
 /// The read-aloud setting, three states rather than a flag — the middle one is
 /// the default, and the reason a switch of our own still earns its place next
 /// to the phone's.
+///
+/// A choice made with the switch holds for this launch only: the silent switch
+/// cannot be read, so a mute kept across launches would outlive the moment it
+/// was meant for with nothing on screen to say why the app is quiet.
 enum ReadAloud: String {
     /// Untouched: the app reads aloud and the silent switch may silence it.
-    /// Fresh installs start here, which is why reading aloud is on by default
+    /// Every launch starts here, which is why reading aloud is on by default
     /// without ever overruling a phone that was set to quiet.
     case followsPhone
     /// Silenced in the app, whatever the phone says.
@@ -147,21 +151,12 @@ enum ReadAloud: String {
 
 extension ReadAloud {
 
-    private static let key = "readAloud"
-    /// The boolean this setting grew out of — a device that had muted keeps
-    /// its silence across the split.
-    private static let legacyMutedKey = "pronunciationMuted"
-
-    static var stored: ReadAloud {
-        if let raw = UserDefaults.standard.string(forKey: key),
-           let stored = ReadAloud(rawValue: raw) {
-            return stored
-        }
-        return UserDefaults.standard.bool(forKey: legacyMutedKey) ? .off : .followsPhone
-    }
-
-    func store() {
-        UserDefaults.standard.set(rawValue, forKey: Self.key)
+    /// `.followsPhone`, unless the launch arguments say otherwise
+    /// (`-readAloud off`, `scripts/run-sim.sh --mute`). Only the argument
+    /// domain is read, so nothing stored can outlive a launch.
+    static var atLaunch: ReadAloud {
+        let arguments = UserDefaults.standard.volatileDomain(forName: UserDefaults.argumentDomain)
+        return (arguments["readAloud"] as? String).flatMap(ReadAloud.init(rawValue:)) ?? .followsPhone
     }
 }
 

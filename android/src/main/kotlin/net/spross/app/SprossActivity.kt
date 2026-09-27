@@ -84,7 +84,7 @@ class SprossActivity : ComponentActivity() {
         // create — a rotation replays this intent, and re-muting there would undo a
         // toggle the learner had just reached for.
         if (savedInstanceState == null && intent?.getStringExtra(EXTRA_READ_ALOUD) == "off") {
-            model.pronouncer.muteThisLaunch()
+            model.pronouncer.muted = true
         }
         setContent {
             SprossTheme {

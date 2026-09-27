@@ -12,7 +12,7 @@ struct SprossApp: App {
         // switch keeps its authority over autoplay and the feedback chimes
         // alike, unless reading aloud was switched on by hand. A deliberate tap
         // raises it per sound; the whole rule lives in AudioSession.
-        AudioSession.adopt(.stored)
+        AudioSession.adopt(Pronouncer.shared.readAloud)
     }
 
     var body: some Scene {

@@ -25,9 +25,8 @@ xcrun simctl uninstall booted net.spross.app         # reset to clean state
 
 `scripts/run-sim.sh --mute` (and `--shot`, which implies it) launches with
 `-readAloud off`; `scripts/run-emu.sh` does the same through `--es readAloud off`.
-Autoplay is silenced for that launch only — nothing is stored, so the in-app
-toggle turns sound back on for whoever picks the device up, and a hand-launched
-app opens with the setting the learner last chose.
+Autoplay is silenced for that launch only, as the in-app toggle would be;
+every launch starts reading aloud again (`docs/read-aloud.md`).
 
 Drive a session muted unless the change under test IS the audio: a produce card
 that would have asked by ear falls back to its source prompt, which is the
