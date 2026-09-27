@@ -20,9 +20,9 @@ import net.spross.kern.session.AnswerNormalizer
  */
 object LetterDrillRun {
 
-    /** A fresh run at the Sprosse the learner's vocabulary opens on. */
+    /** A fresh run where the ladder opens ([LetterDrillAvailability.Report.openingLevel]). */
     fun open(config: LetterDrillRunConfig, rng: Random): LetterDrillRunState =
-        openAt(config, config.report.entryLevel, rng)
+        openAt(config, config.report.openingLevel(config.cleared), rng)
 
     /** The same, forced to one Sprosse — the deterministic way to reach a stage. */
     fun openAt(config: LetterDrillRunConfig, level: Int, rng: Random): LetterDrillRunState {
@@ -34,6 +34,8 @@ object LetterDrillRun {
             index = 0,
             level = opening.level,
             winsAtLevel = 0,
+            clearedSprossen = emptySet(),
+            blemished = false,
             core = DrillRunCore(),
             chosen = null,
             feedback = TurnFeedback.Neutral,
@@ -87,7 +89,8 @@ object LetterDrillRun {
      * Leaving the run. A pending accepted answer books exactly as the explicit tap would, so
      * closing can neither lose it nor upgrade it; a revealed answer nobody confirmed books
      * nothing. [DrillRunSummary.newRecord] is always false — the letter drill keeps no record
-     * store, so nothing it does can beat one.
+     * store, so nothing it does can beat one. What it does leave is the tile and typed
+     * Sprossen it climbed off clean ([LetterDrillClose.clearedSprossen]).
      */
     fun close(state: LetterDrillRunState): LetterDrillClose {
         val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
@@ -100,7 +103,10 @@ object LetterDrillRun {
         } else {
             DrillRunSummary(ended.done, ended.bestStreak, newRecord = false)
         }
-        return LetterDrillClose(ended, summary, effects)
+        // why: dictation draws from the box, which grows — a Sprosse of it climbed today
+        // says nothing about the words it will hold tomorrow.
+        val cleared = ended.clearedSprossen.filter { LetterDrill.stageFor(it) != LetterStage.Dictation }
+        return LetterDrillClose(ended, summary, cleared.toSet(), effects)
     }
 
     // MARK: - Intents
@@ -190,6 +196,14 @@ object LetterDrillRun {
                 level = question.level,
                 // A Sprosse the run was carried past keeps none of the wins banked below it.
                 winsAtLevel = if (question.level == next.level) next.winsAtLevel else 0,
+                // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
+                clearedSprossen = DrillSprossen.leaving(
+                    next.clearedSprossen,
+                    next.level,
+                    question.level,
+                    next.blemished,
+                ),
+                blemished = next.blemished && question.level == next.level,
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next one must never
                 // render a frame carrying the last one's answer.
@@ -214,9 +228,12 @@ object LetterDrillRun {
             clean = clean,
             winsRequired = state.config.report.winsToAdvance,
         )
+        val blemished = DrillSprossen.blemished(state.blemished, correct, clean)
         return state.copy(
             level = step.level,
             winsAtLevel = step.winsAtLevel,
+            clearedSprossen = DrillSprossen.leaving(state.clearedSprossen, state.level, step.level, blemished),
+            blemished = blemished && step.level == state.level,
             core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) }),
         )
     }

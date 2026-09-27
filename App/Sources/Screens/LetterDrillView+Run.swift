@@ -2,9 +2,9 @@ import SwiftUI
 import SprossKern
 
 /// What the shared run driver (`DrillRunning`) needs to drive the letter drill:
-/// kern's `LetterDrillRun`, its intent vocabulary, and a close that files
-/// nothing — the letter drill keeps no record store (D12). State lives on
-/// LetterDrillView; split out purely for file size.
+/// kern's `LetterDrillRun`, its intent vocabulary, and a close that files the
+/// Sprossen the run climbed off clean — the letter drill keeps no streak record
+/// (D12). State lives on LetterDrillView; split out purely for file size.
 ///
 /// Grading itself is `LetterDrillRun.grade`'s: a tile and a typed glyph are
 /// exact after normalization, and dictation runs the whole catalog, because only
@@ -54,12 +54,14 @@ extension LetterDrillView: DrillRunning {
 
     // MARK: - Close → back to the page that opened it
 
-    /// An untouched run leaves nothing to report, and no record line either —
-    /// the letter drill keeps no record store (D12).
     var lastRunKey: String { DrillSuggestion.shared.lastRunKey(drill: .letters, language: language) }
 
+    /// An untouched run leaves nothing to report, and no record line either —
+    /// the letter drill keeps no record store (D12). What it files is the mask
+    /// the next run opens above.
     func closing() -> DrillClose<LetterDrillRunState> {
         let closed = LetterDrillRun.shared.close(state: run)
+        TrainerProgress.bookCleared(closed.clearedSprossen, for: Self.storageKey(language))
         return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects)
     }
 
@@ -84,6 +86,7 @@ extension LetterDrillView {
     func seedStreak(_ streak: Int) {
         run = run.doCopy(config: run.config, task: run.task, index: run.index,
                          level: run.level, winsAtLevel: run.winsAtLevel,
+                         clearedSprossen: run.clearedSprossen, blemished: run.blemished,
                          core: run.core.doCopy(done: Int32(streak + 6),
                                                streak: Int32(streak),
                                                bestStreak: Int32(max(streak, 12)),

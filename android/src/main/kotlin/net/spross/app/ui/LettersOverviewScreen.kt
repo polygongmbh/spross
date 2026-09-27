@@ -18,6 +18,7 @@ import net.spross.app.Chrome
 import net.spross.app.name
 import net.spross.app.startLetterDrill
 import net.spross.kern.trainer.LetterDrillAvailability
+import net.spross.kern.trainer.LetterDrillRunState
 import net.spross.kern.trainer.LetterStage
 
 /**
@@ -34,6 +35,8 @@ fun LettersOverviewScreen(model: AppModel) {
     val language = model.box?.joinStamp?.target ?: return
     val report = model.trainer.letters
     val available = report?.drillAvailable == true
+    // Read on every composition: the page composes afresh as a run's screen comes down.
+    val cleared = model.trainer.store.cleared(LetterDrillRunState.storageKey(language))
 
     OverviewScaffold(
         model = model,
@@ -43,7 +46,7 @@ fun LettersOverviewScreen(model: AppModel) {
     ) {
         OverviewPanel {
             LetterStage.entries.forEachIndexed { index, stage ->
-                StageRow(stage, index + 1, report, chrome)
+                StageRow(stage, index + 1, report, cleared, chrome)
             }
         }
         OverviewStartButton(chrome, available) { model.startLetterDrill() }
@@ -56,14 +59,15 @@ fun LettersOverviewScreen(model: AppModel) {
 /**
  * One stage: what it asks, and whether this run will get there. The stage the run OPENS on
  * wears the filled circle — every learner starts somewhere different, and the page should
- * not make them guess where. The rows are not tapped: the run walks the ladder by itself
- * from that stage, so the circle carries no record either.
+ * not make them guess where — and a stage some run climbed off clean is forest. The rows are
+ * not tapped: the run walks the ladder by itself from the stage it opens on.
  */
 @Composable
 private fun StageRow(
     stage: LetterStage,
     step: Int,
     report: LetterDrillAvailability.Report?,
+    cleared: Set<Int>,
     chrome: Chrome,
 ) {
     val ready = report?.takeIf { it.drillAvailable }
@@ -72,7 +76,12 @@ private fun StageRow(
     // the drill cannot run at all, every stage is out of reach for the one reason the line
     // under the button already gives.
     val open = ready != null && (stage != LetterStage.Dictation || ready.dictationAvailable)
-    val entry = open && ready.entryStage == stage
+    val entry = open && ready.openingStage(cleared) == stage
+    val mark = when {
+        ready?.stageCleared(stage, cleared) == true -> SprosseMark.Cleared
+        entry -> SprosseMark.Reached
+        else -> SprosseMark.Untouched
+    }
     val caption = if (!open && ready != null) chrome.lettersStageDictationLocked else null
     Row(
         modifier = Modifier
@@ -80,13 +89,16 @@ private fun StageRow(
             // why: one stage is one TalkBack stop — the mark and the name describe a single
             // thing, and the state says what the filled circle says.
             .semantics(mergeDescendants = true) {
-                if (entry) stateDescription = chrome.a11yTrainerSprosseEntry
+                when {
+                    entry -> stateDescription = chrome.a11yTrainerSprosseEntry
+                    mark == SprosseMark.Cleared -> stateDescription = chrome.a11yTrainerSprosseCleared
+                }
             },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         if (open) {
-            SprosseCircle(step, if (entry) SprosseMark.Reached else SprosseMark.Untouched)
+            SprosseCircle(step, mark)
         } else {
             Text(
                 LOCK,

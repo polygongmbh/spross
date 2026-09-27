@@ -14,10 +14,15 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   What the drill can ask is recomputed on foreground —
   a voice installed in Settings turns the start button on without a relaunch.
 - **The stage rows say which stage a run OPENS on**, derived from the learner's consolidated
-  words, and dictation states its price until enough of them can be played back.
+  words and the record below, and dictation states its price until enough of them can be played back.
   Their mark is the shared Sprosse circle,
-  filled on the stage the run opens on and nowhere else,
+  forest on a stage some run climbed off clean, filled on the stage the run opens on,
   and the rows are not tapped: the run walks the ladder by itself from that stage.
+- **The tile and typed Sprossen keep the scrambles' record** — a Sprosse left upward with
+  every answer on it clean (`LetterDrillClose.clearedSprossen`) —
+  and a run opens on the lowest one at or above the vocabulary's entry that the record lacks
+  (`LetterDrillAvailability.Report.openingLevel`).
+  Dictation is never filed: it draws from the box, which grows.
   Each row is ONE line, the stage named by what it asks,
   with a caption only where dictation states its price.
 - **The drill shares the slot drill's chrome** — the endless scaffold, the streak line,

@@ -173,7 +173,7 @@ class DrillWiringTest {
             gapWords = emptyMap(),
             growingCards = 0,
         )
-        val config = LetterDrillRunConfig(report, cards = emptyMap(), dictationGrader = null)
+        val config = LetterDrillRunConfig(report, cards = emptyMap(), dictationGrader = null, cleared = emptySet())
         return LetterDrillFlow(
             start = LetterDrillRun.openAt(config, level, Random(seed)),
             rng = Random(seed),

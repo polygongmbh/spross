@@ -25,8 +25,13 @@ struct LetterDrillAvailability {
     var drillAvailable: Bool { report.drillAvailable }
     var dictationAvailable: Bool { report.dictationAvailable }
     /// The stage a run would OPEN on — kern's step from the words the learner
-    /// already holds, capped by what this device can reach.
-    var entryStage: LetterStage { report.entryStage }
+    /// already holds, above what earlier runs climbed off clean.
+    func openingStage(_ cleared: Set<KotlinInt>) -> LetterStage { report.openingStage(cleared: cleared) }
+
+    /// Whether earlier runs climbed off every Sprosse of `stage` clean.
+    func stageCleared(_ stage: LetterStage, _ cleared: Set<KotlinInt>) -> Bool {
+        report.stageCleared(stage: stage, cleared: cleared)
+    }
 
     /// A profile with no catalog or no box can ask nothing; kern's own empty
     /// report says so without a second predicate on this side.

@@ -248,7 +248,8 @@ enum SprosseMark {
 }
 
 /// A Sprosse's number in its circle — the mark on every ladder row. The letters
-/// ladder wears it too, filled only on the stage its run opens on.
+/// ladder wears it per stage: forest where a run climbed the stage off clean,
+/// filled on the stage its run opens on.
 struct SprosseCircle: View {
     let number: Int
     let mark: SprosseMark

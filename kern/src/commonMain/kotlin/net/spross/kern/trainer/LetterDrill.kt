@@ -75,6 +75,14 @@ object LetterDrill {
      */
     fun winsToAdvance(growingCards: Int): Int = if (growingCards >= GROWING_FOR_SHORT_STAGES) 1 else 2
 
+    /** The Sprossen [stage] spans — [stageFor]'s reading turned round. */
+    fun sprossen(stage: LetterStage): IntRange = when (stage) {
+        LetterStage.ChoiceEasy -> 1..2
+        LetterStage.ChoiceConfusable -> 3..5
+        LetterStage.Typed -> 6..7
+        LetterStage.Dictation -> 8..MAX_LEVEL_WITH_DICTATION
+    }
+
     /** 1–2 easy tiles, 3–5 confusable tiles, 6–7 typing, 8–9 dictation. */
     fun stageFor(level: Int): LetterStage = when (level.coerceIn(1, MAX_LEVEL_WITH_DICTATION)) {
         1, 2 -> LetterStage.ChoiceEasy

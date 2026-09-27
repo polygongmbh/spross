@@ -40,6 +40,7 @@ import net.spross.app.newLetterDrill
 import net.spross.app.playLetterPrompt
 import net.spross.app.stampRun
 import net.spross.kern.trainer.Drill
+import net.spross.kern.trainer.LetterDrillRunState
 import net.spross.kern.trainer.LetterDrillTask
 import net.spross.kern.trainer.LetterStage
 
@@ -64,10 +65,11 @@ fun LetterDrillScreen(model: AppModel) {
         model.newLetterDrill(onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
     } ?: return
     val state = flow.state
-    // The letter drill books no Sprosse and keeps no record, so it stores nothing.
+    // The letter drill keeps no streak record; what it files is the mask the next run opens above.
     val leave = {
         val closed = flow.close()
         model.stampRun(Drill.Letters, closed.summary)
+        model.trainer.store.bookCleared(LetterDrillRunState.storageKey(closed.state.config.report.language), closed.clearedSprossen)
         model.finishDrill(Screen.Letters, closed.summary, chrome.trainerDrillLetters)
     }
 

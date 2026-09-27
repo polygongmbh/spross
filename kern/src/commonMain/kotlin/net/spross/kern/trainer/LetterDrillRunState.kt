@@ -1,6 +1,7 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.model.Card
+import net.spross.kern.model.Language
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.TurnFeedback
 
@@ -25,11 +26,18 @@ sealed class LetterDrillIntent {
 /** The closed result of one intent. */
 data class LetterDrillReduction(val state: LetterDrillRunState, val effects: List<DrillEffect>)
 
-/** What a closed letter run leaves behind — figures only; no record, no Sprosse (D12). */
+/** What a closed letter run leaves behind — its figures and the Sprossen it answered out. */
 data class LetterDrillClose(
     val state: LetterDrillRunState,
     /** null ⇒ nothing was answered: dismiss, report nothing. */
     val summary: DrillRunSummary?,
+    /**
+     * The tile and typed Sprossen this run climbed off without a blemish, or answered out
+     * ([DrillSprossen], the scrambles' ledger), for the store to OR into the mask under
+     * [LetterDrillRunState.storageKey]. Dictation draws from the box, which grows, so it is
+     * never cleared.
+     */
+    val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
 )
 
@@ -47,14 +55,19 @@ class LetterDrillRunConfig(
      * Null falls the dictation Sprosse back to glyph grading — defensive, never asserted.
      */
     val dictationGrader: CatalogAnswerGrader?,
+    /**
+     * The Sprossen earlier runs answered out, as the PLATFORM's store holds them
+     * ([NumbersMode.clearedSprossen] over the mask under [LetterDrillRunState.storageKey]).
+     */
+    val cleared: Set<Int>,
 )
 
 /**
  * One letter run, whole and immutable.
  *
  * No FSRS anywhere (D12 — transcription is not recall): the box is READ, for the pacing figures
- * and the dictation pool, and never written. The run keeps no record and books no Sprosse, so its
- * close has nothing to store.
+ * and the dictation pool, and never written. The run keeps no streak record; what its close
+ * stores is the Sprossen it answered out.
  */
 data class LetterDrillRunState(
     val config: LetterDrillRunConfig,
@@ -63,6 +76,10 @@ data class LetterDrillRunState(
     override val index: Int,
     val level: Int,
     val winsAtLevel: Int,
+    /** The Sprossen climbed off unblemished so far — what the close hands the store. */
+    val clearedSprossen: Set<Int>,
+    /** Whether the Sprosse the run stands on has already lost the store: an almost or a miss on it. */
+    val blemished: Boolean,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
     override val core: DrillRunCore,
     /** The tile the learner picked, so the grid can mark both it and the answer. */
@@ -81,4 +98,9 @@ data class LetterDrillRunState(
      * a clean one opens it too, because the LETTERS were the question and the meaning never was.
      */
     val showsAnswer: Boolean get() = !owesAnswer
+
+    companion object {
+        /** Where the answered-out mask is filed: one per learned language, with no direction. */
+        fun storageKey(language: Language): String = "letters.$language"
+    }
 }

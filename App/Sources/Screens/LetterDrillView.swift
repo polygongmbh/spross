@@ -47,7 +47,8 @@ struct LetterDrillView: View, LanguageNaming {
         let config = LetterDrillRunConfig(
             report: LetterDrillAvailability(model: model, language: language).report,
             cards: model.box?.cards ?? [:],
-            dictationGrader: Self.dictationGrader(model: model, language: language)
+            dictationGrader: Self.dictationGrader(model: model, language: language),
+            cleared: TrainerProgress.held(for: Self.storageKey(language))
         )
         #if DEBUG
         // UI-test hook: `-uitest-letters-level N` opens the run at that Sprosse,
@@ -63,6 +64,11 @@ struct LetterDrillView: View, LanguageNaming {
         #else
         _run = State(initialValue: LetterDrillRun.shared.open(config: config, rng: drillRandom))
         #endif
+    }
+
+    /// Where the answered-out mask is filed (`LetterDrillRunState.storageKey`).
+    static func storageKey(_ language: String) -> String {
+        LetterDrillRunState.companion.storageKey(language: language)
     }
 
     /// The question on screen; nil only once this device can ask nothing more.

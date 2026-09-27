@@ -5,11 +5,11 @@ import SprossKern
 /// through, where this learner's run opens, and the button that starts it.
 /// State lives on LettersOverview; split out purely for file size.
 ///
-/// There is no ladder to earn here — the letter drill books no review and keeps
-/// no record (D12), so its circles have no record to wear. What the rows say
-/// instead is what the run will be: the entry stage comes from the words the
-/// learner already holds and wears the filled circle, and dictation exists only
-/// once enough of them can be played back.
+/// There is no ladder to earn here — the letter drill books no review (D12) —
+/// but the circles wear its record: a stage some run climbed off clean is
+/// forest, and the stage the run OPENS on, above the words the learner already
+/// holds and above that record, is filled. Dictation exists only once enough
+/// held words can be played back.
 extension LettersOverview {
 
     var practiceSection: some View {
@@ -42,11 +42,12 @@ extension LettersOverview {
     /// not tapped: the run walks the ladder by itself from that stage.
     private func stageRow(_ stage: LetterStage) -> some View {
         let open = reachable(stage)
-        let entry = open && stage == entryStage
+        let entry = open && stage == availability?.openingStage(cleared)
+        let mark = stageMark(stage, entry: entry)
         let step = (Self.stages.firstIndex(of: stage) ?? 0) + 1
         return HStack(alignment: .center, spacing: Theme.spacing.md) {
             if open {
-                SprosseCircle(number: step, mark: entry ? .reached : .untouched)
+                SprosseCircle(number: step, mark: mark)
             } else {
                 Image(systemName: "lock.fill")
                     .font(.title3)
@@ -72,7 +73,13 @@ extension LettersOverview {
         // why: one stage is one VoiceOver stop — the mark and the name describe a
         // single thing, and the value says what the filled circle says.
         .accessibilityElement(children: .combine)
-        .accessibilityValue(Text(entry ? "a11y.trainer.sprosse.entry" : ""))
+        .accessibilityValue(Text(entry ? LocalizedStringKey("a11y.trainer.sprosse.entry") : (mark.a11y ?? "")))
+    }
+
+    /// Climbed off clean beats where the run opens; the rest are outlines.
+    private func stageMark(_ stage: LetterStage, entry: Bool) -> SprosseMark {
+        if availability?.stageCleared(stage, cleared) == true { return .cleared }
+        return entry ? .reached : .untouched
     }
 
     private static func title(_ stage: LetterStage) -> LocalizedStringKey {
@@ -94,10 +101,6 @@ extension LettersOverview {
     /// feature behind a one-tap-fixable state is how a feature stops being
     /// found; the drill says so on its own prompt card instead (§6.1).
     var drillAvailable: Bool { availability?.drillAvailable ?? false }
-
-    /// The stage a run would open on, from the Sprosse Kern derives out of the
-    /// learner's consolidated words — never recomputed here.
-    private var entryStage: LetterStage? { availability?.entryStage }
 
     /// Dictation needs a pool of playable words the learner already holds; below
     /// that floor the ramp stops one Sprosse short of it, so the row is a padlock

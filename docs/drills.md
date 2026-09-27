@@ -163,6 +163,7 @@ Nothing wears a prefix one scope wider than what it serves.
   An almost banks nothing inside the run
   but takes that Sprosse out of the store's running.
   Nothing overrides where it opens: there is no row to tap and no direction to turn.
+  The letter drill keeps the same record for its tile and typed stages (`drills-words.md`).
 - **An endless run offers its exit where it is wanted, not on a schedule.**
   "Fertig" appears under the button that goes on, and only on the SECOND miss in a row;
   a clean answer takes the offer away again.

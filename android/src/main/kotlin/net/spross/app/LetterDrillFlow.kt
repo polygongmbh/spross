@@ -15,9 +15,9 @@ import net.spross.kern.trainer.LetterDrillRunState
  * [LetterDrillRun].
  *
  * Everything decidable is kern's: the ladder, the draw, the ramp step, the verdict a typed
- * answer earns. What is left here is [DrillFlow]'s — the field's text and the armed beat.
- * No review is ever booked (D12): the box is READ, for the pacing figures and the dictation
- * pool, and never written.
+ * answer earns, the Sprossen a run climbed off clean. What is left here is [DrillFlow]'s —
+ * the field's text and the armed beat. No review is ever booked (D12): the box is READ, for
+ * the pacing figures and the dictation pool, and never written.
  */
 class LetterDrillFlow(
     start: LetterDrillRunState,
@@ -32,7 +32,10 @@ class LetterDrillFlow(
     /** One attempt per tile — a second tap after the answer is in would be a retry. */
     fun choose(glyph: String) = dispatch(LetterDrillIntent.Choose(glyph))
 
-    /** Leaving: kern books a pending answer exactly as the tap would, then reports. */
+    /**
+     * Leaving: kern books a pending answer exactly as the tap would, then reports — the
+     * screen files [LetterDrillClose.clearedSprossen] under [LetterDrillRunState.storageKey].
+     */
     fun close(): LetterDrillClose =
         LetterDrillRun.close(state).also { land(it.state, it.effects) }
 
@@ -71,6 +74,7 @@ fun AppModel.newLetterDrill(
             AnswerNormalizer.drill(info),
             state.cards.values.toList(),
         ),
+        cleared = trainer.store.cleared(LetterDrillRunState.storageKey(report.language)),
     )
     return LetterDrillFlow(
         start = LetterDrillRun.open(config, rng),

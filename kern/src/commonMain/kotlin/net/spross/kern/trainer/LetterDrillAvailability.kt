@@ -63,14 +63,26 @@ object LetterDrillAvailability {
         val maxLevel: Int get() = LetterDrill.maxLevel(dictationAvailable)
 
         /**
-         * Which Sprosse a run OPENS on — kern's step from the words the learner already holds,
-         * capped by [maxLevel]. Derived here rather than at the run, so the overview naming
-         * the stage and the run that starts there read one number.
+         * The Sprosse the learner's vocabulary puts them on — kern's step from the words they
+         * already hold, capped by [maxLevel].
          */
         val entryLevel: Int get() = minOf(LetterDrill.entryLevel(growingCards), maxLevel)
 
+        /**
+         * Which Sprosse a run OPENS on: the lowest one at or above [entryLevel] that no run has
+         * answered out ([NumbersMode.entrySprosse] over [cleared], the store's mask). Derived
+         * here rather than at the run, so the overview marking the stage and the run that
+         * starts there read one number.
+         */
+        fun openingLevel(cleared: Set<Int>): Int =
+            NumbersMode.entrySprosse(cleared + (1 until entryLevel), maxLevel)
+
         /** The stage that Sprosse lands in — what the overview marks. */
-        val entryStage: LetterStage get() = LetterDrill.stageFor(entryLevel)
+        fun openingStage(cleared: Set<Int>): LetterStage = LetterDrill.stageFor(openingLevel(cleared))
+
+        /** Whether some run answered out every Sprosse of [stage] — never dictation's. */
+        fun stageCleared(stage: LetterStage, cleared: Set<Int>): Boolean =
+            stage != LetterStage.Dictation && LetterDrill.sprossen(stage).all { it in cleared }
 
         /** How long a Sprosse is for this learner. */
         val winsToAdvance: Int get() = LetterDrill.winsToAdvance(growingCards)

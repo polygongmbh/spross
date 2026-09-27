@@ -249,7 +249,8 @@ fun sprosseMark(sprosse: Int, cleared: Set<Int>, bestSprosse: Int): SprosseMark 
 
 /**
  * A Sprosse's number in its circle — the mark on every ladder row. The letters ladder
- * wears it too, filled only on the stage its run opens on.
+ * wears it per stage: forest where a run climbed the stage off clean, filled on the stage
+ * its run opens on.
  */
 @Composable
 fun SprosseCircle(number: Int, mark: SprosseMark, modifier: Modifier = Modifier) {

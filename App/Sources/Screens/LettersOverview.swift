@@ -23,6 +23,10 @@ struct LettersOverview: View {
     /// the start button on without a relaunch.
     // why: internal, not private — +Practice.swift renders the ladder from it.
     @State var availability: LetterDrillAvailability?
+    /// The Sprossen earlier runs climbed off clean — re-read as a run's cover
+    /// comes down, because that close just filed into it.
+    // why: internal, not private — +Practice.swift marks the stages from it.
+    @State var cleared: Set<KotlinInt> = []
     @State private var launch: DrillLaunch<String>?
     /// What the run that just closed came to — one tile above the stages, instead
     /// of a screen with a second ✕ on it.
@@ -44,7 +48,7 @@ struct LettersOverview: View {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { refreshAvailability() }
         }
-        .fullScreenCover(item: $launch) { launch in
+        .fullScreenCover(item: $launch, onDismiss: refreshAvailability) { launch in
             LetterDrillView(model: model, language: launch.value,
                             onFinish: { result in
                                 withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
@@ -61,6 +65,7 @@ struct LettersOverview: View {
 
     func refreshAvailability() {
         availability = LetterDrillAvailability(model: model, language: language)
+        cleared = TrainerProgress.held(for: LetterDrillView.storageKey(language))
         DrillUITest.autoStart("letters", ready: launch == nil && drillAvailable, start: start)
     }
 

@@ -218,7 +218,8 @@ Engine contract: `../README.md`.
   what outlives it is the Sprosse, as `clearedSprossen` on the close, and there are two ways to earn one.
   The atlas and the calendar ENUMERATE a Sprosse and check it off (`DrillSolved.cleared`);
   a drawn Sprosse is never cleared that way.
-  The two scrambles draw out of a pool that grows with the box, so what they book is the CLIMB:
+  The two scrambles draw out of a pool that grows with the box, so what they book is the CLIMB,
+  and so does the letter drill, whose stages ask thirty prompts where its ramp climbs on two:
   `DrillRungs` clears a Sprosse the run left UPWARD with nothing against it —
   every answer given while standing on it fully correct, no typo, no look-up, no miss —
   whether it was left on the wins the ladder asks for or by being answered out.
@@ -246,7 +247,7 @@ Engine contract: `../README.md`.
   keys byte-identical across the two stores).
   Every closed run of a drill also stamps its epoch millis under `trainer.lastRun.<drill>.<language>`,
   one key per DRILL whatever its selection (`DrillSuggestion.LAST_RUN_PREFIX`).
-  The atlas, the calendar and both scrambles all keep that mask;
+  The atlas, the calendar, both scrambles and the letter drill (tile and typed Sprossen only) all keep that mask;
   the scrambles keep NOTHING ELSE — no streak record, so their `newRecord` is always false.
   `close` returns only bookings that beat the standing value (strictly greater);
   the platform writes blindly — except the cleared set, which it ORs into the mask it holds.

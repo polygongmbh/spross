@@ -55,6 +55,7 @@ class LetterDrillRunTest {
         report: LetterDrillAvailability.Report,
         cards: List<Card> = emptyList(),
         grader: Boolean = true,
+        cleared: Set<Int> = emptySet(),
     ) = LetterDrillRunConfig(
         report = report,
         cards = cards.associateBy { it.id },
@@ -66,6 +67,7 @@ class LetterDrillRunTest {
                 cards,
             )
         },
+        cleared = cleared,
     )
 
     private fun reduce(state: LetterDrillRunState, intent: LetterDrillIntent, rng: Random) =
@@ -96,18 +98,64 @@ class LetterDrillRunTest {
     fun aRunOpensOnTheStageTheLearnersWordsHaveEarned() {
         val fresh = report(consolidated = 0)
         assertEquals(1, fresh.entryLevel)
-        assertEquals(LetterStage.ChoiceEasy, fresh.entryStage)
+        assertEquals(LetterStage.ChoiceEasy, fresh.openingStage(emptySet()))
         assertEquals(LetterDrill.MAX_LEVEL_WITHOUT_DICTATION, fresh.maxLevel)
         assertEquals(2, fresh.winsToAdvance)
 
         assertEquals(3, report(consolidated = 24).entryLevel)
-        assertEquals(LetterStage.ChoiceConfusable, report(consolidated = 24).entryStage)
+        assertEquals(LetterStage.ChoiceConfusable, report(consolidated = 24).openingStage(emptySet()))
 
         val held = report(consolidated = 72, dictation = LetterDrillFixture.dictationCandidates())
         assertEquals(6, held.entryLevel)
-        assertEquals(LetterStage.Typed, held.entryStage)
+        assertEquals(LetterStage.Typed, held.openingStage(emptySet()))
         assertEquals(LetterDrill.MAX_LEVEL_WITH_DICTATION, held.maxLevel)
         assertEquals(1, held.winsToAdvance, "a consolidated vocabulary earns a Sprosse in one win")
+    }
+
+    /**
+     * A stage some run answered out is climbed past on the way in, above whatever the
+     * vocabulary already skips — the atlas' record, kept for the tile and typed stages.
+     */
+    @Test
+    fun aRunOpensAboveTheSprossenEarlierRunsAnsweredOut() {
+        val fresh = report(consolidated = 0)
+        assertEquals(3, fresh.openingLevel(setOf(1, 2)))
+        assertEquals(LetterStage.ChoiceConfusable, fresh.openingStage(setOf(1, 2)))
+        assertTrue(fresh.stageCleared(LetterStage.ChoiceEasy, setOf(1, 2)))
+        assertFalse(fresh.stageCleared(LetterStage.ChoiceConfusable, setOf(3, 4)))
+        assertEquals(3, LetterDrillRun.open(config(fresh, cleared = setOf(1, 2)), Random(3)).level)
+
+        val held = report(consolidated = 72, dictation = LetterDrillFixture.dictationCandidates())
+        assertEquals(6, held.openingLevel(setOf(1, 2)), "the vocabulary already stands above them")
+        assertEquals(8, held.openingLevel(setOf(6, 7)))
+        // Everything answered out still opens a run, on the top Sprosse.
+        assertEquals(7, fresh.openingLevel((1..7).toSet()))
+    }
+
+    /** A Sprosse climbed off clean is what the close files; a slip on one keeps it out. */
+    @Test
+    fun aCloseFilesTheSprossenTheRunClimbedOffClean() {
+        val rng = Random(41)
+        var state = LetterDrillRun.openAt(config(report(consolidated = 0)), 1, rng)
+        assertTrue(LetterDrillRun.close(state).clearedSprossen.isEmpty())
+        while (state.task != null && state.level <= 2) state = answeredRight(state, rng)
+        assertEquals(setOf(1, 2), LetterDrillRun.close(state).clearedSprossen)
+
+        var slipped = LetterDrillRun.openAt(config(report(consolidated = 0)), 1, rng)
+        slipped = reduce(slipped, LetterDrillIntent.Reveal, rng).state
+        slipped = reduce(slipped, LetterDrillIntent.ConfirmPending, rng).state
+        while (slipped.task != null && slipped.level <= 1) slipped = answeredRight(slipped, rng)
+        assertTrue(1 !in LetterDrillRun.close(slipped).clearedSprossen, "a miss on Sprosse 1 keeps it out")
+    }
+
+    /** Dictation draws from the box, which grows, so no climb through it is ever filed. */
+    @Test
+    fun dictationIsNeverFiled() {
+        val rng = Random(43)
+        val held = report(consolidated = 72, dictation = LetterDrillFixture.dictationCandidates())
+        var state = LetterDrillRun.openAt(config(held, LetterDrillFixture.dictationCandidates().map { it.card }), 8, rng)
+        while (state.task != null && state.level <= 8) state = answeredRight(state, rng)
+        assertTrue(LetterDrillRun.close(state).clearedSprossen.none { it >= 8 })
     }
 
     /** Dictation exists only above the floor, and the ramp stops one Sprosse short of it below. */
