@@ -32,7 +32,10 @@ class BoxFiles(private val dir: File) {
 
     private val widgetSnapshot: File get() = File(dir, "widget-snapshot.json")
 
-    // why: temp-then-rename keeps a crash mid-write from corrupting the only copy.
+    // why: temp-then-rename keeps a crash mid-write from corrupting the only copy;
+    // one write at a time, since two saves in flight share the temp file and the
+    // second rename found it gone, deleted the box and crashed.
+    @Synchronized
     private fun writeAtomically(destination: File, json: String) {
         dir.mkdirs()
         val temp = File(dir, "${destination.name}.tmp")
