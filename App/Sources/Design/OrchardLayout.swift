@@ -272,8 +272,12 @@ enum OrchardLayout {
     static let heroMinHeight: CGFloat = 78
     static let heroMaxHeight: CGFloat = 190
 
-    static func heroHeight(_ tree: AreaTree) -> CGFloat {
-        heroMinHeight + (heroMaxHeight - heroMinHeight) * standing(tree)
+    /// `ceiling` lifts the grown tree's box on a screen with room to give,
+    /// the seedling's floor rising in proportion so standing still reads as height.
+    static func heroHeight(_ tree: AreaTree, ceiling: CGFloat = heroMaxHeight) -> CGFloat {
+        let top = max(ceiling, heroMaxHeight)
+        let floor = top * heroMinHeight / heroMaxHeight
+        return floor + (top - floor) * standing(tree)
     }
 
     /// One tree alone, filling a box of its own —

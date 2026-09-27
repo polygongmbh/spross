@@ -91,7 +91,7 @@ struct SessionCompletionView: View {
         // everything fits and falls back to scrolling when it does not.
         GeometryReader { geo in
             ScrollView {
-                sessionContent
+                sessionContent(treeCeiling: geo.size.height * 0.45)
                     .padding(Theme.spacing.xl)
                     .frame(minWidth: geo.size.width, minHeight: geo.size.height)
             }
@@ -116,21 +116,22 @@ struct SessionCompletionView: View {
         }
     }
 
-    private var sessionContent: some View {
+    private func sessionContent(treeCeiling: CGFloat) -> some View {
         VStack(spacing: Theme.spacing.xl) {
             Spacer()
             // why: the tree takes the hero slot when the round grew an area —
             // a party popper is the same picture whatever the learner did, and
             // two celebratory graphics on one screen is one too many.
-            if showsTree { grownAreaHero } else { burstHero }
+            if showsTree { grownAreaHero(ceiling: treeCeiling) } else { burstHero }
             // why: one title — the growth claim where a tree stands over it,
             // the plain "All done!" where the popper does.
             Text(showsTree ? headlineKey : "session.done.title")
-                .font(showsTree ? Theme.typography.title : Theme.typography.hero)
+                .font(Theme.typography.hero)
                 .foregroundStyle(Theme.colors.textPrimary)
                 .multilineTextAlignment(.center)
+                .minimumScaleFactor(0.8)
             summaryText
-                .font(Theme.typography.body)
+                .font(.system(.title3, design: .rounded))
                 .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
             // The streak itself is Home's; a record is what this round did to it.
@@ -165,11 +166,11 @@ struct SessionCompletionView: View {
 
     /// The area the round moved most, as it stood before this round and as it stands now.
     @ViewBuilder
-    private var grownAreaHero: some View {
+    private func grownAreaHero(ceiling: CGFloat) -> some View {
         if let grownArea {
             GrowingTreeView(transition: grownArea,
                             progress: burst || reduceMotion ? 1 : 0)
-                .frame(height: OrchardLayout.heroHeight(grownArea.after))
+                .frame(height: OrchardLayout.heroHeight(grownArea.after, ceiling: ceiling))
                 .animation(reduceMotion ? nil
                             : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
                            value: burst)
