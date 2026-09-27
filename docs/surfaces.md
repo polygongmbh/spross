@@ -56,6 +56,8 @@ the box is app-private and written after every answer rather than debounced,
 runs are full screens rather than covers — Back mirrors ✕ everywhere, and inside a run
 the reference panel eats Back first — and a fallen record celebrates in the tile's own
 words, without confetti.
+The round summary names what the round grew and the area it grew in (`growthHeadline`)
+under its popper, where iOS draws the area's tree.
 The home-screen tile ships there too, in Glance, and it is ONE grid sized to the tile
 rather than iOS's three home-screen families (§ Watch & widgets):
 an Android tile is dragged to any shape,

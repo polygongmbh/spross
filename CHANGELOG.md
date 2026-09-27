@@ -14,6 +14,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - The letter drill remembers the Sprossen you climbed without a slip and opens your next run above them.
 - The letter drill now takes a typed letter or word the moment it is complete, with no Check tap.
 - Letter drill dictation now counts only the word that played, so a synonym of it is a miss.
+- On Android, a finished round now says what it grew and in which area.
 - On Android, two saves landing at once no longer crash the app and wipe the box.
 - Recordings with a faint hiss now play with it quieted between words, and German comes almost entirely from one clear voice.
 - Age and How old are you? join Personal Details, and young joins old among the qualities.

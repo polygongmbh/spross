@@ -23,12 +23,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
+import net.spross.app.Chrome
 import net.spross.app.SessionUi
+import net.spross.app.areaEmoji
+import net.spross.app.areaTitle
 import net.spross.app.continueEndless
 import net.spross.app.hasBriefing
+import net.spross.kern.box.GrowthClaim
+import net.spross.kern.box.GrowthHeadline
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.TallyPartKind
 import net.spross.kern.box.completionTallyParts
@@ -62,6 +68,18 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("🎉", fontSize = 88.sp) // card-parity: the done screen's own glyph, not a card prompt
+        val headline = ui.headline
+        val area = ui.grownArea
+        if (headline != null && area != null) {
+            // why: the area is LABELED rather than named in the sentence — what grew is
+            // what the learner can say, never the area itself.
+            Spacer(Modifier.height(8.dp))
+            Text(growthLine(chrome, headline), style = MaterialTheme.typography.titleMedium,
+                textAlign = TextAlign.Center)
+            Text("${model.areaEmoji(area)} ${model.areaTitle(area)}",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
         Spacer(Modifier.height(16.dp))
         Text(chrome.sessionDoneTitle, style = MaterialTheme.typography.headlineMedium)
         Spacer(Modifier.height(8.dp))
@@ -126,4 +144,20 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         }
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
+}
+
+/**
+ * Kern's claim ([net.spross.kern.box.growthHeadline]) in this table's words.
+ * The first grown line says the words grew, so a round that added none reads only the others.
+ */
+internal fun growthLine(chrome: Chrome, headline: GrowthHeadline): String {
+    fun List<String>.pick() = this[headline.pick % size]
+    return when (headline.claim) {
+        GrowthClaim.Unclaimed -> chrome.sessionDoneGrowthGrew
+        GrowthClaim.Opened -> chrome.sessionDoneGrowthOpened
+        GrowthClaim.Matured -> chrome.growthBlooming.pick()
+        GrowthClaim.Met -> chrome.growthSown.pick()
+        GrowthClaim.Grew -> chrome.growthGrown.pick()
+        GrowthClaim.Held -> chrome.growthGrown.drop(1).pick()
+    }
 }

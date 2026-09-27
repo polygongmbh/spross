@@ -18,6 +18,9 @@ fun AppModel.startExtraSession() = begin(SessionIntent.StartExtra)
 fun AppModel.startShortSession() = begin(SessionIntent.StartShort)
 
 private fun AppModel.begin(intent: SessionIntent) {
+    // why: the summary shows what THIS round did to an area, so the before is taken at
+    // the door, while it still is the before.
+    boxBeforeSession = box
     val started = dispatch(intent) ?: return
     // A round that came back empty never took the learner anywhere, and leaves no run
     // behind for the next tap to inherit.

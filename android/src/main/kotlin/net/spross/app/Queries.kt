@@ -35,7 +35,12 @@ fun AppModel.suggestedLearnerName(): String? =
  * so the cue an ambiguous prompt carries and the heading it stands under in the box
  * can never disagree about the name of an area.
  */
-fun AppModel.areaTitle(area: String): String {
+fun AppModel.areaTitle(area: String): String = areaNaming().title(area)
+
+/** The emoji an area wears — the same naming rule as [areaTitle]. */
+fun AppModel.areaEmoji(area: String): String = areaNaming().emoji(area)
+
+private fun AppModel.areaNaming(): AreaNaming {
     val cat = catalog
     val source = box?.joinStamp?.source
     return AreaNaming(
@@ -43,5 +48,5 @@ fun AppModel.areaTitle(area: String): String {
         catalogTitle = { if (source == null) null else cat?.areaTitle(it, source) },
         catalogSubtitle = { if (source == null) null else cat?.areaSubtitle(it, source) },
         catalogEmoji = { cat?.areaEmoji(it) },
-    ).title(area)
+    )
 }

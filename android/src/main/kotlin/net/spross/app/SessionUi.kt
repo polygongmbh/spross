@@ -1,6 +1,10 @@
 package net.spross.app
 
+import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
+import net.spross.kern.box.GrowthHeadline
+import net.spross.kern.box.grownArea
+import net.spross.kern.box.growthHeadline
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.Card
@@ -53,6 +57,9 @@ data class SessionUi(
      * contradicted by the next one.
      */
     val restSuggested: Boolean = false,
+    /** The area the round worked hardest, and what the summary may claim about it. */
+    val grownArea: String? = null,
+    val headline: GrowthHeadline? = null,
 )
 
 private fun AppModel.isGrowing(cardId: String): Boolean =
@@ -77,6 +84,10 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
     val state = active.box
     val card = active.currentCardId?.let { state.cards[it] }
     return if (card == null) {
+        val restSuggested = BoxEngine.today(state, now(), tz()).recallStrained
+        val order = catalog?.let { cat -> stats?.let { BoxBrowser.areaNames(cat, it) } }.orEmpty()
+        val moved = grownArea(boxBeforeSession ?: state, state, active.answeredIds, order, now(), tz())
+        val streakDays = stats?.streak ?: 0
         SessionUi(
             card = null, role = null, promptForm = null,
             emojiCue = null, promptPronunciation = null,
@@ -90,9 +101,13 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             // why: the day is folded and the numbers refreshed before this runs
             // (`DayBooked` precedes it in [dispatch]), so the finish names the streak
             // the answer just extended rather than the one it started with.
-            streakDays = stats?.streak ?: 0,
+            streakDays = streakDays,
             streakIsRecord = stats?.let { SessionRun.streakIsRecord(it) } == true,
-            restSuggested = BoxEngine.today(state, now(), tz()).recallStrained,
+            restSuggested = restSuggested,
+            grownArea = moved?.after?.area,
+            headline = growthHeadline(
+                moved, restSuggested, active.newCards, active.graduated, active.reviews, streakDays,
+            ),
         )
     } else {
         val count = state.scheduling[card.id]?.reviewCount ?: 0

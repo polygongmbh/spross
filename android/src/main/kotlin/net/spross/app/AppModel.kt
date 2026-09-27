@@ -54,6 +54,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     internal var sessionRun: SessionRunState? = null
         private set
 
+    /** The box as the current run opened on it — the summary's "before". */
+    internal var boxBeforeSession: BoxState? = null
+
     /** The one door to a spoken target word — review cards and both drills. */
     val pronouncer = Pronouncer(app, prefs)
 
