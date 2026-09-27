@@ -119,11 +119,18 @@ fun chromePart(nowEpochMillis: Long, tzId: String): DayPart {
  * differently after a relaunch, or differently on the two phones.
  */
 fun partVariant(nowEpochMillis: Long, tzId: String, targetLanguage: Language?, count: Int): Int {
-    val key = "${dayKey(nowEpochMillis, tzId)}:" +
-        "${chromePart(nowEpochMillis, tzId)}:" +
-        dayPart(nowEpochMillis, tzId, targetLanguage)
-    var hash = fnv1a64(key)
+    var hash = fnv1a64(partSlot(nowEpochMillis, tzId, targetLanguage))
     // why: FNV leaves its low bits barely mixed, and the modulo reads exactly those.
     hash = hash xor (hash shr 33)
     return (hash % count.toULong()).toInt()
 }
+
+/**
+ * The stretch [partVariant] holds through, as a key: the local day and both of its parts.
+ * Anything else on Home that should turn over with the greeting rather than per render
+ * seeds on this too.
+ */
+internal fun partSlot(nowEpochMillis: Long, tzId: String, targetLanguage: Language?): String =
+    "${dayKey(nowEpochMillis, tzId)}:" +
+        "${chromePart(nowEpochMillis, tzId)}:" +
+        dayPart(nowEpochMillis, tzId, targetLanguage)

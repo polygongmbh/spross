@@ -240,6 +240,8 @@ Engine contract: `../README.md`.
   because a row means a different question either way round
   (`NumbersMode.RECORD_PREFIX` / `PROGRESS_PREFIX` / `ANSWERS_PREFIX` / `CLEARED_PREFIX`,
   keys byte-identical across the two stores).
+  Every closed run of a drill also stamps its epoch millis under `trainer.lastRun.<drill>.<language>`,
+  one key per DRILL whatever its selection (`DrillSuggestion.LAST_RUN_PREFIX`).
   The atlas, the calendar and both scrambles all keep that mask;
   the scrambles keep NOTHING ELSE — no streak record, so their `newRecord` is always false.
   `close` returns only bookings that beat the standing value (strictly greater);

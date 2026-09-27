@@ -1,5 +1,5 @@
 # Drills -- the hub, the Sprosse and the run
-What a Sprosse is, what earns a chip on the hub, and the shape every overview page and every run wears.
+What a Sprosse is, what earns a chip on the hub, which drill Home suggests, and the shape every overview page and every run wears.
 Neighbors: each drill `drills-tables.md` and `drills-words.md`, surfaces around them `surfaces.md`, the review loop `design.md`.
 
 ## The words
@@ -74,6 +74,28 @@ Nothing wears a prefix one scope wider than what it serves.
   (`formMarker`, `DateDrill.patternWord`).
   A reversed task gets no hint at all:
   the prompt is the reading, which says it in words already.
+
+## The suggestion
+
+- **Home names ONE drill, so six chips are never the question.**
+  It shows once the day's round is done --
+  nothing left to recall on a day that has seen answers, or nothing to compose at all --
+  or once the day has taken three rounds' worth of answers,
+  so a long backlog still meets some variety (`DrillSuggestion.shown`).
+- **The candidates are the chips the hub offers, less every ladder that is mastered**,
+  however long ago it last ran:
+  a ladder with nothing left to clear has nothing to suggest.
+- **Three terms decide, added together** (`DrillSuggestion`):
+  local days since the drill last ran, full after a week, a drill never run counting as longest ago;
+  what the box would get out of it --
+  letters while the learned script is new and the box young, numbers while the box is young,
+  the scrambles once enough words have grown;
+  and how much of its ladder is left.
+  The card says why in the words of whichever term carried it.
+- **It turns over with the greeting and never between renders**:
+  a small seeded nudge per drill, keyed on the greeting's stretch of the day,
+  settles close calls, and a closed run moves its drill's last-run stamp
+  (`../kern/docs/turns.md` storage contract).
 
 ## The overview page
 
