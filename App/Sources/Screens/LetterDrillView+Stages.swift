@@ -114,8 +114,9 @@ extension LetterDrillView {
                         pick: choose)
     }
 
-    /// A miss always waits for a tap; a clean hit waits only where a timed
-    /// screen change would talk over the announcement it just made.
+    /// A miss always waits for a tap, and on the second in a row offers the way
+    /// out under it, as the typed stages do; a clean hit waits only where a
+    /// timed screen change would talk over the announcement it just made.
     @ViewBuilder
     private var choiceControls: some View {
         switch feedback {
@@ -128,7 +129,8 @@ extension LetterDrillView {
         case .almost:
             DrillNextButton { confirm() }
         case .revealed:
-            DrillNextButton { confirm() }
+            DrillRevealedControls(onConfirm: { confirm() },
+                                  onStop: run.offersFinish ? { closeRun() } : nil)
         }
     }
 

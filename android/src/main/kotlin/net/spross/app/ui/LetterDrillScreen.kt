@@ -113,7 +113,7 @@ private fun Run(
     HearPrompt(model, flow, task, chrome, replayFocus)
     when (task.stage) {
         LetterStage.ChoiceEasy, LetterStage.ChoiceConfusable ->
-            ChoiceStage(model, flow, task, chrome)
+            ChoiceStage(flow, task, chrome)
         LetterStage.Typed, LetterStage.Dictation ->
             TypedStage(model, flow, task, chrome, inputFocus)
     }

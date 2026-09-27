@@ -10,11 +10,11 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
 import net.spross.app.letterSpeaker
+import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.LetterDrillTask
 
 /**
- * The stage bodies of the letter drill: the glyph tiles, the typed and dictated field, and
- * the line that says what an answer earned.
+ * The stage bodies of the letter drill: the glyph tiles and the typed and dictated field.
  *
  * Every rule is kern's `LetterDrillRun`, reached through [LetterDrillFlow] — which tile is
  * the answer, what a typed word earns, which pause waits for a tap. This renders that and
@@ -26,7 +26,7 @@ import net.spross.kern.trainer.LetterDrillTask
  * grid is [DrillChoiceGrid], shared with the calendar's warm-up Sprosse.
  */
 @Composable
-fun ChoiceStage(model: AppModel, flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
+fun ChoiceStage(flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         // The ramp's glyph slot rather than a ramp entry: a letterform is the thing being
         // READ here, so it is set at picture size the way an emoji face is — and a bare
@@ -40,15 +40,15 @@ fun ChoiceStage(model: AppModel, flow: LetterDrillFlow, task: LetterDrillTask, c
             describe = { chrome.a11yGlyphLetter.format(it) },
             onPick = flow::choose,
         )
-        // The answer itself is on the CARD — both amber holds and a miss open it there — so
-        // all this adds is which of the two ambers it was, and the tap that books it.
-        AnswerVerdict(
-            flow.state.feedback,
-            flow.awaitsConfirm,
-            chrome,
-            flow::confirm,
-            speakCorrection = { model.letterSpeaker(task, it) },
-        )
+        // The tiles mark the answer themselves, so nothing is drawn under them: a miss waits
+        // for the tap that books it, and a clean hit waits only where no beat can run.
+        when (flow.state.feedback) {
+            TurnFeedback.Neutral -> {}
+            TurnFeedback.Correct -> if (flow.awaitsConfirm) ConfirmButton(chrome, flow::confirm)
+            // why: tiles grade exact-only, so an almost cannot arise here — it books like any
+            // other accepted answer if it ever does.
+            is TurnFeedback.Almost, TurnFeedback.Revealed -> ConfirmButton(chrome, flow::confirm)
+        }
     }
 }
 
