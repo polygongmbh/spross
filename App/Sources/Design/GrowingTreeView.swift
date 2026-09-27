@@ -34,7 +34,9 @@ struct GrowingTreeView: View, Animatable {
     }
 
     var body: some View {
-        Canvas { context, size in
+        // why: the crown's marks hang past the finished tree's box; the bleed
+        // draws them over the space around it instead of clipping them.
+        BleedingCanvas(bleed: 64) { context, size in
             // why: the frame is the FINISHED tree's, so the drawing never
             // outgrows the space it was given mid-animation; within it the tree
             // rises from the height it had before the round.

@@ -98,41 +98,4 @@ enum CanopyMark {
     /// A bud, against the base — well under half a leaf.
     static let budRadius: CGFloat = 0.30
 
-    /// The most a mark is ever drawn over its settled size (an arriving mark overshoots).
-    static let maxSwell: CGFloat = 1.25
-
-    /// How far this crown reaches outside `box`, on the three sides a tree can be
-    /// clipped on. Zero when it all fits.
-    static func spill(of skeleton: TreeSkeleton, _ tree: Canopy, id: String,
-                      in box: CGRect) -> CGFloat {
-        let base = base(pitch: skeleton.pitch) * maxSwell
-        var spill: CGFloat = 0
-        for (rank, slot) in skeleton.slots.prefix(tree.count).enumerated() {
-            let size = size(base: base, reach: tree.reach(rank))
-            let ink: CGRect
-            if rank < tree.fruit + tree.blossoms || rank >= tree.count - tree.buds {
-                // Fruit, blossom and bud all sit ON their slot; the stalk is the
-                // furthest any of them gets from it.
-                let radius = size * (rank < tree.fruit + tree.blossoms ? 0.62 : budRadius)
-                ink = CGRect(x: slot.point.x - radius, y: slot.point.y - radius,
-                             width: radius * 2, height: radius * 2)
-            } else {
-                ink = leafBounds(at: slot.point, size: size * leafStretch,
-                                 angle: lean(slot, grain: OrchardLayout.noise("\(id)-\(rank)", 41)))
-            }
-            spill = max(spill, max(box.minY - ink.minY,
-                                   max(box.minX - ink.minX, ink.maxX - box.maxX)))
-        }
-        return max(0, spill)
-    }
-
-    /// The leaf's bounding box: it runs from its slot OUTWARD along the lean.
-    private static func leafBounds(at point: CGPoint, size: CGFloat, angle: Double) -> CGRect {
-        let cosine = CGFloat(cos(angle)), sine = CGFloat(sin(angle))
-        let long = size / 2, short = size * leafWaist
-        let center = CGPoint(x: point.x + long * cosine, y: point.y + long * sine)
-        let wide = sqrt(long * long * cosine * cosine + short * short * sine * sine)
-        let tall = sqrt(long * long * sine * sine + short * short * cosine * cosine)
-        return CGRect(x: center.x - wide, y: center.y - tall, width: wide * 2, height: tall * 2)
-    }
 }

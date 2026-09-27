@@ -45,16 +45,8 @@ struct TreeMark {
         self.skeleton = Self.grown(tree: tree, canopy: canopy, foot: foot, height: height)
     }
 
-    /// Grown TWICE.
-    /// `TreeSkeleton` fits the wood to the box it is given,
-    /// and the leaves hang off the ends of that wood —
-    /// so a crown fitted flush reaches past its own box
-    /// by up to half a leaf,
-    /// and at hero size that is a canopy visibly sliced off
-    /// along the top of the canvas.
-    /// The first growing is there to be measured:
-    /// it says how far this crown's marks reach,
-    /// and the second is grown into a box holding that much back for them.
+    /// Grown flush into its box: the marks that hang off the ends of the wood
+    /// reach past it, and the canvas bleeds past the box to draw them (`BleedingCanvas`).
     private static func grown(tree: AreaTree, canopy: Canopy, foot: CGPoint,
                                height: CGFloat) -> TreeSkeleton {
         // why: both counts come from the TREE —
@@ -68,17 +60,7 @@ struct TreeMark {
         let seed = SplitMix64(tree.area).seed
         let box = CGRect(x: foot.x - height * 0.72, y: foot.y - height,
                          width: max(height * 1.44, 1), height: max(height, 1))
-        let loose = TreeSkeleton.grown(seed: seed, vigor: vigor, slots: slots, in: box)
-        let spill = CanopyMark.spill(of: loose, canopy, id: tree.area, in: box)
-        guard spill > 0.2 else { return loose }
-        // Held back on three sides only:
-        // the trunk stands on the bottom edge,
-        // and a mark can never hang below the foot.
-        return TreeSkeleton.grown(
-            seed: seed, vigor: vigor, slots: slots,
-            in: CGRect(x: box.minX + spill, y: box.minY + spill,
-                       width: max(box.width - spill * 2, 1),
-                       height: max(box.height - spill, 1)))
+        return TreeSkeleton.grown(seed: seed, vigor: vigor, slots: slots, in: box)
     }
 }
 
@@ -289,10 +271,8 @@ enum OrchardLayout {
     /// because what a tree puts BELOW it —
     /// the day's fresh earth, the leaves it dropped —
     /// is drawn there and would otherwise be shaved off.
-    /// Above it the tree takes everything that is left:
-    /// the crown holds its own marks back from the top edge
-    /// (`CanopyMark.spill`),
-    /// so nothing here has to be guessed at.
+    /// Above it the tree takes everything that is left,
+    /// its crown's marks drawn past the top edge by the canvas bleed.
     static func solitary(_ tree: AreaTree, in size: CGSize) -> TreeMark {
         let baseline = size.height - 7
         return TreeMark(tree: tree,

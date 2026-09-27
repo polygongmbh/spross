@@ -48,7 +48,7 @@ struct OrchardCanvas: View {
     var body: some View {
         let marks = OrchardLayout.marks(trees, width: width)
         return ZStack(alignment: .topLeading) {
-            Canvas { context, _ in
+            BleedingCanvas(bleed: 24) { context, _ in
                 // why: the emoji is drawn WITH its own tree, in the one back-to-front
                 // order the marks carry — drawn afterwards it sat on top of the whole
                 // orchard, and a tree standing in front of an area was labeled through.
