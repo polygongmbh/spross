@@ -28,6 +28,8 @@ Parked work is not an issue: its own doc says it is parked.
   divergences (numbers and primitive names, not rendering) — is a snapshot gate
   (Roborazzi/Paparazzi + swift-snapshot-testing or simctl diff, versioned goldens) worth its
   cost, or does this bullet narrow to the residual non-numeric class?
+- The Android round summary still wears the run's progress bar and speaker at the top, where iOS shows only a close button (`android/.../ui/SessionSummary.kt`).
+- A round that counts nothing and grows no tree reads "All done!" over "All done" on its summary (`SessionCompletionView.swift`, `ui/SessionSummary.kt`).
 - A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
   duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
   screens, a second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`
@@ -51,11 +53,6 @@ Parked work is not an issue: its own doc says it is parked.
   37 (`checkDebugAarMetadata`) and the next Compose BOM will follow — so the bump is one edit
   to `gradle/libs.versions.toml` once the android-37 platform is installed, plus a separate
   re-check of `targetSdk`, since compiling against 37 does not opt the app into its runtime behavior.
-- Android surfaces still unported: `docs/design.md` § Not yet owns the list (couple mode,
-  accounts/sync, chrome past de/en, no forest canvas or growth headline), and the `growth*`
-  rows in `Chrome.kt:456-458` stand ready for a headline that needs `AreaTree`/`TreeTransition`
-  lifted from `App/Sources/Design/ForestLayout.swift` into kern first — render it, or delete
-  the rows and let `design.md`'s deferral stand?
 - Portability move 6 (`snapshot/WatchRun` + public snapshot DTOs — the watch's own queue and
   ranking in `Watch/Sources/WatchModel.swift`, latency-to-rating in `Shared/Sources/WatchGrading.swift`,
   shortlist sampling in `Shared/Sources/WatchPracticeQuestion.swift`) was deferred 2026-08-08 —

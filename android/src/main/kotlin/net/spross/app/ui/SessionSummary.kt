@@ -2,7 +2,10 @@ package net.spross.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +17,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -35,7 +37,6 @@ import net.spross.app.continueEndless
 import net.spross.app.hasBriefing
 import net.spross.kern.box.GrowthClaim
 import net.spross.kern.box.GrowthHeadline
-import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.TallyPartKind
 import net.spross.kern.box.completionTallyParts
 
@@ -50,9 +51,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     LaunchedEffect(Unit) { model.cues.cheer() }
     var briefingOpen by remember { mutableStateOf(false) }
     val parts = completionTallyParts(ui.introduced, ui.strengthened, ui.reviewed)
-    val tally = if (parts.isEmpty()) {
-        chrome.sessionDoneTallyAllDone
-    } else {
+    val tally = if (parts.isEmpty()) null else {
         parts.joinToString(" · ") {
             when (it.kind) {
                 TallyPartKind.Introduced ->
@@ -62,76 +61,58 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             }
         }
     }
-    Column(
-        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text("🎉", fontSize = 88.sp) // card-parity: the done screen's own glyph, not a card prompt
-        val headline = ui.headline
-        val area = ui.grownArea
-        if (headline != null && area != null) {
-            // why: the area is LABELED rather than named in the sentence — what grew is
-            // what the learner can say, never the area itself.
-            Spacer(Modifier.height(8.dp))
-            Text(growthLine(chrome, headline), style = MaterialTheme.typography.titleMedium,
-                textAlign = TextAlign.Center)
-            Text("${model.areaEmoji(area)} ${model.areaTitle(area)}",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
-        Spacer(Modifier.height(16.dp))
-        Text(chrome.sessionDoneTitle, style = MaterialTheme.typography.headlineMedium)
-        Spacer(Modifier.height(8.dp))
-        Text(
-            tally,
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        if (ui.streakDays > 0) {
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        // why: the actions stay on the bottom edge however far the results scroll.
+        Column(
+            modifier = Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text("🎉", fontSize = 88.sp) // card-parity: the done screen's own glyph, not a card prompt
+            val headline = ui.headline
+            val area = ui.grownArea?.takeIf { headline != null }
+            // why: one title and one line under it — the growth claim where the round grew
+            // an area, with the area LABELED ahead of the tally rather than named in the
+            // claim: what grew is what the learner can say, never the area itself.
+            val label = area?.let { "${model.areaEmoji(it)} ${model.areaTitle(it)}" }
             Spacer(Modifier.height(16.dp))
-            // why: the day unit declines with the count (1 Tag / 2 Tage) — the same
-            // dayOne/dayMany pair the Home pill wears, so the two can never disagree;
-            // no "Serie:" prefix, matching the iOS summary's plain streak pill.
-            val unit = if (ui.streakDays == 1) chrome.commonDayOne else chrome.commonDayOther
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
-            ) {
-                // This screen is only reached by finishing a round, so today has reviews
-                // layer-ok: the run is safe until tomorrow — no other grade can stand here
-                StreakFlame(StreakHealth.Earned, MaterialTheme.typography.titleMedium)
-                Text("${ui.streakDays} $unit", style = MaterialTheme.typography.titleMedium)
-            }
+            Text(
+                if (headline != null && area != null) growthLine(chrome, headline) else chrome.sessionDoneTitle,
+                style = if (area != null) MaterialTheme.typography.headlineSmall else MaterialTheme.typography.headlineMedium,
+                textAlign = TextAlign.Center,
+            )
+            Spacer(Modifier.height(8.dp))
+            Text(
+                listOfNotNull(label, tally).joinToString(" · ").ifEmpty { chrome.sessionDoneTallyAllDone },
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+            )
+            // The streak itself is Home's; a record is what this round did to it.
             if (ui.streakIsRecord) {
+                Spacer(Modifier.height(16.dp))
                 Text(chrome.sessionDoneStreakRecord, style = MaterialTheme.typography.titleMedium,
                     color = Theme.colors.accent)
             }
+            if (ui.restSuggested) {
+                // why: a day the box itself is telling the learner to stop makes no growth
+                // claim — a screen that celebrates and is contradicted two lines down
+                // teaches the learner not to believe it.
+                Spacer(Modifier.height(16.dp))
+                Text(chrome.sessionDoneRestHint, style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
         }
-        if (ui.restSuggested) {
-            // why: a day the box itself is telling the learner to stop makes no growth
-            // claim — a screen that celebrates and is contradicted two lines down
-            // teaches the learner not to believe it.
-            Spacer(Modifier.height(16.dp))
-            Text(chrome.sessionDoneRestHint, style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
-        Spacer(Modifier.height(32.dp))
-        // why: the round is over and the words are warm — the one moment a conversation
-        // about them costs nothing to offer. It asks rather than instructs, and the
-        // screen's own answer to "what now" is still Fertig.
-        if (model.hasBriefing) {
-            TextButton(onClick = { briefingOpen = true }) { Text(chrome.sessionDoneTalk) }
-        }
-        // The offer stands only while there is something behind it: a refill that would
-        // come back dry leaves the button doing nothing when tapped.
-        if (ui.canPracticeMore) {
-            OutlinedButton(
-                onClick = { model.continueEndless() },
-                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
-                shape = MaterialTheme.shapes.small,
-            ) {
-                Text(chrome.sessionDoneKeepPracticing)
+        Spacer(Modifier.height(16.dp))
+        // why: stopping takes the full-width primary on the bottom edge, and the two ways
+        // of going on share one row above it. Talking asks rather than instructs — the
+        // words are warm, the one moment a conversation costs nothing to offer; practicing
+        // on stands only while a refill would not come back dry.
+        val talk = model.hasBriefing
+        if (talk || ui.canPracticeMore) {
+            Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
+                if (talk) SecondaryAction(chrome.sessionDoneTalk) { briefingOpen = true }
+                if (ui.canPracticeMore) SecondaryAction(chrome.sessionDoneKeepPracticing) { model.continueEndless() }
             }
             Spacer(Modifier.height(8.dp))
         }
@@ -144,6 +125,17 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         }
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
+}
+
+@Composable
+private fun RowScope.SecondaryAction(label: String, onClick: () -> Unit) {
+    OutlinedButton(
+        onClick = onClick,
+        modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp).pressSpring(),
+        shape = MaterialTheme.shapes.small,
+    ) {
+        Text(label, textAlign = TextAlign.Center, maxLines = 2)
+    }
 }
 
 /**

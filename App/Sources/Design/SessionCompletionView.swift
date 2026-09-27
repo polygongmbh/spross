@@ -11,15 +11,14 @@ struct SessionCompletionView: View {
     var newCount: Int = 0
     var graduatedCount: Int = 0
     let reviewCount: Int
-    let streakDays: Int
-    /// Today's run is the longest the box has ever held (`BoxStatistics`), so the
-    /// streak is worth naming rather than just counting.
+    /// Today's run is the longest the box has ever held (`BoxStatistics`) —
+    /// the one thing about the streak this round itself achieved.
     var streakIsRecord: Bool = false
     /// The area this round worked hardest, as it stood before the round and as
     /// it stands now. The round just moved it, so its tree is the one thing on
     /// this screen about THIS learner's box rather than about having finished.
     var grownArea: TreeTransition?
-    /// The area's emoji and name, under the headline.
+    /// The area's emoji and name, leading the line under the title.
     var grownAreaLabel: String = ""
     /// What the summary says over the tree (`AppModel.sessionHeadline`).
     var headline: GrowthHeadline?
@@ -54,12 +53,25 @@ struct SessionCompletionView: View {
     /// "3 neu · 2 gefestigt · 8 wiederholt" — which parts a finished round names,
     /// and in which order, is the box's (`completionTallyParts`); the words are
     /// ours. Built as `Text` so each part localizes via the environment locale.
-    private var summaryText: Text {
+    /// Nil when the round named nothing.
+    private var tallyText: Text? {
         let parts = completionTallyParts(introduced: Int32(newCount),
                                          consolidated: Int32(graduatedCount),
                                          reviews: Int32(reviewCount))
-        return parts.map { Self.partText($0, alone: parts.count == 1) }.joined() ?? Text("session.done.tally.allDone")
+        return parts.map { Self.partText($0, alone: parts.count == 1) }.joined()
     }
+
+    /// The one line under the title: the grown area's label, then the tally.
+    /// The area is LABELED rather than named in the title: the area did not
+    /// grow — what the learner can say did.
+    private var summaryText: Text {
+        guard showsTree else { return tallyText ?? Text("session.done.tally.allDone") }
+        let label = Text(verbatim: grownAreaLabel)
+        guard let tallyText else { return label }
+        return label + Text(verbatim: " · ") + tallyText
+    }
+
+    private var showsTree: Bool { grownArea.map { !$0.after.isBare } ?? false }
 
     private static func partText(_ part: TallyPart, alone: Bool) -> Text {
         let count = Int(part.count).formatted()
@@ -85,6 +97,12 @@ struct SessionCompletionView: View {
             }
             .scrollBounceBehavior(.basedOnSize)
         }
+        // why: the actions stay on the bottom edge however far the results scroll.
+        .safeAreaInset(edge: .bottom) {
+            SessionExitButtons(onDone: onDone, onTalk: onTalk,
+                               onPractice: canPracticeMore ? onPractice : nil)
+                .padding(.horizontal, Theme.spacing.xl)
+        }
         .background(Theme.colors.background.ignoresSafeArea())
         .overlay(ConfettiView(run: celebration).ignoresSafeArea())
         .contentShape(Rectangle())
@@ -104,23 +122,22 @@ struct SessionCompletionView: View {
             // why: the tree takes the hero slot when the round grew an area —
             // a party popper is the same picture whatever the learner did, and
             // two celebratory graphics on one screen is one too many.
-            if grownArea == nil { burstHero } else { grownAreaHero }
-            Text("session.done.title")
-                .font(Theme.typography.hero)
+            if showsTree { grownAreaHero } else { burstHero }
+            // why: one title — the growth claim where a tree stands over it,
+            // the plain "All done!" where the popper does.
+            Text(showsTree ? headlineKey : "session.done.title")
+                .font(showsTree ? Theme.typography.title : Theme.typography.hero)
                 .foregroundStyle(Theme.colors.textPrimary)
+                .multilineTextAlignment(.center)
             summaryText
                 .font(Theme.typography.body)
                 .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
-            VStack(spacing: Theme.spacing.sm) {
-                // why: reaching this screen means a round was just answered, so
-                // today has reviews by construction — the flame is lit or nothing.
-                StreakFlameView(days: streakDays, flame: .lit)
-                if streakIsRecord {
-                    Text("session.done.streakRecord")
-                        .font(Theme.typography.headline)
-                        .foregroundStyle(Theme.colors.accent)
-                }
+            // The streak itself is Home's; a record is what this round did to it.
+            if streakIsRecord {
+                Text("session.done.streakRecord")
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.accent)
             }
             if restSuggested {
                 Text("session.done.restHint")
@@ -129,16 +146,6 @@ struct SessionCompletionView: View {
                     .multilineTextAlignment(.center)
             }
             Spacer()
-            // why: the round is over and the words are warm — the one moment a
-            // conversation about them costs nothing to offer. It asks rather than
-            // instructs, and it sits under the celebration rather than in it: the
-            // screen's own answer to "what now" is still Fertig.
-            if let onTalk {
-                Button("session.done.talk", action: onTalk)
-                    .buttonStyle(SoftButtonStyle())
-            }
-            SessionExitButtons(onDone: onDone,
-                               onPractice: canPracticeMore ? onPractice : nil)
         }
         .frame(maxWidth: .infinity)
     }
@@ -156,37 +163,23 @@ struct SessionCompletionView: View {
         Sound.cheer()
     }
 
-    /// The area the round moved most, as it stood before this round and as it
-    /// stands now. The area is LABELED rather than named in a sentence: the
-    /// area did not grow — what the learner can say did — and a sentence that
-    /// swallowed "Die Küche" would claim the opposite while reading badly.
+    /// The area the round moved most, as it stood before this round and as it stands now.
     @ViewBuilder
     private var grownAreaHero: some View {
-        if let grownArea, !grownArea.after.isBare {
-            VStack(spacing: Theme.spacing.sm) {
-                GrowingTreeView(transition: grownArea,
-                                progress: burst || reduceMotion ? 1 : 0)
-                    .frame(height: OrchardLayout.heroHeight(grownArea.after))
-                    .animation(reduceMotion ? nil
-                                : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
-                               value: burst)
-                VStack(spacing: 2) {
-                    Text(headlineKey)
-                        .font(Theme.typography.headline)
-                        .foregroundStyle(Theme.colors.textPrimary)
-                    Text(verbatim: grownAreaLabel)
-                        .font(Theme.typography.caption)
-                        .foregroundStyle(Theme.colors.textSecondary)
-                }
-            }
-            .accessibilityElement(children: .combine)
+        if let grownArea {
+            GrowingTreeView(transition: grownArea,
+                            progress: burst || reduceMotion ? 1 : 0)
+                .frame(height: OrchardLayout.heroHeight(grownArea.after))
+                .animation(reduceMotion ? nil
+                            : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
+                           value: burst)
         }
     }
 
     /// What the round did, said about the tree standing above it — kern's claim
     /// (`growthHeadline`), which is read off what THIS area gained.
     /// The subject is always what the learner can say, never the area,
-    /// which is labeled separately below.
+    /// which is labeled on the line below.
     private var headlineKey: LocalizedStringKey {
         guard let headline else { return "session.done.growth.grown.0" }
         // why: the key is built as a STRING and only then wrapped. Interpolating
@@ -244,10 +237,10 @@ struct SessionCompletionView: View {
 // MARK: - Previews
 
 #Preview("Completion") {
-    SessionCompletionView(reviewCount: 18, streakDays: 7, canPracticeMore: true)
+    SessionCompletionView(reviewCount: 18, canPracticeMore: true, onTalk: {})
 }
 
 #Preview("Completion · dark") {
-    SessionCompletionView(reviewCount: 5, streakDays: 1)
+    SessionCompletionView(reviewCount: 5)
         .preferredColorScheme(.dark)
 }

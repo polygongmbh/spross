@@ -65,7 +65,6 @@ struct SessionView: View, LanguageNaming {
                 SessionCompletionView(newCount: model.sessionNew,
                                       graduatedCount: model.sessionGraduated,
                                       reviewCount: model.sessionReviews,
-                                      streakDays: model.stats?.streakDays ?? 0,
                                       streakIsRecord: model.streakIsRecord,
                                       grownArea: model.sessionGrowth,
                                       grownAreaLabel: model.sessionGrowth.map {

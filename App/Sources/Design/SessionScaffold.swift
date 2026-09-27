@@ -191,26 +191,42 @@ extension View {
 
 struct SessionExitButtons: View {
     var onDone: () -> Void
+    /// Left out where there is no box to brief (`AppModel.hasBriefing`).
+    var onTalk: (() -> Void)?
     /// Left out when there is nothing more to practice.
     var onPractice: (() -> Void)?
 
     var body: some View {
         VStack(spacing: Theme.spacing.md) {
             // why: the round that was planned is done — stopping takes the
-            // full-width primary, and going on is offered at its own smaller
-            // size below rather than as a second slab.
+            // full-width primary on the bottom edge, and the two ways of going
+            // on share one row above it rather than stacking as more slabs.
+            HStack(spacing: Theme.spacing.md) {
+                // why: the words are warm — the one moment a conversation about
+                // them costs nothing to offer; it asks rather than instructs.
+                if let onTalk { secondary("session.done.talk", onTalk) }
+                if let onPractice { secondary("session.done.keepPracticing", onPractice) }
+            }
+            // why: a label that wraps grows its own button only — the pair keeps one height.
+            .fixedSize(horizontal: false, vertical: true)
             Button(action: onDone) {
                 Text("common.done").frame(maxWidth: .infinity)
             }
             .buttonStyle(PrimaryButtonStyle())
-            if let onPractice {
-                Button("session.done.keepPracticing", action: onPractice)
-                    .buttonStyle(SoftButtonStyle())
-            }
         }
         // why: a celebration ending flush against the bottom edge reads as a
         // form to dismiss; the pair sits off it instead.
         .padding(.bottom, Theme.spacing.xl)
+    }
+
+    private func secondary(_ title: LocalizedStringKey, _ action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Text(title)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .buttonStyle(SoftButtonStyle())
     }
 }
 
