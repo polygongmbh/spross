@@ -60,14 +60,14 @@ private fun AppModel.isGrowing(cardId: String): Boolean =
 
 /**
  * Whether the card's own form can be heard RIGHT NOW — the one fact kern's
- * [producePrompt] cannot have. Four ways it cannot, and each keeps the source
+ * [producePrompt] cannot have. Three ways it cannot, and each keeps the source
  * prompt rather than putting up a card with nothing in it: no recording and no
- * voice, reading aloud switched off, a device turned down or muted by its own
- * volume, and TalkBack, which suppresses every autoplay so nothing may speak over
- * the screen reader.
+ * voice, reading aloud switched off, and TalkBack, which suppresses every autoplay
+ * so nothing may speak over the screen reader. A volume turned down is not one of
+ * them: the screen asks for it to come up instead (`VolumeHint`).
  */
 private fun AppModel.audible(card: Card): Boolean {
-    if (pronouncer.muted || pronouncer.readsScreenAloud || pronouncer.deviceSilenced) return false
+    if (pronouncer.muted || pronouncer.readsScreenAloud) return false
     val pronunciation = catalog?.pronunciation(card.target.lang, card.target.text) ?: return false
     return pronouncer.canPronounce(pronunciation)
 }

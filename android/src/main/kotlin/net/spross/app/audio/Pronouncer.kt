@@ -137,21 +137,20 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         }
 
     /**
-     * Whether the DEVICE itself would swallow a word right now — the media stream muted
-     * outright, or turned all the way down. A card whose only content is a sound must not
-     * be dealt onto a phone that has been told to be quiet, so this is the third mute the
-     * sound prompt asks about, beside [muted] and the screen reader.
+     * The media stream's volume over its whole range, 0 where the stream is muted outright —
+     * what a screen about to play words reads for its low-volume hint (kern `isVolumeLow`).
      *
      * The RINGER mode is deliberately not read: silencing the ringer leaves media playing
      * on Android, and a learner who silenced their notifications did not ask for a silent
-     * lesson. Read per question rather than watched — a volume key is pressed between
-     * cards, and the card already asked has its own way out.
+     * lesson. Read on demand rather than watched; the hint polls it.
      */
-    val deviceSilenced: Boolean
+    val volumeFraction: Double
         get() {
-            val manager = audioManager ?: return false
-            return manager.isStreamMute(AudioManager.STREAM_MUSIC) ||
-                manager.getStreamVolume(AudioManager.STREAM_MUSIC) == 0
+            val manager = audioManager ?: return 1.0
+            if (manager.isStreamMute(AudioManager.STREAM_MUSIC)) return 0.0
+            val max = manager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+            if (max <= 0) return 1.0
+            return manager.getStreamVolume(AudioManager.STREAM_MUSIC).toDouble() / max
         }
 
     /**

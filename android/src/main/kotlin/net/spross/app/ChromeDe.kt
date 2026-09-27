@@ -425,6 +425,8 @@ internal object ChromeDe : Chrome {
     override val sessionCopyMismatch = "Noch nicht ganz — das Wort steht oben."
     override val sessionSkip = "Überspringen"
     override val sessionHearCantListen = "Kannst du gerade nicht hören?"
+    override val commonVolumeLow = "Dein Handy ist sehr leise gestellt – mach lauter, um die " +
+        "Wörter zu hören."
     override val sessionCardPosition = "Karte %s von %s"
     override val a11yCountSessionTally = "%s richtig, %s schwer, %s daneben"
     override val homeDoneCaughtUp = "Gerade ist nichts dran"

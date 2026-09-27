@@ -15,7 +15,7 @@ Neighbors: the contract `../README.md` §3.
   so only the side the card asks FROM moves and one schedule still sees one kind of answer.
   `Sound` needs `growingStability` (`../README.md` §5), because this WITHDRAWS the meaning
   rather than adding support, plus the app's word that the form can be heard right now
-  (no recording and no voice, reading aloud off, the device silenced, or a screen reader —
+  (no recording and no voice, reading aloud off in the app, or a screen reader —
   each falls back to `Source` rather than putting up an empty card). Alternation divides the
   count by two like the synonym rotation: roles alternate per review, so `reviewCount % 2`
   is CONSTANT across one card's produce turns.

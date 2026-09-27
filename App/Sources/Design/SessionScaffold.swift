@@ -30,6 +30,9 @@ struct SessionScaffold<Content: View>: View {
     var counter: String?
     /// Opt-in: only runs that read words aloud show the switch for it.
     var showsMuteButton: Bool = false
+    /// A run whose sound no mute reaches (the letter drill): the low-volume
+    /// hint stands whatever the switch says.
+    var speaksPastMute: Bool = false
     var onClose: () -> Void = {}
     @ViewBuilder var content: Content
 
@@ -51,7 +54,10 @@ struct SessionScaffold<Content: View>: View {
 
     var body: some View {
         VStack(spacing: Theme.spacing.lg) {
-            topBar
+            VStack(spacing: 0) {
+                topBar
+                VolumeHint(active: speaksPastMute || (showsMuteButton && !Pronouncer.shared.muted))
+            }
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }

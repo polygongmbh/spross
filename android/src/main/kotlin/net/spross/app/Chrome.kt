@@ -449,6 +449,7 @@ interface Chrome {
     val sessionCopyMismatch: String
     val sessionSkip: String
     val sessionHearCantListen: String
+    val commonVolumeLow: String
     val sessionCardPosition: String
     val a11yCountSessionTally: String
 

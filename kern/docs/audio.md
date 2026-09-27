@@ -11,6 +11,11 @@ Engine contract: `../README.md`.
   or the produce prompt IS the sound; `OnReveal` for a produce card that asks for that very form.
   Both apps CONSUME the cue; neither re-derives `role == Recognize` for audio.
   Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../../docs/design.md`'s.
+- **How quiet is too quiet** — `isVolumeLow(fraction)` (`catalog/OutputVolume.kt`):
+  at or below `LOW_VOLUME_FRACTION`, a tenth of the device's volume range,
+  a screen about to play words asks for the volume to come up.
+  Each platform reads its own volume as a fraction of its range; the line is kern's.
+  It never holds a sound or a card back.
 - **What is spoken is the headword, and on the TARGET side its article with it** —
   never the rest of the rendering: the ♀ badge, the plural line and the area cue are grammar decoration
   and reach neither a synthesizer nor a lookup.

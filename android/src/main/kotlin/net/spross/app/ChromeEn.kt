@@ -417,6 +417,7 @@ internal object ChromeEn : Chrome {
     override val sessionCopyMismatch = "Not quite — the word is right above."
     override val sessionSkip = "Skip"
     override val sessionHearCantListen = "Can't listen right now?"
+    override val commonVolumeLow = "Your volume is almost off — turn it up to hear the words."
     override val sessionCardPosition = "Card %1\$s of %2\$s"
     override val a11yCountSessionTally = "%1\$s correct, %2\$s hard, %3\$s wrong"
     override val homeDoneCaughtUp = "Nothing's due right now"

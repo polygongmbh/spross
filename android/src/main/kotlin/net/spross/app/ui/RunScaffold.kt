@@ -67,6 +67,9 @@ import net.spross.kern.trainer.DrillTally
  * [showsMuteButton] is opt-in: only a run that reads words aloud owes the learner a way to
  * silence them here (iOS `SessionScaffold.showsMuteButton`) — a run that only offers a tap-to-hear
  * speaker needs no switch, since a tap already outranks the mute.
+ *
+ * Under the bar stands the low-volume hint ([VolumeHint]) wherever the run will make a sound
+ * by itself: a run with the switch while it is on, and a [speaksPastMute] run always.
  */
 @Composable
 fun RunTopBar(
@@ -78,7 +81,9 @@ fun RunTopBar(
     counter: String? = null,
     closeLabel: String = model.chrome.commonClose,
     showsMuteButton: Boolean = false,
-) {
+    /** A run whose sound the switch does not silence: the letter drill. */
+    speaksPastMute: Boolean = false,
+) = Column {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -95,6 +100,7 @@ fun RunTopBar(
         }
         if (showsMuteButton) ReadAloudSwitch(model)
     }
+    VolumeHint(model, active = speaksPastMute || (showsMuteButton && !model.pronouncer.muted))
 }
 
 /** The run's own tally as the bar counts it: how many of the judged answers came clean. */
@@ -217,6 +223,7 @@ fun DrillRunScaffold(
     /** False while something stands OVER the run — the number table, which the back gesture closes. */
     backLeaves: Boolean = true,
     showsMuteButton: Boolean = false,
+    speaksPastMute: Boolean = false,
     spacing: Dp = Theme.spacing.md,
     /** A timed run's clock and score, for the score line; null for every other run. */
     timed: String? = null,
@@ -228,7 +235,10 @@ fun DrillRunScaffold(
         modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
-        RunTopBar(model, outcomes, leave, counter = tally.counter(), showsMuteButton = showsMuteButton)
+        RunTopBar(
+            model, outcomes, leave, counter = tally.counter(),
+            showsMuteButton = showsMuteButton, speaksPastMute = speaksPastMute,
+        )
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(spacing),
@@ -256,6 +266,7 @@ fun DrillRunScaffold(
     announcesRecord: Boolean = false,
     backLeaves: Boolean = true,
     showsMuteButton: Boolean = false,
+    speaksPastMute: Boolean = false,
     spacing: Dp = Theme.spacing.md,
     timed: String? = null,
     body: @Composable ColumnScope.() -> Unit,
@@ -272,6 +283,7 @@ fun DrillRunScaffold(
     timed = timed,
     backLeaves = backLeaves,
     showsMuteButton = showsMuteButton,
+    speaksPastMute = speaksPastMute,
     spacing = spacing,
     body = body,
 )

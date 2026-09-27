@@ -78,6 +78,7 @@ struct LetterDrillView: View, LanguageNaming {
             if current != nil {
                 SessionScaffold.endless(tally: run.tally,
                                         outcomes: run.outcomes.map { SessionOutcome($0) },
+                                        speaksPastMute: true,
                                         onClose: { closeRun() }) {
                     drillContent
                 }

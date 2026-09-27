@@ -2151,6 +2151,24 @@
         }
       }
     },
+    "common.volumeLow" : {
+      "comment" : "Under the top bar of a screen about to play words while the device volume is at or near zero.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Handy ist sehr leise gestellt – mach lauter, um die Wörter zu hören."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your volume is almost off — turn it up to hear the words."
+          }
+        }
+      }
+    },
     "countries.ask.country" : {
       "comment" : "What a question ASKS. None of them names a language: the field's placeholder says which side is owed, and saying it here too would be the third telling.",
       "localizations" : {

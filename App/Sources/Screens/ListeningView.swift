@@ -222,16 +222,19 @@ private struct ListeningScaffold<Trailing: View, Content: View>: View {
 
     var body: some View {
         VStack(spacing: Theme.spacing.lg) {
-            HStack(spacing: Theme.spacing.md) {
-                SessionCloseButton(action: onClose)
-                Spacer(minLength: 0)
-                Text("listen.title")
-                    .font(Theme.typography.headline)
-                    .foregroundStyle(Theme.colors.textPrimary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
-                Spacer(minLength: 0)
-                trailing
+            VStack(spacing: 0) {
+                HStack(spacing: Theme.spacing.md) {
+                    SessionCloseButton(action: onClose)
+                    Spacer(minLength: 0)
+                    Text("listen.title")
+                        .font(Theme.typography.headline)
+                        .foregroundStyle(Theme.colors.textPrimary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                    Spacer(minLength: 0)
+                    trailing
+                }
+                VolumeHint(active: true)
             }
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

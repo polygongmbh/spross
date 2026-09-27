@@ -16,6 +16,7 @@ extension SessionScaffold {
     static func endless(tally: DrillTally,
                         outcomes: [SessionOutcome],
                         showsMuteButton: Bool = false,
+                        speaksPastMute: Bool = false,
                         onClose: @escaping () -> Void,
                         @ViewBuilder content: () -> Content) -> SessionScaffold {
         SessionScaffold(position: outcomes.count + 1,
@@ -23,6 +24,7 @@ extension SessionScaffold {
                         outcomes: outcomes,
                         counter: "\(tally.clean)/\(tally.judged)",
                         showsMuteButton: showsMuteButton,
+                        speaksPastMute: speaksPastMute,
                         onClose: onClose,
                         content: content)
     }

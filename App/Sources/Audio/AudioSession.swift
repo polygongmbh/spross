@@ -1,4 +1,5 @@
 import AVFoundation
+import SprossKern
 
 /// WHICH volume domain a sound plays in — and therefore whether the phone's
 /// ring/silent switch is allowed to swallow it.
@@ -59,17 +60,15 @@ enum AudioSession {
 
     private static let phonePorts: Set<AVAudioSession.Port> = [.builtInSpeaker, .builtInReceiver]
 
-    /// Whether the device would swallow a word right now — the media volume all
-    /// the way down, which is a phone told to be quiet as plainly as the switch
-    /// is. What it answers is used to decide whether a card whose only content
-    /// is a sound may be dealt at all, never to silence a sound of its own.
-    ///
-    /// It is HALF the question, and the honest half: the ring/silent switch's
-    /// position has no API (the doctrine above), so a phone silenced by the
-    /// switch under `.ambient` still reads as audible here. That card carries
-    /// its own way out — "can't listen right now?" puts the word on screen —
-    /// which is the one remedy available where the fact cannot be read.
-    static var silenced: Bool { AVAudioSession.sharedInstance().outputVolume < 0.01 }
+    /// Whether the device's volume is too low for a word to be heard (kern
+    /// `isVolumeLow`) — what a screen about to play one asks before it shows
+    /// `VolumeHint`, never a reason to silence or withhold a sound.
+    /// The ring/silent switch is not in it: its position has no API (the
+    /// doctrine above), so a sound-prompted card carries "can't listen right
+    /// now?" as the one way out where the fact cannot be read.
+    static var volumeIsLow: Bool {
+        SprossKern.isVolumeLow(fraction: Double(AVAudioSession.sharedInstance().outputVolume))
+    }
 
     /// Whether a listening run currently owns the session.
     private static var listening = false
