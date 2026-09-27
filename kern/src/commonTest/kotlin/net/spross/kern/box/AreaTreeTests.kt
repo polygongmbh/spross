@@ -57,13 +57,20 @@ class AreaTreeTests {
 
     @Test
     fun theRoundsAreaIsTheOneItAnsweredMostTiesToTheFirstInOrder() {
-        val state = Box.state(listOf(Box.word(1, area = "x"), Box.word(2, area = "y"), Box.word(3, area = "y")))
-        val after = mapOf("x" to tree(met = 1).copy(area = "x"), "y" to tree(met = 2).copy(area = "y"))
-        assertEquals("y", grownArea(state, listOf("w01", "w02", "w03"), listOf("x", "y"), emptyMap(), after)?.after?.area)
-        val tie = grownArea(state, listOf("w02", "w01"), listOf("y", "x"), emptyMap(), after)
+        val before = Box.state(listOf(Box.word(1, area = "x"), Box.word(2, area = "y"), Box.word(3, area = "y")))
+        var after = before
+        for (id in listOf("w01", "w02", "w03")) {
+            after = Box.inject(after, Box.sched(id, phase = CardPhase.Learning, stability = 0.5, dueMillis = future, lastReviewMillis = now))
+        }
+        fun grown(ids: List<String>, order: List<String>) = grownArea(before, after, ids, order, now, Box.TZ)
+
+        val most = grown(listOf("w01", "w02", "w03"), listOf("x", "y"))
+        assertEquals("y", most?.after?.area)
+        assertEquals(2, most?.after?.met)
+        val tie = grown(listOf("w02", "w01"), listOf("y", "x"))
         assertEquals("y", tie?.after?.area)
         assertTrue(tie!!.before.isBare, "an area the round opened stands on bare ground before")
-        assertNull(grownArea(state, emptyList(), listOf("x", "y"), emptyMap(), after))
+        assertNull(grown(emptyList(), listOf("x", "y")))
     }
 
     private fun claim(before: AreaTree, after: AreaTree, rest: Boolean = false) =

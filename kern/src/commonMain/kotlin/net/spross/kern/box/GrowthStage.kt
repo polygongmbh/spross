@@ -116,6 +116,14 @@ internal fun boxGrowth(state: BoxState, nowEpochMillis: Long, tzId: String): Lis
     return Inventory.joinedCards(state).map { growthOf(state, it.id, queued, today, tzId) }
 }
 
+/** [boxGrowth] for one area's cards alone — a summary drawing one tree walks only that tree. */
+internal fun areaGrowth(state: BoxState, area: String, nowEpochMillis: Long, tzId: String): List<CardGrowth> {
+    val queued = state.enqueued.toSet()
+    val today = dayKey(nowEpochMillis, tzId)
+    return state.cards.values.filter { it.area == area }
+        .map { growthOf(state, it.id, queued, today, tzId) }
+}
+
 /**
  * ONE card's standing, or null where the join does not carry it — the same ruling
  * [boxGrowth] reports for the whole box, asked by name.

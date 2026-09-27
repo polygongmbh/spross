@@ -68,8 +68,8 @@ extension AppModel {
         #endif
         // why: the summary shows what THIS round did to an area, so the before
         // has to be taken while it still is the before — one snapshot at the
-        // door, since which area the round will favour is not knowable yet.
-        treesBeforeSession = Dictionary(uniqueKeysWithValues: trees.map { ($0.area, $0) })
+        // door, since which area the round will favor is not knowable yet.
+        boxBeforeSession = box
         reduce(intent)
         // why: a run kern refused to start (no box, or an extra round that came back
         // empty) must not raise the cover over nothing.
@@ -161,9 +161,9 @@ extension AppModel {
         if let age = uitestOrchardAge { return SampleOrchard.round(age: age) }
         #endif
         guard let box, let run else { return nil }
-        return grownArea(state: box, answeredIds: run.answeredIds, areaOrder: areaNames,
-                         before: treesBeforeSession,
-                         after: Dictionary(uniqueKeysWithValues: trees.map { ($0.area, $0) }))
+        return grownArea(before: boxBeforeSession ?? box, after: box,
+                         answeredIds: run.answeredIds, areaOrder: areaNames,
+                         nowEpochMillis: Date().epochMillis, tzId: currentTzId())
     }
 
     /// What the summary says over the round's tree — kern's claim (`growthHeadline`).

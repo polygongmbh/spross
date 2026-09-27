@@ -112,25 +112,28 @@ fun areaTrees(state: BoxState, growth: List<CardGrowth>): Map<String, AreaTree> 
 }
 
 /**
- * The area a round worked hardest, before the round and now — null when the round touched
- * nothing joinable. Ties go to the area first in [areaOrder], so a round split evenly names
- * the same one every time; an area the round opened stands on [AreaTree.bare] before.
+ * The area a round worked hardest, as [before] (the box the round opened on) and [after]
+ * hold it — null when the round touched nothing joinable. Ties go to the area first in
+ * [areaOrder], so a round split evenly names the same one every time; an area the round
+ * opened stands on [AreaTree.bare] before. Walks that one area's cards, nothing else.
  */
 fun grownArea(
-    state: BoxState,
+    before: BoxState,
+    after: BoxState,
     answeredIds: List<String>,
     areaOrder: List<String>,
-    before: Map<String, AreaTree>,
-    after: Map<String, AreaTree>,
+    nowEpochMillis: Long,
+    tzId: String,
 ): TreeTransition? {
-    val counts = answeredIds.mapNotNull { state.cards[it]?.area }.groupingBy { it }.eachCount()
+    val counts = answeredIds.mapNotNull { after.cards[it]?.area }.groupingBy { it }.eachCount()
     var best: String? = null
     for (area in areaOrder) {
         if ((counts[area] ?: 0) > (best?.let { counts[it] } ?: 0)) best = area
     }
     val area = best ?: return null
-    val now = after[area] ?: return null
-    return TreeTransition(before[area] ?: AreaTree.bare(area), now)
+    fun tree(state: BoxState) = areaTrees(state, areaGrowth(state, area, nowEpochMillis, tzId))[area]
+    val now = tree(after) ?: return null
+    return TreeTransition(tree(before) ?: AreaTree.bare(area), now)
 }
 
 private class AreaTally {
