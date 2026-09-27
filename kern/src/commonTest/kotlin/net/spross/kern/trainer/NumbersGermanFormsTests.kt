@@ -101,4 +101,24 @@ class NumbersGermanFormsTests {
         assertCanonical("de", NumberValue.Ordinal(100), "einhundertste")
         assertAccepts("de", NumberValue.Ordinal(100), "hundertste")
     }
+
+    /** What a till says — Euro and Cent never pluralize, and the count before them is "ein". */
+    @Test
+    fun germanPricesAreReadTheWayATillSaysThem() {
+        val euro = Currency.Euro
+        assertCanonical("de", NumberValue.Price(3, 50, euro), "drei Euro fünfzig")
+        assertAccepts(
+            "de", NumberValue.Price(3, 50, euro),
+            "drei Euro und fünfzig Cent", "drei Euro fünfzig Cent", "drei fünfzig",
+        )
+        assertCanonical("de", NumberValue.Price(1, 50, euro), "ein Euro fünfzig")
+        assertAccepts("de", NumberValue.Price(1, 50, euro), "eins fünfzig")
+        assertCanonical("de", NumberValue.Price(1, 0, euro), "ein Euro")
+        assertRejects("de", NumberValue.Price(2, 0, euro), "zwei Euros")
+        assertCanonical("de", NumberValue.Price(0, 50, euro), "fünfzig Cent")
+        assertCanonical("de", NumberValue.Price(0, 1, euro), "ein Cent")
+        assertCanonical("de", NumberValue.Price(3, 5, euro), "drei Euro fünf Cent")
+        assertAccepts("de", NumberValue.Price(3, 5, euro), "drei Euro fünf", "drei Euro und fünf Cent")
+        assertRejects("de", NumberValue.Price(3, 5, euro), "drei fünf")
+    }
 }

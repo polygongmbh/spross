@@ -113,4 +113,22 @@ class NumbersItalianFormsTests {
         assertEquals(1L..100L, Numbers.pack("it").formLimits.ordinalRange)
         assertEquals((2..12).toSet(), Numbers.pack("it").formLimits.fractionDenominators)
     }
+
+    /** euro is invariable, and a count ending in uno apocopates before it. */
+    @Test
+    fun italianPricesAreEuroECents() {
+        val euro = Currency.Euro
+        assertCanonical("it", NumberValue.Price(3, 50, euro), "tre euro e cinquanta")
+        assertAccepts(
+            "it", NumberValue.Price(3, 50, euro),
+            "tre euro e cinquanta centesimi", "tre euro cinquanta", "tre e cinquanta",
+        )
+        assertCanonical("it", NumberValue.Price(1, 0, euro), "un euro")
+        assertCanonical("it", NumberValue.Price(2, 0, euro), "due euro")
+        assertCanonical("it", NumberValue.Price(21, 0, euro), "ventun euro")
+        assertAccepts("it", NumberValue.Price(21, 0, euro), "ventuno euro")
+        assertCanonical("it", NumberValue.Price(0, 50, euro), "cinquanta centesimi")
+        assertCanonical("it", NumberValue.Price(0, 1, euro), "un centesimo")
+        assertCanonical("it", NumberValue.Price(3, 5, euro), "tre euro e cinque centesimi")
+    }
 }

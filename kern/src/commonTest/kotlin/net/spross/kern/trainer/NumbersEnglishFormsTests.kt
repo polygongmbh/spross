@@ -98,4 +98,19 @@ class NumbersEnglishFormsTests {
         assertCanonical("en", NumberValue.Ordinal(100), "one hundredth")
         assertAccepts("en", NumberValue.Ordinal(100), "hundredth", "a hundredth")
     }
+
+    /** The full American reading; the British elliptical "three dollars fifty" does not grade. */
+    @Test
+    fun englishPricesNameTheDollarsAndTheCents() {
+        val dollar = Currency.Dollar
+        assertCanonical("en", NumberValue.Price(3, 50, dollar), "three dollars and fifty cents")
+        assertAccepts("en", NumberValue.Price(3, 50, dollar), "three dollars fifty cents", "three fifty")
+        assertRejects("en", NumberValue.Price(3, 50, dollar), "three dollars fifty")
+        assertCanonical("en", NumberValue.Price(1, 0, dollar), "one dollar")
+        assertAccepts("en", NumberValue.Price(1, 0, dollar), "a dollar")
+        assertCanonical("en", NumberValue.Price(0, 50, dollar), "fifty cents")
+        assertCanonical("en", NumberValue.Price(0, 1, dollar), "one cent")
+        assertCanonical("en", NumberValue.Price(3, 5, dollar), "three dollars and five cents")
+        assertAccepts("en", NumberValue.Price(21, 99, dollar), "twenty one dollars and ninety nine cents")
+    }
 }

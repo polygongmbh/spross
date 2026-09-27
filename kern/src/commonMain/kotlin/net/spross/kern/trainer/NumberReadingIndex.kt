@@ -38,13 +38,15 @@ internal sealed interface NumberIdentity {
  * **Language-keyed on purpose.** Unkeyed, `dix` would resolve to 10 on an English prompt where
  * it is not a word — harmless in effect, wrong in reasoning, and a trap for the next language.
  *
- * **Every drawable form kind is indexed except Decimal.** Most non-ordinal forms are an
+ * **Every drawable form kind is indexed except Decimal and Price.** Most non-ordinal forms are an
  * invariant wrapper word around an unmodified cardinal (`menos $n`, `$n percent`), which
  * the cardinal entries alone would answer for — but not all: Esperanto welds its
  * multiplicative (`sesfoje`), so wrapping kinds stay in. Decimal is the one kind that
  * CANNOT weld — every language speaks its separator as a word — and its digit tails are
  * cardinals below 100 the index already holds, so its thousand-value space would buy
  * nothing but build time on the oldest phone this app supports.
+ * A price is the same case twice over — its units and cents are cardinals around a currency
+ * word — so [NumberFormsAnswerSpace] never offers one.
  *
  * Built on first lookup, because the check it serves runs only on a miss: a run that
  * never misses a numeral never pays for the index at all.

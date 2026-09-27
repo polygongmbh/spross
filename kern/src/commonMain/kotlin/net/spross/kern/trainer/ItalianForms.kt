@@ -15,7 +15,7 @@ package net.spross.kern.trainer
  */
 internal object ItalianForms {
 
-    val LIMITS = FormLimits(forms = NumberForm.entries.toSet())
+    val LIMITS = FormLimits(forms = NumberForm.entries.toSet(), currency = Currency.Euro)
 
     fun reading(value: NumberValue): List<String> = when (value) {
         is NumberValue.Negative -> listOf("meno " + ItalianNumbers.cardinal(value.magnitude))
@@ -24,6 +24,7 @@ internal object ItalianForms {
         is NumberValue.Multiplicative -> multiplicative(value.n)
         is NumberValue.Fraction -> fraction(value.numerator, value.denominator)
         is NumberValue.Ordinal -> ordinal(value.n)
+        is NumberValue.Price -> price(value.units, value.cents)
     }
 
     /**
@@ -103,4 +104,32 @@ internal object ItalianForms {
         1L to "primo", 2L to "secondo", 3L to "terzo", 4L to "quarto", 5L to "quinto",
         6L to "sesto", 7L to "settimo", 8L to "ottavo", 9L to "nono", 10L to "decimo",
     )
+
+    /**
+     * What a till says: "tre euro e cinquanta". `euro` is invariable, `centesimo` is not,
+     * and before either noun a count ending in `uno` apocopates the way it does before
+     * `volte` (`ventun euro`, with `ventuno euro` beside it). The cents after the `e` stand
+     * alone; a single-digit count names its centesimi — "tre euro e cinque centesimi" —
+     * and the bare "tre e cinquanta" grades only where the cents run to two digits and
+     * the euros stay below a hundred.
+     */
+    private fun price(units: Long, cents: Long): List<String> {
+        val euros = counted(units).map { "$it euro" }
+        val centesimi = counted(cents).map { "$it " + if (cents == 1L) "centesimo" else "centesimi" }
+        if (cents == 0L) return euros
+        if (units == 0L) return centesimi
+        val tail = ItalianNumbers.cardinal(cents)
+        val named = euros.flatMap { e -> centesimi.map { "$e e $it" } }
+        val short = euros.flatMap { listOf("$it e $tail", "$it $tail") }
+        if (cents < 10) return named + short
+        if (units >= 100) return short + named
+        return short + named + "${ItalianNumbers.cardinal(units)} e $tail"
+    }
+
+    /** A count before a noun: `un`, and the apocope of every compound ending in `uno`. */
+    private fun counted(n: Long): List<String> {
+        if (n == 1L) return listOf("un")
+        val cardinal = ItalianNumbers.cardinal(n)
+        return if (cardinal.endsWith("uno")) listOf(cardinal.dropLast(1), cardinal) else listOf(cardinal)
+    }
 }

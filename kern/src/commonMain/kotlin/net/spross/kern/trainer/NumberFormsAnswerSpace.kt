@@ -11,6 +11,8 @@ package net.spross.kern.trainer
  * (1–100), every reduced fraction the pack allows, and ordinals over the pack's own range.
  * Values the ladder can never draw are left out — an all-zero fraction-digit string is
  * repaired at the source ([NumberFormLadder]), so no reading of "3,0" exists.
+ * Prices are left out whole: a price reads as two cardinals and a currency word,
+ * which the cardinal entries already answer for, and its space is a hundred thousand values.
  */
 internal object NumberFormsAnswerSpace {
 

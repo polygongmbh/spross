@@ -138,4 +138,20 @@ class NumbersUkrainianFormsTests {
         assertCanonical("uk", NumberValue.Ordinal(99), "дев'яносто дев'ятий")
         assertCanonical("uk", NumberValue.Ordinal(100), "сотий")
     }
+
+    /** гривня and копійка are feminine, and both take the three-way count form. */
+    @Test
+    fun ukrainianPricesCountHryvniasAndKopecks() {
+        val hryvnia = Currency.Hryvnia
+        assertCanonical("uk", NumberValue.Price(45, 50, hryvnia), "сорок п'ять гривень п'ятдесят копійок")
+        assertAccepts("uk", NumberValue.Price(45, 50, hryvnia), "сорок п'ять гривень п'ятдесят")
+        assertCanonical("uk", NumberValue.Price(1, 0, hryvnia), "одна гривня")
+        assertCanonical("uk", NumberValue.Price(2, 0, hryvnia), "дві гривні")
+        assertCanonical("uk", NumberValue.Price(5, 0, hryvnia), "п'ять гривень")
+        assertCanonical("uk", NumberValue.Price(21, 0, hryvnia), "двадцять одна гривня")
+        assertRejects("uk", NumberValue.Price(21, 0, hryvnia), "двадцять один гривня")
+        assertCanonical("uk", NumberValue.Price(0, 50, hryvnia), "п'ятдесят копійок")
+        assertCanonical("uk", NumberValue.Price(0, 1, hryvnia), "одна копійка")
+        assertCanonical("uk", NumberValue.Price(0, 2, hryvnia), "дві копійки")
+    }
 }

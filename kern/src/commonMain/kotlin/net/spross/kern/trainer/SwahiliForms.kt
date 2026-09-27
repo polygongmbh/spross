@@ -32,9 +32,11 @@ internal object SwahiliForms {
             NumberForm.Percent,
             NumberForm.Multiplicative,
             NumberForm.Fraction,
+            NumberForm.Price,
         ),
         fractionDenominators = setOf(2, 3, 4),
         ordinalRange = LongRange.EMPTY,
+        currency = Currency.Shilling,
     )
 
     fun reading(value: NumberValue): List<String> = when (value) {
@@ -44,6 +46,9 @@ internal object SwahiliForms {
         is NumberValue.Multiplicative -> multiplicative(value.n)
         is NumberValue.Fraction -> fraction(value.numerator, value.denominator)
         is NumberValue.Ordinal -> emptyList()
+        // why: shilingi is an N-class noun, whose concord is the bare numeral itself, and
+        // the head noun leads as it does in any Swahili noun phrase.
+        is NumberValue.Price -> SwahiliNumbers.acceptedVariants(value.units).map { "shilingi $it" }
     }
 
     /**

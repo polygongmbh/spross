@@ -12,8 +12,8 @@ package net.spross.kern.trainer
  */
 internal object FrenchForms {
 
-    /** All six, at the drill's own reach: -ième is productive and every ordinal to 100 derives. */
-    val LIMITS = FormLimits(forms = NumberForm.entries.toSet())
+    /** Every form, at the drill's own reach: -ième is productive and every ordinal to 100 derives. */
+    val LIMITS = FormLimits(forms = NumberForm.entries.toSet(), currency = Currency.Euro)
 
     fun reading(value: NumberValue): List<String> = when (value) {
         is NumberValue.Negative -> FrenchNumbers.variants(value.magnitude).map { "moins $it" }
@@ -22,6 +22,7 @@ internal object FrenchForms {
         is NumberValue.Multiplicative -> FrenchNumbers.feminineVariants(value.n).map { "$it fois" }
         is NumberValue.Fraction -> fraction(value.numerator, value.denominator)
         is NumberValue.Ordinal -> ordinal(value.n)
+        is NumberValue.Price -> price(value.units, value.cents)
     }
 
     /**
@@ -92,5 +93,29 @@ internal object FrenchForms {
             else -> word
         }
         return bare.removeSuffix("e") + "ième"
+    }
+
+    /**
+     * What a till says: "trois euros cinquante". `euro` and `centime` take the plural -s
+     * after every count above one, and the count before them keeps the -s of a multiplied
+     * `vingt`/`cent`, since a noun follows (`quatre-vingts euros`). The cents after the
+     * euros stand alone; a single-digit count names its centimes — "trois euros cinq centimes" —
+     * and the bare "trois cinquante" grades only where the cents run to two digits and
+     * the euros stay below a hundred.
+     */
+    private fun price(units: Long, cents: Long): List<String> {
+        fun counted(n: Long, noun: String) =
+            FrenchNumbers.variants(n).map { "$it $noun" + if (n == 1L) "" else "s" }
+        val euros = counted(units, "euro")
+        val centimes = counted(cents, "centime")
+        if (cents == 0L) return euros
+        if (units == 0L) return centimes
+        val tails = FrenchNumbers.variants(cents)
+        val named = euros.flatMap { e -> centimes.map { "$e $it" } }
+        val joined = euros.flatMap { e -> centimes.map { "$e et $it" } }
+        val short = euros.flatMap { e -> tails.map { "$e $it" } }
+        if (cents < 10) return named + joined + short
+        if (units >= 100) return short + joined + named
+        return short + joined + named + FrenchNumbers.variants(units).flatMap { u -> tails.map { "$u $it" } }
     }
 }

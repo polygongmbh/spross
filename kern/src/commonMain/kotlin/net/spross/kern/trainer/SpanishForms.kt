@@ -22,6 +22,7 @@ internal object SpanishForms {
     val LIMITS = FormLimits(
         forms = NumberForm.entries.toSet(),
         ordinalRange = 1L..12L,
+        currency = Currency.Euro,
     )
 
     fun reading(value: NumberValue): List<String> = when (value) {
@@ -31,6 +32,7 @@ internal object SpanishForms {
         is NumberValue.Multiplicative -> multiplicative(value.n)
         is NumberValue.Fraction -> fraction(value.numerator, value.denominator)
         is NumberValue.Ordinal -> ordinal(value.n)
+        is NumberValue.Price -> price(value.units, value.cents)
     }
 
     /**
@@ -134,5 +136,28 @@ internal object SpanishForms {
             else -> listOfNotNull(ORDINALS[n])
         }
         return forms.flatMap { listOf(it, feminine(it)) }
+    }
+
+    /**
+     * Euros the way Spain says a price: "tres euros con cincuenta". Euro and céntimo are
+     * masculine nouns, so a count before either apocopates ("un euro", "veintiún euros");
+     * the cents after "con" stand alone and keep the full cardinal. A single-digit cent
+     * count is named — "tres euros con cinco céntimos" — and the bare "tres con cincuenta"
+     * grades only where the cents run to two digits and the euros stay below a hundred.
+     */
+    private fun price(units: Long, cents: Long): List<String> {
+        fun counted(n: Long, noun: String) =
+            SpanishNumbers.cardinal(n, Form.Apocopated) + " " + noun + if (n == 1L) "" else "s"
+        val euros = counted(units, "euro")
+        val centimos = counted(cents, "céntimo")
+        if (cents == 0L) return listOf(euros)
+        if (units == 0L) return listOf(centimos)
+        val tail = SpanishNumbers.cardinal(cents)
+        val named = listOf("$euros con $centimos", "$euros y $centimos")
+        val short = listOf("$euros con $tail", "$euros $tail")
+        if (cents < 10) return named + short
+        if (units >= 100) return short + named
+        val bare = SpanishNumbers.cardinal(units)
+        return short + named + listOf("$bare con $tail", "$bare $tail")
     }
 }

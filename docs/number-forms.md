@@ -1,5 +1,5 @@
 # Number forms — what each language reads
-What each language reads for the numbers drill's six forms beyond the cardinal (negative, decimal, percentage, multiplicative, fraction, ordinal) and the source that decided it.
+What each language reads for the numbers drill's seven forms beyond the cardinal (negative, decimal, percentage, multiplicative, fraction, ordinal, price) and the source that decided it.
 Neighbors: drawing and prompting `../kern/docs/build.md`, grading `../kern/docs/grading.md`, a date's numeral `date-readings.md`.
 
 The code is one `<Lang>Forms.kt` per language
@@ -20,21 +20,34 @@ one spec file per language.
 
 ## Reach
 
-| | Forms drilled | Fraction denominators | Ordinals | Decimal mark |
-|---|---|---|---|---|
-| de | all six | 2–12 | 1–100 | `,` |
-| en | all six | 2–12 | 1–100 | `.` |
-| eo | all six | 2–12 | 1–100 | `,` |
-| es | all six | 2–12 | **1–12** | `,` |
-| fr | all six | 2–12 | 1–100 | `,` |
-| it | all six | 2–12 | 1–100 | `,` |
-| sw | five — **no ordinal** | **2–4** | — | `.` |
-| uk | all six | 2–12 | 1–100 | `,` |
+| | Forms drilled | Fraction denominators | Ordinals | Decimal mark | Price tag |
+|---|---|---|---|---|---|
+| de | all seven | 2–12 | 1–100 | `,` | `3,50 €` |
+| en | all seven | 2–12 | 1–100 | `.` | `$3.50` |
+| eo | all seven | 2–12 | 1–100 | `,` | `3,50 €` |
+| es | all seven | 2–12 | **1–12** | `,` | `3,50 €` |
+| fr | all seven | 2–12 | 1–100 | `,` | `3,50 €` |
+| it | all seven | 2–12 | 1–100 | `,` | `3,50 €` |
+| sw | six — **no ordinal** | **2–4** | — | `.` | `TSh 3500`, **whole sums** |
+| uk | all seven | 2–12 | 1–100 | `,` | `45,50 грн` |
 
 The ladder intersects its Sprosse with the pack's reach,
 so a form a language cannot read is never drawn.
 An exclusion costs the learner nothing but the Sprosse
 they would otherwise have spent on an invention.
+
+**A price is drawn in the currency the language's speakers price in**, and its tag is part of the prompt:
+the euro for de, eo, es, fr and it,
+the US dollar for en (the project's English is American),
+the hryvnia for uk, written `грн` as DSTU 3582:2013 abbreviates it and price tags print it,
+and the Tanzanian shilling for sw, the variety the Swahili sources here are Tanzanian for.
+A shilling price is a round sum in steps of 50 with no cents:
+*senti* exist on paper and nowhere in speech or on a tag.
+The same rule runs through every language's minor unit —
+a single-digit cent count is named (`drei Euro fünf Cent`),
+and the bare "units cents" reading a till uses (`drei fünfzig`) grades only
+where the cents run to two digits and the units stay below a hundred,
+where it can be heard as nothing but a price.
 
 The same reach feeds `NumberReadingIndex`, the drill's value check
 (`../kern/docs/grading.md`): every reading a pack can be asked is indexed
@@ -52,6 +65,7 @@ to the check and a slip there stays a forgiven typo.
 | Multiplicative | `dreimal` | `drei Mal`, `hundertmal` |
 | Fraction | `ein Drittel`, `ein halb` | `einhalb`, `die Hälfte`, `ein Siebentel` |
 | Ordinal | `zwanzigste` | `-er` / `-en` / `-es`, `siebente`, `hundertste` |
+| Price | `drei Euro fünfzig`, `ein Euro`, `fünfzig Cent` | `drei Euro (und) fünfzig Cent`, `drei fünfzig`, `eins fünfzig` |
 
 - The numeral before a noun is **`ein`, never `eins`** — `ein Prozent`, `einmal`, `ein Drittel`.
   `eins` survives only in the decimal, where nothing follows it (`eins Komma fünf`).
@@ -69,12 +83,17 @@ to the check and a slip there stays a forgiven typo.
   and the ordinal's `-te` → `-ste` switch is governed by the **last cardinal component**,
   not the value (`101.` is `hunderterste` again).
 
+- **Euro and Cent take no plural after a numeral** (`zwei Euro`), and both are nouns,
+  so the count before them is the attributive `ein` — while the cents AFTER the Euro stand alone
+  and keep `eins` (`ein Euro eins`), as does the bare till reading `eins fünfzig`.
+
 Sources: [Duden, Zahlwörter und ihre Schreibung](https://www.duden.de/sprachwissen/sprachratgeber/Zahlw%C3%B6rter-und-ihre-Schreibung)
 · [Duden, mal/Mal](https://www.duden.de/sprachwissen/sprachratgeber/malMal)
 · [Duden, Schreibung der Ordnungszahlen](https://www.duden.de/sprachwissen/sprachratgeber/Schreibung-der-Ordnungszahlen)
 · [Duden „siebte"](https://www.duden.de/rechtschreibung/siebte) vs [DWDS „siebente"](https://www.dwds.de/wb/siebente)
 · [Wikipedia, Zahlwort](https://de.wikipedia.org/wiki/Zahlwort) (fraction noun = ordinal stem + -el)
-· [Wiktionary, Zweitel](https://de.wiktionary.org/wiki/Zweitel).
+· [Wiktionary, Zweitel](https://de.wiktionary.org/wiki/Zweitel)
+· [Duden, Euro](https://www.duden.de/rechtschreibung/Euro) (no plural after a numeral).
 
 ## English
 
@@ -86,6 +105,7 @@ Sources: [Duden, Zahlwörter und ihre Schreibung](https://www.duden.de/sprachwis
 | Multiplicative | `once`, `twice`, `three times` | `one time`, `two times`, `thrice` |
 | Fraction | `one half`, `one quarter`, `two thirds` | `a third`, `one fourth`, bare `half`/`quarter`, the hyphenated `two-thirds` |
 | Ordinal | `twenty-first` | `twenty first`, `a hundredth` |
+| Price | `three dollars and fifty cents`, `one dollar` | `three dollars fifty cents`, `three fifty`, `a dollar` |
 
 - Everything routes through `EnglishNumbers.spellings()`,
   which adds the spaced twin of every hyphenated compound.
@@ -102,10 +122,15 @@ Sources: [Duden, Zahlwörter und ihre Schreibung](https://www.duden.de/sprachwis
   so the plural is unreachable and would only give the sweep work.
 - `thrice` is described as largely obsolete by its own source: accepted, never shown.
 
+- **A price is the full American reading**, `three dollars and fifty cents`.
+  The elliptical `three dollars fifty` is British and Australian rather than American,
+  so it does not grade; the till's `three fifty` does.
+
 Sources: [Wikipedia, English numerals](https://en.wikipedia.org/wiki/English_numerals)
 (the point-then-digits rule, the ordinal/partitive identity, `thrice`)
 · [Wiktionary, per cent](https://en.wiktionary.org/wiki/per_cent)
-· [Names for the number 0 in English](https://en.wikipedia.org/wiki/Names_for_the_number_0_in_English).
+· [Names for the number 0 in English](https://en.wikipedia.org/wiki/Names_for_the_number_0_in_English)
+· [Cambridge Dictionary blog, talking about money](https://dictionaryblog.cambridge.org/2015/03/11/three-for-a-quid-talking-about-money) (the British ellipsis).
 
 ## Esperanto
 
@@ -117,6 +142,7 @@ Sources: [Wikipedia, English numerals](https://en.wikipedia.org/wiki/English_num
 | Multiplicative | `tri fojojn` | `trifoje` | `tri fojoj`, `trioble` |
 | Fraction | `kvarono`, `du trionoj`, `dek-duono` | an explicit `unu kvarono` | `dek duono` |
 | Ordinal | `unua`, `dudek-unua` | the x-system `nauxa` | `dudek unua` |
+| Price | `tri eŭroj kaj kvindek cendoj`, `unu eŭro` | `tri eŭroj kvindek (cendoj)` | — |
 
 Esperanto is the one pack that names no reach of its own,
 and the empty `FormLimits` is the claim rather than an omission:
@@ -158,6 +184,10 @@ so nothing runs out at a denominator or a hundredth rank the way it does in de, 
   every reading built on six or seven is indexed to its value,
   so one typed for the other is refused as another number.
 
+- **`eŭro` and `cendo` are counted nouns and pluralize** (`tri eŭroj`, `kvindek cendoj`).
+  `cendo` is the generic minor unit of any currency; the specific `eŭrocendo` exists
+  but is not needed where the tag already says euro.
+
 Sources: [PMEG, Nombraj vortetoj — Formoj](https://bertilow.com/pmeg/gramatiko/nombroj/vortetoj/formoj.html)
 (both spelling rules, verbatim)
 · [PMEG, Miksitaj nombroj](https://bertilow.com/pmeg/gramatiko/nombroj/miksitaj.html)
@@ -176,6 +206,7 @@ Sources: [PMEG, Nombraj vortetoj — Formoj](https://bertilow.com/pmeg/gramatiko
 | Multiplicative | `una vez`, `veintiuna veces` | — | `un vez`, `veintiún veces` |
 | Fraction | `un tercio`, `dos tercios` | `una tercera parte`, `la mitad`, `medio`, `un undécimo` for `un onceavo` | — |
 | Ordinal | `undécimo` | feminine `-a`, `decimoprimero`, `décimo primero` | `onceavo` as an ordinal, bare `primer`/`tercer` |
+| Price | `tres euros con cincuenta`, `veintiún euros`, `un céntimo` | `tres euros cincuenta`, `… con/y cincuenta céntimos`, `tres con cincuenta` | `veintiuno euros` |
 
 - **The number 1 is read three different ways inside this one pack** —
   `uno por ciento` (unapocopated),
@@ -202,6 +233,10 @@ Sources: [PMEG, Nombraj vortetoj — Formoj](https://bertilow.com/pmeg/gramatiko
   12 is also the seam where the etymological `undécimo`/`duodécimo` stop.
   Fractions need no such cap: `-avo` is productive and `onceavo`/`doceavo` are school vocabulary.
 
+- **`euro` and `céntimo` are masculine nouns, so a count before either apocopates** —
+  `un euro`, `veintiún euros` — and `veintiuno euros` is the error that keeps it from grading.
+  The cents after `con` stand alone and keep the full cardinal (`tres euros con veintiuno`).
+
 Sources: [RAE, veintiuna personas / veintiuno por ciento](https://www.rae.es/espanol-al-dia/veintiuna-personas-veintiuno-por-ciento)
 · [DPD, ordinales](https://www.rae.es/dpd/ordinales)
 · [DPD, fraccionarios](https://www.rae.es/dpd/fraccionarios)
@@ -219,6 +254,7 @@ Sources: [RAE, veintiuna personas / veintiuno por ciento](https://www.rae.es/esp
 | Multiplicative | `une fois`, `vingt et une fois` | — | `un fois`, `vingt et un fois` |
 | Fraction | `un tiers`, `trois quarts`, `cinq douzièmes` | `demi`, `la moitié`, `une demie` | `un troisième`, `un quatrième` |
 | Ordinal | `premier`, `vingt et unième`, `quatre-vingt-dixième` | `première`, `second`/`seconde` | bare `unième` |
+| Price | `trois euros cinquante`, `quatre-vingts euros`, `cinquante centimes` | `trois euros (et) cinquante centimes`, `trois cinquante` | — |
 
 Every reading above also grades in the two spellings the cardinal has —
 see the spelling rule below — so `moins quarante cinq` and `vingt-et-un pour cent` are correct answers.
@@ -272,6 +308,9 @@ see the spelling rule below — so `moins quarante cinq` and `vingt-et-un pour c
   Digit-by-digit leads and the run-together reading of the fractional part grades beside it,
   as it does in German and Spanish; it is suppressed on a leading zero, where it would name a different number.
 
+- **`euro` and `centime` take the plural -s**, and a multiplied `vingt`/`cent` keeps its own
+  before them because a noun follows: `quatre-vingts euros`, `deux cents euros`.
+
 Sources: [Académie française, Questions de langue](https://www.academie-francaise.fr/questions-de-langue)
 (the `vingt`/`cent` agreement, the invariable `mille`, `mil` in dates, the 1990 hyphen rule)
 · [Vitrine linguistique de l'OQLF](https://vitrinelinguistique.oqlf.gouv.qc.ca/)
@@ -293,6 +332,7 @@ Sources: [Académie française, Questions de langue](https://www.academie-franca
 | Multiplicative | `una volta`, `ventun volte` | `ventuno volte` | `uno volta`, `doppio` |
 | Fraction | `un terzo`, `due terzi`, `un mezzo` | `mezzo`, `la metà`, `metà` | — |
 | Ordinal | `ventunesimo`, `ventitreesimo` | the feminine `-a` | `ventitresimo`, `ventisesimo` |
+| Price | `tre euro e cinquanta`, `ventun euro`, `un centesimo` | `tre euro e cinquanta centesimi`, `tre euro cinquanta`, `tre e cinquanta`, `ventuno euro` | — |
 
 - **Everything below a million is one word**, so the whole spelling rule lives in the SEAMS,
   and the generator applies them rather than tabulating the results:
@@ -331,10 +371,15 @@ Sources: [Académie française, Questions de langue](https://www.academie-franca
   One-word `percento` and `ventun per cento` are both one keystroke from a correct answer,
   so accepting either would teach the mistake.
 
+- **`euro` is invariable** (`due euro`) and `centesimo` is not;
+  before either a count ending in `uno` apocopates as it does before `volte`
+  (`ventun euro`, with `ventuno euro` beside it).
+
 Sources: [Treccani, *La grammatica italiana*, «numerali»](https://www.treccani.it/enciclopedia/numerali_(La-grammatica-italiana)/)
 · [Treccani, *La grammatica italiana*, «aggettivi numerali»](https://www.treccani.it/enciclopedia/aggettivi-numerali_(La-grammatica-italiana)/)
 · [Treccani, Vocabolario, «volta»](https://www.treccani.it/vocabolario/volta/)
-· [Accademia della Crusca, consulenza linguistica](https://accademiadellacrusca.it/it/consulenza).
+· [Accademia della Crusca, consulenza linguistica](https://accademiadellacrusca.it/it/consulenza)
+· [Crusca, elisione e troncamento](https://accademiadellacrusca.it/it/consulenza/elisione-e-troncamento-nellitaliano-contemporaneo/174) (`ventun euro`).
 
 ## Swahili
 
@@ -346,6 +391,7 @@ Sources: [Treccani, *La grammatica italiana*, «numerali»](https://www.treccani
 | Multiplicative | `mara tatu` | `maradufu` (2 only) |
 | Fraction | `nusu`, `theluthi`, `robo tatu` | `thuluthi`, an explicit `moja`, `sehemu moja ya tatu` |
 | Ordinal | *excluded* | — |
+| Price | `shilingi elfu tatu na mia tano` | the `na`-less `shilingi elfu tatu mia tano` |
 
 Every reading composes over `SwahiliNumbers.acceptedVariants`, never over `cardinal` alone,
 so the `na`-less spelling speakers routinely use
@@ -399,6 +445,9 @@ and the glossaries map "minus" to `kutoa`, i.e. to the operation —
 so neither reads a negative *value*.
 `desimali` is the noun for a decimal number, not the spoken mark.
 
+**Prices are `shilingi` + the sum.** The head noun leads the noun phrase,
+and *shilingi* is N-class, whose concord is the bare numeral — `shilingi elfu moja`.
+
 Sources: Almasi et al., *Swahili Grammar for Introductory and Intermediate Levels* (UPA 2014),
 [ch. 19](https://hist.hse.ru/data/2019/06/14/1486230008/19.%20More%20About%20Swahili%20Numbers.pdf)
 — ordinal concord, fractions, the reversed percentage word order, `nukta`/`pointi`
@@ -429,6 +478,7 @@ the elementary one renders "fifths" as `-a hamsini` (fifty)
 | Multiplicative | `три рази` | `двічі` (2), `тричі` (3), bare `раз` (1) | `удвічі`/`утричі`, `раза` |
 | Fraction | `одна друга`, `дві третіх` | `дві треті`, bare `половина`/`третина`/`чверть` | `одна третина`, bare `пів` |
 | Ordinal | `двадцять перший` | feminine and neuter | the plural `-і` |
+| Price | `сорок п'ять гривень п'ятдесят копійок`, `одна гривня`, `дві копійки` | `сорок п'ять гривень п'ятдесят` | `двадцять один гривня` |
 
 - **There is no `кома` register.**
   German reads 3,5 as *drei Komma fünf* and Ukrainian does not:
@@ -463,6 +513,10 @@ the elementary one renders "fifths" as `-a hamsini` (fifty)
   A `U+2019` slipping into a pack or a fixture
   silently fails every `п'ять`/`дев'ять` comparison.
 
+- **`гривня` and `копійка` are both feminine**, so both counts go through
+  `UkrainianNumbers.feminine` and `agree`: `одна гривня`, `дві гривні`, `п'ять гривень`,
+  and `двадцять один гривня` is the masculine error that must not grade.
+
 Sources: [Український правопис 2019 §107](https://slovnyk.ua/pravopys.php?prav_par=107)
 · [the 2007 §72 text still in circulation](https://pravopys.net/sections/72/)
 · ДВНЗ УДХТУ, [«Числівник»](https://udhtu.edu.ua/wp-content/uploads/2017/08/cb7b5dcf87b7fe87daaf74e8ede427f3.pdf)
@@ -474,7 +528,8 @@ Sources: [Український правопис 2019 §107](https://slovnyk.ua
 · [goroh.pp.ua, раз](https://www.goroh.pp.ua/Слововживання/раз)
 · [відсоток](https://goroh.pp.ua/Слововживання/відсоток)
 · [onlinecorrector, раза](https://onlinecorrector.com.ua/раза/)
-· [Правопис 2019 §36 on пів](https://webpen.com.ua/pages/Morphology_and_spelling/orthography_words_with_piv-poly.html).
+· [Правопис 2019 §36 on пів](https://webpen.com.ua/pages/Morphology_and_spelling/orthography_words_with_piv-poly.html)
+· [ZIB, the abbreviation грн](https://zib.com.ua/ua/130239-skorochennya_slova_grivnya_vid_leninskoi_spadschini_do_ameri.html) (DSTU 3582:2013).
 
 ## Still unverified
 

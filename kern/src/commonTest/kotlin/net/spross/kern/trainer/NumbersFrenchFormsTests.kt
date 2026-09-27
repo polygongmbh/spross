@@ -107,4 +107,21 @@ class NumbersFrenchFormsTests {
         assertCanonical("fr", NumberValue.Ordinal(3), "troisième")
         assertCanonical("fr", NumberValue.Ordinal(100), "centième")
     }
+
+    /** euro and centime pluralize, and a multiplied vingt or cent keeps its -s before them. */
+    @Test
+    fun frenchPricesAreReadTheWayATillSaysThem() {
+        val euro = Currency.Euro
+        assertCanonical("fr", NumberValue.Price(3, 50, euro), "trois euros cinquante")
+        assertAccepts(
+            "fr", NumberValue.Price(3, 50, euro),
+            "trois euros et cinquante centimes", "trois euros cinquante centimes", "trois cinquante",
+        )
+        assertCanonical("fr", NumberValue.Price(1, 0, euro), "un euro")
+        assertCanonical("fr", NumberValue.Price(21, 0, euro), "vingt et un euros")
+        assertCanonical("fr", NumberValue.Price(80, 0, euro), "quatre-vingts euros")
+        assertCanonical("fr", NumberValue.Price(200, 0, euro), "deux cents euros")
+        assertCanonical("fr", NumberValue.Price(0, 50, euro), "cinquante centimes")
+        assertCanonical("fr", NumberValue.Price(3, 5, euro), "trois euros cinq centimes")
+    }
 }

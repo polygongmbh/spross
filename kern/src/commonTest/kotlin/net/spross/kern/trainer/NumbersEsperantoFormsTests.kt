@@ -125,4 +125,18 @@ class NumbersEsperantoFormsTests {
             assertNull(Numbers.sample(kind, "de", 1, Random(7)).formKey, "$kind")
         }
     }
+
+    /** eŭro and cendo are counted nouns, so both pluralize. */
+    @Test
+    fun esperantoPricesNameBothAmounts() {
+        val euro = Currency.Euro
+        assertCanonical("eo", NumberValue.Price(3, 50, euro), "tri eŭroj kaj kvindek cendoj")
+        assertAccepts(
+            "eo", NumberValue.Price(3, 50, euro),
+            "tri eŭroj kvindek cendoj", "tri eŭroj kvindek", "tri euxroj kaj kvindek cendoj",
+        )
+        assertCanonical("eo", NumberValue.Price(1, 0, euro), "unu eŭro")
+        assertCanonical("eo", NumberValue.Price(0, 50, euro), "kvindek cendoj")
+        assertCanonical("eo", NumberValue.Price(0, 1, euro), "unu cendo")
+    }
 }

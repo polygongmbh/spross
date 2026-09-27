@@ -108,4 +108,14 @@ class NumbersSwahiliFormsTests {
         assertEquals(emptyList(), readings("sw", NumberValue.Ordinal(3)))
         assertEquals(emptyList(), readings("sw", NumberValue.Fraction(1, 5)))
     }
+
+    /** shilingi leads its N-class numeral, and a Tanzanian price is a whole sum. */
+    @Test
+    fun swahiliPricesAreShilingiAndTheSum() {
+        val shilling = Currency.Shilling
+        assertCanonical("sw", NumberValue.Price(3500, 0, shilling), "shilingi elfu tatu na mia tano")
+        assertAccepts("sw", NumberValue.Price(3500, 0, shilling), "shilingi elfu tatu mia tano")
+        assertCanonical("sw", NumberValue.Price(1000, 0, shilling), "shilingi elfu moja")
+        assertCanonical("sw", NumberValue.Price(50, 0, shilling), "shilingi hamsini")
+    }
 }

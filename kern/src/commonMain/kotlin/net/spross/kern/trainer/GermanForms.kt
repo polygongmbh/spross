@@ -13,7 +13,7 @@ package net.spross.kern.trainer
  */
 internal object GermanForms {
 
-    val LIMITS = FormLimits(forms = NumberForm.entries.toSet())
+    val LIMITS = FormLimits(forms = NumberForm.entries.toSet(), currency = Currency.Euro)
 
     fun reading(value: NumberValue): List<String> = when (value) {
         is NumberValue.Negative -> listOf("minus " + GermanNumbers.cardinal(value.magnitude))
@@ -22,6 +22,7 @@ internal object GermanForms {
         is NumberValue.Multiplicative -> multiplicative(value.n)
         is NumberValue.Fraction -> fraction(value.numerator, value.denominator)
         is NumberValue.Ordinal -> ordinal(value.n)
+        is NumberValue.Price -> price(value.units, value.cents)
     }
 
     /**
@@ -88,4 +89,25 @@ internal object GermanForms {
 
     private fun ordinal(n: Long): List<String> =
         ordinalStems(n).flatMap { stem -> ORDINAL_ENDINGS.map { stem + it } }
+
+    /**
+     * What a till says: "drei Euro fünfzig". Euro and Cent take no plural after a numeral,
+     * and both are nouns, so the count before them is the attributive "ein".
+     * The cents after the Euro stand alone, so they keep the cardinal ("ein Euro eins").
+     * A single-digit cent count names its Cent — "drei Euro fünf Cent" — and the bare
+     * "drei fünfzig" grades only where the cents run to two digits and the units stay
+     * below a hundred, where it can be heard as nothing but a price.
+     */
+    private fun price(units: Long, cents: Long): List<String> {
+        val euros = GermanNumbers.bareStems(attributive(units))
+        val counted = GermanNumbers.bareStems(attributive(cents)).map { "$it Cent" }
+        if (cents == 0L) return euros.map { "$it Euro" }
+        if (units == 0L) return counted
+        val named = euros.flatMap { e -> counted.map { "$e Euro $it" } }
+        val joined = euros.flatMap { e -> counted.map { "$e Euro und $it" } }
+        val short = euros.map { "$it Euro " + GermanNumbers.cardinal(cents) }
+        if (cents < 10) return named + short + joined
+        if (units >= 100) return short + named + joined
+        return short + named + joined + GermanNumbers.variants(units).map { "$it " + GermanNumbers.cardinal(cents) }
+    }
 }

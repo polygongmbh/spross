@@ -54,13 +54,14 @@ Engine contract: `../README.md`.
   that teaches neither as the truth.
   Years and clock times are never grouped — they keep the default by setting nothing.
   `NumbersReading.Form` asks the other ways a number is written — negatives, decimals,
-  percentages, multiplicatives, fractions, ordinals — over a ten-Sprosse ladder where each
+  percentages, multiplicatives, fractions, ordinals, prices — over a ten-Sprosse ladder where each
   Sprosse keeps everything below it, and its own `internal` model (`NumberValue`, `FormLimits`)
   never reaches the ObjC header. The Sprosse's forms are intersected with the language's, so a
   pack that cannot read one never draws it, and a pack that authors none offers no Forms
   drill at all (`Numbers.supportsForms`). **A Forms prompt is the one language-dependent
   prompt**: German shows `3,7` where English shows `3.7`, because the reading names the mark
-  (`Komma` · `point`) and a shared prompt would lie about the answer it grades — everything
+  (`Komma` · `point`) and a shared prompt would lie about the answer it grades, and a price
+  wears its language's own tag (`3,50 €` · `$3.50`, `FormLimits.currency`) — everything
   else stays neutral, including the ordinal mark `20.` and the `45 %` thin space.
   Fractions are drawn REDUCED: `2/4` would legitimately read both "zwei Viertel" and
   "ein halb", and no pack should carry that equivalence to grade its own drill.

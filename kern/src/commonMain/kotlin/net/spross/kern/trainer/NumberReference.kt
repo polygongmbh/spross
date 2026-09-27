@@ -41,7 +41,7 @@ data class ReferenceSection(val key: String, val entries: List<ReferenceEntry>)
  *
  * - `forms` — one worked example per form the language reads, in ladder order, so the
  *   notation a Forms run asks about (the minus, the decimal mark, the percent sign, the
- *   fraction bar, the ordinal dot) is written down somewhere other than a failed task.
+ *   fraction bar, the ordinal dot, the price tag) is written down somewhere other than a failed task.
  *   A form the language cannot read has no row: the same reach that keeps it out of the
  *   drill keeps it off the page.
  */
@@ -136,6 +136,7 @@ private fun formExamples(limits: FormLimits): List<NumberValue> =
             NumberForm.Multiplicative -> NumberValue.Multiplicative(3)
             NumberForm.Fraction -> fractionPool(limits, wide = false).firstOrNull()
             NumberForm.Ordinal -> ordinalExample(limits)
+            NumberForm.Price -> limits.currency?.example
         }
     }
 
@@ -186,6 +187,7 @@ private val NumberValue.components: List<Long>
         is NumberValue.Multiplicative -> listOf(n)
         is NumberValue.Fraction -> listOf(numerator, denominator)
         is NumberValue.Ordinal -> listOf(n)
+        is NumberValue.Price -> listOf(units, cents)
     }
 
 /**

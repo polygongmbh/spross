@@ -17,7 +17,7 @@ package net.spross.kern.trainer
  */
 internal object UkrainianForms {
 
-    val LIMITS = FormLimits(forms = NumberForm.entries.toSet())
+    val LIMITS = FormLimits(forms = NumberForm.entries.toSet(), currency = Currency.Hryvnia)
 
     fun reading(value: NumberValue): List<String> = when (value) {
         is NumberValue.Negative -> UkrainianNumbers.variants(value.magnitude).map { "мінус $it" }
@@ -26,6 +26,7 @@ internal object UkrainianForms {
         is NumberValue.Multiplicative -> multiplicative(value.n)
         is NumberValue.Fraction -> fraction(value.numerator, value.denominator)
         is NumberValue.Ordinal -> ordinal(value.n)
+        is NumberValue.Price -> price(value.units, value.cents)
     }
 
     /**
@@ -89,6 +90,22 @@ internal object UkrainianForms {
     }
 
     private val MULTIPLICATIVE_NOUNS = listOf(listOf("раз", "рази", "разів"))
+
+    /**
+     * гривня and копійка are both FEMININE, so both counts take the feminine numeral and
+     * [UkrainianNumbers.agree]'s three-way count form: "сорок п'ять гривень п'ятдесят копійок",
+     * "одна гривня", "дві копійки". Both amounts are named; the копійок left unsaid once the
+     * гривні are grades beside it.
+     */
+    private fun price(units: Long, cents: Long): List<String> {
+        fun counted(n: Long, one: String, few: String, many: String) =
+            UkrainianNumbers.feminine(n) + " " + UkrainianNumbers.agree(n, one, few, many)
+        val hryvnias = counted(units, "гривня", "гривні", "гривень")
+        val kopecks = counted(cents, "копійка", "копійки", "копійок")
+        if (cents == 0L) return listOf(hryvnias)
+        if (units == 0L) return listOf(kopecks)
+        return listOf("$hryvnias $kopecks", "$hryvnias " + UkrainianNumbers.feminine(cents))
+    }
 
     /**
      * Feminine numerator (the elided head is частина) plus the denominator's feminine

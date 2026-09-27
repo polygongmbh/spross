@@ -57,20 +57,22 @@ class NumberReferenceTests {
     /**
      * What a learner actually reads there — one worked example per mark, and the mark is
      * the point: the decimal row carries the language's own separator, so German's comma
-     * and English's point are two different rows of the same band.
+     * and English's point are two different rows of the same band, and the price row
+     * wears the language's own tag.
      */
     @Test
     fun theFormsBandNamesEveryMarkOnce() {
         val de = Numbers.reference("de").first { it.key == "forms" }.entries
-        assertEquals(listOf("-7", "3,5", "25 %", "3×", "1/2", "1."), de.map { it.value })
+        assertEquals(listOf("-7", "3,5", "25 %", "3×", "1/2", "1.", "3,50\u00A0€"), de.map { it.value })
         assertEquals(
             listOf("minus sieben", "drei Komma fünf", "fünfundzwanzig Prozent",
-                   "dreimal", "ein halb", "erste"),
+                   "dreimal", "ein halb", "erste", "drei Euro fünfzig"),
             de.map { it.reading },
         )
         val en = Numbers.reference("en").first { it.key == "forms" }.entries
         assertEquals("3.5", en[1].value)
         assertEquals("three point five", en[1].reading)
+        assertEquals("$3.50", en.last().value)
         // Swahili ranks nothing without the noun it ranks, so it gets no ordinal row.
         val sw = Numbers.reference("sw").first { it.key == "forms" }.entries
         assertTrue(sw.none { it.value.endsWith(".") }, sw.joinToString { it.value })
@@ -174,16 +176,16 @@ class NumberReferenceTests {
     @Test
     fun everyFormNamesTheWordItsLanguageAdds() {
         val expected = mapOf(
-            "de" to listOf("minus", "Komma", "Prozent", "mal", "ein halb", "erste"),
-            "en" to listOf("minus", "point", "percent", "times", "half", "first"),
-            "es" to listOf("menos", "coma", "por ciento", "veces", "un medio", "primero"),
-            "it" to listOf("meno", "virgola", "per cento", "volte", "un mezzo", "primo"),
-            "sw" to listOf("hasi", "nukta", "asilimia", "mara", "nusu", null),
-            "uk" to listOf("мінус", "цілих десятих", "відсотків", "рази", "одна друга", "перший"),
+            "de" to listOf("minus", "Komma", "Prozent", "mal", "ein halb", "erste", "Euro"),
+            "en" to listOf("minus", "point", "percent", "times", "half", "first", "dollars and cents"),
+            "es" to listOf("menos", "coma", "por ciento", "veces", "un medio", "primero", "euros con"),
+            "it" to listOf("meno", "virgola", "per cento", "volte", "un mezzo", "primo", "euro e"),
+            "sw" to listOf("hasi", "nukta", "asilimia", "mara", "nusu", null, "shilingi"),
+            "uk" to listOf("мінус", "цілих десятих", "відсотків", "рази", "одна друга", "перший", "гривні копійок"),
             // Esperanto adds affixes, not words: -ono makes a fraction and -a an ordinal,
             // and the derivation hands the learner exactly those.
-            "eo" to listOf("minus", "komo", "procentoj", "fojojn", "ono", "a"),
-            "fr" to listOf("moins", "virgule", "pour cent", "fois", "demi", "premier"),
+            "eo" to listOf("minus", "komo", "procentoj", "fojojn", "ono", "a", "eŭroj kaj cendoj"),
+            "fr" to listOf("moins", "virgule", "pour cent", "fois", "demi", "premier", "euros"),
         )
         for ((language, words) in expected) {
             assertEquals(

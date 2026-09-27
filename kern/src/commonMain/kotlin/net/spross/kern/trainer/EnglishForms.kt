@@ -14,7 +14,7 @@ package net.spross.kern.trainer
  */
 internal object EnglishForms {
 
-    val LIMITS = FormLimits(forms = NumberForm.entries.toSet())
+    val LIMITS = FormLimits(forms = NumberForm.entries.toSet(), currency = Currency.Dollar)
 
     fun reading(value: NumberValue): List<String> = EnglishNumbers.spellings(
         when (value) {
@@ -29,6 +29,7 @@ internal object EnglishForms {
             is NumberValue.Multiplicative -> multiplicative(value.n)
             is NumberValue.Fraction -> fraction(value.numerator, value.denominator)
             is NumberValue.Ordinal -> hundredVariants(ordinal(value.n))
+            is NumberValue.Price -> price(value.units, value.cents)
         },
     )
 
@@ -124,5 +125,22 @@ internal object EnglishForms {
         val cut = cardinal.indexOfLast { it == '-' || it == ' ' } + 1
         val last = cardinal.substring(cut)
         return cardinal.substring(0, cut) + (ORDINALS[last] ?: (last + "th"))
+    }
+
+    /**
+     * Dollars in the full American reading, "three dollars and fifty cents":
+     * the elliptical "three dollars fifty" is British rather than American, so it does not grade.
+     * The bare "three fifty" does, where the cents run to two digits and the dollars stay
+     * below a hundred — there it can be heard as nothing but a price.
+     */
+    private fun price(units: Long, cents: Long): List<String> {
+        val dollars = if (units == 1L) listOf("one dollar", "a dollar")
+        else hundredVariants(EnglishNumbers.cardinal(units)).map { "$it dollars" }
+        val counted = if (cents == 1L) listOf("one cent") else listOf(EnglishNumbers.cardinal(cents) + " cents")
+        if (cents == 0L) return dollars
+        if (units == 0L) return counted
+        val named = dollars.flatMap { d -> counted.flatMap { listOf("$d and $it", "$d $it") } }
+        if (cents < 10 || units >= 100) return named
+        return named + (EnglishNumbers.cardinal(units) + " " + EnglishNumbers.cardinal(cents))
     }
 }

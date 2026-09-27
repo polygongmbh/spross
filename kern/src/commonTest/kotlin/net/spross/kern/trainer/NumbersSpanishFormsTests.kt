@@ -139,4 +139,22 @@ class NumbersSpanishFormsTests {
         assertEquals(1L..12L, Numbers.pack("es").formLimits.ordinalRange)
         assertEquals(emptyList(), readings("es", NumberValue.Ordinal(20)))
     }
+
+    /** euro and céntimo are masculine nouns, so a count before either apocopates. */
+    @Test
+    fun spanishPricesAreEurosConCents() {
+        val euro = Currency.Euro
+        assertCanonical("es", NumberValue.Price(3, 50, euro), "tres euros con cincuenta")
+        assertAccepts(
+            "es", NumberValue.Price(3, 50, euro),
+            "tres euros cincuenta", "tres euros con cincuenta céntimos",
+            "tres euros y cincuenta céntimos", "tres con cincuenta", "tres cincuenta",
+        )
+        assertCanonical("es", NumberValue.Price(1, 0, euro), "un euro")
+        assertCanonical("es", NumberValue.Price(21, 0, euro), "veintiún euros")
+        assertRejects("es", NumberValue.Price(21, 0, euro), "veintiuno euros")
+        assertCanonical("es", NumberValue.Price(0, 50, euro), "cincuenta céntimos")
+        assertCanonical("es", NumberValue.Price(0, 1, euro), "un céntimo")
+        assertCanonical("es", NumberValue.Price(3, 5, euro), "tres euros con cinco céntimos")
+    }
 }

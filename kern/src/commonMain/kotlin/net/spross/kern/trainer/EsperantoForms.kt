@@ -12,7 +12,7 @@ package net.spross.kern.trainer
  */
 internal object EsperantoForms {
 
-    val LIMITS = FormLimits(forms = NumberForm.entries.toSet())
+    val LIMITS = FormLimits(forms = NumberForm.entries.toSet(), currency = Currency.Euro)
 
     fun reading(value: NumberValue): List<String> = when (value) {
         is NumberValue.Negative -> negative(value.magnitude)
@@ -21,6 +21,7 @@ internal object EsperantoForms {
         is NumberValue.Multiplicative -> multiplicative(value.n)
         is NumberValue.Fraction -> fraction(value.numerator, value.denominator)
         is NumberValue.Ordinal -> EsperantoNumbers.ordinalVariants(value.n)
+        is NumberValue.Price -> price(value.units, value.cents)
     }
 
     private fun negative(magnitude: Long): List<String> =
@@ -78,4 +79,23 @@ internal object EsperantoForms {
     /** The denominator noun closes its numeral up exactly as the ordinal does. */
     private fun denominators(d: Long): List<String> =
         listOf(EsperantoNumbers.cardinal(d).replace(' ', '-') + "ono")
+
+    /**
+     * `eŭro` and `cendo` are counted nouns and pluralize: "tri eŭroj kaj kvindek cendoj".
+     * Both amounts are named with `kaj` between them; dropping the `kaj`, or the `cendoj`
+     * once the euros are named, grades beside it.
+     */
+    private fun price(units: Long, cents: Long): List<String> {
+        fun counted(n: Long, noun: String) =
+            EsperantoNumbers.variants(n).map { "$it $noun" + if (n == 1L) "" else "j" }
+        val euros = counted(units, "eŭro")
+        val cendoj = counted(cents, "cendo")
+        if (cents == 0L) return EsperantoNumbers.spellings(euros)
+        if (units == 0L) return EsperantoNumbers.spellings(cendoj)
+        val readings = euros.flatMap { e ->
+            cendoj.flatMap { listOf("$e kaj $it", "$e $it") } +
+                EsperantoNumbers.variants(cents).map { "$e $it" }
+        }
+        return EsperantoNumbers.spellings(readings)
+    }
 }

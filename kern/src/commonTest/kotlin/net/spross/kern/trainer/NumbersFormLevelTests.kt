@@ -33,11 +33,11 @@ class NumbersFormLevelTests {
     }
 
     @Test
-    fun eachOfTheFirstSixSprossenAddsOneFormAndKeepsTheOnesBelow() {
-        for (level in 1..6) {
+    fun eachOfTheFirstSevenSprossenAddsOneFormAndKeepsTheOnesBelow() {
+        for (level in 1..7) {
             assertEquals(NumberForm.entries.take(level).toSet(), sprosseForms(level))
         }
-        for (level in 7..Numbers.maxLevel(NumbersReading.Form)) {
+        for (level in 8..Numbers.maxLevel(NumbersReading.Form)) {
             assertEquals(NumberForm.entries.toSet(), sprosseForms(level), "Sprosse $level widens, adds nothing")
         }
     }
@@ -112,11 +112,21 @@ class NumbersFormLevelTests {
                         is NumberValue.Fraction -> assertReduced(value, limits, "$language level $level")
                         is NumberValue.Ordinal ->
                             assertTrue(value.n in limits.ordinalRange, "$language level $level: $value")
+                        is NumberValue.Price -> assertPriced(value, limits, "$language level $level")
                         else -> Unit
                     }
                 }
             }
         }
+    }
+
+    /** A price is drawn in the pack's own currency, on its step, and is never nothing at all. */
+    private fun assertPriced(value: NumberValue.Price, limits: FormLimits, where: String) {
+        assertEquals(limits.currency, value.currency, where)
+        assertEquals(0L, value.units % value.currency.step, "$where: $value")
+        assertTrue(value.cents in 0..99, "$where: $value")
+        if (!value.currency.minorUnit) assertEquals(0L, value.cents, "$where: $value")
+        assertTrue(value.units + value.cents > 0, "$where: $value")
     }
 
     private fun assertReduced(value: NumberValue.Fraction, limits: FormLimits, where: String) {
@@ -146,7 +156,10 @@ class NumbersFormLevelTests {
         }
     }
 
-    /** Below Sprosse 8 a fraction is a unit fraction, and below Sprosse 9 an ordinal stays small. */
+    /**
+     * Below Sprosse 8 a fraction is a unit fraction, below Sprosse 9 an ordinal stays small,
+     * and below Sprosse 10 a price stays a shop's: at most twenty of the currency's steps.
+     */
     @Test
     fun theGentleSprossenStayGentle() {
         for (language in authored) {
@@ -158,6 +171,13 @@ class NumbersFormLevelTests {
             for (level in 1..8) {
                 for (value in draws(language, level)) {
                     if (value is NumberValue.Ordinal) assertTrue(value.n <= 12, "level $level: $value")
+                }
+            }
+            for (level in 1..9) {
+                for (value in draws(language, level)) {
+                    if (value is NumberValue.Price) {
+                        assertTrue(value.units in 1..20 * value.currency.step, "level $level: $value")
+                    }
                 }
             }
         }
@@ -202,6 +222,20 @@ class NumbersFormLevelTests {
         // The ordinal mark is the same in every language, like the group separator.
         assertEquals("20.", renderForm(NumberValue.Ordinal(20), ',', grouped = false))
         assertEquals("20.", renderForm(NumberValue.Ordinal(20), '.', grouped = false))
+    }
+
+    /** A price wears its currency's tag, and a whole amount shows no cents. */
+    @Test
+    fun aPriceIsWrittenTheWayItsTagIs() {
+        assertEquals("3,50\u00A0€", renderForm(NumberValue.Price(3, 50, Currency.Euro), ',', grouped = false))
+        assertEquals("0,05\u00A0€", renderForm(NumberValue.Price(0, 5, Currency.Euro), ',', grouped = false))
+        assertEquals("3\u00A0€", renderForm(NumberValue.Price(3, 0, Currency.Euro), ',', grouped = false))
+        assertEquals("$3.50", renderForm(NumberValue.Price(3, 50, Currency.Dollar), '.', grouped = false))
+        assertEquals("45,99\u00A0грн", renderForm(NumberValue.Price(45, 99, Currency.Hryvnia), ',', grouped = false))
+        assertEquals(
+            "TSh\u00A012\u202F500",
+            renderForm(NumberValue.Price(12_500, 0, Currency.Shilling), '.', grouped = true),
+        )
     }
 
     @Test
@@ -291,6 +325,12 @@ class NumbersFormLevelTests {
             Numbers.reversed(formTask("de", "3\u00D7")).accepted,
         )
         assertEquals(listOf("-45"), Numbers.reversed(formTask("de", "-45")).accepted)
+        // The tag is not the number: the bare amount grades, in either mark.
+        assertEquals(
+            listOf("3,50\u00A0€", "3,50 €", "3,50€", "3,50", "3.50"),
+            Numbers.reversed(formTask("de", "3,50\u00A0€")).accepted,
+        )
+        assertEquals(listOf("$3.50", "3.50", "3,50"), Numbers.reversed(formTask("en", "$3.50")).accepted)
     }
 
     @Test

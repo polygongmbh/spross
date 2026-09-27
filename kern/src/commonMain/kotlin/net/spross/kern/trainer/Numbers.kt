@@ -55,7 +55,7 @@ data class NumbersTask(
     val promptDisplay: String = prompt,
     /**
      * Which of the number forms this task asks, as a stable key ("negative", "decimal",
-     * "percent", "multiplicative", "fraction", "ordinal"); null for every other kind.
+     * "percent", "multiplicative", "fraction", "ordinal", "price"); null for every other kind.
      *
      * A key, not a word: kern names the rule and the app names it in the reader's own
      * language. It exists so the first sight of a form can be introduced the way a new
@@ -204,7 +204,7 @@ object Numbers {
      * - clock: the five nested Sprossen of [clockSprosse] — 1 full hours, 2 the quarters,
      *   3 five-minute steps to the half (:45 kept), 4 the whole five-minute grid
      *   (the to-the-hour countdown), 5 any minute.
-     * - forms: the ten Sprossen of [SprosseForms], each keeping everything below it.
+     * - forms: the ten Sprossen of [sprosseForms], each keeping everything below it.
      */
     fun sample(reading: NumbersReading, language: Language, level: Int, rng: Random): NumbersTask {
         val l = level.coerceIn(1, maxLevel(reading))

@@ -8,11 +8,12 @@ import kotlin.random.Random
  * | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
  * |---|---|---|---|---|---|---|---|---|----|
  * | −(1–20) | +decimal 1+1 | +percent (round) | +×(1–12) | +unit fractions d≤4 |
- * | +ordinal 1–12 | −(2–3 digits), decimal 2 places | any reduced n/d, d≤12 |
- * | ordinal 13–100, any percent | −(4 digits), decimal 2–3 whole digits, ×(to 100) |
+ * | +ordinal 1–12 | +price (to 20, round cents), −(2–3 digits), decimal 2 places |
+ * | any reduced n/d, d≤12 | ordinal 13–100, any percent |
+ * | −(4 digits), decimal 2–3 whole digits, ×(to 100), any price below 1000 |
  *
- * Sprossen 1–6 each introduce one form; 7–10 widen forms already in play, which is why
- * [SprosseForms] runs out after six entries. Every per-form draw is defined at every level,
+ * Sprossen 1–7 each introduce one form; 8–10 widen forms already in play, which is why
+ * [sprosseForms] runs out after seven entries. Every per-form draw is defined at every level,
  * so a form reached through the fallback below still has a range to draw from.
  */
 private val LADDER: List<NumberForm> = NumberForm.entries
@@ -47,6 +48,7 @@ internal fun drawForm(limits: FormLimits, level: Int, rng: Random, magnitudeDigi
         NumberForm.Multiplicative -> drawMultiplicative(level, rng)
         NumberForm.Fraction -> drawFraction(limits, level, rng)
         NumberForm.Ordinal -> drawOrdinal(limits, level, rng)
+        NumberForm.Price -> drawPrice(checkNotNull(limits.currency), level, rng)
     }
 }
 
@@ -54,6 +56,7 @@ internal fun drawForm(limits: FormLimits, level: Int, rng: Random, magnitudeDigi
 private fun drawable(form: NumberForm, limits: FormLimits): Boolean = when (form) {
     NumberForm.Fraction -> fractionPool(limits, wide = true).isNotEmpty()
     NumberForm.Ordinal -> !ordinalPool(limits).isEmpty()
+    NumberForm.Price -> limits.currency != null
     else -> true
 }
 
@@ -139,6 +142,25 @@ private fun drawOrdinal(limits: FormLimits, level: Int, rng: Random): NumberValu
     val narrowed = pool.first..minOf(pool.last, 12L)
     val range = if (level >= 9 || narrowed.isEmpty()) pool else narrowed
     return NumberValue.Ordinal(rng.nextLong(range.first, range.last + 1))
+}
+
+/**
+ * The endings a price tag actually shows until Sprosse 10 — the round ones and the
+ * psychological ones — so the first prices read like a shop's rather than like a sum.
+ */
+private val ROUND_CENTS = listOf(0L, 10L, 20L, 25L, 49L, 50L, 75L, 90L, 95L, 99L)
+
+/**
+ * Whole units to twenty with a tag's endings, then any amount below a thousand units
+ * with any cents. Counted in the currency's [Currency.step], so a shilling price is a
+ * round sum; an amount of nothing at all is repaired to a coin rather than retried.
+ */
+private fun drawPrice(currency: Currency, level: Int, rng: Random): NumberValue.Price {
+    val wide = level >= 10
+    val units = (if (wide) rng.nextLong(0, 1_000) else rng.nextLong(1, 21)) * currency.step
+    if (!currency.minorUnit) return NumberValue.Price(maxOf(units, currency.step), 0, currency)
+    val cents = if (wide) rng.nextLong(0, 100) else ROUND_CENTS[rng.nextInt(ROUND_CENTS.size)]
+    return NumberValue.Price(units, if (units == 0L && cents == 0L) 50 else cents, currency)
 }
 
 /** There is no zeroth of anything: the pack's range is floored at 1. */
