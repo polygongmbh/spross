@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import kotlin.random.Random
 import net.spross.kern.catalog.RealCatalog
 import net.spross.kern.model.Language
 
@@ -31,6 +32,9 @@ internal object RealFrames {
      * One hand-picked task per template, whatever its slot takes — what the structural
      * sweeps want, and the reason they no longer spell every slot value as a [Long].
      */
+    /** A fixed number of [target]'s own plan, so a sweep reads the same one every run. */
+    fun phone(target: Language): String = checkNotNull(Numbers.pack(target).phonePlan).draw(Random(7))
+
     fun instantiate(
         template: PhraseTemplate,
         value: Long,
@@ -40,6 +44,7 @@ internal object RealFrames {
     ): NumbersTask = when (template.slotKind) {
         NumbersReading.Clock -> PhraseSlots.instantiate(template, hour, minute)
         NumbersReading.Fraction -> PhraseSlots.instantiate(template, fraction.first, fraction.second)
+        NumbersReading.Phone -> PhraseSlots.instantiate(template, phone(template.target))
         else -> PhraseSlots.instantiate(template, value)
     }
 }

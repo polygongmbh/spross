@@ -10,17 +10,6 @@ Parked work is not an issue: its own doc says it is parked.
 
 ## Engine & scheduling
 
-- The letter drill's dictation Sprosse is dealt on a device silenced by its own volume slider
-  and has no "can't listen right now?" of its own (`LetterDrillAvailability.report` takes only
-  `hasVoice`; `AudioSession.silenced` exists but is unread there), where
-  `docs/read-aloud.md:139-144` rules the drill exempt from mute — does that exemption extend
-  to a zero volume slider, or does the dictation Sprosse get its own way out?
-- The number forms have no Sprosse for prices/currency or digit-by-digit readings (a phone
-  number, a PIN), two families a learner meets constantly and the ladder never asks, each an
-  enum case, a `draw` arm, a `formReading` arm per pack and a Sprosse row
-  (`kern/src/commonMain/kotlin/net/spross/kern/trainer/NumberForms.kt`) — do both become
-  Sprossen, and which first?
-- `UkrainianClock` builds its minute grammar three times (`cores`, `displayText`, `gloss`); `cores` should return the display reading first and the two gloss alternatives next, so display and gloss read positions instead of rebuilding.
 - Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch, but revisit the cap
   if the active box outgrows it (`../kern/docs/snapshots.md`).
 - Real hardware has to time the assembled dates accepted set, an uncapped cross-product graded
@@ -29,12 +18,6 @@ Parked work is not an issue: its own doc says it is parked.
   `NumberReadingIndex.INDEXED_CARDINALS` states the bound precedent).
 
 ## App & UX
-
-- The listening drill deals its words in an order nobody tuned for audibility: the owner expected
-  the first words to come in catalog order and heard them skip, because seeding is pure catalog
-  order (`Growth.kt`) with no audibility term, so a silent card takes its slot and the run sounds
-  shuffled. Either the drill's queue prefers cards a voice can actually say, or the ordering
-  expectation is wrong and the drill says so — a ruling, not a bug.
 
 - The letters ladder files no answered-out Sprossen (it has no storage key at all), so its
   circles carry only the entry mark where the atlas and calendar wear a record
@@ -62,11 +45,6 @@ Parked work is not an issue: its own doc says it is parked.
   duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
   screens, a second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`
   and a panel cut by hand at 15 sites — and still stands at 46 groups after six clusters shipped.
-- The credits screen names the target-language word every bundled recording says and offers
-  no way to hear one, since the row tap opens the file's Commons page
-  (`App/Sources/Screens/CreditsView.swift` `fileRow`) and `Components.kt:255` /
-  `SpeakerIcon.swift:6` forbid a per-row speaker — accept that credits rows do not play, or
-  exempt this screen?
 - The letter drill's choice Sprossen diverge: Android renders a correction line under the
   tiles (caption + correct form + speaker, `ui/LetterDrillStages.kt:37-53`), iOS bare tiles
   that already mark the answer (`LetterDrillView+Stages.swift:100-130`) — which is right?

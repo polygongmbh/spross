@@ -63,6 +63,7 @@
     "de": "„avere bisogno di“ regiert die Menge, statt „mi serve/mi servono“, das sich nach ihr richten müsste.",
     "en": "„avere bisogno di“ governs the quantity, unlike „mi serve/mi servono“, which would have to agree with it."
    }
-  }
+  },
+  "my-phone-number-is": { "text": "Il mio numero di telefono è {slot}." }
  }
 }

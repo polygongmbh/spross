@@ -57,6 +57,7 @@
     "de": "Diktat-Rahmen ohne „Datum“: mwaka/tarehe vor der blanken Kardinalzahl liest sich nicht als Jahresangabe."
    }
   },
-  "write-the-year": { "text": "Andika, tafadhali: {slot}.", "accepts": ["Tafadhali andika: {slot}."] }
+  "write-the-year": { "text": "Andika, tafadhali: {slot}.", "accepts": ["Tafadhali andika: {slot}."] },
+  "my-phone-number-is": { "text": "Namba yangu ya simu ni {slot}." }
  }
 }

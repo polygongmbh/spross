@@ -7,13 +7,14 @@ import net.spross.kern.model.Language
  * What a task asks the learner to READ. Appended, never reordered — nothing serializes the
  * ordinal, but the app switches on it.
  *
- * Four of these are read on their own. [Fraction] is the exception and is never sampled
- * standalone ([Numbers.fraction]): it exists so a FRAME can take one, a fraction reading as a
- * bare noun where a whole number form cannot. Which of the five a phrase slot may hold is
+ * Four of these are read on their own. [Fraction] and [Phone] are never sampled standalone:
+ * they exist so a FRAME can take one — a fraction reading as a bare noun where a whole number
+ * form cannot ([Numbers.fraction]), a phone number in its country's digit grouping
+ * ([Numbers.phone]). Which of them a phrase slot may hold is
  * [Numbers.supportsSlot], and the catalog authors the choice as a `"slot"` — so slot names
  * that narrower set, never this enum.
  */
-enum class NumbersReading { Cardinal, Year, Clock, Form, Fraction }
+enum class NumbersReading { Cardinal, Year, Clock, Form, Fraction, Phone }
 
 /**
  * The glyph a reading wears, wherever a run needs a face rather than a word — the hub's
@@ -26,6 +27,7 @@ fun numbersReadingEmoji(reading: NumbersReading): String = when (reading) {
     NumbersReading.Year -> "📅"
     NumbersReading.Clock -> "🕐"
     NumbersReading.Form, NumbersReading.Fraction -> "➗"
+    NumbersReading.Phone -> "📞"
 }
 
 /**
@@ -156,6 +158,19 @@ object Numbers {
     }
 
     /**
+     * The phone number a phone slot asks about, grouped the way the answer language's
+     * country writes it ([PhonePlan]) — frames only, like [fraction].
+     */
+    internal fun phone(digits: String, language: Language): NumbersTask {
+        val plan = requireNotNull(pack(language).phonePlan) { "no phone plan for \"$language\"" }
+        val accepted = plan.readings(digits)
+        return NumbersTask(
+            NumbersReading.Phone, language, digits, accepted, accepted[0],
+            promptDisplay = plan.grouped(digits),
+        )
+    }
+
+    /**
      * Deterministic sampling with an injected RNG. Biases ported from the
      * prototype: numbers favor 2–3 digits, years cluster around 1950–2050
      * with rarer historic outliers, clock uses any hour and any minute.
@@ -182,18 +197,24 @@ object Numbers {
         NumbersReading.Clock -> CLOCK_MAX_LEVEL
         NumbersReading.Form -> FORMS_MAX_LEVEL
         NumbersReading.Fraction -> FRACTION_MAX_LEVEL
+        NumbersReading.Phone -> 1
     }
 
     /**
      * Whether [language] can fill this slot kind at all. A cardinal, a year and a clock
-     * come with every pack; a fraction needs the pack to READ one, so a frame taking that
-     * slot simply never joins where it cannot be answered — the registry rule again.
+     * come with every pack; a fraction needs the pack to READ one and a phone number its
+     * [PhonePlan], so a frame taking that slot simply never joins where it cannot be
+     * answered — the registry rule again.
      */
     fun supportsSlot(reading: NumbersReading, language: Language): Boolean {
         val pack = trainerPacks[language] ?: return false
-        if (reading != NumbersReading.Fraction) return reading != NumbersReading.Form
-        return NumberForm.Fraction in pack.formLimits.forms &&
-            pack.formLimits.fractionDenominators.any { it >= 3 }
+        return when (reading) {
+            NumbersReading.Cardinal, NumbersReading.Year, NumbersReading.Clock -> true
+            NumbersReading.Form -> false
+            NumbersReading.Fraction -> NumberForm.Fraction in pack.formLimits.forms &&
+                pack.formLimits.fractionDenominators.any { it >= 3 }
+            NumbersReading.Phone -> pack.phonePlan != null
+        }
     }
 
     /**
@@ -223,6 +244,7 @@ object Numbers {
             is SlotValue.Year -> year(value.y, language)
             is SlotValue.Time -> clock(value.hour, value.minute, language)
             is SlotValue.Part -> fraction(value.numerator, value.denominator, language)
+            is SlotValue.Phone -> phone(value.digits, language)
         }
 
     /**
@@ -318,11 +340,14 @@ object Numbers {
             NumbersReading.Form -> formDigitForms(task.prompt, task.promptDisplay)
             // A fraction has one notation and no separator to get wrong.
             NumbersReading.Fraction -> listOf(value)
+            // why: the prompt showed the country's grouping, so its spaces must grade too.
+            NumbersReading.Phone -> listOf(value, phone(value, task.language).promptDisplay)
         }
         // The reveal shows the readable rendering, which is always one of the accepted ones.
         val reveal = when (task.kind) {
             NumbersReading.Cardinal -> groupDigits(value)
             NumbersReading.Form -> task.promptDisplay
+            NumbersReading.Phone -> phone(value, task.language).promptDisplay
             else -> value
         }
         return NumbersTask(

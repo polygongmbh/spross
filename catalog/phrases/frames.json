@@ -16,5 +16,6 @@
  { "slug": "learning-since-year", "slot": "years" },
  { "slug": "repeat-the-year", "slot": "years" },
  { "slug": "write-the-year", "slot": "years" },
- { "slug": "i-need-n-kilo-of-flour", "slot": "fraction" }
+ { "slug": "i-need-n-kilo-of-flour", "slot": "fraction" },
+ { "slug": "my-phone-number-is", "slot": "phone" }
 ]

@@ -119,6 +119,9 @@ class PhraseLevelTests {
                             val parts = slot.prompt.split("/").map { it.toLong() }
                             PhraseSlots.instantiate(template, parts[0], parts[1])
                         }
+                        NumbersReading.Phone -> PhraseSlots.instantiate(
+                            template, Numbers.sample(template.slotKind, template.target, level, b).prompt,
+                        )
                         else -> {
                             val slot = Numbers.sample(template.slotKind, template.target, level, b)
                             PhraseSlots.instantiate(template, value = slot.prompt.toLong())

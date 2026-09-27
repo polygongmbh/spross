@@ -230,6 +230,7 @@ internal object CatalogParser {
                 "years" -> NumbersReading.Year
                 "clock" -> NumbersReading.Clock
                 "fraction" -> NumbersReading.Fraction
+                "phone" -> NumbersReading.Phone
                 else -> parseError(path, "$slug: unknown slot \"$raw\"")
             }
             CatalogFrame(slug, slot)

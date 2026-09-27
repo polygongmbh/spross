@@ -38,7 +38,7 @@ Engine contract: `../README.md`.
   the answer side's number words, so a language without a pack can only ever supply prompts.
   A frame whose slot the target cannot fill drops out on the same rule
   (`Numbers.supportsSlot`): a cardinal, a year and a clock come with every pack,
-  a `fraction` needs the pack to READ one.
+  a `fraction` needs the pack to READ one, a `phone` its `PhonePlan`.
   Reverse mode is the same template read the other way, for any pair, not only `target == de`.
   German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
   Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.

@@ -35,7 +35,7 @@ object PhraseSlots {
                 ?.let { Numbers.concordedNumber(value, it, template.target) }
                 ?: Numbers.drillNumber(value, template.target)
             NumbersReading.Year -> Numbers.year(value, template.target)
-            NumbersReading.Clock, NumbersReading.Form, NumbersReading.Fraction ->
+            NumbersReading.Clock, NumbersReading.Form, NumbersReading.Fraction, NumbersReading.Phone ->
                 throw IllegalArgumentException("no phrase slot generator for ${template.slotKind}")
         }
         return compose(template, slot, value)
@@ -49,6 +49,15 @@ object PhraseSlots {
         require(template.slotKind == NumbersReading.Fraction) { "only a fraction template takes n/d" }
         val slot = Numbers.fraction(numerator, denominator, template.target)
         return compose(template, slot, value = null)
+    }
+
+    /**
+     * Phone templates. [digits] is the bare number, as the answer language's [PhonePlan]
+     * draws it; the prompt shows it in that country's grouping.
+     */
+    fun instantiate(template: PhraseTemplate, digits: String): NumbersTask {
+        require(template.slotKind == NumbersReading.Phone) { "only a phone template takes a phone number" }
+        return compose(template, Numbers.phone(digits, template.target), value = null)
     }
 
     /**
@@ -79,6 +88,7 @@ object PhraseSlots {
         is SlotValue.Year -> instantiate(template, value.y)
         is SlotValue.Time -> instantiate(template, value.hour, value.minute)
         is SlotValue.Part -> instantiate(template, value.numerator, value.denominator)
+        is SlotValue.Phone -> instantiate(template, value.digits)
     }
 
     /**

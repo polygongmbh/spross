@@ -56,6 +56,9 @@ internal interface TrainerLanguagePack {
     /** The mark between whole and fraction, which the reading names ("Komma" · "point"). */
     val decimalMark: Char get() = '.'
 
+    /** How this language writes and reads a phone number; null offers no phone slot. */
+    val phonePlan: PhonePlan? get() = null
+
     /** Accepted spellings for the level drill (sw adds the "na"-less form). */
     fun drillNumber(n: Long): List<String> = number(n)
 
@@ -113,6 +116,7 @@ internal interface TrainerLanguagePack {
 }
 
 private object GermanPack : TrainerLanguagePack {
+    override val phonePlan = PhonePlans.German
     override fun number(n: Long) = GermanNumbers.variants(n)
     override fun year(y: Long) = YearReading(GermanNumbers.year(y), GermanNumbers.yearVariants(y))
     override fun clock(hour: Int, minute: Int) = GermanClock.task(hour, minute)
@@ -133,6 +137,7 @@ private object GermanPack : TrainerLanguagePack {
 }
 
 private object EnglishPack : TrainerLanguagePack {
+    override val phonePlan = PhonePlans.English
     override fun number(n: Long) = EnglishNumbers.variants(n)
     override fun year(y: Long): YearReading {
         val variants = EnglishNumbers.yearVariants(y)
@@ -152,6 +157,7 @@ private object EnglishPack : TrainerLanguagePack {
 }
 
 private object SpanishPack : TrainerLanguagePack {
+    override val phonePlan = PhonePlans.Spanish
     override fun number(n: Long) = SpanishNumbers.variants(n)
     override fun year(y: Long): YearReading {
         // A year counts nothing, so it never takes the feminine agreement.
@@ -185,6 +191,7 @@ private object SpanishPack : TrainerLanguagePack {
 }
 
 private object SwahiliPack : TrainerLanguagePack {
+    override val phonePlan = PhonePlans.Swahili
     override fun number(n: Long) = listOf(SwahiliNumbers.cardinal(n))
     override fun year(y: Long): YearReading {
         val cardinal = SwahiliNumbers.cardinal(y)
@@ -211,6 +218,7 @@ private object SwahiliPack : TrainerLanguagePack {
 }
 
 private object UkrainianPack : TrainerLanguagePack {
+    override val phonePlan = PhonePlans.Ukrainian
     override fun number(n: Long) = UkrainianNumbers.variants(n)
     override fun year(y: Long): YearReading {
         val variants = UkrainianNumbers.yearVariants(y)
@@ -234,6 +242,7 @@ private object UkrainianPack : TrainerLanguagePack {
 }
 
 private object EsperantoPack : TrainerLanguagePack {
+    override val phonePlan = PhonePlans.Esperanto
     override fun number(n: Long) = EsperantoNumbers.variants(n)
     override fun year(y: Long): YearReading {
         val variants = EsperantoNumbers.variants(y)
@@ -262,6 +271,7 @@ private object EsperantoPack : TrainerLanguagePack {
 }
 
 private object FrenchPack : TrainerLanguagePack {
+    override val phonePlan = PhonePlans.French
     override fun number(n: Long) = FrenchNumbers.variants(n)
     override fun year(y: Long): YearReading {
         val variants = FrenchNumbers.yearVariants(y)
@@ -288,6 +298,7 @@ private object FrenchPack : TrainerLanguagePack {
 }
 
 private object ItalianPack : TrainerLanguagePack {
+    override val phonePlan = PhonePlans.Italian
     override fun number(n: Long) = ItalianNumbers.variants(n)
     override fun year(y: Long): YearReading {
         // Italian reads a year as the plain cardinal — there is no "dix-neuf cent" here.

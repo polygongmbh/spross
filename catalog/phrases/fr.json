@@ -57,6 +57,7 @@
     "de": "„de“ steht hinter dem Bruch, nicht davor: vor „un quart“ würde es zu „d'un quart“ elidieren, und der Rahmen kann das nicht wissen.",
     "en": "The „de“ sits after the fraction, not before it: against „un quart“ it would elide to „d'un quart“, and a frame cannot know that."
    }
-  }
+  },
+  "my-phone-number-is": { "text": "Mon numéro de téléphone est le {slot}." }
  }
 }

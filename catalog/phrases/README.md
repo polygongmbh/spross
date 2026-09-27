@@ -1,5 +1,5 @@
 # Drill frames
-The sentence frames the generated number, year and clock drills fill, and how one is authored.
+The sentence frames the generated number, year, clock, fraction and phone-number drills fill, and how one is authored.
 Neighbors: what the engine generates into them `../../kern/docs/catalog.md`.
 
 Sentence frames for the procedural drills:
@@ -54,7 +54,10 @@ language it explains instead: a note hangs off a card that carries itself withou
 reader is at least studying that language, while this IS the section and its reader may have
 met no numbers yet. So lint requires English of every language the trainer can generate.
 
-- `slot` is `numbers`, `years`, `clock` or `fraction` — which generator fills the frame.
+- `slot` is `numbers`, `years`, `clock`, `fraction` or `phone` — which generator fills the frame.
+  A `phone` slot draws a mobile number of the ANSWER language's country
+  and shows it in that country's grouping on both sides (`06 12 34 56 78` for a French answer);
+  how each language reads one is `../../docs/phone-readings.md`.
   A `fraction` slot draws a reduced `n/d` the answer language can read as a NOUN
   (`ein Viertel Kilo Mehl`, `un tercio de kilo de harina`);
   halves are never drawn, because German and Spanish read 1/2 adjectivally

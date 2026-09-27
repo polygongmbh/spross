@@ -175,6 +175,7 @@ class PhraseSlotTests {
                 NumbersReading.Fraction ->
                     listOf(1L to 3L, 1L to 4L, 2L to 3L, 3L to 4L, 5L to 12L)
                         .map { (n, d) -> PhraseSlots.instantiate(template, n, d) }
+                NumbersReading.Phone -> listOf(PhraseSlots.instantiate(template, RealFrames.phone(template.target)))
                 else ->
                     listOf(1L, 2L, 5L, 11L, 21L, 22L, 25L, 100L, 347L, 1000L, 1978L, 2026L)
                         .map { PhraseSlots.instantiate(template, value = it) }
@@ -207,6 +208,7 @@ class PhraseSlotTests {
                         val parts = slot.prompt.split("/").map { it.toLong() }
                         PhraseSlots.instantiate(template, parts[0], parts[1])
                     }
+                    NumbersReading.Phone -> PhraseSlots.instantiate(template, slot.prompt)
                     else -> PhraseSlots.instantiate(template, value = slot.prompt.toLong())
                 }
                 assertEquals(expected, sampled, template.id)

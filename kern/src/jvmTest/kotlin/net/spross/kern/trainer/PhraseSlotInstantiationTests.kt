@@ -126,7 +126,7 @@ class PhraseSlotInstantiationTests {
             assertTrue(back.accepted.isNotEmpty(), where)
             assertTrue(back.display in back.accepted, where)
             assertTrue(
-                back.accepted.all { answer -> answer.all { c -> c.isDigit() || c in ":./" } },
+                back.accepted.all { answer -> answer.all { c -> c.isDigit() || c in ":./" || c.isWhitespace() } },
                 "$where: ${back.accepted}",
             )
         }

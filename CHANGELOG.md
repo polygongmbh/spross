@@ -9,6 +9,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - Words asked by ear now come up even with the volume turned down, and any screen about to play words asks you to turn it up when it is too low.
 - Switching reading aloud off or on now lasts until you next open the app, which starts out following your phone again.
 - Listening now brings in everyday new words sooner, while words from deeper in the catalog still come up now and then.
+- A new sentence practices saying your phone number, read the way each language groups its digits, such as French in pairs.
 - The Forms drill now asks prices, read the way each language says them at the till, in euros, dollars, hryvnias or shillings.
 - Recordings with a faint hiss now play with it quieted between words, and German comes almost entirely from one clear voice.
 - Age and How old are you? join Personal Details, and young joins old among the qualities.

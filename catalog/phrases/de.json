@@ -41,6 +41,7 @@
    "text": "Schreib bitte das Datum: {slot}.",
    "accepts": ["Schreib bitte die Jahreszahl: {slot}."]
   },
-  "i-need-n-kilo-of-flour": { "text": "Ich brauche {slot} Kilo Mehl." }
+  "i-need-n-kilo-of-flour": { "text": "Ich brauche {slot} Kilo Mehl." },
+  "my-phone-number-is": { "text": "Meine Telefonnummer ist {slot}." }
  }
 }

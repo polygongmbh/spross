@@ -91,6 +91,7 @@
     "de": "Diktat-Rahmen: die Jahreszahl wird als reine Kardinalzahl geschrieben; „дату“ ist der Akkusativ von „дата“",
     "en": "Dictation frame: the year is written as a plain cardinal; „дату“ is the accusative of „дата“."
    }
-  }
+  },
+  "my-phone-number-is": { "text": "Мій номер телефону — {slot}." }
  }
 }

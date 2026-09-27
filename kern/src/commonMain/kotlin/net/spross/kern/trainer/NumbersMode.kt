@@ -280,11 +280,12 @@ fun numbersExerciseEmoji(exercise: NumbersExercise): String =
 
 /**
  * The ladder a reading is climbed on. Year maps onto Counting because it has no Sprosse
- * of its own; Fraction belongs to Forms — a fraction is one of the number forms.
+ * of its own, and neither has Phone — a phone number is digits read out; Fraction belongs
+ * to Forms — a fraction is one of the number forms.
  */
 internal val NumbersReading.exercise: NumbersExercise
     get() = when (this) {
-        NumbersReading.Cardinal, NumbersReading.Year -> NumbersExercise.Counting
+        NumbersReading.Cardinal, NumbersReading.Year, NumbersReading.Phone -> NumbersExercise.Counting
         NumbersReading.Clock -> NumbersExercise.Clock
         NumbersReading.Form, NumbersReading.Fraction -> NumbersExercise.Forms
     }

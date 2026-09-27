@@ -247,7 +247,7 @@ extension NumbersReading {
     /// Catalog key for the drill title.
     var trainerTitleKey: LocalizedStringKey {
         switch self {
-        case .cardinal: return "trainer.drill.numbers"
+        case .cardinal, .phone: return "trainer.drill.numbers"
         case .year: return "trainer.drill.numbers.exercise.years"
         case .clock: return "trainer.drill.numbers.exercise.clock"
         case .form, .fraction: return "trainer.drill.numbers.exercise.forms"

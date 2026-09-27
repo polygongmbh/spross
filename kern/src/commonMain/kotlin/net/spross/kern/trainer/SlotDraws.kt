@@ -21,6 +21,9 @@ internal sealed interface SlotValue {
 
     /** Always reduced, and never a half — see [drawFractionSlot]. */
     data class Part(val numerator: Long, val denominator: Long) : SlotValue
+
+    /** A digit string, never grouped — the grouping is the answer language's ([PhonePlan]). */
+    data class Phone(val digits: String) : SlotValue
 }
 
 /**
@@ -33,6 +36,7 @@ internal fun drawSlot(reading: NumbersReading, language: Language, rng: Random):
     NumbersReading.Year -> SlotValue.Year(drawSampleYear(rng))
     NumbersReading.Clock -> drawSlot(reading, language, CLOCK_MAX_LEVEL, rng)
     NumbersReading.Fraction -> drawSlot(reading, language, FRACTION_MAX_LEVEL, rng)
+    NumbersReading.Phone -> drawSlot(reading, language, 1, rng)
     NumbersReading.Form -> noSlotGenerator(reading)
 }
 
@@ -44,6 +48,7 @@ internal fun drawSlot(reading: NumbersReading, language: Language, level: Int, r
         NumbersReading.Year -> SlotValue.Year(drawSampleYear(l, rng))
         NumbersReading.Clock -> SlotValue.Time(rng.nextInt(24), drawClockMinute(l, rng))
         NumbersReading.Fraction -> drawFractionSlot(language, l, rng)
+        NumbersReading.Phone -> SlotValue.Phone(checkNotNull(Numbers.pack(language).phonePlan).draw(rng))
         NumbersReading.Form -> noSlotGenerator(reading)
     }
 }

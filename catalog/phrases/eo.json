@@ -49,6 +49,7 @@
     "de": "Der Bruch steht in einer Präpositionalphrase und bleibt damit im Nominativ; als Objekt („Mi bezonas kvaronon“) bräuchte er das Akkusativ-n.",
     "en": "The fraction sits in a prepositional phrase and so stays nominative — as an object („Mi bezonas kvaronon“) it would need the accusative -n the reading cannot carry."
    }
-  }
+  },
+  "my-phone-number-is": { "text": "Mia telefonnumero estas {slot}." }
  }
 }
