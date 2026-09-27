@@ -4,7 +4,6 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
-- The credits list each speaker's words alphabetically.
 - On Android, a finished round now raises the tree of the area it grew over what it says, filling the screen as on iPhone.
 - On Android, the bottom of Home now shows your box as a forest, one tree per area, and tapping a tree opens that area.
 - Once you have reviewed more today than is still due, Home leads with one suggested drill and says why, with one more round a tap below it.

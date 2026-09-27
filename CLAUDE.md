@@ -87,7 +87,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 ### Tests
 - Test rules and behavior, not implementation details or tweakable constants
 - Extract pure logic so it's testable without the framework
-- When one code change needs multiple test changes, assess the sensibility of the tests - do not overtest
+- When one code change needs multiple test changes, assess the sensibility of the tests - do not overtest;
+  a presentation choice (an order, a wording, a layout) gets no test at all
 
 ## Tools
 

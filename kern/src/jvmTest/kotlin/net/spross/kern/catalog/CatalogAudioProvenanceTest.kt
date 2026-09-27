@@ -1,7 +1,6 @@
 package net.spross.kern.catalog
 
 import kotlinx.serialization.json.Json
-import net.spross.kern.model.baseVowel
 import kotlinx.serialization.json.jsonObject
 import java.io.File
 import java.security.MessageDigest
@@ -156,21 +155,6 @@ class CatalogAudioProvenanceTest {
             .filter { it.isFile && it.extension == "mp3" }
             .map { it.relativeTo(audioRoot).invariantSeparatorsPath }
         assertEquals(onDisk.toSortedSet(), referenced.toSortedSet())
-    }
-
-    /**
-     * The credits read each speaker's words alphabetically, never in the concept-slug order
-     * the manifests store them in — German `address, afternoon …` would read Adresse,
-     * Nachmittag, … The real catalog, because a small fixture can be sorted either way.
-     */
-    @Test
-    fun creditFilesReadAlphabetically() {
-        val credits = catalog.audioCredits()
-        assertTrue(credits.any { it.files.size > 100 }, "no credit is large enough to test the order")
-        for (credit in credits) {
-            val keys = credit.files.map { file -> file.label.lowercase().map(::baseVowel).joinToString("") }
-            assertEquals(keys.sorted(), keys, "${credit.language} ${credit.author}")
-        }
     }
 
     /**
