@@ -54,8 +54,8 @@ second word, not a coarse one.
 saying it is the respectful word — the fact a learner most needs here.
 
 No emoji, no phrases, no audio: no honest picture exists, bare vocabulary is
-easier to defend than sentences, and a recording would be read aloud by the
-listening drill.
+easier to defend than sentences, and a recording would be read aloud by
+Listening.
 
 ## Open before shipping
 

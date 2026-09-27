@@ -32,8 +32,8 @@ class CatalogLintTest {
      * a half-written area belongs on a branch, where nothing has to explain it.
      *
      * - `reproduction` (parked 2026-09-02): Penis, Vagina and Hoden, ready in all eight
-     *   languages. Two things have to ship before they may: a kern-owned quiet flag, so the
-     *   listening drill never reads them aloud unattended, and a default-off setting that
+     *   languages. Two things have to ship before they may: a kern-owned quiet flag, so
+     *   Listening never reads them aloud unattended, and a default-off setting that
      *   hides the shelf. `catalog/areas/reproduction/README.md` carries the rest, including
      *   why the crude Swahili the corpus holds is absent rather than merely unlisted.
      */

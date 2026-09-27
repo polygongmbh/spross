@@ -20,7 +20,7 @@ struct SpeakerIcon: View {
     enum Size {
         /// Beside a word: a card headline, the correction box, an alphabet row.
         case small
-        /// Alone on a pure-listening drill — the card's only content.
+        /// Alone on a sound-only prompt — the card's only content.
         case large
 
         var pointSize: CGFloat {
