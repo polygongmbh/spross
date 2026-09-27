@@ -7752,6 +7752,54 @@
       "snr": 105.1,
       "source": "De-gut2.ogg"
     },
+    "good-day": {
+      "author": "Natschoba",
+      "file": "good-day.mp3",
+      "gain": 6.3,
+      "gainPhone": 1.2,
+      "gate": -90.0,
+      "lead": 178,
+      "matches": "guten tag",
+      "sha256": "d20ddfd0a3a9118ab5794265d0c4019d8fd399b379cfeb30e4851ce8a08305ef",
+      "snr": 80.7,
+      "source": "LL-Q188 (deu)-Natschoba-guten Tag.wav"
+    },
+    "good-evening": {
+      "author": "Natschoba",
+      "file": "good-evening.mp3",
+      "gain": 4.1,
+      "gainPhone": 1.6,
+      "gate": -79.4,
+      "lead": 240,
+      "matches": "guten abend",
+      "sha256": "9b9751bf6d7ec174bc0a75b4cad1ecb64fc15d1c9a94b44962f9113400b1e2d2",
+      "snr": 72.8,
+      "source": "LL-Q188 (deu)-Natschoba-guten Abend.wav"
+    },
+    "good-morning": {
+      "author": "Natschoba",
+      "file": "good-morning.mp3",
+      "gain": 2.5,
+      "gainPhone": 2.9,
+      "gate": -79.9,
+      "lead": 217,
+      "matches": "guten morgen",
+      "sha256": "018f1409bd780ad71a1a19283c1810902dc840ac7e7d996c4c3f757850dee15d",
+      "snr": 73.7,
+      "source": "LL-Q188 (deu)-Natschoba-guten Morgen.wav"
+    },
+    "good-night": {
+      "author": "Natschoba",
+      "file": "good-night.mp3",
+      "gain": 7.6,
+      "gainPhone": 8.1,
+      "gate": -80.4,
+      "lead": 211,
+      "matches": "gute nacht",
+      "sha256": "ee5cf81059e2cc34ec3e553b8a8078cb432317e76ee486d1d163e0141c0ccc79",
+      "snr": 70.8,
+      "source": "LL-Q188 (deu)-Natschoba-gute Nacht.wav"
+    },
     "government": {
       "author": "Jeuwre",
       "file": "government.mp3",
