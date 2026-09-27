@@ -28,21 +28,28 @@ scripts/audio-coverage.py --missing <lang>                   # what nobody has r
 The fill's own drops are the quality check: `noisy` (under 39.5 dB above the noise),
 `misnamed`, `unreachable` and `shipped-collision` each name the row and why.
 
-A full sweep also re-checks what already ships, in any language: anything not by a vetted
-voice, or not clearly clean, has every other take of its word tried.
-The vetted voices (`PREFERRED_SPEAKERS` in the workspace's `build-audio-pack.py`) are chosen by
-ear per voice, because no noise score matched a listener, and every picker prefers them.
+A full sweep also re-checks what already ships, in any language: anything not in a gold
+voice and not clearly clean has every other take of its word fetched and compared.
+Gold voices (`PREFERRED_SPEAKERS` in the workspace's `build-audio-pack.py`) are only those a
+listener heard as consistently great, and every picker takes theirs first and never lets
+the score overrule them.
+Everyone else is measured, because being a pack's biggest clean voice proved no promise:
+the worst takes of those voices were mostly okay, some bad.
 
 ```sh
 W=../data/reference/audio   # <route> is the language's from $W/build-packs.sh
 $W/sync-from-shipped.py <lang>                              # the pack says what ships
-$W/consolidate-pack.py --lang <lang> <route> --preferred --review <dir>   # onto vetted voices
-$W/requalify-pack.py --lang <lang> <route>                  # snr under 55: every other take
+$W/consolidate-pack.py --lang <lang> <route> --preferred --rerank   # onto gold voices
+$W/requalify-pack.py --lang <lang> <route>                  # under 55: the best other take
 scripts/audio-catalog.py --packs $W --lang <lang> --fill --reseat   # ships the chosen swaps
 ```
 
-Both reseating scripts only report until given `--apply`. Listen to a sample of the
-`--review` pairs before applying, since a swap changes what a learner hears.
+Both reseating scripts only report until given `--apply`.
+
+**Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`**
+with its source, sha256 and `snr`, so a future noise measure is tested against the ear
+rather than tuned to a handful of files: `snr` has not yet told noisy from clean between
+42 and 58 dB there.
 
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
 unversioned research input; what is committed here is the shipped bytes and the

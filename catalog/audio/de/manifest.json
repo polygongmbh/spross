@@ -2822,7 +2822,6 @@
     "Sicherlich": "CC BY-SA 3.0",
     "T.Voekler": "CC BY-SA 3.0",
     "User:Tosca": "CC BY-SA 3.0",
-    "Wikimedia Commons user Jakob.scholbach": "CC BY-SA 3.0",
     "joni": "CC BY-SA 3.0"
   },
   "calendar": {
@@ -12746,16 +12745,15 @@
       "source": "De-hinlegen2.ogg"
     },
     "to-quit": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
-      "capPhone": 0.7,
+      "author": "Jeuwre",
       "file": "to-quit.mp3",
-      "gain": 4.9,
-      "gainPhone": 10.8,
-      "gate": -58.8,
+      "gain": -3.0,
+      "gainPhone": 1.0,
+      "lead": 436,
       "matches": "kündigen",
-      "sha256": "1865fac29867e3cce63eaf0e317e28a74b48460e5cd7f6228ea3e4de5bfef562",
-      "snr": 50.0,
-      "source": "De-kündigen.ogg"
+      "sha256": "01a762587d94810caf85cf36b30ceb5a964983065c6ad483398069c5fca3fc78",
+      "snr": 104.1,
+      "source": "De-kündigen2.ogg"
     },
     "to-read": {
       "author": "Jeuwre",
