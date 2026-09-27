@@ -207,18 +207,62 @@ class LetterDrillRunTest {
         assertEquals(revealed.state, reduce(revealed.state, LetterDrillIntent.Submit(" "), rng).state)
     }
 
+    /** Finishing the answer IS the answer: an exact one approves itself, with no Check tap. */
+    @Test
+    fun anExactAnswerApprovesItselfWhileTyping() {
+        val rng = Random(14)
+        val state = LetterDrillRun.openAt(config(report(consolidated = 72)), 6, rng)
+        val task = assertNotNull(state.task)
+        val done = reduce(state, LetterDrillIntent.InputChanged(task.display), rng)
+        assertEquals(TurnFeedback.Correct, done.state.feedback)
+        assertTrue(DrillEffect.ArmAdvance(AdvanceTier.Live) in done.effects)
+        // Typing past the answer takes the approval back, so a longer word never books it.
+        val past = reduce(done.state, LetterDrillIntent.InputChanged(task.display + "x"), rng)
+        assertEquals(TurnFeedback.Neutral, past.state.feedback)
+        assertTrue(DrillEffect.CancelAdvance in past.effects)
+    }
+
+    /** A slip approves nothing live — it pauses on the explicit check, like every typed drill. */
+    @Test
+    fun aDictationSlipWaitsForTheCheck() {
+        val rng = Random(15)
+        val rainbow = LetterDrillFixture.card("rainbow", "Regenbogen")
+        val state = LetterDrillRun.openAt(config(report(consolidated = 72)), 6, rng)
+            .copy(config = config(report(consolidated = 72), listOf(rainbow)), task = dictationTask(rainbow))
+        val slip = reduce(state, LetterDrillIntent.InputChanged("Regenbogem"), rng).state
+        assertEquals(TurnFeedback.Neutral, slip.feedback)
+        assertEquals(
+            TurnFeedback.Almost("Regenbogen", AlmostReason.Typo),
+            reduce(slip, LetterDrillIntent.Submit("Regenbogem"), rng).state.feedback,
+        )
+        assertEquals(
+            TurnFeedback.Correct,
+            reduce(slip, LetterDrillIntent.InputChanged("Regenbogen"), rng).state.feedback,
+        )
+    }
+
+    /** A tile question has no field, so a keystroke there changes nothing. */
+    @Test
+    fun aTileQuestionIgnoresKeystrokes() {
+        val rng = Random(16)
+        val state = LetterDrillRun.openAt(config(report(consolidated = 0)), 1, rng)
+        val typed = reduce(state, LetterDrillIntent.InputChanged(state.task!!.display), rng)
+        assertEquals(state, typed.state)
+        assertTrue(typed.effects.isEmpty())
+    }
+
     @Test
     fun aTypedGlyphGradesExactWithNoTypoBudget() {
         val rng = Random(13)
         val state = LetterDrillRun.openAt(config(report(consolidated = 72)), 6, rng)
         val drawn = assertNotNull(state.task)
-        assertEquals(LetterVerdict.Clean, LetterDrillRun.verdict(drawn.display, drawn, null, null))
-        assertEquals(LetterVerdict.Wrong, LetterDrillRun.verdict("zz", drawn, null, null))
+        assertEquals(Match.Exact, LetterDrillRun.grade(drawn.display, drawn, null, null))
+        assertEquals(Match.Wrong, LetterDrillRun.grade("zz", drawn, null, null))
 
         // Case folds; a one-glyph answer never gets a slip budget, whatever the stage.
         val cyrillic = drawn.copy(accepted = listOf("ч"), display = "ч")
-        assertEquals(LetterVerdict.Clean, LetterDrillRun.verdict("Ч", cyrillic, null, null))
-        assertEquals(LetterVerdict.Wrong, LetterDrillRun.verdict("c", cyrillic, null, null))
+        assertEquals(Match.Exact, LetterDrillRun.grade("Ч", cyrillic, null, null))
+        assertEquals(Match.Wrong, LetterDrillRun.grade("c", cyrillic, null, null))
     }
 
     /**
@@ -236,12 +280,12 @@ class LetterDrillRunTest {
         val grader = config(report(consolidated = 72), cards).dictationGrader
 
         assertEquals(
-            LetterVerdict.Clean,
-            LetterDrillRun.verdict("миша", dictationTask(mouse), mouse, grader),
+            Match.Exact,
+            LetterDrillRun.grade("миша", dictationTask(mouse), mouse, grader),
         )
         assertEquals(
-            LetterVerdict.Wrong,
-            LetterDrillRun.verdict("мишка", dictationTask(mouse), mouse, grader),
+            Match.Wrong,
+            LetterDrillRun.grade("мишка", dictationTask(mouse), mouse, grader),
         )
         // A variant one slip from the played form is still another form, never an almost.
         val color = LetterDrillFixture.card("color", "Farbenlehre", teaches = listOf("Farbenlehren"))
@@ -251,16 +295,16 @@ class LetterDrillRunTest {
             spelled!!.grade("Farbenlehren", LetterDrill.dictationGradingCard(color, dictationTask(color))),
         )
         assertEquals(
-            LetterVerdict.Wrong,
-            LetterDrillRun.verdict("Farbenlehren", dictationTask(color), color, spelled),
+            Match.Wrong,
+            LetterDrillRun.grade("Farbenlehren", dictationTask(color), color, spelled),
         )
         assertEquals(
-            LetterVerdict.Typo("Regenbogen"),
-            LetterDrillRun.verdict("Regenbogem", dictationTask(rainbow), rainbow, grader),
+            Match.Typo("Regenbogen"),
+            LetterDrillRun.grade("Regenbogem", dictationTask(rainbow), rainbow, grader),
         )
         assertEquals(
-            LetterVerdict.Wrong,
-            LetterDrillRun.verdict("kufungua", dictationTask(closed), closed, grader),
+            Match.Wrong,
+            LetterDrillRun.grade("kufungua", dictationTask(closed), closed, grader),
         )
     }
 
@@ -269,9 +313,9 @@ class LetterDrillRunTest {
     fun aDictationWithoutAGraderFallsBackToTheGlyphRule() {
         val mouse = LetterDrillFixture.card("mouse", "миша")
         val task = dictationTask(mouse)
-        assertEquals(LetterVerdict.Clean, LetterDrillRun.verdict("миша", task, mouse, null))
-        assertEquals(LetterVerdict.Wrong, LetterDrillRun.verdict("мишка", task, mouse, null))
-        assertEquals(LetterVerdict.Clean, LetterDrillRun.verdict("миша", task, null, null))
+        assertEquals(Match.Exact, LetterDrillRun.grade("миша", task, mouse, null))
+        assertEquals(Match.Wrong, LetterDrillRun.grade("мишка", task, mouse, null))
+        assertEquals(Match.Exact, LetterDrillRun.grade("миша", task, null, null))
     }
 
     /** An almost hold waits for a tap and moves the Sprosse neither way. */

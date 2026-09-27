@@ -53,8 +53,9 @@ fun ChoiceStage(model: AppModel, flow: LetterDrillFlow, task: LetterDrillTask, c
 }
 
 /**
- * Typed glyph and dictation: the same field, one primary action. An empty field reveals
- * (and books the question as a miss), a filled one checks — the sibling drill's contract.
+ * Typed glyph and dictation: the same field, one primary action. A finished answer approves
+ * itself as it is typed; an empty field reveals (and books the question as a miss), a filled
+ * one checks — the sibling drills' contract.
  */
 @Composable
 fun TypedStage(

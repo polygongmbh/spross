@@ -11,6 +11,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - Listening now brings in everyday new words sooner, while words from deeper in the catalog still come up now and then.
 - A new sentence practices saying your phone number, read the way each language groups its digits, such as French in pairs.
 - The Forms drill now asks prices, read the way each language says them at the till, in euros, dollars, hryvnias or shillings.
+- The letter drill now takes a typed letter or word the moment it is complete, with no Check tap.
 - Letter drill dictation now counts only the word that played, so a synonym of it is a miss.
 - Recordings with a faint hiss now play with it quieted between words, and German comes almost entirely from one clear voice.
 - Age and How old are you? join Personal Details, and young joins old among the qualities.

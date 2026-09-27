@@ -164,7 +164,7 @@ class DrillWiringTest {
         ),
     )
 
-    private fun letters(platform: Platform, seed: Int = 42): LetterDrillFlow {
+    private fun letters(platform: Platform, seed: Int = 42, level: Int = 1): LetterDrillFlow {
         val report = LetterDrillAvailability.Report(
             language = "uk",
             alphabet = alphabet,
@@ -175,7 +175,7 @@ class DrillWiringTest {
         )
         val config = LetterDrillRunConfig(report, cards = emptyMap(), dictationGrader = null)
         return LetterDrillFlow(
-            start = LetterDrillRun.open(config, Random(seed)),
+            start = LetterDrillRun.openAt(config, level, Random(seed)),
             rng = Random(seed),
             onTone = { platform.tones += it },
             onReleaseFocus = { platform.focusReleases += 1 },
@@ -197,6 +197,17 @@ class DrillWiringTest {
         missed.choose(task.choices.orEmpty().first { it != task.display })
         assertNull(missed.armedBeat)
         assertEquals(TurnFeedback.Revealed, missed.state.feedback)
+    }
+
+    /** Typing the letter out IS the answer — no Check tap, the live beat armed. */
+    @Test
+    fun typingTheLetterArmsTheLiveBeatWithoutACheckTap() {
+        val platform = Platform()
+        val flow = letters(platform, level = 6)
+        flow.type(assertNotNull(flow.state.task).display)
+        assertEquals(TurnFeedback.Correct, flow.state.feedback)
+        assertEquals(listOf(ToneKind.Correct), platform.tones)
+        assertEquals(AdvanceTier.Live, flow.armedBeat)
     }
 
     @Test
@@ -264,10 +275,7 @@ class DrillWiringTest {
             screenReaderOn = { platform.screenReader },
         )
 
-    /**
-     * Writing the name out IS the answer — the review loop's rule, which the letter drill
-     * does not offer and this one does.
-     */
+    /** Writing the name out IS the answer — the review loop's rule, and every typed drill's. */
     @Test
     fun finishingTheNameArmsTheLiveBeatWithoutACheckTap() {
         val platform = Platform()

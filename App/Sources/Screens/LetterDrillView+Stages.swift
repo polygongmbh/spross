@@ -134,8 +134,7 @@ extension LetterDrillView {
 
     // MARK: - Typed and dictated
 
-    /// No live approval: the ladder grades whole answers, so nothing is offered
-    /// to kern until the field is submitted.
+    /// Every keystroke is offered to kern: a finished answer approves itself.
     private func typedControls(_ task: LetterDrillTask) -> some View {
         DrillAnswerControls(text: $input,
                             feedback: feedback,
@@ -144,6 +143,7 @@ extension LetterDrillView {
                             correctionVoice: .init(
                                 pronounce: { speaker(task, $0) },
                                 isPlaying: { model.isPronouncing($0, lang: task.language) }),
+                            onType: { typed() },
                             onSubmit: { submit() },
                             onConfirm: { confirm() },
                             onStop: run.offersFinish ? { closeRun() } : nil)

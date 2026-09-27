@@ -14,11 +14,10 @@ import net.spross.kern.trainer.LetterDrillRunState
  * One letter run as this platform holds it — the twin of [NumbersFlow], over kern's own
  * [LetterDrillRun].
  *
- * Everything decidable is kern's: the ladder, the draw, the ramp step, the three-way
- * verdict a dictated word can earn. What is left here is [DrillFlow]'s — the field's text
- * and the armed beat — and a keystroke means nothing until it is submitted, so this is the
- * one drill that offers kern none. No review is ever booked (D12): the box is READ, for the
- * pacing figures and the dictation pool, and never written.
+ * Everything decidable is kern's: the ladder, the draw, the ramp step, the verdict a typed
+ * answer earns. What is left here is [DrillFlow]'s — the field's text and the armed beat.
+ * No review is ever booked (D12): the box is READ, for the pacing figures and the dictation
+ * pool, and never written.
  */
 class LetterDrillFlow(
     start: LetterDrillRunState,
@@ -39,6 +38,8 @@ class LetterDrillFlow(
 
     override fun reduce(state: LetterDrillRunState, intent: LetterDrillIntent, rng: Random) =
         LetterDrillRun.reduce(state, intent, rng).let { DrillStep(it.state, it.effects) }
+
+    override fun inputChanged(text: String) = LetterDrillIntent.InputChanged(text)
 
     override fun submit(text: String) = LetterDrillIntent.Submit(text)
 

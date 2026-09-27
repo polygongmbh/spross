@@ -6,7 +6,7 @@ import SprossKern
 /// nothing — the letter drill keeps no record store (D12). State lives on
 /// LetterDrillView; split out purely for file size.
 ///
-/// Grading itself is `LetterDrillRun.verdict`'s: a tile and a typed glyph are
+/// Grading itself is `LetterDrillRun.grade`'s: a tile and a typed glyph are
 /// exact after normalization, and dictation runs the whole catalog, because only
 /// a catalog-wide grader can tell a slip of the played word from a different
 /// word entirely (`kufunga` / `kufungua`). All this side still owes is the
@@ -19,6 +19,10 @@ extension LetterDrillView: DrillRunning {
                 _ intent: LetterDrillIntent) -> DrillStep<LetterDrillRunState> {
         let reduction = LetterDrillRun.shared.reduce(state: run, intent: intent, rng: drillRandom)
         return DrillStep(run: reduction.state, effects: reduction.effects)
+    }
+
+    func typedMove(_ text: String) -> LetterDrillIntent? {
+        LetterDrillIntent.InputChanged(text: text)
     }
 
     func submitMove(_ text: String) -> LetterDrillIntent? {

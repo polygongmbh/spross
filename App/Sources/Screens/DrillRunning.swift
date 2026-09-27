@@ -53,8 +53,8 @@ protocol DrillRunning: View {
     /// Nothing left to ask.
     func isFinished(_ run: Run) -> Bool
 
-    /// A live keystroke, in this drill's words. nil where a keystroke means
-    /// nothing until it is submitted — the letters ladder grades whole answers.
+    /// A live keystroke, in this drill's words. nil where the drill has no
+    /// field to type in.
     func typedMove(_ text: String) -> Move?
 
     /// Check and Enter alike. nil where there is no field to check — placing

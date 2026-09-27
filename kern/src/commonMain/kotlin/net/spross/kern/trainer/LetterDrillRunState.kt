@@ -4,23 +4,13 @@ import net.spross.kern.model.Card
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.TurnFeedback
 
-/**
- * What a typed letter-drill answer earns. The almost verdict moves the ramp neither way —
- * neither a win to bank nor a miss to punish.
- */
-sealed class LetterVerdict {
-    data object Clean : LetterVerdict()
-
-    /** A slip inside the budget; [corrected] is the spelling that was owed. */
-    data class Typo(val corrected: String) : LetterVerdict()
-
-    data object Wrong : LetterVerdict()
-}
-
-/** What the learner does to a letter run. There is no live approve — a typed glyph is submitted. */
+/** What the learner does to a letter run. */
 sealed class LetterDrillIntent {
     /** A choice tile. One attempt per question: a second tap would be a retry, which has no verdict. */
     data class Choose(val glyph: String) : LetterDrillIntent()
+
+    /** A keystroke on a typed stage: an exact answer approves itself, with no Check tap. */
+    data class InputChanged(val text: String) : LetterDrillIntent()
 
     data class Submit(val text: String) : LetterDrillIntent()
 

@@ -158,10 +158,7 @@ abstract class DrillFlow<S : DrillRunProgress, I>(
 
     protected abstract fun advanceElapsedIntent(): I
 
-    /**
-     * A live keystroke, in this drill's words. Null where a keystroke means nothing until it
-     * is submitted — the letters ladder grades whole answers.
-     */
+    /** A live keystroke, in this drill's words. Null where the drill has no field to type in. */
     protected open fun inputChanged(text: String): I? = null
 
     /**

@@ -22,8 +22,7 @@ struct DrillAnswerControls: View {
     /// the language it is owed in. Left off where the drill can say nothing.
     var correctionVoice: Voice?
     var keyboard: UIKeyboardType = .default
-    /// Offered every keystroke, where the drill approves live. nil where nothing
-    /// is graded until it is submitted — the letters ladder.
+    /// Offered every keystroke, where the drill approves live.
     var onType: (() -> Void)?
     let onSubmit: () -> Void
     /// The tap that books whatever the feedback already said.
