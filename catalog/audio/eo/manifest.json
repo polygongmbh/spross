@@ -6,7 +6,6 @@
     "Citoyenovice": "CC BY-SA 4.0",
     "DanieruOtakuBoy": "CC0",
     "Dobromila": "CC BY-SA 4.0",
-    "Fernando Maia Jr. [1]": "Public domain",
     "Golmore": "CC0",
     "Juliano P. Junho": "CC BY-SA 4.0",
     "Lepticed7": "CC BY-SA 4.0",
@@ -44,15 +43,16 @@
       "source": "LL-Q143 (epo)-Lepticed7-septembro.wav"
     },
     "vendredo": {
-      "author": "Fernando Maia Jr. [1]",
+      "author": "Wierzbowski",
       "file": "calendar/vendredo.mp3",
-      "gain": 8.1,
-      "gainPhone": 9.4,
-      "gate": -70.3,
+      "gain": 7.0,
+      "gainPhone": 7.0,
+      "gate": -94.4,
+      "lead": 210,
       "matches": "vendredo",
-      "sha256": "eceeed8ee069e94f89b759646e5b45ee566e1a0917aa7aecda288defbca84765",
-      "snr": 56.8,
-      "source": "Eo-vendredo.ogg"
+      "sha256": "2912f0b2eda2d8ea66ab7355988e354a7b1ef0da39610509b022dcce54bf88f0",
+      "snr": 82.6,
+      "source": "LL-Q143 (epo)-Wierzbowski-vendredo.wav"
     }
   },
   "countries": {
@@ -1107,8 +1107,7 @@
   "licenses": {
     "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "Public domain": null
+    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
   "texts": {
     "Eĥoŝanĝo ĉiuĵaŭde": {

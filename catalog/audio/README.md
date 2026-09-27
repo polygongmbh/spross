@@ -40,11 +40,19 @@ the worst takes of those voices were mostly okay, some bad.
 W=../data/reference/audio   # <route> is the language's from $W/build-packs.sh
 $W/sync-from-shipped.py <lang>                              # the pack says what ships
 $W/consolidate-pack.py --lang <lang> <route> --preferred --rerank   # onto gold voices
+$W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <its siblings>
+                                                            # voices with ≤3 takes onto established ones
 $W/requalify-pack.py --lang <lang> <route>                  # under 55: the best other take
 scripts/audio-catalog.py --packs $W --lang <lang> --fill --reseat   # ships the chosen swaps
 ```
 
-Both reseating scripts only report until given `--apply`.
+Both reseating scripts only report until given `--apply`. The sections other than `words`
+ship through their own converter (`--calendar`, `--countries`), rebuilt from a pack that
+matched what ships.
+A new speaker is another voice change on the cards and another credit group, so every
+picker takes an established voice's take over a slightly better stranger's, and a voice
+with three recordings or fewer is moved onto an established one wherever it can be —
+except a gold voice, which is small by nature.
 
 **Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`**
 with its source, sha256 and `snr`, so a future noise measure is tested against the ear

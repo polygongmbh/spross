@@ -1,7 +1,6 @@
 {
   "authors": {
     "Goethe-Institut Cameroon": "CC BY-SA 4.0",
-    "Lucyin": "CC BY-SA 4.0",
     "Waithera Were": "CC BY-SA 4.0"
   },
   "calendar": {
@@ -6542,15 +6541,16 @@
       "source": "Sw-ke-tabasamu.flac"
     },
     "snake": {
-      "author": "Lucyin",
+      "author": "Waithera Were",
       "file": "snake.mp3",
-      "gain": -12.0,
-      "gainPhone": -13.0,
-      "gate": -36.0,
+      "gain": -5.7,
+      "gainPhone": -9.7,
+      "gate": -68.6,
+      "lead": 40,
       "matches": "nyoka",
-      "sha256": "90985a94b965127ab639aeeb46c8cf06ad484347b2957b1d9360c068948aa981",
-      "snr": 43.3,
-      "source": "Sw-nyoka.oga"
+      "sha256": "7cf2ab6376c3fd12297c4fe2690deb105d0d0f11d9af5a59b7fce93a53768a5c",
+      "snr": 68.9,
+      "source": "Sw-ke-nyoka.flac"
     },
     "snow": {
       "author": "Waithera Were",

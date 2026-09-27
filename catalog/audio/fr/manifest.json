@@ -9,7 +9,6 @@
     "DSwissK": "CC BY 4.0",
     "DenisdeShawi": "CC BY-SA 4.0",
     "Eihel": "CC BY-SA 3.0",
-    "Estrie": "CC0",
     "GrandCelinien": "CC BY-SA 4.0",
     "Helenou66": "CC0",
     "Jules78120": "CC0",
@@ -17,7 +16,6 @@
     "Le Commissaire": "CC BY-SA 4.0",
     "Lepticed7": "CC BY-SA 4.0",
     "LoquaxFR": "CC BY-SA 4.0",
-    "LuneMarine": "CC BY 4.0",
     "Lyokoï": "CC BY-SA 4.0",
     "Mecanautes": "CC0",
     "Mylou": "CC0",
@@ -25,14 +23,11 @@
     "Poslovitch": "CC0",
     "Sarah2149": "CC BY-SA 4.0",
     "Sartus85": "CC BY-SA 4.0",
-    "Sayoxime": "CC0",
-    "Sylvain Machefert": "CC BY-SA 3.0",
     "Vaulque": "CC BY-SA 4.0",
     "VictorDtmtc": "CC BY-SA 4.0",
     "Vion Nicolas": "CC BY 2.0 fr",
     "Vive la Rosière": "CC0",
-    "WikiLucas00": "CC BY-SA 4.0",
-    "ZoliveR": "Public domain"
+    "WikiLucas00": "CC BY-SA 4.0"
   },
   "calendar": {
     "août": {
@@ -456,15 +451,16 @@
       "source": "LL-Q150 (fra)-Lepticed7-belges.wav"
     },
     "Belgique": {
-      "author": "ZoliveR",
+      "author": "Poslovitch",
       "file": "countries/belgique.mp3",
-      "gain": 4.9,
+      "gain": 2.9,
       "gainPhone": -0.7,
-      "gate": -53.0,
+      "gate": -73.9,
+      "lead": 163,
       "matches": "Belgique",
-      "sha256": "4bf55e2b3fd40f740487fe2c8d9fd8560e2a595d6ccf306eb55502ca2d37061c",
-      "snr": 47.7,
-      "source": "Fr-Belgique.ogg"
+      "sha256": "186e865943528b6203be49b680241951266b963ad8ecffe52f0148ed6bd359de",
+      "snr": 69.2,
+      "source": "LL-Q150 (fra)-Poslovitch-Belgique.wav"
     },
     "Britanniques": {
       "author": "Lyokoï",
@@ -727,15 +723,16 @@
       "source": "LL-Q150 (fra)-Jules78120-Finlande.wav"
     },
     "France": {
-      "author": "ZoliveR",
+      "author": "Poslovitch",
       "file": "countries/france.mp3",
-      "gain": 2.2,
-      "gainPhone": 0.9,
-      "gate": -50.3,
+      "gain": 0.2,
+      "gainPhone": -0.8,
+      "gate": -69.5,
+      "lead": 102,
       "matches": "France",
-      "sha256": "45161db8aab6f974bc2eb73376ef6f6b9c235b3b1e029dd7290b6607c296ba82",
-      "snr": 46.3,
-      "source": "Fr-France.ogg"
+      "sha256": "285cc6437f2cdd87f12b744fc9197125efa5327817827b08a13fe7a2132246bf",
+      "snr": 65.3,
+      "source": "LL-Q150 (fra)-Poslovitch-France.wav"
     },
     "Français": {
       "author": "Poslovitch",
@@ -933,17 +930,16 @@
       "source": "LL-Q150 (fra)-Eihel-italiens.wav"
     },
     "Japon": {
-      "author": "Sylvain Machefert",
-      "capPhone": 0.1,
+      "author": "Poslovitch",
       "file": "countries/japon.mp3",
-      "gain": 6.7,
-      "gainPhone": 10.1,
-      "gate": -70.8,
-      "lead": 43,
+      "gain": -1.3,
+      "gainPhone": -5.0,
+      "gate": -72.3,
+      "lead": 174,
       "matches": "Japon",
-      "sha256": "313bc427aea1c3b724ea63d3c247c798e114392f5d105baec128719ed9d61196",
-      "snr": 60.0,
-      "source": "Fr-Japon.ogg"
+      "sha256": "be7685760223c8ab1a8c63916386663bda44b589766c2f3e29e4de681ec1a632",
+      "snr": 72.5,
+      "source": "LL-Q150 (fra)-Poslovitch-Japon.wav"
     },
     "Japonais": {
       "author": "Poslovitch",
@@ -1187,16 +1183,17 @@
       "source": "LL-Q150 (fra)-Jules78120-Pérou.wav"
     },
     "Roumains": {
-      "author": "Sayoxime",
+      "author": "WikiLucas00",
+      "capPhone": 3.2,
       "file": "countries/roumains.mp3",
-      "gain": 5.0,
-      "gainPhone": 5.9,
-      "gate": -82.9,
-      "lead": 132,
+      "gain": 0.7,
+      "gainPhone": 5.7,
+      "gate": -81.2,
+      "lead": 256,
       "matches": "Roumains",
-      "sha256": "0e2b0079b1b58ad817540ce7f9207886d18d7dda99830485cb4ea0d846bb1afc",
-      "snr": 75.1,
-      "source": "LL-Q150 (fra)-Sayoxime-moldavo-roumains.wav"
+      "sha256": "12afdf74c79607e24068dd2c58975df40ad51ad863b45bf2e685a2c8ad5e15ed",
+      "snr": 77.9,
+      "source": "LL-Q150 (fra)-WikiLucas00-roumains.wav"
     },
     "Roumanie": {
       "author": "Jules78120",
@@ -1373,16 +1370,15 @@
       "source": "LL-Q150 (fra)-WikiLucas00-suisses.wav"
     },
     "Suède": {
-      "author": "Sylvain Machefert",
+      "author": "Jules78120",
       "file": "countries/suu00e8de.mp3",
-      "gain": 1.8,
-      "gainPhone": 0.1,
-      "gate": -83.0,
-      "lead": 47,
+      "gain": 10.2,
+      "gainPhone": 3.3,
+      "lead": 181,
       "matches": "Suède",
-      "sha256": "3557102f8d510a01be87a211b8d3548eee32d1599f3197a51a4bbfca19dfff9f",
-      "snr": 78.1,
-      "source": "Fr-Suède.ogg"
+      "sha256": "3c529938b5e2c5e6113d82b0f8c7cee11507828061ecd747b2054a75cdb45590",
+      "snr": 87.9,
+      "source": "LL-Q150 (fra)-Jules78120-Suède.wav"
     },
     "Suédois": {
       "author": "Poslovitch",
@@ -1710,8 +1706,7 @@
     "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/",
     "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "Public domain": null
+    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
   "texts": {
     "Noël": {
@@ -3568,16 +3563,16 @@
       "source": "Fr-dîner.ogg"
     },
     "direction": {
-      "author": "Althea81",
+      "author": "Sartus85",
       "file": "direction.mp3",
-      "gain": 2.2,
-      "gainPhone": -2.7,
-      "gate": -76.0,
-      "lead": 169,
+      "gain": 7.5,
+      "gainPhone": 2.7,
+      "gate": -85.4,
+      "lead": 148,
       "matches": "direction",
-      "sha256": "668e40c7df5910fca5351111ccf451aafc8a6f319b91819150db1951eff636d8",
-      "snr": 72.3,
-      "source": "LL-Q150 (fra)-Althea81-direction.wav"
+      "sha256": "581c5681c2794df9ea234348b1ecad76e787a3115a0add2b8da26eeea13983c2",
+      "snr": 72.8,
+      "source": "LL-Q150 (fra)-Sartus85-direction.wav"
     },
     "dirty": {
       "author": "Vion Nicolas",
@@ -3975,16 +3970,16 @@
       "source": "Fr-examen.ogg"
     },
     "exercise": {
-      "author": "Estrie",
+      "author": "Sartus85",
       "file": "exercise.mp3",
-      "gain": 1.7,
-      "gainPhone": -6.1,
-      "gate": -83.5,
-      "lead": 271,
+      "gain": 5.8,
+      "gainPhone": 2.0,
+      "gate": -92.9,
+      "lead": 191,
       "matches": "exercice",
-      "sha256": "92fa18352a50efd01bb39ddc6f83bc8753bd2601abff91aab31f4c90481ec0c9",
-      "snr": 76.5,
-      "source": "LL-Q150 (fra)-Estrie-exercice.wav"
+      "sha256": "90dd2f51dafa297ccbde5136bf4e1c004b619ac94a2c1ed7faa6197df04a587a",
+      "snr": 84.3,
+      "source": "LL-Q150 (fra)-Sartus85-exercice.wav"
     },
     "exercise-book": {
       "author": "Vion Nicolas",
@@ -7328,15 +7323,15 @@
       "source": "LL-Q150 (fra)-Poslovitch-tristesse.wav"
     },
     "safe": {
-      "author": "Mylou",
+      "author": "Ben",
       "file": "safe.mp3",
-      "gain": 10.9,
-      "gainPhone": 11.1,
-      "gate": -70.0,
+      "gain": 5.7,
+      "gainPhone": 8.3,
+      "gate": -86.0,
       "matches": "sûr",
-      "sha256": "194085111898c378e9823adfea57ca26d4f421d237ea066029e389116595501a",
-      "snr": 54.7,
-      "source": "LL-Q150 (fra)-Mylou (Mathsou)-sûr.wav"
+      "sha256": "63a2075f6bc041ab4726b4b3801368708063479f0dc23f960c2ab1a38444e317",
+      "snr": 75.3,
+      "source": "LL-Q150 (fra)-Ben (Mathsou)-sûr.wav"
     },
     "salary": {
       "author": "Vion Nicolas",
@@ -8231,16 +8226,16 @@
       "source": "Fr-soleil.ogg"
     },
     "supermarket": {
-      "author": "Benoît Prieur",
+      "author": "Sartus85",
       "file": "supermarket.mp3",
-      "gain": -0.8,
-      "gainPhone": -4.6,
-      "gate": -91.1,
-      "lead": 232,
+      "gain": 4.6,
+      "gainPhone": 2.5,
+      "gate": -89.3,
+      "lead": 30,
       "matches": "supermarché",
-      "sha256": "da0cb69a1a1a007478ce62865c92fd8c392871b78397a7d4f0b118273aaa1279",
-      "snr": 87.1,
-      "source": "LL-Q150 (fra)-Benoît Prieur-supermarché.wav"
+      "sha256": "0ab7ae1fc9344d9d73aa22b85b850f5422e6746191decf14b6245ab6640479bb",
+      "snr": 81.3,
+      "source": "LL-Q150 (fra)-Sartus85-supermarché.wav"
     },
     "surprise": {
       "author": "Poslovitch",
@@ -8290,16 +8285,16 @@
       "source": "LL-Q150 (fra)-Poslovitch-table.wav"
     },
     "tasty": {
-      "author": "LuneMarine",
+      "author": "Sartus85",
       "file": "tasty.mp3",
-      "gain": 9.5,
-      "gainPhone": 15.4,
-      "gate": -94.7,
-      "lead": 187,
+      "gain": 6.1,
+      "gainPhone": 5.4,
+      "gate": -86.8,
+      "lead": 56,
       "matches": "délicieux",
-      "sha256": "2edf976f98ce971727a6550be58e68ba344125c51a16fecc0b7e928b45532178",
-      "snr": 80.9,
-      "source": "LL-Q150 (fra)-LuneMarine (DSwissK)-délicieux.wav"
+      "sha256": "3ad9700f3f77cc321344b47e947a6487a6756499de7304633a985a61b040e9b8",
+      "snr": 78.8,
+      "source": "LL-Q150 (fra)-Sartus85-délicieux.wav"
     },
     "tax": {
       "author": "Vion Nicolas",
@@ -8855,17 +8850,16 @@
       "source": "LL-Q150 (fra)-Poslovitch-revenir.wav"
     },
     "to-compare": {
-      "author": "Lepticed7",
+      "author": "Sartus85",
       "file": "to-compare.mp3",
-      "gain": 6.8,
-      "gainPhone": 3.3,
-      "gate": -80.0,
-      "lead": 121,
-      "license": "CC0",
+      "gain": 5.8,
+      "gainPhone": 8.1,
+      "gate": -90.7,
+      "lead": 164,
       "matches": "comparer",
-      "sha256": "b57943b728ed4741b36399a893df4bef9f8c1805938e542f68fda7d2d38c888a",
-      "snr": 70.3,
-      "source": "LL-Q150 (fra)-Lepticed7-comparer.wav"
+      "sha256": "45a8fb4786eae38f97df946e84fc08c7aa47b9e89ffdf1021d706005961ab0d7",
+      "snr": 81.2,
+      "source": "LL-Q150 (fra)-Sartus85-comparer.wav"
     },
     "to-confirm": {
       "author": "Vion Nicolas",
@@ -9425,15 +9419,16 @@
       "source": "LL-Q150 (fra)-Mylou (Mathsou)-espérer.wav"
     },
     "to-imagine-something": {
-      "author": "LuneMarine",
+      "author": "Sartus85",
       "file": "to-imagine-something.mp3",
-      "gain": -0.9,
-      "gainPhone": -3.6,
-      "gate": -77.8,
+      "gain": 5.9,
+      "gainPhone": 6.2,
+      "gate": -84.6,
+      "lead": 161,
       "matches": "imaginer",
-      "sha256": "a7cc5f91e315e96bbebd34501795e8b950648ad9cb9ce55a80317be77bd03f30",
-      "snr": 78.0,
-      "source": "LL-Q150 (fra)-LuneMarine (DSwissK)-imaginer.wav"
+      "sha256": "b1a3ab8c3a9acf2c7cca497cae633aa905fa5c2bde157898015918a78d3de245",
+      "snr": 73.4,
+      "source": "LL-Q150 (fra)-Sartus85-imaginer.wav"
     },
     "to-improve": {
       "author": "Poslovitch",
@@ -9821,17 +9816,16 @@
       "source": "Fr-répondre.ogg"
     },
     "to-reserve": {
-      "author": "Lepticed7",
+      "author": "Sartus85",
       "file": "to-reserve.mp3",
-      "gain": 6.6,
-      "gainPhone": 1.2,
-      "gate": -80.2,
-      "lead": 179,
-      "license": "CC0",
+      "gain": 5.8,
+      "gainPhone": 3.8,
+      "gate": -88.5,
+      "lead": 135,
       "matches": "réserver",
-      "sha256": "818d7ce17339133ec2966e6b79ad1012bb69d6a70916cc6e9af6c5332d8eebbe",
-      "snr": 70.8,
-      "source": "LL-Q150 (fra)-Lepticed7-réserver.wav"
+      "sha256": "5c2dc4e82e9a77dfedd06777686357b719b9745fa48ed1b52b80c11cdae1d99d",
+      "snr": 78.8,
+      "source": "LL-Q150 (fra)-Sartus85-réserver.wav"
     },
     "to-ring": {
       "author": "Vion Nicolas",
@@ -10280,17 +10274,16 @@
       "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-déverrouiller.wav"
     },
     "to-use": {
-      "author": "Lepticed7",
+      "author": "Sartus85",
       "file": "to-use.mp3",
-      "gain": 14.0,
-      "gainPhone": 8.7,
-      "gate": -80.3,
-      "lead": 52,
-      "license": "CC0",
+      "gain": 9.0,
+      "gainPhone": 8.6,
+      "gate": -81.6,
+      "lead": 172,
       "matches": "utiliser",
-      "sha256": "f060974529c874590cce2d25862d2fe3ae2a238dab9be632672dde014bcefac2",
-      "snr": 60.4,
-      "source": "LL-Q150 (fra)-Lepticed7-utiliser.wav"
+      "sha256": "6c915546c38a97e7a50499f151b4ecf186366c943930675f7414e870a0196f57",
+      "snr": 68.7,
+      "source": "LL-Q150 (fra)-Sartus85-utiliser.wav"
     },
     "to-vote": {
       "author": "Poslovitch",
@@ -10762,15 +10755,16 @@
       "source": "LL-Q150 (fra)-Poslovitch-veine.wav"
     },
     "verb": {
-      "author": "Lyokoï",
+      "author": "Sartus85",
       "file": "verb.mp3",
-      "gain": 4.8,
-      "gainPhone": 3.5,
-      "lead": 77,
-      "license": "CC BY 4.0",
+      "gain": 1.4,
+      "gainPhone": 0.8,
+      "gate": -80.1,
+      "lead": 40,
       "matches": "verbe",
-      "sha256": "6ad4c84801a20d9bbc395362772cdf45d6ee5301895804921c41811a9bc5fa12",
-      "source": "LL-Q150 (fra)-Lyokoï-verbe.wav"
+      "sha256": "324461ee316a01b8ba9fa2ace0b5542b659702fdb3f02b3cf7d63156bb9cda07",
+      "snr": 78.4,
+      "source": "LL-Q150 (fra)-Sartus85-verbe.wav"
     },
     "very": {
       "author": "Poslovitch",
@@ -11014,16 +11008,15 @@
       "source": "LL-Q150 (fra)-Poslovitch-week-end.wav"
     },
     "west": {
-      "author": "Althea81",
+      "author": "Sartus85",
       "file": "west.mp3",
-      "gain": 5.1,
-      "gainPhone": 0.5,
-      "gate": -78.6,
-      "lead": 120,
+      "gain": 6.5,
+      "gainPhone": 5.6,
+      "gate": -78.3,
       "matches": "ouest",
-      "sha256": "7ad64bef1d380918bf7cc26896bcf5140b646cb1a287ed473b232fee7b8101b6",
-      "snr": 70.1,
-      "source": "LL-Q150 (fra)-Althea81-ouest.wav"
+      "sha256": "6ec65708996c8664161ddad0c6067b29047cf63172721ed12a2ad6bac59b8a47",
+      "snr": 68.8,
+      "source": "LL-Q150 (fra)-Sartus85-ouest.wav"
     },
     "what": {
       "author": "Poslovitch",
@@ -11368,16 +11361,16 @@
       "source": "LL-Q150 (fra)-Poslovitch-ton.wav"
     },
     "your-plural": {
-      "author": "Estrie",
+      "author": "Sartus85",
       "file": "your-plural.mp3",
-      "gain": 2.6,
-      "gainPhone": 3.6,
-      "gate": -83.0,
-      "lead": 88,
+      "gain": 6.1,
+      "gainPhone": 7.0,
+      "gate": -81.3,
+      "lead": 10,
       "matches": "votre",
-      "sha256": "a66a0beac21b5a8a914a104864dc423d2944cd5ec9348d2555808fc00f36fe6f",
-      "snr": 77.4,
-      "source": "LL-Q150 (fra)-Estrie-votre.wav"
+      "sha256": "9d50b73a74116feb265e7add40d183c330622d4ff02221ab0c9494f5fbbaa0c6",
+      "snr": 72.0,
+      "source": "LL-Q150 (fra)-Sartus85-votre.wav"
     }
   }
 }

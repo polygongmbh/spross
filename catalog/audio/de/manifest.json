@@ -2807,19 +2807,12 @@
     }
   },
   "authors": {
-    "Balû": "CC BY-SA 3.0",
-    "Cyrotux": "CC BY-SA 2.5",
-    "Gbeckmann": "CC BY-SA 4.0",
     "Hedwig von Ebbel": "CC BY 3.0",
     "Holunder Gabriel": "CC BY-SA 4.0",
     "Jeuwre": "CC BY-SA 4.0",
     "Kampy": "CC BY-SA 3.0",
     "MiER": "CC BY-SA 3.0",
     "Natschoba": "CC BY-SA 4.0",
-    "Netzize~commonswiki": "CC BY-SA 3.0",
-    "Oceancetaceen Alice Chodura": "CC BY-SA 3.0",
-    "Pill": "CC BY-SA 3.0",
-    "Sicherlich": "CC BY-SA 3.0",
     "T.Voekler": "CC BY-SA 3.0",
     "User:Tosca": "CC BY-SA 3.0",
     "joni": "CC BY-SA 3.0"
@@ -2837,16 +2830,15 @@
       "source": "De-April.ogg"
     },
     "August": {
-      "author": "Cyrotux",
+      "author": "Jeuwre",
       "file": "calendar/august.mp3",
-      "gain": 16.3,
-      "gainPhone": 15.7,
-      "gate": -71.1,
-      "lead": 66,
+      "gain": -6.1,
+      "gainPhone": -3.8,
+      "lead": 436,
       "matches": "August",
-      "sha256": "946e905fa8b57108d8255f1b02757cf5ed44be7961c5a1cf203a681e92d63f01",
-      "snr": 51.3,
-      "source": "De-August.ogg"
+      "sha256": "9497d114e29b4bae9b7031b4d986cba006580d3c9ba3281f751bb6723ab4548b",
+      "snr": 109.1,
+      "source": "De-August2.ogg"
     },
     "Dezember": {
       "author": "joni",
@@ -2870,18 +2862,27 @@
       "snr": 101.9,
       "source": "De-Dienstag.ogg"
     },
+    "Donnerstag": {
+      "author": "Jeuwre",
+      "file": "calendar/donnerstag.mp3",
+      "gain": -2.0,
+      "gainPhone": -2.5,
+      "lead": 445,
+      "matches": "Donnerstag",
+      "sha256": "f3f113ec87a253534bfcc1eefc3e630272bf1939029d0346f928c3a861aa2481",
+      "snr": 103.2,
+      "source": "De-Donnerstag2.ogg"
+    },
     "Februar": {
-      "author": "Netzize~commonswiki",
-      "cap": 0.5,
-      "capPhone": 2.3,
+      "author": "Jeuwre",
       "file": "calendar/februar.mp3",
-      "gain": 2.4,
-      "gainPhone": 2.4,
-      "gate": -54.8,
+      "gain": -1.8,
+      "gainPhone": 0.3,
+      "lead": 407,
       "matches": "Februar",
-      "sha256": "015d949b20252402e9a9a535bf39f45773b1fce72fd60ab9eafccca7534fe4e7",
-      "snr": 54.7,
-      "source": "De-Februar.ogg"
+      "sha256": "913413ef0414e4ad4e6cab5b50e2080aa81dbee629b0c954f1faa224f651438d",
+      "snr": 102.3,
+      "source": "De-Februar2.ogg"
     },
     "Freitag": {
       "author": "Jeuwre",
@@ -2949,6 +2950,17 @@
       "snr": 102.8,
       "source": "De-Samstag.ogg"
     },
+    "September": {
+      "author": "Jeuwre",
+      "file": "calendar/september.mp3",
+      "gain": -2.6,
+      "gainPhone": 0.5,
+      "lead": 434,
+      "matches": "September",
+      "sha256": "b3c6d68355972227eb7f3b9f1c6925c6e64ec46e3c0ace6ad4dbc379f061defd",
+      "snr": 102.2,
+      "source": "De-September2.ogg"
+    },
     "Sonnabend": {
       "author": "Jeuwre",
       "file": "calendar/sonnabend.mp3",
@@ -2962,15 +2974,15 @@
       "source": "De-Sonnabend.ogg"
     },
     "Sonntag": {
-      "author": "Pill",
+      "author": "Jeuwre",
       "file": "calendar/sonntag.mp3",
-      "gain": 3.0,
-      "gainPhone": 4.2,
-      "gate": -63.1,
+      "gain": 0.3,
+      "gainPhone": 0.5,
+      "lead": 439,
       "matches": "Sonntag",
-      "sha256": "a30d0aadd6ac9451ffe604cd047c42496155f4b1a1a4d7e6dd61ad32766d16d2",
-      "snr": 57.1,
-      "source": "De-Sonntag.ogg"
+      "sha256": "fc3a0ca22a9d833987b1a80a1311c1c1acbb953c5eaa52e556700cbeb7ac3da8",
+      "snr": 106.0,
+      "source": "De-Sonntag2.ogg"
     }
   },
   "countries": {
@@ -3055,15 +3067,15 @@
       "source": "De-Argentinier.ogg"
     },
     "Australien": {
-      "author": "Hedwig von Ebbel",
+      "author": "Jeuwre",
       "file": "countries/australien.mp3",
-      "gain": -6.7,
-      "gainPhone": -12.8,
-      "lead": 704,
-      "license": "CC BY-SA 3.0",
+      "gain": -0.7,
+      "gainPhone": -3.2,
+      "lead": 440,
       "matches": "Australien",
-      "sha256": "aa5d21df160e12ba3cc026210b9d2f30b0ab576d3d493f725924d7e4ee934400",
-      "source": "De-Australien.ogg"
+      "sha256": "0df80fe3a448c99083fc3fc9a2977a897773550ce511b2526714947799876754",
+      "snr": 104.2,
+      "source": "De-Australien2.ogg"
     },
     "Australier": {
       "author": "Jeuwre",
@@ -3177,16 +3189,15 @@
       "source": "De-Chilenen.ogg"
     },
     "China": {
-      "author": "Sicherlich",
+      "author": "Jeuwre",
       "file": "countries/china.mp3",
-      "gain": 0.2,
-      "gainPhone": -6.0,
-      "gate": -94.1,
-      "lead": 36,
+      "gain": -0.1,
+      "gainPhone": -2.7,
+      "lead": 422,
       "matches": "China",
-      "sha256": "d2b4516c64d5cbef181c83ef0e785cb95534f263671ac903db7fb9afd5a69e1b",
-      "snr": 87.1,
-      "source": "De-China.ogg"
+      "sha256": "9d4c7ee0797eb6766ec3481267d59897e5b355fb99df225eb494af6dfdca3ad9",
+      "snr": 101.4,
+      "source": "De-China2.ogg"
     },
     "Chinesen": {
       "author": "Jeuwre",
@@ -3255,15 +3266,15 @@
       "source": "De-Dänemark.ogg"
     },
     "Dänen": {
-      "author": "Balû",
+      "author": "Jeuwre",
       "file": "countries/du00e4nen.mp3",
-      "gain": -2.3,
+      "gain": -3.3,
       "gainPhone": 0.6,
-      "gate": -58.8,
+      "lead": 446,
       "matches": "Dänen",
-      "sha256": "1a5a0d9b45ec89065d0e623eb5b05ac6f5065c96cad7d0201c2a9949c95cf90c",
-      "snr": 55.4,
-      "source": "De-Dänen.ogg"
+      "sha256": "a6617d2b032e9ffb530a76a60996ee37b1862bd0d637e525356b7647a30c4fa0",
+      "snr": 101.5,
+      "source": "De-Dänen2.ogg"
     },
     "Ecuador": {
       "author": "Jeuwre",
@@ -3929,15 +3940,15 @@
       "source": "De-Russen.ogg"
     },
     "Russland": {
-      "author": "Netzize~commonswiki",
+      "author": "Jeuwre",
       "file": "countries/russland.mp3",
-      "gain": -0.1,
-      "gainPhone": -7.0,
-      "gate": -71.6,
+      "gain": -1.8,
+      "gainPhone": -3.1,
+      "lead": 443,
       "matches": "Russland",
-      "sha256": "0f932718f90b19d5d6136cc048249fde5769daa7eaf046328c3e303787be6f63",
-      "snr": 70.8,
-      "source": "De-Russland.ogg"
+      "sha256": "21b560ca7447ca9c7d9ce0e0d3a8d193e68d278a1a80d0049d9daa39e7815ba7",
+      "snr": 106.6,
+      "source": "De-Russland2.ogg"
     },
     "Saudi-Araber": {
       "author": "Jeuwre",
@@ -3973,15 +3984,15 @@
       "source": "De-Schweden.ogg"
     },
     "Schweizer": {
-      "author": "Oceancetaceen Alice Chodura",
+      "author": "Jeuwre",
       "file": "countries/schweizer.mp3",
-      "gain": 13.7,
-      "gainPhone": 5.7,
-      "gate": -62.5,
+      "gain": 2.3,
+      "gainPhone": -1.7,
+      "lead": 431,
       "matches": "Schweizer",
-      "sha256": "7a543e1d51586a0751b3c9a7e96687aba4a9fdbb76f4f265e86fa6d80eeaec6d",
-      "snr": 41.8,
-      "source": "De-Schweizer.ogg"
+      "sha256": "c380c03ec13739d68744641ce3d9a3f1e8b45e2750ee70e84834ec9a5c239c95",
+      "snr": 99.8,
+      "source": "De-Schweizer2.ogg"
     },
     "Senegalesen": {
       "author": "Jeuwre",
@@ -4306,16 +4317,15 @@
       "source": "De-Venezuela.ogg"
     },
     "Vietnam": {
-      "author": "Gbeckmann",
+      "author": "Jeuwre",
       "file": "countries/vietnam.mp3",
-      "gain": 14.0,
-      "gainPhone": 15.3,
-      "gate": -76.3,
-      "lead": 374,
+      "gain": -0.1,
+      "gainPhone": -1.9,
+      "lead": 409,
       "matches": "Vietnam",
-      "sha256": "4f30684c0cd0c49787d1375281a56506f0d88d73f9b26dca0f4bc37f3ef2b9af",
-      "snr": 62.0,
-      "source": "De-Vietnam.ogg"
+      "sha256": "d4c24c8337042daba676dab353ffae680e9535710be3450752d684177c8248aa",
+      "snr": 104.3,
+      "source": "De-Vietnam2.ogg"
     },
     "Vietnamesen": {
       "author": "Jeuwre",
@@ -4340,16 +4350,16 @@
       "source": "De-Ägypten.ogg"
     },
     "Ägypter": {
-      "author": "Hedwig von Ebbel",
+      "author": "Jeuwre",
+      "capPhone": 2.3,
       "file": "countries/u00e4gypter.mp3",
-      "gain": 1.7,
-      "gainPhone": -3.2,
-      "gate": -65.5,
-      "license": "CC BY-SA 3.0",
+      "gain": 0.4,
+      "gainPhone": 1.9,
+      "lead": 438,
       "matches": "Ägypter",
-      "sha256": "dfd3937fe7af76a46c308ac33058efcb863256c382eebe1771a7b2e713e52458",
-      "snr": 58.2,
-      "source": "De-Ägypter.ogg"
+      "sha256": "3a4958ab4ac9a79dc8368613c8cceabe223b1a7b4e3388ad0b6f0019bc4044de",
+      "snr": 106.9,
+      "source": "De-Ägypter2.ogg"
     },
     "Äthiopien": {
       "author": "Jeuwre",
@@ -4375,16 +4385,15 @@
       "source": "De-Äthiopier.ogg"
     },
     "Österreich": {
-      "author": "Netzize~commonswiki",
+      "author": "Jeuwre",
       "file": "countries/u00f6sterreich.mp3",
-      "gain": 1.6,
-      "gainPhone": 0.0,
-      "gate": -74.0,
-      "lead": 8,
+      "gain": -1.5,
+      "gainPhone": 0.1,
+      "lead": 422,
       "matches": "Österreich",
-      "sha256": "3a7fa66502080d4ea195681fa6588a43ef9df835f8da8a8d6e90cffe23269a5d",
-      "snr": 71.0,
-      "source": "De-Österreich.ogg"
+      "sha256": "b0f8c3e16db4c3f3a88e68cd3711a617f10a4c106aeaf7c9abc4a45ae12b4a0b",
+      "snr": 103.9,
+      "source": "De-Österreich2.ogg"
     },
     "Österreicher": {
       "author": "Jeuwre",
@@ -4476,7 +4485,6 @@
   },
   "licenses": {
     "CC BY 3.0": "https://creativecommons.org/licenses/by/3.0/",
-    "CC BY-SA 2.5": "https://creativecommons.org/licenses/by-sa/2.5/",
     "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/"
   },

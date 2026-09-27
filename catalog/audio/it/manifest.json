@@ -692,10 +692,8 @@
     "Ciampix": "CC0",
     "Crunchy Cloaky Crackdown": "CC0",
     "DanielParoliere": "CC0",
-    "Dario Biazzi": "CC BY-SA 3.0",
     "DiplomaticBadger": "CC0",
     "DivoLetto": "CC BY 4.0",
-    "Fabio Visconti": "Public domain",
     "Fibonacci": "CC BY-SA 2.0",
     "Francyskus": "CC BY-SA 4.0",
     "GerardM": "CC BY-SA 3.0",
@@ -705,7 +703,6 @@
     "LangPao": "CC BY-SA 4.0",
     "Marta Carbone, Association Shtooka": "CC BY 3.0 us",
     "SabineWanner": "CC BY-SA 3.0",
-    "Salento81": "CC BY-SA 3.0",
     "UofG Language Modules": "CC BY-SA 4.0",
     "XANA000": "CC0",
     "Yiyi": "CC BY-SA 4.0"
@@ -748,16 +745,17 @@
       "source": "It-dicembre.ogg"
     },
     "domenica": {
-      "author": "Dario Biazzi",
+      "author": "Ciampix",
+      "capPhone": 2.5,
       "file": "calendar/domenica.mp3",
-      "gain": 9.5,
-      "gainPhone": 7.9,
-      "gate": -75.5,
-      "lead": 49,
+      "gain": 8.1,
+      "gainPhone": 10.0,
+      "gate": -78.9,
+      "lead": 130,
       "matches": "domenica",
-      "sha256": "86f4a2076eb659fb2abdd875feda1251b002097c55848bfdcc8b3151e3197686",
-      "snr": 60.2,
-      "source": "It-domenica.ogg"
+      "sha256": "f1bee71f92896f9b0adc9d01781a52af9331ebd0a1f7a55408478ae84570c025",
+      "snr": 68.2,
+      "source": "LL-Q652 (ita)-Ciampix-domenica.wav"
     },
     "febbraio": {
       "author": "Ciampix",
@@ -903,15 +901,16 @@
       "source": "It-ottobre.ogg"
     },
     "sabato": {
-      "author": "Dario Biazzi",
+      "author": "Ciampix",
       "file": "calendar/sabato.mp3",
-      "gain": 5.8,
-      "gainPhone": 0.1,
-      "gate": -78.2,
+      "gain": 2.9,
+      "gainPhone": 0.0,
+      "gate": -81.7,
+      "lead": 81,
       "matches": "sabato",
-      "sha256": "b5183fe8116020928e8c118e957340990b7b0cab271139d8023a213443ddcdd8",
-      "snr": 68.7,
-      "source": "It-sabato.ogg"
+      "sha256": "53d07e212a46359bd87db32ff783bdc82a9f03311280b2cf0190101622c4a311",
+      "snr": 77.5,
+      "source": "LL-Q652 (ita)-Ciampix-sabato.wav"
     },
     "settembre": {
       "author": "GerardM",
@@ -1033,15 +1032,16 @@
       "source": "LL-Q652 (ita)-Ciampix-Brasile.wav"
     },
     "Bulgaria": {
-      "author": "Fabio Visconti",
+      "author": "XANA000",
       "file": "countries/bulgaria.mp3",
-      "gain": 2.2,
-      "gainPhone": -0.1,
-      "gate": -51.9,
+      "gain": -0.1,
+      "gainPhone": -0.4,
+      "gate": -69.9,
+      "lead": 214,
       "matches": "Bulgaria",
-      "sha256": "49c1450da813256be55f8a57b0a8c3850831a64cecfbc54a3e890ab52e18010d",
-      "snr": 45.7,
-      "source": "It-Bulgaria.ogg"
+      "sha256": "60b1ee9c366e175916ee6514e99ea88d7864096a85a98f1ffa0df95329c43adb",
+      "snr": 65.2,
+      "source": "LL-Q652 (ita)-XANA000-Bulgaria.wav"
     },
     "Canada": {
       "author": "Ciampix",
@@ -1322,16 +1322,16 @@
       "source": "LL-Q652 (ita)-Francyskus-Israele.wav"
     },
     "Italia": {
-      "author": "Salento81",
+      "author": "XANA000",
       "file": "countries/italia.mp3",
-      "gain": 14.0,
-      "gainPhone": 8.0,
-      "gate": -82.4,
-      "lead": 469,
+      "gain": -2.2,
+      "gainPhone": -6.5,
+      "gate": -69.6,
+      "lead": 214,
       "matches": "Italia",
-      "sha256": "ff1a13449ccd0171324a811e05a61d1d80d8b087005a9b6723661bd8be94c944",
-      "snr": 66.3,
-      "source": "It-Italia.ogg"
+      "sha256": "144bc1bf33cf3a498886463419176efff5a1c61a84266db2c90f237799240d39",
+      "snr": 65.7,
+      "source": "LL-Q652 (ita)-XANA000-Italia.wav"
     },
     "Kenya": {
       "author": "Francyskus",
@@ -1874,8 +1874,7 @@
     "CC BY-SA 2.0": "https://creativecommons.org/licenses/by-sa/2.0/",
     "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "Public domain": null
+    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
   "texts": {
     "hanno": {

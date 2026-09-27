@@ -2,11 +2,8 @@
   "authors": {
     "Association Shtooka, Світлана Чурак (Svitlana Churak)": "CC BY 3.0 us",
     "Bicolino34": "CC BY-SA 4.0",
-    "Po ukraińsku (Andriana)": "CC0",
-    "Renvoy": "CC0",
     "Tabrus": "CC BY-SA 4.0",
     "Tohaomg": "CC BY-SA 4.0",
-    "Yaryna ya": "CC0",
     "Галя Раптова, Nicolas Vion": "CC BY 3.0 us",
     "Женя Музика, Nicolas Vion": "CC BY 3.0 us"
   },
@@ -310,28 +307,27 @@
       "source": "LL-Q8798 (ukr)-Tohaomg-Ірландія.wav"
     },
     "Іспанія": {
-      "author": "Renvoy",
+      "author": "Tohaomg",
+      "cap": 0.1,
       "file": "countries/u0456u0441u043fu0430u043du0456u044f.mp3",
-      "gain": 4.4,
-      "gainPhone": 0.5,
-      "gate": -76.0,
-      "lead": 209,
+      "gain": 2.1,
+      "gainPhone": -3.8,
+      "lead": 233,
       "matches": "Іспанія",
-      "sha256": "ba56051ac907eb19091e179e0248f4843e3c239f7a70fcf5f7f389ab61de39af",
-      "snr": 70.1,
-      "source": "LL-Q8798 (ukr)-Renvoy-Іспанія.wav"
+      "sha256": "e43f42a81710b08f5e59fbe9950730db2c08ebc4a035c10eac8953b94027d302",
+      "snr": 100.3,
+      "source": "LL-Q8798 (ukr)-Tohaomg-Іспанія.wav"
     },
     "Італія": {
-      "author": "Renvoy",
+      "author": "Tohaomg",
       "file": "countries/u0456u0442u0430u043bu0456u044f.mp3",
-      "gain": 2.5,
-      "gainPhone": 2.2,
-      "gate": -77.5,
-      "lead": 226,
+      "gain": 0.1,
+      "gainPhone": -6.8,
+      "lead": 239,
       "matches": "Італія",
-      "sha256": "50694427f466668bbad356ae6e3523d655ba2f53297aa21ae5a51d4993931a24",
-      "snr": 72.0,
-      "source": "LL-Q8798 (ukr)-Renvoy-Італія.wav"
+      "sha256": "a50c7dc0852f4d7379d086bbd4170c6fc6222cab05086768753568345a693167",
+      "snr": 113.5,
+      "source": "LL-Q8798 (ukr)-Tohaomg-Італія.wav"
     },
     "Австралія": {
       "author": "Bicolino34",
@@ -403,16 +399,15 @@
       "source": "LL-Q8798 (ukr)-Tohaomg-Бельгія.wav"
     },
     "Болгарія": {
-      "author": "Renvoy",
+      "author": "Tohaomg",
       "file": "countries/u0431u043eu043bu0433u0430u0440u0456u044f.mp3",
-      "gain": 1.2,
-      "gainPhone": 1.9,
-      "gate": -74.6,
-      "lead": 259,
+      "gain": 0.2,
+      "gainPhone": -3.9,
+      "lead": 91,
       "matches": "Болгарія",
-      "sha256": "852acb8f2bffbf306241b4228934df436400ab4839f6b293023ff46617636606",
-      "snr": 68.4,
-      "source": "LL-Q8798 (ukr)-Renvoy-Болгарія.wav"
+      "sha256": "1de580f08e7a830fe7d89afc2bfa05f600e0bc8d3339b0cfb677f0f9f2258e11",
+      "snr": 122.0,
+      "source": "LL-Q8798 (ukr)-Tohaomg-Болгарія.wav"
     },
     "Бразилія": {
       "author": "Tohaomg",
@@ -551,16 +546,15 @@
       "source": "LL-Q8798 (ukr)-Tohaomg-Кенія.wav"
     },
     "Китай": {
-      "author": "Yaryna ya",
+      "author": "Tohaomg",
       "file": "countries/u043au0438u0442u0430u0439.mp3",
-      "gain": 4.4,
-      "gainPhone": -0.9,
-      "gate": -73.6,
-      "lead": 142,
+      "gain": 2.0,
+      "gainPhone": -3.5,
+      "lead": 223,
       "matches": "Китай",
-      "sha256": "17f60a5725dee14328c250485385a3f5eb835fb059a8963f641357141920c2bd",
-      "snr": 67.0,
-      "source": "LL-Q8798 (ukr)-Yaryna ya-Китай.wav"
+      "sha256": "40ee02bb648a6aac35a063ec51d6a77ddb6e908e6c0356824efa4d5c01fba5dd",
+      "snr": 108.8,
+      "source": "LL-Q8798 (ukr)-Tohaomg-Китай.wav"
     },
     "Колумбія": {
       "author": "Tohaomg",
@@ -990,16 +984,16 @@
       "source": "LL-Q8798 (ukr)-Tohaomg-Чехія.wav"
     },
     "Чилі": {
-      "author": "Po ukraińsku (Andriana)",
+      "author": "Tohaomg",
       "file": "countries/u0447u0438u043bu0456.mp3",
-      "gain": 6.9,
-      "gainPhone": 6.7,
-      "gate": -82.3,
-      "lead": 247,
+      "gain": 3.7,
+      "gainPhone": -1.5,
+      "gate": -90.7,
+      "lead": 185,
       "matches": "Чилі",
-      "sha256": "8f7f6bf98199b41abe2353c03d53c5a9963c8952cd52b6783c9fd3c1d0149435",
-      "snr": 72.8,
-      "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-чилі.wav"
+      "sha256": "fc85e59f821693748e84cb4506a1a05749e44b9276ce02ca476427ec5fc61271",
+      "snr": 81.7,
+      "source": "LL-Q8798 (ukr)-Tohaomg-Чилі.wav"
     },
     "Швейцарія": {
       "author": "Tohaomg",
@@ -1336,8 +1330,7 @@
   "licenses": {
     "CC BY 2.0 fr": "https://creativecommons.org/licenses/by/2.0/fr/",
     "CC BY 3.0 us": "https://creativecommons.org/licenses/by/3.0/us/",
-    "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/"
+    "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/"
   },
   "texts": {
     "ґудзик": {
