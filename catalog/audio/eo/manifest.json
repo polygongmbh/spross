@@ -1219,6 +1219,18 @@
       "snr": 65.1,
       "source": "LL-Q143 (epo)-Lepticed7-denove.wav"
     },
+    "age": {
+      "author": "Lepticed7",
+      "file": "age.mp3",
+      "gain": 13.7,
+      "gainPhone": 8.7,
+      "gate": -78.4,
+      "lead": 217,
+      "matches": "aĝo",
+      "sha256": "a9db692fabaf5c11f86b50887167aee83ba957de906dc5b656614bed36677559",
+      "snr": 59.9,
+      "source": "LL-Q143 (epo)-Lepticed7-aĝo.wav"
+    },
     "aggressive": {
       "author": "Lepticed7",
       "cap": 0.5,
@@ -1507,6 +1519,18 @@
       "sha256": "e7dae72b7fea01d6e24fc3eb449b2ce6d216b362f614c94ec76a1e397c424fc8",
       "snr": 61.6,
       "source": "LL-Q143 (epo)-Lepticed7-onklino.wav"
+    },
+    "authority": {
+      "author": "Lepticed7",
+      "file": "authority.mp3",
+      "gain": 6.2,
+      "gainPhone": 1.9,
+      "gate": -79.4,
+      "lead": 282,
+      "matches": "aŭtoritato",
+      "sha256": "a4fee674c672a84764c38c6207e93521e1a3abafe196d427a6e04fa94810b6e4",
+      "snr": 70.1,
+      "source": "LL-Q143 (epo)-Lepticed7-aŭtoritato.wav"
     },
     "available": {
       "author": "Lepticed7",
@@ -2087,6 +2111,18 @@
       "snr": 68.7,
       "source": "LL-Q143 (epo)-Poslovitch-frato.wav"
     },
+    "brother-in-law": {
+      "author": "Lepticed7",
+      "file": "brother-in-law.mp3",
+      "gain": 3.1,
+      "gainPhone": -3.3,
+      "gate": -75.4,
+      "lead": 136,
+      "matches": "bofrato",
+      "sha256": "5ba24a1292076bae7d6826da6b292082dbce4028a93faccea6b3beb7075b3f29",
+      "snr": 68.2,
+      "source": "LL-Q143 (epo)-Lepticed7-bofrato.wav"
+    },
     "brown": {
       "author": "Lepticed7",
       "file": "brown.mp3",
@@ -2337,6 +2373,16 @@
       "snr": 73.8,
       "source": "LL-Q143 (epo)-Lepticed7-festo.wav"
     },
+    "cemetery": {
+      "author": "Lepticed7",
+      "file": "cemetery.mp3",
+      "gain": 10.3,
+      "gainPhone": 2.7,
+      "lead": 105,
+      "matches": "tombejo",
+      "sha256": "964fb42db9fa54623ecbd1996ad482ad7230c747f7e1c8c3fdefc5cd4d1d5d82",
+      "source": "LL-Q143 (epo)-Lepticed7-tombejo.wav"
+    },
     "center": {
       "author": "Lepticed7",
       "file": "center.mp3",
@@ -2470,6 +2516,18 @@
       "sha256": "057e5a827f103854dd9b05557f4f035de8517c7f2fd678827f86804d0c7292e1",
       "snr": 71.7,
       "source": "LL-Q143 (epo)-Poslovitch-infano.wav"
+    },
+    "childhood": {
+      "author": "Lepticed7",
+      "file": "childhood.mp3",
+      "gain": 6.5,
+      "gainPhone": 1.2,
+      "gate": -77.7,
+      "lead": 28,
+      "matches": "infanaĝo",
+      "sha256": "461d00f9e82654fbeb2521f0c8cb45a7b05efa6aefe4ab5e3ea563b57a1ad5a8",
+      "snr": 66.5,
+      "source": "LL-Q143 (epo)-Lepticed7-infanaĝo.wav"
     },
     "church": {
       "author": "Lepticed7",
@@ -2737,6 +2795,30 @@
       "snr": 59.0,
       "source": "LL-Q143 (epo)-DanieruOtakuBoy-kurso.wav"
     },
+    "cousin": {
+      "author": "Lepticed7",
+      "file": "cousin.mp3",
+      "gain": 12.5,
+      "gainPhone": 13.3,
+      "gate": -68.9,
+      "lead": 218,
+      "matches": "kuzo",
+      "sha256": "966ca9ec2451eb6bd13fc216b43bd470ab466d7b6f3ffa583765084442fc9996",
+      "snr": 52.6,
+      "source": "LL-Q143 (epo)-Lepticed7-kuzo.wav"
+    },
+    "cousin-f": {
+      "author": "Lepticed7",
+      "file": "cousin-f.mp3",
+      "gain": 12.9,
+      "gainPhone": 9.3,
+      "gate": -65.7,
+      "lead": 86,
+      "matches": "kuzino",
+      "sha256": "77b9e38f844f579eba4fadf82b77ea838eb3d5501c8c1bc6d3cfe48609213f4f",
+      "snr": 45.9,
+      "source": "LL-Q143 (epo)-Lepticed7-kuzino.wav"
+    },
     "cow": {
       "author": "Lepticed7",
       "file": "cow.mp3",
@@ -2880,6 +2962,19 @@
       "sha256": "474c167ebb817c19f1998013c57826703e59c60e8e0d029e9949cfeba0f2f86b",
       "snr": 73.1,
       "source": "LL-Q143 (epo)-Lepticed7-antaŭhieraŭ.wav"
+    },
+    "dead": {
+      "author": "Lepticed7",
+      "cap": 0.7,
+      "file": "dead.mp3",
+      "gain": 9.0,
+      "gainPhone": 4.1,
+      "gate": -97.6,
+      "lead": 163,
+      "matches": "morta",
+      "sha256": "9e79fd8022296c053e5cc3afc952823dd1efebf3e34961a1e1e08af350de0258",
+      "snr": 83.0,
+      "source": "LL-Q143 (epo)-Lepticed7-morta.wav"
     },
     "death": {
       "author": "Lepticed7",
@@ -3036,6 +3131,18 @@
       "sha256": "7ef380f4db1dae4fda936ae1c5b56ce3cab98ff9d4864896b72eacf2d3382f0a",
       "snr": 63.2,
       "source": "LL-Q143 (epo)-Lepticed7-vazlavilo.wav"
+    },
+    "do-you-speak-english": {
+      "author": "NMaia",
+      "file": "do-you-speak-english.mp3",
+      "gain": 0.5,
+      "gainPhone": 0.5,
+      "gate": -61.5,
+      "lead": 212,
+      "matches": "ĉu vi parolas la anglan",
+      "sha256": "2e240d6f9b3d0d78125139e2a45bc5adcf2b0cfd525e208f9d675cf66936e4c0",
+      "snr": 58.0,
+      "source": "LL-Q143 (epo)-NMaia-ĉu vi parolas la anglan.wav"
     },
     "doctor": {
       "author": "Lepticed7",
@@ -3517,6 +3624,18 @@
       "snr": 73.0,
       "source": "LL-Q143 (epo)-Poslovitch-patro.wav"
     },
+    "father-in-law": {
+      "author": "Lepticed7",
+      "file": "father-in-law.mp3",
+      "gain": 4.2,
+      "gainPhone": -0.2,
+      "gate": -74.9,
+      "lead": 43,
+      "matches": "bopatro",
+      "sha256": "ca4e5a13d1a42a37d66644d37eedaf187e552f4cfe5692ddde5c1a8181032386",
+      "snr": 67.0,
+      "source": "LL-Q143 (epo)-Lepticed7-bopatro.wav"
+    },
     "faucet": {
       "author": "Lepticed7",
       "cap": 0.2,
@@ -3553,6 +3672,18 @@
       "sha256": "f7c47f9ccf6033a40710b826d3e763faf19b79376d8a84970d65d7b093619c57",
       "snr": 75.3,
       "source": "LL-Q143 (epo)-Lepticed7-pago.wav"
+    },
+    "female": {
+      "author": "Robin van der Vliet",
+      "file": "female.mp3",
+      "gain": -0.2,
+      "gainPhone": -3.6,
+      "gate": -70.0,
+      "lead": 226,
+      "matches": "ina",
+      "sha256": "5333d3c9a1e2e8ec8e8c5661e98fc90938088eadceb388e713983e3c79ed8bca",
+      "snr": 65.4,
+      "source": "LL-Q143 (epo)-Robin van der Vliet-ina.wav"
     },
     "fever": {
       "author": "Lepticed7",
@@ -3638,6 +3769,19 @@
       "sha256": "b4734c50da7026a995d60a1418343104a63ade7cc3e7664a34e1245f4466ce41",
       "snr": 57.5,
       "source": "LL-Q143 (epo)-DanieruOtakuBoy-unua.wav"
+    },
+    "first-name": {
+      "author": "Lepticed7",
+      "cap": 0.5,
+      "file": "first-name.mp3",
+      "gain": 6.7,
+      "gainPhone": 4.2,
+      "gate": -74.8,
+      "lead": 198,
+      "matches": "antaŭnomo",
+      "sha256": "8b2fdc90ab71d4031265bdac58382494475d40ab28fb38be44056c5ae5aad5fb",
+      "snr": 65.3,
+      "source": "LL-Q143 (epo)-Lepticed7-antaŭnomo.wav"
     },
     "fish": {
       "author": "Poslovitch",
@@ -3880,6 +4024,17 @@
       "snr": 69.2,
       "source": "LL-Q143 (epo)-Poslovitch-plena.wav"
     },
+    "funeral": {
+      "author": "Lepticed7",
+      "file": "funeral.mp3",
+      "gain": 10.0,
+      "gainPhone": 6.3,
+      "gate": -78.4,
+      "matches": "entombigo",
+      "sha256": "095474282daff2df38c9789942188defd267c49204f3263d8531d6c85fedf4ba",
+      "snr": 66.1,
+      "source": "LL-Q143 (epo)-Lepticed7-entombigo.wav"
+    },
     "future": {
       "author": "Wierzbowski",
       "file": "future.mp3",
@@ -4040,6 +4195,66 @@
       "snr": 72.2,
       "source": "LL-Q143 (epo)-Poslovitch-bona.wav"
     },
+    "good-day": {
+      "author": "Lepticed7",
+      "file": "good-day.mp3",
+      "gain": 4.0,
+      "gainPhone": -0.8,
+      "gate": -71.8,
+      "lead": 206,
+      "matches": "bonan tagon",
+      "sha256": "d32abf93e28f182039c76342c713bc3dc9b9770c74104a0a3590c94aadd568e7",
+      "snr": 64.3,
+      "source": "LL-Q143 (epo)-Lepticed7-bonan tagon.wav"
+    },
+    "good-evening": {
+      "author": "Lepticed7",
+      "file": "good-evening.mp3",
+      "gain": 8.6,
+      "gainPhone": 7.9,
+      "gate": -79.7,
+      "lead": 208,
+      "matches": "bonan vesperon",
+      "sha256": "cfa5dc1a73c369101bf930adb1e33a486a3da655a0a7c31461b108d84af2865b",
+      "snr": 65.5,
+      "source": "LL-Q143 (epo)-Lepticed7-bonan vesperon.wav"
+    },
+    "good-morning": {
+      "author": "Lepticed7",
+      "file": "good-morning.mp3",
+      "gain": 7.4,
+      "gainPhone": 8.8,
+      "gate": -80.8,
+      "lead": 269,
+      "matches": "bonan matenon",
+      "sha256": "afe54255b1c7ce5deecad6c9b7639e04bec53f1f4ce08f6084e8576503b9a7ee",
+      "snr": 68.3,
+      "source": "LL-Q143 (epo)-Lepticed7-bonan matenon.wav"
+    },
+    "good-night": {
+      "author": "Lepticed7",
+      "file": "good-night.mp3",
+      "gain": 8.9,
+      "gainPhone": 8.1,
+      "gate": -78.8,
+      "lead": 194,
+      "matches": "bonan nokton",
+      "sha256": "b4cb99a7ac2cbbdc3022cadd25c3c3bd4a4bc6d014ea76706133ec68feacce06",
+      "snr": 67.1,
+      "source": "LL-Q143 (epo)-Lepticed7-bonan nokton.wav"
+    },
+    "goodbye": {
+      "author": "Lepticed7",
+      "file": "goodbye.mp3",
+      "gain": 10.4,
+      "gainPhone": 6.5,
+      "gate": -81.1,
+      "lead": 146,
+      "matches": "ĝis revido",
+      "sha256": "00b9f5370b304707f8fc28a976c77ed089bd91840e6c611bb231c6ed1a1e5058",
+      "snr": 66.5,
+      "source": "LL-Q143 (epo)-Lepticed7-ĝis revido.wav"
+    },
     "government": {
       "author": "Lepticed7",
       "file": "government.mp3",
@@ -4075,6 +4290,18 @@
       "snr": 73.9,
       "source": "LL-Q143 (epo)-Lepticed7-gramo.wav"
     },
+    "granddaughter": {
+      "author": "Lepticed7",
+      "file": "granddaughter.mp3",
+      "gain": 12.9,
+      "gainPhone": 15.2,
+      "gate": -77.0,
+      "lead": 181,
+      "matches": "nepino",
+      "sha256": "b56479d9cc571bb2b1b7894f3a9ad923efaa6f8c920aec18adee9c3d04b04368",
+      "snr": 59.5,
+      "source": "LL-Q143 (epo)-Lepticed7-nepino.wav"
+    },
     "grandfather": {
       "author": "Lepticed7",
       "file": "grandfather.mp3",
@@ -4098,6 +4325,31 @@
       "sha256": "582c9ac8c993628fb28c94272a0b285adef9029d7f0d0c7c5d1dca4805e476f5",
       "snr": 61.8,
       "source": "LL-Q143 (epo)-Lepticed7-avino.wav"
+    },
+    "grandson": {
+      "author": "Lepticed7",
+      "file": "grandson.mp3",
+      "gain": 12.2,
+      "gainPhone": 15.0,
+      "gate": -81.9,
+      "lead": 178,
+      "matches": "nepo",
+      "sha256": "bbe6a420422e582c047be478d1fa88a433796f027dd71923474985e034a6f8e5",
+      "snr": 65.5,
+      "source": "LL-Q143 (epo)-Lepticed7-nepo.wav"
+    },
+    "grave": {
+      "author": "Lepticed7",
+      "cap": 0.5,
+      "file": "grave.mp3",
+      "gain": 4.6,
+      "gainPhone": 0.5,
+      "gate": -73.1,
+      "lead": 215,
+      "matches": "tombo",
+      "sha256": "e2d16c2b51a6992dbf1afdba6edcd7f4cb43c43292f0eb09571ec65d1c292c43",
+      "snr": 65.5,
+      "source": "LL-Q143 (epo)-Lepticed7-tombo.wav"
     },
     "gray": {
       "author": "Wierzbowski",
@@ -4292,6 +4544,18 @@
       "sha256": "d699d236453ff4588ac34e076763790065f14fda8efb878ff33352b7689e2010",
       "snr": 63.0,
       "source": "LL-Q143 (epo)-Lepticed7-helpo.wav"
+    },
+    "here": {
+      "author": "Poslovitch",
+      "file": "here.mp3",
+      "gain": 1.0,
+      "gainPhone": 5.7,
+      "gate": -73.0,
+      "lead": 112,
+      "matches": "ĉi tie",
+      "sha256": "df50b673cea693bb18191e944aa3b0974280fd949289aff48928ccd87dd24c29",
+      "snr": 67.1,
+      "source": "LL-Q143 (epo)-Poslovitch-ĉi tie.wav"
     },
     "his": {
       "author": "Lepticed7",
@@ -4496,6 +4760,16 @@
       "sha256": "a7de88e291f9723d7ddd9ee57e7896b1378543da64ad90ccf5cb0807df0513da",
       "source": "Mi ne scias.ogg"
     },
+    "i-dont-understand": {
+      "author": "NMaia",
+      "file": "i-dont-understand.mp3",
+      "gain": -3.1,
+      "gainPhone": -3.4,
+      "lead": 171,
+      "matches": "mi ne komprenas",
+      "sha256": "a1727e63036366cd609b8354bd5bb90698ecc750c43a7c63456563c1501a77ee",
+      "source": "LL-Q143 (epo)-NMaia-mi ne komprenas.wav"
+    },
     "i-love-you": {
       "author": "Lepticed7",
       "cap": 0.2,
@@ -4533,6 +4807,18 @@
       "sha256": "6e513eed9bd9e6a20afa1ce5bd69ec420570c4cda13c6f34180a7339d068fc86",
       "snr": 86.9,
       "source": "LL-Q143 (epo)-Wierzbowski-malsano.wav"
+    },
+    "im-hungry": {
+      "author": "NMaia",
+      "file": "im-hungry.mp3",
+      "gain": 3.8,
+      "gainPhone": 0.1,
+      "gate": -65.2,
+      "lead": 240,
+      "matches": "mi malsatas",
+      "sha256": "35647bcbbfa1ee6323cc11cad42d25b59899c16d3e4ad4a46acb5ccc60394634",
+      "snr": 60.0,
+      "source": "LL-Q143 (epo)-NMaia-mi malsatas.wav"
     },
     "important": {
       "author": "Lepticed7",
@@ -4872,6 +5158,18 @@
       "snr": 65.4,
       "source": "LL-Q143 (epo)-Lepticed7-leĝo.wav"
     },
+    "lecture": {
+      "author": "Lepticed7",
+      "file": "lecture.mp3",
+      "gain": 3.6,
+      "gainPhone": -1.8,
+      "gate": -78.2,
+      "lead": 33,
+      "matches": "prelego",
+      "sha256": "64f4c0d00f795706cfad4c9952a7b5b467f51485b6b55048bf232fbbe5ee322c",
+      "snr": 69.8,
+      "source": "LL-Q143 (epo)-Lepticed7-prelego.wav"
+    },
     "left": {
       "author": "Lepticed7",
       "file": "left.mp3",
@@ -5112,6 +5410,18 @@
       "snr": 71.7,
       "source": "LL-Q143 (epo)-Lepticed7-leterkesto.wav"
     },
+    "male": {
+      "author": "Wierzbowski",
+      "file": "male.mp3",
+      "gain": 8.3,
+      "gainPhone": 6.1,
+      "gate": -92.2,
+      "lead": 142,
+      "matches": "vira",
+      "sha256": "e7edb3300d5f669fe9e648fe0fdb6ad97871b9b8424aa7f0dd3dab0a83f364fd",
+      "snr": 79.9,
+      "source": "LL-Q143 (epo)-Wierzbowski-vira.wav"
+    },
     "mall": {
       "author": "Citoyenovice",
       "cap": 1.0,
@@ -5148,6 +5458,18 @@
       "sha256": "b142eab00785a51b4da20e553dc230fe8c6b3670db0d9c9fb3d1b252962ee5b9",
       "snr": 75.3,
       "source": "LL-Q143 (epo)-Lepticed7-bazaro.wav"
+    },
+    "married": {
+      "author": "Lepticed7",
+      "file": "married.mp3",
+      "gain": 4.2,
+      "gainPhone": -0.4,
+      "gate": -76.1,
+      "lead": 243,
+      "matches": "edziĝinta",
+      "sha256": "a20e71e763cb417236addcd2f8a0af851868f6adbbc2aaa8362a858b36985c44",
+      "snr": 67.9,
+      "source": "LL-Q143 (epo)-Lepticed7-edziĝinta.wav"
     },
     "mattress": {
       "author": "Lepticed7",
@@ -5219,6 +5541,19 @@
       "sha256": "628269337308cabdadc4a941fc88fd91c1d55216870580cd0f3d84963c260558",
       "snr": 64.7,
       "source": "LL-Q143 (epo)-Lepticed7-menuo.wav"
+    },
+    "message": {
+      "author": "DanieruOtakuBoy",
+      "cap": 0.4,
+      "file": "message.mp3",
+      "gain": 6.9,
+      "gainPhone": 4.8,
+      "gate": -69.6,
+      "lead": 178,
+      "matches": "mesaĝo",
+      "sha256": "6a22618e0c28fbc5c183af7f9a4212bb5a3ffa2a01aaf3a7c3d35fe7b2424aad",
+      "snr": 59.4,
+      "source": "LL-Q143 (epo)-DanieruOtakuBoy-mesaĝo.wav"
     },
     "microphone": {
       "author": "Lepticed7",
@@ -5402,6 +5737,31 @@
       "sha256": "dff5e08b13ca314e1651718a3ee644850b01d4bbca51a1db82eabcd002f70037",
       "snr": 73.3,
       "source": "LL-Q143 (epo)-Poslovitch-patrino.wav"
+    },
+    "mother-in-law": {
+      "author": "Lepticed7",
+      "cap": 1.9,
+      "file": "mother-in-law.mp3",
+      "gain": 3.3,
+      "gainPhone": 0.5,
+      "gate": -72.6,
+      "lead": 38,
+      "matches": "bopatrino",
+      "sha256": "f5c139018f2a5886788fa272fc761ac526b0879b69aaf6c30717a19348ae36cb",
+      "snr": 66.8,
+      "source": "LL-Q143 (epo)-Lepticed7-bopatrino.wav"
+    },
+    "mother-tongue": {
+      "author": "Lepticed7",
+      "file": "mother-tongue.mp3",
+      "gain": 7.4,
+      "gainPhone": 6.0,
+      "gate": -78.8,
+      "lead": 161,
+      "matches": "gepatra lingvo",
+      "sha256": "c0ea118915d292089c33d31e34426df8f677e279991732d4228ea2e107ffc752",
+      "snr": 67.8,
+      "source": "LL-Q143 (epo)-Lepticed7-gepatra lingvo.wav"
     },
     "motorbike": {
       "author": "Lepticed7",
@@ -5598,6 +5958,18 @@
       "snr": 72.1,
       "source": "LL-Q143 (epo)-Lepticed7-kvartalo.wav"
     },
+    "nephew": {
+      "author": "Wierzbowski",
+      "file": "nephew.mp3",
+      "gain": 8.2,
+      "gainPhone": 5.4,
+      "gate": -88.5,
+      "lead": 212,
+      "matches": "nevo",
+      "sha256": "e29bb06f8df55f5a52599decf3b4c4eec44f2cf4f89ce838edb52c777b08c2dc",
+      "snr": 77.3,
+      "source": "LL-Q143 (epo)-Wierzbowski-nevo.wav"
+    },
     "nerve": {
       "author": "Lepticed7",
       "file": "nerve.mp3",
@@ -5684,6 +6056,18 @@
       "snr": 70.6,
       "source": "LL-Q143 (epo)-Lepticed7-apud.wav"
     },
+    "niece": {
+      "author": "Lepticed7",
+      "file": "niece.mp3",
+      "gain": 11.9,
+      "gainPhone": 14.3,
+      "gate": -75.7,
+      "lead": 204,
+      "matches": "nevino",
+      "sha256": "c5c3076ac7d896003e31bcac6a0340ecd554211ce64f015c9a7a11ee303614fe",
+      "snr": 58.4,
+      "source": "LL-Q143 (epo)-Lepticed7-nevino.wav"
+    },
     "night": {
       "author": "Poslovitch",
       "capPhone": 2.5,
@@ -5732,6 +6116,16 @@
       "sha256": "3fb17e0106d05abcacb0cda18d19202cd74c54562f6bc128559f8522bfbbda63",
       "snr": 59.2,
       "source": "LL-Q143 (epo)-Lepticed7-neniu.wav"
+    },
+    "no-problem": {
+      "author": "Tiguliano",
+      "file": "no-problem.mp3",
+      "gain": -2.5,
+      "gainPhone": -2.7,
+      "lead": 174,
+      "matches": "neniu problemo",
+      "sha256": "255618823a3292608d2fef690c037c555351929152f532c50a56845aaa4836d4",
+      "source": "Eo-neniu problemo.ogg"
     },
     "noise": {
       "author": "Lepticed7",
@@ -6333,6 +6727,16 @@
       "snr": 64.3,
       "source": "LL-Q143 (epo)-Ookap-poŝtelefono.wav"
     },
+    "phone-number": {
+      "author": "Lepticed7",
+      "file": "phone-number.mp3",
+      "gain": 7.6,
+      "gainPhone": -0.3,
+      "lead": 199,
+      "matches": "telefonnumero",
+      "sha256": "529535baf7c86575756eca6a8f694fbcd9fd27fd1a595d0e7aea976befee5595",
+      "source": "LL-Q143 (epo)-Lepticed7-telefonnumero.wav"
+    },
     "picture": {
       "author": "Lepticed7",
       "file": "picture.mp3",
@@ -6379,6 +6783,18 @@
       "sha256": "893744e097527b47b696f5314f241011eda425bae99cc15fb76efbd5fa706d0d",
       "snr": 69.3,
       "source": "LL-Q143 (epo)-Lepticed7-loko.wav"
+    },
+    "place-of-residence": {
+      "author": "Lepticed7",
+      "file": "place-of-residence.mp3",
+      "gain": 6.7,
+      "gainPhone": 4.7,
+      "gate": -80.3,
+      "lead": 232,
+      "matches": "loĝloko",
+      "sha256": "94fda91cc9f9f3fed544ac6fc041836f6c91c49913dbfc3ae56079205ffd7c74",
+      "snr": 72.0,
+      "source": "LL-Q143 (epo)-Lepticed7-loĝloko.wav"
     },
     "plan": {
       "author": "Wierzbowski",
@@ -6809,6 +7225,17 @@
       "snr": 88.6,
       "source": "LL-Q143 (epo)-Lepticed7-registriĝo.wav"
     },
+    "responsible": {
+      "author": "Lepticed7",
+      "file": "responsible.mp3",
+      "gain": 9.0,
+      "gainPhone": 1.4,
+      "lead": 197,
+      "matches": "respondeca",
+      "sha256": "a67586c494c3f94e09fd0ad06891960e80a02514cad0a7e2594ab58a3f063624",
+      "snr": 171.9,
+      "source": "LL-Q143 (epo)-Lepticed7-respondeca.wav"
+    },
     "restaurant": {
       "author": "Lepticed7",
       "cap": 0.3,
@@ -7043,6 +7470,18 @@
       "snr": 67.4,
       "source": "LL-Q143 (epo)-Lepticed7-frazo.wav"
     },
+    "sex": {
+      "author": "Lepticed7",
+      "file": "sex.mp3",
+      "gain": 4.2,
+      "gainPhone": -2.3,
+      "gate": -70.9,
+      "lead": 139,
+      "matches": "sekso",
+      "sha256": "f5c0568f23d8ad5e28f28ab48fea2d7c378e92a5bd8fde8ae9169fa4acfa0576",
+      "snr": 63.4,
+      "source": "LL-Q143 (epo)-Lepticed7-sekso.wav"
+    },
     "shadow": {
       "author": "Lepticed7",
       "file": "shadow.mp3",
@@ -7223,6 +7662,19 @@
       "snr": 60.2,
       "source": "LL-Q143 (epo)-Lepticed7-duŝo.wav"
     },
+    "siblings": {
+      "author": "Lepticed7",
+      "cap": 2.1,
+      "file": "siblings.mp3",
+      "gain": 5.3,
+      "gainPhone": -0.8,
+      "gate": -68.1,
+      "lead": 134,
+      "matches": "gefratoj",
+      "sha256": "fcc9f08a52d948f86ab059a5709ecd5f407ddab871773f8b3ad403f458b7526c",
+      "snr": 58.3,
+      "source": "LL-Q143 (epo)-Lepticed7-gefratoj.wav"
+    },
     "sick": {
       "author": "Lepticed7",
       "file": "sick.mp3",
@@ -7271,6 +7723,18 @@
       "snr": 67.5,
       "source": "LL-Q143 (epo)-Lepticed7-ekde.wav"
     },
+    "single": {
+      "author": "Lepticed7",
+      "file": "single.mp3",
+      "gain": 2.6,
+      "gainPhone": -0.8,
+      "gate": -76.8,
+      "lead": 177,
+      "matches": "fraŭla",
+      "sha256": "21b040e2f7534347bcbe6be6340cffefbfa126b10f12f1a947b94c0247052092",
+      "snr": 70.5,
+      "source": "LL-Q143 (epo)-Lepticed7-fraŭla.wav"
+    },
     "sister": {
       "author": "Lepticed7",
       "file": "sister.mp3",
@@ -7282,6 +7746,18 @@
       "sha256": "1b4f3e2d546e6ab559bb0b7eb81a18146d2aec4e42773546e1ea0bd1152eae12",
       "snr": 68.4,
       "source": "LL-Q143 (epo)-Lepticed7-fratino.wav"
+    },
+    "sister-in-law": {
+      "author": "Lepticed7",
+      "file": "sister-in-law.mp3",
+      "gain": 11.6,
+      "gainPhone": 10.6,
+      "gate": -81.1,
+      "lead": 226,
+      "matches": "bofratino",
+      "sha256": "99141518d0f55c08819392d33a22e579e8fdf05d939c94a6a3c33e6cbd9e1cc3",
+      "snr": 67.3,
+      "source": "LL-Q143 (epo)-Lepticed7-bofratino.wav"
     },
     "size": {
       "author": "Lepticed7",
@@ -7750,6 +8226,42 @@
       "snr": 69.4,
       "source": "LL-Q143 (epo)-Lepticed7-strato.wav"
     },
+    "student": {
+      "author": "Lepticed7",
+      "file": "student.mp3",
+      "gain": 6.4,
+      "gainPhone": 5.8,
+      "gate": -76.9,
+      "lead": 50,
+      "matches": "studento",
+      "sha256": "30d2dbd641de1573d22edd8cd4522906a20c0ad2e5b11572a608caf6f001d25c",
+      "snr": 69.0,
+      "source": "LL-Q143 (epo)-Lepticed7-studento.wav"
+    },
+    "student-f": {
+      "author": "Juliano P. Junho",
+      "file": "student-f.mp3",
+      "gain": 5.8,
+      "gainPhone": 7.3,
+      "gate": -71.4,
+      "lead": 223,
+      "matches": "studentino",
+      "sha256": "b95a3fce2b77fb15561449765b981644af55a55494ea658b19f91e930d0f40e5",
+      "snr": 64.1,
+      "source": "LL-Q143 (epo)-Juliano P. Junho (Jjunho)-studentino.wav"
+    },
+    "studies": {
+      "author": "Wierzbowski",
+      "file": "studies.mp3",
+      "gain": 7.6,
+      "gainPhone": 4.6,
+      "gate": -90.6,
+      "lead": 30,
+      "matches": "studado",
+      "sha256": "f1f4e78c052455bee029deac8f62204a281b2eff88956c19f13293666c53f378",
+      "snr": 78.3,
+      "source": "LL-Q143 (epo)-Wierzbowski-studado.wav"
+    },
     "sugar": {
       "author": "Lepticed7",
       "file": "sugar.mp3",
@@ -7773,6 +8285,18 @@
       "sha256": "18d993c4108a69cfed4342f135a64bcf7bf62f940def47273016f5285cd6aed6",
       "snr": 66.3,
       "source": "LL-Q143 (epo)-Poslovitch-suno.wav"
+    },
+    "surname": {
+      "author": "Lepticed7",
+      "file": "surname.mp3",
+      "gain": 7.9,
+      "gainPhone": 7.0,
+      "gate": -78.4,
+      "lead": 172,
+      "matches": "familia nomo",
+      "sha256": "795a014b0d73cfd7c9f22bcca4eb8b1869af45c0bec42b2ed7340c5310a916fe",
+      "snr": 67.7,
+      "source": "LL-Q143 (epo)-Lepticed7-familia nomo.wav"
     },
     "surprise": {
       "author": "Ookap",
@@ -7905,6 +8429,18 @@
       "snr": 72.0,
       "source": "LL-Q143 (epo)-Lepticed7-ol.wav"
     },
+    "thank-you": {
+      "author": "Lepticed7",
+      "file": "thank-you.mp3",
+      "gain": 4.0,
+      "gainPhone": -1.3,
+      "gate": -71.2,
+      "lead": 192,
+      "matches": "multan dankon",
+      "sha256": "d75ced1c77f81872ddecd34053eb538fe517e9e23aff46370e7f13926873bbd1",
+      "snr": 64.7,
+      "source": "LL-Q143 (epo)-Lepticed7-multan dankon.wav"
+    },
     "that": {
       "author": "Poslovitch",
       "file": "that.mp3",
@@ -7988,6 +8524,18 @@
       "matches": "soifo",
       "sha256": "8d84b4488a6ed63c708f1dc2881fe2ecb8503ed14a5889754cf3d80b1006ccb5",
       "source": "LL-Q143 (epo)-Lepticed7-soifo.wav"
+    },
+    "this": {
+      "author": "Poslovitch",
+      "file": "this.mp3",
+      "gain": 2.0,
+      "gainPhone": 5.0,
+      "gate": -82.2,
+      "lead": 250,
+      "matches": "ĉi tio",
+      "sha256": "bd39dafba7e59a9913c88a0df2282b2103d5e85f589b6bbc02feecba6a64b0ac",
+      "snr": 76.4,
+      "source": "LL-Q143 (epo)-Poslovitch-ĉi tio.wav"
     },
     "throat": {
       "author": "Lepticed7",
@@ -8285,6 +8833,18 @@
       "sha256": "aa6c255acc94b926b1dcb283850efd585570e1a052caba9aaf239722c2553ce1",
       "snr": 71.3,
       "source": "LL-Q143 (epo)-Lepticed7-kunporti.wav"
+    },
+    "to-bury": {
+      "author": "Lepticed7",
+      "file": "to-bury.mp3",
+      "gain": 7.5,
+      "gainPhone": 2.4,
+      "gate": -82.7,
+      "lead": 244,
+      "matches": "enterigi",
+      "sha256": "f56273bf046cdefcfc3c7fd9c9c6f3a7f539a9cb59bce58a0211cc0d85bc0437",
+      "snr": 72.0,
+      "source": "LL-Q143 (epo)-Lepticed7-enterigi.wav"
     },
     "to-buy": {
       "author": "Lepticed7",
@@ -8842,6 +9402,18 @@
       "snr": 79.6,
       "source": "LL-Q143 (epo)-Wierzbowski-eliri.wav"
     },
+    "to-get-old": {
+      "author": "Lepticed7",
+      "file": "to-get-old.mp3",
+      "gain": 5.1,
+      "gainPhone": 2.1,
+      "gate": -73.5,
+      "lead": 63,
+      "matches": "maljuniĝi",
+      "sha256": "23289e0b04232ede3da9d9cff21d00eef59d0a63f6c89309bd31e687624b0a76",
+      "snr": 65.7,
+      "source": "LL-Q143 (epo)-Lepticed7-maljuniĝi.wav"
+    },
     "to-get-undressed": {
       "author": "Lepticed7",
       "file": "to-get-undressed.mp3",
@@ -8942,6 +9514,18 @@
       "snr": 72.1,
       "source": "LL-Q143 (epo)-Lepticed7-saluti.wav"
     },
+    "to-grow-up": {
+      "author": "Lepticed7",
+      "file": "to-grow-up.mp3",
+      "gain": 2.9,
+      "gainPhone": -2.9,
+      "gate": -71.9,
+      "lead": 20,
+      "matches": "kreski",
+      "sha256": "c2c509ff92631a70ea3238fa39ae118bb056b2e416115095d07a601d22cf14f2",
+      "snr": 64.1,
+      "source": "LL-Q143 (epo)-Lepticed7-kreski.wav"
+    },
     "to-haggle": {
       "author": "Lepticed7",
       "file": "to-haggle.mp3",
@@ -8965,6 +9549,19 @@
       "sha256": "b3c940f60c4da1c0f7e8eb5ac02ff4a98c546707c5dd7109df6a1c23c9653ede",
       "snr": 63.3,
       "source": "LL-Q143 (epo)-Lepticed7-prezenti.wav"
+    },
+    "to-happen": {
+      "author": "Lepticed7",
+      "cap": 0.1,
+      "file": "to-happen.mp3",
+      "gain": 10.2,
+      "gainPhone": 6.2,
+      "gate": -80.0,
+      "lead": 260,
+      "matches": "okazi",
+      "sha256": "4f65b81ad654bd1b4ba85f373fe68ed3f1b5b9e14a6b889847f85d52fcd508cd",
+      "snr": 67.3,
+      "source": "LL-Q143 (epo)-Lepticed7-okazi.wav"
     },
     "to-have": {
       "author": "Lepticed7",
@@ -9097,6 +9694,18 @@
       "sha256": "e9ad14c356b2c0535d35b6de4318961a043261d740b9038cf789f370ba91ab02",
       "snr": 65.5,
       "source": "LL-Q143 (epo)-Poslovitch-scii.wav"
+    },
+    "to-last": {
+      "author": "Lepticed7",
+      "file": "to-last.mp3",
+      "gain": 9.6,
+      "gainPhone": 10.0,
+      "gate": -79.5,
+      "lead": 125,
+      "matches": "daŭri",
+      "sha256": "1c7089757c0600cfe01064f8b1b72f4e8416a1602219e1a8d750d1f4f3e2ff47",
+      "snr": 66.2,
+      "source": "LL-Q143 (epo)-Lepticed7-daŭri.wav"
     },
     "to-laugh": {
       "author": "Poslovitch",
@@ -10417,6 +11026,17 @@
       "snr": 68.0,
       "source": "LL-Q143 (epo)-Lepticed7-stacidomo.wav"
     },
+    "training": {
+      "author": "Lepticed7",
+      "file": "training.mp3",
+      "gain": 3.0,
+      "gainPhone": -5.1,
+      "lead": 249,
+      "matches": "trejnado",
+      "sha256": "e3cadb5e51f32d534c2822a653f8e69b5a2b2c5cff2a14b2e24e77e6678f447b",
+      "snr": 126.4,
+      "source": "LL-Q143 (epo)-Lepticed7-trejnado.wav"
+    },
     "trash-can": {
       "author": "Lepticed7",
       "capPhone": 1.3,
@@ -11222,6 +11842,18 @@
       "snr": 67.1,
       "source": "LL-Q143 (epo)-Poslovitch-vi.wav"
     },
+    "young": {
+      "author": "Lepticed7",
+      "file": "young.mp3",
+      "gain": 11.5,
+      "gainPhone": 16.1,
+      "gate": -78.7,
+      "lead": 212,
+      "matches": "juna",
+      "sha256": "1066786343dbba36fc44a8cd2034c92c3a8b3cf6f1e845fbc90661255871e266",
+      "snr": 62.8,
+      "source": "LL-Q143 (epo)-Lepticed7-juna.wav"
+    },
     "your": {
       "author": "Lepticed7",
       "file": "your.mp3",
@@ -11233,6 +11865,30 @@
       "sha256": "03c07c6e0a78ed5f3f7a11b7f3c0b0463ff64b499de636cb759340663fe95db9",
       "snr": 69.7,
       "source": "LL-Q143 (epo)-Lepticed7-via.wav"
+    },
+    "youth": {
+      "author": "Lepticed7",
+      "file": "youth.mp3",
+      "gain": 10.3,
+      "gainPhone": 6.9,
+      "gate": -80.0,
+      "lead": 190,
+      "matches": "juneco",
+      "sha256": "94869c6d8b8d830b9096217da42ed967492b1ffe43440ba2b5ecfac640013ead",
+      "snr": 66.0,
+      "source": "LL-Q143 (epo)-Lepticed7-juneco.wav"
+    },
+    "zip-code": {
+      "author": "Robin van der Vliet",
+      "file": "zip-code.mp3",
+      "gain": 2.0,
+      "gainPhone": 0.3,
+      "gate": -71.2,
+      "lead": 281,
+      "matches": "poŝtkodo",
+      "sha256": "692cb338c04afade5a20299554829b36d37e4f5cb0acac55be43c8e6c9f20194",
+      "snr": 64.3,
+      "source": "LL-Q143 (epo)-Robin van der Vliet-poŝtkodo.wav"
     }
   }
 }

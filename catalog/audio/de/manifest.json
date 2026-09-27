@@ -2807,14 +2807,19 @@
     }
   },
   "authors": {
+    "Dinock90": "CC BY-SA 4.0",
     "Hedwig von Ebbel": "CC BY 3.0",
     "Holunder Gabriel": "CC BY-SA 4.0",
     "Jeuwre": "CC BY-SA 4.0",
     "Kampy": "CC BY-SA 3.0",
+    "Leni Berlin": "CC BY-SA 2.5",
     "MiER": "CC BY-SA 3.0",
     "Natschoba": "CC BY-SA 4.0",
+    "StMH": "CC BY-SA 3.0",
     "T.Voekler": "CC BY-SA 3.0",
+    "Timwi at English Wikipedia": "Public domain",
     "User:Tosca": "CC BY-SA 3.0",
+    "Wikimedia Commons user Jakob.scholbach": "CC BY-SA 3.0",
     "joni": "CC BY-SA 3.0"
   },
   "calendar": {
@@ -4485,8 +4490,10 @@
   },
   "licenses": {
     "CC BY 3.0": "https://creativecommons.org/licenses/by/3.0/",
+    "CC BY-SA 2.5": "https://creativecommons.org/licenses/by-sa/2.5/",
     "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/"
+    "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "Public domain": null
   },
   "texts": {
     "Quittung": {
@@ -4511,6 +4518,18 @@
     }
   },
   "words": {
+    "a-little": {
+      "author": "Natschoba",
+      "file": "a-little.mp3",
+      "gain": 7.3,
+      "gainPhone": 4.6,
+      "gate": -82.0,
+      "lead": 268,
+      "matches": "ein bisschen",
+      "sha256": "53b3b0b327bc4ee8d296108f2e068b702c1bd3522118d754fd5950cad2da4aa6",
+      "snr": 70.9,
+      "source": "LL-Q188 (deu)-Natschoba-ein bisschen.wav"
+    },
     "address": {
       "author": "Jeuwre",
       "file": "address.mp3",
@@ -4577,6 +4596,17 @@
       "snr": 104.9,
       "source": "De-wieder2.ogg"
     },
+    "age": {
+      "author": "Jeuwre",
+      "file": "age.mp3",
+      "gain": -1.5,
+      "gainPhone": -4.2,
+      "lead": 441,
+      "matches": "alter",
+      "sha256": "6b7ddd47331af8b79ae984398eaaa252e96be218d27f6e145226c8aa7865baf2",
+      "snr": 106.8,
+      "source": "De-alter.ogg"
+    },
     "aggressive": {
       "author": "Jeuwre",
       "file": "aggressive.mp3",
@@ -4631,6 +4661,17 @@
       "sha256": "33ef08fc951f4d57d125d0f943dbb8bca180ab833718915d5229330c95a048f5",
       "snr": 105.9,
       "source": "De-alle3.ogg"
+    },
+    "all-good": {
+      "author": "Jeuwre",
+      "file": "all-good.mp3",
+      "gain": -4.6,
+      "gainPhone": -3.6,
+      "lead": 399,
+      "matches": "alles gut",
+      "sha256": "6035c4d6f9535ef360d7823263d7160a8bdeb774f52281d93111dd65689a58bb",
+      "snr": 104.6,
+      "source": "De-alles gut.ogg"
     },
     "allergy": {
       "author": "Jeuwre",
@@ -4862,6 +4903,17 @@
       "sha256": "dce5db479371c67ccaaa230ec8c3210b41c5dbbd856d3926ef2ef9c8a3b2debe",
       "snr": 103.0,
       "source": "De-Tante2.ogg"
+    },
+    "authority": {
+      "author": "Jeuwre",
+      "file": "authority.mp3",
+      "gain": -3.8,
+      "gainPhone": -1.2,
+      "lead": 441,
+      "matches": "behörde",
+      "sha256": "4de034f505de4eb948a9fdebc23d95d7ba3f67169e12da1a02ea11589503ce20",
+      "snr": 107.5,
+      "source": "De-Behörde.ogg"
     },
     "available": {
       "author": "Jeuwre",
@@ -5469,6 +5521,17 @@
       "snr": 105.8,
       "source": "De-Bruder2.ogg"
     },
+    "brother-in-law": {
+      "author": "Jeuwre",
+      "file": "brother-in-law.mp3",
+      "gain": -0.4,
+      "gainPhone": -4.3,
+      "lead": 425,
+      "matches": "schwager",
+      "sha256": "9b65ab5553be83d6cc7b7e7f04fb6271cad3d8d4eaef70f168b8cae586faeade",
+      "snr": 102.8,
+      "source": "De-Schwager.ogg"
+    },
     "brown": {
       "author": "Jeuwre",
       "file": "brown.mp3",
@@ -5724,6 +5787,17 @@
       "snr": 105.5,
       "source": "De-feier.ogg"
     },
+    "cemetery": {
+      "author": "Jeuwre",
+      "file": "cemetery.mp3",
+      "gain": -0.5,
+      "gainPhone": 1.9,
+      "lead": 416,
+      "matches": "friedhof",
+      "sha256": "9cf634eb517753a6c4b1650a713b2680763acd137dd25c37aad90671e3de83e6",
+      "snr": 102.2,
+      "source": "De-Friedhof.ogg"
+    },
     "center": {
       "author": "Jeuwre",
       "capPhone": 0.9,
@@ -5869,6 +5943,17 @@
       "sha256": "0d703f99e70fcd7afa20b81faea81f2130c7c1bd453c4d301cae965b7fea4b85",
       "snr": 104.0,
       "source": "De-Kind2.ogg"
+    },
+    "childhood": {
+      "author": "Jeuwre",
+      "file": "childhood.mp3",
+      "gain": -0.8,
+      "gainPhone": 0.6,
+      "lead": 445,
+      "matches": "kindheit",
+      "sha256": "71a01fc31f95e27f886765fdee6c2aba44c6ea10537eb778b6265533e2d3782c",
+      "snr": 106.2,
+      "source": "De-Kindheit.ogg"
     },
     "church": {
       "author": "Jeuwre",
@@ -6152,6 +6237,17 @@
       "snr": 78.7,
       "source": "De-husten.ogg"
     },
+    "counseling": {
+      "author": "Jeuwre",
+      "file": "counseling.mp3",
+      "gain": -0.4,
+      "gainPhone": -0.7,
+      "lead": 442,
+      "matches": "beratung",
+      "sha256": "126c19eb2619e58fcec6ce14d804d00ccc5817b9558b89ec5e67dc602b5aac79",
+      "snr": 104.4,
+      "source": "De-Beratung.ogg"
+    },
     "country": {
       "author": "Jeuwre",
       "file": "country.mp3",
@@ -6174,6 +6270,28 @@
       "sha256": "e44b453a8043bfc87ab551ca9ff474561b6690c120d3bd445e4168c865a29475",
       "snr": 76.8,
       "source": "De-Kurs.ogg"
+    },
+    "cousin": {
+      "author": "Hedwig von Ebbel",
+      "file": "cousin.mp3",
+      "gain": -6.3,
+      "gainPhone": -11.7,
+      "lead": 537,
+      "license": "CC BY-SA 3.0",
+      "matches": "cousin",
+      "sha256": "5c005e395f9c72194c46f1d34a743d3fd244ec039619fdf4bb7aef28ea637bc7",
+      "source": "De-Cousin.ogg"
+    },
+    "cousin-f": {
+      "author": "Kampy",
+      "file": "cousin-f.mp3",
+      "gain": -4.5,
+      "gainPhone": -2.1,
+      "gate": -49.8,
+      "matches": "cousine",
+      "sha256": "2b04dfa3aa411c6e83642d9090bce2a14a1192d332efad3bb55d5579039eb8fd",
+      "snr": 49.1,
+      "source": "De-Cousine.ogg"
     },
     "cow": {
       "author": "Jeuwre",
@@ -6276,6 +6394,17 @@
       "snr": 105.3,
       "source": "De-Datum2.ogg"
     },
+    "date-of-birth": {
+      "author": "Jeuwre",
+      "file": "date-of-birth.mp3",
+      "gain": -0.7,
+      "gainPhone": -1.6,
+      "lead": 449,
+      "matches": "geburtsdatum",
+      "sha256": "8176046728ef9ee3aaf14aeaebe57a6f1e6a84da8705e6e375c979a995bfbe6c",
+      "snr": 104.0,
+      "source": "De-Geburtsdatum.ogg"
+    },
     "daughter": {
       "author": "Jeuwre",
       "file": "daughter.mp3",
@@ -6319,6 +6448,19 @@
       "sha256": "f63e4d58cfa85e9fcd7c3f2efcaa306b95e3bc33d5e01fcc8c666b431990488a",
       "snr": 106.7,
       "source": "De-vorgestern.ogg"
+    },
+    "dead": {
+      "author": "Jeuwre",
+      "capPhone": 2.5,
+      "file": "dead.mp3",
+      "gain": -2.4,
+      "gainPhone": 3.0,
+      "gate": -68.2,
+      "lead": 229,
+      "matches": "tot",
+      "sha256": "e444a62e79452769dc2534922415455b7d78eda11a34ef09b6c918ceb85f5716",
+      "snr": 66.9,
+      "source": "De-tot.ogg"
     },
     "deadline": {
       "author": "Jeuwre",
@@ -6500,6 +6642,18 @@
       "snr": 103.2,
       "source": "De-Spülmaschine.ogg"
     },
+    "divorced": {
+      "author": "Jeuwre",
+      "file": "divorced.mp3",
+      "gain": -0.2,
+      "gainPhone": -2.4,
+      "gate": -60.9,
+      "lead": 92,
+      "matches": "geschieden",
+      "sha256": "a8b8975b12b14142a852e329e123e47ea12777db18c4a85b9ae0bb70de838f76",
+      "snr": 57.6,
+      "source": "De-geschieden.ogg"
+    },
     "dizziness": {
       "author": "Jeuwre",
       "file": "dizziness.mp3",
@@ -6510,6 +6664,18 @@
       "sha256": "45529dec74d94b5ad0ab4e2f33423baf9c1b77d373cda3bba25161285935fbb9",
       "snr": 103.0,
       "source": "De-schwindel.ogg"
+    },
+    "do-you-speak-english": {
+      "author": "Timwi at English Wikipedia",
+      "cap": 0.2,
+      "file": "do-you-speak-english.mp3",
+      "gain": 2.9,
+      "gainPhone": -5.0,
+      "gate": -58.4,
+      "matches": "sprechen sie englisch",
+      "sha256": "17b757edeff411380e80842a9885d1dad1e6a28c8d68817bff1129b599d3f714",
+      "snr": 50.2,
+      "source": "De-Sprechen Sie Englisch.oga"
     },
     "doctor": {
       "author": "Jeuwre",
@@ -6744,6 +6910,17 @@
       "sha256": "d4e87e0b0753d686fddcbe08876d238050a97d15e4f23a4361d3753c0f9f5c9c",
       "snr": 101.3,
       "source": "De-e-mail.ogg"
+    },
+    "email-address": {
+      "author": "Jeuwre",
+      "file": "email-address.mp3",
+      "gain": -0.6,
+      "gainPhone": -0.7,
+      "lead": 434,
+      "matches": "e-mail-adresse",
+      "sha256": "9a3f170b3567e8cdda5f65d3e5301ec4ed29c271bd1ab2b3044fdd405721ab1d",
+      "snr": 101.2,
+      "source": "De-E-Mail-Adresse.ogg"
     },
     "emergency": {
       "author": "Jeuwre",
@@ -7013,6 +7190,17 @@
       "snr": 105.6,
       "source": "De-vater.ogg"
     },
+    "father-in-law": {
+      "author": "Jeuwre",
+      "file": "father-in-law.mp3",
+      "gain": -2.5,
+      "gainPhone": -3.7,
+      "lead": 428,
+      "matches": "schwiegervater",
+      "sha256": "e4ca32c221c9d3f0b1fb25be0e6118462c64f451659f2e2c78830218bc3bcd11",
+      "snr": 106.6,
+      "source": "De-Schwiegervater.ogg"
+    },
     "faucet": {
       "author": "Jeuwre",
       "file": "faucet.mp3",
@@ -7045,6 +7233,18 @@
       "sha256": "372a8e61438e1095c93043e27056d8ffa402c7ce36898f658526710a8d3cda10",
       "snr": 107.5,
       "source": "De-gebühr.ogg"
+    },
+    "female": {
+      "author": "joni",
+      "cap": 0.3,
+      "file": "female.mp3",
+      "gain": 7.7,
+      "gainPhone": 3.7,
+      "gate": -71.1,
+      "matches": "weiblich",
+      "sha256": "8c38b57c3b57e6bf2bfd0e1e73de23e2a53ed44e1b6e435142b6c995231a52b3",
+      "snr": 61.8,
+      "source": "De-weiblich.ogg"
     },
     "fever": {
       "author": "Jeuwre",
@@ -7123,6 +7323,17 @@
       "sha256": "77b6d03aa4699d35e1721533298fb0296f79faa9a2200204ff2388e211ac979c",
       "snr": 106.3,
       "source": "De-erste2.ogg"
+    },
+    "first-name": {
+      "author": "Jeuwre",
+      "file": "first-name.mp3",
+      "gain": -2.6,
+      "gainPhone": -3.2,
+      "lead": 411,
+      "matches": "vorname",
+      "sha256": "6e49ff060b1c20fd3989f8f833c6202cab495141d6679399c420cbe844831130",
+      "snr": 105.6,
+      "source": "De-Vorname.ogg"
     },
     "fish": {
       "author": "Jeuwre",
@@ -7360,6 +7571,17 @@
       "snr": 102.5,
       "source": "De-Vollzeit.ogg"
     },
+    "funeral": {
+      "author": "StMH",
+      "file": "funeral.mp3",
+      "gain": 5.7,
+      "gainPhone": 3.7,
+      "gate": -69.0,
+      "matches": "beerdigung",
+      "sha256": "0aa95d4f8c1fcdd3e0a1608e5407a29f800621ee1533dc616b54f30aa00beff1",
+      "snr": 58.3,
+      "source": "De-Beerdigung.ogg"
+    },
     "furniture": {
       "author": "Jeuwre",
       "file": "furniture.mp3",
@@ -7371,6 +7593,17 @@
       "sha256": "b79f179c8bba21cf8bbd21c0684f09bfc7d1eaf49d6c353c230f2c4e501587eb",
       "snr": 84.2,
       "source": "De-Möbel.ogg"
+    },
+    "further-training": {
+      "author": "Jeuwre",
+      "file": "further-training.mp3",
+      "gain": -0.2,
+      "gainPhone": 0.5,
+      "lead": 438,
+      "matches": "weiterbildung",
+      "sha256": "101d0e9e0d620e20c789a468089024a67228e2d6fe85290d9119e49e3590a97d",
+      "snr": 106.8,
+      "source": "De-Weiterbildung.ogg"
     },
     "future": {
       "author": "Jeuwre",
@@ -7553,6 +7786,17 @@
       "snr": 104.1,
       "source": "De-Gramm.ogg"
     },
+    "granddaughter": {
+      "author": "Jeuwre",
+      "file": "granddaughter.mp3",
+      "gain": -1.6,
+      "gainPhone": 1.5,
+      "lead": 440,
+      "matches": "enkelin",
+      "sha256": "90d4658f171a8795e24993fbf6e86c61b83a7080570989f3474bff41db75040e",
+      "snr": 102.2,
+      "source": "De-Enkelin.ogg"
+    },
     "grandfather": {
       "author": "Jeuwre",
       "capPhone": 3.3,
@@ -7575,6 +7819,41 @@
       "sha256": "823fed07a5c1a3a8c71a9cf21b54b4818268646b85275c12a526c9af634a9d5a",
       "snr": 107.9,
       "source": "De-Oma2.ogg"
+    },
+    "grandparents": {
+      "author": "Dinock90",
+      "file": "grandparents.mp3",
+      "gain": 11.0,
+      "gainPhone": 7.7,
+      "gate": -94.1,
+      "lead": 540,
+      "matches": "großeltern",
+      "sha256": "cd98777400f3d13b27ea4004512516b38100a223fc7a626c44792abed33a5091",
+      "snr": 80.8,
+      "source": "De-Großeltern.ogg"
+    },
+    "grandson": {
+      "author": "User:Tosca",
+      "file": "grandson.mp3",
+      "gain": 3.3,
+      "gainPhone": 2.0,
+      "gate": -64.3,
+      "lead": 15,
+      "matches": "enkel",
+      "sha256": "3a91e759a7e6216daec8b3909a095a2ee665dfa9a9794e80ea23e4afb2609c84",
+      "snr": 59.2,
+      "source": "De-Enkel.ogg"
+    },
+    "grave": {
+      "author": "Jeuwre",
+      "file": "grave.mp3",
+      "gain": -2.0,
+      "gainPhone": -5.1,
+      "lead": 448,
+      "matches": "grab",
+      "sha256": "9302fc913eda5cc471b09ca27eff86f03e927947535c6f858abcb7c01a2abe6e",
+      "snr": 105.4,
+      "source": "De-grab.ogg"
     },
     "gray": {
       "author": "Jeuwre",
@@ -7891,6 +8170,17 @@
       "snr": 103.8,
       "source": "De-haus.ogg"
     },
+    "house-number": {
+      "author": "Jeuwre",
+      "file": "house-number.mp3",
+      "gain": -3.9,
+      "gainPhone": 0.2,
+      "lead": 325,
+      "matches": "hausnummer",
+      "sha256": "5bd27409f28f9b955cf2b5779bd3d2770f544868e10c6b4af6be9d680b41b078",
+      "snr": 105.4,
+      "source": "De-Hausnummer.ogg"
+    },
     "how": {
       "author": "Jeuwre",
       "file": "how.mp3",
@@ -7957,6 +8247,28 @@
       "sha256": "4698f769a06f6fda3a450e1eac5ee2f91ea52fd6ab2d2dfd389e455f13eb3cc8",
       "snr": 103.7,
       "source": "De-ich2.ogg"
+    },
+    "i-dont-understand": {
+      "author": "Timwi at English Wikipedia",
+      "file": "i-dont-understand.mp3",
+      "gain": 2.9,
+      "gainPhone": -5.4,
+      "gate": -67.4,
+      "matches": "ich verstehe nicht",
+      "sha256": "760a41020d7e820aa77e71ba6b504587560825d0e3552d8b8b5c4dddd894d1df",
+      "snr": 58.2,
+      "source": "De-Ich verstehe nicht.oga"
+    },
+    "i-love-you": {
+      "author": "Leni Berlin",
+      "file": "i-love-you.mp3",
+      "gain": 14.5,
+      "gainPhone": 14.1,
+      "gate": -62.8,
+      "matches": "ich liebe dich",
+      "sha256": "371b97315bd6b405995e1527753869bd86665abf711e62831225cf38199f18a8",
+      "snr": 48.4,
+      "source": "De-ich liebe dich.ogg"
     },
     "id-card": {
       "author": "Jeuwre",
@@ -8073,6 +8385,17 @@
       "sha256": "caba0d18f577b2fda3d50f08d9a32631e07515408098678ebba85a87db239f2c",
       "snr": 103.8,
       "source": "De-Internet.ogg"
+    },
+    "internship": {
+      "author": "Jeuwre",
+      "file": "internship.mp3",
+      "gain": 0.6,
+      "gainPhone": -3.5,
+      "lead": 438,
+      "matches": "praktikum",
+      "sha256": "59857fa475e5891886a73c952e1c10189a975f00be61e470d0e8c0be8b87b430",
+      "snr": 105.2,
+      "source": "De-Praktikum.ogg"
     },
     "interview": {
       "author": "Jeuwre",
@@ -8363,6 +8686,19 @@
       "snr": 103.4,
       "source": "De-Gesetz.ogg"
     },
+    "lecture": {
+      "author": "Jeuwre",
+      "capPhone": 0.2,
+      "file": "lecture.mp3",
+      "gain": -4.6,
+      "gainPhone": 1.5,
+      "gate": -88.7,
+      "lead": 198,
+      "matches": "vorlesung",
+      "sha256": "8f2b096425a16a7c6bd18dc019fce69bd0228091a3236cc35cc5027d13f9a998",
+      "snr": 89.3,
+      "source": "De-Vorlesung.ogg"
+    },
     "left": {
       "author": "Jeuwre",
       "file": "left.mp3",
@@ -8635,6 +8971,17 @@
       "snr": 103.4,
       "source": "De-Briefkasten.ogg"
     },
+    "male": {
+      "author": "joni",
+      "file": "male.mp3",
+      "gain": -0.4,
+      "gainPhone": -0.2,
+      "lead": 439,
+      "matches": "männlich",
+      "sha256": "5b58ed1fcdce79c060861cce172fdac6f47383d85e8754e7c03aa6862e3e3f63",
+      "snr": 104.5,
+      "source": "De-männlich.ogg"
+    },
     "mall": {
       "author": "Jeuwre",
       "file": "mall.mp3",
@@ -8657,6 +9004,17 @@
       "snr": 105.5,
       "source": "De-mann.ogg"
     },
+    "marital-status": {
+      "author": "Jeuwre",
+      "file": "marital-status.mp3",
+      "gain": -2.7,
+      "gainPhone": -1.0,
+      "lead": 415,
+      "matches": "familienstand",
+      "sha256": "b0088c2fc55ade73860db2bddc1d99e1af635ea5ea7b1ff33e2e59f9f13c960d",
+      "snr": 101.8,
+      "source": "De-Familienstand.ogg"
+    },
     "market": {
       "author": "Jeuwre",
       "file": "market.mp3",
@@ -8667,6 +9025,18 @@
       "sha256": "acf33e355d7d3809f554d932dbfc16bcc3c1a185c2279da8ce219c5dda48358a",
       "snr": 106.7,
       "source": "De-markt.ogg"
+    },
+    "married": {
+      "author": "Jeuwre",
+      "file": "married.mp3",
+      "gain": 1.1,
+      "gainPhone": -0.1,
+      "gate": -70.7,
+      "lead": 305,
+      "matches": "verheiratet",
+      "sha256": "359173e5427250d9281817e6b38eeb01342828575af9bb58da3ed71915cd7d5d",
+      "snr": 66.8,
+      "source": "De-verheiratet.ogg"
     },
     "mattress": {
       "author": "Jeuwre",
@@ -8733,6 +9103,18 @@
       "sha256": "029e916a929f00ec3b6c8d3d12bcbce58319c1410013c98c722d64dc4140d006",
       "snr": 104.2,
       "source": "De-Speisekarte.ogg"
+    },
+    "message": {
+      "author": "Jeuwre",
+      "cap": 0.6,
+      "file": "message.mp3",
+      "gain": 2.0,
+      "gainPhone": 0.2,
+      "lead": 438,
+      "matches": "nachricht",
+      "sha256": "9a92ef739c7ddfd59aae4b661c9d0f35db4c8b1d4e6ec91b3d5570c9a93229bc",
+      "snr": 104.5,
+      "source": "De-Nachricht.ogg"
     },
     "microphone": {
       "author": "Jeuwre",
@@ -8902,6 +9284,17 @@
       "snr": 108.0,
       "source": "De-mutter.ogg"
     },
+    "mother-in-law": {
+      "author": "Jeuwre",
+      "file": "mother-in-law.mp3",
+      "gain": -1.4,
+      "gainPhone": -2.1,
+      "lead": 435,
+      "matches": "schwiegermutter",
+      "sha256": "a6a9471f305aad876b22f33462769d149cd3bafe52ac3e5328c276aaa3c70b3c",
+      "snr": 106.2,
+      "source": "De-Schwiegermutter.ogg"
+    },
     "mother-tongue": {
       "author": "Jeuwre",
       "file": "mother-tongue.mp3",
@@ -9036,6 +9429,19 @@
       "snr": 104.4,
       "source": "De-Serviette.ogg"
     },
+    "nationality": {
+      "author": "Dinock90",
+      "cap": 0.4,
+      "file": "nationality.mp3",
+      "gain": 14.0,
+      "gainPhone": 10.6,
+      "gate": -90.3,
+      "lead": 472,
+      "matches": "staatsangehörigkeit",
+      "sha256": "13d9906be96567ce1f0bb481f378180d5563d507b83087b1b26d5fb77f52fb69",
+      "snr": 75.7,
+      "source": "De-Staatsangehörigkeit.ogg"
+    },
     "near": {
       "author": "Jeuwre",
       "file": "near.mp3",
@@ -9091,6 +9497,19 @@
       "sha256": "1807fd779b553a9610145e2712b4bacf7b396bac3360069cebf9383714ae8662",
       "snr": 107.6,
       "source": "De-viertel.ogg"
+    },
+    "nephew": {
+      "author": "User:Tosca",
+      "capPhone": 0.5,
+      "file": "nephew.mp3",
+      "gain": 5.4,
+      "gainPhone": 7.5,
+      "gate": -62.2,
+      "lead": 27,
+      "matches": "neffe",
+      "sha256": "28b7ce5fb82a7422f6b7ac866e152541b639f1b34c4a8574fffe62919060c7dd",
+      "snr": 54.0,
+      "source": "De-Neffe.ogg"
     },
     "nerve": {
       "author": "Jeuwre",
@@ -9169,6 +9588,17 @@
       "sha256": "6b636e7b6af49f16727a12b7addd683fbbce384a8495e7054b1af32dfd108011",
       "snr": 104.0,
       "source": "De-neben2.ogg"
+    },
+    "niece": {
+      "author": "User:Tosca",
+      "file": "niece.mp3",
+      "gain": 5.7,
+      "gainPhone": 3.7,
+      "gate": -59.6,
+      "matches": "nichte",
+      "sha256": "9b0149936ce5c45e9c34ff56136bd310f470cd8281d4e97eef31f53cee9ccd15",
+      "snr": 50.0,
+      "source": "De-Nichte.ogg"
     },
     "night": {
       "author": "Jeuwre",
@@ -9692,6 +10122,17 @@
       "snr": 108.4,
       "source": "De-Papier2.ogg"
     },
+    "pardon": {
+      "author": "Jeuwre",
+      "file": "pardon.mp3",
+      "gain": -3.6,
+      "gainPhone": -1.2,
+      "lead": 443,
+      "matches": "wie bitte",
+      "sha256": "f92358681289fb48e765439656e366b67b2a0eea1ca3926ef0edea004010f72c",
+      "snr": 106.6,
+      "source": "De-wie bitte.ogg"
+    },
     "parents": {
       "author": "Jeuwre",
       "file": "parents.mp3",
@@ -9702,6 +10143,17 @@
       "sha256": "5effd17ff6896069712033fb549d96064e17c2f70054cc267e5162babed9673d",
       "snr": 107.0,
       "source": "De-Eltern2.ogg"
+    },
+    "parents-in-law": {
+      "author": "Jeuwre",
+      "file": "parents-in-law.mp3",
+      "gain": -1.0,
+      "gainPhone": -3.7,
+      "lead": 432,
+      "matches": "schwiegereltern",
+      "sha256": "bdf3ddf023f44cca2068c9ece4836c9452783f3e5baeaa431ea53bfa6fbee963",
+      "snr": 106.1,
+      "source": "De-Schwiegereltern.ogg"
     },
     "park": {
       "author": "Jeuwre",
@@ -9860,6 +10312,18 @@
       "snr": 112.9,
       "source": "De-Handy.ogg"
     },
+    "phone-number": {
+      "author": "Jeuwre",
+      "file": "phone-number.mp3",
+      "gain": -4.0,
+      "gainPhone": 0.3,
+      "gate": -93.4,
+      "lead": 268,
+      "matches": "telefonnummer",
+      "sha256": "683f6a80ec9b930a123b026742063978e98744df5d16b072129b85eb5b565fa8",
+      "snr": 92.4,
+      "source": "De-Telefonnummer.ogg"
+    },
     "picture": {
       "author": "Jeuwre",
       "file": "picture.mp3",
@@ -9903,6 +10367,32 @@
       "sha256": "53730d3d64116f01681cf99b8b30a87b114f4e7d96eec5bd3a7ccb5728c44f88",
       "snr": 107.6,
       "source": "De-ort.ogg"
+    },
+    "place-of-birth": {
+      "author": "Jeuwre",
+      "capPhone": 1.6,
+      "file": "place-of-birth.mp3",
+      "gain": 0.1,
+      "gainPhone": 4.6,
+      "gate": -78.7,
+      "lead": 76,
+      "matches": "geburtsort",
+      "sha256": "733d0b07199d3c9c02d814f5451ce2f248b3bef354a313d112c427493f4d27c0",
+      "snr": 77.6,
+      "source": "De-Geburtsort.ogg"
+    },
+    "place-of-residence": {
+      "author": "Jeuwre",
+      "capPhone": 5.4,
+      "file": "place-of-residence.mp3",
+      "gain": -1.4,
+      "gainPhone": 2.2,
+      "gate": -78.4,
+      "lead": 77,
+      "matches": "wohnort",
+      "sha256": "0af7aab829237ab19c4f94c6ce0fc61f89d08f16f6f4eaf2074a0cd5549e9b02",
+      "snr": 78.0,
+      "source": "De-Wohnort.ogg"
     },
     "plan": {
       "author": "Jeuwre",
@@ -10335,6 +10825,18 @@
       "snr": 103.7,
       "source": "De-Fernbedienung.ogg"
     },
+    "report-card": {
+      "author": "Jeuwre",
+      "file": "report-card.mp3",
+      "gain": -2.5,
+      "gainPhone": -2.2,
+      "gate": -74.3,
+      "lead": 216,
+      "matches": "zeugnis",
+      "sha256": "e34da61930a31c804f0b3c0731182826fff1b527f1b5c10caf79c1c698590a07",
+      "snr": 74.2,
+      "source": "De-Zeugnis.ogg"
+    },
     "residence-permit": {
       "author": "Jeuwre",
       "file": "residence-permit.mp3",
@@ -10345,6 +10847,17 @@
       "sha256": "eefa977e658ed3d1dedc440ad7ee65b54ee7f287d2ad42b85eb065a276f0afc8",
       "snr": 103.3,
       "source": "De-Aufenthaltstitel.ogg"
+    },
+    "responsible": {
+      "author": "Jeuwre",
+      "file": "responsible.mp3",
+      "gain": -4.7,
+      "gainPhone": -10.0,
+      "lead": 445,
+      "matches": "zuständig",
+      "sha256": "02f673650e6618fae2a54c0500c3f557fd997ff56e5bb1d7d278ead522455d95",
+      "snr": 104.1,
+      "source": "De-zuständig.ogg"
     },
     "restaurant": {
       "author": "Jeuwre",
@@ -10523,6 +11036,18 @@
       "snr": 105.8,
       "source": "De-schule.ogg"
     },
+    "school-diploma": {
+      "author": "Jeuwre",
+      "file": "school-diploma.mp3",
+      "gain": -2.5,
+      "gainPhone": -1.0,
+      "gate": -85.0,
+      "lead": 144,
+      "matches": "schulabschluss",
+      "sha256": "8fe1c04d842f4809a93d9859047c847a220929f538d36d2116babc875d2d3439",
+      "snr": 85.0,
+      "source": "De-Schulabschluss.ogg"
+    },
     "screen": {
       "author": "Jeuwre",
       "file": "screen.mp3",
@@ -10556,6 +11081,41 @@
       "sha256": "5367f8fd4664a1bb474ef096f968fc2c7a8ecc9d3d88c2690f8ad54e82019b85",
       "snr": 107.0,
       "source": "De-zweite2.ogg"
+    },
+    "see-you-later": {
+      "author": "Natschoba",
+      "file": "see-you-later.mp3",
+      "gain": 7.2,
+      "gainPhone": 4.7,
+      "gate": -89.6,
+      "lead": 226,
+      "matches": "bis später",
+      "sha256": "bb7c1de667279dd43604b9896b1ff598140d4fe74383a26e0db40ecf92522a1c",
+      "snr": 78.9,
+      "source": "LL-Q188 (deu)-Natschoba-bis später.wav"
+    },
+    "sentence": {
+      "author": "Jeuwre",
+      "file": "sentence.mp3",
+      "gain": 2.0,
+      "gainPhone": -0.2,
+      "gate": -90.3,
+      "lead": 169,
+      "matches": "satz",
+      "sha256": "ab09279d9360073ad9830cf07e9e0c95bff3f8b39cf1f50c4668c356fce2853c",
+      "snr": 86.3,
+      "source": "De-Satz2.ogg"
+    },
+    "sex": {
+      "author": "Jeuwre",
+      "file": "sex.mp3",
+      "gain": -3.2,
+      "gainPhone": -5.5,
+      "lead": 442,
+      "matches": "geschlecht",
+      "sha256": "975e7c61f81e43dc3669e780d9444b30bd933e50365f41fd56bf97af9627454d",
+      "snr": 105.2,
+      "source": "De-Geschlecht.ogg"
     },
     "shadow": {
       "author": "Jeuwre",
@@ -10732,6 +11292,17 @@
       "snr": 103.8,
       "source": "De-dusche.ogg"
     },
+    "siblings": {
+      "author": "joni",
+      "file": "siblings.mp3",
+      "gain": -0.8,
+      "gainPhone": -5.2,
+      "lead": 442,
+      "matches": "geschwister",
+      "sha256": "14c9ada128f5d29f047ddbb467077fd3e90e94f1a3e095f89c4c762ddc1b04e1",
+      "snr": 106.0,
+      "source": "De-Geschwister.ogg"
+    },
     "sick": {
       "author": "Jeuwre",
       "file": "sick.mp3",
@@ -10776,6 +11347,18 @@
       "snr": 103.8,
       "source": "De-seit.ogg"
     },
+    "single": {
+      "author": "Jeuwre",
+      "file": "single.mp3",
+      "gain": -0.9,
+      "gainPhone": 4.2,
+      "gate": -69.0,
+      "lead": 328,
+      "matches": "ledig",
+      "sha256": "a21142956f1e1d59e2eb352cf1a4720fdf2024ffecb17eb696197014cbbc2282",
+      "snr": 65.6,
+      "source": "De-ledig.ogg"
+    },
     "sink": {
       "author": "Jeuwre",
       "file": "sink.mp3",
@@ -10798,6 +11381,17 @@
       "snr": 105.0,
       "source": "De-Schwester2.ogg"
     },
+    "sister-in-law": {
+      "author": "Jeuwre",
+      "file": "sister-in-law.mp3",
+      "gain": -1.9,
+      "gainPhone": -3.4,
+      "lead": 432,
+      "matches": "schwägerin",
+      "sha256": "f4967c6f24880cd48e3ed4f4aca53ea27dc9ceaf085189d6654c29213ba1f21e",
+      "snr": 104.7,
+      "source": "De-Schwägerin.ogg"
+    },
     "size": {
       "author": "Jeuwre",
       "file": "size.mp3",
@@ -10807,6 +11401,17 @@
       "matches": "größe",
       "sha256": "2ed98592c309f2f035d9bccf5a89237b53ba64a07b8257e783a8263a9cc9f7cc",
       "source": "De-Größe.ogg"
+    },
+    "skills": {
+      "author": "Jeuwre",
+      "file": "skills.mp3",
+      "gain": 7.1,
+      "gainPhone": 5.4,
+      "lead": 445,
+      "matches": "kenntnisse",
+      "sha256": "87d6cad52ee19d7aeffb77b75619ee599fd7d03d11a79d168df593a471bcd719",
+      "snr": 94.3,
+      "source": "De-Kenntnisse.ogg"
     },
     "skin": {
       "author": "Jeuwre",
@@ -11276,6 +11881,18 @@
       "snr": 88.9,
       "source": "De-Herd.ogg"
     },
+    "straight-ahead": {
+      "author": "Jeuwre",
+      "file": "straight-ahead.mp3",
+      "gain": -2.0,
+      "gainPhone": -1.8,
+      "gate": -88.6,
+      "lead": 269,
+      "matches": "geradeaus",
+      "sha256": "4e144ef37d1c2cce12a4df8a69a02670de45e58af0c0f841eab6ae74cd255f0e",
+      "snr": 85.7,
+      "source": "De-geradeaus.oga"
+    },
     "street": {
       "author": "Jeuwre",
       "file": "street.mp3",
@@ -11286,6 +11903,39 @@
       "sha256": "5f2902fb709b6e27bdf14a6a4c0cc96083ceb8bca381564cf5a13a5f2bdde600",
       "snr": 101.7,
       "source": "De-Straße2.ogg"
+    },
+    "student": {
+      "author": "Kampy",
+      "file": "student.mp3",
+      "gain": -0.8,
+      "gainPhone": -4.8,
+      "gate": -62.1,
+      "matches": "student",
+      "sha256": "c233952faa6d24d4a6d6b58479781dd7ed5b0adf676460be6f11b068d628c544",
+      "snr": 60.7,
+      "source": "De-Student.ogg"
+    },
+    "student-f": {
+      "author": "Jeuwre",
+      "file": "student-f.mp3",
+      "gain": -2.3,
+      "gainPhone": 0.7,
+      "lead": 546,
+      "matches": "studentin",
+      "sha256": "4a4ac97804a949b2bca4a8248a37e0c5b43e3973bb1248ae5d3bc8e346e7c140",
+      "snr": 104.8,
+      "source": "De-Studentin.ogg"
+    },
+    "studies": {
+      "author": "Jeuwre",
+      "file": "studies.mp3",
+      "gain": -3.9,
+      "gainPhone": 0.7,
+      "lead": 234,
+      "matches": "studium",
+      "sha256": "8da0a5cfb18dd2cf3081cb47b6fab23f18d847a14e659e9b4c0cad3a7640cf94",
+      "snr": 103.2,
+      "source": "De-Studium.ogg"
     },
     "sugar": {
       "author": "Jeuwre",
@@ -11331,6 +11981,17 @@
       "sha256": "c2d9f66eba2608181614201404af6d852b649015290232644cbe834c0d834f1e",
       "snr": 104.8,
       "source": "De-Supermarkt2.ogg"
+    },
+    "surname": {
+      "author": "Jeuwre",
+      "file": "surname.mp3",
+      "gain": -4.2,
+      "gainPhone": -2.9,
+      "lead": 422,
+      "matches": "familienname",
+      "sha256": "d7540c788ea813bfac383db70a82bac86930f6bc027ed629d0c0bdf6373e9e09",
+      "snr": 103.0,
+      "source": "De-Familienname.ogg"
     },
     "surprise": {
       "author": "Jeuwre",
@@ -11468,6 +12129,18 @@
       "sha256": "4583cf249d9f05c211fefcfe814b4bc8a6817c9b26f64e9eb2b05f1afba46189",
       "snr": 105.3,
       "source": "De-als3.ogg"
+    },
+    "thank-you": {
+      "author": "Natschoba",
+      "file": "thank-you.mp3",
+      "gain": 4.0,
+      "gainPhone": 1.8,
+      "gate": -79.2,
+      "lead": 214,
+      "matches": "vielen dank",
+      "sha256": "ab4057ccf403ee45cf4e70e1850dec524529992e2c6d7a2ac0aae3c01393b5f5",
+      "snr": 69.8,
+      "source": "LL-Q188 (deu)-Natschoba-vielen Dank.wav"
     },
     "that-conj": {
       "author": "Jeuwre",
@@ -11737,6 +12410,17 @@
       "snr": 105.6,
       "source": "De-leben2.ogg"
     },
+    "to-be-born": {
+      "author": "Jeuwre",
+      "file": "to-be-born.mp3",
+      "gain": -4.7,
+      "gainPhone": 1.9,
+      "lead": 441,
+      "matches": "geboren werden",
+      "sha256": "2e23f49cbab693d8bc153a4132a7a513d5bd4a6d638c59fb4ff30075642e5772",
+      "snr": 105.0,
+      "source": "De-geboren werden.ogg"
+    },
     "to-be-called": {
       "author": "Jeuwre",
       "file": "to-be-called.mp3",
@@ -11747,6 +12431,18 @@
       "sha256": "0d9185647b605d235eaab0c79e9b23759d0d7d5c6ab6b8a2ac5151fae66e7619",
       "snr": 103.8,
       "source": "De-heißen2.ogg"
+    },
+    "to-be-wrong": {
+      "author": "Natschoba",
+      "file": "to-be-wrong.mp3",
+      "gain": 0.4,
+      "gainPhone": 2.9,
+      "gate": -73.1,
+      "lead": 102,
+      "matches": "sich irren",
+      "sha256": "a65021950bbf990b810116370a77f2a30792a32eeab38e80fec5b811d9acfada",
+      "snr": 69.5,
+      "source": "LL-Q188 (deu)-Natschoba-sich irren.wav"
     },
     "to-breathe": {
       "author": "Jeuwre",
@@ -11770,6 +12466,17 @@
       "sha256": "18edc75ff794f02fac2dfd3f335de042566aa2721ba878c2d2b356978f59ffae",
       "snr": 106.8,
       "source": "De-mitbringen2.ogg"
+    },
+    "to-bury": {
+      "author": "Jeuwre",
+      "file": "to-bury.mp3",
+      "gain": 0.3,
+      "gainPhone": 0.4,
+      "lead": 443,
+      "matches": "begraben",
+      "sha256": "e39a731ac81078d77325995d78dc79ec61302cddd6792fab0a871a12a46b4f73",
+      "snr": 105.2,
+      "source": "De-begraben.ogg"
     },
     "to-buy": {
       "author": "Jeuwre",
@@ -12183,6 +12890,18 @@
       "snr": 87.2,
       "source": "De-verlängern.ogg"
     },
+    "to-feel": {
+      "author": "Natschoba",
+      "file": "to-feel.mp3",
+      "gain": 6.0,
+      "gainPhone": 5.1,
+      "gate": -80.3,
+      "lead": 126,
+      "matches": "sich fühlen",
+      "sha256": "feca6eb08557dda91de346aaa38c64344d4aff543d40b685e8102999e5e03516",
+      "snr": 70.9,
+      "source": "LL-Q188 (deu)-Natschoba-sich fühlen.wav"
+    },
     "to-fill-in": {
       "author": "Jeuwre",
       "file": "to-fill-in.mp3",
@@ -12328,6 +13047,17 @@
       "snr": 105.7,
       "source": "De-weggehen2.ogg"
     },
+    "to-go-for-walk": {
+      "author": "Jeuwre",
+      "file": "to-go-for-walk.mp3",
+      "gain": -1.2,
+      "gainPhone": -0.6,
+      "lead": 315,
+      "matches": "spazieren gehen",
+      "sha256": "e1f2174368ac42ed799df376dd98281373190a8462e16bf55b57c4e1ee5998b3",
+      "snr": 104.2,
+      "source": "De-spazieren gehen.ogg"
+    },
     "to-greet": {
       "author": "Jeuwre",
       "file": "to-greet.mp3",
@@ -12338,6 +13068,17 @@
       "sha256": "f16b15927f73ffe341b8352f2b760391d10e523c9bc686b67b0ec28300036b02",
       "snr": 103.4,
       "source": "De-begrüßen2.ogg"
+    },
+    "to-grow-up": {
+      "author": "Jeuwre",
+      "file": "to-grow-up.mp3",
+      "gain": 2.1,
+      "gainPhone": -0.4,
+      "lead": 436,
+      "matches": "aufwachsen",
+      "sha256": "5e0b8f26ac94c47f284d7896c175d1679233751cb0478e2e474a5e287f70f36f",
+      "snr": 103.9,
+      "source": "De-aufwachsen.ogg"
     },
     "to-haggle": {
       "author": "Jeuwre",
@@ -12361,6 +13102,17 @@
       "sha256": "47ca42b089a49999220a0ffa7a650241297ec744f257817774a00bfb1466c6ae",
       "snr": 103.7,
       "source": "De-einreichen2.ogg"
+    },
+    "to-happen": {
+      "author": "Wikimedia Commons user Jakob.scholbach",
+      "file": "to-happen.mp3",
+      "gain": 2.2,
+      "gainPhone": 3.1,
+      "gate": -53.3,
+      "matches": "passieren",
+      "sha256": "4963a8fb02978f93b319288962cea1cadc9af5171457da2e036e4a1d25a199ab",
+      "snr": 47.8,
+      "source": "De-passieren.ogg"
     },
     "to-have": {
       "author": "Jeuwre",
@@ -12451,6 +13203,18 @@
       "snr": 104.6,
       "source": "De-verbessern2.ogg"
     },
+    "to-introduce-oneself": {
+      "author": "Natschoba",
+      "file": "to-introduce-oneself.mp3",
+      "gain": 3.3,
+      "gainPhone": -0.6,
+      "gate": -76.4,
+      "lead": 66,
+      "matches": "sich vorstellen",
+      "sha256": "4ad16c160b4f884d19537130705549d42dd86b8150c36d390b99645b1bbd5ced",
+      "snr": 70.4,
+      "source": "LL-Q188 (deu)-Natschoba-sich vorstellen.wav"
+    },
     "to-invite": {
       "author": "Jeuwre",
       "file": "to-invite.mp3",
@@ -12484,6 +13248,17 @@
       "sha256": "7ccda2f7553c8e002ceddb8839a102bf903f61a7bd35b595f2e6d15f14f8a446",
       "snr": 66.2,
       "source": "De-wissen.ogg"
+    },
+    "to-last": {
+      "author": "Jeuwre",
+      "file": "to-last.mp3",
+      "gain": -4.5,
+      "gainPhone": -3.1,
+      "lead": 336,
+      "matches": "dauern",
+      "sha256": "612bc99b01cbf88b061430450f0288f257a83d61ca5fdb79dbe116a01c1d6f4b",
+      "snr": 109.2,
+      "source": "De-dauern.ogg"
     },
     "to-laugh": {
       "author": "Jeuwre",
@@ -12896,6 +13671,18 @@
       "sha256": "3111515b0e4b8a32e7fc6f4870c73bf0ed39a59b5c72d078fc9036f4f4f8a030",
       "snr": 105.2,
       "source": "De-sagen2.ogg"
+    },
+    "to-say-goodbye": {
+      "author": "Natschoba",
+      "cap": 1.2,
+      "file": "to-say-goodbye.mp3",
+      "gain": 3.0,
+      "gainPhone": -2.9,
+      "lead": 71,
+      "matches": "sich verabschieden",
+      "sha256": "ff4fd60c788cf234a1dcf469819d89e239c7e175321637b7c5c1af27be84749a",
+      "snr": 97.4,
+      "source": "LL-Q188 (deu)-Natschoba-sich verabschieden.wav"
     },
     "to-search": {
       "author": "Jeuwre",
@@ -13645,6 +14432,17 @@
       "snr": 101.6,
       "source": "De-Bahnhof2.ogg"
     },
+    "training": {
+      "author": "Jeuwre",
+      "file": "training.mp3",
+      "gain": -5.0,
+      "gainPhone": -3.0,
+      "lead": 240,
+      "matches": "training",
+      "sha256": "af7380330309ae6528196e87a6651f322fa1526dd13e8756ee68f2e45bd29f6e",
+      "snr": 104.7,
+      "source": "De-Training.ogg"
+    },
     "trash-can": {
       "author": "Jeuwre",
       "file": "trash-can.mp3",
@@ -13903,6 +14701,17 @@
       "snr": 103.6,
       "source": "De-Vision.ogg"
     },
+    "vocational-school": {
+      "author": "Jeuwre",
+      "file": "vocational-school.mp3",
+      "gain": -2.1,
+      "gainPhone": -0.2,
+      "lead": 340,
+      "matches": "berufsschule",
+      "sha256": "22d8d281a65abc38ebf040284650b1270e73566002b0a4d7e21fed96717d17e0",
+      "snr": 103.8,
+      "source": "De-Berufsschule.ogg"
+    },
     "vocational-training": {
       "author": "Jeuwre",
       "file": "vocational-training.mp3",
@@ -14149,6 +14958,17 @@
       "snr": 106.9,
       "source": "De-was2.ogg"
     },
+    "what-time-is-it": {
+      "author": "Jeuwre",
+      "file": "what-time-is-it.mp3",
+      "gain": -1.3,
+      "gainPhone": -4.2,
+      "lead": 432,
+      "matches": "wie spät ist es",
+      "sha256": "79125d4d7c06cb6473a44eea275cda062aa72aec440a7b9599fee426d94188ae",
+      "snr": 101.6,
+      "source": "De-wie spät ist es.ogg"
+    },
     "wheel": {
       "author": "Jeuwre",
       "file": "wheel.mp3",
@@ -14228,6 +15048,19 @@
       "sha256": "10eebfa03d7494ae424661e4c11401291afc9da3e495d788cb5aaffc9b608177",
       "snr": 106.9,
       "source": "De-warum.ogg"
+    },
+    "widowed": {
+      "author": "Jeuwre",
+      "capPhone": 0.5,
+      "file": "widowed.mp3",
+      "gain": 5.0,
+      "gainPhone": 6.6,
+      "gate": -70.2,
+      "lead": 345,
+      "matches": "verwitwet",
+      "sha256": "f2a7f583c10e4295c0e8d5f0599491aff5397b02b1df7c1406ffc9174f89f3d5",
+      "snr": 65.7,
+      "source": "De-verwitwet.ogg"
     },
     "wife": {
       "author": "Jeuwre",
@@ -14487,6 +15320,17 @@
       "snr": 106.6,
       "source": "De-ihr2.ogg"
     },
+    "young": {
+      "author": "Kampy",
+      "file": "young.mp3",
+      "gain": -5.0,
+      "gainPhone": -1.3,
+      "gate": -57.9,
+      "matches": "jung",
+      "sha256": "86148bff6823031e361cabab4a9f65f7d97acb69e46e7b05de48baaa5887d755",
+      "snr": 59.9,
+      "source": "De-jung.ogg"
+    },
     "your": {
       "author": "Jeuwre",
       "file": "your.mp3",
@@ -14508,6 +15352,28 @@
       "sha256": "a740b46bdd6a257c2467e8b886063f7b1e7edf1c1dd06578a19cb61d60816862",
       "snr": 107.6,
       "source": "De-euer2.ogg"
+    },
+    "youth": {
+      "author": "Jeuwre",
+      "file": "youth.mp3",
+      "gain": -4.3,
+      "gainPhone": -0.3,
+      "lead": 340,
+      "matches": "jugend",
+      "sha256": "d07ca6cd731b2fcc4cd6b98380265478f1993251d834df21c25c91234e93078c",
+      "snr": 104.1,
+      "source": "De-Jugend.ogg"
+    },
+    "zip-code": {
+      "author": "Jeuwre",
+      "file": "zip-code.mp3",
+      "gain": 0.9,
+      "gainPhone": -1.1,
+      "lead": 448,
+      "matches": "postleitzahl",
+      "sha256": "8e55105ee05ff4ac3282a06d96d9aa3c53319c49f5125dac0b16236871dde45a",
+      "snr": 104.1,
+      "source": "De-Postleitzahl.ogg"
     }
   }
 }

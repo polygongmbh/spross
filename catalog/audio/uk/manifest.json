@@ -2,8 +2,11 @@
   "authors": {
     "Association Shtooka, Світлана Чурак (Svitlana Churak)": "CC BY 3.0 us",
     "Bicolino34": "CC BY-SA 4.0",
+    "Po ukraińsku (Andriana)": "CC0",
     "Tabrus": "CC BY-SA 4.0",
     "Tohaomg": "CC BY-SA 4.0",
+    "UnconcernedCape": "CC0",
+    "Василь Бабич": "Public domain",
     "Галя Раптова, Nicolas Vion": "CC BY 3.0 us",
     "Женя Музика, Nicolas Vion": "CC BY 3.0 us"
   },
@@ -1330,7 +1333,9 @@
   "licenses": {
     "CC BY 2.0 fr": "https://creativecommons.org/licenses/by/2.0/fr/",
     "CC BY 3.0 us": "https://creativecommons.org/licenses/by/3.0/us/",
-    "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/"
+    "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "Public domain": null
   },
   "texts": {
     "ґудзик": {
@@ -1382,6 +1387,17 @@
       "snr": 58.4,
       "source": "Uk-прикметник.ogg"
     },
+    "affix": {
+      "author": "Tohaomg",
+      "file": "affix.mp3",
+      "gain": 1.0,
+      "gainPhone": -5.3,
+      "lead": 281,
+      "matches": "афікс",
+      "sha256": "ebef12dd2cb788b057e225766fd104c9da915afefc4cc93083873a369b37320d",
+      "snr": 113.4,
+      "source": "LL-Q8798 (ukr)-Tohaomg-афікс.wav"
+    },
     "after": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "after.mp3",
@@ -1404,6 +1420,18 @@
       "sha256": "2644a9eaebe395fd99f7935dd127d7cfe59b46954edb31b2aa821267d7f76abc",
       "snr": 56.9,
       "source": "Uk-знову.ogg"
+    },
+    "age": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "age.mp3",
+      "gain": -1.9,
+      "gainPhone": 2.2,
+      "gate": -56.6,
+      "lead": 68,
+      "matches": "вік",
+      "sha256": "8e96ca902aed9393ab11b9c1dd53152c51f73f2a80a5474c94f3f61522df2cb6",
+      "snr": 54.5,
+      "source": "Uk-вік.ogg"
     },
     "aggressive": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -1464,6 +1492,17 @@
       "snr": 55.9,
       "source": "Uk-всі.ogg"
     },
+    "allergy": {
+      "author": "Tohaomg",
+      "file": "allergy.mp3",
+      "gain": 2.2,
+      "gainPhone": -4.0,
+      "lead": 190,
+      "matches": "алергія",
+      "sha256": "ff6ebc67a601705969da78383b12f7a2cfaef3c8eaf0f85ab65bbeacb293b21f",
+      "snr": 101.6,
+      "source": "LL-Q8798 (ukr)-Tohaomg-алергія.wav"
+    },
     "almost": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "almost.mp3",
@@ -1521,6 +1560,16 @@
       "sha256": "5efe3541d8a65f0717301eb263a0d58c870a148cd57fa909128b56d97603f910",
       "snr": 62.1,
       "source": "Uk-і.ogg"
+    },
+    "anger": {
+      "author": "Tohaomg",
+      "file": "anger.mp3",
+      "gain": 1.8,
+      "gainPhone": 3.5,
+      "lead": 210,
+      "matches": "гнів",
+      "sha256": "d939732b3699d7ae83f12759a73f820f4a6b7201a4e557a801f5868133399bff",
+      "source": "LL-Q8798 (ukr)-Tohaomg-гнів.wav"
     },
     "animal": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -1581,6 +1630,18 @@
       "sha256": "4273b5b1535a6e6820a6b6eab796918511f1db8586bbc61db081bfe1ffe33eef",
       "snr": 63.3,
       "source": "Uk-квартира.ogg"
+    },
+    "appendix": {
+      "author": "Tohaomg",
+      "file": "appendix.mp3",
+      "gain": 0.1,
+      "gainPhone": -4.5,
+      "gate": -84.9,
+      "lead": 264,
+      "matches": "апендикс",
+      "sha256": "5c5bea43f9d74e5cb6accc9ddf3608ca6c3be7fefd0eb1be96c0865f47e8ac4d",
+      "snr": 79.9,
+      "source": "LL-Q8798 (ukr)-Tohaomg-апендикс.wav"
     },
     "apple": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -1713,6 +1774,29 @@
       "sha256": "02cc2a7739e43f968ae43c54b69f05bd56772cd34a1f86ec91288cf1204f2c84",
       "snr": 58.6,
       "source": "Uk-банан.ogg"
+    },
+    "band-aid": {
+      "author": "Tohaomg",
+      "file": "band-aid.mp3",
+      "gain": -0.3,
+      "gainPhone": -5.3,
+      "lead": 220,
+      "matches": "пластир",
+      "sha256": "acc44a152fed4bc7d683615d77a4fbf09ab5252851e8d00468264671a3342b3e",
+      "snr": 100.7,
+      "source": "LL-Q8798 (ukr)-Tohaomg-пластир.wav"
+    },
+    "bandage": {
+      "author": "Tohaomg",
+      "file": "bandage.mp3",
+      "gain": 0.7,
+      "gainPhone": -3.2,
+      "gate": -87.7,
+      "lead": 216,
+      "matches": "бинт",
+      "sha256": "4901de5e5f6c0d58da01a516b571ce5a4e1440a10f696b7acc1f26a6567c2780",
+      "snr": 82.8,
+      "source": "LL-Q8798 (ukr)-Tohaomg-бинт.wav"
     },
     "bank": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -1940,6 +2024,17 @@
       "snr": 54.4,
       "source": "Uk-народження.ogg"
     },
+    "birthday": {
+      "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "file": "birthday.mp3",
+      "gain": -2.0,
+      "gainPhone": -1.3,
+      "gate": -60.2,
+      "matches": "день народження",
+      "sha256": "3364cb1558943a9f6d117d14ab0942ae8e5690c51d365b1bf250d88abf7d778e",
+      "snr": 57.9,
+      "source": "Uk-день народження.ogg"
+    },
     "black": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "black.mp3",
@@ -2047,6 +2142,18 @@
       "sha256": "0c15b99d9036f108d64ac5c068531a4054a02ff82b2b076fae10df84d8f4cfe4",
       "snr": 66.1,
       "source": "Uk-кордон.ogg"
+    },
+    "boss": {
+      "author": "Tohaomg",
+      "file": "boss.mp3",
+      "gain": -1.3,
+      "gainPhone": -7.6,
+      "gate": -97.8,
+      "lead": 249,
+      "matches": "шеф",
+      "sha256": "7fd6946361e17f01abb3af66826d3e9d80af0719c400903fb2df233e53e50eef",
+      "snr": 94.7,
+      "source": "LL-Q8798 (ukr)-Tohaomg-шеф.wav"
     },
     "bowl": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -2248,6 +2355,17 @@
       "snr": 58.4,
       "source": "Uk-капуста.ogg"
     },
+    "cable": {
+      "author": "Tohaomg",
+      "file": "cable.mp3",
+      "gain": 2.4,
+      "gainPhone": -2.2,
+      "lead": 224,
+      "matches": "кабель",
+      "sha256": "eec9deab2a15019e1559673dfee527d4e33adfd9bc3c5c6e7f15c1770a9bd360",
+      "snr": 146.4,
+      "source": "LL-Q8798 (ukr)-Tohaomg-кабель.wav"
+    },
     "calendar": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "calendar.mp3",
@@ -2259,6 +2377,17 @@
       "sha256": "7428f56462f47f40f1c0da29ef7ac0c8c547add2d4354881ded6b504a868d254",
       "snr": 55.4,
       "source": "Uk-календар.ogg"
+    },
+    "campsite": {
+      "author": "Tohaomg",
+      "file": "campsite.mp3",
+      "gain": 0.7,
+      "gainPhone": -5.5,
+      "lead": 280,
+      "matches": "кемпінг",
+      "sha256": "9294716b14757f447e741cd8ad06a495fc6cc4ae2b4dc4946b35cd5449cb559c",
+      "snr": 137.4,
+      "source": "LL-Q8798 (ukr)-Tohaomg-кемпінг.wav"
     },
     "car": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -2319,6 +2448,41 @@
       "snr": 57.6,
       "source": "Uk-працівник.ogg"
     },
+    "case-worker-f": {
+      "author": "Tohaomg",
+      "file": "case-worker-f.mp3",
+      "gain": 1.4,
+      "gainPhone": -3.0,
+      "lead": 191,
+      "matches": "працівниця",
+      "sha256": "a627f3e1c61fd821d70b048be89bc435a103101ae1e60eed2d5826f0e0aab132",
+      "snr": 105.0,
+      "source": "LL-Q8798 (ukr)-Tohaomg-працівниця.wav"
+    },
+    "cash": {
+      "author": "Tohaomg",
+      "file": "cash.mp3",
+      "gain": 1.6,
+      "gainPhone": 1.7,
+      "lead": 256,
+      "matches": "готівка",
+      "sha256": "363a6f7761ba16aea7f818dfaa6ff99e16c465e0504571ede258bc290ae6743b",
+      "snr": 104.8,
+      "source": "LL-Q8798 (ukr)-Tohaomg-готівка.wav"
+    },
+    "cassava": {
+      "author": "Po ukraińsku (Andriana)",
+      "capPhone": 1.3,
+      "file": "cassava.mp3",
+      "gain": 5.5,
+      "gainPhone": 10.9,
+      "gate": -75.3,
+      "lead": 207,
+      "matches": "маніок",
+      "sha256": "4785eb092c00863fd38ec902d9239ee19384946e361d3637c8eba337bc7d1f84",
+      "snr": 65.9,
+      "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-маніок.wav"
+    },
     "cat": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "cat.mp3",
@@ -2354,6 +2518,17 @@
       "sha256": "d417b2b0d64507973f3d1718a61b3322607c821356cffbbc01d68e2ecfc40734",
       "snr": 56.9,
       "source": "Uk-свято.ogg"
+    },
+    "cemetery": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "cemetery.mp3",
+      "gain": -0.3,
+      "gainPhone": -1.1,
+      "gate": -57.6,
+      "matches": "кладовище",
+      "sha256": "4ad14efd3b91b989c5b376194a7917f67d9c2b3ade4d29f6e586dc6fbb67b168",
+      "snr": 54.2,
+      "source": "Uk-кладовище.ogg"
     },
     "center": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -2512,6 +2687,18 @@
       "snr": 62.0,
       "source": "Uk-дитина.ogg"
     },
+    "childhood": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "childhood.mp3",
+      "gain": 1.0,
+      "gainPhone": 0.9,
+      "gate": -62.5,
+      "lead": 229,
+      "matches": "дитинство",
+      "sha256": "5d1d3fafefc009a24589619c814f210a57abac066872b3036ce9d5b9291a48b5",
+      "snr": 60.7,
+      "source": "Uk-дитинство.ogg"
+    },
     "church": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "church.mp3",
@@ -2655,6 +2842,17 @@
       "snr": 55.2,
       "source": "Uk-монета.ogg"
     },
+    "cold": {
+      "author": "Tohaomg",
+      "file": "cold.mp3",
+      "gain": 1.0,
+      "gainPhone": -2.5,
+      "lead": 216,
+      "matches": "застуда",
+      "sha256": "d1c366ca84e84de8c0bcb408bf72748c97dbdc17f1cb27c01c7065196684ef1a",
+      "snr": 109.8,
+      "source": "LL-Q8798 (ukr)-Tohaomg-застуда.wav"
+    },
     "cold-adj": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 2.5,
@@ -2718,6 +2916,17 @@
       "snr": 62.2,
       "source": "Uk-повністю.ogg"
     },
+    "conjugation": {
+      "author": "Tohaomg",
+      "file": "conjugation.mp3",
+      "gain": 0.4,
+      "gainPhone": -1.9,
+      "lead": 188,
+      "matches": "дієвідміна",
+      "sha256": "8da35fc6f8826571a8df45ce30151178775b6f644ef9afdf957acfc84991a6a2",
+      "snr": 96.7,
+      "source": "LL-Q8798 (ukr)-Tohaomg-дієвідміна.wav"
+    },
     "contract": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 1.2,
@@ -2754,6 +2963,16 @@
       "sha256": "cb01e097aab96b3c06d4da5c4f07fe123a3410d2ec226533b4d7bd4b24adb1e6",
       "snr": 55.9,
       "source": "Uk-кашель.ogg"
+    },
+    "counseling": {
+      "author": "Женя Музика, Nicolas Vion",
+      "file": "counseling.mp3",
+      "gainPhone": 0.9,
+      "gate": -58.1,
+      "matches": "консультація",
+      "sha256": "a5befbdc7699febaf8d63ba71f9985e6ffdd93eb882ba2c041cfa25769a422e8",
+      "snr": 55.5,
+      "source": "Uk-консультація.ogg"
     },
     "country": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -2923,6 +3142,17 @@
       "snr": 58.8,
       "source": "Uk-позавчора.ogg"
     },
+    "dead": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "dead.mp3",
+      "gainPhone": -0.2,
+      "gate": -63.7,
+      "lead": 245,
+      "matches": "мертвий",
+      "sha256": "921db714330fd3568eb40c022ab98a9558a1f93a1f3d06f3c79faa9ffff586bd",
+      "snr": 59.5,
+      "source": "Uk-мертвий.ogg"
+    },
     "deadline": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "deadline.mp3",
@@ -3076,6 +3306,18 @@
       "snr": 49.4,
       "source": "Uk-брудний.ogg"
     },
+    "dishwasher": {
+      "author": "Po ukraińsku (Andriana)",
+      "file": "dishwasher.mp3",
+      "gain": 4.8,
+      "gainPhone": 3.9,
+      "gate": -76.3,
+      "lead": 239,
+      "matches": "посудомийна машина",
+      "sha256": "0432188f3f8c64542e02bc260296372449527822d7029387033ee2ae81817abf",
+      "snr": 66.6,
+      "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-посудомийна машина.wav"
+    },
     "doctor": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "doctor.mp3",
@@ -3087,6 +3329,27 @@
       "sha256": "3409b1e9e168a232b74ab8c081865256efa1bf0fd9ccc3600c7e5d9723fd6021",
       "snr": 58.0,
       "source": "Uk-лікар.ogg"
+    },
+    "doctor-f": {
+      "author": "Tohaomg",
+      "file": "doctor-f.mp3",
+      "gain": 2.5,
+      "gainPhone": 0.2,
+      "lead": 196,
+      "matches": "лікарка",
+      "sha256": "79b30d941bdd06138d8a4b5378ec29ee8fb8be8263c0c1ae4e7547e846bdb4cd",
+      "source": "LL-Q8798 (ukr)-Tohaomg-лікарка.wav"
+    },
+    "doctors-note": {
+      "author": "Tohaomg",
+      "file": "doctors-note.mp3",
+      "gain": 1.9,
+      "gainPhone": -3.0,
+      "lead": 257,
+      "matches": "лікарняний",
+      "sha256": "7712260ad2dbccffb28027df8ad6341497da6168582869bef01d8c782d8a0606",
+      "snr": 108.6,
+      "source": "LL-Q8798 (ukr)-Tohaomg-лікарняний.wav"
     },
     "dog": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -3528,6 +3791,18 @@
       "snr": 63.7,
       "source": "Uk-тато.ogg"
     },
+    "father-in-law": {
+      "author": "UnconcernedCape",
+      "file": "father-in-law.mp3",
+      "gain": 3.2,
+      "gainPhone": 0.3,
+      "gate": -84.3,
+      "lead": 160,
+      "matches": "свекор",
+      "sha256": "0397a291821ea053eb7b7ee18d3fa24da6ddbe22e0815d5dad5a5544ce542e29",
+      "snr": 77.5,
+      "source": "LL-Q8798 (ukr)-UnconcernedCape-свекор.wav"
+    },
     "faucet": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "faucet.mp3",
@@ -3646,6 +3921,18 @@
       "sha256": "3895e3d375b826381516df1e93b44d6ee5d003aa176f82ef808dc4d120b7e582",
       "snr": 62.1,
       "source": "Uk-перший.ogg"
+    },
+    "first-name": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "first-name.mp3",
+      "gain": -4.8,
+      "gainPhone": 1.8,
+      "gate": -61.9,
+      "lead": 234,
+      "matches": "ім'я",
+      "sha256": "d28eaec1de968493ee4c33dc8a9f10713aca36518f0e6a2d0d1c52bfe7f2f33a",
+      "snr": 60.7,
+      "source": "Uk-ім'я.ogg"
     },
     "fish": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -3886,6 +4173,18 @@
       "snr": 67.0,
       "source": "Uk-повний.ogg"
     },
+    "funeral": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.5,
+      "file": "funeral.mp3",
+      "gain": -3.0,
+      "gainPhone": 3.0,
+      "gate": -59.6,
+      "matches": "похорон",
+      "sha256": "d72bb145a86f9065e748f405db468932400e320d94d683ca7506d111a84d8613",
+      "snr": 58.3,
+      "source": "Uk-похорон.ogg"
+    },
     "furniture": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "furniture.mp3",
@@ -3897,6 +4196,17 @@
       "sha256": "242391c5d4010fa3a56b8bd482b2c95869b60bb3c0a6cecfa73947e7952b9fc8",
       "snr": 56.4,
       "source": "Uk-меблі.ogg"
+    },
+    "future": {
+      "author": "Tohaomg",
+      "file": "future.mp3",
+      "gain": 2.5,
+      "gainPhone": -0.3,
+      "lead": 214,
+      "matches": "майбутнє",
+      "sha256": "42be6314a903677a88d3c6f051dc38f4fc43b8879b32adc3985a96d62c9794ac",
+      "snr": 109.8,
+      "source": "LL-Q8798 (ukr)-Tohaomg-майбутнє.wav"
     },
     "game": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -3969,6 +4279,17 @@
       "snr": 56.0,
       "source": "Uk-залюбки.ogg"
     },
+    "gland": {
+      "author": "Tohaomg",
+      "file": "gland.mp3",
+      "gain": 0.1,
+      "gainPhone": -5.1,
+      "lead": 273,
+      "matches": "залоза",
+      "sha256": "1feaab2d9f770946cb1e09e65b8a07a75c7e1ba3462545e60ce9a8f86ccb2246",
+      "snr": 125.1,
+      "source": "LL-Q8798 (ukr)-Tohaomg-залоза.wav"
+    },
     "glass": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "glass.mp3",
@@ -4030,6 +4351,63 @@
       "snr": 63.7,
       "source": "Uk-добрий.ogg"
     },
+    "good-day": {
+      "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "capPhone": 1.6,
+      "file": "good-day.mp3",
+      "gain": -1.4,
+      "gainPhone": 2.9,
+      "gate": -63.3,
+      "matches": "добрий день",
+      "sha256": "fcf9a65352dc0fb72d813241c1ae3d62424d5f5e799853c9d796c8a65270c8e2",
+      "snr": 61.9,
+      "source": "Uk-добрий день.ogg"
+    },
+    "good-evening": {
+      "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "file": "good-evening.mp3",
+      "gain": -2.7,
+      "gainPhone": 0.2,
+      "gate": -59.3,
+      "matches": "добрий вечір",
+      "sha256": "c8844896aeb7f82998ea47ffe6f4e53fe0d75d96615c690281b385b338643953",
+      "snr": 58.0,
+      "source": "Uk-добрий вечір.ogg"
+    },
+    "good-morning": {
+      "author": "Женя Музика, Nicolas Vion",
+      "file": "good-morning.mp3",
+      "gain": -0.6,
+      "gainPhone": 1.6,
+      "gate": -50.2,
+      "matches": "доброго ранку",
+      "sha256": "3187dff16f4462ce8711687f1c7b25e45ec4343aa435dddad24938eaa98c586b",
+      "snr": 47.2,
+      "source": "Uk-доброго ранку.ogg"
+    },
+    "good-night": {
+      "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "file": "good-night.mp3",
+      "gain": -0.7,
+      "gainPhone": 1.8,
+      "gate": -61.2,
+      "matches": "на добраніч",
+      "sha256": "9c4b195fd942fca69570e3f80373932dd99bb01f65af092ebb578e117d8149e6",
+      "snr": 59.5,
+      "source": "Uk-на добраніч.ogg"
+    },
+    "goodbye": {
+      "author": "Женя Музика, Nicolas Vion",
+      "capPhone": 0.5,
+      "file": "goodbye.mp3",
+      "gain": 0.4,
+      "gainPhone": 3.1,
+      "gate": -54.4,
+      "matches": "до побачення",
+      "sha256": "a5fc15d4015a1466a5117583996f3c8846520122c3a815b151a50b9a9312f8a5",
+      "snr": 51.8,
+      "source": "Uk-до побачення.ogg"
+    },
     "government": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 1.7,
@@ -4066,6 +4444,17 @@
       "snr": 56.5,
       "source": "Uk-грам.ogg"
     },
+    "granddaughter": {
+      "author": "Tohaomg",
+      "file": "granddaughter.mp3",
+      "gain": 3.3,
+      "gainPhone": 3.7,
+      "lead": 221,
+      "matches": "онука",
+      "sha256": "d536d4d2c67f85f3e24de1d537db23e915b6b85a8bc87670dc99fe745e7b9507",
+      "snr": 96.7,
+      "source": "LL-Q8798 (ukr)-Tohaomg-онука.wav"
+    },
     "grandfather": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "grandfather.mp3",
@@ -4089,6 +4478,30 @@
       "sha256": "432210b0592412ce80a4b9e0750e9586a3e016e4efad2d27c381f0dcdfcc29db",
       "snr": 59.6,
       "source": "Uk-бабуся.ogg"
+    },
+    "grandson": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.9,
+      "file": "grandson.mp3",
+      "gain": -3.7,
+      "gainPhone": 2.8,
+      "gate": -64.0,
+      "matches": "онук",
+      "sha256": "fa35e3556b592da65faeef811bfb8306acadf19f59bc853deae9c903744fd943",
+      "snr": 62.3,
+      "source": "Uk-онук.ogg"
+    },
+    "grave": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "grave.mp3",
+      "gain": -4.9,
+      "gainPhone": 0.4,
+      "gate": -58.8,
+      "lead": 99,
+      "matches": "могила",
+      "sha256": "06a99ecf680618f3f86fcebbe81028b2d6c072327e77a39c502e239d515d80ea",
+      "snr": 57.5,
+      "source": "Uk-могила.ogg"
     },
     "gray": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4137,6 +4550,18 @@
       "sha256": "5eb6dba031b3f2a31d69265c4f9d107115377ef20ec65061d3b4cea5492f0601",
       "snr": 57.0,
       "source": "Uk-волосся.ogg"
+    },
+    "hairdryer": {
+      "author": "Tohaomg",
+      "file": "hairdryer.mp3",
+      "gain": 1.5,
+      "gainPhone": -4.7,
+      "gate": -92.1,
+      "lead": 105,
+      "matches": "фен",
+      "sha256": "d61ceae07b76d968dc361719a0c236457f4b9330a1e19a361c361d54dda47f55",
+      "snr": 85.7,
+      "source": "LL-Q8798 (ukr)-Tohaomg-фен.wav"
     },
     "hallway": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4297,6 +4722,18 @@
       "snr": 51.1,
       "source": "Uk-вище.ogg"
     },
+    "his": {
+      "author": "UnconcernedCape",
+      "file": "his.mp3",
+      "gain": 7.2,
+      "gainPhone": 7.9,
+      "gate": -87.6,
+      "lead": 192,
+      "matches": "його",
+      "sha256": "4a3966468d6a5dda57020a5b87ca61319c42ef09f6e9adcd40d4d3bdb1fe1711",
+      "snr": 75.0,
+      "source": "LL-Q8798 (ukr)-UnconcernedCape-його.wav"
+    },
     "horse": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "horse.mp3",
@@ -4395,6 +4832,17 @@
       "snr": 57.1,
       "source": "Uk-скільки.ogg"
     },
+    "how-much-does-this-cost": {
+      "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "file": "how-much-does-this-cost.mp3",
+      "gain": -0.1,
+      "gainPhone": -0.8,
+      "gate": -57.5,
+      "matches": "скільки це коштує",
+      "sha256": "e479435f27aede759258fc8a356e2c37ece80bb62731b3c5030ed384259a889e",
+      "snr": 55.5,
+      "source": "Uk-скільки це коштує.ogg"
+    },
     "humid": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 2.4,
@@ -4432,6 +4880,18 @@
       "sha256": "94cca25d0d80e80252d4d5873ecf3d735b46e0708965089372a3d99218282597",
       "snr": 57.9,
       "source": "Uk-я.ogg"
+    },
+    "i-dont-know": {
+      "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
+      "capPhone": 0.8,
+      "file": "i-dont-know.mp3",
+      "gain": 0.2,
+      "gainPhone": 2.9,
+      "gate": -64.2,
+      "matches": "я не знаю",
+      "sha256": "951095de9cbaaf6c5d49e70bb5ed22eb70f77d69c91a0e5328e89dc8786aabe2",
+      "snr": 61.8,
+      "source": "Uk-я не знаю.ogg"
     },
     "if": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4491,6 +4951,17 @@
       "snr": 59.2,
       "source": "Uk-спереду.ogg"
     },
+    "insect": {
+      "author": "Tohaomg",
+      "file": "insect.mp3",
+      "gain": 1.4,
+      "gainPhone": -3.7,
+      "lead": 170,
+      "matches": "комаха",
+      "sha256": "5a02f87f521729ccb088cb42f8240fca7375b31332e1cf4aeaa3eadf2a98dfc2",
+      "snr": 116.6,
+      "source": "LL-Q8798 (ukr)-Tohaomg-комаха.wav"
+    },
     "inside": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "inside.mp3",
@@ -4514,6 +4985,18 @@
       "sha256": "5b063a70a5cc1aeaae710a9c4060a0776d2304a9cb532bbc66c2dbfb2058150d",
       "snr": 56.0,
       "source": "Uk-інтернет.ogg"
+    },
+    "internship": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "internship.mp3",
+      "gain": -0.5,
+      "gainPhone": -1.9,
+      "gate": -62.6,
+      "lead": 95,
+      "matches": "стажування",
+      "sha256": "25f80765f57e60cb875d55c548761dfb05a5bef21b741044497a7777ce125ca1",
+      "snr": 58.3,
+      "source": "Uk-стажування.ogg"
     },
     "island": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -4625,6 +5108,17 @@
       "snr": 59.8,
       "source": "Uk-ключ.ogg"
     },
+    "keyboard": {
+      "author": "Tohaomg",
+      "file": "keyboard.mp3",
+      "gain": -1.5,
+      "gainPhone": -5.5,
+      "lead": 208,
+      "matches": "клавіатура",
+      "sha256": "cc2b77096374ddf42a0a45dbce13b8ae7a186ebff73fcf87732a8f861f3b9b4c",
+      "snr": 118.5,
+      "source": "LL-Q8798 (ukr)-Tohaomg-клавіатура.wav"
+    },
     "kidney": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "kidney.mp3",
@@ -4707,6 +5201,17 @@
       "snr": 59.8,
       "source": "Uk-мова.ogg"
     },
+    "laptop": {
+      "author": "Tohaomg",
+      "file": "laptop.mp3",
+      "gain": 3.3,
+      "gainPhone": 4.2,
+      "lead": 256,
+      "matches": "ноутбук",
+      "sha256": "072fca51a61b1333806b24be6cb8e6327d86f020633eb975a6449fda04b2ed4a",
+      "snr": 136.7,
+      "source": "LL-Q8798 (ukr)-Tohaomg-ноутбук.wav"
+    },
     "last": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "last.mp3",
@@ -4766,6 +5271,17 @@
       "sha256": "dc6402235010c404f9c17079de7017212fb1e715afebda5c9936bb54fb7cb420",
       "snr": 60.7,
       "source": "Uk-закон.ogg"
+    },
+    "lecture": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "lecture.mp3",
+      "gain": -0.3,
+      "gainPhone": -0.9,
+      "gate": -58.5,
+      "matches": "лекція",
+      "sha256": "473678b802215665ea45dba5ba1f2635b2d59d6199a978856fea5d0be63f49f0",
+      "snr": 55.2,
+      "source": "Uk-лекція.ogg"
     },
     "left": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -5007,6 +5523,28 @@
       "snr": 60.4,
       "source": "Uk-багаж.ogg"
     },
+    "lung": {
+      "author": "Tohaomg",
+      "file": "lung.mp3",
+      "gain": 1.7,
+      "gainPhone": -0.5,
+      "lead": 169,
+      "matches": "легеня",
+      "sha256": "2853ebad2632c04506dbed17160795c61572c3668a3251fc961448496ff26448",
+      "snr": 95.9,
+      "source": "LL-Q8798 (ukr)-Tohaomg-легеня.wav"
+    },
+    "mailbox": {
+      "author": "Tohaomg",
+      "file": "mailbox.mp3",
+      "gain": 1.0,
+      "gainPhone": -1.6,
+      "lead": 194,
+      "matches": "поштова скринька",
+      "sha256": "1f801211e5c33b0ab49fc84331ea53a326002d9a916ef69103f4adf4d269afa0",
+      "snr": 104.2,
+      "source": "LL-Q8798 (ukr)-Tohaomg-поштова скринька.wav"
+    },
     "man": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "man.mp3",
@@ -5029,6 +5567,19 @@
       "sha256": "30e1c6b5c132b432f64d2374f5af7aa509e26204199430d9c4bc99ec90a9fce0",
       "snr": 51.4,
       "source": "Uk-ринок.ogg"
+    },
+    "married": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.2,
+      "file": "married.mp3",
+      "gain": -2.4,
+      "gainPhone": 2.7,
+      "gate": -61.0,
+      "lead": 154,
+      "matches": "одружений",
+      "sha256": "5b029d301347606208367822e6614b4f02b19a6b72946ce7ea5b7a6051caefb5",
+      "snr": 59.5,
+      "source": "Uk-одружений.ogg"
     },
     "mattress": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -5101,6 +5652,31 @@
       "snr": 52.0,
       "source": "Uk-меню.ogg"
     },
+    "message": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.4,
+      "file": "message.mp3",
+      "gain": -4.0,
+      "gainPhone": 3.0,
+      "gate": -62.3,
+      "lead": 29,
+      "matches": "повідомлення",
+      "sha256": "3b3220288ac820d81d789fd8cd22f2f1a394cac9ade15747f5c035f00b6f6a3e",
+      "snr": 61.8,
+      "source": "Uk-повідомлення.ogg"
+    },
+    "microphone": {
+      "author": "Tohaomg",
+      "file": "microphone.mp3",
+      "gain": 0.4,
+      "gainPhone": -2.5,
+      "gate": -97.5,
+      "lead": 182,
+      "matches": "мікрофон",
+      "sha256": "d87591759c40924aaa3385d91bf09f875d85c4b16ac431be7cdbb5dd7121773b",
+      "snr": 92.1,
+      "source": "LL-Q8798 (ukr)-Tohaomg-мікрофон.wav"
+    },
     "midnight": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "midnight.mp3",
@@ -5125,6 +5701,17 @@
       "sha256": "54c57970b8bb2fb7ce4af4d0c3854cebc8ca4becce08833e64da47825ba72e22",
       "snr": 60.1,
       "source": "Uk-молоко.ogg"
+    },
+    "millennium": {
+      "author": "Tohaomg",
+      "file": "millennium.mp3",
+      "gain": 0.5,
+      "gainPhone": -3.5,
+      "gate": -97.4,
+      "matches": "тисячоліття",
+      "sha256": "ee4125ece5c24b2f2a88d052feeb31a8416f9848df1c62b0fcf6a5d8a62f5590",
+      "snr": 92.6,
+      "source": "LL-Q8798 (ukr)-Tohaomg-тисячоліття.wav"
     },
     "minute": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -5233,6 +5820,17 @@
       "snr": 60.9,
       "source": "Uk-ранок.ogg"
     },
+    "mosque": {
+      "author": "Tohaomg",
+      "file": "mosque.mp3",
+      "gain": 1.9,
+      "gainPhone": -2.6,
+      "lead": 248,
+      "matches": "мечеть",
+      "sha256": "0be97f6e3fb82c3740caf2dc2453314fa36bb52b85e65e6683fd2613adaa77b1",
+      "snr": 169.1,
+      "source": "LL-Q8798 (ukr)-Tohaomg-мечеть.wav"
+    },
     "most": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "most.mp3",
@@ -5256,6 +5854,29 @@
       "sha256": "92bfdf22aaa15b5aff3be500f78490fd21dd747583aa4d9be3889bc92f3a0453",
       "snr": 58.8,
       "source": "Uk-мама.ogg"
+    },
+    "mother-in-law": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "mother-in-law.mp3",
+      "gain": 1.0,
+      "gainPhone": -1.8,
+      "gate": -56.3,
+      "lead": 149,
+      "matches": "свекруха",
+      "sha256": "b06f2b4615492aa796fbe501b84f319b807537c2c4739d619bf98260fd3f747b",
+      "snr": 53.2,
+      "source": "Uk-свекруха.ogg"
+    },
+    "mother-tongue": {
+      "author": "Tohaomg",
+      "file": "mother-tongue.mp3",
+      "gain": 0.6,
+      "gainPhone": -0.9,
+      "lead": 270,
+      "matches": "рідна мова",
+      "sha256": "b116296cb8fb7b8e65fb2788c26e1c6833f712c240650a0d49d2025fc2b7db88",
+      "snr": 102.7,
+      "source": "LL-Q8798 (ukr)-Tohaomg-рідна мова.wav"
     },
     "motorbike": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -5386,6 +6007,17 @@
       "snr": 57.4,
       "source": "Uk-серветка.ogg"
     },
+    "nationality": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "nationality.mp3",
+      "gain": -3.1,
+      "gainPhone": 0.5,
+      "gate": -50.1,
+      "matches": "громадянство",
+      "sha256": "8953cba750f7a846c833edffdc572d8b23dfbee93fdae237f46ce03aee7e31ef",
+      "snr": 48.8,
+      "source": "Uk-громадянство.ogg"
+    },
     "near": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "near.mp3",
@@ -5446,6 +6078,19 @@
       "snr": 60.6,
       "source": "Uk-район.ogg"
     },
+    "nephew": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.7,
+      "file": "nephew.mp3",
+      "gain": -3.7,
+      "gainPhone": 2.8,
+      "gate": -58.1,
+      "lead": 32,
+      "matches": "племінник",
+      "sha256": "d761b03cddefb6ed6e5c0f1fc3d1bd49e349362f21da26b46413b9186a2446ae",
+      "snr": 55.8,
+      "source": "Uk-племінник.ogg"
+    },
     "nerve": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "nerve.mp3",
@@ -5457,6 +6102,17 @@
       "sha256": "a81622456b31a6aad38b271a556750151ff36829f6bd66456808f636beeb2492",
       "snr": 51.6,
       "source": "Uk-нерв.ogg"
+    },
+    "neutral": {
+      "author": "Tohaomg",
+      "file": "neutral.mp3",
+      "gain": 1.1,
+      "gainPhone": -4.9,
+      "lead": 268,
+      "matches": "нейтральний",
+      "sha256": "0bdf398027180267ca116622756e21462757009bd0e6596dadca21bec802e15c",
+      "snr": 109.3,
+      "source": "LL-Q8798 (ukr)-Tohaomg-нейтральний.wav"
     },
     "never": {
       "author": "Женя Музика, Nicolas Vion",
@@ -5887,6 +6543,30 @@
       "snr": 59.2,
       "source": "Uk-надворі.ogg"
     },
+    "ovary": {
+      "author": "Po ukraińsku (Andriana)",
+      "file": "ovary.mp3",
+      "gain": 4.5,
+      "gainPhone": 2.1,
+      "gate": -76.3,
+      "lead": 228,
+      "matches": "яєчник",
+      "sha256": "470fce04e26216567a5612eaf2d15fe7457305d7f05e1cd00de833be77960540",
+      "snr": 68.3,
+      "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-яєчник.wav"
+    },
+    "overnight-stay": {
+      "author": "Tohaomg",
+      "file": "overnight-stay.mp3",
+      "gain": 2.8,
+      "gainPhone": -2.9,
+      "gate": -90.0,
+      "lead": 274,
+      "matches": "ночівля",
+      "sha256": "1b8b2b9aa66c571ffeec4535f7fc89b4e83b02e0139fbfbe9cd38f6d121ad467",
+      "snr": 84.0,
+      "source": "LL-Q8798 (ukr)-Tohaomg-ночівля.wav"
+    },
     "page": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "page.mp3",
@@ -5933,6 +6613,17 @@
       "sha256": "1137fa6e3252256e93281e6434f6fbe749e7b5387a420f812423395fab24df4f",
       "snr": 58.9,
       "source": "Uk-сковорідка.ogg"
+    },
+    "pancreas": {
+      "author": "Tohaomg",
+      "file": "pancreas.mp3",
+      "gain": 0.2,
+      "gainPhone": -3.2,
+      "lead": 215,
+      "matches": "підшлункова залоза",
+      "sha256": "ccafb3556afe61c98142cd5c1c50c526a436890a173642bfb301f33b97f6495a",
+      "snr": 119.3,
+      "source": "LL-Q8798 (ukr)-Tohaomg-підшлункова залоза.wav"
     },
     "pants": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6216,6 +6907,18 @@
       "snr": 55.0,
       "source": "Uk-тарілка.ogg"
     },
+    "please": {
+      "author": "Женя Музика, Nicolas Vion",
+      "capPhone": 2.1,
+      "file": "please.mp3",
+      "gain": 2.3,
+      "gainPhone": 3.3,
+      "gate": -55.7,
+      "matches": "будь ласка",
+      "sha256": "cebb1eef8c4fd7d5e2b15a540265f6f403534ff2107f2c85e0e1ba6a785505da",
+      "snr": 52.2,
+      "source": "Uk-будь ласка.ogg"
+    },
     "plug": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "plug.mp3",
@@ -6226,6 +6929,17 @@
       "sha256": "bace0556782d4affbfddf0175d9f7fbdda3d06e2e71bc8746b997e68bc7aecb4",
       "snr": 59.0,
       "source": "Uk-вилка.ogg"
+    },
+    "police": {
+      "author": "Tohaomg",
+      "file": "police.mp3",
+      "gain": -0.1,
+      "gainPhone": -4.0,
+      "lead": 206,
+      "matches": "поліція",
+      "sha256": "3f0dcc247cfa87cc520f8dcef931c4ee9de6d8373e18cffd3ee1349a9fe1d398",
+      "snr": 204.5,
+      "source": "LL-Q8798 (ukr)-Tohaomg-поліція.wav"
     },
     "poor": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6347,6 +7061,18 @@
       "snr": 62.2,
       "source": "Uk-ціна.ogg"
     },
+    "printer": {
+      "author": "Tohaomg",
+      "file": "printer.mp3",
+      "gain": 1.4,
+      "gainPhone": -2.2,
+      "gate": -93.8,
+      "lead": 218,
+      "matches": "принтер",
+      "sha256": "7b7b895badae4d8584237bbadefe2e2dd99a1c42c7c4a77b04ceb4fef0be86fa",
+      "snr": 88.3,
+      "source": "LL-Q8798 (ukr)-Tohaomg-принтер.wav"
+    },
     "problem": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "problem.mp3",
@@ -6463,6 +7189,18 @@
       "snr": 65.7,
       "source": "Uk-дощ.ogg"
     },
+    "razor": {
+      "author": "Tohaomg",
+      "file": "razor.mp3",
+      "gain": 2.6,
+      "gainPhone": -2.5,
+      "gate": -87.7,
+      "lead": 78,
+      "matches": "бритва",
+      "sha256": "caa94e9403152f7e441e89cfa23410941f785904300a5fd1c21b70df5d7735eb",
+      "snr": 81.0,
+      "source": "LL-Q8798 (ukr)-Tohaomg-бритва.wav"
+    },
     "ready": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 1.7,
@@ -6535,6 +7273,29 @@
       "sha256": "726cb3b3c30c7d7211029a71d54e3052a5a510c9a8326f333d9c90867a749af0",
       "snr": 62.1,
       "source": "Uk-пульт.ogg"
+    },
+    "report-card": {
+      "author": "Tohaomg",
+      "file": "report-card.mp3",
+      "gain": 0.3,
+      "gainPhone": -3.3,
+      "lead": 123,
+      "matches": "табель",
+      "sha256": "c98a646db67b570117783e7cb0a1554b775f6ae4af03d4e971e0c39dbdb53104",
+      "snr": 109.5,
+      "source": "LL-Q8798 (ukr)-Tohaomg-табель.wav"
+    },
+    "responsible": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.4,
+      "file": "responsible.mp3",
+      "gain": -1.1,
+      "gainPhone": 3.2,
+      "gate": -56.6,
+      "matches": "відповідальний",
+      "sha256": "b980f0bf4761c57c3f3dca25fad709331bdac4f083eabdedd6ba7f79e51ccff9",
+      "snr": 53.9,
+      "source": "Uk-відповідальний.ogg"
     },
     "restaurant": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6713,6 +7474,28 @@
       "snr": 61.9,
       "source": "Uk-школа.ogg"
     },
+    "school-diploma": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "school-diploma.mp3",
+      "gain": 2.2,
+      "gainPhone": -1.6,
+      "gate": -63.9,
+      "matches": "атестат",
+      "sha256": "860810a80f7e25de58758154ddb56dcf3bd8f7d4a51977cb1fad6e3147187bf2",
+      "snr": 58.7,
+      "source": "Uk-атестат.ogg"
+    },
+    "screen": {
+      "author": "Tohaomg",
+      "file": "screen.mp3",
+      "gain": 1.4,
+      "gainPhone": 0.4,
+      "lead": 205,
+      "matches": "монітор",
+      "sha256": "065ea26159b277f7d96a9a4dadf6dbace46674bb29ffb776b1c97c2672a4685b",
+      "snr": 126.8,
+      "source": "LL-Q8798 (ukr)-Tohaomg-монітор.wav"
+    },
     "sea": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sea.mp3",
@@ -6738,6 +7521,17 @@
       "snr": 61.7,
       "source": "Uk-другий.ogg"
     },
+    "see-you-later": {
+      "author": "Василь Бабич",
+      "file": "see-you-later.mp3",
+      "gain": -1.5,
+      "gainPhone": -10.7,
+      "gate": -45.8,
+      "matches": "до зустрічі",
+      "sha256": "04dcabd68df3c358559da8edb62c52e78fe6a4cee3964ee8be2ce649640a53fd",
+      "snr": 45.7,
+      "source": "Uk-До зустрічі.ogg"
+    },
     "sentence": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sentence.mp3",
@@ -6749,6 +7543,18 @@
       "sha256": "55e60b55da61d1f6a62b5e86c3feae6c269fdc9bbd72d96a613f98cce2e26b05",
       "snr": 59.7,
       "source": "Uk-речення.ogg"
+    },
+    "sex": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "sex.mp3",
+      "gain": 1.0,
+      "gainPhone": -4.9,
+      "gate": -60.7,
+      "lead": 112,
+      "matches": "стать",
+      "sha256": "9ae823060c79fc1d46037f5c98043c8487d1d9ecc06775085e9b4e5b02551bd2",
+      "snr": 56.0,
+      "source": "Uk-стать.ogg"
     },
     "shadow": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -6974,6 +7780,18 @@
       "snr": 54.8,
       "source": "Uk-з.ogg"
     },
+    "single": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "single.mp3",
+      "gain": -3.3,
+      "gainPhone": 2.5,
+      "gate": -56.4,
+      "lead": 86,
+      "matches": "неодружений",
+      "sha256": "0c82dbed481c88fc65df9099bc565ecaf9becca26e6c7c0b029ac0d2d70ce768",
+      "snr": 54.4,
+      "source": "Uk-неодружений.ogg"
+    },
     "sink": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sink.mp3",
@@ -6996,6 +7814,18 @@
       "snr": 55.3,
       "source": "Uk-сестра.ogg"
     },
+    "sister-in-law": {
+      "author": "Po ukraińsku (Andriana)",
+      "file": "sister-in-law.mp3",
+      "gain": 8.7,
+      "gainPhone": 9.4,
+      "gate": -84.2,
+      "lead": 255,
+      "matches": "братова",
+      "sha256": "3b13c73f8a100f6dcd0a3ac8c7cf21995959c593be71eeef435fc0da99648ed3",
+      "snr": 71.3,
+      "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-братова.wav"
+    },
     "size": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "size.mp3",
@@ -7007,6 +7837,17 @@
       "sha256": "633956d395ee2d28bd3aaa8a1de91b799e14b6790465317f5028d73400f6d7c1",
       "snr": 57.5,
       "source": "Uk-розмір.ogg"
+    },
+    "skills": {
+      "author": "Женя Музика, Nicolas Vion",
+      "file": "skills.mp3",
+      "gain": -0.3,
+      "gainPhone": 1.6,
+      "gate": -51.2,
+      "matches": "знання",
+      "sha256": "e916fc7536bff842120749ec921168c1f700424f03810d081b39f32323ee48e7",
+      "snr": 46.4,
+      "source": "Uk-знання.ogg"
     },
     "skin": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -7282,6 +8123,17 @@
       "snr": 63.2,
       "source": "Uk-колонка.ogg"
     },
+    "spleen": {
+      "author": "Tohaomg",
+      "file": "spleen.mp3",
+      "gain": 1.8,
+      "gainPhone": -0.1,
+      "lead": 164,
+      "matches": "селезінка",
+      "sha256": "2f33bb95378fa443f8ead84e17bddd21cffd6547c5f1bf3b32c0d0742c16ccdf",
+      "snr": 102.0,
+      "source": "LL-Q8798 (ukr)-Tohaomg-селезінка.wav"
+    },
     "splint": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "splint.mp3",
@@ -7486,6 +8338,41 @@
       "snr": 54.6,
       "source": "Uk-вулиця.ogg"
     },
+    "student": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "student.mp3",
+      "gain": 0.5,
+      "gainPhone": -1.6,
+      "gate": -64.6,
+      "lead": 199,
+      "matches": "студент",
+      "sha256": "535d082cb6483e7df044943a0f8267129937d9bcb7a8b3965912e710d384ba63",
+      "snr": 60.5,
+      "source": "Uk-студент.ogg"
+    },
+    "student-f": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "student-f.mp3",
+      "gain": 2.3,
+      "gainPhone": 3.0,
+      "gate": -64.9,
+      "lead": 227,
+      "matches": "студентка",
+      "sha256": "581a95de184e2620142838ddfabf53d70086dfa367ef49a15989a6c5d2fa8a2e",
+      "snr": 61.1,
+      "source": "Uk-студентка.ogg"
+    },
+    "studies": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "studies.mp3",
+      "gain": -0.3,
+      "gainPhone": -1.0,
+      "gate": -58.1,
+      "matches": "навчання",
+      "sha256": "c05e2a877343bb7386ee5b08f0f981be08a7a8b412408fd4d52300e1842c558d",
+      "snr": 53.7,
+      "source": "Uk-навчання.ogg"
+    },
     "sugar": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "sugar.mp3",
@@ -7508,6 +8395,30 @@
       "sha256": "22b2e8b9233825d241a79614ddcfb08df9057077bf522a8d2b304bbd4ad9c1b8",
       "snr": 57.5,
       "source": "Uk-сонце.ogg"
+    },
+    "supermarket": {
+      "author": "Po ukraińsku (Andriana)",
+      "file": "supermarket.mp3",
+      "gain": 5.5,
+      "gainPhone": 7.6,
+      "gate": -72.1,
+      "lead": 187,
+      "matches": "супермаркет",
+      "sha256": "ebcc8a93955f9af8e983e213a5c8b76e259d95bcb74f38b6fb3821dc12e1f04a",
+      "snr": 63.6,
+      "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-супермаркет.wav"
+    },
+    "surname": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "surname.mp3",
+      "gain": -1.5,
+      "gainPhone": -2.2,
+      "gate": -57.9,
+      "lead": 103,
+      "matches": "прізвище",
+      "sha256": "a745d1127cfb098e4cdf65d41d504061c6df6eb3fe8a3f972d99b931f0e746ff",
+      "snr": 56.9,
+      "source": "Uk-прізвище.ogg"
     },
     "surprise": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -7532,6 +8443,19 @@
       "sha256": "1c1638c2be67b7739f8e52bc4a3320e4344e46d5284c571e4ec780f4128abf62",
       "snr": 56.3,
       "source": "Uk-светр.ogg"
+    },
+    "t-shirt": {
+      "author": "Po ukraińsku (Andriana)",
+      "capPhone": 2.9,
+      "file": "t-shirt.mp3",
+      "gain": 7.9,
+      "gainPhone": 11.3,
+      "gate": -75.8,
+      "lead": 163,
+      "matches": "футболка",
+      "sha256": "f895e9182fc28185f3cc3936f048aa08131470e6023e22bc13fc985a31ae4063",
+      "snr": 66.8,
+      "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-футболка.wav"
     },
     "table": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -7615,6 +8539,17 @@
       "sha256": "63a9be35d3e824860f89e7840918bc24f2db8b1d34c857f498141e1bb91d1e13",
       "snr": 60.2,
       "source": "Uk-вчителька.ogg"
+    },
+    "tendon": {
+      "author": "Tohaomg",
+      "file": "tendon.mp3",
+      "gain": 1.7,
+      "gainPhone": -0.3,
+      "lead": 201,
+      "matches": "сухожилля",
+      "sha256": "c0ba39893133fe6037747116946266d53e34db2605c7e84253c2dac108a7a8a8",
+      "snr": 112.7,
+      "source": "LL-Q8798 (ukr)-Tohaomg-сухожилля.wav"
     },
     "than": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -7964,6 +8899,17 @@
       "sha256": "677710adc583b0ed20afcb9cc820e85d37ea21b85fa9845216387bfcf4cefc21",
       "snr": 63.1,
       "source": "Uk-дихати.ogg"
+    },
+    "to-bury": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-bury.mp3",
+      "gain": -1.1,
+      "gainPhone": 1.9,
+      "gate": -62.4,
+      "matches": "поховати",
+      "sha256": "82fc2ba931c86e12b62fecfcc3bbea138524804b247fec7f7272523c7c3f8270",
+      "snr": 60.9,
+      "source": "Uk-поховати.ogg"
     },
     "to-buy": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -8513,6 +9459,18 @@
       "snr": 58.5,
       "source": "Uk-виходити.ogg"
     },
+    "to-get-old": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-get-old.mp3",
+      "gain": 0.4,
+      "gainPhone": 0.6,
+      "gate": -62.8,
+      "lead": 84,
+      "matches": "старіти",
+      "sha256": "57c89c55a290acd9f097409ad70ecf316a77c6bc09f96c5cdc3566d7f804c914",
+      "snr": 59.0,
+      "source": "Uk-старіти.ogg"
+    },
     "to-get-undressed": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-get-undressed.mp3",
@@ -8585,6 +9543,17 @@
       "snr": 52.8,
       "source": "Uk-гуляти.ogg"
     },
+    "to-grow-up": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-grow-up.mp3",
+      "gain": -1.9,
+      "gainPhone": -5.3,
+      "gate": -46.0,
+      "matches": "вирости",
+      "sha256": "4ffe105e616baa903df05458360fbe324f3fd3f6aa8576b25809fd47eac40149",
+      "snr": 43.8,
+      "source": "Uk-вирости.ogg"
+    },
     "to-hand-in": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "to-hand-in.mp3",
@@ -8596,6 +9565,18 @@
       "sha256": "3eaa40bf16eb742285d4726aca95b1ecce28d7c96234e3db6c13034f97cdc438",
       "snr": 62.4,
       "source": "Uk-подавати.ogg"
+    },
+    "to-happen": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "to-happen.mp3",
+      "gain": 1.6,
+      "gainPhone": -3.9,
+      "gate": -61.5,
+      "lead": 182,
+      "matches": "статися",
+      "sha256": "615f883a8c37ab07f40e4b9e200ceb1fd48049dbdf70b3206087dfaae5cd14f1",
+      "snr": 56.4,
+      "source": "Uk-статися.ogg"
     },
     "to-have": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -8726,6 +9707,18 @@
       "sha256": "872903dd37f29e4dd5d896979b07628343be899c4ee8403dcccaa2aa666352f9",
       "snr": 57.8,
       "source": "Uk-знати.ogg"
+    },
+    "to-last": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 1.2,
+      "file": "to-last.mp3",
+      "gain": 0.6,
+      "gainPhone": 2.9,
+      "gate": -61.2,
+      "matches": "тривати",
+      "sha256": "c7a1f10be0b13c2fec79dea126fe16ef72fdc464ececf648bab1004d29815b68",
+      "snr": 58.2,
+      "source": "Uk-тривати.ogg"
     },
     "to-laugh": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -9042,6 +10035,17 @@
       "snr": 57.5,
       "source": "Uk-одужувати.ogg"
     },
+    "to-register": {
+      "author": "Tohaomg",
+      "file": "to-register.mp3",
+      "gain": 0.7,
+      "gainPhone": -3.4,
+      "lead": 191,
+      "matches": "реєструватися",
+      "sha256": "6882bcb898d18c9ef931cb20c8124025c9ac23ec6e526e817c8c5bce0347b7d0",
+      "snr": 109.5,
+      "source": "LL-Q8798 (ukr)-Tohaomg-реєструватися.wav"
+    },
     "to-reject": {
       "author": "Галя Раптова, Nicolas Vion",
       "capPhone": 0.9,
@@ -9289,6 +10293,19 @@
       "sha256": "d33ef45bc2393b454a339e3a3cf581c24bc036eb5355c73c485f80ce80b84b81",
       "snr": 53.8,
       "source": "Uk-усміхатися.ogg"
+    },
+    "to-snore": {
+      "author": "Tohaomg",
+      "cap": 0.5,
+      "file": "to-snore.mp3",
+      "gain": 9.5,
+      "gainPhone": 9.0,
+      "gate": -81.2,
+      "lead": 116,
+      "matches": "хропіти",
+      "sha256": "c3558a5f39dfaf70198103ee529a3d8cc087bdc93562c756cf4dbafcc287ef10",
+      "snr": 69.8,
+      "source": "LL-Q8798 (ukr)-Tohaomg-хропіти.wav"
     },
     "to-solve": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -9727,6 +10744,17 @@
       "snr": 59.4,
       "source": "Uk-туалет.ogg"
     },
+    "toilet-paper": {
+      "author": "Tohaomg",
+      "file": "toilet-paper.mp3",
+      "gain": 1.4,
+      "gainPhone": -1.3,
+      "lead": 203,
+      "matches": "туалетний папір",
+      "sha256": "340ada0e9f1304b87e796cf44baa349d156c0db3ac1132a6a138bcddb46d713a",
+      "snr": 103.8,
+      "source": "LL-Q8798 (ukr)-Tohaomg-туалетний папір.wav"
+    },
     "tomato": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "tomato.mp3",
@@ -9785,6 +10813,29 @@
       "sha256": "9afdd9b06675de74e0e82ebecb25f7ba69690c3ad4c92b96a5a7d25427027727",
       "snr": 52.1,
       "source": "Uk-зуб.ogg"
+    },
+    "toothbrush": {
+      "author": "Tohaomg",
+      "file": "toothbrush.mp3",
+      "gain": 2.7,
+      "gainPhone": -1.3,
+      "gate": -100.0,
+      "lead": 212,
+      "matches": "зубна щітка",
+      "sha256": "6aec3d25ce1a3057bdd9f958f343ebdb196f0ba4aff4e6e3706540d8ef79b86b",
+      "snr": 93.9,
+      "source": "LL-Q8798 (ukr)-Tohaomg-зубна щітка.wav"
+    },
+    "toothpaste": {
+      "author": "Tohaomg",
+      "file": "toothpaste.mp3",
+      "gain": 1.1,
+      "gainPhone": -2.4,
+      "lead": 172,
+      "matches": "зубна паста",
+      "sha256": "114024e64a6b6b600e62e943e786b132a8dfbbccc1f7c93a8ab8e9b26899c19b",
+      "snr": 102.2,
+      "source": "LL-Q8798 (ukr)-Tohaomg-зубна паста.wav"
     },
     "tourist": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -9857,6 +10908,17 @@
       "sha256": "de4915fdf6fb06c301080292fc6649cd791fb2dde995e21a8d2f708a70ace549",
       "snr": 55.2,
       "source": "Uk-вокзал.ogg"
+    },
+    "training": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "training.mp3",
+      "gain": -3.0,
+      "gainPhone": 1.4,
+      "gate": -57.1,
+      "matches": "тренування",
+      "sha256": "6510a96174bccecc439bb53ac451db8c2c53ed43e82ecf7706f136ca03a314af",
+      "snr": 54.8,
+      "source": "Uk-тренування.ogg"
     },
     "trash-can": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -9987,6 +11049,17 @@
       "sha256": "20c9c981e1bfb653311f623de08e0e3efb88f9ea9a5b0f823fa175ff452435e6",
       "snr": 58.8,
       "source": "Uk-терміновий.ogg"
+    },
+    "usually": {
+      "author": "Tohaomg",
+      "file": "usually.mp3",
+      "gain": 3.1,
+      "gainPhone": -0.6,
+      "lead": 199,
+      "matches": "зазвичай",
+      "sha256": "3488ee9de53e88da100479db44bb0087a7994684bbdd90dbc38e7ec05a3e8c69",
+      "snr": 103.5,
+      "source": "LL-Q8798 (ukr)-Tohaomg-зазвичай.wav"
     },
     "vacation": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -10169,6 +11242,17 @@
       "snr": 53.1,
       "source": "Uk-війна.ogg"
     },
+    "washing-machine": {
+      "author": "Tohaomg",
+      "file": "washing-machine.mp3",
+      "gain": 0.2,
+      "gainPhone": -6.7,
+      "lead": 230,
+      "matches": "пральна машина",
+      "sha256": "c8df393a98df01cc5e01af857d9ae356271d7cfb1fd0e86943f72946f96d826b",
+      "snr": 99.7,
+      "source": "LL-Q8798 (ukr)-Tohaomg-пральна машина.wav"
+    },
     "water": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "water.mp3",
@@ -10264,6 +11348,18 @@
       "sha256": "ff0f68759c2af6ad5f59678f2b1b9ac9431f7fd9c46801378b5fb5e279012032",
       "snr": 59.0,
       "source": "Uk-тиждень.ogg"
+    },
+    "welcome": {
+      "author": "Женя Музика, Nicolas Vion",
+      "capPhone": 0.2,
+      "file": "welcome.mp3",
+      "gain": 0.5,
+      "gainPhone": 3.0,
+      "gate": -57.5,
+      "matches": "ласкаво просимо",
+      "sha256": "e9417ec2f822236ac8a17f521d23945aa51ad8e25f3ef87c7a48564aea010634",
+      "snr": 53.5,
+      "source": "Uk-ласкаво просимо.ogg"
     },
     "west": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -10373,6 +11469,18 @@
       "sha256": "a2cbce24e5b8936b4c91bda44870f7f3b1b4d61871d6512fa1bbc9e8ac2b262e",
       "snr": 62.2,
       "source": "Uk-чому.ogg"
+    },
+    "widowed": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "widowed.mp3",
+      "gain": -0.7,
+      "gainPhone": 0.1,
+      "gate": -56.2,
+      "lead": 15,
+      "matches": "вдівець",
+      "sha256": "e4c8714dedeffb376485c0b8cb3c28d3bbf4eca94b6de112e7631703854466d5",
+      "snr": 52.9,
+      "source": "Uk-вдівець.ogg"
     },
     "wife": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -10593,6 +11701,18 @@
       "snr": 59.1,
       "source": "Uk-ви.ogg"
     },
+    "young": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "young.mp3",
+      "gain": -3.3,
+      "gainPhone": 2.5,
+      "gate": -58.9,
+      "lead": 137,
+      "matches": "молодий",
+      "sha256": "5b50faa668da853b4060f1a60118a3e93402699623474ab04a058f5b1d15323f",
+      "snr": 56.7,
+      "source": "Uk-молодий.ogg"
+    },
     "your": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "your.mp3",
@@ -10614,6 +11734,19 @@
       "sha256": "73bb18b7ad6e8cdbb906ab180db07324479c39f4b4d6da95285bb15a0919bfc2",
       "snr": 56.4,
       "source": "Uk-ваш.ogg"
+    },
+    "youth": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "capPhone": 0.3,
+      "file": "youth.mp3",
+      "gain": -4.5,
+      "gainPhone": 2.9,
+      "gate": -57.6,
+      "lead": 18,
+      "matches": "юність",
+      "sha256": "845024bfafc45cb2723e8eaae42b4a3229b8d7686487a26faeccf4f67e1ed75f",
+      "snr": 56.3,
+      "source": "Uk-юність.ogg"
     }
   }
 }

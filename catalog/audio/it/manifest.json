@@ -1969,6 +1969,30 @@
       "snr": 158.6,
       "source": "LL-Q652 (ita)-LangPao-pomeriggio.wav"
     },
+    "again": {
+      "author": "LangPao",
+      "file": "again.mp3",
+      "gain": 1.1,
+      "gainPhone": 3.4,
+      "gate": -97.6,
+      "lead": 203,
+      "matches": "di nuovo",
+      "sha256": "300475c165a6aa95c3a74f33524a784a7a446683efa91e049a859a50418fb67d",
+      "snr": 92.1,
+      "source": "LL-Q652 (ita)-LangPao-di nuovo.wav"
+    },
+    "age": {
+      "author": "XANA000",
+      "file": "age.mp3",
+      "gain": 0.6,
+      "gainPhone": -1.1,
+      "gate": -87.2,
+      "lead": 252,
+      "matches": "età",
+      "sha256": "55100b0ed075557216e2c62452561adec4d0b4a30f92fea91ca4180c7a8dabb0",
+      "snr": 83.0,
+      "source": "LL-Q652 (ita)-XANA000-età.wav"
+    },
     "aggressive": {
       "author": "DiplomaticBadger",
       "file": "aggressive.mp3",
@@ -2216,6 +2240,18 @@
       "snr": 95.2,
       "source": "LL-Q652 (ita)-LangPao-zia.wav"
     },
+    "authority": {
+      "author": "Crunchy Cloaky Crackdown",
+      "file": "authority.mp3",
+      "gain": 6.8,
+      "gainPhone": 9.0,
+      "gate": -84.4,
+      "lead": 190,
+      "matches": "autorità",
+      "sha256": "39bc9e6f2db1e68be5ec3ef4f6d2194302e7440f058906842dad20089f96890a",
+      "snr": 74.5,
+      "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-autorità.wav"
+    },
     "available": {
       "author": "LangPao",
       "cap": 1.1,
@@ -2370,6 +2406,16 @@
       "snr": 135.2,
       "source": "LL-Q652 (ita)-XANA000-perché.wav"
     },
+    "because-of": {
+      "author": "XANA000",
+      "file": "because-of.mp3",
+      "gain": -0.2,
+      "gainPhone": 0.0,
+      "lead": 193,
+      "matches": "a causa di",
+      "sha256": "f82353f60541018d0560ac4b2c7e836c6259e952dcbc0529644e029d1bc6a782",
+      "source": "LL-Q652 (ita)-XANA000-a causa di.wav"
+    },
     "bed": {
       "author": "LangPao",
       "file": "bed.mp3",
@@ -2380,6 +2426,18 @@
       "sha256": "5d5b54c9ab68d2d357eaeb0ed4ae43522e1b019eb520245b80dfc2f033864b91",
       "snr": 97.7,
       "source": "LL-Q652 (ita)-LangPao-letto.wav"
+    },
+    "before": {
+      "author": "XANA000",
+      "file": "before.mp3",
+      "gain": -5.8,
+      "gainPhone": -3.6,
+      "gate": -75.2,
+      "lead": 197,
+      "matches": "prima di",
+      "sha256": "96ad1a01c34f86872e4c1ea3324488cdb4304e862a4e6da5d52763601d0f5638",
+      "snr": 74.6,
+      "source": "LL-Q652 (ita)-XANA000-prima di.wav"
     },
     "behind": {
       "author": "XANA000",
@@ -2697,6 +2755,19 @@
       "sha256": "31cc470448c089abadafd8f318c179b140dddde19b04e4171e52ef38aca96325",
       "source": "LL-Q652 (ita)-LangPao-fratello.wav"
     },
+    "brother-in-law": {
+      "author": "Crunchy Cloaky Crackdown",
+      "capPhone": 0.9,
+      "file": "brother-in-law.mp3",
+      "gain": 5.2,
+      "gainPhone": 7.2,
+      "gate": -85.2,
+      "lead": 160,
+      "matches": "cognato",
+      "sha256": "b84616156b4b9e52766d89e42e562eae24812c82883d2227c1f45f2f205a9b94",
+      "snr": 76.7,
+      "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-cognato.wav"
+    },
     "brown": {
       "author": "LangPao",
       "file": "brown.mp3",
@@ -2773,6 +2844,18 @@
       "sha256": "faea06ff6b1a9a847db9cb1000a7ef2daace98f6d4b01925b3d11d81090bda86",
       "snr": 115.6,
       "source": "LL-Q652 (ita)-LangPao-burro.wav"
+    },
+    "bye": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "bye.mp3",
+      "gain": -3.6,
+      "gainPhone": -9.4,
+      "gate": -72.6,
+      "lead": 252,
+      "matches": "a presto",
+      "sha256": "207f6d02b4656e31c509dc9966b34b66e24a1ae7d2c28e7943a5d3ed2105c3a0",
+      "snr": 70.7,
+      "source": "It-a presto.ogg"
     },
     "cabbage": {
       "author": "LangPao",
@@ -2915,6 +2998,18 @@
       "sha256": "f0877770a9d80408c3c7a4e792bd3836e4ea1c914f279ca07827b8b99dd6e820",
       "snr": 68.8,
       "source": "LL-Q652 (ita)-LangPao-festa.wav"
+    },
+    "cemetery": {
+      "author": "LangPao",
+      "file": "cemetery.mp3",
+      "gain": 2.5,
+      "gainPhone": 2.3,
+      "gate": -98.6,
+      "lead": 184,
+      "matches": "cimitero",
+      "sha256": "a85402812dc1725dc7f3c65146c72761a5e765b5d2da378121aabb26d1e33a24",
+      "snr": 92.3,
+      "source": "LL-Q652 (ita)-LangPao-cimitero.wav"
     },
     "center": {
       "author": "LangPao",
@@ -3281,6 +3376,30 @@
       "snr": 91.6,
       "source": "LL-Q652 (ita)-XANA000-corso.wav"
     },
+    "cousin": {
+      "author": "LangPao",
+      "file": "cousin.mp3",
+      "gain": -4.1,
+      "gainPhone": -2.5,
+      "gate": -90.1,
+      "lead": 51,
+      "matches": "cugino",
+      "sha256": "513cfcc4497f626e580f8117752112d16d07b2c404f39c4d7c8593911a82ed9e",
+      "snr": 89.3,
+      "source": "LL-Q652 (ita)-LangPao-cugino.wav"
+    },
+    "cousin-f": {
+      "author": "Jennum",
+      "file": "cousin-f.mp3",
+      "gain": 7.0,
+      "gainPhone": 6.7,
+      "gate": -79.5,
+      "lead": 167,
+      "matches": "cugina",
+      "sha256": "73f4d28822cb6a04a43b3d57a96ba2e928eafe5ee0be9f19d82d1224dc260a49",
+      "snr": 68.6,
+      "source": "LL-Q652 (ita)-Jennum-cugina.wav"
+    },
     "cow": {
       "author": "XANA000",
       "file": "cow.mp3",
@@ -3366,6 +3485,17 @@
       "snr": 76.3,
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-data.wav"
     },
+    "date-of-birth": {
+      "author": "LangPao",
+      "file": "date-of-birth.mp3",
+      "gain": 3.0,
+      "gainPhone": 1.5,
+      "lead": 224,
+      "matches": "data di nascita",
+      "sha256": "cd3bc5f402cb29b4aa23023e22fcd7038e72097fb4fcda3668040778b277c77b",
+      "snr": 152.5,
+      "source": "LL-Q652 (ita)-LangPao-data di nascita.wav"
+    },
     "daughter": {
       "author": "LangPao",
       "file": "daughter.mp3",
@@ -3399,6 +3529,18 @@
       "sha256": "a259f8d0deb5c184cf99d28bdeef35d547b5384b6af420300eb6ff9efe886772",
       "snr": 111.4,
       "source": "LL-Q652 (ita)-XANA000-dopodomani.wav"
+    },
+    "dead": {
+      "author": "LangPao",
+      "file": "dead.mp3",
+      "gain": 11.9,
+      "gainPhone": 11.4,
+      "gate": -78.7,
+      "lead": 254,
+      "matches": "morto",
+      "sha256": "6afce24dda301437dbb93f23e5f676a8331466956e7f2f661bbe684b5ad9ab82",
+      "snr": 64.6,
+      "source": "LL-Q652 (ita)-LangPao-morto.wav"
     },
     "death": {
       "author": "LangPao",
@@ -3732,6 +3874,18 @@
       "snr": 104.8,
       "source": "LL-Q652 (ita)-LangPao-emergenza.wav"
     },
+    "employer": {
+      "author": "LangPao",
+      "file": "employer.mp3",
+      "gain": 6.6,
+      "gainPhone": 5.8,
+      "gate": -68.6,
+      "lead": 221,
+      "matches": "datore di lavoro",
+      "sha256": "959a0bd846e7e82825039ad0aba887a91d5b19ae799136d8a2d8bcc780c3133f",
+      "snr": 57.7,
+      "source": "LL-Q652 (ita)-LangPao-datore di lavoro.wav"
+    },
     "empty": {
       "author": "LangPao",
       "capPhone": 0.3,
@@ -3977,6 +4131,18 @@
       "snr": 115.1,
       "source": "LL-Q652 (ita)-LangPao-padre.wav"
     },
+    "father-in-law": {
+      "author": "LangPao",
+      "file": "father-in-law.mp3",
+      "gain": 3.5,
+      "gainPhone": -3.7,
+      "gate": -71.7,
+      "lead": 222,
+      "matches": "suocero",
+      "sha256": "ff7457b993f741bf9bdf4e986b592e359066b57e1264f90de995ec0200fe73a2",
+      "snr": 63.9,
+      "source": "LL-Q652 (ita)-LangPao-suocero.wav"
+    },
     "faucet": {
       "author": "LangPao",
       "file": "faucet.mp3",
@@ -4010,6 +4176,19 @@
       "sha256": "a2fc35cdd000cf15932646fac03551506c432acea1dce7d47c3ffd651ff5de10",
       "snr": 112.5,
       "source": "LL-Q652 (ita)-LangPao-tassa.wav"
+    },
+    "female": {
+      "author": "Crunchy Cloaky Crackdown",
+      "capPhone": 0.7,
+      "file": "female.mp3",
+      "gain": 7.2,
+      "gainPhone": 13.2,
+      "gate": -81.9,
+      "lead": 187,
+      "matches": "femminile",
+      "sha256": "859f5fe13ddbc5fd8e9df196f05ca1203158a9b589d6ab0fb635cb425075037a",
+      "snr": 68.5,
+      "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-femminile.wav"
     },
     "fever": {
       "author": "LangPao",
@@ -4260,6 +4439,18 @@
       "snr": 106.8,
       "source": "LL-Q652 (ita)-LangPao-pieno.wav"
     },
+    "funeral": {
+      "author": "DivoLetto",
+      "file": "funeral.mp3",
+      "gain": 3.2,
+      "gainPhone": 1.4,
+      "gate": -77.5,
+      "lead": 107,
+      "matches": "funerale",
+      "sha256": "508babe15a234fba0cc4b34aaac1b95a5d122c7b7189606fb93e65767ab1d627",
+      "snr": 69.8,
+      "source": "LL-Q652 (ita)-DivoLetto-funerale.wav"
+    },
     "future": {
       "author": "Crunchy Cloaky Crackdown",
       "capPhone": 1.3,
@@ -4495,6 +4686,18 @@
       "sha256": "216954abf013f055597cc873817267eac641e6fcb4796d4c175eb397c63ed754",
       "source": "LL-Q652 (ita)-LangPao-nonna.wav"
     },
+    "grave": {
+      "author": "LangPao",
+      "file": "grave.mp3",
+      "gain": 8.2,
+      "gainPhone": 6.5,
+      "gate": -71.1,
+      "lead": 240,
+      "matches": "tomba",
+      "sha256": "a51229d6b097e71c211c5c4f0cda3a37ab0bba374e92ccf76f4ae1d13c621222",
+      "snr": 62.1,
+      "source": "LL-Q652 (ita)-LangPao-tomba.wav"
+    },
     "gray": {
       "author": "LangPao",
       "file": "gray.mp3",
@@ -4573,6 +4776,17 @@
       "sha256": "05ed506c19ae6ada2ff620e6b16d4136be4951f970e55d35ea5d85f1052092d2",
       "snr": 68.1,
       "source": "LL-Q652 (ita)-DivoLetto-berretto.wav"
+    },
+    "have-a-good-journey": {
+      "author": "XANA000",
+      "file": "have-a-good-journey.mp3",
+      "gain": 6.9,
+      "gainPhone": 4.4,
+      "lead": 185,
+      "matches": "buon viaggio",
+      "sha256": "b98e24645964ca625b5afa8f176d5c436736c3558b94c99f6de590056b46f6f6",
+      "snr": 89.9,
+      "source": "LL-Q652 (ita)-XANA000-buon viaggio.wav"
     },
     "he": {
       "author": "LangPao",
@@ -5126,6 +5340,16 @@
       "snr": 122.3,
       "source": "LL-Q652 (ita)-LangPao-legge.wav"
     },
+    "left": {
+      "author": "XANA000",
+      "file": "left.mp3",
+      "gain": 9.2,
+      "gainPhone": 4.3,
+      "matches": "a sinistra",
+      "sha256": "4fd7fe5f6ed7d32811f5b35b7484ab7833d17d13161efba676401dc88b835a06",
+      "snr": 104.6,
+      "source": "LL-Q652 (ita)-XANA000-a sinistra.wav"
+    },
     "leg": {
       "author": "LangPao",
       "cap": 0.5,
@@ -5417,6 +5641,18 @@
       "snr": 169.3,
       "source": "LL-Q652 (ita)-LangPao-medicina.wav"
     },
+    "message": {
+      "author": "LangPao",
+      "file": "message.mp3",
+      "gain": 9.9,
+      "gainPhone": 7.2,
+      "gate": -97.5,
+      "lead": 194,
+      "matches": "messaggio",
+      "sha256": "7906d1e0d3fdfd4c795d838433121686597f5e2cb154bb40ad4c56376407cb7e",
+      "snr": 85.0,
+      "source": "LL-Q652 (ita)-LangPao-messaggio.wav"
+    },
     "midnight": {
       "author": "LangPao",
       "capPhone": 0.2,
@@ -5570,6 +5806,17 @@
       "matches": "madre",
       "sha256": "3016e2b2529efdc465698c98cd36c0d60289ca13da8ecd742fb7990bbae7d3c2",
       "source": "LL-Q652 (ita)-LangPao-madre.wav"
+    },
+    "mother-in-law": {
+      "author": "LangPao",
+      "file": "mother-in-law.mp3",
+      "gain": -1.5,
+      "gainPhone": -1.5,
+      "lead": 177,
+      "matches": "suocera",
+      "sha256": "c427db68095eb21093f3fe5b8a5b3c0c2523b7d4b3dbe0e3aebebf76e4fb2b34",
+      "snr": 99.9,
+      "source": "LL-Q652 (ita)-LangPao-suocera.wav"
     },
     "motorbike": {
       "author": "LangPao",
@@ -5745,6 +5992,18 @@
       "snr": 105.5,
       "source": "LL-Q652 (ita)-LangPao-quartiere.wav"
     },
+    "nephew": {
+      "author": "LangPao",
+      "capPhone": 1.5,
+      "file": "nephew.mp3",
+      "gain": 7.2,
+      "gainPhone": 10.0,
+      "lead": 273,
+      "matches": "nipote",
+      "sha256": "830a8e3c1e9d7b407659d6773abbc069953e5db4559ed08ad718c5969095ec85",
+      "snr": 90.5,
+      "source": "LL-Q652 (ita)-LangPao-nipote.wav"
+    },
     "nerve": {
       "author": "DivoLetto",
       "file": "nerve.mp3",
@@ -5800,6 +6059,18 @@
       "sha256": "3e30f5c6964ed674f46e3fb1012c7ebaecd750c7c8a4f1b64b875a8de693ee7c",
       "snr": 106.2,
       "source": "LL-Q652 (ita)-LangPao-prossimo.wav"
+    },
+    "next-to": {
+      "author": "XANA000",
+      "file": "next-to.mp3",
+      "gain": -4.6,
+      "gainPhone": -3.1,
+      "gate": -77.1,
+      "lead": 200,
+      "matches": "accanto a",
+      "sha256": "24455a829d85e8fd6c683d3fe7668558361e8378a04711c799772a9ba5102b99",
+      "snr": 75.6,
+      "source": "LL-Q652 (ita)-XANA000-accanto a.wav"
     },
     "night": {
       "author": "XANA000",
@@ -6399,6 +6670,17 @@
       "snr": 204.6,
       "source": "LL-Q652 (ita)-LangPao-piatto.wav"
     },
+    "please": {
+      "author": "XANA000",
+      "file": "please.mp3",
+      "gain": -0.7,
+      "gainPhone": -1.4,
+      "lead": 170,
+      "matches": "per favore",
+      "sha256": "e36ff87d8c6db802064ba43e2ffc75fd6e5adff319026db62ccf1a4598102a41",
+      "snr": 97.0,
+      "source": "LL-Q652 (ita)-XANA000-per favore.wav"
+    },
     "police": {
       "author": "LangPao",
       "capPhone": 0.2,
@@ -6712,6 +6994,18 @@
       "snr": 133.6,
       "source": "LL-Q652 (ita)-LangPao-ricco.wav"
     },
+    "right": {
+      "author": "LangPao",
+      "file": "right.mp3",
+      "gain": -0.3,
+      "gainPhone": -2.5,
+      "gate": -89.8,
+      "lead": 209,
+      "matches": "a destra",
+      "sha256": "00aef3ad7f397cffc0f3803d1aa50eb02e7cd93f33345e2552529933a0f94153",
+      "snr": 86.7,
+      "source": "LL-Q652 (ita)-LangPao-a destra.wav"
+    },
     "right-now": {
       "author": "LangPao",
       "file": "right-now.mp3",
@@ -6902,6 +7196,18 @@
       "snr": 69.4,
       "source": "LL-Q652 (ita)-LangPao-frase.wav"
     },
+    "sex": {
+      "author": "LangPao",
+      "file": "sex.mp3",
+      "gain": 3.9,
+      "gainPhone": -4.8,
+      "gate": -78.1,
+      "lead": 213,
+      "matches": "sesso",
+      "sha256": "09cd74cfb84e921e33e922b616f2f329e5976a5dfc400f13b8816e661deba07e",
+      "snr": 65.7,
+      "source": "LL-Q652 (ita)-LangPao-sesso.wav"
+    },
     "shadow": {
       "author": "LangPao",
       "file": "shadow.mp3",
@@ -7069,6 +7375,17 @@
       "snr": 74.6,
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-da.wav"
     },
+    "single": {
+      "author": "LangPao",
+      "file": "single.mp3",
+      "gain": 4.2,
+      "gainPhone": 3.1,
+      "lead": 216,
+      "matches": "celibe",
+      "sha256": "deb783105ea7300f7aedc597c41f0b92d4c95be5f3b55f0d2d7e074100e14a34",
+      "snr": 95.4,
+      "source": "LL-Q652 (ita)-LangPao-celibe.wav"
+    },
     "sink": {
       "author": "LangPao",
       "file": "sink.mp3",
@@ -7091,6 +7408,18 @@
       "sha256": "fb32fc05799dedac4772a8d92c6b6bde76c67b2e774ba8a7205d08e5faee002e",
       "snr": 88.8,
       "source": "LL-Q652 (ita)-LangPao-sorella.wav"
+    },
+    "sister-in-law": {
+      "author": "Crunchy Cloaky Crackdown",
+      "file": "sister-in-law.mp3",
+      "gain": 8.6,
+      "gainPhone": 10.4,
+      "gate": -87.8,
+      "lead": 201,
+      "matches": "cognata",
+      "sha256": "2d6f41880594acd1602469eceeb933a9f16417bd061b8230a40e4df5306c078c",
+      "snr": 77.0,
+      "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-cognata.wav"
     },
     "size": {
       "author": "LangPao",
@@ -7253,6 +7582,16 @@
       "sha256": "510e4a435e5b85e30383106df567635b4c9c467bc541be05e9a1039cb6a2210f",
       "snr": 73.7,
       "source": "LL-Q652 (ita)-XANA000-qualcosa.wav"
+    },
+    "sometimes": {
+      "author": "XANA000",
+      "file": "sometimes.mp3",
+      "gain": 1.0,
+      "gainPhone": 4.5,
+      "lead": 201,
+      "matches": "a volte",
+      "sha256": "e6f7f870ca6b6231b8cc1048efe625ca0b9541b09b010364b91ca870f31440ab",
+      "source": "LL-Q652 (ita)-XANA000-a volte.wav"
     },
     "son": {
       "author": "LangPao",
@@ -7508,6 +7847,18 @@
       "snr": 56.5,
       "source": "LL-Q652 (ita)-XANA000-sole.wav"
     },
+    "sunscreen": {
+      "author": "LangPao",
+      "file": "sunscreen.mp3",
+      "gain": 1.1,
+      "gainPhone": 0.5,
+      "gate": -99.2,
+      "lead": 209,
+      "matches": "crema solare",
+      "sha256": "572f08e3d5e1f46704a61e132ae51ca33d9b011990f812c89b18724371544317",
+      "snr": 93.4,
+      "source": "LL-Q652 (ita)-LangPao-crema solare.wav"
+    },
     "supermarket": {
       "author": "XANA000",
       "file": "supermarket.mp3",
@@ -7519,6 +7870,17 @@
       "sha256": "677ddb91cdcc4bafd1a3cd2fb76e205b1e97b301e3934fec14e8e7641c2e5a43",
       "snr": 84.3,
       "source": "LL-Q652 (ita)-XANA000-supermercato.wav"
+    },
+    "surname": {
+      "author": "LangPao",
+      "file": "surname.mp3",
+      "gain": -0.1,
+      "gainPhone": 2.5,
+      "lead": 255,
+      "matches": "cognome",
+      "sha256": "6fbe6a8afe6958c84f2805eb4582c90fbc6c0dec910a69861e95a4fcb9d00a39",
+      "snr": 107.5,
+      "source": "LL-Q652 (ita)-LangPao-cognome.wav"
     },
     "surprise": {
       "author": "LangPao",
@@ -7626,6 +7988,17 @@
       "sha256": "1771a4343258003e7a0bcb5a52c11aa70538b9bb583c2eff36c60db9e6f8f271",
       "snr": 65.5,
       "source": "LL-Q652 (ita)-XANA000-di.wav"
+    },
+    "thank-you": {
+      "author": "XANA000",
+      "file": "thank-you.mp3",
+      "gain": 1.6,
+      "gainPhone": -0.9,
+      "lead": 186,
+      "matches": "grazie mille",
+      "sha256": "eeebe72bdb93bed3df29b8b8a83e55b9546b3f62e38dccbeb3dc72cca079a157",
+      "snr": 134.8,
+      "source": "LL-Q652 (ita)-XANA000-grazie mille.wav"
     },
     "that": {
       "author": "XANA000",
@@ -7895,6 +8268,18 @@
       "snr": 69.3,
       "source": "It-portare.ogg"
     },
+    "to-bury": {
+      "author": "LangPao",
+      "file": "to-bury.mp3",
+      "gain": 8.1,
+      "gainPhone": 0.8,
+      "gate": -69.8,
+      "lead": 240,
+      "matches": "seppellire",
+      "sha256": "4f0f28b12df2f55622c5c1df4c103b8d8a0b3c01560f8211a77f8f53236626ea",
+      "snr": 57.3,
+      "source": "LL-Q652 (ita)-LangPao-seppellire.wav"
+    },
     "to-buy": {
       "author": "LangPao",
       "file": "to-buy.mp3",
@@ -8151,6 +8536,17 @@
       "snr": 61.0,
       "source": "LL-Q652 (ita)-LangPao-morire.wav"
     },
+    "to-do-laundry": {
+      "author": "LangPao",
+      "file": "to-do-laundry.mp3",
+      "gain": 2.4,
+      "gainPhone": 1.4,
+      "lead": 144,
+      "matches": "fare il bucato",
+      "sha256": "af2f867a28213ce2819a21e87095defe6be83af1abcd1d515eb8d25d6c8c2c20",
+      "snr": 97.8,
+      "source": "LL-Q652 (ita)-LangPao-fare il bucato.wav"
+    },
     "to-dream": {
       "author": "LangPao",
       "file": "to-dream.mp3",
@@ -8309,6 +8705,18 @@
       "snr": 114.1,
       "source": "LL-Q652 (ita)-LangPao-scendere.wav"
     },
+    "to-get-old": {
+      "author": "LangPao",
+      "file": "to-get-old.mp3",
+      "gain": 8.0,
+      "gainPhone": 3.4,
+      "gate": -71.1,
+      "lead": 234,
+      "matches": "invecchiare",
+      "sha256": "ccd75855ccdf1f9640d8c0bdff73a589580a1a1f9de287d94b75253dfdbf2e5f",
+      "snr": 60.4,
+      "source": "LL-Q652 (ita)-LangPao-invecchiare.wav"
+    },
     "to-get-up": {
       "author": "XANA000",
       "file": "to-get-up.mp3",
@@ -8363,6 +8771,18 @@
       "snr": 114.5,
       "source": "LL-Q652 (ita)-LangPao-salutare.wav"
     },
+    "to-grow-up": {
+      "author": "LangPao",
+      "file": "to-grow-up.mp3",
+      "gain": 3.4,
+      "gainPhone": 0.0,
+      "gate": -94.8,
+      "lead": 234,
+      "matches": "crescere",
+      "sha256": "d8d53aa40ea6a78b8e9a989046d046d327934176bd6d2416c49fe8a80c5c864b",
+      "snr": 88.7,
+      "source": "LL-Q652 (ita)-LangPao-crescere.wav"
+    },
     "to-hand-in": {
       "author": "LangPao",
       "file": "to-hand-in.mp3",
@@ -8372,6 +8792,18 @@
       "matches": "presentare",
       "sha256": "fa2bf8887d3528dcaab464819ad41e567d6ed3cd274610f204a6830a4a61d9e7",
       "source": "LL-Q652 (ita)-LangPao-presentare.wav"
+    },
+    "to-happen": {
+      "author": "LangPao",
+      "file": "to-happen.mp3",
+      "gain": 2.9,
+      "gainPhone": 1.0,
+      "gate": -96.6,
+      "lead": 143,
+      "matches": "succedere",
+      "sha256": "a4ca4f5edcfdefdf830232d846b6d718bd4c7c80e169165be722097f96c78f2a",
+      "snr": 88.7,
+      "source": "LL-Q652 (ita)-LangPao-succedere.wav"
     },
     "to-have": {
       "author": "XANA000",
@@ -8497,6 +8929,17 @@
       "snr": 91.7,
       "source": "LL-Q652 (ita)-LangPao-sapere.wav"
     },
+    "to-last": {
+      "author": "LangPao",
+      "file": "to-last.mp3",
+      "gain": 1.8,
+      "gainPhone": 0.4,
+      "lead": 196,
+      "matches": "durare",
+      "sha256": "25794dfeda2bf25c99653e79c004f51862d94a0a15c3f06eef0749c66ffbb780",
+      "snr": 108.0,
+      "source": "LL-Q652 (ita)-LangPao-durare.wav"
+    },
     "to-laugh": {
       "author": "LangPao",
       "cap": 0.3,
@@ -8509,6 +8952,17 @@
       "sha256": "044b38c4c8a1323c1026105416c171550d5bc42d5b74be04a0276bc6bfe05112",
       "snr": 63.2,
       "source": "LL-Q652 (ita)-LangPao-ridere.wav"
+    },
+    "to-learn-by-heart": {
+      "author": "LangPao",
+      "file": "to-learn-by-heart.mp3",
+      "gain": 1.1,
+      "gainPhone": -2.4,
+      "lead": 200,
+      "matches": "imparare a memoria",
+      "sha256": "953943dbbcf4e20913f2b1cd570da0c09565f5c950cca39f3b28dd5ce776590f",
+      "snr": 103.5,
+      "source": "LL-Q652 (ita)-LangPao-imparare a memoria.wav"
     },
     "to-leave": {
       "author": "LangPao",
@@ -8914,6 +9368,18 @@
       "sha256": "ad3c5700638309ff40c3e7c587775021e85b0479ab96fef4473bb10a40597ae3",
       "snr": 132.2,
       "source": "LL-Q652 (ita)-LangPao-parlare.wav"
+    },
+    "to-stand": {
+      "author": "LangPao",
+      "file": "to-stand.mp3",
+      "gain": -0.9,
+      "gainPhone": -0.7,
+      "gate": -98.7,
+      "lead": 251,
+      "matches": "stare in piedi",
+      "sha256": "e884967430616fb25b9f432b3a4406033bf0a0f920938c577680e310ff8db9f1",
+      "snr": 95.5,
+      "source": "LL-Q652 (ita)-LangPao-stare in piedi.wav"
     },
     "to-start": {
       "author": "LangPao",
@@ -9350,6 +9816,17 @@
       "snr": 94.8,
       "source": "LL-Q652 (ita)-LangPao-stazione.wav"
     },
+    "training": {
+      "author": "LangPao",
+      "file": "training.mp3",
+      "gain": 4.0,
+      "gainPhone": 3.3,
+      "lead": 202,
+      "matches": "allenamento",
+      "sha256": "a9522beea92073caffbdbd43ea66291e0c3d04e2254bbd0d3e4b2270b3e5ac5e",
+      "snr": 111.3,
+      "source": "LL-Q652 (ita)-LangPao-allenamento.wav"
+    },
     "tree": {
       "author": "XANA000",
       "file": "tree.mp3",
@@ -9432,6 +9909,17 @@
       "sha256": "04f4ae76b4fe9444703db8da00d8f4c69f8ac65a68a5be77f203370653e05c20",
       "snr": 103.1,
       "source": "LL-Q652 (ita)-LangPao-università.wav"
+    },
+    "until": {
+      "author": "LangPao",
+      "file": "until.mp3",
+      "gain": 2.2,
+      "gainPhone": 2.4,
+      "lead": 230,
+      "matches": "fino a",
+      "sha256": "7f0b69a6e34e25c96b59dd29096978cac3654340bbbad8fa931a177e20d65ab7",
+      "snr": 135.7,
+      "source": "LL-Q652 (ita)-LangPao-fino a.wav"
     },
     "urgent": {
       "author": "LangPao",
@@ -9701,6 +10189,17 @@
       "snr": 84.1,
       "source": "LL-Q652 (ita)-LangPao-settimana.wav"
     },
+    "weekend": {
+      "author": "LangPao",
+      "file": "weekend.mp3",
+      "gain": 4.1,
+      "gainPhone": 6.4,
+      "lead": 196,
+      "matches": "fine settimana",
+      "sha256": "bc378600e8f102699d6b192824d1a194e11a86db406f60a0c8de3ef53d119407",
+      "snr": 122.4,
+      "source": "LL-Q652 (ita)-LangPao-fine settimana.wav"
+    },
     "welcome": {
       "author": "XANA000",
       "file": "welcome.mp3",
@@ -9722,6 +10221,17 @@
       "sha256": "116adaec5c8237867124f5ed1e462ce06de60ca11844ab4b37f08f75a25d8356",
       "snr": 74.3,
       "source": "LL-Q652 (ita)-LangPao-ovest.wav"
+    },
+    "what": {
+      "author": "LangPao",
+      "file": "what.mp3",
+      "gain": 2.3,
+      "gainPhone": 2.4,
+      "lead": 206,
+      "matches": "che cosa",
+      "sha256": "88a9b0bc4155df128e7cf5ab510cdb120c494041c172ca33000b3c5c9c11c0ff",
+      "snr": 100.9,
+      "source": "LL-Q652 (ita)-LangPao-che cosa.wav"
     },
     "wheel": {
       "author": "XANA000",
@@ -10022,6 +10532,17 @@
       "snr": 78.0,
       "source": "LL-Q652 (ita)-XANA000-voi.wav"
     },
+    "young": {
+      "author": "LangPao",
+      "file": "young.mp3",
+      "gain": 3.6,
+      "gainPhone": 5.6,
+      "lead": 225,
+      "matches": "giovane",
+      "sha256": "f55ee177bd6b53483b12103ecd48dd35e85fb445420c044f57c00d235dab3dc3",
+      "snr": 174.0,
+      "source": "LL-Q652 (ita)-LangPao-giovane.wav"
+    },
     "your": {
       "author": "XANA000",
       "capPhone": 0.8,
@@ -10045,6 +10566,18 @@
       "sha256": "2abedea44f1f8da26404517c6c4026b59e560855704f19847050a9b52caabaa4",
       "snr": 95.2,
       "source": "LL-Q652 (ita)-XANA000-vostro.wav"
+    },
+    "youth": {
+      "author": "LangPao",
+      "file": "youth.mp3",
+      "gain": -0.1,
+      "gainPhone": 3.1,
+      "gate": -97.4,
+      "lead": 238,
+      "matches": "giovinezza",
+      "sha256": "1e3379ec403bf7ba81494493270dd02d31422f519a659efc9ba41d8093bdfeb3",
+      "snr": 92.8,
+      "source": "LL-Q652 (ita)-LangPao-giovinezza.wav"
     }
   }
 }
