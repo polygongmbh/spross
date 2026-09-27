@@ -54,8 +54,8 @@ extension LetterDrillView {
     /// grows the transcription with its meaning below.
     ///
     /// WHETHER the card opens is kern's `showsAnswer`: unlike the slot drill
-    /// both amber holds reveal too, because a slip and a heard-instead each
-    /// leave a spelling worth seeing whole.
+    /// the amber hold reveals too, because a slip leaves a spelling worth
+    /// seeing whole.
     ///
     /// A letter-name question on a choice Sprosse is the one case that skips it:
     /// the tiles below already mark the answer, so a second glyph — spoken by

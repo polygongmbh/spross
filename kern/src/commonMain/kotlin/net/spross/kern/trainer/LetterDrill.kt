@@ -253,8 +253,7 @@ object LetterDrill {
 
     /**
      * The card a dictation answer is graded against — [spokenOnly] over what the task
-     * actually played. The rule is shared with sound-prompted review, which asks by ear
-     * for the same reason and must not credit a word the learner never heard.
+     * actually played, so no word the learner never heard is credited.
      */
     fun dictationGradingCard(card: Card, task: LetterDrillTask): Card =
         spokenOnly(card, task.accepted.firstOrNull() ?: card.target.text)

@@ -64,13 +64,6 @@ extension LanguageNaming {
 }
 
 extension Card {
-    /// A form this card lists as a synonym or a variant — the right word, just
-    /// not the one that played. The rule and its reasons live in kern
-    /// (`session/SpokenAnswer.kt`); this is the shape the drills reach for.
-    func alsoAccepts(_ input: String) -> Bool {
-        SprossKern.alsoAccepts(card: self, input: input)
-    }
-
     /// Leading list marker: the seed emoji when present, else a neutral
     /// per-kind category glyph (verbs/phrases carry no seed emoji). Used only
     /// for row rhythm in lists — the card face shows the seed emoji or nothing.

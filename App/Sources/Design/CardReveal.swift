@@ -119,8 +119,8 @@ extension View {
             .fixedSize(horizontal: false, vertical: true)
     }
 
-    /// The line an amber hold pauses on — a typo's proper spelling, the word
-    /// that was heard instead, the other word the answer turned out to be.
+    /// The line an amber hold pauses on — a typo's proper spelling, or the
+    /// meaning this card teaches where the answer borrowed another one.
     /// Read, not glanced at, so it carries the same weight everywhere.
     func pauseLine() -> some View {
         font(Theme.typography.subheadline)

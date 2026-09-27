@@ -5343,22 +5343,6 @@
         }
       }
     },
-    "session.almost.heard" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gehört war"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You heard"
-          }
-        }
-      }
-    },
     "session.almost.merged" : {
       "localizations" : {
         "de" : {

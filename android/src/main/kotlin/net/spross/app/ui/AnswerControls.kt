@@ -132,7 +132,6 @@ fun AnswerVerdict(
 /** Which of the ambers a hold was, in the learner's own words. */
 fun almostCaption(reason: AlmostReason, chrome: Chrome): String = when (reason) {
     AlmostReason.Typo -> chrome.sessionAlmostTypo
-    AlmostReason.Heard -> chrome.sessionAlmostHeard
     AlmostReason.Merged -> chrome.sessionAlmostMerged
 }
 

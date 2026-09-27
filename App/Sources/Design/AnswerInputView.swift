@@ -14,16 +14,14 @@ import SwiftUI
 struct AnswerInputView: View {
 
     /// Why a correct answer still owes the learner a look: a slip of spelling,
-    /// or — where the question was the sound — the form that actually played.
+    /// or a meaning the word shares with another concept.
     enum AlmostReason: Equatable {
         case typo
-        case heard
         case merged
 
         var caption: LocalizedStringKey {
             switch self {
             case .typo: return "session.almost.typo"
-            case .heard: return "session.almost.heard"
             case .merged: return "session.almost.merged"
             }
         }

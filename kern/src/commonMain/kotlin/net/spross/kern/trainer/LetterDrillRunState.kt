@@ -5,7 +5,7 @@ import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.TurnFeedback
 
 /**
- * What a typed letter-drill answer earns. The two almost verdicts move the ramp neither way —
+ * What a typed letter-drill answer earns. The almost verdict moves the ramp neither way —
  * neither a win to bank nor a miss to punish.
  */
 sealed class LetterVerdict {
@@ -13,9 +13,6 @@ sealed class LetterVerdict {
 
     /** A slip inside the budget; [corrected] is the spelling that was owed. */
     data class Typo(val corrected: String) : LetterVerdict()
-
-    /** A form this very card accepts, but not the one that PLAYED. */
-    data class Heard(val played: String) : LetterVerdict()
 
     data object Wrong : LetterVerdict()
 }
@@ -90,9 +87,8 @@ data class LetterDrillRunState(
 
     /**
      * The card opens, whatever the spelling was graded.
-     * A slip and a heard-instead each leave a spelling worth seeing whole, and the box under
-     * the field says which of the two it was; a clean one opens it too, because the LETTERS
-     * were the question and the meaning never was.
+     * A slip leaves a spelling worth seeing whole;
+     * a clean one opens it too, because the LETTERS were the question and the meaning never was.
      */
     val showsAnswer: Boolean get() = !owesAnswer
 }

@@ -14,11 +14,12 @@ import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.CatalogAnswerGrader
+import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
 /**
- * The letter run: which Sprosse it opens on, what a tile and a typed glyph earn, the three-step
+ * The letter run: which Sprosse it opens on, what a tile and a typed glyph earn, the
  * dictation verdict ladder, and what a close leaves behind (which is figures and nothing else
  * — D12, the drill books no review and keeps no record).
  *
@@ -221,12 +222,12 @@ class LetterDrillRunTest {
     }
 
     /**
-     * The dictation ladder, IN ORDER: exact, then a form the card itself teaches (almost, naming
-     * what actually played), then a slip, then the miss — which is where the catalog-wide
-     * grader withdraws typo credit for a word that is somebody else's.
+     * The dictation ladder: exact, then a slip, then the miss — which is where the
+     * catalog-wide grader withdraws typo credit for a word that is somebody else's, and where
+     * another form of the very card lands too: dictation asks the word that PLAYED.
      */
     @Test
-    fun theDictationVerdictLadderPutsATaughtFormAheadOfTheGradersOwnVerdict() {
+    fun dictationCreditsOnlyTheWordThatPlayed() {
         val mouse = LetterDrillFixture.card("mouse", "миша", teaches = listOf("мишка"))
         val closed = LetterDrillFixture.card("close", "kufunga")
         val opened = LetterDrillFixture.card("open", "kufungua")
@@ -239,8 +240,19 @@ class LetterDrillRunTest {
             LetterDrillRun.verdict("миша", dictationTask(mouse), mouse, grader),
         )
         assertEquals(
-            LetterVerdict.Heard("миша"),
+            LetterVerdict.Wrong,
             LetterDrillRun.verdict("мишка", dictationTask(mouse), mouse, grader),
+        )
+        // A variant one slip from the played form is still another form, never an almost.
+        val color = LetterDrillFixture.card("color", "Farbenlehre", teaches = listOf("Farbenlehren"))
+        val spelled = config(report(consolidated = 72), listOf(color)).dictationGrader
+        assertEquals(
+            Match.Typo("Farbenlehre"),
+            spelled!!.grade("Farbenlehren", LetterDrill.dictationGradingCard(color, dictationTask(color))),
+        )
+        assertEquals(
+            LetterVerdict.Wrong,
+            LetterDrillRun.verdict("Farbenlehren", dictationTask(color), color, spelled),
         )
         assertEquals(
             LetterVerdict.Typo("Regenbogen"),
@@ -262,21 +274,19 @@ class LetterDrillRunTest {
         assertEquals(LetterVerdict.Clean, LetterDrillRun.verdict("миша", task, null, null))
     }
 
-    /** Both almost holds wait for a tap, give the field back, and move the Sprosse neither way. */
+    /** An almost hold waits for a tap and moves the Sprosse neither way. */
     @Test
     fun anAlmostAnswerHoldsTheSprosseAndExtendsTheStreak() {
         val rng = Random(17)
         val state = LetterDrillRun.openAt(config(report(consolidated = 72)), 6, rng)
-        for (reason in listOf(AlmostReason.Typo, AlmostReason.Heard)) {
-            val held = state.copy(feedback = TurnFeedback.Almost("миша", reason))
-            assertTrue(held.answerAccepted)
-            assertTrue(held.showsAnswer, "a slip and a heard-instead both leave a spelling worth seeing")
-            val booked = reduce(held, LetterDrillIntent.ConfirmPending, rng).state
-            assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
-            assertEquals(6, booked.level)
-            assertEquals(1, booked.streak)
-            assertEquals(0, booked.missRun)
-        }
+        val held = state.copy(feedback = TurnFeedback.Almost("миша", AlmostReason.Typo))
+        assertTrue(held.answerAccepted)
+        assertTrue(held.showsAnswer, "a slip leaves a spelling worth seeing")
+        val booked = reduce(held, LetterDrillIntent.ConfirmPending, rng).state
+        assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
+        assertEquals(6, booked.level)
+        assertEquals(1, booked.streak)
+        assertEquals(0, booked.missRun)
     }
 
     @Test
@@ -391,7 +401,7 @@ class LetterDrillRunTest {
         assertNull(untouched.summary)
         assertTrue(DrillEffect.Silence in untouched.effects)
 
-        val almost = LetterDrillRun.close(state.copy(feedback = TurnFeedback.Almost("м", AlmostReason.Heard)))
+        val almost = LetterDrillRun.close(state.copy(feedback = TurnFeedback.Almost("м", AlmostReason.Typo)))
         assertEquals(listOf(AnswerOutcome.Almost), almost.state.outcomes)
         assertEquals(1, almost.summary?.done)
         assertEquals(false, almost.summary?.newRecord, "the letter drill keeps no record store")

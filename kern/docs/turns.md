@@ -24,7 +24,7 @@ Engine contract: `../README.md`.
   because it lived twice before and drifted both ways —
   a pickable Easy on one platform, no retype after a miss on the other.
   - **What each branch earns**: a clean answer is `Match.Exact.producedRating()`;
-    a typo and a heard-instead are `TurnFeedback.Almost`, holding the rating grading decided
+    a typo and a borrowed meaning are `TurnFeedback.Almost`, holding the rating grading decided
     until the owed form has been seen; finishing the retype after a miss is
     recalled-with-help (Hard); giving up on it is an honest Again;
     a self-grade is `SelfGrading` over the recall span and the prompt length.

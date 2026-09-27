@@ -152,7 +152,6 @@ interface Chrome {
     // The two captions an amber hold wears; the form itself follows, composed by
     // the reader, so the words stay one string and the layout stays each phone's.
     val sessionAlmostTypo: String
-    val sessionAlmostHeard: String
     val sessionAlmostMerged: String
     val lettersMutedTitle: String
     val lettersMutedEnable: String

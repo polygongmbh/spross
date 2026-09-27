@@ -15,9 +15,9 @@ import net.spross.kern.session.AnswerNormalizer
  * The letter drill as pure state plus one reducer. The run's shape is [LetterDrillRunState];
  * what it can ask is [LetterDrillAvailability.Report].
  *
- * Its Sprossen are STAGES — they change what a question is rather than how big the number is — and
- * its verdict ladder carries a third outcome no slot task can produce. That is the whole of what
- * it does not share with the slot run; the ramp, the effects and the summary are the same ones.
+ * Its Sprossen are STAGES — they change what a question is rather than how big the number is.
+ * That is the whole of what it does not share with the slot run; the ramp, the effects and the
+ * summary are the same ones.
  */
 object LetterDrillRun {
 
@@ -61,11 +61,10 @@ object LetterDrillRun {
      * exact after normalization with no typo budget: a one-glyph answer with a slip allowance
      * grades nothing at all.
      *
-     * Dictation runs the whole catalog: exact wins; then a form the CARD itself teaches, which is
-     * checked BEFORE the grader's own verdict because the review flow explicitly teaches those
-     * forms ("auch: …") — it is never wrong and never somebody else's word, it simply is not what
-     * played; then a slip; then the miss, which is also where the catalog-wide grader withdraws
-     * typo credit for a genuinely different word.
+     * Dictation asks the one word that PLAYED, not a catalog card: exact wins; another form the
+     * card lists ([alsoAccepts]) is a word that did not play, and is refused before a slip budget
+     * could soften it into an almost; then a slip; then the miss, which is also where the
+     * catalog-wide grader withdraws typo credit for a genuinely different word.
      */
     fun verdict(
         input: String,
@@ -79,7 +78,7 @@ object LetterDrillRun {
         }
         val graded = grader.grade(trimmed, LetterDrill.dictationGradingCard(card, task))
         if (graded == Match.Exact) return LetterVerdict.Clean
-        if (alsoAccepts(card, trimmed)) return LetterVerdict.Heard(task.display)
+        if (alsoAccepts(card, trimmed)) return LetterVerdict.Wrong
         return when (graded) {
             is Match.Typo -> LetterVerdict.Typo(graded.corrected)
             else -> LetterVerdict.Wrong
@@ -148,10 +147,9 @@ object LetterDrillRun {
                     DrillEffect.ArmAdvance(AdvanceTier.Explicit),
                 ),
             )
-            // why: both almost holds wait for a tap, and a held keyboard covers the button they
-            // wait for — so neither arms a beat and both give the field back.
+            // why: the almost hold waits for a tap, and a held keyboard covers the button it
+            // waits for — so it arms no beat and gives the field back.
             is LetterVerdict.Typo -> almost(state, verdict.corrected, AlmostReason.Typo)
-            is LetterVerdict.Heard -> almost(state, verdict.played, AlmostReason.Heard)
             LetterVerdict.Wrong -> LetterDrillReduction(
                 state.copy(feedback = TurnFeedback.Revealed),
                 listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),

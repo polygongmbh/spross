@@ -23,9 +23,7 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
 - **The drill shares the slot drill's chrome** — the endless scaffold, the streak line,
   the result tile (each platform's `DrillChrome`) — and keeps its own state machine,
   which is the whole of what the two have in common:
-  its Sprossen are stages that change what a question IS rather than how big the number is,
-  and its verdict ladder carries a third outcome (a synonym of the dictated word)
-  that no slot task can produce.
+  its Sprossen are stages that change what a question IS rather than how big the number is.
 - **Its card is the one that keeps a caption**,
   because a sound cannot say whether it wants a letter, a missing grapheme or the whole word —
   but the caption names the ask alone,
@@ -37,6 +35,8 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   Tiles first among strangers, then among look- and sound-alikes, then typed,
   and — once enough words are consolidated — dictation of the learner's own words,
   weighted toward the ones worth spelling twice (`LetterDrill`).
+  Dictation asks the one word that played, not the card behind it:
+  a synonym or variant of that card is a miss, and the reveal shows the played word alone.
 - **Correctness is never color alone** (checkmark/X over the tint); a miss never auto-advances.
   Neither mute reaches the drill and it carries no mute button (`read-aloud.md` owns why),
   so no run of it can open on a card with nothing to answer.

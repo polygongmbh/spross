@@ -99,7 +99,7 @@ extension SessionView {
                     }
                 }
             case .almost:
-                // A typo or a heard-instead pauses here — the box above spells
+                // A typo or a borrowed meaning pauses here — the box above spells
                 // the owed form out and says it; this waits for the tap that
                 // books the card, on the rating kern parked at grading time.
                 Button {

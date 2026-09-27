@@ -38,9 +38,6 @@ enum class AlmostReason {
     /** A slip inside the typo budget; the proper spelling is what is owed back. */
     Typo,
 
-    /** A form this very card accepts, just not the one that played (a sound prompt). */
-    Heard,
-
     /**
      * A meaning the word that played really carries, owned by another concept —
      * the target language merges what the source splits. Full credit; what is owed

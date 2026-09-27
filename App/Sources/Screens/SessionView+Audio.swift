@@ -65,8 +65,7 @@ extension SessionView {
         guard let card = model.currentCard, claimAutoplay(card.id) else { return }
         // why: the correction box is the only place a typo's proper spelling
         // stands. Otherwise the bare target text — never `CardDisplay.citation`,
-        // whose article is grammar decoration the audio never speaks, and the
-        // very form a heard-instead hold already names.
+        // whose article is grammar decoration the audio never speaks.
         let form = typoCorrection ?? card.target.text
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(300))
