@@ -115,43 +115,12 @@ extension EnvironmentValues {
 
 // MARK: - Previews
 
-/// A fabricated box at a given age —
-/// the only way to see a grown orchard without months of reviews behind it.
-private func sampleTrees(age: Double) -> [AreaTree] {
-    let areas = [("basics", "👋", "Die ersten Wörter", 27), ("essentials", "⭐", "Alltag", 62),
-                 ("connectors", "🔗", "Verbindungswörter", 15), ("questions", "❓", "Fragewörter", 10),
-                 ("kitchen", "🍳", "Die Küche", 41), ("living", "🛋️", "Wohnzimmer", 36),
-                 ("bath", "🛁", "Bad", 39), ("bedroom", "🛏️", "Schlafzimmer", 37),
-                 ("desk", "✏️", "Schreibtisch", 39), ("hall", "🚪", "Flur", 40),
-                 ("outside", "🌳", "Draußen", 41), ("school", "🎒", "Schule", 33),
-                 ("organization", "🗒️", "Termine", 21), ("admin", "🗂️", "Amt", 38),
-                 ("health", "🩺", "Gesundheit", 36), ("work", "💼", "Arbeit", 38),
-                 ("own", "📦", "Eigene Wörter", 4)]
-    return areas.enumerated().map { index, area in
-        let (id, emoji, title, total) = area
-        // Areas fill in catalog order, so an "age" walks the box the way growth does.
-        let reached = max(0.0, min(1.0, age * Double(areas.count) - Double(index)))
-        let started = Int(Double(total) * min(1, reached * 1.3))
-        let settled = Int(Double(started) * max(0, reached - 0.25))
-        let blossoms = Int(Double(settled) * max(0, reached - 0.55))
-        let fruit = Int(Double(blossoms) * max(0, reached - 0.8))
-        return AreaTree(
-            id: id, emoji: emoji, title: title,
-            leaves: settled - blossoms, blossoms: blossoms - fruit, fruit: fruit,
-            buds: started - settled, growing: 0,
-            fallen: reached > 0.3 && index % 3 == 0 ? 2 : 0,
-            mass: Double(settled) * 0.35 + Double(blossoms) * 0.6 + Double(fruit),
-            tendedToday: index % 5 == 2 && reached > 0
-        )
-    }
-}
-
 private struct OrchardPreview: View {
     let age: Double
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            OrchardCanvas(trees: sampleTrees(age: age), open: { _ in })
+            OrchardCanvas(trees: SampleOrchard.trees(age: age), open: { _ in })
         }
         .padding(Theme.spacing.xl)
         .environment(\.contentWidth, 402 - Theme.spacing.xl * 2)

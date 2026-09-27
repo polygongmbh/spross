@@ -157,6 +157,9 @@ extension AppModel {
     /// The area this round worked hardest, before the round and after it —
     /// what the summary draws. Nil when the round touched nothing joinable.
     var sessionGrowth: TreeTransition? {
+        #if DEBUG
+        if let age = uitestOrchardAge { return SampleOrchard.round(age: age) }
+        #endif
         guard let area = sessionArea, let after = areaTree(area) else { return nil }
         let empty = AreaTree(id: area, emoji: after.emoji, title: after.title,
                              leaves: 0, blossoms: 0, fruit: 0, growing: 0, fallen: 0,

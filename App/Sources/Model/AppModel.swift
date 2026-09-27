@@ -159,6 +159,10 @@ final class AppModel {
     /// without answering anything — a step the reducer has no intent for,
     /// because nothing but a test ever asks for it.
     var uitestFinished = false
+    var uitestOrchardAge: Double? {
+        UserDefaults.standard.object(forKey: "uitest-orchard") == nil
+            ? nil : UserDefaults.standard.double(forKey: "uitest-orchard")
+    }
     #endif
 
     let store: BoxStore
@@ -460,6 +464,11 @@ final class AppModel {
                             otherLanguagesAnswerDays: otherLanguagesAnswerDays)
         } ?? .none
         trees = composedAreaTrees()
+        #if DEBUG
+        // UI-test hook: `-uitest-orchard 0.55` stands a fabricated box of that age
+        // on Home and on a round's summary (`SampleOrchard`).
+        if let age = uitestOrchardAge { trees = SampleOrchard.trees(age: age) }
+        #endif
         activity = composedActivityWindow(now: now, tzId: tz)
         areaGroupSections = composedAreaGroupSections()
         shelves = box.map { BoxBrowser.shared.shelfCounts(state: $0) } ?? [:]
