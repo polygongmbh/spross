@@ -138,6 +138,8 @@ extension DrillOverview {
                         Image(systemName: "lock.fill")
                             .font(Theme.typography.caption)
                             .foregroundStyle(Theme.colors.textSecondary)
+                    } else {
+                        FadingPadlock(fresh: fastUnlocking)
                     }
                     Text("trainer.modifier.fast")
                         .font(Theme.typography.headline)
@@ -155,6 +157,7 @@ extension DrillOverview {
                 .foregroundStyle(Theme.colors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
+        .unlockWash(fastUnlocking)
     }
 
     /// Which side asks and which side answers, as the switch stands right now —

@@ -54,6 +54,9 @@ struct DrillOverview<Face: DrillFace>: View {
     /// What the run that just closed came to — one tile above the Sprossen, the
     /// shape every overview uses.
     @State private var lastRun: DrillRunResult?
+    /// Whether Fast was a padlock the last time this page showed it and is open
+    /// now — marked once (`DrillUnlockMark`), then filed as seen.
+    @State var fastUnlocking = false
 
     /// Where the Sprosse and the record are kept — one key per PAIR, because the
     /// material is a pair's and not a language's.
@@ -160,7 +163,21 @@ struct DrillOverview<Face: DrillFace>: View {
         if asked.contains("rev") { reverse = true }
         if asked.contains("fast"), fastUnlocked { fast = true }
         #endif
+        markFastUnlock()
         DrillUITest.autoStart(Face.key, ready: launch == nil && content != nil, start: start)
+    }
+
+    /// Fast is the one row here with a padlock.
+    private func markFastUnlock() {
+        guard content != nil else { return }
+        let row = DrillUnlockMark.shared.typedDrillFast
+        let marked = TrainerProgress.unlockMarks(page: storageKey,
+                                                 locked: fastUnlocked ? [] : [row],
+                                                 open: fastUnlocked ? [row] : [])
+        guard marked.contains(row) else { return }
+        fastUnlocking = true
+        UnlockMark.announce([ChromeStrings.string("trainer.modifier.fast", locale: locale)],
+                            locale: locale)
     }
 
     // MARK: - Chrome

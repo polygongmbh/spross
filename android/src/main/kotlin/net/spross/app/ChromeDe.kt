@@ -138,6 +138,7 @@ internal object ChromeDe : Chrome {
     override val trainerLadderTap = "Tippe eine Sprosse an, um dort zu starten."
     override val trainerLadderBest = "Bestmarke: %s in Folge · %s Antworten in einem Lauf"
     override val a11yTrainerSprosseEntry = "hier geht es los"
+    override val a11yTrainerUnlocked = "Freigeschaltet: %s"
     override val a11yTrainerSprosseReached = "erreicht"
     override val a11yTrainerSprosseCleared = "alle Fragen beantwortet"
     override val trainerRunStreak = "🔥 %s in Folge"

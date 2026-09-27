@@ -2,6 +2,7 @@ package net.spross.app.ui
 
 import androidx.compose.runtime.Composable
 import net.spross.app.AppModel
+import net.spross.app.TrainerStore
 import net.spross.app.countrySprosse
 import net.spross.app.startCountryDrill
 import net.spross.kern.trainer.CountryDrill
@@ -27,6 +28,7 @@ fun CountriesOverviewScreen(model: AppModel) {
         model = model,
         ladder = TypedDrillLadder(
             title = chrome.countriesTitle.format(model.languageName(content.target)),
+            page = TrainerStore.countriesKey(content.source, content.target),
             standing = standing,
             fastHint = chrome.trainerModifierFastHint.format(CountryDrill.winsToAdvance(fast = false)),
             reverseHint = { reverse ->

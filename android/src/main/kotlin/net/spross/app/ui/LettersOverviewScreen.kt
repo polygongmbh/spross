@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -17,6 +18,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.name
 import net.spross.app.startLetterDrill
+import net.spross.kern.trainer.DrillUnlockMark
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.LetterDrillRunState
 import net.spross.kern.trainer.LetterStage
@@ -37,6 +39,19 @@ fun LettersOverviewScreen(model: AppModel) {
     val available = report?.drillAvailable == true
     // Read on every composition: the page composes afresh as a run's screen comes down.
     val cleared = model.trainer.store.cleared(LetterDrillRunState.storageKey(language))
+    // An unlock is marked once. Only a priced padlock counts: where the drill cannot run at
+    // all, every stage is shut for a reason that is not the learner's to earn.
+    val priced = if (available) LetterStage.entries else emptyList()
+    val reach = priced.associateWith { stageOpen(it, report) }
+    val locked = priced.filter { reach[it] == false }.map { DrillUnlockMark.row(it) }.toSet()
+    val unlocking = remember(language, locked) {
+        model.trainer.store.unlockMarks(
+            LetterDrillRunState.storageKey(language),
+            locked,
+            priced.filter { reach[it] == true }.map { DrillUnlockMark.row(it) }.toSet(),
+        )
+    }
+    AnnounceUnlocks(priced.filter { DrillUnlockMark.row(it) in unlocking }.map { chrome.name(it) }, chrome)
 
     OverviewScaffold(
         model = model,
@@ -46,7 +61,7 @@ fun LettersOverviewScreen(model: AppModel) {
     ) {
         OverviewPanel {
             LetterStage.entries.forEachIndexed { index, stage ->
-                StageRow(stage, index + 1, report, cleared, chrome)
+                StageRow(stage, index + 1, report, cleared, DrillUnlockMark.row(stage) in unlocking, chrome)
             }
         }
         OverviewStartButton(chrome, available) { model.startLetterDrill() }
@@ -68,15 +83,12 @@ private fun StageRow(
     step: Int,
     report: LetterDrillAvailability.Report?,
     cleared: Set<Int>,
+    unlocking: Boolean,
     chrome: Chrome,
 ) {
     val ready = report?.takeIf { it.drillAvailable }
-    // Dictation needs a pool of playable words the learner already holds; below that floor
-    // the ramp stops one Sprosse short of it, so the row is a padlock with its price. Where
-    // the drill cannot run at all, every stage is out of reach for the one reason the line
-    // under the button already gives.
-    val open = ready != null && (stage != LetterStage.Dictation || ready.dictationAvailable)
-    val entry = open && ready.openingStage(cleared) == stage
+    val open = stageOpen(stage, report)
+    val entry = open && ready?.openingStage(cleared) == stage
     val mark = when {
         ready?.stageCleared(stage, cleared) == true -> SprosseMark.Cleared
         entry -> SprosseMark.Reached
@@ -86,6 +98,7 @@ private fun StageRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .unlockWash(unlocking)
             // why: one stage is one TalkBack stop — the mark and the name describe a single
             // thing, and the state says what the filled circle says.
             .semantics(mergeDescendants = true) {
@@ -98,7 +111,7 @@ private fun StageRow(
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         if (open) {
-            SprosseCircle(step, mark)
+            UnlockingMark(unlocking) { SprosseCircle(step, mark) }
         } else {
             Text(
                 LOCK,
@@ -118,4 +131,15 @@ private fun StageRow(
             }
         }
     }
+}
+
+/**
+ * Dictation needs a pool of playable words the learner already holds; below that floor the
+ * ramp stops one Sprosse short of it, so the row is a padlock with its price. Where the drill
+ * cannot run at all, every stage is out of reach for the one reason the line under the button
+ * already gives.
+ */
+private fun stageOpen(stage: LetterStage, report: LetterDrillAvailability.Report?): Boolean {
+    val ready = report?.takeIf { it.drillAvailable } ?: return false
+    return stage != LetterStage.Dictation || ready.dictationAvailable
 }

@@ -41,6 +41,11 @@ struct NumbersOverview: View {
     /// page they do not earn is one more ✕ before the next run.
     // why: internal, not private — the DEBUG hook seeds it for screenshots.
     @State var lastRun: DrillRunResult?
+    /// The rows this page last showed padlocked and now shows open — marked
+    /// once (`DrillUnlockMark`), then filed as seen.
+    // why: internal, not private — +Practice.swift marks the rows from it.
+    @State var unlocking: Set<String> = []
+    @Environment(\.locale) private var locale
 
     var body: some View {
         DrillOverviewPage(title: Text("numbers.title \(languageName)"),
@@ -103,6 +108,7 @@ struct NumbersOverview: View {
         #endif
         progress = levels
         normalizePicks()
+        markUnlocks()
         DrillUITest.autoStart("numbers", ready: launch == nil, start: start)
     }
 
@@ -141,3 +147,33 @@ extension NumbersOverview {
     }
 }
 #endif
+
+// MARK: - Unlocks, marked once
+
+extension NumbersOverview {
+
+    /// Every row that can wear a padlock, with its kern name and its title.
+    private var padlockable: [(row: String, open: Bool, title: String)] {
+        let exercises = DrillSelection.shared
+            .offered(language: language, phrasesRealized: phraseDrill != nil)
+            .map { (DrillUnlockMark.shared.row(exercise: $0), unlocked($0), $0.trainerTitleName) }
+        let modifiers = DrillModifier.allCases
+            .map { (DrillUnlockMark.shared.row(modifier: $0), unlocked($0), $0.trainerTitleName) }
+        return exercises + modifiers
+    }
+
+    /// Compares what the page shows padlocked with what it last showed, and
+    /// says what just opened.
+    func markUnlocks() {
+        let rows = padlockable
+        let marked = TrainerProgress.unlockMarks(
+            page: DrillUnlockMark.shared.numbersPage(language: language),
+            locked: Set(rows.filter { !$0.open }.map(\.row)),
+            open: Set(rows.filter(\.open).map(\.row)))
+        guard !marked.isEmpty else { return }
+        unlocking.formUnion(marked)
+        UnlockMark.announce(rows.filter { marked.contains($0.row) }
+                                .map { ChromeStrings.string($0.title, locale: locale) },
+                            locale: locale)
+    }
+}

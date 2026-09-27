@@ -8,6 +8,7 @@ import net.spross.kern.model.Language
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillSuggestion
+import net.spross.kern.trainer.DrillUnlockMark
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
@@ -110,6 +111,18 @@ class TrainerStore(private val prefs: SharedPreferences) {
     /** Stamps a closed run, which is what the suggestion reads "least recently run" off. */
     fun stampRun(key: String, nowEpochMillis: Long) {
         prefs.edit().putLong(DrillSuggestion.LAST_RUN_PREFIX + key, nowEpochMillis).apply()
+    }
+
+    /**
+     * The rows an overview marks as newly unlocked on this showing — kern's [DrillUnlockMark]
+     * over what [page] last showed padlocked — and files the rows it shows padlocked now, so
+     * each unlock is marked once.
+     */
+    fun unlockMarks(page: String, locked: Set<String>, open: Set<String>): Set<String> {
+        val key = DrillUnlockMark.key(page)
+        val last = prefs.getStringSet(key, null).orEmpty().toSet()
+        prefs.edit().putStringSet(key, locked).apply()
+        return DrillUnlockMark.marked(last, open)
     }
 
     /** Everything one typed drill's page reads for [key], both directions' masks included. */

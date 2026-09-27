@@ -2,6 +2,7 @@ package net.spross.app.ui
 
 import androidx.compose.runtime.Composable
 import net.spross.app.AppModel
+import net.spross.app.TrainerStore
 import net.spross.app.dateSprosse
 import net.spross.app.startDateDrill
 import net.spross.kern.trainer.DateDrill
@@ -28,6 +29,7 @@ fun DatesOverviewScreen(model: AppModel) {
         model = model,
         ladder = TypedDrillLadder(
             title = chrome.datesTitle.format(model.languageName(content.target)),
+            page = TrainerStore.datesKey(content.source, content.target),
             standing = standing,
             fastHint = chrome.trainerModifierFastHint.format(DateDrill.winsToAdvance(fast = false)),
             reverseHint = { reverse ->

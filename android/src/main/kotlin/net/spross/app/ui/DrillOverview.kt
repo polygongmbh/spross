@@ -142,6 +142,8 @@ fun SelectionRow(
     caption: String?,
     mark: RowMark,
     selected: Boolean,
+    /** The row was a padlock the last time its page showed it ([UnlockingMark]). */
+    unlocking: Boolean = false,
     onClick: () -> Unit,
 ) {
     val open = mark != RowMark.Locked
@@ -154,6 +156,7 @@ fun SelectionRow(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(min = 48.dp)
+            .unlockWash(unlocking)
             .then(tap)
             .padding(vertical = Theme.spacing.xs),
         verticalAlignment = Alignment.CenterVertically,
@@ -161,10 +164,12 @@ fun SelectionRow(
     ) {
         // why: the control carries no click of its own — the row owns the tap and the
         // role, so TalkBack reads one target instead of two that do the same thing.
-        when (mark) {
-            RowMark.One -> RadioButton(selected, onClick = null)
-            RowMark.Many -> Checkbox(selected, onCheckedChange = null)
-            RowMark.Locked -> Text(LOCK, modifier = Modifier.clearAndSetSemantics { })
+        UnlockingMark(unlocking) {
+            when (mark) {
+                RowMark.One -> RadioButton(selected, onClick = null)
+                RowMark.Many -> Checkbox(selected, onCheckedChange = null)
+                RowMark.Locked -> Text(LOCK, modifier = Modifier.clearAndSetSemantics { })
+            }
         }
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) { // card-parity: the title/caption pair sits tighter than xs
             Text(
@@ -193,12 +198,15 @@ fun ModifierSwitchRow(
     caption: String,
     open: Boolean,
     on: Boolean,
+    /** The switch was a padlock the last time its page showed it ([FadingPadlock]). */
+    unlocking: Boolean = false,
     onChange: (Boolean) -> Unit,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(min = 48.dp)
+            .unlockWash(unlocking)
             // why: the ROW is the switch — a control beside a label it does not own leaves
             // TalkBack two stops for one thing, and the smaller of them is the tappable one.
             .toggleable(value = on, enabled = open, role = Role.Switch, onValueChange = onChange),
@@ -206,11 +214,14 @@ fun ModifierSwitchRow(
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) { // card-parity: the title/caption pair sits tighter than xs
-            Text(
-                if (open) title else "$LOCK $title",
-                style = MaterialTheme.typography.titleMedium,
-                color = if (open) Theme.colors.textPrimary else Theme.colors.textSecondary,
-            )
+            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
+                if (open) FadingPadlock(unlocking)
+                Text(
+                    if (open) title else "$LOCK $title",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = if (open) Theme.colors.textPrimary else Theme.colors.textSecondary,
+                )
+            }
             Text(caption, style = MaterialTheme.typography.bodySmall, color = Theme.colors.textSecondary)
         }
         Switch(

@@ -19,23 +19,10 @@ Parked work is not an issue: its own doc says it is parked.
 
 ## App & UX
 
-- The letters ladder files no answered-out Sprossen (it has no storage key at all), so its
-  circles carry only the entry mark where the atlas and calendar wear a record
-  (`LettersOverview+Practice.swift`, `ui/LettersOverviewScreen.kt`) — should the tile and
-  typed stages, which enumerate, file one and open above it too?
 - "Move noun class, word types and the tenses further back" — filed as a suggestion
   without a surface; the three are a card's Swahili plural/class grammar, its kind badge
   and the tense phrases' seed positions, which sit in three different places. Which one
   arrives too early for the owner: the card's own lines, or the order content unlocks in?
-- Nothing marks an unlock: a row silently stops being a padlock between openings
-  (`App/Sources/Screens/NumbersOverview+Practice.swift:55-68`) and the full-screen ceremony
-  was rejected for something that happens a handful of times — is a row-level transition or
-  announcement wanted, and which?
-- The letter drill needs a Check tap where `docs/design.md` rules that finishing the word IS the
-  answer, because `LetterDrillIntent` has no `InputChanged` — the one thing `DrillRunning` could
-  not carry (`typedMove` returns nil there alone). A new intent plus a live verdict in
-  `LetterDrillRun` closes it, and its ladder carries a third `heard` outcome the other drills
-  have no arm for: does `heard` arm the beat, hold amber, or neither?
 - No automated visual-parity check exists between iOS and Android for shared, parity-bearing
   UI (cards, layout tokens), and `scripts/card-parity.py` closes 5 of the 9 historical
   divergences (numbers and primitive names, not rendering) — is a snapshot gate
@@ -45,9 +32,6 @@ Parked work is not an issue: its own doc says it is parked.
   duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
   screens, a second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`
   and a panel cut by hand at 15 sites — and still stands at 46 groups after six clusters shipped.
-- The letter drill's choice Sprossen diverge: Android renders a correction line under the
-  tiles (caption + correct form + speaker, `ui/LetterDrillStages.kt:37-53`), iOS bare tiles
-  that already mark the answer (`LetterDrillView+Stages.swift:100-130`) — which is right?
 - The watch reveal carries no "also means" line because `WatchEntryDto` ships `sourceText`
   alone (`WatchSnapshotBuilder.kt:221-235`), so a merged word teaches only the meaning of the
   card that was asked; the kern side is one field plus `SCHEMA_VERSION` 5→6, so where does

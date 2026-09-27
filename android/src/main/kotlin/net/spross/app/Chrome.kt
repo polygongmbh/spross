@@ -144,6 +144,7 @@ interface Chrome {
     val trainerLadderTap: String
     val trainerLadderBest: String          // %1$s %2$s
     val a11yTrainerSprosseEntry: String
+    val a11yTrainerUnlocked: String  // %s
     val a11yTrainerSprosseReached: String
     val a11yTrainerSprosseCleared: String
     val trainerRunStreak: String            // %d

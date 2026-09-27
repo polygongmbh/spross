@@ -30,7 +30,7 @@ extension LettersOverview {
     }
 
     /// The run's shape, in the order it is climbed.
-    private static var stages: [LetterStage] {
+    static var stages: [LetterStage] {
         [.choiceEasy, .choiceConfusable, .typed, .dictation]
     }
 
@@ -44,10 +44,11 @@ extension LettersOverview {
         let open = reachable(stage)
         let entry = open && stage == availability?.openingStage(cleared)
         let mark = stageMark(stage, entry: entry)
+        let fresh = unlocking.contains(DrillUnlockMark.shared.row(stage: stage))
         let step = (Self.stages.firstIndex(of: stage) ?? 0) + 1
         return HStack(alignment: .center, spacing: Theme.spacing.md) {
             if open {
-                SprosseCircle(number: step, mark: mark)
+                UnlockingMark(fresh: fresh) { SprosseCircle(number: step, mark: mark) }
             } else {
                 Image(systemName: "lock.fill")
                     .font(.title3)
@@ -70,6 +71,7 @@ extension LettersOverview {
             }
             Spacer(minLength: 0)
         }
+        .unlockWash(fresh)
         // why: one stage is one VoiceOver stop — the mark and the name describe a
         // single thing, and the value says what the filled circle says.
         .accessibilityElement(children: .combine)
@@ -83,6 +85,10 @@ extension LettersOverview {
     }
 
     private static func title(_ stage: LetterStage) -> LocalizedStringKey {
+        LocalizedStringKey(titleName(stage))
+    }
+
+    static func titleName(_ stage: LetterStage) -> String {
         switch stage {
         case .choiceEasy: return "letters.stage.choiceEasy"
         case .choiceConfusable: return "letters.stage.choiceConfusable"
@@ -105,7 +111,7 @@ extension LettersOverview {
     /// Dictation needs a pool of playable words the learner already holds; below
     /// that floor the ramp stops one Sprosse short of it, so the row is a padlock
     /// with its price rather than a stage that never arrives.
-    private func reachable(_ stage: LetterStage) -> Bool {
+    func reachable(_ stage: LetterStage) -> Bool {
         guard let availability, availability.drillAvailable else { return false }
         return stage != .dictation || availability.dictationAvailable
     }

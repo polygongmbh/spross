@@ -603,6 +603,24 @@
         }
       }
     },
+    "a11y.trainer.unlocked %@" : {
+      "comment" : "%s = the names of the overview rows that just unlocked — spoken once, as their padlocks fade",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Freigeschaltet: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlocked: %@"
+          }
+        }
+      }
+    },
     "a11y.verdict.almost" : {
       "comment" : "the near miss's own — amber is not a state a reader hears",
       "localizations" : {

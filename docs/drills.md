@@ -124,6 +124,11 @@ Nothing wears a prefix one scope wider than what it serves.
   the rows carry neither padlock nor price and say what a Sprosse ASKS.
   What the pair cannot offer whatever the learner does -- no forms reading,
   no realized frames, a calendar with no year pattern -- has no row.
+- **An unlock is marked once.**
+  The first time a page shows open a row it last showed padlocked,
+  that row's padlock fades under a brief wash and a screen reader hears what opened
+  (`DrillUnlockMark`, over the padlocks each page files as it shows them).
+  A row that never wore a padlock is never marked, and neither is a first visit.
 - **The modifiers are how a run is PLAYED, and only FAST has a price.**
   Reverse flips which side asks --
   the field's placeholder says so and the card never does --

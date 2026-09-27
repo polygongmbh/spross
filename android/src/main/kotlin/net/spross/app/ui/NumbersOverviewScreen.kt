@@ -21,6 +21,7 @@ import net.spross.app.unlockPrice
 import net.spross.kern.catalog.numberNotes
 import net.spross.kern.trainer.DrillModifier
 import net.spross.kern.trainer.DrillSelection
+import net.spross.kern.trainer.DrillUnlockMark
 import net.spross.kern.trainer.DrillUnlocks
 import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
@@ -77,6 +78,23 @@ fun NumbersOverviewScreen(model: AppModel) {
     )
     val start = { model.startTrainerRun(picks) }
 
+    // An unlock is marked once: kern compares what the page shows padlocked with what it last did.
+    val rows = offered.map { DrillUnlockMark.row(it) to DrillUnlocks.unlocked(it, ladder) } +
+        DrillModifier.entries.map { DrillUnlockMark.row(it) to DrillUnlocks.unlocked(it, ladder) }
+    val locked = rows.filter { !it.second }.map { it.first }.toSet()
+    val unlocking = remember(language, locked) {
+        model.trainer.store.unlockMarks(
+            DrillUnlockMark.numbersPage(language),
+            locked,
+            rows.filter { it.second }.map { it.first }.toSet(),
+        )
+    }
+    AnnounceUnlocks(
+        offered.filter { DrillUnlockMark.row(it) in unlocking }.map { chrome.name(it) } +
+            DrillModifier.entries.filter { DrillUnlockMark.row(it) in unlocking }.map { chrome.name(it) },
+        chrome,
+    )
+
     OverviewScaffold(
         model = model,
         title = chrome.numbersTitle.format(model.languageName(language)),
@@ -85,7 +103,7 @@ fun NumbersOverviewScreen(model: AppModel) {
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
             for (exercise in offered) {
-                ExerciseRow(exercise, chrome, ladder, combining, exercise in picked) {
+                ExerciseRow(exercise, chrome, ladder, combining, exercise in picked, DrillUnlockMark.row(exercise) in unlocking) {
                     pickedNames = DrillSelection
                         .toggled(picked, exercise, combining)
                         .map { it.name }
@@ -99,7 +117,7 @@ fun NumbersOverviewScreen(model: AppModel) {
                 it != DrillModifier.Timed || !model.pronouncer.readsScreenAloud
             }
             for (modifier in playable) {
-                ModifierRow(modifier, chrome, ladder, modifier in modifiers) { on ->
+                ModifierRow(modifier, chrome, ladder, modifier in modifiers, DrillUnlockMark.row(modifier) in unlocking) { on ->
                     modifierNames = if (on) {
                         modifierNames + modifier.name
                     } else {
@@ -134,6 +152,7 @@ private fun ExerciseRow(
     ladder: Map<NumbersExercise, Int>,
     combining: Boolean,
     selected: Boolean,
+    unlocking: Boolean,
     onTap: () -> Unit,
 ) {
     val open = DrillUnlocks.unlocked(exercise, ladder)
@@ -151,6 +170,7 @@ private fun ExerciseRow(
             else -> RowMark.One
         },
         selected = open && selected,
+        unlocking = unlocking,
         onClick = onTap,
     )
 }
@@ -165,6 +185,7 @@ private fun ModifierRow(
     chrome: Chrome,
     ladder: Map<NumbersExercise, Int>,
     on: Boolean,
+    unlocking: Boolean,
     onChange: (Boolean) -> Unit,
 ) {
     val open = DrillUnlocks.unlocked(modifier, ladder)
@@ -173,6 +194,7 @@ private fun ModifierRow(
         caption = if (open) chrome.hint(modifier) else chrome.unlockPrice(DrillUnlocks.requirements(modifier)),
         open = open,
         on = on,
+        unlocking = unlocking,
         onChange = onChange,
     )
 }

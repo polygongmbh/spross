@@ -27,6 +27,11 @@ struct LettersOverview: View {
     /// comes down, because that close just filed into it.
     // why: internal, not private — +Practice.swift marks the stages from it.
     @State var cleared: Set<KotlinInt> = []
+    /// The stages this page last showed padlocked and now shows open — marked
+    /// once (`DrillUnlockMark`), then filed as seen.
+    // why: internal, not private — +Practice.swift marks the rows from it.
+    @State var unlocking: Set<String> = []
+    @Environment(\.locale) private var locale
     @State private var launch: DrillLaunch<String>?
     /// What the run that just closed came to — one tile above the stages, instead
     /// of a screen with a second ✕ on it.
@@ -66,7 +71,23 @@ struct LettersOverview: View {
     func refreshAvailability() {
         availability = LetterDrillAvailability(model: model, language: language)
         cleared = TrainerProgress.held(for: LetterDrillView.storageKey(language))
+        markUnlocks()
         DrillUITest.autoStart("letters", ready: launch == nil && drillAvailable, start: start)
+    }
+
+    /// Only a priced padlock counts: where the drill cannot run at all, every
+    /// stage is shut for a reason that is not the learner's to earn.
+    private func markUnlocks() {
+        let priced = drillAvailable ? Self.stages : []
+        let marked = TrainerProgress.unlockMarks(
+            page: LetterDrillView.storageKey(language),
+            locked: Set(priced.filter { !reachable($0) }.map { DrillUnlockMark.shared.row(stage: $0) }),
+            open: Set(priced.filter { reachable($0) }.map { DrillUnlockMark.shared.row(stage: $0) }))
+        guard !marked.isEmpty else { return }
+        unlocking.formUnion(marked)
+        UnlockMark.announce(priced.filter { marked.contains(DrillUnlockMark.shared.row(stage: $0)) }
+                                .map { ChromeStrings.string(Self.titleName($0), locale: locale) },
+                            locale: locale)
     }
 
     // MARK: - Chrome

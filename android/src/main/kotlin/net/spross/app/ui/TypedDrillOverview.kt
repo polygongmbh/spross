@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -23,6 +24,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.TypedDrillStanding
 import net.spross.kern.model.Language
+import net.spross.kern.trainer.DrillUnlockMark
 import net.spross.kern.trainer.NumbersMode
 
 /**
@@ -35,6 +37,8 @@ import net.spross.kern.trainer.NumbersMode
  */
 class TypedDrillLadder(
     val title: String,
+    /** Where this pair's runs file their figures — the page's identity too. */
+    val page: String,
     /** Every figure this pair's runs have filed — the circles, the record line, Fast's price. */
     val standing: TypedDrillStanding,
     /** What Fast does, in this ladder's own price — a Sprosse here costs THREE clean wins. */
@@ -90,6 +94,17 @@ fun TypedDrillOverview(
 
     val start = { ladder.start(reverse, fast, entry) }
 
+    // An unlock is marked once: Fast is the one row here with a padlock.
+    val fastRow = DrillUnlockMark.typedDrillFast
+    val fastUnlocking = fastRow in remember(ladder.page, fastOpen) {
+        model.trainer.store.unlockMarks(
+            ladder.page,
+            if (fastOpen) emptySet() else setOf(fastRow),
+            if (fastOpen) setOf(fastRow) else emptySet(),
+        )
+    }
+    AnnounceUnlocks(if (fastUnlocking) listOf(chrome.trainerModifierFast) else emptyList(), chrome)
+
     OverviewScaffold(
         model = model,
         title = ladder.title,
@@ -138,6 +153,7 @@ fun TypedDrillOverview(
                 },
                 open = fastOpen,
                 on = fast,
+                unlocking = fastUnlocking,
                 onChange = { fastPicked = it },
             )
         }

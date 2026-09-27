@@ -50,7 +50,8 @@ extension NumbersOverview {
             caption: open ? bestCaption(exercise)
                           : unlockCaption(DrillUnlocks.shared.requirements(exercise: exercise)),
             mark: open ? (combining ? .many : .one) : .locked,
-            selected: open && picked.contains(exercise)
+            selected: open && picked.contains(exercise),
+            unlocking: unlocking.contains(DrillUnlockMark.shared.row(exercise: exercise))
         ) {
             // why: while the ladder is closed the picks are a radio that never
             // empties — `Los` would otherwise have nothing to open. Kern's rule.
@@ -87,6 +88,8 @@ extension NumbersOverview {
                         Image(systemName: "lock.fill")
                             .font(Theme.typography.caption)
                             .foregroundStyle(Theme.colors.textSecondary)
+                    } else {
+                        FadingPadlock(fresh: unlocking.contains(DrillUnlockMark.shared.row(modifier: modifier)))
                     }
                     Text(modifier.trainerTitleKey)
                         .font(Theme.typography.headline)
@@ -101,6 +104,7 @@ extension NumbersOverview {
                 .foregroundStyle(Theme.colors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
+        .unlockWash(unlocking.contains(DrillUnlockMark.shared.row(modifier: modifier)))
     }
 
     private func binding(_ modifier: DrillModifier) -> Binding<Bool> {

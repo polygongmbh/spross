@@ -28,15 +28,19 @@ struct SelectionRow: View {
     var caption: Text?
     let mark: Mark
     let selected: Bool
+    /// The row was a padlock the last time its page showed it (`UnlockMark`).
+    var unlocking = false
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             HStack(spacing: Theme.spacing.md) {
                 if let symbol {
-                    Image(systemName: symbol)
-                        .font(.title3)
-                        .foregroundStyle(markColor)
+                    UnlockingMark(fresh: unlocking) {
+                        Image(systemName: symbol)
+                            .font(.title3)
+                            .foregroundStyle(markColor)
+                    }
                 }
                 VStack(alignment: .leading, spacing: 2) {
                     title
@@ -60,6 +64,7 @@ struct SelectionRow: View {
             .padding(Theme.spacing.md)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(background)
+            .unlockWash(unlocking, bleed: 0)
         }
         .buttonStyle(.plain)
         .disabled(isLocked)

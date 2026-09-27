@@ -90,6 +90,18 @@ enum TrainerProgress {
         UserDefaults.standard.set(Date().epochMillis, forKey: DrillSuggestion.shared.LAST_RUN_PREFIX + key)
     }
 
+    // MARK: - Unlock marks
+
+    /// The rows an overview marks as newly unlocked on this showing — kern's
+    /// `DrillUnlockMark` over what the page last showed padlocked — and files
+    /// the rows it shows padlocked now, so each unlock is marked once.
+    static func unlockMarks(page: String, locked: Set<String>, open: Set<String>) -> Set<String> {
+        let key = DrillUnlockMark.shared.key(page: page)
+        let last = Set(UserDefaults.standard.stringArray(forKey: key) ?? [])
+        UserDefaults.standard.set(locked.sorted(), forKey: key)
+        return DrillUnlockMark.shared.marked(lastLocked: last, open: open)
+    }
+
     #if DEBUG
     /// UI-test hook: drop an exercise's Sprosse so a locked ladder can be driven.
     static func clear(_ key: String) {
