@@ -30,7 +30,7 @@ import net.spross.kern.session.SessionOfferKind
  * The north star screen: one glance = what to do right now.
  *
  * Top to bottom: the date and the day's name, ONE state card, the listening card, the
- * suggested drill, the trainers, the companion card, and the fortnight behind it. Which state card is a strict
+ * suggested drill, the trainers, the companion card, the fortnight behind it, and the forest. Which state card is a strict
  * precedence over the box's own answers ([homeCard]) — an offer outranks a done state.
  */
 @Composable
@@ -115,6 +115,8 @@ fun HomeScreen(model: AppModel) {
         // produced it — the strip reads kern's walk, never one of its own. It names
         // itself, so nothing announces it a second time above.
         ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
+
+        HomeForest(model)
         Spacer(Modifier.height(Theme.spacing.lg))
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }

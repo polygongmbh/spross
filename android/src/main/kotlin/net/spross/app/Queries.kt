@@ -3,8 +3,12 @@ package net.spross.app
 import android.app.Application
 import java.util.Locale
 import net.spross.app.ui.AreaNaming
+import net.spross.app.ui.SampleForest
+import net.spross.kern.box.AreaTree
+import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.CardGrowth
+import net.spross.kern.box.areaTrees
 import net.spross.kern.catalog.Catalog
 
 /**
@@ -49,4 +53,18 @@ private fun AppModel.areaNaming(): AreaNaming {
         catalogSubtitle = { if (source == null) null else cat?.areaSubtitle(it, source) },
         catalogEmoji = { cat?.areaEmoji(it) },
     )
+}
+
+/**
+ * One tree per area the box holds, in the box browser's order ([BoxBrowser.areaNames]) —
+ * or the fabricated box a debug launch asked for ([AppModel.sampleForestAge]).
+ * A walk over every card, so the forest asks once per change to the box.
+ */
+fun AppModel.forestTrees(): List<AreaTree> {
+    sampleForestAge?.let { return SampleForest.trees(it) }
+    val state = box ?: return emptyList()
+    val cat = catalog ?: return emptyList()
+    val numbers = stats ?: return emptyList()
+    val byArea = areaTrees(state, BoxEngine.growth(state, now(), tz()))
+    return BoxBrowser.areaNames(cat, numbers).mapNotNull { byArea[it] }
 }

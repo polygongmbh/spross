@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- On Android, the bottom of Home now shows your box as a forest, one tree per area, and tapping a tree opens that area.
 - Once the day's round is done, Home suggests one drill and says why, so you no longer have to pick among six.
 - Tapping a recording in Legal & Licenses now plays it, and a small link beside it opens its page on Wikimedia Commons.
 - Words asked by ear now come up even with the volume turned down, and any screen about to play words asks you to turn it up when it is too low.
