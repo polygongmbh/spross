@@ -42,13 +42,7 @@ extension HomeView {
                 .buttonStyle(SoftButtonStyle())
             }
         }
-        .padding(Theme.spacing.xl)
-        .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
-        .cardShadow()
+        .dayCard()
     }
 
     /// Flame hero, or a sprout when there is no streak to show. This card is up
@@ -136,13 +130,7 @@ extension HomeView {
                 .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
         }
-        .padding(Theme.spacing.xl)
-        .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
-        .cardShadow()
+        .dayCard()
     }
 
     /// The day's mark: the celebration wearing the streak, or the bare emoji when there
@@ -207,12 +195,19 @@ extension HomeView {
                 .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
         }
-        .padding(Theme.spacing.xl)
-        .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
-        .cardShadow()
+        .dayCard()
+    }
+}
+
+extension View {
+    /// The surface every one of Home's day cards stands on.
+    func dayCard() -> some View {
+        padding(Theme.spacing.xl)
+            .frame(maxWidth: .infinity)
+            .background(
+                RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
+                    .fill(Theme.colors.surface)
+            )
+            .cardShadow()
     }
 }
