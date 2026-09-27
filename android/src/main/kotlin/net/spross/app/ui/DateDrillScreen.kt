@@ -5,6 +5,7 @@ import net.spross.app.AppModel
 import net.spross.app.Screen
 import net.spross.app.TrainerStore
 import net.spross.app.newDateDrill
+import net.spross.kern.trainer.Drill
 
 /**
  * The dates drill: the weekday names alone, the month names alone, the day-of-month
@@ -25,6 +26,7 @@ fun DateDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, level: Int
         page = TypedDrillPage(
             back = Screen.Dates,
             drill = model.chrome.trainerDrillDates,
+            entry = Drill.Dates,
             // One key per PAIR, the same one the page reads its best Sprosse back from.
             key = stamp?.let { TrainerStore.datesKey(it.source, it.target) },
             open = { onTone, onReleaseFocus ->

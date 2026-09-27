@@ -50,6 +50,8 @@ extension NumbersRunView: DrillRunning {
     /// The record and the Sprossen, both booked here: a run that is still going
     /// can still climb, so a Sprosse is only final once the run closes.
     // why: internal, not private — the +UITest hook closes a run the way the ✕ does.
+    var lastRunKey: String { DrillSuggestion.shared.lastRunKey(drill: .numbers, language: language) }
+
     func closing() -> DrillClose<NumbersRunState> {
         let closed = NumbersRun.shared.close(state: run,
                                              standingRecord: Int32(TrainerRecords.best(for: mode.recordKey)),

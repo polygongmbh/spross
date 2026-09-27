@@ -53,6 +53,10 @@ extension DrillRunView: DrillRunning {
     // why: neither Sprosse figure buys a padlock (the drill is ungated), and both
     // are filed whether or not the run was ever answered — a run closed on a
     // Sprosse still stood on it.
+    var lastRunKey: String {
+        DrillSuggestion.shared.lastRunKey(drill: Face.drill, language: model.targetLanguage ?? "")
+    }
+
     func closing() -> DrillClose<Face.Run> {
         let closed = Face.close(run, standingRecord: TrainerRecords.best(for: storageKey))
         TrainerProgress.record(closed.bestLevel, for: storageKey)

@@ -76,6 +76,20 @@ enum TrainerProgress {
         UserDefaults.standard.set(standing | mask, forKey: clearedPrefix + key)
     }
 
+    // MARK: - Last run
+
+    /// When a run of the drill under `key` (`DrillSuggestion.lastRunKey`) last
+    /// closed answered, as epoch millis; nil where none has.
+    static func lastRun(_ key: String) -> Int64? {
+        (UserDefaults.standard.object(forKey: DrillSuggestion.shared.LAST_RUN_PREFIX + key) as? NSNumber)?
+            .int64Value
+    }
+
+    /// Stamps a closed run, which is what the suggestion reads "least recently run" off.
+    static func stampRun(_ key: String) {
+        UserDefaults.standard.set(Date().epochMillis, forKey: DrillSuggestion.shared.LAST_RUN_PREFIX + key)
+    }
+
     #if DEBUG
     /// UI-test hook: drop an exercise's Sprosse so a locked ladder can be driven.
     static func clear(_ key: String) {

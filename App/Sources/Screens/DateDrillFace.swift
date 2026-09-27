@@ -14,6 +14,7 @@ enum DateDrillFace: DrillFace {
     // MARK: - Who the drill is
 
     static var key: String { "dates" }
+    static var drill: Drill { .dates }
 
     static var resultTitle: LocalizedStringKey { "trainer.drill.dates" }
 

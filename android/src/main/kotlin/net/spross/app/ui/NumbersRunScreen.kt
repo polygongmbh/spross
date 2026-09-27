@@ -13,8 +13,8 @@ import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.Chrome
-import net.spross.app.Screen
 import net.spross.app.NumbersFlow
+import net.spross.app.Screen
 import net.spross.app.badge
 import net.spross.app.bookRecord
 import net.spross.app.countLine
@@ -22,6 +22,8 @@ import net.spross.app.finishDrill
 import net.spross.app.name
 import net.spross.app.newTrainerRun
 import net.spross.app.speakDrillAnswer
+import net.spross.app.stampRun
+import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.NumbersChallenge
 import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
@@ -60,6 +62,7 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
         val closed = flow.close(store.record(mode.recordKey), store.standing(mode.language))
         store.book(closed.progressBookings)
         closed.summary?.let { model.bookRecord(closed.recordKey, it) }
+        model.stampRun(Drill.Numbers, closed.summary)
         model.finishDrill(Screen.Numbers, closed.summary, title)
     }
 

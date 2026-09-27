@@ -5,7 +5,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import net.spross.kern.model.Language
+import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.DrillRunSummary
+import net.spross.kern.trainer.DrillSuggestion
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
@@ -99,6 +101,15 @@ class TrainerStore(private val prefs: SharedPreferences) {
         val standing = prefs.getInt(NumbersMode.CLEARED_PREFIX + key, 0)
         val mask = standing or NumbersMode.clearedMask(sprossen)
         prefs.edit().putInt(NumbersMode.CLEARED_PREFIX + key, mask).apply()
+    }
+
+    /** When a run under [key] ([DrillSuggestion.lastRunKey]) last closed answered; null where none has. */
+    fun lastRun(key: String): Long? =
+        DrillSuggestion.LAST_RUN_PREFIX.plus(key).let { if (prefs.contains(it)) prefs.getLong(it, 0) else null }
+
+    /** Stamps a closed run, which is what the suggestion reads "least recently run" off. */
+    fun stampRun(key: String, nowEpochMillis: Long) {
+        prefs.edit().putLong(DrillSuggestion.LAST_RUN_PREFIX + key, nowEpochMillis).apply()
     }
 
     /** Everything one typed drill's page reads for [key], both directions' masks included. */
@@ -219,6 +230,16 @@ class TrainerStanding(val store: TrainerStore) {
     fun clearResult() {
         result = null
     }
+}
+
+/**
+ * A closed run of [drill] stamped as its last, where it was answered at all — an untouched
+ * run is no run to the suggestion either ([DrillSuggestion]).
+ */
+fun AppModel.stampRun(drill: Drill, summary: DrillRunSummary?) {
+    if (summary == null) return
+    val language = box?.joinStamp?.target ?: return
+    trainer.store.stampRun(DrillSuggestion.lastRunKey(drill, language), System.currentTimeMillis())
 }
 
 /**

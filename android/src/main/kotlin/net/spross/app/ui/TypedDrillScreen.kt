@@ -14,14 +14,16 @@ import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.Chrome
-import net.spross.app.bookRecord
 import net.spross.app.Screen
 import net.spross.app.TypedDrill
 import net.spross.app.TypedDrillView
+import net.spross.app.bookRecord
 import net.spross.app.finishDrill
 import net.spross.app.speakDrillAnswer
 import net.spross.app.speakFormOnTap
+import net.spross.app.stampRun
 import net.spross.kern.session.ToneKind
+import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.NumbersMode
 
 /**
@@ -33,6 +35,8 @@ class TypedDrillPage(
     val back: Screen,
     /** What the result tile on that page calls this drill. */
     val drill: String,
+    /** The roster entry, whose last run a close stamps. */
+    val entry: Drill,
     /** The store key for THIS pair, or null before a box has landed. */
     val key: String?,
     /** Opens the run — null where the pair has nothing this drill can ask. */
@@ -75,6 +79,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
                 model.bookRecord(key, it)
             }
         }
+        model.stampRun(page.entry, closed.summary)
         model.finishDrill(page.back, closed.summary, page.drill)
     }
 

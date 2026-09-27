@@ -52,6 +52,8 @@ extension LetterDrillView: DrillRunning {
 
     /// An untouched run leaves nothing to report, and no record line either —
     /// the letter drill keeps no record store (D12).
+    var lastRunKey: String { DrillSuggestion.shared.lastRunKey(drill: .letters, language: language) }
+
     func closing() -> DrillClose<LetterDrillRunState> {
         let closed = LetterDrillRun.shared.close(state: run)
         return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects)

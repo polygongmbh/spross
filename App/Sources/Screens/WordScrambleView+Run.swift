@@ -95,6 +95,8 @@ extension WordScrambleView: DrillRunning {
     /// this drill keeps no streak record. What it DOES file is the ladder:
     /// the next run opens on the lowest Sprosse the mask does not hold, so a
     /// Sprosse climbed clean is never asked for twice.
+    var lastRunKey: String { DrillSuggestion.shared.lastRunKey(drill: .wordScramble, language: language) }
+
     func closing() -> DrillClose<WordScrambleRunState> {
         let closed = WordScrambleRun.shared.close(state: run)
         TrainerProgress.bookCleared(closed.clearedSprossen, for: storageKey)

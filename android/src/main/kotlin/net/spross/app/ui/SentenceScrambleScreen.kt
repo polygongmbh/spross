@@ -17,6 +17,8 @@ import net.spross.app.SentenceScrambleFlow
 import net.spross.app.finishDrill
 import net.spross.app.newSentenceScramble
 import net.spross.app.speakFormOnTap
+import net.spross.app.stampRun
+import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.SentenceScrambleTask
 
 /**
@@ -49,6 +51,7 @@ fun SentenceScrambleScreen(model: AppModel) {
         // why: what the NEXT run reads — it opens on the lowest Sprosse the mask does not
         // hold, so a Sprosse climbed clean is never asked for twice.
         model.trainer.store.bookCleared(flow.clearedKey, closed.clearedSprossen)
+        model.stampRun(Drill.SentenceScramble, closed.summary)
         model.finishDrill(Screen.Home, null, "")
     }
 

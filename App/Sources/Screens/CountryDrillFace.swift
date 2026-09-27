@@ -12,6 +12,7 @@ enum CountryDrillFace: DrillFace {
     // MARK: - Who the drill is
 
     static var key: String { "countries" }
+    static var drill: Drill { .countries }
 
     static var resultTitle: LocalizedStringKey { "trainer.drill.countries" }
 

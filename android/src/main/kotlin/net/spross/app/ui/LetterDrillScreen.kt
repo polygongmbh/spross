@@ -35,9 +35,11 @@ import net.spross.app.Screen
 import net.spross.app.audio.Pronouncer
 import net.spross.app.finishDrill
 import net.spross.app.letterReplay
+import net.spross.app.letterSpeaker
 import net.spross.app.newLetterDrill
 import net.spross.app.playLetterPrompt
-import net.spross.app.letterSpeaker
+import net.spross.app.stampRun
+import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.LetterDrillTask
 import net.spross.kern.trainer.LetterStage
 
@@ -65,6 +67,7 @@ fun LetterDrillScreen(model: AppModel) {
     // The letter drill books no Sprosse and keeps no record, so it stores nothing.
     val leave = {
         val closed = flow.close()
+        model.stampRun(Drill.Letters, closed.summary)
         model.finishDrill(Screen.Letters, closed.summary, chrome.trainerDrillLetters)
     }
 

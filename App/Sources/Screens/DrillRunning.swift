@@ -92,6 +92,9 @@ protocol DrillRunning: View {
     /// What the tile a closed run leaves calls it.
     var resultTitle: LocalizedStringKey { get }
 
+    /// Where an answered close stamps this drill's last run (`DrillSuggestion.lastRunKey`).
+    var lastRunKey: String { get }
+
     #if DEBUG
     /// `-uitest-streak N`: stand the run mid-streak.
     func seedStreak(_ streak: Int)
@@ -175,6 +178,7 @@ extension DrillRunning {
             return
         }
         answerFocused = false
+        TrainerProgress.stampRun(lastRunKey)
         // why: the cheer marks the record, not the end of a run — confetti and
         // cheer are one thing (`docs/design.md`), and the tile rains the one.
         // A drill with no record store never reports one.

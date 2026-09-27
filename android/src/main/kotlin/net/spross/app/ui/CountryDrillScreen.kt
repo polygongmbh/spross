@@ -5,6 +5,7 @@ import net.spross.app.AppModel
 import net.spross.app.Screen
 import net.spross.app.TrainerStore
 import net.spross.app.newCountryDrill
+import net.spross.kern.trainer.Drill
 
 /**
  * The atlas drill: name the country, the people, the language — and say which is spoken
@@ -24,6 +25,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, level: 
         page = TypedDrillPage(
             back = Screen.Countries,
             drill = model.chrome.trainerDrillCountries,
+            entry = Drill.Countries,
             // One key per PAIR, the same one the page reads its best Sprosse back from.
             key = stamp?.let { TrainerStore.countriesKey(it.source, it.target) },
             open = { onTone, onReleaseFocus ->
