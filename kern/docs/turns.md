@@ -120,13 +120,17 @@ Engine contract: `../README.md`.
   The deal ends when every held Sprosse has played through once and the unseen lane is spent,
   and the run laps it from the head — a box holding nothing scheduled hears its unseen words
   once through, basics first.
-  **Within a lane the order depends on what the lane is.** New and packed words run in strict
-  catalog order (`seedIndex`, then id — `Inventory.seedOrder`'s own tiebreak): an empty box is
-  ONE lane, so a learner new to a language hears the catalog from its very first word, which
-  is what the order exists for. Packed words lead the rest of the unseen ones and are out
-  within the first handful of turns, in catalog order among themselves rather than in pack
-  order — `Growth.newCandidates` honors the queue's own order because it spends a budget
-  against it, and a run has no budget to spend. Scheduled words are hashed by card id
+  **Within a lane the order depends on what the lane is.** Packed words lead the rest of the
+  unseen ones and are out within the first handful of turns, most recently packed first —
+  the order `Growth.enqueuedEligible` introduces them in, never reshuffled.
+  The plain unseen words split at `LISTENING_BASICS_WORDS` (50): the catalog's earliest
+  concepts lead as a group, so an empty box opens on greetings, shuffled by the salted hash
+  below so no single word is pinned to the front of every run.
+  Past the basics the shuffle leans softly toward earlier words (`newWordOrder`):
+  each word's arrival is an exponential draw off that hash, stretched by
+  `1 + depth / LISTENING_DEPTH_HALVING` (250) past the basics — a weighted shuffle whose weight
+  halves 250 words in and keeps falling gently, so everyday words come sooner on average and
+  a word a thousand deep still turns up now and then. Scheduled words are hashed by card id
   (`fnv1a64`, the hash `Inventory.dueOrder` already uses) salted with `seed`, so catalog seed
   neighbors — often related concepts, and a word half-learned from its neighbor is what that
   hash exists to prevent — are not heard in the same sequence every run, AND the same box

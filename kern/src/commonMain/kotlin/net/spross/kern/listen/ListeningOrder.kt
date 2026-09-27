@@ -1,5 +1,6 @@
 package net.spross.kern.listen
 
+import kotlin.math.ln
 import net.spross.kern.model.fnv1a64
 
 /**
@@ -28,29 +29,51 @@ private fun hashedOrder(seed: Long): Comparator<ListeningCandidate> =
  * stretch before the pool opens up, so a learner who has never met the language still hears
  * hello before anything forty shelves in.
  *
- * Past it, breadth is the whole point again and any unseen word may lead ([newWordOrder]).
+ * Past it, breadth is the whole point again, leaning softly toward the earlier words
+ * ([newWordOrder]).
  */
 private const val LISTENING_BASICS_WORDS = 50
 
 /**
- * The plain new lane's own within-lane order — not strict catalog order, which used to pin a
- * single word (the earliest unseen one) to the very front of every sweep until growth actually
- * reached it: a box that packs faster than it grows, or simply grows slowly, could leave that
- * one word leading every session for weeks, which is a queue of one where listening promises a
- * stream.
+ * How far past the basics an unseen word sits when it comes up half as often as the first word
+ * past them — the lean of [newWordOrder]'s second half, gentle enough that a word a thousand
+ * concepts deep is still heard now and then.
+ */
+private const val LISTENING_DEPTH_HALVING = 250.0
+
+/**
+ * The plain new lane's own within-lane order — shuffled rather than strict catalog order, since
+ * catalog order pins the earliest unseen word to the front of every sweep until growth reaches
+ * it, which is a queue of one where listening promises a stream.
  *
- * Split in two: the [LISTENING_BASICS_WORDS] earliest concepts first, everything else after —
- * each half hashed and salted with [seed] exactly like [hashedOrder], so neither half repeats
- * the same leader twice. The split keeps the one thing catalog order was actually for — an
- * empty box still opens on greetings, not on a word from deep in the catalog — without holding
- * any single word at the front, or the basics to a fixed sequence among themselves: they only
- * need to lead as a group, not to arrive named in seed order.
+ * Split in two: the [LISTENING_BASICS_WORDS] earliest concepts first, everything else after,
+ * so an empty box still opens on greetings. The basics are hashed and salted with [seed]
+ * exactly like [hashedOrder]: they lead as a group, not in seed order.
+ * Past them the shuffle is weighted ([arrival]): earlier words tend to come first,
+ * and any word may still lead, differently for every [seed].
  */
 private fun newWordOrder(seed: Long): Comparator<ListeningCandidate> = compareBy(
     { it.card.seedIndex >= LISTENING_BASICS_WORDS },
-    { fnv1a64("$seed:${fnv1a64(it.card.id)}") },
+    { arrival(it, seed) },
     { it.card.id },
 )
+
+/**
+ * When a word arrives in the plain new lane. A basic's arrival is its salted hash as a
+ * fraction. A deeper word's is an exponential draw from that same fraction, stretched by
+ * `1 + depth / LISTENING_DEPTH_HALVING`: sorting such draws is a weighted shuffle whose weight
+ * halves at [LISTENING_DEPTH_HALVING] past the basics and keeps falling gently beyond it.
+ */
+private fun arrival(candidate: ListeningCandidate, seed: Long): Double {
+    val hash = fnv1a64("$seed:${fnv1a64(candidate.card.id)}")
+    // why: +1 over 2^53 + 1 keeps the fraction strictly inside (0, 1), so its log is finite.
+    val unit = ((hash shr 11).toDouble() + 1.0) / (TWO_TO_53 + 1.0)
+    val depth = candidate.card.seedIndex - LISTENING_BASICS_WORDS
+    if (depth < 0) return unit
+    return -ln(unit) * (1.0 + depth / LISTENING_DEPTH_HALVING)
+}
+
+private const val TWO_TO_53: Double = 9_007_199_254_740_992.0
 
 /**
  * One lane of the deal: its words in their within-lane order, how far it has walked, and when
@@ -88,9 +111,9 @@ private class Lane(val members: List<ListeningCandidate>, val priority: Int, val
  * most-recently-packed first ([packedOrder]) — the same order `Growth.enqueuedEligible`
  * introduces them in, so listening and review agree on which packed word is next. Packing
  * named its own order, so this one never reshuffles with [seed]: a shuffle would be
- * second-guessing the learner's own ask. Plain new words split basics-first, then hashed
- * within each half ([newWordOrder]): an empty box still opens on greetings, but no single word
- * is pinned to the front forever. Scheduled words are hashed by card id outright, because a
+ * second-guessing the learner's own ask. Plain new words split basics-first, then shuffle
+ * within each half, the second leaning toward earlier words ([newWordOrder]): an empty box
+ * still opens on greetings, but no single word is pinned to the front forever. Scheduled words are hashed by card id outright, because a
  * fixed catalog order would let seed neighbors — often related concepts — be heard in the same
  * sequence every run, and a word half-learned from its neighbor is what `Inventory.dueOrder`
  * fights. Both the scheduled and plain-new hashes are salted with [seed], so their sequence
