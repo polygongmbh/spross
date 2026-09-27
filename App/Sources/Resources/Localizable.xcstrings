@@ -3081,13 +3081,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Für heute geschafft"
+            "value" : "Heute gut dabei"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Done for today"
+            "value" : "Good for today"
           }
         }
       }

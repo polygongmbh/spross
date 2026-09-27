@@ -32,7 +32,7 @@ internal object ChromeEn : Chrome {
     override val homeGreetingMorningAddressee = "early bird"
     override val homeGreetingNightAddressee = "night owl"
     override val homeDoneExtraRound = "One more round?"
-    override val homeDoneTitle = "Done for today"
+    override val homeDoneTitle = "Good for today"
     override val boxCardDue = "due"
     override val onboardingWelcome = "Welcome to Spross!"
     override val onboardingImport = "Import backup"
