@@ -677,6 +677,13 @@ def fill_words(packs, languages, reseat=False):
             # bytes that landed and nothing earlier knows it. The file is then removed
             # again rather than left orphaned in the tree. No `snr` means a floor of
             # digital silence, which is the cleanest a file can be, never the noisiest.
+            # why: the kern parser refuses a gain past ±GAIN_LIMIT_DB, and so every test that
+            # loads the catalog; such a gain is a clipped or broken file, not one to correct.
+            if any(abs(index.get(field, 0)) > GAIN_LIMIT_DB for field in ('gain', 'gainPhone')):
+                drops.append(('unmeasurable', row['slug'], 'gain %.1f dB is past ±%.0f — clipped'
+                              % (index.get('gain', 0), GAIN_LIMIT_DB)))
+                os.remove(os.path.join(out_dir, row['slug'] + '.mp3'))
+                continue
             if index.get('snr', FILL_SNR_FLOOR_DB) < FILL_SNR_FLOOR_DB:
                 drops.append(('noisy', row['slug'],
                               '%.1f dB above its own noise, floor is %.1f'
