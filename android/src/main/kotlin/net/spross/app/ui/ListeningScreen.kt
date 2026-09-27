@@ -119,7 +119,7 @@ fun ListeningScreen(model: AppModel) {
 /**
  * The way out. A back ARROW rather than the ✕ the drills wear: those two sit in a bar beside
  * the read-aloud switch, and the tinted disc is what makes the pair read as chrome instead of
- * two loose glyphs — alone on a screen with neither, the disc is a grey blob. Back and ✕ do
+ * two loose glyphs — alone on a screen with neither, the disc is a gray blob. Back and ✕ do
  * the same thing here (`docs/surfaces.md`), which was never a promise to wear the same glyph.
  */
 @Composable

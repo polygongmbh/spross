@@ -4,7 +4,7 @@ import SprossKern
 /// A timed run's clock; kern sets the length (`TimedRun.SECONDS`) and handles `NumbersIntent.TimeUp`.
 extension NumbersRunView {
 
-    /// Started with the run on screen and cancelled with it.
+    /// Started with the run on screen and canceled with it.
     func runClock() async {
         guard run.timed, deadline == nil else { return }
         let seconds = Int(TimedRun.shared.SECONDS)

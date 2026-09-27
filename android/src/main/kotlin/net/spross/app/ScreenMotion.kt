@@ -116,7 +116,7 @@ fun rememberScreenTransition(model: AppModel): ScreenTransition {
             progress.collect { state.seekTo(it.progress, targetState = behind) }
             model.goBack()
         } catch (e: CancellationException) {
-            // why: a cancelled swipe cancels this coroutine too, so the way back to the screen
+            // why: a canceled swipe cancels this coroutine too, so the way back to the screen
             // that stays runs outside it.
             scope.launch {
                 state.animateTo(state.currentState)

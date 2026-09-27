@@ -27,7 +27,7 @@ internal sealed interface SlotValue {
 }
 
 /**
- * Full-difficulty draw: the biases ported from the prototype — numbers favour 2–3 digits,
+ * Full-difficulty draw: the biases ported from the prototype — numbers favor 2–3 digits,
  * years cluster around 1950–2050 with rarer historic outliers, and the clock reads the
  * whole face (its top Sprosse, which IS any minute).
  */

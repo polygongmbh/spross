@@ -58,7 +58,7 @@ class ThemeColors(
     val teal: Color,
     /** Forest: right answers, consolidated cards, foliage. */
     val success: Color,
-    /** Ochre: the reveal, the tough answer, the word still being learnt — never red. */
+    /** Ochre: the reveal, the tough answer, the word still being learned — never red. */
     val amber: Color,
     /**
      * Jade — the consolidated/"grown" Sprosse's own color. Not [teal]: that one sits too

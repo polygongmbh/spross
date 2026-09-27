@@ -47,7 +47,7 @@ final class ListeningDriver {
 
     private let model: AppModel
     private var generation = 0
-    /// The gap between two beats — cancelled whenever the generation turns.
+    /// The gap between two beats — canceled whenever the generation turns.
     private var pending: Task<Void, Never>?
     private var interruption: NSObjectProtocol?
 

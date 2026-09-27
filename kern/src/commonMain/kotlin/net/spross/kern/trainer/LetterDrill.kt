@@ -98,7 +98,7 @@ object LetterDrill {
      * slug's recording from playing over a different word on screen.
      *
      * [known] is the learner's side of it: true where the box already holds the word, so
-     * the draw can favour words that mean something to them (see [sample]).
+     * the draw can favor words that mean something to them (see [sample]).
      */
     data class AlphabetExampleWord(val text: String, val slug: String?, val known: Boolean = false)
 
@@ -183,7 +183,7 @@ object LetterDrill {
      * words is worse than one that occasionally dictates a long one.
      *
      * Inside whatever pool survives, the draw is WEIGHTED by [dictationWeight] — a Sprosse
-     * spent on words already spelt right is a Sprosse spent on nothing. [alphabet] is only
+     * spent on words already spelled right is a Sprosse spent on nothing. [alphabet] is only
      * consulted for the language's own hard graphemes; a language without one dictates
      * fine, it just weighs the spelling half at zero.
      *
@@ -294,7 +294,7 @@ object LetterDrill {
         if (entry.kind == AlphabetKind.Letter) emptyList()
         else examples(entry).filter { entry.gapWord(it.text) != null }
 
-    /** The gap words this run has not already spelt right at this stage. */
+    /** The gap words this run has not already spelled right at this stage. */
     private fun unsolved(
         words: List<AlphabetExampleWord>,
         stage: LetterStage,

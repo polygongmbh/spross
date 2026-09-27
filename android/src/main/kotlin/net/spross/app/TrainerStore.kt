@@ -190,7 +190,7 @@ data class TypedDrillStanding(
  */
 class TrainerStanding(val store: TrainerStore) {
 
-    /** The highest Sprosse each exercise ever reached in the language being learnt. */
+    /** The highest Sprosse each exercise ever reached in the language being learned. */
     var ladder by mutableStateOf<Map<NumbersExercise, Int>>(emptyMap())
         private set
 

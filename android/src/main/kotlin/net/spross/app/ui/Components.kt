@@ -217,7 +217,7 @@ const val LOCK = "🔒"
  *
  * The split and the denominator are the box's rulings ([AreaStatistics]); empty stretches
  * are dropped, and an area with nothing in any of them leaves the track bare rather than
- * drawing a full bar claiming everything is being learnt.
+ * drawing a full bar claiming everything is being learned.
  */
 @Composable
 fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {

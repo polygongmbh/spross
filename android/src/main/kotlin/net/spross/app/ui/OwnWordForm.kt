@@ -41,7 +41,7 @@ import net.spross.kern.box.BoxEngine
  * but a note filed is a REMARK, which is how the learner says something that is about no
  * word — this form is the only surface that is not already a card's.
  *
- * What happens to the word is kern's: [BoxEngine.addOwnWord] mints its id from the learnt
+ * What happens to the word is kern's: [BoxEngine.addOwnWord] mints its id from the learned
  * side, stores it under the pair's two languages, and PACKS it — the learner named this word
  * themselves, so waiting for growth to walk to it would be absurd. An EDIT
  * ([BoxEngine.updateOwnWord]) mints nothing: the id stays, and with it the schedule and the

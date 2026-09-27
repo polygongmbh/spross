@@ -318,7 +318,7 @@ struct BoxSettingsSection: View {
     /// Fresh start with the CURRENT catalog content.
     /// Where there is matured progress worth keeping, a save-file sheet for just this language opens first.
     /// A safety net ahead of the confirmation below, never a gate on it —
-    /// a failed or cancelled save still reaches the destructive dialog.
+    /// a failed or canceled save still reaches the destructive dialog.
     private var resetRow: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
             Button(role: .destructive) {

@@ -104,10 +104,10 @@ data class OwnWordDraft(
     fun word(source: Language, target: Language, taken: Set<String>): OwnWord? {
         if (!hasAnything) return null
         val knownText = known.trim()
-        val learnt = learning.trim()
+        val learned = learning.trim()
         // why: a remark has no word to be named after, so the mint falls back to its own
         // stem — an id it can still be edited and deleted by.
-        val naming = learnt.ifEmpty { knownText }
+        val naming = learned.ifEmpty { knownText }
         // why: the id is minted from the LEARNED side — it is the one that stays put while
         // the known language is free to change under a source switch. A word written only
         // in the known language has nothing else to be named after. An edit mints nothing:
@@ -118,7 +118,7 @@ data class OwnWordDraft(
             emoji = emoji.trim().ifEmpty { null },
             texts = buildMap {
                 if (knownText.isNotEmpty()) put(source, knownText)
-                if (learnt.isNotEmpty()) put(target, learnt)
+                if (learned.isNotEmpty()) put(target, learned)
             },
             comment = comment,
         )

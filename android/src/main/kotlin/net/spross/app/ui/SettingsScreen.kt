@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import net.spross.app.AppModel
 
 /**
- * The third section: the pair being learnt, whether words are read aloud, the backup, the
+ * The third section: the pair being learned, whether words are read aloud, the backup, the
  * one destructive door, and the way to who spoke the recordings.
  *
  * What stands here is [BoxSettingsSection]'s; this screen only gives it the page.

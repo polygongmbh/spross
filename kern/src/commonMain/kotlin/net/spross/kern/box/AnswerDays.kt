@@ -11,7 +11,7 @@ import net.spross.kern.model.CardScheduling
  * beside them that could disagree with them.
  *
  * Days are cut in the CALLER's timezone, the one the learner is standing in now; an answer
- * given elsewhere can therefore move a day, which costs a traveller nothing that matters.
+ * given elsewhere can therefore move a day, which costs a traveler nothing that matters.
  * Suspended and unjoined schedules count as well — the answer really happened, and a source
  * switch must not un-happen a day.
  */

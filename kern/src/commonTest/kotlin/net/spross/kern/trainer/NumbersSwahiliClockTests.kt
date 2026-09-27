@@ -17,7 +17,7 @@ class NumbersSwahiliClockTests {
     fun theQuarterHoursHaveTheirOwnWords() {
         assertEquals("Saa tisa na robo mchana", clock(15, 15).display)
         assertEquals("Saa kumi kasorobo mchana", clock(15, 45).display)
-        // The spelt-out register stays accepted beside them.
+        // The spelled-out register stays accepted beside them.
         assertTrue("Saa tisa na dakika kumi na tano" in clock(15, 15).accepted)
         assertTrue("Saa kumi kasoro dakika kumi na tano" in clock(15, 45).accepted)
         assertTrue("Saa kumi kasoro robo" in clock(15, 45).accepted)

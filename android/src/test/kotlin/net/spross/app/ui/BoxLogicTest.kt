@@ -142,7 +142,7 @@ class BoxLogicTest {
         assertEquals("nyumba", draft.learning)
         assertEquals("🏠", draft.emoji)
 
-        // The typo fixed on the learnt side would mint a different id for a new word; an
+        // The typo fixed on the learned side would mint a different id for a new word; an
         // edit keeps this one, and with it the schedule and the queue slot.
         val fixed = draft.copy(learning = "nyumbani").word("de", "sw", setOf(stored.id))
         assertEquals(stored.id, fixed?.id)

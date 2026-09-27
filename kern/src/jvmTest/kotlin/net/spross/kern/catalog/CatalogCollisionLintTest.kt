@@ -275,7 +275,7 @@ class CatalogCollisionLintTest {
                 // and pinnable instead of the unfixable two-language pair.
                 "sw mwezi: nature/moon, time/month",
                 // Reviewed 2026-08-04: `ndege` is the only Swahili word for both bird and
-                // aeroplane; de/en/es/uk all split them. The plane carries a de note so the
+                // airplane; de/en/es/uk all split them. The plane carries a de note so the
                 // learner meets the second sense as a fact, not as a surprise.
                 "sw ndege: animals/bird, transport/plane",
                 // Reviewed 2026-08-04: `nyanya` is the ordinary word for grandmother and for
@@ -302,7 +302,7 @@ class CatalogCollisionLintTest {
                 // nomo/antaŭnomo, nombre/nombre de pila, nom/prénom, nome/nome di battesimo,
                 // jina/jina la kwanza). A Ukrainian form asks for `ім'я` itself, so both stay.
                 "uk ім'я: greetings/name, personal-details/first-name",
-                // Reviewed 2026-09-22: uk `шина` is the car tyre AND the medical splint —
+                // Reviewed 2026-09-22: uk `шина` is the car tire AND the medical splint —
                 // de/en/eo/es/fr/it all split the pair (Reifen/Schiene, tire/splint, pneŭo/splinto,
                 // neumático/férula, pneu/attelle, pneumatico/stecca). `покришка` names only the
                 // outer casing and is not what a driver says, so both stay.

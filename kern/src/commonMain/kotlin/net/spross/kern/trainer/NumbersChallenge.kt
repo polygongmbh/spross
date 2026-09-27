@@ -97,7 +97,7 @@ data class NumbersChallenge(
         base32(specBits(), 1) + base32(seed, SEED_BITS / 5)
 
     private fun specBits(): Int =
-        exercises.sumOf { 1 shl TRAVELLING.indexOf(it) } +
+        exercises.sumOf { 1 shl TRAVELING.indexOf(it) } +
             (if (reverse) REVERSE_BIT else 0) +
             (if (mix) MIX_BIT else 0)
 
@@ -123,15 +123,15 @@ data class NumbersChallenge(
         private const val ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
 
         /** The exercises a code can carry, in the order its bits name them. */
-        private val TRAVELLING = listOf(NumbersExercise.Counting, NumbersExercise.Clock, NumbersExercise.Forms)
+        private val TRAVELING = listOf(NumbersExercise.Counting, NumbersExercise.Clock, NumbersExercise.Forms)
 
         /** Whether [create] has anything to send out of these picks. */
-        fun offered(mode: NumbersMode): Boolean = mode.exercises.any { it in TRAVELLING }
+        fun offered(mode: NumbersMode): Boolean = mode.exercises.any { it in TRAVELING }
 
         /** A fresh challenge from the page's picks, minus Phrases; null if nothing is left. */
         fun create(mode: NumbersMode, rng: Random): NumbersChallenge? {
             if (!offered(mode)) return null
-            val exercises = mode.exercises.filter { it in TRAVELLING }
+            val exercises = mode.exercises.filter { it in TRAVELING }
             return NumbersChallenge(
                 language = mode.language,
                 exercises = exercises,
@@ -154,7 +154,7 @@ data class NumbersChallenge(
             }
             if (!Numbers.supports(codeLanguage)) return ChallengeReading.Unreadable
             val spec = payload[0]
-            val exercises = TRAVELLING.filterIndexed { bit, _ -> spec and (1 shl bit) != 0 }
+            val exercises = TRAVELING.filterIndexed { bit, _ -> spec and (1 shl bit) != 0 }
             val offered = DrillSelection.offered(codeLanguage, phrasesRealized = false)
             if (exercises.isEmpty() || !offered.containsAll(exercises)) return ChallengeReading.Unreadable
             val challenge = NumbersChallenge(

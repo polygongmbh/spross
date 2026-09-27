@@ -223,14 +223,14 @@ class DrillWiringTest {
 
     // MARK: - The atlas run
 
-    private fun place(slug: String, flag: String, spoken: List<String>, known: String, learnt: String) =
+    private fun place(slug: String, flag: String, spoken: List<String>, known: String, learned: String) =
         AtlasCountryEntry(
             slug = slug,
             flag = flag,
             tier = 1,
             languages = spoken,
             source = CountryName(text = known, nationality = NationalityName("${known}er")),
-            target = CountryName(text = learnt, nationality = NationalityName("Wa$learnt")),
+            target = CountryName(text = learned, nationality = NationalityName("Wa$learned")),
         )
 
     private val atlas = CountryDrillContent(

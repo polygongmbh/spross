@@ -62,7 +62,7 @@ import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.model.Language
 
 /**
- * What the settings hold: which pair is being learnt, whether words are read aloud,
+ * What the settings hold: which pair is being learned, whether words are read aloud,
  * the backup, and the one destructive door — plus the way to who spoke the recordings.
  *
  * Neither picker hides the other's pick: choosing the language the OTHER side holds SWAPS
@@ -77,7 +77,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     val scope = rememberCoroutineScope()
     // Offers a save-file sheet for this language first when there's matured progress worth
     // keeping — a safety net ahead of the confirmation, never a gate on it: whether the save
-    // lands, fails, or is cancelled, the destructive confirmation still opens after.
+    // lands, fails, or is canceled, the destructive confirmation still opens after.
     val resetExport = rememberLauncherForActivityResult(
         ActivityResultContracts.CreateDocument("application/json"),
     ) { uri ->
