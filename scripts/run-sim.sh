@@ -5,14 +5,16 @@
 #   scripts/run-sim.sh --device 'iPhone 18 Pro Max' — pick another simulator by name
 #   scripts/run-sim.sh --clean                — uninstall first (⇒ onboarding runs)
 #   scripts/run-sim.sh --shot /tmp/home.png  — screenshot once the app has drawn
-#   scripts/run-sim.sh --mute                 — start with reading aloud switched off
+#   scripts/run-sim.sh --mute                 — start with reading aloud switched off, this launch only
 #   scripts/run-sim.sh --shot x.png --sound   — let a screenshot run speak after all
 #   scripts/run-sim.sh -- -uitest-source de -uitest-target sw   — DEBUG launch args
 #
-# Everything after `--` is passed to the app (see AppModel.start(): -uitest-source,
-# -uitest-target, -uitest-screen box, -uitest-autostart 1, -uitest-trainer numbers).
+# Everything after `--` is passed to the app (DEBUG only): -uitest-source/-uitest-target
+# pick a language pair, -uitest-screen box opens the Box, -uitest-autostart 1 starts the
+# session, -uitest-trainer <numbers|letters|countries|dates> opens a trainer overview
+# (read in TrainerHubView) and -uitest-run 1 starts the run from it.
 #
-# --shot implies --mute: a run nobody is sitting at should not start talking (README.md § Run it).
+# --shot implies --mute: a run nobody is sitting at should not start talking.
 set -eu
 cd "$(dirname "$0")/.."
 

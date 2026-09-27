@@ -85,24 +85,8 @@ Tests (the fast gate): `./gradlew :kern:jvmTest`
 
 ## Run it
 
-```sh
-scripts/run-sim.sh                        # build, install, launch on iPhone 17
-scripts/run-sim.sh --no-build             # reinstall the last build
-scripts/run-sim.sh --clean                # uninstall first, so onboarding runs
-scripts/run-sim.sh --device 'iPhone 18 Pro Max'   # another simulator, by name
-scripts/run-sim.sh --shot /tmp/home.png  # screenshot once it has drawn (implies --mute)
-scripts/run-sim.sh --mute                 # start with reading aloud switched off
-scripts/run-sim.sh -- -uitest-source de -uitest-target sw   # skip onboarding
-```
-
-`--mute` keeps a driven run silent for that launch only (nothing is stored);
-`--sound` opts a screenshot run back in.
-
-Arguments after `--` reach the app: `-uitest-source`/`-uitest-target` pick a
-language pair, `-uitest-screen box` opens the Box, `-uitest-autostart 1` starts
-the session, `-uitest-trainer <numbers|letters|countries|dates>` opens a
-trainer overview (DEBUG only, read in `TrainerHubView`), and `-uitest-run 1`
-starts the run from it.
+`scripts/run-sim.sh` builds, installs and launches on the iPhone 17 simulator;
+its header lists the flags and the DEBUG launch arguments.
 
 Physical devices: `scripts/deploy-devices.sh` — Release, or `--debug` while iterating.
 
