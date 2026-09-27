@@ -2,7 +2,7 @@
 # Build, install and launch Spross on an iOS Simulator.
 #   scripts/run-sim.sh                        — build + (re)launch on iPhone 17
 #   scripts/run-sim.sh --no-build             — reinstall the last build, skip xcodebuild
-#   scripts/run-sim.sh --device 'iPhone 16'   — pick another simulator by name
+#   scripts/run-sim.sh --device 'iPhone 18 Pro Max' — pick another simulator by name
 #   scripts/run-sim.sh --clean                — uninstall first (⇒ onboarding runs)
 #   scripts/run-sim.sh --shot /tmp/home.png  — screenshot once the app has drawn
 #   scripts/run-sim.sh --mute                 — start with reading aloud switched off
@@ -38,9 +38,10 @@ while [ $# -gt 0 ]; do
 done
 
 # why: `booted` is ambiguous once the paired watch simulator is up too — every
-# simctl call here targets one resolved UDID instead.
+# simctl call here targets one resolved UDID instead. The LAST match is the newest
+# runtime (simctl lists them oldest first), the one `name=` in the build gate picks.
 UDID=$(xcrun simctl list devices available \
-  | awk -v want="$DEVICE" -F'[()]' '$0 ~ "^ *" want " \\(" { print $2; exit }')
+  | awk -v want="$DEVICE" -F'[()]' '$0 ~ "^ *" want " \\(" { udid = $2 } END { print udid }')
 if [ -z "$UDID" ]; then
   echo "error: run-sim: no available simulator named '$DEVICE'" >&2
   echo "       xcrun simctl list devices available" >&2
