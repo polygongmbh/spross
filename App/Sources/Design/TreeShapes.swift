@@ -33,7 +33,7 @@ enum TreeShapes {
     /// arrive, and a leaf turn into a blossom in place, while nothing else moves.
     static func draw(_ context: inout GraphicsContext, _ mark: TreeMark,
                      arriving: TreeArrival = .settled) {
-        let shown = mark.tree
+        let shown = mark.canopy
         ground(&context, mark)
 
         // why: an area nobody has opened stands as a seedling on its own patch of
@@ -45,7 +45,7 @@ enum TreeShapes {
                             height: max(mark.height, OrchardLayout.minHeight),
                             color: Theme.colors.success.opacity(0.45))
         }
-        guard shown.canopyCount > 0 else {
+        guard shown.count > 0 else {
             return seedling(&context, mark, height: mark.height, color: Theme.colors.success)
         }
 
@@ -148,7 +148,7 @@ enum TreeShapes {
     /// first slots, which the skeleton shuffled twig by twig, so they scatter
     /// through the crown rather than ringing it.
     private static func foliage(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton,
-                                _ mark: TreeMark, _ shown: AreaTree, _ arriving: TreeArrival) {
+                                _ mark: TreeMark, _ shown: Canopy, _ arriving: TreeArrival) {
         // why: a mark is sized against the crown it has to help fill, not
         // against the tree's height — pitch is the crown shared out over the
         // words hanging in it, so thirty marks on a middling tree close into
@@ -161,13 +161,13 @@ enum TreeShapes {
         let base = CanopyMark.base(pitch: skeleton.pitch)
         var tones = [Path(), Path(), Path()]
 
-        for (rank, slot) in skeleton.slots.prefix(shown.canopyCount).enumerated() {
+        for (rank, slot) in skeleton.slots.prefix(shown.count).enumerated() {
             // A mark's SIZE is its own word's standing; only its lean is
             // hashed. A canopy of identical stamps is the other way to look
             // machine-made, and a canopy whose variation means something is
             // better than one whose variation is noise.
-            let grain = OrchardLayout.noise("\(mark.tree.id)-\(rank)", 41)
-            let reach = rank < shown.reaches.count ? shown.reaches[rank] : 0.4
+            let grain = OrchardLayout.noise("\(mark.tree.area)-\(rank)", 41)
+            let reach = shown.reach(rank)
             // The round's own marks arrive; the rest of the crown is settled.
             let size = CanopyMark.size(base: base, reach: reach) * arriving.scale(rank)
             guard size > 0.2 else { continue }
@@ -177,7 +177,7 @@ enum TreeShapes {
                 fruit(&context, at: slot.point, size: size)
             } else if rank < shown.fruit + shown.blossoms {
                 blossom(&context, at: slot.point, size: size, angle: angle)
-            } else if rank < shown.canopyCount - shown.buds {
+            } else if rank < shown.count - shown.buds {
                 tones[Int(grain * 3) % 3].addPath(
                     leafPath(at: slot.point, size: size * CanopyMark.leafStretch, angle: angle))
             } else {
@@ -196,13 +196,13 @@ enum TreeShapes {
     /// and a picture that shrank the tree for a routine Tuesday would be lying
     /// about what a lapse costs.
     private static func fallen(_ context: inout GraphicsContext, _ mark: TreeMark,
-                               _ shown: AreaTree) {
+                               _ shown: Canopy) {
         guard shown.fallen > 0 else { return }
         let clear = max(7, mark.height * 0.2)
         let size = max(3, mark.height * 0.055)
         for index in 0..<min(shown.fallen, 3) {
             let side: CGFloat = index.isMultiple(of: 2) ? -1 : 1
-            let spread = clear + CGFloat(OrchardLayout.noise("\(mark.tree.id)-f\(index)", 13)) * clear * 0.5
+            let spread = clear + CGFloat(OrchardLayout.noise("\(mark.tree.area)-f\(index)", 13)) * clear * 0.5
             let at = CGPoint(x: mark.foot.x + side * spread, y: mark.baseline + 0.5)
             leaf(&context, at: at, size: size, angle: side > 0 ? 0.2 : .pi - 0.2,
                  color: Theme.colors.amber.opacity(0.85))
@@ -332,14 +332,15 @@ enum CanopyMark {
 
     /// How far this crown reaches outside `box`, on the three sides a tree can
     /// be clipped on. Zero when it all fits.
-    static func spill(of skeleton: TreeSkeleton, _ tree: AreaTree, in box: CGRect) -> CGFloat {
+    static func spill(of skeleton: TreeSkeleton, _ tree: Canopy, id: String,
+                      in box: CGRect) -> CGFloat {
         let base = base(pitch: skeleton.pitch) * maxSwell
         var spill: CGFloat = 0
-        for (rank, slot) in skeleton.slots.prefix(tree.canopyCount).enumerated() {
-            let reach = rank < tree.reaches.count ? tree.reaches[rank] : 0.4
+        for (rank, slot) in skeleton.slots.prefix(tree.count).enumerated() {
+            let reach = tree.reach(rank)
             let size = size(base: base, reach: reach)
             let ink: CGRect
-            if rank < tree.fruit + tree.blossoms || rank >= tree.canopyCount - tree.buds {
+            if rank < tree.fruit + tree.blossoms || rank >= tree.count - tree.buds {
                 // Fruit, blossom and bud all sit ON their slot; the stalk is the
                 // furthest any of them gets from it.
                 let radius = size * (rank < tree.fruit + tree.blossoms ? 0.62 : budRadius)
@@ -347,7 +348,7 @@ enum CanopyMark {
                              width: radius * 2, height: radius * 2)
             } else {
                 ink = leafBounds(at: slot.point, size: size * leafStretch,
-                                 angle: lean(slot, grain: OrchardLayout.noise("\(tree.id)-\(rank)", 41)))
+                                 angle: lean(slot, grain: OrchardLayout.noise("\(id)-\(rank)", 41)))
             }
             spill = max(spill, max(box.minY - ink.minY,
                                    max(box.minX - ink.minX, ink.maxX - box.maxX)))

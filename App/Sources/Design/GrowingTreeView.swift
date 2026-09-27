@@ -1,4 +1,5 @@
 import SwiftUI
+import SprossKern
 
 // MARK: - GrowingTreeView
 //
@@ -94,8 +95,8 @@ struct TreeArrival {
     private static let stagger = 0.30
 
     init(_ transition: TreeTransition, at progress: Double) {
-        let ranks = transition.changedRanks
-        let hanging = transition.settledCount
+        let ranks = transition.changedRanks.map(\.intValue)
+        let hanging = Int(transition.settledCount)
         var scales: [Int: CGFloat] = [:]
         for (order, rank) in ranks.enumerated() {
             let share = ranks.count > 1 ? Double(order) / Double(ranks.count - 1) : 0
@@ -129,12 +130,10 @@ struct TreeArrival {
 // MARK: - Previews
 
 #Preview("A round's growth") {
-    let before = AreaTree(id: "kitchen", emoji: "🍳", title: "Die Küche",
-                          leaves: 18, blossoms: 2, fruit: 1, buds: 9, growing: 0, fallen: 1,
-                          mass: 14, tendedToday: false)
-    let after = AreaTree(id: "kitchen", emoji: "🍳", title: "Die Küche",
-                         leaves: 22, blossoms: 4, fruit: 2, buds: 6, growing: 0, fallen: 1,
-                         mass: 18, tendedToday: true)
+    let before = AreaTree.sample("kitchen", leaves: 18, blossoms: 2, fruit: 1, buds: 9,
+                                 fallen: 1, mass: 14)
+    let after = AreaTree.sample("kitchen", leaves: 22, blossoms: 4, fruit: 2, buds: 6,
+                                fallen: 1, mass: 18, tendedToday: true)
     let move = TreeTransition(before: before, after: after)
     return HStack(spacing: Theme.spacing.lg) {
         GrowingTreeView(transition: move, progress: 0)
@@ -146,45 +145,20 @@ struct TreeArrival {
     .background(Theme.colors.background)
 }
 
-#Preview("A round that moved no count") {
-    let same = AreaTree(id: "kitchen", emoji: "🍳", title: "Die Küche",
-                        leaves: 26, blossoms: 5, fruit: 2, buds: 4, growing: 0, fallen: 0,
-                        mass: 19, tendedToday: true)
-    let move = TreeTransition(before: same, after: same)
-    return HStack(spacing: Theme.spacing.lg) {
-        GrowingTreeView(transition: move, progress: 0)
-        GrowingTreeView(transition: move, progress: 0.5)
-        GrowingTreeView(transition: move, progress: 1)
-    }
-    .frame(height: 200)
-    .padding(Theme.spacing.xl)
-    .background(Theme.colors.background)
-}
-
-// Seven words met and nothing settled — the shape of a first round, and the one
-// the tree used to answer with a bare stem the height of the whole screen.
+// Seven words met and nothing settled — the shape of a first round in an area.
 #Preview("A first round in a new area") {
-    let after = AreaTree(id: "bath", emoji: "🛁", title: "Das Bad",
-                         leaves: 0, blossoms: 0, fruit: 0, buds: 7, growing: 0, fallen: 0,
-                         mass: 1.3, tendedToday: true)
-    return GrowingTreeView(
-        transition: TreeTransition(
-            before: AreaTree(id: "bath", emoji: "🛁", title: "Das Bad",
-                             leaves: 0, blossoms: 0, fruit: 0, growing: 0, fallen: 0,
-                             mass: 0, tendedToday: false),
-            after: after),
-        progress: 1
-    )
-    .frame(height: OrchardLayout.heroHeight(after))
-    .padding(Theme.spacing.xl)
-    .background(Theme.colors.background)
+    let after = AreaTree.sample("bath", buds: 7, mass: 1.3, tendedToday: true)
+    return GrowingTreeView(transition: TreeTransition(before: AreaTree.companion.bare(area: "bath"),
+                                                      after: after),
+                           progress: 1)
+        .frame(height: OrchardLayout.heroHeight(after))
+        .padding(Theme.spacing.xl)
+        .background(Theme.colors.background)
 }
 
 /// An area packed and not yet opened: still a seedling, and nothing hangs.
 #Preview("An area only packed") {
-    let packed = AreaTree(id: "bath", emoji: "🛁", title: "Das Bad",
-                          leaves: 0, blossoms: 0, fruit: 0, growing: 12, fallen: 0,
-                          mass: 0, tendedToday: true)
+    let packed = AreaTree.sample("bath", packed: 12, mass: 0, tendedToday: true)
     return GrowingTreeView(transition: TreeTransition(before: packed, after: packed),
                            progress: 1)
         .frame(height: OrchardLayout.heroHeight(packed))

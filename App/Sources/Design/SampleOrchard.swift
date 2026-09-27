@@ -1,4 +1,5 @@
 import Foundation
+import SprossKern
 
 // MARK: - A fabricated orchard
 //
@@ -28,6 +29,11 @@ enum SampleOrchard {
         }
     }
 
+    /// The area's emoji, for the forest's labels.
+    static func emoji(_ area: String) -> String {
+        areas.first { $0.0 == area }?.1 ?? "📦"
+    }
+
     /// The kitchen as a round at `age` leaves it —
     /// a large area at the same age the orchard stands at.
     static func round(age: Double) -> TreeTransition {
@@ -38,7 +44,7 @@ enum SampleOrchard {
 
     private static func tree(_ area: (String, String, String, Int), reached: Double,
                              index: Int, tended: Bool? = nil) -> AreaTree {
-        let (id, emoji, title, total) = area
+        let (id, _, _, total) = area
         let started = Int(Double(total) * min(1, reached * 1.3))
         let settled = Int(Double(started) * max(0, reached - 0.25))
         let blossoms = Int(Double(settled) * max(0, reached - 0.55))
@@ -46,11 +52,9 @@ enum SampleOrchard {
         let reaches = (0..<started).map { rank in
             max(0, reached - Double(rank) / Double(max(started, 1)) * 0.6)
         }
-        return AreaTree(
-            id: id, emoji: emoji, title: title,
-            leaves: settled - blossoms, blossoms: blossoms - fruit, fruit: fruit,
-            buds: started - settled, growing: 0,
-            fallen: reached > 0.3 && index % 3 == 0 ? 2 : 0,
+        return AreaTree.sample(
+            id, leaves: settled - blossoms, blossoms: blossoms - fruit, fruit: fruit,
+            buds: started - settled, fallen: reached > 0.3 && index % 3 == 0 ? 2 : 0,
             mass: Double(settled) * 0.35 + Double(blossoms) * 0.6 + Double(fruit),
             tendedToday: tended ?? (index % 5 == 2 && reached > 0),
             reaches: reaches

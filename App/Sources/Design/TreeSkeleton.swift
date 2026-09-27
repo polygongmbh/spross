@@ -85,7 +85,7 @@ struct TreeSkeleton {
     /// its branch COUNT saying "old" while its size says "new". Taken from the
     /// area's standing rather than the size it is drawn at, so the hero and the
     /// orchard show one tree.
-    static func generations(for tree: AreaTree) -> Int {
+    static func generations(for canopy: Canopy) -> Int {
         // why: from the number of WORDS, not the tree's height. Height comes
         // from aggregate stability, which climbs while a word is merely getting
         // stronger — so an area could grow tall enough to earn another
@@ -97,7 +97,7 @@ struct TreeSkeleton {
         // marks were spread one to a twig over twenty-four of them and read as
         // scattered leaves, where the three-generation tree beside it carried
         // two or three to a twig and read as foliage.
-        switch tree.canopyCount {
+        switch canopy.count {
         case ..<12: return 2
         case ..<38: return 3
         default: return maxDepth
@@ -115,8 +115,8 @@ struct TreeSkeleton {
     /// 15% the marks come out just short of the young wood, so the gaps land on
     /// the limbs nearest the trunk, which is where a real tree's gaps are. The
     /// floor keeps a handful of words from each claiming a quarter of the crown.
-    static func slots(for tree: AreaTree) -> Int {
-        max(8, Int((Double(tree.canopyCount) * 1.15).rounded(.up)))
+    static func slots(for canopy: Canopy) -> Int {
+        max(8, Int((Double(canopy.count) * 1.15).rounded(.up)))
     }
 
     /// Grows one tree, fitted into `rect` with its foot on the bottom edge.

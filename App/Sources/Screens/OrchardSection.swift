@@ -29,7 +29,7 @@ struct OrchardSection: View {
             ActivityStripView(days: model.activity.map(ActivityColumn.init),
                               streakDays: model.stats?.streakDays ?? 0,
                               flame: model.stats?.flame ?? .unlit)
-            OrchardCanvas(trees: model.trees, open: open, describe: describe)
+            OrchardCanvas(trees: model.trees, emoji: model.areaEmoji, open: open, describe: describe)
                 .environment(\.contentWidth, width)
             caption
         }
@@ -64,9 +64,9 @@ struct OrchardSection: View {
     /// What VoiceOver reads: the picture says nothing aloud, so the label
     /// carries the area and the same split the caption spells out.
     private func describe(_ tree: AreaTree) -> Text {
-        let stats = model.areaStats(tree.id)
+        let stats = model.areaStats(tree.area)
         return Text.joined(
-            Text(tree.title),
+            Text(model.areaTitle(tree.area)),
             Text("progress.consolidatedCount \((stats?.consolidated ?? 0).formatted())"),
             Text("progress.learningCount \((stats?.learning ?? 0).formatted())")
         )

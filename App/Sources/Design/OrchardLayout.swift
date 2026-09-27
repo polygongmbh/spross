@@ -1,4 +1,5 @@
 import Foundation
+import SprossKern
 
 // MARK: - Orchard layout
 //
@@ -7,13 +8,14 @@ import Foundation
 // so a preview can fabricate a box at any age.
 //
 // `TreeMark` is a placed tree (position, cell, skeleton) —
-// a layout artifact that belongs here rather than with the shared
-// `AreaTree` data type in `AreaTrees.swift`.
+// a layout artifact over kern's `AreaTree`.
 
 /// One tree placed: where it stands and how tall,
 /// plus the branches its marks hang on.
 struct TreeMark {
     let tree: AreaTree
+    /// What hangs on it, by mark.
+    let canopy: Canopy
     /// Where the trunk meets the ground.
     let foot: CGPoint
     /// Foot to the top of the crown.
@@ -35,11 +37,12 @@ struct TreeMark {
 
     init(tree: AreaTree, foot: CGPoint, height: CGFloat, cell: CGRect, baseline: CGFloat) {
         self.tree = tree
+        self.canopy = Canopy(tree)
         self.foot = foot
         self.height = height
         self.cell = cell
         self.baseline = baseline
-        self.skeleton = Self.grown(tree: tree, foot: foot, height: height)
+        self.skeleton = Self.grown(tree: tree, canopy: canopy, foot: foot, height: height)
     }
 
     /// Grown TWICE.
@@ -52,20 +55,21 @@ struct TreeMark {
     /// The first growing is there to be measured:
     /// it says how far this crown's marks reach,
     /// and the second is grown into a box holding that much back for them.
-    private static func grown(tree: AreaTree, foot: CGPoint, height: CGFloat) -> TreeSkeleton {
+    private static func grown(tree: AreaTree, canopy: Canopy, foot: CGPoint,
+                               height: CGFloat) -> TreeSkeleton {
         // why: both counts come from the TREE —
         // the finished one, whatever moment is being drawn —
         // and never from the height it is drawn at.
         // A transition scales the height every frame,
         // and a crown that grew a generation or a slot halfway through
         // would reshuffle every slot under the marks already hanging on them.
-        let depth = TreeSkeleton.generations(for: tree)
-        let slots = TreeSkeleton.slots(for: tree)
-        let seed = SplitMix64(tree.id).seed
+        let depth = TreeSkeleton.generations(for: canopy)
+        let slots = TreeSkeleton.slots(for: canopy)
+        let seed = SplitMix64(tree.area).seed
         let box = CGRect(x: foot.x - height * 0.72, y: foot.y - height,
                          width: max(height * 1.44, 1), height: max(height, 1))
         let loose = TreeSkeleton.grown(seed: seed, depth: depth, slots: slots, in: box)
-        let spill = CanopyMark.spill(of: loose, tree, in: box)
+        let spill = CanopyMark.spill(of: loose, canopy, id: tree.area, in: box)
         guard spill > 0.2 else { return loose }
         // Held back on three sides only:
         // the trunk stands on the bottom edge,
@@ -194,7 +198,7 @@ enum OrchardLayout {
             let lead: CGFloat = rank.isMultiple(of: 2) ? 0 : (room[row[0]] + gap) / 2
             var x = lead
             for index in row {
-                let drift = CGFloat(noise(trees[index].id, 31) - 0.5) * min(gap, 10)
+                let drift = CGFloat(noise(trees[index].area, 31) - 0.5) * min(gap, 10)
                 let stand = base + band
                 // why: the cell follows THIS tree's own crown, never the row's band —
                 // a band is as tall as the tallest tree in the row, and giving every

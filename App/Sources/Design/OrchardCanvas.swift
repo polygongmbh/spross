@@ -1,4 +1,5 @@
 import SwiftUI
+import SprossKern
 
 // MARK: - OrchardCanvas
 //
@@ -25,6 +26,8 @@ import SwiftUI
 
 struct OrchardCanvas: View {
     let trees: [AreaTree]
+    /// The emoji an area wears under its tree.
+    let emoji: (String) -> String
     /// What tapping a tree does.
     /// Nil leaves the orchard a picture.
     var open: ((String) -> Void)?
@@ -51,11 +54,11 @@ struct OrchardCanvas: View {
                 // orchard, and a tree standing in front of an area was labeled through.
                 for mark in marks {
                     TreeShapes.draw(&context, mark)
-                    emoji(&context, mark)
+                    label(&context, mark)
                 }
             }
             .accessibilityHidden(true)
-            ForEach(marks, id: \.tree.id) { mark in
+            ForEach(marks, id: \.tree.area) { mark in
                 tapTarget(mark)
             }
         }
@@ -70,11 +73,11 @@ struct OrchardCanvas: View {
     /// and the only text small enough to sit under a 58pt cell.
     /// The name itself is in the accessibility label
     /// and on the screen the tree opens.
-    private func emoji(_ context: inout GraphicsContext, _ mark: TreeMark) {
-        let text = Text(verbatim: mark.tree.emoji)
+    private func label(_ context: inout GraphicsContext, _ mark: TreeMark) {
+        let text = Text(verbatim: emoji(mark.tree.area))
             .font(.system(size: 13)) // card-parity: a mark under a 58pt cell, below every type role
         let at = CGPoint(x: mark.foot.x, y: mark.baseline + OrchardLayout.labelHeight / 2)
-        guard mark.tree.isBare else { return context.draw(text, at: at, anchor: .center) }
+        guard mark.canopy.isBare else { return context.draw(text, at: at, anchor: .center) }
         context.drawLayer { faded in
             faded.opacity = 0.4
             faded.draw(text, at: at, anchor: .center)
@@ -89,9 +92,9 @@ struct OrchardCanvas: View {
             .frame(width: mark.cell.width, height: mark.cell.height)
             .contentShape(Rectangle())
             .offset(x: mark.cell.minX, y: mark.cell.minY)
-            .onTapGesture { open?(mark.tree.id) }
+            .onTapGesture { open?(mark.tree.area) }
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel(describe?(mark.tree) ?? Text(mark.tree.title))
+            .accessibilityLabel(describe?(mark.tree) ?? Text(verbatim: mark.tree.area))
             .accessibilityAddTraits(open == nil ? [] : .isButton)
     }
 }
@@ -120,7 +123,7 @@ private struct OrchardPreview: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            OrchardCanvas(trees: SampleOrchard.trees(age: age), open: { _ in })
+            OrchardCanvas(trees: SampleOrchard.trees(age: age), emoji: SampleOrchard.emoji, open: { _ in })
         }
         .padding(Theme.spacing.xl)
         .environment(\.contentWidth, 402 - Theme.spacing.xl * 2)

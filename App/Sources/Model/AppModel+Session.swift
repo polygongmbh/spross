@@ -69,7 +69,7 @@ extension AppModel {
         // why: the summary shows what THIS round did to an area, so the before
         // has to be taken while it still is the before — one snapshot at the
         // door, since which area the round will favour is not knowable yet.
-        treesBeforeSession = Dictionary(uniqueKeysWithValues: trees.map { ($0.id, $0) })
+        treesBeforeSession = Dictionary(uniqueKeysWithValues: trees.map { ($0.area, $0) })
         reduce(intent)
         // why: a run kern refused to start (no box, or an extra round that came back
         // empty) must not raise the cover over nothing.
@@ -160,31 +160,18 @@ extension AppModel {
         #if DEBUG
         if let age = uitestOrchardAge { return SampleOrchard.round(age: age) }
         #endif
-        guard let area = sessionArea, let after = areaTree(area) else { return nil }
-        let empty = AreaTree(id: area, emoji: after.emoji, title: after.title,
-                             leaves: 0, blossoms: 0, fruit: 0, growing: 0, fallen: 0,
-                             mass: 0, tendedToday: false)
-        return TreeTransition(before: treesBeforeSession[area] ?? empty, after: after)
+        guard let box, let run else { return nil }
+        return grownArea(state: box, answeredIds: run.answeredIds, areaOrder: areaNames,
+                         before: treesBeforeSession,
+                         after: Dictionary(uniqueKeysWithValues: trees.map { ($0.area, $0) }))
     }
 
-    /// The area this round worked hardest — what the summary draws a tree of.
-    var sessionArea: String? {
-        guard let box, let touched = run?.answeredIds, !touched.isEmpty else { return nil }
-        // why: one read of `box.cards` carries the whole join across the bridge
-        // (`AreaTrees.growthByArea`), and the summary asks this on every redraw.
-        let cards = box.cards
-        var byArea: [String: Int] = [:]
-        for id in touched {
-            guard let area = cards[id]?.area else { continue }
-            byArea[area, default: 0] += 1
-        }
-        // why: walk in catalog order keeping a STRICT >, so a round split evenly
-        // between two areas names the same one every time it is shown.
-        var best: (area: String, count: Int)?
-        for area in areaNames where (byArea[area] ?? 0) > (best?.count ?? 0) {
-            best = (area, byArea[area] ?? 0)
-        }
-        return best?.area
+    /// What the summary says over the round's tree — kern's claim (`growthHeadline`).
+    var sessionHeadline: GrowthHeadline? {
+        growthHeadline(transition: sessionGrowth,
+                       restSuggested: today?.recallStrained ?? false,
+                       introduced: Int32(sessionNew), consolidated: Int32(sessionGraduated),
+                       reviews: Int32(sessionReviews), streakDays: Int32(stats?.streakDays ?? 0))
     }
 
     /// Whether a round the learner asks for would yield anything — drives both the summary's

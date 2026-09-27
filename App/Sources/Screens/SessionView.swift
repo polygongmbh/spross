@@ -68,6 +68,10 @@ struct SessionView: View, LanguageNaming {
                                       streakDays: model.stats?.streakDays ?? 0,
                                       streakIsRecord: model.streakIsRecord,
                                       grownArea: model.sessionGrowth,
+                                      grownAreaLabel: model.sessionGrowth.map {
+                                          "\(model.areaEmoji($0.after.area)) \(model.areaTitle($0.after.area))"
+                                      } ?? "",
+                                      headline: model.sessionHeadline,
                                       canPracticeMore: model.canPracticeMore,
                                       restSuggested: model.today?.recallStrained ?? false,
                                       onTalk: model.hasBriefing ? { briefing = true } : nil,

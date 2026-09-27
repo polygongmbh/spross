@@ -184,7 +184,9 @@ What licenses a second component is a parameter attempted and found not to carry
   **The unit is the area, not the word.**
   **A tree is one organism its whole life** — trunk is growth, canopy is landed words,
   blossom and fruit appear on it.
-  Which `GrowthStage` becomes which mark: `AreaTrees` and nowhere else.
+  Which `GrowthStage` stands in which tier is kern's `areaTrees`;
+  a tier is one mark — arriving a bud, growing a leaf, matured a blossom, long held fruit.
+  What the round summary claims over its tree is kern's `growthHeadline`.
   A met word hangs as a bud until it settles into a leaf; merely packed hangs nothing.
   Size comes from what has grown, never from catalog count.
   An unopened area is one faded seedling.

@@ -19,6 +19,10 @@ struct SessionCompletionView: View {
     /// it stands now. The round just moved it, so its tree is the one thing on
     /// this screen about THIS learner's box rather than about having finished.
     var grownArea: TreeTransition?
+    /// The area's emoji and name, under the headline.
+    var grownAreaLabel: String = ""
+    /// What the summary says over the tree (`AppModel.sessionHeadline`).
+    var headline: GrowthHeadline?
     var canPracticeMore: Bool = false
     /// Today's recall has fallen far below what the box schedules for
     /// (`TodayReport.recallStrained`). Practicing on stays available either
@@ -167,10 +171,10 @@ struct SessionCompletionView: View {
                                 : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
                                value: burst)
                 VStack(spacing: 2) {
-                    Text(growthHeadline)
+                    Text(headlineKey)
                         .font(Theme.typography.headline)
                         .foregroundStyle(Theme.colors.textPrimary)
-                    Text(verbatim: "\(grownArea.after.emoji) \(grownArea.after.title)")
+                    Text(verbatim: grownAreaLabel)
                         .font(Theme.typography.caption)
                         .foregroundStyle(Theme.colors.textSecondary)
                 }
@@ -179,68 +183,28 @@ struct SessionCompletionView: View {
         }
     }
 
-    /// What the round did, said about the tree standing above it.
-    ///
-    /// Read off THE PICTURE — what this area gained — and never off the round's
-    /// own tallies. Those are session-wide, so a round that graduated a word in
-    /// the bathroom while working mostly in the kitchen printed a blossom line
-    /// over a kitchen tree that had gained no blossom. The copy says "hier"; it
-    /// must be true of the tree the learner is looking at.
-    ///
-    /// The subject is always what the learner can say, never the area. The area
-    /// did not grow, and it is labeled separately below for that reason — which
-    /// is also what gives "hier" something to point at.
-    private var growthHeadline: LocalizedStringKey {
-        // why: a day the box itself is telling the learner to stop makes no
-        // growth claim — a screen that celebrates and is contradicted two lines
-        // down teaches the learner not to believe it. The vagueness of that one
-        // line is the point: on a bad day the box genuinely cannot say which
-        // words survived, and pretending otherwise is what the rest hint exists
-        // to prevent.
-        guard !restSuggested else { return "session.done.growth.grew" }
-        guard let move = grownArea else { return "session.done.growth.grown.0" }
-
-        // Ground where there had never been any: the most narratable thing the
-        // box does, and it used to read like any other round of new words.
-        if move.before.isBare { return "session.done.growth.opened" }
-
+    /// What the round did, said about the tree standing above it — kern's claim
+    /// (`growthHeadline`), which is read off what THIS area gained.
+    /// The subject is always what the learner can say, never the area,
+    /// which is labeled separately below.
+    private var headlineKey: LocalizedStringKey {
+        guard let headline else { return "session.done.growth.grown.0" }
         // why: the key is built as a STRING and only then wrapped. Interpolating
         // inside `LocalizedStringKey("…\(n)")` takes the string-INTERPOLATION
         // initializer, which makes the key "…%lld" with an argument — it
         // compiles, and renders the raw key at runtime.
-        let kind: String
-        var variants = 3
-        var offset = 0
-        let landed = move.after.blossoms + move.after.fruit
-        let hadLanded = move.before.blossoms + move.before.fruit
-        if landed > hadLanded {
-            kind = "blooming"
-        } else if move.after.buds > move.before.buds,
-                  move.after.leaves <= move.before.leaves {
-            kind = "sown"
-        } else {
-            kind = "grown"
-            // A round that added no mark to the canopy can only honestly claim
-            // depth — nothing visibly grew, what was there took a firmer hold.
-            // Those are variants 1 and 2; variant 0 says "wächst".
-            if move.before.canopyCount == move.after.canopyCount {
-                variants = 2
-                offset = 1
-            }
+        let pick = Int(headline.pick)
+        let key: String
+        switch headline.claim {
+        case .unclaimed: key = "session.done.growth.grew"
+        case .opened: key = "session.done.growth.opened"
+        case .matured: key = "session.done.growth.blooming.\(pick % 3)"
+        case .met: key = "session.done.growth.sown.\(pick % 3)"
+        // Line 0 says the words grew; a round that added none claims only depth.
+        case .held: key = "session.done.growth.grown.\(1 + pick % 2)"
+        case .grew: key = "session.done.growth.grown.\(pick % 3)"
         }
-        let key = "session.done.growth.\(kind).\(variant(of: variants) + offset)"
         return LocalizedStringKey(key)
-    }
-
-    /// A stable choice among `count`.
-    ///
-    /// Stability is only needed WITHIN one summary, so the streak joins the
-    /// round's tallies in the seed: a learner with a steady habit answers the
-    /// same shape of round every morning, and on the tallies alone would have
-    /// read the very same sentence every day forever.
-    private func variant(of count: Int) -> Int {
-        let seed = SplitMix64("\(newCount):\(graduatedCount):\(reviewCount):\(streakDays)").seed
-        return Int(SplitMix64.mix(seed) % UInt64(count))
     }
 
     private var burstHero: some View {
