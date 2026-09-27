@@ -5,6 +5,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 ## Unreleased
 
 - Once the day's round is done, Home suggests one drill and says why, so you no longer have to pick among six.
+- Tapping a recording in Legal & Licenses now plays it, and a small link beside it opens its page on Wikimedia Commons.
 - Words asked by ear now come up even with the volume turned down, and any screen about to play words asks you to turn it up when it is too low.
 - Switching reading aloud off or on now lasts until you next open the app, which starts out following your phone again.
 - Listening now brings in everyday new words sooner, while words from deeper in the catalog still come up now and then.

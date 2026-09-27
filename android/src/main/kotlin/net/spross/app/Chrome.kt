@@ -117,6 +117,7 @@ interface Chrome {
     val creditsFont: String
     val creditsUnmodified: String
     val creditsCommonsNote: String
+    val creditsOpenFile: String
     /** The address the notice answers on is kern's ([net.spross.kern.Legal]). */
     val legalTitle: String
     val legalCompany: String

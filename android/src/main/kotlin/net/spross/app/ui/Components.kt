@@ -291,6 +291,8 @@ internal val SPEAKER_GLYPH = 18.dp
  *
  * A reference page is read by running down it,
  * so the CONTENT is the target and no row carries a speaker of its own — this line says so.
+ * The credits screen is the one list whose rows each carry an icon, and it is not a speaker:
+ * the row plays its recording, and a trailing link opens the file's Commons page.
  * The numbers table and the atlas draw the same one (iOS `ReferenceTapHint`),
  * and only where the device can actually answer.
  *

@@ -44,7 +44,7 @@ struct CreditsView: View {
                 .font(Theme.typography.title)
                 .foregroundStyle(Theme.colors.textPrimary)
             ForEach(section.credits) { credit in
-                CreditGroupRow(credit: credit)
+                CreditGroupRow(credit: credit, play: play)
             }
             footer
         }
@@ -68,6 +68,13 @@ struct CreditsView: View {
         let name = LanguageNames.display(code, catalog: model.catalog)
         guard let flag = model.languageInfo(code)?.flag else { return name }
         return "\(flag) \(name)"
+    }
+
+    /// A tap is a request, and the file credited is what plays — never a voice in its place.
+    private func play(_ file: AudioCreditFile) {
+        Pronouncer.shared.pronounce(file.pronunciation,
+                                    recordingURL: model.audioURL(file.pronunciation.recordingPath),
+                                    trigger: .tap, recordingOnly: true)
     }
 
     /// Kern emits the groups in language-declaration order, so the distinct
@@ -97,6 +104,7 @@ private struct CreditSection: Identifiable {
 /// ask for a link to the work where giving one is reasonable.
 private struct CreditGroupRow: View {
     let credit: AudioCredit
+    let play: (AudioCreditFile) -> Void
 
     @State private var expanded = false
 
@@ -154,28 +162,41 @@ private struct CreditGroupRow: View {
     }
 
     /// The word the recording speaks (a letter's glyph for the alphabet files)
-    /// over its Commons filename. The whole row leads to the file's page rather
-    /// than the filename alone: a column of tinted filenames reads as a wall of
-    /// links, and the row is the easier tap target either way.
-    @ViewBuilder
+    /// over its Commons filename. The row plays the recording itself; the small
+    /// trailing link opens the file's page on Commons, which is the license
+    /// obligation (`docs/audio-licensing.md`). The one list whose rows each carry an
+    /// icon (`SpeakerIcon.swift` states the rule it departs from): the content is
+    /// already the play control, so the link needs a target of its own.
     private func fileRow(_ file: AudioCreditFile) -> some View {
-        let row = VStack(alignment: .leading, spacing: 0) {
-            Text(verbatim: file.label)
-                .font(Theme.typography.body)
-                .foregroundStyle(Theme.colors.textPrimary)
-            Text(verbatim: file.source)
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
-        }
-        .multilineTextAlignment(.leading)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        HStack(spacing: Theme.spacing.sm) {
+            Button {
+                play(file)
+            } label: {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(verbatim: file.label)
+                        .font(Theme.typography.body)
+                        .foregroundStyle(Theme.colors.textPrimary)
+                    Text(verbatim: file.source)
+                        .font(Theme.typography.caption)
+                        .foregroundStyle(Theme.colors.textSecondary)
+                }
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityHint(Text("a11y.action.pronounce"))
 
-        // Percent-encoded: those names carry spaces and Cyrillic.
-        if let encoded = file.source.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
-           let url = URL(string: "https://commons.wikimedia.org/wiki/File:\(encoded)") {
-            Link(destination: url) { row }
-        } else {
-            row
+            // Percent-encoded: those names carry spaces and Cyrillic.
+            if let encoded = file.source.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+               let url = URL(string: "https://commons.wikimedia.org/wiki/File:\(encoded)") {
+                Link(destination: url) {
+                    Image(systemName: "arrow.up.right.square")
+                        .font(.subheadline)
+                        .frame(width: 44, height: 44)
+                }
+                .accessibilityLabel(Text("credits.openFile"))
+            }
         }
     }
 }

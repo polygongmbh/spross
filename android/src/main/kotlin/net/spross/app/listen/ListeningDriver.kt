@@ -289,7 +289,7 @@ class ListeningDriver(
             Pronouncer.Trigger.LISTENING,
             article,
             fadeDb(),
-            finish,
+            onFinish = finish,
         )
         // why: insurance, not timing — a word whose end is never reported would leave the
         // chain standing still, and a run that has gone quiet is worse than one that hurries.

@@ -109,6 +109,7 @@ internal object ChromeEn : Chrome {
     override val creditsFont = "Typeface: Nunito — SIL Open Font License 1.1"
     override val creditsUnmodified = "Recordings shipped unmodified"
     override val creditsCommonsNote = "Recordings from Wikimedia Commons"
+    override val creditsOpenFile = "Open on Wikimedia Commons"
     override val legalTitle = "Legal Notice"
     override val legalCompany = "Polygon GmbH"
     override val legalAddressValue = "Bamberger Str. 43\n96215 Lichtenfels, Germany"

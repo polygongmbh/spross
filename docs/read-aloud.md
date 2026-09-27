@@ -63,6 +63,8 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   a form with no audio drops the icon; the card holds its height regardless.
   Reference pages: content is the control (tap a row to hear it),
   one hint line under the heading, shown only where the device can say the language.
+  Credits: a row plays the recording it credits (never a voice in its place),
+  and each row carries a small trailing link to its Commons page, the one per-row icon on any list.
   Alphabet sheet keeps glyphs (rows disagree about what they hold).
   Drill prompts in the learning language draw a speaker (same rule as a card).
   Revealed letter: no speaker (the glyph is not a form);

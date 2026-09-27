@@ -149,6 +149,11 @@ data class AudioCreditFile(
     val label: String,
     /** The original Commons filename — the credits screen links `File:<source>`. */
     val source: String,
+    /**
+     * The recording itself, so its credit row can play it: [label] as the form, the file's
+     * own path and index. The credits screen plays this file and never a voice in its place.
+     */
+    val pronunciation: Pronunciation,
 )
 
 /**

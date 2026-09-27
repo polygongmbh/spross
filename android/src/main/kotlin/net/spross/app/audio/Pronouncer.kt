@@ -190,6 +190,9 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      * volume on top of a recording's own index, never instead of it — kern adds the two and
      * holds the sum at its floor (`fadedGainDb`).
      *
+     * [recordingOnly] skips the Speech preference: the credits screen plays the file it
+     * credits, never a voice in its place.
+     *
      * [onFinish] fires ONCE on the main thread when the word has been said — including the
      * cases where nothing sounds at all, so a run armed off it can never wedge on a silent
      * word. It does not fire for a word this call itself cut off.
@@ -199,6 +202,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         trigger: Trigger,
         article: String? = null,
         fadeDb: Double = 0.0,
+        recordingOnly: Boolean = false,
         onFinish: (() -> Unit)? = null,
     ) {
         // why: TalkBack reads the card itself, target word included — autoplay on top
@@ -212,7 +216,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         // "Speech" preference: the voice reads everything, for one consistent sound and
         // the article always said aloud — the recording only answers where the language
         // has no voice at all.
-        if (voiceSource(lang) == VoiceSource.TTS && canSpeak(lang)) {
+        if (!recordingOnly && voiceSource(lang) == VoiceSource.TTS && canSpeak(lang)) {
             // why: a recording from a previous fire may still be sounding — the
             // synthesized branch takes the word over completely.
             player.stop()

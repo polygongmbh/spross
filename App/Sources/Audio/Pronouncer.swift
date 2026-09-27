@@ -124,8 +124,11 @@ final class Pronouncer {
     ///
     /// `fadeDb` is the listening run's bedtime ramp and 0 everywhere else;
     /// `onFinish` is what lets a run arm its next beat off this one.
+    /// `recordingOnly` skips the Speech preference: the credits screen plays
+    /// the file it credits, never a voice in its place.
     func pronounce(_ pronunciation: Pronunciation, recordingURL: URL?, trigger: Trigger,
                    article: String? = nil, fadeDb: Double = 0,
+                   recordingOnly: Bool = false,
                    onFinish: (@MainActor () -> Void)? = nil) {
         switch trigger {
         case .auto:
@@ -152,7 +155,7 @@ final class Pronouncer {
         // "Speech" preference: the voice reads everything, for one consistent
         // sound and the article always said aloud — the recording only answers
         // where the language has no voice at all.
-        if voiceSource(for: pronunciation.lang) == .tts,
+        if !recordingOnly, voiceSource(for: pronunciation.lang) == .tts,
            canSpeak(language: pronunciation.lang) {
             say(key: key, text: spoken(pronunciation, article: article),
                 language: pronunciation.lang, fadeDb: fadeDb, onFinish: onFinish)

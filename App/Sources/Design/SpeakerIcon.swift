@@ -12,6 +12,10 @@ import SwiftUI
 // the letter's name and its example word, so which one a tap wants has to be
 // aimed at.
 //
+// The credits screen is the one list whose rows each carry an icon, and it is
+// not a speaker: the row plays its recording, and a trailing link opens the
+// file's Commons page (`CreditsView.fileRow`).
+//
 // Never circled or filled, so it never LOOKS like a button.
 // Pulses gently while its word is sounding, the shape Duolingo's speaker
 // rides; Reduce Motion drops the pulse and just snaps.

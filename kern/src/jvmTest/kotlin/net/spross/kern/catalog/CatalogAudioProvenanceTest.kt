@@ -179,7 +179,7 @@ class CatalogAudioProvenanceTest {
                     "$where: no single ${recording.license} group for ${recording.author}",
                 )
                 assertTrue(
-                    AudioCreditFile(glyph, recording.source) in group.files,
+                    group.files.any { it.label == glyph && it.source == recording.source },
                     "$where: absent from its own credit group",
                 )
             }

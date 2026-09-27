@@ -97,7 +97,8 @@ Engine contract: `../README.md`.
   and `Catalog.letterRecordingPath` for the callers that only ask whether a letter can be played at all
   (the recording speaks the letter's NAME — the name string itself is the alphabet file's, and the manifest's
   `letters` section is the only home of letter audio and its attribution);
-  `Catalog.audioCredits` -> `[AudioCredit]`, grouped per (language, author, license) with per-file rows.
+  `Catalog.audioCredits` -> `[AudioCredit]`, grouped per (language, author, license) with per-file rows,
+  each carrying the `Pronunciation` of its own file so the row can play exactly what it credits.
   BY and BY-SA cannot share one notice, so the groups ARE the credit rows,
   and they derive from the shipped manifests, so the screen can never credit what is not bundled.
 - Lint (`CatalogAudioLintTest`, `CatalogAudioProvenanceTest`, real catalog):

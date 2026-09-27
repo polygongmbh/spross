@@ -76,7 +76,9 @@ Per-pack share-alike status:
   `Catalog.audioCredits()` groups per (language, author, license) with per-file rows,
   rendered by `App/Sources/Screens/CreditsView.swift` and `android/.../ui/AboutScreen.kt`
   from that one API.
-  A group expands to its recordings, each linking `File:<source>` on Commons.
+  A group expands to its recordings, each linking `File:<source>` on Commons
+  through a small trailing link of its own, which is what answers the CC 4.0 term to link the licensed material;
+  tapping the row itself plays the recording.
   BY and BY-SA groups are separate rows by construction.
 - **The untouched-transcode gate is a test.**
   `CatalogAudioProvenanceTest.audioFilesMatchTheirManifestHashes` re-hashes every committed mp3

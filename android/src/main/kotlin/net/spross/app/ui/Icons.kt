@@ -106,6 +106,13 @@ object SprossIcons {
         moveTo(3.5f, 6.5f); lineTo(12f, 13f); lineTo(20.5f, 6.5f)
     }
 
+    /** A page outside the app: a credit row's file on Commons. `arrow.up.right.square` on iOS. */
+    val ExternalLink = stroked("ExternalLink") {
+        moveTo(18f, 13.5f); lineTo(18f, 19f); lineTo(5f, 19f); lineTo(5f, 6f); lineTo(10.5f, 6f)
+        moveTo(13f, 4.5f); lineTo(19.5f, 4.5f); lineTo(19.5f, 11f)
+        moveTo(19.5f, 4.5f); lineTo(11f, 13f)
+    }
+
     /**
      * What this build is made of — the voices, their licenses, the Impressum.
      * `info.circle` on the other phone. The tittle is a capped hair of a stroke, which the

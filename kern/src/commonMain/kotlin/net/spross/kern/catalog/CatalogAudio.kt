@@ -130,7 +130,8 @@ fun Catalog.audioCredits(): List<AudioCredit> {
     for ((lang, manifest) in audio) {
         for ((label, recording) in manifest.creditRows()) {
             val key = CreditKey(lang, recording.author, recording.license)
-            files.getOrPut(key) { mutableListOf() } += AudioCreditFile(label, recording.source)
+            files.getOrPut(key) { mutableListOf() } +=
+                AudioCreditFile(label, recording.source, manifest.creditPronunciation(label, recording))
             if (key !in deeds) deeds[key] = recording.licenseUrl
         }
     }
@@ -138,6 +139,20 @@ fun Catalog.audioCredits(): List<AudioCredit> {
         AudioCredit(key.language, key.author, key.license, deeds[key], rows)
     }
 }
+
+/** What a credit row plays: the file itself, labeled as the row is. */
+private fun AudioManifest.creditPronunciation(label: String, recording: AudioRecording) = Pronunciation(
+    form = label,
+    utterance = utterance(label),
+    lang = language,
+    recordingPath = path(recording),
+    gain = recording.gain,
+    gainPhone = recording.gainPhone,
+    cap = recording.cap,
+    capPhone = recording.capPhone,
+    leadMs = recording.leadMs,
+    gate = recording.gate,
+)
 
 /** Credit identity: one author's work in one language under one license. */
 private data class CreditKey(val language: Language, val author: String, val license: String)

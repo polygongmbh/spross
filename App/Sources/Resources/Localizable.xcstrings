@@ -2585,6 +2585,24 @@
         }
       }
     },
+    "credits.openFile" : {
+      "comment" : "The trailing link on a credited recording's row: opens the file's page on Wikimedia Commons.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf Wikimedia Commons öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open on Wikimedia Commons"
+          }
+        }
+      }
+    },
     "credits.recordings %lld" : {
       "comment" : "%d = how many files the speaker contributed",
       "localizations" : {

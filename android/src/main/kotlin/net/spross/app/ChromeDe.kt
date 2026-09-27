@@ -112,6 +112,7 @@ internal object ChromeDe : Chrome {
     override val creditsFont = "Schrift: Nunito — SIL Open Font License 1.1"
     override val creditsUnmodified = "Aufnahmen unverändert übernommen"
     override val creditsCommonsNote = "Aufnahmen von Wikimedia Commons"
+    override val creditsOpenFile = "Auf Wikimedia Commons öffnen"
     override val legalTitle = "Impressum"
     override val legalCompany = "Polygon GmbH"
     override val legalAddressValue = "Bamberger Str. 43\n96215 Lichtenfels"

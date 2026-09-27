@@ -144,10 +144,19 @@ class CatalogAudioLookupTest {
             credits.map { "${it.language}|${it.author}|${it.license}" },
         )
         assertEquals(
-            listOf(AudioCreditFile("kochen", "De-kochen.ogg"), AudioCreditFile("Tür", "De-Tür.ogg")),
-            credits.first().files,
+            listOf("kochen" to "De-kochen.ogg", "Tür" to "De-Tür.ogg"),
+            credits.first().files.map { it.label to it.source },
         )
         assertNull(credits.first { it.license == "Public domain" }.licenseUrl)
+    }
+
+    /** RULE: a credit row plays the very file it credits — every row, letters included. */
+    @Test
+    fun everyCreditRowCarriesItsOwnRecording() {
+        val kochen = catalog.audioCredits().first().files.first()
+        assertEquals(catalog.pronunciation("de", "kochen").recordingPath, kochen.pronunciation.recordingPath)
+        val letter = catalog.audioCredits().first { it.author == "Tabrus" }.files.first()
+        assertEquals(catalog.letterRecordingPath("uk", letter.label), letter.pronunciation.recordingPath)
     }
 
     @Test

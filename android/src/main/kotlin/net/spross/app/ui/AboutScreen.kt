@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -23,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
@@ -33,7 +35,9 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.closeAbout
 import net.spross.app.countLine
+import net.spross.app.audio.Pronouncer
 import net.spross.kern.catalog.AudioCredit
+import net.spross.kern.catalog.AudioCreditFile
 import net.spross.kern.catalog.audioCredits
 
 /**
@@ -83,7 +87,7 @@ fun AboutScreen(model: AppModel) {
             }
             for ((language, credits) in creditSections(model)) {
                 item { LanguageHeading(model, language) }
-                items(credits.size) { index -> CreditGroup(credits[index], chrome) }
+                items(credits.size) { index -> CreditGroup(model, credits[index], chrome) }
                 item { CreditFooter(chrome) }
             }
             item { FontCredit(chrome) }
@@ -121,7 +125,7 @@ private fun LanguageHeading(model: AppModel, language: String) {
  * construction — one notice cannot carry both.
  */
 @Composable
-private fun CreditGroup(credit: AudioCredit, chrome: Chrome) {
+private fun CreditGroup(model: AppModel, credit: AudioCredit, chrome: Chrome) {
     var expanded by remember(credit) { mutableStateOf(false) }
     val uris = LocalUriHandler.current
     Column(modifier = Modifier.panel()) {
@@ -158,16 +162,46 @@ private fun CreditGroup(credit: AudioCredit, chrome: Chrome) {
                 // neither the label nor the source is a unique identity — index it.
                 credit.files.forEachIndexed { index, file ->
                     Spacer(Modifier.height(4.dp))
-                    Text(file.label, style = MaterialTheme.typography.bodyMedium)
-                    Text(
-                        file.source,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.clickable { uris.openUri(commonsUrl(file.source)) },
-                    )
+                    CreditFileRow(model, file, chrome) { uris.openUri(commonsUrl(file.source)) }
                     if (index == credit.files.lastIndex) Spacer(Modifier.height(2.dp))
                 }
             }
+        }
+    }
+}
+
+/**
+ * One credited file: the row plays the recording itself, and the small trailing link opens
+ * its page on Commons, which is the license obligation (`docs/audio-licensing.md`).
+ * The one list whose rows each carry an icon ([TapToHearHint] states the rule it departs
+ * from): the content is already the play control, so the link needs a target of its own.
+ */
+@Composable
+private fun CreditFileRow(model: AppModel, file: AudioCreditFile, chrome: Chrome, openPage: () -> Unit) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .clickable(onClickLabel = chrome.a11yActionPronounce) {
+                    model.pronouncer.pronounce(
+                        file.pronunciation, Pronouncer.Trigger.TAP, recordingOnly = true,
+                    )
+                },
+        ) {
+            Text(file.label, style = MaterialTheme.typography.bodyMedium)
+            Text(
+                file.source,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        IconButton(onClick = openPage) {
+            Icon(
+                SprossIcons.ExternalLink,
+                contentDescription = chrome.creditsOpenFile,
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(18.dp),
+            )
         }
     }
 }
