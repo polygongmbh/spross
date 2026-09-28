@@ -189,7 +189,10 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
             chosen.base.x + (chosen.end.x - chosen.base.x) * localT,
             chosen.base.y + (chosen.end.y - chosen.base.y) * localT,
         )
-        val radius = max(chosen.reach, 0.07f) * rng.range(0.25f, 0.85f)
+        // why: the offset is the tip's OWN twig size regardless of which limb was
+        // chosen — the trunk's limb is by far the tree's longest, and a radius
+        // scaled to it flings a mark chosen there way off into empty air.
+        val radius = max(own.reach, 0.07f) * rng.range(0.25f, 0.85f)
         val off = chosen.angle + rng.sign() * rng.range(0.6f, 1.9f)
         return TreeSlot(Offset(along.x + cos(off) * radius, along.y + sin(off) * radius), off, index)
     }

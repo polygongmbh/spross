@@ -213,7 +213,10 @@ struct TreeSkeleton {
             }
             let along = CGPoint(x: chosen.base.x + (chosen.end.x - chosen.base.x) * CGFloat(localT),
                                 y: chosen.base.y + (chosen.end.y - chosen.base.y) * CGFloat(localT))
-            let radius = max(chosen.reach, 0.07) * rng.range(0.25, 0.85)
+            // why: the offset is the tip's OWN twig size regardless of which segment
+            // was chosen — the trunk's segment is by far the tree's longest, and a
+            // radius scaled to it flings a mark chosen there way off into empty air.
+            let radius = max(own.reach, 0.07) * rng.range(0.25, 0.85)
             let off = chosen.angle + (rng.next() < 0.5 ? -1 : 1) * rng.range(0.6, 1.9)
             let point = CGPoint(x: along.x + CGFloat(cos(off) * radius),
                                 y: along.y + CGFloat(sin(off) * radius))
