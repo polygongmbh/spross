@@ -240,7 +240,7 @@ struct SessionExitButtons: View {
                 // why: the words are warm — the one moment a conversation about
                 // them costs nothing to offer; it asks rather than instructs.
                 if let onTalk { secondary("session.done.talk", icon: "bubble.left.and.bubble.right", onTalk) }
-                if let onPractice { secondary("session.done.keepPracticing", icon: "arrow.counterclockwise", onPractice) }
+                if let onPractice { secondary("session.done.keepPracticing", icon: "arrow.right", onPractice) }
             }
             // why: a label that wraps grows its own button only — the pair keeps one height.
             .fixedSize(horizontal: false, vertical: true)

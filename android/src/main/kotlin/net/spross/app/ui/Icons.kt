@@ -59,6 +59,12 @@ object SprossIcons {
         moveTo(11f, 6f); lineTo(5f, 12f); lineTo(11f, 18f)
     }
 
+    /** Go on — a finished round carried on into more. `arrow.right` on iOS. */
+    val ArrowRight = stroked("ArrowRight") {
+        moveTo(5f, 12f); lineTo(19f, 12f)
+        moveTo(13f, 6f); lineTo(19f, 12f); lineTo(13f, 18f)
+    }
+
     /** This block folds open. */
     val ChevronDown = stroked("ChevronDown") {
         moveTo(5f, 9.5f); lineTo(12f, 16.5f); lineTo(19f, 9.5f)
