@@ -159,8 +159,9 @@ struct TreeSkeleton {
         // one exactly and only appends — adding a word moves no mark already hanging.
         var spacing = total / 8
 
-        // Uniform along the wood: a segment picked by its length, then a point along it,
-        // nudged off the center line to either side.
+        // Uniform along the wood: a segment picked by its length, then a point on its
+        // drawn (bowed) curve, nudged sideways but never past the wood's own edge —
+        // so every mark's center stays inside the band the branch is actually drawn as.
         func candidate() -> LeafSlot {
             var pick = rng.next() * total
             var index = 0
@@ -169,13 +170,20 @@ struct TreeSkeleton {
                 index += 1
             }
             let segment = wood[index]
-            let along = CGFloat(rng.next())
-            let offset = (rng.next() * 2 - 1) * 0.6 * spacing
+            let t = rng.next()
+            let u1 = 1 - t
+            let onCurve = CGPoint(
+                x: u1 * u1 * segment.start.x + 2 * u1 * t * segment.control.x + t * t * segment.end.x,
+                y: u1 * u1 * segment.start.y + 2 * u1 * t * segment.control.y + t * t * segment.end.y)
+            let tangent = CGPoint(
+                x: 2 * u1 * (segment.control.x - segment.start.x) + 2 * t * (segment.end.x - segment.control.x),
+                y: 2 * u1 * (segment.control.y - segment.start.y) + 2 * t * (segment.end.y - segment.control.y))
+            let angle = atan2(Double(tangent.y), Double(tangent.x))
+            let width = Double(segment.startWidth) * u1 + Double(segment.endWidth) * t
+            let offset = (rng.next() * 2 - 1) * width / 2
             let turn = rng.range(0.6, 1.4)
-            let angle = atan2(Double(segment.end.y - segment.start.y), Double(segment.end.x - segment.start.x))
-            let point = CGPoint(
-                x: segment.start.x + (segment.end.x - segment.start.x) * along + CGFloat(cos(angle + .pi / 2) * offset),
-                y: segment.start.y + (segment.end.y - segment.start.y) * along + CGFloat(sin(angle + .pi / 2) * offset))
+            let point = CGPoint(x: onCurve.x + CGFloat(cos(angle + .pi / 2) * offset),
+                                y: onCurve.y + CGFloat(sin(angle + .pi / 2) * offset))
             return LeafSlot(point: point, angle: angle + (offset < 0 ? -turn : turn))
         }
 

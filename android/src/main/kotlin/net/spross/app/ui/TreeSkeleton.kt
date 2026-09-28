@@ -152,8 +152,9 @@ private fun hang(limbs: List<TreeLimb>, seed: Long, count: Int): List<TreeSlot> 
     // one exactly and only appends — adding a word moves no mark already hanging.
     var spacing = total / 8
 
-    // Uniform along the wood: a limb picked by its length, then a point along it,
-    // nudged off the center line to either side.
+    // Uniform along the wood: a limb picked by its length, then a point on its drawn
+    // (bowed) curve, nudged sideways but never past the wood's own edge — so every
+    // mark's center stays inside the band the limb is actually drawn as.
     fun candidate(): TreeSlot {
         var pick = rng.next() * total
         var index = 0
@@ -162,13 +163,23 @@ private fun hang(limbs: List<TreeLimb>, seed: Long, count: Int): List<TreeSlot> 
             index++
         }
         val limb = wood[index]
-        val along = rng.next()
-        val offset = (rng.next() * 2 - 1) * 0.6f * spacing
+        val t = rng.next()
+        val u1 = 1 - t
+        val onCurve = Offset(
+            u1 * u1 * limb.start.x + 2 * u1 * t * limb.control.x + t * t * limb.end.x,
+            u1 * u1 * limb.start.y + 2 * u1 * t * limb.control.y + t * t * limb.end.y,
+        )
+        val tangent = Offset(
+            2 * u1 * (limb.control.x - limb.start.x) + 2 * t * (limb.end.x - limb.control.x),
+            2 * u1 * (limb.control.y - limb.start.y) + 2 * t * (limb.end.y - limb.control.y),
+        )
+        val angle = atan2(tangent.y, tangent.x)
+        val width = limb.startWidth * u1 + limb.endWidth * t
+        val offset = (rng.next() * 2 - 1) * width / 2
         val turn = rng.range(0.6f, 1.4f)
-        val angle = atan2(limb.end.y - limb.start.y, limb.end.x - limb.start.x)
         val point = Offset(
-            limb.start.x + (limb.end.x - limb.start.x) * along + cos(angle + PI_F / 2) * offset,
-            limb.start.y + (limb.end.y - limb.start.y) * along + sin(angle + PI_F / 2) * offset,
+            onCurve.x + cos(angle + PI_F / 2) * offset,
+            onCurve.y + sin(angle + PI_F / 2) * offset,
         )
         return TreeSlot(point, angle + if (offset < 0f) -turn else turn)
     }
