@@ -67,8 +67,8 @@ extension SentenceScrambleView: DrillRunning {
 
     /// An untouched run leaves nothing to report, and no record line either —
     /// arrangement is not recall, so this drill keeps no streak record. What it
-    /// DOES file is the ladder: the next run opens on the lowest Sprosse the
-    /// mask does not hold, so a Sprosse climbed clean is never asked for twice.
+    /// DOES file is the ladder: the next run opens on the highest Sprosse the
+    /// mask holds, a warm-up on ground climbed clean before.
     var lastRunKey: String { DrillSuggestion.shared.lastRunKey(drill: .sentenceScramble, language: language) }
 
     func closing() -> DrillClose<SentenceScrambleRunState> {

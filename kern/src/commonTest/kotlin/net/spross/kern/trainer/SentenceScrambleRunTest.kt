@@ -217,9 +217,12 @@ class SentenceScrambleRunTest {
 
     // MARK: - What the store keeps
 
-    /** A Sprosse climbed off clean is booked, and the next run opens above it. */
+    /**
+     * A Sprosse climbed off clean is booked, and the next run opens ON the highest one booked —
+     * a warm-up on held ground, never above it and never on the top band.
+     */
     @Test
-    fun aSprosseClimbedCleanOpensTheNextRunAboveIt() {
+    fun aResumedRunOpensOnTheHighestSprosseClimbedClean() {
         var state = open()
         repeat(phrases.size - 1) { state = answered(state) }
         val closed = SentenceScrambleRun.close(state)
@@ -228,8 +231,9 @@ class SentenceScrambleRunTest {
         assertEquals(setOf(1, 2), closed.clearedSprossen)
 
         val resumed = SentenceScrambleRunConfig(config().report, closed.clearedSprossen)
-        assertEquals(3, resumed.entryLevel)
-        assertEquals(3, SentenceScrambleRun.open(resumed, Random(7)).level)
+        assertEquals(2, resumed.entryLevel)
+        assertEquals(2, SentenceScrambleRun.open(resumed, Random(7)).level)
+        assertEquals(1, config().entryLevel, "nothing cleared opens at the foot")
     }
 
     /** A wrong arrangement takes the Sprosse's booking with it, however clean the rest of it runs. */

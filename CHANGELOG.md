@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- The sentence scramble now climbs through levels of steadily harder sentences, stops at the hardest, and starts each new round on the highest level you last cleared without a slip.
 - Every drill now says the right answer aloud once you have answered, whether you got it right or wrong, including the word and sentence scrambles.
 - On Android, a finished round now raises the tree of the area it grew over what it says, filling the screen as on iPhone.
 - On Android, the bottom of Home now shows your box as a forest, one tree per area, and tapping a tree opens that area.

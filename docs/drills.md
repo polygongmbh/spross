@@ -166,8 +166,9 @@ Nothing wears a prefix one scope wider than what it serves.
   The number is never trimmed to the rows on the page:
   a Sprosse goes on counting past the last named one (`DrillRamp.step`).
 - **The two scrambles have no page to wear a ladder on, and resume on one anyway.**
-  A run opens on the lowest Sprosse no earlier run climbed off UNBLEMISHED --
-  every answer correct and unaided
+  A word-scramble run opens on the lowest Sprosse no earlier run climbed off UNBLEMISHED --
+  every answer correct and unaided --
+  and a sentence-scramble run ON the highest one some run did, as a warm-up below where it climbs on
   (`../kern/docs/turns.md` storage contract), filed per learned language.
   An almost banks nothing inside the run
   but takes that Sprosse out of the store's running.

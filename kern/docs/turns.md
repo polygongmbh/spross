@@ -257,6 +257,9 @@ Engine contract: `../README.md`.
   (`NumbersMode.openable`).
   The scrambles take the stored mask as a plain `cleared` on their run config and offer no tap at all:
   a ladder nobody can see named is a ladder nobody needs to override.
+  The sentence scramble opens ON the highest Sprosse the mask holds instead, 1 where it holds none
+  (`SentenceScrambleRunConfig.entryLevel`) — a warm-up on held ground —
+  and since its top band is never climbed off, never on the top band.
   Pinned quirk: a non-null `phraseSource` suffixes the record language with the
   `<source>-<target>` pair even when the run asks no sentence,
   because the overview passes the source whenever the pair realizes frames.

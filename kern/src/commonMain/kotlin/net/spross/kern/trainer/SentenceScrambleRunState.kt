@@ -46,7 +46,8 @@ data class SentenceScrambleClose(
     val bestLevel: Int,
     /**
      * The Sprossen this run climbed off without a blemish ([DrillSprossen]), for the store to add
-     * to the mask it holds — the next run opens on the lowest one that is still missing.
+     * to the mask it holds — the next run opens on the highest of them
+     * ([SentenceScrambleRunConfig.entryLevel]).
      * Unfiltered: unlike [bestLevel] there is no standing value to beat.
      */
     val clearedSprossen: Set<Int>,
@@ -66,8 +67,14 @@ class SentenceScrambleRunConfig(
      */
     val cleared: Set<Int> = emptySet(),
 ) {
-    /** Where a fresh run opens: the lowest Sprosse not yet earned ([NumbersMode.entrySprosse]). */
-    val entryLevel: Int get() = NumbersMode.entrySprosse(cleared, report.maxLevel)
+    /**
+     * Where a fresh run opens: ON the highest Sprosse an earlier run climbed off unblemished,
+     * or the first where none has — a warm-up on ground the learner has already held,
+     * with every band above it still to climb.
+     * The top band is never climbed off, so a learner who has cleared everything below it
+     * opens one short of it rather than on it.
+     */
+    val entryLevel: Int get() = cleared.maxOrNull()?.coerceIn(1, report.maxLevel) ?: 1
 }
 
 /**

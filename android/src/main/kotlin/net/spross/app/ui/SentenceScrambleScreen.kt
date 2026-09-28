@@ -48,8 +48,8 @@ fun SentenceScrambleScreen(model: AppModel) {
     // because nothing reads one back.
     val leave = {
         val closed = flow.close()
-        // why: what the NEXT run reads — it opens on the lowest Sprosse the mask does not
-        // hold, so a Sprosse climbed clean is never asked for twice.
+        // why: what the NEXT run reads — it opens on the highest Sprosse the mask holds,
+        // a warm-up on ground climbed clean before.
         model.trainer.store.bookCleared(flow.clearedKey, closed.clearedSprossen)
         model.stampRun(Drill.SentenceScramble, closed.summary)
         model.finishDrill(Screen.Home, null, "")
