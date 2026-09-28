@@ -187,26 +187,30 @@ struct TreeSkeleton {
         /// The k-th slot of a tip's cluster, seeded by the tip and k alone —
         /// a cluster growing deeper never moves the slots it already had.
         /// k = 0 pins to the tip itself; every slot past it ranges back along the
-        /// tip's whole lineage instead, biased toward the trunk end, so a cluster
+        /// tip's own FORKED wood instead, biased toward the trunk end, so a cluster
         /// that keeps growing spreads leaves out along the branch rather than
-        /// piling up on top of the ones already hanging at its edge.
+        /// piling up on top of the ones already hanging at its edge — the trunk
+        /// itself stays out of reach, bare, same as the rest of the tree's shape.
         private func slot(_ k: Int, of tip: Tip, _ index: Int) -> LeafSlot {
             let own = tip.lineage[tip.lineage.count - 1]
             guard k > 0 else {
                 return LeafSlot(point: own.end, angle: own.angle, tip: index, bearing: true)
             }
             var rng = SplitMix64(seed: SplitMix64.mix(seed ^ tip.path &+ UInt64(k) &* 0x9E37_79B9))
-            let totalReach = tip.lineage.reduce(0.0) { $0 + $1.reach }
+            // lineage[0] is always the trunk (every tip's path starts there) — excluded
+            // so a bare trunk before the first fork holds however deep a cluster grows.
+            let forkedWood = tip.lineage.dropFirst()
+            let totalReach = forkedWood.reduce(0.0) { $0 + $1.reach }
             let bias = pow(rng.next(), 1.6)
             var remaining = bias * totalReach
             var chosen = own
             var onTip = true
             var localT = 1.0
-            for (i, seg) in tip.lineage.enumerated() {
+            for (i, seg) in forkedWood.enumerated() {
                 if remaining <= seg.reach {
                     chosen = seg
                     localT = seg.reach > 0 ? remaining / seg.reach : 1
-                    onTip = i == tip.lineage.count - 1
+                    onTip = i == forkedWood.count - 1
                     break
                 }
                 remaining -= seg.reach

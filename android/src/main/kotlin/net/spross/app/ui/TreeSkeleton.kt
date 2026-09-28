@@ -164,20 +164,24 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
 
     /**
      * The k-th slot of a tip, seeded by the tip and k alone. k = 0 pins to the tip
-     * itself; every slot past it ranges back along the tip's whole lineage instead,
+     * itself; every slot past it ranges back along the tip's own FORKED wood instead,
      * biased toward the trunk end, so a cluster that keeps growing spreads leaves out
-     * along the limb rather than piling up on top of the one at the twig's end.
+     * along the limb rather than piling up on top of the one at the twig's end — the
+     * trunk itself stays out of reach, bare, same as the rest of the tree's shape.
      */
     private fun slot(k: Int, tip: Tip, index: Int): TreeSlot {
         val own = tip.lineage.last()
         if (k == 0) return TreeSlot(own.end, own.angle, index)
         val rng = Mix(seed xor Mix.hash(tip.path + k * 0x9E3779B9L))
-        val totalReach = tip.lineage.sumOf { it.reach.toDouble() }.toFloat()
+        // lineage[0] is always the trunk (every tip's path starts there) — excluded
+        // so a bare trunk before the first fork holds however deep a cluster grows.
+        val forkedWood = tip.lineage.drop(1)
+        val totalReach = forkedWood.sumOf { it.reach.toDouble() }.toFloat()
         val bias = rng.next().pow(1.6f)
         var remaining = bias * totalReach
         var chosen = own
         var localT = 1f
-        for (seg in tip.lineage) {
+        for (seg in forkedWood) {
             if (remaining <= seg.reach) {
                 chosen = seg
                 localT = if (seg.reach > 0f) remaining / seg.reach else 1f
