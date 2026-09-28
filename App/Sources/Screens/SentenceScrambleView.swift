@@ -49,7 +49,7 @@ struct SentenceScrambleView: View {
         )
         #if DEBUG
         // UI-test hook: `-uitest-sentencescramble-level N` opens the run at that
-        // Sprosse — the deterministic way to reach a phrase length. Kern clamps it.
+        // Sprosse — the deterministic way to reach a band. Kern clamps it.
         let preset = UserDefaults.standard.integer(forKey: "uitest-sentencescramble-level")
         if preset > 0 {
             _run = State(initialValue: SentenceScrambleRun.shared.openAt(config: config,

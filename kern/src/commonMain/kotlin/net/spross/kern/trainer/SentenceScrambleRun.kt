@@ -13,10 +13,12 @@ import net.spross.kern.session.TurnFeedback
  * order rather than vocabulary. Nothing it does books a review — arrangement is not recall, the
  * same reason the letter drill keeps no schedule.
  *
- * Its Sprossen are LENGTHS, and they ACCUMULATE: a Sprosse adds a longer phrase to what the one
- * below it could ask and keeps everything below ([SentenceScrambleAvailability.Report.atomsAt]),
- * so the ladder tops out at the longest phrase the box has actually unlocked with every shorter
- * one still in the deck. The ramp, the effects and the summary are the ones every drill shares.
+ * Its Sprossen are BANDS of difficulty that do not overlap
+ * ([SentenceScrambleAvailability.Report.phrasesAt]): each asks its own slice of the phrases,
+ * easiest first, so a Sprosse up is harder phrases and a Sprosse down easier ones.
+ * The ladder STOPS at its last band — [DrillRamp] would count on past it, and here a number
+ * past the last band would promise phrases that do not exist — so answering the top band out
+ * ends the run. The ramp, the effects and the summary are the ones every drill shares.
  *
  * Kern never self-randomizes: the deal takes the caller's [Random], so a seeded run is
  * reproducible end to end and identical on both platforms.
@@ -26,11 +28,9 @@ object SentenceScrambleRun {
     /**
      * Three clean arrangements carry a Sprosse.
      *
-     * Five was the typed drills' figure, and it was carried here without the thing that earns it:
-     * a Sprosse ADDS a length and keeps every one below it ([SentenceScrambleAvailability.Report.atomsAt]),
-     * so a run five answers deep is mostly still being asked the lengths it already cleared.
-     * There is no almost to mis-credit either — this drill grades whole-position — which is what
-     * made two too quick on the drills that have one.
+     * A band is one difficulty, so three in a row say as much about it as five would;
+     * there is no almost to mis-credit either — this drill grades whole-position —
+     * which is what made two too quick on the drills that have one.
      */
     const val WINS_TO_ADVANCE: Int = 3
 
@@ -41,16 +41,14 @@ object SentenceScrambleRun {
     fun open(config: SentenceScrambleRunConfig, rng: Random): SentenceScrambleRunState =
         openAt(config, config.entryLevel, rng)
 
-    /** The same, forced to one Sprosse — the deterministic way to reach a length. */
+    /** The same, forced to one Sprosse — the deterministic way to reach a band. */
     fun openAt(
         config: SentenceScrambleRunConfig,
         level: Int,
         rng: Random,
     ): SentenceScrambleRunState {
         val start = level.coerceIn(1, config.report.maxLevel)
-        // A run opens on the lowest Sprosse its mask does not hold, which is a Sprosse ARRIVED
-        // at: the first question says which one, rather than leaving the learner to infer it.
-        val opening = draw(config, start, null, emptySet(), rng, arriving = true)
+        val opening = draw(config, start, null, emptySet(), rng)
         return SentenceScrambleRunState(
             config = config,
             task = opening.task,
@@ -169,7 +167,6 @@ object SentenceScrambleRun {
             state.task?.cardId,
             next.solved,
             rng,
-            arriving = next.level > state.level,
         )
         return SentenceScrambleReduction(
             next.copy(
@@ -203,13 +200,19 @@ object SentenceScrambleRun {
         correct: Boolean,
         clean: Boolean,
     ): SentenceScrambleRunState {
-        val step = DrillRamp.step(
+        val ramp = DrillRamp.step(
             level = state.level,
             winsAtLevel = state.winsAtLevel,
             correct = correct,
             clean = clean,
             winsRequired = WINS_TO_ADVANCE,
         )
+        // The top band is where the ladder ends: the wins it banks carry nowhere.
+        val step = if (ramp.level > state.config.report.maxLevel) {
+            DrillRamp.SprosseStep(state.level, 0)
+        } else {
+            ramp
+        }
         val blemished = DrillSprossen.blemished(state.blemished, correct, clean)
         return state.copy(
             level = step.level,
@@ -236,23 +239,16 @@ object SentenceScrambleRun {
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
-        arriving: Boolean,
     ): DrillLadder.Sprosse<SentenceScrambleTask> =
         DrillLadder.climb(from, config.report.maxLevel) { level ->
-            // Climbing PAST a spent Sprosse arrives at the one above it just as a promotion does.
-            sample(config.report, level, avoiding, solved, rng, arriving || level > from)
+            sample(config.report, level, avoiding, solved, rng)
         }
 
     /**
-     * One question at [level], drawn EVENLY across every phrase the Sprosse admits — the atlas'
-     * rule on the atlas' kind of ladder. [avoiding] is the phrase just asked, which kern
-     * resamples once. Null ⇒ this Sprosse has nothing left.
-     *
-     * The length that Sprosse ADDED leads the draw where [DrillLadder.leadsWithAdded] says so —
-     * always on [arriving], half the draws after — and the rest of the time nothing is singled
-     * out: narrowing for longer would be the rising floor again under another name, and
-     * [DrillSolved] retires each phrase as it is arranged clean, so the deck thins toward
-     * whatever the learner still owes rather than toward a length the ladder picked for them.
+     * One question at [level], drawn EVENLY across the phrases of its band still unsolved.
+     * The bands do not nest, so nothing in one needs singling out as what it added.
+     * [avoiding] is the phrase just asked, which kern resamples once.
+     * Null ⇒ this Sprosse has nothing left.
      */
     private fun sample(
         report: SentenceScrambleAvailability.Report,
@@ -260,18 +256,11 @@ object SentenceScrambleRun {
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
-        arriving: Boolean,
     ): SentenceScrambleTask? {
         val open = report.phrasesAt(level)
             .filter { DrillSolved.sentenceKey(it.card.id) !in solved }
         if (open.isEmpty()) return null
-        val admitted = if (DrillLadder.leadsWithAdded(arriving, rng)) {
-            // What this Sprosse added: the one length the Sprosse below could not ask.
-            open.filter { it.words == report.atomsAt(level) }.ifEmpty { open }
-        } else {
-            open
-        }
-        val pool = admitted.filter { it.card.id != avoiding }.ifEmpty { admitted }
+        val pool = open.filter { it.card.id != avoiding }.ifEmpty { open }
         val phrase = pool[rng.nextInt(pool.size)]
         return SentenceScrambleTask(
             cardId = phrase.card.id,

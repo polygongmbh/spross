@@ -281,8 +281,8 @@ Engine contract: `../README.md`.
   Each walks the whole join and is built ONCE per run, its `drillExists` the hub-chip predicate.
   The two read DIFFERENT bars on purpose: the word scramble wants a word already grown past the
   display bar (`BoxEngine.isConsolidated`), since mixed letters cue nothing a learner cannot
-  already produce, while the sentence scramble wants the phrase unlocked
-  (`Growth.isPhraseUnlocked`), which is the components' bar rather than the phrase's own.
+  already produce, while the sentence scramble reads every phrase in the join past no bar,
+  since its words are given and only their order is asked.
   What each hands the run is not the card either — it is what the question is made OF, and the
   rules for cutting that are on the two types: which SPELLINGS a word may be asked through
   (`WordScrambleAvailability.spellings`) and which CHIPS a phrase becomes, marks and leading
@@ -298,6 +298,9 @@ Engine contract: `../README.md`.
   The mix itself owes two things beyond the same letters:
   it never reads as the spelling, and it is not one adjacent swap off it either —
   a word that admits nothing better gets the swap, since the alternative is the word itself.
-  A sentence-scramble Sprosse is a CEILING that accumulates (`Report.atomsAt`, `Report.phrasesAt`):
-  it adds a longer phrase and keeps every shorter one, the atlas' "Dazu:" model,
-  and the draw is flat across everything admitted rather than singling out a tier.
+  A sentence-scramble Sprosse is a BAND that overlaps no other (`Report.phrasesAt`):
+  the phrases ordered easiest first — fewer words, then fewer letters (`Report.byDifficulty`) —
+  and cut into even bands of at most `BAND_SIZE`,
+  so a miss drops to genuinely easier phrases and the draw is flat across the band.
+  Its ladder STOPS at the last band rather than counting on past it the way `DrillRamp.step` does,
+  since a number there would promise phrases that do not exist; answering the top band out ends the run.

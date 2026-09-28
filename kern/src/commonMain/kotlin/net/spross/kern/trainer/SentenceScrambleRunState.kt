@@ -73,8 +73,8 @@ class SentenceScrambleRunConfig(
 /**
  * One sentence-scramble run, whole and immutable.
  *
- * No FSRS anywhere — arrangement is not recall: the box is READ for the phrases it has
- * unlocked and never written, so the run books no review. What outlives it is the ladder —
+ * No FSRS anywhere — arrangement is not recall: the box is READ for its phrases
+ * and never written, so the run books no review. What outlives it is the ladder —
  * [bestLevel] and [clearedSprossen], which the screen that started the run files.
  */
 data class SentenceScrambleRunState(

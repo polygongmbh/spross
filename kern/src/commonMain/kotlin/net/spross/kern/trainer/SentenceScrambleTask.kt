@@ -34,6 +34,6 @@ data class SentenceScrambleTask(
     /** How many chips the arrangement takes — words and marks alike, since both are placed. */
     val size: Int get() = canonical.size
 
-    /** How many of them carry a word ORDER — the Sprosse this question was drawn at. */
+    /** How many of them carry a word ORDER. */
     val words: Int get() = canonical.count { !ScrambleTokenizer.isMark(it.text) }
 }

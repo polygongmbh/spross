@@ -41,33 +41,50 @@ object SentenceScrambleAvailability {
     const val TERMINATORS: String = ".?!"
 
     /**
+     * How many phrases one Sprosse holds at most.
+     * The ladder is cut into as few bands as keep each at or under it, split evenly,
+     * so a pair's catalog of two hundred sentences climbs eight or nine Sprossen.
+     */
+    const val BAND_SIZE: Int = 24
+
+    /**
      * The phrases worth arranging, in seed order,
      * each already cut into the atoms an arrangement moves.
      * Cut here rather than per question: tokenizing is a sweep of the whole join.
+     *
+     * [bandSize] is [BAND_SIZE] wherever a box is read; it is open only so a small fixture can
+     * build a ladder more than one Sprosse tall.
      */
-    data class Report(val phrases: List<Phrase>) {
+    data class Report(val phrases: List<Phrase>, val bandSize: Int) {
+
+        // A second constructor rather than a default: defaults do not cross to Swift.
+        constructor(phrases: List<Phrase>) : this(phrases, BAND_SIZE)
 
         val drillAvailable: Boolean get() = phrases.isNotEmpty()
 
         /**
-         * The Sprosse ceiling: one Sprosse per atom the longest phrase carries past [MIN_ATOMS],
-         * so the top of the ladder is a phrase this box actually holds rather than a number.
+         * Every phrase, easiest first: fewer words, then fewer letters —
+         * a longer word is a longer read to place, so of two phrases with as many chips
+         * the one written in shorter words comes first.
+         * Seed order breaks what is left of a tie.
          */
-        val maxLevel: Int
-            get() = maxOf(1, (phrases.maxOfOrNull { it.words } ?: MIN_ATOMS) - MIN_ATOMS + 1)
+        val byDifficulty: List<Phrase> by lazy {
+            phrases.sortedWith(compareBy<Phrase> { it.words }.thenBy { it.letters })
+        }
+
+        /** The Sprosse ceiling: one Sprosse per band, never fewer than one. */
+        val maxLevel: Int get() = maxOf(1, (phrases.size + bandSize - 1) / maxOf(1, bandSize))
 
         /**
-         * The longest phrase [level] may ask, in WORDS — a ceiling, not a floor.
-         *
-         * Each Sprosse ADDS a length and keeps every one below it, the atlas' "Dazu:" model: a
-         * learner who has just reached five-word phrases is not done with four-word ones, and
-         * dropping the short phrases as the ladder rose was what made a box of three-, three-,
-         * four- and seven-word phrases answer Sprosse 2 with the seven-word one.
+         * The phrases [level] asks: its own band of [byDifficulty], and nothing from the bands
+         * around it — so a miss drops to phrases genuinely easier than the one missed,
+         * and every Sprosse, the top one included, is as many phrases as the next.
          */
-        fun atomsAt(level: Int): Int = maxOf(1, level) + MIN_ATOMS - 1
-
-        /** The phrases [level] admits: everything from [MIN_ATOMS] words up to [atomsAt]. */
-        fun phrasesAt(level: Int): List<Phrase> = phrases.filter { it.words <= atomsAt(level) }
+        fun phrasesAt(level: Int): List<Phrase> {
+            val band = level.coerceIn(1, maxLevel) - 1
+            val size = byDifficulty.size
+            return byDifficulty.subList(band * size / maxLevel, (band + 1) * size / maxLevel)
+        }
     }
 
     /** One eligible phrase and the chips it was cut into. */
@@ -79,10 +96,13 @@ object SentenceScrambleAvailability {
 
         /**
          * How long the phrase is as an ORDER. A punctuation chip is placed like any other but
-         * carries no word order to get right, so the ladder and the floor count words alone —
+         * carries no word order to get right, so the difficulty and the floor count words alone —
          * otherwise "Vorsicht, heiß!" would pass for a four-atom phrase.
          */
         val words: Int get() = atoms.count { !ScrambleTokenizer.isMark(it.text) }
+
+        /** How much there is to read across those words — marks and spaces left out. */
+        val letters: Int get() = atoms.filter { !ScrambleTokenizer.isMark(it.text) }.sumOf { it.text.length }
     }
 
     /**
