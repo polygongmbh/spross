@@ -23,9 +23,10 @@ import Foundation
 //   · A bare trunk before the first fork.
 //
 // Foliage gathers at the tips first — each twig end carries a cluster, filled evenly
-// across the crown — and, as a cluster grows past its tip's own near slots, runs back
-// along that tip's branch toward the trunk, biased outward, so a mature canopy leafs
-// out along its wood instead of staying a ring of clusters with bare branches inside.
+// across the crown — and every mark past a tip's own first one runs back along that
+// tip's branch toward the trunk instead, biased inward, from the first extra word a
+// tip gets onward, so a canopy leafs out along its wood as it grows rather than
+// piling every mark on top of the one at the twig's end.
 
 /// One length of branch: a bowed center line that tapers along its length.
 struct TreeSegment {
@@ -97,11 +98,8 @@ struct TreeSkeleton {
 
     private struct Tip {
         let path: UInt64
-        let base: CGPoint
-        let end: CGPoint
-        let angle: Double
-        let reach: Double
-        /// Trunk-first, own segment last.
+        /// Trunk-first, own segment last — its last entry IS the tip's own segment,
+        /// so nothing about the tip itself needs repeating outside this array.
         let lineage: [LineageSegment]
     }
 
@@ -153,8 +151,7 @@ struct TreeSkeleton {
 
             // A branch whose children have not started yet is a tip, full length or not.
             guard grown >= 1, depth < TreeSkeleton.maxDepth, vigor > Double(depth + 1) else {
-                tips.append(Tip(path: path, base: origin, end: end, angle: angle, reach: reach,
-                                lineage: ownLineage))
+                tips.append(Tip(path: path, lineage: ownLineage))
                 return
             }
             // Branches reach for the light a little more with every generation.
@@ -189,35 +186,27 @@ struct TreeSkeleton {
 
         /// The k-th slot of a tip's cluster, seeded by the tip and k alone —
         /// a cluster growing deeper never moves the slots it already had.
-        /// The first slot past the tip itself stays on the tip's own last segment,
-        /// where fruit and blossom belong; every one past that ranges back along the
-        /// tip's whole lineage instead, biased toward the tip end, so a cluster
-        /// that keeps growing spreads leaves along the branch rather than only
-        /// thickening at its edge.
+        /// k = 0 pins to the tip itself; every slot past it ranges back along the
+        /// tip's whole lineage instead, biased toward the trunk end, so a cluster
+        /// that keeps growing spreads leaves out along the branch rather than
+        /// piling up on top of the ones already hanging at its edge.
         private func slot(_ k: Int, of tip: Tip, _ index: Int) -> LeafSlot {
+            let own = tip.lineage[tip.lineage.count - 1]
             guard k > 0 else {
-                return LeafSlot(point: tip.end, angle: tip.angle, tip: index, bearing: true)
+                return LeafSlot(point: own.end, angle: own.angle, tip: index, bearing: true)
             }
             var rng = SplitMix64(seed: SplitMix64.mix(seed ^ tip.path &+ UInt64(k) &* 0x9E37_79B9))
-            guard k > 1, tip.lineage.count > 1 else {
-                let t = rng.range(0.45, 1.0)
-                let along = CGPoint(x: tip.base.x + (tip.end.x - tip.base.x) * CGFloat(t),
-                                    y: tip.base.y + (tip.end.y - tip.base.y) * CGFloat(t))
-                let radius = max(tip.reach, 0.07) * rng.range(0.25, 0.85)
-                let off = tip.angle + (rng.next() < 0.5 ? -1 : 1) * rng.range(0.6, 1.9)
-                let point = CGPoint(x: along.x + CGFloat(cos(off) * radius),
-                                    y: along.y + CGFloat(sin(off) * radius))
-                return LeafSlot(point: point, angle: off, tip: index, bearing: k == 1 && t > 0.8)
-            }
             let totalReach = tip.lineage.reduce(0.0) { $0 + $1.reach }
-            let bias = pow(rng.next(), 0.6)
+            let bias = pow(rng.next(), 1.6)
             var remaining = bias * totalReach
-            var chosen = tip.lineage[tip.lineage.count - 1]
+            var chosen = own
+            var onTip = true
             var localT = 1.0
-            for seg in tip.lineage {
+            for (i, seg) in tip.lineage.enumerated() {
                 if remaining <= seg.reach {
                     chosen = seg
                     localT = seg.reach > 0 ? remaining / seg.reach : 1
+                    onTip = i == tip.lineage.count - 1
                     break
                 }
                 remaining -= seg.reach
@@ -228,7 +217,7 @@ struct TreeSkeleton {
             let off = chosen.angle + (rng.next() < 0.5 ? -1 : 1) * rng.range(0.6, 1.9)
             let point = CGPoint(x: along.x + CGFloat(cos(off) * radius),
                                 y: along.y + CGFloat(sin(off) * radius))
-            return LeafSlot(point: point, angle: off, tip: index, bearing: false)
+            return LeafSlot(point: point, angle: off, tip: index, bearing: k == 1 && onTip && localT > 0.8)
         }
     }
 

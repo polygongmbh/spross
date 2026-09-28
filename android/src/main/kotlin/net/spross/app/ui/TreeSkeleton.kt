@@ -18,9 +18,10 @@ import kotlin.math.sqrt
 //
 // One child carries its parent's line on and the other leaves it sharply (monopodial), the
 // width splits so the children's cross-sections add up to the parent's, and every limb bows.
-// Marks gather at the twig ends first — each tip holds a cluster, dealt out tip by tip — and,
-// once a cluster grows past its tip's own near slots, run back along that tip's limb toward
-// the trunk, biased outward, so a mature crown leafs out along its wood too.
+// Marks gather at the twig ends first — each tip holds a cluster, dealt out tip by tip — and
+// every mark past a tip's own first one runs back along that tip's limb toward the trunk
+// instead, biased inward, from the first extra word a tip gets onward, so a crown leafs out
+// along its wood as it grows rather than piling every mark on top of the one at the twig's end.
 
 /** One length of wood: a bowed center line tapering from [startWidth] to [endWidth]. */
 internal class TreeLimb(
@@ -101,15 +102,11 @@ internal const val PI_F = Math.PI.toFloat()
 /** One length of a tip's own lineage — the limbs from the trunk down to it — each a place a mark can hang. */
 private class LineageLimb(val base: Offset, val end: Offset, val angle: Float, val reach: Float)
 
-/** [lineage] runs trunk-first, the tip's own limb last. */
-private class Tip(
-    val path: Long,
-    val base: Offset,
-    val end: Offset,
-    val angle: Float,
-    val reach: Float,
-    val lineage: List<LineageLimb>,
-)
+/**
+ * [lineage] runs trunk-first, the tip's own limb last — its last entry IS the tip's own
+ * limb, so nothing about the tip itself needs repeating outside this list.
+ */
+private class Tip(val path: Long, val lineage: List<LineageLimb>)
 
 private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
     val limbs = mutableListOf<TreeLimb>()
@@ -145,7 +142,7 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
         val thirdTurn = rng.range(0.45f, 0.85f) * spread
 
         if (grown < 1f || depth >= TreeSkeleton.MAX_DEPTH || vigor <= depth + 1) {
-            tips += Tip(path, origin, end, angle, reach, ownLineage)
+            tips += Tip(path, ownLineage)
             return
         }
         // Each generation reaches a little further toward the light.
@@ -166,25 +163,19 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
     }
 
     /**
-     * The k-th slot of a tip, seeded by the tip and k alone. The first slot past the tip
-     * itself stays on the tip's own last limb; every one past that ranges back along the
-     * tip's whole lineage instead, biased toward the tip end, so a cluster that keeps
-     * growing spreads leaves along the limb rather than only thickening at its edge.
+     * The k-th slot of a tip, seeded by the tip and k alone. k = 0 pins to the tip
+     * itself; every slot past it ranges back along the tip's whole lineage instead,
+     * biased toward the trunk end, so a cluster that keeps growing spreads leaves out
+     * along the limb rather than piling up on top of the one at the twig's end.
      */
     private fun slot(k: Int, tip: Tip, index: Int): TreeSlot {
-        if (k == 0) return TreeSlot(tip.end, tip.angle, index)
+        val own = tip.lineage.last()
+        if (k == 0) return TreeSlot(own.end, own.angle, index)
         val rng = Mix(seed xor Mix.hash(tip.path + k * 0x9E3779B9L))
-        if (k == 1 || tip.lineage.size <= 1) {
-            val t = rng.range(0.45f, 1f)
-            val along = Offset(tip.base.x + (tip.end.x - tip.base.x) * t, tip.base.y + (tip.end.y - tip.base.y) * t)
-            val radius = max(tip.reach, 0.07f) * rng.range(0.25f, 0.85f)
-            val off = tip.angle + rng.sign() * rng.range(0.6f, 1.9f)
-            return TreeSlot(Offset(along.x + cos(off) * radius, along.y + sin(off) * radius), off, index)
-        }
         val totalReach = tip.lineage.sumOf { it.reach.toDouble() }.toFloat()
-        val bias = rng.next().pow(0.6f)
+        val bias = rng.next().pow(1.6f)
         var remaining = bias * totalReach
-        var chosen = tip.lineage.last()
+        var chosen = own
         var localT = 1f
         for (seg in tip.lineage) {
             if (remaining <= seg.reach) {
