@@ -257,10 +257,14 @@ struct SessionExitButtons: View {
     private func secondary(_ title: LocalizedStringKey, icon: String,
                            _ action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Label(title, systemImage: icon)
-                .lineLimit(2)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            // why: a Label pins its icon to the first line — a wrapped title left it riding high.
+            HStack(spacing: Theme.spacing.sm) {
+                Image(systemName: icon)
+                Text(title)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .buttonStyle(SoftButtonStyle())
     }

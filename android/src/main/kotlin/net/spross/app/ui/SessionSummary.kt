@@ -125,7 +125,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         if (talk || ui.canPracticeMore) {
             Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
                 if (talk) SecondaryAction(chrome.sessionDoneTalk, SprossIcons.Chat) { briefingOpen = true }
-                if (ui.canPracticeMore) SecondaryAction(chrome.sessionDoneKeepPracticing, SprossIcons.ArrowRight) { model.continueEndless() }
+                if (ui.canPracticeMore) SecondaryAction(chrome.sessionDoneKeepPracticing, SprossIcons.DoubleArrow) { model.continueEndless() }
             }
             Spacer(Modifier.height(8.dp))
         }
