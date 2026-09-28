@@ -142,7 +142,7 @@ enum TreeShapes {
 
     // MARK: The canopy
 
-    /// The marks, in their tip clusters: a faint mass behind each cluster, the
+    /// The marks along the branches: a faint mass behind them all, the
     /// leaves in four tones lit from above, then blossom and fruit on top.
     private static func foliage(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton,
                                 _ mark: TreeMark, _ shown: Canopy, _ arriving: TreeArrival) {
@@ -189,21 +189,18 @@ enum TreeShapes {
         }
     }
 
-    /// A faint green mass behind every cluster, so a
-    /// cluster reads as foliage with depth rather than as leaves pinned to the sky.
+    /// A faint green mass behind the marks, so the
+    /// crown reads as foliage with depth rather than as leaves pinned to the sky.
     private static func masses(_ context: inout GraphicsContext, _ hanging: [LeafSlot],
                                base: CGFloat) {
-        var clusters: [Int: [CGPoint]] = [:]
-        for slot in hanging { clusters[slot.tip, default: []].append(slot.point) }
-        var mass = Path()
-        for points in clusters.values {
-            let center = CGPoint(x: points.map(\.x).reduce(0, +) / CGFloat(points.count),
-                                 y: points.map(\.y).reduce(0, +) / CGFloat(points.count))
-            let far = max(points.map { hypot($0.x - center.x, $0.y - center.y) }.max() ?? 0,
-                          base * 0.5) + base * 0.55
-            mass.addPath(Path(ellipseIn: CGRect(x: center.x - far, y: center.y - far * 0.85,
-                                                width: far * 2, height: far * 1.7)))
-        }
+        guard !hanging.isEmpty else { return }
+        let points = hanging.map(\.point)
+        let center = CGPoint(x: points.map(\.x).reduce(0, +) / CGFloat(points.count),
+                             y: points.map(\.y).reduce(0, +) / CGFloat(points.count))
+        let far = max(points.map { hypot($0.x - center.x, $0.y - center.y) }.max() ?? 0,
+                      base * 0.5) + base * 0.55
+        let mass = Path(ellipseIn: CGRect(x: center.x - far, y: center.y - far * 0.85,
+                                          width: far * 2, height: far * 1.7))
         context.fill(mass, with: .color(Theme.colors.success.opacity(0.11)))
     }
 

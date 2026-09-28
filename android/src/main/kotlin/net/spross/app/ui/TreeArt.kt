@@ -92,7 +92,7 @@ internal class TreeArt(
         if (hanging.isEmpty()) return
         val top = hanging.minOf { it.point.y }
         val depth = max(hanging.maxOf { it.point.y } - top, 1f)
-        clusters(hanging, base)
+        mass(hanging, base)
         val heavy = tree.longHeld + tree.matured
         val leafy = heavy + tree.growing
         for ((rank, slot) in hanging.withIndex()) {
@@ -116,14 +116,13 @@ internal class TreeArt(
         }
     }
 
-    /** A faint mass behind each cluster, so foliage has depth rather than pinned leaves. */
-    private fun clusters(hanging: List<TreeSlot>, base: Float) {
-        for (points in hanging.groupBy { it.cluster }.values.map { group -> group.map { it.point } }) {
-            val center = Offset(points.sumOf { it.x.toDouble() }.toFloat() / points.size,
-                points.sumOf { it.y.toDouble() }.toFloat() / points.size)
-            val far = max(points.maxOf { hypot(it.x - center.x, it.y - center.y) }, base * 0.5f) + base * 0.55f
-            masses.addOval(Rect(center.x - far, center.y - far * 0.85f, center.x + far, center.y + far * 0.85f))
-        }
+    /** A faint mass behind the marks, so foliage has depth rather than pinned leaves. */
+    private fun mass(hanging: List<TreeSlot>, base: Float) {
+        val points = hanging.map { it.point }
+        val center = Offset(points.sumOf { it.x.toDouble() }.toFloat() / points.size,
+            points.sumOf { it.y.toDouble() }.toFloat() / points.size)
+        val far = max(points.maxOf { hypot(it.x - center.x, it.y - center.y) }, base * 0.5f) + base * 0.55f
+        masses.addOval(Rect(center.x - far, center.y - far * 0.85f, center.x + far, center.y + far * 0.85f))
     }
 
     /** A landed word: three leaflets off one stalk — one mark, but foliage. */
