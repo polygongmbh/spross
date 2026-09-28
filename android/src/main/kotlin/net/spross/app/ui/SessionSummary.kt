@@ -12,9 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -26,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -85,8 +89,8 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                     Text("🎉", fontSize = 88.sp) // card-parity: the done screen's own glyph, not a card prompt
                 }
                 val area = grown?.after?.area
-                // why: one title and one line under it — the growth claim where the round grew
-                // an area, with the area LABELED ahead of the tally rather than named in the
+                // why: one title and the lines under it — the growth claim where the round grew
+                // an area, with the area LABELED above the tally rather than named in the
                 // claim: what grew is what the learner can say, never the area itself.
                 val label = area?.let { "${model.areaEmoji(it)} ${model.areaTitle(it)}" }
                 Spacer(Modifier.height(16.dp))
@@ -97,7 +101,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 )
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    listOfNotNull(label, tally).joinToString(" · ").ifEmpty { chrome.sessionDoneTallyAllDone },
+                    listOfNotNull(label, tally).joinToString("\n").ifEmpty { chrome.sessionDoneTallyAllDone },
                     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
@@ -120,8 +124,8 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         val talk = model.hasBriefing
         if (talk || ui.canPracticeMore) {
             Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-                if (talk) SecondaryAction(chrome.sessionDoneTalk) { briefingOpen = true }
-                if (ui.canPracticeMore) SecondaryAction(chrome.sessionDoneKeepPracticing) { model.continueEndless() }
+                if (talk) SecondaryAction(chrome.sessionDoneTalk, SprossIcons.Chat) { briefingOpen = true }
+                if (ui.canPracticeMore) SecondaryAction(chrome.sessionDoneKeepPracticing, SprossIcons.Again) { model.continueEndless() }
             }
             Spacer(Modifier.height(8.dp))
         }
@@ -130,6 +134,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
             shape = MaterialTheme.shapes.small,
         ) {
+            ButtonIcon(SprossIcons.Check)
             Text(chrome.commonDone)
         }
     }
@@ -137,14 +142,21 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
 }
 
 @Composable
-private fun RowScope.SecondaryAction(label: String, onClick: () -> Unit) {
+private fun RowScope.SecondaryAction(label: String, icon: ImageVector, onClick: () -> Unit) {
     OutlinedButton(
         onClick = onClick,
         modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp).pressSpring(),
         shape = MaterialTheme.shapes.small,
     ) {
+        ButtonIcon(icon)
         Text(label, textAlign = TextAlign.Center, maxLines = 2)
     }
+}
+
+@Composable
+private fun ButtonIcon(icon: ImageVector) {
+    Icon(icon, contentDescription = null, modifier = Modifier.size(18.dp))
+    Spacer(Modifier.width(8.dp))
 }
 
 /**

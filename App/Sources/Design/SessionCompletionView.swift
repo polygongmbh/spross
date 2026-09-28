@@ -58,14 +58,14 @@ struct SessionCompletionView: View {
         return parts.map { Self.partText($0, alone: parts.count == 1) }.joined()
     }
 
-    /// The one line under the title: the grown area's label, then the tally.
+    /// Under the title: the grown area's label, and the tally on a line of its own.
     /// The area is LABELED rather than named in the title: the area did not
     /// grow — what the learner can say did.
     private var summaryText: Text {
         guard showsTree else { return tallyText ?? Text("session.done.tally.allDone") }
         let label = Text(verbatim: grownAreaLabel)
         guard let tallyText else { return label }
-        return label + Text(verbatim: " · ") + tallyText
+        return label + Text(verbatim: "\n") + tallyText
     }
 
     private var showsTree: Bool { grownArea.map { !$0.after.isBare } ?? false }

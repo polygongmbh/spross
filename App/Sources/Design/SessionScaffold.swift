@@ -239,13 +239,13 @@ struct SessionExitButtons: View {
             HStack(spacing: Theme.spacing.md) {
                 // why: the words are warm — the one moment a conversation about
                 // them costs nothing to offer; it asks rather than instructs.
-                if let onTalk { secondary("session.done.talk", onTalk) }
-                if let onPractice { secondary("session.done.keepPracticing", onPractice) }
+                if let onTalk { secondary("session.done.talk", icon: "bubble.left.and.bubble.right", onTalk) }
+                if let onPractice { secondary("session.done.keepPracticing", icon: "arrow.counterclockwise", onPractice) }
             }
             // why: a label that wraps grows its own button only — the pair keeps one height.
             .fixedSize(horizontal: false, vertical: true)
             Button(action: onDone) {
-                Text("common.done").frame(maxWidth: .infinity)
+                Label("common.done", systemImage: "checkmark").frame(maxWidth: .infinity)
             }
             .buttonStyle(PrimaryButtonStyle())
         }
@@ -254,9 +254,10 @@ struct SessionExitButtons: View {
         .padding(.bottom, Theme.spacing.xl)
     }
 
-    private func secondary(_ title: LocalizedStringKey, _ action: @escaping () -> Void) -> some View {
+    private func secondary(_ title: LocalizedStringKey, icon: String,
+                           _ action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Text(title)
+            Label(title, systemImage: icon)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

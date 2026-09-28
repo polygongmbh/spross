@@ -159,6 +159,12 @@ object SprossIcons {
         moveTo(15f, 3.2f); lineTo(12f, 5f); lineTo(15f, 6.8f)
     }
 
+    /** Talk it over — the words a round just left warm. `bubble.left.and.bubble.right` on iOS. */
+    val Chat = stroked("Chat") {
+        moveTo(4f, 5f); lineTo(20f, 5f); lineTo(20f, 16f); lineTo(10f, 16f)
+        lineTo(6f, 19.5f); lineTo(6f, 16f); lineTo(4f, 16f); close()
+    }
+
     /**
      * The bedtime. A crescent rather than 🌙: an affordance is a tintable vector here, and
      * the emoji it replaces was multi-color artwork that took no tint at all.
