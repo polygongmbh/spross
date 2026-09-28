@@ -476,8 +476,7 @@ internal object ChromeDe : Chrome {
     override val homeSuggestionReasonVariety = "Zur Abwechslung"
     override val homeSuggestionWordsInstead = "Lieber Wörter üben"
     override val listenTitle = "Wörter hören"
-    override val listenSubtitle = "Festigt wacklige Wörter — im Hintergrund und mit " +
-        "Einschlaf-Timer"
+    override val listenSubtitle = "Festigt wacklige Wörter\nnebenbei oder beim Einschlafen"
     override val listenPause = "Pause"
     override val listenResume = "Weiter"
     override val listenSkip = "Nächstes Wort"

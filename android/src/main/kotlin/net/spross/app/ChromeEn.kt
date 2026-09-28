@@ -466,8 +466,7 @@ internal object ChromeEn : Chrome {
     override val homeSuggestionReasonVariety = "For a change of pace"
     override val homeSuggestionWordsInstead = "Practice words instead"
     override val listenTitle = "Hear Your Words"
-    override val listenSubtitle = "Reinforces shaky words — in the background and with sleep " +
-        "timer"
+    override val listenSubtitle = "Reinforces shaky words\nhands-free or at bedtime"
     override val listenPause = "Pause"
     override val listenResume = "Resume"
     override val listenSkip = "Next word"

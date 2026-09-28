@@ -4435,18 +4435,18 @@
       }
     },
     "listen.subtitle" : {
-      "comment" : "The row's second line: which words it leans on, and that it needs no hands.",
+      "comment" : "The row's second line, broken in two: which words it leans on, then that it needs no hands.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Festigt wacklige Wörter — im Hintergrund und mit Einschlaf-Timer"
+            "value" : "Festigt wacklige Wörter\nnebenbei oder beim Einschlafen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reinforces shaky words — in the background and with sleep timer"
+            "value" : "Reinforces shaky words\nhands-free or at bedtime"
           }
         }
       }
