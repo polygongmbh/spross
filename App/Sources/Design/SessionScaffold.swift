@@ -78,21 +78,27 @@ struct SessionScaffold<Content: View>: View {
                             .frame(width: max(geo.size.width * fraction, 10))
                     }
                 } else {
-                    let slots = max(total, outcomes.count)
+                    // why: an endless run keeps answering past any fixed total —
+                    // windowing to the latest answers keeps the bar legible (and
+                    // the view cheap) instead of one sliver per answer forever.
+                    let maxSegments = 40
+                    let remaining = max(total - outcomes.count, 0)
+                    let visible = outcomes.suffix(maxSegments)
+                    let slots = visible.count + remaining
                     let spacing: CGFloat = slots > 40 ? 0.5 : 1
                     // The partings come off the row before any slot is measured,
                     // so the remainder takes its share of what is LEFT for
                     // segments — from the full width it charged every gap to the
                     // answered side, drawing the fill short of the bar.
-                    let forSegments = max(geo.size.width - CGFloat(outcomes.count) * spacing, 0)
+                    let forSegments = max(geo.size.width - CGFloat(visible.count) * spacing, 0)
                     HStack(spacing: spacing) {
-                        ForEach(Array(outcomes.enumerated()), id: \.offset) { _, outcome in
+                        ForEach(Array(visible.enumerated()), id: \.offset) { _, outcome in
                             Rectangle().fill(outcome.color)
                         }
-                        if outcomes.count < slots {
+                        if remaining > 0 {
                             Rectangle()
                                 .fill(Theme.colors.separator)
-                                .frame(width: forSegments * CGFloat(slots - outcomes.count) / CGFloat(slots))
+                                .frame(width: forSegments * CGFloat(remaining) / CGFloat(slots))
                         }
                     }
                     .clipShape(Capsule())
@@ -147,6 +153,35 @@ struct SessionScaffold<Content: View>: View {
 
     private var readAloudValue: LocalizedStringKey {
         Pronouncer.shared.muted ? "a11y.state.off" : "a11y.state.on"
+    }
+}
+
+// MARK: - Endless chrome
+
+extension SessionScaffold {
+    /// The chrome for a run that may or may not still be counting toward a
+    /// composed plan. Endless — every drill, and a review run once "Weiter
+    /// üben" has switched it — shows exactly the one card in front of the
+    /// learner as the bar's open segment: kern may pull a whole batch on an
+    /// endless refill, but the learner never sees that batch as a plan with
+    /// an end (`DrillChrome.endless`, `SessionView`).
+    static func running(endless: Bool,
+                        position: Int = 1,
+                        total: Int = 1,
+                        outcomes: [SessionOutcome],
+                        counter: String? = nil,
+                        showsMuteButton: Bool = false,
+                        speaksPastMute: Bool = false,
+                        onClose: @escaping () -> Void,
+                        @ViewBuilder content: () -> Content) -> SessionScaffold {
+        SessionScaffold(position: endless ? outcomes.count + 1 : position,
+                        total: endless ? outcomes.count + 1 : total,
+                        outcomes: outcomes,
+                        counter: counter,
+                        showsMuteButton: showsMuteButton,
+                        speaksPastMute: speaksPastMute,
+                        onClose: onClose,
+                        content: content)
     }
 }
 

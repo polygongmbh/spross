@@ -76,11 +76,12 @@ struct SessionView: View, LanguageNaming {
                                       onPractice: { model.continueEndless() },
                                       onDone: { model.closeSession() })
             } else {
-                SessionScaffold(position: model.sessionPosition,
-                                total: max(model.sessionTotal, 1),
-                                outcomes: model.sessionSegments,
-                                showsMuteButton: true,
-                                onClose: { model.closeSession() }) {
+                SessionScaffold.running(endless: model.sessionEndless,
+                                        position: model.sessionPosition,
+                                        total: max(model.sessionTotal, 1),
+                                        outcomes: model.sessionSegments,
+                                        showsMuteButton: true,
+                                        onClose: { model.closeSession() }) {
                     scaffoldContent
                 }
             }

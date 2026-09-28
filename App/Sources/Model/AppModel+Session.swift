@@ -142,6 +142,12 @@ extension AppModel {
 
     var sessionTotal: Int { Int(run?.total ?? 0) }
 
+    /// Whether "Weiter üben" has switched this run past its composed plan —
+    /// the bar then grows with each answer instead of counting toward
+    /// `sessionTotal`, whatever batch size kern pulls on the next refill
+    /// underneath it (`SessionScaffold.running`).
+    var sessionEndless: Bool { run?.endless ?? false }
+
     /// The answered stretch as the progress bar draws it. Which rating reads as
     /// which outcome is kern's grouping (`AnswerOutcome`); only the hues are ours.
     var sessionSegments: [SessionOutcome] {

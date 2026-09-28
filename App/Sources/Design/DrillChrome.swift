@@ -8,25 +8,23 @@ import SwiftUI
 // (a heard glyph and a typed numeral share no grammar); only the frame does.
 
 extension SessionScaffold {
-    /// The chrome of an ENDLESS run, which has no total to count toward.
-    /// Position and total move together, so the bar fills as the run grows
-    /// instead of breaking past a fixed end, and the counter is the run's own
-    /// `DrillTally` rather than "position/total" — which answers each half of
-    /// it counts is kern's rule, and the slash is all this adds.
+    /// The chrome of an ENDLESS drill run, which has no total to count
+    /// toward — the counter is the run's own `DrillTally` rather than
+    /// "position/total", which answers each half of it counts is kern's
+    /// rule, and the slash is all this adds (`SessionScaffold.running`).
     static func endless(tally: DrillTally,
                         outcomes: [SessionOutcome],
                         showsMuteButton: Bool = false,
                         speaksPastMute: Bool = false,
                         onClose: @escaping () -> Void,
                         @ViewBuilder content: () -> Content) -> SessionScaffold {
-        SessionScaffold(position: outcomes.count + 1,
-                        total: outcomes.count + 1,
-                        outcomes: outcomes,
-                        counter: "\(tally.clean)/\(tally.judged)",
-                        showsMuteButton: showsMuteButton,
-                        speaksPastMute: speaksPastMute,
-                        onClose: onClose,
-                        content: content)
+        .running(endless: true,
+                outcomes: outcomes,
+                counter: "\(tally.clean)/\(tally.judged)",
+                showsMuteButton: showsMuteButton,
+                speaksPastMute: speaksPastMute,
+                onClose: onClose,
+                content: content)
     }
 }
 
