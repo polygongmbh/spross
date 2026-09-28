@@ -28,6 +28,10 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   Both apps consume one cue (`PronunciationCue`).
 - **Autoplay fires only where the card holds the learner.**
   A clean correct flips in 0.45-1.2 s; a word cut off teaches nothing.
+  A drill says every graded answer, right or wrong, and its beat waits for the reading to end
+  (kern's `DrillEffect.SayAnswer`, one standard for every drill);
+  a timed run leaves its clean answers unsaid, since the clock is running,
+  and the letter drill says nothing more, since its question already was the sound.
   Produce fires wait for the feedback chime;
   chimes are never ducked, and no fire delays a flip.
   One fire per card and one per drill task.
@@ -42,7 +46,7 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
 | trainer drill prompt (numeral, clock, date) | no | the reading IS the answer |
 | drill prompt in learning language (reversed run) | yes, at once | the form on the card |
 | drill prompt in known language (forward run) | no | the reveal carries the voice |
-| trainer drill reveal/correction | yes, after chime | the reading (usually voice; weekday/month/country/nationality recorded) |
+| trainer drill graded answer (right, slip, miss, reveal) | yes, after chime | the answer in the learned language: the reading, the name, the word, the authored phrase (usually voice; weekday/month/country/nationality recorded) |
 | listening mode (between two sayings) | yes, unattended | the meaning in the known language |
 | drill answer in known language (reversed atlas) | no | prompt carries the voice instead |
 

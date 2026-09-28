@@ -33,6 +33,8 @@ struct WordScrambleView: View, LanguageNaming {
     @State var input = ""
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
+    /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
+    @State var answerVoice = AnswerVoice()
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, language: String, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
@@ -96,7 +98,10 @@ struct WordScrambleView: View, LanguageNaming {
             // drag VoiceOver off the card it was just handed.
             answerFocused = !screenReaderOn
         }
-        .onDisappear { autoAdvance?.cancel() }
+        .onDisappear {
+            autoAdvance?.cancel()
+            answerVoice.hush()
+        }
         #if DEBUG
         .onAppear { uitestDriveRun() }
         #endif

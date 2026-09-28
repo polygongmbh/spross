@@ -54,8 +54,9 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     @State var chosen: String?
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
-    /// The beat between the chime and the answer being said (`autoplayAnswer`).
-    @State private var answerVoice = AnswerVoice()
+    /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
+    // why: internal, not private — the +Run extension hands it to the driver.
+    @State var answerVoice = AnswerVoice()
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, content: Face.Content, reverse: Bool, fast: Bool = false,
@@ -113,8 +114,6 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
             answerFocused = wantsKeyboard
             autoplayPrompt()
         }
-        .saysOwedAnswer(spokenAnswer, lang: current.answerLanguage,
-                        via: model, voice: answerVoice)
         .onDisappear {
             autoAdvance?.cancel()
             // D5: leaving mid-word must silence.
@@ -142,15 +141,6 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     }
 
     // MARK: - Saying the answer
-
-    /// Nothing is read out on a REVERSED run, whichever way it ended: the side
-    /// answered there is the learner's own language, and every autoplay
-    /// `read-aloud.md` describes says a target-language form. The speaker beside
-    /// the reveal still says it on request — a tap outranks the rule, as it
-    /// outranks both mutes.
-    var spokenAnswer: String? {
-        reverse ? nil : feedback.owedForm(revealing: current.display)
-    }
 
     /// Every way out of a task goes through here — the next question, the door.
     func hushAnswer() {

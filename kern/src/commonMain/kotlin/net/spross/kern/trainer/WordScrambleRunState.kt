@@ -131,4 +131,8 @@ data class WordScrambleRunState(
      * so a word that vanished the moment it landed was the one answer the drill never glossed.
      */
     val showsAnswer: Boolean get() = !owesAnswer
+
+    /** What a verdict says aloud: the word whose letters were handed over. */
+    internal val saidAnswer: DrillEffect.SayAnswer?
+        get() = task?.let { DrillEffect.SayAnswer(it.display, it.language) }
 }

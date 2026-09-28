@@ -124,6 +124,21 @@ data class NumbersRunState(
      */
     val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
 
+    /**
+     * What a verdict says aloud: the reading, whichever side of it was owed — a reversed task's
+     * reading is its prompt. [slip] is the spelling a typo was held for, said in its place.
+     */
+    internal fun saidAnswer(slip: String? = null): DrillEffect.SayAnswer = DrillEffect.SayAnswer(
+        if (currentReversed) currentTask.prompt else slip ?: currentTask.display,
+        currentTask.language,
+    )
+
+    /**
+     * A clean answer's reading, unsaid in a timed run: the clock is running, and the beat
+     * would wait the reading out.
+     */
+    internal val saidOnClean: DrillEffect.SayAnswer? get() = if (timed) null else saidAnswer()
+
     /** The numbers page link shows on numbers tasks only, and never in a timed run. */
     val offersLookUp: Boolean get() = currentExercise == NumbersExercise.Counting && !timed
 

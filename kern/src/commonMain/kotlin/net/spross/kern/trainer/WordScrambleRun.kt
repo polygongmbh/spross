@@ -119,7 +119,7 @@ object WordScrambleRun {
     /** "Finishing the word IS the answer" — the live approve ([TypedDrillVerdicts.typed]). */
     private fun typed(state: WordScrambleRunState, text: String): WordScrambleReduction {
         val task = state.task ?: return unchanged(state)
-        val verdict = TypedDrillVerdicts.typed(state.feedback) {
+        val verdict = TypedDrillVerdicts.typed(state.feedback, state.saidAnswer) {
             grade(text, task, state.config) == Match.Exact
         } ?: return unchanged(state)
         return WordScrambleReduction(state.copy(feedback = verdict.feedback), verdict.effects)
@@ -133,13 +133,13 @@ object WordScrambleRun {
         val task = state.task ?: return unchanged(state)
         if (!state.owesAnswer) return unchanged(state)
         if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
-        val verdict = TypedDrillVerdicts.submit(grade(text, task, state.config))
+        val verdict = TypedDrillVerdicts.submit(grade(text, task, state.config), state.saidAnswer)
         return WordScrambleReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     private fun reveal(state: WordScrambleRunState): WordScrambleReduction {
         if (state.task == null || !state.owesAnswer) return unchanged(state)
-        val verdict = TypedDrillVerdicts.reveal()
+        val verdict = TypedDrillVerdicts.reveal(state.saidAnswer)
         return WordScrambleReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 

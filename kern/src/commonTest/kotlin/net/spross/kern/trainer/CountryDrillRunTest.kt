@@ -65,6 +65,8 @@ class CountryDrillRunTest {
         ),
     )
 
+    private val saysUjerumani = DrillEffect.SayAnswer("Ujerumani", "sw")
+
     private val swahili = LanguageInfo(code = "sw", name = "Kiswahili", englishName = "Swahili", flag = "🇹🇿")
 
     private val german = LanguageInfo(
@@ -156,7 +158,7 @@ class CountryDrillRunTest {
         val reduction = open().reduce(CountryDrillIntent.InputChanged("Ujerumani"))
         assertEquals(TurnFeedback.Correct, reduction.state.feedback)
         assertEquals(
-            listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceTier.Live)),
+            listOf(DrillEffect.Tone(ToneKind.Correct), saysUjerumani, DrillEffect.ArmAdvance(AdvanceTier.Live)),
             reduction.effects,
         )
     }
@@ -195,6 +197,7 @@ class CountryDrillRunTest {
             listOf(
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
+                saysUjerumani,
                 DrillEffect.ArmAdvance(AdvanceTier.Explicit),
             ),
             reduction.effects,
@@ -215,6 +218,7 @@ class CountryDrillRunTest {
             listOf(
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
+                saysUjerumani,
                 DrillEffect.ReleaseFocus,
             ),
             reduction.effects,
@@ -227,7 +231,18 @@ class CountryDrillRunTest {
     fun anotherCountrysNameIsAMissAndNotASlip() {
         val reduction = open().reduce(CountryDrillIntent.Submit("Uhispania"))
         assertEquals(TurnFeedback.Revealed, reduction.state.feedback)
-        assertEquals(listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)), reduction.effects)
+        assertEquals(
+            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong), saysUjerumani),
+            reduction.effects,
+        )
+    }
+
+    /** A reversed run answers in the learner's own language, which no verdict reads out. */
+    @Test
+    fun aReversedVerdictSaysNothing() {
+        val reversed = open(reverse = true)
+        val reduction = reversed.reduce(CountryDrillIntent.Submit(reversed.task.display))
+        assertTrue(reduction.effects.none { it is DrillEffect.SayAnswer })
     }
 
     /**
@@ -256,7 +271,10 @@ class CountryDrillRunTest {
     fun revealingOpensTheCardAndBooksAMiss() {
         val revealed = open().reduce(CountryDrillIntent.Reveal)
         assertEquals(TurnFeedback.Revealed, revealed.state.feedback)
-        assertEquals(listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)), revealed.effects)
+        assertEquals(
+            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal), saysUjerumani),
+            revealed.effects,
+        )
 
         val booked = revealed.state.reduce(CountryDrillIntent.ConfirmPending).state
         assertEquals(listOf(AnswerOutcome.Wrong), booked.outcomes)

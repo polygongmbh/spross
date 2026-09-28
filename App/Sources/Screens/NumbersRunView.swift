@@ -47,7 +47,7 @@ struct NumbersRunView: View, LanguageNaming {
     @State var showingReference = false
     // why: internal, not private — the +Run extension arms/cancels it.
     @State var autoAdvance: Task<Void, Never>?
-    /// The pending "say the answer" wait, held so leaving a task can drop it.
+    /// Says each graded reading kern hands over, held so leaving a task can drop it.
     @State var answerVoice = AnswerVoice()
     /// Second focus attempt for a field that remounts (see focusAnswerField).
     @State var focusRetry: Task<Void, Never>?
@@ -106,7 +106,6 @@ struct NumbersRunView: View, LanguageNaming {
         .onAppear { focusAnswerField() }
         .task { await runClock() }
         .onChange(of: run.index) { _, _ in focusAnswerField() }
-        .saysOwedAnswer(spokenAnswer, lang: language, via: model, voice: answerVoice)
         .onDisappear {
             autoAdvance?.cancel()
             focusRetry?.cancel()

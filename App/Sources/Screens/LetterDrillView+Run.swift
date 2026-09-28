@@ -35,6 +35,8 @@ extension LetterDrillView: DrillRunning {
 
     var resultTitle: LocalizedStringKey { "trainer.drill.letters" }
 
+    var voiceModel: AppModel? { nil }
+
     func silence() { Pronouncer.shared.stop() }
 
     func movedOn() {

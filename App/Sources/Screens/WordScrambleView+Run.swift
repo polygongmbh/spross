@@ -87,7 +87,7 @@ extension WordScrambleView: DrillRunning {
 
     var resultTitle: LocalizedStringKey { "trainer.drill.wordScramble" }
 
-    func silence() { Pronouncer.shared.stop() }
+    var voiceModel: AppModel? { model }
 
     // MARK: - Close → back to the hub that opened it
 

@@ -35,6 +35,8 @@ struct SentenceScrambleView: View {
     @State var run: SentenceScrambleRunState
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
+    /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
+    @State var answerVoice = AnswerVoice()
 
     init(model: AppModel, language: String,
          onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
@@ -95,7 +97,7 @@ struct SentenceScrambleView: View {
         }
         .onDisappear {
             autoAdvance?.cancel()
-            Pronouncer.shared.stop()
+            answerVoice.hush()
         }
         #if DEBUG
         .onAppear {

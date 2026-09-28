@@ -5,13 +5,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.focus.FocusRequester
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
-import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.Chrome
 import net.spross.app.NumbersFlow
 import net.spross.app.Screen
@@ -21,7 +19,6 @@ import net.spross.app.countLine
 import net.spross.app.finishDrill
 import net.spross.app.name
 import net.spross.app.newTrainerRun
-import net.spross.app.speakDrillAnswer
 import net.spross.app.stampRun
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.NumbersChallenge
@@ -64,16 +61,6 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
         closed.summary?.let { model.bookRecord(closed.recordKey, it) }
         model.stampRun(Drill.Numbers, closed.summary)
         model.finishDrill(Screen.Numbers, closed.summary, title)
-    }
-
-    // The revealed reading is spoken like any other answer, once per question however the
-    // pause was reached — after a beat, so the verdict cue is out of the way.
-    var spoken by remember(state.index) { mutableStateOf(false) }
-    LaunchedEffect(state.index, state.showsAnswer) {
-        if (!state.showsAnswer || spoken) return@LaunchedEffect
-        spoken = true
-        delay(CHIME_CLEARANCE_MS)
-        model.speakDrillAnswer(state.currentTask.display, mode.language)
     }
 
     val inputFocus = remember { FocusRequester() }

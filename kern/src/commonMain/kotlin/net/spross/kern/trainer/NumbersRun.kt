@@ -156,17 +156,21 @@ object NumbersRun {
         return when (val match = grade(text, state.currentTask, normalizer)) {
             Match.Exact -> NumbersReduction(
                 state.copy(feedback = TurnFeedback.Correct),
-                listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceTier.Explicit)),
+                listOfNotNull(
+                    DrillEffect.Tone(ToneKind.Correct),
+                    state.saidOnClean,
+                    DrillEffect.ArmAdvance(AdvanceTier.Explicit),
+                ),
             )
             // why: no beat on a slip — the pause shows the proper spelling, and the tap that ends
             // it books the answer almost.
             is Match.Typo -> NumbersReduction(
                 state.copy(feedback = TurnFeedback.Almost(match.corrected, AlmostReason.Typo)),
-                listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ReleaseFocus),
+                listOf(DrillEffect.Tone(ToneKind.Correct), state.saidAnswer(match.corrected), DrillEffect.ReleaseFocus),
             )
             else -> NumbersReduction(
                 state.copy(feedback = TurnFeedback.Revealed, otherWord = match as? Match.OtherWord),
-                listOf(DrillEffect.Tone(ToneKind.Wrong)),
+                listOf(DrillEffect.Tone(ToneKind.Wrong), state.saidAnswer()),
             )
         }
     }
@@ -197,11 +201,11 @@ object NumbersRun {
             return NumbersReduction(withdrawn, listOf(DrillEffect.CancelAdvance))
         }
         // why: the cue sounds once per approval — a keystroke inside an already-approved answer
-        // must not re-chime on every letter.
+        // must not re-chime on every letter, nor say it again.
         val tone: List<DrillEffect> = if (state.feedback == TurnFeedback.Correct) {
             emptyList()
         } else {
-            listOf(DrillEffect.Tone(ToneKind.Correct))
+            listOfNotNull(DrillEffect.Tone(ToneKind.Correct), state.saidOnClean)
         }
         return NumbersReduction(
             state.copy(feedback = TurnFeedback.Correct),
@@ -215,7 +219,7 @@ object NumbersRun {
         // the learner would put the same word on screen twice.
         return NumbersReduction(
             state.copy(feedback = TurnFeedback.Revealed),
-            listOf(DrillEffect.Tone(ToneKind.Reveal)),
+            listOf(DrillEffect.Tone(ToneKind.Reveal), state.saidAnswer()),
         )
     }
 

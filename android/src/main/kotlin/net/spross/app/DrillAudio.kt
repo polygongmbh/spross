@@ -35,10 +35,15 @@ fun AppModel.speakFormOnTap(form: String, lang: Language): (() -> Unit)? =
     speakOnTap(formPronunciation(form, lang))
 
 /**
- * Says a drill's revealed reading. AUTO, so the read-aloud switch and the TalkBack gate
- * both apply without this asking about either.
+ * Says a drill's form out loud. AUTO, so the read-aloud switch and the TalkBack gate
+ * both apply without this asking about either. [onFinish] fires once it is over, or at
+ * once where nothing will sound.
  */
-fun AppModel.speakDrillAnswer(form: String, lang: Language) {
-    val pronunciation = formPronunciation(form, lang) ?: return
-    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.AUTO)
+fun AppModel.speakDrillAnswer(form: String, lang: Language, onFinish: (() -> Unit)? = null) {
+    val pronunciation = formPronunciation(form, lang)
+    if (pronunciation == null) {
+        onFinish?.invoke()
+        return
+    }
+    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.AUTO, onFinish = onFinish)
 }

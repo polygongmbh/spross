@@ -73,6 +73,12 @@ protocol DrillRunning: View {
 
     // MARK: - What kern asks of the device
 
+    /// What says a graded answer, and what an armed beat waits on while it does.
+    var answerVoice: AnswerVoice { get }
+
+    /// Where the voice looks an answer up; nil in a preview, which says nothing.
+    var voiceModel: AppModel? { get }
+
     /// Silencing whatever the question being left was saying.
     func silence()
 
@@ -138,6 +144,7 @@ extension DrillRunning {
 
     func apply(_ effect: DrillEffect) {
         DrillEffects.apply(effect, advance: &autoAdvance,
+                           voice: answerVoice, model: voiceModel,
                            onAdvance: { dispatch(advanceMove) },
                            releaseFocus: { releaseFocus() },
                            silence: { silence() })
@@ -206,6 +213,8 @@ extension DrillRunning {
     func releaseFocus() { answerFocused = false }
 
     func movedOn() {}
+
+    func silence() { answerVoice.hush() }
 }
 
 /// Where the run state is one of kern's own, the three figures the driver reads

@@ -67,6 +67,8 @@ class DateDrillRunTest {
         reduce(DateDrillIntent.Reveal).state.reduce(DateDrillIntent.ConfirmPending).state
 
     /** The standing task's reading with its last letter fumbled — a slip, never another name. */
+    private fun DateDrillRunState.says() = DrillEffect.SayAnswer(task.display, "de")
+
     private fun DateDrillRunState.slipped(): String = task.display.dropLast(1) + "x"
 
     // MARK: - Where a run opens
@@ -110,7 +112,7 @@ class DateDrillRunTest {
         val reduction = run.reduce(DateDrillIntent.InputChanged(run.task.display))
         assertEquals(TurnFeedback.Correct, reduction.state.feedback)
         assertEquals(
-            listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceTier.Live)),
+            listOf(DrillEffect.Tone(ToneKind.Correct), run.says(), DrillEffect.ArmAdvance(AdvanceTier.Live)),
             reduction.effects,
         )
     }
@@ -141,6 +143,7 @@ class DateDrillRunTest {
             listOf(
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
+                run.says(),
                 DrillEffect.ArmAdvance(AdvanceTier.Explicit),
             ),
             reduction.effects,
@@ -158,6 +161,7 @@ class DateDrillRunTest {
             listOf(
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
+                run.says(),
                 DrillEffect.ReleaseFocus,
             ),
             reduction.effects,
@@ -191,9 +195,13 @@ class DateDrillRunTest {
 
     @Test
     fun revealingOpensTheCardAndBooksAMiss() {
-        val revealed = open().reduce(DateDrillIntent.Reveal)
+        val run = open()
+        val revealed = run.reduce(DateDrillIntent.Reveal)
         assertEquals(TurnFeedback.Revealed, revealed.state.feedback)
-        assertEquals(listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)), revealed.effects)
+        assertEquals(
+            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal), run.says()),
+            revealed.effects,
+        )
 
         val booked = revealed.state.reduce(DateDrillIntent.ConfirmPending).state
         assertEquals(listOf(AnswerOutcome.Wrong), booked.outcomes)

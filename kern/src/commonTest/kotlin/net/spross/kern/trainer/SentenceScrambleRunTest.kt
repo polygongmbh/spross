@@ -121,6 +121,30 @@ class SentenceScrambleRunTest {
         assertEquals(emptyList(), booked.placed, "the next question starts empty")
     }
 
+    /** The placement that grades, and the task it graded. */
+    private fun graded(correctly: Boolean): Pair<SentenceScrambleTask, SentenceScrambleReduction> {
+        val state = open()
+        val task = assertNotNull(state.task)
+        val order = task.canonical.let { if (correctly) it else it.reversed() }
+        val place = { atom: ScrambleAtom -> SentenceScrambleIntent.PlaceAtom(task.shuffled.indexOfFirst { it.id == atom.id }) }
+        val waiting = order.dropLast(1).fold(state) { carried, atom -> reduce(carried, place(atom)).state }
+        return task to reduce(waiting, place(order.last()))
+    }
+
+    /** A right arrangement ends on the sound of the phrase. */
+    @Test
+    fun aRightArrangementSaysThePhrase() {
+        val (task, reduction) = graded(correctly = true)
+        assertTrue(DrillEffect.SayAnswer(task.display, "de") in reduction.effects)
+    }
+
+    /** A wrong one says the phrase as authored, not as it was put together. */
+    @Test
+    fun aWrongArrangementSaysTheAuthoredPhrase() {
+        val (task, reduction) = graded(correctly = false)
+        assertTrue(DrillEffect.SayAnswer(task.display, "de") in reduction.effects)
+    }
+
     /** An atom can be taken back while the arrangement is still the learner's to give. */
     @Test
     fun anAtomComesBackWhileTheArrangementIsOpen() {

@@ -41,19 +41,24 @@ enum AutoAdvance {
     }
 
     /// Arm the beat a turn asked for, on the tier's own number — a surface
-    /// driven by kern never re-picks which of the two it is.
+    /// driven by kern never re-picks which of the two it is. `holding` is what
+    /// the beat also waits out before it fires (a drill's answer being said).
     @MainActor
     static func schedule(_ tier: AdvanceTier, _ task: inout Task<Void, Never>?,
+                         holding: (@MainActor () async -> Void)? = nil,
                          action: @escaping @MainActor () -> Void) {
-        schedule(&task, delay: .milliseconds(tier.delayMs), action: action)
+        schedule(&task, delay: .milliseconds(tier.delayMs), holding: holding, action: action)
     }
 
     @MainActor
-    private static func schedule(_ task: inout Task<Void, Never>?, delay: Duration, action: @escaping @MainActor () -> Void) {
+    private static func schedule(_ task: inout Task<Void, Never>?, delay: Duration,
+                                 holding: (@MainActor () async -> Void)? = nil,
+                                 action: @escaping @MainActor () -> Void) {
         task?.cancel()
         guard !screenReaderOn else { task = nil; return }
         task = Task {
             try? await Task.sleep(for: delay)
+            await holding?()
             guard !Task.isCancelled else { return }
             action()
         }

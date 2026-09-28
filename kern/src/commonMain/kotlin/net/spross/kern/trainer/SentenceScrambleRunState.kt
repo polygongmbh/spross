@@ -116,6 +116,10 @@ data class SentenceScrambleRunState(
      */
     val showsAnswer: Boolean get() = !owesAnswer
 
+    /** What a verdict says aloud: the phrase as authored, whichever order was accepted. */
+    internal val saidAnswer: DrillEffect.SayAnswer?
+        get() = task?.let { DrillEffect.SayAnswer(it.display, it.language) }
+
     /** Accepted via an alternative word order rather than the canonical one — gloss not shown. */
     val alternativeMatch: Boolean
         get() {

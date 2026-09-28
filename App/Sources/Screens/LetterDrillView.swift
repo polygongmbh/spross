@@ -37,6 +37,9 @@ struct LetterDrillView: View, LanguageNaming {
     @State var input = ""
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
+    /// The driver's answer voice, which this drill never hands an answer:
+    /// its question already was the sound.
+    @State var answerVoice = AnswerVoice()
     @FocusState var answerFocused: Bool
     @AccessibilityFocusState var replayFocused: Bool
 

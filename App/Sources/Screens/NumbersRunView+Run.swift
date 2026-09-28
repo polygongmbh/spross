@@ -28,7 +28,7 @@ extension NumbersRunView: DrillRunning {
         run.challenge == nil ? mode.titleKey : "trainer.challenge.title"
     }
 
-    func silence() { hushAnswer() }
+    var voiceModel: AppModel? { model }
 
     // why: the pending retry is canceled first, or it re-focuses 120 ms later.
     func releaseFocus() {

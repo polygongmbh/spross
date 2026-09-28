@@ -5,14 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.focus.FocusRequester
-import kotlinx.coroutines.delay
 import net.spross.app.AppModel
-import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.TypedDrill
@@ -83,23 +78,9 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         model.finishDrill(page.back, closed.summary, page.drill)
     }
 
-    // The revealed answer is spoken like any other, once per question however the pause was
-    // reached — after a beat, so the verdict cue is out of the way.
-    //
-    // Never on a REVERSED run: the side answered there is the learner's own language, and
-    // every autoplay `read-aloud.md` describes says a target-language form. The speaker
-    // beside the reveal still says it on request — a tap outranks the rule.
-    var spoken by remember(run.index) { mutableStateOf(false) }
-    LaunchedEffect(run.index, run.showsAnswer) {
-        if (reverse || !run.showsAnswer || spoken) return@LaunchedEffect
-        spoken = true
-        delay(CHIME_CLEARANCE_MS)
-        model.speakDrillAnswer(run.prompt.display, run.answerLanguage)
-    }
-
-    // The QUESTION is said instead on a REVERSED run, where the prompt IS the target-language
-    // form and the answer above deliberately stays silent — so without this the whole task
-    // would be unhearable. Saying it gives nothing away: the word is already on the card. No
+    // The QUESTION is said on a REVERSED run, where the prompt IS the target-language form and
+    // kern says no graded answer (it is in the learner's own language) — so without this the
+    // whole task would be unhearable. Saying it gives nothing away: the word is already on the card. No
     // beat in front of it, unlike the answer's: nothing has chimed and the question is awaited.
     LaunchedEffect(run.index) {
         if (!reverse) return@LaunchedEffect

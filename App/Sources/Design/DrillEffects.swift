@@ -11,8 +11,12 @@ enum DrillEffects {
 
     /// Carry out one effect. `advance` is the caller's own armed beat, so a
     /// view that cancels or re-arms elsewhere still holds a single task.
+    /// `voice` says the graded answer, and `model` is where it looks it up
+    /// (nil in a preview, which says nothing).
     static func apply(_ effect: DrillEffect,
                       advance: inout Task<Void, Never>?,
+                      voice: AnswerVoice,
+                      model: AppModel?,
                       onAdvance: @escaping @MainActor () -> Void,
                       releaseFocus: () -> Void,
                       silence: () -> Void) {
@@ -21,7 +25,13 @@ enum DrillEffects {
             // why: AutoAdvance skips the timer under a screen reader — it
             // truncates the correctness announcement and moves the screen under
             // the user, and the branches render "Weiter" there instead.
-            AutoAdvance.schedule(beat.tier, &advance, action: onAdvance)
+            // The beat also waits out the answer being said, or the next
+            // question's silence would cut the word off.
+            AutoAdvance.schedule(beat.tier, &advance, holding: { await voice.said() },
+                                 action: onAdvance)
+        case .sayAnswer(let answer):
+            guard let model else { return }
+            voice.speak(answer.text, lang: answer.language, via: model)
         case .cancelAdvance:
             advance?.cancel()
         case .tone(let cue):

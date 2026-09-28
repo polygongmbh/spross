@@ -117,16 +117,17 @@ object SentenceScrambleRun {
         return if (ScrambleGrading.isSolved(next.placedAtoms, task.canonical, task.alternatives)) {
             SentenceScrambleReduction(
                 next.copy(feedback = TurnFeedback.Correct),
-                listOf(
+                listOfNotNull(
                     DrillEffect.Silence,
                     DrillEffect.Tone(ToneKind.Correct),
+                    next.saidAnswer,
                     DrillEffect.ArmAdvance(AdvanceTier.Explicit),
                 ),
             )
         } else {
             SentenceScrambleReduction(
                 next.copy(feedback = TurnFeedback.Revealed),
-                listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
+                listOfNotNull(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong), next.saidAnswer),
             )
         }
     }

@@ -60,7 +60,7 @@ Nothing wears a prefix one scope wider than what it serves.
   a chip apiece would say they are alternatives to counting rather than what counting earns.
   Modifiers (reverse, fast, mix) are how a run is played.
 - **A drill card is a review card** -- same face, same reveal,
-  and the revealed reading is spoken and replayable (`read-aloud.md`) --
+  and the graded answer is spoken, right or wrong, and replayable (`read-aloud.md`) --
   and carries nothing but the prompt:
   the run's header line already names what is drilled,
   and the field's placeholder names what is owed.

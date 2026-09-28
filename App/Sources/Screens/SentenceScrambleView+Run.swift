@@ -48,7 +48,7 @@ extension SentenceScrambleView: DrillRunning {
 
     var resultTitle: LocalizedStringKey { "trainer.drill.sentenceScramble" }
 
-    func silence() { Pronouncer.shared.stop() }
+    var voiceModel: AppModel? { model }
 
     // MARK: - What the learner does instead of typing
 

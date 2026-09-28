@@ -3,6 +3,7 @@ package net.spross.app
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import net.spross.kern.model.Language
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillEffect
@@ -61,6 +62,36 @@ class DrillBeat(private val screenReaderOn: () -> Boolean) {
     }
 }
 
+/** A graded answer kern asked to have said; [token] tells two sayings of one text apart. */
+data class OwedReading(val text: String, val language: Language, val token: Int)
+
+/**
+ * The graded answer waiting to be said or still being said — what the run's shell says, and
+ * what the armed beat waits out, so a clean answer never cuts its own word off.
+ */
+class DrillVoice {
+
+    /** Null once the reading has been said, or the question it belonged to was left. */
+    var reading by mutableStateOf<OwedReading?>(null)
+        private set
+
+    private var readings = 0
+
+    fun owe(text: String, language: Language) {
+        readings += 1
+        reading = OwedReading(text, language, readings)
+    }
+
+    /** The reading [token] names has ended; a stale end answers to nobody. */
+    fun said(token: Int) {
+        if (reading?.token == token) reading = null
+    }
+
+    fun hush() {
+        reading = null
+    }
+}
+
 /**
  * What a reduction's effects become on this device. Timers, focus and playback are the
  * platform's; WHICH branch waits and which moves on is the run's rule, which is what the
@@ -75,6 +106,8 @@ class DrillActs(
     /** Cut whatever is sounding: the reading belongs to the question being left. */
     private val onSilence: () -> Unit,
 ) {
+    val voice = DrillVoice()
+
     fun carryOut(effects: List<DrillEffect>) {
         for (effect in effects) {
             when (effect) {
@@ -82,7 +115,11 @@ class DrillActs(
                 DrillEffect.CancelAdvance -> beat.cancel()
                 is DrillEffect.Tone -> onTone(effect.kind)
                 DrillEffect.ReleaseFocus -> onReleaseFocus()
-                DrillEffect.Silence -> onSilence()
+                is DrillEffect.SayAnswer -> voice.owe(effect.text, effect.language)
+                DrillEffect.Silence -> {
+                    voice.hush()
+                    onSilence()
+                }
             }
         }
     }

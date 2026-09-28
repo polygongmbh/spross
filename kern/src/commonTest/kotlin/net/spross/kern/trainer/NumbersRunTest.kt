@@ -154,6 +154,20 @@ class NumbersRunTest {
         assertTrue(DrillEffect.CancelAdvance in edited.effects)
     }
 
+    /** A graded answer says its reading, except a clean one against a running clock. */
+    @Test
+    fun aTimedRunLeavesACleanAnswerUnsaid() {
+        val rng = Random(31)
+        val untimed = NumbersRun.open(numbers(), rng)
+        val said = reduce(untimed, NumbersIntent.Submit(untimed.currentTask.accepted.first()), rng)
+        assertTrue(DrillEffect.SayAnswer(untimed.currentTask.display, "de") in said.effects)
+
+        val mode = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Timed))
+        val timed = NumbersRun.open(mode, rng)
+        val unsaid = reduce(timed, NumbersIntent.Submit(timed.currentTask.accepted.first()), rng)
+        assertTrue(unsaid.effects.none { it is DrillEffect.SayAnswer })
+    }
+
     // MARK: - The ramp inside a run
 
     @Test

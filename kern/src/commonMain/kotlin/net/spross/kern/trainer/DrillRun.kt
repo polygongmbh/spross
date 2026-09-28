@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.model.Language
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.ToneKind
@@ -26,6 +27,15 @@ sealed class DrillEffect {
 
     /** A pause that waits for a tap must give the keyboard back, or it covers the button. */
     data object ReleaseFocus : DrillEffect()
+
+    /**
+     * Say the answer the question was graded against, in the language being learned, once the
+     * verdict's chime is out of the way. Every verdict carries it — right, a slip, a miss, the
+     * look-up — so a drill always ends a question on the sound of its answer; a beat armed
+     * beside it waits for the reading to finish, or a clean answer would cut its own word off.
+     * A side answered in the learner's own language carries none.
+     */
+    data class SayAnswer(val text: String, val language: Language) : DrillEffect()
 
     /**
      * Cut whatever is sounding — the reading belongs to the question being left (D5).

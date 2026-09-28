@@ -134,11 +134,14 @@ object LetterDrillRun {
     /**
      * "Finishing the word IS the answer" — the live approve every typed drill shares
      * ([TypedDrillVerdicts.typed]). A tile question has no field, so a keystroke means nothing.
+     *
+     * No verdict here says its answer ([DrillEffect.SayAnswer]): the question already WAS the
+     * sound, and the answer is the glyph or the word it said.
      */
     private fun typed(state: LetterDrillRunState, text: String): LetterDrillReduction {
         val task = state.task ?: return unchanged(state)
         if (!state.typing) return unchanged(state)
-        val verdict = TypedDrillVerdicts.typed(state.feedback) {
+        val verdict = TypedDrillVerdicts.typed(state.feedback, answer = null) {
             grade(text, task, state.config.cards[task.answerRef], state.config.dictationGrader) == Match.Exact
         } ?: return unchanged(state)
         return LetterDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
@@ -153,13 +156,13 @@ object LetterDrillRun {
         if (!state.owesAnswer) return unchanged(state)
         if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
         val card = state.config.cards[task.answerRef]
-        val verdict = TypedDrillVerdicts.submit(grade(text, task, card, state.config.dictationGrader))
+        val verdict = TypedDrillVerdicts.submit(grade(text, task, card, state.config.dictationGrader), answer = null)
         return LetterDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     private fun reveal(state: LetterDrillRunState): LetterDrillReduction {
         if (state.task == null || !state.owesAnswer) return unchanged(state)
-        val verdict = TypedDrillVerdicts.reveal()
+        val verdict = TypedDrillVerdicts.reveal(answer = null)
         return LetterDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 

@@ -139,4 +139,11 @@ data class DateDrillRunState(
     /** The card may open: the almost hold and the miss each put a reading worth seeing whole. */
     val showsAnswer: Boolean
         get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
+
+    /**
+     * What a verdict says aloud: the reading, where it is owed in the language being learned.
+     * A reversed run answers in the learner's own notation, and says its prompt instead.
+     */
+    internal val saidAnswer: DrillEffect.SayAnswer?
+        get() = if (config.reverse) null else DrillEffect.SayAnswer(task.display, answerLanguage)
 }

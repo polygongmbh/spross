@@ -34,7 +34,7 @@ extension DrillRunView: DrillRunning {
 
     var resultTitle: LocalizedStringKey { Face.resultTitle }
 
-    func silence() { hushAnswer() }
+    var voiceModel: AppModel? { model }
 
     // MARK: - What the learner does beyond the field
 

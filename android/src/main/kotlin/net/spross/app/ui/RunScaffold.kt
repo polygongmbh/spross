@@ -34,12 +34,16 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.snapshotFlow
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withTimeoutOrNull
 import net.spross.app.AppModel
+import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.DrillRun
 import net.spross.app.Screen
-import net.spross.app.audio.Pronouncer
 import net.spross.app.finishDrill
+import net.spross.app.speakDrillAnswer
 import net.spross.kern.session.AdvanceTier
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunProgress
@@ -168,19 +172,29 @@ fun ReadAloudSwitch(model: AppModel) {
 }
 
 /**
- * The wait a kern-armed beat owes before the run moves on.
+ * The wait a kern-armed beat owes before the run moves on — and past it, whatever [holding]
+ * still says is sounding, up to a ceiling for an end that never arrives.
  *
  * Nothing is ever armed where a screen reader runs — the flow renders an explicit Weiter
  * instead — so this only waits out beats that may run.
  */
 @Composable
-fun BeatEffect(beatToken: Int, armedBeat: AdvanceTier?, onElapsed: () -> Unit) {
+fun BeatEffect(
+    beatToken: Int,
+    armedBeat: AdvanceTier?,
+    onElapsed: () -> Unit,
+    holding: () -> Boolean = { false },
+) {
     LaunchedEffect(beatToken) {
         val tier = armedBeat ?: return@LaunchedEffect
         delay(tier.delayMs)
+        withTimeoutOrNull(LONGEST_READING_MS) { snapshotFlow(holding).first { !it } }
         onElapsed()
     }
 }
+
+/** Far past any word or phrase a drill says. */
+private const val LONGEST_READING_MS = 8_000L
 
 /**
  * The run the page opened, or null where this device, box or pair can be asked nothing at
@@ -230,7 +244,7 @@ fun DrillRunScaffold(
     body: @Composable ColumnScope.() -> Unit,
 ) {
     BackHandler(enabled = backLeaves) { leave() }
-    DrillRunEffects(run, leave, model.pronouncer)
+    DrillRunEffects(run, leave, model)
     Column(
         modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
@@ -289,14 +303,22 @@ fun DrillRunScaffold(
 )
 
 /**
- * The three effects every endless drill runs the same way: the hand-back when kern runs out,
- * the silence on the way out, and the wait a kern-armed beat owes before it advances.
+ * The effects every endless drill runs the same way: the hand-back when kern runs out, the
+ * silence on the way out, the graded answer said, and the wait a kern-armed beat owes before
+ * it advances.
  */
 @Composable
-fun DrillRunEffects(run: DrillRun, leave: () -> Unit, pronouncer: Pronouncer) {
+fun DrillRunEffects(run: DrillRun, leave: () -> Unit, model: AppModel) {
     // Nothing left to ask: hand the run back, never repeat a question.
     LaunchedEffect(run.ranOut) { if (run.ranOut) leave() }
     // why: D5 — leaving mid-question must silence, whichever way the screen goes.
-    DisposableEffect(Unit) { onDispose { pronouncer.stop() } }
-    BeatEffect(run.beatToken, run.armedBeat, run::advanceElapsed)
+    DisposableEffect(Unit) { onDispose { model.pronouncer.stop() } }
+    // The answer kern owes the ear, after a beat so the verdict cue is out of the way.
+    val reading = run.owedReading
+    LaunchedEffect(reading?.token) {
+        val owed = reading ?: return@LaunchedEffect
+        delay(CHIME_CLEARANCE_MS)
+        model.speakDrillAnswer(owed.text, owed.language) { run.readingSaid(owed.token) }
+    }
+    BeatEffect(run.beatToken, run.armedBeat, run::advanceElapsed, holding = { run.owedReading != null })
 }
