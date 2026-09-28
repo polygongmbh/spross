@@ -308,18 +308,6 @@ class SessionRunTests {
         assertEquals(Box.config().sessionCap - 3, run.remaining)
     }
 
-    /** A first day is not a record: every box has one. */
-    @Test
-    fun aRecordStreakNeedsMoreThanADay() {
-        fun stats(streak: Int, longest: Int) = BoxStatistics(
-            activeCount = 0, consolidatedCount = 0, dueCount = 0, suspendedCount = 0,
-            streak = streak, streakHealth = StreakHealth.Earned, longestStreak = longest, areas = emptyList(),
-        )
-        assertFalse(SessionRun.streakIsRecord(stats(1, 1)))
-        assertFalse(SessionRun.streakIsRecord(stats(3, 5)))
-        assertTrue(SessionRun.streakIsRecord(stats(3, 3)))
-    }
-
     // Taking a word out of the round instead of answering it
 
     private fun suspended(run: SessionRunState, nowMillis: Long): SessionRunState =

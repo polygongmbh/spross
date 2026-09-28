@@ -11,9 +11,6 @@ struct SessionCompletionView: View {
     var newCount: Int = 0
     var graduatedCount: Int = 0
     let reviewCount: Int
-    /// Today's run is the longest the box has ever held (`BoxStatistics`) —
-    /// the one thing about the streak this round itself achieved.
-    var streakIsRecord: Bool = false
     /// The area this round worked hardest, as it stood before the round and as
     /// it stands now. The round just moved it, so its tree is the one thing on
     /// this screen about THIS learner's box rather than about having finished.
@@ -134,12 +131,6 @@ struct SessionCompletionView: View {
                 .font(.system(.title3, design: .rounded))
                 .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
-            // The streak itself is Home's; a record is what this round did to it.
-            if streakIsRecord {
-                Text("session.done.streakRecord")
-                    .font(Theme.typography.headline)
-                    .foregroundStyle(Theme.colors.accent)
-            }
             if restSuggested {
                 Text("session.done.restHint")
                     .font(Theme.typography.caption)

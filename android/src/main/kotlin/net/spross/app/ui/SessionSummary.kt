@@ -102,12 +102,6 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
                 )
-                // The streak itself is Home's; a record is what this round did to it.
-                if (ui.streakIsRecord) {
-                    Spacer(Modifier.height(16.dp))
-                    Text(chrome.sessionDoneStreakRecord, style = MaterialTheme.typography.titleMedium,
-                        color = Theme.colors.accent)
-                }
                 if (ui.restSuggested) {
                     // why: a day the box itself is telling the learner to stop makes no growth
                     // claim — a screen that celebrates and is contradicted two lines down

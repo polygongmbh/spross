@@ -181,10 +181,4 @@ extension AppModel {
 
     /// Whether words the learner packed are still waiting to enter a round.
     var hasPackedWords: Bool { home.hasPackedWords }
-
-    /// The day streak standing at its all-time best, which the finish screen names.
-    var streakIsRecord: Bool {
-        guard let stats else { return false }
-        return SessionRun.shared.streakIsRecord(stats: stats)
-    }
 }

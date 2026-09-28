@@ -65,7 +65,6 @@ struct SessionView: View, LanguageNaming {
                 SessionCompletionView(newCount: model.sessionNew,
                                       graduatedCount: model.sessionGraduated,
                                       reviewCount: model.sessionReviews,
-                                      streakIsRecord: model.streakIsRecord,
                                       grownArea: model.sessionGrowth,
                                       grownAreaLabel: model.sessionGrowth.map {
                                           "\(model.areaEmoji($0.after.area)) \(model.areaTitle($0.after.area))"

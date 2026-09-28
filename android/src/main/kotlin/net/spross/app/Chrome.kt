@@ -521,7 +521,6 @@ interface Chrome {
     val sessionDoneTallyReviewed: String     // %d
     val sessionDoneTallyAllDone: String
     val sessionDoneRestHint: String
-    val sessionDoneStreakRecord: String
 
     val sessionDoneGrowthGrew: String
     val sessionDoneGrowthOpened: String

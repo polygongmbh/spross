@@ -350,14 +350,6 @@ object SessionRun {
     }
 
     private fun unchanged(state: SessionRunState) = SessionReduction(state, emptyList())
-
-    /**
-     * The day streak standing at its all-time best, which the finish screen names.
-     * A first day is not a record worth announcing — every box has one, and nothing has been
-     * held on to yet.
-     */
-    fun streakIsRecord(stats: BoxStatistics): Boolean =
-        stats.streak >= 2 && stats.streak == stats.longestStreak
 }
 
 private fun outcome(rating: Rating): AnswerOutcome = when (rating) {

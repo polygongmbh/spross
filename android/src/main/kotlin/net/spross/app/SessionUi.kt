@@ -50,9 +50,8 @@ data class SessionUi(
     val reviewed: Int,
     /** Whether an endless refill would yield anything — what "Weiter üben" turns on. */
     val canPracticeMore: Boolean,
-    /** The day streak the finish names, and whether it stands at its all-time best. */
+    /** The day streak the finish names. */
     val streakDays: Int = 0,
-    val streakIsRecord: Boolean = false,
     /**
      * Today's recall is far enough under what the schedule expects that more reps buy
      * little — the box saying so plainly, where a round that only celebrates would be
@@ -105,7 +104,6 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             // (`DayBooked` precedes it in [dispatch]), so the finish names the streak
             // the answer just extended rather than the one it started with.
             streakDays = streakDays,
-            streakIsRecord = stats?.let { SessionRun.streakIsRecord(it) } == true,
             restSuggested = restSuggested,
             grownArea = moved,
             headline = growthHeadline(

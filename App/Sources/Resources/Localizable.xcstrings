@@ -5719,22 +5719,6 @@
         }
       }
     },
-    "session.done.streakRecord" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deine längste Serie!"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your longest streak yet!"
-          }
-        }
-      }
-    },
     "session.done.talk" : {
       "comment" : "The conversation offered where the round just left the words warm; it asks, and the round's own answer stays Fertig.",
       "localizations" : {
