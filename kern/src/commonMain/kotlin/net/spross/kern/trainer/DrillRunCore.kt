@@ -5,7 +5,7 @@ import net.spross.kern.session.AnswerOutcome
 /**
  * The figures every drill run keeps, whatever it happens to ask: the streak on screen and the
  * best it reached, the misses in a row, the outcomes the tally reads, how many questions are
- * done, and the prompts already answered right.
+ * done, the prompts already answered right, and where the run stands against its next pause.
  *
  * A run's own business is the questions it draws and the ladder it climbs where that ladder is
  * its own; the typed runs share theirs down to the verdicts ([TypedDrillVerdicts]). These six
@@ -30,6 +30,8 @@ data class DrillRunCore(
      * a Sprosse with nothing left outside them is climbed past rather than repeated.
      */
     val solved: Set<String> = emptySet(),
+    /** Where the run stands against its next natural stop ([DrillPacing]). */
+    val pacing: DrillPacing = DrillPacing(),
 ) {
 
     /**
@@ -52,6 +54,17 @@ data class DrillRunCore(
             solved = if (correct && clean && solves != null) solved + solves else solved,
         )
     }
+
+    /**
+     * After [book] and the draw that follows it: the pacing brought up to date, and the pause
+     * due now, if one is ([DrillPacing]).
+     */
+    internal fun paced(level: Int?, newSprossen: Int, endless: Boolean): DrillRunCore =
+        copy(pacing = pacing.after(this, level, newSprossen, endless))
+
+    /** Going on from a pause: the same run, and a fresh stretch from here. */
+    internal fun resumed(): DrillRunCore =
+        copy(pacing = pacing.copy(stretchFrom = done, gainedBefore = pacing.gained, pause = null))
 
     private fun outcome(correct: Boolean, clean: Boolean): AnswerOutcome = when {
         !correct -> AnswerOutcome.Wrong

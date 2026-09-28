@@ -74,18 +74,20 @@ struct NumbersRunView: View, LanguageNaming {
             _run = State(initialValue: challenge.open())
             return
         }
+        let record = Int32(TrainerRecords.best(for: mode.recordKey))
         #if DEBUG
         // UI-test hook: `-uitest-level N` opens the run's first exercise at that
         // Sprosse, as the letter drill's `-uitest-letters-level` does. Kern clamps it.
         let preset = UserDefaults.standard.integer(forKey: "uitest-level")
         if preset > 0, let exercise = mode.exercises.first {
             let levels: [NumbersExercise: KotlinInt] = [exercise: KotlinInt(int: Int32(preset))]
-            _run = State(initialValue: NumbersRun.shared.openAt(mode: mode, levels: levels, rng: drillRandom))
+            _run = State(initialValue: NumbersRun.shared.openAt(mode: mode, levels: levels,
+                                                                    standingRecord: record, rng: drillRandom))
         } else {
-            _run = State(initialValue: NumbersRun.shared.open(mode: mode, rng: drillRandom))
+            _run = State(initialValue: NumbersRun.shared.open(mode: mode, standingRecord: record, rng: drillRandom))
         }
         #else
-        _run = State(initialValue: NumbersRun.shared.open(mode: mode, rng: drillRandom))
+        _run = State(initialValue: NumbersRun.shared.open(mode: mode, standingRecord: record, rng: drillRandom))
         #endif
     }
 

@@ -19,6 +19,8 @@ import net.spross.kern.trainer.Drill
 @Composable
 fun DateDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, level: Int) {
     val stamp = model.box?.joinStamp
+    // One key per PAIR, the same one the page reads its best Sprosse back from.
+    val key = stamp?.let { TrainerStore.datesKey(it.source, it.target) }
     TypedDrillScreen(
         model = model,
         reverse = reverse,
@@ -27,10 +29,10 @@ fun DateDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, level: Int
             back = Screen.Dates,
             drill = model.chrome.trainerDrillDates,
             entry = Drill.Dates,
-            // One key per PAIR, the same one the page reads its best Sprosse back from.
-            key = stamp?.let { TrainerStore.datesKey(it.source, it.target) },
+            key = key,
             open = { onTone, onReleaseFocus ->
-                model.newDateDrill(reverse, fast, level, onTone, onReleaseFocus)
+                val record = key?.let { model.trainer.store.record(it) } ?: 0
+                model.newDateDrill(reverse, fast, level, record, onTone, onReleaseFocus)
             },
         ),
     )

@@ -50,7 +50,7 @@ object WordScrambleRun {
             winsAtLevel = 0,
             clearedSprossen = emptySet(),
             blemished = false,
-            core = DrillRunCore(),
+            core = DrillRunCore(pacing = DrillPacing.opening(opening.level, standingRecord = 0)),
             feedback = TurnFeedback.Neutral,
             finished = opening.task == null,
         )
@@ -66,6 +66,7 @@ object WordScrambleRun {
         WordScrambleIntent.Reveal -> reveal(state)
         WordScrambleIntent.ConfirmPending -> confirm(state, rng)
         WordScrambleIntent.AdvanceElapsed -> elapsed(state, rng)
+        WordScrambleIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
     }
 
     /**
@@ -164,7 +165,7 @@ object WordScrambleRun {
         val next = advanced(state, correct, clean)
         val question = draw(state.config, next.level, state.task?.cardId, next.solved, rng)
         return WordScrambleReduction(
-            next.copy(
+            paced(next.copy(
                 task = question.task,
                 level = question.level,
                 bestLevel = maxOf(next.bestLevel, question.level),
@@ -184,10 +185,15 @@ object WordScrambleRun {
                 feedback = TurnFeedback.Neutral,
                 // Nothing left to ask: end on the summary, never on a blank card.
                 finished = question.task == null,
-            ),
+            )),
             listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
         )
     }
+
+    /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
+    private fun paced(state: WordScrambleRunState): WordScrambleRunState = state.copy(
+        core = state.core.paced(state.level, state.newSprossen, endless = !state.finished),
+    )
 
     private fun advanced(
         state: WordScrambleRunState,

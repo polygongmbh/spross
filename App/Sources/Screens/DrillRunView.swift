@@ -80,7 +80,8 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         let opening = level
         #endif
         _run = State(initialValue: Face.open(content: content, reverse: reverse, fast: fast,
-                                             normalizer: normalizer, level: opening))
+                                             normalizer: normalizer, level: opening,
+                                             standingRecord: TrainerRecords.best(for: storageKey)))
     }
 
     /// The question on screen and the figures around it. A fresh join always has

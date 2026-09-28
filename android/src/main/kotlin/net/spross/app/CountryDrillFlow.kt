@@ -95,6 +95,8 @@ fun AppModel.newCountryDrill(
     fast: Boolean,
     /** The Sprosse the run opens on — the page's call ([net.spross.kern.trainer.NumbersMode.entrySprosse] or a tap). */
     level: Int,
+    /** The streak record the page's store holds — what a pause for improving is measured against. */
+    standingRecord: Int,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     rng: Random = Random.Default,
@@ -106,6 +108,7 @@ fun AppModel.newCountryDrill(
         reverse = reverse,
         fast = fast,
         normalizer = AnswerNormalizer.drill(info),
+        standingRecord = standingRecord,
     )
     return CountryDrillFlow(
         start = CountryDrillRun.openAt(config, level, rng),

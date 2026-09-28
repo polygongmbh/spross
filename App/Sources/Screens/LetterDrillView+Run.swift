@@ -94,7 +94,8 @@ extension LetterDrillView {
                                                bestStreak: Int32(max(streak, 12)),
                                                missRun: run.core.missRun,
                                                outcomes: run.core.outcomes,
-                                               solved: run.core.solved),
+                                               solved: run.core.solved,
+                                               pacing: run.core.pacing),
                          chosen: run.chosen, feedback: run.feedback,
                          finished: run.finished)
     }

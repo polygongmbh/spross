@@ -59,7 +59,7 @@ class DrillWiringTest {
     // MARK: - The slot run
 
     private fun slots(platform: Platform, seed: Int = 7): NumbersFlow = NumbersFlow(
-        start = NumbersRun.open(NumbersMode(NumbersExercise.Counting, "de"), Random(seed)),
+        start = NumbersRun.open(NumbersMode(NumbersExercise.Counting, "de"), 0, Random(seed)),
         // A run with no language info grades plainly — enough to drive the wiring.
         normalizer = null,
         rng = Random(seed),

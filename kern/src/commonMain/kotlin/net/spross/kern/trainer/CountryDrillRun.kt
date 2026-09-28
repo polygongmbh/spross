@@ -46,7 +46,7 @@ object CountryDrillRun {
             level = opening.level,
             bestLevel = opening.level,
             winsAtLevel = 0,
-            core = DrillRunCore(),
+            core = DrillRunCore(pacing = DrillPacing.opening(opening.level, config.standingRecord)),
             feedback = TurnFeedback.Neutral,
             finished = false,
         )
@@ -62,6 +62,7 @@ object CountryDrillRun {
         CountryDrillIntent.Reveal -> reveal(state)
         CountryDrillIntent.ConfirmPending -> confirm(state, rng)
         CountryDrillIntent.AdvanceElapsed -> elapsed(state, rng)
+        CountryDrillIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
     }
 
     /**
@@ -179,7 +180,7 @@ object CountryDrillRun {
             arriving = next.level > state.level,
         )
         return CountryDrillReduction(
-            next.copy(
+            paced(next.copy(
                 // Nothing left to ask: end on the summary, never on a question already answered.
                 task = draw.task ?: state.task,
                 finished = draw.task == null,
@@ -193,10 +194,14 @@ object CountryDrillRun {
                 // never render one frame carrying the last one's answer.
                 feedback = TurnFeedback.Neutral,
                 otherWord = null,
-            ),
+            )),
             listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
         )
     }
+
+    /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
+    private fun paced(state: CountryDrillRunState): CountryDrillRunState =
+        state.copy(core = state.core.paced(state.level, newSprossen = 0, endless = !state.finished))
 
     /** The booking itself: the ramp, the streak, the tallies — the Sprosse it reached included. */
     private fun advanced(

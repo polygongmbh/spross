@@ -13,7 +13,7 @@ class TimedRunTest {
 
     private val timed = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Timed))
 
-    private fun at(level: Int) = NumbersRun.openAt(timed, mapOf(NumbersExercise.Counting to level), Random(5))
+    private fun at(level: Int) = NumbersRun.openAt(timed, mapOf(NumbersExercise.Counting to level), 0, Random(5))
 
     private fun NumbersRunState.send(intent: NumbersIntent) = NumbersRun.reduce(this, intent, null, Random(9)).state
 
@@ -34,7 +34,7 @@ class TimedRunTest {
     @Test
     fun timeUpEndsOnlyATimedRun() {
         assertTrue(at(1).send(NumbersIntent.TimeUp).finished)
-        val plain = NumbersRun.open(NumbersMode(NumbersExercise.Counting, "de"), Random(5))
+        val plain = NumbersRun.open(NumbersMode(NumbersExercise.Counting, "de"), 0, Random(5))
         assertFalse(plain.send(NumbersIntent.TimeUp).finished)
     }
 

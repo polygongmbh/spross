@@ -21,6 +21,9 @@ sealed class LetterDrillIntent {
     data object ConfirmPending : LetterDrillIntent()
 
     data object AdvanceElapsed : LetterDrillIntent()
+
+    /** Keep practicing from a pause ([DrillPacing]): the same run goes on, and a fresh stretch starts. */
+    data object KeepPracticing : LetterDrillIntent()
 }
 
 /** The closed result of one intent. */
@@ -98,6 +101,17 @@ data class LetterDrillRunState(
      * a clean one opens it too, because the LETTERS were the question and the meaning never was.
      */
     val showsAnswer: Boolean get() = !owesAnswer
+
+    /**
+     * The Sprossen the store may keep of those climbed off so far.
+     * Dictation draws from the box, which grows —
+     * a Sprosse of it climbed today says nothing about the words it will hold tomorrow.
+     */
+    internal val keptSprossen: Set<Int>
+        get() = clearedSprossen.filter { LetterDrill.stageFor(it) != LetterStage.Dictation }.toSet()
+
+    /** The kept Sprossen the store did not hold — what a pause for improving names. */
+    internal val newSprossen: Int get() = (keptSprossen - config.cleared).size
 
     companion object {
         /** Where the answered-out mask is filed: one per learned language, with no direction. */

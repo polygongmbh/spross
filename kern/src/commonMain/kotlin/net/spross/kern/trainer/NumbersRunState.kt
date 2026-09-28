@@ -24,6 +24,9 @@ sealed class NumbersIntent {
     /** The platform's armed beat elapsed. */
     data object AdvanceElapsed : NumbersIntent()
 
+    /** Keep practicing from a pause ([DrillPacing]): the same run goes on, and a fresh stretch starts. */
+    data object KeepPracticing : NumbersIntent()
+
     /** The clock ran out: the run ends and books a pending answer as the ✕ would. Ignored untimed. */
     data object TimeUp : NumbersIntent()
 }

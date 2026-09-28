@@ -59,7 +59,7 @@ object SentenceScrambleRun {
             winsAtLevel = 0,
             clearedSprossen = emptySet(),
             blemished = false,
-            core = DrillRunCore(),
+            core = DrillRunCore(pacing = DrillPacing.opening(opening.level, standingRecord = 0)),
             feedback = TurnFeedback.Neutral,
             finished = opening.task == null,
         )
@@ -74,6 +74,7 @@ object SentenceScrambleRun {
         is SentenceScrambleIntent.ReturnAtom -> take(state, intent.index)
         SentenceScrambleIntent.ConfirmPending -> confirm(state, rng)
         SentenceScrambleIntent.AdvanceElapsed -> elapsed(state, rng)
+        SentenceScrambleIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
     }
 
     /**
@@ -169,7 +170,7 @@ object SentenceScrambleRun {
             rng,
         )
         return SentenceScrambleReduction(
-            next.copy(
+            paced(next.copy(
                 task = question.task,
                 level = question.level,
                 bestLevel = maxOf(next.bestLevel, question.level),
@@ -190,10 +191,15 @@ object SentenceScrambleRun {
                 feedback = TurnFeedback.Neutral,
                 // Nothing left to ask: end on the summary, never on a blank card.
                 finished = question.task == null,
-            ),
+            )),
             listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
         )
     }
+
+    /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
+    private fun paced(state: SentenceScrambleRunState): SentenceScrambleRunState = state.copy(
+        core = state.core.paced(state.level, state.newSprossen, endless = !state.finished),
+    )
 
     private fun advanced(
         state: SentenceScrambleRunState,

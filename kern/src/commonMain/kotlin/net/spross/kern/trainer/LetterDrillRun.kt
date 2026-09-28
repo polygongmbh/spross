@@ -36,7 +36,7 @@ object LetterDrillRun {
             winsAtLevel = 0,
             clearedSprossen = emptySet(),
             blemished = false,
-            core = DrillRunCore(),
+            core = DrillRunCore(pacing = DrillPacing.opening(opening.level, standingRecord = 0)),
             chosen = null,
             feedback = TurnFeedback.Neutral,
             finished = false,
@@ -54,6 +54,7 @@ object LetterDrillRun {
         LetterDrillIntent.Reveal -> reveal(state)
         LetterDrillIntent.ConfirmPending -> confirm(state, rng)
         LetterDrillIntent.AdvanceElapsed -> elapsed(state, rng)
+        LetterDrillIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
     }
 
     /**
@@ -103,10 +104,7 @@ object LetterDrillRun {
         } else {
             DrillRunSummary(ended.done, ended.bestStreak, newRecord = false)
         }
-        // why: dictation draws from the box, which grows — a Sprosse of it climbed today
-        // says nothing about the words it will hold tomorrow.
-        val cleared = ended.clearedSprossen.filter { LetterDrill.stageFor(it) != LetterStage.Dictation }
-        return LetterDrillClose(ended, summary, cleared.toSet(), effects)
+        return LetterDrillClose(ended, summary, ended.keptSprossen, effects)
     }
 
     // MARK: - Intents
@@ -194,7 +192,7 @@ object LetterDrillRun {
             rng,
         )
         return LetterDrillReduction(
-            next.copy(
+            paced(next.copy(
                 task = question.task,
                 level = question.level,
                 // A Sprosse the run was carried past keeps none of the wins banked below it.
@@ -214,10 +212,15 @@ object LetterDrillRun {
                 chosen = null,
                 // Nothing left to ask: end on the summary, never on a blank card.
                 finished = question.task == null,
-            ),
+            )),
             listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
         )
     }
+
+    /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
+    private fun paced(state: LetterDrillRunState): LetterDrillRunState = state.copy(
+        core = state.core.paced(state.level, state.newSprossen, endless = !state.finished),
+    )
 
     private fun advanced(
         state: LetterDrillRunState,

@@ -19,15 +19,24 @@ import net.spross.kern.session.TurnFeedback
  */
 object NumbersRun {
 
-    /** A fresh run: every exercise at Sprosse 1, one task already drawn. */
-    fun open(mode: NumbersMode, rng: Random): NumbersRunState =
-        openAt(mode, mode.exercises.associateWith { 1 }, rng)
+    /**
+     * A fresh run: every exercise at Sprosse 1, one task already drawn.
+     * [standingRecord] is what the platform's store holds under [NumbersMode.recordKey] —
+     * beating it is what a pause for improving names ([DrillPacing]).
+     */
+    fun open(mode: NumbersMode, standingRecord: Int, rng: Random): NumbersRunState =
+        openAt(mode, mode.exercises.associateWith { 1 }, standingRecord, rng)
 
     /**
      * The same, forced to given Sprossen — the deterministic way to reach a stage. An exercise
      * [levels] leaves out opens at 1; every level is clamped to the exercise's ladder.
      */
-    fun openAt(mode: NumbersMode, levels: Map<NumbersExercise, Int>, rng: Random): NumbersRunState {
+    fun openAt(
+        mode: NumbersMode,
+        levels: Map<NumbersExercise, Int>,
+        standingRecord: Int,
+        rng: Random,
+    ): NumbersRunState {
         val start = mode.exercises.associateWith { exercise ->
             (levels[exercise] ?: 1).coerceIn(1, mode.maxLevel(exercise))
         }
@@ -40,7 +49,9 @@ object NumbersRun {
             levels = opening.levels,
             winsAtLevel = emptyMap(),
             bestLevels = emptyMap(),
-            core = DrillRunCore(),
+            core = DrillRunCore(
+                pacing = DrillPacing.opening(mode.exercises.singleOrNull()?.let { opening.levels[it] }, standingRecord),
+            ),
             seenDigitCounts = emptySet(),
             hintUsed = false,
             feedback = TurnFeedback.Neutral,
@@ -60,6 +71,7 @@ object NumbersRun {
         NumbersIntent.LookUp -> lookUp(state)
         NumbersIntent.ConfirmPending -> confirm(state, rng)
         NumbersIntent.AdvanceElapsed -> elapsed(state, rng)
+        NumbersIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
         NumbersIntent.TimeUp -> timeUp(state)
     }
 
@@ -268,7 +280,7 @@ object NumbersRun {
         val draw = next.challenge?.drawAt(state.index + 1, next.levels)
             ?: next.mode.draw(next.levels, state.currentTask.prompt, next.solved, rng)
         return NumbersReduction(
-            climbed(next, draw).copy(
+            paced(climbed(next, draw).copy(
                 // Nothing left to ask anywhere: end on the summary, never on a repeat.
                 current = draw.drawn ?: next.current,
                 finished = draw.drawn == null,
@@ -278,10 +290,23 @@ object NumbersRun {
                 feedback = TurnFeedback.Neutral,
                 otherWord = null,
                 hintUsed = false,
-            ),
+            )),
             listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
         )
     }
+
+    /**
+     * The pause a booked answer leaves due, if one is ([DrillPacing]).
+     * A timed run ends on its clock and a challenge on its script, so neither pauses.
+     */
+    private fun paced(state: NumbersRunState): NumbersRunState = state.copy(
+        core = state.core.paced(
+            // why: a mixed run climbs one ladder per exercise, and no one of them is the run's.
+            level = state.mode.exercises.singleOrNull()?.let { state.levels[it] },
+            newSprossen = 0,
+            endless = !state.finished && !state.timed && state.challenge == null,
+        ),
+    )
 
     /**
      * Adopt the Sprossen the draw climbed to. A Sprosse the run was carried past because its prompts

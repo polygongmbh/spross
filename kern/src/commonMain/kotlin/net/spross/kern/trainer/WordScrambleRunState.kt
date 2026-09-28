@@ -25,6 +25,9 @@ sealed class WordScrambleIntent {
 
     /** The platform's armed beat elapsed. */
     data object AdvanceElapsed : WordScrambleIntent()
+
+    /** Keep practicing from a pause ([DrillPacing]): the same run goes on, and a fresh stretch starts. */
+    data object KeepPracticing : WordScrambleIntent()
 }
 
 /** The closed result of one intent: the next state plus what it asks for. */
@@ -131,6 +134,9 @@ data class WordScrambleRunState(
      * so a word that vanished the moment it landed was the one answer the drill never glossed.
      */
     val showsAnswer: Boolean get() = !owesAnswer
+
+    /** The Sprossen this run cleared that the store did not hold — what a pause for improving names. */
+    internal val newSprossen: Int get() = (clearedSprossen - config.cleared).size
 
     /** What a verdict says aloud: the word whose letters were handed over. */
     internal val saidAnswer: DrillEffect.SayAnswer?

@@ -23,6 +23,9 @@ sealed class SentenceScrambleIntent {
 
     /** The platform's armed beat elapsed. */
     data object AdvanceElapsed : SentenceScrambleIntent()
+
+    /** Keep practicing from a pause ([DrillPacing]): the same run goes on, and a fresh stretch starts. */
+    data object KeepPracticing : SentenceScrambleIntent()
 }
 
 /** The closed result of one intent: the next state plus what it asks for. */
@@ -141,6 +144,9 @@ data class SentenceScrambleRunState(
 
     /** What the arrangement reads as — the answer a screen reader is given. */
     val arranged: String get() = ScrambleTokenizer.joined(placedAtoms)
+
+    /** The Sprossen this run cleared that the store did not hold — what a pause for improving names. */
+    internal val newSprossen: Int get() = (clearedSprossen - config.cleared).size
 
     /** Whether the dealt atom at [index] has already been committed. */
     fun isPlaced(index: Int): Boolean = index in placed

@@ -8,7 +8,8 @@ import net.spross.kern.session.TurnFeedback
  * [LetterDrillRunState], [WordScrambleRunState], [SentenceScrambleRunState],
  * [CountryDrillRunState] and [DateDrillRunState] each embed a [DrillRunCore] and answer with
  * the same [TurnFeedback] vocabulary, so what a question is worth and whether the run offers
- * a way out is one formula, not six copies of it.
+ * a way out — under the button, or as a pause ([DrillPacing]) — is one formula, not six
+ * copies of it.
  *
  * A run's own business — the draw, the ladder, what an intent does to either — stays on the
  * concrete type; this is only the handful of figures the run shell on each phone reads to
@@ -50,4 +51,12 @@ interface DrillRunProgress {
     val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
 
     val tally: DrillTally get() = DrillTally.of(outcomes)
+
+    val pacing: DrillPacing get() = core.pacing
+
+    /**
+     * Why the run waits on the learner ([DrillPacing]): the pause stands in place of the
+     * question until the run is closed or goes on. Null while it runs on.
+     */
+    val pause: DrillPauseReason? get() = core.pacing.pause
 }

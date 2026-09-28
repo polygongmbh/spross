@@ -1,0 +1,87 @@
+package net.spross.kern.trainer
+
+import net.spross.kern.session.AnswerOutcome
+
+/** Why an endless run stopped to ask whether to go on ([DrillPacing]). */
+enum class DrillPauseReason {
+    /** The run did something new: a Sprosse cleared that the store did not hold, or the record beaten. */
+    Improved,
+
+    /** Most of the last few answers missed. */
+    Struggling,
+
+    /** A stretch's worth of answers since the run opened or last went on. */
+    Count,
+}
+
+/**
+ * Where an endless run stands against its next natural stop.
+ *
+ * A drill has no plan to finish, so kern gives it one: after a booked answer the run pauses at
+ * the FIRST of three moments —
+ * [STRETCH] answers since the run opened or last went on;
+ * after [IMPROVED_AFTER], something new since the last pause
+ * (a Sprosse cleared that the store did not hold, or a standing streak record beaten);
+ * after [STRUGGLING_AFTER], [STRUGGLING_MISSES] misses among the last [STRUGGLING_WINDOW] answers.
+ * Where two fall on one answer, improving is named over struggling, and either over the count.
+ *
+ * A pause asks, it does not end: going on ([DrillRunCore.resumed]) keeps the run whole —
+ * the prompts asked, the ladder, the streak — and starts the next stretch.
+ * A run that ran out of questions ends instead, and a timed run ends on its clock, so neither pauses.
+ */
+data class DrillPacing(
+    /** The Sprosse the run opened on; null where it climbs several ladders at once. */
+    val openedOn: Int? = null,
+    /** The highest Sprosse it has stood on since; null exactly where [openedOn] is. */
+    val reached: Int? = null,
+    /** The streak record standing when the run opened; 0 where the drill keeps none, or none stood yet. */
+    val standingRecord: Int = 0,
+    /** How many Sprossen this run cleared that the store did not hold. */
+    val newSprossen: Int = 0,
+    /** The run's best streak beat a record that stood. */
+    val newRecord: Boolean = false,
+    /** [DrillRunCore.done] when the current stretch began. */
+    val stretchFrom: Int = 0,
+    /** What the run had gained when the current stretch began — improving asks for more than this. */
+    val gainedBefore: Int = 0,
+    /** Why the run waits on the learner; null while it runs on. */
+    val pause: DrillPauseReason? = null,
+) {
+    internal val gained: Int get() = newSprossen + if (newRecord) 1 else 0
+
+    /**
+     * The pacing after an answer [core] has just booked: the figures brought up to date, and the
+     * pause due now, if one is. [level] is the Sprosse the run now stands on, null where it climbs
+     * several; [newSprossen] how many it has cleared that the store did not hold; [endless] false
+     * where the run is over or ends on its clock.
+     */
+    internal fun after(core: DrillRunCore, level: Int?, newSprossen: Int, endless: Boolean): DrillPacing {
+        val moved = copy(
+            reached = level?.let { maxOf(reached ?: it, it) } ?: reached,
+            newSprossen = newSprossen,
+            newRecord = standingRecord > 0 && core.bestStreak > standingRecord,
+        )
+        val stretch = core.done - stretchFrom
+        val misses = core.outcomes.takeLast(STRUGGLING_WINDOW).count { it == AnswerOutcome.Wrong }
+        val due = when {
+            !endless -> null
+            stretch >= IMPROVED_AFTER && moved.gained > gainedBefore -> DrillPauseReason.Improved
+            stretch >= STRUGGLING_AFTER && misses >= STRUGGLING_MISSES -> DrillPauseReason.Struggling
+            stretch >= STRETCH -> DrillPauseReason.Count
+            else -> null
+        }
+        return moved.copy(pause = due)
+    }
+
+    companion object {
+        const val STRETCH: Int = 20
+        const val IMPROVED_AFTER: Int = 10
+        const val STRUGGLING_AFTER: Int = 6
+        const val STRUGGLING_WINDOW: Int = 5
+        const val STRUGGLING_MISSES: Int = 3
+
+        /** A run's pacing as it opens on [level] against [standingRecord]. */
+        fun opening(level: Int?, standingRecord: Int): DrillPacing =
+            DrillPacing(openedOn = level, reached = level, standingRecord = standingRecord)
+    }
+}

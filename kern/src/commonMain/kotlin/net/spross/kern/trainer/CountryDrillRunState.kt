@@ -25,6 +25,9 @@ sealed class CountryDrillIntent {
 
     /** The platform's armed beat elapsed. */
     data object AdvanceElapsed : CountryDrillIntent()
+
+    /** Keep practicing from a pause ([DrillPacing]): the same run goes on, and a fresh stretch starts. */
+    data object KeepPracticing : CountryDrillIntent()
 }
 
 /** The closed result of one intent: the next state plus what it asks for. */
@@ -70,6 +73,11 @@ class CountryDrillRunConfig(
      * learner's OWN on a reversed run. Null (a preview with no language info) grades plainly.
      */
     val normalizer: AnswerNormalizer?,
+    /**
+     * The streak record the platform's store holds for this page — beating it is what a pause
+     * for improving names ([DrillPacing]); 0 where none stood yet.
+     */
+    val standingRecord: Int = 0,
 ) {
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */
     val answerLanguage: Language get() = CountryDrill.answerLanguage(content, reverse)

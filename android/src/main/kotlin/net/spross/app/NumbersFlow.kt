@@ -87,7 +87,7 @@ fun AppModel.newTrainerRun(
 ): NumbersFlow? {
     val info = catalog?.languages?.get(mode.language) ?: return null
     return NumbersFlow(
-        start = challenge?.open() ?: NumbersRun.open(mode, rng),
+        start = challenge?.open() ?: NumbersRun.open(mode, trainer.store.record(mode.recordKey), rng),
         normalizer = AnswerNormalizer.drill(info),
         rng = rng,
         onTone = onTone,

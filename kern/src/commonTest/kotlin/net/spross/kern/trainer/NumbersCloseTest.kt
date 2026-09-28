@@ -21,7 +21,7 @@ class NumbersCloseTest {
 
     @Test
     fun anUntouchedRunStoresNothing() {
-        val closed = NumbersRun.close(NumbersRun.open(numbers(), Random(41)), 5, emptyMap())
+        val closed = NumbersRun.close(NumbersRun.open(numbers(), 0, Random(41)), 5, emptyMap())
         assertNull(closed.summary)
         assertEquals(emptyMap<String, Int>(), closed.progressBookings)
         assertTrue(DrillEffect.Silence in closed.effects)
@@ -30,7 +30,7 @@ class NumbersCloseTest {
     @Test
     fun closingBooksAPendingAnswerAndNeverUpgradesIt() {
         val rng = Random(43)
-        val state = NumbersRun.open(numbers(), rng)
+        val state = NumbersRun.open(numbers(), 0, rng)
         val almost = NumbersRun.close(
             state.copy(feedback = TurnFeedback.Almost("sieben", AlmostReason.Typo)),
             0,
@@ -55,7 +55,7 @@ class NumbersCloseTest {
 
     @Test
     fun theRecordFallsOnlyToAStrictlyLongerStreak() {
-        val played = NumbersRun.open(numbers(), Random(47)).copy(core = DrillRunCore(done = 6, bestStreak = 8))
+        val played = NumbersRun.open(numbers(), 0, Random(47)).copy(core = DrillRunCore(done = 6, bestStreak = 8))
         assertTrue(NumbersRun.close(played, 7, emptyMap()).summary!!.newRecord)
         assertFalse(NumbersRun.close(played, 8, emptyMap()).summary!!.newRecord)
         // Re-closing a resumed summary can never double-claim.
@@ -69,7 +69,7 @@ class NumbersCloseTest {
     @Test
     fun everyAskedExerciseBooksTheHighestSprosseItStoodOn() {
         val mode = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "sw", emptySet())
-        val played = NumbersRun.open(mode, Random(53)).copy(
+        val played = NumbersRun.open(mode, 0, Random(53)).copy(
             core = DrillRunCore(done = 9, bestStreak = 4),
             // The Sprosse fell back to 3, but the ladder rewards reaching 5.
             levels = mapOf(NumbersExercise.Counting to 3, NumbersExercise.Clock to 1),
@@ -103,11 +103,11 @@ class NumbersCloseTest {
     /** An exercise with one Sprosse has no Sprosse to report; the emoji leads only in a mixed run. */
     @Test
     fun theScoreLineOnlyReportsASprosseThereIsSomethingToClimb() {
-        val one = NumbersRun.open(numbers(), Random(61))
+        val one = NumbersRun.open(numbers(), 0, Random(61))
         assertTrue(one.showsSprosse)
         assertFalse(one.severalExercises)
         val mixed = NumbersRun.open(
-            NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet()),
+            NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet()), 0,
             Random(61),
         )
         assertTrue(mixed.severalExercises)

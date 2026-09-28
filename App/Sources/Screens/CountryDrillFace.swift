@@ -80,9 +80,10 @@ enum CountryDrillFace: DrillFace {
     }
 
     static func open(content: CountryDrillContent, reverse: Bool, fast: Bool,
-                     normalizer: AnswerNormalizer?, level: Int?) -> CountryDrillRunState {
+                     normalizer: AnswerNormalizer?, level: Int?,
+                     standingRecord: Int) -> CountryDrillRunState {
         let config = CountryDrillRunConfig(content: content, reverse: reverse, fast: fast,
-                                           normalizer: normalizer)
+                                           normalizer: normalizer, standingRecord: Int32(standingRecord))
         guard let level else { return CountryDrillRun.shared.open(config: config, rng: drillRandom) }
         return CountryDrillRun.shared.openAt(config: config, level: Int32(level), rng: drillRandom)
     }
@@ -152,7 +153,8 @@ enum CountryDrillFace: DrillFace {
                                          bestStreak: Int32(max(streak, 12)),
                                          missRun: run.core.missRun,
                                          outcomes: run.core.outcomes,
-                                         solved: run.core.solved),
+                                         solved: run.core.solved,
+                                               pacing: run.core.pacing),
                    feedback: run.feedback,
                    otherWord: run.otherWord, finished: run.finished)
     }
