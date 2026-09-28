@@ -27,7 +27,7 @@ import shutil
 import sys
 
 import audio_measure
-from audio_voices import WELL_VOICED, is_noisy, is_trusted, snr_floor
+from audio_voices import is_rejected, mos_floor
 from audio_gates import (attribute, digest_of, keep_article_forms, keep_named_by_its_file,
                          keep_reachable, keep_unambiguous, speech_key)
 
@@ -247,8 +247,8 @@ def copy_verified(source, target):
     return digest
 
 
-def playback_index(loudness, speaker, leading, peak, noise, loudest, phone):
-    """The optional `gain`/`gainPhone`/`lead` plus `snr` for one entry — absent when there is nothing to say.
+def playback_index(loudness, speaker, leading, peak, noise, loudest, mos, phone):
+    """The optional `gain`/`gainPhone`/`lead`/`gate` plus `mos` for one entry — absent when there is nothing to say.
 
     Two gains, one per playback plane (see [ANALYSIS]): `gain` moves a file toward the
     full-range target off the flat loudness, `gainPhone` toward the phone-speaker target
@@ -256,11 +256,11 @@ def playback_index(loudness, speaker, leading, peak, noise, loudest, phone):
     phone-plane gain is measured against; the ceiling below still answers to the flat
     peak, because that is what clips on either plane.
 
-    `snr` is how far the word stands above the noise under it (`audio_measure.noise_margin`). Unlike
-    the other fields it changes no playback — it is carried so the lint can see the SHAPE of a
-    pack and refuse a rebuild that quietly reintroduces the noise a previous one removed.
-    Measured, never applied: filtering the file would be an adaptation under BY-SA and would
-    break the sha256 that pins it.
+    `mos` is how good the take sounds (`audio_measure.mos`). Unlike the other fields it changes
+    no playback — it is carried so the lint can see the SHAPE of a pack and refuse a rebuild
+    that quietly reintroduces the noise a previous one removed, and so a fill or prune can
+    refuse the clearly bad. Measured, never applied: filtering the file would be an adaptation
+    under BY-SA and would break the sha256 that pins it.
     """
     full = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['target_lufs'] - loudness)), 1)
     # why: floor, never round — a gain rounded up to the shipped decimal spends the safety
@@ -287,8 +287,9 @@ def playback_index(loudness, speaker, leading, peak, noise, loudest, phone):
     lead = max(0, round(leading * 1000) - LEAD_KEEP_MS)
     if lead:
         index['lead'] = lead
+    if mos is not None:
+        index['mos'] = round(mos, 2)
     if noise is not None:
-        index['snr'] = round(noise, 1)
         # why: the noise sits `noise` dB under the loudest frame; a gate a few dB above it
         # quiets the hiss in the pauses and never reaches the word (kern `Playback`).
         gate = round(loudest - noise + GATE_MARGIN_DB, 1)
@@ -312,12 +313,12 @@ def copy_and_analyze(copies, phone=False):
     measured = audio_measure.measure_all(FFMPEG, [target for _, _, target in copies])
     analyzed = {}
     for id, _, target in copies:
-        loudness, speaker, leading, peak, noise, loudest = measured[target]
+        loudness, speaker, leading, peak, noise, loudest, mos = measured[target]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % target)
         if phone and speaker is None:
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % target)
-        analyzed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, noise, loudest, phone))
+        analyzed[id] = (digests[id], playback_index(loudness, speaker, leading, peak, noise, loudest, mos, phone))
     return analyzed
 
 
@@ -477,7 +478,7 @@ def convert_countries(pack, out_dir):
 
 
 def reindex(lang):
-    """Re-derive `gain`/`gainPhone`/`lead`/`snr` for a language already under `catalog/audio/`,
+    """Re-derive `gain`/`gainPhone`/`lead`/`gate`/`mos` for a language already under `catalog/audio/`,
     out of the bytes it ships — nothing is copied, converted or renamed.
 
     why a second entry point at all: the packs are unversioned research input and may be
@@ -498,15 +499,15 @@ def reindex(lang):
         if digest_of(path) != item['sha256']:
             sys.exit('%s: sha256 no longer matches — the bytes changed, re-run the convert'
                      % path)
-        loudness, speaker, leading, peak, noise, loudest = measured[path]
+        loudness, speaker, leading, peak, noise, loudest, mos = measured[path]
         if loudness is None or peak is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % path)
         phone = section in ('words', 'articles', 'calendar', 'countries')
         if phone and speaker is None:
             sys.exit('%s: nothing above the speaker lens — it cannot be indexed by it' % path)
-        index = playback_index(loudness, speaker, leading, peak, noise, loudest, phone)
+        index = playback_index(loudness, speaker, leading, peak, noise, loudest, mos, phone)
         was = item.get('gain', 0)
-        for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'snr', 'gate'):
+        for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'snr', 'mos', 'gate'):
             item.pop(field, None)
         item.update(index)
         if index.get('gain', 0) != was:
@@ -674,10 +675,9 @@ def fill_words(packs, languages, reseat=False):
                                      for row in fresh], phone=True)
         for row in fresh:
             digest, index = analyzed[row['slug']]
-            # why: the floor is applied AFTER the copy, because `snr` is measured off the
+            # why: the floor is applied AFTER the copy, because `mos` is measured off the
             # bytes that landed and nothing earlier knows it. The file is then removed
-            # again rather than left orphaned in the tree. No `snr` means a floor of
-            # digital silence, which is the cleanest a file can be, never the noisiest.
+            # again rather than left orphaned in the tree.
             # why: the kern parser refuses a gain past ±GAIN_LIMIT_DB, and so every test that
             # loads the catalog; such a gain is a clipped or broken file, not one to correct.
             if any(abs(index.get(field, 0)) > GAIN_LIMIT_DB for field in ('gain', 'gainPhone')):
@@ -687,11 +687,9 @@ def fill_words(packs, languages, reseat=False):
                 continue
             # A word refused here is spoken by the device voice, as before the fill;
             # `requalify-pack.py` is how a pack finds a cleaner take of it.
-            if (not is_trusted(lang, row['author'], index.get('snr'))
-                    and index.get('snr', snr_floor(lang)) < snr_floor(lang)):
-                drops.append(('noisy', row['slug'],
-                              '%.1f dB above its own noise, floor is %.1f'
-                              % (index['snr'], snr_floor(lang))))
+            if is_rejected(digest) or index.get('mos', mos_floor(lang)) < mos_floor(lang):
+                drops.append(('poor', row['slug'], 'heard as bad' if is_rejected(digest) else
+                              'mos %.2f, floor is %.2f' % (index['mos'], mos_floor(lang))))
                 os.remove(os.path.join(out_dir, row['slug'] + '.mp3'))
                 continue
             shipped[row['slug']] = entry(row['slug'] + '.mp3', row['license'], row['author'],
@@ -741,28 +739,26 @@ def attributed(item, authors):
     return {key: value for key, value in item.items() if key not in dropped}
 
 
-def prune_noisy(languages):
-    """Remove every shipped recording under its language's `snr_floor`, and every take of a
-    NOISY voice where the device voice is good, file and entry, so the voice or silence takes
-    over. Gold voices are never pruned; run `requalify-pack.py` first, so such a word gets a
-    cleaner take where one exists."""
+def prune_poor(languages):
+    """Remove every shipped recording under its language's `mos_floor` or heard as bad, file
+    and entry, so the device voice or silence takes over. Run `requalify-pack.py` first, so
+    such a word gets a better take where one exists."""
     root = os.path.join(CATALOG, 'audio')
     for lang in languages or sorted(os.listdir(root)):
         out_dir = os.path.join(root, lang)
         if not os.path.isdir(out_dir):
             continue
         manifest = read_manifest(out_dir)
-        floor, pruned = snr_floor(lang), []
+        floor, pruned = mos_floor(lang), []
         for section in SECTIONS:
             for key, item in list(manifest.get(section, {}).items()):
-                noisy = is_noisy(lang, item['author']) and lang in WELL_VOICED
-                if (not is_trusted(lang, item['author'], item.get('snr'))
-                        and (noisy or item.get('snr', floor) < floor)):
+                heard = is_rejected(item['sha256'])
+                if heard or item.get('mos', floor) < floor:
                     os.remove(os.path.join(out_dir, item['file']))
                     del manifest[section][key]
-                    pruned.append('%s/%s %s%s' % (section, key, item.get('snr', '-'),
-                                                  ' (noisy voice)' if noisy else ''))
-        print('  %s: %d pruned under %.1f dB%s' % (lang, len(pruned), floor,
+                    pruned.append('%s/%s %s%s' % (section, key, item.get('mos', '-'),
+                                                  ' (heard as bad)' if heard else ''))
+        print('  %s: %d pruned under mos %.2f%s' % (lang, len(pruned), floor,
                                                    ''.join('\n    ' + p for p in pruned)))
         if pruned:
             write_manifest(lang, out_dir, manifest.get('words', {}), manifest.get('letters', {}),
@@ -806,12 +802,12 @@ def main():
     parser.add_argument('--reseat', action='store_true',
                         help='with --fill, also replace every shipped word whose pack row now '
                              'names a different Commons file')
-    parser.add_argument('--prune-noisy', action='store_true',
-                        help="remove shipped recordings under their language's snr floor "
+    parser.add_argument('--prune-poor', action='store_true',
+                        help="remove shipped recordings under their language's mos floor or heard as bad "
                              '(scripts/audio_voices.py); no packs needed')
     args = parser.parse_args()
-    if args.prune_noisy:
-        return prune_noisy(args.lang)
+    if args.prune_poor:
+        return prune_poor(args.lang)
     if not args.packs and not args.reindex:
         parser.error('--packs is required unless --reindex re-measures what already ships')
 

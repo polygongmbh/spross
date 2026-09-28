@@ -53,12 +53,12 @@ internal data class AudioRecording(
     val capPhone: Double?,
     val leadMs: Long,
     /**
-     * Peak minus noise floor in dB — how far the word stands above the hiss under it.
+     * How good the take sounds, as a predicted mean opinion score from 1 to 5.
      * A MEASUREMENT like the other two, but one nothing plays: it exists so lint can see
      * the shape of a pack and refuse a rebuild that quietly reintroduces noise a previous
      * one removed. 0.0 where the converter recorded none.
      */
-    val snr: Double,
+    val mos: Double,
     /**
      * The file's own noise level plus a margin, in dBFS of the RAW decoded bytes, before any
      * gain — where a player's noise gate sits ([AudioIndex.gate]). Null means no gate.

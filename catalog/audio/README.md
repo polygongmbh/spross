@@ -25,29 +25,26 @@ scripts/audio-catalog.py --packs ../data/reference/audio --lang <lang> --fill
 scripts/audio-coverage.py --missing <lang>                   # what nobody has recorded
 ```
 
-The fill's own drops are the quality check: `noisy` (under its language's floor),
+The fill's own drops are the quality check: `poor` (under its language's floor, or heard as bad),
 `unmeasurable` (clipped), `misnamed`, `unreachable` and `shipped-collision` each name the
-row and why. The floor follows the device voice (`../../scripts/audio_voices.py`): where
-it is missing (eo, sw) only the clearly bad are refused, where it is good a recording has
-to beat it, and `--prune-noisy` hands anything shipped under the floor to it.
+row and why. Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
+and the floor follows the device voice (`../../scripts/audio_voices.py`): where it is
+missing (eo, sw) only the clearly bad are refused, where it is good a recording has to beat
+it, and `--prune-poor` hands anything shipped under the floor to it.
 
-A full sweep also re-checks what already ships, in any language: anything not in a gold
-voice and not clearly clean has every other take of its word fetched and compared.
-Gold voices (`../../scripts/audio_voices.py`) are only those a listener heard as
-consistently great, and every picker takes theirs first and never lets the score overrule
-them.
-Everyone else is measured, because being a pack's biggest clean voice proved no promise:
-the worst takes of those voices were mostly okay, some bad.
+A full sweep also re-checks what already ships, in any language: anything not clearly good
+has every other take of its word fetched and compared, and the best one wins.
+The score ranks voices the way the ear does, but a single file strays by a few tenths, so it
+picks among takes and refuses only the clearly bad.
 
 ```sh
 W=../data/reference/audio   # <route> is the language's from $W/build-packs.sh
 $W/sync-from-shipped.py <lang>                              # the pack says what ships
-$W/consolidate-pack.py --lang <lang> <route> --preferred --rerank   # onto gold voices
 $W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <its siblings>
                                                             # voices with ≤3 takes onto established ones
-$W/requalify-pack.py --lang <lang> <route>                  # under 70: the best other take
+$W/requalify-pack.py --lang <lang> <route>                  # under 2.8: the best other take
 scripts/audio-catalog.py --packs $W --lang <lang> --fill --reseat   # ships the chosen swaps
-scripts/audio-catalog.py --lang <lang> --prune-noisy         # what is still under the floor
+scripts/audio-catalog.py --lang <lang> --prune-poor         # what is still under the floor
 ```
 
 Both reseating scripts only report until given `--apply`. The sections other than `words`
@@ -55,13 +52,12 @@ ship through their own converter (`--calendar`, `--countries`), rebuilt from a p
 matched what ships.
 A new speaker is another voice change on the cards and another credit group, so every
 picker takes an established voice's take over a slightly better stranger's, and a voice
-with three recordings or fewer is moved onto an established one wherever it can be —
-except a gold voice, which is small by nature.
+with three recordings or fewer is moved onto an established one wherever it can be.
 
 **Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`**
-with its source, sha256 and `snr`, so a future noise measure is tested against the ear
-rather than tuned to a handful of files: `snr` has not yet told noisy from clean between
-42 and 58 dB there.
+with its source, sha256 and `mos`, so the next revision of the measure is tested against
+the ear rather than tuned to a handful of files. A verdict also overrules the score for
+those bytes: bad never ships, and bad or mediocre has every other take of its word tried.
 
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
 unversioned research input; what is committed here is the shipped bytes and the
@@ -192,12 +188,11 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   headroom again — so a player under a fade hands back as much of the deficit as the ramp
   has taken off, and no more (`fadedGainDb`). It binds 5-25% of every pack but sw, which
   is the loud one and is capped almost nowhere.
-- `snr` (dB) is a third measurement of the same bytes — how far the loudest moment stands
-  above the noise under the word, estimated band by band so a word with no pause around it
-  is not mistaken for noise (`scripts/audio_measure.py`'s `noise_margin`) — but nothing plays it. It is carried so lint
+- `mos` (1 to 5) is a third measurement of the same bytes — how good the take sounds, as
+  predicted by the DNSMOS model (`scripts/audio_measure.py`) — but nothing plays it. It is carried so lint
   can see the SHAPE of a pack and refuse a rebuild that quietly reintroduces noise an
-  earlier sweep removed. A floor per file would be dishonest: some words have nothing
-  cleaner on Commons, so the rule is on the median and the size of the bad tail.
+  earlier sweep removed. The lint holds the median and the size of the bad tail, never a
+  floor per file: some words have nothing better on Commons.
 - `gate` (dB, negative) is the file's own noise level plus a small margin, in dBFS of the
   raw decoded bytes before any gain; a player's downward expander sits there and quiets
   the hiss in pauses and between syllables while the word plays untouched.

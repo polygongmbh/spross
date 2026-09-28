@@ -8,8 +8,10 @@ muxer, so the mp3 that ships is byte-for-byte the mp3 that was measured, the "un
 Commons transcode" claim stays true, and the sha256 gate keeps its meaning.
 """
 import concurrent.futures
+import os
 import re
 import subprocess
+import sys
 
 import numpy as np
 
@@ -51,13 +53,11 @@ SILENCE_START = re.compile(r'silence_start:\s*(-?[\d.]+)')
 SILENCE_END = re.compile(r'silence_end:\s*(-?[\d.]+)')
 PEAK_LEVEL = re.compile(r'Peak level dB:\s*(-?[\d.]+|-inf)')
 
-# NOISE is estimated by minimum statistics: per frequency bin, the quietest moment across
-# short frames. Speech never fills every band at once, while hiss sits under all of them the
-# whole time, so this finds the noise even in a word trimmed to the file's edges — where the
-# quietest WINDOW, which is what ffmpeg's astats calls the noise floor, lands inside the
-# word and reads its own dynamics as hiss. That misread refused recordings a listener heard
-# as clean. Settled against a listening pass: three files heard as noisy measured 38–39,
-# four heard as clean 44–59, with these exact parameters.
+# NOISE — where a playback gate sits, never a verdict on the take (that is MOS) — is
+# estimated by minimum statistics: per frequency bin, the quietest moment across short
+# frames. Speech never fills every band at once, while hiss sits under all of them the whole
+# time, so this finds the noise even in a word trimmed to the file's edges, where the
+# quietest WINDOW (ffmpeg astats' noise floor) lands inside the word itself.
 NOISE_RATE = 22050
 NOISE_FRAME = 256
 NOISE_HOP = 64
@@ -73,8 +73,8 @@ def version(binary):
 
 def measure(binary, path):
     """(integrated LUFS, the same through SPEAKER_LENS, leading silence in seconds, sample
-    peak dBFS, dB of speech above its noise, loudest frame RMS dBFS); a silent file measures
-    None for the levels.
+    peak dBFS, dB of speech above its noise, loudest frame RMS dBFS, MOS); a silent file
+    measures None for the levels.
 
     Two decodes: the plain one below, and one more through the lens — which is what the
     gain is actually derived from, the flat number staying as the figure the packs are
@@ -87,7 +87,7 @@ def measure(binary, path):
     dead air; a first run starting anywhere else means it starts speaking. `astats` reports
     the loudest DECODED sample, which is the ceiling a player's gain stage runs into — the
     mp3's own headroom says nothing, the decoder's output is what gets amplified. The noise
-    is a decode of its own (`noise_margin`).
+    and the MOS are decodes of their own (`noise`, `mos`).
     """
     run = subprocess.run(
         [binary, '-hide_banner', '-nostats', '-i', path, '-af',
@@ -108,6 +108,7 @@ def measure(binary, path):
         float(end.group(1)) if opens_silent and end else 0.0,
         float(peak[-1]) if peak and peak[-1] != '-inf' else None,
         *noise(binary, path),
+        mos(binary, path),
     )
 
 
@@ -123,16 +124,10 @@ def lensed_loudness(binary, path):
     return float(lensed[-1]) if lensed and lensed[-1] != '-inf' else None
 
 
-def noise_margin(binary, path):
-    """How far the loudest frame stands above the noise under the word, in dB (see NOISE_*);
-    None where the estimate finds no noise at all — digital silence, the cleanest there is."""
-    return noise(binary, path)[0]
-
-
 def noise(binary, path):
-    """(`noise_margin`, the loudest frame's RMS in dBFS) — one decode for both, since the
-    noise LEVEL a playback gate sits on is the loudest frame less the margin; (None, None)
-    where no noise was found."""
+    """(dB the loudest frame stands above the noise, its RMS in dBFS) — one decode for both,
+    since the noise LEVEL a playback gate sits on is the loudest frame less the margin;
+    (None, None) where no noise was found, digital silence."""
     raw = subprocess.run(
         [binary, '-v', 'error', '-i', path, '-ac', '1', '-ar', str(NOISE_RATE), '-f', 'f32le', '-'],
         capture_output=True, check=True).stdout
@@ -149,6 +144,60 @@ def noise(binary, path):
     if noise <= 0 or loudest <= 0 or rms <= 0:
         return None, None
     return float(10 * np.log10(loudest / noise)), float(20 * np.log10(rms))
+
+
+# MOS: how good a take sounds, as the DNSMOS P.835 overall score (Microsoft's no-reference
+# speech-quality model, MIT, `dnsmos/`): 1 to 5, like a listener's mean opinion score.
+# Of every measure tried against a listener's verdicts (`docs/audio-verdicts.tsv`), this is
+# the one that ranks every voice where the ear did (`docs/2026-09-28-audio-quality-tools.md`);
+# single files still stray by a few tenths, so it compares takes and refuses the clearly bad.
+# The model scores 9.01 s windows, so a shorter take is doubled onto itself until it fills
+# one — the reference implementation's own padding, kept so the scores match it.
+MOS_MODEL = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dnsmos', 'sig_bak_ovr.onnx')
+MOS_RATE = 16000
+MOS_WINDOW_SECONDS = 9.01
+MOS_OVERALL = np.poly1d([-0.06766283, 1.11546468, 0.04602535])
+_mos_session = None
+
+
+def _decode(binary, path, rate):
+    raw = subprocess.run([binary, '-v', 'error', '-i', path, '-ac', '1', '-ar', str(rate),
+                          '-f', 'f32le', '-'], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.float32)
+
+
+def _session():
+    global _mos_session
+    if _mos_session is None:
+        try:
+            import onnxruntime
+        except ImportError:
+            sys.exit('audio_measure: MOS needs onnxruntime — '
+                     'python3 -m pip install --user --break-system-packages onnxruntime')
+        options = onnxruntime.SessionOptions()
+        # why: files are scored WORKERS at a time, one core each, instead of one file at a
+        # time across every core — the model is too small to spread a single window well.
+        options.intra_op_num_threads = 1
+        _mos_session = onnxruntime.InferenceSession(MOS_MODEL, options)
+    return _mos_session
+
+
+def mos(binary, path):
+    """DNSMOS overall score of one file (see MOS), higher is better; None for an empty decode."""
+    x = _decode(binary, path, MOS_RATE)
+    if not len(x):
+        return None
+    window = int(MOS_WINDOW_SECONDS * MOS_RATE)
+    while len(x) < window:
+        x = np.append(x, x)
+    session, scores = _session(), []
+    for hop in range(int(np.floor(len(x) / MOS_RATE) - MOS_WINDOW_SECONDS) + 1):
+        segment = x[hop * MOS_RATE:hop * MOS_RATE + window]
+        if len(segment) < window:
+            continue
+        _, _, overall = session.run(None, {'input_1': segment[np.newaxis, :]})[0][0]
+        scores.append(MOS_OVERALL(overall))
+    return float(np.mean(scores)) if scores else None
 
 
 def measure_all(binary, paths):

@@ -114,10 +114,10 @@ class CatalogAudioParseTest {
         assertEquals(0.0, plain.gain)
         assertNull(plain.gainPhone) // no phone plane measured on this entry
         assertEquals(0L, plain.leadMs)
-        // `snr` rides along the same way, but corrects nothing — it is carried so lint can
+        // `mos` rides along the same way, but corrects nothing — it is carried so lint can
         // see how clean a pack is, and never reaches a player.
-        assertEquals(62.3, loud.snr)
-        assertEquals(0.0, plain.snr)
+        assertEquals(3.12, loud.mos)
+        assertEquals(0.0, plain.mos)
         assertEquals(-58.5, loud.gate)
         assertNull(plain.gate) // no gate, not a gate at some default level
     }

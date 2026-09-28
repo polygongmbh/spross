@@ -135,7 +135,7 @@ Ready work comes first, then the items that end in a question for the owner, the
   `../../docs/sprachposter-learnings.md`); uk carries 3 of 9 (сьоме небо, як з відра, тримати
   кулаки) and sw 0, and filling them needs a speaker finding real equivalents, not a
   translation pass.
-- `snr` does not rank recordings the way the ear does (`../docs/audio-verdicts.tsv`: "bad" spans 38–58, "okay" 44–87), so fetch-and-compare picks by a score the listener overrules — a measure that also sees breathiness and bandwidth would need that dataset to grow first.
+- `mos` ranks voices the way the ear does but strays per file (`../docs/audio-verdicts.tsv`: Natschoba's "der Finger", heard meh, scores 3.22; joni's "es", heard clean, 1.67), so its floors refuse only the clearly bad until the dataset grows.
 - Recordings nobody has made yet: phrases have none (no `catalog/audio/*/manifest.json` has a
   phrases section, so every phrase falls to TTS, silent on sw-iOS) and need commissioning or a
   paid voice; single words sit at 83–99% per language, the rest in `audio-coverage.py --missing`.

@@ -82,7 +82,7 @@ Engine contract: `../README.md`.
   The mp3 bytes stay the untouched Commons transcode (`../../docs/audio-licensing.md` §3);
   the packs share no loudness and the uk letters open a second late, so what corrects them is a MEASUREMENT of the shipped bytes
   which only the player applies.
-  A third measurement, `snr` (how far the word stands above its noise), corrects nothing and reaches no player:
+  A third measurement, `mos` (how good the take sounds, a predicted mean opinion score), corrects nothing and reaches no player:
   it exists so lint can hold a pack's median and bad tail, and refuse a rebuild that reintroduces removed hiss.
   A fourth, `gate` (the file's noise level plus a margin, dBFS of the raw bytes, null where none was measured),
   rides on `AudioIndex.gate` to a downward expander that quiets that hiss at playback.

@@ -46,10 +46,10 @@ class CatalogAudioPlaybackTest {
      * nothing cleaner for those words, and a rule that fails the build over an unimprovable
      * file is a rule that gets suppressed. What a rebuild must not do is quietly undo the
      * sweep that removed the hiss — a whole pack sliding down, or the bad tail growing. Both
-     * are visible in the shape and neither goes stale as content grows. Today: medians uk 58
-     * to de 85; worst tail under 45 dB fr at 1.4%.
+     * are visible in the shape and neither goes stale as content grows. Today: medians uk
+     * 2.75 to de 3.08; worst tail under 1.8 es at 3.0%.
      *
-     * `snr` changes no playback. It is carried purely so this can be asserted.
+     * `mos` changes no playback. It is carried purely so this can be asserted.
      */
     @Test
     fun noPackLosesItsRecordingQuality() {
@@ -57,14 +57,14 @@ class CatalogAudioPlaybackTest {
             val measured = (manifest.words.values + manifest.letters.values +
                 manifest.texts.values + manifest.articles.values + manifest.calendar.values +
                 manifest.countries.values)
-                .map { it.snr }.filter { it != 0.0 }
-            assertTrue(measured.size > 10, "audio/$lang: only ${measured.size} entries carry an snr")
+                .map { it.mos }.filter { it != 0.0 }
+            assertTrue(measured.size > 10, "audio/$lang: only ${measured.size} entries carry a mos")
             val median = measured.sorted()[measured.size / 2]
-            assertTrue(median >= 50.0, "audio/$lang: median snr $median dB has fallen below 50")
-            val hissy = measured.count { it < 45.0 }
+            assertTrue(median >= 2.6, "audio/$lang: median mos $median has fallen below 2.6")
+            val poor = measured.count { it < 1.8 }
             assertTrue(
-                hissy * 100 <= measured.size * 5,
-                "audio/$lang: $hissy of ${measured.size} entries are under 45 dB — over 5%",
+                poor * 100 <= measured.size * 5,
+                "audio/$lang: $poor of ${measured.size} entries score under 1.8 — over 5%",
             )
         }
     }

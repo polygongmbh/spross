@@ -8,7 +8,7 @@ import net.spross.kern.model.Language
 internal object AudioManifestParser {
     private val WORD_KEYS =
         setOf("file", "matches", "license", "author", "source", "sha256",
-              "gain", "cap", "gainPhone", "capPhone", "lead", "snr", "gate")
+              "gain", "cap", "gainPhone", "capPhone", "lead", "mos", "gate")
     private val LETTER_KEYS = WORD_KEYS - "matches"
     private val ARTICLE_KEYS = WORD_KEYS + "word"
 
@@ -109,7 +109,7 @@ internal object AudioManifestParser {
                 cap = entry.optionalCap(path, context, "cap") ?: 0.0,
                 capPhone = entry.optionalCap(path, context, "capPhone"),
                 leadMs = entry.leadMs(path, context),
-                snr = entry.optionalDouble(path, context, "snr") ?: 0.0,
+                mos = entry.optionalDouble(path, context, "mos") ?: 0.0,
                 gate = entry.gate(path, context),
             )
         }
