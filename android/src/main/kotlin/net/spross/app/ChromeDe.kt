@@ -390,7 +390,7 @@ internal object ChromeDe : Chrome {
     override val briefingGroupHeld = "Hast du schon"
     override val briefingReturnKeepOne = "%d Wort übernehmen"
     override val briefingReturnKeep = "%d Wörter übernehmen"
-    override val sessionDoneTalk = "Über die Wörter reden?"
+    override val sessionDoneTalk = "Drüber plaudern"
     override val settingsTitle = "Einstellungen"
     override val settingsNameTitle = "Dein Name"
     override val settingsNamePlaceholder = "Name oder Spitzname"
@@ -474,6 +474,7 @@ internal object ChromeDe : Chrome {
     override val homeSuggestionReasonNeverRun = "Noch nie ausprobiert"
     override val homeSuggestionReasonNotLately = "Seit %d Tagen nicht geübt"
     override val homeSuggestionReasonVariety = "Zur Abwechslung"
+    override val homeSuggestionWordsInstead = "Lieber Wörter üben"
     override val listenTitle = "Wörter hören"
     override val listenSubtitle = "Festigt wacklige Wörter — im Hintergrund und mit " +
         "Einschlaf-Timer"

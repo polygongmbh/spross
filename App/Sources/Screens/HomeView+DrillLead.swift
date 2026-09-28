@@ -29,7 +29,7 @@ extension HomeView {
             .buttonStyle(PrimaryButtonStyle())
             // The round with reviews still due; an extra one once none are.
             if offer.kind != .nothing || model.canPracticeMore {
-                Button("home.done.extraRound") {
+                Button("home.suggestion.wordsInstead") {
                     if offer.kind != .nothing { model.startSession() } else { model.startExtraSession() }
                 }
                 .buttonStyle(SoftButtonStyle())

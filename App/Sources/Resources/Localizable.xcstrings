@@ -3703,6 +3703,23 @@
         }
       }
     },
+    "home.suggestion.wordsInstead" : {
+      "comment" : "Under a suggested drill: the ordinary vocabulary round instead of it.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lieber Wörter üben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice words instead"
+          }
+        }
+      }
+    },
     "home.tally.ahead %lld" : {
       "comment" : "Pull-aheads carrying the round on their own — the freshening-up. Named only in that case: everywhere else they count into home.tally.reviews.",
       "localizations" : {
@@ -5720,18 +5737,18 @@
       }
     },
     "session.done.talk" : {
-      "comment" : "The conversation offered where the round just left the words warm; it asks, and the round's own answer stays Fertig.",
+      "comment" : "The conversation offered where the round just left the words warm; the round's own answer stays Fertig.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Über die Wörter reden?"
+            "value" : "Drüber plaudern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Talk about the words?"
+            "value" : "Chat about them"
           }
         }
       }

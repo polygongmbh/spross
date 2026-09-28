@@ -65,7 +65,7 @@ fun DrillLeadCard(
                 onClick = { if (roundLeft) model.startSession() else model.startExtraSession() },
                 modifier = Modifier.fillMaxWidth().pressSpring(),
                 shape = MaterialTheme.shapes.small,
-            ) { Text(chrome.homeDoneExtraRound) }
+            ) { Text(chrome.homeSuggestionWordsInstead) }
         }
     }
 }

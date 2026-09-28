@@ -383,7 +383,7 @@ internal object ChromeEn : Chrome {
     override val briefingGroupHeld = "You already have"
     override val briefingReturnKeepOne = "Keep %d word"
     override val briefingReturnKeep = "Keep %d words"
-    override val sessionDoneTalk = "Talk about the words?"
+    override val sessionDoneTalk = "Chat about them"
     override val settingsTitle = "Settings"
     override val settingsNameTitle = "Your Name"
     override val settingsNamePlaceholder = "Name or nickname"
@@ -464,6 +464,7 @@ internal object ChromeEn : Chrome {
     override val homeSuggestionReasonNeverRun = "Not tried yet"
     override val homeSuggestionReasonNotLately = "Not practiced in %d days"
     override val homeSuggestionReasonVariety = "For a change of pace"
+    override val homeSuggestionWordsInstead = "Practice words instead"
     override val listenTitle = "Hear Your Words"
     override val listenSubtitle = "Reinforces shaky words — in the background and with sleep " +
         "timer"

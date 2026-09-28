@@ -496,6 +496,7 @@ interface Chrome {
     val homeSuggestionReasonNeverRun: String
     val homeSuggestionReasonNotLately: String   // %d
     val homeSuggestionReasonVariety: String
+    val homeSuggestionWordsInstead: String
 
     // ── Listening (Home's one row, and the run it opens) ───────────────────────
     val listenTitle: String
