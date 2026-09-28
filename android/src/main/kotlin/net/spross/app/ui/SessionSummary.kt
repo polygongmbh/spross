@@ -117,28 +117,48 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             }
         }
         Spacer(Modifier.height(16.dp))
-        // why: stopping takes the full-width primary on the bottom edge, and the two ways
-        // of going on share one row above it. Talking asks rather than instructs — the
-        // words are warm, the one moment a conversation costs nothing to offer; practicing
-        // on stands only while a refill would not come back dry.
-        val talk = model.hasBriefing
-        if (talk || ui.canPracticeMore) {
-            Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-                if (talk) SecondaryAction(chrome.sessionDoneTalk, SprossIcons.Chat) { briefingOpen = true }
-                if (ui.canPracticeMore) SecondaryAction(chrome.sessionDoneKeepPracticing, SprossIcons.DoubleArrow) { model.continueEndless() }
-            }
-            Spacer(Modifier.height(8.dp))
-        }
-        Button(
-            onClick = { model.finishSession() },
-            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
-            shape = MaterialTheme.shapes.small,
-        ) {
-            ButtonIcon(SprossIcons.Check)
-            Text(chrome.commonDone)
-        }
+        // why: talking asks rather than instructs — the words are warm, the one moment a
+        // conversation costs nothing to offer; practicing on stands only while a refill
+        // would not come back dry.
+        SessionExitButtons(
+            chrome,
+            onDone = { model.finishSession() },
+            onTalk = if (model.hasBriefing) ({ briefingOpen = true }) else null,
+            onPractice = if (ui.canPracticeMore) ({ model.continueEndless() }) else null,
+        )
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
+}
+
+/**
+ * The pair every finished round exits through — the session summary and a drill's pause
+ * alike, so the two screens never disagree about which way out is the default one.
+ * [onTalk] and [onPractice] are left out where there is nothing to offer.
+ */
+@Composable
+fun SessionExitButtons(
+    chrome: Chrome,
+    onDone: () -> Unit,
+    onTalk: (() -> Unit)?,
+    onPractice: (() -> Unit)?,
+) {
+    // why: stopping takes the full-width primary on the bottom edge, and the two ways
+    // of going on share one row above it.
+    if (onTalk != null || onPractice != null) {
+        Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
+            if (onTalk != null) SecondaryAction(chrome.sessionDoneTalk, SprossIcons.Chat, onTalk)
+            if (onPractice != null) SecondaryAction(chrome.sessionDoneKeepPracticing, SprossIcons.DoubleArrow, onPractice)
+        }
+        Spacer(Modifier.height(8.dp))
+    }
+    Button(
+        onClick = onDone,
+        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
+        shape = MaterialTheme.shapes.small,
+    ) {
+        ButtonIcon(SprossIcons.Check)
+        Text(chrome.commonDone)
+    }
 }
 
 @Composable
