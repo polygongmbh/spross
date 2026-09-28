@@ -64,7 +64,7 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
     }
 
     val inputFocus = remember { FocusRequester() }
-    QuestionFocus(state.index, model.pronouncer, inputFocus)
+    QuestionFocus(state.index to state.pause, model.pronouncer, inputFocus)
     val secondsLeft = timedClock(flow)
 
     DrillRunScaffold(

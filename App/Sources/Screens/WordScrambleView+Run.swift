@@ -85,6 +85,8 @@ extension WordScrambleView: DrillRunning {
 
     var advanceMove: WordScrambleIntent { WordScrambleIntent.AdvanceElapsed.shared }
 
+    var keepPracticingMove: WordScrambleIntent { WordScrambleIntent.KeepPracticing.shared }
+
     var resultTitle: LocalizedStringKey { "trainer.drill.wordScramble" }
 
     var voiceModel: AppModel? { model }

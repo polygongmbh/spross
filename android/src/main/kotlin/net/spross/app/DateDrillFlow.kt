@@ -72,6 +72,8 @@ class DateDrillFlow(
 
     override fun advanceElapsedIntent() = DateDrillIntent.AdvanceElapsed
 
+    override fun keepPracticingIntent() = DateDrillIntent.KeepPracticing
+
     /**
      * The run as the shared typed-drill screen reads it. A dates question carries no
      * picture, so the leading slot stays empty and the prompt — a name, or a dated line in

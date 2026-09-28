@@ -95,14 +95,14 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
-        SessionScaffold.endless(tally: current.tally,
-                                outcomes: current.outcomes.map { SessionOutcome($0) },
-                                // why: the run says its answers out loud, so it
-                                // owes the learner a way to silence them here.
-                                showsMuteButton: true,
-                                onClose: { closeRun() }) {
+        pausable(SessionScaffold.endless(tally: current.tally,
+                                         outcomes: current.outcomes.map { SessionOutcome($0) },
+                                         // why: the run says its answers out loud, so it
+                                         // owes the learner a way to silence them here.
+                                         showsMuteButton: true,
+                                         onClose: { closeRun() }) {
             drillContent
-        }
+        })
         .onAppear {
             answerFocused = wantsKeyboard
             autoplayPrompt()
@@ -110,8 +110,9 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
             uitestStart()
             #endif
         }
-        .onChange(of: current.index) { _, _ in
+        .onChange(of: shownQuestion) { _, shown in
             chosen = nil
+            guard shown != nil else { return }
             answerFocused = wantsKeyboard
             autoplayPrompt()
         }

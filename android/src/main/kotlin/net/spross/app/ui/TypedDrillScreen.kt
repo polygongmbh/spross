@@ -82,8 +82,9 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     // kern says no graded answer (it is in the learner's own language) — so without this the
     // whole task would be unhearable. Saying it gives nothing away: the word is already on the card. No
     // beat in front of it, unlike the answer's: nothing has chimed and the question is awaited.
-    LaunchedEffect(run.index) {
-        if (!reverse) return@LaunchedEffect
+    val paused = flow.progress.pause != null
+    LaunchedEffect(run.index, paused) {
+        if (!reverse || paused) return@LaunchedEffect
         val text = run.prompt.text ?: return@LaunchedEffect
         // A picture is written in no language, so a question that is one has nothing to say.
         val language = run.prompt.language ?: return@LaunchedEffect
@@ -93,7 +94,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     val inputFocus = remember { FocusRequester() }
     // A tapped question has no field to fill — a keyboard over the tiles would cover the
     // very answer it is waiting for.
-    QuestionFocus(run.index, model.pronouncer, inputFocus.takeIf { run.prompt.choices == null })
+    QuestionFocus(run.index to paused, model.pronouncer, inputFocus.takeIf { run.prompt.choices == null })
 
     DrillRunScaffold(
         model = model,

@@ -54,6 +54,8 @@ class CountryDrillFlow(
 
     override fun advanceElapsedIntent() = CountryDrillIntent.AdvanceElapsed
 
+    override fun keepPracticingIntent() = CountryDrillIntent.KeepPracticing
+
     /**
      * The run as the shared typed-drill screen reads it. The one rule about a picture — when
      * a withheld flag comes back — is the card's; this only hands over what kern drew.

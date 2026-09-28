@@ -21,7 +21,7 @@ protocol DrillFace {
     /// The joined material one run is fixed to, kern's — the calendars, the atlas.
     associatedtype Content
     /// Kern's whole run state.
-    associatedtype Run
+    associatedtype Run: DrillRunProgress
     /// The reading matter under the start button; a table of its own per drill.
     associatedtype Reference: View
 
@@ -117,6 +117,8 @@ enum DrillMove {
     case confirmed
     /// The platform's armed beat elapsed.
     case advanced
+    /// Keep practicing, from a pause kern called.
+    case keptPracticing
 }
 
 /// One reduction: the run that follows, and what it asks the platform for.

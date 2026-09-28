@@ -46,6 +46,8 @@ extension SentenceScrambleView: DrillRunning {
 
     var advanceMove: SentenceScrambleIntent { SentenceScrambleIntent.AdvanceElapsed.shared }
 
+    var keepPracticingMove: SentenceScrambleIntent { SentenceScrambleIntent.KeepPracticing.shared }
+
     var resultTitle: LocalizedStringKey { "trainer.drill.sentenceScramble" }
 
     var voiceModel: AppModel? { model }

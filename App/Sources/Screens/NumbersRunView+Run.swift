@@ -24,6 +24,8 @@ extension NumbersRunView: DrillRunning {
 
     var advanceMove: NumbersIntent { NumbersIntent.AdvanceElapsed.shared }
 
+    var keepPracticingMove: NumbersIntent { NumbersIntent.KeepPracticing.shared }
+
     var resultTitle: LocalizedStringKey {
         run.challenge == nil ? mode.titleKey : "trainer.challenge.title"
     }

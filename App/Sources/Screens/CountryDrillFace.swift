@@ -125,6 +125,7 @@ enum CountryDrillFace: DrillFace {
         case .submitted(let text): return CountryDrillIntent.Submit(text: text)
         case .confirmed: return CountryDrillIntent.ConfirmPending.shared
         case .advanced: return CountryDrillIntent.AdvanceElapsed.shared
+        case .keptPracticing: return CountryDrillIntent.KeepPracticing.shared
         }
     }
 

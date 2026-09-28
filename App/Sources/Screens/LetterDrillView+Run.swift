@@ -33,6 +33,8 @@ extension LetterDrillView: DrillRunning {
 
     var advanceMove: LetterDrillIntent { LetterDrillIntent.AdvanceElapsed.shared }
 
+    var keepPracticingMove: LetterDrillIntent { LetterDrillIntent.KeepPracticing.shared }
+
     var resultTitle: LocalizedStringKey { "trainer.drill.letters" }
 
     var voiceModel: AppModel? { nil }

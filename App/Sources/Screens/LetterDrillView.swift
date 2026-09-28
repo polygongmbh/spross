@@ -85,12 +85,12 @@ struct LetterDrillView: View, LanguageNaming {
     var body: some View {
         Group {
             if current != nil {
-                SessionScaffold.endless(tally: run.tally,
-                                        outcomes: run.outcomes.map { SessionOutcome($0) },
-                                        speaksPastMute: true,
-                                        onClose: { closeRun() }) {
+                pausable(SessionScaffold.endless(tally: run.tally,
+                                                 outcomes: run.outcomes.map { SessionOutcome($0) },
+                                                 speaksPastMute: true,
+                                                 onClose: { closeRun() }) {
                     drillContent
-                }
+                })
             } else {
                 // Nothing this device can ask — the hub gates on the same
                 // predicate, so this is a closed door, not a screen.
@@ -103,8 +103,9 @@ struct LetterDrillView: View, LanguageNaming {
             playPrompt(trigger: .essential)
             answerFocused = !screenReaderOn && typing
         }
-        .onChange(of: run.index) { _, _ in
+        .onChange(of: shownQuestion) { _, shown in
             Pronouncer.shared.stop()
+            guard shown != nil else { return }
             playPrompt(trigger: .essential)
             // The audio question, one action away, on every task.
             replayFocused = true

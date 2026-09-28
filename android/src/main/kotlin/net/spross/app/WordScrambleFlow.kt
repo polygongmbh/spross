@@ -52,6 +52,8 @@ class WordScrambleFlow(
     override fun confirmPending() = WordScrambleIntent.ConfirmPending
 
     override fun advanceElapsedIntent() = WordScrambleIntent.AdvanceElapsed
+
+    override fun keepPracticingIntent() = WordScrambleIntent.KeepPracticing
 }
 
 /**

@@ -76,8 +76,8 @@ struct DrillStreakLine: View {
 
 // MARK: - The way out, offered where it is wanted
 
-/// "Fertig", under the button that goes on. An endless run has no natural end,
-/// so the offer is tied to the one moment a learner is actually weighing it: the
+/// "Fertig", under the button that goes on. Between the pauses kern calls
+/// (`DrillPacing`) an endless run has no end of its own, so the offer is tied to the one moment a learner is actually weighing it: the
 /// SECOND miss in a row. One miss is what a drill is made of; two is where
 /// carrying on stops feeling like a choice, and the corner ✕ reads as abandoning
 /// something rather than finishing it. The same word the session summary stops

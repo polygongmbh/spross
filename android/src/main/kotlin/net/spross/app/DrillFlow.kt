@@ -31,6 +31,12 @@ interface DrillRun {
     /** The graded answer owed to the learner's ear, until it has been said ([DrillVoice]). */
     val owedReading: OwedReading?
 
+    /** Kern's run as it stands — what the pause it may call ([DrillRunProgress.pause]) reads. */
+    val progress: DrillRunProgress
+
+    /** Keep practicing, from a pause kern called: the same run goes on. */
+    fun keepPracticing()
+
     fun readingSaid(token: Int)
 
     fun advanceElapsed()
@@ -93,6 +99,10 @@ abstract class DrillFlow<S : DrillRunProgress, I>(
     override val owedReading get() = acts.voice.reading
 
     override fun readingSaid(token: Int) = acts.voice.said(token)
+
+    override val progress: DrillRunProgress get() = state
+
+    override fun keepPracticing() = dispatch(keepPracticingIntent())
 
     /**
      * A live keystroke: finishing the word IS the answer, within kern's growing guard —
@@ -166,6 +176,8 @@ abstract class DrillFlow<S : DrillRunProgress, I>(
     protected abstract fun confirmPending(): I
 
     protected abstract fun advanceElapsedIntent(): I
+
+    protected abstract fun keepPracticingIntent(): I
 
     /** A live keystroke, in this drill's words. Null where the drill has no field to type in. */
     protected open fun inputChanged(text: String): I? = null

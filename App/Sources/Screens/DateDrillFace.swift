@@ -128,6 +128,7 @@ enum DateDrillFace: DrillFace {
         case .submitted(let text): return DateDrillIntent.Submit(text: text)
         case .confirmed: return DateDrillIntent.ConfirmPending.shared
         case .advanced: return DateDrillIntent.AdvanceElapsed.shared
+        case .keptPracticing: return DateDrillIntent.KeepPracticing.shared
         }
     }
 

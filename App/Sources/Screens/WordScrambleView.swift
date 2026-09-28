@@ -79,11 +79,11 @@ struct WordScrambleView: View, LanguageNaming {
     var body: some View {
         Group {
             if current != nil {
-                SessionScaffold.endless(tally: run.tally,
-                                        outcomes: run.outcomes.map { SessionOutcome($0) },
-                                        onClose: { closeRun() }) {
+                pausable(SessionScaffold.endless(tally: run.tally,
+                                                 outcomes: run.outcomes.map { SessionOutcome($0) },
+                                                 onClose: { closeRun() }) {
                     drillContent
-                }
+                })
             } else {
                 // Nothing this box can ask — the hub gates on the same
                 // predicate, so this is a closed door, not a screen.
@@ -93,7 +93,8 @@ struct WordScrambleView: View, LanguageNaming {
         // why: BOTH hooks. .onChange never fires for the FIRST question, and a
         // single hook therefore ships a first card the keyboard is not up for.
         .onAppear { answerFocused = !screenReaderOn }
-        .onChange(of: run.index) { _, _ in
+        .onChange(of: shownQuestion) { _, shown in
+            guard shown != nil else { return }
             // why: not under a screen reader — moving the keyboard focus would
             // drag VoiceOver off the card it was just handed.
             answerFocused = !screenReaderOn

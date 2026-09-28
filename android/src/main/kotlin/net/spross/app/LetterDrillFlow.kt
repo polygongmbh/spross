@@ -49,6 +49,8 @@ class LetterDrillFlow(
     override fun confirmPending() = LetterDrillIntent.ConfirmPending
 
     override fun advanceElapsedIntent() = LetterDrillIntent.AdvanceElapsed
+
+    override fun keepPracticingIntent() = LetterDrillIntent.KeepPracticing
 }
 
 /**

@@ -253,6 +253,13 @@ fun DrillRunScaffold(
             model, outcomes, leave, counter = tally.counter(),
             showsMuteButton = showsMuteButton, speaksPastMute = speaksPastMute,
         )
+        // why: kern's pause stands in place of the question — the body leaves composition,
+        // so what it does on a question's arrival (autoplay, focus) waits for the run to go on.
+        val pause = run.progress.pause
+        if (pause != null) {
+            DrillPause(run.progress, pause, model.chrome, onDone = leave, onKeepPracticing = run::keepPracticing)
+            return@Column
+        }
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(spacing),

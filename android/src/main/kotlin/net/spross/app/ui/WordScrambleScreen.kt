@@ -51,7 +51,7 @@ fun WordScrambleScreen(model: AppModel) {
     }
 
     val inputFocus = remember { FocusRequester() }
-    QuestionFocus(state.index, model.pronouncer, inputFocus)
+    QuestionFocus(state.index to state.pause, model.pronouncer, inputFocus)
 
     DrillRunScaffold(
         model = model,

@@ -174,21 +174,34 @@ Nothing wears a prefix one scope wider than what it serves.
   but takes that Sprosse out of the store's running.
   Nothing overrides where it opens: there is no row to tap and no direction to turn.
   The letter drill keeps the same record for its tile and typed stages (`drills-words.md`).
-- **An endless run offers its exit where it is wanted, not on a schedule.**
+- **An endless run offers its exit where it is wanted, and pauses at a natural stop.**
   "Fertig" appears under the button that goes on, and only on the SECOND miss in a row;
   a clean answer takes the offer away again.
-  The one thing that ends a run unasked is running OUT of questions:
+  After a booked answer the run pauses at the first of three moments (`DrillPacing`):
+  a stretch of answers since it opened or last went on;
+  something new after a shorter stretch --
+  a Sprosse cleared that the store did not hold (the scrambles, the letters),
+  or the standing streak record beaten (numbers, atlas, calendar);
+  or most of the last few answers missed, where the pause says a stop is fine and why.
+  The pause stands in place of the question and wears the round's exit pair:
+  Done closes the run as the X does, keep practicing goes on with the SAME run --
+  prompts asked, ladder, streak -- and starts the next stretch.
+  A timed run ends on its clock and never pauses.
+  What ends a run unasked is running OUT of questions:
   a run asks each prompt once (`../kern/docs/turns.md`),
   so a ladder answered out hands its figures over.
   The corner X still works.
 - **A run is a FULL screen however it was started, and its X is the one way out.**
   The four overviews open theirs in a cover;
   the two scrambles the hub opens directly wear the same one.
-- **A closed run has no screen of its own.**
+- **A closed run has no screen of its own; a paused one shows its figures in place.**
   The endless drills hand their figures --
   answered, best streak, whether the record fell --
   to the page that started them;
   the page wears them as one tile above the picks and scrolls up to meet it.
+  The scrambles have no page to hand them to, so their pause is where a run's figures are seen:
+  answered, right of judged, best streak, the Sprosse opened on and reached,
+  and a note only for a Sprosse no earlier run had cleared.
 - **Only the numbers, atlas and calendar ladders keep a RECORD of their own** --
   the longest clean streak and the most answers one run took.
   The letter drill and the two scrambles keep none,

@@ -54,6 +54,8 @@ class SentenceScrambleFlow(
     override fun confirmPending() = SentenceScrambleIntent.ConfirmPending
 
     override fun advanceElapsedIntent() = SentenceScrambleIntent.AdvanceElapsed
+
+    override fun keepPracticingIntent() = SentenceScrambleIntent.KeepPracticing
 }
 
 /**

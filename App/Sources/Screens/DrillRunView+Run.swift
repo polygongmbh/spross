@@ -30,6 +30,8 @@ extension DrillRunView: DrillRunning {
 
     var advanceMove: DrillMove { .advanced }
 
+    var keepPracticingMove: DrillMove { .keptPracticing }
+
     var turnFeedback: TurnFeedback { current.feedback }
 
     var resultTitle: LocalizedStringKey { Face.resultTitle }

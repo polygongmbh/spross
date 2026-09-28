@@ -96,18 +96,18 @@ struct NumbersRunView: View, LanguageNaming {
     var namingCatalog: Catalog? { catalog }
 
     var body: some View {
-        SessionScaffold.endless(tally: run.tally,
-                                outcomes: run.outcomes.map { SessionOutcome($0) },
-                                // why: the run says its answers out loud
-                                // now, so it owes the learner a way to
-                                // silence them here, not in Settings.
-                                showsMuteButton: model != nil,
-                                onClose: { closeRun() }) {
+        pausable(SessionScaffold.endless(tally: run.tally,
+                                         outcomes: run.outcomes.map { SessionOutcome($0) },
+                                         // why: the run says its answers out loud
+                                         // now, so it owes the learner a way to
+                                         // silence them here, not in Settings.
+                                         showsMuteButton: model != nil,
+                                         onClose: { closeRun() }) {
             drillContent
-        }
+        })
         .onAppear { focusAnswerField() }
         .task { await runClock() }
-        .onChange(of: run.index) { _, _ in focusAnswerField() }
+        .onChange(of: shownQuestion) { _, shown in if shown != nil { focusAnswerField() } }
         .onDisappear {
             autoAdvance?.cancel()
             focusRetry?.cancel()

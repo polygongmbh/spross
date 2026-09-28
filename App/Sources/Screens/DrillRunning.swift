@@ -68,6 +68,9 @@ protocol DrillRunning: View {
     /// The armed beat elapsed.
     var advanceMove: Move { get }
 
+    /// Going on from a pause kern called (`DrillPacing`).
+    var keepPracticingMove: Move { get }
+
     /// Where kern says the answer stands; the field's face is read off it.
     var turnFeedback: TurnFeedback { get }
 
@@ -172,6 +175,11 @@ extension DrillRunning {
         dispatch(confirmMove)
     }
 
+    /// Keep practicing, from the pause: the same run goes on.
+    func keepPracticing() {
+        dispatch(keepPracticingMove)
+    }
+
     // MARK: - Close → back to the page that opened it
 
     /// X during a run: kern books a pending answer exactly as the tap would,
@@ -226,6 +234,23 @@ extension DrillRunning where Run: DrillRunProgress {
     func isFinished(_ run: Run) -> Bool { run.finished }
 
     var turnFeedback: TurnFeedback { run.feedback }
+
+    /// The question the learner can see — nil while a pause stands in its place,
+    /// so what a view does on a question's arrival (autoplay, focus) waits until
+    /// the run goes on rather than playing under the pause.
+    var shownQuestion: Int? { run.pause == nil ? Int(run.index) : nil }
+
+    /// The run's screen, or kern's pause in its place (`DrillPacing`): Done
+    /// closes the run as the ✕ does, keep practicing carries it on.
+    @ViewBuilder
+    func pausable(_ screen: some View) -> some View {
+        if run.pause != nil {
+            DrillPauseView(run: run, onDone: { closeRun() }, onKeepPracticing: { keepPracticing() })
+                .transition(.opacity)
+        } else {
+            screen
+        }
+    }
 }
 
 #if DEBUG

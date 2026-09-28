@@ -7300,6 +7300,125 @@
         }
       }
     },
+    "trainer.pause.newSprosse" : {
+      "comment" : "A drill pause: the run cleared a Sprosse no earlier run had.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Sprosse geschafft!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Sprosse cleared!"
+          }
+        }
+      }
+    },
+    "trainer.pause.sprossen %@ %@" : {
+      "comment" : "A drill pause: the Sprosse the run opened on, and the highest it reached.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprosse %@ → %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprosse %1$@ → %2$@"
+          }
+        }
+      }
+    },
+    "trainer.pause.struggling.hint" : {
+      "comment" : "Under a struggling pause: says a stop is fine, and why.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerade geht viel daneben — hier aufzuhören ist völlig in Ordnung, mit frischem Kopf sitzt es besser."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A lot is slipping right now — stopping here is fine; it sits better with a fresh head."
+          }
+        }
+      }
+    },
+    "trainer.pause.tally %@ %@" : {
+      "comment" : "A drill pause's clean answers out of those judged.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ von %@ richtig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ of %2$@ right"
+          }
+        }
+      }
+    },
+    "trainer.pause.title.count" : {
+      "comment" : "The heading of a drill run's pause after a long stretch of answers.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schöne Strecke"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A good stretch"
+          }
+        }
+      }
+    },
+    "trainer.pause.title.improved" : {
+      "comment" : "The heading of a drill run's pause after the run cleared a new Sprosse or beat the record.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Schritt weiter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A step further"
+          }
+        }
+      }
+    },
+    "trainer.pause.title.struggling" : {
+      "comment" : "The heading of a drill run's pause after most of the last answers missed.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerade zäh"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tough going"
+          }
+        }
+      }
+    },
     "trainer.reference.tapToHear" : {
       "comment" : "the gesture a reference page discloses once, under its heading",
       "localizations" : {

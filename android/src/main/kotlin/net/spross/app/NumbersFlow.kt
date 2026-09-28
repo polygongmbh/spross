@@ -70,6 +70,8 @@ class NumbersFlow(
     override fun confirmPending() = NumbersIntent.ConfirmPending
 
     override fun advanceElapsedIntent() = NumbersIntent.AdvanceElapsed
+
+    override fun keepPracticingIntent() = NumbersIntent.KeepPracticing
 }
 
 /**
