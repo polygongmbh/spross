@@ -5,6 +5,7 @@ import androidx.compose.ui.geometry.Rect
 import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.sqrt
 
@@ -17,7 +18,9 @@ import kotlin.math.sqrt
 //
 // One child carries its parent's line on and the other leaves it sharply (monopodial), the
 // width splits so the children's cross-sections add up to the parent's, and every limb bows.
-// Marks gather at the twig ends: each tip holds a cluster, dealt out tip by tip.
+// Marks gather at the twig ends first — each tip holds a cluster, dealt out tip by tip — and,
+// once a cluster grows past its tip's own near slots, run back along that tip's limb toward
+// the trunk, biased outward, so a mature crown leafs out along its wood too.
 
 /** One length of wood: a bowed center line tapering from [startWidth] to [endWidth]. */
 internal class TreeLimb(
@@ -95,13 +98,27 @@ internal class TreeSkeleton(
 
 internal const val PI_F = Math.PI.toFloat()
 
-private class Tip(val path: Long, val base: Offset, val end: Offset, val angle: Float, val reach: Float)
+/** One length of a tip's own lineage — the limbs from the trunk down to it — each a place a mark can hang. */
+private class LineageLimb(val base: Offset, val end: Offset, val angle: Float, val reach: Float)
+
+/** [lineage] runs trunk-first, the tip's own limb last. */
+private class Tip(
+    val path: Long,
+    val base: Offset,
+    val end: Offset,
+    val angle: Float,
+    val reach: Float,
+    val lineage: List<LineageLimb>,
+)
 
 private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
     val limbs = mutableListOf<TreeLimb>()
     private val tips = mutableListOf<Tip>()
 
-    fun limb(path: Long, origin: Offset, angle: Float, length: Float, width: Float, depth: Int, side: Float) {
+    fun limb(
+        path: Long, origin: Offset, angle: Float, length: Float, width: Float, depth: Int, side: Float,
+        lineage: List<LineageLimb> = emptyList(),
+    ) {
         val grown = (vigor - depth).coerceIn(0f, 1f)
         if (grown <= 0f) return
         val rng = Mix(seed xor Mix.hash(path))
@@ -115,6 +132,7 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
         // A growing tip narrows to a point; a finished limb hands its width on.
         val endWidth = width * if (grown < 1f) 0.45f + 0.35f * grown else 0.80f
         limbs += TreeLimb(origin, control, end, if (depth == 0) width * 1.3f else width, endWidth, depth)
+        val ownLineage = lineage + LineageLimb(origin, end, angle, reach)
 
         // why: drawn in full even for a limb that forks no further, so the sequence — and
         // with it every child's shape — never depends on how deep the tree has grown.
@@ -127,14 +145,16 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
         val thirdTurn = rng.range(0.45f, 0.85f) * spread
 
         if (grown < 1f || depth >= TreeSkeleton.MAX_DEPTH || vigor <= depth + 1) {
-            tips += Tip(path, origin, end, angle, reach)
+            tips += Tip(path, origin, end, angle, reach, ownLineage)
             return
         }
         // Each generation reaches a little further toward the light.
         val lifted = angle + (-PI_F / 2 - angle) * 0.06f * (depth + 1)
-        limb(path * 4 + 1, end, lifted + leadTurn, length * leadLength, width * 0.80f, depth + 1, -side)
-        limb(path * 4 + 2, end, lifted + side * sideTurn, length * sideLength, width * 0.60f, depth + 1, -side)
-        if (third) limb(path * 4 + 3, end, lifted - side * thirdTurn, length * 0.55f, width * 0.45f, depth + 1, side)
+        limb(path * 4 + 1, end, lifted + leadTurn, length * leadLength, width * 0.80f, depth + 1, -side, ownLineage)
+        limb(path * 4 + 2, end, lifted + side * sideTurn, length * sideLength, width * 0.60f, depth + 1, -side, ownLineage)
+        if (third) {
+            limb(path * 4 + 3, end, lifted - side * thirdTurn, length * 0.55f, width * 0.45f, depth + 1, side, ownLineage)
+        }
     }
 
     /** Every tip's k-th slot before any tip's (k+1)-th, so every cluster thickens together. */
@@ -145,14 +165,41 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
         return (0 until depth).flatMap { k -> order.map { slot(k, tips[it], it) } }
     }
 
-    /** The k-th slot of a tip, seeded by the tip and k alone. */
+    /**
+     * The k-th slot of a tip, seeded by the tip and k alone. The first slot past the tip
+     * itself stays on the tip's own last limb; every one past that ranges back along the
+     * tip's whole lineage instead, biased toward the tip end, so a cluster that keeps
+     * growing spreads leaves along the limb rather than only thickening at its edge.
+     */
     private fun slot(k: Int, tip: Tip, index: Int): TreeSlot {
         if (k == 0) return TreeSlot(tip.end, tip.angle, index)
         val rng = Mix(seed xor Mix.hash(tip.path + k * 0x9E3779B9L))
-        val t = rng.range(0.45f, 1f)
-        val along = Offset(tip.base.x + (tip.end.x - tip.base.x) * t, tip.base.y + (tip.end.y - tip.base.y) * t)
-        val radius = max(tip.reach, 0.07f) * rng.range(0.25f, 0.85f)
-        val off = tip.angle + rng.sign() * rng.range(0.6f, 1.9f)
+        if (k == 1 || tip.lineage.size <= 1) {
+            val t = rng.range(0.45f, 1f)
+            val along = Offset(tip.base.x + (tip.end.x - tip.base.x) * t, tip.base.y + (tip.end.y - tip.base.y) * t)
+            val radius = max(tip.reach, 0.07f) * rng.range(0.25f, 0.85f)
+            val off = tip.angle + rng.sign() * rng.range(0.6f, 1.9f)
+            return TreeSlot(Offset(along.x + cos(off) * radius, along.y + sin(off) * radius), off, index)
+        }
+        val totalReach = tip.lineage.sumOf { it.reach.toDouble() }.toFloat()
+        val bias = rng.next().pow(0.6f)
+        var remaining = bias * totalReach
+        var chosen = tip.lineage.last()
+        var localT = 1f
+        for (seg in tip.lineage) {
+            if (remaining <= seg.reach) {
+                chosen = seg
+                localT = if (seg.reach > 0f) remaining / seg.reach else 1f
+                break
+            }
+            remaining -= seg.reach
+        }
+        val along = Offset(
+            chosen.base.x + (chosen.end.x - chosen.base.x) * localT,
+            chosen.base.y + (chosen.end.y - chosen.base.y) * localT,
+        )
+        val radius = max(chosen.reach, 0.07f) * rng.range(0.25f, 0.85f)
+        val off = chosen.angle + rng.sign() * rng.range(0.6f, 1.9f)
         return TreeSlot(Offset(along.x + cos(off) * radius, along.y + sin(off) * radius), off, index)
     }
 }
