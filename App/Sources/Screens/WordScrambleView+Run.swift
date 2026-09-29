@@ -113,6 +113,7 @@ extension WordScrambleView {
                          level: run.level, bestLevel: run.bestLevel,
                          winsAtLevel: run.winsAtLevel,
                          clearedSprossen: run.clearedSprossen, blemished: run.blemished,
+                         slipped: run.slipped,
                          core: run.core.doCopy(done: Int32(streak + 6),
                                                streak: Int32(streak),
                                                bestStreak: Int32(max(streak, 12)),
