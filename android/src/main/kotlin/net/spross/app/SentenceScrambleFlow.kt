@@ -66,8 +66,8 @@ class SentenceScrambleFlow(
  * dealt, so the run needs no normalizer. The language being learned is read for the ladder's
  * storage key alone — every phrase the run deals names its own.
  *
- * The run opens on the highest Sprosse the store's mask holds
- * ([SentenceScrambleRunConfig.entryLevel]), a warm-up on ground climbed clean before.
+ * The run opens at the foot and passes each Sprosse the store's mask holds on one clean
+ * arrangement ([SentenceScrambleRunConfig.cleared]).
  */
 fun AppModel.newSentenceScramble(
     onTone: (ToneKind) -> Unit = {},

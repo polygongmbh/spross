@@ -37,9 +37,12 @@ object SentenceScrambleRun {
     /** How many deals a shuffle gets before an already-ordered one is allowed to stand. */
     private const val DEAL_ATTEMPTS = 8
 
-    /** A fresh run where the ladder stands ([SentenceScrambleRunConfig.entryLevel]). */
+    /**
+     * A fresh run, at the foot of the ladder: it fast-climbs the Sprossen earlier runs cleared
+     * ([DrillSprossen.winsRequired]).
+     */
     fun open(config: SentenceScrambleRunConfig, rng: Random): SentenceScrambleRunState =
-        openAt(config, config.entryLevel, rng)
+        openAt(config, 1, rng)
 
     /** The same, forced to one Sprosse — the deterministic way to reach a band. */
     fun openAt(
@@ -59,6 +62,7 @@ object SentenceScrambleRun {
             winsAtLevel = 0,
             clearedSprossen = emptySet(),
             blemished = false,
+            slipped = false,
             core = DrillRunCore(pacing = DrillPacing.opening(opening.level, standingRecord = 0)),
             feedback = TurnFeedback.Neutral,
             finished = opening.task == null,
@@ -206,12 +210,13 @@ object SentenceScrambleRun {
         correct: Boolean,
         clean: Boolean,
     ): SentenceScrambleRunState {
+        val held = state.config.cleared
         val step = DrillRamp.step(
             level = state.level,
             winsAtLevel = state.winsAtLevel,
             correct = correct,
             clean = clean,
-            winsRequired = WINS_TO_ADVANCE,
+            winsRequired = DrillSprossen.winsRequired(state.level, held, state.slipped, WINS_TO_ADVANCE),
             top = state.config.report.maxLevel,
         )
         val blemished = DrillSprossen.blemished(state.blemished, correct, clean)
@@ -226,6 +231,7 @@ object SentenceScrambleRun {
                 blemished,
             ),
             blemished = blemished && step.level == state.level,
+            slipped = DrillSprossen.blemished(state.slipped, correct, clean),
             core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) }),
         )
     }

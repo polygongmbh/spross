@@ -137,7 +137,7 @@ object DrillRamp {
  *
  * A second ledger beside [DrillRamp] rather than a tightening of it. An almost still banks
  * nothing, costs nothing and breaks no streak; it only takes the Sprosse it fell on out of the
- * running for the store, so the next run opens on that Sprosse again instead of above it.
+ * running for the store, so no later run treats that Sprosse as held.
  */
 internal object DrillSprossen {
 
@@ -151,6 +151,19 @@ internal object DrillSprossen {
      */
     fun leaving(cleared: Set<Int>, from: Int, to: Int, blemished: Boolean): Set<Int> =
         if (to > from && !blemished) cleared + from else cleared
+
+    /**
+     * The wins a scramble asks of [level]: ONE clean answer where the store already [held] it
+     * and the run has not [slipped] yet, [usual] otherwise.
+     *
+     * A scramble run opens at the foot and fast-climbs what earlier runs cleared, so the ground
+     * below is touched on the way up without being earned twice.
+     * Its first slip anywhere — a miss or an almost, [blemished]'s rule run-wide — ends that
+     * for the rest of the run.
+     * A Sprosse passed fast is one the store holds already, so it counts as nothing new.
+     */
+    fun winsRequired(level: Int, held: Set<Int>, slipped: Boolean, usual: Int): Int =
+        if (!slipped && level in held) 1 else usual
 }
 
 /**

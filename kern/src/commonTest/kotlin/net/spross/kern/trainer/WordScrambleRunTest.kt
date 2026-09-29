@@ -210,24 +210,52 @@ class WordScrambleRunTest {
 
     // MARK: - What the store keeps
 
-    /** A Sprosse climbed on clean spellings alone is booked, and the next run opens above it. */
+    /** A Sprosse climbed on clean spellings alone is booked for the store. */
     @Test
-    fun aSprosseClimbedCleanOpensTheNextRunAboveIt() {
+    fun aSprosseClimbedCleanIsBooked() {
         var state = open()
         repeat(WordScrambleRun.WINS_TO_ADVANCE) { state = answer(state, clean = true) }
         val closed = WordScrambleRun.close(state)
         assertEquals(setOf(1), closed.clearedSprossen)
         assertEquals(2, closed.bestLevel)
+    }
 
-        val resumed = WordScrambleRunConfig(config().report, ScrambleFixture.normalizer, closed.clearedSprossen)
-        assertEquals(2, resumed.entryLevel)
-        assertEquals(2, WordScrambleRun.open(resumed, Random(3)).level)
+    private fun resumed(vararg cleared: Int) = WordScrambleRun.open(
+        WordScrambleRunConfig(config().report, ScrambleFixture.normalizer, cleared.toSet()),
+        Random(3),
+    )
+
+    /**
+     * A resumed run opens at the foot and passes each Sprosse the store holds on one clean
+     * answer — booking nothing new for it — while one the store lacks asks the full count.
+     */
+    @Test
+    fun aResumedRunFastClimbsWhatTheStoreHolds() {
+        var state = resumed(1, 2)
+        assertEquals(1, state.level)
+        state = answer(state, clean = true)
+        assertEquals(2, state.level)
+        state = answer(state, clean = true)
+        assertEquals(3, state.level)
+        assertEquals(0, state.newSprossen, "a Sprosse the store held is nothing new")
+        state = answer(state, clean = true)
+        assertEquals(3, state.level, "a Sprosse the store lacks asks the full count")
+    }
+
+    /** The first slip ends the fast climb: from there on a held Sprosse asks the full count too. */
+    @Test
+    fun aSlipEndsTheFastClimb() {
+        var state = reduce(resumed(1, 2), WordScrambleIntent.Reveal).state
+        state = reduce(state, WordScrambleIntent.ConfirmPending).state
+        repeat(WordScrambleRun.WINS_TO_ADVANCE) { state = answer(state, clean = true) }
+        assertEquals(2, state.level)
+        state = answer(state, clean = true)
+        assertEquals(2, state.level, "held, and still asking the full count")
     }
 
     /**
      * An almost costs the RUN nothing — the streak stands, the banked win stands, the Sprosse
-     * holds — and costs the STORE the Sprosse: it is climbed here and never booked, so the next
-     * run opens on it again.
+     * holds — and costs the STORE the Sprosse: it is climbed here and never booked.
      */
     @Test
     fun anAlmostKeepsTheRunAndForfeitsTheSprosse() {
@@ -243,7 +271,6 @@ class WordScrambleRunTest {
         assertTrue(state.level > 1, "the run climbs as it always did")
         val closed = WordScrambleRun.close(state)
         assertEquals(emptySet(), closed.clearedSprossen, "but the Sprosse is not the store's")
-        assertEquals(1, WordScrambleRunConfig(config().report, null, closed.clearedSprossen).entryLevel)
     }
 
     /** A miss takes the Sprosse's booking with it, even at the foot where there is nothing to drop to. */

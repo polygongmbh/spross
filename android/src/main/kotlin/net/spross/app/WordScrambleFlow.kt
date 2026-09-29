@@ -63,8 +63,8 @@ class WordScrambleFlow(
  * The normalizer is the STRICT drill one for the language being learned, which is the side
  * the spelling is owed on. A profile whose catalog names no such language grades plainly.
  *
- * The run opens on the Sprosse the store's mask leaves lowest ([WordScrambleRunConfig.entryLevel]),
- * so a ladder climbed clean is never asked for twice.
+ * The run opens at the foot and passes each Sprosse the store's mask holds on one clean answer
+ * ([WordScrambleRunConfig.cleared]).
  */
 fun AppModel.newWordScramble(
     onTone: (ToneKind) -> Unit = {},

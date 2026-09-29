@@ -49,8 +49,8 @@ data class SentenceScrambleClose(
     val bestLevel: Int,
     /**
      * The Sprossen this run climbed off without a blemish ([DrillSprossen]), for the store to add
-     * to the mask it holds — the next run opens on the highest of them
-     * ([SentenceScrambleRunConfig.entryLevel]).
+     * to the mask it holds — the Sprossen later runs pass on one clean answer
+     * ([DrillSprossen.winsRequired]).
      * Unfiltered: unlike [bestLevel] there is no standing value to beat.
      */
     val clearedSprossen: Set<Int>,
@@ -67,18 +67,10 @@ class SentenceScrambleRunConfig(
      * The Sprossen earlier runs earned, as the PLATFORM's store holds them
      * ([NumbersMode.clearedSprossen] over the mask under [NumbersMode.CLEARED_PREFIX]) — kern
      * reads no device state, so where the ladder stands arrives as a parameter.
+     * A run fast-climbs them ([DrillSprossen.winsRequired]).
      */
     val cleared: Set<Int> = emptySet(),
-) {
-    /**
-     * Where a fresh run opens: ON the highest Sprosse an earlier run climbed off unblemished,
-     * or the first where none has — a warm-up on ground the learner has already held,
-     * with every band above it still to climb.
-     * The top band is never climbed off, so a learner who has cleared everything below it
-     * opens one short of it rather than on it.
-     */
-    val entryLevel: Int get() = cleared.maxOrNull()?.coerceIn(1, report.maxLevel) ?: 1
-}
+)
 
 /**
  * One sentence-scramble run, whole and immutable.
@@ -105,6 +97,11 @@ data class SentenceScrambleRunState(
      * [DrillRamp]'s, and a blemish moves none of them.
      */
     val blemished: Boolean,
+    /**
+     * Whether the run has missed or almost-answered anywhere yet, which ends its fast climb
+     * through the Sprossen the store holds ([DrillSprossen.winsRequired]).
+     */
+    val slipped: Boolean,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
     override val core: DrillRunCore,
     override val feedback: TurnFeedback,

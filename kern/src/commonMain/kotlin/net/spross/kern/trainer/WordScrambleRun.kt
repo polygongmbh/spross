@@ -34,9 +34,12 @@ object WordScrambleRun {
      */
     private const val DRAW_WINDOW = 8
 
-    /** A fresh run where the ladder stands ([WordScrambleRunConfig.entryLevel]). */
+    /**
+     * A fresh run, at the foot of the ladder: it fast-climbs the Sprossen earlier runs cleared
+     * ([DrillSprossen.winsRequired]).
+     */
     fun open(config: WordScrambleRunConfig, rng: Random): WordScrambleRunState =
-        openAt(config, config.entryLevel, rng)
+        openAt(config, 1, rng)
 
     /** The same, forced to one Sprosse — the deterministic way to reach a masking stage. */
     fun openAt(config: WordScrambleRunConfig, level: Int, rng: Random): WordScrambleRunState {
@@ -51,6 +54,7 @@ object WordScrambleRun {
             winsAtLevel = 0,
             clearedSprossen = emptySet(),
             blemished = false,
+            slipped = false,
             core = DrillRunCore(pacing = DrillPacing.opening(opening.level, standingRecord = 0)),
             feedback = TurnFeedback.Neutral,
             finished = opening.task == null,
@@ -201,12 +205,13 @@ object WordScrambleRun {
         correct: Boolean,
         clean: Boolean,
     ): WordScrambleRunState {
+        val held = state.config.cleared
         val step = DrillRamp.step(
             level = state.level,
             winsAtLevel = state.winsAtLevel,
             correct = correct,
             clean = clean,
-            winsRequired = WINS_TO_ADVANCE,
+            winsRequired = DrillSprossen.winsRequired(state.level, held, state.slipped, WINS_TO_ADVANCE),
             top = state.config.report.maxLevel,
         )
         val blemished = DrillSprossen.blemished(state.blemished, correct, clean)
@@ -221,6 +226,7 @@ object WordScrambleRun {
                 blemished,
             ),
             blemished = blemished && step.level == state.level,
+            slipped = DrillSprossen.blemished(state.slipped, correct, clean),
             core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) }),
         )
     }

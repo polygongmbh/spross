@@ -51,7 +51,8 @@ data class WordScrambleClose(
     val bestLevel: Int,
     /**
      * The Sprossen this run climbed off without a blemish ([DrillSprossen]), for the store to add
-     * to the mask it holds — the next run opens on the lowest one that is still missing.
+     * to the mask it holds — the Sprossen later runs pass on one clean answer
+     * ([DrillSprossen.winsRequired]).
      * Unfiltered: unlike [bestLevel] there is no standing value to beat.
      */
     val clearedSprossen: Set<Int>,
@@ -73,12 +74,10 @@ class WordScrambleRunConfig(
      * The Sprossen earlier runs earned, as the PLATFORM's store holds them
      * ([NumbersMode.clearedSprossen] over the mask under [NumbersMode.CLEARED_PREFIX]) — kern
      * reads no device state, so where the ladder stands arrives as a parameter.
+     * A run fast-climbs them ([DrillSprossen.winsRequired]).
      */
     val cleared: Set<Int> = emptySet(),
 ) {
-    /** Where a fresh run opens: the lowest Sprosse not yet earned ([NumbersMode.entrySprosse]). */
-    val entryLevel: Int get() = NumbersMode.entrySprosse(cleared, report.maxLevel)
-
     /**
      * What a spelling is actually graded by: [normalizer]'s strictness with the typo budget
      * scaled to the word's length ([AnswerNormalizer.lengthScaledTypos]). The flat per-word cap
@@ -115,6 +114,11 @@ data class WordScrambleRunState(
      * [DrillRamp]'s, and a blemish moves none of them.
      */
     val blemished: Boolean,
+    /**
+     * Whether the run has missed or almost-answered anywhere yet, which ends its fast climb
+     * through the Sprossen the store holds ([DrillSprossen.winsRequired]).
+     */
+    val slipped: Boolean,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
     override val core: DrillRunCore,
     override val feedback: TurnFeedback,

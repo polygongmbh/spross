@@ -217,23 +217,23 @@ class SentenceScrambleRunTest {
 
     // MARK: - What the store keeps
 
-    /**
-     * A Sprosse climbed off clean is booked, and the next run opens ON the highest one booked —
-     * a warm-up on held ground, never above it and never on the top band.
-     */
+    /** Every Sprosse climbed off clean is booked, and none the run still stands on. */
     @Test
-    fun aResumedRunOpensOnTheHighestSprosseClimbedClean() {
+    fun aSprosseClimbedCleanIsBooked() {
         var state = open()
         repeat(phrases.size - 1) { state = answered(state) }
         val closed = SentenceScrambleRun.close(state)
         assertEquals(3, closed.bestLevel)
-        // Every Sprosse the run was climbed off — all of them unblemished — and none it stands on.
         assertEquals(setOf(1, 2), closed.clearedSprossen)
+    }
 
-        val resumed = SentenceScrambleRunConfig(config().report, closed.clearedSprossen)
-        assertEquals(2, resumed.entryLevel)
-        assertEquals(2, SentenceScrambleRun.open(resumed, Random(7)).level)
-        assertEquals(1, config().entryLevel, "nothing cleared opens at the foot")
+    /** A resumed run opens at the foot and passes a band the store holds on one clean arrangement. */
+    @Test
+    fun aResumedRunFastClimbsWhatTheStoreHolds() {
+        val resumed = SentenceScrambleRunConfig(report(bandSize = 3), cleared = setOf(1))
+        val state = SentenceScrambleRun.open(resumed, Random(7))
+        assertEquals(1, state.level)
+        assertEquals(2, answered(state).level)
     }
 
     /** A wrong arrangement takes the Sprosse's booking with it, however clean the rest of it runs. */
@@ -251,7 +251,6 @@ class SentenceScrambleRunTest {
         assertTrue(state.level > 1, "the run climbs as it always did")
         val closed = SentenceScrambleRun.close(state)
         assertEquals(emptySet(), closed.clearedSprossen, "but the Sprosse is not the store's")
-        assertEquals(1, SentenceScrambleRunConfig(config().report, closed.clearedSprossen).entryLevel)
     }
 
     /** An alternative word order from `orders` is accepted but flags [alternativeMatch]. */
