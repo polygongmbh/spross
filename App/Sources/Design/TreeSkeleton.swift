@@ -60,7 +60,7 @@ struct TreeSkeleton {
     /// From the WORDS, never the height — height comes from stability,
     /// which climbs while a word is merely getting stronger.
     static func vigor(for canopy: Canopy) -> Double {
-        1.3 + (Double(maxDepth) - 1.3) * min(1, (Double(canopy.count) / 60).squareRoot())
+        1.3 + (Double(maxDepth) - 1.3) * min(1, (Double(canopy.count) / 30).squareRoot())
     }
 
     /// How many slots the tree hangs out — one per word, with a floor that keeps a
@@ -120,9 +120,9 @@ struct TreeSkeleton {
             // the tree has grown.
             let lean = rng.next() < 0.5 ? -1.0 : 1.0
             let dominantTurn = rng.range(0.10, 0.30) * lean
-            let dominantLength = rng.range(0.80, 0.92)
+            let dominantLength = rng.range(0.86, 0.95)
             let lateralTurn = rng.range(0.62, 1.08)
-            let lateralLength = rng.range(0.66, 0.82)
+            let lateralLength = rng.range(0.76, 0.90)
             let third = rng.next() < 0.5
             let thirdTurn = rng.range(0.45, 0.85)
 
@@ -133,17 +133,20 @@ struct TreeSkeleton {
                 twigs.append((segments.count - 1, path))
                 return
             }
+            // why: each generation shrinks little, so the first limbs start shorter —
+            // the crown sits on its trunk rather than dwarfing it.
+            let next = depth == 0 ? length * 0.8 : length
             // Branches reach for the light a little more with every generation.
             let lifted = angle + (-Double.pi / 2 - angle) * 0.06 * Double(depth + 1)
             branch(path: path &* 4 &+ 1, from: end, angle: lifted + dominantTurn,
-                   length: length * dominantLength, width: width * 0.80,
+                   length: next * dominantLength, width: width * 0.80,
                    depth: depth + 1, side: -side)
             branch(path: path &* 4 &+ 2, from: end, angle: lifted + side * lateralTurn,
-                   length: length * lateralLength, width: width * 0.60,
+                   length: next * lateralLength, width: width * 0.60,
                    depth: depth + 1, side: -side)
             if third {
                 branch(path: path &* 4 &+ 3, from: end, angle: lifted - side * thirdTurn,
-                       length: length * 0.55, width: width * 0.45,
+                       length: next * 0.7, width: width * 0.45,
                        depth: depth + 1, side: side)
             }
         }
@@ -158,9 +161,23 @@ struct TreeSkeleton {
     private static func hang(on segments: [TreeSegment], twigs: [(segment: Int, path: UInt64)],
                              seed: UInt64, count: Int) -> [LeafSlot] {
         guard !twigs.isEmpty, count > 0 else { return [] }
-        // why: dealt in an order seeded by each twig's path, so the first marks —
-        // fruit and blossom — scatter over the crown instead of running along one side.
-        let order = twigs.sorted { SplitMix64.mix(seed ^ $0.path) < SplitMix64.mix(seed ^ $1.path) }
+        // why: from a seeded first twig, each next is the one whose end lies farthest from
+        // every end already dealt, so the first marks — fruit and blossom — land far apart
+        // instead of clumping where neighboring twigs end.
+        var rest = twigs.sorted { SplitMix64.mix(seed ^ $0.path) < SplitMix64.mix(seed ^ $1.path) }
+        var order = [rest.removeFirst()]
+        func gap(_ a: Int, _ b: Int) -> CGFloat {
+            let p = segments[a].end, q = segments[b].end
+            return hypot(p.x - q.x, p.y - q.y)
+        }
+        var nearest = rest.map { gap($0.segment, order[0].segment) }
+        while !rest.isEmpty {
+            let far = nearest.indices.max { nearest[$0] < nearest[$1] }!
+            let picked = rest.remove(at: far)
+            nearest.remove(at: far)
+            order.append(picked)
+            for i in rest.indices { nearest[i] = min(nearest[i], gap(rest[i].segment, picked.segment)) }
+        }
         let wood = order.map { segments[$0.segment] }
         let lengths = wood.map { max(Double(hypot($0.end.x - $0.start.x, $0.end.y - $0.start.y)), 1e-6) }
         var held = [Int](repeating: 0, count: wood.count)

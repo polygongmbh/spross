@@ -70,7 +70,7 @@ internal class TreeSkeleton(
         const val MAX_DEPTH = 5
 
         /** How many generations the tree has grown — from the words met, never from height. */
-        fun vigor(met: Int): Float = 1.3f + (MAX_DEPTH - 1.3f) * min(1f, sqrt(met / 60f))
+        fun vigor(met: Int): Float = 1.3f + (MAX_DEPTH - 1.3f) * min(1f, sqrt(met / 30f))
 
         /** One slot per word, with a floor so a handful of words do not each claim a limb. */
         fun slotCount(met: Int): Int = max(8, met)
@@ -123,9 +123,9 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
         // with it every child's shape — never depends on how deep the tree has grown.
         val lean = rng.sign()
         val leadTurn = rng.range(0.10f, 0.30f) * lean
-        val leadLength = rng.range(0.80f, 0.92f)
+        val leadLength = rng.range(0.86f, 0.95f)
         val sideTurn = rng.range(0.62f, 1.08f) * spread
-        val sideLength = rng.range(0.66f, 0.82f)
+        val sideLength = rng.range(0.76f, 0.90f)
         val third = rng.next() < 0.5f
         val thirdTurn = rng.range(0.45f, 0.85f) * spread
 
@@ -135,12 +135,15 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
             twigs += Twig(limbs.size - 1, path)
             return
         }
+        // why: each generation shrinks little, so the first limbs start shorter — the
+        // crown sits on its trunk rather than dwarfing it.
+        val next = if (depth == 0) length * 0.8f else length
         // Each generation reaches a little further toward the light.
         val lifted = angle + (-PI_F / 2 - angle) * 0.06f * (depth + 1)
-        limb(path * 4 + 1, end, lifted + leadTurn, length * leadLength, width * 0.80f, depth + 1, -side)
-        limb(path * 4 + 2, end, lifted + side * sideTurn, length * sideLength, width * 0.60f, depth + 1, -side)
+        limb(path * 4 + 1, end, lifted + leadTurn, next * leadLength, width * 0.80f, depth + 1, -side)
+        limb(path * 4 + 2, end, lifted + side * sideTurn, next * sideLength, width * 0.60f, depth + 1, -side)
         if (third) {
-            limb(path * 4 + 3, end, lifted - side * thirdTurn, length * 0.55f, width * 0.45f, depth + 1, side)
+            limb(path * 4 + 3, end, lifted - side * thirdTurn, next * 0.7f, width * 0.45f, depth + 1, side)
         }
     }
 }
@@ -155,9 +158,23 @@ private class Twig(val limb: Int, val path: Long)
  */
 private fun hang(limbs: List<TreeLimb>, twigs: List<Twig>, seed: Long, count: Int): List<TreeSlot> {
     if (twigs.isEmpty() || count <= 0) return emptyList()
-    // why: dealt in an order seeded by each twig's path, so the first marks — fruit and
-    // blossom — scatter over the crown instead of running along one side.
-    val order = twigs.sortedBy { Mix.hash(seed xor it.path) }
+    // why: from a seeded first twig, each next is the one whose end lies farthest from every
+    // end already dealt, so the first marks — fruit and blossom — land far apart instead of
+    // clumping where neighboring twigs end.
+    val rest = twigs.sortedBy { Mix.hash(seed xor it.path) }.toMutableList()
+    val order = mutableListOf(rest.removeAt(0))
+    fun gap(a: Int, b: Int): Float {
+        val p = limbs[a].end; val q = limbs[b].end
+        return hypot(p.x - q.x, p.y - q.y)
+    }
+    val nearest = rest.map { gap(it.limb, order[0].limb) }.toMutableList()
+    while (rest.isNotEmpty()) {
+        val far = nearest.indices.maxBy { nearest[it] }
+        val picked = rest.removeAt(far)
+        nearest.removeAt(far)
+        order += picked
+        for (i in rest.indices) nearest[i] = min(nearest[i], gap(rest[i].limb, picked.limb))
+    }
     val wood = order.map { limbs[it.limb] }
     val lengths = wood.map { max(hypot(it.end.x - it.start.x, it.end.y - it.start.y), 1e-6f) }
     val held = IntArray(wood.size)
