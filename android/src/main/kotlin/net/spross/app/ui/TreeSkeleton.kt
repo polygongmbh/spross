@@ -19,10 +19,9 @@ import kotlin.math.sqrt
 //
 // One child carries its parent's line on and the other leaves it sharply (monopodial), the
 // width splits so the children's cross-sections add up to the parent's, and every limb bows.
-// Marks are dart-thrown over the forked wood (Bridson 2007's Poisson-disk sampling): a
-// candidate lands uniformly along the limbs, and is kept only if it clears every mark already
-// kept by a minimum spacing, measured in the plane — so no two marks overlap wherever the
-// limbs cross or crowd.
+// Leaves are the level past the last stems (Weber & Penn §4.6): they grow only on the twigs
+// that fork no further, spaced along each and alternating sides — never on older wood,
+// never at a fork.
 
 /** One length of wood: a bowed center line tapering from [startWidth] to [endWidth]. */
 internal class TreeLimb(
@@ -85,8 +84,7 @@ internal class TreeSkeleton(
             val lean = habit.range(-0.12f, 0.12f)
             val growth = Growth(seed, vigor, spread = habit.range(0.8f, 1.25f))
             growth.limb(1L, Offset.Zero, -PI_F / 2 + lean, trunk, 0.014f + 0.011f * vigor, 0, 1f)
-            // A few spare slots past the last word, so a prefix never runs short.
-            val hung = hang(growth.limbs, seed, slots + 6)
+            val hung = hang(growth.limbs, growth.twigs, seed, slots)
             return TreeSkeleton(growth.limbs, hung, pitch(hung.take(slots)))
         }
 
@@ -103,6 +101,8 @@ internal const val PI_F = Math.PI.toFloat()
 
 private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
     val limbs = mutableListOf<TreeLimb>()
+    /** The limbs that fork no further, with the path that seeds each. */
+    val twigs = mutableListOf<Twig>()
 
     fun limb(path: Long, origin: Offset, angle: Float, length: Float, width: Float, depth: Int, side: Float) {
         val grown = (vigor - depth).coerceIn(0f, 1f)
@@ -129,7 +129,12 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
         val third = depth <= 2 && rng.next() < 0.32f
         val thirdTurn = rng.range(0.45f, 0.85f) * spread
 
-        if (grown < 1f || depth >= TreeSkeleton.MAX_DEPTH || vigor <= depth + 1) return
+        // why: a twig sprouts at half length, never as a stub — a stub's marks would all
+        // sit on the fork it grows from.
+        if (grown < 1f || depth >= TreeSkeleton.MAX_DEPTH || vigor < depth + 1.5f) {
+            twigs += Twig(limbs.size - 1, path)
+            return
+        }
         // Each generation reaches a little further toward the light.
         val lifted = angle + (-PI_F / 2 - angle) * 0.06f * (depth + 1)
         limb(path * 4 + 1, end, lifted + leadTurn, length * leadLength, width * 0.80f, depth + 1, -side)
@@ -140,81 +145,57 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
     }
 }
 
-/** [count] slots over the forked wood, in the order they were accepted. */
-private fun hang(limbs: List<TreeLimb>, seed: Long, count: Int): List<TreeSlot> {
-    // why: the trunk stays bare below the first fork, as in any tree's structure.
-    val wood = limbs.filter { it.depth >= 1 }.ifEmpty { limbs }
-    val lengths = wood.map { hypot(it.end.x - it.start.x, it.end.y - it.start.y) }
-    val total = lengths.sum()
-    if (total <= 0f || count <= 0) return emptyList()
-    val rng = Mix(seed xor Mix.hash(0x5EED1EAFL))
-    // why: set by the wood alone, never by [count], so a longer run replays a shorter
-    // one exactly and only appends — adding a word moves no mark already hanging.
-    var spacing = total / 8
+private class Twig(val limb: Int, val path: Long)
 
-    // Uniform along the wood: a limb picked by its length, then a point on its drawn
-    // (bowed) curve, nudged sideways but never past the wood's own edge — so every
-    // mark's center stays inside the band the limb is actually drawn as.
-    fun candidate(): TreeSlot {
-        var pick = rng.next() * total
-        var index = 0
-        while (index < wood.size - 1 && pick > lengths[index]) {
-            pick -= lengths[index]
-            index++
-        }
-        val limb = wood[index]
-        val t = rng.next()
-        val u1 = 1 - t
-        val onCurve = Offset(
-            u1 * u1 * limb.start.x + 2 * u1 * t * limb.control.x + t * t * limb.end.x,
-            u1 * u1 * limb.start.y + 2 * u1 * t * limb.control.y + t * t * limb.end.y,
-        )
-        val tangent = Offset(
-            2 * u1 * (limb.control.x - limb.start.x) + 2 * t * (limb.end.x - limb.control.x),
-            2 * u1 * (limb.control.y - limb.start.y) + 2 * t * (limb.end.y - limb.control.y),
-        )
-        val angle = atan2(tangent.y, tangent.x)
-        val width = limb.startWidth * u1 + limb.endWidth * t
-        val offset = (rng.next() * 2 - 1) * width / 2
-        val turn = rng.range(0.6f, 1.4f)
-        val point = Offset(
-            onCurve.x + cos(angle + PI_F / 2) * offset,
-            onCurve.y + sin(angle + PI_F / 2) * offset,
-        )
-        return TreeSlot(point, angle + if (offset < 0f) -turn else turn)
-    }
-
-    // why: the trunk counts as taken, so no mark sits at the fork on top of it.
-    val trunk = limbs.firstOrNull { it.depth == 0 }
+/**
+ * [count] slots on the twigs. Each twig's first mark hangs at its end, where fruit and
+ * blossom belong; after that the next goes to whichever twig holds the fewest for its
+ * length, so no twig crowds while another stands bare. The sequence never depends on
+ * [count], so hanging another word moves none already hanging.
+ */
+private fun hang(limbs: List<TreeLimb>, twigs: List<Twig>, seed: Long, count: Int): List<TreeSlot> {
+    if (twigs.isEmpty() || count <= 0) return emptyList()
+    // why: dealt in an order seeded by each twig's path, so the first marks — fruit and
+    // blossom — scatter over the crown instead of running along one side.
+    val order = twigs.sortedBy { Mix.hash(seed xor it.path) }
+    val wood = order.map { limbs[it.limb] }
+    val lengths = wood.map { max(hypot(it.end.x - it.start.x, it.end.y - it.start.y), 1e-6f) }
+    val held = IntArray(wood.size)
     val slots = mutableListOf<TreeSlot>()
-    // why: a spacing the wood can no longer fit shrinks rather than stalls, so the
-    // first marks spread over the whole crown and later ones fill the gaps between.
-    for (epoch in 0 until 14) {
-        if (slots.size >= count) break
-        var misses = 0
-        while (misses < 60 && slots.size < count) {
-            val slot = candidate()
-            if (clearance(slot.point, trunk) >= spacing &&
-                slots.all { hypot(it.point.x - slot.point.x, it.point.y - slot.point.y) >= spacing }
-            ) {
-                slots += slot
-                misses = 0
-            } else {
-                misses++
-            }
-        }
-        spacing *= 0.65f
+    while (slots.size < count) {
+        val twig = if (slots.size < wood.size) slots.size
+            else held.indices.minBy { held[it] / lengths[it] }
+        slots += slot(held[twig], wood[twig], flip = order[twig].path and 1L == 0L)
+        held[twig]++
     }
-    while (slots.size < count) slots += candidate()
     return slots
 }
 
-/** How far [point] stands from the straight line of [limb]. */
-private fun clearance(point: Offset, limb: TreeLimb?): Float {
-    if (limb == null) return Float.POSITIVE_INFINITY
-    val dx = limb.end.x - limb.start.x; val dy = limb.end.y - limb.start.y
-    val t = (((point.x - limb.start.x) * dx + (point.y - limb.start.y) * dy) / max(dx * dx + dy * dy, 1e-9f)).coerceIn(0f, 1f)
-    return hypot(point.x - limb.start.x - dx * t, point.y - limb.start.y - dy * t)
+/**
+ * A twig's k-th mark: the first at its end, the rest where the base-2 van der Corput
+ * sequence puts them between there and a third of the way up, so each new one halves a
+ * gap the earlier ones left and none sits at the fork the twig grew from. Off the end,
+ * marks alternate sides and sit on the bark, leaning away from the twig.
+ */
+private fun slot(k: Int, twig: TreeLimb, flip: Boolean): TreeSlot {
+    var spread = 0f; var step = 0.5f; var n = k
+    while (n > 0) { spread += (n and 1) * step; n = n shr 1; step /= 2 }
+    val t = 1 - 0.65f * spread; val u = 1 - t
+    val point = Offset(
+        u * u * twig.start.x + 2 * u * t * twig.control.x + t * t * twig.end.x,
+        u * u * twig.start.y + 2 * u * t * twig.control.y + t * t * twig.end.y,
+    )
+    val along = atan2(
+        2 * u * (twig.control.y - twig.start.y) + 2 * t * (twig.end.y - twig.control.y),
+        2 * u * (twig.control.x - twig.start.x) + 2 * t * (twig.end.x - twig.control.x),
+    )
+    if (k == 0) return TreeSlot(point, along)
+    val side = if ((k % 2 == 1) != flip) 1f else -1f
+    val bark = (twig.startWidth * u + twig.endWidth * t) / 2 * side
+    return TreeSlot(
+        Offset(point.x + cos(along + PI_F / 2) * bark, point.y + sin(along + PI_F / 2) * bark),
+        along + side * 0.9f,
+    )
 }
 
 /** SplitMix64: a stable stream per seed, the same on every run and every device. */

@@ -22,10 +22,9 @@ import Foundation
 //   · Every segment bows slightly; a straight line never occurs in a tree.
 //   · A bare trunk before the first fork.
 //
-// Marks are dart-thrown over the forked wood (Bridson 2007's Poisson-disk sampling):
-// a candidate lands uniformly along the branches, and is kept only if it clears every
-// mark already kept by a minimum spacing, measured in the plane — so no two marks
-// overlap wherever the branches cross or crowd.
+// Leaves are the level past the last stems (Weber & Penn §4.6): they grow only on
+// the twigs that fork no further, spaced along each and alternating sides —
+// never on older wood, never at a fork.
 
 /// One length of branch: a bowed center line that tapers along its length.
 struct TreeSegment {
@@ -76,8 +75,7 @@ struct TreeSkeleton {
         let trunkWidth = 0.014 + 0.011 * vigor
         growth.branch(path: 1, from: .zero, angle: -.pi / 2, length: 0.24, width: trunkWidth,
                       depth: 0, side: 1)
-        // A few spare slots past the last word, so a prefix never runs short.
-        let hung = hang(on: growth.segments, seed: seed, count: target + 6)
+        let hung = hang(on: growth.segments, twigs: growth.twigs, seed: seed, count: target)
         return fit(segments: growth.segments, slots: hung, count: target, in: rect)
     }
 
@@ -87,6 +85,8 @@ struct TreeSkeleton {
         let seed: UInt64
         let vigor: Double
         var segments: [TreeSegment] = []
+        /// The segments that fork no further, with the path that seeds each.
+        var twigs: [(segment: Int, path: UInt64)] = []
 
         init(seed: UInt64, vigor: Double) {
             self.seed = seed
@@ -127,7 +127,12 @@ struct TreeSkeleton {
             let thirdTurn = rng.range(0.45, 0.85)
 
             // A branch whose children have not started yet is a tip, full length or not.
-            guard grown >= 1, depth < TreeSkeleton.maxDepth, vigor > Double(depth + 1) else { return }
+            // why: a twig sprouts at half length, never as a stub — a stub's marks would
+            // all sit on the fork it grows from.
+            guard grown >= 1, depth < TreeSkeleton.maxDepth, vigor >= Double(depth + 1) + 0.5 else {
+                twigs.append((segments.count - 1, path))
+                return
+            }
             // Branches reach for the light a little more with every generation.
             let lifted = angle + (-Double.pi / 2 - angle) * 0.06 * Double(depth + 1)
             branch(path: path &* 4 &+ 1, from: end, angle: lifted + dominantTurn,
@@ -146,78 +151,49 @@ struct TreeSkeleton {
 
     // MARK: Hanging
 
-    /// `count` slots over the forked wood, in the order they were accepted.
-    private static func hang(on segments: [TreeSegment], seed: UInt64, count: Int) -> [LeafSlot] {
-        // why: the trunk stays bare below the first fork, as in any tree's structure.
-        let forked = segments.filter { $0.depth >= 1 }
-        let wood = forked.isEmpty ? segments : forked
-        let lengths = wood.map { Double(hypot($0.end.x - $0.start.x, $0.end.y - $0.start.y)) }
-        let total = lengths.reduce(0, +)
-        guard total > 0, count > 0 else { return [] }
-        var rng = SplitMix64(seed: seed ^ SplitMix64.mix(0x5EED_1EAF))
-        // why: set by the wood alone, never by `count`, so a longer run replays a shorter
-        // one exactly and only appends — adding a word moves no mark already hanging.
-        var spacing = total / 8
-
-        // Uniform along the wood: a segment picked by its length, then a point on its
-        // drawn (bowed) curve, nudged sideways but never past the wood's own edge —
-        // so every mark's center stays inside the band the branch is actually drawn as.
-        func candidate() -> LeafSlot {
-            var pick = rng.next() * total
-            var index = 0
-            while index < wood.count - 1, pick > lengths[index] {
-                pick -= lengths[index]
-                index += 1
-            }
-            let segment = wood[index]
-            let t = rng.next()
-            let u1 = 1 - t
-            let onCurve = CGPoint(
-                x: u1 * u1 * segment.start.x + 2 * u1 * t * segment.control.x + t * t * segment.end.x,
-                y: u1 * u1 * segment.start.y + 2 * u1 * t * segment.control.y + t * t * segment.end.y)
-            let tangent = CGPoint(
-                x: 2 * u1 * (segment.control.x - segment.start.x) + 2 * t * (segment.end.x - segment.control.x),
-                y: 2 * u1 * (segment.control.y - segment.start.y) + 2 * t * (segment.end.y - segment.control.y))
-            let angle = atan2(Double(tangent.y), Double(tangent.x))
-            let width = Double(segment.startWidth) * u1 + Double(segment.endWidth) * t
-            let offset = (rng.next() * 2 - 1) * width / 2
-            let turn = rng.range(0.6, 1.4)
-            let point = CGPoint(x: onCurve.x + CGFloat(cos(angle + .pi / 2) * offset),
-                                y: onCurve.y + CGFloat(sin(angle + .pi / 2) * offset))
-            return LeafSlot(point: point, angle: angle + (offset < 0 ? -turn : turn))
-        }
-
-        // why: the trunk counts as taken, so no mark sits at the fork on top of it.
-        let trunk = segments.first { $0.depth == 0 }
+    /// `count` slots on the twigs. Each twig's first mark hangs at its end, where fruit
+    /// and blossom belong; after that the next goes to whichever twig holds the fewest
+    /// for its length, so no twig crowds while another stands bare. The sequence never
+    /// depends on `count`, so hanging another word moves none already hanging.
+    private static func hang(on segments: [TreeSegment], twigs: [(segment: Int, path: UInt64)],
+                             seed: UInt64, count: Int) -> [LeafSlot] {
+        guard !twigs.isEmpty, count > 0 else { return [] }
+        // why: dealt in an order seeded by each twig's path, so the first marks —
+        // fruit and blossom — scatter over the crown instead of running along one side.
+        let order = twigs.sorted { SplitMix64.mix(seed ^ $0.path) < SplitMix64.mix(seed ^ $1.path) }
+        let wood = order.map { segments[$0.segment] }
+        let lengths = wood.map { max(Double(hypot($0.end.x - $0.start.x, $0.end.y - $0.start.y)), 1e-6) }
+        var held = [Int](repeating: 0, count: wood.count)
         var slots: [LeafSlot] = []
-        // why: a spacing the wood can no longer fit shrinks rather than stalls, so the
-        // first marks spread over the whole crown and later ones fill the gaps between.
-        for _ in 0..<14 where slots.count < count {
-            var misses = 0
-            while misses < 60, slots.count < count {
-                let slot = candidate()
-                if clear(slot.point, of: trunk) >= spacing, slots.allSatisfy({
-                    Double(hypot($0.point.x - slot.point.x, $0.point.y - slot.point.y)) >= spacing
-                }) {
-                    slots.append(slot)
-                    misses = 0
-                } else {
-                    misses += 1
-                }
-            }
-            spacing *= 0.65
+        while slots.count < count {
+            let twig = slots.count < wood.count
+                ? slots.count
+                : held.indices.min { Double(held[$0]) / lengths[$0] < Double(held[$1]) / lengths[$1] }!
+            slots.append(slot(held[twig], on: wood[twig], flip: order[twig].path & 1 == 0))
+            held[twig] += 1
         }
-        while slots.count < count { slots.append(candidate()) }
         return slots
     }
 
-    /// How far `point` stands from the straight line of `segment`.
-    private static func clear(_ point: CGPoint, of segment: TreeSegment?) -> Double {
-        guard let segment else { return .infinity }
-        let dx = segment.end.x - segment.start.x, dy = segment.end.y - segment.start.y
-        let t = max(0, min(1, ((point.x - segment.start.x) * dx + (point.y - segment.start.y) * dy)
-                              / max(dx * dx + dy * dy, 1e-9)))
-        return Double(hypot(point.x - segment.start.x - dx * t, point.y - segment.start.y - dy * t))
+    /// A twig's k-th mark: the first at its end, the rest where the base-2 van der Corput
+    /// sequence puts them between there and a third of the way up, so each new one halves
+    /// a gap the earlier ones left and none sits at the fork the twig grew from.
+    /// Off the end, marks alternate sides and sit on the bark, leaning away from the twig.
+    private static func slot(_ k: Int, on twig: TreeSegment, flip: Bool) -> LeafSlot {
+        var spread = 0.0, step = 0.5, n = k
+        while n > 0 { spread += Double(n & 1) * step; n >>= 1; step /= 2 }
+        let t = 1 - 0.65 * spread, u = 1 - t
+        let point = CGPoint(
+            x: u * u * twig.start.x + 2 * u * t * twig.control.x + t * t * twig.end.x,
+            y: u * u * twig.start.y + 2 * u * t * twig.control.y + t * t * twig.end.y)
+        let along = atan2(Double(2 * u * (twig.control.y - twig.start.y) + 2 * t * (twig.end.y - twig.control.y)),
+                          Double(2 * u * (twig.control.x - twig.start.x) + 2 * t * (twig.end.x - twig.control.x)))
+        guard k > 0 else { return LeafSlot(point: point, angle: along) }
+        let side: Double = (k % 2 == 1) != flip ? 1 : -1
+        let bark = (Double(twig.startWidth) * u + Double(twig.endWidth) * t) / 2 * side
+        return LeafSlot(point: CGPoint(x: point.x + CGFloat(cos(along + .pi / 2) * bark),
+                                       y: point.y + CGFloat(sin(along + .pi / 2) * bark)),
+                        angle: along + side * 0.9)
     }
 
     // MARK: Fitting
