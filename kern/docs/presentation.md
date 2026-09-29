@@ -25,7 +25,8 @@ Neighbors: the contract `../README.md` §3.
   typo budget included. Hearing a word and writing it back down proves the ear worked and
   nothing else; translating it is what the box is for. So the meaning side's `teaches` are
   simply the answer, and the word that played is a miss like any other — the reveal then
-  teaches both, which is where the spelling still lands.
+  teaches both, and the retype after it is the TARGET word (`TurnState.fieldLang`):
+  nothing is ever written out in the language the learner already has.
   The join is read from the other end here: a form more than one concept PRINTS carries
   every meaning they give it, because the target language merges what the source splits
   (sw `ndege` is Vogel AND Flugzeug), and each of them answers what the word means —

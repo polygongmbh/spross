@@ -147,9 +147,13 @@ class TurnMachine(
      * reveal in view is recalled-with-help, so it earns [RETRY_RATING] rather than the blind
      * Again a bare give-up would. The card keeps its reveal while the field turns right —
      * the two deliberately say different things at that moment.
+     *
+     * The retype is the TARGET word on every turn ([TurnState.fieldLang]), a card asked by ear
+     * included: its meaning was the question, but what gets written out is the word.
      */
     private fun approveRetry(state: TurnState, text: String): TurnReduction {
-        if (!isExact(state, text)) {
+        val trimmed = text.trim()
+        if (trimmed.isEmpty() || grader.grade(trimmed, state.card) != Match.Exact) {
             // why: backing out takes the parked rating with it, or it would fire on a word
             // that no longer stands written.
             if (!state.retryApproved) return unchanged(state)
@@ -225,11 +229,13 @@ class TurnMachine(
      * retype picks up where the slip started instead of from scratch. Nothing kept clears it.
      * A kept word is written as the ANSWER spells it — a forgiven slip is not left for the
      * learner to hunt down — and the last answer word is never primed, so the field cannot
-     * hand over a finished retype.
+     * hand over a finished retype. A card asked by ear primes nothing: the miss was a meaning,
+     * and the retype is the target word.
      */
     private fun primed(state: TurnState, text: String): String {
-        val expected = AnswerNormalizer.words(state.answerText)
-        val count = answerNormalizer(state).matchingPrefixWordCount(text, state.answerText)
+        if (state.prompt == ProducePrompt.Sound) return ""
+        val expected = AnswerNormalizer.words(state.card.target.text)
+        val count = normalizer.matchingPrefixWordCount(text, state.card.target.text)
         val kept = expected
             .take(minOf(count, expected.size - 1))
             .joinToString(" ")
@@ -279,9 +285,6 @@ class TurnMachine(
 
     /** A verdict, plus whether it was earned on a meaning this card does not itself teach. */
     private data class Graded(val match: Match, val merged: Boolean = false)
-
-    private fun answerNormalizer(state: TurnState): AnswerNormalizer =
-        if (state.prompt == ProducePrompt.Sound) meaningNormalizer else normalizer
 
     /**
      * The word goes on screen because the learner cannot listen: same question, same answer,

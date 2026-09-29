@@ -164,11 +164,11 @@ extension SessionView {
         }
     }
 
-    /// The language the field asks for, named. Kern's answer side decides which
+    /// The language the field asks for, named. Kern's field side decides which
     /// one that is — the meaning on a card asked by ear, the target everywhere
-    /// else — and this placeholder is the one place the learner is told.
+    /// else and in every retype — and this placeholder is the one place the learner is told.
     private var inputPlaceholder: String {
-        guard let lang = turn?.answerLang ?? model.targetLanguage else { return "" }
+        guard let lang = turn?.fieldLang ?? model.targetLanguage else { return "" }
         return answerPlaceholder(lang)
     }
 

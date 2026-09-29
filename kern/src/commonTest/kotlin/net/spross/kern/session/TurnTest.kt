@@ -264,6 +264,15 @@ class TurnTest {
     }
 
     @Test
+    fun theRetypeAfterAMissByEarIsTheTargetWord() {
+        val missed = TurnFixture.state(byEar(), TurnIntent.Submit("Messer"))
+        assertEquals("sw", missed.fieldLang)
+        assertEquals(emptyList(), TurnFixture.step(missed, TurnIntent.InputChanged("Auto")).effects)
+        val retyped = TurnFixture.step(missed, TurnIntent.InputChanged("gari"))
+        assertTrue(retyped.state.retryApproved)
+    }
+
+    @Test
     fun aCardAskedByEarOwesTheMeaningInTheSourceLanguage() {
         val turn = byEar()
         assertEquals("Auto", turn.answerText)

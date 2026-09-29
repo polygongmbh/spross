@@ -94,7 +94,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             value = flow.input,
             onValueChange = flow::type,
             // The card asked by ear owes the MEANING, so the field names the source
-            // language — kern's `answerLang`, never this screen's reading of the prompt.
+            // language until a miss — kern's `fieldLang`, never this screen's reading of the prompt.
             placeholder = chrome.sessionAnswerPlaceholder.format(model.answerName(flow)),
             feedback = flow.fieldFeedback,
             chrome = chrome,

@@ -123,6 +123,7 @@ What licenses a second component is a parameter attempted and found not to carry
 - **A produce miss keeps the field open for a retry.**
   The reveal trims to the words already right;
   finishing counts as recalled-with-help, giving up is an honest miss.
+  The retry is always the target word, on a card asked by ear too.
 - **A missed word is written out once before the session moves on.**
   Encoding only, never a grade.
   Production and first exposures ask for it; recognition misses do not.

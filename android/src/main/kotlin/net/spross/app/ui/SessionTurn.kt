@@ -219,8 +219,8 @@ fun AppModel.targetName(ui: SessionUi): String {
 }
 
 /**
- * The language the ANSWER field asks for, named. Kern's `TurnState.answerLang` decides
- * which side that is — the meaning on a card asked by ear, the target everywhere else —
- * and the placeholder is the one place the learner is told.
+ * The language the ANSWER field asks for, named. Kern's `TurnState.fieldLang` decides
+ * which side that is — the meaning on a card asked by ear, the target everywhere else and
+ * in every retype — and the placeholder is the one place the learner is told.
  */
-fun AppModel.answerName(flow: TurnFlow): String = languageName(flow.state.answerLang)
+fun AppModel.answerName(flow: TurnFlow): String = languageName(flow.state.fieldLang)
