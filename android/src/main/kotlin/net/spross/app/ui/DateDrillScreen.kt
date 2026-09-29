@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import net.spross.app.AppModel
 import net.spross.app.Screen
 import net.spross.app.TrainerStore
+import net.spross.app.TypedDrillStanding
 import net.spross.app.newDateDrill
 import net.spross.kern.trainer.Drill
 
@@ -31,8 +32,8 @@ fun DateDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, level: Int
             entry = Drill.Dates,
             key = key,
             open = { onTone, onReleaseFocus ->
-                val record = key?.let { model.trainer.store.record(it) } ?: 0
-                model.newDateDrill(reverse, fast, level, record, onTone, onReleaseFocus)
+                val standing = key?.let { model.trainer.store.typedStanding(it) } ?: TypedDrillStanding.NONE
+                model.newDateDrill(reverse, fast, level, standing.record, standing.cleared(reverse), onTone, onReleaseFocus)
             },
         ),
     )

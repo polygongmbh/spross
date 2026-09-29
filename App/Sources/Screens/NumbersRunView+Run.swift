@@ -57,7 +57,7 @@ extension NumbersRunView: DrillRunning {
     func closing() -> DrillClose<NumbersRunState> {
         let closed = NumbersRun.shared.close(state: run,
                                              standingRecord: Int32(TrainerRecords.best(for: mode.recordKey)),
-                                             standingProgress: standingProgress)
+                                             standingProgress: Self.standingProgress(mode))
         if let summary = closed.summary {
             // why: kern measures the record; only a broken one is written.
             if summary.newRecord { TrainerRecords.record(Int(summary.recordFigure), for: closed.recordKey) }
@@ -66,9 +66,9 @@ extension NumbersRunView: DrillRunning {
         return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects)
     }
 
-    /// What the Sprosse store holds now for every exercise this run could book —
+    /// What the Sprosse store holds now for every exercise `mode` could book —
     /// kern compares against it so a Sprosse already earned is not fresh progress.
-    private var standingProgress: [String: KotlinInt] {
+    static func standingProgress(_ mode: NumbersMode) -> [String: KotlinInt] {
         TrainerProgress.standing(mode.exercises.map { mode.progressKey(exercise: $0) })
     }
 }

@@ -4,7 +4,7 @@ import net.spross.kern.session.AnswerOutcome
 
 /** Why an endless run stopped to ask whether to go on ([DrillPacing]). */
 enum class DrillPauseReason {
-    /** The run did something new: a Sprosse cleared that the store did not hold, or the record beaten. */
+    /** The run did something new: a Sprosse the store did not hold, or the record beaten ([DrillPacing]). */
     Improved,
 
     /** Most of the last few answers missed. */
@@ -20,10 +20,17 @@ enum class DrillPauseReason {
  * A drill has no plan to finish, so kern gives it one: after a booked answer the run pauses at
  * the FIRST of three moments —
  * [STRETCH] answers since the run opened or last went on;
- * after [IMPROVED_AFTER], something new since the last pause
- * (a Sprosse cleared that the store did not hold, or a standing streak record beaten);
+ * after [IMPROVED_AFTER], something new since the last pause —
+ * a Sprosse the store did not hold, or a standing streak record beaten;
  * after [STRUGGLING_AFTER], [STRUGGLING_MISSES] misses among the last [STRUGGLING_WINDOW] answers.
  * Where two fall on one answer, improving is named over struggling, and either over the count.
+ *
+ * A Sprosse the store did not hold is one cleared for the first time:
+ * for the scrambles and the letters one climbed off that the stored mask lacks,
+ * for the atlas and the calendar one answered out that the run's direction's mask lacks,
+ * for the slot drill each one climbed off at or above the Sprosse its exercise had been climbed to.
+ * The atlas's and the calendar's reached Sprosse is not new —
+ * so the calendar's assembled Sprossen, which never answer out, improve only through the record.
  *
  * A pause asks, it does not end: going on ([DrillRunCore.resumed]) keeps the run whole —
  * the prompts asked, the ladder, the streak — and starts the next stretch.

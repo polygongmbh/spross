@@ -81,6 +81,7 @@ class CountryDrillRunTest {
         reverse: Boolean = false,
         fast: Boolean = false,
         graded: Boolean = true,
+        cleared: Set<Int> = emptySet(),
     ) = CountryDrillRunConfig(
         content = content,
         reverse = reverse,
@@ -90,6 +91,7 @@ class CountryDrillRunTest {
             reverse -> AnswerNormalizer.drill(german)
             else -> AnswerNormalizer.drill(swahili)
         },
+        cleared = cleared,
     )
 
     private fun open(
@@ -97,7 +99,8 @@ class CountryDrillRunTest {
         fast: Boolean = false,
         graded: Boolean = true,
         level: Int = 1,
-    ) = CountryDrillRun.openAt(config(reverse, fast, graded), level, Random(7))
+        cleared: Set<Int> = emptySet(),
+    ) = CountryDrillRun.openAt(config(reverse, fast, graded, cleared), level, Random(7))
 
     private fun CountryDrillRunState.reduce(intent: CountryDrillIntent) =
         CountryDrillRun.reduce(this, intent, Random(7))
@@ -417,6 +420,19 @@ class CountryDrillRunTest {
         assertEquals(emptySet(), CountryDrillRun.close(opened, standingRecord = 0).clearedSprossen)
         val answered = opened.answered(opened.task.display)
         assertEquals(setOf(1), CountryDrillRun.close(answered, standingRecord = 0).clearedSprossen)
+    }
+
+    /**
+     * Answering out a Sprosse the store did not hold for this direction is what a pause for
+     * improving names ([DrillPacing]); one the store already held is nothing new.
+     */
+    @Test
+    fun aSprosseAnsweredOutForTheFirstTimePausesAsImproved() {
+        fun stretched(cleared: Set<Int>) = open(cleared = cleared)
+            .let { it.copy(core = DrillRunCore(done = DrillPacing.IMPROVED_AFTER - 1)) }
+            .answered("Ujerumani")
+        assertEquals(DrillPauseReason.Improved, stretched(cleared = emptySet()).pause)
+        assertNull(stretched(cleared = setOf(1)).pause)
     }
 
     /** The way out belongs to the SECOND miss in a row, not to the first. */

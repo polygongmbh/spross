@@ -205,7 +205,7 @@ object DateDrillRun {
 
     /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
     private fun paced(state: DateDrillRunState): DateDrillRunState =
-        state.copy(core = state.core.paced(state.level, newSprossen = 0, endless = !state.finished))
+        state.copy(core = state.core.paced(state.level, state.newSprossen, endless = !state.finished))
 
     /** The booking itself: the ramp, the streak, the tallies — the Sprosse it reached included. */
     private fun advanced(

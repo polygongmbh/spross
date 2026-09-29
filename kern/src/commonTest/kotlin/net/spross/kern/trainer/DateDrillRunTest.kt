@@ -29,6 +29,7 @@ class DateDrillRunTest {
         reverse: Boolean = false,
         fast: Boolean = false,
         graded: Boolean = true,
+        cleared: Set<Int> = emptySet(),
     ) = DateDrillRunConfig(
         content = DateDrillFixture.germanContent,
         reverse = reverse,
@@ -38,6 +39,7 @@ class DateDrillRunTest {
             reverse -> AnswerNormalizer.drill(DateDrillFixture.english)
             else -> AnswerNormalizer.drill(DateDrillFixture.german)
         },
+        cleared = cleared,
     )
 
     private val swahili = DateDrillFixture.swahiliContent
@@ -54,7 +56,8 @@ class DateDrillRunTest {
         fast: Boolean = false,
         graded: Boolean = true,
         level: Int = 1,
-    ) = DateDrillRun.openAt(config(reverse, fast, graded), level, Random(7))
+        cleared: Set<Int> = emptySet(),
+    ) = DateDrillRun.openAt(config(reverse, fast, graded, cleared), level, Random(7))
 
     private fun DateDrillRunState.reduce(intent: DateDrillIntent) =
         DateDrillRun.reduce(this, intent, Random(7))
@@ -385,6 +388,24 @@ class DateDrillRunTest {
         repeat(40) { run = run.answered(run.task.display) }
         val closed = DateDrillRun.close(run, standingRecord = 0)
         assertTrue(closed.clearedSprossen.none { it >= 4 }, "an assembled Sprosse was cleared")
+    }
+
+    /**
+     * Answering out a Sprosse the store did not hold for this direction is what a pause for
+     * improving names ([DrillPacing]); one the store already held is nothing new.
+     */
+    @Test
+    fun aSprosseAnsweredOutForTheFirstTimePausesAsImproved() {
+        fun stretched(cleared: Set<Int>): DateDrillRunState {
+            val opened = open(level = 2, cleared = cleared)
+            val weekdays = DateDrillTasks.pool(DateDrillFixture.germanContent, DateTaskKind.Weekday, false)
+                .map { DrillSolved.key(it) }
+            // Every weekday but the one on screen answered already, a stretch's worth in.
+            val core = DrillRunCore(done = DrillPacing.IMPROVED_AFTER - 1, solved = weekdays.toSet() - DrillSolved.key(opened.task))
+            return opened.copy(core = core).answered(opened.task.display)
+        }
+        assertEquals(DrillPauseReason.Improved, stretched(cleared = emptySet()).pause)
+        assertNull(stretched(cleared = setOf(2)).pause)
     }
 
     // MARK: - Leaving

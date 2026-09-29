@@ -87,9 +87,10 @@ enum DateDrillFace: DrillFace {
 
     static func open(content: DateDrillContent, reverse: Bool, fast: Bool,
                      normalizer: AnswerNormalizer?, level: Int?,
-                     standingRecord: Int) -> DateDrillRunState {
+                     standingRecord: Int, cleared: Set<KotlinInt>) -> DateDrillRunState {
         let config = DateDrillRunConfig(content: content, reverse: reverse, fast: fast,
-                                        normalizer: normalizer, standingRecord: Int32(standingRecord))
+                                        normalizer: normalizer, standingRecord: Int32(standingRecord),
+                                        cleared: cleared)
         guard let level else { return DateDrillRun.shared.open(config: config, rng: drillRandom) }
         return DateDrillRun.shared.openAt(config: config, level: Int32(level), rng: drillRandom)
     }

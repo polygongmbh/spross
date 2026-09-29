@@ -78,6 +78,12 @@ class CountryDrillRunConfig(
      * for improving names ([DrillPacing]); 0 where none stood yet.
      */
     val standingRecord: Int = 0,
+    /**
+     * The Sprossen earlier runs answered out in THIS run's direction, as the platform's store
+     * holds them ([NumbersMode.clearedKey]) — answering out one it does not hold is what a
+     * pause for improving names ([DrillPacing]).
+     */
+    val cleared: Set<Int> = emptySet(),
 ) {
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */
     val answerLanguage: Language get() = CountryDrill.answerLanguage(content, reverse)
@@ -127,6 +133,10 @@ data class CountryDrillRunState(
      * for a screen reader, which is the reading such a user gets in place of autoplay.
      */
     val promptLanguage: Language get() = config.promptLanguage
+
+    /** The Sprossen this run answered out that the store did not hold — what a pause for improving names. */
+    internal val newSprossen: Int
+        get() = (CountryDrill.cleared(config.content, config.reverse, core.solved) - config.cleared).size
 
     /** The card may open: the almost hold and the miss each put a name worth seeing on it. */
     val showsAnswer: Boolean

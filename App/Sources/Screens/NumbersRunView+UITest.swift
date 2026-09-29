@@ -85,7 +85,8 @@ extension NumbersRunState {
                otherWord: self.otherWord,
                finished: finished,
                score: score,
-               challenge: challenge)
+               challenge: challenge,
+               standingLevels: standingLevels)
     }
 }
 #endif

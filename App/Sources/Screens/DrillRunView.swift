@@ -81,7 +81,10 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         #endif
         _run = State(initialValue: Face.open(content: content, reverse: reverse, fast: fast,
                                              normalizer: normalizer, level: opening,
-                                             standingRecord: TrainerRecords.best(for: storageKey)))
+                                             standingRecord: TrainerRecords.best(for: storageKey),
+                                             cleared: TrainerProgress.held(
+                                                for: NumbersMode.companion.clearedKey(key: storageKey,
+                                                                                      reverse: reverse))))
     }
 
     /// The question on screen and the figures around it. A fresh join always has

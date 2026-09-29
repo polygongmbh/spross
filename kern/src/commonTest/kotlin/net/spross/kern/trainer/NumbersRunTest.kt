@@ -51,7 +51,7 @@ class NumbersRunTest {
     @Test
     fun everyRunStartsAtSprosseOneHoweverFarTheLearnerHasClimbed() {
         val mode = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet())
-        val state = NumbersRun.open(mode, 0, Random(11))
+        val state = NumbersRun.open(mode, 0, emptyMap(), Random(11))
         assertEquals(mapOf(NumbersExercise.Counting to 1, NumbersExercise.Clock to 1), state.levels)
         assertEquals(0, state.done)
         assertEquals(TurnFeedback.Neutral, state.feedback)
@@ -60,15 +60,15 @@ class NumbersRunTest {
     @Test
     fun aRunOpenedAtGivenSprossenStandsThereClampedToTheLadder() {
         val mode = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet())
-        val forced = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to 4), 0, Random(7))
+        val forced = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to 4), 0, emptyMap(), Random(7))
         assertEquals(4, forced.levels[NumbersExercise.Counting])
         assertEquals(1, forced.levels[NumbersExercise.Clock]) // left out of the map
         assertEquals(0, forced.done)
 
         val ceiling = mode.maxLevel(NumbersExercise.Counting)
-        val beyond = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to ceiling + 40), 0, Random(7))
+        val beyond = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to ceiling + 40), 0, emptyMap(), Random(7))
         assertEquals(ceiling, beyond.levels[NumbersExercise.Counting])
-        val below = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to -3), 0, Random(7))
+        val below = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to -3), 0, emptyMap(), Random(7))
         assertEquals(1, below.levels[NumbersExercise.Counting])
     }
 
@@ -82,7 +82,7 @@ class NumbersRunTest {
         val mode = NumbersMode(picks, "de", setOf(DrillModifier.Mix))
         fun play(): List<DrawnTask> {
             val rng = Random(5)
-            var state = NumbersRun.open(mode, 0, rng)
+            var state = NumbersRun.open(mode, 0, emptyMap(), rng)
             val drawn = mutableListOf(state.current)
             repeat(12) {
                 state = answerRight(state, rng)
@@ -143,7 +143,7 @@ class NumbersRunTest {
     @Test
     fun finishingTheWordIsTheAnswerAndEditingItBackWithdrawsTheApproval() {
         val rng = Random(31)
-        val state = NumbersRun.open(numbers(), 0, rng)
+        val state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         val answer = state.currentTask.accepted.first()
         val live = reduce(state, NumbersIntent.InputChanged(answer), rng)
         assertEquals(TurnFeedback.Correct, live.state.feedback)
@@ -158,12 +158,12 @@ class NumbersRunTest {
     @Test
     fun aTimedRunLeavesACleanAnswerUnsaid() {
         val rng = Random(31)
-        val untimed = NumbersRun.open(numbers(), 0, rng)
+        val untimed = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         val said = reduce(untimed, NumbersIntent.Submit(untimed.currentTask.accepted.first()), rng)
         assertTrue(DrillEffect.SayAnswer(untimed.currentTask.display, "de") in said.effects)
 
         val mode = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Timed))
-        val timed = NumbersRun.open(mode, 0, rng)
+        val timed = NumbersRun.open(mode, 0, emptyMap(), rng)
         val unsaid = reduce(timed, NumbersIntent.Submit(timed.currentTask.accepted.first()), rng)
         assertTrue(unsaid.effects.none { it is DrillEffect.SayAnswer })
     }
@@ -173,7 +173,7 @@ class NumbersRunTest {
     @Test
     fun twoCleanWinsClimbTheAskingExerciseAndAMissStepsItBack() {
         val rng = Random(7)
-        var state = NumbersRun.open(numbers(), 0, rng)
+        var state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         state = answerRight(state, rng)
         assertEquals(1, state.currentLevel)
         assertEquals(1, state.winsAtLevel[NumbersExercise.Counting])
@@ -198,7 +198,7 @@ class NumbersRunTest {
     @Test
     fun readingTheReferenceWhileTheAnswerIsOwedCostsTheSprosse() {
         val rng = Random(13)
-        var state = NumbersRun.open(numbers(), 0, rng)
+        var state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         assertTrue(state.offersLookUp)
         state = reduce(state, NumbersIntent.LookUp, rng).state
         assertTrue(state.hintUsed)
@@ -212,7 +212,7 @@ class NumbersRunTest {
         assertEquals(1, booked.streak, "almost extends the streak")
         assertFalse(booked.hintUsed, "the debt is cleared with the question")
 
-        val revealed = reduce(NumbersRun.open(numbers(), 0, rng), NumbersIntent.Reveal, rng).state
+        val revealed = reduce(NumbersRun.open(numbers(), 0, emptyMap(), rng), NumbersIntent.Reveal, rng).state
         assertFalse(reduce(revealed, NumbersIntent.LookUp, rng).state.hintUsed)
     }
 
@@ -220,7 +220,7 @@ class NumbersRunTest {
     @Test
     fun aHintAssistedLiveApproveBooksAlmostToo() {
         val rng = Random(17)
-        var state = NumbersRun.open(numbers(), 0, rng)
+        var state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         state = reduce(state, NumbersIntent.LookUp, rng).state
         state = reduce(state, NumbersIntent.InputChanged(state.currentTask.accepted.first()), rng).state
         state = reduce(state, NumbersIntent.AdvanceElapsed, rng).state
@@ -231,7 +231,7 @@ class NumbersRunTest {
     @Test
     fun aSlipHoldsTheAnswerAndBooksAlmost() {
         val rng = Random(19)
-        val state = NumbersRun.open(numbers(), 0, rng)
+        val state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         val held = state.copy(feedback = TurnFeedback.Almost("sieben", AlmostReason.Typo))
         assertTrue(held.answerAccepted)
         assertFalse(held.showsAnswer, "the correction box already spells it out")
@@ -244,7 +244,7 @@ class NumbersRunTest {
     @Test
     fun aRevealedAnswerCarriesTheCardAndBooksAMiss() {
         val rng = Random(23)
-        val state = NumbersRun.open(numbers(), 0, rng)
+        val state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         val revealed = reduce(state, NumbersIntent.Reveal, rng)
         assertTrue(revealed.state.showsAnswer)
         assertTrue(DrillEffect.Tone(ToneKind.Reveal) in revealed.effects)
@@ -266,7 +266,7 @@ class NumbersRunTest {
     @Test
     fun aPromptAnsweredRightIsNeverAskedAgain() {
         val rng = Random(41)
-        var state = NumbersRun.open(NumbersMode(NumbersExercise.Clock, "de"), 0, rng)
+        var state = NumbersRun.open(NumbersMode(NumbersExercise.Clock, "de"), 0, emptyMap(), rng)
         val asked = mutableListOf<String>()
         repeat(20) {
             asked += state.currentTask.prompt
@@ -279,7 +279,7 @@ class NumbersRunTest {
     @Test
     fun onlyACleanAnswerRetiresAPrompt() {
         val rng = Random(43)
-        val state = NumbersRun.open(numbers(), 0, rng)
+        val state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         assertEquals(1, answerRight(state, rng).solved.size)
         assertTrue(miss(state, rng).solved.isEmpty())
 
@@ -296,7 +296,7 @@ class NumbersRunTest {
     fun aSprosseWithNothingLeftToAskIsClimbedPast() {
         val rng = Random(47)
         val digits = (0L..9L).map { DrillSolved.key(NumbersExercise.Counting, Numbers.number(it, "de")) }
-        val spent = NumbersRun.open(numbers(), 0, rng).copy(core = DrillRunCore(solved = digits.toSet()))
+        val spent = NumbersRun.open(numbers(), 0, emptyMap(), rng).copy(core = DrillRunCore(solved = digits.toSet()))
 
         val next = answerRight(spent, rng)
         assertEquals(2, next.currentLevel)
@@ -311,7 +311,7 @@ class NumbersRunTest {
     @Test
     fun eachNumberLengthIsIntroducedOnceAndNeverOnAReversedTask() {
         val rng = Random(29)
-        val forward = NumbersRun.open(numbers("sw"), 0, rng).copy(
+        val forward = NumbersRun.open(numbers("sw"), 0, emptyMap(), rng).copy(
             current = DrawnTask(NumbersExercise.Counting, Numbers.number(347, "sw"), reversed = false),
             levels = mapOf(NumbersExercise.Counting to 3),
         )
@@ -347,7 +347,7 @@ class NumbersRunTest {
     @Test
     fun theSecondMissInARowOffersTheWayOutAndACorrectAnswerTakesItBack() {
         val rng = Random(37)
-        var state = NumbersRun.open(numbers(), 0, rng)
+        var state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         // One miss is what a drill is made of — the first reveal offers nothing.
         assertFalse(reduce(state, NumbersIntent.Reveal, rng).state.offersFinish)
 

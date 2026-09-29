@@ -77,10 +77,12 @@ protocol DrillFace {
 
     /// A fresh run. `level` is the Sprosse the page opens it on — the lowest one
     /// not yet answered out, or the one tapped; nil is the foot of the ladder.
-    /// `standingRecord` is the store's record for the page — what a pause for
-    /// improving is measured against.
+    /// `standingRecord` is the store's record for the page and `cleared` the
+    /// Sprossen answered out in this direction — what a pause for improving is
+    /// measured against.
     static func open(content: Content, reverse: Bool, fast: Bool,
-                     normalizer: AnswerNormalizer?, level: Int?, standingRecord: Int) -> Run
+                     normalizer: AnswerNormalizer?, level: Int?, standingRecord: Int,
+                     cleared: Set<KotlinInt>) -> Run
 
     /// The run as the screen draws it.
     static func snapshot(_ run: Run) -> DrillSnapshot

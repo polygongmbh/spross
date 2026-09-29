@@ -118,6 +118,8 @@ fun AppModel.newDateDrill(
     level: Int,
     /** The streak record the page's store holds — what a pause for improving is measured against. */
     standingRecord: Int,
+    /** The Sprossen answered out in this direction — a new one is what a pause for improving names. */
+    cleared: Set<Int>,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     rng: Random = Random.Default,
@@ -130,6 +132,7 @@ fun AppModel.newDateDrill(
         fast = fast,
         normalizer = AnswerNormalizer.drill(info),
         standingRecord = standingRecord,
+        cleared = cleared,
     )
     return DateDrillFlow(
         start = DateDrillRun.openAt(config, level, rng),

@@ -96,7 +96,21 @@ data class NumbersRunState(
     val score: Int = 0,
     /** The script a challenge run asks from instead of the ramp's draw; null for every other run. */
     val challenge: NumbersChallenge? = null,
+    /**
+     * The Sprosse each exercise had been climbed to when the run opened, as the platform's
+     * store holds it; 0 where none stood yet.
+     */
+    val standingLevels: Map<NumbersExercise, Int> = emptyMap(),
 ) : DrillRunProgress {
+    /**
+     * The Sprossen this run climbed above where each exercise stood — what a pause for
+     * improving names. Sprosse 1 is where every run opens, so it is never new.
+     */
+    internal val newSprossen: Int
+        get() = bestLevels.entries.sumOf { (exercise, best) ->
+            maxOf(0, best - maxOf(1, standingLevels[exercise] ?: 0))
+        }
+
     /** The run ends on a clock and is scored ([TimedRun]). */
     val timed: Boolean get() = mode.isTimed
 

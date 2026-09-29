@@ -182,7 +182,10 @@ Nothing wears a prefix one scope wider than what it serves.
   After a booked answer the run pauses at the first of three moments (`DrillPacing`):
   a stretch of answers since it opened or last went on;
   something new after a shorter stretch --
-  a Sprosse cleared that the store did not hold (the scrambles, the letters),
+  a Sprosse cleared for the first time
+  (climbed off unblemished in the scrambles and the letters,
+  answered out in the run's own direction on the atlas and the calendar,
+  climbed past where the exercise stood in numbers),
   or the standing streak record beaten (numbers, atlas, calendar);
   or most of the last few answers missed, where the pause says a stop is fine and why.
   The pause stands in place of the question and wears the round's exit pair:

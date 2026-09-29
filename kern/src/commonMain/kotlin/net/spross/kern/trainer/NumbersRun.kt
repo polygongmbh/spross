@@ -21,11 +21,17 @@ object NumbersRun {
 
     /**
      * A fresh run: every exercise at Sprosse 1, one task already drawn.
-     * [standingRecord] is what the platform's store holds under [NumbersMode.recordKey] —
-     * beating it is what a pause for improving names ([DrillPacing]).
+     * [standingRecord] is what the platform's store holds under [NumbersMode.recordKey], and
+     * [standingProgress] what it holds per exercise, keyed as [close] books it —
+     * beating either is what a pause for improving names ([DrillPacing]).
      */
-    fun open(mode: NumbersMode, standingRecord: Int, rng: Random): NumbersRunState =
-        openAt(mode, mode.exercises.associateWith { 1 }, standingRecord, rng)
+    fun open(
+        mode: NumbersMode,
+        standingRecord: Int,
+        standingProgress: Map<String, Int>,
+        rng: Random,
+    ): NumbersRunState =
+        openAt(mode, mode.exercises.associateWith { 1 }, standingRecord, standingProgress, rng)
 
     /**
      * The same, forced to given Sprossen — the deterministic way to reach a stage. An exercise
@@ -35,6 +41,7 @@ object NumbersRun {
         mode: NumbersMode,
         levels: Map<NumbersExercise, Int>,
         standingRecord: Int,
+        standingProgress: Map<String, Int>,
         rng: Random,
     ): NumbersRunState {
         val start = mode.exercises.associateWith { exercise ->
@@ -56,6 +63,7 @@ object NumbersRun {
             hintUsed = false,
             feedback = TurnFeedback.Neutral,
             finished = false,
+            standingLevels = mode.exercises.associateWith { standingProgress[mode.progressKey(it)] ?: 0 },
         )
     }
 
@@ -303,7 +311,7 @@ object NumbersRun {
         core = state.core.paced(
             // why: a mixed run climbs one ladder per exercise, and no one of them is the run's.
             level = state.mode.exercises.singleOrNull()?.let { state.levels[it] },
-            newSprossen = 0,
+            newSprossen = state.newSprossen,
             endless = !state.finished && !state.timed && state.challenge == null,
         ),
     )
