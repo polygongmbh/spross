@@ -142,15 +142,14 @@ enum TreeShapes {
 
     // MARK: The canopy
 
-    /// The marks along the branches: a faint mass behind them all, the
-    /// leaves in four tones lit from above, then blossom and fruit on top.
+    /// The marks along the twigs: the leaves in four tones lit from above,
+    /// then blossom and fruit on top.
     private static func foliage(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton,
                                 _ mark: TreeMark, _ shown: Canopy, _ arriving: TreeArrival) {
         let base = CanopyMark.base(pitch: skeleton.pitch)
         let hanging = Array(skeleton.slots.prefix(shown.count))
         let top = hanging.map(\.point.y).min() ?? 0
         let depth = max((hanging.map(\.point.y).max() ?? 0) - top, 1)
-        masses(&context, hanging, base: base)
 
         var tones = [Path(), Path(), Path(), Path()]
         var buds = Path()
@@ -187,21 +186,6 @@ enum TreeShapes {
                 blossom(&context, at: mark.slot.point, size: mark.size, angle: mark.angle)
             }
         }
-    }
-
-    /// A faint green mass behind the marks, so the
-    /// crown reads as foliage with depth rather than as leaves pinned to the sky.
-    private static func masses(_ context: inout GraphicsContext, _ hanging: [LeafSlot],
-                               base: CGFloat) {
-        guard !hanging.isEmpty else { return }
-        let points = hanging.map(\.point)
-        let center = CGPoint(x: points.map(\.x).reduce(0, +) / CGFloat(points.count),
-                             y: points.map(\.y).reduce(0, +) / CGFloat(points.count))
-        let far = max(points.map { hypot($0.x - center.x, $0.y - center.y) }.max() ?? 0,
-                      base * 0.5) + base * 0.55
-        let mass = Path(ellipseIn: CGRect(x: center.x - far, y: center.y - far * 0.85,
-                                          width: far * 2, height: far * 1.7))
-        context.fill(mass, with: .color(Theme.colors.success.opacity(0.11)))
     }
 
     /// Words that lapsed: leaves on the ground beside the trunk. The tree never

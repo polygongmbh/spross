@@ -101,7 +101,6 @@ private fun DrawScope.wood(art: TreeArt, colors: ThemeColors, planted: PlantedTr
 }
 
 private fun DrawScope.canopy(art: TreeArt, colors: ThemeColors, planted: PlantedTree) {
-    drawPath(art.masses, colors.success.copy(alpha = 0.11f))
     val tones = listOf(colors.das.copy(alpha = 0.92f), colors.success,
         colors.success.copy(alpha = 0.84f), colors.success.copy(alpha = 0.68f))
     art.tones.forEachIndexed { index, path -> drawPath(path, tones[index]) }

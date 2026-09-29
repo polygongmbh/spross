@@ -5,7 +5,6 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Path
 import kotlin.math.atan2
 import kotlin.math.cos
-import kotlin.math.hypot
 import kotlin.math.max
 import kotlin.math.sin
 import net.spross.kern.box.AreaTree
@@ -29,7 +28,6 @@ internal class TreeArt(
     val joints: Path,
     val shade: Path,
     val twigs: Path,
-    val masses: Path,
     /** Leaves in four tones, lit from above: the crown's top first, its underside last. */
     val tones: List<Path>,
     val buds: Path,
@@ -48,7 +46,7 @@ internal class TreeArt(
          * mark at a rank is drawn against its settled size — the summary's arriving marks.
          */
         fun build(tree: AreaTree, skeleton: TreeSkeleton, floor: Float, scale: (Int) -> Float = { 1f }): TreeArt {
-            val art = TreeArt(Path(), Path(), Path(), Path(), Path(), List(4) { Path() },
+            val art = TreeArt(Path(), Path(), Path(), Path(), List(4) { Path() },
                 Path(), Path(), Path(), Path(), Path(), Path())
             art.wood(skeleton, floor)
             art.canopy(tree, skeleton, base(skeleton.pitch, floor), scale)
@@ -92,7 +90,6 @@ internal class TreeArt(
         if (hanging.isEmpty()) return
         val top = hanging.minOf { it.point.y }
         val depth = max(hanging.maxOf { it.point.y } - top, 1f)
-        mass(hanging, base)
         val heavy = tree.longHeld + tree.matured
         val leafy = heavy + tree.growing
         for ((rank, slot) in hanging.withIndex()) {
@@ -114,15 +111,6 @@ internal class TreeArt(
                 else -> buds.addOval(Rect(slot.point, size * BUD_RADIUS))
             }
         }
-    }
-
-    /** A faint mass behind the marks, so foliage has depth rather than pinned leaves. */
-    private fun mass(hanging: List<TreeSlot>, base: Float) {
-        val points = hanging.map { it.point }
-        val center = Offset(points.sumOf { it.x.toDouble() }.toFloat() / points.size,
-            points.sumOf { it.y.toDouble() }.toFloat() / points.size)
-        val far = max(points.maxOf { hypot(it.x - center.x, it.y - center.y) }, base * 0.5f) + base * 0.55f
-        masses.addOval(Rect(center.x - far, center.y - far * 0.85f, center.x + far, center.y + far * 0.85f))
     }
 
     /** A landed word: three leaflets off one stalk — one mark, but foliage. */

@@ -126,7 +126,7 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
         val leadLength = rng.range(0.80f, 0.92f)
         val sideTurn = rng.range(0.62f, 1.08f) * spread
         val sideLength = rng.range(0.66f, 0.82f)
-        val third = depth <= 2 && rng.next() < 0.32f
+        val third = rng.next() < 0.5f
         val thirdTurn = rng.range(0.45f, 0.85f) * spread
 
         // why: a twig sprouts at half length, never as a stub — a stub's marks would all

@@ -123,7 +123,7 @@ struct TreeSkeleton {
             let dominantLength = rng.range(0.80, 0.92)
             let lateralTurn = rng.range(0.62, 1.08)
             let lateralLength = rng.range(0.66, 0.82)
-            let third = depth <= 2 && rng.next() < 0.32
+            let third = rng.next() < 0.5
             let thirdTurn = rng.range(0.45, 0.85)
 
             // A branch whose children have not started yet is a tip, full length or not.
