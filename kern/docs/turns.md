@@ -305,5 +305,6 @@ Engine contract: `../README.md`.
   the phrases ordered easiest first — fewer words, then fewer letters (`Report.byDifficulty`) —
   and cut into even bands of at most `BAND_SIZE`,
   so a miss drops to genuinely easier phrases and the draw is flat across the band.
-  Its ladder STOPS at the last band rather than counting on past it the way `DrillRamp.step` does,
-  since a number there would promise phrases that do not exist; answering the top band out ends the run.
+  Both ladders STOP at their ceiling rather than counting on past it the way the other drills' do
+  (`DrillRamp.step`'s `top`),
+  since a number there would promise words or phrases that do not exist; answering the top Sprosse out ends the run.

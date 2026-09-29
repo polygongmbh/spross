@@ -94,11 +94,15 @@ object DrillRamp {
      * It is neither a win to bank nor a miss to punish, and letting it count either way
      * would make the ramp disagree with what the learner just saw on screen.
      *
-     * **The Sprosse has no ceiling.** A ladder's named Sprossen are a CONTENT ceiling — each
-     * drill clamps its own draw to the top Sprosse it can fill — but the number keeps
-     * counting past them, so someone who has climbed a ladder out has a Sprosse to go on
-     * beating rather than a wall to bank wins into. Which Sprossen are named, and what the
-     * one above the last name asks, is each drill's own business.
+     * **The Sprosse has no ceiling unless the drill names a [top].** A ladder's named
+     * Sprossen are a CONTENT ceiling — each drill clamps its own draw to the top Sprosse it
+     * can fill — but the number keeps counting past them, so someone who has climbed a ladder
+     * out has a Sprosse to go on beating rather than a wall to bank wins into. Which Sprossen
+     * are named, and what the one above the last name asks, is each drill's own business.
+     *
+     * A drill whose Sprosse above the last would promise content that does not exist — the
+     * scrambles, whose Sprossen are what they draw — passes its last as [top]: the wins that
+     * would carry the run past it carry nowhere, and answering it out ends the run.
      */
     fun step(
         level: Int,
@@ -106,13 +110,16 @@ object DrillRamp {
         correct: Boolean,
         clean: Boolean,
         winsRequired: Int,
+        top: Int = Int.MAX_VALUE,
     ): SprosseStep {
         val current = maxOf(1, level)
         val wins = maxOf(0, winsAtLevel)
         if (!correct) return SprosseStep(maxOf(1, current - 1), 0)
         if (!clean) return SprosseStep(current, wins)
         val earned = wins + 1
-        if (earned >= maxOf(1, winsRequired)) return SprosseStep(current + 1, 0)
+        if (earned >= maxOf(1, winsRequired)) {
+            return if (current < top) SprosseStep(current + 1, 0) else SprosseStep(current, 0)
+        }
         return SprosseStep(current, earned)
     }
 

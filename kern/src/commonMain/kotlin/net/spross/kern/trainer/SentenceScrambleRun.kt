@@ -16,9 +16,9 @@ import net.spross.kern.session.TurnFeedback
  * Its Sprossen are BANDS of difficulty that do not overlap
  * ([SentenceScrambleAvailability.Report.phrasesAt]): each asks its own slice of the phrases,
  * easiest first, so a Sprosse up is harder phrases and a Sprosse down easier ones.
- * The ladder STOPS at its last band — [DrillRamp] would count on past it, and here a number
- * past the last band would promise phrases that do not exist — so answering the top band out
- * ends the run. The ramp, the effects and the summary are the ones every drill shares.
+ * The ladder STOPS at its last band ([DrillRamp.step]'s `top`) — a number past it would
+ * promise phrases that do not exist — so answering the top band out ends the run.
+ * The ramp, the effects and the summary are the ones every drill shares.
  *
  * Kern never self-randomizes: the deal takes the caller's [Random], so a seeded run is
  * reproducible end to end and identical on both platforms.
@@ -206,19 +206,14 @@ object SentenceScrambleRun {
         correct: Boolean,
         clean: Boolean,
     ): SentenceScrambleRunState {
-        val ramp = DrillRamp.step(
+        val step = DrillRamp.step(
             level = state.level,
             winsAtLevel = state.winsAtLevel,
             correct = correct,
             clean = clean,
             winsRequired = WINS_TO_ADVANCE,
+            top = state.config.report.maxLevel,
         )
-        // The top band is where the ladder ends: the wins it banks carry nowhere.
-        val step = if (ramp.level > state.config.report.maxLevel) {
-            DrillRamp.SprosseStep(state.level, 0)
-        } else {
-            ramp
-        }
         val blemished = DrillSprossen.blemished(state.blemished, correct, clean)
         return state.copy(
             level = step.level,

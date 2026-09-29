@@ -12,8 +12,9 @@ import net.spross.kern.session.TurnFeedback
  * It TYPES like the atlas and the slot run — writing the word out is the answer — so a Sprosse
  * changes how much help the cue gives and how much word there is to spell: the third takes the
  * opening letter away ([WordScrambleMasking]) and every Sprosse raises the minimum word length
- * ([WordScrambleAvailability.Report.lettersAt]). Nothing it does books a review; spelling a word
- * back from its own letters is not the recall the schedule measures.
+ * ([WordScrambleAvailability.Report.lettersAt]). The ladder STOPS at the longest Sprosse the
+ * pool fills ([DrillRamp.step]'s `top`), so answering it out ends the run. Nothing it does books
+ * a review; spelling a word back from its own letters is not the recall the schedule measures.
  *
  * Kern never self-randomizes: every draw and every mix takes the caller's [Random], so a seeded
  * run is reproducible end to end and identical on both platforms.
@@ -206,6 +207,7 @@ object WordScrambleRun {
             correct = correct,
             clean = clean,
             winsRequired = WINS_TO_ADVANCE,
+            top = state.config.report.maxLevel,
         )
         val blemished = DrillSprossen.blemished(state.blemished, correct, clean)
         return state.copy(

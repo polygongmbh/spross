@@ -194,6 +194,20 @@ class WordScrambleRunTest {
         }
     }
 
+    /** The ladder stops at the longest Sprosse the pool fills, and answering that one out ends the run. */
+    @Test
+    fun theLadderStopsAtItsTop() {
+        val top = config().report.maxLevel
+        var state = open(level = top)
+        repeat(cards.size + 1) {
+            if (state.finished) return@repeat
+            state = answer(state, clean = true)
+            assertEquals(top, state.level, "no Sprosse past the top")
+        }
+        assertTrue(state.finished)
+        assertNull(state.task)
+    }
+
     // MARK: - What the store keeps
 
     /** A Sprosse climbed on clean spellings alone is booked, and the next run opens above it. */
