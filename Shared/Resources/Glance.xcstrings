@@ -2,6 +2,7 @@
   "sourceLanguage" : "de",
   "strings" : {
     "watch.allDone" : {
+      "comment" : "Watch start screen with nothing due",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -15,10 +16,10 @@
             "value" : "All caught up 🎉"
           }
         }
-      },
-      "comment" : "Watch start screen with nothing due"
+      }
     },
     "watch.awaiting" : {
+      "comment" : "The watch has received nothing from the phone yet",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -32,10 +33,10 @@
             "value" : "Open Spross on your iPhone to get started."
           }
         }
-      },
-      "comment" : "The watch has received nothing from the phone yet"
+      }
     },
     "watch.due" : {
+      "comment" : "Beside the big count of due cards on the watch's start screen",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -49,10 +50,10 @@
             "value" : "due"
           }
         }
-      },
-      "comment" : "Beside the big count of due cards on the watch's start screen"
+      }
     },
     "watch.practice" : {
+      "comment" : "Button: free practice when nothing is due",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -66,10 +67,10 @@
             "value" : "Practice"
           }
         }
-      },
-      "comment" : "Button: free practice when nothing is due"
+      }
     },
     "watch.practiced %lld" : {
+      "comment" : "The tally when the due cards are done",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -107,10 +108,10 @@
             }
           }
         }
-      },
-      "comment" : "The tally when the due cards are done"
+      }
     },
     "watch.start" : {
+      "comment" : "Button: starts the due cards",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -124,8 +125,7 @@
             "value" : "Start"
           }
         }
-      },
-      "comment" : "Button: starts the due cards"
+      }
     },
     "watch.tomorrow %lld" : {
       "localizations" : {
@@ -144,6 +144,7 @@
       }
     },
     "watch.verdict.right" : {
+      "comment" : "Spoken value of the tile holding the right answer",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -157,10 +158,10 @@
             "value" : "Correct"
           }
         }
-      },
-      "comment" : "Spoken value of the tile holding the right answer"
+      }
     },
     "watch.verdict.wrong" : {
+      "comment" : "Spoken value of the wrongly picked tile",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -174,10 +175,10 @@
             "value" : "Wrong"
           }
         }
-      },
-      "comment" : "Spoken value of the wrongly picked tile"
+      }
     },
     "widget.activity %lld %lld" : {
+      "comment" : "Spoken label of the activity strip: days practiced, days shown",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -191,10 +192,10 @@
             "value" : "Active on %1$lld of %2$lld days"
           }
         }
-      },
-      "comment" : "Spoken label of the activity strip: days practiced, days shown"
+      }
     },
     "widget.allDone" : {
+      "comment" : "Complication label with nothing due",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -208,8 +209,7 @@
             "value" : "All caught up"
           }
         }
-      },
-      "comment" : "Complication label with nothing due"
+      }
     },
     "widget.awaiting.body" : {
       "localizations" : {
@@ -228,6 +228,7 @@
       }
     },
     "widget.awaiting.title" : {
+      "comment" : "The widget has no box to show yet",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -241,10 +242,10 @@
             "value" : "Open Spross"
           }
         }
-      },
-      "comment" : "The widget has no box to show yet"
+      }
     },
     "widget.description" : {
+      "comment" : "Widget and complication description in the gallery",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -258,8 +259,7 @@
             "value" : "Shows a word from your orchard every 15 minutes."
           }
         }
-      },
-      "comment" : "Widget and complication description in the gallery"
+      }
     },
     "widget.due %lld" : {
       "localizations" : {
@@ -278,6 +278,7 @@
       }
     },
     "widget.name" : {
+      "comment" : "Widget and complication name in the gallery",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -291,8 +292,7 @@
             "value" : "Word of the Moment"
           }
         }
-      },
-      "comment" : "Widget and complication name in the gallery"
+      }
     },
     "widget.sample.bread" : {
       "localizations" : {
@@ -311,6 +311,7 @@
       }
     },
     "widget.sample.fridge" : {
+      "comment" : "The meaning of a sample word in the widget gallery's placeholder box",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -324,8 +325,7 @@
             "value" : "fridge"
           }
         }
-      },
-      "comment" : "The meaning of a sample word in the widget gallery's placeholder box"
+      }
     },
     "widget.sample.house" : {
       "localizations" : {
