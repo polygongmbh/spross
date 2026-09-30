@@ -6,6 +6,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 - Review cards now say the meaning in your own language as well as the word, and a card answered right waits for its word to be said before moving on; the audio settings can turn the meaning off.
 - A drill run now clears a level only while it has had no miss or near-miss at all; its first slip anywhere stops it from clearing any more.
+- A finished round now lists new words first, then reviews, then words consolidated.
 
 ## 8.0.0 — 2026-09-30
 

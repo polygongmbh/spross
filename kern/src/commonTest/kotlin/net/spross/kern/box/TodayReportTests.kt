@@ -175,8 +175,8 @@ class TodayReportTests {
         assertEquals(
             listOf(
                 TallyPart(TallyPartKind.Introduced, 1),
-                TallyPart(TallyPartKind.Consolidated, 2),
                 TallyPart(TallyPartKind.Reviews, 3),
+                TallyPart(TallyPartKind.Consolidated, 2),
             ),
             completionTallyParts(introduced = 1, consolidated = 2, reviews = 3),
         )

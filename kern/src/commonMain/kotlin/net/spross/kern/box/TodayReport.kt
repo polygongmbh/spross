@@ -98,7 +98,7 @@ data class TallyPart(val kind: TallyPartKind, val count: Int)
 
 /**
  * What one finished ROUND bought, in the order a summary reads it:
- * words started, words that landed, answers given.
+ * words started, answers given, words that landed.
  *
  * Non-zero parts only — a round that started nothing has nothing to say about first meetings,
  * and a zero spelled out reads as a failure to reach a target the box never sets.
@@ -108,8 +108,8 @@ data class TallyPart(val kind: TallyPartKind, val count: Int)
 fun completionTallyParts(introduced: Int, consolidated: Int, reviews: Int): List<TallyPart> =
     listOf(
         TallyPart(TallyPartKind.Introduced, introduced),
-        TallyPart(TallyPartKind.Consolidated, consolidated),
         TallyPart(TallyPartKind.Reviews, reviews),
+        TallyPart(TallyPartKind.Consolidated, consolidated),
     ).filter { it.count > 0 }
 
 /** What a day with nothing left to do says about the next one. */
