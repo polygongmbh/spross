@@ -236,11 +236,11 @@ class AnswerNormalizerTests {
      */
     @Test
     fun lettersThatOnlyLookLikeAccentsStayFullPrice() {
-        assertEquals(1, AnswerNormalizer.damerauLevenshtein("facon", "façon"))
-        assertEquals(1, AnswerNormalizer.damerauLevenshtein("ano", "año"))
-        assertEquals(1, AnswerNormalizer.damerauLevenshtein("cu", "ĉu"))
-        assertEquals(1, AnswerNormalizer.damerauLevenshtein("іжак", "їжак"))
-        assertEquals(0, AnswerNormalizer.damerauLevenshtein("ou", "où"))
+        assertEquals(1, damerauLevenshtein("facon", "façon"))
+        assertEquals(1, damerauLevenshtein("ano", "año"))
+        assertEquals(1, damerauLevenshtein("cu", "ĉu"))
+        assertEquals(1, damerauLevenshtein("іжак", "їжак"))
+        assertEquals(0, damerauLevenshtein("ou", "où"))
         // Below the floor that one edit is the whole difference between a slip and a miss.
         assertEquals(Match.Wrong, es.evaluate("ano", card("es", "año")))
         // Above it the edit is forgiven, but it is spent: a second slip misses.

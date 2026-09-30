@@ -5,6 +5,7 @@ import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
 import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.damerauLevenshtein
 import net.spross.kern.session.Match
 
 /**
@@ -85,7 +86,7 @@ internal fun otherNumber(
     // a typed `cero cincuenta`), which would leave nothing to line the words up against.
     val expectedWords = accepted.mapNotNull(::shape)
         .filter { it.count { c -> c == ' ' } == typedWords.size - 1 }
-        .minByOrNull { AnswerNormalizer.damerauLevenshtein(typedShape, it) }
+        .minByOrNull { damerauLevenshtein(typedShape, it) }
         ?.split(' ') ?: return null
     for (i in typedWords.indices) {
         if (typedWords[i] == expectedWords[i]) continue

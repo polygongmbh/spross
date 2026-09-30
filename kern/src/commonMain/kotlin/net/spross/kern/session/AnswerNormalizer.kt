@@ -1,53 +1,10 @@
 package net.spross.kern.session
 
-import net.spross.kern.model.ACCENTED_VOWEL_BASE
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.LanguageInfo
-import net.spross.kern.model.Rating
-import net.spross.kern.model.baseVowel
 import net.spross.kern.model.hyphensAndApostrophesStripped
 import net.spross.kern.model.nfcNormalized
-
-/** Grading verdict for a typed produce answer. */
-sealed interface Match {
-    data object Exact : Match
-
-    /**
-     * Accepted with a small slip; carries the accepted form as authored in the
-     * catalog (proper spelling for the UI's correction display, not the
-     * lowercased/stripped comparison form).
-     */
-    data class Typo(val corrected: String) : Match
-
-    /**
-     * The typed answer IS a different concept's word in the answer language —
-     * a miss, but a nameable one: [word] as the catalog spells it, [meanings]
-     * the source-side words of every concept that owns it (seed order).
-     * Only [CatalogAnswerGrader] produces this; a bare normalizer sees one card.
-     */
-    data class OtherWord(val word: String, val meanings: List<String>) : Match
-
-    data object Wrong : Match
-
-    /**
-     * The FSRS rating this match earns on its own, before any reveal/retry
-     * step takes over. [Exact] came back clean (Good); a [Typo] came back
-     * readable but imperfect — the same Hard a finished retype after a reveal
-     * earns, because neither came back on the first, unaided try. One rule
-     * here rather than in each platform's UI, so a produce screen never
-     * re-derives it and drifts from another (iOS graded a typo Good until
-     * 2026-08-07; Android never did).
-     * Null for [OtherWord] and [Wrong]: neither has a rating of its own —
-     * both route through reveal, where the eventual retype (Hard) or
-     * give-up (Again) decides it.
-     */
-    fun producedRating(): Rating? = when (this) {
-        Exact -> Rating.Good
-        is Typo -> Rating.Hard
-        is OtherWord, Wrong -> null
-    }
-}
 
 /**
  * Typed-answer grading for PRODUCE units, configured per ANSWER language (the
@@ -393,10 +350,9 @@ class AnswerNormalizer(
             text.trim().split(whitespaceRun).filter { it.isNotEmpty() }
 
         /**
-         * ~⅙ of letters, but never for words under [MIN_TYPO_LENGTH].
-         * Wider than v1's `<5 → 0, /10` on both ends: a four-letter word now
-         * forgives one slip and a long phrase forgives a slip per six letters,
-         * because [CatalogAnswerGrader] withdraws the credit again wherever the
+         * ~⅙ of letters, but never for words under [MIN_TYPO_LENGTH]:
+         * a four-letter word forgives one slip and a long phrase a slip per six letters.
+         * That much is safe because [CatalogAnswerGrader] withdraws the credit wherever the
          * typed form is really another concept's word (RealCatalogGradingTest
          * sweeps the shipping catalog for exactly that).
          *
@@ -411,38 +367,9 @@ class AnswerNormalizer(
         /** Below this many letters an answer is graded exact-only. */
         private const val MIN_TYPO_LENGTH = 4
 
-        const val TYPO_LETTERS_PER_SLIP = 6
+        private const val TYPO_LETTERS_PER_SLIP = 6
 
         /** A word's own cap on its share of the budget: a slip per this many letters, rounded up. */
         private const val LETTERS_PER_WORD_SLIP = 4
-
-        /**
-         * Optimal-string-alignment Damerau-Levenshtein: insert, delete, substitute,
-         * and adjacent transposition each cost 1 — except a substitution between two
-         * spellings of the same base vowel ([ACCENTED_VOWEL_BASE]), which is free, so a
-         * dropped or wrong diacritic costs nothing however short the word. Only the
-         * listed typing-convenience accents are free; `ç`, `ñ`, Esperanto `ĉĝĥĵŝŭ` and
-         * Ukrainian `й`/`ї` are distinct letters and stay full price (es "ano"/"año").
-         * The comparison strings keep their accents, so this reaches the typo path only
-         * — a diacritic miss grades [Match.Typo], never [Match.Exact].
-         */
-        fun damerauLevenshtein(a: String, b: String): Int {
-            if (a.isEmpty()) return b.length
-            if (b.isEmpty()) return a.length
-            val d = Array(a.length + 1) { IntArray(b.length + 1) }
-            for (i in 0..a.length) d[i][0] = i
-            for (j in 0..b.length) d[0][j] = j
-            for (i in 1..a.length) {
-                for (j in 1..b.length) {
-                    val same = a[i - 1] == b[j - 1] || baseVowel(a[i - 1]) == baseVowel(b[j - 1])
-                    val cost = if (same) 0 else 1
-                    d[i][j] = minOf(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost)
-                    if (i > 1 && j > 1 && a[i - 1] == b[j - 2] && a[i - 2] == b[j - 1]) {
-                        d[i][j] = minOf(d[i][j], d[i - 2][j - 2] + 1)
-                    }
-                }
-            }
-            return d[a.length][b.length]
-        }
     }
 }

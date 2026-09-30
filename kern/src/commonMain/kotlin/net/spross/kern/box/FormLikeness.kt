@@ -1,6 +1,7 @@
 package net.spross.kern.box
 
 import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.damerauLevenshtein
 
 /**
  * Whether two written forms are the same word said twice.
@@ -29,7 +30,7 @@ internal object FormLikeness {
         if (one.contains(other) || other.contains(one)) return shortest * 2 >= longest
         val slips = if (shortest >= TWO_SLIP_LENGTH) 2 else 1
         if (longest - shortest > slips) return false
-        return AnswerNormalizer.damerauLevenshtein(one, other) <= slips
+        return damerauLevenshtein(one, other) <= slips
     }
 
     /** Under this many letters a shared spelling is a coincidence rather than a stem. */

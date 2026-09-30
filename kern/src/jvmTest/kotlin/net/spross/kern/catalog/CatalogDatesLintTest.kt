@@ -8,6 +8,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.damerauLevenshtein
 import net.spross.kern.trainer.Numbers
 
 /**
@@ -160,7 +161,7 @@ class CatalogDatesLintTest {
                     for (j in i + 1 until shapesPerEntry.size) {
                         for (a in shapesPerEntry[i]) {
                             for (b in shapesPerEntry[j]) {
-                                if (AnswerNormalizer.damerauLevenshtein(a, b) <= 1) add("$a/$b")
+                                if (damerauLevenshtein(a, b) <= 1) add("$a/$b")
                             }
                         }
                     }
