@@ -21,17 +21,7 @@ cd tools/FaceGen
 swift run facegen --seed ../../content --pair de-sw --count 24 --out ~/Desktop/faces
 ```
 
-Flags:
-
-| Flag | Default | Meaning |
-| --- | --- | --- |
-| `--seed <dir>` | required | directory with `vocab-*.json` seed files |
-| `--box <file>` | — | a persisted `BoxState` JSON; selects attention-worthy cards instead of seed order |
-| `--pair de-sw\|de-uk` | `de-sw` | which pair to render from seed (ignored with `--box`) |
-| `--count <n>` | 24 | number of cards (the Photos-face album cap is 24) |
-| `--out <dir>` | `faces` | output directory |
-| `--size WxH` | `1170x1521` | pixel size of each image |
-| `--time-safe-top <p>` | `0.28` | proportion of the height kept empty for the watch's time overlay |
+`swift run facegen --help` lists the flags.
 
 Without `--box`, the first `count` cards of the pair in seed order are rendered.
 With `--box`, cards are ranked the way the widget ranks scheduled exposure cards:
@@ -54,7 +44,10 @@ Re-running facegen weekly (ideally with `--box` against the current box document
 and replacing the album keeps the words fresh
 as the box grows and stabilities shift.
 
-## Current limitation
+## Current limitations
+
+The tool reads the retired `vocab-*.json` seed files (`--seed`), not `catalog/`,
+so no checkout has input for it until it is ported to the catalog join.
 
 Album sync is manual:
 there is no automation from facegen output into the Photos album —
