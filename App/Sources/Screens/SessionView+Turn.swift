@@ -146,25 +146,6 @@ extension SessionView {
     /// exactly when a learner has something to say about the word.
     var answerOut: Bool { turn?.answerOut ?? false }
 
-    /// The form an amber hold owes back, and why it does: a slip's proper
-    /// spelling, or the word that played where a form this card also accepts
-    /// was written.
-    var almostHold: (form: String, reason: SprossKern.AlmostReason)? {
-        guard let feedback = turn?.feedback,
-              case .almost(let hold) = onEnum(of: feedback) else { return nil }
-        return (hold.correctForm, hold.reason)
-    }
-
-    /// That form where a SLIP owed it. The correction box is the only place a
-    /// typo's proper spelling stands, which is why the reveal speaks it.
-    ///
-    /// Never on a card asked by ear: the form it owes back is then a SOURCE word,
-    /// and the target voice would read a German word in Swahili.
-    var typoCorrection: String? {
-        guard !answerIsMeaning else { return nil }
-        return almostHold.flatMap { $0.reason == .typo ? $0.form : nil }
-    }
-
     /// Whether this turn is typed in the language the learner already HAS — kern's
     /// answer side, read rather than re-derived. The field's placeholder, the
     /// correction's speaker and the reveal's word all turn on it.

@@ -49,16 +49,12 @@ struct TrainerHubView: View, LanguageNaming {
         return (source: model.sourceLanguage, target: target)
     }
 
-    var atlasAvailable: Bool { atlasPair != nil }
-
     /// The pair whose calendars this profile can drill, or nil where the
     /// catalog joins none — the atlas' registry rule, on the dates files.
     var datesPair: (source: String, target: String)? {
         guard model.datesJoinPair, let target = drillLanguage else { return nil }
         return (source: model.sourceLanguage, target: target)
     }
-
-    var datesAvailable: Bool { datesPair != nil }
 
     /// Whether the box holds enough settled single words to be worth
     /// mixing. Kern's own floor, read — this side counts nothing.

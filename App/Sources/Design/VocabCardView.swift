@@ -355,23 +355,6 @@ extension Animation {
     static let cardFlip = Animation.easeInOut(duration: 0.3)
 }
 
-// MARK: - ArticleBadge
-
-/// Colored article pill, exactly like the poster's "der/die/das" pills.
-/// The article text itself carries the meaning; color only reinforces it.
-struct ArticleBadge: View {
-    let article: Theme.Article
-
-    var body: some View {
-        Text(article.text)
-            .font(Theme.typography.badge)
-            .foregroundStyle(Theme.colors.onColor)
-            .padding(.horizontal, Theme.spacing.md)
-            .padding(.vertical, Theme.spacing.xs + 2)
-            .background(Theme.genderColor(article.gender), in: Capsule())
-    }
-}
-
 // MARK: - Previews
 
 #Preview("Shared screen · prompt") {

@@ -89,8 +89,6 @@ extension AreaStatistics {
     var allSettledCards: Int { Int(allSettled) }
     var lockedPhrases: Int { Int(phrasesLocked) }
 
-    var queuedCards: Int { Int(queued) }
-
     /// The area's buckets and what they are measured against, as the design
     /// system reads them — which card falls in which bucket, and how a stale
     /// total is clamped, are the engine's rulings (`box/Statistics.kt`).
