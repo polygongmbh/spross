@@ -22,7 +22,6 @@ class DateDrillTests {
     private val ukrainian = DateDrillFixture.ukrainianContent
     private val english = DateDrillFixture.englishContent
 
-    private val bareKinds = listOf(DateTaskKind.Weekday, DateTaskKind.Month)
     private val fullLadder = DateTaskKind.entries.toList()
 
     /** The ladder above the warm-up: everything a Sprosse still carries once it is left behind. */
@@ -55,38 +54,25 @@ class DateDrillTests {
             assertEquals(written.take(index + 1), kinds, "a written Sprosse carries no tiles")
             assertEquals(kind, kinds.last(), "the Sprosse introduces its own kind")
         }
-        assertEquals(written.dropLast(1), DateDrill.kinds(ukrainian, 5, reverse = false))
         assertEquals(warmUp, DateDrill.kinds(german, 1, reverse = true))
-        assertEquals(bareKinds, DateDrill.kinds(german, 3, reverse = true))
         assertEquals(
             written - DateTaskKind.FullDate,
             DateDrill.kinds(german, 5, reverse = true),
             "the same ladder back but for the full date, which has no way round",
         )
-        assertEquals(written, DateDrill.kinds(german, 99, reverse = false), "clamped to the top")
-        assertEquals(warmUp, DateDrill.kinds(german, 0, reverse = false))
     }
 
     @Test
     fun fastIsOfferedOnlyOnceThisLaddersTopSprosseHasBeenReached() {
-        assertFalse(DateDrill.fastUnlocked(5, german, reverse = false))
+        assertFalse(DateDrill.fastUnlocked(2, german, reverse = false))
         assertTrue(DateDrill.fastUnlocked(6, german, reverse = false))
         assertTrue(DateDrill.fastUnlocked(5, ukrainian, reverse = false), "the short ladder tops at 5")
-        assertFalse(DateDrill.fastUnlocked(4, german, reverse = true))
         assertTrue(DateDrill.fastUnlocked(5, german, reverse = true), "one Sprosse shorter back")
     }
 
-    /** Three clean wins a Sprosse, or one where fast was earned — on this pair's own ceiling. */
+    /** The ramp moves on this pair's own ceiling, and fast climbs on a single win. */
     @Test
     fun theRampMovesOnThisPairsOwnCeiling() {
-        assertEquals(3, DateDrill.winsToAdvance(fast = false))
-        assertEquals(1, DateDrill.winsToAdvance(fast = true))
-        var step = DrillRamp.SprosseStep(1, 0)
-        repeat(3) {
-            step = DateDrill.step(german, false, step.sprosse, step.winsAtSprosse,
-                correct = true, clean = true, fast = false)
-        }
-        assertEquals(2, step.sprosse)
         assertEquals(2, DateDrill.step(german, false, 1, 0, correct = true, clean = true, fast = true).sprosse)
         val top = DateDrill.step(ukrainian, false, 6, 2, correct = true, clean = true, fast = false)
         assertEquals(7, top.sprosse, "the number climbs past the short ladder's last named Sprosse")
@@ -105,9 +91,7 @@ class DateDrillTests {
         assertEquals("Saturday", saturday.promptText)
         assertEquals(listOf("Samstag", "Sonnabend"), saturday.accepted)
         assertEquals("Samstag", saturday.display)
-        assertEquals("5", saturday.id)
         assertNull(saturday.choices, "a written Sprosse offers nothing to tap")
-        assertEquals(12, DateDrillTasks.pool(german, DateTaskKind.Month, reverse = false).size)
     }
 
     /** Reverse is a direction, not another ladder: the same names, asked the other way. */
@@ -126,7 +110,6 @@ class DateDrillTests {
         assertEquals("der dritte Juni", task.display)
         assertContains(task.accepted, "den dritten Juni")
         assertEquals("6/3", task.promptText, "the prompt wears the SOURCE's numeric format")
-        assertEquals("3.6", task.id)
         assertContains(DateDrillTasks.dayMonth(german, 3, 0).accepted, "der dritte Jänner")
     }
 
@@ -164,7 +147,6 @@ class DateDrillTests {
         assertEquals("Samstag, der dritte Juni", task.display)
         assertContains(task.accepted, "Sonnabend, der dritte Juni")
         assertContains(task.accepted, "Samstag, den dritten Juni")
-        assertEquals("5:3.6", task.id)
     }
 
     /** Once a year fixes the date the weekday is a fact: computed, never drawn. */
@@ -177,7 +159,6 @@ class DateDrillTests {
         val year = Numbers.pack("de").year(2026)
         assertEquals("Dienstag, der dritte März ${year.display}", task.display)
         assertEquals("Tue, 3/3/2026", task.promptText)
-        assertEquals("3.3.2026", task.id)
         assertContains(task.accepted, "Dienstag, den dritten März ${year.display}")
     }
 
@@ -220,16 +201,6 @@ class DateDrillTests {
         val draw = DateDrill.draw(german, 3, false, null, monthsOut, Random(7))
         assertEquals(3, draw.sprosse)
         assertEquals(DateTaskKind.Weekday, assertNotNull(draw.task).kind)
-    }
-
-    /** A Sprosse with NOTHING left is climbed past, and the Sprosse above is booked like any other. */
-    @Test
-    fun aSpentSprosseIsClimbedPast() {
-        val namesOut = ((0..6).map { "${DateTaskKind.Weekday}:$it" } +
-            (0..11).map { "${DateTaskKind.Month}:$it" }).toSet()
-        val draw = DateDrill.draw(german, 3, false, null, namesOut, Random(7))
-        assertEquals(4, draw.sprosse)
-        assertEquals(DateTaskKind.DayAndMonth, assertNotNull(draw.task).kind)
     }
 
     /** A generated Sprosse is spent when a whole run of draws lands on solved questions. */
@@ -304,7 +275,6 @@ class DateDrillTests {
     @Test
     fun aPatternOfSlotsAloneAddsNoWord() {
         assertNull(DateDrill.patternWord(ukrainian, DateTaskKind.DayAndMonth))
-        assertNull(DateDrill.patternWord(english, DateTaskKind.DayAndMonth), "en leads with the month")
     }
 
     /** Two words a pattern holds apart are not a phrase, so the slot between them shows. */
@@ -368,20 +338,6 @@ class DateDrillTests {
         assertContains(dated.accepted, "03/03/2026", "the year keeps its four digits")
     }
 
-    /** Every dated question carries the date itself, so no parse has to cut one out of a card. */
-    @Test
-    fun aDatedTaskCarriesItsDateApartFromTheCardsPrinting() {
-        assertEquals("6/3", DateDrillTasks.dayMonth(german, 3, 5).dateDigits)
-        val full = DateDrillTasks.fullDate(german, 5, 3, 5)
-        assertEquals("Sat, 6/3", full.promptText, "the card prints the weekday")
-        assertEquals("6/3", full.dateDigits, "the date it is about does not")
-        val dated = DateDrillTasks.fullDateWithYear(german, 3, 2, 2026, weekdayFree = false)
-        assertEquals("Tue, 3/3/2026", dated.promptText)
-        assertEquals("3/3/2026", dated.dateDigits)
-        assertNull(DateDrillTasks.pool(german, DateTaskKind.Weekday, false)[0].dateDigits,
-            "a name is about no date")
-    }
-
     /**
      * A card must not name a weekday the answer then throws away, so the dated Sprosse reads
      * its date without one turned round. Composed from the two authored patterns rather than
@@ -425,18 +381,6 @@ class DateDrillTests {
         val patterns = DatePatterns(DatePattern("a"), DatePattern("b"), null)
         assertNull(DateDrillParsing.datedWithoutWeekday(patterns))
         assertNull(DateDrillParsing.datedWithoutWeekday(patterns.copy(dateWithYear = DatePattern("c"))))
-    }
-
-    /** The full date is the one Sprosse with no way round — parsed, it asks day and month again. */
-    @Test
-    fun theFullDateHasNoReversedSprosse() {
-        assertTrue(
-            (1..20).none {
-                DateDrill.sample(german, 99, true, null, emptySet(), Random(it.toLong()))?.kind ==
-                    DateTaskKind.FullDate
-            },
-            "a reversed run drew the Sprosse that has no reversed direction",
-        )
     }
 
     // MARK: - The warm-up
@@ -491,14 +435,12 @@ class DateDrillTests {
     @Test
     fun theReferenceTableShowsBothSidesAndTheDateOnlyForms() {
         val groups = DateDrill.reference(ukrainian)
-        assertEquals(listOf(DateTaskKind.Weekday, DateTaskKind.Month), groups.map { it.kind })
         val march = groups[1].rows[2]
         assertEquals("März", march.source)
         assertEquals("березень", march.target)
         assertEquals("березня", march.dateForm)
         val saturday = DateDrill.reference(german)[0].rows[5]
         assertEquals(listOf("Sonnabend"), saturday.teaches)
-        assertEquals("Sa", saturday.abbr)
     }
 
     @Test

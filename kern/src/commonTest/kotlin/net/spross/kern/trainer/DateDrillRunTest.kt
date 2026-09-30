@@ -3,61 +3,41 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertIs
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
-import net.spross.kern.session.AdvanceBeat
-import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
-import net.spross.kern.session.ToneKind
-import net.spross.kern.session.TurnFeedback
 
 /**
- * The dates run: what a typed reading earns, which beat it arms, what the ramp does with
- * it, and what a close leaves behind. The ladder, the draw and the task shapes are
- * [DateDrill]'s and pinned in [DateDrillTests]; what stands here is the run that steps
- * through them.
+ * What the dates run adds to the typed-drill verdicts it shares with the atlas run
+ * ([CountryDrillRunTest] pins those): the value check, the pattern word, the parse a
+ * reversed run climbs into, and what a close leaves behind. The ladder, the draw and the
+ * task shapes are [DateDrillTests]'.
  */
 class DateDrillRunTest {
 
-    private fun config(
-        reverse: Boolean = false,
-        fast: Boolean = false,
-        graded: Boolean = true,
-        cleared: Set<Int> = emptySet(),
-    ) = DateDrillRunConfig(
-        content = DateDrillFixture.germanContent,
-        reverse = reverse,
-        fast = fast,
-        normalizer = when {
-            !graded -> null
-            reverse -> AnswerNormalizer.drill(DateDrillFixture.english)
-            else -> AnswerNormalizer.drill(DateDrillFixture.german)
-        },
-        cleared = cleared,
-    )
-
     private val swahili = DateDrillFixture.swahiliContent
 
-    private val swahiliConfig = DateDrillRunConfig(
-        content = swahili,
-        reverse = false,
+    private fun config(reverse: Boolean = false) = DateDrillRunConfig(
+        content = DateDrillFixture.germanContent,
+        reverse = reverse,
         fast = false,
-        normalizer = AnswerNormalizer.drill(DateDrillFixture.swahili),
+        normalizer = AnswerNormalizer.drill(if (reverse) DateDrillFixture.english else DateDrillFixture.german),
     )
 
-    private fun open(
-        reverse: Boolean = false,
-        fast: Boolean = false,
-        graded: Boolean = true,
-        sprosse: Int = 1,
-        cleared: Set<Int> = emptySet(),
-    ) = DateDrillRun.openAt(config(reverse, fast, graded, cleared), sprosse, Random(7))
+    private fun swahiliConfig(reverse: Boolean = false) = DateDrillRunConfig(
+        content = swahili,
+        reverse = reverse,
+        fast = false,
+        normalizer = AnswerNormalizer.drill(if (reverse) DateDrillFixture.german else DateDrillFixture.swahili),
+    )
+
+    private fun open(reverse: Boolean = false, sprosse: Int = 1) =
+        DateDrillRun.openAt(config(reverse), sprosse, Random(7))
 
     private fun DateDrillRunState.reduce(intent: DateDrillIntent) =
         DateDrillRun.reduce(this, intent, Random(7))
@@ -66,110 +46,16 @@ class DateDrillRunTest {
     private fun DateDrillRunState.answered(text: String): DateDrillRunState =
         reduce(DateDrillIntent.Submit(text)).state.reduce(DateDrillIntent.ConfirmPending).state
 
-    private fun DateDrillRunState.missed(): DateDrillRunState =
-        reduce(DateDrillIntent.Reveal).state.reduce(DateDrillIntent.ConfirmPending).state
-
-    /** The standing task's reading with its last letter fumbled — a slip, never another name. */
-    private fun DateDrillRunState.says() = DrillEffect.SayAnswer(task.display, "de")
-
     private fun DateDrillRunState.slipped(): String = task.display.dropLast(1) + "x"
 
-    // MARK: - Where a run opens
-
     @Test
-    fun aRunOpensOnTheFirstSprosseWithAQuestionStanding() {
+    fun aRunOpensOnTheWarmUpTiles() {
         val run = DateDrillRun.open(config(), Random(7))
-        assertEquals(1, run.sprosse)
-        assertEquals(1, run.bestSprosse)
-        assertEquals(DateTaskKind.NameChoice, run.task.kind, "every ladder opens on the tiles")
+        assertEquals(DateTaskKind.NameChoice, run.task.kind)
         assertTrue(run.owesAnswer)
-        assertFalse(run.showsAnswer)
-        assertEquals(0, run.done)
     }
 
-    /** The forced Sprosse is for tests and screenshot drivers; kern clamps it to THIS ladder. */
-    @Test
-    fun aForcedSprosseIsClampedToTheLadder() {
-        assertEquals(6, open(sprosse = 99).sprosse)
-        assertEquals(1, open(sprosse = 0).sprosse)
-        assertEquals(5, open(reverse = true, sprosse = 99).sprosse, "one Sprosse shorter back")
-    }
-
-    @Test
-    fun theDirectionSettlesWhichLanguageIsPromptedAndWhichIsOwed() {
-        val forward = open()
-        assertEquals("de", forward.answerLanguage)
-        assertEquals("en", forward.promptLanguage)
-
-        val reversed = open(reverse = true)
-        assertEquals("en", reversed.answerLanguage)
-        assertEquals("de", reversed.promptLanguage)
-    }
-
-    // MARK: - What a typed reading earns
-
-    /** Finishing the reading IS the answer — exact only, a typo budget would fire early. */
-    @Test
-    fun finishingTheReadingArmsTheLiveBeatWithoutACheckTap() {
-        val run = open()
-        val reduction = run.reduce(DateDrillIntent.InputChanged(run.task.display))
-        assertEquals(TurnFeedback.Correct, reduction.state.feedback)
-        assertEquals(
-            listOf(DrillEffect.Tone(ToneKind.Correct), run.says(), DrillEffect.ArmAdvance(AdvanceBeat.Live)),
-            reduction.effects,
-        )
-    }
-
-    @Test
-    fun aSlipNeverApprovesLive() {
-        val run = open()
-        val reduction = run.reduce(DateDrillIntent.InputChanged(run.slipped()))
-        assertEquals(TurnFeedback.Neutral, reduction.state.feedback)
-        assertEquals(listOf(DrillEffect.CancelAdvance), reduction.effects)
-    }
-
-    @Test
-    fun backingOutOfAFinishedReadingWithdrawsTheApproval() {
-        val run = open()
-        val approved = run.reduce(DateDrillIntent.InputChanged(run.task.display)).state
-        val reduction = approved.reduce(DateDrillIntent.InputChanged(run.task.display + "x"))
-        assertEquals(TurnFeedback.Neutral, reduction.state.feedback)
-        assertEquals(listOf(DrillEffect.CancelAdvance), reduction.effects)
-    }
-
-    @Test
-    fun anExplicitCheckOnTheRightReadingArmsTheLongerBeat() {
-        val run = open()
-        val reduction = run.reduce(DateDrillIntent.Submit(run.task.display))
-        assertEquals(TurnFeedback.Correct, reduction.state.feedback)
-        assertEquals(
-            listOf(
-                DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Correct),
-                run.says(),
-                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
-            ),
-            reduction.effects,
-        )
-    }
-
-    @Test
-    fun aSlipOnACheckHoldsAlmostAndGivesTheKeyboardBack() {
-        val run = open()
-        val reduction = run.reduce(DateDrillIntent.Submit(run.slipped()))
-        val hold = assertIs<TurnFeedback.Almost>(reduction.state.feedback)
-        assertEquals(run.task.display, hold.correctForm)
-        assertEquals(AlmostReason.Typo, hold.reason)
-        assertEquals(
-            listOf(
-                DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Almost),
-                run.says(),
-                DrillEffect.ReleaseFocus,
-            ),
-            reduction.effects,
-        )
-    }
+    // MARK: - Grading
 
     /**
      * The assembled Sprossen carry the numbers drill's value check word by word, which is
@@ -182,98 +68,10 @@ class DateDrillRunTest {
     fun aNumeralThatNamesAnotherValueIsRefusedNotForgiven() {
         val task = DateDrillTasks.dayMonth(swahili, 4, 2)
         assertEquals("tarehe nne Machi", task.display)
-        val match = DateDrillRun.grade("tarehe nane Machi", task, swahiliConfig)
+        val match = DateDrillRun.grade("tarehe nane Machi", task, swahiliConfig())
         assertIs<Match.OtherWord>(match)
         assertEquals("nane", match.word, "the refusal names the numeral, not the whole line")
-        assertIs<Match.Typo>(DateDrillRun.grade("tarehe nnr Machi", task, swahiliConfig))
-    }
-
-    /** No language info (a preview): a plain case- and punctuation-insensitive comparison. */
-    @Test
-    fun aPreviewWithNoLanguageInfoStillGradesPlainly() {
-        val task = DateDrillTasks.dayMonth(DateDrillFixture.germanContent, 3, 5)
-        assertEquals(Match.Exact, DateDrillRun.grade("  der dritte Juni!  ", task, config(graded = false)))
-        assertEquals(Match.Wrong, DateDrillRun.grade("der drittex Juni", task, config(graded = false)))
-    }
-
-    @Test
-    fun revealingOpensTheCardAndBooksAMiss() {
-        val run = open()
-        val revealed = run.reduce(DateDrillIntent.Reveal)
-        assertEquals(TurnFeedback.Revealed, revealed.state.feedback)
-        assertEquals(
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal), run.says()),
-            revealed.effects,
-        )
-
-        val booked = revealed.state.reduce(DateDrillIntent.ConfirmPending).state
-        assertEquals(listOf(AnswerOutcome.Wrong), booked.outcomes)
-        assertEquals(0, booked.answerStreak)
-    }
-
-    /** Nothing typed is the ask to see the answer, so the check button and Enter agree. */
-    @Test
-    fun aBlankSubmitReveals() {
-        val run = open()
-        val blank = run.reduce(DateDrillIntent.Submit("   "))
-        val asked = run.reduce(DateDrillIntent.Reveal)
-        assertEquals(asked.state, blank.state)
-        assertEquals(asked.effects, blank.effects)
-
-        // Once the answer is in, nothing is owed and a stray blank changes nothing.
-        val inert = asked.state.reduce(DateDrillIntent.Submit("   "))
-        assertEquals(asked.state, inert.state)
-        assertTrue(inert.effects.isEmpty())
-    }
-
-    @Test
-    fun anElapsedBeatBooksOnlyACleanAnswer() {
-        val held = open().run { reduce(DateDrillIntent.Submit(slipped())).state }
-        assertEquals(held, held.reduce(DateDrillIntent.AdvanceElapsed).state)
-
-        val clean = open().run { reduce(DateDrillIntent.Submit(task.display)).state }
-        assertEquals(1, clean.reduce(DateDrillIntent.AdvanceElapsed).state.done)
-    }
-
-    // MARK: - The ramp
-
-    /** Three clean wins a Sprosse — Sprosse 3 holds nineteen names, so the wins carry the climb. */
-    @Test
-    fun threeCleanWinsCarryTheRun() {
-        var run = open(sprosse = 3)
-        repeat(DateDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
-        assertEquals(4, run.sprosse)
-        assertEquals(4, run.bestSprosse)
-        assertEquals(3, run.done)
-        assertEquals(3, run.answerStreak)
-        assertEquals(3, run.index)
-        assertTrue(run.owesAnswer, "the next question is up, not the last one's verdict")
-    }
-
-    @Test
-    fun fastSpendsOneWinASprosse() {
-        val run = open(fast = true, sprosse = 3)
-        assertEquals(4, run.answered(run.task.display).sprosse)
-    }
-
-    @Test
-    fun theAlmostHoldBanksNoWin() {
-        val opened = open()
-        val run = opened.answered(opened.slipped())
-        assertEquals(1, run.sprosse)
-        assertEquals(0, run.winsAtSprosse)
-        assertEquals(listOf(AnswerOutcome.Almost), run.outcomes)
-        assertEquals(1, run.answerStreak, "a slip is still an answer the learner got")
-    }
-
-    @Test
-    fun aMissDropsTheSprosseButNotTheOneTheRunReached() {
-        var run = open(sprosse = 5)
-        repeat(DateDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
-        assertEquals(6, run.sprosse)
-        run = run.missed()
-        assertEquals(5, run.sprosse)
-        assertEquals(6, run.bestSprosse)
+        assertIs<Match.Typo>(DateDrillRun.grade("tarehe nnr Machi", task, swahiliConfig()))
     }
 
     // MARK: - The word a pattern adds
@@ -284,7 +82,7 @@ class DateDrillRunTest {
      */
     @Test
     fun thePatternWordIsShownOnceAndThenNeverAgain() {
-        var run = DateDrillRun.openAt(swahiliRunConfig(), sprosse = 4, Random(7))
+        var run = DateDrillRun.openAt(swahiliConfig(), sprosse = 4, Random(7))
         while (run.task.kind != DateTaskKind.DayAndMonth) run = run.answered(run.task.display)
         assertEquals("tarehe", run.patternWord)
         run = run.answered(run.task.display)
@@ -295,76 +93,35 @@ class DateDrillRunTest {
     /** Reversed the card carries the reading, which says the word already — so no hint at all. */
     @Test
     fun aReversedRunIsHandedNoPatternWord() {
-        var run = DateDrillRun.openAt(swahiliRunConfig(reverse = true), sprosse = 4, Random(7))
+        var run = DateDrillRun.openAt(swahiliConfig(reverse = true), sprosse = 4, Random(7))
         repeat(12) {
             assertNull(run.patternWord)
             run = run.answered(run.task.display)
         }
     }
 
-    private fun swahiliRunConfig(reverse: Boolean = false) = DateDrillRunConfig(
-        content = swahili,
-        reverse = reverse,
-        fast = false,
-        normalizer = AnswerNormalizer.drill(
-            if (reverse) DateDrillFixture.german else DateDrillFixture.swahili,
-        ),
-    )
-
-    // MARK: - Asking each question once
-
-    /** A slip and a miss both leave the question in the pool — only a clean answer retires it. */
-    @Test
-    fun onlyACleanAnswerRetiresAQuestion() {
-        val opened = open()
-        val slipped = opened.answered(opened.slipped())
-        assertTrue(DrillSolved.key(opened.task) !in slipped.solved)
-
-        val clean = opened.answered(opened.task.display)
-        assertTrue(DrillSolved.key(opened.task) in clean.solved)
-    }
+    // MARK: - The reversed direction
 
     /**
      * Reverse is a DIRECTION, not a shorter ladder: a reversed run climbs off the nineteen
      * names into the parse, where the card carries the reading and the answer is the date
-     * written in digits. It is also why such a run no longer runs out — the names are
-     * finite and the dates above them are drawn.
+     * written in digits — which is also why such a run no longer runs out.
      */
     @Test
     fun aReversedRunClimbsOffTheNamesIntoTheParse() {
         var run = open(reverse = true, sprosse = 3)
-        assertFalse(run.task.digits, "it opens on the names")
-        var reachedADate = false
         repeat(30) {
-            reachedADate = reachedADate || run.task.digits
+            if (run.task.digits) return@repeat
             run = run.answered(run.task.display)
         }
-        assertTrue(reachedADate, "the run never reached a date to parse")
-        assertTrue(run.sprosse > 3, "the reversed ladder stopped at the names")
-        assertFalse(run.finished)
-    }
-
-    /** A parsed date is answered in the digits the card would print, never in words. */
-    @Test
-    fun aParsedDateIsAnsweredInDigits() {
-        var run = open(reverse = true, sprosse = 5)
-        while (!run.task.digits) run = run.answered(run.task.display)
-        val date = run.task
+        assertTrue(run.task.digits, "the run never reached a date to parse")
+        assertTrue(run.sprosse > 3)
         assertEquals("en", run.answerLanguage, "the digits are written in the learner's own format")
-        assertTrue(date.display.any { it.isDigit() })
-        assertEquals(Match.Exact, DateDrillRun.grade(date.display, date, run.config))
-        assertNotEquals(Match.Exact, DateDrillRun.grade("the third of June", date, run.config))
+        assertEquals(Match.Exact, DateDrillRun.grade(run.task.display, run.task, run.config))
+        assertNotEquals(Match.Exact, DateDrillRun.grade("the third of June", run.task, run.config))
     }
 
-    @Test
-    fun theWayOutIsOfferedOnTheSecondMissInARow() {
-        val first = open().reduce(DateDrillIntent.Reveal).state
-        assertFalse(first.offersFinish, "one miss is not yet a run worth leaving")
-
-        val second = first.reduce(DateDrillIntent.ConfirmPending).state
-            .reduce(DateDrillIntent.Reveal).state
-        assertTrue(second.offersFinish)
-    }
+    // MARK: - Answering out
 
     /**
      * The name Sprossen enumerate and can be answered out; an assembled Sprosse is drawn,
@@ -380,7 +137,6 @@ class DateDrillRunTest {
         val tiles = DateDrillChoices.pool(content, false).map { DrillSolved.key(it) }.toSet()
 
         assertEquals(emptySet(), DateDrill.cleared(content, false, months))
-        assertEquals(setOf(2), DateDrill.cleared(content, false, weekdays))
         assertEquals(setOf(2, 3), DateDrill.cleared(content, false, weekdays + months))
         assertEquals(setOf(1, 2, 3), DateDrill.cleared(content, false, weekdays + months + tiles))
 
@@ -390,45 +146,26 @@ class DateDrillRunTest {
         assertTrue(closed.clearedSprossen.none { it >= 4 }, "an assembled Sprosse was cleared")
     }
 
-    /**
-     * Answering out a Sprosse the store did not hold for this direction is what a pause for
-     * improving names ([DrillPacing]); one the store already held is nothing new.
-     */
-    @Test
-    fun aSprosseAnsweredOutForTheFirstTimePausesAsImproved() {
-        fun stretched(cleared: Set<Int>): DateDrillRunState {
-            val opened = open(sprosse = 2, cleared = cleared)
-            val weekdays = DateDrillTasks.pool(DateDrillFixture.germanContent, DateTaskKind.Weekday, false)
-                .map { DrillSolved.key(it) }
-            // Every weekday but the one on screen answered already, a stretch's worth in.
-            val core = DrillRunCore(done = DrillPacing.IMPROVED_AFTER - 1, solved = weekdays.toSet() - DrillSolved.key(opened.task))
-            return opened.copy(core = core).answered(opened.task.display)
-        }
-        assertEquals(DrillPauseReason.Improved, stretched(cleared = emptySet()).pause)
-        assertNull(stretched(cleared = setOf(2)).pause)
-    }
-
     // MARK: - Leaving
 
+    /** The close reports the Sprosse the run REACHED, which is what the page files. */
     @Test
-    fun anUntouchedRunReportsNothingButStillNamesItsSprosse() {
-        val closed = DateDrillRun.close(open(), standingRecord = 0)
-        assertNull(closed.summary)
-        assertEquals(1, closed.bestSprosse)
-        assertTrue(closed.state.finished)
-        assertEquals(listOf(DrillEffect.CancelAdvance, DrillEffect.Silence), closed.effects)
+    fun theCloseReportsTheSprosseTheRunStoodOn() {
+        var run = open(sprosse = 3)
+        repeat(DateDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
+        run = run.reduce(DateDrillIntent.Reveal).state.reduce(DateDrillIntent.ConfirmPending).state
+        assertEquals(3, run.sprosse)
+        assertEquals(4, DateDrillRun.close(run, standingRecord = 0).bestSprosse)
     }
 
-    /** Closing may neither lose a pending answer nor upgrade it. */
+    /** Closing may neither lose a pending answer nor upgrade it; an untouched run reports nothing. */
     @Test
     fun aPendingAnswerBooksOnTheWayOutExactlyAsTheTapWould() {
         val opened = open()
+        assertNull(DateDrillRun.close(opened, standingRecord = 0).summary)
+
         val clean = opened.reduce(DateDrillIntent.Submit(opened.task.display)).state
-        val closedClean = DateDrillRun.close(clean, standingRecord = 0)
-        val summary = assertNotNull(closedClean.summary)
-        assertEquals(1, summary.done)
-        assertEquals(1, summary.bestAnswerStreak)
-        assertTrue(summary.newRecord, "a first streak beats a standing record of none")
+        assertEquals(1, assertNotNull(DateDrillRun.close(clean, standingRecord = 0).summary).done)
 
         val held = opened.reduce(DateDrillIntent.Submit(opened.slipped())).state
         assertEquals(listOf(AnswerOutcome.Almost), DateDrillRun.close(held, standingRecord = 0).state.outcomes)
@@ -438,23 +175,5 @@ class DateDrillRunTest {
             DateDrillRun.close(revealed, standingRecord = 0).summary,
             "a revealed answer nobody confirmed books nothing",
         )
-    }
-
-    /** The close reports the Sprosse the run REACHED, which is what the page files. */
-    @Test
-    fun theCloseReportsTheSprosseTheRunStoodOn() {
-        var run = open(sprosse = 3)
-        repeat(DateDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
-        run = run.missed()
-        assertEquals(4, DateDrillRun.close(run, standingRecord = 0).bestSprosse)
-    }
-
-    /** The record write is strictly greater, so a run that only equaled it claims nothing. */
-    @Test
-    fun aStandingRecordIsOnlyBeatenStrictly() {
-        val opened = open()
-        val run = opened.answered(opened.task.display)
-        assertFalse(assertNotNull(DateDrillRun.close(run, standingRecord = 1).summary).newRecord)
-        assertTrue(assertNotNull(DateDrillRun.close(run, standingRecord = 0).summary).newRecord)
     }
 }

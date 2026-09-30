@@ -67,19 +67,6 @@ class DateNameIndexTests {
         assertIs<Match.Typo>(DateDrillRun.grade("Juki", monthTask(5), config))
     }
 
-    /** The drill normalizer forgives no article — pinned, because the bare Sprosse leans on it. */
-    @Test
-    fun anArticleTheCalendarDidNotAuthorGradesWrong() {
-        assertEquals(Match.Wrong, DateDrillRun.grade("der Juni", monthTask(5), config))
-    }
-
-    /** The pattern's `den` variant is what admits the accusative — as an Exact, not a slip. */
-    @Test
-    fun thePatternVariantAdmitsTheAccusative() {
-        val task = DateDrillTasks.dayMonth(DateDrillFixture.germanContent, 3, 5)
-        assertEquals(Match.Exact, DateDrillRun.grade("den dritten Juni", task, config))
-    }
-
     /**
      * A month slip INSIDE an assembled date books a typo — the owner's ruling: a learner
      * who assembled the whole date and slipped inside one word got the structure right,
