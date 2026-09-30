@@ -13,7 +13,7 @@ import net.spross.kern.model.PresentationRole
  *
  * It runs for the one round onboarding opened — all of it,
  * including whatever "Weiter üben" adds to that same run.
- * The flag behind it ([AppModel.coachPending]) is memory only,
+ * The flag behind it ([AppModel.coachActive]) is memory only,
  * so an app killed mid-round comes back without the lines;
  * spending it is [AppModel.finishSession]'s.
  */

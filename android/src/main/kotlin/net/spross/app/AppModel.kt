@@ -60,7 +60,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     internal var sessionRun: SessionRunState? = null
         private set
 
-    /** The one door to a spoken target word — review cards and both drills. */
+    /** The one door to a spoken target word — review cards and every drill. */
     val pronouncer = Pronouncer(app, prefs)
 
     /** The verdict chimes, loaded here so the first answer of a session pays no decode. */
@@ -168,19 +168,12 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     var sampleTreesAge: Double? = null
 
     /**
-     * Whether a round still owes the learner the three lines that teach it
+     * Whether the round on screen still owes the learner the three lines that teach it
      * ([SessionCoach]). Armed when onboarding opens that round, cleared when it closes,
      * and in memory only — an app killed in between is simply back without the coaching.
      */
-    var coachPending by mutableStateOf(false)
+    var coachActive by mutableStateOf(false)
         private set
-
-    /**
-     * Whether the round on screen still owes its coaching lines ([SessionCoach]) — the
-     * round onboarding opened, from its first card to the last one it hands out.
-     */
-    val coachActive: Boolean
-        get() = coachPending
 
     /**
      * What the self-grade row stands under: the first round's coaching while it is owed,
@@ -277,7 +270,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             // why: the coaching arms with the round that actually opens — an install with
             // nothing to practice yet must not carry it into some later round.
             if (homeStanding?.offer?.hasRound == true) {
-                coachPending = true
+                coachActive = true
                 startSession()
             }
         }
@@ -355,15 +348,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * The one door a box SURFACE changes the box through — queuing a shelf, unsuspending a
-     * word, a word of one's own, a reset. The change itself is kern's: the caller hands
-     * back what a [BoxEngine] call returned, and this is the platform half of it, the
-     * observable state and the disk and the numbers Home reads.
-     *
-     * Anything that touches a SCHEDULE goes through the run instead ([dispatch]) —
-     * every answer is a review, and only kern's session machine books one.
-     */
-    /**
      * Apply a change nothing derived reads, and let it ride out with the next save.
      *
      * The counterpart to [updateBox], for the change that moves no card, no schedule and
@@ -377,6 +361,15 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         save(next, BoxChange.Stamped.saveScope)
     }
 
+    /**
+     * The one door a box SURFACE changes the box through — queuing a shelf, unsuspending a
+     * word, a word of one's own, a reset. The change itself is kern's: the caller hands
+     * back what a [BoxEngine] call returned, and this is the platform half of it, the
+     * observable state and the disk and the numbers Home reads.
+     *
+     * Anything that touches a SCHEDULE goes through the run instead ([dispatch]) —
+     * every answer is a review, and only kern's session machine books one.
+     */
     fun updateBox(change: (BoxState) -> BoxState) {
         val state = box ?: return
         val next = change(state)
@@ -393,7 +386,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         screen = Screen.Home
         // why: one round is what the coaching is for, and leaving is what says it was
         // read — a learner who quits after two cards still comes back to a quiet screen.
-        coachPending = false
+        coachActive = false
     }
 
     /**
