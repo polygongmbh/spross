@@ -1,18 +1,15 @@
 # Catalog schema — engine-side rules
 What the engine requires of the catalog and the lint that holds it.
-Neighbors: the file format `../../catalog/README.md`.
+Neighbors: the engine contract `../README.md`, the file format `../../catalog/README.md`.
 
-Engine contract: `../README.md`.
-
-- `languages.json`: `articles` (`../README.md` §1).
 - `areas.json`: a group's `areas` is an array of **objects** (`{ "area", "emoji" }`).
   The emoji is language-neutral display metadata, so the catalog owns the area icon
   and both apps read the same one.
   The parser rejects unknown keys and validates the emoji with the concept-emoji rule
   (non-blank, ≤ 12 chars, every char ≥ U+2000), so a new area cannot ship without one.
-  `AreaGroup.areas: [String]` is unchanged — the ordered names every consumer flat-maps;
-  the emoji rides alongside in `AreaGroup.areaEmojis: [String: String]` and is read via
-  `Catalog.areaEmoji(area) -> String?`, the language-neutral sibling of `areaTitle`.
+  `AreaGroup.areas` stays the ordered names every consumer flat-maps;
+  the emoji rides alongside in `AreaGroup.areaEmojis` and is read via
+  `Catalog.areaEmoji(area)`, the language-neutral sibling of `areaTitle`.
 - `areas/<area>/<lang>.json`: an optional `subtitle` beside `title`, read via
   `Catalog.areaSubtitle(area, lang) -> String?` — the same shape as `areaTitle`, so a
   reader gets it in their own language or not at all. `title` therefore stays a plain
@@ -52,7 +49,7 @@ Engine contract: `../README.md`.
     silently minting an ambiguous prompt. Comparison is case-SENSITIVE: `Husten`/`husten`
     is a real visual distinction and must stay legal.
 - `catalog/alphabet/<lang>.json` → `Alphabet`/`AlphabetEntry` (`AlphabetParser`, hand-parsed
-  on CatalogParser conventions; `JsonSupport` gained `optionalBoolean` and `stringListMap`).
+  on CatalogParser conventions).
   The registry is file presence — `Catalog.alphabet(lang)` is null where no file is
   authored — and alphabet reads fold into the fingerprint (content: editing one recomposes
   a stale session once on upgrade; the audio manifest stays fingerprint-exempt). Example

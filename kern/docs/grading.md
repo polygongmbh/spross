@@ -4,9 +4,7 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
 
 ## The normalizer
 
-- **AnswerNormalizer contract** (produce only — recognition is button self-grade;
-  catalog-fixture tested with "Kwaheri!", "to cook", "Der Kühlschrank ist leer.",
-  "Мене звуть …"):
+- **AnswerNormalizer contract** (produce only — recognition is button self-grade):
   normalize both sides (lowercase, ß→ss, the answer language's `diacriticDigraphs`,
   delete joiners `-'’`, punctuation → space incl.
   `…—`, collapse whitespace) → ONE leading listed article of the answer language optional

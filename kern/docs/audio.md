@@ -1,8 +1,6 @@
 # Pronunciation
 When audio may play, what is spoken and how a recording is matched to a form, engine-side.
-Neighbors: when the app plays it `../../docs/read-aloud.md`.
-
-Engine contract: `../README.md`.
+Neighbors: the engine contract `../README.md`, when the app plays it `../../docs/read-aloud.md`, the manifest's file format `../../catalog/audio/README.md`.
 
 - **When audio may play** — `PronunciationCue { Upfront, OnReveal }`,
   declared beside `EmojiCue` in `model/Presentation.kt` because it is the same kind of rule:
@@ -53,7 +51,7 @@ Engine contract: `../README.md`.
   So a word with no article recording still plays bare, one with only an article recording still
   plays, and neither route can reach a file that says a different word —
   which is what keeps the canonical article off a rotated synonym, where 33 of the catalog's 90
-  `teaches` would disagree with it (`data/reference/audio/README.md`).
+  `teaches` would disagree with it (`../../../data/reference/audio/README.md`, outside the repo).
   A rotated synonym nobody recorded simply misses, and the app speaks it live:
   a card never plays a word it does not show.
 - **Collision rule.** Entries sharing a `speechKey` whose bytes are IDENTICAL are one recording fetched under two slugs, and resolve.
@@ -112,10 +110,8 @@ Engine contract: `../README.md`.
   each sha256 re-hashed against the committed bytes — Commons transcodes ship untouched
   (`../../docs/audio-licensing.md` §3) —
   every `authors` and `licenses` row is used by some recording, and no author is a placeholder.
-- The manifest's own schema (fields, naming rules, provenance) is `../../catalog/audio/README.md`'s:
-  this section owns the engine rule, not the file format.
 - **Playback trusts the index only so far** (`catalog/Playback.kt`).
-  `Playback.GAIN_LIMIT_DB = 20.0` is the converter's own clamp and now the single home of the number:
+  `Playback.GAIN_LIMIT_DB` is the converter's own clamp and the single home of the number:
   the manifest parser rejects a gain outside ±it and `Playback.gainDb(measured)` clamps into it,
   which are one rule about what a measurement may claim, not two that happen to agree.
   `Playback.OUTPUT_DB` is the app's one output level against the loudness target the recordings are indexed
