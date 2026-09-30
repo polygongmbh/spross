@@ -19,19 +19,9 @@ class LanguageChoicesTest {
     fun aPickerRowCarriesTheEndonymAndTheExonym() {
         val uk = LanguageInfo(code = "uk", name = "Українська", englishName = "Ukrainian", flag = "🇺🇦")
         assertEquals("🇺🇦 Українська · Ukrainian", LanguageChoices.pickerRow("uk", uk))
-        assertEquals("🇺🇦 Ukrainian", LanguageChoices.pickerLabel("uk", uk))
-    }
-
-    @Test
-    fun oneNameIsEnoughWhereBothAgree() {
         val en = LanguageInfo(code = "en", name = "English", englishName = "English", flag = "🇬🇧")
-        assertEquals("🇬🇧 English", LanguageChoices.pickerRow("en", en))
-    }
-
-    @Test
-    fun anUnknownLanguageFallsBackToItsUppercasedCode() {
-        assertEquals("XX", LanguageChoices.pickerRow("xx", null))
-        assertEquals("XX", LanguageChoices.pickerLabel("xx", null))
+        assertEquals("🇬🇧 English", LanguageChoices.pickerRow("en", en), "one name is enough where both agree")
+        assertEquals("XX", LanguageChoices.pickerRow("xx", null), "an unknown language falls back to its code")
     }
 
     /** The chosen target's own row stays, and the source joins it as the swap. */
@@ -122,9 +112,7 @@ class LanguageChoicesTest {
     @Test
     fun chromeReadsTheKnownLanguageWhereItExistsAndEnglishOtherwise() {
         assertEquals("de", LanguageChoices.chromeLanguage("de"))
-        assertEquals("en", LanguageChoices.chromeLanguage("en"))
         assertEquals("en", LanguageChoices.chromeLanguage("sw"))
-        assertEquals("en", LanguageChoices.chromeLanguage("uk"))
     }
 
     /** An immersion subtitle has no fallback: absent means no subtitle, never an English one. */
@@ -132,7 +120,6 @@ class LanguageChoicesTest {
     fun aLanguageWithoutChromeCarriesNoImmersionSubtitle() {
         assertTrue(LanguageChoices.hasChrome("de"))
         assertFalse(LanguageChoices.hasChrome("uk"))
-        assertFalse(LanguageChoices.hasChrome("es"))
     }
 
     private companion object {

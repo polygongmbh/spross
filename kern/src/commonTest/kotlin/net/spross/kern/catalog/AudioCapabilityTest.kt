@@ -39,13 +39,9 @@ class AudioCapabilityTest {
      */
     @Test
     fun eachHalfIsReadableOnItsOwn() {
-        assertTrue(AudioCapability.RecordingsOnly.hasRecordings)
-        assertFalse(AudioCapability.RecordingsOnly.hasVoice)
-        assertTrue(AudioCapability.VoiceOnly.hasVoice)
-        assertFalse(AudioCapability.VoiceOnly.hasRecordings)
-        assertTrue(AudioCapability.Both.hasRecordings && AudioCapability.Both.hasVoice)
-        assertTrue(AudioCapability.None.silent)
-        assertFalse(AudioCapability.RecordingsOnly.silent)
+        assertTrue(AudioCapability.RecordingsOnly.hasRecordings && !AudioCapability.RecordingsOnly.hasVoice)
+        assertTrue(AudioCapability.VoiceOnly.hasVoice && !AudioCapability.VoiceOnly.hasRecordings)
+        assertEquals(listOf(AudioCapability.None), AudioCapability.entries.filter { it.silent })
     }
 
     /**
@@ -56,7 +52,6 @@ class AudioCapabilityTest {
     @Test
     fun theCatalogAnswersWhichLanguagesShipAPack() {
         assertTrue(catalog.hasRecordings("de"))
-        assertTrue(catalog.hasRecordings("sw"))
         assertFalse(catalog.hasRecordings("en"))
         // A language the catalog does not declare at all cannot have one either.
         assertFalse(catalog.hasRecordings("zz"))

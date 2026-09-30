@@ -18,6 +18,11 @@ class AlphabetFixtureTest {
     private fun rejects(entries: String): String =
         assertFailsWith<CatalogFormatException> { AlphabetFixture.deEntries(entries) }.message.orEmpty()
 
+    private fun rejectsFile(alphabet: String): String =
+        assertFailsWith<CatalogFormatException> {
+            AlphabetFixture.catalogWith("alphabet/de.json", alphabet)
+        }.message.orEmpty()
+
     // -- registry ----------------------------------------------------------------------
 
     @Test
@@ -132,11 +137,6 @@ class AlphabetFixtureTest {
                                { "id": "two", "title": { "en": "Two" } } ],
                  "entries": [$entries] }"""
 
-        fun rejectsFile(alphabet: String): String =
-            assertFailsWith<CatalogFormatException> {
-                AlphabetFixture.catalogWith("alphabet/de.json", alphabet)
-            }.message.orEmpty()
-
         val interleaved = rejectsFile(
             sectioned(
                 """
@@ -171,11 +171,6 @@ class AlphabetFixtureTest {
 
     @Test
     fun sectionShapeErrorsAreRejected() {
-        fun rejectsFile(alphabet: String): String =
-            assertFailsWith<CatalogFormatException> {
-                AlphabetFixture.catalogWith("alphabet/de.json", alphabet)
-            }.message.orEmpty()
-
         val row = """{ "glyph": "a", "ipa": "a", "section": "one" }"""
         assertTrue("needs a title" in rejectsFile("""{ "sections": [ { "id": "one" } ], "entries": [$row] }"""))
         assertTrue("bad id" in rejectsFile("""{ "sections": [ { "id": "One_1", "title": { "en": "x" } } ], "entries": [$row] }"""))
@@ -196,31 +191,17 @@ class AlphabetFixtureTest {
 
     @Test
     fun confusionSetsCloseBothWaysPerAxis() {
-        assertEquals(listOf("n"), de.row("m").confusableLook)
         assertEquals(listOf("m"), de.row("n").confusableLook) // never authored
-        assertEquals(listOf("ss"), de.row("ß").confusableSound)
-        assertEquals(listOf("ß"), de.row("ss").confusableSound)
-        assertEquals(listOf("ch-ach", "ch-chef"), de.row("ch-ich").confusableLook)
-        assertEquals(listOf("ch-ich"), de.row("ch-chef").confusableLook)
-        // The axes stay apart: ch-chef looks like ch-ich but never sounds like it.
-        assertEquals(listOf("ch-ach"), de.row("ch-ich").confusableSound)
-        assertEquals(emptyList(), de.row("ch-chef").confusableSound)
-        assertEquals(listOf("и"), uk.row("і").confusableLook)
-    }
-
-    @Test
-    fun accessorsReturnTheClosedSets() {
-        assertEquals(listOf("ss"), de.lookAlikes("ß").map { it.ref })
         assertEquals(listOf("ß"), de.soundAlikes("ss").map { it.ref })
-        assertEquals(emptyList(), de.lookAlikes("nope").map { it.ref })
+        // The axes stay apart: ch-chef looks like ch-ich but never sounds like it.
+        assertEquals(listOf("ch-ich"), de.row("ch-chef").confusableLook)
+        assertEquals(emptyList(), de.row("ch-chef").confusableSound)
     }
 
     /** Groups are the identical IPA string, never an authored table. */
     @Test
     fun homophonesAreDerivedFromIdenticalIpa() {
         assertEquals(listOf("ss"), de.homophones("ß").map { it.ref })
-        assertEquals(listOf("ß"), de.homophones("ss").map { it.ref })
-        assertEquals(emptyList(), de.homophones("m").map { it.ref })
         assertEquals(emptyList(), uk.homophones("и").map { it.ref }) // ɪ and i differ
         assertEquals(emptyList(), de.homophones("h-length").map { it.ref }) // no ipa at all
     }

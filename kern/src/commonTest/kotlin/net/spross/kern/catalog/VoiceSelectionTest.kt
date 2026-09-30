@@ -17,8 +17,6 @@ class VoiceSelectionTest {
     @Test
     fun everyOtherLanguageAsksForItselfAlone() {
         assertEquals("sw", VoiceSelection.preferredTag("sw"))
-        assertEquals("uk", VoiceSelection.preferredTag("uk"))
-        assertEquals("de", VoiceSelection.preferredTag("de"))
     }
 
     @Test

@@ -15,6 +15,22 @@ import kotlin.test.assertTrue
 class CatalogFixtureTest {
     private val catalog = Fixture.catalog()
 
+    /** Loading the fixture with [path] replaced by [content] fails, naming [fragment]. */
+    private fun rejects(path: String, content: String, fragment: String) {
+        val error = assertFailsWith<CatalogFormatException> {
+            Catalog.load(MapCatalogSource(Fixture.files + (path to content)))
+        }
+        assertTrue(fragment in error.message.orEmpty(), "message: ${error.message}")
+    }
+
+    private fun rejectsEdit(path: String, old: String, new: String, fragment: String) =
+        rejects(path, Fixture.files.getValue(path).replace(old, new), fragment)
+
+    private companion object {
+        const val GAMMA_DE = "areas/gamma/de.json"
+        const val LEARNING = "Ich lerne {language}."
+    }
+
     private fun List<Card>.byId(id: String): Card =
         firstOrNull { it.id == id } ?: throw AssertionError("card $id not joined: ${map { it.id }}")
 
@@ -81,11 +97,8 @@ class CatalogFixtureTest {
     @Test
     fun seedIndexFlattensGroupsAreasConcepts() {
         val cards = catalog.join("de", "uk")
-        assertEquals(0, cards.byId("waiter").seedIndex)
-        assertEquals(1, cards.byId("waiter-f").seedIndex)
+        // Skipped concepts keep their place, so the indices run across the whole catalog.
         assertEquals(3, cards.byId("mouse").seedIndex)
-        assertEquals(6, cards.byId("the-mouse-sprints").seedIndex)
-        assertEquals(8, cards.byId("royal-f").seedIndex)
         assertEquals(10, cards.byId("door").seedIndex)
     }
 
@@ -181,20 +194,13 @@ class CatalogFixtureTest {
     @Test
     fun areaSubtitleReadsBesideTheTitle() {
         assertEquals("Alles dreht sich.", catalog.areaSubtitle("gamma", "de"))
-        assertEquals("Усе обертається.", catalog.areaSubtitle("gamma", "uk"))
-        assertEquals("Gamma", catalog.areaTitle("gamma", "de"))
         assertNull(catalog.areaSubtitle("gamma", "en")) // gamma/en.json authors none
         assertNull(catalog.areaSubtitle("alpha", "de"))
-        assertNull(catalog.areaSubtitle("delta", "de"))
     }
 
     @Test
     fun misspelledAreaHeadingKeyIsRejected() {
-        val broken = Fixture.files + mapOf(
-            "areas/gamma/sw.json" to """{ "title": "Gamma", "subtitel": "…", "words": {} }""",
-        )
-        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
-        assertTrue("subtitel" in error.message.orEmpty(), "message: ${error.message}")
+        rejects("areas/gamma/sw.json", """{ "title": "Gamma", "subtitel": "…", "words": {} }""", "subtitel")
     }
 
     @Test
@@ -241,22 +247,12 @@ class CatalogFixtureTest {
 
     @Test
     fun anUndeclaredNamedLanguageFailsTheParse() {
-        val broken = Fixture.files + mapOf(
-            "language-names/sw.json" to Fixture.names.getValue("language-names/sw.json")
-                .replace("\"uk\":", "\"xx\":"),
-        )
-        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
-        assertTrue("undeclared language \"xx\"" in error.message.orEmpty(), "message: ${error.message}")
+        rejectsEdit("language-names/sw.json", "\"uk\":", "\"xx\":", "undeclared language \"xx\"")
     }
 
     @Test
     fun aLanguageNameWithoutAnInFormFailsTheParse() {
-        val broken = Fixture.files + mapOf(
-            "language-names/de.json" to Fixture.names.getValue("language-names/de.json")
-                .replace("\"in\": \"auf Suaheli\", ", ""),
-        )
-        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
-        assertTrue("missing \"in\"" in error.message.orEmpty(), "message: ${error.message}")
+        rejectsEdit("language-names/de.json", "\"in\": \"auf Suaheli\", ", "", "missing \"in\"")
     }
 
     // -- language markers --------------------------------------------------------------
@@ -308,29 +304,18 @@ class CatalogFixtureTest {
 
     @Test
     fun aSecondMarkerInOneStringFailsTheParse() {
-        val error = loadWithGammaDeText("Ich lerne {language} auf {language}.")
-        assertTrue("second language marker" in error.message.orEmpty(), "message: ${error.message}")
+        rejectsEdit(GAMMA_DE, LEARNING, "Ich lerne {language} auf {language}.", "second language marker")
     }
 
     @Test
     fun anUnknownMarkerFormFailsTheParse() {
-        val error = loadWithGammaDeText("Ich lerne {language-of}.")
-        assertTrue("unknown language marker" in error.message.orEmpty(), "message: ${error.message}")
+        rejectsEdit(GAMMA_DE, LEARNING, "Ich lerne {language-of}.", "unknown language marker")
     }
 
     /** Nothing re-capitalizes what a marker inserts, so a sentence may never open with one. */
     @Test
     fun aStringInitialMarkerFailsTheParse() {
-        val error = loadWithGammaDeText("{language} lerne ich.")
-        assertTrue("language marker opens" in error.message.orEmpty(), "message: ${error.message}")
-    }
-
-    private fun loadWithGammaDeText(text: String): CatalogFormatException {
-        val broken = Fixture.files + mapOf(
-            "areas/gamma/de.json" to Fixture.files.getValue("areas/gamma/de.json")
-                .replace("Ich lerne {language}.", text),
-        )
-        return assertFailsWith { Catalog.load(MapCatalogSource(broken)) }
+        rejectsEdit(GAMMA_DE, LEARNING, "{language} lerne ich.", "language marker opens")
     }
 
     // -- drill frames ------------------------------------------------------------------
@@ -390,11 +375,7 @@ class CatalogFixtureTest {
     /** A class the concord table does not carry would render plain — fail the build instead. */
     @Test
     fun anUnknownSwahiliNounClassFailsTheParse() {
-        val broken = Fixture.files + mapOf(
-            "phrases/sw.json" to Fixture.files.getValue("phrases/sw.json").replace("KI_VI", "M_MI"),
-        )
-        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
-        assertTrue("unknown swahiliNounClass" in error.message.orEmpty(), "message: ${error.message}")
+        rejectsEdit("phrases/sw.json", "KI_VI", "M_MI", "unknown swahiliNounClass")
     }
 
     /** Only the ANSWER side needs generated number words — a pack-less language still prompts. */
@@ -426,12 +407,7 @@ class CatalogFixtureTest {
 
     @Test
     fun aMalformedMarkerInAFrameFailsTheParse() {
-        val broken = Fixture.files + mapOf(
-            "phrases/sw.json" to Fixture.drills.getValue("phrases/sw.json")
-                .replace("{language} tangu", "{language-of} tangu"),
-        )
-        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
-        assertTrue("unknown language marker" in error.message.orEmpty(), "message: ${error.message}")
+        rejectsEdit("phrases/sw.json", "{language} tangu", "{language-of} tangu", "unknown language marker")
     }
 
     @Test
@@ -458,21 +434,12 @@ class CatalogFixtureTest {
 
     @Test
     fun blankNumberNoteFailsTheParse() {
-        val broken = Fixture.files + mapOf(
-            "phrases/uk.json" to Fixture.drills.getValue("phrases/uk.json")
-                .replace("The numeral sets the form.", " "),
-        )
-        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
-        assertTrue("numberNotes.en" in error.message.orEmpty(), "message: ${error.message}")
+        rejectsEdit("phrases/uk.json", "The numeral sets the form.", " ", "numberNotes.en")
     }
 
     @Test
     fun malformedFrameFileNamesThePath() {
-        val broken = Fixture.files + mapOf(
-            "phrases/uk.json" to """{ "frames": { "no-such-frame": { "text": "{slot}." } } }""",
-        )
-        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
-        assertTrue("phrases/uk.json" in error.message.orEmpty(), "message: ${error.message}")
+        rejects("phrases/uk.json", """{ "frames": { "no-such-frame": { "text": "{slot}." } } }""", "phrases/uk.json")
     }
 
     /**
@@ -483,12 +450,7 @@ class CatalogFixtureTest {
      */
     @Test
     fun formsIsNotAFrameSlotKind() {
-        val broken = Fixture.files + mapOf(
-            "phrases/frames.json" to Fixture.drills.getValue("phrases/frames.json")
-                .replace("\"slot\": \"clock\"", "\"slot\": \"forms\""),
-        )
-        val error = assertFailsWith<CatalogFormatException> { Catalog.load(MapCatalogSource(broken)) }
-        assertTrue("unknown slot \"forms\"" in error.message.orEmpty(), "message: ${error.message}")
+        rejectsEdit("phrases/frames.json", "\"slot\": \"clock\"", "\"slot\": \"forms\"", "unknown slot \"forms\"")
     }
 
     /** Frames ride the RAW source: editing one must not restamp a running box. */

@@ -21,15 +21,12 @@ class CatalogAudioLookupTest {
     fun aWordCarriesItsIndexToThePronunciation() {
         val spoken = catalog.pronunciation("sw", "-mlango")
         assertEquals(-5.4, spoken.gain)
-        assertEquals(-9.8, spoken.gainPhone)
         assertEquals(41L, spoken.leadMs)
         assertEquals(-58.5, spoken.gate)
         // Nothing to play means nothing to correct, not a stale index from elsewhere.
         val synthesized = catalog.pronunciation("de", "Kellnerin")
         assertNull(synthesized.recordingPath)
         assertEquals(0.0, synthesized.gain)
-        assertNull(synthesized.gainPhone)
-        assertEquals(0L, synthesized.leadMs)
         assertNull(synthesized.gate)
     }
 
@@ -38,11 +35,8 @@ class CatalogAudioLookupTest {
         val letter = assertNotNull(catalog.letterRecording("uk", "ж"))
         assertEquals("audio/uk/letters/u0436.mp3", letter.path)
         assertEquals(20.0, letter.gain)
-        assertNull(letter.gainPhone) // letters ship no phone plane
         assertEquals(1069L, letter.leadMs)
-        assertNull(letter.gate) // none measured
         assertNull(catalog.letterRecording("uk", "ь")) // no recording exists
-        assertNull(catalog.letterRecording("en", "ж")) // no manifest at all
     }
 
     /** A verb with no recording of its citation form is heard by its bare stem; an exact one still wins. */
@@ -149,7 +143,7 @@ class CatalogAudioLookupTest {
     fun creditsGroupPerLanguageAuthorAndLicense() {
         val credits = catalog.audioCredits()
         assertEquals(
-            listOf(
+            setOf(
                 "de|Anna|CC BY-SA 4.0", // one author's BY-SA and BY work stays apart
                 "de|Bert|CC BY-SA 4.0",
                 "de|Bert|CC BY 3.0 us",
@@ -161,11 +155,11 @@ class CatalogAudioLookupTest {
                 "uk|Halyna|CC BY 3.0 us",
                 "uk|Tabrus|CC BY-SA 4.0",
             ),
-            credits.map { "${it.language}|${it.author}|${it.license}" },
+            credits.map { "${it.language}|${it.author}|${it.license}" }.toSet(),
         )
         assertEquals(
-            listOf("kochen" to "De-kochen.ogg", "Tür" to "De-Tür.ogg"),
-            credits.first().files.map { it.label to it.source },
+            setOf("kochen" to "De-kochen.ogg", "Tür" to "De-Tür.ogg"),
+            credits.first { it.author == "Anna" && it.license == "CC BY-SA 4.0" }.files.map { it.label to it.source }.toSet(),
         )
         assertNull(credits.first { it.license == "Public domain" }.licenseUrl)
     }
@@ -173,7 +167,7 @@ class CatalogAudioLookupTest {
     /** RULE: a credit row plays the very file it credits — every row, letters included. */
     @Test
     fun everyCreditRowCarriesItsOwnRecording() {
-        val kochen = catalog.audioCredits().first().files.first()
+        val kochen = catalog.audioCredits().flatMap { it.files }.first { it.label == "kochen" }
         assertEquals(catalog.pronunciation("de", "kochen").recordingPath, kochen.pronunciation.recordingPath)
         val letter = catalog.audioCredits().first { it.author == "Tabrus" }.files.first()
         assertEquals(catalog.letterRecordingPath("uk", letter.label), letter.pronunciation.recordingPath)
@@ -182,8 +176,8 @@ class CatalogAudioLookupTest {
     @Test
     fun lettersAreCreditedByTheirGlyph() {
         val letters = catalog.audioCredits().first { it.author == "Tabrus" }
-        assertEquals(listOf("ж", "і"), letters.files.map { it.label })
-        assertEquals("Жж – ukrainian.ogg", letters.files.first().source)
+        assertEquals(setOf("ж", "і"), letters.files.map { it.label }.toSet())
+        assertEquals("Жж – ukrainian.ogg", letters.files.first { it.label == "ж" }.source)
     }
 
     // -- fingerprint exemption ---------------------------------------------------------

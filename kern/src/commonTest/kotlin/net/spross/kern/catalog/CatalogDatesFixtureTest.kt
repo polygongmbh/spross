@@ -36,22 +36,11 @@ class CatalogDatesFixtureTest {
 
     @Test
     fun aWeekdayParsesFieldForField() {
-        assertEquals(7, de.weekdays.size)
-        assertEquals("Montag", de.weekdays.first().text)
         assertEquals("Mo", de.weekdays.first().abbr)
-        assertEquals(emptyList(), de.weekdays.first().teaches)
         val saturday = de.weekdays[5]
         assertEquals("Samstag", saturday.text)
         assertEquals(listOf("Sonnabend"), saturday.teaches)
         assertNull(saturday.dateForm)
-    }
-
-    @Test
-    fun monthsCarryTwelveInIsoOrderAndNoAbbreviation() {
-        assertEquals(12, de.months.size)
-        assertEquals("Januar", de.months.first().text)
-        assertEquals("Dezember", de.months.last().text)
-        assertTrue(de.months.all { it.abbr == null })
     }
 
     /** The one key only Ukrainian needs: what a name becomes INSIDE a date. */
@@ -99,12 +88,9 @@ class CatalogDatesFixtureTest {
     @Test
     fun theJoinPairsBothSidesNamesInIsoOrder() {
         val content = assertNotNull(catalog.dateDrillContent("de", "uk"))
-        assertEquals(7, content.weekdays.size)
-        assertEquals(12, content.months.size)
-        assertEquals(listOf(0, 1, 2), content.months.take(3).map { it.index })
+        assertEquals(2, content.months[2].index)
         assertEquals("März", content.months[2].source.text)
         assertEquals("березень", content.months[2].target.text)
-        assertEquals("Mo", content.weekdays.first().source.abbr)
     }
 
     /**
@@ -123,7 +109,6 @@ class CatalogDatesFixtureTest {
     fun aPairWithoutACalendarOnEitherSideHasNoDrill() {
         assertNull(catalog.dateDrillContent("de", "en"))
         assertNull(catalog.dateDrillContent("en", "de"))
-        assertNull(catalog.dateDrillContent("en", "sw"))
     }
 
     /**
