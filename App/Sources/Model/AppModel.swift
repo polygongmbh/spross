@@ -178,14 +178,6 @@ final class AppModel {
 
     // MARK: - Profile
 
-    var sourceLanguage: String {
-        box?.joinStamp.source
-            ?? UserDefaults.standard.string(forKey: Self.sourceLanguageKey)
-            ?? defaultSource
-    }
-
-    var targetLanguage: String? { box?.joinStamp.target }
-
     /// What to call the learner, or nil where no name was given — what the greeting knows
     /// about who it greets, kept per person and not per pair (`LearnerProfile`).
     private(set) var learnerName: String? = LearnerProfile.name
@@ -194,23 +186,6 @@ final class AppModel {
     func setLearnerName(_ raw: String?) {
         LearnerProfile.name = raw
         learnerName = LearnerProfile.name
-    }
-
-    /// What this device reports it reads — the one fact Kern cannot have.
-    static var deviceLanguage: String {
-        Locale.current.language.languageCode?.identifier ?? Catalog.companion.FALLBACK_SOURCE
-    }
-
-    /// The source a fresh install opens with (contract §1) — Kern's ruling over
-    /// the catalog, so a device language nothing can be taught from still lands
-    /// on a source that teaches.
-    var defaultSource: String {
-        catalog?.defaultSource(deviceLanguage: Self.deviceLanguage)
-            ?? Catalog.companion.FALLBACK_SOURCE
-    }
-
-    func languageInfo(_ code: String) -> LanguageInfo? {
-        catalog?.languages[code]
     }
 
     // MARK: - Launch
@@ -229,7 +204,7 @@ final class AppModel {
         uitestScreen = defaults.string(forKey: "uitest-screen")
         #endif
 
-        guard let catalog = await Self.loadCatalog() else {
+        guard let catalog = await BundleCatalogSource.load() else {
             loadFailure = .catalogMissing
             phase = .ready
             return
@@ -255,19 +230,6 @@ final class AppModel {
             uitestFinished = true
         }
         #endif
-    }
-
-    /// The Xcode project bundles the repo's catalog/ folder as a folder
-    /// reference; Kern parses it through a path-based reader.
-    // why: ~350 JSON files, most of a megabyte, parsed and fingerprinted — the
-    // longest single thing a cold start does, and nothing about it needs the
-    // main actor. Android has always loaded it off the main thread.
-    private static func loadCatalog() async -> Catalog? {
-        guard let directory = Bundle.main.url(forResource: "catalog", withExtension: nil)
-        else { return nil }
-        return await Task.detached {
-            Catalog.companion.load(source: BundleCatalogSource(directory: directory))
-        }.value
     }
 
     /// The end of the ONLY first-run path — the pick, then the round it was made for.
@@ -326,7 +288,7 @@ final class AppModel {
             box = state
             refreshTrainerContent()
             refreshStats()
-            anyWordAudible = composedAnyWordAudible()
+            refreshAudibility()
             try await store.saveNow(state: state, scope: opened.save)
             UserDefaults.standard.set(source, forKey: Self.sourceLanguageKey)
             UserDefaults.standard.set(target, forKey: Self.targetLanguageKey)
@@ -342,77 +304,13 @@ final class AppModel {
         switchingLanguage = false
     }
 
-    /// Switch the known language in place — every schedule survives (keys are
-    /// card ids); non-joining entries turn inert and revive on switch-back.
-    func switchSource(_ newSource: String) {
-        guard let box, let catalog, box.joinStamp.source != newSource,
-              catalog.languages[newSource] != nil, newSource != box.joinStamp.target
-        else { return }
-        let cards = catalog.join(source: newSource, target: box.joinStamp.target)
-        let stamp = JoinStamp(source: newSource, target: box.joinStamp.target,
-                              catalogFingerprint: catalog.fingerprint)
-        let next = BoxEngine.shared.rejoin(state: box, cards: cards, joinStamp: stamp)
-        self.box = next
-        UserDefaults.standard.set(newSource, forKey: Self.sourceLanguageKey)
-        save(next, BoxChange.changed.saveScope)
-        refreshTrainerContent()
-        refreshStats()
-        anyWordAudible = composedAnyWordAudible()
-        recomposeSessionIfStale()
-    }
-
-    func switchTarget(_ newTarget: String) {
-        guard let box, box.joinStamp.target != newTarget else { return }
-        let source = box.joinStamp.source
-        Task { await activate(source: source, target: newTarget) }
-    }
-
-    /// Picking the OTHER side's language swaps the pair. Both boxes survive:
-    /// the current target's box is already persisted on disk, and `activate`
-    /// loads (or bootstraps) the new target's box re-joined under the new
-    /// source — schedules are per-target documents keyed by card id.
-    func swapLanguages() {
-        guard let stamp = box?.joinStamp else { return }
-        // why: stamp.source != stamp.target always holds, so the swapped pair
-        // keeps the invariant and `activate` accepts it.
-        Task { await activate(source: stamp.target, target: stamp.source) }
-    }
-
     /// Scene became active: the box file may predate a catalog/profile change.
     func handleForeground() {
         recomposeSessionIfStale()
         refreshStats()
         // why: a voice installed in Settings while the app slept can make the
         // box audible; nothing else that moves the box changes this answer.
-        anyWordAudible = composedAnyWordAudible()
-    }
-
-    // MARK: - UI-chrome locale
-
-    /// Locale for UI chrome, derived from the profile's KNOWN language when
-    /// chrome exists for it; other sources read English until their UIs are
-    /// authored. Which languages those are, and the fallback, is kern's
-    /// (`LanguageChoices`).
-    var knownLocale: Locale { Self.chromeLocale(source: sourceLanguage) }
-
-    /// The chrome language for a known language. Onboarding uses it too —
-    /// with no box yet, `sourceLanguage` is the device language (when the
-    /// catalog covers it), so the very first screen greets in it and then
-    /// follows whatever the user picks.
-    static func chromeLocale(source: String) -> Locale {
-        Locale(identifier: LanguageChoices.shared.chromeLanguage(source: source))
-    }
-
-    /// Immersion: the language being LEARNED, but only when we have chrome for
-    /// it — so an action button can show its word in the target language as a
-    /// subtitle. nil = no immersion subtitle, which is why this asks
-    /// `hasChrome` rather than `chromeLanguage`: the fallback would caption a
-    /// button in the wrong language.
-    var targetChromeLocale: Locale? {
-        guard let target = targetLanguage,
-              LanguageChoices.shared.hasChrome(language: target)
-        else { return nil }
-        return Locale(identifier: target)
+        refreshAudibility()
     }
 
     // MARK: - Persistence & stats
@@ -484,6 +382,11 @@ final class AppModel {
         areaChrome = composedAreaChrome(catalog: catalog)
     }
 
+    /// Re-asks `anyWordAudible`, wherever the join or the device's voices can have moved.
+    func refreshAudibility() {
+        anyWordAudible = composedAnyWordAudible()
+    }
+
     /// Reload `otherLanguagesAnswerDays` for every catalog language except
     /// `target`. A sibling box that is missing or fails to decode is simply
     /// skipped — its own load path surfaces the real error when the learner
@@ -492,54 +395,4 @@ final class AppModel {
         otherLanguagesAnswerDays = await store.answerDays(excluding: target, tzId: currentTzId())
     }
 
-    /// Scene went to background: every answer is already in the box, so this only makes
-    /// sure it reaches disk, snapshots and all, before the app can be suspended.
-    func saveNow() {
-        guard let box else { return }
-        pushWatchSnapshot()
-        // why: the main actor cannot wait on the store's actor here; the write starts
-        // at once and runs inside the time a backgrounded scene is given.
-        Task { [store] in try? await store.saveNow(state: box, scope: BoxChange.leaving.saveScope) }
-    }
-
-    /// The one way a change to the box goes to disk: the store writes it behind the caller,
-    /// with what `scope` carries (`BoxStore.save`), and the watch gets its snapshot alongside.
-    func save(_ state: BoxState, _ scope: SaveScope) {
-        if scope.writesSnapshots { pushWatchSnapshot() }
-        Task { [store] in await store.save(state: state, scope: scope) }
-    }
-
-    /// Apply a change nothing derived reads, and let it ride out with the next save.
-    ///
-    /// The counterpart to `mutate`, for the change that moves no card, no schedule and no
-    /// tally: there is nothing for `refreshStats` to take again, and nothing for the watch
-    /// or the widget to be told: it is written with the box alone.
-    func stamp(_ change: (BoxState) -> BoxState) {
-        guard let state = box else { return }
-        let next = change(state)
-        box = next
-        save(next, BoxChange.stamped.saveScope)
-    }
-
-    /// Apply a change to the box, save it with the snapshots, refresh statistics.
-    func mutate(_ change: (inout BoxState) -> Void) {
-        guard var state = box else { return }
-        change(&state)
-        box = state
-        save(state, BoxChange.changed.saveScope)
-        refreshStats()
-    }
-}
-
-/// Path-based `CatalogSource` over the bundled catalog folder reference.
-private final class BundleCatalogSource: NSObject, CatalogSource {
-    private let directory: URL
-
-    init(directory: URL) {
-        self.directory = directory
-    }
-
-    func read(path: String) -> String? {
-        try? String(contentsOf: directory.appendingPathComponent(path), encoding: .utf8)
-    }
 }
