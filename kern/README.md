@@ -80,9 +80,7 @@ the rules the declarations cannot state are here.
   From the TARGET side the same merge is not a residue but a fact of the word:
   a form more than one concept prints means all of what they mean
   (sw `ndege` is Vogel AND Flugzeug),
-  so a card asked what it MEANS credits any of them
-  and the reveal names the rest (section 3).
-  That join is literal, not the lenient grading one -- de `Arm` is not `arm`.
+  so a card asked what it MEANS credits any of them (`docs/grading.md`).
 - **Grammar display is target-side only**:
   the plural line and the article coloring render for the target realization alone
   (`model/DisplayText.kt`).
@@ -118,21 +116,15 @@ both feeding the one schedule ("every answer event is an FSRS review" holds).
     the per-card phase offset keeps the box from flipping in sync.
 - **Synonym rotation** on recognition prompts, and **sound-prompted production**
   (`producePrompt`): asking a word by ear WITHDRAWS the meaning rather than adding support,
-  so it needs the growing bar (section 5).
-  The ANSWER moves with it: what is typed is the meaning, in the source language,
-  because a word heard and written back down has been transcribed rather than understood.
-  EVERY meaning the played form carries counts, not only this card's --
-  the borrowed one books in full while pausing on the meaning THIS card teaches
-  (`AlmostReason.Merged`).
+  so it needs the growing bar (section 5),
+  and what is typed back is the meaning, in the source language (`docs/presentation.md`).
 - **The target is spoken with its article; the source is not** (user ruling 2026-08-21).
 - **Emoji cue**: `emojiCue(role, growing)` answers WHEN the picture appears,
-  never whether or where.
-  **Upfront** iff role == Produce and the word has not landed (section 5) --
-  the one prompt it can support recall on without giving the answer away.
-  **OnReveal** everywhere else.
-  **The first exposure does not carry it** (ruling 2026-08-07):
-  on a self-graded card the picture depicts the very concept being asked for.
-  Where each branch falls and why is `docs/presentation.md`.
+  never whether or where:
+  **Upfront** iff role == Produce and the word has not landed (section 5),
+  **OnReveal** everywhere else --
+  **the first exposure included** (ruling 2026-08-07).
+  Why each branch falls where it does is `docs/presentation.md`.
 - **Female** is a labeled badge, never graded:
   a base-word answer typed on a feminine produce card grades as typo, not failure
   (graded against `Card.baseAccepted`; corrected shows the feminine canonical text).
@@ -177,7 +169,7 @@ the numbers behind each setting are on `BoxConfig` itself, and the three stabili
   the run a card lapsed in does not wait for it
   (the watch alone folds enough misses back into a round, `docs/surfaces.md`);
   by role resolution (section 3), the retry that follows is the typed production attempt.
-  Suspension is now purely the learner's own call -- `setSuspended`, reversible from the Box.
+  Suspension is the learner's own call -- `setSuspended`, reversible from the Box.
 - **A graduated interval floors at one day.**
 - **TWO growth bars, not one**:
   `GROWING_STABILITY` (`Statistics.hasArrived`, facade `BoxEngine.hasArrived(state, cardId)`)
@@ -322,13 +314,6 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   The ladder, the modes and the availability gates are `docs/turns.md`.
 - **Listening is a playlist over the learner's own words** (`net.spross.kern.listen`) --
   target word, meaning in the source language, then the target again.
-  **Both halves must be sayable**, or a turn plays a word and then silence.
-  **The playlist is dealt, not drawn**: one priority per word --
-  the shakiest lead, then words the learner queued (most recently queued first),
-  then the rest of the unseen ones (catalog's earliest stretch first as a group,
-  shuffled within it) -- and the run walks and laps that order.
-  **Suspended cards stay in the pool**: a suspended card pays a toll on its own lane
-  instead of being sent to the back.
   Hearing a word does not introduce it --
   `ListeningRun` holds no `BoxState` at all.
   The pool, the ladder, the deal, the beats and the bedtime fade are `docs/turns.md`.
