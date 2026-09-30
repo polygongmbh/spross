@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.AlertDialog
@@ -26,6 +27,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -39,6 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -398,6 +401,27 @@ private fun ReadAloudSetting(model: AppModel, target: Language) {
         // why: only where there is a choice to be scoped — a language with one source
         // has nothing to remember per language.
         if (sources == AudioCapability.Both) SettingHint(chrome.settingsAudioHintPerLanguage)
+        Row(
+            modifier = Modifier.fillMaxWidth().toggleable(
+                value = model.pronouncer.saysMeaning,
+                enabled = !model.pronouncer.muted,
+                role = Role.Switch,
+                onValueChange = { model.pronouncer.saysMeaning = it },
+            ),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                chrome.settingsAudioSaysMeaning,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.weight(1f),
+            )
+            Switch(
+                checked = model.pronouncer.saysMeaning,
+                onCheckedChange = null,
+                enabled = !model.pronouncer.muted,
+            )
+        }
+        SettingHint(chrome.settingsAudioSaysMeaningHint)
     }
 }
 

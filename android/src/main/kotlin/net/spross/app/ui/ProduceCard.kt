@@ -30,7 +30,6 @@ import net.spross.app.CardDisplay
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
 import net.spross.app.areaTitle
-import net.spross.app.audio.Pronouncer
 import net.spross.app.pronounceAction
 import net.spross.app.pronounceTarget
 import net.spross.kern.model.ProducePrompt
@@ -163,7 +162,7 @@ private fun ReplayPrompt(model: AppModel, ui: SessionUi) {
         modifier = Modifier
             .size(72.dp)
             .clip(CircleShape)
-            .clickable { model.pronounceTarget(card.target.text, Pronouncer.Trigger.TAP) }
+            .clickable { model.pronounceTarget(card.target.text) }
             // why: merged, or the loudspeaker would be a node of its own and TalkBack
             // would read the picture after the button it belongs to.
             .semantics(mergeDescendants = true) {

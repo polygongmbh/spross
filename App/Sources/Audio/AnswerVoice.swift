@@ -3,7 +3,8 @@ import SwiftUI
 /// The pending "say the answer" wait, held rather than fired and forgotten:
 /// the beat outlives a fast tap, and a reveal closed within it would otherwise
 /// speak its answer over whatever screen replaced the run. Every drill holds
-/// one of these, so the beat, the reading and the cancel cannot drift apart
+/// one of these, and so does the review session for the side a card says as
+/// it settles, so the beat, the reading and the cancel cannot drift apart
 /// between them.
 @MainActor
 final class AnswerVoice {
@@ -17,8 +18,9 @@ final class AnswerVoice {
 
     /// Say `form` once the chime has landed. `.auto`, so the read-aloud switch
     /// and VoiceOver both still veto it — a tap on the speaker outranks the
-    /// mute, this does not.
-    func speak(_ form: String, lang: String, via model: AppModel) {
+    /// mute, this does not. `article` is the target-side one the voice says in
+    /// front of a card's canonical word (`CardDisplay.spokenArticle`).
+    func speak(_ form: String, lang: String, via model: AppModel, article: String? = nil) {
         pending?.cancel()
         owed = (form, lang, model)
         pending = Task { @MainActor in
@@ -27,7 +29,7 @@ final class AnswerVoice {
             try? await Task.sleep(for: .milliseconds(300))
             guard !Task.isCancelled else { return }
             pending = nil
-            model.pronounceAloud(form, lang: lang)
+            model.pronounceAloud(form, lang: lang, article: article)
         }
     }
 

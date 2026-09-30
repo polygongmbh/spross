@@ -106,6 +106,9 @@ internal object ChromeDe : Chrome {
     override val settingsAudioHintTts = "Immer die autogenerierte Systemstimme, so werden " +
         "Artikel immer mitgelesen."
     override val settingsAudioHintPerLanguage = "Pro Lernsprache wählbar."
+    override val settingsAudioSaysMeaning = "Bedeutung mitsprechen"
+    override val settingsAudioSaysMeaningHint = "Jede Karte sagt das Wort und seine " +
+        "Bedeutung in deiner Sprache."
     override val creditsTitle = "Impressum & Lizenzen"
     override val creditsRecordings = "%d Aufnahmen"
     override val creditsRecordingsOne = "%d Aufnahme"

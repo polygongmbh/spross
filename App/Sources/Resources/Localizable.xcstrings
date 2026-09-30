@@ -6181,6 +6181,38 @@
         }
       }
     },
+    "settings.audio.saysMeaning" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedeutung mitsprechen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Say the Meaning Too"
+          }
+        }
+      }
+    },
+    "settings.audio.saysMeaning.hint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jede Karte sagt das Wort und seine Bedeutung in deiner Sprache."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every card says the word and its meaning in your language."
+          }
+        }
+      }
+    },
     "settings.audio.title" : {
       "localizations" : {
         "de" : {

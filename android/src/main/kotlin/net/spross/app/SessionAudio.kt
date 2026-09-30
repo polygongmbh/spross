@@ -3,46 +3,45 @@ package net.spross.app
 import net.spross.app.audio.Pronouncer
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.pronunciation
-import net.spross.kern.model.PronunciationCue
-import net.spross.kern.model.pronunciationCue
 import net.spross.kern.model.shownArticle
+import net.spross.kern.session.TurnSaying
 
 /**
  * The review loop's audio glue, kept beside the model rather than in it: what a card
- * may say is [SessionUi.promptPronunciation] and Kern's cue, whether it may be heard
- * is [Pronouncer], and all that is left — which form, on which transition — is here.
+ * says at each moment is kern's (`TurnState.promptSaying` / `answerSaying`), whether it
+ * may be heard is [Pronouncer], and all that is left — which transition fires it — is
+ * the session screen's.
  *
  * The iOS twin is `SessionView+Audio.swift`; the firing table both follow is
  * docs/read-aloud.md.
  */
 
 /**
- * How long a produce fire waits after its transition. The correct/wrong/reveal chime
+ * How long an answer's saying waits after its transition. The correct/wrong/reveal chime
  * is never ducked or shortened for the word, so the word steps around it instead of
- * talking over its own first syllable. Nothing waits on the word in turn — these are
- * the paths that carry no auto-advance at all.
+ * talking over its own first syllable.
  */
 const val CHIME_CLEARANCE_MS = 300L
 
 /**
- * Says the recognition prompt at card mount. Silent by construction on a produce
- * card: the model only fills [SessionUi.promptPronunciation] where Kern's cue has
- * the target on screen from frame one.
+ * Says one of the turn's sayings as autoplay. The target side takes the card's article
+ * where the form is its canonical word; the learner's own side never does. [onFinish]
+ * fires once the saying is over, or at once where nothing sounds.
  */
-fun AppModel.autoplayPrompt() {
-    val pronunciation = sessionUi?.promptPronunciation ?: return
-    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.AUTO, spokenArticle(pronunciation.form))
+fun AppModel.say(saying: TurnSaying, onFinish: (() -> Unit)? = null) {
+    val article = spokenArticle(saying.form).takeIf { saying.lang == sessionUi?.card?.target?.lang }
+    val pronunciation = catalog?.pronunciation(saying.lang, saying.form, article)
+    if (pronunciation == null) {
+        onFinish?.invoke()
+        return
+    }
+    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.AUTO, article, onFinish = onFinish)
 }
 
-/**
- * Says one form of the card in play. An AUTO fire is gated on the cue standing at
- * `OnReveal` — never on a role test of its own — so nothing can autoplay a target
- * the learner still owes; a TAP is a request and passes either way.
- */
-fun AppModel.pronounceTarget(form: String, trigger: Pronouncer.Trigger) {
-    if (trigger == Pronouncer.Trigger.AUTO && !awaitsReveal()) return
+/** Says [form] of the card in play on a tap, which is a request and passes both mutes. */
+fun AppModel.pronounceTarget(form: String) {
     val pronunciation = pronunciationOf(form) ?: return
-    pronouncer.pronounce(pronunciation, trigger, spokenArticle(form))
+    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP, spokenArticle(form))
 }
 
 /**
@@ -77,9 +76,4 @@ private fun AppModel.pronunciationOf(form: String): Pronunciation? {
     // why: the card's own article, so a word the pack recorded WITH one is heard with it —
     // the same ruling that is handed to the voice a line later, asked once here.
     return catalog?.pronunciation(lang, form, spokenArticle(form))
-}
-
-private fun AppModel.awaitsReveal(): Boolean {
-    val role = sessionUi?.role ?: return false
-    return pronunciationCue(role) == PronunciationCue.OnReveal
 }

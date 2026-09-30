@@ -61,6 +61,13 @@ final class Pronouncer {
     /// what makes the picker follow a change.
     private var pickedSources: [String: VoiceSource] = [:]
 
+    /// Whether a review card also says the learner's own side — the meaning it
+    /// asks by or reveals. One device-wide choice, on until turned off; the
+    /// mute silences it with everything else.
+    var saysMeaning: Bool = UserDefaults.standard.object(forKey: "audio.saysMeaning") as? Bool ?? true {
+        didSet { UserDefaults.standard.set(saysMeaning, forKey: "audio.saysMeaning") }
+    }
+
     private let player = PronunciationPlayer()
     private let speaker = Speaker()
 

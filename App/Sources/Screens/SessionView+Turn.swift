@@ -32,7 +32,9 @@ extension SessionView {
             // why: AutoAdvance skips the timer under a screen reader (it
             // truncates the announcement and moves the screen), and the branch
             // renders "Weiter" there — same rating, through ConfirmPending.
-            AutoAdvance.schedule(beat.tier, &autoAdvance) {
+            // The beat also waits out the answer being said, or the flip would
+            // cut the word off.
+            AutoAdvance.schedule(beat.tier, &autoAdvance, holding: { await answerVoice.said() }) {
                 dispatch(TurnIntent.AdvanceElapsed.shared)
             }
         case .cancelAdvance:
@@ -108,8 +110,8 @@ extension SessionView {
         autoAdvance?.cancel()
         // why: the word in the air belongs to the card that is leaving — the
         // one place playback is stopped, together with .onDisappear.
-        Pronouncer.shared.stop()
-        pronouncedCardID = nil
+        answerVoice.hush()
+        spokenMoments = []
         input = ""
         copyInput = ""
         beginTurn()

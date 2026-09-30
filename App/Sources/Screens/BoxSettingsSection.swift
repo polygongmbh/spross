@@ -209,6 +209,14 @@ struct BoxSettingsSection: View {
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
             }
+            Toggle("settings.audio.saysMeaning", isOn: Binding(
+                get: { Pronouncer.shared.saysMeaning },
+                set: { Pronouncer.shared.saysMeaning = $0 }))
+                .font(Theme.typography.subheadline)
+                .disabled(Pronouncer.shared.muted)
+            Text("settings.audio.saysMeaning.hint")
+                .font(Theme.typography.caption)
+                .foregroundStyle(Theme.colors.textSecondary)
             if VoiceUpgradeHint.shared.suggests(language: model.targetLanguage) {
                 Label("settings.audio.voiceUpgrade \(targetChromeName)",
                       systemImage: "speaker.wave.2")

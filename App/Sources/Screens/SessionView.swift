@@ -39,10 +39,12 @@ struct SessionView: View, LanguageNaming {
     @State var input = ""
     @State var copyInput = ""
     @State var autoAdvance: Task<Void, Never>?
-    /// The card whose word has already been said. The one-shot autoplay guard
+    /// The moments whose saying has fired, `<card id>|<answer?>`. The one-shot autoplay guard
     /// (SessionView+Audio.swift) — stored here because a SwiftUI extension
     /// cannot carry state of its own.
-    @State var pronouncedCardID: String?
+    @State var spokenMoments: Set<String> = []
+    /// Says the answer after the chime, and is what the advance beat waits out.
+    @State var answerVoice = AnswerVoice()
     /// The card whose report sheet is up, with the answer as it stood when the
     /// menu was tapped — the field itself has moved on by the time it presents.
     @State private var reporting: ReportedCard?
@@ -102,10 +104,10 @@ struct SessionView: View, LanguageNaming {
             // why: a field carried over from the previous card is not
             // re-mounted, so nothing else would re-assert focus for it.
             focusAnswerField()
-            if let card = model.currentCard { autoplayPrompt(card) }
+            autoplayPrompt()
         }
-        .onChange(of: produceAudioTrigger) { was, now in
-            if !was, now { autoplayProduceReveal() }
+        .onChange(of: turn?.settled ?? false) { was, now in
+            if !was, now { autoplayAnswer() }
         }
         .onAppear {
             // why: the card-change hook does not see the FIRST card, so the
@@ -116,12 +118,12 @@ struct SessionView: View, LanguageNaming {
             // reveal that carries the keyboard.
             Pronouncer.shared.warmUp()
             Sound.warmUp()
-            if let card = model.currentCard { autoplayPrompt(card) }
+            autoplayPrompt()
         }
         .onDisappear {
             autoAdvance?.cancel()
             focusRetry?.cancel()
-            Pronouncer.shared.stop()
+            answerVoice.hush()
         }
         #if DEBUG
         // UI-test hooks: `-uitest-reveal 1` shows the first card revealed,

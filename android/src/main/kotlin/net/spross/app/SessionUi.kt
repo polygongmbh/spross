@@ -7,19 +7,15 @@ import net.spross.kern.box.GrowthHeadline
 import net.spross.kern.box.TreeTransition
 import net.spross.kern.box.grownArea
 import net.spross.kern.box.growthHeadline
-import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.Card
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
-import net.spross.kern.model.PronunciationCue
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.producePrompt
-import net.spross.kern.model.pronunciationCue
 import net.spross.kern.model.recognitionPromptForm
-import net.spross.kern.model.shownArticle
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
@@ -37,11 +33,6 @@ data class SessionUi(
     val growing: Boolean = false,
     /** Which face carries the picture; null when the word has none. */
     val emojiCue: EmojiCue?,
-    /**
-     * What the prompt says out loud, or null where the card owes that very form —
-     * non-null ⇔ kern's cue puts the target on screen from frame one.
-     */
-    val promptPronunciation: Pronunciation?,
     val segments: List<AnswerOutcome>,
     val remaining: Int,
     /** What the round bought ([SessionRunState]'s buckets); the summary spells the non-zero parts. */
@@ -92,7 +83,7 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
         val streakDays = stats?.streak ?: 0
         SessionUi(
             card = null, role = null, promptForm = null,
-            emojiCue = null, promptPronunciation = null,
+            emojiCue = null,
             segments = active.segments, remaining = 0,
             introduced = active.newCards, strengthened = active.graduated,
             reviewed = active.reviews,
@@ -128,23 +119,6 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             firstExposure = count == 0,
             growing = growing,
             emojiCue = card.emoji?.let { emojiCue(role, growing) },
-            // why: the KERN cue, never `role == Recognize` — one rule, consumed by
-            // both apps. The PROMPTED form, so a rotated synonym is heard as itself.
-            promptPronunciation = catalog
-                ?.takeIf { pronunciationCue(role, prompt) == PronunciationCue.Upfront }
-                // why: a sound-prompted produce has NOTHING on screen, so what plays
-                // is the very form it grades against, not the recognition rotation.
-                ?.pronunciation(
-                    card.target.lang,
-                    if (prompt == ProducePrompt.Sound) card.target.text else promptForm,
-                    // why: the prompted form's own article — `shownArticle` withholds it
-                    // from a rotated synonym, so only the canonical form hears one.
-                    shownArticle(
-                        CardDisplay.article(card.target),
-                        if (prompt == ProducePrompt.Sound) card.target.text else promptForm,
-                        card.target.text,
-                    ),
-                ),
             segments = active.segments,
             remaining = active.remaining,
             introduced = active.newCards,

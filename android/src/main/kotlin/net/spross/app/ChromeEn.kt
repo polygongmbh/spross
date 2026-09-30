@@ -103,6 +103,9 @@ internal object ChromeEn : Chrome {
         "otherwise."
     override val settingsAudioHintTts = "Always the system voice, article included."
     override val settingsAudioHintPerLanguage = "Chosen per language you learn."
+    override val settingsAudioSaysMeaning = "Say the Meaning Too"
+    override val settingsAudioSaysMeaningHint = "Every card says the word and its meaning in " +
+        "your language."
     override val creditsTitle = "Legal & Licenses"
     override val creditsRecordings = "%d recordings"
     override val creditsRecordingsOne = "%d recording"

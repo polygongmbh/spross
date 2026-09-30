@@ -26,6 +26,9 @@ class TurnSayingTest {
         assertNull(asking.promptSaying(saysMeaning = false))
         val clean = TurnFixture.state(asking, TurnIntent.InputChanged("kisu"))
         assertEquals(TurnSaying("kisu", "sw"), clean.answerSaying(saysMeaning = false))
+        // A slip holds on its proper spelling, which is what is said.
+        val slipped = TurnFixture.state(asking, TurnIntent.Submit("kisuu"))
+        assertEquals(TurnSaying("kisu", "sw"), slipped.answerSaying(saysMeaning = false))
     }
 
     @Test

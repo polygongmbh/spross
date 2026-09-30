@@ -117,6 +117,20 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         }
     }
 
+    private var saysMeaningState by mutableStateOf(prefs.getBoolean(SAYS_MEANING, true))
+
+    /**
+     * Whether a review card also says the learner's own side — the meaning it asks by or
+     * reveals. One device-wide choice, on until turned off; [muted] silences it with
+     * everything else.
+     */
+    var saysMeaning: Boolean
+        get() = saysMeaningState
+        set(value) {
+            saysMeaningState = value
+            prefs.edit().putBoolean(SAYS_MEANING, value).apply()
+        }
+
     private fun stored(lang: Language): VoiceSource =
         VoiceSource.entries.firstOrNull { it.storedValue == prefs.getString(keyFor(lang), null) }
             ?: VoiceSource.RECORDINGS
@@ -299,6 +313,8 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         }
 
     private companion object {
+        const val SAYS_MEANING = "audio.saysMeaning"
+
         fun keyFor(lang: Language) = "pronunciationSource.$lang"
     }
 }

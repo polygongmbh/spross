@@ -17,11 +17,13 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
@@ -29,19 +31,21 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import net.spross.app.AppModel
 import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.CardDisplay
 import net.spross.app.SessionCoach
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
-import net.spross.app.audio.Pronouncer
-import net.spross.app.autoplayPrompt
 import net.spross.app.newTurn
 import net.spross.app.pronounceAction
-import net.spross.app.pronounceTarget
+import net.spross.app.say
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.shownArticle
+import net.spross.kern.session.answerSaying
+import net.spross.kern.session.promptSaying
+import net.spross.kern.session.settled
 
 @Composable
 fun SessionScreen(model: AppModel) {
@@ -78,23 +82,25 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
         model.newTurn(ui, onTone = hooks.tone, onReleaseFocus = hooks.releaseFocus)
     } ?: return
 
-    // why: keyed on the card, so the prompt is said once as it arrives and the fire
-    // belongs to that card alone. A produce card reaches here with nothing to say.
-    LaunchedEffect(card.id) { model.autoplayPrompt() }
-
-    BeatEffect(flow.beatToken, flow.armedBeat, flow::advanceElapsed)
-
-    // The produce card says its word once it has stopped asking — after a beat, so the
-    // verdict cue is out of the way, and once per card however the pause was reached.
-    var spoken by remember(card.id) { mutableStateOf(false) }
-    val revealForm = flow.spokenReveal
-    LaunchedEffect(revealForm) {
-        val form = revealForm ?: return@LaunchedEffect
-        if (spoken) return@LaunchedEffect
-        spoken = true
-        delay(CHIME_CLEARANCE_MS)
-        model.pronounceTarget(form, Pronouncer.Trigger.AUTO)
+    // why: keyed on the turn, so each card says its prompt once as it arrives, and the word
+    // in the air belongs to that card alone — leaving it stops it.
+    LaunchedEffect(flow) {
+        flow.state.promptSaying(model.pronouncer.saysMeaning)?.let { model.say(it) }
     }
+    DisposableEffect(flow) { onDispose { model.pronouncer.stop() } }
+
+    // The side the prompt held back, said once the card has settled — a reveal, a hold, or
+    // a clean answer — after a beat so the verdict cue is out of the way. The advance a clean
+    // answer arms waits it out, so the word is never cut off by its own flip.
+    var answerSounding by remember(flow) { mutableStateOf(false) }
+    LaunchedEffect(flow) {
+        snapshotFlow { flow.state.settled }.first { it }
+        val saying = flow.state.answerSaying(model.pronouncer.saysMeaning) ?: return@LaunchedEffect
+        answerSounding = true
+        delay(CHIME_CLEARANCE_MS)
+        model.say(saying) { answerSounding = false }
+    }
+    BeatEffect(flow.beatToken, flow.armedBeat, flow::advanceElapsed, holding = { answerSounding })
 
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),

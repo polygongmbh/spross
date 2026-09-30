@@ -18,31 +18,38 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   and points at the download while the compact voice is active:
   a line in the audio setting and one dismissible notice on Home.
   The voice table is dropped on every foreground.
+- **A review card says both its sides, each once: the word and its meaning.**
+  Hearing them paired binds them, and each side is said where the card shows it.
+  The meaning is the learner's own language, on until the audio setting's "Say the meaning too" turns it off.
 - **The target language is spoken with its article; the learner's own language is not.**
   The voice says "das Brot"; kern decides whether there is an article (`shownArticle`).
   Where a pack recorded the article too, the recording says it:
   German and Italian carry an `articles{}` section.
   Badge, plural line and alternates stay unspoken.
 - **Audio may never give the answer away**:
-  recognition speaks at once, produce waits for the reveal.
-  Both apps consume one cue (`PronunciationCue`).
+  recognition speaks the word at once, produce says the meaning it asks by and waits for the reveal to say the word.
+  Both apps consume kern's sayings (`TurnState.promptSaying`/`answerSaying`).
 - **Autoplay fires only where the card holds the learner.**
-  A clean correct flips in 0.45-1.2 s; a word cut off teaches nothing.
+  A clean correct answer says the word too, and its flip waits for the saying to end, up to a ceiling;
+  a word cut off teaches nothing.
   A drill says every graded answer, right or wrong, and its beat waits for the reading to end
   (kern's `DrillEffect.SayAnswer`, one standard for every drill);
   a timed run leaves its clean answers unsaid, since the clock is running,
   and the letter drill says nothing more, since its question already was the sound.
   Produce fires wait for the feedback chime;
-  chimes are never ducked, and no fire delays a flip.
-  One fire per card and one per drill task.
+  chimes are never ducked.
+  One prompt fire and one answer fire per card, and one per drill task.
 
 | on screen | speaks? | what is said |
 |---|---|---|
 | recognition prompt | yes, at once | the prompted form (rotated synonym, not canonical) |
-| recognition reveal, write-it-out | no | already said once |
-| produce correct | no -- card is flipping | -- |
+| recognition reveal | yes, after chime | the meaning |
+| write-it-out | no | already said once |
+| produce prompt, asked by meaning | yes, at once | the meaning |
+| produce prompt, asked by ear | yes, at once | the target word |
+| produce correct | yes, after chime; the flip waits for it | the target word, or the meaning on a card asked by ear |
 | near miss (typo, other form) | yes, after chime | the correction box form |
-| produce revealed (Aufdecken/wrong/other word) | yes, after chime | the bare target word |
+| produce revealed (Aufdecken/wrong/other word) | yes, after chime | the bare target word, or the meaning on a card asked by ear |
 | trainer drill prompt (numeral, clock, date) | no | the reading IS the answer |
 | drill prompt in learning language (reversed run) | yes, at once | the form on the card |
 | drill prompt in known language (forward run) | no | the reveal carries the voice |

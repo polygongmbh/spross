@@ -283,31 +283,6 @@ class TurnWiringTest {
         assertEquals(listOf(Rating.Again), platform.booked)
     }
 
-    /**
-     * Which form a produce card says out loud once it stops asking: a slip's proper
-     * spelling, and otherwise the bare word — never while it is still asking, and never
-     * on a recognition card, whose prompt may be a rotated synonym.
-     */
-    @Test
-    fun theSpokenRevealIsTheFormTheCardOwesBack() {
-        val (asking, _) = turn(knife)
-        assertNull(asking.spokenReveal)
-
-        val (slipped, _) = turn(knife)
-        slipped.type("kisuu")
-        slipped.primary()
-        assertEquals("kisu", slipped.spokenReveal)
-
-        val (missed, _) = turn(language)
-        missed.type("neno")
-        missed.primary()
-        assertEquals("lugha", missed.spokenReveal)
-
-        val (recognizing, _) = turn(knife, role = PresentationRole.Recognize)
-        recognizing.reveal()
-        assertNull(recognizing.spokenReveal)
-    }
-
     private companion object {
         const val T0 = 1_700_000_000_000L
 

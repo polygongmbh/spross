@@ -1,90 +1,48 @@
 import SwiftUI
 import SprossKern
 
-/// AUDIO half of SessionView: when a card's target word is said out loud, and
-/// which surface says it. State lives on SessionView; split out purely for
+/// AUDIO half of SessionView: when a card says its word and its meaning, and
+/// which surface says them. State lives on SessionView; split out purely for
 /// file size.
 ///
-/// Kern decides WHETHER the form is on screen (`PronunciationCue` — consumed
-/// here, never re-derived from the role) and `Pronouncer` decides whether it
-/// may be heard. What is left is the timing, and it is all here: every fire
-/// passes the one-shot guard, no fire ever touches an auto-advance timer, and
-/// the produce paths wait the feedback chime out.
+/// Kern decides WHAT each moment says (`TurnState.promptSaying` and
+/// `answerSaying` — consumed here, never re-derived from the role) and
+/// `Pronouncer` decides whether it may be heard. What is left is the timing,
+/// and it is all here: every fire passes the one-shot guard, and the answer's
+/// saying waits the feedback chime out while the advance beat waits it out in
+/// turn (`answerVoice`).
 extension SessionView {
 
     // MARK: - Autoplay
 
-    /// Says the prompt where the cue has the target standing on the card from
-    /// frame one. A produce card plays nothing here — its word is the thing
-    /// being asked for; `produceAudioTrigger` below arms the reveal instead.
-    func autoplayPrompt(_ card: Card) {
-        // why: the TURN's own prompt (`askedByEar`) — the cue and the card face
-        // must never disagree about what this card is asking, and the device's
-        // audibility can change under it.
-        let heard = askedByEar(card)
-        switch model.pronunciationCue(for: card, prompt: heard ? .sound : .source) {
-        case .upfront:
-            // why: the PROMPTED form, never the canonical one — a rotated
-            // synonym has to be heard as the word that is actually on screen.
-            // A sound-prompted produce has nothing on screen at all, so what
-            // plays is the very form it grades against.
-            guard claimAutoplay(card.id) else { return }
-            let form = heard ? card.target.text : model.promptForm(for: card)
-            speak(form, trigger: .auto)
-        case .onReveal:
-            break
-        }
+    /// Says what the card may say from frame one: the prompted target form, or
+    /// the meaning a produce card asks by.
+    func autoplayPrompt() {
+        guard let turn = ensureTurn(),
+              let saying = turn.promptSaying(saysMeaning: Pronouncer.shared.saysMeaning),
+              claimAutoplay(turn.card.id, answer: false) else { return }
+        speak(saying.form, lang: saying.lang, trigger: .auto)
     }
 
-    /// True exactly where a PRODUCE card holds the learner on the answer: the
-    /// typo correction, and the reveal a miss or "Aufdecken" opens.
-    ///
-    /// Role-gated, because `cardRevealed` is true on a recognition reveal and
-    /// through the copy step too — speaking there would say the canonical word
-    /// after a rotated synonym was prompted, the one thing the matched-form
-    /// lookup exists to prevent, and say it twice besides.
-    ///
-    /// Deliberately WITHOUT `feedback == .correct`: an accepted answer flips on
-    /// a beat shorter than a recording lasts, and `feedback` swings back and
-    /// forth on every keystroke past the answer. A word cut off every time is
-    /// worse than a word not played — the next recognition of it speaks in
-    /// full, and a tap always does.
-    var produceAudioTrigger: Bool {
-        guard let card = model.currentCard,
-              model.presentationRole(for: card.id) == .produce else { return false }
-        return cardRevealed || almostHold != nil
+    /// Says the side the prompt held back, once the card has settled — a reveal,
+    /// a hold on its correction, or a clean answer. The advance a clean answer
+    /// arms waits for it (`answerVoice.said()`), so the word is never cut off by
+    /// its own flip.
+    func autoplayAnswer() {
+        guard let turn,
+              let saying = turn.answerSaying(saysMeaning: Pronouncer.shared.saysMeaning),
+              claimAutoplay(turn.card.id, answer: true) else { return }
+        answerVoice.speak(saying.form, lang: saying.lang, via: model,
+                          article: spokenArticle(of: saying.form, lang: saying.lang))
     }
 
-    /// Says the produce card's word once its transition has landed.
-    ///
-    /// A beat out (~300 ms): the correct/wrong/reveal chime belongs to Sound
-    /// and is never ducked or altered, so the word waits for it rather than
-    /// talking over its own first syllable. Nothing waits on the word in turn —
-    /// these are the two produce paths that carry no auto-advance at all.
-    func autoplayProduceReveal() {
-        guard let card = model.currentCard, claimAutoplay(card.id) else { return }
-        // why: the correction box is the only place a typo's proper spelling
-        // stands. Otherwise the bare target text — never `CardDisplay.citation`,
-        // whose article is grammar decoration the audio never speaks.
-        let form = typoCorrection ?? card.target.text
-        Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(300))
-            // why: a tap on through inside the beat takes the card with it —
-            // the word armed for it must not follow the learner to the next.
-            guard currentCardID == card.id else { return }
-            speak(form, trigger: .auto)
-        }
-    }
-
-    /// The one-shot guard, asked by every autoplay path. The card-change hook
-    /// fires nil→id for the FIRST card on top of `.onAppear`, and the produce
-    /// predicate is not monotonic — without this the first card speaks twice
-    /// and typing past the answer re-fires the reveal. Cleared per card by
-    /// `resetCardState()`.
-    private func claimAutoplay(_ cardID: String) -> Bool {
-        guard pronouncedCardID != cardID else { return false }
-        pronouncedCardID = cardID
-        return true
+    /// The one-shot guard, asked by every autoplay path: each card says its
+    /// prompt once and its answer once. The card-change hook fires nil→id for
+    /// the FIRST card on top of `.onAppear`, and `settled` is not monotonic —
+    /// without this the first card speaks twice and typing past the answer
+    /// re-fires it. Cleared per card by `resetCardState()`.
+    private func claimAutoplay(_ cardID: String, answer: Bool) -> Bool {
+        spokenMoments.insert("\(cardID)|\(answer)").inserted
     }
 
     // MARK: - One fire
@@ -92,11 +50,13 @@ extension SessionView {
     /// Hands one visible form to the shared pronouncer: Kern resolves what to
     /// say and whether a bundled recording speaks that very form, the model
     /// turns its catalog path into a bundle URL.
-    func speak(_ form: String, trigger: Pronouncer.Trigger) {
-        guard let pronunciation = pronunciation(of: form) else { return }
+    func speak(_ form: String, lang: String, trigger: Pronouncer.Trigger) {
+        guard let pronunciation = model.formPronunciation(form, lang: lang,
+                                                          article: spokenArticle(of: form, lang: lang))
+        else { return }
         Pronouncer.shared.pronounce(pronunciation,
                                     recordingURL: model.audioURL(pronunciation.recordingPath),
-                                    trigger: trigger, article: spokenArticle(of: form))
+                                    trigger: trigger, article: spokenArticle(of: form, lang: lang))
     }
 
     /// Tap-to-replay for a form — nil where the device can neither play nor
@@ -118,8 +78,9 @@ extension SessionView {
     /// only where `form` IS its canonical target: a rotated synonym, a typo
     /// correction and the source side all come back nil, which is exactly the
     /// ruling `CardDisplay.spokenArticle` makes.
-    private func spokenArticle(of form: String) -> String? {
-        guard let card = model.currentCard else { return nil }
+    private func spokenArticle(of form: String, lang: String? = nil) -> String? {
+        guard let card = model.currentCard, lang ?? card.target.lang == card.target.lang
+        else { return nil }
         return CardDisplay.spokenArticle(of: card.target, shown: form)
     }
 

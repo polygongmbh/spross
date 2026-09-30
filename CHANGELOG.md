@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Review cards now say the meaning in your own language as well as the word, and a card answered right waits for its word to be said before moving on; the audio settings can turn the meaning off.
+
 ## 8.0.0 — 2026-09-30
 
 - Every drill now pauses at a natural stop — after a good stretch, a new level or record, or a run of misses — with Done and Keep practicing, which carries the same run on.

@@ -7,7 +7,6 @@ import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
 import net.spross.kern.session.AdvanceTier
-import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.CopyStep
 import net.spross.kern.session.SelfGrading
 import net.spross.kern.session.ToneKind
@@ -101,29 +100,6 @@ class TurnFlow(
      */
     val fieldFeedback: TurnFeedback
         get() = if (retryApproved) TurnFeedback.Correct else feedback
-
-    /**
-     * The form a produce card says out loud once it has stopped asking, or null while it
-     * is still asking. A slip's proper spelling is what the correction owes back; every
-     * other pause owes the bare target word — never the article-carrying citation, which
-     * is grammar decoration the audio never speaks.
-     *
-     * Role-gated: a recognition reveal would say the canonical word after a rotated
-     * synonym was prompted, which is the one thing the matched-form lookup prevents.
-     *
-     * A card asked by ear holds its correction in the SOURCE language, so it never reaches
-     * here: what such a card says out loud is still the word it played.
-     */
-    val spokenReveal: String?
-        get() {
-            if (state.role != PresentationRole.Produce) return null
-            val hold = almost
-            if (!answerRevealed && hold == null) return null
-            val correction = hold
-                ?.takeIf { it.reason == AlmostReason.Typo && state.prompt != ProducePrompt.Sound }
-                ?.correctForm
-            return correction ?: state.card.target.text
-        }
 
     /** The word was heard and could not be: it goes on screen for the rest of this turn. */
     val promptInText: Boolean get() = state.promptInText
