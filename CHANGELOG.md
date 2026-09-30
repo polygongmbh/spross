@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+## 8.0.0 — 2026-09-30
+
 - Every drill now pauses at a natural stop — after a good stretch, a new level or record, or a run of misses — with Done and Keep practicing, which carries the same run on.
 - A finished round's buttons now carry icons, and the area that grew sits on its own line above the tally.
 - The sentence scramble now climbs through levels of steadily harder sentences, and both scrambles stop at their hardest level.
