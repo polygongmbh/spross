@@ -85,7 +85,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   while every identifier that followed it would have to change with it.
 
 ### Tests
-- Test rules and behavior, not implementation details or tweakable constants
+- Test rules and behavior, not implementation details or tweakable constants —
+  nor the exact edge of a threshold: one typical case per outcome
 - Extract pure logic so it's testable without the framework
 - When one code change needs multiple test changes, assess the sensibility of the tests - do not overtest;
   a presentation choice (an order, a wording, a layout) gets no test at all
@@ -136,7 +137,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   is `docs/audio-licensing.md`; no other doc restates a license term.
 - Write plans into docs/plans/ and delete them once shipped, even if you did not write the plan;
   a plan or handoff doc stays UNCOMMITTED unless asked since it is working state
-- Never commit changes to markdown documentation files as separate commits, commit them with related code changes where sensible
+- Never commit changes to markdown documentation files as separate commits, commit them with related code changes where sensible;
+  a backlog ruling or pruning with no code stays uncommitted and rides along with the commit that acts on it
 - Whenever you are corrected or do extensive research, tighten or replace the line that should
   have caught it before adding a new one; a new docs/ file only when no existing doc owns the topic
 - Do not document a removal or absence of something beyond the commits message unless it is likely to be accidentally reintroduced
