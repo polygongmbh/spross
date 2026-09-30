@@ -37,7 +37,7 @@ it works the same on macOS and Linux except where a section says otherwise.
   On macOS with Android Studio installed this is `~/Library/Android/sdk`.
   (`ANDROID_HOME` works too.) Prefer `local.properties`:
   an `ANDROID_SDK_ROOT` left over from an older install points somewhere that
-  no longer exists on more machines than not, and every tool honours it silently.
+  no longer exists on more machines than not, and every tool honors it silently.
 - `adb` for device installs (part of platform-tools; a udev rule may be needed
   for USB debugging on some distros).
 - **Git hooks**: `git config core.hooksPath scripts/hooks` (or `sh scripts/bootstrap.sh`,
@@ -71,20 +71,11 @@ Min Android 8.0 (API 26).
 ## Emulator
 
 `scripts/run-emu.sh` is the Android counterpart of `scripts/run-sim.sh`:
-it boots the AVD if it is not already up, builds, installs and launches.
-
-```sh
-scripts/run-emu.sh                       # build + (re)launch on the spross-phone AVD
-scripts/run-emu.sh --no-build            # reinstall the last APK
-scripts/run-emu.sh --clean               # uninstall first ⇒ onboarding runs
-scripts/run-emu.sh --shot /tmp/drill.png # screenshot once it has drawn (implies --mute)
-scripts/run-emu.sh --mute                # start with reading aloud switched off
-scripts/run-emu.sh --avd spross-tablet   # another AVD by name
-```
-
-`--mute` starts the app silent so a run nobody is sitting at never speaks up.
-It silences autoplay for that launch,
-as the top-bar toggle would, and the top-bar toggle turns sound back on. `--sound` opts a screenshot run back in.
+it boots the `spross-phone` AVD if it is not already up, builds, installs and launches;
+its header lists the flags.
+`--mute` (implied by `--shot`) starts the app silent so a run nobody is sitting at never speaks up:
+it silences autoplay for that launch as the top-bar toggle would,
+and the toggle turns sound back on.
 
 One-time setup, once per machine:
 
@@ -180,17 +171,8 @@ see the cloud section below.
 
 ## Claude Code on the web / cloud containers
 
-Remote sessions run this same Linux path. These containers ship JDK 21
-preinstalled, which is exactly the pinned toolchain above — nothing to
-provision, `./gradlew :kern:jvmTest` works immediately with no setup step.
-
-There is no Xcode, `xcodegen`, `xcrun`/`simctl`, or `idb` in these
-containers and there never will be — don't probe for them or try to install
-them. `:kern:jvmTest` plus the Android gates above are the rudimentary
-verification available here; the iOS build gate in `CLAUDE.md` and the
-`verify` skill are Mac-only.
-
-The emulator is not available either: these containers expose no `/dev/kvm`,
-and a software-emulated Android is too slow to be worth the wait.
-Anything that has to be seen or heard running waits for a machine with a GPU
-and virtualization — a local checkout or a real device.
+Remote sessions run this same Linux path.
+The containers ship JDK 21 preinstalled, so `./gradlew :kern:jvmTest` and the Android gates above
+work with no setup step.
+What they lack — Xcode, the `verify` skill, `/dev/kvm` for the emulator — is `CLAUDE.md` § Commands;
+anything that has to be seen or heard running waits for a local checkout or a real device.
