@@ -15,7 +15,7 @@ struct SessionCompletionView: View {
     /// it stands now. The round just moved it, so its tree is the one thing on
     /// this screen about THIS learner's box rather than about having finished.
     var grownArea: TreeTransition?
-    /// The area's emoji and name, leading the line under the title.
+    /// The area's emoji and name, labeling the tree right under it.
     var grownAreaLabel: String = ""
     /// What the summary says over the tree (`AppModel.sessionHeadline`).
     var headline: GrowthHeadline?
@@ -58,14 +58,9 @@ struct SessionCompletionView: View {
         return parts.map { Self.partText($0, alone: parts.count == 1) }.joined()
     }
 
-    /// Under the title: the grown area's label, and the tally on a line of its own.
-    /// The area is LABELED rather than named in the title: the area did not
-    /// grow — what the learner can say did.
-    private var summaryText: Text {
-        guard showsTree else { return tallyText ?? Text("session.done.tally.allDone") }
-        let label = Text(verbatim: grownAreaLabel)
-        guard let tallyText else { return label }
-        return label + Text(verbatim: "\n") + tallyText
+    /// Under the title: the tally, which counts the whole round, not the area.
+    private var summaryText: Text? {
+        tallyText ?? (showsTree ? nil : Text("session.done.tally.allDone"))
     }
 
     private var showsTree: Bool { grownArea.map { !$0.after.isBare } ?? false }
@@ -119,7 +114,19 @@ struct SessionCompletionView: View {
             // why: the tree takes the hero slot when the round grew an area —
             // a party popper is the same picture whatever the learner did, and
             // two celebratory graphics on one screen is one too many.
-            if showsTree { grownAreaHero(ceiling: treeCeiling) } else { burstHero }
+            if showsTree {
+                // why: the area is LABELED under its tree rather than named in the
+                // title — the area did not grow, what the learner can say did.
+                VStack(spacing: Theme.spacing.sm) {
+                    grownAreaHero(ceiling: treeCeiling)
+                    Text(verbatim: grownAreaLabel)
+                        .font(.system(.headline, design: .rounded))
+                        .foregroundStyle(Theme.colors.textSecondary)
+                        .multilineTextAlignment(.center)
+                }
+            } else {
+                burstHero
+            }
             // why: one title — the growth claim where a tree stands over it,
             // the plain "All done!" where the popper does.
             Text(showsTree ? headlineKey : "session.done.title")
@@ -127,7 +134,7 @@ struct SessionCompletionView: View {
                 .foregroundStyle(Theme.colors.textPrimary)
                 .multilineTextAlignment(.center)
                 .minimumScaleFactor(0.8)
-            summaryText
+            summaryText?
                 .font(.system(.title3, design: .rounded))
                 .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)

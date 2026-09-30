@@ -83,29 +83,37 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 // why: the tree takes the hero slot when the round grew an area — a party popper
                 // is the same picture whatever the learner did, and two celebratory graphics on
                 // one screen is one too many.
-                if (grown != null) {
+                val area = grown?.after?.area
+                if (grown != null && area != null) {
                     GrowingTree(grown, ForestLayout.heroHeight(grown.after, treeCeiling.value).dp)
+                    // why: the area is LABELED under its tree rather than named in the claim —
+                    // what grew is what the learner can say, never the area itself.
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        "${model.areaEmoji(area)} ${model.areaTitle(area)}",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textAlign = TextAlign.Center,
+                    )
                 } else {
                     Text("🎉", fontSize = 88.sp) // card-parity: the done screen's own glyph, not a card prompt
                 }
-                val area = grown?.after?.area
-                // why: one title and the lines under it — the growth claim where the round grew
-                // an area, with the area LABELED above the tally rather than named in the
-                // claim: what grew is what the learner can say, never the area itself.
-                val label = area?.let { "${model.areaEmoji(it)} ${model.areaTitle(it)}" }
                 Spacer(Modifier.height(16.dp))
                 Text(
                     if (headline != null && area != null) growthLine(chrome, headline) else chrome.sessionDoneTitle,
                     style = MaterialTheme.typography.headlineLarge,
                     textAlign = TextAlign.Center,
                 )
-                Spacer(Modifier.height(8.dp))
-                Text(
-                    listOfNotNull(label, tally).joinToString("\n").ifEmpty { chrome.sessionDoneTallyAllDone },
-                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center,
-                )
+                // why: the tally counts the whole round, not the area, so it stands apart from the label.
+                (tally ?: chrome.sessionDoneTallyAllDone.takeIf { area == null })?.let {
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        it,
+                        style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Normal),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textAlign = TextAlign.Center,
+                    )
+                }
                 if (ui.restSuggested) {
                     // why: a day the box itself is telling the learner to stop makes no growth
                     // claim — a screen that celebrates and is contradicted two lines down
