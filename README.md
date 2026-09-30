@@ -59,8 +59,8 @@ internal TestFlight testers get the same build minutes after the tag, without re
   Pure logic, time injected (`nowEpochMillis`/`tzId`), fully unit-tested.
   Engine contract: `kern/README.md`.
 - `App/` — SwiftUI app: design system (poster-derived theme), file-backed store
-  (one document per target language), screens (Home as the single root;
-  Box, session and trainers push off it).
+  (one document per target language), screens (Home, Box and Settings as tabs;
+  sessions and drills open over them).
   The only target that links the Kotlin framework.
 - `Shared/`, `Watch/`, `Widgets/`, `WatchWidgets/` — decode-only Swift surfaces
   reading phone-built snapshots; no Kotlin linkage.
