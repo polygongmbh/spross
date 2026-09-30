@@ -215,5 +215,3 @@ Nothing wears a prefix one scope wider than what it serves.
   The letter drill and the two scrambles keep none,
   and no drill books a review or touches a schedule (`../kern/README.md`),
   so a run costs the box nothing and can be closed at any moment.
-  That is what names the card the Wiese / Meadow:
-  open ground beside the tended orchard the box is.
