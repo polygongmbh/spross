@@ -42,7 +42,7 @@ Nothing wears a prefix one scope wider than what it serves.
   all key off that one list.
   A glyph, a title, a route and a layout stay the platform's.
 - **A step of the ladder is a Sprosse in EVERY interface language**, plural Sprossen:
-  it is the brand word (`website.md`),
+  it is the brand word (`plans/website.md`),
   so English chrome says "Sprosse 5".
 - **A Sprosse has to ask something no other Sprosse already asks.**
   One that composes answers the ladders teach separately is a free Sprosse:

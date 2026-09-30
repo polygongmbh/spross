@@ -16,12 +16,12 @@ The rights holder is Polygon GmbH, the same entity the Impressum names
   the repo already rejected GPL-3.0 dependencies for exactly that reason
   (`audio-licensing.md` § 5). Permissive (MIT, Apache-2.0) and weak copyleft (MPL-2.0)
   are unaffected.
-- **Hosted sync as the paid tier** (`sync.md`). A server under AGPL-3.0 obliges anyone
+- **Hosted sync as the paid tier** (`plans/sync.md`). A server under AGPL-3.0 obliges anyone
   running a modified copy to publish their changes, and it is never linked into the app,
   so it cannot reach the app's license. One owner may license the two differently.
 - **What ships inside keeps its own terms** whatever the repo picks: Nunito under
   OFL-1.1 (`android/licenses/Nunito-OFL.txt`, credited on the About screen), the audio
-  packs under CC BY-SA / CC BY / CC0, and the dependencies — kotlinx, AndroidX, Compose,
+  packs under their per-file terms (`audio-licensing.md`), and the dependencies — kotlinx, AndroidX, Compose,
   Glance, SKIE — under their own, which a `NOTICE` has to list. Confirm each before publishing.
 - **The FSRS golden vectors are copied verbatim** from ts-fsrs and py-fsrs with provenance
   (`kern/docs/fsrs.md`). A test corpus is still someone else's file: check those repos'
