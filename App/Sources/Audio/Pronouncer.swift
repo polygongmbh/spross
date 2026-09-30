@@ -228,11 +228,11 @@ final class Pronouncer {
         return (pronunciation.gain, pronunciation.cap)
     }
 
-    /// Decibels as the linear factor `AVSpeechUtterance.volume` wants — the
-    /// synthesized twin of the equalizer's gain, so one fade reaches both
-    /// branches at the same level.
+    /// The level as the linear factor `AVSpeechUtterance.volume` wants — the
+    /// synthesized twin of the equalizer's gain, so the output level and one
+    /// fade reach both branches alike.
     private static func volume(fadeDb: Double) -> Float {
-        fadeDb >= 0 ? 1 : Float(pow(10, fadeDb / 20))
+        Float(Playback.shared.linear(db: fadedGainDb(gainDb: 0, capDb: 0, fadeDb: fadeDb)))
     }
 
     func stop() {

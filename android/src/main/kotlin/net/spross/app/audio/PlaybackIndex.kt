@@ -37,19 +37,19 @@ private const val MILLIBELS_PER_DB = 100
  * `setVolume` can give.
  */
 fun playbackVolume(gainDb: Double, capDb: Double = 0.0, fadeDb: Double = 0.0): Float {
-    val boosted = maxOf(0.0, Playback.gainDb(gainDb))
+    val boosted = maxOf(0.0, Playback.levelDb(gainDb))
     return 10.0.pow((fadedGainDb(gainDb, capDb, fadeDb) - boosted) / 20).toFloat()
 }
 
-/** The same ramp with no recording under it — what a synthesized utterance is attenuated by. */
-fun fadeVolume(fadeDb: Double): Float = 10.0.pow(fadeDb / 20).toFloat()
+/** The same level with no recording under it — what a synthesized utterance plays at. */
+fun fadeVolume(fadeDb: Double): Float = Playback.linear(fadedGainDb(0.0, 0.0, fadeDb)).toFloat()
 
 /**
  * What `LoudnessEnhancer.setTargetGain` is handed for a recording measured at [gainDb] —
  * 0 where the volume already carries the correction.
  */
 fun playbackBoostMillibels(gainDb: Double): Int =
-    if (gainDb <= 0) 0 else (Playback.gainDb(gainDb) * MILLIBELS_PER_DB).roundToInt()
+    (maxOf(0.0, Playback.levelDb(gainDb)) * MILLIBELS_PER_DB).roundToInt()
 
 /**
  * The one band of the downward expander a recording's gate asks for, in the units

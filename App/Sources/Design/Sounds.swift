@@ -88,6 +88,8 @@ enum Sound {
         guard let url = Bundle.main.url(forResource: name, withExtension: "wav"),
               let player = try? AVAudioPlayer(contentsOf: url)
         else { return nil }
+        // why: the files are leveled to the recordings' target — kern's output level moves both.
+        player.volume = Float(Playback.shared.linear(db: Playback.shared.OUTPUT_DB))
         player.prepareToPlay()
         return player
     }

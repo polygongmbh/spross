@@ -165,7 +165,7 @@ Engine contract: `../README.md`.
   moment it falls: the turn in the air finishes, at the floor it has already reached.
   A PAUSED run has no seam coming and is left parked — the learner stopped it themselves,
   and a bedtime is there to end a run nobody is attending, not one somebody just touched.
-  The ramp is applied ON TOP of a recording's `Playback.gainDb` and the SUM is what
+  The ramp is applied ON TOP of a recording's `Playback.levelDb` and the SUM is what
   `LISTENING_FADE_FLOOR_DB` holds (`fadedGainDb(gainDb, fadeDb)`) — its own floor rather than
   `GAIN_LIMIT_DB`, which bounds how far a MEASUREMENT may be trusted and not a level kern chose.
   The floor is on the sum because that is the number a listener hears: the packs share no

@@ -1,6 +1,7 @@
 package net.spross.app.audio
 
 import kotlin.math.abs
+import kotlin.math.pow
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -34,40 +35,39 @@ class PlaybackIndexTest {
 
     @Test
     fun theSchemeSplitsTheIndexInTwoAndNeverAppliesBothHalves() {
-        assertVolume(1.0, 7.6) // uk «а»: lifted, so the volume stays out of it
-        assertEquals(760, playbackBoostMillibels(7.6))
+        assertVolume(1.0, playingAt(7.6)) // uk «а»: lifted, so the volume stays out of it
+        assertEquals(760, playbackBoostMillibels(playingAt(7.6)))
 
-        assertVolume(0.2754, -11.2) // sw `hurt`, the loudest pack: turned down, no boost
-        assertEquals(0, playbackBoostMillibels(-11.2))
+        assertVolume(0.2754, playingAt(-11.2)) // sw `hurt`, the loudest pack: turned down, no boost
+        assertEquals(0, playbackBoostMillibels(playingAt(-11.2)))
     }
 
-    /** 0/0 is "play as it is" — a recording with nothing to correct, not an unknown. */
+    /** 0/0 is "play at the output level" — a recording with nothing to correct, not an unknown. */
     @Test
-    fun anUnmeasuredRecordingPlaysUntouched() {
-        assertVolume(1.0, 0.0)
+    fun anUnmeasuredRecordingPlaysAtTheOutputLevel() {
+        assertVolume(10.0.pow(Playback.OUTPUT_DB / 20), 0.0)
         assertEquals(0, playbackBoostMillibels(0.0))
     }
 
     @Test
     fun attenuationIsTheDecibelDefinition() {
-        assertVolume(0.5, -6.0206)
-        assertVolume(0.25, -12.0412)
-        assertVolume(0.1, -20.0)
+        assertVolume(0.5, playingAt(-6.0206))
+        assertVolume(0.25, playingAt(-12.0412))
+        assertVolume(0.1, playingAt(-20.0))
     }
 
     /** Kern's bound survives the unit change: neither half may carry a wilder number. */
     @Test
     fun aWilderMeasurementThanTheConverterAllowsIsClamped() {
-        assertEquals(2000, playbackBoostMillibels(20.0)) // uk «ж», the loudest lift we ship
-        assertEquals(2000, playbackBoostMillibels(45.0))
-        assertVolume(0.1, -45.0)
+        assertEquals(playbackBoostMillibels(20.0), playbackBoostMillibels(45.0))
+        assertEquals(playbackVolume(-20.0), playbackVolume(-45.0))
     }
 
     /** Millibels are the platform's unit, tenths of a dB the catalog's resolution. */
     @Test
     fun aTenthOfADecibelSurvivesTheUnitChange() {
-        assertEquals(1280, playbackBoostMillibels(12.8)) // uk «й»
-        assertEquals(270, playbackBoostMillibels(2.7)) // uk `address`
+        assertEquals(1280, playbackBoostMillibels(playingAt(12.8))) // uk «й»
+        assertEquals(270, playbackBoostMillibels(playingAt(2.7))) // uk `address`
     }
 
     /**
@@ -78,17 +78,17 @@ class PlaybackIndexTest {
     @Test
     fun theRampLandsEveryWordOnKernsFloor() {
         val floor = LISTENING_FADE_FLOOR_DB
-        assertVolume(0.1122, 0.0, floor)
-        assertVolume(0.1122, -11.2, floor) // held at the floor, not driven 11 dB under it
-        assertVolume(0.1122, 7.6, floor) // and the enhancer still holds its own 7.6 dB
-        assertEquals(760, playbackBoostMillibels(7.6))
+        assertVolume(0.1122, playingAt(0.0), floor)
+        assertVolume(0.1122, playingAt(-11.2), floor) // held at the floor, not driven 11 dB under it
+        assertVolume(0.1122, playingAt(7.6), floor) // and the enhancer still holds its own 7.6 dB
+        assertEquals(760, playbackBoostMillibels(playingAt(7.6)))
     }
 
     /** Halfway down the ramp is halfway down for everything, floor or no floor. */
     @Test
     fun aRampShortOfTheFloorIsTheWholeRamp() {
-        assertVolume(0.5, 0.0, -6.0206)
-        assertVolume(0.25, -6.0206, -6.0206)
+        assertVolume(0.5, playingAt(0.0), -6.0206)
+        assertVolume(0.25, playingAt(-6.0206), -6.0206)
     }
 
     /**
@@ -98,19 +98,19 @@ class PlaybackIndexTest {
     @Test
     fun theRampGivesBackWhatTheCeilingHeldAndNoMore() {
         // 6 dB of ramp on a word held 3 dB back: the deficit is gone and 3 dB of ramp is left.
-        assertVolume(0.7063, 0.0, -6.0206, capDb = 3.0)
+        assertVolume(0.7063, playingAt(0.0), -6.0206, capDb = 3.0)
         // 6 dB of ramp on a word held 9 dB back: only the 6 dB it opened comes back.
-        assertVolume(1.0, 0.0, -6.0206, capDb = 9.0)
+        assertVolume(1.0, playingAt(0.0), -6.0206, capDb = 9.0)
         // A word the boost lifts spends its cap on the volume; the enhancer is unmoved.
-        assertVolume(0.3548, 7.6, -15.0, capDb = 6.0)
-        assertEquals(760, playbackBoostMillibels(7.6))
+        assertVolume(0.3548, playingAt(7.6), -15.0, capDb = 6.0)
+        assertEquals(760, playbackBoostMillibels(playingAt(7.6)))
     }
 
     /** At full volume there is no headroom to spend, so a cap changes nothing at all. */
     @Test
     fun aCapIsInertOutsideAFade() {
-        assertVolume(1.0, 0.0, capDb = 12.0)
-        assertVolume(0.2754, -11.2, capDb = 12.0)
+        assertVolume(1.0, playingAt(0.0), capDb = 12.0)
+        assertVolume(0.2754, playingAt(-11.2), capDb = 12.0)
     }
 
     /** No measured noise, no expander: the word plays exactly as it did. */
@@ -138,4 +138,7 @@ class PlaybackIndexTest {
         assertEquals(Playback.GATE_ATTACK_MS.toFloat(), band.attackMs)
         assertEquals(Playback.GATE_RELEASE_MS.toFloat(), band.releaseMs)
     }
+
+    /** The index that plays at [level] once [Playback.OUTPUT_DB] is under it. */
+    private fun playingAt(level: Double) = level - Playback.OUTPUT_DB
 }

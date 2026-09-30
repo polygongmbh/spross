@@ -116,7 +116,7 @@ const val LISTENING_FADE_FLOOR_DB: Double = -19.0
  * Linear in DECIBELS, which is where a listener's sense of loudness lives; linear in amplitude
  * would spend most of the run near the floor and read as an early drop.
  *
- * Applied ON TOP of a recording's own `Playback.gainDb`, never instead of it — one is a
+ * Applied ON TOP of a recording's own `Playback.levelDb`, never instead of it — one is a
  * correction of the shipped bytes and this is a deliberate ramp over whatever they play at,
  * and the same number attenuates a synthesized utterance. Both platforms read it here for the
  * same reason they read the beats here: a fade that ran two ramps would be two different
@@ -157,11 +157,11 @@ fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
  * ceiling is only true at full volume: the ramp attenuates ahead of the boost and opens the
  * headroom again, so exactly as much of the deficit as the ramp has taken off may be handed
  * back, and no more — the output peak is where it always was. Outside a run the ramp is 0,
- * nothing is handed back, and this is the clamped index and nothing else — the same number a
- * synthesized utterance takes, whose index and cap are 0 and whose total is the ramp itself.
+ * nothing is handed back, and this is the recording's `Playback.levelDb` and nothing else —
+ * the same number a synthesized utterance takes, whose index and cap are 0.
  */
 fun fadedGainDb(gainDb: Double, capDb: Double, fadeDb: Double): Double {
-    val index = Playback.gainDb(gainDb)
+    val index = Playback.levelDb(gainDb)
     // why: how much ramp is left before the sum reaches the floor — never positive, so a word
     // already under it takes none at all rather than being lifted back up to it.
     val room = minOf(0.0, LISTENING_FADE_FLOOR_DB - index)

@@ -118,6 +118,8 @@ Engine contract: `../README.md`.
   `Playback.GAIN_LIMIT_DB = 20.0` is the converter's own clamp and now the single home of the number:
   the manifest parser rejects a gain outside ±it and `Playback.gainDb(measured)` clamps into it,
   which are one rule about what a measurement may claim, not two that happen to agree.
+  `Playback.OUTPUT_DB` is the app's one output level against the loudness target the recordings are indexed
+  and the chimes leveled to: recordings (`Playback.levelDb`), synthesized speech and chimes all play at it.
   `Playback.headMs(leadMs, durationMs)` answers the lead only where `0 < leadMs < durationMs`, else 0:
   a lead that would swallow the whole recording is a broken measurement,
   and the recording is still worth playing whole — as is one whose duration the platform will not report.

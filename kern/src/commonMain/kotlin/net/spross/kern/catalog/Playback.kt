@@ -1,5 +1,7 @@
 package net.spross.kern.catalog
 
+import kotlin.math.pow
+
 /**
  * How far a player may trust a recording's ANALYSIS INDEX.
  *
@@ -24,6 +26,19 @@ object Playback {
      * never a recording to obey.
      */
     fun gainDb(measured: Double): Double = measured.coerceIn(-GAIN_LIMIT_DB, GAIN_LIMIT_DB)
+
+    /**
+     * Where everything the app plays sits, in dB against the one loudness target the recordings
+     * are indexed to and the chimes are leveled to (`scripts/sounds.py`): recordings, synthesized
+     * speech and chimes all take it, so turning it moves them together and keeps them level.
+     */
+    const val OUTPUT_DB: Double = -6.0
+
+    /** The level a player applies for a recording [measured] at: the clamped index at [OUTPUT_DB]. */
+    fun levelDb(measured: Double): Double = gainDb(measured) + OUTPUT_DB
+
+    /** [db] as the linear amplitude factor a platform's volume takes. */
+    fun linear(db: Double): Double = 10.0.pow(db / 20)
 
     /**
      * Where playback starts in a recording of [durationMs] whose measured dead air is [leadMs]:

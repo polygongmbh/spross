@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.AudioAttributes
 import android.media.SoundPool
 import java.io.IOException
+import net.spross.kern.catalog.Playback
 import net.spross.kern.session.ToneKind
 
 /**
@@ -88,8 +89,8 @@ class CueSounds(context: Context) {
         /** A second answer inside the first chime's tail overlaps it rather than cutting it. */
         const val STREAMS = 2
 
-        /** The levels live in the files; the pool only ever attenuates, so it does not. */
-        const val VOLUME = 1f
+        /** The files are leveled to the recordings' target; the pool plays them at kern's output level. */
+        val VOLUME = Playback.linear(Playback.OUTPUT_DB).toFloat()
 
         /**
          * Media, like the words: see the class note. SONIFICATION rather than speech —
