@@ -230,8 +230,8 @@ internal object ChromeEn : Chrome {
     override val lettersStageChoiceConfusable = "The same choice, among lookalikes"
     override val lettersStageTyped = "Write the letter yourself"
     override val lettersStageDictation = "Whole words from your vocabulary, by ear"
-    override val lettersStageDictationLocked = "Needs more consolidated words this device " +
-        "can read out"
+    override val lettersStageDictationLocked = "Needs more settled words this device can " +
+        "read out"
     override val lettersUnavailable = "This device cannot say a letter yet — that needs a " +
         "voice for the language."
     override val lettersAlphabetTitle = "Alphabet"
@@ -314,7 +314,7 @@ internal object ChromeEn : Chrome {
     override val boxCardForget = "Reset progress"
     override val boxCardOwnFrom = "Make your own word"
     override val a11yReportReported = "Reported"
-    override val progressConsolidatedCount = "%s consolidated"
+    override val progressConsolidatedCount = "%s settled"
     override val progressLearningCount = "%s growing"
     override val boxAreaPhrasesLockedShort = "%d sentences"
     override val boxAreaPhrasesLockedShortOne = "%d sentence"
@@ -438,7 +438,7 @@ internal object ChromeEn : Chrome {
     override val homeTallyNewCards = "%d newbies"
     override val homeTallyNewCardsOne = "%d newbie"
     override val homeTallyNewWordsOnly = "%s new words"
-    override val homeTallyConsolidated = "%s consolidated"
+    override val homeTallyConsolidated = "%s settled"
     override val homeTallyAhead = "%d refreshers"
     override val homeTallyAheadOne = "%d refresher"
     override val homeDonePacked = "Your packed words are in the next round."
@@ -492,7 +492,7 @@ internal object ChromeEn : Chrome {
     override val errorResetFailed = "Reset failed. (%s)"
     override val sessionDoneTallyNew = "%s sown"
     override val sessionDoneTallyNewOnly = "%s new words"
-    override val sessionDoneTallyConsolidated = "%s consolidated"
+    override val sessionDoneTallyConsolidated = "%s settled"
     override val sessionDoneTallyReviewed = "%s reviewed"
     override val sessionDoneTallyAllDone = "All done"
     override val sessionDoneRestHint = "Not much is sticking today — a tired head keeps " +

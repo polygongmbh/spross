@@ -3773,7 +3773,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ consolidated"
+            "value" : "%@ settled"
           }
         }
       }
@@ -4276,7 +4276,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Needs more consolidated words this device can read out"
+            "value" : "Needs more settled words this device can read out"
           }
         }
       }
@@ -5093,7 +5093,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ consolidated"
+            "value" : "%@ settled"
           }
         }
       }
@@ -5781,7 +5781,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ consolidated"
+            "value" : "%@ settled"
           }
         }
       }
