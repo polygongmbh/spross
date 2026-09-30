@@ -131,13 +131,7 @@ struct TrainerHubView: View, LanguageNaming {
                 }
             }
         }
-        .padding(Theme.spacing.xl)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
-        .cardShadow()
+        .homeCard(alignment: .leading)
         // The runs: a cover, so the drill is a full screen whose corner ✕ is
         // the one way out — a swipe would leave the run without booking the
         // Sprosse it reached, which is what the ✕ does (`WordScrambleView`).

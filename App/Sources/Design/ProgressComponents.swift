@@ -291,18 +291,6 @@ struct StageBadge: View {
 
 // MARK: - Previews
 
-/// The card its real callers wrap it in, so the preview shows it in place.
-private extension View {
-    func previewCard() -> some View {
-        padding(Theme.spacing.lg)
-            .background(
-                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                    .fill(Theme.colors.surface)
-            )
-            .cardShadow()
-    }
-}
-
 /// Every stage a badge can wear, in climbing order, with the colors kern hands the
 /// real row (`CardRowState.Standing.swatch`) written out — a preview has no box to
 /// ask, and seeing the four badges side by side is the point of it.
@@ -326,15 +314,18 @@ private var ladder: some View {
                      subtitle: "Hier duftet es nach Abendessen.",
                      progress: .init(allSettled: 18, allGrowing: 6, queued: 0, progressTotal: 24),
                      lockedPhrases: 0)
-                .previewCard()
+                .panelSurface()
+                .cardShadow()
             AreaChip(emoji: "🛁", name: "Bad",
                      progress: .init(allSettled: 4, allGrowing: 9, queued: 28, progressTotal: 41),
                      lockedPhrases: 3)
-                .previewCard()
+                .panelSurface()
+                .cardShadow()
             AreaChip(emoji: "🧰", name: "Werkstatt",
                      progress: .init(allSettled: 0, allGrowing: 0, queued: 17, progressTotal: 17),
                      lockedPhrases: 0)
-                .previewCard()
+                .panelSurface()
+                .cardShadow()
             // The whole ladder, in the order a card climbs it.
             ladder
         }
@@ -350,7 +341,8 @@ private var ladder: some View {
         AreaChip(emoji: "🍳", name: "Küche",
                  progress: .init(allSettled: 18, allGrowing: 6, queued: 28, progressTotal: 52),
                  lockedPhrases: 2)
-            .previewCard()
+            .panelSurface()
+            .cardShadow()
         ladder
     }
     .padding(Theme.spacing.xl)

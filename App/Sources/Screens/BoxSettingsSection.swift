@@ -38,11 +38,7 @@ struct BoxSettingsSection: View {
                     resetRow
                 }
             }
-            .padding(Theme.spacing.lg)
-            .background(
-                RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                    .fill(Theme.colors.surface)
-            )
+            .panelSurface()
             .cardShadow()
 
             aboutFooter

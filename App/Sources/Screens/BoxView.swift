@@ -267,11 +267,7 @@ private struct BoxAreaSection: View {
                     .padding(.top, Theme.spacing.md)
             }
         }
-        .padding(Theme.spacing.lg)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
+        .panelSurface()
         .cardShadow()
     }
 

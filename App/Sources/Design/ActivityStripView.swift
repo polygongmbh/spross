@@ -59,11 +59,7 @@ struct ActivityStripView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .padding(Theme.spacing.lg)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
+        .panelSurface()
         .cardShadow()
         .accessibilityElement(children: .combine)
         .accessibilityLabel(activityLabel(days))

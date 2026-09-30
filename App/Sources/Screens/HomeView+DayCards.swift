@@ -42,7 +42,7 @@ extension HomeView {
                 .buttonStyle(SoftButtonStyle())
             }
         }
-        .dayCard()
+        .homeCard()
     }
 
     /// Flame hero, or a sprout when there is no streak to show. This card is up
@@ -130,7 +130,7 @@ extension HomeView {
                 .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
         }
-        .dayCard()
+        .homeCard()
     }
 
     /// The day's mark: the celebration wearing the streak, or the bare emoji when there
@@ -194,15 +194,15 @@ extension HomeView {
                 .foregroundStyle(Theme.colors.textSecondary)
                 .multilineTextAlignment(.center)
         }
-        .dayCard()
+        .homeCard()
     }
 }
 
 extension View {
-    /// The surface every one of Home's day cards stands on.
-    func dayCard() -> some View {
+    /// The surface every card on Home stands on.
+    func homeCard(alignment: Alignment = .center) -> some View {
         padding(Theme.spacing.xl)
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, alignment: alignment)
             .background(
                 RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
                     .fill(Theme.colors.surface)

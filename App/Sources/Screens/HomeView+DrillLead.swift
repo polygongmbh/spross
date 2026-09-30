@@ -35,7 +35,7 @@ extension HomeView {
                 .buttonStyle(SoftButtonStyle())
             }
         }
-        .dayCard()
+        .homeCard()
     }
 
     /// What the day has done, compact: the check and its title, the run, the tally.

@@ -122,11 +122,7 @@ private struct CreditGroupRow: View {
             header
         }
         .tint(Theme.colors.textSecondary)
-        .padding(Theme.spacing.lg)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
+        .panelSurface()
     }
 
     private var header: some View {

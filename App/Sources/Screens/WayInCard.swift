@@ -28,12 +28,6 @@ struct WayInCard: View {
                 .foregroundStyle(Theme.colors.textSecondary)
                 .accessibilityHidden(true)
         }
-        .padding(Theme.spacing.xl)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
-        .cardShadow()
+        .homeCard(alignment: .leading)
     }
 }
