@@ -3,15 +3,11 @@ package net.spross.app.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -50,10 +46,9 @@ import net.spross.kern.trainer.LetterFormat
  * Sprosse, mapped to formats by kern's `LetterDrillRun`, which owns every rule below.
  *
  * The one screen in the app that shows nothing: everything the learner is given is the
- * sound. So both silences that can meet them are named rather than left to be guessed at —
- * the read-aloud switch blocks the card with the one tap that undoes it, and every autoplay
- * goes out as [Pronouncer.Trigger.AUTO], where mute and the TalkBack gate apply without
- * this screen testing for either.
+ * sound, so entering it is the request to hear one. Every autoplay goes out as
+ * [Pronouncer.Trigger.ESSENTIAL]: no mute reaches it, and only the TalkBack gate applies,
+ * without this screen testing for it.
  *
  * Format bodies live in LetterDrillFormats.kt; the run itself in `LetterDrillFlow`.
  */
@@ -101,7 +96,7 @@ private fun Run(
 
     // why: keyed on the question, and a LaunchedEffect fires on FIRST composition too —
     // so the first question of a run speaks without a second hook.
-    LaunchedEffect(state.index) { model.playLetterPrompt(task, Pronouncer.Trigger.AUTO) }
+    LaunchedEffect(state.index) { model.playLetterPrompt(task) }
     // The one drill whose question is the SOUND, so the replay button is what a screen
     // reader is handed — never both it and the field, or TalkBack would be dragged off the
     // button it was just given.
@@ -154,7 +149,6 @@ private fun HearPrompt(
         task.gapText?.let {
             Text(localizedTarget(it, task.language), fontSize = Theme.prompt.word, fontWeight = FontWeight.Bold)
         }
-        if (model.pronouncer.muted) UnmuteRow(model, task, chrome)
         if (flow.state.showsAnswer) {
             // why: the meaning is a REVEAL, never a cue — a dictation that shows what the
             // word means is no longer taken from the sound.
@@ -207,29 +201,5 @@ private fun ReplayButton(chrome: Chrome, replay: (() -> Unit)?, focus: FocusRequ
             tint = if (enabled) Theme.colors.accent else Theme.colors.textSecondary,
             modifier = Modifier.size(40.dp),
         )
-    }
-}
-
-/**
- * The blocking row a muted drill shows: the fix and its proof in one tap. Hiding the entry
- * over a state this reversible would only make the drill undiscoverable.
- */
-@Composable
-private fun UnmuteRow(model: AppModel, task: LetterDrillTask, chrome: Chrome) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(chrome.lettersMutedTitle, style = MaterialTheme.typography.bodyMedium, color = Theme.colors.textSecondary)
-        OutlinedButton(
-            onClick = {
-                model.pronouncer.muted = false
-                model.playLetterPrompt(task, Pronouncer.Trigger.TAP)
-            },
-            modifier = Modifier.heightIn(min = 48.dp).pressSpring(),
-            shape = MaterialTheme.shapes.small,
-        ) {
-            Text(chrome.lettersMutedEnable)
-        }
     }
 }

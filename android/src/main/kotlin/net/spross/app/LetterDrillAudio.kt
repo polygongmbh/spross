@@ -34,10 +34,13 @@ fun AppModel.letterPrompt(task: LetterDrillTask): Pronunciation? = when (task.pr
         catalog?.pronunciation(task.language, task.promptText)
 }
 
-/** Says the question. AUTO is where mute and the TalkBack gate apply; TAP always sounds. */
-fun AppModel.playLetterPrompt(task: LetterDrillTask, trigger: Pronouncer.Trigger) {
+/**
+ * Says the question on its own: the sound IS the question, so the read-aloud switch never
+ * reaches it and only TalkBack holds it back ([Pronouncer.Trigger.ESSENTIAL]).
+ */
+fun AppModel.playLetterPrompt(task: LetterDrillTask) {
     val pronunciation = letterPrompt(task) ?: return
-    pronouncer.pronounce(pronunciation, trigger)
+    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.ESSENTIAL)
 }
 
 /**

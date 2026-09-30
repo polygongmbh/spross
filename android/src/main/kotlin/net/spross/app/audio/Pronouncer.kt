@@ -15,8 +15,8 @@ import net.spross.kern.catalog.spokenTargetForm
 import net.spross.kern.model.Language
 
 /**
- * The one way anything in the app says a target word out loud: review cards and
- * (later) the letter drill both knock here, so the mute flag, the TalkBack gate and
+ * The one way anything in the app says a target word out loud: review cards, drills and
+ * the letter drill all knock here, so the mute flag, the TalkBack gate and
  * "recordings first" are decided in a single place.
  *
  * Kern decides WHAT to say ([Pronunciation]: the form, the utterance, and the
@@ -26,13 +26,17 @@ import net.spross.kern.model.Language
 class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     /**
-     * Where a fire came from. Autoplay may be silenced; the other two are requests.
+     * Where a fire came from. Autoplay may be silenced; the others are requests.
+     *
+     * [ESSENTIAL] is an autoplay that carries the QUESTION itself (the letter drill):
+     * opening a screen whose only content is a sound is the request, so the mute never
+     * reaches it — only TalkBack, which must not be talked over, still holds it back.
      *
      * [LISTENING] is a run whose only content is sound, which is itself the request to hear
-     * one — so it passes both mutes exactly as a [TAP] does. It is named apart all the same:
+     * one — so it passes both gates exactly as a [TAP] does. It is named apart all the same:
      * a tap is one word answered on the spot, and this is an hour of them playing unattended.
      */
-    enum class Trigger { AUTO, TAP, LISTENING }
+    enum class Trigger { AUTO, ESSENTIAL, TAP, LISTENING }
 
     /**
      * Which voice answers a target word: the bundled recording when one matched, or the
@@ -221,7 +225,12 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     ) {
         // why: TalkBack reads the card itself, target word included — autoplay on top
         // of it is two voices over one word. A tap is never gated: it is a request.
-        if (trigger == Trigger.AUTO && (muted || readsScreenAloud)) {
+        val held = when (trigger) {
+            Trigger.AUTO -> muted || readsScreenAloud
+            Trigger.ESSENTIAL -> readsScreenAloud
+            Trigger.TAP, Trigger.LISTENING -> false
+        }
+        if (held) {
             onFinish?.invoke()
             return
         }
