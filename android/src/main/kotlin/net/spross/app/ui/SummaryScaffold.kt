@@ -35,9 +35,10 @@ import androidx.compose.ui.unit.sp
 import net.spross.app.Chrome
 
 /**
- * The screen a round stops on — the session summary and a drill's pause alike: a hero, one
- * title, the round's tally with any detail lines under it, an optional hint, and the exit
- * pair on the bottom edge. Each fills the slots; the layout, the type and the ways out are
+ * The screen a round stops on — the session summary and a drill's pause alike, standing in
+ * place of the run's whole screen with only a close button above it: a hero, one title,
+ * the round's tally with any detail lines under it, an optional hint, and the exit pair on
+ * the bottom edge. Each fills the slots; the layout, the type and the ways out are
  * this one's, so the two never drift apart (`docs/design.md` § Counts & sessions).
  *
  * [hero] is handed the height it may grow to — a grown tree's ceiling; [details] are lines
@@ -56,6 +57,9 @@ fun SummaryScaffold(
     hero: @Composable ColumnScope.(ceiling: Dp) -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        // why: nothing is running any more, so the run's bar and read-aloud switch stay
+        // behind and only the way out stands in the corner it held (iOS `sessionCloseCorner`).
+        RunCloseButton(onDone, chrome.commonDone, Modifier.align(Alignment.Start))
         // why: the actions stay on the bottom edge however far the results scroll.
         BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
             // why: a grown tree's box reaches 45 % of the screen it is given, so the summary

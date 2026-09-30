@@ -56,6 +56,10 @@ fun SessionScreen(model: AppModel) {
         modifier = Modifier.fillMaxSize().padding(Theme.spacing.lg),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
+        if (ui.card == null) {
+            SessionSummary(model, ui)
+            return@Column
+        }
         RunTopBar(
             model, ui.segments, model::finishSession, ui.remaining,
             closeLabel = model.chrome.commonDone,
@@ -63,7 +67,7 @@ fun SessionScreen(model: AppModel) {
             // learner a way to silence them here.
             showsMuteButton = true,
         )
-        if (ui.card == null) SessionSummary(model, ui) else TurnCard(model, ui)
+        TurnCard(model, ui)
     }
 }
 
