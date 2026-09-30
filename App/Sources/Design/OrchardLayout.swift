@@ -106,7 +106,9 @@ enum OrchardLayout {
     /// rather than as growth.
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
         guard width > 0, !trees.isEmpty else { return [] }
-        let room = trees.map { max(minCellWidth * 0.62, treeHeight($0) * 1.28 + 12) }
+        // why: a crown spans up to 1.44 heights, and the row below grows up between
+        // two labels of this one — the room clears the crown, its overhanging leaves and a label.
+        let room = trees.map { max(minCellWidth * 0.62, treeHeight($0) * 1.44 + 34) }
 
         // One pass: the rows the rooms alone bound.
         // Its tightest row sets the gap every row shares below.

@@ -123,7 +123,8 @@ struct TreeSkeleton {
             let dominantLength = rng.range(0.86, 0.95)
             let lateralTurn = rng.range(0.62, 1.08)
             let lateralLength = rng.range(0.76, 0.90)
-            let third = rng.next() < 0.5
+            // why: the trunk always forks three ways, so the crown has low limbs on both sides.
+            let third = rng.next() < 0.5 || depth == 0
             let thirdTurn = rng.range(0.45, 0.85)
 
             // A branch whose children have not started yet is a tip, full length or not.

@@ -71,7 +71,9 @@ internal object ForestLayout {
      */
     fun plant(trees: List<AreaTree>, width: Float, density: Float): List<ForestSpot> {
         if (width <= 0f || trees.isEmpty()) return emptyList()
-        val room = trees.map { max(MIN_CELL * 0.62f, treeHeight(it) * 1.28f + 12f) * density }
+        // why: a crown spans up to 1.44 heights, and the row below grows up between two
+        // labels of this one — the room clears the crown, its overhanging leaves and a label.
+        val room = trees.map { max(MIN_CELL * 0.62f, treeHeight(it) * 1.44f + 34f) * density }
         // One gap for the whole forest, from the row that can give the least,
         // so every row walks the same lattice.
         val gap = rows(room, width, 0f).minOf { row ->
