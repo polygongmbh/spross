@@ -104,9 +104,12 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
     /** The limbs that fork no further, with the path that seeds each. */
     val twigs = mutableListOf<Twig>()
 
-    fun limb(path: Long, origin: Offset, angle: Float, length: Float, width: Float, depth: Int, side: Float) {
+    fun limb(path: Long, origin: Offset, heading: Float, length: Float, width: Float, depth: Int, side: Float) {
         val grown = (vigor - depth).coerceIn(0f, 1f)
         if (grown <= 0f) return
+        // why: a limb may dip a little below horizontal, no further — turns add up over the
+        // generations, and a drooping limb hangs its leaves under the crown.
+        val angle = heading.coerceIn(-PI_F - 0.25f, 0.25f)
         val rng = Mix(seed xor Mix.hash(path))
         val reach = length * grown
         val end = Offset(origin.x + cos(angle) * reach, origin.y + sin(angle) * reach)
@@ -122,13 +125,15 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
         // why: drawn in full even for a limb that forks no further, so the sequence — and
         // with it every child's shape — never depends on how deep the tree has grown.
         val lean = rng.sign()
-        val leadTurn = rng.range(0.10f, 0.30f) * lean
+        // why: the lead bends little and the others turn well away, so no two siblings part at
+        // less than about 25° and run side by side.
+        val leadTurn = rng.range(0.05f, 0.20f) * lean
         val leadLength = rng.range(0.86f, 0.95f)
-        val sideTurn = rng.range(0.62f, 1.08f) * spread
+        val sideTurn = rng.range(0.75f, 1.10f) * spread
         val sideLength = rng.range(0.76f, 0.90f)
         // why: the trunk always forks three ways, so the crown has low limbs on both sides.
         val third = rng.next() < 0.5f || depth == 0
-        val thirdTurn = rng.range(0.45f, 0.85f) * spread
+        val thirdTurn = rng.range(0.80f, 1.10f) * spread
 
         // why: a twig sprouts at half length, never as a stub — a stub's marks would all
         // sit on the fork it grows from.
@@ -212,7 +217,8 @@ private fun slot(k: Int, twig: TreeLimb, flip: Boolean): TreeSlot {
     val bark = (twig.startWidth * u + twig.endWidth * t) / 2 * side
     return TreeSlot(
         Offset(point.x + cos(along + PI_F / 2) * bark, point.y + sin(along + PI_F / 2) * bark),
-        along + side * 0.9f,
+        // why: a leaf never points below horizontal, even off a level twig.
+        (along + side * 0.9f).coerceIn(-PI_F + 0.3f, -0.3f),
     )
 }
 

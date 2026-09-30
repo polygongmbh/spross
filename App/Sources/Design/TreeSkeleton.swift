@@ -95,10 +95,13 @@ struct TreeSkeleton {
 
         /// One branch and everything above it.
         /// `path` names the branch from the trunk up, and seeds everything about it.
-        mutating func branch(path: UInt64, from origin: CGPoint, angle: Double, length: Double,
+        mutating func branch(path: UInt64, from origin: CGPoint, angle heading: Double, length: Double,
                              width: Double, depth: Int, side: Double) {
             let grown = min(1, max(0, vigor - Double(depth)))
             guard grown > 0 else { return }
+            // why: a branch may dip a little below horizontal, no further — turns add up
+            // over the generations, and a drooping limb hangs its leaves under the crown.
+            let angle = min(0.25, max(-Double.pi - 0.25, heading))
             var rng = SplitMix64(seed: SplitMix64.mix(seed ^ SplitMix64.mix(path)))
 
             let reach = length * grown
@@ -119,13 +122,15 @@ struct TreeSkeleton {
             // random sequence — and with it the shape — never depends on how deep
             // the tree has grown.
             let lean = rng.next() < 0.5 ? -1.0 : 1.0
-            let dominantTurn = rng.range(0.10, 0.30) * lean
+            // why: the lead bends little and the others turn well away, so no two siblings
+            // part at less than about 30° and run side by side.
+            let dominantTurn = rng.range(0.05, 0.20) * lean
             let dominantLength = rng.range(0.86, 0.95)
-            let lateralTurn = rng.range(0.62, 1.08)
+            let lateralTurn = rng.range(0.75, 1.10)
             let lateralLength = rng.range(0.76, 0.90)
             // why: the trunk always forks three ways, so the crown has low limbs on both sides.
             let third = rng.next() < 0.5 || depth == 0
-            let thirdTurn = rng.range(0.45, 0.85)
+            let thirdTurn = rng.range(0.80, 1.10)
 
             // A branch whose children have not started yet is a tip, full length or not.
             // why: a twig sprouts at half length, never as a stub — a stub's marks would
@@ -211,7 +216,8 @@ struct TreeSkeleton {
         let bark = (Double(twig.startWidth) * u + Double(twig.endWidth) * t) / 2 * side
         return LeafSlot(point: CGPoint(x: point.x + CGFloat(cos(along + .pi / 2) * bark),
                                        y: point.y + CGFloat(sin(along + .pi / 2) * bark)),
-                        angle: along + side * 0.9)
+                        // why: a leaf never points below horizontal, even off a level twig.
+                        angle: min(-0.3, max(-Double.pi + 0.3, along + side * 0.9)))
     }
 
     // MARK: Fitting
