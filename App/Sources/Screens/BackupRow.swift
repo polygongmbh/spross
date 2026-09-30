@@ -33,7 +33,7 @@ struct BackupRow: View {
         }
         .task { carried = await model.backupLanguages() }
         .confirmationDialog("settings.backup.confirm \(pendingNames)",
-                            isPresented: shown($pending), titleVisibility: .visible,
+                            isPresented: Binding(presenting: $pending), titleVisibility: .visible,
                             presenting: pending) { imported in
             Button("settings.backup.replace", role: .destructive) {
                 Task {
@@ -42,7 +42,7 @@ struct BackupRow: View {
             }
             Button("common.cancel", role: .cancel) {}
         }
-        .alert(failure ?? "", isPresented: shown($failure)) {
+        .alert(failure ?? "", isPresented: Binding(presenting: $failure)) {
             Button("common.done", role: .cancel) {}
         }
     }
@@ -51,8 +51,7 @@ struct BackupRow: View {
     // leave one of them unable to present.
     private var exportButton: some View {
         exportControl
-            .fileExporter(isPresented: shown($exportFile), document: exportFile,
-                          contentType: .json, defaultFilename: exportFile?.name ?? "Spross") { result in
+            .backupExporter($exportFile) { result in
                 if case .failure = result { failure = "settings.backup.exportFailed" }
             }
     }
@@ -82,14 +81,11 @@ struct BackupRow: View {
         LinkLabel("settings.backup.export", icon: "square.and.arrow.up", font: Theme.typography.subheadline)
     }
 
-    /// The file the exporter then puts somewhere — named for what it carries, so two of
-    /// them in one folder are told apart before either is opened.
+    /// The file the exporter then puts somewhere.
     private func write(only: String?) {
         Task {
-            let day = Date.now.formatted(.iso8601.year().month().day())
             do {
-                exportFile = BackupFile(text: try await model.backupJSON(only: only),
-                                        name: "Spross-\(only.map { "\($0)-" } ?? "")\(day)")
+                exportFile = try await BackupFile.taken(from: model, only: only)
             } catch {
                 failure = "settings.backup.exportFailed"
             }
@@ -126,10 +122,6 @@ struct BackupRow: View {
         }
     }
 
-    /// A presentation flag over an optional: shown while it holds a value, emptied on dismiss.
-    private func shown<T>(_ value: Binding<T?>) -> Binding<Bool> {
-        Binding(get: { value.wrappedValue != nil }, set: { if !$0 { value.wrappedValue = nil } })
-    }
 }
 
 /// The backup text as the exporter writes it, under the name it offers for it.
@@ -150,5 +142,25 @@ struct BackupFile: FileDocument {
 
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         FileWrapper(regularFileWithContents: Data(text.utf8))
+    }
+
+    /// Every language's progress, or `only` that one's, named for what it carries and
+    /// the day it was taken — so two of them in one folder are told apart before either
+    /// is opened.
+    @MainActor
+    static func taken(from model: AppModel, only: String?) async throws -> BackupFile {
+        let day = Date.now.formatted(.iso8601.year().month().day())
+        return BackupFile(text: try await model.backupJSON(only: only),
+                          name: "Spross-\(only.map { "\($0)-" } ?? "")\(day)")
+    }
+}
+
+extension View {
+    /// The save sheet for a backup file, standing while `file` holds one.
+    func backupExporter(_ file: Binding<BackupFile?>,
+                        onCompletion: @escaping (Result<URL, any Error>) -> Void) -> some View {
+        fileExporter(isPresented: Binding(presenting: file), document: file.wrappedValue,
+                     contentType: .json, defaultFilename: file.wrappedValue?.name ?? "Spross",
+                     onCompletion: onCompletion)
     }
 }

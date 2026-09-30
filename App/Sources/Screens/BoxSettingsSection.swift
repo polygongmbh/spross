@@ -3,7 +3,7 @@ import SprossKern
 
 /// What the settings hold: known language (source),
 /// learning language (target, one box each), learner name,
-/// read-aloud source (only where the language has a sound),
+/// read-aloud source (`SettingsAudioRow`, only where the language has a sound),
 /// backup, restart tutorial, reset.
 /// The profile persists in UserDefaults + the box document.
 struct BoxSettingsSection: View {
@@ -27,9 +27,9 @@ struct BoxSettingsSection: View {
                 // why: nothing can say this language — a row whose every option is silence
                 // is not a choice, and both "on" segments would promise a sound that
                 // cannot be made.
-                if !audioSources.silent {
+                if !SettingsAudioRow.sources(model).silent {
                     Divider().overlay(Theme.colors.separator)
-                    audioRow
+                    SettingsAudioRow(model: model)
                 }
                 Divider().overlay(Theme.colors.separator)
                 VStack(alignment: .leading, spacing: Theme.spacing.md) {
@@ -178,131 +178,6 @@ struct BoxSettingsSection: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    /// The same choice the session's top bar carries (there reduced to the
-    /// mute button), and the place the tap-to-replay gesture is disclosed — the
-    /// card itself grows no affordance for it, so the hint line is where it is
-    /// named. It is also the standing home of the voice-download pointer, which
-    /// the Home banner only borrows once: dismissed there, it is still findable
-    /// here.
-    private var audioRow: some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.sm) {
-            Text("settings.audio.title")
-                .font(Theme.typography.headline)
-                .foregroundStyle(Theme.colors.textPrimary)
-            Picker("settings.audio.title", selection: audioPreferenceBinding) {
-                ForEach(audioOptions) { option in
-                    Text(optionLabel(option)).tag(option)
-                }
-            }
-            .pickerStyle(.segmented)
-            Text(audioHintKey)
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
-            // why: only where there is a choice to be scoped — a language with one source
-            // has nothing to remember per language.
-            if audioSources == .both {
-                Text("settings.audio.hint.perLanguage")
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
-            }
-            Toggle("settings.audio.saysMeaning", isOn: Binding(
-                get: { Pronouncer.shared.saysMeaning },
-                set: { Pronouncer.shared.saysMeaning = $0 }))
-                .font(Theme.typography.subheadline)
-                .disabled(Pronouncer.shared.muted)
-            Text("settings.audio.saysMeaning.hint")
-                .font(Theme.typography.caption)
-                .foregroundStyle(Theme.colors.textSecondary)
-            if VoiceUpgradeHint.shared.suggests(language: model.targetLanguage) {
-                Label("settings.audio.voiceUpgrade \(targetChromeName)",
-                      systemImage: "speaker.wave.2")
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.accent)
-                    .padding(.top, Theme.spacing.xs)
-            }
-        }
-    }
-
-    /// The three options the row carries, each a combination of the mute switch
-    /// and the voice source. The picker alone decides both: there is no state
-    /// where a source is chosen but the app is silent.
-    private enum AudioPreference: String, CaseIterable, Identifiable {
-        case off, recordings, tts
-        var id: String { rawValue }
-    }
-
-    /// What can carry the learned language's sound here — kern's rule over the
-    /// catalog's pack and this device's voice.
-    private var audioSources: AudioCapability {
-        guard let catalog = model.catalog, let target = model.targetLanguage else { return .none }
-        return audioCapability(catalog: catalog, language: target,
-                               hasVoice: Pronouncer.shared.canSpeak(language: target))
-    }
-
-    /// What the row offers: one segment per source that can actually answer.
-    /// Speech only where the device has a voice — Swahili has none on iOS —
-    /// and Recordings only where a pack ships, which English does not have.
-    /// Either segment without its source promises a sound nothing can make.
-    private var audioOptions: [AudioPreference] {
-        let sources = audioSources
-        return [.off]
-            + (sources.hasRecordings ? [.recordings] : [])
-            + (sources.hasVoice ? [.tts] : [])
-    }
-
-    private func optionLabel(_ option: AudioPreference) -> LocalizedStringKey {
-        switch option {
-        case .off: return "settings.audio.option.off"
-        case .recordings: return "settings.audio.option.recordings"
-        case .tts: return "settings.audio.option.tts"
-        }
-    }
-
-    /// The hint names the chosen behavior, not the picker as a whole. The
-    /// tap-to-replay gesture is disclosed in the No audio line alone — the only
-    /// preference where a learner might think the app has gone silent for good.
-    private var audioHintKey: LocalizedStringKey {
-        switch audioPreferenceBinding.wrappedValue {
-        case .off: return "settings.audio.hint.off"
-        case .recordings: return "settings.audio.hint.recordings"
-        case .tts: return "settings.audio.hint.tts"
-        }
-    }
-
-    /// `.off` is the read-aloud switch off; the two "on" options are the voice
-    /// source of the language being learned, with the switch on. Picking one of
-    /// them turns reading aloud back on, so the picker can never leave the app
-    /// silent behind a chosen source. A stored Speech that the phone can no
-    /// longer answer (a voice uninstalled) reads as Recordings, which is what
-    /// would sound anyway.
-    private var audioPreferenceBinding: Binding<AudioPreference> {
-        Binding(
-            get: {
-                if Pronouncer.shared.muted { return .off }
-                let sources = audioSources
-                guard let target = model.targetLanguage, sources.hasVoice,
-                      Pronouncer.shared.voiceSource(for: target) == .tts
-                else {
-                    // A stored source the language cannot answer reads as the other one:
-                    // a pack that does not ship is as empty a promise as a missing voice.
-                    return sources.hasRecordings ? .recordings : .tts
-                }
-                return .tts
-            },
-            set: { preference in
-                guard preference != .off else {
-                    Pronouncer.shared.setReadAloud(on: false)
-                    return
-                }
-                if let target = model.targetLanguage {
-                    Pronouncer.shared.setVoiceSource(preference == .tts ? .tts : .recordings,
-                                                     for: target)
-                }
-                if Pronouncer.shared.muted { Pronouncer.shared.setReadAloud(on: true) }
-            }
-        )
-    }
-
     /// Shows the onboarding pages again, the pair already made — nothing here
     /// touches progress (`resetRow` is the destructive row).
     private var restartTutorialRow: some View {
@@ -332,8 +207,7 @@ struct BoxSettingsSection: View {
                           color: Theme.colors.wrong, font: Theme.typography.subheadline)
             }
             .buttonStyle(.plain)
-            .fileExporter(isPresented: shown($pendingResetExport), document: pendingResetExport,
-                          contentType: .json, defaultFilename: pendingResetExport?.name ?? "Spross") { _ in
+            .backupExporter($pendingResetExport) { _ in
                 confirmingReset = true
             }
             .confirmationDialog(
@@ -358,35 +232,18 @@ struct BoxSettingsSection: View {
             return
         }
         Task {
-            let day = Date.now.formatted(.iso8601.year().month().day())
             do {
-                pendingResetExport = BackupFile(text: try await model.backupJSON(only: target),
-                                                name: "Spross-\(target)-\(day)")
+                pendingResetExport = try await BackupFile.taken(from: model, only: target)
             } catch {
                 confirmingReset = true
             }
         }
     }
 
-    /// A presentation flag over an optional:
-    /// shown while it holds a value, emptied on dismiss.
-    private func shown<T>(_ value: Binding<T?>) -> Binding<Bool> {
-        Binding(get: { value.wrappedValue != nil }, set: { if !$0 { value.wrappedValue = nil } })
-    }
-
     // MARK: Choices & bindings
 
     private var targetName: String {
         model.targetLanguage.map { LanguageNames.native($0, catalog: model.catalog) } ?? "?"
-    }
-
-    /// The target named in the CHROME's language, not its own — the voice hint
-    /// is a sentence about the phone's settings, and it reads in the language
-    /// the rest of the block does.
-    private var targetChromeName: String {
-        model.targetLanguage.map {
-            LanguageNames.display($0, catalog: model.catalog)
-        } ?? "?"
     }
 
     /// The pair as the pickers see it.
