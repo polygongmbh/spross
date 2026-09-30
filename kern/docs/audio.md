@@ -9,7 +9,11 @@ Engine contract: `../README.md`.
   what may be shown (heard) without giving the answer away.
   `pronunciationCue(role, prompt)` is `Upfront` iff the role is Recognize — the target form stands on the card from frame one —
   or the produce prompt IS the sound; `OnReveal` for a produce card that asks for that very form.
-  Both apps CONSUME the cue; neither re-derives `role == Recognize` for audio.
+  `meaningCue(role, prompt)` is its mirror for the learner's own side — `Upfront` only where the produce prompt IS the meaning —
+  so each side is said once and every card pairs the word with its meaning.
+  `TurnState.promptSaying`/`answerSaying` (`session/TurnSaying.kt`) turn the two cues into the form and language a card says
+  as it goes up and once it has `settled` — its answer out, or given clean.
+  Both apps CONSUME these; neither re-derives `role == Recognize` for audio.
   Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../../docs/design.md`'s.
 - **How quiet is too quiet** — `isVolumeLow(fraction)` (`catalog/OutputVolume.kt`):
   at or below `LOW_VOLUME_FRACTION`, a tenth of the device's volume range,

@@ -172,6 +172,22 @@ fun pronunciationCue(
     }
 
 /**
+ * WHEN the learner's own side — the meaning — is said: the mirror of [pronunciationCue].
+ * A produce card asked by meaning says it as the question, which gives nothing away;
+ * everywhere else the meaning is what the card reveals, so it waits for the reveal.
+ * Each side is said once, so every card pairs the word with its meaning.
+ */
+fun meaningCue(
+    role: PresentationRole,
+    prompt: ProducePrompt = ProducePrompt.Source,
+): PronunciationCue =
+    if (role == PresentationRole.Produce && prompt == ProducePrompt.Source) {
+        PronunciationCue.Upfront
+    } else {
+        PronunciationCue.OnReveal
+    }
+
+/**
  * FNV-1a 64-bit over UTF-8 — bit-exact port of v1's `BoxEngine.stableHash`
  * (deterministic across platforms sharing state; never a runtime-seeded hash).
  */

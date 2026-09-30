@@ -3,6 +3,7 @@ package net.spross.kern.model
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 
@@ -139,6 +140,15 @@ class PresentationTest {
         // Unless the sound IS the prompt, where holding it back asks nothing at all.
         assertEquals(PronunciationCue.Upfront, pronunciationCue(produce, ProducePrompt.Sound))
         assertEquals(PronunciationCue.OnReveal, pronunciationCue(produce, ProducePrompt.Source))
+    }
+
+    @Test
+    fun theMeaningIsSpokenWhereverTheTargetIsNot() {
+        for (prompt in ProducePrompt.entries) {
+            for (role in listOf(recognize, produce)) {
+                assertNotEquals(pronunciationCue(role, prompt), meaningCue(role, prompt))
+            }
+        }
     }
 
     // -- sound-prompted production -----------------------------------------------------
