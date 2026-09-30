@@ -176,7 +176,7 @@ Nothing wears a prefix one scope wider than what it serves.
   An almost banks nothing inside the run
   but ends the run's clearing, as on the atlas.
   Nothing overrides where it opens: there is no row to tap and no direction to turn.
-  The letter drill keeps the same record for its tile and typed formats (`drills-words.md`).
+  The letter drill files its tile and typed formats the same way (`drills-words.md`).
 - **An endless run offers its exit where it is wanted, and pauses at a natural stop.**
   "Fertig" appears under the button that goes on, and only on the SECOND miss in a row;
   a clean answer takes the offer away again.

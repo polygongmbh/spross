@@ -14,13 +14,13 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   What the drill can ask is recomputed on foreground —
   a voice installed in Settings turns the start button on without a relaunch.
 - **The format rows say which format a run OPENS on**, derived from the learner's settled
-  words and the record below, and dictation states its price until enough of them can be played back.
+  words and the cleared Sprossen below, and dictation states its price until enough of them can be played back.
   Their mark is the shared Sprosse circle,
   forest on a format some run climbed off before its first slip, filled on the format the run opens on,
   and the rows are not tapped: the run walks the ladder by itself from that format.
-- **The tile and typed Sprossen keep the scrambles' record** — a Sprosse left upward
+- **The tile and typed Sprossen are filed as cleared, as the scrambles' are** — a Sprosse left upward
   before the run's first miss or almost (`LetterDrillClose.clearedSprossen`) —
-  and a run opens on the lowest one at or above the vocabulary's entry that the record lacks
+  and a run opens on the lowest one at or above the vocabulary's entry not yet cleared
   (`LetterDrillAvailability.Report.openingSprosse`).
   Dictation is never filed: it draws from the box, which grows.
   Each row is ONE line, the format named by what it asks,
