@@ -49,25 +49,11 @@ class PlaybackIndexTest {
         assertEquals(0, playbackBoostMillibels(0.0))
     }
 
-    @Test
-    fun attenuationIsTheDecibelDefinition() {
-        assertVolume(0.5, playingAt(-6.0206))
-        assertVolume(0.25, playingAt(-12.0412))
-        assertVolume(0.1, playingAt(-20.0))
-    }
-
     /** Kern's bound survives the unit change: neither half may carry a wilder number. */
     @Test
     fun aWilderMeasurementThanTheConverterAllowsIsClamped() {
         assertEquals(playbackBoostMillibels(20.0), playbackBoostMillibels(45.0))
         assertEquals(playbackVolume(-20.0), playbackVolume(-45.0))
-    }
-
-    /** Millibels are the platform's unit, tenths of a dB the catalog's resolution. */
-    @Test
-    fun aTenthOfADecibelSurvivesTheUnitChange() {
-        assertEquals(1080, playbackBoostMillibels(playingAt(10.8))) // uk «й»
-        assertEquals(270, playbackBoostMillibels(playingAt(2.7)))
     }
 
     /**

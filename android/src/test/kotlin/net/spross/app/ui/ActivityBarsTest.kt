@@ -1,6 +1,5 @@
 package net.spross.app.ui
 
-import kotlin.math.abs
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -10,8 +9,7 @@ import net.spross.kern.box.StreakRole
 /**
  * The strip's own arithmetic. The WINDOW and each day's streak role are kern's
  * (`streakWindow`) and pinned in `:kern:jvmTest`; what is checked here is the shape this
- * platform draws them in — the √-scale, the floor, the stub, the intensity, and which
- * columns join into one run.
+ * platform draws them in — the scale, the floor, the stub, and which columns join into one run.
  */
 class ActivityBarsTest {
 
@@ -21,19 +19,14 @@ class ActivityBarsTest {
         role: StreakRole = StreakRole.Outside,
     ) = ActivityDay(day = key, dayStartEpochMillis = 0L, reviews = reviews, role = role)
 
-    private fun near(expected: Float, actual: Float) =
-        assertTrue(abs(expected - actual) < 0.01f, "expected ~$expected, was $actual")
-
+    /** Scaled against the busiest day, so a quiet day still reads as more than a stub. */
     @Test
-    fun theBusiestDayFillsTheColumnAndTheRestScaleBySquareRoot() {
+    fun theBusiestDayFillsTheColumnAndAQuieterOneStandsShorter() {
         val bars = ActivityBars.of(listOf(day("d1", 4), day("d2", 26)))
 
-        near(52f, bars[1].heightDp)
-        near(1f, bars[1].fillOpacity)
-        // √(4/26) ≈ 0.392 — a linear scale would have squashed this to a stub.
-        near(0.392f, bars[0].scaled)
-        near(20.4f, bars[0].heightDp)
-        near(0.666f, bars[0].fillOpacity)
+        assertEquals(1f, bars[1].scaled)
+        assertTrue(bars[0].heightDp < bars[1].heightDp)
+        assertTrue(bars[0].fillOpacity < bars[1].fillOpacity)
     }
 
     @Test

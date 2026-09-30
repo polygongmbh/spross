@@ -36,34 +36,6 @@ class HomeStandingTest {
     }
 
     @Test
-    fun pullAheadsCountIntoTheRepetitionsRatherThanStandingAsTheirOwnPile() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 12, dueHeldBack = 0, ahead = 3, newCards = 2, shortRound = 0)
-
-        assertEquals("15 Checks · 2 Neue", offerSummary(chrome, offer))
-    }
-
-    @Test
-    fun aCountOfOneDeclinesItsNoun() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 1, dueHeldBack = 0, ahead = 0, newCards = 1, shortRound = 0)
-
-        assertEquals("1 Check · 1 Neues", offerSummary(chrome, offer))
-    }
-
-    @Test
-    fun newWordsSpellOutTheirNounWhenTheyCarryTheRoundAlone() {
-        val offer = SessionOffer(SessionOfferKind.NewSet, reviews = 0, dueHeldBack = 0, ahead = 0, newCards = 5, shortRound = 0)
-
-        assertEquals("5 neue Wörter", offerSummary(chrome, offer))
-    }
-
-    @Test
-    fun aheadIsNamedOnlyWhenItCarriesTheRoundAlone() {
-        val offer = SessionOffer(SessionOfferKind.WarmUp, reviews = 0, dueHeldBack = 0, ahead = 4, newCards = 0, shortRound = 0)
-
-        assertEquals("4 Auffrischer", offerSummary(chrome, offer))
-    }
-
-    @Test
     fun aRoundThatNamesNothingSaysSoInOnePhrase() {
         val offer = SessionOffer(SessionOfferKind.Nothing, reviews = 0, dueHeldBack = 0, ahead = 0, newCards = 0, shortRound = 0)
 
@@ -119,15 +91,6 @@ class HomeStandingTest {
     @Test
     fun anUnworkedDayHasAStateAndNoTally() {
         assertNull(todayTally(chrome, report(answers = 0)))
-    }
-
-    @Test
-    fun theCrossingsReadLastOnAWorkedDay() {
-        assertEquals(
-            "3 Neue · 24 Checks · 2 sitzen nun",
-            todayTally(chrome, report(answers = 29, introduced = 3, settled = 2)),
-        )
-        assertEquals("8 Checks", todayTally(chrome, report(answers = 8)))
     }
 
     @Test

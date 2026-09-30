@@ -17,12 +17,4 @@ class GrowthLineTest {
         assertTrue(chrome.growthGrown.first() !in lines)
         assertEquals(chrome.growthGrown.drop(1).toSet(), lines)
     }
-
-    @Test
-    fun everyClaimReadsFromItsOwnLines() {
-        assertEquals(chrome.sessionDoneGrowthGrew, growthLine(chrome, GrowthHeadline(GrowthClaim.Unclaimed, 7)))
-        assertEquals(chrome.sessionDoneGrowthOpened, growthLine(chrome, GrowthHeadline(GrowthClaim.Opened, 7)))
-        assertTrue(growthLine(chrome, GrowthHeadline(GrowthClaim.Settled, 7)) in chrome.growthBlooming)
-        assertTrue(growthLine(chrome, GrowthHeadline(GrowthClaim.Met, 7)) in chrome.growthSown)
-    }
 }

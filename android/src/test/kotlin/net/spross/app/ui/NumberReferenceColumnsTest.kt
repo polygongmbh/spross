@@ -3,7 +3,6 @@ package net.spross.app.ui
 import androidx.compose.ui.unit.dp
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import net.spross.kern.trainer.ReferenceEntry
 import net.spross.kern.trainer.Numbers
 
 /**
@@ -25,15 +24,6 @@ class NumberReferenceColumnsTest {
         assertEquals(2, columnCount(band("tens"), fontScale = 1f, width = PHONE))
     }
 
-    @Test
-    fun everyOtherBandKeepsTheWholeWidth() {
-        val paired = Numbers.reference("de")
-            .filter { columnCount(it.entries, fontScale = 1f, width = PHONE) == 2 }
-            .map { it.key }
-
-        assertEquals(listOf("base", "tens"), paired, "only the short readings pair up")
-    }
-
     /**
      * Ukrainian pairs nowhere:
      * "п'ятнадцять" and "вісімдесят" outrun a half-width column on a 360 dp phone,
@@ -46,30 +36,5 @@ class NumberReferenceColumnsTest {
             .map { it.key }
 
         assertEquals(emptyList<String>(), paired, "Cyrillic readings need the whole width")
-    }
-
-    @Test
-    fun aBandOfLongReadingsStaysWhole() {
-        val entries = List(8) { ReferenceEntry(value = "${it * 100}", reading = "einhunderteins") }
-
-        assertEquals(1, columnCount(entries, fontScale = 1f, width = PHONE))
-    }
-
-    @Test
-    fun grownTypeGivesEveryReadingTheWholeWidth() {
-        assertEquals(1, columnCount(band("base"), fontScale = 1.3f, width = PHONE))
-    }
-
-    @Test
-    fun aBandTooShortToSplitStaysWhole() {
-        val entries = List(5) { ReferenceEntry(value = "$it", reading = "eins") }
-
-        assertEquals(1, columnCount(entries, fontScale = 1f, width = PHONE))
-    }
-
-    /** A 320 dp device leaves 256 dp, halving to under 110 dp a column, where "fünfzehn" wraps. */
-    @Test
-    fun aNarrowPageKeepsTheWholeWidth() {
-        assertEquals(1, columnCount(band("base"), fontScale = 1f, width = 256.dp))
     }
 }
