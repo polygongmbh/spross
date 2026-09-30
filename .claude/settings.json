@@ -1,5 +1,15 @@
 {
   "plansDirectory": "docs/plans",
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(scripts/*.sh:*)",
+      "Bash(scripts/*.py:*)",
+      "Bash(xcodebuild:*)",
+      "Bash(adb:*)",
+      "Bash(xcrun simctl:*)"
+    ]
+  },
   "hooks": {
     "PostToolUse": [
       {
