@@ -45,10 +45,6 @@ Engine contract: `../README.md`.
   (`StoredBoxes.restoring`); one box it cannot read refuses the whole file.
   Boxes only — name, audio choice and drill Sprossen are device settings and stay behind;
   the pair does not, since each box names the known language it was studied under.
-- Engine boundary time: `nowEpochMillis: Long` + `tzId: String` (kotlinx-datetime 0.8 has
-  no Swift-Date bridging; Instant/TimeZone are constructed inside). TimeZone = device-current
-  per call. Day keys are ISO regardless of device calendar
-  (DST + non-Gregorian vectors in the test suite).
 - **WidgetSnapshot** (NEW): the phone precomputes it on the saves whose `SaveScope` carries
   the snapshots — never per answer; which saves those are, and why, is that type's.
   A widget decodes and

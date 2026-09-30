@@ -22,10 +22,11 @@ what stays here is what no single declaration can say --
 a decision someone made, a rule that spans several of them,
 or a bug a restatement would bring back.
 
-The engine's own semantics are below. Nine domains have a page of their own:
+The engine's own semantics are below. Ten domains have a page of their own:
 `docs/presentation.md` (what a prompt shows, and when),
 `docs/fsrs.md` (parameters, provenance and graduation),
 `docs/turns.md` (the turn machine, the drills and listening),
+`docs/trainer.md` (the language packs and frames a drill is made of),
 `docs/grading.md` (how a typed answer becomes a rating),
 `docs/reports.md` (the read models a surface draws the box from),
 `docs/snapshots.md` (the box document and the watch/widget wire),

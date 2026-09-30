@@ -1,117 +1,40 @@
 # KMP project & Apple integration
-Gradle and Kotlin pins, targets, the framework hand-off to Xcode, and the trainer packs.
+Gradle and Kotlin pins, targets, and the framework hand-off to Xcode, Android and the web.
+Neighbors: the engine contract `../README.md`, the trainer packs `trainer.md`.
 
-Engine contract: `../README.md`.
-
-- Gradle root `app/` (wrapper committed; `.gitignore` += `build/`, `.gradle/`, `.kotlin/`,
-  `local.properties`); module `:kern` at **`app/kern`** (`kern/` at root is the same
-  APFS inode as Swift `Kern/` — never create it). Package `net.spross.kern`
-  (+ `.trainer`). Pins (probe-proven, Xcode 26.6): Kotlin **2.4.10** (SKIE 0.10.14's ceiling —
+- Gradle root is the repo root (wrapper committed); module `:kern` at `kern/`,
+  package `net.spross.kern`.
+  Pins (probe-proven, Xcode 26.6): Kotlin **2.4.10** (SKIE 0.10.14's ceiling —
   bump only as a pair; comment in the version catalog), serialization 1.11.0,
-  datetime 0.8.0, Gradle 9.6.1, JDK 21 toolchain. Configuration cache on.
+  datetime 0.8.0, Gradle 9.6.1, JDK 21 toolchain.
+  Configuration cache on.
   Toolchain auto-provisioning is off: JDK 21 must be installed, and the Homebrew keg
   path is named in `gradle.properties` because Gradle cannot auto-detect it.
-- Targets: `jvm()` (fast gate + Android-ready), `iosArm64`, `iosSimulatorArm64` — static
-  framework **SprossKern**. No watchOS targets (nothing links Kotlin on watch; 3 unused
-  slice builds cost ~40–60 % of every kern-edit rebuild, measured 23.7 s → target ≈ 10 s).
+- Targets: `jvm()` (the fast gate), `iosArm64`, `iosSimulatorArm64` — static framework **SprossKern**.
+  No watchOS targets: nothing links Kotlin on the watch,
+  and three unused slice builds cost ~40–60 % of every kern-edit rebuild.
 - Xcode: the app target links the framework directly (`FRAMEWORK_SEARCH_PATHS`, no SwiftPM
-  binaryTarget — wrong build ordering + clean-checkout deadlock). An in-target xcodegen
-  `preBuildScripts` phase branches on `$CONFIGURATION`/`$SDK_NAME`, runs the matching
-  `linkDebug/ReleaseFramework<Target>` Gradle task, and copies the framework to a
-  configuration-neutral search path. `scripts/bootstrap.sh` for fresh clones; a Release
-  archive smoke check joins the gates. Only the APP target links Kotlin; widget/watch/
-  complication are decode-only Swift (`snapshots.md`).
-- Swift ergonomics: UI-crossing Kotlin types are data classes; a small Swift bridge file in
-  App/Sources adds `Date ↔ epochMillis` helpers and `Identifiable`/`Equatable`
-  conformances; Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
+  binaryTarget — wrong build ordering + clean-checkout deadlock).
+  An in-target xcodegen `preBuildScripts` phase branches on `$CONFIGURATION`/`$SDK_NAME`,
+  runs the matching `linkDebug/ReleaseFramework<Target>` Gradle task,
+  and copies the framework to a configuration-neutral search path.
+  `scripts/bootstrap.sh` for fresh clones; a Release archive smoke check joins the gates.
+  Only the APP target links Kotlin; widget/watch/complication are decode-only Swift (`snapshots.md`).
+- Swift ergonomics: UI-crossing Kotlin types are data classes;
+  `App/Sources/KernBridge.swift` adds `Date ↔ epochMillis` helpers and `Identifiable`/`Equatable` conformances;
+  Kotlin `Int` surfaces as `Int32` — bridge there, not at call sites.
+  Engine boundary time is `nowEpochMillis: Long` + `tzId: String`
+  (kotlinx-datetime has no Swift-Date bridging; `Instant`/`TimeZone` are constructed inside);
+  the time zone is the device's current one, per call,
+  and day keys are ISO whatever the device calendar.
   A Kotlin default value does NOT cross: adding a parameter to a UI-crossing type keeps
-  every Kotlin caller compiling and breaks every Swift construction site, so the jvm and
-  Android gates stay green and only an app build reports it.
-- Trainer: single `:kern` module, `Long` cardinals everywhere (Kotlin `Int` is 32-bit on
-  all platforms). Trainer registry: de/en/es/sw/uk/eo/fr/it
-  authored; a language outside it has no drills (the hub's handling of that is an app rule).
-  `Catalog.phraseTemplates(source, target)` is the frames' half of the card join:
-  one `PhraseTemplate` per frame realized in BOTH languages, directional like a `Card`,
-  with `count`/`masculineNumeral`/`note` riding along from the ANSWER realization.
-  Nothing pair-shaped is stored, so authoring one language file lights up every pair it
-  makes. Availability gate: **empty unless `Numbers.supports(target)`** — sampling generates
-  the answer side's number words, so a language without a pack can only ever supply prompts.
-  A frame whose slot the target cannot fill drops out on the same rule
-  (`Numbers.supportsSlot`): a cardinal, a year and a clock come with every pack,
-  a `fraction` needs the pack to READ one, a `phone` its `PhonePlan`.
-  Reverse mode is the same template read the other way, for any pair, not only `target == de`.
-  German clock ACCEPTS 24-hour readings ("achtzehn Uhr fünfunddreißig", "null/vierundzwanzig
-  Uhr" at midnight) alongside the colloquial display forms; display stays 12-hour.
-  An hour word directly before "Uhr" apocopates: "ein Uhr", never "eins Uhr";
-  bare "eins" stays ("um eins", "halb eins").
-  A `NumbersTask` carries two prompt strings: **`prompt` is the machine form**
-  (`"347"`, `"14:35"`) that callers parse — `PhraseSlots` does `prompt.toLong()`, and a
-  Kotlin throw crossing the ObjC boundary crashes the app — while **`promptDisplay` is what
-  the UI shows**, defaulting to `prompt`.
-  Cardinals group their digits in threes with **U+202F narrow no-break space, from five
-  digits up** (`9999` unbroken, `12 345`, `4 072 918 300`):
-  dot and comma are inverted between German and English, so a neutral mark is the only one
-  that teaches neither as the truth.
-  Years and clock times are never grouped — they keep the default by setting nothing.
-  `NumbersReading.Form` asks the other ways a number is written — negatives, decimals,
-  percentages, multiplicatives, fractions, ordinals, prices — over a ten-Sprosse ladder where each
-  Sprosse keeps everything below it, and its own `internal` model (`NumberValue`, `FormLimits`)
-  never reaches the ObjC header. The Sprosse's forms are intersected with the language's, so a
-  pack that cannot read one never draws it, and a pack that authors none offers no Forms
-  drill at all (`Numbers.supportsForms`). **A Forms prompt is the one language-dependent
-  prompt**: German shows `3,7` where English shows `3.7`, because the reading names the mark
-  (`Komma` · `point`) and a shared prompt would lie about the answer it grades, and a price
-  wears its language's own tag (`3,50 €` · `$3.50`, `FormLimits.currency`) — everything
-  else stays neutral, including the ordinal mark `20.` and the `45 %` thin space.
-  Fractions are drawn REDUCED: `2/4` would legitimately read both "zwei Viertel" and
-  "ein halb", and no pack should carry that equivalence to grade its own drill.
-  What each language reads for each form, with its source and its exclusions,
-  is `../../docs/number-forms.md`.
-  A sentence slot's grouped digits are accepted alongside the plain ones.
-  **`NumbersExercise` is what a RUN offers, `NumbersReading` is what fills a SLOT** — a Phrases
-  run draws tasks whose reading is Cardinal, Year or Clock — and the two must not be
-  collapsed, because progress is kept per exercise. `DrillUnlocks` holds the whole ladder
-  as two tables of exercise → Sprosse reached (empty = always available), reading a
-  progress map the APP persists; kern stores nothing. `DrillRamp.step` is the Sprosse ramp
-  every drill shares (clean wins up, a miss down, floor 1, almost moves nothing), with how
-  long a Sprosse is left to the caller — `Numbers.winsToAdvance(fast)` reads the Fast
-  modifier, `LetterDrill.winsToAdvance` counts a held vocabulary.
-  `Numbers.reversed(task)` inverts the direction (words shown, the value typed) for any
-  kind, so the app stays direction-agnostic: it always shows the prompt and grades
-  against `accepted`.
-  `Numbers.reference(language)` generates the numbers page from those same packs —
-  bands keyed `base`/`tens`/`irregulars`/`compounds`/`hundreds`/`places`,
-  each key a stable identifier the app localizes into a heading — so the table cannot
-  drift from what the drill grades. `irregulars` (16–30) is offered only to a language
-  whose readings there are not what its own siblings predict, so a band count varies.
-  `PhraseSlots` samples at a Sprosse — same per-kind ramp tables as the plain drills
-  (a template's slot kind clamps the Sprosse).
-  The `sample` overload without a Sprosse keeps the prototype's biased full-difficulty draws
-  (numbers favor 2–3 digits, years cluster 1950–2050);
-  only Clock's draw without a Sprosse coincides with the top Sprosse's.
-  **`LetterDrill` is a separate facade, not a `NumbersReading` case**: its registry is
-  alphabet file presence in the catalog (adding a language edits no Kotlin), its ramp is
-  stateless and kern-owned (`entrySprosse`/`winsToAdvance`, then the `DrillRamp.step` every
-  drill shares — both D11 halves in one place so two platforms cannot drift),
-  sampling takes an injected `Random` and an
-  app-computed promptable set (device voices are an app fact).
-  A gap row draws its word from a POOL (`Catalog.alphabetExamples`, rules in
-  `../../catalog/alphabet/README.md`), the app narrowing it to what the device can say and
-  flagging what the box already holds; kern favours the known words while at least three
-  stand, and spends no randomness where a row offers one word.
-  Dictation weighs its draw (`dictationWeight`): a floor of one that shuts nothing out,
-  plus how many of the language's own hard graphemes the word carries (`Alphabet.trickyGlyphs`)
-  and FSRS difficulty above the midpoint, which every Again raises — each capped, so one leech
-  cannot take a Sprosse over, and both zero on a clean plain word, where the draw is bit-for-bit
-  the uniform one. The difficulty rides in on `DictationCandidate`; kern reads no state.
-  Dictation draws only
-  `BoxEngine.arrivedCardIds` through `dictationGradingCard` — it never books a
-  review (transcription is not recall; drills are stateless).
-  Android: `androidLibrary` KMP target
-  (`com.android.kotlin.multiplatform.library`, AGP 9.3.1, compileSdk 36 / minSdk 26),
-  androidMain NFC actual mirrors jvmMain; `:android` consumes the same facades.
+  every Kotlin caller compiling and breaks every Swift construction site,
+  so the jvm and Android gates stay green and only an app build reports it.
+- Android: `androidLibrary` KMP target
+  (`com.android.kotlin.multiplatform.library`, AGP 9.3.1, compileSdk 36 / minSdk 26);
+  androidMain's NFC actual mirrors jvmMain, and `:android` consumes the same facades.
   Gate: `./gradlew :kern:compileAndroidMain`.
-- Web: `js { browser() }` target feeds the spross.net drill (`../../docs/website.md`).
+- Web: `js { browser() }` target feeds the spross.net drill (`../../docs/plans/website.md`).
   `binaries.executable()` → one webpack bundle, `:kern:jsBrowserDistribution` →
   `kern/build/dist/js/productionExecutable/kern.js` (UMD global `kern`).
   The page-facing surface is the `@JsExport` facade `net.spross.kern.web`
@@ -119,4 +42,5 @@ Engine contract: `../README.md`.
   and the drill grades through the same `AnswerNormalizer` the app builds;
   jsMain's NFC actual is `String.prototype.normalize("NFC")`.
   Gradle provisions Node/Yarn on first build (network) and pins
-  `kotlin-js-store/yarn.lock` (committed). Gate: `./gradlew :kern:jsBrowserDistribution`.
+  `kotlin-js-store/yarn.lock` (committed).
+  Gate: `./gradlew :kern:jsBrowserDistribution`.

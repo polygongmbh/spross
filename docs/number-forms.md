@@ -1,6 +1,6 @@
 # Number forms — what each language reads
 What each language reads for the numbers drill's seven forms beyond the cardinal (negative, decimal, percentage, multiplicative, fraction, ordinal, price) and the source that decided it.
-Neighbors: drawing and prompting `../kern/docs/build.md`, grading `../kern/docs/grading.md`, a date's numeral `date-readings.md`.
+Neighbors: drawing and prompting `../kern/docs/trainer.md`, grading `../kern/docs/grading.md`, a date's numeral `date-readings.md`.
 
 The code is one `<Lang>Forms.kt` per language
 under `../kern/src/commonMain/kotlin/net/spross/kern/trainer/`,
