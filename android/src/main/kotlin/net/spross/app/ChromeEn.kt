@@ -490,7 +490,7 @@ internal object ChromeEn : Chrome {
     override val errorContentUnavailable = "The content could not be loaded. (%s)"
     override val errorUnknownProfile = "Unknown language profile (%1\$s → %2\$s)."
     override val errorResetFailed = "Reset failed. (%s)"
-    override val sessionDoneTallyNew = "%s new"
+    override val sessionDoneTallyNew = "%s sown"
     override val sessionDoneTallyNewOnly = "%s new words"
     override val sessionDoneTallyConsolidated = "%s consolidated"
     override val sessionDoneTallyReviewed = "%s reviewed"
