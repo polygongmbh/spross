@@ -47,6 +47,10 @@ if [ -z "${JAVA_HOME:-}" ] && [ -x /usr/libexec/java_home ]; then
   [ -n "$JAVA_HOME" ] && export JAVA_HOME
 fi
 
+mkdir -p "$DEST"
+STARTED="$DEST/.started"
+touch "$STARTED"
+
 if ! ./gradlew ":kern:${LINK}${SLICE}"; then
   echo "error: build-kern.sh: Gradle :kern:${LINK}${SLICE} FAILED — SprossKern.framework not updated" >&2
   exit 1
@@ -57,6 +61,9 @@ if [ ! -d "$SRC" ]; then
   echo "error: build-kern.sh: expected framework missing at $SRC" >&2
   exit 1
 fi
-mkdir -p "$DEST"
 rsync -a --delete "$SRC" "$DEST/"
 printf '%s\n' "$SLICE" > "$STAMP"
+# why: the stamp carries the build's START time, so a source saved while Gradle
+# ran is newer than the stamp and the next build picks it up instead of skipping.
+touch -r "$STARTED" "$STAMP"
+rm -f "$STARTED"
