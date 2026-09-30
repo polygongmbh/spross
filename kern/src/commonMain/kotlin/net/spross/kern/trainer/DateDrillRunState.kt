@@ -47,8 +47,9 @@ data class DateDrillClose(
      */
     val bestLevel: Int,
     /**
-     * The Sprossen this run answered OUT, for the page to add to what it holds — the next run
-     * opens above them. Unfiltered: unlike [bestLevel] there is no standing value to beat.
+     * The Sprossen this run answered OUT before its first slip ([DrillSprossen]), for the page
+     * to add to what it holds — the next run opens above them.
+     * Unfiltered: unlike [bestLevel] there is no standing value to beat.
      */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
@@ -152,7 +153,7 @@ data class DateDrillRunState(
 
     /** The Sprossen this run answered out that the store did not hold — what a pause for improving names. */
     internal val newSprossen: Int
-        get() = (DateDrill.cleared(config.content, config.reverse, core.solved) - config.cleared).size
+        get() = (DateDrill.cleared(config.content, config.reverse, core.solvedClean) - config.cleared).size
 
     /** The card may open: the almost hold and the miss each put a reading worth seeing whole. */
     val showsAnswer: Boolean

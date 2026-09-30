@@ -156,6 +156,8 @@ enum CountryDrillFace: DrillFace {
                                          missRun: run.core.missRun,
                                          outcomes: run.core.outcomes,
                                          solved: run.core.solved,
+                                         slipped: run.core.slipped,
+                                         solvedClean: run.core.solvedClean,
                                                pacing: run.core.pacing),
                    feedback: run.feedback,
                    otherWord: run.otherWord, finished: run.finished)

@@ -128,29 +128,31 @@ object DrillRamp {
 }
 
 /**
- * Which Sprossen a run may hand back as CLEARED where a Sprosse is EARNED rather than enumerated.
+ * Which Sprossen a run may hand back as CLEARED, and the one rule every drill that files them
+ * shares: **only a run with no slip yet clears a Sprosse.**
  *
  * The atlas and the calendar can list a Sprosse and check it off ([DrillSolved.cleared]); a
- * scramble draws out of a pool that grows with the box, so what it books instead is the CLIMB:
- * a Sprosse is cleared by being left UPWARD with nothing against it — every answer given while
- * standing on it fully correct, no typo, no look-up, no miss.
+ * scramble or the letter drill draws out of a pool that grows with the box, so what it books
+ * instead is the CLIMB: a Sprosse is cleared by being left UPWARD. Either way the run's first
+ * slip — a miss, a typo, a look-up, a reveal — ends its clearing for good ([DrillRunCore.slipped]):
+ * what it cleared before stays cleared, and nothing it answers out or climbs off after does.
  *
  * A second ledger beside [DrillRamp] rather than a tightening of it. An almost still banks
- * nothing, costs nothing and breaks no streak; it only takes the Sprosse it fell on out of the
- * running for the store, so no later run treats that Sprosse as held.
+ * nothing, costs nothing and breaks no streak; it only takes the rest of the run out of the
+ * running for the store, so no later run treats a Sprosse as held that was not earned clean.
  */
 internal object DrillSprossen {
 
-    /** Whether the Sprosse the run stands on is out of the running, once this answer is in. */
-    fun blemished(standing: Boolean, correct: Boolean, clean: Boolean): Boolean =
+    /** Whether the run has slipped, once this answer is in. */
+    fun slipped(standing: Boolean, correct: Boolean, clean: Boolean): Boolean =
         standing || !correct || !clean
 
     /**
-     * [cleared] plus [from], where the run has just left it upward unblemished — by the wins
-     * its ladder asks for, or by answering it out, which are one feat from the store's side.
+     * [cleared] plus [from], where a run that has not [slipped] has just left it upward — by the
+     * wins its ladder asks for, or by answering it out, which are one feat from the store's side.
      */
-    fun leaving(cleared: Set<Int>, from: Int, to: Int, blemished: Boolean): Set<Int> =
-        if (to > from && !blemished) cleared + from else cleared
+    fun leaving(cleared: Set<Int>, from: Int, to: Int, slipped: Boolean): Set<Int> =
+        if (to > from && !slipped) cleared + from else cleared
 
     /**
      * The wins a scramble asks of [level]: ONE clean answer where the store already [held] it
@@ -158,8 +160,7 @@ internal object DrillSprossen {
      *
      * A scramble run opens at the foot and fast-climbs what earlier runs cleared, so the ground
      * below is touched on the way up without being earned twice.
-     * Its first slip anywhere — a miss or an almost, [blemished]'s rule run-wide — ends that
-     * for the rest of the run.
+     * Its first slip anywhere ([slipped]) ends that for the rest of the run.
      * A Sprosse passed fast is one the store holds already, so it counts as nothing new.
      */
     fun winsRequired(level: Int, held: Set<Int>, slipped: Boolean, usual: Int): Int =

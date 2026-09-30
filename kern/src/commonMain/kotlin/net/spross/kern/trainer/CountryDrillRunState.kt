@@ -47,8 +47,9 @@ data class CountryDrillClose(
      */
     val bestLevel: Int,
     /**
-     * The Sprossen this run answered OUT, for the page to add to what it holds — the next run
-     * opens above them. Unfiltered: unlike [bestLevel] there is no standing value to beat.
+     * The Sprossen this run answered OUT before its first slip ([DrillSprossen]), for the page
+     * to add to what it holds — the next run opens above them.
+     * Unfiltered: unlike [bestLevel] there is no standing value to beat.
      */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
@@ -136,7 +137,7 @@ data class CountryDrillRunState(
 
     /** The Sprossen this run answered out that the store did not hold — what a pause for improving names. */
     internal val newSprossen: Int
-        get() = (CountryDrill.cleared(config.content, config.reverse, core.solved) - config.cleared).size
+        get() = (CountryDrill.cleared(config.content, config.reverse, core.solvedClean) - config.cleared).size
 
     /** The card may open: the almost hold and the miss each put a name worth seeing on it. */
     val showsAnswer: Boolean

@@ -61,8 +61,6 @@ object SentenceScrambleRun {
             bestLevel = opening.level,
             winsAtLevel = 0,
             clearedSprossen = emptySet(),
-            blemished = false,
-            slipped = false,
             core = DrillRunCore(pacing = DrillPacing.opening(opening.level, standingRecord = 0)),
             feedback = TurnFeedback.Neutral,
             finished = opening.task == null,
@@ -88,7 +86,8 @@ object SentenceScrambleRun {
      * so nothing it does can beat one.
      *
      * The Sprosse the run stands on when it leaves is NOT booked: a Sprosse is earned by being
-     * climbed off unblemished ([DrillSprossen]), and stopping halfway up one earns nothing.
+     * climbed off before the run's first slip ([DrillSprossen]), and stopping halfway up one
+     * earns nothing.
      */
     fun close(state: SentenceScrambleRunState): SentenceScrambleClose {
         val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
@@ -185,9 +184,8 @@ object SentenceScrambleRun {
                     next.clearedSprossen,
                     next.level,
                     question.level,
-                    next.blemished,
+                    next.core.slipped,
                 ),
-                blemished = next.blemished && question.level == next.level,
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next arrangement
                 // must never render a frame carrying the last one's atoms.
@@ -216,10 +214,10 @@ object SentenceScrambleRun {
             winsAtLevel = state.winsAtLevel,
             correct = correct,
             clean = clean,
-            winsRequired = DrillSprossen.winsRequired(state.level, held, state.slipped, WINS_TO_ADVANCE),
+            winsRequired = DrillSprossen.winsRequired(state.level, held, state.core.slipped, WINS_TO_ADVANCE),
             top = state.config.report.maxLevel,
         )
-        val blemished = DrillSprossen.blemished(state.blemished, correct, clean)
+        val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
         return state.copy(
             level = step.level,
             bestLevel = maxOf(state.bestLevel, step.level),
@@ -228,11 +226,9 @@ object SentenceScrambleRun {
                 state.clearedSprossen,
                 state.level,
                 step.level,
-                blemished,
+                core.slipped,
             ),
-            blemished = blemished && step.level == state.level,
-            slipped = DrillSprossen.blemished(state.slipped, correct, clean),
-            core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) }),
+            core = core,
         )
     }
 

@@ -220,6 +220,17 @@ class WordScrambleRunTest {
         assertEquals(2, closed.bestLevel)
     }
 
+    /** The run's first slip keeps every Sprosse after it from the store, and the ones before it booked. */
+    @Test
+    fun aSlipEndsTheRunsClearing() {
+        var state = open()
+        repeat(WordScrambleRun.WINS_TO_ADVANCE) { state = answer(state, clean = true) }
+        state = answer(state, clean = false)
+        while (state.level == 2) state = answer(state, clean = true)
+        assertTrue(state.level > 2, "the run climbs off Sprosse 2")
+        assertEquals(setOf(1), WordScrambleRun.close(state).clearedSprossen)
+    }
+
     private fun resumed(vararg cleared: Int) = WordScrambleRun.open(
         WordScrambleRunConfig(config().report, ScrambleFixture.normalizer, cleared.toSet()),
         Random(3),

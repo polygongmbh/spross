@@ -5,10 +5,11 @@ import net.spross.kern.session.AnswerOutcome
 /**
  * The figures every drill run keeps, whatever it happens to ask: the streak on screen and the
  * best it reached, the misses in a row, the outcomes the tally reads, how many questions are
- * done, the prompts already answered right, and where the run stands against its next pause.
+ * done, the prompts already answered right, whether the run has slipped yet, and where the run
+ * stands against its next pause.
  *
  * A run's own business is the questions it draws and the ladder it climbs where that ladder is
- * its own; the typed runs share theirs down to the verdicts ([TypedDrillVerdicts]). These six
+ * its own; the typed runs share theirs down to the verdicts ([TypedDrillVerdicts]). These
  * move the same way in every drill, so an answer is booked here once ([book]); four copies of
  * one piece of arithmetic is how two streaks come to disagree.
  *
@@ -30,6 +31,16 @@ data class DrillRunCore(
      * a Sprosse with nothing left outside them is climbed past rather than repeated.
      */
     val solved: Set<String> = emptySet(),
+    /**
+     * Whether the run has missed or almost-answered anywhere yet: from then on it clears no
+     * Sprosse ([DrillSprossen]).
+     */
+    val slipped: Boolean = false,
+    /**
+     * [solved] as it stood before the run's first slip — what an enumerated ladder may call
+     * answered out for the store ([DrillSolved.cleared]).
+     */
+    val solvedClean: Set<String> = emptySet(),
     /** Where the run stands against its next natural stop ([DrillPacing]). */
     val pacing: DrillPacing = DrillPacing(),
 ) {
@@ -45,13 +56,17 @@ data class DrillRunCore(
      */
     fun book(correct: Boolean, clean: Boolean, solves: String?): DrillRunCore {
         val run = if (correct) streak + 1 else 0
+        val solvedNow = if (correct && clean && solves != null) solved + solves else solved
+        val slips = DrillSprossen.slipped(slipped, correct, clean)
         return copy(
             done = done + 1,
             streak = run,
             bestStreak = maxOf(bestStreak, run),
             missRun = if (correct) 0 else missRun + 1,
             outcomes = outcomes + outcome(correct, clean),
-            solved = if (correct && clean && solves != null) solved + solves else solved,
+            solved = solvedNow,
+            slipped = slips,
+            solvedClean = if (slips) solvedClean else solvedNow,
         )
     }
 

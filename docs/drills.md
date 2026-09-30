@@ -146,8 +146,10 @@ Nothing wears a prefix one scope wider than what it serves.
   stands.**
   A circle is an outline where no run has stood on the Sprosse,
   filled ocean where one has reached it,
-  filled forest where one run answered EVERY question of it clean --
-  only a Sprosse that enumerates can earn forest,
+  filled forest where one run answered EVERY question of it before its first miss or almost --
+  a run that has slipped once clears nothing more, in every drill that files Sprossen
+  (`DrillSprossen`, `../kern/docs/turns.md`) --
+  and only a Sprosse that enumerates can earn forest,
   so assembled date Sprossen never turn forest.
   `Los` opens on the lowest Sprosse no run has answered out
   (`NumbersMode.entrySprosse`),
@@ -167,13 +169,12 @@ Nothing wears a prefix one scope wider than what it serves.
   a Sprosse goes on counting past the last named one (`DrillRamp.step`).
 - **The two scrambles have no page to wear a ladder on, and fast-climb one anyway.**
   A run opens at Sprosse 1,
-  and passes each Sprosse some earlier run climbed off UNBLEMISHED --
-  every answer correct and unaided --
-  on one clean answer, until its first miss or almost,
+  and passes each Sprosse some earlier run climbed off before its first miss or almost
+  on one clean answer, until its own first miss or almost,
   from which on every Sprosse asks the drill's usual count
   (`../kern/docs/turns.md` storage contract), filed per learned language.
   An almost banks nothing inside the run
-  but takes that Sprosse out of the store's running.
+  but ends the run's clearing, as on the atlas.
   Nothing overrides where it opens: there is no row to tap and no direction to turn.
   The letter drill keeps the same record for its tile and typed stages (`drills-words.md`).
 - **An endless run offers its exit where it is wanted, and pauses at a natural stop.**
@@ -183,7 +184,7 @@ Nothing wears a prefix one scope wider than what it serves.
   a stretch of answers since it opened or last went on;
   something new after a shorter stretch --
   a Sprosse cleared for the first time
-  (climbed off unblemished in the scrambles and the letters,
+  (climbed off in the scrambles and the letters,
   answered out in the run's own direction on the atlas and the calendar,
   climbed past where the exercise stood in numbers),
   or the standing streak record beaten (numbers, atlas, calendar);

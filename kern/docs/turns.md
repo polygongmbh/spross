@@ -220,13 +220,15 @@ Engine contract: `../README.md`.
   a drawn Sprosse is never cleared that way.
   The two scrambles draw out of a pool that grows with the box, so what they book is the CLIMB,
   and so does the letter drill, whose stages ask thirty prompts where its ramp climbs on two:
-  `DrillRungs` clears a Sprosse the run left UPWARD with nothing against it —
-  every answer given while standing on it fully correct, no typo, no look-up, no miss —
-  whether it was left on the wins the ladder asks for or by being answered out.
+  `DrillSprossen` clears a Sprosse the run left UPWARD,
+  whether on the wins the ladder asks for or by being answered out.
+  Both ways share one rule: only a run with no slip yet clears a Sprosse (`DrillRunCore.slipped`).
+  Its first miss, typo, look-up or reveal ANYWHERE ends its clearing for good —
+  what it cleared before stays cleared, nothing it answers out or climbs off after does
+  (the atlas and the calendar check against `DrillRunCore.solvedClean`, the prompts solved before that slip).
   That ledger sits BESIDE `DrillRamp` rather than tightening it:
   an almost still banks nothing, costs nothing and breaks no streak,
-  it only takes the Sprosse it fell on out of the running for the store,
-  so the next run opens on that Sprosse again instead of above it.
+  it only takes the rest of the run out of the running for the store.
   Either way the next run opens on the lowest Sprosse the stored mask does not hold.
 - Feedback and cues reuse the turn machine's vocabulary
   (`TurnFeedback`, `AlmostReason`, `AnswerOutcome`, `AdvanceTier`, `ToneKind`);

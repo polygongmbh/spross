@@ -118,7 +118,7 @@ object DateDrillRun {
         } else {
             DrillRunSummary(ended.done, ended.bestStreak, ended.bestStreak > standingRecord)
         }
-        val cleared = DateDrill.cleared(state.config.content, state.config.reverse, ended.solved)
+        val cleared = DateDrill.cleared(state.config.content, state.config.reverse, ended.core.solvedClean)
         return DateDrillClose(ended, summary, ended.bestLevel, cleared, effects)
     }
 

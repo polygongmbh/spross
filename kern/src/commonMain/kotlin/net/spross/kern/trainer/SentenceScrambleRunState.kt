@@ -48,7 +48,7 @@ data class SentenceScrambleClose(
      */
     val bestLevel: Int,
     /**
-     * The Sprossen this run climbed off without a blemish ([DrillSprossen]), for the store to add
+     * The Sprossen this run climbed off before its first slip ([DrillSprossen]), for the store to add
      * to the mask it holds — the Sprossen later runs pass on one clean answer
      * ([DrillSprossen.winsRequired]).
      * Unfiltered: unlike [bestLevel] there is no standing value to beat.
@@ -89,19 +89,8 @@ data class SentenceScrambleRunState(
     val level: Int,
     val bestLevel: Int,
     val winsAtLevel: Int,
-    /** The Sprossen climbed off unblemished so far — what the close hands the store. */
+    /** The Sprossen climbed off before the run's first slip — what the close hands the store. */
     val clearedSprossen: Set<Int>,
-    /**
-     * Whether the Sprosse the run stands on has already lost the store: an almost or a miss on
-     * it. It costs the run nothing else — the streak, the banked wins and the ramp are all
-     * [DrillRamp]'s, and a blemish moves none of them.
-     */
-    val blemished: Boolean,
-    /**
-     * Whether the run has missed or almost-answered anywhere yet, which ends its fast climb
-     * through the Sprossen the store holds ([DrillSprossen.winsRequired]).
-     */
-    val slipped: Boolean,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
     override val core: DrillRunCore,
     override val feedback: TurnFeedback,

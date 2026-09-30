@@ -16,10 +16,10 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
 - **The stage rows say which stage a run OPENS on**, derived from the learner's consolidated
   words and the record below, and dictation states its price until enough of them can be played back.
   Their mark is the shared Sprosse circle,
-  forest on a stage some run climbed off clean, filled on the stage the run opens on,
+  forest on a stage some run climbed off before its first slip, filled on the stage the run opens on,
   and the rows are not tapped: the run walks the ladder by itself from that stage.
-- **The tile and typed Sprossen keep the scrambles' record** — a Sprosse left upward with
-  every answer on it clean (`LetterDrillClose.clearedSprossen`) —
+- **The tile and typed Sprossen keep the scrambles' record** — a Sprosse left upward
+  before the run's first miss or almost (`LetterDrillClose.clearedSprossen`) —
   and a run opens on the lowest one at or above the vocabulary's entry that the record lacks
   (`LetterDrillAvailability.Report.openingLevel`).
   Dictation is never filed: it draws from the box, which grows.

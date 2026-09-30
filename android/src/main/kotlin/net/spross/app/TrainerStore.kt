@@ -90,8 +90,8 @@ class TrainerStore(private val prefs: SharedPreferences) {
     }
 
     /**
-     * The Sprossen every run under [key] has cleared — answered out, or climbed off
-     * unblemished, which the store files as one thing. Kern reads the mask.
+     * The Sprossen every run under [key] has cleared — answered out, or climbed off, before
+     * its first slip, which the store files as one thing. Kern reads the mask.
      */
     fun cleared(key: String): Set<Int> =
         NumbersMode.clearedSprossen(prefs.getInt(NumbersMode.CLEARED_PREFIX + key, 0))

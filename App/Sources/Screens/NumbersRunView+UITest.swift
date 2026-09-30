@@ -78,6 +78,8 @@ extension NumbersRunState {
                                  missRun: missRun ?? core.missRun,
                                  outcomes: core.outcomes,
                                  solved: core.solved,
+                                 slipped: core.slipped,
+                                 solvedClean: core.solvedClean,
                                  pacing: core.pacing),
                seenDigitCounts: seenDigitCounts,
                hintUsed: hintUsed,

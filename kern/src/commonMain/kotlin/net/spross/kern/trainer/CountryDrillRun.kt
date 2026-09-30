@@ -111,7 +111,7 @@ object CountryDrillRun {
         } else {
             DrillRunSummary(ended.done, ended.bestStreak, ended.bestStreak > standingRecord)
         }
-        val cleared = CountryDrill.cleared(state.config.content, state.config.reverse, ended.solved)
+        val cleared = CountryDrill.cleared(state.config.content, state.config.reverse, ended.core.solvedClean)
         return CountryDrillClose(ended, summary, ended.bestLevel, cleared, effects)
     }
 

@@ -35,7 +35,6 @@ object LetterDrillRun {
             level = opening.level,
             winsAtLevel = 0,
             clearedSprossen = emptySet(),
-            blemished = false,
             core = DrillRunCore(pacing = DrillPacing.opening(opening.level, standingRecord = 0)),
             chosen = null,
             feedback = TurnFeedback.Neutral,
@@ -91,7 +90,7 @@ object LetterDrillRun {
      * closing can neither lose it nor upgrade it; a revealed answer nobody confirmed books
      * nothing. [DrillRunSummary.newRecord] is always false — the letter drill keeps no record
      * store, so nothing it does can beat one. What it does leave is the tile and typed
-     * Sprossen it climbed off clean ([LetterDrillClose.clearedSprossen]).
+     * Sprossen it climbed off before its first slip ([LetterDrillClose.clearedSprossen]).
      */
     fun close(state: LetterDrillRunState): LetterDrillClose {
         val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
@@ -202,9 +201,8 @@ object LetterDrillRun {
                     next.clearedSprossen,
                     next.level,
                     question.level,
-                    next.blemished,
+                    next.core.slipped,
                 ),
-                blemished = next.blemished && question.level == next.level,
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next one must never
                 // render a frame carrying the last one's answer.
@@ -234,13 +232,12 @@ object LetterDrillRun {
             clean = clean,
             winsRequired = state.config.report.winsToAdvance,
         )
-        val blemished = DrillSprossen.blemished(state.blemished, correct, clean)
+        val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
         return state.copy(
             level = step.level,
             winsAtLevel = step.winsAtLevel,
-            clearedSprossen = DrillSprossen.leaving(state.clearedSprossen, state.level, step.level, blemished),
-            blemished = blemished && step.level == state.level,
-            core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) }),
+            clearedSprossen = DrillSprossen.leaving(state.clearedSprossen, state.level, step.level, core.slipped),
+            core = core,
         )
     }
 

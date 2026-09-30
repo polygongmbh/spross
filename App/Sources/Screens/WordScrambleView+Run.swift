@@ -112,14 +112,15 @@ extension WordScrambleView {
         run = run.doCopy(config: run.config, task: run.task, index: run.index,
                          level: run.level, bestLevel: run.bestLevel,
                          winsAtLevel: run.winsAtLevel,
-                         clearedSprossen: run.clearedSprossen, blemished: run.blemished,
-                         slipped: run.slipped,
+                         clearedSprossen: run.clearedSprossen,
                          core: run.core.doCopy(done: Int32(streak + 6),
                                                streak: Int32(streak),
                                                bestStreak: Int32(max(streak, 12)),
                                                missRun: run.core.missRun,
                                                outcomes: run.core.outcomes,
                                                solved: run.core.solved,
+                                               slipped: run.core.slipped,
+                                               solvedClean: run.core.solvedClean,
                                                pacing: run.core.pacing),
                          feedback: run.feedback, finished: run.finished)
     }

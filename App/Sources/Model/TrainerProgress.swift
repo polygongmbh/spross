@@ -55,7 +55,7 @@ enum TrainerProgress {
     private static var clearedPrefix: String { NumbersMode.companion.CLEARED_PREFIX }
 
     /// The Sprossen every run under `key` has cleared — answered out, or climbed
-    /// off unblemished, which the store files as one thing.
+    /// off, before its first slip, which the store files as one thing.
     static func cleared(for key: String) -> Set<Int> {
         Set(held(for: key).map { Int(truncating: $0) })
     }

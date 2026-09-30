@@ -422,6 +422,15 @@ class CountryDrillRunTest {
         assertEquals(setOf(1), CountryDrillRun.close(answered, standingRecord = 0).clearedSprossen)
     }
 
+    /** A run that has slipped clears nothing more, though it answers a Sprosse out. */
+    @Test
+    fun aSprosseAnsweredOutAfterASlipIsNotCleared() {
+        val slipped = open().missed()
+        val answered = slipped.answered(slipped.task.display)
+        assertTrue(1 in CountryDrill.cleared(content, reverse = false, answered.solved), "the Sprosse is answered out")
+        assertEquals(emptySet(), CountryDrillRun.close(answered, standingRecord = 0).clearedSprossen)
+    }
+
     /**
      * Answering out a Sprosse the store did not hold for this direction is what a pause for
      * improving names ([DrillPacing]); one the store already held is nothing new.

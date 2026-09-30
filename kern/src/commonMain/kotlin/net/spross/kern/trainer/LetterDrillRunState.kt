@@ -35,7 +35,7 @@ data class LetterDrillClose(
     /** null ⇒ nothing was answered: dismiss, report nothing. */
     val summary: DrillRunSummary?,
     /**
-     * The tile and typed Sprossen this run climbed off without a blemish, or answered out
+     * The tile and typed Sprossen this run climbed off or answered out before its first slip
      * ([DrillSprossen], the scrambles' ledger), for the store to OR into the mask under
      * [LetterDrillRunState.storageKey]. Dictation draws from the box, which grows, so it is
      * never cleared.
@@ -79,10 +79,8 @@ data class LetterDrillRunState(
     override val index: Int,
     val level: Int,
     val winsAtLevel: Int,
-    /** The Sprossen climbed off unblemished so far — what the close hands the store. */
+    /** The Sprossen climbed off before the run's first slip — what the close hands the store. */
     val clearedSprossen: Set<Int>,
-    /** Whether the Sprosse the run stands on has already lost the store: an almost or a miss on it. */
-    val blemished: Boolean,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
     override val core: DrillRunCore,
     /** The tile the learner picked, so the grid can mark both it and the answer. */
