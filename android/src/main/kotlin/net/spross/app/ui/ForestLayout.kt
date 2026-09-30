@@ -20,7 +20,8 @@ internal class ForestSpot(val planted: PlantedTree, val cell: Rect)
 internal object ForestLayout {
     const val MIN_HEIGHT = 9f
     private const val MAX_HEIGHT = 48f
-    private const val MIN_CELL = 52f
+    /** The column every tree claims — four across a phone; a crown may spill past it, its label never is. */
+    private const val COLUMN = 84f
     private const val ROW_HEIGHT = 70f
     const val LABEL_HEIGHT = 18f
     private const val ROW_GAP = 8f
@@ -67,22 +68,25 @@ internal object ForestLayout {
      * Every tree in a row stands on one baseline, so two areas compare at a glance. Rows
      * stand half a row apart and every second one opens half a cell further on, so a tree
      * grows up through the gap between two of the row above — one mass, not a shelf of
-     * drawers. A tree claims room in proportion to its own size, and drifts a little.
+     * drawers. Every tree claims the same column and a row's leftover width is shared out
+     * between its trees, first and last flush with the edges — so a shifted row's trees
+     * stand midway between two labels above. Each drifts a little off its column.
      */
     fun plant(trees: List<AreaTree>, width: Float, density: Float): List<ForestSpot> {
         if (width <= 0f || trees.isEmpty()) return emptyList()
-        // why: a crown spans up to 1.44 heights, and the row below grows up between two
-        // labels of this one — the room clears the crown, its overhanging leaves and a label.
-        val room = trees.map { max(MIN_CELL * 0.62f, treeHeight(it) * 1.44f + 34f) * density }
-        // One gap for the whole forest, from the row that can give the least,
-        // so every row walks the same lattice.
-        val gap = rows(room, width, 0f).minOf { row ->
-            max(0f, width - row.sumOf { room[it].toDouble() }.toFloat()) / (row.size + 1)
+        val column = COLUMN * density
+        val across = max(1, (width / column).toInt())
+        val step = if (across > 1) (width - column) / (across - 1) else 0f
+        val rows = mutableListOf(mutableListOf<Int>())
+        for (index in trees.indices) {
+            val rank = rows.size - 1
+            if (rows[rank].size == (if (rank % 2 == 0) across else max(1, across - 1))) rows += mutableListOf<Int>()
+            rows.last() += index
         }
         val cells = mutableListOf<Pair<AreaTree, Rect>>()
         var stand = 0f
         var band = 0f
-        for ((rank, row) in rows(room, width, gap).withIndex()) {
+        for ((rank, row) in rows.withIndex()) {
             val tallest = row.maxOf { treeHeight(trees[it]) }
             val next = max(ROW_HEIGHT, tallest + 10f) * density
             // why: half a row on from the row behind, but never so little that this row's
@@ -92,16 +96,15 @@ internal object ForestLayout {
                 (tallest + LABEL_HEIGHT + 10f) * density,
             )
             band = next
-            var x = if (rank % 2 == 0) 0f else (room[row[0]] + gap) / 2
-            for (index in row) {
+            val lead = column / 2 + if (rank % 2 == 0 || across == 1) 0f else step / 2
+            for ((slot, index) in row.withIndex()) {
                 val tree = trees[index]
-                val drift = (Mix.noise(tree.area, 31) - 0.5f) * min(gap, 10f * density)
+                val x = lead + slot * step + (Mix.noise(tree.area, 31) - 0.5f) * 8f * density
                 // why: the tap target follows THIS tree's crown, never the row's band, so a
                 // seedling's target does not reach into the row above.
                 val crown = (max(treeHeight(tree), MIN_HEIGHT) + TAP_MARGIN) * density
                 val reach = max(crown, (MIN_TAP - LABEL_HEIGHT) * density)
-                cells += tree to Rect(x + drift, stand - reach, x + drift + room[index], stand + LABEL_HEIGHT * density)
-                x += room[index] + gap
+                cells += tree to Rect(x - column / 2, stand - reach, x + column / 2, stand + LABEL_HEIGHT * density)
             }
         }
         // The forest starts at its highest crown, not at a first row's empty band.
@@ -115,20 +118,5 @@ internal object ForestLayout {
             // why: once rows interleave, the tree in front may belong to another row —
             // only one order across the whole forest layers them right.
             .sortedBy { it.planted.foot.y }
-    }
-
-    /** Indices bound into rows by [room], each tree costing [gap] more, odd rows opening half a cell on. */
-    private fun rows(room: List<Float>, width: Float, gap: Float): List<List<Int>> {
-        val rows = mutableListOf<MutableList<Int>>()
-        var used = 0f
-        for (index in room.indices) {
-            if (rows.isEmpty() || (rows.last().isNotEmpty() && used + gap + room[index] > width)) {
-                rows += mutableListOf<Int>()
-                used = if (gap > 0f && rows.size % 2 == 0) (room[index] + gap) / 2 else 0f
-            }
-            rows.last() += index
-            used += gap + room[index]
-        }
-        return rows
     }
 }

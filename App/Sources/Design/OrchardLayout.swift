@@ -66,8 +66,9 @@ struct TreeMark {
 
 enum OrchardLayout {
 
-    /// Cell size — six across a 354pt content width, which is the phone.
-    static let minCellWidth: CGFloat = 52
+    /// The column every tree claims — four across a 354pt content width, which is
+    /// the phone; a crown may spill past it, its label never is.
+    static let columnWidth: CGFloat = 84
     static let rowHeight: CGFloat = 70
     static let labelHeight: CGFloat = 18
     static let rowGap: CGFloat = Theme.spacing.sm
@@ -98,67 +99,24 @@ enum OrchardLayout {
     /// and two of the row below,
     /// and the orchard reads as one growing mass
     /// rather than as drawers in a wall.
-    /// That lattice is the only thing held rigid:
-    /// a tree claims room in proportion to its own size,
-    /// a row stands only as tall as its tallest,
-    /// and each tree sits a little off its slot's center.
-    /// Equal cells in equal columns read as planting
-    /// rather than as growth.
+    /// Every tree claims the same column,
+    /// and a row's leftover width is shared out between its trees,
+    /// first and last flush with the edges —
+    /// so a shifted row's trees stand midway between two labels above.
+    /// A row stands only as tall as its tallest,
+    /// and each tree sits a little off its column's center.
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
         guard width > 0, !trees.isEmpty else { return [] }
-        // why: a crown spans up to 1.44 heights, and the row below grows up between
-        // two labels of this one — the room clears the crown, its overhanging leaves and a label.
-        let room = trees.map { max(minCellWidth * 0.62, treeHeight($0) * 1.44 + 34) }
-
-        // One pass: the rows the rooms alone bound.
-        // Its tightest row sets the gap every row shares below.
-        var bound: [[Int]] = []
-        var row: [Int] = []
-        var used: CGFloat = 0
+        let across = max(1, Int(width / columnWidth))
+        let step = across > 1 ? (width - columnWidth) / CGFloat(across - 1) : 0
+        var rows: [[Int]] = [[]]
         for index in trees.indices {
-            if !row.isEmpty, used + room[index] > width {
-                bound.append(row)
-                row = []
-                used = 0
+            let rank = rows.count - 1
+            if rows[rank].count == (rank.isMultiple(of: 2) ? across : max(1, across - 1)) {
+                rows.append([])
             }
-            row.append(index)
-            used += room[index]
+            rows[rows.count - 1].append(index)
         }
-        if !row.isEmpty { bound.append(row) }
-
-        // ONE gap for the whole orchard,
-        // taken from the row that can give the least —
-        // so that row fills the width
-        // and every row walks the same lattice with it.
-        // A gap recomputed per row would give each row its own columns,
-        // and a half-cell start would stop falling halfway.
-        let gap: CGFloat = bound
-            .map { row in
-                let taken = row.reduce(CGFloat(0)) { $0 + room[$1] }
-                return max(0, width - taken) / CGFloat(row.count + 1)
-            }
-            .min() ?? 0
-
-        // Re-bind with the lattice's spacing and the half-cell lead in
-        // account — a row opening a cell on fits one tree less in it.
-        var rows: [[Int]] = []
-        row = []
-        used = 0
-        var rank = 0
-        for index in trees.indices {
-            if !row.isEmpty, used + gap + room[index] > width {
-                rows.append(row)
-                row = []
-                used = 0
-                rank += 1
-            }
-            if row.isEmpty, rank.isMultiple(of: 2) == false {
-                used = (room[index] + gap) / 2
-            }
-            row.append(index)
-            used += gap + room[index]
-        }
-        if !row.isEmpty { rows.append(row) }
 
         var marks: [TreeMark] = []
         var base: CGFloat = 0
@@ -166,23 +124,14 @@ enum OrchardLayout {
             let tallest = row.map { treeHeight(trees[$0]) }.max() ?? minHeight
             let band = max(rowHeight, tallest + 10)
             // why: rows stand HALF a row apart —
-            // the same half-step the old diagonal tiling used, but as whole rows:
             // a row's trees grow up through the gaps of the rows around them
             // instead of starting under a shelf of air,
             // and the orchard reads as one growing mass.
             let pitch = (band + labelHeight + rowGap) / 2
-
-            // why: half of the row's OWN first cell, and the same for every
-            // row — so the half steps against the row above it are all the
-            // same, and the lattice drifts only where a tree's width differs.
-            // Fixed rather than random:
-            // an even lattice broken only by the widths and the drift
-            // reads as an orchard,
-            // where the wave it replaced read as a wave.
-            let lead: CGFloat = rank.isMultiple(of: 2) ? 0 : (room[row[0]] + gap) / 2
-            var x = lead
-            for index in row {
-                let drift = CGFloat(noise(trees[index].area, 31) - 0.5) * min(gap, 10)
+            let lead = columnWidth / 2 + (rank.isMultiple(of: 2) || across == 1 ? 0 : step / 2)
+            for (slot, index) in row.enumerated() {
+                let drift = CGFloat(noise(trees[index].area, 31) - 0.5) * 8
+                let x = lead + CGFloat(slot) * step + drift
                 let stand = base + band
                 // why: the cell follows THIS tree's own crown, never the row's band —
                 // a band is as tall as the tallest tree in the row, and giving every
@@ -190,14 +139,13 @@ enum OrchardLayout {
                 // into the open air a whole row above where it is drawn.
                 let crown = max(treeHeight(trees[index]), minHeight) + tapMargin
                 let reach = max(crown, minTapHeight - labelHeight)
-                let cell = CGRect(x: x + drift, y: stand - reach,
-                                  width: room[index], height: reach + labelHeight)
+                let cell = CGRect(x: x - columnWidth / 2, y: stand - reach,
+                                  width: columnWidth, height: reach + labelHeight)
                 marks.append(TreeMark(tree: trees[index],
-                                      foot: CGPoint(x: cell.midX, y: stand),
+                                      foot: CGPoint(x: x, y: stand),
                                       height: treeHeight(trees[index]),
                                       cell: cell,
                                       baseline: stand))
-                x += room[index] + gap
             }
             base += pitch
         }
