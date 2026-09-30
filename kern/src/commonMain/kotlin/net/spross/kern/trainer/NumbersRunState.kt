@@ -1,6 +1,5 @@
 package net.spross.kern.trainer
 
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
 
@@ -178,7 +177,9 @@ data class NumbersRunState(
             return Numbers.placeValueHint(digits, mode.language)
         }
 
-    /** What a correct answer earns: almost where the reference was read while the answer was owed. */
-    internal val cleanOutcome: AnswerOutcome
-        get() = if (hintUsed) AnswerOutcome.Almost else AnswerOutcome.Right
+    /**
+     * Whether [booking] stays clean: a correct answer books almost where the reference was
+     * read while the answer was owed.
+     */
+    internal fun cleanness(booking: DrillBooking): Boolean = booking.clean && !(booking.correct && hintUsed)
 }

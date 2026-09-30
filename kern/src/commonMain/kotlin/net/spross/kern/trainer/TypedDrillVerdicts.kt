@@ -25,6 +25,9 @@ internal data class DrillBooking(val correct: Boolean, val clean: Boolean)
  * a learner meets one ladder in both: the live approve that books on the last letter, the
  * almost hold that shows a spelling, the reveal that counts as a miss. Written once, because
  * two copies is how the same slip comes to be worth two different things.
+ *
+ * The slot run shares the approve and the bookings; its submit and reveal stay its own
+ * ([NumbersRun]), since a timed run keeps a clean answer unsaid and a reversed one says its prompt.
  */
 internal object TypedDrillVerdicts {
 

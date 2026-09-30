@@ -4,7 +4,6 @@ import kotlin.random.Random
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -133,11 +132,9 @@ object NumbersRun {
         standingProgress: Map<String, Int>,
     ): NumbersClose {
         val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
-        val pending = when (state.feedback) {
-            TurnFeedback.Correct -> advanced(state, correct = true, outcome = state.cleanOutcome)
-            is TurnFeedback.Almost -> advanced(state, correct = true, outcome = AnswerOutcome.Almost)
-            else -> state
-        }
+        val pending = TypedDrillVerdicts.pending(state.feedback)
+            ?.let { advanced(state, it.correct, state.cleanness(it)) }
+            ?: state
         val ended = pending.copy(feedback = TurnFeedback.Neutral, otherWord = null, hintUsed = false, finished = true)
         if (ended.done == 0) {
             return NumbersClose(ended, null, state.mode.recordKey, emptyMap(), effects)
@@ -195,41 +192,21 @@ object NumbersRun {
     }
 
     /**
-     * "Finishing the word IS the answer" — the live approve. Drills have no reveal-then-retype
-     * step, so the guard only has to keep clear of an almost hold and of an answer still growing.
+     * "Finishing the word IS the answer" — the live approve ([TypedDrillVerdicts.typed]),
+     * held back while the answer is still growing ([stillGrowing]).
      */
     private fun typed(
         state: NumbersRunState,
         text: String,
         normalizer: AnswerNormalizer?,
     ): NumbersReduction {
-        if (state.feedback is TurnFeedback.Almost || state.feedback == TurnFeedback.Revealed) {
-            return unchanged(state)
-        }
         val trimmed = text.trim()
-        val approves = trimmed.isNotEmpty() &&
-            !stillGrowing(trimmed, state.currentTask) &&
-            grade(trimmed, state.currentTask, normalizer) == Match.Exact
-        if (!approves) {
-            // A field edited back out of the answer withdraws the approval it just earned.
-            val withdrawn = if (state.feedback == TurnFeedback.Correct) {
-                state.copy(feedback = TurnFeedback.Neutral)
-            } else {
-                state
-            }
-            return NumbersReduction(withdrawn, listOf(DrillEffect.CancelAdvance))
-        }
-        // why: the cue sounds once per approval — a keystroke inside an already-approved answer
-        // must not re-chime on every letter, nor say it again.
-        val tone: List<DrillEffect> = if (state.feedback == TurnFeedback.Correct) {
-            emptyList()
-        } else {
-            listOfNotNull(DrillEffect.Tone(ToneKind.Correct), state.saidOnClean)
-        }
-        return NumbersReduction(
-            state.copy(feedback = TurnFeedback.Correct),
-            tone + DrillEffect.ArmAdvance(AdvanceBeat.Live),
-        )
+        val verdict = TypedDrillVerdicts.typed(state.feedback, state.saidOnClean) {
+            trimmed.isNotEmpty() &&
+                !stillGrowing(trimmed, state.currentTask) &&
+                grade(trimmed, state.currentTask, normalizer) == Match.Exact
+        } ?: return unchanged(state)
+        return NumbersReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     private fun reveal(state: NumbersRunState): NumbersReduction {
@@ -249,14 +226,10 @@ object NumbersRun {
     private fun lookUp(state: NumbersRunState): NumbersReduction =
         if (state.owesAnswer) unchanged(state.copy(hintUsed = true)) else unchanged(state)
 
-    private fun confirm(state: NumbersRunState, rng: Random): NumbersReduction = when (state.feedback) {
-        TurnFeedback.Neutral -> unchanged(state)
-        TurnFeedback.Correct -> booked(state, correct = true, outcome = state.cleanOutcome, rng = rng)
-        is TurnFeedback.Almost -> booked(state, correct = true, outcome = AnswerOutcome.Almost, rng = rng)
-        // why: no "Wusste ich" in a drill — the tasks are generated, so self-reporting after
-        // seeing the answer proves nothing; revealed simply counts as a miss.
-        TurnFeedback.Revealed -> booked(state, correct = false, outcome = AnswerOutcome.Wrong, rng = rng)
-    }
+    private fun confirm(state: NumbersRunState, rng: Random): NumbersReduction =
+        TypedDrillVerdicts.confirmed(state.feedback)
+            ?.let { booked(state, it.correct, state.cleanness(it), rng) }
+            ?: unchanged(state)
 
     /** The run is over; what is pending is the close's to book, as the ✕ would. */
     private fun timeUp(state: NumbersRunState): NumbersReduction =
@@ -266,13 +239,10 @@ object NumbersRun {
             unchanged(state)
         }
 
-    /** The beat only ever arms on a clean answer, so nothing else may ride it. */
     private fun elapsed(state: NumbersRunState, rng: Random): NumbersReduction =
-        if (state.feedback == TurnFeedback.Correct) {
-            booked(state, correct = true, outcome = state.cleanOutcome, rng = rng)
-        } else {
-            unchanged(state)
-        }
+        TypedDrillVerdicts.elapsed(state.feedback)
+            ?.let { booked(state, it.correct, state.cleanness(it), rng) }
+            ?: unchanged(state)
 
     // MARK: - Booking
 
@@ -280,10 +250,10 @@ object NumbersRun {
     private fun booked(
         state: NumbersRunState,
         correct: Boolean,
-        outcome: AnswerOutcome,
+        clean: Boolean,
         rng: Random,
     ): NumbersReduction {
-        val next = advanced(state, correct, outcome)
+        val next = advanced(state, correct, clean)
         val draw = next.challenge?.drawAt(state.index + 1, next.sprossen)
             ?: next.mode.draw(next.sprossen, state.currentTask.prompt, next.solved, rng)
         return NumbersReduction(
@@ -336,9 +306,8 @@ object NumbersRun {
      * The booking itself: the ramp for the exercise that asked, the answer streak, the tallies. The other
      * exercises of a mixed run stand exactly where they were.
      */
-    private fun advanced(state: NumbersRunState, correct: Boolean, outcome: AnswerOutcome): NumbersRunState {
+    private fun advanced(state: NumbersRunState, correct: Boolean, clean: Boolean): NumbersRunState {
         val exercise = state.currentExercise
-        val clean = outcome != AnswerOutcome.Almost
         val step = DrillRamp.step(
             sprosse = state.currentSprosse,
             winsAtSprosse = state.winsAtSprosse[exercise] ?: 0,
