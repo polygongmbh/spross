@@ -2,32 +2,19 @@ package net.spross.app.ui
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuAnchorType
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.SegmentedButton
-import androidx.compose.material3.SegmentedButtonDefaults
-import androidx.compose.material3.SingleChoiceSegmentedButtonRow
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -39,16 +26,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import java.time.LocalDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -59,10 +40,8 @@ import net.spross.app.audioSources
 import net.spross.app.restartOnboarding
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
-import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.LanguageChoices
-import net.spross.kern.model.Language
 
 /**
  * What the settings hold: which pair is being learned, whether words are read aloud,
@@ -148,7 +127,8 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
             }
         }
         SettingsGroup { LearnerNameSetting(model) }
-        // why: a target with no voice at all offers nothing to group — see ReadAloudSetting.
+        // why: nothing can say this language — a row whose every option is silence is not a
+        // choice, and the two "on" segments would both promise a sound that cannot be made.
         if (!audioSources.silent) SettingsGroup { ReadAloudSetting(model, box.joinStamp.target) }
         SettingsGroup {
             BackupSetting(model, catalog, box.joinStamp.target)
@@ -202,10 +182,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     }
 }
 
-/**
- * One settings group: its own panel, replacing a `HorizontalDivider` that used to fake the
- * seam inside one long card.
- */
+/** One settings group, on a panel of its own. */
 @Composable
 private fun SettingsGroup(content: @Composable ColumnScope.() -> Unit) {
     Column(modifier = Modifier.fillMaxWidth().panel()) {
@@ -223,98 +200,6 @@ private fun SettingsGroup(content: @Composable ColumnScope.() -> Unit) {
  * Shared with [BackupSetting], whose Export/Import buttons sit in the same groups.
  */
 internal val SETTINGS_BUTTON_PADDING = PaddingValues(horizontal = 0.dp, vertical = Theme.spacing.sm)
-
-/**
- * One side of the pair. The collapsed label carries the flag and the English exonym — it
- * has half a row to live in — while the open menu has room for "🇺🇦 Українська · Ukrainian".
- *
- * A recessed field with a chevron, the iOS cut's shape: an outlined BUTTON drew the pick in
- * accent ink and centered it, so the name read as an action and a label too wide for half a
- * row was clipped from both ends down to its flag. Here the name is text on a control — ink
- * on the recessed fill, left where a value belongs, stepping down before it is cut.
- *
- * [ExposedDropdownMenuBox] carries the open/close and positioning — the menu now matches the
- * field's own width and dismisses on the platform's own terms — but the anchor stays this
- * row rather than a full M3 `TextField`: a filled field's fixed label gutter would cost the
- * pill its 48 dp floor and the autosize step that keeps a long exonym ("Українська") on one
- * line without shrinking below [PICKER_FLOOR].
- */
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun LanguageMenu(
-    title: String,
-    selected: Language,
-    choices: List<Language>,
-    catalog: Catalog,
-    onPick: (Language) -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-) {
-    var open by remember { mutableStateOf(false) }
-    val label = LanguageChoices.pickerLabel(selected, catalog.languages[selected])
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-        Text(title, style = MaterialTheme.typography.titleMedium)
-        ExposedDropdownMenuBox(expanded = open, onExpandedChange = { open = it }) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    // why: the spring sits OUTSIDE the fill — a press shrinks the field,
-                    // not just the name inside it.
-                    .pressSpring()
-                    .clip(MaterialTheme.shapes.small)
-                    .background(Theme.colors.surfaceTint)
-                    .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, enabled)
-                    // why: one stable label, the pick as its VALUE — the field's own text is
-                    // a merged child, so without this TalkBack announces which language but
-                    // never which of the two questions it answers.
-                    .semantics { contentDescription = title; stateDescription = label }
-                    .heightIn(min = 48.dp)
-                    .padding(horizontal = Theme.spacing.md, vertical = Theme.spacing.sm),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
-            ) {
-                Text(
-                    label,
-                    style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 1,
-                    modifier = Modifier.weight(1f),
-                    autoSize = TextAutoSize.StepBased(
-                        minFontSize = PICKER_FLOOR,
-                        maxFontSize = MaterialTheme.typography.bodyMedium.fontSize,
-                    ),
-                )
-                Icon(
-                    SprossIcons.ChevronDown,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.size(16.dp),
-                )
-            }
-            // why: the rows name each language twice ("Deutsch · German"); held to the
-            // half-width field they would wrap, so the list takes the width it needs.
-            ExposedDropdownMenu(
-                expanded = open,
-                onDismissRequest = { open = false },
-                matchAnchorWidth = false,
-            ) {
-                choices.forEach { code ->
-                    DropdownMenuItem(
-                        text = { Text(LanguageChoices.pickerRow(code, catalog.languages[code])) },
-                        onClick = { open = false; onPick(code) },
-                        // why: the open list marks the CURRENT pick — otherwise the only
-                        // trace of it is the field text now hidden behind the menu.
-                        trailingIcon = if (code == selected) {
-                            { Icon(SprossIcons.Check, contentDescription = null, tint = Theme.colors.accent) }
-                        } else null,
-                    )
-                }
-            }
-        }
-    }
-}
-
-/** Where an exonym too wide for half a row bottoms out; iOS scales its own to 0.8. */
-private val PICKER_FLOOR = 12.sp
 
 /**
  * What the greeting calls the learner — free text, and empty is an answer: clearing the
@@ -341,87 +226,6 @@ private fun LearnerNameSetting(model: AppModel) {
             modifier = Modifier.fillMaxWidth(),
         )
         SettingHint(chrome.settingsNameHint)
-    }
-}
-
-/**
- * The mute the session's top bar switches (there reduced to the button), and a standing
- * home for the disclosure that a tap on a word speaks it even while this is off. The
- * three-way preference names the voice source too, so the picker alone decides both:
- * there is no state where a source is chosen but the app is silent.
- *
- * The source belongs to [target], the language being learned; the mute is the device's.
- * Speech is offered only where the device actually has a voice for [target] — a segment
- * that would fall straight back to the recordings promises a sound the phone cannot make.
- */
-@Composable
-private fun ReadAloudSetting(model: AppModel, target: Language) {
-    val chrome: Chrome = model.chrome
-    val sources = model.audioSources(target)
-    // why: nothing can say this language — a row whose every option is silence is not a
-    // choice, and the two "on" segments would both promise a sound that cannot be made.
-    if (sources.silent) return
-    val preference = model.pronouncer.audioPreference(target, sources)
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-        Text(
-            chrome.settingsAudioTitle,
-            style = MaterialTheme.typography.titleMedium,
-        )
-        SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
-            val options = listOfNotNull(
-                chrome.settingsAudioOptionOff to net.spross.app.audio.Pronouncer.AudioPreference.OFF,
-                (chrome.settingsAudioOptionRecordings to
-                    net.spross.app.audio.Pronouncer.AudioPreference.RECORDINGS)
-                    .takeIf { sources.hasRecordings },
-                (chrome.settingsAudioOptionTts to
-                    net.spross.app.audio.Pronouncer.AudioPreference.TTS)
-                    .takeIf { sources.hasVoice },
-            )
-            options.forEachIndexed { index, (label, option) ->
-                SegmentedButton(
-                    selected = option == preference,
-                    onClick = { model.pronouncer.setAudioPreference(target, option) },
-                    shape = SegmentedButtonDefaults.itemShape(index, options.size),
-                ) {
-                    Text(label, style = MaterialTheme.typography.labelMedium)
-                }
-            }
-        }
-        // why: the hint names the CHOSEN behavior, not the picker as a whole. The
-        // tap-to-replay gesture is disclosed in the No audio line alone — the only
-        // preference where a learner might think the app has gone silent for good.
-        SettingHint(
-            when (preference) {
-                net.spross.app.audio.Pronouncer.AudioPreference.OFF -> chrome.settingsAudioHintOff
-                net.spross.app.audio.Pronouncer.AudioPreference.RECORDINGS ->
-                    chrome.settingsAudioHintRecordings
-                net.spross.app.audio.Pronouncer.AudioPreference.TTS -> chrome.settingsAudioHintTts
-            }
-        )
-        // why: only where there is a choice to be scoped — a language with one source
-        // has nothing to remember per language.
-        if (sources == AudioCapability.Both) SettingHint(chrome.settingsAudioHintPerLanguage)
-        Row(
-            modifier = Modifier.fillMaxWidth().toggleable(
-                value = model.pronouncer.saysMeaning,
-                enabled = !model.pronouncer.muted,
-                role = Role.Switch,
-                onValueChange = { model.pronouncer.saysMeaning = it },
-            ),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                chrome.settingsAudioSaysMeaning,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.weight(1f),
-            )
-            Switch(
-                checked = model.pronouncer.saysMeaning,
-                onCheckedChange = null,
-                enabled = !model.pronouncer.muted,
-            )
-        }
-        SettingHint(chrome.settingsAudioSaysMeaningHint)
     }
 }
 
