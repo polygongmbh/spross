@@ -77,7 +77,7 @@ enum OrchardLayout {
     /// the ceiling keeps the tallest area inside its row
     /// instead of towering over the others.
     static let minHeight: CGFloat = 9
-    static let maxHeight: CGFloat = 58
+    static let maxHeight: CGFloat = 48
 
     /// The shortest a tap target is ever made, label strip included —
     /// a seedling is a few points of ink and a thumb is not.

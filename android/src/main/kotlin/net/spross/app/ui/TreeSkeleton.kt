@@ -80,7 +80,7 @@ internal class TreeSkeleton(
             // The tree's habit — how tall its trunk, how far it leans, how wide it forks —
             // comes from its seed alone, so no two areas grow the same tree.
             val habit = Mix(seed)
-            val trunk = habit.range(0.19f, 0.29f)
+            val trunk = habit.range(0.13f, 0.19f)
             val lean = habit.range(-0.12f, 0.12f)
             val growth = Growth(seed, vigor, spread = habit.range(0.8f, 1.25f))
             growth.limb(1L, Offset.Zero, -PI_F / 2 + lean, trunk, 0.014f + 0.011f * vigor, 0, 1f)
@@ -135,9 +135,9 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
             twigs += Twig(limbs.size - 1, path)
             return
         }
-        // why: each generation shrinks little, so the first limbs start shorter — the
-        // crown sits on its trunk rather than dwarfing it.
-        val next = if (depth == 0) length * 0.8f else length
+        // why: a short trunk under long first limbs — a low, bushy crown that fits an
+        // orchard row instead of a tall stem with a tuft on top.
+        val next = if (depth == 0) length * 1.2f else length
         // Each generation reaches a little further toward the light.
         val lifted = angle + (-PI_F / 2 - angle) * 0.06f * (depth + 1)
         limb(path * 4 + 1, end, lifted + leadTurn, next * leadLength, width * 0.80f, depth + 1, -side)

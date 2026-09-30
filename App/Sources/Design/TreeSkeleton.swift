@@ -73,7 +73,7 @@ struct TreeSkeleton {
         // Grown in unit space pointing up, then measured and fitted:
         // the shape must not depend on the box it is asked to fill.
         let trunkWidth = 0.014 + 0.011 * vigor
-        growth.branch(path: 1, from: .zero, angle: -.pi / 2, length: 0.24, width: trunkWidth,
+        growth.branch(path: 1, from: .zero, angle: -.pi / 2, length: 0.16, width: trunkWidth,
                       depth: 0, side: 1)
         let hung = hang(on: growth.segments, twigs: growth.twigs, seed: seed, count: target)
         return fit(segments: growth.segments, slots: hung, count: target, in: rect)
@@ -133,9 +133,9 @@ struct TreeSkeleton {
                 twigs.append((segments.count - 1, path))
                 return
             }
-            // why: each generation shrinks little, so the first limbs start shorter —
-            // the crown sits on its trunk rather than dwarfing it.
-            let next = depth == 0 ? length * 0.8 : length
+            // why: a short trunk under long first limbs — a low, bushy crown that fits an
+            // orchard row instead of a tall stem with a tuft on top.
+            let next = depth == 0 ? length * 1.2 : length
             // Branches reach for the light a little more with every generation.
             let lifted = angle + (-Double.pi / 2 - angle) * 0.06 * Double(depth + 1)
             branch(path: path &* 4 &+ 1, from: end, angle: lifted + dominantTurn,

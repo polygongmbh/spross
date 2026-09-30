@@ -19,7 +19,7 @@ internal class ForestSpot(val planted: PlantedTree, val cell: Rect)
  */
 internal object ForestLayout {
     const val MIN_HEIGHT = 9f
-    private const val MAX_HEIGHT = 58f
+    private const val MAX_HEIGHT = 48f
     private const val MIN_CELL = 52f
     private const val ROW_HEIGHT = 70f
     const val LABEL_HEIGHT = 18f
