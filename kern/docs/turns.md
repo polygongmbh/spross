@@ -1,10 +1,10 @@
 # Runs — the turn machine, the drills, and listening
 The three pure run machines (the vocabulary turn, the drills, listening) and where they end and the platform begins.
+Neighbors: the engine contract `../README.md`, what a drill is made of `trainer.md`.
 
 Three pure machines: immutable state plus `reduce(state, intent) -> state + effects`.
-The platform owns the field, the keyboard, focus, timers and playback,
+The platform owns the field, the keyboard, focus, timers, animation and playback,
 and text reaches a machine only inside an intent — never as state.
-Engine contract: `../README.md`.
 
 ## The vocabulary turn
 
@@ -16,10 +16,7 @@ Engine contract: `../README.md`.
   it answers with the next state plus `TurnEffect`s —
   `Answer` (the rating leaves for the run), `ArmAdvance`/`CancelAdvance`,
   `PrimeField`, `Tone` and `ReleaseFocus`.
-  The learner's TEXT is never in the state, bar the one answer the machine itself takes
-  out of the field (`rejectedAnswer`, below):
-  the platform owns the field, the keyboard, focus, animation and playback,
-  and hands text in through intents.
+  The one text it holds is the answer it takes out of the field itself (`rejectedAnswer`, below).
   Every rule about what that text is worth is here,
   because it lived twice before and drifted both ways —
   a pickable Easy on one platform, no retype after a miss on the other.
@@ -65,118 +62,55 @@ Engine contract: `../README.md`.
 
 ## Listening
 
-- **Listening is a playlist over the learner's own words** (`net.spross.kern.listen`).
-  Each turn says the target word, waits, says its meaning in the SOURCE language, then says
-  the target again — so it reaches the hours a language is actually available in, the walk and
-  the washing-up, where every other way in asks for a typed answer or a tap.
-  `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice, seed)`
-  is the one gate, shaped like `LetterDrillAvailability.report` and disciplined the same way:
-  the only platform facts are the two `hasVoice` booleans, one per side, and kern caches
-  nothing. It is asked ONCE PER RUN, when the learner opens one — never on the way past the
-  entry card, which stands on the box holding words at all. Nothing is lost by not asking:
-  every catalog language but `en` ships several hundred recordings and `en` is spoken by every
-  device there is, so a joined box with nothing sayable in it does not occur.
-  `seed` is opaque to kern — it only salts the lanes' own tiebreak (below), never
-  reads a clock, and does not care that both apps happen to hand it the current instant.
-  **Both halves must be sayable** — a turn that plays a word and then silence teaches nothing,
-  so the shared `catalog.audible` predicate is applied to the target form AND the source form.
-  **Suspended cards stay in the pool.** Suspension takes a word out of the box's queue
-  (`Inventory.active` drops it) and never said stop meeting the word.
-  **The pool is the sayable join short of the settled words, not a composed subset** — every
-  joined card that both halves of a turn can say, scheduled and unseen alike. So a learner a
-  few words in hears a STREAM of new words rather than lapping the handful they hold, and a
-  learner with a full vocabulary hears their own words in it. Unseen words enter through
-  `Growth.isIntroducible`: a phrase whose components have not landed is not ready to be heard
-  either. Hearing one does not introduce it: introduction is the first answer, and listening
-  answers nothing. **A settled word is not in the pool** (`Statistics.hasSettled`):
-  it is what the box already calls done, and an hour of listening is for what is not —
-  left in, a well-used box, where the settled words outnumber everything else, would open on
-  the words it trusts most. It is back the moment a lapse takes it under that bar.
-  `listeningPriority(growing, suspended)` is the ladder, and it has two priorities read off the
-  box's own bar rather than a ladder of listening's own: a held word short of
-  `GROWING_STABILITY` (`Statistics.hasArrived`) is SHAKY (`LISTENING_SHAKY_PRIORITY`, 2) and one past it is GROWING
-  (`LISTENING_GROWING_PRIORITY`, 1). A **suspended** word takes the growing priority whatever
-  its bar: suspension takes a word out of the box's rotation and this is the surface that
-  can still reach it, so it comes in — it does not lead.
-  **Nothing on that ladder reads a due date.** A word the box wants back is a word short of
-  the bar, so it rises on the priority it already has; a due term would make listening a second
-  scheduler, need a clock the run does not take, and pin the same word first every run —
-  which listening cannot resolve, since it books nothing.
-  **The shaky words play first, strictly, and come back once they are out.** `listeningOrder`
-  deals the playlist turn by turn on one clock: the shaky lane opens at the first turn and
-  plays every word it holds before the growing lane opens at all; from then on both are open,
-  splitting the held turns by lane (two to one), and each lane starts over at its own head
-  when it runs out — so no word comes back before the rest of its lane has, and the fewer
-  words a lane holds the sooner each of them returns. `LISTENING_RETURN_FLOOR_TURNS` (30)
-  is the one brake: a word said that recently waits, and the turn goes to whichever lane is
-  next, so two shaky words are not the whole evening.
-  **Never-answered words are a fixed slice, not a priority.** The unseen lane is open from the
-  first turn and takes `LISTENING_NEW_SHARE` (two turns in five) — audio is the cheapest
-  exposure a new word can get, so breadth rides alongside the shaky words rather than waiting
-  for them, and as a slice rather than a priority three hundred unseen words cannot crowd out
-  the twenty that are slipping. It closes once every unseen word has been said once. Queued
-  words (`BoxState.queued`) lead it: queuing is the learner saying *these words next*.
-  The deal ends when every held lane has played through once and the unseen lane is spent,
-  and the run laps it from the head — a box holding nothing scheduled hears its unseen words
-  once through, basics first.
-  **Within a lane the order depends on what the lane is.** Queued words lead the rest of the
-  unseen ones and are out within the first handful of turns, most recently queued first —
-  the order `Growth.queuedEligible` introduces them in, never reshuffled.
-  The plain unseen words split at `LISTENING_BASICS_WORDS` (50): the catalog's earliest
-  concepts lead as a group, so an empty box opens on greetings, shuffled by the salted hash
-  below so no single word is pinned to the front of every run.
-  Past the basics the shuffle leans softly toward earlier words (`newWordOrder`):
-  each word's arrival is an exponential draw off that hash, stretched by
-  `1 + depth / LISTENING_DEPTH_HALVING` (250) past the basics — a weighted shuffle whose weight
-  halves 250 words in and keeps falling gently, so everyday words come sooner on average and
-  a word a thousand deep still turns up now and then. Scheduled words are hashed by card id
-  (`fnv1a64`, the hash `Inventory.dueOrder` already uses) salted with `seed`, so catalog seed
-  neighbors — often related concepts, and a word half-learned from its neighbor is what that
-  hash exists to prevent — are not heard in the same sequence every run, AND the same box
-  dealt with a different seed reshuffles rather than replaying: both apps happen to hand in
-  the current instant, and re-sweep the pool on every foreground, so a learner who listens
-  more than once a day hears a fresh order each time — kern itself never reads a clock, or
-  cares what the number means, only that a new one showed up. The whole deal is
-  `listeningOrder`, pure and private in its lane key, and it is what `ListeningPool.report`
-  returns — nothing but the ordered list crosses the ObjC boundary.
-  `ListeningRun` is the pure machine (`Start`/`Advance`/`Skip`/`Repeat`/`TogglePause`/`Close`),
-  and it holds **no `BoxState` at all** — that is what makes "listening books nothing"
-  structural rather than promised. Its `ListeningEffect` says `Play`/`Stop`
-  because `Repeat` leaves the state identical and must still make the sound fire.
-  It **walks the playlist it was handed by position and laps at its end** — repeats are the
-  deal's business, never the run's: a pool smaller than the run laps cleanly instead of
-  running dry, and a one-word pool keeps saying its word.
-  `ListeningTurn` carries both forms, the article, and all three beats
-  (`RECALL_GAP_HELD_MS` 1200 / `RECALL_GAP_NEW_MS` 600, with `ECHO_GAP_MS` the new gap and
-  `TURN_GAP_MS` the held one), so neither platform decides any of it — the recall gap is the
-  only beat that varies, long for a word the learner has answered before and short for one
-  with nothing yet to recall, and the echo and the breath between turns just reuse those two.
-  Every beat is armed off the previous word ACTUALLY ENDING plus its gap, and a word that never
-  reports a finish is walked past after `LISTENING_WATCHDOG_MS`, so a run cannot stall on a
-  silent engine.
-  A run can be given a **bedtime**: every tap on the one chip adds `LISTENING_TIMER_STEP_MIN`
-  minutes to what is LEFT of it (`listeningTimerStepMs(msRemaining, steps)`) from 0
-  (= off, the default), and a long press jumps straight back to off — and
-  `listeningGainDb(msRemaining, totalMs)` fades the WHOLE run down to
-  `LISTENING_FADE_FLOOR_DB` rather than cutting — a hard stop is a change loud enough to
-  wake the listener, which is the opposite of what a bedtime is for.
-  For the same reason the deadline ends the run at the SEAM BETWEEN TURNS rather than at the
-  moment it falls: the turn in the air finishes, at the floor it has already reached.
-  A PAUSED run has no seam coming and is left parked — the learner stopped it themselves,
-  and a bedtime is there to end a run nobody is attending, not one somebody just touched.
-  The ramp is applied ON TOP of a recording's `Playback.levelDb` and the SUM is what
-  `LISTENING_FADE_FLOOR_DB` holds (`fadedGainDb(gainDb, fadeDb)`) — its own floor rather than
-  `GAIN_LIMIT_DB`, which bounds how far a MEASUREMENT may be trusted and not a level kern chose.
-  The floor is on the sum because that is the number a listener hears: the packs share no
-  loudness, so one uniform ramp reaches the room's noise floor far sooner for a word the index
-  already turned 12 dB down (sw, on the phone plane) than for one playing as recorded, and the
-  ramp read as singling that pack out. A word whose index is already under the floor takes no
-  ramp at all — the ramp may deepen an attenuation, never undo one.
-  The same call hands back the recording's `cap`: the converter holds a boost to the headroom
-  the file's own peak leaves, and the ramp attenuates ahead of that boost and opens exactly
-  that headroom again, so as much of the deficit as the ramp has taken off comes back and no
-  more. Levels that used to drift APART by pack over a bedtime now converge.
-  The remaining milliseconds are the APP's to track and hand in, like every other clock read — the run state holds no deadline, so kern still reads no clock.
+- **Listening is a playlist over the learner's own words** (`net.spross.kern.listen`):
+  the target word, its meaning in the SOURCE language, then the target again —
+  so it reaches the hours a language is available in and nothing can be typed or tapped.
+- `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice, seed)` is the one gate,
+  disciplined like `LetterDrillAvailability.report`:
+  the only platform facts are the two `hasVoice` booleans, and kern caches nothing.
+  It is asked ONCE PER RUN, when the learner opens one, never on the way past the entry card.
+  `seed` only salts the order's tiebreak; kern never reads a clock or cares what the number means.
+- **The pool is the sayable join short of the settled words, not a composed subset.**
+  **Both halves must be sayable** (`audible` on both forms),
+  or a turn plays a word and then silence.
+  Scheduled and unseen words alike are in it,
+  so a learner a few words in hears a stream of new words rather than lapping the handful they hold;
+  unseen words enter through `Growth.isIntroducible`, and hearing one does not introduce it.
+  **A settled word is out** (`Statistics.hasSettled`) until a lapse takes it under that bar:
+  left in, a well-used box would open on the words it trusts most.
+  **Suspended cards stay in**: suspension takes a word out of the box's rotation,
+  and this is the surface that can still reach it — at the growing priority, never leading.
+- **The ladder is the box's own bar** (`listeningPriority`):
+  a word short of `GROWING_STABILITY` is SHAKY, one past it GROWING.
+  **Nothing on it reads a due date** —
+  a due term would make listening a second scheduler, need a clock the run does not take,
+  and pin the same word first every run, which listening cannot resolve since it books nothing.
+- **The deal** (`listeningOrder`, what `ListeningPool.report` returns):
+  the shaky words play first, all of them, then share the turns with the growing ones,
+  each lane starting over at its own head when it runs out,
+  so no word returns before the rest of its lane has, and a recent word waits a floor of turns.
+  Never-answered words are a fixed slice from the first turn rather than a priority,
+  so breadth rides alongside the shaky words and three hundred unseen words cannot crowd out the twenty that are slipping;
+  queued words lead that slice, most recently queued first,
+  and the catalog's earliest concepts lead the rest, with a soft lean toward earlier words past them.
+  Within a lane the order is hashed by card id salted with `seed`,
+  so catalog neighbors are not heard in sequence and a fresh seed reshuffles.
+  Only the ordered list crosses the ObjC boundary.
+- **`ListeningRun` holds no `BoxState` at all** —
+  that is what makes "listening books nothing" structural rather than promised.
+  It walks the playlist it was handed by position and laps at its end;
+  repeats are the deal's business, never the run's.
+  `ListeningEffect` says `Play`/`Stop` because `Repeat` leaves the state identical and must still make the sound fire.
+- **Every beat is kern's** (`ListeningTurn`): the recall gap is long for a word answered before and short for a new one,
+  and the echo and the gap between turns reuse those two.
+  Each beat is armed off the previous word ACTUALLY ENDING plus its gap,
+  and a word that never reports a finish is walked past after `LISTENING_WATCHDOG_MS`.
+- **A bedtime fades the whole run rather than cutting it** (`listeningTimerStepMs`, `listeningGainDb`, `fadedGainDb`):
+  a hard stop is loud enough to wake the listener.
+  The deadline ends the run at the seam between turns,
+  and a PAUSED run is left parked — a bedtime ends a run nobody is attending, not one somebody just touched.
+  The floor holds the SUM of a recording's level and the ramp, because that is what a listener hears.
+  The remaining milliseconds are the APP's to track and hand in; the run state holds no deadline.
 
 ## Trainer & drill runs   (package `net.spross.kern.trainer`)
 
@@ -185,9 +119,7 @@ Engine contract: `../README.md`.
   `close(state, …) → summary + bookings`.
   `NumbersRun` drives the numbers/clock/forms/phrases trainer, `LetterDrillRun` the letter drill,
   `CountryDrillRun` the atlas, `DateDrillRun` the calendar,
-  `WordScrambleRun` the spelling scramble and `SentenceScrambleRun` the word-order one;
-  platforms keep field, keyboard, focus, timers and audio, and text reaches the machine only inside intents —
-  never as state.
+  `WordScrambleRun` the spelling scramble and `SentenceScrambleRun` the word-order one.
   Each keeps its own CONCRETE draw type: they cross to Swift, where a generic arrives opaque,
   so there is no shared `ScrambleRun<T>` however alike two of them read.
 - **One injected `Random` per run** feeds every draw — task, exercise, phrase frame, direction flip,
@@ -202,8 +134,7 @@ Engine contract: `../README.md`.
   which is the ramp's own reading of an almost (`DrillRamp.step` moves nothing on one).
   A Sprosse answered out is climbed past rather than repeated, and the Sprosse it climbs to is booked
   like any other, since answering a Sprosse out is standing on it; the wins banked below stay behind.
-  A whole ladder answered out ends the run on its summary — where the letter drill's
-  "nothing left to ask" already went, now the rule for all of them.
+  A whole ladder answered out ends the run on its summary.
   What a key names is each drill's own question: a word scramble carries its Sprosse in the key,
   because the letters a Sprosse leaves standing make the same word a different ask,
   while a phrase carries none — its word order does not change with the Sprosse it was drawn at.
