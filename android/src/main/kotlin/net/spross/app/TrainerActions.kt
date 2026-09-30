@@ -1,5 +1,6 @@
 package net.spross.app
 
+import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.NumbersChallenge
 import net.spross.kern.trainer.NumbersMode
@@ -93,6 +94,18 @@ fun AppModel.finishDrill(back: Screen, summary: DrillRunSummary?, title: String)
     // box it walks has moved — every other drill's page reads prefs alone.
     if (back == Screen.Letters) refreshLetters()
     navigate(back)
+}
+
+/**
+ * The way out of either scramble. Neither has a page to land on, so the run closes onto Home
+ * with no figures, and neither keeps a streak record or a high-water Sprosse beside its mask,
+ * because nothing reads one back. The mask under [clearedKey] is what the NEXT run reads: it
+ * passes each Sprosse held there on one clean answer.
+ */
+fun AppModel.closeScramble(drill: Drill, clearedKey: String, cleared: Set<Int>, summary: DrillRunSummary?) {
+    trainer.store.bookCleared(clearedKey, cleared)
+    stampRun(drill, summary)
+    finishDrill(Screen.Home, null, "")
 }
 
 /**

@@ -14,10 +14,9 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.SentenceScrambleFlow
-import net.spross.app.finishDrill
+import net.spross.app.closeScramble
 import net.spross.app.newSentenceScramble
 import net.spross.app.speakFormOnTap
-import net.spross.app.stampRun
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.SentenceScrambleTask
 
@@ -43,16 +42,9 @@ fun SentenceScrambleScreen(model: AppModel) {
         model.newSentenceScramble(onTone = hooks.tone)
     } ?: return
     val state = flow.state
-    // The scrambles have no page of their own to land on, so a run closes onto Home with no
-    // figures; this drill keeps no streak record, and no high-water Sprosse beside the mask,
-    // because nothing reads one back.
     val leave = {
         val closed = flow.close()
-        // why: what the NEXT run reads — it passes each Sprosse the mask holds on one
-        // clean arrangement.
-        model.trainer.store.bookCleared(flow.clearedKey, closed.clearedSprossen)
-        model.stampRun(Drill.SentenceScramble, closed.summary)
-        model.finishDrill(Screen.Home, null, "")
+        model.closeScramble(Drill.SentenceScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
     }
 
     DrillRunScaffold(
