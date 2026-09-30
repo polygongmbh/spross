@@ -30,6 +30,8 @@ Neighbors: the engine contract `../README.md`, the trainer packs `trainer.md`.
   A Kotlin default value does NOT cross: adding a parameter to a UI-crossing type keeps
   every Kotlin caller compiling and breaks every Swift construction site,
   so the jvm and Android gates stay green and only an app build reports it.
+  SKIE hands Swift every top-level function as a global, yet its `<File>Kt` facade stays callable,
+  so a Swift call spelled through the facade (`CardKt.kindEmoji`) pins that function to its file.
 - Android: `androidLibrary` KMP target
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.1, compileSdk 36 / minSdk 26);
   androidMain's NFC actual mirrors jvmMain, and `:android` consumes the same facades.
