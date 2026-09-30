@@ -10,99 +10,81 @@ What knows when an answer really needs to change is the platform —
 a mutation, a foreground, a booked day —
 so **that is where box-derived answers are held**, keyed on the event rather than the clock.
 Where an answer does not depend on the clock, kern keeps it:
-`box/Time.kt`'s `zoneOf` holds the last time zone resolved by name,
-because resolving one reads the platform's zone database off disk,
-and `Catalog` holds lazy indices over its own immutable contents.
+`box/Time.kt`'s `zoneOf` holds the last time zone resolved by name, because resolving one reads the platform's zone database off disk, and `Catalog` holds lazy indices over its own immutable contents.
 
 Two things kern does not do.
-It never reads a clock — `nowEpochMillis` and `tzId` are parameters,
-which is what makes a rule testable at a pinned moment.
+It never reads a clock —
+`nowEpochMillis` and `tzId` are parameters, which is what makes a rule testable at a pinned moment.
 And it never decides for itself when to refresh something whose truth is the platform's:
-a voice arriving from Settings while the app slept is not an event kern can observe,
-so `LetterDrillAvailability` and `ListeningPool` answer freshly every time
-and the platform owns the rebuild trigger (`kern/docs/turns.md`).
+a voice arriving from Settings while the app slept is not an event kern can observe, so `LetterDrillAvailability` and `ListeningPool` answer freshly every time and the platform owns the rebuild trigger (`kern/docs/turns.md`).
 
-Both apps are shaped the same way: a screen reads values off the model, and the model
-takes those values when something moves. A screen that asks kern a question directly is
-asking it once per redraw, and SwiftUI and Compose both redraw far more often than
-anything in the box changes.
+Both apps are shaped the same way:
+a screen reads values off the model, and the model takes those values when something moves.
+A screen that asks kern a question directly is asking it once per redraw, and SwiftUI and Compose both redraw far more often than anything in the box changes.
 
 ## The budgets
 
-**Per frame** — nothing that touches the box or the catalog. A body or a composable may
-read a stored value, format it, and lay it out. It may not compose a round, count the
-backlog, walk the cards, or ask the catalog anything.
+**Per frame** — nothing that touches the box or the catalog.
+A body or a composable may read a stored value, format it, and lay it out.
+It may not compose a round, count the backlog, walk the cards, or ask the catalog anything.
 
-**Per answer** — one FSRS step and the queue's own bookkeeping. Not a re-composition of
-the round, not the day's report, not a serialization of the document, not a rebuild of
-the grading index. The document is written by the store, off the main thread, coalesced.
+**Per answer** — one FSRS step and the queue's own bookkeeping.
+Not a re-composition of the round, not the day's report, not a serialization of the document, not a rebuild of the grading index.
+The document is written by the store, off the main thread, coalesced.
 
 The last answer of a round is an answer like any other, and it is the most expensive one:
-finishing books the day, which triggers the save that carries the snapshots
-(`../kern/docs/snapshots.md`). None of that may sit on the frame that raises the summary
-— the watch snapshot alone ranks every scheduled card against each of the entries it
-ships, and on the main thread that pause was the summary's. iOS builds both away from it
-and skips the watch one outright where no watch is paired to receive it; Android has only
-the tile's, and it rides the queued write. The one write still owed before its caller
-returns is Android's fold from `onStop`, which has no later thread to be on.
+finishing books the day, which triggers the save that carries the snapshots (`../kern/docs/snapshots.md`).
+None of that may sit on the frame that raises the summary —
+the watch snapshot alone ranks every scheduled card against each of the entries it ships, and on the main thread that pause was the summary's.
+iOS builds both away from it and skips the watch one outright where no watch is paired to receive it;
+Android has only the tile's, and it rides the queued write.
+The one write still owed before its caller returns is Android's fold from `onStop`, which has no later thread to be on.
 
-**Per activation** — the catalog parse, the join, the stored document's decode, the
-per-pair drill content. All of it off the main thread; a profile switch is the only time
-any of it is allowed to run.
+**Per activation** — the catalog parse, the join, the stored document's decode, the per-pair drill content.
+All of it off the main thread; a profile switch is the only time any of it is allowed to run.
 
 ## Where derived state is taken
 
-`AppModel.refreshStats()`, on both platforms, is the one place anything derived from the
-box goes stale and the one place it is taken again. Everything that can move the box ends
-there: a mutation, a language switch, a booked day, a foreground.
+`AppModel.refreshStats()`, on both platforms, is the one place anything derived from the box goes stale and the one place it is taken again.
+Everything that can move the box ends there:
+a mutation, a language switch, a booked day, a foreground.
 
-It holds the statistics, the activity strip, the browser's shelf counts
-and kern's `HomeStanding` (the day's offer and report, what tomorrow holds,
-whether another round would yield anything),
-and it retires the typed-answer grader so the next turn rebuilds it
-against the box standing then.
+It holds the statistics, the activity strip, the browser's shelf counts and kern's `HomeStanding` (the day's offer and report, what tomorrow holds, whether another round would yield anything), and it retires the typed-answer grader so the next turn rebuilds it against the box standing then.
 The offer's headline turns on the clock, so each platform reads it off the offer when it draws.
 iOS also takes the growth ladder and the trees there;
 Android has no ladder and `remember`s its trees on the box.
 
 Two things sit outside it because they are not box questions:
 
-- **Catalog content for the pair** — the country atlas, the sentence frames. Taken when
-  the profile changes (`refreshTrainerContent` / `activate`).
-- **What this device can say aloud** — `AudioCapability` per language, which is a map
-  lookup over the catalog's packs and one probe of the voice table. Taken on every
-  foreground, because a voice may be installed in Settings while the app sleeps.
+- **Catalog content for the pair** — the country atlas, the sentence frames.
+  Taken when the profile changes (`refreshTrainerContent` / `activate`).
+- **What this device can say aloud** — `AudioCapability` per language, which is a map lookup over the catalog's packs and one probe of the voice table.
+  Taken on every foreground, because a voice may be installed in Settings while the app sleeps.
 
-No catalog WALK is on that path. The two that exist wait for the surface that reads them:
-the letter drill's report (`AppModel.refreshLetters`, and iOS's `LettersOverview`) is asked
-by its own page, and the listening playlist (`AppModel.startListening` / `ListeningDriver`)
-by a run being opened.
+No catalog WALK is on that path.
+The two that exist wait for the surface that reads them:
+the letter drill's report (`AppModel.refreshLetters`, and iOS's `LettersOverview`) is asked by its own page, and the listening playlist (`AppModel.startListening` / `ListeningDriver`) by a run being opened.
 Neither rides the foreground: the entry chip answers its question far more cheaply.
 
 ## Asking kern for less
 
-Where only the SIZE of something is wanted, there is a counting entry point that does not
-compose an order — `BoxEngine.dueCount` rather than the due queue's size. Where a screen draws
-one number per area, there is one that answers for every area in a walk —
-`BoxBrowser.shelfCounts` rather than `queueableCount` per shelf. Prefer these to caching
-a more expensive answer: an answer cheap enough to just ask for is one nothing has to
-remember to invalidate.
+Where only the SIZE of something is wanted, there is a counting entry point that does not compose an order —
+`BoxEngine.dueCount` rather than the due queue's size.
+Where a screen draws one number per area, there is one that answers for every area in a walk —
+`BoxBrowser.shelfCounts` rather than `queueableCount` per shelf.
+Prefer these to caching a more expensive answer:
+an answer cheap enough to just ask for is one nothing has to remember to invalidate.
 
-A Kotlin collection read from Swift is COPIED WHOLE on every read,
-so `box.cards` is a rebuild of the entire dictionary and not a lookup —
+A Kotlin collection read from Swift is COPIED WHOLE on every read, so `box.cards` is a rebuild of the entire dictionary and not a lookup —
 hoist it into a `let` before any walk and never index it per iteration.
 Indexed from inside a loop it turns a walk into a quadratic one:
-the summary's growth tally copied a 1116-card map once per card and cost 1.2 s,
-against 3 ms for the same walk over a hoisted binding.
-The cost scales with the JOIN, not with what is scheduled,
-so a fresh box is where it bites hardest and an empty profile is a fair test of it.
+the summary's growth tally copied a 1116-card map once per card and cost 1.2 s, against 3 ms for the same walk over a hoisted binding.
+The cost scales with the JOIN, not with what is scheduled, so a fresh box is where it bites hardest and an empty profile is a fair test of it.
 The trees follow from it:
-each grown tree crosses to Swift once per (area, marks) and is only re-placed per frame,
-and the rows are laid out once per (trees, width), never per body evaluation.
+each grown tree crosses to Swift once per (area, marks) and is only re-placed per frame, and the rows are laid out once per (trees, width), never per body evaluation.
 
 ## Compose
 
-`remember` every kern call and every value derived from one, keyed on what actually moves
-it — the box, the profile, the day. An animated value is read in the phase that uses it
-(`graphicsLayer` for a transform), never in composition, or the whole calling composable
-recomposes once per frame for the length of the animation.
+`remember` every kern call and every value derived from one, keyed on what actually moves it —
+the box, the profile, the day.
+An animated value is read in the phase that uses it (`graphicsLayer` for a transform), never in composition, or the whole calling composable recomposes once per frame for the length of the animation.
