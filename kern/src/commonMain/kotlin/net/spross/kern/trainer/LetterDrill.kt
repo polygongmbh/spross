@@ -140,9 +140,7 @@ object LetterDrill {
             .filter { (entry, words) -> entry.kind == AlphabetKind.Letter || words.isNotEmpty() }
             .filter { (entry, _) -> entry.kind != AlphabetKind.Letter || askableName(entry, format, solved) }
         if (pool.isEmpty()) return null
-        var picked = pool[rng.nextInt(pool.size)]
-        if (picked.first.ref == avoidRef) picked = pool[rng.nextInt(pool.size)]
-        val (entry, words) = picked
+        val (entry, words) = DrillLadder.pickAvoiding(pool, rng) { it.first.ref == avoidRef }
         val prompt = prompt(entry, words, avoidWord, rng)
         return LetterDrillTask(
             format = format,
@@ -346,9 +344,7 @@ object LetterDrill {
         // why: a row with one word has nothing to draw — spending randomness on it would
         // shift every later draw in the run for a choice that was never made.
         if (pool.size == 1) return pool.single()
-        var word = pool[rng.nextInt(pool.size)]
-        if (word.text == avoidWord) word = pool[rng.nextInt(pool.size)]
-        return word
+        return DrillLadder.pickAvoiding(pool, rng) { it.text == avoidWord }
     }
 
     /**

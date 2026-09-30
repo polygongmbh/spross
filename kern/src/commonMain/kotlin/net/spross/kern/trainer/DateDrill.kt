@@ -260,9 +260,7 @@ object DateDrill {
     ): DateDrillTask? {
         val open = pool.filterNot { DrillSolved.key(it) in solved }
         if (open.isEmpty()) return null
-        var picked = open[rng.nextInt(open.size)]
-        if (DrillSolved.key(picked) == avoid) picked = open[rng.nextInt(open.size)]
-        return picked
+        return DrillLadder.pickAvoiding(open, rng) { DrillSolved.key(it) == avoid }
     }
 
     private fun sampleComposed(

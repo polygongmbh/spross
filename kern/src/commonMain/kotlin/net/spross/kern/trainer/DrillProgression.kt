@@ -200,6 +200,16 @@ internal object DrillLadder {
     fun leadsWithAdded(arriving: Boolean, rng: Random): Boolean = arriving || rng.nextBoolean()
 
     /**
+     * One of [pool] at random, drawn again ONCE where it lands on what [avoided] names —
+     * the question just asked — so a repeat needs two unlucky draws rather than one.
+     * [pool] is never empty.
+     */
+    fun <T> pickAvoiding(pool: List<T>, rng: Random, avoided: (T) -> Boolean): T {
+        val picked = pool[rng.nextInt(pool.size)]
+        return if (avoided(picked)) pool[rng.nextInt(pool.size)] else picked
+    }
+
+    /**
      * The first Sprosse at or above [from] with something left to ask, drawn by [sample].
      *
      * A Sprosse a run has answered out is climbed past rather than repeated ([DrillSolved]),
