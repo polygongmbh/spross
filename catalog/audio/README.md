@@ -42,10 +42,16 @@ W=../data/reference/audio   # <route> is the language's from $W/build-packs.sh
 $W/sync-from-shipped.py <lang>                              # the pack says what ships
 $W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <its siblings>
                                                             # voices with ≤3 takes onto established ones
-$W/requalify-pack.py --lang <lang> <route>                  # under 2.8: the best other take
+$W/requalify-pack.py --lang <lang> <route>                  # under 2.8 or hot: the best other take
+$W/requalify-pack.py --lang <lang> --pack $W/pack-<lang>-calendar <route>   # the same for the calendar
 scripts/audio-catalog.py --packs $W --lang <lang> --fill --reseat   # ships the chosen swaps
+scripts/audio-catalog.py --packs $W --lang <lang> --calendar        # ships the calendar pack whole
 scripts/audio-catalog.py --lang <lang> --prune-poor         # what is still under the floor
 ```
+
+A take shipped at a `gain` of `audio_voices.HOT_GAIN_DB` or below was limited hot at its source:
+the score hears it as clean, the ear hears it squashed, and no gain undoes that.
+Requalification reconsiders it like a poor take and never swaps one in.
 
 Both reseating scripts only report until given `--apply`. The sections other than `words`
 ship through their own converter (`--calendar`, `--countries`), rebuilt from a pack that

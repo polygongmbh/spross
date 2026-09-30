@@ -27,6 +27,19 @@ def mos_floor(lang):
     return VOICED_MOS_FLOOR if lang in WELL_VOICED else NO_VOICE_MOS_FLOOR
 
 
+# The playback `gain` at or below which a take was limited hot at its SOURCE: the fill measured
+# it more than 8 dB over its loudness target, past -10 LUFS, where a Commons upload sits
+# squashed against its own peak (sw `kuuma`: -5.5 LUFS at -3.9 dBFS). Turning it down undoes
+# none of that, so a sweep looks for another take of the word and never swaps one of these in.
+HOT_GAIN_DB = -8.0
+
+
+def is_hot(index):
+    """Limited hot at the source, by the playback index the fill derives
+    (`audio-catalog.py`'s `playback_index`) or the shipped manifest entry carrying it."""
+    return index.get('gain', 0) <= HOT_GAIN_DB
+
+
 _verdicts = None
 
 
