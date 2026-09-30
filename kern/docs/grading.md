@@ -28,7 +28,8 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
   word per level, and a drill grades against a whole reading where every word names
   which time it is ("fünf vor halb sieben" is not a misspelling of "halb sieben").
   **Typo budget**: one slip per six letters (spaces excluded), floor 1,
-  and zero below four letters.
+  and zero below four letters;
+  where the typed words line up, no word takes more than a slip per four of its letters, rounded up.
   **Diacritics** are two rules, deliberately not one.
   A language's `diacriticDigraphs` (`languages.json`; German's `ä`→`ae`, `ö`→`oe`, `ü`→`ue`,
   nobody else's) fold in the normalizer beside `ß`→`ss`, for the same reason:
@@ -56,7 +57,7 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
   the one-arg init stays the lenient vocab-review default (both inits in the ObjC header).
   The budget is the same for drills as for reviews — one over the whole answer,
   so the more of a reading is right, the more room a misspelled word in it gets
-  (`tarehe kumi na nne october` for `… Oktoba`) —
+  (`tarehe tano augusti` for `… Agosti`) —
   and a word carrying a digit forgives none, in reviews too
   ("21"/"29", "18:05" → "18" "05" sit one edit apart).
   What a drill must not accept is one number for another;
@@ -87,8 +88,8 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
   Coverage is deliberately best-effort: a colliding pair outside the index's reach
   stays the forgiven slip it always was, and no sweep pins the tail
   (which readings a clock may share at all is `../../docs/clock-registers.md`).
-  A welded compound above the index (de `neunhundertdrei` for 103) and a wrong part of
-  the day (`in the morning` at 17:00) can pass as a slip — rare, and still held as a near-miss.
+  A welded compound above the index within its word's cap (it `centotrentuno` for 121)
+  can pass as a slip — rare, and still held as a near-miss.
   `matchingPrefixWordCount(input, answer)` is a UI-only sibling of `evaluate` — how many
   leading whole words already match, each within its own single-word budget — so a miss's
   retry field can keep the words already right and drop only the wrong tail; it never

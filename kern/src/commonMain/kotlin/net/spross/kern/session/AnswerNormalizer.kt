@@ -69,7 +69,9 @@ sealed interface Match {
  * a wrong or missing article grades [Match.Wrong], never typo-bridges.
  *
  * One typo budget over the whole form, for reviews and drills alike: the more of an
- * answer is right, the more room a misspelled word in it gets. A word carrying a digit
+ * answer is right, the more room a misspelled word in it gets — up to a slip per four
+ * letters of that word, so one word cannot spend a long sentence's budget on becoming
+ * another (`morning` for `evening`). A word carrying a digit
  * grades exact-only: distinct digit renderings ("21"/"29", "18:05" → "18" "05") sit one
  * edit apart, so no positive budget is safe for them.
  */
@@ -283,8 +285,16 @@ class AnswerNormalizer(
     /** Is [input] within the slips [candidate] forgives, its digits typed exactly? */
     private fun withinBudget(input: String, candidate: String): Boolean {
         if (digitWords(input) != digitWords(candidate)) return false
-        return damerauLevenshtein(input, candidate) <= allowedTypos(candidate.count { it != ' ' })
+        if (damerauLevenshtein(input, candidate) > allowedTypos(candidate.count { it != ' ' })) return false
+        val typed = input.split(' ')
+        val expected = candidate.split(' ')
+        // why: the per-word cap needs the words to line up — a dropped or added
+        // word leaves the whole-form budget alone to decide.
+        if (typed.size != expected.size) return true
+        return expected.indices.all { i -> damerauLevenshtein(typed[i], expected[i]) <= wordCap(expected[i]) }
     }
+
+    private fun wordCap(word: String): Int = (word.length + LETTERS_PER_WORD_SLIP - 1) / LETTERS_PER_WORD_SLIP
 
     private fun digitWords(form: String): List<String> =
         form.split(' ').filter { word -> word.any { it.isDigit() } }
@@ -402,6 +412,9 @@ class AnswerNormalizer(
         private const val MIN_TYPO_LENGTH = 4
 
         const val TYPO_LETTERS_PER_SLIP = 6
+
+        /** A word's own cap on its share of the budget: a slip per this many letters, rounded up. */
+        private const val LETTERS_PER_WORD_SLIP = 4
 
         /**
          * Optimal-string-alignment Damerau-Levenshtein: insert, delete, substitute,

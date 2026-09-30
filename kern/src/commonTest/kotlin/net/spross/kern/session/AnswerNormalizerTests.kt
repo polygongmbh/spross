@@ -385,15 +385,18 @@ class AnswerNormalizerTests {
 
     /**
      * One budget over the whole answer: the more of it is right, the more room a
-     * misspelled word in it gets. Digits never share in it — one digit off is one edit
-     * however long the frame, and another number.
+     * misspelled word in it gets — up to a slip per four letters of that word.
+     * Digits never share in it — one digit off is one edit however long the frame,
+     * and another number.
      */
     @Test
     fun theBudgetSpansTheWholeAnswerButNeverADigit() {
         val drill = AnswerNormalizer.drill(catalog.languages.getValue("sw"))
-        val date = card("sw", "tarehe kumi na nne Oktoba", kind = CardKind.Phrase)
-        assertEquals(Match.Typo("tarehe kumi na nne Oktoba"), drill.evaluate("tarehe kumi na nne october", date))
-        assertEquals(Match.Wrong, drill.evaluate("october", card("sw", "Oktoba")))
+        val date = card("sw", "tarehe tano Agosti", kind = CardKind.Phrase)
+        assertEquals(Match.Typo("tarehe tano Agosti"), drill.evaluate("tarehe tano augusti", date))
+        assertEquals(Match.Wrong, drill.evaluate("augusti", card("sw", "Agosti")))
+        val october = card("sw", "tarehe kumi na nne Oktoba", kind = CardKind.Phrase)
+        assertEquals(Match.Wrong, drill.evaluate("tarehe kumi na nne october", october))
         val train = card("de", "Der Zug fährt um 18:05 Uhr ab.", kind = CardKind.Phrase)
         assertEquals(Match.Wrong, de.evaluate("Der Zug fährt um 18:06 Uhr ab.", train))
     }

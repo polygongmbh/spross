@@ -119,8 +119,8 @@ A **period-less** reading is open across the 12-hour cycle by design.
 `saa sita` is midnight and noon.
 Nothing may treat a same-cycle pair as a collision.
 
-A reading that names the part of the day may still grade as a slip at the other half --
-`morning` for `evening` sits inside a long reading's typo budget, and that is accepted.
+A wrong part of the day is mostly kept out by the typo budget's per-word cap --
+`morning` for `evening` is three slips in seven letters -- and otherwise accepted as a slip.
 
 Everything else is a bug: no reading may be accepted for a second time in the same cycle.
 The word pairs that sit one slip apart are gated as audited exceptions --
