@@ -59,8 +59,8 @@ object DateDrillRun {
     }
 
     /**
-     * Grade [input] against every reading the task accepts, the way a drill grades: word
-     * by word, one slip per word, no article forgiven — the pattern authors its own
+     * Grade [input] against every reading the task accepts, the way a drill grades: no
+     * article forgiven — the pattern authors its own
      * article, and its `accepts` are what admit the accusative.
      *
      * The Sprossen whose answer is a numeral carry the numbers drill's value check

@@ -122,9 +122,6 @@ internal object UkrainianClock {
         return if (m in 1..9) listOf(Core("${Forms.nominative[cur]} нуль $count", h), plain) else listOf(plain)
     }
 
-    /** The 0–23 register's readings on their own, time-when ones included. */
-    fun twentyFourHour(h: Int, m: Int): List<String> = official(h, m).map { it.text } + officialWhen(h, m)
-
     /**
      * The hour-first readings in the locative «о» governs — the full hour and the face read
      * out, in both registers. The minute stays the nominative count it is in the digital

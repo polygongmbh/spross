@@ -344,8 +344,7 @@ class AnswerNormalizerTests {
     fun drillGradingNeverStripsAStrayLeadingWord() {
         val drill = AnswerNormalizer(
             catalog.languages.getValue("de"),
-            articleLeniency = false,
-            maxTyposPerWord = 1,
+            articleLeniency = false
         )
         val halbSieben = card("de", "halb sieben", kind = CardKind.Phrase)
         assertEquals(Match.Wrong, drill.evaluate("fünf vor halb sieben", halbSieben))
@@ -384,59 +383,19 @@ class AnswerNormalizerTests {
         assertEquals("zug", de.normalize("Der Zug!"))
     }
 
+    /**
+     * One budget over the whole answer: the more of it is right, the more room a
+     * misspelled word in it gets. Digits never share in it — one digit off is one edit
+     * however long the frame, and another number.
+     */
     @Test
-    fun drillGradesWordByWordAndNeverBridgesNumbersOrDigits() {
-        val drill = AnswerNormalizer(
-            catalog.languages.getValue("de"),
-            articleLeniency = false,
-            maxTyposPerWord = 1,
-        )
-        val base = card("de", "Ich habe 29 Hefte.", kind = CardKind.Phrase)
-        val hefte = base.copy(target = base.target.copy(accepts = listOf("Ich habe neunundzwanzig Hefte.")))
-        assertEquals(Match.Exact, drill.evaluate("Ich habe 29 Hefte.", hefte))
-        assertEquals(Match.Exact, drill.evaluate("Ich habe neunundzwanzig Hefte.", hefte))
-        // One digit off is one edit however long the frame — digit words grade exact-only.
-        assertEquals(Match.Wrong, drill.evaluate("Ich habe 21 Hefte.", hefte))
-        assertEquals(Match.Wrong, drill.evaluate("Ich habe einundzwanzig Hefte.", hefte))
-        assertEquals(
-            Match.Wrong,
-            drill.evaluate("Der Zug fährt um 18:06 Uhr ab.", card("de", "Der Zug fährt um 18:05 Uhr ab.", kind = CardKind.Phrase)),
-        )
-        // A slip inside a WORD keeps the cap — and every word carries its own.
-        assertEquals(
-            Match.Typo("Ich habe neunundzwanzig Hefte."),
-            drill.evaluate("Ich habe neunundzwanzik Hefte.", hefte),
-        )
-        assertEquals(
-            Match.Typo("Ich habe neunundzwanzig Hefte."),
-            drill.evaluate("Ich hebe neunundzwanzik Hefta.", hefte),
-        )
-        // Two slips in ONE word stay Wrong, however forgiving the rest of the sentence is.
-        assertEquals(Match.Wrong, drill.evaluate("Ich habe neunundzwanzk Hefte.", hefte))
-        // Long word numbers sit 2 edits apart: Wrong in a drill; the vocab budget is untouched.
-        val number = card("de", "einhundertneunundzwanzig")
-        assertEquals(Match.Wrong, drill.evaluate("einhunderteinundzwanzig", number))
-        assertEquals(Match.Typo("einhundertneunundzwanzig"), de.evaluate("einhunderteinundzwanzig", number))
-        // A word too few falls back to the whole-form rule — digits still exact-only.
-        assertEquals(Match.Wrong, drill.evaluate("Ich 29 Hefte.", hefte))
-    }
-
-    @Test
-    fun shortNonDigitWordsGetTheSameCapAsLongerWords() {
-        val drill = AnswerNormalizer(
-            catalog.languages.getValue("de"),
-            articleLeniency = false,
-            maxTyposPerWord = 1,
-        )
-        val phrase = card("de", "Ich kaufe das für dich.", kind = CardKind.Phrase)
-        // "für" is 3 letters — the old length-scaled per-word rule forced budget 0
-        // regardless of the cap; the cap alone now governs every word, short or long.
-        assertEquals(
-            Match.Typo("Ich kaufe das für dich."),
-            drill.evaluate("Ich kaufe das for dich.", phrase),
-        )
-        // Two slips in the same short word still exceed the cap.
-        assertEquals(Match.Wrong, drill.evaluate("Ich kaufe das fox dich.", phrase))
+    fun theBudgetSpansTheWholeAnswerButNeverADigit() {
+        val drill = AnswerNormalizer.drill(catalog.languages.getValue("sw"))
+        val date = card("sw", "tarehe kumi na nne Oktoba", kind = CardKind.Phrase)
+        assertEquals(Match.Typo("tarehe kumi na nne Oktoba"), drill.evaluate("tarehe kumi na nne october", date))
+        assertEquals(Match.Wrong, drill.evaluate("october", card("sw", "Oktoba")))
+        val train = card("de", "Der Zug fährt um 18:05 Uhr ab.", kind = CardKind.Phrase)
+        assertEquals(Match.Wrong, de.evaluate("Der Zug fährt um 18:06 Uhr ab.", train))
     }
 
     @Test
@@ -456,8 +415,7 @@ class AnswerNormalizerTests {
         assertEquals(0, de.matchingPrefixWordCount("Tisch", "Der Kühlschrank"))
         // Typed more words than the answer has → capped at the answer's length.
         assertEquals(2, de.matchingPrefixWordCount("Der Kühlschrank ist leer", "Der Kühlschrank"))
-        // "Der" is 3 letters — the retry-priming rule keeps its own length floor,
-        // independent of any drill's maxTyposPerWord (unaffected by that fix).
+        // "Der" is 3 letters — the retry-priming rule keeps its own length floor.
         assertEquals(0, de.matchingPrefixWordCount("Dre Kühlschrank", "Der Kühlschrank"))
         // Typed fewer words than the answer → capped at what was typed.
         assertEquals(1, de.matchingPrefixWordCount("Der", "Der Kühlschrank"))

@@ -48,11 +48,6 @@ kotlin {
     }
 }
 
-// why: the day-part sweep walks every minute of the day in every language, far too slow for
-// the commit gate. Only a trainer-forms edit can move it, so the commit gate leaves it
-// out; `-Psweeps` puts it back, and the release workflow always passes it.
-val corpusSweeps = listOf("*ClockDayPartSweepTests")
-
 tasks.named<Test>("jvmTest") {
     maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
 
@@ -73,7 +68,4 @@ tasks.named<Test>("jvmTest") {
         rootProject.file("web/site.css"),
         rootProject.file("marketing/print/print.css"),
     ).withPathSensitivity(PathSensitivity.RELATIVE)
-    if (!project.hasProperty("sweeps")) {
-        filter { corpusSweeps.forEach { excludeTestsMatching(it) } }
-    }
 }

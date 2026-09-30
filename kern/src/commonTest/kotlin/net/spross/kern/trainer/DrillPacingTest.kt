@@ -15,7 +15,7 @@ import net.spross.kern.session.AnswerNormalizer
 class DrillPacingTest {
 
     private val de = LanguageInfo(code = "de", name = "Deutsch", englishName = "German", flag = "🇩🇪")
-    private val normalizer = AnswerNormalizer(de, articleLeniency = false, maxTyposPerWord = 1)
+    private val normalizer = AnswerNormalizer(de, articleLeniency = false)
     private val mode = NumbersMode(NumbersExercise.Counting, "de")
 
     /** The store holding the exercise far above anything one stretch climbs, so no Sprosse is new. */

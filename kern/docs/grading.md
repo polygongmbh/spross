@@ -54,22 +54,17 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
   and only matches a form whose leading article equals the typed one —
   wrong or missing article grades Wrong (never typo-bridged);
   the one-arg init stays the lenient vocab-review default (both inits in the ObjC header).
-  The budget is likewise constructor-switched for drill grading:
-  `AnswerNormalizer(language, articleLeniency, maxTyposPerWord = 1)` grades **word by word** —
-  each word forgives one slip FLATLY, regardless of the word's own length
-  (a three-letter word forgives the same one slip a long one does),
-  and a word carrying a digit forgives none
-  ("21"/"29", "18:05" → "18" "05" sit one edit apart),
-  and a typed answer with a different word COUNT falls back to the whole-form rule.
-  What a drill must not accept is one number for another, and that danger lives inside
-  the number rather than across the sentence around it:
-  most distinct cardinals sit ≥ 2 edits apart, so a per-word cap of 1 keeps them apart
-  while the frame ("Ich habe … Hefte.") may fumble once per word.
-  The one-edit twins the budget alone would forgive are refused by the **value check**
+  The budget is the same for drills as for reviews — one over the whole answer,
+  so the more of a reading is right, the more room a misspelled word in it gets
+  (`tarehe kumi na nne october` for `… Oktoba`) —
+  and a word carrying a digit forgives none, in reviews too
+  ("21"/"29", "18:05" → "18" "05" sit one edit apart).
+  What a drill must not accept is one number for another;
+  the slips the budget would forgive there are refused by the **value check**
   (`otherNumber` in `DrillGrading.kt`, on both miss arms and never on Exact):
   two probes against `NumberReadingIndex` — the whole typed answer first,
-  then each differing word at its own position (Typo arm only, where a measured
-  form exists) — refuse whenever both sides name indexed values and the values are
+  then each differing word against the nearest accepted reading of the same word count
+  (Typo arm only) — refuse whenever both sides name indexed values and the values are
   disjoint, returning `Match.OtherWord` with what was actually written ("setenta" is 70).
   A plain Wrong that is a complete reading of another value is named the same way
   ("arobaini na saba" at 46 is 47, two edits and never a typo).
@@ -92,12 +87,8 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
   Coverage is deliberately best-effort: a colliding pair outside the index's reach
   stays the forgiven slip it always was, and no sweep pins the tail
   (which readings a clock may share at all is `../../docs/clock-registers.md`).
-  Vocab reviews (`maxTyposPerWord = null`, the default) keep one budget over the whole form,
-  and so does the WORD SCRAMBLE, which reaches it through `lengthScaledTypos()`:
-  that drill asks one vocabulary word rather than a reading, so it has no numbers
-  to keep apart, and its pool runs from four letters to fifteen —
-  the span a single flat slip serves worst at both ends.
-  Article strictness is unchanged; only the budget moves.
+  A welded compound above the index (de `neunhundertdrei` for 103) and a wrong part of
+  the day (`in the morning` at 17:00) can pass as a slip — rare, and still held as a near-miss.
   `matchingPrefixWordCount(input, answer)` is a UI-only sibling of `evaluate` — how many
   leading whole words already match, each within its own single-word budget — so a miss's
   retry field can keep the words already right and drop only the wrong tail; it never

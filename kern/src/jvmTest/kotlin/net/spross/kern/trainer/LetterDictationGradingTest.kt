@@ -30,11 +30,10 @@ class LetterDictationGradingTest {
     private val catalog get() = RealCatalog.catalog
 
     /**
-     * The drill's normalizer: articles graded as typed, one slip per word
-     * (`kern/docs/grading.md`).
+     * The drill's normalizer: articles graded as typed (`kern/docs/grading.md`).
      */
     private fun normalizer(target: Language) =
-        AnswerNormalizer(catalog.languages.getValue(target), articleLeniency = false, maxTyposPerWord = 1)
+        AnswerNormalizer(catalog.languages.getValue(target), articleLeniency = false)
 
     private fun grading(card: Card): Card = LetterDrill.dictationGradingCard(
         card,

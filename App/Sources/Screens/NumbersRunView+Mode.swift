@@ -50,9 +50,9 @@ extension NumbersMode {
     }
 
     /// The grader this run is played with — one home, because both surfaces that
-    /// open a run owe it the same one. Drills grade word by word (no article
-    /// forgiveness, one slip per word, digits exact-only), so a sentence may
-    /// fumble one word while no number can pass for another.
+    /// open a run owe it the same one. Drills grade strictly (no article
+    /// forgiveness, digits exact-only), and kern's value check keeps one number
+    /// from passing for another.
     @MainActor func normalizer(_ model: AppModel?) -> AnswerNormalizer? {
         model?.languageInfo(language)
             .map { AnswerNormalizer.companion.drill(answerLanguage: $0) }

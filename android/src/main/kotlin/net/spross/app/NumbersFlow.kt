@@ -77,8 +77,8 @@ class NumbersFlow(
 /**
  * The run a mode or [challenge] opens; null before the catalog has loaded.
  *
- * The normalizer is the STRICT drill one — no article leniency, one slip per word, nothing
- * forgiven inside a digit — built for the language being answered in.
+ * The normalizer is the STRICT drill one — no article leniency, nothing forgiven inside a
+ * digit — built for the language being answered in.
  */
 fun AppModel.newTrainerRun(
     mode: NumbersMode,

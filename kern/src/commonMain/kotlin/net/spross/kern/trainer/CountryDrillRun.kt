@@ -66,8 +66,8 @@ object CountryDrillRun {
     }
 
     /**
-     * Grade [input] against every form the task accepts, the way a drill grades: word by
-     * word, one slip per word, no article forgiven — the atlas authors "die Schweiz" and the
+     * Grade [input] against every form the task accepts, the way a drill grades: no
+     * article forgiven — the atlas authors "die Schweiz" and the
      * bare form beside it, so leniency would accept an article the learner never wrote.
      *
      * [Match.OtherWord] where the forgiven slip is really ANOTHER entry's name in the same

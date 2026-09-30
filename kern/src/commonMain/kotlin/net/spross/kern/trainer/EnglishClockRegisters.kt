@@ -66,7 +66,7 @@ internal object EnglishClockRegisters {
     /**
      * The 24-hour reading: "fourteen thirty", "oh nine hundred hours", "twenty-two oh
      * five". The hour word keeps its hyphen deliberately — spaced, "twenty two eleven"
-     * comes within one slip per word of "twenty to eleven", a different time. For the
+     * comes within the typo budget of "twenty to eleven", a different time. For the
      * same reason a single-digit minute always takes its "oh", never the bare count.
      */
     fun twentyFourHour(hour: Int, minute: Int): List<String> {

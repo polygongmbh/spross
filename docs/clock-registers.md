@@ -94,12 +94,8 @@ Which words fit which hour is authored once, in the per-language `dayParts` func
 `GermanClock`, `EnglishClockRegisters`, `SpanishClockForms`, `FrenchClockForms`,
 `ItalianClockForms`, `SwahiliClock`, `UkrainianClockForms`, `EsperantoClockForms`.
 Those functions ARE the grid;
-each carries its own non-derivable notes in its KDoc,
-and each pack's `clockDayParts` is the union over that language's own function --
-one set per language, never pooled across them,
-so `dayPartReadingsCloseTheTwelveHourCycle` grades readings against that language's markers.
-Esperanto's markers are adverbs (`matene`, `posttagmeze`, `nokte`)
-and its set carries their x-system twins too.
+each carries its own non-derivable notes in its KDoc.
+Esperanto's markers are adverbs (`matene`, `posttagmeze`, `nokte`).
 Boundaries overlap where speakers do, and both readings are accepted across an overlap.
 
 Naming the part is optional everywhere -- every reading is accepted bare --
@@ -123,10 +119,8 @@ A **period-less** reading is open across the 12-hour cycle by design.
 `saa sita` is midnight and noon.
 Nothing may treat a same-cycle pair as a collision.
 
-A reading that NAMES the part of the day must close it --
-`dayPartReadingsCloseTheTwelveHourCycle` holds it to that.
-So must the 24-hour register from thirteen up and at midnight, which names it by number --
-`twentyFourHourReadingsCloseTheTwelveHourCycle` holds it to that.
+A reading that names the part of the day may still grade as a slip at the other half --
+`morning` for `evening` sits inside a long reading's typo budget, and that is accepted.
 
 Everything else is a bug: no reading may be accepted for a second time in the same cycle.
 The word pairs that sit one slip apart are gated as audited exceptions --
@@ -141,7 +135,7 @@ Two exclusions are load-bearing and are commented at the point they are made:
 - English `ten of three` -- `of` is one edit from the digital joiner `oh`,
   so it would grade correct for 3:10. Only `quarter of` is safe.
 - English's 24-hour hour word keeps its hyphen:
-  spaced, `twenty two eleven` comes within a slip per word of `twenty to eleven`.
+  spaced, `twenty two eleven` comes within the typo budget of `twenty to eleven`.
 
 ## Why one generator per language
 
@@ -153,9 +147,6 @@ Swahili's hours are offset by six;
 German has no cores, English hangs day parts on two readings after every bare one,
 and French dresses each core in a copula.
 `leadWith` and the empty-gloss rule carry no language rule and are shared outright.
-`TrainerLanguagePack.clockDayParts` shares the SLOT only;
-the derivations do not collapse into a shared helper because Spanish's and Esperanto's
-unions run over more than the hour.
 
 Esperanto is the one clock whose readings compose into a PREPOSITIONAL frame.
 `la tria` is a bare nominative noun phrase;
@@ -172,11 +163,8 @@ A further language takes all of:
 - a new `*Clock.kt` with its own `dayParts`;
 - its entry in `trainerPacks` (`TrainerLanguagePack.kt`) --
   without it the generator is dead code and every sweep skips it in silence;
-- `clockDayParts` on that pack, derived from its `dayParts`, and `clockTwentyFourHour` --
-  abstract, so forgetting either is a compile error;
 - a cap in `ClockRevealTests`, plus its gloss lead-in in `alternativeMarkers`
   or its name in `ruleHintGlosses`, and its gloss separator in the `separators`;
-- coverage by the two cycle sweeps above, which iterate every pack.
 
 ## English a.m./p.m., accepted knowingly
 
@@ -190,14 +178,10 @@ so `four forty-five p.m.` is four words against `four forty-five pm`'s three;
 differing word counts drop to the whole-form budget, where the two sit one space apart.
 
 `am` and `pm` are one substitution apart,
-and the drill's budget is one slip per word flat,
+and inside the typo budget,
 so each grades correct for the other and the twelve-hour cycle stays open across the meridiem.
 That is accepted: typing the wrong meridiem is a knowledge error rather than a slip,
 and a typo verdict holds the card and shows the correct form.
-The meridiem is left out of the cycle check by CONSTRUCTION:
-it lives in `EnglishClockRegisters.meridiem`, never in `dayParts`,
-so it never reaches `clockDayParts`.
-The phrase day parts, which do live there, still close the cycle.
 
 At 00:00 and 12:00, `twelve a.m.` and `twelve p.m.` are accepted but never named:
 native speakers themselves get that pair backwards,

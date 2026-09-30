@@ -63,7 +63,7 @@ class LetterDrillRunTest {
             null
         } else {
             CatalogAnswerGrader(
-                AnswerNormalizer(xx, articleLeniency = false, maxTyposPerWord = 1),
+                AnswerNormalizer(xx, articleLeniency = false),
                 cards,
             )
         },

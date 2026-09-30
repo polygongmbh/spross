@@ -12,7 +12,7 @@ import net.spross.kern.session.Match
  *
  * A drill has no catalog behind it: the accepted forms are wrapped as one synthetic card.
  * All the strictness is the normalizer's ([AnswerNormalizer.drill]: no article leniency,
- * one slip per word, nothing forgiven inside a digit) — plus one check the catalog path
+ * nothing forgiven inside a digit) — plus one check the catalog path
  * gets from its join and a drill gets from [index]: a slip the typo budget accepted is
  * refused as [Match.OtherWord] when it NAMES a different value ([otherNumber]).
  */
@@ -52,11 +52,11 @@ internal fun gradeDrillAnswer(
  *    name values of their own, disjointness decides — `ciento setenta y ocho` IS 178, and
  *    `un décimo` (1/10) differs from `undécimo` (11th) only in a space no word split sees.
  *    Readings that agree on a value are the same answer and end the check.
- * 2. Word by word, positionally: where the typed and the matched reading have the same
- *    word count, a differing word that names a value the expected word does not share is
+ * 2. Word by word, positionally, against the nearest accepted reading with the typed word
+ *    count: a differing word that names a value the expected word does not share is
  *    another number inside a compound — `hasi nane` for `hasi nne`. A differing word that
  *    names nothing (a connector, a fumble) never fires; a sentence slips through untouched.
- *    Typo arm only ([corrected] is the form the budget measured against; a Wrong has none).
+ *    Typo arm only ([corrected] is non-null there; a Wrong has nothing to line up against).
  */
 internal fun otherNumber(
     normalizer: AnswerNormalizer,
@@ -79,9 +79,14 @@ internal fun otherNumber(
     }
 
     if (corrected == null) return null
-    val typedWords = shape(typed)?.split(' ') ?: return null
-    val expectedWords = shape(corrected)?.split(' ') ?: return null
-    if (typedWords.size != expectedWords.size) return null
+    val typedShape = shape(typed) ?: return null
+    val typedWords = typedShape.split(' ')
+    // why: the budget's nearest form may differ in word count (es `doce y cincuenta` for
+    // a typed `cero cincuenta`), which would leave nothing to line the words up against.
+    val expectedWords = accepted.mapNotNull(::shape)
+        .filter { it.count { c -> c == ' ' } == typedWords.size - 1 }
+        .minByOrNull { AnswerNormalizer.damerauLevenshtein(typedShape, it) }
+        ?.split(' ') ?: return null
     for (i in typedWords.indices) {
         if (typedWords[i] == expectedWords[i]) continue
         val typedValues = index.values(typedWords[i])

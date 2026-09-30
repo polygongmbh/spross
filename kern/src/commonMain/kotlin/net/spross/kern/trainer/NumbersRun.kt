@@ -85,9 +85,8 @@ object NumbersRun {
 
 
     /**
-     * Grade [input] against a task the way a drill grades: word by word, one slip per word,
-     * nothing forgiven inside a digit ([AnswerNormalizer] with `articleLeniency = false`,
-     * `maxTyposPerWord = 1`). A REVERSED task takes exactly this path — its accepted set already
+     * Grade [input] against a task the way a drill grades: no article forgiven, nothing
+     * forgiven inside a digit ([AnswerNormalizer.drill]). A REVERSED task takes exactly this path — its accepted set already
      * carries the notation twins, and digit-bearing words grade exact-only.
      *
      * [Match.OtherWord] where the slip NAMES another value ([otherNumber] and the

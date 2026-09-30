@@ -92,7 +92,7 @@ object WordScrambleRun {
             display = task.display,
             language = task.language,
             cardId = task.cardId,
-            normalizer = config.grader,
+            normalizer = config.normalizer,
         )
 
     /**

@@ -27,8 +27,8 @@ class NumbersRunTest {
 
     private val de = LanguageInfo(code = "de", name = "Deutsch", englishName = "German", flag = "🇩🇪")
 
-    /** The strictness triple every drill grades with: no article leniency, one slip per word. */
-    private val normalizer = AnswerNormalizer(de, articleLeniency = false, maxTyposPerWord = 1)
+    /** The strictness every drill grades with: no article leniency. */
+    private val normalizer = AnswerNormalizer(de, articleLeniency = false)
 
     private fun numbers(language: String = "de") = NumbersMode(NumbersExercise.Counting, language)
 

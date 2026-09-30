@@ -68,32 +68,18 @@ sealed interface Match {
  * only matches when the typed leading article equals the form's authored one —
  * a wrong or missing article grades [Match.Wrong], never typo-bridges.
  *
- * [maxTyposPerWord] (default null = one budget for the whole form) switches
- * grading to the WORD-WISE rule trainer drills need — drills pass 1. What a
- * drill must not do is accept one number for another, and that danger lives
- * inside the number, not across the sentence around it: most distinct
- * cardinals sit ≥ 2 edits apart, so capping each word at one slip keeps them
- * apart while the sentence as a whole may fumble once per word, and the few
- * one-edit twins (sw nne↔nane, uk дев'ять↔десять) are refused above this
- * budget by the drill grader's own value check (`otherNumber`). The cap applies flatly
- * to every word regardless of its own length, unlike the whole-phrase rule
- * below — a short word (e.g. "für") forgives the same one slip a long one
- * does. A word carrying a digit still grades exact-only: distinct digit
- * renderings ("21"/"29", "18:05" → "18" "05") sit one edit apart, so no
- * positive budget is safe for them.
+ * One typo budget over the whole form, for reviews and drills alike: the more of an
+ * answer is right, the more room a misspelled word in it gets. A word carrying a digit
+ * grades exact-only: distinct digit renderings ("21"/"29", "18:05" → "18" "05") sit one
+ * edit apart, so no positive budget is safe for them.
  */
 class AnswerNormalizer(
     private val answerLanguage: LanguageInfo,
     private val articleLeniency: Boolean,
-    private val maxTyposPerWord: Int?,
 ) {
 
-    /** Lenient vocab-review default; explicit secondary inits keep the ObjC/Swift signatures. */
-    constructor(answerLanguage: LanguageInfo) :
-        this(answerLanguage, articleLeniency = true, maxTyposPerWord = null)
-
-    constructor(answerLanguage: LanguageInfo, articleLeniency: Boolean) :
-        this(answerLanguage, articleLeniency, maxTyposPerWord = null)
+    /** Lenient vocab-review default; the explicit secondary init keeps the ObjC/Swift signature. */
+    constructor(answerLanguage: LanguageInfo) : this(answerLanguage, articleLeniency = true)
 
     /** Declared before [articleForms]: [cleaned] reads it, and that field is built through [cleaned]. */
     private val digraphFolds: List<Pair<String, String>> = answerLanguage.diacriticDigraphs
@@ -121,15 +107,6 @@ class AnswerNormalizer(
 
     /** True when the typed input means the card's target answer. */
     fun matches(input: String, card: Card): Boolean = evaluate(input, card) != Match.Wrong
-
-    /**
-     * The same strictness with the typo budget measured against the answer's own LENGTH
-     * ([allowedTypos]) instead of capped flat per word — for a drill that asks ONE word and
-     * has no numbers to keep apart, which is what the flat cap buys. One slip is generous on
-     * four letters and stingy on fifteen, and a word scramble asks both.
-     */
-    internal fun lengthScaledTypos(): AnswerNormalizer =
-        AnswerNormalizer(answerLanguage, articleLeniency, maxTyposPerWord = null)
 
     /**
      * How many leading whole words of [input] already match [answer], word by
@@ -273,7 +250,8 @@ class AnswerNormalizer(
      * mistype, and peeling there is leniency the catalog cannot pay for (de "wann"
      * answered sw "muda nini" came back as a spelling slip of "lini").
      *
-     * Null in a drill too ([maxTyposPerWord] set): there every word carries the answer —
+     * Null without [articleLeniency] too — the recovery IS article leniency, and a drill
+     * grading article choice has every word carry the answer —
      * "fünf vor halb sieben" minus its first word is 18:30, not a misspelling of it —
      * and the recovery RECURSES, peeling one word per level ("son las doce y uno" →
      * "uno"), so a reading decayed onto four other times' answers.
@@ -283,7 +261,7 @@ class AnswerNormalizer(
      * can never drift apart.
      */
     internal fun articlePeeledRemainder(input: String): String? {
-        if (maxTyposPerWord != null) return null
+        if (!articleLeniency) return null
         val tokens = words(input)
         val first = tokens.firstOrNull() ?: return null
         if (tokens.size < 2 || first.length > MAX_LEADING_SLIP_LENGTH) return null
@@ -302,47 +280,19 @@ class AnswerNormalizer(
         return articleForms.any { damerauLevenshtein(typed, it) <= maxOf(1, allowedTypos(it.length)) }
     }
 
-    /**
-     * Is [input] within the slips [candidate] forgives? One budget over the whole
-     * form for vocab reviews; word by word once [maxTyposPerWord] is set.
-     */
+    /** Is [input] within the slips [candidate] forgives, its digits typed exactly? */
     private fun withinBudget(input: String, candidate: String): Boolean {
-        val cap = maxTyposPerWord
-            ?: return damerauLevenshtein(input, candidate) <= allowedTypos(candidate.count { it != ' ' })
-        val typed = input.split(' ')
-        val expected = candidate.split(' ')
-        // why: word-wise grading needs words to line up — a dropped or added one
-        // falls back to the whole-form rule, so drills forgive everything they
-        // forgave before, digit-bearing forms exact-only included.
-        if (typed.size != expected.size) {
-            if (candidate.any { it.isDigit() }) return false
-            val budget = minOf(allowedTypos(candidate.count { it != ' ' }), cap)
-            return damerauLevenshtein(input, candidate) <= budget
-        }
-        return expected.indices.all { i ->
-            damerauLevenshtein(typed[i], expected[i]) <= wordBudget(expected[i], cap)
-        }
+        if (digitWords(input) != digitWords(candidate)) return false
+        return damerauLevenshtein(input, candidate) <= allowedTypos(candidate.count { it != ' ' })
     }
 
-    /**
-     * One word's slips under the drill's per-word cap: none at all for a
-     * digit, else the cap itself — flat, regardless of the word's own
-     * length. The cap (currently always 1) already dominated the length
-     * formula for every word the formula was tuned for (≥4 letters), so a
-     * shorter word now gets the same cap instead of being floored to zero
-     * for no safety reason: the digit check above is what actually keeps a
-     * drill from bridging one number into another.
-     */
-    private fun wordBudget(word: String, cap: Int): Int =
-        if (word.any { it.isDigit() }) 0 else cap
+    private fun digitWords(form: String): List<String> =
+        form.split(' ').filter { word -> word.any { it.isDigit() } }
 
     /**
      * One word's slips for [matchingPrefixWordCount]'s retry-priming rule:
-     * the length-scaled formula, same floor whole-phrase vocab reviews use.
-     * Unrelated to [maxTyposPerWord] — this UI-only helper (which words of a
-     * miss to keep in the retry field) has never read it and must not start
-     * now, or a short mistyped word would keep far more of the field than a
-     * retry is meant to prime.
+     * the length-scaled formula measured per word, so a short mistyped word
+     * never keeps more of the retry field than a retry is meant to prime.
      */
     private fun prefixWordBudget(word: String): Int =
         if (word.any { it.isDigit() }) 0 else allowedTypos(word.length)
@@ -402,11 +352,11 @@ class AnswerNormalizer(
     companion object {
         /**
          * The drill's strictness in one place: no article leniency (a wrong or
-         * missing article grades Wrong), one slip per word flatly. Both drills on
-         * both platforms grade through this, so the triple can never drift apart.
+         * missing article grades Wrong). Every drill on both platforms grades
+         * through this, so they can never drift apart.
          */
         fun drill(answerLanguage: LanguageInfo): AnswerNormalizer =
-            AnswerNormalizer(answerLanguage, articleLeniency = false, maxTyposPerWord = 1)
+            AnswerNormalizer(answerLanguage, articleLeniency = false)
 
         /**
          * Nothing worth grading was typed — a submit carrying it MEANS reveal wherever a

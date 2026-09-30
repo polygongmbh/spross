@@ -45,7 +45,6 @@ class NumbersDrill(private val language: String, seed: Int, articles: Array<Stri
     private val normalizer = AnswerNormalizer(
         LanguageInfo(code = language, name = "", englishName = "", flag = "", articles = articles.toList()),
         articleLeniency = false,
-        maxTyposPerWord = 1,
     )
 
     fun sample(level: Int): WebTask =

@@ -69,8 +69,8 @@ fun AppModel.newLetterDrill(
     val config = LetterDrillRunConfig(
         report = report,
         cards = state.cards,
-        // why: the STRICT drill normalizer (no article leniency, a slip per word) with the
-        // whole join in view — a per-word budget alone accepts `kufungua` for `kufunga`,
+        // why: the STRICT drill normalizer (no article leniency) with the
+        // whole join in view — the typo budget alone accepts `kufungua` for `kufunga`,
         // and only the catalog-wide grader withdraws that credit.
         dictationGrader = CatalogAnswerGrader(
             AnswerNormalizer.drill(info),

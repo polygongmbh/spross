@@ -78,14 +78,6 @@ class WordScrambleRunConfig(
      */
     val cleared: Set<Int> = emptySet(),
 ) {
-    /**
-     * What a spelling is actually graded by: [normalizer]'s strictness with the typo budget
-     * scaled to the word's length ([AnswerNormalizer.lengthScaledTypos]). The flat per-word cap
-     * the other drills carry is there to keep one number from reading as another, and a scramble
-     * asks a vocabulary word rather than a reading — while its words run from four letters to
-     * fifteen, which is the span one flat slip serves worst.
-     */
-    internal val grader: AnswerNormalizer? = normalizer?.lengthScaledTypos()
 }
 
 /**

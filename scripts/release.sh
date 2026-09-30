@@ -85,7 +85,7 @@ python3 scripts/catalog-format.py --check >/dev/null
 python3 scripts/strings.py --check-format App/Sources/Resources/Localizable.xcstrings
 python3 scripts/chrome.py >/dev/null
 python3 scripts/card-parity.py --check
-./gradlew --console=plain -q :kern:jvmTest -Psweeps :android:testDebugUnitTest
+./gradlew --console=plain -q :kern:jvmTest :android:testDebugUnitTest
 
 # The app gate is the only one that sees a Swift call site: a Kotlin change can leave
 # every Kotlin gate green and still fail to compile against the framework

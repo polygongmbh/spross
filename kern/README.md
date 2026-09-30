@@ -336,8 +336,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   The typo budget forgives a slip,
   and `CatalogAnswerGrader` withdraws that credit wherever the typed form
   is really another concept's word.
-  A drill caps at one slip per word:
-  distinct cardinals sit >= 2 edits apart.
+  A drill grades with the same budget and refuses a slip that names another number.
   The pipeline, the budgets and the sweeps are `docs/grading.md`.
 - **`Match.producedRating()` is the one place a produce match becomes a rating** --
   both apps call it rather than re-deciding the mapping.
