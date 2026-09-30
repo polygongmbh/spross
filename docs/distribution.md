@@ -1,5 +1,6 @@
 # Distribution — getting builds onto other people's phones
 How builds reach other people's phones, how a release is cut, and what earns a changelog entry and how it is worded.
+Neighbors: the install steps a learner follows `../README.md` § Install.
 
 Neither store is involved.
 Android installs the APK directly and tracks updates through Obtainium;
@@ -25,11 +26,12 @@ and only then commits, tags and pushes.
 Two things stay yours: which number, and what the entries say.
 An empty `## Unreleased` is refused rather than cut.
 
-The number is a judgment call - `release.sh` provides some numbers as guidance
-- a minor changes something a learner meets without going looking for it
-- the counts are a prompt, not a rule: a feature reached from one button in a corner is a patch,
-  however many `feat:` commits it took
-- a major release introduces a non-reversible breaking storage format change
+The number is a judgment call; `release.sh` prints commit counts as guidance.
+
+- A major introduces a non-reversible breaking storage format change.
+- A minor changes something a learner meets without going looking for it.
+- The counts are a prompt, not a rule: a feature reached from one button in a corner is a patch,
+  however many `feat:` commits it took.
 
 Every gate runs BEFORE the tag exists, because the tag is the trigger and the version:
 the workflow strips the leading `v` and hands the rest to both surfaces,
@@ -132,8 +134,7 @@ unaffected; the demand lands on `packageRelease` alone.
 
 `net.spross.app`, the same string on both platforms — the reversed domain plus the
 app-name slot, which is what every cross-platform toolchain seeds into both anyway.
-Nothing is published and no release has reached anyone's device, so both halves can
-still move. What ends that, on each side:
+What binds it, on each side:
 
 - **Android** — the first installed release APK. The `applicationId` *is* the app's
   identity there, so a renamed one is a second, unrelated app: installed alongside the
@@ -157,7 +158,7 @@ director, register entry, VAT id — in
 They are the same values the DSA trader declaration publishes on the App Store product
 page, so the two say one thing or they contradict each other.
 
-The page itself is written (`web/privacy.html`, `website.md` § Legal pages);
+The page itself is written (`web/privacy.html`, `plans/website.md` § Legal pages);
 what is still missing is the host serving it, and `https://spross.net/privacy` has to
 answer before a build reaches anyone outside the team — App Store Connect demands the
 same URL for external TestFlight testers.
@@ -180,8 +181,8 @@ Add `https://github.com/polygongmbh/spross` as a GitHub app in
 off each release and offers the update. The repo being public is what makes this
 work without a token. Direct download from the release page installs the same file.
 
-The version at the foot of the box is that door — the build a learner is running is what
-an update is about, so it carries the link rather than a button beside it. It fires
+The version at the foot of the box carries that link — the build a learner is running is what
+an update is about, so the version is the control rather than a button beside it. It fires
 `obtainium://add/<repo url>`, which lands on Obtainium's prefilled Add-App screen, and
 offers the choice between Obtainium and a direct download when nothing answers the
 scheme. The app checks for nothing itself — it declares no `INTERNET` permission and

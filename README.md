@@ -24,9 +24,7 @@ because both asked the same box for it.
 | **iOS** | ![Spross on iOS — the Today screen](docs/screenshots/ios-home.png) | ![Spross on iOS — a review card](docs/screenshots/ios-session.png) | ![Spross on iOS — the box](docs/screenshots/ios-box.png) |
 | **Android** | ![Spross on Android — the Today screen](docs/screenshots/android-home.png) | ![Spross on Android — a review card](docs/screenshots/android-session.png) | ![Spross on Android — the box](docs/screenshots/android-box.png) |
 
-The hub's drills match now too: they stand on both
-phones, each run on kern's rules — what still parts the platforms is listed
-in `docs/design.md`.
+The drills stand on both phones too, each run on kern's rules.
 
 ## Install
 
@@ -41,7 +39,7 @@ without it, the same page offers Obtainium's own download
 ([`app-release.apk`](https://github.com/ImranR98/Obtainium/releases/latest/download/app-release.apk)
 is the universal build).
 Every release from here on is then offered as it appears,
-and the app opens that door itself on the version printed at the foot of the box.
+and the version printed at the foot of the box opens the same link from inside the app.
 
 Neither of those is required:
 `spross-<version>.apk` from the
