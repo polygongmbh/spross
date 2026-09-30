@@ -48,17 +48,12 @@ struct SessionSummaryView: View {
     private static func swayAngle(_ index: Int) -> Double { 5 + Double(index % 3) * 2 }
     private static func swayPeriod(_ index: Int) -> Double { 2.1 + Double(index) * 0.27 }
 
-    /// "3 neu · 8 wiederholt · 2 gefestigt" — which parts a finished round names,
-    /// and in which order, is the box's (`RoundSummary.parts`); the words are
-    /// ours. Built as `Text` so each part localizes via the environment locale.
-    /// Nil when the round named nothing.
+    /// "3 neu · 8 wiederholt · 2 gefestigt" under the title — which parts a finished
+    /// round names, and in which order, is the box's (`RoundSummary.parts`); the
+    /// words are ours. Built as `Text` so each part localizes via the environment
+    /// locale. Nil when the round named nothing: the title alone then says it is done.
     private var tallyText: Text? {
         parts.map { Self.partText($0, alone: parts.count == 1) }.joined()
-    }
-
-    /// Under the title: the tally, which counts the whole round, not the area.
-    private var summaryText: Text? {
-        tallyText ?? (showsTree ? nil : Text("session.done.tally.allDone"))
     }
 
     private var showsTree: Bool { grownArea.map { !$0.after.isBare } ?? false }
@@ -81,7 +76,7 @@ struct SessionSummaryView: View {
         // the growth claim where a tree stands over it, the plain "All done!"
         // where the popper does.
         SummaryScaffold(title: Text(showsTree ? headlineKey : "session.done.title"),
-                        tally: summaryText,
+                        tally: tallyText,
                         hint: restSuggested ? Text("session.done.restHint") : nil,
                         onDone: onDone, onTalk: onTalk,
                         onPractice: canPracticeMore ? onPractice : nil) { ceiling in
