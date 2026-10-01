@@ -10,6 +10,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - A drill run now clears a level only while it has had no miss or near-miss at all; its first slip anywhere stops it from clearing any more.
 - A finished round now counts the words sown first, then reviews, then words settled, which Home and Progress now call settled too.
 - A finished round now labels the grown area right under its tree, apart from the round's counts.
+- The locked dictation stage on the letters screen now asks for more words you know, which is what unlocks it, rather than more consolidated ones.
 - After a wrong answer to a word asked by ear, you now retype the word in the language you are learning instead of its meaning.
 
 ## 8.0.0 — 2026-09-30

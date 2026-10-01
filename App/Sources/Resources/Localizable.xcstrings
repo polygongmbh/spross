@@ -4270,13 +4270,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Braucht mehr gefestigte Wörter, die dieses Gerät vorlesen kann"
+            "value" : "Braucht mehr Wörter, die du kannst und die dieses Gerät vorlesen kann"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Needs more settled words this device can read out"
+            "value" : "Needs more words you know that this device can read out"
           }
         }
       }

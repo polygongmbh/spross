@@ -236,8 +236,8 @@ internal object ChromeDe : Chrome {
     override val lettersStageChoiceConfusable = "Dieselbe Wahl unter ähnlichen Buchstaben"
     override val lettersStageTyped = "Den Buchstaben selbst schreiben"
     override val lettersStageDictation = "Ganze Wörter aus deinem Wortschatz nach Gehör"
-    override val lettersStageDictationLocked = "Braucht mehr gefestigte Wörter, die dieses " +
-        "Gerät vorlesen kann"
+    override val lettersStageDictationLocked = "Braucht mehr Wörter, die du kannst und die " +
+        "dieses Gerät vorlesen kann"
     override val lettersUnavailable = "Dieses Gerät kann noch keinen Buchstaben vorsprechen " +
         "— dafür braucht es eine Stimme für die Sprache."
     override val lettersAlphabetTitle = "Alphabet"

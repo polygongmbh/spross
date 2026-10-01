@@ -230,8 +230,8 @@ internal object ChromeEn : Chrome {
     override val lettersStageChoiceConfusable = "The same choice, among lookalikes"
     override val lettersStageTyped = "Write the letter yourself"
     override val lettersStageDictation = "Whole words from your vocabulary, by ear"
-    override val lettersStageDictationLocked = "Needs more settled words this device can " +
-        "read out"
+    override val lettersStageDictationLocked = "Needs more words you know that this device " +
+        "can read out"
     override val lettersUnavailable = "This device cannot say a letter yet — that needs a " +
         "voice for the language."
     override val lettersAlphabetTitle = "Alphabet"
