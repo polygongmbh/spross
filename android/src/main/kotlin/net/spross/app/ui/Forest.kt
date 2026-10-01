@@ -30,6 +30,7 @@ import kotlin.math.roundToInt
 import net.spross.app.AppModel
 import net.spross.app.areaEmoji
 import net.spross.app.areaTitle
+import net.spross.app.countLine
 import net.spross.app.forestTrees
 import net.spross.app.openBox
 import net.spross.kern.box.AreaTree
@@ -53,16 +54,16 @@ internal fun HomeForest(model: AppModel) {
                 val area = areas[tree.area]
                 listOf(
                     model.areaTitle(tree.area),
-                    chrome.progressConsolidatedCount.format(area?.consolidated ?: 0),
-                    chrome.progressLearningCount.format(area?.learning ?: 0),
+                    countLine(chrome.progressConsolidatedCountOne, chrome.progressConsolidatedCount, area?.consolidated ?: 0),
+                    countLine(chrome.progressLearningCountOne, chrome.progressLearningCount, area?.learning ?: 0),
                 ).joinToString(", ")
             },
             open = { model.openBox(it) },
         )
         Text(
             listOf(
-                chrome.progressConsolidatedCount.format(stats?.consolidatedCount ?: 0),
-                chrome.progressLearningCount.format(stats?.learningCount ?: 0),
+                countLine(chrome.progressConsolidatedCountOne, chrome.progressConsolidatedCount, stats?.consolidatedCount ?: 0),
+                countLine(chrome.progressLearningCountOne, chrome.progressLearningCount, stats?.learningCount ?: 0),
             ).joinToString(" · "),
             style = MaterialTheme.typography.bodySmall,
             color = Theme.colors.textSecondary,

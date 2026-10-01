@@ -214,10 +214,10 @@ struct AreaChip: View {
     /// and the bar alone draws the Sprosse between them.
     private var counts: some View {
         HStack(spacing: Theme.spacing.md) {
-            Label("progress.consolidatedCount \(progress.consolidated.formatted())",
+            Label("progress.consolidatedCount \(Int(progress.consolidated))",
                   systemImage: "checkmark.seal.fill")
                 .foregroundStyle(Theme.colors.grown)
-            Label("progress.learningCount \(progress.learning.formatted())", systemImage: "leaf.fill")
+            Label("progress.learningCount \(Int(progress.learning))", systemImage: "leaf.fill")
                 .foregroundStyle(Theme.colors.success)
             if lockedPhrases > 0 {
                 // why: the padlock carries "locked", so the text only has to

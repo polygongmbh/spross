@@ -162,7 +162,7 @@ extension HomeView {
         switch part.kind {
         case .reviews: return Text("home.tally.reviews \(count)")
         case .introduced: return Text("home.tally.newCards \(count)")
-        case .consolidated: return Text("home.tally.consolidated \(count.formatted())")
+        case .consolidated: return Text("tally.consolidated \(count)")
         }
     }
 

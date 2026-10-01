@@ -124,7 +124,7 @@ class HomeStandingTest {
     @Test
     fun theCrossingsReadLastOnAWorkedDay() {
         assertEquals(
-            "24 Checks · 3 Neue · 2 gefestigt",
+            "24 Checks · 3 Neue · 2 sitzen nun",
             todayTally(chrome, report(reviews = 24, introduced = 3, consolidated = 2)),
         )
         assertEquals("8 Checks", todayTally(chrome, report(reviews = 8)))

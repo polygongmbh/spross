@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.countLine
 import net.spross.app.SessionUi
 import net.spross.app.areaEmoji
 import net.spross.app.areaTitle
@@ -62,7 +63,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             when (it.kind) {
                 TallyPartKind.Introduced ->
                     if (parts.size == 1) chrome.sessionDoneTallyNewOnly.format(it.count) else chrome.sessionDoneTallyNew.format(it.count)
-                TallyPartKind.Consolidated -> chrome.sessionDoneTallyConsolidated.format(it.count)
+                TallyPartKind.Consolidated -> countLine(chrome.tallyConsolidatedOne, chrome.tallyConsolidated, it.count)
                 TallyPartKind.Reviews -> chrome.sessionDoneTallyReviewed.format(it.count)
             }
         }

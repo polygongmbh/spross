@@ -236,8 +236,8 @@ fun AreaChip(
     val locked = stats?.phrasesLocked ?: 0
     val spoken = buildList {
         add(name)
-        add(chrome.progressConsolidatedCount.format(consolidated))
-        add(chrome.progressLearningCount.format(learning))
+        add(countLine(chrome.progressConsolidatedCountOne, chrome.progressConsolidatedCount, consolidated))
+        add(countLine(chrome.progressLearningCountOne, chrome.progressLearningCount, learning))
         if (locked > 0) add(countLine(chrome.boxAreaPhrasesLockedOne, chrome.boxAreaPhrasesLocked, locked))
     }.joinToString(", ")
 
@@ -274,8 +274,8 @@ fun AreaChip(
                 // Two counts where the bar beneath draws three Sprossen: there is room here for
                 // the split that matters (cleared the bar, or not yet), and the bar carries
                 // the finer one.
-                CountLabel("$SEAL ${chrome.progressConsolidatedCount.format(consolidated)}", Theme.colors.grown)
-                CountLabel("$LEAF ${chrome.progressLearningCount.format(learning)}", Theme.colors.success)
+                CountLabel("$SEAL ${countLine(chrome.progressConsolidatedCountOne, chrome.progressConsolidatedCount, consolidated)}", Theme.colors.grown)
+                CountLabel("$LEAF ${countLine(chrome.progressLearningCountOne, chrome.progressLearningCount, learning)}", Theme.colors.success)
                 // why: the padlock carries the "locked", so the text only names what is
                 // locked — and it appears only when it says something.
                 if (locked > 0) CountLabel(

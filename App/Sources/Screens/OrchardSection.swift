@@ -52,8 +52,8 @@ struct OrchardSection: View {
     /// never how many words are in it.
     private var caption: some View {
         Text.joined(
-            Text("progress.consolidatedCount \((model.stats?.consolidatedCards ?? 0).formatted())"),
-            Text("progress.learningCount \((model.stats?.learningCards ?? 0).formatted())")
+            Text("progress.consolidatedCount \(model.stats?.consolidatedCards ?? 0)"),
+            Text("progress.learningCount \(model.stats?.learningCards ?? 0)")
         )
         .font(Theme.typography.caption)
         .foregroundStyle(Theme.colors.textSecondary)
@@ -67,8 +67,8 @@ struct OrchardSection: View {
         let stats = model.areaStats(tree.area)
         return Text.joined(
             Text(model.areaTitle(tree.area)),
-            Text("progress.consolidatedCount \((stats?.consolidated ?? 0).formatted())"),
-            Text("progress.learningCount \((stats?.learning ?? 0).formatted())")
+            Text("progress.consolidatedCount \(Int(stats?.consolidated ?? 0))"),
+            Text("progress.learningCount \(Int(stats?.learning ?? 0))")
         )
     }
 }

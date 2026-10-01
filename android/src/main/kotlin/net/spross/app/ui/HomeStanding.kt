@@ -142,7 +142,7 @@ fun todayTally(chrome: Chrome, report: TodayReport): String? {
         when (part.kind) {
             TallyPartKind.Reviews -> countLine(chrome.homeTallyReviewsOne, chrome.homeTallyReviews, part.count)
             TallyPartKind.Introduced -> countLine(chrome.homeTallyNewCardsOne, chrome.homeTallyNewCards, part.count)
-            TallyPartKind.Consolidated -> chrome.homeTallyConsolidated.format(part.count)
+            TallyPartKind.Consolidated -> countLine(chrome.tallyConsolidatedOne, chrome.tallyConsolidated, part.count)
         }
     }
     return parts.takeIf { it.isNotEmpty() }?.joinToString(PART_JOIN)

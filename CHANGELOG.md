@@ -11,6 +11,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - A finished round now counts the words sown first, then reviews, then words settled, which Home and Progress now call settled too.
 - A finished round now labels the grown area right under its tree, apart from the round's counts.
 - The locked dictation stage on the letters screen now asks for more words you know, which is what unlocks it, rather than more consolidated ones.
+- In German, settled words now read "sitzen nun" in the day's and a round's counts and "sitzen" on Progress, and every settled and growing count reads right for a single word.
 - After a wrong answer to a word asked by ear, you now retype the word in the language you are learning instead of its meaning.
 
 ## 8.0.0 — 2026-09-30

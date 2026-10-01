@@ -324,7 +324,9 @@ interface Chrome {
     val boxCardOwnFrom: String
     val a11yReportReported: String
     val progressConsolidatedCount: String // %d
+    val progressConsolidatedCountOne: String
     val progressLearningCount: String  // %d
+    val progressLearningCountOne: String
     val boxAreaPhrasesLockedShort: String // %d
     val boxAreaPhrasesLockedShortOne: String // %d
     val boxAreaPhrasesLocked: String // %d
@@ -470,7 +472,8 @@ interface Chrome {
     val homeTallyNewCards: String       // %d
     val homeTallyNewCardsOne: String
     val homeTallyNewWordsOnly: String    // %d
-    val homeTallyConsolidated: String   // %d
+    val tallyConsolidated: String       // %d — Home's day tally and a finished round's alike
+    val tallyConsolidatedOne: String
     /** Which of the two a round names is [net.spross.kern.session.SessionOffer.summaryParts]'. */
     val homeTallyAhead: String          // %d
     val homeTallyAheadOne: String
@@ -527,7 +530,6 @@ interface Chrome {
     // ── Round completion ────────────────────────────────────────────────────────
     val sessionDoneTallyNew: String          // %d
     val sessionDoneTallyNewOnly: String      // %d
-    val sessionDoneTallyConsolidated: String // %d
     val sessionDoneTallyReviewed: String     // %d
     val sessionDoneTallyAllDone: String
     val sessionDoneRestHint: String

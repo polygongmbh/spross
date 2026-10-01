@@ -3761,23 +3761,6 @@
         }
       }
     },
-    "home.tally.consolidated %@" : {
-      "comment" : "%d — \"gefestigt\" needs no declining",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ gefestigt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ settled"
-          }
-        }
-      }
-    },
     "home.tally.newCards %lld" : {
       "localizations" : {
         "de" : {
@@ -5081,22 +5064,46 @@
         }
       }
     },
-    "progress.consolidatedCount %@" : {
-      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. home.tally.consolidated is the day's own tally on Heute — a different screen's sentence, not this one read twice.",
+    "progress.consolidatedCount %lld" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ gefestigt"
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld settled"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld settled"
+                }
+              }
+            }
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ settled"
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sitzt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sitzen"
+                }
+              }
+            }
           }
         }
-      }
+      },
+      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. home.tally.consolidated is the day's own tally on Heute — a different screen's sentence, not this one read twice."
     },
     "progress.last14Days" : {
       "localizations" : {
@@ -5114,18 +5121,42 @@
         }
       }
     },
-    "progress.learningCount %@" : {
+    "progress.learningCount %lld" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ wachsen"
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld growing"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld growing"
+                }
+              }
+            }
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ growing"
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld wächst"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld wachsen"
+                }
+              }
+            }
           }
         }
       }
@@ -5766,22 +5797,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "All done"
-          }
-        }
-      }
-    },
-    "session.done.tally.consolidated %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ gefestigt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ settled"
           }
         }
       }
@@ -6715,6 +6730,47 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Newer Versions"
+          }
+        }
+      }
+    },
+    "tally.consolidated %lld" : {
+      "comment" : "Words that crossed the settled bar — in Home's day tally and a finished round's alike.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld settled"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld settled"
+                }
+              }
+            }
+          }
+        },
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sitzt nun"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sitzen nun"
+                }
+              }
+            }
           }
         }
       }
