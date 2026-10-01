@@ -531,6 +531,7 @@ interface Chrome {
     val sessionDoneTallyNew: String          // %d
     val sessionDoneTallyNewOnly: String      // %d
     val sessionDoneTallyReviewed: String     // %d
+    val sessionDoneTallyReviewedOnly: String // %d
     val sessionDoneTallyAllDone: String
     val sessionDoneRestHint: String
 

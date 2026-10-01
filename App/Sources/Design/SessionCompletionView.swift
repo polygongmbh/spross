@@ -71,7 +71,8 @@ struct SessionCompletionView: View {
         case .introduced:
             return alone ? Text("session.done.tally.newOnly \(count)") : Text("session.done.tally.new \(count)")
         case .consolidated: return Text("tally.consolidated \(Int(part.count))")
-        case .reviews: return Text("session.done.tally.reviewed \(count)")
+        case .reviews:
+            return alone ? Text("session.done.tally.reviewedOnly \(count)") : Text("session.done.tally.reviewed \(count)")
         }
     }
 

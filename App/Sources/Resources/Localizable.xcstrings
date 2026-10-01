@@ -5850,6 +5850,23 @@
         }
       }
     },
+    "session.done.tally.reviewedOnly %@" : {
+      "comment" : "session.done.tally.reviewed spelled out with its noun, for a round that named nothing else.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Wörter gecheckt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ words reviewed"
+          }
+        }
+      }
+    },
     "session.done.title" : {
       "localizations" : {
         "de" : {

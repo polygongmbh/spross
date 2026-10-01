@@ -496,6 +496,7 @@ internal object ChromeEn : Chrome {
     override val sessionDoneTallyNew = "%s sown"
     override val sessionDoneTallyNewOnly = "%s new words"
     override val sessionDoneTallyReviewed = "%s reviewed"
+    override val sessionDoneTallyReviewedOnly = "%s words reviewed"
     override val sessionDoneTallyAllDone = "All done"
     override val sessionDoneRestHint = "Not much is sticking today — a tired head keeps " +
         "nothing. Tomorrow will go easier."

@@ -64,7 +64,8 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 TallyPartKind.Introduced ->
                     if (parts.size == 1) chrome.sessionDoneTallyNewOnly.format(it.count) else chrome.sessionDoneTallyNew.format(it.count)
                 TallyPartKind.Consolidated -> countLine(chrome.tallyConsolidatedOne, chrome.tallyConsolidated, it.count)
-                TallyPartKind.Reviews -> chrome.sessionDoneTallyReviewed.format(it.count)
+                TallyPartKind.Reviews ->
+                    if (parts.size == 1) chrome.sessionDoneTallyReviewedOnly.format(it.count) else chrome.sessionDoneTallyReviewed.format(it.count)
             }
         }
     }
