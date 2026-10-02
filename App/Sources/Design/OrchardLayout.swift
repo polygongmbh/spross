@@ -68,7 +68,7 @@ enum OrchardLayout {
 
     /// The narrowest column a grown tree claims — five across a 354pt content width,
     /// which is the phone; a crown may spill past it, its label never is.
-    static let columnWidth: CGFloat = 68
+    static let columnWidth: CGFloat = 64
     static let rowHeight: CGFloat = 72
     static let labelHeight: CGFloat = 18
     static let rowGap: CGFloat = Theme.spacing.sm
@@ -91,33 +91,32 @@ enum OrchardLayout {
     /// Rows, not a grid:
     /// every tree in a row stands on ONE baseline,
     /// which is what lets two areas be compared at a glance.
-    /// Every row is laid from the very left edge,
-    /// every second row opens HALF a cell further on,
+    /// Every row holds the same count of columns,
+    /// every second row opens HALF a column further on,
     /// and rows stand half a row apart —
-    /// so the trees interleave diagonally,
-    /// a tree growing up through the gap between two of the row above
+    /// a checkerboard: a tree growing up through the gap between two of the row above
     /// and two of the row below,
-    /// and the orchard reads as one growing mass
+    /// so the orchard reads as one growing mass
     /// rather than as drawers in a wall.
     /// Every grown tree claims the same column, an ungrown sapling half of one,
     /// and the columns stretch to fill the width exactly —
-    /// so spacing is shared between the trees, none left over at the edges,
+    /// so spacing is shared between the trees,
+    /// the sides touched but for the half column the shifted rows give up,
     /// and a shifted row's trees stand midway between two labels above.
     /// A row stands only as tall as its tallest,
     /// and each grown tree sits a little off its column's center.
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
         guard width > 0, !trees.isEmpty else { return [] }
-        let across = max(1, Int(width / columnWidth))
+        // why: the shifted row leaves half a column over, so a row's columns plus that half fill the width.
+        let across = max(1, Int(width / columnWidth - 0.5))
         // One unit is half a column; a tree takes two, an ungrown sapling —
         // one that has not yet grown half its way — one: a stem and a label need no more.
-        let unit = width / CGFloat(2 * across)
+        let unit = width / CGFloat(2 * across + 1)
         func size(_ tree: AreaTree) -> Int { standing(tree) < 0.5 ? 1 : 2 }
         var rows: [[Int]] = [[]]
         var used = 0
         for index in trees.indices {
-            let shifted = across > 1 && rows.count % 2 == 0
-            let capacity = shifted ? 2 * across - 2 : 2 * across
-            if used + size(trees[index]) > capacity {
+            if used + size(trees[index]) > 2 * across {
                 rows.append([])
                 used = 0
             }
@@ -135,7 +134,7 @@ enum OrchardLayout {
             // instead of starting under a shelf of air,
             // and the orchard reads as one growing mass.
             let pitch = (band + labelHeight + rowGap) / 2
-            var taken = across > 1 && rank % 2 == 1 ? 1 : 0
+            var taken = rank % 2
             for index in row {
                 let tree = trees[index]
                 let units = size(tree)

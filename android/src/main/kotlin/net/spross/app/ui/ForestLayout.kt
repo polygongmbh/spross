@@ -21,7 +21,7 @@ internal object ForestLayout {
     const val MIN_HEIGHT = 9f
     private const val MAX_HEIGHT = 42f
     /** The narrowest column a grown tree claims — five across a phone; a crown may spill past it, its label never is. */
-    private const val COLUMN = 68f
+    private const val COLUMN = 64f
     private const val ROW_HEIGHT = 72f
     const val LABEL_HEIGHT = 18f
     private const val ROW_GAP = 8f
@@ -66,25 +66,26 @@ internal object ForestLayout {
      * The trees in rows across [width] px, in the order given, drawn back to front.
      *
      * Every tree in a row stands on one baseline, so two areas compare at a glance. Rows
-     * stand half a row apart and every second one opens half a cell further on, so a tree
-     * grows up through the gap between two of the row above — one mass, not a shelf of
-     * drawers. Every grown tree claims the same column, an ungrown sapling half of one, and
-     * the columns stretch to fill the width exactly — so spacing is shared between the trees,
-     * none left over at the edges, and a shifted row's trees stand midway between two labels
-     * above. Each grown tree drifts a little off its column.
+     * stand half a row apart, every row holds the same count of columns, and every second one
+     * opens half a column further on — a checkerboard, so a tree grows up through the gap
+     * between two of the row above: one mass, not a shelf of drawers. Every grown tree claims
+     * the same column, an ungrown sapling half of one, and the columns stretch to fill the
+     * width exactly — so spacing is shared between the trees, the sides touched but for the
+     * half column the shifted rows give up, and a shifted row's trees stand midway between
+     * two labels above. Each grown tree drifts a little off its column.
      */
     fun plant(trees: List<AreaTree>, width: Float, density: Float): List<ForestSpot> {
         if (width <= 0f || trees.isEmpty()) return emptyList()
-        val across = max(1, (width / (COLUMN * density)).toInt())
+        // why: the shifted row leaves half a column over, so a row's columns plus that half fill the width.
+        val across = max(1, (width / (COLUMN * density) - 0.5f).toInt())
         // One unit is half a column; a tree takes two, an ungrown sapling — one that has not
         // yet grown half its way — one: a stem and a label need no more.
-        val unit = width / (2 * across)
+        val unit = width / (2 * across + 1)
         fun size(tree: AreaTree) = if (standing(tree) < 0.5f) 1 else 2
         val rows = mutableListOf(mutableListOf<Int>())
         var used = 0
         for (index in trees.indices) {
-            val shifted = across > 1 && rows.size % 2 == 0
-            if (used + size(trees[index]) > if (shifted) 2 * across - 2 else 2 * across) {
+            if (used + size(trees[index]) > 2 * across) {
                 rows += mutableListOf<Int>()
                 used = 0
             }
@@ -104,7 +105,7 @@ internal object ForestLayout {
                 (tallest + LABEL_HEIGHT + 10f) * density,
             )
             band = next
-            var taken = if (across > 1 && rank % 2 == 1) 1 else 0
+            var taken = rank % 2
             for (index in row) {
                 val tree = trees[index]
                 val units = size(tree)
