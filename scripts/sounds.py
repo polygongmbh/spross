@@ -37,7 +37,10 @@ Floor on how deep it can go: phone speakers roll off below ~250 Hz,
 where the fundamental survives only through its harmonics. E4 (330) is about the bottom.
 
 Everything below is meant to be re-tuned by ear — edit, re-run, afplay.
-Levels are the one thing ear alone got wrong, so re-check them against the words after a re-tune:
+Every file renders to the same full-scale PEAK; how loud each one PLAYS is
+kern's `Chime` (`kern/.../catalog/Playback.kt`), applied at playback on both platforms,
+so a level is retuned there without re-rendering. Each `Chime` level is set against
+the file's loudness, so after a re-tune re-measure and move it by the difference:
 
     ffmpeg -i App/Resources/Sounds/correct.wav \
       -af 'adelay=500|500,apad=pad_dur=0.5,ebur128=peak=none' -f null -   # read `I:`
@@ -79,18 +82,11 @@ E5, G_SHARP5 = 659.26, 830.61   # ascending major third
 G4, E4 = 392.00, 329.63         # descending minor third — G4 doubles as the tick
 B5, E6 = 987.77, 1318.51        # the cheer carries E–G# on up: triad, then octave
 
-# `peak` is the finished sample peak, applied after each sound is normalized on its own —
-# two overlapping notes sum to a taller waveform than one, and without this the wrong
-# answer would come out the loudest of the three. `lufs` is what that peak was MEASURED
-# to arrive at (the command in the docstring), and it is the number that matters: a peak
-# is not a loudness — a struck note is a spike over a decay — and peak-matching these
-# against speech left every chime a few dB down, `reveal` nearly ten.
-#
-# The words land at -16.7 LUFS (scripts/audio-catalog.py boosts every recording there),
-# and all four chimes now sit a little ABOVE that. Not a louder design: K-weighting counts
-# energy, and a near-sine spends all of its in one critical band where speech spreads
-# across many, so a chime metered level with a word is heard under it. Peaks stay under
-# the -1 dBFS the recordings' own gains respect, for the same reason.
+# Every sound is normalized on its own to this sample peak: -1 dBFS, the ceiling the
+# recordings' own gains respect. Two overlapping notes sum to a taller waveform than one,
+# so it is the finished peak that is matched, never the notes' gains.
+PEAK = 10 ** (-1 / 20)
+
 # Notes are (Hz, start s, length s, gain-within-this-sound); the second note is
 # struck while the first still rings, so they overlap into an interval instead
 # of arriving as two separate events.
@@ -98,13 +94,13 @@ SOUNDS = {
     # the most-heard of the three that carries a verdict, so the least present
     # of them: rounder and shorter than the sound of getting it wrong, which is
     # rarer and has to be noticed
-    'correct': dict(tau=0.060, attack=0.010, bright=0.10, peak=0.708, lufs=-14.2, notes=[
+    'correct': dict(tau=0.060, attack=0.010, bright=0.10, notes=[
         (E5,         0.000, 0.19, 1.00),
         (G_SHARP5,   0.070, 0.19, 1.00),
     ]),
     # keeps more edge than the other two: it is the rarest of the three and the
     # one that has to register without being looked at
-    'wrong': dict(tau=0.090, attack=0.012, bright=0.55, peak=0.776, lufs=-13.7, notes=[
+    'wrong': dict(tau=0.090, attack=0.012, bright=0.55, notes=[
         (G4,         0.000, 0.26, 0.95),
         (E4,         0.100, 0.26, 0.95),
     ]),
@@ -113,14 +109,14 @@ SOUNDS = {
     # quietest of the four, but only just — at a tenth of a second it is the one
     # sound short enough to be missed rather than merely soft, and the old
     # peak-matched spread put it far enough under the words to be missed.
-    'reveal': dict(tau=0.036, attack=0.018, bright=0.10, peak=0.676, lufs=-16.2, notes=[
+    'reveal': dict(tau=0.036, attack=0.018, bright=0.10, notes=[
         (G4,         0.000, 0.11, 1.00),
     ]),
     # heard once, at the end: the correct interval kept climbing, with a long
     # ring-off under it. The strikes accelerate (85, 75, 65 ms apart) so it
     # arrives rather than marches, and the last two notes ring twice as long as
     # the run-up — that held octave is the "landed" part.
-    'cheer': dict(tau=0.150, attack=0.008, bright=0.22, peak=0.767, lufs=-13.7, notes=[
+    'cheer': dict(tau=0.150, attack=0.008, bright=0.22, notes=[
         (E5,         0.000, 0.40, 0.70),
         (G_SHARP5,   0.085, 0.45, 0.80),
         (B5,         0.160, 0.90, 0.90),
@@ -178,10 +174,9 @@ def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     for name, spec in SOUNDS.items():
         buf = render(spec['tau'], spec['attack'], spec['bright'], spec['notes'])
-        scale = spec['peak'] / max(abs(s) for s in buf)
+        scale = PEAK / max(abs(s) for s in buf)
         write_wav(os.path.join(OUT_DIR, name + '.wav'), buf, scale)
-        print(f'{name}.wav  {len(buf) / SAMPLE_RATE:.3f}s  '
-              f'peak {spec["peak"]:.3f}  {spec["lufs"]:+.1f} LUFS')
+        print(f'{name}.wav  {len(buf) / SAMPLE_RATE:.3f}s')
 
 
 if __name__ == '__main__':

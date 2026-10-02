@@ -29,7 +29,7 @@ object Playback {
 
     /**
      * Where everything the app plays sits, in dB against the one loudness target the recordings
-     * are indexed to and the chimes are leveled to (`scripts/sounds.py`): recordings, synthesized
+     * are indexed to and the chimes are leveled to ([Chime]): recordings, synthesized
      * speech and chimes all take it, so turning it moves them together and keeps them level.
      */
     const val OUTPUT_DB: Double = -6.0
@@ -76,4 +76,30 @@ object Playback {
 
     /** How slowly the gate closes after the word, in ms: slow enough that a decay is not clipped. */
     const val GATE_RELEASE_MS: Double = 150.0
+}
+
+/**
+ * The feedback chimes, each with the gain that places its full-scale file (`scripts/sounds.py`)
+ * at its loudness; a player applies [levelDb], so a chime is retuned here without re-rendering.
+ *
+ * The words land at -16.7 LUFS, and the chimes sit at or a little above that:
+ * K-weighting counts energy, and a near-sine spends all of its in one critical band
+ * where speech spreads across many, so a chime metered level with a word is heard under it.
+ * A right answer comes all the time, so its chime sits under the miss's.
+ */
+enum class Chime(private val gainDb: Double) {
+    /** -15.7 LUFS. */
+    Correct(-3.5),
+
+    /** -13.7 LUFS. */
+    Wrong(-1.2),
+
+    /** -16.2 LUFS: it plays on every card, but at a tenth of a second any softer is missed. */
+    Reveal(-2.4),
+
+    /** -13.7 LUFS: once, at the finish. */
+    Cheer(-1.3);
+
+    /** The level a player applies, at [Playback.OUTPUT_DB]. */
+    val levelDb: Double get() = gainDb + Playback.OUTPUT_DB
 }

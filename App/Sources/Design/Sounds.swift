@@ -35,13 +35,13 @@ import UIKit
 enum Sound {
 
     /// Ascending major third — the positive confirmation people already know.
-    private static let correctPlayer = load("correct")
+    private static let correctPlayer = load("correct", .correct)
     /// Descending minor third: down, but consonant.
-    private static let wrongPlayer = load("wrong")
+    private static let wrongPlayer = load("wrong", .wrong)
     /// One neutral note; revealing an answer is not a verdict.
-    private static let revealPlayer = load("reveal")
+    private static let revealPlayer = load("reveal", .reveal)
     /// The correct interval carried on up to the octave — the finish screen only.
-    private static let cheerPlayer = load("cheer")
+    private static let cheerPlayer = load("cheer", .cheer)
 
     static func correct() {
         play(correctPlayer)
@@ -84,12 +84,12 @@ enum Sound {
     }
 
     /// Readies a bundled sound once; `nil` (a missing resource) plays nothing.
-    private static func load(_ name: String) -> AVAudioPlayer? {
+    private static func load(_ name: String, _ chime: Chime) -> AVAudioPlayer? {
         guard let url = Bundle.main.url(forResource: name, withExtension: "wav"),
               let player = try? AVAudioPlayer(contentsOf: url)
         else { return nil }
-        // why: the files are leveled to the recordings' target — kern's output level moves both.
-        player.volume = Float(Playback.shared.linear(db: Playback.shared.OUTPUT_DB))
+        // why: the files are full scale; kern's chime level places each against the words.
+        player.volume = Float(Playback.shared.linear(db: chime.levelDb))
         player.prepareToPlay()
         return player
     }

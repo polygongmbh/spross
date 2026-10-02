@@ -101,8 +101,8 @@ A new surface that asks the way an existing one does IS that component with a pa
 never a second cut.
 What licenses a second component is a parameter attempted and found not to carry.
 
-- **A right answer's feedback is the subtlest the surface has — a light haptic, no sound of its own —
-  because it comes all the time; the rarer miss may be louder.**
+- **A right answer's feedback is the subtlest the surface has, because it comes all the time:**
+  never a buzz beyond the lightest tap, never a chime as loud as the miss's.
 - **The answer is never on screen twice, and never in the field.**
   Correct → card stays closed, narrated at the field.
   Wrong → card expands onto the answer.

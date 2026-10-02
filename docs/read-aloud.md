@@ -112,7 +112,7 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
 - **Feedback chimes**: not silenced by the read-aloud switch,
   but play under whatever category it left standing.
   Chimes and words share one volume (one audio session).
-  Leveled against the loudness target (`scripts/sounds.py`).
+  Rendered full scale (`scripts/sounds.py`), each played at its kern `Chime` level.
 - VoiceOver: no autoplay talking over it; headword labeled with its language;
   replay is an action on the word.
 - Licensing: `audio-licensing.md`.

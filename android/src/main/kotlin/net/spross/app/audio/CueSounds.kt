@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.AudioAttributes
 import android.media.SoundPool
 import java.io.IOException
+import net.spross.kern.catalog.Chime
 import net.spross.kern.catalog.Playback
 import net.spross.kern.session.ToneKind
 
@@ -41,7 +42,7 @@ class CueSounds(context: Context) {
      */
     private val loaded: Map<String, Int> = buildMap {
         val assets = context.applicationContext.assets
-        for (name in listOf(CORRECT, WRONG, REVEAL, CHEER)) {
+        for (name in CHIMES.keys) {
             try {
                 // why: the pool dups the descriptor during load, exactly as the
                 // framework's own resource overload assumes — closing ours is safe.
@@ -77,7 +78,8 @@ class CueSounds(context: Context) {
     // throw, so an answer inside the first hundred ms of launch is silent, never a crash.
     private fun fire(name: String) {
         val id = loaded[name] ?: return
-        pool.play(id, VOLUME, VOLUME, 1, 0, 1f)
+        val volume = VOLUMES.getValue(name)
+        pool.play(id, volume, volume, 1, 0, 1f)
     }
 
     private companion object {
@@ -89,8 +91,12 @@ class CueSounds(context: Context) {
         /** A second answer inside the first chime's tail overlaps it rather than cutting it. */
         const val STREAMS = 2
 
-        /** The files are leveled to the recordings' target; the pool plays them at kern's output level. */
-        val VOLUME = Playback.linear(Playback.OUTPUT_DB).toFloat()
+        val CHIMES = mapOf(
+            CORRECT to Chime.Correct, WRONG to Chime.Wrong, REVEAL to Chime.Reveal, CHEER to Chime.Cheer,
+        )
+
+        /** The files are full scale; the pool plays each at kern's level for its chime. */
+        val VOLUMES = CHIMES.mapValues { Playback.linear(it.value.levelDb).toFloat() }
 
         /**
          * Media, like the words: see the class note. SONIFICATION rather than speech —
