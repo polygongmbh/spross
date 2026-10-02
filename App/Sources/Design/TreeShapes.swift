@@ -44,7 +44,7 @@ enum TreeShapes {
         }
 
         let skeleton = mark.skeleton
-        branches(&context, skeleton)
+        branches(&context, skeleton, marks: shown.count)
         foliage(&context, skeleton, mark, shown, arriving)
         fallen(&context, mark, shown)
         if shown.tendedToday { freshEarth(&context, mark) }
@@ -92,12 +92,15 @@ enum TreeShapes {
     /// Every branch as one filled path, tapering as it goes, with its joints rounded
     /// so a fork reads as grown rather than glued.
     /// The trunk carries a shaded side — light from the upper left — which gives the wood a body.
-    private static func branches(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton) {
+    /// A twig shows once the first of the `marks` hangs on it, so it never stands bare.
+    private static func branches(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton, marks: Int) {
+        let carrying = Set(skeleton.slots.prefix(marks).map(\.segment))
         var wood = Path()
         var joints = Path()
         var shade = Path()
         var twigs = Path()
-        for segment in skeleton.segments {
+        for (index, segment) in skeleton.segments.enumerated()
+        where !segment.tip || carrying.contains(index) {
             let width = max(segment.startWidth, segment.endWidth)
             if width < 0.9 {
                 // Sub-point twigs: a filled taper collapses, so these are hairlines.

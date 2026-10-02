@@ -48,15 +48,18 @@ internal class TreeArt(
         fun build(tree: AreaTree, skeleton: TreeSkeleton, floor: Float, scale: (Int) -> Float = { 1f }): TreeArt {
             val art = TreeArt(Path(), Path(), Path(), Path(), List(4) { Path() },
                 Path(), Path(), Path(), Path(), Path(), Path())
-            art.wood(skeleton, floor)
+            art.wood(skeleton, floor, tree.met)
             art.canopy(tree, skeleton, base(skeleton.pitch, floor), scale)
             return art
         }
     }
 
-    private fun wood(skeleton: TreeSkeleton, floor: Float) {
+    /** A twig shows once the first of the [marks] hangs on it, so it never stands bare. */
+    private fun wood(skeleton: TreeSkeleton, floor: Float, marks: Int) {
         val hairline = floor * 0.4f
-        for (limb in skeleton.limbs) {
+        val carrying = skeleton.slots.take(marks).mapTo(HashSet()) { it.limb }
+        for ((index, limb) in skeleton.limbs.withIndex()) {
+            if (limb.tip && index !in carrying) continue
             if (max(limb.startWidth, limb.endWidth) < hairline) {
                 // A taper under a pixel collapses; these are stroked as hairlines instead.
                 twigs.moveTo(limb.start.x, limb.start.y)
