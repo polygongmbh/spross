@@ -191,7 +191,7 @@ What licenses a second component is a parameter attempted and found not to carry
   **A tree is one organism its whole life** — trunk is growth, canopy is landed words,
   blossom and fruit appear on it.
   Which `GrowthStage` stands in which tier is kern's `areaTrees`;
-  where each tree stands is kern's `TreesLayout`, its size and its wood kern's `TreeLayout`;
+  where each tree stands is kern's `TreesLayout`, its size and its wood kern's `AreaTreeLayout`;
   a tier is one mark — arriving a bud, growing a leaf, matured a blossom, long held fruit.
   What the round summary claims over its tree is kern's `growthHeadline`.
   The marks come first and the wood carries them: a branch hands half its marks to side branches

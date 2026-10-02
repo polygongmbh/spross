@@ -45,12 +45,12 @@ class GrownTree internal constructor(
     private val rise: Double,
 ) {
     /**
-     * Fitted flush into a box [TreeLayout.CROWN_BOX] heights wide, foot on its bottom edge at
+     * Fitted flush into a box [AreaTreeLayout.CROWN_BOX] heights wide, foot on its bottom edge at
      * ([footX], [footY]). The marks hang past it wherever the twigs reach its edge.
      */
     fun fit(footX: Double, footY: Double, height: Double): TreeFit {
         // why: the tighter of the two constraints wins, so a wide crown is narrowed rather than clipped.
-        val scale = min(max(height, 1.0) / rise, max(height * TreeLayout.CROWN_BOX, 1.0) / (right - left))
+        val scale = min(max(height, 1.0) / rise, max(height * AreaTreeLayout.CROWN_BOX, 1.0) / (right - left))
         return TreeFit(footX - (left + right) / 2 * scale, footY, scale)
     }
 }
@@ -59,7 +59,7 @@ class GrownTree internal constructor(
  * One tree: its size from what has grown, and its wood grown from its marks.
  * Lengths are in points (dp); [TreesLayout] stands many of them in rows.
  */
-object TreeLayout {
+object AreaTreeLayout {
     /** Tree heights, foot to crown: the floor is a seedling, the ceiling keeps the tallest area inside its row. */
     const val MIN_HEIGHT = 9.0
     const val MAX_HEIGHT = 42.0

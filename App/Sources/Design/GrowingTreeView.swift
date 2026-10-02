@@ -34,8 +34,8 @@ struct GrowingTreeView: View, Animatable {
         self.transition = transition
         self.progress = progress
         canopy = Canopy(transition.after)
-        let full = TreeLayout.shared.height(tree: transition.after)
-        let was = TreeLayout.shared.height(tree: transition.before)
+        let full = AreaTreeLayout.shared.height(tree: transition.after)
+        let was = AreaTreeLayout.shared.height(tree: transition.before)
         // An area worked from nothing rises from nothing; everything else rises from where it
         // stood, or from the crouch, whichever is lower.
         from = full > 0 ? min(Self.crouch, CGFloat(was / full)) : Self.crouch
@@ -155,7 +155,7 @@ struct TreeArrival {
     return GrowingTreeView(transition: TreeTransition(before: AreaTree.companion.bare(area: "bath"),
                                                       after: after),
                            progress: 1)
-        .frame(height: TreeLayout.shared.heroHeight(tree: after, ceiling: TreeLayout.shared.HERO_MAX))
+        .frame(height: AreaTreeLayout.shared.heroHeight(tree: after, ceiling: AreaTreeLayout.shared.HERO_MAX))
         .padding(Theme.spacing.xl)
         .background(Theme.colors.background)
 }
@@ -165,7 +165,7 @@ struct TreeArrival {
     let packed = AreaTree.sample("bath", packed: 12, mass: 0, tendedToday: true)
     return GrowingTreeView(transition: TreeTransition(before: packed, after: packed),
                            progress: 1)
-        .frame(height: TreeLayout.shared.heroHeight(tree: packed, ceiling: TreeLayout.shared.HERO_MAX))
+        .frame(height: AreaTreeLayout.shared.heroHeight(tree: packed, ceiling: AreaTreeLayout.shared.HERO_MAX))
         .padding(Theme.spacing.xl)
         .background(Theme.colors.background)
 }

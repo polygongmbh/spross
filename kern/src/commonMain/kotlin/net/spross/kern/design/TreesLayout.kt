@@ -51,7 +51,7 @@ object TreesLayout {
 
     fun place(trees: List<AreaTree>, width: Double): TreesPlan {
         if (width <= 0 || trees.isEmpty()) return TreesPlan(emptyList(), 0.0)
-        val heights = trees.map(TreeLayout::height)
+        val heights = trees.map(AreaTreeLayout::height)
         val span = width - ROW_SHIFT
         val widths = heights.map { max(MIN_TREE_WIDTH, it * CROWN_SPAN) }
         val rows = mutableListOf(mutableListOf<Int>())
@@ -80,7 +80,7 @@ object TreesLayout {
                 left += widths[index] + gap
                 // why: the cell follows THIS tree's own crown, never the row's band,
                 // so a seedling's tap target does not reach into the row above.
-                val reach = max(max(heights[index], TreeLayout.MIN_HEIGHT) + TAP_MARGIN, MIN_TAP_HEIGHT - LABEL_HEIGHT)
+                val reach = max(max(heights[index], AreaTreeLayout.MIN_HEIGHT) + TAP_MARGIN, MIN_TAP_HEIGHT - LABEL_HEIGHT)
                 spots += TreeSpot(index, x, stand, heights[index],
                     x - widths[index] / 2, stand - reach, widths[index], reach + LABEL_HEIGHT)
             }

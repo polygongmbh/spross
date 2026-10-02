@@ -4,7 +4,7 @@ import androidx.compose.ui.geometry.Offset
 import net.spross.kern.design.GrownTree
 import net.spross.kern.design.TreeFit
 
-// Kern's grown tree ([net.spross.kern.design.TreeLayout.grow]) placed in pixels for drawing.
+// Kern's grown tree ([net.spross.kern.design.AreaTreeLayout.grow]) placed in pixels for drawing.
 
 /** One length of wood, placed; [parent] is the limb it grows from, -1 for the trunk. */
 internal class TreeLimb(

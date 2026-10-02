@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.Dp
 import kotlin.math.max
 import kotlinx.coroutines.delay
 import net.spross.kern.box.TreeTransition
-import net.spross.kern.design.TreeLayout
+import net.spross.kern.design.AreaTreeLayout
 
 /**
  * The area a round worked hardest, rising out of the ground — the one tree in the app that
@@ -40,11 +40,11 @@ internal fun GrowingTree(transition: TreeTransition, height: Dp, modifier: Modif
     val colors = Theme.colors
     Spacer(
         modifier.fillMaxWidth().height(height).clearAndSetSemantics {}.drawWithCache {
-            val stand = TreeLayout.solitary(size.width / density.toDouble(), size.height / density.toDouble())
+            val stand = AreaTreeLayout.solitary(size.width / density.toDouble(), size.height / density.toDouble())
             val foot = Offset((stand.footX * density).toFloat(), (stand.footY * density).toFloat())
             val planted = PlantedTree(transition.after, foot, (stand.height * density).toFloat(), density)
-            val full = TreeLayout.height(transition.after).toFloat()
-            val was = TreeLayout.height(transition.before).toFloat()
+            val full = AreaTreeLayout.height(transition.after).toFloat()
+            val was = AreaTreeLayout.height(transition.before).toFloat()
             // An area worked from nothing rises from nothing; the rest from where it stood,
             // or from the crouch, whichever is lower.
             val from = if (full > 0f) minOf(CROUCH, was / full) else CROUCH

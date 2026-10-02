@@ -169,7 +169,7 @@ struct SessionCompletionView: View {
         if let grownArea {
             GrowingTreeView(transition: grownArea,
                             progress: burst || reduceMotion ? 1 : 0)
-                .frame(height: TreeLayout.shared.heroHeight(tree: grownArea.after, ceiling: ceiling))
+                .frame(height: AreaTreeLayout.shared.heroHeight(tree: grownArea.after, ceiling: ceiling))
                 .animation(reduceMotion ? nil
                             : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
                            value: burst)

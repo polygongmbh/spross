@@ -5,17 +5,17 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import net.spross.kern.box.AreaTree
 
-class TreeLayoutTests {
+class AreaTreeLayoutTests {
 
     @Test
     fun aTreeHangsOneSlotPerMark() {
-        for (marks in listOf(1, 7, 62)) assertEquals(marks, TreeLayout.grow("kitchen", marks).slots.size)
+        for (marks in listOf(1, 7, 62)) assertEquals(marks, AreaTreeLayout.grow("kitchen", marks).slots.size)
     }
 
     @Test
     fun theSameAreaAndCountGrowTheSameTree() {
-        val once = TreeLayout.grow("kitchen", 30)
-        val again = TreeLayout.grow("kitchen", 30)
+        val once = AreaTreeLayout.grow("kitchen", 30)
+        val again = AreaTreeLayout.grow("kitchen", 30)
         assertEquals(once.limbs, again.limbs)
         assertEquals(once.slots, again.slots)
     }
@@ -24,10 +24,10 @@ class TreeLayoutTests {
     fun theSummaryTreeStandsTallerAsTheAreaGrowsAndFillsATallerScreen() {
         val young = tree("kitchen", mass = 1.0)
         val grown = tree("kitchen", mass = 30.0)
-        assertTrue(TreeLayout.heroHeight(young, 190.0) < TreeLayout.heroHeight(grown, 190.0))
-        assertTrue(TreeLayout.heroHeight(grown, 400.0) > TreeLayout.heroHeight(grown, 190.0))
-        assertEquals(TreeLayout.heroHeight(young, 400.0) / TreeLayout.heroHeight(grown, 400.0),
-            TreeLayout.heroHeight(young, 190.0) / TreeLayout.heroHeight(grown, 190.0), 1e-9)
+        assertTrue(AreaTreeLayout.heroHeight(young, 190.0) < AreaTreeLayout.heroHeight(grown, 190.0))
+        assertTrue(AreaTreeLayout.heroHeight(grown, 400.0) > AreaTreeLayout.heroHeight(grown, 190.0))
+        assertEquals(AreaTreeLayout.heroHeight(young, 400.0) / AreaTreeLayout.heroHeight(grown, 400.0),
+            AreaTreeLayout.heroHeight(young, 190.0) / AreaTreeLayout.heroHeight(grown, 190.0), 1e-9)
     }
 
     @Test

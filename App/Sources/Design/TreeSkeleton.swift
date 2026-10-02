@@ -4,7 +4,7 @@ import SprossKern
 
 // MARK: - Tree skeleton
 //
-// Kern's grown tree (`TreeLayout.grow`) as Swift values, placed in points for drawing.
+// Kern's grown tree (`AreaTreeLayout.grow`) as Swift values, placed in points for drawing.
 
 /// One length of branch: a bowed center line that tapers along its length.
 struct TreeSegment {
@@ -96,7 +96,7 @@ private final class UnitTrees: @unchecked Sendable {
         if let entry = entries[key] { return entry }
         // why: a box's trees and the counts they pass through stay well under this; a cleared cache only regrows.
         if entries.count >= 512 { entries.removeAll() }
-        let grown = TreeLayout.shared.grow(area: area, marks: Int32(marks))
+        let grown = AreaTreeLayout.shared.grow(area: area, marks: Int32(marks))
         let entry = Entry(grown: grown, skeleton: TreeSkeleton(grown))
         entries[key] = entry
         return entry

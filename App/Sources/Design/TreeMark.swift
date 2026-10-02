@@ -3,7 +3,7 @@ import SprossKern
 
 // MARK: - Tree mark
 //
-// One tree placed for drawing: kern says where it stands (`TreesLayout`, `TreeLayout.solitary`)
+// One tree placed for drawing: kern says where it stands (`TreesLayout`, `AreaTreeLayout.solitary`)
 // and this carries that in points, with what hangs on it and the wood it hangs on.
 
 struct TreeMark {
@@ -37,12 +37,12 @@ struct TreeMark {
     }
 
     /// The shortest a tree is drawn, a seedling.
-    static let minHeight = CGFloat(TreeLayout.shared.MIN_HEIGHT)
+    static let minHeight = CGFloat(AreaTreeLayout.shared.MIN_HEIGHT)
 
     /// One tree alone, filling a box of its own — what a session summary draws —
     /// at `risen` of its full height.
     static func solitary(_ tree: AreaTree, canopy: Canopy, in size: CGSize, risen: CGFloat = 1) -> TreeMark {
-        let stand = TreeLayout.shared.solitary(width: size.width, height: size.height)
+        let stand = AreaTreeLayout.shared.solitary(width: size.width, height: size.height)
         return TreeMark(tree: tree, canopy: canopy,
                         foot: CGPoint(x: stand.footX, y: stand.footY),
                         height: CGFloat(stand.height) * risen,

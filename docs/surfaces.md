@@ -57,7 +57,7 @@ runs are full screens rather than covers — Back mirrors ✕ everywhere, and in
 the reference panel eats Back first — and a fallen record celebrates in the tile's own
 words, without confetti.
 The trees and the round summary's tree are Android's own drawing of kern's `areaTrees`,
-stood and grown by kern (`TreesLayout`, `TreeLayout`) exactly as on iOS.
+stood and grown by kern (`TreesLayout`, `AreaTreeLayout`) exactly as on iOS.
 The summary's tree rises only while the system's animations are on.
 The home-screen tile ships there too, in Glance, and it is ONE grid sized to the tile
 rather than iOS's three home-screen families (§ Watch & widgets):
