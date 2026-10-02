@@ -4,7 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
-- The chime for a right answer now plays a little softer than the one for a wrong answer.
+- The chime for a right answer now plays clearly softer than the one for a wrong answer.
 - The watch now answers a right answer with just a light click, and a wrong one with a double tap.
 - A drill answer that is right but for one misspelled word now counts as a near-miss, the more leniently the longer the answer, instead of as wrong.
 - Words, speech and chimes now all play 12 dB quieter, so a normal phone volume no longer makes the app too loud.

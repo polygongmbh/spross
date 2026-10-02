@@ -85,11 +85,12 @@ object Playback {
  * The words land at -16.7 LUFS, and the chimes sit at or a little above that:
  * K-weighting counts energy, and a near-sine spends all of its in one critical band
  * where speech spreads across many, so a chime metered level with a word is heard under it.
- * A right answer comes all the time, so its chime sits under the miss's.
+ * A right answer comes all the time, so its chime sits well under the miss's — by ear, not meter:
+ * a phone speaker rolls off the miss's low third, so the higher correct one sounds louder than its LUFS.
  */
 enum class Chime(private val gainDb: Double) {
-    /** -15.7 LUFS. */
-    Correct(-3.5),
+    /** -19.7 LUFS. */
+    Correct(-7.5),
 
     /** -13.7 LUFS. */
     Wrong(-1.2),
