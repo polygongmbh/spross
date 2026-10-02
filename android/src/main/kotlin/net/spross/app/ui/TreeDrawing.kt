@@ -34,8 +34,8 @@ internal class PlantedTree(val tree: AreaTree, val foot: Offset, val height: Flo
      * past it wherever the twigs reach its edge: the tree is never shrunk to hold them in.
      */
     private fun fitted(): TreeSkeleton {
-        val grown = TreeSkeleton.grow(Mix.seed(tree.area), TreeSkeleton.vigor(tree.met), TreeSkeleton.slotCount(tree.met))
-        val bounds = grown.bounds(tree.met)
+        val grown = TreeSkeleton.grow(Mix.seed(tree.area), tree.met)
+        val bounds = grown.bounds()
         val scale = min(height / max(-bounds.top, 1e-3f), height * 1.44f / max(bounds.width, 1e-3f))
         return grown.placed(Offset(foot.x - bounds.center.x * scale, foot.y), scale)
     }

@@ -9,24 +9,16 @@ class TreeGrowthTest {
     private val seed = Mix.seed("kitchen")
 
     @Test
-    fun aTreeGrowsOnlyFromItsTips() {
-        val young = TreeSkeleton.grow(seed, TreeSkeleton.vigor(12), 12)
-        val old = TreeSkeleton.grow(seed, TreeSkeleton.vigor(60), 60)
-        // Every limb the young tree has already forked from stands in the old one unchanged.
-        val finished = young.limbs.filter { limb -> young.limbs.any { it.start == limb.end } }
-        assertTrue(finished.isNotEmpty())
-        for (limb in finished) {
-            assertTrue(old.limbs.any { it.start == limb.start && it.end == limb.end && it.control == limb.control },
-                "a finished limb moved as the tree grew")
-        }
+    fun aTreeHangsOneSlotPerMark() {
+        for (marks in listOf(1, 7, 62)) assertEquals(marks, TreeSkeleton.grow(seed, marks).slots.size)
     }
 
     @Test
-    fun hangingAnotherWordMovesNoneAlreadyHanging() {
-        val vigor = TreeSkeleton.vigor(30)
-        val fewer = TreeSkeleton.grow(seed, vigor, 20).slots.take(20).map { it.point }
-        val more = TreeSkeleton.grow(seed, vigor, 30).slots.take(20).map { it.point }
-        assertEquals(fewer, more)
+    fun theSameAreaAndCountGrowTheSameTree() {
+        val once = TreeSkeleton.grow(seed, 30)
+        val again = TreeSkeleton.grow(seed, 30)
+        assertEquals(once.limbs.map { it.end }, again.limbs.map { it.end })
+        assertEquals(once.slots.map { it.point }, again.slots.map { it.point })
     }
 
     @Test

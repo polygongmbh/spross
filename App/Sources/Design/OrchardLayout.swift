@@ -49,18 +49,15 @@ struct TreeMark {
     /// reach past it, and the canvas bleeds past the box to draw them (`BleedingCanvas`).
     private static func grown(tree: AreaTree, canopy: Canopy, foot: CGPoint,
                                height: CGFloat) -> TreeSkeleton {
-        // why: both counts come from the TREE —
+        // why: the count comes from the TREE —
         // the finished one, whatever moment is being drawn —
         // and never from the height it is drawn at.
         // A transition scales the height every frame,
-        // and a crown that grew a twig or a slot halfway through
-        // would reshuffle every slot under the marks already hanging on them.
-        let vigor = TreeSkeleton.vigor(for: canopy)
-        let slots = TreeSkeleton.slots(for: canopy)
+        // and a crown regrown halfway through would move every mark already hanging.
         let seed = SplitMix64(tree.area).seed
         let box = CGRect(x: foot.x - height * 0.72, y: foot.y - height,
                          width: max(height * 1.44, 1), height: max(height, 1))
-        return TreeSkeleton.grown(seed: seed, vigor: vigor, slots: slots, in: box)
+        return TreeSkeleton.grown(seed: seed, marks: canopy.count, in: box)
     }
 }
 

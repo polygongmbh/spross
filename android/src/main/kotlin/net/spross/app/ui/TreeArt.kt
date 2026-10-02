@@ -12,7 +12,7 @@ import net.spross.kern.box.AreaTree
 // One placed tree as the paths it is filled with — built once, drawn on every frame.
 //
 // Which mark a word hangs as is kern's tier, read rank by rank off [AreaTree] (most grown
-// first, so the levelest wood fills first):
+// first, so fruit and blossom take the first slots):
 //   fruit    — long held      blossom — matured
 //   leaf     — growing        bud     — arriving
 // Told apart by shape before color: a sprig of pointed leaflets, a small disc, five petals
@@ -54,12 +54,16 @@ internal class TreeArt(
         }
     }
 
-    /** A twig shows once the first of the [marks] hangs on it, so it never stands bare. */
+    /** Only wood carrying one of the first [marks] shows, so no twig stands bare. */
     private fun wood(skeleton: TreeSkeleton, floor: Float, marks: Int) {
         val hairline = floor * 0.4f
-        val carrying = skeleton.slots.take(marks).mapTo(HashSet()) { it.limb }
+        val carrying = HashSet<Int>()
+        for (slot in skeleton.slots.take(marks)) {
+            var next = slot.limb
+            while (next >= 0 && carrying.add(next)) next = skeleton.limbs[next].parent
+        }
         for ((index, limb) in skeleton.limbs.withIndex()) {
-            if (limb.tip && index !in carrying) continue
+            if (index !in carrying) continue
             if (max(limb.startWidth, limb.endWidth) < hairline) {
                 // A taper under a pixel collapses; these are stroked as hairlines instead.
                 twigs.moveTo(limb.start.x, limb.start.y)

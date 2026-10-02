@@ -15,7 +15,7 @@ internal class ForestSpot(val planted: PlantedTree, val cell: Rect)
  * which then works in pixels.
  *
  * Height comes from what has grown ([AreaTree.mass]), never from how many words the
- * catalog holds; the crown's shape comes from the words met ([TreeSkeleton.vigor]).
+ * catalog holds; the crown's shape comes from the words met ([TreeSkeleton.grow]).
  */
 internal object ForestLayout {
     const val MIN_HEIGHT = 9f

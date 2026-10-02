@@ -21,7 +21,6 @@ Parked work is not an issue: its own doc says it is parked.
 
 - Android's mute holds back the letter drill's autoplay (its "Sound is off" row) where no mute reaches it on iOS (`docs/read-aloud.md` § the letter drill is the one autoplay no mute reaches).
 - The Android round summary still wears the run's progress bar and speaker at the top, where iOS shows only a close button (`android/.../ui/SessionSummary.kt`).
-- The tree's heading clamp (`min(0.25, …)` in `TreeSkeleton.branch`/`limb`) folds a level limb's downward-turning child onto its lead, so two siblings can run on top of each other (kitchen, bedroom: first marks 0.2 of a mark apart before the spacing rule).
 - A round that counts nothing and grows no tree reads "All done!" over "All done" on its summary (`SessionCompletionView.swift`, `ui/SessionSummary.kt`).
 - A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
   duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble

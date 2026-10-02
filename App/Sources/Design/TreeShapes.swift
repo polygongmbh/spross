@@ -7,12 +7,12 @@ import SwiftUI
 // landed, and blossom and fruit appear ON that canopy rather than replacing it.
 //
 // The canopy is NOT a shape. It is wherever the twigs ended up, and every mark
-// hangs along the wood (`TreeSkeleton`). A canopy region with
+// hangs at a twig's tip (`TreeSkeleton`). A canopy region with
 // marks sampled inside it is what makes a procedural tree read as a child's
 // drawing: the leaves float, the outline closes into a circle, and there are no
 // gaps to see sky through.
 //
-// What hangs where (`Canopy`), the levelest wood first:
+// What hangs where (`Canopy`), in rank order:
 //   fruit    — a word held for months
 //   blossom  — a word that has matured
 //   leaf     — a word that has landed
@@ -92,15 +92,18 @@ enum TreeShapes {
     /// Every branch as one filled path, tapering as it goes, with its joints rounded
     /// so a fork reads as grown rather than glued.
     /// The trunk carries a shaded side — light from the upper left — which gives the wood a body.
-    /// A twig shows once the first of the `marks` hangs on it, so it never stands bare.
+    /// Only wood carrying one of the first `marks` shows, so no twig stands bare.
     private static func branches(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton, marks: Int) {
-        let carrying = Set(skeleton.slots.prefix(marks).map(\.segment))
+        var carrying = Set<Int>()
+        for slot in skeleton.slots.prefix(marks) {
+            var next: Int? = slot.segment
+            while let index = next, carrying.insert(index).inserted { next = skeleton.segments[index].parent }
+        }
         var wood = Path()
         var joints = Path()
         var shade = Path()
         var twigs = Path()
-        for (index, segment) in skeleton.segments.enumerated()
-        where !segment.tip || carrying.contains(index) {
+        for (index, segment) in skeleton.segments.enumerated() where carrying.contains(index) {
             let width = max(segment.startWidth, segment.endWidth)
             if width < 0.9 {
                 // Sub-point twigs: a filled taper collapses, so these are hairlines.
