@@ -106,11 +106,15 @@ internal object ForestLayout {
             )
             band = next
             var taken = rank % 2
-            for (index in row) {
+            // why: units a row cannot fill are shared out between its trees, so the row still
+            // touches its far side; the last row stays as packed as it is.
+            val left = 2 * across - row.sumOf { size(trees[it]) }
+            val gap = if (rank == rows.size - 1 || row.size < 2) 0f else left * unit / (row.size - 1)
+            for ((slot, index) in row.withIndex()) {
                 val tree = trees[index]
                 val units = size(tree)
                 val drift = if (units == 1) 0f else (Mix.noise(tree.area, 31) - 0.5f) * 8f * density
-                val x = (taken + units / 2f) * unit + drift
+                val x = (taken + units / 2f) * unit + gap * slot + drift
                 taken += units
                 // why: the tap target follows THIS tree's crown, never the row's band, so a
                 // seedling's target does not reach into the row above.

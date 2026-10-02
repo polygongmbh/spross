@@ -135,11 +135,15 @@ enum OrchardLayout {
             // and the orchard reads as one growing mass.
             let pitch = (band + labelHeight + rowGap) / 2
             var taken = rank % 2
-            for index in row {
+            // why: units a row cannot fill are shared out between its trees, so the row
+            // still touches its far side; the last row stays as packed as it is.
+            let left = 2 * across - row.reduce(0) { $0 + size(trees[$1]) }
+            let gap = rank == rows.count - 1 || row.count < 2 ? 0 : CGFloat(left) * unit / CGFloat(row.count - 1)
+            for (slot, index) in row.enumerated() {
                 let tree = trees[index]
                 let units = size(tree)
                 let drift = units == 1 ? 0 : CGFloat(noise(tree.area, 31) - 0.5) * 8
-                let x = (CGFloat(taken) + CGFloat(units) / 2) * unit + drift
+                let x = (CGFloat(taken) + CGFloat(units) / 2) * unit + gap * CGFloat(slot) + drift
                 taken += units
                 let stand = base + band
                 // why: the cell follows THIS tree's own crown, never the row's band —
