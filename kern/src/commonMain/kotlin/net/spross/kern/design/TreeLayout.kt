@@ -117,7 +117,7 @@ object TreeLayout {
         if (marks <= 0) return GrownTree(emptyList(), emptyList(), 0.05, -0.5, 0.5, 1.0)
         val seed = fnv1a64(area).toLong()
         val growth = TreeGrowth(seed)
-        growth.branch(marks, 1L, 0.0, 0.0, -PI / 2, 0, -1, 1.0)
+        growth.branch(marks, 1L, 0.0, 0.0, -PI / 2, 0.0, Stream(seed).range(0.0, 2 * PI), 0, -1)
         val slots = growth.ranked()
         var left = 0.0; var right = 0.0; var top = 0.0
         fun take(x: Double, y: Double) { left = min(left, x); right = max(right, x); top = min(top, y) }

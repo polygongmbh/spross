@@ -4,6 +4,7 @@ import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.cos
+import kotlin.math.hypot
 import kotlin.math.ln
 import kotlin.math.round
 import kotlin.math.sin
@@ -16,9 +17,14 @@ import kotlin.math.sqrt
 // a branch carrying n marks hands half of them to side branches along its length and the
 // rest to the lead that continues from its end, until a branch carrying one mark is a leaf
 // twig holding it at its tip. Width follows the pipe model, w ∝ √n, so r_parent² = Σ r_child².
+// The picture is a round tree's front view: a child leaves its parent at a down angle, wider nearer its
+// base, turned on about it by ROTATE from the child before (the lead too, so the turn carries up the
+// tree), and shows steeper and shorter the more it is turned toward or away from the viewer.
 
 /** A leaf twig's slot, with the path that seeds its rank; [steep] if steeper than about 60°. */
 private class Leaf(val slot: TreeSlot, val path: Long, val steep: Boolean)
+
+private const val ROTATE = 140 * PI / 180
 
 internal class TreeGrowth(private val seed: Long) {
     val limbs = mutableListOf<TreeLimb>()
@@ -30,15 +36,18 @@ internal class TreeGrowth(private val seed: Long) {
         return (shuffled.filter { !it.steep } + shuffled.filter { it.steep }).map { it.slot }
     }
 
-    // why: a branch may dip a little below horizontal, no further —
-    // a drooping limb hangs its leaves under the crown.
+    // why: a branch dips a little below horizontal, no further, or it hangs its leaves under the crown.
     private fun clamped(heading: Double) = heading.coerceIn(-PI - 0.25, 0.25)
 
-    /** One branch carrying [n] marks, and everything beyond it; [path] names it from the trunk up and seeds it. */
-    fun branch(n: Int, path: Long, x: Double, y: Double, angle: Double, depth: Int, parent: Int, side: Double) {
+    /** One branch carrying [n] marks and all beyond it, seeded by [path], leaving [heading] at [down] turned [turn]. */
+    fun branch(n: Int, path: Long, x: Double, y: Double, heading: Double, down: Double, turn: Double, depth: Int, parent: Int) {
         val rng = Stream(seed xor Stream.hash(path))
+        val splay = sin(down) * cos(turn)
+        val angle = clamped(heading + atan2(splay, cos(down)))
+        val side = if (splay < 0) -1.0 else 1.0
         // why: a side branch starts out longer than a lead, so the crown spreads wider than it rises.
-        val length = if (n == 1) 0.03 else 0.045 * (1 + 0.6 * ln(n.toDouble())) * if (path and 3L >= 2L) 1.6 else 1.0
+        val length = hypot(cos(down), splay) *
+            if (n == 1) 0.03 else 0.045 * (1 + 0.6 * ln(n.toDouble())) * if (path and 3L >= 2L) 1.6 else 1.0
         val width = 0.0075 * sqrt(n.toDouble())
         val endX = x + cos(angle) * length
         val endY = y + sin(angle) * length
@@ -56,8 +65,8 @@ internal class TreeGrowth(private val seed: Long) {
 
         // why: measured from this branch's own heading, so a left-leaning tangent never wraps past ±π.
         fun along(t: Double): Double {
-            val turn = heading(limb, t) - angle
-            return angle + turn - 2 * PI * round(turn / (2 * PI))
+            val bend = heading(limb, t) - angle
+            return angle + bend - 2 * PI * round(bend / (2 * PI))
         }
         if (n == 1) {
             // why: a leaf follows its twig, splayed to one side, and never points below horizontal.
@@ -69,22 +78,14 @@ internal class TreeGrowth(private val seed: Long) {
         val sag = 0.02 * (depth + 1) * cos(angle)
         val r = n / 2
         val sides = if (r == 1) listOf(r to 0.7) else listOf((r + 1) / 2 to 0.55, r / 2 to 0.8)
-        val ways = listOf(side, -side)
-        val headings = sides.mapIndexed { k, (_, t) -> clamped(along(t) + ways[k] * rng.range(1.05, 1.40) + sag) }
-        // The lead bends a little away from the first side branch.
-        var lead = clamped(angle - side * rng.range(0.05, 0.20) + sag)
-        // why: a side branch held up by the clamp would run along the lead, so the lead gives way.
-        if (headings.any { abs(it - lead) < 0.45 }) {
-            lead = if (headings.size == 2) (headings[0] + headings[1]) / 2 else clamped(headings[0] - side * 0.45)
-        }
         sides.forEachIndexed { k, (count, t) ->
             val u = 1 - t
             branch(count, path * 4 + 2 + k,
                 u * u * limb.startX + 2 * u * t * limb.controlX + t * t * limb.endX,
                 u * u * limb.startY + 2 * u * t * limb.controlY + t * t * limb.endY,
-                headings[k], depth + 1, index, ways[k])
+                along(t) + sag, 1.6 - 0.8 * t, turn + (k + 1) * ROTATE, depth + 1, index)
         }
-        branch(n - r, path * 4 + 1, endX, endY, lead, depth + 1, index, -side)
+        branch(n - r, path * 4 + 1, endX, endY, angle + sag, 0.15, turn + (sides.size + 1) * ROTATE, depth + 1, index)
     }
 
     /** The direction [limb]'s center line runs [t] of the way along. */
