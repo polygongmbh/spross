@@ -24,7 +24,7 @@ import Foundation
 //
 // Leaves are the level past the last stems (Weber & Penn §4.6): they grow on the
 // twigs that fork no further and on the finer wood behind them, spaced along each
-// and alternating sides — never on the trunk or the first limbs, never at a fork.
+// and alternating sides — never on the trunk, never at a thick fork.
 
 /// One length of branch: a bowed center line that tapers along its length.
 struct TreeSegment {
@@ -140,7 +140,7 @@ struct TreeSkeleton {
                 twigs.append((segments.count - 1, path, true))
                 return
             }
-            if depth >= 2 { twigs.append((segments.count - 1, path, false)) }
+            if depth >= 1 { twigs.append((segments.count - 1, path, false)) }
             // why: a short trunk under long first limbs — a low, bushy crown that fits an
             // orchard row instead of a tall stem with a tuft on top.
             let next = depth == 0 ? length * 1.2 : length
@@ -175,7 +175,7 @@ struct TreeSkeleton {
             SplitMix64.mix(seed ^ a.path) < SplitMix64.mix(seed ^ b.path)
         }
         var rest = twigs.filter(\.tip).sorted(by: byHash)
-        let inner = twigs.filter { !$0.tip }.sorted(by: byHash)
+        var inner = twigs.filter { !$0.tip }.sorted(by: byHash)
         guard !rest.isEmpty else { return [] }
         // why: a twig pointing steeply up would hang its fruit like a flag on a pole.
         func steep(_ twig: (segment: Int, path: UInt64, tip: Bool)) -> Bool {
@@ -199,7 +199,15 @@ struct TreeSkeleton {
             order.append(picked)
             for i in rest.indices { nearest[i] = min(nearest[i], gap(rest[i].segment, picked.segment)) }
         }
-        order += inner
+        // why: one stretch of body wood after every third twig, so even a tree with fewer
+        // words than twigs leafs through its core instead of only at its ends.
+        inner.sort { steep($0) != steep($1) ? !steep($0) : false }
+        var dealt: [(segment: Int, path: UInt64, tip: Bool)] = []
+        for (i, twig) in order.enumerated() {
+            dealt.append(twig)
+            if i % 3 == 2, !inner.isEmpty { dealt.append(inner.removeFirst()) }
+        }
+        order = dealt + inner
         let wood = order.map { segments[$0.segment] }
         let lengths = wood.map { max(Double(hypot($0.end.x - $0.start.x, $0.end.y - $0.start.y)), 1e-6) }
         var held = [Int](repeating: 0, count: wood.count)
@@ -215,14 +223,17 @@ struct TreeSkeleton {
     }
 
     /// A twig's k-th mark: a twig's first at its end, the rest where the base-2 van der
-    /// Corput sequence puts them between there and a third of the way up; finer wood behind
-    /// the twigs takes its marks from four fifths of the way along to a fifth. Each new mark
-    /// halves a gap the earlier ones left, and none sits at a fork.
+    /// Corput sequence puts them back along it; wood behind the twigs takes its marks along
+    /// its middle. Each new mark halves a gap the earlier ones left, and none sits at a
+    /// thick fork.
     /// Off the end, marks alternate sides and sit on the bark, leaning away from the wood.
     private static func slot(_ k: Int, on twig: TreeSegment, tip: Bool, flip: Bool) -> LeafSlot {
         var spread = 0.0, step = 0.5, n = k
         while n > 0 { spread += Double(n & 1) * step; n >>= 1; step /= 2 }
-        let high = tip ? 1.0 : 0.8, low = tip ? 0.35 : 0.2
+        // why: only thick forks need clear air around them; on thin wood a mark may sit
+        // right beside a fork.
+        let margin = twig.depth <= 1 ? 0.3 : twig.depth == 2 ? 0.2 : 0.05
+        let high = tip ? 1.0 : 1 - margin, low = tip ? 0.1 + margin : margin
         let t = high - (high - low) * spread, u = 1 - t
         let point = CGPoint(
             x: u * u * twig.start.x + 2 * u * t * twig.control.x + t * t * twig.end.x,
