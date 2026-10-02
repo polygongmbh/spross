@@ -4,29 +4,27 @@ import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.cos
-import kotlin.math.hypot
 import kotlin.math.ln
-import kotlin.math.max
 import kotlin.math.round
 import kotlin.math.sin
 import kotlin.math.sqrt
-import kotlin.math.withSign
 
 // The wood of one tree and the slots its marks hang on, grown together in unit space:
 // foot at the origin, growing toward negative y.
 //
 // The marks come first and the wood is whatever it takes to carry them (Weber & Penn 1995):
-// a branch carrying n marks hands half of them to side branches along its length and the
-// rest to the lead that continues from its end, until a branch carrying one mark is a leaf
-// twig holding it at its tip. Width follows the pipe model, w ∝ √n, so r_parent² = Σ r_child².
-// The picture is a round tree's front view: a child leaves its parent at a down angle, wider nearer its
-// base, turned on about it by ROTATE from the child before (the lead too, so the turn carries up the
-// tree), and shows steeper and shorter the more it is turned toward or away from the viewer.
+// a branch carrying n marks hands two thirds of them to side branches along its length,
+// alternating sides, and the rest to the lead that continues from its end — no larger than a
+// side branch, so the crown dissolves into limbs rather than standing on one stem — until a
+// branch carrying one mark is a leaf twig holding it at its tip. A side branch leaves the wider
+// the nearer its parent's base. Width follows the pipe model, w ∝ √n, so r_parent² = Σ r_child².
 
 /** A leaf twig's slot, with the path that seeds its rank; [steep] if steeper than about 60°. */
 private class Leaf(val slot: TreeSlot, val path: Long, val steep: Boolean)
 
-private const val ROTATE = 140 * PI / 180
+private const val SPLAY_BASE = 1.6
+private const val SPLAY_TIP = 1.0
+private const val SPUR_FROM = 6
 
 internal class TreeGrowth(private val seed: Long) {
     val limbs = mutableListOf<TreeLimb>()
@@ -41,16 +39,10 @@ internal class TreeGrowth(private val seed: Long) {
     // why: a branch dips a little below horizontal, no further, or it hangs its leaves under the crown.
     private fun clamped(heading: Double) = heading.coerceIn(-PI - 0.25, 0.25)
 
-    /** One branch carrying [n] marks and all beyond it, seeded by [path], leaving [heading] at [down] turned [turn]. */
-    fun branch(n: Int, path: Long, x: Double, y: Double, heading: Double, down: Double, turn: Double, depth: Int, parent: Int) {
+    /** One branch carrying [n] marks and all beyond it, seeded by [path]; [side] is the way it turned off its parent. */
+    fun branch(n: Int, path: Long, x: Double, y: Double, angle: Double, depth: Int, parent: Int, side: Double) {
         val rng = Stream(seed xor Stream.hash(path))
-        // why: floored at half, so a branch turned toward the viewer still spreads, and the crown stays bushy.
-        val splay = sin(down) * max(abs(cos(turn)), 0.5).withSign(cos(turn))
-        val angle = clamped(heading + atan2(splay, cos(down)))
-        val side = if (splay < 0) -1.0 else 1.0
-        // why: a side branch starts out longer than a lead, so the crown spreads wider than it rises.
-        val length = hypot(cos(down), splay) *
-            if (n == 1) 0.03 else 0.045 * (1 + 0.6 * ln(n.toDouble())) * if (path and 3L >= 2L) 1.6 else 1.0
+        val length = 0.045 * (1 + 0.6 * ln(n.toDouble()))
         val width = 0.0075 * sqrt(n.toDouble())
         val endX = x + cos(angle) * length
         val endY = y + sin(angle) * length
@@ -79,16 +71,20 @@ internal class TreeGrowth(private val seed: Long) {
         }
         // why: limbs sag under their weight, the more level and the later-born the further.
         val sag = 0.02 * (depth + 1) * cos(angle)
-        val r = n / 2
-        val sides = if (r == 1) listOf(r to 0.7) else listOf((r + 1) / 2 to 0.55, r / 2 to 0.8)
+        // why: a limb holds one leaf on a spur near its base, over its wood, so the crown's middle is not bare.
+        val spur = if (depth > 0 && n >= SPUR_FROM) listOf(1 to 0.3) else emptyList()
+        val r = 2 * (n - spur.size) / 3
+        val sides = (if (r == 1) listOf(r to 0.7) else listOf((r + 1) / 2 to 0.55, r / 2 to 0.8)) + spur
         sides.forEachIndexed { k, (count, t) ->
             val u = 1 - t
+            val way = if (k % 2 == 0) side else -side
             branch(count, path * 4 + 2 + k,
                 u * u * limb.startX + 2 * u * t * limb.controlX + t * t * limb.endX,
                 u * u * limb.startY + 2 * u * t * limb.controlY + t * t * limb.endY,
-                along(t) + sag, 1.6 - 0.8 * t, turn + (k + 1) * ROTATE, depth + 1, index)
+                clamped(along(t) + way * (SPLAY_BASE - SPLAY_TIP * t + rng.range(-0.25, 0.25)) + sag), depth + 1, index, way)
         }
-        branch(n - r, path * 4 + 1, endX, endY, angle + sag, 0.15, turn + (sides.size + 1) * ROTATE, depth + 1, index)
+        // The lead bends away from the first side branch.
+        branch(n - r - spur.size, path * 4 + 1, endX, endY, clamped(angle - side * rng.range(0.2, 0.5) + sag), depth + 1, index, -side)
     }
 
     /** The direction [limb]'s center line runs [t] of the way along. */
