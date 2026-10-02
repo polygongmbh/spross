@@ -33,7 +33,8 @@ struct TreeMark {
         self.height = height
         self.cell = cell
         self.baseline = baseline
-        self.skeleton = TreeSkeleton.grown(area: area, marks: canopy.count, foot: foot, height: height)
+        self.skeleton = TreeSkeleton.grown(area: area, marks: canopy.count, buds: canopy.buds,
+                                           foot: foot, height: height)
     }
 
     /// The shortest a tree is drawn, a seedling.

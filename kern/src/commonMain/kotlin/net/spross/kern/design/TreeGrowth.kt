@@ -5,6 +5,7 @@ import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.hypot
+import kotlin.math.max
 import kotlin.math.sin
 
 // The wood of one tree and the slots its marks hang on, grown in unit space:
@@ -37,6 +38,8 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         // why: a branch dips a little below horizontal, no further, or it hangs its leaves under the crown.
         val angle = heading.coerceIn(-PI - 0.25, 0.25)
         val rng = Stream(seed xor Stream.hash(path))
+        // why: a branch dipping below level is a weak one: the further it dips, the shorter it and all beyond it.
+        val length = length * (1 - 2 * max(0.0, sin(angle)))
         val reach = length * grown
         val endX = x + cos(angle) * reach
         val endY = y + sin(angle) * reach
@@ -79,9 +82,12 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
      * its outer end, the levelest and inner wood first so fruit and blossom hang as spur fruit
      * does — but never within reach of a mark already dealt while wood further off is free,
      * the reach shrinking as the crown fills, so they spread over the whole crown.
-     * The rest go to whichever carrier holds the fewest for its weighted length.
+     * The rest go to whichever carrier holds the fewest for its weighted length, and so do the
+     * last [buds] of the first [marks]: a bud is too small to show a twig of its own.
+     * The first limbs carry nothing while the tree has finer wood.
      */
-    fun hang(count: Int): List<TreeSlot> {
+    fun hang(count: Int, marks: Int, buds: Int): List<TreeSlot> {
+        val carriers = carriers.filter { limbs[it.limb].depth >= 2 }.ifEmpty { carriers }
         if (count <= 0 || carriers.isEmpty()) return emptyList()
         fun chord(c: Carrier) = limbs[c.limb].let { hypot(it.endX - it.startX, it.endY - it.startY) }.coerceAtLeast(1e-6)
         fun rank(c: Carrier) = abs(limbs[c.limb].endX - limbs[c.limb].startX) / chord(c) + if (c.tip) 0 else 1
@@ -97,8 +103,10 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         // why: inner wood counts half its length, so the twigs carry most of the foliage.
         val weights = dealt.map { chord(it) * if (it.tip) 1.0 else 0.5 }
         val held = IntArray(dealt.size)
+        var used = 0
         val order = List(count) { n ->
-            val i = if (n < dealt.size) n else held.indices.minBy { held[it] / weights[it] }
+            val fresh = used < dealt.size && (n < max(1, marks - buds) || n >= marks)
+            val i = if (fresh) used++ else (0 until used).minBy { held[it] / weights[it] }
             i to held[i]++
         }
         return order.map { (i, k) -> slot(dealt[i], k, held[i], i % 2 == 0) }

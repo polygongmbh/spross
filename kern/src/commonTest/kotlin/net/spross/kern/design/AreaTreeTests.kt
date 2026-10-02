@@ -9,13 +9,13 @@ class AreaTreeTests {
 
     @Test
     fun aTreeHangsOneSlotPerMark() {
-        for (marks in listOf(1, 7, 62)) assertEquals(marks, AreaTree.grow("kitchen", marks).slots.size)
+        for (marks in listOf(1, 7, 62)) assertEquals(marks, AreaTree.grow("kitchen", marks, marks / 3).slots.size)
     }
 
     @Test
     fun noMarkHangsBelowTheGround() {
         for (area in listOf("kitchen", "travel", "family")) for (marks in listOf(3, 20, 60, 150)) {
-            assertTrue(AreaTree.grow(area, marks).slots.all { it.y <= 0.0 }, "$area $marks")
+            assertTrue(AreaTree.grow(area, marks, marks / 3).slots.all { it.y <= 0.0 }, "$area $marks")
         }
     }
 

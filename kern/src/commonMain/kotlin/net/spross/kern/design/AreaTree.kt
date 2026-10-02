@@ -109,18 +109,19 @@ object AreaTree {
     }
 
     /**
-     * Grows one tree carrying [marks] marks, seeded by [area]. The tree forks further the more
-     * marks it carries, and hangs slots for at least eight, so a handful of words stay small.
+     * Grows one tree carrying [marks] marks, the last [buds] of them buds, seeded by [area].
+     * The tree forks further the more marks it carries, and hangs slots for at least eight,
+     * so a handful of words stay small.
      * The count is the FINISHED tree's, never the drawn height's,
      * so a tree rising through a transition keeps every mark where it hangs.
      */
-    fun grow(area: String, marks: Int): GrownTree {
+    fun grow(area: String, marks: Int, buds: Int): GrownTree {
         if (marks <= 0) return GrownTree(emptyList(), emptyList(), 0.05, -0.5, 0.5, 1.0)
         // How far the tree has forked, in generations: 1.3 a trunk just forking, 5 a crown forked all the way out.
         val vigor = 1.3 + 3.7 * min(1.0, sqrt(marks / 30.0))
         val growth = TreeGrowth(fnv1a64(area).toLong(), vigor)
         growth.branch(1L, 0.0, 0.0, -PI / 2, 0.16, 0.014 + 0.011 * vigor, 0, -1, 1.0)
-        val hung = growth.hang(max(8, marks))
+        val hung = growth.hang(max(8, marks), marks, buds)
         var left = 0.0; var right = 0.0; var top = 0.0
         fun take(x: Double, y: Double) { left = min(left, x); right = max(right, x); top = min(top, y) }
         for (limb in growth.limbs) {

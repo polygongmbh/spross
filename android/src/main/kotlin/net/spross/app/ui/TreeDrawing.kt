@@ -32,7 +32,7 @@ internal class PlantedTree(val tree: AreaGrowth, val foot: Offset, val height: F
 
     /** Grown and fitted in dp by kern, then scaled to pixels. */
     private fun fitted(): TreeSkeleton {
-        val grown = AreaTree.grow(tree.area, tree.met)
+        val grown = AreaTree.grow(tree.area, tree.met, tree.arriving)
         val fit = grown.fit(foot.x / unit.toDouble(), foot.y / unit.toDouble(), height / unit.toDouble())
         return TreeSkeleton.placed(grown, TreeFit(fit.x * unit, fit.y * unit, fit.scale * unit))
     }
