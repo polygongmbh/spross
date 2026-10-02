@@ -56,7 +56,7 @@ class GrownTree internal constructor(
 }
 
 /**
- * One tree: its size from what has grown, and its wood grown from its marks.
+ * One tree: its size from what has grown, and its wood and the slots its marks hang on.
  * Lengths are in points (dp); [TreesLayout] stands many of them in rows.
  */
 object AreaTree {
@@ -109,31 +109,30 @@ object AreaTree {
     }
 
     /**
-     * Grows one tree carrying [marks] marks, seeded by [area]: the same area and count grow
-     * the same tree on every redraw. The count is the FINISHED tree's, never the drawn height's,
+     * Grows one tree carrying [marks] marks, seeded by [area]. The tree forks further the more
+     * marks it carries, and hangs slots for at least eight, so a handful of words stay small.
+     * The count is the FINISHED tree's, never the drawn height's,
      * so a tree rising through a transition keeps every mark where it hangs.
      */
     fun grow(area: String, marks: Int): GrownTree {
         if (marks <= 0) return GrownTree(emptyList(), emptyList(), 0.05, -0.5, 0.5, 1.0)
-        val seed = fnv1a64(area).toLong()
-        val growth = TreeGrowth(seed)
-        growth.branch(marks, 1L, 0.0, 0.0, -PI / 2, 0, -1, if (seed and 1L == 0L) 1.0 else -1.0)
-        val slots = growth.ranked()
+        // How far the tree has forked, in generations: 1.3 a trunk just forking, 5 a crown forked all the way out.
+        val vigor = 1.3 + 3.7 * min(1.0, sqrt(marks / 30.0))
+        val growth = TreeGrowth(fnv1a64(area).toLong(), vigor)
+        growth.branch(1L, 0.0, 0.0, -PI / 2, 0.16, 0.014 + 0.011 * vigor, 0, -1, 1.0)
+        val hung = growth.hang(max(8, marks))
         var left = 0.0; var right = 0.0; var top = 0.0
         fun take(x: Double, y: Double) { left = min(left, x); right = max(right, x); top = min(top, y) }
         for (limb in growth.limbs) {
             take(limb.startX, limb.startY); take(limb.controlX, limb.controlY); take(limb.endX, limb.endY)
         }
-        for (slot in slots) take(slot.x, slot.y)
-        val rise = max(-top, 0.001)
-        return GrownTree(growth.limbs, slots, pitch(slots, rise), left, max(right, left + 0.001), rise)
+        for (slot in hung) take(slot.x, slot.y)
+        return GrownTree(growth.limbs, hung.take(marks), pitch(hung), left, max(right, left + 0.001), max(-top, 0.001))
     }
 
-    /** Counted as at least eight marks, so a handful of words stay small. */
-    private fun pitch(slots: List<TreeSlot>, rise: Double): Double {
-        val floor = rise / 4
-        val spread = max(floor, slots.maxOf { it.x } - slots.minOf { it.x })
-        val tall = max(floor, slots.maxOf { it.y } - slots.minOf { it.y })
-        return sqrt(spread * tall / max(8, slots.size))
+    private fun pitch(slots: List<TreeSlot>): Double {
+        val spread = slots.maxOf { it.x } - slots.minOf { it.x }
+        val tall = slots.maxOf { it.y } - slots.minOf { it.y }
+        return sqrt(max(spread, 0.02) * max(tall, 0.02) / slots.size)
     }
 }

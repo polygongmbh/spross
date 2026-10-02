@@ -194,9 +194,10 @@ What licenses a second component is a parameter attempted and found not to carry
   where each tree stands is kern's `TreesLayout`, its size and its wood kern's `AreaTree`;
   a tier is one mark — arriving a bud, growing a leaf, matured a blossom, long held fruit.
   What the round summary claims over its tree is kern's `growthHeadline`.
-  The marks come first and the wood carries them: a branch hands half its marks to side branches
-  along it and the rest to its lead, until each mark hangs at the tip of its own leaf twig;
-  fruit and blossom keep off the steep twigs, and only wood carrying a shown mark is drawn.
+  A tree forks further the more words it carries, each limb continued by a lead
+  with side branches turning well away from it;
+  its marks spread along all its wood but the trunk, fruit and blossom on the levelest limbs,
+  no two of them touching while the crown has room, and only wood carrying a shown mark is drawn.
   A met word hangs as a bud until it settles into a leaf; merely packed hangs nothing.
   Height comes from how many words the area has met, never from catalog count.
   An unopened area is one faded seedling.
