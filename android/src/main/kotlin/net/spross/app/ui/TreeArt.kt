@@ -99,7 +99,7 @@ internal class TreeArt(
             val size = base * (0.74f + 0.62f * reach) * scale(rank)
             if (size <= 0.2f) continue
             val turned = slot.angle + (grain - 0.5f) * 0.9f
-            val lean = atan2(sin(turned) - 0.35f, cos(turned))
+            val lean = atan2(sin(turned) - 0.2f, cos(turned))
             when {
                 rank < tree.longHeld -> fruit(slot.point, size)
                 rank < heavy -> blossom(slot.point, size, lean)

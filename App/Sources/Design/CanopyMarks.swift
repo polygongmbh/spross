@@ -84,10 +84,10 @@ enum CanopyMark {
         base * CGFloat(0.74 + 0.62 * reach)
     }
 
-    /// Which way the mark faces: out from its twig, a little upward, with a hashed turn.
+    /// Which way the mark faces: out from its wood, a touch upward, with a hashed turn.
     static func lean(_ slot: LeafSlot, grain: Double) -> Double {
         let turned = slot.angle + (grain - 0.5) * 0.9
-        return atan2(sin(turned) - 0.35, cos(turned))
+        return atan2(sin(turned) - 0.2, cos(turned))
     }
 
     /// A leaf runs longer than the base a fruit or a blossom is cut to: it is the
