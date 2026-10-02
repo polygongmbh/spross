@@ -4,7 +4,7 @@ import SwiftUI
 //
 // One shape per tier, told apart by SHAPE before color:
 // a leaf is long and pointed, a bud a small disc, a blossom a pale rosette of five petals,
-// fruit a pair of cherries on a forked stalk.
+// fruit a round disc hanging under its twig.
 
 extension TreeShapes {
 
@@ -20,21 +20,9 @@ extension TreeShapes {
             .rotated(by: CGFloat(angle)))
     }
 
-    /// A word held for months: a pair of cherries hanging from the slot on a forked stalk.
-    static func fruit(at slot: CGPoint, size: CGFloat, cherries: inout Path, stalks: inout Path) {
-        let small = size < CanopyMark.plain
-        // why: the stalks start on the slot, so the pair hangs under its wood.
-        let hang = size * (small ? 0.36 : 0.72)
-        let pair = [CGPoint(x: slot.x - size * 0.27, y: slot.y + hang + size * 0.06),
-                    CGPoint(x: slot.x + size * 0.25, y: slot.y + hang - size * 0.04)]
-        for cherry in pair {
-            cherries.addPath(circle(cherry, size * 0.25))
-            guard !small else { continue }
-            stalks.move(to: slot)
-            stalks.addQuadCurve(to: CGPoint(x: cherry.x, y: cherry.y - size * 0.24),
-                                control: CGPoint(x: slot.x + (cherry.x - slot.x) * 0.2,
-                                                 y: slot.y + hang * 0.45))
-        }
+    /// A word held for months: one round fruit, its top on the slot, so it hangs under its wood.
+    static func fruit(at slot: CGPoint, size: CGFloat) -> Path {
+        circle(CGPoint(x: slot.x, y: slot.y + size * 0.4), size * 0.4)
     }
 
     /// A word that has landed: a sprig of three leaflets off one stalk — one mark,
@@ -98,7 +86,7 @@ enum CanopyMark {
     /// A bud, against the base — well under half a leaf.
     static let budRadius: CGFloat = 0.22
 
-    /// Below this size a blossom is one disc and fruit two dots: petals and stalks blur.
+    /// Below this size a blossom is one disc: petals blur.
     static let plain: CGFloat = 12
     /// From this size on a blossom shows its eye.
     static let eyed: CGFloat = 20

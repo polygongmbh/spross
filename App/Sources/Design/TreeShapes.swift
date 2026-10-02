@@ -158,7 +158,7 @@ enum TreeShapes {
         let depth = max((hanging.map(\.point.y).max() ?? 0) - top, 1)
 
         var tones = [Path(), Path(), Path(), Path()]
-        var buds = Path(), cherries = Path(), stalks = Path(), petals = Path(), eyes = Path()
+        var buds = Path(), fruit = Path(), petals = Path(), eyes = Path()
         for (rank, slot) in hanging.enumerated() {
             // A mark's SIZE is its own word's standing; only its lean is hashed.
             let grain = noise("\(mark.area)-\(rank)", 41)
@@ -166,7 +166,7 @@ enum TreeShapes {
             guard size > 0.2 else { continue }
             let angle = CanopyMark.lean(slot, grain: grain)
             if rank < shown.fruit {
-                fruit(at: slot.point, size: size, cherries: &cherries, stalks: &stalks)
+                fruit.addPath(Self.fruit(at: slot.point, size: size))
             } else if rank < shown.fruit + shown.blossoms {
                 blossom(at: slot.point, size: size, angle: angle, petals: &petals, eyes: &eyes)
             } else if rank < shown.count - shown.buds {
@@ -181,9 +181,7 @@ enum TreeShapes {
                 buds.addPath(circle(slot.point, size * CanopyMark.budRadius))
             }
         }
-        context.stroke(stalks, with: .color(Theme.colors.borderStrong),
-                       style: StrokeStyle(lineWidth: max(0.5, base * 0.07), lineCap: .round))
-        context.fill(cherries, with: .color(Theme.colors.fruit))
+        context.fill(fruit, with: .color(Theme.colors.fruit))
         let leafColors: [Color] = [Theme.colors.das.opacity(0.92), Theme.colors.success,
                                    Theme.colors.success.opacity(0.84), Theme.colors.success.opacity(0.68)]
         for (index, tone) in tones.enumerated() { context.fill(tone, with: .color(leafColors[index])) }

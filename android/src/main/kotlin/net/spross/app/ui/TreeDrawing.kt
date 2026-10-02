@@ -99,8 +99,7 @@ private fun DrawScope.wood(art: TreeArt, colors: ThemeColors, planted: PlantedTr
 
 private fun DrawScope.canopy(art: TreeArt, colors: ThemeColors) {
     // Fruit under the leaves, buds and blossom on top.
-    drawPath(art.stalks, colors.borderStrong, style = Stroke(art.stalkWidth, cap = StrokeCap.Round))
-    drawPath(art.cherries, colors.fruit)
+    drawPath(art.fruit, colors.fruit)
     val tones = listOf(colors.das.copy(alpha = 0.92f), colors.success,
         colors.success.copy(alpha = 0.84f), colors.success.copy(alpha = 0.68f))
     art.tones.forEachIndexed { index, path -> drawPath(path, tones[index]) }
