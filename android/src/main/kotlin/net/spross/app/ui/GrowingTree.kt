@@ -48,7 +48,7 @@ internal fun GrowingTree(transition: TreeTransition, height: Dp, modifier: Modif
                 val t = progress.value.coerceIn(0f, 1f)
                 val arrival = Arrival(transition, t)
                 val art = planted.skeleton?.takeIf { arrival.moving }
-                    ?.let { TreeArt.build(planted.tree, it, planted.floor, arrival::scale) }
+                    ?.let { TreeArt.build(planted.tree, it, planted.unit, arrival::scale) }
                     ?: planted.art
                 scale(max(0.05f, from + (1 - from) * t), pivot = planted.foot) {
                     drawTree(planted, colors, art)

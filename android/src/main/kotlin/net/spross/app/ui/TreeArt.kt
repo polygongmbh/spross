@@ -15,13 +15,20 @@ import net.spross.kern.box.AreaTree
 // first, so fruit and blossom take the first slots):
 //   fruit    — long held      blossom — matured
 //   leaf     — growing        bud     — arriving
-// Told apart by shape before color: a sprig of pointed leaflets, a small disc, five petals
-// round an eye, a larger disc on a stalk.
+// Told apart by shape before color: a sprig of pointed leaflets, a small disc, a pale rosette
+// of five petals, a pair of cherries on a forked stalk.
 
 /** A leaf runs longer than the base a disc is cut to: it is the one mark meant to merge. */
 private const val LEAF_STRETCH = 1.45f
 private const val LEAF_WAIST = 0.27f
-private const val BUD_RADIUS = 0.36f
+private const val BUD_RADIUS = 0.22f
+
+/** The smallest a mark is cut, in dp, so a young crown's words stay legible. */
+private const val MARK_FLOOR = 2.4f
+/** Below this size (dp) a blossom is one disc and fruit two dots: petals and stalks blur. */
+private const val PLAIN = 12f
+/** From this size (dp) on a blossom shows its eye. */
+private const val EYED = 20f
 
 internal class TreeArt(
     val wood: Path,
@@ -34,22 +41,26 @@ internal class TreeArt(
     val petals: Path,
     val eyes: Path,
     val stalks: Path,
-    val fruit: Path,
-    val shine: Path,
+    val cherries: Path,
+    /** Stroke width of [stalks], in px. */
+    val stalkWidth: Float,
+    /** Pixels per dp. */
+    private val unit: Float,
 ) {
     companion object {
-        /** The mark size a crown of this pitch cuts to; [floor] keeps a tiny crown legible. */
-        fun base(pitch: Float, floor: Float) = max(floor, pitch * 0.85f)
-
         /**
-         * The paths for [tree] hung on [skeleton] (already placed). [scale] is how big the
-         * mark at a rank is drawn against its settled size — the summary's arriving marks.
+         * The paths for [tree] hung on [skeleton] (already placed), [unit] px to the dp.
+         * [scale] is how big the mark at a rank is drawn against its settled size — the
+         * summary's arriving marks.
          */
-        fun build(tree: AreaTree, skeleton: TreeSkeleton, floor: Float, scale: (Int) -> Float = { 1f }): TreeArt {
+        fun build(tree: AreaTree, skeleton: TreeSkeleton, unit: Float, scale: (Int) -> Float = { 1f }): TreeArt {
+            val floor = MARK_FLOOR * unit
+            // The mark size a crown of this pitch cuts to.
+            val base = max(floor, skeleton.pitch * 0.85f)
             val art = TreeArt(Path(), Path(), Path(), Path(), List(4) { Path() },
-                Path(), Path(), Path(), Path(), Path(), Path())
+                Path(), Path(), Path(), Path(), Path(), max(0.5f * unit, base * 0.07f), unit)
             art.wood(skeleton, floor, tree.met)
-            art.canopy(tree, skeleton, base(skeleton.pitch, floor), scale)
+            art.canopy(tree, skeleton, base, scale)
             return art
         }
     }
@@ -128,24 +139,31 @@ internal class TreeArt(
         leaf(path, fork, size * 0.6f, angle + 0.68f)
     }
 
-    /** A matured word: five petals round an ochre eye, small enough to stay a tree in flower. */
+    /**
+     * A matured word: a pale rosette of five petals, small enough to stay a tree in flower.
+     * At orchard size the rosette is one disc, and only a large one shows an eye.
+     */
     private fun blossom(at: Offset, size: Float, angle: Float) {
-        val span = size * 0.9f
+        if (size < PLAIN * unit) return petals.addOval(Rect(at, size * 0.38f))
         for (petal in 0 until 5) {
             val turn = angle + petal * 2 * PI_F / 5
-            petals.addOval(Rect(Offset(at.x + cos(turn) * span * 0.25f, at.y + sin(turn) * span * 0.25f), span * 0.22f))
+            petals.addOval(Rect(Offset(at.x + cos(turn) * size * 0.2f, at.y + sin(turn) * size * 0.2f), size * 0.24f))
         }
-        eyes.addOval(Rect(at, span * 0.13f))
+        if (size >= EYED * unit) eyes.addOval(Rect(at, size * 0.06f))
     }
 
-    /** A word held for months — heavier than a blossom, so promotion reads as a gain. */
+    /** A word held for months: a pair of cherries hanging from the slot on a forked stalk. */
     private fun fruit(slot: Offset, size: Float) {
-        // why: the stalk's top sits on the slot, so the fruit hangs under its wood.
-        val at = Offset(slot.x, slot.y + size * 0.62f)
-        stalks.moveTo(at.x, at.y - size * 0.62f)
-        stalks.quadraticTo(at.x + size * 0.12f, at.y - size * 0.45f, at.x, at.y - size * 0.26f)
-        fruit.addOval(Rect(at, size * 0.56f))
-        shine.addOval(Rect(Offset(at.x - size * 0.17f, at.y - size * 0.17f), size * 0.15f))
+        val small = size < PLAIN * unit
+        // why: the stalks start on the slot, so the pair hangs under its wood.
+        val hang = size * (if (small) 0.36f else 0.72f)
+        for (cherry in listOf(Offset(slot.x - size * 0.27f, slot.y + hang + size * 0.06f),
+            Offset(slot.x + size * 0.25f, slot.y + hang - size * 0.04f))) {
+            cherries.addOval(Rect(cherry, size * 0.25f))
+            if (small) continue
+            stalks.moveTo(slot.x, slot.y)
+            stalks.quadraticTo(slot.x + (cherry.x - slot.x) * 0.2f, slot.y + hang * 0.45f, cherry.x, cherry.y - size * 0.24f)
+        }
     }
 }
 

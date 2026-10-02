@@ -3,8 +3,8 @@ import SwiftUI
 // MARK: - The marks a canopy carries
 //
 // One shape per tier, told apart by SHAPE before color:
-// a leaf is long and pointed, a bud a small disc, a blossom five petals round an eye,
-// fruit a larger disc on a stalk.
+// a leaf is long and pointed, a bud a small disc, a blossom a pale rosette of five petals,
+// fruit a pair of cherries on a forked stalk.
 
 extension TreeShapes {
 
@@ -20,22 +20,21 @@ extension TreeShapes {
             .rotated(by: CGFloat(angle)))
     }
 
-    /// A word held for months — the furthest thing on the tree, and drawn HEAVIER
-    /// than a blossom, so a word promoting from one to the other reads as a gain.
-    static func fruit(_ context: inout GraphicsContext, at slot: CGPoint, size: CGFloat) {
-        // why: the stalk's top sits on the slot, so the fruit hangs under its wood.
-        let point = CGPoint(x: slot.x, y: slot.y + size * 0.62)
-        var stalk = Path()
-        stalk.move(to: CGPoint(x: point.x, y: point.y - size * 0.62))
-        stalk.addQuadCurve(to: CGPoint(x: point.x, y: point.y - size * 0.26),
-                           control: CGPoint(x: point.x + size * 0.12, y: point.y - size * 0.45))
-        context.stroke(stalk, with: .color(Theme.colors.borderStrong),
-                       style: StrokeStyle(lineWidth: max(0.6, size * 0.1), lineCap: .round))
-        context.fill(circle(point, size * 0.56), with: .color(Theme.colors.accent))
-        // A highlight: at this size it is the difference between fruit and a dot.
-        context.fill(circle(CGPoint(x: point.x - size * 0.17, y: point.y - size * 0.17),
-                            size * 0.15),
-                     with: .color(Theme.colors.surface.opacity(0.65)))
+    /// A word held for months: a pair of cherries hanging from the slot on a forked stalk.
+    static func fruit(at slot: CGPoint, size: CGFloat, cherries: inout Path, stalks: inout Path) {
+        let small = size < CanopyMark.plain
+        // why: the stalks start on the slot, so the pair hangs under its wood.
+        let hang = size * (small ? 0.36 : 0.72)
+        let pair = [CGPoint(x: slot.x - size * 0.27, y: slot.y + hang + size * 0.06),
+                    CGPoint(x: slot.x + size * 0.25, y: slot.y + hang - size * 0.04)]
+        for cherry in pair {
+            cherries.addPath(circle(cherry, size * 0.25))
+            guard !small else { continue }
+            stalks.move(to: slot)
+            stalks.addQuadCurve(to: CGPoint(x: cherry.x, y: cherry.y - size * 0.24),
+                                control: CGPoint(x: slot.x + (cherry.x - slot.x) * 0.2,
+                                                 y: slot.y + hang * 0.45))
+        }
     }
 
     /// A word that has landed: a sprig of three leaflets off one stalk — one mark,
@@ -49,20 +48,19 @@ extension TreeShapes {
         return sprig
     }
 
-    /// A word that has matured: five petals round an ochre eye, kept small —
+    /// A word that has matured: a pale rosette of five petals, kept small —
     /// a tree carrying forty of them is still a tree in flower, not a bouquet.
-    static func blossom(_ context: inout GraphicsContext, at point: CGPoint,
-                        size: CGFloat, angle: Double) {
-        let span = size * 0.9
-        var petals = Path()
+    /// At orchard size the rosette is one disc, and only a large one shows an eye.
+    static func blossom(at point: CGPoint, size: CGFloat, angle: Double,
+                        petals: inout Path, eyes: inout Path) {
+        guard size >= CanopyMark.plain else { return petals.addPath(circle(point, size * 0.38)) }
         for petal in 0..<5 {
             let turn = angle + Double(petal) * 2 * .pi / 5
-            let center = CGPoint(x: point.x + CGFloat(cos(turn)) * span * 0.25,
-                                 y: point.y + CGFloat(sin(turn)) * span * 0.25)
-            petals.addPath(circle(center, span * 0.22))
+            petals.addPath(circle(CGPoint(x: point.x + CGFloat(cos(turn)) * size * 0.2,
+                                          y: point.y + CGFloat(sin(turn)) * size * 0.2),
+                                  size * 0.24))
         }
-        context.fill(petals, with: .color(Theme.colors.die.opacity(0.9)))
-        context.fill(circle(point, span * 0.13), with: .color(Theme.colors.amber))
+        if size >= CanopyMark.eyed { eyes.addPath(circle(point, size * 0.06)) }
     }
 
     static func circle(_ center: CGPoint, _ radius: CGFloat) -> Path {
@@ -98,6 +96,11 @@ enum CanopyMark {
     static let leafWaist: CGFloat = 0.27
 
     /// A bud, against the base — well under half a leaf.
-    static let budRadius: CGFloat = 0.30
+    static let budRadius: CGFloat = 0.22
+
+    /// Below this size a blossom is one disc and fruit two dots: petals and stalks blur.
+    static let plain: CGFloat = 12
+    /// From this size on a blossom shows its eye.
+    static let eyed: CGFloat = 20
 
 }

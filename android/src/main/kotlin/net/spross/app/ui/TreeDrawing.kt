@@ -20,14 +20,13 @@ import net.spross.kern.box.AreaTree
 
 /** One tree standing somewhere: its foot, how tall, and the wood grown to that height. */
 internal class PlantedTree(val tree: AreaTree, val foot: Offset, val height: Float, density: Float) {
-    /** The smallest a mark is cut, so a young crown's words stay legible. */
-    val floor = 2.4f * density
-    private val unit = 1f * density
+    /** Pixels per dp. */
+    val unit = 1f * density
 
     val skeleton: TreeSkeleton? = if (tree.met == 0 || height <= 0f) null else fitted()
 
     /** The settled paths — every mark at full size, which is everything but a summary's rise. */
-    val art: TreeArt? by lazy { skeleton?.let { TreeArt.build(tree, it, floor) } }
+    val art: TreeArt? by lazy { skeleton?.let { TreeArt.build(tree, it, unit) } }
 
     /**
      * Grown flush into a box 1.44 heights wide, foot on its bottom edge. The marks hang
@@ -55,7 +54,7 @@ internal fun DrawScope.drawTree(planted: PlantedTree, colors: ThemeColors, art: 
         art == null -> seedling(planted, planted.height, colors.success)
         else -> {
             wood(art, colors, planted)
-            canopy(art, colors, planted)
+            canopy(art, colors)
         }
     }
     fallen(planted, colors)
@@ -100,17 +99,17 @@ private fun DrawScope.wood(art: TreeArt, colors: ThemeColors, planted: PlantedTr
     drawPath(art.twigs, colors.borderStrong, style = Stroke(planted.dp(0.7f), cap = StrokeCap.Round))
 }
 
-private fun DrawScope.canopy(art: TreeArt, colors: ThemeColors, planted: PlantedTree) {
+private fun DrawScope.canopy(art: TreeArt, colors: ThemeColors) {
+    // Fruit under the leaves, buds and blossom on top.
+    drawPath(art.stalks, colors.borderStrong, style = Stroke(art.stalkWidth, cap = StrokeCap.Round))
+    drawPath(art.cherries, colors.fruit)
     val tones = listOf(colors.das.copy(alpha = 0.92f), colors.success,
         colors.success.copy(alpha = 0.84f), colors.success.copy(alpha = 0.68f))
     art.tones.forEachIndexed { index, path -> drawPath(path, tones[index]) }
     // Ochre, not green: a bud is a scale of wood, the word has not leafed out yet.
     drawPath(art.buds, colors.amber.copy(alpha = 0.8f))
-    drawPath(art.petals, colors.die.copy(alpha = 0.9f))
-    drawPath(art.eyes, colors.amber)
-    drawPath(art.stalks, colors.borderStrong, style = Stroke(planted.dp(0.8f), cap = StrokeCap.Round))
-    drawPath(art.fruit, colors.accent)
-    drawPath(art.shine, colors.surface.copy(alpha = 0.65f))
+    drawPath(art.petals, colors.blossom)
+    drawPath(art.eyes, colors.amber.copy(alpha = 0.5f))
 }
 
 /** Words that lapsed lie on the ground beside the trunk; the tree never shrinks for them. */
