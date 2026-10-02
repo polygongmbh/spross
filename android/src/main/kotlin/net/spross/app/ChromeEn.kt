@@ -327,7 +327,7 @@ internal object ChromeEn : Chrome {
     override val boxPhaseLearning = "Fresh"
     override val boxPhaseRelearning = "Shaky"
     override val boxPhaseSettled = "Growing"
-    override val a11yBoxPhaseConsolidated = "Grown"
+    override val a11yBoxPhaseConsolidated = "Settled"
     override val boxSearchButton = "Search"
     override val boxSearchPlaceholder = "Word or area"
     override val boxSearchHint = "Words in either language, and the names of the areas."

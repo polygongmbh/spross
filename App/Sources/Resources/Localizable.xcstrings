@@ -141,13 +141,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Steht"
+            "value" : "Sitzt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grown"
+            "value" : "Settled"
           }
         }
       }
@@ -5065,25 +5065,8 @@
       }
     },
     "progress.consolidatedCount %lld" : {
+      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. home.tally.consolidated is the day's own tally on Heute — a different screen's sentence, not this one read twice.",
       "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld settled"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld settled"
-                }
-              }
-            }
-          }
-        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -5101,9 +5084,26 @@
               }
             }
           }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld settled"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld settled"
+                }
+              }
+            }
+          }
         }
-      },
-      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. home.tally.consolidated is the day's own tally on Heute — a different screen's sentence, not this one read twice."
+      }
     },
     "progress.last14Days" : {
       "localizations" : {
@@ -5123,24 +5123,6 @@
     },
     "progress.learningCount %lld" : {
       "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld growing"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld growing"
-                }
-              }
-            }
-          }
-        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -5154,6 +5136,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld wachsen"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld growing"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld growing"
                 }
               }
             }
@@ -6754,24 +6754,6 @@
     "tally.consolidated %lld" : {
       "comment" : "Words that crossed the settled bar — in Home's day tally and a finished round's alike.",
       "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld settled"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld settled"
-                }
-              }
-            }
-          }
-        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -6785,6 +6767,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld sitzen nun"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld settled"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld settled"
                 }
               }
             }

@@ -333,7 +333,7 @@ internal object ChromeDe : Chrome {
     override val boxPhaseLearning = "Frisch"
     override val boxPhaseRelearning = "Wackelt"
     override val boxPhaseSettled = "Wächst"
-    override val a11yBoxPhaseConsolidated = "Steht"
+    override val a11yBoxPhaseConsolidated = "Sitzt"
     override val boxSearchButton = "Suchen"
     override val boxSearchPlaceholder = "Wort oder Bereich"
     override val boxSearchHint = "Wörter beider Sprachen und die Namen der Bereiche."
