@@ -98,13 +98,13 @@ private fun DrawScope.wood(art: TreeArt, colors: ThemeColors, planted: PlantedTr
 }
 
 private fun DrawScope.canopy(art: TreeArt, colors: ThemeColors) {
-    // Fruit under the leaves, buds and blossom on top.
+    // Buds and fruit under the leaves, blossom on top.
+    // Ochre, not green: a bud is a scale of wood, the word has not leafed out yet.
+    drawPath(art.buds, colors.amber.copy(alpha = 0.8f))
     drawPath(art.fruit, colors.fruit)
     val tones = listOf(colors.das.copy(alpha = 0.92f), colors.success,
         colors.success.copy(alpha = 0.84f), colors.success.copy(alpha = 0.68f))
     art.tones.forEachIndexed { index, path -> drawPath(path, tones[index]) }
-    // Ochre, not green: a bud is a scale of wood, the word has not leafed out yet.
-    drawPath(art.buds, colors.amber.copy(alpha = 0.8f))
     drawPath(art.laterals, colors.blossom.copy(alpha = 0.85f))
     drawPath(art.kings, colors.blossom)
     drawPath(art.eyes, colors.fruit.copy(alpha = 0.4f))

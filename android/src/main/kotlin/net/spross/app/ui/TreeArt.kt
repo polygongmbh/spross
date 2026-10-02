@@ -21,7 +21,9 @@ import net.spross.kern.box.AreaGrowth
 /** A leaf runs longer than the base a disc is cut to: it is the one mark meant to merge. */
 private const val LEAF_STRETCH = 1.45f
 private const val LEAF_WAIST = 0.27f
-private const val BUD_RADIUS = 0.22f
+private const val BUD_RADIUS = 0.11f
+/** The smallest a fruit's radius is drawn, in dp, so a small tree's fruit stays visible. */
+private const val FRUIT_FLOOR = 1.6f
 
 /** The smallest a mark is cut, in dp, so a young crown's words stay legible. */
 private const val MARK_FLOOR = 2.4f
@@ -163,7 +165,8 @@ internal class TreeArt(
 
     /** A word held for months: one round fruit, its top on the slot, so it hangs under its wood. */
     private fun fruit(slot: Offset, size: Float) {
-        fruit.addOval(Rect(Offset(slot.x, slot.y + size * 0.25f), size * 0.25f))
+        val radius = max(size * 0.25f, FRUIT_FLOOR * unit)
+        fruit.addOval(Rect(Offset(slot.x, slot.y + radius), radius))
     }
 }
 

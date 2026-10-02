@@ -148,8 +148,8 @@ enum TreeShapes {
 
     // MARK: The canopy
 
-    /// The marks along the twigs: fruit under the leaves, which take four tones lit
-    /// from above, then buds and blossom on top.
+    /// The marks along the twigs: buds and fruit under the leaves, which take four tones
+    /// lit from above, then blossom on top.
     private static func foliage(_ context: inout GraphicsContext, _ skeleton: TreeSkeleton,
                                 _ mark: TreeMark, _ shown: Canopy, _ arriving: TreeArrival) {
         let base = CanopyMark.base(pitch: skeleton.pitch)
@@ -182,12 +182,12 @@ enum TreeShapes {
                 buds.addPath(circle(slot.point, size * CanopyMark.budRadius))
             }
         }
+        // Ochre, not green: a bud is a scale of wood, the word has not leafed out yet.
+        context.fill(buds, with: .color(Theme.colors.amber.opacity(0.8)))
         context.fill(fruit, with: .color(Theme.colors.fruit))
         let leafColors: [Color] = [Theme.colors.das.opacity(0.92), Theme.colors.success,
                                    Theme.colors.success.opacity(0.84), Theme.colors.success.opacity(0.68)]
         for (index, tone) in tones.enumerated() { context.fill(tone, with: .color(leafColors[index])) }
-        // Ochre, not green: a bud is a scale of wood, the word has not leafed out yet.
-        context.fill(buds, with: .color(Theme.colors.amber.opacity(0.8)))
         context.fill(laterals, with: .color(Theme.colors.blossom.opacity(0.85)))
         context.fill(kings, with: .color(Theme.colors.blossom))
         context.fill(eyes, with: .color(Theme.colors.fruit.opacity(0.4)))
