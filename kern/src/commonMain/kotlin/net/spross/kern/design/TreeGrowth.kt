@@ -6,9 +6,11 @@ import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.hypot
 import kotlin.math.ln
+import kotlin.math.max
 import kotlin.math.round
 import kotlin.math.sin
 import kotlin.math.sqrt
+import kotlin.math.withSign
 
 // The wood of one tree and the slots its marks hang on, grown together in unit space:
 // foot at the origin, growing toward negative y.
@@ -42,7 +44,8 @@ internal class TreeGrowth(private val seed: Long) {
     /** One branch carrying [n] marks and all beyond it, seeded by [path], leaving [heading] at [down] turned [turn]. */
     fun branch(n: Int, path: Long, x: Double, y: Double, heading: Double, down: Double, turn: Double, depth: Int, parent: Int) {
         val rng = Stream(seed xor Stream.hash(path))
-        val splay = sin(down) * cos(turn)
+        // why: floored at half, so a branch turned toward the viewer still spreads, and the crown stays bushy.
+        val splay = sin(down) * max(abs(cos(turn)), 0.5).withSign(cos(turn))
         val angle = clamped(heading + atan2(splay, cos(down)))
         val side = if (splay < 0) -1.0 else 1.0
         // why: a side branch starts out longer than a lead, so the crown spreads wider than it rises.
