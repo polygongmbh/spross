@@ -44,7 +44,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
   Dirty tree and unsure whether the red is yours → worktree, but only when the change could realistically break.
 - **Conventional Commits** (`feat:`, `fix:`, `enhance:`, `refactor:`, `test:`, `docs:`, `build:`, `chore:`) with scopes
 - `feat` adds what was not there, `enhance` sharpens what was, `fix` corrects what was wrong;
-  a removal is never a `feat`, whatever it makes room for.
+  a removal is never a `feat`, whatever it makes room for;
+  `refactor` changes no behavior at all — a rewrite whose output differs in any way is `enhance` or `fix`.
 - `!` marks a bump of `STORE_SCHEMA_VERSION`, never a catalog edit
 - A user-facing change lands on iOS and Android in the same sweep; a change to shared/parity-bearing UI checks both
 - Keep `README.md` / `docs/` in step with behavior changes in the same series.
