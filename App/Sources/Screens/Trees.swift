@@ -58,12 +58,9 @@ struct Trees: View {
         let placed = placement.marks(model.trees, width: width)
         return ZStack(alignment: .topLeading) {
             BleedingCanvas(bleed: 24) { context, _ in
-                // why: the emoji is drawn WITH its own tree, in the one back-to-front order,
-                // so a tree standing in front of an area is never labeled through.
-                for mark in placed.marks {
-                    TreeShapes.draw(&context, mark)
-                    label(&context, mark)
-                }
+                for mark in placed.marks { TreeShapes.draw(&context, mark) }
+                // why: labels go over every tree — crowns may tangle, but a label is never covered.
+                for mark in placed.marks { label(&context, mark) }
             }
             .accessibilityHidden(true)
             ForEach(placed.marks, id: \.area) { mark in

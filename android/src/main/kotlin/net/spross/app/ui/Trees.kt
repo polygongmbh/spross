@@ -104,10 +104,9 @@ internal fun Trees(
         val height = spots.maxOfOrNull { it.cell.bottom } ?: 0f
         Box(Modifier.fillMaxWidth().height(with(density) { height.toDp() })) {
             Canvas(Modifier.matchParentSize().clearAndSetSemantics {}) {
-                // why: each label is drawn WITH its own tree, in the one back-to-front order,
-                // so a tree standing in front of an area is never labeled through.
+                for (spot in spots) drawTree(spot.planted, colors)
+                // why: labels go over every tree — crowns may tangle, but a label is never covered.
                 for (spot in spots) {
-                    drawTree(spot.planted, colors)
                     val label = labels[spot.planted.tree.area] ?: continue
                     val center = Offset(spot.planted.foot.x, spot.planted.foot.y + TreesLayout.LABEL_HEIGHT.toFloat() * density.density / 2)
                     drawText(label, topLeft = Offset(center.x - label.size.width / 2f, center.y - label.size.height / 2f),
