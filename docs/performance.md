@@ -59,8 +59,8 @@ It holds the statistics, the activity strip, the browser's shelf counts and whet
 round is on offer, and it retires the typed-answer grader so the next turn rebuilds it
 against the box standing then.
 iOS also takes the growth ladder, the day's standing (`HomeStanding` — the day's report,
-what tomorrow holds, whether another round would yield anything) and the forest there;
-Android has no forest and no ladder, and composes `HomeStanding` at Home instead,
+what tomorrow holds, whether another round would yield anything) and the trees there;
+Android has no ladder, `remember`s its trees on the box, and composes `HomeStanding` at Home instead,
 `remember`ed on the box and the refreshed offer.
 
 Two things sit outside it because they are not box questions:
@@ -94,6 +94,9 @@ the summary's growth tally copied a 1116-card map once per card and cost 1.2 s,
 against 3 ms for the same walk over a hoisted binding.
 The cost scales with the JOIN, not with what is scheduled,
 so a fresh box is where it bites hardest and an empty profile is a fair test of it.
+The trees follow from it:
+each grown tree crosses to Swift once per (area, marks) and is only re-placed per frame,
+and the rows are laid out once per (trees, width), never per body evaluation.
 
 ## Compose
 

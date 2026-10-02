@@ -10,8 +10,10 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import kotlin.math.max
 import kotlin.math.min
 import net.spross.kern.box.AreaTree
+import net.spross.kern.design.TreeFit
+import net.spross.kern.design.TreeLayout
 
-// One area's tree, as the forest and the round summary both draw it.
+// One area's tree, as the Trees picture and the round summary both draw it.
 //
 // The tree is one organism its whole life: a seedling thickens into a trunk, the words that
 // landed fill the crown, and blossom and fruit appear ON it rather than replacing it. The
@@ -28,15 +30,11 @@ internal class PlantedTree(val tree: AreaTree, val foot: Offset, val height: Flo
     /** The settled paths — every mark at full size, which is everything but a summary's rise. */
     val art: TreeArt? by lazy { skeleton?.let { TreeArt.build(tree, it, unit) } }
 
-    /**
-     * Grown flush into a box 1.44 heights wide, foot on its bottom edge. The marks hang
-     * past it wherever the twigs reach its edge: the tree is never shrunk to hold them in.
-     */
+    /** Grown and fitted in dp by kern, then scaled to pixels. */
     private fun fitted(): TreeSkeleton {
-        val grown = TreeSkeleton.grow(Mix.seed(tree.area), tree.met)
-        val bounds = grown.bounds()
-        val scale = min(height / max(-bounds.top, 1e-3f), height * 1.44f / max(bounds.width, 1e-3f))
-        return grown.placed(Offset(foot.x - bounds.center.x * scale, foot.y), scale)
+        val grown = TreeLayout.grow(tree.area, tree.met)
+        val fit = grown.fit(foot.x / unit.toDouble(), foot.y / unit.toDouble(), height / unit.toDouble())
+        return TreeSkeleton.placed(grown, TreeFit(fit.x * unit, fit.y * unit, fit.scale * unit))
     }
 
     fun dp(value: Float) = value * unit
@@ -49,7 +47,7 @@ internal fun DrawScope.drawTree(planted: PlantedTree, colors: ThemeColors, art: 
     when {
         // why: an area nobody has opened stands as a faded seedling — a place to go
         // rather than a chore not done.
-        tree.isBare -> seedling(planted, max(planted.height, planted.dp(ForestLayout.MIN_HEIGHT)),
+        tree.isBare -> seedling(planted, max(planted.height, planted.dp(TreeLayout.MIN_HEIGHT.toFloat())),
             colors.success.copy(alpha = 0.45f))
         art == null -> seedling(planted, planted.height, colors.success)
         else -> {
@@ -120,7 +118,7 @@ private fun DrawScope.fallen(planted: PlantedTree, colors: ThemeColors) {
     val leaves = Path()
     for (index in 0 until min(planted.tree.lapsed, 3)) {
         val side = if (index % 2 == 0) -1f else 1f
-        val spread = clear + Mix.noise(planted.tree.area, 13 + index) * clear * 0.5f
+        val spread = clear + noise(planted.tree.area, 13 + index) * clear * 0.5f
         leaf(leaves, Offset(planted.foot.x + side * spread, planted.foot.y + planted.dp(0.5f)), size,
             if (side > 0) 0.2f else PI_F - 0.2f)
     }

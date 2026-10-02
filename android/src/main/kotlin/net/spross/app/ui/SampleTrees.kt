@@ -5,10 +5,10 @@ import net.spross.kern.box.TreeTransition
 
 /**
  * A box at any age, without months of reviews behind it — what a debug launch with
- * `--ef forestAge <age>` stands on Home and on a round's summary, like iOS's
- * `-uitest-orchard`. Catalog areas, so the forest labels them with the catalog's emoji.
+ * `--ef treesAge <age>` stands on Home and on a round's summary, like iOS's
+ * `-uitest-trees`. Catalog areas, so the Trees picture labels them with the catalog's emoji.
  */
-internal object SampleForest {
+internal object SampleTrees {
     private val areas = listOf(
         "greetings" to 27, "people" to 62, "connectors" to 15, "questions" to 10, "kitchen" to 41,
         "living" to 36, "bath" to 39, "bedroom" to 37, "desk" to 39, "hall" to 40, "nature" to 41,

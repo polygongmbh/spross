@@ -111,7 +111,7 @@ internal class TreeArt(
         val heavy = tree.longHeld + tree.matured
         val leafy = heavy + tree.growing
         for ((rank, slot) in hanging.withIndex()) {
-            val grain = Mix.noise(tree.area, rank * 41 + 7)
+            val grain = noise(tree.area, rank * 41 + 7)
             val reach = tree.reaches.getOrElse(rank) { 0.4 }.toFloat()
             // A mark's SIZE is its own word's standing; only its lean is hashed.
             val size = base * (0.74f + 0.62f * reach) * scale(rank)
@@ -141,7 +141,7 @@ internal class TreeArt(
 
     /**
      * A matured word: a pale rosette of five petals, small enough to stay a tree in flower.
-     * At orchard size the rosette is one disc, and only a large one shows an eye.
+     * Among the Trees the rosette is one disc, and only a large one shows an eye.
      */
     private fun blossom(at: Offset, size: Float, angle: Float) {
         if (size < PLAIN * unit) return petals.addOval(Rect(at, size * 0.38f))

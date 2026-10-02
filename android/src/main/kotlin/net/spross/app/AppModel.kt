@@ -162,10 +162,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
 
     /**
-     * Debug launches only: the age of a fabricated box ([net.spross.app.ui.SampleForest])
-     * that stands in the forest and on a round's summary instead of this one.
+     * Debug launches only: the age of a fabricated box ([net.spross.app.ui.SampleTrees])
+     * that stands in the Trees picture and on a round's summary instead of this one.
      */
-    var sampleForestAge: Double? = null
+    var sampleTreesAge: Double? = null
 
     /**
      * Whether a round still owes the learner the three lines that teach it

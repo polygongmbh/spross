@@ -4,7 +4,7 @@ import SprossKern
 /// The north star screen: one glance = what to do right now.
 struct HomeView: View {
     let model: AppModel
-    /// Open the box — at one area when the orchard names it, else at the top.
+    /// Open the box — at one area when a tree names it, else at the top.
     var openBox: (String?) -> Void = { _ in }
 
     @Environment(\.locale) var locale
@@ -38,7 +38,7 @@ struct HomeView: View {
                 listeningCard
                 hub
                 briefingCard
-                OrchardSection(model: model, open: { openBox($0) })
+                Trees(model: model, open: { openBox($0) })
             }
             .padding(Theme.spacing.xl)
         }

@@ -4,7 +4,7 @@ import SprossKern
 // MARK: - GrowingTreeView
 //
 // One area's tree, rising out of the ground. The one place in the app where a
-// tree is allowed to move: the orchard on Home holds still because a box grows
+// tree is allowed to move: the Trees picture on Home holds still because a box grows
 // over weeks and motion there would claim a change the picture is not showing —
 // here a round has just finished, so something did in fact just happen.
 //
@@ -25,6 +25,21 @@ struct GrowingTreeView: View, Animatable {
     let transition: TreeTransition
     /// 0 = the tree as it stood before, 1 = as it stands now.
     var progress: Double
+    /// The finished tree's marks, read once rather than per frame.
+    private let canopy: Canopy
+    /// The share of its finished height the tree rises from.
+    private let from: CGFloat
+
+    init(transition: TreeTransition, progress: Double) {
+        self.transition = transition
+        self.progress = progress
+        canopy = Canopy(transition.after)
+        let full = TreeLayout.shared.height(tree: transition.after)
+        let was = TreeLayout.shared.height(tree: transition.before)
+        // An area worked from nothing rises from nothing; everything else rises from where it
+        // stood, or from the crouch, whichever is lower.
+        from = full > 0 ? min(Self.crouch, CGFloat(was / full)) : Self.crouch
+    }
 
     // why: `View` is main-actor isolated but SwiftUI interpolates this off it,
     // so the conformance has to step outside the actor (Swift 6 strict).
@@ -40,18 +55,10 @@ struct GrowingTreeView: View, Animatable {
             // why: the frame is the FINISHED tree's, so the drawing never
             // outgrows the space it was given mid-animation; within it the tree
             // rises from the height it had before the round.
-            let mark = OrchardLayout.solitary(transition.after, in: size)
-            TreeShapes.draw(&context, crouched(mark),
-                            arriving: TreeArrival(transition, at: progress))
+            let mark = TreeMark.solitary(transition.after, canopy: canopy, in: size, risen: risen)
+            TreeShapes.draw(&context, mark, arriving: TreeArrival(transition, at: progress))
         }
         .accessibilityHidden(true)
-    }
-
-    /// The tree at this moment's height, keeping the finished tree's identity so
-    /// the skeleton — and therefore every slot — stays put.
-    private func crouched(_ mark: TreeMark) -> TreeMark {
-        TreeMark(tree: mark.tree, foot: mark.foot, height: mark.height * risen,
-                 cell: mark.cell, baseline: mark.baseline)
     }
 
     /// A tree never starts taller than this fraction of where it ends, however
@@ -59,16 +66,11 @@ struct GrowingTreeView: View, Animatable {
     /// owed to the learner rather than to the counts.
     private static let crouch: CGFloat = 0.78
 
-    /// How tall the tree stands now, as a fraction of its finished height. An
-    /// area worked from nothing rises from nothing; everything else rises from
-    /// where it stood, or from the crouch, whichever is lower.
+    /// How tall the tree stands now, as a fraction of its finished height.
     private var risen: CGFloat {
-        let full = OrchardLayout.treeHeight(transition.after)
-        let was = OrchardLayout.treeHeight(transition.before)
-        let from = full > 0 ? min(Self.crouch, was / full) : Self.crouch
         // Clamped at the top: the spring settles from above, and a tree that
         // overshot its own height would be overshooting into the screen edge.
-        return max(0.05, from + (1 - from) * CGFloat(min(1, max(0, progress))))
+        max(0.05, from + (1 - from) * CGFloat(min(1, max(0, progress))))
     }
 }
 
@@ -82,7 +84,7 @@ struct TreeArrival {
     /// Keyed by canopy rank; anything not in here is settled.
     private let scales: [Int: CGFloat]
 
-    /// Nothing arriving — the orchard on Home, and any tree drawn outside a summary.
+    /// Nothing arriving — the Trees picture on Home, and any tree drawn outside a summary.
     static let settled = TreeArrival(scales: [:])
 
     private init(scales: [Int: CGFloat]) { self.scales = scales }
@@ -153,7 +155,7 @@ struct TreeArrival {
     return GrowingTreeView(transition: TreeTransition(before: AreaTree.companion.bare(area: "bath"),
                                                       after: after),
                            progress: 1)
-        .frame(height: OrchardLayout.heroHeight(after))
+        .frame(height: TreeLayout.shared.heroHeight(tree: after, ceiling: TreeLayout.shared.HERO_MAX))
         .padding(Theme.spacing.xl)
         .background(Theme.colors.background)
 }
@@ -163,7 +165,7 @@ struct TreeArrival {
     let packed = AreaTree.sample("bath", packed: 12, mass: 0, tendedToday: true)
     return GrowingTreeView(transition: TreeTransition(before: packed, after: packed),
                            progress: 1)
-        .frame(height: OrchardLayout.heroHeight(packed))
+        .frame(height: TreeLayout.shared.heroHeight(tree: packed, ceiling: TreeLayout.shared.HERO_MAX))
         .padding(Theme.spacing.xl)
         .background(Theme.colors.background)
 }

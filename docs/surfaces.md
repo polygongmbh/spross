@@ -56,9 +56,8 @@ the box is app-private and written after every answer rather than debounced,
 runs are full screens rather than covers — Back mirrors ✕ everywhere, and inside a run
 the reference panel eats Back first — and a fallen record celebrates in the tile's own
 words, without confetti.
-The forest and the round summary's tree are Android's own drawing of kern's `areaTrees`:
-the same tiers hang as the same marks at the twig tips, on branches cut by their own generator,
-so an area's tree matches its iOS tree in what it says, not in its shape.
+The trees and the round summary's tree are Android's own drawing of kern's `areaTrees`,
+stood and grown by kern (`TreesLayout`, `TreeLayout`) exactly as on iOS.
 The summary's tree rises only while the system's animations are on.
 The home-screen tile ships there too, in Glance, and it is ONE grid sized to the tile
 rather than iOS's three home-screen families (§ Watch & widgets):

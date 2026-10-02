@@ -30,7 +30,7 @@ import net.spross.kern.trainer.DayLead
  * The north star screen: one glance = what to do right now.
  *
  * Top to bottom: the date and the day's name, ONE state card, the listening card, the
- * trainers, the companion card, the fortnight behind it, and the forest. Which state card is kern's
+ * trainers, the companion card, the fortnight behind it, and the trees. Which state card is kern's
  * [DayLead] under a load failure ([homeCard]); the drill Home names stands only inside one.
  */
 @Composable
@@ -117,7 +117,7 @@ fun HomeScreen(model: AppModel) {
         // itself, so nothing announces it a second time above.
         ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
 
-        HomeForest(model)
+        HomeTrees(model)
         Spacer(Modifier.height(Theme.spacing.lg))
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }

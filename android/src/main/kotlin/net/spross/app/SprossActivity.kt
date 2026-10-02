@@ -87,11 +87,11 @@ class SprossActivity : ComponentActivity() {
         if (savedInstanceState == null && intent?.getStringExtra(EXTRA_READ_ALOUD) == "off") {
             model.pronouncer.muted = true
         }
-        // why: `--ef forestAge 0.55` on a debug build stands a fabricated box of that age in
-        // the forest and on a round's summary, so every age can be looked at without months
+        // why: `--ef treesAge 0.55` on a debug build stands a fabricated box of that age in
+        // the Trees picture and on a round's summary, so every age can be looked at without months
         // of reviews behind it.
-        if (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0 && intent?.hasExtra(EXTRA_FOREST_AGE) == true) {
-            model.sampleForestAge = intent.getFloatExtra(EXTRA_FOREST_AGE, 0f).toDouble()
+        if (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0 && intent?.hasExtra(EXTRA_TREES_AGE) == true) {
+            model.sampleTreesAge = intent.getFloatExtra(EXTRA_TREES_AGE, 0f).toDouble()
         }
         setContent {
             SprossTheme {
@@ -138,7 +138,7 @@ class SprossActivity : ComponentActivity() {
          * sentence in `scripts/` and the verify skill covers both phones.
          */
         const val EXTRA_READ_ALOUD = "readAloud"
-        const val EXTRA_FOREST_AGE = "forestAge"
+        const val EXTRA_TREES_AGE = "treesAge"
     }
 }
 

@@ -36,7 +36,7 @@ enum TreeShapes {
         // patch of ground — a place to go rather than a chore not done.
         if shown.isBare {
             return seedling(&context, mark,
-                            height: max(mark.height, OrchardLayout.minHeight),
+                            height: max(mark.height, TreeMark.minHeight),
                             color: Theme.colors.success.opacity(0.45))
         }
         guard shown.count > 0 else {
@@ -161,7 +161,7 @@ enum TreeShapes {
         var buds = Path(), cherries = Path(), stalks = Path(), petals = Path(), eyes = Path()
         for (rank, slot) in hanging.enumerated() {
             // A mark's SIZE is its own word's standing; only its lean is hashed.
-            let grain = OrchardLayout.noise("\(mark.tree.area)-\(rank)", 41)
+            let grain = noise("\(mark.area)-\(rank)", 41)
             let size = CanopyMark.size(base: base, reach: shown.reach(rank)) * arriving.scale(rank)
             guard size > 0.2 else { continue }
             let angle = CanopyMark.lean(slot, grain: grain)
@@ -202,10 +202,17 @@ enum TreeShapes {
         let size = max(3, mark.height * 0.055)
         for index in 0..<min(shown.fallen, 3) {
             let side: CGFloat = index.isMultiple(of: 2) ? -1 : 1
-            let spread = clear + CGFloat(OrchardLayout.noise("\(mark.tree.area)-f\(index)", 13)) * clear * 0.5
+            let spread = clear + CGFloat(noise("\(mark.area)-f\(index)", 13)) * clear * 0.5
             let at = CGPoint(x: mark.foot.x + side * spread, y: mark.baseline + 0.5)
             context.fill(leafPath(at: at, size: size, angle: side > 0 ? 0.2 : .pi - 0.2),
                          with: .color(Theme.colors.amber.opacity(0.85)))
         }
+    }
+
+    /// Stable 0..<1 noise for one (id, property) —
+    /// the SplitMix64 finish `ConfettiView` uses, over an FNV-1a fold of the id.
+    static func noise(_ id: String, _ salt: Int) -> Double {
+        var rng = SplitMix64(seed: SplitMix64(id).seed &+ UInt64(bitPattern: Int64(salt)))
+        return rng.next()
     }
 }

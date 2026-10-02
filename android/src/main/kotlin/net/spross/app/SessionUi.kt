@@ -2,7 +2,7 @@ package net.spross.app
 
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
-import net.spross.app.ui.SampleForest
+import net.spross.app.ui.SampleTrees
 import net.spross.kern.box.GrowthHeadline
 import net.spross.kern.box.TreeTransition
 import net.spross.kern.box.grownArea
@@ -78,7 +78,7 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
     return if (card == null) {
         val restSuggested = BoxEngine.today(state, now(), tz()).recallStrained
         val order = catalog?.let { cat -> stats?.let { BoxBrowser.areaNames(cat, it) } }.orEmpty()
-        val moved = sampleForestAge?.let(SampleForest::round)
+        val moved = sampleTreesAge?.let(SampleTrees::round)
             ?: grownArea(boxBeforeSession ?: state, state, active.answeredIds, order, now(), tz())
         val streakDays = stats?.streak ?: 0
         SessionUi(

@@ -44,7 +44,7 @@ for the two things no finger reaches:
   (skip onboarding with that profile), `-uitest-streak N`, `-uitest-level N`,
   `-uitest-misses N`, `-uitest-record 1`, `-uitest-seed N` (pins which task every
   drill draws, so one particular verdict or Sprosse needs no relaunch lottery),
-  `-uitest-orchard <age 0…1>` (a fabricated box of that age on Home's forest and on
+  `-uitest-trees <age 0…1>` (a fabricated box of that age on Home's trees and on
   the round summary's tree), and the Watch's `-uitest-snapshot`;
 - **instrumentation** — `-uitest-sound 1` and `-uitest-pronounce <form>` print WHICH
   branch played, which no screenshot shows.

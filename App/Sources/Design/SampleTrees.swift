@@ -1,20 +1,18 @@
 import Foundation
 import SprossKern
 
-// MARK: - A fabricated orchard
+// MARK: - A fabricated box of trees
 //
 // A box at any age, without months of reviews behind it —
-// what the previews draw, and what a DEBUG launch with
-// `-uitest-orchard <age>` stands on Home and on a round's summary.
+// what a DEBUG launch with `-uitest-trees <age>` stands on Home and on a round's summary.
 
-enum SampleOrchard {
+enum SampleTrees {
     /// Catalog areas, so a DEBUG launch labels them with the catalog's own emoji.
-    private static let areas: [(String, String, Int)] = [
-        ("greetings", "🤝", 27), ("people", "🧑", 62), ("connectors", "🔗", 15),
-        ("questions", "❓", 10), ("kitchen", "🍳", 41), ("living", "🛋️", 36),
-        ("bath", "🛁", 39), ("bedroom", "🛏️", 37), ("desk", "✏️", 39), ("hall", "🚪", 40),
-        ("nature", "🌳", 41), ("school", "🎒", 33), ("organization", "🗒️", 21),
-        ("admin", "🗂️", 38), ("doctor", "🩺", 36), ("work", "💼", 38), ("food", "🥕", 4),
+    private static let areas: [(String, Int)] = [
+        ("greetings", 27), ("people", 62), ("connectors", 15), ("questions", 10),
+        ("kitchen", 41), ("living", 36), ("bath", 39), ("bedroom", 37), ("desk", 39),
+        ("hall", 40), ("nature", 41), ("school", 33), ("organization", 21),
+        ("admin", 38), ("doctor", 36), ("work", 38), ("food", 4),
     ]
 
     /// Every area at `age`, 0…1 — areas fill in catalog order,
@@ -26,22 +24,17 @@ enum SampleOrchard {
         }
     }
 
-    /// The area's emoji, for the forest's labels.
-    static func emoji(_ area: String) -> String {
-        areas.first { $0.0 == area }?.1 ?? "📦"
-    }
-
     /// The kitchen as a round at `age` leaves it —
-    /// a large area at the same age the orchard stands at.
+    /// a large area at the same age the other trees stand at.
     static func round(age: Double) -> TreeTransition {
         let kitchen = areas[4]
         return TreeTransition(before: tree(kitchen, reached: max(0, age - 0.08), index: 4),
                               after: tree(kitchen, reached: age, index: 4, tended: true))
     }
 
-    private static func tree(_ area: (String, String, Int), reached: Double,
+    private static func tree(_ area: (String, Int), reached: Double,
                              index: Int, tended: Bool? = nil) -> AreaTree {
-        let (id, _, total) = area
+        let (id, total) = area
         let started = Int(Double(total) * min(1, reached * 1.3))
         let settled = Int(Double(started) * max(0, reached - 0.25))
         let blossoms = Int(Double(settled) * max(0, reached - 0.55))

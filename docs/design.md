@@ -163,7 +163,7 @@ What licenses a second component is a parameter attempted and found not to carry
 
 - **Three peer sections**: Home, Box, Settings.
   The tab bar stands on those three and on nothing else.
-- **Home** carries the day: the round, listening, the drills, the companion, the forest.
+- **Home** carries the day: the round, listening, the drills, the companion, the trees.
   - The line over the round carries the language being learned in words that fit the hour
     (`../kern/docs/reports.md`, `dayPart`/`partVariant`).
     Two registers: the target speaking for itself, or the known language asking about it.
@@ -185,12 +185,13 @@ What licenses a second component is a parameter attempted and found not to carry
   The prompt text is never shown, only the loop it runs.
   What comes back is shown whole and sorted, never filtered:
   every pair in new/near/held groups (`HarvestKind`), only the new group arrives ticked.
-- **The forest**: one tree per area, catalog order.
+- **The trees**: one tree per area, catalog order.
   Answers how the box is shaped and which corners have never been opened.
   **The unit is the area, not the word.**
   **A tree is one organism its whole life** — trunk is growth, canopy is landed words,
   blossom and fruit appear on it.
   Which `GrowthStage` stands in which tier is kern's `areaTrees`;
+  where each tree stands is kern's `TreesLayout`, its size and its wood kern's `TreeLayout`;
   a tier is one mark — arriving a bud, growing a leaf, matured a blossom, long held fruit.
   What the round summary claims over its tree is kern's `growthHeadline`.
   The marks come first and the wood carries them: a branch hands half its marks to side branches

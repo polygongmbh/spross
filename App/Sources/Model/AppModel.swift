@@ -52,7 +52,7 @@ final class AppModel {
     var ownWordDraft: OwnWordDraft?
     private(set) var stats: BoxStatistics?
     /// Where every card stands on the growth ladder —
-    /// what the orchard is drawn from.
+    /// what the Trees picture is drawn from.
     /// Cached beside `stats` rather than derived on read:
     /// it is one entry per card in the join,
     /// and Home would otherwise rebuild it every redraw.
@@ -61,7 +61,7 @@ final class AppModel {
     /// `HomeStanding`. Cached for the same reason `growth` is, and more so:
     /// three of its answers each compose a whole round.
     private(set) var home: HomeStanding = .none
-    /// One tree per area, as the orchard draws them.
+    /// One tree per area, as the Trees picture draws them.
     /// Derived from `growth`,
     /// so it is rebuilt with it rather than per redraw.
     private(set) var trees: [AreaTree] = []
@@ -97,11 +97,11 @@ final class AppModel {
     private(set) var targetChoices: [String] = []
     /// Every shelf's heading, resolved for the reader: emoji, title, flavor line.
     /// Each is a linear scan of the catalog's area list, and the browser asks all
-    /// three per shelf while the orchard asks the emoji again per tree.
+    /// three per shelf while the Trees picture asks the emoji again per tree.
     private(set) var areaChrome: [String: AreaChrome] = [:]
 
     /// Each area's numbers by name. `BoxStatistics.areas` is a LIST, so finding
-    /// one area in it is a scan — and both the browser and the orchard do it once
+    /// one area in it is a scan — and both the browser and the Trees picture do it once
     /// per area, which is the same scan squared.
     private(set) var areaStatsByName: [String: AreaStatistics] = [:]
     /// How many cards the join holds. `box.cards` is a Kotlin map, so reading
@@ -158,9 +158,9 @@ final class AppModel {
     /// without answering anything — a step the reducer has no intent for,
     /// because nothing but a test ever asks for it.
     var uitestFinished = false
-    var uitestOrchardAge: Double? {
-        UserDefaults.standard.object(forKey: "uitest-orchard") == nil
-            ? nil : UserDefaults.standard.double(forKey: "uitest-orchard")
+    var uitestTreesAge: Double? {
+        UserDefaults.standard.object(forKey: "uitest-trees") == nil
+            ? nil : UserDefaults.standard.double(forKey: "uitest-trees")
     }
     #endif
 
@@ -438,7 +438,7 @@ final class AppModel {
     // MARK: - Persistence & stats
 
     /// Recompute everything derived from the box: the statistics, the growth
-    /// ladder, the Home standing, the orchard and the activity strip.
+    /// ladder, the Home standing, the trees and the activity strip.
     ///
     /// The ONE place any of them go stale, and so the one place they are taken
     /// again — every path that can move the box ends here (a mutation, a
@@ -464,9 +464,9 @@ final class AppModel {
         } ?? .none
         trees = composedAreaTrees()
         #if DEBUG
-        // UI-test hook: `-uitest-orchard 0.55` stands a fabricated box of that age
-        // on Home and on a round's summary (`SampleOrchard`).
-        if let age = uitestOrchardAge { trees = SampleOrchard.trees(age: age) }
+        // UI-test hook: `-uitest-trees 0.55` stands a fabricated box of that age
+        // on Home and on a round's summary (`SampleTrees`).
+        if let age = uitestTreesAge { trees = SampleTrees.trees(age: age) }
         #endif
         activity = composedActivityWindow(now: now, tzId: tz)
         areaGroupSections = composedAreaGroupSections()

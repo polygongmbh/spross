@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -31,23 +32,24 @@ import net.spross.app.AppModel
 import net.spross.app.areaEmoji
 import net.spross.app.areaTitle
 import net.spross.app.countLine
-import net.spross.app.forestTrees
+import net.spross.app.composedAreaTrees
 import net.spross.app.openBox
 import net.spross.kern.box.AreaTree
+import net.spross.kern.design.TreesLayout
 
 /**
- * The bottom of Home: the forest, and the standing split in words under it.
+ * The bottom of Home: the Trees picture, and the standing split in words under it.
  * A picture of the box, not a way around it — a tree opens the box at its own area.
  */
 @Composable
-internal fun HomeForest(model: AppModel) {
+internal fun HomeTrees(model: AppModel) {
     val stats = model.stats
-    val trees = remember(model.box, stats, model.catalog) { model.forestTrees() }
+    val trees = remember(model.box, stats, model.catalog) { model.composedAreaTrees() }
     if (trees.isEmpty()) return
     val chrome = model.chrome
     val areas = remember(stats) { stats?.areas?.associateBy { it.name }.orEmpty() }
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        Forest(
+        Trees(
             trees = trees,
             emoji = model::areaEmoji,
             describe = { tree ->
@@ -74,16 +76,16 @@ internal fun HomeForest(model: AppModel) {
 /**
  * The box as one picture: a tree per area, standing in rows on shared ground.
  *
- * [trees] come in the order the forest stands in, from kern ([AreaTree] per area);
- * this only places and draws them. One Canvas for every tree, grown once per layout,
- * and nothing moves: a box grows over weeks, and motion would claim a change the
- * picture is not showing.
+ * [trees] come in the order they stand in, from kern ([AreaTree] per area), and kern
+ * places them ([TreesLayout]); this only scales and draws them. One Canvas for every tree,
+ * grown once per layout, and nothing moves: a box grows over weeks, and motion would claim
+ * a change the picture is not showing.
  *
  * The canvas says nothing to TalkBack; each tree carries a button on its own cell,
  * spoken as [describe] words it.
  */
 @Composable
-internal fun Forest(
+internal fun Trees(
     trees: List<AreaTree>,
     emoji: (String) -> String,
     describe: (AreaTree) -> String,
@@ -93,7 +95,7 @@ internal fun Forest(
     BoxWithConstraints(modifier.fillMaxWidth()) {
         val density = LocalDensity.current
         val width = constraints.maxWidth.toFloat()
-        val spots = remember(trees, width, density.density) { ForestLayout.plant(trees, width, density.density) }
+        val spots = remember(trees, width, density.density) { place(trees, width, density.density) }
         val colors = Theme.colors
         val measurer = rememberTextMeasurer()
         val labels = remember(trees, measurer) {
@@ -107,7 +109,7 @@ internal fun Forest(
                 for (spot in spots) {
                     drawTree(spot.planted, colors)
                     val label = labels[spot.planted.tree.area] ?: continue
-                    val center = Offset(spot.planted.foot.x, spot.planted.foot.y + ForestLayout.LABEL_HEIGHT * density.density / 2)
+                    val center = Offset(spot.planted.foot.x, spot.planted.foot.y + TreesLayout.LABEL_HEIGHT.toFloat() * density.density / 2)
                     drawText(label, topLeft = Offset(center.x - label.size.width / 2f, center.y - label.size.height / 2f),
                         alpha = if (spot.planted.tree.isBare) 0.4f else 1f)
                 }
@@ -125,3 +127,16 @@ internal fun Forest(
         }
     }
 }
+
+/** One tree placed among the others, and the cell its label and tap target fill. */
+private class TreeCell(val planted: PlantedTree, val cell: Rect)
+
+/** Kern's placement ([TreesLayout.place]) in dp, scaled to pixels. */
+private fun place(trees: List<AreaTree>, width: Float, density: Float): List<TreeCell> =
+    TreesLayout.place(trees, (width / density).toDouble()).spots.map {
+        val d = density.toDouble()
+        val cell = Rect((it.cellX * d).toFloat(), (it.cellY * d).toFloat(),
+            ((it.cellX + it.cellWidth) * d).toFloat(), ((it.cellY + it.cellHeight) * d).toFloat())
+        val foot = Offset((it.footX * d).toFloat(), (it.baseline * d).toFloat())
+        TreeCell(PlantedTree(trees[it.index], foot, (it.height * d).toFloat(), density), cell)
+    }

@@ -50,7 +50,7 @@ extension TreeShapes {
 
     /// A word that has matured: a pale rosette of five petals, kept small —
     /// a tree carrying forty of them is still a tree in flower, not a bouquet.
-    /// At orchard size the rosette is one disc, and only a large one shows an eye.
+    /// Among the Trees the rosette is one disc, and only a large one shows an eye.
     static func blossom(at point: CGPoint, size: CGFloat, angle: Double,
                         petals: inout Path, eyes: inout Path) {
         guard size >= CanopyMark.plain else { return petals.addPath(circle(point, size * 0.38)) }

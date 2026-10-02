@@ -5,7 +5,7 @@ import SprossKern
 //
 // Kern tallies each area into its tiers (`areaTrees`) and names what a round moved
 // (`TreeTransition`, `grownArea`); this reads them in the Box screen's order.
-// Both the forest on Home and the single tree a round's summary draws read these,
+// Both the Trees picture on Home and the single tree a round's summary draws read these,
 // so they can never disagree about what an area looks like.
 
 extension AppModel {
@@ -13,7 +13,7 @@ extension AppModel {
     /// One tree per area the box holds, in the Box screen's own order
     /// (`areaNames` — catalog groups top to bottom, own words last).
     /// Held on the model as `trees`: it walks every card in the join,
-    /// and the forest asks for it on every redraw.
+    /// and the Trees picture asks for it on every redraw.
     func composedAreaTrees() -> [AreaTree] {
         let byArea = areaTreesByName()
         return areaNames.compactMap { byArea[$0] }
@@ -63,7 +63,7 @@ struct Canopy {
 }
 
 extension AreaTree {
-    /// A tree built by hand — the previews and the fabricated DEBUG box (`SampleOrchard`).
+    /// A tree built by hand — the previews and the fabricated DEBUG box (`SampleTrees`).
     static func sample(_ area: String, leaves: Int = 0, blossoms: Int = 0, fruit: Int = 0,
                        buds: Int = 0, packed: Int = 0, fallen: Int = 0, mass: Double,
                        tendedToday: Bool = false, reaches: [Double] = []) -> AreaTree {

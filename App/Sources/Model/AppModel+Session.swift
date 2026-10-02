@@ -164,7 +164,7 @@ extension AppModel {
     /// what the summary draws. Nil when the round touched nothing joinable.
     var sessionGrowth: TreeTransition? {
         #if DEBUG
-        if let age = uitestOrchardAge { return SampleOrchard.round(age: age) }
+        if let age = uitestTreesAge { return SampleTrees.round(age: age) }
         #endif
         guard let box, let run else { return nil }
         return grownArea(before: boxBeforeSession ?? box, after: box,
