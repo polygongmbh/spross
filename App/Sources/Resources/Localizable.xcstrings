@@ -1416,7 +1416,7 @@
         }
       }
     },
-    "box.phase.learning" : {
+    "box.phase.fresh" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1428,6 +1428,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fresh"
+          }
+        }
+      }
+    },
+    "box.phase.growing" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wächst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Growing"
           }
         }
       }
@@ -1460,22 +1476,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shaky"
-          }
-        }
-      }
-    },
-    "box.phase.settled" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wächst"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Growing"
           }
         }
       }

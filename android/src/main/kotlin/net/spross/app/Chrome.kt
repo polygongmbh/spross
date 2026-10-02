@@ -334,14 +334,14 @@ interface Chrome {
     val a11yStateExpanded: String
     val a11yStateCollapsed: String
     // A card with nothing behind it has NO phase word: new is the absence of a badge. Past
-    // that, a row reads one of four: [boxPhaseLearning] while walking the learning steps,
+    // that, a row reads one of four: [boxPhaseFresh] short of the growing bar,
     // [boxPhaseRelearning] the same Sprosse after a lapse (same color/icon, its own word),
-    // [boxPhaseSettled] once in Review but short of the consolidated bar, and
+    // [boxPhaseGrowing] past the growing bar but short of the consolidated one, and
     // [a11yBoxPhaseConsolidated] once a card has cleared it — the shelf's own count stays the
     // two-way consolidated/learning split it has always been (`AreaStatistics.learning`).
-    val boxPhaseLearning: String
+    val boxPhaseFresh: String
     val boxPhaseRelearning: String
-    val boxPhaseSettled: String
+    val boxPhaseGrowing: String
     val a11yBoxPhaseConsolidated: String
 
     // ── Box search ──────────────────────────────────────────────────────────────

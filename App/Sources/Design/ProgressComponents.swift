@@ -268,9 +268,8 @@ struct PhaseBadge: View {
     private var label: LocalizedStringKey {
         switch phase {
         case .new: return "box.phase.new"
-        // Fresh shares its word with Learning — only the color tells them apart.
-        case .fresh: return "box.phase.learning"
-        case .growing: return "box.phase.settled"
+        case .fresh: return "box.phase.fresh"
+        case .growing: return "box.phase.growing"
         case .relearning: return "box.phase.relearning"
         case .grown: return "a11y.box.phase.consolidated"
         }

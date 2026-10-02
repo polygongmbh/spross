@@ -183,11 +183,11 @@ fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
         )
     } else {
         val word = when (standing.stage) {
-            GrowthStage.Growing -> chrome.boxPhaseSettled
+            GrowthStage.Growing -> chrome.boxPhaseGrowing
             GrowthStage.Relearning -> chrome.boxPhaseRelearning
-            else -> chrome.boxPhaseLearning // Fresh
+            else -> chrome.boxPhaseFresh
         }
-        val glyph = if (standing.stage == GrowthStage.Growing) SETTLED else LEAF
+        val glyph = if (standing.stage == GrowthStage.Growing) HERB else LEAF
         Pill("$glyph $word", color)
     }
 }
@@ -199,7 +199,7 @@ const val SEAL = "✔"
 const val LEAF = "🌱"
 
 /** …and the one for a word that has cleared the growing bar. */
-const val SETTLED = "🌿"
+const val HERB = "🌿"
 
 /** Phrases waiting on their components — the only count that is not about a schedule. */
 const val LOCK = "🔒"
