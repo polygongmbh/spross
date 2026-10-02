@@ -3,9 +3,9 @@ import SwiftUI
 /// The one watch practice screen: a role-aware multiple-choice question over
 /// the due batch or a free-practice lap. Correctness + response time derive the
 /// FSRS rating (`WatchGrading`) — no self-grading. Instant feedback on four
-/// channels (green right / red wrong plus a red wash, a haptic shaped like the
-/// rating, that rating badged on the tile — `WatchFeedback` — and the answered
-/// tile's verdict spoken as its accessibility value), then auto-advance.
+/// channels (green right / red wrong plus a red wash, a light click for a right
+/// answer and a double tap for a miss, that rating badged on the tile —
+/// `WatchFeedback` — and the answered tile's verdict spoken as its accessibility value), then auto-advance.
 /// One progress indicator, in the title: the due batch counts to its end,
 /// free practice shows the answer streak (having no total to count toward).
 /// - recognize: prompt the target `promptForm` (article-tinted), tap the
