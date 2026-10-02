@@ -7,7 +7,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - The chime for a right answer now plays a little softer than the one for a wrong answer.
 - The watch now answers a right answer with just a light click, and a wrong one with a double tap.
 - A drill answer that is right but for one misspelled word now counts as a near-miss, the more leniently the longer the answer, instead of as wrong.
-- Words, speech and chimes now all play 6 dB quieter, so a normal phone volume no longer makes the app too loud.
+- Words, speech and chimes now all play 12 dB quieter, so a normal phone volume no longer makes the app too loud.
 - Review cards now say the meaning in your own language as well as the word, and a card answered right waits for its word to be said before moving on; the audio settings can turn the meaning off.
 - A drill run now clears a level only while it has had no miss or near-miss at all; its first slip anywhere stops it from clearing any more.
 - A finished round now counts the words sown first, then reviews, then words settled, which Home and Progress now call settled too.

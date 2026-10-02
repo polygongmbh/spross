@@ -32,7 +32,7 @@ object Playback {
      * are indexed to and the chimes are leveled to ([Chime]): recordings, synthesized
      * speech and chimes all take it, so turning it moves them together and keeps them level.
      */
-    const val OUTPUT_DB: Double = -6.0
+    const val OUTPUT_DB: Double = -12.0
 
     /** The level a player applies for a recording [measured] at: the clamped index at [OUTPUT_DB]. */
     fun levelDb(measured: Double): Double = gainDb(measured) + OUTPUT_DB
