@@ -105,9 +105,8 @@ private fun DrawScope.canopy(art: TreeArt, colors: ThemeColors) {
     val tones = listOf(colors.das.copy(alpha = 0.92f), colors.success,
         colors.success.copy(alpha = 0.84f), colors.success.copy(alpha = 0.68f))
     art.tones.forEachIndexed { index, path -> drawPath(path, tones[index]) }
-    drawPath(art.laterals, colors.blossom.copy(alpha = 0.85f))
-    drawPath(art.kings, colors.blossom)
-    drawPath(art.eyes, colors.fruit.copy(alpha = 0.4f))
+    drawPath(art.petals, colors.die.copy(alpha = 0.9f))
+    drawPath(art.eyes, colors.amber)
 }
 
 /** Words that lapsed lie on the ground beside the trunk; the tree never shrinks for them. */

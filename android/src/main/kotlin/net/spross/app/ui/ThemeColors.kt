@@ -71,8 +71,6 @@ class ThemeColors(
      * wear it; a card telling someone they were wrong never does.
      */
     val wrong: Color,
-    /** Open blossom on a tree: near-white with a berry flush. */
-    val blossom: Color,
     /** Ripe fruit on a tree: a muted crimson. */
     val fruit: Color,
     /** Masculine article blue. */
@@ -118,7 +116,6 @@ val ThemeLight = ThemeColors(
     amber = Palette.amber.light.opaque(),
     grown = Palette.grown.light.opaque(),
     wrong = Palette.wrong.light.opaque(),
-    blossom = Palette.blossom.light.opaque(),
     fruit = Palette.fruit.light.opaque(),
     der = Palette.der.light.opaque(),
     die = Palette.die.light.opaque(),
@@ -141,7 +138,6 @@ val ThemeDark = ThemeColors(
     amber = Palette.amber.dark.opaque(),
     grown = Palette.grown.dark.opaque(),
     wrong = Palette.wrong.dark.opaque(),
-    blossom = Palette.blossom.dark.opaque(),
     fruit = Palette.fruit.dark.opaque(),
     der = Palette.der.dark.opaque(),
     die = Palette.die.dark.opaque(),

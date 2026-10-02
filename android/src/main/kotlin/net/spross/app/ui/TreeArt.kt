@@ -15,8 +15,8 @@ import net.spross.kern.box.AreaGrowth
 // first, so fruit and blossom take the first slots):
 //   fruit    — long held      blossom — matured
 //   leaf     — growing        bud     — arriving
-// Told apart by shape before color: a sprig of pointed leaflets, a small disc, a spur of three
-// pale flowers, a round disc hanging under its twig.
+// Told apart by shape before color: a sprig of pointed leaflets, a small disc, five berry petals
+// round an ochre eye, a round disc hanging under its twig.
 
 /** A leaf runs longer than the base a disc is cut to: it is the one mark meant to merge. */
 private const val LEAF_STRETCH = 1.45f
@@ -27,10 +27,10 @@ private const val FRUIT_FLOOR = 1.6f
 
 /** The smallest a mark is cut, in dp, so a young crown's words stay legible. */
 private const val MARK_FLOOR = 2.4f
-/** Below this size (dp) each of a blossom's flowers is one disc: petals blur. */
+/** A blossom's width, against the base. */
+private const val BLOSSOM_SPAN = 0.75f
+/** Below this size (dp) a blossom's petals are one disc: they blur. */
 private const val PLAIN = 12f
-/** From this size (dp) on a blossom's flowers show their eyes. */
-private const val EYED = 20f
 
 internal class TreeArt(
     val wood: Path,
@@ -40,9 +40,7 @@ internal class TreeArt(
     /** Leaves in four tones, lit from above: the crown's top first, its underside last. */
     val tones: List<Path>,
     val buds: Path,
-    /** A blossom's two lateral flowers, drawn under its king flower in [kings]. */
-    val laterals: Path,
-    val kings: Path,
+    val petals: Path,
     val eyes: Path,
     val fruit: Path,
     /** Pixels per dp. */
@@ -59,7 +57,7 @@ internal class TreeArt(
             // The mark size a crown of this pitch cuts to.
             val base = max(floor, skeleton.pitch * 0.85f)
             val art = TreeArt(Path(), Path(), Path(), Path(), List(4) { Path() },
-                Path(), Path(), Path(), Path(), Path(), unit)
+                Path(), Path(), Path(), Path(), unit)
             art.wood(skeleton, floor, tree.met)
             art.canopy(tree, skeleton, base, scale)
             return art
@@ -141,26 +139,20 @@ internal class TreeArt(
     }
 
     /**
-     * A matured word: a spur of three flowers based on the slot, so the twig runs into it —
-     * two laterals and the larger king flower beyond them, along the mark's lean.
-     * Among the Trees each flower is one disc, and only large ones show an eye.
+     * A matured word: five petals round an eye, small enough to stay a tree in flower.
+     * Among the Trees the petals are one disc: they blur.
      */
     private fun blossom(at: Offset, size: Float, angle: Float) {
-        val ux = cos(angle); val uy = sin(angle)
-        fun flower(along: Float, across: Float, radius: Float, turn: Float, into: Path) {
-            val center = Offset(at.x + (ux * along - uy * across) * size, at.y + (uy * along + ux * across) * size)
-            val r = radius * size
-            if (size < PLAIN * unit) return into.addOval(Rect(center, r))
+        val span = size * BLOSSOM_SPAN
+        if (size < PLAIN * unit) {
+            petals.addOval(Rect(at, span * 0.42f))
+        } else {
             for (petal in 0 until 5) {
-                val spin = turn + petal * 2 * PI_F / 5
-                into.addOval(Rect(Offset(center.x + cos(spin) * r * 0.45f, center.y + sin(spin) * r * 0.45f), r * 0.55f))
+                val turn = angle + petal * 2 * PI_F / 5
+                petals.addOval(Rect(Offset(at.x + cos(turn) * span * 0.25f, at.y + sin(turn) * span * 0.25f), span * 0.22f))
             }
-            if (size >= EYED * unit) eyes.addOval(Rect(center, r * 0.12f))
         }
-        // why: each flower turned its own way, so the three do not look stamped.
-        flower(0.12f, 0.20f, 0.17f, angle, laterals)
-        flower(0.10f, -0.22f, 0.15f, angle + 1.3f, laterals)
-        flower(0.30f, 0f, 0.22f, angle + 2.1f, kings)
+        eyes.addOval(Rect(at, span * 0.13f))
     }
 
     /** A word held for months: one round fruit, its top on the slot, so it hangs under its wood. */
