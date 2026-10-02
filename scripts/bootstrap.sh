@@ -30,6 +30,6 @@ if ! command -v xcodegen >/dev/null 2>&1; then
   echo "error: bootstrap: xcodegen not installed (brew install xcodegen)" >&2
   exit 1
 fi
-xcodegen generate
+scripts/gen.sh
 
 echo "Bootstrap complete — open Spross.xcodeproj (scheme: Spross)."

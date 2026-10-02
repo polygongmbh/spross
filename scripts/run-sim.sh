@@ -55,6 +55,9 @@ fi
 DERIVED="$PWD/build/xcode"
 
 if [ "$BUILD" = 1 ]; then
+  # why: the .xcodeproj is gitignored, so a checkout or a new source file leaves it
+  # listing the wrong files until regenerated.
+  scripts/gen.sh
   xcodebuild -project Spross.xcodeproj -scheme Spross \
     -destination "id=$UDID" -derivedDataPath "$DERIVED" build
 fi
