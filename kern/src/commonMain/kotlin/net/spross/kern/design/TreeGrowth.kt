@@ -58,9 +58,8 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
 
         // why: the lead bends little and the others turn well away, so no two siblings
         // part at less than about 30° and run side by side.
-        // why: the trunk's lead leans off like its siblings, so a grown crown tops out in several limbs, not one leader.
-        val leadTurn = (if (depth == 0) rng.range(0.30, 0.45) else rng.range(0.05, 0.20)) * (if (rng.next() < 0.5) -1 else 1)
-        val leadLength = if (depth == 0) rng.range(0.76, 0.90) else rng.range(0.86, 0.95)
+        val leadTurn = rng.range(0.05, 0.20) * (if (rng.next() < 0.5) -1 else 1)
+        val leadLength = rng.range(0.86, 0.95)
         val sideTurn = rng.range(0.75, 1.10)
         val sideLength = rng.range(0.76, 0.90)
         // why: the trunk always forks three ways, so the crown has low limbs on both sides.
@@ -76,8 +75,8 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
     }
 
     /**
-     * [count] slots on the wood in rank order. The first round gives each carrier one mark
-     * toward its outer end, the levelest and inner wood first so fruit and blossom hang as spur fruit
+     * [count] slots on the wood in rank order. The first round gives each carrier one mark at
+     * its outer end, the levelest and inner wood first so fruit and blossom hang as spur fruit
      * does — but never within reach of a mark already dealt while wood further off is free,
      * the reach shrinking as the crown fills, so they spread over the whole crown.
      * The rest go to whichever carrier holds the fewest for its weighted length.
@@ -88,7 +87,7 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         fun rank(c: Carrier) = abs(limbs[c.limb].endX - limbs[c.limb].startX) / chord(c) + if (c.tip) 0 else 1
         val pending = carriers.sortedByDescending(::rank).toMutableList()
         var reach = 2 * carriers.sumOf(::chord) / carriers.size
-        val outer = carriers.associateWith { at(it, 0.85) }
+        val outer = carriers.associateWith { at(it, 0.95) }
         val dealt = mutableListOf<Carrier>()
         while (pending.isNotEmpty()) {
             val free = pending.indexOfFirst { c -> dealt.all { distance(outer.getValue(it), outer.getValue(c)) >= reach } }
@@ -102,25 +101,23 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
             val i = if (n < dealt.size) n else held.indices.minBy { held[it] / weights[it] }
             i to held[i]++
         }
-        return order.map { (i, k) -> slot(dealt[i], k, held[i], i) }
+        return order.map { (i, k) -> slot(dealt[i], k, held[i], i % 2 == 0) }
     }
 
     /**
-     * The [k]-th of a carrier's [of] marks, spread evenly from 0.85 of the way along down to 0.15,
-     * so none sits on a twig's tip: alternating sides on the bark, leaning away from the wood,
-     * and every third lying across it, in front.
+     * The [k]-th of a carrier's [of] marks, spread evenly from 0.95 of the way along down to 0.15,
+     * alternating sides on the bark and leaning away from the wood.
      */
-    private fun slot(c: Carrier, k: Int, of: Int, dealt: Int): TreeSlot {
+    private fun slot(c: Carrier, k: Int, of: Int, flip: Boolean): TreeSlot {
         val limb = limbs[c.limb]
-        val t = 0.85 - 0.7 * k / of
+        val t = 0.95 - 0.8 * k / of
         val (x, y) = at(c, t)
         val along = heading(limb, t)
-        val side = if ((k + dealt) % 2 == 1) 1 else -1
+        val side = if ((k % 2 == 1) != flip) 1 else -1
         val bark = (limb.startWidth * (1 - t) + limb.endWidth * t) / 2 * side
-        val splay = if ((k + dealt) % 3 == 2) -0.6 else 0.9
         // why: a leaf follows its wood, splayed to one side, and never points below horizontal.
         return TreeSlot(x + cos(along + PI / 2) * bark, y + sin(along + PI / 2) * bark,
-            (along + side * splay).coerceIn(-PI + 0.3, -0.3), c.limb)
+            (along + side * 0.9).coerceIn(-PI + 0.3, -0.3), c.limb)
     }
 
     /** The point [t] of the way along [c]'s center line. */
