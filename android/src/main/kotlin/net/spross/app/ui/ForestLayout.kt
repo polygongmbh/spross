@@ -19,10 +19,12 @@ internal class ForestSpot(val planted: PlantedTree, val cell: Rect)
  */
 internal object ForestLayout {
     const val MIN_HEIGHT = 9f
-    private const val MAX_HEIGHT = 48f
-    /** The column every tree claims — four across a phone; a crown may spill past it, its label never is. */
-    private const val COLUMN = 84f
-    private const val ROW_HEIGHT = 70f
+    private const val MAX_HEIGHT = 42f
+    /** The narrowest column a grown tree claims — five across a phone; a crown may spill past it, its label never is. */
+    private const val COLUMN = 68f
+    /** An ungrown sapling claims half a column: a stem and a label need no more. */
+    private const val SAPLING_HEIGHT = 20f
+    private const val ROW_HEIGHT = 58f
     const val LABEL_HEIGHT = 18f
     private const val ROW_GAP = 8f
     private const val MIN_TAP = 44f
@@ -68,20 +70,27 @@ internal object ForestLayout {
      * Every tree in a row stands on one baseline, so two areas compare at a glance. Rows
      * stand half a row apart and every second one opens half a cell further on, so a tree
      * grows up through the gap between two of the row above — one mass, not a shelf of
-     * drawers. Every tree claims the same column and a row's leftover width is shared out
-     * between its trees, first and last flush with the edges — so a shifted row's trees
-     * stand midway between two labels above. Each drifts a little off its column.
+     * drawers. Every grown tree claims the same column, an ungrown sapling half of one, and
+     * the columns stretch to fill the width exactly — so spacing is shared between the trees,
+     * none left over at the edges, and a shifted row's trees stand midway between two labels
+     * above. Each grown tree drifts a little off its column.
      */
     fun plant(trees: List<AreaTree>, width: Float, density: Float): List<ForestSpot> {
         if (width <= 0f || trees.isEmpty()) return emptyList()
-        val column = COLUMN * density
-        val across = max(1, (width / column).toInt())
-        val step = if (across > 1) (width - column) / (across - 1) else 0f
+        val across = max(1, (width / (COLUMN * density)).toInt())
+        // One unit is half a column; a grown tree takes two, a sapling one.
+        val unit = width / (2 * across)
+        fun size(tree: AreaTree) = if (tree.isBare || treeHeight(tree) < SAPLING_HEIGHT) 1 else 2
         val rows = mutableListOf(mutableListOf<Int>())
+        var used = 0
         for (index in trees.indices) {
-            val rank = rows.size - 1
-            if (rows[rank].size == (if (rank % 2 == 0) across else max(1, across - 1))) rows += mutableListOf<Int>()
+            val shifted = across > 1 && rows.size % 2 == 0
+            if (used + size(trees[index]) > if (shifted) 2 * across - 2 else 2 * across) {
+                rows += mutableListOf<Int>()
+                used = 0
+            }
             rows.last() += index
+            used += size(trees[index])
         }
         val cells = mutableListOf<Pair<AreaTree, Rect>>()
         var stand = 0f
@@ -96,15 +105,18 @@ internal object ForestLayout {
                 (tallest + LABEL_HEIGHT + 10f) * density,
             )
             band = next
-            val lead = column / 2 + if (rank % 2 == 0 || across == 1) 0f else step / 2
-            for ((slot, index) in row.withIndex()) {
+            var taken = if (across > 1 && rank % 2 == 1) 1 else 0
+            for (index in row) {
                 val tree = trees[index]
-                val x = lead + slot * step + (Mix.noise(tree.area, 31) - 0.5f) * 8f * density
+                val units = size(tree)
+                val drift = if (units == 1) 0f else (Mix.noise(tree.area, 31) - 0.5f) * 8f * density
+                val x = (taken + units / 2f) * unit + drift
+                taken += units
                 // why: the tap target follows THIS tree's crown, never the row's band, so a
                 // seedling's target does not reach into the row above.
                 val crown = (max(treeHeight(tree), MIN_HEIGHT) + TAP_MARGIN) * density
                 val reach = max(crown, (MIN_TAP - LABEL_HEIGHT) * density)
-                cells += tree to Rect(x - column / 2, stand - reach, x + column / 2, stand + LABEL_HEIGHT * density)
+                cells += tree to Rect(x - units * unit / 2, stand - reach, x + units * unit / 2, stand + LABEL_HEIGHT * density)
             }
         }
         // The forest starts at its highest crown, not at a first row's empty band.

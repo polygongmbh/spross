@@ -66,10 +66,12 @@ struct TreeMark {
 
 enum OrchardLayout {
 
-    /// The column every tree claims — four across a 354pt content width, which is
-    /// the phone; a crown may spill past it, its label never is.
-    static let columnWidth: CGFloat = 84
-    static let rowHeight: CGFloat = 70
+    /// The narrowest column a grown tree claims — five across a 354pt content width,
+    /// which is the phone; a crown may spill past it, its label never is.
+    static let columnWidth: CGFloat = 68
+    /// An ungrown sapling claims half a column: a stem and a label need no more.
+    static let saplingHeight: CGFloat = 20
+    static let rowHeight: CGFloat = 58
     static let labelHeight: CGFloat = 18
     static let rowGap: CGFloat = Theme.spacing.sm
 
@@ -78,7 +80,7 @@ enum OrchardLayout {
     /// the ceiling keeps the tallest area inside its row
     /// instead of towering over the others.
     static let minHeight: CGFloat = 9
-    static let maxHeight: CGFloat = 48
+    static let maxHeight: CGFloat = 42
 
     /// The shortest a tap target is ever made, label strip included —
     /// a seedling is a few points of ink and a thumb is not.
@@ -99,23 +101,29 @@ enum OrchardLayout {
     /// and two of the row below,
     /// and the orchard reads as one growing mass
     /// rather than as drawers in a wall.
-    /// Every tree claims the same column,
-    /// and a row's leftover width is shared out between its trees,
-    /// first and last flush with the edges —
-    /// so a shifted row's trees stand midway between two labels above.
+    /// Every grown tree claims the same column, an ungrown sapling half of one,
+    /// and the columns stretch to fill the width exactly —
+    /// so spacing is shared between the trees, none left over at the edges,
+    /// and a shifted row's trees stand midway between two labels above.
     /// A row stands only as tall as its tallest,
-    /// and each tree sits a little off its column's center.
+    /// and each grown tree sits a little off its column's center.
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
         guard width > 0, !trees.isEmpty else { return [] }
         let across = max(1, Int(width / columnWidth))
-        let step = across > 1 ? (width - columnWidth) / CGFloat(across - 1) : 0
+        // One unit is half a column; a grown tree takes two, a sapling one.
+        let unit = width / CGFloat(2 * across)
+        func size(_ tree: AreaTree) -> Int { tree.isBare || treeHeight(tree) < saplingHeight ? 1 : 2 }
         var rows: [[Int]] = [[]]
+        var used = 0
         for index in trees.indices {
-            let rank = rows.count - 1
-            if rows[rank].count == (rank.isMultiple(of: 2) ? across : max(1, across - 1)) {
+            let shifted = across > 1 && rows.count % 2 == 0
+            let capacity = shifted ? 2 * across - 2 : 2 * across
+            if used + size(trees[index]) > capacity {
                 rows.append([])
+                used = 0
             }
             rows[rows.count - 1].append(index)
+            used += size(trees[index])
         }
 
         var marks: [TreeMark] = []
@@ -128,22 +136,25 @@ enum OrchardLayout {
             // instead of starting under a shelf of air,
             // and the orchard reads as one growing mass.
             let pitch = (band + labelHeight + rowGap) / 2
-            let lead = columnWidth / 2 + (rank.isMultiple(of: 2) || across == 1 ? 0 : step / 2)
-            for (slot, index) in row.enumerated() {
-                let drift = CGFloat(noise(trees[index].area, 31) - 0.5) * 8
-                let x = lead + CGFloat(slot) * step + drift
+            var taken = across > 1 && rank % 2 == 1 ? 1 : 0
+            for index in row {
+                let tree = trees[index]
+                let units = size(tree)
+                let drift = units == 1 ? 0 : CGFloat(noise(tree.area, 31) - 0.5) * 8
+                let x = (CGFloat(taken) + CGFloat(units) / 2) * unit + drift
+                taken += units
                 let stand = base + band
                 // why: the cell follows THIS tree's own crown, never the row's band —
                 // a band is as tall as the tallest tree in the row, and giving every
                 // tree in it that height handed a seedling a tap target reaching up
                 // into the open air a whole row above where it is drawn.
-                let crown = max(treeHeight(trees[index]), minHeight) + tapMargin
+                let crown = max(treeHeight(tree), minHeight) + tapMargin
                 let reach = max(crown, minTapHeight - labelHeight)
-                let cell = CGRect(x: x - columnWidth / 2, y: stand - reach,
-                                  width: columnWidth, height: reach + labelHeight)
-                marks.append(TreeMark(tree: trees[index],
+                let cell = CGRect(x: x - CGFloat(units) * unit / 2, y: stand - reach,
+                                  width: CGFloat(units) * unit, height: reach + labelHeight)
+                marks.append(TreeMark(tree: tree,
                                       foot: CGPoint(x: x, y: stand),
-                                      height: treeHeight(trees[index]),
+                                      height: treeHeight(tree),
                                       cell: cell,
                                       baseline: stand))
             }
