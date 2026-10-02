@@ -13,7 +13,7 @@ import kotlin.math.min
  */
 data class AreaGrowth(
     val area: String,
-    /** Met and still on its way in: [GrowthStage.Learning] or [GrowthStage.Fresh]. */
+    /** Met and still on its way in: [GrowthStage.Fresh]. */
     val arriving: Int,
     /** [GrowthStage.Growing] — landed. */
     val growing: Int,
@@ -150,7 +150,7 @@ private class AreaTally {
             GrowthStage.Unscheduled, GrowthStage.Suspended -> return
             GrowthStage.Queued -> { queued += 1; return }
             GrowthStage.Relearning -> { lapsed += 1; return }
-            GrowthStage.Learning, GrowthStage.Fresh -> arriving += 1
+            GrowthStage.Fresh -> arriving += 1
             GrowthStage.Growing -> growing += 1
             GrowthStage.Matured ->
                 if (entry.stability >= FRUIT_STABILITY) longHeld += 1 else matured += 1

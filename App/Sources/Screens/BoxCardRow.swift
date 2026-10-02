@@ -250,7 +250,7 @@ struct BoxCardRow: View {
     /// that from the outside.
     private static func badgePhase(_ stage: GrowthStage) -> PhaseBadge.Phase {
         switch stage {
-        case .learning, .fresh: return .fresh
+        case .fresh: return .fresh
         case .growing: return .growing
         case .matured: return .grown
         case .relearning: return .relearning

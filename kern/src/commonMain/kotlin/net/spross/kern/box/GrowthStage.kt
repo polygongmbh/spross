@@ -45,10 +45,10 @@ enum class GrowthStage {
     /** Packed by the learner, waiting for a round to bring it in ([BoxEngine.enqueue]). */
     Queued,
 
-    /** Scheduled and still walking the learning steps — introduction is the first ANSWER. */
-    Learning,
-
-    /** In Review, still under [net.spross.kern.model.BoxConfig.growingStability]. */
+    /**
+     * Met and still under [net.spross.kern.model.BoxConfig.growingStability] — walking the
+     * learning steps or in Review below the bar. Introduction is the first ANSWER.
+     */
     Fresh,
 
     /** Growing: see [Statistics.isGrowing] — the "has this word landed" bar (gate (a)). */
@@ -96,7 +96,7 @@ data class CardGrowth(
 internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when {
     sched.suspended -> GrowthStage.Suspended
     sched.phase == CardPhase.Relearning -> GrowthStage.Relearning
-    sched.phase != CardPhase.Review -> GrowthStage.Learning
+    sched.phase != CardPhase.Review -> GrowthStage.Fresh
     (sched.memory?.stability ?: 0.0) >= MATURED_STABILITY -> GrowthStage.Matured
     Statistics.isGrowing(state, sched) -> GrowthStage.Growing
     sched.lapses > 0 -> GrowthStage.Relearning

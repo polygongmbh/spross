@@ -185,7 +185,7 @@ fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
         val word = when (standing.stage) {
             GrowthStage.Growing -> chrome.boxPhaseSettled
             GrowthStage.Relearning -> chrome.boxPhaseRelearning
-            else -> chrome.boxPhaseLearning // Learning, Fresh
+            else -> chrome.boxPhaseLearning // Fresh
         }
         val glyph = if (standing.stage == GrowthStage.Growing) SETTLED else LEAF
         Pill("$glyph $word", color)

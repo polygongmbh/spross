@@ -36,7 +36,7 @@ class GrowthStageTests {
             mapOf(
                 "w01" to GrowthStage.Unscheduled,
                 "w02" to GrowthStage.Queued,
-                "w03" to GrowthStage.Learning,
+                "w03" to GrowthStage.Fresh,
                 "w04" to GrowthStage.Fresh,
                 // Past the retired settled bar of 2.0, still short of growingStability
                 // (6.0): a word this far in is Fresh, and still gets its support.
