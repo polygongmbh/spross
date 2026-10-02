@@ -23,8 +23,6 @@ internal object ForestLayout {
     /** The narrowest column a grown tree claims — five across a phone; a crown may spill past it, its label never is. */
     private const val COLUMN = 68f
     private const val ROW_HEIGHT = 72f
-    /** An ungrown sapling claims half a column: a stem and a label need no more. It stands under a quarter of a row. */
-    private const val SAPLING_HEIGHT = ROW_HEIGHT / 4
     const val LABEL_HEIGHT = 18f
     private const val ROW_GAP = 8f
     private const val MIN_TAP = 44f
@@ -78,9 +76,10 @@ internal object ForestLayout {
     fun plant(trees: List<AreaTree>, width: Float, density: Float): List<ForestSpot> {
         if (width <= 0f || trees.isEmpty()) return emptyList()
         val across = max(1, (width / (COLUMN * density)).toInt())
-        // One unit is half a column; a grown tree takes two, a sapling one.
+        // One unit is half a column; a tree takes two, an ungrown sapling — one that has not
+        // yet grown half its way — one: a stem and a label need no more.
         val unit = width / (2 * across)
-        fun size(tree: AreaTree) = if (treeHeight(tree) < SAPLING_HEIGHT) 1 else 2
+        fun size(tree: AreaTree) = if (standing(tree) < 0.5f) 1 else 2
         val rows = mutableListOf(mutableListOf<Int>())
         var used = 0
         for (index in trees.indices) {

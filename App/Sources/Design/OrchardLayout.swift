@@ -69,9 +69,6 @@ enum OrchardLayout {
     /// The narrowest column a grown tree claims — five across a 354pt content width,
     /// which is the phone; a crown may spill past it, its label never is.
     static let columnWidth: CGFloat = 68
-    /// An ungrown sapling claims half a column: a stem and a label need no more.
-    /// It is a tree standing under a quarter of a row.
-    static var saplingHeight: CGFloat { rowHeight / 4 }
     static let rowHeight: CGFloat = 72
     static let labelHeight: CGFloat = 18
     static let rowGap: CGFloat = Theme.spacing.sm
@@ -111,9 +108,10 @@ enum OrchardLayout {
     static func marks(_ trees: [AreaTree], width: CGFloat) -> [TreeMark] {
         guard width > 0, !trees.isEmpty else { return [] }
         let across = max(1, Int(width / columnWidth))
-        // One unit is half a column; a grown tree takes two, a sapling one.
+        // One unit is half a column; a tree takes two, an ungrown sapling —
+        // one that has not yet grown half its way — one: a stem and a label need no more.
         let unit = width / CGFloat(2 * across)
-        func size(_ tree: AreaTree) -> Int { treeHeight(tree) < saplingHeight ? 1 : 2 }
+        func size(_ tree: AreaTree) -> Int { standing(tree) < 0.5 ? 1 : 2 }
         var rows: [[Int]] = [[]]
         var used = 0
         for index in trees.indices {
