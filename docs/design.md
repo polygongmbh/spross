@@ -195,8 +195,9 @@ What licenses a second component is a parameter attempted and found not to carry
   a tier is one mark — arriving a bud, growing a leaf, matured a blossom, long held fruit.
   What the round summary claims over its tree is kern's `growthHeadline`.
   A tree forks further the more words it carries, each limb continued by a lead
-  with side branches turning well away from it;
-  its marks spread along all its wood but the trunk, fruit and blossom on the levelest limbs,
+  with side branches turning well away from it, and its crown tops out in several limbs, never one leader;
+  its marks spread along all its wood but the trunk, off a twig's sides and some across it, never on its tip,
+  fruit and blossom on the levelest limbs,
   no two of them touching while the crown has room, and only wood carrying a shown mark is drawn.
   A met word hangs as a bud until it settles into a leaf; merely packed hangs nothing.
   Height comes from how many words the area has met, never from catalog count.
