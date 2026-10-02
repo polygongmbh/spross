@@ -7,11 +7,11 @@ import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.sin
-import net.spross.kern.box.AreaTree
+import net.spross.kern.box.AreaGrowth
 
 // One placed tree as the paths it is filled with — built once, drawn on every frame.
 //
-// Which mark a word hangs as is kern's tier, read rank by rank off [AreaTree] (most grown
+// Which mark a word hangs as is kern's tier, read rank by rank off [AreaGrowth] (most grown
 // first, so fruit and blossom take the first slots):
 //   fruit    — long held      blossom — matured
 //   leaf     — growing        bud     — arriving
@@ -52,7 +52,7 @@ internal class TreeArt(
          * [scale] is how big the mark at a rank is drawn against its settled size — the
          * summary's arriving marks.
          */
-        fun build(tree: AreaTree, skeleton: TreeSkeleton, unit: Float, scale: (Int) -> Float = { 1f }): TreeArt {
+        fun build(tree: AreaGrowth, skeleton: TreeSkeleton, unit: Float, scale: (Int) -> Float = { 1f }): TreeArt {
             val floor = MARK_FLOOR * unit
             // The mark size a crown of this pitch cuts to.
             val base = max(floor, skeleton.pitch * 0.85f)
@@ -102,7 +102,7 @@ internal class TreeArt(
         path.lineTo(d.x, d.y); path.quadraticTo(e.x, e.y, f.x, f.y); path.close()
     }
 
-    private fun canopy(tree: AreaTree, skeleton: TreeSkeleton, base: Float, scale: (Int) -> Float) {
+    private fun canopy(tree: AreaGrowth, skeleton: TreeSkeleton, base: Float, scale: (Int) -> Float) {
         val hanging = skeleton.slots.take(tree.met)
         if (hanging.isEmpty()) return
         val top = hanging.minOf { it.point.y }

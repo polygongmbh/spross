@@ -11,7 +11,7 @@ import kotlin.math.min
  * Ranked most-grown first — [longHeld], then [matured], [growing], [arriving] — which is the
  * order [reaches] is in and the order [TreeTransition.changedRanks] counts in.
  */
-data class AreaTree(
+data class AreaGrowth(
     val area: String,
     /** Met and still on its way in: [GrowthStage.Learning] or [GrowthStage.Fresh]. */
     val arriving: Int,
@@ -49,8 +49,8 @@ data class AreaTree(
 
     companion object {
         /** An area with nothing in it — the "before" of an area a round opened. */
-        fun bare(area: String): AreaTree =
-            AreaTree(area, 0, 0, 0, 0, 0, 0, 0.0, false, emptyList())
+        fun bare(area: String): AreaGrowth =
+            AreaGrowth(area, 0, 0, 0, 0, 0, 0, 0.0, false, emptyList())
     }
 }
 
@@ -58,7 +58,7 @@ data class AreaTree(
  * One area before and after something happened to it — a finished round, most often.
  * The AFTER is what stands; the transition names which of its ranks the round moved.
  */
-data class TreeTransition(val before: AreaTree, val after: AreaTree) {
+data class TreeTransition(val before: AreaGrowth, val after: AreaGrowth) {
 
     /**
      * [before] with no tier holding more than it ends with.
@@ -67,7 +67,7 @@ data class TreeTransition(val before: AreaTree, val after: AreaTree) {
      * one — and played forward that reads as something taken away; a tier that shrank
      * simply starts where it ends, and what the round ADDED still counts.
      */
-    private val start: AreaTree = AreaTree(
+    private val start: AreaGrowth = AreaGrowth(
         area = before.area,
         arriving = min(before.arriving, after.arriving),
         growing = min(before.growing, after.growing),
@@ -102,7 +102,7 @@ fun CardGrowth.reach(maximumIntervalDays: Int): Double {
  * Every area the box holds, tallied from [growth] ([BoxEngine.growth]) — the one place
  * that decides which [GrowthStage] lands in which tier. Areas with no joined card are absent.
  */
-fun areaTrees(state: BoxState, growth: List<CardGrowth>): Map<String, AreaTree> {
+fun growthByArea(state: BoxState, growth: List<CardGrowth>): Map<String, AreaGrowth> {
     val tallies = linkedMapOf<String, AreaTally>()
     for (entry in growth) {
         val area = state.cards[entry.cardId]?.area ?: continue
@@ -115,7 +115,7 @@ fun areaTrees(state: BoxState, growth: List<CardGrowth>): Map<String, AreaTree> 
  * The area a round worked hardest, as [before] (the box the round opened on) and [after]
  * hold it — null when the round touched nothing joinable. Ties go to the area first in
  * [areaOrder], so a round split evenly names the same one every time; an area the round
- * opened stands on [AreaTree.bare] before. Walks that one area's cards, nothing else.
+ * opened stands on [AreaGrowth.bare] before. Walks that one area's cards, nothing else.
  */
 fun grownArea(
     before: BoxState,
@@ -131,9 +131,9 @@ fun grownArea(
         if ((counts[area] ?: 0) > (best?.let { counts[it] } ?: 0)) best = area
     }
     val area = best ?: return null
-    fun tree(state: BoxState) = areaTrees(state, areaGrowth(state, area, nowEpochMillis, tzId))[area]
+    fun tree(state: BoxState) = growthByArea(state, areaGrowth(state, area, nowEpochMillis, tzId))[area]
     val now = tree(after) ?: return null
-    return TreeTransition(tree(before) ?: AreaTree.bare(area), now)
+    return TreeTransition(tree(before) ?: AreaGrowth.bare(area), now)
 }
 
 private class AreaTally {
@@ -165,7 +165,7 @@ private class AreaTally {
 
     // why: most-grown first — the tiers ARE stability bands, so sorting by reach
     // reproduces them and entry n belongs to rank n.
-    fun tree(area: String) = AreaTree(
+    fun tree(area: String) = AreaGrowth(
         area, arriving, growing, matured, longHeld, queued, lapsed, mass, answeredToday,
         reaches.sortedDescending(),
     )

@@ -46,7 +46,7 @@ import net.spross.kern.box.GrowthClaim
 import net.spross.kern.box.GrowthHeadline
 import net.spross.kern.box.TallyPartKind
 import net.spross.kern.box.completionTallyParts
-import net.spross.kern.design.AreaTreeLayout
+import net.spross.kern.design.AreaTree
 
 /**
  * What the round bought, in kern's own order and only where there is something to name —
@@ -88,7 +88,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 // one screen is one too many.
                 val area = grown?.after?.area
                 if (grown != null && area != null) {
-                    GrowingTree(grown, AreaTreeLayout.heroHeight(grown.after, treeCeiling.value.toDouble()).dp)
+                    GrowingTree(grown, AreaTree.heroHeight(grown.after, treeCeiling.value.toDouble()).dp)
                     // why: the area is LABELED under its tree rather than named in the claim —
                     // what grew is what the learner can say, never the area itself.
                     Spacer(Modifier.height(8.dp))

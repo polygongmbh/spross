@@ -34,8 +34,8 @@ struct GrowingTreeView: View, Animatable {
         self.transition = transition
         self.progress = progress
         canopy = Canopy(transition.after)
-        let full = AreaTreeLayout.shared.height(tree: transition.after)
-        let was = AreaTreeLayout.shared.height(tree: transition.before)
+        let full = AreaTree.shared.height(tree: transition.after)
+        let was = AreaTree.shared.height(tree: transition.before)
         // An area worked from nothing rises from nothing; everything else rises from where it
         // stood, or from the crouch, whichever is lower.
         from = full > 0 ? min(Self.crouch, CGFloat(was / full)) : Self.crouch
@@ -134,9 +134,9 @@ struct TreeArrival {
 // MARK: - Previews
 
 #Preview("A round's growth") {
-    let before = AreaTree.sample("kitchen", leaves: 18, blossoms: 2, fruit: 1, buds: 9,
+    let before = AreaGrowth.sample("kitchen", leaves: 18, blossoms: 2, fruit: 1, buds: 9,
                                  fallen: 1, mass: 14)
-    let after = AreaTree.sample("kitchen", leaves: 22, blossoms: 4, fruit: 2, buds: 6,
+    let after = AreaGrowth.sample("kitchen", leaves: 22, blossoms: 4, fruit: 2, buds: 6,
                                 fallen: 1, mass: 18, tendedToday: true)
     let move = TreeTransition(before: before, after: after)
     return HStack(spacing: Theme.spacing.lg) {
@@ -151,21 +151,21 @@ struct TreeArrival {
 
 // Seven words met and nothing settled — the shape of a first round in an area.
 #Preview("A first round in a new area") {
-    let after = AreaTree.sample("bath", buds: 7, mass: 1.3, tendedToday: true)
-    return GrowingTreeView(transition: TreeTransition(before: AreaTree.companion.bare(area: "bath"),
+    let after = AreaGrowth.sample("bath", buds: 7, mass: 1.3, tendedToday: true)
+    return GrowingTreeView(transition: TreeTransition(before: AreaGrowth.companion.bare(area: "bath"),
                                                       after: after),
                            progress: 1)
-        .frame(height: AreaTreeLayout.shared.heroHeight(tree: after, ceiling: AreaTreeLayout.shared.HERO_MAX))
+        .frame(height: AreaTree.shared.heroHeight(tree: after, ceiling: AreaTree.shared.HERO_MAX))
         .padding(Theme.spacing.xl)
         .background(Theme.colors.background)
 }
 
 /// An area packed and not yet opened: still a seedling, and nothing hangs.
 #Preview("An area only packed") {
-    let packed = AreaTree.sample("bath", packed: 12, mass: 0, tendedToday: true)
+    let packed = AreaGrowth.sample("bath", packed: 12, mass: 0, tendedToday: true)
     return GrowingTreeView(transition: TreeTransition(before: packed, after: packed),
                            progress: 1)
-        .frame(height: AreaTreeLayout.shared.heroHeight(tree: packed, ceiling: AreaTreeLayout.shared.HERO_MAX))
+        .frame(height: AreaTree.shared.heroHeight(tree: packed, ceiling: AreaTree.shared.HERO_MAX))
         .padding(Theme.spacing.xl)
         .background(Theme.colors.background)
 }

@@ -1,6 +1,6 @@
 package net.spross.app.ui
 
-import net.spross.kern.box.AreaTree
+import net.spross.kern.box.AreaGrowth
 import net.spross.kern.box.TreeTransition
 
 /**
@@ -16,7 +16,7 @@ internal object SampleTrees {
     )
 
     /** Every area at [age], 0…1 — areas fill in catalog order, the way a box grows. */
-    fun trees(age: Double): List<AreaTree> = areas.mapIndexed { index, area ->
+    fun trees(age: Double): List<AreaGrowth> = areas.mapIndexed { index, area ->
         tree(area, (age * areas.size - index).coerceIn(0.0, 1.0), index)
     }
 
@@ -29,13 +29,13 @@ internal object SampleTrees {
         )
     }
 
-    private fun tree(area: Pair<String, Int>, reached: Double, index: Int, tended: Boolean? = null): AreaTree {
+    private fun tree(area: Pair<String, Int>, reached: Double, index: Int, tended: Boolean? = null): AreaGrowth {
         val (id, total) = area
         val started = (total * minOf(1.0, reached * 1.3)).toInt()
         val settled = (started * maxOf(0.0, reached - 0.25)).toInt()
         val blossoms = (settled * maxOf(0.0, reached - 0.55)).toInt()
         val fruit = (blossoms * maxOf(0.0, reached - 0.8)).toInt()
-        return AreaTree(
+        return AreaGrowth(
             area = id,
             arriving = started - settled,
             growing = settled - blossoms,

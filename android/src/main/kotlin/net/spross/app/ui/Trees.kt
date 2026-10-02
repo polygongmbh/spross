@@ -32,9 +32,9 @@ import net.spross.app.AppModel
 import net.spross.app.areaEmoji
 import net.spross.app.areaTitle
 import net.spross.app.countLine
-import net.spross.app.composedAreaTrees
+import net.spross.app.composedAreaGrowth
 import net.spross.app.openBox
-import net.spross.kern.box.AreaTree
+import net.spross.kern.box.AreaGrowth
 import net.spross.kern.design.TreesLayout
 
 /**
@@ -44,7 +44,7 @@ import net.spross.kern.design.TreesLayout
 @Composable
 internal fun HomeTrees(model: AppModel) {
     val stats = model.stats
-    val trees = remember(model.box, stats, model.catalog) { model.composedAreaTrees() }
+    val trees = remember(model.box, stats, model.catalog) { model.composedAreaGrowth() }
     if (trees.isEmpty()) return
     val chrome = model.chrome
     val areas = remember(stats) { stats?.areas?.associateBy { it.name }.orEmpty() }
@@ -76,7 +76,7 @@ internal fun HomeTrees(model: AppModel) {
 /**
  * The box as one picture: a tree per area, standing in rows on shared ground.
  *
- * [trees] come in the order they stand in, from kern ([AreaTree] per area), and kern
+ * [trees] come in the order they stand in, from kern ([AreaGrowth] per area), and kern
  * places them ([TreesLayout]); this only scales and draws them. One Canvas for every tree,
  * grown once per layout, and nothing moves: a box grows over weeks, and motion would claim
  * a change the picture is not showing.
@@ -86,9 +86,9 @@ internal fun HomeTrees(model: AppModel) {
  */
 @Composable
 internal fun Trees(
-    trees: List<AreaTree>,
+    trees: List<AreaGrowth>,
     emoji: (String) -> String,
-    describe: (AreaTree) -> String,
+    describe: (AreaGrowth) -> String,
     open: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -132,7 +132,7 @@ internal fun Trees(
 private class TreeCell(val planted: PlantedTree, val cell: Rect)
 
 /** Kern's placement ([TreesLayout.place]) in dp, scaled to pixels. */
-private fun place(trees: List<AreaTree>, width: Float, density: Float): List<TreeCell> =
+private fun place(trees: List<AreaGrowth>, width: Float, density: Float): List<TreeCell> =
     TreesLayout.place(trees, (width / density).toDouble()).spots.map {
         val d = density.toDouble()
         val cell = Rect((it.cellX * d).toFloat(), (it.cellY * d).toFloat(),

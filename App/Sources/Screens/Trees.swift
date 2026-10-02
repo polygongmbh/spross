@@ -127,11 +127,11 @@ struct Trees: View {
 /// the body re-evaluates far more often than the box or the width moves.
 @MainActor
 private final class Placement {
-    private var trees: [AreaTree] = []
+    private var trees: [AreaGrowth] = []
     private var width: CGFloat = -1
     private var placed: (marks: [TreeMark], height: CGFloat) = ([], 0)
 
-    func marks(_ trees: [AreaTree], width: CGFloat) -> (marks: [TreeMark], height: CGFloat) {
+    func marks(_ trees: [AreaGrowth], width: CGFloat) -> (marks: [TreeMark], height: CGFloat) {
         let same = width == self.width && trees.count == self.trees.count
             && zip(trees, self.trees).allSatisfy { $0 === $1 }
         if !same {

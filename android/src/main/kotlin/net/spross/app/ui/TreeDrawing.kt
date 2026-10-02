@@ -9,9 +9,9 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import kotlin.math.max
 import kotlin.math.min
-import net.spross.kern.box.AreaTree
+import net.spross.kern.box.AreaGrowth
 import net.spross.kern.design.TreeFit
-import net.spross.kern.design.AreaTreeLayout
+import net.spross.kern.design.AreaTree
 
 // One area's tree, as the Trees picture and the round summary both draw it.
 //
@@ -21,7 +21,7 @@ import net.spross.kern.design.AreaTreeLayout
 // the same tree on Home and on the summary.
 
 /** One tree standing somewhere: its foot, how tall, and the wood grown to that height. */
-internal class PlantedTree(val tree: AreaTree, val foot: Offset, val height: Float, density: Float) {
+internal class PlantedTree(val tree: AreaGrowth, val foot: Offset, val height: Float, density: Float) {
     /** Pixels per dp. */
     val unit = 1f * density
 
@@ -32,7 +32,7 @@ internal class PlantedTree(val tree: AreaTree, val foot: Offset, val height: Flo
 
     /** Grown and fitted in dp by kern, then scaled to pixels. */
     private fun fitted(): TreeSkeleton {
-        val grown = AreaTreeLayout.grow(tree.area, tree.met)
+        val grown = AreaTree.grow(tree.area, tree.met)
         val fit = grown.fit(foot.x / unit.toDouble(), foot.y / unit.toDouble(), height / unit.toDouble())
         return TreeSkeleton.placed(grown, TreeFit(fit.x * unit, fit.y * unit, fit.scale * unit))
     }
@@ -47,7 +47,7 @@ internal fun DrawScope.drawTree(planted: PlantedTree, colors: ThemeColors, art: 
     when {
         // why: an area nobody has opened stands as a faded seedling — a place to go
         // rather than a chore not done.
-        tree.isBare -> seedling(planted, max(planted.height, planted.dp(AreaTreeLayout.MIN_HEIGHT.toFloat())),
+        tree.isBare -> seedling(planted, max(planted.height, planted.dp(AreaTree.MIN_HEIGHT.toFloat())),
             colors.success.copy(alpha = 0.45f))
         art == null -> seedling(planted, planted.height, colors.success)
         else -> {

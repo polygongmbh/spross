@@ -7,15 +7,15 @@ import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
 
 /** One tree per area: which word stands in which tier, and what a round moved. */
-class AreaTreeTests {
+class AreaGrowthTests {
     private val now = Box.day1
     private val future = Box.plusDays(now, 5.0)
 
-    private fun trees(state: BoxState) = areaTrees(state, BoxEngine.growth(state, now, Box.TZ))
+    private fun trees(state: BoxState) = growthByArea(state, BoxEngine.growth(state, now, Box.TZ))
 
     private fun tree(
         met: Int = 0, growing: Int = 0, matured: Int = 0, longHeld: Int = 0, queued: Int = 0,
-    ) = AreaTree("a", met, growing, matured, longHeld, queued, 0, 0.0, false, emptyList())
+    ) = AreaGrowth("a", met, growing, matured, longHeld, queued, 0, 0.0, false, emptyList())
 
     @Test
     fun everyMetWordStandsInExactlyOneTierAndOnlyMetWordsDo() {
@@ -73,7 +73,7 @@ class AreaTreeTests {
         assertNull(grown(emptyList(), listOf("x", "y")))
     }
 
-    private fun claim(before: AreaTree, after: AreaTree, rest: Boolean = false) =
+    private fun claim(before: AreaGrowth, after: AreaGrowth, rest: Boolean = false) =
         growthHeadline(TreeTransition(before, after), rest, 1, 0, 3, 2)?.claim
 
     @Test

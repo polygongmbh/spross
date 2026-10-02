@@ -64,7 +64,7 @@ final class AppModel {
     /// One tree per area, as the Trees picture draws them.
     /// Derived from `growth`,
     /// so it is rebuilt with it rather than per redraw.
-    private(set) var trees: [AreaTree] = []
+    private(set) var trees: [AreaGrowth] = []
     /// The fortnight the activity strip shows, refreshed with the rest.
     private(set) var activity: [ActivityDay] = []
     /// The Box browser's shelves, in manifest order. Derived from `stats`, and
@@ -462,7 +462,7 @@ final class AppModel {
             HomeStanding.of(box: $0, nowEpochMillis: now, tzId: tz,
                             otherLanguagesAnswerDays: otherLanguagesAnswerDays)
         } ?? .none
-        trees = composedAreaTrees()
+        trees = composedAreaGrowth()
         #if DEBUG
         // UI-test hook: `-uitest-trees 0.55` stands a fabricated box of that age
         // on Home and on a round's summary (`SampleTrees`).

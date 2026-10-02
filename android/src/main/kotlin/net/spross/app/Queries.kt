@@ -4,11 +4,11 @@ import android.app.Application
 import java.util.Locale
 import net.spross.app.ui.AreaNaming
 import net.spross.app.ui.SampleTrees
-import net.spross.kern.box.AreaTree
+import net.spross.kern.box.AreaGrowth
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.CardGrowth
-import net.spross.kern.box.areaTrees
+import net.spross.kern.box.growthByArea
 import net.spross.kern.catalog.Catalog
 
 /**
@@ -60,11 +60,11 @@ private fun AppModel.areaNaming(): AreaNaming {
  * or the fabricated box a debug launch asked for ([AppModel.sampleTreesAge]).
  * A walk over every card, so the Trees picture asks once per change to the box.
  */
-fun AppModel.composedAreaTrees(): List<AreaTree> {
+fun AppModel.composedAreaGrowth(): List<AreaGrowth> {
     sampleTreesAge?.let { return SampleTrees.trees(it) }
     val state = box ?: return emptyList()
     val cat = catalog ?: return emptyList()
     val numbers = stats ?: return emptyList()
-    val byArea = areaTrees(state, BoxEngine.growth(state, now(), tz()))
+    val byArea = growthByArea(state, BoxEngine.growth(state, now(), tz()))
     return BoxBrowser.areaNames(cat, numbers).mapNotNull { byArea[it] }
 }

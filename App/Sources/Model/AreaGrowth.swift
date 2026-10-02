@@ -3,7 +3,7 @@ import SprossKern
 
 // MARK: - Area trees
 //
-// Kern tallies each area into its tiers (`areaTrees`) and names what a round moved
+// Kern tallies each area into its tiers (`growthByArea`) and names what a round moved
 // (`TreeTransition`, `grownArea`); this reads them in the Box screen's order.
 // Both the Trees picture on Home and the single tree a round's summary draws read these,
 // so they can never disagree about what an area looks like.
@@ -14,14 +14,14 @@ extension AppModel {
     /// (`areaNames` — catalog groups top to bottom, own words last).
     /// Held on the model as `trees`: it walks every card in the join,
     /// and the Trees picture asks for it on every redraw.
-    func composedAreaTrees() -> [AreaTree] {
-        let byArea = areaTreesByName()
+    func composedAreaGrowth() -> [AreaGrowth] {
+        let byArea = growthByAreaName()
         return areaNames.compactMap { byArea[$0] }
     }
 
-    private func areaTreesByName() -> [String: AreaTree] {
+    private func growthByAreaName() -> [String: AreaGrowth] {
         guard let box else { return [:] }
-        return areaTrees(state: box, growth: growth)
+        return growthByArea(state: box, growth: growth)
     }
 }
 
@@ -45,7 +45,7 @@ struct Canopy {
     /// How far each mark's word has come, 0…1, one per mark in rank order.
     let reaches: [Double]
 
-    init(_ tree: AreaTree) {
+    init(_ tree: AreaGrowth) {
         fruit = Int(tree.longHeld)
         blossoms = Int(tree.matured)
         leaves = Int(tree.growing)
@@ -62,12 +62,12 @@ struct Canopy {
     func reach(_ rank: Int) -> Double { rank < reaches.count ? reaches[rank] : 0.4 }
 }
 
-extension AreaTree {
+extension AreaGrowth {
     /// A tree built by hand — the previews and the fabricated DEBUG box (`SampleTrees`).
     static func sample(_ area: String, leaves: Int = 0, blossoms: Int = 0, fruit: Int = 0,
                        buds: Int = 0, packed: Int = 0, fallen: Int = 0, mass: Double,
-                       tendedToday: Bool = false, reaches: [Double] = []) -> AreaTree {
-        AreaTree(area: area, arriving: Int32(buds), growing: Int32(leaves),
+                       tendedToday: Bool = false, reaches: [Double] = []) -> AreaGrowth {
+        AreaGrowth(area: area, arriving: Int32(buds), growing: Int32(leaves),
                  matured: Int32(blossoms), longHeld: Int32(fruit), queued: Int32(packed),
                  lapsed: Int32(fallen), mass: mass, answeredToday: tendedToday,
                  reaches: reaches.map { KotlinDouble(value: $0) })

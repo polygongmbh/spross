@@ -44,7 +44,7 @@ The read models a surface draws the box from (the day, one card's standing, the 
   two of them the same; what they look like is not the engine's answer. It is the whole-box
   read behind a surface that draws the box itself rather than the totals `statistics`
   aggregates it into, and the reason the app needs no schedule-reading rules of its own.
-- **`AreaTree`** (`areaTrees`) is that read folded per area:
+- **`AreaGrowth`** (`growthByArea`) is that read folded per area:
   each met word in exactly one tier (arriving / growing / matured / long held),
   most-grown first, with what is packed, what lapsed and the area's summed reach.
   `grownArea` names the area a round worked hardest as a `TreeTransition` — before and now,

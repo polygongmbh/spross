@@ -3,11 +3,11 @@ import SprossKern
 
 // MARK: - Tree mark
 //
-// One tree placed for drawing: kern says where it stands (`TreesLayout`, `AreaTreeLayout.solitary`)
+// One tree placed for drawing: kern says where it stands (`TreesLayout`, `AreaTree.solitary`)
 // and this carries that in points, with what hangs on it and the wood it hangs on.
 
 struct TreeMark {
-    let tree: AreaTree
+    let tree: AreaGrowth
     /// The area's name, read off the kern value once rather than per mark drawn.
     let area: String
     /// What hangs on it, by mark.
@@ -25,7 +25,7 @@ struct TreeMark {
     /// keeps every mark where it hangs and only what hangs on it moves.
     let skeleton: TreeSkeleton
 
-    init(tree: AreaTree, canopy: Canopy, foot: CGPoint, height: CGFloat, cell: CGRect, baseline: CGFloat) {
+    init(tree: AreaGrowth, canopy: Canopy, foot: CGPoint, height: CGFloat, cell: CGRect, baseline: CGFloat) {
         self.tree = tree
         self.area = tree.area
         self.canopy = canopy
@@ -37,12 +37,12 @@ struct TreeMark {
     }
 
     /// The shortest a tree is drawn, a seedling.
-    static let minHeight = CGFloat(AreaTreeLayout.shared.MIN_HEIGHT)
+    static let minHeight = CGFloat(AreaTree.shared.MIN_HEIGHT)
 
     /// One tree alone, filling a box of its own — what a session summary draws —
     /// at `risen` of its full height.
-    static func solitary(_ tree: AreaTree, canopy: Canopy, in size: CGSize, risen: CGFloat = 1) -> TreeMark {
-        let stand = AreaTreeLayout.shared.solitary(width: size.width, height: size.height)
+    static func solitary(_ tree: AreaGrowth, canopy: Canopy, in size: CGSize, risen: CGFloat = 1) -> TreeMark {
+        let stand = AreaTree.shared.solitary(width: size.width, height: size.height)
         return TreeMark(tree: tree, canopy: canopy,
                         foot: CGPoint(x: stand.footX, y: stand.footY),
                         height: CGFloat(stand.height) * risen,
@@ -51,7 +51,7 @@ struct TreeMark {
     }
 
     /// Every tree stood in rows across `width`, back to front, and how tall they stand together.
-    static func placed(_ trees: [AreaTree], width: CGFloat) -> (marks: [TreeMark], height: CGFloat) {
+    static func placed(_ trees: [AreaGrowth], width: CGFloat) -> (marks: [TreeMark], height: CGFloat) {
         let plan = TreesLayout.shared.place(trees: trees, width: width)
         let marks = plan.spots.map { spot in
             let tree = trees[Int(spot.index)]

@@ -4,7 +4,7 @@ import kotlin.math.PI
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
-import net.spross.kern.box.AreaTree
+import net.spross.kern.box.AreaGrowth
 import net.spross.kern.model.fnv1a64
 
 /**
@@ -45,12 +45,12 @@ class GrownTree internal constructor(
     private val rise: Double,
 ) {
     /**
-     * Fitted flush into a box [AreaTreeLayout.CROWN_BOX] heights wide, foot on its bottom edge at
+     * Fitted flush into a box [AreaTree.CROWN_BOX] heights wide, foot on its bottom edge at
      * ([footX], [footY]). The marks hang past it wherever the twigs reach its edge.
      */
     fun fit(footX: Double, footY: Double, height: Double): TreeFit {
         // why: the tighter of the two constraints wins, so a wide crown is narrowed rather than clipped.
-        val scale = min(max(height, 1.0) / rise, max(height * AreaTreeLayout.CROWN_BOX, 1.0) / (right - left))
+        val scale = min(max(height, 1.0) / rise, max(height * AreaTree.CROWN_BOX, 1.0) / (right - left))
         return TreeFit(footX - (left + right) / 2 * scale, footY, scale)
     }
 }
@@ -59,7 +59,7 @@ class GrownTree internal constructor(
  * One tree: its size from what has grown, and its wood grown from its marks.
  * Lengths are in points (dp); [TreesLayout] stands many of them in rows.
  */
-object AreaTreeLayout {
+object AreaTree {
     /** Tree heights, foot to crown: the floor is a seedling, the ceiling keeps the tallest area inside its row. */
     const val MIN_HEIGHT = 9.0
     const val MAX_HEIGHT = 42.0
@@ -82,18 +82,18 @@ object AreaTreeLayout {
      * Square-rooted, because mass is a sum over words: otherwise the first area worked
      * dwarfs every other for months.
      */
-    fun standing(tree: AreaTree): Double =
+    fun standing(tree: AreaGrowth): Double =
         if (tree.isBare) 0.0 else min(1.0, sqrt(tree.mass / FULL_MASS))
 
     /** How tall the area stands among the others; 0 for an area nothing has happened in. */
-    fun height(tree: AreaTree): Double =
+    fun height(tree: AreaGrowth): Double =
         if (tree.isBare) 0.0 else MIN_HEIGHT + (MAX_HEIGHT - MIN_HEIGHT) * standing(tree)
 
     /**
      * The height of the summary's box for [tree]: [ceiling] lifts a grown tree's box on a
      * screen with room to give, and a seedling's floor rises in proportion, so standing still reads as height.
      */
-    fun heroHeight(tree: AreaTree, ceiling: Double): Double {
+    fun heroHeight(tree: AreaGrowth, ceiling: Double): Double {
         val top = max(ceiling, HERO_MAX)
         val floor = top * HERO_MIN / HERO_MAX
         return floor + (top - floor) * standing(tree)

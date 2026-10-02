@@ -17,7 +17,7 @@ enum SampleTrees {
 
     /// Every area at `age`, 0…1 — areas fill in catalog order,
     /// so an age walks the box the way growth does.
-    static func trees(age: Double) -> [AreaTree] {
+    static func trees(age: Double) -> [AreaGrowth] {
         areas.enumerated().map { index, area in
             let reached = max(0.0, min(1.0, age * Double(areas.count) - Double(index)))
             return tree(area, reached: reached, index: index)
@@ -33,7 +33,7 @@ enum SampleTrees {
     }
 
     private static func tree(_ area: (String, Int), reached: Double,
-                             index: Int, tended: Bool? = nil) -> AreaTree {
+                             index: Int, tended: Bool? = nil) -> AreaGrowth {
         let (id, total) = area
         let started = Int(Double(total) * min(1, reached * 1.3))
         let settled = Int(Double(started) * max(0, reached - 0.25))
@@ -42,7 +42,7 @@ enum SampleTrees {
         let reaches = (0..<started).map { rank in
             max(0, reached - Double(rank) / Double(max(started, 1)) * 0.6)
         }
-        return AreaTree.sample(
+        return AreaGrowth.sample(
             id, leaves: settled - blossoms, blossoms: blossoms - fruit, fruit: fruit,
             buds: started - settled, fallen: reached > 0.3 && index % 3 == 0 ? 2 : 0,
             mass: Double(settled) * 0.35 + Double(blossoms) * 0.6 + Double(fruit),
