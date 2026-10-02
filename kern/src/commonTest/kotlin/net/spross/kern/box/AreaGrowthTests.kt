@@ -15,7 +15,7 @@ class AreaGrowthTests {
 
     private fun tree(
         met: Int = 0, growing: Int = 0, matured: Int = 0, longHeld: Int = 0, queued: Int = 0,
-    ) = AreaGrowth("a", met, growing, matured, longHeld, queued, 0, 0.0, false, emptyList())
+    ) = AreaGrowth("a", met, growing, matured, longHeld, queued, 0, false, emptyList())
 
     @Test
     fun everyMetWordStandsInExactlyOneTierAndOnlyMetWordsDo() {

@@ -46,7 +46,8 @@ The read models a surface draws the box from (the day, one card's standing, the 
   aggregates it into, and the reason the app needs no schedule-reading rules of its own.
 - **`AreaGrowth`** (`growthByArea`) is that read folded per area:
   each met word in exactly one tier (arriving / growing / matured / long held),
-  most-grown first, with what is packed, what lapsed and the area's summed reach.
+  most-grown first, with what is packed and what lapsed;
+  a tree's height comes from how many words its area has met.
   `grownArea` names the area a round worked hardest as a `TreeTransition` — before and now,
   and which ranks the round moved — and `growthHeadline` the one claim the summary may make
   about it, read off that area's gain, never off the round's session-wide tallies.

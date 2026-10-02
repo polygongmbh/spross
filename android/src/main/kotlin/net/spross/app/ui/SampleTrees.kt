@@ -43,7 +43,6 @@ internal object SampleTrees {
             longHeld = fruit,
             queued = 0,
             lapsed = if (reached > 0.3 && index % 3 == 0) 2 else 0,
-            mass = settled * 0.35 + blossoms * 0.6 + fruit,
             answeredToday = tended ?: (index % 5 == 2 && reached > 0),
             reaches = List(started) { rank -> maxOf(0.0, reached - rank.toDouble() / maxOf(started, 1) * 0.6) },
         )

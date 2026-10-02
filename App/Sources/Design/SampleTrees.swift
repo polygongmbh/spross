@@ -45,7 +45,6 @@ enum SampleTrees {
         return AreaGrowth.sample(
             id, leaves: settled - blossoms, blossoms: blossoms - fruit, fruit: fruit,
             buds: started - settled, fallen: reached > 0.3 && index % 3 == 0 ? 2 : 0,
-            mass: Double(settled) * 0.35 + Double(blossoms) * 0.6 + Double(fruit),
             tendedToday: tended ?? (index % 5 == 2 && reached > 0),
             reaches: reaches
         )

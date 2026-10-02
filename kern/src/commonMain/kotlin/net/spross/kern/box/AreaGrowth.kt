@@ -25,8 +25,6 @@ data class AreaGrowth(
     val queued: Int,
     /** [GrowthStage.Relearning]: a word that slipped, never a smaller area. */
     val lapsed: Int,
-    /** The area's aggregate growth: the sum of every word's [reach]. */
-    val mass: Double,
     /** Something here was answered today. */
     val answeredToday: Boolean,
     /** How far each met word has come, 0…1, most-grown first — one entry per met word. */
@@ -50,7 +48,7 @@ data class AreaGrowth(
     companion object {
         /** An area with nothing in it — the "before" of an area a round opened. */
         fun bare(area: String): AreaGrowth =
-            AreaGrowth(area, 0, 0, 0, 0, 0, 0, 0.0, false, emptyList())
+            AreaGrowth(area, 0, 0, 0, 0, 0, 0, false, emptyList())
     }
 }
 
@@ -75,7 +73,6 @@ data class TreeTransition(val before: AreaGrowth, val after: AreaGrowth) {
         longHeld = min(before.longHeld, after.longHeld),
         queued = min(before.queued, after.queued),
         lapsed = min(before.lapsed, after.lapsed),
-        mass = min(before.mass, after.mass),
         answeredToday = before.answeredToday,
         reaches = before.reaches,
     )
@@ -143,14 +140,12 @@ private class AreaTally {
     var longHeld = 0
     var queued = 0
     var lapsed = 0
-    var mass = 0.0
     var answeredToday = false
     val reaches = mutableListOf<Double>()
 
     fun add(entry: CardGrowth, maximumIntervalDays: Int) {
         if (entry.touchedToday) answeredToday = true
         val reach = entry.reach(maximumIntervalDays)
-        mass += reach
         when (entry.stage) {
             GrowthStage.Unscheduled, GrowthStage.Suspended -> return
             GrowthStage.Queued -> { queued += 1; return }
@@ -166,7 +161,7 @@ private class AreaTally {
     // why: most-grown first — the tiers ARE stability bands, so sorting by reach
     // reproduces them and entry n belongs to rank n.
     fun tree(area: String) = AreaGrowth(
-        area, arriving, growing, matured, longHeld, queued, lapsed, mass, answeredToday,
+        area, arriving, growing, matured, longHeld, queued, lapsed, answeredToday,
         reaches.sortedDescending(),
     )
 }

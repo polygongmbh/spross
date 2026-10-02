@@ -21,19 +21,19 @@ class AreaTreeTests {
 
     @Test
     fun theSummaryTreeStandsTallerAsTheAreaGrows() {
-        val young = tree("kitchen", mass = 1.0)
-        val grown = tree("kitchen", mass = 30.0)
+        val young = tree("kitchen", met = 3)
+        val grown = tree("kitchen", met = 30)
         assertTrue(AreaTree.heroHeight(young, 190.0) < AreaTree.heroHeight(grown, 190.0))
     }
 
     @Test
     fun everyAreaStandsOnceBackToFront() {
-        val trees = List(17) { tree("area$it", mass = it * 2.0) }
+        val trees = List(17) { tree("area$it", met = it * 2) }
         val spots = TreesLayout.place(trees, width = 380.0).spots
         assertEquals(trees.indices.toList(), spots.map { it.index }.sorted())
         assertEquals(spots.map { it.baseline }.sorted(), spots.map { it.baseline })
     }
 
-    private fun tree(area: String, mass: Double) =
-        AreaGrowth(area, 4, 10, 2, 1, 0, 0, mass, false, List(17) { 0.5 })
+    private fun tree(area: String, met: Int) =
+        AreaGrowth(area, 0, met, 0, 0, 1, 0, false, List(met) { 0.5 })
 }

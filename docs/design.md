@@ -198,7 +198,7 @@ What licenses a second component is a parameter attempted and found not to carry
   along it and the rest to its lead, until each mark hangs at the tip of its own leaf twig;
   fruit and blossom keep off the steep twigs, and only wood carrying a shown mark is drawn.
   A met word hangs as a bud until it settles into a leaf; merely packed hangs nothing.
-  Size comes from what has grown, never from catalog count.
+  Height comes from how many words the area has met, never from catalog count.
   An unopened area is one faded seedling.
   A lapse drops leaves, never shrinks the tree.
   A suspended word gets no space.

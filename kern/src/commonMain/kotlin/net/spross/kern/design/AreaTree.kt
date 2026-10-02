@@ -65,10 +65,10 @@ object AreaTree {
     const val MAX_HEIGHT = 42.0
 
     /**
-     * The mass at which a tree reaches full height — a large area, thoroughly learned.
-     * Near the top of what a real box produces, or every worked area saturates and the row stops being a skyline.
+     * The words met at which a tree reaches full height:
+     * past the largest catalog area, so only an area grown with own words reaches it.
      */
-    const val FULL_MASS = 24.0
+    const val FULL_COUNT = 48.0
 
     /** The summary's tree: a seedling's box and a grown tree's, before a screen lifts them. */
     const val HERO_MIN = 78.0
@@ -78,12 +78,12 @@ object AreaTree {
     const val CROWN_BOX = 1.44
 
     /**
-     * How far along the area stands, 0…1 — the one curve every height is cut from.
-     * Square-rooted, because mass is a sum over words: otherwise the first area worked
-     * dwarfs every other for months.
+     * How far along the area stands, 0…1 — the one curve every height is cut from:
+     * the words it has met, a lapsed one still counted, so a lapse never shrinks the tree.
+     * Square-rooted, so the first words met lift a tree most.
      */
     fun standing(tree: AreaGrowth): Double =
-        if (tree.isBare) 0.0 else min(1.0, sqrt(tree.mass / FULL_MASS))
+        if (tree.isBare) 0.0 else min(1.0, sqrt((tree.met + tree.lapsed) / FULL_COUNT))
 
     /** How tall the area stands among the others; 0 for an area nothing has happened in. */
     fun height(tree: AreaGrowth): Double =
