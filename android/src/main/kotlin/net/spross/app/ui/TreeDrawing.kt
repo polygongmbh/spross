@@ -105,8 +105,9 @@ private fun DrawScope.canopy(art: TreeArt, colors: ThemeColors) {
     art.tones.forEachIndexed { index, path -> drawPath(path, tones[index]) }
     // Ochre, not green: a bud is a scale of wood, the word has not leafed out yet.
     drawPath(art.buds, colors.amber.copy(alpha = 0.8f))
-    drawPath(art.petals, colors.blossom)
-    drawPath(art.eyes, colors.amber.copy(alpha = 0.5f))
+    drawPath(art.laterals, colors.blossom.copy(alpha = 0.85f))
+    drawPath(art.kings, colors.blossom)
+    drawPath(art.eyes, colors.fruit.copy(alpha = 0.4f))
 }
 
 /** Words that lapsed lie on the ground beside the trunk; the tree never shrinks for them. */

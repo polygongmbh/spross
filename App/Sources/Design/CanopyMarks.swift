@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - The marks a canopy carries
 //
 // One shape per tier, told apart by SHAPE before color:
-// a leaf is long and pointed, a bud a small disc, a blossom a pale rosette of five petals,
+// a leaf is long and pointed, a bud a small disc, a blossom a spur of three pale flowers,
 // fruit a round disc hanging under its twig.
 
 extension TreeShapes {
@@ -22,7 +22,7 @@ extension TreeShapes {
 
     /// A word held for months: one round fruit, its top on the slot, so it hangs under its wood.
     static func fruit(at slot: CGPoint, size: CGFloat) -> Path {
-        circle(CGPoint(x: slot.x, y: slot.y + size * 0.4), size * 0.4)
+        circle(CGPoint(x: slot.x, y: slot.y + size * 0.25), size * 0.25)
     }
 
     /// A word that has landed: a sprig of three leaflets off one stalk — one mark,
@@ -36,19 +36,29 @@ extension TreeShapes {
         return sprig
     }
 
-    /// A word that has matured: a pale rosette of five petals, kept small —
-    /// a tree carrying forty of them is still a tree in flower, not a bouquet.
-    /// Among the Trees the rosette is one disc, and only a large one shows an eye.
+    /// A word that has matured: a spur of three flowers based on the slot, so the twig runs
+    /// into it — two laterals and the larger king flower beyond them, along the mark's lean.
+    /// Among the Trees each flower is one disc, and only large ones show an eye.
     static func blossom(at point: CGPoint, size: CGFloat, angle: Double,
-                        petals: inout Path, eyes: inout Path) {
-        guard size >= CanopyMark.plain else { return petals.addPath(circle(point, size * 0.38)) }
-        for petal in 0..<5 {
-            let turn = angle + Double(petal) * 2 * .pi / 5
-            petals.addPath(circle(CGPoint(x: point.x + CGFloat(cos(turn)) * size * 0.2,
-                                          y: point.y + CGFloat(sin(turn)) * size * 0.2),
-                                  size * 0.24))
+                        laterals: inout Path, kings: inout Path, eyes: inout Path) {
+        let u = CGPoint(x: cos(angle), y: sin(angle)), v = CGPoint(x: -u.y, y: u.x)
+        func flower(_ along: CGFloat, _ across: CGFloat, _ radius: CGFloat, _ turn: Double,
+                    _ into: inout Path) {
+            let center = CGPoint(x: point.x + (u.x * along + v.x * across) * size,
+                                 y: point.y + (u.y * along + v.y * across) * size)
+            let r = radius * size
+            guard size >= CanopyMark.plain else { return into.addPath(circle(center, r)) }
+            for petal in 0..<5 {
+                let spin = turn + Double(petal) * 2 * .pi / 5
+                into.addPath(circle(CGPoint(x: center.x + CGFloat(cos(spin)) * r * 0.45,
+                                            y: center.y + CGFloat(sin(spin)) * r * 0.45), r * 0.55))
+            }
+            if size >= CanopyMark.eyed { eyes.addPath(circle(center, r * 0.12)) }
         }
-        if size >= CanopyMark.eyed { eyes.addPath(circle(point, size * 0.06)) }
+        // why: each flower turned its own way, so the three do not look stamped.
+        flower(0.12, 0.20, 0.17, angle, &laterals)
+        flower(0.10, -0.22, 0.15, angle + 1.3, &laterals)
+        flower(0.30, 0, 0.22, angle + 2.1, &kings)
     }
 
     static func circle(_ center: CGPoint, _ radius: CGFloat) -> Path {
@@ -86,9 +96,9 @@ enum CanopyMark {
     /// A bud, against the base — well under half a leaf.
     static let budRadius: CGFloat = 0.22
 
-    /// Below this size a blossom is one disc: petals blur.
+    /// Below this size each of a blossom's flowers is one disc: petals blur.
     static let plain: CGFloat = 12
-    /// From this size on a blossom shows its eye.
+    /// From this size on a blossom's flowers show their eyes.
     static let eyed: CGFloat = 20
 
 }

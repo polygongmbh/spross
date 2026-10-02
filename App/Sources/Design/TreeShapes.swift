@@ -158,7 +158,7 @@ enum TreeShapes {
         let depth = max((hanging.map(\.point.y).max() ?? 0) - top, 1)
 
         var tones = [Path(), Path(), Path(), Path()]
-        var buds = Path(), fruit = Path(), petals = Path(), eyes = Path()
+        var buds = Path(), fruit = Path(), laterals = Path(), kings = Path(), eyes = Path()
         for (rank, slot) in hanging.enumerated() {
             // A mark's SIZE is its own word's standing; only its lean is hashed.
             let grain = noise("\(mark.area)-\(rank)", 41)
@@ -168,7 +168,8 @@ enum TreeShapes {
             if rank < shown.fruit {
                 fruit.addPath(Self.fruit(at: slot.point, size: size))
             } else if rank < shown.fruit + shown.blossoms {
-                blossom(at: slot.point, size: size, angle: angle, petals: &petals, eyes: &eyes)
+                blossom(at: slot.point, size: size, angle: angle,
+                        laterals: &laterals, kings: &kings, eyes: &eyes)
             } else if rank < shown.count - shown.buds {
                 // why: lit from above — the crown's upper leaves take the light
                 // tones, its lower and inner ones the deep, with a hashed nudge
@@ -187,8 +188,9 @@ enum TreeShapes {
         for (index, tone) in tones.enumerated() { context.fill(tone, with: .color(leafColors[index])) }
         // Ochre, not green: a bud is a scale of wood, the word has not leafed out yet.
         context.fill(buds, with: .color(Theme.colors.amber.opacity(0.8)))
-        context.fill(petals, with: .color(Theme.colors.blossom))
-        context.fill(eyes, with: .color(Theme.colors.amber.opacity(0.5)))
+        context.fill(laterals, with: .color(Theme.colors.blossom.opacity(0.85)))
+        context.fill(kings, with: .color(Theme.colors.blossom))
+        context.fill(eyes, with: .color(Theme.colors.fruit.opacity(0.4)))
     }
 
     /// Words that lapsed: leaves on the ground beside the trunk. The tree never
