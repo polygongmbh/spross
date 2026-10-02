@@ -20,9 +20,8 @@ import kotlin.math.sqrt
 //
 // One child carries its parent's line on and the other leaves it sharply (monopodial), the
 // width splits so the children's cross-sections add up to the parent's, and every limb bows.
-// Leaves are the level past the last stems (Weber & Penn §4.6): they grow on the twigs that
-// fork no further and on the finer wood behind them, spaced along each and alternating
-// sides — never on the trunk, never at a thick fork.
+// Leaves are the level past the last stems (Weber & Penn §4.6): they grow along every limb
+// but the trunk, spread evenly and alternating sides, clear of each fork.
 
 /** One length of wood: a bowed center line tapering from [startWidth] to [endWidth]. */
 internal class TreeLimb(
@@ -102,7 +101,7 @@ internal const val PI_F = Math.PI.toFloat()
 
 private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
     val limbs = mutableListOf<TreeLimb>()
-    /** The wood marks hang on, with the path that seeds each: the limbs that fork no further, and the finer wood behind them. */
+    /** The wood marks hang on: every limb but the trunk. */
     val twigs = mutableListOf<Twig>()
 
     fun limb(path: Long, origin: Offset, heading: Float, length: Float, width: Float, depth: Int, side: Float) {
@@ -138,97 +137,63 @@ private class Growth(val seed: Long, val vigor: Float, val spread: Float) {
 
         // why: a twig sprouts at half length, never as a stub — a stub's marks would all
         // sit on the fork it grows from.
-        if (grown < 1f || depth >= TreeSkeleton.MAX_DEPTH || vigor < depth + 1.5f) {
-            twigs += Twig(limbs.size - 1, path, true)
-            return
-        }
-        if (depth >= 1) twigs += Twig(limbs.size - 1, path, false)
+        val forks = grown >= 1f && depth < TreeSkeleton.MAX_DEPTH && vigor >= depth + 1.5f
+        if (depth >= 1) twigs += Twig(limbs.size - 1, path, !forks)
+        if (!forks) return
         // why: a short trunk under long first limbs — a low, bushy crown that fits an
         // orchard row instead of a tall stem with a tuft on top.
         val next = if (depth == 0) length * 1.2f else length
-        // Limbs reach for the light a little, then sag under the weight they carry: the more
-        // level a limb and the later its generation, the further it droops.
-        val lifted = angle + (-PI_F / 2 - angle) * 0.06f * (depth + 1) + 0.11f * (depth + 1) * cos(angle)
-        limb(path * 4 + 1, end, lifted + leadTurn, next * leadLength, width * 0.80f, depth + 1, -side)
-        limb(path * 4 + 2, end, lifted + side * sideTurn, next * sideLength, width * 0.60f, depth + 1, -side)
+        // why: limbs sag under their weight, the more level and the later-born the further.
+        val sagged = angle + 0.02f * (depth + 1) * cos(angle)
+        limb(path * 4 + 1, end, sagged + leadTurn, next * leadLength, width * 0.80f, depth + 1, -side)
+        limb(path * 4 + 2, end, sagged + side * sideTurn, next * sideLength, width * 0.60f, depth + 1, -side)
         if (third) {
-            limb(path * 4 + 3, end, lifted - side * thirdTurn, next * 0.7f, width * 0.45f, depth + 1, side)
+            limb(path * 4 + 3, end, sagged - side * thirdTurn, next * 0.7f, width * 0.45f, depth + 1, side)
         }
     }
 }
 
+/** A limb marks hang on, with the path that seeds it; [tip] if it forks no further. */
 private class Twig(val limb: Int, val path: Long, val tip: Boolean)
 
 /**
- * [count] slots on the twigs. Each twig's first mark hangs at its end, where fruit and
- * blossom belong; after that the next goes to whichever twig holds the fewest for its
- * length, so no twig crowds while another stands bare. The sequence never depends on
- * [count], so hanging another word moves none already hanging.
+ * [count] slots on the wood, the levelest and oldest wood dealt first so the first marks,
+ * fruit and blossom, hang as spur fruit does; once every carrier holds one, the next goes to
+ * whichever holds the fewest for its weighted length. The sequence never depends on [count],
+ * so hanging another word moves none already hanging.
  */
 private fun hang(limbs: List<TreeLimb>, twigs: List<Twig>, seed: Long, count: Int): List<TreeSlot> {
-    if (count <= 0) return emptyList()
-    val rest = twigs.filter { it.tip }.sortedBy { Mix.hash(seed xor it.path) }.toMutableList()
-    val inner = twigs.filter { !it.tip }.sortedBy { Mix.hash(seed xor it.path) }
-    if (rest.isEmpty()) return emptyList()
-    // why: a twig pointing steeply up would hang its fruit like a flag on a pole.
-    fun steep(twig: Twig): Boolean {
+    if (count <= 0 || twigs.isEmpty()) return emptyList()
+    fun chord(twig: Twig): Float {
         val limb = limbs[twig.limb]
-        return abs(limb.end.x - limb.start.x) < abs(limb.end.y - limb.start.y) * 0.6f
+        return max(hypot(limb.end.x - limb.start.x, limb.end.y - limb.start.y), 1e-6f)
     }
-    // why: from a seeded first twig, each next is the one whose end lies farthest from every
-    // end already dealt — steep twigs last — so the first marks, fruit and blossom, land far
-    // apart on level wood instead of clumping where twigs end.
-    val order = mutableListOf(rest.removeAt(rest.indexOfFirst { !steep(it) }.coerceAtLeast(0)))
-    fun gap(a: Int, b: Int): Float {
-        val p = limbs[a].end; val q = limbs[b].end
-        return hypot(p.x - q.x, p.y - q.y)
+    fun rank(twig: Twig): Float {
+        val limb = limbs[twig.limb]
+        return abs(limb.end.x - limb.start.x) / chord(twig) + if (twig.tip) 0f else 1f
     }
-    val nearest = rest.map { gap(it.limb, order[0].limb) }.toMutableList()
-    while (rest.isNotEmpty()) {
-        val level = rest.indices.filter { !steep(rest[it]) }
-        val far = (level.ifEmpty { rest.indices.toList() }).maxBy { nearest[it] }
-        val picked = rest.removeAt(far)
-        nearest.removeAt(far)
-        order += picked
-        for (i in rest.indices) nearest[i] = min(nearest[i], gap(rest[i].limb, picked.limb))
-    }
-    // why: one stretch of body wood after every third twig, so even a tree with fewer words
-    // than twigs leafs through its core instead of only at its ends.
-    val body = inner.sortedBy { steep(it) }.toMutableList()
-    val dealt = mutableListOf<Twig>()
-    for ((i, twig) in order.withIndex()) {
-        dealt += twig
-        if (i % 3 == 2 && body.isNotEmpty()) dealt += body.removeAt(0)
-    }
-    order.clear()
-    order += dealt + body
-    val wood = order.map { limbs[it.limb] }
-    val lengths = wood.map { max(hypot(it.end.x - it.start.x, it.end.y - it.start.y), 1e-6f) }
-    val held = IntArray(wood.size)
+    val order = twigs.sortedWith(compareByDescending<Twig> { rank(it) }.thenBy { Mix.hash(seed xor it.path) })
+    // why: inner wood counts half its length, so the twigs carry most of the foliage.
+    val weights = order.map { chord(it) * if (it.tip) 1f else 0.5f }
+    val held = IntArray(order.size)
     val slots = mutableListOf<TreeSlot>()
     while (slots.size < count) {
-        val twig = if (slots.size < wood.size) slots.size
-            else held.indices.minBy { held[it] / lengths[it] }
-        slots += slot(held[twig], wood[twig], order[twig].tip, flip = order[twig].path and 1L == 0L)
-        held[twig]++
+        val i = if (slots.size < order.size) slots.size else held.indices.minBy { held[it] / weights[it] }
+        slots += slot(held[i], limbs[order[i].limb], flip = order[i].path and 1L == 0L)
+        held[i]++
     }
     return slots
 }
 
 /**
- * A twig's k-th mark: a twig's first at its end, the rest where the base-2 van der Corput
- * sequence puts them back along it; wood behind the twigs takes its marks along its middle.
- * Each new mark halves a gap the earlier ones left, and none sits at a thick fork. Off the
- * end, marks alternate sides and sit on the bark, leaning away from the wood.
+ * A carrier's k-th mark, where the base-2 van der Corput sequence puts it within [0.15, 0.95]
+ * of the way along: each new mark halves a gap the earlier ones left. Marks alternate sides
+ * and sit on the bark, leaning away from the wood.
  */
-private fun slot(k: Int, twig: TreeLimb, tip: Boolean, flip: Boolean): TreeSlot {
+private fun slot(k: Int, twig: TreeLimb, flip: Boolean): TreeSlot {
     var spread = 0f; var step = 0.5f; var n = k
     while (n > 0) { spread += (n and 1) * step; n = n shr 1; step /= 2 }
-    // why: only thick forks need clear air around them; on thin wood a mark may sit right
-    // beside a fork.
-    val margin = if (twig.depth <= 1) 0.3f else if (twig.depth == 2) 0.2f else 0.05f
-    val high = if (tip) 1f else 1 - margin; val low = if (tip) 0.1f + margin else margin
-    val t = high - (high - low) * spread; val u = 1 - t
+    val t = 0.95f - 0.8f * spread; val u = 1 - t
     val point = Offset(
         u * u * twig.start.x + 2 * u * t * twig.control.x + t * t * twig.end.x,
         u * u * twig.start.y + 2 * u * t * twig.control.y + t * t * twig.end.y,
@@ -238,8 +203,7 @@ private fun slot(k: Int, twig: TreeLimb, tip: Boolean, flip: Boolean): TreeSlot 
         2 * u * (twig.control.x - twig.start.x) + 2 * t * (twig.end.x - twig.control.x),
     )
     val side = if ((k % 2 == 1) != flip) 1f else -1f
-    // why: a mark at a twig's end sits on the tip itself.
-    val bark = if (tip && k == 0) 0f else (twig.startWidth * u + twig.endWidth * t) / 2 * side
+    val bark = (twig.startWidth * u + twig.endWidth * t) / 2 * side
     // why: a leaf follows its wood, splayed to one side, and never points below horizontal.
     return TreeSlot(
         Offset(point.x + cos(along + PI_F / 2) * bark, point.y + sin(along + PI_F / 2) * bark),

@@ -22,7 +22,9 @@ extension TreeShapes {
 
     /// A word held for months — the furthest thing on the tree, and drawn HEAVIER
     /// than a blossom, so a word promoting from one to the other reads as a gain.
-    static func fruit(_ context: inout GraphicsContext, at point: CGPoint, size: CGFloat) {
+    static func fruit(_ context: inout GraphicsContext, at slot: CGPoint, size: CGFloat) {
+        // why: the stalk's top sits on the slot, so the fruit hangs under its wood.
+        let point = CGPoint(x: slot.x, y: slot.y + size * 0.62)
         var stalk = Path()
         stalk.move(to: CGPoint(x: point.x, y: point.y - size * 0.62))
         stalk.addQuadCurve(to: CGPoint(x: point.x, y: point.y - size * 0.26),

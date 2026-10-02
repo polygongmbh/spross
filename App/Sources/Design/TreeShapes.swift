@@ -7,12 +7,12 @@ import SwiftUI
 // landed, and blossom and fruit appear ON that canopy rather than replacing it.
 //
 // The canopy is NOT a shape. It is wherever the twigs ended up, and every mark
-// hangs in the cluster at one twig's end (`TreeSkeleton`). A canopy region with
+// hangs along the wood (`TreeSkeleton`). A canopy region with
 // marks sampled inside it is what makes a procedural tree read as a child's
 // drawing: the leaves float, the outline closes into a circle, and there are no
 // gaps to see sky through.
 //
-// What hangs where (`Canopy`), the twig ends first:
+// What hangs where (`Canopy`), the levelest wood first:
 //   fruit    — a word held for months
 //   blossom  — a word that has matured
 //   leaf     — a word that has landed

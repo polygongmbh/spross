@@ -22,9 +22,8 @@ import Foundation
 //   · Every segment bows slightly; a straight line never occurs in a tree.
 //   · A bare trunk before the first fork.
 //
-// Leaves are the level past the last stems (Weber & Penn §4.6): they grow on the
-// twigs that fork no further and on the finer wood behind them, spaced along each
-// and alternating sides — never on the trunk, never at a thick fork.
+// Leaves are the level past the last stems (Weber & Penn §4.6): they grow along every
+// segment but the trunk, spread evenly and alternating sides, clear of each fork.
 
 /// One length of branch: a bowed center line that tapers along its length.
 struct TreeSegment {
@@ -81,13 +80,15 @@ struct TreeSkeleton {
 
     // MARK: Growing
 
+    /// A segment marks hang on, with the path that seeds it; `tip` if it forks no further.
+    private typealias Carrier = (segment: Int, path: UInt64, tip: Bool)
+
     private struct Growth {
         let seed: UInt64
         let vigor: Double
         var segments: [TreeSegment] = []
-        /// The wood marks hang on, with the path that seeds each: the segments that fork
-        /// no further (`tip`), and the finer wood behind them, so the crown's body leafs too.
-        var twigs: [(segment: Int, path: UInt64, tip: Bool)] = []
+        /// The wood marks hang on: every segment but the trunk.
+        var twigs: [Carrier] = []
 
         init(seed: UInt64, vigor: Double) {
             self.seed = seed
@@ -136,26 +137,22 @@ struct TreeSkeleton {
             // A branch whose children have not started yet is a tip, full length or not.
             // why: a twig sprouts at half length, never as a stub — a stub's marks would
             // all sit on the fork it grows from.
-            guard grown >= 1, depth < TreeSkeleton.maxDepth, vigor >= Double(depth + 1) + 0.5 else {
-                twigs.append((segments.count - 1, path, true))
-                return
-            }
-            if depth >= 1 { twigs.append((segments.count - 1, path, false)) }
+            let forks = grown >= 1 && depth < TreeSkeleton.maxDepth && vigor >= Double(depth + 1) + 0.5
+            if depth >= 1 { twigs.append((segments.count - 1, path, !forks)) }
+            guard forks else { return }
             // why: a short trunk under long first limbs — a low, bushy crown that fits an
             // orchard row instead of a tall stem with a tuft on top.
             let next = depth == 0 ? length * 1.2 : length
-            // Branches reach for the light a little, then sag under the weight they carry:
-            // the more level a limb and the later its generation, the further it droops.
-            let lifted = angle + (-Double.pi / 2 - angle) * 0.06 * Double(depth + 1)
-                + 0.11 * Double(depth + 1) * cos(angle)
-            branch(path: path &* 4 &+ 1, from: end, angle: lifted + dominantTurn,
+            // why: limbs sag under their weight, the more level and the later-born the further.
+            let sagged = angle + 0.02 * Double(depth + 1) * cos(angle)
+            branch(path: path &* 4 &+ 1, from: end, angle: sagged + dominantTurn,
                    length: next * dominantLength, width: width * 0.80,
                    depth: depth + 1, side: -side)
-            branch(path: path &* 4 &+ 2, from: end, angle: lifted + side * lateralTurn,
+            branch(path: path &* 4 &+ 2, from: end, angle: sagged + side * lateralTurn,
                    length: next * lateralLength, width: width * 0.60,
                    depth: depth + 1, side: -side)
             if third {
-                branch(path: path &* 4 &+ 3, from: end, angle: lifted - side * thirdTurn,
+                branch(path: path &* 4 &+ 3, from: end, angle: sagged - side * thirdTurn,
                        length: next * 0.7, width: width * 0.45,
                        depth: depth + 1, side: side)
             }
@@ -164,85 +161,52 @@ struct TreeSkeleton {
 
     // MARK: Hanging
 
-    /// `count` slots on the twigs. Each twig's first mark hangs at its end, where fruit
-    /// and blossom belong; after that the next goes to whichever twig holds the fewest
-    /// for its length, so no twig crowds while another stands bare. The sequence never
-    /// depends on `count`, so hanging another word moves none already hanging.
-    private static func hang(on segments: [TreeSegment], twigs: [(segment: Int, path: UInt64, tip: Bool)],
-                             seed: UInt64, count: Int) -> [LeafSlot] {
-        guard count > 0 else { return [] }
-        let byHash = { (a: (segment: Int, path: UInt64, tip: Bool), b: (segment: Int, path: UInt64, tip: Bool)) in
-            SplitMix64.mix(seed ^ a.path) < SplitMix64.mix(seed ^ b.path)
+    /// `count` slots on the wood, the levelest and oldest wood dealt first so the first marks,
+    /// fruit and blossom, hang as spur fruit does; once every carrier holds one, the next goes
+    /// to whichever holds the fewest for its weighted length. The sequence never depends on
+    /// `count`, so hanging another word moves none already hanging.
+    private static func hang(on segments: [TreeSegment], twigs: [Carrier], seed: UInt64,
+                             count: Int) -> [LeafSlot] {
+        guard count > 0, !twigs.isEmpty else { return [] }
+        func chord(_ c: Carrier) -> Double {
+            let s = segments[c.segment]
+            return max(Double(hypot(s.end.x - s.start.x, s.end.y - s.start.y)), 1e-6)
         }
-        var rest = twigs.filter(\.tip).sorted(by: byHash)
-        var inner = twigs.filter { !$0.tip }.sorted(by: byHash)
-        guard !rest.isEmpty else { return [] }
-        // why: a twig pointing steeply up would hang its fruit like a flag on a pole.
-        func steep(_ twig: (segment: Int, path: UInt64, tip: Bool)) -> Bool {
-            let s = segments[twig.segment]
-            return abs(s.end.x - s.start.x) < abs(s.end.y - s.start.y) * 0.6
+        func rank(_ c: Carrier) -> Double {
+            let s = segments[c.segment]
+            return Double(abs(s.end.x - s.start.x)) / chord(c) + (c.tip ? 0 : 1)
         }
-        // why: from a seeded first twig, each next is the one whose end lies farthest from
-        // every end already dealt — steep twigs last — so the first marks, fruit and
-        // blossom, land far apart on level wood instead of clumping where twigs end.
-        var order = [rest.remove(at: rest.firstIndex { !steep($0) } ?? 0)]
-        func gap(_ a: Int, _ b: Int) -> CGFloat {
-            let p = segments[a].end, q = segments[b].end
-            return hypot(p.x - q.x, p.y - q.y)
-        }
-        var nearest = rest.map { gap($0.segment, order[0].segment) }
-        while !rest.isEmpty {
-            let level = rest.indices.filter { !steep(rest[$0]) }
-            let far = (level.isEmpty ? Array(rest.indices) : level).max { nearest[$0] < nearest[$1] }!
-            let picked = rest.remove(at: far)
-            nearest.remove(at: far)
-            order.append(picked)
-            for i in rest.indices { nearest[i] = min(nearest[i], gap(rest[i].segment, picked.segment)) }
-        }
-        // why: one stretch of body wood after every third twig, so even a tree with fewer
-        // words than twigs leafs through its core instead of only at its ends.
-        inner.sort { steep($0) != steep($1) ? !steep($0) : false }
-        var dealt: [(segment: Int, path: UInt64, tip: Bool)] = []
-        for (i, twig) in order.enumerated() {
-            dealt.append(twig)
-            if i % 3 == 2, !inner.isEmpty { dealt.append(inner.removeFirst()) }
-        }
-        order = dealt + inner
-        let wood = order.map { segments[$0.segment] }
-        let lengths = wood.map { max(Double(hypot($0.end.x - $0.start.x, $0.end.y - $0.start.y)), 1e-6) }
-        var held = [Int](repeating: 0, count: wood.count)
+        let order = twigs.map { (carrier: $0, rank: rank($0), hash: SplitMix64.mix(seed ^ $0.path)) }
+            .sorted { $0.rank != $1.rank ? $0.rank > $1.rank : $0.hash < $1.hash }
+            .map(\.carrier)
+        // why: inner wood counts half its length, so the twigs carry most of the foliage.
+        let weights = order.map { chord($0) * ($0.tip ? 1 : 0.5) }
+        var held = [Int](repeating: 0, count: order.count)
         var slots: [LeafSlot] = []
         while slots.count < count {
-            let twig = slots.count < wood.count
+            let i = slots.count < order.count
                 ? slots.count
-                : held.indices.min { Double(held[$0]) / lengths[$0] < Double(held[$1]) / lengths[$1] }!
-            slots.append(slot(held[twig], on: wood[twig], tip: order[twig].tip, flip: order[twig].path & 1 == 0))
-            held[twig] += 1
+                : held.indices.min { Double(held[$0]) / weights[$0] < Double(held[$1]) / weights[$1] }!
+            slots.append(slot(held[i], on: segments[order[i].segment], flip: order[i].path & 1 == 0))
+            held[i] += 1
         }
         return slots
     }
 
-    /// A twig's k-th mark: a twig's first at its end, the rest where the base-2 van der
-    /// Corput sequence puts them back along it; wood behind the twigs takes its marks along
-    /// its middle. Each new mark halves a gap the earlier ones left, and none sits at a
-    /// thick fork.
-    /// Off the end, marks alternate sides and sit on the bark, leaning away from the wood.
-    private static func slot(_ k: Int, on twig: TreeSegment, tip: Bool, flip: Bool) -> LeafSlot {
+    /// A carrier's k-th mark, where the base-2 van der Corput sequence puts it within
+    /// [0.15, 0.95] of the way along: each new mark halves a gap the earlier ones left.
+    /// Marks alternate sides and sit on the bark, leaning away from the wood.
+    private static func slot(_ k: Int, on twig: TreeSegment, flip: Bool) -> LeafSlot {
         var spread = 0.0, step = 0.5, n = k
         while n > 0 { spread += Double(n & 1) * step; n >>= 1; step /= 2 }
-        // why: only thick forks need clear air around them; on thin wood a mark may sit
-        // right beside a fork.
-        let margin = twig.depth <= 1 ? 0.3 : twig.depth == 2 ? 0.2 : 0.05
-        let high = tip ? 1.0 : 1 - margin, low = tip ? 0.1 + margin : margin
-        let t = high - (high - low) * spread, u = 1 - t
+        let t = 0.95 - 0.8 * spread, u = 1 - t
         let point = CGPoint(
             x: u * u * twig.start.x + 2 * u * t * twig.control.x + t * t * twig.end.x,
             y: u * u * twig.start.y + 2 * u * t * twig.control.y + t * t * twig.end.y)
         let along = atan2(Double(2 * u * (twig.control.y - twig.start.y) + 2 * t * (twig.end.y - twig.control.y)),
                           Double(2 * u * (twig.control.x - twig.start.x) + 2 * t * (twig.end.x - twig.control.x)))
         let side: Double = (k % 2 == 1) != flip ? 1 : -1
-        // why: a mark at a twig's end sits on the tip itself.
-        let bark = tip && k == 0 ? 0 : (Double(twig.startWidth) * u + Double(twig.endWidth) * t) / 2 * side
+        let bark = (Double(twig.startWidth) * u + Double(twig.endWidth) * t) / 2 * side
         // why: a leaf follows its wood, splayed to one side, and never points below horizontal.
         return LeafSlot(point: CGPoint(x: point.x + CGFloat(cos(along + .pi / 2) * bark),
                                        y: point.y + CGFloat(sin(along + .pi / 2) * bark)),

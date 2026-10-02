@@ -12,7 +12,7 @@ import net.spross.kern.box.AreaTree
 // One placed tree as the paths it is filled with — built once, drawn on every frame.
 //
 // Which mark a word hangs as is kern's tier, read rank by rank off [AreaTree] (most grown
-// first, so the twig ends fill first):
+// first, so the levelest wood fills first):
 //   fruit    — long held      blossom — matured
 //   leaf     — growing        bud     — arriving
 // Told apart by shape before color: a sprig of pointed leaflets, a small disc, five petals
@@ -132,7 +132,9 @@ internal class TreeArt(
     }
 
     /** A word held for months — heavier than a blossom, so promotion reads as a gain. */
-    private fun fruit(at: Offset, size: Float) {
+    private fun fruit(slot: Offset, size: Float) {
+        // why: the stalk's top sits on the slot, so the fruit hangs under its wood.
+        val at = Offset(slot.x, slot.y + size * 0.62f)
         stalks.moveTo(at.x, at.y - size * 0.62f)
         stalks.quadraticTo(at.x + size * 0.12f, at.y - size * 0.45f, at.x, at.y - size * 0.26f)
         fruit.addOval(Rect(at, size * 0.56f))
