@@ -11,7 +11,7 @@ import net.spross.kern.design.Swatch
  * This cut declares Compose colors, never color VALUES — every token is kern's [Palette]
  * entry, made opaque.
  *
- * Nineteen fields wired across by hand is where a token silently takes its neighbor's hue
+ * Twenty-six fields wired across by hand is where a token silently takes its neighbor's hue
  * or its other column, so the mapping is checked rather than trusted: kern's own
  * `PaletteParityTest` cannot hold this table any more, having become the table's source.
  */
@@ -42,6 +42,13 @@ class ThemePaletteTest {
         Token("der", Palette.der, ThemeLight.der, ThemeDark.der),
         Token("die", Palette.die, ThemeLight.die, ThemeDark.die),
         Token("das", Palette.das, ThemeLight.das, ThemeDark.das),
+        Token("ground", Palette.ground, ThemeLight.ground, ThemeDark.ground),
+        Token("wood", Palette.wood, ThemeLight.wood, ThemeDark.wood),
+        Token("woodShade", Palette.woodShade, ThemeLight.woodShade, ThemeDark.woodShade),
+        Token("leaf", Palette.leaf, ThemeLight.leaf, ThemeDark.leaf),
+        Token("leafDeep", Palette.leafDeep, ThemeLight.leafDeep, ThemeDark.leafDeep),
+        Token("bud", Palette.bud, ThemeLight.bud, ThemeDark.bud),
+        Token("fallen", Palette.fallen, ThemeLight.fallen, ThemeDark.fallen),
         Token("blossom", Palette.blossom, ThemeLight.blossom, ThemeDark.blossom),
         Token("fruit", Palette.fruit, ThemeLight.fruit, ThemeDark.fruit),
     )

@@ -149,7 +149,14 @@ enum Theme {
         /// `der` on the hue wheel to read as anything but another blue at a badge's size.
         let grown = Color(Palette.shared.grown)      // jade
 
-        // The tree's marks.
+        // The trees' own colors.
+        let ground = Color(Palette.shared.ground)
+        let wood = Color(Palette.shared.wood)
+        let woodShade = Color(Palette.shared.woodShade)
+        let leaf = Color(Palette.shared.leaf)
+        let leafDeep = Color(Palette.shared.leafDeep)
+        let bud = Color(Palette.shared.bud)
+        let fallen = Color(Palette.shared.fallen)
         let blossom = Color(Palette.shared.blossom)
         let fruit = Color(Palette.shared.fruit)
 

@@ -37,10 +37,10 @@ enum TreeShapes {
         if shown.isBare {
             return seedling(&context, mark,
                             height: max(mark.height, TreeMark.minHeight),
-                            color: Theme.colors.success.opacity(0.45))
+                            color: Theme.colors.leaf.opacity(0.45))
         }
         guard shown.count > 0 else {
-            return seedling(&context, mark, height: mark.height, color: Theme.colors.success)
+            return seedling(&context, mark, height: mark.height, color: Theme.colors.leaf)
         }
 
         let skeleton = mark.skeleton
@@ -57,7 +57,7 @@ enum TreeShapes {
         let width = max(9, mark.height * 0.42)
         let shadow = CGRect(x: mark.foot.x - width / 2, y: mark.baseline - 1.6,
                             width: width, height: 3.2)
-        context.fill(Path(ellipseIn: shadow), with: .color(Theme.colors.separator.opacity(0.55)))
+        context.fill(Path(ellipseIn: shadow), with: .color(Theme.colors.ground.opacity(0.55)))
     }
 
     /// Answered today — a short line of fresh earth at the foot, on the GROUND:
@@ -117,10 +117,10 @@ enum TreeShapes {
         }
         // why: the joints fill apart from the wood — a circle wound against a
         // taper cancels it under the nonzero rule and cuts a notch in the fork.
-        context.fill(wood, with: .color(Theme.colors.borderStrong))
-        context.fill(joints, with: .color(Theme.colors.borderStrong))
-        context.fill(shade, with: .color(Theme.colors.textPrimary.opacity(0.08)))
-        context.stroke(twigs, with: .color(Theme.colors.borderStrong),
+        context.fill(wood, with: .color(Theme.colors.wood))
+        context.fill(joints, with: .color(Theme.colors.wood))
+        context.fill(shade, with: .color(Theme.colors.woodShade.opacity(0.08)))
+        context.stroke(twigs, with: .color(Theme.colors.wood),
                        style: StrokeStyle(lineWidth: 0.7, lineCap: .round))
     }
 
@@ -182,14 +182,14 @@ enum TreeShapes {
             }
         }
         // Ochre, not green: a bud is a scale of wood, the word has not leafed out yet.
-        context.fill(buds, with: .color(Theme.colors.amber.opacity(0.8)))
+        context.fill(buds, with: .color(Theme.colors.bud.opacity(0.8)))
         context.fill(fruit, with: .color(Theme.colors.fruit))
-        let leafColors: [Color] = [Theme.colors.das.opacity(0.92), Theme.colors.success,
-                                   Theme.colors.success.opacity(0.84), Theme.colors.success.opacity(0.68)]
+        let leafColors: [Color] = [Theme.colors.leafDeep.opacity(0.92), Theme.colors.leaf,
+                                   Theme.colors.leaf.opacity(0.84), Theme.colors.leaf.opacity(0.68)]
         for (index, tone) in tones.enumerated() { context.fill(tone, with: .color(leafColors[index])) }
         context.fill(petals, with: .color(Theme.colors.blossom.opacity(0.9)))
         // why: the eye takes the wood's tone; ochre sits too close to the petals.
-        context.fill(eyes, with: .color(Theme.colors.borderStrong))
+        context.fill(eyes, with: .color(Theme.colors.wood))
     }
 
     /// Words that lapsed: leaves on the ground beside the trunk. The tree never
@@ -204,7 +204,7 @@ enum TreeShapes {
             let spread = clear + CGFloat(noise("\(mark.area)-f\(index)", 13)) * clear * 0.5
             let at = CGPoint(x: mark.foot.x + side * spread, y: mark.baseline + 0.5)
             context.fill(leafPath(at: at, size: size, angle: side > 0 ? 0.2 : .pi - 0.2),
-                         with: .color(Theme.colors.amber.opacity(0.85)))
+                         with: .color(Theme.colors.fallen.opacity(0.85)))
         }
     }
 

@@ -60,6 +60,20 @@ object Palette {
      */
     val grown = Swatch(0x0F766E, 0x5EEAD4)
 
+    // The trees draw with these alone, so a UI color can change without touching a tree.
+    /** The ground's soft shadow under a trunk. */
+    val ground = Swatch(0xD3D6CA, 0x3A443D)
+    /** Trunk, limbs and twigs, and a blossom's eye. */
+    val wood = Swatch(0x868D7C, 0x707C72)
+    /** The trunk's shaded side, laid thinly over the wood. */
+    val woodShade = Swatch(0x1E2620, 0xE9F0EA)
+    /** A leaf, and a seedling; [leafDeep] is the crown's deepest tone. */
+    val leaf = Swatch(0x256232, 0x8AE39B)
+    val leafDeep = Swatch(0x18602C, 0x6FDC85)
+    /** A bud: a scale of wood, the word has not leafed out yet. */
+    val bud = Swatch(0x87510A, 0xF2C078)
+    /** A leaf fallen by the trunk: a word that lapsed. */
+    val fallen = Swatch(0x87510A, 0xF2C078)
     // The tree's marks, apart from each other and from the leaves by hue and lightness alike.
     /** Open blossom: soft butter, clear of the ochre a bud wears. */
     val blossom = Swatch(0xE9C46A, 0xF2DC6E)

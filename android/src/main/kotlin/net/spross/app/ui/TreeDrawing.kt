@@ -48,8 +48,8 @@ internal fun DrawScope.drawTree(planted: PlantedTree, colors: ThemeColors, art: 
         // why: an area nobody has opened stands as a faded seedling — a place to go
         // rather than a chore not done.
         tree.isBare -> seedling(planted, max(planted.height, planted.dp(AreaTree.MIN_HEIGHT.toFloat())),
-            colors.success.copy(alpha = 0.45f))
-        art == null -> seedling(planted, planted.height, colors.success)
+            colors.leaf.copy(alpha = 0.45f))
+        art == null -> seedling(planted, planted.height, colors.leaf)
         else -> {
             wood(art, colors, planted)
             canopy(art, colors)
@@ -69,7 +69,7 @@ internal fun DrawScope.drawTree(planted: PlantedTree, colors: ThemeColors, art: 
 private fun DrawScope.ground(planted: PlantedTree, colors: ThemeColors) {
     val width = max(planted.dp(9f), planted.height * 0.42f)
     val foot = planted.foot
-    drawOval(colors.separator.copy(alpha = 0.55f), Offset(foot.x - width / 2, foot.y - planted.dp(1.6f)),
+    drawOval(colors.ground.copy(alpha = 0.55f), Offset(foot.x - width / 2, foot.y - planted.dp(1.6f)),
         Size(width, planted.dp(3.2f)))
 }
 
@@ -91,23 +91,23 @@ private fun DrawScope.seedling(planted: PlantedTree, height: Float, color: Color
 
 /** The wood in bark, the trunk's shaded side lit from the upper left, twigs as hairlines. */
 private fun DrawScope.wood(art: TreeArt, colors: ThemeColors, planted: PlantedTree) {
-    drawPath(art.wood, colors.borderStrong)
-    drawPath(art.joints, colors.borderStrong)
-    drawPath(art.shade, colors.textPrimary.copy(alpha = 0.08f))
-    drawPath(art.twigs, colors.borderStrong, style = Stroke(planted.dp(0.7f), cap = StrokeCap.Round))
+    drawPath(art.wood, colors.wood)
+    drawPath(art.joints, colors.wood)
+    drawPath(art.shade, colors.woodShade.copy(alpha = 0.08f))
+    drawPath(art.twigs, colors.wood, style = Stroke(planted.dp(0.7f), cap = StrokeCap.Round))
 }
 
 private fun DrawScope.canopy(art: TreeArt, colors: ThemeColors) {
     // Buds and fruit under the leaves, blossom on top.
     // Ochre, not green: a bud is a scale of wood, the word has not leafed out yet.
-    drawPath(art.buds, colors.amber.copy(alpha = 0.8f))
+    drawPath(art.buds, colors.bud.copy(alpha = 0.8f))
     drawPath(art.fruit, colors.fruit)
-    val tones = listOf(colors.das.copy(alpha = 0.92f), colors.success,
-        colors.success.copy(alpha = 0.84f), colors.success.copy(alpha = 0.68f))
+    val tones = listOf(colors.leafDeep.copy(alpha = 0.92f), colors.leaf,
+        colors.leaf.copy(alpha = 0.84f), colors.leaf.copy(alpha = 0.68f))
     art.tones.forEachIndexed { index, path -> drawPath(path, tones[index]) }
     drawPath(art.petals, colors.blossom.copy(alpha = 0.9f))
     // why: the eye takes the wood's tone; ochre sits too close to the petals.
-    drawPath(art.eyes, colors.borderStrong)
+    drawPath(art.eyes, colors.wood)
 }
 
 /** Words that lapsed lie on the ground beside the trunk; the tree never shrinks for them. */
@@ -122,6 +122,6 @@ private fun DrawScope.fallen(planted: PlantedTree, colors: ThemeColors) {
         leaf(leaves, Offset(planted.foot.x + side * spread, planted.foot.y + planted.dp(0.5f)), size,
             if (side > 0) 0.2f else PI_F - 0.2f)
     }
-    drawPath(leaves, colors.amber.copy(alpha = 0.85f))
+    drawPath(leaves, colors.fallen.copy(alpha = 0.85f))
 }
 

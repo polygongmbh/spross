@@ -71,6 +71,20 @@ class ThemeColors(
      * wear it; a card telling someone they were wrong never does.
      */
     val wrong: Color,
+    /** The ground's shadow under a tree. */
+    val ground: Color,
+    /** A tree's wood. */
+    val wood: Color,
+    /** The trunk's shaded side. */
+    val woodShade: Color,
+    /** A leaf on a tree, and a seedling. */
+    val leaf: Color,
+    /** A tree crown's deepest leaf tone. */
+    val leafDeep: Color,
+    /** A bud on a tree. */
+    val bud: Color,
+    /** A fallen leaf by a tree. */
+    val fallen: Color,
     /** Open blossom on a tree: soft butter. */
     val blossom: Color,
     /** Ripe fruit on a tree: a clear red. */
@@ -118,6 +132,13 @@ val ThemeLight = ThemeColors(
     amber = Palette.amber.light.opaque(),
     grown = Palette.grown.light.opaque(),
     wrong = Palette.wrong.light.opaque(),
+    ground = Palette.ground.light.opaque(),
+    wood = Palette.wood.light.opaque(),
+    woodShade = Palette.woodShade.light.opaque(),
+    leaf = Palette.leaf.light.opaque(),
+    leafDeep = Palette.leafDeep.light.opaque(),
+    bud = Palette.bud.light.opaque(),
+    fallen = Palette.fallen.light.opaque(),
     blossom = Palette.blossom.light.opaque(),
     fruit = Palette.fruit.light.opaque(),
     der = Palette.der.light.opaque(),
@@ -141,6 +162,13 @@ val ThemeDark = ThemeColors(
     amber = Palette.amber.dark.opaque(),
     grown = Palette.grown.dark.opaque(),
     wrong = Palette.wrong.dark.opaque(),
+    ground = Palette.ground.dark.opaque(),
+    wood = Palette.wood.dark.opaque(),
+    woodShade = Palette.woodShade.dark.opaque(),
+    leaf = Palette.leaf.dark.opaque(),
+    leafDeep = Palette.leafDeep.dark.opaque(),
+    bud = Palette.bud.dark.opaque(),
+    fallen = Palette.fallen.dark.opaque(),
     blossom = Palette.blossom.dark.opaque(),
     fruit = Palette.fruit.dark.opaque(),
     der = Palette.der.dark.opaque(),
