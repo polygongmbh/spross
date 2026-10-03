@@ -185,7 +185,7 @@ object NumbersRun {
             // it books the answer almost.
             is Match.Typo -> NumbersReduction(
                 state.copy(feedback = TurnFeedback.Almost(match.corrected, AlmostReason.Typo)),
-                listOf(DrillEffect.Tone(ToneKind.Correct), state.saidAnswer(match.corrected), DrillEffect.ReleaseFocus),
+                listOf(DrillEffect.Tone(ToneKind.Almost), state.saidAnswer(match.corrected), DrillEffect.ReleaseFocus),
             )
             else -> NumbersReduction(
                 state.copy(feedback = TurnFeedback.Revealed, otherWord = match as? Match.OtherWord),

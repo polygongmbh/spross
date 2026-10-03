@@ -11,6 +11,7 @@ author — see App/Sources/Design/Sounds.swift.
 Design grammar, from how the space already trains people:
   correct — ASCENDING major third; the standard positive confirmation
             (Duolingo's chime, Apple Pay's approval tone).
+  almost  — the correct sound's first note alone: begun, not arrived.
   wrong   — DESCENDING minor third; direction says "down" while the interval
             stays consonant, so it reads as a mild "aw".
   reveal  — one neutral note, no direction: revealing is not a verdict.
@@ -97,6 +98,11 @@ SOUNDS = {
     'correct': dict(tau=0.060, attack=0.010, bright=0.10, notes=[
         (E5,         0.000, 0.19, 1.00),
         (G_SHARP5,   0.070, 0.19, 1.00),
+    ]),
+    # a slip that still counts: the correct sound's first note, struck and left there —
+    # the rise begun and not finished
+    'almost': dict(tau=0.060, attack=0.010, bright=0.10, notes=[
+        (E5,         0.000, 0.19, 1.00),
     ]),
     # keeps more edge than the other two: it is the rarest of the three and the
     # one that has to register without being looked at

@@ -110,6 +110,7 @@ What licenses a second component is a parameter attempted and found not to carry
   Either way the owed form stands at a readable size with its speaker beside it.
 - **Near miss runs amber** — field edge, checkmark and box agree.
   Green stays the clean answer's alone.
+  Its chime is the correct one's first note alone; a merged meaning, full credit, sounds correct.
 - Near miss does not auto-advance.
 - A wrong answer that is another catalog word **names that word** (`Match.OtherWord`).
 - **Meaning answers accept every meaning the word has**,

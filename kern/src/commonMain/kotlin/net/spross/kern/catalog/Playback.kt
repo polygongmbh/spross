@@ -92,6 +92,9 @@ enum class Chime(private val gainDb: Double) {
     /** -19.7 LUFS. */
     Correct(-7.5),
 
+    /** -19.7 LUFS: a slip, level with the correct sound it begins. */
+    Almost(-7.3),
+
     /** -13.7 LUFS. */
     Wrong(-1.2),
 

@@ -36,6 +36,8 @@ enum Sound {
 
     /// Ascending major third — the positive confirmation people already know.
     private static let correctPlayer = load("correct", .correct)
+    /// The correct interval's first note alone: a slip that still counts.
+    private static let almostPlayer = load("almost", .almost)
     /// Descending minor third: down, but consonant.
     private static let wrongPlayer = load("wrong", .wrong)
     /// One neutral note; revealing an answer is not a verdict.
@@ -63,6 +65,7 @@ enum Sound {
     static func play(_ kind: ToneKind) {
         switch kind {
         case .correct: correct()
+        case .almost: play(almostPlayer)
         case .wrong: wrong()
         case .reveal: reveal()
         }
@@ -72,12 +75,13 @@ enum Sound {
         play(cheerPlayer)
     }
 
-    /// Loads the four players off the answering path, so the first chime of a
+    /// Loads the players off the answering path, so the first chime of a
     /// session does not pay `prepareToPlay`'s buffer allocation on the very tap
     /// that fires it. Called beside `Pronouncer.warmUp()`, which pays the
     /// session's first activation the same way.
     static func warmUp() {
         _ = correctPlayer
+        _ = almostPlayer
         _ = wrongPlayer
         _ = revealPlayer
         _ = cheerPlayer
@@ -109,8 +113,8 @@ enum Sound {
     /// the check that the files actually made it into the bundle.
     static func uitestProbe() {
         let probes: [(String, AVAudioPlayer?)] =
-            [("correct", correctPlayer), ("wrong", wrongPlayer), ("reveal", revealPlayer),
-             ("cheer", cheerPlayer)]
+            [("correct", correctPlayer), ("almost", almostPlayer), ("wrong", wrongPlayer),
+             ("reveal", revealPlayer), ("cheer", cheerPlayer)]
         for (index, probe) in probes.enumerated() {
             Task { @MainActor in
                 try? await Task.sleep(for: .milliseconds(index * 1400))

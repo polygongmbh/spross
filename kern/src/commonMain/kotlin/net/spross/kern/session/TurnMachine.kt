@@ -203,7 +203,10 @@ class TurnMachine(
         listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceTier.Explicit)),
     )
 
-    /** An accepted-but-not-clean answer pauses on what it owes back; no beat may take it away. */
+    /**
+     * An accepted-but-not-clean answer pauses on what it owes back; no beat may take it away.
+     * A slip sounds almost, a merged meaning (full credit) sounds correct.
+     */
     private fun holding(
         state: TurnState,
         correctForm: String,
@@ -211,7 +214,10 @@ class TurnMachine(
         rating: Rating?,
     ): TurnReduction = TurnReduction(
         state.copy(feedback = TurnFeedback.Almost(correctForm, reason), pendingRating = rating),
-        listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ReleaseFocus),
+        listOf(
+            TurnEffect.Tone(if (reason == AlmostReason.Typo) ToneKind.Almost else ToneKind.Correct),
+            TurnEffect.ReleaseFocus,
+        ),
     )
 
     /**

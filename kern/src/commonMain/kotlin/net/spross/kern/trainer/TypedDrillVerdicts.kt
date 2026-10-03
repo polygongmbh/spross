@@ -84,7 +84,7 @@ internal object TypedDrillVerdicts {
             null,
             listOfNotNull(
                 DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Correct),
+                DrillEffect.Tone(ToneKind.Almost),
                 answer?.copy(text = match.corrected),
                 DrillEffect.ReleaseFocus,
             ),

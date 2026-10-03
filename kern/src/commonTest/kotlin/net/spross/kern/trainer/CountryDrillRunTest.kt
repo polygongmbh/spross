@@ -220,7 +220,7 @@ class CountryDrillRunTest {
         assertEquals(
             listOf(
                 DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Correct),
+                DrillEffect.Tone(ToneKind.Almost),
                 saysUjerumani,
                 DrillEffect.ReleaseFocus,
             ),

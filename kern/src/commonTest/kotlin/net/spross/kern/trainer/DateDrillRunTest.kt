@@ -163,7 +163,7 @@ class DateDrillRunTest {
         assertEquals(
             listOf(
                 DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Correct),
+                DrillEffect.Tone(ToneKind.Almost),
                 run.says(),
                 DrillEffect.ReleaseFocus,
             ),

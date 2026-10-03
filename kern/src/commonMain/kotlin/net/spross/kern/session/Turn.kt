@@ -243,7 +243,7 @@ sealed class TurnIntent {
 }
 
 /** The verdict a cue sounds for. What it sounds like, and whether it buzzes too, is the platform's. */
-enum class ToneKind { Correct, Wrong, Reveal }
+enum class ToneKind { Correct, Almost, Wrong, Reveal }
 
 /** What a reduction asks the platform to do about the world outside the turn. */
 sealed class TurnEffect {

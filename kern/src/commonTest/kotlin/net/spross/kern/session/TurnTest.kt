@@ -60,7 +60,7 @@ class TurnTest {
         assertEquals(TurnFeedback.Almost("kisu", AlmostReason.Typo), held.state.feedback)
         assertEquals(Rating.Hard, held.state.pendingRating)
         // No beat: the pause is the point, and it hands the keyboard back.
-        assertEquals(listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ReleaseFocus), held.effects)
+        assertEquals(listOf(TurnEffect.Tone(ToneKind.Almost), TurnEffect.ReleaseFocus), held.effects)
 
         val done = TurnFixture.step(held.state, TurnIntent.ConfirmPending)
         assertEquals(listOf(TurnEffect.Answer(Rating.Hard)), done.effects)

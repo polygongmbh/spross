@@ -58,6 +58,7 @@ class CueSounds(context: Context) {
         fire(
             when (kind) {
                 ToneKind.Correct -> CORRECT
+                ToneKind.Almost -> ALMOST
                 ToneKind.Wrong -> WRONG
                 ToneKind.Reveal -> REVEAL
             },
@@ -84,6 +85,7 @@ class CueSounds(context: Context) {
 
     private companion object {
         const val CORRECT = "correct"
+        const val ALMOST = "almost"
         const val WRONG = "wrong"
         const val REVEAL = "reveal"
         const val CHEER = "cheer"
@@ -92,7 +94,8 @@ class CueSounds(context: Context) {
         const val STREAMS = 2
 
         val CHIMES = mapOf(
-            CORRECT to Chime.Correct, WRONG to Chime.Wrong, REVEAL to Chime.Reveal, CHEER to Chime.Cheer,
+            CORRECT to Chime.Correct, ALMOST to Chime.Almost, WRONG to Chime.Wrong,
+            REVEAL to Chime.Reveal, CHEER to Chime.Cheer,
         )
 
         /** The files are full scale; the pool plays each at kern's level for its chime. */
