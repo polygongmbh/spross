@@ -13,17 +13,17 @@
   "they": { "text": "wao", "notes": { "sw": "wa- (wa-nasikia) na -wa- (ni-na-wa-sikia)." } },
   "my": {
    "text": "-angu",
-   "accepts": ["wangu", "yangu", "langu", "changu", "zangu", "vyangu"],
+   "teaches": ["wangu", "yangu", "langu", "changu", "zangu", "vyangu"],
    "notes": { "sw": "jina langu, lugha yangu, kitanda changu, mji wangu." }
   },
   "your": {
    "text": "-ako",
-   "accepts": ["wako", "yako", "lako", "chako", "zako", "vyako"],
+   "teaches": ["wako", "yako", "lako", "chako", "zako", "vyako"],
    "notes": { "sw": "jina lako, nchi yako, kitanda chako, mji wako." }
   },
   "his": {
    "text": "-ake",
-   "accepts": ["wake", "yake", "lake", "chake", "zake", "vyake"],
+   "teaches": ["wake", "yake", "lake", "chake", "zake", "vyake"],
    "notes": { "sw": "mama yake, jina lake, kitanda chake." }
   },
   "something": { "text": "kitu" },
@@ -36,12 +36,12 @@
   "anyone": { "text": "yeyote" },
   "our": {
    "text": "-etu",
-   "accepts": ["wetu", "yetu", "letu", "chetu", "zetu", "vyetu"],
+   "teaches": ["wetu", "yetu", "letu", "chetu", "zetu", "vyetu"],
    "notes": { "sw": "jina letu, lugha yetu, kitanda chetu, mji wetu." }
   },
   "your-plural": {
    "text": "-enu",
-   "accepts": ["wenu", "yenu", "lenu", "chenu", "zenu", "vyenu"],
+   "teaches": ["wenu", "yenu", "lenu", "chenu", "zenu", "vyenu"],
    "notes": { "sw": "jina lenu, lugha yenu, kitanda chenu, mji wenu." }
   }
  }

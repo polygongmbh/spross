@@ -57,7 +57,7 @@
   },
   "next": {
    "text": "-jayo",
-   "accepts": ["ijayo", "ujao", "yajayo", "zijazo", "kijacho"],
+   "teaches": ["ijayo", "ujao", "yajayo", "zijazo", "kijacho"],
    "notes": { "sw": "wiki ijayo, mwezi ujao, mwaka ujao" }
   },
   "a-while-ago": {
@@ -68,7 +68,7 @@
   "later": { "text": "baadaye" },
   "last": {
    "text": "-a mwisho",
-   "accepts": ["wa mwisho", "ya mwisho", "za mwisho", "cha mwisho", "la mwisho", "vya mwisho"],
+   "teaches": ["wa mwisho", "ya mwisho", "za mwisho", "cha mwisho", "la mwisho", "vya mwisho"],
    "notes": { "sw": "mwisho = ukomo · siku ya mwisho, mtu wa mwisho" }
   },
   "day-after-tomorrow": { "text": "kesho kutwa" },

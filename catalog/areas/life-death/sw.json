@@ -16,7 +16,7 @@
   "youth": { "text": "ujana" },
   "to-grow-up": { "text": "kukua" },
   "to-get-old": { "text": "kuzeeka" },
-  "dead": { "text": "-fu", "accepts": ["aliyekufa", "waliokufa", "mfu", "wafu"] },
+  "dead": { "text": "-fu", "teaches": ["mfu", "wafu"], "accepts": ["aliyekufa", "waliokufa"] },
   "funeral": { "text": "mazishi", "grammar": { "plural": "only" } },
   "grave": { "text": "kaburi", "grammar": { "plural": "makaburi" } },
   "cemetery": { "text": "makaburi", "accepts": ["makaburini"] },

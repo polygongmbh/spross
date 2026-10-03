@@ -268,6 +268,10 @@ class CatalogCollisionLintTest {
                 // a homonym, not a merge: de/en/eo/es/fr/it/uk all split it (rechts/weinen). The
                 // area label tells them apart on produce, and the verb has no other everyday word.
                 "sw kulia: emotions/to-cry, place/right",
+                // Reviewed 2026-10-03: sw `kidogo` is "a little" AND the ki-class form of
+                // `-dogo` (small) that qualities/small teaches — one word, since the adverb
+                // is that agreement form; every other language splits the pair (wenig/klein).
+                "sw kidogo: degree/a-little, qualities/small",
                 "sw mpaka: connectors/until, politics/border",
                 "sw mto: bedroom/pillow, water/river",
                 // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`

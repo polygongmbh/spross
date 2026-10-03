@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Swahili words that change with their noun, like "your" (yako, lako, chako…), now quiz each real form in turn, and the watch offers one of those forms instead of a bare stem like "ako".
 - On the watch, a quick right answer now shows one bolt, a very quick one two, in place of the hand emoji.
 - On the watch, a quick answer to a short word now counts as quick more readily, and one to a long phrase a little less.
 - A misspelled answer that still counts now plays its own shorter chime, the first note of the one for a right answer.

@@ -19,7 +19,7 @@
   "which": { "text": "gani", "notes": { "sw": "neno gani? habari gani? shida gani?" } },
   "how-many": {
    "text": "-ngapi",
-   "accepts": ["wangapi", "vingapi", "mangapi", "mingapi"],
+   "teaches": ["wangapi", "vingapi", "mangapi", "mingapi"],
    "notes": { "sw": "maneno mangapi? shida ngapi?" }
   },
   "where-are-they": { "text": "Wako wapi?" },

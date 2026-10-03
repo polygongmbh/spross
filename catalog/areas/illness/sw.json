@@ -12,7 +12,7 @@
   "illness": { "text": "ugonjwa", "grammar": { "plural": "magonjwa" } },
   "tired": {
    "text": "-chovu",
-   "accepts": ["mchovu", "wachovu"],
+   "teaches": ["mchovu", "wachovu"],
    "notes": {
     "sw": "Nimechoka = nina uchovu · mtu mchovu, watu wachovu",
     "de": "im Alltag sagt man meist das Verb: Nimechoka = ich bin müde."

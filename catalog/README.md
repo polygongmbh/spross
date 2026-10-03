@@ -202,10 +202,13 @@ Realization fields — only `text` is required:
   A form that only ever appears bound carries its leading dash (sw `-zuri`, which takes the
   noun's class prefix): it is the citation convention, grading ignores the dash, and the
   engine takes it off again wherever the dash alone would identify the answer among plain
-  words (`../kern/docs/snapshots.md`). The agreement forms themselves go in `accepts`.
+  words (`../kern/docs/snapshots.md`). The agreement forms themselves go in `teaches`,
+  so recognition rotates through them and a multiple-choice tile never shows the bare stem.
 - `teaches` — DISTINCT-KNOWLEDGE alternates of `text` (array; omit if none):
   genuinely different lexemes for the same concept that a learner must recognize
-  on their own (uk `office` установа/відомство, uk `boss` шеф/керівник).
+  on their own (uk `office` установа/відомство, uk `boss` шеф/керівник),
+  and the agreement forms of a bound stem (sw `-zuri` → nzuri/mzuri/kizuri/wazuri),
+  which are what a learner meets in the wild.
   The name is the behavior: the card TEACHES these, so each entry is **prompt-worthy** —
   it grades as correct when producing this language, and takes its turn as the recognize
   prompt when learning FROM it, on the concept's one schedule, never as a unit of its own
@@ -216,8 +219,7 @@ Realization fields — only `text` is required:
   alternate renderings a learner already knows if they know `text` — register pairs
   (de Sie-form in `text`, du-form here), gender-agreement forms of a phrase
   (uk `Ти завів/завела …?`), diminutives (uk миша/мишка), internationalism spellings
-  (uk договір/контракт), and the noun-class agreement forms of a Swahili adjective
-  stem (`-zuri` → nzuri/mzuri/kizuri/wazuri), which is what a learner meets in the wild.
+  (uk договір/контракт).
   The name is again the whole of the behavior: the card ACCEPTS them on produce and does
   nothing else with them — **never scheduled, never shown**. `text` is the form prompted on
   recognize and the form the reveal teaches, and the `teaches` entries rotate beside it.

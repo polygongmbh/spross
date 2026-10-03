@@ -30,7 +30,7 @@
   "calendar": { "text": "kalenda", "grammar": { "plural": "=" } },
   "important": { "text": "muhimu" },
   "ready": { "text": "tayari" },
-  "broken": { "text": "-bovu", "accepts": ["mbovu", "wabovu", "kibovu", "vibovu", "mabovu", "mibovu"] },
+  "broken": { "text": "-bovu", "teaches": ["mbovu", "wabovu", "kibovu", "vibovu", "mabovu", "mibovu"] },
   "message": { "text": "ujumbe", "grammar": { "plural": "jumbe" } },
   "im-in-a-meeting": { "text": "Niko kwenye mkutano." },
   "dont-disturb-me": { "text": "Usinisumbue!" },

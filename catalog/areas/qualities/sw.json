@@ -4,50 +4,50 @@
  "words": {
   "good": {
    "text": "-zuri",
-   "accepts": ["nzuri", "mzuri", "wazuri", "kizuri", "vizuri", "mazuri", "mizuri"],
+   "teaches": ["nzuri", "mzuri", "wazuri", "kizuri", "vizuri", "mazuri", "mizuri"],
    "notes": {
     "sw": "mji mzuri · kitanda kizuri · meza nzuri",
     "de": "Adjektive bekommen die Vorsilbe der Nomenklasse: mtu mzuri, kitu kizuri, nyumba nzuri. Bei einer Person heißt mzuri oft hübsch, nicht nur gut."
    }
   },
-  "bad": { "text": "-baya", "accepts": ["mbaya", "wabaya", "kibaya", "vibaya", "mabaya", "mibaya"] },
-  "big": { "text": "-kubwa", "accepts": ["mkubwa", "wakubwa", "kikubwa", "vikubwa", "makubwa", "mikubwa"] },
+  "bad": { "text": "-baya", "teaches": ["mbaya", "wabaya", "kibaya", "vibaya", "mabaya", "mibaya"] },
+  "big": { "text": "-kubwa", "teaches": ["mkubwa", "wakubwa", "kikubwa", "vikubwa", "makubwa", "mikubwa"] },
   "small": {
    "text": "-dogo",
-   "accepts": ["ndogo", "mdogo", "wadogo", "kidogo", "vidogo", "madogo", "midogo"]
+   "teaches": ["ndogo", "mdogo", "wadogo", "kidogo", "vidogo", "madogo", "midogo"]
   },
   "much": {
    "text": "-ingi",
-   "accepts": ["nyingi", "wengi", "mengi", "vingi", "mingi", "mwingi", "kingi"],
+   "teaches": ["nyingi", "wengi", "mengi", "vingi", "mingi", "mwingi", "kingi"],
    "notes": { "sw": "maji mengi · maneno mengi · lugha nyingi" }
   },
-  "new": { "text": "-pya", "accepts": ["mpya", "wapya", "jipya", "kipya", "vipya", "mapya", "mipya"] },
+  "new": { "text": "-pya", "teaches": ["mpya", "wapya", "jipya", "kipya", "vipya", "mapya", "mipya"] },
   "old": {
    "text": "-zee",
-   "teaches": ["-kuukuu"],
-   "accepts": ["mzee", "wazee", "kuukuu", "mkuukuu", "kikuukuu", "vikuukuu", "makuukuu", "mikuukuu"],
+   "teaches": ["-kuukuu", "mzee", "wazee", "mkuukuu", "kikuukuu", "vikuukuu", "makuukuu", "mikuukuu"],
+   "accepts": ["kuukuu"],
    "notes": { "sw": "mzee, wazee · kitu kikuukuu, vitu vikuukuu" }
   },
   "slow": { "text": "polepole" },
   "fast": { "text": "haraka", "notes": { "sw": "Fanya haraka! · jibu la haraka" } },
   "long": {
    "text": "-refu",
-   "accepts": ["ndefu", "mrefu", "warefu", "kirefu", "virefu", "marefu", "mirefu"],
+   "teaches": ["ndefu", "mrefu", "warefu", "kirefu", "virefu", "marefu", "mirefu"],
    "notes": { "sw": "mtu mrefu · sentensi ndefu · kitanda kirefu" }
   },
-  "short": { "text": "-fupi", "accepts": ["mfupi", "wafupi", "kifupi", "vifupi", "mafupi", "mifupi"] },
+  "short": { "text": "-fupi", "teaches": ["mfupi", "wafupi", "kifupi", "vifupi", "mafupi", "mifupi"] },
   "heavy": {
    "text": "-zito",
-   "accepts": ["nzito", "mzito", "wazito", "kizito", "vizito", "mazito", "mizito"]
+   "teaches": ["nzito", "mzito", "wazito", "kizito", "vizito", "mazito", "mizito"]
   },
   "lightweight": {
    "text": "-epesi",
-   "accepts": ["nyepesi", "mwepesi", "wepesi", "chepesi", "vyepesi", "mepesi", "myepesi"],
+   "teaches": ["nyepesi", "mwepesi", "wepesi", "chepesi", "vyepesi", "mepesi", "myepesi"],
    "notes": { "sw": "kitanda chepesi, sentensi nyepesi" }
   },
   "difficult": {
    "text": "-gumu",
-   "accepts": ["ngumu", "mgumu", "wagumu", "kigumu", "vigumu", "magumu", "migumu"],
+   "teaches": ["ngumu", "mgumu", "wagumu", "kigumu", "vigumu", "magumu", "migumu"],
    "notes": { "sw": "swali gumu, lugha ngumu, kitanda kigumu" }
   },
   "easy": { "text": "rahisi", "notes": { "sw": "swali rahisi · rahisi pia ni bei ndogo" } },
@@ -57,7 +57,7 @@
   "clean-adj": { "text": "safi", "notes": { "sw": "maji safi, nyumba safi · Safi! = vizuri!" } },
   "sharp": {
    "text": "-kali",
-   "accepts": ["mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
+   "teaches": ["mkali", "wakali", "kikali", "vikali", "makali", "mikali"],
    "notes": {
     "sw": "mtu mkali · sauti kali",
     "de": "gilt auch für Menschen (streng) und Essen (scharf): mwalimu mkali, pilipili kali."
@@ -73,12 +73,12 @@
   },
   "other": {
    "text": "-ingine",
-   "accepts": ["nyingine", "mwingine", "wengine", "kingine", "vingine", "mengine", "mingine"],
+   "teaches": ["nyingine", "mwingine", "wengine", "kingine", "vingine", "mengine", "mingine"],
    "notes": { "sw": "neno jingine · meza nyingine · maji mengine = maji zaidi" }
   },
   "hot": { "text": "moto", "notes": { "de": "dasselbe Wort heißt auch Feuer: Kuna moto." } },
   "cold-adj": { "text": "baridi", "notes": { "sw": "maji baridi, usiku baridi · Leo ni baridi." } },
-  "empty": { "text": "-tupu", "accepts": ["mtupu", "watupu", "kitupu", "vitupu", "matupu", "mitupu"] },
+  "empty": { "text": "-tupu", "teaches": ["mtupu", "watupu", "kitupu", "vitupu", "matupu", "mitupu"] },
   "full": {
    "text": "kujaa",
    "accepts": ["imejaa", "limejaa", "umejaa"],
@@ -88,20 +88,20 @@
    }
   },
   "dirty": { "text": "chafu" },
-  "dry": { "text": "-kavu", "accepts": ["mkavu", "wakavu", "kikavu", "vikavu", "makavu", "mikavu"] },
+  "dry": { "text": "-kavu", "teaches": ["mkavu", "wakavu", "kikavu", "vikavu", "makavu", "mikavu"] },
   "beautiful": {
    "text": "-rembo",
-   "accepts": ["mrembo", "warembo", "mirembo", "kirembo", "virembo", "marembo"],
+   "teaches": ["mrembo", "warembo", "mirembo", "kirembo", "virembo", "marembo"],
    "notes": { "sw": "mtu mrembo, nyumba nzuri · urembo = pambo, uzuri" }
   },
   "health": { "text": "afya" },
   "healthy": {
    "text": "-zima",
-   "accepts": ["mzima", "wazima", "nzima"],
+   "teaches": ["mzima", "wazima", "nzima"],
    "notes": { "sw": "mzima = mwenye afya · nyumba nzima = nyumba yote" }
   },
   "firm": { "text": "imara", "notes": { "sw": "nyumba imara, msimamo imara, afya imara" } },
-  "young": { "text": "-changa", "accepts": ["mchanga", "wachanga", "kichanga", "vichanga"] },
+  "young": { "text": "-changa", "teaches": ["mchanga", "wachanga", "kichanga", "vichanga"] },
   "a-lot-of-water": { "text": "maji mengi" },
   "safe": { "text": "salama" }
  }

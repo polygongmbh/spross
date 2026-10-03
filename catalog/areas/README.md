@@ -140,7 +140,7 @@ and a quirk that exists only because these two languages met
 **Keep a note only if it changes what the learner would say or do**;
 pure etymology ("wörtl. ...") is cut,
 so is a form's invariance -- nobody inflects a word they were never shown inflecting.
-Which prefix a word DOES take is carried by the dashed stem and its `accepts` (`../README.md`),
+Which prefix a word DOES take is carried by the dashed stem and its `teaches` (`../README.md`),
 never by a note.
 A note explains its own word and no other.
 Where the rule is what the learner has to practice,
