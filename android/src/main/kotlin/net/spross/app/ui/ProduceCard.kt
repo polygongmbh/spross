@@ -88,13 +88,15 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         WriteOutStep(model, flow, step, model.targetName(ui))
         return
     }
-    // The blank "Aufdecken" hands the turn to the three verdicts; there is no field left.
-    if (!flow.selfGrading) {
+    // The blank "Aufdecken" hands the turn to the three verdicts, and a miss by ear is never
+    // retyped (kern's `retypes`); either way there is no field left.
+    val missedByEar = flow.feedback == TurnFeedback.Revealed && !flow.state.retypes
+    if (!flow.selfGrading && !missedByEar) {
         AnswerField(
             value = flow.input,
             onValueChange = flow::type,
             // The card asked by ear owes the MEANING, so the field names the source
-            // language until a miss — kern's `fieldLang`, never this screen's reading of the prompt.
+            // language — kern's `answerLang`, never this screen's reading of the prompt.
             placeholder = chrome.sessionAnswerPlaceholder.format(model.answerName(flow)),
             feedback = flow.fieldFeedback,
             chrome = chrome,
@@ -222,11 +224,16 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         // so without this a finished retype would have no way on but giving up — which
         // grades Again, not what it just earned.
         if (flow.retryApproved && flow.awaitsConfirm) ConfirmButton(chrome) { flow.confirm() }
-        TextButton(
-            onClick = { flow.giveUp() },
-            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
-        ) {
-            Text(chrome.sessionSkip, style = MaterialTheme.typography.bodyMedium)
+        if (!flow.state.retypes) {
+            // A miss by ear has no field to retype into: the reveal is the whole of it.
+            ConfirmButton(chrome) { flow.giveUp() }
+        } else {
+            TextButton(
+                onClick = { flow.giveUp() },
+                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+            ) {
+                Text(chrome.sessionSkip, style = MaterialTheme.typography.bodyMedium)
+            }
         }
     }
 }

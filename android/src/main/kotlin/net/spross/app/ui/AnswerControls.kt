@@ -135,7 +135,7 @@ fun almostCaption(reason: AlmostReason, chrome: Chrome): String = when (reason) 
     AlmostReason.Merged -> chrome.sessionAlmostMerged
 }
 
-/** The "Weiter" that stands in for a beat under a screen reader — same rating, one tap. */
+/** The primary "Weiter": where a beat would have moved on under a screen reader, or a miss has nothing left to type. */
 @Composable
 fun ConfirmButton(chrome: Chrome, onClick: () -> Unit) {
     Button(

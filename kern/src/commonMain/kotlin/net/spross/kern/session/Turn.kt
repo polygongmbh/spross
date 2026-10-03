@@ -187,12 +187,12 @@ data class TurnState(
         get() = if (prompt == ProducePrompt.Sound) card.source.text else card.target.text
 
     /**
-     * The language the open FIELD is typed in: [answerLang] while the card asks, the target
-     * once a miss has turned the field into the retype. The retype is encoding, and a word
-     * is only ever encoded in the language being learned — never in the one the learner has.
+     * A miss keeps the field open for the retype — except on a card asked by ear, whose miss
+     * was a MEANING: nothing is ever written out in the language the learner already has, so
+     * the reveal stands alone and the one way on is [TurnIntent.GiveUp], an honest Again.
      */
-    val fieldLang: String
-        get() = if (feedback == TurnFeedback.Revealed) card.target.lang else answerLang
+    val retypes: Boolean
+        get() = feedback == TurnFeedback.Revealed && prompt != ProducePrompt.Sound
 
     /**
      * The answer a report filed from this turn carries, given the [fieldText] standing now:

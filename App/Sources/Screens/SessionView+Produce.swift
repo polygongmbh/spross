@@ -54,9 +54,12 @@ extension SessionView {
     }
 
     /// True while produce has nothing to type into: the blank "Aufdecken"
-    /// self-grade hides its own field and hands over the rating buttons.
+    /// self-grade hides its own field and hands over the rating buttons, and a
+    /// miss on a card asked by ear is never retyped (kern's `retypes`).
     var produceFieldHidden: Bool {
-        revealed && feedback == .neutral
+        if revealed && feedback == .neutral { return true }
+        if case .revealed = feedback, let turn, !turn.retypes { return true }
+        return false
     }
 
     /// Typing first (recall beats recognition); "Aufdecken" stays available
@@ -152,23 +155,35 @@ extension SessionView {
                         }
                         .buttonStyle(PrimaryButtonStyle())
                     }
-                    // why: always reachable — a step you cannot leave is a
-                    // trap, same as the write-out step's own skip. Giving up
-                    // here ends the card: this field already is the one
-                    // write-out the word gets, so nothing hands it a second.
-                    Button("session.skip") { dispatch(TurnIntent.GiveUp.shared) }
-                        .font(Theme.typography.caption)
-                        .foregroundStyle(Theme.colors.textSecondary)
+                    if turn?.retypes == false {
+                        // A miss by ear has no field to retype into: the
+                        // reveal is the whole of it, and on is an honest Again.
+                        Button {
+                            dispatch(TurnIntent.GiveUp.shared)
+                        } label: {
+                            ActionLabel(key: "common.next", targetLocale: model.targetChromeLocale)
+                        }
+                        .buttonStyle(PrimaryButtonStyle())
+                        .keyboardShortcut(.defaultAction)
+                    } else {
+                        // why: always reachable — a step you cannot leave is a
+                        // trap, same as the write-out step's own skip. Giving up
+                        // here ends the card: this field already is the one
+                        // write-out the word gets, so nothing hands it a second.
+                        Button("session.skip") { dispatch(TurnIntent.GiveUp.shared) }
+                            .font(Theme.typography.caption)
+                            .foregroundStyle(Theme.colors.textSecondary)
+                    }
                 }
             }
         }
     }
 
-    /// The language the field asks for, named. Kern's field side decides which
+    /// The language the field asks for, named. Kern's answer side decides which
     /// one that is — the meaning on a card asked by ear, the target everywhere
-    /// else and in every retype — and this placeholder is the one place the learner is told.
+    /// else — and this placeholder is the one place the learner is told.
     private var inputPlaceholder: String {
-        guard let lang = turn?.fieldLang ?? model.targetLanguage else { return "" }
+        guard let lang = turn?.answerLang ?? model.targetLanguage else { return "" }
         return answerPlaceholder(lang)
     }
 
