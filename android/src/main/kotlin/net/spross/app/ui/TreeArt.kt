@@ -27,8 +27,6 @@ private const val FRUIT_FLOOR = 1.6f
 
 /** The smallest a mark is cut, in dp, so a young crown's words stay legible. */
 private const val MARK_FLOOR = 2.4f
-/** A blossom's width, against the base. */
-private const val BLOSSOM_SPAN = 0.75f
 /** Below this size (dp) a blossom's petals are one disc: they blur. */
 private const val PLAIN = 12f
 
@@ -143,7 +141,7 @@ internal class TreeArt(
      * Among the Trees the petals are one disc: they blur.
      */
     private fun blossom(at: Offset, size: Float, angle: Float) {
-        val span = size * BLOSSOM_SPAN
+        val span = size * 0.9f
         if (size < PLAIN * unit) {
             petals.addOval(Rect(at, span * 0.42f))
         } else {
@@ -157,7 +155,7 @@ internal class TreeArt(
 
     /** A word held for months: one round fruit, its top on the slot, so it hangs under its wood. */
     private fun fruit(slot: Offset, size: Float) {
-        val radius = max(size * 0.25f, FRUIT_FLOOR * unit)
+        val radius = max(size * 0.4f, FRUIT_FLOOR * unit)
         fruit.addOval(Rect(Offset(slot.x, slot.y + radius), radius))
     }
 }

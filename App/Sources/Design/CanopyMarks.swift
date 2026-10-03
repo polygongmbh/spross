@@ -22,7 +22,7 @@ extension TreeShapes {
 
     /// A word held for months: one round fruit, its top on the slot, so it hangs under its wood.
     static func fruit(at slot: CGPoint, size: CGFloat) -> Path {
-        let radius = max(size * 0.25, CanopyMark.fruitFloor)
+        let radius = max(size * 0.4, CanopyMark.fruitFloor)
         return circle(CGPoint(x: slot.x, y: slot.y + radius), radius)
     }
 
@@ -42,7 +42,7 @@ extension TreeShapes {
     /// Among the Trees the petals are one disc: they blur.
     static func blossom(at point: CGPoint, size: CGFloat, angle: Double,
                         petals: inout Path, eyes: inout Path) {
-        let span = size * CanopyMark.blossomSpan
+        let span = size * 0.9
         if size < CanopyMark.plain {
             petals.addPath(circle(point, span * 0.42))
         } else {
@@ -92,9 +92,6 @@ enum CanopyMark {
 
     /// The smallest a fruit's radius is drawn, so a small tree's fruit stays visible.
     static let fruitFloor: CGFloat = 1.6
-
-    /// A blossom's width, against the base.
-    static let blossomSpan: CGFloat = 0.75
 
     /// Below this size a blossom's petals are one disc: they blur.
     static let plain: CGFloat = 12
