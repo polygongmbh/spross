@@ -85,10 +85,13 @@ fun producePrompt(
  * `reviewCount / 2` is parity-independent), offset per card by the id hash.
  * `accepts` never rotates (accept-only). Produce prompts ignore this.
  */
-fun recognitionPromptForm(card: Card, reviewCount: Int): String {
-    val forms = listOf(card.target.text) + card.target.teaches
+fun recognitionPromptForm(card: Card, reviewCount: Int): String =
+    rotatedForm(card.id, listOf(card.target.text) + card.target.teaches, reviewCount)
+
+/** The member of [forms] that review [reviewCount] of [cardId] shows, by [recognitionPromptForm]'s rotation. */
+fun rotatedForm(cardId: String, forms: List<String>, reviewCount: Int): String {
     if (forms.size == 1 || reviewCount == 0) return forms.first()
-    val offset = (fnv1a64(card.id) % forms.size.toULong()).toInt()
+    val offset = (fnv1a64(cardId) % forms.size.toULong()).toInt()
     return forms[(reviewCount / 2 + offset) % forms.size]
 }
 

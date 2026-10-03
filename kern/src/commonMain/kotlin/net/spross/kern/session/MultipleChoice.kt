@@ -76,6 +76,16 @@ object MultipleChoice {
         }
 
     /**
+     * The forms a word may stand on a tile in: [text] and every one of its [teaches] —
+     * but never a bound stem while a real form can stand for it:
+     * Swahili `-ako` stands as `yako` or `lako`, not as a stem nobody writes.
+     */
+    fun offeredForms(text: String, teaches: List<String>): List<String> {
+        val forms = listOf(text) + teaches
+        return forms.filterNot { it.startsWith(BOUND_STEM) }.ifEmpty { forms }
+    }
+
+    /**
      * The form [text] is OFFERED in, which is not always the form it is taught
      * in: a bound stem loses its dash, and a verb its citation prefix (sw `ku`,
      * en `to `). Both mark a word class in the writing itself, so a lone `-zuri`

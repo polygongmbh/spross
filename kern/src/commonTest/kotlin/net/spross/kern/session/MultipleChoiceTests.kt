@@ -235,6 +235,16 @@ class MultipleChoiceTests {
     }
 
     @Test
+    fun aBoundStemWithTaughtFormsIsOfferedOnlyAsThem() {
+        assertEquals(listOf("mzee", "mkuukuu"), MultipleChoice.offeredForms("-zee", listOf("mzee", "-kuukuu", "mkuukuu")))
+    }
+
+    @Test
+    fun aFreeWordIsOfferedAsItselfOrAnyFormItTeaches() {
+        assertEquals(listOf("Amt", "Behörde"), MultipleChoice.offeredForms("Amt", listOf("Behörde")))
+    }
+
+    @Test
     fun aVerbIsOfferedWithoutItsCitationPrefix() {
         assertEquals("pika", MultipleChoice.optionForm("kupika", CardKind.Verb, listOf("ku", "kw")))
         assertEquals("enda", MultipleChoice.optionForm("kwenda", CardKind.Verb, listOf("ku", "kw")))

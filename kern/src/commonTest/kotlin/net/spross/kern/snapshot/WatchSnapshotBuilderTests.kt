@@ -384,6 +384,19 @@ class WatchSnapshotBuilderTests {
     }
 
     @Test
+    fun aBoundStemThatTeachesFormsIsOfferedAsOneOfThem() {
+        val forms = listOf("yako", "wako", "lako")
+        val state = scheduled(
+            Snap.card("your", 1, kind = CardKind.Adjective, targetText = "-ako", teaches = forms),
+            Snap.card("my", 2, kind = CardKind.Adjective, targetText = "-angu", teaches = listOf("yangu")),
+        )
+        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single { it.cardId == "your" }
+        assertEquals("produce", entry.nextRole)
+        assertTrue(entry.optionForm in forms)
+        assertEquals(listOf("yangu"), entry.distractors)
+    }
+
+    @Test
     fun aVerbIsOfferedWithoutTheCitationPrefixTheLanguageDeclares() {
         val state = scheduled(
             Snap.card("cook", 1, kind = CardKind.Verb, targetText = "kupika"),

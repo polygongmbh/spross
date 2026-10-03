@@ -37,8 +37,8 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         /// pre-v3 snapshots and empty for a box with nothing else to offer.
         var distractors: [String]?
         /// This entry's own option, when the form it is OFFERED in differs from
-        /// the form it is taught in — a bound stem without its dash, a verb
-        /// without its citation prefix (kern `MultipleChoice.optionForm`).
+        /// its canonical text — one of its `teaches` forms, a bound stem without
+        /// its dash, a verb without its citation prefix (kern `MultipleChoice`).
         /// Absent for every other card, and for the reveal, which teaches.
         var optionForm: String?
 

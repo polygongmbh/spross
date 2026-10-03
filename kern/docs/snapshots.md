@@ -105,10 +105,14 @@ Engine contract: `../README.md`.
   unscheduled cards stay out, since a word first met as somebody else's wrong answer
   is no longer new when it arrives. Up to ten per entry, omitted when the box has
   nothing else to offer.
+  Every tile, the answer's included, stands in one of its card's forms —
+  `text` and its `teaches`, rotating with that card's review count like a prompt form —
+  and no bound stem stands while a real form can (`-ako` → `yako`, `lako`, …).
   Where a class marker survives the ranking anyway, the writing gives it up:
-  `optionForm` is the entry's own option with a bound stem's dash and a verb's
-  citation prefix dropped (`-zuri` → `zuri`, `kupika` → `pika`), absent when it would
-  equal the taught form, which the reveal shows either way.
+  a stem without forms loses its dash and a verb its citation prefix
+  (`-husika` → `husika`, `kupika` → `pika`).
+  `optionForm` is the entry's own option wherever it differs from `text`,
+  which the reveal shows either way.
   The prefixes come from `languages.json` via the builder's `citationPrefixes` —
   an empty map simply leaves every verb whole.
   The shortlist is the variety knob: three of the ten reach a question, so the

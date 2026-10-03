@@ -16,6 +16,7 @@ import net.spross.kern.model.SharedTargetForms
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.recognitionPromptForm
+import net.spross.kern.model.rotatedForm
 import net.spross.kern.session.MultipleChoice
 import net.spross.kern.store.StoreJson
 
@@ -101,7 +102,8 @@ object WatchSnapshotBuilder {
         // a snapshot used to cost.
         val shared = SharedTargetForms(pool)
         val fresh = ranked.filterNot { Statistics.isGrowing(state, it.sched) }.map { it.sched.cardId }.toSet()
-        val options = OptionPool(pool, fresh, citationPrefixes)
+        val reviewCounts = ranked.associate { it.sched.cardId to it.sched.reviewCount }
+        val options = OptionPool(pool, reviewCounts, fresh, citationPrefixes)
         return WatchSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             chromeLanguage = chromeLanguage(state),
@@ -110,14 +112,18 @@ object WatchSnapshotBuilder {
         )
     }
 
-    /** Every pool card as it can be offered, both sides resolved once. */
+    /**
+     * Every pool card as it can be offered, both sides resolved once — each in one of
+     * its [MultipleChoice.offeredForms], rotating with the card's own review count.
+     */
     private class OptionPool(
         pool: List<Card>,
+        private val reviewCounts: Map<String, Int>,
         private val fresh: Set<String>,
         private val citationPrefixes: Map<Language, List<String>>,
     ) {
-        private val produce = pool.map { it.id to option(it, it.target, it.id in fresh, citationPrefixes) }
-        private val recognize = pool.map { it.id to option(it, it.source, it.id in fresh, citationPrefixes) }
+        private val produce = pool.map { it.id to option(it, it.target) }
+        private val recognize = pool.map { it.id to option(it, it.source) }
 
         /** The pool on [role]'s side, minus the entry itself and anything it would also answer. */
         fun candidates(role: String, cardId: String, alsoRight: Set<String>): List<MultipleChoice.Option> =
@@ -126,18 +132,31 @@ object WatchSnapshotBuilder {
 
         /** [card]'s own answer, on the side a question in [role] asks for. */
         fun own(role: String, card: Card): MultipleChoice.Option =
-            option(card, if (role == RECOGNIZE) card.source else card.target, card.id in fresh, citationPrefixes)
+            option(card, if (role == RECOGNIZE) card.source else card.target)
+
+        /** [card] as it can be offered, read on [side]. */
+        private fun option(card: Card, side: Realization): MultipleChoice.Option {
+            val forms = MultipleChoice.offeredForms(side.text, side.teaches)
+            val form = rotatedForm(card.id, forms, reviewCounts[card.id] ?: 0)
+            return MultipleChoice.Option(
+                text = MultipleChoice.optionForm(form, card.kind, citationPrefixes[side.lang].orEmpty()),
+                kind = card.kind,
+                area = card.area,
+                fresh = card.id in fresh,
+            )
+        }
     }
 
     /**
      * Whether every form [card] can put on the watch clears [MAX_TEXT_CHARS].
      * Both sides count, since either can be the option side once the role flips,
-     * and the target's `teaches` count with them — a rotated prompt form
-     * (`recognitionPromptForm`) is rendered just as the canonical one is.
+     * and their `teaches` count with them — a rotated prompt form
+     * (`recognitionPromptForm`) or tile is rendered just as the canonical one is.
      */
     private fun fitsOnWatch(card: Card): Boolean =
-        card.source.text.length <= MAX_TEXT_CHARS &&
-            (listOf(card.target.text) + card.target.teaches).all { it.length <= MAX_TEXT_CHARS }
+        listOf(card.source, card.target).all { side ->
+            (listOf(side.text) + side.teaches).all { it.length <= MAX_TEXT_CHARS }
+        }
 
     private data class Ranked(
         val isDue: Boolean,
@@ -179,19 +198,6 @@ object WatchSnapshotBuilder {
             ),
         )
     }
-
-    /** [card] as it can be offered, read on [side]. */
-    private fun option(
-        card: Card,
-        side: Realization,
-        fresh: Boolean,
-        citationPrefixes: Map<Language, List<String>>,
-    ): MultipleChoice.Option = MultipleChoice.Option(
-        text = MultipleChoice.optionForm(side.text, card.kind, citationPrefixes[side.lang].orEmpty()),
-        kind = card.kind,
-        area = card.area,
-        fresh = fresh,
-    )
 
     /** [dto]'s taught text on the side a question in [role] asks the learner to pick. */
     private fun sideText(dto: WatchEntryDto, role: String): String =
@@ -267,9 +273,10 @@ internal data class WatchEntryDto(
     val promptForm: String,
     val distractors: List<String> = emptyList(),
     /**
-     * This entry's own option, when it is offered in a different form than it is
-     * taught in ([MultipleChoice.optionForm]) — absent whenever the two agree, which
-     * is every card but a bound stem and a verb. The reveal keeps the taught form.
+     * This entry's own option, when it is offered in a different form than its
+     * canonical text — a rotated `teaches` form ([MultipleChoice.offeredForms]) or one
+     * stripped of its class marker ([MultipleChoice.optionForm]); absent whenever the
+     * two agree. The reveal keeps the taught form.
      */
     val optionForm: String? = null,
 )
