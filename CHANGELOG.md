@@ -8,7 +8,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - On the watch, a quick answer to a short word now counts as quick more readily, and one to a long phrase a little less.
 - A misspelled answer that still counts now plays its own shorter chime, the first note of the one for a right answer.
 - The chime for a right answer now plays clearly softer than the one for a wrong answer.
-- The watch now answers a right answer with just a light click, and a wrong one with the watch's failure buzz.
+- The watch now answers a right answer with just a light click, and a wrong one with a buzz.
 - A drill answer that is right but for one misspelled word now counts as a near-miss, the more leniently the longer the answer, instead of as wrong.
 - Words, speech and chimes now all play 8 dB quieter, so a normal phone volume no longer makes the app too loud.
 - Review cards now say the meaning in your own language as well as the word, and a card answered right waits for its word to be said before moving on; the audio settings can turn the meaning off.

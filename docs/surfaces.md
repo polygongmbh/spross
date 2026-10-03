@@ -120,7 +120,7 @@ What has not landed there is `design.md` § Not yet.
   already does better. What the watch drops, it drops from BOTH the entries and the option
   pool, from one predicate — the two can never disagree about what fits.
 - **Every answer answers back, on three channels.** A haptic (a light click for any right
-  answer, the failure buzz for a miss), a quick right answer's speed
+  answer, the retry buzz for a miss), a quick right answer's speed
   marked on the tapped tile (⚡⚡ Easy, ⚡ Good), and — on a miss only — the tile and a brief
   full-screen wash in red. **Red is the wrist's alone**: the phone keeps wrong off its cards
   because the learner stays there and can correct it, while a glance-long wrist answer has

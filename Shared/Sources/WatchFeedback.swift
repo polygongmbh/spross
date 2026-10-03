@@ -30,10 +30,10 @@ enum WatchFeedback {
     /// Correct or not, in the hand. A right answer comes all the time, so it is
     /// the lightest tap there is (`.click`, also the quietest) for every
     /// affirming rating — the speed mark is the finer channel. A miss is the rare
-    /// event and gets `.failure`, the type whose documented meaning it is;
-    /// `.retry` would promise a second try the quiz never offers.
+    /// event and gets `.retry`, the gentler of the two types that mean a miss —
+    /// `.failure` buzzes harder than a quiz slip deserves.
     static func haptic(forRating rating: Int) -> WKHapticType {
-        rating >= 2 ? .click : .failure
+        rating >= 2 ? .click : .retry
     }
     #endif
 }
