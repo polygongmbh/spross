@@ -187,8 +187,9 @@ enum TreeShapes {
         let leafColors: [Color] = [Theme.colors.das.opacity(0.92), Theme.colors.success,
                                    Theme.colors.success.opacity(0.84), Theme.colors.success.opacity(0.68)]
         for (index, tone) in tones.enumerated() { context.fill(tone, with: .color(leafColors[index])) }
-        context.fill(petals, with: .color(Theme.colors.die.opacity(0.9)))
-        context.fill(eyes, with: .color(Theme.colors.amber))
+        context.fill(petals, with: .color(Theme.colors.blossom.opacity(0.9)))
+        // why: the eye takes the wood's tone; ochre sits too close to the petals.
+        context.fill(eyes, with: .color(Theme.colors.borderStrong))
     }
 
     /// Words that lapsed: leaves on the ground beside the trunk. The tree never

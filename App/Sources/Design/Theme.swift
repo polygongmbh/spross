@@ -149,7 +149,8 @@ enum Theme {
         /// `der` on the hue wheel to read as anything but another blue at a badge's size.
         let grown = Color(Palette.shared.grown)      // jade
 
-        // The tree's fruit.
+        // The tree's marks.
+        let blossom = Color(Palette.shared.blossom)
         let fruit = Color(Palette.shared.fruit)
 
         // Article colors (poster palette).

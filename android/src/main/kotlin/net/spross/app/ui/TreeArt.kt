@@ -15,8 +15,8 @@ import net.spross.kern.box.AreaGrowth
 // first, so fruit and blossom take the first slots):
 //   fruit    — long held      blossom — matured
 //   leaf     — growing        bud     — arriving
-// Told apart by shape before color: a sprig of pointed leaflets, a small disc, five berry petals
-// round an ochre eye, a round disc hanging under its twig.
+// Told apart by shape before color: a sprig of pointed leaflets, a small disc, five butter petals
+// round an eye, a round disc hanging under its twig.
 
 /** A leaf runs longer than the base a disc is cut to: it is the one mark meant to merge. */
 private const val LEAF_STRETCH = 1.45f

@@ -60,8 +60,11 @@ object Palette {
      */
     val grown = Swatch(0x0F766E, 0x5EEAD4)
 
-    /** Ripe fruit on a tree: a muted crimson, darker than any accent, so it belongs to the foliage, not on it. */
-    val fruit = Swatch(0x8E2B3A, 0xD46B78)
+    // The tree's marks, apart from each other and from the leaves by hue and lightness alike.
+    /** Open blossom: soft butter, clear of the ochre a bud wears. */
+    val blossom = Swatch(0xE9C46A, 0xF2DC6E)
+    /** Ripe fruit: a clear red. */
+    val fruit = Swatch(0xC8352E, 0xE5584F)
 
     // Gendered articles.
     val der = Swatch(0x134E85, 0x90CBFF)

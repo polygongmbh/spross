@@ -105,8 +105,9 @@ private fun DrawScope.canopy(art: TreeArt, colors: ThemeColors) {
     val tones = listOf(colors.das.copy(alpha = 0.92f), colors.success,
         colors.success.copy(alpha = 0.84f), colors.success.copy(alpha = 0.68f))
     art.tones.forEachIndexed { index, path -> drawPath(path, tones[index]) }
-    drawPath(art.petals, colors.die.copy(alpha = 0.9f))
-    drawPath(art.eyes, colors.amber)
+    drawPath(art.petals, colors.blossom.copy(alpha = 0.9f))
+    // why: the eye takes the wood's tone; ochre sits too close to the petals.
+    drawPath(art.eyes, colors.borderStrong)
 }
 
 /** Words that lapsed lie on the ground beside the trunk; the tree never shrinks for them. */
