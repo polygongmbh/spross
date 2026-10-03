@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- On the watch, a quick answer to a short word now counts as quick more readily, and one to a long phrase a little less.
 - A misspelled answer that still counts now plays its own shorter chime, the first note of the one for a right answer.
 - The chime for a right answer now plays clearly softer than the one for a wrong answer.
 - The watch now answers a right answer with just a light click, and a wrong one with the watch's failure buzz.
