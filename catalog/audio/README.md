@@ -60,8 +60,8 @@ A new speaker is another voice change on the cards and another credit group, so 
 picker takes an established voice's take over a slightly better stranger's, and a voice
 with three recordings or fewer is moved onto an established one wherever it can be —
 never onto a take requalification would refuse.
-Swahili is the exception: its main voice (Waithera Were) runs screamy,
-so any clean second voice is welcome there.
+A second voice earns its place with a chunk of words, never a scattering of one-offs:
+where the main voice is poor, a few good voices each take every word they say well.
 
 **Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`**
 with its source, sha256 and `mos`, so the next revision of the measure is tested against

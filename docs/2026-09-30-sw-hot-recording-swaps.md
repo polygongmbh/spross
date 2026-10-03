@@ -20,6 +20,9 @@ Only 15 of the 251 have another take of the exact form the card shows.
 Shipped 2026-10-03 after a listening pass: 10 of the 12.
 cow and hour stay — the same speaker's other upload, heard no different;
 government's new take is a bit echoey, still preferred over the screamy one.
+Then every other catalog form the three voices record moved onto them too (2026-10-03), 42 of 44:
+Goethe-Institut Cameroon takes the whole calendar and eight words, Ismail Ibn Ahmed thirteen, Byera04 three.
+Ismail's hiyo and katika were heard as bad and stay with Waithera Were.
 
 - **Waithera Were herself** has capitalized duplicates, `Sw-ke-Ng'ombe.flac` and `Sw-ke-Saa.flac`:
   cleaner than the shipped take, better MOS, and no voice change or new credit (cow, hour).

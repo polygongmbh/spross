@@ -1,46 +1,47 @@
 {
   "authors": {
-    "Byera04": "CC BY-SA 4.0",
+    "Byera04": "CC0",
     "Goethe-Institut Cameroon": "CC BY-SA 4.0",
     "Ismail Ibn Ahmed": "CC0",
     "Waithera Were": "CC BY-SA 4.0"
   },
   "calendar": {
     "Agosti": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/agosti.mp3",
-      "gain": -8.1,
-      "gainPhone": -11.9,
-      "gate": -68.6,
-      "lead": 48,
+      "gain": -5.4,
+      "gainPhone": -8.2,
+      "gate": -90.5,
+      "lead": 873,
       "matches": "Agosti",
-      "mos": 2.92,
-      "sha256": "ab6c54dc626c759df335f598e40a437d6ba4eb10c9a747e51625ec8625751bef",
-      "source": "Sw-ke-Agosti.flac"
+      "mos": 2.38,
+      "sha256": "f05dd30f266b800d8a41fa08c90d19315a4827044a3c973a0f9e34ef57fd5583",
+      "source": "LL-Q122(swa)-Mndetatsin-Agosti(Août).wav"
     },
     "Alhamisi": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/alhamisi.mp3",
-      "gain": -1.7,
-      "gainPhone": -8.1,
-      "gate": -67.6,
-      "lead": 47,
+      "gain": -6.2,
+      "gainPhone": -8.6,
+      "gate": -80.0,
+      "lead": 704,
       "matches": "Alhamisi",
-      "mos": 2.88,
-      "sha256": "a4edb50b480142cc11719f159e12118a1f3806d17bd31e16c0752bc37791e930",
-      "source": "Sw-ke-Alhamisi.flac"
+      "mos": 2.53,
+      "sha256": "02fafe179d1376db8f9ff368b2fec9959ca282d3a79c0bca046d9c2018fa270d",
+      "source": "LL-Q129(swa)-Mndetatsin-Alhamisi(Jeudi).wav"
     },
     "Aprili": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
+      "capPhone": 0.6,
       "file": "calendar/aprili.mp3",
-      "gain": -5.1,
-      "gainPhone": -11.8,
-      "gate": -65.3,
-      "lead": 44,
+      "gain": -4.5,
+      "gainPhone": -0.8,
+      "gate": -80.1,
+      "lead": 636,
       "matches": "Aprili",
-      "mos": 2.54,
-      "sha256": "95ec45dfe6550ab289a238ad78ee694f912fbf5edd4a17fb3a6d2742dcc6463e",
-      "source": "Sw-ke-Aprili.flac"
+      "mos": 1.97,
+      "sha256": "781a33f7a89d3f11b92f4a059aeb2e11b0a1b65d0262e71a7da9372430555b14",
+      "source": "LL-Q118(swa)-Mndetatsin-Aprili(Avril).wav"
     },
     "Desemba": {
       "author": "Waithera Were",
@@ -55,38 +56,40 @@
       "source": "Sw-ke-Desemba.flac"
     },
     "Februari": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/februari.mp3",
-      "gain": -7.7,
-      "gainPhone": -13.8,
-      "gate": -64.3,
+      "gain": -7.9,
+      "gainPhone": -4.2,
+      "gate": -86.7,
+      "lead": 686,
       "matches": "Februari",
-      "mos": 2.86,
-      "sha256": "581ab0fe72eed16325cf8640030e19da67e6c256982d64b17754d8e2c8aba006",
-      "source": "Sw-ke-Februari.flac"
+      "mos": 2.44,
+      "sha256": "8a3a477ca57848391d282b80eea21fea7709a3eefbcf62e87c0886f8d9844886",
+      "source": "LL-Q109(swa)-Mndetatsin-Februari(Février).wav"
     },
     "Ijumaa": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/ijumaa.mp3",
-      "gain": -1.1,
-      "gainPhone": -8.8,
-      "gate": -64.3,
-      "lead": 40,
+      "gain": -4.1,
+      "gainPhone": -2.6,
+      "gate": -80.8,
+      "lead": 391,
       "matches": "Ijumaa",
-      "mos": 2.73,
-      "sha256": "2ffc7c098b42f51b013fd8604d1a66e8f3e0dee5ef009d0ab6e5f5dd19068f4a",
-      "source": "Sw-ke-Ijumaa.flac"
+      "mos": 3.17,
+      "sha256": "1b95dd71e3bcc2be1f24f699f6c206247066e867f0c8cde52949bcb3d7c647bb",
+      "source": "LL-Q130(swa)-Mndetatsin-Ijumaa(Vendredi).wav"
     },
     "Januari": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/januari.mp3",
-      "gain": -5.2,
-      "gainPhone": -12.3,
-      "gate": -55.1,
+      "gain": -6.6,
+      "gainPhone": -3.9,
+      "gate": -82.9,
+      "lead": 581,
       "matches": "Januari",
-      "mos": 2.95,
-      "sha256": "77c0005fd22f8d9f3caff54bcfbca97e4c6c831f6be13a173255946f29483af5",
-      "source": "Sw-ke-Januari.flac"
+      "mos": 2.46,
+      "sha256": "fefde449370cbb552fac1149477d49798667f277f01b8c70d74e66dffcb9dee7",
+      "source": "LL-Q108(swa)-Mndetatsin-Januari(Janvier).wav"
     },
     "Julai": {
       "author": "Goethe-Institut Cameroon",
@@ -101,136 +104,137 @@
       "source": "LL-Q121(swa)-Mndetatsin-Julai(Juillet).wav"
     },
     "Jumamosi": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/jumamosi.mp3",
-      "gain": -6.8,
-      "gainPhone": -9.9,
-      "gate": -64.4,
-      "lead": 35,
+      "gain": -8.0,
+      "gainPhone": -8.5,
+      "gate": -84.1,
+      "lead": 809,
       "matches": "Jumamosi",
-      "mos": 2.71,
-      "sha256": "014cb4d88a849cd7f698999096e33ec72e312132522edb5ac68d7b2116a0a733",
-      "source": "Sw-ke-Jumamosi.flac"
+      "mos": 2.74,
+      "sha256": "1b338859f2577c24c6b204d176c8e6122a962d2ef0ca903e818d84bc7a458177",
+      "source": "LL-Q131(swa)-Mndetatsin-Jumamosi(Samedi).wav"
     },
     "Jumanne": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/jumanne.mp3",
-      "gain": -6.2,
-      "gainPhone": -12.0,
-      "gate": -54.0,
-      "lead": 34,
+      "gain": -4.9,
+      "gainPhone": -2.8,
+      "gate": -85.4,
+      "lead": 188,
       "matches": "Jumanne",
-      "mos": 2.06,
-      "sha256": "56a63525b75ff948610f15e2aef07a61ed194a0423546b96ce29703adb9ce119",
-      "source": "Sw-ke-Jumanne.flac"
+      "mos": 2.86,
+      "sha256": "4c7bc7d5de99c21f10666576955c03aeddc039c0b5d3795011dc17b6fb70e696",
+      "source": "LL-Q127(swa)-Mndetatsin-Jumanne(Mardi).wav"
     },
     "Jumapili": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/jumapili.mp3",
-      "gain": -3.0,
-      "gainPhone": -8.3,
-      "gate": -62.6,
-      "lead": 36,
+      "gain": -7.4,
+      "gainPhone": -3.4,
+      "gate": -79.2,
+      "lead": 792,
       "matches": "Jumapili",
-      "mos": 2.32,
-      "sha256": "5b4ff8547cb3a89dd1b38a729bddd92eda14945425a1453493575b2199fe9e07",
-      "source": "Sw-ke-Jumapili.flac"
+      "mos": 2.49,
+      "sha256": "3a51f0ff29321baa76179ad80a09daf7c0378973b0bcb07570873ac46a781ce0",
+      "source": "LL-Q132(swa)-Mndetatsin-Jumapili(Dimanche).wav"
     },
     "Jumatano": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/jumatano.mp3",
-      "gain": -7.9,
-      "gainPhone": -15.4,
-      "gate": -59.7,
-      "lead": 8,
+      "gain": -7.2,
+      "gainPhone": -5.8,
+      "gate": -86.7,
+      "lead": 678,
       "matches": "Jumatano",
-      "mos": 2.61,
-      "sha256": "03cd03ad5d424beee80db3277e5308d01c4fb45ce287dfdfb1d657d7d7edc38c",
-      "source": "Sw-ke-Jumatano.flac"
+      "mos": 3.06,
+      "sha256": "699ef726869a3cfb49bb56d6de6a1c57d750372b6931ae62322314dd87984715",
+      "source": "LL-Q128(swa)-Mndetatsin-Jumatano(Mercredi).wav"
     },
     "Jumatatu": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/jumatatu.mp3",
-      "gain": -9.8,
-      "gainPhone": -17.0,
-      "gate": -65.3,
-      "lead": 35,
+      "gain": -5.8,
+      "gainPhone": -5.8,
+      "gate": -86.6,
+      "lead": 583,
       "matches": "Jumatatu",
-      "mos": 3.16,
-      "sha256": "ead86a667188c60d1e321f9ffda12646e294703791a476cc2c6b582761ec5863",
-      "source": "Sw-ke-Jumatatu.flac"
+      "mos": 2.8,
+      "sha256": "2f57510d09ae1241f4a22818dd45b7ee37101f811eed5911e4efd53c7833f340",
+      "source": "LL-Q105(swa)-Mndetatsin-Jumatatu(Lundi).wav"
     },
     "Juni": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/juni.mp3",
-      "gain": 1.8,
-      "gainPhone": -0.3,
-      "gate": -66.9,
-      "lead": 10,
+      "gain": -6.3,
+      "gainPhone": -1.6,
+      "gate": -82.4,
+      "lead": 669,
       "matches": "Juni",
-      "mos": 2.08,
-      "sha256": "a052176419f368d49c8519a9757186966f7092781bcd4c9538ceb4475811ac9e",
-      "source": "Sw-ke-Juni.flac"
+      "mos": 2.56,
+      "sha256": "a80b267b11f7806dc3e29e700ba97fa7076a73a000647b84ef7f81bccbccdc6f",
+      "source": "LL-Q120(swa)-Mndetatsin-Juni(Juin).wav"
     },
     "Machi": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/machi.mp3",
-      "gain": -7.5,
-      "gainPhone": -15.6,
-      "gate": -65.6,
-      "lead": 45,
+      "gain": -2.1,
+      "gainPhone": -5.4,
+      "gate": -87.8,
+      "lead": 618,
       "matches": "Machi",
-      "mos": 3.22,
-      "sha256": "73e2217e199e0ecd3c8634dd3c8ce0b4043d23ca5569ba1d02de067216cc0db6",
-      "source": "Sw-ke-Machi.flac"
+      "mos": 2.55,
+      "sha256": "8ce455dbf4d7336ab1fd456f16e41a98f867fb151be2b3b65438803862f6e841",
+      "source": "LL-Q110(swa)-Mndetatsin-Machi(Mars).wav"
     },
     "Mei": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
+      "capPhone": 0.4,
       "file": "calendar/mei.mp3",
-      "gain": -4.9,
-      "gainPhone": -10.0,
-      "gate": -70.4,
-      "lead": 39,
+      "gain": -4.0,
+      "gainPhone": 0.7,
+      "gate": -89.6,
+      "lead": 432,
       "matches": "Mei",
-      "mos": 2.52,
-      "sha256": "d34e3e55db8e9a813542c31a78d65dc77611f254f88d252c43226bbc9a3e8009",
-      "source": "Sw-ke-Mei.flac"
+      "mos": 2.55,
+      "sha256": "f62cd96811918702da4e0a2ccfd6b1b8f3e6057e5912a26c672b68129f7f0b25",
+      "source": "LL-Q119(swa)-Mndetatsin-Mei(Mai).wav"
     },
     "Novemba": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/novemba.mp3",
-      "gain": -3.3,
-      "gainPhone": -8.2,
-      "gate": -63.3,
-      "lead": 38,
+      "gain": -3.4,
+      "gainPhone": -0.8,
+      "gate": -87.8,
+      "lead": 571,
       "matches": "Novemba",
-      "mos": 2.78,
-      "sha256": "37583e20bc6155b9fa06da2565aceef92de25612e68a3e3ca92af21eadc3b18f",
-      "source": "Sw-ke-Novemba.flac"
+      "mos": 2.82,
+      "sha256": "e4600c33520927827f34a83fd7b2892b47e86f36923cac3f67ea7a8a44616d7c",
+      "source": "LL-Q125(swa)-Mndetatsin-Novemba(Novembre).wav"
     },
     "Oktoba": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/oktoba.mp3",
-      "gain": -4.5,
-      "gainPhone": -8.8,
-      "gate": -64.7,
-      "lead": 45,
+      "gain": -6.7,
+      "gainPhone": -2.4,
+      "gate": -86.6,
+      "lead": 308,
       "matches": "Oktoba",
-      "mos": 2.46,
-      "sha256": "a2987ec922d7adf2db5ee67ef4f23afe357589570f566d68f630f1b1850e6806",
-      "source": "Sw-ke-Oktoba.flac"
+      "mos": 2.84,
+      "sha256": "a0e08975e390af2cc38a4733a115f371e5dd6fffdd2787e0f52fa8dc6982d6b9",
+      "source": "LL-Q124(swa)-Mndetatsin-Oktoba(Octobre).wav"
     },
     "Septemba": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "calendar/septemba.mp3",
-      "gain": -6.3,
-      "gainPhone": -12.5,
-      "gate": -68.0,
-      "lead": 33,
+      "gain": -7.3,
+      "gainPhone": -5.0,
+      "gate": -82.4,
+      "lead": 409,
       "matches": "Septemba",
-      "mos": 2.87,
-      "sha256": "e1992fda5a00ed026fde873e87bf95aa1db77435e7d12f2571e4e083bdf0800a",
-      "source": "Sw-ke-Septemba.flac"
+      "mos": 2.49,
+      "sha256": "ede68732c91fba8971707df8fef9267693e9a8eb9e63677996ec7f8ce65e671b",
+      "source": "LL-Q123(swa)-Mndetatsin-Septemba(Septembre).wav"
     }
   },
   "countries": {
@@ -427,16 +431,15 @@
       "source": "Sw-ke-Kuba.flac"
     },
     "Marekani": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "countries/marekani.mp3",
-      "gain": -6.5,
-      "gainPhone": -14.6,
-      "gate": -67.0,
-      "lead": 35,
+      "gain": 6.8,
+      "gainPhone": 4.2,
+      "lead": 184,
       "matches": "Marekani",
-      "mos": 2.99,
-      "sha256": "7d9de8324e59f331c1639280a894ac22ca9597172d7f07e3e9660ec7c6749348",
-      "source": "Sw-ke-Marekani.flac"
+      "mos": 3.01,
+      "sha256": "49d3e63b338da06dd163c289d58b4c21565c8220e8712ee0a6e0b6f1ccd55627",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-Marekani.wav"
     },
     "Meksiko": {
       "author": "Waithera Were",
@@ -534,16 +537,15 @@
       "source": "Sw-ke-Senegal.flac"
     },
     "Tanzania": {
-      "author": "Waithera Were",
+      "author": "Byera04",
       "file": "countries/tanzania.mp3",
-      "gain": -4.7,
-      "gainPhone": -11.9,
-      "gate": -62.9,
-      "lead": 48,
+      "gain": -0.7,
+      "gainPhone": 1.7,
+      "gate": -56.7,
       "matches": "Tanzania",
-      "mos": 2.76,
-      "sha256": "9edd69b482a5063376547e06e64e65cb7bc5854cb1484fd19a8e2f28754f28d9",
-      "source": "Sw-ke-Tanzania.flac"
+      "mos": 2.6,
+      "sha256": "1d69971083a6b60e334cfee3f5b9bfc5fbd63d17eb1b1642cbc3020211a0cdea",
+      "source": "LL-Q7838 (swa)-Byera04-Tanzania.wav"
     },
     "Tunisia": {
       "author": "Waithera Were",
@@ -678,16 +680,15 @@
       "source": "Sw-ke-Uingereza.flac"
     },
     "Ujerumani": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "countries/ujerumani.mp3",
-      "gain": -7.4,
-      "gainPhone": -14.0,
-      "gate": -63.7,
-      "lead": 46,
+      "gain": 4.5,
+      "gainPhone": 4.6,
+      "lead": 183,
       "matches": "Ujerumani",
-      "mos": 3.02,
-      "sha256": "612f00e57af9d285038430581ccba22aa8eda3fe2c8602ba21640e17f60ecf3d",
-      "source": "Sw-ke-Ujerumani.flac"
+      "mos": 2.88,
+      "sha256": "25729a2d4647c483b3cad9a6f0ca0afd2e878498ebf9d862cca46f49ada23994",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-Ujerumani.wav"
     },
     "Ureno": {
       "author": "Waithera Were",
@@ -1241,7 +1242,6 @@
       "gainPhone": 7.7,
       "gate": -66.0,
       "lead": 187,
-      "license": "CC0",
       "matches": "uwanja wa ndege",
       "mos": 3.06,
       "sha256": "330a7fad12e6d741c384c8f9e82554453aaa7ac01b14d378af7c83ec9bf83b90",
@@ -1296,16 +1296,15 @@
       "source": "Sw-ke-takriban.flac"
     },
     "also": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "also.mp3",
-      "gain": -4.1,
-      "gainPhone": -10.4,
-      "gate": -70.5,
-      "lead": 45,
+      "gain": 3.7,
+      "gainPhone": 5.5,
+      "lead": 159,
       "matches": "pia",
-      "mos": 2.22,
-      "sha256": "14748772de3bc0bc88b38c62fb47f24f8eb11ca97381e8345a2f79eb6d09b82a",
-      "source": "Sw-ke-pia.flac"
+      "mos": 2.66,
+      "sha256": "ee2ba2395603f7602b911c34d7b4c4c574e284f6ebbb891a04566efbf1a091e5",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-pia.wav"
     },
     "although": {
       "author": "Waithera Were",
@@ -1332,16 +1331,15 @@
       "source": "Sw-ke-daima.flac"
     },
     "and": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "and.mp3",
-      "gain": -7.9,
-      "gainPhone": -15.9,
-      "gate": -70.1,
-      "lead": 38,
+      "gain": 6.0,
+      "gainPhone": 1.5,
+      "lead": 193,
       "matches": "na",
-      "mos": 2.98,
-      "sha256": "17b040ddb254e37d2297a818ed42f94bc8746ce01becbd4a6b4a895b65f3e671",
-      "source": "Sw-ke-na.flac"
+      "mos": 2.57,
+      "sha256": "90ab9fe3be4a0da1a3a049c3bdc20b769ed0205abbc4f51ad18f951e1d59a7aa",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-na.wav"
     },
     "anger": {
       "author": "Waithera Were",
@@ -2105,16 +2103,15 @@
       "source": "Sw-ke-kituo cha basi.flac"
     },
     "but": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "but.mp3",
-      "gain": -2.6,
-      "gainPhone": -8.1,
-      "gate": -67.1,
-      "lead": 45,
+      "gain": 6.7,
+      "gainPhone": 7.8,
+      "lead": 184,
       "matches": "lakini",
-      "mos": 2.88,
-      "sha256": "8a21c0c453e3fd294e8c61b159a73fcf27ab7504859c14dd4aaa2c1a5431f96b",
-      "source": "Sw-ke-lakini.flac"
+      "mos": 2.67,
+      "sha256": "99eff10be53a070e7954848a25dbc4c46965c6b876a643a0a9339606483bd781",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-lakini.wav"
     },
     "butter": {
       "author": "Waithera Were",
@@ -2542,6 +2539,7 @@
       "gainPhone": 0.2,
       "gate": -55.3,
       "lead": 110,
+      "license": "CC BY-SA 4.0",
       "matches": "pwani",
       "mos": 2.29,
       "sha256": "9744bc3a795ef059c10f04dfa16c58adeab84c6764a0a04de58be24aa0edf781",
@@ -2716,16 +2714,15 @@
       "source": "Sw-ke-ushauri.flac"
     },
     "country": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "country.mp3",
-      "gain": 2.4,
-      "gainPhone": 4.9,
-      "gate": -67.9,
-      "lead": 42,
+      "gain": 3.6,
+      "gainPhone": 0.5,
+      "lead": 148,
       "matches": "nchi",
-      "mos": 2.9,
-      "sha256": "acdbdf11ed323d9d8569adaf9f3bd4d7cfa8413ab63348e7830c24864608968d",
-      "source": "Sw-ke-nchi.flac"
+      "mos": 2.67,
+      "sha256": "d2a7165998014ef9c74d5427a039a2fda0baa58ea877db32f351979108b9a54f",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-nchi.wav"
     },
     "course": {
       "author": "Waithera Were",
@@ -3251,16 +3248,15 @@
       "source": "LL-Q93189(swa)-Mndetatsin-Yai(l'oeuf).wav"
     },
     "election": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "election.mp3",
-      "gain": -3.1,
-      "gainPhone": -11.4,
-      "gate": -67.4,
-      "lead": 42,
+      "gain": 8.2,
+      "gainPhone": 6.8,
+      "lead": 189,
       "matches": "uchaguzi",
-      "mos": 2.41,
-      "sha256": "01b9117e6a3c7d3ca976b00cba0ea2643691cb4fccbc60a701b229582dbdea9e",
-      "source": "Sw-ke-uchaguzi.flac"
+      "mos": 3.28,
+      "sha256": "9e962fece3083189d0a47dca6707dbd5f9249b685254963bac53998ea1ce6a60",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-uchaguzi.wav"
     },
     "elephant": {
       "author": "Waithera Were",
@@ -3679,16 +3675,18 @@
       "source": "Sw-ke-jina la kwanza.flac"
     },
     "fish": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
+      "cap": 3.0,
+      "capPhone": 1.7,
       "file": "fish.mp3",
-      "gain": -2.5,
-      "gainPhone": -10.0,
-      "gate": -71.8,
-      "lead": 31,
+      "gain": 0.6,
+      "gainPhone": 0.6,
+      "gate": -78.8,
+      "lead": 931,
       "matches": "samaki",
-      "mos": 2.1,
-      "sha256": "5c0182b4f6e7a225e032f8f537230686fd1d0932da7babd83db371e0be07d926",
-      "source": "Sw-ke-samaki.flac"
+      "mos": 2.85,
+      "sha256": "25626874475d00c6d991c4bf4650a5e710dcf38d9b3b71b5d012fec98f40e867",
+      "source": "LL-Q152(swa)-Mndetatsin-Samaki(le poisson).wav"
     },
     "floor": {
       "author": "Waithera Were",
@@ -4096,16 +4094,17 @@
       "source": "Sw-ke-usiku mwema.flac"
     },
     "goodbye": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
+      "capPhone": 4.0,
       "file": "goodbye.mp3",
-      "gain": -6.2,
-      "gainPhone": -12.5,
-      "gate": -67.9,
-      "lead": 30,
+      "gain": -2.8,
+      "gainPhone": -0.4,
+      "gate": -75.1,
+      "lead": 890,
       "matches": "kwaheri",
-      "mos": 3.15,
-      "sha256": "5499f06f89b722c42570bd1d7c2bad2309e56824684581c6197151132da057d1",
-      "source": "Sw-ke-kwaheri.flac"
+      "mos": 2.69,
+      "sha256": "04eabc4b0403cb0dfc074e90c211e57788ce5b43e389990c5aadb66f23464b3c",
+      "source": "LL-Q65219927(swa)-Mndetatsin-Kwaheri(Aurevoir).wav"
     },
     "government": {
       "author": "Ismail Ibn Ahmed",
@@ -4933,16 +4932,16 @@
       "source": "Sw-ke-mhadhara.flac"
     },
     "left": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "left.mp3",
-      "gain": -5.0,
-      "gainPhone": -10.6,
-      "gate": -67.3,
-      "lead": 48,
+      "gain": -1.4,
+      "gainPhone": -3.0,
+      "gate": -85.4,
+      "lead": 853,
       "matches": "kushoto",
-      "mos": 3.02,
-      "sha256": "cba34f7295c0afe2f580858c678b45272a1fbcbc6e6d9a83192e3eb7e34677df",
-      "source": "Sw-ke-kushoto.flac"
+      "mos": 3.17,
+      "sha256": "f99f9cfebd66fbcc48ed491ed54052d25cb876950aa26a9c1db1dc3fb9693c50",
+      "source": "LL-Q13196750(swa)-Mndetatsin-kushoto(Gauche).wav"
     },
     "lesson": {
       "author": "Waithera Were",
@@ -5388,16 +5387,15 @@
       "source": "Sw-ke-mwezi.flac"
     },
     "more": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "more.mp3",
-      "gain": -7.5,
-      "gainPhone": -15.7,
-      "gate": -64.9,
-      "lead": 26,
+      "gain": 6.3,
+      "gainPhone": 6.2,
+      "lead": 179,
       "matches": "zaidi",
-      "mos": 2.55,
-      "sha256": "adefaa3e2d0a0ffa29dd97ee63665f233cdae34d8da6f86bf9707990996cafe7",
-      "source": "Sw-ke-zaidi.flac"
+      "mos": 2.47,
+      "sha256": "97cfe815806768ba8891afeb3296023eb99828c2ff0a20ef6c2951fc36d52fb6",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-zaidi.wav"
     },
     "morning": {
       "author": "Waithera Were",
@@ -5460,16 +5458,17 @@
       "source": "Sw-ke-lugha ya mama.flac"
     },
     "motorbike": {
-      "author": "Waithera Were",
+      "author": "Byera04",
       "file": "motorbike.mp3",
-      "gain": -4.5,
-      "gainPhone": -7.2,
-      "gate": -64.4,
-      "lead": 44,
+      "gain": 6.6,
+      "gainPhone": 9.7,
+      "gate": -60.0,
+      "lead": 148,
+      "license": "CC BY-SA 4.0",
       "matches": "pikipiki",
-      "mos": 2.63,
-      "sha256": "d1ab3a662c09a2329ff25649df5925b21812d6f376d96320cd80b6c62fcdb97e",
-      "source": "Sw-ke-pikipiki.flac"
+      "mos": 2.15,
+      "sha256": "5118babc55d1ec09ad82e05a8197f96839693ade75e6a2d0e2b91408a8aae8f1",
+      "source": "LL-Q7838 (swa)-Byera04-Pikipiki.wav"
     },
     "mountain": {
       "author": "Waithera Were",
@@ -5865,16 +5864,15 @@
       "source": "Sw-ke-ngeli.flac"
     },
     "now": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "now.mp3",
-      "gain": -5.9,
-      "gainPhone": -14.6,
-      "gate": -70.7,
-      "lead": 36,
+      "gain": 8.0,
+      "gainPhone": 3.8,
+      "lead": 75,
       "matches": "sasa",
-      "mos": 2.87,
-      "sha256": "d2be54e5aa0691878232e619f2b8fbd51cee0331e1918781bc6a3b7f345aa79b",
-      "source": "Sw-ke-sasa.flac"
+      "mos": 2.75,
+      "sha256": "28c5cd9e818ae697e761542aebb9de65a4e5c671f3e24d52b192984b70ffa7b1",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-sasa.wav"
     },
     "nowadays": {
       "author": "Waithera Were",
@@ -6271,16 +6269,16 @@
       "source": "Sw-ke-duka la dawa.flac"
     },
     "phone": {
-      "author": "Waithera Were",
+      "author": "Byera04",
       "file": "phone.mp3",
-      "gain": -3.1,
-      "gainPhone": -5.6,
-      "gate": -69.0,
-      "lead": 38,
+      "gain": -0.9,
+      "gainPhone": -7.0,
+      "gate": -63.6,
+      "lead": 167,
       "matches": "simu",
-      "mos": 2.84,
-      "sha256": "12375c70d8ec4ea35f164cc0a4590588250d3c7342231b8695dce1348674fc7a",
-      "source": "Sw-ke-simu.flac"
+      "mos": 2.82,
+      "sha256": "3f597ac7afaa14f822173c83a638506b9472c48bfdc133627b6bd72574d61887",
+      "source": "LL-Q7838 (swa)-Byera04-Simu.wav"
     },
     "picture": {
       "author": "Waithera Were",
@@ -6427,16 +6425,16 @@
       "source": "Sw-ke-maskini.flac"
     },
     "porridge": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "porridge.mp3",
-      "gain": 0.9,
-      "gainPhone": 1.0,
-      "gate": -69.9,
-      "lead": 46,
+      "gain": -1.6,
+      "gainPhone": 1.3,
+      "gate": -90.2,
+      "lead": 593,
       "matches": "uji",
-      "mos": 2.42,
-      "sha256": "874cf6c0a5c61fa4323e5876444103b4c423be652c597a5100001f674c1b8569",
-      "source": "Sw-ke-uji.flac"
+      "mos": 2.68,
+      "sha256": "fdf765c17877c3489debf58921b0e65400a2525178f2ff83faf090c5f5646eb1",
+      "source": "LL-Q186817(swa)-Mndetatsin-Uji(la bouillie).wav"
     },
     "port": {
       "author": "Waithera Were",
@@ -6760,16 +6758,17 @@
       "source": "Sw-ke-tajiri.flac"
     },
     "right": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
+      "capPhone": 0.2,
       "file": "right.mp3",
-      "gain": -1.0,
-      "gainPhone": -6.3,
-      "gate": -69.0,
-      "lead": 43,
+      "gain": -1.6,
+      "gainPhone": 6.0,
+      "gate": -90.5,
+      "lead": 838,
       "matches": "kulia",
-      "mos": 2.52,
-      "sha256": "75482045af1ef077b4f1af00f74dacceafb188899813f257358ba46358d20bfe",
-      "source": "Sw-ke-kulia.flac"
+      "mos": 2.92,
+      "sha256": "f03041f731f699ef7d0b8c36851dc5a421f4069dbee41902c248e547d43d9a22",
+      "source": "LL-Q14565199(swa)-Mndetatsin-kulia(Droite).wav"
     },
     "right-now": {
       "author": "Waithera Were",
@@ -7858,16 +7857,15 @@
       "source": "Sw-ke-hiyo.flac"
     },
     "that-conj": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "that-conj.mp3",
-      "gain": -7.0,
-      "gainPhone": -13.0,
-      "gate": -66.2,
-      "lead": 45,
+      "gain": 5.5,
+      "gainPhone": 5.4,
+      "lead": 148,
       "matches": "kwamba",
-      "mos": 2.77,
-      "sha256": "ad9232baf8e67b47366815152fafb0f3a8ba6fbbfb8d334abafa2beaeb6d8dde",
-      "source": "Sw-ke-kwamba.flac"
+      "mos": 2.86,
+      "sha256": "4e85057bd05f55f197709068f3bc08ab6bb387219c39a1a56422f59a9fa80d76",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-kwamba.wav"
     },
     "then": {
       "author": "Waithera Were",
@@ -8466,16 +8464,17 @@
       "source": "Sw-ke-kuvuka.flac"
     },
     "to-cry": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
+      "capPhone": 0.2,
       "file": "to-cry.mp3",
-      "gain": -1.0,
-      "gainPhone": -6.3,
-      "gate": -69.0,
-      "lead": 43,
+      "gain": -1.6,
+      "gainPhone": 6.0,
+      "gate": -90.5,
+      "lead": 838,
       "matches": "kulia",
-      "mos": 2.52,
-      "sha256": "75482045af1ef077b4f1af00f74dacceafb188899813f257358ba46358d20bfe",
-      "source": "Sw-ke-kulia.flac"
+      "mos": 2.92,
+      "sha256": "f03041f731f699ef7d0b8c36851dc5a421f4069dbee41902c248e547d43d9a22",
+      "source": "LL-Q14565199(swa)-Mndetatsin-kulia(Droite).wav"
     },
     "to-cut": {
       "author": "Waithera Were",
@@ -8982,16 +8981,15 @@
       "source": "Sw-ke-kukariri.flac"
     },
     "to-leave": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "to-leave.mp3",
-      "gain": -6.9,
-      "gainPhone": -11.4,
-      "gate": -57.8,
-      "lead": 9,
+      "gain": 6.2,
+      "gainPhone": 6.4,
+      "lead": 192,
       "matches": "kutoka",
-      "mos": 2.3,
-      "sha256": "26cb33efd6c09997184cdacd29fec4122480d3eacbb6c8f5bfbb5562da8659e5",
-      "source": "Sw-ke-kutoka.flac"
+      "mos": 2.77,
+      "sha256": "9fde971d59ae350f554c27c03eb04d737693f7fc7e8f98c0c5a9f65a235841d0",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-kutoka.wav"
     },
     "to-like": {
       "author": "Waithera Were",
@@ -10168,16 +10166,15 @@
       "source": "Sw-ke-mpaka.flac"
     },
     "up": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "up.mp3",
-      "gain": -7.2,
-      "gainPhone": -7.5,
-      "gate": -64.6,
-      "lead": 7,
+      "gain": 6.8,
+      "gainPhone": 10.4,
+      "lead": 106,
       "matches": "juu",
-      "mos": 2.73,
-      "sha256": "f4422bc1b6768ba994b46b097082d75cf55f0da75513d07a26b3a671e6ebf9f2",
-      "source": "Sw-ke-juu.flac"
+      "mos": 2.5,
+      "sha256": "de2cbe581a80a51fe2e8192e4d7fb9979a6324b96b6fe915d180592ffc6d7c2d",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-juu.wav"
     },
     "usually": {
       "author": "Waithera Were",
@@ -10216,16 +10213,17 @@
       "source": "Sw-ke-chanjo.flac"
     },
     "vegetable": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
+      "capPhone": 6.0,
       "file": "vegetable.mp3",
-      "gain": -7.7,
-      "gainPhone": -12.9,
-      "gate": -66.2,
-      "lead": 41,
+      "gain": -2.8,
+      "gainPhone": 0.2,
+      "gate": -88.3,
+      "lead": 315,
       "matches": "mboga",
-      "mos": 2.92,
-      "sha256": "fe0678325b0487b4601bdb92b488b4f12eb04379ff9a250c17b5657c404d4d16",
-      "source": "Sw-ke-mboga.flac"
+      "mos": 2.9,
+      "sha256": "de808fd857936f40281a358f704486782c416ac210872eaca13d37174f81e26f",
+      "source": "LL-Q11004(swa)-Mndetatsin-Mboga(les légumes).wav"
     },
     "verb": {
       "author": "Waithera Were",
@@ -10359,16 +10357,16 @@
       "source": "Sw-ke-mashine ya kufulia.flac"
     },
     "water": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "water.mp3",
-      "gain": -7.1,
-      "gainPhone": -14.8,
-      "gate": -69.3,
-      "lead": 46,
+      "gain": -1.5,
+      "gainPhone": -5.6,
+      "gate": -89.0,
+      "lead": 681,
       "matches": "maji",
-      "mos": 2.79,
-      "sha256": "0e32da8b556f03d587456966f52e4e1b4a9ced5e264abf2fba6d2611055fd5f1",
-      "source": "Sw-ke-maji.flac"
+      "mos": 3.04,
+      "sha256": "b110e0f46676314253a7828785420e16e69aa5d8c9c6a2b0df364e4e4cc2f412",
+      "source": "LL-Q283(swa)-Mndetatsin-Maji(l'eau).wav"
     },
     "wave": {
       "author": "Waithera Were",
@@ -10514,16 +10512,17 @@
       "source": "Sw-ke-gurudumu.flac"
     },
     "when": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
+      "capPhone": 1.1,
       "file": "when.mp3",
-      "gain": -1.5,
-      "gainPhone": -2.6,
-      "gate": -67.6,
-      "lead": 45,
+      "gain": -5.6,
+      "gainPhone": 0.7,
+      "gate": -84.5,
+      "lead": 642,
       "matches": "lini",
-      "mos": 2.73,
-      "sha256": "c71e7c58e8d6575e68c135b2a6b1086b07a721bdadfe2ac0b2706a75dec22c6f",
-      "source": "Sw-ke-lini.flac"
+      "mos": 2.48,
+      "sha256": "a073372f54bd7229928d4123d449d1ae507937bc3f0615b060a9f85cc408310e",
+      "source": "LL-Q20656450(swa)-Mndetatsin-Lini(Quand).wav"
     },
     "where": {
       "author": "Waithera Were",
@@ -10753,16 +10752,15 @@
       "source": "Sw-ke-jeraha.flac"
     },
     "year": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "year.mp3",
-      "gain": -7.5,
-      "gainPhone": -13.6,
-      "gate": -67.4,
-      "lead": 43,
+      "gain": 5.9,
+      "gainPhone": 6.9,
+      "lead": 181,
       "matches": "mwaka",
-      "mos": 3.22,
-      "sha256": "4f44f8f97944e6c2e00ca1ec6b1479d165b8b9fe0d5445d931c5bd31ec2b4f1c",
-      "source": "Sw-ke-mwaka.flac"
+      "mos": 2.66,
+      "sha256": "9efa0d4aedb44c192356f832c499e48d54be5cc0d2909f58d5863b41a1a17009",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-mwaka.wav"
     },
     "yellow": {
       "author": "Waithera Were",
