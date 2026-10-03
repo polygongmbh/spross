@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Ten Swahili words that sounded distorted now play a cleaner recording, some by new speakers.
 ## 8.1.0 — 2026-10-03
 
 - Swahili words that change with their noun, like "your" (yako, lako, chako…), now quiz each real form in turn, and the watch offers one of those forms instead of a bare stem like "ako".

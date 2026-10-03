@@ -7,6 +7,7 @@ one item per bullet with a file or context pointer — as short as that allows,
 longer only to carry evidence or reasoning an author would otherwise have to redo — and pruned when fixed.
 Ready work comes first, then the items that end in a question for the owner, then what waits on a native speaker.
 
+- sw: 241 recordings by the main speaker are still limited hot at the source with no other take on Commons; only a re-recording fixes them (`docs/2026-09-30-sw-hot-recording-swaps.md`).
 - An invariability claim proves nothing when every example is N-class, where the concord is
   phonologically zero: `tupu` and `kavu` both read as invariable that way and both agree
   (`kiti kitupu`, `mkate mkavu`), so both are now dashed stems. Any future note asserting a

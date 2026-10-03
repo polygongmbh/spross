@@ -65,3 +65,16 @@ date	lang	word	speaker	source	sha256	verdict	defect	note	mos	context
 2026-09-28	fr	couverture	Vion Nicolas	Fr-couverture.ogg	e5cd21d4c4fa412b9c2d4e62e599169326edfd1e1ba53087146afaaabbe43af2	okay	noisy	"slightly noisy but still decent; says ""une couverture"""		heard in the app
 2026-09-28	fr	crème	Vion Nicolas	Fr-crème.ogg	9a7c8e9f58cf4e7fcccf31aed1f6ed173b2431390528b31b70ed63a739f0475f	bad	extra words	"says ""de la crème"" for a card showing ""crème"""		heard in the app
 2026-09-27	de	der Finger	Natschoba	LL-Q188 (deu)-Natschoba-der Finger.wav	5d3024cee0a7cfa1bc15b5d0752656cc9a7575015ec5fb0f9285e8d974cf0277	mediocre		a bit meh	3.22	quality-measure spike
+2026-10-03	sw	uwanja wa ndege	Byera04	LL-Q7838 (swa)-Byera04-Uwanja wa ndege.wav	330a7fad12e6d741c384c8f9e82554453aaa7ac01b14d378af7c83ec9bf83b90	good		clean swap for a hot take	3.06	hot sw swap listening
+2026-10-03	sw	pwani	Byera04	LL-Q7838 (swa)-Byera04-Pwani.wav	9744bc3a795ef059c10f04dfa16c58adeab84c6764a0a04de58be24aa0edf781	good		clean swap for a hot take	2.29	hot sw swap listening
+2026-10-03	sw	yai	Goethe-Institut Cameroon	LL-Q93189(swa)-Mndetatsin-Yai(l'oeuf).wav	f3afeff84955863aa633ac5365dc0e98dd50e517a7177c825f628571af077675	good		clean swap for a hot take	2.87	hot sw swap listening
+2026-10-03	sw	kwa	Ismail Ibn Ahmed	LL-Q7838 (swa)-Ismail Ibn Ahmed-kwa.wav	58cbd200cda6f4a1c4ce04b26564d498a05558effad2b71cefb86896ba25780a	good		clean swap for a hot take	2.75	hot sw swap listening
+2026-10-03	sw	serikali	Ismail Ibn Ahmed	LL-Q7838 (swa)-Ismail Ibn Ahmed-serikali.wav	4466e2949a9155c8b939750d568a3607b343fc410812fc5d982afd44ca818984	okay	echoey	a bit echoey, still preferred over the screamy take	3.02	hot sw swap listening
+2026-10-03	sw	serikali	Waithera Were	Sw-ke-serikali.flac	aaf77a13d20db14ddeef5ca81a6b251429b1c36abef409de86f1416d4787279c	mediocre	screamy	limited hot at the source	3.16	hot sw swap listening
+2026-10-03	sw	kama	Ismail Ibn Ahmed	LL-Q7838 (swa)-Ismail Ibn Ahmed-kama.wav	630b02059ecffe22cb669cd5a7fff0c295f21affb8f46ce535600471cd8b3423	good		clean swap for a hot take	2.65	hot sw swap listening
+2026-10-03	sw	mtaa	Goethe-Institut Cameroon	LL-Q123705(swa)-Mndetatsin-Mtaa(le quartier).wav	3445126f62cbb43fcb85a5a48e59ab3aad80e568ca0c4d7814b7746961324d44	good		clean swap for a hot take	2.77	hot sw swap listening
+2026-10-03	sw	kiazi	Goethe-Institut Cameroon	LL-Q16587531(swa)-Mndetatsin-Kiazi(la pomme de terre).wav	aa16b115510e1303f008dbdc68619202b9549d3523a5817a67780634d42c5f35	good		clean swap for a hot take	2.66	hot sw swap listening
+2026-10-03	sw	wakati	Ismail Ibn Ahmed	LL-Q7838 (swa)-Ismail Ibn Ahmed-wakati.wav	8800225190236f43f797e859f474cb64d1277982e2b2bcd319811c4c79a46c34	good		clean swap for a hot take	3.02	hot sw swap listening
+2026-10-03	sw	Julai	Goethe-Institut Cameroon	LL-Q121(swa)-Mndetatsin-Julai(Juillet).wav	a0b01c35a2b81bc2b0efd674711ddc2202882604495b533772e54f6cc0745e63	good		clean swap for a hot take	2.55	hot sw swap listening
+2026-10-03	sw	ng'ombe	Waithera Were	Sw-ke-Ng'ombe.flac	2a718df13bb844a59353dafae11a2f0ff5fecefcfe6847631e08ae3b89ffd508	okay		heard no different from the shipped take	3.15	hot sw swap listening
+2026-10-03	sw	saa	Waithera Were	Sw-ke-Saa.flac	9ca543ea192ed011216a1722fa00e082de5dd62bd5715e16745d1678f3c96c54	okay		heard no different from the shipped take	3.03	hot sw swap listening

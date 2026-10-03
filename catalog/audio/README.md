@@ -58,7 +58,10 @@ ship through their own converter (`--calendar`, `--countries`), rebuilt from a p
 matched what ships.
 A new speaker is another voice change on the cards and another credit group, so every
 picker takes an established voice's take over a slightly better stranger's, and a voice
-with three recordings or fewer is moved onto an established one wherever it can be.
+with three recordings or fewer is moved onto an established one wherever it can be —
+never onto a take requalification would refuse.
+Swahili is the exception: its main voice (Waithera Were) runs screamy,
+so any clean second voice is welcome there.
 
 **Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`**
 with its source, sha256 and `mos`, so the next revision of the measure is tested against
