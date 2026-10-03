@@ -33,13 +33,10 @@ enum WatchFeedback {
     /// Correct or not, in the hand. A right answer comes all the time, so it is
     /// the lightest tap there is (`.click`, also the quietest) for every
     /// affirming rating — the emoji is the finer channel. A miss is the rare
-    /// event and gets the double tap of `.success`, which reads as "that one
-    /// needs a second look" on the wrist.
-    ///
-    /// The end-of-batch celebration keeps its own `.success` — a whole screen
-    /// away from a tile, so the two never read as the same event.
+    /// event and gets `.failure`, the type whose documented meaning it is;
+    /// `.retry` would promise a second try the quiz never offers.
     static func haptic(forRating rating: Int) -> WKHapticType {
-        rating >= 2 ? .click : .success
+        rating >= 2 ? .click : .failure
     }
     #endif
 }
