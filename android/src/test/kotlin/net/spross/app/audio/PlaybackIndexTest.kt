@@ -66,7 +66,7 @@ class PlaybackIndexTest {
     /** Millibels are the platform's unit, tenths of a dB the catalog's resolution. */
     @Test
     fun aTenthOfADecibelSurvivesTheUnitChange() {
-        assertEquals(680, playbackBoostMillibels(playingAt(6.8))) // uk «й»
+        assertEquals(1080, playbackBoostMillibels(playingAt(10.8))) // uk «й»
         assertEquals(270, playbackBoostMillibels(playingAt(2.7)))
     }
 
