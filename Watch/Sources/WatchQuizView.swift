@@ -4,8 +4,9 @@ import SwiftUI
 /// the due batch or a free-practice lap. Correctness + response time derive the
 /// FSRS rating (`WatchGrading`) — no self-grading. Instant feedback on four
 /// channels (green right / red wrong plus a red wash, a light click for a right
-/// answer and the failure buzz for a miss, that rating badged on the tile —
-/// `WatchFeedback` — and the answered tile's verdict spoken as its accessibility value), then auto-advance.
+/// answer and the failure buzz for a miss, a quick answer's speed marked on
+/// the tile — `WatchFeedback` — and the answered tile's verdict spoken as its
+/// accessibility value), then auto-advance.
 /// One progress indicator, in the title: the due batch counts to its end,
 /// free practice shows the answer streak (having no total to count toward).
 /// - recognize: prompt the target `promptForm` (article-tinted), tap the
@@ -162,13 +163,12 @@ struct WatchQuizView: View {
         .accessibilityValue(verdict(for: index, question))
     }
 
-    /// The rating the tap earned, on the tile that earned it — an emoji rather
-    /// than a word, so it tells an insider how the answer landed without
-    /// announcing a grade the learner could start playing to (`WatchFeedback`).
+    /// How quick the tap was, on the tile that earned it (`WatchFeedback`).
     @ViewBuilder
     private func ratingBadge(_ index: Int) -> some View {
-        if index == model.selectedIndex, let rating = model.lastRating {
-            Text(WatchFeedback.emoji(forRating: rating))
+        if index == model.selectedIndex, let rating = model.lastRating,
+           let mark = WatchFeedback.speedMark(forRating: rating) {
+            Text(mark)
                 .font(.system(size: 13))
                 // why: inset rather than offset out — a badge hanging past the
                 // tile's own frame is the first thing a clipping cell eats.
@@ -178,9 +178,8 @@ struct WatchQuizView: View {
         }
     }
 
-    /// What the tint says, said aloud: correctness is never color alone. The
-    /// rating stays unspoken (`WatchFeedback`) — a grade the learner hears is a
-    /// grade the learner can play to.
+    /// What the tint says, said aloud: correctness is never color alone.
+    /// The speed mark is not spoken.
     private func verdict(for index: Int, _ question: WatchPracticeQuestion) -> Text {
         guard let selected = model.selectedIndex else { return Text(verbatim: "") }
         if index == question.correctIndex { return Text("watch.verdict.right", tableName: GlanceChrome.table) }

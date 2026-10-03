@@ -16,6 +16,7 @@ Parked work is not an issue: its own doc says it is parked.
   on every keystroke (worst de Sprosse 6 ≈ 128 five-word forms per `evaluate`, typical ~16),
   on the oldest supported phone before it is trusted free (`DateDrillTasks.fill`;
   `NumberReadingIndex.INDEXED_CARDINALS` states the bound precedent).
+- The watch derives its FSRS rating app-side (`Shared/Sources/WatchGrading.swift`), a rule kern should own.
 
 ## App & UX
 
@@ -33,6 +34,7 @@ Parked work is not an issue: its own doc says it is parked.
   drill needing curated component-boundary data, and syllable data would not deliver it since a
   syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries
   "Feier") — considered for word scramble (`drills-words.md`) and left out.
+- The watch speed mark (⚡) is visual only: VoiceOver hears right or wrong but not how quick (`WatchQuizView.verdict`).
 
 ## Platform reach
 

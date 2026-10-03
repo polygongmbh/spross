@@ -31,7 +31,7 @@ final class WatchModel {
     /// The tapped option index; non-nil freezes the tiles into feedback state.
     private(set) var selectedIndex: Int?
     /// The rating the last tap earned (raw FSRS 1–4), for the tile's badge —
-    /// the quiz shows it as an emoji, never as a word (`WatchFeedback`).
+    /// the quiz marks a quick one's speed, never names it (`WatchFeedback`).
     private(set) var lastRating: Int?
     /// Raised for a moment after a wrong pick; the quiz washes the screen red.
     private(set) var wrongFlash = false

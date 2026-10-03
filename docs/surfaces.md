@@ -120,13 +120,13 @@ What has not landed there is `design.md` § Not yet.
   already does better. What the watch drops, it drops from BOTH the entries and the option
   pool, from one predicate — the two can never disagree about what fits.
 - **Every answer answers back, on three channels.** A haptic (a light click for any right
-  answer, the failure buzz for a miss), the rating itself
-  badged on the tapped tile as an emoji, and — on a miss only — the tile and a brief
+  answer, the failure buzz for a miss), a quick right answer's speed
+  marked on the tapped tile (⚡⚡ Easy, ⚡ Good), and — on a miss only — the tile and a brief
   full-screen wash in red. **Red is the wrist's alone**: the phone keeps wrong off its cards
   because the learner stays there and can correct it, while a glance-long wrist answer has
-  no second face to be gentle on. The badge is a tell, never a label: naming the grade would
-  invite playing to the latency the grade is measuring. Reduce Motion keeps every color and
-  the badge and drops only the movement. No sound — the wrist is a silent surface, and two
+  no second face to be gentle on. The mark names what earned the rating, never the grade:
+  a learner sees why it came. Reduce Motion keeps every color and
+  the mark and drops only the movement. No sound — the wrist is a silent surface, and two
   channels already carry it; the right answer's feedback is the subtlest the wrist has.
 - **The picture arrives with the answer.** A card that has an emoji shows it on the watch's
   prompt line once a tile is tapped, never before: on a recognition question the picture
