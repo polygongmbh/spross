@@ -36,7 +36,7 @@ data class TreesPlan(val spots: List<TreeSpot>, val height: Double)
 object TreesLayout {
     /** What a crown spans, in tree heights, and the narrowest a tree ever stands: a sapling's label and tap target need room a stem does not. */
     const val CROWN_SPAN = 1.4
-    const val MIN_TREE_WIDTH = 32.0
+    const val MIN_TREE_WIDTH = 26.0
     /** The closest two crowns in a row stand to each other, and the strip every row leaves free on one side. */
     const val MIN_GAP = 6.0
     const val ROW_SHIFT = 32.0
