@@ -37,7 +37,7 @@
   "fine": { "text": "faini", "grammar": { "plural": "=" } },
   "receipt": { "text": "resiti", "grammar": { "plural": "=" } },
   "authority": { "text": "mamlaka", "grammar": { "plural": "=" } },
-  "responsible": { "text": "-husika" },
+  "responsible": { "text": "husika", "teaches": ["mhusika", "wahusika"] },
   "to-submit-application": { "text": "kuwasilisha ombi", "accepts": ["kutuma ombi"] },
   "to-take-a-number": { "text": "kuchukua namba" },
   "where-do-i-sign": { "text": "Nitie sahihi wapi?" },
