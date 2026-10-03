@@ -264,12 +264,12 @@ class TurnTest {
     }
 
     @Test
-    fun theRetypeAfterAMissByEarIsTheTargetWord() {
+    fun aMissByEarIsNeverRetyped() {
         val missed = TurnFixture.state(byEar(), TurnIntent.Submit("Messer"))
-        assertEquals("sw", missed.fieldLang)
-        assertEquals(emptyList(), TurnFixture.step(missed, TurnIntent.InputChanged("Auto")).effects)
-        val retyped = TurnFixture.step(missed, TurnIntent.InputChanged("gari"))
-        assertTrue(retyped.state.retryApproved)
+        assertFalse(missed.retypes)
+        assertEquals(missed, TurnFixture.state(missed, TurnIntent.InputChanged("Auto")))
+        assertEquals(missed, TurnFixture.state(missed, TurnIntent.InputChanged("gari")))
+        assertEquals(listOf(TurnEffect.Answer(Rating.Again)), TurnFixture.step(missed, TurnIntent.GiveUp).effects)
     }
 
     @Test

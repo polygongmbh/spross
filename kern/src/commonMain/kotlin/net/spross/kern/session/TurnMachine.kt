@@ -110,7 +110,9 @@ class TurnMachine(
         state.role == PresentationRole.Recognize -> unchanged(state)
         // The blank reveal handed the turn to the self-grade buttons; there is no field left.
         state.revealed -> unchanged(state)
-        state.feedback == TurnFeedback.Revealed -> approveRetry(state, text)
+        state.retypes -> approveRetry(state, text)
+        // A miss by ear has no field: the reveal is the whole of it.
+        state.feedback == TurnFeedback.Revealed -> unchanged(state)
         // An almost hold waits for its tap: the correction is the point of the pause.
         state.feedback is TurnFeedback.Almost -> unchanged(state)
         else -> approveTyped(state, text)
@@ -147,13 +149,9 @@ class TurnMachine(
      * reveal in view is recalled-with-help, so it earns [RETRY_RATING] rather than the blind
      * Again a bare give-up would. The card keeps its reveal while the field turns right —
      * the two deliberately say different things at that moment.
-     *
-     * The retype is the TARGET word on every turn ([TurnState.fieldLang]), a card asked by ear
-     * included: its meaning was the question, but what gets written out is the word.
      */
     private fun approveRetry(state: TurnState, text: String): TurnReduction {
-        val trimmed = text.trim()
-        if (trimmed.isEmpty() || grader.grade(trimmed, state.card) != Match.Exact) {
+        if (!isExact(state, text)) {
             // why: backing out takes the parked rating with it, or it would fire on a word
             // that no longer stands written.
             if (!state.retryApproved) return unchanged(state)
@@ -235,8 +233,7 @@ class TurnMachine(
      * retype picks up where the slip started instead of from scratch. Nothing kept clears it.
      * A kept word is written as the ANSWER spells it — a forgiven slip is not left for the
      * learner to hunt down — and the last answer word is never primed, so the field cannot
-     * hand over a finished retype. A card asked by ear primes nothing: the miss was a meaning,
-     * and the retype is the target word.
+     * hand over a finished retype. A card asked by ear primes nothing: it has no retype.
      */
     private fun primed(state: TurnState, text: String): String {
         if (state.prompt == ProducePrompt.Sound) return ""
