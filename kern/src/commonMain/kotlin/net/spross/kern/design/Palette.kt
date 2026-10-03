@@ -75,8 +75,8 @@ object Palette {
     /** A leaf fallen by the trunk: a word that lapsed. */
     val fallen = Swatch(0x87510A, 0xF2C078)
     // The tree's marks, apart from each other and from the leaves by hue and lightness alike.
-    /** Open blossom: soft butter, clear of the ochre a bud wears. */
-    val blossom = Swatch(0xE9C46A, 0xF2DC6E)
+    /** Open blossom: a golden yellow that holds against the light ground, clear of the ochre a bud wears. */
+    val blossom = Swatch(0xDDA020, 0xF2DC6E)
     /** Ripe fruit: a clear red. */
     val fruit = Swatch(0xC8352E, 0xE5584F)
 
