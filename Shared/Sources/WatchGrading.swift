@@ -12,8 +12,8 @@ enum WatchGrading {
 
     // Field-calibratable — reading four options costs time, more for long
     // words, so the "fast" budget scales with the total option text length.
-    static let baseMs = 1400       // fixed reading/react floor
-    static let perCharMs = 20      // per displayed option character
+    static let baseMs = 1800       // fixed reading/react floor
+    static let perCharMs = 15      // per displayed option character
     static let easyFactor = 0.5    // Easy window is the inner half of Good
 
     /// FSRS raw rating: Again(1) when wrong; else Easy(4) very-fast, Good(3)
