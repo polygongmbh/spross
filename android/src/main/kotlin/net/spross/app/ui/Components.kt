@@ -206,8 +206,9 @@ const val LOCK = "🔒"
  * FULL card count, so the untouched rest of a shelf stays visible instead of a bar
  * that always reads as full.
  *
- * One continuous capsule whose stretches fade into each other; the queued stretch wears
- * the pack button's amber, since packing is what put those cards there.
+ * One continuous capsule whose stretches fade into each other. No amber stretch: amber
+ * stays a badge-only color, distinguishing Fresh/Lapsed from Growing at the per-card
+ * level ([PhaseBadge]) without the bar needing that fine a grain.
  * A card never packed at all gets no stretch: the neutral track under them is what the
  * untouched rest of the shelf reads as.
  *
@@ -230,7 +231,7 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
     Box(modifier.fillMaxWidth().height(6.dp).background(palette.separator, shape)) {
         if (filled > 0f) {
             val stops = blendedStops(
-                listOf(settled to palette.settled, growing to palette.success, queued to palette.amber),
+                listOf(settled to palette.settled, growing to palette.success, queued to palette.accent),
                 filled, halfBlend = AREA_BLEND * total / filled,
             )
             Box(
@@ -242,7 +243,7 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
 }
 
 /** Half the fade between two stretches, as a share of the whole track. */
-private const val AREA_BLEND = 0.025f
+private const val AREA_BLEND = 0.01f
 
 /** Each stretch holds its color up to [halfBlend] (a share of [filled]) short of a neighbor. */
 private fun blendedStops(stretches: List<Pair<Float, Color>>, filled: Float, halfBlend: Float): Array<Pair<Float, Color>> {

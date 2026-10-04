@@ -90,7 +90,7 @@ struct AreaProgress {
     let allSettled: Int
     /// Every other active card, fresh, growing or lapsed — the counts row's split.
     let allGrowing: Int
-    /// Cards packed but not yet introduced — the bar's amber segment. A card
+    /// Cards packed but not yet introduced — the bar's clay segment. A card
     /// never packed at all gets no segment: it leaves the bar's neutral track
     /// showing rather than widening a fourth bucket.
     let queued: Int
@@ -102,7 +102,7 @@ struct AreaProgress {
 }
 
 /// Half the fade between two area-bar stretches, as a share of the whole track.
-private let areaBlend: CGFloat = 0.025
+private let areaBlend: CGFloat = 0.01
 
 /// Per-area chip: emoji + name + settled/growing counts over a bar that
 /// measures both against the area's FULL card count, so the untouched rest
@@ -127,14 +127,15 @@ struct AreaChip: View {
     var hideProgress: Bool = false
 
     /// A two-way split (matches the counts row) plus queued: settled, then
-    /// everything else active, then packed-but-unintroduced in the pack
-    /// button's amber, since packing is what put those cards there.
+    /// everything else active, then packed-but-unintroduced. No amber segment —
+    /// amber stays a badge-only color, distinguishing Fresh/Shaky from
+    /// Growing at the per-card level without the bar needing that fine a grain.
     /// A card never packed at all gets no segment: the neutral track under them
     /// is what the untouched rest of the area reads as.
     private var stretches: [(count: Int, color: Color)] {
         [(progress.allSettled, Theme.colors.settled),
          (progress.allGrowing, Theme.colors.success),
-         (progress.queued, Theme.colors.amber)]
+         (progress.queued, Theme.colors.accent)]
     }
 
     private var denominator: CGFloat { CGFloat(max(progress.progressTotal, 1)) }
