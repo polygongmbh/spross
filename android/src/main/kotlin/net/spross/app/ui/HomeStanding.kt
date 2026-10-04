@@ -2,18 +2,13 @@ package net.spross.app.ui
 
 import net.spross.app.Chrome
 import net.spross.app.countLine
-import net.spross.kern.box.BoxEngine
-import net.spross.kern.box.BoxState
 import net.spross.kern.box.TallyPartKind
 import net.spross.kern.box.TodayReport
 import net.spross.kern.box.TomorrowNote
-import net.spross.kern.box.endOfTomorrow
-import net.spross.kern.box.tomorrowNote
 import net.spross.kern.session.HeadlineKind
 import net.spross.kern.session.OfferPartKind
 import net.spross.kern.session.SessionHeadline
 import net.spross.kern.session.SessionOffer
-import net.spross.kern.session.SessionOffers
 import net.spross.kern.trainer.DayLead
 
 /** Which of Home's four cards the day is standing on. */
@@ -40,56 +35,6 @@ fun homeCard(failed: Boolean, lead: DayLead): HomeCard = when {
     lead == DayLead.Round -> HomeCard.Session
     lead == DayLead.Drill -> HomeCard.Drill
     else -> HomeCard.Done
-}
-
-/**
- * Everything Home asks the box for at one instant, asked once.
- *
- * The screen recomposes on every tap that touches state, and each of these is a walk over
- * the box; reading them together keeps the day's card, its tally and its fine print
- * describing the same moment rather than three moments a frame apart.
- */
-data class HomeStanding(
-    val offer: SessionOffer,
-    /** The line the day's card leads with — clock-dependent, so it is read at this instant too. */
-    val headline: SessionHeadline,
-    val today: TodayReport,
-    val tomorrow: TomorrowNote,
-    /** What falls due inside tomorrow — kern's horizon, never a local-midnight rederivation. */
-    val tomorrowDue: Int,
-    val canPracticeMore: Boolean,
-) {
-    companion object {
-        /**
-         * [canPracticeMore] is handed in rather than asked for: it composes a whole
-         * round, and the model already took that answer for the same box
-         * (`AppModel.canPracticeExtra`) — asking again composes it twice.
-         *
-         * [otherLanguagesAnswerDays] reaches the offer for its streak warning alone: the
-         * run is one commitment across every box, so the line and the flame beside it agree.
-         */
-        fun of(
-            state: BoxState,
-            nowEpochMillis: Long,
-            tzId: String,
-            canPracticeMore: Boolean,
-            otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
-        ): HomeStanding {
-            val horizon = endOfTomorrow(nowEpochMillis, tzId).toEpochMilliseconds()
-            // why: the SIZE of the pile, so nothing composes its order — the shuffle
-            // keys and the sort behind `dueNow` are thrown away for an integer.
-            val due = BoxEngine.dueCount(state, horizon)
-            val offer = SessionOffers.offer(state, nowEpochMillis, tzId, otherLanguagesAnswerDays)
-            return HomeStanding(
-                offer = offer,
-                headline = offer.headline(nowEpochMillis, tzId),
-                today = BoxEngine.today(state, nowEpochMillis, tzId),
-                tomorrow = tomorrowNote(SessionOffers.packedWordsPending(state), due),
-                tomorrowDue = due,
-                canPracticeMore = canPracticeMore,
-            )
-        }
-    }
 }
 
 /** The separator between the spelled-out parts of an offer or a tally. */

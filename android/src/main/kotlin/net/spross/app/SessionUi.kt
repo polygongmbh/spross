@@ -75,10 +75,10 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             card = null, role = null, promptForm = null,
             emojiCue = null,
             segments = active.segments, remaining = 0,
-            // why: `DayBooked` precedes this in [dispatch], so [canPracticeExtra] was
+            // why: `DayBooked` precedes this in [dispatch], so [AppModel.homeStanding] was
             // taken against the box this summary is for — asking again would compose
             // the same round a second time.
-            canPracticeMore = canPracticeExtra,
+            canPracticeMore = homeStanding?.canPracticeMore == true,
             summary = summary,
         )
     } else {
@@ -103,7 +103,7 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             remaining = active.remaining,
             // why: only the finished round shows this, and composing a whole round
             // to fill a field no card on screen reads is a pause between cards.
-            canPracticeMore = canPracticeExtra,
+            canPracticeMore = homeStanding?.canPracticeMore == true,
         )
     }
 }

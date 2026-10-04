@@ -168,8 +168,5 @@ extension AppModel {
     /// Whether a round the learner asks for would yield anything — drives both the summary's
     /// "Weiter üben" and the done card's extra round, which open the same composition.
     /// Taken with the rest of the standing, never per redraw (`HomeStanding`).
-    var canPracticeMore: Bool { home.canPracticeMore }
-
-    /// Whether words the learner packed are still waiting to enter a round.
-    var hasPackedWords: Bool { home.hasPackedWords }
+    var canPracticeMore: Bool { home?.canPracticeMore ?? false }
 }

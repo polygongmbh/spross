@@ -19,7 +19,7 @@ struct HomeView: View {
         let offer = model.homeOffer
         let hub = TrainerHubView(model: model, destination: $drillDestination)
         let pick = hub.suggestedDrill
-        let lead = dayLead(offer, pick)
+        let lead = dayLead(pick)
         ScrollView {
             VStack(alignment: .leading, spacing: Theme.spacing.xl) {
                 header
@@ -54,7 +54,7 @@ struct HomeView: View {
     }
 
     /// Kern's answer to what leads the day (`DayLead`).
-    private func dayLead(_ offer: SessionOffer, _ pick: DrillSuggestion.Pick?) -> DayLead {
+    private func dayLead(_ pick: DrillSuggestion.Pick?) -> DayLead {
         #if DEBUG
         // UI-test hook: `-uitest-suggestion 1` leads with the named drill
         // whatever the day has answered, so a screenshot needs no worked day.
@@ -62,7 +62,7 @@ struct HomeView: View {
             return .drill
         }
         #endif
-        return DayLead.companion.of(offer: offer, pick: pick)
+        return model.home?.lead(pick: pick) ?? .done
     }
 
     // MARK: - Conversation

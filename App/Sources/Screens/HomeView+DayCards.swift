@@ -171,8 +171,7 @@ extension HomeView {
     /// the pack was the learner's move and does not need answering. Which of the three
     /// notes a done day leaves is kern's (`tomorrowNote`).
     var tomorrowText: Text {
-        switch tomorrowNote(hasPackedWords: model.hasPackedWords,
-                            tomorrowDue: Int32(model.tomorrowDueCount)) {
+        switch model.tomorrowNote {
         case .packed: return Text("home.done.packed")
         case .fresh: return Text("home.done.tomorrowFresh")
         case .due: return Text("home.done.tomorrowDue \(model.tomorrowDueCount)")

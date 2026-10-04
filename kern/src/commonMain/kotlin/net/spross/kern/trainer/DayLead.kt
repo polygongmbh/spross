@@ -1,7 +1,6 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.session.SessionOffer
-import net.spross.kern.session.SessionOfferKind
 
 /**
  * What Home offers first: the day's round, the drill [DrillSuggestion] names, or the day's rest.
@@ -23,7 +22,7 @@ enum class DayLead {
     companion object {
         fun of(offer: SessionOffer, pick: DrillSuggestion.Pick?): DayLead = when {
             pick != null && DrillSuggestion.shown(offer) -> Drill
-            offer.kind == SessionOfferKind.Nothing -> Done
+            !offer.hasRound -> Done
             else -> Round
         }
     }

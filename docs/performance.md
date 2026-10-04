@@ -55,13 +55,14 @@ any of it is allowed to run.
 box goes stale and the one place it is taken again. Everything that can move the box ends
 there: a mutation, a language switch, a booked day, a foreground.
 
-It holds the statistics, the activity strip, the browser's shelf counts and whether a
-round is on offer, and it retires the typed-answer grader so the next turn rebuilds it
+It holds the statistics, the activity strip, the browser's shelf counts
+and kern's `HomeStanding` (the day's offer and report, what tomorrow holds,
+whether another round would yield anything),
+and it retires the typed-answer grader so the next turn rebuilds it
 against the box standing then.
-iOS also takes the growth ladder, the day's standing (`HomeStanding` — the day's report,
-what tomorrow holds, whether another round would yield anything) and the trees there;
-Android has no ladder, `remember`s its trees on the box, and composes `HomeStanding` at Home instead,
-`remember`ed on the box and the refreshed offer.
+The offer's headline turns on the clock, so each platform reads it off the offer when it draws.
+iOS also takes the growth ladder and the trees there;
+Android has no ladder and `remember`s its trees on the box.
 
 Two things sit outside it because they are not box questions:
 

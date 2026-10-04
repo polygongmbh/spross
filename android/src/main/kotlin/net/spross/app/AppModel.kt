@@ -31,9 +31,9 @@ import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
+import net.spross.kern.session.HomeStanding
 import net.spross.kern.session.SessionEffect
 import net.spross.kern.session.SessionIntent
-import net.spross.kern.session.SessionOffers
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
 
@@ -140,11 +140,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     var activityWindow by mutableStateOf<List<ActivityDay>>(emptyList())
         private set
-    var sessionAvailable by mutableStateOf(false)
-        private set
-
-    /** Whether the done card's extra round would come back with anything. */
-    var canPracticeExtra by mutableStateOf(false)
+    /** Everything Home asks kern for, taken when the box last moved; null before a box exists. */
+    var homeStanding by mutableStateOf<HomeStanding?>(null)
         private set
 
     /**
@@ -273,7 +270,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             if (!thenPractice) return@launch
             // why: the coaching arms with the round that actually opens — an install with
             // nothing to practice yet must not carry it into some later round.
-            if (sessionAvailable) {
+            if (homeStanding?.offer?.hasRound == true) {
                 coachPending = true
                 startSession()
             }
@@ -424,8 +421,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             tz(),
             otherLanguagesAnswerDays,
         )
-        sessionAvailable = SessionOffers.sessionAvailable(state, now(), tz())
-        canPracticeExtra = SessionOffers.canPracticeMore(state, now(), tz())
+        homeStanding = HomeStanding.of(state, now(), tz(), otherLanguagesAnswerDays)
         shelfCounts = BoxBrowser.shelfCounts(state)
     }
 

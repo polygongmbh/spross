@@ -58,9 +58,9 @@ final class AppModel {
     /// and Home would otherwise rebuild it every redraw.
     private(set) var growth: [CardGrowth] = []
     /// Everything the Home screen asks kern for, taken in one pass — see
-    /// `HomeStanding`. Cached for the same reason `growth` is, and more so:
-    /// three of its answers each compose a whole round.
-    private(set) var home: HomeStanding = .none
+    /// `HomeStanding`; nil before a box exists. Cached for the same reason
+    /// `growth` is, and more so: two of its answers each compose a whole round.
+    private(set) var home: HomeStanding?
     /// One tree per area, as the Trees picture draws them.
     /// Derived from `growth`,
     /// so it is rebuilt with it rather than per redraw.
@@ -245,13 +245,13 @@ final class AppModel {
         let storedSource = UserDefaults.standard.string(forKey: Self.sourceLanguageKey)
         let source = sourceOverride ?? storedSource ?? defaultSource
         await activate(source: source, target: target)
-        if autostartSession, sessionAvailable {
+        if autostartSession, hasRound {
             startSession()
         }
         #if DEBUG
         // UI-test hook: `-uitest-screen finish` opens a session and jumps
         // straight to its finish screen (confetti/cheer/exit buttons).
-        if uitestScreen == "finish", sessionAvailable {
+        if uitestScreen == "finish", hasRound {
             startSession()
             uitestFinished = true
         }
@@ -279,7 +279,7 @@ final class AppModel {
         // why: the picker is the last question the app asks. Landing on Home to press
         // one more button makes the first round something you have to go and find — and
         // the coaching arms with that round, never ahead of a round nothing can open.
-        if sessionAvailable {
+        if hasRound {
             coachPending = true
             startSession()
         }
@@ -456,9 +456,9 @@ final class AppModel {
             BoxEngine.shared.growth(state: $0, nowEpochMillis: now, tzId: tz)
         } ?? []
         home = box.map {
-            HomeStanding.of(box: $0, nowEpochMillis: now, tzId: tz,
-                            otherLanguagesAnswerDays: otherLanguagesAnswerDays)
-        } ?? .none
+            HomeStanding.companion.of(state: $0, nowEpochMillis: now, tzId: tz,
+                                      otherLanguagesAnswerDays: otherLanguagesAnswerDays)
+        }
         trees = composedAreaGrowth()
         #if DEBUG
         // UI-test hook: `-uitest-trees 0.55` stands a fabricated box of that age

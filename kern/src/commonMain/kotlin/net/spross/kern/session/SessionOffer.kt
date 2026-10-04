@@ -91,6 +91,9 @@ data class SessionOffer(
     /** Every card due right now: the [reviews] this round takes and whatever the cap holds back. */
     val dueNow: Int = 0,
 ) {
+    /** Whether there is a round to sit down to — the one answer every surface reads. */
+    val hasRound: Boolean get() = kind != SessionOfferKind.Nothing
+
     /**
      * Which line names this round right now, and which of its phrasings it takes.
      *
@@ -227,15 +230,6 @@ object SessionOffers {
             dueNow = due,
         )
     }
-
-    /**
-     * Whether there is a round to sit down to. Due work counts even when the composed round
-     * does not carry it: a cap that holds every due card back still leaves work waiting, and a
-     * day that answers "nothing" while cards are due is lying.
-     */
-    fun sessionAvailable(state: BoxState, nowEpochMillis: Long, tzId: String): Boolean =
-        !SessionComposer.composeSession(state, nowEpochMillis, tzId).isEmpty ||
-            BoxEngine.dueCount(state, nowEpochMillis) > 0
 
     /**
      * Whether a round the learner asks for would yield anything — what both the summary's

@@ -12,23 +12,28 @@ extension AppModel {
 
     // Every value below is one of `home`'s, taken when the box last moved
     // (`AppModel.refreshStats`). They read as properties because the screens
-    // read them as facts — but each is a walk of the box, and three of them
+    // read them as facts — but each is a walk of the box, and two of them
     // compose a whole round, so none of them is derived here.
 
-    /// Whether there is a round to sit down to — kern counts due work the composed
-    /// round could not carry, so a capped backlog never reads as "nothing".
-    var sessionAvailable: Bool { home.sessionAvailable }
+    /// Whether there is a round to sit down to — the offer's own answer.
+    var hasRound: Bool { home?.offer.hasRound ?? false }
 
     /// Today's round as kern classified it. A box that has not loaded offers nothing.
-    var homeOffer: SessionOffer { home.offer }
+    var homeOffer: SessionOffer {
+        home?.offer ?? SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0,
+                                    shortRound: 0, doneToday: 0, streakExposed: false, dueNow: 0)
+    }
 
     /// What the learner did today — reviews, first meetings, words that settled,
     /// and whether today's recall has fallen far enough to suggest stopping.
-    var today: TodayReport? { home.today }
+    var today: TodayReport? { home?.today }
 
     /// Cards that will be due by tomorrow evening (preview on the done state) —
     /// the horizon is kern's, not a second local-midnight derivation.
-    var tomorrowDueCount: Int { home.tomorrowDue }
+    var tomorrowDueCount: Int { Int(home?.tomorrowDue ?? 0) }
+
+    /// What a done day says about the next one (`tomorrowNote`).
+    var tomorrowNote: TomorrowNote { home?.tomorrow ?? .fresh }
 
     // MARK: - Presentation (contract §3 — render-time role resolution)
 

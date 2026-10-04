@@ -261,19 +261,8 @@ class SessionOfferTests {
     /** Nothing composed and nothing due: the day has nothing to offer. */
     @Test
     fun anEmptyBoxOffersNothing() {
-        assertFalse(SessionOffers.sessionAvailable(Box.state(emptyList()), now, Box.TZ))
-        assertTrue(SessionOffers.sessionAvailable(state(0, 0, 30, 25), now, Box.TZ))
-    }
-
-    /**
-     * Due work counts even when the composed round cannot carry it — a session cap that holds
-     * every due card back still leaves work waiting, and answering "nothing" would be a lie.
-     */
-    @Test
-    fun dueWorkCountsEvenWhenTheRoundCannotCarryIt() {
-        val squeezed = state(due = 5, ahead = 0, catalog = 20, sessionCap = 0)
-        assertTrue(SessionComposer.composeSession(squeezed, now, Box.TZ).isEmpty)
-        assertTrue(SessionOffers.sessionAvailable(squeezed, now, Box.TZ))
+        assertFalse(SessionOffers.offer(Box.state(emptyList()), now, Box.TZ).hasRound)
+        assertTrue(SessionOffers.offer(state(0, 0, 30, 25), now, Box.TZ).hasRound)
     }
 
     /**

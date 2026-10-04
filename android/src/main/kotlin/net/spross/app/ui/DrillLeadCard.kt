@@ -18,7 +18,7 @@ import net.spross.app.AppModel
 import net.spross.app.startExtraSession
 import net.spross.app.startSession
 import net.spross.kern.box.StreakHealth
-import net.spross.kern.session.SessionOfferKind
+import net.spross.kern.session.HomeStanding
 import net.spross.kern.trainer.DayLead
 import net.spross.kern.trainer.DrillSuggestion
 
@@ -36,7 +36,7 @@ fun DrillLeadCard(
     health: StreakHealth,
 ) {
     val chrome = model.chrome
-    val roundLeft = standing.offer.kind != SessionOfferKind.Nothing
+    val roundLeft = standing.offer.hasRound
     DayCard {
         DayHeader(model, standing, streak, health)
         HorizontalDivider()

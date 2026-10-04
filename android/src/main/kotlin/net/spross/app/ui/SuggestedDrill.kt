@@ -10,6 +10,7 @@ import net.spross.app.offers
 import net.spross.app.trainerHubOffered
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.model.Language
+import net.spross.kern.session.HomeStanding
 import net.spross.kern.trainer.CountryDrill
 import net.spross.kern.trainer.DateDrill
 import net.spross.kern.trainer.Drill

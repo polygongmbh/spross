@@ -35,6 +35,10 @@ The read models a surface draws the box from (the day, one card's standing, the 
   `tomorrowDue` is `dueNow` at `endOfTomorrow`, never a second local-midnight derivation.
   The kinds and their order are the rule;
   the words, plurals and separators for them stay in each platform's string tables.
+- **`HomeStanding.of`** is everything Home reads at one instant:
+  the day's offer, its `TodayReport`, the tomorrow note and due count, and whether an asked-for round would yield anything.
+  Whether there is a round at all is `SessionOffer.hasRound` alone, which `DayLead` reads too;
+  the headline turns on the clock, so a surface reads it off the offer when it draws.
 - **`RoundSummary.of`** is everything a finished round's summary says:
   the round's `tallyParts`, `grownArea` read against the box the run opened on
   (`SessionRunState.startBox`), `growthHeadline` over it, and `restSuggested`.

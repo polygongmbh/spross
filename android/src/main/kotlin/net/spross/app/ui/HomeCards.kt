@@ -32,6 +32,7 @@ import net.spross.app.startListening
 import net.spross.app.startSession
 import net.spross.app.startShortSession
 import net.spross.kern.box.StreakHealth
+import net.spross.kern.session.HomeStanding
 
 /**
  * The one card the day stands on, whichever it is: hero, headline, what it holds, the way
@@ -108,7 +109,7 @@ fun SessionCard(model: AppModel, standing: HomeStanding, streak: Int, health: St
         // gets a plain mark instead.
         DayMark(if (streak > 0) null else "✨", streak, health, chrome)
         Text(
-            headlineText(chrome, standing.headline),
+            headlineText(chrome, offer.headline(model.now(), model.tz())),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
         )
