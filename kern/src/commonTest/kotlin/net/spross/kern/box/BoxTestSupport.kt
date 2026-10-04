@@ -94,7 +94,7 @@ internal object Box {
 
     /** Answer, returning the resulting state. */
     fun answered(state: BoxState, cardId: String, rating: Rating, nowMillis: Long): BoxState =
-        BoxEngine.answer(state, cardId, rating, nowMillis, TZ)
+        BoxEngine.answer(state, cardId, rating, nowMillis)
 
     /**
      * A box carrying [answers] answers logged on [nowMillis] — what closes a day

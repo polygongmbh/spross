@@ -7,7 +7,6 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.box.BoxEngine
-import net.spross.kern.box.DayTally
 
 /** One language's stored file: what it carries, what it refuses, and what it leaves out. */
 class StoreCodecTests {
@@ -74,14 +73,11 @@ class StoreCodecTests {
         assertEquals(1, sched.log.size)
     }
 
+    /** A key this build no longer writes is read past, so an older file still opens. */
     @Test
-    fun todaysCrossingsSurviveAndAnAbsentOneIsNone() {
-        val crossed = StoredBox.of(state.copy(settledToday = DayTally("2026-07-01", 2)))
-        assertEquals(
-            DayTally("2026-07-01", 2),
-            StoreCodec.decode(StoreCodec.encode(crossed)).settledToday,
-        )
-        assertEquals(null, StoreCodec.decode(StoreCodec.encode(box)).settledToday)
+    fun aKeyTheBuildNoLongerWritesIsIgnored() {
+        val sched = StoreCodec.decode(doc(extra = ""","today":{"2026-07-01":2}""")).scheduling
+        assertEquals(setOf("w1"), sched.keys)
     }
 
     @Test

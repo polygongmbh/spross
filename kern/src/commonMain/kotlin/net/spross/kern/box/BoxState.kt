@@ -26,12 +26,6 @@ data class BoxState(
     /** User priority queue of card ids, front first. */
     val enqueued: List<String> = emptyList(),
     /**
-     * Cards that crossed into SETTLED today — the one day count the logs cannot give
-     * back, since [Statistics.hasSettled] reads a stability no log entry records.
-     * Everything else a day is asked about is counted off the logs ([answerDays]).
-     */
-    val settledToday: DayTally? = null,
-    /**
      * Words the learner wrote themselves, in the order they wrote them. Unlike
      * [cards] these ARE persisted — they are content nothing else holds, so losing
      * them would lose the word, not merely a derivation of it.
@@ -50,11 +44,4 @@ data class BoxState(
      */
     val lastExportAt: Instant? = null,
 )
-
-/**
- * A count booked under the local day it happened on. A new day replaces it rather than
- * adding to it: only today is ever asked for, so yesterday's is not worth keeping.
- */
-data class DayTally(val day: String, val count: Int)
-
 

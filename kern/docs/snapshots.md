@@ -19,8 +19,7 @@ Engine contract: `../README.md`.
   holds no configuration at all.
   A word suspended before it was ever answered is an id in `suspended` and has no card entry;
   `enqueued`, `ownWords` (the document's only content, `../README.md` §6) and `reportedIssues`
-  carry the rest, and `today` holds the day's crossings — the one count no log records, local
-  to the device, which an export leaves behind.
+  carry the rest.
   Timestamps are epoch seconds, and the engine floors every stamp it mints (`box/Time.kt`,
   `stampOf`), so a live box equals its own reloaded self.
   `BoxState.rekeyingPrefixedVerbs()` still runs on load, a temporary migration (delete at 7.0+)
@@ -38,7 +37,7 @@ Engine contract: `../README.md`.
   an interrupted migration simply runs again. Both files go once no device can hold a v1 box.
 - **The backup** (`store/BoxBackup.kt`) — the settings' export and import file — is every
   language in ONE envelope under a single `schemaVersion`
-  — `{"schemaVersion": 2, "boxes": {<target>: …}}`, sorted keys — minus `today`.
+  — `{"schemaVersion": 2, "boxes": {<target>: …}}`, sorted keys.
   Only the languages with something in them ride along (`StoredBox.hasContent`), and the
   export offers the one language on screen instead (`BoxBackup.encode`'s `only`): a box the
   learner merely opened would land as an emptiness over a real box on the other phone.

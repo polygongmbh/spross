@@ -37,7 +37,7 @@ class FeedbackTests {
 
     @Test
     fun reportingLeavesSchedulingAlone() {
-        val answered = BoxEngine.answer(box(), "w01", Rating.Good, Box.day1, "UTC")
+        val answered = BoxEngine.answer(box(), "w01", Rating.Good, Box.day1)
         val reported = BoxEngine.reportIssue(answered, "w01", null, null, Box.day1)
         assertEquals(answered.scheduling, reported.scheduling)
         assertFalse(reported.scheduling.getValue("w01").suspended)
@@ -45,7 +45,7 @@ class FeedbackTests {
 
     @Test
     fun suspendingDoesNotReportAndReportingDoesNotSuspend() {
-        val answered = BoxEngine.answer(box(), "w01", Rating.Good, Box.day1, "UTC")
+        val answered = BoxEngine.answer(box(), "w01", Rating.Good, Box.day1)
         val suspended = BoxEngine.setSuspended(answered, "w01", true, Box.day1)
         assertTrue(suspended.reportedIssues.isEmpty())
 
@@ -93,7 +93,7 @@ class FeedbackTests {
     @Test
     fun resetKeepsWhatTheLearnerWroteAndDropsWhatTheBoxComputed() {
         var state = BoxEngine.reportIssue(box(), "w01", "wrong", null, Box.day1)
-        state = BoxEngine.answer(state, "w01", Rating.Good, Box.day1, "UTC")
+        state = BoxEngine.answer(state, "w01", Rating.Good, Box.day1)
         state = BoxEngine.markExported(state, Box.day1, FeedbackScope.Everything)
         val fresh = BoxEngine.reset(state)
         assertEquals(state.reportedIssues, fresh.reportedIssues)
@@ -321,7 +321,7 @@ class FeedbackTests {
     @Test
     fun clearingKeepsAStudiedWordWithItsScheduleAndItsQueueSlot() {
         var state = outbox()
-        state = BoxEngine.answer(state, "own:mwavuli", Rating.Good, Box.day1, "UTC")
+        state = BoxEngine.answer(state, "own:mwavuli", Rating.Good, Box.day1)
         val cleared = BoxEngine.clearFeedback(state)
 
         assertEquals(state.scheduling, cleared.scheduling)

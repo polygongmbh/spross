@@ -219,7 +219,7 @@ class BoxAnswerTests {
     @Test
     fun unknownIdLeavesTheStateUntouched() {
         val state = Box.state(listOf(Box.word(1)))
-        assertEquals(state, BoxEngine.answer(state, "nope", Rating.Good, now, Box.TZ))
+        assertEquals(state, BoxEngine.answer(state, "nope", Rating.Good, now))
     }
 
     @Test

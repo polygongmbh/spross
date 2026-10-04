@@ -3,11 +3,11 @@ The read models a surface draws the box from (the day, one card's standing, the 
 
 ## The day
 
-- **`TodayReport`** (`BoxEngine.today`) is the day's own report: reviews, misses and
-  introductions read live from the review logs, so the numbers hold mid-session — a card's
-  FIRST log entry IS the meeting. Settled crossings come from `BoxState.settledToday`,
-  the counter the engine books at answer time, since a log records no stability to read a
-  crossing off. It holds ONE day and a fresh day replaces it, so only today can be asked.
+- **`TodayReport`** (`BoxEngine.today`) is the day's own report, every count read live
+  from the review logs, so the numbers hold mid-session — a card's FIRST log entry IS the meeting.
+  A settled crossing reads a stability no log entry records,
+  so each card answered today has its log replayed up to each of today's answers
+  through the same step that recorded them (`answered`, `box/Answer.kt`).
   The walk reads raw schedules rather than the join: switching the known language must not
   un-happen a day's work.
   `recall` is null below `MIN_ANSWERS_FOR_RECALL` — a handful of answers cannot carry a

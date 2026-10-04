@@ -3,7 +3,6 @@ package net.spross.kern.store
 import kotlin.time.Instant
 import kotlinx.serialization.Serializable
 import net.spross.kern.box.BoxState
-import net.spross.kern.box.DayTally
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
 import net.spross.kern.box.ReportedIssue

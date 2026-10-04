@@ -69,7 +69,7 @@ class DayKeyTests {
     fun theDayAnAnswerCountsOnIsTheCallersOwn() {
         var state = Box.state(listOf(Box.word(1)))
         val lateUtc = Box.millis(2026, 7, 1, 23, 30) // already July 2 in Kiritimati
-        state = BoxEngine.answer(state, "w01", Rating.Good, lateUtc, "Pacific/Kiritimati")
+        state = BoxEngine.answer(state, "w01", Rating.Good, lateUtc)
 
         assertEquals(mapOf("2026-07-02" to 1), answerDays(state.scheduling, "Pacific/Kiritimati"))
         val today = BoxEngine.today(state, lateUtc, "Pacific/Kiritimati")

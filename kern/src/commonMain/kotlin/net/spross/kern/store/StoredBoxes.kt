@@ -2,7 +2,6 @@ package net.spross.kern.store
 
 import kotlin.time.Instant
 import net.spross.kern.box.BoxState
-import net.spross.kern.box.DayTally
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
 import net.spross.kern.box.ReportedIssue
@@ -35,8 +34,6 @@ data class StoredBox(
     val ownWords: List<OwnWord> = emptyList(),
     val reportedIssues: Map<String, ReportedIssue> = emptyMap(),
     val lastExportAt: Instant? = null,
-    /** Local to this device — an export leaves it behind ([BoxState.settledToday]). */
-    val settledToday: DayTally? = null,
 ) {
     /**
      * Something the learner did or wrote. A language they only ever opened has a file like
@@ -65,7 +62,6 @@ data class StoredBox(
         ownWords = ownWords,
         reportedIssues = reportedIssues,
         lastExportAt = lastExportAt,
-        settledToday = settledToday,
     )
 
     companion object {
@@ -76,7 +72,6 @@ data class StoredBox(
             ownWords = state.ownWords,
             reportedIssues = state.reportedIssues,
             lastExportAt = state.lastExportAt,
-            settledToday = state.settledToday,
         )
     }
 }

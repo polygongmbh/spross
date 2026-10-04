@@ -3,13 +3,13 @@ package net.spross.kern.box
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.plus
+import net.spross.kern.fsrs.FsrsScheduler
+import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.Rating
 
 /**
  * What the learner actually did today, in cards — the day's own report.
- * Reviews and misses are read live from the review logs, so the numbers hold
- * mid-session; introductions and settled crossings come from the day counters
- * the engine books at answer time.
+ * Every count is read live from the review logs, so the numbers hold mid-session.
  */
 data class TodayReport(
     /** Answer events today (retries included — every answer is a review). */
@@ -143,26 +143,35 @@ internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): T
     val zone = zoneOf(tzId)
     val start = localDate(nowEpochMillis, tzId).atStartOfDayIn(zone)
     val end = localDate(nowEpochMillis, tzId).plus(1, DateTimeUnit.DAY).atStartOfDayIn(zone)
-    val day = dayKey(nowEpochMillis, tzId)
+    val scheduler = FsrsScheduler(state.config.fsrsParameters())
 
     var reviews = 0
     var missed = 0
     var introduced = 0
+    var settled = 0
     // why: raw schedules rather than the join — an answer really happened, and switching
     // the known language must not un-happen a day's work.
     for (sched in state.scheduling.values) {
+        if (sched.log.none { it.date >= start && it.date < end }) continue
+        // A crossing reads a stability no log entry records, so the card's log is replayed
+        // up to each of today's answers, through the same step that recorded it.
+        var before = CardScheduling(cardId = sched.cardId)
         for ((index, entry) in sched.log.withIndex()) {
-            if (entry.date < start || entry.date >= end) continue
-            reviews += 1
-            if (entry.rating == Rating.Again) missed += 1
-            // Introduction = the card's first answer, so the first log entry IS the meeting.
-            if (index == 0) introduced += 1
+            val after = before.answered(entry.rating, entry.date, scheduler)
+            if (entry.date >= start && entry.date < end) {
+                reviews += 1
+                if (entry.rating == Rating.Again) missed += 1
+                // Introduction = the card's first answer, so the first log entry IS the meeting.
+                if (index == 0) introduced += 1
+                if (!Statistics.hasSettled(state, before) && Statistics.hasSettled(state, after)) settled += 1
+            }
+            before = after
         }
     }
     return TodayReport(
         reviews = reviews,
         introduced = introduced,
-        settled = state.settledToday?.takeIf { it.day == day }?.count ?: 0,
+        settled = settled,
         missed = missed,
         expectedRecall = state.config.desiredRetention,
     )

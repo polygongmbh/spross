@@ -356,8 +356,7 @@ object BoxEngine {
         cardId: String,
         rating: Rating,
         nowEpochMillis: Long,
-        tzId: String,
-    ): BoxState = Answering.answer(state, cardId, rating, nowEpochMillis, tzId)
+    ): BoxState = Answering.answer(state, cardId, rating, nowEpochMillis)
 
     /** Joined, active card ids due at `now`, oldest day first — the drain-loop feed. */
     fun dueNow(state: BoxState, nowEpochMillis: Long): List<String> =

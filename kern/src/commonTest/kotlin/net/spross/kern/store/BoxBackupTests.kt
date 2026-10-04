@@ -3,11 +3,9 @@ package net.spross.kern.store
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.box.BoxState
-import net.spross.kern.box.DayTally
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
 
@@ -59,16 +57,6 @@ class BoxBackupTests {
 
         assertEquals(1, Regex("\"schemaVersion\"").findAll(json).count(), json)
         assertTrue(json.startsWith("""{"boxes":{"""), json)
-    }
-
-    /** The day's crossings belong to one device; the box an export lands in has its own day. */
-    @Test
-    fun anExportLeavesTodaysCrossingsBehind() {
-        val crossed = StoredBoxes.EMPTY.with(state.copy(settledToday = DayTally("2026-07-01", 2)))
-        val json = BoxBackup.encode(crossed)
-
-        assertFalse("today" in json, json)
-        assertEquals(null, BoxBackup.decode(json).boxes.getValue("uk").settledToday)
     }
 
     @Test

@@ -199,7 +199,7 @@ object SessionRun {
     private fun answer(state: SessionRunState, rating: Rating, nowEpochMillis: Long, tzId: String): SessionReduction {
         val cardId = state.currentCardId ?: return unchanged(state)
         val wasSettled = BoxEngine.hasSettled(state.box, cardId)
-        val box = BoxEngine.answer(state.box, cardId, rating, nowEpochMillis, tzId)
+        val box = BoxEngine.answer(state.box, cardId, rating, nowEpochMillis)
         val next = tallied(
             state.copy(box = box, ratings = state.ratings + rating,
                        answeredIds = state.answeredIds + cardId, answered = state.answered + 1),

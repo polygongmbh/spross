@@ -53,7 +53,7 @@ class SourceSwitchTests {
     @Test
     fun answerOnNonJoiningIdLeavesStateUntouched() {
         val en = BoxEngine.rejoin(studied(), enJoin, enStamp)
-        assertEquals(en, BoxEngine.answer(en, "w02", Rating.Good, now, Box.TZ))
+        assertEquals(en, BoxEngine.answer(en, "w02", Rating.Good, now))
     }
 
     @Test

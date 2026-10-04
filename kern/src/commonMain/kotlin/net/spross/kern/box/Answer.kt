@@ -32,7 +32,6 @@ internal object Answering {
         cardId: String,
         rating: Rating,
         nowEpochMillis: Long,
-        tzId: String,
     ): BoxState {
         val card = state.cards[cardId] ?: return state
         val now = stampOf(nowEpochMillis)
@@ -43,23 +42,8 @@ internal object Answering {
         val sched = base.answered(rating, now, scheduler)
         return state.copy(
             scheduling = state.scheduling + (card.id to sched),
-            // Crossing the fully-grown bar on the very answer that introduces a card is
-            // rare — no graduating rating reaches it alone — but the check stays generic
-            // rather than assuming introduction can never be the crossing day.
-            settledToday = state.settledToday.booking(
-                crossed = !Statistics.hasSettled(state, base) &&
-                    Statistics.hasSettled(state, sched),
-                day = dayKey(nowEpochMillis, tzId),
-            ),
             enqueued = if (introducing) state.enqueued.filter { it != card.id } else state.enqueued,
         )
-    }
-
-    /** One more crossing on [day]; a tally left from an older day starts over rather than adding on. */
-    private fun DayTally?.booking(crossed: Boolean, day: String): DayTally? = when {
-        !crossed -> this
-        this?.day == day -> DayTally(day, count + 1)
-        else -> DayTally(day, 1)
     }
 }
 

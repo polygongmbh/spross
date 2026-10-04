@@ -128,8 +128,7 @@ extension AppModel {
         for event in fresh {
             state = BoxEngine.shared.answer(state: state, cardId: event.cardId,
                                             rating: event.rating.kernRating,
-                                            nowEpochMillis: event.date.epochMillis,
-                                            tzId: currentTzId())
+                                            nowEpochMillis: event.date.epochMillis)
             applied.append(event.id.uuidString)
             appliedSet.insert(event.id.uuidString)
         }

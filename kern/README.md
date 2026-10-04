@@ -308,7 +308,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   the unlock check and `answer()` history reads operate on raw schedules by id.
   Non-joining schedules and enqueued entries are kept **inert**
   (never pruned; both revive on switch-back).
-- `answer(cardId, rating, nowMillis, tzId)` on an unknown id leaves the state untouched.
+- `answer(cardId, rating, nowMillis)` on an unknown id leaves the state untouched.
   `SessionPlan` carries a `joinStamp` (source, target, catalog fingerprint);
   a stale run recomposes as the round that opened it (`SessionOpening`).
 - **"Which words does the learner already hold" is an engine question**,

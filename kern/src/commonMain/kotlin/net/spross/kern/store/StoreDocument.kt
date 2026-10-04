@@ -7,7 +7,6 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.intOrNull
-import net.spross.kern.box.DayTally
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
 import net.spross.kern.box.ReportedIssue
@@ -44,8 +43,6 @@ internal data class StoredBoxDto(
     val ownWords: List<StoredOwnWordDto> = emptyList(),
     val reportedIssues: List<StoredReportDto> = emptyList(),
     val lastExportAt: Long? = null,
-    /** The crossings booked on ONE day; local to the device, so an export omits it. */
-    val today: Map<String, Int> = emptyMap(),
 )
 
 /** Every language in one document — what an export is, and nothing else. */
@@ -110,7 +107,6 @@ private fun storedBoxDto(box: StoredBox): StoredBoxDto = StoredBoxDto(
         StoredReportDto(it.cardId, it.comment, it.learnerInput, it.reportedAt.epochSeconds)
     },
     lastExportAt = box.lastExportAt?.epochSeconds,
-    today = box.settledToday?.let { mapOf(it.day to it.count) } ?: emptyMap(),
 )
 
 private fun cardEntry(sched: CardScheduling): JsonArray = JsonArray(
@@ -206,7 +202,6 @@ private fun StoredBoxDto.toStored(target: Language): StoredBox {
         ownWords = ownWords.map { it.toDomain(target) },
         reportedIssues = reportedIssues.associate { it.cardId to it.toDomain(target) },
         lastExportAt = lastExportAt?.let { Instant.fromEpochSeconds(it) },
-        settledToday = today.entries.firstOrNull()?.let { DayTally(it.key, it.value) },
     )
 }
 

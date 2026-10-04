@@ -6,6 +6,8 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Rating
+import net.spross.kern.store.StoreCodec
+import net.spross.kern.store.StoredBox
 
 /**
  * The day's own report: what was answered, met, settled — whether it is going badly,
@@ -104,6 +106,19 @@ class TodayReportTests {
         val evenLater = Box.plusDays(later, 30.0)
         state = Box.answered(state, "w01", Rating.Good, evenLater)
         assertEquals(0, BoxEngine.today(state, evenLater, Box.TZ).settled)
+    }
+
+    /** The crossing is read off the log, so a box reloaded from its file still counts it. */
+    @Test
+    fun todaysCrossingComesBackFromTheStoredLog() {
+        var state = boxOf(1)
+        state = Box.answered(state, "w01", Rating.Good, now)
+        val later = Box.plusDays(now, 30.0)
+        state = Box.answered(state, "w01", Rating.Good, later)
+
+        val reloaded = StoreCodec.decode(StoreCodec.encode(StoredBox.of(state)))
+            .join(state.cards.values.toList(), state.joinStamp)
+        assertEquals(1, BoxEngine.today(reloaded, later, Box.TZ).settled)
     }
 
     /** An older word crossing today is the settled tile's news, not today's arrival. */
