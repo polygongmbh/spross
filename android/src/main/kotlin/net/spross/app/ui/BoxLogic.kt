@@ -54,8 +54,8 @@ class AreaNaming(
  * an empty one is no picture rather than an empty string.
  */
 data class OwnWordDraft(
-    val known: String = "",
-    val learning: String = "",
+    val sourceText: String = "",
+    val targetText: String = "",
     val emoji: String = "",
     /**
      * What the learner wanted to say alongside the word — or, with both sides blank,
@@ -71,14 +71,14 @@ data class OwnWordDraft(
     val editing: OwnWord? = null,
 ) {
     /** Pair, suggestion or remark ([OwnWords.draftKind]). */
-    val draftKind: DraftKind get() = OwnWords.draftKind(sourceText = known, targetText = learning, comment = comment)
+    val draftKind: DraftKind get() = OwnWords.draftKind(sourceText = sourceText, targetText = targetText, comment = comment)
 
     /** Whether there is an entry to take in yet ([OwnWords.isWritten]). */
     val hasAnything: Boolean
-        get() = OwnWords.isWritten(sourceText = known, targetText = learning, comment = comment)
+        get() = OwnWords.isWritten(sourceText = sourceText, targetText = targetText, comment = comment)
 
     /** The two sides the other way round, for a pair filled in back to front. */
-    fun swapped(): OwnWordDraft = copy(known = learning, learning = known)
+    fun swapped(): OwnWordDraft = copy(sourceText = targetText, targetText = sourceText)
 
     /**
      * The picture as the field will hold it: at most [OwnWords.MAX_EMOJI] grapheme clusters,
@@ -92,8 +92,8 @@ data class OwnWordDraft(
         OwnWords.fromDraft(
             source = source,
             target = target,
-            sourceText = known,
-            targetText = learning,
+            sourceText = sourceText,
+            targetText = targetText,
             emoji = emoji,
             comment = comment,
             editing = editing,
@@ -103,8 +103,8 @@ data class OwnWordDraft(
     companion object {
         /** A word already written, opened back up in the form under the profile's two languages. */
         fun of(word: OwnWord, source: Language, target: Language): OwnWordDraft = OwnWordDraft(
-            known = word.texts[source].orEmpty(),
-            learning = word.texts[target].orEmpty(),
+            sourceText = word.texts[source].orEmpty(),
+            targetText = word.texts[target].orEmpty(),
             emoji = word.emoji.orEmpty(),
             comment = word.comment.orEmpty(),
             editing = word,

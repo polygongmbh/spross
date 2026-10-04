@@ -64,13 +64,13 @@ class CatalogMatchesTests {
             listOf(card("towel", "Handtuch", "kitambaa")),
             own("taulo", mapOf("de" to "Handtuch", "sw" to "taulo")),
         )
-        assertEquals(MatchSide.KnownOnly, matchOf(state)?.side)
+        assertEquals(MatchSide.SourceOnly, matchOf(state)?.side)
 
         val other = box(
             listOf(card("towel", "Handtuch", "kitambaa")),
             own("kitambaa", mapOf("de" to "Wischlappen", "sw" to "kitambaa")),
         )
-        assertEquals(MatchSide.LearningOnly, matchOf(other)?.side)
+        assertEquals(MatchSide.TargetOnly, matchOf(other)?.side)
     }
 
     /** A slip on the other side CONFIRMS the exact one rather than splitting off from it. */
@@ -112,7 +112,7 @@ class CatalogMatchesTests {
             listOf(card("sun", "Sonne", "jua")),
             own("sonne", mapOf("de" to "Sonne")),
         )
-        assertEquals(MatchSide.KnownOnly, matchOf(state)?.side)
+        assertEquals(MatchSide.SourceOnly, matchOf(state)?.side)
     }
 
     @Test
@@ -128,7 +128,7 @@ class CatalogMatchesTests {
             listOf(card("umbrella", "Regenschirm", "mwavuli", teaches = listOf("mwamvuli"))),
             own("mwamvuli", mapOf("de" to "Sonnenschutz", "sw" to "mwamvuli")),
         )
-        assertEquals(MatchSide.LearningOnly, matchOf(state)?.side)
+        assertEquals(MatchSide.TargetOnly, matchOf(state)?.side)
     }
 
     /** A word the learner wrote cannot catch up with another word the learner wrote. */
@@ -151,7 +151,7 @@ class CatalogMatchesTests {
             own("mwavuli", mapOf("de" to "Regenschirm", "sw" to "mwavuli")),
         )
         assertEquals(
-            listOf(MatchSide.Both, MatchSide.KnownOnly),
+            listOf(MatchSide.Both, MatchSide.SourceOnly),
             CatalogMatches.of(state).map { it.side },
         )
     }

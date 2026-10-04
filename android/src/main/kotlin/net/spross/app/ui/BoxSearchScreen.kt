@@ -149,7 +149,7 @@ fun BoxSearchScreen(
                             // why: the KNOWN side is prefilled — someone typing into a
                             // search box is far more often naming what they want to be
                             // able to SAY than a form they already met in the wild.
-                            onClick = { writing = OwnWordDraft(known = query) },
+                            onClick = { writing = OwnWordDraft(sourceText = query) },
                             modifier = Modifier.pressSpring(),
                             shape = MaterialTheme.shapes.small,
                         ) { Text(chrome.boxSearchWriteOwn.format(query)) }

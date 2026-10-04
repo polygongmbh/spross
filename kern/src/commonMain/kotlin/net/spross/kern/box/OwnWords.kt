@@ -160,8 +160,8 @@ object OwnWords {
      */
     fun cards(words: List<OwnWord>, source: Language, target: Language): List<Card> =
         words.mapIndexedNotNull { position, word ->
-            val known = word.texts[source] ?: return@mapIndexedNotNull null
-            val learning = word.texts[target] ?: return@mapIndexedNotNull null
+            val sourceText = word.texts[source] ?: return@mapIndexedNotNull null
+            val targetText = word.texts[target] ?: return@mapIndexedNotNull null
             Card(
                 id = word.id,
                 kind = word.kind,
@@ -170,8 +170,8 @@ object OwnWords {
                 seedIndex = SEED_BASE + position,
                 components = emptyList(),
                 feminineOf = null,
-                source = realization(source, known),
-                target = realization(target, learning),
+                source = realization(source, sourceText),
+                target = realization(target, targetText),
                 promptFeminineMarker = false,
             )
         }

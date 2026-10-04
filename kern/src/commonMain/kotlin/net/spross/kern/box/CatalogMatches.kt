@@ -9,11 +9,11 @@ enum class MatchSide {
     /** Both halves. The kind that arrives ticked: there is nothing left to judge. */
     Both,
 
-    /** The known half only — the catalog says the learning side differently. */
-    KnownOnly,
+    /** The source half only — the catalog says the target side differently. */
+    SourceOnly,
 
-    /** The learning half only — the catalog says the known side differently. */
-    LearningOnly,
+    /** The target half only — the catalog says the source side differently. */
+    TargetOnly,
 }
 
 /** One word the learner wrote, beside the catalog word that has since caught up with it. */
@@ -77,35 +77,35 @@ private class CatalogForms(state: BoxState) {
         state.cards.values.filterNot { OwnWords.owns(it.id) }
 
     /** Every written form of a side, folded, against the cards that write it. */
-    private val known = LinkedHashMap<String, MutableList<Card>>()
-    private val learning = LinkedHashMap<String, MutableList<Card>>()
+    private val sourceForms = LinkedHashMap<String, MutableList<Card>>()
+    private val targetForms = LinkedHashMap<String, MutableList<Card>>()
 
     init {
         for (card in cards) {
-            put(known, card.source.text, card)
-            card.source.teaches.forEach { put(known, it, card) }
-            card.source.accepts.forEach { put(known, it, card) }
-            put(learning, card.target.text, card)
-            put(learning, articledForm(card.target.grammar["gender"], card.target.text), card)
-            card.target.teaches.forEach { put(learning, it, card) }
-            card.target.accepts.forEach { put(learning, it, card) }
+            put(sourceForms, card.source.text, card)
+            card.source.teaches.forEach { put(sourceForms, it, card) }
+            card.source.accepts.forEach { put(sourceForms, it, card) }
+            put(targetForms, card.target.text, card)
+            put(targetForms, articledForm(card.target.grammar["gender"], card.target.text), card)
+            card.target.teaches.forEach { put(targetForms, it, card) }
+            card.target.accepts.forEach { put(targetForms, it, card) }
         }
     }
 
     /** The best card for a word written [source] / [target], or null where none agrees. */
     fun matchOf(source: String?, target: String?): Pair<String, MatchSide>? {
-        val onKnown = source?.let { known[caseFolded(it)] }.orEmpty()
-        val onLearning = target?.let { learning[caseFolded(it)] }.orEmpty()
+        val onSource = source?.let { sourceForms[caseFolded(it)] }.orEmpty()
+        val onTarget = target?.let { targetForms[caseFolded(it)] }.orEmpty()
         // Both sides exact, or one exact and the other close enough to read as a correction.
-        onKnown.firstOrNull { agrees(learning, it.target.text, target) }
+        onSource.firstOrNull { agrees(targetForms, it.target.text, target) }
             ?.let { return it.id to MatchSide.Both }
-        onLearning.firstOrNull { agrees(known, it.source.text, source) }
+        onTarget.firstOrNull { agrees(sourceForms, it.source.text, source) }
             ?.let { return it.id to MatchSide.Both }
         // Neither side exact: both have to lean, which is what keeps a typed-over word
         // findable without every near-spelling in the catalog answering for it.
         leaningBoth(source, target)?.let { return it to MatchSide.Both }
-        onKnown.firstOrNull()?.let { return it.id to MatchSide.KnownOnly }
-        onLearning.firstOrNull()?.let { return it.id to MatchSide.LearningOnly }
+        onSource.firstOrNull()?.let { return it.id to MatchSide.SourceOnly }
+        onTarget.firstOrNull()?.let { return it.id to MatchSide.TargetOnly }
         return null
     }
 
@@ -131,11 +131,11 @@ private class CatalogForms(state: BoxState) {
     }
 
     private fun leaningBoth(source: String?, target: String?): String? {
-        val knownForm = caseFolded(source ?: return null)
-        val learningForm = caseFolded(target ?: return null)
+        val sourceForm = caseFolded(source ?: return null)
+        val targetForm = caseFolded(target ?: return null)
         return cards.firstOrNull {
-            leans(knownForm, caseFolded(it.source.text)) &&
-                leans(learningForm, caseFolded(it.target.text))
+            leans(sourceForm, caseFolded(it.source.text)) &&
+                leans(targetForm, caseFolded(it.target.text))
         }?.id
     }
 

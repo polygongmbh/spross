@@ -69,9 +69,9 @@ fun OwnWordForm(
     // caller's and arrives again with [initial].
     val saver = remember(initial) {
         listSaver<OwnWordDraft, String>(
-            save = { listOf(it.known, it.learning, it.emoji, it.comment) },
+            save = { listOf(it.sourceText, it.targetText, it.emoji, it.comment) },
             restore = {
-                initial.copy(known = it[0], learning = it[1], emoji = it[2], comment = it[3])
+                initial.copy(sourceText = it[0], targetText = it[1], emoji = it[2], comment = it[3])
             },
         )
     }
@@ -99,8 +99,8 @@ fun OwnWordForm(
         }
         WordField(
             label = label(stamp.source),
-            value = draft.known,
-            onValueChange = { draft = draft.copy(known = it) },
+            value = draft.sourceText,
+            onValueChange = { draft = draft.copy(sourceText = it) },
             imeAction = ImeAction.Next,
         )
         // Between the two fields, where what it does is visible: for the learner who filled
@@ -112,8 +112,8 @@ fun OwnWordForm(
         }
         WordField(
             label = label(stamp.target),
-            value = draft.learning,
-            onValueChange = { draft = draft.copy(learning = it) },
+            value = draft.targetText,
+            onValueChange = { draft = draft.copy(targetText = it) },
             imeAction = ImeAction.Next,
         )
         PictureField(

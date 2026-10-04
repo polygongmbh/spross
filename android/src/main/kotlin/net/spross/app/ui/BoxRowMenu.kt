@@ -108,8 +108,8 @@ internal fun BoxRowMenu(
                     close()
                     write(
                         OwnWordDraft(
-                            known = card.source.text,
-                            learning = card.target.text,
+                            sourceText = card.source.text,
+                            targetText = card.target.text,
                             emoji = card.emoji.orEmpty(),
                         ),
                     )

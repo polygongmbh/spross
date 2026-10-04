@@ -64,18 +64,18 @@ class BoxLogicTest {
         )
         val draft = OwnWordDraft.of(stored, source = "de", target = "sw")
 
-        assertEquals("Haus", draft.known)
-        assertEquals("nyumba", draft.learning)
+        assertEquals("Haus", draft.sourceText)
+        assertEquals("nyumba", draft.targetText)
         assertEquals("🏠", draft.emoji)
         assertEquals(stored, draft.editing)
     }
 
     @Test
     fun swappingExchangesTheTwoSidesAndLeavesTheRestAlone() {
-        val draft = OwnWordDraft(known = "nyumba", learning = "Haus", emoji = "🏠").swapped()
+        val draft = OwnWordDraft(sourceText = "nyumba", targetText = "Haus", emoji = "🏠").swapped()
 
-        assertEquals("Haus", draft.known)
-        assertEquals("nyumba", draft.learning)
+        assertEquals("Haus", draft.sourceText)
+        assertEquals("nyumba", draft.targetText)
         assertEquals("🏠", draft.emoji)
     }
 

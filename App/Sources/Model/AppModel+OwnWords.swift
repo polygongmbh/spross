@@ -13,8 +13,8 @@ import SprossKern
 /// what was left standing.
 struct OwnWordDraft {
     let opening: String
-    var known: String
-    var learning: String
+    var sourceText: String
+    var targetText: String
     var emoji: String
     var comment: String
 }
@@ -63,9 +63,9 @@ extension AppModel {
     /// entry that was never meant to become a card. Returns its card id, or nil when
     /// the learner wrote nothing anywhere (`OwnWords.fromDraft`).
     @discardableResult
-    func addOwnWord(known: String, learning: String, emoji: String,
+    func addOwnWord(sourceText: String, targetText: String, emoji: String,
                     comment: String = "") -> String? {
-        guard let word = draft(known: known, learning: learning, emoji: emoji,
+        guard let word = draft(sourceText: sourceText, targetText: targetText, emoji: emoji,
                                comment: comment, editing: nil)
         else { return nil }
         mutate {
@@ -78,9 +78,9 @@ extension AppModel {
     /// Rewrite one the learner already wrote, keeping its id — and with the id its
     /// schedule, its queue slot and anything filed against it (`BoxEngine.updateOwnWord`).
     /// Every field blank is refused rather than stored empty; deleting is `removeOwnWord`.
-    func updateOwnWord(_ word: OwnWord, known: String, learning: String, emoji: String,
+    func updateOwnWord(_ word: OwnWord, sourceText: String, targetText: String, emoji: String,
                        comment: String = "") {
-        guard let rewritten = draft(known: known, learning: learning, emoji: emoji,
+        guard let rewritten = draft(sourceText: sourceText, targetText: targetText, emoji: emoji,
                                     comment: comment, editing: word)
         else { return }
         mutate { $0 = BoxEngine.shared.updateOwnWord(state: $0, word: rewritten) }
@@ -111,12 +111,12 @@ extension AppModel {
     }
 
     /// The form's fields as kern takes them, under the profile's two languages.
-    private func draft(known: String, learning: String, emoji: String, comment: String,
+    private func draft(sourceText: String, targetText: String, emoji: String, comment: String,
                        editing: OwnWord?) -> OwnWord? {
         guard let box else { return nil }
         return OwnWords.shared.fromDraft(source: box.joinStamp.source,
                                          target: box.joinStamp.target,
-                                         sourceText: known, targetText: learning,
+                                         sourceText: sourceText, targetText: targetText,
                                          emoji: emoji, comment: comment,
                                          editing: editing,
                                          taken: Set(box.ownWords.map(\.id)))
@@ -165,8 +165,8 @@ extension AppModel {
     func writtenText(_ match: CatalogMatch) -> String {
         let word = match.word
         guard let box else { return "" }
-        let learning = word.texts[box.joinStamp.target]
-        let known = word.texts[box.joinStamp.source]
-        return [learning, known].compactMap { $0 }.joined(separator: " → ")
+        let targetText = word.texts[box.joinStamp.target]
+        let sourceText = word.texts[box.joinStamp.source]
+        return [targetText, sourceText].compactMap { $0 }.joined(separator: " → ")
     }
 }

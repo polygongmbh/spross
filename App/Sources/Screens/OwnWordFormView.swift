@@ -4,7 +4,7 @@ import SprossKern
 /// Writing down a word the catalog has none of, or rewriting one already written.
 ///
 /// Both sides are asked for, because a word is only studiable as a pair. Where the
-/// form was reached from a search that found nothing, the known side arrives
+/// form was reached from a search that found nothing, the source side arrives
 /// prefilled from the query: someone typing into a search box is far more often
 /// naming what they want to be able to SAY than a form they already met in the wild.
 ///
@@ -39,7 +39,7 @@ struct OwnWordFormView: View {
 
     @FocusState private var focus: Field?
 
-    private enum Field { case known, learning, emoji, comment }
+    private enum Field { case sourceText, targetText, emoji, comment }
 
     /// What is typed, and what it is typed over — the model's (`AppModel.ownWordDraft`),
     /// so backgrounding the app cannot take it. A draft left over from another opening
@@ -49,8 +49,8 @@ struct OwnWordFormView: View {
         return seeded
     }
 
-    private var known: String { draft.known }
-    private var learning: String { draft.learning }
+    private var sourceText: String { draft.sourceText }
+    private var targetText: String { draft.targetText }
     private var emoji: String { draft.emoji }
     private var comment: String { draft.comment }
 
@@ -67,16 +67,16 @@ struct OwnWordFormView: View {
     private var seeded: OwnWordDraft {
         switch seed {
         case .query(let query):
-            return OwnWordDraft(opening: opening, known: query, learning: "",
+            return OwnWordDraft(opening: opening, sourceText: query, targetText: "",
                                 emoji: "", comment: "")
         case .card(let card):
-            return OwnWordDraft(opening: opening, known: card.source.text,
-                                learning: card.target.text, emoji: card.emoji ?? "",
+            return OwnWordDraft(opening: opening, sourceText: card.source.text,
+                                targetText: card.target.text, emoji: card.emoji ?? "",
                                 comment: "")
         case .editing(let word):
             return OwnWordDraft(opening: opening,
-                                known: word.texts[model.sourceLanguage] ?? "",
-                                learning: word.texts[model.targetLanguage ?? ""] ?? "",
+                                sourceText: word.texts[model.sourceLanguage] ?? "",
+                                targetText: word.texts[model.targetLanguage ?? ""] ?? "",
                                 emoji: word.emoji ?? "", comment: word.comment ?? "")
         }
     }
@@ -96,10 +96,10 @@ struct OwnWordFormView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Theme.spacing.xl) {
-                    field(label(model.sourceLanguage), text: write(\.known), field: .known)
+                    field(label(model.sourceLanguage), text: write(\.sourceText), field: .sourceText)
                     swapButton
-                    field(label(model.targetLanguage ?? ""), text: write(\.learning),
-                          field: .learning)
+                    field(label(model.targetLanguage ?? ""), text: write(\.targetText),
+                          field: .targetText)
                     picture
                     field("box.own.word.comment", text: write(\.comment), field: .comment)
                     Text(explainer)
@@ -131,12 +131,12 @@ struct OwnWordFormView: View {
 
     /// Pair, suggestion or remark (`OwnWords.draftKind`).
     private var draftKind: DraftKind {
-        OwnWords.shared.draftKind(sourceText: known, targetText: learning, comment: comment)
+        OwnWords.shared.draftKind(sourceText: sourceText, targetText: targetText, comment: comment)
     }
 
     /// Whether there is an entry to take in yet (`OwnWords.isWritten`).
     private var hasAnything: Bool {
-        OwnWords.shared.isWritten(sourceText: known, targetText: learning, comment: comment)
+        OwnWords.shared.isWritten(sourceText: sourceText, targetText: targetText, comment: comment)
     }
 
     /// What the form says it is doing, read off what has been typed into it.
@@ -150,13 +150,13 @@ struct OwnWordFormView: View {
 
     private func save() {
         if case .editing(let word) = seed {
-            model.updateOwnWord(word, known: known, learning: learning, emoji: emoji,
+            model.updateOwnWord(word, sourceText: sourceText, targetText: targetText, emoji: emoji,
                                 comment: comment)
             close()
             return
         }
         let pair = draftKind == .pair
-        guard let id = model.addOwnWord(known: known, learning: learning, emoji: emoji,
+        guard let id = model.addOwnWord(sourceText: sourceText, targetText: targetText, emoji: emoji,
                                         comment: comment)
         else { return }
         // why: a suggestion joins no card, so there is nothing on a shelf to reveal —
@@ -185,8 +185,8 @@ struct OwnWordFormView: View {
     private var swapButton: some View {
         Button {
             var swapped = draft
-            swapped.known = draft.learning
-            swapped.learning = draft.known
+            swapped.sourceText = draft.targetText
+            swapped.targetText = draft.sourceText
             model.ownWordDraft = swapped
         } label: {
             LinkLabel("box.own.word.swap", icon: "arrow.up.arrow.down", font: Theme.typography.caption)
@@ -277,8 +277,8 @@ struct OwnWordFormView: View {
 
     private func advance(from field: Field) {
         switch field {
-        case .known: focus = .learning
-        case .learning: focus = .emoji
+        case .sourceText: focus = .targetText
+        case .targetText: focus = .emoji
         case .emoji: focus = .comment
         case .comment: focus = nil
         }
