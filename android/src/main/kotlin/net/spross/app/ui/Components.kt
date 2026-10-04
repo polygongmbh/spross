@@ -157,15 +157,15 @@ fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
 }
 
 /**
- * Where one card stands on the growth ladder: fresh → growing → grown.
+ * Where one card stands on the growth ladder: fresh → growing → settled, or lapsed.
  *
  * Four labeled Sprossen, three colors. [CardRowState.Standing.stage] — kern's own
  * ladder — decides the top one directly, exactly as the shelf's own tally does, so a
  * row's seal never claims a word the shelf above does not also count: Settled is a
  * further Sprosse, well past Growing, which is why a Growing card reads its own mark
- * instead of borrowing the seal. Learning and Fresh share one word (only the color
- * tells them apart), and Relearning gets its own — all three amber. Grown is the one
- * Sprosse that carries no word at all — the seal alone already says "done".
+ * instead of borrowing the seal. Fresh and Lapsed share amber and a glyph, and only the
+ * word tells them apart. Settled is the one Sprosse that carries no word at all — the
+ * seal alone already says "done".
  *
  * The color comes from [swatch] rather than being picked here, so this badge and the
  * shelf's own [AreaProgressBar] can never disagree about the same Sprosse. A card with
@@ -176,7 +176,7 @@ fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
 fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
     val color = standing.swatch.tint()
     if (standing.stage == GrowthStage.Settled) {
-        // Grown needs no word: a seal already reads as "done" on its own, where
+        // Settled needs no word: a seal already reads as "done" on its own, where
         // Fresh/Shaky/Growing would be ambiguous glyphs without one.
         Pill(
             SEAL, color,
@@ -206,7 +206,7 @@ const val HERB = "🌿"
 const val LOCK = "🔒"
 
 /**
- * An area's cards as a two-way split (matches the counts row) plus queued: grown,
+ * An area's cards as a two-way split (matches the counts row) plus queued: settled,
  * everything else active, then packed-but-unintroduced — measured against the area's
  * FULL card count, so the untouched rest of a shelf stays visible instead of a bar
  * that always reads as full.

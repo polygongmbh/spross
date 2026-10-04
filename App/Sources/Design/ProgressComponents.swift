@@ -88,7 +88,7 @@ struct StreakFlameView: View {
 struct AreaProgress {
     /// Settled or matured cards — the bar's jade segment.
     let allSettled: Int
-    /// Every other active card, fresh, growing or relearning — the counts row's split.
+    /// Every other active card, fresh, growing or lapsed — the counts row's split.
     let allGrowing: Int
     /// Cards packed but not yet introduced — the bar's amber segment. A card
     /// never packed at all gets no segment: it leaves the bar's neutral track

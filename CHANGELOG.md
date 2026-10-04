@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- A word you forget once but that keeps most of its strength now keeps its standing, picture hint and unlocked phrases.
+- A word you missed a couple of times on its first day no longer shows as "Shaky"; that badge now means a word you forgot after learning it.
 - Over fifty Swahili words, the weekday and month names among them, now play a cleaner recording by one of three other speakers.
 - On Android, editing one of your own words no longer drops what it holds in your other languages.
 - The Android home-screen widget now shows streaks longer than 70 days in full, and both widgets agree on the streak and its flame even days after the app last ran.

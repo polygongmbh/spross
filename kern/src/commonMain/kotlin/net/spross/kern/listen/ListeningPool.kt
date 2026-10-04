@@ -60,7 +60,7 @@ object ListeningPool {
      * is for. Suspension pushes a word out of the box's own queue; it was never a statement
      * that the learner should stop meeting the word. A settled word
      * (`Statistics.hasSettled`) is the one exclusion: it is what the box already calls
-     * done, and it is back in the pool the moment it lapses.
+     * done, and it is back in the pool the moment a lapse takes it under that bar.
      *
      * Unseen words are in it too, so a learner a few words in hears a STREAM of new words
      * rather than lapping the handful they hold — the mode's cheapest breadth. They enter

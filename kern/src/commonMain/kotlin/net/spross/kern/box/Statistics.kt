@@ -7,7 +7,6 @@ import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.minus
 import kotlinx.datetime.plus
 import net.spross.kern.model.CardKind
-import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
 
 /** Aggregates for progress UI. All counts are in cards. */
@@ -190,20 +189,19 @@ internal object Statistics {
     }
 
     /**
-     * Review phase at or above [SETTLED_STABILITY]. A lapsed card is back in Relearning
-     * and stops counting until it earns the bar back.
+     * Stability at or above [SETTLED_STABILITY], whatever the phase:
+     * a lapse costs the bar only where FSRS's post-lapse stability falls under it.
      */
     fun hasSettled(state: BoxState, sched: CardScheduling): Boolean =
-        sched.phase == CardPhase.Review &&
-            (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY
+        (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY
 
     /**
-     * Review phase at or above [BoxConfig.growingStability]. Gates phrase unlock,
-     * the drill pools and the in-session support (emoji cue, sound-only prompt).
+     * Stability at or above [BoxConfig.growingStability], whatever the phase —
+     * one forgetting is normal, and the support is for words that are not properly down.
+     * Gates phrase unlock, the drill pools and the in-session support (emoji cue, sound-only prompt).
      */
     fun hasArrived(state: BoxState, sched: CardScheduling): Boolean =
-        sched.phase == CardPhase.Review &&
-            (sched.memory?.stability ?: 0.0) >= state.config.growingStability
+        (sched.memory?.stability ?: 0.0) >= state.config.growingStability
 
     /**
      * Walk back from today: a missed day is bridged, two in a row end the run. Forgiveness

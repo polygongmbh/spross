@@ -180,21 +180,16 @@ class BoxStatisticsTests {
     }
 
     @Test
-    fun settledCountsOnlyReviewCardsAtOrAboveTheSettledThreshold() {
-        var state = Box.state((1..3).map { Box.word(it) })
+    fun settledCountsOnlyCardsAtOrAboveTheSettledThreshold() {
+        var state = Box.state((1..2).map { Box.word(it) })
         state = Box.inject(state, Box.sched("w01", stability = SETTLED_STABILITY, dueMillis = now, lastReviewMillis = now))
         state = Box.inject(
             state,
             Box.sched("w02", stability = SETTLED_STABILITY - 0.1, dueMillis = now, lastReviewMillis = now),
         )
-        state = Box.inject(
-            state,
-            // Stable enough, but still stepping through Learning — not settled.
-            Box.sched("w03", phase = CardPhase.Learning, stability = 40.0, dueMillis = now, lastReviewMillis = now),
-        )
 
         val stats = BoxEngine.statistics(state, now, Box.TZ)
-        assertEquals(3, stats.activeCount)
+        assertEquals(2, stats.activeCount)
         assertEquals(1, stats.allSettledCount)
     }
 

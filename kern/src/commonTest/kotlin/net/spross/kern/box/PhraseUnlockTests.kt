@@ -3,7 +3,6 @@ package net.spross.kern.box
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
 
 /** Phrase unlock fast path — gate on component schedules, raw by card id. */
@@ -63,18 +62,6 @@ class PhraseUnlockTests {
         // Phrase unlock uses the growing bar: 6.0 unlocks.
         state = Box.inject(state, Box.sched("w02", stability = 6.0, dueMillis = future, lastReviewMillis = now))
         assertEquals(listOf("p1"), Box.candidates(state).unlockedPhrases)
-    }
-
-    @Test
-    fun componentInLearningPhaseKeepsPhraseLocked() {
-        var state = seeded()
-        val future = Box.plusDays(now, 5.0)
-        state = Box.inject(state, Box.sched("w01", stability = 10.0, dueMillis = future, lastReviewMillis = now))
-        state = Box.inject(
-            state,
-            Box.sched("w02", phase = CardPhase.Learning, stability = 10.0, dueMillis = future, lastReviewMillis = now),
-        )
-        assertTrue(Box.candidates(state).unlockedPhrases.isEmpty())
     }
 
     @Test

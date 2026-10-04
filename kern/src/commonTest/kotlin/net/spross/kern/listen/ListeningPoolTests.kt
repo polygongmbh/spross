@@ -129,7 +129,7 @@ class ListeningPoolTests {
      * everything else — would spend its evening on the words it trusts most.
      */
     @Test
-    fun aGrownWordIsNotInThePool() {
+    fun aSettledWordIsNotInThePool() {
         var state = box(total = 20, scheduled = 0)
         state = Box.inject(state, Box.sched("w01", stability = 18.0, dueMillis = Box.day1, lastReviewMillis = Box.day1))
         state = Box.inject(state, Box.sched("w02", stability = 40.0, dueMillis = Box.day1, lastReviewMillis = Box.day1))

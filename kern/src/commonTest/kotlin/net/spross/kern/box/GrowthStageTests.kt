@@ -64,38 +64,25 @@ class GrowthStageTests {
         assertEquals(GrowthStage.Settled, stages["w02"])
     }
 
-    @Test
-    fun aLapseReportsRelearningWhateverTheCardHadReached() {
-        var state = Box.state(listOf(Box.word(1)))
-        state = Box.inject(
-            state,
-            Box.sched(
-                "w01", phase = CardPhase.Relearning, stability = 99.0,
-                dueMillis = future, lastReviewMillis = now, lapses = 1,
-            ),
-        )
-
-        assertEquals(GrowthStage.Lapsed, stages(state)["w01"])
-    }
-
     /**
-     * A lapsed word back in Review, or one that never left it (no relearning steps), reads
-     * Relearning until it has cleared the growing bar again: it is not fresh, it slipped.
+     * The stability bars outrank the FSRS phase: a lapse that kept the growing bar is still
+     * an arrived word, and only one that fell under it reads lapsed.
      */
     @Test
-    fun aLapsedWordStaysRelearningUntilItClearsTheGrowingBarAgain() {
-        val state = Box.state((1..2).map { Box.word(it) }).let {
-            Box.inject(
-                Box.inject(
-                    it,
-                    Box.sched("w01", stability = 3.0, dueMillis = future, lastReviewMillis = now, lapses = 1),
-                ),
-                Box.sched("w02", stability = 10.0, dueMillis = future, lastReviewMillis = now, lapses = 1),
-            )
-        }
+    fun aRelearningCardReadsLapsedOnlyUnderTheGrowingBar() {
+        var state = Box.state((1..2).map { Box.word(it) })
+        state = Box.inject(
+            state,
+            Box.sched("w01", phase = CardPhase.Relearning, stability = 9.0, dueMillis = future, lastReviewMillis = now),
+        )
+        state = Box.inject(
+            state,
+            Box.sched("w02", phase = CardPhase.Relearning, stability = 3.0, dueMillis = future, lastReviewMillis = now),
+        )
 
-        assertEquals(GrowthStage.Lapsed, stages(state)["w01"])
-        assertEquals(GrowthStage.Growing, stages(state)["w02"])
+        assertEquals(GrowthStage.Growing, stages(state)["w01"])
+        assertTrue(BoxEngine.hasArrived(state, "w01"))
+        assertEquals(GrowthStage.Lapsed, stages(state)["w02"])
     }
 
     @Test

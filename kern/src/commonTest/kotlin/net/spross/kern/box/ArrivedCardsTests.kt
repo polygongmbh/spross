@@ -3,7 +3,6 @@ package net.spross.kern.box
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import net.spross.kern.model.Card
-import net.spross.kern.model.CardPhase
 
 /**
  * `BoxEngine.arrivedCardIds` — the drill's word supply: what the shelf holds,
@@ -33,30 +32,13 @@ class ArrivedCardsTests {
     }
 
     @Test
-    fun onlyReviewPhaseAtOrAboveTheGrowingBar() {
-        var state = Box.state((1..5).map { Box.word(it) })
+    fun onlyCardsAtOrAboveTheGrowingBar() {
+        var state = Box.state((1..3).map { Box.word(it) })
         state = Box.inject(state, growing("w01", stability = 6.0)) // exactly the bar
         state = Box.inject(state, growing("w02", stability = 5.9)) // just under it
-        state = Box.inject(
-            state,
-            // Stable enough, but still stepping through Learning.
-            Box.sched("w03", phase = CardPhase.Learning, stability = 9.0, dueMillis = now, lastReviewMillis = now),
-        )
-        state = Box.inject(
-            state,
-            // Lapsed: back in Relearning, so it stops counting as known — the point of the phase.
-            Box.sched(
-                "w04",
-                phase = CardPhase.Relearning,
-                stability = 9.0,
-                dueMillis = now,
-                lastReviewMillis = now,
-                lapses = 1,
-            ),
-        )
-        state = Box.inject(state, growing("w05", stability = 40.0))
+        state = Box.inject(state, growing("w03", stability = 40.0))
 
-        assertEquals(listOf("w01", "w05"), BoxEngine.arrivedCardIds(state))
+        assertEquals(listOf("w01", "w03"), BoxEngine.arrivedCardIds(state))
     }
 
     @Test

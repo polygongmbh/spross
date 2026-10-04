@@ -91,11 +91,10 @@ Engine contract: `../README.md`.
   answers nothing. **A settled word is not in the pool** (`Statistics.hasSettled`):
   it is what the box already calls done, and an hour of listening is for what is not —
   left in, a well-used box, where the settled words outnumber everything else, would open on
-  the words it trusts most. It is back the moment it lapses.
+  the words it trusts most. It is back the moment a lapse takes it under that bar.
   `listeningPriority(growing, suspended)` is the ladder, and it has two Sprossen read off the
   box's own bar rather than a ladder of listening's own: a held word short of
-  `growingStability` (`Statistics.hasArrived`, so a lapsed word is shaky whatever it once
-  reached) is SHAKY (`LISTENING_SHAKY_PRIORITY`, 2) and one past it is GROWING
+  `growingStability` (`Statistics.hasArrived`) is SHAKY (`LISTENING_SHAKY_PRIORITY`, 2) and one past it is GROWING
   (`LISTENING_GROWING_PRIORITY`, 1). A **suspended** word takes the growing Sprosse whatever
   its bar: suspension takes a word out of the box's rotation and this is the surface that
   can still reach it, so it comes in — it does not lead.

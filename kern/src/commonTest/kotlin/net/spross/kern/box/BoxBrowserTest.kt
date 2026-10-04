@@ -274,13 +274,10 @@ class BoxBrowserTest {
         state = Box.inject(state, Box.sched("w03", stability = 9.0, dueMillis = future, lastReviewMillis = now))
         // Settled is a further Sprosse of its own, at the 25-day bar.
         state = Box.inject(state, Box.sched("w04", stability = 99.0, dueMillis = future, lastReviewMillis = now))
-        // Lapsed after growing: the bar has to be earned back.
+        // Relearning under the growing bar: the lapse cost it the bar.
         state = Box.inject(
             state,
-            Box.sched(
-                "w05", phase = CardPhase.Relearning, stability = 99.0,
-                dueMillis = future, lastReviewMillis = now, lapses = 1,
-            ),
+            Box.sched("w05", phase = CardPhase.Relearning, stability = 2.0, dueMillis = future, lastReviewMillis = now),
         )
 
         fun row(id: String) = BoxBrowser.cardRowState(state, id, packOffered = false)

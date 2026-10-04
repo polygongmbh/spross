@@ -28,7 +28,7 @@ const val MATURED_STABILITY: Double = 120.0
  *
  * Ordered as growth runs, so neighboring Sprossen compare. The three off-path Sprossen
  * ([Unscheduled], [Lapsed], [Suspended]) say where the card stands now, never
- * how far it once got: a lapsed card reports [Lapsed] whatever it had reached.
+ * how far it once got.
  */
 enum class GrowthStage {
     /** No schedule, and not packed either — a word the box holds and has never opened. */
@@ -38,21 +38,20 @@ enum class GrowthStage {
     Queued,
 
     /**
-     * Met and still under [net.spross.kern.model.BoxConfig.growingStability] — walking the
-     * learning steps or in Review below the bar. Introduction is the first ANSWER.
+     * Met and still under [net.spross.kern.model.BoxConfig.growingStability], and not in the
+     * relearning steps. Introduction is the first ANSWER.
      */
     Fresh,
 
-    /** Growing: see [Statistics.hasArrived] — the "has this word landed" bar (gate (a)). */
+    /** Arrived and short of [SETTLED_STABILITY]: see [Statistics.hasArrived] (gate (a)). */
     Growing,
 
-    /** Settled: in Review at or above [SETTLED_STABILITY]. */
+    /** At or above [SETTLED_STABILITY]: see [Statistics.hasSettled]. */
     Settled,
 
     /**
-     * Lapsed and still short of the growing bar — in the relearning steps, or back in Review
-     * under it with a lapse behind it. A word that has slipped is not fresh, and it does not
-     * read as fresh until it has cleared the bar again.
+     * In the relearning steps and under the growing bar — a word that slipped and did not
+     * keep enough stability to stay arrived. A lapse that kept it reads by its stability.
      */
     Lapsed,
 
@@ -79,19 +78,14 @@ data class CardGrowth(
 )
 
 /**
- * The Sprosse this schedule stands on. Suspension and a lapse outrank every bar:
- * a suspended card is out of rotation whatever its stability says, and a lapsed
- * one has to earn the growing bar back before it may claim it again — until then it
- * reads [GrowthStage.Lapsed], whether the relearning steps have let it back into
- * Review or not (with no steps configured a lapse never leaves Review at all).
+ * The Sprosse this schedule stands on: suspension first, then the stability bars,
+ * and only under the growing bar does the FSRS phase say whether the word is new or slipped.
  */
 internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when {
     sched.suspended -> GrowthStage.Suspended
-    sched.phase == CardPhase.Relearning -> GrowthStage.Lapsed
-    sched.phase != CardPhase.Review -> GrowthStage.Fresh
-    (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY -> GrowthStage.Settled
+    Statistics.hasSettled(state, sched) -> GrowthStage.Settled
     Statistics.hasArrived(state, sched) -> GrowthStage.Growing
-    sched.lapses > 0 -> GrowthStage.Lapsed
+    sched.phase == CardPhase.Relearning -> GrowthStage.Lapsed
     else -> GrowthStage.Fresh
 }
 

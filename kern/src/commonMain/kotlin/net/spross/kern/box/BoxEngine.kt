@@ -433,16 +433,15 @@ object BoxEngine {
         state.scheduling[cardId]?.let { Statistics.hasArrived(state, it) } ?: false
 
     /**
-     * Every growing card id, in seed order — the words the box may hand to a
+     * Every arrived card id, in seed order — the words the box may hand to a
      * drill that practices only material the learner already holds (letter-drill
      * dictation is the first caller).
      *
      * Which words those are is an ENGINE rule, not a caller's filter: this reads
      * through [Inventory.active] like every other inventory query, so a suspended,
      * non-joining, or never-scheduled card is never offered, and a lapse drops a
-     * card out on its own — [Statistics.hasArrived] wants the Review phase, and
-     * a lapsed card sits in Relearning until it earns the stability back. Restating
-     * that predicate app-side would let two platforms drift on what "known" means.
+     * card out on its own wherever it costs the card the growing bar ([Statistics.hasArrived]).
+     * Restating that predicate app-side would let two platforms drift on what "known" means.
      *
      * Seed order, not the due shuffle: a drill samples with its own `Random`, so it
      * wants a list that is stable under it rather than a second ordering rule.

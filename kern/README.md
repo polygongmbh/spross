@@ -182,12 +182,12 @@ the numbers behind each bar are on `BoxConfig` itself.
 - **A graduated interval floors at one day.**
 - **TWO growth bars, not one**:
   `growingStability` (`Statistics.hasArrived`, facade `BoxEngine.hasArrived(state, cardId)`)
-  is gate (a) -- Review phase AND stability >= 6 days,
-  so a lapse un-lands a card.
+  is gate (a) -- stability >= 6 days, whatever the FSRS phase (user ruling 2026-10-04):
+  one forgetting is normal, so a lapse un-lands a card only where its post-lapse stability falls under the bar.
   That bar gates phrase unlock, the letter drill's pool (section 6),
   and picks the support a word gets while it is still on its way in (section 3).
   `SETTLED_STABILITY` (`Statistics.hasSettled`, facade `BoxEngine.hasSettled`)
-  is a later, stricter DISPLAY bar -- 25 days --
+  is a later, stricter DISPLAY bar -- 25 days, also stability alone --
   behind the progress-UI split, the Grown badge, the area-complete mark, the day tallies,
   the words a brief hands over as known, and the word scramble's pool.
   Deliberately distinct.
