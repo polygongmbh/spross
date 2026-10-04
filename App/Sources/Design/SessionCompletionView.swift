@@ -75,49 +75,21 @@ struct SessionCompletionView: View {
     }
 
     var body: some View {
-        // why: Spacer()-centered content overflows a fixed frame under large
-        // Dynamic Type — GrowingTreeView's fixed hero height leaves no give,
-        // so the caption below it (restHint) got compressed and truncated
-        // instead. A GeometryReader'd min-height keeps the centering when
-        // everything fits and falls back to scrolling when it does not.
-        GeometryReader { geo in
-            ScrollView {
-                sessionContent(treeCeiling: geo.size.height * 0.45)
-                    .padding(Theme.spacing.xl)
-                    .frame(minWidth: geo.size.width, minHeight: geo.size.height)
-            }
-            .scrollBounceBehavior(.basedOnSize)
-        }
-        // why: the actions stay on the bottom edge however far the results scroll.
-        .safeAreaInset(edge: .bottom) {
-            SessionExitButtons(onDone: onDone, onTalk: onTalk,
-                               onPractice: canPracticeMore ? onPractice : nil)
-                .padding(.horizontal, Theme.spacing.xl)
-        }
-        .background(Theme.colors.background.ignoresSafeArea())
-        .overlay(ConfettiView(run: celebration).ignoresSafeArea())
-        .contentShape(Rectangle())
-        .onTapGesture(perform: replay)
-        // why: after the overlay and the replay gesture, so the corner stays
-        // tappable — a tap there leaves instead of setting off the confetti.
-        .sessionCloseCorner(label: "common.done", action: onDone)
-        .onAppear {
-            burst = true
-            Sound.cheer()
-        }
-    }
-
-    private func sessionContent(treeCeiling: CGFloat) -> some View {
-        VStack(spacing: Theme.spacing.xl) {
-            Spacer()
-            // why: the tree takes the hero slot when the round grew an area —
-            // a party popper is the same picture whatever the learner did, and
-            // two celebratory graphics on one screen is one too many.
+        // why: the tree takes the hero slot when the round grew an area —
+        // a party popper is the same picture whatever the learner did, and
+        // two celebratory graphics on one screen is one too many. One title:
+        // the growth claim where a tree stands over it, the plain "All done!"
+        // where the popper does.
+        SummaryScaffold(title: Text(showsTree ? headlineKey : "session.done.title"),
+                        tally: summaryText,
+                        hint: restSuggested ? Text("session.done.restHint") : nil,
+                        onDone: onDone, onTalk: onTalk,
+                        onPractice: canPracticeMore ? onPractice : nil) { ceiling in
             if showsTree {
                 // why: the area is LABELED under its tree rather than named in the
                 // title — the area did not grow, what the learner can say did.
                 VStack(spacing: Theme.spacing.sm) {
-                    grownAreaHero(ceiling: treeCeiling)
+                    grownAreaHero(ceiling: ceiling)
                     Text(verbatim: grownAreaLabel)
                         .font(.system(.headline, design: .rounded))
                         .foregroundStyle(Theme.colors.textSecondary)
@@ -126,26 +98,14 @@ struct SessionCompletionView: View {
             } else {
                 burstHero
             }
-            // why: one title — the growth claim where a tree stands over it,
-            // the plain "All done!" where the popper does.
-            Text(showsTree ? headlineKey : "session.done.title")
-                .font(Theme.typography.hero)
-                .foregroundStyle(Theme.colors.textPrimary)
-                .multilineTextAlignment(.center)
-                .minimumScaleFactor(0.8)
-            summaryText?
-                .font(.system(.title3, design: .rounded))
-                .foregroundStyle(Theme.colors.textSecondary)
-                .multilineTextAlignment(.center)
-            if restSuggested {
-                Text("session.done.restHint")
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
-                    .multilineTextAlignment(.center)
-            }
-            Spacer()
         }
-        .frame(maxWidth: .infinity)
+        .overlay(ConfettiView(run: celebration).ignoresSafeArea())
+        .contentShape(Rectangle())
+        .onTapGesture(perform: replay)
+        .onAppear {
+            burst = true
+            Sound.cheer()
+        }
     }
 
     /// Snaps the burst back to rest with no animation, then re-triggers it
@@ -218,8 +178,7 @@ struct SessionCompletionView: View {
                     )
                     .sway(angle: Self.swayAngle(index), period: Self.swayPeriod(index))
             }
-            Text(verbatim: "🎉")
-                .font(.system(size: 88)) // card-parity: the done screen's own glyph, not a card prompt
+            SummaryGlyph(glyph: "🎉")
                 .scaleEffect(burst ? 1 : 0.4)
                 .rotationEffect(.degrees(burst ? 0 : -25))
                 .animation(.spring(response: 0.5, dampingFraction: 0.5), value: burst)
@@ -228,7 +187,7 @@ struct SessionCompletionView: View {
                 .sway(angle: 3, period: 3.7)
         }
         .frame(height: 180)
-        .accessibilityHidden(true) // why: purely celebratory; "session.done.title" below carries the message
+        .accessibilityHidden(true) // why: purely celebratory; the title below carries the message
     }
 }
 

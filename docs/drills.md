@@ -189,7 +189,9 @@ Nothing wears a prefix one scope wider than what it serves.
   climbed past where the exercise stood in numbers),
   or the standing answer-streak record beaten (numbers, atlas, calendar);
   or most of the last few answers missed, where the pause says a stop is fine and why.
-  The pause stands in place of the question and wears the round's exit pair:
+  The pause stands in place of the question on the round summary's own screen --
+  its glyph where the summary's tree or popper stands, the run's figures as its tally --
+  and wears the round's exit pair:
   Done closes the run as the X does, keep practicing goes on with the SAME run --
   prompts asked, ladder, answer streak -- and starts the next stretch.
   A timed run ends on its clock and never pauses.

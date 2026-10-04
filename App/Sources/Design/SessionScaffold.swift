@@ -218,58 +218,6 @@ extension View {
     }
 }
 
-// MARK: - SessionExitButtons
-//
-// The pair every finished round exits through — the session summary and a
-// drill's alike, so the two screens never disagree about which way out is
-// the default one.
-
-struct SessionExitButtons: View {
-    var onDone: () -> Void
-    /// Left out where there is no box to brief (`AppModel.hasBriefing`).
-    var onTalk: (() -> Void)?
-    /// Left out when there is nothing more to practice.
-    var onPractice: (() -> Void)?
-
-    var body: some View {
-        VStack(spacing: Theme.spacing.md) {
-            // why: the round that was planned is done — stopping takes the
-            // full-width primary on the bottom edge, and the two ways of going
-            // on share one row above it rather than stacking as more slabs.
-            HStack(spacing: Theme.spacing.md) {
-                // why: the words are warm — the one moment a conversation about
-                // them costs nothing to offer; it asks rather than instructs.
-                if let onTalk { secondary("session.done.talk", icon: "bubble.left.and.bubble.right", onTalk) }
-                if let onPractice { secondary("session.done.keepPracticing", icon: "arrow.right", onPractice) }
-            }
-            // why: a label that wraps grows its own button only — the pair keeps one height.
-            .fixedSize(horizontal: false, vertical: true)
-            Button(action: onDone) {
-                Label("common.done", systemImage: "checkmark").frame(maxWidth: .infinity)
-            }
-            .buttonStyle(PrimaryButtonStyle())
-        }
-        // why: a celebration ending flush against the bottom edge reads as a
-        // form to dismiss; the pair sits off it instead.
-        .padding(.bottom, Theme.spacing.xl)
-    }
-
-    private func secondary(_ title: LocalizedStringKey, icon: String,
-                           _ action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            // why: a Label pins its icon to the first line — a wrapped title left it riding high.
-            HStack(spacing: Theme.spacing.sm) {
-                Image(systemName: icon)
-                Text(title)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.center)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .buttonStyle(SoftButtonStyle())
-    }
-}
-
 // MARK: - Previews
 
 #Preview("Session chrome") {
