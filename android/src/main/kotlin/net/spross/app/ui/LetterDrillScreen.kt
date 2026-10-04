@@ -42,12 +42,12 @@ import net.spross.app.stampRun
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.LetterDrillRunState
 import net.spross.kern.trainer.LetterDrillTask
-import net.spross.kern.trainer.LetterStage
+import net.spross.kern.trainer.LetterFormat
 
 /**
  * The letter drill: hear a sound, find the letter. Four glyph tiles, then confusable ones,
  * then typing the glyph, and finally dictation of words the learner already holds — one
- * Sprosse, mapped to stages by kern's `LetterDrillRun`, which owns every rule below.
+ * Sprosse, mapped to formats by kern's `LetterDrillRun`, which owns every rule below.
  *
  * The one screen in the app that shows nothing: everything the learner is given is the
  * sound. So both silences that can meet them are named rather than left to be guessed at —
@@ -55,7 +55,7 @@ import net.spross.kern.trainer.LetterStage
  * goes out as [Pronouncer.Trigger.AUTO], where mute and the TalkBack gate apply without
  * this screen testing for either.
  *
- * Stage bodies live in LetterDrillStages.kt; the run itself in `LetterDrillFlow`.
+ * Format bodies live in LetterDrillFormats.kt; the run itself in `LetterDrillFlow`.
  */
 @Composable
 fun LetterDrillScreen(model: AppModel) {
@@ -78,7 +78,7 @@ fun LetterDrillScreen(model: AppModel) {
         run = flow,
         leave = leave,
         progress = state,
-        // One Sprosse, mapped to stages by kern — there is no level to name.
+        // One Sprosse, mapped to formats by kern — there is no level to name.
         sprosse = null,
         speaksPastMute = true,
     ) {
@@ -113,11 +113,11 @@ private fun Run(
     )
 
     HearPrompt(model, flow, task, chrome, replayFocus)
-    when (task.stage) {
-        LetterStage.ChoiceEasy, LetterStage.ChoiceConfusable ->
-            ChoiceStage(flow, task, chrome)
-        LetterStage.Typed, LetterStage.Dictation ->
-            TypedStage(model, flow, task, chrome, inputFocus)
+    when (task.format) {
+        LetterFormat.ChoiceEasy, LetterFormat.ChoiceConfusable ->
+            ChoiceFormat(flow, task, chrome)
+        LetterFormat.Typed, LetterFormat.Dictation ->
+            TypedFormat(model, flow, task, chrome, inputFocus)
     }
     if (state.offersFinish) DrillStopOffer(chrome, onFinish)
 }
@@ -138,7 +138,7 @@ private fun HearPrompt(
 ) {
     val language = model.languageName(task.language)
     val question = when {
-        task.stage == LetterStage.Dictation -> chrome.lettersAskDictation
+        task.format == LetterFormat.Dictation -> chrome.lettersAskDictation
         task.gapText == null -> chrome.lettersAskHear
         else -> chrome.lettersAskSpell
     }

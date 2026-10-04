@@ -36,7 +36,7 @@ Neighbors: every drill `drills.md`, readings `number-forms.md`, `clock-registers
 
 ## Länder — the atlas page
 
-- **Its Sprossen are POOLS rather than stages**, widening outward from the two languages the
+- **Its Sprossen are POOLS rather than formats**, widening outward from the two languages the
   profile already has, each keeping everything below it (`CountryDrill`),
   so climbing widens the world instead of replacing it.
   The row is named for the one thing its Sprosse brings and nothing else —

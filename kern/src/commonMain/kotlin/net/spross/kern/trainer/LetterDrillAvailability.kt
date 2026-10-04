@@ -71,18 +71,18 @@ object LetterDrillAvailability {
         /**
          * Which Sprosse a run OPENS on: the lowest one at or above [entryLevel] that no run has
          * answered out ([NumbersMode.entrySprosse] over [cleared], the store's mask). Derived
-         * here rather than at the run, so the overview marking the stage and the run that
+         * here rather than at the run, so the overview marking the format and the run that
          * starts there read one number.
          */
         fun openingLevel(cleared: Set<Int>): Int =
             NumbersMode.entrySprosse(cleared + (1 until entryLevel), maxLevel)
 
-        /** The stage that Sprosse lands in — what the overview marks. */
-        fun openingStage(cleared: Set<Int>): LetterStage = LetterDrill.stageFor(openingLevel(cleared))
+        /** The format that Sprosse lands in — what the overview marks. */
+        fun openingFormat(cleared: Set<Int>): LetterFormat = LetterDrill.formatFor(openingLevel(cleared))
 
-        /** Whether some run answered out every Sprosse of [stage] — never dictation's. */
-        fun stageCleared(stage: LetterStage, cleared: Set<Int>): Boolean =
-            stage != LetterStage.Dictation && LetterDrill.sprossen(stage).all { it in cleared }
+        /** Whether some run answered out every Sprosse of [format] — never dictation's. */
+        fun formatCleared(format: LetterFormat, cleared: Set<Int>): Boolean =
+            format != LetterFormat.Dictation && LetterDrill.sprossen(format).all { it in cleared }
 
         /** How long a Sprosse is for this learner. */
         val winsToAdvance: Int get() = LetterDrill.winsToAdvance(arrivedCards)

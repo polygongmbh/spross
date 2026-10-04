@@ -7,7 +7,7 @@ import net.spross.kern.catalog.AlphabetKind
 
 /**
  * Which glyphs sit on the choice tiles — the difficulty knob of the multiple-choice
- * stages, kept out of [LetterDrill] because it is the one part with a shape of its own.
+ * formats, kept out of [LetterDrill] because it is the one part with a shape of its own.
  *
  * Everything here works in GLYPHS, not entry refs. A tile is a string the learner reads:
  * de authors three `ch` rows and two `v` rows, and a rule that excluded one ref while
@@ -28,7 +28,7 @@ internal object LetterDrillChoices {
     private const val MIN_DISTRACTORS = 2
 
     /**
-     * Tiles in render order for a choice stage, null for the typed ones. [gapText] decides
+     * Tiles in render order for a choice format, null for the typed ones. [gapText] decides
      * the homophone rule: two entries with the same IPA sound identical, so offering both
      * against a NAME prompt is unanswerable and they are excluded — but in a gap word the
      * spelling is what decides, which makes them the sharpest distractor there is.
@@ -36,12 +36,12 @@ internal object LetterDrillChoices {
     fun tiles(
         alphabet: Alphabet,
         answer: AlphabetEntry,
-        stage: LetterStage,
+        format: LetterFormat,
         level: Int,
         gapText: String?,
         rng: Random,
     ): List<String>? {
-        if (stage != LetterStage.ChoiceEasy && stage != LetterStage.ChoiceConfusable) return null
+        if (format != LetterFormat.ChoiceEasy && format != LetterFormat.ChoiceConfusable) return null
         val answerGlyph = key(answer.glyph)
         val homophones = alphabet.homophones(answer.ref).mapTo(mutableSetOf()) { key(it.glyph) }
         val closure = (alphabet.lookAlikes(answer.ref) + alphabet.soundAlikes(answer.ref))
@@ -59,7 +59,7 @@ internal object LetterDrillChoices {
         val fillers = answerable.filter { key(it) !in closure && key(it) !in homophones }
 
         val chosen = LinkedHashSet<String>()
-        if (stage == LetterStage.ChoiceConfusable) {
+        if (format == LetterFormat.ChoiceConfusable) {
             draw(chosen, confusable, (level - 2).coerceIn(1, DISTRACTORS), rng)
         }
         draw(chosen, fillers, DISTRACTORS - chosen.size, rng)

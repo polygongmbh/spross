@@ -10,7 +10,7 @@ sealed class LetterDrillIntent {
     /** A choice tile. One attempt per question: a second tap would be a retry, which has no verdict. */
     data class Choose(val glyph: String) : LetterDrillIntent()
 
-    /** A keystroke on a typed stage: an exact answer approves itself, with no Check tap. */
+    /** A keystroke on a typed format: an exact answer approves itself, with no Check tap. */
     data class InputChanged(val text: String) : LetterDrillIntent()
 
     data class Submit(val text: String) : LetterDrillIntent()
@@ -88,10 +88,10 @@ data class LetterDrillRunState(
     override val feedback: TurnFeedback,
     override val finished: Boolean,
 ) : DrillRunProgress {
-    val stage: LetterStage? get() = task?.stage
+    val format: LetterFormat? get() = task?.format
 
-    /** The stages that carry an input field. */
-    val typing: Boolean get() = stage == LetterStage.Typed || stage == LetterStage.Dictation
+    /** The formats that carry an input field. */
+    val typing: Boolean get() = format == LetterFormat.Typed || format == LetterFormat.Dictation
 
     /**
      * The card opens, whatever the spelling was graded.
@@ -106,7 +106,7 @@ data class LetterDrillRunState(
      * a Sprosse of it climbed today says nothing about the words it will hold tomorrow.
      */
     internal val keptSprossen: Set<Int>
-        get() = clearedSprossen.filter { LetterDrill.stageFor(it) != LetterStage.Dictation }.toSet()
+        get() = clearedSprossen.filter { LetterDrill.formatFor(it) != LetterFormat.Dictation }.toSet()
 
     /** The kept Sprossen the store did not hold — what a pause for improving names. */
     internal val newSprossen: Int get() = (keptSprossen - config.cleared).size

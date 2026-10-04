@@ -24,13 +24,13 @@ struct LetterDrillAvailability {
 
     var drillAvailable: Bool { report.drillAvailable }
     var dictationAvailable: Bool { report.dictationAvailable }
-    /// The stage a run would OPEN on — kern's step from the words the learner
+    /// The format a run would OPEN on — kern's step from the words the learner
     /// already holds, above what earlier runs climbed off clean.
-    func openingStage(_ cleared: Set<KotlinInt>) -> LetterStage { report.openingStage(cleared: cleared) }
+    func openingFormat(_ cleared: Set<KotlinInt>) -> LetterFormat { report.openingFormat(cleared: cleared) }
 
-    /// Whether earlier runs climbed off every Sprosse of `stage` clean.
-    func stageCleared(_ stage: LetterStage, _ cleared: Set<KotlinInt>) -> Bool {
-        report.stageCleared(stage: stage, cleared: cleared)
+    /// Whether earlier runs climbed off every Sprosse of `format` clean.
+    func formatCleared(_ format: LetterFormat, _ cleared: Set<KotlinInt>) -> Bool {
+        report.formatCleared(format: format, cleared: cleared)
     }
 
     /// A profile with no catalog or no box can ask nothing; kern's own empty

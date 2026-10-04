@@ -21,14 +21,14 @@ import net.spross.app.startLetterDrill
 import net.spross.kern.trainer.DrillUnlockMark
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.LetterDrillRunState
-import net.spross.kern.trainer.LetterStage
+import net.spross.kern.trainer.LetterFormat
 
 /**
  * The Letters entry: the alphabet of the language being learned, and the place its
  * drill is started from.
  *
- * The same shape as the numbers page — the drill's stages and start first, the alphabet
- * table under them. What the stage rows say, and why the page still stands where this
+ * The same shape as the numbers page — the drill's formats and start first, the alphabet
+ * table under them. What the format rows say, and why the page still stands where this
  * device can sound nothing: `docs/drills-words.md`.
  */
 @Composable
@@ -40,9 +40,9 @@ fun LettersOverviewScreen(model: AppModel) {
     // Read on every composition: the page composes afresh as a run's screen comes down.
     val cleared = model.trainer.store.cleared(LetterDrillRunState.storageKey(language))
     // An unlock is marked once. Only a priced padlock counts: where the drill cannot run at
-    // all, every stage is shut for a reason that is not the learner's to earn.
-    val priced = if (available) LetterStage.entries else emptyList()
-    val reach = priced.associateWith { stageOpen(it, report) }
+    // all, every format is shut for a reason that is not the learner's to earn.
+    val priced = if (available) LetterFormat.entries else emptyList()
+    val reach = priced.associateWith { formatOpen(it, report) }
     val locked = priced.filter { reach[it] == false }.map { DrillUnlockMark.row(it) }.toSet()
     val unlocking = remember(language, locked) {
         model.trainer.store.unlockMarks(
@@ -60,8 +60,8 @@ fun LettersOverviewScreen(model: AppModel) {
         onStart = { model.startLetterDrill() },
     ) {
         OverviewPanel {
-            LetterStage.entries.forEachIndexed { index, stage ->
-                StageRow(stage, index + 1, report, cleared, DrillUnlockMark.row(stage) in unlocking, chrome)
+            LetterFormat.entries.forEachIndexed { index, format ->
+                FormatRow(format, index + 1, report, cleared, DrillUnlockMark.row(format) in unlocking, chrome)
             }
         }
         OverviewStartButton(chrome, available) { model.startLetterDrill() }
@@ -72,14 +72,14 @@ fun LettersOverviewScreen(model: AppModel) {
 }
 
 /**
- * One stage: what it asks, and whether this run will get there. The stage the run OPENS on
+ * One format: what it asks, and whether this run will get there. The format the run OPENS on
  * wears the filled circle — every learner starts somewhere different, and the page should
- * not make them guess where — and a stage some run climbed off clean is forest. The rows are
- * not tapped: the run walks the ladder by itself from the stage it opens on.
+ * not make them guess where — and a format some run climbed off clean is forest. The rows are
+ * not tapped: the run walks the ladder by itself from the format it opens on.
  */
 @Composable
-private fun StageRow(
-    stage: LetterStage,
+private fun FormatRow(
+    format: LetterFormat,
     step: Int,
     report: LetterDrillAvailability.Report?,
     cleared: Set<Int>,
@@ -87,10 +87,10 @@ private fun StageRow(
     chrome: Chrome,
 ) {
     val ready = report?.takeIf { it.drillAvailable }
-    val open = stageOpen(stage, report)
-    val entry = open && ready?.openingStage(cleared) == stage
+    val open = formatOpen(format, report)
+    val entry = open && ready?.openingFormat(cleared) == format
     val mark = when {
-        ready?.stageCleared(stage, cleared) == true -> SprosseMark.Cleared
+        ready?.formatCleared(format, cleared) == true -> SprosseMark.Cleared
         entry -> SprosseMark.Reached
         else -> SprosseMark.Untouched
     }
@@ -99,7 +99,7 @@ private fun StageRow(
         modifier = Modifier
             .fillMaxWidth()
             .unlockWash(unlocking)
-            // why: one stage is one TalkBack stop — the mark and the name describe a single
+            // why: one format is one TalkBack stop — the mark and the name describe a single
             // thing, and the state says what the filled circle says.
             .semantics(mergeDescendants = true) {
                 when {
@@ -122,7 +122,7 @@ private fun StageRow(
         }
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) { // card-parity: the title/caption pair sits tighter than xs
             Text(
-                chrome.name(stage),
+                chrome.name(format),
                 style = MaterialTheme.typography.titleMedium,
                 color = if (open) Theme.colors.textPrimary else Theme.colors.textSecondary,
             )
@@ -136,10 +136,10 @@ private fun StageRow(
 /**
  * Dictation needs a pool of playable words the learner already holds; below that floor the
  * ramp stops one Sprosse short of it, so the row is a padlock with its price. Where the drill
- * cannot run at all, every stage is out of reach for the one reason the line under the button
+ * cannot run at all, every format is out of reach for the one reason the line under the button
  * already gives.
  */
-private fun stageOpen(stage: LetterStage, report: LetterDrillAvailability.Report?): Boolean {
+private fun formatOpen(format: LetterFormat, report: LetterDrillAvailability.Report?): Boolean {
     val ready = report?.takeIf { it.drillAvailable } ?: return false
-    return stage != LetterStage.Dictation || ready.dictationAvailable
+    return format != LetterFormat.Dictation || ready.dictationAvailable
 }

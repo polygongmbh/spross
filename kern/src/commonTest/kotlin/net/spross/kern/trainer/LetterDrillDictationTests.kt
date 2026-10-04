@@ -69,7 +69,7 @@ class LetterDrillDictationTests {
             ),
         )
         val card = cards.first { it.id == task.answerRef }
-        assertEquals(LetterStage.Dictation, task.stage)
+        assertEquals(LetterFormat.Dictation, task.format)
         assertEquals(card.target.lang, task.language)
         assertEquals(card.target.text, task.promptText)
         assertEquals(LetterPromptKind.Word, task.promptKind)

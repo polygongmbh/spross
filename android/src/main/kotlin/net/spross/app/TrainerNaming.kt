@@ -4,7 +4,7 @@ import net.spross.kern.trainer.CountryDrill
 import net.spross.kern.trainer.CountryTaskKind
 import net.spross.kern.trainer.DateTaskKind
 import net.spross.kern.trainer.DrillModifier
-import net.spross.kern.trainer.LetterStage
+import net.spross.kern.trainer.LetterFormat
 import net.spross.kern.trainer.Numbers
 import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.TimedRun
@@ -14,7 +14,7 @@ import net.spross.kern.trainer.numbersExerciseEmoji
  * What kern's drill enums are CALLED to this learner.
  *
  * Kern names the rule and never the rendering, so the face and the wording of an exercise,
- * a modifier and a stage live out here — one table, read by the overviews, the score line
+ * a modifier and a format live out here — one table, read by the overviews, the score line
  * and the result tile alike, so a run can never be named two things on one page.
  */
 
@@ -46,11 +46,11 @@ fun Chrome.hint(modifier: DrillModifier): String = when (modifier) {
     DrillModifier.Timed -> trainerModifierTimedHint.format(TimedRun.SECONDS)
 }
 
-fun Chrome.name(stage: LetterStage): String = when (stage) {
-    LetterStage.ChoiceEasy -> lettersStageChoiceEasy
-    LetterStage.ChoiceConfusable -> lettersStageChoiceConfusable
-    LetterStage.Typed -> lettersStageTyped
-    LetterStage.Dictation -> lettersStageDictation
+fun Chrome.name(format: LetterFormat): String = when (format) {
+    LetterFormat.ChoiceEasy -> lettersStageChoiceEasy
+    LetterFormat.ChoiceConfusable -> lettersStageChoiceConfusable
+    LetterFormat.Typed -> lettersStageTyped
+    LetterFormat.Dictation -> lettersStageDictation
 }
 
 /**

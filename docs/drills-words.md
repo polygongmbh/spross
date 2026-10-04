@@ -4,31 +4,31 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
 
 ## Buchstaben — the letters page and the letter drill
 
-- **The page is the drill's stages and start first, the alphabet table under them.**
+- **The page is the drill's formats and start first, the alphabet table under them.**
   The table renders every row — glyph, name, IPA, context, hint,
   example with meaning where the reader's language knows the word —
   and ships even where the drill cannot:
   audio is the drill's precondition, not the table's,
-  so where this device can sound nothing the stages are out of reach
+  so where this device can sound nothing the formats are out of reach
   and the page is the alphabet alone.
   What the drill can ask is recomputed on foreground —
   a voice installed in Settings turns the start button on without a relaunch.
-- **The stage rows say which stage a run OPENS on**, derived from the learner's settled
+- **The format rows say which format a run OPENS on**, derived from the learner's settled
   words and the record below, and dictation states its price until enough of them can be played back.
   Their mark is the shared Sprosse circle,
-  forest on a stage some run climbed off before its first slip, filled on the stage the run opens on,
-  and the rows are not tapped: the run walks the ladder by itself from that stage.
+  forest on a format some run climbed off before its first slip, filled on the format the run opens on,
+  and the rows are not tapped: the run walks the ladder by itself from that format.
 - **The tile and typed Sprossen keep the scrambles' record** — a Sprosse left upward
   before the run's first miss or almost (`LetterDrillClose.clearedSprossen`) —
   and a run opens on the lowest one at or above the vocabulary's entry that the record lacks
   (`LetterDrillAvailability.Report.openingLevel`).
   Dictation is never filed: it draws from the box, which grows.
-  Each row is ONE line, the stage named by what it asks,
+  Each row is ONE line, the format named by what it asks,
   with a caption only where dictation states its price.
 - **The drill shares the slot drill's chrome** — the endless scaffold, the streak line,
   the result tile (each platform's `DrillChrome`) — and keeps its own state machine,
   which is the whole of what the two have in common:
-  its Sprossen are stages that change what a question IS rather than how big the number is.
+  its Sprossen are formats that change what a question IS rather than how big the number is.
 - **Its card is the one that keeps a caption**,
   because a sound cannot say whether it wants a letter, a missing grapheme or the whole word —
   but the caption names the ask alone,
@@ -53,7 +53,7 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   Handing the same letters back as tiles would leave nothing to retrieve but their order,
   where writing the word out IS the spelling —
   so this drill wears the typed card every other trainer drill wears rather than a tile bank.
-- **Its Sprossen are stages in the letter drill's sense**,
+- **Its Sprossen are formats in the letter drill's sense**,
   changing what the question IS rather than how long the word is:
   what they take away is how much of the word stands where the spelling put it
   (`WordScrambleMasking`).

@@ -25,17 +25,17 @@ class LetterDrillTests {
         )
 
     @Test
-    fun theLadderMapsLevelsToStages() {
-        assertEquals(LetterStage.ChoiceEasy, LetterDrill.stageFor(1))
-        assertEquals(LetterStage.ChoiceEasy, LetterDrill.stageFor(2))
-        for (level in 3..5) assertEquals(LetterStage.ChoiceConfusable, LetterDrill.stageFor(level))
-        assertEquals(LetterStage.Typed, LetterDrill.stageFor(6))
-        assertEquals(LetterStage.Typed, LetterDrill.stageFor(7))
-        assertEquals(LetterStage.Dictation, LetterDrill.stageFor(8))
-        assertEquals(LetterStage.Dictation, LetterDrill.stageFor(9))
+    fun theLadderMapsLevelsToFormats() {
+        assertEquals(LetterFormat.ChoiceEasy, LetterDrill.formatFor(1))
+        assertEquals(LetterFormat.ChoiceEasy, LetterDrill.formatFor(2))
+        for (level in 3..5) assertEquals(LetterFormat.ChoiceConfusable, LetterDrill.formatFor(level))
+        assertEquals(LetterFormat.Typed, LetterDrill.formatFor(6))
+        assertEquals(LetterFormat.Typed, LetterDrill.formatFor(7))
+        assertEquals(LetterFormat.Dictation, LetterDrill.formatFor(8))
+        assertEquals(LetterFormat.Dictation, LetterDrill.formatFor(9))
         // Out of range coerces rather than throwing — a stale preset must not crash a run.
-        assertEquals(LetterStage.ChoiceEasy, LetterDrill.stageFor(0))
-        assertEquals(LetterStage.Dictation, LetterDrill.stageFor(99))
+        assertEquals(LetterFormat.ChoiceEasy, LetterDrill.formatFor(0))
+        assertEquals(LetterFormat.Dictation, LetterDrill.formatFor(99))
         assertEquals(9, LetterDrill.maxLevel(dictationAvailable = true))
         assertEquals(7, LetterDrill.maxLevel(dictationAvailable = false))
     }
@@ -48,13 +48,13 @@ class LetterDrillTests {
         assertEquals(5, LetterDrill.entryLevel(59))
         assertEquals(6, LetterDrill.entryLevel(60))
         assertEquals(6, LetterDrill.entryLevel(200))
-        // Never dictation: entering on a stage that draws from the box would ask for a
+        // Never dictation: entering on a format that draws from the box would ask for a
         // word before the box can name five of them.
         assertTrue(LetterDrill.entryLevel(10_000) <= 6)
     }
 
     @Test
-    fun stageLengthShrinksOnceAVocabularyIsHeld() {
+    fun sprosseLengthShrinksOnceAVocabularyIsHeld() {
         assertEquals(2, LetterDrill.winsToAdvance(0))
         assertEquals(2, LetterDrill.winsToAdvance(59))
         assertEquals(1, LetterDrill.winsToAdvance(60))
@@ -216,7 +216,7 @@ class LetterDrillTests {
     }
 
     private fun task(accepted: List<String>) = LetterDrillTask(
-        stage = LetterStage.Typed,
+        format = LetterFormat.Typed,
         language = LetterDrillFixture.LANGUAGE,
         answerRef = accepted.first(),
         promptText = "name",

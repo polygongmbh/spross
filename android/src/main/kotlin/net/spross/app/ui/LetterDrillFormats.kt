@@ -14,7 +14,7 @@ import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.LetterDrillTask
 
 /**
- * The stage bodies of the letter drill: the glyph tiles and the typed and dictated field.
+ * The format bodies of the letter drill: the glyph tiles and the typed and dictated field.
  *
  * Every rule is kern's `LetterDrillRun`, reached through [LetterDrillFlow] — which tile is
  * the answer, what a typed word earns, which pause waits for a tap. This renders that and
@@ -26,7 +26,7 @@ import net.spross.kern.trainer.LetterDrillTask
  * grid is [DrillChoiceGrid], shared with the calendar's warm-up Sprosse.
  */
 @Composable
-fun ChoiceStage(flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
+fun ChoiceFormat(flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         // The ramp's glyph slot rather than a ramp entry: a letterform is the thing being
         // READ here, so it is set at picture size the way an emoji face is — and a bare
@@ -58,7 +58,7 @@ fun ChoiceStage(flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
  * one checks — the sibling drills' contract.
  */
 @Composable
-fun TypedStage(
+fun TypedFormat(
     model: AppModel,
     flow: LetterDrillFlow,
     task: LetterDrillTask,

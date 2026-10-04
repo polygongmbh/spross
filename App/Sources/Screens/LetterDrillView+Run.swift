@@ -72,7 +72,7 @@ extension LetterDrillView: DrillRunning {
     /// The STRICT drill grader with the whole join in view: a per-word slip
     /// budget alone would accept `kufungua` for `kufunga`, and only the
     /// catalog-wide grader withdraws that credit. Resolved once, when the run
-    /// opens — dictation is the only stage that consults it.
+    /// opens — dictation is the only format that consults it.
     @MainActor static func dictationGrader(model: AppModel, language: String) -> CatalogAnswerGrader? {
         guard let info = model.languageInfo(language), let box = model.box else { return nil }
         let normalizer = AnswerNormalizer.companion.drill(answerLanguage: info)
@@ -150,7 +150,7 @@ extension LetterDrillView {
         // it exists for, and this is where a run shows it reached the player.
         print("""
             LetterDrill probe: play \(name) \
-            stage \(task.stage.name) level \(run.level) kind \(task.promptKind.name) \
+            format \(task.format.name) level \(run.level) kind \(task.promptKind.name) \
             text "\(task.promptText)" recording \(pronunciation.recordingPath ?? "none") \
             index \(pronunciation.gain) dB/\(pronunciation.leadMs) ms \
             screenReader \(screenReaderOn) \

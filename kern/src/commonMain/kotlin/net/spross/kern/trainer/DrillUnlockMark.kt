@@ -29,7 +29,7 @@ object DrillUnlockMark {
 
     fun row(modifier: DrillModifier): String = "modifier.${modifier.name}"
 
-    fun row(stage: LetterStage): String = "stage.${stage.name}"
+    fun row(format: LetterFormat): String = "stage.${format.name}"
 
     /** The atlas' and the calendar's one padlocked row: Fast, earned on the top Sprosse. */
     val typedDrillFast: String get() = row(DrillModifier.Fast)

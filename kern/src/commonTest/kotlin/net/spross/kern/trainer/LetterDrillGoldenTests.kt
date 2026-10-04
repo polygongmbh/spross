@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 /**
- * The whole ladder replayed from one seed, pinned line by line: stage, answer, prompt
+ * The whole ladder replayed from one seed, pinned line by line: format, answer, prompt
  * provenance, tile ORDER (both platforms render kern's shuffle, so a reordering is a
  * cross-platform change) and gap word.
  *
@@ -38,7 +38,7 @@ class LetterDrillGoldenTests {
                 )
                 avoid = task.answerRef
                 appendLine(
-                    "  ${task.stage} ${task.answerRef} ${task.promptKind} " +
+                    "  ${task.format} ${task.answerRef} ${task.promptKind} " +
                         "[${task.choices?.joinToString(" ") ?: "-"}] ${task.gapText ?: "-"}",
                 )
             }
@@ -55,7 +55,7 @@ class LetterDrillGoldenTests {
                     LetterDrill.sampleDictation(cards, fixture.alphabet, level, avoid, emptySet(), rng),
                 )
                 avoid = task.answerRef
-                appendLine("  ${task.stage} ${task.answerRef} ${task.display}")
+                appendLine("  ${task.format} ${task.answerRef} ${task.display}")
             }
         }
     }

@@ -14,7 +14,7 @@ import net.spross.kern.session.AnswerNormalizer
  * The letter drill as pure state plus one reducer. The run's shape is [LetterDrillRunState];
  * what it can ask is [LetterDrillAvailability.Report].
  *
- * Its Sprossen are STAGES — they change what a question is rather than how big the number is.
+ * Its Sprossen are FORMATS — they change what a question is rather than how big the number is.
  * That is the whole of what it does not share with the typed drills; the verdict ladder
  * ([TypedDrillVerdicts]), the ramp, the effects and the summary are the same ones.
  */
@@ -24,7 +24,7 @@ object LetterDrillRun {
     fun open(config: LetterDrillRunConfig, rng: Random): LetterDrillRunState =
         openAt(config, config.report.openingLevel(config.cleared), rng)
 
-    /** The same, forced to one Sprosse — the deterministic way to reach a stage. */
+    /** The same, forced to one Sprosse — the deterministic way to reach a format. */
     fun openAt(config: LetterDrillRunConfig, level: Int, rng: Random): LetterDrillRunState {
         val start = level.coerceIn(1, config.report.maxLevel)
         val opening = draw(config, start, null, null, emptySet(), rng)
@@ -75,7 +75,7 @@ object LetterDrillRun {
         grader: CatalogAnswerGrader?,
     ): Match {
         val trimmed = input.trim()
-        if (task.stage != LetterStage.Dictation || card == null || grader == null) {
+        if (task.format != LetterFormat.Dictation || card == null || grader == null) {
             return if (LetterDrill.gradeLetter(trimmed, task)) Match.Exact else Match.Wrong
         }
         val graded = grader.grade(trimmed, LetterDrill.dictationGradingCard(card, task))
@@ -243,7 +243,7 @@ object LetterDrillRun {
 
     /**
      * The first Sprosse at or above [from] with something left to ask ([DrillLadder.climb]).
-     * A stage the run has answered out is climbed past rather than repeated ([DrillSolved]).
+     * A format the run has answered out is climbed past rather than repeated ([DrillSolved]).
      */
     private fun draw(
         config: LetterDrillRunConfig,
@@ -258,7 +258,7 @@ object LetterDrillRun {
         }
 
     /**
-     * One question at [level]: dictation draws from the box, every other stage from the alphabet.
+     * One question at [level]: dictation draws from the box, every other format from the alphabet.
      * [avoiding] is the previous answer and [avoidingWord] the word it gapped, each of which kern
      * resamples once. Null ⇒ this device, at this Sprosse, can ask nothing more.
      */
@@ -271,7 +271,7 @@ object LetterDrillRun {
         rng: Random,
     ): LetterDrillTask? {
         val report = config.report
-        if (LetterDrill.stageFor(level) == LetterStage.Dictation &&
+        if (LetterDrill.formatFor(level) == LetterFormat.Dictation &&
             report.dictationCandidates.isNotEmpty()
         ) {
             return LetterDrill.sampleDictation(

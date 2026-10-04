@@ -74,20 +74,20 @@ object LetterDrill {
      */
     fun winsToAdvance(arrivedCards: Int): Int = if (arrivedCards >= GROWING_FOR_SHORT_STAGES) 1 else 2
 
-    /** The Sprossen [stage] spans — [stageFor]'s reading turned round. */
-    fun sprossen(stage: LetterStage): IntRange = when (stage) {
-        LetterStage.ChoiceEasy -> 1..2
-        LetterStage.ChoiceConfusable -> 3..5
-        LetterStage.Typed -> 6..7
-        LetterStage.Dictation -> 8..MAX_LEVEL_WITH_DICTATION
+    /** The Sprossen [format] spans — [formatFor]'s reading turned round. */
+    fun sprossen(format: LetterFormat): IntRange = when (format) {
+        LetterFormat.ChoiceEasy -> 1..2
+        LetterFormat.ChoiceConfusable -> 3..5
+        LetterFormat.Typed -> 6..7
+        LetterFormat.Dictation -> 8..MAX_LEVEL_WITH_DICTATION
     }
 
     /** 1–2 easy tiles, 3–5 confusable tiles, 6–7 typing, 8–9 dictation. */
-    fun stageFor(level: Int): LetterStage = when (level.coerceIn(1, MAX_LEVEL_WITH_DICTATION)) {
-        1, 2 -> LetterStage.ChoiceEasy
-        3, 4, 5 -> LetterStage.ChoiceConfusable
-        6, 7 -> LetterStage.Typed
-        else -> LetterStage.Dictation
+    fun formatFor(level: Int): LetterFormat = when (level.coerceIn(1, MAX_LEVEL_WITH_DICTATION)) {
+        1, 2 -> LetterFormat.ChoiceEasy
+        3, 4, 5 -> LetterFormat.ChoiceConfusable
+        6, 7 -> LetterFormat.Typed
+        else -> LetterFormat.Dictation
     }
 
     /**
@@ -102,7 +102,7 @@ object LetterDrill {
     data class AlphabetExampleWord(val text: String, val slug: String?, val known: Boolean = false)
 
     /**
-     * One letter-stage question. [promptableRefs] is the app's own list (what the device
+     * One letter-format question. [promptableRefs] is the app's own list (what the device
      * can actually speak or play) in file order; [avoidRef] is the previous answer
      * and [avoidWord] the previous gap word, each resampled once so a repeat needs two
      * unlucky draws rather than one.
@@ -117,7 +117,7 @@ object LetterDrill {
      * an authoring slip into a smaller pool instead of an unanswerable question.
      *
      * [solved] is what this run has already got right ([DrillSolved]): those prompts are
-     * dropped from the pool too, and a stage with nothing left outside them samples null —
+     * dropped from the pool too, and a format with nothing left outside them samples null —
      * a spent Sprosse the run climbs past rather than asks again.
      */
     fun sample(
@@ -131,28 +131,28 @@ object LetterDrill {
         rng: Random,
     ): LetterDrillTask? {
         val allowed = promptableRefs.toSet()
-        // why: the letter stages stop at 7 — 8 and 9 are dictation, which draws from the
+        // why: the letter formats stop at 7 — 8 and 9 are dictation, which draws from the
         // box and enters through sampleDictation, never here.
-        val stage = stageFor(level.coerceIn(1, MAX_LEVEL_WITHOUT_DICTATION))
+        val format = formatFor(level.coerceIn(1, MAX_LEVEL_WITHOUT_DICTATION))
         val pool = alphabet.entries
             .filter { it.ref in allowed && it.drill && it.kind != AlphabetKind.Rule }
-            .map { entry -> entry to unsolved(gapCandidates(entry, targetExamples), stage, entry, solved) }
+            .map { entry -> entry to unsolved(gapCandidates(entry, targetExamples), format, entry, solved) }
             .filter { (entry, words) -> entry.kind == AlphabetKind.Letter || words.isNotEmpty() }
-            .filter { (entry, _) -> entry.kind != AlphabetKind.Letter || askableName(entry, stage, solved) }
+            .filter { (entry, _) -> entry.kind != AlphabetKind.Letter || askableName(entry, format, solved) }
         if (pool.isEmpty()) return null
         var picked = pool[rng.nextInt(pool.size)]
         if (picked.first.ref == avoidRef) picked = pool[rng.nextInt(pool.size)]
         val (entry, words) = picked
         val prompt = prompt(entry, words, avoidWord, rng)
         return LetterDrillTask(
-            stage = stage,
+            format = format,
             language = alphabet.language,
             answerRef = entry.ref,
             promptText = prompt.text,
             promptKind = prompt.kind,
             promptSlug = prompt.slug,
             promptGlyph = prompt.glyph,
-            choices = LetterDrillChoices.tiles(alphabet, entry, stage, level, prompt.gap, rng),
+            choices = LetterDrillChoices.tiles(alphabet, entry, format, level, prompt.gap, rng),
             gapText = prompt.gap,
             accepted = listOf(entry.glyph),
             display = entry.glyph,
@@ -197,7 +197,7 @@ object LetterDrill {
     ): LetterDrillTask? {
         val words = candidates.filter {
             ' ' !in it.card.target.text &&
-                DrillSolved.letterKey(LetterStage.Dictation, it.card.id, it.card.target.text) !in solved
+                DrillSolved.letterKey(LetterFormat.Dictation, it.card.id, it.card.target.text) !in solved
         }
         if (words.isEmpty()) return null
         val short = words.filter { it.card.target.text.count { ch -> ch != ' ' } <= SHORT_WORD_LETTERS }
@@ -207,7 +207,7 @@ object LetterDrill {
         var card = weighted(pool, weights, rng).card
         if (card.id == avoidCardId) card = weighted(pool, weights, rng).card
         return LetterDrillTask(
-            stage = LetterStage.Dictation,
+            format = LetterFormat.Dictation,
             language = card.target.lang,
             answerRef = card.id,
             promptText = card.target.text,
@@ -290,19 +290,19 @@ object LetterDrill {
         if (entry.kind == AlphabetKind.Letter) emptyList()
         else examples(entry).filter { entry.gapWord(it.text) != null }
 
-    /** The gap words this run has not already spelled right at this stage. */
+    /** The gap words this run has not already spelled right in this format. */
     private fun unsolved(
         words: List<AlphabetExampleWord>,
-        stage: LetterStage,
+        format: LetterFormat,
         entry: AlphabetEntry,
         solved: Set<String>,
     ): List<AlphabetExampleWord> =
-        words.filter { DrillSolved.letterKey(stage, entry.ref, it.text) !in solved }
+        words.filter { DrillSolved.letterKey(format, entry.ref, it.text) !in solved }
 
     /** A letter is asked by its NAME, so that one prompt is the whole of what it can offer. */
-    private fun askableName(entry: AlphabetEntry, stage: LetterStage, solved: Set<String>): Boolean {
+    private fun askableName(entry: AlphabetEntry, format: LetterFormat, solved: Set<String>): Boolean {
         val name = entry.name ?: return false
-        return DrillSolved.letterKey(stage, entry.ref, name) !in solved
+        return DrillSolved.letterKey(format, entry.ref, name) !in solved
     }
 
     private fun prompt(

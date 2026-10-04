@@ -74,7 +74,7 @@ class LetterDrillRunTest {
         LetterDrillRun.reduce(state, intent, rng)
 
     private fun dictationTask(card: Card) = LetterDrillTask(
-        stage = LetterStage.Dictation,
+        format = LetterFormat.Dictation,
         language = LetterDrillFixture.LANGUAGE,
         answerRef = card.id,
         promptText = card.target.text,
@@ -91,38 +91,38 @@ class LetterDrillRunTest {
     // MARK: - Where a run opens
 
     /**
-     * The entry Sprosse comes from the words the learner already holds, capped one stage below
+     * The entry Sprosse comes from the words the learner already holds, capped one format below
      * whatever this device can reach — nobody starts by taking dictation.
      */
     @Test
-    fun aRunOpensOnTheStageTheLearnersWordsHaveEarned() {
+    fun aRunOpensOnTheFormatTheLearnersWordsHaveEarned() {
         val fresh = report(growing = 0)
         assertEquals(1, fresh.entryLevel)
-        assertEquals(LetterStage.ChoiceEasy, fresh.openingStage(emptySet()))
+        assertEquals(LetterFormat.ChoiceEasy, fresh.openingFormat(emptySet()))
         assertEquals(LetterDrill.MAX_LEVEL_WITHOUT_DICTATION, fresh.maxLevel)
         assertEquals(2, fresh.winsToAdvance)
 
         assertEquals(3, report(growing = 24).entryLevel)
-        assertEquals(LetterStage.ChoiceConfusable, report(growing = 24).openingStage(emptySet()))
+        assertEquals(LetterFormat.ChoiceConfusable, report(growing = 24).openingFormat(emptySet()))
 
         val held = report(growing = 72, dictation = LetterDrillFixture.dictationCandidates())
         assertEquals(6, held.entryLevel)
-        assertEquals(LetterStage.Typed, held.openingStage(emptySet()))
+        assertEquals(LetterFormat.Typed, held.openingFormat(emptySet()))
         assertEquals(LetterDrill.MAX_LEVEL_WITH_DICTATION, held.maxLevel)
         assertEquals(1, held.winsToAdvance, "a growing vocabulary earns a Sprosse in one win")
     }
 
     /**
-     * A stage some run answered out is climbed past on the way in, above whatever the
-     * vocabulary already skips — the atlas' record, kept for the tile and typed stages.
+     * A format some run answered out is climbed past on the way in, above whatever the
+     * vocabulary already skips — the atlas' record, kept for the tile and typed formats.
      */
     @Test
     fun aRunOpensAboveTheSprossenEarlierRunsAnsweredOut() {
         val fresh = report(growing = 0)
         assertEquals(3, fresh.openingLevel(setOf(1, 2)))
-        assertEquals(LetterStage.ChoiceConfusable, fresh.openingStage(setOf(1, 2)))
-        assertTrue(fresh.stageCleared(LetterStage.ChoiceEasy, setOf(1, 2)))
-        assertFalse(fresh.stageCleared(LetterStage.ChoiceConfusable, setOf(3, 4)))
+        assertEquals(LetterFormat.ChoiceConfusable, fresh.openingFormat(setOf(1, 2)))
+        assertTrue(fresh.formatCleared(LetterFormat.ChoiceEasy, setOf(1, 2)))
+        assertFalse(fresh.formatCleared(LetterFormat.ChoiceConfusable, setOf(3, 4)))
         assertEquals(3, LetterDrillRun.open(config(fresh, cleared = setOf(1, 2)), Random(3)).level)
 
         val held = report(growing = 72, dictation = LetterDrillFixture.dictationCandidates())
@@ -176,7 +176,7 @@ class LetterDrillRunTest {
         val rng = Random(3)
         val typed = LetterDrillRun.openAt(config(report(growing = 0)), 9, rng)
         assertEquals(7, typed.level)
-        assertEquals(LetterStage.Typed, typed.stage)
+        assertEquals(LetterFormat.Typed, typed.format)
 
         val dictating = LetterDrillRun.openAt(
             config(
@@ -187,7 +187,7 @@ class LetterDrillRunTest {
             rng,
         )
         assertEquals(9, dictating.level)
-        assertEquals(LetterStage.Dictation, dictating.stage)
+        assertEquals(LetterFormat.Dictation, dictating.format)
     }
 
     // MARK: - Tiles
@@ -197,7 +197,7 @@ class LetterDrillRunTest {
         val rng = Random(5)
         val state = LetterDrillRun.openAt(config(report(growing = 0)), 1, rng)
         val task = assertNotNull(state.task)
-        assertEquals(LetterStage.ChoiceEasy, task.stage)
+        assertEquals(LetterFormat.ChoiceEasy, task.format)
         assertTrue(task.choices.orEmpty().contains(task.display))
 
         val hit = reduce(state, LetterDrillIntent.Choose(task.display), rng)
@@ -219,7 +219,7 @@ class LetterDrillRunTest {
     fun aWrongTileStandsTheAnswerUpAndBooksAMiss() {
         val rng = Random(7)
         var state = LetterDrillRun.openAt(config(report(growing = 72)), 5, rng)
-        assertEquals(LetterStage.ChoiceConfusable, state.stage)
+        assertEquals(LetterFormat.ChoiceConfusable, state.format)
         val wrong = assertNotNull(state.task!!.choices).first { it != state.task!!.display }
         state = reduce(state, LetterDrillIntent.Choose(wrong), rng).state
         assertEquals(TurnFeedback.Revealed, state.feedback)
@@ -239,7 +239,7 @@ class LetterDrillRunTest {
     fun revealingLeavesTheFieldEmpty() {
         val rng = Random(11)
         val state = LetterDrillRun.openAt(config(report(growing = 72)), 6, rng)
-        assertEquals(LetterStage.Typed, state.stage)
+        assertEquals(LetterFormat.Typed, state.format)
         assertTrue(state.typing)
         val revealed = reduce(state, LetterDrillIntent.Reveal, rng)
         assertEquals(
@@ -307,7 +307,7 @@ class LetterDrillRunTest {
         assertEquals(Match.Exact, LetterDrillRun.grade(drawn.display, drawn, null, null))
         assertEquals(Match.Wrong, LetterDrillRun.grade("zz", drawn, null, null))
 
-        // Case folds; a one-glyph answer never gets a slip budget, whatever the stage.
+        // Case folds; a one-glyph answer never gets a slip budget, whatever the format.
         val cyrillic = drawn.copy(accepted = listOf("ч"), display = "ч")
         assertEquals(Match.Exact, LetterDrillRun.grade("Ч", cyrillic, null, null))
         assertEquals(Match.Wrong, LetterDrillRun.grade("c", cyrillic, null, null))
@@ -426,7 +426,7 @@ class LetterDrillRunTest {
 
     // MARK: - Asking each prompt once
 
-    /** The question on screen, answered right the way its stage takes an answer. */
+    /** The question on screen, answered right the way its format takes an answer. */
     private fun answeredRight(state: LetterDrillRunState, rng: Random): LetterDrillRunState {
         val task = assertNotNull(state.task)
         val intent = if (task.choices == null) {
@@ -438,12 +438,12 @@ class LetterDrillRunTest {
     }
 
     /**
-     * One promptable letter is one question per STAGE, so answering it right empties both
-     * Sprossen of that stage at once: the run climbs past them rather than asking `m` again,
-     * and the same letter is a question again where the next stage asks it another way.
+     * One promptable letter is one question per FORMAT, so answering it right empties both
+     * Sprossen of that format at once: the run climbs past them rather than asking `m` again,
+     * and the same letter is a question again where the next format asks it another way.
      */
     @Test
-    fun aStageAnsweredOutIsClimbedPast() {
+    fun aFormatAnsweredOutIsClimbedPast() {
         val rng = Random(41)
         val one = config(report(growing = 0, refs = listOf("m")))
         var state = LetterDrillRun.openAt(one, 1, rng)
@@ -451,9 +451,9 @@ class LetterDrillRunTest {
 
         state = answeredRight(state, rng)
         assertEquals(3, state.level, "both easy Sprossen ask the same one question")
-        assertEquals(LetterStage.ChoiceConfusable, state.stage)
+        assertEquals(LetterFormat.ChoiceConfusable, state.format)
         assertEquals(0, state.winsAtLevel, "the wins stay behind with the Sprosse that earned them")
-        assertEquals("em", state.task?.promptText, "a tile stage and a typed one are two questions")
+        assertEquals("em", state.task?.promptText, "a tile format and a typed one are two questions")
         assertFalse(state.finished)
     }
 
@@ -464,7 +464,7 @@ class LetterDrillRunTest {
         var state = LetterDrillRun.openAt(config(report(growing = 0, refs = listOf("m"))), 1, rng)
         while (!state.finished) state = answeredRight(state, rng)
         assertNull(state.task)
-        assertEquals(3, state.done, "one question per stage: two tile stages and the typed one")
+        assertEquals(3, state.done, "one question per format: two tile formats and the typed one")
     }
 
     /**

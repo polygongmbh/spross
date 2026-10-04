@@ -107,7 +107,7 @@ class RealCatalogLetterDrillTest {
             val prose = alphabet.entries.filter { it.kind == AlphabetKind.Rule }.map { it.glyph }.toSet()
             for (level in 1..5) {
                 for (task in draws(lang, level)) {
-                    val tiles = assertNotNull(task.choices, "$lang level $level: a choice stage needs tiles")
+                    val tiles = assertNotNull(task.choices, "$lang level $level: a choice format needs tiles")
                     assertEquals(tiles.distinct(), tiles, "$lang: repeated tile in $tiles")
                     assertEquals(1, tiles.count { it == task.display }, "$lang: $tiles")
                     assertTrue(tiles.size >= 3, "$lang: ${task.answerRef} got $tiles")

@@ -218,7 +218,7 @@ Engine contract: `../README.md`.
   The atlas and the calendar ENUMERATE a Sprosse and check it off (`DrillSolved.cleared`);
   a drawn Sprosse is never cleared that way.
   The two scrambles draw out of a pool that grows with the box, so what they book is the CLIMB,
-  and so does the letter drill, whose stages ask thirty prompts where its ramp climbs on two:
+  and so does the letter drill, whose formats ask thirty prompts where its ramp climbs on two:
   `DrillSprossen` clears a Sprosse the run left UPWARD,
   whether on the wins the ladder asks for or by being answered out.
   Both ways share one rule: only a run with no slip yet clears a Sprosse (`DrillRunCore.slipped`).

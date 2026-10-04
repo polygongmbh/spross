@@ -8,7 +8,7 @@ import net.spross.kern.catalog.utterance
 import net.spross.kern.model.Language
 import net.spross.kern.trainer.LetterDrillTask
 import net.spross.kern.trainer.LetterPromptKind
-import net.spross.kern.trainer.LetterStage
+import net.spross.kern.trainer.LetterFormat
 
 /**
  * The drill's audio glue — the twin of [SessionAudio]'s review-loop half, and of
@@ -62,7 +62,7 @@ fun AppModel.letterReplay(task: LetterDrillTask): (() -> Unit)? {
  * above stays the one way to hear the question.
  */
 fun AppModel.letterSpeaker(task: LetterDrillTask, form: String): (() -> Unit)? =
-    if (task.stage == LetterStage.Dictation) speakFormOnTap(form, task.language) else null
+    if (task.format == LetterFormat.Dictation) speakFormOnTap(form, task.language) else null
 
 /**
  * A letter's own NAME — «ер», never the bare glyph, which a synthesizer reads as anything

@@ -7,7 +7,7 @@ import net.spross.kern.catalog.DateEntry
 /**
  * The warm-up Sprosse: the calendar's nineteen names picked off four tiles instead of
  * written out — recognition before production, which is the opening the letters ladder
- * already climbs ([LetterStage.ChoiceEasy]) and the rule the box keeps for a word's first
+ * already climbs ([LetterFormat.ChoiceEasy]) and the rule the box keeps for a word's first
  * exposure. Nothing above it is tapped: the Sprosse is a landing, not a step the ladder
  * carries on ([DateDrill.kinds]).
  *

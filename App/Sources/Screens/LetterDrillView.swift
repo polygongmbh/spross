@@ -3,21 +3,21 @@ import SprossKern
 
 /// The letter drill: hear a sound, find the letter. Four glyph tiles, then
 /// confusable ones, then typing the glyph, and finally dictation of words the
-/// learner already holds — one level, mapped to stages by Kern.
+/// learner already holds — one level, mapped to formats by Kern.
 ///
 /// Stateless like its slot-drill sibling and then some: no review is ever
 /// booked (D12 — transcription is not recall). The box is READ, for the pacing
 /// figures and the dictation pool, and never written. Closing shows a summary.
 ///
-/// The RUN is kern's (`LetterDrillRun`): the draw, the stages, the verdict
+/// The RUN is kern's (`LetterDrillRun`): the draw, the formats, the verdict
 /// ladder and the ramp all live in `run`, and every event becomes a
 /// `LetterDrillIntent`. A separate machine from the slot drill's on purpose —
 /// an audio prompt with choice tiles shares no grammar with a typed numeral —
 /// and the two meet only in `DrillEffect` and `DrillRunSummary`.
 ///
 /// The driver is the shared one (`DrillRunning`), wired up in
-/// LetterDrillView+Run.swift; stage bodies live in
-/// LetterDrillView+Stages.swift, the prompt card in HearPromptCard.swift. State
+/// LetterDrillView+Run.swift; format bodies live in
+/// LetterDrillView+Formats.swift, the prompt card in HearPromptCard.swift. State
 /// stays here — members are internal where an extension reaches them.
 struct LetterDrillView: View, LanguageNaming {
     let model: AppModel
@@ -31,7 +31,7 @@ struct LetterDrillView: View, LanguageNaming {
     @Environment(\.accessibilityReduceMotion) var reduceMotion
 
     /// The whole run, kern's.
-    // why: internal, not private — +Run and +Stages read and drive it.
+    // why: internal, not private — +Run and +Formats read and drive it.
     @State var run: LetterDrillRunState
     /// The learner's text; the run holds every rule that decides what it means.
     @State var input = ""
@@ -55,7 +55,7 @@ struct LetterDrillView: View, LanguageNaming {
         )
         #if DEBUG
         // UI-test hook: `-uitest-letters-level N` opens the run at that Sprosse,
-        // which is how any stage is reached deterministically. Kern clamps it.
+        // which is how any format is reached deterministically. Kern clamps it.
         let preset = UserDefaults.standard.integer(forKey: "uitest-letters-level")
         if preset > 0 {
             _run = State(initialValue: LetterDrillRun.shared.openAt(config: config,
@@ -77,7 +77,7 @@ struct LetterDrillView: View, LanguageNaming {
     /// The question on screen; nil only once this device can ask nothing more.
     var current: LetterDrillTask? { run.task }
 
-    /// True on the stages that carry an input field.
+    /// True on the formats that carry an input field.
     var typing: Bool { run.typing }
 
     var namingCatalog: Catalog? { model.catalog }

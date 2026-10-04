@@ -121,7 +121,7 @@ extension LetterDrill {
 
     func winsToAdvance(arrived: Int) -> Int { Int(winsToAdvance(arrivedCards: Int32(arrived))) }
 
-    func stage(level: Int) -> LetterStage { stageFor(level: Int32(level)) }
+    func format(level: Int) -> LetterFormat { formatFor(level: Int32(level)) }
 }
 
 /// Same bridge for the atlas drill: its ladder is Kotlin `Int`, its ceiling and

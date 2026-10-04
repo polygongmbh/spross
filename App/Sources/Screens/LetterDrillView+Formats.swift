@@ -2,7 +2,7 @@ import SwiftUI
 import SprossKern
 
 /// Screen content of the letter drill: the four glyph tiles, the typed and
-/// dictated stages, and the controls under them. Everything it shows is read
+/// dictated formats, and the controls under them. Everything it shows is read
 /// off `run` and every control dispatches an intent. State lives on
 /// LetterDrillView; split out purely for file size.
 extension LetterDrillView {
@@ -25,7 +25,7 @@ extension LetterDrillView {
                             .id(run.index)
                             .transition(reduceMotion ? .opacity : .cardFlip)
                     }
-                    switch task.stage {
+                    switch task.format {
                     case .choiceEasy, .choiceConfusable:
                         choiceGrid(task)
                         choiceControls
@@ -45,7 +45,7 @@ extension LetterDrillView {
     /// What the question asks: a letter by its name, a grapheme missing from a
     /// heard word, or a whole word to transcribe.
     func question(for task: LetterDrillTask) -> LocalizedStringKey {
-        if task.stage == .dictation { return "letters.ask.dictation" }
+        if task.format == .dictation { return "letters.ask.dictation" }
         return task.gapText == nil ? "letters.ask.hear" : "letters.ask.spell"
     }
 
@@ -63,7 +63,7 @@ extension LetterDrillView {
     /// speaker played — would only repeat it, off-key.
     private func cardReveal(_ task: LetterDrillTask) -> HearPromptCard.Reveal? {
         guard run.showsAnswer,
-              !(task.gapText == nil && (task.stage == .choiceEasy || task.stage == .choiceConfusable)),
+              !(task.gapText == nil && (task.format == .choiceEasy || task.format == .choiceConfusable)),
               let word = task.gapText == nil ? task.display : task.gloss else { return nil }
         return .init(word: word,
                      // why: the meaning is a REVEAL, never a cue — and a gap
@@ -83,7 +83,7 @@ extension LetterDrillView {
     /// Those reveals carry no speaker at all, and the replay above stays the one
     /// way to hear the question.
     func speaker(_ task: LetterDrillTask, _ form: String) -> (() -> Void)? {
-        guard task.stage == .dictation else { return nil }
+        guard task.format == .dictation else { return nil }
         return model.pronounceAction(for: form, lang: task.language)
     }
 
@@ -115,7 +115,7 @@ extension LetterDrillView {
     }
 
     /// A miss always waits for a tap, and on the second in a row offers the way
-    /// out under it, as the typed stages do; a clean hit waits only where a
+    /// out under it, as the typed formats do; a clean hit waits only where a
     /// timed screen change would talk over the announcement it just made.
     @ViewBuilder
     private var choiceControls: some View {

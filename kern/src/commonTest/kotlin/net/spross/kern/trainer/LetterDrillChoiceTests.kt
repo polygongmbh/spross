@@ -43,7 +43,7 @@ class LetterDrillChoiceTests {
     fun everyChoiceQuestionOffersFourDistinctTilesWithOneAnswer() {
         for (level in 1..5) {
             for (task in tasks(level)) {
-                val tiles = assertNotNull(task.choices, "level $level: a choice stage needs tiles")
+                val tiles = assertNotNull(task.choices, "level $level: a choice format needs tiles")
                 assertEquals(LetterDrill.CHOICE_COUNT, tiles.size, "level $level, ${task.answerRef}: $tiles")
                 assertEquals(tiles.distinct(), tiles, "a tile may never repeat: $tiles")
                 assertEquals(1, tiles.count { it == task.display }, "the answer sits once: $tiles")
@@ -133,10 +133,10 @@ class LetterDrillChoiceTests {
     }
 
     @Test
-    fun typedStagesCarryNoTiles() {
+    fun typedFormatsCarryNoTiles() {
         for (level in 6..7) {
             for (task in tasks(level, seeds = 1..40)) {
-                assertEquals(LetterStage.Typed, task.stage)
+                assertEquals(LetterFormat.Typed, task.format)
                 assertNull(task.choices)
             }
         }

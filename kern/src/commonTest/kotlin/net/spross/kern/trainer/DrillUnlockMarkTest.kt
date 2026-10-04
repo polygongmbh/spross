@@ -26,7 +26,7 @@ class DrillUnlockMarkTest {
     fun rowsOfDifferentKindsNeverShareAName() {
         val names = NumbersExercise.entries.map(DrillUnlockMark::row) +
             DrillModifier.entries.map(DrillUnlockMark::row) +
-            LetterStage.entries.map(DrillUnlockMark::row)
+            LetterFormat.entries.map(DrillUnlockMark::row)
         assertEquals(names.size, names.toSet().size)
     }
 }

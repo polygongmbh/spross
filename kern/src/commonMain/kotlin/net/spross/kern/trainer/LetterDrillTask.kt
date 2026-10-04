@@ -3,7 +3,7 @@ package net.spross.kern.trainer
 import net.spross.kern.model.Language
 
 /** The ladder the drill climbs: two multiple-choice Sprossen, typing, then transcription. */
-enum class LetterStage { ChoiceEasy, ChoiceConfusable, Typed, Dictation }
+enum class LetterFormat { ChoiceEasy, ChoiceConfusable, Typed, Dictation }
 
 /**
  * Which recording, if any, may speak [LetterDrillTask.promptText] — the provenance
@@ -19,13 +19,13 @@ enum class LetterPromptKind { Name, Word, PlainText }
 
 /**
  * One letter-drill question. Pure data: the app plays [promptText], renders [choices] or
- * an input field per [stage], and reveals [display] (plus [gloss]) once the answer is in.
+ * an input field per [format], and reveals [display] (plus [gloss]) once the answer is in.
  *
  * The prompt is ALWAYS a speakable surface form — a letter's NAME or a whole word, never a
  * bare glyph, which synthesizers read as anything from a spelling alphabet to a pause.
  */
 data class LetterDrillTask(
-    val stage: LetterStage,
+    val format: LetterFormat,
     /** The alphabet's own language — what the prompt is spoken in. */
     val language: Language,
     /** The answered entry's stable ref (its `id`, else its glyph); a card id in dictation. */
@@ -37,7 +37,7 @@ data class LetterDrillTask(
     val promptSlug: String?,
     /** Non-null iff [promptKind] is [LetterPromptKind.Name]: the letters-manifest lookup key. */
     val promptGlyph: String?,
-    /** Tiles in render order, answer included; null outside the choice stages. */
+    /** Tiles in render order, answer included; null outside the choice formats. */
     val choices: List<String>?,
     /** The example word with the asked grapheme blanked, e.g. `Na＿t`; null for letter names. */
     val gapText: String?,

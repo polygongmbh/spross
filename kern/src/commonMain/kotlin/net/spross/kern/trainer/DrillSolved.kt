@@ -52,16 +52,16 @@ internal object DrillSolved {
     fun key(exercise: NumbersExercise, task: NumbersTask): String = "$exercise:${task.prompt}"
 
     /**
-     * The letter drill asks one letter several ways up its ladder, so the STAGE carries the
+     * The letter drill asks one letter several ways up its ladder, so the FORMAT carries the
      * identity: picking `m` out of four tiles and writing it down are different questions.
      * A gap row is one question per WORD rather than one per grapheme, which is why the
      * prompt text is in the key and not the answer alone.
      */
-    fun key(task: LetterDrillTask): String = letterKey(task.stage, task.answerRef, task.promptText)
+    fun key(task: LetterDrillTask): String = letterKey(task.format, task.answerRef, task.promptText)
 
     /** The same key from the parts, for a draw that is choosing what to build. */
-    fun letterKey(stage: LetterStage, ref: String, promptText: String): String =
-        "$stage:$ref:$promptText"
+    fun letterKey(format: LetterFormat, ref: String, promptText: String): String =
+        "$format:$ref:$promptText"
 
     /** The atlas asks each row several ways too, so its KIND carries the identity. */
     fun key(task: CountryDrillTask): String = "${task.kind}:${task.id}"
