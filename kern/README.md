@@ -210,7 +210,7 @@ the numbers behind each setting are on `BoxConfig` itself, and the three stabili
   The beats, the write-out, the recall span and the asked-by-ear rules are `docs/turns.md`.
 
 The engine also owns budgets and the growth-reserve formula, the silent answer drop,
-the extra round, endless, exposure tiers, statistics, streak forgiveness,
+the extra round, endless, the urgency order (`Urgency`), statistics, streak forgiveness,
 deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 
 - **The streak is one commitment across every target language.**

@@ -112,7 +112,7 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
     }
 
     /// Attention-worthy entries for the complication: the phone already ranks
-    /// due-first, then exposure tiers — just take the head.
+    /// them weakest first — just take the head.
     func exposureEntries(limit: Int) -> [Entry] {
         Array(entries.prefix(limit))
     }

@@ -137,6 +137,6 @@ What has not landed there is `design.md` § Not yet.
   so an answered card never reflows under the thumb.
 - Two runs, and only one of them ends: the **due batch** is a counter that reaches its
   end and returns to the start screen by itself, while **free practice** takes the words
-  closest to slipping, lap after lap, carrying the answer streak in place of a total.
+  weakest first in the order the phone ships, lap after lap, carrying the answer streak in place of a total.
   Practice has no end screen — a run the learner ends when they like has nothing to
   celebrate.

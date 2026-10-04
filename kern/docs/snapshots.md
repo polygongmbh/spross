@@ -144,8 +144,10 @@ Engine contract: `../README.md`.
   - `chromeLanguage` is `LanguageChoices.chromeLanguage` of the box's known language —
     the language the app's own chrome follows, which the watch, the complication and the
     iOS widget cannot ask the phone's model for.
-  Ranking is **due-first** (a due card is never evicted by a non-due lower tier), then
-  exposure tiers, capped at 60 entries (the ~60 KB `updateApplicationContext` limit).
+  The cap of 60 entries (the ~60 KB `updateApplicationContext` limit) fills **due-first**,
+  so a due card is never evicted by a non-due one.
+  The entries it keeps ship weakest first (`Urgency.weakestFirst`):
+  that order is the watch's practice lap, and the due batch and the complication follow it too.
   A second cap is a LEGIBILITY budget rather than a wire one: `MAX_TEXT_CHARS` (24) keeps a
   card off the watch entirely when any form it can render — both sides, plus the target
   `teaches` a rotated `promptForm` reaches for — runs longer than a tile in a 2×2 grid holds.

@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.Inventory
 import net.spross.kern.box.Statistics
+import net.spross.kern.box.Urgency
 import net.spross.kern.model.Card
-import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.Language
@@ -72,25 +72,21 @@ object WatchSnapshotBuilder {
     ): WatchSnapshotDoc {
         val now = Instant.fromEpochMilliseconds(nowEpochMillis)
         val ranked = Inventory.active(state).mapNotNull { sched ->
-            val memory = sched.memory ?: return@mapNotNull null
+            if (sched.memory == null) return@mapNotNull null
             val due = sched.due ?: return@mapNotNull null
             // why: one predicate for both lists below — a card the watch cannot
             // render is also a card it must not offer as somebody else's tile.
             if (!fitsOnWatch(state.cards.getValue(sched.cardId))) return@mapNotNull null
-            // Exposure tiers for scheduled cards; the watch never introduces,
-            // so the enqueued-new and upcoming tiers are absent by design.
-            val tier = when (sched.phase) {
-                CardPhase.Relearning -> 0
-                CardPhase.Learning -> 2
-                else -> 3
-            }
-            Ranked(due <= now, tier, memory.stability, sched)
+            Ranked(due <= now, sched)
         }
-        // why: due-first ranking — every currently-due card outranks all non-due
-        // ones, so the watch never under-reports due cards within the cap.
+        val urgency = compareBy<Ranked, CardScheduling>(Urgency.weakestFirst) { it.sched }
+        // why: the cap fills due-first, so the watch never under-reports due cards;
+        // what it keeps then ships weakest first — the practice order, which the
+        // due batch and the complication read too.
         val entries = ranked
-            .sortedWith(compareBy({ !it.isDue }, { it.tier }, { it.order }, { it.sched.cardId }))
+            .sortedWith(compareBy<Ranked> { !it.isDue }.then(urgency))
             .take(ENTRY_CAP)
+            .sortedWith(urgency)
             .map { entry(it.sched, state.cards.getValue(it.sched.cardId), Statistics.hasArrived(it.sched)) }
         // why: options are drawn from every card the learner has met, not just the
         // capped entries — the cap is a wire budget, and a pool that small leaves a
@@ -158,12 +154,7 @@ object WatchSnapshotBuilder {
             (listOf(side.text) + side.teaches).all { it.length <= MAX_TEXT_CHARS }
         }
 
-    private data class Ranked(
-        val isDue: Boolean,
-        val tier: Int,
-        val order: Double,
-        val sched: CardScheduling,
-    )
+    private data class Ranked(val isDue: Boolean, val sched: CardScheduling)
 
     /**
      * [entry] with its multiple-choice options resolved: the wrong ones ranked out

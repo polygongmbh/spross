@@ -31,9 +31,6 @@ enum Selection {
         let active = state.scheduling.values
             .filter { $0.direction == direction && !$0.suspended && $0.memory != nil }
         let ranked = active.sorted { a, b in
-            let aLearning = a.phase == .learning || a.phase == .relearning
-            let bLearning = b.phase == .learning || b.phase == .relearning
-            if aLearning != bLearning { return aLearning }
             let aStab = a.memory?.stability ?? 0
             let bStab = b.memory?.stability ?? 0
             return (aStab, a.cardID) < (bStab, b.cardID)

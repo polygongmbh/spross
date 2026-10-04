@@ -57,7 +57,7 @@ struct WatchWordProvider: TimelineProvider {
     }
 
     /// Up to 6 h of 15-minute entries cycling through the stored snapshot's
-    /// exposure entries (phone-ranked due-first, then exposure tiers).
+    /// exposure entries (phone-ranked, weakest first).
     private func timelineEntries(from start: Date) -> [WatchWordEntry] {
         guard let snapshot = WatchSnapshotStore.load() else { return [.placeholder] }
         let exposure = snapshot.exposureEntries(limit: 24)

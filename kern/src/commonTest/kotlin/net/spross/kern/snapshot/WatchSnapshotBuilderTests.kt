@@ -129,32 +129,11 @@ class WatchSnapshotBuilderTests {
         assertNull(entry.revealEmoji)
     }
 
-    // Verifier finding: due-first ranking — a currently-due card outranks any
-    // non-due one regardless of its exposure tier.
-    @Test
-    fun dueCardsOutrankNonDueOnesAcrossTiers() {
-        var state = Snap.state(listOf(Snap.card("w01", 1), Snap.card("w02", 2)))
-        state = Box.inject(
-            state,
-            Box.sched(
-                "w01", phase = CardPhase.Learning, stability = 0.5,
-                dueMillis = Box.plusSeconds(Box.day1, 600), lastReviewMillis = Box.day1,
-            ),
-        )
-        state = Box.inject(
-            state,
-            Box.sched("w02", phase = CardPhase.Review, stability = 9.0, dueMillis = Box.day1, lastReviewMillis = Box.day1),
-        )
-        // Learning (tier 2) would beat Review (tier 3), but only w02 is due NOW.
-        val ids = WatchSnapshotBuilder.doc(state, Box.day1).entries.map { it.cardId }
-        assertEquals(listOf("w02", "w01"), ids)
-    }
-
     @Test
     fun capNeverEvictsDueCardsForNonDueOnes() {
         val cards = (1..65).map { Box.word(it) }
         var state = Snap.state(cards)
-        for (n in 1..3) { // non-due learning cards — lower tier, must not crowd due out
+        for (n in 1..3) { // non-due learning cards — weaker, must not crowd due out
             state = Box.inject(
                 state,
                 Box.sched(
@@ -172,7 +151,7 @@ class WatchSnapshotBuilderTests {
         val doc = WatchSnapshotBuilder.doc(state, Box.day1)
 
         assertEquals(60, doc.entries.size)
-        // All 60 slots go to due cards (weakest stability first); none to w01–w03.
+        // All 60 slots go to due cards (weakest first); none to w01–w03.
         assertEquals((4..63).map { "w" + it.toString().padStart(2, '0') }, doc.entries.map { it.cardId })
     }
 

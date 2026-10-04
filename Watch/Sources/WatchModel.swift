@@ -148,7 +148,7 @@ final class WatchModel {
         begin(.session)
     }
 
-    /// Free practice: the words closest to slipping first, lap after lap — no
+    /// Free practice: the weakest words first, lap after lap — no
     /// total, so the streak carries the progress indicator instead.
     func startPractice() {
         guard hasPool else { return }
@@ -244,36 +244,17 @@ final class WatchModel {
         makeQuestionForCurrent()
     }
 
-    /// One practice lap over the whole snapshot, closest to slipping first.
-    /// The jitter is multiplicative and narrow, so it only reorders words that
-    /// stand at the same point of their memory.
+    /// One practice lap over the whole snapshot, in the phone's order (weakest first).
     /// `avoiding` is the card just answered — swapped with its neighbor (not
     /// sent to the back, which would demote the very word practice is for) so
     /// no card asks twice in a row across the lap edge.
     private func practiceLap(avoiding previous: String?) -> [String] {
         guard let snapshot else { return [] }
-        let now = Int64(Date().timeIntervalSince1970 * 1000)
-        var ids = snapshot.entries
-            .map { (id: $0.cardId,
-                    order: remainingSpan($0, now: now) * Double.random(in: 0.8...1.25, using: &rng)) }
-            .sorted { $0.order < $1.order }
-            .map(\.id)
+        var ids = snapshot.entries.map(\.cardId)
         if ids.count > 1, ids.first == previous {
             ids.swapAt(0, 1)
         }
         return ids
-    }
-
-    /// How far the card still has to run, measured in its OWN stability rather
-    /// than in days: 0 at its due moment, negative once overdue.
-    ///
-    /// why: forgetting tracks elapsed time against stability, so a word twenty
-    /// days into a twenty-day interval stands exactly where one two days into
-    /// two does — and further gone than a shaky word answered an hour ago,
-    /// which plain due order and plain stability order both get backwards.
-    private func remainingSpan(_ entry: WatchSnapshot.Entry, now: Int64) -> Double {
-        let days = Double(entry.due - now) / 86_400_000
-        return days / max(entry.stability, 0.01)
     }
 
     /// Build the question for the current card and (re)start the response clock.

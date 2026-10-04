@@ -34,10 +34,8 @@ Flags:
 | `--time-safe-top <p>` | `0.28` | proportion of the height kept empty for the watch's time overlay |
 
 Without `--box`, the first `count` cards of the pair in seed order are rendered.
-With `--box`, cards are ranked the way the widget ranks exposure cards:
-learning/relearning-phase cards first,
-then review cards by lowest stability,
-deterministic tiebreak by card id —
+With `--box`, cards are ranked the way the widget ranks scheduled exposure cards:
+lowest stability first, ties by card id —
 so the album shows the words that currently need attention.
 
 Output: `face-01.png … face-NN.png`
