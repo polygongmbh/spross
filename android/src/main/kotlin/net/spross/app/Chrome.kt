@@ -333,12 +333,8 @@ interface Chrome {
     val boxAreaPhrasesLockedOne: String // %d
     val a11yStateExpanded: String
     val a11yStateCollapsed: String
-    // A card with nothing behind it has NO phase word: new is the absence of a badge. Past
-    // that, a row reads one of four: [boxPhaseFresh] short of the growing bar,
-    // [boxPhaseRelearning] the same Sprosse after a lapse (same color/icon, its own word),
-    // [boxPhaseGrowing] past the growing bar but short of the settled one, and
-    // [a11yBoxPhaseSettled] once a card has cleared it — the shelf's own count stays the
-    // two-way settled/learning split it has always been (`AreaStatistics.learning`).
+    // A new card has no badge; past that a row reads fresh, relearning, growing,
+    // or settled (a seal with [a11yBoxPhaseSettled] as its spoken label).
     val boxPhaseFresh: String
     val boxPhaseRelearning: String
     val boxPhaseGrowing: String
