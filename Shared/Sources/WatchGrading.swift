@@ -1,8 +1,8 @@
 import Foundation
 
-/// An FSRS rating as the watch knows it; the raw value is what the phone books.
-enum WatchRating: Int, Sendable {
-    case again = 1, hard, good, easy
+/// An FSRS rating as the watch knows it; it travels to the phone by name.
+enum WatchRating: String, Sendable {
+    case again, hard, good, easy
 }
 
 /// Response-time → FSRS rating for the watch's multiple-choice practice.

@@ -126,12 +126,10 @@ extension AppModel {
         guard !fresh.isEmpty else { return }
 
         for event in fresh {
-            if let rating = Rating(value: event.rating.rawValue) {
-                state = BoxEngine.shared.answer(state: state, cardId: event.cardId,
-                                                rating: rating,
-                                                nowEpochMillis: event.date.epochMillis,
-                                                tzId: currentTzId())
-            }
+            state = BoxEngine.shared.answer(state: state, cardId: event.cardId,
+                                            rating: event.rating.kernRating,
+                                            nowEpochMillis: event.date.epochMillis,
+                                            tzId: currentTzId())
             applied.append(event.id.uuidString)
             appliedSet.insert(event.id.uuidString)
         }
@@ -147,5 +145,16 @@ extension AppModel {
         persist(state, immediate: true)
         refreshStats()
         WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
+    }
+}
+
+private extension WatchRating {
+    var kernRating: Rating {
+        switch self {
+        case .again: return .again
+        case .hard: return .hard
+        case .good: return .good
+        case .easy: return .easy
+        }
     }
 }
