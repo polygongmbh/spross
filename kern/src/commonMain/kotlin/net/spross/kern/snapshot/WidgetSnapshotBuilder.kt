@@ -5,8 +5,8 @@ import kotlinx.datetime.minus
 import kotlinx.serialization.Serializable
 import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
 import net.spross.kern.box.ActivityDay
-import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.Exposure
 import net.spross.kern.box.Inventory
 import net.spross.kern.box.Statistics
 import net.spross.kern.box.StreakHealth
@@ -88,7 +88,7 @@ object WidgetSnapshotBuilder {
         exposureLimit: Int,
         otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
     ): WidgetSnapshotDoc {
-        val entries = BoxEngine.exposureCards(state, nowEpochMillis, exposureLimit, ::fitsOnWidget).map { card ->
+        val entries = Exposure.exposureCards(state, exposureLimit, ::fitsOnWidget).map { card ->
             WidgetEntryDto(
                 cardId = card.id,
                 text = card.target.text,

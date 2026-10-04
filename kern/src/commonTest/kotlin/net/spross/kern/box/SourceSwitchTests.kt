@@ -41,7 +41,7 @@ class SourceSwitchTests {
         assertEquals(enStamp, en.joinStamp)
         assertEquals(1, BoxEngine.statistics(en, now, Box.TZ).activeCount)
         assertEquals(listOf("w01"), BoxEngine.dueNow(en, now))
-        assertFalse(BoxEngine.exposureCards(en, now, limit = 10).any { it.id == "w02" })
+        assertFalse(Exposure.exposureCards(en, limit = 10).any { it.id == "w02" })
         // Inert, not pruned: the raw schedule survives untouched.
         assertEquals(de.scheduling, en.scheduling)
 

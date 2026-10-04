@@ -452,12 +452,4 @@ object BoxEngine {
             .map { state.cards.getValue(it.cardId) }
             .sortedWith(Inventory.seedOrder)
             .map { it.id }
-
-    /** See [Exposure.exposureCards]; `nowEpochMillis` reserved for future due-weighting. */
-    fun exposureCards(
-        state: BoxState,
-        nowEpochMillis: Long,
-        limit: Int,
-        eligible: (Card) -> Boolean = { true },
-    ): List<Card> = Exposure.exposureCards(state, limit, eligible)
 }
