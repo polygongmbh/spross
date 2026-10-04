@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+## 8.2.0 — 2026-10-04
+
 - Widgets and the watch show your weakest words first, and watch practice follows the same order.
 - Your trees now grow from your name and the language you learn, so every learner's orchard and every language's looks different, and stays the same on all your devices.
 - Home's count of the day's answers no longer counts a new word as a review, so it splits them into new, reviewed and settled exactly as a finished round does.
