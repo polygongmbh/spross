@@ -20,14 +20,6 @@ class TodayReportTests {
 
     private fun id(n: Int) = "w" + n.toString().padStart(2, '0')
 
-    private fun report(reviews: Int, introduced: Int = 0, settled: Int = 0) = TodayReport(
-        reviews = reviews,
-        introduced = introduced,
-        settled = settled,
-        missed = 0,
-        expectedRecall = 0.8,
-    )
-
     @Test
     fun countsAnswersMisesAndFirstMeetings() {
         var state = boxOf(3)
@@ -36,7 +28,7 @@ class TodayReportTests {
         state = Box.answered(state, "w03", Rating.Good, now)
 
         val today = BoxEngine.today(state, now, Box.TZ)
-        assertEquals(3, today.reviews)
+        assertEquals(3, today.answers)
         assertEquals(3, today.introduced)
         assertEquals(1, today.missed)
         // A single Good answer no longer settles on sight (only Easy does) —
@@ -51,8 +43,8 @@ class TodayReportTests {
         state = Box.answered(state, "w01", Rating.Good, Box.plusDays(now, -1.0))
         state = Box.answered(state, "w02", Rating.Good, now)
 
-        assertEquals(1, BoxEngine.today(state, now, Box.TZ).reviews)
-        assertEquals(1, BoxEngine.today(state, Box.plusDays(now, -1.0), Box.TZ).reviews)
+        assertEquals(1, BoxEngine.today(state, now, Box.TZ).answers)
+        assertEquals(1, BoxEngine.today(state, Box.plusDays(now, -1.0), Box.TZ).answers)
     }
 
     @Test
@@ -74,7 +66,7 @@ class TodayReportTests {
             state = Box.answered(state, id(n), if (n <= 8) Rating.Again else Rating.Good, now)
         }
         val today = BoxEngine.today(state, now, Box.TZ)
-        assertEquals(12, today.reviews)
+        assertEquals(12, today.answers)
         assertEquals(8, today.missed)
         assertEquals(1.0 - 8.0 / 12.0, today.recall)
         assertTrue(today.recallStrained) // 0.33 against a scheduled 0.8
@@ -162,41 +154,15 @@ class TodayReportTests {
         assertTrue(BoxEngine.today(state, now, Box.TZ).worked)
     }
 
+    /** A tally names what was answered and stays quiet about the rest. */
     @Test
-    fun theTallyLeadsWithReviewsAndReadsTheRarestPartLast() {
+    fun aTallyNamesOnlyItsNonZeroParts() {
         assertEquals(
-            listOf(
-                TallyPart(TallyPartKind.Reviews, 24),
-                TallyPart(TallyPartKind.Introduced, 3),
-                TallyPart(TallyPartKind.Settled, 2),
-            ),
-            report(reviews = 24, introduced = 3, settled = 2).tallyParts(),
-        )
-        // Reviews carry a worked day on their own; a part with nothing in it is left unsaid.
-        assertEquals(listOf(TallyPart(TallyPartKind.Reviews, 7)), report(reviews = 7).tallyParts())
-        assertEquals(
-            listOf(TallyPart(TallyPartKind.Reviews, 5), TallyPart(TallyPartKind.Settled, 2)),
-            report(reviews = 5, settled = 2).tallyParts(),
-        )
-    }
-
-    /** A round names what it bought, in the order it reads — and stays quiet about the rest. */
-    @Test
-    fun aFinishedRoundNamesOnlyItsNonZeroParts() {
-        assertEquals(
-            listOf(TallyPart(TallyPartKind.Introduced, 3), TallyPart(TallyPartKind.Reviews, 8)),
-            completionTallyParts(introduced = 3, settled = 0, reviews = 8),
-        )
-        assertEquals(
-            listOf(
-                TallyPart(TallyPartKind.Introduced, 1),
-                TallyPart(TallyPartKind.Reviews, 3),
-                TallyPart(TallyPartKind.Settled, 2),
-            ),
-            completionTallyParts(introduced = 1, settled = 2, reviews = 3),
+            listOf(TallyPart(TallyPartKind.Introduced, 3), TallyPart(TallyPartKind.Reviewed, 8)),
+            tallyParts(introduced = 3, reviewed = 8, settled = 0),
         )
         // Nothing nameable: the surface says so plainly instead of printing three zeros.
-        assertEquals(emptyList(), completionTallyParts(introduced = 0, settled = 0, reviews = 0))
+        assertEquals(emptyList(), tallyParts(introduced = 0, reviewed = 0, settled = 0))
     }
 
     /** Packed words outrank the due count: the round they arrive in is the answer to them. */

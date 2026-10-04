@@ -13,18 +13,22 @@ The read models a surface draws the box from (the day, one card's standing, the 
   `recall` is null below `MIN_ANSWERS_FOR_RECALL` — a handful of answers cannot carry a
   ratio — and `recallStrained` names the rule "today is going badly", not the remedy:
   what a surface does with it is the app's call.
-- **`TodayReport.worked` / `tallyParts()`, `completionTallyParts`, `tomorrowNote`** —
+- **`TallyPartKind`, `tallyParts`, `TodayReport.worked`, `tomorrowNote`** —
   which parts a day or a finished round spells out, and in which order.
+  Every answer is exactly one kind (`tallyKind`):
+  `Introduced` (a card's first answer, even one that crosses the bar),
+  `Settled` (the answer that carried the card across the settled bar),
+  or `Reviewed` (every other answer) —
+  so a day's and a round's parts add up to their answers,
+  and Home and the round's summary count alike.
+  The total stays `TodayReport.answers`, which `recall` and `worked` read.
   A day is `worked` once something was answered,
   which is what separates "done for today" from "caught up":
   nothing is due in either, and only one of them was earned.
-  `tallyParts()` is empty on an unworked day (a day has a state then, not a tally)
-  and otherwise leads with reviews, then today's first meetings, then the crossings —
-  the rarest part reads last.
-  `completionTallyParts(introduced, settled, reviews)` is the ROUND's own tally
-  in the order a summary reads it, non-zero parts only;
-  empty means the round bought nothing nameable and the surface says so plainly
-  rather than printing three zeros.
+  `tallyParts(introduced, reviewed, settled)` reads in that order,
+  the rarest part last, non-zero parts only;
+  empty means nothing nameable was answered (an unworked day has a state, not a tally),
+  and the surface says so plainly rather than printing three zeros.
   `tomorrowNote(hasPackedWords, tomorrowDue)` picks `Packed` / `Fresh` / `Due`:
   a pack outranks the due count, because a finished day composes nothing
   and the round after it is where those words arrive;

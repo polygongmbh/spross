@@ -45,7 +45,7 @@ import net.spross.app.hasBriefing
 import net.spross.kern.box.GrowthClaim
 import net.spross.kern.box.GrowthHeadline
 import net.spross.kern.box.TallyPartKind
-import net.spross.kern.box.completionTallyParts
+import net.spross.kern.box.tallyParts
 import net.spross.kern.design.AreaTree
 
 /**
@@ -58,14 +58,14 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     // why: the round's own reward, sounded once as the screen arrives — iOS cheers here too.
     LaunchedEffect(Unit) { model.cues.cheer() }
     var briefingOpen by remember { mutableStateOf(false) }
-    val parts = completionTallyParts(ui.introduced, ui.settled, ui.reviewed)
+    val parts = tallyParts(ui.introduced, ui.reviewed, ui.settled)
     val tally = if (parts.isEmpty()) null else {
         parts.joinToString(" · ") {
             when (it.kind) {
                 TallyPartKind.Introduced ->
                     if (parts.size == 1) chrome.sessionDoneTallyNewOnly.format(it.count) else chrome.sessionDoneTallyNew.format(it.count)
                 TallyPartKind.Settled -> countLine(chrome.tallySettledOne, chrome.tallySettled, it.count)
-                TallyPartKind.Reviews ->
+                TallyPartKind.Reviewed ->
                     if (parts.size == 1) chrome.sessionDoneTallyReviewedOnly.format(it.count) else chrome.sessionDoneTallyReviewed.format(it.count)
             }
         }

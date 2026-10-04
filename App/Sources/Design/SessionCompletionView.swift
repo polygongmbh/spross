@@ -47,14 +47,14 @@ struct SessionCompletionView: View {
     private static func swayAngle(_ index: Int) -> Double { 5 + Double(index % 3) * 2 }
     private static func swayPeriod(_ index: Int) -> Double { 2.1 + Double(index) * 0.27 }
 
-    /// "3 neu · 2 gefestigt · 8 wiederholt" — which parts a finished round names,
-    /// and in which order, is the box's (`completionTallyParts`); the words are
+    /// "3 neu · 8 wiederholt · 2 gefestigt" — which parts a finished round names,
+    /// and in which order, is the box's (`tallyParts`); the words are
     /// ours. Built as `Text` so each part localizes via the environment locale.
     /// Nil when the round named nothing.
     private var tallyText: Text? {
-        let parts = completionTallyParts(introduced: Int32(newCount),
-                                         settled: Int32(settledCount),
-                                         reviews: Int32(reviewCount))
+        let parts = tallyParts(introduced: Int32(newCount),
+                               reviewed: Int32(reviewCount),
+                               settled: Int32(settledCount))
         return parts.map { Self.partText($0, alone: parts.count == 1) }.joined()
     }
 
@@ -71,7 +71,7 @@ struct SessionCompletionView: View {
         case .introduced:
             return alone ? Text("session.done.tally.newOnly \(count)") : Text("session.done.tally.new \(count)")
         case .settled: return Text("tally.settled \(Int(part.count))")
-        case .reviews:
+        case .reviewed:
             return alone ? Text("session.done.tally.reviewedOnly \(count)") : Text("session.done.tally.reviewed \(count)")
         }
     }

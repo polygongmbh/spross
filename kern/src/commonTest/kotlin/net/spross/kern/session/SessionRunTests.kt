@@ -10,6 +10,8 @@ import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
 import net.spross.kern.box.StreakHealth
+import net.spross.kern.box.TallyPart
+import net.spross.kern.box.TallyPartKind
 import net.spross.kern.box.answerDays
 import net.spross.kern.box.dayKey
 import net.spross.kern.model.CardPhase
@@ -136,6 +138,31 @@ class SessionRunTests {
         run = answer(run, Rating.Good, muchLater)
         assertEquals(0, run.settled)
         assertEquals(1, run.reviews)
+    }
+
+    /** Every answer is one kind, and a round and the day it lands in tally it alike. */
+    @Test
+    fun aRoundAndItsDayCountEachAnswerOnce() {
+        var state = Box.state((1..3).map { Box.word(it) })
+        state = Box.answered(state, "w01", Rating.Good, now)
+        state = Box.answered(state, "w02", Rating.Good, now)
+        val later = Box.plusDays(now, 7.0)
+        var run = started(state, later)
+        while (true) {
+            val cardId = run.currentCardId ?: break
+            // w01 crosses the settled bar, w02 is missed, w03 is met for the first time.
+            run = answer(run, if (cardId == "w02") Rating.Again else Rating.Easy, later)
+        }
+
+        assertEquals(listOf(1, 1, 1), listOf(run.newCards, run.reviews, run.settled))
+        assertEquals(
+            listOf(
+                TallyPart(TallyPartKind.Introduced, 1),
+                TallyPart(TallyPartKind.Reviewed, 1),
+                TallyPart(TallyPartKind.Settled, 1),
+            ),
+            BoxEngine.today(run.box, later, Box.TZ).tallyParts(),
+        )
     }
 
     /**

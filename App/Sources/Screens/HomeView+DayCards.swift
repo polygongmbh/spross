@@ -150,7 +150,7 @@ extension HomeView {
         }
     }
 
-    /// "24 Checks · 3 Neue · 2 gefestigt" — the day's gain, not just
+    /// "3 Neue · 24 Checks · 2 gefestigt" — the day's gain, not just
     /// that it happened. Which counts the day names and in which order is the day's
     /// own report (`TodayReport.tallyParts`); the words are ours.
     func todayTally(_ report: TodayReport) -> Text {
@@ -160,8 +160,8 @@ extension HomeView {
     func tallyText(_ part: TallyPart) -> Text {
         let count = Int(part.count)
         switch part.kind {
-        case .reviews: return Text("home.tally.reviews \(count)")
         case .introduced: return Text("home.tally.newCards \(count)")
+        case .reviewed: return Text("home.tally.reviews \(count)")
         case .settled: return Text("tally.settled \(count)")
         }
     }

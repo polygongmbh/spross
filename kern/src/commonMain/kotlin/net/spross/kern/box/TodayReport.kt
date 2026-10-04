@@ -12,38 +12,32 @@ import net.spross.kern.model.Rating
  * Every count is read live from the review logs, so the numbers hold mid-session.
  */
 data class TodayReport(
-    /** Answer events today (retries included — every answer is a review). */
-    val reviews: Int,
-    /** Words met for the first time today. */
+    /** Answer events today, retries included — the three kinds ([TallyPartKind]) added up. */
+    val answers: Int,
+    /** Today's first answers ([TallyPartKind.Introduced]). */
     val introduced: Int,
-    /** Words that crossed into settled today (see [Statistics.hasSettled]). */
+    /** Today's answers that carried a card across the settled bar ([TallyPartKind.Settled]). */
     val settled: Int,
     /** Answers rated Again today. */
     val missed: Int,
     /** The retention the box is scheduling for ([net.spross.kern.model.BoxConfig]). */
     val expectedRecall: Double,
 ) {
+    /** Today's other answers ([TallyPartKind.Reviewed]). */
+    val reviewed: Int get() = answers - introduced - settled
+
     /**
      * Whether the day was WORKED — the difference between a day finished and a day merely clear.
      * Nothing is due in either, but only one of them was earned,
      * and a surface must never claim a finish the learner never made.
      */
-    val worked: Boolean get() = reviews > 0
+    val worked: Boolean get() = answers > 0
 
     /**
-     * The day's gain, spelled out — which counts a surface names, in which order.
-     * Empty on a day that was not [worked]: an unworked day has a state, not a tally.
-     * Reviews lead (the one count every worked day carries),
-     * then today's first meetings, then the crossings — the rarest part reads last.
-     * The words for each part are the platform's; which parts there are is not.
+     * The day's answers spelled out, as a round's are ([tallyParts]) —
+     * empty on a day that was not [worked]: an unworked day has a state, not a tally.
      */
-    fun tallyParts(): List<TallyPart> {
-        if (!worked) return emptyList()
-        val parts = mutableListOf(TallyPart(TallyPartKind.Reviews, reviews))
-        if (introduced > 0) parts += TallyPart(TallyPartKind.Introduced, introduced)
-        if (settled > 0) parts += TallyPart(TallyPartKind.Settled, settled)
-        return parts
-    }
+    fun tallyParts(): List<TallyPart> = tallyParts(introduced, reviewed, settled)
 
     /**
      * Share of today's answers the learner got.
@@ -52,7 +46,7 @@ data class TodayReport(
      * exactly the over-reading it cannot support.
      */
     val recall: Double?
-        get() = if (reviews >= MIN_ANSWERS_FOR_RECALL) 1.0 - missed.toDouble() / reviews else null
+        get() = if (answers >= MIN_ANSWERS_FOR_RECALL) 1.0 - missed.toDouble() / answers else null
 
     /**
      * Today's recall is far enough under what the schedule expects
@@ -77,40 +71,6 @@ data class TodayReport(
         const val RECALL_STRAIN_MARGIN: Double = 0.2
     }
 }
-
-/**
- * Which count a spelled-out tally part names.
- * The kinds are the rule; the words, the plurals and the separator between them are the platform's.
- */
-enum class TallyPartKind {
-    /** Answers given — every answer is a review. */
-    Reviews,
-
-    /** Words met for the first time. */
-    Introduced,
-
-    /** Words that crossed the settled bar ([Statistics.hasSettled]). */
-    Settled,
-}
-
-/** One part of a tally: which count, and how many. */
-data class TallyPart(val kind: TallyPartKind, val count: Int)
-
-/**
- * What one finished ROUND bought, in the order a summary reads it:
- * words started, answers given, words that landed.
- *
- * Non-zero parts only — a round that started nothing has nothing to say about first meetings,
- * and a zero spelled out reads as a failure to reach a target the box never sets.
- * An empty list means the round is over with nothing nameable in it,
- * which is a surface's cue to say so plainly rather than to print three zeros.
- */
-fun completionTallyParts(introduced: Int, settled: Int, reviews: Int): List<TallyPart> =
-    listOf(
-        TallyPart(TallyPartKind.Introduced, introduced),
-        TallyPart(TallyPartKind.Reviews, reviews),
-        TallyPart(TallyPartKind.Settled, settled),
-    ).filter { it.count > 0 }
 
 /** What a day with nothing left to do says about the next one. */
 enum class TomorrowNote {
@@ -145,7 +105,7 @@ internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): T
     val end = localDate(nowEpochMillis, tzId).plus(1, DateTimeUnit.DAY).atStartOfDayIn(zone)
     val scheduler = FsrsScheduler(state.config.fsrsParameters())
 
-    var reviews = 0
+    var answers = 0
     var missed = 0
     var introduced = 0
     var settled = 0
@@ -156,20 +116,22 @@ internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): T
         // A crossing reads a stability no log entry records, so the card's log is replayed
         // up to each of today's answers, through the same step that recorded it.
         var before = CardScheduling(cardId = sched.cardId)
-        for ((index, entry) in sched.log.withIndex()) {
+        for (entry in sched.log) {
             val after = before.answered(entry.rating, entry.date, scheduler)
             if (entry.date >= start && entry.date < end) {
-                reviews += 1
+                answers += 1
                 if (entry.rating == Rating.Again) missed += 1
-                // Introduction = the card's first answer, so the first log entry IS the meeting.
-                if (index == 0) introduced += 1
-                if (!Statistics.hasSettled(state, before) && Statistics.hasSettled(state, after)) settled += 1
+                when (tallyKind(state, before, after)) {
+                    TallyPartKind.Introduced -> introduced += 1
+                    TallyPartKind.Settled -> settled += 1
+                    TallyPartKind.Reviewed -> {}
+                }
             }
             before = after
         }
     }
     return TodayReport(
-        reviews = reviews,
+        answers = answers,
         introduced = introduced,
         settled = settled,
         missed = missed,

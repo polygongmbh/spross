@@ -73,7 +73,7 @@ class DayKeyTests {
 
         assertEquals(mapOf("2026-07-02" to 1), answerDays(state.scheduling, "Pacific/Kiritimati"))
         val today = BoxEngine.today(state, lateUtc, "Pacific/Kiritimati")
-        assertEquals(1, today.reviews)
+        assertEquals(1, today.answers)
         assertEquals(1, today.introduced)
         // A single Good doesn't settle on sight (only Easy does) — nothing crossed.
         assertEquals(0, today.settled)

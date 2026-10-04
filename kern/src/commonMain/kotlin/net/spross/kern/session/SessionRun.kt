@@ -4,7 +4,9 @@ import kotlin.math.max
 import kotlin.math.min
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
-import net.spross.kern.box.BoxStatistics
+import net.spross.kern.box.TallyPartKind
+import net.spross.kern.box.tallyKind
+import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
 import net.spross.kern.model.SessionPlan
@@ -198,14 +200,13 @@ object SessionRun {
     /** Apply one answer — every answer event is an FSRS review — then advance. */
     private fun answer(state: SessionRunState, rating: Rating, nowEpochMillis: Long, tzId: String): SessionReduction {
         val cardId = state.currentCardId ?: return unchanged(state)
-        val wasSettled = BoxEngine.hasSettled(state.box, cardId)
+        val before = state.box.scheduling[cardId] ?: CardScheduling(cardId = cardId)
         val box = BoxEngine.answer(state.box, cardId, rating, nowEpochMillis)
+        val kind = box.scheduling[cardId]?.let { tallyKind(box, before, it) } ?: TallyPartKind.Reviewed
         val next = tallied(
             state.copy(box = box, ratings = state.ratings + rating,
                        answeredIds = state.answeredIds + cardId, answered = state.answered + 1),
-            firstAnswer = box.scheduling[cardId]?.reviewCount == 1,
-            wasSettled = wasSettled,
-            hasSettled = BoxEngine.hasSettled(box, cardId),
+            kind,
         )
         return advance(next.copy(queue = next.queue.drop(1)), listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
     }
@@ -233,23 +234,11 @@ object SessionRun {
         return advance(next, listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
     }
 
-    /**
-     * Bucket each answer for the summary: first-ever answer = new, a word crossing the
-     * settled bar = settled, else a review rep.
-     *
-     * why: the crossing, not a phase transition — with one learning step a word reaches Review
-     * on its first pass while its stability is still tiny, so the phase edge would have called
-     * that settled and the summary would have claimed a word had landed that had barely arrived.
-     */
-    private fun tallied(
-        state: SessionRunState,
-        firstAnswer: Boolean,
-        wasSettled: Boolean,
-        hasSettled: Boolean,
-    ): SessionRunState = when {
-        firstAnswer -> state.copy(newCards = state.newCards + 1)
-        !wasSettled && hasSettled -> state.copy(settled = state.settled + 1)
-        else -> state.copy(reviews = state.reviews + 1)
+    /** Bucket each answer for the summary by its kind ([tallyKind]). */
+    private fun tallied(state: SessionRunState, kind: TallyPartKind): SessionRunState = when (kind) {
+        TallyPartKind.Introduced -> state.copy(newCards = state.newCards + 1)
+        TallyPartKind.Settled -> state.copy(settled = state.settled + 1)
+        TallyPartKind.Reviewed -> state.copy(reviews = state.reviews + 1)
     }
 
     /**

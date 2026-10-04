@@ -140,8 +140,8 @@ fun offerSummary(chrome: Chrome, offer: SessionOffer): String {
 fun todayTally(chrome: Chrome, report: TodayReport): String? {
     val parts = report.tallyParts().map { part ->
         when (part.kind) {
-            TallyPartKind.Reviews -> countLine(chrome.homeTallyReviewsOne, chrome.homeTallyReviews, part.count)
             TallyPartKind.Introduced -> countLine(chrome.homeTallyNewCardsOne, chrome.homeTallyNewCards, part.count)
+            TallyPartKind.Reviewed -> countLine(chrome.homeTallyReviewsOne, chrome.homeTallyReviews, part.count)
             TallyPartKind.Settled -> countLine(chrome.tallySettledOne, chrome.tallySettled, part.count)
         }
     }

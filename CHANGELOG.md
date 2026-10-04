@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Home's count of the day's answers no longer counts a new word as a review, so it splits them into new, reviewed and settled exactly as a finished round does.
 - A word you forget once but that keeps most of its strength now keeps its standing, picture hint and unlocked phrases.
 - A word you missed a couple of times on its first day no longer shows as "Shaky"; that badge now means a word you forgot after learning it.
 - Over fifty Swahili words, the weekday and month names among them, now play a cleaner recording by one of three other speakers.
