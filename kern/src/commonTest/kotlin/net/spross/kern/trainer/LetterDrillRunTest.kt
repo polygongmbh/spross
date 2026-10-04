@@ -48,7 +48,7 @@ class LetterDrillRunTest {
         promptableRefs = refs,
         dictationCandidates = dictation,
         gapWords = gapWords,
-        grownCards = growing,
+        arrivedCards = growing,
     )
 
     private fun config(

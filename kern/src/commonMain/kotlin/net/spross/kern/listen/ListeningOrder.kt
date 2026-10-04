@@ -125,7 +125,7 @@ private class Lane(val members: List<ListeningCandidate>, val priority: Int, val
  */
 fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<ListeningCandidate> {
     val (scheduled, unseen) = candidates.partition { it.scheduled }
-    val ladder = scheduled.groupBy { listeningPriority(it.grown, it.suspended) }
+    val ladder = scheduled.groupBy { listeningPriority(it.arrived, it.suspended) }
         .entries.sortedByDescending { it.key }
         .map { (priority, members) -> Lane(members.sortedWith(hashedOrder(seed)), priority, cycles = true) }
     val (packed, plain) = unseen.partition { it.queued }

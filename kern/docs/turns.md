@@ -82,19 +82,19 @@ Engine contract: `../README.md`.
   so the shared `catalog.audible` predicate is applied to the target form AND the source form.
   **Suspended cards stay in the pool.** Suspension takes a word out of the box's queue
   (`Inventory.active` drops it) and never said stop meeting the word.
-  **The pool is the sayable join short of the grown words, not a composed subset** — every
+  **The pool is the sayable join short of the settled words, not a composed subset** — every
   joined card that both halves of a turn can say, scheduled and unseen alike. So a learner a
   few words in hears a STREAM of new words rather than lapping the handful they hold, and a
   learner with a full vocabulary hears their own words in it. Unseen words enter through
   `Growth.isIntroducible`: a phrase whose components have not landed is not ready to be heard
   either. Hearing one does not introduce it: introduction is the first answer, and listening
-  answers nothing. **A fully grown word is not in the pool** (`Statistics.hasSettled`):
+  answers nothing. **A settled word is not in the pool** (`Statistics.hasSettled`):
   it is what the box already calls done, and an hour of listening is for what is not —
-  left in, a well-used box, where the grown words outnumber everything else, would open on
+  left in, a well-used box, where the settled words outnumber everything else, would open on
   the words it trusts most. It is back the moment it lapses.
   `listeningPriority(growing, suspended)` is the ladder, and it has two Sprossen read off the
   box's own bar rather than a ladder of listening's own: a held word short of
-  `growingStability` (`Statistics.hasGrown`, so a lapsed word is shaky whatever it once
+  `growingStability` (`Statistics.hasArrived`, so a lapsed word is shaky whatever it once
   reached) is SHAKY (`LISTENING_SHAKY_PRIORITY`, 2) and one past it is GROWING
   (`LISTENING_GROWING_PRIORITY`, 1). A **suspended** word takes the growing Sprosse whatever
   its bar: suspension takes a word out of the box's rotation and this is the surface that
@@ -285,8 +285,8 @@ Engine contract: `../README.md`.
   same gate for the two scrambles, and take no capability port at all: neither drill plays or
   hears anything, so nothing about the device can decide what it may ask.
   Each walks the whole join and is built ONCE per run, its `drillExists` the hub-chip predicate.
-  The two read DIFFERENT bars on purpose: the word scramble wants a word already grown past the
-  display bar (`BoxEngine.hasSettled`), since mixed letters cue nothing a learner cannot
+  The two read DIFFERENT bars on purpose: the word scramble wants a word already past the
+  settled bar (`BoxEngine.hasSettled`), since mixed letters cue nothing a learner cannot
   already produce, while the sentence scramble reads every phrase in the join past no bar,
   since its words are given and only their order is asked.
   What each hands the run is not the card either — it is what the question is made OF, and the

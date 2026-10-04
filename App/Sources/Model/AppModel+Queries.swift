@@ -50,16 +50,16 @@ extension AppModel {
 
     /// Whether this card has cleared the growing bar — gate (a): phrase unlock,
     /// the drill pools, and the support a word gets on its way in.
-    func hasGrown(_ cardID: String) -> Bool {
+    func hasArrived(_ cardID: String) -> Bool {
         guard let box else { return false }
-        return BoxEngine.shared.hasGrown(state: box, cardId: cardID)
+        return BoxEngine.shared.hasArrived(state: box, cardId: cardID)
     }
 
     /// Which face carries the picture: the prompt only where it cannot give the
     /// answer away, otherwise the reveal (contract §3).
     func emojiCue(for card: Card) -> EmojiCue {
         SprossKern.emojiCue(role: presentationRole(for: card.id),
-                                  grown: hasGrown(card.id))
+                                  arrived: hasArrived(card.id))
     }
 
     /// The rotated target form to prompt on a recognition review.

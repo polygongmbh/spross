@@ -70,7 +70,7 @@ class ListeningPoolTests {
 
         assertTrue(leech.suspended)
         // The pool reads the box's own bar, the one fact the ladder stands on.
-        assertTrue(leech.grown)
+        assertTrue(leech.arrived)
     }
 
     /**
@@ -101,7 +101,7 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: the pool is the sayable join short of the grown words — every scheduled word still
+     * RULE: the pool is the sayable join short of the settled words — every scheduled word still
      * growing AND every unseen one, thin box or settled box alike.
      * WHY: this is the endless mode. A learner a few words in hears a stream of new words
      * rather than lapping the handful they hold, and a learner with a full vocabulary hears
@@ -123,9 +123,9 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: a fully grown word is not in the pool.
+     * RULE: a settled word is not in the pool.
      * WHY: it is what the box already calls done (`Statistics.hasSettled`), and an hour of
-     * listening is for what is not. Left in, a well-used box — where the grown words outnumber
+     * listening is for what is not. Left in, a well-used box — where the settled words outnumber
      * everything else — would spend its evening on the words it trusts most.
      */
     @Test
@@ -137,7 +137,7 @@ class ListeningPoolTests {
         val played = ids(spoken(state))
 
         assertTrue("w01" in played, "a growing word is still heard")
-        assertFalse("w02" in played, "a grown word was dealt")
+        assertFalse("w02" in played, "a settled word was dealt")
     }
 
     /**

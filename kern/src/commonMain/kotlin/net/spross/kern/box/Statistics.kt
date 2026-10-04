@@ -201,7 +201,7 @@ internal object Statistics {
      * Review phase at or above [BoxConfig.growingStability]. Gates phrase unlock,
      * the drill pools and the in-session support (emoji cue, sound-only prompt).
      */
-    fun hasGrown(state: BoxState, sched: CardScheduling): Boolean =
+    fun hasArrived(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
             (sched.memory?.stability ?: 0.0) >= state.config.growingStability
 

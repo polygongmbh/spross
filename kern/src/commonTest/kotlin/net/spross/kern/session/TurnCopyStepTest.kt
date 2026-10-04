@@ -104,7 +104,7 @@ class TurnCopyStepTest {
     @Test
     fun aWordThatAlreadySticksIsNeverSlowedDown() {
         val revealed = TurnFixture.state(
-            TurnFixture.produce(TurnFixture.language, grown = true),
+            TurnFixture.produce(TurnFixture.language, arrived = true),
             TurnIntent.Reveal, TurnFixture.T0 + 2_000,
         )
         val graded = TurnFixture.step(revealed, TurnIntent.SelfGrade(SelfGrading.Verdict.Unknown))

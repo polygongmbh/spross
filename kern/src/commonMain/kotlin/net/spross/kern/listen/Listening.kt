@@ -176,7 +176,7 @@ fun fadedGainDb(gainDb: Double, capDb: Double, fadeDb: Double): Double {
  * A word the playlist may say, plus the facts about it the deal reads that a [Card]
  * cannot carry.
  *
- * [grown] is the box's own bar, read from `CardScheduling` and never re-derived — the whole
+ * [arrived] is the box's own bar, read from `CardScheduling` and never re-derived — the whole
  * ladder is a function of it. [suspended] and [scheduled] are the two facts that decide whether
  * it may be read at all: an unscheduled card has no history, and a suspended one's history has
  * already been acted on (see [listeningPriority]). [queued] is the learner's own say, which no
@@ -185,11 +185,11 @@ fun fadedGainDb(gainDb: Double, capDb: Double, fadeDb: Double): Double {
 data class ListeningCandidate(
     val card: Card,
     /**
-     * Whether the word has cleared the box's growing bar (`Statistics.hasGrown`) — the one
+     * Whether the word has cleared the box's growing bar (`Statistics.hasArrived`) — the one
      * reading the ladder takes. Read from the box rather than re-derived from a stability, so
      * a lapsed word is shaky here exactly as it is everywhere else, whatever it once reached.
      */
-    val grown: Boolean,
+    val arrived: Boolean,
     val suspended: Boolean,
     /** Whether the card carries a schedule — i.e. whether the learner has ever answered it. */
     val scheduled: Boolean,
@@ -237,9 +237,9 @@ const val LISTENING_GROWING_PRIORITY: Int = 1
  * Where a scheduled word stands on the listening ladder — two Sprossen, read off the box's own
  * bar rather than a ladder of listening's own.
  *
- * A word short of `growingStability` (`Statistics.hasGrown`, so a lapsed word is shaky whatever
+ * A word short of `growingStability` (`Statistics.hasArrived`, so a lapsed word is shaky whatever
  * it once reached) leads: it is the whole point of the hour. A word past it is still worth
- * hearing, and takes the floor. A fully grown word is not on the ladder at all — `ListeningPool`
+ * hearing, and takes the floor. A settled word is not on the ladder at all — `ListeningPool`
  * leaves it out — so the floor is the growing band, not a dumping ground.
  *
  * A SUSPENDED word takes the floor whatever its bar. `ListeningPool` keeps leeches in the pool
@@ -247,8 +247,8 @@ const val LISTENING_GROWING_PRIORITY: Int = 1
  * reach them — but a word the box has given up on does not lead the hour over the ones it is
  * still working on: it comes in, it does not lead.
  */
-fun listeningPriority(grown: Boolean, suspended: Boolean): Int =
-    if (grown || suspended) LISTENING_GROWING_PRIORITY else LISTENING_SHAKY_PRIORITY
+fun listeningPriority(arrived: Boolean, suspended: Boolean): Int =
+    if (arrived || suspended) LISTENING_GROWING_PRIORITY else LISTENING_SHAKY_PRIORITY
 
 /**
  * The gap between the target word and its meaning: [RECALL_GAP_HELD_MS] for a word the

@@ -117,9 +117,9 @@ var drillRandom: KotlinRandom {
 extension LetterDrill {
     func ceiling(dictation: Bool) -> Int { Int(maxLevel(dictationAvailable: dictation)) }
 
-    func entryLevel(grown: Int) -> Int { Int(entryLevel(grownCards: Int32(grown))) }
+    func entryLevel(arrived: Int) -> Int { Int(entryLevel(arrivedCards: Int32(arrived))) }
 
-    func winsToAdvance(grown: Int) -> Int { Int(winsToAdvance(grownCards: Int32(grown))) }
+    func winsToAdvance(arrived: Int) -> Int { Int(winsToAdvance(arrivedCards: Int32(arrived))) }
 
     func stage(level: Int) -> LetterStage { stageFor(level: Int32(level)) }
 }

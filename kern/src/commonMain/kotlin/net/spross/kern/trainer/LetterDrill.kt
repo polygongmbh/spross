@@ -65,15 +65,15 @@ object LetterDrill {
      * someone with a vocabulary should not spell out `em` four times before the drill
      * gets interesting, and someone without one should not be dropped into typing.
      */
-    fun entryLevel(grownCards: Int): Int =
-        minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, grownCards) / GROWING_PER_LEVEL)
+    fun entryLevel(arrivedCards: Int): Int =
+        minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, arrivedCards) / GROWING_PER_LEVEL)
 
     /**
      * How LONG a Sprosse is — the second half of the same pacing rule. A growing
      * vocabulary earns each level in one clean win; below that the classic two apply, so
      * a beginner gets the repetition and nobody else gets the drag.
      */
-    fun winsToAdvance(grownCards: Int): Int = if (grownCards >= GROWING_FOR_SHORT_STAGES) 1 else 2
+    fun winsToAdvance(arrivedCards: Int): Int = if (arrivedCards >= GROWING_FOR_SHORT_STAGES) 1 else 2
 
     /** The Sprossen [stage] spans — [stageFor]'s reading turned round. */
     fun sprossen(stage: LetterStage): IntRange = when (stage) {

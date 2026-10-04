@@ -103,7 +103,7 @@ data class TurnState(
     /** `reviewCount == 0`: the word is being taught, so a miss is still written out. */
     val firstExposure: Boolean,
     /** A word past the growing bar is never slowed down by a write-out. */
-    val grown: Boolean,
+    val arrived: Boolean,
     val feedback: TurnFeedback,
     /** The learner asked to see the answer without producing it — the self-grade path. */
     val revealed: Boolean,

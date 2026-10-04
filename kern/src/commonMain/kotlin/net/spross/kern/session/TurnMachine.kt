@@ -41,7 +41,7 @@ class TurnMachine(
         prompt: ProducePrompt,
         promptForm: String,
         firstExposure: Boolean,
-        grown: Boolean,
+        arrived: Boolean,
         nowEpochMillis: Long,
     ): TurnState = TurnState(
         card = card,
@@ -49,7 +49,7 @@ class TurnMachine(
         prompt = prompt,
         promptForm = promptForm,
         firstExposure = firstExposure,
-        grown = grown,
+        arrived = arrived,
         feedback = TurnFeedback.Neutral,
         revealed = false,
         pendingRating = null,

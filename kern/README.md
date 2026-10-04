@@ -181,7 +181,7 @@ the numbers behind each bar are on `BoxConfig` itself.
   Suspension is now purely the learner's own call -- `setSuspended`, reversible from the Box.
 - **A graduated interval floors at one day.**
 - **TWO growth bars, not one**:
-  `growingStability` (`Statistics.hasGrown`, facade `BoxEngine.hasGrown(state, cardId)`)
+  `growingStability` (`Statistics.hasArrived`, facade `BoxEngine.hasArrived(state, cardId)`)
   is gate (a) -- Review phase AND stability >= 6 days,
   so a lapse un-lands a card.
   That bar gates phrase unlock, the letter drill's pool (section 6),
@@ -314,7 +314,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   `SessionPlan` carries a `joinStamp` (source, target, catalog fingerprint);
   a stale run recomposes as the round that opened it (`SessionOpening`).
 - **"Which words does the learner already hold" is an engine question**,
-  answered once by `BoxEngine.grownCardIds`.
+  answered once by `BoxEngine.arrivedCardIds`.
 - **A drill run is a pure machine too** (`net.spross.kern.trainer`),
   and **one injected `Random` per run** feeds every draw,
   so a seeded run is reproducible end to end.

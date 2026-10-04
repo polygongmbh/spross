@@ -53,7 +53,7 @@ object LetterDrillAvailability {
         /** Ref → every word this device can say the row's gap from, known words flagged. */
         val gapWords: Map<String, List<LetterDrill.AlphabetExampleWord>>,
         /** The learner's whole growing vocabulary — what paces the entry Sprosse and its length. */
-        val grownCards: Int,
+        val arrivedCards: Int,
     ) {
         val drillAvailable: Boolean get() = alphabet != null && promptableRefs.isNotEmpty()
 
@@ -66,7 +66,7 @@ object LetterDrillAvailability {
          * The Sprosse the learner's vocabulary puts them on — kern's step from the words they
          * already hold, capped by [maxLevel].
          */
-        val entryLevel: Int get() = minOf(LetterDrill.entryLevel(grownCards), maxLevel)
+        val entryLevel: Int get() = minOf(LetterDrill.entryLevel(arrivedCards), maxLevel)
 
         /**
          * Which Sprosse a run OPENS on: the lowest one at or above [entryLevel] that no run has
@@ -85,7 +85,7 @@ object LetterDrillAvailability {
             stage != LetterStage.Dictation && LetterDrill.sprossen(stage).all { it in cleared }
 
         /** How long a Sprosse is for this learner. */
-        val winsToAdvance: Int get() = LetterDrill.winsToAdvance(grownCards)
+        val winsToAdvance: Int get() = LetterDrill.winsToAdvance(arrivedCards)
 
         /** What kern is handed for one row — empty for a letter row, which gaps nothing. */
         fun examples(entry: AlphabetEntry): List<LetterDrill.AlphabetExampleWord> =
@@ -99,7 +99,7 @@ object LetterDrillAvailability {
      */
     fun report(catalog: Catalog, box: BoxState, language: Language, hasVoice: Boolean): Report {
         val alphabet = catalog.alphabet(language)
-        val growing = BoxEngine.grownCardIds(box).mapNotNull { box.cards[it] }
+        val growing = BoxEngine.arrivedCardIds(box).mapNotNull { box.cards[it] }
         // why: Card.id IS the concept slug, so holding a word is a set lookup.
         val known = growing.map { it.id }.toSet()
         val gapWords = alphabet?.entries.orEmpty()
@@ -127,7 +127,7 @@ object LetterDrillAvailability {
                     )
                 },
             gapWords = gapWords,
-            grownCards = growing.size,
+            arrivedCards = growing.size,
         )
     }
 

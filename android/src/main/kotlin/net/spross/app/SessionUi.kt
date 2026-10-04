@@ -30,7 +30,7 @@ data class SessionUi(
     /** `reviewCount == 0` — the word is being taught, so a miss is still written out. */
     val firstExposure: Boolean = false,
     /** A word that already sticks is never slowed down by a write-out. */
-    val grown: Boolean = false,
+    val arrived: Boolean = false,
     /** Which face carries the picture; null when the word has none. */
     val emojiCue: EmojiCue?,
     val segments: List<AnswerOutcome>,
@@ -54,8 +54,8 @@ data class SessionUi(
     val headline: GrowthHeadline? = null,
 )
 
-private fun AppModel.hasGrown(cardId: String): Boolean =
-    box?.let { BoxEngine.hasGrown(it, cardId) } == true
+private fun AppModel.hasArrived(cardId: String): Boolean =
+    box?.let { BoxEngine.hasArrived(it, cardId) } == true
 
 /**
  * Whether the card's own form can be heard RIGHT NOW — the one fact kern's
@@ -105,8 +105,8 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
         val count = state.scheduling[card.id]?.reviewCount ?: 0
         val role = presentationRole(card.id, count)
         val promptForm = recognitionPromptForm(card, count)
-        val grown = hasGrown(card.id)
-        val prompt = producePrompt(card.id, count, grown, audible(card))
+        val arrived = hasArrived(card.id)
+        val prompt = producePrompt(card.id, count, arrived, audible(card))
         SessionUi(
             card = card,
             role = role,
@@ -117,8 +117,8 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             // and one past the growing bar is
             // never slowed down.
             firstExposure = count == 0,
-            grown = grown,
-            emojiCue = card.emoji?.let { emojiCue(role, grown) },
+            arrived = arrived,
+            emojiCue = card.emoji?.let { emojiCue(role, arrived) },
             segments = active.segments,
             remaining = active.remaining,
             introduced = active.newCards,

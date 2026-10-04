@@ -164,7 +164,7 @@ object DrillSuggestion {
     ) {
         companion object {
             fun of(box: BoxState): BoxFacts {
-                val grown = Inventory.active(box).count {
+                val settled = Inventory.active(box).count {
                     box.cards[it.cardId]?.kind in singleWords && BoxEngine.hasSettled(box, it.cardId)
                 }
                 val pairs = Inventory.joinedCards(box).asSequence()
@@ -172,7 +172,7 @@ object DrillSuggestion {
                     .filter { it.second != null }
                     .take(SCRIPT_SAMPLE)
                     .toList()
-                return BoxFacts(grown, pairs.count { it.first != it.second } * 2 > pairs.size)
+                return BoxFacts(settled, pairs.count { it.first != it.second } * 2 > pairs.size)
             }
 
             private const val SCRIPT_SAMPLE = 64

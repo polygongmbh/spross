@@ -43,7 +43,7 @@ enum class GrowthStage {
      */
     Fresh,
 
-    /** Growing: see [Statistics.hasGrown] — the "has this word landed" bar (gate (a)). */
+    /** Growing: see [Statistics.hasArrived] — the "has this word landed" bar (gate (a)). */
     Growing,
 
     /** Settled: in Review at or above [SETTLED_STABILITY]. */
@@ -90,7 +90,7 @@ internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when
     sched.phase == CardPhase.Relearning -> GrowthStage.Relearning
     sched.phase != CardPhase.Review -> GrowthStage.Fresh
     (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY -> GrowthStage.Settled
-    Statistics.hasGrown(state, sched) -> GrowthStage.Growing
+    Statistics.hasArrived(state, sched) -> GrowthStage.Growing
     sched.lapses > 0 -> GrowthStage.Relearning
     else -> GrowthStage.Fresh
 }

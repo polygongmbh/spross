@@ -13,7 +13,7 @@ class ListeningNewWordOrderTests {
     private fun unseen(): List<ListeningCandidate> = deep.map {
         ListeningCandidate(
             card = Box.word(it),
-            grown = false,
+            arrived = false,
             suspended = false,
             scheduled = false,
             queued = false,

@@ -16,11 +16,11 @@ Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `d
   no streak, so a run costs the box nothing and can be closed at any moment. It has no end
   screen for the drills' reason — a run the learner ends when they like has nothing to
   celebrate — and no way of ending by itself: it laps for as long as it is left playing.
-- **What it plays is the box, short of the words it already calls grown, shakiest first** —
+- **What it plays is the box, short of the words it already calls settled, shakiest first** —
   the box's own growing bar is the whole ladder: the words still short of it play first, all
   of them, before a word past it is heard at all, and then they keep coming back among the
   growing ones — the fewer are slipping, the more often each of them returns, though never
-  inside thirty turns. Fully grown words are not in the pool: the hour is for what is not
+  inside thirty turns. Settled words are not in the pool: the hour is for what is not
   sticking. Never by what is due, since a schedule is about when to ASK and nothing is being
   asked. New words are a fixed two turns in five from the very first turn — hearing a word you
   have never answered, target-meaning-target, is the mode's cheapest breadth — with the words

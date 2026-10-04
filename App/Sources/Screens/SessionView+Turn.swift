@@ -102,7 +102,7 @@ extension SessionView {
                              promptForm: role == .recognize ? model.promptForm(for: card)
                                  : (prompt == .sound ? card.target.text : card.source.text),
                              firstExposure: model.isFirstExposure(card.id),
-                             grown: model.hasGrown(card.id),
+                             arrived: model.hasArrived(card.id),
                              nowEpochMillis: Date().epochMillis)
     }
 
