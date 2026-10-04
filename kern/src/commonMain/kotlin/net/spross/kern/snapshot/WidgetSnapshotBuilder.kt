@@ -24,7 +24,7 @@ import net.spross.kern.store.StoreJson
  * `lastReviewDate` and "now" run at render time. Who decodes it how: `kern/docs/snapshots.md`.
  */
 object WidgetSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 5
+    const val SCHEMA_VERSION: Int = 6
 
     /** ~10 weeks of day keys — enough history for the widget's streak walk. */
     const val DAILY_STATS_TAIL_DAYS: Int = 70
@@ -107,7 +107,7 @@ object WidgetSnapshotBuilder {
             chromeLanguage = chromeLanguage(state),
             entries = entries,
             cards = cards,
-            settledCount = active.count { Statistics.isSettled(state, it) },
+            allSettledCount = active.count { Statistics.isSettled(state, it) },
             dailyStats = tailKeys.associateWith { WidgetDayDto(combinedDailyStats.getValue(it)) },
             streak = Statistics.streak(combinedDailyStats, nowEpochMillis, tzId),
             lastReviewDate = combinedDailyStats.entries.filter { it.value > 0 }.maxOfOrNull { it.key },
@@ -136,7 +136,7 @@ class WidgetSnapshotView internal constructor(private val doc: WidgetSnapshotDoc
     }
 
     /** Active cards that have settled — resolved phone-side, it does not move with the clock. */
-    val settledCount: Int get() = doc.settledCount
+    val allSettledCount: Int get() = doc.allSettledCount
 
     private val dailyStats: Map<String, Int> = doc.dailyStats.mapValues { it.value.reviews }
 
@@ -177,7 +177,7 @@ internal data class WidgetSnapshotDoc(
     /** Every active card's due date — the render-time dueCount input. */
     val cards: List<WidgetCardDto>,
     /** Active cards that have settled; time-independent, so it is resolved here. */
-    val settledCount: Int,
+    val allSettledCount: Int,
     /** Trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] day keys. */
     val dailyStats: Map<String, WidgetDayDto>,
     /**

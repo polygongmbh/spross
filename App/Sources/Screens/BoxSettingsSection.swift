@@ -357,7 +357,7 @@ struct BoxSettingsSection: View {
     }
 
     private func startReset() {
-        guard (model.stats?.settledCount ?? 0) > 0, let target = model.targetLanguage else {
+        guard (model.stats?.allSettledCount ?? 0) > 0, let target = model.targetLanguage else {
             confirmingReset = true
             return
         }

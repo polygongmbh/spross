@@ -38,7 +38,7 @@ class AreaGrowthTests {
     @Test
     fun aRoundThatAddsWordsChangesOnlyTheNewRanks() {
         val move = TreeTransition(tree(met = 2, growing = 3), tree(met = 4, growing = 3))
-        assertEquals(5, move.settledCount)
+        assertEquals(5, move.standingCount)
         assertEquals(listOf(5, 6), move.changedRanks)
     }
 

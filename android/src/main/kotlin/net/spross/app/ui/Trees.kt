@@ -56,16 +56,16 @@ internal fun HomeTrees(model: AppModel) {
                 val area = areas[tree.area]
                 listOf(
                     model.areaTitle(tree.area),
-                    countLine(chrome.progressSettledCountOne, chrome.progressSettledCount, area?.settled ?: 0),
-                    countLine(chrome.progressLearningCountOne, chrome.progressLearningCount, area?.learning ?: 0),
+                    countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, area?.allSettled ?: 0),
+                    countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, area?.allGrowing ?: 0),
                 ).joinToString(", ")
             },
             open = { model.openBox(it) },
         )
         Text(
             listOf(
-                countLine(chrome.progressSettledCountOne, chrome.progressSettledCount, stats?.settledCount ?: 0),
-                countLine(chrome.progressLearningCountOne, chrome.progressLearningCount, stats?.learningCount ?: 0),
+                countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, stats?.allSettledCount ?: 0),
+                countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, stats?.allGrowingCount ?: 0),
             ).joinToString(" · "),
             style = MaterialTheme.typography.bodySmall,
             color = Theme.colors.textSecondary,

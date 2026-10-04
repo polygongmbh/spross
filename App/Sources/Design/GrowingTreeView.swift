@@ -100,7 +100,7 @@ struct TreeArrival {
 
     init(_ transition: TreeTransition, at progress: Double) {
         let ranks = transition.changedRanks.map(\.intValue)
-        let hanging = Int(transition.settledCount)
+        let hanging = Int(transition.standingCount)
         var scales: [Int: CGFloat] = [:]
         for (order, rank) in ranks.enumerated() {
             let share = ranks.count > 1 ? Double(order) / Double(ranks.count - 1) : 0

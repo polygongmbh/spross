@@ -104,12 +104,10 @@ private struct AreaBarSegment: Identifiable {
 /// measured against. The split and the denominator are the box's rulings
 /// (`AreaStatistics`); the screen hands them over so Design stays kern-free.
 struct AreaProgress {
-    /// Cards past the settled bar — the bar's jade segment.
-    let settled: Int
-    /// Everything else active — Fresh, Growing and Relearning combined, the
-    /// same two-way split the counts row is cut for. The bar deliberately does
-    /// not draw the badge's finer four-way grain.
-    let learning: Int
+    /// Settled or matured cards — the bar's jade segment.
+    let allSettled: Int
+    /// Every other active card, fresh, growing or relearning — the counts row's split.
+    let allGrowing: Int
     /// Cards packed but not yet introduced — the bar's clay segment. A card
     /// never packed at all gets no segment: it leaves the bar's neutral track
     /// showing rather than widening a fourth bucket.
@@ -118,10 +116,10 @@ struct AreaProgress {
     let progressTotal: Int
 
     /// What an area with no statistics yet draws: a bare track, no segment on it.
-    static let empty = AreaProgress(settled: 0, learning: 0, queued: 0, progressTotal: 1)
+    static let empty = AreaProgress(allSettled: 0, allGrowing: 0, queued: 0, progressTotal: 1)
 }
 
-/// Per-area chip: emoji + name + settled/learning counts over a bar that
+/// Per-area chip: emoji + name + settled/growing counts over a bar that
 /// measures both against the area's FULL card count, so the untouched rest
 /// of an area stays visible instead of a bar that always reads as full.
 ///
@@ -138,7 +136,7 @@ struct AreaChip: View {
     /// count the bar can place (they aren't scheduled yet), so it only ever
     /// shows up here, and only when it says something (never at zero).
     let lockedPhrases: Int
-    /// An area fully packed AND mature swaps its header mark for a jade
+    /// An area fully packed AND settled swaps its header mark for a jade
     /// one (the screen's own `packControl`) and has nothing left for the
     /// counts/bar to say — so they step aside, leaving just the emoji/name.
     var hideProgress: Bool = false
@@ -150,8 +148,8 @@ struct AreaChip: View {
     /// A card never packed at all gets no segment: the neutral track under them
     /// is what the untouched rest of the area reads as.
     private var segments: [AreaBarSegment] {
-        [(progress.settled, Theme.colors.settled),
-         (progress.learning, Theme.colors.success),
+        [(progress.allSettled, Theme.colors.settled),
+         (progress.allGrowing, Theme.colors.success),
          (progress.queued, Theme.colors.accent)]
             .enumerated()
             .filter { $0.element.0 > 0 }
@@ -214,10 +212,10 @@ struct AreaChip: View {
     /// and the bar alone draws the Sprosse between them.
     private var counts: some View {
         HStack(spacing: Theme.spacing.md) {
-            Label("progress.settledCount \(Int(progress.settled))",
+            Label("progress.allSettledCount \(Int(progress.allSettled))",
                   systemImage: "checkmark.seal.fill")
                 .foregroundStyle(Theme.colors.settled)
-            Label("progress.learningCount \(Int(progress.learning))", systemImage: "leaf.fill")
+            Label("progress.allGrowingCount \(Int(progress.allGrowing))", systemImage: "leaf.fill")
                 .foregroundStyle(Theme.colors.success)
             if lockedPhrases > 0 {
                 // why: the padlock carries "locked", so the text only has to
@@ -338,15 +336,15 @@ private var ladder: some View {
             StreakFlameView(days: 12, emoji: "🎉")
             AreaChip(emoji: "🍳", name: "Küche",
                      subtitle: "Hier duftet es nach Abendessen.",
-                     progress: .init(settled: 18, learning: 6, queued: 0, progressTotal: 24),
+                     progress: .init(allSettled: 18, allGrowing: 6, queued: 0, progressTotal: 24),
                      lockedPhrases: 0)
                 .previewCard()
             AreaChip(emoji: "🛁", name: "Bad",
-                     progress: .init(settled: 4, learning: 9, queued: 28, progressTotal: 41),
+                     progress: .init(allSettled: 4, allGrowing: 9, queued: 28, progressTotal: 41),
                      lockedPhrases: 3)
                 .previewCard()
             AreaChip(emoji: "🧰", name: "Werkstatt",
-                     progress: .init(settled: 0, learning: 0, queued: 17, progressTotal: 17),
+                     progress: .init(allSettled: 0, allGrowing: 0, queued: 17, progressTotal: 17),
                      lockedPhrases: 0)
                 .previewCard()
             // The whole ladder, in the order a card climbs it.
@@ -362,7 +360,7 @@ private var ladder: some View {
         StreakFlameView(days: 3)
         StreakFlameView(days: 3, flame: .atRisk)
         AreaChip(emoji: "🍳", name: "Küche",
-                 progress: .init(settled: 18, learning: 6, queued: 28, progressTotal: 52),
+                 progress: .init(allSettled: 18, allGrowing: 6, queued: 28, progressTotal: 52),
                  lockedPhrases: 2)
             .previewCard()
         ladder

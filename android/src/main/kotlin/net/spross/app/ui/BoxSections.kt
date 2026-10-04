@@ -114,8 +114,8 @@ internal fun AreaSection(
     // Nothing left to pack or unpack, and every active card has settled —
     // the one condition that swaps the pack control's mark jade and leaves the
     // chip's bar/counts with nothing to say (Part D).
-    val fullyPackedAndMature = (counts?.packable ?: 0) == 0 && (counts?.queued ?: 0) == 0 &&
-        (stats?.mature ?: false)
+    val fullyPackedAndSettled = (counts?.packable ?: 0) == 0 && (counts?.queued ?: 0) == 0 &&
+        (stats?.fullySettled ?: false)
 
     Column(Modifier.fillMaxWidth().panel(shape)) {
         Row(
@@ -136,7 +136,7 @@ internal fun AreaSection(
                 subtitle = naming.subtitle(area),
                 stats = stats,
                 chrome = chrome,
-                hideProgress = fullyPackedAndMature,
+                hideProgress = fullyPackedAndSettled,
                 modifier = Modifier.weight(1f),
             )
             Column(
@@ -145,7 +145,7 @@ internal fun AreaSection(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 PackControl(chrome, counts?.packable ?: 0, counts?.queued ?: 0,
-                    mature = stats?.mature ?: false,
+                    fullySettled = stats?.fullySettled ?: false,
                     onPack = {
                         model.updateBox { BoxEngine.enqueue(it, BoxBrowser.enqueueableCardIds(it, area)) }
                     },
@@ -181,16 +181,16 @@ internal fun AreaSection(
  * control acts on. Below that (1–2 queued, nothing packable) the bulk control steps aside
  * for the per-word row's own unpack, but the shelf still wears the settled check.
  *
- * [mature] turns the settled check jade instead of green once every active card in the
+ * [fullySettled] turns the settled check jade instead of green once every active card in the
  * area has settled AND nothing is queued — the same mark, not a second indicator
- * (kern `AreaStatistics.mature`).
+ * (kern `AreaStatistics.fullySettled`).
  */
 @Composable
 internal fun PackControl(
     chrome: Chrome,
     count: Int,
     queuedCount: Int,
-    mature: Boolean,
+    fullySettled: Boolean,
     onPack: () -> Unit,
     onUnpack: () -> Unit,
 ) {
@@ -201,7 +201,7 @@ internal fun PackControl(
     } else {
         Text(
             SEAL,
-            color = if (queuedCount == 0 && mature) Theme.colors.settled else Theme.colors.success,
+            color = if (queuedCount == 0 && fullySettled) Theme.colors.settled else Theme.colors.success,
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier
                 .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
@@ -226,18 +226,18 @@ fun AreaChip(
     stats: AreaStatistics?,
     chrome: Chrome,
     modifier: Modifier = Modifier,
-    /** An area fully packed AND mature swaps its header mark for a jade one
+    /** An area fully packed AND settled swaps its header mark for a jade one
      * (the screen's own `PackControl`) and has nothing left for the counts/bar to
      * say — so they step aside, leaving just the emoji/name/subtitle. */
     hideProgress: Boolean = false,
 ) {
-    val settled = stats?.settled ?: 0
-    val learning = stats?.learning ?: 0
+    val settled = stats?.allSettled ?: 0
+    val learning = stats?.allGrowing ?: 0
     val locked = stats?.phrasesLocked ?: 0
     val spoken = buildList {
         add(name)
-        add(countLine(chrome.progressSettledCountOne, chrome.progressSettledCount, settled))
-        add(countLine(chrome.progressLearningCountOne, chrome.progressLearningCount, learning))
+        add(countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, settled))
+        add(countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, learning))
         if (locked > 0) add(countLine(chrome.boxAreaPhrasesLockedOne, chrome.boxAreaPhrasesLocked, locked))
     }.joinToString(", ")
 
@@ -274,8 +274,8 @@ fun AreaChip(
                 // Two counts where the bar beneath draws three Sprossen: there is room here for
                 // the split that matters (cleared the bar, or not yet), and the bar carries
                 // the finer one.
-                CountLabel("$SEAL ${countLine(chrome.progressSettledCountOne, chrome.progressSettledCount, settled)}", Theme.colors.settled)
-                CountLabel("$LEAF ${countLine(chrome.progressLearningCountOne, chrome.progressLearningCount, learning)}", Theme.colors.success)
+                CountLabel("$SEAL ${countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, settled)}", Theme.colors.settled)
+                CountLabel("$LEAF ${countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, learning)}", Theme.colors.success)
                 // why: the padlock carries the "locked", so the text only names what is
                 // locked — and it appears only when it says something.
                 if (locked > 0) CountLabel(
@@ -303,7 +303,7 @@ private val EMPTY_AREA = AreaStatistics(
     name = "",
     total = 0,
     active = 0,
-    settled = 0,
+    allSettled = 0,
     queued = 0,
     phrasesLocked = 0,
     phrasesUnlocked = 0,

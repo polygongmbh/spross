@@ -74,7 +74,7 @@ internal class Arrival(transition: TreeTransition, progress: Float) {
 
     init {
         val ranks = transition.changedRanks
-        val hanging = transition.settledCount
+        val hanging = transition.standingCount
         for ((order, rank) in ranks.withIndex()) {
             val share = if (ranks.size > 1) order.toFloat() / (ranks.size - 1) else 0f
             val t = ((progress - (OPENS + STAGGER * share)) / TAKES).coerceIn(0f, 1f)

@@ -79,8 +79,8 @@ extension BoxStatistics {
     var activeCards: Int { Int(activeCount) }
     var dueCards: Int { Int(dueCount) }
     var streakDays: Int { Int(streak) }
-    var settledCards: Int { Int(settledCount) }
-    var learningCards: Int { Int(learningCount) }
+    var allSettledCards: Int { Int(allSettledCount) }
+    var allGrowingCards: Int { Int(allGrowingCount) }
 
     /// The grade the flame burns in right now. Every screen that draws one reads
     /// it here, so no two surfaces read the same day differently.
@@ -89,7 +89,7 @@ extension BoxStatistics {
 
 extension AreaStatistics {
     var activeCards: Int { Int(active) }
-    var settledCards: Int { Int(settled) }
+    var allSettledCards: Int { Int(allSettled) }
     var lockedPhrases: Int { Int(phrasesLocked) }
 
     var queuedCards: Int { Int(queued) }
@@ -98,7 +98,7 @@ extension AreaStatistics {
     /// system reads them — which card falls in which bucket, and how a stale
     /// total is clamped, are the engine's rulings (`box/Statistics.kt`).
     var progress: AreaProgress {
-        AreaProgress(settled: Int(settled), learning: Int(learning),
+        AreaProgress(allSettled: Int(allSettled), allGrowing: Int(allGrowing),
                      queued: Int(queued), progressTotal: Int(progressTotal))
     }
 }

@@ -164,7 +164,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
             Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
                 TextButton(
                     onClick = {
-                        if ((model.stats?.settledCount ?: 0) > 0) {
+                        if ((model.stats?.allSettledCount ?: 0) > 0) {
                             resetExport.launch("Spross-${box.joinStamp.target}-${LocalDate.now()}.json")
                         } else {
                             confirmingReset = true

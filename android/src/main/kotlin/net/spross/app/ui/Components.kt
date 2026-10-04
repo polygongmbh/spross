@@ -230,8 +230,8 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.spacedBy(2.dp), // card-parity: the hairline parting the stretches sits tighter than xs
     ) {
         val stretches = listOf(
-            stats.settled to palette.settled,
-            stats.learning to palette.success,
+            stats.allSettled to palette.settled,
+            stats.allGrowing to palette.success,
             stats.queued to palette.accent,
         ).filter { it.first > 0 }
         stretches.forEach { (count, color) ->

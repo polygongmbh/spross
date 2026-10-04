@@ -163,7 +163,7 @@ struct WordProvider: TimelineProvider {
                              dueCount: dueCount,
                              streak: streak,
                              flameState: flameState,
-                             settled: snapshot.settledCount,
+                             settled: snapshot.allSettledCount,
                              activityDays: activityDays,
                              chromeLanguage: snapshot.chromeLanguage)
         }

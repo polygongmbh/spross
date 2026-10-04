@@ -323,10 +323,10 @@ interface Chrome {
     val boxCardForget: String
     val boxCardOwnFrom: String
     val a11yReportReported: String
-    val progressSettledCount: String // %d
-    val progressSettledCountOne: String
-    val progressLearningCount: String  // %d
-    val progressLearningCountOne: String
+    val progressAllSettledCount: String // %d
+    val progressAllSettledCountOne: String
+    val progressAllGrowingCount: String  // %d
+    val progressAllGrowingCountOne: String
     val boxAreaPhrasesLockedShort: String // %d
     val boxAreaPhrasesLockedShortOne: String // %d
     val boxAreaPhrasesLocked: String // %d

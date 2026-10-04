@@ -195,7 +195,7 @@ class BoxStatisticsTests {
 
         val stats = BoxEngine.statistics(state, now, Box.TZ)
         assertEquals(3, stats.activeCount)
-        assertEquals(1, stats.settledCount)
+        assertEquals(1, stats.allSettledCount)
     }
 
     @Test
@@ -220,12 +220,12 @@ class BoxStatisticsTests {
         val kitchen = stats.areas[0]
         assertEquals(4, kitchen.total)
         assertEquals(2, kitchen.active)
-        assertEquals(1, kitchen.settled) // only w01: Review phase & stability ≥ SETTLED_STABILITY
+        assertEquals(1, kitchen.allSettled) // only w01: Review phase & stability ≥ SETTLED_STABILITY
         assertEquals(1, kitchen.phrasesLocked) // p-locked: w02 not stable yet
         assertEquals(1, kitchen.phrasesUnlocked) // p-free has no components
         assertEquals(
             AreaStatistics(
-                "market", total = 1, active = 0, settled = 0, queued = 0,
+                "market", total = 1, active = 0, allSettled = 0, queued = 0,
                 phrasesLocked = 0, phrasesUnlocked = 0,
             ),
             stats.areas[1],

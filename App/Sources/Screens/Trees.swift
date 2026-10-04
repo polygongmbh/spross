@@ -102,8 +102,8 @@ struct Trees: View {
     /// it says how the box is shaped, never how many words are in it.
     private var caption: some View {
         Text.joined(
-            Text("progress.settledCount \(model.stats?.settledCards ?? 0)"),
-            Text("progress.learningCount \(model.stats?.learningCards ?? 0)")
+            Text("progress.allSettledCount \(model.stats?.allSettledCards ?? 0)"),
+            Text("progress.allGrowingCount \(model.stats?.allGrowingCards ?? 0)")
         )
         .font(Theme.typography.caption)
         .foregroundStyle(Theme.colors.textSecondary)
@@ -114,8 +114,8 @@ struct Trees: View {
         let stats = model.areaStats(area)
         return Text.joined(
             Text(model.areaTitle(area)),
-            Text("progress.settledCount \(Int(stats?.settled ?? 0))"),
-            Text("progress.learningCount \(Int(stats?.learning ?? 0))")
+            Text("progress.allSettledCount \(Int(stats?.allSettled ?? 0))"),
+            Text("progress.allGrowingCount \(Int(stats?.allGrowing ?? 0))")
         )
     }
 }

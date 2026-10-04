@@ -78,7 +78,7 @@ data class TreeTransition(val before: AreaGrowth, val after: AreaGrowth) {
     )
 
     /** How many ranks were already standing when the round began; from here on each is new. */
-    val settledCount: Int get() = start.met
+    val standingCount: Int get() = start.met
 
     /**
      * The ranks this round moved, in rank order: a word that arrived, and a rank whose

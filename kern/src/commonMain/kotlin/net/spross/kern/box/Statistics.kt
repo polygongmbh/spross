@@ -14,8 +14,8 @@ import net.spross.kern.model.CardScheduling
 data class BoxStatistics(
     /** Cards with an active (scheduled, non-suspended) schedule. */
     val activeCount: Int,
-    /** Active cards that have settled (see [Statistics.isSettled]); the rest are still fresh. */
-    val settledCount: Int,
+    /** Active cards that have settled or matured ([Statistics.isSettled]). */
+    val allSettledCount: Int,
     /** Active cards due now. */
     val dueCount: Int,
     /** Cards whose schedule is suspended (out of rotation). */
@@ -28,12 +28,8 @@ data class BoxStatistics(
     val longestStreak: Int,
     val areas: List<AreaStatistics>,
 ) {
-    /**
-     * Active cards that have not settled yet — the growing half of the split.
-     * Clamped: a caller may hold a statistics value older than the counts it reads
-     * beside, and a negative bucket is never a truth about the box.
-     */
-    val learningCount: Int get() = maxOf(0, activeCount - settledCount)
+    /** Active cards that are fresh or growing; clamped, never negative. */
+    val allGrowingCount: Int get() = maxOf(0, activeCount - allSettledCount)
 }
 
 data class AreaStatistics(
@@ -42,8 +38,8 @@ data class AreaStatistics(
     val total: Int,
     /** Cards with an active schedule. */
     val active: Int,
-    /** Cards in the area that have settled (see [Statistics.isSettled]). */
-    val settled: Int,
+    /** Cards in the area that have settled or matured ([Statistics.isSettled]). */
+    val allSettled: Int,
     /** Cards packed but not yet introduced — the progress bar's clay segment. */
     val queued: Int = 0,
     /** Component phrases still waiting for their components to stabilize. */
@@ -51,26 +47,21 @@ data class AreaStatistics(
     /** Phrases already introduced, component-free, or with all components stable. */
     val phrasesUnlocked: Int,
 ) {
-    /** Active cards in the area still on their way in — see [BoxStatistics.learningCount]. */
-    val learning: Int get() = maxOf(0, active - settled)
+    /** Active cards in the area that are fresh or growing. */
+    val allGrowing: Int get() = maxOf(0, active - allSettled)
 
     /** Cards the area holds that have never been introduced — the third bucket. */
-    val notIntroduced: Int get() = maxOf(total - settled - learning, 0)
+    val notIntroduced: Int get() = maxOf(total - allSettled - allGrowing, 0)
 
     /**
      * What the three buckets are measured against. Never below the introduced
      * count: [total] comes from the join and can lag the schedules, and a stale
      * total must not make the introduced cards read as more than everything.
      */
-    val progressTotal: Int get() = maxOf(total, settled + learning, 1)
+    val progressTotal: Int get() = maxOf(total, allSettled + allGrowing, 1)
 
-    /**
-     * Whether every active card in the area stands on [GrowthStage.Settled] — combined
-     * with the pack/unpack emptiness a screen already computes, this is what turns the
-     * area-complete mark jade instead of green. An area holding nothing active is never
-     * mature, whatever [total] says: there is nothing here to have settled.
-     */
-    val mature: Boolean get() = active > 0 && settled == active
+    /** Every active card has settled, and there is at least one — turns the area-complete mark jade. */
+    val fullySettled: Boolean get() = active > 0 && allSettled == active
 }
 
 /** How the streak rule reads one day of the trailing window. */
@@ -197,7 +188,7 @@ internal object Statistics {
             mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
         return BoxStatistics(
             activeCount = active.size,
-            settledCount = active.count { isSettled(state, it) },
+            allSettledCount = active.count { isSettled(state, it) },
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.suspendedCount(state),
             streak = streak(combinedDailyStats, nowEpochMillis, tzId),
@@ -319,7 +310,7 @@ internal object Statistics {
                     }
                 }
                 AreaStatistics(
-                    name = area, total = cards.size, active = active, settled = settled,
+                    name = area, total = cards.size, active = active, allSettled = settled,
                     queued = shelfCounts[area]?.queued ?: 0,
                     phrasesLocked = locked, phrasesUnlocked = unlocked,
                 )

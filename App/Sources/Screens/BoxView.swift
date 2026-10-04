@@ -281,7 +281,7 @@ private struct BoxAreaSection: View {
                      subtitle: model.areaSubtitle(area),
                      progress: stats?.progress ?? .empty,
                      lockedPhrases: stats?.lockedPhrases ?? 0,
-                     hideProgress: fullyPackedAndMature(stats))
+                     hideProgress: fullyPackedAndSettled(stats))
             FoldChevron(open: expanded)
                 .foregroundStyle(Theme.colors.textSecondary)
                 .padding(.top, Theme.spacing.sm)
@@ -293,10 +293,10 @@ private struct BoxAreaSection: View {
     /// area has settled — the one condition that swaps the green "All
     /// packed" mark for a jade one and hides the chip's bar/counts, leaving
     /// just the emoji/name/jade mark in the header (Part D).
-    private func fullyPackedAndMature(_ stats: AreaStatistics?) -> Bool {
+    private func fullyPackedAndSettled(_ stats: AreaStatistics?) -> Bool {
         model.enqueueableCount(area: area) == 0
             && model.dequeueableCount(area: area) == 0
-            && (stats?.mature ?? false)
+            && (stats?.fullySettled ?? false)
     }
 
     /// The count moved from the button's face into its label: an icon-only
@@ -308,7 +308,7 @@ private struct BoxAreaSection: View {
     /// this control acts on, same as packing itself. Below three queued words the
     /// bulk control steps aside for the per-word one instead (`BoxCardRow.standing`),
     /// and the shelf wears the green "packed" mark; the jade mark is reserved for
-    /// nothing queued at all (`fullyPackedAndMature`).
+    /// nothing queued at all (`fullyPackedAndSettled`).
     @ViewBuilder
     private var packControl: some View {
         let count = model.enqueueableCount(area: area)
@@ -322,10 +322,10 @@ private struct BoxAreaSection: View {
                 model.dequeueArea(area)
             }
         } else {
-            let mature = queued == 0 && (model.areaStats(area)?.mature ?? false)
+            let fullySettled = queued == 0 && (model.areaStats(area)?.fullySettled ?? false)
             Image(systemName: "checkmark.circle.fill")
                 .font(Theme.typography.headline)
-                .foregroundStyle(mature ? Theme.colors.settled : Theme.colors.success)
+                .foregroundStyle(fullySettled ? Theme.colors.settled : Theme.colors.success)
                 .frame(width: 40, height: 40)
                 .accessibilityLabel(Text("a11y.box.shelf.packed"))
         }

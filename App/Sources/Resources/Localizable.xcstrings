@@ -5064,23 +5064,7 @@
         }
       }
     },
-    "progress.last14Days" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Letzte 14 Tage"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Last 14 days"
-          }
-        }
-      }
-    },
-    "progress.learningCount %lld" : {
+    "progress.allGrowingCount %lld" : {
       "localizations" : {
         "de" : {
           "variations" : {
@@ -5120,8 +5104,8 @@
         }
       }
     },
-    "progress.settledCount %lld" : {
-      "comment" : "An area's row of counts: the settled half beside the seal, the learning half beside the leaf. home.tally.settled is the day's own tally on Heute — a different screen's sentence, not this one read twice.",
+    "progress.allSettledCount %lld" : {
+      "comment" : "An area's row of counts: the settled half beside the seal, the growing half beside the leaf. tally.settled is the day's own tally on Home — a different screen's sentence, not this one read twice.",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -5157,6 +5141,22 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "progress.last14Days" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letzte 14 Tage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last 14 days"
           }
         }
       }
