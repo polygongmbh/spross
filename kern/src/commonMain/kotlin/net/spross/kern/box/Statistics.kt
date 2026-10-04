@@ -12,10 +12,8 @@ import net.spross.kern.model.CardScheduling
 
 /** Aggregates for progress UI. All counts are in cards. */
 data class BoxStatistics(
-    /** Cards with an active (scheduled, non-suspended) schedule. */
-    val activeCount: Int,
-    /** Active cards that have settled or matured ([Statistics.hasSettled]). */
-    val allSettledCount: Int,
+    /** Active (scheduled, non-suspended) cards per Sprosse. */
+    val stages: StageCounts,
     /** Active cards due now. */
     val dueCount: Int,
     /** Cards whose schedule is suspended (out of rotation). */
@@ -28,18 +26,17 @@ data class BoxStatistics(
     val longestStreak: Int,
     val areas: List<AreaStatistics>,
 ) {
-    /** Active cards that are fresh or growing; clamped, never negative. */
-    val allGrowingCount: Int get() = maxOf(0, activeCount - allSettledCount)
+    val activeCount: Int get() = stages.active
+    val allSettledCount: Int get() = stages.allSettled
+    val allGrowingCount: Int get() = stages.allGrowing
 }
 
 data class AreaStatistics(
     val name: String,
     /** Cards in the area (any status). */
     val total: Int,
-    /** Cards with an active schedule. */
-    val active: Int,
-    /** Cards in the area that have settled or matured ([Statistics.hasSettled]). */
-    val allSettled: Int,
+    /** Active cards in the area per Sprosse. */
+    val stages: StageCounts,
     /** Cards packed but not yet introduced — the progress bar's clay segment. */
     val queued: Int = 0,
     /** Component phrases still waiting for their components to stabilize. */
@@ -47,21 +44,18 @@ data class AreaStatistics(
     /** Phrases already introduced, component-free, or with all components stable. */
     val phrasesUnlocked: Int,
 ) {
-    /** Active cards in the area that are fresh or growing. */
-    val allGrowing: Int get() = maxOf(0, active - allSettled)
+    val active: Int get() = stages.active
+    val allSettled: Int get() = stages.allSettled
+    val allGrowing: Int get() = stages.allGrowing
 
-    /** Cards the area holds that have never been introduced — the third bucket. */
-    val notIntroduced: Int get() = maxOf(total - allSettled - allGrowing, 0)
+    /** Cards never introduced. [total] comes from the join and can lag the schedules. */
+    val notIntroduced: Int get() = maxOf(total - active, 0)
 
-    /**
-     * What the three buckets are measured against. Never below the introduced
-     * count: [total] comes from the join and can lag the schedules, and a stale
-     * total must not make the introduced cards read as more than everything.
-     */
-    val progressTotal: Int get() = maxOf(total, allSettled + allGrowing, 1)
+    /** What the bar is measured against — never below the introduced count. */
+    val progressTotal: Int get() = maxOf(total, active, 1)
 
     /** Every active card has settled, and there is at least one — turns the area-complete mark jade. */
-    val fullySettled: Boolean get() = active > 0 && allSettled == active
+    val fullySettled: Boolean get() = active > 0 && allGrowing == 0
 }
 
 /** How the streak rule reads one day of the trailing window. */
@@ -187,8 +181,7 @@ internal object Statistics {
         val combinedDailyStats =
             mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
         return BoxStatistics(
-            activeCount = active.size,
-            allSettledCount = active.count { hasSettled(state, it) },
+            stages = StageCounts.of(state, active),
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.suspendedCount(state),
             streak = streak(combinedDailyStats, nowEpochMillis, tzId),
@@ -288,29 +281,25 @@ internal object Statistics {
     }
 
     private fun areaStatistics(state: BoxState, active: List<CardScheduling>): List<AreaStatistics> {
-        val activeCards = active.mapTo(mutableSetOf()) { it.cardId }
+        val activeByArea = active.groupBy { state.cards[it.cardId]?.area }
         // why: [BoxBrowser.shelfCounts] already walks the queue per area for the pack
         // controls — the bar's clay segment reads the same number rather than a second walk.
         val shelfCounts = BoxBrowser.shelfCounts(state)
         return state.cards.values.groupBy { it.area }.entries
             .sortedBy { it.key }
             .map { (area, cards) ->
-                var active = 0
-                var settled = 0
                 var locked = 0
                 var unlocked = 0
                 for (card in cards) {
-                    if (card.id in activeCards) active += 1
-                    val sched = state.scheduling[card.id]
-                    if (sched != null && !sched.suspended && hasSettled(state, sched)) settled += 1
                     if (card.kind == CardKind.Phrase) {
-                        val open = sched != null || card.components.isEmpty() ||
+                        val open = state.scheduling[card.id] != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)
                         if (open) unlocked += 1 else locked += 1
                     }
                 }
                 AreaStatistics(
-                    name = area, total = cards.size, active = active, allSettled = settled,
+                    name = area, total = cards.size,
+                    stages = StageCounts.of(state, activeByArea[area].orEmpty()),
                     queued = shelfCounts[area]?.queued ?: 0,
                     phrasesLocked = locked, phrasesUnlocked = unlocked,
                 )

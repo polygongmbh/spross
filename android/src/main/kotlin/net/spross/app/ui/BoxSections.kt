@@ -36,6 +36,7 @@ import net.spross.kern.box.AreaGroupSection
 import net.spross.kern.box.AreaStatistics
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
+import net.spross.kern.box.StageCounts
 
 /**
  * A foldable group row — a hairline and no card of its own, so the area cards below stay
@@ -302,8 +303,7 @@ private fun CountLabel(text: String, color: Color = MaterialTheme.colorScheme.on
 private val EMPTY_AREA = AreaStatistics(
     name = "",
     total = 0,
-    active = 0,
-    allSettled = 0,
+    stages = StageCounts(),
     queued = 0,
     phrasesLocked = 0,
     phrasesUnlocked = 0,

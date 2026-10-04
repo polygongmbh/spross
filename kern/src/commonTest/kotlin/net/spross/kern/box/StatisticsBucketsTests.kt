@@ -34,29 +34,24 @@ class StatisticsBucketsTests {
         assertEquals(kitchen.total, kitchen.allSettled + kitchen.allGrowing + kitchen.notIntroduced)
     }
 
-    /**
-     * A Growing-stage card counts toward [AreaStatistics.allGrowing] exactly like a Fresh
-     * one — the bar is a two-way split (jade vs. everything else active), never the
-     * badge's finer four-way grain.
-     */
+    /** Each active card counts on its own Sprosse; the two halves of the split are sums of them. */
     @Test
-    fun aGrowingCardCountsTowardAllGrowingJustLikeAFreshOne() {
-        var state = Box.state((1..4).map { Box.word(it, area = "kitchen") })
+    fun eachActiveCardCountsOnItsOwnSprosse() {
+        var state = Box.state((1..5).map { Box.word(it, area = "kitchen") })
         val future = Box.plusDays(now, 5.0)
-        // Settled (≥ SETTLED_STABILITY).
-        state = Box.inject(state, Box.sched("w01", stability = 35.0, dueMillis = future, lastReviewMillis = now))
-        // Fresh: in Review, short of the growing bar.
-        state = Box.inject(state, Box.sched("w02", stability = 3.0, dueMillis = future, lastReviewMillis = now))
-        // Growing: past the growing bar, short of settled — same bucket as Fresh here.
-        state = Box.inject(state, Box.sched("w03", stability = 9.0, dueMillis = future, lastReviewMillis = now))
-        // Settled, well past the bar.
-        state = Box.inject(state, Box.sched("w04", stability = 99.0, dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w01", stability = 3.0, dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w02", stability = 9.0, dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(
+            state,
+            Box.sched("w03", phase = CardPhase.Relearning, stability = 4.0, dueMillis = future, lastReviewMillis = now),
+        )
+        state = Box.inject(state, Box.sched("w04", stability = 35.0, dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w05", stability = MATURED_STABILITY, dueMillis = future, lastReviewMillis = now))
 
         val kitchen = BoxEngine.statistics(state, now, Box.TZ).areas.single()
-        assertEquals(4, kitchen.active)
-        assertEquals(2, kitchen.allSettled) // w01 and the settled w04
-        assertEquals(2, kitchen.allGrowing) // w02 (Fresh) and w03 (Growing) alike
-        assertEquals(kitchen.active, kitchen.allSettled + kitchen.allGrowing)
+        assertEquals(StageCounts(fresh = 1, growing = 1, relearning = 1, settled = 1, matured = 1), kitchen.stages)
+        assertEquals(3, kitchen.allGrowing)
+        assertEquals(2, kitchen.allSettled)
     }
 
     /** Packed-but-unintroduced cards get their own bucket — the bar's clay segment. */
@@ -76,7 +71,7 @@ class StatisticsBucketsTests {
     fun aStaleTotalCannotOverflowTheBuckets() {
         // The join shrank under a statistics value still holding the old schedules.
         val area = AreaStatistics(
-            name = "kitchen", total = 1, active = 5, allSettled = 3, queued = 0,
+            name = "kitchen", total = 1, stages = StageCounts(fresh = 2, settled = 3), queued = 0,
             phrasesLocked = 0, phrasesUnlocked = 0,
         )
         assertEquals(2, area.allGrowing)
@@ -87,7 +82,7 @@ class StatisticsBucketsTests {
     @Test
     fun anAreaWithNothingInItStillHasADenominator() {
         val area = AreaStatistics(
-            name = "empty", total = 0, active = 0, allSettled = 0, queued = 0,
+            name = "empty", total = 0, stages = StageCounts(), queued = 0,
             phrasesLocked = 0, phrasesUnlocked = 0,
         )
         assertEquals(0, area.allGrowing)
@@ -114,18 +109,9 @@ class StatisticsBucketsTests {
 
         // An area with nothing active at all has nothing to call fully settled.
         val empty = AreaStatistics(
-            name = "empty", total = 0, active = 0, allSettled = 0, queued = 0,
+            name = "empty", total = 0, stages = StageCounts(), queued = 0,
             phrasesLocked = 0, phrasesUnlocked = 0,
         )
         assertFalse(empty.fullySettled)
-    }
-
-    @Test
-    fun allGrowingNeverGoesNegative() {
-        val stats = BoxStatistics(
-            activeCount = 2, allSettledCount = 5, dueCount = 0, suspendedCount = 0,
-            streak = 0, streakHealth = StreakHealth.None, longestStreak = 0, areas = emptyList(),
-        )
-        assertEquals(0, stats.allGrowingCount)
     }
 }
