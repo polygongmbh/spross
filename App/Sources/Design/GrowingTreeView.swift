@@ -23,6 +23,8 @@ import SprossKern
 
 struct GrowingTreeView: View, Animatable {
     let transition: TreeTransition
+    /// The garden the tree grows in (`AreaTree.garden`).
+    let garden: String
     /// 0 = the tree as it stood before, 1 = as it stands now.
     var progress: Double
     /// The finished tree's marks, read once rather than per frame.
@@ -30,8 +32,9 @@ struct GrowingTreeView: View, Animatable {
     /// The share of its finished height the tree rises from.
     private let from: CGFloat
 
-    init(transition: TreeTransition, progress: Double) {
+    init(transition: TreeTransition, garden: String, progress: Double) {
         self.transition = transition
+        self.garden = garden
         self.progress = progress
         canopy = Canopy(transition.after)
         let full = AreaTree.shared.height(tree: transition.after)
@@ -55,7 +58,7 @@ struct GrowingTreeView: View, Animatable {
             // why: the frame is the FINISHED tree's, so the drawing never
             // outgrows the space it was given mid-animation; within it the tree
             // rises from the height it had before the round.
-            let mark = TreeMark.solitary(transition.after, canopy: canopy, in: size, risen: risen)
+            let mark = TreeMark.solitary(transition.after, garden: garden, canopy: canopy, in: size, risen: risen)
             TreeShapes.draw(&context, mark, arriving: TreeArrival(transition, at: progress))
         }
         .accessibilityHidden(true)
@@ -140,9 +143,9 @@ struct TreeArrival {
                                 fallen: 1, tendedToday: true)
     let move = TreeTransition(before: before, after: after)
     return HStack(spacing: Theme.spacing.lg) {
-        GrowingTreeView(transition: move, progress: 0)
-        GrowingTreeView(transition: move, progress: 0.5)
-        GrowingTreeView(transition: move, progress: 1)
+        GrowingTreeView(transition: move, garden: "", progress: 0)
+        GrowingTreeView(transition: move, garden: "", progress: 0.5)
+        GrowingTreeView(transition: move, garden: "", progress: 1)
     }
     .frame(height: 200)
     .padding(Theme.spacing.xl)
@@ -154,7 +157,7 @@ struct TreeArrival {
     let after = AreaGrowth.sample("bath", buds: 7, tendedToday: true)
     return GrowingTreeView(transition: TreeTransition(before: AreaGrowth.companion.bare(area: "bath"),
                                                       after: after),
-                           progress: 1)
+                           garden: "", progress: 1)
         .frame(height: AreaTree.shared.heroHeight(tree: after, ceiling: AreaTree.shared.HERO_MAX))
         .padding(Theme.spacing.xl)
         .background(Theme.colors.background)
@@ -164,7 +167,7 @@ struct TreeArrival {
 #Preview("An area only packed") {
     let packed = AreaGrowth.sample("bath", packed: 12, tendedToday: true)
     return GrowingTreeView(transition: TreeTransition(before: packed, after: packed),
-                           progress: 1)
+                           garden: "", progress: 1)
         .frame(height: AreaTree.shared.heroHeight(tree: packed, ceiling: AreaTree.shared.HERO_MAX))
         .padding(Theme.spacing.xl)
         .background(Theme.colors.background)

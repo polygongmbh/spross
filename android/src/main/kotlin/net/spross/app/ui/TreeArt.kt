@@ -50,14 +50,14 @@ internal class TreeArt(
          * [scale] is how big the mark at a rank is drawn against its settled size — the
          * summary's arriving marks.
          */
-        fun build(tree: AreaGrowth, skeleton: TreeSkeleton, unit: Float, scale: (Int) -> Float = { 1f }): TreeArt {
+        fun build(tree: AreaGrowth, seed: String, skeleton: TreeSkeleton, unit: Float, scale: (Int) -> Float = { 1f }): TreeArt {
             val floor = MARK_FLOOR * unit
             // The mark size a crown of this pitch cuts to.
             val base = max(floor, skeleton.pitch * 0.85f)
             val art = TreeArt(Path(), Path(), Path(), Path(), List(4) { Path() },
                 Path(), Path(), Path(), Path(), unit)
             art.wood(skeleton, floor, tree.met)
-            art.canopy(tree, skeleton, base, scale)
+            art.canopy(tree, seed, skeleton, base, scale)
             return art
         }
     }
@@ -100,7 +100,7 @@ internal class TreeArt(
         path.lineTo(d.x, d.y); path.quadraticTo(e.x, e.y, f.x, f.y); path.close()
     }
 
-    private fun canopy(tree: AreaGrowth, skeleton: TreeSkeleton, base: Float, scale: (Int) -> Float) {
+    private fun canopy(tree: AreaGrowth, seed: String, skeleton: TreeSkeleton, base: Float, scale: (Int) -> Float) {
         val hanging = skeleton.slots.take(tree.met)
         if (hanging.isEmpty()) return
         val top = hanging.minOf { it.point.y }
@@ -108,7 +108,7 @@ internal class TreeArt(
         val heavy = tree.stages.allSettled
         val leafy = heavy + tree.stages.growing
         for ((rank, slot) in hanging.withIndex()) {
-            val grain = noise(tree.area, rank * 41 + 7)
+            val grain = noise(seed, rank * 41 + 7)
             val reach = tree.reaches.getOrElse(rank) { 0.4 }.toFloat()
             // A mark's SIZE is its own word's standing; only its lean is hashed.
             val size = base * (0.74f + 0.62f * reach) * scale(rank)

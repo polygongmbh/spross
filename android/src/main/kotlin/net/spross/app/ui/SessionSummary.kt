@@ -41,6 +41,7 @@ import net.spross.app.SessionUi
 import net.spross.app.areaEmoji
 import net.spross.app.areaTitle
 import net.spross.app.continueEndless
+import net.spross.app.garden
 import net.spross.app.hasBriefing
 import net.spross.kern.box.GrowthClaim
 import net.spross.kern.box.GrowthHeadline
@@ -88,7 +89,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 // one screen is one too many.
                 val area = grown?.after?.area
                 if (grown != null && area != null) {
-                    GrowingTree(grown, AreaTree.heroHeight(grown.after, treeCeiling.value.toDouble()).dp)
+                    GrowingTree(grown, model.garden, AreaTree.heroHeight(grown.after, treeCeiling.value.toDouble()).dp)
                     // why: the area is LABELED under its tree rather than named in the claim —
                     // what grew is what the learner can say, never the area itself.
                     Spacer(Modifier.height(8.dp))

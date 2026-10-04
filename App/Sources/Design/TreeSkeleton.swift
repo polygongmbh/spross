@@ -34,11 +34,11 @@ struct TreeSkeleton {
     /// The typical gap between neighboring marks — what a mark is sized against.
     let pitch: CGFloat
 
-    /// The tree `area` grows to carry `marks` marks, the last `buds` of them buds,
+    /// The tree `seed` grows to carry `marks` marks, the last `buds` of them buds,
     /// fitted with its foot on `foot`, `height` tall.
-    static func grown(area: String, marks: Int, buds: Int, foot: CGPoint, height: CGFloat) -> TreeSkeleton {
+    static func grown(seed: String, marks: Int, buds: Int, foot: CGPoint, height: CGFloat) -> TreeSkeleton {
         guard marks > 0 else { return TreeSkeleton(segments: [], slots: [], pitch: 1) }
-        let unit = UnitTrees.shared.tree(area: area, marks: marks, buds: buds)
+        let unit = UnitTrees.shared.tree(seed: seed, marks: marks, buds: buds)
         return unit.skeleton.placed(unit.grown.fit(footX: foot.x, footY: foot.y, height: height))
     }
 
@@ -77,7 +77,7 @@ struct TreeSkeleton {
     }
 }
 
-/// Unit-space trees by (area, marks), each converted once:
+/// Unit-space trees by (seed, marks), each converted once:
 /// a Kotlin list crosses the bridge as a copy on every read, and a rising tree is placed every frame.
 private final class UnitTrees: @unchecked Sendable {
     static let shared = UnitTrees()
@@ -90,14 +90,14 @@ private final class UnitTrees: @unchecked Sendable {
     private let lock = NSLock()
     private var entries: [String: Entry] = [:]
 
-    func tree(area: String, marks: Int, buds: Int) -> Entry {
-        let key = "\(area)|\(marks)|\(buds)"
+    func tree(seed: String, marks: Int, buds: Int) -> Entry {
+        let key = "\(seed)|\(marks)|\(buds)"
         lock.lock()
         defer { lock.unlock() }
         if let entry = entries[key] { return entry }
         // why: a box's trees and the counts they pass through stay well under this; a cleared cache only regrows.
         if entries.count >= 512 { entries.removeAll() }
-        let grown = AreaTree.shared.grow(area: area, marks: Int32(marks), buds: Int32(buds))
+        let grown = AreaTree.shared.grow(seed: seed, marks: Int32(marks), buds: Int32(buds))
         let entry = Entry(grown: grown, skeleton: TreeSkeleton(grown))
         entries[key] = entry
         return entry

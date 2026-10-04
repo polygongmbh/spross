@@ -33,6 +33,7 @@ import net.spross.app.areaEmoji
 import net.spross.app.areaTitle
 import net.spross.app.countLine
 import net.spross.app.composedAreaGrowth
+import net.spross.app.garden
 import net.spross.app.openBox
 import net.spross.kern.box.AreaGrowth
 import net.spross.kern.design.TreesLayout
@@ -50,6 +51,7 @@ internal fun HomeTrees(model: AppModel) {
     val areas = remember(stats) { stats?.areas?.associateBy { it.name }.orEmpty() }
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         Trees(
+            garden = model.garden,
             trees = trees,
             emoji = model::areaEmoji,
             describe = { tree ->
@@ -86,6 +88,7 @@ internal fun HomeTrees(model: AppModel) {
  */
 @Composable
 internal fun Trees(
+    garden: String,
     trees: List<AreaGrowth>,
     emoji: (String) -> String,
     describe: (AreaGrowth) -> String,
@@ -95,7 +98,7 @@ internal fun Trees(
     BoxWithConstraints(modifier.fillMaxWidth()) {
         val density = LocalDensity.current
         val width = constraints.maxWidth.toFloat()
-        val spots = remember(trees, width, density.density) { place(trees, width, density.density) }
+        val spots = remember(trees, garden, width, density.density) { place(trees, garden, width, density.density) }
         val colors = Theme.colors
         val measurer = rememberTextMeasurer()
         val labels = remember(trees, measurer) {
@@ -131,11 +134,11 @@ internal fun Trees(
 private class TreeCell(val planted: PlantedTree, val cell: Rect)
 
 /** Kern's placement ([TreesLayout.place]) in dp, scaled to pixels. */
-private fun place(trees: List<AreaGrowth>, width: Float, density: Float): List<TreeCell> =
+private fun place(trees: List<AreaGrowth>, garden: String, width: Float, density: Float): List<TreeCell> =
     TreesLayout.place(trees, (width / density).toDouble()).spots.map {
         val d = density.toDouble()
         val cell = Rect((it.cellX * d).toFloat(), (it.cellY * d).toFloat(),
             ((it.cellX + it.cellWidth) * d).toFloat(), ((it.cellY + it.cellHeight) * d).toFloat())
         val foot = Offset((it.footX * d).toFloat(), (it.baseline * d).toFloat())
-        TreeCell(PlantedTree(trees[it.index], foot, (it.height * d).toFloat(), density), cell)
+        TreeCell(PlantedTree(trees[it.index], garden, foot, (it.height * d).toFloat(), density), cell)
     }

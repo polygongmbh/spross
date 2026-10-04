@@ -10,6 +10,7 @@ import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.CardGrowth
 import net.spross.kern.box.growthByArea
 import net.spross.kern.catalog.Catalog
+import net.spross.kern.design.AreaTree
 
 /**
  * Where ONE word stands on the growth ladder, for a surface holding that word —
@@ -60,6 +61,9 @@ private fun AppModel.areaNaming(): AreaNaming {
  * or the fabricated box a debug launch asked for ([AppModel.sampleTreesAge]).
  * A walk over every card, so the Trees picture asks once per change to the box.
  */
+/** The garden every tree grows in ([AreaTree.garden]). */
+val AppModel.garden: String get() = AreaTree.garden(learnerName, box?.joinStamp?.target.orEmpty())
+
 fun AppModel.composedAreaGrowth(): List<AreaGrowth> {
     sampleTreesAge?.let { return SampleTrees.trees(it) }
     val state = box ?: return emptyList()

@@ -14,6 +14,8 @@ struct SessionCompletionView: View {
     /// it stands now. The round just moved it, so its tree is the one thing on
     /// this screen about THIS learner's box rather than about having finished.
     var grownArea: TreeTransition?
+    /// The garden its tree grows in (`AppModel.garden`).
+    var garden: String = ""
     /// The area's emoji and name, labeling the tree right under it.
     var grownAreaLabel: String = ""
     /// What the summary says over the tree (`RoundSummary.headline`).
@@ -163,7 +165,7 @@ struct SessionCompletionView: View {
     @ViewBuilder
     private func grownAreaHero(ceiling: CGFloat) -> some View {
         if let grownArea {
-            GrowingTreeView(transition: grownArea,
+            GrowingTreeView(transition: grownArea, garden: garden,
                             progress: burst || reduceMotion ? 1 : 0)
                 .frame(height: AreaTree.shared.heroHeight(tree: grownArea.after, ceiling: ceiling))
                 .animation(reduceMotion ? nil

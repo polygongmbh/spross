@@ -17,22 +17,25 @@ import net.spross.kern.design.AreaTree
 //
 // The tree is one organism its whole life: a seedling thickens into a trunk, the words that
 // landed fill the crown, and blossom and fruit appear ON it rather than replacing it. The
-// skeleton comes from the area's name and its met count alone, so the same area stands as
+// skeleton comes from the tree's seed and its met count alone, so the same area stands as
 // the same tree on Home and on the summary.
 
 /** One tree standing somewhere: its foot, how tall, and the wood grown to that height. */
-internal class PlantedTree(val tree: AreaGrowth, val foot: Offset, val height: Float, density: Float) {
+internal class PlantedTree(val tree: AreaGrowth, garden: String, val foot: Offset, val height: Float, density: Float) {
     /** Pixels per dp. */
     val unit = 1f * density
+
+    /** What the wood and the marks' scatter grow from ([AreaTree.seed]). */
+    val seed = AreaTree.seed(garden, tree.area)
 
     val skeleton: TreeSkeleton? = if (tree.met == 0 || height <= 0f) null else fitted()
 
     /** The settled paths — every mark at full size, which is everything but a summary's rise. */
-    val art: TreeArt? by lazy { skeleton?.let { TreeArt.build(tree, it, unit) } }
+    val art: TreeArt? by lazy { skeleton?.let { TreeArt.build(tree, seed, it, unit) } }
 
     /** Grown and fitted in dp by kern, then scaled to pixels. */
     private fun fitted(): TreeSkeleton {
-        val grown = AreaTree.grow(tree.area, tree.met, tree.stages.fresh)
+        val grown = AreaTree.grow(seed, tree.met, tree.stages.fresh)
         val fit = grown.fit(foot.x / unit.toDouble(), foot.y / unit.toDouble(), height / unit.toDouble())
         return TreeSkeleton.placed(grown, TreeFit(fit.x * unit, fit.y * unit, fit.scale * unit))
     }
@@ -118,7 +121,7 @@ private fun DrawScope.fallen(planted: PlantedTree, colors: ThemeColors) {
     val leaves = Path()
     for (index in 0 until min(planted.tree.stages.lapsed, 3)) {
         val side = if (index % 2 == 0) -1f else 1f
-        val spread = clear + noise(planted.tree.area, 13 + index) * clear * 0.5f
+        val spread = clear + noise(planted.seed, 13 + index) * clear * 0.5f
         leaf(leaves, Offset(planted.foot.x + side * spread, planted.foot.y + planted.dp(0.5f)), size,
             if (side > 0) 0.2f else PI_F - 0.2f)
     }

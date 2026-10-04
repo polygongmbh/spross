@@ -2,6 +2,7 @@ package net.spross.kern.design
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 import net.spross.kern.box.AreaGrowth
 import net.spross.kern.box.StageCounts
@@ -18,6 +19,15 @@ class AreaTreeTests {
         for (area in listOf("kitchen", "travel", "family")) for (marks in listOf(3, 20, 60, 150)) {
             assertTrue(AreaTree.grow(area, marks, marks / 3).slots.all { it.y <= 0.0 }, "$area $marks")
         }
+    }
+
+    @Test
+    fun aLearnerKeepsTheirGardenAndEachLanguageGrowsItsOwn() {
+        fun limbs(name: String?, target: String) =
+            AreaTree.grow(AreaTree.seed(AreaTree.garden(name, target), "kitchen"), 30, 0).limbs
+        assertEquals(limbs("Ada", "de"), limbs(" ada ", "de"))
+        assertNotEquals(limbs("Ada", "de"), limbs("Ben", "de"))
+        assertNotEquals(limbs("Ada", "de"), limbs("Ada", "es"))
     }
 
     @Test

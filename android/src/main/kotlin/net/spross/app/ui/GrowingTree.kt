@@ -30,7 +30,7 @@ import net.spross.kern.design.AreaTree
  * in the system settings it stands finished at once.
  */
 @Composable
-internal fun GrowingTree(transition: TreeTransition, height: Dp, modifier: Modifier = Modifier) {
+internal fun GrowingTree(transition: TreeTransition, garden: String, height: Dp, modifier: Modifier = Modifier) {
     val progress = remember(transition) { Animatable(0f) }
     LaunchedEffect(transition) {
         delay(250)
@@ -42,7 +42,7 @@ internal fun GrowingTree(transition: TreeTransition, height: Dp, modifier: Modif
         modifier.fillMaxWidth().height(height).clearAndSetSemantics {}.drawWithCache {
             val stand = AreaTree.solitary(size.width / density.toDouble(), size.height / density.toDouble())
             val foot = Offset((stand.footX * density).toFloat(), (stand.footY * density).toFloat())
-            val planted = PlantedTree(transition.after, foot, (stand.height * density).toFloat(), density)
+            val planted = PlantedTree(transition.after, garden, foot, (stand.height * density).toFloat(), density)
             val full = AreaTree.height(transition.after).toFloat()
             val was = AreaTree.height(transition.before).toFloat()
             // An area worked from nothing rises from nothing; the rest from where it stood,
@@ -52,7 +52,7 @@ internal fun GrowingTree(transition: TreeTransition, height: Dp, modifier: Modif
                 val t = progress.value.coerceIn(0f, 1f)
                 val arrival = Arrival(transition, t)
                 val art = planted.skeleton?.takeIf { arrival.moving }
-                    ?.let { TreeArt.build(planted.tree, it, planted.unit, arrival::scale) }
+                    ?.let { TreeArt.build(planted.tree, planted.seed, it, planted.unit, arrival::scale) }
                     ?: planted.art
                 scale(max(0.05f, from + (1 - from) * t), pivot = planted.foot) {
                     drawTree(planted, colors, art)

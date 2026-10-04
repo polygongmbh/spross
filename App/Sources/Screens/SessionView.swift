@@ -66,6 +66,7 @@ struct SessionView: View, LanguageNaming {
             if model.sessionCompleted, let summary = model.sessionSummary {
                 SessionCompletionView(parts: summary.parts,
                                       grownArea: summary.grownArea,
+                                      garden: model.garden,
                                       grownAreaLabel: summary.grownArea.map {
                                           "\(model.areaEmoji($0.after.area)) \(model.areaTitle($0.after.area))"
                                       } ?? "",

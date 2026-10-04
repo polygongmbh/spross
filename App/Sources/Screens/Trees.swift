@@ -55,7 +55,7 @@ struct Trees: View {
     }
 
     private var picture: some View {
-        let placed = placement.marks(model.trees, width: width)
+        let placed = placement.marks(model.trees, garden: model.garden, width: width)
         return ZStack(alignment: .topLeading) {
             BleedingCanvas(bleed: 24) { context, _ in
                 for mark in placed.marks { TreeShapes.draw(&context, mark) }
@@ -120,21 +120,23 @@ struct Trees: View {
     }
 }
 
-/// The trees placed for one (trees, width), kept until either changes:
+/// The trees placed for one (trees, garden, width), kept until any changes:
 /// the body re-evaluates far more often than the box or the width moves.
 @MainActor
 private final class Placement {
     private var trees: [AreaGrowth] = []
+    private var garden = ""
     private var width: CGFloat = -1
     private var placed: (marks: [TreeMark], height: CGFloat) = ([], 0)
 
-    func marks(_ trees: [AreaGrowth], width: CGFloat) -> (marks: [TreeMark], height: CGFloat) {
-        let same = width == self.width && trees.count == self.trees.count
+    func marks(_ trees: [AreaGrowth], garden: String, width: CGFloat) -> (marks: [TreeMark], height: CGFloat) {
+        let same = width == self.width && garden == self.garden && trees.count == self.trees.count
             && zip(trees, self.trees).allSatisfy { $0 === $1 }
         if !same {
             self.trees = trees
+            self.garden = garden
             self.width = width
-            placed = TreeMark.placed(trees, width: width)
+            placed = TreeMark.placed(trees, garden: garden, width: width)
         }
         return placed
     }

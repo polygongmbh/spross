@@ -19,6 +19,11 @@ extension AppModel {
         return areaNames.compactMap { byArea[$0] }
     }
 
+    /// The garden every tree grows in (`AreaTree.garden`).
+    var garden: String {
+        AreaTree.shared.garden(learnerName: learnerName, target: targetLanguage ?? "")
+    }
+
     private func growthByAreaName() -> [String: AreaGrowth] {
         guard let box else { return [:] }
         return growthByArea(state: box, growth: growth)

@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Your trees now grow from your name and the language you learn, so every learner's orchard and every language's looks different, and stays the same on all your devices.
 - Home's count of the day's answers no longer counts a new word as a review, so it splits them into new, reviewed and settled exactly as a finished round does.
 - A word you forget once but that keeps most of its strength now keeps its standing, picture hint and unlocked phrases.
 - A word you missed a couple of times on its first day no longer shows as "Shaky"; that badge now means a word you forgot after learning it.
