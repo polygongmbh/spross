@@ -54,16 +54,6 @@ class BoxLogicTest {
     }
 
     @Test
-    fun aWordNeedsBothSidesBeforeItIsOneAndANoteAloneIsARemark() {
-        assertFalse(OwnWordDraft(known = "Haus").isPair)
-        assertFalse(OwnWordDraft(known = "Haus", learning = "   ").isPair)
-        assertTrue(OwnWordDraft(known = "Haus", learning = "nyumba").isPair)
-
-        assertTrue(OwnWordDraft(comment = "the box scrolls back to the top").isRemark)
-        assertFalse(OwnWordDraft().isRemark)
-    }
-
-    @Test
     fun aStoredWordOpensUnderTheProfilesTwoLanguages() {
         val stored = OwnWords.write(
             id = "${OwnWords.ID_PREFIX}nyumba",

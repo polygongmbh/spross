@@ -21,6 +21,14 @@ class OwnWordDraftTests {
     )
 
     @Test
+    fun aFormIsAPairWithBothSidesARemarkWithOnlyANoteAndOtherwiseASuggestion() {
+        assertEquals(DraftKind.Pair, OwnWords.draftKind("Haus", "nyumba", ""))
+        assertEquals(DraftKind.Suggestion, OwnWords.draftKind("Haus", "   ", "a note"))
+        assertEquals(DraftKind.Remark, OwnWords.draftKind("", " ", "the box scrolls back to the top"))
+        assertEquals(DraftKind.Suggestion, OwnWords.draftKind("", "", ""))
+    }
+
+    @Test
     fun aDraftWithEveryFieldBlankIsRefused() {
         assertNull(draft(sourceText = " ", targetText = "  ", emoji = "🏠", comment = "   "))
     }

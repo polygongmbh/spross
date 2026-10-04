@@ -27,6 +27,7 @@ import net.spross.app.AppModel
 import net.spross.app.ownWordIds
 import net.spross.app.saveOwnWord
 import net.spross.kern.box.BoxEngine
+import net.spross.kern.box.DraftKind
 import net.spross.kern.box.OwnWords
 
 /**
@@ -128,10 +129,10 @@ fun OwnWordForm(
             prose = true,
         )
         Text(
-            when {
-                draft.isRemark -> chrome.boxOwnWordExplainerRemark
-                draft.isPair -> chrome.boxOwnWordExplainer
-                else -> chrome.boxOwnWordExplainerSuggestion
+            when (draft.draftKind) {
+                DraftKind.Remark -> chrome.boxOwnWordExplainerRemark
+                DraftKind.Pair -> chrome.boxOwnWordExplainer
+                DraftKind.Suggestion -> chrome.boxOwnWordExplainerSuggestion
             },
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,

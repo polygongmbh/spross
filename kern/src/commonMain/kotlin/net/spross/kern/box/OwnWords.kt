@@ -101,6 +101,9 @@ data class OwnWord(
         languages.filter { it != source && it != target }
 }
 
+/** What an own-word form holds before it is saved: both sides, otherwise a side, or only a note. */
+enum class DraftKind { Pair, Suggestion, Remark }
+
 /** The rules that turn the learner's own words into cards the box can hold. */
 object OwnWords {
     /**
@@ -226,6 +229,13 @@ object OwnWords {
      */
     fun isWritten(sourceText: String, targetText: String, comment: String): Boolean =
         sourceText.isNotBlank() || targetText.isNotBlank() || comment.isNotBlank()
+
+    /** The saved word's [OwnWord.isPair] / [OwnWord.isRemark], read off a form; an empty form reads as a suggestion. */
+    fun draftKind(sourceText: String, targetText: String, comment: String): DraftKind = when {
+        sourceText.isNotBlank() && targetText.isNotBlank() -> DraftKind.Pair
+        sourceText.isBlank() && targetText.isBlank() && comment.isNotBlank() -> DraftKind.Remark
+        else -> DraftKind.Suggestion
+    }
 
     /**
      * The word a form describes, or null when it holds nothing ([isWritten]).

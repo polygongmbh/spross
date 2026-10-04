@@ -2,6 +2,7 @@ package net.spross.app.ui
 
 import java.text.BreakIterator
 import net.spross.app.Chrome
+import net.spross.kern.box.DraftKind
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
 import net.spross.kern.box.SearchableArea
@@ -69,16 +70,8 @@ data class OwnWordDraft(
      */
     val editing: OwnWord? = null,
 ) {
-    /** Both sides written: a studiable word rather than a suggestion. */
-    val isPair: Boolean get() = known.isNotBlank() && learning.isNotBlank()
-
-    /**
-     * The comment is the whole entry: something to say about no word at all. An EMPTY draft
-     * is not one — it has nothing to say yet, and reads as the ordinary word form until the
-     * learner writes into the comment instead of into a side.
-     */
-    val isRemark: Boolean
-        get() = comment.isNotBlank() && known.isBlank() && learning.isBlank()
+    /** Pair, suggestion or remark ([OwnWords.draftKind]). */
+    val draftKind: DraftKind get() = OwnWords.draftKind(sourceText = known, targetText = learning, comment = comment)
 
     /** Whether there is an entry to take in yet ([OwnWords.isWritten]). */
     val hasAnything: Boolean

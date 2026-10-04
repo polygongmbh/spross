@@ -129,14 +129,9 @@ struct OwnWordFormView: View {
         return false
     }
 
-    /// Both sides written: a studiable word rather than a suggestion.
-    private var isPair: Bool { written(known) && written(learning) }
-
-    /// The note is all there is: something to say about no word at all. An EMPTY form is
-    /// not one — it has nothing to say yet, and reads as the ordinary word form until the
-    /// learner writes into the note instead of into a side.
-    private var isRemark: Bool {
-        written(comment) && !written(known) && !written(learning)
+    /// Pair, suggestion or remark (`OwnWords.draftKind`).
+    private var draftKind: DraftKind {
+        OwnWords.shared.draftKind(sourceText: known, targetText: learning, comment: comment)
     }
 
     /// Whether there is an entry to take in yet (`OwnWords.isWritten`).
@@ -146,12 +141,11 @@ struct OwnWordFormView: View {
 
     /// What the form says it is doing, read off what has been typed into it.
     private var explainer: LocalizedStringKey {
-        if isRemark { return "box.own.word.explainer.remark" }
-        return isPair ? "box.own.word.explainer" : "box.own.word.explainer.suggestion"
-    }
-
-    private func written(_ text: String) -> Bool {
-        !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        switch draftKind {
+        case .remark: return "box.own.word.explainer.remark"
+        case .pair: return "box.own.word.explainer"
+        default: return "box.own.word.explainer.suggestion"
+        }
     }
 
     private func save() {
@@ -161,7 +155,7 @@ struct OwnWordFormView: View {
             close()
             return
         }
-        let pair = isPair
+        let pair = draftKind == .pair
         guard let id = model.addOwnWord(known: known, learning: learning, emoji: emoji,
                                         comment: comment)
         else { return }
