@@ -129,13 +129,13 @@ fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<Liste
         .entries.sortedByDescending { it.key }
         .map { (priority, members) -> Lane(members.sortedWith(hashedOrder(seed)), priority, cycles = true) }
     val (packed, plain) = unseen.partition { it.queued }
-    val fresh = Lane(packed.sortedWith(packedOrder) + plain.sortedWith(newWordOrder(seed)), priority = 0, cycles = false)
-    val lanes = ladder + fresh
+    val unseenLane = Lane(packed.sortedWith(packedOrder) + plain.sortedWith(newWordOrder(seed)), priority = 0, cycles = false)
+    val lanes = ladder + unseenLane
 
     fun step(lane: Lane): Double {
         val held = ladder.filter { it.open }
-        if (lane === fresh) return if (held.isEmpty()) 1.0 else 1.0 / LISTENING_NEW_SHARE
-        val heldShare = if (fresh.open) 1.0 - LISTENING_NEW_SHARE else 1.0
+        if (lane === unseenLane) return if (held.isEmpty()) 1.0 else 1.0 / LISTENING_NEW_SHARE
+        val heldShare = if (unseenLane.open) 1.0 - LISTENING_NEW_SHARE else 1.0
         return held.sumOf { it.priority } / (heldShare * lane.priority)
     }
 
@@ -145,11 +145,11 @@ fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<Liste
         lane.nextAt = clock + step(lane) / 2
     }
     ladder.firstOrNull()?.let(::open)
-    if (fresh.members.isNotEmpty()) open(fresh)
+    if (unseenLane.members.isNotEmpty()) open(unseenLane)
 
     val playlist = mutableListOf<ListeningCandidate>()
     val lastSaid = mutableMapOf<String, Int>()
-    while (!(ladder.all { it.firstPassDone } && fresh.spent)) {
+    while (!(ladder.all { it.firstPassDone } && unseenLane.spent)) {
         // A first pass never repeats, and the unseen lane never does, so something is always due.
         val lane = lanes
             .filter { it.open && playlist.size - (lastSaid[it.next.card.id] ?: Int.MIN_VALUE / 2) >= LISTENING_RETURN_FLOOR_TURNS }

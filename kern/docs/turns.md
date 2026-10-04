@@ -147,7 +147,7 @@ Engine contract: `../README.md`.
   deal's business, never the run's: a pool smaller than the run laps cleanly instead of
   running dry, and a one-word pool keeps saying its word.
   `ListeningTurn` carries both forms, the article, and all three beats
-  (`RECALL_GAP_HELD_MS` 1200 / `RECALL_GAP_FRESH_MS` 600, with `ECHO_GAP_MS` the fresh gap and
+  (`RECALL_GAP_HELD_MS` 1200 / `RECALL_GAP_NEW_MS` 600, with `ECHO_GAP_MS` the new gap and
   `TURN_GAP_MS` the held one), so neither platform decides any of it — the recall gap is the
   only beat that varies, long for a word the learner has answered before and short for one
   with nothing yet to recall, and the echo and the breath between turns just reuse those two.

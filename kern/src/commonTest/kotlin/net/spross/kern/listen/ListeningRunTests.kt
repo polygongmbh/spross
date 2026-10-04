@@ -123,7 +123,7 @@ class ListeningRunTests {
         // minting beats of their own — a turn is one varying pause plus the two it follows.
         assertEquals(ECHO_GAP_MS, turn.echoGapMs)
         assertEquals(TURN_GAP_MS, turn.turnGapMs)
-        assertEquals(RECALL_GAP_FRESH_MS, ECHO_GAP_MS)
+        assertEquals(RECALL_GAP_NEW_MS, ECHO_GAP_MS)
         assertEquals(RECALL_GAP_HELD_MS, TURN_GAP_MS)
     }
 

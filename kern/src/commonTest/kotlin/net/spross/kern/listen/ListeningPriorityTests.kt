@@ -58,7 +58,7 @@ class ListeningPriorityTests {
     @Test
     fun theRecallGapIsLongForAHeldWordAndShortForAnUnseenOne() {
         assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(arrived = false, suspended = false, scheduled = true)))
-        assertEquals(RECALL_GAP_FRESH_MS, recallGap(candidate(arrived = false, suspended = false, scheduled = false)))
+        assertEquals(RECALL_GAP_NEW_MS, recallGap(candidate(arrived = false, suspended = false, scheduled = false)))
         // Suspended is still a word the learner has answered — the gap follows the history,
         // not the box's decision about it.
         assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(arrived = true, suspended = true, scheduled = true)))

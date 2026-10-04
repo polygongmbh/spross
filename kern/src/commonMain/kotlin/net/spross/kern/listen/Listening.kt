@@ -25,15 +25,15 @@ const val RECALL_GAP_HELD_MS: Long = 1_200
  * long enough that the two languages do not run together, short enough that a first meeting
  * does not feel like a test the learner is failing.
  */
-const val RECALL_GAP_FRESH_MS: Long = 600
+const val RECALL_GAP_NEW_MS: Long = 600
 
 /**
  * Between the meaning and the target word said again — the echo that closes a turn.
  *
- * The echo reuses the FRESH gap rather than minting a beat of its own, so the two pauses of a
+ * The echo reuses the NEW gap rather than minting a beat of its own, so the two pauses of a
  * turn are the two recall gaps the learner's own history already chose.
  */
-const val ECHO_GAP_MS: Long = RECALL_GAP_FRESH_MS
+const val ECHO_GAP_MS: Long = RECALL_GAP_NEW_MS
 
 /**
  * Between one turn's last word and the next turn's first.
@@ -251,10 +251,10 @@ fun listeningPriority(arrived: Boolean, suspended: Boolean): Int =
 
 /**
  * The gap between the target word and its meaning: [RECALL_GAP_HELD_MS] for a word the
- * learner has answered before, [RECALL_GAP_FRESH_MS] for one they have never met.
+ * learner has answered before, [RECALL_GAP_NEW_MS] for one they have never met.
  *
  * Having a schedule IS having been answered — introduction is the first answer (README §6),
  * and listening answers nothing, so hearing a word a hundred times never moves it across.
  */
 fun recallGap(candidate: ListeningCandidate): Long =
-    if (candidate.scheduled) RECALL_GAP_HELD_MS else RECALL_GAP_FRESH_MS
+    if (candidate.scheduled) RECALL_GAP_HELD_MS else RECALL_GAP_NEW_MS
