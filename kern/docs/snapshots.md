@@ -58,23 +58,26 @@ Engine contract: `../README.md`.
   33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
   entries (target-side text, emoji, `article?`, `gender?`), per-card `{due}` for render-time
   `dueCount(now)`, the settled-card count (`allSettledCount`, resolved phone-side —
-  it does not move with the clock), a tail of per-day answer counts
-  (~70 days, `{reviews}` a day) for the activity strip, `streak` and `lastReviewDate`
-  (the streak as of that day, resolved once by `Statistics.streak`), `chromeLanguage`,
-  `schemaVersion` (4).
+  it does not move with the clock), the answer counts of the activity strip's fortnight
+  plus the day before it (which decides whether the strip's oldest empty day is bridged),
+  `streakByDay`, `chromeLanguage`, `schemaVersion` (7).
   Built by `WidgetSnapshotBuilder.build`, written by the app.
   **Both sides of the wire are kern's answer, nowhere re-derived.**
+  `streakByDay` is the streak resolved for every day a widget may render on
+  (`snapshot/WidgetStreak.kt`): `{streak, health}` per ISO day,
+  from the build day through the first day with no run left —
+  an answer only reaches a widget through a fresh build, so the run can only age after it,
+  and `StreakHealth.None` holds past the last entry.
+  A widget looks its render day up (a day past the end reads the last entry,
+  one before the start the first), so a widget rendered days after the app last ran
+  shows the streak and flame kern would show, and a run of any length arrives whole.
   `WidgetSnapshotBuilder.decode` returns a public `WidgetSnapshotView` — the rows, plus
-  `dueCount`/`streak`/`streakHealth`/`activityWindow` delegating to `Statistics`, so the
-  Android Glance widget (which links Kotlin) reads the schema rather than guessing at it,
-  and rejects anything but the current `schemaVersion`. The iOS extension links no Kotlin
-  at all, so it cannot ask `Statistics` again once render time has moved past `build`'s own
-  `now` — but the only thing that ages between the two is how many days stand between
-  `lastReviewDate` and render time, and that is a date subtraction, not a walk:
-  `Widgets/Sources/WidgetSnapshot.swift` turns the gap into `FlameState` by three
-  thresholds (0 lit, 1 the one bridge day, 2 the bridge already spent) that mirror
-  `Statistics.streakRun`'s own bridge rule, and shows `streak` unchanged for as long
-  as the gap holds — never re-walking `dailyStats` itself.
+  `dueCount`/`streak`/`streakHealth`/`activityWindow` over that lookup and that tail,
+  so the Android Glance widget (which links Kotlin) reads the schema rather than guessing at it,
+  and rejects anything but the current `schemaVersion`.
+  The iOS extension links no Kotlin and does the same lookup in
+  `Widgets/Sources/WidgetSnapshot.swift`; `health` decodes straight into the one Swift
+  `FlameState` (`Shared/Sources/FlameState.swift`), whose raw values are kern's case names.
 - **WatchSnapshot v6**: direction/pair/`german` are gone — one entry per CARD with BOTH
   sides pre-resolved: `{cardId, sourceText, targetText, emoji?, revealEmoji?, article?, gender?,
   femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}`

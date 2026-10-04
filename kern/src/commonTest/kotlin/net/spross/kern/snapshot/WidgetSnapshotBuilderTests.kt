@@ -9,9 +9,12 @@ import kotlin.test.assertTrue
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.plus
+import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
 import net.spross.kern.box.Box
 import net.spross.kern.box.Statistics
 import net.spross.kern.box.StreakHealth
+import net.spross.kern.box.answerDays
+import net.spross.kern.box.mergeAnswerDays
 import net.spross.kern.box.streakWindow
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
@@ -128,78 +131,70 @@ class WidgetSnapshotBuilderTests {
     }
 
     @Test
-    fun dailyStatsKeepOnlyTheTrailing70Days() {
-        val start = LocalDate(2026, 1, 1)
-        val stats = (0 until 80).associate { start.plus(it, DateTimeUnit.DAY).toString() to it }
+    fun dailyStatsKeepOnlyTheTrailingTailDays() {
+        val start = LocalDate(2026, 4, 1)
+        val stats = (0..91).associate { start.plus(it, DateTimeUnit.DAY).toString() to it + 1 }
         val doc = WidgetSnapshotBuilder.doc(
             Snap.state(emptyList()), Box.day1, Box.TZ, exposureLimit = 5,
             otherLanguagesAnswerDays = stats,
         )
 
-        assertEquals(70, doc.dailyStats.size)
-        assertFalse("2026-01-01" in doc.dailyStats)
-        assertFalse(start.plus(9, DateTimeUnit.DAY).toString() in doc.dailyStats)
-        assertTrue(start.plus(10, DateTimeUnit.DAY).toString() in doc.dailyStats)
-        assertEquals(79, doc.dailyStats.getValue(start.plus(79, DateTimeUnit.DAY).toString()).reviews)
+        assertEquals(WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS, doc.dailyStats.size)
+        assertFalse("2026-04-01" in doc.dailyStats)
+        assertEquals(92, doc.dailyStats.getValue("2026-07-01").reviews)
     }
 
     @Test
     fun dailyStatsMergeInOtherTargetLanguagesReviews() {
         val state = Box.inject(
             Snap.state(emptyList()),
-            Box.sched("zz", dueMillis = Box.day1, lastReviewMillis = Box.millis(2026, 1, 1), logCount = 2),
+            Box.sched("zz", dueMillis = Box.day1, lastReviewMillis = Box.millis(2026, 6, 30), logCount = 2),
         )
-        val sibling = mapOf("2026-01-01" to 3, "2026-01-02" to 1)
+        val sibling = mapOf("2026-06-30" to 3, "2026-07-01" to 1)
 
         val doc = WidgetSnapshotBuilder.doc(
             state, Box.day1, Box.TZ, exposureLimit = 5,
             otherLanguagesAnswerDays = sibling,
         )
 
-        assertEquals(5, doc.dailyStats.getValue("2026-01-01").reviews)
-        assertEquals(1, doc.dailyStats.getValue("2026-01-02").reviews)
+        assertEquals(5, doc.dailyStats.getValue("2026-06-30").reviews)
+        assertEquals(1, doc.dailyStats.getValue("2026-07-01").reviews)
     }
 
     @Test
     fun schemaVersionIsPinned() {
-        assertEquals(6, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
+        assertEquals(7, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
     }
 
     @Test
-    fun streakAndLastReviewDateAgreeWithTheEngine() {
-        val dailyStats = mapOf("2026-06-29" to 4, "2026-06-30" to 6)
-        val doc = WidgetSnapshotBuilder.doc(
-            Snap.state(emptyList()), Box.day1, Box.TZ, 5,
-            otherLanguagesAnswerDays = dailyStats,
+    fun aStreakLongerThanTheDayTailReachesTheWidget() {
+        val start = LocalDate(2026, 7, 1)
+        val days = (0 until 100).associate { start.plus(-it, DateTimeUnit.DAY).toString() to 1 }
+        val view = assertNotNull(
+            WidgetSnapshotBuilder.decode(
+                WidgetSnapshotBuilder.build(Snap.state(emptyList()), Box.day1, Box.TZ, otherLanguagesAnswerDays = days),
+            ),
         )
 
-        assertEquals(Statistics.streak(dailyStats, Box.day1, Box.TZ), doc.streak)
-        assertEquals("2026-06-30", doc.lastReviewDate)
+        assertEquals(100, view.streak(Box.day1, Box.TZ))
+        assertEquals(StreakHealth.Earned, view.streakHealth(Box.day1, Box.TZ))
     }
 
     @Test
-    fun lastReviewDateIsNullWithNoReviewsAtAll() {
-        val doc = WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5)
-
-        assertEquals(0, doc.streak)
-        assertNull(doc.lastReviewDate)
-    }
-
-    @Test
-    fun lastReviewDateReachesPastTheDailyStatsTail() {
-        // The one actual review sits behind 70 newer (empty) days, so the trailing
-        // window drops it from `dailyStats` — `lastReviewDate` still names it, read
-        // off the full map before that truncation.
-        val fillers = (1..WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS)
-            .associate { LocalDate(2020, 1, 1).plus(it, DateTimeUnit.DAY).toString() to 0 }
-        val doc = WidgetSnapshotBuilder.doc(
-            Snap.state(emptyList()), Box.day1, Box.TZ, 5,
-            otherLanguagesAnswerDays = fillers + mapOf("2020-01-01" to 1),
+    fun theStreakAgesOnRenderDaysAfterTheBuild() {
+        val days = mapOf("2026-06-30" to 4, "2026-07-01" to 6)
+        val view = assertNotNull(
+            WidgetSnapshotBuilder.decode(
+                WidgetSnapshotBuilder.build(Snap.state(emptyList()), Box.day1, Box.TZ, otherLanguagesAnswerDays = days),
+            ),
         )
+        val twoDaysOn = Box.plusDays(Box.day1, 2.0)
+        val weekOn = Box.plusDays(Box.day1, 7.0)
 
-        assertEquals("2020-01-01", doc.lastReviewDate)
-        assertFalse("2020-01-01" in doc.dailyStats)
-        assertEquals(0, doc.streak)
+        assertEquals(StreakHealth.Ending, view.streakHealth(twoDaysOn, Box.TZ))
+        assertEquals(2, view.streak(twoDaysOn, Box.TZ))
+        assertEquals(StreakHealth.None, view.streakHealth(weekOn, Box.TZ))
+        assertEquals(0, view.streak(weekOn, Box.TZ))
     }
 
     @Test
@@ -235,8 +230,11 @@ class WidgetSnapshotBuilderTests {
         assertEquals(2, view.streak(Box.day1, Box.TZ))
         assertEquals(StreakHealth.Bridgeable, view.streakHealth(Box.day1, Box.TZ))
         assertEquals(
-            streakWindow(dailyStats, days = 4, nowEpochMillis = Box.day1, tzId = Box.TZ),
-            view.activityWindow(days = 4, nowEpochMillis = Box.day1, tzId = Box.TZ),
+            streakWindow(
+                mergeAnswerDays(listOf(dailyStats, answerDays(state.scheduling, Box.TZ))),
+                ACTIVITY_WINDOW_DAYS, nowEpochMillis = Box.day1, tzId = Box.TZ,
+            ),
+            view.activityWindow(nowEpochMillis = Box.day1, tzId = Box.TZ),
         )
     }
 
@@ -245,7 +243,7 @@ class WidgetSnapshotBuilderTests {
         assertNull(WidgetSnapshotBuilder.decode("not json at all"))
         assertNull(WidgetSnapshotBuilder.decode("{}")) // schemaVersion missing
         val current = WidgetSnapshotBuilder.build(scheduledState(), Box.day1, Box.TZ)
-        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":6", "\"schemaVersion\":5")))
+        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":7", "\"schemaVersion\":6")))
         assertNotNull(WidgetSnapshotBuilder.decode(current))
     }
 

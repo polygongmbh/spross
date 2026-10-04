@@ -1,6 +1,9 @@
 package net.spross.kern.snapshot
 
+import kotlinx.datetime.DateTimeUnit
+import kotlinx.datetime.minus
 import kotlinx.serialization.Serializable
+import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
@@ -8,8 +11,8 @@ import net.spross.kern.box.Inventory
 import net.spross.kern.box.Statistics
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.answerDays
+import net.spross.kern.box.localDate
 import net.spross.kern.box.mergeAnswerDays
-import net.spross.kern.box.streakHealth
 import net.spross.kern.box.streakWindow
 import net.spross.kern.model.Card
 import net.spross.kern.model.Gender
@@ -19,15 +22,18 @@ import net.spross.kern.store.StoreJson
  * Phone-side builder of the home-screen widget snapshot, and the read model
  * ([decode]) a widget draws it with. A widget surface never runs the join (no catalog
  * in its bundle, tight memory cap), so everything it renders is pre-resolved here on
- * every persist, including [WidgetSnapshotDoc.streak] and [WidgetSnapshotDoc.lastReviewDate] —
- * only `dueCount(now)`, which genuinely moves within a day, and the gap between
- * `lastReviewDate` and "now" run at render time. Who decodes it how: `kern/docs/snapshots.md`.
+ * every persist, the streak included for every day it will be rendered on
+ * ([WidgetSnapshotDoc.streakByDay]) — only `dueCount(now)`, which genuinely moves within a day,
+ * runs at render time. Who decodes it how: `kern/docs/snapshots.md`.
  */
 object WidgetSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 6
+    const val SCHEMA_VERSION: Int = 7
 
-    /** ~10 weeks of day keys — enough history for the widget's streak walk. */
-    const val DAILY_STATS_TAIL_DAYS: Int = 70
+    /**
+     * Calendar days of answer counts the snapshot carries: the activity strip's window,
+     * plus the day before it, which decides whether the window's oldest empty day is bridged.
+     */
+    const val DAILY_STATS_TAIL_DAYS: Int = ACTIVITY_WINDOW_DAYS + 1
 
     /** v1 widget timeline depth (24 quarter-hour rotations). */
     const val DEFAULT_EXPOSURE_LIMIT: Int = 24
@@ -45,7 +51,7 @@ object WidgetSnapshotBuilder {
 
     /**
      * [otherLanguagesAnswerDays]: [answerDays] from every OTHER target-language box —
-     * every render-time streak walk reads whatever [WidgetSnapshotDoc.dailyStats] carries,
+     * the streak and the strip are resolved from the merged days,
      * so merging cross-language activity in here is the whole fix; no widget target
      * needs a change.
      */
@@ -99,18 +105,17 @@ object WidgetSnapshotBuilder {
         }
         val combinedDailyStats =
             mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
-        // why: yyyy-MM-dd keys sort chronologically as strings — the tail is a plain sort,
-        // and so is the last-reviewed day the widget's gap check reads off of.
-        val tailKeys = combinedDailyStats.keys.sorted().takeLast(DAILY_STATS_TAIL_DAYS)
+        // why: yyyy-MM-dd keys compare chronologically as strings.
+        val oldestTailDay =
+            localDate(nowEpochMillis, tzId).minus(DAILY_STATS_TAIL_DAYS - 1, DateTimeUnit.DAY).toString()
         return WidgetSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             chromeLanguage = chromeLanguage(state),
             entries = entries,
             cards = cards,
             allSettledCount = active.count { Statistics.hasSettled(state, it) },
-            dailyStats = tailKeys.associateWith { WidgetDayDto(combinedDailyStats.getValue(it)) },
-            streak = Statistics.streak(combinedDailyStats, nowEpochMillis, tzId),
-            lastReviewDate = combinedDailyStats.entries.filter { it.value > 0 }.maxOfOrNull { it.key },
+            dailyStats = combinedDailyStats.filterKeys { it >= oldestTailDay }.mapValues { WidgetDayDto(it.value) },
+            streakByDay = streakTimeline(combinedDailyStats, nowEpochMillis, tzId),
         )
     }
 
@@ -144,14 +149,14 @@ class WidgetSnapshotView internal constructor(private val doc: WidgetSnapshotDoc
     fun dueCount(nowEpochMillis: Long): Int = doc.cards.count { it.due <= nowEpochMillis }
 
     fun streak(nowEpochMillis: Long, tzId: String): Int =
-        Statistics.streak(dailyStats, nowEpochMillis, tzId)
+        streakOn(doc.streakByDay, nowEpochMillis, tzId).streak
 
     fun streakHealth(nowEpochMillis: Long, tzId: String): StreakHealth =
-        streakHealth(dailyStats, nowEpochMillis, tzId)
+        streakOn(doc.streakByDay, nowEpochMillis, tzId).health
 
-    /** The trailing [days] local days, oldest first — the header strip's input. */
-    fun activityWindow(days: Int, nowEpochMillis: Long, tzId: String): List<ActivityDay> =
-        streakWindow(dailyStats, days, nowEpochMillis, tzId)
+    /** The trailing [ACTIVITY_WINDOW_DAYS] local days, oldest first — the header strip's input. */
+    fun activityWindow(nowEpochMillis: Long, tzId: String): List<ActivityDay> =
+        streakWindow(dailyStats, ACTIVITY_WINDOW_DAYS, nowEpochMillis, tzId)
 }
 
 /** One exposure row: TARGET-side [text]; the ♀ marker is baked into [sourceText]. */
@@ -178,23 +183,13 @@ internal data class WidgetSnapshotDoc(
     val cards: List<WidgetCardDto>,
     /** Active cards that have settled; time-independent, so it is resolved here. */
     val allSettledCount: Int,
-    /** Trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] day keys. */
+    /** Answered days among the trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] — the strip's input. */
     val dailyStats: Map<String, WidgetDayDto>,
     /**
-     * The streak as of [lastReviewDate] — unchanged for as long as the run stays alive,
-     * since a day only ever joins it through a fresh build. A widget extension with no
-     * Kotlin cannot ask [Statistics.streak] again later, so this is the answer as kern
-     * gave it, not a value the widget derives itself.
+     * The streak for each day a widget may render on ([streakTimeline]), read by [streakOn] —
+     * a widget extension with no Kotlin cannot ask [Statistics] later, so it looks its day up here.
      */
-    val streak: Int,
-    /**
-     * ISO `yyyy-MM-dd` of the most recent day with a review, or null if there has never
-     * been one. Whether the run is still alive at RENDER time — which [streak] alone
-     * cannot say, because time keeps moving after this document is written — is how many
-     * days stand between this date and "now": 0 lit, 1 the one bridge day, 2 the bridge
-     * already spent, further gone unlit (`Widgets/Sources/WidgetSnapshot.swift`).
-     */
-    val lastReviewDate: String?,
+    val streakByDay: Map<String, WidgetStreakDto>,
 )
 
 /**

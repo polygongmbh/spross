@@ -7,7 +7,6 @@ import java.util.TimeZone
 import net.spross.app.BoxFiles
 import net.spross.app.Chrome
 import net.spross.app.ProfileStore
-import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.model.Gender
@@ -84,7 +83,7 @@ object WidgetFaces {
             dueCount = view.dueCount(nowEpochMillis),
             streak = view.streak(nowEpochMillis, tz),
             health = view.streakHealth(nowEpochMillis, tz),
-            days = view.activityWindow(ACTIVITY_WINDOW_DAYS, nowEpochMillis, tz),
+            days = view.activityWindow(nowEpochMillis, tz),
             chrome = chrome(context),
         )
     }
