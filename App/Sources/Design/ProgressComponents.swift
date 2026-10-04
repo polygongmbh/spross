@@ -239,21 +239,18 @@ struct AreaChip: View {
 /// once (`CardRowState.Standing.swatch`) so a row's badge and the shelf's own bar,
 /// which reads the same three tokens, cannot paint one Sprosse two ways.
 struct PhaseBadge: View {
-    /// Kept for the exhaustive mapping callers build from kern's `GrowthStage` —
-    /// see `BoxCardRow.badgePhase`. It picks the WORD and the glyph; the color
-    /// arrives with [growth] instead.
+    /// Kern's `ActiveStage` in Design's own terms — see `BoxCardRow.badgePhase`.
+    /// It picks the WORD and the glyph; the color arrives with [growth] instead.
     enum Phase: CaseIterable {
-        case new, fresh, growing, lapsed, settled
+        case fresh, growing, lapsed, settled
     }
 
     let phase: Phase
-    /// The Sprosse's color as the box resolved it. Absent where there is no Sprosse to
-    /// color — a card with nothing behind it, which kern's ladder does not cover.
-    var growth: Color?
+    /// The Sprosse's color as the box resolved it.
+    let growth: Color
 
     private var label: LocalizedStringKey {
         switch phase {
-        case .new: return "box.phase.new"
         case .fresh: return "box.phase.fresh"
         case .growing: return "box.phase.growing"
         case .lapsed: return "box.phase.lapsed"
@@ -261,13 +258,10 @@ struct PhaseBadge: View {
         }
     }
 
-    private var color: Color { growth ?? Theme.colors.textSecondary }
-
     /// The area row's own icon at the settled end; Growing gets one, and the two
     /// amber Sprossen share the leaf their shared color already pairs them by.
     private var icon: String {
         switch phase {
-        case .new: return "circle.dashed"
         case .settled: return "checkmark.seal.fill"
         case .growing: return "checkmark.circle.fill"
         case .fresh, .lapsed: return "leaf.fill"
@@ -290,7 +284,7 @@ struct PhaseBadge: View {
                     .fixedSize(horizontal: true, vertical: false)
             }
         }
-        .pill(color)
+        .pill(growth)
     }
 }
 
@@ -310,10 +304,9 @@ private extension View {
 
 /// Every Sprosse a badge can wear, in climbing order, with the colors kern hands the
 /// real row (`CardRowState.Standing.swatch`) written out — a preview has no box to
-/// ask, and seeing the five words side by side is the point of it.
+/// ask, and seeing the four badges side by side is the point of it.
 private var ladder: some View {
     HStack(spacing: Theme.spacing.sm) {
-        PhaseBadge(phase: .new)
         PhaseBadge(phase: .fresh, growth: Theme.colors.amber)
         PhaseBadge(phase: .lapsed, growth: Theme.colors.amber)
         PhaseBadge(phase: .growing, growth: Theme.colors.success)

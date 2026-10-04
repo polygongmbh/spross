@@ -64,14 +64,12 @@ sealed class CardRowState {
     /**
      * The card is on the ladder, and this is where.
      *
-     * [stage] is never [GrowthStage.Unscheduled], [GrowthStage.Queued] or
-     * [GrowthStage.Suspended]: a card with nothing behind it is [Plain] or [PackOffered],
-     * and a sleeping one is [Sleeping] — this constructor only ever sees a schedule that
-     * already cleared that guard. Carrying the raw Sprosse rather than a collapsed boolean
-     * is what lets a surface tell Fresh, Growing and Settled apart on sight, the same way
-     * the badge does.
+     * An [ActiveStage] rather than a [GrowthStage]: a card with nothing behind it is [Plain] or
+     * [PackOffered], and a sleeping one is [Sleeping]. Carrying the Sprosse rather than a collapsed
+     * boolean is what lets a surface tell Fresh, Growing and Settled apart on sight,
+     * the same way the badge does.
      */
-    data class Standing(val stage: GrowthStage) : CardRowState()
+    data class Standing(val stage: ActiveStage) : CardRowState()
 }
 
 /**
@@ -233,7 +231,6 @@ object BoxBrowser {
             !packOffered -> CardRowState.Plain
             else -> CardRowState.PackOffered
         }
-        val stage = stageOf(state, sched)
-        return if (stage == GrowthStage.Suspended) CardRowState.Sleeping else CardRowState.Standing(stage)
+        return if (sched.suspended) CardRowState.Sleeping else CardRowState.Standing(activeStageOf(state, sched))
     }
 }

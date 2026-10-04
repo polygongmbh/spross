@@ -60,6 +60,17 @@ enum class GrowthStage {
 }
 
 /**
+ * The Sprosse of an active card — scheduled and in rotation —
+ * so a type that only ever holds one cannot be handed [GrowthStage]'s other three.
+ */
+enum class ActiveStage(val growth: GrowthStage) {
+    Fresh(GrowthStage.Fresh),
+    Growing(GrowthStage.Growing),
+    Settled(GrowthStage.Settled),
+    Lapsed(GrowthStage.Lapsed),
+}
+
+/**
  * One card's standing: which Sprosse it is on, and the two facts a caller would
  * otherwise re-derive from the schedule to say anything more.
  */
@@ -81,12 +92,15 @@ data class CardGrowth(
  * The Sprosse this schedule stands on: suspension first, then the stability bars,
  * and only under the growing bar does the FSRS phase say whether the word is new or slipped.
  */
-internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when {
-    sched.suspended -> GrowthStage.Suspended
-    Statistics.hasSettled(state, sched) -> GrowthStage.Settled
-    Statistics.hasArrived(state, sched) -> GrowthStage.Growing
-    sched.phase == CardPhase.Relearning -> GrowthStage.Lapsed
-    else -> GrowthStage.Fresh
+internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage =
+    if (sched.suspended) GrowthStage.Suspended else activeStageOf(state, sched).growth
+
+/** [stageOf] for a schedule in rotation, whatever its suspension says. */
+internal fun activeStageOf(state: BoxState, sched: CardScheduling): ActiveStage = when {
+    Statistics.hasSettled(state, sched) -> ActiveStage.Settled
+    Statistics.hasArrived(state, sched) -> ActiveStage.Growing
+    sched.phase == CardPhase.Relearning -> ActiveStage.Lapsed
+    else -> ActiveStage.Fresh
 }
 
 /**

@@ -283,7 +283,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   the returning span is the one deliberate exception.
 - **No surface derives a card's standing from a raw phase** --
   the engine reports the Sprosse (`GrowthStage`),
-  and every listing carries it whole (`CardRowState.Standing.stage`).
+  and every listing carries it whole (`CardRowState.Standing.stage`, an `ActiveStage`).
   The read models a surface draws the box from are `docs/reports.md`.
   **The color a Sprosse wears is the same fact, extended to drawing**:
   `CardRowState.Standing.swatch` resolves it once, off `net.spross.kern.design.Palette`,

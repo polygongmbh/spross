@@ -49,9 +49,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import net.spross.app.CardDisplay
 import net.spross.app.Chrome
+import net.spross.kern.box.ActiveStage
 import net.spross.kern.box.AreaStatistics
 import net.spross.kern.box.CardRowState
-import net.spross.kern.box.GrowthStage
 import net.spross.kern.box.swatch
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
@@ -175,21 +175,16 @@ fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
 @Composable
 fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
     val color = standing.swatch.tint()
-    if (standing.stage == GrowthStage.Settled) {
+    when (standing.stage) {
         // Settled needs no word: a seal already reads as "done" on its own, where
         // Fresh/Shaky/Growing would be ambiguous glyphs without one.
-        Pill(
+        ActiveStage.Settled -> Pill(
             SEAL, color,
             modifier = Modifier.semantics { contentDescription = chrome.a11yBoxPhaseSettled },
         )
-    } else {
-        val word = when (standing.stage) {
-            GrowthStage.Growing -> chrome.boxPhaseGrowing
-            GrowthStage.Lapsed -> chrome.boxPhaseLapsed
-            else -> chrome.boxPhaseFresh
-        }
-        val glyph = if (standing.stage == GrowthStage.Growing) HERB else LEAF
-        Pill("$glyph $word", color)
+        ActiveStage.Growing -> Pill("$HERB ${chrome.boxPhaseGrowing}", color)
+        ActiveStage.Lapsed -> Pill("$LEAF ${chrome.boxPhaseLapsed}", color)
+        ActiveStage.Fresh -> Pill("$LEAF ${chrome.boxPhaseFresh}", color)
     }
 }
 

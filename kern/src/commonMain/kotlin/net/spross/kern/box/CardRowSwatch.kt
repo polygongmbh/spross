@@ -10,7 +10,7 @@ import net.spross.kern.design.Swatch
  */
 val CardRowState.Standing.swatch: Swatch
     get() = when (stage) {
-        GrowthStage.Settled -> Palette.settled
-        GrowthStage.Growing -> Palette.success
-        else -> Palette.amber // Fresh, Lapsed
+        ActiveStage.Settled -> Palette.settled
+        ActiveStage.Growing -> Palette.success
+        ActiveStage.Fresh, ActiveStage.Lapsed -> Palette.amber
     }

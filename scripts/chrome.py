@@ -112,9 +112,9 @@ IOS_ONLY = {
     'settings.audio.voiceUpgrade %@',
     # Xcode canvas scaffolding, inside `#Preview("Palette")` in Design/Theme.swift.
     'preview.skip', 'preview.tokens',
-    # A Swift switch owes every case a branch, including two kern never hands out: new is
-    # the absence of a standing, and Years folds into the Counting exercise.
-    'box.phase.new', 'trainer.drill.numbers.exercise.years',
+    # A Swift switch owes every case a branch, including one kern never hands out:
+    # Years folds into the Counting exercise.
+    'trainer.drill.numbers.exercise.years',
     # The same control, named by another key on Android: the session ✕ reads
     # `common.done`.
     'a11y.action.endSession',

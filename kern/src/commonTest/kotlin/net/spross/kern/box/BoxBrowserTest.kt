@@ -281,11 +281,11 @@ class BoxBrowserTest {
         )
 
         fun row(id: String) = BoxBrowser.cardRowState(state, id, packOffered = false)
-        assertEquals(CardRowState.Standing(GrowthStage.Fresh), row("w01"))
-        assertEquals(CardRowState.Standing(GrowthStage.Fresh), row("w02"))
-        assertEquals(CardRowState.Standing(GrowthStage.Growing), row("w03"))
-        assertEquals(CardRowState.Standing(GrowthStage.Settled), row("w04"))
-        assertEquals(CardRowState.Standing(GrowthStage.Lapsed), row("w05"))
+        assertEquals(CardRowState.Standing(ActiveStage.Fresh), row("w01"))
+        assertEquals(CardRowState.Standing(ActiveStage.Fresh), row("w02"))
+        assertEquals(CardRowState.Standing(ActiveStage.Growing), row("w03"))
+        assertEquals(CardRowState.Standing(ActiveStage.Settled), row("w04"))
+        assertEquals(CardRowState.Standing(ActiveStage.Lapsed), row("w05"))
     }
 
     /**
@@ -294,12 +294,12 @@ class BoxBrowserTest {
      */
     @Test
     fun theSprossenColorFollowsTheBarAndTheAmberStagesShareIt() {
-        fun swatchOf(stage: GrowthStage) = CardRowState.Standing(stage).swatch
+        fun swatchOf(stage: ActiveStage) = CardRowState.Standing(stage).swatch
 
-        assertEquals(Palette.amber, swatchOf(GrowthStage.Fresh))
-        assertEquals(Palette.amber, swatchOf(GrowthStage.Lapsed))
-        assertEquals(Palette.success, swatchOf(GrowthStage.Growing))
-        assertEquals(Palette.settled, swatchOf(GrowthStage.Settled))
+        assertEquals(Palette.amber, swatchOf(ActiveStage.Fresh))
+        assertEquals(Palette.amber, swatchOf(ActiveStage.Lapsed))
+        assertEquals(Palette.success, swatchOf(ActiveStage.Growing))
+        assertEquals(Palette.settled, swatchOf(ActiveStage.Settled))
     }
 
     /** A schedule outlives a source switch; the card it belongs to may not join. */
