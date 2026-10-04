@@ -35,6 +35,10 @@ The read models a surface draws the box from (the day, one card's standing, the 
   `tomorrowDue` is `dueNow` at `endOfTomorrow`, never a second local-midnight derivation.
   The kinds and their order are the rule;
   the words, plurals and separators for them stay in each platform's string tables.
+- **`RoundSummary.of`** is everything a finished round's summary says:
+  the round's `tallyParts`, `grownArea` read against the box the run opened on
+  (`SessionRunState.startBox`), `growthHeadline` over it, and `restSuggested`.
+  `withArea` takes a supplied tree instead, for a debug launch's sample area.
 - **Exposure**: one entry per card by construction; display surfaces always
   render the TARGET realization.
 

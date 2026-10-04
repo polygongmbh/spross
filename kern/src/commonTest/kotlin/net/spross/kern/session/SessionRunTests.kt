@@ -157,6 +157,17 @@ class SessionRunTests {
         assertEquals(oneEach, BoxEngine.today(run.box, later, Box.TZ).tallyParts())
     }
 
+    /** The summary reads the round against the box it opened on, so a first round opens its area. */
+    @Test
+    fun theSummaryReadsTheRoundAgainstTheBoxItOpenedOn() {
+        var run = started(Box.state((1..3).map { Box.word(it) }), now)
+        while (run.currentCardId != null) run = answer(run, Rating.Good, now)
+
+        val summary = RoundSummary.of(run, listOf("area1"), streakDays = 1, now, Box.TZ)
+        assertTrue(assertNotNull(summary.grownArea).before.isBare)
+        assertEquals(run.tally.parts(), summary.parts)
+    }
+
     /**
      * The extra round is an ordinary round: recall pulled forward AND new words, in the mix the
      * box asks for. It used to be composed by rules of its own and kept arriving as one extreme

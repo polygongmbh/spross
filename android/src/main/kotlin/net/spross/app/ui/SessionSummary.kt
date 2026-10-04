@@ -45,7 +45,6 @@ import net.spross.app.hasBriefing
 import net.spross.kern.box.GrowthClaim
 import net.spross.kern.box.GrowthHeadline
 import net.spross.kern.box.TallyPartKind
-import net.spross.kern.box.tallyParts
 import net.spross.kern.design.AreaTree
 
 /**
@@ -58,7 +57,8 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     // why: the round's own reward, sounded once as the screen arrives — iOS cheers here too.
     LaunchedEffect(Unit) { model.cues.cheer() }
     var briefingOpen by remember { mutableStateOf(false) }
-    val parts = tallyParts(ui.introduced, ui.reviewed, ui.settled)
+    val summary = ui.summary ?: return
+    val parts = summary.parts
     val tally = if (parts.isEmpty()) null else {
         parts.joinToString(" · ") {
             when (it.kind) {
@@ -81,8 +81,8 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                val headline = ui.headline
-                val grown = ui.grownArea?.takeIf { headline != null }
+                val headline = summary.headline
+                val grown = summary.grownArea?.takeIf { headline != null }
                 // why: the tree takes the hero slot when the round grew an area — a party popper
                 // is the same picture whatever the learner did, and two celebratory graphics on
                 // one screen is one too many.
@@ -117,7 +117,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
                         textAlign = TextAlign.Center,
                     )
                 }
-                if (ui.restSuggested) {
+                if (summary.restSuggested) {
                     // why: a day the box itself is telling the learner to stop makes no growth
                     // claim — a screen that celebrates and is contradicted two lines down
                     // teaches the learner not to believe it.

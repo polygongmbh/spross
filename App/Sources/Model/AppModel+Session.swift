@@ -66,10 +66,6 @@ extension AppModel {
         #if DEBUG
         uitestFinished = false
         #endif
-        // why: the summary shows what THIS round did to an area, so the before
-        // has to be taken while it still is the before — one snapshot at the
-        // door, since which area the round will favor is not knowable yet.
-        boxBeforeSession = box
         reduce(intent)
         // why: a run kern refused to start (no box, or an extra round that came back
         // empty) must not raise the cover over nothing.
@@ -154,30 +150,19 @@ extension AppModel {
         (run?.segments ?? []).map(SessionOutcome.init)
     }
 
-    /// End-of-session summary tallies (design §Session): new cards started,
-    /// cards that crossed the settled bar, and review answers.
-    var sessionNew: Int { Int(run?.tally.introduced ?? 0) }
-    var sessionSettled: Int { Int(run?.tally.settled ?? 0) }
-    var sessionReviews: Int { Int(run?.tally.reviewed ?? 0) }
-
-    /// The area this round worked hardest, before the round and after it —
-    /// what the summary draws. Nil when the round touched nothing joinable.
-    var sessionGrowth: TreeTransition? {
+    /// What the finished round's summary says — kern's (`RoundSummary`), nil without a run.
+    var sessionSummary: RoundSummary? {
+        guard let run else { return nil }
+        let now = Date().epochMillis, tz = currentTzId()
+        let streak = Int32(stats?.streakDays ?? 0)
         #if DEBUG
-        if let age = uitestTreesAge { return SampleTrees.round(age: age) }
+        if let age = uitestTreesAge {
+            return RoundSummary.companion.withArea(run: run, grownArea: SampleTrees.round(age: age),
+                                                   streakDays: streak, nowEpochMillis: now, tzId: tz)
+        }
         #endif
-        guard let box, let run else { return nil }
-        return grownArea(before: boxBeforeSession ?? box, after: box,
-                         answeredIds: run.tally.cardIds, areaOrder: areaNames,
-                         nowEpochMillis: Date().epochMillis, tzId: currentTzId())
-    }
-
-    /// What the summary says over the round's tree — kern's claim (`growthHeadline`).
-    var sessionHeadline: GrowthHeadline? {
-        growthHeadline(transition: sessionGrowth,
-                       restSuggested: today?.recallStrained ?? false,
-                       introduced: Int32(sessionNew), settled: Int32(sessionSettled),
-                       reviews: Int32(sessionReviews), streakDays: Int32(stats?.streakDays ?? 0))
+        return RoundSummary.companion.of(run: run, areaOrder: areaNames, streakDays: streak,
+                                         nowEpochMillis: now, tzId: tz)
     }
 
     /// Whether a round the learner asks for would yield anything — drives both the summary's

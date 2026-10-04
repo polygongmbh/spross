@@ -8,20 +8,19 @@ import SprossKern
 // as the screen arrives. Tapping anywhere but the buttons replays all three.
 
 struct SessionCompletionView: View {
-    var newCount: Int = 0
-    var settledCount: Int = 0
-    let reviewCount: Int
+    /// The round's answers spelled out (`RoundSummary.parts`).
+    var parts: [TallyPart] = []
     /// The area this round worked hardest, as it stood before the round and as
     /// it stands now. The round just moved it, so its tree is the one thing on
     /// this screen about THIS learner's box rather than about having finished.
     var grownArea: TreeTransition?
     /// The area's emoji and name, labeling the tree right under it.
     var grownAreaLabel: String = ""
-    /// What the summary says over the tree (`AppModel.sessionHeadline`).
+    /// What the summary says over the tree (`RoundSummary.headline`).
     var headline: GrowthHeadline?
     var canPracticeMore: Bool = false
     /// Today's recall has fallen far below what the box schedules for
-    /// (`TodayReport.recallStrained`). Practicing on stays available either
+    /// (`RoundSummary.restSuggested`). Practicing on stays available either
     /// way — this only adds the line saying why stopping is the better call.
     var restSuggested: Bool = false
     /// Offered only where there is a box to brief (`AppModel.hasBriefing`); the
@@ -48,14 +47,11 @@ struct SessionCompletionView: View {
     private static func swayPeriod(_ index: Int) -> Double { 2.1 + Double(index) * 0.27 }
 
     /// "3 neu · 8 wiederholt · 2 gefestigt" — which parts a finished round names,
-    /// and in which order, is the box's (`tallyParts`); the words are
+    /// and in which order, is the box's (`RoundSummary.parts`); the words are
     /// ours. Built as `Text` so each part localizes via the environment locale.
     /// Nil when the round named nothing.
     private var tallyText: Text? {
-        let parts = tallyParts(introduced: Int32(newCount),
-                               reviewed: Int32(reviewCount),
-                               settled: Int32(settledCount))
-        return parts.map { Self.partText($0, alone: parts.count == 1) }.joined()
+        parts.map { Self.partText($0, alone: parts.count == 1) }.joined()
     }
 
     /// Under the title: the tally, which counts the whole round, not the area.
@@ -237,10 +233,10 @@ struct SessionCompletionView: View {
 // MARK: - Previews
 
 #Preview("Completion") {
-    SessionCompletionView(reviewCount: 18, canPracticeMore: true, onTalk: {})
+    SessionCompletionView(parts: [TallyPart(kind: .reviewed, count: 18)], canPracticeMore: true, onTalk: {})
 }
 
 #Preview("Completion · dark") {
-    SessionCompletionView(reviewCount: 5)
+    SessionCompletionView(parts: [TallyPart(kind: .reviewed, count: 5)])
         .preferredColorScheme(.dark)
 }

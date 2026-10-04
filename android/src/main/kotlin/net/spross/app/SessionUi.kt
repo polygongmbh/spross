@@ -3,10 +3,6 @@ package net.spross.app
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
 import net.spross.app.ui.SampleTrees
-import net.spross.kern.box.GrowthHeadline
-import net.spross.kern.box.TreeTransition
-import net.spross.kern.box.grownArea
-import net.spross.kern.box.growthHeadline
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.Card
 import net.spross.kern.model.EmojiCue
@@ -17,6 +13,7 @@ import net.spross.kern.model.presentationRole
 import net.spross.kern.model.producePrompt
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.RoundSummary
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
 
@@ -35,23 +32,10 @@ data class SessionUi(
     val emojiCue: EmojiCue?,
     val segments: List<AnswerOutcome>,
     val remaining: Int,
-    /** What the round bought ([SessionRunState]'s buckets); the summary spells the non-zero parts. */
-    val introduced: Int,
-    val settled: Int,
-    val reviewed: Int,
     /** Whether an endless refill would yield anything — what "Weiter üben" turns on. */
     val canPracticeMore: Boolean,
-    /** The day streak the finish names. */
-    val streakDays: Int = 0,
-    /**
-     * Today's recall is far enough under what the schedule expects that more reps buy
-     * little — the box saying so plainly, where a round that only celebrates would be
-     * contradicted by the next one.
-     */
-    val restSuggested: Boolean = false,
-    /** The area the round worked hardest, before and after it, and what the summary may claim about it. */
-    val grownArea: TreeTransition? = null,
-    val headline: GrowthHeadline? = null,
+    /** What the finished round's summary says; null while a card is up. */
+    val summary: RoundSummary? = null,
 )
 
 private fun AppModel.hasArrived(cardId: String): Boolean =
@@ -76,32 +60,26 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
     val state = active.box
     val card = active.currentCardId?.let { state.cards[it] }
     return if (card == null) {
-        val restSuggested = BoxEngine.today(state, now(), tz()).recallStrained
-        val order = catalog?.let { cat -> stats?.let { BoxBrowser.areaNames(cat, it) } }.orEmpty()
-        val moved = sampleTreesAge?.let(SampleTrees::round)
-            ?: grownArea(boxBeforeSession ?: state, state, active.tally.cardIds, order, now(), tz())
+        // why: the day is folded and the numbers refreshed before this runs
+        // (`DayBooked` precedes it in [dispatch]), so the finish names the streak
+        // the answer just extended rather than the one it started with.
         val streakDays = stats?.streak ?: 0
+        val sample = sampleTreesAge?.let(SampleTrees::round)
+        val summary = if (sample != null) {
+            RoundSummary.withArea(active, sample, streakDays, now(), tz())
+        } else {
+            val order = catalog?.let { cat -> stats?.let { BoxBrowser.areaNames(cat, it) } }.orEmpty()
+            RoundSummary.of(active, order, streakDays, now(), tz())
+        }
         SessionUi(
             card = null, role = null, promptForm = null,
             emojiCue = null,
             segments = active.segments, remaining = 0,
-            introduced = active.tally.introduced,
-            settled = active.tally.settled,
-            reviewed = active.tally.reviewed,
             // why: `DayBooked` precedes this in [dispatch], so [canPracticeExtra] was
             // taken against the box this summary is for — asking again would compose
             // the same round a second time.
             canPracticeMore = canPracticeExtra,
-            // why: the day is folded and the numbers refreshed before this runs
-            // (`DayBooked` precedes it in [dispatch]), so the finish names the streak
-            // the answer just extended rather than the one it started with.
-            streakDays = streakDays,
-            restSuggested = restSuggested,
-            grownArea = moved,
-            headline = growthHeadline(
-                moved, restSuggested,
-                active.tally.introduced, active.tally.settled, active.tally.reviewed, streakDays,
-            ),
+            summary = summary,
         )
     } else {
         val count = state.scheduling[card.id]?.reviewCount ?: 0
@@ -123,9 +101,6 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             emojiCue = card.emoji?.let { emojiCue(role, arrived) },
             segments = active.segments,
             remaining = active.remaining,
-            introduced = active.tally.introduced,
-            settled = active.tally.settled,
-            reviewed = active.tally.reviewed,
             // why: only the finished round shows this, and composing a whole round
             // to fill a field no card on screen reads is a pause between cards.
             canPracticeMore = canPracticeExtra,

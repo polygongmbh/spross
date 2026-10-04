@@ -40,7 +40,7 @@ fun growthHeadline(
     restSuggested: Boolean,
     introduced: Int,
     settled: Int,
-    reviews: Int,
+    reviewed: Int,
     streakDays: Int,
 ): GrowthHeadline? {
     val move = transition ?: return null
@@ -55,7 +55,7 @@ fun growthHeadline(
         after.met == before.met -> GrowthClaim.Held
         else -> GrowthClaim.Grew
     }
-    return GrowthHeadline(claim, stablePick("$introduced:$settled:$reviews:$streakDays"))
+    return GrowthHeadline(claim, stablePick("$introduced:$settled:$reviewed:$streakDays"))
 }
 
 /** A non-negative stable int for [key]: an FNV-1a fold finished by SplitMix64. */

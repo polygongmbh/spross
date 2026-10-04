@@ -92,6 +92,8 @@ data class SessionRunState(
     val joinStamp: JoinStamp?,
     /** Which round opened this run — a stale run recomposes as the same one. */
     val opening: SessionOpening = SessionOpening.Day,
+    /** The box as this run opened on it — the before of what the round did ([RoundSummary]). */
+    val startBox: BoxState? = null,
 ) {
     val currentCardId: String? get() = (step as? SessionStep.Card)?.cardId
 
@@ -176,7 +178,7 @@ object SessionRun {
             queue = plan.queue, total = plan.queue.size,
             tally = RoundTally(),
             endless = false, finished = false, active = true, joinStamp = plan.joinStamp,
-            opening = opening,
+            opening = opening, startBox = state.box,
         ),
         emptyList(),
         nowEpochMillis,

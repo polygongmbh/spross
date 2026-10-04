@@ -63,17 +63,15 @@ struct SessionView: View, LanguageNaming {
 
     var body: some View {
         Group {
-            if model.sessionCompleted {
-                SessionCompletionView(newCount: model.sessionNew,
-                                      settledCount: model.sessionSettled,
-                                      reviewCount: model.sessionReviews,
-                                      grownArea: model.sessionGrowth,
-                                      grownAreaLabel: model.sessionGrowth.map {
+            if model.sessionCompleted, let summary = model.sessionSummary {
+                SessionCompletionView(parts: summary.parts,
+                                      grownArea: summary.grownArea,
+                                      grownAreaLabel: summary.grownArea.map {
                                           "\(model.areaEmoji($0.after.area)) \(model.areaTitle($0.after.area))"
                                       } ?? "",
-                                      headline: model.sessionHeadline,
+                                      headline: summary.headline,
                                       canPracticeMore: model.canPracticeMore,
-                                      restSuggested: model.today?.recallStrained ?? false,
+                                      restSuggested: summary.restSuggested,
                                       onTalk: model.hasBriefing ? { briefing = true } : nil,
                                       onPractice: { model.continueEndless() },
                                       onDone: { model.closeSession() })

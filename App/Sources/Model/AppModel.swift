@@ -110,9 +110,6 @@ final class AppModel {
     /// Each shelf's cards in seed order. One shelf's answer filters and sorts the
     /// whole box, so grouping them all at once costs what a single shelf does.
     private(set) var cardsByArea: [String: [Card]] = [:]
-    /// The box as the current run opened on it — the "before" the summary's tree
-    /// animates from (`grownArea`).
-    var boxBeforeSession: BoxState?
     /// The typed-answer grader over the whole join, held until the box moves.
     /// Building it walks every card's accepted forms through the normalizer, so
     /// a session that rebuilt it per card paid for the entire join on every
