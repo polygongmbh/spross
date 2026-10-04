@@ -40,7 +40,7 @@ internal object SampleTrees {
             arriving = started - settled,
             growing = settled - blossoms,
             settled = blossoms - fruit,
-            longHeld = fruit,
+            matured = fruit,
             queued = 0,
             lapsed = if (reached > 0.3 && index % 3 == 0) 2 else 0,
             answeredToday = tended ?: (index % 5 == 2 && reached > 0),

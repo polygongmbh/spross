@@ -14,10 +14,10 @@ import net.spross.kern.model.CardScheduling
 const val SETTLED_STABILITY: Double = 25.0
 
 /**
- * Days of stability at which a settled card draws as fruit rather than a blossom.
+ * Days of stability at which a settled card counts as matured — fruit rather than a blossom.
  * Kern's so both platforms draw the same tree.
  */
-const val FRUIT_STABILITY: Double = 120.0
+const val MATURED_STABILITY: Double = 120.0
 
 /**
  * How far one card has come, as one Sprosse of the box's own ladder.

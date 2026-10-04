@@ -13,7 +13,7 @@ import net.spross.kern.box.AreaGrowth
 //
 // Which mark a word hangs as is kern's tier, read rank by rank off [AreaGrowth] (most grown
 // first, so fruit and blossom take the first slots):
-//   fruit    — long held      blossom — settled
+//   fruit    — matured      blossom — settled
 //   leaf     — growing        bud     — arriving
 // Told apart by shape before color: a sprig of pointed leaflets, a small disc, five butter petals
 // round an eye, a round disc hanging under its twig.
@@ -105,7 +105,7 @@ internal class TreeArt(
         if (hanging.isEmpty()) return
         val top = hanging.minOf { it.point.y }
         val depth = max(hanging.maxOf { it.point.y } - top, 1f)
-        val heavy = tree.longHeld + tree.settled
+        val heavy = tree.matured + tree.settled
         val leafy = heavy + tree.growing
         for ((rank, slot) in hanging.withIndex()) {
             val grain = noise(tree.area, rank * 41 + 7)
@@ -116,7 +116,7 @@ internal class TreeArt(
             val turned = slot.angle + (grain - 0.5f) * 0.9f
             val lean = atan2(sin(turned) - 0.2f, cos(turned))
             when {
-                rank < tree.longHeld -> fruit(slot.point, size)
+                rank < tree.matured -> fruit(slot.point, size)
                 rank < heavy -> blossom(slot.point, size, lean)
                 rank < leafy -> {
                     val height = (slot.point.y - top) / depth

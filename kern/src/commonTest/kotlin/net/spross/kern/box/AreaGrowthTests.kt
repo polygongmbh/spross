@@ -14,8 +14,8 @@ class AreaGrowthTests {
     private fun trees(state: BoxState) = growthByArea(state, BoxEngine.growth(state, now, Box.TZ))
 
     private fun tree(
-        met: Int = 0, growing: Int = 0, settled: Int = 0, longHeld: Int = 0, queued: Int = 0,
-    ) = AreaGrowth("a", met, growing, settled, longHeld, queued, 0, false, emptyList())
+        met: Int = 0, growing: Int = 0, settled: Int = 0, matured: Int = 0, queued: Int = 0,
+    ) = AreaGrowth("a", met, growing, settled, matured, queued, 0, false, emptyList())
 
     @Test
     fun everyMetWordStandsInExactlyOneTierAndOnlyMetWordsDo() {
@@ -24,11 +24,11 @@ class AreaGrowthTests {
         state = Box.inject(state, Box.sched("w02", phase = CardPhase.Learning, stability = 0.5, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w03", stability = 9.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w04", stability = SETTLED_STABILITY, dueMillis = future, lastReviewMillis = now))
-        state = Box.inject(state, Box.sched("w05", stability = FRUIT_STABILITY, dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w05", stability = MATURED_STABILITY, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w06", phase = CardPhase.Relearning, stability = 4.0, dueMillis = future, lastReviewMillis = now))
 
         val area = trees(state).getValue("area1")
-        assertEquals(listOf(1, 1, 1, 1, 1, 1), listOf(area.arriving, area.growing, area.settled, area.longHeld, area.queued, area.lapsed))
+        assertEquals(listOf(1, 1, 1, 1, 1, 1), listOf(area.arriving, area.growing, area.settled, area.matured, area.queued, area.lapsed))
         assertEquals(4, area.met)
         assertEquals(area.reaches.sortedDescending(), area.reaches, "most-grown first")
         assertTrue(area.answeredToday)

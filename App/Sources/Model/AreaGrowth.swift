@@ -30,7 +30,7 @@ extension AppModel {
 /// on every read, and the canopy is walked mark by mark.
 ///
 /// Drawn outermost rank first:
-///   fruit   — long held (`longHeld`)
+///   fruit   — matured
 ///   blossom — settled
 ///   leaf    — growing
 ///   bud     — met, on its way in (`arriving`)
@@ -46,7 +46,7 @@ struct Canopy {
     let reaches: [Double]
 
     init(_ tree: AreaGrowth) {
-        fruit = Int(tree.longHeld)
+        fruit = Int(tree.matured)
         blossoms = Int(tree.settled)
         leaves = Int(tree.growing)
         buds = Int(tree.arriving)
@@ -68,7 +68,7 @@ extension AreaGrowth {
                        buds: Int = 0, packed: Int = 0, fallen: Int = 0,
                        tendedToday: Bool = false, reaches: [Double] = []) -> AreaGrowth {
         AreaGrowth(area: area, arriving: Int32(buds), growing: Int32(leaves),
-                 settled: Int32(blossoms), longHeld: Int32(fruit), queued: Int32(packed),
+                 settled: Int32(blossoms), matured: Int32(fruit), queued: Int32(packed),
                  lapsed: Int32(fallen), answeredToday: tendedToday,
                  reaches: reaches.map { KotlinDouble(value: $0) })
     }
