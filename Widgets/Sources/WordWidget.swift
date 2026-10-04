@@ -147,23 +147,23 @@ struct WordProvider: TimelineProvider {
             WidgetWord(emoji: $0.emoji ?? "🗂️", article: $0.article, gender: $0.gender,
                        word: $0.text, meaning: $0.sourceText)
         }
-        let dueCount = snapshot.dueCount(now: start)
-        let streakDay = snapshot.streakDay(now: start)
-        let activityDays = snapshot.recentDays(count: 14, now: start)
         return (0..<24).map { slot in
             // Rotate a window of `listSize` words; the head is the compact families'
             // card, and each quarter-hour hands the spot to the next word.
             // why: a short box would otherwise wrap and repeat a word in one tile.
             let window = (0..<min(Self.listSize, words.count))
                 .map { words[(slot + $0) % words.count] }
-            return WordEntry(date: start.addingTimeInterval(Double(slot) * 15 * 60),
+            // A timeline can cross midnight, so every entry reads its own moment.
+            let date = start.addingTimeInterval(Double(slot) * 15 * 60)
+            let streakDay = snapshot.streakDay(now: date)
+            return WordEntry(date: date,
                              primary: window[0],
                              words: sortedForDisplay(window),
-                             dueCount: dueCount,
+                             dueCount: snapshot.dueCount(now: date),
                              streak: streakDay.streak,
                              streakHealth: streakDay.health,
                              settled: snapshot.allSettledCount,
-                             activityDays: activityDays,
+                             activityDays: snapshot.recentDays(count: 14, now: date),
                              chromeLanguage: snapshot.chromeLanguage)
         }
     }
