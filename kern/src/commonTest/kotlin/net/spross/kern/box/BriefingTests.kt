@@ -46,7 +46,7 @@ class BriefingTests {
 
         val brief = brief(box)
         assertEquals(listOf("t1"), brief.settled.flatMap { it.words })
-        assertEquals(listOf("t2"), brief.learning.map { it.target })
+        assertEquals(listOf("t2"), brief.allGrowing.map { it.target })
     }
 
     /** A fence is not a list: what is suspended or never introduced is nowhere in the brief. */
@@ -58,7 +58,7 @@ class BriefingTests {
 
         val brief = brief(box)
         assertEquals(emptyList(), brief.settled.flatMap { it.words })
-        assertEquals(emptyList(), brief.learning.map { it.target })
+        assertEquals(emptyList(), brief.allGrowing.map { it.target })
         assertEquals(emptyList(), brief.sown.map { it.target })
     }
 
@@ -72,7 +72,7 @@ class BriefingTests {
 
         val brief = brief(box)
         assertEquals(emptyList(), brief.settled.flatMap { it.words })
-        assertEquals(emptyList(), brief.learning.map { it.target })
+        assertEquals(emptyList(), brief.allGrowing.map { it.target })
         assertEquals(emptyList(), brief.sown.map { it.target })
         assertFalse(Briefings.available(box))
     }

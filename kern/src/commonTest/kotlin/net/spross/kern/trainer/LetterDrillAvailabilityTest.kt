@@ -181,13 +181,13 @@ class LetterDrillAvailabilityTest {
         val held = report(hasVoice = false)
         val row = assertNotNull(held.alphabet).entry("иш")!!
         assertEquals(
-            listOf(LetterDrill.AlphabetExampleWord("миша", "mouse", known = true)),
+            listOf(LetterDrill.AlphabetExampleWord("миша", "mouse", arrived = true)),
             held.examples(row),
         )
         // The same row on an empty box: the word stands, the learner just does not hold it.
         val stranger = LetterDrillAvailability.report(catalog(), Box.state(emptyList()), "uk", false)
         assertEquals(
-            listOf(LetterDrill.AlphabetExampleWord("миша", "mouse", known = false)),
+            listOf(LetterDrill.AlphabetExampleWord("миша", "mouse", arrived = false)),
             stranger.examples(row),
         )
     }

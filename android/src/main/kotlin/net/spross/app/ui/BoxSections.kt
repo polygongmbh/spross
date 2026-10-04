@@ -233,12 +233,12 @@ fun AreaChip(
     hideProgress: Boolean = false,
 ) {
     val settled = stats?.allSettled ?: 0
-    val learning = stats?.allGrowing ?: 0
+    val allGrowing = stats?.allGrowing ?: 0
     val locked = stats?.phrasesLocked ?: 0
     val spoken = buildList {
         add(name)
         add(countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, settled))
-        add(countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, learning))
+        add(countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, allGrowing))
         if (locked > 0) add(countLine(chrome.boxAreaPhrasesLockedOne, chrome.boxAreaPhrasesLocked, locked))
     }.joinToString(", ")
 
@@ -276,7 +276,7 @@ fun AreaChip(
                 // the split that matters (cleared the bar, or not yet), and the bar carries
                 // the finer one.
                 CountLabel("$SEAL ${countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, settled)}", Theme.colors.settled)
-                CountLabel("$LEAF ${countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, learning)}", Theme.colors.success)
+                CountLabel("$LEAF ${countLine(chrome.progressAllGrowingCountOne, chrome.progressAllGrowingCount, allGrowing)}", Theme.colors.success)
                 // why: the padlock carries the "locked", so the text only names what is
                 // locked — and it appears only when it says something.
                 if (locked > 0) CountLabel(

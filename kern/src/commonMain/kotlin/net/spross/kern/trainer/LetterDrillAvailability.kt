@@ -21,7 +21,7 @@ import net.spross.kern.model.Language
  * a device can speak.
  *
  * The only platform fact the whole ladder consults is `hasVoice` — recording presence is
- * kern's own [Catalog], the growing pool and its schedule figures are kern's own
+ * kern's own [Catalog], the arrived pool and its schedule figures are kern's own
  * [BoxState]. So the audio-capability port collapses to one boolean, named by the rule
  * ("can this device say anything in this language") rather than by any synthesizer.
  *
@@ -48,11 +48,11 @@ object LetterDrillAvailability {
         val alphabet: Alphabet?,
         /** Refs kern may sample, in file order. */
         val promptableRefs: List<String>,
-        /** Growing, single-word, audible box cards, each carrying the figures the draw weighs. */
+        /** Arrived, single-word, audible box cards, each carrying the figures the draw weighs. */
         val dictationCandidates: List<LetterDrill.DictationCandidate>,
-        /** Ref → every word this device can say the row's gap from, known words flagged. */
+        /** Ref → every word this device can say the row's gap from, arrived words flagged. */
         val gapWords: Map<String, List<LetterDrill.AlphabetExampleWord>>,
-        /** The learner's whole growing vocabulary — what paces the entry Sprosse and its length. */
+        /** The learner's whole arrived vocabulary — what paces the entry Sprosse and its length. */
         val arrivedCards: Int,
     ) {
         val drillAvailable: Boolean get() = alphabet != null && promptableRefs.isNotEmpty()
@@ -99,12 +99,12 @@ object LetterDrillAvailability {
      */
     fun report(catalog: Catalog, box: BoxState, language: Language, hasVoice: Boolean): Report {
         val alphabet = catalog.alphabet(language)
-        val growing = BoxEngine.arrivedCardIds(box).mapNotNull { box.cards[it] }
+        val arrived = BoxEngine.arrivedCardIds(box).mapNotNull { box.cards[it] }
         // why: Card.id IS the concept slug, so holding a word is a set lookup.
-        val known = growing.map { it.id }.toSet()
+        val arrivedIds = arrived.map { it.id }.toSet()
         val gapWords = alphabet?.entries.orEmpty()
             .filter { it.kind != AlphabetKind.Letter && it.kind != AlphabetKind.Rule }
-            .associate { it.ref to exampleWords(it, catalog, language, known, hasVoice) }
+            .associate { it.ref to exampleWords(it, catalog, language, arrivedIds, hasVoice) }
         return Report(
             language = language,
             alphabet = alphabet,
@@ -113,7 +113,7 @@ object LetterDrillAvailability {
                     promptable(entry, catalog, language, hasVoice) { gapWords[entry.ref].orEmpty() }
                 }
                 .map { it.ref },
-            dictationCandidates = growing
+            dictationCandidates = arrived
                 // why: a transcription task is ONE word — a phrase card would ask the learner
                 // to type a sentence from a single hearing.
                 .filter { ' ' !in it.target.text }
@@ -126,7 +126,7 @@ object LetterDrillAvailability {
                     )
                 },
             gapWords = gapWords,
-            arrivedCards = growing.size,
+            arrivedCards = arrived.size,
         )
     }
 
@@ -157,12 +157,12 @@ object LetterDrillAvailability {
         entry: AlphabetEntry,
         catalog: Catalog,
         language: Language,
-        known: Set<String>,
+        arrivedIds: Set<String>,
         hasVoice: Boolean,
     ): List<LetterDrill.AlphabetExampleWord> {
         val swept = catalog.alphabetExamples(entry, language)
             .filter { audible(it.text, language, catalog, hasVoice) }
-            .map { LetterDrill.AlphabetExampleWord(it.text, it.slug, it.slug in known) }
+            .map { LetterDrill.AlphabetExampleWord(it.text, it.slug, it.slug in arrivedIds) }
         if (swept.isNotEmpty()) return swept
         return entry.exampleText
             ?.takeIf { audible(it, language, catalog, hasVoice) }

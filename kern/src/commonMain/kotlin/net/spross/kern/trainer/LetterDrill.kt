@@ -33,10 +33,10 @@ object LetterDrill {
 
     /** Entry pacing stops one Sprosse below transcription — nobody starts by taking dictation. */
     private const val ENTRY_SPROSSE_CEILING = 6
-    private const val GROWING_PER_SPROSSE = 12
+    private const val ARRIVED_PER_SPROSSE = 12
 
-    /** Growing words from which one clean win is enough to move up a Sprosse. */
-    private const val GROWING_FOR_SHORT_STAGES = 60
+    /** Arrived words from which one clean win is enough to move up a Sprosse. */
+    private const val ARRIVED_FOR_SHORT_SPROSSEN = 60
 
     /** Dictation at Sprosse 8 asks for short words; the count ignores spaces. */
     private const val SHORT_WORD_LETTERS = 6
@@ -44,8 +44,8 @@ object LetterDrill {
     /** Below this many short candidates the Sprosse-8 filter is dropped — never draw from one. */
     private const val MIN_SHORT_CANDIDATES = 3
 
-    /** The same floor on the gap word's known-first preference; below it, the whole pool. */
-    private const val MIN_KNOWN_CANDIDATES = 3
+    /** The same floor on the gap word's arrived-first preference; below it, the whole pool. */
+    private const val MIN_ARRIVED_CANDIDATES = 3
 
     /** Ceilings on the two things that make a word worth dictating twice (see [dictationWeight]). */
     private const val TRICKY_CAP = 3
@@ -59,20 +59,20 @@ object LetterDrill {
         if (dictationAvailable) MAX_SPROSSE_WITH_DICTATION else MAX_SPROSSE_WITHOUT_DICTATION
 
     /**
-     * Where a learner STARTS, from the words they already hold: 0–11 growing → 1,
+     * Where a learner STARTS, from the words they already hold: 0–11 arrived → 1,
      * 60+ → 6. The `Growth.newBudget` pacing shape (a step per bucket, a hard ceiling) —
      * someone with a vocabulary should not spell out `em` four times before the drill
      * gets interesting, and someone without one should not be dropped into typing.
      */
     fun entrySprosse(arrivedCards: Int): Int =
-        minOf(ENTRY_SPROSSE_CEILING, 1 + maxOf(0, arrivedCards) / GROWING_PER_SPROSSE)
+        minOf(ENTRY_SPROSSE_CEILING, 1 + maxOf(0, arrivedCards) / ARRIVED_PER_SPROSSE)
 
     /**
-     * How LONG a Sprosse is — the second half of the same pacing rule. A growing
+     * How LONG a Sprosse is — the second half of the same pacing rule. An arrived
      * vocabulary earns each Sprosse in one clean win; below that the classic two apply, so
      * a beginner gets the repetition and nobody else gets the drag.
      */
-    fun winsToAdvance(arrivedCards: Int): Int = if (arrivedCards >= GROWING_FOR_SHORT_STAGES) 1 else 2
+    fun winsToAdvance(arrivedCards: Int): Int = if (arrivedCards >= ARRIVED_FOR_SHORT_SPROSSEN) 1 else 2
 
     /** The Sprossen [format] spans — [formatFor]'s reading turned round. */
     fun sprossen(format: LetterFormat): IntRange = when (format) {
@@ -96,10 +96,10 @@ object LetterDrill {
      * realizes. That distinction is the whole point of the type — it is what keeps a
      * slug's recording from playing over a different word on screen.
      *
-     * [known] is the learner's side of it: true where the box already holds the word, so
+     * [arrived] is the learner's side of it: true where the word has arrived in the box, so
      * the draw can favor words that mean something to them (see [sample]).
      */
-    data class AlphabetExampleWord(val text: String, val slug: String?, val known: Boolean = false)
+    data class AlphabetExampleWord(val text: String, val slug: String?, val arrived: Boolean = false)
 
     /**
      * One letter-format question. [promptableRefs] is the app's own list (what the device
@@ -171,7 +171,7 @@ object LetterDrill {
     )
 
     /**
-     * One dictation question. [candidates] arrive filtered to growing, speakable box
+     * One dictation question. [candidates] arrive filtered to arrived, speakable box
      * cards; kern drops anything with a space of its own — a transcription task is
      * one word, whatever the caller believes.
      *
@@ -333,7 +333,7 @@ object LetterDrill {
     /**
      * The gap word itself: words the learner already holds first, so the drill spells out
      * a vocabulary rather than a word list — but only while enough of them exist, or a
-     * beginner's three known words would come round all evening. [avoidWord] is resampled
+     * beginner's three arrived words would come round all evening. [avoidWord] is resampled
      * once, the same courtesy the entry draw gets.
      */
     private fun draw(
@@ -341,8 +341,8 @@ object LetterDrill {
         avoidWord: String?,
         rng: Random,
     ): AlphabetExampleWord {
-        val known = words.filter { it.known }
-        val pool = if (known.size >= MIN_KNOWN_CANDIDATES) known else words
+        val arrived = words.filter { it.arrived }
+        val pool = if (arrived.size >= MIN_ARRIVED_CANDIDATES) arrived else words
         // why: a row with one word has nothing to draw — spending randomness on it would
         // shift every later draw in the run for a choice that was never made.
         if (pool.size == 1) return pool.single()

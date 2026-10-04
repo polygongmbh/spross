@@ -170,12 +170,12 @@ class LetterDrillTests {
      * three words would meet the same three all evening.
      */
     @Test
-    fun knownWordsAreDrawnWhileEnoughOfThemExist() {
-        val known = listOf("Straße", "Fuß", "groß").map { AlphabetExampleWord(it, null, known = true) }
+    fun arrivedWordsAreDrawnWhileEnoughOfThemExist() {
+        val arrived = listOf("Straße", "Fuß", "groß").map { AlphabetExampleWord(it, null, arrived = true) }
         val stranger = AlphabetExampleWord("heiß", null)
-        assertFalse("heiß" in gapped(known + stranger), "a stranger displaced a word the learner holds")
+        assertFalse("heiß" in gapped(arrived + stranger), "a stranger displaced a word the learner holds")
         assertTrue(
-            "heiß" in gapped(known.take(2) + stranger),
+            "heiß" in gapped(arrived.take(2) + stranger),
             "below the floor the whole pool must open up",
         )
     }

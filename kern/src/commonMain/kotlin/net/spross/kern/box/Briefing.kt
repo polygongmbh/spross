@@ -28,7 +28,7 @@ data class Briefing(
     /** Areas of words at [GrowthStage.Settled] — the only stage solid enough to hand over as known. */
     val settled: List<BriefArea>,
     /** Words scheduled but short of [GrowthStage.Settled] — still in progress, named so a partner goes gently. */
-    val learning: List<BriefWord>,
+    val allGrowing: List<BriefWord>,
     /** Words the learner sowed and no round has brought in yet — the talk's own subject. */
     val sown: List<BriefWord>,
 ) {
@@ -46,10 +46,10 @@ data class Briefing(
                 appendLine("THE $settledCount WORDS I KNOW - use these as basis")
                 for (area in settled) appendLine("${area.title}: ${area.words.joinToString(", ")}")
             }
-            if (learning.isNotEmpty()) {
+            if (allGrowing.isNotEmpty()) {
                 appendLine()
-                appendLine("WORDS I AM LEARNING RIGHT NOW — ${learning.size}")
-                for (word in learning) appendLine("${word.target} = ${word.source}")
+                appendLine("WORDS I AM LEARNING RIGHT NOW — ${allGrowing.size}")
+                for (word in allGrowing) appendLine("${word.target} = ${word.source}")
             }
             if (sown.isNotEmpty()) {
                 appendLine()
@@ -118,7 +118,7 @@ data class Briefing(
      * having to ask for it is the loop half closed.
      */
     private fun harvestAsk(): String {
-        val example = sown.firstOrNull() ?: learning.firstOrNull()
+        val example = sown.firstOrNull() ?: allGrowing.firstOrNull()
         return """
             Export for Spross: the key words that came up repeatedly and were not already
             in the lists above, one per line as `$targetName = $sourceName`, fenced ```spross,
@@ -153,7 +153,7 @@ object Briefings {
 
     fun of(state: BoxState, catalog: Catalog, learnerName: String?): Briefing {
         val activeIds = Inventory.active(state).mapTo(mutableSetOf()) { it.cardId }
-        val (settledCards, learningCards) = Inventory.joinedCards(state)
+        val (settledCards, growingCards) = Inventory.joinedCards(state)
             .filter { it.area != OwnWords.AREA && it.id in activeIds }
             .partition { Statistics.hasSettled(state.scheduling.getValue(it.id)) }
         val settled = settledCards
@@ -164,7 +164,7 @@ object Briefings {
                     words = cards.map { targetForm(it) },
                 )
             }
-        val learning = learningCards.map { BriefWord(targetForm(it), it.source.text) }
+        val allGrowing = growingCards.map { BriefWord(targetForm(it), it.source.text) }
         // Only sown words are named, locked phrases included.
         val sownCards = state.enqueued.asReversed()
             .filter { state.scheduling[it] == null }
@@ -176,7 +176,7 @@ object Briefings {
             sourceName = languageName(catalog, state.joinStamp.source),
             targetName = languageName(catalog, state.joinStamp.target),
             settled = settled,
-            learning = learning,
+            allGrowing = allGrowing,
             sown = sownCards.map { BriefWord(targetForm(it), it.source.text) },
         )
     }
