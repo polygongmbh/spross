@@ -93,7 +93,7 @@ Nothing wears a prefix one scope wider than what it serves.
   local days since the drill last ran, full after a week, a drill never run counting as longest ago;
   what the box would get out of it --
   letters while the learned script is new and the box young, numbers while the box is young,
-  the scrambles once enough words have grown;
+  the scrambles once enough words have settled;
   and how much of its ladder is left.
   The card says why in the words of whichever term carried it.
 - **It turns over with the greeting and never between renders**:

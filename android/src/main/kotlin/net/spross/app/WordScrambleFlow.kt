@@ -57,7 +57,7 @@ class WordScrambleFlow(
 }
 
 /**
- * A run, or null where this box holds too few grown words to mix — the chip gates on the
+ * A run, or null where this box holds too few settled words to mix — the chip gates on the
  * same report, so a null here is a closed door rather than a screen.
  *
  * The normalizer is the STRICT drill one for the language being learned, which is the side

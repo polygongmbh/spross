@@ -3,7 +3,7 @@ import SprossKern
 
 /// The one question both scramble reports answer, so one wrapper can be asked
 /// it: can this box be asked at all. Kern keeps the two reports apart on
-/// purpose — a mixed spelling is drawn from grown WORDS and a shuffled phrase
+/// purpose — a mixed spelling is drawn from settled WORDS and a shuffled phrase
 /// from unlocked PHRASES — so what they have in common is read here and not
 /// minted there.
 protocol ScrambleReport {

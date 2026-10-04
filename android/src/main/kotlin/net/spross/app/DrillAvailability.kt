@@ -73,7 +73,7 @@ val AppModel.datesOffered: Boolean
     get() = dates != null
 
 /**
- * The word scramble rides on the BOX: enough words grown far enough to be worth spelling
+ * The word scramble rides on the BOX: enough settled words to be worth spelling
  * back out of their own letters. Kern's own floor, read — nothing here counts words.
  *
  * Deliberately uncached: the pool grows as words settle, so the card asks again rather

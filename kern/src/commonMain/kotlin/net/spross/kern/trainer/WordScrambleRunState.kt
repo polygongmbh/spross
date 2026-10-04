@@ -86,7 +86,7 @@ class WordScrambleRunConfig(
  * The learner's TEXT is not in here — the platform owns the field, the keyboard and the focus,
  * and hands text in through [WordScrambleIntent].
  *
- * No FSRS anywhere: the box is READ for the words it has grown and never written, so the run
+ * No FSRS anywhere: the box is READ for the words it has settled and never written, so the run
  * books no review. What outlives it is the ladder — [bestSprosse] and [clearedSprossen], which
  * the screen that started the run files.
  */

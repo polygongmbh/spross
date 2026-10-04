@@ -21,7 +21,7 @@ import net.spross.kern.session.SessionOffer
  * - **how long since it last ran**, in local days, saturating at [RECENCY_DAYS] —
  *   a drill never run scores the full term, the same as one untouched for a week;
  * - **what the box would get out of it** ([benefit]) — letters while a new script is young,
- *   numbers while the box is, the scrambles once there are grown words to scramble;
+ *   numbers while the box is, the scrambles once there are settled words to scramble;
  * - **how much of its ladder is left** ([Ladder.share]), at [LADDER_WEIGHT].
  *
  * A seeded nudge of at most [NUDGE] per drill, keyed on the greeting's [partSlot], turns
@@ -38,10 +38,10 @@ object DrillSuggestion {
     /** Local days since a run after which recency adds nothing more. */
     const val RECENCY_DAYS: Int = 7
 
-    /** Grown words by which the box is past "early on" — numbers and a new script stop leading. */
+    /** Settled words by which the box is past "early on" — numbers and a new script stop leading. */
     const val EARLY_WORDS: Int = 150
 
-    /** Grown words at which the word scramble is worth its full term; the sentence one takes twice this. */
+    /** Settled words at which the word scramble is worth its full term; the sentence one takes twice this. */
     const val SCRAMBLE_WORDS: Int = 150
 
     const val LADDER_WEIGHT: Double = 0.3
@@ -102,7 +102,7 @@ object DrillSuggestion {
         /** Numbers, while the box is young. */
         EarlyNumbers,
 
-        /** A scramble, once the box holds enough grown words. */
+        /** A scramble, once the box holds enough settled words. */
         WordsSettled,
         NeverRun,
 

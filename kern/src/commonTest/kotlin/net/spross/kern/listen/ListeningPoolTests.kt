@@ -108,7 +108,7 @@ class ListeningPoolTests {
      * their own words in it — the deal does the steering.
      */
     @Test
-    fun thePoolIsTheSayableJoinShortOfTheGrownWords() {
+    fun thePoolIsTheSayableJoinShortOfTheSettledWords() {
         val thin = spoken(box(total = 30, scheduled = 3)).candidates.distinct()
         assertEquals(30, thin.size)
         assertEquals(3, thin.count { it.scheduled })
