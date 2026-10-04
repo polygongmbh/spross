@@ -23,7 +23,7 @@ internal object Growth {
     // hasArrived: a phrase waits for its components to have genuinely landed.
     fun isComponentStable(state: BoxState, componentId: String): Boolean {
         val sched = state.scheduling[componentId] ?: return false
-        return Statistics.hasArrived(state, sched)
+        return Statistics.hasArrived(sched)
     }
 
     /** Zero-component phrases never take the fast path (they follow seed order). */

@@ -65,7 +65,7 @@ internal object Inventory {
             // why: the shuffle key hashes a string, so it is built ONCE per card
             // here rather than inside the comparator, which would pay for it
             // O(n log n) times over.
-            .map { DueKey(it, Statistics.hasArrived(state, it)) }
+            .map { DueKey(it, Statistics.hasArrived(it)) }
             .sortedWith(dueKeyOrder)
             .map { it.entry }
     }

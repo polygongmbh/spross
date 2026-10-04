@@ -231,6 +231,6 @@ object BoxBrowser {
             !packOffered -> CardRowState.Plain
             else -> CardRowState.PackOffered
         }
-        return if (sched.suspended) CardRowState.Sleeping else CardRowState.Standing(activeStageOf(state, sched))
+        return if (sched.suspended) CardRowState.Sleeping else CardRowState.Standing(activeStageOf(sched))
     }
 }

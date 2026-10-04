@@ -84,13 +84,13 @@ data class CardGrowth(
  * The Sprosse this schedule stands on: suspension first, then the stability bars,
  * and only under the growing bar does the FSRS phase say whether the word is new or slipped.
  */
-internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage =
-    if (sched.suspended) GrowthStage.Suspended else activeStageOf(state, sched).growth
+internal fun stageOf(sched: CardScheduling): GrowthStage =
+    if (sched.suspended) GrowthStage.Suspended else activeStageOf(sched).growth
 
 /** [stageOf] for a schedule in rotation, whatever its suspension says. */
-internal fun activeStageOf(state: BoxState, sched: CardScheduling): ActiveStage = when {
-    Statistics.hasSettled(state, sched) -> ActiveStage.Settled
-    Statistics.hasArrived(state, sched) -> ActiveStage.Growing
+internal fun activeStageOf(sched: CardScheduling): ActiveStage = when {
+    Statistics.hasSettled(sched) -> ActiveStage.Settled
+    Statistics.hasArrived(sched) -> ActiveStage.Growing
     sched.phase == CardPhase.Relearning -> ActiveStage.Lapsed
     else -> ActiveStage.Fresh
 }
@@ -145,7 +145,7 @@ private fun growthOf(
     return CardGrowth(
         cardId = cardId,
         stage = when {
-            sched != null -> stageOf(state, sched)
+            sched != null -> stageOf(sched)
             cardId in queued -> GrowthStage.Queued
             else -> GrowthStage.Unscheduled
         },

@@ -121,7 +121,7 @@ internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): T
             if (entry.date >= start && entry.date < end) {
                 answers += 1
                 if (entry.rating == Rating.Again) missed += 1
-                when (tallyKind(state, before, after)) {
+                when (tallyKind(before, after)) {
                     TallyPartKind.Introduced -> introduced += 1
                     TallyPartKind.Settled -> settled += 1
                     TallyPartKind.Reviewed -> {}

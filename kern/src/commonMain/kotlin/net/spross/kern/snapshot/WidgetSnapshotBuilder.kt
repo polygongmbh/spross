@@ -113,7 +113,7 @@ object WidgetSnapshotBuilder {
             chromeLanguage = chromeLanguage(state),
             entries = entries,
             cards = cards,
-            allSettledCount = active.count { Statistics.hasSettled(state, it) },
+            allSettledCount = active.count { Statistics.hasSettled(it) },
             activityWindowDays = ACTIVITY_WINDOW_DAYS,
             dailyStats = combinedDailyStats.filterKeys { it >= oldestTailDay }.mapValues { WidgetDayDto(it.value) },
             streakByDay = streakTimeline(combinedDailyStats, nowEpochMillis, tzId),

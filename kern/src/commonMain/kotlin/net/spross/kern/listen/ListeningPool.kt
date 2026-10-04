@@ -92,10 +92,10 @@ object ListeningPool {
             val scheduling = box.scheduling[card.id] ?: return@mapNotNull null
             // why: a settled word is what the box already calls done, and the hour is for
             // what is not — left in, a well-used box would open on the words it trusts most.
-            if (Statistics.hasSettled(box, scheduling)) return@mapNotNull null
+            if (Statistics.hasSettled(scheduling)) return@mapNotNull null
             ListeningCandidate(
                 card = card,
-                arrived = Statistics.hasArrived(box, scheduling),
+                arrived = Statistics.hasArrived(scheduling),
                 suspended = scheduling.suspended,
                 scheduled = true,
                 // Introduction dequeues (`Answer.kt`), so a scheduled card is never packed.

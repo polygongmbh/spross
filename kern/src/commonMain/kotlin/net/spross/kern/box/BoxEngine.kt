@@ -421,7 +421,7 @@ object BoxEngine {
 
     /** [Statistics.hasSettled] by id; a card with no schedule is not settled. */
     fun hasSettled(state: BoxState, cardId: String): Boolean =
-        state.scheduling[cardId]?.let { Statistics.hasSettled(state, it) } ?: false
+        state.scheduling[cardId]?.let { Statistics.hasSettled(it) } ?: false
 
     /**
      * Has this card cleared the growing bar? See [Statistics.hasArrived] — gate (a): phrase
@@ -429,7 +429,7 @@ object BoxEngine {
      * on its way in. Unknown ids read as false: a card with no schedule has cleared nothing.
      */
     fun hasArrived(state: BoxState, cardId: String): Boolean =
-        state.scheduling[cardId]?.let { Statistics.hasArrived(state, it) } ?: false
+        state.scheduling[cardId]?.let { Statistics.hasArrived(it) } ?: false
 
     /**
      * Every arrived card id, in seed order — the words the box may hand to a
@@ -448,7 +448,7 @@ object BoxEngine {
      */
     fun arrivedCardIds(state: BoxState): List<String> =
         Inventory.active(state)
-            .filter { Statistics.hasArrived(state, it) }
+            .filter { Statistics.hasArrived(it) }
             .map { state.cards.getValue(it.cardId) }
             .sortedWith(Inventory.seedOrder)
             .map { it.id }

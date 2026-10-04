@@ -26,9 +26,9 @@ data class TallyPart(val kind: TallyPartKind, val count: Int)
  * A first answer stays an introduction even where it crosses the bar,
  * which no graduating rating reaches alone.
  */
-internal fun tallyKind(state: BoxState, before: CardScheduling, after: CardScheduling): TallyPartKind = when {
+internal fun tallyKind(before: CardScheduling, after: CardScheduling): TallyPartKind = when {
     before.log.isEmpty() -> TallyPartKind.Introduced
-    !Statistics.hasSettled(state, before) && Statistics.hasSettled(state, after) -> TallyPartKind.Settled
+    !Statistics.hasSettled(before) && Statistics.hasSettled(after) -> TallyPartKind.Settled
     else -> TallyPartKind.Reviewed
 }
 

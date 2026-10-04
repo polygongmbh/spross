@@ -19,9 +19,9 @@ data class StageCounts(
     val allSettled: Int get() = settled + matured
 
     internal companion object {
-        fun of(state: BoxState, schedules: Iterable<CardScheduling>): StageCounts {
+        fun of(schedules: Iterable<CardScheduling>): StageCounts {
             val tally = StageTally()
-            for (sched in schedules) tally.add(stageOf(state, sched), sched.memory?.stability ?: 0.0)
+            for (sched in schedules) tally.add(stageOf(sched), sched.memory?.stability ?: 0.0)
             return tally.counts()
         }
     }

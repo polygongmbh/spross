@@ -190,7 +190,7 @@ object SessionRun {
         val cardId = state.currentCardId ?: return unchanged(state)
         val before = state.box.scheduling[cardId] ?: CardScheduling(cardId = cardId)
         val box = BoxEngine.answer(state.box, cardId, rating, nowEpochMillis)
-        val kind = box.scheduling[cardId]?.let { tallyKind(box, before, it) } ?: TallyPartKind.Reviewed
+        val kind = box.scheduling[cardId]?.let { tallyKind(before, it) } ?: TallyPartKind.Reviewed
         val next = state.copy(
             box = box,
             tally = state.tally + RoundAnswer(cardId, rating, kind),

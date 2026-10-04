@@ -178,7 +178,7 @@ internal object Statistics {
         val combinedDailyStats =
             mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
         return BoxStatistics(
-            stages = StageCounts.of(state, active),
+            stages = StageCounts.of(active),
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.suspendedCount(state),
             streak = streak(combinedDailyStats, nowEpochMillis, tzId),
@@ -192,7 +192,7 @@ internal object Statistics {
      * Stability at or above [SETTLED_STABILITY], whatever the phase:
      * a lapse costs the bar only where FSRS's post-lapse stability falls under it.
      */
-    fun hasSettled(state: BoxState, sched: CardScheduling): Boolean =
+    fun hasSettled(sched: CardScheduling): Boolean =
         (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY
 
     /**
@@ -200,7 +200,7 @@ internal object Statistics {
      * one forgetting is normal, and the support is for words that are not properly down.
      * Gates phrase unlock, the drill pools and the in-session support (emoji cue, sound-only prompt).
      */
-    fun hasArrived(state: BoxState, sched: CardScheduling): Boolean =
+    fun hasArrived(sched: CardScheduling): Boolean =
         (sched.memory?.stability ?: 0.0) >= GROWING_STABILITY
 
     /**
@@ -294,7 +294,7 @@ internal object Statistics {
                 }
                 AreaStatistics(
                     name = area, total = cards.size,
-                    stages = StageCounts.of(state, activeByArea[area].orEmpty()),
+                    stages = StageCounts.of(activeByArea[area].orEmpty()),
                     queued = shelfCounts[area]?.queued ?: 0,
                     phrasesLocked = locked,
                 )

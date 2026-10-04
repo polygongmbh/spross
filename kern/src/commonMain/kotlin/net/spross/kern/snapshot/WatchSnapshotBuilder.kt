@@ -91,7 +91,7 @@ object WatchSnapshotBuilder {
         val entries = ranked
             .sortedWith(compareBy({ !it.isDue }, { it.tier }, { it.order }, { it.sched.cardId }))
             .take(ENTRY_CAP)
-            .map { entry(it.sched, state.cards.getValue(it.sched.cardId), Statistics.hasArrived(state, it.sched)) }
+            .map { entry(it.sched, state.cards.getValue(it.sched.cardId), Statistics.hasArrived(it.sched)) }
         // why: options are drawn from every card the learner has met, not just the
         // capped entries — the cap is a wire budget, and a pool that small leaves a
         // question no same-class company to keep. Unscheduled cards stay out: a word
@@ -101,7 +101,7 @@ object WatchSnapshotBuilder {
         // built per entry they were built sixty times over, which is most of what
         // a snapshot used to cost.
         val shared = SharedTargetForms(pool)
-        val fresh = ranked.filterNot { Statistics.hasArrived(state, it.sched) }.map { it.sched.cardId }.toSet()
+        val fresh = ranked.filterNot { Statistics.hasArrived(it.sched) }.map { it.sched.cardId }.toSet()
         val reviewCounts = ranked.associate { it.sched.cardId to it.sched.reviewCount }
         val options = OptionPool(pool, reviewCounts, fresh, citationPrefixes)
         return WatchSnapshotDoc(
