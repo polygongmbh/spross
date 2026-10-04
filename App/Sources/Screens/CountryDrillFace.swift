@@ -91,7 +91,7 @@ enum CountryDrillFace: DrillFace {
 
     static func snapshot(_ run: CountryDrillRunState) -> DrillSnapshot {
         DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
-                      streak: Int(run.streak), bestStreak: Int(run.bestStreak),
+                      answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
                       offersFinish: run.offersFinish, finished: run.finished,
                       answerLanguage: run.answerLanguage, promptLanguage: run.promptLanguage,
@@ -146,13 +146,13 @@ enum CountryDrillFace: DrillFace {
 
     static var uitestBestKey: String { "uitest-countries-best" }
 
-    static func seedStreak(_ run: CountryDrillRunState, _ streak: Int) -> CountryDrillRunState {
+    static func seedAnswerStreak(_ run: CountryDrillRunState, _ answerStreak: Int) -> CountryDrillRunState {
         run.doCopy(config: run.config, task: run.task, index: run.index,
                    sprosse: run.sprosse, bestSprosse: run.bestSprosse,
                    winsAtSprosse: run.winsAtSprosse,
-                   core: run.core.doCopy(done: Int32(streak + 6),
-                                         streak: Int32(streak),
-                                         bestStreak: Int32(max(streak, 12)),
+                   core: run.core.doCopy(done: Int32(answerStreak + 6),
+                                         answerStreak: Int32(answerStreak),
+                                         bestAnswerStreak: Int32(max(answerStreak, 12)),
                                          missRun: run.core.missRun,
                                          outcomes: run.core.outcomes,
                                          solved: run.core.solved,

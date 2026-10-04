@@ -65,7 +65,7 @@ extension DrillRunView: DrillRunning {
         TrainerProgress.bookCleared(closed.clearedSprossen,
                                     for: NumbersMode.companion.clearedKey(key: storageKey, reverse: reverse))
         if let summary = closed.summary {
-            TrainerRecords.record(Int(summary.bestStreak), for: storageKey)
+            TrainerRecords.record(Int(summary.bestAnswerStreak), for: storageKey)
             TrainerRecords.recordAnswers(Int(summary.done), for: storageKey)
         }
         return DrillClose(run: closed.run, summary: closed.summary, effects: closed.effects)
@@ -85,8 +85,8 @@ extension DrillRunView: DrillRunning {
 #if DEBUG
 extension DrillRunView {
 
-    func seedStreak(_ streak: Int) {
-        run = Face.seedStreak(run, streak)
+    func seedAnswerStreak(_ answerStreak: Int) {
+        run = Face.seedAnswerStreak(run, answerStreak)
     }
 
     /// Nothing of its own beyond the two hooks every drill takes.

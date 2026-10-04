@@ -106,7 +106,7 @@ protocol DrillRunning: View {
 
     #if DEBUG
     /// `-uitest-streak N`: stand the run mid-streak.
-    func seedStreak(_ streak: Int)
+    func seedAnswerStreak(_ answerStreak: Int)
     #endif
 }
 
@@ -265,7 +265,7 @@ extension DrillRunning {
     func uitestDriveRun() {
         let defaults = UserDefaults.standard
         let preset = defaults.integer(forKey: "uitest-streak")
-        if preset > 0 { seedStreak(preset) }
+        if preset > 0 { seedAnswerStreak(preset) }
         if defaults.bool(forKey: "uitest-close") {
             Task { @MainActor in
                 try? await Task.sleep(for: .milliseconds(400))

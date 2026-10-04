@@ -21,7 +21,7 @@ enum class DrillPauseReason {
  * the FIRST of three moments —
  * [STRETCH] answers since the run opened or last went on;
  * after [IMPROVED_AFTER], something new since the last pause —
- * a Sprosse the store did not hold, or a standing streak record beaten;
+ * a Sprosse the store did not hold, or a standing answer-streak record beaten;
  * after [STRUGGLING_AFTER], [STRUGGLING_MISSES] misses among the last [STRUGGLING_WINDOW] answers.
  * Where two fall on one answer, improving is named over struggling, and either over the count.
  *
@@ -33,7 +33,7 @@ enum class DrillPauseReason {
  * so the calendar's assembled Sprossen, which never answer out, improve only through the record.
  *
  * A pause asks, it does not end: going on ([DrillRunCore.resumed]) keeps the run whole —
- * the prompts asked, the ladder, the streak — and starts the next stretch.
+ * the prompts asked, the ladder, the answer streak — and starts the next stretch.
  * A run that ran out of questions ends instead, and a timed run ends on its clock, so neither pauses.
  */
 data class DrillPacing(
@@ -41,11 +41,11 @@ data class DrillPacing(
     val openedOn: Int? = null,
     /** The highest Sprosse it has stood on since; null exactly where [openedOn] is. */
     val reached: Int? = null,
-    /** The streak record standing when the run opened; 0 where the drill keeps none, or none stood yet. */
+    /** The answer-streak record standing when the run opened; 0 where the drill keeps none, or none stood yet. */
     val standingRecord: Int = 0,
     /** How many Sprossen this run cleared that the store did not hold. */
     val newSprossen: Int = 0,
-    /** The run's best streak beat a record that stood. */
+    /** The run's best answer streak beat a record that stood. */
     val newRecord: Boolean = false,
     /** [DrillRunCore.done] when the current stretch began. */
     val stretchFrom: Int = 0,
@@ -66,7 +66,7 @@ data class DrillPacing(
         val moved = copy(
             reached = sprosse?.let { maxOf(reached ?: it, it) } ?: reached,
             newSprossen = newSprossen,
-            newRecord = standingRecord > 0 && core.bestStreak > standingRecord,
+            newRecord = standingRecord > 0 && core.bestAnswerStreak > standingRecord,
         )
         val stretch = core.done - stretchFrom
         val misses = core.outcomes.takeLast(STRUGGLING_WINDOW).count { it == AnswerOutcome.Wrong }

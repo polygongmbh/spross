@@ -210,7 +210,7 @@ class SentenceScrambleRunTest {
         val closed = SentenceScrambleRun.close(done)
         val summary = assertNotNull(closed.summary)
         assertEquals(1, summary.done)
-        assertEquals(1, summary.bestStreak)
+        assertEquals(1, summary.bestAnswerStreak)
         assertFalse(summary.newRecord, "the drill keeps no streak record")
         assertTrue(closed.state.finished)
     }

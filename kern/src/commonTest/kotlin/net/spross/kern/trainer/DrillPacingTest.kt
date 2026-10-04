@@ -76,7 +76,7 @@ class DrillPacingTest {
         val resumed = reduce(paused, NumbersIntent.KeepPracticing, rng)
         assertNull(resumed.pause)
         assertEquals(paused.index, resumed.index)
-        assertEquals(paused.streak, resumed.streak)
+        assertEquals(paused.answerStreak, resumed.answerStreak)
         assertEquals(paused.solved, resumed.solved)
         assertEquals(paused.sprossen, resumed.sprossen)
         assertNull(right(resumed, rng).pause)

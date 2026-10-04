@@ -82,8 +82,8 @@ class DateDrillFlow(
     override fun view(chrome: Chrome): TypedDrillView = TypedDrillView(
         index = state.index,
         sprosse = state.sprosse,
-        streak = state.streak,
-        bestStreak = state.bestStreak,
+        answerStreak = state.answerStreak,
+        bestAnswerStreak = state.bestAnswerStreak,
         outcomes = state.outcomes,
         tally = state.tally,
         feedback = state.feedback,
@@ -116,7 +116,7 @@ fun AppModel.newDateDrill(
     fast: Boolean,
     /** The Sprosse the run opens on — the page's call ([net.spross.kern.trainer.NumbersMode.entrySprosse] or a tap). */
     sprosse: Int,
-    /** The streak record the page's store holds — what a pause for improving is measured against. */
+    /** The answer-streak record the page's store holds — what a pause for improving is measured against. */
     standingRecord: Int,
     /** The Sprossen answered out in this direction — a new one is what a pause for improving names. */
     cleared: Set<Int>,

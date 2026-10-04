@@ -3,7 +3,7 @@ package net.spross.kern.trainer
 import net.spross.kern.session.AnswerOutcome
 
 /**
- * The figures every drill run keeps, whatever it happens to ask: the streak on screen and the
+ * The figures every drill run keeps, whatever it happens to ask: the answer streak on screen and the
  * best it reached, the misses in a row, the outcomes the tally reads, how many questions are
  * done, the prompts already answered right, whether the run has slipped yet, and where the run
  * stands against its next pause.
@@ -18,8 +18,8 @@ import net.spross.kern.session.AnswerOutcome
  */
 data class DrillRunCore(
     val done: Int = 0,
-    val streak: Int = 0,
-    val bestStreak: Int = 0,
+    val answerStreak: Int = 0,
+    val bestAnswerStreak: Int = 0,
     /**
      * Misses in a row already BOOKED — the one on screen is not among them, so 1 while a miss
      * shows means this is the second in a row.
@@ -48,20 +48,20 @@ data class DrillRunCore(
     /**
      * One answer, booked. [correct] and [clean] are the same two the ramp reads
      * ([DrillRamp.step]), so the counters and the Sprosse can never disagree about what an
-     * answer was: a miss cuts the streak and lengthens the miss run, an almost holds both.
+     * answer was: a miss cuts the answer streak and lengthens the miss run, an almost holds both.
      *
      * [solves] is the key the question would retire, null where the run has none to name it
      * by. Only a CLEAN correct answer retires it — a slip, a look-up and a reveal all leave
      * the prompt in the pool, which is what the ramp already says an almost is worth.
      */
     fun book(correct: Boolean, clean: Boolean, solves: String?): DrillRunCore {
-        val run = if (correct) streak + 1 else 0
+        val run = if (correct) answerStreak + 1 else 0
         val solvedNow = if (correct && clean && solves != null) solved + solves else solved
         val slips = DrillSprossen.slipped(slipped, correct, clean)
         return copy(
             done = done + 1,
-            streak = run,
-            bestStreak = maxOf(bestStreak, run),
+            answerStreak = run,
+            bestAnswerStreak = maxOf(bestAnswerStreak, run),
             missRun = if (correct) 0 else missRun + 1,
             outcomes = outcomes + outcome(correct, clean),
             solved = solvedNow,

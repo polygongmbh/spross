@@ -101,7 +101,7 @@ protocol DrillFace {
     static var uitestBestKey: String { get }
 
     /// A run standing mid-streak, which a screenshot run has no thumb to reach.
-    static func seedStreak(_ run: Run, _ streak: Int) -> Run
+    static func seedAnswerStreak(_ run: Run, _ answerStreak: Int) -> Run
     #endif
 }
 
@@ -148,8 +148,8 @@ struct DrillSnapshot {
     /// Bumped per question — the card's identity and what an autoplay keys on.
     let index: Int
     let sprosse: Int
-    let streak: Int
-    let bestStreak: Int
+    let answerStreak: Int
+    let bestAnswerStreak: Int
     let tally: DrillTally
     let outcomes: [AnswerOutcome]
     let feedback: TurnFeedback

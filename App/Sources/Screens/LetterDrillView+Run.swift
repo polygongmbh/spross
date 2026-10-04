@@ -87,13 +87,13 @@ extension LetterDrillView: DrillRunning {
 /// outside the process.
 extension LetterDrillView {
 
-    func seedStreak(_ streak: Int) {
+    func seedAnswerStreak(_ answerStreak: Int) {
         run = run.doCopy(config: run.config, task: run.task, index: run.index,
                          sprosse: run.sprosse, winsAtSprosse: run.winsAtSprosse,
                          clearedSprossen: run.clearedSprossen,
-                         core: run.core.doCopy(done: Int32(streak + 6),
-                                               streak: Int32(streak),
-                                               bestStreak: Int32(max(streak, 12)),
+                         core: run.core.doCopy(done: Int32(answerStreak + 6),
+                                               answerStreak: Int32(answerStreak),
+                                               bestAnswerStreak: Int32(max(answerStreak, 12)),
                                                missRun: run.core.missRun,
                                                outcomes: run.core.outcomes,
                                                solved: run.core.solved,

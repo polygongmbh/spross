@@ -19,7 +19,7 @@ extension DrillRunView {
         return ScrollView {
             VStack(spacing: Theme.spacing.md) {
                 DrillStreakLine(sprosse: Text("trainer.sprosse \(task.sprosse.formatted())"),
-                                streak: task.streak, bestStreak: task.bestStreak,
+                                answerStreak: task.answerStreak, bestAnswerStreak: task.bestAnswerStreak,
                                 announcesRecord: true)
                 // ZStack so the outgoing and incoming question overlap during
                 // the flip; .id gives each position its identity.

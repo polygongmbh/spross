@@ -47,14 +47,14 @@ struct DrillPauseView: View {
     }
 
     /// What the run has done so far: the answers, how many landed clean, the
-    /// best streak, the climb — and a note only where something new was reached.
+    /// best answer streak, the climb — and a note only where something new was reached.
     private var figures: some View {
         VStack(spacing: Theme.spacing.xs) {
             Text("trainer.result.tasksDone \(Int(run.done))")
                 .font(.system(.title3, design: .rounded))
                 .foregroundStyle(Theme.colors.textPrimary)
             Text("trainer.pause.tally \(Int(run.tally.clean).formatted()) \(Int(run.tally.judged).formatted())")
-            Text("trainer.result.bestStreak \(Int(run.bestStreak).formatted())")
+            Text("trainer.result.bestStreak \(Int(run.bestAnswerStreak).formatted())")
             if let climb { climb }
             if pacing.newSprossen > 0 {
                 Text("trainer.pause.newSprosse").foregroundStyle(Theme.colors.accent)

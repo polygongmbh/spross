@@ -89,7 +89,7 @@ extension LetterDrillView {
 
     private var streakLine: some View {
         DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
-                        streak: Int(run.streak), bestStreak: Int(run.bestStreak))
+                        answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak))
     }
 
     // MARK: - Multiple choice

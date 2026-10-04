@@ -54,13 +54,13 @@ struct WatchQuizView: View {
     }
 
     /// The one indicator: "3/12" in the due batch, "🔥3" in practice — and a
-    /// bare flame at streak 0, because a "🔥0" after a miss reads as a scolding.
+    /// bare flame at answer streak 0, because a "🔥0" after a miss reads as a scolding.
     private var progressTitle: String {
         switch model.run {
         case .session:
             return "\(min(model.answeredCount + 1, max(model.sessionTotal, 1)))/\(model.sessionTotal)"
         case .practice:
-            return model.streak > 0 ? "🔥\(model.streak)" : "🔥"
+            return model.answerStreak > 0 ? "🔥\(model.answerStreak)" : "🔥"
         }
     }
 

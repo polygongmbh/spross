@@ -31,27 +31,27 @@ extension SessionScaffold {
 // MARK: - Streak line
 
 /// The score line above the card: which Sprosse the run stands on, how long the
-/// streak is, and the standing record once the streak has fallen short of it.
+/// answer streak is, and the standing record once the answer streak has fallen short of it.
 struct DrillStreakLine: View {
     /// The Sprosse, worded by the drill that owns it — a digit count reads
     /// differently from a plain Sprosse. nil where a run has one Sprosse only.
     var sprosse: Text?
     /// A timed run's clock and score, standing after the Sprosse; empty elsewhere.
     var timed: [Text] = []
-    let streak: Int
-    let bestStreak: Int
+    let answerStreak: Int
+    let bestAnswerStreak: Int
     /// Whether the SPOKEN line names the record as well. Only the slot drill's
-    /// does; the letter drill has always announced the streak alone, and this
+    /// does; the letter drill has always announced the answer streak alone, and this
     /// carries that difference rather than quietly settling it.
     var announcesRecord = false
 
     var body: some View {
         text
             .font(Theme.typography.caption)
-            .foregroundStyle(streak > 0 ? Theme.colors.accent : Theme.colors.textSecondary)
+            .foregroundStyle(answerStreak > 0 ? Theme.colors.accent : Theme.colors.textSecondary)
             .monospacedDigit()
             .frame(maxWidth: .infinity)
-            .animation(.easeOut(duration: 0.2), value: streak)
+            .animation(.easeOut(duration: 0.2), value: answerStreak)
             .accessibilityLabel(accessibility)
     }
 
@@ -61,16 +61,16 @@ struct DrillStreakLine: View {
         var parts: [Text] = []
         if let sprosse { parts.append(sprosse) }
         parts += timed
-        parts.append(Text("trainer.run.streak \(streak.formatted())"))
-        if bestStreak > streak { parts.append(Text("trainer.run.record \(bestStreak.formatted())")) }
+        parts.append(Text("trainer.run.streak \(answerStreak.formatted())"))
+        if bestAnswerStreak > answerStreak { parts.append(Text("trainer.run.record \(bestAnswerStreak.formatted())")) }
         return parts.joined() ?? Text(verbatim: "")
     }
 
     private var accessibility: Text {
-        let streakSpoken = Text("a11y.count.streakInARow \(streak.formatted())")
+        let streakSpoken = Text("a11y.count.streakInARow \(answerStreak.formatted())")
         let spoken = timed.joined(separator: ", ").map { $0 + Text(verbatim: ", ") + streakSpoken } ?? streakSpoken
-        guard announcesRecord, bestStreak > streak else { return spoken }
-        return spoken + Text("a11y.suffix.record \(bestStreak.formatted())")
+        guard announcesRecord, bestAnswerStreak > answerStreak else { return spoken }
+        return spoken + Text("a11y.suffix.record \(bestAnswerStreak.formatted())")
     }
 }
 
@@ -100,14 +100,14 @@ struct DrillStopOffer: View {
 /// and the next run.
 struct DrillRunResult: Equatable {
     let doneCount: Int
-    let bestStreak: Int
+    let bestAnswerStreak: Int
     /// The run beat the drill's standing record. A drill that keeps no record
     /// store leaves it false, which drops the record line and the confetti with it.
     var newRecord = false
-    /// Which Sprosse the best streak earned. Kern's (`DrillRunSummary.tier`) — the
+    /// Which Sprosse the best answer streak earned. Kern's (`DrillRunSummary.tier`) — the
     /// ladder is one table, and a second copy of it here is one coincidence away
     /// from praising a run the engine does not.
-    var tier: StreakTier = .sprout
+    var tier: AnswerStreakTier = .sprout
     /// A timed run's score, and the challenge it answered; nil for every other run.
     var timed: TimedOutcome?
     /// What was drilled — the exercise's own name, since a page can host several.
@@ -130,7 +130,7 @@ struct DrillResultTile: View {
                 Text("trainer.result.tasksDone \(result.doneCount)")
                     .font(Theme.typography.headline)
                     .foregroundStyle(Theme.colors.textPrimary)
-                Text("trainer.result.bestStreak \(result.bestStreak.formatted())")
+                Text("trainer.result.bestStreak \(result.bestAnswerStreak.formatted())")
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
                 if let timed = result.timed {
@@ -198,9 +198,9 @@ struct DrillResultTile: View {
 
 #Preview("Result tile · record") {
     VStack(spacing: Theme.spacing.lg) {
-        DrillResultTile(result: DrillRunResult(doneCount: 17, bestStreak: 12, newRecord: true,
+        DrillResultTile(result: DrillRunResult(doneCount: 17, bestAnswerStreak: 12, newRecord: true,
                                                tier: .trophy, title: "trainer.drill.numbers"))
-        DrillResultTile(result: DrillRunResult(doneCount: 4, bestStreak: 1, title: "trainer.drill.letters"))
+        DrillResultTile(result: DrillRunResult(doneCount: 4, bestAnswerStreak: 1, title: "trainer.drill.letters"))
     }
     .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -209,10 +209,10 @@ struct DrillResultTile: View {
 
 #Preview("Streak line") {
     VStack(spacing: Theme.spacing.xl) {
-        DrillStreakLine(sprosse: Text("trainer.sprosse \(7.formatted())"), streak: 0, bestStreak: 0)
-        DrillStreakLine(sprosse: Text("numbers.sprosse \(5)"), streak: 7, bestStreak: 12,
+        DrillStreakLine(sprosse: Text("trainer.sprosse \(7.formatted())"), answerStreak: 0, bestAnswerStreak: 0)
+        DrillStreakLine(sprosse: Text("numbers.sprosse \(5)"), answerStreak: 7, bestAnswerStreak: 12,
                         announcesRecord: true)
-        DrillStreakLine(streak: 3, bestStreak: 3)
+        DrillStreakLine(answerStreak: 3, bestAnswerStreak: 3)
     }
     .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)

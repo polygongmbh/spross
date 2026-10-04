@@ -4,7 +4,7 @@ import SprossKern
 // MARK: - TrainerRecords
 //
 // The best run a drill has ever produced, per drill and language: the
-// longest clean streak, and — for the atlas and the calendar — the most
+// longest clean answer streak, and — for the atlas and the calendar — the most
 // answers one run took, right or wrong.
 //
 // Kept in UserDefaults rather than the box document on purpose: a drill run
@@ -18,13 +18,13 @@ enum TrainerRecords {
         UserDefaults.standard.integer(forKey: prefix + key)
     }
 
-    /// Books `streak` as the new record if it beats the standing one, and says
+    /// Books `answerStreak` as the new record if it beats the standing one, and says
     /// whether it did. Strictly greater, so returning to a summary that has
     /// already been booked never claims the record a second time.
     @discardableResult
-    static func record(_ streak: Int, for key: String) -> Bool {
-        guard streak > best(for: key) else { return false }
-        UserDefaults.standard.set(streak, forKey: prefix + key)
+    static func record(_ answerStreak: Int, for key: String) -> Bool {
+        guard answerStreak > best(for: key) else { return false }
+        UserDefaults.standard.set(answerStreak, forKey: prefix + key)
         return true
     }
 
@@ -38,7 +38,7 @@ enum TrainerRecords {
     }
 
     /// Books `answers` where it beats the standing figure. Strictly greater, like
-    /// the streak — and unlike it no cheer follows: a longer run is not a better one.
+    /// the answer streak — and unlike it no cheer follows: a longer run is not a better one.
     static func recordAnswers(_ answers: Int, for key: String) {
         guard answers > bestAnswers(for: key) else { return }
         UserDefaults.standard.set(answers, forKey: answersPrefix + key)

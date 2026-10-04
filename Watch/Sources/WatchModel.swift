@@ -35,7 +35,7 @@ final class WatchModel {
     private(set) var lastRating: WatchRating?
     /// Raised for a moment after a wrong pick; the quiz washes the screen red.
     private(set) var wrongFlash = false
-    private(set) var streak = 0
+    private(set) var answerStreak = 0
     private(set) var answeredCount = 0
     /// Cards the due batch set out to answer — the counter's denominator.
     private(set) var sessionTotal = 0
@@ -60,7 +60,7 @@ final class WatchModel {
         // UI-test hooks: `-uitest-snapshot` loads the bundled fixture instead
         // of stored/synced state; `-uitest-autostart` opens the due batch and
         // `-uitest-practice` free practice; `-uitest-streak N` presets the
-        // streak (screenshot verification without a paired phone — simctl
+        // answer streak (screenshot verification without a paired phone — simctl
         // cannot tap).
         let arguments = ProcessInfo.processInfo.arguments
         if arguments.contains("-uitest-snapshot") {
@@ -72,7 +72,7 @@ final class WatchModel {
             }
             if sessionPresented, let i = arguments.firstIndex(of: "-uitest-streak"),
                i + 1 < arguments.count, let n = Int(arguments[i + 1]) {
-                streak = n
+                answerStreak = n
             }
             return
         }
@@ -149,7 +149,7 @@ final class WatchModel {
     }
 
     /// Free practice: the weakest words first, lap after lap — no
-    /// total, so the streak carries the progress indicator instead.
+    /// total, so the answer streak carries the progress indicator instead.
     func startPractice() {
         guard hasPool else { return }
         queue = practiceLap(avoiding: nil)
@@ -160,7 +160,7 @@ final class WatchModel {
     private func begin(_ run: WatchRun) {
         self.run = run
         answeredCount = 0
-        streak = 0
+        answerStreak = 0
         currentID = queue.first
         makeQuestionForCurrent()
         sessionPresented = true
@@ -174,7 +174,7 @@ final class WatchModel {
               let id = currentID, var snap = snapshot else { return }
         selectedIndex = index
         let correct = index == question.correctIndex
-        streak = correct ? streak + 1 : 0
+        answerStreak = correct ? answerStreak + 1 : 0
 
         let elapsedMs = Int(Date().timeIntervalSince(questionShownAt) * 1000)
         let optionChars = question.options.joined().count

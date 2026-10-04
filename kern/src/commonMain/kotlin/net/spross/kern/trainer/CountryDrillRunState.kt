@@ -75,7 +75,7 @@ class CountryDrillRunConfig(
      */
     val normalizer: AnswerNormalizer?,
     /**
-     * The streak record the platform's store holds for this page — beating it is what a pause
+     * The answer-streak record the platform's store holds for this page — beating it is what a pause
      * for improving names ([DrillPacing]); 0 where none stood yet.
      */
     val standingRecord: Int = 0,

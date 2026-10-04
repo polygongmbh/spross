@@ -73,7 +73,7 @@ data class NumbersMode(
     }
 
     /**
-     * Identity a streak record is kept under: the whole selection AND how it was played —
+     * Identity an answer-streak record is kept under: the whole selection AND how it was played —
      * `Counting+Clock.rev.fast.de`. A run that interleaves two exercises is a different feat
      * from either alone, and a reversed or fast run a different feat again, so none of them
      * may share a standing record.
@@ -195,7 +195,7 @@ data class NumbersMode(
         get() = phraseSource?.let { "$it-$language" } ?: language
 
     companion object {
-        /** Store prefix of the streak records — the full key is this plus [recordKey]. */
+        /** Store prefix of the answer-streak records — the full key is this plus [recordKey]. */
         const val RECORD_PREFIX: String = "trainer.record."
 
         /** Store prefix of the Sprosse high-waters — the full key is this plus [progressKey]. */

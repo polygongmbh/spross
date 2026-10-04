@@ -62,11 +62,11 @@ data class DrillTally(val clean: Int, val judged: Int) {
 }
 
 /**
- * The ladder a run's best streak earns, as the RULE (the thresholds) rather than the badge:
+ * The ladder a run's best answer streak earns, as the RULE (the thresholds) rather than the badge:
  * canonically 🌱 [Sprout] · 💪 [Effort] · 🎉 [Cheer] · 🏆 [Trophy], but which glyph wears a
  * tier is the platform's chrome.
  */
-enum class StreakTier { Sprout, Effort, Cheer, Trophy }
+enum class AnswerStreakTier { Sprout, Effort, Cheer, Trophy }
 
 /**
  * The whole of what a finished run has to say. It travels back to the page that started it
@@ -75,7 +75,7 @@ enum class StreakTier { Sprout, Effort, Cheer, Trophy }
  */
 data class DrillRunSummary(
     val done: Int,
-    val bestStreak: Int,
+    val bestAnswerStreak: Int,
     /**
      * The run beat the drill's standing record. A drill that keeps no record store leaves it
      * false, which drops the record line and the celebration with it.
@@ -84,20 +84,20 @@ data class DrillRunSummary(
     /** A timed run's score, and the challenge it answered; null for a run that was not timed. */
     val timed: TimedOutcome? = null,
 ) {
-    /** The record figure: a timed run's score, otherwise the best streak. */
-    val recordFigure: Int get() = timed?.score ?: bestStreak
+    /** The record figure: a timed run's score, otherwise the best answer streak. */
+    val recordFigure: Int get() = timed?.score ?: bestAnswerStreak
 
-    val tier: StreakTier
+    val tier: AnswerStreakTier
         get() = when {
-            bestStreak >= TROPHY_STREAK -> StreakTier.Trophy
-            bestStreak >= CHEER_STREAK -> StreakTier.Cheer
-            bestStreak >= EFFORT_STREAK -> StreakTier.Effort
-            else -> StreakTier.Sprout
+            bestAnswerStreak >= TROPHY_ANSWER_STREAK -> AnswerStreakTier.Trophy
+            bestAnswerStreak >= CHEER_ANSWER_STREAK -> AnswerStreakTier.Cheer
+            bestAnswerStreak >= EFFORT_ANSWER_STREAK -> AnswerStreakTier.Effort
+            else -> AnswerStreakTier.Sprout
         }
 
     private companion object {
-        const val TROPHY_STREAK = 10
-        const val CHEER_STREAK = 5
-        const val EFFORT_STREAK = 2
+        const val TROPHY_ANSWER_STREAK = 10
+        const val CHEER_ANSWER_STREAK = 5
+        const val EFFORT_ANSWER_STREAK = 2
     }
 }

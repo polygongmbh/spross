@@ -107,7 +107,7 @@ class WordScrambleRunTest {
         val booked = reduce(revealed, WordScrambleIntent.ConfirmPending).state
         assertEquals(1, booked.sprosse)
         assertEquals(listOf(AnswerOutcome.Wrong), booked.outcomes)
-        assertEquals(0, booked.streak)
+        assertEquals(0, booked.answerStreak)
     }
 
     /** Clean wins carry the Sprosse; the wins banked below stay behind with it. */
@@ -170,7 +170,7 @@ class WordScrambleRunTest {
         val closed = WordScrambleRun.close(accepted)
         val summary = assertNotNull(closed.summary)
         assertEquals(1, summary.done)
-        assertEquals(1, summary.bestStreak)
+        assertEquals(1, summary.bestAnswerStreak)
         assertFalse(summary.newRecord, "the drill keeps no streak record")
         assertTrue(closed.state.finished)
     }
@@ -265,7 +265,7 @@ class WordScrambleRunTest {
     }
 
     /**
-     * An almost costs the RUN nothing — the streak stands, the banked win stands, the Sprosse
+     * An almost costs the RUN nothing — the answer streak stands, the banked win stands, the Sprosse
      * holds — and costs the STORE the Sprosse: it is climbed here and never booked.
      */
     @Test
@@ -274,7 +274,7 @@ class WordScrambleRunTest {
         assertEquals(1, state.winsAtSprosse)
         state = answer(state, clean = false)
         assertEquals(AnswerOutcome.Almost, state.outcomes.last())
-        assertEquals(2, state.streak, "an almost is no miss")
+        assertEquals(2, state.answerStreak, "an almost is no miss")
         assertEquals(1, state.sprosse, "and no demotion")
         assertEquals(1, state.winsAtSprosse, "the banked win stands")
 

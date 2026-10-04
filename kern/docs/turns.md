@@ -226,18 +226,18 @@ Engine contract: `../README.md`.
   what it cleared before stays cleared, nothing it answers out or climbs off after does
   (the atlas and the calendar check against `DrillRunCore.solvedClean`, the prompts solved before that slip).
   That ledger sits BESIDE `DrillRamp` rather than tightening it:
-  an almost still banks nothing, costs nothing and breaks no streak,
+  an almost still banks nothing, costs nothing and breaks no answer streak,
   it only takes the rest of the run out of the running for the store.
   Either way the next run opens on the lowest Sprosse the stored mask does not hold.
 - Feedback and cues reuse the turn machine's vocabulary
   (`TurnFeedback`, `AlmostReason`, `AnswerOutcome`, `AdvanceTier`, `ToneKind`);
   nothing new is minted where kern already names a rule.
-  `StreakTier` names the summary ladder (≥10 / ≥5 / ≥2 / else);
+  `AnswerStreakTier` names the summary ladder (≥10 / ≥5 / ≥2 / else);
   which glyph a tier wears is chrome.
   `DrillTally` names the counter for every drill at once — clean wins over the answers
   judged either way, with almost in neither half for `DrillRamp.step`'s reason;
   the "2/3" string is rendering.
-- **Storage contract**: the streak record under `trainer.record.<key>` —
+- **Storage contract**: the answer-streak record under `trainer.record.<key>` —
   a timed run's is its score instead (`DrillRunSummary.recordFigure`), on a key its own modifier already separates —
   per-exercise Sprosse progress under `trainer.level.<key>`,
   the most answers one run took under `trainer.answers.<key>` (`DrillRunSummary.done`, right or wrong),
@@ -249,7 +249,7 @@ Engine contract: `../README.md`.
   Every closed run of a drill also stamps its epoch millis under `trainer.lastRun.<drill>.<language>`,
   one key per DRILL whatever its selection (`DrillSuggestion.LAST_RUN_PREFIX`).
   The atlas, the calendar, both scrambles and the letter drill (tile and typed Sprossen only) all keep that mask;
-  the scrambles keep NOTHING ELSE — no streak record, so their `newRecord` is always false.
+  the scrambles keep NOTHING ELSE — no answer-streak record, so their `newRecord` is always false.
   `close` returns only bookings that beat the standing value (strictly greater);
   the platform writes blindly — except the cleared set, which it ORs into the mask it holds.
   Where a typed run OPENS is kern's too: the lowest Sprosse the mask does not hold

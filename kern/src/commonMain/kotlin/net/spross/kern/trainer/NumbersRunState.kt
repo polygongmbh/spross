@@ -42,7 +42,7 @@ data class NumbersClose(
     val state: NumbersRunState,
     /** null ⇒ the run was never answered: dismiss, store nothing. */
     val summary: DrillRunSummary?,
-    /** Where the streak record is filed ([NumbersMode.RECORD_PREFIX] + this). */
+    /** Where the answer-streak record is filed ([NumbersMode.RECORD_PREFIX] + this). */
     val recordKey: String,
     /**
      * Progress key ([NumbersMode.PROGRESS_PREFIX] + it) → the Sprosse to store, already filtered to
@@ -62,7 +62,7 @@ data class NumbersClose(
  * and hands text in through [NumbersIntent]. What is in here is every rule that decides what
  * the text means.
  *
- * No FSRS, no box: right or wrong only moves the in-run streak, and the run ends when the
+ * No FSRS, no box: right or wrong only moves the in-run answer streak, and the run ends when the
  * learner closes it.
  */
 data class NumbersRunState(

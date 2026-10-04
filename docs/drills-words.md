@@ -25,7 +25,7 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   Dictation is never filed: it draws from the box, which grows.
   Each row is ONE line, the format named by what it asks,
   with a caption only where dictation states its price.
-- **The drill shares the slot drill's chrome** — the endless scaffold, the streak line,
+- **The drill shares the slot drill's chrome** — the endless scaffold, the answer-streak line,
   the result tile (each platform's `DrillChrome`) — and keeps its own state machine,
   which is the whole of what the two have in common:
   its Sprossen are formats that change what a question IS rather than how big the number is.

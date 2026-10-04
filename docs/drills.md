@@ -159,7 +159,7 @@ Nothing wears a prefix one scope wider than what it serves.
   (`../kern/docs/turns.md` storage contract),
   and the ladder the reverse switch shows reads its own direction's mask.
   The record line under it COUNTS rather than places --
-  the longest clean streak and the most answers one run took.
+  the longest clean answer streak and the most answers one run took.
 - **The numbers page prints the Sprosse each exercise has been climbed to**
   under the exercise's own name,
   because there four ladders are climbed separately,
@@ -187,11 +187,11 @@ Nothing wears a prefix one scope wider than what it serves.
   (climbed off in the scrambles and the letters,
   answered out in the run's own direction on the atlas and the calendar,
   climbed past where the exercise stood in numbers),
-  or the standing streak record beaten (numbers, atlas, calendar);
+  or the standing answer-streak record beaten (numbers, atlas, calendar);
   or most of the last few answers missed, where the pause says a stop is fine and why.
   The pause stands in place of the question and wears the round's exit pair:
   Done closes the run as the X does, keep practicing goes on with the SAME run --
-  prompts asked, ladder, streak -- and starts the next stretch.
+  prompts asked, ladder, answer streak -- and starts the next stretch.
   A timed run ends on its clock and never pauses.
   What ends a run unasked is running OUT of questions:
   a run asks each prompt once (`../kern/docs/turns.md`),
@@ -202,14 +202,14 @@ Nothing wears a prefix one scope wider than what it serves.
   the two scrambles the hub opens directly wear the same one.
 - **A closed run has no screen of its own; a paused one shows its figures in place.**
   The endless drills hand their figures --
-  answered, best streak, whether the record fell --
+  answered, best answer streak, whether the record fell --
   to the page that started them;
   the page wears them as one tile above the picks and scrolls up to meet it.
   The scrambles have no page to hand them to, so their pause is where a run's figures are seen:
-  answered, right of judged, best streak, the Sprosse opened on and reached,
+  answered, right of judged, best answer streak, the Sprosse opened on and reached,
   and a note only for a Sprosse no earlier run had cleared.
 - **Only the numbers, atlas and calendar ladders keep a RECORD of their own** --
-  the longest clean streak and the most answers one run took.
+  the longest clean answer streak and the most answers one run took.
   The letter drill and the two scrambles keep none,
   and no drill books a review or touches a schedule (`../kern/README.md`),
   so a run costs the box nothing and can be closed at any moment.

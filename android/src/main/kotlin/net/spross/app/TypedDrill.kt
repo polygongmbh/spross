@@ -108,8 +108,8 @@ data class TypedDrillView(
     /** Bumped per question — what the card's identity and an autoplay effect key on. */
     val index: Int,
     val sprosse: Int,
-    val streak: Int,
-    val bestStreak: Int,
+    val answerStreak: Int,
+    val bestAnswerStreak: Int,
     val outcomes: List<AnswerOutcome>,
     val tally: DrillTally,
     val feedback: TurnFeedback,

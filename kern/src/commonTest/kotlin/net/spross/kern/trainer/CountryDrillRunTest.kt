@@ -281,7 +281,7 @@ class CountryDrillRunTest {
 
         val booked = revealed.state.reduce(CountryDrillIntent.ConfirmPending).state
         assertEquals(listOf(AnswerOutcome.Wrong), booked.outcomes)
-        assertEquals(0, booked.streak)
+        assertEquals(0, booked.answerStreak)
     }
 
     /** Nothing typed is the ask to see the answer, so the check button and Enter agree. */
@@ -323,7 +323,7 @@ class CountryDrillRunTest {
         assertEquals(6, run.sprosse)
         assertEquals(6, run.bestSprosse)
         assertEquals(3, run.done)
-        assertEquals(3, run.streak)
+        assertEquals(3, run.answerStreak)
         assertEquals(3, run.index)
         assertTrue(run.owesAnswer, "the next question is up, not the last one's verdict")
     }
@@ -342,7 +342,7 @@ class CountryDrillRunTest {
         assertEquals(1, run.sprosse)
         assertEquals(0, run.winsAtSprosse)
         assertEquals(listOf(AnswerOutcome.Almost), run.outcomes)
-        assertEquals(1, run.streak, "a slip is still an answer the learner got")
+        assertEquals(1, run.answerStreak, "a slip is still an answer the learner got")
     }
 
     /** A miss drops the Sprosse, and the Sprosse the run REACHED is what it keeps. */
@@ -478,7 +478,7 @@ class CountryDrillRunTest {
         val closedClean = CountryDrillRun.close(clean, standingRecord = 0)
         val summary = assertNotNull(closedClean.summary)
         assertEquals(1, summary.done)
-        assertEquals(1, summary.bestStreak)
+        assertEquals(1, summary.bestAnswerStreak)
         assertTrue(summary.newRecord, "a first streak beats a standing record of none")
 
         val held = open().reduce(CountryDrillIntent.Submit("Ujerumami")).state

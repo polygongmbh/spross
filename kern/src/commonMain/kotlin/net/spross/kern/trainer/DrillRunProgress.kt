@@ -30,9 +30,9 @@ interface DrillRunProgress {
 
     val done: Int get() = core.done
 
-    val streak: Int get() = core.streak
+    val answerStreak: Int get() = core.answerStreak
 
-    val bestStreak: Int get() = core.bestStreak
+    val bestAnswerStreak: Int get() = core.bestAnswerStreak
 
     val missRun: Int get() = core.missRun
 

@@ -193,7 +193,7 @@ extension DrillRunResult {
     /// Which of them there are is kern's (`DrillRunSummary`); what the run was
     /// CALLED is chrome, so it arrives beside them.
     init(_ summary: DrillRunSummary, title: LocalizedStringKey) {
-        self.init(doneCount: Int(summary.done), bestStreak: Int(summary.bestStreak),
+        self.init(doneCount: Int(summary.done), bestAnswerStreak: Int(summary.bestAnswerStreak),
                   newRecord: summary.newRecord, tier: summary.tier, timed: summary.timed,
                   title: title)
     }

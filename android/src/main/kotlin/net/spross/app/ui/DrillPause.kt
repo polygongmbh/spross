@@ -63,7 +63,7 @@ fun ColumnScope.DrillPause(
 }
 
 /**
- * What the run has done so far: the answers, how many landed clean, the best streak, the
+ * What the run has done so far: the answers, how many landed clean, the best answer streak, the
  * climb — and a note only where something new was reached.
  */
 @Composable
@@ -87,7 +87,7 @@ private fun Figures(run: DrillRunProgress, chrome: Chrome) {
         )
         listOfNotNull(
             chrome.trainerPauseTally.format(run.tally.clean, run.tally.judged),
-            chrome.trainerResultBestStreak.format(run.bestStreak),
+            chrome.trainerResultBestStreak.format(run.bestAnswerStreak),
             climb,
         ).forEach { Line(it, Theme.colors.textSecondary) }
         if (pacing.newSprossen > 0) Line(chrome.trainerPauseNewSprosse, Theme.colors.accent)

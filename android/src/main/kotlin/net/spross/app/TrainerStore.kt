@@ -29,7 +29,7 @@ import net.spross.kern.trainer.WordScrambleRunState
 class TrainerStore(private val prefs: SharedPreferences) {
 
     /**
-     * The best this run selection ever did, 0 where it was never run: the longest streak, or
+     * The best this run selection ever did, 0 where it was never run: the longest answer streak, or
      * a timed run's score ([DrillRunSummary.recordFigure]).
      */
     fun record(key: String): Int = prefs.getInt(NumbersMode.RECORD_PREFIX + key, 0)
@@ -83,7 +83,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
     /** The most answers one run under [key] ever took, right or wrong; 0 where none has closed. */
     fun answers(key: String): Int = prefs.getInt(NumbersMode.ANSWERS_PREFIX + key, 0)
 
-    /** Books [answers] where it beats the standing figure — strictly greater, like the streak. */
+    /** Books [answers] where it beats the standing figure — strictly greater, like the answer streak. */
     fun bookAnswers(key: String, answers: Int) {
         if (answers <= answers(key)) return
         prefs.edit().putInt(NumbersMode.ANSWERS_PREFIX + key, answers).apply()
@@ -165,7 +165,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
 data class TypedDrillStanding(
     /** The furthest Sprosse any run reached; 0 where none has. */
     val bestSprosse: Int,
-    /** The longest clean streak any run held. */
+    /** The longest clean answer streak any run held. */
     val record: Int,
     /** The most answers one run took, right or wrong. */
     val answers: Int,

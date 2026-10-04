@@ -12,15 +12,15 @@ import SprossKern
 /// a thumb could do goes through an intent, exactly as a finger would.
 extension NumbersRunView {
 
-    func seedStreak(_ streak: Int) {
-        run = run.seeded(done: Int32(streak + 6), streak: Int32(streak),
-                         bestStreak: Int32(max(streak, 12)))
+    func seedAnswerStreak(_ answerStreak: Int) {
+        run = run.seeded(done: Int32(answerStreak + 6), answerStreak: Int32(answerStreak),
+                         bestAnswerStreak: Int32(max(answerStreak, 12)))
     }
 
     /// `-uitest-level N` starts the run's FIRST exercise at that Sprosse (numbers:
     /// digit count), the only way to photograph a long prompt without playing up to it
     /// — applied where the run opens (`NumbersRunView.init`, via kern's `openAt`);
-    /// `-uitest-streak N` presets a running streak;
+    /// `-uitest-streak N` presets a running answer streak;
     /// `-uitest-misses N` presets the run's booked miss streak;
     /// `-uitest-close 1` closes the run the way the ✕ does, so the tile it leaves
     /// on the page behind it can be photographed — add `-uitest-record 1` to drop
@@ -62,8 +62,8 @@ extension NumbersRunState {
     /// unchanged fields are written once here rather than at three call sites — the
     /// counters among them, which live in the run's shared `DrillRunCore`.
     func seeded(done: Int32? = nil,
-                streak: Int32? = nil,
-                bestStreak: Int32? = nil,
+                answerStreak: Int32? = nil,
+                bestAnswerStreak: Int32? = nil,
                 missRun: Int32? = nil,
                 feedback: (any TurnFeedback)? = nil) -> NumbersRunState {
         doCopy(mode: mode,
@@ -73,8 +73,8 @@ extension NumbersRunState {
                winsAtSprosse: winsAtSprosse,
                bestSprossen: bestSprossen,
                core: core.doCopy(done: done ?? core.done,
-                                 streak: streak ?? core.streak,
-                                 bestStreak: bestStreak ?? core.bestStreak,
+                                 answerStreak: answerStreak ?? core.answerStreak,
+                                 bestAnswerStreak: bestAnswerStreak ?? core.bestAnswerStreak,
                                  missRun: missRun ?? core.missRun,
                                  outcomes: core.outcomes,
                                  solved: core.solved,

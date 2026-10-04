@@ -31,7 +31,7 @@ import net.spross.kern.trainer.TimedRun
  * A stateless ENDLESS slot run — numbers, years, the clock, sentences, number forms.
  *
  * The same interaction grammar as the review loop, and no FSRS at all: right or wrong only
- * moves the in-run streak, and nothing ends by itself. Every rule is kern's `NumbersRun`,
+ * moves the in-run answer streak, and nothing ends by itself. Every rule is kern's `NumbersRun`,
  * reached through [NumbersFlow]; this decides what it looks like.
  *
  * The card carries nothing but the prompt: the header line already names what is drilled

@@ -227,7 +227,7 @@ class LetterDrillRunTest {
 
         state = reduce(state, LetterDrillIntent.ConfirmPending, rng).state
         assertEquals(listOf(AnswerOutcome.Wrong), state.outcomes)
-        assertEquals(0, state.streak)
+        assertEquals(0, state.answerStreak)
         assertEquals(1, state.missRun)
         assertEquals(4, state.sprosse, "a miss steps the Sprosse back down")
     }
@@ -377,7 +377,7 @@ class LetterDrillRunTest {
         val booked = reduce(held, LetterDrillIntent.ConfirmPending, rng).state
         assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
         assertEquals(6, booked.sprosse)
-        assertEquals(1, booked.streak)
+        assertEquals(1, booked.answerStreak)
         assertEquals(0, booked.missRun)
     }
 

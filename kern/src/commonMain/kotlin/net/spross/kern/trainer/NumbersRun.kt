@@ -149,10 +149,10 @@ object NumbersRun {
             .filter { (key, best) -> best > (standingProgress[key] ?: 0) }
             .toMap()
         val timed = if (state.timed) TimedOutcome(ended.score, state.challenge) else null
-        val figure = timed?.score ?: ended.bestStreak
+        val figure = timed?.score ?: ended.bestAnswerStreak
         return NumbersClose(
             state = ended,
-            summary = DrillRunSummary(ended.done, ended.bestStreak, !scripted && figure > standingRecord, timed),
+            summary = DrillRunSummary(ended.done, ended.bestAnswerStreak, !scripted && figure > standingRecord, timed),
             recordKey = state.mode.recordKey,
             progressBookings = bookings,
             effects = effects,
@@ -333,7 +333,7 @@ object NumbersRun {
     }
 
     /**
-     * The booking itself: the ramp for the exercise that asked, the streak, the tallies. The other
+     * The booking itself: the ramp for the exercise that asked, the answer streak, the tallies. The other
      * exercises of a mixed run stand exactly where they were.
      */
     private fun advanced(state: NumbersRunState, correct: Boolean, outcome: AnswerOutcome): NumbersRunState {

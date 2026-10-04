@@ -55,7 +55,7 @@ class NumbersCloseTest {
 
     @Test
     fun theRecordFallsOnlyToAStrictlyLongerStreak() {
-        val played = NumbersRun.open(numbers(), 0, emptyMap(), Random(47)).copy(core = DrillRunCore(done = 6, bestStreak = 8))
+        val played = NumbersRun.open(numbers(), 0, emptyMap(), Random(47)).copy(core = DrillRunCore(done = 6, bestAnswerStreak = 8))
         assertTrue(NumbersRun.close(played, 7, emptyMap()).summary!!.newRecord)
         assertFalse(NumbersRun.close(played, 8, emptyMap()).summary!!.newRecord)
         // Re-closing a resumed summary can never double-claim.
@@ -70,7 +70,7 @@ class NumbersCloseTest {
     fun everyAskedExerciseBooksTheHighestSprosseItStoodOn() {
         val mode = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "sw", emptySet())
         val played = NumbersRun.open(mode, 0, emptyMap(), Random(53)).copy(
-            core = DrillRunCore(done = 9, bestStreak = 4),
+            core = DrillRunCore(done = 9, bestAnswerStreak = 4),
             // The Sprosse fell back to 3, but the ladder rewards reaching 5.
             sprossen = mapOf(NumbersExercise.Counting to 3, NumbersExercise.Clock to 1),
             bestSprossen = mapOf(NumbersExercise.Counting to 5),
@@ -90,14 +90,14 @@ class NumbersCloseTest {
 
     @Test
     fun theTierLadderTurnsOnTwoFiveAndTen() {
-        fun tier(streak: Int) = DrillRunSummary(done = 1, bestStreak = streak, newRecord = false).tier
-        assertEquals(StreakTier.Sprout, tier(0))
-        assertEquals(StreakTier.Sprout, tier(1))
-        assertEquals(StreakTier.Effort, tier(2))
-        assertEquals(StreakTier.Effort, tier(4))
-        assertEquals(StreakTier.Cheer, tier(5))
-        assertEquals(StreakTier.Cheer, tier(9))
-        assertEquals(StreakTier.Trophy, tier(10))
+        fun tier(answerStreak: Int) = DrillRunSummary(done = 1, bestAnswerStreak = answerStreak, newRecord = false).tier
+        assertEquals(AnswerStreakTier.Sprout, tier(0))
+        assertEquals(AnswerStreakTier.Sprout, tier(1))
+        assertEquals(AnswerStreakTier.Effort, tier(2))
+        assertEquals(AnswerStreakTier.Effort, tier(4))
+        assertEquals(AnswerStreakTier.Cheer, tier(5))
+        assertEquals(AnswerStreakTier.Cheer, tier(9))
+        assertEquals(AnswerStreakTier.Trophy, tier(10))
     }
 
     /** An exercise with one Sprosse has no Sprosse to report; the emoji leads only in a mixed run. */

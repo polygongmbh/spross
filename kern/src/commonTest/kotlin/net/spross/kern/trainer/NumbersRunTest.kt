@@ -178,7 +178,7 @@ class NumbersRunTest {
         assertEquals(1, state.currentSprosse)
         assertEquals(1, state.winsAtSprosse[NumbersExercise.Counting])
         assertEquals(listOf(AnswerOutcome.Right), state.outcomes)
-        assertEquals(1, state.streak)
+        assertEquals(1, state.answerStreak)
 
         state = answerRight(state, rng)
         assertEquals(2, state.currentSprosse)
@@ -186,13 +186,13 @@ class NumbersRunTest {
 
         state = miss(state, rng)
         assertEquals(1, state.currentSprosse)
-        assertEquals(0, state.streak)
+        assertEquals(0, state.answerStreak)
         assertEquals(1, state.missRun)
         assertEquals(AnswerOutcome.Wrong, state.outcomes.last())
     }
 
     /**
-     * A look-up while the answer is still owed books the task almost: the streak carries on, the
+     * A look-up while the answer is still owed books the task almost: the answer streak carries on, the
      * Sprosse banks nothing. After the answer is in, nothing is owed and reading is free.
      */
     @Test
@@ -209,7 +209,7 @@ class NumbersRunTest {
         assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
         assertEquals(1, booked.currentSprosse)
         assertEquals(0, booked.winsAtSprosse[NumbersExercise.Counting])
-        assertEquals(1, booked.streak, "almost extends the streak")
+        assertEquals(1, booked.answerStreak, "almost extends the streak")
         assertFalse(booked.hintUsed, "the debt is cleared with the question")
 
         val revealed = reduce(NumbersRun.open(numbers(), 0, emptyMap(), rng), NumbersIntent.Reveal, rng).state

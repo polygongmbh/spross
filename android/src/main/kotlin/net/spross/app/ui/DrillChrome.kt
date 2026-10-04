@@ -29,7 +29,7 @@ import net.spross.app.countLine
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.trainer.ChallengeVerdict
 import net.spross.kern.trainer.DrillRunSummary
-import net.spross.kern.trainer.StreakTier
+import net.spross.kern.trainer.AnswerStreakTier
 import net.spross.kern.trainer.TimedOutcome
 
 /**
@@ -39,36 +39,36 @@ import net.spross.kern.trainer.TimedOutcome
  */
 
 /**
- * The score line above the card: which Sprosse the run stands on, how long the streak is, and
- * the standing record while the streak has fallen short of it.
+ * The score line above the card: which Sprosse the run stands on, how long the answer streak is, and
+ * the standing record while the answer streak has fallen short of it.
  * A timed run's clock and score ([timed]) stand after the Sprosse.
  *
  * [Sprosse] is worded by the drill that owns it — a digit count reads differently from a plain
  * Sprosse — and is null where a run has one Sprosse only. [announcesRecord] carries a real
- * difference rather than settling it: the letter drill has always spoken the streak alone.
+ * difference rather than settling it: the letter drill has always spoken the answer streak alone.
  */
 @Composable
 fun DrillStreakLine(
     sprosse: String?,
-    streak: Int,
-    bestStreak: Int,
+    answerStreak: Int,
+    bestAnswerStreak: Int,
     chrome: Chrome,
     announcesRecord: Boolean = false,
     timed: String? = null,
 ) {
-    val showsRecord = bestStreak > streak
+    val showsRecord = bestAnswerStreak > answerStreak
     val parts = listOfNotNull(
         sprosse,
         timed,
-        chrome.trainerRunStreak.format(streak),
-        if (showsRecord) chrome.trainerRunRecord.format(bestStreak) else null,
+        chrome.trainerRunStreak.format(answerStreak),
+        if (showsRecord) chrome.trainerRunRecord.format(bestAnswerStreak) else null,
     )
-    val spoken = listOfNotNull(timed, chrome.a11yCountStreakInARow.format(streak)).joinToString(", ") +
-        if (announcesRecord && showsRecord) chrome.a11ySuffixRecord.format(bestStreak) else ""
+    val spoken = listOfNotNull(timed, chrome.a11yCountStreakInARow.format(answerStreak)).joinToString(", ") +
+        if (announcesRecord && showsRecord) chrome.a11ySuffixRecord.format(bestAnswerStreak) else ""
     Text(
         parts.joinToString(" · "),
         style = MaterialTheme.typography.bodySmall,
-        color = if (streak > 0) Theme.colors.accent else Theme.colors.textSecondary,
+        color = if (answerStreak > 0) Theme.colors.accent else Theme.colors.textSecondary,
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth().semantics { contentDescription = spoken },
     )
@@ -119,7 +119,7 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
                 style = MaterialTheme.typography.titleMedium,
             )
             Text(
-                chrome.trainerResultBestStreak.format(summary.bestStreak),
+                chrome.trainerResultBestStreak.format(summary.bestAnswerStreak),
                 style = MaterialTheme.typography.bodySmall,
                 color = Theme.colors.textSecondary,
             )
@@ -170,14 +170,14 @@ private fun Context.shareChallenge(text: String) {
 }
 
 /**
- * The ladder a run's best streak earns. Kern names the TIERS and their thresholds; which
+ * The ladder a run's best answer streak earns. Kern names the TIERS and their thresholds; which
  * glyph wears one is this platform's chrome.
  */
-fun tierEmoji(tier: StreakTier): String = when (tier) {
-    StreakTier.Trophy -> "🏆"
-    StreakTier.Cheer -> "🎉"
-    StreakTier.Effort -> "💪"
-    StreakTier.Sprout -> "🌱"
+fun tierEmoji(tier: AnswerStreakTier): String = when (tier) {
+    AnswerStreakTier.Trophy -> "🏆"
+    AnswerStreakTier.Cheer -> "🎉"
+    AnswerStreakTier.Effort -> "💪"
+    AnswerStreakTier.Sprout -> "🌱"
 }
 
 /**

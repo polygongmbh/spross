@@ -109,7 +109,7 @@ object CountryDrillRun {
         val summary = if (ended.done == 0) {
             null
         } else {
-            DrillRunSummary(ended.done, ended.bestStreak, ended.bestStreak > standingRecord)
+            DrillRunSummary(ended.done, ended.bestAnswerStreak, ended.bestAnswerStreak > standingRecord)
         }
         val cleared = CountryDrill.cleared(state.config.content, state.config.reverse, ended.core.solvedClean)
         return CountryDrillClose(ended, summary, ended.bestSprosse, cleared, effects)
@@ -203,7 +203,7 @@ object CountryDrillRun {
     private fun paced(state: CountryDrillRunState): CountryDrillRunState =
         state.copy(core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished))
 
-    /** The booking itself: the ramp, the streak, the tallies — the Sprosse it reached included. */
+    /** The booking itself: the ramp, the answer streak, the tallies — the Sprosse it reached included. */
     private fun advanced(
         state: CountryDrillRunState,
         correct: Boolean,

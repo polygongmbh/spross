@@ -4,9 +4,9 @@ import SprossKern
 /// A stateless ENDLESS slot drill (numbers / years / clock / sentences).
 /// Same interaction grammar as SessionView — type first, "Aufdecken" as
 /// fallback — but NO FSRS/BoxEngine involvement: right or wrong only moves
-/// the in-run streak. The run ends only when the user closes it (X → summary).
+/// the in-run answer streak. The run ends only when the user closes it (X → summary).
 ///
-/// The RUN is kern's (`NumbersRun`): the draw, the ramp, the streak, the amber
+/// The RUN is kern's (`NumbersRun`): the draw, the ramp, the answer streak, the amber
 /// rules and what a close books are all in `run`, and every event on this screen
 /// becomes a `NumbersIntent`. What is held here is what no engine can hold — a
 /// field of text, a timer, a voice, and the keyboard focus.
