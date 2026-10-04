@@ -7,20 +7,8 @@ import SwiftUI
 
 // MARK: StreakFlameView
 
-/// How the streak's flame burns. The Design-local twin of the box's
-/// `StreakHealth`, so components stay kern-free — WHICH day arithmetic puts a run
-/// in which grade is the engine's ruling (`kern/docs/reports.md`); here it is only
-/// how bright and how colorful the mark burns.
-enum FlameState {
-    /// Today has reviews — the run is safe until tomorrow.
-    case lit
-    /// Nothing today yet, but a miss would only spend the run's one bridge.
-    case dwindling
-    /// Nothing today, and the bridge is already spent — a miss ends the run.
-    case atRisk
-    /// No run to protect.
-    case unlit
-
+/// How bright and how colorful the mark burns in each `FlameState`.
+extension FlameState {
     /// Full strength where the day is answered, only a whisper of fade where it is
     /// still owed, and faint where there is no run behind the mark at all.
     var opacity: Double {

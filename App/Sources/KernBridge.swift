@@ -240,16 +240,10 @@ extension Theme.Gender {
 }
 
 extension FlameState {
-    /// The mark's twin of the box's `StreakHealth` — kern walks the days and says
-    /// what today still owes the run (`box/Statistics.kt`), the design system only
-    /// says how the flame burns on it.
+    /// The mark for the box's `StreakHealth` — kern walks the days and says
+    /// what today still owes the run (`box/Statistics.kt`).
     init(_ health: StreakHealth) {
-        switch health {
-        case .earned: self = .lit
-        case .bridgeable: self = .dwindling
-        case .ending: self = .atRisk
-        case .none: self = .unlit
-        }
+        self = FlameState(rawValue: health.name) ?? .unlit
     }
 }
 

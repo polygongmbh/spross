@@ -1,13 +1,5 @@
 import Foundation
 
-/// Flame states the widget renders, safest to most urgent.
-enum FlameState {
-    case lit        // reviewed today — streak safe until tomorrow.
-    case dwindling  // not yet today, but yesterday had a review — a miss today just becomes the run's one bridge.
-    case atRisk     // not yet today, and yesterday was already the bridge — a miss today ends the run.
-    case unlit      // streak is zero — nothing to protect, a bare restart nudge.
-}
-
 /// Decode-only mirror of Kern's `WidgetSnapshotBuilder` JSON, written by the
 /// app on every persist. The widget extension links no Kotlin (no catalog in
 /// its bundle, tight extension memory cap) — everything it renders is
