@@ -7,6 +7,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - Over fifty Swahili words, the weekday and month names among them, now play a cleaner recording by one of three other speakers.
 - On Android, editing one of your own words no longer drops what it holds in your other languages.
 - The Android home-screen widget now shows streaks longer than 70 days in full, and both widgets agree on the streak and its flame even days after the app last ran.
+- An area's progress bar reads as one continuous bar again, its colors fading into each other, with packed words in the pack button's amber.
 ## 8.1.0 — 2026-10-03
 
 - Swahili words that change with their noun, like "your" (yako, lako, chako…), now quiz each real form in turn, and the watch offers one of those forms instead of a bare stem like "ako".

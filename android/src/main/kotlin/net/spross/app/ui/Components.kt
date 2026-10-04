@@ -31,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -210,43 +211,54 @@ const val LOCK = "🔒"
  * FULL card count, so the untouched rest of a shelf stays visible instead of a bar
  * that always reads as full.
  *
- * No amber segment: amber stays a badge-only color, distinguishing Fresh/Learning/Shaky
- * from Growing at the per-card level ([PhaseBadge]) without the bar needing that fine a
- * grain. A card never packed at all gets no stretch: the neutral track under them is
- * what the untouched rest of the shelf reads as.
+ * One continuous capsule whose stretches fade into each other; the queued stretch wears
+ * the pack button's amber, since packing is what put those cards there.
+ * A card never packed at all gets no stretch: the neutral track under them is what the
+ * untouched rest of the shelf reads as.
  *
- * The split and the denominator are the box's rulings ([AreaStatistics]); empty stretches
- * are dropped, and an area with nothing in any of them leaves the track bare rather than
- * drawing a full bar claiming everything is being learned.
+ * The split and the denominator are the box's rulings ([AreaStatistics]); an area with
+ * nothing in any of them leaves the track bare rather than drawing a full bar claiming
+ * everything is being learned.
  */
 @Composable
 fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
     val palette = Theme.colors
     val shape = RoundedCornerShape(percent = 50)
-    Row(
-        // why: the track is the shelf's untouched rest — without it the stretches would
-        // end in the card's own background and the bar would read as full.
-        modifier = modifier.fillMaxWidth().height(6.dp).background(palette.separator, shape),
-        horizontalArrangement = Arrangement.spacedBy(2.dp), // card-parity: the hairline parting the stretches sits tighter than xs
-    ) {
-        val stretches = listOf(
-            stats.allSettled to palette.settled,
-            stats.allGrowing to palette.success,
-            stats.queued to palette.accent,
-        ).filter { it.first > 0 }
-        stretches.forEach { (count, color) ->
-            // why: keyed on the color, which is fixed per category — the stretch eases to
-            // a growing or shrinking share instead of jumping to it.
-            key(color) {
-                val weight by animateFloatAsState(count.toFloat(), turnTween(), label = "areaStretch")
-                Box(Modifier.weight(weight).fillMaxHeight().background(color, shape))
-            }
+    // why: each share eases to a new count instead of jumping to it.
+    val settled by animateFloatAsState(stats.allSettled.toFloat(), turnTween(), label = "areaSettled")
+    val growing by animateFloatAsState(stats.allGrowing.toFloat(), turnTween(), label = "areaGrowing")
+    val queued by animateFloatAsState(stats.queued.toFloat(), turnTween(), label = "areaQueued")
+    val total = stats.progressTotal.coerceAtLeast(1).toFloat()
+    val filled = settled + growing + queued
+    // why: the track is the shelf's untouched rest — without it the stretches would
+    // end in the card's own background and the bar would read as full.
+    Box(modifier.fillMaxWidth().height(6.dp).background(palette.separator, shape)) {
+        if (filled > 0f) {
+            val stops = blendedStops(
+                listOf(settled to palette.settled, growing to palette.success, queued to palette.amber),
+                filled, halfBlend = AREA_BLEND * total / filled,
+            )
+            Box(
+                Modifier.fillMaxWidth((filled / total).coerceAtMost(1f)).fillMaxHeight()
+                    .background(Brush.horizontalGradient(*stops), shape),
+            )
         }
-        // The rest of the denominator holds the stretches to their true share of the
-        // shelf, so a barely-packed area does not fill its bar.
-        val rest = stats.progressTotal - stretches.sumOf { it.first }
-        if (rest > 0) Spacer(Modifier.weight(rest.toFloat()))
     }
+}
+
+/** Half the fade between two stretches, as a share of the whole track. */
+private const val AREA_BLEND = 0.025f
+
+/** Each stretch holds its color up to [halfBlend] (a share of [filled]) short of a neighbor. */
+private fun blendedStops(stretches: List<Pair<Float, Color>>, filled: Float, halfBlend: Float): Array<Pair<Float, Color>> {
+    var start = 0f
+    return stretches.filter { it.first > 0f }.flatMap { (count, color) ->
+        val from = start / filled
+        val to = (start + count) / filled
+        start += count
+        val inset = minOf(halfBlend, (to - from) / 2)
+        listOf(from + inset to color, to - inset to color)
+    }.toTypedArray()
 }
 
 /**

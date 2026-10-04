@@ -81,13 +81,6 @@ struct StreakFlameView: View {
 
 // MARK: AreaChip
 
-/// One stretch of the area bar; empty stretches are dropped before layout.
-private struct AreaBarSegment: Identifiable {
-    let id: Int
-    let count: Int
-    let color: Color
-}
-
 /// An area's cards split into the stretches the bar draws, with what they are
 /// measured against. The split and the denominator are the box's rulings
 /// (`AreaStatistics`); the screen hands them over so Design stays kern-free.
@@ -96,7 +89,7 @@ struct AreaProgress {
     let allSettled: Int
     /// Every other active card, fresh, growing or relearning — the counts row's split.
     let allGrowing: Int
-    /// Cards packed but not yet introduced — the bar's clay segment. A card
+    /// Cards packed but not yet introduced — the bar's amber segment. A card
     /// never packed at all gets no segment: it leaves the bar's neutral track
     /// showing rather than widening a fourth bucket.
     let queued: Int
@@ -106,6 +99,9 @@ struct AreaProgress {
     /// What an area with no statistics yet draws: a bare track, no segment on it.
     static let empty = AreaProgress(allSettled: 0, allGrowing: 0, queued: 0, progressTotal: 1)
 }
+
+/// Half the fade between two area-bar stretches, as a share of the whole track.
+private let areaBlend: CGFloat = 0.025
 
 /// Per-area chip: emoji + name + settled/growing counts over a bar that
 /// measures both against the area's FULL card count, so the untouched rest
@@ -130,21 +126,34 @@ struct AreaChip: View {
     var hideProgress: Bool = false
 
     /// A two-way split (matches the counts row) plus queued: settled, then
-    /// everything else active, then packed-but-unintroduced. No amber segment —
-    /// amber stays a badge-only color, distinguishing Fresh/Shaky from
-    /// Growing at the per-card level without the bar needing that fine a grain.
+    /// everything else active, then packed-but-unintroduced in the pack
+    /// button's amber, since packing is what put those cards there.
     /// A card never packed at all gets no segment: the neutral track under them
     /// is what the untouched rest of the area reads as.
-    private var segments: [AreaBarSegment] {
+    private var stretches: [(count: Int, color: Color)] {
         [(progress.allSettled, Theme.colors.settled),
          (progress.allGrowing, Theme.colors.success),
-         (progress.queued, Theme.colors.accent)]
-            .enumerated()
-            .filter { $0.element.0 > 0 }
-            .map { AreaBarSegment(id: $0.offset, count: $0.element.0, color: $0.element.1) }
+         (progress.queued, Theme.colors.amber)]
     }
 
     private var denominator: CGFloat { CGFloat(max(progress.progressTotal, 1)) }
+
+    private var filled: CGFloat { CGFloat(stretches.reduce(0) { $0 + $1.count }) }
+
+    /// One continuous bar: each stretch holds its color up to a short fade
+    /// into its neighbor (half of it `areaBlend` of the whole track).
+    private var stops: [Gradient.Stop] {
+        let halfBlend = areaBlend * denominator / filled
+        var start: CGFloat = 0
+        return stretches.filter { $0.count > 0 }.flatMap { stretch -> [Gradient.Stop] in
+            let from = start / filled
+            let to = (start + CGFloat(stretch.count)) / filled
+            start += CGFloat(stretch.count)
+            let inset = min(halfBlend, (to - from) / 2)
+            return [.init(color: stretch.color, location: from + inset),
+                    .init(color: stretch.color, location: to - inset)]
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.sm) {
@@ -166,19 +175,15 @@ struct AreaChip: View {
             if !hideProgress {
                 counts
                 GeometryReader { geo in
-                    let gaps = CGFloat(max(segments.count - 1, 0)) * 2
-                    let unit = max(geo.size.width - gaps, 0) / denominator
                     // why: the neutral track is the area's untouched rest — cards
                     // never packed draw no segment, so without it the bar would end
                     // in the card's own background and read as full.
                     ZStack(alignment: .leading) {
                         Capsule().fill(Theme.colors.separator)
-                        HStack(spacing: 2) {
-                            ForEach(segments) { segment in
-                                Capsule()
-                                    .fill(segment.color)
-                                    .frame(width: unit * CGFloat(segment.count))
-                            }
+                        if filled > 0 {
+                            Capsule()
+                                .fill(LinearGradient(stops: stops, startPoint: .leading, endPoint: .trailing))
+                                .frame(width: geo.size.width * min(filled / denominator, 1))
                         }
                     }
                 }
