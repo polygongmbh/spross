@@ -133,7 +133,7 @@ class HomeStandingTest {
     @Test
     fun aPackOutranksTheDueCountInWhatTomorrowIsToldToHold() {
         assertEquals(chrome.homeDonePacked, tomorrowText(chrome, TomorrowNote.Packed, due = 9))
-        assertEquals(chrome.homeDoneTomorrowFresh, tomorrowText(chrome, TomorrowNote.Fresh, due = 0))
+        assertEquals(chrome.homeDoneTomorrowFresh, tomorrowText(chrome, TomorrowNote.Empty, due = 0))
         assertEquals(
             chrome.homeDoneTomorrowDue.format(9),
             tomorrowText(chrome, TomorrowNote.Due, due = 9),

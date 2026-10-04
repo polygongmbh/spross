@@ -173,7 +173,7 @@ extension HomeView {
     var tomorrowText: Text {
         switch model.tomorrowNote {
         case .packed: return Text("home.done.packed")
-        case .fresh: return Text("home.done.tomorrowFresh")
+        case .empty: return Text("home.done.tomorrowFresh")
         case .due: return Text("home.done.tomorrowDue \(model.tomorrowDueCount)")
         }
     }

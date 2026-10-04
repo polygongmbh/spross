@@ -251,7 +251,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   Introduction order is untouched: new cards still arrive in seed order.
 - **A plan names each part for what it is**:
   `reviews` (due), `ahead` (not due, pulled forward),
-  `unlockedPhrases` and `queuedAndSeedOrder` (never answered; `newCount` counts both).
+  `unlockedPhrases` and `newCards` (never answered; `newCount` counts both).
   `SessionPlan.queue` is the run in order --
   due work, then warm-ups, then unseen words --
   and callers build their queue from it.

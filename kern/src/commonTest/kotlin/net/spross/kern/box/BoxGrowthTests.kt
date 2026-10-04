@@ -16,22 +16,22 @@ class BoxGrowthTests {
         val state = Box.state((1..10).map { Box.word(it) })
         val plan = Box.candidates(state)
         assertTrue(plan.unlockedPhrases.isEmpty())
-        assertEquals((1..NEW_CARDS_PER_ROUND).map { "w0$it" }, plan.queuedAndSeedOrder)
+        assertEquals((1..NEW_CARDS_PER_ROUND).map { "w0$it" }, plan.newCards)
     }
 
     @Test
     fun theRestIsDeferredNotWithdrawn() {
         var state = Box.state((1..20).map { Box.word(it, teaches = listOf("s$it")) })
         val plan = Box.candidates(state)
-        assertEquals(NEW_CARDS_PER_ROUND, plan.queuedAndSeedOrder.size)
+        assertEquals(NEW_CARDS_PER_ROUND, plan.newCards.size)
 
-        for (id in plan.queuedAndSeedOrder) {
+        for (id in plan.newCards) {
             state = Box.answered(state, id, Rating.Good, now)
         }
         assertEquals(NEW_CARDS_PER_ROUND, state.scheduling.size)
         assertEquals(NEW_CARDS_PER_ROUND, BoxEngine.statistics(state, now, Box.TZ).activeCount)
         // The next round picks up where this one stopped.
-        assertEquals("w08", Box.candidates(state).queuedAndSeedOrder.first())
+        assertEquals("w08", Box.candidates(state).newCards.first())
     }
 
     /**
@@ -51,7 +51,7 @@ class BoxGrowthTests {
                 Box.sched(id, phase = CardPhase.Relearning, dueMillis = future, lastReviewMillis = past),
             )
         }
-        assertEquals(NEW_CARDS_PER_ROUND, Box.candidates(state).queuedAndSeedOrder.size)
+        assertEquals(NEW_CARDS_PER_ROUND, Box.candidates(state).newCards.size)
     }
 
     /**
@@ -71,7 +71,7 @@ class BoxGrowthTests {
             )
         }
         assertEquals(60, Box.dueIds(state, now).size)
-        assertTrue(Box.candidates(state).queuedAndSeedOrder.isNotEmpty())
+        assertTrue(Box.candidates(state).newCards.isNotEmpty())
     }
 
     @Test
@@ -88,7 +88,7 @@ class BoxGrowthTests {
         state = BoxEngine.enqueue(state, listOf("w07"))
         assertEquals(
             listOf("w07", "w01", "w02", "w03", "w04", "w05", "w06"),
-            Box.candidates(state).queuedAndSeedOrder,
+            Box.candidates(state).newCards,
         )
 
         var withPhrase = Box.state(
@@ -101,7 +101,7 @@ class BoxGrowthTests {
         // automatic growth fills the rest of the round.
         assertEquals(
             listOf("w06", "w05", "w01", "w02", "w03", "w04"),
-            Box.candidates(withPhrase).queuedAndSeedOrder,
+            Box.candidates(withPhrase).newCards,
         )
     }
 
@@ -112,16 +112,16 @@ class BoxGrowthTests {
         state = BoxEngine.enqueue(state, (1..10).map { "w" + it.toString().padStart(2, '0') })
         assertEquals(
             (1..NEW_CARDS_PER_ROUND).map { "w0$it" },
-            Box.candidates(state).queuedAndSeedOrder,
+            Box.candidates(state).newCards,
         )
 
-        for (id in Box.candidates(state).queuedAndSeedOrder) {
+        for (id in Box.candidates(state).newCards) {
             state = Box.answered(state, id, Rating.Good, now)
         }
         // What the round could not take is still packed — the raw queue is stored back to
         // front (`BoxEngine.enqueue`), so it still reads out front-first, w08 next.
         assertEquals(listOf("w10", "w09", "w08"), state.enqueued)
-        assertEquals("w08", Box.candidates(state).queuedAndSeedOrder.first())
+        assertEquals("w08", Box.candidates(state).newCards.first())
     }
 
     /**

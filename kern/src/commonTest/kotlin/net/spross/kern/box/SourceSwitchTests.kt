@@ -75,9 +75,9 @@ class SourceSwitchTests {
 
         val en = BoxEngine.rejoin(de, enJoin, enStamp)
         assertEquals(listOf("w02"), en.enqueued) // kept, just not eligible
-        assertFalse("w02" in Box.candidates(en).queuedAndSeedOrder)
+        assertFalse("w02" in Box.candidates(en).newCards)
 
         val back = BoxEngine.rejoin(en, deJoin, Box.stamp)
-        assertTrue(Box.candidates(back).queuedAndSeedOrder.first() == "w02")
+        assertTrue(Box.candidates(back).newCards.first() == "w02")
     }
 }

@@ -96,6 +96,6 @@ fun todayTally(chrome: Chrome, report: TodayReport): String? {
 /** What a done day leaves the learner with — which of the three is kern's ([tomorrowNote]). */
 fun tomorrowText(chrome: Chrome, note: TomorrowNote, due: Int): String = when (note) {
     TomorrowNote.Packed -> chrome.homeDonePacked
-    TomorrowNote.Fresh -> chrome.homeDoneTomorrowFresh
+    TomorrowNote.Empty -> chrome.homeDoneTomorrowFresh
     TomorrowNote.Due -> countLine(chrome.homeDoneTomorrowDueOne, chrome.homeDoneTomorrowDue, due)
 }

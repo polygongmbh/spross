@@ -19,20 +19,20 @@ data class SessionPlan(
     val ahead: List<String>,
     val unlockedPhrases: List<String>,
     /** Never answered and not an unlocked phrase: packed cards first, then seed order. */
-    val queuedAndSeedOrder: List<String>,
+    val newCards: List<String>,
     val joinStamp: JoinStamp,
 ) {
     /** The run, in order: due work first, warm-ups next, unseen words last. */
     val queue: List<String>
-        get() = reviews + ahead + unlockedPhrases + queuedAndSeedOrder
+        get() = reviews + ahead + unlockedPhrases + newCards
 
     val isEmpty: Boolean
         get() = queue.isEmpty()
 
     val cardCount: Int
-        get() = reviews.size + ahead.size + unlockedPhrases.size + queuedAndSeedOrder.size
+        get() = reviews.size + ahead.size + unlockedPhrases.size + newCards.size
 
-    /** Entries the learner has never answered — [unlockedPhrases] plus [queuedAndSeedOrder]. */
+    /** Entries the learner has never answered — [unlockedPhrases] plus [newCards]. */
     val newCount: Int
-        get() = unlockedPhrases.size + queuedAndSeedOrder.size
+        get() = unlockedPhrases.size + newCards.size
 }

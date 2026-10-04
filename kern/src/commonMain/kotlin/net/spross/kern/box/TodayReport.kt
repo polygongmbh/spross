@@ -78,7 +78,7 @@ enum class TomorrowNote {
     Packed,
 
     /** Nothing comes back tomorrow — the day ahead is open ground. */
-    Fresh,
+    Empty,
 
     /** Cards fall due inside tomorrow; the count is the caller's own. */
     Due,
@@ -90,12 +90,12 @@ enum class TomorrowNote {
  * A pack outranks the due count: packing was the learner's own move,
  * a finished day composes nothing, and so the next round is where those words turn up —
  * said as a fact about that round, never as something waiting to be answered.
- * [tomorrowDue] is what [BoxEngine.dueNow] reports at [endOfTomorrow],
+ * [tomorrowDue] is what [BoxEngine.dueCount] reports at [endOfTomorrow],
  * so the horizon is the engine's rather than a second local-midnight derivation.
  */
 fun tomorrowNote(hasPackedWords: Boolean, tomorrowDue: Int): TomorrowNote = when {
     hasPackedWords -> TomorrowNote.Packed
-    tomorrowDue == 0 -> TomorrowNote.Fresh
+    tomorrowDue == 0 -> TomorrowNote.Empty
     else -> TomorrowNote.Due
 }
 

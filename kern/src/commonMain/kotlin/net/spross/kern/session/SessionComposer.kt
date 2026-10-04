@@ -96,7 +96,7 @@ object SessionComposer {
                 reviews = emptyList(),
                 ahead = emptyList(),
                 unlockedPhrases = emptyList(),
-                queuedAndSeedOrder = emptyList(),
+                newCards = emptyList(),
                 joinStamp = state.joinStamp,
             )
         }
@@ -151,7 +151,7 @@ object SessionComposer {
             reviews = reviews.map { it.cardId },
             ahead = emptyList(),
             unlockedPhrases = candidates.unlockedPhrases,
-            queuedAndSeedOrder = candidates.queuedAndSeedOrder,
+            newCards = candidates.newCards,
             joinStamp = state.joinStamp,
         )
         return fillOut(state, plan, nowEpochMillis)
@@ -173,7 +173,7 @@ object SessionComposer {
             reviews = plan.reviews.take(SHORT_ROUND_CARDS),
             ahead = emptyList(),
             unlockedPhrases = emptyList(),
-            queuedAndSeedOrder = emptyList(),
+            newCards = emptyList(),
         )
     }
 

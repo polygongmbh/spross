@@ -33,7 +33,7 @@ extension AppModel {
     var tomorrowDueCount: Int { Int(home?.tomorrowDue ?? 0) }
 
     /// What a done day says about the next one (`tomorrowNote`).
-    var tomorrowNote: TomorrowNote { home?.tomorrow ?? .fresh }
+    var tomorrowNote: TomorrowNote { home?.tomorrow ?? .empty }
 
     // MARK: - Presentation (contract §3 — render-time role resolution)
 

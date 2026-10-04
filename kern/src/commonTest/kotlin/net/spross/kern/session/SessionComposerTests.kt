@@ -35,8 +35,8 @@ class SessionComposerTests {
         // 40 due cards, sessionCap 24 → 20 reviews + 4 reserved growth slots.
         val plan = SessionComposer.composeSession(backloggedState(), now, Box.TZ)
         assertEquals(20, plan.reviews.size)
-        assertEquals(4, plan.unlockedPhrases.size + plan.queuedAndSeedOrder.size)
-        assertEquals((41..44).map { "w$it" }, plan.queuedAndSeedOrder)
+        assertEquals(4, plan.unlockedPhrases.size + plan.newCards.size)
+        assertEquals((41..44).map { "w$it" }, plan.newCards)
     }
 
     /**
@@ -58,7 +58,7 @@ class SessionComposerTests {
         // Every card already scheduled → nothing to introduce → reviews take the whole cap.
         val plan = SessionComposer.composeSession(backloggedState(spare = 0), now, Box.TZ)
         assertEquals(Box.config().sessionCap, plan.reviews.size)
-        assertTrue(plan.queuedAndSeedOrder.isEmpty())
+        assertTrue(plan.newCards.isEmpty())
         assertTrue(plan.unlockedPhrases.isEmpty())
     }
 
@@ -74,7 +74,7 @@ class SessionComposerTests {
         val plan = SessionComposer.composeSession(state, now, Box.TZ)
         // reviewCap = 24 − 4 = 20 → 20 reviews; 4 card slots remain for new.
         assertEquals(20, plan.reviews.size)
-        assertEquals(4, plan.queuedAndSeedOrder.size)
+        assertEquals(4, plan.newCards.size)
     }
 
     @Test
@@ -163,7 +163,7 @@ class SessionComposerTests {
         assertEquals(4, plan.newCount)
         assertEquals(listOf("w01", "w02", "w03"), plan.ahead)
         assertEquals(SessionComposer.SESSION_FLOOR_CARDS, plan.cardCount)
-        assertEquals(plan.ahead + plan.unlockedPhrases + plan.queuedAndSeedOrder, plan.queue)
+        assertEquals(plan.ahead + plan.unlockedPhrases + plan.newCards, plan.queue)
     }
 
     @Test
@@ -265,7 +265,7 @@ class SessionComposerTests {
         val state = BoxEngine.enqueue(quietBox(soon = 0, later = 5), listOf("w20"))
         val worked = Box.workedToday(state, SessionComposer.SESSION_FLOOR_CARDS, now)
         assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
-        assertEquals("w20", SessionComposer.composeRound(worked, now, Box.TZ).queuedAndSeedOrder.first())
+        assertEquals("w20", SessionComposer.composeRound(worked, now, Box.TZ).newCards.first())
     }
 
     /**

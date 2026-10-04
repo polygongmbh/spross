@@ -169,7 +169,7 @@ class TodayReportTests {
     @Test
     fun theDayAheadIsNamedByWhatIsWaitingForIt() {
         assertEquals(TomorrowNote.Packed, tomorrowNote(hasPackedWords = true, tomorrowDue = 5))
-        assertEquals(TomorrowNote.Fresh, tomorrowNote(hasPackedWords = false, tomorrowDue = 0))
+        assertEquals(TomorrowNote.Empty, tomorrowNote(hasPackedWords = false, tomorrowDue = 0))
         assertEquals(TomorrowNote.Due, tomorrowNote(hasPackedWords = false, tomorrowDue = 5))
     }
 }
