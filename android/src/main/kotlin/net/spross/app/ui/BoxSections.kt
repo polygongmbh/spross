@@ -306,5 +306,4 @@ private val EMPTY_AREA = AreaStatistics(
     stages = StageCounts(),
     queued = 0,
     phrasesLocked = 0,
-    phrasesUnlocked = 0,
 )

@@ -222,11 +222,10 @@ class BoxStatisticsTests {
         assertEquals(2, kitchen.active)
         assertEquals(1, kitchen.allSettled) // only w01: Review phase & stability ≥ SETTLED_STABILITY
         assertEquals(1, kitchen.phrasesLocked) // p-locked: w02 not stable yet
-        assertEquals(1, kitchen.phrasesUnlocked) // p-free has no components
         assertEquals(
             AreaStatistics(
-                "market", total = 1, stages = StageCounts(), queued = 0,
-                phrasesLocked = 0, phrasesUnlocked = 0,
+                "market", total = 1, stages = StageCounts(),
+                phrasesLocked = 0,
             ),
             stats.areas[1],
         )

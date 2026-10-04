@@ -71,8 +71,7 @@ class StatisticsBucketsTests {
     fun aStaleTotalCannotOverflowTheBuckets() {
         // The join shrank under a statistics value still holding the old schedules.
         val area = AreaStatistics(
-            name = "kitchen", total = 1, stages = StageCounts(fresh = 2, settled = 3), queued = 0,
-            phrasesLocked = 0, phrasesUnlocked = 0,
+            name = "kitchen", total = 1, stages = StageCounts(fresh = 2, settled = 3),
         )
         assertEquals(2, area.allGrowing)
         assertEquals(0, area.notIntroduced) // never negative
@@ -82,8 +81,7 @@ class StatisticsBucketsTests {
     @Test
     fun anAreaWithNothingInItStillHasADenominator() {
         val area = AreaStatistics(
-            name = "empty", total = 0, stages = StageCounts(), queued = 0,
-            phrasesLocked = 0, phrasesUnlocked = 0,
+            name = "empty", total = 0, stages = StageCounts(),
         )
         assertEquals(0, area.allGrowing)
         assertEquals(0, area.notIntroduced)
@@ -109,8 +107,7 @@ class StatisticsBucketsTests {
 
         // An area with nothing active at all has nothing to call fully settled.
         val empty = AreaStatistics(
-            name = "empty", total = 0, stages = StageCounts(), queued = 0,
-            phrasesLocked = 0, phrasesUnlocked = 0,
+            name = "empty", total = 0, stages = StageCounts(),
         )
         assertFalse(empty.fullySettled)
     }

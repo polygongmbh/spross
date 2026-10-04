@@ -40,9 +40,7 @@ data class AreaStatistics(
     /** Cards packed but not yet introduced — the progress bar's clay segment. */
     val queued: Int = 0,
     /** Component phrases still waiting for their components to stabilize. */
-    val phrasesLocked: Int,
-    /** Phrases already introduced, component-free, or with all components stable. */
-    val phrasesUnlocked: Int,
+    val phrasesLocked: Int = 0,
 ) {
     val active: Int get() = stages.active
     val allSettled: Int get() = stages.allSettled
@@ -289,19 +287,18 @@ internal object Statistics {
             .sortedBy { it.key }
             .map { (area, cards) ->
                 var locked = 0
-                var unlocked = 0
                 for (card in cards) {
                     if (card.kind == CardKind.Phrase) {
                         val open = state.scheduling[card.id] != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)
-                        if (open) unlocked += 1 else locked += 1
+                        if (!open) locked += 1
                     }
                 }
                 AreaStatistics(
                     name = area, total = cards.size,
                     stages = StageCounts.of(state, activeByArea[area].orEmpty()),
                     queued = shelfCounts[area]?.queued ?: 0,
-                    phrasesLocked = locked, phrasesUnlocked = unlocked,
+                    phrasesLocked = locked,
                 )
             }
     }
