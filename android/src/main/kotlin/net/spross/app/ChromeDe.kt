@@ -331,7 +331,7 @@ internal object ChromeDe : Chrome {
     override val a11yStateExpanded = "ausgeklappt"
     override val a11yStateCollapsed = "eingeklappt"
     override val boxPhaseFresh = "Frisch"
-    override val boxPhaseRelearning = "Wackelt"
+    override val boxPhaseLapsed = "Wackelt"
     override val boxPhaseGrowing = "Wächst"
     override val a11yBoxPhaseSettled = "Sitzt"
     override val boxSearchButton = "Suchen"

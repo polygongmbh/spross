@@ -23,7 +23,7 @@ data class AreaGrowth(
     val matured: Int,
     /** Packed and never met ([GrowthStage.Queued]) — why the area is growing at all. */
     val queued: Int,
-    /** [GrowthStage.Relearning]: a word that slipped, never a smaller area. */
+    /** [GrowthStage.Lapsed]: a word that slipped, never a smaller area. */
     val lapsed: Int,
     /** Something here was answered today. */
     val answeredToday: Boolean,
@@ -149,7 +149,7 @@ private class AreaTally {
         when (entry.stage) {
             GrowthStage.Unscheduled, GrowthStage.Suspended -> return
             GrowthStage.Queued -> { queued += 1; return }
-            GrowthStage.Relearning -> { lapsed += 1; return }
+            GrowthStage.Lapsed -> { lapsed += 1; return }
             GrowthStage.Fresh -> arriving += 1
             GrowthStage.Growing -> growing += 1
             GrowthStage.Settled ->

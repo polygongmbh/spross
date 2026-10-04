@@ -288,19 +288,19 @@ class BoxBrowserTest {
         assertEquals(CardRowState.Standing(GrowthStage.Fresh), row("w02"))
         assertEquals(CardRowState.Standing(GrowthStage.Growing), row("w03"))
         assertEquals(CardRowState.Standing(GrowthStage.Settled), row("w04"))
-        assertEquals(CardRowState.Standing(GrowthStage.Relearning), row("w05"))
+        assertEquals(CardRowState.Standing(GrowthStage.Lapsed), row("w05"))
     }
 
     /**
      * The Sprosse's color, so a row's badge and the shelf's bar read the same table:
-     * amber for Fresh/Relearning, green for Growing, jade for Settled.
+     * amber for Fresh/Lapsed, green for Growing, jade for Settled.
      */
     @Test
     fun theSprossenColorFollowsTheBarAndTheAmberStagesShareIt() {
         fun swatchOf(stage: GrowthStage) = CardRowState.Standing(stage).swatch
 
         assertEquals(Palette.amber, swatchOf(GrowthStage.Fresh))
-        assertEquals(Palette.amber, swatchOf(GrowthStage.Relearning))
+        assertEquals(Palette.amber, swatchOf(GrowthStage.Lapsed))
         assertEquals(Palette.success, swatchOf(GrowthStage.Growing))
         assertEquals(Palette.settled, swatchOf(GrowthStage.Settled))
     }

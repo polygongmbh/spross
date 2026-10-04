@@ -43,7 +43,7 @@ class GrowthStageTests {
                 "w05" to GrowthStage.Fresh,
                 "w06" to GrowthStage.Growing,
                 "w07" to GrowthStage.Settled,
-                "w08" to GrowthStage.Relearning,
+                "w08" to GrowthStage.Lapsed,
             ),
             stages(state),
         )
@@ -75,7 +75,7 @@ class GrowthStageTests {
             ),
         )
 
-        assertEquals(GrowthStage.Relearning, stages(state)["w01"])
+        assertEquals(GrowthStage.Lapsed, stages(state)["w01"])
     }
 
     /**
@@ -94,7 +94,7 @@ class GrowthStageTests {
             )
         }
 
-        assertEquals(GrowthStage.Relearning, stages(state)["w01"])
+        assertEquals(GrowthStage.Lapsed, stages(state)["w01"])
         assertEquals(GrowthStage.Growing, stages(state)["w02"])
     }
 

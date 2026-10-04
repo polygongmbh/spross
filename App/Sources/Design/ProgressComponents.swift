@@ -243,7 +243,7 @@ struct PhaseBadge: View {
     /// see `BoxCardRow.badgePhase`. It picks the WORD and the glyph; the color
     /// arrives with [growth] instead.
     enum Phase: CaseIterable {
-        case new, fresh, growing, relearning, settled
+        case new, fresh, growing, lapsed, settled
     }
 
     let phase: Phase
@@ -256,7 +256,7 @@ struct PhaseBadge: View {
         case .new: return "box.phase.new"
         case .fresh: return "box.phase.fresh"
         case .growing: return "box.phase.growing"
-        case .relearning: return "box.phase.relearning"
+        case .lapsed: return "box.phase.lapsed"
         case .settled: return "a11y.box.phase.settled"
         }
     }
@@ -270,7 +270,7 @@ struct PhaseBadge: View {
         case .new: return "circle.dashed"
         case .settled: return "checkmark.seal.fill"
         case .growing: return "checkmark.circle.fill"
-        case .fresh, .relearning: return "leaf.fill"
+        case .fresh, .lapsed: return "leaf.fill"
         }
     }
 
@@ -315,7 +315,7 @@ private var ladder: some View {
     HStack(spacing: Theme.spacing.sm) {
         PhaseBadge(phase: .new)
         PhaseBadge(phase: .fresh, growth: Theme.colors.amber)
-        PhaseBadge(phase: .relearning, growth: Theme.colors.amber)
+        PhaseBadge(phase: .lapsed, growth: Theme.colors.amber)
         PhaseBadge(phase: .growing, growth: Theme.colors.success)
         PhaseBadge(phase: .settled, growth: Theme.colors.settled)
     }

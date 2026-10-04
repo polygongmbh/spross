@@ -250,7 +250,7 @@ struct BoxCardRow: View {
         case .fresh: return .fresh
         case .growing: return .growing
         case .settled: return .settled
-        case .relearning: return .relearning
+        case .lapsed: return .lapsed
         case .unscheduled, .queued, .suspended: return .new
         }
     }

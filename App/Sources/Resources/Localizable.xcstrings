@@ -1448,6 +1448,22 @@
         }
       }
     },
+    "box.phase.lapsed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wackelt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shaky"
+          }
+        }
+      }
+    },
     "box.phase.new" : {
       "localizations" : {
         "de" : {
@@ -1460,22 +1476,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "New"
-          }
-        }
-      }
-    },
-    "box.phase.relearning" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wackelt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shaky"
           }
         }
       }

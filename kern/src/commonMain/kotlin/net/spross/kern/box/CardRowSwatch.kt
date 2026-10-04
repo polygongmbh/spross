@@ -12,5 +12,5 @@ val CardRowState.Standing.swatch: Swatch
     get() = when (stage) {
         GrowthStage.Settled -> Palette.settled
         GrowthStage.Growing -> Palette.success
-        else -> Palette.amber // Learning, Fresh, Relearning
+        else -> Palette.amber // Fresh, Lapsed
     }

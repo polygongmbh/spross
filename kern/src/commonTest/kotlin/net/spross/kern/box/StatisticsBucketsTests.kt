@@ -49,7 +49,7 @@ class StatisticsBucketsTests {
         state = Box.inject(state, Box.sched("w05", stability = MATURED_STABILITY, dueMillis = future, lastReviewMillis = now))
 
         val kitchen = BoxEngine.statistics(state, now, Box.TZ).areas.single()
-        assertEquals(StageCounts(fresh = 1, growing = 1, relearning = 1, settled = 1, matured = 1), kitchen.stages)
+        assertEquals(StageCounts(fresh = 1, growing = 1, lapsed = 1, settled = 1, matured = 1), kitchen.stages)
         assertEquals(3, kitchen.allGrowing)
         assertEquals(2, kitchen.allSettled)
     }

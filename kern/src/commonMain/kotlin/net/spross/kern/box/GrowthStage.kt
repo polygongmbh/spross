@@ -27,8 +27,8 @@ const val MATURED_STABILITY: Double = 120.0
  * the engine's answer, what that looks like is not.
  *
  * Ordered as growth runs, so neighboring Sprossen compare. The three off-path Sprossen
- * ([Unscheduled], [Relearning], [Suspended]) say where the card stands now, never
- * how far it once got: a lapsed card reports [Relearning] whatever it had reached.
+ * ([Unscheduled], [Lapsed], [Suspended]) say where the card stands now, never
+ * how far it once got: a lapsed card reports [Lapsed] whatever it had reached.
  */
 enum class GrowthStage {
     /** No schedule, and not packed either — a word the box holds and has never opened. */
@@ -54,7 +54,7 @@ enum class GrowthStage {
      * under it with a lapse behind it. A word that has slipped is not fresh, and it does not
      * read as fresh until it has cleared the bar again.
      */
-    Relearning,
+    Lapsed,
 
     /** Out of rotation — hand-suspended. */
     Suspended,
@@ -82,16 +82,16 @@ data class CardGrowth(
  * The Sprosse this schedule stands on. Suspension and a lapse outrank every bar:
  * a suspended card is out of rotation whatever its stability says, and a lapsed
  * one has to earn the growing bar back before it may claim it again — until then it
- * reads [GrowthStage.Relearning], whether the relearning steps have let it back into
+ * reads [GrowthStage.Lapsed], whether the relearning steps have let it back into
  * Review or not (with no steps configured a lapse never leaves Review at all).
  */
 internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when {
     sched.suspended -> GrowthStage.Suspended
-    sched.phase == CardPhase.Relearning -> GrowthStage.Relearning
+    sched.phase == CardPhase.Relearning -> GrowthStage.Lapsed
     sched.phase != CardPhase.Review -> GrowthStage.Fresh
     (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY -> GrowthStage.Settled
     Statistics.hasArrived(state, sched) -> GrowthStage.Growing
-    sched.lapses > 0 -> GrowthStage.Relearning
+    sched.lapses > 0 -> GrowthStage.Lapsed
     else -> GrowthStage.Fresh
 }
 

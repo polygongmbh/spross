@@ -336,7 +336,7 @@ interface Chrome {
     // A new card has no badge; past that a row reads fresh, relearning, growing,
     // or settled (a seal with [a11yBoxPhaseSettled] as its spoken label).
     val boxPhaseFresh: String
-    val boxPhaseRelearning: String
+    val boxPhaseLapsed: String
     val boxPhaseGrowing: String
     val a11yBoxPhaseSettled: String
 
