@@ -122,8 +122,8 @@ class SentenceScrambleAvailabilityTest {
     @Test
     fun theSprossenAreEvenBandsThatDoNotOverlap() {
         val report = SentenceScrambleAvailability.Report(report().phrases, bandSize = 3)
-        assertEquals(3, report.maxLevel, "seven phrases, three at most per band")
-        val bands = (1..report.maxLevel).map { level -> report.phrasesAt(level).map { it.card.id } }
+        assertEquals(3, report.maxSprosse, "seven phrases, three at most per band")
+        val bands = (1..report.maxSprosse).map { sprosse -> report.phrasesAt(sprosse).map { it.card.id } }
         assertEquals(report.byDifficulty.map { it.card.id }, bands.flatten(), "each phrase once, in order")
         assertTrue(bands.all { it.size in 2..3 }, "bands of ${bands.map { it.size }}")
     }

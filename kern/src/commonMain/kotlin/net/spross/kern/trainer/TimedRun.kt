@@ -13,8 +13,8 @@ object TimedRun {
     const val SECONDS: Int = 60
 
     /** What one booked answer adds to the score. */
-    fun points(level: Int, correct: Boolean, clean: Boolean): Int =
-        if (correct && clean) maxOf(1, level) else 0
+    fun points(sprosse: Int, correct: Boolean, clean: Boolean): Int =
+        if (correct && clean) maxOf(1, sprosse) else 0
 }
 
 /** A timed run's score and, for a challenge, the challenge it answered. */

@@ -107,7 +107,7 @@ fun typableOnNumberPad(accepted: List<String>): Boolean =
 data class TypedDrillView(
     /** Bumped per question — what the card's identity and an autoplay effect key on. */
     val index: Int,
-    val level: Int,
+    val sprosse: Int,
     val streak: Int,
     val bestStreak: Int,
     val outcomes: List<AnswerOutcome>,
@@ -129,7 +129,7 @@ data class TypedDrillClose(
     /** null ⇒ the run was never answered: dismiss, store nothing. */
     val summary: DrillRunSummary?,
     /** The Sprosse the run REACHED, not the one it ends on. */
-    val bestLevel: Int,
+    val bestSprosse: Int,
     /** The Sprossen the run answered OUT, for the page to add to what it holds. */
     val clearedSprossen: Set<Int>,
 )

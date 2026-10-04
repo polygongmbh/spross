@@ -60,25 +60,25 @@ object LetterDrillAvailability {
         val dictationAvailable: Boolean get() = dictationCandidates.size >= DICTATION_FLOOR
 
         /** The Sprosse ceiling: 9 where dictation exists, else 7. */
-        val maxLevel: Int get() = LetterDrill.maxLevel(dictationAvailable)
+        val maxSprosse: Int get() = LetterDrill.maxSprosse(dictationAvailable)
 
         /**
          * The Sprosse the learner's vocabulary puts them on — kern's step from the words they
-         * already hold, capped by [maxLevel].
+         * already hold, capped by [maxSprosse].
          */
-        val entryLevel: Int get() = minOf(LetterDrill.entryLevel(arrivedCards), maxLevel)
+        val entrySprosse: Int get() = minOf(LetterDrill.entrySprosse(arrivedCards), maxSprosse)
 
         /**
-         * Which Sprosse a run OPENS on: the lowest one at or above [entryLevel] that no run has
+         * Which Sprosse a run OPENS on: the lowest one at or above [entrySprosse] that no run has
          * answered out ([NumbersMode.entrySprosse] over [cleared], the store's mask). Derived
          * here rather than at the run, so the overview marking the format and the run that
          * starts there read one number.
          */
-        fun openingLevel(cleared: Set<Int>): Int =
-            NumbersMode.entrySprosse(cleared + (1 until entryLevel), maxLevel)
+        fun openingSprosse(cleared: Set<Int>): Int =
+            NumbersMode.entrySprosse(cleared + (1 until entrySprosse), maxSprosse)
 
         /** The format that Sprosse lands in — what the overview marks. */
-        fun openingFormat(cleared: Set<Int>): LetterFormat = LetterDrill.formatFor(openingLevel(cleared))
+        fun openingFormat(cleared: Set<Int>): LetterFormat = LetterDrill.formatFor(openingSprosse(cleared))
 
         /** Whether some run answered out every Sprosse of [format] — never dictation's. */
         fun formatCleared(format: LetterFormat, cleared: Set<Int>): Boolean =

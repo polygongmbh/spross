@@ -67,7 +67,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         if (key != null) {
             // Neither buys a padlock (the drill is ungated); they are what the page reads
             // back — where the next run opens, and what Fast is priced against.
-            store.bookSprosse(key, closed.bestLevel)
+            store.bookSprosse(key, closed.bestSprosse)
             store.bookCleared(NumbersMode.clearedKey(key, reverse), closed.clearedSprossen)
             closed.summary?.let {
                 store.bookAnswers(key, it.done)
@@ -102,7 +102,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         leave = leave,
         outcomes = run.outcomes,
         tally = run.tally,
-        sprosse = chrome.trainerSprosse.format(run.level),
+        sprosse = chrome.trainerSprosse.format(run.sprosse),
         streak = run.streak,
         bestStreak = run.bestStreak,
         announcesRecord = true,

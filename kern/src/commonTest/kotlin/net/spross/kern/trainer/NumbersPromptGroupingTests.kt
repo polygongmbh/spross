@@ -39,14 +39,14 @@ class NumbersPromptGroupingTests {
     fun sampledNumberPromptsStayParseableAndDisplayOnlyAddsSeparators() {
         val rng = Random(20260806)
         for (language in Numbers.languages) {
-            for (level in 1..Numbers.maxLevel(NumbersReading.Cardinal)) {
+            for (sprosse in 1..Numbers.maxSprosse(NumbersReading.Cardinal)) {
                 repeat(20) {
-                    val task = Numbers.sample(NumbersReading.Cardinal, language, level, rng)
-                    val where = "$language level=$level ${task.prompt}"
+                    val task = Numbers.sample(NumbersReading.Cardinal, language, sprosse, rng)
+                    val where = "$language sprosse=$sprosse ${task.prompt}"
                     assertEquals(task.prompt, task.promptDisplay.filter { it.isDigit() }, where)
                     assertEquals(task.prompt.toLong().toString(), task.prompt, where)
-                    assertEquals(task.prompt.length, level, where)
-                    val expectedSeparators = if (level < 5) 0 else (level - 1) / 3
+                    assertEquals(task.prompt.length, sprosse, where)
+                    val expectedSeparators = if (sprosse < 5) 0 else (sprosse - 1) / 3
                     assertEquals(expectedSeparators, task.promptDisplay.count { it == separator }, where)
                 }
             }

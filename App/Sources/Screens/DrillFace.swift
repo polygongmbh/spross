@@ -75,13 +75,13 @@ protocol DrillFace {
     /// where the run was turned round.
     static func answerLanguage(content: Content, reverse: Bool) -> String
 
-    /// A fresh run. `level` is the Sprosse the page opens it on — the lowest one
+    /// A fresh run. `sprosse` is the Sprosse the page opens it on — the lowest one
     /// not yet answered out, or the one tapped; nil is the foot of the ladder.
     /// `standingRecord` is the store's record for the page and `cleared` the
     /// Sprossen answered out in this direction — what a pause for improving is
     /// measured against.
     static func open(content: Content, reverse: Bool, fast: Bool,
-                     normalizer: AnswerNormalizer?, level: Int?, standingRecord: Int,
+                     normalizer: AnswerNormalizer?, sprosse: Int?, standingRecord: Int,
                      cleared: Set<KotlinInt>) -> Run
 
     /// The run as the screen draws it.
@@ -95,7 +95,7 @@ protocol DrillFace {
 
     #if DEBUG
     /// `-uitest-<drill>-level N`: the Sprosse a run-through opens on.
-    static var uitestLevelKey: String { get }
+    static var uitestSprosseKey: String { get }
 
     /// `-uitest-<drill>-best N`: the standing ladder a run-through inherits.
     static var uitestBestKey: String { get }
@@ -135,7 +135,7 @@ struct DrillEnd<Run> {
     let run: Run
     /// nil ⇒ the run was never answered: dismiss, store nothing.
     let summary: DrillRunSummary?
-    let bestLevel: Int
+    let bestSprosse: Int
     /// The Sprossen this run answered OUT, for the page to add to what it holds.
     let clearedSprossen: Set<KotlinInt>
     let effects: [DrillEffect]
@@ -147,7 +147,7 @@ struct DrillEnd<Run> {
 struct DrillSnapshot {
     /// Bumped per question — the card's identity and what an autoplay keys on.
     let index: Int
-    let level: Int
+    let sprosse: Int
     let streak: Int
     let bestStreak: Int
     let tally: DrillTally

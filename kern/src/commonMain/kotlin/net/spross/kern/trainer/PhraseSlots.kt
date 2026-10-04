@@ -69,14 +69,14 @@ object PhraseSlots {
         instantiate(template, drawSlot(template.slotKind, template.target, rng))
 
     /**
-     * Level-aware sampling for the gentle sentence-drill ramp: the slot value
-     * is drawn with the SAME level semantics as the plain drills (numbers:
-     * level = digit count; years: recent decades → historic range; clock:
-     * full hours → any minute — see the leveled [Numbers.sample]), then
+     * Sprosse-aware sampling for the gentle sentence-drill ramp: the slot value
+     * is drawn with the SAME Sprosse semantics as the plain drills (numbers:
+     * Sprosse = digit count; years: recent decades → historic range; clock:
+     * full hours → any minute — see [Numbers.sample] at a Sprosse), then
      * instantiated, so accepted sentences stay identical to [instantiate].
      */
-    fun sample(template: PhraseTemplate, level: Int, rng: Random): NumbersTask =
-        instantiate(template, drawSlot(template.slotKind, template.target, level, rng))
+    fun sample(template: PhraseTemplate, sprosse: Int, rng: Random): NumbersTask =
+        instantiate(template, drawSlot(template.slotKind, template.target, sprosse, rng))
 
     /**
      * The drawn value, instantiated. Nothing here reads a value back out of a rendered

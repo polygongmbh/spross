@@ -46,12 +46,12 @@ enum DateDrillFace: DrillFace {
         let top = ceiling(content, reverse: reverse)
         guard top >= 1 else { return [] }
         return (1...top).map { sprosse in
-            sprosseTitle(DateDrill.shared.kinds(content: content, level: sprosse, reverse: reverse))
+            sprosseTitle(DateDrill.shared.kinds(content: content, sprosse: sprosse, reverse: reverse))
         }
     }
 
     static func fastUnlocked(best: Int, content: DateDrillContent, reverse: Bool) -> Bool {
-        DateDrill.shared.fastUnlocked(bestLevel: best, content: content, reverse: reverse)
+        DateDrill.shared.fastUnlocked(bestSprosse: best, content: content, reverse: reverse)
     }
 
     static func reference(model: AppModel, content: DateDrillContent,
@@ -86,20 +86,20 @@ enum DateDrillFace: DrillFace {
     }
 
     static func open(content: DateDrillContent, reverse: Bool, fast: Bool,
-                     normalizer: AnswerNormalizer?, level: Int?,
+                     normalizer: AnswerNormalizer?, sprosse: Int?,
                      standingRecord: Int, cleared: Set<KotlinInt>) -> DateDrillRunState {
         let config = DateDrillRunConfig(content: content, reverse: reverse, fast: fast,
                                         normalizer: normalizer, standingRecord: Int32(standingRecord),
                                         cleared: cleared)
-        guard let level else { return DateDrillRun.shared.open(config: config, rng: drillRandom) }
-        return DateDrillRun.shared.openAt(config: config, level: Int32(level), rng: drillRandom)
+        guard let sprosse else { return DateDrillRun.shared.open(config: config, rng: drillRandom) }
+        return DateDrillRun.shared.openAt(config: config, sprosse: Int32(sprosse), rng: drillRandom)
     }
 
     static func snapshot(_ run: DateDrillRunState) -> DrillSnapshot {
         // A dates question carries no picture: the leading slot stays empty and
         // the prompt — a name, or a dated line in the prompt side's digits —
         // stands where the country's name would.
-        DrillSnapshot(index: Int(run.index), level: Int(run.level),
+        DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
                       streak: Int(run.streak), bestStreak: Int(run.bestStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
                       offersFinish: run.offersFinish, finished: run.finished,
@@ -119,7 +119,7 @@ enum DateDrillFace: DrillFace {
     static func close(_ run: DateDrillRunState, standingRecord: Int) -> DrillEnd<DateDrillRunState> {
         let closed = DateDrillRun.shared.close(state: run, standingRecord: Int32(standingRecord))
         return DrillEnd(run: closed.state, summary: closed.summary,
-                        bestLevel: Int(closed.bestLevel),
+                        bestSprosse: Int(closed.bestSprosse),
                         clearedSprossen: closed.clearedSprossen, effects: closed.effects)
     }
 
@@ -145,14 +145,14 @@ enum DateDrillFace: DrillFace {
     }
 
     #if DEBUG
-    static var uitestLevelKey: String { "uitest-dates-level" }
+    static var uitestSprosseKey: String { "uitest-dates-level" }
 
     static var uitestBestKey: String { "uitest-dates-best" }
 
     static func seedStreak(_ run: DateDrillRunState, _ streak: Int) -> DateDrillRunState {
         run.doCopy(config: run.config, task: run.task, index: run.index,
-                   level: run.level, bestLevel: run.bestLevel,
-                   winsAtLevel: run.winsAtLevel,
+                   sprosse: run.sprosse, bestSprosse: run.bestSprosse,
+                   winsAtSprosse: run.winsAtSprosse,
                    core: run.core.doCopy(done: Int32(streak + 6),
                                          streak: Int32(streak),
                                          bestStreak: Int32(max(streak, 12)),

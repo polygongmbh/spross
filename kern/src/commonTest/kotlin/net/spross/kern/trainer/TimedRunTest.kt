@@ -13,7 +13,7 @@ class TimedRunTest {
 
     private val timed = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Timed))
 
-    private fun at(level: Int) = NumbersRun.openAt(timed, mapOf(NumbersExercise.Counting to level), 0, emptyMap(), Random(5))
+    private fun at(sprosse: Int) = NumbersRun.openAt(timed, mapOf(NumbersExercise.Counting to sprosse), 0, emptyMap(), Random(5))
 
     private fun NumbersRunState.send(intent: NumbersIntent) = NumbersRun.reduce(this, intent, null, Random(9)).state
 
@@ -26,7 +26,7 @@ class TimedRunTest {
     fun aCleanAnswerScoresTheSprosseItWasGivenOn() {
         assertEquals(3, at(3).answered().score)
         assertEquals(0, at(3).missed().score, "a miss scores nothing")
-        assertEquals(2, at(3).missed().currentLevel, "and drops the run a Sprosse, so what follows is worth less")
+        assertEquals(2, at(3).missed().currentSprosse, "and drops the run a Sprosse, so what follows is worth less")
         val slipped = at(3).copy(feedback = TurnFeedback.Correct, hintUsed = true).send(NumbersIntent.ConfirmPending)
         assertEquals(0, slipped.score, "an almost scores nothing")
     }

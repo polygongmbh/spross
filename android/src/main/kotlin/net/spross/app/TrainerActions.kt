@@ -68,13 +68,13 @@ fun AppModel.startSentenceScramble() {
  * An atlas run. Both switches and the Sprosse it opens on are the page's to settle —
  * Fast has a price and the page has already checked it — so the run only obeys them.
  */
-fun AppModel.startCountryDrill(reverse: Boolean, fast: Boolean, level: Int) {
-    navigate(Screen.CountryDrill(reverse, fast, level))
+fun AppModel.startCountryDrill(reverse: Boolean, fast: Boolean, sprosse: Int) {
+    navigate(Screen.CountryDrill(reverse, fast, sprosse))
 }
 
 /** A dates run — the atlas rule: the switches and the Sprosse are the page's, the run only obeys. */
-fun AppModel.startDateDrill(reverse: Boolean, fast: Boolean, level: Int) {
-    navigate(Screen.DateDrill(reverse, fast, level))
+fun AppModel.startDateDrill(reverse: Boolean, fast: Boolean, sprosse: Int) {
+    navigate(Screen.DateDrill(reverse, fast, sprosse))
 }
 
 /**

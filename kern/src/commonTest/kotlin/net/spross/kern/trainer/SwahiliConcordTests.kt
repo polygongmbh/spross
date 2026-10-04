@@ -110,7 +110,7 @@ class SwahiliConcordTests {
 
     /**
      * Past 9999 the sources stop agreeing on where agreement lands (*elfu kumi na nne*),
-     * so the reading is left plain rather than invented. A leveled draw can reach here —
+     * so the reading is left plain rather than invented. A draw at a Sprosse can reach here —
      * the numbers ladder goes to ten digits — so it must be a quiet no-op, never a throw.
      */
     @Test

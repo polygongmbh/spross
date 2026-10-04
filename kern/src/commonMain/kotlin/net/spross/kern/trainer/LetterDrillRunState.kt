@@ -77,8 +77,8 @@ data class LetterDrillRunState(
     /** The question on screen; null only once nothing can be asked any more. */
     val task: LetterDrillTask?,
     override val index: Int,
-    val level: Int,
-    val winsAtLevel: Int,
+    val sprosse: Int,
+    val winsAtSprosse: Int,
     /** The Sprossen climbed off before the run's first slip — what the close hands the store. */
     val clearedSprossen: Set<Int>,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */

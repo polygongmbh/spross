@@ -79,7 +79,7 @@ struct DrillOverview<Face: DrillFace>: View {
             Group {
                 if let content {
                     DrillRunView<Face>(model: model, content: content, reverse: launch.value.reverse,
-                                       fast: launch.value.fast, level: launch.value.level,
+                                       fast: launch.value.fast, sprosse: launch.value.sprosse,
                                        storageKey: storageKey,
                                        onFinish: { result in
                                            withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
@@ -107,9 +107,9 @@ struct DrillOverview<Face: DrillFace>: View {
     }
 
     /// A tapped row: the run opens there instead.
-    func start(at level: Int) {
+    func start(at sprosse: Int) {
         launch = DrillLaunch(value: DrillStart(reverse: reverse, fast: fast && fastUnlocked,
-                                               level: level))
+                                               sprosse: sprosse))
     }
 
     /// The Sprossen answered out in the direction the switch stands for.
@@ -194,7 +194,7 @@ struct DrillOverview<Face: DrillFace>: View {
 struct DrillStart {
     let reverse: Bool
     let fast: Bool
-    let level: Int
+    let sprosse: Int
 }
 
 #if DEBUG

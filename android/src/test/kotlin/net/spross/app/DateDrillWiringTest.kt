@@ -136,7 +136,7 @@ class DateDrillWiringTest {
         // The pending clean answer books on the way out, exactly as the tap would.
         assertEquals(1, summary.done)
         assertTrue(summary.newRecord, "a first streak beats a standing record of none")
-        assertEquals(flow.state.bestLevel, closed.bestLevel)
+        assertEquals(flow.state.bestSprosse, closed.bestSprosse)
     }
 
     /** The pad has no `/` or `:` key, so a date or time owed with one gets the full keyboard. */

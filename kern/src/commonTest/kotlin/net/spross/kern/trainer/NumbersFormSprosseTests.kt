@@ -12,15 +12,15 @@ import kotlin.test.assertTrue
  * what the reversed task takes back. The readings themselves are pinned separately
  * (`Numbers<Language>FormsTests`, one file per language) — this file never asserts a word.
  */
-class NumbersFormLevelTests {
+class NumbersFormSprosseTests {
 
     private val authored = Numbers.languages.filter(Numbers::supportsForms)
 
     private fun limits(language: String) = Numbers.pack(language).formLimits
 
-    private fun draws(language: String, level: Int, count: Int = 200): List<NumberValue> {
-        val rng = Random(0x5EED + level)
-        return List(count) { checkNotNull(drawForm(limits(language), level, rng)) }
+    private fun draws(language: String, sprosse: Int, count: Int = 200): List<NumberValue> {
+        val rng = Random(0x5EED + sprosse)
+        return List(count) { checkNotNull(drawForm(limits(language), sprosse, rng)) }
     }
 
     // The ladder
@@ -34,11 +34,11 @@ class NumbersFormLevelTests {
 
     @Test
     fun eachOfTheFirstSevenSprossenAddsOneFormAndKeepsTheOnesBelow() {
-        for (level in 1..7) {
-            assertEquals(NumberForm.entries.take(level).toSet(), sprosseForms(level))
+        for (sprosse in 1..7) {
+            assertEquals(NumberForm.entries.take(sprosse).toSet(), sprosseForms(sprosse))
         }
-        for (level in 8..Numbers.maxLevel(NumbersReading.Form)) {
-            assertEquals(NumberForm.entries.toSet(), sprosseForms(level), "Sprosse $level widens, adds nothing")
+        for (sprosse in 8..Numbers.maxSprosse(NumbersReading.Form)) {
+            assertEquals(NumberForm.entries.toSet(), sprosseForms(sprosse), "Sprosse $sprosse widens, adds nothing")
         }
     }
 
@@ -64,7 +64,7 @@ class NumbersFormLevelTests {
     fun theMixMagnitudeWidensTheFormsThatHaveOne() {
         val rng = Random(0x111)
         val limits = FormLimits(forms = setOf(NumberForm.Negative, NumberForm.Decimal))
-        val wide = List(200) { checkNotNull(drawForm(limits, level = 1, rng = rng, magnitudeDigits = 7)) }
+        val wide = List(200) { checkNotNull(drawForm(limits, sprosse = 1, rng = rng, magnitudeDigits = 7)) }
         for (value in wide) {
             val magnitude = when (value) {
                 is NumberValue.Negative -> value.magnitude
@@ -81,7 +81,7 @@ class NumbersFormLevelTests {
     fun theFormsWithoutAMagnitudeIgnoreTheMixWidening() {
         val rng = Random(0x222)
         val limits = FormLimits(forms = setOf(NumberForm.Percent, NumberForm.Fraction))
-        for (value in List(200) { checkNotNull(drawForm(limits, level = 10, rng = rng, magnitudeDigits = 10)) }) {
+        for (value in List(200) { checkNotNull(drawForm(limits, sprosse = 10, rng = rng, magnitudeDigits = 10)) }) {
             when (value) {
                 is NumberValue.Percent -> assertTrue(value.n in 1..100, "$value")
                 is NumberValue.Fraction -> assertTrue(value.denominator <= 12, "$value")
@@ -96,7 +96,7 @@ class NumbersFormLevelTests {
         for (language in authored) {
             assertEquals(
                 Numbers.sample(NumbersReading.Form, language, 6, Random(11)),
-                Numbers.sampleForms(language, level = 6, magnitudeDigits = 0, rng = Random(11)),
+                Numbers.sampleForms(language, sprosse = 6, magnitudeDigits = 0, rng = Random(11)),
             )
         }
     }
@@ -105,14 +105,14 @@ class NumbersFormLevelTests {
     fun everySprosseStaysInsideTheLanguagesOwnLimits() {
         for (language in authored) {
             val limits = limits(language)
-            for (level in 1..Numbers.maxLevel(NumbersReading.Form)) {
-                for (value in draws(language, level)) {
-                    assertTrue(value.form in limits.forms, "$language level $level drew ${value.form}")
+            for (sprosse in 1..Numbers.maxSprosse(NumbersReading.Form)) {
+                for (value in draws(language, sprosse)) {
+                    assertTrue(value.form in limits.forms, "$language Sprosse $sprosse drew ${value.form}")
                     when (value) {
-                        is NumberValue.Fraction -> assertReduced(value, limits, "$language level $level")
+                        is NumberValue.Fraction -> assertReduced(value, limits, "$language Sprosse $sprosse")
                         is NumberValue.Ordinal ->
-                            assertTrue(value.n in limits.ordinalRange, "$language level $level: $value")
-                        is NumberValue.Price -> assertPriced(value, limits, "$language level $level")
+                            assertTrue(value.n in limits.ordinalRange, "$language Sprosse $sprosse: $value")
+                        is NumberValue.Price -> assertPriced(value, limits, "$language Sprosse $sprosse")
                         else -> Unit
                     }
                 }
@@ -143,12 +143,12 @@ class NumbersFormLevelTests {
     @Test
     fun aDrawnDecimalNeverHasAnAllZeroFractionalPart() {
         for (language in authored) {
-            for (level in 1..Numbers.maxLevel(NumbersReading.Form)) {
-                for (value in draws(language, level)) {
+            for (sprosse in 1..Numbers.maxSprosse(NumbersReading.Form)) {
+                for (value in draws(language, sprosse)) {
                     if (value is NumberValue.Decimal) {
                         assertTrue(
                             value.fractionDigits.any { it != '0' },
-                            "$language level $level drew $value",
+                            "$language Sprosse $sprosse drew $value",
                         )
                     }
                 }
@@ -163,20 +163,20 @@ class NumbersFormLevelTests {
     @Test
     fun theGentleSprossenStayGentle() {
         for (language in authored) {
-            for (level in 1..7) {
-                for (value in draws(language, level)) {
-                    if (value is NumberValue.Fraction) assertEquals(1L, value.numerator, "level $level")
+            for (sprosse in 1..7) {
+                for (value in draws(language, sprosse)) {
+                    if (value is NumberValue.Fraction) assertEquals(1L, value.numerator, "Sprosse $sprosse")
                 }
             }
-            for (level in 1..8) {
-                for (value in draws(language, level)) {
-                    if (value is NumberValue.Ordinal) assertTrue(value.n <= 12, "level $level: $value")
+            for (sprosse in 1..8) {
+                for (value in draws(language, sprosse)) {
+                    if (value is NumberValue.Ordinal) assertTrue(value.n <= 12, "Sprosse $sprosse: $value")
                 }
             }
-            for (level in 1..9) {
-                for (value in draws(language, level)) {
+            for (sprosse in 1..9) {
+                for (value in draws(language, sprosse)) {
                     if (value is NumberValue.Price) {
-                        assertTrue(value.units in 1..20 * value.currency.step, "level $level: $value")
+                        assertTrue(value.units in 1..20 * value.currency.step, "Sprosse $sprosse: $value")
                     }
                 }
             }
@@ -190,13 +190,13 @@ class NumbersFormLevelTests {
     @Test
     fun aSprosseWithNothingToOfferFallsBackToTheLanguagesOwnForms() {
         val fractionsOnly = FormLimits(forms = setOf(NumberForm.Fraction))
-        val value = drawForm(fractionsOnly, level = 1, rng = Random(7))
+        val value = drawForm(fractionsOnly, sprosse = 1, rng = Random(7))
         assertTrue(value is NumberValue.Fraction, "expected the pack's own form, got $value")
     }
 
     @Test
     fun aLanguageThatReadsNoFormDrawsNothing() {
-        assertNull(drawForm(FormLimits(), level = 5, rng = Random(7)))
+        assertNull(drawForm(FormLimits(), sprosse = 5, rng = Random(7)))
     }
 
     @Test
@@ -266,10 +266,10 @@ class NumbersFormLevelTests {
     fun everySampledFormTaskIsWellFormed() {
         val rng = Random(0xF04D)
         for (language in Numbers.languages) {
-            for (level in 1..Numbers.maxLevel(NumbersReading.Form)) {
+            for (sprosse in 1..Numbers.maxSprosse(NumbersReading.Form)) {
                 repeat(50) {
-                    val task = Numbers.sample(NumbersReading.Form, language, level, rng)
-                    val where = "$language level $level ${task.prompt}"
+                    val task = Numbers.sample(NumbersReading.Form, language, sprosse, rng)
+                    val where = "$language Sprosse $sprosse ${task.prompt}"
                     assertEquals(NumbersReading.Form, task.kind, where)
                     assertEquals(language, task.language, where)
                     assertTrue(task.prompt.isNotEmpty(), where)
@@ -281,7 +281,7 @@ class NumbersFormLevelTests {
     }
 
     @Test
-    fun levelsClampInsteadOfThrowing() {
+    fun sprossenClampInsteadOfThrowing() {
         for (language in authored) {
             assertEquals(
                 Numbers.sample(NumbersReading.Form, language, 1, Random(3)),

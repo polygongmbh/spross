@@ -92,21 +92,21 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
 
 /**
  * The Sprosse part of the score line, for the exercise that just asked: numbers count DIGITS,
- * everything else counts plain levels — and an exercise with one Sprosse shows none. The face
+ * everything else counts plain Sprossen — and an exercise with one Sprosse shows none. The face
  * leads only where the run offers more than one exercise, since a run that asks one thing
  * has already said what it asks.
  */
 private fun sprosseText(state: NumbersRunState, chrome: Chrome): String? {
     if (!state.showsSprosse) return null
-    val sprosse = state.currentLevel
+    val sprosse = state.currentSprosse
     // why: the digits wording is the numbers drill's own and already wears 🔢 — putting
     // the exercise's face in front would double it.
     if (state.currentExercise == NumbersExercise.Counting) {
         return countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, sprosse)
     }
-    val level = chrome.trainerSprosse.format(sprosse)
-    if (!state.severalExercises) return level
-    return "${chrome.badge(state.currentExercise)} $level"
+    val label = chrome.trainerSprosse.format(sprosse)
+    if (!state.severalExercises) return label
+    return "${chrome.badge(state.currentExercise)} $label"
 }
 
 /** A timed run's seconds left, sending kern's intent at zero; null when untimed. */

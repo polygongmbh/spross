@@ -14,11 +14,11 @@ import net.spross.kern.model.Realization
 class LetterDrillDictationTests {
     private val cards = LetterDrillFixture.dictationCards()
 
-    private fun drawn(level: Int, from: List<Card> = cards, avoid: String? = null): List<String> =
+    private fun drawn(sprosse: Int, from: List<Card> = cards, avoid: String? = null): List<String> =
         (1..200).map {
             assertNotNull(
                 LetterDrill.sampleDictation(
-                    LetterDrillFixture.dictationCandidates(from), null, level, avoid, emptySet(), Random(it),
+                    LetterDrillFixture.dictationCandidates(from), null, sprosse, avoid, emptySet(), Random(it),
                 ),
             ).display
         }
@@ -36,7 +36,7 @@ class LetterDrillDictationTests {
         val texts = drawn(8).toSet()
         assertTrue(
             texts.all { it.length <= 6 },
-            "level 8 dictated something long: $texts",
+            "Sprosse 8 dictated something long: $texts",
         )
         assertTrue("Sonne" in texts && "Regenbogen" !in texts)
     }
@@ -58,7 +58,7 @@ class LetterDrillDictationTests {
     @Test
     fun theLastSprosseAsksAnyGrowingWord() {
         val texts = drawn(9).toSet()
-        assertTrue("Regenbogen" in texts, "level 9 takes the long ones too: $texts")
+        assertTrue("Regenbogen" in texts, "Sprosse 9 takes the long ones too: $texts")
     }
 
     @Test

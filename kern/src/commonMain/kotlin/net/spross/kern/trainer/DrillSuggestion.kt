@@ -147,7 +147,7 @@ object DrillSuggestion {
                     NumbersExercise.Clock,
                     NumbersExercise.Forms.takeIf { Numbers.supportsForms(language) },
                 )
-                val tops = exercises.associateWith { Numbers.maxLevel(it.reading!!) }
+                val tops = exercises.associateWith { Numbers.maxSprosse(it.reading!!) }
                 val behind = exercises.sumOf { ((reached[it] ?: 0) - 1).coerceIn(0, tops.getValue(it)) }
                 val total = tops.values.sum()
                 return Ladder(total - behind, total)

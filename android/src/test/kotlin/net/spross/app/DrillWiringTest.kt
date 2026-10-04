@@ -164,7 +164,7 @@ class DrillWiringTest {
         ),
     )
 
-    private fun letters(platform: Platform, seed: Int = 42, level: Int = 1): LetterDrillFlow {
+    private fun letters(platform: Platform, seed: Int = 42, sprosse: Int = 1): LetterDrillFlow {
         val report = LetterDrillAvailability.Report(
             language = "uk",
             alphabet = alphabet,
@@ -175,7 +175,7 @@ class DrillWiringTest {
         )
         val config = LetterDrillRunConfig(report, cards = emptyMap(), dictationGrader = null, cleared = emptySet())
         return LetterDrillFlow(
-            start = LetterDrillRun.openAt(config, level, Random(seed)),
+            start = LetterDrillRun.openAt(config, sprosse, Random(seed)),
             rng = Random(seed),
             onTone = { platform.tones += it },
             onReleaseFocus = { platform.focusReleases += 1 },
@@ -203,7 +203,7 @@ class DrillWiringTest {
     @Test
     fun typingTheLetterArmsTheLiveBeatWithoutACheckTap() {
         val platform = Platform()
-        val flow = letters(platform, level = 6)
+        val flow = letters(platform, sprosse = 6)
         flow.type(assertNotNull(flow.state.task).display)
         assertEquals(TurnFeedback.Correct, flow.state.feedback)
         assertEquals(listOf(ToneKind.Correct), platform.tones)
@@ -320,7 +320,7 @@ class DrillWiringTest {
         // The pending clean answer books on the way out, exactly as the tap would.
         assertEquals(1, summary.done)
         assertTrue(summary.newRecord, "a first streak beats a standing record of none")
-        assertEquals(flow.state.bestLevel, closed.bestLevel)
+        assertEquals(flow.state.bestSprosse, closed.bestSprosse)
     }
 
     // MARK: - The word scramble

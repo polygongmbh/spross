@@ -22,7 +22,7 @@ import kotlin.random.Random
  * moving :45 up would collapse the two into one.
  *
  * The ladder is language-independent by design.
- * [Numbers.maxLevel] is ObjC-visible, and the "Clock ≥ 3" phrase unlock has to mean
+ * [Numbers.maxSprosse] is ObjC-visible, and the "Clock ≥ 3" phrase unlock has to mean
  * the same fraction of the ladder for every pair.
  */
 private val SPROSSEN: List<IntArray> = listOf(
@@ -33,17 +33,17 @@ private val SPROSSEN: List<IntArray> = listOf(
     IntArray(60) { it },
 )
 
-internal val CLOCK_MAX_LEVEL: Int = SPROSSEN.size
+internal val CLOCK_MAX_SPROSSE: Int = SPROSSEN.size
 
-/** The exact minute set Sprosse [level] offers, clamped into the ladder. */
-internal fun clockSprosse(level: Int): IntArray = SPROSSEN[level.coerceIn(1, CLOCK_MAX_LEVEL) - 1]
+/** The exact minute set Sprosse [sprosse] offers, clamped into the ladder. */
+internal fun clockSprosse(sprosse: Int): IntArray = SPROSSEN[sprosse.coerceIn(1, CLOCK_MAX_SPROSSE) - 1]
 
 /**
- * One minute for [level] — a single draw indexed into the Sprosse's table,
+ * One minute for [sprosse] — a single draw indexed into the Sprosse's table,
  * so a seeded cross-check against the shared draw machinery stays symmetric
  * with the other kinds, and no Sprosse allocates per call.
  */
-internal fun drawClockMinute(level: Int, rng: Random): Int {
-    val sprosse = clockSprosse(level)
+internal fun drawClockMinute(sprosse: Int, rng: Random): Int {
+    val sprosse = clockSprosse(sprosse)
     return sprosse[rng.nextInt(sprosse.size)]
 }

@@ -23,10 +23,10 @@ enum class DrillModifier { Reverse, Fast, Mix, Timed }
 
 /**
  * The unlock ladder, as one table rather than a chain of conditions:
- * every requirement is a map from an exercise to the level that must have been
+ * every requirement is a map from an exercise to the Sprosse that must have been
  * reached in it, and an empty map means always available.
  *
- * Progress is the highest level ever reached per exercise per language, persisted
+ * Progress is the highest Sprosse ever reached per exercise per language, persisted
  * by the app — there is no second source of truth and kern stores nothing.
  */
 object DrillUnlocks {
@@ -37,7 +37,7 @@ object DrillUnlocks {
         // why: a sentence puts a time inside a clause, so it opens on a clock that is
         // finished — the ladder's top Sprosse, tracked by name so growing the ladder
         // moves the gate with it instead of quietly cheapening it.
-        NumbersExercise.Phrases to mapOf(NumbersExercise.Clock to CLOCK_MAX_LEVEL),
+        NumbersExercise.Phrases to mapOf(NumbersExercise.Clock to CLOCK_MAX_SPROSSE),
         NumbersExercise.Forms to mapOf(NumbersExercise.Counting to 7),
     )
 
@@ -61,11 +61,11 @@ object DrillUnlocks {
         DrillModifier.Timed to mapOf(NumbersExercise.Counting to 4),
     )
 
-    /** What [exercise] costs, as exercise → level reached. Empty = always available. */
+    /** What [exercise] costs, as exercise → Sprosse reached. Empty = always available. */
     fun requirements(exercise: NumbersExercise): Map<NumbersExercise, Int> =
         exerciseRequirements.getValue(exercise)
 
-    /** What [modifier] costs, as exercise → level reached. Empty = always available. */
+    /** What [modifier] costs, as exercise → Sprosse reached. Empty = always available. */
     fun requirements(modifier: DrillModifier): Map<NumbersExercise, Int> =
         modifierRequirements.getValue(modifier)
 
@@ -76,7 +76,7 @@ object DrillUnlocks {
         met(requirements(modifier), progress)
 
     private fun met(required: Map<NumbersExercise, Int>, progress: Map<NumbersExercise, Int>): Boolean =
-        required.all { (exercise, level) -> (progress[exercise] ?: 0) >= level }
+        required.all { (exercise, sprosse) -> (progress[exercise] ?: 0) >= sprosse }
 }
 
 /**
@@ -105,15 +105,15 @@ object DrillRamp {
      * would carry the run past it carry nowhere, and answering it out ends the run.
      */
     fun step(
-        level: Int,
-        winsAtLevel: Int,
+        sprosse: Int,
+        winsAtSprosse: Int,
         correct: Boolean,
         clean: Boolean,
         winsRequired: Int,
         top: Int = Int.MAX_VALUE,
     ): SprosseStep {
-        val current = maxOf(1, level)
-        val wins = maxOf(0, winsAtLevel)
+        val current = maxOf(1, sprosse)
+        val wins = maxOf(0, winsAtSprosse)
         if (!correct) return SprosseStep(maxOf(1, current - 1), 0)
         if (!clean) return SprosseStep(current, wins)
         val earned = wins + 1
@@ -124,7 +124,7 @@ object DrillRamp {
     }
 
     /** Where the ramp leaves the run: the Sprosse to ask at next, and the wins banked on it. */
-    data class SprosseStep(val level: Int, val winsAtLevel: Int)
+    data class SprosseStep(val sprosse: Int, val winsAtSprosse: Int)
 }
 
 /**
@@ -155,7 +155,7 @@ internal object DrillSprossen {
         if (to > from && !slipped) cleared + from else cleared
 
     /**
-     * The wins a scramble asks of [level]: ONE clean answer where the store already [held] it
+     * The wins a scramble asks of [sprosse]: ONE clean answer where the store already [held] it
      * and the run has not [slipped] yet, [usual] otherwise.
      *
      * A scramble run opens at the foot and fast-climbs what earlier runs cleared, so the ground
@@ -163,8 +163,8 @@ internal object DrillSprossen {
      * Its first slip anywhere ([slipped]) ends that for the rest of the run.
      * A Sprosse passed fast is one the store holds already, so it counts as nothing new.
      */
-    fun winsRequired(level: Int, held: Set<Int>, slipped: Boolean, usual: Int): Int =
-        if (!slipped && level in held) 1 else usual
+    fun winsRequired(sprosse: Int, held: Set<Int>, slipped: Boolean, usual: Int): Int =
+        if (!slipped && sprosse in held) 1 else usual
 }
 
 /**
@@ -179,7 +179,7 @@ internal object DrillSprossen {
 internal object DrillLadder {
 
     /** A drawn question and the Sprosse it is booked at; a null task is a ladder answered out. */
-    data class Sprosse<T>(val task: T?, val level: Int)
+    data class Sprosse<T>(val task: T?, val sprosse: Int)
 
     /**
      * Whether this draw leads with what the Sprosse ADDED rather than with everything it carries.

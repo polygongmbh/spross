@@ -21,7 +21,7 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
 - **The tile and typed Sprossen keep the scrambles' record** — a Sprosse left upward
   before the run's first miss or almost (`LetterDrillClose.clearedSprossen`) —
   and a run opens on the lowest one at or above the vocabulary's entry that the record lacks
-  (`LetterDrillAvailability.Report.openingLevel`).
+  (`LetterDrillAvailability.Report.openingSprosse`).
   Dictation is never filed: it draws from the box, which grows.
   Each row is ONE line, the format named by what it asks,
   with a caption only where dictation states its price.

@@ -36,10 +36,10 @@ class DateDrillTests {
      */
     @Test
     fun theLadderIsAsTallAsTheContentCanCarry() {
-        assertEquals(6, DateDrill.maxLevel(german, reverse = false))
-        assertEquals(5, DateDrill.maxLevel(ukrainian, reverse = false))
-        assertEquals(5, DateDrill.maxLevel(german, reverse = true))
-        assertEquals(4, DateDrill.maxLevel(ukrainian, reverse = true))
+        assertEquals(6, DateDrill.maxSprosse(german, reverse = false))
+        assertEquals(5, DateDrill.maxSprosse(ukrainian, reverse = false))
+        assertEquals(5, DateDrill.maxSprosse(german, reverse = true))
+        assertEquals(4, DateDrill.maxSprosse(ukrainian, reverse = true))
     }
 
     /**
@@ -83,16 +83,16 @@ class DateDrillTests {
         assertEquals(1, DateDrill.winsToAdvance(fast = true))
         var step = DrillRamp.SprosseStep(1, 0)
         repeat(3) {
-            step = DateDrill.step(german, false, step.level, step.winsAtLevel,
+            step = DateDrill.step(german, false, step.sprosse, step.winsAtSprosse,
                 correct = true, clean = true, fast = false)
         }
-        assertEquals(2, step.level)
-        assertEquals(2, DateDrill.step(german, false, 1, 0, correct = true, clean = true, fast = true).level)
+        assertEquals(2, step.sprosse)
+        assertEquals(2, DateDrill.step(german, false, 1, 0, correct = true, clean = true, fast = true).sprosse)
         val top = DateDrill.step(ukrainian, false, 6, 2, correct = true, clean = true, fast = false)
-        assertEquals(7, top.level, "the number climbs past the short ladder's last named Sprosse")
+        assertEquals(7, top.sprosse, "the number climbs past the short ladder's last named Sprosse")
         assertEquals(
             DateDrill.kinds(ukrainian, 6, reverse = false),
-            DateDrill.kinds(ukrainian, top.level, reverse = false),
+            DateDrill.kinds(ukrainian, top.sprosse, reverse = false),
             "and asks the top Sprosse's questions up there",
         )
     }
@@ -218,7 +218,7 @@ class DateDrillTests {
     fun aSprosseKeepsWhatTheSprossenBelowItStillHold() {
         val monthsOut = (0..11).map { "${DateTaskKind.Month}:$it" }.toSet()
         val draw = DateDrill.draw(german, 3, false, null, monthsOut, Random(7))
-        assertEquals(3, draw.level)
+        assertEquals(3, draw.sprosse)
         assertEquals(DateTaskKind.Weekday, assertNotNull(draw.task).kind)
     }
 
@@ -228,7 +228,7 @@ class DateDrillTests {
         val namesOut = ((0..6).map { "${DateTaskKind.Weekday}:$it" } +
             (0..11).map { "${DateTaskKind.Month}:$it" }).toSet()
         val draw = DateDrill.draw(german, 3, false, null, namesOut, Random(7))
-        assertEquals(4, draw.level)
+        assertEquals(4, draw.sprosse)
         assertEquals(DateTaskKind.DayAndMonth, assertNotNull(draw.task).kind)
     }
 
@@ -240,7 +240,7 @@ class DateDrillTests {
             listOf("${DateTaskKind.Month}:0")
         val solved = (below + (1..31).map { "${DateTaskKind.DayAndMonth}:$it.1" }).toSet()
         val draw = DateDrill.draw(oneMonth, 4, false, null, solved, Random(7))
-        assertEquals(5, draw.level)
+        assertEquals(5, draw.sprosse)
         assertEquals(DateTaskKind.FullDate, assertNotNull(draw.task).kind)
     }
 
@@ -336,8 +336,8 @@ class DateDrillTests {
     /** The names keep swapping sides in their own pool — both halves of those are words. */
     @Test
     fun theBareNameSprossenAreNotParsed() {
-        for (level in 1..3) {
-            val task = assertNotNull(DateDrill.sample(german, level, true, null, emptySet(), Random(11)))
+        for (sprosse in 1..3) {
+            val task = assertNotNull(DateDrill.sample(german, sprosse, true, null, emptySet(), Random(11)))
             assertFalse(task.digits, "a name is not a date: ${task.kind}")
         }
     }

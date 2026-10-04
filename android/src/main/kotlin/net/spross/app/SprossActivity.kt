@@ -177,8 +177,8 @@ private fun Root(model: AppModel = viewModel()) {
                         Screen.LetterDrill -> LetterDrillScreen(model)
                         Screen.WordScramble -> WordScrambleScreen(model)
                         Screen.SentenceScramble -> SentenceScrambleScreen(model)
-                        is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast, screen.level)
-                        is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast, screen.level)
+                        is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast, screen.sprosse)
+                        is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast, screen.sprosse)
                         Screen.Settings -> SettingsScreen(model)
                         is Screen.Box -> BoxScreen(model, openAt = screen.area)
                     }

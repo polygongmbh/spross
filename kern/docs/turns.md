@@ -297,7 +297,7 @@ Engine contract: `../README.md`.
   spelling a four-letter word back stops being a question once ten-letter ones are being spelled —
   and its ceiling is read off the pool: the highest Sprosse `POOL_FLOOR` of the learner's own words
   still clear, so no Sprosse exists that their box cannot fill,
-  while `WordScrambleMasking.MAX_LEVEL` only names the last Sprosse that changes the CUE
+  while `WordScrambleMasking.MAX_SPROSSE` only names the last Sprosse that changes the CUE
   (the opening letter anchored, then nothing) and every Sprosse above it goes on
   lengthening the word with nothing anchored.
   The mix itself owes two things beyond the same letters:

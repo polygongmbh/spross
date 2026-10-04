@@ -17,7 +17,7 @@ extension WordScrambleView: DrillRunning {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                DrillStreakLine(level: Text("trainer.sprosse \(Int(run.level).formatted())"),
+                DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
                                 streak: Int(run.streak), bestStreak: Int(run.bestStreak))
                 if let task = current {
                     // ZStack so the outgoing and incoming word overlap during
@@ -110,8 +110,8 @@ extension WordScrambleView {
 
     func seedStreak(_ streak: Int) {
         run = run.doCopy(config: run.config, task: run.task, index: run.index,
-                         level: run.level, bestLevel: run.bestLevel,
-                         winsAtLevel: run.winsAtLevel,
+                         sprosse: run.sprosse, bestSprosse: run.bestSprosse,
+                         winsAtSprosse: run.winsAtSprosse,
                          clearedSprossen: run.clearedSprossen,
                          core: run.core.doCopy(done: Int32(streak + 6),
                                                streak: Int32(streak),

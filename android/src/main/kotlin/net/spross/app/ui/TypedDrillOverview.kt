@@ -50,8 +50,8 @@ class TypedDrillLadder(
     val fastOpen: (reverse: Boolean) -> Boolean,
     /** What standing on a Sprosse is called — one line, the whole row. */
     val sprosse: (sprosse: Int, reverse: Boolean) -> String,
-    /** Opens a run on [level]. */
-    val start: (reverse: Boolean, fast: Boolean, level: Int) -> Unit,
+    /** Opens a run on [sprosse]. */
+    val start: (reverse: Boolean, fast: Boolean, sprosse: Int) -> Unit,
 )
 
 /**

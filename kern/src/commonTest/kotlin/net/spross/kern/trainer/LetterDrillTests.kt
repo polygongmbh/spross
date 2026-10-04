@@ -17,18 +17,18 @@ import net.spross.kern.trainer.LetterDrill.AlphabetExampleWord
 class LetterDrillTests {
     private val fixture = LetterDrillFixture
 
-    private fun sample(level: Int, seed: Int, refs: List<String> = fixture.allRefs, avoid: String? = null) =
+    private fun sample(sprosse: Int, seed: Int, refs: List<String> = fixture.allRefs, avoid: String? = null) =
         assertNotNull(
             LetterDrill.sample(
-                fixture.alphabet, fixture.example, level, refs, avoid, null, emptySet(), Random(seed),
+                fixture.alphabet, fixture.example, sprosse, refs, avoid, null, emptySet(), Random(seed),
             ),
         )
 
     @Test
-    fun theLadderMapsLevelsToFormats() {
+    fun theLadderMapsSprossenToFormats() {
         assertEquals(LetterFormat.ChoiceEasy, LetterDrill.formatFor(1))
         assertEquals(LetterFormat.ChoiceEasy, LetterDrill.formatFor(2))
-        for (level in 3..5) assertEquals(LetterFormat.ChoiceConfusable, LetterDrill.formatFor(level))
+        for (sprosse in 3..5) assertEquals(LetterFormat.ChoiceConfusable, LetterDrill.formatFor(sprosse))
         assertEquals(LetterFormat.Typed, LetterDrill.formatFor(6))
         assertEquals(LetterFormat.Typed, LetterDrill.formatFor(7))
         assertEquals(LetterFormat.Dictation, LetterDrill.formatFor(8))
@@ -36,21 +36,21 @@ class LetterDrillTests {
         // Out of range coerces rather than throwing — a stale preset must not crash a run.
         assertEquals(LetterFormat.ChoiceEasy, LetterDrill.formatFor(0))
         assertEquals(LetterFormat.Dictation, LetterDrill.formatFor(99))
-        assertEquals(9, LetterDrill.maxLevel(dictationAvailable = true))
-        assertEquals(7, LetterDrill.maxLevel(dictationAvailable = false))
+        assertEquals(9, LetterDrill.maxSprosse(dictationAvailable = true))
+        assertEquals(7, LetterDrill.maxSprosse(dictationAvailable = false))
     }
 
     @Test
-    fun entryLevelPacesOnTheWordsAlreadyHeld() {
-        assertEquals(1, LetterDrill.entryLevel(0))
-        assertEquals(1, LetterDrill.entryLevel(11))
-        assertEquals(2, LetterDrill.entryLevel(12))
-        assertEquals(5, LetterDrill.entryLevel(59))
-        assertEquals(6, LetterDrill.entryLevel(60))
-        assertEquals(6, LetterDrill.entryLevel(200))
+    fun entrySprossePacesOnTheWordsAlreadyHeld() {
+        assertEquals(1, LetterDrill.entrySprosse(0))
+        assertEquals(1, LetterDrill.entrySprosse(11))
+        assertEquals(2, LetterDrill.entrySprosse(12))
+        assertEquals(5, LetterDrill.entrySprosse(59))
+        assertEquals(6, LetterDrill.entrySprosse(60))
+        assertEquals(6, LetterDrill.entrySprosse(200))
         // Never dictation: entering on a format that draws from the box would ask for a
         // word before the box can name five of them.
-        assertTrue(LetterDrill.entryLevel(10_000) <= 6)
+        assertTrue(LetterDrill.entrySprosse(10_000) <= 6)
     }
 
     @Test
@@ -63,7 +63,7 @@ class LetterDrillTests {
 
     @Test
     fun onlyEntriesThatCanBeAskedAreEverPrompted() {
-        val asked = (1..400).map { sample(level = 1, seed = it).answerRef }.toSet()
+        val asked = (1..400).map { sample(sprosse = 1, seed = it).answerRef }.toSet()
         // The prose rule row: never a question, never a tile.
         assertFalse("b d g" in asked)
         // Silent by authoring — it stays on the tiles and out of the prompts.
@@ -76,13 +76,13 @@ class LetterDrillTests {
     @Test
     fun thePromptableListIsTheOuterBound() {
         val refs = listOf("m", "ß")
-        val asked = (1..100).map { sample(level = 1, seed = it, refs = refs).answerRef }.toSet()
+        val asked = (1..100).map { sample(sprosse = 1, seed = it, refs = refs).answerRef }.toSet()
         assertEquals(setOf("m", "ß"), asked)
     }
 
     @Test
     fun thePromptCarriesItsProvenance() {
-        val tasks = (1..400).map { sample(level = 6, seed = it) }.associateBy { it.answerRef }
+        val tasks = (1..400).map { sample(sprosse = 6, seed = it) }.associateBy { it.answerRef }
         // A letter speaks its NAME, and the manifest key rides along for the recording.
         val letter = tasks.getValue("m")
         assertEquals("em", letter.promptText)
@@ -109,7 +109,7 @@ class LetterDrillTests {
 
     @Test
     fun theGapBlanksTheAskedGraphemeAndNothingElse() {
-        val tasks = (1..400).map { sample(level = 6, seed = it) }.associateBy { it.answerRef }
+        val tasks = (1..400).map { sample(sprosse = 6, seed = it) }.associateBy { it.answerRef }
         assertEquals("Stra＿e", tasks.getValue("ß").gapText)
         assertEquals("Wa＿er", tasks.getValue("ss").gapText)
         assertEquals("Na＿t", tasks.getValue("ch-ach").gapText)
@@ -122,7 +122,7 @@ class LetterDrillTests {
     @Test
     fun theWordJustAskedIsResampledOnce() {
         val refs = listOf("m", "n")
-        val repeats = (1..200).count { sample(level = 1, seed = it, refs = refs, avoid = "m").answerRef == "m" }
+        val repeats = (1..200).count { sample(sprosse = 1, seed = it, refs = refs, avoid = "m").answerRef == "m" }
         // One resample on a hit: a repeat now needs two unlucky draws, ~¼ of them.
         assertTrue(repeats in 20..80, "repeats after one resample: $repeats of 200")
     }

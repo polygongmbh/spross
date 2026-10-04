@@ -71,7 +71,7 @@ Engine contract: `../README.md`.
   **`NumbersExercise` is what a RUN offers, `NumbersReading` is what fills a SLOT** — a Phrases
   run draws tasks whose reading is Cardinal, Year or Clock — and the two must not be
   collapsed, because progress is kept per exercise. `DrillUnlocks` holds the whole ladder
-  as two tables of exercise → level reached (empty = always available), reading a
+  as two tables of exercise → Sprosse reached (empty = always available), reading a
   progress map the APP persists; kern stores nothing. `DrillRamp.step` is the Sprosse ramp
   every drill shares (clean wins up, a miss down, floor 1, almost moves nothing), with how
   long a Sprosse is left to the caller — `Numbers.winsToAdvance(fast)` reads the Fast
@@ -84,14 +84,14 @@ Engine contract: `../README.md`.
   each key a stable identifier the app localizes into a heading — so the table cannot
   drift from what the drill grades. `irregulars` (16–30) is offered only to a language
   whose readings there are not what its own siblings predict, so a band count varies.
-  `PhraseSlots` samples level-aware — same per-kind ramp tables as the plain drills
-  (a template's slot kind clamps the level).
-  The unleveled `sample` overload keeps the prototype's biased full-difficulty draws
+  `PhraseSlots` samples at a Sprosse — same per-kind ramp tables as the plain drills
+  (a template's slot kind clamps the Sprosse).
+  The `sample` overload without a Sprosse keeps the prototype's biased full-difficulty draws
   (numbers favor 2–3 digits, years cluster 1950–2050);
-  only Clock's unleveled draw coincides with the leveled ceiling.
+  only Clock's draw without a Sprosse coincides with the top Sprosse's.
   **`LetterDrill` is a separate facade, not a `NumbersReading` case**: its registry is
   alphabet file presence in the catalog (adding a language edits no Kotlin), its ramp is
-  stateless and kern-owned (`entryLevel`/`winsToAdvance`, then the `DrillRamp.step` every
+  stateless and kern-owned (`entrySprosse`/`winsToAdvance`, then the `DrillRamp.step` every
   drill shares — both D11 halves in one place so two platforms cannot drift),
   sampling takes an injected `Random` and an
   app-computed promptable set (device voices are an app fact).

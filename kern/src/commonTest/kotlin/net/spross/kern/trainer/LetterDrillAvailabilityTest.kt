@@ -210,7 +210,7 @@ class LetterDrillAvailabilityTest {
         val silent = report(hasVoice = false)
         assertEquals(listOf("mouse", "door"), silent.dictationCandidates.map { it.card.id })
         assertFalse(silent.dictationAvailable)
-        assertEquals(LetterDrill.MAX_LEVEL_WITHOUT_DICTATION, silent.maxLevel)
+        assertEquals(LetterDrill.MAX_SPROSSE_WITHOUT_DICTATION, silent.maxSprosse)
 
         val voiced = report(hasVoice = true)
         assertEquals(
@@ -227,12 +227,12 @@ class LetterDrillAvailabilityTest {
         val enough = report(hasVoice = true)
         assertEquals(LetterDrillAvailability.DICTATION_FLOOR, enough.dictationCandidates.size)
         assertTrue(enough.dictationAvailable)
-        assertEquals(LetterDrill.MAX_LEVEL_WITH_DICTATION, enough.maxLevel)
+        assertEquals(LetterDrill.MAX_SPROSSE_WITH_DICTATION, enough.maxSprosse)
 
         val short = report(hasVoice = true, cards = words.filter { it.id != "hello" })
         assertEquals(LetterDrillAvailability.DICTATION_FLOOR - 1, short.dictationCandidates.size)
         assertFalse(short.dictationAvailable)
-        assertEquals(LetterDrill.MAX_LEVEL_WITHOUT_DICTATION, short.maxLevel)
+        assertEquals(LetterDrill.MAX_SPROSSE_WITHOUT_DICTATION, short.maxSprosse)
     }
 
     /** The difficulty the draw weighs is READ from the schedule, never re-derived. */

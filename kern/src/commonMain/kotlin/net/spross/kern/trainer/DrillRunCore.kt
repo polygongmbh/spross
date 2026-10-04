@@ -74,8 +74,8 @@ data class DrillRunCore(
      * After [book] and the draw that follows it: the pacing brought up to date, and the pause
      * due now, if one is ([DrillPacing]).
      */
-    internal fun paced(level: Int?, newSprossen: Int, endless: Boolean): DrillRunCore =
-        copy(pacing = pacing.after(this, level, newSprossen, endless))
+    internal fun paced(sprosse: Int?, newSprossen: Int, endless: Boolean): DrillRunCore =
+        copy(pacing = pacing.after(this, sprosse, newSprossen, endless))
 
     /** Going on from a pause: the same run, and a fresh stretch from here. */
     internal fun resumed(): DrillRunCore =

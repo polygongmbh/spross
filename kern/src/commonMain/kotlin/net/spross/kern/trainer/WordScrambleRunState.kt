@@ -48,12 +48,12 @@ data class WordScrambleClose(
      * The Sprosse the run REACHED, not the one it ends on — the ramp drops back on a miss, and
      * the ladder rewards standing on a Sprosse rather than finishing there.
      */
-    val bestLevel: Int,
+    val bestSprosse: Int,
     /**
      * The Sprossen this run climbed off before its first slip ([DrillSprossen]), for the store to add
      * to the mask it holds — the Sprossen later runs pass on one clean answer
      * ([DrillSprossen.winsRequired]).
-     * Unfiltered: unlike [bestLevel] there is no standing value to beat.
+     * Unfiltered: unlike [bestSprosse] there is no standing value to beat.
      */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
@@ -87,7 +87,7 @@ class WordScrambleRunConfig(
  * and hands text in through [WordScrambleIntent].
  *
  * No FSRS anywhere: the box is READ for the words it has grown and never written, so the run
- * books no review. What outlives it is the ladder — [bestLevel] and [clearedSprossen], which
+ * books no review. What outlives it is the ladder — [bestSprosse] and [clearedSprossen], which
  * the screen that started the run files.
  */
 data class WordScrambleRunState(
@@ -95,9 +95,9 @@ data class WordScrambleRunState(
     /** The question on screen; null only once nothing can be asked any more. */
     val task: WordScrambleTask?,
     override val index: Int,
-    val level: Int,
-    val bestLevel: Int,
-    val winsAtLevel: Int,
+    val sprosse: Int,
+    val bestSprosse: Int,
+    val winsAtSprosse: Int,
     /** The Sprossen climbed off before the run's first slip — what the close hands the store. */
     val clearedSprossen: Set<Int>,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */

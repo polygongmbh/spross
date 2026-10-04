@@ -66,10 +66,10 @@ data class NumbersMode(
      * Ramp ceiling of one exercise: kern's per-reading ceiling, and for sentences the highest
      * ceiling among the frames the run happens to carry.
      */
-    fun maxLevel(exercise: NumbersExercise): Int {
+    fun maxSprosse(exercise: NumbersExercise): Int {
         val reading = exercise.reading
-            ?: return templates.maxOfOrNull { Numbers.maxLevel(it.slotKind) } ?: 1
-        return Numbers.maxLevel(reading)
+            ?: return templates.maxOfOrNull { Numbers.maxSprosse(it.slotKind) } ?: 1
+        return Numbers.maxSprosse(reading)
     }
 
     /**
@@ -109,17 +109,17 @@ data class NumbersMode(
      * reproducible end to end instead of three-quarters of the way.
      */
     fun draw(
-        levels: Map<NumbersExercise, Int>,
+        sprossen: Map<NumbersExercise, Int>,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): NumbersDraw {
         val first = exercises[rng.nextInt(exercises.size)]
         for (exercise in listOf(first) + exercises.filter { it != first }) {
-            val fresh = drawExercise(exercise, levels, avoiding, solved, rng)
+            val fresh = drawExercise(exercise, sprossen, avoiding, solved, rng)
             if (fresh != null) return fresh
         }
-        return NumbersDraw(null, levels)
+        return NumbersDraw(null, sprossen)
     }
 
     /**
@@ -128,32 +128,32 @@ data class NumbersMode(
      */
     private fun drawExercise(
         exercise: NumbersExercise,
-        levels: Map<NumbersExercise, Int>,
+        sprossen: Map<NumbersExercise, Int>,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): NumbersDraw? {
-        val climbed = DrillLadder.climb(levels[exercise] ?: 1, maxLevel(exercise)) { level ->
-            drawUnsolved(exercise, level, levels, avoiding, solved, rng)
+        val climbed = DrillLadder.climb(sprossen[exercise] ?: 1, maxSprosse(exercise)) { sprosse ->
+            drawUnsolved(exercise, sprosse, sprossen, avoiding, solved, rng)
         }
         val drawn = climbed.task ?: return null
-        return NumbersDraw(drawn, levels + (exercise to climbed.level))
+        return NumbersDraw(drawn, sprossen + (exercise to climbed.sprosse))
     }
 
     /**
-     * One value from [level] the run does not already hold. The Sprosse draws rather than
+     * One value from [sprosse] the run does not already hold. The Sprosse draws rather than
      * enumerates, so [DrillSolved.SPENT_ATTEMPTS] repeats in a row is what spent means here.
      */
     private fun drawUnsolved(
         exercise: NumbersExercise,
-        level: Int,
-        levels: Map<NumbersExercise, Int>,
+        sprosse: Int,
+        sprossen: Map<NumbersExercise, Int>,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): DrawnTask? {
         repeat(DrillSolved.SPENT_ATTEMPTS) {
-            val drawn = drawOnce(exercise, level, levels, rng)
+            val drawn = drawOnce(exercise, sprosse, sprossen, rng)
             if (DrillSolved.key(exercise, drawn.task) !in solved && drawn.task.prompt != avoiding) {
                 return drawn
             }
@@ -163,11 +163,11 @@ data class NumbersMode(
 
     private fun drawOnce(
         exercise: NumbersExercise,
-        level: Int,
-        levels: Map<NumbersExercise, Int>,
+        sprosse: Int,
+        sprossen: Map<NumbersExercise, Int>,
         rng: Random,
     ): DrawnTask {
-        val forward = drawForward(exercise, level, levels[NumbersExercise.Counting] ?: 1, rng)
+        val forward = drawForward(exercise, sprosse, sprossen[NumbersExercise.Counting] ?: 1, rng)
         val reversed = drawsReversed(rng)
         // The flip happens HERE and nowhere else: kern hands back an ordinary task with the
         // reading as its prompt, so no surface below has to ask the direction.
@@ -176,19 +176,19 @@ data class NumbersMode(
 
     private fun drawForward(
         exercise: NumbersExercise,
-        level: Int,
+        sprosse: Int,
         magnitudeDigits: Int,
         rng: Random,
     ): NumbersTask {
         val reading = exercise.reading
             // why: non-empty by construction — the frameless Phrases pick was dropped above.
-            ?: return PhraseSlots.sample(templates[rng.nextInt(templates.size)], level, rng)
+            ?: return PhraseSlots.sample(templates[rng.nextInt(templates.size)], sprosse, rng)
         // Mix's second half: a form takes its magnitude from the numbers Sprosse the run stands
         // on, so a topped-out climb reads "−4 072 918", not "−7".
         if (reading == NumbersReading.Form && mixesForms) {
-            return Numbers.sampleForms(language, level, magnitudeDigits, rng)
+            return Numbers.sampleForms(language, sprosse, magnitudeDigits, rng)
         }
-        return Numbers.sample(reading, language, level, rng)
+        return Numbers.sample(reading, language, sprosse, rng)
     }
 
     private val recordLanguage: String
@@ -327,7 +327,7 @@ data class DrawnTask(
  */
 data class NumbersDraw(
     val drawn: DrawnTask?,
-    val levels: Map<NumbersExercise, Int>,
+    val sprossen: Map<NumbersExercise, Int>,
 )
 
 /**

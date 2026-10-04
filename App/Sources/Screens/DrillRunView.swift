@@ -60,7 +60,7 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, content: Face.Content, reverse: Bool, fast: Bool = false,
-         level: Int? = nil, storageKey: String,
+         sprosse: Int? = nil, storageKey: String,
          onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
         self.model = model
         self.content = content
@@ -74,13 +74,13 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         #if DEBUG
         // UI-test hook: `-uitest-<drill>-level N` overrides it, which is how the
         // outer Sprossen are reached deterministically.
-        let preset = UserDefaults.standard.integer(forKey: Face.uitestLevelKey)
-        let opening = preset > 0 ? preset : level
+        let preset = UserDefaults.standard.integer(forKey: Face.uitestSprosseKey)
+        let opening = preset > 0 ? preset : sprosse
         #else
-        let opening = level
+        let opening = sprosse
         #endif
         _run = State(initialValue: Face.open(content: content, reverse: reverse, fast: fast,
-                                             normalizer: normalizer, level: opening,
+                                             normalizer: normalizer, sprosse: opening,
                                              standingRecord: TrainerRecords.best(for: storageKey),
                                              cleared: TrainerProgress.held(
                                                 for: NumbersMode.companion.clearedKey(key: storageKey,

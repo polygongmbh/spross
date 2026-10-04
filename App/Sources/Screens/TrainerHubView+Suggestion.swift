@@ -54,10 +54,10 @@ extension TrainerHubView {
                                            top: model.datesSprossen) }
         case .wordScramble:
             return cleared(WordScrambleView.storageKey(language),
-                           top: Int(WordScrambleAvailability(model: model).report.maxLevel))
+                           top: Int(WordScrambleAvailability(model: model).report.maxSprosse))
         case .sentenceScramble:
             return cleared(SentenceScrambleView.storageKey(language),
-                           top: Int(SentenceScrambleAvailability(model: model).report.maxLevel))
+                           top: Int(SentenceScrambleAvailability(model: model).report.maxSprosse))
         }
     }
 

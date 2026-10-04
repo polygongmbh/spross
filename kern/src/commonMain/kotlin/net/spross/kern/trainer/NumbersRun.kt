@@ -35,17 +35,17 @@ object NumbersRun {
 
     /**
      * The same, forced to given Sprossen — the deterministic way to reach a stage. An exercise
-     * [levels] leaves out opens at 1; every level is clamped to the exercise's ladder.
+     * [sprossen] leaves out opens at 1; every Sprosse is clamped to the exercise's ladder.
      */
     fun openAt(
         mode: NumbersMode,
-        levels: Map<NumbersExercise, Int>,
+        sprossen: Map<NumbersExercise, Int>,
         standingRecord: Int,
         standingProgress: Map<String, Int>,
         rng: Random,
     ): NumbersRunState {
         val start = mode.exercises.associateWith { exercise ->
-            (levels[exercise] ?: 1).coerceIn(1, mode.maxLevel(exercise))
+            (sprossen[exercise] ?: 1).coerceIn(1, mode.maxSprosse(exercise))
         }
         val opening = mode.draw(start, null, emptySet(), rng)
         return NumbersRunState(
@@ -53,17 +53,17 @@ object NumbersRun {
             // why: nothing is solved yet, so the draw always has a Sprosse to ask from.
             current = requireNotNull(opening.drawn) { "no task at Sprosse 1 of ${mode.recordKey}" },
             index = 0,
-            levels = opening.levels,
-            winsAtLevel = emptyMap(),
-            bestLevels = emptyMap(),
+            sprossen = opening.sprossen,
+            winsAtSprosse = emptyMap(),
+            bestSprossen = emptyMap(),
             core = DrillRunCore(
-                pacing = DrillPacing.opening(mode.exercises.singleOrNull()?.let { opening.levels[it] }, standingRecord),
+                pacing = DrillPacing.opening(mode.exercises.singleOrNull()?.let { opening.sprossen[it] }, standingRecord),
             ),
             seenDigitCounts = emptySet(),
             hintUsed = false,
             feedback = TurnFeedback.Neutral,
             finished = false,
-            standingLevels = mode.exercises.associateWith { standingProgress[mode.progressKey(it)] ?: 0 },
+            standingSprossen = mode.exercises.associateWith { standingProgress[mode.progressKey(it)] ?: 0 },
         )
     }
 
@@ -144,7 +144,7 @@ object NumbersRun {
         }
         // why: a challenge follows its script, so it books no ladder and no record.
         val scripted = state.challenge != null
-        val bookings = if (scripted) emptyMap() else ended.bestLevels
+        val bookings = if (scripted) emptyMap() else ended.bestSprossen
             .map { (exercise, best) -> state.mode.progressKey(exercise) to best }
             .filter { (key, best) -> best > (standingProgress[key] ?: 0) }
             .toMap()
@@ -284,8 +284,8 @@ object NumbersRun {
         rng: Random,
     ): NumbersReduction {
         val next = advanced(state, correct, outcome)
-        val draw = next.challenge?.drawAt(state.index + 1, next.levels)
-            ?: next.mode.draw(next.levels, state.currentTask.prompt, next.solved, rng)
+        val draw = next.challenge?.drawAt(state.index + 1, next.sprossen)
+            ?: next.mode.draw(next.sprossen, state.currentTask.prompt, next.solved, rng)
         return NumbersReduction(
             paced(climbed(next, draw).copy(
                 // Nothing left to ask anywhere: end on the summary, never on a repeat.
@@ -309,7 +309,7 @@ object NumbersRun {
     private fun paced(state: NumbersRunState): NumbersRunState = state.copy(
         core = state.core.paced(
             // why: a mixed run climbs one ladder per exercise, and no one of them is the run's.
-            level = state.mode.exercises.singleOrNull()?.let { state.levels[it] },
+            sprosse = state.mode.exercises.singleOrNull()?.let { state.sprossen[it] },
             newSprossen = state.newSprossen,
             endless = !state.finished && !state.timed && state.challenge == null,
         ),
@@ -321,13 +321,13 @@ object NumbersRun {
      * banked on the one below stay behind with it.
      */
     private fun climbed(state: NumbersRunState, draw: NumbersDraw): NumbersRunState {
-        val moved = draw.levels.filter { (exercise, level) -> level != state.levels[exercise] }
+        val moved = draw.sprossen.filter { (exercise, sprosse) -> sprosse != state.sprossen[exercise] }
         if (moved.isEmpty()) return state
         return state.copy(
-            levels = draw.levels,
-            winsAtLevel = state.winsAtLevel + moved.map { (exercise, _) -> exercise to 0 },
-            bestLevels = state.bestLevels + moved.map { (exercise, level) ->
-                exercise to maxOf(state.bestLevels[exercise] ?: 1, level)
+            sprossen = draw.sprossen,
+            winsAtSprosse = state.winsAtSprosse + moved.map { (exercise, _) -> exercise to 0 },
+            bestSprossen = state.bestSprossen + moved.map { (exercise, sprosse) ->
+                exercise to maxOf(state.bestSprossen[exercise] ?: 1, sprosse)
             },
         )
     }
@@ -340,21 +340,21 @@ object NumbersRun {
         val exercise = state.currentExercise
         val clean = outcome != AnswerOutcome.Almost
         val step = DrillRamp.step(
-            level = state.currentLevel,
-            winsAtLevel = state.winsAtLevel[exercise] ?: 0,
+            sprosse = state.currentSprosse,
+            winsAtSprosse = state.winsAtSprosse[exercise] ?: 0,
             correct = correct,
             clean = clean,
             winsRequired = state.mode.winsToAdvance,
         )
         return state.copy(
-            levels = state.levels + (exercise to step.level),
-            winsAtLevel = state.winsAtLevel + (exercise to step.winsAtLevel),
-            bestLevels = state.bestLevels + (exercise to maxOf(state.bestLevels[exercise] ?: 1, step.level)),
+            sprossen = state.sprossen + (exercise to step.sprosse),
+            winsAtSprosse = state.winsAtSprosse + (exercise to step.winsAtSprosse),
+            bestSprossen = state.bestSprossen + (exercise to maxOf(state.bestSprossen[exercise] ?: 1, step.sprosse)),
             seenDigitCounts = state.currentDigits
                 ?.let { state.seenDigitCounts + it }
                 ?: state.seenDigitCounts,
             core = state.core.book(correct, clean, DrillSolved.key(exercise, state.currentTask)),
-            score = state.score + TimedRun.points(state.currentLevel, correct, clean),
+            score = state.score + TimedRun.points(state.currentSprosse, correct, clean),
         )
     }
 

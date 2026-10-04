@@ -15,10 +15,10 @@ import net.spross.kern.catalog.AlphabetParser
 class LetterDrillChoiceTests {
     private val alphabet = LetterDrillFixture.alphabet
 
-    private fun tasks(level: Int, seeds: IntRange = 1..200): List<LetterDrillTask> = seeds.map {
+    private fun tasks(sprosse: Int, seeds: IntRange = 1..200): List<LetterDrillTask> = seeds.map {
         assertNotNull(
             LetterDrill.sample(
-                alphabet, LetterDrillFixture.example, level, LetterDrillFixture.allRefs,
+                alphabet, LetterDrillFixture.example, sprosse, LetterDrillFixture.allRefs,
                 null, null, emptySet(), Random(it),
             ),
         )
@@ -41,10 +41,10 @@ class LetterDrillChoiceTests {
 
     @Test
     fun everyChoiceQuestionOffersFourDistinctTilesWithOneAnswer() {
-        for (level in 1..5) {
-            for (task in tasks(level)) {
-                val tiles = assertNotNull(task.choices, "level $level: a choice format needs tiles")
-                assertEquals(LetterDrill.CHOICE_COUNT, tiles.size, "level $level, ${task.answerRef}: $tiles")
+        for (sprosse in 1..5) {
+            for (task in tasks(sprosse)) {
+                val tiles = assertNotNull(task.choices, "Sprosse $sprosse: a choice format needs tiles")
+                assertEquals(LetterDrill.CHOICE_COUNT, tiles.size, "Sprosse $sprosse, ${task.answerRef}: $tiles")
                 assertEquals(tiles.distinct(), tiles, "a tile may never repeat: $tiles")
                 assertEquals(1, tiles.count { it == task.display }, "the answer sits once: $tiles")
             }
@@ -53,8 +53,8 @@ class LetterDrillChoiceTests {
 
     @Test
     fun proseRowsAndSameGlyphSiblingsNeverReachATile() {
-        for (level in 1..5) {
-            for (task in tasks(level)) {
+        for (sprosse in 1..5) {
+            for (task in tasks(sprosse)) {
                 val answer = LetterDrillFixture.entry(task.answerRef)
                 val tiles = task.choices.orEmpty()
                 // A rule row on a 44 pt tile reads as nonsense and leaks by elimination.
@@ -78,14 +78,14 @@ class LetterDrillChoiceTests {
 
     @Test
     fun theEasySprosseStaysOffBothConfusionAxes() {
-        for (level in 1..2) {
-            for (task in tasks(level)) {
+        for (sprosse in 1..2) {
+            for (task in tasks(sprosse)) {
                 val answer = LetterDrillFixture.entry(task.answerRef)
                 val near = closureGlyphs(answer.ref) + homophoneGlyphs(answer.ref)
                 val distractors = task.choices.orEmpty() - task.display
                 assertTrue(
                     distractors.none { it in near },
-                    "level $level, ${task.answerRef}: a confusable slipped into the easy Sprosse — $distractors",
+                    "Sprosse $sprosse, ${task.answerRef}: a confusable slipped into the easy Sprosse — $distractors",
                 )
             }
         }
@@ -93,16 +93,16 @@ class LetterDrillChoiceTests {
 
     @Test
     fun theConfusableSprosseDrawsOneThenTwoThenThree() {
-        for (level in 3..5) {
-            val wanted = level - 2
-            for (task in tasks(level)) {
+        for (sprosse in 3..5) {
+            val wanted = sprosse - 2
+            for (task in tasks(sprosse)) {
                 val answer = LetterDrillFixture.entry(task.answerRef)
                 val near = nearGlyphs(answer, task.gapText)
                 val drawn = (task.choices.orEmpty() - task.display).count { it in near }
                 assertEquals(
                     minOf(wanted, near.size),
                     drawn,
-                    "level $level, ${task.answerRef}: drew $drawn of $near in ${task.choices}",
+                    "Sprosse $sprosse, ${task.answerRef}: drew $drawn of $near in ${task.choices}",
                 )
             }
         }
@@ -110,8 +110,8 @@ class LetterDrillChoiceTests {
 
     @Test
     fun homophonesAreKeptOffANameQuestionAndPreferredInAGapWord() {
-        for (level in 1..5) {
-            for (task in tasks(level)) {
+        for (sprosse in 1..5) {
+            for (task in tasks(sprosse)) {
                 if (task.gapText != null) continue
                 val homophones = homophoneGlyphs(task.answerRef)
                 assertTrue(
@@ -134,8 +134,8 @@ class LetterDrillChoiceTests {
 
     @Test
     fun typedFormatsCarryNoTiles() {
-        for (level in 6..7) {
-            for (task in tasks(level, seeds = 1..40)) {
+        for (sprosse in 6..7) {
+            for (task in tasks(sprosse, seeds = 1..40)) {
                 assertEquals(LetterFormat.Typed, task.format)
                 assertNull(task.choices)
             }

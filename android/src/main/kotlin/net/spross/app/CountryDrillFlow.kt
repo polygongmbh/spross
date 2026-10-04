@@ -42,7 +42,7 @@ class CountryDrillFlow(
         return DrillEnd(
             closed.state,
             closed.effects,
-            TypedDrillClose(closed.summary, closed.bestLevel, closed.clearedSprossen),
+            TypedDrillClose(closed.summary, closed.bestSprosse, closed.clearedSprossen),
         )
     }
 
@@ -62,7 +62,7 @@ class CountryDrillFlow(
      */
     override fun view(chrome: Chrome): TypedDrillView = TypedDrillView(
         index = state.index,
-        level = state.level,
+        sprosse = state.sprosse,
         streak = state.streak,
         bestStreak = state.bestStreak,
         outcomes = state.outcomes,
@@ -96,7 +96,7 @@ fun AppModel.newCountryDrill(
     reverse: Boolean,
     fast: Boolean,
     /** The Sprosse the run opens on — the page's call ([net.spross.kern.trainer.NumbersMode.entrySprosse] or a tap). */
-    level: Int,
+    sprosse: Int,
     /** The streak record the page's store holds — what a pause for improving is measured against. */
     standingRecord: Int,
     /** The Sprossen answered out in this direction — a new one is what a pause for improving names. */
@@ -116,7 +116,7 @@ fun AppModel.newCountryDrill(
         cleared = cleared,
     )
     return CountryDrillFlow(
-        start = CountryDrillRun.openAt(config, level, rng),
+        start = CountryDrillRun.openAt(config, sprosse, rng),
         rng = rng,
         onTone = onTone,
         onReleaseFocus = onReleaseFocus,

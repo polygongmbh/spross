@@ -48,7 +48,7 @@ class DrillPacingTest {
         assertEquals(0, record.pacing.newSprossen)
 
         val cleared = (1..DrillPacing.IMPROVED_AFTER).fold(DrillRunCore()) { core, _ -> core.book(true, true, null) }
-            .paced(level = 2, newSprossen = 1, endless = true)
+            .paced(sprosse = 2, newSprossen = 1, endless = true)
         assertEquals(DrillPauseReason.Improved, cleared.pacing.pause)
     }
 
@@ -78,7 +78,7 @@ class DrillPacingTest {
         assertEquals(paused.index, resumed.index)
         assertEquals(paused.streak, resumed.streak)
         assertEquals(paused.solved, resumed.solved)
-        assertEquals(paused.levels, resumed.levels)
+        assertEquals(paused.sprossen, resumed.sprossen)
         assertNull(right(resumed, rng).pause)
     }
 }

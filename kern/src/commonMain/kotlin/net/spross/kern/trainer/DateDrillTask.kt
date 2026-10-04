@@ -61,7 +61,7 @@ data class DateDrillTask(
 )
 
 /** One draw: the task and the Sprosse it was found on — a null task ends the run. */
-data class DateDrillDraw(val task: DateDrillTask?, val level: Int)
+data class DateDrillDraw(val task: DateDrillTask?, val sprosse: Int)
 
 /** One calendar name as the reference table shows it — both sides, and the date-only forms. */
 data class DateReferenceRow(

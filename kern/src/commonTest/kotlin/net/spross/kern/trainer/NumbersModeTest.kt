@@ -147,11 +147,11 @@ class NumbersModeTest {
             listOf(frame(NumbersReading.Year), frame(NumbersReading.Clock)),
             emptySet(),
         )
-        assertEquals(Numbers.maxLevel(NumbersReading.Cardinal), mode.maxLevel(NumbersExercise.Counting))
-        assertEquals(Numbers.maxLevel(NumbersReading.Clock), mode.maxLevel(NumbersExercise.Clock))
-        assertEquals(Numbers.maxLevel(NumbersReading.Form), mode.maxLevel(NumbersExercise.Forms))
+        assertEquals(Numbers.maxSprosse(NumbersReading.Cardinal), mode.maxSprosse(NumbersExercise.Counting))
+        assertEquals(Numbers.maxSprosse(NumbersReading.Clock), mode.maxSprosse(NumbersExercise.Clock))
+        assertEquals(Numbers.maxSprosse(NumbersReading.Form), mode.maxSprosse(NumbersExercise.Forms))
         // Years tops out at 3, the clock at 5 — the run takes the higher of the two frames.
-        assertEquals(Numbers.maxLevel(NumbersReading.Clock), mode.maxLevel(NumbersExercise.Phrases))
+        assertEquals(Numbers.maxSprosse(NumbersReading.Clock), mode.maxSprosse(NumbersExercise.Phrases))
     }
 
     /** A padlock that can never open is a lie: an unrealizable exercise has no row at all. */
@@ -231,9 +231,9 @@ class NumbersModeTest {
         val plain = NumbersMode(NumbersExercise.Counting, "de")
         val reverse = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Reverse))
         val mix = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Mix))
-        val levels = mapOf(NumbersExercise.Counting to 3)
+        val sprossen = mapOf(NumbersExercise.Counting to 3)
 
-        fun NumbersMode.reversedDraw() = assertNotNull(draw(levels, null, emptySet(), rng).drawn).reversed
+        fun NumbersMode.reversedDraw() = assertNotNull(draw(sprossen, null, emptySet(), rng).drawn).reversed
         assertTrue((1..20).none { plain.reversedDraw() })
         assertTrue((1..20).all { reverse.reversedDraw() })
         val flips = (1..40).map { mix.reversedDraw() }

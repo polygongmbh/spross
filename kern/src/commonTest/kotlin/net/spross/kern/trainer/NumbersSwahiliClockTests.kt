@@ -12,7 +12,7 @@ class NumbersSwahiliClockTests {
 
     private fun clock(hour: Int, minute: Int) = Numbers.clock(hour, minute, "sw")
 
-    /** Half of everything a level-2 learner sees is a quarter hour. */
+    /** Half of everything a Sprosse-2 learner sees is a quarter hour. */
     @Test
     fun theQuarterHoursHaveTheirOwnWords() {
         assertEquals("Saa tisa na robo mchana", clock(15, 15).display)

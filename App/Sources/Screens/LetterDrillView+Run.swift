@@ -89,7 +89,7 @@ extension LetterDrillView {
 
     func seedStreak(_ streak: Int) {
         run = run.doCopy(config: run.config, task: run.task, index: run.index,
-                         level: run.level, winsAtLevel: run.winsAtLevel,
+                         sprosse: run.sprosse, winsAtSprosse: run.winsAtSprosse,
                          clearedSprossen: run.clearedSprossen,
                          core: run.core.doCopy(done: Int32(streak + 6),
                                                streak: Int32(streak),
@@ -150,7 +150,7 @@ extension LetterDrillView {
         // it exists for, and this is where a run shows it reached the player.
         print("""
             LetterDrill probe: play \(name) \
-            format \(task.format.name) level \(run.level) kind \(task.promptKind.name) \
+            format \(task.format.name) Sprosse \(run.sprosse) kind \(task.promptKind.name) \
             text "\(task.promptText)" recording \(pronunciation.recordingPath ?? "none") \
             index \(pronunciation.gain) dB/\(pronunciation.leadMs) ms \
             screenReader \(screenReaderOn) \

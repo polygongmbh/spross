@@ -78,7 +78,7 @@ fun LetterDrillScreen(model: AppModel) {
         run = flow,
         leave = leave,
         progress = state,
-        // One Sprosse, mapped to formats by kern — there is no level to name.
+        // One Sprosse, mapped to formats by kern — there is no Sprosse to name.
         sprosse = null,
         speaksPastMute = true,
     ) {

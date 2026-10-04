@@ -62,7 +62,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
     fun book(bookings: Map<String, Int>) {
         if (bookings.isEmpty()) return
         val edit = prefs.edit()
-        for ((key, level) in bookings) edit.putInt(NumbersMode.PROGRESS_PREFIX + key, level)
+        for ((key, sprosse) in bookings) edit.putInt(NumbersMode.PROGRESS_PREFIX + key, sprosse)
         edit.apply()
     }
 
@@ -70,12 +70,12 @@ class TrainerStore(private val prefs: SharedPreferences) {
     fun best(key: String): Int = sprosse(key)
 
     /**
-     * Books [level] as the furthest Sprosse reached. Strictly greater, so a run re-closed
+     * Books [sprosse] as the furthest Sprosse reached. Strictly greater, so a run re-closed
      * over its own figures never re-claims a Sprosse that was already standing.
      */
-    fun bookSprosse(key: String, level: Int) {
-        if (level <= sprosse(key)) return
-        prefs.edit().putInt(NumbersMode.PROGRESS_PREFIX + key, level).apply()
+    fun bookSprosse(key: String, sprosse: Int) {
+        if (sprosse <= sprosse(key)) return
+        prefs.edit().putInt(NumbersMode.PROGRESS_PREFIX + key, sprosse).apply()
     }
 
     private fun sprosse(key: String): Int = prefs.getInt(NumbersMode.PROGRESS_PREFIX + key, 0)

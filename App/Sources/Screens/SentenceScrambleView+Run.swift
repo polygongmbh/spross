@@ -85,8 +85,8 @@ extension SentenceScrambleView {
 
     func seedStreak(_ streak: Int) {
         run = run.doCopy(config: run.config, task: run.task, placed: run.placed,
-                         index: run.index, level: run.level, bestLevel: run.bestLevel,
-                         winsAtLevel: run.winsAtLevel,
+                         index: run.index, sprosse: run.sprosse, bestSprosse: run.bestSprosse,
+                         winsAtSprosse: run.winsAtSprosse,
                          clearedSprossen: run.clearedSprossen,
                          core: run.core.doCopy(done: Int32(streak + 6),
                                                streak: Int32(streak),

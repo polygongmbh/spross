@@ -51,9 +51,9 @@ data class NumbersChallenge(
             // why: a script is never empty — its first draw is at Sprosse 1 with nothing solved.
             current = requireNotNull(opening.drawn) { "empty challenge ${code(null)}" },
             index = 0,
-            levels = opening.levels,
-            winsAtLevel = emptyMap(),
-            bestLevels = emptyMap(),
+            sprossen = opening.sprossen,
+            winsAtSprosse = emptyMap(),
+            bestSprossen = emptyMap(),
             core = DrillRunCore(),
             seenDigitCounts = emptySet(),
             hintUsed = false,
@@ -71,9 +71,9 @@ data class NumbersChallenge(
     }
 
     /** Question [index] as a draw at its Sprosse; a null task past the end ends the run. */
-    internal fun drawAt(index: Int, levels: Map<NumbersExercise, Int>): NumbersDraw {
-        val next = tasks.getOrNull(index) ?: return NumbersDraw(null, levels)
-        return NumbersDraw(next.drawn, levels + (next.drawn.exercise to next.level))
+    internal fun drawAt(index: Int, sprossen: Map<NumbersExercise, Int>): NumbersDraw {
+        val next = tasks.getOrNull(index) ?: return NumbersDraw(null, sprossen)
+        return NumbersDraw(next.drawn, sprossen + (next.drawn.exercise to next.sprosse))
     }
 
     private fun script(): List<ChallengeTask> {
@@ -86,7 +86,7 @@ data class NumbersChallenge(
             val sprosse = 1 + k / Numbers.winsToAdvance(fast = false)
             val draw = run.draw(run.exercises.associateWith { sprosse }, avoiding, solved, rng)
             val drawn = draw.drawn ?: break
-            out += ChallengeTask(drawn, draw.levels.getValue(drawn.exercise))
+            out += ChallengeTask(drawn, draw.sprossen.getValue(drawn.exercise))
             solved += DrillSolved.key(drawn.exercise, drawn.task)
             avoiding = drawn.task.prompt
         }
@@ -194,7 +194,7 @@ data class NumbersChallenge(
 }
 
 /** One question of a challenge's script and the Sprosse it is scored at. */
-data class ChallengeTask(val drawn: DrawnTask, val level: Int)
+data class ChallengeTask(val drawn: DrawnTask, val sprosse: Int)
 
 /** What a typed code turned out to be. */
 sealed class ChallengeReading {

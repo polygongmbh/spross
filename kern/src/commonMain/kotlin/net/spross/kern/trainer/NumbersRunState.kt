@@ -74,14 +74,14 @@ data class NumbersRunState(
      * The Sprosse each exercise stands on, all starting at 1 however far the learner has climbed
      * before: persisted progress buys ACCESS, never a head start, because the climb is the drill.
      */
-    val levels: Map<NumbersExercise, Int>,
-    val winsAtLevel: Map<NumbersExercise, Int>,
+    val sprossen: Map<NumbersExercise, Int>,
+    val winsAtSprosse: Map<NumbersExercise, Int>,
     /**
      * The highest Sprosse each exercise STOOD ON in this run — what the close books. Tracked apart
-     * from [levels] because a Sprosse steps back down on a miss, and the ladder rewards reaching
+     * from [sprossen] because a Sprosse steps back down on a miss, and the ladder rewards reaching
      * one, not finishing on it.
      */
-    val bestLevels: Map<NumbersExercise, Int>,
+    val bestSprossen: Map<NumbersExercise, Int>,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
     override val core: DrillRunCore,
     /** Digit counts already introduced with a place-value hint; each length is hinted once. */
@@ -100,15 +100,15 @@ data class NumbersRunState(
      * The Sprosse each exercise had been climbed to when the run opened, as the platform's
      * store holds it; 0 where none stood yet.
      */
-    val standingLevels: Map<NumbersExercise, Int> = emptyMap(),
+    val standingSprossen: Map<NumbersExercise, Int> = emptyMap(),
 ) : DrillRunProgress {
     /**
      * The Sprossen this run climbed above where each exercise stood — what a pause for
      * improving names. Sprosse 1 is where every run opens, so it is never new.
      */
     internal val newSprossen: Int
-        get() = bestLevels.entries.sumOf { (exercise, best) ->
-            maxOf(0, best - maxOf(1, standingLevels[exercise] ?: 0))
+        get() = bestSprossen.entries.sumOf { (exercise, best) ->
+            maxOf(0, best - maxOf(1, standingSprossen[exercise] ?: 0))
         }
 
     /** The run ends on a clock and is scored ([TimedRun]). */
@@ -125,12 +125,12 @@ data class NumbersRunState(
     /** The reading is the prompt and the value is owed. The one thing it decides is the keyboard. */
     val currentReversed: Boolean get() = current.reversed
 
-    val currentLevel: Int get() = levels[currentExercise] ?: 1
+    val currentSprosse: Int get() = sprossen[currentExercise] ?: 1
 
-    val currentMaxLevel: Int get() = mode.maxLevel(currentExercise)
+    val currentMaxSprosse: Int get() = mode.maxSprosse(currentExercise)
 
     /** An exercise with one Sprosse has no Sprosse to report. */
-    val showsSprosse: Boolean get() = currentMaxLevel > 1
+    val showsSprosse: Boolean get() = currentMaxSprosse > 1
 
     /** A run that asks one thing has already said what it asks. */
     val severalExercises: Boolean get() = mode.exercises.size > 1

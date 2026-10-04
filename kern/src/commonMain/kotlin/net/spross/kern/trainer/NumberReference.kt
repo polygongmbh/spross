@@ -23,7 +23,7 @@ data class ReferenceSection(val key: String, val entries: List<ReferenceEntry>)
  * The bands follow where the languages are actually irregular, not the number line:
  * - `base` — everything a learner memorizes outright, 0–15: the atoms plus the teens
  *   every pack authors as a list, which is where the stems that no rule predicts live
- *   (elf, zwölf, once, quince, fifteen). 0 appears nowhere else above level 1.
+ *   (elf, zwölf, once, quince, fifteen). 0 appears nowhere else above Sprosse 1.
  * - `tens` — the successor to Swahili's tens look-up, now offered to every language
  *   (uk сорок, de the only ß, en forty losing the u of four).
  * - `irregulars` — 16–30, the run where composition starts, offered ONLY to the

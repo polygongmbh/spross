@@ -109,7 +109,7 @@ class DrillSuggestionTests {
     @Test
     fun numbersAreMasteredOnceEveryExerciseStoodAboveItsTop() {
         val tops = listOf(NumbersExercise.Counting, NumbersExercise.Clock, NumbersExercise.Forms)
-            .associateWith { Numbers.maxLevel(it.reading!!) }
+            .associateWith { Numbers.maxSprosse(it.reading!!) }
         assertFalse(Ladder.numbers(tops, "de").mastered)
         assertTrue(Ladder.numbers(tops.mapValues { it.value + 1 }, "de").mastered)
         assertFalse(Ladder.numbers(emptyMap(), "de").mastered)

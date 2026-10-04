@@ -50,54 +50,54 @@ object DateDrill {
     fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else WINS_TO_ADVANCE
 
     /** How tall this pair's ladder is: one Sprosse per kind the pair can ask. */
-    fun maxLevel(content: DateDrillContent, reverse: Boolean): Int = sprossen(content, reverse).size
+    fun maxSprosse(content: DateDrillContent, reverse: Boolean): Int = sprossen(content, reverse).size
 
     /** Fast is earned by having EVER stood on this ladder's top Sprosse, like the atlas'. */
-    fun fastUnlocked(bestLevel: Int, content: DateDrillContent, reverse: Boolean): Boolean =
-        bestLevel >= maxLevel(content, reverse)
+    fun fastUnlocked(bestSprosse: Int, content: DateDrillContent, reverse: Boolean): Boolean =
+        bestSprosse >= maxSprosse(content, reverse)
 
     /** The Sprosse ramp, on this ladder's Sprosse length ([DrillRamp.step]). */
     fun step(
         content: DateDrillContent,
         reverse: Boolean,
-        level: Int,
-        winsAtLevel: Int,
+        sprosse: Int,
+        winsAtSprosse: Int,
         correct: Boolean,
         clean: Boolean,
         fast: Boolean,
     ): DrillRamp.SprosseStep =
-        DrillRamp.step(level, winsAtLevel, correct, clean, winsToAdvance(fast))
+        DrillRamp.step(sprosse, winsAtSprosse, correct, clean, winsToAdvance(fast))
 
     /**
-     * What [level] may ask: the kind it introduces, and every kind below it — except the
+     * What [sprosse] may ask: the kind it introduces, and every kind below it — except the
      * warm-up, which every Sprosse above it leaves behind.
      *
      * why: [DateTaskKind.NameChoice] is a landing rather than a step. Four tiles carried
      * up among written dates would be a free point, and the Sprosse above would climb on
      * a tap that asked nothing the Sprosse below had not already answered.
      */
-    fun kinds(content: DateDrillContent, level: Int, reverse: Boolean): List<DateTaskKind> {
+    fun kinds(content: DateDrillContent, sprosse: Int, reverse: Boolean): List<DateTaskKind> {
         val ladder = sprossen(content, reverse)
-        val carried = ladder.take(level.coerceIn(1, ladder.size))
+        val carried = ladder.take(sprosse.coerceIn(1, ladder.size))
         return if (carried.size == 1) carried else carried.drop(1)
     }
 
     /**
-     * One question from [level]'s pool, never one [solved] already holds ([DrillSolved]).
+     * One question from [sprosse]'s pool, never one [solved] already holds ([DrillSolved]).
      * [avoid] is the previous task's [DrillSolved.key], resampled once so a repeat needs
      * two unlucky draws. Null ⇒ the Sprosse is answered out — for an assembled Sprosse, that
      * [DrillSolved.SPENT_ATTEMPTS] draws in a row landed on solved questions.
      */
     fun sample(
         content: DateDrillContent,
-        level: Int,
+        sprosse: Int,
         reverse: Boolean,
         avoid: String?,
         solved: Set<String>,
         rng: Random,
         arriving: Boolean = false,
     ): DateDrillTask? {
-        for (kind in drawOrder(kinds(content, level, reverse), rng, arriving)) {
+        for (kind in drawOrder(kinds(content, sprosse, reverse), rng, arriving)) {
             val task = when (kind) {
                 DateTaskKind.NameChoice ->
                     samplePool(DateDrillChoices.pool(content, reverse), avoid, solved, rng)
@@ -114,24 +114,24 @@ object DateDrill {
     }
 
     /**
-     * The first Sprosse at or above [level] with a question left ([DrillLadder.climb]). The
+     * The first Sprosse at or above [sprosse] with a question left ([DrillLadder.climb]). The
      * Sprossen nest, so a Sprosse is spent only once everything it carries is answered out, and
      * the one above always has at least as much to offer.
      */
     fun draw(
         content: DateDrillContent,
-        level: Int,
+        sprosse: Int,
         reverse: Boolean,
         avoid: String?,
         solved: Set<String>,
         rng: Random,
         arriving: Boolean = false,
     ): DateDrillDraw {
-        val climbed = DrillLadder.climb(level, maxLevel(content, reverse)) { sprosse ->
+        val climbed = DrillLadder.climb(sprosse, maxSprosse(content, reverse)) { sprosse ->
             // Climbing PAST a spent Sprosse arrives at the one above it just as a promotion does.
-            sample(content, sprosse, reverse, avoid, solved, rng, arriving || sprosse > level)
+            sample(content, sprosse, reverse, avoid, solved, rng, arriving || sprosse > sprosse)
         }
-        return DateDrillDraw(climbed.task, climbed.level)
+        return DateDrillDraw(climbed.task, climbed.sprosse)
     }
 
     /**
@@ -140,12 +140,12 @@ object DateDrill {
      * ladder above the names is never cleared.
      */
     fun cleared(content: DateDrillContent, reverse: Boolean, solved: Set<String>): Set<Int> =
-        DrillSolved.cleared(solved, maxLevel(content, reverse)) { level -> pool(content, level, reverse) }
+        DrillSolved.cleared(solved, maxSprosse(content, reverse)) { sprosse -> pool(content, sprosse, reverse) }
 
-    /** Every prompt key [level] can ask, or null where one of its kinds is drawn rather than listed. */
-    private fun pool(content: DateDrillContent, level: Int, reverse: Boolean): List<String>? {
+    /** Every prompt key [sprosse] can ask, or null where one of its kinds is drawn rather than listed. */
+    private fun pool(content: DateDrillContent, sprosse: Int, reverse: Boolean): List<String>? {
         val keys = mutableListOf<String>()
-        for (kind in kinds(content, level, reverse)) {
+        for (kind in kinds(content, sprosse, reverse)) {
             val tasks = when (kind) {
                 DateTaskKind.NameChoice -> DateDrillChoices.pool(content, reverse)
                 DateTaskKind.Weekday, DateTaskKind.Month -> DateDrillTasks.pool(content, kind, reverse)

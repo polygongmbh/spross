@@ -58,7 +58,7 @@ fun WordScrambleScreen(model: AppModel) {
         run = flow,
         leave = leave,
         progress = state,
-        sprosse = chrome.trainerSprosse.format(state.level),
+        sprosse = chrome.trainerSprosse.format(state.sprosse),
     ) {
         val task = state.task ?: return@DrillRunScaffold
         DrillPromptCard(

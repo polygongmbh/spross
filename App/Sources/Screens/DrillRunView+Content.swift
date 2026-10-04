@@ -18,7 +18,7 @@ extension DrillRunView {
         let task = current
         return ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                DrillStreakLine(level: Text("trainer.sprosse \(task.level.formatted())"),
+                DrillStreakLine(sprosse: Text("trainer.sprosse \(task.sprosse.formatted())"),
                                 streak: task.streak, bestStreak: task.bestStreak,
                                 announcesRecord: true)
                 // ZStack so the outgoing and incoming question overlap during

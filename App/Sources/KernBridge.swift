@@ -112,32 +112,32 @@ var drillRandom: KotlinRandom {
     return KotlinRandom.companion
 }
 
-/// Levels are `Int` everywhere in the drill UI; the ladder is Kotlin `Int`.
+/// Sprossen are `Int` everywhere in the drill UI; the ladder is Kotlin `Int`.
 /// Bridged HERE so no view ever writes `Int32(…)` around a Sprosse number.
 extension LetterDrill {
-    func ceiling(dictation: Bool) -> Int { Int(maxLevel(dictationAvailable: dictation)) }
+    func ceiling(dictation: Bool) -> Int { Int(maxSprosse(dictationAvailable: dictation)) }
 
-    func entryLevel(arrived: Int) -> Int { Int(entryLevel(arrivedCards: Int32(arrived))) }
+    func entrySprosse(arrived: Int) -> Int { Int(entrySprosse(arrivedCards: Int32(arrived))) }
 
     func winsToAdvance(arrived: Int) -> Int { Int(winsToAdvance(arrivedCards: Int32(arrived))) }
 
-    func format(level: Int) -> LetterFormat { formatFor(level: Int32(level)) }
+    func format(sprosse: Int) -> LetterFormat { formatFor(sprosse: Int32(sprosse)) }
 }
 
 /// Same bridge for the atlas drill: its ladder is Kotlin `Int`, its ceiling and
 /// its Sprosse length are its own, and no view of it writes `Int32(…)`.
 extension CountryDrill {
-    var ceiling: Int { Int(MAX_LEVEL) }
+    var ceiling: Int { Int(MAX_SPROSSE) }
 
-    func step(level: Int, winsAtLevel: Int, correct: Bool, clean: Bool,
+    func step(sprosse: Int, winsAtSprosse: Int, correct: Bool, clean: Bool,
               fast: Bool) -> DrillRamp.SprosseStep {
-        step(level: Int32(level), winsAtLevel: Int32(winsAtLevel),
+        step(sprosse: Int32(sprosse), winsAtSprosse: Int32(winsAtSprosse),
              correct: correct, clean: clean, fast: fast)
     }
 
     /// Whether the top Sprosse has EVER been stood on — the whole price of fast
     /// mode, kept in kern so the page never spells the number out itself.
-    func fastUnlocked(bestLevel: Int) -> Bool { fastUnlocked(bestLevel: Int32(bestLevel)) }
+    func fastUnlocked(bestSprosse: Int) -> Bool { fastUnlocked(bestSprosse: Int32(bestSprosse)) }
 }
 
 /// Same bridge for the dates drill. Its ladder has no constant ceiling: how
@@ -145,17 +145,17 @@ extension CountryDrill {
 /// the run asks, so every question here takes both.
 extension DateDrill {
     func ceiling(content: DateDrillContent, reverse: Bool) -> Int {
-        Int(maxLevel(content: content, reverse: reverse))
+        Int(maxSprosse(content: content, reverse: reverse))
     }
 
     /// Whether the top Sprosse has EVER been stood on — the whole price of fast
     /// mode, kept in kern so the page never spells the number out itself.
-    func fastUnlocked(bestLevel: Int, content: DateDrillContent, reverse: Bool) -> Bool {
-        fastUnlocked(bestLevel: Int32(bestLevel), content: content, reverse: reverse)
+    func fastUnlocked(bestSprosse: Int, content: DateDrillContent, reverse: Bool) -> Bool {
+        fastUnlocked(bestSprosse: Int32(bestSprosse), content: content, reverse: reverse)
     }
 
-    func kinds(content: DateDrillContent, level: Int, reverse: Bool) -> [DateTaskKind] {
-        kinds(content: content, level: Int32(level), reverse: reverse)
+    func kinds(content: DateDrillContent, sprosse: Int, reverse: Bool) -> [DateTaskKind] {
+        kinds(content: content, sprosse: Int32(sprosse), reverse: reverse)
     }
 }
 

@@ -33,7 +33,7 @@ class WebVerdict internal constructor(
 /**
  * Browser adapter for the numbers drill: holds the page-seeded [Random]
  * (kern never self-randomizes) and grades through the same normalizer
- * construction the iOS drill uses. Run policy — level ramping, streaks,
+ * construction the iOS drill uses. Run policy — Sprosse ramping, streaks,
  * hint gating — stays page-side, mirroring the app/kern split.
  */
 @JsExport
@@ -47,8 +47,8 @@ class NumbersDrill(private val language: String, seed: Int, articles: Array<Stri
         articleLeniency = false,
     )
 
-    fun sample(level: Int): WebTask =
-        Numbers.sample(NumbersReading.Cardinal, language, level, rng).web()
+    fun sample(sprosse: Int): WebTask =
+        Numbers.sample(NumbersReading.Cardinal, language, sprosse, rng).web()
 
     fun grade(input: String, task: WebTask): WebVerdict =
         when (val match = normalizer.evaluate(input, gradingCard(task))) {

@@ -48,16 +48,16 @@ class RealCatalogLetterDrillTest {
             .ifEmpty { listOfNotNull(entry.exampleText?.let { LetterDrill.AlphabetExampleWord(it, null) }) }
     }
 
-    private fun draws(lang: Language, level: Int, count: Int = 120): List<LetterDrillTask> {
+    private fun draws(lang: Language, sprosse: Int, count: Int = 120): List<LetterDrillTask> {
         val alphabet = assertNotNull(catalog.alphabet(lang), "no $lang alphabet is authored")
         val refs = promptableRefs(lang, alphabet)
         assertTrue(refs.size >= 5, "$lang: only ${refs.size} promptable entries")
-        val rng = Random(level * 1000 + lang.hashCode())
+        val rng = Random(sprosse * 1000 + lang.hashCode())
         var avoid: String? = null
         var avoidWord: String? = null
         return (1..count).map {
             assertNotNull(
-                LetterDrill.sample(alphabet, examples(lang), level, refs, avoid, avoidWord, emptySet(), rng),
+                LetterDrill.sample(alphabet, examples(lang), sprosse, refs, avoid, avoidWord, emptySet(), rng),
             ).also {
                 avoid = it.answerRef
                 avoidWord = it.promptText
@@ -70,8 +70,8 @@ class RealCatalogLetterDrillTest {
         for (lang in languages) {
             val alphabet = assertNotNull(catalog.alphabet(lang))
             val offered = promptableRefs(lang, alphabet).toSet()
-            for (level in 1..LetterDrill.MAX_LEVEL_WITHOUT_DICTATION) {
-                for (task in draws(lang, level)) {
+            for (sprosse in 1..LetterDrill.MAX_SPROSSE_WITHOUT_DICTATION) {
+                for (task in draws(lang, sprosse)) {
                     val entry = assertNotNull(alphabet.entry(task.answerRef), "$lang: unknown ref")
                     assertTrue(task.answerRef in offered, "$lang: asked ${task.answerRef} unbidden")
                     assertTrue(entry.drill, "$lang: ${entry.ref} is opted out of the drill")
@@ -89,8 +89,8 @@ class RealCatalogLetterDrillTest {
     @Test
     fun everyGapBlanksExactlyOneGrapheme() {
         for (lang in languages) {
-            for (level in 1..LetterDrill.MAX_LEVEL_WITHOUT_DICTATION) {
-                for (task in draws(lang, level)) {
+            for (sprosse in 1..LetterDrill.MAX_SPROSSE_WITHOUT_DICTATION) {
+                for (task in draws(lang, sprosse)) {
                     val gap = task.gapText ?: continue
                     assertEquals(1, gap.count { it == '＿' }, "$lang: ${task.answerRef} gapped \"$gap\"")
                     // The prompt is the whole word; only the screen carries the blank.
@@ -105,9 +105,9 @@ class RealCatalogLetterDrillTest {
         for (lang in languages) {
             val alphabet = assertNotNull(catalog.alphabet(lang))
             val prose = alphabet.entries.filter { it.kind == AlphabetKind.Rule }.map { it.glyph }.toSet()
-            for (level in 1..5) {
-                for (task in draws(lang, level)) {
-                    val tiles = assertNotNull(task.choices, "$lang level $level: a choice format needs tiles")
+            for (sprosse in 1..5) {
+                for (task in draws(lang, sprosse)) {
+                    val tiles = assertNotNull(task.choices, "$lang Sprosse $sprosse: a choice format needs tiles")
                     assertEquals(tiles.distinct(), tiles, "$lang: repeated tile in $tiles")
                     assertEquals(1, tiles.count { it == task.display }, "$lang: $tiles")
                     assertTrue(tiles.size >= 3, "$lang: ${task.answerRef} got $tiles")
@@ -127,8 +127,8 @@ class RealCatalogLetterDrillTest {
     fun aHeardNameNeverOffersTwoTilesThatSoundAlike() {
         for (lang in languages) {
             val alphabet = assertNotNull(catalog.alphabet(lang))
-            for (level in 1..5) {
-                for (task in draws(lang, level)) {
+            for (sprosse in 1..5) {
+                for (task in draws(lang, sprosse)) {
                     if (task.gapText != null) continue
                     val identical = alphabet.homophones(task.answerRef).map { it.glyph }.toSet()
                     assertTrue(
@@ -144,14 +144,14 @@ class RealCatalogLetterDrillTest {
     fun theConfusableSprossenDrawWhatTheyPromise() {
         for (lang in languages) {
             val alphabet = assertNotNull(catalog.alphabet(lang))
-            for (level in 3..5) {
-                for (task in draws(lang, level)) {
+            for (sprosse in 3..5) {
+                for (task in draws(lang, sprosse)) {
                     val near = nearGlyphs(alphabet, task)
                     val drawn = (task.choices.orEmpty() - task.display).count { it in near }
                     assertEquals(
-                        minOf(level - 2, near.size),
+                        minOf(sprosse - 2, near.size),
                         drawn,
-                        "$lang level $level: ${task.answerRef} drew $drawn of $near",
+                        "$lang Sprosse $sprosse: ${task.answerRef} drew $drawn of $near",
                     )
                 }
             }

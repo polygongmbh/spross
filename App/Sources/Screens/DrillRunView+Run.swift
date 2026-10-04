@@ -61,7 +61,7 @@ extension DrillRunView: DrillRunning {
 
     func closing() -> DrillClose<Face.Run> {
         let closed = Face.close(run, standingRecord: TrainerRecords.best(for: storageKey))
-        TrainerProgress.record(closed.bestLevel, for: storageKey)
+        TrainerProgress.record(closed.bestSprosse, for: storageKey)
         TrainerProgress.bookCleared(closed.clearedSprossen,
                                     for: NumbersMode.companion.clearedKey(key: storageKey, reverse: reverse))
         if let summary = closed.summary {

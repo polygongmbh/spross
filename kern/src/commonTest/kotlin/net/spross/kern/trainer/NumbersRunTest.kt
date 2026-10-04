@@ -52,7 +52,7 @@ class NumbersRunTest {
     fun everyRunStartsAtSprosseOneHoweverFarTheLearnerHasClimbed() {
         val mode = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet())
         val state = NumbersRun.open(mode, 0, emptyMap(), Random(11))
-        assertEquals(mapOf(NumbersExercise.Counting to 1, NumbersExercise.Clock to 1), state.levels)
+        assertEquals(mapOf(NumbersExercise.Counting to 1, NumbersExercise.Clock to 1), state.sprossen)
         assertEquals(0, state.done)
         assertEquals(TurnFeedback.Neutral, state.feedback)
     }
@@ -61,15 +61,15 @@ class NumbersRunTest {
     fun aRunOpenedAtGivenSprossenStandsThereClampedToTheLadder() {
         val mode = NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet())
         val forced = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to 4), 0, emptyMap(), Random(7))
-        assertEquals(4, forced.levels[NumbersExercise.Counting])
-        assertEquals(1, forced.levels[NumbersExercise.Clock]) // left out of the map
+        assertEquals(4, forced.sprossen[NumbersExercise.Counting])
+        assertEquals(1, forced.sprossen[NumbersExercise.Clock]) // left out of the map
         assertEquals(0, forced.done)
 
-        val ceiling = mode.maxLevel(NumbersExercise.Counting)
+        val ceiling = mode.maxSprosse(NumbersExercise.Counting)
         val beyond = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to ceiling + 40), 0, emptyMap(), Random(7))
-        assertEquals(ceiling, beyond.levels[NumbersExercise.Counting])
+        assertEquals(ceiling, beyond.sprossen[NumbersExercise.Counting])
         val below = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to -3), 0, emptyMap(), Random(7))
-        assertEquals(1, below.levels[NumbersExercise.Counting])
+        assertEquals(1, below.sprossen[NumbersExercise.Counting])
     }
 
     /**
@@ -175,17 +175,17 @@ class NumbersRunTest {
         val rng = Random(7)
         var state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         state = answerRight(state, rng)
-        assertEquals(1, state.currentLevel)
-        assertEquals(1, state.winsAtLevel[NumbersExercise.Counting])
+        assertEquals(1, state.currentSprosse)
+        assertEquals(1, state.winsAtSprosse[NumbersExercise.Counting])
         assertEquals(listOf(AnswerOutcome.Right), state.outcomes)
         assertEquals(1, state.streak)
 
         state = answerRight(state, rng)
-        assertEquals(2, state.currentLevel)
+        assertEquals(2, state.currentSprosse)
         assertEquals(2, state.done)
 
         state = miss(state, rng)
-        assertEquals(1, state.currentLevel)
+        assertEquals(1, state.currentSprosse)
         assertEquals(0, state.streak)
         assertEquals(1, state.missRun)
         assertEquals(AnswerOutcome.Wrong, state.outcomes.last())
@@ -207,8 +207,8 @@ class NumbersRunTest {
         assertEquals(TurnFeedback.Correct, submitted.state.feedback)
         val booked = reduce(submitted.state, NumbersIntent.ConfirmPending, rng).state
         assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
-        assertEquals(1, booked.currentLevel)
-        assertEquals(0, booked.winsAtLevel[NumbersExercise.Counting])
+        assertEquals(1, booked.currentSprosse)
+        assertEquals(0, booked.winsAtSprosse[NumbersExercise.Counting])
         assertEquals(1, booked.streak, "almost extends the streak")
         assertFalse(booked.hintUsed, "the debt is cleared with the question")
 
@@ -237,7 +237,7 @@ class NumbersRunTest {
         assertFalse(held.showsAnswer, "the correction box already spells it out")
         val booked = reduce(held, NumbersIntent.ConfirmPending, rng).state
         assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
-        assertEquals(1, booked.currentLevel)
+        assertEquals(1, booked.currentSprosse)
     }
 
     /** A miss reveals; a drill has no "Wusste ich", so confirming it simply counts as a miss. */
@@ -299,9 +299,9 @@ class NumbersRunTest {
         val spent = NumbersRun.open(numbers(), 0, emptyMap(), rng).copy(core = DrillRunCore(solved = digits.toSet()))
 
         val next = answerRight(spent, rng)
-        assertEquals(2, next.currentLevel)
-        assertEquals(2, next.bestLevels[NumbersExercise.Counting])
-        assertEquals(0, next.winsAtLevel[NumbersExercise.Counting], "the wins stay behind with the Sprosse")
+        assertEquals(2, next.currentSprosse)
+        assertEquals(2, next.bestSprossen[NumbersExercise.Counting])
+        assertEquals(0, next.winsAtSprosse[NumbersExercise.Counting], "the wins stay behind with the Sprosse")
         assertEquals(2, next.currentTask.prompt.length, "the second Sprosse asks two digits")
         assertFalse(next.finished)
     }
@@ -313,7 +313,7 @@ class NumbersRunTest {
         val rng = Random(29)
         val forward = NumbersRun.open(numbers("sw"), 0, emptyMap(), rng).copy(
             current = DrawnTask(NumbersExercise.Counting, Numbers.number(347, "sw"), reversed = false),
-            levels = mapOf(NumbersExercise.Counting to 3),
+            sprossen = mapOf(NumbersExercise.Counting to 3),
         )
         assertEquals(3, forward.currentDigits)
         assertEquals(Numbers.placeValueHint(3, "sw"), forward.placeValueHint)

@@ -53,7 +53,7 @@ struct SentenceScrambleView: View {
         let preset = UserDefaults.standard.integer(forKey: "uitest-sentencescramble-level")
         if preset > 0 {
             _run = State(initialValue: SentenceScrambleRun.shared.openAt(config: config,
-                                                                         level: Int32(preset),
+                                                                         sprosse: Int32(preset),
                                                                          rng: drillRandom))
         } else {
             _run = State(initialValue: SentenceScrambleRun.shared.open(config: config,
@@ -133,7 +133,7 @@ struct SentenceScrambleView: View {
     private var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.lg) {
-                DrillStreakLine(level: Text("trainer.sprosse \(Int(run.level).formatted())"),
+                DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
                                 streak: Int(run.streak), bestStreak: Int(run.bestStreak))
                 if let task = current {
                     ScrambleTileBank(bank: task.shuffled,

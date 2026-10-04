@@ -97,18 +97,18 @@ class LetterDrillRunTest {
     @Test
     fun aRunOpensOnTheFormatTheLearnersWordsHaveEarned() {
         val fresh = report(growing = 0)
-        assertEquals(1, fresh.entryLevel)
+        assertEquals(1, fresh.entrySprosse)
         assertEquals(LetterFormat.ChoiceEasy, fresh.openingFormat(emptySet()))
-        assertEquals(LetterDrill.MAX_LEVEL_WITHOUT_DICTATION, fresh.maxLevel)
+        assertEquals(LetterDrill.MAX_SPROSSE_WITHOUT_DICTATION, fresh.maxSprosse)
         assertEquals(2, fresh.winsToAdvance)
 
-        assertEquals(3, report(growing = 24).entryLevel)
+        assertEquals(3, report(growing = 24).entrySprosse)
         assertEquals(LetterFormat.ChoiceConfusable, report(growing = 24).openingFormat(emptySet()))
 
         val held = report(growing = 72, dictation = LetterDrillFixture.dictationCandidates())
-        assertEquals(6, held.entryLevel)
+        assertEquals(6, held.entrySprosse)
         assertEquals(LetterFormat.Typed, held.openingFormat(emptySet()))
-        assertEquals(LetterDrill.MAX_LEVEL_WITH_DICTATION, held.maxLevel)
+        assertEquals(LetterDrill.MAX_SPROSSE_WITH_DICTATION, held.maxSprosse)
         assertEquals(1, held.winsToAdvance, "a growing vocabulary earns a Sprosse in one win")
     }
 
@@ -119,17 +119,17 @@ class LetterDrillRunTest {
     @Test
     fun aRunOpensAboveTheSprossenEarlierRunsAnsweredOut() {
         val fresh = report(growing = 0)
-        assertEquals(3, fresh.openingLevel(setOf(1, 2)))
+        assertEquals(3, fresh.openingSprosse(setOf(1, 2)))
         assertEquals(LetterFormat.ChoiceConfusable, fresh.openingFormat(setOf(1, 2)))
         assertTrue(fresh.formatCleared(LetterFormat.ChoiceEasy, setOf(1, 2)))
         assertFalse(fresh.formatCleared(LetterFormat.ChoiceConfusable, setOf(3, 4)))
-        assertEquals(3, LetterDrillRun.open(config(fresh, cleared = setOf(1, 2)), Random(3)).level)
+        assertEquals(3, LetterDrillRun.open(config(fresh, cleared = setOf(1, 2)), Random(3)).sprosse)
 
         val held = report(growing = 72, dictation = LetterDrillFixture.dictationCandidates())
-        assertEquals(6, held.openingLevel(setOf(1, 2)), "the vocabulary already stands above them")
-        assertEquals(8, held.openingLevel(setOf(6, 7)))
+        assertEquals(6, held.openingSprosse(setOf(1, 2)), "the vocabulary already stands above them")
+        assertEquals(8, held.openingSprosse(setOf(6, 7)))
         // Everything answered out still opens a run, on the top Sprosse.
-        assertEquals(7, fresh.openingLevel((1..7).toSet()))
+        assertEquals(7, fresh.openingSprosse((1..7).toSet()))
     }
 
     /** A Sprosse climbed off clean is what the close files; a slip on one keeps it out. */
@@ -138,13 +138,13 @@ class LetterDrillRunTest {
         val rng = Random(41)
         var state = LetterDrillRun.openAt(config(report(growing = 0)), 1, rng)
         assertTrue(LetterDrillRun.close(state).clearedSprossen.isEmpty())
-        while (state.task != null && state.level <= 2) state = answeredRight(state, rng)
+        while (state.task != null && state.sprosse <= 2) state = answeredRight(state, rng)
         assertEquals(setOf(1, 2), LetterDrillRun.close(state).clearedSprossen)
 
         var slipped = LetterDrillRun.openAt(config(report(growing = 0)), 1, rng)
         slipped = reduce(slipped, LetterDrillIntent.Reveal, rng).state
         slipped = reduce(slipped, LetterDrillIntent.ConfirmPending, rng).state
-        while (slipped.task != null && slipped.level <= 1) slipped = answeredRight(slipped, rng)
+        while (slipped.task != null && slipped.sprosse <= 1) slipped = answeredRight(slipped, rng)
         assertTrue(1 !in LetterDrillRun.close(slipped).clearedSprossen, "a miss on Sprosse 1 keeps it out")
     }
 
@@ -154,7 +154,7 @@ class LetterDrillRunTest {
         val rng = Random(43)
         val held = report(growing = 72, dictation = LetterDrillFixture.dictationCandidates())
         var state = LetterDrillRun.openAt(config(held, LetterDrillFixture.dictationCandidates().map { it.card }), 8, rng)
-        while (state.task != null && state.level <= 8) state = answeredRight(state, rng)
+        while (state.task != null && state.sprosse <= 8) state = answeredRight(state, rng)
         assertTrue(LetterDrillRun.close(state).clearedSprossen.none { it >= 8 })
     }
 
@@ -167,15 +167,15 @@ class LetterDrillRunTest {
         val short = report(72, LetterDrillFixture.dictationCandidates(cards.take(floor - 1)))
         assertTrue(enough.dictationAvailable)
         assertFalse(short.dictationAvailable)
-        assertEquals(9, enough.maxLevel)
-        assertEquals(7, short.maxLevel)
+        assertEquals(9, enough.maxSprosse)
+        assertEquals(7, short.maxSprosse)
     }
 
     @Test
     fun aSprosseForcedAboveTheCeilingOpensInsideIt() {
         val rng = Random(3)
         val typed = LetterDrillRun.openAt(config(report(growing = 0)), 9, rng)
-        assertEquals(7, typed.level)
+        assertEquals(7, typed.sprosse)
         assertEquals(LetterFormat.Typed, typed.format)
 
         val dictating = LetterDrillRun.openAt(
@@ -186,7 +186,7 @@ class LetterDrillRunTest {
             9,
             rng,
         )
-        assertEquals(9, dictating.level)
+        assertEquals(9, dictating.sprosse)
         assertEquals(LetterFormat.Dictation, dictating.format)
     }
 
@@ -229,7 +229,7 @@ class LetterDrillRunTest {
         assertEquals(listOf(AnswerOutcome.Wrong), state.outcomes)
         assertEquals(0, state.streak)
         assertEquals(1, state.missRun)
-        assertEquals(4, state.level, "a miss steps the Sprosse back down")
+        assertEquals(4, state.sprosse, "a miss steps the Sprosse back down")
     }
 
     // MARK: - Typed and dictated
@@ -376,7 +376,7 @@ class LetterDrillRunTest {
         assertTrue(held.showsAnswer, "a slip leaves a spelling worth seeing")
         val booked = reduce(held, LetterDrillIntent.ConfirmPending, rng).state
         assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
-        assertEquals(6, booked.level)
+        assertEquals(6, booked.sprosse)
         assertEquals(1, booked.streak)
         assertEquals(0, booked.missRun)
     }
@@ -387,13 +387,13 @@ class LetterDrillRunTest {
         var state = LetterDrillRun.openAt(config(report(growing = 72)), 6, rng)
         state = reduce(state, LetterDrillIntent.Submit(state.task!!.display), rng).state
         state = reduce(state, LetterDrillIntent.AdvanceElapsed, rng).state
-        assertEquals(7, state.level)
+        assertEquals(7, state.sprosse)
 
         var slow = LetterDrillRun.openAt(config(report(growing = 0)), 6, rng)
         slow = reduce(slow, LetterDrillIntent.Submit(slow.task!!.display), rng).state
         slow = reduce(slow, LetterDrillIntent.AdvanceElapsed, rng).state
-        assertEquals(6, slow.level, "the classic two wins per Sprosse below a held vocabulary")
-        assertEquals(1, slow.winsAtLevel)
+        assertEquals(6, slow.sprosse, "the classic two wins per Sprosse below a held vocabulary")
+        assertEquals(1, slow.winsAtSprosse)
     }
 
     // MARK: - The way out, and the end
@@ -450,9 +450,9 @@ class LetterDrillRunTest {
         assertEquals("em", state.task?.promptText)
 
         state = answeredRight(state, rng)
-        assertEquals(3, state.level, "both easy Sprossen ask the same one question")
+        assertEquals(3, state.sprosse, "both easy Sprossen ask the same one question")
         assertEquals(LetterFormat.ChoiceConfusable, state.format)
-        assertEquals(0, state.winsAtLevel, "the wins stay behind with the Sprosse that earned them")
+        assertEquals(0, state.winsAtSprosse, "the wins stay behind with the Sprosse that earned them")
         assertEquals("em", state.task?.promptText, "a tile format and a typed one are two questions")
         assertFalse(state.finished)
     }
@@ -497,7 +497,7 @@ class LetterDrillRunTest {
         assertEquals(listOf(AnswerOutcome.Almost), almost.state.outcomes)
         assertEquals(1, almost.summary?.done)
         assertEquals(false, almost.summary?.newRecord, "the letter drill keeps no record store")
-        assertEquals(6, almost.state.level, "closing may not upgrade an almost answer")
+        assertEquals(6, almost.state.sprosse, "closing may not upgrade an almost answer")
 
         // A revealed answer nobody confirmed is not accepted, so closing books nothing.
         assertNull(LetterDrillRun.close(state.copy(feedback = TurnFeedback.Revealed)).summary)

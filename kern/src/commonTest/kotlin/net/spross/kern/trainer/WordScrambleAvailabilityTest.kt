@@ -110,15 +110,15 @@ class WordScrambleAvailabilityTest {
     @Test
     fun theLadderTopsOutWhereThePoolStopsFillingIt() {
         val report = report()
-        for (level in 1..report.maxLevel) {
+        for (sprosse in 1..report.maxSprosse) {
             assertTrue(
-                report.words.count { it.reach >= report.lettersAt(level) } >=
+                report.words.count { it.reach >= report.lettersAt(sprosse) } >=
                     WordScrambleAvailability.POOL_FLOOR,
-                "Sprosse $level cannot be filled",
+                "Sprosse $sprosse cannot be filled",
             )
         }
         assertTrue(
-            report.words.count { it.reach >= report.lettersAt(report.maxLevel + 1) } <
+            report.words.count { it.reach >= report.lettersAt(report.maxSprosse + 1) } <
                 WordScrambleAvailability.POOL_FLOOR,
             "the ladder stops short of what the pool would carry",
         )
@@ -129,8 +129,8 @@ class WordScrambleAvailabilityTest {
     fun theFloorRisesALetterEachSprosse() {
         val report = report()
         assertEquals(WordScrambleAvailability.MIN_LETTERS, report.lettersAt(1))
-        for (level in 1 until report.maxLevel) {
-            assertEquals(report.lettersAt(level) + 1, report.lettersAt(level + 1))
+        for (sprosse in 1 until report.maxSprosse) {
+            assertEquals(report.lettersAt(sprosse) + 1, report.lettersAt(sprosse + 1))
         }
     }
 

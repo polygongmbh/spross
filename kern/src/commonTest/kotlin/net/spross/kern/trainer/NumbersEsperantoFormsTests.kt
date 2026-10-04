@@ -117,7 +117,7 @@ class NumbersEsperantoFormsTests {
         val rng = Random(41)
         val keys = mutableSetOf<String>()
         repeat(400) {
-            val task = Numbers.sample(NumbersReading.Form, "de", FORMS_MAX_LEVEL, rng)
+            val task = Numbers.sample(NumbersReading.Form, "de", FORMS_MAX_SPROSSE, rng)
             keys += assertNotNull(task.formKey, task.prompt)
         }
         assertEquals(NumberForm.entries.map { it.key }.toSet(), keys)

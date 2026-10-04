@@ -34,8 +34,8 @@ extension SessionScaffold {
 /// streak is, and the standing record once the streak has fallen short of it.
 struct DrillStreakLine: View {
     /// The Sprosse, worded by the drill that owns it — a digit count reads
-    /// differently from a plain level. nil where a run has one Sprosse only.
-    var level: Text?
+    /// differently from a plain Sprosse. nil where a run has one Sprosse only.
+    var sprosse: Text?
     /// A timed run's clock and score, standing after the Sprosse; empty elsewhere.
     var timed: [Text] = []
     let streak: Int
@@ -59,7 +59,7 @@ struct DrillStreakLine: View {
     /// environment locale with catalog plural handling.
     private var text: Text {
         var parts: [Text] = []
-        if let level { parts.append(level) }
+        if let sprosse { parts.append(sprosse) }
         parts += timed
         parts.append(Text("trainer.run.streak \(streak.formatted())"))
         if bestStreak > streak { parts.append(Text("trainer.run.record \(bestStreak.formatted())")) }
@@ -209,8 +209,8 @@ struct DrillResultTile: View {
 
 #Preview("Streak line") {
     VStack(spacing: Theme.spacing.xl) {
-        DrillStreakLine(level: Text("trainer.sprosse \(7.formatted())"), streak: 0, bestStreak: 0)
-        DrillStreakLine(level: Text("numbers.sprosse \(5)"), streak: 7, bestStreak: 12,
+        DrillStreakLine(sprosse: Text("trainer.sprosse \(7.formatted())"), streak: 0, bestStreak: 0)
+        DrillStreakLine(sprosse: Text("numbers.sprosse \(5)"), streak: 7, bestStreak: 12,
                         announcesRecord: true)
         DrillStreakLine(streak: 3, bestStreak: 3)
     }

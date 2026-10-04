@@ -80,10 +80,10 @@ internal object DrillSolved {
 
     /**
      * A word scramble asks the same word differently up its ladder — the letters left standing
-     * are the Sprosse — so the LEVEL carries the identity alongside the card.
+     * are the Sprosse — so the SPROSSE carries the identity alongside the card.
      */
-    fun key(task: WordScrambleTask): String = wordKey(task.level, task.cardId)
+    fun key(task: WordScrambleTask): String = wordKey(task.sprosse, task.cardId)
 
     /** The same key from the parts, for a draw that is choosing what to build. */
-    fun wordKey(level: Int, cardId: String): String = "word:$level:$cardId"
+    fun wordKey(sprosse: Int, cardId: String): String = "word:$sprosse:$cardId"
 }

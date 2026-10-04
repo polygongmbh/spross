@@ -69,9 +69,9 @@ extension NumbersRunState {
         doCopy(mode: mode,
                current: current,
                index: index,
-               levels: levels,
-               winsAtLevel: winsAtLevel,
-               bestLevels: bestLevels,
+               sprossen: sprossen,
+               winsAtSprosse: winsAtSprosse,
+               bestSprossen: bestSprossen,
                core: core.doCopy(done: done ?? core.done,
                                  streak: streak ?? core.streak,
                                  bestStreak: bestStreak ?? core.bestStreak,
@@ -88,7 +88,7 @@ extension NumbersRunState {
                finished: finished,
                score: score,
                challenge: challenge,
-               standingLevels: standingLevels)
+               standingSprossen: standingSprossen)
     }
 }
 #endif

@@ -42,18 +42,18 @@ object WordScrambleRun {
         openAt(config, 1, rng)
 
     /** The same, forced to one Sprosse — the deterministic way to reach a masking stage. */
-    fun openAt(config: WordScrambleRunConfig, level: Int, rng: Random): WordScrambleRunState {
-        val start = level.coerceIn(1, config.report.maxLevel)
+    fun openAt(config: WordScrambleRunConfig, sprosse: Int, rng: Random): WordScrambleRunState {
+        val start = sprosse.coerceIn(1, config.report.maxSprosse)
         val opening = draw(config, start, null, emptySet(), rng)
         return WordScrambleRunState(
             config = config,
             task = opening.task,
             index = 0,
-            level = opening.level,
-            bestLevel = opening.level,
-            winsAtLevel = 0,
+            sprosse = opening.sprosse,
+            bestSprosse = opening.sprosse,
+            winsAtSprosse = 0,
             clearedSprossen = emptySet(),
-            core = DrillRunCore(pacing = DrillPacing.opening(opening.level, standingRecord = 0)),
+            core = DrillRunCore(pacing = DrillPacing.opening(opening.sprosse, standingRecord = 0)),
             feedback = TurnFeedback.Neutral,
             finished = opening.task == null,
         )
@@ -116,7 +116,7 @@ object WordScrambleRun {
         } else {
             DrillRunSummary(ended.done, ended.bestStreak, newRecord = false)
         }
-        return WordScrambleClose(ended, summary, ended.bestLevel, ended.clearedSprossen, effects)
+        return WordScrambleClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, effects)
     }
 
     // MARK: - Intents
@@ -167,19 +167,19 @@ object WordScrambleRun {
         rng: Random,
     ): WordScrambleReduction {
         val next = advanced(state, correct, clean)
-        val question = draw(state.config, next.level, state.task?.cardId, next.solved, rng)
+        val question = draw(state.config, next.sprosse, state.task?.cardId, next.solved, rng)
         return WordScrambleReduction(
             paced(next.copy(
                 task = question.task,
-                level = question.level,
-                bestLevel = maxOf(next.bestLevel, question.level),
+                sprosse = question.sprosse,
+                bestSprosse = maxOf(next.bestSprosse, question.sprosse),
                 // A Sprosse the run was carried past keeps none of the wins banked below it.
-                winsAtLevel = if (question.level == next.level) next.winsAtLevel else 0,
+                winsAtSprosse = if (question.sprosse == next.sprosse) next.winsAtSprosse else 0,
                 // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
                 clearedSprossen = DrillSprossen.leaving(
                     next.clearedSprossen,
-                    next.level,
-                    question.level,
+                    next.sprosse,
+                    question.sprosse,
                     next.core.slipped,
                 ),
                 index = state.index + 1,
@@ -195,7 +195,7 @@ object WordScrambleRun {
 
     /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
     private fun paced(state: WordScrambleRunState): WordScrambleRunState = state.copy(
-        core = state.core.paced(state.level, state.newSprossen, endless = !state.finished),
+        core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished),
     )
 
     private fun advanced(
@@ -205,22 +205,22 @@ object WordScrambleRun {
     ): WordScrambleRunState {
         val held = state.config.cleared
         val step = DrillRamp.step(
-            level = state.level,
-            winsAtLevel = state.winsAtLevel,
+            sprosse = state.sprosse,
+            winsAtSprosse = state.winsAtSprosse,
             correct = correct,
             clean = clean,
-            winsRequired = DrillSprossen.winsRequired(state.level, held, state.core.slipped, WINS_TO_ADVANCE),
-            top = state.config.report.maxLevel,
+            winsRequired = DrillSprossen.winsRequired(state.sprosse, held, state.core.slipped, WINS_TO_ADVANCE),
+            top = state.config.report.maxSprosse,
         )
         val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
         return state.copy(
-            level = step.level,
-            bestLevel = maxOf(state.bestLevel, step.level),
-            winsAtLevel = step.winsAtLevel,
+            sprosse = step.sprosse,
+            bestSprosse = maxOf(state.bestSprosse, step.sprosse),
+            winsAtSprosse = step.winsAtSprosse,
             clearedSprossen = DrillSprossen.leaving(
                 state.clearedSprossen,
-                state.level,
-                step.level,
+                state.sprosse,
+                step.sprosse,
                 core.slipped,
             ),
             core = core,
@@ -240,12 +240,12 @@ object WordScrambleRun {
         solved: Set<String>,
         rng: Random,
     ): DrillLadder.Sprosse<WordScrambleTask> =
-        DrillLadder.climb(from, config.report.maxLevel) { level ->
-            sample(config.report, level, avoiding, solved, rng)
+        DrillLadder.climb(from, config.report.maxSprosse) { sprosse ->
+            sample(config.report, sprosse, avoiding, solved, rng)
         }
 
     /**
-     * One question at [level], drawn from the shortest words the Sprosse admits that it has not
+     * One question at [sprosse], drawn from the shortest words the Sprosse admits that it has not
      * asked yet. [avoiding] is the word just asked, which kern resamples once. Null ⇒ the
      * Sprosse is spent.
      *
@@ -261,14 +261,14 @@ object WordScrambleRun {
      */
     private fun sample(
         report: WordScrambleAvailability.Report,
-        level: Int,
+        sprosse: Int,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): WordScrambleTask? {
-        val floor = report.lettersAt(level)
+        val floor = report.lettersAt(sprosse)
         val open = report.words
-            .filter { DrillSolved.wordKey(level, it.card.id) !in solved }
+            .filter { DrillSolved.wordKey(sprosse, it.card.id) !in solved }
             .map { it to it.formsFrom(floor) }
             .filter { (_, forms) -> forms.isNotEmpty() }
         if (open.isEmpty()) return null
@@ -280,8 +280,8 @@ object WordScrambleRun {
         return WordScrambleTask(
             cardId = card.id,
             language = card.target.lang,
-            level = level,
-            scrambled = WordScrambleMasking.scramble(form, level, rng),
+            sprosse = sprosse,
+            scrambled = WordScrambleMasking.scramble(form, sprosse, rng),
             accepted = listOf(form),
             display = form,
             gloss = card.source.text,

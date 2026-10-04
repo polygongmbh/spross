@@ -35,7 +35,7 @@ fun CountriesOverviewScreen(model: AppModel) {
                 reverseHint(model, chrome.countriesReverseHint, content.source, content.target, reverse)
             },
             // The atlas ladder is one fixed height, whichever way round it asks.
-            ceiling = { CountryDrill.MAX_LEVEL },
+            ceiling = { CountryDrill.MAX_SPROSSE },
             fastOpen = { CountryDrill.fastUnlocked(standing.bestSprosse) },
             sprosse = { sprosse, reverse -> chrome.countrySprosse(sprosse, reverse) },
             start = model::startCountryDrill,

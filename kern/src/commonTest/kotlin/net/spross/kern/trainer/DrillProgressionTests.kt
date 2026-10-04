@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 
 /**
  * The ladder and the direction axis. What matters here is that a Sprosse is earned
- * exactly at its requirement — one level short must still read as locked, because
+ * exactly at its requirement — one Sprosse short must still read as locked, because
  * the caption the learner sees is derived from this and nothing else.
  */
 class DrillProgressionTests {
@@ -40,14 +40,14 @@ class DrillProgressionTests {
         val exercises = listOf(
             Triple(NumbersExercise.Clock, NumbersExercise.Counting, 4),
             // The phrase gate rides the clock ceiling, so growing the ladder raises it.
-            Triple(NumbersExercise.Phrases, NumbersExercise.Clock, Numbers.maxLevel(NumbersReading.Clock)),
+            Triple(NumbersExercise.Phrases, NumbersExercise.Clock, Numbers.maxSprosse(NumbersReading.Clock)),
             Triple(NumbersExercise.Forms, NumbersExercise.Counting, 7),
         )
-        for ((locked, on, level) in exercises) {
-            assertEquals(mapOf(on to level), DrillUnlocks.requirements(locked))
+        for ((locked, on, sprosse) in exercises) {
+            assertEquals(mapOf(on to sprosse), DrillUnlocks.requirements(locked))
             assertFalse(DrillUnlocks.unlocked(locked, emptyMap()), "$locked with no progress")
-            assertFalse(DrillUnlocks.unlocked(locked, progress(on to level - 1)), "$locked at ${level - 1}")
-            assertTrue(DrillUnlocks.unlocked(locked, progress(on to level)), "$locked at $level")
+            assertFalse(DrillUnlocks.unlocked(locked, progress(on to sprosse - 1)), "$locked at ${sprosse - 1}")
+            assertTrue(DrillUnlocks.unlocked(locked, progress(on to sprosse)), "$locked at $sprosse")
         }
         assertEquals(mapOf(NumbersExercise.Counting to 10), DrillUnlocks.requirements(DrillModifier.Fast))
         assertFalse(DrillUnlocks.unlocked(DrillModifier.Fast, progress(NumbersExercise.Counting to 9)))
@@ -145,10 +145,10 @@ class DrillProgressionTests {
      */
     @Test
     fun theSprosseKeepsCountingPastTheNamedLadder() {
-        assertEquals(8, DrillRamp.step(7, 1, correct = true, clean = true, winsRequired = 2).level)
-        assertEquals(10, DrillRamp.step(9, 0, correct = true, clean = true, winsRequired = 1).level)
+        assertEquals(8, DrillRamp.step(7, 1, correct = true, clean = true, winsRequired = 2).sprosse)
+        assertEquals(10, DrillRamp.step(9, 0, correct = true, clean = true, winsRequired = 1).sprosse)
         // A miss costs one Sprosse up there like anywhere else, and the floor still holds.
-        assertEquals(11, DrillRamp.step(12, 1, correct = false, clean = true, winsRequired = 2).level)
+        assertEquals(11, DrillRamp.step(12, 1, correct = false, clean = true, winsRequired = 2).sprosse)
     }
 
     // The ladder — where the next question comes from, shared by all four drills.
@@ -175,11 +175,11 @@ class DrillProgressionTests {
         val rng = Random(20260807)
         for (language in Numbers.languages) {
             for (kind in NumbersReading.entries) {
-                for (level in 1..Numbers.maxLevel(kind)) {
+                for (sprosse in 1..Numbers.maxSprosse(kind)) {
                     repeat(5) {
-                        val forward = Numbers.sample(kind, language, level, rng)
+                        val forward = Numbers.sample(kind, language, sprosse, rng)
                         val back = Numbers.reversed(forward)
-                        val where = "$language $kind level=$level ${forward.prompt}"
+                        val where = "$language $kind sprosse=$sprosse ${forward.prompt}"
                         assertEquals(forward.display, back.prompt, where)
                         assertEquals(back.prompt, back.promptDisplay, where)
                         assertTrue(forward.prompt in back.accepted, "$where: ${back.accepted}")

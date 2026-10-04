@@ -248,7 +248,7 @@ interface Chrome {
     val countriesReverseHint: String // %1$s %2$s
     /**
      * The Sprossen, in the order they are climbed — one entry per Sprosse of kern's own ladder
-     * ([net.spross.kern.trainer.CountryDrill.MAX_LEVEL]), read through [countrySprosse].
+     * ([net.spross.kern.trainer.CountryDrill.MAX_SPROSSE]), read through [countrySprosse].
      */
     val countrySprossen: List<String>
     /** The row an atlas Sprosse that adds nothing wears — the flag row of a reversed run. */
@@ -271,7 +271,7 @@ interface Chrome {
     /**
      * The Sprosse wordings by the KIND each Sprosse INTRODUCES, in full-ladder order — read through
      * [dateSprosse]. Unlike the atlas ladder the height here is the pair's own
-     * ([net.spross.kern.trainer.DateDrill.maxLevel]), so the on-screen number is the
+     * ([net.spross.kern.trainer.DateDrill.maxSprosse]), so the on-screen number is the
      * row's position and never this index.
      */
     val dateSprossen: List<String>

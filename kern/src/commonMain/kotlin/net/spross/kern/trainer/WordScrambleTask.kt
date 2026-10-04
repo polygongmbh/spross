@@ -15,7 +15,7 @@ data class WordScrambleTask(
     /** The language the word is written back in: the one being learned. */
     val language: Language,
     /** The Sprosse the mixing was cut at — what makes this a different question from the same word. */
-    val level: Int,
+    val sprosse: Int,
     /** The letters as they stand on the card, and how much of the spelling they keep. */
     val scrambled: ScrambledWord,
     /**

@@ -51,16 +51,16 @@ class PhraseSlotTests {
         val pattern = Regex("""(\d+)/(\d+)""")
         for (template in RealFrames.all.filter { it.slotKind == NumbersReading.Fraction }) {
             val unitOnly = mutableSetOf<Boolean>()
-            for (level in 1..Numbers.maxLevel(NumbersReading.Fraction)) {
+            for (sprosse in 1..Numbers.maxSprosse(NumbersReading.Fraction)) {
                 repeat(80) {
-                    val task = PhraseSlots.sample(template, level, rng)
+                    val task = PhraseSlots.sample(template, sprosse, rng)
                     val (n, d) = pattern.find(task.prompt)!!.destructured
-                    val where = "${template.target} L$level: $n/$d"
+                    val where = "${template.target} L$sprosse: $n/$d"
                     assertTrue(d.toInt() >= 3, where)
                     assertTrue(n.toInt() < d.toInt(), where)
                     assertEquals(1, gcd(n.toInt(), d.toInt()), where)
-                    if (level == 1) assertTrue(n == "1" && d.toInt() <= 4, where)
-                    if (level == 2) unitOnly += n == "1"
+                    if (sprosse == 1) assertTrue(n == "1" && d.toInt() <= 4, where)
+                    if (sprosse == 2) unitOnly += n == "1"
                 }
             }
             assertTrue(false in unitOnly, "${template.target}: the top Sprosse never left the unit fractions")

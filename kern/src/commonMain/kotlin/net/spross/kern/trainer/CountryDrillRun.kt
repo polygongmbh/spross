@@ -25,12 +25,12 @@ object CountryDrillRun {
         openAt(config, 1, rng)
 
     /**
-     * A fresh run opened ON [level], clamped to the ladder. The page opens a run on the lowest
+     * A fresh run opened ON [sprosse], clamped to the ladder. The page opens a run on the lowest
      * Sprosse the learner has not answered out ([CountryDrillClose.clearedSprossen]), or on
      * the one they tapped.
      */
-    fun openAt(config: CountryDrillRunConfig, level: Int, rng: Random): CountryDrillRunState {
-        val start = level.coerceIn(1, CountryDrill.MAX_LEVEL)
+    fun openAt(config: CountryDrillRunConfig, sprosse: Int, rng: Random): CountryDrillRunState {
+        val start = sprosse.coerceIn(1, CountryDrill.MAX_SPROSSE)
         // A run opens on a Sprosse ARRIVED at — the lowest one not answered out, or the one
         // tapped — so its first question is one that Sprosse added.
         val opening =
@@ -43,10 +43,10 @@ object CountryDrillRun {
                 "no atlas question for ${content.source}→${content.target}"
             },
             index = 0,
-            level = opening.level,
-            bestLevel = opening.level,
-            winsAtLevel = 0,
-            core = DrillRunCore(pacing = DrillPacing.opening(opening.level, config.standingRecord)),
+            sprosse = opening.sprosse,
+            bestSprosse = opening.sprosse,
+            winsAtSprosse = 0,
+            core = DrillRunCore(pacing = DrillPacing.opening(opening.sprosse, config.standingRecord)),
             feedback = TurnFeedback.Neutral,
             finished = false,
         )
@@ -112,7 +112,7 @@ object CountryDrillRun {
             DrillRunSummary(ended.done, ended.bestStreak, ended.bestStreak > standingRecord)
         }
         val cleared = CountryDrill.cleared(state.config.content, state.config.reverse, ended.core.solvedClean)
-        return CountryDrillClose(ended, summary, ended.bestLevel, cleared, effects)
+        return CountryDrillClose(ended, summary, ended.bestSprosse, cleared, effects)
     }
 
     // MARK: - Intents
@@ -172,23 +172,23 @@ object CountryDrillRun {
         // two unlucky draws rather than one.
         val draw = CountryDrill.draw(
             state.config.content,
-            next.level,
+            next.sprosse,
             state.config.reverse,
             state.task.id,
             next.solved,
             rng,
-            arriving = next.level > state.level,
+            arriving = next.sprosse > state.sprosse,
         )
         return CountryDrillReduction(
             paced(next.copy(
                 // Nothing left to ask: end on the summary, never on a question already answered.
                 task = draw.task ?: state.task,
                 finished = draw.task == null,
-                level = draw.level,
+                sprosse = draw.sprosse,
                 // A Sprosse the run answered out is a Sprosse it stood on, and the wins banked on the
                 // one below stay behind with it.
-                bestLevel = maxOf(next.bestLevel, draw.level),
-                winsAtLevel = if (draw.level == next.level) next.winsAtLevel else 0,
+                bestSprosse = maxOf(next.bestSprosse, draw.sprosse),
+                winsAtSprosse = if (draw.sprosse == next.sprosse) next.winsAtSprosse else 0,
                 index = state.index + 1,
                 // why: cleared in the SAME transaction as the question — the next card must
                 // never render one frame carrying the last one's answer.
@@ -201,7 +201,7 @@ object CountryDrillRun {
 
     /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
     private fun paced(state: CountryDrillRunState): CountryDrillRunState =
-        state.copy(core = state.core.paced(state.level, state.newSprossen, endless = !state.finished))
+        state.copy(core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished))
 
     /** The booking itself: the ramp, the streak, the tallies — the Sprosse it reached included. */
     private fun advanced(
@@ -210,16 +210,16 @@ object CountryDrillRun {
         clean: Boolean,
     ): CountryDrillRunState {
         val step = CountryDrill.step(
-            level = state.level,
-            winsAtLevel = state.winsAtLevel,
+            sprosse = state.sprosse,
+            winsAtSprosse = state.winsAtSprosse,
             correct = correct,
             clean = clean,
             fast = state.config.fast,
         )
         return state.copy(
-            level = step.level,
-            bestLevel = maxOf(state.bestLevel, step.level),
-            winsAtLevel = step.winsAtLevel,
+            sprosse = step.sprosse,
+            bestSprosse = maxOf(state.bestSprosse, step.sprosse),
+            winsAtSprosse = step.winsAtSprosse,
             core = state.core.book(correct, clean, DrillSolved.key(state.task)),
         )
     }

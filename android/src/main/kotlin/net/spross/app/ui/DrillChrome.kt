@@ -44,7 +44,7 @@ import net.spross.kern.trainer.TimedOutcome
  * A timed run's clock and score ([timed]) stand after the Sprosse.
  *
  * [Sprosse] is worded by the drill that owns it — a digit count reads differently from a plain
- * level — and is null where a run has one Sprosse only. [announcesRecord] carries a real
+ * Sprosse — and is null where a run has one Sprosse only. [announcesRecord] carries a real
  * difference rather than settling it: the letter drill has always spoken the streak alone.
  */
 @Composable

@@ -38,8 +38,8 @@ class ScreenBackTest {
         val runs = listOf(
             Screen.Session, Screen.Listening, Screen.LetterDrill, Screen.WordScramble,
             Screen.SentenceScramble, Screen.NumbersRun(NumbersMode(NumbersExercise.Counting, "de")),
-            Screen.CountryDrill(reverse = false, fast = false, level = 1),
-            Screen.DateDrill(reverse = false, fast = false, level = 1),
+            Screen.CountryDrill(reverse = false, fast = false, sprosse = 1),
+            Screen.DateDrill(reverse = false, fast = false, sprosse = 1),
         )
         for (run in runs) assertNull(run.back(), "$run")
     }

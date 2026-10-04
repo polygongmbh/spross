@@ -25,8 +25,8 @@ class WordScrambleMaskingTest {
     @Test
     fun theFirstTwoSprossenAnchorTheOpeningLetterAlone() {
         for (rng in seeds()) {
-            for (level in 1..2) {
-                val mixed = WordScrambleMasking.scramble(word, level, rng)
+            for (sprosse in 1..2) {
+                val mixed = WordScrambleMasking.scramble(word, sprosse, rng)
                 assertEquals(1, mixed.fixedLeading)
                 assertEquals("F", mixed.display.take(1))
                 assertEquals(letters(word), letters(mixed.display))
@@ -51,7 +51,7 @@ class WordScrambleMaskingTest {
     /** Past the named Sprossen the content stands still: nothing harder than mixing everything. */
     @Test
     fun aSprosseAboveTheLadderStillAnchorsNothing() {
-        val mixed = WordScrambleMasking.scramble(word, WordScrambleMasking.MAX_LEVEL + 4, Random(7))
+        val mixed = WordScrambleMasking.scramble(word, WordScrambleMasking.MAX_SPROSSE + 4, Random(7))
         assertTrue(mixed.fullyScrambled)
     }
 
@@ -59,8 +59,8 @@ class WordScrambleMaskingTest {
     @Test
     fun theMixNeverReadsAsTheWordItAsksFor() {
         for (rng in seeds()) {
-            for (level in 1..WordScrambleMasking.MAX_LEVEL) {
-                val mixed = WordScrambleMasking.scramble(word, level, rng)
+            for (sprosse in 1..WordScrambleMasking.MAX_SPROSSE) {
+                val mixed = WordScrambleMasking.scramble(word, sprosse, rng)
                 assertNotEquals(word.lowercase(), mixed.display.lowercase())
             }
         }
@@ -73,10 +73,10 @@ class WordScrambleMaskingTest {
     @Test
     fun theMixIsNeverOneAdjacentSwapOffTheWord() {
         for (rng in seeds()) {
-            for (level in 1..WordScrambleMasking.MAX_LEVEL) {
-                val mixed = WordScrambleMasking.scramble(word, level, rng).display.lowercase()
+            for (sprosse in 1..WordScrambleMasking.MAX_SPROSSE) {
+                val mixed = WordScrambleMasking.scramble(word, sprosse, rng).display.lowercase()
                 val moved = word.lowercase().indices.filter { mixed[it] != word.lowercase()[it] }
-                assertTrue(moved.size != 2 || moved[1] != moved[0] + 1, "$level: $mixed")
+                assertTrue(moved.size != 2 || moved[1] != moved[0] + 1, "$sprosse: $mixed")
             }
         }
     }

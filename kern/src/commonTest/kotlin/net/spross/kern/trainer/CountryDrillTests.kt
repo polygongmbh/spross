@@ -75,8 +75,8 @@ class CountryDrillTests {
 
     private val home = setOf("homeland", "second-home", "islands")
 
-    private fun ids(level: Int, kind: CountryTaskKind): Set<String> =
-        CountryDrill.tasks(content, level).filter { it.kind == kind }.map { it.id }.toSet()
+    private fun ids(sprosse: Int, kind: CountryTaskKind): Set<String> =
+        CountryDrill.tasks(content, sprosse).filter { it.kind == kind }.map { it.id }.toSet()
 
     /** Tier 1 is derived, not authored: exactly the rows carrying the profile's languages. */
     @Test
@@ -112,12 +112,12 @@ class CountryDrillTests {
                        CountryTaskKind.FlagCountry),
             4 to CountryTaskKind.entries.toSet(),
         )
-        assertEquals(9, CountryDrill.MAX_LEVEL)
-        assertEquals(expected.size, CountryDrill.MAX_LEVEL)
+        assertEquals(9, CountryDrill.MAX_SPROSSE)
+        assertEquals(expected.size, CountryDrill.MAX_SPROSSE)
         for ((index, want) in expected.withIndex()) {
-            val level = index + 1
-            assertEquals(want.first, CountryDrill.tierCeiling(level), "Sprosse $level reaches wrong")
-            assertEquals(want.second, CountryDrill.kinds(level).toSet(), "Sprosse $level asks wrong")
+            val sprosse = index + 1
+            assertEquals(want.first, CountryDrill.tierCeiling(sprosse), "Sprosse $sprosse reaches wrong")
+            assertEquals(want.second, CountryDrill.kinds(sprosse).toSet(), "Sprosse $sprosse asks wrong")
         }
         for ((below, above) in expected.zipWithNext()) {
             assertTrue(
@@ -143,18 +143,18 @@ class CountryDrillTests {
      */
     @Test
     fun aSprosseJustReachedAsksWhatItAdded() {
-        for (level in 2..CountryDrill.MAX_LEVEL) {
-            val below = CountryDrill.tasks(content, level - 1).mapTo(mutableSetOf()) { DrillSolved.key(it) }
+        for (sprosse in 2..CountryDrill.MAX_SPROSSE) {
+            val below = CountryDrill.tasks(content, sprosse - 1).mapTo(mutableSetOf()) { DrillSolved.key(it) }
             // A Sprosse whose widening this atlas has no content for adds nothing in FACT
             // however the ladder reads, and falls back to the whole pool rather than to nothing.
-            if (CountryDrill.tasks(content, level).all { DrillSolved.key(it) in below }) continue
+            if (CountryDrill.tasks(content, sprosse).all { DrillSolved.key(it) in below }) continue
             for (seed in 1..8) {
                 val task = assertNotNull(
-                    CountryDrill.sample(content, level, false, null, emptySet(), Random(seed), arriving = true),
+                    CountryDrill.sample(content, sprosse, false, null, emptySet(), Random(seed), arriving = true),
                 )
                 assertFalse(
                     DrillSolved.key(task) in below,
-                    "Sprosse $level arrived on a question Sprosse ${level - 1} could already ask",
+                    "Sprosse $sprosse arrived on a question Sprosse ${sprosse - 1} could already ask",
                 )
             }
         }
@@ -162,8 +162,8 @@ class CountryDrillTests {
 
     @Test
     fun everySprosseKeepsEverythingBelowIt() {
-        val pools = (1..CountryDrill.MAX_LEVEL).map { level ->
-            CountryDrill.tasks(content, level).map { it.kind to it.id }.toSet()
+        val pools = (1..CountryDrill.MAX_SPROSSE).map { sprosse ->
+            CountryDrill.tasks(content, sprosse).map { it.kind to it.id }.toSet()
         }
         for ((below, above) in pools.zipWithNext()) {
             assertTrue(below.all { it in above }, "a Sprosse dropped what the one below it opened")
@@ -174,10 +174,10 @@ class CountryDrillTests {
 
     @Test
     fun spokenWhereArrivesOnlyOnTheTopSprosse() {
-        for (level in 1 until CountryDrill.MAX_LEVEL) {
+        for (sprosse in 1 until CountryDrill.MAX_SPROSSE) {
             assertTrue(
-                CountryDrill.tasks(content, level).none { it.kind == CountryTaskKind.SpokenWhere },
-                "Sprosse $level asks where a language is spoken",
+                CountryDrill.tasks(content, sprosse).none { it.kind == CountryTaskKind.SpokenWhere },
+                "Sprosse $sprosse asks where a language is spoken",
             )
         }
     }
@@ -238,10 +238,10 @@ class CountryDrillTests {
         val twinned = content.copy(
             countries = content.countries + country("same", 1, listOf("de"), "Malta", "Malta"),
         )
-        for (level in 1..6) {
+        for (sprosse in 1..6) {
             assertTrue(
-                CountryDrill.tasks(twinned, level).none { it.kind == CountryTaskKind.FlagCountry },
-                "Sprosse $level shows a bare flag",
+                CountryDrill.tasks(twinned, sprosse).none { it.kind == CountryTaskKind.FlagCountry },
+                "Sprosse $sprosse shows a bare flag",
             )
         }
         val flags = CountryDrill.tasks(twinned, 7).filter { it.kind == CountryTaskKind.FlagCountry }
@@ -326,18 +326,18 @@ class CountryDrillTests {
      */
     @Test
     fun aReversedCountryQuestionKeepsItsFlagAndCallsItAGiveaway() {
-        for (level in 1..CountryDrill.MAX_LEVEL) {
-            for (task in CountryDrill.tasks(content, level, reverse = true)) {
+        for (sprosse in 1..CountryDrill.MAX_SPROSSE) {
+            for (task in CountryDrill.tasks(content, sprosse, reverse = true)) {
                 if (task.kind == CountryTaskKind.LanguageName ||
                     task.kind == CountryTaskKind.SpokenWhere
                 ) {
                     // A language has no flag to hold back in the first place.
-                    assertEquals(null, task.promptEmoji, "Sprosse $level: a language flew a flag")
-                    assertTrue(!task.emojiIsGiveaway, "Sprosse $level: nothing to give away")
+                    assertEquals(null, task.promptEmoji, "Sprosse $sprosse: a language flew a flag")
+                    assertTrue(!task.emojiIsGiveaway, "Sprosse $sprosse: nothing to give away")
                     continue
                 }
-                assertEquals("🏳", task.promptEmoji, "Sprosse $level dropped a reversed ${task.kind}'s flag")
-                assertTrue(task.emojiIsGiveaway, "Sprosse $level: reversed ${task.kind} may show its flag")
+                assertEquals("🏳", task.promptEmoji, "Sprosse $sprosse dropped a reversed ${task.kind}'s flag")
+                assertTrue(task.emojiIsGiveaway, "Sprosse $sprosse: reversed ${task.kind} may show its flag")
             }
         }
     }
@@ -345,9 +345,9 @@ class CountryDrillTests {
     /** Forward, the flag is no giveaway — it is context, and shown from the first frame. */
     @Test
     fun aForwardQuestionShowsItsFlagOutright() {
-        for (level in 1..CountryDrill.MAX_LEVEL) {
-            for (task in CountryDrill.tasks(content, level)) {
-                assertTrue(!task.emojiIsGiveaway, "Sprosse $level withheld a forward ${task.kind}'s flag")
+        for (sprosse in 1..CountryDrill.MAX_SPROSSE) {
+            for (task in CountryDrill.tasks(content, sprosse)) {
+                assertTrue(!task.emojiIsGiveaway, "Sprosse $sprosse withheld a forward ${task.kind}'s flag")
             }
         }
         assertTrue(CountryDrill.tasks(content, 1).all { it.promptEmoji != null })
@@ -360,15 +360,15 @@ class CountryDrillTests {
     /** The flag KIND is not merely emptied in reverse — it is never built there. */
     @Test
     fun theFlagQuestionDoesNotExistInReverse() {
-        for (level in 1..CountryDrill.MAX_LEVEL) {
+        for (sprosse in 1..CountryDrill.MAX_SPROSSE) {
             assertTrue(
-                CountryDrill.kinds(level, reverse = true).none { it == CountryTaskKind.FlagCountry },
-                "Sprosse $level lists the flag question in reverse",
+                CountryDrill.kinds(sprosse, reverse = true).none { it == CountryTaskKind.FlagCountry },
+                "Sprosse $sprosse lists the flag question in reverse",
             )
             assertTrue(
-                CountryDrill.tasks(content, level, reverse = true)
+                CountryDrill.tasks(content, sprosse, reverse = true)
                     .none { it.kind == CountryTaskKind.FlagCountry },
-                "Sprosse $level built a flag question in reverse",
+                "Sprosse $sprosse built a flag question in reverse",
             )
         }
     }
@@ -393,11 +393,11 @@ class CountryDrillTests {
      */
     @Test
     fun fastIsOfferedOnlyOnceTheTopSprosseHasBeenReached() {
-        for (best in 0 until CountryDrill.MAX_LEVEL) {
+        for (best in 0 until CountryDrill.MAX_SPROSSE) {
             assertTrue(!CountryDrill.fastUnlocked(best), "Sprosse $best bought fast mode")
         }
-        assertTrue(CountryDrill.fastUnlocked(CountryDrill.MAX_LEVEL))
-        assertTrue(CountryDrill.fastUnlocked(CountryDrill.MAX_LEVEL + 3), "a stored best above the top")
+        assertTrue(CountryDrill.fastUnlocked(CountryDrill.MAX_SPROSSE))
+        assertTrue(CountryDrill.fastUnlocked(CountryDrill.MAX_SPROSSE + 3), "a stored best above the top")
     }
 
     /** Three clean wins a Sprosse, or one where fast was earned. */
@@ -407,13 +407,13 @@ class CountryDrillTests {
         assertEquals(1, CountryDrill.winsToAdvance(fast = true))
 
         var step = DrillRamp.SprosseStep(1, 0)
-        repeat(2) { step = CountryDrill.step(step.level, step.winsAtLevel, correct = true, clean = true) }
-        assertEquals(1, step.level, "two wins moved a three-win Sprosse")
-        step = CountryDrill.step(step.level, step.winsAtLevel, correct = true, clean = true)
-        assertEquals(2, step.level)
+        repeat(2) { step = CountryDrill.step(step.sprosse, step.winsAtSprosse, correct = true, clean = true) }
+        assertEquals(1, step.sprosse, "two wins moved a three-win Sprosse")
+        step = CountryDrill.step(step.sprosse, step.winsAtSprosse, correct = true, clean = true)
+        assertEquals(2, step.sprosse)
 
         val quick = CountryDrill.step(1, 0, correct = true, clean = true, fast = true)
-        assertEquals(2, quick.level, "fast still asked for more than one win")
+        assertEquals(2, quick.sprosse, "fast still asked for more than one win")
     }
 
     @Test
@@ -450,23 +450,23 @@ class CountryDrillTests {
     /** The named Sprossen cap the CONTENT; the number climbs on so a climbed-out atlas still counts. */
     @Test
     fun theSprosseKeepsCountingPastTheLaddersTop() {
-        var step = DrillRamp.SprosseStep(CountryDrill.MAX_LEVEL, 0)
-        repeat(4) { step = CountryDrill.step(step.level, step.winsAtLevel, correct = true, clean = true) }
-        assertEquals(CountryDrill.MAX_LEVEL + 1, step.level, "three clean wins carried it past the top")
+        var step = DrillRamp.SprosseStep(CountryDrill.MAX_SPROSSE, 0)
+        repeat(4) { step = CountryDrill.step(step.sprosse, step.winsAtSprosse, correct = true, clean = true) }
+        assertEquals(CountryDrill.MAX_SPROSSE + 1, step.sprosse, "three clean wins carried it past the top")
         assertEquals(
-            CountryDrill.kinds(CountryDrill.MAX_LEVEL),
-            CountryDrill.kinds(step.level),
+            CountryDrill.kinds(CountryDrill.MAX_SPROSSE),
+            CountryDrill.kinds(step.sprosse),
             "and asks the top Sprosse's questions up there",
         )
-        assertEquals(1, CountryDrill.step(1, 0, correct = false, clean = true).level)
+        assertEquals(1, CountryDrill.step(1, 0, correct = false, clean = true).sprosse)
     }
 
     /** Only the flag Sprosse of a reversed run adds nothing — every other row asks or widens. */
     @Test
     fun onlyTheReversedFlagSprosseRepeatsTheOneBelow() {
-        for (level in 1..CountryDrill.MAX_LEVEL) {
-            assertFalse(CountryDrill.repeatsBelow(level, reverse = false), "forward Sprosse $level")
-            assertEquals(level == 7, CountryDrill.repeatsBelow(level, reverse = true), "reversed Sprosse $level")
+        for (sprosse in 1..CountryDrill.MAX_SPROSSE) {
+            assertFalse(CountryDrill.repeatsBelow(sprosse, reverse = false), "forward Sprosse $sprosse")
+            assertEquals(sprosse == 7, CountryDrill.repeatsBelow(sprosse, reverse = true), "reversed Sprosse $sprosse")
         }
     }
 }

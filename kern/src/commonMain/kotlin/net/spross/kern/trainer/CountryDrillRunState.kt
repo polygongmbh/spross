@@ -45,11 +45,11 @@ data class CountryDrillClose(
      * The Sprosse the run REACHED, not the one it ends on — the ramp drops back on a miss, and
      * the ladder rewards standing on a Sprosse rather than finishing there.
      */
-    val bestLevel: Int,
+    val bestSprosse: Int,
     /**
      * The Sprossen this run answered OUT before its first slip ([DrillSprossen]), for the page
      * to add to what it holds — the next run opens above them.
-     * Unfiltered: unlike [bestLevel] there is no standing value to beat.
+     * Unfiltered: unlike [bestSprosse] there is no standing value to beat.
      */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
@@ -108,7 +108,7 @@ class CountryDrillRunConfig(
  *
  * No FSRS and no box at all: the material is the catalog's atlas, not the learner's own
  * words, so nothing is scheduled and nothing is read. The one thing that outlives a run is
- * [bestLevel], which the page that started it files.
+ * [bestSprosse], which the page that started it files.
  */
 data class CountryDrillRunState(
     val config: CountryDrillRunConfig,
@@ -116,9 +116,9 @@ data class CountryDrillRunState(
     val task: CountryDrillTask,
     /** Bumped per question — what the card's identity and an autoplay effect key on. */
     override val index: Int,
-    val level: Int,
-    val bestLevel: Int,
-    val winsAtLevel: Int,
+    val sprosse: Int,
+    val bestSprosse: Int,
+    val winsAtSprosse: Int,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */
     override val core: DrillRunCore,
     override val feedback: TurnFeedback,

@@ -34,8 +34,8 @@ class SentenceScrambleRunTest {
 
     private fun config(bandSize: Int = 2) = SentenceScrambleRunConfig(report(bandSize))
 
-    private fun open(level: Int = 1, seed: Int = 5, bandSize: Int = 2) =
-        SentenceScrambleRun.openAt(config(bandSize), level, Random(seed))
+    private fun open(sprosse: Int = 1, seed: Int = 5, bandSize: Int = 2) =
+        SentenceScrambleRun.openAt(config(bandSize), sprosse, Random(seed))
 
     private fun answered(state: SentenceScrambleRunState, correctly: Boolean = true) =
         reduce(arrange(state, correctly), SentenceScrambleIntent.ConfirmPending).state
@@ -71,10 +71,10 @@ class SentenceScrambleRunTest {
     fun aMissDropsToTheEasierBand() {
         val report = config().report
         for (seed in 1..8) {
-            val state = open(level = 2, seed = seed)
+            val state = open(sprosse = 2, seed = seed)
             assertTrue(assertNotNull(state.task).cardId in report.phrasesAt(2).map { it.card.id })
             val missed = answered(state, correctly = false)
-            assertEquals(1, missed.level)
+            assertEquals(1, missed.sprosse)
             assertTrue(assertNotNull(missed.task).cardId in report.phrasesAt(1).map { it.card.id })
         }
     }
@@ -185,7 +185,7 @@ class SentenceScrambleRunTest {
         repeat(phrases.size + 2) {
             if (state.finished) return@repeat
             state = answered(state)
-            assertTrue(state.level <= state.config.report.maxLevel, "Sprosse ${state.level} holds nothing")
+            assertTrue(state.sprosse <= state.config.report.maxSprosse, "Sprosse ${state.sprosse} holds nothing")
         }
         assertTrue(state.finished)
         assertNull(state.task)
@@ -196,8 +196,8 @@ class SentenceScrambleRunTest {
     fun theTopBandIsWhereTheLadderStops() {
         var state = open(bandSize = phrases.size)
         repeat(SentenceScrambleRun.WINS_TO_ADVANCE) { state = answered(state) }
-        assertEquals(1, state.level)
-        assertEquals(1, state.bestLevel)
+        assertEquals(1, state.sprosse)
+        assertEquals(1, state.bestSprosse)
         assertNotNull(state.task, "the band still has phrases to ask")
     }
 
@@ -223,7 +223,7 @@ class SentenceScrambleRunTest {
         var state = open()
         repeat(phrases.size - 1) { state = answered(state) }
         val closed = SentenceScrambleRun.close(state)
-        assertEquals(3, closed.bestLevel)
+        assertEquals(3, closed.bestSprosse)
         assertEquals(setOf(1, 2), closed.clearedSprossen)
     }
 
@@ -232,8 +232,8 @@ class SentenceScrambleRunTest {
     fun aResumedRunFastClimbsWhatTheStoreHolds() {
         val resumed = SentenceScrambleRunConfig(report(bandSize = 3), cleared = setOf(1))
         val state = SentenceScrambleRun.open(resumed, Random(7))
-        assertEquals(1, state.level)
-        assertEquals(2, answered(state).level)
+        assertEquals(1, state.sprosse)
+        assertEquals(2, answered(state).sprosse)
     }
 
     /** A wrong arrangement takes the Sprosse's booking with it, however clean the rest of it runs. */
@@ -241,14 +241,14 @@ class SentenceScrambleRunTest {
     fun aMissForfeitsTheSprosseItFallsOn() {
         var state = arrange(open(), correctly = false)
         state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
-        assertEquals(1, state.level, "the foot of the ladder has nothing below it")
+        assertEquals(1, state.sprosse, "the foot of the ladder has nothing below it")
 
         repeat(phrases.size) {
-            if (state.level > 1 || state.task == null) return@repeat
+            if (state.sprosse > 1 || state.task == null) return@repeat
             state = arrange(state, correctly = true)
             state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
         }
-        assertTrue(state.level > 1, "the run climbs as it always did")
+        assertTrue(state.sprosse > 1, "the run climbs as it always did")
         val closed = SentenceScrambleRun.close(state)
         assertEquals(emptySet(), closed.clearedSprossen, "but the Sprosse is not the store's")
     }

@@ -46,10 +46,10 @@ sealed interface Screen {
      * An atlas run, carrying the two things the page settled before it opened: which way
      * round the questions are asked, and whether a Sprosse falls on one clean win.
      */
-    data class CountryDrill(val reverse: Boolean, val fast: Boolean, val level: Int) : Screen
+    data class CountryDrill(val reverse: Boolean, val fast: Boolean, val sprosse: Int) : Screen
 
     /** A dates run, carrying the same two settled things the atlas run does. */
-    data class DateDrill(val reverse: Boolean, val fast: Boolean, val level: Int) : Screen
+    data class DateDrill(val reverse: Boolean, val fast: Boolean, val sprosse: Int) : Screen
 
     /**
      * The box browser. [area] is the shelf it opens UNFOLDED — the screen was reached by

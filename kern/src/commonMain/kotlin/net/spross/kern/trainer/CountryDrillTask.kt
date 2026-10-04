@@ -94,7 +94,7 @@ data class CountryDrillTask(
  * [task] is null exactly when the whole ladder above is answered out, which ends the run on
  * its summary rather than repeating a question.
  */
-data class CountryDrillDraw(val task: CountryDrillTask?, val level: Int)
+data class CountryDrillDraw(val task: CountryDrillTask?, val sprosse: Int)
 
 /** One country as the reference table lists it, both sides of the pair side by side. */
 data class CountryReferenceRow(

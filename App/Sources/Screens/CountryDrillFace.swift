@@ -44,7 +44,7 @@ enum CountryDrillFace: DrillFace {
     }
 
     static func fastUnlocked(best: Int, content: CountryDrillContent, reverse: Bool) -> Bool {
-        CountryDrill.shared.fastUnlocked(bestLevel: best)
+        CountryDrill.shared.fastUnlocked(bestSprosse: best)
     }
 
     static func reference(model: AppModel, content: CountryDrillContent,
@@ -57,7 +57,7 @@ enum CountryDrillFace: DrillFace {
     private static func sprosseTitle(_ sprosse: Int, reverse: Bool) -> LocalizedStringKey {
         // A Sprosse that adds nothing to the one below — kern's call, the flag row
         // of a reversed run — says so rather than promising a question never asked.
-        if CountryDrill.shared.repeatsBelow(level: Int32(sprosse), reverse: reverse) {
+        if CountryDrill.shared.repeatsBelow(sprosse: Int32(sprosse), reverse: reverse) {
             return "countries.sprosse.repeats"
         }
         switch sprosse {
@@ -80,17 +80,17 @@ enum CountryDrillFace: DrillFace {
     }
 
     static func open(content: CountryDrillContent, reverse: Bool, fast: Bool,
-                     normalizer: AnswerNormalizer?, level: Int?,
+                     normalizer: AnswerNormalizer?, sprosse: Int?,
                      standingRecord: Int, cleared: Set<KotlinInt>) -> CountryDrillRunState {
         let config = CountryDrillRunConfig(content: content, reverse: reverse, fast: fast,
                                            normalizer: normalizer, standingRecord: Int32(standingRecord),
                                            cleared: cleared)
-        guard let level else { return CountryDrillRun.shared.open(config: config, rng: drillRandom) }
-        return CountryDrillRun.shared.openAt(config: config, level: Int32(level), rng: drillRandom)
+        guard let sprosse else { return CountryDrillRun.shared.open(config: config, rng: drillRandom) }
+        return CountryDrillRun.shared.openAt(config: config, sprosse: Int32(sprosse), rng: drillRandom)
     }
 
     static func snapshot(_ run: CountryDrillRunState) -> DrillSnapshot {
-        DrillSnapshot(index: Int(run.index), level: Int(run.level),
+        DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
                       streak: Int(run.streak), bestStreak: Int(run.bestStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
                       offersFinish: run.offersFinish, finished: run.finished,
@@ -116,7 +116,7 @@ enum CountryDrillFace: DrillFace {
                       standingRecord: Int) -> DrillEnd<CountryDrillRunState> {
         let closed = CountryDrillRun.shared.close(state: run, standingRecord: Int32(standingRecord))
         return DrillEnd(run: closed.state, summary: closed.summary,
-                        bestLevel: Int(closed.bestLevel),
+                        bestSprosse: Int(closed.bestSprosse),
                         clearedSprossen: closed.clearedSprossen, effects: closed.effects)
     }
 
@@ -142,14 +142,14 @@ enum CountryDrillFace: DrillFace {
     }
 
     #if DEBUG
-    static var uitestLevelKey: String { "uitest-countries-level" }
+    static var uitestSprosseKey: String { "uitest-countries-level" }
 
     static var uitestBestKey: String { "uitest-countries-best" }
 
     static func seedStreak(_ run: CountryDrillRunState, _ streak: Int) -> CountryDrillRunState {
         run.doCopy(config: run.config, task: run.task, index: run.index,
-                   level: run.level, bestLevel: run.bestLevel,
-                   winsAtLevel: run.winsAtLevel,
+                   sprosse: run.sprosse, bestSprosse: run.bestSprosse,
+                   winsAtSprosse: run.winsAtSprosse,
                    core: run.core.doCopy(done: Int32(streak + 6),
                                          streak: Int32(streak),
                                          bestStreak: Int32(max(streak, 12)),

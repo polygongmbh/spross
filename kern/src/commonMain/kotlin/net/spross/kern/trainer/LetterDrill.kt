@@ -25,23 +25,23 @@ import net.spross.kern.session.spokenOnly
  * the progression can be pinned in tests rather than described in two UI layers.
  */
 object LetterDrill {
-    const val MAX_LEVEL_WITH_DICTATION = 9
-    const val MAX_LEVEL_WITHOUT_DICTATION = 7
+    const val MAX_SPROSSE_WITH_DICTATION = 9
+    const val MAX_SPROSSE_WITHOUT_DICTATION = 7
 
     /** One answer plus up to three distractors; two are tolerated on a tiny alphabet. */
     const val CHOICE_COUNT = 4
 
     /** Entry pacing stops one Sprosse below transcription — nobody starts by taking dictation. */
-    private const val ENTRY_LEVEL_CEILING = 6
-    private const val GROWING_PER_LEVEL = 12
+    private const val ENTRY_SPROSSE_CEILING = 6
+    private const val GROWING_PER_SPROSSE = 12
 
     /** Growing words from which one clean win is enough to move up a Sprosse. */
     private const val GROWING_FOR_SHORT_STAGES = 60
 
-    /** Dictation at level 8 asks for short words; the count ignores spaces. */
+    /** Dictation at Sprosse 8 asks for short words; the count ignores spaces. */
     private const val SHORT_WORD_LETTERS = 6
 
-    /** Below this many short candidates the level-8 filter is dropped — never draw from one. */
+    /** Below this many short candidates the Sprosse-8 filter is dropped — never draw from one. */
     private const val MIN_SHORT_CANDIDATES = 3
 
     /** The same floor on the gap word's known-first preference; below it, the whole pool. */
@@ -55,8 +55,8 @@ object LetterDrill {
     private const val DIFFICULTY_MIDPOINT = 5.0
     private const val DIFFICULTY_PER_STEP = 1.0
 
-    fun maxLevel(dictationAvailable: Boolean): Int =
-        if (dictationAvailable) MAX_LEVEL_WITH_DICTATION else MAX_LEVEL_WITHOUT_DICTATION
+    fun maxSprosse(dictationAvailable: Boolean): Int =
+        if (dictationAvailable) MAX_SPROSSE_WITH_DICTATION else MAX_SPROSSE_WITHOUT_DICTATION
 
     /**
      * Where a learner STARTS, from the words they already hold: 0–11 growing → 1,
@@ -64,12 +64,12 @@ object LetterDrill {
      * someone with a vocabulary should not spell out `em` four times before the drill
      * gets interesting, and someone without one should not be dropped into typing.
      */
-    fun entryLevel(arrivedCards: Int): Int =
-        minOf(ENTRY_LEVEL_CEILING, 1 + maxOf(0, arrivedCards) / GROWING_PER_LEVEL)
+    fun entrySprosse(arrivedCards: Int): Int =
+        minOf(ENTRY_SPROSSE_CEILING, 1 + maxOf(0, arrivedCards) / GROWING_PER_SPROSSE)
 
     /**
      * How LONG a Sprosse is — the second half of the same pacing rule. A growing
-     * vocabulary earns each level in one clean win; below that the classic two apply, so
+     * vocabulary earns each Sprosse in one clean win; below that the classic two apply, so
      * a beginner gets the repetition and nobody else gets the drag.
      */
     fun winsToAdvance(arrivedCards: Int): Int = if (arrivedCards >= GROWING_FOR_SHORT_STAGES) 1 else 2
@@ -79,11 +79,11 @@ object LetterDrill {
         LetterFormat.ChoiceEasy -> 1..2
         LetterFormat.ChoiceConfusable -> 3..5
         LetterFormat.Typed -> 6..7
-        LetterFormat.Dictation -> 8..MAX_LEVEL_WITH_DICTATION
+        LetterFormat.Dictation -> 8..MAX_SPROSSE_WITH_DICTATION
     }
 
     /** 1–2 easy tiles, 3–5 confusable tiles, 6–7 typing, 8–9 dictation. */
-    fun formatFor(level: Int): LetterFormat = when (level.coerceIn(1, MAX_LEVEL_WITH_DICTATION)) {
+    fun formatFor(sprosse: Int): LetterFormat = when (sprosse.coerceIn(1, MAX_SPROSSE_WITH_DICTATION)) {
         1, 2 -> LetterFormat.ChoiceEasy
         3, 4, 5 -> LetterFormat.ChoiceConfusable
         6, 7 -> LetterFormat.Typed
@@ -123,7 +123,7 @@ object LetterDrill {
     fun sample(
         alphabet: Alphabet,
         targetExamples: (AlphabetEntry) -> List<AlphabetExampleWord>,
-        level: Int,
+        sprosse: Int,
         promptableRefs: List<String>,
         avoidRef: String?,
         avoidWord: String?,
@@ -133,7 +133,7 @@ object LetterDrill {
         val allowed = promptableRefs.toSet()
         // why: the letter formats stop at 7 — 8 and 9 are dictation, which draws from the
         // box and enters through sampleDictation, never here.
-        val format = formatFor(level.coerceIn(1, MAX_LEVEL_WITHOUT_DICTATION))
+        val format = formatFor(sprosse.coerceIn(1, MAX_SPROSSE_WITHOUT_DICTATION))
         val pool = alphabet.entries
             .filter { it.ref in allowed && it.drill && it.kind != AlphabetKind.Rule }
             .map { entry -> entry to unsolved(gapCandidates(entry, targetExamples), format, entry, solved) }
@@ -152,7 +152,7 @@ object LetterDrill {
             promptKind = prompt.kind,
             promptSlug = prompt.slug,
             promptGlyph = prompt.glyph,
-            choices = LetterDrillChoices.tiles(alphabet, entry, format, level, prompt.gap, rng),
+            choices = LetterDrillChoices.tiles(alphabet, entry, format, sprosse, prompt.gap, rng),
             gapText = prompt.gap,
             accepted = listOf(entry.glyph),
             display = entry.glyph,
@@ -175,7 +175,7 @@ object LetterDrill {
      * cards; kern drops anything with a space of its own — a transcription task is
      * one word, whatever the caller believes.
      *
-     * Level 8 asks for short words. If fewer than [MIN_SHORT_CANDIDATES] survive that
+     * Sprosse 8 asks for short words. If fewer than [MIN_SHORT_CANDIDATES] survive that
      * filter the whole list is used instead: a drill that always dictates the same two
      * words is worse than one that occasionally dictates a long one.
      *
@@ -190,7 +190,7 @@ object LetterDrill {
     fun sampleDictation(
         candidates: List<DictationCandidate>,
         alphabet: Alphabet?,
-        level: Int,
+        sprosse: Int,
         avoidCardId: String?,
         solved: Set<String>,
         rng: Random,
@@ -201,7 +201,7 @@ object LetterDrill {
         }
         if (words.isEmpty()) return null
         val short = words.filter { it.card.target.text.count { ch -> ch != ' ' } <= SHORT_WORD_LETTERS }
-        val pool = if (level <= 8 && short.size >= MIN_SHORT_CANDIDATES) short else words
+        val pool = if (sprosse <= 8 && short.size >= MIN_SHORT_CANDIDATES) short else words
         val tricky = alphabet?.trickyGlyphs.orEmpty()
         val weights = pool.map { dictationWeight(it, tricky) }
         var card = weighted(pool, weights, rng).card

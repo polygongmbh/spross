@@ -34,15 +34,15 @@ internal sealed interface SlotValue {
 internal fun drawSlot(reading: NumbersReading, language: Language, rng: Random): SlotValue = when (reading) {
     NumbersReading.Cardinal -> SlotValue.Count(drawSampleNumber(rng))
     NumbersReading.Year -> SlotValue.Year(drawSampleYear(rng))
-    NumbersReading.Clock -> drawSlot(reading, language, CLOCK_MAX_LEVEL, rng)
-    NumbersReading.Fraction -> drawSlot(reading, language, FRACTION_MAX_LEVEL, rng)
+    NumbersReading.Clock -> drawSlot(reading, language, CLOCK_MAX_SPROSSE, rng)
+    NumbersReading.Fraction -> drawSlot(reading, language, FRACTION_MAX_SPROSSE, rng)
     NumbersReading.Phone -> drawSlot(reading, language, 1, rng)
     NumbersReading.Form -> noSlotGenerator(reading)
 }
 
-/** Leveled draw, with the level semantics [Numbers.sample] documents. */
-internal fun drawSlot(reading: NumbersReading, language: Language, level: Int, rng: Random): SlotValue {
-    val l = level.coerceIn(1, Numbers.maxLevel(reading))
+/** A draw at a Sprosse, with the semantics [Numbers.sample] documents. */
+internal fun drawSlot(reading: NumbersReading, language: Language, sprosse: Int, rng: Random): SlotValue {
+    val l = sprosse.coerceIn(1, Numbers.maxSprosse(reading))
     return when (reading) {
         NumbersReading.Cardinal -> SlotValue.Count(drawNumber(l, rng))
         NumbersReading.Year -> SlotValue.Year(drawSampleYear(l, rng))
@@ -78,14 +78,14 @@ private fun drawSampleYear(rng: Random): Long {
     }
 }
 
-private fun drawSampleYear(level: Int, rng: Random): Long = when (level) {
+private fun drawSampleYear(sprosse: Int, rng: Random): Long = when (sprosse) {
     1 -> rng.nextLong(1990, 2030)
     2 -> rng.nextLong(1900, 2100)
     else -> rng.nextLong(1100, 2100)
 }
 
 /** Two Sprossen: unit fractions the size of a recipe step, then any the language reads. */
-internal const val FRACTION_MAX_LEVEL = 2
+internal const val FRACTION_MAX_SPROSSE = 2
 
 /**
  * A fraction a frame can carry as a BARE NOUN, drawn from the pack's own denominators.
@@ -96,15 +96,15 @@ internal const val FRACTION_MAX_LEVEL = 2
  * agreement device runs the other way round, from the numeral to the noun. Everything from
  * a third up is a noun in its own right and drops into a sentence unchanged.
  */
-private fun drawFractionSlot(language: Language, level: Int, rng: Random): SlotValue.Part {
+private fun drawFractionSlot(language: Language, sprosse: Int, rng: Random): SlotValue.Part {
     val limits = Numbers.pack(language).formLimits
-    val pool = fractionPool(limits, wide = level >= 2, minDenominator = 3)
+    val pool = fractionPool(limits, wide = sprosse >= 2, minDenominator = 3)
     val drawn = pool[rng.nextInt(pool.size)]
     return SlotValue.Part(drawn.numerator, drawn.denominator)
 }
 
 /**
- * Level-sized number with zeros biased to ~40% on the non-leading digits,
+ * Sprosse-sized number with zeros biased to ~40% on the non-leading digits,
  * so the drill favours rounder values (less tedious than typing arbitrary
  * long numbers). The leading digit stays 1–9 so the value keeps exactly
  * [digits] digits.

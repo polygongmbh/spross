@@ -122,10 +122,10 @@ extension NumbersOverview {
     /// it prints as the length it is and the other exercises name themselves.
     private func unlockCaption(_ required: [NumbersExercise: KotlinInt]) -> Text {
         let parts: [Text] = NumbersExercise.allCases.compactMap { exercise in
-            guard let level = required[exercise].map({ Int(truncating: $0) }) else { return nil }
-            guard exercise != .counting else { return Text("numbers.sprosse \(level)") }
+            guard let sprosse = required[exercise].map({ Int(truncating: $0) }) else { return nil }
+            guard exercise != .counting else { return Text("numbers.sprosse \(sprosse)") }
             return Text(verbatim: "\(numbersExerciseEmoji(exercise: exercise)) ") + Text(exercise.trainerTitleKey)
-                + Text(verbatim: " ") + Text("trainer.sprosse \(level.formatted())")
+                + Text(verbatim: " ") + Text("trainer.sprosse \(sprosse.formatted())")
         }
         guard let priced = parts.joined() else { return Text("numbers.unlock") }
         return Text("numbers.unlock") + Text(verbatim: " ") + priced

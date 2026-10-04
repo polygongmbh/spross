@@ -58,13 +58,13 @@ data class DrillPacing(
 
     /**
      * The pacing after an answer [core] has just booked: the figures brought up to date, and the
-     * pause due now, if one is. [level] is the Sprosse the run now stands on, null where it climbs
+     * pause due now, if one is. [sprosse] is the Sprosse the run now stands on, null where it climbs
      * several; [newSprossen] how many it has cleared that the store did not hold; [endless] false
      * where the run is over or ends on its clock.
      */
-    internal fun after(core: DrillRunCore, level: Int?, newSprossen: Int, endless: Boolean): DrillPacing {
+    internal fun after(core: DrillRunCore, sprosse: Int?, newSprossen: Int, endless: Boolean): DrillPacing {
         val moved = copy(
-            reached = level?.let { maxOf(reached ?: it, it) } ?: reached,
+            reached = sprosse?.let { maxOf(reached ?: it, it) } ?: reached,
             newSprossen = newSprossen,
             newRecord = standingRecord > 0 && core.bestStreak > standingRecord,
         )
@@ -87,8 +87,8 @@ data class DrillPacing(
         const val STRUGGLING_WINDOW: Int = 5
         const val STRUGGLING_MISSES: Int = 3
 
-        /** A run's pacing as it opens on [level] against [standingRecord]. */
-        fun opening(level: Int?, standingRecord: Int): DrillPacing =
-            DrillPacing(openedOn = level, reached = level, standingRecord = standingRecord)
+        /** A run's pacing as it opens on [sprosse] against [standingRecord]. */
+        fun opening(sprosse: Int?, standingRecord: Int): DrillPacing =
+            DrillPacing(openedOn = sprosse, reached = sprosse, standingRecord = standingRecord)
     }
 }

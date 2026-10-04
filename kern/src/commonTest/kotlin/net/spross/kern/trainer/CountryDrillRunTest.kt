@@ -98,9 +98,9 @@ class CountryDrillRunTest {
         reverse: Boolean = false,
         fast: Boolean = false,
         graded: Boolean = true,
-        level: Int = 1,
+        sprosse: Int = 1,
         cleared: Set<Int> = emptySet(),
-    ) = CountryDrillRun.openAt(config(reverse, fast, graded, cleared), level, Random(7))
+    ) = CountryDrillRun.openAt(config(reverse, fast, graded, cleared), sprosse, Random(7))
 
     private fun CountryDrillRunState.reduce(intent: CountryDrillIntent) =
         CountryDrillRun.reduce(this, intent, Random(7))
@@ -117,8 +117,8 @@ class CountryDrillRunTest {
     @Test
     fun aRunOpensOnTheFirstSprosseWithAQuestionStanding() {
         val run = CountryDrillRun.open(config(), Random(7))
-        assertEquals(1, run.level)
-        assertEquals(1, run.bestLevel)
+        assertEquals(1, run.sprosse)
+        assertEquals(1, run.bestSprosse)
         assertEquals(CountryTaskKind.CountryName, run.task.kind)
         assertEquals("Ujerumani", run.task.display)
         assertTrue(run.owesAnswer)
@@ -129,8 +129,8 @@ class CountryDrillRunTest {
     /** The forced Sprosse is for tests and screenshot drivers; kern clamps it to the ladder. */
     @Test
     fun aForcedSprosseIsClampedToTheLadder() {
-        assertEquals(CountryDrill.MAX_LEVEL, open(level = 99).level)
-        assertEquals(1, open(level = 0).level)
+        assertEquals(CountryDrill.MAX_SPROSSE, open(sprosse = 99).sprosse)
+        assertEquals(1, open(sprosse = 0).sprosse)
     }
 
     /** Which side prompts and which is owed is the run's, not a screen's. */
@@ -318,10 +318,10 @@ class CountryDrillRunTest {
      */
     @Test
     fun threeCleanWinsCarryTheRun() {
-        var run = open(level = 5)
+        var run = open(sprosse = 5)
         repeat(CountryDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
-        assertEquals(6, run.level)
-        assertEquals(6, run.bestLevel)
+        assertEquals(6, run.sprosse)
+        assertEquals(6, run.bestSprosse)
         assertEquals(3, run.done)
         assertEquals(3, run.streak)
         assertEquals(3, run.index)
@@ -331,16 +331,16 @@ class CountryDrillRunTest {
     /** Fast is one clean win a Sprosse — the price is paid before the run opens. */
     @Test
     fun fastSpendsOneWinASprosse() {
-        val run = open(fast = true, level = 5)
-        assertEquals(6, run.answered(run.task.display).level)
+        val run = open(fast = true, sprosse = 5)
+        assertEquals(6, run.answered(run.task.display).sprosse)
     }
 
     /** The almost hold is accepted, and moves the Sprosse neither way. */
     @Test
     fun theAlmostHoldBanksNoWin() {
         val run = open().answered("Ujerumami")
-        assertEquals(1, run.level)
-        assertEquals(0, run.winsAtLevel)
+        assertEquals(1, run.sprosse)
+        assertEquals(0, run.winsAtSprosse)
         assertEquals(listOf(AnswerOutcome.Almost), run.outcomes)
         assertEquals(1, run.streak, "a slip is still an answer the learner got")
     }
@@ -348,12 +348,12 @@ class CountryDrillRunTest {
     /** A miss drops the Sprosse, and the Sprosse the run REACHED is what it keeps. */
     @Test
     fun aMissDropsTheSprosseButNotTheOneTheRunReached() {
-        var run = open(level = 5)
+        var run = open(sprosse = 5)
         repeat(CountryDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
-        assertEquals(6, run.level)
+        assertEquals(6, run.sprosse)
         run = run.missed()
-        assertEquals(5, run.level)
-        assertEquals(6, run.bestLevel)
+        assertEquals(5, run.sprosse)
+        assertEquals(6, run.bestSprosse)
     }
 
     // MARK: - Asking each question once
@@ -366,9 +366,9 @@ class CountryDrillRunTest {
     @Test
     fun aSprosseWithNothingLeftToAskIsClimbedPast() {
         val run = open().answered("Ujerumani")
-        assertEquals(2, run.level)
-        assertEquals(2, run.bestLevel)
-        assertEquals(0, run.winsAtLevel, "the wins stay behind with the Sprosse that earned them")
+        assertEquals(2, run.sprosse)
+        assertEquals(2, run.bestSprosse)
+        assertEquals(0, run.winsAtSprosse, "the wins stay behind with the Sprosse that earned them")
         assertFalse(
             run.task.kind == CountryTaskKind.CountryName && run.task.id == "germany",
             "the question just answered came round again",
@@ -381,11 +381,11 @@ class CountryDrillRunTest {
     fun onlyACleanAnswerRetiresAQuestion() {
         val slipped = open().answered("Ujerumami")
         assertEquals(CountryTaskKind.CountryName, slipped.task.kind)
-        assertEquals(1, slipped.level, "an almost neither climbs the Sprosse nor empties it")
+        assertEquals(1, slipped.sprosse, "an almost neither climbs the Sprosse nor empties it")
 
         val missed = open().missed()
         assertEquals(CountryTaskKind.CountryName, missed.task.kind)
-        assertEquals(1, missed.level)
+        assertEquals(1, missed.sprosse)
     }
 
     /**
@@ -394,20 +394,20 @@ class CountryDrillRunTest {
      */
     @Test
     fun aLadderAnsweredOutEndsTheRun() {
-        var run = open(level = CountryDrill.MAX_LEVEL)
+        var run = open(sprosse = CountryDrill.MAX_SPROSSE)
         val asked = mutableSetOf<String>()
         while (!run.finished) {
             asked += "${run.task.kind}:${run.task.id}"
             run = run.answered(run.task.display)
         }
         assertEquals(
-            CountryDrill.tasks(content, CountryDrill.MAX_LEVEL, reverse = false).size,
+            CountryDrill.tasks(content, CountryDrill.MAX_SPROSSE, reverse = false).size,
             asked.size,
             "every question was asked exactly once before the run ran out",
         )
         assertEquals(asked.size, run.done)
         assertEquals(
-            (1..CountryDrill.MAX_LEVEL).toSet(),
+            (1..CountryDrill.MAX_SPROSSE).toSet(),
             CountryDrillRun.close(run, standingRecord = 0).clearedSprossen,
             "a ladder answered out is cleared to the top",
         )
@@ -466,7 +466,7 @@ class CountryDrillRunTest {
     fun anUntouchedRunReportsNothingButStillNamesItsSprosse() {
         val closed = CountryDrillRun.close(open(), standingRecord = 0)
         assertNull(closed.summary)
-        assertEquals(1, closed.bestLevel)
+        assertEquals(1, closed.bestSprosse)
         assertTrue(closed.state.finished)
         assertEquals(listOf(DrillEffect.CancelAdvance, DrillEffect.Silence), closed.effects)
     }

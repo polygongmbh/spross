@@ -3,7 +3,7 @@ import SprossKern
 
 /// The letter drill: hear a sound, find the letter. Four glyph tiles, then
 /// confusable ones, then typing the glyph, and finally dictation of words the
-/// learner already holds — one level, mapped to formats by Kern.
+/// learner already holds — one Sprosse, mapped to formats by Kern.
 ///
 /// Stateless like its slot-drill sibling and then some: no review is ever
 /// booked (D12 — transcription is not recall). The box is READ, for the pacing
@@ -59,7 +59,7 @@ struct LetterDrillView: View, LanguageNaming {
         let preset = UserDefaults.standard.integer(forKey: "uitest-letters-level")
         if preset > 0 {
             _run = State(initialValue: LetterDrillRun.shared.openAt(config: config,
-                                                                    level: Int32(preset),
+                                                                    sprosse: Int32(preset),
                                                                     rng: drillRandom))
         } else {
             _run = State(initialValue: LetterDrillRun.shared.open(config: config, rng: drillRandom))

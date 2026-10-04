@@ -54,7 +54,7 @@ struct WordScrambleView: View, LanguageNaming {
         let preset = UserDefaults.standard.integer(forKey: "uitest-wordscramble-level")
         if preset > 0 {
             _run = State(initialValue: WordScrambleRun.shared.openAt(config: config,
-                                                                     level: Int32(preset),
+                                                                     sprosse: Int32(preset),
                                                                      rng: drillRandom))
         } else {
             _run = State(initialValue: WordScrambleRun.shared.open(config: config, rng: drillRandom))

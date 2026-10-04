@@ -47,15 +47,15 @@ class RealCatalogCountryDrillTest {
     fun noSprosseAsksForAnAnswerItsOwnPromptAlreadyGives() {
         for ((source, target) in pairs()) {
             val content = assertNotNull(catalog.countryDrillContent(source, target))
-            for (level in 1..CountryDrill.MAX_LEVEL) {
+            for (sprosse in 1..CountryDrill.MAX_SPROSSE) {
                 for (reverse in listOf(false, true)) {
-                    val named = CountryDrill.tasks(content, level, reverse)
+                    val named = CountryDrill.tasks(content, sprosse, reverse)
                         .filter { it.kind == CountryTaskKind.CountryName }
-                    assertTrue(named.isNotEmpty(), "$source→$target Sprosse $level: no name question left")
+                    assertTrue(named.isNotEmpty(), "$source→$target Sprosse $sprosse: no name question left")
                     for (task in named) {
                         assertTrue(
                             task.accepted.none { it.lowercase() == task.promptText?.lowercase() },
-                            "$source→$target Sprosse $level: ${task.id} asks for the name it shows",
+                            "$source→$target Sprosse $sprosse: ${task.id} asks for the name it shows",
                         )
                     }
                 }
@@ -72,40 +72,40 @@ class RealCatalogCountryDrillTest {
     fun everySprosseSamplesCleanlyInBothDirections() {
         for ((source, target) in pairs()) {
             val content = assertNotNull(catalog.countryDrillContent(source, target))
-            for (level in 1..CountryDrill.MAX_LEVEL) {
+            for (sprosse in 1..CountryDrill.MAX_SPROSSE) {
                 for (reverse in listOf(false, true)) {
-                    val rng = Random(level.toLong())
+                    val rng = Random(sprosse.toLong())
                     var last: String? = null
                     repeat(200) {
                         val task = assertNotNull(
-                            CountryDrill.sample(content, level, reverse, last, emptySet(), rng),
+                            CountryDrill.sample(content, sprosse, reverse, last, emptySet(), rng),
                         )
                         // A flag question shows no name at all, so what every task owes is
                         // SOMETHING to go on: a name, or the flag standing in for one.
                         assertTrue(
                             (task.promptText?.isNotBlank() ?: (task.promptEmoji != null)) &&
                                 task.display.isNotBlank(),
-                            "$source→$target Sprosse $level: blank question",
+                            "$source→$target Sprosse $sprosse: blank question",
                         )
                         assertTrue(
                             task.display in task.accepted,
-                            "$source→$target Sprosse $level: ${task.id} does not accept its own reveal",
+                            "$source→$target Sprosse $sprosse: ${task.id} does not accept its own reveal",
                         )
                         // A reversed run is answered in the learner's OWN language, so the
                         // flag may not be SHOWN while the answer is owed. The task still
                         // carries it and says so; what it may never be is showable.
                         assertTrue(
                             !reverse || task.promptEmoji == null || task.emojiIsGiveaway,
-                            "$source→$target Sprosse $level: ${task.id} would show a flag in reverse",
+                            "$source→$target Sprosse $sprosse: ${task.id} would show a flag in reverse",
                         )
                         assertTrue(
                             !reverse || task.kind != CountryTaskKind.FlagCountry,
-                            "$source→$target Sprosse $level: a flag question in reverse",
+                            "$source→$target Sprosse $sprosse: a flag question in reverse",
                         )
                         // Forward, nothing is ever held back from the learner.
                         assertTrue(
                             reverse || !task.emojiIsGiveaway,
-                            "$source→$target Sprosse $level: ${task.id} withheld a forward flag",
+                            "$source→$target Sprosse $sprosse: ${task.id} withheld a forward flag",
                         )
                         last = task.id
                     }

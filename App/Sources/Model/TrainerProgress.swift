@@ -38,15 +38,15 @@ enum TrainerProgress {
     /// strictly-greater guard is kept as a belt: kern already filtered, and a
     /// re-closed run must never claim a Sprosse twice.
     static func book(_ bookings: [String: KotlinInt]) {
-        for (key, level) in bookings { record(Int(truncating: level), for: key) }
+        for (key, sprosse) in bookings { record(Int(truncating: sprosse), for: key) }
     }
 
-    /// Books `level` as the new best if it beats the standing one, and says
+    /// Books `sprosse` as the new best if it beats the standing one, and says
     /// whether it did.
     @discardableResult
-    static func record(_ level: Int, for key: String) -> Bool {
-        guard level > best(for: key) else { return false }
-        UserDefaults.standard.set(level, forKey: prefix + key)
+    static func record(_ sprosse: Int, for key: String) -> Bool {
+        guard sprosse > best(for: key) else { return false }
+        UserDefaults.standard.set(sprosse, forKey: prefix + key)
         return true
     }
 

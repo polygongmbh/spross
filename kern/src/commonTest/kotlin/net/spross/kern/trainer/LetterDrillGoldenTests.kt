@@ -23,16 +23,16 @@ class LetterDrillGoldenTests {
         assertEquals(GOLDEN.trim(), rendered().trim())
     }
 
-    /** Six consecutive questions per level, each avoiding the one before it. */
+    /** Six consecutive questions per Sprosse, each avoiding the one before it. */
     private fun rendered(): String = buildString {
-        for (level in 1..LetterDrill.MAX_LEVEL_WITHOUT_DICTATION) {
-            appendLine("level $level")
+        for (sprosse in 1..LetterDrill.MAX_SPROSSE_WITHOUT_DICTATION) {
+            appendLine("Sprosse $sprosse")
             val rng = Random(SEED)
             var avoid: String? = null
             repeat(RUN_LENGTH) {
                 val task = assertNotNull(
                     LetterDrill.sample(
-                        fixture.alphabet, fixture.example, level, fixture.allRefs,
+                        fixture.alphabet, fixture.example, sprosse, fixture.allRefs,
                         avoid, null, emptySet(), rng,
                     ),
                 )
@@ -43,8 +43,8 @@ class LetterDrillGoldenTests {
                 )
             }
         }
-        for (level in 8..LetterDrill.MAX_LEVEL_WITH_DICTATION) {
-            appendLine("level $level")
+        for (sprosse in 8..LetterDrill.MAX_SPROSSE_WITH_DICTATION) {
+            appendLine("Sprosse $sprosse")
             val rng = Random(SEED)
             var avoid: String? = null
             // The fixture's schedules are clean, so the weighting on show is the SPELLING
@@ -52,7 +52,7 @@ class LetterDrillGoldenTests {
             val cards = fixture.dictationCandidates()
             repeat(RUN_LENGTH) {
                 val task = assertNotNull(
-                    LetterDrill.sampleDictation(cards, fixture.alphabet, level, avoid, emptySet(), rng),
+                    LetterDrill.sampleDictation(cards, fixture.alphabet, sprosse, avoid, emptySet(), rng),
                 )
                 avoid = task.answerRef
                 appendLine("  ${task.format} ${task.answerRef} ${task.display}")
@@ -65,63 +65,63 @@ class LetterDrillGoldenTests {
         const val RUN_LENGTH = 6
 
         val GOLDEN = """
-            level 1
+            Sprosse 1
               ChoiceEasy ch-ach PlainText [h n ch ss] Na＿t
               ChoiceEasy ß Word [ß ch n qu] Stra＿e
               ChoiceEasy f Name [ss m qu f] -
               ChoiceEasy ss PlainText [m ss v u] Wa＿er
               ChoiceEasy n Name [qu v ß n] -
               ChoiceEasy m Name [m u f ß] -
-            level 2
+            Sprosse 2
               ChoiceEasy ch-ach PlainText [h n ch ss] Na＿t
               ChoiceEasy ß Word [ß ch n qu] Stra＿e
               ChoiceEasy f Name [ss m qu f] -
               ChoiceEasy ss PlainText [m ss v u] Wa＿er
               ChoiceEasy n Name [qu v ß n] -
               ChoiceEasy m Name [m u f ß] -
-            level 3
+            Sprosse 3
               ChoiceConfusable ch-ach PlainText [h n ch ss] Na＿t
               ChoiceConfusable ß Word [ß ch ss m] Stra＿e
               ChoiceConfusable f Name [ss m qu f] -
               ChoiceConfusable ss PlainText [u ss qu ß] Wa＿er
               ChoiceConfusable n Name [v m qu n] -
               ChoiceConfusable m Name [m n ch f] -
-            level 4
+            Sprosse 4
               ChoiceConfusable ch-ach PlainText [h n ch ss] Na＿t
               ChoiceConfusable ß Word [ß ch ss m] Stra＿e
               ChoiceConfusable f Name [ss m qu f] -
               ChoiceConfusable ss PlainText [u ss qu ß] Wa＿er
               ChoiceConfusable n Name [qu m u n] -
               ChoiceConfusable m Name [m n ch f] -
-            level 5
+            Sprosse 5
               ChoiceConfusable ch-ach PlainText [h n ch ss] Na＿t
               ChoiceConfusable ß Word [ß ch ss m] Stra＿e
               ChoiceConfusable f Name [ss m qu f] -
               ChoiceConfusable ss PlainText [u ss qu ß] Wa＿er
               ChoiceConfusable n Name [h m u n] -
               ChoiceConfusable m Name [m n ch f] -
-            level 6
+            Sprosse 6
               Typed ch-ach PlainText [-] Na＿t
               Typed ss PlainText [-] Wa＿er
               Typed ß Word [-] Stra＿e
               Typed n Name [-] -
               Typed ss PlainText [-] Wa＿er
               Typed ch-ich PlainText [-] Li＿t
-            level 7
+            Sprosse 7
               Typed ch-ach PlainText [-] Na＿t
               Typed ss PlainText [-] Wa＿er
               Typed ß Word [-] Stra＿e
               Typed n Name [-] -
               Typed ss PlainText [-] Wa＿er
               Typed ch-ich PlainText [-] Li＿t
-            level 8
+            Sprosse 8
               Dictation book Buch
               Dictation ice Eis
               Dictation house Haus
               Dictation book Buch
               Dictation house Haus
               Dictation book Buch
-            level 9
+            Sprosse 9
               Dictation rainbow Regenbogen
               Dictation rainbow Regenbogen
               Dictation house Haus

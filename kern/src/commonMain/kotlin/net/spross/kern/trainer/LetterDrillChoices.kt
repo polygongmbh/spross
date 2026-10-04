@@ -13,9 +13,9 @@ import net.spross.kern.catalog.AlphabetKind
  * de authors three `ch` rows and two `v` rows, and a rule that excluded one ref while
  * another ref put the same glyph back on the grid would exclude nothing at all.
  *
- * Two rules do the work. Easy levels draw fillers from OUTSIDE both confusion axes, so a
+ * Two rules do the work. Easy Sprossen draw fillers from OUTSIDE both confusion axes, so a
  * first question is decided by hearing the letter rather than by discriminating two of
- * them. Confusable levels draw 1, 2, then 3 of the four tiles from the entry's own
+ * them. Confusable Sprossen draw 1, 2, then 3 of the four tiles from the entry's own
  * look-alikes and sound-alikes, which is where the drill stops being recognition and
  * starts being discrimination.
  */
@@ -37,7 +37,7 @@ internal object LetterDrillChoices {
         alphabet: Alphabet,
         answer: AlphabetEntry,
         format: LetterFormat,
-        level: Int,
+        sprosse: Int,
         gapText: String?,
         rng: Random,
     ): List<String>? {
@@ -60,7 +60,7 @@ internal object LetterDrillChoices {
 
         val chosen = LinkedHashSet<String>()
         if (format == LetterFormat.ChoiceConfusable) {
-            draw(chosen, confusable, (level - 2).coerceIn(1, DISTRACTORS), rng)
+            draw(chosen, confusable, (sprosse - 2).coerceIn(1, DISTRACTORS), rng)
         }
         draw(chosen, fillers, DISTRACTORS - chosen.size, rng)
         // why: a degenerate alphabet (or an entry whose whole file looks like it) can leave

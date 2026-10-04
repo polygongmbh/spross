@@ -5,15 +5,15 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class NumbersLevelTests {
+class NumbersSprosseTests {
 
     @Test
-    fun numberLevelIsDigitCount() {
+    fun numberSprosseIsDigitCount() {
         val rng = Random(1)
-        for (level in 1..10) {
+        for (sprosse in 1..10) {
             repeat(50) {
-                val task = Numbers.sample(NumbersReading.Cardinal, "de", level, rng)
-                assertEquals(level, task.prompt.length, "level $level: ${task.prompt}")
+                val task = Numbers.sample(NumbersReading.Cardinal, "de", sprosse, rng)
+                assertEquals(sprosse, task.prompt.length, "Sprosse $sprosse: ${task.prompt}")
             }
         }
     }
@@ -49,10 +49,10 @@ class NumbersLevelTests {
         assertTrue(sawConnector, "expected some multi-part Swahili numbers with a na-less variant")
     }
 
-    private fun minutesDrawn(level: Int, seed: Int, draws: Int = 200): Set<Int> {
+    private fun minutesDrawn(sprosse: Int, seed: Int, draws: Int = 200): Set<Int> {
         val rng = Random(seed)
         return (1..draws)
-            .map { Numbers.sample(NumbersReading.Clock, "de", level, rng).prompt.takeLast(2).toInt() }
+            .map { Numbers.sample(NumbersReading.Clock, "de", sprosse, rng).prompt.takeLast(2).toInt() }
             .toSet()
     }
 
@@ -64,14 +64,14 @@ class NumbersLevelTests {
             3 to setOf(0, 5, 10, 15, 20, 25, 30, 45),
             4 to (0..55 step 5).toSet(),
         )
-        for ((level, expected) in sprossen) {
-            assertEquals(expected, minutesDrawn(level, seed = 2 + level), "clock level $level")
+        for ((sprosse, expected) in sprossen) {
+            assertEquals(expected, minutesDrawn(sprosse, seed = 2 + sprosse), "clock Sprosse $sprosse")
         }
     }
 
     @Test
     fun clockSprossenAreNested() {
-        val seen = (1..Numbers.maxLevel(NumbersReading.Clock)).map { minutesDrawn(it, seed = 20 + it) }
+        val seen = (1..Numbers.maxSprosse(NumbersReading.Clock)).map { minutesDrawn(it, seed = 20 + it) }
         for ((lower, higher) in seen.zipWithNext()) {
             assertTrue(higher.containsAll(lower), "a minute was withdrawn: $lower ⊄ $higher")
         }
@@ -79,14 +79,14 @@ class NumbersLevelTests {
 
     @Test
     fun topClockSprosseReadsTheFaceOut() {
-        val top = minutesDrawn(Numbers.maxLevel(NumbersReading.Clock), seed = 9, draws = 400)
+        val top = minutesDrawn(Numbers.maxSprosse(NumbersReading.Clock), seed = 9, draws = 400)
         assertTrue(top.all { it in 0..59 })
         assertTrue(top.any { it % 5 != 0 }, "expected off-grid minutes at the ceiling")
         assertTrue(top.any { it > 30 && it % 5 != 0 }, "expected off-grid minutes past the half")
     }
 
     @Test
-    fun yearLevelsWidenRange() {
+    fun yearSprossenWidenRange() {
         val rng = Random(3)
         repeat(80) {
             val l1 = Numbers.sample(NumbersReading.Year, "de", 1, rng).prompt.toInt()
@@ -97,7 +97,7 @@ class NumbersLevelTests {
     }
 
     @Test
-    fun levelClampsToValidBounds() {
+    fun sprosseClampsToValidBounds() {
         val rng = Random(4)
         val low = Numbers.sample(NumbersReading.Cardinal, "de", -3, rng)
         assertEquals(1, low.prompt.length)

@@ -13,19 +13,19 @@ import kotlin.random.Random
  * | −(4 digits), decimal 2–3 whole digits, ×(to 100), any price below 1000 |
  *
  * Sprossen 1–7 each introduce one form; 8–10 widen forms already in play, which is why
- * [sprosseForms] runs out after seven entries. Every per-form draw is defined at every level,
+ * [sprosseForms] runs out after seven entries. Every per-form draw is defined at every Sprosse,
  * so a form reached through the fallback below still has a range to draw from.
  */
 private val LADDER: List<NumberForm> = NumberForm.entries
 
-internal const val FORMS_MAX_LEVEL = 10
+internal const val FORMS_MAX_SPROSSE = 10
 
-/** Which forms Sprosse [level] offers — everything introduced at or below it. */
-internal fun sprosseForms(level: Int): Set<NumberForm> =
-    LADDER.take(level.coerceIn(1, FORMS_MAX_LEVEL)).toSet()
+/** Which forms Sprosse [sprosse] offers — everything introduced at or below it. */
+internal fun sprosseForms(sprosse: Int): Set<NumberForm> =
+    LADDER.take(sprosse.coerceIn(1, FORMS_MAX_SPROSSE)).toSet()
 
 /**
- * Draws one value for [level] within [limits], or null when the language reads no form
+ * Draws one value for [sprosse] within [limits], or null when the language reads no form
  * at all. The Sprosse's forms are INTERSECTED with the language's; when that intersection is
  * empty — a language that reads fractions but no negatives, asked at Sprosse 1 — the language's
  * own set stands in, walked in ladder order. Deterministic in [rng], with no retry loop:
@@ -33,22 +33,22 @@ internal fun sprosseForms(level: Int): Set<NumberForm> =
  *
  * [magnitudeDigits] sizes the two forms that HAVE a magnitude — the negative's value and
  * the decimal's whole part — from a Numbers Sprosse instead of this ladder's own gentler one
- * ([DrillModifier.Mix]). Zero, the default, leaves every draw to [level]. A percentage is
+ * ([DrillModifier.Mix]). Zero, the default, leaves every draw to [sprosse]. A percentage is
  * bounded by its own meaning and a fraction by its denominator, so neither ever grows.
  */
-internal fun drawForm(limits: FormLimits, level: Int, rng: Random, magnitudeDigits: Int = 0): NumberValue? {
+internal fun drawForm(limits: FormLimits, sprosse: Int, rng: Random, magnitudeDigits: Int = 0): NumberValue? {
     val available = LADDER.filter { it in limits.forms && drawable(it, limits) }
     if (available.isEmpty()) return null
-    val onSprosse = available.filter { it in sprosseForms(level) }
+    val onSprosse = available.filter { it in sprosseForms(sprosse) }
     val candidates = onSprosse.ifEmpty { available }
     return when (candidates[rng.nextInt(candidates.size)]) {
-        NumberForm.Negative -> drawNegative(level, magnitudeDigits, rng)
-        NumberForm.Decimal -> drawDecimal(level, magnitudeDigits, rng)
-        NumberForm.Percent -> drawPercent(level, rng)
-        NumberForm.Multiplicative -> drawMultiplicative(level, rng)
-        NumberForm.Fraction -> drawFraction(limits, level, rng)
-        NumberForm.Ordinal -> drawOrdinal(limits, level, rng)
-        NumberForm.Price -> drawPrice(checkNotNull(limits.currency), level, rng)
+        NumberForm.Negative -> drawNegative(sprosse, magnitudeDigits, rng)
+        NumberForm.Decimal -> drawDecimal(sprosse, magnitudeDigits, rng)
+        NumberForm.Percent -> drawPercent(sprosse, rng)
+        NumberForm.Multiplicative -> drawMultiplicative(sprosse, rng)
+        NumberForm.Fraction -> drawFraction(limits, sprosse, rng)
+        NumberForm.Ordinal -> drawOrdinal(limits, sprosse, rng)
+        NumberForm.Price -> drawPrice(checkNotNull(limits.currency), sprosse, rng)
     }
 }
 
@@ -60,26 +60,26 @@ private fun drawable(form: NumberForm, limits: FormLimits): Boolean = when (form
     else -> true
 }
 
-private fun drawNegative(level: Int, magnitudeDigits: Int, rng: Random): NumberValue.Negative {
+private fun drawNegative(sprosse: Int, magnitudeDigits: Int, rng: Random): NumberValue.Negative {
     // why: floored at 1 — there is no negative zero to read out.
     if (magnitudeDigits >= 1) return NumberValue.Negative(maxOf(1L, drawNumber(magnitudeDigits, rng)))
     val bound = when {
-        level >= 10 -> 10_000L
-        level >= 7 -> 1_000L
+        sprosse >= 10 -> 10_000L
+        sprosse >= 7 -> 1_000L
         else -> 21L
     }
     return NumberValue.Negative(rng.nextLong(1, bound))
 }
 
-private fun drawDecimal(level: Int, magnitudeDigits: Int, rng: Random): NumberValue.Decimal {
+private fun drawDecimal(sprosse: Int, magnitudeDigits: Int, rng: Random): NumberValue.Decimal {
     val whole = when {
         magnitudeDigits >= 1 -> drawNumber(magnitudeDigits, rng)
-        level >= 10 -> rng.nextLong(0, 1_000)
+        sprosse >= 10 -> rng.nextLong(0, 1_000)
         else -> rng.nextLong(0, 10)
     }
     val places = when {
-        level >= 10 -> 1 + rng.nextInt(3)
-        level >= 7 -> 1 + rng.nextInt(2)
+        sprosse >= 10 -> 1 + rng.nextInt(3)
+        sprosse >= 7 -> 1 + rng.nextInt(2)
         else -> 1
     }
     return NumberValue.Decimal(whole, fractionDigits(places, rng))
@@ -104,15 +104,15 @@ private fun fractionDigits(places: Int, rng: Random): String {
  */
 private val ROUND_PERCENTS = listOf(1L, 5L, 10L, 20L, 25L, 30L, 40L, 50L, 60L, 70L, 75L, 80L, 90L, 100L)
 
-private fun drawPercent(level: Int, rng: Random): NumberValue.Percent = NumberValue.Percent(
-    if (level >= 9) rng.nextLong(1, 101) else ROUND_PERCENTS[rng.nextInt(ROUND_PERCENTS.size)],
+private fun drawPercent(sprosse: Int, rng: Random): NumberValue.Percent = NumberValue.Percent(
+    if (sprosse >= 9) rng.nextLong(1, 101) else ROUND_PERCENTS[rng.nextInt(ROUND_PERCENTS.size)],
 )
 
-private fun drawMultiplicative(level: Int, rng: Random): NumberValue.Multiplicative =
-    NumberValue.Multiplicative(if (level >= 10) rng.nextLong(1, 101) else rng.nextLong(1, 13))
+private fun drawMultiplicative(sprosse: Int, rng: Random): NumberValue.Multiplicative =
+    NumberValue.Multiplicative(if (sprosse >= 10) rng.nextLong(1, 101) else rng.nextLong(1, 13))
 
-private fun drawFraction(limits: FormLimits, level: Int, rng: Random): NumberValue.Fraction {
-    val pool = fractionPool(limits, wide = level >= 8).ifEmpty { fractionPool(limits, wide = true) }
+private fun drawFraction(limits: FormLimits, sprosse: Int, rng: Random): NumberValue.Fraction {
+    val pool = fractionPool(limits, wide = sprosse >= 8).ifEmpty { fractionPool(limits, wide = true) }
     return pool[rng.nextInt(pool.size)]
 }
 
@@ -137,10 +137,10 @@ internal fun fractionPool(
     }
 }
 
-private fun drawOrdinal(limits: FormLimits, level: Int, rng: Random): NumberValue.Ordinal {
+private fun drawOrdinal(limits: FormLimits, sprosse: Int, rng: Random): NumberValue.Ordinal {
     val pool = ordinalPool(limits)
     val narrowed = pool.first..minOf(pool.last, 12L)
-    val range = if (level >= 9 || narrowed.isEmpty()) pool else narrowed
+    val range = if (sprosse >= 9 || narrowed.isEmpty()) pool else narrowed
     return NumberValue.Ordinal(rng.nextLong(range.first, range.last + 1))
 }
 
@@ -155,8 +155,8 @@ private val ROUND_CENTS = listOf(0L, 10L, 20L, 25L, 49L, 50L, 75L, 90L, 95L, 99L
  * with any cents. Counted in the currency's [Currency.step], so a shilling price is a
  * round sum; an amount of nothing at all is repaired to a coin rather than retried.
  */
-private fun drawPrice(currency: Currency, level: Int, rng: Random): NumberValue.Price {
-    val wide = level >= 10
+private fun drawPrice(currency: Currency, sprosse: Int, rng: Random): NumberValue.Price {
+    val wide = sprosse >= 10
     val units = (if (wide) rng.nextLong(0, 1_000) else rng.nextLong(1, 21)) * currency.step
     if (!currency.minorUnit) return NumberValue.Price(maxOf(units, currency.step), 0, currency)
     val cents = if (wide) rng.nextLong(0, 100) else ROUND_CENTS[rng.nextInt(ROUND_CENTS.size)]

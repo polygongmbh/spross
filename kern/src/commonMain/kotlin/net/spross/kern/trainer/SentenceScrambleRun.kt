@@ -47,21 +47,21 @@ object SentenceScrambleRun {
     /** The same, forced to one Sprosse — the deterministic way to reach a band. */
     fun openAt(
         config: SentenceScrambleRunConfig,
-        level: Int,
+        sprosse: Int,
         rng: Random,
     ): SentenceScrambleRunState {
-        val start = level.coerceIn(1, config.report.maxLevel)
+        val start = sprosse.coerceIn(1, config.report.maxSprosse)
         val opening = draw(config, start, null, emptySet(), rng)
         return SentenceScrambleRunState(
             config = config,
             task = opening.task,
             placed = emptyList(),
             index = 0,
-            level = opening.level,
-            bestLevel = opening.level,
-            winsAtLevel = 0,
+            sprosse = opening.sprosse,
+            bestSprosse = opening.sprosse,
+            winsAtSprosse = 0,
             clearedSprossen = emptySet(),
-            core = DrillRunCore(pacing = DrillPacing.opening(opening.level, standingRecord = 0)),
+            core = DrillRunCore(pacing = DrillPacing.opening(opening.sprosse, standingRecord = 0)),
             feedback = TurnFeedback.Neutral,
             finished = opening.task == null,
         )
@@ -100,7 +100,7 @@ object SentenceScrambleRun {
         } else {
             DrillRunSummary(ended.done, ended.bestStreak, newRecord = false)
         }
-        return SentenceScrambleClose(ended, summary, ended.bestLevel, ended.clearedSprossen, effects)
+        return SentenceScrambleClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, effects)
     }
 
     // MARK: - Intents
@@ -167,7 +167,7 @@ object SentenceScrambleRun {
         val next = advanced(state, correct, clean)
         val question = draw(
             state.config,
-            next.level,
+            next.sprosse,
             state.task?.cardId,
             next.solved,
             rng,
@@ -175,15 +175,15 @@ object SentenceScrambleRun {
         return SentenceScrambleReduction(
             paced(next.copy(
                 task = question.task,
-                level = question.level,
-                bestLevel = maxOf(next.bestLevel, question.level),
+                sprosse = question.sprosse,
+                bestSprosse = maxOf(next.bestSprosse, question.sprosse),
                 // A Sprosse the run was carried past keeps none of the wins banked below it.
-                winsAtLevel = if (question.level == next.level) next.winsAtLevel else 0,
+                winsAtSprosse = if (question.sprosse == next.sprosse) next.winsAtSprosse else 0,
                 // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
                 clearedSprossen = DrillSprossen.leaving(
                     next.clearedSprossen,
-                    next.level,
-                    question.level,
+                    next.sprosse,
+                    question.sprosse,
                     next.core.slipped,
                 ),
                 index = state.index + 1,
@@ -200,7 +200,7 @@ object SentenceScrambleRun {
 
     /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
     private fun paced(state: SentenceScrambleRunState): SentenceScrambleRunState = state.copy(
-        core = state.core.paced(state.level, state.newSprossen, endless = !state.finished),
+        core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished),
     )
 
     private fun advanced(
@@ -210,22 +210,22 @@ object SentenceScrambleRun {
     ): SentenceScrambleRunState {
         val held = state.config.cleared
         val step = DrillRamp.step(
-            level = state.level,
-            winsAtLevel = state.winsAtLevel,
+            sprosse = state.sprosse,
+            winsAtSprosse = state.winsAtSprosse,
             correct = correct,
             clean = clean,
-            winsRequired = DrillSprossen.winsRequired(state.level, held, state.core.slipped, WINS_TO_ADVANCE),
-            top = state.config.report.maxLevel,
+            winsRequired = DrillSprossen.winsRequired(state.sprosse, held, state.core.slipped, WINS_TO_ADVANCE),
+            top = state.config.report.maxSprosse,
         )
         val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
         return state.copy(
-            level = step.level,
-            bestLevel = maxOf(state.bestLevel, step.level),
-            winsAtLevel = step.winsAtLevel,
+            sprosse = step.sprosse,
+            bestSprosse = maxOf(state.bestSprosse, step.sprosse),
+            winsAtSprosse = step.winsAtSprosse,
             clearedSprossen = DrillSprossen.leaving(
                 state.clearedSprossen,
-                state.level,
-                step.level,
+                state.sprosse,
+                step.sprosse,
                 core.slipped,
             ),
             core = core,
@@ -243,24 +243,24 @@ object SentenceScrambleRun {
         solved: Set<String>,
         rng: Random,
     ): DrillLadder.Sprosse<SentenceScrambleTask> =
-        DrillLadder.climb(from, config.report.maxLevel) { level ->
-            sample(config.report, level, avoiding, solved, rng)
+        DrillLadder.climb(from, config.report.maxSprosse) { sprosse ->
+            sample(config.report, sprosse, avoiding, solved, rng)
         }
 
     /**
-     * One question at [level], drawn EVENLY across the phrases of its band still unsolved.
+     * One question at [sprosse], drawn EVENLY across the phrases of its band still unsolved.
      * The bands do not nest, so nothing in one needs singling out as what it added.
      * [avoiding] is the phrase just asked, which kern resamples once.
      * Null ⇒ this Sprosse has nothing left.
      */
     private fun sample(
         report: SentenceScrambleAvailability.Report,
-        level: Int,
+        sprosse: Int,
         avoiding: String?,
         solved: Set<String>,
         rng: Random,
     ): SentenceScrambleTask? {
-        val open = report.phrasesAt(level)
+        val open = report.phrasesAt(sprosse)
             .filter { DrillSolved.sentenceKey(it.card.id) !in solved }
         if (open.isEmpty()) return null
         val pool = open.filter { it.card.id != avoiding }.ifEmpty { open }

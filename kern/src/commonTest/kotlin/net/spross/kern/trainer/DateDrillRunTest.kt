@@ -55,9 +55,9 @@ class DateDrillRunTest {
         reverse: Boolean = false,
         fast: Boolean = false,
         graded: Boolean = true,
-        level: Int = 1,
+        sprosse: Int = 1,
         cleared: Set<Int> = emptySet(),
-    ) = DateDrillRun.openAt(config(reverse, fast, graded, cleared), level, Random(7))
+    ) = DateDrillRun.openAt(config(reverse, fast, graded, cleared), sprosse, Random(7))
 
     private fun DateDrillRunState.reduce(intent: DateDrillIntent) =
         DateDrillRun.reduce(this, intent, Random(7))
@@ -79,8 +79,8 @@ class DateDrillRunTest {
     @Test
     fun aRunOpensOnTheFirstSprosseWithAQuestionStanding() {
         val run = DateDrillRun.open(config(), Random(7))
-        assertEquals(1, run.level)
-        assertEquals(1, run.bestLevel)
+        assertEquals(1, run.sprosse)
+        assertEquals(1, run.bestSprosse)
         assertEquals(DateTaskKind.NameChoice, run.task.kind, "every ladder opens on the tiles")
         assertTrue(run.owesAnswer)
         assertFalse(run.showsAnswer)
@@ -90,9 +90,9 @@ class DateDrillRunTest {
     /** The forced Sprosse is for tests and screenshot drivers; kern clamps it to THIS ladder. */
     @Test
     fun aForcedSprosseIsClampedToTheLadder() {
-        assertEquals(6, open(level = 99).level)
-        assertEquals(1, open(level = 0).level)
-        assertEquals(5, open(reverse = true, level = 99).level, "one Sprosse shorter back")
+        assertEquals(6, open(sprosse = 99).sprosse)
+        assertEquals(1, open(sprosse = 0).sprosse)
+        assertEquals(5, open(reverse = true, sprosse = 99).sprosse, "one Sprosse shorter back")
     }
 
     @Test
@@ -240,10 +240,10 @@ class DateDrillRunTest {
     /** Three clean wins a Sprosse — Sprosse 3 holds nineteen names, so the wins carry the climb. */
     @Test
     fun threeCleanWinsCarryTheRun() {
-        var run = open(level = 3)
+        var run = open(sprosse = 3)
         repeat(DateDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
-        assertEquals(4, run.level)
-        assertEquals(4, run.bestLevel)
+        assertEquals(4, run.sprosse)
+        assertEquals(4, run.bestSprosse)
         assertEquals(3, run.done)
         assertEquals(3, run.streak)
         assertEquals(3, run.index)
@@ -252,28 +252,28 @@ class DateDrillRunTest {
 
     @Test
     fun fastSpendsOneWinASprosse() {
-        val run = open(fast = true, level = 3)
-        assertEquals(4, run.answered(run.task.display).level)
+        val run = open(fast = true, sprosse = 3)
+        assertEquals(4, run.answered(run.task.display).sprosse)
     }
 
     @Test
     fun theAlmostHoldBanksNoWin() {
         val opened = open()
         val run = opened.answered(opened.slipped())
-        assertEquals(1, run.level)
-        assertEquals(0, run.winsAtLevel)
+        assertEquals(1, run.sprosse)
+        assertEquals(0, run.winsAtSprosse)
         assertEquals(listOf(AnswerOutcome.Almost), run.outcomes)
         assertEquals(1, run.streak, "a slip is still an answer the learner got")
     }
 
     @Test
     fun aMissDropsTheSprosseButNotTheOneTheRunReached() {
-        var run = open(level = 5)
+        var run = open(sprosse = 5)
         repeat(DateDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
-        assertEquals(6, run.level)
+        assertEquals(6, run.sprosse)
         run = run.missed()
-        assertEquals(5, run.level)
-        assertEquals(6, run.bestLevel)
+        assertEquals(5, run.sprosse)
+        assertEquals(6, run.bestSprosse)
     }
 
     // MARK: - The word a pattern adds
@@ -284,7 +284,7 @@ class DateDrillRunTest {
      */
     @Test
     fun thePatternWordIsShownOnceAndThenNeverAgain() {
-        var run = DateDrillRun.openAt(swahiliRunConfig(), level = 4, Random(7))
+        var run = DateDrillRun.openAt(swahiliRunConfig(), sprosse = 4, Random(7))
         while (run.task.kind != DateTaskKind.DayAndMonth) run = run.answered(run.task.display)
         assertEquals("tarehe", run.patternWord)
         run = run.answered(run.task.display)
@@ -295,7 +295,7 @@ class DateDrillRunTest {
     /** Reversed the card carries the reading, which says the word already — so no hint at all. */
     @Test
     fun aReversedRunIsHandedNoPatternWord() {
-        var run = DateDrillRun.openAt(swahiliRunConfig(reverse = true), level = 4, Random(7))
+        var run = DateDrillRun.openAt(swahiliRunConfig(reverse = true), sprosse = 4, Random(7))
         repeat(12) {
             assertNull(run.patternWord)
             run = run.answered(run.task.display)
@@ -332,7 +332,7 @@ class DateDrillRunTest {
      */
     @Test
     fun aReversedRunClimbsOffTheNamesIntoTheParse() {
-        var run = open(reverse = true, level = 3)
+        var run = open(reverse = true, sprosse = 3)
         assertFalse(run.task.digits, "it opens on the names")
         var reachedADate = false
         repeat(30) {
@@ -340,14 +340,14 @@ class DateDrillRunTest {
             run = run.answered(run.task.display)
         }
         assertTrue(reachedADate, "the run never reached a date to parse")
-        assertTrue(run.level > 3, "the reversed ladder stopped at the names")
+        assertTrue(run.sprosse > 3, "the reversed ladder stopped at the names")
         assertFalse(run.finished)
     }
 
     /** A parsed date is answered in the digits the card would print, never in words. */
     @Test
     fun aParsedDateIsAnsweredInDigits() {
-        var run = open(reverse = true, level = 5)
+        var run = open(reverse = true, sprosse = 5)
         while (!run.task.digits) run = run.answered(run.task.display)
         val date = run.task
         assertEquals("en", run.answerLanguage, "the digits are written in the learner's own format")
@@ -384,7 +384,7 @@ class DateDrillRunTest {
         assertEquals(setOf(2, 3), DateDrill.cleared(content, false, weekdays + months))
         assertEquals(setOf(1, 2, 3), DateDrill.cleared(content, false, weekdays + months + tiles))
 
-        var run = open(level = 4)
+        var run = open(sprosse = 4)
         repeat(40) { run = run.answered(run.task.display) }
         val closed = DateDrillRun.close(run, standingRecord = 0)
         assertTrue(closed.clearedSprossen.none { it >= 4 }, "an assembled Sprosse was cleared")
@@ -397,7 +397,7 @@ class DateDrillRunTest {
     @Test
     fun aSprosseAnsweredOutForTheFirstTimePausesAsImproved() {
         fun stretched(cleared: Set<Int>): DateDrillRunState {
-            val opened = open(level = 2, cleared = cleared)
+            val opened = open(sprosse = 2, cleared = cleared)
             val weekdays = DateDrillTasks.pool(DateDrillFixture.germanContent, DateTaskKind.Weekday, false)
                 .map { DrillSolved.key(it) }
             // Every weekday but the one on screen answered already, a stretch's worth in.
@@ -414,7 +414,7 @@ class DateDrillRunTest {
     fun anUntouchedRunReportsNothingButStillNamesItsSprosse() {
         val closed = DateDrillRun.close(open(), standingRecord = 0)
         assertNull(closed.summary)
-        assertEquals(1, closed.bestLevel)
+        assertEquals(1, closed.bestSprosse)
         assertTrue(closed.state.finished)
         assertEquals(listOf(DrillEffect.CancelAdvance, DrillEffect.Silence), closed.effects)
     }
@@ -443,10 +443,10 @@ class DateDrillRunTest {
     /** The close reports the Sprosse the run REACHED, which is what the page files. */
     @Test
     fun theCloseReportsTheSprosseTheRunStoodOn() {
-        var run = open(level = 3)
+        var run = open(sprosse = 3)
         repeat(DateDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
         run = run.missed()
-        assertEquals(4, DateDrillRun.close(run, standingRecord = 0).bestLevel)
+        assertEquals(4, DateDrillRun.close(run, standingRecord = 0).bestSprosse)
     }
 
     /** The record write is strictly greater, so a run that only equaled it claims nothing. */

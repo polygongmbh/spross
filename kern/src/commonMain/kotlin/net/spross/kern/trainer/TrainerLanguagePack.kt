@@ -44,7 +44,7 @@ internal interface TrainerLanguagePack {
     /** How this language writes and reads a phone number; null offers no phone slot. */
     val phonePlan: PhonePlan? get() = null
 
-    /** Accepted spellings for the level drill (sw adds the "na"-less form). */
+    /** Accepted spellings for the Sprosse drills (sw adds the "na"-less form). */
     fun drillNumber(n: Long): List<String> = number(n)
 
     /**

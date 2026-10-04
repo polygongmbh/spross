@@ -29,8 +29,8 @@ class WordScrambleRunTest {
         normalizer = ScrambleFixture.normalizer,
     )
 
-    private fun open(level: Int = 1, seed: Int = 4) =
-        WordScrambleRun.openAt(config(), level, Random(seed))
+    private fun open(sprosse: Int = 1, seed: Int = 4) =
+        WordScrambleRun.openAt(config(), sprosse, Random(seed))
 
     private fun reduce(state: WordScrambleRunState, intent: WordScrambleIntent, seed: Int = 9) =
         WordScrambleRun.reduce(state, intent, Random(seed))
@@ -39,7 +39,7 @@ class WordScrambleRunTest {
     private fun task(cardId: String, display: String, accepted: List<String>) = WordScrambleTask(
         cardId = cardId,
         language = ScrambleFixture.TARGET,
-        level = 1,
+        sprosse = 1,
         scrambled = WordScrambleMasking.scramble(display, 1, Random(1)),
         accepted = accepted,
         display = display,
@@ -50,7 +50,7 @@ class WordScrambleRunTest {
     @Test
     fun aRunOpensOnTheSprosseItWasAskedFor() {
         val task = assertNotNull(open().task)
-        assertEquals(1, task.level)
+        assertEquals(1, task.sprosse)
         assertEquals(1, task.scrambled.fixedLeading)
         assertEquals(listOf(task.display), task.accepted, "the form drawn IS the accepted set")
         assertEquals("en-${task.cardId}", task.gloss)
@@ -99,13 +99,13 @@ class WordScrambleRunTest {
     /** A look-up is a miss, and a miss drops the Sprosse the run stood on. */
     @Test
     fun aRevealBooksAMissAndDropsTheSprosse() {
-        val state = open(level = 2)
-        assertEquals(2, state.level)
+        val state = open(sprosse = 2)
+        assertEquals(2, state.sprosse)
         val revealed = reduce(state, WordScrambleIntent.Reveal).state
         assertEquals(TurnFeedback.Revealed, revealed.feedback)
         assertTrue(revealed.showsAnswer)
         val booked = reduce(revealed, WordScrambleIntent.ConfirmPending).state
-        assertEquals(1, booked.level)
+        assertEquals(1, booked.sprosse)
         assertEquals(listOf(AnswerOutcome.Wrong), booked.outcomes)
         assertEquals(0, booked.streak)
     }
@@ -120,9 +120,9 @@ class WordScrambleRunTest {
             assertEquals(TurnFeedback.Correct, state.feedback)
             state = reduce(state, WordScrambleIntent.ConfirmPending).state
         }
-        assertEquals(2, state.level)
-        assertEquals(0, state.winsAtLevel)
-        assertEquals(2, assertNotNull(state.task).level)
+        assertEquals(2, state.sprosse)
+        assertEquals(0, state.winsAtSprosse)
+        assertEquals(2, assertNotNull(state.task).sprosse)
     }
 
     /**
@@ -154,7 +154,7 @@ class WordScrambleRunTest {
         // A look-up keeps the run at the foot of the ladder, where that word is now spent.
         repeat(6) { round ->
             val task = assertNotNull(state.task, "the pool ran dry after $round rounds")
-            if (task.level == 1) assertFalse(task.cardId == first, "asked ${task.cardId} again")
+            if (task.sprosse == 1) assertFalse(task.cardId == first, "asked ${task.cardId} again")
             state = reduce(state, WordScrambleIntent.Reveal).state
             state = reduce(state, WordScrambleIntent.ConfirmPending).state
         }
@@ -181,13 +181,13 @@ class WordScrambleRunTest {
     @Test
     fun aSprosseNeverAsksAWordShorterThanItsFloor() {
         val report = config().report
-        for (start in 1..report.maxLevel) {
-            var state = open(level = start)
+        for (start in 1..report.maxSprosse) {
+            var state = open(sprosse = start)
             repeat(WordScrambleRun.WINS_TO_ADVANCE) {
                 val task = state.task ?: return@repeat
                 assertTrue(
-                    task.display.count { it.isLetter() } >= report.lettersAt(task.level),
-                    "Sprosse ${task.level} asked \"${task.display}\"",
+                    task.display.count { it.isLetter() } >= report.lettersAt(task.sprosse),
+                    "Sprosse ${task.sprosse} asked \"${task.display}\"",
                 )
                 state = answer(state, clean = true)
             }
@@ -197,12 +197,12 @@ class WordScrambleRunTest {
     /** The ladder stops at the longest Sprosse the pool fills, and answering that one out ends the run. */
     @Test
     fun theLadderStopsAtItsTop() {
-        val top = config().report.maxLevel
-        var state = open(level = top)
+        val top = config().report.maxSprosse
+        var state = open(sprosse = top)
         repeat(cards.size + 1) {
             if (state.finished) return@repeat
             state = answer(state, clean = true)
-            assertEquals(top, state.level, "no Sprosse past the top")
+            assertEquals(top, state.sprosse, "no Sprosse past the top")
         }
         assertTrue(state.finished)
         assertNull(state.task)
@@ -217,7 +217,7 @@ class WordScrambleRunTest {
         repeat(WordScrambleRun.WINS_TO_ADVANCE) { state = answer(state, clean = true) }
         val closed = WordScrambleRun.close(state)
         assertEquals(setOf(1), closed.clearedSprossen)
-        assertEquals(2, closed.bestLevel)
+        assertEquals(2, closed.bestSprosse)
     }
 
     /** The run's first slip keeps every Sprosse after it from the store, and the ones before it booked. */
@@ -226,8 +226,8 @@ class WordScrambleRunTest {
         var state = open()
         repeat(WordScrambleRun.WINS_TO_ADVANCE) { state = answer(state, clean = true) }
         state = answer(state, clean = false)
-        while (state.level == 2) state = answer(state, clean = true)
-        assertTrue(state.level > 2, "the run climbs off Sprosse 2")
+        while (state.sprosse == 2) state = answer(state, clean = true)
+        assertTrue(state.sprosse > 2, "the run climbs off Sprosse 2")
         assertEquals(setOf(1), WordScrambleRun.close(state).clearedSprossen)
     }
 
@@ -243,14 +243,14 @@ class WordScrambleRunTest {
     @Test
     fun aResumedRunFastClimbsWhatTheStoreHolds() {
         var state = resumed(1, 2)
-        assertEquals(1, state.level)
+        assertEquals(1, state.sprosse)
         state = answer(state, clean = true)
-        assertEquals(2, state.level)
+        assertEquals(2, state.sprosse)
         state = answer(state, clean = true)
-        assertEquals(3, state.level)
+        assertEquals(3, state.sprosse)
         assertEquals(0, state.newSprossen, "a Sprosse the store held is nothing new")
         state = answer(state, clean = true)
-        assertEquals(3, state.level, "a Sprosse the store lacks asks the full count")
+        assertEquals(3, state.sprosse, "a Sprosse the store lacks asks the full count")
     }
 
     /** The first slip ends the fast climb: from there on a held Sprosse asks the full count too. */
@@ -259,9 +259,9 @@ class WordScrambleRunTest {
         var state = reduce(resumed(1, 2), WordScrambleIntent.Reveal).state
         state = reduce(state, WordScrambleIntent.ConfirmPending).state
         repeat(WordScrambleRun.WINS_TO_ADVANCE) { state = answer(state, clean = true) }
-        assertEquals(2, state.level)
+        assertEquals(2, state.sprosse)
         state = answer(state, clean = true)
-        assertEquals(2, state.level, "held, and still asking the full count")
+        assertEquals(2, state.sprosse, "held, and still asking the full count")
     }
 
     /**
@@ -271,15 +271,15 @@ class WordScrambleRunTest {
     @Test
     fun anAlmostKeepsTheRunAndForfeitsTheSprosse() {
         var state = answer(open(), clean = true)
-        assertEquals(1, state.winsAtLevel)
+        assertEquals(1, state.winsAtSprosse)
         state = answer(state, clean = false)
         assertEquals(AnswerOutcome.Almost, state.outcomes.last())
         assertEquals(2, state.streak, "an almost is no miss")
-        assertEquals(1, state.level, "and no demotion")
-        assertEquals(1, state.winsAtLevel, "the banked win stands")
+        assertEquals(1, state.sprosse, "and no demotion")
+        assertEquals(1, state.winsAtSprosse, "the banked win stands")
 
-        repeat(WordScrambleRun.WINS_TO_ADVANCE) { if (state.level == 1) state = answer(state, clean = true) }
-        assertTrue(state.level > 1, "the run climbs as it always did")
+        repeat(WordScrambleRun.WINS_TO_ADVANCE) { if (state.sprosse == 1) state = answer(state, clean = true) }
+        assertTrue(state.sprosse > 1, "the run climbs as it always did")
         val closed = WordScrambleRun.close(state)
         assertEquals(emptySet(), closed.clearedSprossen, "but the Sprosse is not the store's")
     }
@@ -289,10 +289,10 @@ class WordScrambleRunTest {
     fun aMissForfeitsTheSprosseItFallsOn() {
         var state = reduce(open(), WordScrambleIntent.Reveal).state
         state = reduce(state, WordScrambleIntent.ConfirmPending).state
-        assertEquals(1, state.level, "the foot of the ladder has nothing below it")
+        assertEquals(1, state.sprosse, "the foot of the ladder has nothing below it")
 
-        repeat(WordScrambleRun.WINS_TO_ADVANCE) { if (state.level == 1) state = answer(state, clean = true) }
-        assertTrue(state.level > 1)
+        repeat(WordScrambleRun.WINS_TO_ADVANCE) { if (state.sprosse == 1) state = answer(state, clean = true) }
+        assertTrue(state.sprosse > 1)
         assertEquals(emptySet(), WordScrambleRun.close(state).clearedSprossen)
     }
 

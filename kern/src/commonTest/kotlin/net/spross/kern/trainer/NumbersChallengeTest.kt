@@ -71,9 +71,9 @@ class NumbersChallengeTest {
         val missed = step(step(open, NumbersIntent.Reveal), NumbersIntent.ConfirmPending)
         val twice = step(step(missed, NumbersIntent.Reveal), NumbersIntent.ConfirmPending)
         assertEquals(made.tasks[2].drawn, twice.current)
-        assertEquals(made.tasks[2].level, twice.currentLevel)
+        assertEquals(made.tasks[2].sprosse, twice.currentSprosse)
         val right = step(step(twice, NumbersIntent.Submit(twice.currentTask.display)), NumbersIntent.ConfirmPending)
-        assertEquals(made.tasks[2].level, right.score)
+        assertEquals(made.tasks[2].sprosse, right.score)
     }
 
     @Test

@@ -20,22 +20,22 @@ import net.spross.kern.session.AnswerNormalizer
  */
 object LetterDrillRun {
 
-    /** A fresh run where the ladder opens ([LetterDrillAvailability.Report.openingLevel]). */
+    /** A fresh run where the ladder opens ([LetterDrillAvailability.Report.openingSprosse]). */
     fun open(config: LetterDrillRunConfig, rng: Random): LetterDrillRunState =
-        openAt(config, config.report.openingLevel(config.cleared), rng)
+        openAt(config, config.report.openingSprosse(config.cleared), rng)
 
     /** The same, forced to one Sprosse — the deterministic way to reach a format. */
-    fun openAt(config: LetterDrillRunConfig, level: Int, rng: Random): LetterDrillRunState {
-        val start = level.coerceIn(1, config.report.maxLevel)
+    fun openAt(config: LetterDrillRunConfig, sprosse: Int, rng: Random): LetterDrillRunState {
+        val start = sprosse.coerceIn(1, config.report.maxSprosse)
         val opening = draw(config, start, null, null, emptySet(), rng)
         return LetterDrillRunState(
             config = config,
             task = opening.task,
             index = 0,
-            level = opening.level,
-            winsAtLevel = 0,
+            sprosse = opening.sprosse,
+            winsAtSprosse = 0,
             clearedSprossen = emptySet(),
-            core = DrillRunCore(pacing = DrillPacing.opening(opening.level, standingRecord = 0)),
+            core = DrillRunCore(pacing = DrillPacing.opening(opening.sprosse, standingRecord = 0)),
             chosen = null,
             feedback = TurnFeedback.Neutral,
             finished = false,
@@ -184,7 +184,7 @@ object LetterDrillRun {
         val next = advanced(state, correct, clean)
         val question = draw(
             state.config,
-            next.level,
+            next.sprosse,
             state.task?.answerRef,
             state.task?.let { if (it.gapText == null) null else it.promptText },
             next.solved,
@@ -193,14 +193,14 @@ object LetterDrillRun {
         return LetterDrillReduction(
             paced(next.copy(
                 task = question.task,
-                level = question.level,
+                sprosse = question.sprosse,
                 // A Sprosse the run was carried past keeps none of the wins banked below it.
-                winsAtLevel = if (question.level == next.level) next.winsAtLevel else 0,
+                winsAtSprosse = if (question.sprosse == next.sprosse) next.winsAtSprosse else 0,
                 // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
                 clearedSprossen = DrillSprossen.leaving(
                     next.clearedSprossen,
-                    next.level,
-                    question.level,
+                    next.sprosse,
+                    question.sprosse,
                     next.core.slipped,
                 ),
                 index = state.index + 1,
@@ -217,7 +217,7 @@ object LetterDrillRun {
 
     /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
     private fun paced(state: LetterDrillRunState): LetterDrillRunState = state.copy(
-        core = state.core.paced(state.level, state.newSprossen, endless = !state.finished),
+        core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished),
     )
 
     private fun advanced(
@@ -226,17 +226,17 @@ object LetterDrillRun {
         clean: Boolean,
     ): LetterDrillRunState {
         val step = DrillRamp.step(
-            level = state.level,
-            winsAtLevel = state.winsAtLevel,
+            sprosse = state.sprosse,
+            winsAtSprosse = state.winsAtSprosse,
             correct = correct,
             clean = clean,
             winsRequired = state.config.report.winsToAdvance,
         )
         val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
         return state.copy(
-            level = step.level,
-            winsAtLevel = step.winsAtLevel,
-            clearedSprossen = DrillSprossen.leaving(state.clearedSprossen, state.level, step.level, core.slipped),
+            sprosse = step.sprosse,
+            winsAtSprosse = step.winsAtSprosse,
+            clearedSprossen = DrillSprossen.leaving(state.clearedSprossen, state.sprosse, step.sprosse, core.slipped),
             core = core,
         )
     }
@@ -253,31 +253,31 @@ object LetterDrillRun {
         solved: Set<String>,
         rng: Random,
     ): DrillLadder.Sprosse<LetterDrillTask> =
-        DrillLadder.climb(from, config.report.maxLevel) { level ->
-            sample(config, level, avoiding, avoidingWord, solved, rng)
+        DrillLadder.climb(from, config.report.maxSprosse) { sprosse ->
+            sample(config, sprosse, avoiding, avoidingWord, solved, rng)
         }
 
     /**
-     * One question at [level]: dictation draws from the box, every other format from the alphabet.
+     * One question at [sprosse]: dictation draws from the box, every other format from the alphabet.
      * [avoiding] is the previous answer and [avoidingWord] the word it gapped, each of which kern
      * resamples once. Null ⇒ this device, at this Sprosse, can ask nothing more.
      */
     private fun sample(
         config: LetterDrillRunConfig,
-        level: Int,
+        sprosse: Int,
         avoiding: String?,
         avoidingWord: String?,
         solved: Set<String>,
         rng: Random,
     ): LetterDrillTask? {
         val report = config.report
-        if (LetterDrill.formatFor(level) == LetterFormat.Dictation &&
+        if (LetterDrill.formatFor(sprosse) == LetterFormat.Dictation &&
             report.dictationCandidates.isNotEmpty()
         ) {
             return LetterDrill.sampleDictation(
                 report.dictationCandidates,
                 report.alphabet,
-                level,
+                sprosse,
                 avoiding,
                 solved,
                 rng,
@@ -288,7 +288,7 @@ object LetterDrillRun {
         return LetterDrill.sample(
             alphabet,
             report::examples,
-            level,
+            sprosse,
             report.promptableRefs,
             avoiding,
             avoidingWord,

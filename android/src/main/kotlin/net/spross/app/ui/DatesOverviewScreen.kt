@@ -38,7 +38,7 @@ fun DatesOverviewScreen(model: AppModel) {
                 val line = if (reverse) chrome.datesReverseHintBack else chrome.datesReverseHint
                 reverseHint(model, line, content.source, content.target, reverse)
             },
-            ceiling = { reverse -> DateDrill.maxLevel(content, reverse) },
+            ceiling = { reverse -> DateDrill.maxSprosse(content, reverse) },
             fastOpen = { reverse -> DateDrill.fastUnlocked(standing.bestSprosse, content, reverse) },
             // The wordings are keyed by KIND, not by row: the ladder has no fixed length.
             sprosse = { sprosse, reverse -> chrome.dateSprosse(DateDrill.kinds(content, sprosse, reverse)) },

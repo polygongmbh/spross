@@ -98,15 +98,15 @@ struct NumbersOverview: View {
     /// Reads every exercise's stored Sprosse at once, because a requirement names
     /// an exercise other than the row it gates (Phrases is bought with Clock).
     func reloadProgress() {
-        var levels: [NumbersExercise: Int] = [:]
+        var sprossen: [NumbersExercise: Int] = [:]
         for exercise in NumbersExercise.allCases {
-            levels[exercise] = TrainerProgress.best(
+            sprossen[exercise] = TrainerProgress.best(
                 for: NumbersMode.companion.progressKey(exercise: exercise, language: language))
         }
         #if DEBUG
-        levels.merge(Self.uitestProgress) { _, seeded in seeded }
+        sprossen.merge(Self.uitestProgress) { _, seeded in seeded }
         #endif
-        progress = levels
+        progress = sprossen
         normalizePicks()
         markUnlocks()
         DrillUITest.autoStart("numbers", ready: launch == nil, start: start)
@@ -139,9 +139,9 @@ extension NumbersOverview {
                 let parts = entry.split(separator: "=")
                 guard parts.count == 2,
                       let exercise = known[parts[0].trimmingCharacters(in: .whitespaces).lowercased()],
-                      let level = Int(parts[1].trimmingCharacters(in: .whitespaces))
+                      let sprosse = Int(parts[1].trimmingCharacters(in: .whitespaces))
                 else { return nil }
-                return (exercise, level)
+                return (exercise, sprosse)
             }
         return Dictionary(pairs) { _, last in last }
     }

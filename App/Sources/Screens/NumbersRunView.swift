@@ -81,8 +81,8 @@ struct NumbersRunView: View, LanguageNaming {
         // Sprosse, as the letter drill's `-uitest-letters-level` does. Kern clamps it.
         let preset = UserDefaults.standard.integer(forKey: "uitest-level")
         if preset > 0, let exercise = mode.exercises.first {
-            let levels: [NumbersExercise: KotlinInt] = [exercise: KotlinInt(int: Int32(preset))]
-            _run = State(initialValue: NumbersRun.shared.openAt(mode: mode, levels: levels,
+            let sprossen: [NumbersExercise: KotlinInt] = [exercise: KotlinInt(int: Int32(preset))]
+            _run = State(initialValue: NumbersRun.shared.openAt(mode: mode, sprossen: sprossen,
                                                                     standingRecord: record,
                                                                     standingProgress: progress, rng: drillRandom))
         } else {

@@ -71,12 +71,12 @@ private fun AppModel.ladder(
     return when (drill) {
         Drill.Numbers -> DrillSuggestion.Ladder.numbers(store.ladder(language), language)
         Drill.Letters -> null
-        Drill.Countries -> cleared(TrainerStore.countriesKey(source, language), CountryDrill.MAX_LEVEL)
-        Drill.Dates -> dates?.let { cleared(TrainerStore.datesKey(source, language), DateDrill.maxLevel(it, false)) }
+        Drill.Countries -> cleared(TrainerStore.countriesKey(source, language), CountryDrill.MAX_SPROSSE)
+        Drill.Dates -> dates?.let { cleared(TrainerStore.datesKey(source, language), DateDrill.maxSprosse(it, false)) }
         Drill.WordScramble ->
-            cleared(TrainerStore.wordScrambleKey(language), WordScrambleAvailability.report(state).maxLevel)
+            cleared(TrainerStore.wordScrambleKey(language), WordScrambleAvailability.report(state).maxSprosse)
         Drill.SentenceScramble ->
-            cleared(TrainerStore.sentenceScrambleKey(language), SentenceScrambleAvailability.report(state).maxLevel)
+            cleared(TrainerStore.sentenceScrambleKey(language), SentenceScrambleAvailability.report(state).maxSprosse)
     }
 }
 

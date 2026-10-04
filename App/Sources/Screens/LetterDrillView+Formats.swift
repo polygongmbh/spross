@@ -88,7 +88,7 @@ extension LetterDrillView {
     }
 
     private var streakLine: some View {
-        DrillStreakLine(level: Text("trainer.sprosse \(Int(run.level).formatted())"),
+        DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
                         streak: Int(run.streak), bestStreak: Int(run.bestStreak))
     }
 

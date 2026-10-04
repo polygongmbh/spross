@@ -39,7 +39,7 @@ import net.spross.kern.model.Language
  * same nothing in a REVERSED run, where the flag question does not exist — see [kinds].
  */
 object CountryDrill {
-    const val MAX_LEVEL = 9
+    const val MAX_SPROSSE = 9
 
     /** Three clean wins a Sprosse: more Sprossen, and more rows standing on each of them. */
     const val WINS_TO_ADVANCE = 3
@@ -53,22 +53,22 @@ object CountryDrill {
 
     /**
      * Whether the Fast modifier is on offer at all. Having EVER stood on the top Sprosse is the
-     * price — [bestLevel] is the highest Sprosse any run reached, which is what the app keeps.
+     * price — [bestSprosse] is the highest Sprosse any run reached, which is what the app keeps.
      */
-    fun fastUnlocked(bestLevel: Int): Boolean = bestLevel >= MAX_LEVEL
+    fun fastUnlocked(bestSprosse: Int): Boolean = bestSprosse >= MAX_SPROSSE
 
     /** The Sprosse ramp, on the ladder's Sprosse length ([DrillRamp.step]). */
     fun step(
-        level: Int,
-        winsAtLevel: Int,
+        sprosse: Int,
+        winsAtSprosse: Int,
         correct: Boolean,
         clean: Boolean,
         fast: Boolean = false,
     ): DrillRamp.SprosseStep =
-        DrillRamp.step(level, winsAtLevel, correct, clean, winsToAdvance(fast))
+        DrillRamp.step(sprosse, winsAtSprosse, correct, clean, winsToAdvance(fast))
 
-    /** How far out [level] reaches — tier 1 is the profile's own, 4 the regional rest. */
-    fun tierCeiling(level: Int): Int = when (level.coerceIn(1, MAX_LEVEL)) {
+    /** How far out [sprosse] reaches — tier 1 is the profile's own, 4 the regional rest. */
+    fun tierCeiling(sprosse: Int): Int = when (sprosse.coerceIn(1, MAX_SPROSSE)) {
         1, 2, 3 -> 1
         4, 5 -> 2
         6, 7 -> 3
@@ -76,7 +76,7 @@ object CountryDrill {
     }
 
     /**
-     * What [level] may ask, in ladder order.
+     * What [sprosse] may ask, in ladder order.
      *
      * A REVERSED run has no [CountryTaskKind.FlagCountry] at all: the answer is then owed in
      * the learner's OWN language, so a flag alone asks them to recognize their own flag and
@@ -87,7 +87,7 @@ object CountryDrill {
      * the answer is owed, which is [CountryDrillTask.emojiIsGiveaway]'s business rather than
      * this list's.
      */
-    fun kinds(level: Int, reverse: Boolean = false): List<CountryTaskKind> = when (level.coerceIn(1, MAX_LEVEL)) {
+    fun kinds(sprosse: Int, reverse: Boolean = false): List<CountryTaskKind> = when (sprosse.coerceIn(1, MAX_SPROSSE)) {
         1 -> listOf(CountryTaskKind.CountryName)
         2 -> listOf(CountryTaskKind.CountryName, CountryTaskKind.LanguageName)
         3, 4 -> listOf(
@@ -112,16 +112,16 @@ object CountryDrill {
     }
 
     /**
-     * Whether [level] adds NOTHING to the Sprosse below it — the same questions over the same
+     * Whether [sprosse] adds NOTHING to the Sprosse below it — the same questions over the same
      * tier. Only the flag Sprosse of a reversed run is that today ([kinds]); an overview
      * reads it to say so on the row rather than promise a question the run never asks.
      */
-    fun repeatsBelow(level: Int, reverse: Boolean): Boolean =
-        level > 1 && kinds(level, reverse) == kinds(level - 1, reverse) &&
-            tierCeiling(level) == tierCeiling(level - 1)
+    fun repeatsBelow(sprosse: Int, reverse: Boolean): Boolean =
+        sprosse > 1 && kinds(sprosse, reverse) == kinds(sprosse - 1, reverse) &&
+            tierCeiling(sprosse) == tierCeiling(sprosse - 1)
 
     /**
-     * Every question [level] could ask, in a stable order — the Sprosse's pool, made explicit.
+     * Every question [sprosse] could ask, in a stable order — the Sprosse's pool, made explicit.
      * [reverse] flips which side prompts: forward asks in the language the learner KNOWS,
      * reversed asks in the one they are learning and grades in their own.
      *
@@ -129,9 +129,9 @@ object CountryDrill {
      * authored yet — it widens until something stands, because a Sprosse with no question is
      * not a Sprosse the learner can climb off.
      */
-    fun tasks(content: CountryDrillContent, level: Int, reverse: Boolean = false): List<CountryDrillTask> {
-        val kinds = kinds(level, reverse)
-        var ceiling = tierCeiling(level)
+    fun tasks(content: CountryDrillContent, sprosse: Int, reverse: Boolean = false): List<CountryDrillTask> {
+        val kinds = kinds(sprosse, reverse)
+        var ceiling = tierCeiling(sprosse)
         while (true) {
             val built = build(content, ceiling, kinds, reverse)
             if (built.isNotEmpty() || ceiling >= content.widestTier) return built
@@ -140,29 +140,29 @@ object CountryDrill {
     }
 
     /**
-     * One question from [level]'s pool, never one [solved] already holds ([DrillSolved]).
+     * One question from [sprosse]'s pool, never one [solved] already holds ([DrillSolved]).
      * [avoidId] is the previous answer's id, resampled once so a repeat needs two unlucky
      * draws rather than one — the letter drill's rule. Null ⇒ the Sprosse is answered out.
      */
     fun sample(
         content: CountryDrillContent,
-        level: Int,
+        sprosse: Int,
         reverse: Boolean,
         avoidId: String?,
         solved: Set<String>,
         rng: Random,
         arriving: Boolean = false,
     ): CountryDrillTask? {
-        val pool = tasks(content, level, reverse).filterNot { DrillSolved.key(it) in solved }
+        val pool = tasks(content, sprosse, reverse).filterNot { DrillSolved.key(it) in solved }
         if (pool.isEmpty()) return null
-        val drawn = if (DrillLadder.leadsWithAdded(arriving, rng)) added(content, level, reverse, pool) else pool
+        val drawn = if (DrillLadder.leadsWithAdded(arriving, rng)) added(content, sprosse, reverse, pool) else pool
         var picked = drawn[rng.nextInt(drawn.size)]
         if (picked.id == avoidId) picked = drawn[rng.nextInt(drawn.size)]
         return picked
     }
 
     /**
-     * What [level] ADDED — the questions in its pool that the Sprosse below could not ask, by
+     * What [sprosse] ADDED — the questions in its pool that the Sprosse below could not ask, by
      * the kind it introduced or the tier it opened. Falls back to [pool] where the Sprosse adds
      * nothing ([repeatsBelow]) or where everything it added is answered out already.
      *
@@ -171,34 +171,34 @@ object CountryDrill {
      */
     private fun added(
         content: CountryDrillContent,
-        level: Int,
+        sprosse: Int,
         reverse: Boolean,
         pool: List<CountryDrillTask>,
     ): List<CountryDrillTask> {
-        if (level <= 1 || repeatsBelow(level, reverse)) return pool
-        val below = tasks(content, level - 1, reverse).mapTo(mutableSetOf()) { DrillSolved.key(it) }
+        if (sprosse <= 1 || repeatsBelow(sprosse, reverse)) return pool
+        val below = tasks(content, sprosse - 1, reverse).mapTo(mutableSetOf()) { DrillSolved.key(it) }
         return pool.filterNot { DrillSolved.key(it) in below }.ifEmpty { pool }
     }
 
     /**
-     * The first Sprosse at or above [level] with a question left ([DrillLadder.climb]). A Sprosse
+     * The first Sprosse at or above [sprosse] with a question left ([DrillLadder.climb]). A Sprosse
      * the run has answered out is climbed past rather than asked again — the Sprossen nest, so
      * the one above always has at least as much to offer.
      */
     fun draw(
         content: CountryDrillContent,
-        level: Int,
+        sprosse: Int,
         reverse: Boolean,
         avoidId: String?,
         solved: Set<String>,
         rng: Random,
         arriving: Boolean = false,
     ): CountryDrillDraw {
-        val climbed = DrillLadder.climb(level, MAX_LEVEL) { sprosse ->
+        val climbed = DrillLadder.climb(sprosse, MAX_SPROSSE) { sprosse ->
             // Climbing PAST a spent Sprosse arrives at the one above it just as a promotion does.
-            sample(content, sprosse, reverse, avoidId, solved, rng, arriving || sprosse > level)
+            sample(content, sprosse, reverse, avoidId, solved, rng, arriving || sprosse > sprosse)
         }
-        return CountryDrillDraw(climbed.task, climbed.level)
+        return CountryDrillDraw(climbed.task, climbed.sprosse)
     }
 
     /**
@@ -206,8 +206,8 @@ object CountryDrill {
      * and they nest, so answering one out answers out everything below it too.
      */
     fun cleared(content: CountryDrillContent, reverse: Boolean, solved: Set<String>): Set<Int> =
-        DrillSolved.cleared(solved, MAX_LEVEL) { level ->
-            tasks(content, level, reverse).map { DrillSolved.key(it) }
+        DrillSolved.cleared(solved, MAX_SPROSSE) { sprosse ->
+            tasks(content, sprosse, reverse).map { DrillSolved.key(it) }
         }
 
     /**

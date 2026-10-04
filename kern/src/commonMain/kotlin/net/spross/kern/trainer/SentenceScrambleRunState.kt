@@ -46,12 +46,12 @@ data class SentenceScrambleClose(
      * The Sprosse the run REACHED, not the one it ends on — the ramp drops back on a miss, and
      * the ladder rewards standing on a Sprosse rather than finishing there.
      */
-    val bestLevel: Int,
+    val bestSprosse: Int,
     /**
      * The Sprossen this run climbed off before its first slip ([DrillSprossen]), for the store to add
      * to the mask it holds — the Sprossen later runs pass on one clean answer
      * ([DrillSprossen.winsRequired]).
-     * Unfiltered: unlike [bestLevel] there is no standing value to beat.
+     * Unfiltered: unlike [bestSprosse] there is no standing value to beat.
      */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
@@ -77,7 +77,7 @@ class SentenceScrambleRunConfig(
  *
  * No FSRS anywhere — arrangement is not recall: the box is READ for its phrases
  * and never written, so the run books no review. What outlives it is the ladder —
- * [bestLevel] and [clearedSprossen], which the screen that started the run files.
+ * [bestSprosse] and [clearedSprossen], which the screen that started the run files.
  */
 data class SentenceScrambleRunState(
     val config: SentenceScrambleRunConfig,
@@ -86,9 +86,9 @@ data class SentenceScrambleRunState(
     /** Indices into [SentenceScrambleTask.shuffled], in the order the learner committed them. */
     val placed: List<Int>,
     override val index: Int,
-    val level: Int,
-    val bestLevel: Int,
-    val winsAtLevel: Int,
+    val sprosse: Int,
+    val bestSprosse: Int,
+    val winsAtSprosse: Int,
     /** The Sprossen climbed off before the run's first slip — what the close hands the store. */
     val clearedSprossen: Set<Int>,
     /** The counters every drill run keeps, booked as one ([DrillRunCore.book]). */

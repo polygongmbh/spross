@@ -90,8 +90,8 @@ class RealCatalogScrambleTest {
                 report = WordScrambleAvailability.report(ScrambleFixture.box(cards(source, target))),
                 normalizer = null,
             )
-            for (level in 1..WordScrambleMasking.MAX_LEVEL) {
-                var state = WordScrambleRun.openAt(config, level, Random(level * 31 + target.hashCode()))
+            for (sprosse in 1..WordScrambleMasking.MAX_SPROSSE) {
+                var state = WordScrambleRun.openAt(config, sprosse, Random(sprosse * 31 + target.hashCode()))
                 repeat(40) {
                     val task = state.task ?: return@repeat
                     val display = task.scrambled.display

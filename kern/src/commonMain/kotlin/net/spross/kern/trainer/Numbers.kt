@@ -97,7 +97,7 @@ object Numbers {
     /**
      * [number] with the looser drill accepted set
      * ([TrainerLanguagePack.drillNumber]: sw adds the "na"-less spelling) —
-     * shared by the level drills and the phrase slots.
+     * shared by the Sprosse drills and the phrase slots.
      */
     internal fun drillNumber(n: Long, language: Language): NumbersTask {
         val accepted = pack(language).drillNumber(n)
@@ -177,9 +177,9 @@ object Numbers {
      */
     fun sample(reading: NumbersReading, language: Language, rng: Random): NumbersTask {
         // Forms has no full-difficulty bias of its own: its ceiling IS its top Sprosse.
-        if (reading == NumbersReading.Form) return sample(reading, language, maxLevel(reading), rng)
+        if (reading == NumbersReading.Form) return sample(reading, language, maxSprosse(reading), rng)
         // why: the full-difficulty cardinal keeps the STRICT accepted set — the looser
-        // drill spellings belong to the leveled draw, which is what the drills run on.
+        // drill spellings belong to the draw at a Sprosse, which is what the drills run on.
         return render(drawSlot(reading, language, rng), language, drill = false)
     }
 
@@ -188,15 +188,15 @@ object Numbers {
         trainerPacks[language]?.formLimits?.forms?.isNotEmpty() == true
 
     /**
-     * Adaptive difficulty ceiling per reading. Levels are 1-based; the app ramps
+     * Adaptive difficulty ceiling per reading. Sprossen are 1-based; the app ramps
      * up after consecutive successes and steps down on a miss.
      */
-    fun maxLevel(reading: NumbersReading): Int = when (reading) {
-        NumbersReading.Cardinal -> 10 // level == digit count (up to billions)
+    fun maxSprosse(reading: NumbersReading): Int = when (reading) {
+        NumbersReading.Cardinal -> 10 // Sprosse == digit count (up to billions)
         NumbersReading.Year -> 3
-        NumbersReading.Clock -> CLOCK_MAX_LEVEL
-        NumbersReading.Form -> FORMS_MAX_LEVEL
-        NumbersReading.Fraction -> FRACTION_MAX_LEVEL
+        NumbersReading.Clock -> CLOCK_MAX_SPROSSE
+        NumbersReading.Form -> FORMS_MAX_SPROSSE
+        NumbersReading.Fraction -> FRACTION_MAX_SPROSSE
         NumbersReading.Phone -> 1
     }
 
@@ -218,8 +218,8 @@ object Numbers {
     }
 
     /**
-     * Level semantics:
-     * - numbers: level = digit count (1 → 0–9 … 10 → 1000000000–9999999999).
+     * Sprosse semantics:
+     * - numbers: Sprosse = digit count (1 → 0–9 … 10 → 1000000000–9999999999).
      * - years: 1 recent decades (1990–2029), 2 modern century (1900–2099),
      *   3 full historic range (1100–2099, German hundred-style variants).
      * - clock: the five nested Sprossen of [clockSprosse] — 1 full hours, 2 the quarters,
@@ -227,8 +227,8 @@ object Numbers {
      *   (the to-the-hour countdown), 5 any minute.
      * - forms: the ten Sprossen of [sprosseForms], each keeping everything below it.
      */
-    fun sample(reading: NumbersReading, language: Language, level: Int, rng: Random): NumbersTask {
-        val l = level.coerceIn(1, maxLevel(reading))
+    fun sample(reading: NumbersReading, language: Language, sprosse: Int, rng: Random): NumbersTask {
+        val l = sprosse.coerceIn(1, maxSprosse(reading))
         if (reading == NumbersReading.Form) return formTask(language, l, 0, rng)
         return render(drawSlot(reading, language, l, rng), language, drill = true)
     }
@@ -236,7 +236,7 @@ object Numbers {
     /**
      * The one place a drawn [SlotValue] becomes a task, so the drills and the phrase slots
      * can never render the same draw two different ways. [drill] picks the looser accepted
-     * set the level drills grade against (sw's "na"-less spelling).
+     * set the Sprosse drills grade against (sw's "na"-less spelling).
      */
     private fun render(value: SlotValue, language: Language, drill: Boolean): NumbersTask =
         when (value) {
@@ -250,26 +250,26 @@ object Numbers {
     /**
      * A Forms task whose values are sized by a NUMBERS Sprosse rather than by the forms
      * ladder's own gentler one — [DrillModifier.Mix]'s second half, where "−7" grows into
-     * "−4 072 918" and "3,7" into "12 345,7". [level] still decides which forms are on
+     * "−4 072 918" and "3,7" into "12 345,7". [sprosse] still decides which forms are on
      * offer; [magnitudeDigits] only widens the two that have a magnitude to widen.
      */
-    fun sampleForms(language: Language, level: Int, magnitudeDigits: Int, rng: Random): NumbersTask =
-        formTask(language, level.coerceIn(1, FORMS_MAX_LEVEL), magnitudeDigits.coerceIn(0, 10), rng)
+    fun sampleForms(language: Language, sprosse: Int, magnitudeDigits: Int, rng: Random): NumbersTask =
+        formTask(language, sprosse.coerceIn(1, FORMS_MAX_SPROSSE), magnitudeDigits.coerceIn(0, 10), rng)
 
     /**
      * One number-form task: the ladder draws the value, the pack reads it, and the
      * prompt is rendered with that pack's decimal mark (the one language-dependent
      * prompt in the trainer — see [renderForm]).
      */
-    private fun formTask(language: Language, level: Int, magnitudeDigits: Int, rng: Random): NumbersTask {
+    private fun formTask(language: Language, sprosse: Int, magnitudeDigits: Int, rng: Random): NumbersTask {
         val pack = pack(language)
-        val value = drawForm(pack.formLimits, level, rng, magnitudeDigits)
+        val value = drawForm(pack.formLimits, sprosse, rng, magnitudeDigits)
         val accepted = value?.let(pack::formReading).orEmpty()
         // why: a pack that reads no form still has to answer sample(Forms, …) — it falls
         // back to a plain cardinal rather than throwing across the ObjC boundary. The app
         // never shows it: the Forms exercise is gated on supportsForms().
         if (value == null || accepted.isEmpty()) {
-            return drillNumber(drawNumber(level, rng), language).copy(kind = NumbersReading.Form)
+            return drillNumber(drawNumber(sprosse, rng), language).copy(kind = NumbersReading.Form)
         }
         val prompt = renderForm(value, pack.decimalMark, grouped = false)
         return NumbersTask(
@@ -279,8 +279,8 @@ object Numbers {
         )
     }
 
-    /** Leveled minute draw, shared by the plain clock drill and the phrase slots. */
-    internal fun clockMinute(level: Int, rng: Random): Int = drawClockMinute(level, rng)
+    /** The minute draw at a Sprosse, shared by the plain clock drill and the phrase slots. */
+    internal fun clockMinute(sprosse: Int, rng: Random): Int = drawClockMinute(sprosse, rng)
 
     /**
      * Highest place-value word for a number of the given digit count, shown
@@ -312,7 +312,7 @@ object Numbers {
     fun reference(language: Language): List<ReferenceSection> = buildReference(language)
 
     /**
-     * How LONG a Sprosse is. Two clean wins per level is the climb; fast mode spends
+     * How LONG a Sprosse is. Two clean wins per Sprosse is the climb; fast mode spends
      * one, which is the reward for having topped the ladder the hard way.
      * (Same shape as [LetterDrill.winsToAdvance], whose pacing rule this follows.)
      */

@@ -38,7 +38,7 @@ class NumbersCloseTest {
         )
         assertEquals(listOf(AnswerOutcome.Almost), almost.state.outcomes)
         assertEquals(1, almost.summary?.done)
-        assertEquals(1, almost.state.currentLevel, "almost moves the Sprosse neither way")
+        assertEquals(1, almost.state.currentSprosse, "almost moves the Sprosse neither way")
 
         // A hint-assisted clean answer is almost too, exactly as the explicit tap would book it.
         val hinted = NumbersRun.close(
@@ -72,8 +72,8 @@ class NumbersCloseTest {
         val played = NumbersRun.open(mode, 0, emptyMap(), Random(53)).copy(
             core = DrillRunCore(done = 9, bestStreak = 4),
             // The Sprosse fell back to 3, but the ladder rewards reaching 5.
-            levels = mapOf(NumbersExercise.Counting to 3, NumbersExercise.Clock to 1),
-            bestLevels = mapOf(NumbersExercise.Counting to 5),
+            sprossen = mapOf(NumbersExercise.Counting to 3, NumbersExercise.Clock to 1),
+            bestSprossen = mapOf(NumbersExercise.Counting to 5),
         )
         assertEquals(
             mapOf("Counting.sw" to 5),
@@ -112,6 +112,6 @@ class NumbersCloseTest {
         )
         assertTrue(mixed.severalExercises)
         // A run carrying no frame has no sentence ladder to show.
-        assertEquals(1, numbers().maxLevel(NumbersExercise.Phrases))
+        assertEquals(1, numbers().maxSprosse(NumbersExercise.Phrases))
     }
 }

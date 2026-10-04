@@ -68,13 +68,13 @@ object WordScrambleAvailability {
          * nothing — and the Sprossen above it go on lengthening the word with nothing anchored,
          * which is where a well-grown box spends most of its climb.
          */
-        val maxLevel: Int by lazy {
+        val maxSprosse: Int by lazy {
             val nth = words.map { it.reach }.sortedDescending().getOrNull(POOL_FLOOR - 1)
             maxOf(1, (nth ?: MIN_LETTERS) - MIN_LETTERS + 1)
         }
 
         /**
-         * How many LETTERS a word must carry to be asked at [level] — one more per Sprosse,
+         * How many LETTERS a word must carry to be asked at [sprosse] — one more per Sprosse,
          * from [MIN_LETTERS] at the foot.
          *
          * One letter a Sprosse rather than a wider band: the catalog's single words crowd into
@@ -82,7 +82,7 @@ object WordScrambleAvailability {
          * whole ladder inside that crowd and then leave its top Sprosse empty for anyone but a
          * learner who has grown the long tail.
          */
-        fun lettersAt(level: Int): Int = MIN_LETTERS + maxOf(1, level) - 1
+        fun lettersAt(sprosse: Int): Int = MIN_LETTERS + maxOf(1, sprosse) - 1
     }
 
     /**

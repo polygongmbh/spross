@@ -73,17 +73,17 @@ object SentenceScrambleAvailability {
         }
 
         /** The Sprosse ceiling: one Sprosse per band, never fewer than one. */
-        val maxLevel: Int get() = maxOf(1, (phrases.size + bandSize - 1) / maxOf(1, bandSize))
+        val maxSprosse: Int get() = maxOf(1, (phrases.size + bandSize - 1) / maxOf(1, bandSize))
 
         /**
-         * The phrases [level] asks: its own band of [byDifficulty], and nothing from the bands
+         * The phrases [sprosse] asks: its own band of [byDifficulty], and nothing from the bands
          * around it — so a miss drops to phrases genuinely easier than the one missed,
          * and every Sprosse, the top one included, is as many phrases as the next.
          */
-        fun phrasesAt(level: Int): List<Phrase> {
-            val band = level.coerceIn(1, maxLevel) - 1
+        fun phrasesAt(sprosse: Int): List<Phrase> {
+            val band = sprosse.coerceIn(1, maxSprosse) - 1
             val size = byDifficulty.size
-            return byDifficulty.subList(band * size / maxLevel, (band + 1) * size / maxLevel)
+            return byDifficulty.subList(band * size / maxSprosse, (band + 1) * size / maxSprosse)
         }
     }
 

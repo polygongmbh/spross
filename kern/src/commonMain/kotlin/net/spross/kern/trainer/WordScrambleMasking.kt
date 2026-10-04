@@ -31,7 +31,7 @@ data class ScrambledWord(
 object WordScrambleMasking {
 
     /** Anchored at the front, then anchored nowhere. */
-    const val MAX_LEVEL: Int = 3
+    const val MAX_SPROSSE: Int = 3
 
     /**
      * How many arrangements a word is offered before the guards are relaxed. A word whose
@@ -39,8 +39,8 @@ object WordScrambleMasking {
      */
     private const val MIX_ATTEMPTS = 12
 
-    /** How many letters stand at the front of the word at [level]. */
-    fun fixedLeading(level: Int): Int = if (level.coerceAtLeast(1) <= 2) 1 else 0
+    /** How many letters stand at the front of the word at [sprosse]. */
+    fun fixedLeading(sprosse: Int): Int = if (sprosse.coerceAtLeast(1) <= 2) 1 else 0
 
     /**
      * [text] with everything the Sprosse does not anchor mixed up.
@@ -48,9 +48,9 @@ object WordScrambleMasking {
      * A word with no more than one letter to move comes back as it was authored: there is no
      * other arrangement of it, and re-rolling for one would loop.
      */
-    fun scramble(text: String, level: Int, rng: Random): ScrambledWord {
+    fun scramble(text: String, sprosse: Int, rng: Random): ScrambledWord {
         val word = text.trim()
-        val lead = minOf(fixedLeading(level), word.length)
+        val lead = minOf(fixedLeading(sprosse), word.length)
         val head = word.take(lead)
         val interior = word.substring(lead).lowercase()
         return ScrambledWord(head + mixed(interior, rng), lead)
