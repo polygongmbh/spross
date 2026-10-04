@@ -11,7 +11,7 @@ import net.spross.kern.model.Card
 class ArrivedCardsTests {
     private val now = Box.day1
 
-    /** A growing schedule at the default `growingStability` of 6.0 days. */
+    /** A growing schedule at the `GROWING_STABILITY` of 6.0 days. */
     private fun growing(cardId: String, stability: Double = 7.0, suspended: Boolean = false) =
         Box.sched(
             cardId,

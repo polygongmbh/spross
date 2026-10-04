@@ -156,7 +156,7 @@ because Kotlin default arguments do not cross the ObjC boundary
 ## 5. FSRS-6
 
 Parameters, provenance and the golden vectors are `docs/fsrs.md`;
-the numbers behind each bar are on `BoxConfig` itself.
+the numbers behind each setting are on `BoxConfig` itself, and the three stability bars in `box/StabilityBars.kt`.
 
 - **ONE ALTERNATING ladder, `stepsSeconds`, shared by Learning and Relearning**
   (user ruling 2026-09-02) --
@@ -178,16 +178,17 @@ the numbers behind each bar are on `BoxConfig` itself.
   Suspension is now purely the learner's own call -- `setSuspended`, reversible from the Box.
 - **A graduated interval floors at one day.**
 - **TWO growth bars, not one**:
-  `growingStability` (`Statistics.hasArrived`, facade `BoxEngine.hasArrived(state, cardId)`)
+  `GROWING_STABILITY` (`Statistics.hasArrived`, facade `BoxEngine.hasArrived(state, cardId)`)
   is gate (a) -- stability >= 6 days, whatever the FSRS phase (user ruling 2026-10-04):
   one forgetting is normal, so a lapse un-lands a card only where its post-lapse stability falls under the bar.
   That bar gates phrase unlock, the letter drill's pool (section 6),
   and picks the support a word gets while it is still on its way in (section 3).
   `SETTLED_STABILITY` (`Statistics.hasSettled`, facade `BoxEngine.hasSettled`)
   is a later, stricter DISPLAY bar -- 25 days, also stability alone --
-  behind the progress-UI split, the Grown badge, the area-complete mark, the day tallies,
+  behind the progress-UI split, the settled badge, the area-complete mark, the day tallies,
   the words a brief hands over as known, and the word scramble's pool.
   Deliberately distinct.
+  `MATURED_STABILITY` (120 days) splits the settled words for the tree's fruit and nothing else.
 - **Weight optimization stays out of scope.**
 
 ## 6. Box / Session semantics

@@ -55,6 +55,13 @@ extension AppModel {
         return BoxEngine.shared.hasArrived(state: box, cardId: cardID)
     }
 
+    /// One card's standing, asked by name rather than found in the whole box's `growth`.
+    func cardGrowth(_ cardID: String) -> CardGrowth? {
+        guard let box else { return nil }
+        return BoxEngine.shared.cardGrowth(state: box, cardId: cardID,
+                                           nowEpochMillis: Date().epochMillis, tzId: currentTzId())
+    }
+
     /// Which face carries the picture: the prompt only where it cannot give the
     /// answer away, otherwise the reveal (contract §3).
     func emojiCue(for card: Card) -> EmojiCue {

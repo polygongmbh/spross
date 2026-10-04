@@ -196,12 +196,12 @@ internal object Statistics {
         (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY
 
     /**
-     * Stability at or above [BoxConfig.growingStability], whatever the phase —
+     * Stability at or above [GROWING_STABILITY], whatever the phase —
      * one forgetting is normal, and the support is for words that are not properly down.
      * Gates phrase unlock, the drill pools and the in-session support (emoji cue, sound-only prompt).
      */
     fun hasArrived(state: BoxState, sched: CardScheduling): Boolean =
-        (sched.memory?.stability ?: 0.0) >= state.config.growingStability
+        (sched.memory?.stability ?: 0.0) >= GROWING_STABILITY
 
     /**
      * Walk back from today: a missed day is bridged, two in a row end the run. Forgiveness

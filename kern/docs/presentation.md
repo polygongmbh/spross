@@ -13,7 +13,7 @@ Neighbors: the contract `../README.md` §3.
   answers whether a produce turn asks by sight or by ear. Not a third role — the role
   function is fixed and a word asked from its sound is still produced,
   so only the side the card asks FROM moves and one schedule still sees one kind of answer.
-  `Sound` needs `growingStability` (`../README.md` §5), because this WITHDRAWS the meaning
+  `Sound` needs `GROWING_STABILITY` (`../README.md` §5), because this WITHDRAWS the meaning
   rather than adding support, plus the app's word that the form can be heard right now
   (no recording and no voice, reading aloud off in the app, or a screen reader —
   each falls back to `Source` rather than putting up an empty card). Alternation divides the

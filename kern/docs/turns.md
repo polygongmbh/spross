@@ -94,7 +94,7 @@ Engine contract: `../README.md`.
   the words it trusts most. It is back the moment a lapse takes it under that bar.
   `listeningPriority(growing, suspended)` is the ladder, and it has two Sprossen read off the
   box's own bar rather than a ladder of listening's own: a held word short of
-  `growingStability` (`Statistics.hasArrived`) is SHAKY (`LISTENING_SHAKY_PRIORITY`, 2) and one past it is GROWING
+  `GROWING_STABILITY` (`Statistics.hasArrived`) is SHAKY (`LISTENING_SHAKY_PRIORITY`, 2) and one past it is GROWING
   (`LISTENING_GROWING_PRIORITY`, 1). A **suspended** word takes the growing Sprosse whatever
   its bar: suspension takes a word out of the box's rotation and this is the surface that
   can still reach it, so it comes in — it does not lead.

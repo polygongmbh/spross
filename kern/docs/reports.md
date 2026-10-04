@@ -84,7 +84,7 @@ The read models a surface draws the box from (the day, one card's standing, the 
   NEW is the ABSENCE of a standing, never a standing of its own.
   `Standing` carries the card's `ActiveStage` (fresh / growing / settled / lapsed) rather than a collapsed boolean —
   Fresh, Growing and Settled can no longer be told apart from one flag,
-  and a card reaches Review well below `growingStability`, so a mark
+  and a card reaches Review well below `GROWING_STABILITY`, so a mark
   keyed to the raw phase would seal cards the area's settled count leaves out.
   It is read off the same rule as `GrowthStage`, never re-derived from the raw phase:
   a second derivation is a second answer waiting to disagree with the shelf above it.

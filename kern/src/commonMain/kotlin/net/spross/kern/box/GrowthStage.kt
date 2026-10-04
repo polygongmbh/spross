@@ -1,23 +1,9 @@
 package net.spross.kern.box
 
+import kotlin.math.max
+import kotlin.math.roundToInt
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
-
-/**
- * Days of stability at which a card counts as settled ([Statistics.hasSettled]).
- * Gates no support or unlock: it backs the counts, the badge, the area-complete mark,
- * the word scramble's pool and what [Briefing] hands over as known.
- *
- * Above two plain Goods (S ≈ 17), at or below Good then Easy (S ≈ 29.8):
- * reinforcement alone never settles a word, one fast answer has to.
- */
-const val SETTLED_STABILITY: Double = 25.0
-
-/**
- * Days of stability at which a settled card counts as matured — fruit rather than a blossom.
- * Kern's so both platforms draw the same tree.
- */
-const val MATURED_STABILITY: Double = 120.0
 
 /**
  * How far one card has come, as one Sprosse of the box's own ladder.
@@ -38,7 +24,7 @@ enum class GrowthStage {
     Queued,
 
     /**
-     * Met and still under [net.spross.kern.model.BoxConfig.growingStability], and not in the
+     * Met and still under [GROWING_STABILITY], and not in the
      * relearning steps. Introduction is the first ANSWER.
      */
     Fresh,
@@ -86,7 +72,13 @@ data class CardGrowth(
     val stability: Double,
     /** Whether the card was answered today — the day's growth, where it happened. */
     val touchedToday: Boolean,
-)
+) {
+    /**
+     * Whole days the word keeps, at least one — or null with no stability to speak of,
+     * where "keeps 0 days" would be a fact about the engine rather than about the word.
+     */
+    val lastsDays: Int? get() = if (stability > 0.0) max(1, stability.roundToInt()) else null
+}
 
 /**
  * The Sprosse this schedule stands on: suspension first, then the stability bars,

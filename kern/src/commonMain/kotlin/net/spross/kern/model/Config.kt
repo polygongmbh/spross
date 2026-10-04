@@ -28,28 +28,6 @@ data class BoxConfig(
     val desiredRetention: Double = 0.85,
     val maximumIntervalDays: Int = 365,
     /**
-     * Days of stability at which a card counts as GROWING — gate (a), read by
-     * every rule that asks whether a word has landed enough to lean on: phrase
-     * unlock (see [net.spross.kern.box.Growth.isComponentStable]), the drill
-     * pools, [net.spross.kern.model.producePrompt] (which WITHDRAWS the meaning),
-     * and [net.spross.kern.model.emojiCue] (which ADDS support). The stats
-     * display, the Grown badge, and the day tallies read a stricter, later bar
-     * instead ([net.spross.kern.box.SETTLED_STABILITY]).
-     *
-     * Set between S0(Good) = 2.3065 and S0(Easy) = 8.2956, so a merely-Good first
-     * answer does not read as landed while a genuinely known-on-sight Easy one does.
-     * That gap is the whole point: a first answer of Good is as easily an emoji
-     * recognized as a word recalled, and the word keeps its support until a second
-     * answer says otherwise — where Easy, which only a fast learner-reported Knew
-     * can earn ([net.spross.kern.session.SelfGrading]), clears the bar on the spot.
-     *
-     * A separate, faster `settledStability` of 2.0 used to gate presentation support
-     * on its own. It sat BELOW S0(Good), so a single Good — the emoji-lucky case
-     * included — withdrew the emoji from the very next review, which is the first
-     * TYPED one and the first that can actually catch the guess.
-     */
-    val growingStability: Double = 6.0,
-    /**
      * (Re)learning steps in seconds — ONE ladder, the same cadence whether a word has
      * never graduated (Learning) or lapsed after it did (Relearning). Minutes and
      * day-scale waits ALTERNATE — 10 min, 1 day, 10 min, 3 days, 10 min, 7 days,

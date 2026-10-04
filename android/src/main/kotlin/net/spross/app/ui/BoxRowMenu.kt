@@ -13,8 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlin.math.max
-import kotlin.math.roundToInt
 import net.spross.app.AppModel
 import net.spross.app.CardDisplay
 import net.spross.app.Chrome
@@ -151,11 +149,7 @@ internal fun BoxRowMenu(
 private fun WordCardLines(model: AppModel, card: Card, chrome: Chrome) {
     val also = CardDisplay.alsoLine(card.target, chrome, card.target.text)
     val note = card.target.note
-    // why: a card with no schedule reports 0 stability, and "Hält 0 Tage" would be a
-    // fact about the engine rather than about the word — the row itself says nothing
-    // about an untouched word either, so neither does this.
-    val lasts = model.cardGrowth(card.id)?.stability
-        ?.takeIf { it > 0.0 }?.let { max(1, it.roundToInt()) }
+    val lasts = model.cardGrowth(card.id)?.lastsDays
     if (also == null && note == null && lasts == null) return
     Column(
         Modifier.widthIn(max = 280.dp).padding(Theme.spacing.md),

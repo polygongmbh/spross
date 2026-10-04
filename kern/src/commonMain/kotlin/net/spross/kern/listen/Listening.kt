@@ -237,7 +237,7 @@ const val LISTENING_GROWING_PRIORITY: Int = 1
  * Where a scheduled word stands on the listening ladder — two Sprossen, read off the box's own
  * bar rather than a ladder of listening's own.
  *
- * A word short of `growingStability` (`Statistics.hasArrived`) leads: it is the whole point of the hour. A word past it is still worth
+ * A word short of `GROWING_STABILITY` (`Statistics.hasArrived`) leads: it is the whole point of the hour. A word past it is still worth
  * hearing, and takes the floor. A settled word is not on the ladder at all — `ListeningPool`
  * leaves it out — so the floor is the growing band, not a dumping ground.
  *

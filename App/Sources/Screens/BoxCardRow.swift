@@ -57,22 +57,18 @@ struct BoxCardRow: View {
     private struct WordCard {
         var alternates: String?
         var note: String?
-        /// Whole days of stability, absent for a word the box has no schedule for.
+        /// Whole days the word keeps (`CardGrowth.lastsDays`), absent for an untouched word.
         var lasts: Int?
 
         var hasAnything: Bool { alternates != nil || note != nil || lasts != nil }
     }
 
     private var wordCard: WordCard {
-        // why: a card with no schedule has 0 stability, and "Hält 0 Tage" would
-        // be a fact about the engine rather than about the word — the row says
-        // nothing about an untouched word either (`standing`), so neither does this.
-        let stability = model.growth.first { $0.cardId == card.id }?.stability ?? 0
-        return WordCard(
+        WordCard(
             alternates: CardDisplay.alternates(of: card.target, shown: card.target.text,
                                                locale: locale),
             note: card.target.note,
-            lasts: stability > 0 ? max(1, Int(stability.rounded())) : nil
+            lasts: model.cardGrowth(card.id)?.lastsDays?.intValue
         )
     }
 

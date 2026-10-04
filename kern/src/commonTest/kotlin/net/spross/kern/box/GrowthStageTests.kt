@@ -38,7 +38,7 @@ class GrowthStageTests {
                 "w02" to GrowthStage.Queued,
                 "w03" to GrowthStage.Fresh,
                 "w04" to GrowthStage.Fresh,
-                // Past the retired settled bar of 2.0, still short of growingStability
+                // Past the retired settled bar of 2.0, still short of GROWING_STABILITY
                 // (6.0): a word this far in is Fresh, and still gets its support.
                 "w05" to GrowthStage.Fresh,
                 "w06" to GrowthStage.Growing,
@@ -83,6 +83,15 @@ class GrowthStageTests {
         assertEquals(GrowthStage.Growing, stages(state)["w01"])
         assertTrue(BoxEngine.hasArrived(state, "w01"))
         assertEquals(GrowthStage.Lapsed, stages(state)["w02"])
+    }
+
+    /** How long a word keeps: nothing for an untouched word, whole days, never under one. */
+    @Test
+    fun aWordKeepsWholeDaysAndAnUntouchedOneSaysNothing() {
+        fun lasts(stability: Double) = CardGrowth("w01", GrowthStage.Fresh, stability, false).lastsDays
+        assertNull(lasts(0.0))
+        assertEquals(1, lasts(0.2))
+        assertEquals(10, lasts(9.6))
     }
 
     @Test
