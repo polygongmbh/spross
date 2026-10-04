@@ -37,35 +37,35 @@ class HomeStandingTest {
 
     @Test
     fun pullAheadsCountIntoTheRepetitionsRatherThanStandingAsTheirOwnPile() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 12, dueHeldBack = 0, ahead = 3, fresh = 2, shortRound = 0)
+        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 12, dueHeldBack = 0, ahead = 3, newCards = 2, shortRound = 0)
 
         assertEquals("15 Checks · 2 Neue", offerSummary(chrome, offer))
     }
 
     @Test
     fun aCountOfOneDeclinesItsNoun() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 1, dueHeldBack = 0, ahead = 0, fresh = 1, shortRound = 0)
+        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 1, dueHeldBack = 0, ahead = 0, newCards = 1, shortRound = 0)
 
         assertEquals("1 Check · 1 Neues", offerSummary(chrome, offer))
     }
 
     @Test
-    fun freshWordsSpellOutTheirNounWhenTheyCarryTheRoundAlone() {
-        val offer = SessionOffer(SessionOfferKind.FreshSet, reviews = 0, dueHeldBack = 0, ahead = 0, fresh = 5, shortRound = 0)
+    fun newWordsSpellOutTheirNounWhenTheyCarryTheRoundAlone() {
+        val offer = SessionOffer(SessionOfferKind.NewSet, reviews = 0, dueHeldBack = 0, ahead = 0, newCards = 5, shortRound = 0)
 
         assertEquals("5 neue Wörter", offerSummary(chrome, offer))
     }
 
     @Test
     fun aheadIsNamedOnlyWhenItCarriesTheRoundAlone() {
-        val offer = SessionOffer(SessionOfferKind.WarmUp, reviews = 0, dueHeldBack = 0, ahead = 4, fresh = 0, shortRound = 0)
+        val offer = SessionOffer(SessionOfferKind.WarmUp, reviews = 0, dueHeldBack = 0, ahead = 4, newCards = 0, shortRound = 0)
 
         assertEquals("4 Auffrischer", offerSummary(chrome, offer))
     }
 
     @Test
     fun aRoundThatNamesNothingSaysSoInOnePhrase() {
-        val offer = SessionOffer(SessionOfferKind.Nothing, reviews = 0, dueHeldBack = 0, ahead = 0, fresh = 0, shortRound = 0)
+        val offer = SessionOffer(SessionOfferKind.Nothing, reviews = 0, dueHeldBack = 0, ahead = 0, newCards = 0, shortRound = 0)
 
         assertEquals(chrome.homeTallySomeCards, offerSummary(chrome, offer))
     }
@@ -82,7 +82,7 @@ class HomeStandingTest {
             val series = when (kind) {
                 HeadlineKind.Reviews -> chrome.headlineReviews
                 HeadlineKind.WarmUp -> chrome.headlineWarmUp
-                HeadlineKind.FreshSet -> chrome.headlineFreshSet
+                HeadlineKind.NewSet -> chrome.headlineNewSet
                 HeadlineKind.StreakReminder -> chrome.headlineStreak
             }
             assertEquals(kind.variants, series.size, "$kind owes as many phrasings as kern says")
@@ -95,7 +95,7 @@ class HomeStandingTest {
     /** A run that owes nothing headlines by the round's shape, at any hour of the day. */
     @Test
     fun aSafeRunHeadlinesByTheRoundsShapeAtAnyHour() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 5, dueHeldBack = 0, ahead = 0, fresh = 2, shortRound = 0)
+        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 5, dueHeldBack = 0, ahead = 0, newCards = 2, shortRound = 0)
 
         for (hour in 0..23) {
             val headline = offer.headline(hour * 3_600_000L, "UTC")
@@ -107,7 +107,7 @@ class HomeStandingTest {
     @Test
     fun anExposedRunHeadlinesTheStreakInstead() {
         val offer = SessionOffer(
-            SessionOfferKind.Reviews, reviews = 5, dueHeldBack = 0, ahead = 0, fresh = 2,
+            SessionOfferKind.Reviews, reviews = 5, dueHeldBack = 0, ahead = 0, newCards = 2,
             shortRound = 0, streakExposed = true,
         )
         val headline = offer.headline(14 * 3_600_000L, "UTC")

@@ -7,9 +7,9 @@ import net.spross.kern.model.CardKind
 /** New-card candidates: automatic unlock fast-path phrases separate from the rest. */
 internal data class NewCandidates(
     val unlockedPhrases: List<String>,
-    val newCards: List<String>,
+    val queuedAndSeedOrder: List<String>,
 ) {
-    val count: Int get() = unlockedPhrases.size + newCards.size
+    val count: Int get() = unlockedPhrases.size + queuedAndSeedOrder.size
 
     companion object {
         val empty = NewCandidates(emptyList(), emptyList())
@@ -83,13 +83,13 @@ internal object Growth {
 
         val taken = mutableSetOf<String>()
         val unlockedPhrases = mutableListOf<String>()
-        val newCards = mutableListOf<String>()
+        val queuedAndSeedOrder = mutableListOf<String>()
 
         // 1. Enqueued lead — within the new-word budget.
         for (id in enqueuedEligible(state)) {
             if (slots <= 0) break
             if (!taken.add(id)) continue
-            newCards += id
+            queuedAndSeedOrder += id
             slots -= 1
         }
 
@@ -107,10 +107,10 @@ internal object Growth {
         for (card in unscheduled) {
             if (slots <= 0) break
             if (card.id in taken || !isIntroducible(state, card)) continue
-            newCards += card.id
+            queuedAndSeedOrder += card.id
             taken += card.id
             slots -= 1
         }
-        return NewCandidates(unlockedPhrases, newCards)
+        return NewCandidates(unlockedPhrases, queuedAndSeedOrder)
     }
 }

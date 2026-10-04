@@ -3342,7 +3342,7 @@
         }
       }
     },
-    "home.offer.headline.freshSet.0" : {
+    "home.offer.headline.newSet.0" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3358,7 +3358,7 @@
         }
       }
     },
-    "home.offer.headline.freshSet.1" : {
+    "home.offer.headline.newSet.1" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3374,7 +3374,7 @@
         }
       }
     },
-    "home.offer.headline.freshSet.2" : {
+    "home.offer.headline.newSet.2" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3786,7 +3786,7 @@
       }
     },
     "home.tally.newWordsOnly %@" : {
-      "comment" : "Fresh cards spelled out with their noun, for the one shape home.tally.newCards cannot cover on its own: the round names nothing else, so a bare count needs the word it is counting (\"neue Wörter\") rather than a nominalized adjective standing alone. No count-of-one form — a round with only fresh cards and only one is not a real shape.",
+      "comment" : "New cards spelled out with their noun, for the one shape home.tally.newCards cannot cover on its own: the round names nothing else, so a bare count needs the word it is counting (\"neue Wörter\") rather than a nominalized adjective standing alone. No count-of-one form — a round with only new cards and only one is not a real shape.",
       "localizations" : {
         "de" : {
           "stringUnit" : {

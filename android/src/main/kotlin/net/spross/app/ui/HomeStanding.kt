@@ -49,7 +49,7 @@ fun headlineText(chrome: Chrome, headline: SessionHeadline): String {
     val variants = when (headline.kind) {
         HeadlineKind.Reviews -> chrome.headlineReviews
         HeadlineKind.WarmUp -> chrome.headlineWarmUp
-        HeadlineKind.FreshSet -> chrome.headlineFreshSet
+        HeadlineKind.NewSet -> chrome.headlineNewSet
         HeadlineKind.StreakReminder -> chrome.headlineStreak
     }
     return variants[headline.variant % variants.size]
@@ -67,7 +67,7 @@ fun offerSummary(chrome: Chrome, offer: SessionOffer): String {
         when (part.kind) {
             OfferPartKind.Reviews -> countLine(chrome.homeTallyReviewsOne, chrome.homeTallyReviews, part.count)
             OfferPartKind.Ahead -> countLine(chrome.homeTallyAheadOne, chrome.homeTallyAhead, part.count)
-            OfferPartKind.Fresh ->
+            OfferPartKind.NewCards ->
                 if (allParts.size == 1) {
                     chrome.homeTallyNewWordsOnly.format(part.count)
                 } else {

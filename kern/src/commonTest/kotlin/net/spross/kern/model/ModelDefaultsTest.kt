@@ -41,7 +41,7 @@ class ModelDefaultsTest {
         assertFalse(none.copy(reviews = listOf("a/b")).isEmpty)
         assertFalse(none.copy(ahead = listOf("a/b")).isEmpty)
         assertFalse(none.copy(unlockedPhrases = listOf("a/b")).isEmpty)
-        assertFalse(none.copy(newCards = listOf("a/b")).isEmpty)
+        assertFalse(none.copy(queuedAndSeedOrder = listOf("a/b")).isEmpty)
     }
 
     /** The queue IS the run: due work leads, warm-ups follow, unseen words land last. */
@@ -51,11 +51,11 @@ class ModelDefaultsTest {
             reviews = listOf("r"),
             ahead = listOf("a"),
             unlockedPhrases = listOf("p"),
-            newCards = listOf("n"),
+            queuedAndSeedOrder = listOf("n"),
             joinStamp = JoinStamp("de", "sw", "0"),
         )
         assertEquals(listOf("r", "a", "p", "n"), plan.queue)
         assertEquals(4, plan.cardCount)
-        assertEquals(2, plan.freshCount)
+        assertEquals(2, plan.newCount)
     }
 }

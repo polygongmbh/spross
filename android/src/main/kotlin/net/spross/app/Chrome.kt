@@ -488,7 +488,7 @@ interface Chrome {
      */
     val headlineReviews: List<String>
     val headlineWarmUp: List<String>
-    val headlineFreshSet: List<String>
+    val headlineNewSet: List<String>
     /** What the card says instead once a standing run is still owed today's work. */
     val headlineStreak: List<String>
     val homeTallySomeCards: String

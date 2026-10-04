@@ -81,7 +81,7 @@ extension HomeView {
         switch part.kind {
         case .reviews: return Text("home.tally.reviews \(count)")
         case .ahead: return Text("home.tally.ahead \(count)")
-        case .fresh:
+        case .newCards:
             return alone
                 ? Text("home.tally.newWordsOnly \(count.formatted())")
                 : Text("home.tally.newCards \(count)")

@@ -457,7 +457,7 @@ internal object ChromeEn : Chrome {
     override val headlineWarmUp = listOf(
         "A few old friends",
     )
-    override val headlineFreshSet = listOf(
+    override val headlineNewSet = listOf(
         "Up for some new words?",
         "Time to sow seeds!",
         "A sapling, ready to plant",

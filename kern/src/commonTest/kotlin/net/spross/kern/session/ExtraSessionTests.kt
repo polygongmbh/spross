@@ -41,7 +41,7 @@ class ExtraSessionTests {
         assertFalse(round.isEmpty)
         // Nothing is due, so every card is named for what it is: pulled forward.
         assertTrue(round.reviews.isEmpty())
-        assertEquals(0, round.freshCount)
+        assertEquals(0, round.newCount)
         assertEquals(SessionComposer.SESSION_FLOOR_CARDS, round.ahead.size)
     }
 
@@ -50,7 +50,7 @@ class ExtraSessionTests {
         // Same eight active cards, but catalog left over: the round stops being all recall.
         val state = boxWithActive(8, total = 30)
         val round = SessionComposer.composeRound(state, Box.plusSeconds(day0, 3_600), Box.TZ)
-        assertTrue(round.freshCount > 0)
+        assertTrue(round.newCount > 0)
         assertEquals(SessionComposer.SESSION_FLOOR_CARDS, round.cardCount)
     }
 
@@ -63,14 +63,14 @@ class ExtraSessionTests {
         // The pack comes first, in the order it was packed, then the round fills out in
         // seed order — one rule, so the day's round and an asked-for one agree.
         val expected = listOf("w03", "w04", "w05", "w01", "w02", "w06", "w07")
-        assertEquals(expected, SessionComposer.composeSession(state, t, Box.TZ).newCards)
-        assertEquals(expected, SessionComposer.composeRound(state, t, Box.TZ).newCards)
+        assertEquals(expected, SessionComposer.composeSession(state, t, Box.TZ).queuedAndSeedOrder)
+        assertEquals(expected, SessionComposer.composeRound(state, t, Box.TZ).queuedAndSeedOrder)
 
         // Answering introduces them and dequeues.
         var after = Box.answered(state, "w03", Rating.Good, Box.plusSeconds(t, 100))
         after = Box.answered(after, "w04", Rating.Good, Box.plusSeconds(t, 200))
         assertEquals(listOf("w05"), after.enqueued)
-        assertEquals("w05", SessionComposer.composeSession(after, t, Box.TZ).newCards.first())
+        assertEquals("w05", SessionComposer.composeSession(after, t, Box.TZ).queuedAndSeedOrder.first())
     }
 
     @Test
@@ -84,7 +84,7 @@ class ExtraSessionTests {
         // but never counted as due work.
         val soon = SessionComposer.composeRound(state, Box.plusSeconds(day0, 60), Box.TZ)
         assertFalse(soon.reviews.contains("w01"))
-        assertEquals(listOf("w02", "w03", "w04", "w05"), soon.newCards)
+        assertEquals(listOf("w02", "w03", "w04", "w05"), soon.queuedAndSeedOrder)
 
         // Once its step is genuinely due, it comes back as a review.
         val later = SessionComposer.composeRound(state, Box.plusSeconds(day0, Box.steps[0]), Box.TZ)

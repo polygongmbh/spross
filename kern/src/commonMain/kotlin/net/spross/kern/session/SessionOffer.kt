@@ -17,7 +17,7 @@ import net.spross.kern.model.fnv1a64
  * Due work, a light warm-up, and an offer of new words read very differently to a learner,
  * so the day names which one it is instead of calling all three "a session".
  */
-enum class SessionOfferKind { Reviews, WarmUp, FreshSet, Nothing }
+enum class SessionOfferKind { Reviews, WarmUp, NewSet, Nothing }
 
 /**
  * Which line the day's card leads with. Three of these name what the round HOLDS — one per
@@ -35,7 +35,7 @@ enum class HeadlineKind(
 ) {
     Reviews(4),
     WarmUp(1),
-    FreshSet(3),
+    NewSet(3),
     StreakReminder(3),
 }
 
@@ -66,7 +66,7 @@ data class SessionOffer(
     /** Cards pulled forward to fill a short round out (the session floor). */
     val ahead: Int,
     /** Entries the learner has never answered. */
-    val fresh: Int,
+    val newCards: Int,
     /**
      * Cards a short round would hand over instead, or 0 where this round has nothing to
      * shorten — [SessionComposer.shortRoundSize] draws the line.
@@ -115,8 +115,8 @@ data class SessionOffer(
             SessionOfferKind.Reviews -> HeadlineKind.Reviews
             SessionOfferKind.WarmUp -> HeadlineKind.WarmUp
             // The done state speaks for an empty round, so `Nothing` has no words of its own;
-            // folding it onto FreshSet keeps every path off a missing phrasing.
-            SessionOfferKind.FreshSet, SessionOfferKind.Nothing -> HeadlineKind.FreshSet
+            // folding it onto NewSet keeps every path off a missing phrasing.
+            SessionOfferKind.NewSet, SessionOfferKind.Nothing -> HeadlineKind.NewSet
         }
     }
 
@@ -140,7 +140,7 @@ data class SessionOffer(
         } else if (ahead > 0) {
             parts += OfferPart(OfferPartKind.Ahead, ahead)
         }
-        if (fresh > 0) parts += OfferPart(OfferPartKind.Fresh, fresh)
+        if (newCards > 0) parts += OfferPart(OfferPartKind.NewCards, newCards)
         return parts
     }
 
@@ -156,7 +156,7 @@ data class SessionOffer(
      * on the next launch — or differently on the two platforms.
      */
     private fun variant(count: Int): Int {
-        var hash = fnv1a64("$reviews:$ahead:$fresh:$doneToday")
+        var hash = fnv1a64("$reviews:$ahead:$newCards:$doneToday")
         // why: FNV leaves its low bits barely mixed, and the modulo reads exactly those.
         hash = hash xor (hash shr 33)
         return (hash % count.toULong()).toInt()
@@ -180,7 +180,7 @@ enum class OfferPartKind {
     Ahead,
 
     /** Entries the learner has never answered. */
-    Fresh,
+    NewCards,
 }
 
 /** One part of the day's offer: which count, and how many. */
@@ -190,7 +190,7 @@ data class OfferPart(val kind: OfferPartKind, val count: Int)
 object SessionOffers {
 
     /**
-     * Classify today's round: first sights outnumbering everything to recall make it a fresh set,
+     * Classify today's round: first sights outnumbering everything to recall make it a new set,
      * recall with enough behind it leads, and anything less is a warm-up.
      *
      * [otherLanguagesAnswerDays] carries the other boxes' days, for [SessionOffer.streakExposed]
@@ -205,10 +205,10 @@ object SessionOffers {
         val plan = SessionComposer.composeSession(state, nowEpochMillis, tzId)
         val reviews = plan.reviews.size
         val ahead = plan.ahead.size
-        val fresh = plan.freshCount
+        val newCards = plan.newCount
         val kind = when {
             plan.isEmpty -> SessionOfferKind.Nothing
-            fresh > reviews + ahead -> SessionOfferKind.FreshSet
+            newCards > reviews + ahead -> SessionOfferKind.NewSet
             reviews >= SessionOffer.REVIEWS_LEAD_FROM -> SessionOfferKind.Reviews
             else -> SessionOfferKind.WarmUp
         }
@@ -221,7 +221,7 @@ object SessionOffers {
             reviews = reviews,
             dueHeldBack = if (heldBack >= state.config.heldBackNamedFrom) heldBack else 0,
             ahead = ahead,
-            fresh = fresh,
+            newCards = newCards,
             shortRound = SessionComposer.shortRoundSize(plan),
             doneToday = answersOn(state.scheduling, nowEpochMillis, tzId),
             // why: the merged days, so the warning and the flame it warns about are one

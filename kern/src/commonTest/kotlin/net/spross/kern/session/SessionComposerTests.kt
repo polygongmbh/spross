@@ -35,8 +35,8 @@ class SessionComposerTests {
         // 40 due cards, sessionCap 24 → 20 reviews + 4 reserved growth slots.
         val plan = SessionComposer.composeSession(backloggedState(), now, Box.TZ)
         assertEquals(20, plan.reviews.size)
-        assertEquals(4, plan.unlockedPhrases.size + plan.newCards.size)
-        assertEquals((41..44).map { "w$it" }, plan.newCards)
+        assertEquals(4, plan.unlockedPhrases.size + plan.queuedAndSeedOrder.size)
+        assertEquals((41..44).map { "w$it" }, plan.queuedAndSeedOrder)
     }
 
     /**
@@ -58,7 +58,7 @@ class SessionComposerTests {
         // Every card already scheduled → nothing to introduce → reviews take the whole cap.
         val plan = SessionComposer.composeSession(backloggedState(spare = 0), now, Box.TZ)
         assertEquals(Box.config().sessionCap, plan.reviews.size)
-        assertTrue(plan.newCards.isEmpty())
+        assertTrue(plan.queuedAndSeedOrder.isEmpty())
         assertTrue(plan.unlockedPhrases.isEmpty())
     }
 
@@ -74,7 +74,7 @@ class SessionComposerTests {
         val plan = SessionComposer.composeSession(state, now, Box.TZ)
         // reviewCap = 24 − 4 = 20 → 20 reviews; 4 card slots remain for new.
         assertEquals(20, plan.reviews.size)
-        assertEquals(4, plan.newCards.size)
+        assertEquals(4, plan.queuedAndSeedOrder.size)
     }
 
     @Test
@@ -160,10 +160,10 @@ class SessionComposerTests {
         // the rest, so the round is a mix rather than a wall of first sights.
         val plan = SessionComposer.composeSession(quietBox(soon = 5, later = 0), now, Box.TZ)
         assertTrue(plan.reviews.isEmpty())
-        assertEquals(4, plan.freshCount)
+        assertEquals(4, plan.newCount)
         assertEquals(listOf("w01", "w02", "w03"), plan.ahead)
         assertEquals(SessionComposer.SESSION_FLOOR_CARDS, plan.cardCount)
-        assertEquals(plan.ahead + plan.unlockedPhrases + plan.newCards, plan.queue)
+        assertEquals(plan.ahead + plan.unlockedPhrases + plan.queuedAndSeedOrder, plan.queue)
     }
 
     @Test
@@ -172,7 +172,7 @@ class SessionComposerTests {
         // there is no warm-up to offer, so the round is new words.
         val plan = SessionComposer.composeSession(quietBox(soon = 0, later = 5), now, Box.TZ)
         assertTrue(plan.ahead.isEmpty())
-        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, plan.freshCount)
+        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, plan.newCount)
     }
 
     @Test
@@ -184,7 +184,7 @@ class SessionComposerTests {
             now,
             Box.TZ,
         )
-        assertEquals(0, plan.freshCount)
+        assertEquals(0, plan.newCount)
         assertEquals(5, plan.ahead.size)
         assertEquals(5, plan.cardCount)
     }
@@ -193,7 +193,7 @@ class SessionComposerTests {
     fun theFloorTakesWhatTheBoxHasAndNeverInventsWork() {
         // Three active cards and nothing unseen left: three is the whole round.
         val plan = SessionComposer.composeSession(quietBox(soon = 3, later = 0, catalog = 3), now, Box.TZ)
-        assertEquals(0, plan.freshCount)
+        assertEquals(0, plan.newCount)
         assertEquals(3, plan.ahead.size)
         // An empty box stays empty: "come back later" is a real answer.
         val nothing = SessionComposer.composeSession(Box.state(emptyList()), now, Box.TZ)
@@ -238,7 +238,7 @@ class SessionComposerTests {
         val worked = Box.workedToday(quietBox(soon = 3, later = 0), SessionComposer.SESSION_FLOOR_CARDS, now)
         val plan = SessionComposer.composeSession(worked, now, Box.TZ)
         assertEquals(listOf("w01", "w02", "w03"), plan.ahead)
-        assertEquals(4, plan.freshCount)
+        assertEquals(4, plan.newCount)
         assertEquals(SessionComposer.SESSION_FLOOR_CARDS, plan.cardCount)
     }
 
@@ -265,7 +265,7 @@ class SessionComposerTests {
         val state = BoxEngine.enqueue(quietBox(soon = 0, later = 5), listOf("w20"))
         val worked = Box.workedToday(state, SessionComposer.SESSION_FLOOR_CARDS, now)
         assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
-        assertEquals("w20", SessionComposer.composeRound(worked, now, Box.TZ).newCards.first())
+        assertEquals("w20", SessionComposer.composeRound(worked, now, Box.TZ).queuedAndSeedOrder.first())
     }
 
     /**
@@ -295,7 +295,7 @@ class SessionComposerTests {
         assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
 
         val round = SessionComposer.composeRound(worked, now, Box.TZ)
-        assertEquals(4, round.freshCount)
+        assertEquals(4, round.newCount)
         assertEquals(listOf("w01", "w02", "w03"), round.ahead)
         assertEquals(SessionComposer.SESSION_FLOOR_CARDS, round.cardCount)
     }
@@ -309,12 +309,12 @@ class SessionComposerTests {
     fun anAskedForRoundIsSizedByTheBox() {
         val settling = SessionComposer.composeRound(quietBox(soon = 5, later = 0), now, Box.TZ)
         assertEquals(listOf("w01", "w02", "w03"), settling.ahead)
-        assertEquals(4, settling.freshCount)
+        assertEquals(4, settling.newCount)
 
         // Nothing coming up: the reservation falls away and new words take the whole round.
         val quiet = SessionComposer.composeRound(quietBox(soon = 0, later = 5), now, Box.TZ)
         assertTrue(quiet.ahead.isEmpty())
-        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, quiet.freshCount)
+        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, quiet.newCount)
 
         // Behind: due work carries it, and the round is far bigger than the floor.
         val behind = SessionComposer.composeRound(backloggedState(), now, Box.TZ)
@@ -327,7 +327,7 @@ class SessionComposerTests {
         assertTrue(SessionComposer.composeSession(backloggedState(), now, Box.TZ).ahead.isEmpty())
         // Fresh box: nothing due, but a round's worth of new words is a round in itself.
         val fresh = SessionComposer.composeSession(Box.state((1..30).map { Box.word(it) }), now, Box.TZ)
-        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, fresh.freshCount)
+        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, fresh.newCount)
         assertTrue(fresh.ahead.isEmpty())
     }
 
@@ -341,7 +341,7 @@ class SessionComposerTests {
         assertEquals(SessionComposer.SHORT_ROUND_CARDS, plan.reviews.size)
         assertEquals(SessionComposer.SHORT_ROUND_CARDS, plan.cardCount)
         assertTrue(plan.ahead.isEmpty())
-        assertEquals(0, plan.freshCount)
+        assertEquals(0, plan.newCount)
     }
 
     /**
@@ -402,13 +402,13 @@ class SessionComposerTests {
         val restedBox = Box.state((1..40).map { Box.word(it) })
         assertEquals(
             SessionComposer.NEW_CARDS_PER_ROUND,
-            SessionComposer.composeSession(restedBox, now, Box.TZ).freshCount,
+            SessionComposer.composeSession(restedBox, now, Box.TZ).newCount,
         )
         // Enqueued cards lead composition, but the round holds them to the same size.
         val packed = restedBox.copy(enqueued = (1..12).map { id(it) })
         assertEquals(
             SessionComposer.NEW_CARDS_PER_ROUND,
-            SessionComposer.composeRound(packed, now, Box.TZ).freshCount,
+            SessionComposer.composeRound(packed, now, Box.TZ).newCount,
         )
     }
 }

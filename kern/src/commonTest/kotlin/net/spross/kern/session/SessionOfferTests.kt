@@ -40,10 +40,10 @@ class SessionOfferTests {
 
     /** A rested box offers first sights, and they outnumber everything there is to recall. */
     @Test
-    fun freshWorkLeadsWhenItOutnumbersRecall() {
+    fun newWorkLeadsWhenItOutnumbersRecall() {
         val offer = SessionOffers.offer(state(due = 0, ahead = 0, catalog = 30), now, Box.TZ)
-        assertEquals(SessionOfferKind.FreshSet, offer.kind)
-        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, offer.fresh)
+        assertEquals(SessionOfferKind.NewSet, offer.kind)
+        assertEquals(SessionComposer.NEW_CARDS_PER_ROUND, offer.newCards)
         assertEquals(0, offer.reviews)
         assertEquals(0, offer.dueHeldBack)
     }
@@ -55,7 +55,7 @@ class SessionOfferTests {
         assertEquals(SessionOfferKind.Reviews, offer.kind)
         assertEquals(20, offer.reviews)
         assertEquals(20, offer.dueHeldBack)
-        assertEquals(4, offer.fresh)
+        assertEquals(4, offer.newCards)
     }
 
     /**
@@ -77,7 +77,7 @@ class SessionOfferTests {
         assertEquals(SessionOfferKind.WarmUp, offer.kind)
         assertEquals(2, offer.reviews)
         assertEquals(3, offer.ahead)
-        assertEquals(0, offer.fresh)
+        assertEquals(0, offer.newCards)
         assertEquals(0, offer.dueHeldBack)
 
         // One more due card and recall takes the lead.
@@ -88,10 +88,10 @@ class SessionOfferTests {
 
     /** An empty round has no words of its own; the headline still names a kind. */
     @Test
-    fun anEmptyRoundBorrowsTheFreshSetHeadline() {
+    fun anEmptyRoundBorrowsTheNewSetHeadline() {
         val offer = SessionOffers.offer(Box.state(emptyList()), now, Box.TZ)
         assertEquals(SessionOfferKind.Nothing, offer.kind)
-        assertEquals(HeadlineKind.FreshSet, offer.line().kind)
+        assertEquals(HeadlineKind.NewSet, offer.line().kind)
         assertTrue(offer.line().variant in 0 until offer.line().kind.variants)
     }
 
@@ -115,14 +115,14 @@ class SessionOfferTests {
      */
     @Test
     fun theHeadlinePickIsStableAndSpreadAcrossVariants() {
-        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 20, dueHeldBack = 20, ahead = 0, fresh = 4, shortRound = 7)
+        val offer = SessionOffer(SessionOfferKind.Reviews, reviews = 20, dueHeldBack = 20, ahead = 0, newCards = 4, shortRound = 7)
         assertEquals(offer.line(), offer.copy(dueHeldBack = 3).line())
         assertEquals(offer.line(), offer.copy(shortRound = 0).line())
         assertEquals(offer.line(), SessionOffers.offer(state(40, 0, 50), now, Box.TZ).line())
 
         val variants = (0..40).flatMap { reviews ->
-            (0..7).map { fresh ->
-                SessionOffer(SessionOfferKind.Reviews, reviews, 0, 0, fresh, shortRound = 0).line().variant
+            (0..7).map { newCards ->
+                SessionOffer(SessionOfferKind.Reviews, reviews, 0, 0, newCards, shortRound = 0).line().variant
             }
         }
         assertTrue(variants.all { it in 0 until HeadlineKind.Reviews.variants })
@@ -136,7 +136,7 @@ class SessionOfferTests {
      */
     @Test
     fun aFinishedRoundMovesTheHeadlineOn() {
-        val first = SessionOffer(SessionOfferKind.Reviews, reviews = 12, dueHeldBack = 0, ahead = 0, fresh = 3, shortRound = 0)
+        val first = SessionOffer(SessionOfferKind.Reviews, reviews = 12, dueHeldBack = 0, ahead = 0, newCards = 3, shortRound = 0)
         val variants = (0..6).map { first.copy(doneToday = it * 12).line().variant }
         assertTrue(variants.toSet().size > 1, "a day's rounds all headlined the same: $variants")
         // Still fixed per day-state: the same round read twice never re-rolls between renders.
@@ -189,13 +189,13 @@ class SessionOfferTests {
     /** The pick is a fixed function of the counts — pinned so a rewrite cannot drift it. */
     @Test
     fun theHeadlinePickIsPinned() {
-        fun variant(reviews: Int, ahead: Int, fresh: Int) =
-            SessionOffer(SessionOfferKind.Reviews, reviews, 0, ahead, fresh, shortRound = 0).line().variant
+        fun variant(reviews: Int, ahead: Int, newCards: Int) =
+            SessionOffer(SessionOfferKind.Reviews, reviews, 0, ahead, newCards, shortRound = 0).line().variant
         assertEquals(listOf(3, 0, 1), listOf(variant(0, 0, 0), variant(1, 0, 0), variant(20, 0, 5)))
     }
 
-    private fun summary(reviews: Int, ahead: Int, fresh: Int) =
-        SessionOffer(SessionOfferKind.Reviews, reviews, dueHeldBack = 0, ahead = ahead, fresh = fresh, shortRound = 0)
+    private fun summary(reviews: Int, ahead: Int, newCards: Int) =
+        SessionOffer(SessionOfferKind.Reviews, reviews, dueHeldBack = 0, ahead = ahead, newCards = newCards, shortRound = 0)
             .summaryParts()
 
     /**
@@ -205,33 +205,33 @@ class SessionOfferTests {
     @Test
     fun recallAbsorbsWhatWasPulledForward() {
         assertEquals(
-            listOf(OfferPart(OfferPartKind.Reviews, 8), OfferPart(OfferPartKind.Fresh, 5)),
-            summary(reviews = 6, ahead = 2, fresh = 5),
+            listOf(OfferPart(OfferPartKind.Reviews, 8), OfferPart(OfferPartKind.NewCards, 5)),
+            summary(reviews = 6, ahead = 2, newCards = 5),
         )
-        assertEquals(listOf(OfferPart(OfferPartKind.Reviews, 8)), summary(reviews = 6, ahead = 2, fresh = 0))
-        assertEquals(listOf(OfferPart(OfferPartKind.Reviews, 6)), summary(reviews = 6, ahead = 0, fresh = 0))
+        assertEquals(listOf(OfferPart(OfferPartKind.Reviews, 8)), summary(reviews = 6, ahead = 2, newCards = 0))
+        assertEquals(listOf(OfferPart(OfferPartKind.Reviews, 6)), summary(reviews = 6, ahead = 0, newCards = 0))
     }
 
     /** Carrying the round alone is the one thing that gets pull-ahead named as itself. */
     @Test
     fun pullAheadIsNamedOnlyWhenItCarriesTheRoundAlone() {
         assertEquals(
-            listOf(OfferPart(OfferPartKind.Ahead, 4), OfferPart(OfferPartKind.Fresh, 3)),
-            summary(reviews = 0, ahead = 4, fresh = 3),
+            listOf(OfferPart(OfferPartKind.Ahead, 4), OfferPart(OfferPartKind.NewCards, 3)),
+            summary(reviews = 0, ahead = 4, newCards = 3),
         )
-        assertEquals(listOf(OfferPart(OfferPartKind.Ahead, 4)), summary(reviews = 0, ahead = 4, fresh = 0))
+        assertEquals(listOf(OfferPart(OfferPartKind.Ahead, 4)), summary(reviews = 0, ahead = 4, newCards = 0))
     }
 
     /** First sights are their own part wherever there are any, and can stand alone. */
     @Test
     fun firstSightsStayApartFromRecall() {
-        assertEquals(listOf(OfferPart(OfferPartKind.Fresh, 7)), summary(reviews = 0, ahead = 0, fresh = 7))
+        assertEquals(listOf(OfferPart(OfferPartKind.NewCards, 7)), summary(reviews = 0, ahead = 0, newCards = 7))
     }
 
     /** A round that names no count says so in one plain phrase — kern hands back nothing to spell. */
     @Test
     fun aRoundWithNothingNameableSpellsNothing() {
-        assertEquals(emptyList<OfferPart>(), summary(reviews = 0, ahead = 0, fresh = 0))
+        assertEquals(emptyList<OfferPart>(), summary(reviews = 0, ahead = 0, newCards = 0))
         assertEquals(
             emptyList<OfferPart>(),
             SessionOffers.offer(Box.state(emptyList()), now, Box.TZ).summaryParts(),
@@ -253,7 +253,7 @@ class SessionOfferTests {
         )
         // A rested box offers first sights and nothing to recall.
         assertEquals(
-            listOf(OfferPart(OfferPartKind.Fresh, SessionComposer.NEW_CARDS_PER_ROUND)),
+            listOf(OfferPart(OfferPartKind.NewCards, SessionComposer.NEW_CARDS_PER_ROUND)),
             SessionOffers.offer(state(due = 0, ahead = 0, catalog = 30), now, Box.TZ).summaryParts(),
         )
     }

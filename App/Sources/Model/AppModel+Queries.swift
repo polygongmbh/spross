@@ -20,7 +20,7 @@ extension AppModel {
 
     /// Today's round as kern classified it. A box that has not loaded offers nothing.
     var homeOffer: SessionOffer {
-        home?.offer ?? SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, fresh: 0,
+        home?.offer ?? SessionOffer(kind: .nothing, reviews: 0, dueHeldBack: 0, ahead: 0, newCards: 0,
                                     shortRound: 0, doneToday: 0, streakExposed: false, dueNow: 0)
     }
 
@@ -319,12 +319,12 @@ extension SessionOffer {
 
     /// One string set per kind, keyed by the kind itself so a new kind cannot
     /// silently keep an old kind's words. Kern folds an empty round's kind onto
-    /// `freshSet` before it gets here, the done card speaking for that round.
+    /// `newSet` before it gets here, the done card speaking for that round.
     private static func stem(_ kind: HeadlineKind) -> String {
         switch kind {
         case .reviews: return "reviews"
         case .warmUp: return "warmUp"
-        case .freshSet: return "freshSet"
+        case .newSet: return "newSet"
         case .streakReminder: return "streakReminder"
         }
     }

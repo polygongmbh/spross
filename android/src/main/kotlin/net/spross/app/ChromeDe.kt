@@ -466,7 +466,7 @@ internal object ChromeDe : Chrome {
     override val headlineWarmUp = listOf(
         "Ein Wiedersehen mit Bekanntem",
     )
-    override val headlineFreshSet = listOf(
+    override val headlineNewSet = listOf(
         "Lust auf neue Wörter?",
         "Zeit zum Säen!",
         "Ein Bäumchen zum Pflanzen",

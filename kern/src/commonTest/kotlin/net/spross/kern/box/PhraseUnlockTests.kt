@@ -23,7 +23,7 @@ class PhraseUnlockTests {
         // Locked while components are unscheduled: the phrase is never proposed.
         val plan1 = Box.candidates(state)
         assertTrue(plan1.unlockedPhrases.isEmpty())
-        assertEquals(listOf("w01", "w02", "w03"), plan1.newCards)
+        assertEquals(listOf("w01", "w02", "w03"), plan1.queuedAndSeedOrder)
 
         // Easy graduates straight to Review with stability 8.2956 ≥ 6.0 (growing bar).
         state = Box.answered(state, "w01", Rating.Easy, now)
@@ -35,7 +35,7 @@ class PhraseUnlockTests {
         val plan3 = Box.candidates(state)
         assertEquals(listOf("p1"), plan3.unlockedPhrases)
         // The unlocked phrase consumes the new-word budget ahead of seed-order growth.
-        assertEquals(listOf("w03"), plan3.newCards)
+        assertEquals(listOf("w03"), plan3.queuedAndSeedOrder)
     }
 
     // Unlock reads the growing bar alone (user ruling 2026-09-01): a suspended component
@@ -74,6 +74,6 @@ class PhraseUnlockTests {
         )
         val plan = Box.candidates(state)
         assertTrue(plan.unlockedPhrases.isEmpty())
-        assertEquals(listOf("w01", "w02", "p-empty"), plan.newCards)
+        assertEquals(listOf("w01", "w02", "p-empty"), plan.queuedAndSeedOrder)
     }
 }
