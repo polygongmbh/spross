@@ -61,50 +61,28 @@ extension AppModel {
     /// SUGGESTION, which joins no card and is never scheduled until the other half
     /// arrives (`OwnWord`). A comment with no word under it at all is a REMARK — the
     /// entry that was never meant to become a card. Returns its card id, or nil when
-    /// the learner wrote nothing anywhere.
+    /// the learner wrote nothing anywhere (`OwnWords.fromDraft`).
     @discardableResult
     func addOwnWord(known: String, learning: String, emoji: String,
                     comment: String = "") -> String? {
-        guard let box else { return nil }
-        let knownText = known.trimmed
-        let learningText = learning.trimmed
-        let said = comment.trimmed
-        guard !knownText.isEmpty || !learningText.isEmpty || !said.isEmpty else { return nil }
-
-        // why: the id is minted from the LEARNED side — it is the one that stays put
-        // while the known language is free to change under a source switch. A word
-        // written only in the known language has nothing else to be named after.
-        let id = OwnWords.shared.mint(text: learningText.isEmpty ? knownText : learningText,
-                                      taken: Set(box.ownWords.map(\.id)))
-        let word = OwnWords.shared.write(id: id,
-                                        kind: OwnWords.shared.DEFAULT_KIND,
-                                        emoji: picture(emoji),
-                                        texts: texts(known: knownText, learning: learningText,
-                                                     onto: [:]),
-                                        comment: said)
+        guard let word = draft(known: known, learning: learning, emoji: emoji,
+                               comment: comment, editing: nil)
+        else { return nil }
         mutate {
             $0 = BoxEngine.shared.addOwnWord(state: $0, word: word,
                                              nowEpochMillis: Date().epochMillis)
         }
-        return id
+        return word.id
     }
 
     /// Rewrite one the learner already wrote, keeping its id — and with the id its
     /// schedule, its queue slot and anything filed against it (`BoxEngine.updateOwnWord`).
-    /// Every field blank would be an entry that says nothing, so it is refused rather
-    /// than stored empty; deleting is `removeOwnWord`.
+    /// Every field blank is refused rather than stored empty; deleting is `removeOwnWord`.
     func updateOwnWord(_ word: OwnWord, known: String, learning: String, emoji: String,
                        comment: String = "") {
-        let knownText = known.trimmed
-        let learningText = learning.trimmed
-        let said = comment.trimmed
-        guard !knownText.isEmpty || !learningText.isEmpty || !said.isEmpty else { return }
-        let rewritten = OwnWords.shared.write(id: word.id, kind: word.kind,
-                                              emoji: picture(emoji),
-                                              texts: texts(known: knownText,
-                                                           learning: learningText,
-                                                           onto: word.texts),
-                                              comment: said)
+        guard let rewritten = draft(known: known, learning: learning, emoji: emoji,
+                                    comment: comment, editing: word)
+        else { return }
         mutate { $0 = BoxEngine.shared.updateOwnWord(state: $0, word: rewritten) }
     }
 
@@ -132,21 +110,16 @@ extension AppModel {
         mutate { $0 = BoxEngine.shared.removeOwnWord(state: $0, wordId: cardID) }
     }
 
-    /// The two sides written onto whatever the word already carried. Editing under one
-    /// profile must not throw away a half written under another: `texts` is keyed by
-    /// language exactly as the catalog keys a concept, and a language this pair cannot
-    /// see is still a language the word joins (`OwnWord`).
-    private func texts(known: String, learning: String,
-                       onto stored: [String: String]) -> [String: String] {
-        guard let box else { return stored }
-        var texts = stored
-        texts[box.joinStamp.source] = known.isEmpty ? nil : known
-        texts[box.joinStamp.target] = learning.isEmpty ? nil : learning
-        return texts
-    }
-
-    private func picture(_ emoji: String) -> String? {
-        emoji.trimmed.isEmpty ? nil : emoji.trimmed
+    /// The form's fields as kern takes them, under the profile's two languages.
+    private func draft(known: String, learning: String, emoji: String, comment: String,
+                       editing: OwnWord?) -> OwnWord? {
+        guard let box else { return nil }
+        return OwnWords.shared.fromDraft(source: box.joinStamp.source,
+                                         target: box.joinStamp.target,
+                                         sourceText: known, targetText: learning,
+                                         emoji: emoji, comment: comment,
+                                         editing: editing,
+                                         taken: Set(box.ownWords.map(\.id)))
     }
 }
 

@@ -220,6 +220,50 @@ object OwnWords {
         comment = comment?.trim()?.ifEmpty { null },
     )
 
+    /**
+     * Whether a form holds an entry at all: one side is enough for a suggestion,
+     * a comment alone is enough for a remark, and a picture alone says nothing.
+     */
+    fun isWritten(sourceText: String, targetText: String, comment: String): Boolean =
+        sourceText.isNotBlank() || targetText.isNotBlank() || comment.isNotBlank()
+
+    /**
+     * The word a form describes, or null when it holds nothing ([isWritten]).
+     *
+     * [sourceText] and [targetText] are the profile's two sides, written onto
+     * whatever [editing] already carried, so a half in a language this profile
+     * cannot see survives the edit; a side left blank clears its language.
+     * An edit keeps [editing]'s id and kind — a new id would be a new word,
+     * and the old one's schedule and queue slot would be gone.
+     * A new word's id is minted from the target side, which stays put under a
+     * source switch, and from the source side only when it is all there is;
+     * [taken] are the ids already in use.
+     */
+    fun fromDraft(
+        source: Language,
+        target: Language,
+        sourceText: String,
+        targetText: String,
+        emoji: String,
+        comment: String,
+        editing: OwnWord?,
+        taken: Set<String>,
+    ): OwnWord? {
+        if (!isWritten(sourceText, targetText, comment)) return null
+        val sourceSide = sourceText.trim()
+        val targetSide = targetText.trim()
+        val texts = (editing?.texts ?: emptyMap()).toMutableMap()
+        if (sourceSide.isEmpty()) texts.remove(source) else texts[source] = sourceSide
+        if (targetSide.isEmpty()) texts.remove(target) else texts[target] = targetSide
+        return write(
+            id = editing?.id ?: mint(targetSide.ifEmpty { sourceSide }, taken),
+            kind = editing?.kind ?: DEFAULT_KIND,
+            emoji = emoji.trim().ifEmpty { null },
+            texts = texts,
+            comment = comment,
+        )
+    }
+
     /** Whether this card id belongs to a word the learner wrote. */
     fun owns(cardId: String): Boolean = cardId.startsWith(ID_PREFIX)
 

@@ -139,10 +139,9 @@ struct OwnWordFormView: View {
         written(comment) && !written(known) && !written(learning)
     }
 
-    /// One side is enough to take the word in — the other is what makes it studiable —
-    /// and a note on its own is enough to take a remark in.
+    /// Whether there is an entry to take in yet (`OwnWords.isWritten`).
     private var hasAnything: Bool {
-        written(known) || written(learning) || written(comment)
+        OwnWords.shared.isWritten(sourceText: known, targetText: learning, comment: comment)
     }
 
     /// What the form says it is doing, read off what has been typed into it.
