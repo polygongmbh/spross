@@ -27,6 +27,7 @@ import net.spross.app.AppModel
 import net.spross.app.ownWordIds
 import net.spross.app.saveOwnWord
 import net.spross.kern.box.BoxEngine
+import net.spross.kern.box.OwnWords
 
 /**
  * Writing down a word the catalog has none of — or rewriting one already written.
@@ -41,11 +42,11 @@ import net.spross.kern.box.BoxEngine
  * but a note filed is a REMARK, which is how the learner says something that is about no
  * word — this form is the only surface that is not already a card's.
  *
- * What happens to the word is kern's: [BoxEngine.addOwnWord] mints its id from the learned
- * side, stores it under the pair's two languages, and PACKS it — the learner named this word
- * themselves, so waiting for growth to walk to it would be absurd. An EDIT
- * ([BoxEngine.updateOwnWord]) mints nothing: the id stays, and with it the schedule and the
- * queue slot, so fixing a typo never costs the progress made on the word.
+ * What happens to the word is kern's: [OwnWords.fromDraft] mints its id from the target
+ * side and writes it under the pair's two languages, and [BoxEngine.addOwnWord] PACKS it —
+ * the learner named this word themselves, so waiting for growth to walk to it would be
+ * absurd. An EDIT ([BoxEngine.updateOwnWord]) mints nothing: the id stays, and with it the
+ * schedule and the queue slot, so fixing a typo never costs the progress made on the word.
  *
  * [initial] is what the form opens on — blank, a query, a card copied over, or a word
  * being rewritten — and [OwnWordDraft.editing] is what tells the last of those from the rest.

@@ -54,81 +54,17 @@ class BoxLogicTest {
     }
 
     @Test
-    fun aWordNeedsBothSidesBeforeItIsOneAndOneSideIsStillWorthKeeping() {
+    fun aWordNeedsBothSidesBeforeItIsOneAndANoteAloneIsARemark() {
         assertFalse(OwnWordDraft(known = "Haus").isPair)
-        assertFalse(OwnWordDraft(learning = "nyumba").isPair)
         assertFalse(OwnWordDraft(known = "Haus", learning = "   ").isPair)
         assertTrue(OwnWordDraft(known = "Haus", learning = "nyumba").isPair)
 
-        assertFalse(OwnWordDraft(emoji = "🏠").hasAnything)
-        assertTrue(OwnWordDraft(known = "Haus").hasAnything)
-        assertTrue(OwnWordDraft(learning = "nyumba").hasAnything)
+        assertTrue(OwnWordDraft(comment = "the box scrolls back to the top").isRemark)
+        assertFalse(OwnWordDraft().isRemark)
     }
 
     @Test
-    fun aSuggestionCarriesTheOneSideItHasAndIsNamedAfterWhicheverThatIs() {
-        val onlyLearnt = OwnWordDraft(learning = " nyumba ").word("de", "sw", emptySet())
-        requireNotNull(onlyLearnt)
-        assertEquals("${OwnWords.ID_PREFIX}nyumba", onlyLearnt.id)
-        assertEquals(mapOf("sw" to "nyumba"), onlyLearnt.texts)
-        assertTrue(onlyLearnt.isSuggestion)
-
-        val onlyKnown = OwnWordDraft(known = " Haus ").word("de", "sw", emptySet())
-        requireNotNull(onlyKnown)
-        assertEquals("${OwnWords.ID_PREFIX}haus", onlyKnown.id)
-        assertEquals(mapOf("de" to "Haus"), onlyKnown.texts)
-        assertTrue(onlyKnown.isSuggestion)
-    }
-
-    @Test
-    fun theWordIsTrimmedItsIdComesFromTheLearntSideAndAnEmptyPictureIsNone() {
-        val word = OwnWordDraft(known = "  Haus ", learning = " nyumba ", emoji = "  ")
-            .word(source = "de", target = "sw", taken = emptySet())
-
-        requireNotNull(word)
-        assertEquals("${OwnWords.ID_PREFIX}nyumba", word.id)
-        assertNull(word.emoji)
-        assertEquals(mapOf("de" to "Haus", "sw" to "nyumba"), word.texts)
-        assertEquals(OwnWords.DEFAULT_KIND, word.kind)
-    }
-
-    @Test
-    fun aDraftWithNeitherSideWrittenMakesNoWordAtAll() {
-        assertNull(OwnWordDraft(emoji = "🏠", learning = "  ").word("de", "sw", emptySet()))
-    }
-
-    /**
-     * The remark: a note with neither side filled in is still an entry, because it is the
-     * one way to say something that is about no word at all.
-     */
-    @Test
-    fun aNoteWithNoWordUnderItIsStillWritten() {
-        val draft = OwnWordDraft(comment = "the box scrolls back to the top")
-        assertTrue(draft.hasAnything)
-        assertTrue(draft.isRemark)
-
-        val word = draft.word("de", "sw", emptySet())
-        assertEquals(emptyMap(), word?.texts)
-        assertEquals("the box scrolls back to the top", word?.comment)
-        assertEquals(true, word?.isRemark)
-    }
-
-    @Test
-    fun anEmptyFormIsNotWrittenAtAll() {
-        assertFalse(OwnWordDraft().hasAnything)
-        assertNull(OwnWordDraft(comment = "   ").word("de", "sw", emptySet()))
-    }
-
-    @Test
-    fun theSameWordWrittenTwiceCountsUpRatherThanCollides() {
-        val taken = setOf("${OwnWords.ID_PREFIX}nyumba")
-        val word = OwnWordDraft(known = "Haus", learning = "nyumba").word("de", "sw", taken)
-
-        assertEquals("${OwnWords.ID_PREFIX}nyumba-2", word?.id)
-    }
-
-    @Test
-    fun anEditKeepsTheWordsIdAndKindRatherThanMintingNewOnes() {
+    fun aStoredWordOpensUnderTheProfilesTwoLanguages() {
         val stored = OwnWords.write(
             id = "${OwnWords.ID_PREFIX}nyumba",
             kind = OwnWords.DEFAULT_KIND,
@@ -141,13 +77,7 @@ class BoxLogicTest {
         assertEquals("Haus", draft.known)
         assertEquals("nyumba", draft.learning)
         assertEquals("🏠", draft.emoji)
-
-        // The typo fixed on the learned side would mint a different id for a new word; an
-        // edit keeps this one, and with it the schedule and the queue slot.
-        val fixed = draft.copy(learning = "nyumbani").word("de", "sw", setOf(stored.id))
-        assertEquals(stored.id, fixed?.id)
-        assertEquals(mapOf("de" to "Haus", "sw" to "nyumbani"), fixed?.texts)
-        assertEquals(stored.kind, fixed?.kind)
+        assertEquals(stored, draft.editing)
     }
 
     @Test

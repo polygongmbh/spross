@@ -80,12 +80,9 @@ data class OwnWordDraft(
     val isRemark: Boolean
         get() = comment.isNotBlank() && known.isBlank() && learning.isBlank()
 
-    /**
-     * One side is enough to take the word in — the other is what makes it studiable —
-     * and a comment on its own is enough to take a remark in.
-     */
+    /** Whether there is an entry to take in yet ([OwnWords.isWritten]). */
     val hasAnything: Boolean
-        get() = known.isNotBlank() || learning.isNotBlank() || comment.isNotBlank()
+        get() = OwnWords.isWritten(sourceText = known, targetText = learning, comment = comment)
 
     /** The two sides the other way round, for a pair filled in back to front. */
     fun swapped(): OwnWordDraft = copy(known = learning, learning = known)
@@ -97,32 +94,18 @@ data class OwnWordDraft(
      */
     fun withPicture(text: String): OwnWordDraft = copy(emoji = cappedPicture(text))
 
-    /**
-     * The word as the box would take it in, or null while every field is still blank.
-     * [taken] are the ids already in use — two words that fold alike count up rather than collide.
-     */
-    fun word(source: Language, target: Language, taken: Set<String>): OwnWord? {
-        if (!hasAnything) return null
-        val knownText = known.trim()
-        val learned = learning.trim()
-        // why: a remark has no word to be named after, so the mint falls back to its own
-        // stem — an id it can still be edited and deleted by.
-        val naming = learned.ifEmpty { knownText }
-        // why: the id is minted from the LEARNED side — it is the one that stays put while
-        // the known language is free to change under a source switch. A word written only
-        // in the known language has nothing else to be named after. An edit mints nothing:
-        // a new id would be a new word, and the old one's progress would be gone.
-        return OwnWords.write(
-            id = editing?.id ?: OwnWords.mint(naming, taken),
-            kind = editing?.kind ?: OwnWords.DEFAULT_KIND,
-            emoji = emoji.trim().ifEmpty { null },
-            texts = buildMap {
-                if (knownText.isNotEmpty()) put(source, knownText)
-                if (learned.isNotEmpty()) put(target, learned)
-            },
+    /** The word as the box would take it in, or null while it holds nothing. */
+    fun word(source: Language, target: Language, taken: Set<String>): OwnWord? =
+        OwnWords.fromDraft(
+            source = source,
+            target = target,
+            sourceText = known,
+            targetText = learning,
+            emoji = emoji,
             comment = comment,
+            editing = editing,
+            taken = taken,
         )
-    }
 
     companion object {
         /** A word already written, opened back up in the form under the profile's two languages. */
