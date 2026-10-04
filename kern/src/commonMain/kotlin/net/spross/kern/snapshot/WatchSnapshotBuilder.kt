@@ -21,7 +21,7 @@ import net.spross.kern.session.MultipleChoice
 import net.spross.kern.store.StoreJson
 
 /**
- * Phone-side builder of the watch application-context snapshot, v6:
+ * Phone-side builder of the watch application-context snapshot, v7:
  * one entry per CARD with BOTH sides pre-resolved, so the watch stays pure
  * Swift and never joins. [WatchEntryDto.nextRole]/[WatchEntryDto.promptForm]
  * are resolved from the log count at build time; the watch presents
@@ -33,7 +33,7 @@ import net.spross.kern.store.StoreJson
  * cannot hold.
  */
 object WatchSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 6
+    const val SCHEMA_VERSION: Int = 7
     const val ENTRY_CAP: Int = 60
 
     /**
@@ -211,7 +211,6 @@ object WatchSnapshotBuilder {
             gender = wireGender(card),
             femMarker = card.promptFeminineMarker,
             due = sched.due!!.toEpochMilliseconds(),
-            stability = sched.memory!!.stability,
             nextRole = when (nextRole) {
                 PresentationRole.Produce -> "produce"
                 PresentationRole.Recognize -> "recognize"
@@ -259,7 +258,6 @@ internal data class WatchEntryDto(
     val gender: String? = null,
     val femMarker: Boolean,
     val due: Long,
-    val stability: Double,
     val nextRole: String,
     val promptForm: String,
     val distractors: List<String> = emptyList(),

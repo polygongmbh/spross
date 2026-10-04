@@ -18,7 +18,6 @@
       "nextRole": "produce",
       "promptForm": "Kühlschrank",
       "sourceText": "fridge",
-      "stability": 0.4,
       "targetText": "Kühlschrank"
     },
     {
@@ -37,7 +36,6 @@
       "promptForm": "Spülmaschine",
       "revealEmoji": "🍽️",
       "sourceText": "dishwasher",
-      "stability": 4.2,
       "targetText": "Spülmaschine"
     },
     {
@@ -55,7 +53,6 @@
       "nextRole": "recognize",
       "promptForm": "Serviererin",
       "sourceText": "waiter",
-      "stability": 2.5,
       "targetText": "Kellnerin"
     },
     {
@@ -74,7 +71,6 @@
       "nextRole": "produce",
       "promptForm": "Sofa",
       "sourceText": "sofa",
-      "stability": 1.1,
       "targetText": "Sofa"
     },
     {
@@ -89,7 +85,6 @@
       "nextRole": "recognize",
       "promptForm": "Wo sind sie?",
       "sourceText": "Where are they?",
-      "stability": 3.0,
       "targetText": "Wo sind sie?"
     },
     {
@@ -104,7 +99,6 @@
       "nextRole": "produce",
       "promptForm": "Brauchen Sie das hier?",
       "sourceText": "Do you need this?",
-      "stability": 0.9,
       "targetText": "Brauchen Sie das hier?"
     },
     {
@@ -121,7 +115,6 @@
       "promptForm": "kochen",
       "revealEmoji": "🍳",
       "sourceText": "to cook",
-      "stability": 1.8,
       "targetText": "kochen"
     },
     {
@@ -140,10 +133,9 @@
       "promptForm": "Fernseher",
       "revealEmoji": "📺",
       "sourceText": "television",
-      "stability": 21.0,
       "targetText": "Fernseher"
     }
   ],
   "generated": 1782907200000,
-  "schemaVersion": 6
+  "schemaVersion": 7
 }

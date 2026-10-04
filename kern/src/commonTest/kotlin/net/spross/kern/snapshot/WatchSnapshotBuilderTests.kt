@@ -42,7 +42,6 @@ class WatchSnapshotBuilderTests {
         assertEquals("die", entry.article)
         assertEquals("feminine", entry.gender)
         assertEquals(due, entry.due)
-        assertEquals(1.5, entry.stability)
         // Rotation at count 2: index (2/2 + hash%2forms) % 2 = 1 → the synonym.
         assertEquals("Serviererin", entry.promptForm)
     }
@@ -402,7 +401,7 @@ class WatchSnapshotBuilderTests {
     @Test
     fun schemaVersionAndGeneratedArePinned() {
         val doc = WatchSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1)
-        assertEquals(6, doc.schemaVersion)
+        assertEquals(7, doc.schemaVersion)
         assertEquals(Box.day1, doc.generated)
     }
 

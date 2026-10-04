@@ -79,9 +79,9 @@ Engine contract: `../README.md`.
   `Widgets/Sources/WidgetSnapshot.swift`; `health` decodes into the widget's Swift `StreakHealth`
   (`Widgets/Sources/StreakHealth.swift`): kern's cases in Swift's casing, read off the serialized case name.
   The app uses kern's `StreakHealth` itself.
-- **WatchSnapshot v6**: direction/pair/`german` are gone — one entry per CARD with BOTH
+- **WatchSnapshot v7**: direction/pair/`german` are gone — one entry per CARD with BOTH
   sides pre-resolved: `{cardId, sourceText, targetText, emoji?, revealEmoji?, article?, gender?,
-  femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}`
+  femMarker, due, nextRole, promptForm, distractors[], optionForm?}`
   + `chromeLanguage` + `schemaVersion`.
   The watch refuses any other version whole and waits for the phone's next push, as the widget does.
   **The wire carries only what a surface draws**: v4 dropped `accepted[]` (the full target

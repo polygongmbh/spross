@@ -1,6 +1,6 @@
 import Foundation
 
-/// Compact phone → watch state transfer ("snapshot down, events up"), v6:
+/// Compact phone → watch state transfer ("snapshot down, events up"), v7:
 /// decode-only mirror of Kern's `WatchSnapshotBuilder` JSON. One entry per
 /// CARD with both sides pre-resolved — the watch never joins, never types,
 /// and links no Kotlin. The phone is the source of truth; the watch only
@@ -29,7 +29,6 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         var femMarker: Bool
         /// Epoch milliseconds (trivial Swift decoding, no date strategy).
         var due: Int64
-        var stability: Double
         var nextRole: String
         var promptForm: String
         /// Phone-ranked wrong options for THIS entry's role, already on the
@@ -48,7 +47,7 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
     }
 
     /// The one version this build reads (kern `WatchSnapshotBuilder.SCHEMA_VERSION`).
-    static let currentSchemaVersion = 6
+    static let currentSchemaVersion = 7
 
     var schemaVersion: Int
     /// The language the watch's and the complication's chrome is written in,
