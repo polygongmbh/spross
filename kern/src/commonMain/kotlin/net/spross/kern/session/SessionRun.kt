@@ -82,22 +82,8 @@ data class SessionRunState(
      * under it would be a run drawing more parts than it claims to have.
      */
     val total: Int,
-    val answered: Int,
-    /** Ratings in answer order. */
-    val ratings: List<Rating>,
-    /**
-     * The cards those ratings landed on, in the same order — a dropped answer
-     * appends to neither, so the two lists stay index-aligned.
-     *
-     * What the run TOUCHED, which the tallies cannot answer: they count kinds of
-     * answer, and a surface asking "which part of the box did this round move"
-     * would otherwise have to keep its own copy of the plan and subtract.
-     */
-    val answeredIds: List<String> = emptyList(),
-    /** Summary tallies: first meetings, words that crossed into settled, review reps. */
-    val newCards: Int,
-    val settled: Int,
-    val reviews: Int,
+    /** Every answer this run recorded, in answer order. */
+    val tally: RoundTally,
     val endless: Boolean,
     val finished: Boolean,
     /** A run exists from [SessionIntent.Start] until [SessionIntent.Close]; a summary still counts. */
@@ -109,12 +95,14 @@ data class SessionRunState(
 ) {
     val currentCardId: String? get() = (step as? SessionStep.Card)?.cardId
 
+    val answered: Int get() = tally.answered
+
     /** 1-based position in the composed plan. */
     val position: Int get() = min(answered + 1, max(total, 1))
 
     val remaining: Int get() = queue.size
 
-    val segments: List<AnswerOutcome> get() = ratings.map(::outcome)
+    val segments: List<AnswerOutcome> get() = tally.segments
 }
 
 /**
@@ -128,8 +116,7 @@ object SessionRun {
     /** No run yet: a closed, finished shell around the box. */
     fun idle(box: BoxState): SessionRunState = SessionRunState(
         box = box, step = SessionStep.Completed, queue = emptyList(), total = 0,
-        answered = 0, ratings = emptyList(),
-        newCards = 0, settled = 0, reviews = 0,
+        tally = RoundTally(),
         endless = false, finished = true, active = false, joinStamp = null,
     )
 
@@ -187,8 +174,7 @@ object SessionRun {
     ): SessionReduction = advance(
         state.copy(
             queue = plan.queue, total = plan.queue.size,
-            answered = 0, ratings = emptyList(),
-            newCards = 0, settled = 0, reviews = 0,
+            tally = RoundTally(),
             endless = false, finished = false, active = true, joinStamp = plan.joinStamp,
             opening = opening,
         ),
@@ -203,19 +189,20 @@ object SessionRun {
         val before = state.box.scheduling[cardId] ?: CardScheduling(cardId = cardId)
         val box = BoxEngine.answer(state.box, cardId, rating, nowEpochMillis)
         val kind = box.scheduling[cardId]?.let { tallyKind(box, before, it) } ?: TallyPartKind.Reviewed
-        val next = tallied(
-            state.copy(box = box, ratings = state.ratings + rating,
-                       answeredIds = state.answeredIds + cardId, answered = state.answered + 1),
-            kind,
+        val next = state.copy(
+            box = box,
+            tally = state.tally + RoundAnswer(cardId, rating, kind),
+            queue = state.queue.drop(1),
         )
-        return advance(next.copy(queue = next.queue.drop(1)), listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
+        return advance(next, listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
     }
 
     /**
-     * Suspend the card on screen and step past it. It counts as nothing — no rating, no
-     * tally, no entry in [SessionRunState.answeredIds] — so the round it leaves is the
-     * round the learner actually did. [SessionRunState.total] shrinks with it: the count
-     * on screen is a promise, and a word taken out of the round was never owed.
+     * Suspend the card on screen and step past it.
+     * It counts as nothing — no entry in [SessionRunState.tally] —
+     * so the round it leaves is the round the learner actually did.
+     * [SessionRunState.total] shrinks with it: the count on screen is a promise,
+     * and a word taken out of the round was never owed.
      */
     private fun suspendCurrent(
         state: SessionRunState,
@@ -232,13 +219,6 @@ object SessionRun {
             total = maxOf(state.total - 1, state.answered),
         )
         return advance(next, listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
-    }
-
-    /** Bucket each answer for the summary by its kind ([tallyKind]). */
-    private fun tallied(state: SessionRunState, kind: TallyPartKind): SessionRunState = when (kind) {
-        TallyPartKind.Introduced -> state.copy(newCards = state.newCards + 1)
-        TallyPartKind.Settled -> state.copy(settled = state.settled + 1)
-        TallyPartKind.Reviewed -> state.copy(reviews = state.reviews + 1)
     }
 
     /**
@@ -339,10 +319,4 @@ object SessionRun {
     }
 
     private fun unchanged(state: SessionRunState) = SessionReduction(state, emptyList())
-}
-
-private fun outcome(rating: Rating): AnswerOutcome = when (rating) {
-    Rating.Again -> AnswerOutcome.Wrong
-    Rating.Hard -> AnswerOutcome.Almost
-    Rating.Good, Rating.Easy -> AnswerOutcome.Right
 }

@@ -98,7 +98,6 @@ class SessionRunTests {
         val after = answer(pruned, Rating.Good, now)
         assertEquals(Box.config().sessionCap, after.total)
         assertEquals(1, after.answered)
-        assertEquals(1, after.ratings.size)
         assertTrue(after.currentCardId != null && after.currentCardId != cardId)
     }
 
@@ -115,9 +114,7 @@ class SessionRunTests {
 
         assertEquals(CardPhase.Review, run.box.scheduling.getValue("w01").phase)
         assertFalse(BoxEngine.hasSettled(run.box, "w01"))
-        assertEquals(1, run.newCards)
-        assertEquals(0, run.settled)
-        assertEquals(0, run.reviews)
+        assertEquals(listOf(TallyPartKind.Introduced), run.tally.answers.map { it.kind })
 
         // Second pass, known on sight: stability crosses the settled bar.
         val later = Box.plusDays(now, 7.0)
@@ -126,9 +123,7 @@ class SessionRunTests {
         assertEquals("w01", run.currentCardId)
         run = answer(run, Rating.Easy, later)
         assertTrue(BoxEngine.hasSettled(run.box, "w01"))
-        assertEquals(0, run.newCards)
-        assertEquals(1, run.settled)
-        assertEquals(0, run.reviews)
+        assertEquals(listOf(TallyPartKind.Settled), run.tally.answers.map { it.kind })
 
         // Third pass: already settled, nothing crosses — a plain review rep.
         val muchLater = Box.plusDays(now, 120.0)
@@ -136,8 +131,7 @@ class SessionRunTests {
         run = started(run.box, muchLater)
         assertEquals("w01", run.currentCardId)
         run = answer(run, Rating.Good, muchLater)
-        assertEquals(0, run.settled)
-        assertEquals(1, run.reviews)
+        assertEquals(listOf(TallyPartKind.Reviewed), run.tally.answers.map { it.kind })
     }
 
     /** Every answer is one kind, and a round and the day it lands in tally it alike. */
@@ -154,15 +148,13 @@ class SessionRunTests {
             run = answer(run, if (cardId == "w02") Rating.Again else Rating.Easy, later)
         }
 
-        assertEquals(listOf(1, 1, 1), listOf(run.newCards, run.reviews, run.settled))
-        assertEquals(
-            listOf(
-                TallyPart(TallyPartKind.Introduced, 1),
-                TallyPart(TallyPartKind.Reviewed, 1),
-                TallyPart(TallyPartKind.Settled, 1),
-            ),
-            BoxEngine.today(run.box, later, Box.TZ).tallyParts(),
+        val oneEach = listOf(
+            TallyPart(TallyPartKind.Introduced, 1),
+            TallyPart(TallyPartKind.Reviewed, 1),
+            TallyPart(TallyPartKind.Settled, 1),
         )
+        assertEquals(oneEach, run.tally.parts())
+        assertEquals(oneEach, BoxEngine.today(run.box, later, Box.TZ).tallyParts())
     }
 
     /**
@@ -348,10 +340,7 @@ class SessionRunTests {
         val next = suspended(run, now)
 
         assertTrue(next.box.scheduling.getValue(dropped).suspended)
-        assertEquals(0, next.answered)
-        assertTrue(next.ratings.isEmpty())
-        assertTrue(next.answeredIds.isEmpty())
-        assertEquals(0, next.newCards + next.settled + next.reviews)
+        assertEquals(RoundTally(), next.tally)
         assertEquals(dropped, run.currentCardId)
         assertTrue(next.currentCardId != dropped)
     }

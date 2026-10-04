@@ -18,7 +18,7 @@ class AnsweredIdsTests {
         SessionRun.reduce(run, SessionIntent.Answer(Rating.Good), now, Box.TZ).state
 
     @Test
-    fun answeredIdsRecordTheCardsTheRatingsLandedOn() {
+    fun theTallyRecordsTheCardsTheRatingsLandedOn() {
         var run = started(Box.state((1..4).map { Box.word(it) }))
         val seen = mutableListOf<String>()
         repeat(3) {
@@ -26,25 +26,23 @@ class AnsweredIdsTests {
             run = answered(run)
         }
 
-        assertEquals(seen, run.answeredIds)
-        assertEquals(run.ratings.size, run.answeredIds.size)
+        assertEquals(seen, run.tally.cardIds)
     }
 
     @Test
     fun anUnknownCardStillRecordsTheAnswer() {
         // The join dropped the card under the run: the box is untouched, but the
-        // answer is booked regardless and the two lists stay index-aligned.
+        // answer is booked regardless.
         var run = started(Box.state((1..3).map { Box.word(it) }))
         run = run.copy(box = BoxEngine.rejoin(run.box, emptyList(), run.box.joinStamp))
 
         run = answered(run)
 
-        assertEquals(1, run.answeredIds.size)
-        assertEquals(run.ratings.size, run.answeredIds.size)
+        assertEquals(1, run.tally.cardIds.size)
     }
 
     @Test
     fun aFreshRunStartsWithNothingTouched() {
-        assertEquals(emptyList(), started(Box.state((1..3).map { Box.word(it) })).answeredIds)
+        assertEquals(emptyList(), started(Box.state((1..3).map { Box.word(it) })).tally.cardIds)
     }
 }

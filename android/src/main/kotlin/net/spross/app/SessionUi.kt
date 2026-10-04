@@ -79,14 +79,15 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
         val restSuggested = BoxEngine.today(state, now(), tz()).recallStrained
         val order = catalog?.let { cat -> stats?.let { BoxBrowser.areaNames(cat, it) } }.orEmpty()
         val moved = sampleTreesAge?.let(SampleTrees::round)
-            ?: grownArea(boxBeforeSession ?: state, state, active.answeredIds, order, now(), tz())
+            ?: grownArea(boxBeforeSession ?: state, state, active.tally.cardIds, order, now(), tz())
         val streakDays = stats?.streak ?: 0
         SessionUi(
             card = null, role = null, promptForm = null,
             emojiCue = null,
             segments = active.segments, remaining = 0,
-            introduced = active.newCards, settled = active.settled,
-            reviewed = active.reviews,
+            introduced = active.tally.introduced,
+            settled = active.tally.settled,
+            reviewed = active.tally.reviewed,
             // why: `DayBooked` precedes this in [dispatch], so [canPracticeExtra] was
             // taken against the box this summary is for — asking again would compose
             // the same round a second time.
@@ -98,7 +99,8 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             restSuggested = restSuggested,
             grownArea = moved,
             headline = growthHeadline(
-                moved, restSuggested, active.newCards, active.settled, active.reviews, streakDays,
+                moved, restSuggested,
+                active.tally.introduced, active.tally.settled, active.tally.reviewed, streakDays,
             ),
         )
     } else {
@@ -121,9 +123,9 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             emojiCue = card.emoji?.let { emojiCue(role, arrived) },
             segments = active.segments,
             remaining = active.remaining,
-            introduced = active.newCards,
-            settled = active.settled,
-            reviewed = active.reviews,
+            introduced = active.tally.introduced,
+            settled = active.tally.settled,
+            reviewed = active.tally.reviewed,
             // why: only the finished round shows this, and composing a whole round
             // to fill a field no card on screen reads is a pause between cards.
             canPracticeMore = canPracticeExtra,

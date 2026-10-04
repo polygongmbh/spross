@@ -156,9 +156,9 @@ extension AppModel {
 
     /// End-of-session summary tallies (design §Session): new cards started,
     /// cards that crossed the settled bar, and review answers.
-    var sessionNew: Int { Int(run?.newCards ?? 0) }
-    var sessionSettled: Int { Int(run?.settled ?? 0) }
-    var sessionReviews: Int { Int(run?.reviews ?? 0) }
+    var sessionNew: Int { Int(run?.tally.introduced ?? 0) }
+    var sessionSettled: Int { Int(run?.tally.settled ?? 0) }
+    var sessionReviews: Int { Int(run?.tally.reviewed ?? 0) }
 
     /// The area this round worked hardest, before the round and after it —
     /// what the summary draws. Nil when the round touched nothing joinable.
@@ -168,7 +168,7 @@ extension AppModel {
         #endif
         guard let box, let run else { return nil }
         return grownArea(before: boxBeforeSession ?? box, after: box,
-                         answeredIds: run.answeredIds, areaOrder: areaNames,
+                         answeredIds: run.tally.cardIds, areaOrder: areaNames,
                          nowEpochMillis: Date().epochMillis, tzId: currentTzId())
     }
 

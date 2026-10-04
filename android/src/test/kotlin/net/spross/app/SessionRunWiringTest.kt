@@ -7,6 +7,8 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.TallyPart
+import net.spross.kern.box.TallyPartKind
 import net.spross.kern.box.answerDays
 import net.spross.kern.box.dayKey
 import net.spross.kern.model.BoxConfig
@@ -102,9 +104,7 @@ class SessionRunWiringTest {
         model.dispatch(SessionIntent.Answer(Rating.Again), now, tz)
         val run = model.dispatch(SessionIntent.Answer(Rating.Easy), now, tz)
 
-        assertEquals(3, run.newCards)   // introduced
-        assertEquals(0, run.settled)
-        assertEquals(0, run.reviews)    // reviewed
+        assertEquals(listOf(TallyPart(TallyPartKind.Introduced, 3)), run.tally.parts())
     }
 
     /** The progress bar's denominator is the promise on screen, not what is left of it. */
