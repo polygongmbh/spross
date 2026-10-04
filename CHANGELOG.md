@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- The sentence scramble now moves on by itself after a right arrangement instead of waiting for a Next tap.
+
 ## 8.2.0 — 2026-10-04
 
 - Widgets and the watch show your weakest words first, and watch practice follows the same order.

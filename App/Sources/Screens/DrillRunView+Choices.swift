@@ -18,18 +18,8 @@ extension DrillRunView {
                             chosen: chosen,
                             font: Theme.typography.headline,
                             pick: choose)
-            switch feedback {
-            // why: nothing under an unanswered grid — the tiles ARE the action,
-            // and a button beside them would be a second way to answer nothing.
-            case .neutral, .almost:
-                EmptyView()
-            case .correct:
-                // why: the timer never arms under a screen reader, so a clean
-                // hit would otherwise have nothing to move on with.
-                if screenReaderOn { DrillNextButton { confirm() } }
-            case .revealed:
-                DrillRevealedControls(onConfirm: { confirm() }, onStop: stopOffer)
-            }
+            // Nothing under an unanswered grid: the tiles ARE the action.
+            DrillVerdictControls(feedback: feedback, onConfirm: { confirm() }, onStop: stopOffer)
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
     }

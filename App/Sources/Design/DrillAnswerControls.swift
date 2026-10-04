@@ -54,23 +54,44 @@ struct DrillAnswerControls: View {
                 .buttonStyle(PrimaryButtonStyle())
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: text.isBlankAnswer)
-            case .almost:
-                // The amber hold: the box above spells the form out, and this
-                // waits for the tap that books it amber.
-                DrillNextButton(action: onConfirm)
-                    .transition(.opacity)
-            case .correct:
-                // why: the timer never arms under a screen reader, so a clean
-                // hit would otherwise have nothing to move on with.
-                if AutoAdvance.screenReaderOn {
-                    DrillNextButton(action: onConfirm)
-                        .transition(.opacity)
-                }
-            case .revealed:
-                DrillRevealedControls(onConfirm: onConfirm, onStop: onStop)
+            case .almost, .correct, .revealed:
+                DrillVerdictControls(feedback: feedback, onConfirm: onConfirm, onStop: onStop)
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
+    }
+}
+
+/// What stands under a graded answer, written or tapped alike — the way on
+/// where kern armed no beat, and the way out where the run offers one.
+struct DrillVerdictControls: View {
+    let feedback: AnswerInputView.Feedback
+    let onConfirm: () -> Void
+    /// The way out, where the run offers one: on the SECOND miss in a row.
+    var onStop: (() -> Void)?
+
+    var body: some View {
+        switch feedback {
+        case .neutral:
+            EmptyView()
+        case .almost:
+            // The amber hold: the box above spells the form out, and this
+            // waits for the tap that books it amber.
+            DrillNextButton(action: onConfirm)
+                .transition(.opacity)
+        case .correct:
+            // why: the timer never arms under a screen reader, so a clean
+            // hit would otherwise have nothing to move on with.
+            if AutoAdvance.screenReaderOn {
+                DrillNextButton(action: onConfirm)
+                    .transition(.opacity)
+            }
+        case .revealed:
+            VStack(spacing: Theme.spacing.sm) {
+                DrillNextButton(action: onConfirm)
+                if let onStop { DrillStopOffer(action: onStop) }
+            }
+        }
     }
 }
 
@@ -86,19 +107,5 @@ struct DrillNextButton: View {
         .buttonStyle(PrimaryButtonStyle())
         // why: Enter advances here too (hardware keyboards).
         .keyboardShortcut(.defaultAction)
-    }
-}
-
-/// The way on after a miss, and — on the second in a row — the way out.
-struct DrillRevealedControls: View {
-    let onConfirm: () -> Void
-    /// nil where the run is not offering the way out, or the drill has none.
-    var onStop: (() -> Void)?
-
-    var body: some View {
-        VStack(spacing: Theme.spacing.sm) {
-            DrillNextButton(action: onConfirm)
-            if let onStop { DrillStopOffer(action: onStop) }
-        }
     }
 }

@@ -10,7 +10,6 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
 import net.spross.app.letterSpeaker
-import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.LetterDrillTask
 
 /**
@@ -42,13 +41,7 @@ fun ChoiceFormat(flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
         )
         // The tiles mark the answer themselves, so nothing is drawn under them: a miss waits
         // for the tap that books it, and a clean hit waits only where no beat can run.
-        when (flow.state.feedback) {
-            TurnFeedback.Neutral -> {}
-            TurnFeedback.Correct -> if (flow.awaitsConfirm) ConfirmButton(chrome, flow::confirm)
-            // why: tiles grade exact-only, so an almost cannot arise here — it books like any
-            // other accepted answer if it ever does.
-            is TurnFeedback.Almost, TurnFeedback.Revealed -> ConfirmButton(chrome, flow::confirm)
-        }
+        AnswerVerdict(flow.state.feedback, flow.awaitsConfirm, chrome, flow::confirm)
     }
 }
 

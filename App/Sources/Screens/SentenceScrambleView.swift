@@ -205,15 +205,12 @@ struct SentenceScrambleView: View {
     /// shown it would; a button beside the bank offered a second way to do what
     /// the bank does.
     ///
-    /// Once the arrangement is graded it is the shared pair every drill wears
-    /// after a card opens: the way on, and — on the second miss in a row — the
-    /// way out.
-    @ViewBuilder
+    /// Once the arrangement is graded it is what every drill wears under a
+    /// graded answer: a clean one moves on by itself, a miss waits for the way
+    /// on and — on the second in a row — offers the way out.
     private var controls: some View {
-        if run.showsAnswer {
-            DrillRevealedControls(onConfirm: { confirm() },
-                                  onStop: run.offersFinish ? { closeRun() } : nil)
-        }
+        DrillVerdictControls(feedback: feedback, onConfirm: { confirm() },
+                             onStop: run.offersFinish ? { closeRun() } : nil)
     }
 
     // The conformance, the driver and the close are SentenceScrambleView+Run.swift's.

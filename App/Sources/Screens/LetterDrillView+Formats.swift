@@ -117,21 +117,9 @@ extension LetterDrillView {
     /// A miss always waits for a tap, and on the second in a row offers the way
     /// out under it, as the typed formats do; a clean hit waits only where a
     /// timed screen change would talk over the announcement it just made.
-    @ViewBuilder
     private var choiceControls: some View {
-        switch feedback {
-        case .neutral:
-            EmptyView()
-        case .correct:
-            if screenReaderOn { DrillNextButton { confirm() } }
-        // why: tiles grade exact-only (no typo budget), so this cannot arise
-        // here — it books like any other accepted answer if it ever does.
-        case .almost:
-            DrillNextButton { confirm() }
-        case .revealed:
-            DrillRevealedControls(onConfirm: { confirm() },
-                                  onStop: run.offersFinish ? { closeRun() } : nil)
-        }
+        DrillVerdictControls(feedback: feedback, onConfirm: { confirm() },
+                             onStop: run.offersFinish ? { closeRun() } : nil)
     }
 
     // MARK: - Typed and dictated

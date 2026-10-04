@@ -154,7 +154,7 @@ private fun Controls(flow: SentenceScrambleFlow, chrome: Chrome, onFinish: () ->
         // NOTHING while the order is owed — this is the one drill that needs no Reveal. Every
         // word it withholds is already on screen, so placing them all reaches the authored
         // order by itself and books exactly what asking to be shown it would.
-        if (state.showsAnswer) ConfirmButton(chrome) { flow.confirm() }
+        AnswerVerdict(state.feedback, flow.awaitsConfirm, chrome, flow::confirm)
         if (state.offersFinish) DrillStopOffer(chrome, onFinish)
     }
 }
