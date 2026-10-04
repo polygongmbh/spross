@@ -32,7 +32,7 @@ The read models a surface draws the box from (the day, one card's standing, the 
   `tomorrowNote(hasPackedWords, tomorrowDue)` picks `Packed` / `Fresh` / `Due`:
   a pack outranks the due count, because a finished day composes nothing
   and the round after it is where those words arrive;
-  `tomorrowDue` is `dueNow` at `endOfTomorrow`, never a second local-midnight derivation.
+  `tomorrowDue` is `dueCount` at `endOfTomorrow`, never a second local-midnight derivation.
   The kinds and their order are the rule;
   the words, plurals and separators for them stay in each platform's string tables.
 - **`HomeStanding.of`** is everything Home reads at one instant:

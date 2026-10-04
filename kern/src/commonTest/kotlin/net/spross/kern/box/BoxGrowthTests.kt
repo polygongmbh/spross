@@ -70,7 +70,7 @@ class BoxGrowthTests {
                 Box.sched(id, dueMillis = now - n * 60_000L, lastReviewMillis = Box.plusDays(now, -1.0)),
             )
         }
-        assertEquals(60, BoxEngine.dueNow(state, now).size)
+        assertEquals(60, Box.dueIds(state, now).size)
         assertTrue(Box.candidates(state).queuedAndSeedOrder.isNotEmpty())
     }
 

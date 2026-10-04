@@ -32,7 +32,7 @@ class DueOrderTests {
     fun cardsDueSecondsApartComeBackOutOfSeedOrder() {
         val state = secondsApart(6, Box.plusSeconds(now, -3600))
         val seedOrder = (1..6).map { "w0$it" }
-        val order = BoxEngine.dueNow(state, now)
+        val order = Box.dueIds(state, now)
         assertEquals(listOf("w06", "w01", "w04", "w05", "w03", "w02"), order)
         assertNotEquals(seedOrder, order)
     }
@@ -52,7 +52,7 @@ class DueOrderTests {
                 ),
             )
         }
-        val order = BoxEngine.dueNow(state, now)
+        val order = Box.dueIds(state, now)
         assertEquals(setOf("w04", "w05", "w06"), order.take(3).toSet())
         assertEquals(setOf("w01", "w02", "w03"), order.drop(3).toSet())
     }
@@ -86,19 +86,19 @@ class DueOrderTests {
                 lastReviewMillis = Box.plusDays(now, -2.0),
             ),
         )
-        assertEquals("w04", BoxEngine.dueNow(state, now).first())
+        assertEquals("w04", Box.dueIds(state, now).first())
     }
 
     @Test
     fun theSameStateOrdersIdenticallyEveryTime() {
         val state = secondsApart(6, Box.plusSeconds(now, -3600))
-        assertEquals(BoxEngine.dueNow(state, now), BoxEngine.dueNow(state, now))
+        assertEquals(Box.dueIds(state, now), Box.dueIds(state, now))
     }
 
     @Test
     fun theOrderWithinADayDiffersFromDayToDay() {
-        val today = BoxEngine.dueNow(secondsApart(3, Box.plusSeconds(now, -3600)), now)
-        val twoDaysAgo = BoxEngine.dueNow(
+        val today = Box.dueIds(secondsApart(3, Box.plusSeconds(now, -3600)), now)
+        val twoDaysAgo = Box.dueIds(
             secondsApart(3, Box.plusSeconds(Box.plusDays(now, -2.0), -3600)),
             now,
         )

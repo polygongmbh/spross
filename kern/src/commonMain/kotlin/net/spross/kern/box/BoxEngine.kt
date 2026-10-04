@@ -358,11 +358,7 @@ object BoxEngine {
         nowEpochMillis: Long,
     ): BoxState = Answering.answer(state, cardId, rating, nowEpochMillis)
 
-    /** Joined, active card ids due at `now`, oldest day first — the drain-loop feed. */
-    fun dueNow(state: BoxState, nowEpochMillis: Long): List<String> =
-        Inventory.due(state, nowEpochMillis).map { it.cardId }
-
-    /** How many cards stand due — [dueNow]'s size, without composing its order. */
+    /** How many joined, active cards stand due at `now`, without composing their order. */
     fun dueCount(state: BoxState, nowEpochMillis: Long): Int =
         Inventory.dueCount(state, nowEpochMillis)
 

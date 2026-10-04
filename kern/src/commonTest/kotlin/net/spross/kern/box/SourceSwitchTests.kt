@@ -35,19 +35,19 @@ class SourceSwitchTests {
     fun nonJoiningSchedulesTurnInertAndReviveOnSwitchBack() {
         val de = studied()
         assertEquals(2, BoxEngine.statistics(de, now, Box.TZ).activeCount)
-        assertEquals(listOf("w01", "w02"), BoxEngine.dueNow(de, now))
+        assertEquals(listOf("w01", "w02"), Box.dueIds(de, now))
 
         val en = BoxEngine.rejoin(de, enJoin, enStamp)
         assertEquals(enStamp, en.joinStamp)
         assertEquals(1, BoxEngine.statistics(en, now, Box.TZ).activeCount)
-        assertEquals(listOf("w01"), BoxEngine.dueNow(en, now))
+        assertEquals(listOf("w01"), Box.dueIds(en, now))
         assertFalse(Exposure.exposureCards(en, limit = 10).any { it.id == "w02" })
         // Inert, not pruned: the raw schedule survives untouched.
         assertEquals(de.scheduling, en.scheduling)
 
         val back = BoxEngine.rejoin(en, deJoin, Box.stamp)
         assertEquals(2, BoxEngine.statistics(back, now, Box.TZ).activeCount)
-        assertEquals(listOf("w01", "w02"), BoxEngine.dueNow(back, now))
+        assertEquals(listOf("w01", "w02"), Box.dueIds(back, now))
     }
 
     @Test

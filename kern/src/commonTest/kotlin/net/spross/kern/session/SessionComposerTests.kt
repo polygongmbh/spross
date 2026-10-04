@@ -98,20 +98,20 @@ class SessionComposerTests {
 
         // w01 comes back once its first ladder step matures — past a short sitting;
         // w02 went straight to day scale and never re-enters the drain.
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
+        assertTrue(Box.dueIds(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
         var t = Box.plusSeconds(now, Box.steps[0])
-        assertEquals(listOf("w01"), BoxEngine.dueNow(state, t))
+        assertEquals(listOf("w01"), Box.dueIds(state, t))
 
         // Missing it again climbs the ladder instead of repeating the same wait.
         state = Box.answered(state, "w01", Rating.Again, t)
         val next = Box.plusSeconds(t, Box.steps[1])
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(next, -1)).isEmpty())
+        assertTrue(Box.dueIds(state, Box.plusSeconds(next, -1)).isEmpty())
         t = next
-        assertEquals(listOf("w01"), BoxEngine.dueNow(state, t))
+        assertEquals(listOf("w01"), Box.dueIds(state, t))
 
         // A Good takes it off the ladder and out of the drain for the day.
         state = Box.answered(state, "w01", Rating.Good, t)
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(t, 1)).isEmpty())
+        assertTrue(Box.dueIds(state, Box.plusSeconds(t, 1)).isEmpty())
     }
 
     @Test

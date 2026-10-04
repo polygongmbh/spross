@@ -298,12 +298,12 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
   Nothing joins a run under way now;
   endless practice (explicitly asked for from the summary) is where late cards land.
-  `dueNow` therefore feeds counts, rings and fresh pulls only.
+  The due queue therefore feeds counts, rings and fresh pulls only.
 - **One composer for every round** (user ruling 2026-08-03).
   **User agency decides WHICH round opens, never what goes in one**:
   the caller names a round the box already has rules for,
   and no size, budget or flag crosses the boundary.
-- **Join filter inventory**: composition, dueNow, dueCount, statistics, exposure
+- **Join filter inventory**: composition, the due queue, dueCount, statistics, exposure
   operate on cards that join the current profile;
   the unlock check and `answer()` history reads operate on raw schedules by id.
   Non-joining schedules and enqueued entries are kept **inert**

@@ -85,7 +85,7 @@ class SessionRunTests {
         assertTrue(run.finished)
         assertEquals(SessionStep.Completed, run.step)
         // The held-back work is still due — the summary is where it gets offered.
-        assertEquals(20, BoxEngine.dueNow(run.box, now).size)
+        assertEquals(20, Box.dueIds(run.box, now).size)
         assertTrue(SessionOffers.canPracticeMore(run.box, now, Box.TZ))
     }
 

@@ -34,6 +34,9 @@ internal object Box {
     fun plusSeconds(millis: Long, s: Long): Long = millis + s * 1000
     fun plusDays(millis: Long, d: Double): Long = millis + (d * 86_400_000).toLong()
 
+    /** The due queue's card ids at [now], in its order. */
+    fun dueIds(state: BoxState, now: Long): List<String> = Inventory.due(state, now).map { it.cardId }
+
     fun word(
         n: Int,
         area: String = "area1",

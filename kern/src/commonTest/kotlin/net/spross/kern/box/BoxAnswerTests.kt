@@ -28,7 +28,7 @@ class BoxAnswerTests {
         assertEquals(CardPhase.Review, sched.phase)
         assertNull(sched.stepIndex)
         assertTrue(sched.due!! >= Box.instant(now) + 1.days)
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0])).isEmpty())
+        assertTrue(Box.dueIds(state, Box.plusSeconds(now, Box.steps[0])).isEmpty())
     }
 
     // A word you missed comes back at the ladder's first entry — past the end of a
@@ -42,8 +42,8 @@ class BoxAnswerTests {
         assertEquals(0, sched.stepIndex)
         assertEquals(Box.instant(now) + Box.steps[0].seconds, sched.due)
 
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
-        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0])))
+        assertTrue(Box.dueIds(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
+        assertEquals(listOf("w01"), Box.dueIds(state, Box.plusSeconds(now, Box.steps[0])))
     }
 
     // A single Good graduates the word off the ladder immediately, whatever step it
@@ -125,10 +125,10 @@ class BoxAnswerTests {
         )
         state = Box.answered(state, "w01", Rating.Again, now)
         // The drain loop stays empty for the rest of the session window …
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, 60)).isEmpty())
-        assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
+        assertTrue(Box.dueIds(state, Box.plusSeconds(now, 60)).isEmpty())
+        assertTrue(Box.dueIds(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
         // … the lapsed card only returns at its 10-minute relearning step.
-        assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0])))
+        assertEquals(listOf("w01"), Box.dueIds(state, Box.plusSeconds(now, Box.steps[0])))
     }
 
     // Repeated fails widen the gap instead of repeating the same short wait: relearning

@@ -106,7 +106,7 @@ class DayKeyTests {
         state = Box.inject(state, Box.sched("w03", dueMillis = Box.millis(2026, 7, 3, 10, 0), lastReviewMillis = now))
 
         val horizon = endOfTomorrow(now, Box.TZ).toEpochMilliseconds()
-        assertEquals(listOf("w01", "w02"), BoxEngine.dueNow(state, horizon).sorted())
+        assertEquals(listOf("w01", "w02"), Box.dueIds(state, horizon).sorted())
     }
 
     @Test
