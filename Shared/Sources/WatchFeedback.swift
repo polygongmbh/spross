@@ -10,19 +10,15 @@ import WatchKit
 /// rather than naming a grade: a bolt says why it came, where a grade's name
 /// would leave that a guess. The haptic says the coarser thing the wrist
 /// already knows: that went well, or it did not.
-///
-/// Ratings are the raw FSRS 1–4 (`WatchGrading.rating`), not an enum: this
-/// file sits beside the grader that produces them and the model that sends
-/// them, and neither has ever needed a richer type.
 enum WatchFeedback {
 
     /// A quick right answer's mark: two bolts for Easy, one for Good. A slow
     /// right answer has the green tile alone, and a miss the red.
-    static func speedMark(forRating rating: Int) -> String? {
+    static func speedMark(forRating rating: WatchRating) -> String? {
         switch rating {
-        case 4: return "⚡⚡"
-        case 3: return "⚡"
-        default: return nil
+        case .easy: return "⚡⚡"
+        case .good: return "⚡"
+        case .hard, .again: return nil
         }
     }
 
@@ -32,8 +28,8 @@ enum WatchFeedback {
     /// affirming rating — the speed mark is the finer channel. A miss is the rare
     /// event and gets `.retry`, the gentler of the two types that mean a miss —
     /// `.failure` buzzes harder than a quiz slip deserves.
-    static func haptic(forRating rating: Int) -> WKHapticType {
-        rating >= 2 ? .click : .retry
+    static func haptic(forRating rating: WatchRating) -> WKHapticType {
+        rating == .again ? .retry : .click
     }
     #endif
 }

@@ -1,13 +1,21 @@
 import Foundation
 
-/// Response-time → FSRS raw rating (1–4) for the watch's multiple-choice
-/// practice. The watch has no keyboard, so it grades by RECOGNITION latency:
-/// a fast correct tap means the word is already well remembered and earns a
-/// higher rating; a slow one earns less. Wrong is always Again.
+/// An FSRS rating as the watch knows it; the raw value is what the phone books.
+enum WatchRating: Int, Sendable {
+    case again = 1, hard, good, easy
+}
+
+/// Response-time → FSRS rating for the watch's multiple-choice practice.
+/// The watch has no keyboard, so it grades by RECOGNITION latency:
+/// a fast right tap earns a higher rating, a slow one less, and a wrong one Again.
 ///
 /// Policy: breadth of exposure over perfect single-word retention — Easy is a
 /// deliberate, reachable rating, so effortless words stretch out fast and make
 /// room for new material.
+///
+/// Differs from the phone's kern `SelfGrading` on purpose: picking one of four
+/// options is recognition, not recall, and a slow right tap may be a guess, so
+/// the clock here grades down to Hard as well as up to Easy.
 enum WatchGrading {
 
     // Field-calibratable — reading four options costs time, more for long
@@ -16,15 +24,15 @@ enum WatchGrading {
     static let perCharMs = 15      // per displayed option character
     static let easyFactor = 0.5    // Easy window is the inner half of Good
 
-    /// FSRS raw rating: Again(1) when wrong; else Easy(4) very-fast, Good(3)
-    /// fast, Hard(2) slow — thresholds scaled by the total option characters.
-    static func rating(correct: Bool, elapsedMs: Int, optionChars: Int) -> Int {
-        guard correct else { return 1 }
+    /// Again when wrong; else Easy very fast, Good fast, Hard slow —
+    /// thresholds scaled by the total option characters.
+    static func rating(correct: Bool, elapsedMs: Int, optionChars: Int) -> WatchRating {
+        guard correct else { return .again }
         let goodBudget = Double(baseMs + perCharMs * optionChars)
         let easyBudget = goodBudget * easyFactor
         let elapsed = Double(elapsedMs)
-        if elapsed <= easyBudget { return 4 }
-        if elapsed <= goodBudget { return 3 }
-        return 2
+        if elapsed <= easyBudget { return .easy }
+        if elapsed <= goodBudget { return .good }
+        return .hard
     }
 }

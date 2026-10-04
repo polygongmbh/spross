@@ -2,17 +2,16 @@ import Foundation
 
 /// One watch answer, sent watch → phone via `transferUserInfo` (queued,
 /// guaranteed delivery, possibly duplicated — hence the UUID for dedup).
-/// `rating` is the FSRS raw value 1–4 (again/hard/good/easy) — a plain Int
-/// so the watch surface stays free of engine types. The phone applies
+/// `rating` travels as its FSRS raw value. The phone applies
 /// events ON RECEIPT in date order with `now` = the event's date, so FSRS
 /// elapsed time stays honest.
 struct WatchAnswerEvent: Sendable, Equatable {
     var id: UUID
     var cardId: String
-    var rating: Int
+    var rating: WatchRating
     var date: Date
 
-    init(id: UUID = UUID(), cardId: String, rating: Int, date: Date) {
+    init(id: UUID = UUID(), cardId: String, rating: WatchRating, date: Date) {
         self.id = id
         self.cardId = cardId
         self.rating = rating
@@ -32,7 +31,7 @@ struct WatchAnswerEvent: Sendable, Equatable {
     var userInfoEntry: [String: Any] {
         [Key.id: id.uuidString,
          Key.cardId: cardId,
-         Key.rating: rating,
+         Key.rating: rating.rawValue,
          Key.date: date]
     }
 
@@ -47,7 +46,7 @@ struct WatchAnswerEvent: Sendable, Equatable {
             guard let idString = entry[Key.id] as? String,
                   let id = UUID(uuidString: idString),
                   let cardId = entry[Key.cardId] as? String,
-                  let rating = entry[Key.rating] as? Int, (1...4).contains(rating),
+                  let raw = entry[Key.rating] as? Int, let rating = WatchRating(rawValue: raw),
                   let date = entry[Key.date] as? Date else { return nil }
             return WatchAnswerEvent(id: id, cardId: cardId, rating: rating, date: date)
         }

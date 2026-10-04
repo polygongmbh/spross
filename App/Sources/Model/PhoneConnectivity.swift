@@ -126,7 +126,7 @@ extension AppModel {
         guard !fresh.isEmpty else { return }
 
         for event in fresh {
-            if let rating = Rating(value: event.rating) {
+            if let rating = Rating(value: event.rating.rawValue) {
                 state = BoxEngine.shared.answer(state: state, cardId: event.cardId,
                                                 rating: rating,
                                                 nowEpochMillis: event.date.epochMillis,
