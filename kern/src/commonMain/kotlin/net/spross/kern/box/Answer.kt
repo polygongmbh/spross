@@ -87,11 +87,6 @@ internal fun CardScheduling.answered(
         stepIndex = outcome.stepIndex,
         memory = outcome.memory,
         due = at + outcome.intervalSeconds.seconds,
-        // why: counts any Again past introduction, not just review-phase ones — feeds
-        // drill and listening scoring (LetterDrill, ListeningPool) even though it no
-        // longer drives suspension; a lapse grows the wait before its next try instead
-        // (FsrsScheduler.stepOutcome).
-        lapses = lapses + if (rating == Rating.Again && !introducing) 1 else 0,
         log = log + ReviewLogEntry(date = at, rating = rating),
     )
 }

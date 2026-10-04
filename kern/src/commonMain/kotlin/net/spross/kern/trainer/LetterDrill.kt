@@ -47,14 +47,13 @@ object LetterDrill {
     /** The same floor on the gap word's known-first preference; below it, the whole pool. */
     private const val MIN_KNOWN_CANDIDATES = 3
 
-    /** Ceilings on the three things that make a word worth dictating twice (see [dictationWeight]). */
+    /** Ceilings on the two things that make a word worth dictating twice (see [dictationWeight]). */
     private const val TRICKY_CAP = 3
-    private const val LAPSE_CAP = 3
-    private const val DIFFICULTY_CAP = 2
+    private const val DIFFICULTY_CAP = 3
 
     /** FSRS difficulty runs 1–10; below its middle a word is not what the Sprosse is for. */
     private const val DIFFICULTY_MIDPOINT = 5.0
-    private const val DIFFICULTY_PER_STEP = 2.0
+    private const val DIFFICULTY_PER_STEP = 1.0
 
     fun maxLevel(dictationAvailable: Boolean): Int =
         if (dictationAvailable) MAX_LEVEL_WITH_DICTATION else MAX_LEVEL_WITHOUT_DICTATION
@@ -162,15 +161,13 @@ object LetterDrill {
     }
 
     /**
-     * A dictation candidate: the card, plus the two things about it the drill weighs that
-     * a [Card] cannot carry. [difficulty] is FSRS's own 1–10 (0 stands for "the caller has
-     * no schedule for this", which weighs nothing), [lapses] the times it has been
-     * forgotten. Both are read from `CardScheduling`, never re-derived here.
+     * A dictation candidate: the card, plus what the drill weighs that a [Card] cannot carry.
+     * [difficulty] is FSRS's own 1–10 (0 stands for "the caller has no schedule for this",
+     * which weighs nothing), read from `CardScheduling`, never re-derived here.
      */
     data class DictationCandidate(
         val card: Card,
         val difficulty: Double = 0.0,
-        val lapses: Int = 0,
     )
 
     /**
@@ -229,23 +226,22 @@ object LetterDrill {
 
     /**
      * How much of the dictation draw a candidate is worth. One is the floor every word
-     * keeps — nothing is ever excluded, only out-drawn — and three things add to it:
+     * keeps — nothing is ever excluded, only out-drawn — and two things add to it:
      *
      * the SPELLING (how many of the language's own hard graphemes the word carries, which
-     * is what a transcription actually tests), the LAPSES (words this learner has
-     * forgotten before), and FSRS's DIFFICULTY above the midpoint. Each is capped, so a
-     * single leech cannot take the Sprosse over, and every term is zero on a short clean word
+     * is what a transcription actually tests), and FSRS's DIFFICULTY above the midpoint,
+     * which every Again raises — the words this learner has forgotten before. Each is capped,
+     * so a single leech cannot take the Sprosse over, and both are zero on a short clean word
      * — which is exactly when the draw stays uniform.
      */
     fun dictationWeight(candidate: DictationCandidate, trickyGlyphs: List<String>): Int {
         val word = candidate.card.target.text.lowercase()
         val spelling = minOf(TRICKY_CAP, trickyGlyphs.count { it in word })
-        val forgotten = minOf(LAPSE_CAP, maxOf(0, candidate.lapses))
-        val hard = minOf(
+        val forgotten = minOf(
             DIFFICULTY_CAP,
             ((candidate.difficulty - DIFFICULTY_MIDPOINT) / DIFFICULTY_PER_STEP).toInt().coerceAtLeast(0),
         )
-        return 1 + spelling + forgotten + hard
+        return 1 + spelling + forgotten
     }
 
     /** Cumulative draw over [weights]; identical to a uniform pick where they all match. */

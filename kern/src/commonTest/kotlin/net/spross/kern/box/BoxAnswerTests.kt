@@ -13,7 +13,7 @@ import net.spross.kern.model.BoxConfig
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
 
-/** Answering: FSRS-6 scheduling, drain feed, lapses, unknown ids, budget drops. */
+/** Answering: FSRS-6 scheduling, drain feed, unknown ids, budget drops. */
 class BoxAnswerTests {
     private val now = Box.day1
 
@@ -41,7 +41,6 @@ class BoxAnswerTests {
         assertEquals(CardPhase.Learning, sched.phase)
         assertEquals(0, sched.stepIndex)
         assertEquals(Box.instant(now) + Box.steps[0].seconds, sched.due)
-        assertEquals(0, sched.lapses) // lapses never count introduction, only tries after it
 
         assertTrue(BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
         assertEquals(listOf("w01"), BoxEngine.dueNow(state, Box.plusSeconds(now, Box.steps[0])))
@@ -113,7 +112,6 @@ class BoxAnswerTests {
         state = Box.answered(state, "w01", Rating.Again, now)
         val sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Relearning, sched.phase)
-        assertEquals(1, sched.lapses)
         assertFalse(sched.suspended)
         assertEquals(Box.instant(now) + Box.steps[0].seconds, sched.due)
     }
@@ -143,7 +141,7 @@ class BoxAnswerTests {
             state,
             Box.sched(
                 "w01", phase = CardPhase.Relearning,
-                dueMillis = now - 60_000, lastReviewMillis = Box.plusDays(now, -1.0), lapses = 1,
+                dueMillis = now - 60_000, lastReviewMillis = Box.plusDays(now, -1.0),
             ),
         )
 
@@ -168,24 +166,21 @@ class BoxAnswerTests {
         assertFalse(sched.suspended)
     }
 
-    // A word still struggling through its learning steps counts lapses too — lapses are
-    // not gated to review phase — but counting alone no longer suspends the card (leech
-    // ruling overturned 2026-09-01); only setSuspended does that.
+    // Repeated misses on the learning steps never suspend the card (leech ruling
+    // overturned 2026-09-01); only setSuspended does that.
     @Test
-    fun againOnTheStepCountsLapsesWithoutSuspending() {
+    fun againOnTheStepNeverSuspends() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.answered(state, "w01", Rating.Again, now) // introduction: exempt
         val retry1 = Box.plusSeconds(now, 120)
         state = Box.answered(state, "w01", Rating.Again, retry1) // 1st lapse, still Learning
         var sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Learning, sched.phase)
-        assertEquals(1, sched.lapses)
         assertFalse(sched.suspended)
 
         val retry2 = Box.plusSeconds(retry1, 120)
         state = Box.answered(state, "w01", Rating.Again, retry2) // 2nd lapse
         sched = state.scheduling.getValue("w01")
-        assertEquals(2, sched.lapses)
         assertFalse(sched.suspended)
     }
 

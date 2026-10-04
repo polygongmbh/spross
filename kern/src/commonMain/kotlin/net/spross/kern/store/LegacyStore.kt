@@ -25,7 +25,7 @@ internal object LegacyStore {
     private fun converted(box: DecodedBox): StoredBox {
         val scheduler = FsrsScheduler(BoxConfig.product().fsrsParameters())
         val scheduling = box.scheduling.mapValues { (cardId, sched) ->
-            val suspended = sched.suspended && !leechSuspension(sched)
+            val suspended = sched.suspended && !leechSuspension(sched, box.lapses[cardId] ?: 0)
             val due = sched.due
             if (sched.log.isEmpty() || due == null) {
                 CardScheduling(cardId = cardId, suspended = suspended)
@@ -53,6 +53,6 @@ internal object LegacyStore {
      *
      * The v1 count is what decides, since a replay under today's rule counts differently.
      */
-    private fun leechSuspension(sched: CardScheduling): Boolean =
-        sched.suspended && sched.lapses >= 2
+    private fun leechSuspension(sched: CardScheduling, lapses: Int): Boolean =
+        sched.suspended && lapses >= 2
 }

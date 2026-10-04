@@ -40,7 +40,6 @@ data class CardScheduling(
     val stepIndex: Int? = null,
     val memory: MemoryState? = null,
     val due: Instant? = null,
-    val lapses: Int = 0,
     val suspended: Boolean = false,
     /** Appended on EVERY answer, including same-day retries. */
     val log: List<ReviewLogEntry> = emptyList(),

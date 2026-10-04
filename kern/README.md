@@ -161,10 +161,7 @@ the numbers behind each bar are on `BoxConfig` itself.
 - **ONE ALTERNATING ladder, `stepsSeconds`, shared by Learning and Relearning**
   (user ruling 2026-09-02) --
   a brand-new word and a lapsed one wait on the same cadence.
-  A lapse is any `Again` past introduction -- learning- and relearning-step retries count too --
-  and is always tracked (`CardScheduling.lapses`, the dictation draw's weighting reads it),
-  but no longer auto-suspends:
-  each `Again` climbs `stepsSeconds` (`FsrsScheduler.stepOutcome`)
+  Each `Again` climbs `stepsSeconds` (`FsrsScheduler.stepOutcome`)
   instead of resetting to its first entry, capped at the ladder's last Sprosse.
   The product ships `[10m, 1d, 10m, 3d, 10m, 7d, 10m, 30d]` --
   minutes and days alternate, so a word that will not stick comes back

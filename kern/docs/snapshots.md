@@ -11,7 +11,7 @@ Engine contract: `../README.md`.
   pair its progress was made in rather than whichever one the receiving device is set to;
   a file written before it carries none and the device's own setting stands.
   A card is `[dueEpochSeconds, [[answerEpochSeconds, rating], …]]` and nothing else:
-  memory, phase, step and lapses are REPLAYED from that log as it decodes
+  memory, phase and step are REPLAYED from that log as it decodes
   (`box/Answer.kt`, `replayed`), so the file carries only what a replay cannot give back.
   `due` is stored for exactly that reason — a retention or ladder change then moves future
   answers rather than reshuffling every pending date.

@@ -29,7 +29,7 @@ internal const val STORE_SCHEMA_VERSION: Int = 2
  * envelope an export wraps every language in.
  *
  * A card is `[dueEpochSeconds, [[answerEpochSeconds, rating], …]]` and nothing else: memory,
- * phase, step and lapses are replayed from that log on the way in, so the file carries only
+ * phase and step are replayed from that log on the way in, so the file carries only
  * what a replay cannot give back. Timestamps are epoch seconds, which no timezone touches.
  */
 @Serializable

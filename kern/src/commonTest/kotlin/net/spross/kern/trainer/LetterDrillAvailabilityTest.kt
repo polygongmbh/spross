@@ -104,7 +104,7 @@ class LetterDrillAvailabilityTest {
             state = Box.inject(
                 state,
                 if (word.id == "mouse") {
-                    sched.copy(memory = MemoryState(stability = 12.0, difficulty = 7.5), lapses = 2)
+                    sched.copy(memory = MemoryState(stability = 12.0, difficulty = 7.5))
                 } else {
                     sched
                 },
@@ -235,15 +235,13 @@ class LetterDrillAvailabilityTest {
         assertEquals(LetterDrill.MAX_LEVEL_WITHOUT_DICTATION, short.maxLevel)
     }
 
-    /** The two figures the draw weighs are READ from the schedule, never re-derived. */
+    /** The difficulty the draw weighs is READ from the schedule, never re-derived. */
     @Test
-    fun aCandidateCarriesItsScheduleFigures() {
+    fun aCandidateCarriesItsDifficulty() {
         val voiced = report(hasVoice = true)
         val mouse = voiced.dictationCandidates.first { it.card.id == "mouse" }
         assertEquals(7.5, mouse.difficulty, 0.0001)
-        assertEquals(2, mouse.lapses)
         val door = voiced.dictationCandidates.first { it.card.id == "door" }
         assertEquals(5.0, door.difficulty, 0.0001)
-        assertEquals(0, door.lapses)
     }
 }

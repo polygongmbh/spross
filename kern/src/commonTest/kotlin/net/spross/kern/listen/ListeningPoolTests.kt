@@ -63,7 +63,7 @@ class ListeningPoolTests {
         var state = box(total = 20, scheduled = 20)
         state = Box.inject(
             state,
-            Box.sched("w03", dueMillis = Box.day1, lastReviewMillis = Box.day1, lapses = 2, suspended = true),
+            Box.sched("w03", dueMillis = Box.day1, lastReviewMillis = Box.day1, suspended = true),
         )
 
         val leech = spoken(state).candidates.single { it.card.id == "w03" }

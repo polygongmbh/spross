@@ -35,7 +35,6 @@ class ReplayTests {
 
         val sched = state.scheduling.getValue("w01")
         assertEquals(5, sched.log.size)
-        assertEquals(2, sched.lapses) // the introducing Again is no lapse
         assertReplays(sched)
     }
 

@@ -31,6 +31,8 @@ internal data class DecodedBox(
     val ownWords: List<OwnWord>,
     val reportedIssues: Map<String, ReportedIssue>,
     val lastExportAt: Instant?,
+    /** The lifetime lapse count v1 wrote per card — read by the leech sweep alone. */
+    val lapses: Map<String, Int>,
 )
 
 /** Read one `box-<target>.json` as the build that wrote it meant it. */
@@ -127,6 +129,7 @@ internal fun BoxDocument.toDecoded(): DecodedBox {
         ownWords = ownWords.map { it.toDomain() },
         reportedIssues = reportedIssues.associate { it.cardId to it.toDomain() },
         lastExportAt = lastExportAt,
+        lapses = scheduling.mapValues { it.value.lapses },
     )
 }
 
@@ -187,7 +190,6 @@ private fun CardDto.toDomain(key: String): CardScheduling {
             stepIndex = stepIndex,
             memory = memory?.let { MemoryState(stability = it.stability, difficulty = it.difficulty) },
             due = due,
-            lapses = lapses,
             suspended = suspended,
             log = log.map { entry ->
                 ReviewLogEntry(

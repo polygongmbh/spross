@@ -20,7 +20,6 @@ class ModelDefaultsTest {
         assertEquals(CardPhase.New, s.phase)
         assertNull(s.memory)
         assertNull(s.due)
-        assertEquals(0, s.lapses)
         assertFalse(s.suspended)
         assertTrue(s.log.isEmpty())
         assertEquals(0, s.reviewCount)

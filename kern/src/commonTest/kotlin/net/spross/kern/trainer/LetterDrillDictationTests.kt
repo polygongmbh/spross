@@ -90,16 +90,15 @@ class LetterDrillDictationTests {
         assertTrue(repeats < 200 / cards.size, "avoiding the last word left $repeats repeats of 200")
     }
 
-    /** The three things that add to a word's weight, and the floor nothing falls below. */
+    /** The two things that add to a word's weight, and the floor nothing falls below. */
     @Test
-    fun theWeightNamesSpellingLapsesAndDifficulty() {
+    fun theWeightNamesSpellingAndDifficulty() {
         fun weight(
             text: String,
             tricky: List<String> = listOf("ch", "ß"),
             difficulty: Double = 0.0,
-            lapses: Int = 0,
         ) = LetterDrill.dictationWeight(
-            LetterDrill.DictationCandidate(LetterDrillFixture.card("x", text), difficulty, lapses),
+            LetterDrill.DictationCandidate(LetterDrillFixture.card("x", text), difficulty),
             tricky,
         )
         assertEquals(1, weight("Haus"), "a clean plain word is the floor, never excluded")
@@ -108,12 +107,10 @@ class LetterDrillDictationTests {
         // one hard letter is not twice the lesson a word mixing two of them is.
         assertEquals(2, weight("Straße"), "one hard grapheme")
         assertEquals(3, weight("Buchstraße"), "two of them, two steps")
-        assertEquals(3, weight("Haus", lapses = 2))
-        assertEquals(2, weight("Haus", difficulty = 8.0))
+        assertEquals(3, weight("Haus", difficulty = 7.0))
         // Each cap holds, so no single term can take the Sprosse over on its own.
         assertEquals(1 + 3, weight("abcd", tricky = listOf("a", "b", "c", "d")))
-        assertEquals(1 + 3, weight("Haus", lapses = 99))
-        assertEquals(1 + 2, weight("Haus", difficulty = 10.0))
+        assertEquals(1 + 3, weight("Haus", difficulty = 10.0))
     }
 
     /**
@@ -126,7 +123,7 @@ class LetterDrillDictationTests {
         val pool = listOf(
             LetterDrill.DictationCandidate(LetterDrillFixture.card("easy", "Haus")),
             LetterDrill.DictationCandidate(LetterDrillFixture.card("spelt", "Buch")),
-            LetterDrill.DictationCandidate(LetterDrillFixture.card("lost", "Sonne"), lapses = 3),
+            LetterDrill.DictationCandidate(LetterDrillFixture.card("lost", "Sonne"), difficulty = 8.0),
         )
         val rng = Random(11)
         val drawn = (1..600).map {

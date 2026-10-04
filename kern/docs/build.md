@@ -100,10 +100,10 @@ Engine contract: `../README.md`.
   flagging what the box already holds; kern favours the known words while at least three
   stand, and spends no randomness where a row offers one word.
   Dictation weighs its draw (`dictationWeight`): a floor of one that shuts nothing out,
-  plus how many of the language's own hard graphemes the word carries (`Alphabet.trickyGlyphs`),
-  its lapses, and FSRS difficulty above the midpoint — each capped, so one leech cannot take
-  a Sprosse over, and all three zero on a clean plain word, where the draw is bit-for-bit the
-  uniform one. The two schedule figures ride in on `DictationCandidate`; kern reads no state.
+  plus how many of the language's own hard graphemes the word carries (`Alphabet.trickyGlyphs`)
+  and FSRS difficulty above the midpoint, which every Again raises — each capped, so one leech
+  cannot take a Sprosse over, and both zero on a clean plain word, where the draw is bit-for-bit
+  the uniform one. The difficulty rides in on `DictationCandidate`; kern reads no state.
   Dictation draws only
   `BoxEngine.arrivedCardIds` through `dictationGradingCard` — it never books a
   review (transcription is not recall; drills are stateless).

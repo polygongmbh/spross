@@ -123,7 +123,6 @@ object LetterDrillAvailability {
                     LetterDrill.DictationCandidate(
                         card = card,
                         difficulty = scheduling?.memory?.difficulty ?: 0.0,
-                        lapses = scheduling?.lapses ?: 0,
                     )
                 },
             gapWords = gapWords,

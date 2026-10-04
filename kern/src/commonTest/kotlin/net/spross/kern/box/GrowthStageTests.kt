@@ -88,13 +88,13 @@ class GrowthStageTests {
     @Test
     fun suspensionOutranksEveryBar() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)))
-        // A leech (8 lapses, suspended) and a hand-suspended settled card
+        // A leech (suspended) and a hand-suspended settled card
         // both stand outside the ladder, not on the Sprosse their stability bought.
         state = Box.inject(
             state,
             Box.sched(
                 "w01", phase = CardPhase.Relearning, stability = 0.2,
-                dueMillis = future, lastReviewMillis = now, lapses = 8, suspended = true,
+                dueMillis = future, lastReviewMillis = now, suspended = true,
             ),
         )
         state = Box.inject(

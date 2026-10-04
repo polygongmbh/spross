@@ -76,7 +76,6 @@ internal object Box {
         stability: Double = 10.0,
         dueMillis: Long,
         lastReviewMillis: Long,
-        lapses: Int = 0,
         suspended: Boolean = false,
         /** Review-log length — presentation-role input ([net.spross.kern.model.presentationRole]). */
         logCount: Int = 1,
@@ -86,7 +85,6 @@ internal object Box {
         stepIndex = if (phase == CardPhase.Learning || phase == CardPhase.Relearning) 0 else null,
         memory = MemoryState(stability = stability, difficulty = 5.0),
         due = instant(dueMillis),
-        lapses = lapses,
         suspended = suspended,
         log = List(logCount) { ReviewLogEntry(instant(lastReviewMillis), Rating.Good) },
     )
