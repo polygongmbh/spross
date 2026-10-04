@@ -11,13 +11,13 @@ class ExposureTests {
     private val now = Box.day1
 
     @Test
-    fun packedFirstThenWeakestMemoryWhateverThePhaseThenUpcoming() {
+    fun queuedFirstThenWeakestMemoryWhateverThePhaseThenUpcoming() {
         var state = Box.state((1..6).map { Box.word(it) })
         state = Box.inject(state, Box.sched("w04", phase = CardPhase.Relearning, stability = 10.0, dueMillis = now, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w03", phase = CardPhase.Learning, stability = 3.0, dueMillis = now, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w01", stability = 2.0, dueMillis = now, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w02", stability = 40.0, dueMillis = now, lastReviewMillis = now))
-        state = state.copy(enqueued = listOf("w05")) // packed; w06 stays unscheduled
+        state = state.copy(queued = listOf("w05")) // queued; w06 stays unscheduled
 
         val ids = Exposure.exposureCards(state, limit = 10).map { it.id }
         assertEquals(listOf("w05", "w01", "w03", "w04", "w02", "w06"), ids)

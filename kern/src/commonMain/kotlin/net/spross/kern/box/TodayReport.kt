@@ -74,8 +74,8 @@ data class TodayReport(
 
 /** What a day with nothing left to do says about the next one. */
 enum class TomorrowNote {
-    /** Words are packed and waiting; the round they arrive in is the answer. */
-    Packed,
+    /** Words are queued and waiting; the round they arrive in is the answer. */
+    Queued,
 
     /** Nothing comes back tomorrow — the day ahead is open ground. */
     Empty,
@@ -87,14 +87,14 @@ enum class TomorrowNote {
 /**
  * Which of the three the done day leaves the learner with.
  *
- * A pack outranks the due count: packing was the learner's own move,
+ * Queued words outrank the due count: queuing was the learner's own move,
  * a finished day composes nothing, and so the next round is where those words turn up —
  * said as a fact about that round, never as something waiting to be answered.
  * [tomorrowDue] is what [BoxEngine.dueCount] reports at [endOfTomorrow],
  * so the horizon is the engine's rather than a second local-midnight derivation.
  */
-fun tomorrowNote(hasPackedWords: Boolean, tomorrowDue: Int): TomorrowNote = when {
-    hasPackedWords -> TomorrowNote.Packed
+fun tomorrowNote(hasQueuedWords: Boolean, tomorrowDue: Int): TomorrowNote = when {
+    hasQueuedWords -> TomorrowNote.Queued
     tomorrowDue == 0 -> TomorrowNote.Empty
     else -> TomorrowNote.Due
 }

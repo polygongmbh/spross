@@ -18,7 +18,7 @@ Engine contract: `../README.md`.
   Calibration is the BUILD's: `StoredBox.join` applies `BoxConfig.product()`, and the file
   holds no configuration at all.
   A word suspended before it was ever answered is an id in `suspended` and has no card entry;
-  `enqueued`, `ownWords` (the document's only content, `../README.md` §6) and `reportedIssues`
+  `queued`, `ownWords` (the document's only content, `../README.md` §6) and `reportedIssues`
   carry the rest.
   Timestamps are epoch seconds, and the engine floors every stamp it mints (`box/Time.kt`,
   `stampOf`), so a live box equals its own reloaded self.

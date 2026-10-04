@@ -84,17 +84,17 @@ object SprossIcons {
     }
 
     /**
-     * A word packed for a round: an inbox, and the arrow dropping into its tray. The closed
+     * A word queued for a round: an inbox, and the arrow dropping into its tray. The closed
      * box is what keeps it from reading as [Import]'s download.
      */
-    val PackIn = stroked("PackIn") {
+    val QueueIn = stroked("QueueIn") {
         inbox()
         moveTo(12f, 6.5f); lineTo(12f, 12f)
         moveTo(9.5f, 9.5f); lineTo(12f, 12f); lineTo(14.5f, 9.5f)
     }
 
-    /** Take a word back out — [PackIn] run in reverse. */
-    val PackOut = stroked("PackOut") {
+    /** Take a word back out — [QueueIn] run in reverse. */
+    val QueueOut = stroked("QueueOut") {
         inbox()
         moveTo(12f, 12f); lineTo(12f, 6.5f)
         moveTo(9.5f, 9f); lineTo(12f, 6.5f); lineTo(14.5f, 9f)
@@ -260,7 +260,7 @@ private fun filled(name: String, path: PathBuilder.() -> Unit): ImageVector =
         path(fill = SolidColor(Color.Black), pathBuilder = path)
     }.build()
 
-/** The box [SprossIcons.PackIn] and [SprossIcons.PackOut] share, with its tray dipped in. */
+/** The box [SprossIcons.QueueIn] and [SprossIcons.QueueOut] share, with its tray dipped in. */
 private fun PathBuilder.inbox() {
     moveTo(4f, 4f); lineTo(20f, 4f); lineTo(20f, 20f); lineTo(4f, 20f); close()
     moveTo(4f, 14f); lineTo(8.5f, 14f)

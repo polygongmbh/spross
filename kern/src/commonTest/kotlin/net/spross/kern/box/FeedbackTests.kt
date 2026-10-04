@@ -124,7 +124,7 @@ class FeedbackTests {
         val (state, half) = added(box(), ownWord("sonne", mapOf("de" to "Sonne")), Box.day1)
         assertTrue(half.isSuggestion)
         assertNull(state.cards[half.id])
-        assertTrue(state.enqueued.isEmpty())
+        assertTrue(state.queued.isEmpty())
         assertEquals(listOf(half), state.ownWords)
     }
 
@@ -325,7 +325,7 @@ class FeedbackTests {
         val cleared = BoxEngine.clearFeedback(state)
 
         assertEquals(state.scheduling, cleared.scheduling)
-        assertEquals(state.enqueued, cleared.enqueued)
+        assertEquals(state.queued, cleared.queued)
         assertEquals(state.cards.keys, cleared.cards.keys)
     }
 

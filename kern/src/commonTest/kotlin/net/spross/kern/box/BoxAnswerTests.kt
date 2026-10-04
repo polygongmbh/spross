@@ -223,12 +223,12 @@ class BoxAnswerTests {
     }
 
     @Test
-    fun introductionCountsTheCardAndDequeues() {
+    fun introductionCountsTheCardAndUnqueues() {
         var state = Box.state(listOf(Box.word(1)))
-        state = BoxEngine.enqueue(state, listOf("w01"))
+        state = BoxEngine.queue(state, listOf("w01"))
         state = Box.answered(state, "w01", Rating.Good, now)
         assertEquals(1, state.scheduling.getValue("w01").log.size) // the answer IS the introduction
-        assertTrue(state.enqueued.isEmpty())
+        assertTrue(state.queued.isEmpty())
 
         // Later answers are reviews, never a second introduction.
         state = Box.answered(state, "w01", Rating.Good, Box.plusSeconds(now, 700))

@@ -24,7 +24,7 @@ Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `d
   sticking. Never by what is due, since a schedule is about when to ASK and nothing is being
   asked. New words are a fixed two turns in five from the very first turn — hearing a word you
   have never answered, target-meaning-target, is the mode's cheapest breadth — with the words
-  you have PACKED leading them, so the mode that asks the least of you still honors the queue
+  you have QUEUED leading them, so the mode that asks the least of you still honors the queue
   the day's round does, and a language you have only just started plays from its basics
   onward rather than from anywhere in the catalog. Suspended words are in the pool:
   hand-suspending a word takes it out of the rotation, which makes the words you set aside

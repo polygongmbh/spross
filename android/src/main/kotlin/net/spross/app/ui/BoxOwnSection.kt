@@ -72,8 +72,8 @@ import net.spross.kern.model.Card
  * waiting for a half the catalog owes; and the notes, which name no word and so suggest
  * none.
  *
- * Own words get no shelf: they are packed the moment they are written, so an area control
- * offering to pack them would say nothing, and a progress bar over five hand-written words
+ * Own words get no shelf: they are queued the moment they are written, so an area control
+ * offering to queue them would say nothing, and a progress bar over five hand-written words
  * less still.
  *
  * Unlike a shelf it is ALWAYS drawn, empty or not: it carries the add button, which is the one

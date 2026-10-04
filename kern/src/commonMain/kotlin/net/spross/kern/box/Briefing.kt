@@ -18,7 +18,7 @@ data class BriefArea(val title: String, val words: List<String>)
  * and written in English — neither of the learner's two languages, and the one every
  * assistant reads best. Those two are NAMED inside it, never translated around.
  *
- * [GrowthStage.Suspended] and unsown unscheduled words are left out; the list is where to start, not a limit.
+ * [GrowthStage.Suspended] and unqueued unscheduled words are left out; the list is where to start, not a limit.
  * [OwnWords] are left out too: this is the one text that leaves the device.
  */
 data class Briefing(
@@ -30,7 +30,7 @@ data class Briefing(
     /** Words scheduled but short of [GrowthStage.Settled] — still in progress, named so a partner goes gently. */
     val allGrowing: List<BriefWord>,
     /** Words the learner sowed and no round has brought in yet — the talk's own subject. */
-    val sown: List<BriefWord>,
+    val queued: List<BriefWord>,
 ) {
     val settledCount: Int get() = settled.sumOf { it.words.size }
 
@@ -51,10 +51,10 @@ data class Briefing(
                 appendLine("WORDS I AM LEARNING RIGHT NOW — ${allGrowing.size}")
                 for (word in allGrowing) appendLine("${word.target} = ${word.source}")
             }
-            if (sown.isNotEmpty()) {
+            if (queued.isNotEmpty()) {
                 appendLine()
                 appendLine("WORDS I CHOSE TO LEARN NEXT — build the story and our talk around these first")
-                for (word in sown) appendLine("${word.target} (${word.source})")
+                for (word in queued) appendLine("${word.target} (${word.source})")
             }
             appendLine()
             appendLine(firstTurn())
@@ -88,7 +88,7 @@ data class Briefing(
         explain only if asked or the mistake repeats.
     """.trimIndent()
 
-    /** The opening turn: something to read. Sown words set the topic when there are any. */
+    /** The opening turn: something to read. Queued words set the topic when there are any. */
     private fun firstTurn(): String = """
         START HERE, before I say anything:
         ${storyTopic()}
@@ -103,7 +103,7 @@ data class Briefing(
 
     /** One line: it is spliced into [firstTurn] before that trims its indent. */
     private fun storyTopic(): String =
-        if (sown.isEmpty()) {
+        if (queued.isEmpty()) {
             "write a short story on a topic suiting the words I am learning."
         } else {
             "write a short story around the words I chose to learn next, " +
@@ -118,7 +118,7 @@ data class Briefing(
      * having to ask for it is the loop half closed.
      */
     private fun harvestAsk(): String {
-        val example = sown.firstOrNull() ?: allGrowing.firstOrNull()
+        val example = queued.firstOrNull() ?: allGrowing.firstOrNull()
         return """
             Export for Spross: the key words that came up repeatedly and were not already
             in the lists above, one per line as `$targetName = $sourceName`, fenced ```spross,
@@ -139,8 +139,8 @@ data class Briefing(
 /** Building a [Briefing] out of a box; reading a conversation's answer back is [Harvest]'s. */
 object Briefings {
 
-    /** How many sown words a brief names, most recently sown first. */
-    const val SOWN_LIMIT: Int = 30
+    /** How many queued words a brief names, most recently queued first. */
+    const val QUEUED_LIMIT: Int = 30
 
     /**
      * Whether there is a conversation to be had: a box with nothing to name briefs nobody.
@@ -165,19 +165,19 @@ object Briefings {
                 )
             }
         val allGrowing = growingCards.map { BriefWord(targetForm(it), it.source.text) }
-        // Only sown words are named, locked phrases included.
-        val sownCards = state.enqueued.asReversed()
+        // Only queued words are named, locked phrases included.
+        val queuedCards = state.queued.asReversed()
             .filter { state.scheduling[it] == null }
             .mapNotNull { state.cards[it] }
             .filter { it.area != OwnWords.AREA }
-            .take(SOWN_LIMIT)
+            .take(QUEUED_LIMIT)
         return Briefing(
             learnerName = learnerName,
             sourceName = languageName(catalog, state.joinStamp.source),
             targetName = languageName(catalog, state.joinStamp.target),
             settled = settled,
             allGrowing = allGrowing,
-            sown = sownCards.map { BriefWord(targetForm(it), it.source.text) },
+            queued = queuedCards.map { BriefWord(targetForm(it), it.source.text) },
         )
     }
 

@@ -18,7 +18,7 @@ class GrowthStageTests {
     @Test
     fun everyStageIsReachable() {
         var state = Box.state((1..8).map { Box.word(it) })
-        state = BoxEngine.enqueue(state, listOf("w02"))
+        state = BoxEngine.queue(state, listOf("w02"))
         state = Box.inject(
             state,
             Box.sched("w03", phase = CardPhase.Learning, stability = 0.5, dueMillis = future, lastReviewMillis = now),

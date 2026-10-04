@@ -24,7 +24,7 @@ class ExtraSessionTests {
         var t = day0
         for (n in 1..count) {
             val id = "w" + n.toString().padStart(2, '0')
-            state = BoxEngine.enqueue(state, listOf(id))
+            state = BoxEngine.queue(state, listOf(id))
             state = Box.answered(state, id, Rating.Easy, t)
             t = Box.plusSeconds(t, 60)
         }
@@ -55,28 +55,28 @@ class ExtraSessionTests {
     }
 
     @Test
-    fun enqueuedLeadInEveryRoundAndDequeueOnAnswer() {
+    fun queuedLeadInEveryRoundAndUnqueueOnAnswer() {
         var state = Box.state((1..10).map { Box.word(it) })
-        state = BoxEngine.enqueue(state, listOf("w03", "w04", "w05"))
+        state = BoxEngine.queue(state, listOf("w03", "w04", "w05"))
         val t = Box.plusSeconds(day0, 600)
 
-        // The pack comes first, in the order it was packed, then the round fills out in
+        // The queue comes first, in the order it was queued, then the round fills out in
         // seed order — one rule, so the day's round and an asked-for one agree.
         val expected = listOf("w03", "w04", "w05", "w01", "w02", "w06", "w07")
         assertEquals(expected, SessionComposer.composeSession(state, t, Box.TZ).newCards)
         assertEquals(expected, SessionComposer.composeRound(state, t, Box.TZ).newCards)
 
-        // Answering introduces them and dequeues.
+        // Answering introduces them and unqueues.
         var after = Box.answered(state, "w03", Rating.Good, Box.plusSeconds(t, 100))
         after = Box.answered(after, "w04", Rating.Good, Box.plusSeconds(t, 200))
-        assertEquals(listOf("w05"), after.enqueued)
+        assertEquals(listOf("w05"), after.queued)
         assertEquals("w05", SessionComposer.composeSession(after, t, Box.TZ).newCards.first())
     }
 
     @Test
     fun aCardOnItsLearningStepIsNotPulledBackBeforeItIsDue() {
         var state = Box.state((1..5).map { Box.word(it) })
-        state = BoxEngine.enqueue(state, listOf("w01"))
+        state = BoxEngine.queue(state, listOf("w01"))
         // w01 missed → the ladder's first 10-minute step, then FSRS.
         state = Box.answered(state, "w01", Rating.Again, day0)
 

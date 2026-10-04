@@ -300,13 +300,13 @@ interface Chrome {
     val boxOwnWordComment: String
     /** What the form says while the note is all there is: nothing is being learned. */
     val boxOwnWordExplainerRemark: String
-    val a11yBoxShelfPack: String          // %d
-    val a11yBoxShelfPacked: String
+    val a11yBoxShelfQueue: String          // %d
+    val a11yBoxShelfQueued: String
     /** The jump from a search hit to the shelf the word lives on. */
     val boxCardShowInBox: String
-    val boxCardPack: String
-    val boxCardUnpack: String
-    val a11yBoxShelfUnpack: String
+    val boxCardQueue: String
+    val boxCardUnqueue: String
+    val a11yBoxShelfUnqueue: String
     val boxCardQueued: String
     val a11yBoxCardSuspended: String
     val boxCardUnsuspend: String
@@ -473,7 +473,7 @@ interface Chrome {
     /** Which of the two a round names is [net.spross.kern.session.SessionOffer.summaryParts]'. */
     val homeTallyAhead: String          // %d
     val homeTallyAheadOne: String
-    val homeDonePacked: String
+    val homeDoneQueued: String
     val homeDoneTomorrowFresh: String
     val homeDoneTomorrowDue: String       // %d
     val homeDoneTomorrowDueOne: String    // %d

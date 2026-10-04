@@ -3,22 +3,22 @@ import SprossKern
 
 /// One word as the box lists it: its picture, the target citation over the word
 /// the learner already knows, and its standing. The row itself is the audio
-/// control — no speaker icon competing with the unsuspend/pack controls and the
+/// control — no speaker icon competing with the unsuspend/queue controls and the
 /// phrase text for width; tapping anywhere plain speaks it (`pronounceOnTap`,
 /// shared with the produce-narration lines in `SessionView+Audio`). The one
 /// exception is a crossed-out speaker beside a word neither a recording nor
 /// the device's voice can say — there the tap does nothing, and the row must
 /// not promise otherwise.
 ///
-/// `pack` and `showInBox` are the row's two variations, and both belong to the
+/// `queue` and `showInBox` are the row's two variations, and both belong to the
 /// search: a hit was reached by name rather than off a shelf, so it is the one
-/// place the word can be packed alone and the one place its shelf is worth
-/// jumping to. Where a word can be packed on its own —
+/// place the word can be queued alone and the one place its shelf is worth
+/// jumping to. Where a word can be queued on its own —
 /// a search hit, which the learner went looking for by name — the "new" badge
 /// gives its place to that offer, and a word already queued there answers
 /// with a tappable tray icon of its own, taking it back out the same way it
 /// went in. In the area list the shelf's own control does both instead
-/// (`BoxAreaSection.packControl`): a queued row states so with the same tray
+/// (`BoxAreaSection.queueControl`): a queued row states so with the same tray
 /// icon, plain rather than tappable.
 ///
 /// A long press opens everything that can be done to the word (`BoxRowMenu`);
@@ -26,7 +26,7 @@ import SprossKern
 struct BoxCardRow: View {
     let model: AppModel
     let card: Card
-    var pack: (() -> Void)?
+    var queue: (() -> Void)?
     /// Handed on to the long-press menu, where a search hit earns its jump to the
     /// shelf it lives on (`BoxRowMenu.showInBox`).
     var showInBox: (() -> Void)?
@@ -157,7 +157,7 @@ struct BoxCardRow: View {
                     .lineLimit(1)
             }
             // why: the word's two lines are the one element that speaks; the row's
-            // unsuspend and pack controls stay elements of their own beside it.
+            // unsuspend and queue controls stay elements of their own beside it.
             .accessibilityElement(children: .combine)
             .pronounceOnTap(pronounce)
             Spacer(minLength: Theme.spacing.sm)
@@ -208,7 +208,7 @@ struct BoxCardRow: View {
     /// this row's own.
     @ViewBuilder
     private var standing: some View {
-        switch onEnum(of: model.cardRowState(card.id, packOffered: pack != nil)) {
+        switch onEnum(of: model.cardRowState(card.id, queueOffered: queue != nil)) {
         case .suspended:
             Text(verbatim: "💤")
                 .accessibilityLabel("a11y.box.card.suspended")
@@ -216,16 +216,16 @@ struct BoxCardRow: View {
                 model.setSuspended(cardID: card.id, suspended: false)
             }
             .pill(Theme.colors.accent)
-        case .packOffered:
-            if let pack {
-                PackButton(direction: .in, label: "box.card.pack", action: pack)
+        case .queueOffered:
+            if let queue {
+                QueueButton(direction: .in, label: "box.card.queue", action: queue)
             }
-        case .packed(let packed):
-            if packed.removalOffered {
+        case .queued(let queued):
+            if queued.removalOffered {
                 // Direct tap, no confirmation: nothing has been studied yet, so taking a
                 // queued word back out costs it nothing (mirrors "box.card.unsuspend"'s own direct tap).
-                PackButton(direction: .out, label: "box.card.unpack") {
-                    model.dequeue(cardID: card.id)
+                QueueButton(direction: .out, label: "box.card.unqueue") {
+                    model.unqueue(cardID: card.id)
                 }
             } else {
                 // A pill, not an icon: a bare tray glyph reads as a control here too,
@@ -251,7 +251,7 @@ struct BoxCardRow: View {
 }
 
 /// Which way a word is moving between the shelf and the round it is queued for.
-enum PackDirection {
+enum QueueDirection {
     case `in`
     case out
 }
@@ -262,8 +262,8 @@ enum PackDirection {
 /// Ochre going IN, where coming back out is clay: the pair reads as two directions
 /// rather than one control. Neither wears a growth-ladder color — a queued word is
 /// not on the ladder yet, and the clay is the queued pill's own.
-struct PackButton: View {
-    let direction: PackDirection
+struct QueueButton: View {
+    let direction: QueueDirection
     let label: LocalizedStringKey
     let action: () -> Void
 

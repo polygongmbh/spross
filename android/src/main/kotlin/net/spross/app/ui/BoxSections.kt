@@ -83,7 +83,7 @@ internal fun GroupHeader(
 
 /**
  * One area as a single foldable card: its heading and bar, its words underneath once opened.
- * Packing sits BESIDE the heading as its own tap target — it must never cost the fold.
+ * Queuing sits BESIDE the heading as its own tap target — it must never cost the fold.
  */
 @Composable
 internal fun AreaSection(
@@ -99,7 +99,7 @@ internal fun AreaSection(
     val chrome = model.chrome
     val box = model.box ?: return
     // why: both numbers come from the one pass the model already took — asked here,
-    // each was a scan and a sort of the whole box, per shelf, per frame. The pack
+    // each was a scan and a sort of the whole box, per shelf, per frame. The queue
     // itself still derives its ids from the state it is about to change, so the
     // count and the action cannot come apart.
     val counts = model.shelfCounts[area]
@@ -112,10 +112,10 @@ internal fun AreaSection(
     // once the words hang under it, so it never bleeds past the card's own corners.
     val headingShape = if (expanded) shape.copy(bottomStart = CornerSize(0), bottomEnd = CornerSize(0)) else shape
     val chevronTurn by animateFloatAsState(if (expanded) 180f else 0f, label = "areaChevron")
-    // Nothing left to pack or unpack, and every active card has settled —
-    // the one condition that swaps the pack control's mark jade and leaves the
+    // Nothing left to queue or unqueue, and every active card has settled —
+    // the one condition that swaps the queue control's mark jade and leaves the
     // chip's bar/counts with nothing to say (Part D).
-    val fullyPackedAndSettled = (counts?.packable ?: 0) == 0 && (counts?.queued ?: 0) == 0 &&
+    val fullyQueuedAndSettled = (counts?.queueable ?: 0) == 0 && (counts?.queued ?: 0) == 0 &&
         (stats?.fullySettled ?: false)
 
     Column(Modifier.fillMaxWidth().panel(shape)) {
@@ -137,7 +137,7 @@ internal fun AreaSection(
                 subtitle = naming.subtitle(area),
                 stats = stats,
                 chrome = chrome,
-                hideProgress = fullyPackedAndSettled,
+                hideProgress = fullyQueuedAndSettled,
                 modifier = Modifier.weight(1f),
             )
             Column(
@@ -145,12 +145,12 @@ internal fun AreaSection(
                 verticalArrangement = Arrangement.SpaceBetween,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                PackControl(chrome, counts?.packable ?: 0, counts?.queued ?: 0,
+                QueueControl(chrome, counts?.queueable ?: 0, counts?.queued ?: 0,
                     fullySettled = stats?.fullySettled ?: false,
-                    onPack = {
-                        model.updateBox { BoxEngine.enqueue(it, BoxBrowser.enqueueableCardIds(it, area)) }
+                    onQueue = {
+                        model.updateBox { BoxEngine.queue(it, BoxBrowser.queueableCardIds(it, area)) }
                     },
-                    onUnpack = { model.updateBox { BoxEngine.dequeueArea(it, area) } })
+                    onUnqueue = { model.updateBox { BoxEngine.unqueueArea(it, area) } })
                 Icon(
                     SprossIcons.ChevronDown,
                     contentDescription = null,
@@ -173,32 +173,32 @@ internal fun AreaSection(
 }
 
 /**
- * What packing this shelf would add, as a control: a plus while there is anything left to
+ * What queuing this shelf would add, as a control: a plus while there is anything left to
  * take in, a settled check once there is not. The count rides in the spoken label rather
  * than on the button's face, which keeps the heading one line tall.
  *
- * Once nothing is left to pack, a shelf holding MORE than a couple words still queued for
- * a round offers to take them back out AS A BATCH ([onUnpack]) — the area is the unit this
- * control acts on. Below that (1–2 queued, nothing packable) the bulk control steps aside
- * for the per-word row's own unpack, but the shelf still wears the settled check.
+ * Once nothing is left to queue, a shelf holding MORE than a couple words still queued for
+ * a round offers to take them back out AS A BATCH ([onUnqueue]) — the area is the unit this
+ * control acts on. Below that (1–2 queued, nothing queueable) the bulk control steps aside
+ * for the per-word row's own unqueue, but the shelf still wears the settled check.
  *
  * [fullySettled] turns the settled check jade instead of green once every active card in the
  * area has settled AND nothing is queued — the same mark, not a second indicator
  * (kern `AreaStatistics.fullySettled`).
  */
 @Composable
-internal fun PackControl(
+internal fun QueueControl(
     chrome: Chrome,
     count: Int,
     queuedCount: Int,
     fullySettled: Boolean,
-    onPack: () -> Unit,
-    onUnpack: () -> Unit,
+    onQueue: () -> Unit,
+    onUnqueue: () -> Unit,
 ) {
     if (count > 0) {
-        PackButton(PackDirection.In, chrome.a11yBoxShelfPack.format(count), onPack)
+        QueueButton(QueueDirection.In, chrome.a11yBoxShelfQueue.format(count), onQueue)
     } else if (queuedCount > 2) {
-        PackButton(PackDirection.Out, chrome.a11yBoxShelfUnpack.format(queuedCount), onUnpack)
+        QueueButton(QueueDirection.Out, chrome.a11yBoxShelfUnqueue.format(queuedCount), onUnqueue)
     } else {
         Text(
             SEAL,
@@ -207,7 +207,7 @@ internal fun PackControl(
             modifier = Modifier
                 .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
                 .padding(Theme.spacing.md)
-                .semantics { contentDescription = chrome.a11yBoxShelfPacked },
+                .semantics { contentDescription = chrome.a11yBoxShelfQueued },
         )
     }
 }
@@ -227,8 +227,8 @@ fun AreaChip(
     stats: AreaStatistics?,
     chrome: Chrome,
     modifier: Modifier = Modifier,
-    /** An area fully packed AND settled swaps its header mark for a jade one
-     * (the screen's own `PackControl`) and has nothing left for the counts/bar to
+    /** An area fully queued AND settled swaps its header mark for a jade one
+     * (the screen's own `QueueControl`) and has nothing left for the counts/bar to
      * say — so they step aside, leaving just the emoji/name/subtitle. */
     hideProgress: Boolean = false,
 ) {

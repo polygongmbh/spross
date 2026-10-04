@@ -8,7 +8,7 @@ import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
 
 /**
- * Join-filter inventory: schedules and enqueued entries of non-joining cards turn
+ * Join-filter inventory: schedules and queued entries of non-joining cards turn
  * inert on a source switch — never pruned — and revive on switch-back. The phrase
  * unlock gate reads component schedules by card id, so phrases stay unlocked.
  */
@@ -68,13 +68,13 @@ class SourceSwitchTests {
     }
 
     @Test
-    fun enqueuedEntriesSurviveInertAndRevive() {
+    fun queuedEntriesSurviveInertAndRevive() {
         var de = Box.state(deJoin)
-        de = BoxEngine.enqueue(de, listOf("w02"))
-        assertEquals(listOf("w02"), de.enqueued)
+        de = BoxEngine.queue(de, listOf("w02"))
+        assertEquals(listOf("w02"), de.queued)
 
         val en = BoxEngine.rejoin(de, enJoin, enStamp)
-        assertEquals(listOf("w02"), en.enqueued) // kept, just not eligible
+        assertEquals(listOf("w02"), en.queued) // kept, just not eligible
         assertFalse("w02" in Box.candidates(en).newCards)
 
         val back = BoxEngine.rejoin(en, deJoin, Box.stamp)

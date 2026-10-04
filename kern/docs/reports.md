@@ -29,8 +29,8 @@ The read models a surface draws the box from (the day, one card's standing, the 
   the rarest part last, non-zero parts only;
   empty means nothing nameable was answered (an unworked day has a state, not a tally),
   and the surface says so plainly rather than printing three zeros.
-  `tomorrowNote(hasPackedWords, tomorrowDue)` picks `Packed` / `Empty` / `Due`:
-  a pack outranks the due count, because a finished day composes nothing
+  `tomorrowNote(hasQueuedWords, tomorrowDue)` picks `Queued` / `Empty` / `Due`:
+  queued words outrank the due count, because a finished day composes nothing
   and the round after it is where those words arrive;
   `tomorrowDue` is `dueCount` at `endOfTomorrow`, never a second local-midnight derivation.
   The kinds and their order are the rule;
@@ -60,7 +60,7 @@ The read models a surface draws the box from (the day, one card's standing, the 
 - **`AreaGrowth`** (`growthByArea`) is that read folded per area:
   each met word in exactly one tier of the same `StageCounts` the box's statistics hold
   (fresh / growing / settled / matured),
-  most-grown first, with what is packed and what lapsed;
+  most-grown first, with what is queued and what lapsed;
   a tree's height comes from how many words its area has met.
   `grownArea` names the area a round worked hardest as a `TreeTransition` — before and now,
   and which ranks the round moved — and `growthHeadline` the one claim the summary may make
@@ -82,17 +82,17 @@ The read models a surface draws the box from (the day, one card's standing, the 
   `defaultExpandedGroupId` opens the first section holding an area with ACTIVE cards —
   where the learner left off — else the first section, so the browser never opens fully folded.
   `cardsInArea` is the shelf in seed order.
-  `enqueueableCardIds` is what packing that shelf would take in — unscheduled, not already queued,
-  which are `enqueue`'s own guards asked in advance — and `enqueueableCount` is its size,
-  so the number a shelf promises and the pack it performs cannot come from two different rules.
+  `queueableCardIds` is what queuing that shelf would take in — unscheduled, not already queued,
+  which are `queue`'s own guards asked in advance — and `queueableCount` is its size,
+  so the number a shelf promises and the queuing it performs cannot come from two different rules.
   Missing components are the one thing it does not count:
-  enqueuing a phrase also prepends the components it lacks,
-  and where those live on another shelf a pack takes in more than the count said (`../../docs/backlog.md`).
+  queuing a phrase also prepends the components it lacks,
+  and where those live on another shelf, queuing it takes in more than the count said (`../../docs/backlog.md`).
 - **`CardRowState`** (`BoxBrowser.cardRowState`) is what one listed card states besides the word itself:
-  `Suspended`, `PackOffered`, `Packed`, `Plain`, or `Standing(stage)`.
-  `packOffered` is the caller's context — a surface that packs a SINGLE word,
+  `Suspended`, `QueueOffered`, `Queued`, `Plain`, or `Standing(stage)`.
+  `queueOffered` is the caller's context — a surface that queues a SINGLE word,
   which is a search hit the learner went looking for by name;
-  an area listing packs by the shelf, so an unexposed card there is `Plain`:
+  an area listing queues by the shelf, so an unexposed card there is `Plain`:
   NEW is the ABSENCE of a standing, never a standing of its own.
   `Standing` carries the card's `ActiveStage` (fresh / growing / settled / lapsed) rather than a collapsed boolean —
   Fresh, Growing and Settled can no longer be told apart from one flag,

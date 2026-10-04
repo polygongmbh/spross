@@ -84,7 +84,7 @@ object SessionComposer {
      * The day is done once nothing is due, nothing is about to be, and the learner has worked
      * a round's worth: "nothing more right now" is a real answer, and manufacturing another
      * round would turn every visit into a treadmill. Nothing composes past that — not even
-     * cards the learner packed themselves, which an explicit ask deserves an explicit round
+     * cards the learner queued themselves, which an explicit ask deserves an explicit round
      * for ([composeExtraSession]) rather than a half-sized one behind a finished screen.
      */
     fun composeSession(state: BoxState, nowEpochMillis: Long, tzId: String): SessionPlan {
@@ -111,7 +111,7 @@ object SessionComposer {
      * dragged forward from days out.
      *
      * Due cards oldest-first (ties by id), review slots capped at `sessionCap − growthReserve`,
-     * then new candidates fill the remaining capacity — enqueued cards lead, unlocked phrases
+     * then new candidates fill the remaining capacity — queued cards lead, unlocked phrases
      * next, then seed-order cards. A short round is filled out to [SESSION_FLOOR_CARDS]
      * (see [fillOut]).
      *

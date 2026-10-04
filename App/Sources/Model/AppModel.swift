@@ -70,7 +70,7 @@ final class AppModel {
     /// The Box browser's shelves, in manifest order. Derived from `stats`, and
     /// the screen reads it three times per redraw.
     private(set) var areaGroupSections: [AreaGroupSection] = []
-    /// What each shelf's two pack controls would do, every area at once
+    /// What each shelf's two queue controls would do, every area at once
     /// (`BoxBrowser.shelfCounts`) — one answer per shelf is a walk of the whole
     /// box, and the browser draws both numbers on every one of them.
     private(set) var shelves: [String: ShelfCounts] = [:]

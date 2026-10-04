@@ -17,10 +17,10 @@ import net.spross.kern.model.CardScheduling
  * how far it once got.
  */
 enum class GrowthStage {
-    /** No schedule, and not packed either — a word the box holds and has never opened. */
+    /** No schedule, and not queued either — a word the box holds and has never opened. */
     Unscheduled,
 
-    /** Packed by the learner, waiting for a round to bring it in ([BoxEngine.enqueue]). */
+    /** Queued by the learner, waiting for a round to bring it in ([BoxEngine.queue]). */
     Queued,
 
     /**
@@ -103,14 +103,14 @@ internal fun activeStageOf(sched: CardScheduling): ActiveStage = when {
  * current join does not carry is not in the box and has no standing in it.
  */
 internal fun boxGrowth(state: BoxState, nowEpochMillis: Long, tzId: String): List<CardGrowth> {
-    val queued = state.enqueued.toSet()
+    val queued = state.queued.toSet()
     val today = dayKey(nowEpochMillis, tzId)
     return Inventory.joinedCards(state).map { growthOf(state, it.id, queued, today, tzId) }
 }
 
 /** [boxGrowth] for one area's cards alone — a summary drawing one tree walks only that tree. */
 internal fun areaGrowth(state: BoxState, area: String, nowEpochMillis: Long, tzId: String): List<CardGrowth> {
-    val queued = state.enqueued.toSet()
+    val queued = state.queued.toSet()
     val today = dayKey(nowEpochMillis, tzId)
     return state.cards.values.filter { it.area == area }
         .map { growthOf(state, it.id, queued, today, tzId) }
@@ -131,7 +131,7 @@ internal fun cardGrowthOf(
     tzId: String,
 ): CardGrowth? {
     if (cardId !in state.cards) return null
-    return growthOf(state, cardId, state.enqueued.toSet(), dayKey(nowEpochMillis, tzId), tzId)
+    return growthOf(state, cardId, state.queued.toSet(), dayKey(nowEpochMillis, tzId), tzId)
 }
 
 private fun growthOf(

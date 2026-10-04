@@ -7,7 +7,7 @@ fun AppModel.startSession() = begin(SessionIntent.Start)
 
 /**
  * The done card's extra round: kern composes the mixing round itself — everything due,
- * packed vocab within the budget, then pull-aheads — and no-ops when that is empty.
+ * queued vocab within the budget, then pull-aheads — and no-ops when that is empty.
  */
 fun AppModel.startExtraSession() = begin(SessionIntent.StartExtra)
 

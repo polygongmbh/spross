@@ -165,11 +165,11 @@ class TodayReportTests {
         assertEquals(emptyList(), tallyParts(introduced = 0, reviewed = 0, settled = 0))
     }
 
-    /** Packed words outrank the due count: the round they arrive in is the answer to them. */
+    /** Queued words outrank the due count: the round they arrive in is the answer to them. */
     @Test
     fun theDayAheadIsNamedByWhatIsWaitingForIt() {
-        assertEquals(TomorrowNote.Packed, tomorrowNote(hasPackedWords = true, tomorrowDue = 5))
-        assertEquals(TomorrowNote.Empty, tomorrowNote(hasPackedWords = false, tomorrowDue = 0))
-        assertEquals(TomorrowNote.Due, tomorrowNote(hasPackedWords = false, tomorrowDue = 5))
+        assertEquals(TomorrowNote.Queued, tomorrowNote(hasQueuedWords = true, tomorrowDue = 5))
+        assertEquals(TomorrowNote.Empty, tomorrowNote(hasQueuedWords = false, tomorrowDue = 0))
+        assertEquals(TomorrowNote.Due, tomorrowNote(hasQueuedWords = false, tomorrowDue = 5))
     }
 }

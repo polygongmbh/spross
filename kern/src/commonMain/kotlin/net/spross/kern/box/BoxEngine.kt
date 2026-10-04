@@ -49,12 +49,12 @@ object BoxEngine {
     )
 
     /**
-     * Take in a word the learner wrote and pack it. Packing is not a separate step:
+     * Take in a word the learner wrote and queue it. Queuing is not a separate step:
      * they named this word themselves, so waiting for growth to walk to it would be
      * absurd. A word already known by id leaves the state untouched.
      *
      * One written in only ONE of the profile's languages is still taken in — it is a
-     * SUGGESTION ([OwnWord]) — but joins no card and so is never packed or scheduled.
+     * SUGGESTION ([OwnWord]) — but joins no card and so is never queued or scheduled.
      */
     fun addOwnWord(state: BoxState, word: OwnWord, nowEpochMillis: Long): BoxState {
         require(OwnWords.owns(word.id)) { "own word id must start with \"${OwnWords.ID_PREFIX}\"" }
@@ -66,7 +66,7 @@ object BoxEngine {
             addedAt = stampOf(nowEpochMillis),
         )
         val next = state.copy(ownWords = words, cards = rebuilt(state, words))
-        return if (next.cards[word.id] == null) next else enqueue(next, listOf(word.id))
+        return if (next.cards[word.id] == null) next else queue(next, listOf(word.id))
     }
 
     /**
@@ -77,7 +77,7 @@ object BoxEngine {
      *
      * [OwnWord.addedAt] is the stored one, never the incoming: it records when the word
      * was WRITTEN, and editing it is not writing it again. An edit that fills in the
-     * missing half turns a suggestion into a card and packs it, exactly as [addOwnWord]
+     * missing half turns a suggestion into a card and queues it, exactly as [addOwnWord]
      * would have; one that empties a half turns the card back into a suggestion, and its
      * schedule stays behind untouched, inert, the same way a source switch leaves one.
      * An id the learner never wrote leaves the state alone.
@@ -90,7 +90,7 @@ object BoxEngine {
         val next = state.copy(ownWords = words, cards = rebuilt(state, words))
         val joinsNow = next.cards[word.id] != null
         return if (joinsNow && next.scheduling[word.id] == null) {
-            enqueue(next, listOf(word.id))
+            queue(next, listOf(word.id))
         } else {
             next
         }
@@ -108,7 +108,7 @@ object BoxEngine {
             ownWords = words,
             cards = rebuilt(state, words),
             scheduling = state.scheduling - wordId,
-            enqueued = state.enqueued.filterNot { it == wordId },
+            queued = state.queued.filterNot { it == wordId },
             reportedIssues = state.reportedIssues - wordId,
         )
     }
@@ -125,8 +125,8 @@ object BoxEngine {
      * suspension where burying one takes the word out of the rotation unasked.
      *
      * A suggestion carries no schedule at all, so merging one is the catalog answering what
-     * the learner wrote it for, and the catalog word is packed in its place — by [enqueue],
-     * which is what already declines to pack a card the box has answered.
+     * the learner wrote it for, and the catalog word is queued in its place — by [queue],
+     * which is what already declines to queue a card the box has answered.
      *
      * The own word goes with its card. Nothing merges a catalog word into another
      * ([OwnWords.owns] guards the source), and nothing merges into a card this profile does
@@ -150,14 +150,14 @@ object BoxEngine {
             scheduling = state.scheduling - wordId + listOfNotNull(winner?.let { cardId to it }),
             // why: the learner asked for this word once and the catalog now has it, so the
             // ask moves across rather than being spent on a word that is gone.
-            enqueued = state.enqueued.map { if (it == wordId) cardId else it }.distinct(),
+            queued = state.queued.map { if (it == wordId) cardId else it }.distinct(),
             reportedIssues = state.reportedIssues.let { filed ->
                 val moved = filed[wordId] ?: return@let filed
                 if (cardId in filed) filed - wordId
                 else filed - wordId + (cardId to moved.copy(cardId = cardId))
             },
         )
-        return enqueue(merged, listOf(cardId))
+        return queue(merged, listOf(cardId))
     }
 
     /**
@@ -239,20 +239,20 @@ object BoxEngine {
                 .associateBy { it.id }
 
     /**
-     * Append card ids to the user priority queue, stored BACK TO FRONT. Enqueuing a phrase
+     * Append card ids to the user priority queue, stored BACK TO FRONT. Queuing a phrase
      * auto-prepends its missing (unscheduled) components ahead of it. Unknown/non-joining ids,
-     * already-scheduled cards, and duplicates are skipped. Enqueued cards lead composition
-     * most recently packed first (`Growth.enqueuedEligible`) but respect the per-round cap: a
-     * pack enrolls and drips in at the growth rate, it is not dumped at once.
+     * already-scheduled cards, and duplicates are skipped. Queued cards lead composition
+     * most recently queued first (`Growth.queuedEligible`) but respect the per-round cap: a
+     * queued batch enrolls and drips in at the growth rate, it is not dumped at once.
      *
      * [cardIds] is stored in REVERSE so that reversal reads it back in the order it was given:
-     * packing a whole shelf hands in its words in seed order, and without this a shelf packed
+     * queuing a whole shelf hands in its words in seed order, and without this a shelf queued
      * in one call would introduce backwards — its last word first — the moment anything else
-     * was ever packed on top of it. A single word packed on its own is unaffected either way.
+     * was ever queued on top of it. A single word queued on its own is unaffected either way.
      */
-    fun enqueue(state: BoxState, cardIds: List<String>): BoxState {
-        val queued = state.enqueued.toMutableList()
-        val seen = state.enqueued.toMutableSet()
+    fun queue(state: BoxState, cardIds: List<String>): BoxState {
+        val queued = state.queued.toMutableList()
+        val seen = state.queued.toMutableSet()
 
         fun append(id: String) {
             if (id in seen || state.cards[id] == null) return
@@ -265,31 +265,31 @@ object BoxEngine {
             state.cards[id]?.components?.forEach(::append)
             append(id)
         }
-        return state.copy(enqueued = queued)
+        return state.copy(queued = queued)
     }
 
     /**
-     * Take a packed word back out of the queue before a round has brought it in — the
-     * reverse of [enqueue]. A card a round already introduced has left the queue on its
+     * Take a queued word back out of the queue before a round has brought it in — the
+     * reverse of [queue]. A card a round already introduced has left the queue on its
      * own (`Answering.answer`), so this is a no-op then, and a no-op for any id the queue
-     * never held. Unpacking a phrase leaves its auto-prepended component words queued —
+     * never held. Unqueuing a phrase leaves its auto-prepended component words queued —
      * they are separate cards the learner may still want.
      */
-    fun dequeue(state: BoxState, cardId: String): BoxState {
-        if (cardId !in state.enqueued) return state
-        return state.copy(enqueued = state.enqueued.filterNot { it == cardId })
+    fun unqueue(state: BoxState, cardId: String): BoxState {
+        if (cardId !in state.queued) return state
+        return state.copy(queued = state.queued.filterNot { it == cardId })
     }
 
     /**
-     * Take a whole area's queued words back out at once — the reverse of packing a shelf,
-     * and [dequeue] applied to every card [BoxBrowser.dequeueableCardIds] lists for it.
+     * Take a whole area's queued words back out at once — the reverse of queuing a shelf,
+     * and [unqueue] applied to every card [BoxBrowser.unqueueableCardIds] lists for it.
      * A card belonging to another area that rode in as a phrase's component is untouched,
-     * same as a single [dequeue] leaves it: it is a separate word the learner may still want.
+     * same as a single [unqueue] leaves it: it is a separate word the learner may still want.
      */
-    fun dequeueArea(state: BoxState, area: String): BoxState {
-        val leaving = state.enqueued.filterTo(mutableSetOf()) { state.cards[it]?.area == area }
+    fun unqueueArea(state: BoxState, area: String): BoxState {
+        val leaving = state.queued.filterTo(mutableSetOf()) { state.cards[it]?.area == area }
         if (leaving.isEmpty()) return state
-        return state.copy(enqueued = state.enqueued.filterNot { it in leaving })
+        return state.copy(queued = state.queued.filterNot { it in leaving })
     }
 
     /**
@@ -345,7 +345,7 @@ object BoxEngine {
 
     /**
      * Apply one answer to a card. Introduction = the card's first answer: creates its
-     * schedule, counts it introduced, and dequeues it. Any Again past introduction
+     * schedule, counts it introduced, and unqueues it. Any Again past introduction
      * counts a lapse — tracked for drill/listening scoring, never auto-suspending;
      * a lapse grows the wait before its next try instead of repeating the same short
      * one, new word or lapsed alike ([net.spross.kern.fsrs.FsrsScheduler]).

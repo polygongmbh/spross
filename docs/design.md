@@ -56,7 +56,7 @@ rephrase it as an availability statement or a question.
   (`box.card` vs `box.shelf`, `home.offer` vs `home.done`);
   cross-surface keys go to `common.`, accessibility-only keys to `a11y.`.
   Keys name the domain's word, not the code's —
-  known/learning over source/target, Sprosse over rung, pack over enqueue.
+  known/learning over source/target, Sprosse over rung, queue over pack.
   No key is also the stem of a family that means something else.
 - The String Catalog is the one home for copy on both phones:
   Android's tables are generated from it (`scripts/chrome.py`),
@@ -200,7 +200,7 @@ What licenses a second component is a parameter attempted and found not to carry
   its marks spread along its finer wood, never the trunk or first limbs, fruit and blossom on the levelest limbs,
   no two of them touching while the crown has room, and only wood carrying a shown mark is drawn —
   a bud hangs beside a grown mark, never on a twig of its own.
-  A met word hangs as a bud until it settles into a leaf; merely packed hangs nothing.
+  A met word hangs as a bud until it settles into a leaf; merely queued hangs nothing.
   Height comes from how many words the area has met, never from catalog count.
   An unopened area is one faded seedling.
   A lapse drops leaves, never shrinks the tree.
@@ -208,8 +208,8 @@ What licenses a second component is a parameter attempted and found not to carry
   Accessibility: canvas hidden, each tree has tap target + spoken split,
   blossom differs from leaf in shape before color, figures spelled out beneath.
   Nothing moves.
-- **Box**: browse by area, pack words, unpack, revive suspended.
-  The area is the unit for packing and unpacking
+- **Box**: browse by area, queue words, unqueue, revive suspended.
+  The area is the unit for queuing and unqueuing
   (`../kern/README.md` §6 owns the mechanics).
   - **Own content**: a reported own word appears once, among the words;
     the reports list catalog cards only.

@@ -54,7 +54,7 @@ class LegacyStoreTests {
         assertEquals(1, sched.log.size)
         // the stored due is kept — it is the one thing a replay cannot work out
         assertEquals(Instant.parse("2026-07-02T12:00:00Z"), sched.due)
-        assertEquals(listOf("w2"), box.enqueued)
+        assertEquals(listOf("w2"), box.queued)
     }
 
     /** Reading routes by the version the file declares, and says when it converted one. */

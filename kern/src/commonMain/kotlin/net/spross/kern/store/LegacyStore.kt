@@ -35,7 +35,7 @@ internal object LegacyStore {
         }
         return StoredBox(
             scheduling = scheduling.filterValues { it.log.isNotEmpty() || it.suspended },
-            enqueued = box.enqueued,
+            queued = box.queued,
             ownWords = box.ownWords,
             reportedIssues = box.reportedIssues,
             lastExportAt = box.lastExportAt,

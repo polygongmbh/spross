@@ -122,7 +122,7 @@ object SessionRun {
         endless = false, finished = true, active = false, joinStamp = null,
     )
 
-    /** The box changed outside the run (a word packed, settings edited) — carry it in. */
+    /** The box changed outside the run (a word queued, settings edited) — carry it in. */
     fun withBox(state: SessionRunState, box: BoxState): SessionRunState = state.copy(box = box)
 
     fun reduce(

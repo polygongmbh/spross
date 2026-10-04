@@ -37,22 +37,22 @@ internal object Growth {
         card.kind != CardKind.Phrase || card.components.isEmpty() || isPhraseUnlocked(state, card)
 
     /**
-     * Enqueued card ids that could enter now: joined, unscheduled, not locked — most
-     * recently packed first.
+     * Queued card ids that could enter now: joined, unscheduled, not locked — most
+     * recently queued first.
      *
-     * `state.enqueued` is stored oldest-first (append-only), so this reverses it. A pack
-     * on top of an existing queue is the learner's freshest ask; what they packed last is
+     * `state.queued` is stored oldest-first (append-only), so this reverses it. Queuing
+     * on top of an existing queue is the learner's freshest ask; what they queued last is
      * what they want to see next, ahead of whatever they queued earlier and have not gotten
      * to yet.
      */
-    fun enqueuedEligible(state: BoxState): List<String> = state.enqueued.asReversed().filter { id ->
+    fun queuedEligible(state: BoxState): List<String> = state.queued.asReversed().filter { id ->
         val card = state.cards[id] ?: return@filter false
         state.scheduling[id] == null && isIntroducible(state, card)
     }
 
     /**
      * Candidate selection in card ids, capped by min([budget], [capacity]).
-     * Enqueued cards lead — packing a word is an explicit ask. Unlocked phrases enter next,
+     * Queued cards lead — queuing a word is an explicit ask. Unlocked phrases enter next,
      * then seed-order cards (locked phrases wait for their components).
      */
     /**
@@ -85,8 +85,8 @@ internal object Growth {
         val unlockedPhrases = mutableListOf<String>()
         val newCards = mutableListOf<String>()
 
-        // 1. Enqueued lead — within the new-word budget.
-        for (id in enqueuedEligible(state)) {
+        // 1. Queued lead — within the new-word budget.
+        for (id in queuedEligible(state)) {
             if (slots <= 0) break
             if (!taken.add(id)) continue
             newCards += id

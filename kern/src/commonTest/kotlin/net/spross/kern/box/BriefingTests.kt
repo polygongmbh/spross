@@ -59,21 +59,21 @@ class BriefingTests {
         val brief = brief(box)
         assertEquals(emptyList(), brief.settled.flatMap { it.words })
         assertEquals(emptyList(), brief.allGrowing.map { it.target })
-        assertEquals(emptyList(), brief.sown.map { it.target })
+        assertEquals(emptyList(), brief.queued.map { it.target })
     }
 
     /** The box's most personal content stays on the device, on every list. */
     @Test
     fun ownWordsLeaveTheDeviceNowhere() {
         val own = (1..3).map { Box.word(it, area = OwnWords.AREA) }
-        var box = BoxEngine.enqueue(state(own), listOf("w03"))
+        var box = BoxEngine.queue(state(own), listOf("w03"))
         box = Box.inject(box, settled("w01"))
         box = Box.inject(box, learning("w02"))
 
         val brief = brief(box)
         assertEquals(emptyList(), brief.settled.flatMap { it.words })
         assertEquals(emptyList(), brief.allGrowing.map { it.target })
-        assertEquals(emptyList(), brief.sown.map { it.target })
+        assertEquals(emptyList(), brief.queued.map { it.target })
         assertFalse(Briefings.available(box))
     }
 
@@ -85,45 +85,45 @@ class BriefingTests {
         assertTrue(Briefings.available(Box.inject(fresh, learning("w01"))))
     }
 
-    /** What is next is the learner's own ask: the sown words, and no word of the app's choosing. */
+    /** What is next is the learner's own ask: the queued words, and no word of the app's choosing. */
     @Test
-    fun onlySownWordsAreNamedAsNext() {
-        val box = BoxEngine.enqueue(state(listOf(Box.word(1), Box.word(2), Box.word(3))), listOf("w03"))
+    fun onlyQueuedWordsAreNamedAsNext() {
+        val box = BoxEngine.queue(state(listOf(Box.word(1), Box.word(2), Box.word(3))), listOf("w03"))
 
         val brief = brief(box)
-        assertEquals(listOf("t3"), brief.sown.map { it.target })
+        assertEquals(listOf("t3"), brief.queued.map { it.target })
         assertFalse("t2" in brief.text)
     }
 
-    /** A sown phrase is named before its words have unlocked it — a talk waits on no round. */
+    /** A queued phrase is named before its words have unlocked it — a talk waits on no round. */
     @Test
-    fun aSownPhraseIsNamedWhileStillLocked() {
-        val box = BoxEngine.enqueue(
+    fun aQueuedPhraseIsNamedWhileStillLocked() {
+        val box = BoxEngine.queue(
             state(listOf(Box.word(1), Box.word(2), Box.phrase("p1", components = listOf("w01", "w02")))),
             listOf("p1"),
         )
-        assertTrue(brief(box).sown.any { it.target == "p1" })
+        assertTrue(brief(box).queued.any { it.target == "p1" })
     }
 
-    /** Sown words set the opening story's topic; without any, the words in progress do. */
+    /** Queued words set the opening story's topic; without any, the words in progress do. */
     @Test
-    fun theStoryRevolvesAroundSownWords() {
+    fun theStoryRevolvesAroundQueuedWords() {
         val box = Box.inject(state(listOf(Box.word(1), Box.word(2))), learning("w01"))
         assertFalse("words I chose" in brief(box).text)
 
-        val sown = brief(BoxEngine.enqueue(box, listOf("w02"))).text
-        assertTrue("story around the words I chose" in sown)
-        assertTrue("t2 (" in sown)
-        assertTrue("\nSTART HERE" in sown, "the opening turn keeps its left edge")
+        val queued = brief(BoxEngine.queue(box, listOf("w02"))).text
+        assertTrue("story around the words I chose" in queued)
+        assertTrue("t2 (" in queued)
+        assertTrue("\nSTART HERE" in queued, "the opening turn keeps its left edge")
     }
 
     /** The loop closes: the fence the brief prints is one [Harvest] reads back. */
     @Test
     fun theHarvestFenceRoundTrips() {
         val started = Box.inject(state(listOf(Box.word(1), Box.word(2))), learning("w01"))
-        val box = BoxEngine.enqueue(started, listOf("w02"))
+        val box = BoxEngine.queue(started, listOf("w02"))
         val brief = brief(box)
-        val example = brief.sown.first()
+        val example = brief.queued.first()
 
         val read = Harvest.read(brief.text, box)
         assertTrue(read.any { it.word == example }, "no $example in ${read.map { it.word }}")

@@ -44,7 +44,7 @@ import net.spross.kern.box.OwnWords
  * word — this form is the only surface that is not already a card's.
  *
  * What happens to the word is kern's: [OwnWords.fromDraft] mints its id from the target
- * side and writes it under the pair's two languages, and [BoxEngine.addOwnWord] PACKS it —
+ * side and writes it under the pair's two languages, and [BoxEngine.addOwnWord] QUEUES it —
  * the learner named this word themselves, so waiting for growth to walk to it would be
  * absurd. An EDIT ([BoxEngine.updateOwnWord]) mints nothing: the id stays, and with it the
  * schedule and the queue slot, so fixing a typo never costs the progress made on the word.

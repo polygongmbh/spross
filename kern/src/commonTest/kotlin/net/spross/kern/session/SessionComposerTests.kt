@@ -256,26 +256,26 @@ class SessionComposerTests {
     }
 
     /**
-     * A finished day composes nothing at all — not even words the learner packed. Packing IS
+     * A finished day composes nothing at all — not even words the learner queued. Queuing IS
      * an explicit ask, which is why it is answered by the round the learner opens rather than
      * by a round appearing behind a screen that says the day is over.
      */
     @Test
-    fun wordsPackedOnAFinishedDayWaitForTheRoundTheLearnerOpens() {
-        val state = BoxEngine.enqueue(quietBox(soon = 0, later = 5), listOf("w20"))
+    fun wordsQueuedOnAFinishedDayWaitForTheRoundTheLearnerOpens() {
+        val state = BoxEngine.queue(quietBox(soon = 0, later = 5), listOf("w20"))
         val worked = Box.workedToday(state, SessionComposer.SESSION_FLOOR_CARDS, now)
         assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
         assertEquals("w20", SessionComposer.composeRound(worked, now, Box.TZ).newCards.first())
     }
 
     /**
-     * The bug this rule was written for: packing a category on a finished day used to compose
+     * The bug this rule was written for: queuing a category on a finished day used to compose
      * a daily round of FOUR first sights and nothing else — the tomorrow reservation docked the
      * new-word budget, and the pull-aheads it was docked FOR never came, because a done day
      * skipped the fill. Four cards, no recall, under the floor, behind a "done" screen.
      */
     @Test
-    fun packingOnAFinishedDayNeverComposesAHalfRound() {
+    fun queuingOnAFinishedDayNeverComposesAHalfRound() {
         // Three cards back tomorrow but past the returning span — the shape of a box worked
         // this morning, and the one where the reservation docks the budget by its full half.
         var state = Box.state((1..30).map { Box.word(it) })
@@ -290,8 +290,8 @@ class SessionComposerTests {
                 ),
             )
         }
-        val packed = BoxEngine.enqueue(state, (20..26).map { id(it) })
-        val worked = Box.workedToday(packed, SessionComposer.SESSION_FLOOR_CARDS, now)
+        val queued = BoxEngine.queue(state, (20..26).map { id(it) })
+        val worked = Box.workedToday(queued, SessionComposer.SESSION_FLOOR_CARDS, now)
         assertTrue(SessionComposer.composeSession(worked, now, Box.TZ).isEmpty)
 
         val round = SessionComposer.composeRound(worked, now, Box.TZ)
@@ -404,11 +404,11 @@ class SessionComposerTests {
             SessionComposer.NEW_CARDS_PER_ROUND,
             SessionComposer.composeSession(restedBox, now, Box.TZ).newCount,
         )
-        // Enqueued cards lead composition, but the round holds them to the same size.
-        val packed = restedBox.copy(enqueued = (1..12).map { id(it) })
+        // Queued cards lead composition, but the round holds them to the same size.
+        val queued = restedBox.copy(queued = (1..12).map { id(it) })
         assertEquals(
             SessionComposer.NEW_CARDS_PER_ROUND,
-            SessionComposer.composeRound(packed, now, Box.TZ).newCount,
+            SessionComposer.composeRound(queued, now, Box.TZ).newCount,
         )
     }
 }

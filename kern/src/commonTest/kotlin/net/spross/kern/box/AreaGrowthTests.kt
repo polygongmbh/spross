@@ -20,7 +20,7 @@ class AreaGrowthTests {
     @Test
     fun everyMetWordStandsInExactlyOneTierAndOnlyMetWordsDo() {
         var state = Box.state((1..7).map { Box.word(it) } + Box.word(8, area = "other"))
-        state = BoxEngine.enqueue(state, listOf("w01"))
+        state = BoxEngine.queue(state, listOf("w01"))
         state = Box.inject(state, Box.sched("w02", phase = CardPhase.Learning, stability = 0.5, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w03", stability = 9.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w04", stability = SETTLED_STABILITY, dueMillis = future, lastReviewMillis = now))

@@ -15,7 +15,7 @@ data class AreaGrowth(
     val area: String,
     /** The area's active words per stage, sorted the way [AreaStatistics] sorts them. */
     val stages: StageCounts,
-    /** Packed and never met ([GrowthStage.Queued]) — why the area is growing at all. */
+    /** Queued and never met ([GrowthStage.Queued]) — why the area is growing at all. */
     val queued: Int,
     /** Something here was answered today. */
     val answeredToday: Boolean,
@@ -25,7 +25,7 @@ data class AreaGrowth(
     /** Every word on the tree: the active words short of the lapsed ones, which hang nowhere. */
     val met: Int get() = stages.active - stages.lapsed
 
-    /** Nothing has happened here: nothing met, nothing packed. */
+    /** Nothing has happened here: nothing met, nothing queued. */
     val isBare: Boolean get() = met + queued == 0
 
     /** Which tier the word at [rank] stands in, 1 (most grown) … 4, or 0 past [met]. */

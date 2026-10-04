@@ -74,7 +74,7 @@ object ListeningPool {
      * salts the scheduled and plain-new lanes' own tiebreak (`hashedOrder`, `newWordOrder`) —
      * opaque to kern, which only folds the number into the hash, so a caller handing in a
      * different one (the current instant, say) reshuffles those lanes instead of replaying the
-     * same sequence. The packed lane never reshuffles: it plays most-recently-packed first,
+     * same sequence. The queued lane never reshuffles: it plays most-recently-queued first,
      * which [seed] has no say over.
      */
     fun report(
@@ -98,20 +98,20 @@ object ListeningPool {
                 arrived = Statistics.hasArrived(scheduling),
                 suspended = scheduling.suspended,
                 scheduled = true,
-                // Introduction dequeues (`Answer.kt`), so a scheduled card is never packed.
+                // Introduction unqueues (`Answer.kt`), so a scheduled card is never queued.
                 queued = false,
-                packedRank = 0,
+                queuedRank = 0,
             )
         }
-        // Most recently packed first — the same order growth introduces them in, read once
-        // for both the membership test and the rank `packedOrder` deals by.
-        val packedRank = Growth.enqueuedEligible(box).withIndex().associate { (rank, id) -> id to rank }
+        // Most recently queued first — the same order growth introduces them in, read once
+        // for both the membership test and the rank `queuedOrder` deals by.
+        val queuedRank = Growth.queuedEligible(box).withIndex().associate { (rank, id) -> id to rank }
         val unseen = sayable
             .filter { box.scheduling[it.id] == null && Growth.isIntroducible(box, it) }
             .map {
                 ListeningCandidate(
                     it, arrived = false, suspended = false, scheduled = false,
-                    queued = it.id in packedRank, packedRank = packedRank[it.id] ?: 0,
+                    queued = it.id in queuedRank, queuedRank = queuedRank[it.id] ?: 0,
                 )
             }
         return Report(candidates = listeningOrder(scheduled + unseen, seed))

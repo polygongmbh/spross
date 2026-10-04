@@ -2,7 +2,7 @@ import Foundation
 import SprossKern
 
 // The learner's own words, app side. The rules — where they live, what ids they
-// carry, that adding one packs it — are Kern's (`OwnWords`, kern §6); this layer
+// carry, that adding one queues it — are Kern's (`OwnWords`, kern §6); this layer
 // trims the typed text, names the area in the chrome language, and persists.
 
 /// What the learner has typed into the word form, and which opening of it that was.

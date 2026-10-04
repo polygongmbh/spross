@@ -112,14 +112,14 @@ extension AppModel {
 
     // MARK: - Box actions
 
-    /// "Pack in die Box": enqueue exactly the cards the shelf's own count
-    /// promised. One predicate answers both (`BoxBrowser.enqueueableCardIds`),
-    /// so a control can never name a number the pack does not add.
-    func enqueueArea(_ area: String) {
+    /// The shelf's queue control: queue exactly the cards the shelf's own count
+    /// promised. One predicate answers both (`BoxBrowser.queueableCardIds`),
+    /// so a control can never name a number the queue does not add.
+    func queueArea(_ area: String) {
         guard let box else { return }
-        let ids = BoxBrowser.shared.enqueueableCardIds(state: box, area: area)
+        let ids = BoxBrowser.shared.queueableCardIds(state: box, area: area)
         guard !ids.isEmpty else { return }
-        mutate { $0 = BoxEngine.shared.enqueue(state: $0, cardIds: ids) }
+        mutate { $0 = BoxEngine.shared.queue(state: $0, cardIds: ids) }
     }
 
     func setSuspended(cardID: String, suspended: Bool) {
@@ -135,17 +135,17 @@ extension AppModel {
         mutate { $0 = BoxEngine.shared.forget(state: $0, cardId: cardID) }
     }
 
-    /// Take a packed word back out of the queue by name — the opposite of `enqueueCard`,
-    /// offered only where a single word was packed by name (`BoxCardRow.pack`). A no-op
-    /// once a round has already brought the card in (`BoxEngine.dequeue`).
-    func dequeue(cardID: String) {
-        mutate { $0 = BoxEngine.shared.dequeue(state: $0, cardId: cardID) }
+    /// Take a queued word back out of the queue by name — the opposite of `queueCard`,
+    /// offered only where a single word was queued by name (`BoxCardRow.queue`). A no-op
+    /// once a round has already brought the card in (`BoxEngine.unqueue`).
+    func unqueue(cardID: String) {
+        mutate { $0 = BoxEngine.shared.unqueue(state: $0, cardId: cardID) }
     }
 
-    /// Take a whole shelf's queue back out at once — the opposite of `enqueueArea`,
-    /// offered by the shelf's own control once packing has emptied (`BoxEngine.dequeueArea`).
-    func dequeueArea(_ area: String) {
-        mutate { $0 = BoxEngine.shared.dequeueArea(state: $0, area: area) }
+    /// Take a whole shelf's queue back out at once — the opposite of `queueArea`,
+    /// offered by the shelf's own control once queuing has emptied (`BoxEngine.unqueueArea`).
+    func unqueueArea(_ area: String) {
+        mutate { $0 = BoxEngine.shared.unqueueArea(state: $0, area: area) }
     }
 
     /// Destructive fresh start: every schedule and tally goes, the join, the
@@ -254,7 +254,7 @@ extension AppModel {
 
     /// Whether a single word in the box can be said aloud here — `anyWordAudible`
     /// holds the answer. A device voice says yes without looking and nothing at
-    /// all says no without looking; only a pack has to be asked card by card,
+    /// all says no without looking; only a queue has to be asked card by card,
     /// because it covers the forms it recorded and no others.
     func composedAnyWordAudible() -> Bool {
         guard let target = targetLanguage else { return false }
@@ -280,19 +280,19 @@ extension AppModel {
 
     func cards(inArea area: String) -> [Card] { cardsByArea[area] ?? [] }
 
-    /// What "Pack in die Box" would actually add to this shelf.
-    func enqueueableCount(area: String) -> Int { Int(shelves[area]?.packable ?? 0) }
+    /// What the shelf's queue control would actually add to this shelf.
+    func queueableCount(area: String) -> Int { Int(shelves[area]?.queueable ?? 0) }
 
-    /// What `dequeueArea` would take back out of this shelf.
-    func dequeueableCount(area: String) -> Int { Int(shelves[area]?.queued ?? 0) }
+    /// What `unqueueArea` would take back out of this shelf.
+    func unqueueableCount(area: String) -> Int { Int(shelves[area]?.queued ?? 0) }
 
-    /// What one listed card's row has to state about itself. `packOffered` is
-    /// the row's context, not the card's: a search hit packs a single word, an
+    /// What one listed card's row has to state about itself. `queueOffered` is
+    /// the row's context, not the card's: a search hit queues a single word, an
     /// area listing leaves that to the shelf's own control.
-    func cardRowState(_ cardID: String, packOffered: Bool) -> CardRowState {
+    func cardRowState(_ cardID: String, queueOffered: Bool) -> CardRowState {
         guard let box else { return CardRowState.Plain.shared }
         return BoxBrowser.shared.cardRowState(state: box, cardId: cardID,
-                                              packOffered: packOffered)
+                                              queueOffered: queueOffered)
     }
 
     // MARK: - Fortschritt

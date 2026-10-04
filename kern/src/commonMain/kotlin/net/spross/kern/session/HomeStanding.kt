@@ -48,7 +48,7 @@ data class HomeStanding(
             return HomeStanding(
                 offer = SessionOffers.offer(state, nowEpochMillis, tzId, otherLanguagesAnswerDays),
                 today = BoxEngine.today(state, nowEpochMillis, tzId),
-                tomorrow = tomorrowNote(SessionOffers.packedWordsPending(state), due),
+                tomorrow = tomorrowNote(SessionOffers.queuedWordsPending(state), due),
                 tomorrowDue = due,
                 canPracticeMore = SessionOffers.canPracticeMore(state, nowEpochMillis, tzId),
             )

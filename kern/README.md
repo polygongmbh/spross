@@ -223,16 +223,16 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   Every other bucket (`activeCount`, `dueCount`, the areas) stays scoped to the join in view.
   `WidgetSnapshotBuilder.build` takes the same parameter (`docs/snapshots.md`).
 - **Introduction is the card's first answer.**
-  `enqueued` holds card ids, stored oldest-packed first;
-  enqueued cards lead composition **most recently packed first**
-  (`Growth.enqueuedEligible` reverses the list),
-  respect the per-round cap, and dequeue at introduction.
+  `queued` holds card ids, stored oldest-queued first;
+  queued cards lead composition **most recently queued first**
+  (`Growth.queuedEligible` reverses the list),
+  respect the per-round cap, and unqueue at introduction.
   Zero-component phrases follow seed order, never the unlock fast path.
 - **Related words arrive together.**
   Seed order runs an area's related words side by side (spoon, fork, knife),
   so a round introduces them together and the learner meets them as a set to relate.
 - **Intake is bounded per round, and by nothing else.**
-  A round's worth of first sights, across EVERY composed round and including packed cards.
+  A round's worth of first sights, across EVERY composed round and including queued cards.
   **Nothing throttles on how shaky the material is,
   and nothing on how far behind the box has fallen** --
   neither predicts retention (`docs/growth-evidence.md`).
@@ -274,8 +274,8 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   and an exhausted catalog still opens a round.
 - **A day can be over** (user ruling 2026-08-01):
   nothing due, nothing coming back soon, and a round's worth already answered.
-  **Nothing composes past that, packed cards included** (user ruling 2026-08-03):
-  packing IS an explicit ask, and the round the learner opens is where it is answered.
+  **Nothing composes past that, queued cards included** (user ruling 2026-08-03):
+  queuing IS an explicit ask, and the round the learner opens is where it is answered.
   **A word on a learning step is the day's own unfinished business** (user ruling 2026-08-03),
   and that span is rolling rather than a calendar edge.
   Only the QUESTION of whether the day is over moves --
@@ -289,12 +289,12 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   **The color a stage wears is the same fact, extended to drawing**:
   `CardRowState.Standing.swatch` resolves it once, off `net.spross.kern.design.Palette`,
   so a row's badge and the shelf's progress bar read the identical color on both platforms.
-- **Packing and unpacking act on the area, never a single word,
+- **Queuing and unqueuing act on the area, never a single word,
   except where a search reached that word by name**:
-  `BoxEngine.enqueue`/`dequeueArea` are the shelf's own controls;
-  `dequeue` alone (single card id) exists for the one context that names a word.
-  `CardRowState.Packed.removalOffered` and `PackOffered` both gate on the same
-  `packOffered` context flag.
+  `BoxEngine.queue`/`unqueueArea` are the shelf's own controls;
+  `unqueue` alone (single card id) exists for the one context that names a word.
+  `CardRowState.Queued.removalOffered` and `QueueOffered` both gate on the same
+  `queueOffered` context flag.
 - **A composed session never refills** (user ruling 2026-07-29): the plan IS the run.
   Nothing joins a run under way now;
   endless practice (explicitly asked for from the summary) is where late cards land.
@@ -306,7 +306,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **Join filter inventory**: composition, the due queue, dueCount, statistics, exposure
   operate on cards that join the current profile;
   the unlock check and `answer()` history reads operate on raw schedules by id.
-  Non-joining schedules and enqueued entries are kept **inert**
+  Non-joining schedules and queued entries are kept **inert**
   (never pruned; both revive on switch-back).
 - `answer(cardId, rating, nowMillis)` on an unknown id leaves the state untouched.
   `SessionPlan` carries a `joinStamp` (source, target, catalog fingerprint);
@@ -322,7 +322,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   target word, meaning in the source language, then the target again.
   **Both halves must be sayable**, or a turn plays a word and then silence.
   **The playlist is dealt, not drawn**: one priority per word --
-  the shakiest lead, then words the learner packed (most recently packed first),
+  the shakiest lead, then words the learner queued (most recently queued first),
   then the rest of the unseen ones (catalog's earliest stretch first as a group,
   shuffled within it) -- and the run walks and laps that order.
   **Suspended cards stay in the pool**: a suspended card pays a toll on its own lane
@@ -375,7 +375,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   two records of learning ONE word replayed as one would overshoot stability.
   A tie goes to the catalog card.
   Suspended if either was, the queue slot moves across,
-  and a merged suggestion packs the catalog word in its place.
+  and a merged suggestion queues the catalog word in its place.
   The fuzziness is `FormLikeness`, shared with the arrival matcher and deliberately NOT with
   grading: they share the distance and not the budget (`docs/grading.md`).
   `clearFeedback` is the bulk deletion, and it reaches the OUTBOX rather than the words:

@@ -194,16 +194,16 @@ data class ListeningCandidate(
     /** Whether the card carries a schedule — i.e. whether the learner has ever answered it. */
     val scheduled: Boolean,
     /**
-     * Whether the learner PACKED this word (`BoxState.enqueued`) — *these words next*, said
-     * before the box got to them. Only ever true of an unscheduled word: packing is answered
-     * by introduction, which dequeues.
+     * Whether the learner QUEUED this word (`BoxState.queued`) — *these words next*, said
+     * before the box got to them. Only ever true of an unscheduled word: queuing is answered
+     * by introduction, which unqueues.
      */
     val queued: Boolean,
     /**
-     * Position in `Growth.enqueuedEligible`'s own order, most recently packed first (0 = just
-     * packed) — meaningful only where [queued] is true; ignored otherwise.
+     * Position in `Growth.queuedEligible`'s own order, most recently queued first (0 = just
+     * queued) — meaningful only where [queued] is true; ignored otherwise.
      */
-    val packedRank: Int,
+    val queuedRank: Int,
 )
 
 /**

@@ -50,7 +50,7 @@ extension AppModel {
     }
 
     /// On-demand extra round from the Home done card: kern's review-ahead round —
-    /// everything due, then packed vocab within the new-word budget, then pull-aheads
+    /// everything due, then queued vocab within the new-word budget, then pull-aheads
     /// by soonest due. Composing empty is a no-op there, so nothing gets presented.
     func startExtraSession() {
         begin(SessionIntent.StartExtra.shared)

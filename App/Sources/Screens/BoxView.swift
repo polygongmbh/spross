@@ -1,7 +1,7 @@
 import SwiftUI
 import SprossKern
 
-/// Browse the box: areas with their stats, per-area "Pack in die Box", card lists
+/// Browse the box: areas with their stats, per-area queue controls, card lists
 /// with phase badges, then what the learner wrote themselves
 /// (`BoxOwnContentSection`). The magnifier in the bar opens
 /// the same box by typing (`BoxSearchView`), which hands an area back here to be
@@ -242,7 +242,7 @@ private struct FoldChevron: View {
 // MARK: - Area section
 
 /// One area as a single foldable card: name, progress bar and phrase counts
-/// in the header, its words underneath once opened. Packing sits beside the
+/// in the header, its words underneath once opened. Queuing sits beside the
 /// header as its own tap target — it must never cost the fold.
 private struct BoxAreaSection: View {
     let model: AppModel
@@ -260,7 +260,7 @@ private struct BoxAreaSection: View {
                     header(stats)
                 }
                 .buttonStyle(.plain)
-                packControl
+                queueControl
             }
             if expanded {
                 cardList
@@ -281,7 +281,7 @@ private struct BoxAreaSection: View {
                      subtitle: model.areaSubtitle(area),
                      progress: stats?.progress ?? .empty,
                      lockedPhrases: stats?.lockedPhrases ?? 0,
-                     hideProgress: fullyPackedAndSettled(stats))
+                     hideProgress: fullyQueuedAndSettled(stats))
             FoldChevron(open: expanded)
                 .foregroundStyle(Theme.colors.textSecondary)
                 .padding(.top, Theme.spacing.sm)
@@ -289,13 +289,13 @@ private struct BoxAreaSection: View {
         .contentShape(Rectangle())
     }
 
-    /// Whether nothing is left to pack or unpack AND every active card in the
+    /// Whether nothing is left to queue or unqueue AND every active card in the
     /// area has settled — the one condition that swaps the green "All
-    /// packed" mark for a jade one and hides the chip's bar/counts, leaving
+    /// queued" mark for a jade one and hides the chip's bar/counts, leaving
     /// just the emoji/name/jade mark in the header (Part D).
-    private func fullyPackedAndSettled(_ stats: AreaStatistics?) -> Bool {
-        model.enqueueableCount(area: area) == 0
-            && model.dequeueableCount(area: area) == 0
+    private func fullyQueuedAndSettled(_ stats: AreaStatistics?) -> Bool {
+        model.queueableCount(area: area) == 0
+            && model.unqueueableCount(area: area) == 0
             && (stats?.fullySettled ?? false)
     }
 
@@ -303,23 +303,23 @@ private struct BoxAreaSection: View {
     /// control keeps the header one line tall, and the bar already shows
     /// how much of the area is still untouched.
     ///
-    /// Once packing is done, a shelf still holding words queued for a round offers to
-    /// take the whole batch back out (`AppModel.dequeueArea`) — the area is the unit
-    /// this control acts on, same as packing itself. Below three queued words the
+    /// Once queuing is done, a shelf still holding words queued for a round offers to
+    /// take the whole batch back out (`AppModel.unqueueArea`) — the area is the unit
+    /// this control acts on, same as queuing itself. Below three queued words the
     /// bulk control steps aside for the per-word one instead (`BoxCardRow.standing`),
-    /// and the shelf wears the green "packed" mark; the jade mark is reserved for
-    /// nothing queued at all (`fullyPackedAndSettled`).
+    /// and the shelf wears the green "queued" mark; the jade mark is reserved for
+    /// nothing queued at all (`fullyQueuedAndSettled`).
     @ViewBuilder
-    private var packControl: some View {
-        let count = model.enqueueableCount(area: area)
-        let queued = model.dequeueableCount(area: area)
+    private var queueControl: some View {
+        let count = model.queueableCount(area: area)
+        let queued = model.unqueueableCount(area: area)
         if count > 0 {
-            PackButton(direction: .in, label: "a11y.box.shelf.pack \(count.formatted())") {
-                model.enqueueArea(area)
+            QueueButton(direction: .in, label: "a11y.box.shelf.queue \(count.formatted())") {
+                model.queueArea(area)
             }
         } else if queued > 2 {
-            PackButton(direction: .out, label: "a11y.box.shelf.unpack \(queued.formatted())") {
-                model.dequeueArea(area)
+            QueueButton(direction: .out, label: "a11y.box.shelf.unqueue \(queued.formatted())") {
+                model.unqueueArea(area)
             }
         } else {
             let fullySettled = queued == 0 && (model.areaStats(area)?.fullySettled ?? false)
@@ -327,7 +327,7 @@ private struct BoxAreaSection: View {
                 .font(Theme.typography.headline)
                 .foregroundStyle(fullySettled ? Theme.colors.settled : Theme.colors.success)
                 .frame(width: 40, height: 40)
-                .accessibilityLabel(Text("a11y.box.shelf.packed"))
+                .accessibilityLabel(Text("a11y.box.shelf.queued"))
         }
     }
 

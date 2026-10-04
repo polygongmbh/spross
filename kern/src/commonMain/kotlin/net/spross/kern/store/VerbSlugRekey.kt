@@ -20,7 +20,7 @@ import net.spross.kern.box.BoxState
  * every box that could still hold a bare verb slug will have loaded through it.
  */
 fun BoxState.rekeyingPrefixedVerbs(): BoxState {
-    val moves = (scheduling.keys + enqueued + reportedIssues.keys)
+    val moves = (scheduling.keys + queued + reportedIssues.keys)
         .filter { it !in cards && "to-$it" in cards }
         .associateWith { "to-$it" }
     if (moves.isEmpty()) return this
@@ -29,7 +29,7 @@ fun BoxState.rekeyingPrefixedVerbs(): BoxState {
             val to = moves[id]
             if (to != null && to !in scheduling) to to sched.copy(cardId = to) else id to sched
         },
-        enqueued = enqueued.map { moves[it] ?: it }.distinct(),
+        queued = queued.map { moves[it] ?: it }.distinct(),
         reportedIssues = reportedIssues.entries.associate { (id, issue) ->
             val to = moves[id]
             if (to != null && to !in reportedIssues) to to issue.copy(cardId = to) else id to issue

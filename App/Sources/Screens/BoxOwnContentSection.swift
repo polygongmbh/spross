@@ -9,8 +9,8 @@ import SprossKern
 /// it is ALWAYS there — it carries the add button, which is the one way to write a
 /// word that does not start from a search that found nothing.
 ///
-/// Own words need no shelf of their own: they are packed the moment they are
-/// written (`BoxEngine.addOwnWord`), so an area card offering to pack them would
+/// Own words need no shelf of their own: they are queued the moment they are
+/// written (`BoxEngine.addOwnWord`), so an area card offering to queue them would
 /// say nothing. The studiable ones list as ordinary rows, keeping their standing
 /// and their long-press menu. A SUGGESTION has no card at all — a word written in
 /// one language joins nothing — so it lists in a block of its own, beside the
@@ -270,7 +270,7 @@ struct BoxOwnContentSection: View {
                 .fill(Theme.colors.surfaceTint)
         )
         // A menu of its own, and a short one: with no card behind it there is nothing to
-        // pack, forget or report — the entry to fix, what it says to take elsewhere, and
+        // queue, forget or report — the entry to fix, what it says to take elsewhere, and
         // the way to drop it.
         .contextMenu {
             Button(opening.editLabel, systemImage: "pencil") { sheet = opening }

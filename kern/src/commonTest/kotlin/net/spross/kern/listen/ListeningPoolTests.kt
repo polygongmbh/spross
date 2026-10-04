@@ -188,41 +188,41 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: packed words are heard inside the opening turns, and ahead of the other new ones.
-     * WHY: packing is the learner saying *these words next*; the study round honors it and the
+     * RULE: queued words are heard inside the opening turns, and ahead of the other new ones.
+     * WHY: queuing is the learner saying *these words next*; the study round honors it and the
      * widget honors it, so the mode with the least friction cannot be the one that ignores it.
      * Their own lane runs a notch faster, which puts them in the first handful of turns without
      * making them a block.
      */
     @Test
-    fun packedWordsAreHeardInTheOpeningTurnsAheadOfTheOtherNewOnes() {
-        val packed = listOf("w50", "w60", "w70")
-        val state = box(total = 100, scheduled = 0).copy(enqueued = packed)
+    fun queuedWordsAreHeardInTheOpeningTurnsAheadOfTheOtherNewOnes() {
+        val queued = listOf("w50", "w60", "w70")
+        val state = box(total = 100, scheduled = 0).copy(queued = queued)
 
         val played = ids(spoken(state))
 
-        assertTrue(played.take(6).containsAll(packed), "packed words late: ${played.take(6)}")
-        // The packed lane runs a notch ahead of the plain new one, so its own opener
+        assertTrue(played.take(6).containsAll(queued), "queued words late: ${played.take(6)}")
+        // The queued lane runs a notch ahead of the plain new one, so its own opener
         // beats the plain lane's regardless of which plain word that turns out to be.
         assertTrue(
-            played.indexOf("w70") < played.indexOf((played - packed.toSet()).first()),
-            "the packed lane's opener is late",
+            played.indexOf("w70") < played.indexOf((played - queued.toSet()).first()),
+            "the queued lane's opener is late",
         )
     }
 
     /**
-     * RULE: inside the packed lane, the most recently packed word leads — not pack order,
+     * RULE: inside the queued lane, the most recently queued word leads — not queuing order,
      * and not catalog order.
-     * WHY: growth already introduces packed words most-recent-first (`Growth.enqueuedEligible`)
-     * — what a learner just packed on top of an older queue is their freshest ask, and the two
+     * WHY: growth already introduces queued words most-recent-first (`Growth.queuedEligible`)
+     * — what a learner just queued on top of an older queue is their freshest ask, and the two
      * surfaces would disagree if listening kept reading the queue by catalog position instead.
      */
     @Test
-    fun thePackedLanePlaysMostRecentlyPackedFirst() {
-        val packed = listOf("w50", "w60", "w70")
-        val state = box(total = 100, scheduled = 0).copy(enqueued = packed)
+    fun theQueuedLanePlaysMostRecentlyQueuedFirst() {
+        val queued = listOf("w50", "w60", "w70")
+        val state = box(total = 100, scheduled = 0).copy(queued = queued)
 
-        val played = ids(spoken(state)).filter { it in packed }
+        val played = ids(spoken(state)).filter { it in queued }
 
         assertEquals(listOf("w70", "w60", "w50"), played)
     }
@@ -320,15 +320,15 @@ class ListeningPoolTests {
     }
 
     /**
-     * RULE: inside a lane, only the PACKED queue keeps catalog order — scheduled words and
+     * RULE: inside a lane, only the QUEUED queue keeps catalog order — scheduled words and
      * plain new ones both break it, though the new lane still leads with its basics as a group.
      * WHY: the catalog is a curriculum for words never met, but a fixed sequence inside that
      * curriculum is what pinned a single word to the front of every sweep until growth reached
-     * it. Packing is the one case a fixed order is the learner's own ask, so it alone keeps
+     * it. Queuing is the one case a fixed order is the learner's own ask, so it alone keeps
      * `catalogOrder`. Hashing the rest de-correlates them exactly as `Inventory.dueOrder` does.
      */
     @Test
-    fun onlyThePackedQueueKeepsCatalogOrder() {
+    fun onlyTheQueuedLaneKeepsCatalogOrder() {
         var state = box(total = 60, scheduled = 0)
         for (n in 1..20) {
             state = Box.inject(

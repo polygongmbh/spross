@@ -18,7 +18,7 @@ data class SessionPlan(
     /** Not yet due, pulled forward — either asked for, or to fill a short round out. */
     val ahead: List<String>,
     val unlockedPhrases: List<String>,
-    /** Never answered and not an unlocked phrase: packed cards first, then seed order. */
+    /** Never answered and not an unlocked phrase: queued cards first, then seed order. */
     val newCards: List<String>,
     val joinStamp: JoinStamp,
 ) {

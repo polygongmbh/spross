@@ -17,17 +17,17 @@ data class AreaGroupSection(
 )
 
 /**
- * What a shelf's two pack controls have to offer, counted for every area at once.
+ * What a shelf's two queue controls have to offer, counted for every area at once.
  *
  * The browser draws both numbers on every shelf it lists, and asked one shelf at a
- * time each answer is a walk of the whole box ([enqueueableCardIds] filters
+ * time each answer is a walk of the whole box ([queueableCardIds] filters
  * [cardsInArea]) — so a screenful of shelves costs areas x cards. [BoxBrowser.shelfCounts]
  * answers them all in one pass instead, under the same predicates the id lists use.
  */
 data class ShelfCounts(
-    /** What packing this shelf would add — the size of [BoxBrowser.enqueueableCardIds]. */
-    val packable: Int,
-    /** What taking its queue back out would remove — the size of [BoxBrowser.dequeueableCardIds]. */
+    /** What queuing this shelf would add — the size of [BoxBrowser.queueableCardIds]. */
+    val queueable: Int,
+    /** What taking its queue back out would remove — the size of [BoxBrowser.unqueueableCardIds]. */
     val queued: Int,
 )
 
@@ -35,27 +35,27 @@ data class ShelfCounts(
  * What one listed card says about itself besides the word — the rule, never the mark.
  *
  * Exactly one of these holds at a time, and which one is a box question:
- * whether the card is suspended, whether it can still be packed, and which bars it has cleared.
+ * whether the card is suspended, whether it can still be queued, and which bars it has cleared.
  * What a surface draws for each (an icon, a capsule, a pill, or nothing at all) is its own affair.
  */
 sealed class CardRowState {
     /** Out of rotation; the one thing left to offer is unsuspending it. */
     data object Suspended : CardRowState()
 
-    /** Unscheduled, and the row stands where single words can be packed — the offer holds. */
-    data object PackOffered : CardRowState()
+    /** Unscheduled, and the row stands where single words can be queued — the offer holds. */
+    data object QueueOffered : CardRowState()
 
     /**
-     * Already packed, waiting for a round to bring it in — shown wherever the row stands.
-     * [removalOffered] mirrors [PackOffered]'s own gate: a word packed by name
-     * ([BoxEngine.dequeue]) is taken back out by name the same way; an area listing takes
-     * whole batches out through its own control ([BoxEngine.dequeueArea]) instead,
+     * Already queued, waiting for a round to bring it in — shown wherever the row stands.
+     * [removalOffered] mirrors [QueueOffered]'s own gate: a word queued by name
+     * ([BoxEngine.unqueue]) is taken back out by name the same way; an area listing takes
+     * whole batches out through its own control ([BoxEngine.unqueueArea]) instead,
      * mirroring how it takes them in.
      */
-    data class Packed(val removalOffered: Boolean) : CardRowState()
+    data class Queued(val removalOffered: Boolean) : CardRowState()
 
     /**
-     * Nothing to state: a card with no exposure behind it, outside any pack context.
+     * Nothing to state: a card with no exposure behind it, outside any queue context.
      * New is the ABSENCE of a standing, not a standing of its own —
      * in a shelf of unstarted words a "new" badge would be most of the rows.
      */
@@ -65,7 +65,7 @@ sealed class CardRowState {
      * The card is on the ladder, and this is where.
      *
      * An [ActiveStage] rather than a [GrowthStage]: a card with nothing behind it is [Plain] or
-     * [PackOffered], and a suspended one is [Suspended]. Carrying the stage rather than a collapsed
+     * [QueueOffered], and a suspended one is [Suspended]. Carrying the stage rather than a collapsed
      * boolean is what lets a surface tell Fresh, Growing and Settled apart on sight,
      * the same way the badge does.
      */
@@ -74,7 +74,7 @@ sealed class CardRowState {
 
 /**
  * Reading the box as a browsable list: which shelves exist, in which order,
- * which one opens first, and what each row and each pack control has to say.
+ * which one opens first, and what each row and each queue control has to say.
  *
  * Ordering and grouping are content rules (the catalog's manifest) crossed with box rules
  * (which areas hold cards, which cards are active) — neither of them a layout,
@@ -140,40 +140,40 @@ object BoxBrowser {
         state.cards.values.filter { it.area == area }.sortedWith(Inventory.seedOrder)
 
     /**
-     * The area's cards a pack would take in, in seed order: unscheduled, and not already queued.
-     * These are [BoxEngine.enqueue]'s own guards asked in advance,
-     * so hand this list straight to it — a count derived by one rule and a pack performed
+     * The area's cards queuing it would take in, in seed order: unscheduled, and not already queued.
+     * These are [BoxEngine.queue]'s own guards asked in advance,
+     * so hand this list straight to it — a count derived by one rule and queuing performed
      * under another is how a shelf comes to promise a number it does not add.
      *
-     * The AREA's cards only: enqueuing a phrase also prepends the components it is missing,
-     * and where those live on another shelf the pack takes in more than this lists.
+     * The AREA's cards only: queuing a phrase also prepends the components it is missing,
+     * and where those live on another shelf, queuing it takes in more than this lists.
      */
-    fun enqueueableCardIds(state: BoxState, area: String): List<String> {
-        val queued = state.enqueued.toSet()
+    fun queueableCardIds(state: BoxState, area: String): List<String> {
+        val queued = state.queued.toSet()
         return cardsInArea(state, area)
             .filter { state.scheduling[it.id] == null && it.id !in queued }
             .map { it.id }
     }
 
-    /** What packing this shelf would add — the size of [enqueueableCardIds]. */
-    fun enqueueableCount(state: BoxState, area: String): Int = enqueueableCardIds(state, area).size
+    /** What queuing this shelf would add — the size of [queueableCardIds]. */
+    fun queueableCount(state: BoxState, area: String): Int = queueableCardIds(state, area).size
 
     /**
-     * The area's cards a [BoxEngine.dequeueArea] would take back out, in seed order:
-     * queued, and belonging to this area — [BoxEngine.dequeueArea]'s own guard asked
-     * in advance, same as [enqueueableCardIds] is for [BoxEngine.enqueue].
+     * The area's cards a [BoxEngine.unqueueArea] would take back out, in seed order:
+     * queued, and belonging to this area — [BoxEngine.unqueueArea]'s own guard asked
+     * in advance, same as [queueableCardIds] is for [BoxEngine.queue].
      *
-     * Read off [cardsInArea] rather than filtering `state.enqueued` directly: the queue is
-     * stored back to front so it reads out most-recently-packed first (`BoxEngine.enqueue`),
+     * Read off [cardsInArea] rather than filtering `state.queued` directly: the queue is
+     * stored back to front so it reads out most-recently-queued first (`BoxEngine.queue`),
      * which is not the shelf's own order — a browse listing wants the shelf's.
      */
-    fun dequeueableCardIds(state: BoxState, area: String): List<String> {
-        val queued = state.enqueued.toSet()
+    fun unqueueableCardIds(state: BoxState, area: String): List<String> {
+        val queued = state.queued.toSet()
         return cardsInArea(state, area).filter { it.id in queued }.map { it.id }
     }
 
-    /** What taking this shelf's queue back out would remove — the size of [dequeueableCardIds]. */
-    fun dequeueableCount(state: BoxState, area: String): Int = dequeueableCardIds(state, area).size
+    /** What taking this shelf's queue back out would remove — the size of [unqueueableCardIds]. */
+    fun unqueueableCount(state: BoxState, area: String): Int = unqueueableCardIds(state, area).size
 
     /**
      * Every area's cards, each shelf in seed order — [cardsInArea] for all of them at once.
@@ -186,37 +186,37 @@ object BoxBrowser {
             .mapValues { (_, cards) -> cards.sortedWith(Inventory.seedOrder) }
 
     /**
-     * Both pack counts for every area the box holds cards in, in one walk.
+     * Both queue counts for every area the box holds cards in, in one walk.
      *
-     * The same predicates [enqueueableCardIds] and [dequeueableCardIds] apply, read off
+     * The same predicates [queueableCardIds] and [unqueueableCardIds] apply, read off
      * the cards rather than off the areas: a browser listing thirty shelves asks once
-     * instead of sixty times, and no shelf can promise a number its own pack would not add.
+     * instead of sixty times, and no shelf can promise a number its own queue would not add.
      * An area with nothing to offer on either control is absent rather than zeroed.
      */
     fun shelfCounts(state: BoxState): Map<String, ShelfCounts> {
-        val queued = state.enqueued.toSet()
-        val packable = mutableMapOf<String, Int>()
+        val queued = state.queued.toSet()
+        val queueable = mutableMapOf<String, Int>()
         val waiting = mutableMapOf<String, Int>()
         for (card in state.cards.values) {
             if (card.id in queued) {
                 waiting[card.area] = (waiting[card.area] ?: 0) + 1
             } else if (state.scheduling[card.id] == null) {
-                packable[card.area] = (packable[card.area] ?: 0) + 1
+                queueable[card.area] = (queueable[card.area] ?: 0) + 1
             }
         }
-        return (packable.keys + waiting.keys).associateWith {
-            ShelfCounts(packable = packable[it] ?: 0, queued = waiting[it] ?: 0)
+        return (queueable.keys + waiting.keys).associateWith {
+            ShelfCounts(queueable = queueable[it] ?: 0, queued = waiting[it] ?: 0)
         }
     }
 
     /**
      * What this card's row has to state, and nothing about how it is drawn.
      *
-     * [packOffered] says the row stands in a context that packs (and unpacks) a SINGLE
+     * [queueOffered] says the row stands in a context that queues (and unqueues) a SINGLE
      * word — a search hit, which the learner went looking for by name — and gates
-     * [CardRowState.Packed.removalOffered] the same way. An area listing packs and
-     * unpacks through the shelf's own control instead
-     * ([enqueueableCardIds]/[dequeueableCardIds]), so an unqueued card there states
+     * [CardRowState.Queued.removalOffered] the same way. An area listing queues and
+     * unqueues through the shelf's own control instead
+     * ([queueableCardIds]/[unqueueableCardIds]), so an unqueued card there states
      * nothing at all.
      *
      * Read off the growth ladder ([GrowthStage]) directly, never re-derived from the raw
@@ -224,12 +224,12 @@ object BoxBrowser {
      * derivation is a second answer waiting to disagree.
      * A card the current join does not carry has no standing in the box and reads [CardRowState.Plain].
      */
-    fun cardRowState(state: BoxState, cardId: String, packOffered: Boolean): CardRowState {
+    fun cardRowState(state: BoxState, cardId: String, queueOffered: Boolean): CardRowState {
         if (state.cards[cardId] == null) return CardRowState.Plain
         val sched = state.scheduling[cardId] ?: return when {
-            cardId in state.enqueued -> CardRowState.Packed(removalOffered = packOffered)
-            !packOffered -> CardRowState.Plain
-            else -> CardRowState.PackOffered
+            cardId in state.queued -> CardRowState.Queued(removalOffered = queueOffered)
+            !queueOffered -> CardRowState.Plain
+            else -> CardRowState.QueueOffered
         }
         return if (sched.suspended) CardRowState.Suspended else CardRowState.Standing(activeStageOf(sched))
     }

@@ -17,7 +17,7 @@ class ListeningNewWordOrderTests {
             suspended = false,
             scheduled = false,
             queued = false,
-            packedRank = 0,
+            queuedRank = 0,
         )
     }
 

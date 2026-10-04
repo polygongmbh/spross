@@ -22,13 +22,13 @@ class VerbSlugRekeyTest {
     fun movesAnOrphanedBareSlugOntoItsPrefixedCard() {
         var state = stateWith("to-study", "w02")
         state = Box.inject(state, Box.sched("study", dueMillis = now, lastReviewMillis = now))
-        state = state.copy(enqueued = listOf("study", "w02"), reportedIssues = mapOf("study" to issue("study")))
+        state = state.copy(queued = listOf("study", "w02"), reportedIssues = mapOf("study" to issue("study")))
 
         val moved = state.rekeyingPrefixedVerbs()
 
         assertNull(moved.scheduling["study"])
         assertEquals("to-study", moved.scheduling.getValue("to-study").cardId)
-        assertEquals(listOf("to-study", "w02"), moved.enqueued)
+        assertEquals(listOf("to-study", "w02"), moved.queued)
         assertEquals("to-study", moved.reportedIssues.getValue("to-study").cardId)
     }
 

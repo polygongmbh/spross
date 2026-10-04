@@ -46,9 +46,9 @@ import net.spross.kern.box.OwnWords
  *
  * The two result kinds offer different things, so they act differently. An area is a
  * shelf: choosing it hands the box back the area to unfold and steps aside. A word is
- * itself: it can be heard, and while it is still unpacked it can be packed right here,
+ * itself: it can be heard, and while it is still unqueued it can be queued right here,
  * without taking the whole shelf along — and its long press carries the shelf back too,
- * for the learner who came to READ the word rather than to pack it.
+ * for the learner who came to READ the word rather than to queue it.
  */
 @Composable
 fun BoxSearchScreen(
@@ -78,7 +78,7 @@ fun BoxSearchScreen(
         return
     }
 
-    // why: the search runs on the query SNAPSHOT, not per redraw — packing one hit
+    // why: the search runs on the query SNAPSHOT, not per redraw — queuing one hit
     // redraws its row, and the whole box does not need re-scanning for that.
     //
     // And off the typing thread, a beat behind: it scans every card in the box, and a
@@ -178,8 +178,8 @@ fun BoxSearchScreen(
                                 BoxCardRow(
                                     model,
                                     card,
-                                    pack = {
-                                        model.updateBox { BoxEngine.enqueue(it, listOf(card.id)) }
+                                    queue = {
+                                        model.updateBox { BoxEngine.queue(it, listOf(card.id)) }
                                     },
                                     onWriteOwn = { writing = it },
                                     // why: a word found by typing is shown alone, so the

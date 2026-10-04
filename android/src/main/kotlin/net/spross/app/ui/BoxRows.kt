@@ -51,18 +51,18 @@ import net.spross.kern.model.shownArticle
  * One word as the box lists it: its picture, the TARGET citation over the word the learner
  * already knows, and its standing.
  *
- * The row itself is the audio control — no speaker icon competing with the unsuspend and pack
+ * The row itself is the audio control — no speaker icon competing with the unsuspend and queue
  * controls for width; a plain tap anywhere on it speaks the target, whether or not reading
  * aloud is switched on (a tap is a request, never an autoplay). A long press opens the
  * word's own menu ([BoxRowMenu]) — everything a learner might want to do to this one word —
  * and a reported word wears its flag beside whatever standing it already had.
  *
- * [pack] and [onShowInBox] are the row's two variations, and both belong to the SEARCH: a
+ * [queue] and [onShowInBox] are the row's two variations, and both belong to the SEARCH: a
  * hit was reached by name rather than off a shelf, so it is the one place a single word can
- * be packed and the one place its shelf is worth jumping to. In an area listing neither is
- * offered (the shelf's own control packs there, and the shelf is already open), which is why
+ * be queued and the one place its shelf is worth jumping to. In an area listing neither is
+ * offered (the shelf's own control queues there, and the shelf is already open), which is why
  * both are parameters rather than something the row works out. Taking a word back OUT of the queue
- * needs no such parameter: [BoxEngine.dequeue] is offered wherever a queued row is drawn.
+ * needs no such parameter: [BoxEngine.unqueue] is offered wherever a queued row is drawn.
  * The menu offers both regardless: a menu opened by name is the learner naming this word.
  */
 @OptIn(ExperimentalFoundationApi::class)
@@ -70,7 +70,7 @@ import net.spross.kern.model.shownArticle
 fun BoxCardRow(
     model: AppModel,
     card: Card,
-    pack: (() -> Unit)? = null,
+    queue: (() -> Unit)? = null,
     /** Opens the own-word form — on a copy of this card, or on the word itself. */
     onWriteOwn: ((OwnWordDraft) -> Unit)? = null,
     /** Sends the box to this word's shelf; offered where the row was not reached from one. */
@@ -78,7 +78,7 @@ fun BoxCardRow(
 ) {
     val chrome = model.chrome
     val state = model.box ?: return
-    val standing = BoxBrowser.cardRowState(state, card.id, packOffered = pack != null)
+    val standing = BoxBrowser.cardRowState(state, card.id, queueOffered = queue != null)
     // why: this hands back a fresh closure every time it is asked, so unremembered it
     // changed the row's own click identity once a frame and no row could ever be skipped.
     val pronounce = remember(card.id, model.catalog) { model.boxPronounceAction(card.target) }
@@ -161,7 +161,7 @@ fun BoxCardRow(
         if (model.reportedIssue(card.id) != null) {
             Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.a11yReportReported })
         }
-        CardStanding(model, card, standing, pack, chrome)
+        CardStanding(model, card, standing, queue, chrome)
         BoxRowMenu(
             model = model,
             card = card,
@@ -183,7 +183,7 @@ private fun CardStanding(
     model: AppModel,
     card: Card,
     standing: CardRowState,
-    pack: (() -> Unit)?,
+    queue: (() -> Unit)?,
     chrome: Chrome,
 ) {
     when (standing) {
@@ -199,17 +199,17 @@ private fun CardStanding(
             }
         }
 
-        CardRowState.PackOffered -> pack?.let {
-            PackButton(PackDirection.In, chrome.boxCardPack, it)
+        CardRowState.QueueOffered -> queue?.let {
+            QueueButton(QueueDirection.In, chrome.boxCardQueue, it)
         }
 
         // Direct tap, no confirmation: nothing has been studied yet, so taking a queued
         // word back out costs it nothing (mirrors CardRowState.Suspended's own unsuspend tap).
-        // Offered per word only where packOffered gates it — an area listing takes its
-        // whole queue out through the shelf's own control (PackControl) instead.
-        is CardRowState.Packed -> if (standing.removalOffered) {
-            PackButton(PackDirection.Out, chrome.boxCardUnpack) {
-                model.updateBox { BoxEngine.dequeue(it, card.id) }
+        // Offered per word only where queueOffered gates it — an area listing takes its
+        // whole queue out through the shelf's own control (QueueControl) instead.
+        is CardRowState.Queued -> if (standing.removalOffered) {
+            QueueButton(QueueDirection.Out, chrome.boxCardUnqueue) {
+                model.updateBox { BoxEngine.unqueue(it, card.id) }
             }
         } else {
             // A pill, not an icon: a bare tray glyph reads as a control here too, and
@@ -240,7 +240,7 @@ fun AppModel.boxPronounceAction(target: Realization): (() -> Unit)? {
 }
 
 /** Which way a word is moving between the shelf and the round it is queued for. */
-enum class PackDirection { In, Out }
+enum class QueueDirection { In, Out }
 
 /**
  * The tap that moves a word in or out — one word from its own row, a whole area from its
@@ -251,12 +251,12 @@ enum class PackDirection { In, Out }
  * ladder yet, and the clay is the queued pill's own.
  */
 @Composable
-fun PackButton(direction: PackDirection, label: String, onClick: () -> Unit) {
+fun QueueButton(direction: QueueDirection, label: String, onClick: () -> Unit) {
     IconButton(onClick = onClick) {
         Icon(
-            if (direction == PackDirection.In) SprossIcons.PackIn else SprossIcons.PackOut,
+            if (direction == QueueDirection.In) SprossIcons.QueueIn else SprossIcons.QueueOut,
             contentDescription = label,
-            tint = if (direction == PackDirection.In) Theme.colors.amber else Theme.colors.accent,
+            tint = if (direction == QueueDirection.In) Theme.colors.amber else Theme.colors.accent,
         )
     }
 }

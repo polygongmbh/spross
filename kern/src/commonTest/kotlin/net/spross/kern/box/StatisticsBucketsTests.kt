@@ -54,15 +54,15 @@ class StatisticsBucketsTests {
         assertEquals(2, kitchen.allSettled)
     }
 
-    /** Packed-but-unintroduced cards get their own bucket — the bar's clay segment. */
+    /** Queued-but-unintroduced cards get their own bucket — the bar's clay segment. */
     @Test
-    fun queuedCountsCardsPackedButNotYetIntroduced() {
+    fun queuedCountsCardsQueuedButNotYetIntroduced() {
         var state = Box.state((1..3).map { Box.word(it, area = "kitchen") } + Box.word(4, area = "office"))
-        state = BoxEngine.enqueue(state, listOf("w01", "w04"))
+        state = BoxEngine.queue(state, listOf("w01", "w04"))
 
         val stats = BoxEngine.statistics(state, now, Box.TZ)
         val kitchen = stats.areas.single { it.name == "kitchen" }
-        assertEquals(1, kitchen.queued) // w01 only — w02/w03 were never packed
+        assertEquals(1, kitchen.queued) // w01 only — w02/w03 were never queued
         assertEquals(0, kitchen.active)
         assertEquals(1, stats.areas.single { it.name == "office" }.queued)
     }
@@ -90,8 +90,8 @@ class StatisticsBucketsTests {
 
     /**
      * fullySettled backs the jade area-complete mark: every ACTIVE card settled, and at
-     * least one. Whether every card in the area has even been packed yet is a separate
-     * question a screen answers off its own pack/unpack emptiness, not off this field.
+     * least one. Whether every card in the area has even been queued yet is a separate
+     * question a screen answers off its own queue/unqueue emptiness, not off this field.
      */
     @Test
     fun fullySettledRequiresEveryActiveCardSettledAndAtLeastOne() {

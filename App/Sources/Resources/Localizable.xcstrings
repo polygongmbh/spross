@@ -168,8 +168,8 @@
         }
       }
     },
-    "a11y.box.shelf.pack %@" : {
-      "comment" : "%d = what packing this shelf would add",
+    "a11y.box.shelf.queue %@" : {
+      "comment" : "%d = what queuing this shelf would add",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -185,7 +185,7 @@
         }
       }
     },
-    "a11y.box.shelf.packed" : {
+    "a11y.box.shelf.queued" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -201,7 +201,7 @@
         }
       }
     },
-    "a11y.box.shelf.unpack %@" : {
+    "a11y.box.shelf.unqueue %@" : {
       "comment" : "A shelf's own control, taking its whole queue back out. %d = what it would remove.",
       "localizations" : {
         "de" : {
@@ -877,7 +877,7 @@
         }
       }
     },
-    "box.card.pack" : {
+    "box.card.queue" : {
       "comment" : "the single-word offer a search hit carries",
       "localizations" : {
         "de" : {
@@ -945,7 +945,7 @@
         }
       }
     },
-    "box.card.unpack" : {
+    "box.card.unqueue" : {
       "comment" : "The queued mark's own control: tapping it takes the word back out.",
       "localizations" : {
         "de" : {
@@ -3044,7 +3044,7 @@
         }
       }
     },
-    "home.done.packed" : {
+    "home.done.queued" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {

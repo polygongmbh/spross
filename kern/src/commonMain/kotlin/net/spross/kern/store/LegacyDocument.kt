@@ -1,6 +1,7 @@
 package net.spross.kern.store
 
 import kotlin.time.Instant
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.OwnWord
@@ -26,7 +27,7 @@ internal const val LEGACY_SCHEMA_VERSION: Int = 1
 /** A v1 box as it was written — only the parts [LegacyStore] carries over. */
 internal data class DecodedBox(
     val scheduling: Map<String, CardScheduling>,
-    val enqueued: List<String>,
+    val queued: List<String>,
     val ownWords: List<OwnWord>,
     val reportedIssues: Map<String, ReportedIssue>,
     val lastExportAt: Instant?,
@@ -51,7 +52,7 @@ internal data class BoxDocument(
     val target: String,
     val source: String,
     val scheduling: Map<String, CardDto>,
-    val enqueued: List<String>,
+    @SerialName("enqueued") val queued: List<String>,
     // why: defaulted like the counters above — a document written before the learner
     // could author words at all decodes as one who has authored none.
     val ownWords: List<OwnWordDto> = emptyList(),
@@ -124,7 +125,7 @@ internal fun BoxDocument.toDecoded(): DecodedBox {
     }
     return DecodedBox(
         scheduling = scheduling.entries.associate { (key, dto) -> key to dto.toDomain(key) },
-        enqueued = enqueued,
+        queued = queued,
         ownWords = ownWords.map { it.toDomain() },
         reportedIssues = reportedIssues.associate { it.cardId to it.toDomain() },
         lastExportAt = lastExportAt,

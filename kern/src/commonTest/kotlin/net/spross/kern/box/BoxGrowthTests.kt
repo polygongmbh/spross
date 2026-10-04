@@ -7,7 +7,7 @@ import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Rating
 import net.spross.kern.session.SessionComposer.NEW_CARDS_PER_ROUND
 
-/** Growth: what a round may introduce, and enqueue — everything in cards. */
+/** Growth: what a round may introduce, and queue — everything in cards. */
 class BoxGrowthTests {
     private val now = Box.day1
 
@@ -83,9 +83,9 @@ class BoxGrowthTests {
     }
 
     @Test
-    fun enqueuedLeadWithinTheRoundAndPhrasePullsComponentsFirst() {
+    fun queuedLeadWithinTheRoundAndPhrasePullsComponentsFirst() {
         var state = Box.state((1..10).map { Box.word(it) })
-        state = BoxEngine.enqueue(state, listOf("w07"))
+        state = BoxEngine.queue(state, listOf("w07"))
         assertEquals(
             listOf("w07", "w01", "w02", "w03", "w04", "w05", "w06"),
             Box.candidates(state).newCards,
@@ -94,10 +94,10 @@ class BoxGrowthTests {
         var withPhrase = Box.state(
             (1..6).map { Box.word(it) } + Box.phrase("p1", components = listOf("w05", "w06")),
         )
-        withPhrase = BoxEngine.enqueue(withPhrase, listOf("p1"))
-        assertEquals(listOf("w05", "w06", "p1"), withPhrase.enqueued)
-        // Locked phrase never enters, even enqueued; its components lead — most recently
-        // pulled in first, since a single pack call queues them in one breath — then
+        withPhrase = BoxEngine.queue(withPhrase, listOf("p1"))
+        assertEquals(listOf("w05", "w06", "p1"), withPhrase.queued)
+        // Locked phrase never enters, even queued; its components lead — most recently
+        // pulled in first, since a single queue call queues them in one breath — then
         // automatic growth fills the rest of the round.
         assertEquals(
             listOf("w06", "w05", "w01", "w02", "w03", "w04"),
@@ -106,10 +106,10 @@ class BoxGrowthTests {
     }
 
     @Test
-    fun enqueuedPackDripsInARoundAtATime() {
+    fun aQueuedBatchDripsInARoundAtATime() {
         var state = Box.state((1..12).map { Box.word(it) })
-        // One pack call, one batch: it still introduces in the order it was packed in.
-        state = BoxEngine.enqueue(state, (1..10).map { "w" + it.toString().padStart(2, '0') })
+        // One queue call, one batch: it still introduces in the order it was queued in.
+        state = BoxEngine.queue(state, (1..10).map { "w" + it.toString().padStart(2, '0') })
         assertEquals(
             (1..NEW_CARDS_PER_ROUND).map { "w0$it" },
             Box.candidates(state).newCards,
@@ -118,78 +118,78 @@ class BoxGrowthTests {
         for (id in Box.candidates(state).newCards) {
             state = Box.answered(state, id, Rating.Good, now)
         }
-        // What the round could not take is still packed — the raw queue is stored back to
-        // front (`BoxEngine.enqueue`), so it still reads out front-first, w08 next.
-        assertEquals(listOf("w10", "w09", "w08"), state.enqueued)
+        // What the round could not take is still queued — the raw queue is stored back to
+        // front (`BoxEngine.queue`), so it still reads out front-first, w08 next.
+        assertEquals(listOf("w10", "w09", "w08"), state.queued)
         assertEquals("w08", Box.candidates(state).newCards.first())
     }
 
     /**
-     * RULE: a batch packed later leads a batch packed earlier, but each batch's own words
-     * still come out in the order they were given — a category packed whole still teaches
+     * RULE: a batch queued later leads a batch queued earlier, but each batch's own words
+     * still come out in the order they were given — a category queued whole still teaches
      * front to back.
-     * WHY: the point of most-recently-packed-first is "what I just asked for," not "the last
-     * word of what I just asked for." `BoxEngine.enqueue` stores a batch back to front so
-     * that reading it back to front (`Growth.enqueuedEligible`) restores its own order.
+     * WHY: the point of most-recently-queued-first is "what I just asked for," not "the last
+     * word of what I just asked for." `BoxEngine.queue` stores a batch back to front so
+     * that reading it back to front (`Growth.queuedEligible`) restores its own order.
      */
     @Test
-    fun aLaterPackLeadsButEachPacksOwnOrderSurvives() {
+    fun aLaterBatchLeadsButEachBatchsOwnOrderSurvives() {
         var state = Box.state((1..20).map { Box.word(it) })
-        state = BoxEngine.enqueue(state, listOf("w01", "w02", "w03"))
-        state = BoxEngine.enqueue(state, listOf("w10", "w11", "w12"))
+        state = BoxEngine.queue(state, listOf("w01", "w02", "w03"))
+        state = BoxEngine.queue(state, listOf("w10", "w11", "w12"))
 
         assertEquals(
             listOf("w10", "w11", "w12", "w01", "w02", "w03"),
-            Growth.enqueuedEligible(state),
+            Growth.queuedEligible(state),
         )
     }
 
     @Test
-    fun enqueueSkipsUnknownScheduledAndDuplicates() {
+    fun queueSkipsUnknownScheduledAndDuplicates() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)))
         state = Box.answered(state, "w01", Rating.Good, now)
-        state = BoxEngine.enqueue(state, listOf("w01", "zzz", "w02", "w02"))
-        assertEquals(listOf("w02"), state.enqueued)
+        state = BoxEngine.queue(state, listOf("w01", "zzz", "w02", "w02"))
+        assertEquals(listOf("w02"), state.queued)
     }
 
     @Test
-    fun dequeueTakesAPackedWordBackOut() {
+    fun unqueueTakesAQueuedWordBackOut() {
         var state = Box.state((1..3).map { Box.word(it) })
-        state = BoxEngine.enqueue(state, listOf("w01", "w02"))
+        state = BoxEngine.queue(state, listOf("w01", "w02"))
 
-        state = BoxEngine.dequeue(state, "w01")
-        assertEquals(listOf("w02"), state.enqueued)
+        state = BoxEngine.unqueue(state, "w01")
+        assertEquals(listOf("w02"), state.queued)
 
         // Unknown to the queue, or already scheduled: both a no-op.
-        assertEquals(state, BoxEngine.dequeue(state, "w03"))
+        assertEquals(state, BoxEngine.unqueue(state, "w03"))
         state = Box.answered(state, "w02", Rating.Good, now)
-        assertEquals(state, BoxEngine.dequeue(state, "w02"))
+        assertEquals(state, BoxEngine.unqueue(state, "w02"))
     }
 
     @Test
-    fun dequeueingAPhraseLeavesItsPulledInComponentsQueued() {
+    fun unqueuingAPhraseLeavesItsPulledInComponentsQueued() {
         var state = Box.state(
             (1..2).map { Box.word(it) } + Box.phrase("p1", components = listOf("w01", "w02")),
         )
-        state = BoxEngine.enqueue(state, listOf("p1"))
-        assertEquals(listOf("w01", "w02", "p1"), state.enqueued)
+        state = BoxEngine.queue(state, listOf("p1"))
+        assertEquals(listOf("w01", "w02", "p1"), state.queued)
 
-        state = BoxEngine.dequeue(state, "p1")
-        assertEquals(listOf("w01", "w02"), state.enqueued)
+        state = BoxEngine.unqueue(state, "p1")
+        assertEquals(listOf("w01", "w02"), state.queued)
     }
 
     @Test
-    fun dequeueAreaTakesOutOnlyThatAreasQueuedCards() {
+    fun unqueueAreaTakesOutOnlyThatAreasQueuedCards() {
         var state = Box.state(
             (1..3).map { Box.word(it, area = "kitchen") } + Box.word(4, area = "office"),
         )
-        state = BoxEngine.enqueue(state, listOf("w01", "w03", "w04"))
+        state = BoxEngine.queue(state, listOf("w01", "w03", "w04"))
 
-        state = BoxEngine.dequeueArea(state, "kitchen")
-        assertEquals(listOf("w04"), state.enqueued)
+        state = BoxEngine.unqueueArea(state, "kitchen")
+        assertEquals(listOf("w04"), state.queued)
 
         // Nothing left there, or an area that was never queued: both a no-op.
-        assertEquals(state, BoxEngine.dequeueArea(state, "kitchen"))
-        assertEquals(state, BoxEngine.dequeueArea(state, "bath"))
+        assertEquals(state, BoxEngine.unqueueArea(state, "kitchen"))
+        assertEquals(state, BoxEngine.unqueueArea(state, "bath"))
     }
 }

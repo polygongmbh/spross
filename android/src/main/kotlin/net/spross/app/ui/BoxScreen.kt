@@ -33,7 +33,7 @@ import net.spross.kern.catalog.Catalog
  * The box browser: the shelves and the words standing on them.
  *
  * What the shelves show is kern's to answer ([BoxBrowser.sections] / [BoxBrowser.cardsInArea] /
- * [BoxBrowser.enqueueableCardIds] / [BoxBrowser.cardRowState]), and this screen renders those
+ * [BoxBrowser.queueableCardIds] / [BoxBrowser.cardRowState]), and this screen renders those
  * answers; the box is changed through [AppModel.updateBox], never by walking `state.cards` here.
  *
  * [openAt] is the area the browser was reached BY — a search hit, later a tree — and it says
@@ -111,7 +111,7 @@ private fun BoxBrowserScreen(
                 add(BoxItem.Group(section))
                 if (section.id in openGroups) section.areas.forEach { add(BoxItem.Area(it)) }
             }
-            // why: the learner's own words get no shelf of their own — they are packed the
+            // why: the learner's own words get no shelf of their own — they are queued the
             // moment they are written, so a shelf's controls and progress bar would say
             // nothing over them. They stand in the section below instead, after everything
             // the catalog brought. Kern still lists the area; only the box stops drawing it.

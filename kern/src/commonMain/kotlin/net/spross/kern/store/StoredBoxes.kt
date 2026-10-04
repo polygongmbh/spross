@@ -30,7 +30,7 @@ data class StoredBox(
      */
     val source: Language? = null,
     val scheduling: Map<String, CardScheduling> = emptyMap(),
-    val enqueued: List<String> = emptyList(),
+    val queued: List<String> = emptyList(),
     val ownWords: List<OwnWord> = emptyList(),
     val reportedIssues: Map<String, ReportedIssue> = emptyMap(),
     val lastExportAt: Instant? = null,
@@ -41,7 +41,7 @@ data class StoredBox(
      * overwrite a real box on the phone the file lands on.
      */
     val hasContent: Boolean
-        get() = scheduling.isNotEmpty() || enqueued.isNotEmpty() ||
+        get() = scheduling.isNotEmpty() || queued.isNotEmpty() ||
             ownWords.isNotEmpty() || reportedIssues.isNotEmpty()
 
     /**
@@ -58,7 +58,7 @@ data class StoredBox(
             .associateBy { it.id },
         joinStamp = joinStamp,
         scheduling = scheduling,
-        enqueued = enqueued,
+        queued = queued,
         ownWords = ownWords,
         reportedIssues = reportedIssues,
         lastExportAt = lastExportAt,
@@ -68,7 +68,7 @@ data class StoredBox(
         fun of(state: BoxState): StoredBox = StoredBox(
             source = state.joinStamp.source,
             scheduling = state.scheduling,
-            enqueued = state.enqueued,
+            queued = state.queued,
             ownWords = state.ownWords,
             reportedIssues = state.reportedIssues,
             lastExportAt = state.lastExportAt,

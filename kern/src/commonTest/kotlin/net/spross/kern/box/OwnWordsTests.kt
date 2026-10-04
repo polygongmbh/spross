@@ -36,9 +36,9 @@ class OwnWordsTests {
     }
 
     @Test
-    fun anAddedWordIsPackedWithoutBeingAskedTwice() {
+    fun anAddedWordIsQueuedWithoutBeingAskedTwice() {
         val state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
-        assertEquals(listOf(umbrella.id), state.enqueued)
+        assertEquals(listOf(umbrella.id), state.queued)
     }
 
     @Test
@@ -68,7 +68,7 @@ class OwnWordsTests {
         val halfWritten = umbrella.copy(texts = mapOf("de" to "Regenschirm"))
         val state = BoxEngine.addOwnWord(box(), halfWritten, Box.day1)
         assertNull(state.cards[halfWritten.id])
-        assertTrue(state.enqueued.isEmpty())
+        assertTrue(state.queued.isEmpty())
         // why: not studiable is not the same as lost — the sw side can still be written.
         assertEquals(listOf(halfWritten.id), state.ownWords.map { it.id })
     }
@@ -96,7 +96,7 @@ class OwnWordsTests {
         assertNull(removed.cards[umbrella.id])
         assertNull(removed.scheduling[umbrella.id])
         assertTrue(removed.ownWords.isEmpty())
-        assertTrue(umbrella.id !in removed.enqueued)
+        assertTrue(umbrella.id !in removed.queued)
     }
 
     @Test
@@ -124,7 +124,7 @@ class OwnWordsTests {
 
         val fresh = BoxEngine.reset(state)
         assertTrue(fresh.scheduling.isEmpty())
-        assertTrue(fresh.enqueued.isEmpty())
+        assertTrue(fresh.queued.isEmpty())
         assertEquals(listOf(umbrella.id), fresh.ownWords.map { it.id })
         assertEquals("mwavuli", fresh.cards.getValue(umbrella.id).target.text)
     }
@@ -230,14 +230,14 @@ class OwnWordsTests {
     }
 
     @Test
-    fun fillingInTheMissingHalfTurnsASuggestionIntoAPackedCard() {
+    fun fillingInTheMissingHalfTurnsASuggestionIntoAQueuedCard() {
         val half = umbrella.copy(texts = mapOf("de" to "Regenschirm"))
         val state = BoxEngine.addOwnWord(box(), half, Box.day1)
         assertNull(state.cards[half.id])
 
         val completed = BoxEngine.updateOwnWord(state, umbrella)
         assertEquals("mwavuli", completed.cards.getValue(umbrella.id).target.text)
-        assertEquals(listOf(umbrella.id), completed.enqueued)
+        assertEquals(listOf(umbrella.id), completed.queued)
     }
 
     @Test
@@ -373,19 +373,19 @@ class OwnWordsTests {
 
     /** Merging a suggestion is the catalog answering what it was written for. */
     @Test
-    fun mergingASuggestionPacksTheCatalogWordInItsPlace() {
+    fun mergingASuggestionQueuesTheCatalogWordInItsPlace() {
         val half = OwnWord(id = "own:sonne", kind = OwnWords.DEFAULT_KIND, emoji = null,
                            texts = mapOf("de" to "Sonne"))
         val state = BoxEngine.addOwnWord(box(), half, Box.day1)
         val merged = BoxEngine.mergeOwnWord(state, half.id, "w01")
-        assertEquals(listOf("w01"), merged.enqueued)
+        assertEquals(listOf("w01"), merged.queued)
         assertTrue(merged.ownWords.isEmpty())
     }
 
     @Test
     fun aWordWaitingInTheQueueKeepsItsPlaceUnderTheCatalogId() {
         val state = BoxEngine.addOwnWord(box(), umbrella, Box.day1)
-        assertEquals(listOf("w01"), BoxEngine.mergeOwnWord(state, umbrella.id, "w01").enqueued)
+        assertEquals(listOf("w01"), BoxEngine.mergeOwnWord(state, umbrella.id, "w01").queued)
     }
 
     @Test

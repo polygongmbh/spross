@@ -165,7 +165,7 @@ struct TreeArrival {
 
 /// An area packed and not yet opened: still a seedling, and nothing hangs.
 #Preview("An area only packed") {
-    let packed = AreaGrowth.sample("bath", packed: 12, tendedToday: true)
+    let packed = AreaGrowth.sample("bath", queued: 12, tendedToday: true)
     return GrowingTreeView(transition: TreeTransition(before: packed, after: packed),
                            garden: "", progress: 1)
         .frame(height: AreaTree.shared.heroHeight(tree: packed, ceiling: AreaTree.shared.HERO_MAX))

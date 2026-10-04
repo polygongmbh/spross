@@ -145,7 +145,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
 
     /**
-     * What each shelf's two pack controls would do, every area at once
+     * What each shelf's two queue controls would do, every area at once
      * (`BoxBrowser.shelfCounts`).
      *
      * The browser draws both numbers on every shelf it lists, and asked one shelf at a
@@ -333,7 +333,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * The one door a box SURFACE changes the box through — packing a shelf, unsuspending a
+     * The one door a box SURFACE changes the box through — queuing a shelf, unsuspending a
      * word, a word of one's own, a reset. The change itself is kern's: the caller hands
      * back what a [BoxEngine] call returned, and this is the platform half of it, the
      * observable state and the disk and the numbers Home reads.

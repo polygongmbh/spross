@@ -17,16 +17,16 @@ extension AppModel {
         areaNames.map { SearchableArea(area: $0, title: areaTitle($0)) }
     }
 
-    /// Pack ONE word — what a search hit offers, where an area card packs a shelf.
-    func enqueueCard(_ cardID: String) {
+    /// Queue ONE word — what a search hit offers, where an area card queues a shelf.
+    func queueCard(_ cardID: String) {
         guard box?.cards[cardID] != nil, scheduling(for: cardID) == nil,
               !isQueued(cardID)
         else { return }
-        mutate { $0 = BoxEngine.shared.enqueue(state: $0, cardIds: [cardID]) }
+        mutate { $0 = BoxEngine.shared.queue(state: $0, cardIds: [cardID]) }
     }
 
-    /// Waiting in the priority queue: packed, not yet met.
+    /// Waiting in the priority queue: queued, not yet met.
     func isQueued(_ cardID: String) -> Bool {
-        box?.enqueued.contains(cardID) ?? false
+        box?.queued.contains(cardID) ?? false
     }
 }

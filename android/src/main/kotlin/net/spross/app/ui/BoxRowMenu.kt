@@ -34,8 +34,8 @@ import net.spross.kern.model.Card
  * is wrong with it, and last — set apart — taking it out for good.
  *
  * WHICH of those apply is kern's answer, not this file's: [BoxBrowser.cardRowState] rules on
- * the standing, and it is asked with `packOffered = true` because the MENU always offers the
- * queue. The row's own right edge is the surface that varies (a shelf packs by the shelf);
+ * the standing, and it is asked with `queueOffered = true` because the MENU always offers the
+ * queue. The row's own right edge is the surface that varies (a shelf queues by the shelf);
  * a menu opened by name is the learner naming this one word.
  *
  * The session card's menu is deliberately NOT this one ([ReportableCard]): a round is no
@@ -57,7 +57,7 @@ internal fun BoxRowMenu(
 ) {
     val chrome = model.chrome
     val state = model.box ?: return
-    val standing = BoxBrowser.cardRowState(state, card.id, packOffered = true)
+    val standing = BoxBrowser.cardRowState(state, card.id, queueOffered = true)
     val scheduled = standing is CardRowState.Suspended || standing is CardRowState.Standing
     val own = model.ownWords.firstOrNull { it.id == card.id }
     val stamp = state.joinStamp
@@ -76,14 +76,14 @@ internal fun BoxRowMenu(
             WordCardLines(model, card, chrome)
             onShowInBox?.let { show -> MenuAction(chrome.boxCardShowInBox) { close(); show() } }
             when (standing) {
-                CardRowState.PackOffered -> MenuAction(chrome.boxCardPack) {
+                CardRowState.QueueOffered -> MenuAction(chrome.boxCardQueue) {
                     close()
-                    model.updateBox { BoxEngine.enqueue(it, listOf(card.id)) }
+                    model.updateBox { BoxEngine.queue(it, listOf(card.id)) }
                 }
 
-                is CardRowState.Packed -> MenuAction(chrome.boxCardUnpack) {
+                is CardRowState.Queued -> MenuAction(chrome.boxCardUnqueue) {
                     close()
-                    model.updateBox { BoxEngine.dequeue(it, card.id) }
+                    model.updateBox { BoxEngine.unqueue(it, card.id) }
                 }
 
                 is CardRowState.Standing -> MenuAction(chrome.boxCardSuspend) {

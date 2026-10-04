@@ -241,13 +241,13 @@ object SessionOffers {
         !SessionComposer.composeRound(state, nowEpochMillis, tzId).isEmpty
 
     /**
-     * Whether words the learner packed could enter the next round — a locked phrase does not
+     * Whether words the learner queued could enter the next round — a locked phrase does not
      * count, since it waits on its components rather than on the learner.
      *
-     * A finished day composes nothing, so packing on one leaves the learner looking at a card
+     * A finished day composes nothing, so queuing on one leaves the learner looking at a card
      * that says the day is over; this is what lets that card say what the next round holds
-     * instead of leaving the pack unaccounted for.
+     * instead of leaving the queue unaccounted for.
      */
-    fun packedWordsPending(state: BoxState): Boolean =
-        Growth.enqueuedEligible(state).isNotEmpty()
+    fun queuedWordsPending(state: BoxState): Boolean =
+        Growth.queuedEligible(state).isNotEmpty()
 }

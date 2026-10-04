@@ -10,7 +10,7 @@ import net.spross.kern.design.Palette
 import net.spross.kern.model.CardPhase
 
 /**
- * Browsing the box: which shelves are listed, which one opens, what a pack would take in,
+ * Browsing the box: which shelves are listed, which one opens, what queuing a shelf would take in,
  * and what a single row has to state about its card.
  */
 class BoxBrowserTest {
@@ -150,19 +150,19 @@ class BoxBrowserTest {
     }
 
     @Test
-    fun packingCountsOnlyWhatTheEngineWouldTakeIn() {
+    fun queuingCountsOnlyWhatTheEngineWouldTakeIn() {
         var state = Box.state((1..3).map { Box.word(it, area = "kitchen") } + Box.word(4, area = "office"))
         state = Box.inject(state, Box.sched("w01", dueMillis = future, lastReviewMillis = now))
-        state = BoxEngine.enqueue(state, listOf("w03"))
+        state = BoxEngine.queue(state, listOf("w03"))
 
         // w01 is already scheduled, w03 already queued — only w02 is left to add.
-        assertEquals(listOf("w02"), BoxBrowser.enqueueableCardIds(state, "kitchen"))
-        assertEquals(1, BoxBrowser.enqueueableCount(state, "kitchen"))
+        assertEquals(listOf("w02"), BoxBrowser.queueableCardIds(state, "kitchen"))
+        assertEquals(1, BoxBrowser.queueableCount(state, "kitchen"))
 
-        // The count and the pack read the same predicate, so packing the shelf empties it.
-        val packed = BoxEngine.enqueue(state, BoxBrowser.enqueueableCardIds(state, "kitchen"))
-        assertEquals(0, BoxBrowser.enqueueableCount(packed, "kitchen"))
-        assertEquals(1, BoxBrowser.enqueueableCount(packed, "office"))
+        // The count and the queuing read the same predicate, so queuing the shelf empties it.
+        val queued = BoxEngine.queue(state, BoxBrowser.queueableCardIds(state, "kitchen"))
+        assertEquals(0, BoxBrowser.queueableCount(queued, "kitchen"))
+        assertEquals(1, BoxBrowser.queueableCount(queued, "office"))
     }
 
     @Test
@@ -173,47 +173,47 @@ class BoxBrowserTest {
             Box.sched("w01", dueMillis = future, lastReviewMillis = now, suspended = true),
         )
 
-        assertEquals(CardRowState.Suspended, BoxBrowser.cardRowState(state, "w01", packOffered = false))
-        assertEquals(CardRowState.Suspended, BoxBrowser.cardRowState(state, "w01", packOffered = true))
+        assertEquals(CardRowState.Suspended, BoxBrowser.cardRowState(state, "w01", queueOffered = false))
+        assertEquals(CardRowState.Suspended, BoxBrowser.cardRowState(state, "w01", queueOffered = true))
     }
 
     /**
-     * A row packs or unpacks itself, alone, only in a search result — where the learner
+     * A row queues or unqueues itself, alone, only in a search result — where the learner
      * reached this one card by typing its name rather than browsing a shelf
-     * ([packOffered] true). A shelf listing packs and unpacks its own queue in a batch
+     * ([queueOffered] true). A shelf listing queues and unqueues its own queue in a batch
      * instead. A word already queued always states so, but
-     * [CardRowState.Packed.removalOffered] follows [packOffered] the same way
-     * [CardRowState.PackOffered] does.
+     * [CardRowState.Queued.removalOffered] follows [queueOffered] the same way
+     * [CardRowState.QueueOffered] does.
      */
     @Test
-    fun theOfferToPackAndUnpackIsPerWordOnlyWhereWordsArePackedOneAtATime() {
+    fun theOfferToQueueAndUnqueueIsPerWordOnlyWhereWordsAreQueuedOneAtATime() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)))
-        state = BoxEngine.enqueue(state, listOf("w02"))
+        state = BoxEngine.queue(state, listOf("w02"))
 
-        assertEquals(CardRowState.PackOffered, BoxBrowser.cardRowState(state, "w01", packOffered = true))
+        assertEquals(CardRowState.QueueOffered, BoxBrowser.cardRowState(state, "w01", queueOffered = true))
         assertEquals(
-            CardRowState.Packed(removalOffered = true),
-            BoxBrowser.cardRowState(state, "w02", packOffered = true),
+            CardRowState.Queued(removalOffered = true),
+            BoxBrowser.cardRowState(state, "w02", queueOffered = true),
         )
         // No per-word offer, and new is silence: an unqueued card states nothing.
-        assertEquals(CardRowState.Plain, BoxBrowser.cardRowState(state, "w01", packOffered = false))
-        // A queued one still says so, but the area listing's shelf packs and unpacks
+        assertEquals(CardRowState.Plain, BoxBrowser.cardRowState(state, "w01", queueOffered = false))
+        // A queued one still says so, but the area listing's shelf queues and unqueues
         // in a batch — the row itself offers nothing.
         assertEquals(
-            CardRowState.Packed(removalOffered = false),
-            BoxBrowser.cardRowState(state, "w02", packOffered = false),
+            CardRowState.Queued(removalOffered = false),
+            BoxBrowser.cardRowState(state, "w02", queueOffered = false),
         )
     }
 
     @Test
-    fun dequeueableCardsAreTheAreasQueuedCards() {
+    fun unqueueableCardsAreTheAreasQueuedCards() {
         var state = Box.state((1..3).map { Box.word(it, area = "kitchen") } + Box.word(4, area = "office"))
-        state = BoxEngine.enqueue(state, listOf("w01", "w03", "w04"))
+        state = BoxEngine.queue(state, listOf("w01", "w03", "w04"))
 
-        // Seed order, not pack order: a shelf listing reads like the shelf, not the queue.
-        assertEquals(listOf("w01", "w03"), BoxBrowser.dequeueableCardIds(state, "kitchen"))
-        assertEquals(2, BoxBrowser.dequeueableCount(state, "kitchen"))
-        assertEquals(listOf("w04"), BoxBrowser.dequeueableCardIds(state, "office"))
+        // Seed order, not queue order: a shelf listing reads like the shelf, not the queue.
+        assertEquals(listOf("w01", "w03"), BoxBrowser.unqueueableCardIds(state, "kitchen"))
+        assertEquals(2, BoxBrowser.unqueueableCount(state, "kitchen"))
+        assertEquals(listOf("w04"), BoxBrowser.unqueueableCardIds(state, "office"))
     }
 
     /** Every shelf at once lists what each shelf lists on its own. */
@@ -230,7 +230,7 @@ class BoxBrowserTest {
     }
 
     /**
-     * The browser draws both pack numbers on every shelf at once, so it asks for them
+     * The browser draws both queue numbers on every shelf at once, so it asks for them
      * all at once — and what it is told must be what each shelf's own control would do.
      */
     @Test
@@ -241,25 +241,25 @@ class BoxBrowserTest {
         )
         state = Box.inject(state, Box.sched("w01", dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w05", dueMillis = future, lastReviewMillis = now))
-        state = BoxEngine.enqueue(state, listOf("w03", "w06"))
+        state = BoxEngine.queue(state, listOf("w03", "w06"))
 
         val counts = BoxBrowser.shelfCounts(state)
         for (area in listOf("kitchen", "office")) {
-            assertEquals(BoxBrowser.enqueueableCount(state, area), counts[area]?.packable, area)
-            assertEquals(BoxBrowser.dequeueableCount(state, area), counts[area]?.queued, area)
+            assertEquals(BoxBrowser.queueableCount(state, area), counts[area]?.queueable, area)
+            assertEquals(BoxBrowser.unqueueableCount(state, area), counts[area]?.queued, area)
         }
-        assertEquals(ShelfCounts(packable = 2, queued = 1), counts["kitchen"])
-        assertEquals(ShelfCounts(packable = 1, queued = 1), counts["office"])
+        assertEquals(ShelfCounts(queueable = 2, queued = 1), counts["kitchen"])
+        assertEquals(ShelfCounts(queueable = 1, queued = 1), counts["office"])
     }
 
-    /** A shelf with nothing left to pack and nothing queued drops out rather than reading zero. */
+    /** A shelf with nothing left to queue and nothing queued drops out rather than reading zero. */
     @Test
     fun aShelfWithNothingToOfferIsAbsentFromTheCounts() {
         var state = Box.state(listOf(Box.word(1, area = "kitchen"), Box.word(2, area = "office")))
         state = Box.inject(state, Box.sched("w01", dueMillis = future, lastReviewMillis = now))
 
         assertEquals(null, BoxBrowser.shelfCounts(state)["kitchen"])
-        assertEquals(ShelfCounts(packable = 1, queued = 0), BoxBrowser.shelfCounts(state)["office"])
+        assertEquals(ShelfCounts(queueable = 1, queued = 0), BoxBrowser.shelfCounts(state)["office"])
     }
 
     @Test
@@ -280,7 +280,7 @@ class BoxBrowserTest {
             Box.sched("w05", phase = CardPhase.Relearning, stability = 2.0, dueMillis = future, lastReviewMillis = now),
         )
 
-        fun row(id: String) = BoxBrowser.cardRowState(state, id, packOffered = false)
+        fun row(id: String) = BoxBrowser.cardRowState(state, id, queueOffered = false)
         assertEquals(CardRowState.Standing(ActiveStage.Fresh), row("w01"))
         assertEquals(CardRowState.Standing(ActiveStage.Fresh), row("w02"))
         assertEquals(CardRowState.Standing(ActiveStage.Growing), row("w03"))
@@ -308,6 +308,6 @@ class BoxBrowserTest {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.inject(state, Box.sched("w99", dueMillis = future, lastReviewMillis = now))
 
-        assertEquals(CardRowState.Plain, BoxBrowser.cardRowState(state, "w99", packOffered = true))
+        assertEquals(CardRowState.Plain, BoxBrowser.cardRowState(state, "w99", queueOffered = true))
     }
 }

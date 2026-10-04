@@ -124,7 +124,7 @@ object OwnWords {
 
     /**
      * Own words sort behind every catalog concept: automatic growth walks seed
-     * order, and a word the learner asked for by name is packed on the spot
+     * order, and a word the learner asked for by name is queued on the spot
      * anyway — it never needs growth to reach it.
      */
     const val SEED_BASE: Int = 1_000_000

@@ -14,10 +14,10 @@ enum BoxRowSheet: String, Identifiable {
 ///
 /// Only what applies, and in one fixed order: where the word IS first (the jump to
 /// its shelf, offered only where the row was not reached from one), then where it
-/// stands in the box (packing, suspension, forgetting), then what can be MADE of it, then
+/// stands in the box (queuing, suspension, forgetting), then what can be MADE of it, then
 /// what is wrong with it, and deleting last because it cannot be taken back.
 /// WHERE the word stands is the box's own ruling (`BoxBrowser.cardRowState`), asked
-/// with packing offered — this menu can always pack a single word, whatever the row
+/// with queuing offered — this menu can always queue a single word, whatever the row
 /// behind it draws.
 ///
 /// The session card's menu is deliberately NOT this one (`SessionView.cardMenu`):
@@ -48,19 +48,19 @@ struct BoxRowMenu: View {
         }
     }
 
-    /// Packing, suspension and forgetting — the three things that move a word's standing
+    /// Queuing, suspension and forgetting — the three things that move a word's standing
     /// rather than its content. A card the join does not hold offers none of them.
     @ViewBuilder
     private var standing: some View {
-        let state = model.cardRowState(card.id, packOffered: true)
+        let state = model.cardRowState(card.id, queueOffered: true)
         switch onEnum(of: state) {
-        case .packOffered:
-            Button("box.card.pack", systemImage: "tray.and.arrow.down") {
-                model.enqueueCard(card.id)
+        case .queueOffered:
+            Button("box.card.queue", systemImage: "tray.and.arrow.down") {
+                model.queueCard(card.id)
             }
-        case .packed:
-            Button("box.card.unpack", systemImage: "tray.and.arrow.up") {
-                model.dequeue(cardID: card.id)
+        case .queued:
+            Button("box.card.unqueue", systemImage: "tray.and.arrow.up") {
+                model.unqueue(cardID: card.id)
             }
         case .standing:
             Button("box.card.suspend", systemImage: "moon.zzz") {
@@ -85,7 +85,7 @@ struct BoxRowMenu: View {
     private func isScheduled(_ state: CardRowState) -> Bool {
         switch onEnum(of: state) {
         case .standing, .suspended: return true
-        case .packOffered, .packed, .plain: return false
+        case .queueOffered, .queued, .plain: return false
         }
     }
 

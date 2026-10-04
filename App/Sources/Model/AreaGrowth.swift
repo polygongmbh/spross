@@ -70,12 +70,12 @@ struct Canopy {
 extension AreaGrowth {
     /// A tree built by hand — the previews and the fabricated DEBUG box (`SampleTrees`).
     static func sample(_ area: String, leaves: Int = 0, blossoms: Int = 0, fruit: Int = 0,
-                       buds: Int = 0, packed: Int = 0, fallen: Int = 0,
+                       buds: Int = 0, queued: Int = 0, fallen: Int = 0,
                        tendedToday: Bool = false, reaches: [Double] = []) -> AreaGrowth {
         AreaGrowth(area: area,
                    stages: StageCounts(fresh: Int32(buds), growing: Int32(leaves), lapsed: Int32(fallen),
                                        settled: Int32(blossoms), matured: Int32(fruit)),
-                   queued: Int32(packed), answeredToday: tendedToday,
+                   queued: Int32(queued), answeredToday: tendedToday,
                    reaches: reaches.map { KotlinDouble(value: $0) })
     }
 }

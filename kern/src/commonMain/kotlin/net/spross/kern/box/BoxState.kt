@@ -9,7 +9,7 @@ import net.spross.kern.model.JoinStamp
 /**
  * In-memory box aggregate for one TARGET language under the current (source, target) join.
  * [cards] is derived from the catalog join and never persisted; the rest persists.
- * Schedules and enqueued entries whose card does not join the current profile stay in
+ * Schedules and queued entries whose card does not join the current profile stay in
  * their collections untouched (inert) — they revive when the user switches back.
  */
 data class BoxState(
@@ -24,7 +24,7 @@ data class BoxState(
     /** ONE schedule per card, keyed by card id — join-independent. */
     val scheduling: Map<String, CardScheduling> = emptyMap(),
     /** User priority queue of card ids, front first. */
-    val enqueued: List<String> = emptyList(),
+    val queued: List<String> = emptyList(),
     /**
      * Words the learner wrote themselves, in the order they wrote them. Unlike
      * [cards] these ARE persisted — they are content nothing else holds, so losing

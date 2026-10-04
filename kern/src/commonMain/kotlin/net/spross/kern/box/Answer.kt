@@ -42,7 +42,7 @@ internal object Answering {
         val sched = base.answered(rating, now, scheduler)
         return state.copy(
             scheduling = state.scheduling + (card.id to sched),
-            enqueued = if (introducing) state.enqueued.filter { it != card.id } else state.enqueued,
+            queued = if (introducing) state.queued.filter { it != card.id } else state.queued,
         )
     }
 }

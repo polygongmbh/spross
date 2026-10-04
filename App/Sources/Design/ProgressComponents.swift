@@ -90,8 +90,8 @@ struct AreaProgress {
     let allSettled: Int
     /// Every other active card, fresh, growing or lapsed — the counts row's split.
     let allGrowing: Int
-    /// Cards packed but not yet introduced — the bar's clay segment. A card
-    /// never packed at all gets no segment: it leaves the bar's neutral track
+    /// Cards queued but not yet introduced — the bar's clay segment. A card
+    /// never queued at all gets no segment: it leaves the bar's neutral track
     /// showing rather than widening a fourth bucket.
     let queued: Int
     /// The bar's denominator — never below the introduced count.
@@ -121,16 +121,16 @@ struct AreaChip: View {
     /// count the bar can place (they aren't scheduled yet), so it only ever
     /// shows up here, and only when it says something (never at zero).
     let lockedPhrases: Int
-    /// An area fully packed AND settled swaps its header mark for a jade
-    /// one (the screen's own `packControl`) and has nothing left for the
+    /// An area fully queued AND settled swaps its header mark for a jade
+    /// one (the screen's own `queueControl`) and has nothing left for the
     /// counts/bar to say — so they step aside, leaving just the emoji/name.
     var hideProgress: Bool = false
 
     /// A two-way split (matches the counts row) plus queued: settled, then
-    /// everything else active, then packed-but-unintroduced. No amber segment —
+    /// everything else active, then queued-but-unintroduced. No amber segment —
     /// amber stays a badge-only color, distinguishing Fresh/Shaky from
     /// Growing at the per-card level without the bar needing that fine a grain.
-    /// A card never packed at all gets no segment: the neutral track under them
+    /// A card never queued at all gets no segment: the neutral track under them
     /// is what the untouched rest of the area reads as.
     private var stretches: [(count: Int, color: Color)] {
         [(progress.allSettled, Theme.colors.settled),
@@ -178,7 +178,7 @@ struct AreaChip: View {
                 counts
                 GeometryReader { geo in
                     // why: the neutral track is the area's untouched rest — cards
-                    // never packed draw no segment, so without it the bar would end
+                    // never queued draw no segment, so without it the bar would end
                     // in the card's own background and read as full.
                     ZStack(alignment: .leading) {
                         Capsule().fill(Theme.colors.separator)

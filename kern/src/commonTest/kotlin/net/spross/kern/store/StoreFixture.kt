@@ -12,7 +12,7 @@ import net.spross.kern.model.Realization
 
 /**
  * Deterministic, feature-dense box for codec round-trip tests and the pinned golden
- * document: learning and review phases, an enqueued phrase, a folded day, and
+ * document: learning and review phases, a queued phrase, a folded day, and
  * non-ASCII text on both sides.
  */
 internal object StoreFixture {
@@ -51,6 +51,6 @@ internal object StoreFixture {
         s = Box.answered(s, fridge, Rating.Good, Box.day1)
         s = Box.answered(s, fridge, Rating.Good, Box.plusSeconds(Box.day1, 600))
         s = Box.answered(s, "fixture-verb", Rating.Again, Box.day1)
-        return BoxEngine.enqueue(s, listOf("fixture-phrase"))
+        return BoxEngine.queue(s, listOf("fixture-phrase"))
     }
 }

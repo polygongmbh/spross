@@ -1,6 +1,7 @@
 package net.spross.kern.store
 
 import kotlin.time.Instant
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
@@ -39,7 +40,7 @@ internal data class StoredBoxDto(
     val cards: Map<String, JsonArray> = emptyMap(),
     /** Out of rotation. A word suspended before it was ever answered is only an id here. */
     val suspended: List<String> = emptyList(),
-    val enqueued: List<String> = emptyList(),
+    @SerialName("enqueued") val queued: List<String> = emptyList(),
     val ownWords: List<StoredOwnWordDto> = emptyList(),
     val reportedIssues: List<StoredReportDto> = emptyList(),
     val lastExportAt: Long? = null,
@@ -101,7 +102,7 @@ private fun storedBoxDto(box: StoredBox): StoredBoxDto = StoredBoxDto(
     cards = box.scheduling.values.filter { it.log.isNotEmpty() }
         .associate { it.cardId to cardEntry(it) },
     suspended = box.scheduling.values.filter { it.suspended }.map { it.cardId }.sorted(),
-    enqueued = box.enqueued,
+    queued = box.queued,
     ownWords = box.ownWords.map { storedOwnWordDto(it) },
     reportedIssues = box.reportedIssues.values.sortedBy { it.cardId }.map {
         StoredReportDto(it.cardId, it.comment, it.learnerInput, it.reportedAt.epochSeconds)
@@ -198,7 +199,7 @@ private fun StoredBoxDto.toStored(target: Language): StoredBox {
     return StoredBox(
         source = source,
         scheduling = answered + husks,
-        enqueued = enqueued,
+        queued = queued,
         ownWords = ownWords.map { it.toDomain(target) },
         reportedIssues = reportedIssues.associate { it.cardId to it.toDomain(target) },
         lastExportAt = lastExportAt?.let { Instant.fromEpochSeconds(it) },

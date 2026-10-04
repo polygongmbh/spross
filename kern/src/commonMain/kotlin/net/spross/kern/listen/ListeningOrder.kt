@@ -4,13 +4,13 @@ import kotlin.math.ln
 import net.spross.kern.model.fnv1a64
 
 /**
- * The packed lane's own within-lane order: most recently packed first ([ListeningCandidate.packedRank]),
- * the same order `Growth.enqueuedEligible` introduces them in. Packing is the learner naming
+ * The queued lane's own within-lane order: most recently queued first ([ListeningCandidate.queuedRank]),
+ * the same order `Growth.queuedEligible` introduces them in. Queuing is the learner naming
  * an explicit order — *this one next* — so a shuffle would be second-guessing it, and what
- * they packed last is the freshest ask, ahead of an older one still waiting in the queue.
+ * they queued last is the freshest ask, ahead of an older one still waiting in the queue.
  */
-private val packedOrder: Comparator<ListeningCandidate> =
-    compareBy({ it.packedRank }, { it.card.id })
+private val queuedOrder: Comparator<ListeningCandidate> =
+    compareBy({ it.queuedRank }, { it.card.id })
 
 /**
  * The hash `Inventory.dueOrder` already de-correlates the box with, for the same reason —
@@ -107,9 +107,9 @@ private class Lane(val members: List<ListeningCandidate>, val priority: Int, val
  * unseen lane is spent, and the run laps it from the head — so a box holding nothing scheduled
  * hears its unseen words once through, basics first.
  *
- * WITHIN a lane the order depends on what the lane is. Packed words lead the unseen lane,
- * most-recently-packed first ([packedOrder]) — the same order `Growth.enqueuedEligible`
- * introduces them in, so listening and review agree on which packed word is next. Packing
+ * WITHIN a lane the order depends on what the lane is. Queued words lead the unseen lane,
+ * most-recently-queued first ([queuedOrder]) — the same order `Growth.queuedEligible`
+ * introduces them in, so listening and review agree on which queued word is next. Queuing
  * named its own order, so this one never reshuffles with [seed]: a shuffle would be
  * second-guessing the learner's own ask. Plain new words split basics-first, then shuffle
  * within each half, the second leaning toward earlier words ([newWordOrder]): an empty box
@@ -128,8 +128,8 @@ fun listeningOrder(candidates: List<ListeningCandidate>, seed: Long): List<Liste
     val ladder = scheduled.groupBy { listeningPriority(it.arrived, it.suspended) }
         .entries.sortedByDescending { it.key }
         .map { (priority, members) -> Lane(members.sortedWith(hashedOrder(seed)), priority, cycles = true) }
-    val (packed, plain) = unseen.partition { it.queued }
-    val unseenLane = Lane(packed.sortedWith(packedOrder) + plain.sortedWith(newWordOrder(seed)), priority = 0, cycles = false)
+    val (queued, plain) = unseen.partition { it.queued }
+    val unseenLane = Lane(queued.sortedWith(queuedOrder) + plain.sortedWith(newWordOrder(seed)), priority = 0, cycles = false)
     val lanes = ladder + unseenLane
 
     fun step(lane: Lane): Double {

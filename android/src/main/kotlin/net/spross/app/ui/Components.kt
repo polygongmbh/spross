@@ -202,14 +202,14 @@ const val LOCK = "🔒"
 
 /**
  * An area's cards as a two-way split (matches the counts row) plus queued: settled,
- * everything else active, then packed-but-unintroduced — measured against the area's
+ * everything else active, then queued-but-unintroduced — measured against the area's
  * FULL card count, so the untouched rest of a shelf stays visible instead of a bar
  * that always reads as full.
  *
  * One continuous capsule whose stretches fade into each other. No amber stretch: amber
  * stays a badge-only color, distinguishing Fresh/Lapsed from Growing at the per-card
  * level ([PhaseBadge]) without the bar needing that fine a grain.
- * A card never packed at all gets no stretch: the neutral track under them is what the
+ * A card never queued at all gets no stretch: the neutral track under them is what the
  * untouched rest of the shelf reads as.
  *
  * The split and the denominator are the box's rulings ([AreaStatistics]); an area with

@@ -36,7 +36,7 @@ data class AreaStatistics(
     val total: Int,
     /** Active cards in the area per stage. */
     val stages: StageCounts,
-    /** Cards packed but not yet introduced — the progress bar's clay segment. */
+    /** Cards queued but not yet introduced — the progress bar's clay segment. */
     val queued: Int = 0,
     /** Component phrases still waiting for their components to stabilize. */
     val phrasesLocked: Int = 0,
@@ -278,7 +278,7 @@ internal object Statistics {
 
     private fun areaStatistics(state: BoxState, active: List<CardScheduling>): List<AreaStatistics> {
         val activeByArea = active.groupBy { state.cards[it.cardId]?.area }
-        // why: [BoxBrowser.shelfCounts] already walks the queue per area for the pack
+        // why: [BoxBrowser.shelfCounts] already walks the queue per area for the queue
         // controls — the bar's clay segment reads the same number rather than a second walk.
         val shelfCounts = BoxBrowser.shelfCounts(state)
         return state.cards.values.groupBy { it.area }.entries

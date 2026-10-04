@@ -114,14 +114,14 @@ Engine contract: `../README.md`.
   first turn and takes `LISTENING_NEW_SHARE` (two turns in five) — audio is the cheapest
   exposure a new word can get, so breadth rides alongside the shaky words rather than waiting
   for them, and as a slice rather than a priority three hundred unseen words cannot crowd out
-  the twenty that are slipping. It closes once every unseen word has been said once. Packed
-  words (`BoxState.enqueued`) lead it: packing is the learner saying *these words next*.
+  the twenty that are slipping. It closes once every unseen word has been said once. Queued
+  words (`BoxState.queued`) lead it: queuing is the learner saying *these words next*.
   The deal ends when every held lane has played through once and the unseen lane is spent,
   and the run laps it from the head — a box holding nothing scheduled hears its unseen words
   once through, basics first.
-  **Within a lane the order depends on what the lane is.** Packed words lead the rest of the
-  unseen ones and are out within the first handful of turns, most recently packed first —
-  the order `Growth.enqueuedEligible` introduces them in, never reshuffled.
+  **Within a lane the order depends on what the lane is.** Queued words lead the rest of the
+  unseen ones and are out within the first handful of turns, most recently queued first —
+  the order `Growth.queuedEligible` introduces them in, never reshuffled.
   The plain unseen words split at `LISTENING_BASICS_WORDS` (50): the catalog's earliest
   concepts lead as a group, so an empty box opens on greetings, shuffled by the salted hash
   below so no single word is pinned to the front of every run.
