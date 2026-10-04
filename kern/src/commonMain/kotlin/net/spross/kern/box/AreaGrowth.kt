@@ -13,7 +13,7 @@ import kotlin.math.min
  */
 data class AreaGrowth(
     val area: String,
-    /** The area's active words per Sprosse, sorted the way [AreaStatistics] sorts them. */
+    /** The area's active words per stage, sorted the way [AreaStatistics] sorts them. */
     val stages: StageCounts,
     /** Packed and never met ([GrowthStage.Queued]) — why the area is growing at all. */
     val queued: Int,

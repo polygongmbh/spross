@@ -211,7 +211,7 @@ data class ListeningCandidate(
  * from the very first turn, whatever the box holds.
  *
  * Audio is the cheapest exposure a word never met can get: nothing is asked, nothing is owed,
- * and a first hearing costs a few seconds. So the unseen words are not a Sprosse of the ladder
+ * and a first hearing costs a few seconds. So the unseen words are not a priority on the ladder
  * but a fixed slice beside it — the shakiest words own the opening, and every second or third
  * turn is still a word the learner has not met.
  */
@@ -234,7 +234,7 @@ const val LISTENING_SHAKY_PRIORITY: Int = 2
 const val LISTENING_GROWING_PRIORITY: Int = 1
 
 /**
- * Where a scheduled word stands on the listening ladder — two Sprossen, read off the box's own
+ * Where a scheduled word stands on the listening ladder — two priorities, read off the box's own
  * bar rather than a ladder of listening's own.
  *
  * A word short of `GROWING_STABILITY` (`Statistics.hasArrived`) leads: it is the whole point of the hour. A word past it is still worth

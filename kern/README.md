@@ -162,16 +162,16 @@ the numbers behind each setting are on `BoxConfig` itself, and the three stabili
   (user ruling 2026-09-02) --
   a brand-new word and a lapsed one wait on the same cadence.
   Each `Again` climbs `stepsSeconds` (`FsrsScheduler.stepOutcome`)
-  instead of resetting to its first entry, capped at the ladder's last Sprosse.
+  instead of resetting to its first entry, capped at the ladder's last step.
   The product ships `[10m, 1d, 10m, 3d, 10m, 7d, 10m, 30d]` --
   minutes and days alternate, so a word that will not stick comes back
   at most TWICE in any day while the gaps between pairs widen.
-  The last Sprosse is a MONTH rather than a week --
+  The last step is a MONTH rather than a week --
   a word still missed after four same-day pairs is a leech,
   but the box never suspends on its own, so the ladder parks it within reach.
   `Again` is the ONLY rating that stays on the ladder:
   `Hard`, `Good` and `Easy` all graduate to Review immediately.
-  High on the ladder that hands a `Hard` a SHORTER interval than another Sprosse would have.
+  High on the ladder that hands a `Hard` a SHORTER interval than another step would have.
   **No in-session lapse retry** (breadth ruling 2026-07-22):
   the run a card lapsed in does not wait for it;
   by role resolution (section 3), the retry that follows is the typed production attempt.
@@ -283,10 +283,10 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   "Today" and "tomorrow" are local-calendar questions and `composeSession` takes `tzId`;
   the returning span is the one deliberate exception.
 - **No surface derives a card's standing from a raw phase** --
-  the engine reports the Sprosse (`GrowthStage`),
+  the engine reports the stage (`GrowthStage`),
   and every listing carries it whole (`CardRowState.Standing.stage`, an `ActiveStage`).
   The read models a surface draws the box from are `docs/reports.md`.
-  **The color a Sprosse wears is the same fact, extended to drawing**:
+  **The color a stage wears is the same fact, extended to drawing**:
   `CardRowState.Standing.swatch` resolves it once, off `net.spross.kern.design.Palette`,
   so a row's badge and the shelf's progress bar read the identical color on both platforms.
 - **Packing and unpacking act on the area, never a single word,
@@ -325,7 +325,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   the shakiest lead, then words the learner packed (most recently packed first),
   then the rest of the unseen ones (catalog's earliest stretch first as a group,
   shuffled within it) -- and the run walks and laps that order.
-  **Suspended cards stay in the pool**: a suspended card pays a toll on its own Sprosse
+  **Suspended cards stay in the pool**: a suspended card pays a toll on its own lane
   instead of being sent to the back.
   Hearing a word does not introduce it --
   `ListeningRun` holds no `BoxState` at all.

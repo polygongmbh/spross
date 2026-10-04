@@ -2,7 +2,7 @@ package net.spross.kern.box
 
 import net.spross.kern.model.CardScheduling
 
-/** Active cards per Sprosse; the combined counts are sums of these, never differences. */
+/** Active cards per stage; the combined counts are sums of these, never differences. */
 data class StageCounts(
     val fresh: Int = 0,
     val growing: Int = 0,
@@ -27,7 +27,7 @@ data class StageCounts(
     }
 }
 
-/** The one place that sorts a Sprosse into a [StageCounts] field — the box's counts and each tree's. */
+/** The one place that sorts a stage into a [StageCounts] field — the box's counts and each tree's. */
 internal class StageTally {
     private var fresh = 0
     private var growing = 0
@@ -35,7 +35,7 @@ internal class StageTally {
     private var settled = 0
     private var matured = 0
 
-    /** Counts a card on [stage] at [stability]; false for a Sprosse no count holds. */
+    /** Counts a card on [stage] at [stability]; false for a stage no count holds. */
     fun add(stage: GrowthStage, stability: Double): Boolean {
         when (stage) {
             GrowthStage.Fresh -> fresh += 1

@@ -272,7 +272,7 @@ fun AreaChip(
         }
         if (!hideProgress) {
             Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                // Two counts where the bar beneath draws three Sprossen: there is room here for
+                // Two counts where the bar beneath draws three stages: there is room here for
                 // the split that matters (cleared the bar, or not yet), and the bar carries
                 // the finer one.
                 CountLabel("$SEAL ${countLine(chrome.progressAllSettledCountOne, chrome.progressAllSettledCount, settled)}", Theme.colors.settled)

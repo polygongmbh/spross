@@ -94,16 +94,16 @@ private class Lane(val members: List<ListeningCandidate>, val priority: Int, val
  *
  * The shaky lane opens at the first turn and plays every word it holds before the growing
  * lane opens at all — a learner with plenty of words slipping hears those, not a word the box
- * already trusts. From then on both are open, splitting the held turns by Sprosse
+ * already trusts. From then on both are open, splitting the held turns by lane
  * ([listeningPriority], two to one), and each lane starts over at its own head when it runs
- * out: no word comes back before the rest of its Sprosse has, and the fewer words a Sprosse
+ * out: no word comes back before the rest of its lane has, and the fewer words a lane
  * holds the sooner each of them returns. [LISTENING_RETURN_FLOOR_TURNS] is the one brake — a
  * word said that recently waits, and the turn goes to whichever lane is next.
  *
- * The unseen lane is not a Sprosse but a fixed slice, [LISTENING_NEW_SHARE] of the turns from
+ * The unseen lane is not a priority but a fixed slice, [LISTENING_NEW_SHARE] of the turns from
  * the very first one, and it closes once every unseen word has been said once. Each open lane
  * is due every `1 / share` turns on one shared clock; the earliest due plays, a tie going to
- * the higher Sprosse. The deal ends when every held Sprosse has played through once and the
+ * the higher priority. The deal ends when every held lane has played through once and the
  * unseen lane is spent, and the run laps it from the head — so a box holding nothing scheduled
  * hears its unseen words once through, basics first.
  *

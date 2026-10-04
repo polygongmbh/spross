@@ -159,16 +159,16 @@ fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
 /**
  * Where one card stands on the growth ladder: fresh → growing → settled, or lapsed.
  *
- * Four labeled Sprossen, three colors. [CardRowState.Standing.stage] — kern's own
+ * Four labeled stages, three colors. [CardRowState.Standing.stage] — kern's own
  * ladder — decides the top one directly, exactly as the shelf's own tally does, so a
  * row's seal never claims a word the shelf above does not also count: Settled is a
- * further Sprosse, well past Growing, which is why a Growing card reads its own mark
+ * further stage, well past Growing, which is why a Growing card reads its own mark
  * instead of borrowing the seal. Fresh and Lapsed share amber and a glyph, and only the
- * word tells them apart. Settled is the one Sprosse that carries no word at all — the
+ * word tells them apart. Settled is the one stage that carries no word at all — the
  * seal alone already says "done".
  *
  * The color comes from [swatch] rather than being picked here, so this badge and the
- * shelf's own [AreaProgressBar] can never disagree about the same Sprosse. A card with
+ * shelf's own [AreaProgressBar] can never disagree about the same stage. A card with
  * nothing behind it gets no badge at all; that absence is what says "new"
  * (kern `CardRowState.Plain`), so this is never asked about one.
  */

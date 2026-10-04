@@ -145,7 +145,7 @@ enum Theme {
         let success = Color(Palette.shared.success)  // forest
         let amber = Color(Palette.shared.amber)      // ochre — a near miss, or an answer shown
         let wrong = Color(Palette.shared.wrong)      // brick — a miss
-        /// The settled Sprosse's own color — not `teal`, which sits too close to
+        /// The settled stage's own color — not `teal`, which sits too close to
         /// `der` on the hue wheel to read as anything but another blue at a badge's size.
         let settled = Color(Palette.shared.settled)      // jade
 

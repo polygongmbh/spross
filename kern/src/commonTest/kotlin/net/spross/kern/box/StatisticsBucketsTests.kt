@@ -34,9 +34,9 @@ class StatisticsBucketsTests {
         assertEquals(kitchen.total, kitchen.allSettled + kitchen.allGrowing + kitchen.notIntroduced)
     }
 
-    /** Each active card counts on its own Sprosse; the two halves of the split are sums of them. */
+    /** Each active card counts on its own stage; the two halves of the split are sums of them. */
     @Test
-    fun eachActiveCardCountsOnItsOwnSprosse() {
+    fun eachActiveCardCountsOnItsOwnStage() {
         var state = Box.state((1..5).map { Box.word(it, area = "kitchen") })
         val future = Box.plusDays(now, 5.0)
         state = Box.inject(state, Box.sched("w01", stability = 3.0, dueMillis = future, lastReviewMillis = now))

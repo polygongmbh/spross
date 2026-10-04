@@ -92,31 +92,31 @@ Engine contract: `../README.md`.
   it is what the box already calls done, and an hour of listening is for what is not —
   left in, a well-used box, where the settled words outnumber everything else, would open on
   the words it trusts most. It is back the moment a lapse takes it under that bar.
-  `listeningPriority(growing, suspended)` is the ladder, and it has two Sprossen read off the
+  `listeningPriority(growing, suspended)` is the ladder, and it has two priorities read off the
   box's own bar rather than a ladder of listening's own: a held word short of
   `GROWING_STABILITY` (`Statistics.hasArrived`) is SHAKY (`LISTENING_SHAKY_PRIORITY`, 2) and one past it is GROWING
-  (`LISTENING_GROWING_PRIORITY`, 1). A **suspended** word takes the growing Sprosse whatever
+  (`LISTENING_GROWING_PRIORITY`, 1). A **suspended** word takes the growing priority whatever
   its bar: suspension takes a word out of the box's rotation and this is the surface that
   can still reach it, so it comes in — it does not lead.
   **Nothing on that ladder reads a due date.** A word the box wants back is a word short of
-  the bar, so it rises on the Sprosse it already has; a due term would make listening a second
+  the bar, so it rises on the priority it already has; a due term would make listening a second
   scheduler, need a clock the run does not take, and pin the same word first every run —
   which listening cannot resolve, since it books nothing.
   **The shaky words play first, strictly, and come back once they are out.** `listeningOrder`
   deals the playlist turn by turn on one clock: the shaky lane opens at the first turn and
   plays every word it holds before the growing lane opens at all; from then on both are open,
-  splitting the held turns by Sprosse (two to one), and each lane starts over at its own head
-  when it runs out — so no word comes back before the rest of its Sprosse has, and the fewer
-  words a Sprosse holds the sooner each of them returns. `LISTENING_RETURN_FLOOR_TURNS` (30)
+  splitting the held turns by lane (two to one), and each lane starts over at its own head
+  when it runs out — so no word comes back before the rest of its lane has, and the fewer
+  words a lane holds the sooner each of them returns. `LISTENING_RETURN_FLOOR_TURNS` (30)
   is the one brake: a word said that recently waits, and the turn goes to whichever lane is
   next, so two shaky words are not the whole evening.
-  **Never-answered words are a fixed slice, not a Sprosse.** The unseen lane is open from the
+  **Never-answered words are a fixed slice, not a priority.** The unseen lane is open from the
   first turn and takes `LISTENING_NEW_SHARE` (two turns in five) — audio is the cheapest
   exposure a new word can get, so breadth rides alongside the shaky words rather than waiting
-  for them, and as a slice rather than a Sprosse three hundred unseen words cannot crowd out
+  for them, and as a slice rather than a priority three hundred unseen words cannot crowd out
   the twenty that are slipping. It closes once every unseen word has been said once. Packed
   words (`BoxState.enqueued`) lead it: packing is the learner saying *these words next*.
-  The deal ends when every held Sprosse has played through once and the unseen lane is spent,
+  The deal ends when every held lane has played through once and the unseen lane is spent,
   and the run laps it from the head — a box holding nothing scheduled hears its unseen words
   once through, basics first.
   **Within a lane the order depends on what the lane is.** Packed words lead the rest of the

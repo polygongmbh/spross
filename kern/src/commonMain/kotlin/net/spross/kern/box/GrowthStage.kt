@@ -6,13 +6,13 @@ import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
 
 /**
- * How far one card has come, as one Sprosse of the box's own ladder.
+ * How far one card has come, as one stage of the box's own ladder.
  *
- * The Sprossen name the RULE, never a picture. A surface is free to draw them as it
+ * The stages name the RULE, never a picture. A surface is free to draw them as it
  * likes, and free to draw two of them the same — which bars a card has cleared is
  * the engine's answer, what that looks like is not.
  *
- * Ordered as growth runs, so neighboring Sprossen compare. The three off-path Sprossen
+ * Ordered as growth runs, so neighboring stages compare. The three off-path stages
  * ([Unscheduled], [Lapsed], [Suspended]) say where the card stands now, never
  * how far it once got.
  */
@@ -46,7 +46,7 @@ enum class GrowthStage {
 }
 
 /**
- * The Sprosse of an active card — scheduled and in rotation —
+ * The stage of an active card — scheduled and in rotation —
  * so a type that only ever holds one cannot be handed [GrowthStage]'s other three.
  */
 enum class ActiveStage(val growth: GrowthStage) {
@@ -57,7 +57,7 @@ enum class ActiveStage(val growth: GrowthStage) {
 }
 
 /**
- * One card's standing: which Sprosse it is on, and the two facts a caller would
+ * One card's standing: which stage it is on, and the two facts a caller would
  * otherwise re-derive from the schedule to say anything more.
  */
 data class CardGrowth(
@@ -65,7 +65,7 @@ data class CardGrowth(
     val stage: GrowthStage,
     /**
      * Days of stability, 0 for a card with no schedule. Reported raw rather than
-     * scaled: the ladder's Sprossen are coarse by design, and a surface that wants a
+     * scaled: the ladder's stages are coarse by design, and a surface that wants a
      * continuous figure should scale this against
      * [net.spross.kern.model.BoxConfig.maximumIntervalDays] itself.
      */
@@ -81,7 +81,7 @@ data class CardGrowth(
 }
 
 /**
- * The Sprosse this schedule stands on: suspension first, then the stability bars,
+ * The stage this schedule stands on: suspension first, then the stability bars,
  * and only under the growing bar does the FSRS phase say whether the word is new or slipped.
  */
 internal fun stageOf(sched: CardScheduling): GrowthStage =
@@ -122,7 +122,7 @@ internal fun areaGrowth(state: BoxState, area: String, nowEpochMillis: Long, tzI
  *
  * For a surface that has a single word in front of it (a row's long press): walking the
  * whole box for one entry is the alternative, and a surface tempted to skip that walk is
- * a surface about to re-derive the Sprosse from the schedule itself.
+ * a surface about to re-derive the stage from the schedule itself.
  */
 internal fun cardGrowthOf(
     state: BoxState,

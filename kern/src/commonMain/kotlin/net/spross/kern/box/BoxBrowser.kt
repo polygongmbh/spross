@@ -65,7 +65,7 @@ sealed class CardRowState {
      * The card is on the ladder, and this is where.
      *
      * An [ActiveStage] rather than a [GrowthStage]: a card with nothing behind it is [Plain] or
-     * [PackOffered], and a sleeping one is [Sleeping]. Carrying the Sprosse rather than a collapsed
+     * [PackOffered], and a sleeping one is [Sleeping]. Carrying the stage rather than a collapsed
      * boolean is what lets a surface tell Fresh, Growing and Settled apart on sight,
      * the same way the badge does.
      */

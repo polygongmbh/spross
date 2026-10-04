@@ -11,7 +11,7 @@ import net.spross.kern.model.CardScheduling
 
 /** Aggregates for progress UI. All counts are in cards. */
 data class BoxStatistics(
-    /** Active (scheduled, non-suspended) cards per Sprosse. */
+    /** Active (scheduled, non-suspended) cards per stage. */
     val stages: StageCounts,
     /** Active cards due now. */
     val dueCount: Int,
@@ -34,7 +34,7 @@ data class AreaStatistics(
     val name: String,
     /** Cards in the area (any status). */
     val total: Int,
-    /** Active cards in the area per Sprosse. */
+    /** Active cards in the area per stage. */
     val stages: StageCounts,
     /** Cards packed but not yet introduced — the progress bar's clay segment. */
     val queued: Int = 0,

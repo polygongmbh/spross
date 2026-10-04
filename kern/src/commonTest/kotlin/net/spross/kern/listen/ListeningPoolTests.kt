@@ -191,7 +191,7 @@ class ListeningPoolTests {
      * RULE: packed words are heard inside the opening turns, and ahead of the other new ones.
      * WHY: packing is the learner saying *these words next*; the study round honors it and the
      * widget honors it, so the mode with the least friction cannot be the one that ignores it.
-     * Their own lane runs a Sprosse faster, which puts them in the first handful of turns without
+     * Their own lane runs a notch faster, which puts them in the first handful of turns without
      * making them a block.
      */
     @Test
@@ -202,7 +202,7 @@ class ListeningPoolTests {
         val played = ids(spoken(state))
 
         assertTrue(played.take(6).containsAll(packed), "packed words late: ${played.take(6)}")
-        // The packed lane runs a Sprosse ahead of the plain new one, so its own opener
+        // The packed lane runs a notch ahead of the plain new one, so its own opener
         // beats the plain lane's regardless of which plain word that turns out to be.
         assertTrue(
             played.indexOf("w70") < played.indexOf((played - packed.toSet()).first()),
@@ -302,7 +302,7 @@ class ListeningPoolTests {
     /**
      * RULE: unseen words take `LISTENING_NEW_SHARE` of the turns from the first one on.
      * WHY: audio is the cheapest exposure a new word can get, so breadth rides alongside the
-     * shaky words rather than waiting for them — but as a slice, not a Sprosse, so three
+     * shaky words rather than waiting for them — but as a slice, not a priority, so three
      * hundred unseen words do not crowd out the twenty that are slipping.
      */
     @Test

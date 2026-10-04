@@ -239,7 +239,7 @@ struct BoxCardRow: View {
         }
     }
 
-    /// Kern's Sprosse in the palette's own terms.
+    /// Kern's stage in the palette's own terms.
     private static func badgePhase(_ stage: ActiveStage) -> PhaseBadge.Phase {
         switch stage {
         case .fresh: return .fresh

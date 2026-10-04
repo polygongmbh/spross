@@ -204,7 +204,7 @@ struct AreaChip: View {
     ///
     /// Two counts, not the bar's three: three German words do not fit this width,
     /// so the text keeps the coarse split — cleared the bar, or still short of it —
-    /// and the bar alone draws the Sprosse between them.
+    /// and the bar alone draws the stage between them.
     private var counts: some View {
         HStack(spacing: Theme.spacing.md) {
             Label("progress.allSettledCount \(Int(progress.allSettled))",
@@ -229,16 +229,16 @@ struct AreaChip: View {
 
 // MARK: PhaseBadge
 
-/// Where one card stands on the ladder, as one word in the Sprosse's own color.
+/// Where one card stands on the ladder, as one word in the stage's own color.
 ///
-/// Four labeled Sprossen: fresh, shaky (lapsed), growing and settled.
+/// Four labeled stages: fresh, shaky (lapsed), growing and settled.
 /// Fresh and shaky share amber and a glyph; only the word tells them apart.
 /// The stage comes whole from kern (`CardRowState.Standing`), so a row never
 /// reads settled before the shelf's count does.
 ///
-/// The Sprosse's [growth] color is handed in, never re-derived here: kern resolves it
+/// The stage's [growth] color is handed in, never re-derived here: kern resolves it
 /// once (`CardRowState.Standing.swatch`) so a row's badge and the shelf's own bar,
-/// which reads the same three tokens, cannot paint one Sprosse two ways.
+/// which reads the same three tokens, cannot paint one stage two ways.
 struct PhaseBadge: View {
     /// Kern's `ActiveStage` in Design's own terms — see `BoxCardRow.badgePhase`.
     /// It picks the WORD and the glyph; the color arrives with [growth] instead.
@@ -247,7 +247,7 @@ struct PhaseBadge: View {
     }
 
     let phase: Phase
-    /// The Sprosse's color as the box resolved it.
+    /// The stage's color as the box resolved it.
     let growth: Color
 
     private var label: LocalizedStringKey {
@@ -260,7 +260,7 @@ struct PhaseBadge: View {
     }
 
     /// The area row's own icon at the settled end; Growing gets one, and the two
-    /// amber Sprossen share the leaf their shared color already pairs them by.
+    /// amber stages share the leaf their shared color already pairs them by.
     private var icon: String {
         switch phase {
         case .settled: return "checkmark.seal.fill"
@@ -271,7 +271,7 @@ struct PhaseBadge: View {
 
     var body: some View {
         Group {
-            // Grown is the one Sprosse that needs no word: a seal already reads as
+            // Settled is the one stage that needs no word: a seal already reads as
             // "done" on its own, where Fresh/Shaky/Growing would be ambiguous
             // glyphs without one.
             if phase == .settled {
@@ -303,7 +303,7 @@ private extension View {
     }
 }
 
-/// Every Sprosse a badge can wear, in climbing order, with the colors kern hands the
+/// Every stage a badge can wear, in climbing order, with the colors kern hands the
 /// real row (`CardRowState.Standing.swatch`) written out — a preview has no box to
 /// ask, and seeing the four badges side by side is the point of it.
 private var ladder: some View {

@@ -61,7 +61,7 @@ class ThemeColors(
     /** Ochre: the reveal, the tough answer, the word still being learned — never red. */
     val amber: Color,
     /**
-     * Jade — the settled Sprosse's own color. Not [teal]: that one sits too
+     * Jade — the settled stage's own color. Not [teal]: that one sits too
      * close to [der] on the hue wheel to read as anything but another blue at a badge's
      * size, so this one is its own token, pulled toward green instead.
      */

@@ -19,7 +19,7 @@ class BoxBrowserTest {
 
     /**
      * Three groups over four areas: `home` titled for the reader, `work` in English only,
-     * `wild` titled in no language at all — the three Sprossen of the heading fallback.
+     * `wild` titled in no language at all — the three steps of the heading fallback.
      * The concepts are empty because the browser reads the BOX's cards, never the catalog's.
      */
     private val catalog: Catalog = Catalog.load(
@@ -272,7 +272,7 @@ class BoxBrowserTest {
         // Review well under the growing bar (6.0) — the phase says nothing about it.
         state = Box.inject(state, Box.sched("w02", stability = 3.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w03", stability = 9.0, dueMillis = future, lastReviewMillis = now))
-        // Settled is a further Sprosse of its own, at the 25-day bar.
+        // Settled is a further stage of its own, at the 25-day bar.
         state = Box.inject(state, Box.sched("w04", stability = 99.0, dueMillis = future, lastReviewMillis = now))
         // Relearning under the growing bar: the lapse cost it the bar.
         state = Box.inject(
@@ -289,11 +289,11 @@ class BoxBrowserTest {
     }
 
     /**
-     * The Sprosse's color, so a row's badge and the shelf's bar read the same table:
+     * The stage's color, so a row's badge and the shelf's bar read the same table:
      * amber for Fresh/Lapsed, green for Growing, jade for Settled.
      */
     @Test
-    fun theSprossenColorFollowsTheBarAndTheAmberStagesShareIt() {
+    fun theStageColorFollowsTheBarAndTheAmberStagesShareIt() {
         fun swatchOf(stage: ActiveStage) = CardRowState.Standing(stage).swatch
 
         assertEquals(Palette.amber, swatchOf(ActiveStage.Fresh))

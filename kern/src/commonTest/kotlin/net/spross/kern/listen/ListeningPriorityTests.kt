@@ -5,7 +5,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 
-/** Where a held word stands on the listening ladder — two Sprossen off the box's own bar. */
+/** Where a held word stands on the listening ladder — two priorities off the box's own bar. */
 class ListeningPriorityTests {
 
     private fun candidate(
