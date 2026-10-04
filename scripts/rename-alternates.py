@@ -64,7 +64,7 @@ KEEP = [
     ('kern/src/commonTest/kotlin/net/spross/kern/session/SessionOfferTests.kt', EVERY),
     ('android/src/main/kotlin/net/spross/app/ui/HomeStanding.kt', EVERY),
     ('android/src/test/kotlin/net/spross/app/ui/HomeStandingTest.kt', EVERY),
-    ('App/Sources/Design/SessionCompletionView.swift', EVERY),
+    ('App/Sources/Design/SessionSummaryView.swift', EVERY),
     ('App/Sources/Resources/Localizable.xcstrings', EVERY),
     # A typed answer's prefix strippings, collected under the same English word.
     ('kern/src/commonMain/kotlin/net/spross/kern/session/AnswerNormalizer.kt',

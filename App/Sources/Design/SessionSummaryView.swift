@@ -1,13 +1,13 @@
 import SwiftUI
 import SprossKern
 
-// MARK: - SessionCompletionView
+// MARK: - SessionSummaryView
 //
 // "Geschafft!" — warm and playful. Confetti falls over the whole screen
 // (ConfettiView) while an emoji burst opens under it; the cheer sounds once
 // as the screen arrives. Tapping anywhere but the buttons replays all three.
 
-struct SessionCompletionView: View {
+struct SessionSummaryView: View {
     /// The round's answers spelled out (`RoundSummary.parts`).
     var parts: [TallyPart] = []
     /// The area this round worked hardest, as it stood before the round and as
@@ -194,10 +194,10 @@ struct SessionCompletionView: View {
 // MARK: - Previews
 
 #Preview("Completion") {
-    SessionCompletionView(parts: [TallyPart(kind: .reviewed, count: 18)], canPracticeMore: true, onTalk: {})
+    SessionSummaryView(parts: [TallyPart(kind: .reviewed, count: 18)], canPracticeMore: true, onTalk: {})
 }
 
 #Preview("Completion · dark") {
-    SessionCompletionView(parts: [TallyPart(kind: .reviewed, count: 5)])
+    SessionSummaryView(parts: [TallyPart(kind: .reviewed, count: 5)])
         .preferredColorScheme(.dark)
 }

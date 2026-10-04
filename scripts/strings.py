@@ -100,7 +100,7 @@ ANDROID_ONLY = {
     'settings.update.offer', 'settings.update.title',
 }
 # Whole families built at runtime — a stem plus the variant kern picked this round
-# (`AppModel+Queries.headlineKey`, `SessionCompletionView.growthKey`). The words are
+# (`AppModel+Queries.headlineKey`, `SessionSummaryView.headlineKey`). The words are
 # ours, the choice is not, so no call site ever spells the key out.
 COMPOSED = (
     'home.offer.headline.', 'session.done.growth.',

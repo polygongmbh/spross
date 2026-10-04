@@ -64,7 +64,7 @@ struct SessionView: View, LanguageNaming {
     var body: some View {
         Group {
             if model.sessionCompleted, let summary = model.sessionSummary {
-                SessionCompletionView(parts: summary.parts,
+                SessionSummaryView(parts: summary.parts,
                                       grownArea: summary.grownArea,
                                       garden: model.garden,
                                       grownAreaLabel: summary.grownArea.map {

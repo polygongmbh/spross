@@ -165,7 +165,7 @@ extension DateDrill {
 // as one of its own value types. These are the only places the two meet — bar
 // the Design files where the rendered thing IS kern's own value and a copy would
 // drift: `AutoAdvance` (the two beat lengths), `NumberReferenceTable` (the primer
-// rows) and `SessionCompletionView` (the round's tally parts).
+// rows) and `SessionSummaryView` (the round's tally parts).
 
 extension SessionOutcome {
     /// The bar segment one answer draws. The bucketing is kern's (`AnswerOutcome`).
