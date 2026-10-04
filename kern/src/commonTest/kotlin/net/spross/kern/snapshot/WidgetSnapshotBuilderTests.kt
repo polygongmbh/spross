@@ -163,7 +163,7 @@ class WidgetSnapshotBuilderTests {
 
     @Test
     fun schemaVersionIsPinned() {
-        assertEquals(8, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
+        assertEquals(9, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
     }
 
     @Test
@@ -257,6 +257,6 @@ class WidgetSnapshotBuilderTests {
             WidgetSnapshotBuilder.build(state, Box.day1, Box.TZ),
             WidgetSnapshotBuilder.build(reversed, Box.day1, Box.TZ),
         )
-        assertTrue(WidgetSnapshotBuilder.build(state, Box.day1, Box.TZ).startsWith("{\"allSettledCount\":"))
+        assertTrue(WidgetSnapshotBuilder.build(state, Box.day1, Box.TZ).startsWith("{\"activityWindowDays\":"))
     }
 }

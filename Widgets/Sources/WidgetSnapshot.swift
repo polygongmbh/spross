@@ -36,7 +36,7 @@ struct WidgetSnapshot: Decodable {
     }
 
     /// The one version this build reads (kern `WidgetSnapshotBuilder.SCHEMA_VERSION`).
-    static let currentSchemaVersion = 8
+    static let currentSchemaVersion = 9
 
     var schemaVersion: Int
     /// The language the widget's chrome is written in, the one the app's own chrome follows.
@@ -46,6 +46,8 @@ struct WidgetSnapshot: Decodable {
     /// Active cards that have settled (kern `Statistics.hasSettled`); resolved
     /// phone-side because, unlike due dates, it does not move with the clock.
     var allSettledCount: Int
+    /// How many trailing days the activity strip shows (kern `ACTIVITY_WINDOW_DAYS`).
+    var activityWindowDays: Int
     /// Answered days among the trailing fortnight and the day before, keyed by ISO `yyyy-MM-dd`.
     var dailyStats: [String: Day]
     /// The streak for each day from the snapshot's own through the first with no run left
@@ -59,13 +61,13 @@ struct WidgetSnapshot: Decodable {
         return cards.filter { $0.due <= nowMillis }.count
     }
 
-    /// Trailing `count` days, oldest first, today last — the header strip's input.
+    /// The trailing `activityWindowDays` days, oldest first, today last — the header strip's input.
     /// A pure lookup over the day counts the snapshot carries.
-    func recentDays(count: Int, now: Date, timeZone: TimeZone = .current) -> [ActivityDay] {
+    func recentDays(now: Date, timeZone: TimeZone = .current) -> [ActivityDay] {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timeZone
         let today = calendar.startOfDay(for: now)
-        return (0..<count).reversed().compactMap { offset in
+        return (0..<activityWindowDays).reversed().compactMap { offset in
             guard let day = calendar.date(byAdding: .day, value: -offset, to: today) else { return nil }
             return ActivityDay(day: day,
                                reviews: dailyStats[Self.dayKey(day, calendar: calendar)]?.reviews ?? 0,

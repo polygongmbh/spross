@@ -58,9 +58,10 @@ Engine contract: `../README.md`.
   33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
   entries (target-side text, emoji, `article?`, `gender?`), per-card `{due}` for render-time
   `dueCount(now)`, the settled-card count (`allSettledCount`, resolved phone-side —
-  it does not move with the clock), the answer counts of the activity strip's fortnight
+  it does not move with the clock), the strip's length (`activityWindowDays`, kern's `ACTIVITY_WINDOW_DAYS`),
+  the answer counts of the activity strip's fortnight
   plus the day before it (which decides whether the strip's oldest empty day is bridged),
-  `streakByDay`, `chromeLanguage`, `schemaVersion` (8).
+  `streakByDay`, `chromeLanguage`, `schemaVersion` (9).
   Built by `WidgetSnapshotBuilder.build`, written by the app.
   **Both sides of the wire are kern's answer, nowhere re-derived.**
   `streakByDay` is the streak resolved for every day a widget may render on

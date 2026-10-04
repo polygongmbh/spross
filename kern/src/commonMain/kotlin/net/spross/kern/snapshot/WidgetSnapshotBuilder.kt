@@ -27,7 +27,7 @@ import net.spross.kern.store.StoreJson
  * runs at render time. Who decodes it how: `kern/docs/snapshots.md`.
  */
 object WidgetSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 8
+    const val SCHEMA_VERSION: Int = 9
 
     /**
      * Calendar days of answer counts the snapshot carries: the activity strip's window,
@@ -114,6 +114,7 @@ object WidgetSnapshotBuilder {
             entries = entries,
             cards = cards,
             allSettledCount = active.count { Statistics.hasSettled(state, it) },
+            activityWindowDays = ACTIVITY_WINDOW_DAYS,
             dailyStats = combinedDailyStats.filterKeys { it >= oldestTailDay }.mapValues { WidgetDayDto(it.value) },
             streakByDay = streakTimeline(combinedDailyStats, nowEpochMillis, tzId),
         )
@@ -154,9 +155,9 @@ class WidgetSnapshotView internal constructor(private val doc: WidgetSnapshotDoc
     fun streakHealth(nowEpochMillis: Long, tzId: String): StreakHealth =
         streakOn(doc.streakByDay, nowEpochMillis, tzId).health
 
-    /** The trailing [ACTIVITY_WINDOW_DAYS] local days, oldest first — the header strip's input. */
+    /** The trailing [WidgetSnapshotDoc.activityWindowDays] local days, oldest first — the header strip's input. */
     fun activityWindow(nowEpochMillis: Long, tzId: String): List<ActivityDay> =
-        streakWindow(dailyStats, ACTIVITY_WINDOW_DAYS, nowEpochMillis, tzId)
+        streakWindow(dailyStats, doc.activityWindowDays, nowEpochMillis, tzId)
 }
 
 /** One exposure row: TARGET-side [text]; the ♀ marker is baked into [sourceText]. */
@@ -183,6 +184,8 @@ internal data class WidgetSnapshotDoc(
     val cards: List<WidgetCardDto>,
     /** Active cards that have settled; time-independent, so it is resolved here. */
     val allSettledCount: Int,
+    /** How many trailing days the activity strip shows: [ACTIVITY_WINDOW_DAYS], so no widget keeps its own. */
+    val activityWindowDays: Int,
     /** Answered days among the trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] — the strip's input. */
     val dailyStats: Map<String, WidgetDayDto>,
     /**
