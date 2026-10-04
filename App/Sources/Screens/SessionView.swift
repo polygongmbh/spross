@@ -234,7 +234,7 @@ struct SessionView: View, LanguageNaming {
                 reporting = ReportedCard(card: card, input: answerForReport)
             }
         }
-        Button("box.card.sleep", systemImage: "moon.zzz") {
+        Button("box.card.suspend", systemImage: "moon.zzz") {
             // why: the round moves on with it — being made to rate a word one has just
             // said should never be asked again is the exact busywork this removes.
             // resetCardState first, so the incoming card never renders the outgoing

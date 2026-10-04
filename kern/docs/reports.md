@@ -89,7 +89,7 @@ The read models a surface draws the box from (the day, one card's standing, the 
   enqueuing a phrase also prepends the components it lacks,
   and where those live on another shelf a pack takes in more than the count said (`../../docs/backlog.md`).
 - **`CardRowState`** (`BoxBrowser.cardRowState`) is what one listed card states besides the word itself:
-  `Sleeping`, `PackOffered`, `Packed`, `Plain`, or `Standing(stage)`.
+  `Suspended`, `PackOffered`, `Packed`, `Plain`, or `Standing(stage)`.
   `packOffered` is the caller's context — a surface that packs a SINGLE word,
   which is a search hit the learner went looking for by name;
   an area listing packs by the shelf, so an unexposed card there is `Plain`:

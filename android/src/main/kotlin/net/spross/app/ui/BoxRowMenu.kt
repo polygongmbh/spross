@@ -58,7 +58,7 @@ internal fun BoxRowMenu(
     val chrome = model.chrome
     val state = model.box ?: return
     val standing = BoxBrowser.cardRowState(state, card.id, packOffered = true)
-    val scheduled = standing is CardRowState.Sleeping || standing is CardRowState.Standing
+    val scheduled = standing is CardRowState.Suspended || standing is CardRowState.Standing
     val own = model.ownWords.firstOrNull { it.id == card.id }
     val stamp = state.joinStamp
 
@@ -86,12 +86,12 @@ internal fun BoxRowMenu(
                     model.updateBox { BoxEngine.dequeue(it, card.id) }
                 }
 
-                is CardRowState.Standing -> MenuAction(chrome.boxCardSleep) {
+                is CardRowState.Standing -> MenuAction(chrome.boxCardSuspend) {
                     close()
                     model.updateBox { BoxEngine.setSuspended(it, card.id, true, model.now()) }
                 }
 
-                CardRowState.Sleeping -> MenuAction(chrome.boxCardWake) {
+                CardRowState.Suspended -> MenuAction(chrome.boxCardUnsuspend) {
                     close()
                     model.updateBox { BoxEngine.setSuspended(it, card.id, false, model.now()) }
                 }
@@ -124,7 +124,7 @@ internal fun BoxRowMenu(
         },
         after = { close ->
             // why: only a word the learner wrote is theirs to delete — a catalog word can be
-            // put to sleep, never removed, so it grows no such entry at all. Last and in the
+            // suspended, never removed, so it grows no such entry at all. Last and in the
             // error color: the one irreversible thing in the menu.
             own?.let { word ->
                 MenuAction(chrome.boxOwnWordRemove, destructive = true) {

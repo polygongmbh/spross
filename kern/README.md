@@ -384,7 +384,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   `Feedback.clearableCount` is what a clear comes to.
   Suspending reaches a card the box has never asked --
   which mints a New schedule carrying nothing but the suspension;
-  waking one that was never answered DROPS that schedule,
+  unsuspending one that was never answered DROPS that schedule,
   since growth only ever reaches a card with none (`Growth.isIntroducible`).
   In a session, `SessionIntent.SuspendCurrent` does it without a rating.
   `BoxEngine.reset` is the destructive fresh start --

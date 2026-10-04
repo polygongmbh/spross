@@ -35,12 +35,12 @@ data class ShelfCounts(
  * What one listed card says about itself besides the word — the rule, never the mark.
  *
  * Exactly one of these holds at a time, and which one is a box question:
- * whether the card sleeps, whether it can still be packed, and which bars it has cleared.
+ * whether the card is suspended, whether it can still be packed, and which bars it has cleared.
  * What a surface draws for each (an icon, a capsule, a pill, or nothing at all) is its own affair.
  */
 sealed class CardRowState {
-    /** Out of rotation; the one thing left to offer is waking it. */
-    data object Sleeping : CardRowState()
+    /** Out of rotation; the one thing left to offer is unsuspending it. */
+    data object Suspended : CardRowState()
 
     /** Unscheduled, and the row stands where single words can be packed — the offer holds. */
     data object PackOffered : CardRowState()
@@ -65,7 +65,7 @@ sealed class CardRowState {
      * The card is on the ladder, and this is where.
      *
      * An [ActiveStage] rather than a [GrowthStage]: a card with nothing behind it is [Plain] or
-     * [PackOffered], and a sleeping one is [Sleeping]. Carrying the stage rather than a collapsed
+     * [PackOffered], and a suspended one is [Suspended]. Carrying the stage rather than a collapsed
      * boolean is what lets a surface tell Fresh, Growing and Settled apart on sight,
      * the same way the badge does.
      */
@@ -231,6 +231,6 @@ object BoxBrowser {
             !packOffered -> CardRowState.Plain
             else -> CardRowState.PackOffered
         }
-        return if (sched.suspended) CardRowState.Sleeping else CardRowState.Standing(activeStageOf(sched))
+        return if (sched.suspended) CardRowState.Suspended else CardRowState.Standing(activeStageOf(sched))
     }
 }

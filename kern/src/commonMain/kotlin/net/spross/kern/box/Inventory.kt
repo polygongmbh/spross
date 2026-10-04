@@ -70,7 +70,7 @@ internal object Inventory {
             .map { it.entry }
     }
 
-    /** How many joined schedules sleep — [scheduled] minus [active], counted. */
+    /** How many joined schedules are suspended — [scheduled] minus [active], counted. */
     fun suspendedCount(state: BoxState): Int =
         state.scheduling.entries.count { it.key in state.cards && it.value.suspended }
 

@@ -309,8 +309,8 @@ interface Chrome {
     val a11yBoxShelfUnpack: String
     val boxCardQueued: String
     val a11yBoxCardSuspended: String
-    val boxCardWake: String
-    val boxCardSleep: String
+    val boxCardUnsuspend: String
+    val boxCardSuspend: String
     /** Whole days of the card's stability, on the long press. */
     val boxCardLasts: String          // %d
     val boxCardLastsOne: String       // %d

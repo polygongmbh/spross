@@ -14,7 +14,7 @@ enum BoxRowSheet: String, Identifiable {
 ///
 /// Only what applies, and in one fixed order: where the word IS first (the jump to
 /// its shelf, offered only where the row was not reached from one), then where it
-/// stands in the box (packing, sleep, forgetting), then what can be MADE of it, then
+/// stands in the box (packing, suspension, forgetting), then what can be MADE of it, then
 /// what is wrong with it, and deleting last because it cannot be taken back.
 /// WHERE the word stands is the box's own ruling (`BoxBrowser.cardRowState`), asked
 /// with packing offered — this menu can always pack a single word, whatever the row
@@ -48,7 +48,7 @@ struct BoxRowMenu: View {
         }
     }
 
-    /// Packing, sleep and forgetting — the three things that move a word's standing
+    /// Packing, suspension and forgetting — the three things that move a word's standing
     /// rather than its content. A card the join does not hold offers none of them.
     @ViewBuilder
     private var standing: some View {
@@ -63,11 +63,11 @@ struct BoxRowMenu: View {
                 model.dequeue(cardID: card.id)
             }
         case .standing:
-            Button("box.card.sleep", systemImage: "moon.zzz") {
+            Button("box.card.suspend", systemImage: "moon.zzz") {
                 model.setSuspended(cardID: card.id, suspended: true)
             }
-        case .sleeping:
-            Button("box.card.wake", systemImage: "sun.max") {
+        case .suspended:
+            Button("box.card.unsuspend", systemImage: "sun.max") {
                 model.setSuspended(cardID: card.id, suspended: false)
             }
         case .plain:
@@ -84,7 +84,7 @@ struct BoxRowMenu: View {
     /// progress to drop.
     private func isScheduled(_ state: CardRowState) -> Bool {
         switch onEnum(of: state) {
-        case .standing, .sleeping: return true
+        case .standing, .suspended: return true
         case .packOffered, .packed, .plain: return false
         }
     }

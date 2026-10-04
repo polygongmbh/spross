@@ -3,7 +3,7 @@ import SprossKern
 
 /// One word as the box lists it: its picture, the target citation over the word
 /// the learner already knows, and its standing. The row itself is the audio
-/// control — no speaker icon competing with the wake/pack controls and the
+/// control — no speaker icon competing with the unsuspend/pack controls and the
 /// phrase text for width; tapping anywhere plain speaks it (`pronounceOnTap`,
 /// shared with the produce-narration lines in `SessionView+Audio`). The one
 /// exception is a crossed-out speaker beside a word neither a recording nor
@@ -157,7 +157,7 @@ struct BoxCardRow: View {
                     .lineLimit(1)
             }
             // why: the word's two lines are the one element that speaks; the row's
-            // wake and pack controls stay elements of their own beside it.
+            // unsuspend and pack controls stay elements of their own beside it.
             .accessibilityElement(children: .combine)
             .pronounceOnTap(pronounce)
             Spacer(minLength: Theme.spacing.sm)
@@ -209,10 +209,10 @@ struct BoxCardRow: View {
     @ViewBuilder
     private var standing: some View {
         switch onEnum(of: model.cardRowState(card.id, packOffered: pack != nil)) {
-        case .sleeping:
+        case .suspended:
             Text(verbatim: "💤")
                 .accessibilityLabel("a11y.box.card.suspended")
-            Button("box.card.wake") {
+            Button("box.card.unsuspend") {
                 model.setSuspended(cardID: card.id, suspended: false)
             }
             .pill(Theme.colors.accent)
@@ -223,7 +223,7 @@ struct BoxCardRow: View {
         case .packed(let packed):
             if packed.removalOffered {
                 // Direct tap, no confirmation: nothing has been studied yet, so taking a
-                // queued word back out costs it nothing (mirrors "box.card.wake"'s own direct tap).
+                // queued word back out costs it nothing (mirrors "box.card.unsuspend"'s own direct tap).
                 PackButton(direction: .out, label: "box.card.unpack") {
                     model.dequeue(cardID: card.id)
                 }

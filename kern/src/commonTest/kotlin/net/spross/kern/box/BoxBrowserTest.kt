@@ -166,15 +166,15 @@ class BoxBrowserTest {
     }
 
     @Test
-    fun aSleepingCardOffersWakingWhateverTheRowStandsIn() {
+    fun aSuspendedCardOffersUnsuspendingWhateverTheRowStandsIn() {
         var state = Box.state(listOf(Box.word(1)))
         state = Box.inject(
             state,
             Box.sched("w01", dueMillis = future, lastReviewMillis = now, suspended = true),
         )
 
-        assertEquals(CardRowState.Sleeping, BoxBrowser.cardRowState(state, "w01", packOffered = false))
-        assertEquals(CardRowState.Sleeping, BoxBrowser.cardRowState(state, "w01", packOffered = true))
+        assertEquals(CardRowState.Suspended, BoxBrowser.cardRowState(state, "w01", packOffered = false))
+        assertEquals(CardRowState.Suspended, BoxBrowser.cardRowState(state, "w01", packOffered = true))
     }
 
     /**

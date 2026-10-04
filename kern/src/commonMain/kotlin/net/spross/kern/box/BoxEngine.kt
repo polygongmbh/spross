@@ -320,7 +320,7 @@ object BoxEngine {
      *
      * Reviving one that was never answered DROPS that schedule rather than clearing its
      * flag, because growth only ever reaches a card with no schedule at all
-     * ([Growth.isIntroducible]) — leaving the husk behind would make waking a word the
+     * ([Growth.isIntroducible]) — leaving the husk behind would make unsuspending a word the
      * one way to lose it for good. Unknown ids leave the state alone.
      */
     fun setSuspended(

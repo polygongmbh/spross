@@ -129,7 +129,7 @@ fun ReportableCard(
             learnerInput = captured,
             onDismiss = { open = false },
             after = { close ->
-                MenuAction(chrome.boxCardSleep) {
+                MenuAction(chrome.boxCardSuspend) {
                     close()
                     // why: the round moves on with it — being made to rate a word one
                     // has just said should never be asked again is the exact busywork

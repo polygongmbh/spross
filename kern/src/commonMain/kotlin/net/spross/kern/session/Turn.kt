@@ -152,7 +152,7 @@ data class TurnState(
      * either the card carries it, or an [TurnFeedback.Almost] hold's correction does.
      *
      * What a surface offering something ABOUT the word rather than about the answer —
-     * reporting it, putting it to sleep — is gated on. Before it the learner has not seen
+     * reporting it, suspending it — is gated on. Before it the learner has not seen
      * the translation they would be judging; where a beat is already armed the card is on
      * its way out from under whatever they opened.
      */

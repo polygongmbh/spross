@@ -928,8 +928,8 @@
         }
       }
     },
-    "box.card.sleep" : {
-      "comment" : "Putting a word to sleep from the card in front of you; box.card.wake is the way back.",
+    "box.card.suspend" : {
+      "comment" : "Suspending a word from the card in front of you; box.card.unsuspend is the way back.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -962,7 +962,7 @@
         }
       }
     },
-    "box.card.wake" : {
+    "box.card.unsuspend" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {

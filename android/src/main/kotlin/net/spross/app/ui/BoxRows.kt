@@ -51,7 +51,7 @@ import net.spross.kern.model.shownArticle
  * One word as the box lists it: its picture, the TARGET citation over the word the learner
  * already knows, and its standing.
  *
- * The row itself is the audio control — no speaker icon competing with the wake and pack
+ * The row itself is the audio control — no speaker icon competing with the unsuspend and pack
  * controls for width; a plain tap anywhere on it speaks the target, whether or not reading
  * aloud is switched on (a tap is a request, never an autoplay). A long press opens the
  * word's own menu ([BoxRowMenu]) — everything a learner might want to do to this one word —
@@ -82,8 +82,8 @@ fun BoxCardRow(
     // why: this hands back a fresh closure every time it is asked, so unremembered it
     // changed the row's own click identity once a frame and no row could ever be skipped.
     val pronounce = remember(card.id, model.catalog) { model.boxPronounceAction(card.target) }
-    // why: only a word the learner wrote is theirs to delete — a catalog word can be put
-    // to sleep, never removed, so it grows no such gesture at all.
+    // why: only a word the learner wrote is theirs to delete — a catalog word can be
+    // suspended, never removed, so it grows no such gesture at all.
     val remove: (() -> Unit)? = remember(card.id) {
         if (OwnWords.owns(card.id)) ({ model.removeOwnWord(card.id) }) else null
     }
@@ -187,7 +187,7 @@ private fun CardStanding(
     chrome: Chrome,
 ) {
     when (standing) {
-        CardRowState.Sleeping -> Row(
+        CardRowState.Suspended -> Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
@@ -195,7 +195,7 @@ private fun CardStanding(
             TextButton(onClick = {
                 model.updateBox { BoxEngine.setSuspended(it, card.id, false, model.now()) }
             }) {
-                Text(chrome.boxCardWake, style = MaterialTheme.typography.bodySmall)
+                Text(chrome.boxCardUnsuspend, style = MaterialTheme.typography.bodySmall)
             }
         }
 
@@ -204,7 +204,7 @@ private fun CardStanding(
         }
 
         // Direct tap, no confirmation: nothing has been studied yet, so taking a queued
-        // word back out costs it nothing (mirrors CardRowState.Sleeping's own "Wake" tap).
+        // word back out costs it nothing (mirrors CardRowState.Suspended's own unsuspend tap).
         // Offered per word only where packOffered gates it — an area listing takes its
         // whole queue out through the shelf's own control (PackControl) instead.
         is CardRowState.Packed -> if (standing.removalOffered) {
