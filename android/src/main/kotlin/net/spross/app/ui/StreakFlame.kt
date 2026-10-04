@@ -29,12 +29,12 @@ fun StreakFlame(health: StreakHealth, style: TextStyle, modifier: Modifier = Mod
         StreakHealth.Earned -> 1f
         StreakHealth.Bridgeable -> 0.9f
         StreakHealth.Ending -> 0.9f
-        StreakHealth.None -> 0.4f
+        StreakHealth.NoRun -> 0.4f
     }
     val saturation = when (health) {
         StreakHealth.Earned -> 1f
         StreakHealth.Bridgeable -> 0.5f
-        StreakHealth.Ending, StreakHealth.None -> 0f
+        StreakHealth.Ending, StreakHealth.NoRun -> 0f
     }
     Text(
         "🔥",

@@ -60,14 +60,14 @@ Engine contract: `../README.md`.
   `dueCount(now)`, the settled-card count (`allSettledCount`, resolved phone-side —
   it does not move with the clock), the answer counts of the activity strip's fortnight
   plus the day before it (which decides whether the strip's oldest empty day is bridged),
-  `streakByDay`, `chromeLanguage`, `schemaVersion` (7).
+  `streakByDay`, `chromeLanguage`, `schemaVersion` (8).
   Built by `WidgetSnapshotBuilder.build`, written by the app.
   **Both sides of the wire are kern's answer, nowhere re-derived.**
   `streakByDay` is the streak resolved for every day a widget may render on
   (`snapshot/WidgetStreak.kt`): `{streak, health}` per ISO day,
   from the build day through the first day with no run left —
   an answer only reaches a widget through a fresh build, so the run can only age after it,
-  and `StreakHealth.None` holds past the last entry.
+  and `StreakHealth.NoRun` holds past the last entry.
   A widget looks its render day up (a day past the end reads the last entry,
   one before the start the first), so a widget rendered days after the app last ran
   shows the streak and flame kern would show, and a run of any length arrives whole.

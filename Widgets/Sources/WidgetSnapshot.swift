@@ -36,7 +36,7 @@ struct WidgetSnapshot: Codable {
     }
 
     /// The one version this build reads (kern `WidgetSnapshotBuilder.SCHEMA_VERSION`).
-    static let currentSchemaVersion = 7
+    static let currentSchemaVersion = 8
 
     var schemaVersion: Int
     /// The language the widget's chrome is written in, the one the app's own chrome follows.

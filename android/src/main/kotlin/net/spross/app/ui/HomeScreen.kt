@@ -39,7 +39,7 @@ fun HomeScreen(model: AppModel) {
     val stats = model.stats
     // The run's grade travels with its count: the card's flame and the strip's read one
     // answer, so they can never show two different states of the same day.
-    val health = stats?.streakHealth ?: StreakHealth.None
+    val health = stats?.streakHealth ?: StreakHealth.NoRun
     val box = model.box
     val source = box?.joinStamp?.source ?: "en"
     val locale = remember(source) {

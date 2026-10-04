@@ -21,7 +21,7 @@ internal data class WidgetStreakDto(val streak: Int, val health: StreakHealth)
  * so a widget walks and counts nothing.
  *
  * An answer only reaches a widget through a fresh build, so after this one the run can only age —
- * [StreakHealth.None] arrives within three days and holds from there on.
+ * [StreakHealth.NoRun] arrives within three days and holds from there on.
  */
 internal fun streakTimeline(
     answerDays: Map<String, Int>,
@@ -36,7 +36,7 @@ internal fun streakTimeline(
         val entry = WidgetStreakDto(Statistics.streak(answerDays, at, tzId), streakHealth(answerDays, at, tzId))
         timeline[day.toString()] = entry
         day = day.plus(1, DateTimeUnit.DAY)
-    } while (entry.health != StreakHealth.None)
+    } while (entry.health != StreakHealth.NoRun)
     return timeline
 }
 

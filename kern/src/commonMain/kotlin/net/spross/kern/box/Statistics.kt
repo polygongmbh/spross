@@ -82,12 +82,12 @@ enum class StreakHealth {
     Ending,
 
     /** The streak is 0: there is no run to protect. */
-    None,
+    NoRun,
     ;
 
     /**
      * Whether a run is standing and today has not yet paid into it — the one state a
-     * surface may nag about. [Earned] is safe and [None] has nothing to lose.
+     * surface may nag about. [Earned] is safe and [NoRun] has nothing to lose.
      */
     val isExposed: Boolean
         get() = this == Bridgeable || this == Ending
@@ -106,7 +106,7 @@ fun streakHealth(
     val today = localDate(nowEpochMillis, tzId)
     val run = Statistics.streakRun(answerDays, today)
     return when {
-        run.isEmpty() -> StreakHealth.None
+        run.isEmpty() -> StreakHealth.NoRun
         run[today] == true -> StreakHealth.Earned
         run[today.minus(1, DateTimeUnit.DAY)] == true -> StreakHealth.Bridgeable
         else -> StreakHealth.Ending

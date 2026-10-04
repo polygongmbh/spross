@@ -105,11 +105,11 @@ class BoxStatisticsTests {
 
     @Test
     fun streakHealthIsNoneWithoutARunToProtect() {
-        assertEquals(StreakHealth.None, BoxEngine.statistics(statsState(emptyList()), now, Box.TZ).streakHealth)
+        assertEquals(StreakHealth.NoRun, BoxEngine.statistics(statsState(emptyList()), now, Box.TZ).streakHealth)
         // The run already ended two days back; there is nothing today could still save.
         val broken = BoxEngine.statistics(statsState(listOf(1, 2)), Box.millis(2026, 7, 5), Box.TZ)
         assertEquals(0, broken.streak)
-        assertEquals(StreakHealth.None, broken.streakHealth)
+        assertEquals(StreakHealth.NoRun, broken.streakHealth)
     }
 
     @Test

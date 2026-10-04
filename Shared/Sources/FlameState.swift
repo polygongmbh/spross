@@ -12,5 +12,5 @@ enum FlameState: String, Codable {
     /// Nothing today, and the bridge is already spent — a miss ends the run.
     case atRisk = "Ending"
     /// No run to protect.
-    case unlit = "None"
+    case unlit = "NoRun"
 }

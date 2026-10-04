@@ -163,7 +163,7 @@ class WidgetSnapshotBuilderTests {
 
     @Test
     fun schemaVersionIsPinned() {
-        assertEquals(7, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
+        assertEquals(8, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
     }
 
     @Test
@@ -193,7 +193,7 @@ class WidgetSnapshotBuilderTests {
 
         assertEquals(StreakHealth.Ending, view.streakHealth(twoDaysOn, Box.TZ))
         assertEquals(2, view.streak(twoDaysOn, Box.TZ))
-        assertEquals(StreakHealth.None, view.streakHealth(weekOn, Box.TZ))
+        assertEquals(StreakHealth.NoRun, view.streakHealth(weekOn, Box.TZ))
         assertEquals(0, view.streak(weekOn, Box.TZ))
     }
 
@@ -243,7 +243,7 @@ class WidgetSnapshotBuilderTests {
         assertNull(WidgetSnapshotBuilder.decode("not json at all"))
         assertNull(WidgetSnapshotBuilder.decode("{}")) // schemaVersion missing
         val current = WidgetSnapshotBuilder.build(scheduledState(), Box.day1, Box.TZ)
-        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":7", "\"schemaVersion\":6")))
+        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":${WidgetSnapshotBuilder.SCHEMA_VERSION}", "\"schemaVersion\":0")))
         assertNotNull(WidgetSnapshotBuilder.decode(current))
     }
 

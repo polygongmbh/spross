@@ -63,7 +63,7 @@ object WidgetFlame {
     private fun saturation(health: StreakHealth): Float = when (health) {
         StreakHealth.Earned -> 1f
         StreakHealth.Bridgeable -> 0.5f
-        StreakHealth.Ending, StreakHealth.None -> 0f
+        StreakHealth.Ending, StreakHealth.NoRun -> 0f
     }
 
     private fun alpha(health: StreakHealth): Int = when (health) {
@@ -72,6 +72,6 @@ object WidgetFlame {
         StreakHealth.Ending -> 235
         // No run to protect: the mark stays on the line as a restart nudge, but faint,
         // and the stats line drops the count beside it rather than printing a zero.
-        StreakHealth.None -> 90
+        StreakHealth.NoRun -> 90
     }
 }
