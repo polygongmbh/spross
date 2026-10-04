@@ -5,11 +5,11 @@ import Foundation
 /// its bundle, tight extension memory cap) — everything it renders is
 /// pre-resolved phone-side, the streak for every day it may be drawn on included;
 /// only `dueCount(now:)` runs here at render time.
-struct WidgetSnapshot: Codable {
+struct WidgetSnapshot: Decodable {
 
     /// One pre-resolved exposure row (TARGET-side text; ♀ baked into
     /// `sourceText`; `gender` is what the `article` marks, and what tints the row).
-    struct Entry: Codable {
+    struct Entry: Decodable {
         var cardId: String
         var text: String
         var sourceText: String
@@ -19,20 +19,20 @@ struct WidgetSnapshot: Codable {
     }
 
     /// One active card schedule — the render-time due-count input.
-    struct CardInfo: Codable {
+    struct CardInfo: Decodable {
         var cardId: String
         /// Epoch milliseconds.
         var due: Int64
     }
 
-    struct Day: Codable {
+    struct Day: Decodable {
         var reviews: Int
     }
 
-    /// The streak and the flame on one day, as kern resolved them.
-    struct StreakDay: Codable {
+    /// The streak and its health on one day, as kern resolved them.
+    struct StreakDay: Decodable {
         var streak: Int
-        var health: FlameState
+        var health: StreakHealth
     }
 
     /// The one version this build reads (kern `WidgetSnapshotBuilder.SCHEMA_VERSION`).
@@ -81,7 +81,7 @@ struct WidgetSnapshot: Codable {
         let today = Self.dayKey(now, calendar: calendar)
         let days = streakByDay.keys.sorted()
         guard let key = days.last(where: { $0 <= today }) ?? days.first,
-              let day = streakByDay[key] else { return StreakDay(streak: 0, health: .unlit) }
+              let day = streakByDay[key] else { return StreakDay(streak: 0, health: .noRun) }
         return day
     }
 

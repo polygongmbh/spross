@@ -76,8 +76,9 @@ Engine contract: `../README.md`.
   so the Android Glance widget (which links Kotlin) reads the schema rather than guessing at it,
   and rejects anything but the current `schemaVersion`.
   The iOS extension links no Kotlin and does the same lookup in
-  `Widgets/Sources/WidgetSnapshot.swift`; `health` decodes straight into the one Swift
-  `FlameState` (`Shared/Sources/FlameState.swift`), whose raw values are kern's case names.
+  `Widgets/Sources/WidgetSnapshot.swift`; `health` decodes into the widget's Swift `StreakHealth`
+  (`Widgets/Sources/StreakHealth.swift`): kern's cases in Swift's casing, read off the serialized case name.
+  The app uses kern's `StreakHealth` itself.
 - **WatchSnapshot v6**: direction/pair/`german` are gone — one entry per CARD with BOTH
   sides pre-resolved: `{cardId, sourceText, targetText, emoji?, revealEmoji?, article?, gender?,
   femMarker, due, stability, nextRole, promptForm, distractors[], optionForm?}`

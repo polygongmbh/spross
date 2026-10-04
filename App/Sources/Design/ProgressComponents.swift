@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 
 // MARK: - Progress components (Home progress section / Box screen)
@@ -7,16 +8,16 @@ import SwiftUI
 
 // MARK: StreakFlameView
 
-/// How bright and how colorful the mark burns in each `FlameState`.
-extension FlameState {
+/// How bright and how colorful the mark burns in each `StreakHealth`.
+extension StreakHealth {
     /// Full strength where the day is answered, only a whisper of fade where it is
     /// still owed, and faint where there is no run behind the mark at all.
     var opacity: Double {
         switch self {
-        case .lit: return 1
-        case .dwindling: return 0.9
-        case .atRisk: return 0.9
-        case .unlit: return 0.4
+        case .earned: return 1
+        case .bridgeable: return 0.9
+        case .ending: return 0.9
+        case .noRun: return 0.4
         }
     }
 
@@ -26,9 +27,9 @@ extension FlameState {
     /// end the run, a flame gone cold, which is louder than any amount of fading.
     var grayscale: Double {
         switch self {
-        case .lit: return 0
-        case .dwindling: return 0.5
-        case .atRisk, .unlit: return 1
+        case .earned: return 0
+        case .bridgeable: return 0.5
+        case .ending, .noRun: return 1
         }
     }
 }
@@ -37,7 +38,7 @@ struct StreakFlameView: View {
     let days: Int
     /// What today still owes the run, worn by the flame itself — the mark says
     /// the run is exposed on exactly the day it is, without a word for it.
-    var flame: FlameState = .lit
+    var health: StreakHealth = .earned
     /// The mark the run wears. The flame is the streak's identity everywhere it is
     /// merely reported; a screen that IS the celebration hands its own emoji in and
     /// carries one badge instead of a badge under a hero saying the same thing twice.
@@ -73,8 +74,8 @@ struct StreakFlameView: View {
             Text(verbatim: emoji)
         } else {
             Text(verbatim: "🔥")
-                .grayscale(flame.grayscale)
-                .opacity(flame.opacity)
+                .grayscale(health.grayscale)
+                .opacity(health.opacity)
         }
     }
 }
@@ -324,8 +325,8 @@ private var ladder: some View {
     ScrollView {
         VStack(alignment: .leading, spacing: Theme.spacing.xl) {
             StreakFlameView(days: 12)
-            StreakFlameView(days: 12, flame: .dwindling)
-            StreakFlameView(days: 12, flame: .atRisk)
+            StreakFlameView(days: 12, health: .bridgeable)
+            StreakFlameView(days: 12, health: .ending)
             StreakFlameView(days: 12, emoji: "🎉")
             AreaChip(emoji: "🍳", name: "Küche",
                      subtitle: "Hier duftet es nach Abendessen.",
@@ -351,7 +352,7 @@ private var ladder: some View {
 #Preview("Progress pieces · dark") {
     VStack(alignment: .leading, spacing: Theme.spacing.xl) {
         StreakFlameView(days: 3)
-        StreakFlameView(days: 3, flame: .atRisk)
+        StreakFlameView(days: 3, health: .ending)
         AreaChip(emoji: "🍳", name: "Küche",
                  progress: .init(allSettled: 18, allGrowing: 6, queued: 28, progressTotal: 52),
                  lockedPhrases: 2)

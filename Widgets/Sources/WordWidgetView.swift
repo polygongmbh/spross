@@ -140,19 +140,19 @@ struct WordWidgetView: View {
         .font(.caption.weight(.semibold))
     }
 
-    /// Streak flame — icon/color/count vary with `entry.flameState`; count is
-    /// omitted for `.unlit` (bare restart nudge, nothing to count yet).
+    /// Streak flame — icon, color and count vary with `entry.streakHealth`; count is
+    /// omitted for `.noRun` (bare restart nudge, nothing to count yet).
     @ViewBuilder
     private var flameLabel: some View {
-        switch entry.flameState {
-        case .lit:
+        switch entry.streakHealth {
+        case .earned:
             Label("\(entry.streak)", systemImage: "flame.fill").foregroundStyle(.orange)
-        case .dwindling:
+        case .bridgeable:
             Label("\(entry.streak)", systemImage: "flame.fill").foregroundStyle(.orange)
                 .grayscale(0.5).opacity(0.9)
-        case .atRisk:
+        case .ending:
             Label("\(entry.streak)", systemImage: "flame").foregroundStyle(.orange)
-        case .unlit:
+        case .noRun:
             Image(systemName: "flame").foregroundStyle(.secondary)
         }
     }

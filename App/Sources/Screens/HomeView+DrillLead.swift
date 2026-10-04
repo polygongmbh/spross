@@ -53,7 +53,7 @@ extension HomeView {
             }
             Spacer(minLength: 0)
             if let streak = model.stats?.streakDays, streak > 0 {
-                StreakFlameView(days: streak, flame: model.stats?.flame ?? .unlit)
+                StreakFlameView(days: streak, health: model.stats?.streakHealth ?? .noRun)
             }
         }
     }

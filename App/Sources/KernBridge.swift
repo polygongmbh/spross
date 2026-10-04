@@ -81,10 +81,6 @@ extension BoxStatistics {
     var streakDays: Int { Int(streak) }
     var allSettledCards: Int { Int(allSettledCount) }
     var allGrowingCards: Int { Int(allGrowingCount) }
-
-    /// The grade the flame burns in right now. Every screen that draws one reads
-    /// it here, so no two surfaces read the same day differently.
-    var flame: FlameState { FlameState(streakHealth) }
 }
 
 extension AreaStatistics {
@@ -236,14 +232,6 @@ extension Theme.Gender {
         case .feminine: self = .feminine
         case .neuter: self = .neuter
         }
-    }
-}
-
-extension FlameState {
-    /// The mark for the box's `StreakHealth` — kern walks the days and says
-    /// what today still owes the run (`box/Statistics.kt`).
-    init(_ health: StreakHealth) {
-        self = FlameState(rawValue: health.name) ?? .unlit
     }
 }
 

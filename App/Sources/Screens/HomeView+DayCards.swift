@@ -57,7 +57,7 @@ extension HomeView {
     var sessionStats: some View {
         let streak = model.stats?.streakDays ?? 0
         if streak > 0 {
-            StreakFlameView(days: streak, flame: model.stats?.flame ?? .unlit)
+            StreakFlameView(days: streak, health: model.stats?.streakHealth ?? .noRun)
         } else {
             Text(verbatim: "✨")
                 .font(.system(size: 56)) // card-parity: the card's own glyph, not a card prompt

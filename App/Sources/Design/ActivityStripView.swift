@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 
 /// One column of the strip: a day, what was reviewed on it, and whether the
@@ -24,7 +25,7 @@ struct ActivityStripView: View {
     var streakDays: Int = 0
     /// What today still owes the run, handed over beside the number — the badge's
     /// flame wears the same grade as the one on the session card above it.
-    var flame: FlameState = .lit
+    var health: StreakHealth = .earned
 
     @Environment(\.locale) private var locale
 
@@ -75,8 +76,8 @@ struct ActivityStripView: View {
         // and the emoji is the only half that wears it.
         HStack(spacing: Theme.spacing.xs) {
             Text(verbatim: "🔥")
-                .grayscale(flame.grayscale)
-                .opacity(flame.opacity)
+                .grayscale(health.grayscale)
+                .opacity(health.opacity)
             (Text(streakDays.formatted()) + Text(verbatim: " ")
                 + Text(streakDays == 1 ? "common.day.one" : "common.day.other"))
                 .foregroundStyle(Theme.colors.accent)
@@ -192,7 +193,7 @@ struct ActivityStripView: View {
     }
     return VStack(spacing: Theme.spacing.lg) {
         ActivityStripView(days: days, streakDays: 11)
-        ActivityStripView(days: days, streakDays: 11, flame: .atRisk)
+        ActivityStripView(days: days, streakDays: 11, health: .ending)
         ActivityStripView(days: days.map {
             ActivityColumn(day: $0.day, reviews: 0, inStreak: false)
         })

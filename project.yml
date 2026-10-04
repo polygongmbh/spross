@@ -125,7 +125,6 @@ targets:
     sources:
       - Widgets/Sources
       - Shared/Sources/AppGroup.swift
-      - Shared/Sources/FlameState.swift
       - Shared/Sources/SnapshotGender.swift
       - Shared/Sources/GlanceChrome.swift
       - Shared/Resources/Glance.xcstrings

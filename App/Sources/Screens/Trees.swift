@@ -36,7 +36,7 @@ struct Trees: View {
             // so a section title above says the word a third time.
             ActivityStripView(days: model.activity.map(ActivityColumn.init),
                               streakDays: model.stats?.streakDays ?? 0,
-                              flame: model.stats?.flame ?? .unlit)
+                              health: model.stats?.streakHealth ?? .noRun)
             picture
             caption
         }

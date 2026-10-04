@@ -52,8 +52,8 @@ struct WordEntry: TimelineEntry {
     let words: [WidgetWord]
     let dueCount: Int
     let streak: Int
-    /// Drives the flame's icon/color/count — see `FlameState`.
-    let flameState: FlameState
+    /// Drives the flame's icon, color and count.
+    let streakHealth: StreakHealth
     /// Active cards that have settled — the box's growth, not a retention score.
     let settled: Int
     /// Trailing fortnight of review counts for the header strip.
@@ -73,7 +73,7 @@ struct WordEntry: TimelineEntry {
     static let awaitingContent = WordEntry(
         date: .now,
         primary: WidgetWord(emoji: "🌱", word: "", meaning: ""),
-        words: [], dueCount: 0, streak: 0, flameState: .unlit,
+        words: [], dueCount: 0, streak: 0, streakHealth: .noRun,
         settled: 0, activityDays: [])
 
     /// A timeline entry never carries an empty window otherwise — the provider
@@ -86,7 +86,7 @@ struct WordEntry: TimelineEntry {
         // why: sorted like a real window, or the gallery would advertise a ragged
         // list the placed widget never shows.
         words: sortedForDisplay(placeholderWords),
-        dueCount: 0, streak: 3, flameState: .lit, settled: 12,
+        dueCount: 0, streak: 3, streakHealth: .earned, settled: 12,
         activityDays: placeholderDays)
 
     private static let placeholderWords = [
@@ -161,7 +161,7 @@ struct WordProvider: TimelineProvider {
                              words: sortedForDisplay(window),
                              dueCount: dueCount,
                              streak: streakDay.streak,
-                             flameState: streakDay.health,
+                             streakHealth: streakDay.health,
                              settled: snapshot.allSettledCount,
                              activityDays: activityDays,
                              chromeLanguage: snapshot.chromeLanguage)
