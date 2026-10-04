@@ -136,7 +136,7 @@
         }
       }
     },
-    "a11y.box.phase.consolidated" : {
+    "a11y.box.phase.settled" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3669,7 +3669,7 @@
         }
       }
     },
-    "home.suggestion.reason.wordsGrown" : {
+    "home.suggestion.reason.wordsSettled" : {
       "comment" : "Why a scramble is suggested: enough words have grown to scramble.",
       "localizations" : {
         "de" : {
@@ -5064,47 +5064,6 @@
         }
       }
     },
-    "progress.consolidatedCount %lld" : {
-      "comment" : "An area's row of counts: the consolidated half beside the seal, the learning half beside the leaf. home.tally.consolidated is the day's own tally on Heute — a different screen's sentence, not this one read twice.",
-      "localizations" : {
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld sitzt"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld sitzen"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld settled"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld settled"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "progress.last14Days" : {
       "localizations" : {
         "de" : {
@@ -5154,6 +5113,47 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld growing"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "progress.settledCount %lld" : {
+      "comment" : "An area's row of counts: the settled half beside the seal, the learning half beside the leaf. home.tally.settled is the day's own tally on Heute — a different screen's sentence, not this one read twice.",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sitzt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sitzen"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld settled"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld settled"
                 }
               }
             }
@@ -6751,7 +6751,7 @@
         }
       }
     },
-    "tally.consolidated %lld" : {
+    "tally.settled %lld" : {
       "comment" : "Words that crossed the settled bar — in Home's day tally and a finished round's alike.",
       "localizations" : {
         "de" : {

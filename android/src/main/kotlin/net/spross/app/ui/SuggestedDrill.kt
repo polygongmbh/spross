@@ -82,7 +82,7 @@ private fun AppModel.ladder(
 internal fun reason(chrome: Chrome, pick: DrillSuggestion.Pick): String = when (pick.reason) {
     DrillSuggestion.Reason.NewScript -> chrome.homeSuggestionReasonNewScript
     DrillSuggestion.Reason.EarlyNumbers -> chrome.homeSuggestionReasonEarlyNumbers
-    DrillSuggestion.Reason.WordsGrown -> chrome.homeSuggestionReasonWordsGrown
+    DrillSuggestion.Reason.WordsSettled -> chrome.homeSuggestionReasonWordsSettled
     DrillSuggestion.Reason.NeverRun -> chrome.homeSuggestionReasonNeverRun
     DrillSuggestion.Reason.NotLately -> chrome.homeSuggestionReasonNotLately.format(pick.daysSinceRun)
     DrillSuggestion.Reason.Variety -> chrome.homeSuggestionReasonVariety

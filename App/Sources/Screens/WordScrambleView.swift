@@ -8,7 +8,7 @@ import SprossKern
 /// drill wears (`docs/drills-words.md`).
 ///
 /// Stateless like the letter drill: no review is ever booked, and the box is
-/// READ for the words it has consolidated and never written.
+/// READ for the words it has settled and never written.
 ///
 /// The RUN is kern's (`WordScrambleRun`): the draw, the masking ladder and the
 /// verdict ladder all live in `run`, and every event becomes a

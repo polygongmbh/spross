@@ -57,7 +57,7 @@ Engine contract: `../README.md`.
   draws (it cannot run the join: no catalog in its bundle, ~30 MB extension memory cap vs
   33 MB measured Kotlin debug framework). Contents: pre-resolved exposure
   entries (target-side text, emoji, `article?`, `gender?`), per-card `{due}` for render-time
-  `dueCount(now)`, the consolidated-card count (`consolidatedCount`, resolved phone-side —
+  `dueCount(now)`, the settled-card count (`settledCount`, resolved phone-side —
   it does not move with the clock), a tail of per-day answer counts
   (~70 days, `{reviews}` a day) for the activity strip, `streak` and `lastReviewDate`
   (the streak as of that day, resolved once by `Statistics.streak`), `chromeLanguage`,

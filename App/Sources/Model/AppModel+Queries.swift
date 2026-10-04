@@ -22,7 +22,7 @@ extension AppModel {
     /// Today's round as kern classified it. A box that has not loaded offers nothing.
     var homeOffer: SessionOffer { home.offer }
 
-    /// What the learner did today — reviews, first meetings, words that consolidated,
+    /// What the learner did today — reviews, first meetings, words that settled,
     /// and whether today's recall has fallen far enough to suggest stopping.
     var today: TodayReport? { home.today }
 

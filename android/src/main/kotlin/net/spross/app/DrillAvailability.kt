@@ -13,7 +13,7 @@ import net.spross.kern.trainer.WordScrambleAvailability
  * Kern answers every drill's availability now ([LetterDrillAvailability] sweeps the catalog
  * and the box, the atlas is a join that either stands or does not); the ONE fact it cannot
  * have is whether this device can say anything in the language, so that is all these hand
- * it. Everything else — the alphabet, the recordings, the consolidated pool, the countries
+ * it. Everything else — the alphabet, the recordings, the settled pool, the countries
  * both sides name — kern reads for itself.
  */
 
@@ -76,7 +76,7 @@ val AppModel.datesOffered: Boolean
  * The word scramble rides on the BOX: enough words grown far enough to be worth spelling
  * back out of their own letters. Kern's own floor, read — nothing here counts words.
  *
- * Deliberately uncached: the pool grows as words consolidate, so the card asks again rather
+ * Deliberately uncached: the pool grows as words settle, so the card asks again rather
  * than deciding once at launch that the drill is empty. It walks the whole join, so the
  * caller asks once per box and not once per frame.
  */

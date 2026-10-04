@@ -68,7 +68,7 @@ sealed class CardRowState {
      * [GrowthStage.Suspended]: a card with nothing behind it is [Plain] or [PackOffered],
      * and a sleeping one is [Sleeping] — this constructor only ever sees a schedule that
      * already cleared that guard. Carrying the raw Sprosse rather than a collapsed boolean
-     * is what lets a surface tell Fresh, Growing and Matured apart on sight, the same way
+     * is what lets a surface tell Fresh, Growing and Settled apart on sight, the same way
      * the badge does.
      */
     data class Standing(val stage: GrowthStage) : CardRowState()

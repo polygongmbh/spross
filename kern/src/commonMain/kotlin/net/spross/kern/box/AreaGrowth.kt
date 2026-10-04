@@ -8,7 +8,7 @@ import kotlin.math.min
  *
  * The unit is the AREA: every word the learner has met stands in exactly one of the four
  * met tiers, so the tiers add up to the words the tree carries and nothing is counted twice.
- * Ranked most-grown first — [longHeld], then [matured], [growing], [arriving] — which is the
+ * Ranked most-grown first — [longHeld], then [settled], [growing], [arriving] — which is the
  * order [reaches] is in and the order [TreeTransition.changedRanks] counts in.
  */
 data class AreaGrowth(
@@ -17,9 +17,9 @@ data class AreaGrowth(
     val arriving: Int,
     /** [GrowthStage.Growing] — landed. */
     val growing: Int,
-    /** [GrowthStage.Matured], short of [FRUIT_STABILITY]. */
-    val matured: Int,
-    /** [GrowthStage.Matured] at or past [FRUIT_STABILITY]. */
+    /** [GrowthStage.Settled], short of [FRUIT_STABILITY]. */
+    val settled: Int,
+    /** [GrowthStage.Settled] at or past [FRUIT_STABILITY]. */
     val longHeld: Int,
     /** Packed and never met ([GrowthStage.Queued]) — why the area is growing at all. */
     val queued: Int,
@@ -31,7 +31,7 @@ data class AreaGrowth(
     val reaches: List<Double>,
 ) {
     /** Every word the learner has met here and still holds. */
-    val met: Int get() = longHeld + matured + growing + arriving
+    val met: Int get() = longHeld + settled + growing + arriving
 
     /** Nothing has happened here: nothing met, nothing packed. */
     val isBare: Boolean get() = met + queued == 0
@@ -39,8 +39,8 @@ data class AreaGrowth(
     /** Which tier the word at [rank] stands in, 1 (most grown) … 4, or 0 past [met]. */
     internal fun tierAt(rank: Int): Int = when {
         rank < longHeld -> 1
-        rank < longHeld + matured -> 2
-        rank < longHeld + matured + growing -> 3
+        rank < longHeld + settled -> 2
+        rank < longHeld + settled + growing -> 3
         rank < met -> 4
         else -> 0
     }
@@ -69,7 +69,7 @@ data class TreeTransition(val before: AreaGrowth, val after: AreaGrowth) {
         area = before.area,
         arriving = min(before.arriving, after.arriving),
         growing = min(before.growing, after.growing),
-        matured = min(before.matured, after.matured),
+        settled = min(before.settled, after.settled),
         longHeld = min(before.longHeld, after.longHeld),
         queued = min(before.queued, after.queued),
         lapsed = min(before.lapsed, after.lapsed),
@@ -136,7 +136,7 @@ fun grownArea(
 private class AreaTally {
     var arriving = 0
     var growing = 0
-    var matured = 0
+    var settled = 0
     var longHeld = 0
     var queued = 0
     var lapsed = 0
@@ -152,8 +152,8 @@ private class AreaTally {
             GrowthStage.Relearning -> { lapsed += 1; return }
             GrowthStage.Fresh -> arriving += 1
             GrowthStage.Growing -> growing += 1
-            GrowthStage.Matured ->
-                if (entry.stability >= FRUIT_STABILITY) longHeld += 1 else matured += 1
+            GrowthStage.Settled ->
+                if (entry.stability >= FRUIT_STABILITY) longHeld += 1 else settled += 1
         }
         reaches += reach
     }
@@ -161,7 +161,7 @@ private class AreaTally {
     // why: most-grown first — the tiers ARE stability bands, so sorting by reach
     // reproduces them and entry n belongs to rank n.
     fun tree(area: String) = AreaGrowth(
-        area, arriving, growing, matured, longHeld, queued, lapsed, answeredToday,
+        area, arriving, growing, settled, longHeld, queued, lapsed, answeredToday,
         reaches.sortedDescending(),
     )
 }

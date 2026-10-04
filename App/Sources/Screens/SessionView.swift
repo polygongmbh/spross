@@ -65,7 +65,7 @@ struct SessionView: View, LanguageNaming {
         Group {
             if model.sessionCompleted {
                 SessionCompletionView(newCount: model.sessionNew,
-                                      graduatedCount: model.sessionGraduated,
+                                      settledCount: model.sessionSettled,
                                       reviewCount: model.sessionReviews,
                                       grownArea: model.sessionGrowth,
                                       grownAreaLabel: model.sessionGrowth.map {
@@ -253,7 +253,7 @@ struct SessionView: View, LanguageNaming {
     private func promptSide(_ card: Card, role: PresentationRole) -> VocabCardView.Side {
         switch role {
         case .produce:
-            // why: a consolidated word is sometimes asked by ear alone — the
+            // why: a settled word is sometimes asked by ear alone — the
             // meaning is withheld ON PURPOSE, so no cue rides along with it
             // either; what stands is the replay glyph and nothing else.
             //

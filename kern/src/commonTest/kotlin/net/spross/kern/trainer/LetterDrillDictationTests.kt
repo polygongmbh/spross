@@ -56,7 +56,7 @@ class LetterDrillDictationTests {
     }
 
     @Test
-    fun theLastSprosseAsksAnyConsolidatedWord() {
+    fun theLastSprosseAsksAnyGrowingWord() {
         val texts = drawn(9).toSet()
         assertTrue("Regenbogen" in texts, "level 9 takes the long ones too: $texts")
     }

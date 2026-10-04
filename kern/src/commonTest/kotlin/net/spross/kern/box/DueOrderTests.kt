@@ -63,7 +63,7 @@ class DueOrderTests {
      * is spent where a review still changes the outcome.
      */
     @Test
-    fun anUnconsolidatedWordLeadsAWholeDayOfSettledOnes() {
+    fun anUnsettledWordLeadsAWholeDayOfSettledOnes() {
         var state = Box.state((1..4).map { Box.word(it) })
         // w01..w03 settled and three days overdue; w04 shaky and due only now.
         for (n in 1..3) {

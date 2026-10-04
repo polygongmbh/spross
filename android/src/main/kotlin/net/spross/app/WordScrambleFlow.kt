@@ -18,7 +18,7 @@ import net.spross.kern.trainer.WordScrambleRunState
  * leaves standing, what a typed answer earns. What is left here is [DrillFlow]'s: the
  * field's text and the armed beat.
  *
- * No review is ever booked: the box is READ for the words it has consolidated and never
+ * No review is ever booked: the box is READ for the words it has settled and never
  * written, and the run keeps no streak record — spelling a word back out of its own letters
  * is not the recall the schedule measures. What DOES outlive the run is the ladder it
  * climbed, filed under [clearedKey].

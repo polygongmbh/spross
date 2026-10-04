@@ -56,16 +56,16 @@ class ThemeColors(
     val accent: Color,
     /** Ocean: the secondary accent. */
     val teal: Color,
-    /** Forest: right answers, consolidated cards, foliage. */
+    /** Forest: right answers, settled cards, foliage. */
     val success: Color,
     /** Ochre: the reveal, the tough answer, the word still being learned — never red. */
     val amber: Color,
     /**
-     * Jade — the consolidated/"grown" Sprosse's own color. Not [teal]: that one sits too
+     * Jade — the settled Sprosse's own color. Not [teal]: that one sits too
      * close to [der] on the hue wheel to read as anything but another blue at a badge's
      * size, so this one is its own token, pulled toward green instead.
      */
-    val grown: Color,
+    val settled: Color,
     /**
      * Muted brick. The aggregate progress bar and the learner's own "unknown" verdict
      * wear it; a card telling someone they were wrong never does.
@@ -130,7 +130,7 @@ val ThemeLight = ThemeColors(
     teal = Palette.teal.light.opaque(),
     success = Palette.success.light.opaque(),
     amber = Palette.amber.light.opaque(),
-    grown = Palette.grown.light.opaque(),
+    settled = Palette.settled.light.opaque(),
     wrong = Palette.wrong.light.opaque(),
     ground = Palette.ground.light.opaque(),
     wood = Palette.wood.light.opaque(),
@@ -160,7 +160,7 @@ val ThemeDark = ThemeColors(
     teal = Palette.teal.dark.opaque(),
     success = Palette.success.dark.opaque(),
     amber = Palette.amber.dark.opaque(),
-    grown = Palette.grown.dark.opaque(),
+    settled = Palette.settled.dark.opaque(),
     wrong = Palette.wrong.dark.opaque(),
     ground = Palette.ground.dark.opaque(),
     wood = Palette.wood.dark.opaque(),

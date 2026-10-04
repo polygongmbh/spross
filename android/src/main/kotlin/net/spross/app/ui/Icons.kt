@@ -35,7 +35,7 @@ object SprossIcons {
         moveTo(18f, 6f); lineTo(6f, 18f)
     }
 
-    /** Confirmed — a right answer, a consolidated card, the verdict that says it came. */
+    /** Confirmed — a right answer, a settled card, the verdict that says it came. */
     val Check = stroked("Check") {
         moveTo(5f, 12.5f); lineTo(10f, 17.5f); lineTo(19f, 6.5f)
     }

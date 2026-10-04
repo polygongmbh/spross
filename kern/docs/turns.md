@@ -88,7 +88,7 @@ Engine contract: `../README.md`.
   learner with a full vocabulary hears their own words in it. Unseen words enter through
   `Growth.isIntroducible`: a phrase whose components have not landed is not ready to be heard
   either. Hearing one does not introduce it: introduction is the first answer, and listening
-  answers nothing. **A fully grown word is not in the pool** (`Statistics.isConsolidated`):
+  answers nothing. **A fully grown word is not in the pool** (`Statistics.isSettled`):
   it is what the box already calls done, and an hour of listening is for what is not —
   left in, a well-used box, where the grown words outnumber everything else, would open on
   the words it trusts most. It is back the moment it lapses.
@@ -286,7 +286,7 @@ Engine contract: `../README.md`.
   hears anything, so nothing about the device can decide what it may ask.
   Each walks the whole join and is built ONCE per run, its `drillExists` the hub-chip predicate.
   The two read DIFFERENT bars on purpose: the word scramble wants a word already grown past the
-  display bar (`BoxEngine.isConsolidated`), since mixed letters cue nothing a learner cannot
+  display bar (`BoxEngine.isSettled`), since mixed letters cue nothing a learner cannot
   already produce, while the sentence scramble reads every phrase in the join past no bar,
   since its words are given and only their order is asked.
   What each hands the run is not the card either — it is what the question is made OF, and the

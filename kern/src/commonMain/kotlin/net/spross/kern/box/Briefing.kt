@@ -25,14 +25,14 @@ data class Briefing(
     val learnerName: String?,
     val sourceName: String,
     val targetName: String,
-    /** Areas of words at [GrowthStage.Matured] — the only stage solid enough to hand over as known. */
-    val matured: List<BriefArea>,
-    /** Words scheduled but short of [GrowthStage.Matured] — still in progress, named so a partner goes gently. */
+    /** Areas of words at [GrowthStage.Settled] — the only stage solid enough to hand over as known. */
+    val settled: List<BriefArea>,
+    /** Words scheduled but short of [GrowthStage.Settled] — still in progress, named so a partner goes gently. */
     val learning: List<BriefWord>,
     /** Words the learner sowed and no round has brought in yet — the talk's own subject. */
     val sown: List<BriefWord>,
 ) {
-    val maturedCount: Int get() = matured.sumOf { it.words.size }
+    val settledCount: Int get() = settled.sumOf { it.words.size }
 
     /** The whole brief, ready to be pasted into an assistant. */
     val text: String
@@ -41,10 +41,10 @@ data class Briefing(
             appendLine("The lists below come out of Spross, the app I learn with.")
             appendLine()
             appendLine(protocol())
-            if (maturedCount > 0) {
+            if (settledCount > 0) {
                 appendLine()
-                appendLine("THE $maturedCount WORDS I KNOW - use these as basis")
-                for (area in matured) appendLine("${area.title}: ${area.words.joinToString(", ")}")
+                appendLine("THE $settledCount WORDS I KNOW - use these as basis")
+                for (area in settled) appendLine("${area.title}: ${area.words.joinToString(", ")}")
             }
             if (learning.isNotEmpty()) {
                 appendLine()
@@ -146,17 +146,17 @@ object Briefings {
      * Whether there is a conversation to be had: a box with nothing to name briefs nobody.
      *
      * The same words [of] would list, counted without building the brief — every active card
-     * under the join lands in `matured` or `learning`, and [OwnWords] are out of both.
+     * under the join lands in `settled` or `learning`, and [OwnWords] are out of both.
      */
     fun available(state: BoxState): Boolean =
         Inventory.active(state).any { state.cards[it.cardId]?.area != OwnWords.AREA }
 
     fun of(state: BoxState, catalog: Catalog, learnerName: String?): Briefing {
         val activeIds = Inventory.active(state).mapTo(mutableSetOf()) { it.cardId }
-        val (maturedCards, learningCards) = Inventory.joinedCards(state)
+        val (settledCards, learningCards) = Inventory.joinedCards(state)
             .filter { it.area != OwnWords.AREA && it.id in activeIds }
-            .partition { Statistics.isConsolidated(state, state.scheduling.getValue(it.id)) }
-        val matured = maturedCards
+            .partition { Statistics.isSettled(state, state.scheduling.getValue(it.id)) }
+        val settled = settledCards
             .groupBy { it.area }
             .map { (area, cards) ->
                 BriefArea(
@@ -175,7 +175,7 @@ object Briefings {
             learnerName = learnerName,
             sourceName = languageName(catalog, state.joinStamp.source),
             targetName = languageName(catalog, state.joinStamp.target),
-            matured = matured,
+            settled = settled,
             learning = learning,
             sown = sownCards.map { BriefWord(targetForm(it), it.source.text) },
         )

@@ -8,7 +8,7 @@ import net.spross.kern.model.Rating
 /**
  * What the learner actually did today, in cards — the day's own report.
  * Reviews and misses are read live from the review logs, so the numbers hold
- * mid-session; introductions and consolidated crossings come from the day counters
+ * mid-session; introductions and settled crossings come from the day counters
  * the engine books at answer time.
  */
 data class TodayReport(
@@ -16,8 +16,8 @@ data class TodayReport(
     val reviews: Int,
     /** Words met for the first time today. */
     val introduced: Int,
-    /** Words that crossed into consolidated today (see [Statistics.isConsolidated]). */
-    val consolidated: Int,
+    /** Words that crossed into settled today (see [Statistics.isSettled]). */
+    val settled: Int,
     /** Answers rated Again today. */
     val missed: Int,
     /** The retention the box is scheduling for ([net.spross.kern.model.BoxConfig]). */
@@ -41,7 +41,7 @@ data class TodayReport(
         if (!worked) return emptyList()
         val parts = mutableListOf(TallyPart(TallyPartKind.Reviews, reviews))
         if (introduced > 0) parts += TallyPart(TallyPartKind.Introduced, introduced)
-        if (consolidated > 0) parts += TallyPart(TallyPartKind.Consolidated, consolidated)
+        if (settled > 0) parts += TallyPart(TallyPartKind.Settled, settled)
         return parts
     }
 
@@ -89,8 +89,8 @@ enum class TallyPartKind {
     /** Words met for the first time. */
     Introduced,
 
-    /** Words that crossed the consolidated bar ([Statistics.isConsolidated]). */
-    Consolidated,
+    /** Words that crossed the settled bar ([Statistics.isSettled]). */
+    Settled,
 }
 
 /** One part of a tally: which count, and how many. */
@@ -105,11 +105,11 @@ data class TallyPart(val kind: TallyPartKind, val count: Int)
  * An empty list means the round is over with nothing nameable in it,
  * which is a surface's cue to say so plainly rather than to print three zeros.
  */
-fun completionTallyParts(introduced: Int, consolidated: Int, reviews: Int): List<TallyPart> =
+fun completionTallyParts(introduced: Int, settled: Int, reviews: Int): List<TallyPart> =
     listOf(
         TallyPart(TallyPartKind.Introduced, introduced),
         TallyPart(TallyPartKind.Reviews, reviews),
-        TallyPart(TallyPartKind.Consolidated, consolidated),
+        TallyPart(TallyPartKind.Settled, settled),
     ).filter { it.count > 0 }
 
 /** What a day with nothing left to do says about the next one. */
@@ -162,7 +162,7 @@ internal fun todayReport(state: BoxState, nowEpochMillis: Long, tzId: String): T
     return TodayReport(
         reviews = reviews,
         introduced = introduced,
-        consolidated = state.consolidatedToday?.takeIf { it.day == day }?.count ?: 0,
+        settled = state.settledToday?.takeIf { it.day == day }?.count ?: 0,
         missed = missed,
         expectedRecall = state.config.desiredRetention,
     )

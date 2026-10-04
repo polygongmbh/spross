@@ -16,10 +16,10 @@ class BriefingTests {
 
     private fun state(cards: List<Card>): BoxState = Box.state(cards)
 
-    private fun matured(cardId: String): CardScheduling =
+    private fun settled(cardId: String): CardScheduling =
         Box.sched(
             cardId,
-            stability = MATURED_STABILITY * 2,
+            stability = SETTLED_STABILITY * 2,
             dueMillis = Box.plusDays(Box.day1, 30.0),
             lastReviewMillis = Box.day1,
         )
@@ -39,13 +39,13 @@ class BriefingTests {
 
     /** What a partner is told to go gently on, versus what they may build a sentence out of. */
     @Test
-    fun maturedIsWhatIsKnownAndTheRestIsStillInProgress() {
+    fun settledIsWhatIsKnownAndTheRestIsStillInProgress() {
         var box = state(listOf(Box.word(1), Box.word(2)))
-        box = Box.inject(box, matured("w01"))
+        box = Box.inject(box, settled("w01"))
         box = Box.inject(box, learning("w02"))
 
         val brief = brief(box)
-        assertEquals(listOf("t1"), brief.matured.flatMap { it.words })
+        assertEquals(listOf("t1"), brief.settled.flatMap { it.words })
         assertEquals(listOf("t2"), brief.learning.map { it.target })
     }
 
@@ -54,10 +54,10 @@ class BriefingTests {
     fun suspendedAndUnscheduledCardsAreNamedNowhere() {
         var box = state(listOf(Box.word(1), Box.word(2), Box.word(3)))
         box = Box.inject(box, learning("w01", suspended = true))
-        box = Box.inject(box, matured("w02").copy(suspended = true))
+        box = Box.inject(box, settled("w02").copy(suspended = true))
 
         val brief = brief(box)
-        assertEquals(emptyList(), brief.matured.flatMap { it.words })
+        assertEquals(emptyList(), brief.settled.flatMap { it.words })
         assertEquals(emptyList(), brief.learning.map { it.target })
         assertEquals(emptyList(), brief.sown.map { it.target })
     }
@@ -67,11 +67,11 @@ class BriefingTests {
     fun ownWordsLeaveTheDeviceNowhere() {
         val own = (1..3).map { Box.word(it, area = OwnWords.AREA) }
         var box = BoxEngine.enqueue(state(own), listOf("w03"))
-        box = Box.inject(box, matured("w01"))
+        box = Box.inject(box, settled("w01"))
         box = Box.inject(box, learning("w02"))
 
         val brief = brief(box)
-        assertEquals(emptyList(), brief.matured.flatMap { it.words })
+        assertEquals(emptyList(), brief.settled.flatMap { it.words })
         assertEquals(emptyList(), brief.learning.map { it.target })
         assertEquals(emptyList(), brief.sown.map { it.target })
         assertFalse(Briefings.available(box))

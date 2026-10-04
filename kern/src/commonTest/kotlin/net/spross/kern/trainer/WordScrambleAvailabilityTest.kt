@@ -50,7 +50,7 @@ class WordScrambleAvailabilityTest {
 
     /** All three word kinds qualify, and the pool comes back in seed order — the padding sorts behind. */
     @Test
-    fun everyConsolidatedSingleWordOfEnoughLettersIsAsked() {
+    fun everySettledSingleWordOfEnoughLettersIsAsked() {
         val shaped = listOf("window", "cook", "fast", "rainbow", "outside", "sun", "bad")
         assertEquals(shaped, ids().take(shaped.size))
     }

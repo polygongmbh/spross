@@ -81,7 +81,7 @@ class LetterDrillAvailabilityTest {
         promptFeminineMarker = false,
     )
 
-    /** Five consolidated single words plus a phrase card, so the floor can be crossed exactly. */
+    /** Five growing single words plus a phrase card, so the floor can be crossed exactly. */
     private val words = listOf(
         card("mouse", "миша", 1), // a bundled recording
         card("door", "двері", 2), // a bundled recording
@@ -91,7 +91,7 @@ class LetterDrillAvailabilityTest {
         card("morning", "доброго ранку", 6), // two words: never a transcription task
     )
 
-    /** Every card consolidated; `mouse` also carries the figures the dictation draw weighs. */
+    /** Every card growing; `mouse` also carries the figures the dictation draw weighs. */
     private fun box(cards: List<Card> = words): BoxState {
         var state = Box.state(cards)
         for (word in cards) {

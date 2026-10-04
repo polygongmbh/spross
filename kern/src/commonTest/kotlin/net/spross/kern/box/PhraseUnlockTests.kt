@@ -26,7 +26,7 @@ class PhraseUnlockTests {
         assertTrue(plan1.unlockedPhrases.isEmpty())
         assertEquals(listOf("w01", "w02", "w03"), plan1.newCards)
 
-        // Easy graduates straight to Review with stability 8.2956 ≥ 6.0 (consolidated bar).
+        // Easy graduates straight to Review with stability 8.2956 ≥ 6.0 (growing bar).
         state = Box.answered(state, "w01", Rating.Easy, now)
 
         // One stable component is not enough — ALL must be stable.
@@ -39,12 +39,12 @@ class PhraseUnlockTests {
         assertEquals(listOf("w03"), plan3.newCards)
     }
 
-    // Unlock reads consolidation alone (user ruling 2026-09-01): a suspended component
+    // Unlock reads the growing bar alone (user ruling 2026-09-01): a suspended component
     // the learner already knows is still stable knowledge to build a phrase on, and
     // suspension is no longer what a struggling component looks like (that is a low
     // stability, gated by componentBelowUnlockStabilityKeepsPhraseLocked instead).
     @Test
-    fun suspendedButConsolidatedComponentStillUnlocks() {
+    fun suspendedButGrowingComponentStillUnlocks() {
         var state = seeded()
         state = Box.answered(state, "w01", Rating.Easy, now)
         state = Box.answered(state, "w02", Rating.Easy, now)
@@ -60,7 +60,7 @@ class PhraseUnlockTests {
         state = Box.inject(state, Box.sched("w02", stability = 5.9, dueMillis = future, lastReviewMillis = now))
         assertTrue(Box.candidates(state).unlockedPhrases.isEmpty())
 
-        // Phrase unlock uses the stricter consolidated bar: 6.0 unlocks.
+        // Phrase unlock uses the growing bar: 6.0 unlocks.
         state = Box.inject(state, Box.sched("w02", stability = 6.0, dueMillis = future, lastReviewMillis = now))
         assertEquals(listOf("p1"), Box.candidates(state).unlockedPhrases)
     }

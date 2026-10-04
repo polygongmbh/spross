@@ -34,7 +34,7 @@ data class BoxConfig(
      * pools, [net.spross.kern.model.producePrompt] (which WITHDRAWS the meaning),
      * and [net.spross.kern.model.emojiCue] (which ADDS support). The stats
      * display, the Grown badge, and the day tallies read a stricter, later bar
-     * instead ([net.spross.kern.box.MATURED_STABILITY]).
+     * instead ([net.spross.kern.box.SETTLED_STABILITY]).
      *
      * Set between S0(Good) = 2.3065 and S0(Easy) = 8.2956, so a merely-Good first
      * answer does not read as landed while a genuinely known-on-sight Easy one does.

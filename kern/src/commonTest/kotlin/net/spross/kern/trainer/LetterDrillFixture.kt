@@ -92,7 +92,7 @@ internal object LetterDrillFixture {
 
     fun entry(ref: String): AlphabetEntry = requireNotNull(alphabet.entry(ref)) { "no entry \"$ref\"" }
 
-    /** Consolidated box words, as the app hands them over: single words of mixed length. */
+    /** Growing box words, as the app hands them over: single words of mixed length. */
     fun dictationCards(): List<Card> = listOf(
         card("ice", "Eis"),
         card("house", "Haus"),

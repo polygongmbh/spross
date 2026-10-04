@@ -272,7 +272,7 @@ class BoxBrowserTest {
         // Review well under the growing bar (6.0) — the phase says nothing about it.
         state = Box.inject(state, Box.sched("w02", stability = 3.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w03", stability = 9.0, dueMillis = future, lastReviewMillis = now))
-        // Matured is a further Sprosse of its own, at the 30-day bar.
+        // Settled is a further Sprosse of its own, at the 25-day bar.
         state = Box.inject(state, Box.sched("w04", stability = 99.0, dueMillis = future, lastReviewMillis = now))
         // Lapsed after growing: the bar has to be earned back.
         state = Box.inject(
@@ -287,13 +287,13 @@ class BoxBrowserTest {
         assertEquals(CardRowState.Standing(GrowthStage.Fresh), row("w01"))
         assertEquals(CardRowState.Standing(GrowthStage.Fresh), row("w02"))
         assertEquals(CardRowState.Standing(GrowthStage.Growing), row("w03"))
-        assertEquals(CardRowState.Standing(GrowthStage.Matured), row("w04"))
+        assertEquals(CardRowState.Standing(GrowthStage.Settled), row("w04"))
         assertEquals(CardRowState.Standing(GrowthStage.Relearning), row("w05"))
     }
 
     /**
      * The Sprosse's color, so a row's badge and the shelf's bar read the same table:
-     * amber for Fresh/Relearning, green for Growing, jade for Matured.
+     * amber for Fresh/Relearning, green for Growing, jade for Settled.
      */
     @Test
     fun theSprossenColorFollowsTheBarAndTheAmberStagesShareIt() {
@@ -302,7 +302,7 @@ class BoxBrowserTest {
         assertEquals(Palette.amber, swatchOf(GrowthStage.Fresh))
         assertEquals(Palette.amber, swatchOf(GrowthStage.Relearning))
         assertEquals(Palette.success, swatchOf(GrowthStage.Growing))
-        assertEquals(Palette.grown, swatchOf(GrowthStage.Matured))
+        assertEquals(Palette.settled, swatchOf(GrowthStage.Settled))
     }
 
     /** A schedule outlives a source switch; the card it belongs to may not join. */

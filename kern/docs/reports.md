@@ -5,7 +5,7 @@ The read models a surface draws the box from (the day, one card's standing, the 
 
 - **`TodayReport`** (`BoxEngine.today`) is the day's own report: reviews, misses and
   introductions read live from the review logs, so the numbers hold mid-session — a card's
-  FIRST log entry IS the meeting. Consolidated crossings come from `BoxState.consolidatedToday`,
+  FIRST log entry IS the meeting. Settled crossings come from `BoxState.settledToday`,
   the counter the engine books at answer time, since a log records no stability to read a
   crossing off. It holds ONE day and a fresh day replaces it, so only today can be asked.
   The walk reads raw schedules rather than the join: switching the known language must not
@@ -21,7 +21,7 @@ The read models a surface draws the box from (the day, one card's standing, the 
   `tallyParts()` is empty on an unworked day (a day has a state then, not a tally)
   and otherwise leads with reviews, then today's first meetings, then the crossings —
   the rarest part reads last.
-  `completionTallyParts(introduced, consolidated, reviews)` is the ROUND's own tally
+  `completionTallyParts(introduced, settled, reviews)` is the ROUND's own tally
   in the order a summary reads it, non-zero parts only;
   empty means the round bought nothing nameable and the surface says so plainly
   rather than printing three zeros.
@@ -38,14 +38,14 @@ The read models a surface draws the box from (the day, one card's standing, the 
 
 - **`GrowthStage`** (`BoxEngine.growth`) is the same box told per card instead of per count:
   one Sprosse each for unscheduled / queued / learning / fresh / growing /
-  matured / relearning / suspended, in seed order, with the card's raw stability and whether
+  settled / relearning / suspended, in seed order, with the card's raw stability and whether
   today's answer touched it. Suspension and a lapse outrank every bar — a Sprosse says where a
   card stands now, never how far it once got. The Sprossen name the RULE, so a surface may draw
   two of them the same; what they look like is not the engine's answer. It is the whole-box
   read behind a surface that draws the box itself rather than the totals `statistics`
   aggregates it into, and the reason the app needs no schedule-reading rules of its own.
 - **`AreaGrowth`** (`growthByArea`) is that read folded per area:
-  each met word in exactly one tier (arriving / growing / matured / long held),
+  each met word in exactly one tier (arriving / growing / settled / long held),
   most-grown first, with what is packed and what lapsed;
   a tree's height comes from how many words its area has met.
   `grownArea` names the area a round worked hardest as a `TreeTransition` — before and now,
@@ -81,9 +81,9 @@ The read models a surface draws the box from (the day, one card's standing, the 
   an area listing packs by the shelf, so an unexposed card there is `Plain`:
   NEW is the ABSENCE of a standing, never a standing of its own.
   `Standing` carries the raw `GrowthStage` rather than a collapsed boolean —
-  three Review-phase labels (Fresh, Growing, Matured) can no longer be told apart
+  three Review-phase labels (Fresh, Growing, Settled) can no longer be told apart
   from one flag, and a card reaches Review well below `growingStability`, so a mark
-  keyed to the raw phase would seal cards the area's consolidated count leaves out.
+  keyed to the raw phase would seal cards the area's settled count leaves out.
   It is read straight off `GrowthStage`, never re-derived from the raw phase:
   a second derivation is a second answer waiting to disagree with the shelf above it.
 

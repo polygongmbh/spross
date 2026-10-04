@@ -37,7 +37,7 @@ extension TreeShapes {
         return sprig
     }
 
-    /// A word that has matured: five petals round an eye, kept small —
+    /// A word that has settled: five petals round an eye, kept small —
     /// a tree carrying forty of them is still a tree in flower, not a bouquet.
     /// Among the Trees the petals are one disc: they blur.
     static func blossom(at point: CGPoint, size: CGFloat, angle: Double,

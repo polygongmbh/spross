@@ -103,7 +103,7 @@ class SessionRunWiringTest {
         val run = model.dispatch(SessionIntent.Answer(Rating.Easy), now, tz)
 
         assertEquals(3, run.newCards)   // introduced
-        assertEquals(0, run.graduated)  // strengthened
+        assertEquals(0, run.settled)
         assertEquals(0, run.reviews)    // reviewed
     }
 

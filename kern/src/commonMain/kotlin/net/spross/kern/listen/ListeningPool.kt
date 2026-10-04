@@ -59,7 +59,7 @@ object ListeningPool {
      * exactly the kind `Inventory.active` drops, and those are the words an hour of listening
      * is for. Suspension pushes a word out of the box's own queue; it was never a statement
      * that the learner should stop meeting the word. A fully grown word
-     * (`Statistics.isConsolidated`) is the one exclusion: it is what the box already calls
+     * (`Statistics.isSettled`) is the one exclusion: it is what the box already calls
      * done, and it is back in the pool the moment it lapses.
      *
      * Unseen words are in it too, so a learner a few words in hears a STREAM of new words
@@ -92,7 +92,7 @@ object ListeningPool {
             val scheduling = box.scheduling[card.id] ?: return@mapNotNull null
             // why: a fully grown word is what the box already calls done, and the hour is for
             // what is not — left in, a well-used box would open on the words it trusts most.
-            if (Statistics.isConsolidated(box, scheduling)) return@mapNotNull null
+            if (Statistics.isSettled(box, scheduling)) return@mapNotNull null
             ListeningCandidate(
                 card = card,
                 growing = Statistics.isGrowing(box, scheduling),

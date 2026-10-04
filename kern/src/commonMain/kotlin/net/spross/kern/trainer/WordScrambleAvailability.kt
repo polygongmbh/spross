@@ -11,10 +11,9 @@ import net.spross.kern.model.CardKind
  * What the word scramble can ASK of a box: the words whose spelling is worth writing back out
  * of its own letters.
  *
- * The bar is the DISPLAY one ([BoxEngine.isConsolidated]), not the growing one the letter drill
- * reads, and deliberately so: a scrambled word is no cue at all for a word the learner cannot
- * already produce, so this drill is for spelling a word they have rather than meeting one they
- * have not. The sentence scramble reads no bar at all — an ORDER is not a word.
+ * The bar is the settled one ([BoxEngine.isSettled]), not the growing one the letter drill
+ * reads: scrambled letters cue nothing for a word the learner cannot already produce.
+ * The sentence scramble reads no bar at all — an ORDER is not a word.
  *
  * Nothing here is a device fact, so unlike the letter drill this needs no capability port.
  */
@@ -97,7 +96,7 @@ object WordScrambleAvailability {
         Inventory.active(box)
             .map { box.cards.getValue(it.cardId) }
             .filter { it.kind in wordKinds }
-            .filter { BoxEngine.isConsolidated(box, it.id) }
+            .filter { BoxEngine.isSettled(box, it.id) }
             .sortedWith(Inventory.seedOrder)
             .map { Spelling(it, spellings(it)) }
             .filter { it.forms.isNotEmpty() },

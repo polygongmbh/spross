@@ -243,16 +243,13 @@ struct BoxCardRow: View {
         }
     }
 
-    /// Kern's Sprosse in the palette's own terms. Unscheduled/Queued/Suspended
-    /// never arrive — a `Standing` row's stage is already guaranteed to be one
-    /// of Learning/Fresh/Growing/Matured/Relearning (kern's own invariant) — but
-    /// the switch stays exhaustive over the whole ladder rather than trusting
-    /// that from the outside.
+    /// Kern's Sprosse in the palette's own terms. A `Standing` row never carries
+    /// Unscheduled/Queued/Suspended, but the switch stays exhaustive anyway.
     private static func badgePhase(_ stage: GrowthStage) -> PhaseBadge.Phase {
         switch stage {
         case .fresh: return .fresh
         case .growing: return .growing
-        case .matured: return .grown
+        case .settled: return .settled
         case .relearning: return .relearning
         case .unscheduled, .queued, .suspended: return .new
         }

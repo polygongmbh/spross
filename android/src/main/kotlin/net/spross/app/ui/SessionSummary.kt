@@ -58,13 +58,13 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     // why: the round's own reward, sounded once as the screen arrives — iOS cheers here too.
     LaunchedEffect(Unit) { model.cues.cheer() }
     var briefingOpen by remember { mutableStateOf(false) }
-    val parts = completionTallyParts(ui.introduced, ui.strengthened, ui.reviewed)
+    val parts = completionTallyParts(ui.introduced, ui.settled, ui.reviewed)
     val tally = if (parts.isEmpty()) null else {
         parts.joinToString(" · ") {
             when (it.kind) {
                 TallyPartKind.Introduced ->
                     if (parts.size == 1) chrome.sessionDoneTallyNewOnly.format(it.count) else chrome.sessionDoneTallyNew.format(it.count)
-                TallyPartKind.Consolidated -> countLine(chrome.tallyConsolidatedOne, chrome.tallyConsolidated, it.count)
+                TallyPartKind.Settled -> countLine(chrome.tallySettledOne, chrome.tallySettled, it.count)
                 TallyPartKind.Reviews ->
                     if (parts.size == 1) chrome.sessionDoneTallyReviewedOnly.format(it.count) else chrome.sessionDoneTallyReviewed.format(it.count)
             }
@@ -199,7 +199,7 @@ internal fun growthLine(chrome: Chrome, headline: GrowthHeadline): String {
     return when (headline.claim) {
         GrowthClaim.Unclaimed -> chrome.sessionDoneGrowthGrew
         GrowthClaim.Opened -> chrome.sessionDoneGrowthOpened
-        GrowthClaim.Matured -> chrome.growthBlooming.pick()
+        GrowthClaim.Settled -> chrome.growthBlooming.pick()
         GrowthClaim.Met -> chrome.growthSown.pick()
         GrowthClaim.Grew -> chrome.growthGrown.pick()
         GrowthClaim.Held -> chrome.growthGrown.drop(1).pick()

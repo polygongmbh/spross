@@ -117,14 +117,14 @@ both feeding the one schedule ("every answer event is an FSRS review" holds).
     the per-card phase offset keeps the box from flipping in sync.
 - **Synonym rotation** on recognition prompts, and **sound-prompted production**
   (`producePrompt`): asking a word by ear WITHDRAWS the meaning rather than adding support,
-  so it needs the stricter consolidated bar (section 5).
+  so it needs the growing bar (section 5).
   The ANSWER moves with it: what is typed is the meaning, in the source language,
   because a word heard and written back down has been transcribed rather than understood.
   EVERY meaning the played form carries counts, not only this card's --
   the borrowed one books in full while pausing on the meaning THIS card teaches
   (`AlmostReason.Merged`).
 - **The target is spoken with its article; the source is not** (user ruling 2026-08-21).
-- **Emoji cue**: `emojiCue(role, consolidated)` answers WHEN the picture appears,
+- **Emoji cue**: `emojiCue(role, growing)` answers WHEN the picture appears,
   never whether or where.
   **Upfront** iff role == Produce and the word has not landed (section 5) --
   the one prompt it can support recall on without giving the answer away.
@@ -186,7 +186,7 @@ the numbers behind each bar are on `BoxConfig` itself.
   so a lapse un-lands a card.
   That bar gates phrase unlock, the letter drill's pool (section 6),
   and picks the support a word gets while it is still on its way in (section 3).
-  `MATURED_STABILITY` (`Statistics.isConsolidated`, facade `BoxEngine.isConsolidated`)
+  `SETTLED_STABILITY` (`Statistics.isSettled`, facade `BoxEngine.isSettled`)
   is a later, stricter DISPLAY bar -- 25 days --
   behind the progress-UI split, the Grown badge, the area-complete mark, the day tallies,
   the words a brief hands over as known, and the word scramble's pool.

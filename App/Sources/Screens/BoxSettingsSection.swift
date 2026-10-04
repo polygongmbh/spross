@@ -324,7 +324,7 @@ struct BoxSettingsSection: View {
     }
 
     /// Fresh start with the CURRENT catalog content.
-    /// Where there is matured progress worth keeping, a save-file sheet for just this language opens first.
+    /// Where there is settled progress worth keeping, a save-file sheet for just this language opens first.
     /// A safety net ahead of the confirmation below, never a gate on it —
     /// a failed or canceled save still reaches the destructive dialog.
     private var resetRow: some View {
@@ -357,7 +357,7 @@ struct BoxSettingsSection: View {
     }
 
     private func startReset() {
-        guard (model.stats?.consolidatedCount ?? 0) > 0, let target = model.targetLanguage else {
+        guard (model.stats?.settledCount ?? 0) > 0, let target = model.targetLanguage else {
             confirmingReset = true
             return
         }

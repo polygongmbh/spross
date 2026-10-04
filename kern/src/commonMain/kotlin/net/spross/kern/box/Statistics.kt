@@ -14,8 +14,8 @@ import net.spross.kern.model.CardScheduling
 data class BoxStatistics(
     /** Cards with an active (scheduled, non-suspended) schedule. */
     val activeCount: Int,
-    /** Active cards that have consolidated (see [Statistics.isConsolidated]); the rest are still fresh. */
-    val consolidatedCount: Int,
+    /** Active cards that have settled (see [Statistics.isSettled]); the rest are still fresh. */
+    val settledCount: Int,
     /** Active cards due now. */
     val dueCount: Int,
     /** Cards whose schedule is suspended (out of rotation). */
@@ -29,11 +29,11 @@ data class BoxStatistics(
     val areas: List<AreaStatistics>,
 ) {
     /**
-     * Active cards that have not consolidated yet — the fresh half of the split.
+     * Active cards that have not settled yet — the growing half of the split.
      * Clamped: a caller may hold a statistics value older than the counts it reads
      * beside, and a negative bucket is never a truth about the box.
      */
-    val learningCount: Int get() = maxOf(0, activeCount - consolidatedCount)
+    val learningCount: Int get() = maxOf(0, activeCount - settledCount)
 }
 
 data class AreaStatistics(
@@ -42,8 +42,8 @@ data class AreaStatistics(
     val total: Int,
     /** Cards with an active schedule. */
     val active: Int,
-    /** Cards in the area that have consolidated (see [Statistics.isConsolidated]). */
-    val consolidated: Int,
+    /** Cards in the area that have settled (see [Statistics.isSettled]). */
+    val settled: Int,
     /** Cards packed but not yet introduced — the progress bar's clay segment. */
     val queued: Int = 0,
     /** Component phrases still waiting for their components to stabilize. */
@@ -52,25 +52,25 @@ data class AreaStatistics(
     val phrasesUnlocked: Int,
 ) {
     /** Active cards in the area still on their way in — see [BoxStatistics.learningCount]. */
-    val learning: Int get() = maxOf(0, active - consolidated)
+    val learning: Int get() = maxOf(0, active - settled)
 
     /** Cards the area holds that have never been introduced — the third bucket. */
-    val notIntroduced: Int get() = maxOf(total - consolidated - learning, 0)
+    val notIntroduced: Int get() = maxOf(total - settled - learning, 0)
 
     /**
      * What the three buckets are measured against. Never below the introduced
      * count: [total] comes from the join and can lag the schedules, and a stale
      * total must not make the introduced cards read as more than everything.
      */
-    val progressTotal: Int get() = maxOf(total, consolidated + learning, 1)
+    val progressTotal: Int get() = maxOf(total, settled + learning, 1)
 
     /**
-     * Whether every active card in the area stands on [GrowthStage.Matured] — combined
+     * Whether every active card in the area stands on [GrowthStage.Settled] — combined
      * with the pack/unpack emptiness a screen already computes, this is what turns the
      * area-complete mark jade instead of green. An area holding nothing active is never
-     * mature, whatever [total] says: there is nothing here to have matured.
+     * mature, whatever [total] says: there is nothing here to have settled.
      */
-    val mature: Boolean get() = active > 0 && consolidated == active
+    val mature: Boolean get() = active > 0 && settled == active
 }
 
 /** How the streak rule reads one day of the trailing window. */
@@ -197,7 +197,7 @@ internal object Statistics {
             mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
         return BoxStatistics(
             activeCount = active.size,
-            consolidatedCount = active.count { isConsolidated(state, it) },
+            settledCount = active.count { isSettled(state, it) },
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.suspendedCount(state),
             streak = streak(combinedDailyStats, nowEpochMillis, tzId),
@@ -208,21 +208,16 @@ internal object Statistics {
     }
 
     /**
-     * "Has this word fully grown": Review phase at or above [MATURED_STABILITY] — the
-     * display bucket behind the stats split, the session-summary tally, the Grown badge,
-     * the progress-bar jade segment, and the area-complete mark. A card that just lapsed
-     * is back in Relearning, so it stops counting, which is the point: it needs the
-     * support again and has to earn the reach back.
+     * Review phase at or above [SETTLED_STABILITY]. A lapsed card is back in Relearning
+     * and stops counting until it earns the bar back.
      */
-    fun isConsolidated(state: BoxState, sched: CardScheduling): Boolean =
+    fun isSettled(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
-            (sched.memory?.stability ?: 0.0) >= MATURED_STABILITY
+            (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY
 
     /**
-     * Whether this card has cleared [BoxConfig.growingStability] — Review phase at or above
-     * the bar. Gate (a): phrase unlock, the drill pools, and the in-session presentation
-     * rules (the emoji that props recall up, the sound prompt that withdraws the meaning)
-     * all ask this.
+     * Review phase at or above [BoxConfig.growingStability]. Gates phrase unlock,
+     * the drill pools and the in-session support (emoji cue, sound-only prompt).
      */
     fun isGrowing(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
@@ -310,13 +305,13 @@ internal object Statistics {
             .sortedBy { it.key }
             .map { (area, cards) ->
                 var active = 0
-                var consolidated = 0
+                var settled = 0
                 var locked = 0
                 var unlocked = 0
                 for (card in cards) {
                     if (card.id in activeCards) active += 1
                     val sched = state.scheduling[card.id]
-                    if (sched != null && !sched.suspended && isConsolidated(state, sched)) consolidated += 1
+                    if (sched != null && !sched.suspended && isSettled(state, sched)) settled += 1
                     if (card.kind == CardKind.Phrase) {
                         val open = sched != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)
@@ -324,7 +319,7 @@ internal object Statistics {
                     }
                 }
                 AreaStatistics(
-                    name = area, total = cards.size, active = active, consolidated = consolidated,
+                    name = area, total = cards.size, active = active, settled = settled,
                     queued = shelfCounts[area]?.queued ?: 0,
                     phrasesLocked = locked, phrasesUnlocked = unlocked,
                 )

@@ -78,7 +78,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     var confirmingReset by remember { mutableStateOf(false) }
     val resolver = LocalContext.current.contentResolver
     val scope = rememberCoroutineScope()
-    // Offers a save-file sheet for this language first when there's matured progress worth
+    // Offers a save-file sheet for this language first when there's settled progress worth
     // keeping — a safety net ahead of the confirmation, never a gate on it: whether the save
     // lands, fails, or is canceled, the destructive confirmation still opens after.
     val resetExport = rememberLauncherForActivityResult(
@@ -164,7 +164,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
             Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
                 TextButton(
                     onClick = {
-                        if ((model.stats?.consolidatedCount ?: 0) > 0) {
+                        if ((model.stats?.settledCount ?: 0) > 0) {
                             resetExport.launch("Spross-${box.joinStamp.target}-${LocalDate.now()}.json")
                         } else {
                             confirmingReset = true

@@ -92,9 +92,9 @@ data class SessionRunState(
      * would otherwise have to keep its own copy of the plan and subtract.
      */
     val answeredIds: List<String> = emptyList(),
-    /** Summary tallies: first meetings, words that crossed into consolidated, review reps. */
+    /** Summary tallies: first meetings, words that crossed into settled, review reps. */
     val newCards: Int,
-    val graduated: Int,
+    val settled: Int,
     val reviews: Int,
     val endless: Boolean,
     val finished: Boolean,
@@ -127,7 +127,7 @@ object SessionRun {
     fun idle(box: BoxState): SessionRunState = SessionRunState(
         box = box, step = SessionStep.Completed, queue = emptyList(), total = 0,
         answered = 0, ratings = emptyList(),
-        newCards = 0, graduated = 0, reviews = 0,
+        newCards = 0, settled = 0, reviews = 0,
         endless = false, finished = true, active = false, joinStamp = null,
     )
 
@@ -186,7 +186,7 @@ object SessionRun {
         state.copy(
             queue = plan.queue, total = plan.queue.size,
             answered = 0, ratings = emptyList(),
-            newCards = 0, graduated = 0, reviews = 0,
+            newCards = 0, settled = 0, reviews = 0,
             endless = false, finished = false, active = true, joinStamp = plan.joinStamp,
             opening = opening,
         ),
@@ -198,14 +198,14 @@ object SessionRun {
     /** Apply one answer — every answer event is an FSRS review — then advance. */
     private fun answer(state: SessionRunState, rating: Rating, nowEpochMillis: Long, tzId: String): SessionReduction {
         val cardId = state.currentCardId ?: return unchanged(state)
-        val wasConsolidated = BoxEngine.isConsolidated(state.box, cardId)
+        val wasSettled = BoxEngine.isSettled(state.box, cardId)
         val box = BoxEngine.answer(state.box, cardId, rating, nowEpochMillis, tzId)
         val next = tallied(
             state.copy(box = box, ratings = state.ratings + rating,
                        answeredIds = state.answeredIds + cardId, answered = state.answered + 1),
             firstAnswer = box.scheduling[cardId]?.reviewCount == 1,
-            wasConsolidated = wasConsolidated,
-            isConsolidated = BoxEngine.isConsolidated(box, cardId),
+            wasSettled = wasSettled,
+            isSettled = BoxEngine.isSettled(box, cardId),
         )
         return advance(next.copy(queue = next.queue.drop(1)), listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
     }
@@ -234,21 +234,21 @@ object SessionRun {
     }
 
     /**
-     * Bucket each answer for the summary: first-ever answer = new, a word crossing into
-     * consolidated = graduated, else a review rep.
+     * Bucket each answer for the summary: first-ever answer = new, a word crossing the
+     * settled bar = settled, else a review rep.
      *
      * why: the crossing, not a phase transition — with one learning step a word reaches Review
      * on its first pass while its stability is still tiny, so the phase edge would have called
-     * that consolidated and the summary would have claimed a word had landed that had barely arrived.
+     * that settled and the summary would have claimed a word had landed that had barely arrived.
      */
     private fun tallied(
         state: SessionRunState,
         firstAnswer: Boolean,
-        wasConsolidated: Boolean,
-        isConsolidated: Boolean,
+        wasSettled: Boolean,
+        isSettled: Boolean,
     ): SessionRunState = when {
         firstAnswer -> state.copy(newCards = state.newCards + 1)
-        !wasConsolidated && isConsolidated -> state.copy(graduated = state.graduated + 1)
+        !wasSettled && isSettled -> state.copy(settled = state.settled + 1)
         else -> state.copy(reviews = state.reviews + 1)
     }
 

@@ -13,7 +13,7 @@ import SprossKern
 struct HomeStanding {
     /// Today's round as kern classified it.
     let offer: SessionOffer
-    /// What the learner did today — reviews, first meetings, words consolidated.
+    /// What the learner did today — reviews, first meetings, words settled.
     let today: TodayReport?
     /// Whether there is a round to sit down to. Due work counts even where the
     /// composed round cannot carry it, so a capped backlog never reads as "nothing".

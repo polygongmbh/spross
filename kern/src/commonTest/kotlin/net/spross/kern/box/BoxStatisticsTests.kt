@@ -180,26 +180,26 @@ class BoxStatisticsTests {
     }
 
     @Test
-    fun consolidatedCountsOnlyReviewCardsAtOrAboveTheMaturedThreshold() {
+    fun settledCountsOnlyReviewCardsAtOrAboveTheSettledThreshold() {
         var state = Box.state((1..3).map { Box.word(it) })
-        state = Box.inject(state, Box.sched("w01", stability = MATURED_STABILITY, dueMillis = now, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w01", stability = SETTLED_STABILITY, dueMillis = now, lastReviewMillis = now))
         state = Box.inject(
             state,
-            Box.sched("w02", stability = MATURED_STABILITY - 0.1, dueMillis = now, lastReviewMillis = now),
+            Box.sched("w02", stability = SETTLED_STABILITY - 0.1, dueMillis = now, lastReviewMillis = now),
         )
         state = Box.inject(
             state,
-            // Stable enough, but still stepping through Learning — not consolidated.
+            // Stable enough, but still stepping through Learning — not settled.
             Box.sched("w03", phase = CardPhase.Learning, stability = 40.0, dueMillis = now, lastReviewMillis = now),
         )
 
         val stats = BoxEngine.statistics(state, now, Box.TZ)
         assertEquals(3, stats.activeCount)
-        assertEquals(1, stats.consolidatedCount)
+        assertEquals(1, stats.settledCount)
     }
 
     @Test
-    fun areaBreakdownTotalsConsolidatedAndPhraseLocks() {
+    fun areaBreakdownTotalsSettledAndPhraseLocks() {
         var state = Box.state(
             listOf(
                 Box.word(1, area = "kitchen"), Box.word(2, area = "kitchen"),
@@ -220,12 +220,12 @@ class BoxStatisticsTests {
         val kitchen = stats.areas[0]
         assertEquals(4, kitchen.total)
         assertEquals(2, kitchen.active)
-        assertEquals(1, kitchen.consolidated) // only w01: Review phase & stability ≥ MATURED_STABILITY
+        assertEquals(1, kitchen.settled) // only w01: Review phase & stability ≥ SETTLED_STABILITY
         assertEquals(1, kitchen.phrasesLocked) // p-locked: w02 not stable yet
         assertEquals(1, kitchen.phrasesUnlocked) // p-free has no components
         assertEquals(
             AreaStatistics(
-                "market", total = 1, active = 0, consolidated = 0, queued = 0,
+                "market", total = 1, active = 0, settled = 0, queued = 0,
                 phrasesLocked = 0, phrasesUnlocked = 0,
             ),
             stats.areas[1],

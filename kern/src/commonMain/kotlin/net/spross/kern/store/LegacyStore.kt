@@ -40,8 +40,8 @@ internal object LegacyStore {
             reportedIssues = box.reportedIssues,
             lastExportAt = box.lastExportAt,
             // why: the day counters a v1 box folded are dropped. The streak reads the logs
-            // now, and "consolidated today" is worth less than a clock in the converter.
-            consolidatedToday = null,
+            // now, and "settled today" is worth less than a clock in the converter.
+            settledToday = null,
         )
     }
 

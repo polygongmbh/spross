@@ -76,12 +76,12 @@ class StoreCodecTests {
 
     @Test
     fun todaysCrossingsSurviveAndAnAbsentOneIsNone() {
-        val crossed = StoredBox.of(state.copy(consolidatedToday = DayTally("2026-07-01", 2)))
+        val crossed = StoredBox.of(state.copy(settledToday = DayTally("2026-07-01", 2)))
         assertEquals(
             DayTally("2026-07-01", 2),
-            StoreCodec.decode(StoreCodec.encode(crossed)).consolidatedToday,
+            StoreCodec.decode(StoreCodec.encode(crossed)).settledToday,
         )
-        assertEquals(null, StoreCodec.decode(StoreCodec.encode(box)).consolidatedToday)
+        assertEquals(null, StoreCodec.decode(StoreCodec.encode(box)).settledToday)
     }
 
     @Test

@@ -14,7 +14,7 @@ import SwiftUI
 //
 // What hangs where (`Canopy`), in rank order:
 //   fruit    — a word held for months
-//   blossom  — a word that has matured
+//   blossom  — a word that has settled
 //   leaf     — a word that has landed
 //   bud      — a word the learner has met, on its way in
 // Each word the learner has MET is exactly one mark, from its first answer on,

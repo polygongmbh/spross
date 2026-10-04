@@ -35,8 +35,8 @@ data class StoredBox(
     val ownWords: List<OwnWord> = emptyList(),
     val reportedIssues: Map<String, ReportedIssue> = emptyMap(),
     val lastExportAt: Instant? = null,
-    /** Local to this device — an export leaves it behind ([BoxState.consolidatedToday]). */
-    val consolidatedToday: DayTally? = null,
+    /** Local to this device — an export leaves it behind ([BoxState.settledToday]). */
+    val settledToday: DayTally? = null,
 ) {
     /**
      * Something the learner did or wrote. A language they only ever opened has a file like
@@ -65,7 +65,7 @@ data class StoredBox(
         ownWords = ownWords,
         reportedIssues = reportedIssues,
         lastExportAt = lastExportAt,
-        consolidatedToday = consolidatedToday,
+        settledToday = settledToday,
     )
 
     companion object {
@@ -76,7 +76,7 @@ data class StoredBox(
             ownWords = state.ownWords,
             reportedIssues = state.reportedIssues,
             lastExportAt = state.lastExportAt,
-            consolidatedToday = state.consolidatedToday,
+            settledToday = state.settledToday,
         )
     }
 }

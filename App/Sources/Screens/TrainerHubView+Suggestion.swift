@@ -75,7 +75,7 @@ extension DrillSuggestion.Pick {
         switch reason {
         case .newScript: return Text("home.suggestion.reason.newScript")
         case .earlyNumbers: return Text("home.suggestion.reason.earlyNumbers")
-        case .wordsGrown: return Text("home.suggestion.reason.wordsGrown")
+        case .wordsSettled: return Text("home.suggestion.reason.wordsSettled")
         case .neverRun: return Text("home.suggestion.reason.neverRun")
         case .notLately: return Text("home.suggestion.reason.notLately \(Int(daysSinceRun))")
         case .variety: return Text("home.suggestion.reason.variety")

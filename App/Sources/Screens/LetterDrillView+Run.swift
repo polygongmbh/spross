@@ -173,7 +173,7 @@ extension LetterDrillView {
         }
         print("""
             LetterDrill probe: box \(moment) active \(stats.activeCards) due \(stats.dueCards) \
-            consolidated \(stats.consolidatedCards) reviewsToday \(model.today.map { Int($0.reviews) } ?? -1)
+            settled \(stats.settledCards) reviewsToday \(model.today.map { Int($0.reviews) } ?? -1)
             """)
     }
 }

@@ -5,12 +5,12 @@ import net.spross.kern.design.Swatch
 
 /**
  * Which color this Sprosse wears, decided once here so a row's badge and the shelf's own
- * progress bar — whose segments reference [Palette.amber]/[Palette.success]/[Palette.grown]
+ * progress bar — whose segments reference [Palette.amber]/[Palette.success]/[Palette.settled]
  * by these same names — can never disagree about the same Sprosse on either platform.
  */
 val CardRowState.Standing.swatch: Swatch
     get() = when (stage) {
-        GrowthStage.Matured -> Palette.grown
+        GrowthStage.Settled -> Palette.settled
         GrowthStage.Growing -> Palette.success
         else -> Palette.amber // Learning, Fresh, Relearning
     }

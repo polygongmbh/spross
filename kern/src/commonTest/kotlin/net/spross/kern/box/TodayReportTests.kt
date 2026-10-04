@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 import net.spross.kern.model.Rating
 
 /**
- * The day's own report: what was answered, met, consolidated — whether it is going badly,
+ * The day's own report: what was answered, met, settled — whether it is going badly,
  * and which parts of it a surface spells out.
  */
 class TodayReportTests {
@@ -18,10 +18,10 @@ class TodayReportTests {
 
     private fun id(n: Int) = "w" + n.toString().padStart(2, '0')
 
-    private fun report(reviews: Int, introduced: Int = 0, consolidated: Int = 0) = TodayReport(
+    private fun report(reviews: Int, introduced: Int = 0, settled: Int = 0) = TodayReport(
         reviews = reviews,
         introduced = introduced,
-        consolidated = consolidated,
+        settled = settled,
         missed = 0,
         expectedRecall = 0.8,
     )
@@ -37,9 +37,9 @@ class TodayReportTests {
         assertEquals(3, today.reviews)
         assertEquals(3, today.introduced)
         assertEquals(1, today.missed)
-        // A single Good answer no longer consolidates on sight (only Easy does) —
+        // A single Good answer no longer settles on sight (only Easy does) —
         // none of today's words have proven themselves yet.
-        assertEquals(0, today.consolidated)
+        assertEquals(0, today.settled)
     }
 
     /** Yesterday's work belongs to yesterday — the day boundary is the caller's zone. */
@@ -85,30 +85,30 @@ class TodayReportTests {
         assertFalse(BoxEngine.today(fine, now, Box.TZ).recallStrained)
     }
 
-    /** Only the crossing counts: a word already consolidated goes on being reviewed for free. */
+    /** Only the crossing counts: a word already settled goes on being reviewed for free. */
     @Test
     fun aWordCountsOnTheDayItCrossesAndNotAgain() {
         var state = boxOf(2)
-        // A single Good graduates to Review (stability 2.3065) but doesn't consolidate yet.
+        // A single Good graduates to Review (stability 2.3065) but doesn't settle yet.
         state = Box.answered(state, "w01", Rating.Good, now)
-        assertEquals(0, BoxEngine.today(state, now, Box.TZ).consolidated)
+        assertEquals(0, BoxEngine.today(state, now, Box.TZ).settled)
 
         // A second success, well after the natural interval, pushes stability past the
-        // consolidated bar — that is the day the crossing is booked.
+        // settled bar — that is the day the crossing is booked.
         val later = Box.plusDays(now, 30.0)
         state = Box.answered(state, "w01", Rating.Good, later)
-        assertTrue(BoxEngine.isConsolidated(state, "w01"))
-        assertEquals(1, BoxEngine.today(state, later, Box.TZ).consolidated)
+        assertTrue(BoxEngine.isSettled(state, "w01"))
+        assertEquals(1, BoxEngine.today(state, later, Box.TZ).settled)
 
-        // Already consolidated — reviewing it again does not cross a second time.
+        // Already settled — reviewing it again does not cross a second time.
         val evenLater = Box.plusDays(later, 30.0)
         state = Box.answered(state, "w01", Rating.Good, evenLater)
-        assertEquals(0, BoxEngine.today(state, evenLater, Box.TZ).consolidated)
+        assertEquals(0, BoxEngine.today(state, evenLater, Box.TZ).settled)
     }
 
-    /** An older word crossing today is the consolidated tile's news, not today's arrival. */
+    /** An older word crossing today is the settled tile's news, not today's arrival. */
     @Test
-    fun anOlderWordConsolidatingIsNotTodaysIntroduction() {
+    fun anOlderWordSettlingIsNotTodaysIntroduction() {
         var state = boxOf(2)
         state = Box.answered(state, "w01", Rating.Good, now)
 
@@ -117,7 +117,7 @@ class TodayReportTests {
         state = Box.answered(state, "w02", Rating.Good, later)
 
         val today = BoxEngine.today(state, later, Box.TZ)
-        assertEquals(1, today.consolidated) // w01 crossed, having arrived a month ago
+        assertEquals(1, today.settled) // w01 crossed, having arrived a month ago
         assertEquals(1, today.introduced) // w02 only — the crossing is no arrival
     }
 
@@ -126,14 +126,14 @@ class TodayReportTests {
     fun theCrossingIsBookedOnTheAnswerThatMakesIt() {
         var state = boxOf(2)
         state = Box.answered(state, "w01", Rating.Good, now)
-        assertFalse(BoxEngine.isConsolidated(state, "w01"))
+        assertFalse(BoxEngine.isSettled(state, "w01"))
 
         // A second success, well after the natural interval, pushes stability past the
-        // matured bar — that is the day the crossing is booked.
+        // settled bar — that is the day the crossing is booked.
         val later = Box.plusDays(now, 30.0)
         state = Box.answered(state, "w01", Rating.Good, later)
-        assertTrue(BoxEngine.isConsolidated(state, "w01"))
-        assertEquals(1, BoxEngine.today(state, later, Box.TZ).consolidated)
+        assertTrue(BoxEngine.isSettled(state, "w01"))
+        assertEquals(1, BoxEngine.today(state, later, Box.TZ).settled)
     }
 
     /** A day nothing was answered on is clear, never finished — and it has no tally to show. */
@@ -153,15 +153,15 @@ class TodayReportTests {
             listOf(
                 TallyPart(TallyPartKind.Reviews, 24),
                 TallyPart(TallyPartKind.Introduced, 3),
-                TallyPart(TallyPartKind.Consolidated, 2),
+                TallyPart(TallyPartKind.Settled, 2),
             ),
-            report(reviews = 24, introduced = 3, consolidated = 2).tallyParts(),
+            report(reviews = 24, introduced = 3, settled = 2).tallyParts(),
         )
         // Reviews carry a worked day on their own; a part with nothing in it is left unsaid.
         assertEquals(listOf(TallyPart(TallyPartKind.Reviews, 7)), report(reviews = 7).tallyParts())
         assertEquals(
-            listOf(TallyPart(TallyPartKind.Reviews, 5), TallyPart(TallyPartKind.Consolidated, 2)),
-            report(reviews = 5, consolidated = 2).tallyParts(),
+            listOf(TallyPart(TallyPartKind.Reviews, 5), TallyPart(TallyPartKind.Settled, 2)),
+            report(reviews = 5, settled = 2).tallyParts(),
         )
     }
 
@@ -170,18 +170,18 @@ class TodayReportTests {
     fun aFinishedRoundNamesOnlyItsNonZeroParts() {
         assertEquals(
             listOf(TallyPart(TallyPartKind.Introduced, 3), TallyPart(TallyPartKind.Reviews, 8)),
-            completionTallyParts(introduced = 3, consolidated = 0, reviews = 8),
+            completionTallyParts(introduced = 3, settled = 0, reviews = 8),
         )
         assertEquals(
             listOf(
                 TallyPart(TallyPartKind.Introduced, 1),
                 TallyPart(TallyPartKind.Reviews, 3),
-                TallyPart(TallyPartKind.Consolidated, 2),
+                TallyPart(TallyPartKind.Settled, 2),
             ),
-            completionTallyParts(introduced = 1, consolidated = 2, reviews = 3),
+            completionTallyParts(introduced = 1, settled = 2, reviews = 3),
         )
         // Nothing nameable: the surface says so plainly instead of printing three zeros.
-        assertEquals(emptyList(), completionTallyParts(introduced = 0, consolidated = 0, reviews = 0))
+        assertEquals(emptyList(), completionTallyParts(introduced = 0, settled = 0, reviews = 0))
     }
 
     /** Packed words outrank the due count: the round they arrive in is the answer to them. */

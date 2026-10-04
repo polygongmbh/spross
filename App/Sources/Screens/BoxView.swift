@@ -290,7 +290,7 @@ private struct BoxAreaSection: View {
     }
 
     /// Whether nothing is left to pack or unpack AND every active card in the
-    /// area has matured — the one condition that swaps the green "All
+    /// area has settled — the one condition that swaps the green "All
     /// packed" mark for a jade one and hides the chip's bar/counts, leaving
     /// just the emoji/name/jade mark in the header (Part D).
     private func fullyPackedAndMature(_ stats: AreaStatistics?) -> Bool {
@@ -325,7 +325,7 @@ private struct BoxAreaSection: View {
             let mature = queued == 0 && (model.areaStats(area)?.mature ?? false)
             Image(systemName: "checkmark.circle.fill")
                 .font(Theme.typography.headline)
-                .foregroundStyle(mature ? Theme.colors.grown : Theme.colors.success)
+                .foregroundStyle(mature ? Theme.colors.settled : Theme.colors.success)
                 .frame(width: 40, height: 40)
                 .accessibilityLabel(Text("a11y.box.shelf.packed"))
         }

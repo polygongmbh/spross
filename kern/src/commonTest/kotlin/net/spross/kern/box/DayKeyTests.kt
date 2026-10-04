@@ -75,8 +75,8 @@ class DayKeyTests {
         val today = BoxEngine.today(state, lateUtc, "Pacific/Kiritimati")
         assertEquals(1, today.reviews)
         assertEquals(1, today.introduced)
-        // A single Good doesn't consolidate on sight (only Easy does) — nothing crossed.
-        assertEquals(0, today.consolidated)
+        // A single Good doesn't settle on sight (only Easy does) — nothing crossed.
+        assertEquals(0, today.settled)
     }
 
     @Test

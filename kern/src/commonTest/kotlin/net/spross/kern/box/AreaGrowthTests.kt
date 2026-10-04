@@ -14,8 +14,8 @@ class AreaGrowthTests {
     private fun trees(state: BoxState) = growthByArea(state, BoxEngine.growth(state, now, Box.TZ))
 
     private fun tree(
-        met: Int = 0, growing: Int = 0, matured: Int = 0, longHeld: Int = 0, queued: Int = 0,
-    ) = AreaGrowth("a", met, growing, matured, longHeld, queued, 0, false, emptyList())
+        met: Int = 0, growing: Int = 0, settled: Int = 0, longHeld: Int = 0, queued: Int = 0,
+    ) = AreaGrowth("a", met, growing, settled, longHeld, queued, 0, false, emptyList())
 
     @Test
     fun everyMetWordStandsInExactlyOneTierAndOnlyMetWordsDo() {
@@ -23,12 +23,12 @@ class AreaGrowthTests {
         state = BoxEngine.enqueue(state, listOf("w01"))
         state = Box.inject(state, Box.sched("w02", phase = CardPhase.Learning, stability = 0.5, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w03", stability = 9.0, dueMillis = future, lastReviewMillis = now))
-        state = Box.inject(state, Box.sched("w04", stability = MATURED_STABILITY, dueMillis = future, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w04", stability = SETTLED_STABILITY, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w05", stability = FRUIT_STABILITY, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w06", phase = CardPhase.Relearning, stability = 4.0, dueMillis = future, lastReviewMillis = now))
 
         val area = trees(state).getValue("area1")
-        assertEquals(listOf(1, 1, 1, 1, 1, 1), listOf(area.arriving, area.growing, area.matured, area.longHeld, area.queued, area.lapsed))
+        assertEquals(listOf(1, 1, 1, 1, 1, 1), listOf(area.arriving, area.growing, area.settled, area.longHeld, area.queued, area.lapsed))
         assertEquals(4, area.met)
         assertEquals(area.reaches.sortedDescending(), area.reaches, "most-grown first")
         assertTrue(area.answeredToday)
@@ -44,7 +44,7 @@ class AreaGrowthTests {
 
     @Test
     fun aWordMaturingChangesInPlaceAndTheRanksAroundItStandStill() {
-        val move = TreeTransition(tree(growing = 3, matured = 1), tree(growing = 2, matured = 2))
+        val move = TreeTransition(tree(growing = 3, settled = 1), tree(growing = 2, settled = 2))
         assertTrue(1 in move.changedRanks)
         assertTrue(0 !in move.changedRanks && 2 !in move.changedRanks)
     }
@@ -78,13 +78,13 @@ class AreaGrowthTests {
 
     @Test
     fun theHeadlineClaimsOnlyWhatTheTreeGained() {
-        val worked = tree(met = 2, growing = 4, matured = 1)
+        val worked = tree(met = 2, growing = 4, settled = 1)
         assertEquals(GrowthClaim.Opened, claim(tree(), worked))
-        assertEquals(GrowthClaim.Matured, claim(worked, worked.copy(matured = 2, growing = 3)))
+        assertEquals(GrowthClaim.Settled, claim(worked, worked.copy(settled = 2, growing = 3)))
         assertEquals(GrowthClaim.Met, claim(worked, worked.copy(arriving = 4)))
         assertEquals(GrowthClaim.Grew, claim(worked, worked.copy(arriving = 1, growing = 6)))
         assertEquals(GrowthClaim.Held, claim(worked, worked))
-        assertEquals(GrowthClaim.Unclaimed, claim(worked, worked.copy(matured = 3), rest = true))
+        assertEquals(GrowthClaim.Unclaimed, claim(worked, worked.copy(settled = 3), rest = true))
         assertNull(growthHeadline(TreeTransition(tree(), tree(queued = 0)), false, 1, 0, 0, 0))
         assertNull(growthHeadline(null, false, 1, 0, 0, 0))
     }

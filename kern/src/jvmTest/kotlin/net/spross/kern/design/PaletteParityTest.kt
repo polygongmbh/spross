@@ -42,7 +42,7 @@ class PaletteParityTest {
             setOf(
                 "background", "surface", "surfacetint", "separator", "borderstrong",
                 "textprimary", "textsecondary", "oncolor",
-                "accent", "teal", "success", "amber", "wrong", "grown",
+                "accent", "teal", "success", "amber", "wrong", "settled",
                 "ground", "wood", "woodshade", "leaf", "leafdeep", "bud", "fallen",
                 "blossom", "fruit", "der", "die", "das",
             ),

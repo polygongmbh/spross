@@ -323,8 +323,8 @@ interface Chrome {
     val boxCardForget: String
     val boxCardOwnFrom: String
     val a11yReportReported: String
-    val progressConsolidatedCount: String // %d
-    val progressConsolidatedCountOne: String
+    val progressSettledCount: String // %d
+    val progressSettledCountOne: String
     val progressLearningCount: String  // %d
     val progressLearningCountOne: String
     val boxAreaPhrasesLockedShort: String // %d
@@ -336,13 +336,13 @@ interface Chrome {
     // A card with nothing behind it has NO phase word: new is the absence of a badge. Past
     // that, a row reads one of four: [boxPhaseFresh] short of the growing bar,
     // [boxPhaseRelearning] the same Sprosse after a lapse (same color/icon, its own word),
-    // [boxPhaseGrowing] past the growing bar but short of the consolidated one, and
-    // [a11yBoxPhaseConsolidated] once a card has cleared it — the shelf's own count stays the
-    // two-way consolidated/learning split it has always been (`AreaStatistics.learning`).
+    // [boxPhaseGrowing] past the growing bar but short of the settled one, and
+    // [a11yBoxPhaseSettled] once a card has cleared it — the shelf's own count stays the
+    // two-way settled/learning split it has always been (`AreaStatistics.learning`).
     val boxPhaseFresh: String
     val boxPhaseRelearning: String
     val boxPhaseGrowing: String
-    val a11yBoxPhaseConsolidated: String
+    val a11yBoxPhaseSettled: String
 
     // ── Box search ──────────────────────────────────────────────────────────────
     val boxSearchButton: String
@@ -472,8 +472,8 @@ interface Chrome {
     val homeTallyNewCards: String       // %d
     val homeTallyNewCardsOne: String
     val homeTallyNewWordsOnly: String    // %d
-    val tallyConsolidated: String       // %d — Home's day tally and a finished round's alike
-    val tallyConsolidatedOne: String
+    val tallySettled: String       // %d — Home's day tally and a finished round's alike
+    val tallySettledOne: String
     /** Which of the two a round names is [net.spross.kern.session.SessionOffer.summaryParts]'. */
     val homeTallyAhead: String          // %d
     val homeTallyAheadOne: String
@@ -504,7 +504,7 @@ interface Chrome {
     val homeSuggestionTitle: String   // %s = the drill's hub name
     val homeSuggestionReasonNewScript: String
     val homeSuggestionReasonEarlyNumbers: String
-    val homeSuggestionReasonWordsGrown: String
+    val homeSuggestionReasonWordsSettled: String
     val homeSuggestionReasonNeverRun: String
     val homeSuggestionReasonNotLately: String   // %d
     val homeSuggestionReasonVariety: String

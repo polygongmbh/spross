@@ -64,11 +64,11 @@ class BoxBackupTests {
     /** The day's crossings belong to one device; the box an export lands in has its own day. */
     @Test
     fun anExportLeavesTodaysCrossingsBehind() {
-        val crossed = StoredBoxes.EMPTY.with(state.copy(consolidatedToday = DayTally("2026-07-01", 2)))
+        val crossed = StoredBoxes.EMPTY.with(state.copy(settledToday = DayTally("2026-07-01", 2)))
         val json = BoxBackup.encode(crossed)
 
         assertFalse("today" in json, json)
-        assertEquals(null, BoxBackup.decode(json).boxes.getValue("uk").consolidatedToday)
+        assertEquals(null, BoxBackup.decode(json).boxes.getValue("uk").settledToday)
     }
 
     @Test

@@ -155,9 +155,9 @@ extension AppModel {
     }
 
     /// End-of-session summary tallies (design §Session): new cards started,
-    /// cards graduated to review ("gefestigt"), and review answers.
+    /// cards that crossed the settled bar, and review answers.
     var sessionNew: Int { Int(run?.newCards ?? 0) }
-    var sessionGraduated: Int { Int(run?.graduated ?? 0) }
+    var sessionSettled: Int { Int(run?.settled ?? 0) }
     var sessionReviews: Int { Int(run?.reviews ?? 0) }
 
     /// The area this round worked hardest, before the round and after it —
@@ -176,7 +176,7 @@ extension AppModel {
     var sessionHeadline: GrowthHeadline? {
         growthHeadline(transition: sessionGrowth,
                        restSuggested: today?.recallStrained ?? false,
-                       introduced: Int32(sessionNew), consolidated: Int32(sessionGraduated),
+                       introduced: Int32(sessionNew), settled: Int32(sessionSettled),
                        reviews: Int32(sessionReviews), streakDays: Int32(stats?.streakDays ?? 0))
     }
 

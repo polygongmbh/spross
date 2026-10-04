@@ -21,10 +21,10 @@ class HomeStandingTest {
 
     private val chrome = Chrome.forSource("de")
 
-    private fun report(reviews: Int, introduced: Int = 0, consolidated: Int = 0) = TodayReport(
+    private fun report(reviews: Int, introduced: Int = 0, settled: Int = 0) = TodayReport(
         reviews = reviews,
         introduced = introduced,
-        consolidated = consolidated,
+        settled = settled,
         missed = 0,
         expectedRecall = 0.9,
     )
@@ -125,7 +125,7 @@ class HomeStandingTest {
     fun theCrossingsReadLastOnAWorkedDay() {
         assertEquals(
             "24 Checks · 3 Neue · 2 sitzen nun",
-            todayTally(chrome, report(reviews = 24, introduced = 3, consolidated = 2)),
+            todayTally(chrome, report(reviews = 24, introduced = 3, settled = 2)),
         )
         assertEquals("8 Checks", todayTally(chrome, report(reviews = 8)))
     }

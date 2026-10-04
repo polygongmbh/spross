@@ -110,7 +110,7 @@ private fun storedBoxDto(box: StoredBox): StoredBoxDto = StoredBoxDto(
         StoredReportDto(it.cardId, it.comment, it.learnerInput, it.reportedAt.epochSeconds)
     },
     lastExportAt = box.lastExportAt?.epochSeconds,
-    today = box.consolidatedToday?.let { mapOf(it.day to it.count) } ?: emptyMap(),
+    today = box.settledToday?.let { mapOf(it.day to it.count) } ?: emptyMap(),
 )
 
 private fun cardEntry(sched: CardScheduling): JsonArray = JsonArray(
@@ -206,7 +206,7 @@ private fun StoredBoxDto.toStored(target: Language): StoredBox {
         ownWords = ownWords.map { it.toDomain(target) },
         reportedIssues = reportedIssues.associate { it.cardId to it.toDomain(target) },
         lastExportAt = lastExportAt?.let { Instant.fromEpochSeconds(it) },
-        consolidatedToday = today.entries.firstOrNull()?.let { DayTally(it.key, it.value) },
+        settledToday = today.entries.firstOrNull()?.let { DayTally(it.key, it.value) },
     )
 }
 

@@ -33,7 +33,7 @@ Nothing wears a prefix one scope wider than what it serves.
   `ceil(n/2)` above and `floor(n/2)` below.
   A chip is up exactly while its entry can offer something --
   counting content, an alphabet file, a joined atlas or calendars,
-  a consolidated word long enough to scramble or a phrase of three words
+  a settled word long enough to scramble or a phrase of three words
   (`../kern/docs/turns.md`) --
   and the hub offers only languages with authored content.
 - **The roster is kern's `Drill`, and its order is the chip order.**

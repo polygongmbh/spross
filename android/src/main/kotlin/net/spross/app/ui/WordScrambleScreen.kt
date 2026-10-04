@@ -27,7 +27,7 @@ import net.spross.kern.trainer.WordScrambleTask
  * wears the typed card every other trainer drill wears (`docs/drills-words.md`).
  *
  * Stateless like the letter drill: no review is ever booked, and the box is READ for the
- * words it has consolidated and never written. The RUN is kern's, reached through
+ * words it has settled and never written. The RUN is kern's, reached through
  * [WordScrambleFlow]: the draw, the masking ladder and the verdict ladder are all its.
  */
 @Composable

@@ -37,7 +37,7 @@ data class SessionUi(
     val remaining: Int,
     /** What the round bought ([SessionRunState]'s buckets); the summary spells the non-zero parts. */
     val introduced: Int,
-    val strengthened: Int,
+    val settled: Int,
     val reviewed: Int,
     /** Whether an endless refill would yield anything — what "Weiter üben" turns on. */
     val canPracticeMore: Boolean,
@@ -85,7 +85,7 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             card = null, role = null, promptForm = null,
             emojiCue = null,
             segments = active.segments, remaining = 0,
-            introduced = active.newCards, strengthened = active.graduated,
+            introduced = active.newCards, settled = active.settled,
             reviewed = active.reviews,
             // why: `DayBooked` precedes this in [dispatch], so [canPracticeExtra] was
             // taken against the box this summary is for — asking again would compose
@@ -98,7 +98,7 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             restSuggested = restSuggested,
             grownArea = moved,
             headline = growthHeadline(
-                moved, restSuggested, active.newCards, active.graduated, active.reviews, streakDays,
+                moved, restSuggested, active.newCards, active.settled, active.reviews, streakDays,
             ),
         )
     } else {
@@ -122,7 +122,7 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             segments = active.segments,
             remaining = active.remaining,
             introduced = active.newCards,
-            strengthened = active.graduated,
+            settled = active.settled,
             reviewed = active.reviews,
             // why: only the finished round shows this, and composing a whole round
             // to fill a field no card on screen reads is a pause between cards.

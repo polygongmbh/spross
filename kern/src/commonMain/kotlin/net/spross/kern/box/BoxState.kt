@@ -26,11 +26,11 @@ data class BoxState(
     /** User priority queue of card ids, front first. */
     val enqueued: List<String> = emptyList(),
     /**
-     * Cards that crossed into CONSOLIDATED today — the one day count the logs cannot give
-     * back, since [Statistics.isConsolidated] reads a stability no log entry records.
+     * Cards that crossed into SETTLED today — the one day count the logs cannot give
+     * back, since [Statistics.isSettled] reads a stability no log entry records.
      * Everything else a day is asked about is counted off the logs ([answerDays]).
      */
-    val consolidatedToday: DayTally? = null,
+    val settledToday: DayTally? = null,
     /**
      * Words the learner wrote themselves, in the order they wrote them. Unlike
      * [cards] these ARE persisted — they are content nothing else holds, so losing

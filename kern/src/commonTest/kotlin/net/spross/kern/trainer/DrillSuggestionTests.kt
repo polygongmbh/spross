@@ -22,7 +22,7 @@ class DrillSuggestionTests {
         LocalDateTime(2026, 9, day, hour, minute).toInstant(TimeZone.of(tz)).toEpochMilliseconds()
 
     private val now = at(20, 19)
-    private val young = BoxFacts(grownWords = 0, newScript = false)
+    private val young = BoxFacts(settledWords = 0, newScript = false)
 
     private fun standing(drill: Drill, ranOn: Int? = null, ladder: Ladder? = Ladder(5, 9)) =
         Standing(drill, ranOn?.let { at(it, 10) }, ladder)
@@ -51,7 +51,7 @@ class DrillSuggestionTests {
             standing(Drill.Dates, ranOn = null),
             standing(Drill.Letters, ranOn = 19),
         )
-        val grown = BoxFacts(grownWords = 400, newScript = false)
+        val grown = BoxFacts(settledWords = 400, newScript = false)
         for (hour in 0..23) {
             val pick = suggest(standings, grown, at(20, hour))
             assertEquals(Drill.Dates, pick?.drill, "at $hour:00")
@@ -64,24 +64,24 @@ class DrillSuggestionTests {
         val all = Drill.entries.map { standing(it) }
         assertEquals(
             DrillSuggestion.Pick(Drill.Letters, Reason.NewScript, -1),
-            suggest(all, BoxFacts(grownWords = 0, newScript = true)),
+            suggest(all, BoxFacts(settledWords = 0, newScript = true)),
         )
-        val pick = suggest(all, BoxFacts(grownWords = 0, newScript = false))
+        val pick = suggest(all, BoxFacts(settledWords = 0, newScript = false))
         assertEquals(Drill.Numbers, pick?.drill)
         assertEquals(Reason.EarlyNumbers, pick?.reason)
     }
 
     @Test
-    fun grownWordsSteerTowardTheWordScramble() {
+    fun settledWordsSteerTowardTheWordScramble() {
         val threeDaysAgo = Drill.entries.map { standing(it, ranOn = 17) }
-        val pick = suggest(threeDaysAgo, BoxFacts(grownWords = 150, newScript = true))
+        val pick = suggest(threeDaysAgo, BoxFacts(settledWords = 150, newScript = true))
         assertEquals(Drill.WordScramble, pick?.drill)
-        assertEquals(Reason.WordsGrown, pick?.reason)
+        assertEquals(Reason.WordsSettled, pick?.reason)
     }
 
     @Test
     fun withNothingSteeringTheReasonIsHowLongAgoItRan() {
-        val grown = BoxFacts(grownWords = 400, newScript = false)
+        val grown = BoxFacts(settledWords = 400, newScript = false)
         val pick = suggest(listOf(standing(Drill.Countries, ranOn = 15), standing(Drill.Dates, ranOn = 20)), grown)
         assertEquals(DrillSuggestion.Pick(Drill.Countries, Reason.NotLately, 5), pick)
         val today = suggest(listOf(standing(Drill.Countries, ranOn = 20)), grown)
@@ -98,7 +98,7 @@ class DrillSuggestionTests {
     @Test
     fun thePickHoldsThroughASlotAndTurnsOverAcrossDays() {
         val even = listOf(standing(Drill.Countries, ranOn = 1), standing(Drill.Dates, ranOn = 1))
-        val grown = BoxFacts(grownWords = 400, newScript = false)
+        val grown = BoxFacts(settledWords = 400, newScript = false)
         assertEquals(suggest(even, grown, at(20, 19)), suggest(even, grown, at(20, 19, 45)))
         val picks = (20..27).flatMap { day -> listOf(9, 14, 19).map { suggest(even, grown, at(day, it))?.drill } }
         assertEquals(setOf(Drill.Countries, Drill.Dates), picks.toSet())

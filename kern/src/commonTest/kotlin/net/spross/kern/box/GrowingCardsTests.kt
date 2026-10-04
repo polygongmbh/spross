@@ -9,11 +9,11 @@ import net.spross.kern.model.CardPhase
  * `BoxEngine.growingCardIds` — the drill's word supply: what the shelf holds,
  * what falls off it, and the order it is handed over in.
  */
-class ConsolidatedCardsTests {
+class GrowingCardsTests {
     private val now = Box.day1
 
-    /** A consolidated schedule at the default `growingStability` of 6.0 days. */
-    private fun consolidated(cardId: String, stability: Double = 7.0, suspended: Boolean = false) =
+    /** A growing schedule at the default `growingStability` of 6.0 days. */
+    private fun growing(cardId: String, stability: Double = 7.0, suspended: Boolean = false) =
         Box.sched(
             cardId,
             stability = stability,
@@ -28,15 +28,15 @@ class ConsolidatedCardsTests {
     @Test
     fun anEmptyBoxHandsOverNothing() {
         assertEquals(emptyList(), BoxEngine.growingCardIds(Box.state(emptyList())))
-        // Cards without a schedule have not been seen at all, let alone consolidated.
+        // Cards without a schedule have not been seen at all, let alone growing.
         assertEquals(emptyList(), BoxEngine.growingCardIds(Box.state((1..3).map { Box.word(it) })))
     }
 
     @Test
-    fun onlyReviewPhaseAtOrAboveTheConsolidatedBar() {
+    fun onlyReviewPhaseAtOrAboveTheGrowingBar() {
         var state = Box.state((1..5).map { Box.word(it) })
-        state = Box.inject(state, consolidated("w01", stability = 6.0)) // exactly the bar
-        state = Box.inject(state, consolidated("w02", stability = 5.9)) // just under it
+        state = Box.inject(state, growing("w01", stability = 6.0)) // exactly the bar
+        state = Box.inject(state, growing("w02", stability = 5.9)) // just under it
         state = Box.inject(
             state,
             // Stable enough, but still stepping through Learning.
@@ -54,7 +54,7 @@ class ConsolidatedCardsTests {
                 lapses = 1,
             ),
         )
-        state = Box.inject(state, consolidated("w05", stability = 40.0))
+        state = Box.inject(state, growing("w05", stability = 40.0))
 
         assertEquals(listOf("w01", "w05"), BoxEngine.growingCardIds(state))
     }
@@ -62,10 +62,10 @@ class ConsolidatedCardsTests {
     @Test
     fun suspendedAndNonJoiningSchedulesAreNeverOffered() {
         var state = Box.state((1..2).map { Box.word(it) })
-        state = Box.inject(state, consolidated("w01"))
-        state = Box.inject(state, consolidated("w02", suspended = true))
+        state = Box.inject(state, growing("w01"))
+        state = Box.inject(state, growing("w02", suspended = true))
         // Inert schedule from another join — kept in the map, invisible to inventory reads.
-        state = Box.inject(state, consolidated("w99"))
+        state = Box.inject(state, growing("w99"))
 
         assertEquals(listOf("w01"), BoxEngine.growingCardIds(state))
         // Reviving the suspended card puts it straight back on the shelf.
@@ -78,7 +78,7 @@ class ConsolidatedCardsTests {
         var state = Box.state(
             listOf(named("zulu", 1), named("alpha", 2), named("mike", 3), named("bravo", 3)),
         )
-        for (id in listOf("mike", "bravo", "alpha", "zulu")) state = Box.inject(state, consolidated(id))
+        for (id in listOf("mike", "bravo", "alpha", "zulu")) state = Box.inject(state, growing(id))
 
         // Catalog position decides; the id only breaks a seedIndex tie, so the order is total.
         assertEquals(listOf("zulu", "alpha", "bravo", "mike"), BoxEngine.growingCardIds(state))

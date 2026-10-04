@@ -103,38 +103,38 @@ class SessionRunTests {
     /**
      * The tally boundary: one learning step puts a first-sight Good straight into Review while
      * its stability is still tiny, so the phase edge is not the signal — the CROSSING into
-     * consolidated is.
+     * settled is.
      */
     @Test
-    fun graduationIsTheCrossingNotThePhaseEdge() {
+    fun settlingIsTheCrossingNotThePhaseEdge() {
         var run = started(Box.state(listOf(Box.word(1))), now)
         assertEquals("w01", run.currentCardId)
         run = answer(run, Rating.Good, now)
 
         assertEquals(CardPhase.Review, run.box.scheduling.getValue("w01").phase)
-        assertFalse(BoxEngine.isConsolidated(run.box, "w01"))
+        assertFalse(BoxEngine.isSettled(run.box, "w01"))
         assertEquals(1, run.newCards)
-        assertEquals(0, run.graduated)
+        assertEquals(0, run.settled)
         assertEquals(0, run.reviews)
 
-        // Second pass, known on sight: stability crosses the consolidated bar → "graduated".
+        // Second pass, known on sight: stability crosses the settled bar.
         val later = Box.plusDays(now, 7.0)
         run = SessionRun.reduce(run, SessionIntent.Close, later, Box.TZ).state
         run = started(run.box, later)
         assertEquals("w01", run.currentCardId)
         run = answer(run, Rating.Easy, later)
-        assertTrue(BoxEngine.isConsolidated(run.box, "w01"))
+        assertTrue(BoxEngine.isSettled(run.box, "w01"))
         assertEquals(0, run.newCards)
-        assertEquals(1, run.graduated)
+        assertEquals(1, run.settled)
         assertEquals(0, run.reviews)
 
-        // Third pass: already consolidated, nothing crosses — a plain review rep.
+        // Third pass: already settled, nothing crosses — a plain review rep.
         val muchLater = Box.plusDays(now, 120.0)
         run = SessionRun.reduce(run, SessionIntent.Close, muchLater, Box.TZ).state
         run = started(run.box, muchLater)
         assertEquals("w01", run.currentCardId)
         run = answer(run, Rating.Good, muchLater)
-        assertEquals(0, run.graduated)
+        assertEquals(0, run.settled)
         assertEquals(1, run.reviews)
     }
 
@@ -324,7 +324,7 @@ class SessionRunTests {
         assertEquals(0, next.answered)
         assertTrue(next.ratings.isEmpty())
         assertTrue(next.answeredIds.isEmpty())
-        assertEquals(0, next.newCards + next.graduated + next.reviews)
+        assertEquals(0, next.newCards + next.settled + next.reviews)
         assertEquals(dropped, run.currentCardId)
         assertTrue(next.currentCardId != dropped)
     }

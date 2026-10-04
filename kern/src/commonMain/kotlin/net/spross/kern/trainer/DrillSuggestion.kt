@@ -83,12 +83,12 @@ object DrillSuggestion {
 
     /** What [drill] is worth to a box standing at [facts], from [BASE_BENEFIT] up to 1. */
     fun benefit(drill: Drill, facts: BoxFacts): Double {
-        val early = 1.0 - fraction(facts.grownWords, EARLY_WORDS)
+        val early = 1.0 - fraction(facts.settledWords, EARLY_WORDS)
         val steer = when (drill) {
             Drill.Letters -> if (facts.newScript) early else 0.0
             Drill.Numbers -> 0.6 * early
-            Drill.WordScramble -> 0.8 * fraction(facts.grownWords, SCRAMBLE_WORDS)
-            Drill.SentenceScramble -> 0.8 * fraction(facts.grownWords, 2 * SCRAMBLE_WORDS)
+            Drill.WordScramble -> 0.8 * fraction(facts.settledWords, SCRAMBLE_WORDS)
+            Drill.SentenceScramble -> 0.8 * fraction(facts.settledWords, 2 * SCRAMBLE_WORDS)
             Drill.Countries, Drill.Dates -> 0.0
         }
         return maxOf(BASE_BENEFIT, steer)
@@ -103,7 +103,7 @@ object DrillSuggestion {
         EarlyNumbers,
 
         /** A scramble, once the box holds enough grown words. */
-        WordsGrown,
+        WordsSettled,
         NeverRun,
 
         /** Not run for [Pick.daysSinceRun] days, at least two. */
@@ -157,15 +157,15 @@ object DrillSuggestion {
 
     /** What the box says about which drill would serve it. */
     data class BoxFacts(
-        /** Single words past the display bar ([BoxEngine.isConsolidated]). */
-        val grownWords: Int,
+        /** Single words past the display bar ([BoxEngine.isSettled]). */
+        val settledWords: Int,
         /** Whether the learned language writes in another script than the known one. */
         val newScript: Boolean,
     ) {
         companion object {
             fun of(box: BoxState): BoxFacts {
                 val grown = Inventory.active(box).count {
-                    box.cards[it.cardId]?.kind in singleWords && BoxEngine.isConsolidated(box, it.cardId)
+                    box.cards[it.cardId]?.kind in singleWords && BoxEngine.isSettled(box, it.cardId)
                 }
                 val pairs = Inventory.joinedCards(box).asSequence()
                     .mapNotNull { card -> script(card.target.text)?.let { it to script(card.source.text) } }
@@ -210,7 +210,7 @@ object DrillSuggestion {
     private fun steeredBy(drill: Drill): Reason = when (drill) {
         Drill.Letters -> Reason.NewScript
         Drill.Numbers -> Reason.EarlyNumbers
-        else -> Reason.WordsGrown
+        else -> Reason.WordsSettled
     }
 
     private fun daysSince(then: Long?, nowEpochMillis: Long, tzId: String): Int? {

@@ -95,7 +95,7 @@ class WidgetSnapshotBuilderTests {
     }
 
     @Test
-    fun cardsCarryDueMillisAndTheConsolidatedCountIsResolvedPhoneSide() {
+    fun cardsCarryDueMillisAndTheSettledCountIsResolvedPhoneSide() {
         val due = Box.plusDays(Box.day1, 2.0)
         val lastReview = Box.plusSeconds(Box.day1, -3600)
         var state = Snap.state(listOf(fem, gendered))
@@ -112,7 +112,7 @@ class WidgetSnapshotBuilderTests {
 
         assertEquals(due, byCard.getValue("wf").due)
         assertEquals(Box.day1, byCard.getValue("wg").due)
-        assertEquals(1, doc.consolidatedCount) // wg has not consolidated
+        assertEquals(1, doc.settledCount) // wg has not settled
     }
 
     @Test
@@ -162,7 +162,7 @@ class WidgetSnapshotBuilderTests {
 
     @Test
     fun schemaVersionIsPinned() {
-        assertEquals(4, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
+        assertEquals(5, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
     }
 
     @Test
@@ -225,7 +225,7 @@ class WidgetSnapshotBuilderTests {
         assertEquals("Kellner ♀", view.entries.first { it.cardId == "wf" }.sourceText)
         assertEquals("der", view.entries.first { it.cardId == "wg" }.article)
         assertEquals(Gender.Masculine, view.entries.first { it.cardId == "wg" }.gender)
-        assertEquals(doc.consolidatedCount, view.consolidatedCount)
+        assertEquals(doc.settledCount, view.settledCount)
 
         // Every card is due tomorrow, so only a later clock counts them.
         assertEquals(0, view.dueCount(Box.day1))
@@ -245,7 +245,7 @@ class WidgetSnapshotBuilderTests {
         assertNull(WidgetSnapshotBuilder.decode("not json at all"))
         assertNull(WidgetSnapshotBuilder.decode("{}")) // schemaVersion missing
         val current = WidgetSnapshotBuilder.build(scheduledState(), Box.day1, Box.TZ)
-        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":4", "\"schemaVersion\":3")))
+        assertNull(WidgetSnapshotBuilder.decode(current.replace("\"schemaVersion\":5", "\"schemaVersion\":4")))
         assertNotNull(WidgetSnapshotBuilder.decode(current))
     }
 

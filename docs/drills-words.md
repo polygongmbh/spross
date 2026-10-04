@@ -13,7 +13,7 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   and the page is the alphabet alone.
   What the drill can ask is recomputed on foreground —
   a voice installed in Settings turns the start button on without a relaunch.
-- **The stage rows say which stage a run OPENS on**, derived from the learner's consolidated
+- **The stage rows say which stage a run OPENS on**, derived from the learner's settled
   words and the record below, and dictation states its price until enough of them can be played back.
   Their mark is the shared Sprosse circle,
   forest on a stage some run climbed off before its first slip, filled on the stage the run opens on,
@@ -38,7 +38,7 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   words the learner already holds first,
   so a Sprosse stops meaning one memorized blank.
   Tiles first among strangers, then among look- and sound-alikes, then typed,
-  and — once enough words are consolidated — dictation of the learner's own words,
+  and — once enough words are growing — dictation of the learner's own words,
   weighted toward the ones worth spelling twice (`LetterDrill`).
   Dictation asks the one word that played, not the card behind it:
   a synonym or variant of that card is a miss, and the reveal shows the played word alone.

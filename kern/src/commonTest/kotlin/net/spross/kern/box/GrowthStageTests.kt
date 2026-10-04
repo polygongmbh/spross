@@ -42,7 +42,7 @@ class GrowthStageTests {
                 // (6.0): a word this far in is Fresh, and still gets its support.
                 "w05" to GrowthStage.Fresh,
                 "w06" to GrowthStage.Growing,
-                "w07" to GrowthStage.Matured,
+                "w07" to GrowthStage.Settled,
                 "w08" to GrowthStage.Relearning,
             ),
             stages(state),
@@ -56,12 +56,12 @@ class GrowthStageTests {
         state = Box.inject(state, Box.sched("w01", stability = 6.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(
             state,
-            Box.sched("w02", stability = MATURED_STABILITY, dueMillis = future, lastReviewMillis = now),
+            Box.sched("w02", stability = SETTLED_STABILITY, dueMillis = future, lastReviewMillis = now),
         )
 
         val stages = stages(state)
         assertEquals(GrowthStage.Growing, stages["w01"])
-        assertEquals(GrowthStage.Matured, stages["w02"])
+        assertEquals(GrowthStage.Settled, stages["w02"])
     }
 
     @Test
@@ -101,7 +101,7 @@ class GrowthStageTests {
     @Test
     fun suspensionOutranksEveryBar() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)))
-        // A leech (8 lapses, suspended) and a hand-suspended matured card
+        // A leech (8 lapses, suspended) and a hand-suspended settled card
         // both stand outside the ladder, not on the Sprosse their stability bought.
         state = Box.inject(
             state,

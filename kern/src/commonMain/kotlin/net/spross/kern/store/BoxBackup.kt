@@ -26,7 +26,7 @@ object BoxBackup {
             boxes.boxes
                 .filterKeys { only == null || it == only }
                 .filterValues { it.hasContent }
-                .mapValues { (_, box) -> box.copy(consolidatedToday = null) },
+                .mapValues { (_, box) -> box.copy(settledToday = null) },
         ),
     )
 

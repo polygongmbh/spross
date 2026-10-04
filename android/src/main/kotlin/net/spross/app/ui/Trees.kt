@@ -56,7 +56,7 @@ internal fun HomeTrees(model: AppModel) {
                 val area = areas[tree.area]
                 listOf(
                     model.areaTitle(tree.area),
-                    countLine(chrome.progressConsolidatedCountOne, chrome.progressConsolidatedCount, area?.consolidated ?: 0),
+                    countLine(chrome.progressSettledCountOne, chrome.progressSettledCount, area?.settled ?: 0),
                     countLine(chrome.progressLearningCountOne, chrome.progressLearningCount, area?.learning ?: 0),
                 ).joinToString(", ")
             },
@@ -64,7 +64,7 @@ internal fun HomeTrees(model: AppModel) {
         )
         Text(
             listOf(
-                countLine(chrome.progressConsolidatedCountOne, chrome.progressConsolidatedCount, stats?.consolidatedCount ?: 0),
+                countLine(chrome.progressSettledCountOne, chrome.progressSettledCount, stats?.settledCount ?: 0),
                 countLine(chrome.progressLearningCountOne, chrome.progressLearningCount, stats?.learningCount ?: 0),
             ).joinToString(" · "),
             style = MaterialTheme.typography.bodySmall,

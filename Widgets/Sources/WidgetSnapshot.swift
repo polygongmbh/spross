@@ -46,16 +46,16 @@ struct WidgetSnapshot: Codable {
     }
 
     /// The one version this build reads (kern `WidgetSnapshotBuilder.SCHEMA_VERSION`).
-    static let currentSchemaVersion = 4
+    static let currentSchemaVersion = 5
 
     var schemaVersion: Int
     /// The language the widget's chrome is written in, the one the app's own chrome follows.
     var chromeLanguage: String
     var entries: [Entry]
     var cards: [CardInfo]
-    /// Active cards that have consolidated (kern `Statistics.isConsolidated`); resolved
+    /// Active cards that have settled (kern `Statistics.isSettled`); resolved
     /// phone-side because, unlike due dates, it does not move with the clock.
-    var consolidatedCount: Int
+    var settledCount: Int
     /// Trailing ~70 days, keyed by ISO `yyyy-MM-dd`.
     var dailyStats: [String: Day]
     /// The streak as of `lastReviewDate` — kern's own `Statistics.streak`, resolved

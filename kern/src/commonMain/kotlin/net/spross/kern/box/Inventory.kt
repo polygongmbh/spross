@@ -47,8 +47,8 @@ internal object Inventory {
             .sortedWith(compareBy({ it.due }, { it.cardId }))
 
     /**
-     * Active cards with `due <= now`: words not yet consolidated first, then oldest DAY,
-     * shuffled within the day.
+     * Active cards with `due <= now`: fresh and relearning words (short of the growing bar)
+     * first, then oldest DAY, shuffled within the day.
      *
      * Delay is not one cost. `R(t) = (1 + factor·t/S)^decay` flattens in proportion to
      * STABILITY, so a month late leaves a mature word barely under its target and a word

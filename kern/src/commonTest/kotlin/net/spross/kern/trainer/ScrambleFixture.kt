@@ -17,7 +17,7 @@ internal object ScrambleFixture {
     const val TARGET = "de"
 
     /** Past the display bar the word scramble reads, and past the growing bar phrase unlock does. */
-    const val CONSOLIDATED = 30.0
+    const val SETTLED = 30.0
 
     /** Growing, but short of the display bar — a word this drill may not ask. */
     const val GROWING = 10.0
@@ -81,7 +81,7 @@ internal object ScrambleFixture {
      */
     fun box(
         cards: List<Card>,
-        stability: Double = CONSOLIDATED,
+        stability: Double = SETTLED,
         standing: Map<String, Double> = emptyMap(),
         suspended: Set<String> = emptySet(),
     ): BoxState {

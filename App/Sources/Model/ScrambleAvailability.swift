@@ -21,7 +21,7 @@ extension SprossKern.SentenceScrambleAvailability.Report: ScrambleReport {}
 /// must be before the drill exists at all and how tall the ladder runs are all
 /// kern's, out of the box alone.
 ///
-/// Deliberately NOT cached: the pool grows as words consolidate and as the join
+/// Deliberately NOT cached: the pool grows as words settle and as the join
 /// unlocks phrases, so the hub rebuilds this rather than deciding once at
 /// launch that a drill is empty.
 @MainActor

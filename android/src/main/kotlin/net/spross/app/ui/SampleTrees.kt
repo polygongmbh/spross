@@ -39,7 +39,7 @@ internal object SampleTrees {
             area = id,
             arriving = started - settled,
             growing = settled - blossoms,
-            matured = blossoms - fruit,
+            settled = blossoms - fruit,
             longHeld = fruit,
             queued = 0,
             lapsed = if (reached > 0.3 && index % 3 == 0) 2 else 0,

@@ -4,26 +4,18 @@ import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
 
 /**
- * Days of stability at which a card counts as MATURED — the third and last bar.
+ * Days of stability at which a card counts as settled ([Statistics.isSettled]).
+ * Gates no support or unlock: it backs the counts, the badge, the area-complete mark,
+ * the word scramble's pool and what [Briefing] hands over as known.
  *
- * Unlike [net.spross.kern.model.BoxConfig.growingStability] this one gates no
- * presentation support, no phrase unlock, no budget — it backs the DISPLAY side
- * instead: the Grown badge, the progress bar's jade segment, the area-complete
- * mark, the day tallies ([Statistics.isConsolidated]), and the words [Briefing]
- * hands over as known.
- *
- * Set above two plain Goods (S ≈ 17) and at or below a Good followed by an Easy
- * (S ≈ 29.8): two successive "I knew it" verdicts, [net.spross.kern.session.SelfGrading]'s
- * Knew case both times, count as solid only once one of them was fast enough to earn Easy,
- * not from reinforcement alone.
+ * Above two plain Goods (S ≈ 17), at or below Good then Easy (S ≈ 29.8):
+ * reinforcement alone never settles a word, one fast answer has to.
  */
-const val MATURED_STABILITY: Double = 25.0
+const val SETTLED_STABILITY: Double = 25.0
 
 /**
- * Days of stability at which a Matured card draws as fruit rather than a blossom on the
- * area tree — reporting-only, like [MATURED_STABILITY], and kern's for the same reason
- * [net.spross.kern.model.kindEmoji] is: one platform minting this cutoff is one platform
- * drawing a different tree than the other once both render it.
+ * Days of stability at which a settled card draws as fruit rather than a blossom.
+ * Kern's so both platforms draw the same tree.
  */
 const val FRUIT_STABILITY: Double = 120.0
 
@@ -54,8 +46,8 @@ enum class GrowthStage {
     /** Growing: see [Statistics.isGrowing] — the "has this word landed" bar (gate (a)). */
     Growing,
 
-    /** Matured: in Review at or above [MATURED_STABILITY]. */
-    Matured,
+    /** Settled: in Review at or above [SETTLED_STABILITY]. */
+    Settled,
 
     /**
      * Lapsed and still short of the growing bar — in the relearning steps, or back in Review
@@ -97,7 +89,7 @@ internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when
     sched.suspended -> GrowthStage.Suspended
     sched.phase == CardPhase.Relearning -> GrowthStage.Relearning
     sched.phase != CardPhase.Review -> GrowthStage.Fresh
-    (sched.memory?.stability ?: 0.0) >= MATURED_STABILITY -> GrowthStage.Matured
+    (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY -> GrowthStage.Settled
     Statistics.isGrowing(state, sched) -> GrowthStage.Growing
     sched.lapses > 0 -> GrowthStage.Relearning
     else -> GrowthStage.Fresh

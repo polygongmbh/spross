@@ -54,11 +54,11 @@ object Palette {
     val wrong = Swatch(0x70211E, 0xF08D86)
 
     /**
-     * The consolidated/"grown" Sprosse's own color — NOT [teal]. [teal] sits only ~15°
+     * The settled Sprosse's own color — NOT [teal]. [teal] sits only ~15°
      * from [der] on the hue wheel (both read as blue at a badge's size); this one is
      * pulled toward green until it reads unmistakably as jade rather than another blue.
      */
-    val grown = Swatch(0x0F766E, 0x5EEAD4)
+    val settled = Swatch(0x0F766E, 0x5EEAD4)
 
     // The trees draw with these alone, so a UI color can change without touching a tree.
     /** The ground's soft shadow under a trunk. */

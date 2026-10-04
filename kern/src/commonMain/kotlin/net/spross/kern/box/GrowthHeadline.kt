@@ -8,8 +8,8 @@ enum class GrowthClaim {
     /** The area had nothing in it before this round. */
     Opened,
 
-    /** More words stand matured or past than before. */
-    Matured,
+    /** More words stand settled or past than before. */
+    Settled,
 
     /** Words were met, and none newly landed. */
     Met,
@@ -39,7 +39,7 @@ fun growthHeadline(
     transition: TreeTransition?,
     restSuggested: Boolean,
     introduced: Int,
-    consolidated: Int,
+    settled: Int,
     reviews: Int,
     streakDays: Int,
 ): GrowthHeadline? {
@@ -50,12 +50,12 @@ fun growthHeadline(
     val claim = when {
         restSuggested -> GrowthClaim.Unclaimed
         before.isBare -> GrowthClaim.Opened
-        after.matured + after.longHeld > before.matured + before.longHeld -> GrowthClaim.Matured
+        after.settled + after.longHeld > before.settled + before.longHeld -> GrowthClaim.Settled
         after.arriving > before.arriving && after.growing <= before.growing -> GrowthClaim.Met
         after.met == before.met -> GrowthClaim.Held
         else -> GrowthClaim.Grew
     }
-    return GrowthHeadline(claim, stablePick("$introduced:$consolidated:$reviews:$streakDays"))
+    return GrowthHeadline(claim, stablePick("$introduced:$settled:$reviews:$streakDays"))
 }
 
 /** A non-negative stable int for [key]: an FNV-1a fold finished by SplitMix64. */

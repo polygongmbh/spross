@@ -24,7 +24,7 @@ import net.spross.kern.store.StoreJson
  * `lastReviewDate` and "now" run at render time. Who decodes it how: `kern/docs/snapshots.md`.
  */
 object WidgetSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 4
+    const val SCHEMA_VERSION: Int = 5
 
     /** ~10 weeks of day keys — enough history for the widget's streak walk. */
     const val DAILY_STATS_TAIL_DAYS: Int = 70
@@ -107,7 +107,7 @@ object WidgetSnapshotBuilder {
             chromeLanguage = chromeLanguage(state),
             entries = entries,
             cards = cards,
-            consolidatedCount = active.count { Statistics.isConsolidated(state, it) },
+            settledCount = active.count { Statistics.isSettled(state, it) },
             dailyStats = tailKeys.associateWith { WidgetDayDto(combinedDailyStats.getValue(it)) },
             streak = Statistics.streak(combinedDailyStats, nowEpochMillis, tzId),
             lastReviewDate = combinedDailyStats.entries.filter { it.value > 0 }.maxOfOrNull { it.key },
@@ -135,8 +135,8 @@ class WidgetSnapshotView internal constructor(private val doc: WidgetSnapshotDoc
         WidgetExposure(it.cardId, it.text, it.sourceText, it.emoji, it.article, genderOf(it.gender))
     }
 
-    /** Active cards that have consolidated — resolved phone-side, it does not move with the clock. */
-    val consolidatedCount: Int get() = doc.consolidatedCount
+    /** Active cards that have settled — resolved phone-side, it does not move with the clock. */
+    val settledCount: Int get() = doc.settledCount
 
     private val dailyStats: Map<String, Int> = doc.dailyStats.mapValues { it.value.reviews }
 
@@ -176,8 +176,8 @@ internal data class WidgetSnapshotDoc(
     val entries: List<WidgetEntryDto>,
     /** Every active card's due date — the render-time dueCount input. */
     val cards: List<WidgetCardDto>,
-    /** Active cards that have consolidated; time-independent, so it is resolved here. */
-    val consolidatedCount: Int,
+    /** Active cards that have settled; time-independent, so it is resolved here. */
+    val settledCount: Int,
     /** Trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] day keys. */
     val dailyStats: Map<String, WidgetDayDto>,
     /**

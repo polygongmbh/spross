@@ -124,7 +124,7 @@ class ListeningPoolTests {
 
     /**
      * RULE: a fully grown word is not in the pool.
-     * WHY: it is what the box already calls done (`Statistics.isConsolidated`), and an hour of
+     * WHY: it is what the box already calls done (`Statistics.isSettled`), and an hour of
      * listening is for what is not. Left in, a well-used box — where the grown words outnumber
      * everything else — would spend its evening on the words it trusts most.
      */

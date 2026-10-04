@@ -114,7 +114,7 @@ class TurnCopyStepTest {
 
     @Test
     fun givingUpOnARetryIsOneWriteOutNotTwo() {
-        // Production, not yet consolidated, an honest Again — everything the write-out asks for,
+        // Production, not yet settled, an honest Again — everything the write-out asks for,
         // except that the retry field already WAS the write-out.
         val missed = TurnFixture.state(TurnFixture.produce(TurnFixture.language), TurnIntent.Submit("neno"))
         val gone = TurnFixture.step(missed, TurnIntent.GiveUp)

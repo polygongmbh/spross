@@ -46,9 +46,9 @@ internal object Answering {
             // Crossing the fully-grown bar on the very answer that introduces a card is
             // rare — no graduating rating reaches it alone — but the check stays generic
             // rather than assuming introduction can never be the crossing day.
-            consolidatedToday = state.consolidatedToday.booking(
-                crossed = !Statistics.isConsolidated(state, base) &&
-                    Statistics.isConsolidated(state, sched),
+            settledToday = state.settledToday.booking(
+                crossed = !Statistics.isSettled(state, base) &&
+                    Statistics.isSettled(state, sched),
                 day = dayKey(nowEpochMillis, tzId),
             ),
             enqueued = if (introducing) state.enqueued.filter { it != card.id } else state.enqueued,

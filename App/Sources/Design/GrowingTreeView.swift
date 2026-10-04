@@ -124,7 +124,7 @@ struct TreeArrival {
         return CGFloat(1 + (over + 1) * past * past * past + over * past * past)
     }
 
-    /// Already there, so it swells and settles back: a word that matured opens
+    /// Already there, so it swells and settles back: a word that settled opens
     /// where it hangs.
     private static func swell(_ t: Double) -> CGFloat {
         1 + 0.25 * CGFloat(sin(.pi * t))

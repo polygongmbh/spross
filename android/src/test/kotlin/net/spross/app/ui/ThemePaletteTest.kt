@@ -37,7 +37,7 @@ class ThemePaletteTest {
         Token("teal", Palette.teal, ThemeLight.teal, ThemeDark.teal),
         Token("success", Palette.success, ThemeLight.success, ThemeDark.success),
         Token("amber", Palette.amber, ThemeLight.amber, ThemeDark.amber),
-        Token("grown", Palette.grown, ThemeLight.grown, ThemeDark.grown),
+        Token("settled", Palette.settled, ThemeLight.settled, ThemeDark.settled),
         Token("wrong", Palette.wrong, ThemeLight.wrong, ThemeDark.wrong),
         Token("der", Palette.der, ThemeLight.der, ThemeDark.der),
         Token("die", Palette.die, ThemeLight.die, ThemeDark.die),

@@ -160,7 +160,7 @@ fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
  *
  * Four labeled Sprossen, three colors. [CardRowState.Standing.stage] — kern's own
  * ladder — decides the top one directly, exactly as the shelf's own tally does, so a
- * row's seal never claims a word the shelf above does not also count: Matured is a
+ * row's seal never claims a word the shelf above does not also count: Settled is a
  * further Sprosse, well past Growing, which is why a Growing card reads its own mark
  * instead of borrowing the seal. Learning and Fresh share one word (only the color
  * tells them apart), and Relearning gets its own — all three amber. Grown is the one
@@ -174,12 +174,12 @@ fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
 @Composable
 fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
     val color = standing.swatch.tint()
-    if (standing.stage == GrowthStage.Matured) {
+    if (standing.stage == GrowthStage.Settled) {
         // Grown needs no word: a seal already reads as "done" on its own, where
         // Fresh/Shaky/Growing would be ambiguous glyphs without one.
         Pill(
             SEAL, color,
-            modifier = Modifier.semantics { contentDescription = chrome.a11yBoxPhaseConsolidated },
+            modifier = Modifier.semantics { contentDescription = chrome.a11yBoxPhaseSettled },
         )
     } else {
         val word = when (standing.stage) {
@@ -192,7 +192,7 @@ fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
     }
 }
 
-/** The consolidated mark; the same glyph the area's own count row leads with. */
+/** The settled mark; the same glyph the area's own count row leads with. */
 const val SEAL = "✔"
 
 /** …and the one for a word still on its way in. */
@@ -230,7 +230,7 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.spacedBy(2.dp), // card-parity: the hairline parting the stretches sits tighter than xs
     ) {
         val stretches = listOf(
-            stats.consolidated to palette.grown,
+            stats.settled to palette.settled,
             stats.learning to palette.success,
             stats.queued to palette.accent,
         ).filter { it.first > 0 }

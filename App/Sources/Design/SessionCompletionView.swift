@@ -9,7 +9,7 @@ import SprossKern
 
 struct SessionCompletionView: View {
     var newCount: Int = 0
-    var graduatedCount: Int = 0
+    var settledCount: Int = 0
     let reviewCount: Int
     /// The area this round worked hardest, as it stood before the round and as
     /// it stands now. The round just moved it, so its tree is the one thing on
@@ -53,7 +53,7 @@ struct SessionCompletionView: View {
     /// Nil when the round named nothing.
     private var tallyText: Text? {
         let parts = completionTallyParts(introduced: Int32(newCount),
-                                         consolidated: Int32(graduatedCount),
+                                         settled: Int32(settledCount),
                                          reviews: Int32(reviewCount))
         return parts.map { Self.partText($0, alone: parts.count == 1) }.joined()
     }
@@ -70,7 +70,7 @@ struct SessionCompletionView: View {
         switch part.kind {
         case .introduced:
             return alone ? Text("session.done.tally.newOnly \(count)") : Text("session.done.tally.new \(count)")
-        case .consolidated: return Text("tally.consolidated \(Int(part.count))")
+        case .settled: return Text("tally.settled \(Int(part.count))")
         case .reviews:
             return alone ? Text("session.done.tally.reviewedOnly \(count)") : Text("session.done.tally.reviewed \(count)")
         }
@@ -191,7 +191,7 @@ struct SessionCompletionView: View {
         switch headline.claim {
         case .unclaimed: key = "session.done.growth.grew"
         case .opened: key = "session.done.growth.opened"
-        case .matured: key = "session.done.growth.blooming.\(pick % 3)"
+        case .settled: key = "session.done.growth.blooming.\(pick % 3)"
         case .met: key = "session.done.growth.sown.\(pick % 3)"
         // Line 0 says the words grew; a round that added none claims only depth.
         case .held: key = "session.done.growth.grown.\(1 + pick % 2)"

@@ -104,8 +104,8 @@ private struct AreaBarSegment: Identifiable {
 /// measured against. The split and the denominator are the box's rulings
 /// (`AreaStatistics`); the screen hands them over so Design stays kern-free.
 struct AreaProgress {
-    /// Cards past the matured bar ("gewachsen") — the bar's jade segment.
-    let consolidated: Int
+    /// Cards past the settled bar — the bar's jade segment.
+    let settled: Int
     /// Everything else active — Fresh, Growing and Relearning combined, the
     /// same two-way split the counts row is cut for. The bar deliberately does
     /// not draw the badge's finer four-way grain.
@@ -118,10 +118,10 @@ struct AreaProgress {
     let progressTotal: Int
 
     /// What an area with no statistics yet draws: a bare track, no segment on it.
-    static let empty = AreaProgress(consolidated: 0, learning: 0, queued: 0, progressTotal: 1)
+    static let empty = AreaProgress(settled: 0, learning: 0, queued: 0, progressTotal: 1)
 }
 
-/// Per-area chip: emoji + name + consolidated/learning counts over a bar that
+/// Per-area chip: emoji + name + settled/learning counts over a bar that
 /// measures both against the area's FULL card count, so the untouched rest
 /// of an area stays visible instead of a bar that always reads as full.
 ///
@@ -143,14 +143,14 @@ struct AreaChip: View {
     /// counts/bar to say — so they step aside, leaving just the emoji/name.
     var hideProgress: Bool = false
 
-    /// A two-way split (matches the counts row) plus queued: grown, then
+    /// A two-way split (matches the counts row) plus queued: settled, then
     /// everything else active, then packed-but-unintroduced. No amber segment —
-    /// amber stays a badge-only color, distinguishing Fresh/Learning/Shaky from
+    /// amber stays a badge-only color, distinguishing Fresh/Shaky from
     /// Growing at the per-card level without the bar needing that fine a grain.
     /// A card never packed at all gets no segment: the neutral track under them
     /// is what the untouched rest of the area reads as.
     private var segments: [AreaBarSegment] {
-        [(progress.consolidated, Theme.colors.grown),
+        [(progress.settled, Theme.colors.settled),
          (progress.learning, Theme.colors.success),
          (progress.queued, Theme.colors.accent)]
             .enumerated()
@@ -204,7 +204,7 @@ struct AreaChip: View {
         .accessibilityElement(children: .combine)
     }
 
-    /// Consolidated, learning, and — only when it says something — locked phrases,
+    /// Settled, learning, and — only when it says something — locked phrases,
     /// as one row of icon-led caption labels instead of two disjoint rows.
     /// Three German words rarely fit this card's width at full size, so they
     /// shrink together instead of wrapping mid-word or truncating to "gefes…".
@@ -214,9 +214,9 @@ struct AreaChip: View {
     /// and the bar alone draws the Sprosse between them.
     private var counts: some View {
         HStack(spacing: Theme.spacing.md) {
-            Label("progress.consolidatedCount \(Int(progress.consolidated))",
+            Label("progress.settledCount \(Int(progress.settled))",
                   systemImage: "checkmark.seal.fill")
-                .foregroundStyle(Theme.colors.grown)
+                .foregroundStyle(Theme.colors.settled)
             Label("progress.learningCount \(Int(progress.learning))", systemImage: "leaf.fill")
                 .foregroundStyle(Theme.colors.success)
             if lockedPhrases > 0 {
@@ -238,16 +238,10 @@ struct AreaChip: View {
 
 /// Where one card stands on the ladder, as one word in the Sprosse's own color.
 ///
-/// Four labeled Sprossen, growing: a card just planted or freshly in Review is
-/// fresh, one that lapsed back to the learning steps is shaky, one that has
-/// cleared the growing bar is growing, and one past the matured bar — kern's
-/// stricter bar, the same one the shelf's tally counts against — has grown.
-/// Fresh and shaky share amber and a glyph deliberately: both are still walking
-/// the learning steps (or freshly arrived), and only the WORD says which way
-/// the card got there. Growing and grown are the pair that must never blur,
-/// because a row that read "grown" before the shelf counted it claimed a word
-/// the shelf above it did not — so the Sprosse kern resolved is handed over
-/// whole rather than read out of a phase (kern `CardRowState.Standing` states why).
+/// Four labeled Sprossen: fresh, shaky (lapsed), growing and settled.
+/// Fresh and shaky share amber and a glyph; only the word tells them apart.
+/// The stage comes whole from kern (`CardRowState.Standing`), so a row never
+/// reads settled before the shelf's count does.
 ///
 /// The Sprosse's [growth] color is handed in, never re-derived here: kern resolves it
 /// once (`CardRowState.Standing.swatch`) so a row's badge and the shelf's own bar,
@@ -257,7 +251,7 @@ struct PhaseBadge: View {
     /// see `BoxCardRow.badgePhase`. It picks the WORD and the glyph; the color
     /// arrives with [growth] instead.
     enum Phase: CaseIterable {
-        case new, fresh, growing, relearning, grown
+        case new, fresh, growing, relearning, settled
     }
 
     let phase: Phase
@@ -271,18 +265,18 @@ struct PhaseBadge: View {
         case .fresh: return "box.phase.fresh"
         case .growing: return "box.phase.growing"
         case .relearning: return "box.phase.relearning"
-        case .grown: return "a11y.box.phase.consolidated"
+        case .settled: return "a11y.box.phase.settled"
         }
     }
 
     private var color: Color { growth ?? Theme.colors.textSecondary }
 
-    /// The area row's own icon at the grown end; Growing gets one, and the two
+    /// The area row's own icon at the settled end; Growing gets one, and the two
     /// amber Sprossen share the leaf their shared color already pairs them by.
     private var icon: String {
         switch phase {
         case .new: return "circle.dashed"
-        case .grown: return "checkmark.seal.fill"
+        case .settled: return "checkmark.seal.fill"
         case .growing: return "checkmark.circle.fill"
         case .fresh, .relearning: return "leaf.fill"
         }
@@ -293,7 +287,7 @@ struct PhaseBadge: View {
             // Grown is the one Sprosse that needs no word: a seal already reads as
             // "done" on its own, where Fresh/Shaky/Growing would be ambiguous
             // glyphs without one.
-            if phase == .grown {
+            if phase == .settled {
                 Image(systemName: icon)
                     .accessibilityLabel(Text(label))
             } else {
@@ -331,7 +325,7 @@ private var ladder: some View {
         PhaseBadge(phase: .fresh, growth: Theme.colors.amber)
         PhaseBadge(phase: .relearning, growth: Theme.colors.amber)
         PhaseBadge(phase: .growing, growth: Theme.colors.success)
-        PhaseBadge(phase: .grown, growth: Theme.colors.grown)
+        PhaseBadge(phase: .settled, growth: Theme.colors.settled)
     }
 }
 
@@ -344,15 +338,15 @@ private var ladder: some View {
             StreakFlameView(days: 12, emoji: "🎉")
             AreaChip(emoji: "🍳", name: "Küche",
                      subtitle: "Hier duftet es nach Abendessen.",
-                     progress: .init(consolidated: 18, learning: 6, queued: 0, progressTotal: 24),
+                     progress: .init(settled: 18, learning: 6, queued: 0, progressTotal: 24),
                      lockedPhrases: 0)
                 .previewCard()
             AreaChip(emoji: "🛁", name: "Bad",
-                     progress: .init(consolidated: 4, learning: 9, queued: 28, progressTotal: 41),
+                     progress: .init(settled: 4, learning: 9, queued: 28, progressTotal: 41),
                      lockedPhrases: 3)
                 .previewCard()
             AreaChip(emoji: "🧰", name: "Werkstatt",
-                     progress: .init(consolidated: 0, learning: 0, queued: 17, progressTotal: 17),
+                     progress: .init(settled: 0, learning: 0, queued: 17, progressTotal: 17),
                      lockedPhrases: 0)
                 .previewCard()
             // The whole ladder, in the order a card climbs it.
@@ -368,7 +362,7 @@ private var ladder: some View {
         StreakFlameView(days: 3)
         StreakFlameView(days: 3, flame: .atRisk)
         AreaChip(emoji: "🍳", name: "Küche",
-                 progress: .init(consolidated: 18, learning: 6, queued: 28, progressTotal: 52),
+                 progress: .init(settled: 18, learning: 6, queued: 28, progressTotal: 52),
                  lockedPhrases: 2)
             .previewCard()
         ladder

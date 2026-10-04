@@ -60,7 +60,7 @@ struct TrainerHubView: View, LanguageNaming {
 
     var datesAvailable: Bool { datesPair != nil }
 
-    /// Whether the box holds enough consolidated single words to be worth
+    /// Whether the box holds enough settled single words to be worth
     /// mixing. Kern's own floor, read — this side counts nothing.
     var wordScrambleAvailable: Bool { WordScrambleAvailability(model: model).drillAvailable }
 
