@@ -1,6 +1,7 @@
 package net.spross.app.ui
 
 import net.spross.kern.box.AreaGrowth
+import net.spross.kern.box.StageCounts
 import net.spross.kern.box.TreeTransition
 
 /**
@@ -37,12 +38,14 @@ internal object SampleTrees {
         val fruit = (blossoms * maxOf(0.0, reached - 0.8)).toInt()
         return AreaGrowth(
             area = id,
-            arriving = started - settled,
-            growing = settled - blossoms,
-            settled = blossoms - fruit,
-            matured = fruit,
+            stages = StageCounts(
+                fresh = started - settled,
+                growing = settled - blossoms,
+                lapsed = if (reached > 0.3 && index % 3 == 0) 2 else 0,
+                settled = blossoms - fruit,
+                matured = fruit,
+            ),
             queued = 0,
-            lapsed = if (reached > 0.3 && index % 3 == 0) 2 else 0,
             answeredToday = tended ?: (index % 5 == 2 && reached > 0),
             reaches = List(started) { rank -> maxOf(0.0, reached - rank.toDouble() / maxOf(started, 1) * 0.6) },
         )

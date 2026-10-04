@@ -33,7 +33,7 @@ extension AppModel {
 ///   fruit   — matured
 ///   blossom — settled
 ///   leaf    — growing
-///   bud     — met, on its way in (`arriving`)
+///   bud     — met, on its way in (fresh)
 struct Canopy {
     let fruit: Int
     let blossoms: Int
@@ -46,11 +46,11 @@ struct Canopy {
     let reaches: [Double]
 
     init(_ tree: AreaGrowth) {
-        fruit = Int(tree.matured)
-        blossoms = Int(tree.settled)
-        leaves = Int(tree.growing)
-        buds = Int(tree.arriving)
-        fallen = Int(tree.lapsed)
+        fruit = Int(tree.stages.matured)
+        blossoms = Int(tree.stages.settled)
+        leaves = Int(tree.stages.growing)
+        buds = Int(tree.stages.fresh)
+        fallen = Int(tree.stages.lapsed)
         tendedToday = tree.answeredToday
         isBare = tree.isBare
         reaches = tree.reaches.map(\.doubleValue)
@@ -67,9 +67,10 @@ extension AreaGrowth {
     static func sample(_ area: String, leaves: Int = 0, blossoms: Int = 0, fruit: Int = 0,
                        buds: Int = 0, packed: Int = 0, fallen: Int = 0,
                        tendedToday: Bool = false, reaches: [Double] = []) -> AreaGrowth {
-        AreaGrowth(area: area, arriving: Int32(buds), growing: Int32(leaves),
-                 settled: Int32(blossoms), matured: Int32(fruit), queued: Int32(packed),
-                 lapsed: Int32(fallen), answeredToday: tendedToday,
-                 reaches: reaches.map { KotlinDouble(value: $0) })
+        AreaGrowth(area: area,
+                   stages: StageCounts(fresh: Int32(buds), growing: Int32(leaves), lapsed: Int32(fallen),
+                                       settled: Int32(blossoms), matured: Int32(fruit)),
+                   queued: Int32(packed), answeredToday: tendedToday,
+                   reaches: reaches.map { KotlinDouble(value: $0) })
     }
 }

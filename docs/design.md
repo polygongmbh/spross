@@ -193,7 +193,7 @@ What licenses a second component is a parameter attempted and found not to carry
   blossom and fruit appear on it.
   Which `GrowthStage` stands in which tier is kern's `growthByArea`;
   where each tree stands is kern's `TreesLayout`, its size and its wood kern's `AreaTree`;
-  a tier is one mark — arriving a bud, growing a leaf, settled a blossom, matured fruit.
+  a tier is one mark — fresh a bud, growing a leaf, settled a blossom, matured fruit.
   What the round summary claims over its tree is kern's `growthHeadline`.
   A tree forks further the more words it carries, each limb continued by a lead
   with side branches turning well away from it, and a branch dipping below level grows short;

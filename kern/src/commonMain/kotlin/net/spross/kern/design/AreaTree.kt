@@ -83,7 +83,7 @@ object AreaTree {
      * Square-rooted, so the first words met lift a tree most.
      */
     fun standing(tree: AreaGrowth): Double =
-        if (tree.isBare) 0.0 else min(1.0, sqrt((tree.met + tree.lapsed) / FULL_COUNT))
+        if (tree.isBare) 0.0 else min(1.0, sqrt(tree.stages.active / FULL_COUNT))
 
     /** How tall the area stands among the others; 0 for an area nothing has happened in. */
     fun height(tree: AreaGrowth): Double =

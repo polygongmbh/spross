@@ -20,22 +20,32 @@ data class StageCounts(
 
     internal companion object {
         fun of(state: BoxState, schedules: Iterable<CardScheduling>): StageCounts {
-            var fresh = 0
-            var growing = 0
-            var lapsed = 0
-            var settled = 0
-            var matured = 0
-            for (sched in schedules) {
-                when (stageOf(state, sched)) {
-                    GrowthStage.Fresh -> fresh += 1
-                    GrowthStage.Growing -> growing += 1
-                    GrowthStage.Lapsed -> lapsed += 1
-                    GrowthStage.Settled ->
-                        if ((sched.memory?.stability ?: 0.0) >= MATURED_STABILITY) matured += 1 else settled += 1
-                    GrowthStage.Unscheduled, GrowthStage.Queued, GrowthStage.Suspended -> Unit
-                }
-            }
-            return StageCounts(fresh, growing, lapsed, settled, matured)
+            val tally = StageTally()
+            for (sched in schedules) tally.add(stageOf(state, sched), sched.memory?.stability ?: 0.0)
+            return tally.counts()
         }
     }
+}
+
+/** The one place that sorts a Sprosse into a [StageCounts] field — the box's counts and each tree's. */
+internal class StageTally {
+    private var fresh = 0
+    private var growing = 0
+    private var lapsed = 0
+    private var settled = 0
+    private var matured = 0
+
+    /** Counts a card on [stage] at [stability]; false for a Sprosse no count holds. */
+    fun add(stage: GrowthStage, stability: Double): Boolean {
+        when (stage) {
+            GrowthStage.Fresh -> fresh += 1
+            GrowthStage.Growing -> growing += 1
+            GrowthStage.Lapsed -> lapsed += 1
+            GrowthStage.Settled -> if (stability >= MATURED_STABILITY) matured += 1 else settled += 1
+            GrowthStage.Unscheduled, GrowthStage.Queued, GrowthStage.Suspended -> return false
+        }
+        return true
+    }
+
+    fun counts() = StageCounts(fresh, growing, lapsed, settled, matured)
 }

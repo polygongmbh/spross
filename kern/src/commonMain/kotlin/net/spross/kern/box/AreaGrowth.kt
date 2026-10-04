@@ -8,47 +8,38 @@ import kotlin.math.min
  *
  * The unit is the AREA: every word the learner has met stands in exactly one of the four
  * met tiers, so the tiers add up to the words the tree carries and nothing is counted twice.
- * Ranked most-grown first — [matured], then [settled], [growing], [arriving] — which is the
+ * Ranked most-grown first — matured, then settled, growing, fresh — which is the
  * order [reaches] is in and the order [TreeTransition.changedRanks] counts in.
  */
 data class AreaGrowth(
     val area: String,
-    /** Met and still on its way in: [GrowthStage.Fresh]. */
-    val arriving: Int,
-    /** [GrowthStage.Growing] — landed. */
-    val growing: Int,
-    /** [GrowthStage.Settled], short of [MATURED_STABILITY]. */
-    val settled: Int,
-    /** [GrowthStage.Settled] at or past [MATURED_STABILITY]. */
-    val matured: Int,
+    /** The area's active words per Sprosse, sorted the way [AreaStatistics] sorts them. */
+    val stages: StageCounts,
     /** Packed and never met ([GrowthStage.Queued]) — why the area is growing at all. */
     val queued: Int,
-    /** [GrowthStage.Lapsed]: a word that slipped, never a smaller area. */
-    val lapsed: Int,
     /** Something here was answered today. */
     val answeredToday: Boolean,
     /** How far each met word has come, 0…1, most-grown first — one entry per met word. */
     val reaches: List<Double>,
 ) {
-    /** Every word the learner has met here and still holds. */
-    val met: Int get() = matured + settled + growing + arriving
+    /** Every word on the tree: the active words short of the lapsed ones, which hang nowhere. */
+    val met: Int get() = stages.active - stages.lapsed
 
     /** Nothing has happened here: nothing met, nothing packed. */
     val isBare: Boolean get() = met + queued == 0
 
     /** Which tier the word at [rank] stands in, 1 (most grown) … 4, or 0 past [met]. */
     internal fun tierAt(rank: Int): Int = when {
-        rank < matured -> 1
-        rank < matured + settled -> 2
-        rank < matured + settled + growing -> 3
+        rank < stages.matured -> 1
+        rank < stages.allSettled -> 2
+        rank < stages.allSettled + stages.growing -> 3
         rank < met -> 4
         else -> 0
     }
 
     companion object {
         /** An area with nothing in it — the "before" of an area a round opened. */
-        fun bare(area: String): AreaGrowth =
-            AreaGrowth(area, 0, 0, 0, 0, 0, 0, false, emptyList())
+        fun bare(area: String): AreaGrowth = AreaGrowth(area, StageCounts(), 0, false, emptyList())
     }
 }
 
@@ -67,12 +58,14 @@ data class TreeTransition(val before: AreaGrowth, val after: AreaGrowth) {
      */
     private val start: AreaGrowth = AreaGrowth(
         area = before.area,
-        arriving = min(before.arriving, after.arriving),
-        growing = min(before.growing, after.growing),
-        settled = min(before.settled, after.settled),
-        matured = min(before.matured, after.matured),
+        stages = StageCounts(
+            fresh = min(before.stages.fresh, after.stages.fresh),
+            growing = min(before.stages.growing, after.stages.growing),
+            lapsed = min(before.stages.lapsed, after.stages.lapsed),
+            settled = min(before.stages.settled, after.stages.settled),
+            matured = min(before.stages.matured, after.stages.matured),
+        ),
         queued = min(before.queued, after.queued),
-        lapsed = min(before.lapsed, after.lapsed),
         answeredToday = before.answeredToday,
         reaches = before.reaches,
     )
@@ -96,8 +89,8 @@ fun CardGrowth.reach(maximumIntervalDays: Int): Double {
 }
 
 /**
- * Every area the box holds, tallied from [growth] ([BoxEngine.growth]) — the one place
- * that decides which [GrowthStage] lands in which tier. Areas with no joined card are absent.
+ * Every area the box holds, tallied from [growth] ([BoxEngine.growth]) by the same [StageTally]
+ * the box's own counts use. Areas with no joined card are absent.
  */
 fun growthByArea(state: BoxState, growth: List<CardGrowth>): Map<String, AreaGrowth> {
     val tallies = linkedMapOf<String, AreaTally>()
@@ -134,34 +127,20 @@ fun grownArea(
 }
 
 private class AreaTally {
-    var arriving = 0
-    var growing = 0
-    var settled = 0
-    var matured = 0
+    val stages = StageTally()
     var queued = 0
-    var lapsed = 0
     var answeredToday = false
     val reaches = mutableListOf<Double>()
 
     fun add(entry: CardGrowth, maximumIntervalDays: Int) {
         if (entry.touchedToday) answeredToday = true
-        val reach = entry.reach(maximumIntervalDays)
-        when (entry.stage) {
-            GrowthStage.Unscheduled, GrowthStage.Suspended -> return
-            GrowthStage.Queued -> { queued += 1; return }
-            GrowthStage.Lapsed -> { lapsed += 1; return }
-            GrowthStage.Fresh -> arriving += 1
-            GrowthStage.Growing -> growing += 1
-            GrowthStage.Settled ->
-                if (entry.stability >= MATURED_STABILITY) matured += 1 else settled += 1
+        if (entry.stage == GrowthStage.Queued) queued += 1
+        if (stages.add(entry.stage, entry.stability) && entry.stage != GrowthStage.Lapsed) {
+            reaches += entry.reach(maximumIntervalDays)
         }
-        reaches += reach
     }
 
     // why: most-grown first — the tiers ARE stability bands, so sorting by reach
     // reproduces them and entry n belongs to rank n.
-    fun tree(area: String) = AreaGrowth(
-        area, arriving, growing, settled, matured, queued, lapsed, answeredToday,
-        reaches.sortedDescending(),
-    )
+    fun tree(area: String) = AreaGrowth(area, stages.counts(), queued, answeredToday, reaches.sortedDescending())
 }

@@ -32,7 +32,7 @@ internal class PlantedTree(val tree: AreaGrowth, val foot: Offset, val height: F
 
     /** Grown and fitted in dp by kern, then scaled to pixels. */
     private fun fitted(): TreeSkeleton {
-        val grown = AreaTree.grow(tree.area, tree.met, tree.arriving)
+        val grown = AreaTree.grow(tree.area, tree.met, tree.stages.fresh)
         val fit = grown.fit(foot.x / unit.toDouble(), foot.y / unit.toDouble(), height / unit.toDouble())
         return TreeSkeleton.placed(grown, TreeFit(fit.x * unit, fit.y * unit, fit.scale * unit))
     }
@@ -112,11 +112,11 @@ private fun DrawScope.canopy(art: TreeArt, colors: ThemeColors) {
 
 /** Words that lapsed lie on the ground beside the trunk; the tree never shrinks for them. */
 private fun DrawScope.fallen(planted: PlantedTree, colors: ThemeColors) {
-    if (planted.tree.lapsed == 0) return
+    if (planted.tree.stages.lapsed == 0) return
     val clear = max(planted.dp(7f), planted.height * 0.2f)
     val size = max(planted.dp(3f), planted.height * 0.055f)
     val leaves = Path()
-    for (index in 0 until min(planted.tree.lapsed, 3)) {
+    for (index in 0 until min(planted.tree.stages.lapsed, 3)) {
         val side = if (index % 2 == 0) -1f else 1f
         val spread = clear + noise(planted.tree.area, 13 + index) * clear * 0.5f
         leaf(leaves, Offset(planted.foot.x + side * spread, planted.foot.y + planted.dp(0.5f)), size,

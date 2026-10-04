@@ -105,8 +105,8 @@ internal class TreeArt(
         if (hanging.isEmpty()) return
         val top = hanging.minOf { it.point.y }
         val depth = max(hanging.maxOf { it.point.y } - top, 1f)
-        val heavy = tree.matured + tree.settled
-        val leafy = heavy + tree.growing
+        val heavy = tree.stages.allSettled
+        val leafy = heavy + tree.stages.growing
         for ((rank, slot) in hanging.withIndex()) {
             val grain = noise(tree.area, rank * 41 + 7)
             val reach = tree.reaches.getOrElse(rank) { 0.4 }.toFloat()
@@ -116,7 +116,7 @@ internal class TreeArt(
             val turned = slot.angle + (grain - 0.5f) * 0.9f
             val lean = atan2(sin(turned) - 0.2f, cos(turned))
             when {
-                rank < tree.matured -> fruit(slot.point, size)
+                rank < tree.stages.matured -> fruit(slot.point, size)
                 rank < heavy -> blossom(slot.point, size, lean)
                 rank < leafy -> {
                     val height = (slot.point.y - top) / depth

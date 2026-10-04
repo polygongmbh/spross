@@ -4,6 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import net.spross.kern.box.AreaGrowth
+import net.spross.kern.box.StageCounts
 
 class AreaTreeTests {
 
@@ -35,5 +36,5 @@ class AreaTreeTests {
     }
 
     private fun tree(area: String, met: Int) =
-        AreaGrowth(area, 0, met, 0, 0, 1, 0, false, List(met) { 0.5 })
+        AreaGrowth(area, StageCounts(growing = met), 1, false, List(met) { 0.5 })
 }

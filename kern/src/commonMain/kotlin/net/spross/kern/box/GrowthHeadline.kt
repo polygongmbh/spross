@@ -50,8 +50,8 @@ fun growthHeadline(
     val claim = when {
         restSuggested -> GrowthClaim.Unclaimed
         before.isBare -> GrowthClaim.Opened
-        after.settled + after.matured > before.settled + before.matured -> GrowthClaim.Settled
-        after.arriving > before.arriving && after.growing <= before.growing -> GrowthClaim.Met
+        after.stages.allSettled > before.stages.allSettled -> GrowthClaim.Settled
+        after.stages.fresh > before.stages.fresh && after.stages.growing <= before.stages.growing -> GrowthClaim.Met
         after.met == before.met -> GrowthClaim.Held
         else -> GrowthClaim.Grew
     }

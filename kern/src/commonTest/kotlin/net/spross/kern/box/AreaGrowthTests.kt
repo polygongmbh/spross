@@ -14,8 +14,8 @@ class AreaGrowthTests {
     private fun trees(state: BoxState) = growthByArea(state, BoxEngine.growth(state, now, Box.TZ))
 
     private fun tree(
-        met: Int = 0, growing: Int = 0, settled: Int = 0, matured: Int = 0, queued: Int = 0,
-    ) = AreaGrowth("a", met, growing, settled, matured, queued, 0, false, emptyList())
+        fresh: Int = 0, growing: Int = 0, settled: Int = 0, matured: Int = 0, queued: Int = 0,
+    ) = AreaGrowth("a", StageCounts(fresh, growing, 0, settled, matured), queued, false, emptyList())
 
     @Test
     fun everyMetWordStandsInExactlyOneTierAndOnlyMetWordsDo() {
@@ -28,7 +28,8 @@ class AreaGrowthTests {
         state = Box.inject(state, Box.sched("w06", phase = CardPhase.Relearning, stability = 4.0, dueMillis = future, lastReviewMillis = now))
 
         val area = trees(state).getValue("area1")
-        assertEquals(listOf(1, 1, 1, 1, 1, 1), listOf(area.arriving, area.growing, area.settled, area.matured, area.queued, area.lapsed))
+        assertEquals(StageCounts(fresh = 1, growing = 1, lapsed = 1, settled = 1, matured = 1), area.stages)
+        assertEquals(1, area.queued)
         assertEquals(4, area.met)
         assertEquals(area.reaches.sortedDescending(), area.reaches, "most-grown first")
         assertTrue(area.answeredToday)
@@ -37,7 +38,7 @@ class AreaGrowthTests {
 
     @Test
     fun aRoundThatAddsWordsChangesOnlyTheNewRanks() {
-        val move = TreeTransition(tree(met = 2, growing = 3), tree(met = 4, growing = 3))
+        val move = TreeTransition(tree(fresh = 2, growing = 3), tree(fresh = 4, growing = 3))
         assertEquals(5, move.standingCount)
         assertEquals(listOf(5, 6), move.changedRanks)
     }
@@ -78,20 +79,20 @@ class AreaGrowthTests {
 
     @Test
     fun theHeadlineClaimsOnlyWhatTheTreeGained() {
-        val worked = tree(met = 2, growing = 4, settled = 1)
+        val worked = tree(fresh = 2, growing = 4, settled = 1)
         assertEquals(GrowthClaim.Opened, claim(tree(), worked))
-        assertEquals(GrowthClaim.Settled, claim(worked, worked.copy(settled = 2, growing = 3)))
-        assertEquals(GrowthClaim.Met, claim(worked, worked.copy(arriving = 4)))
-        assertEquals(GrowthClaim.Grew, claim(worked, worked.copy(arriving = 1, growing = 6)))
+        assertEquals(GrowthClaim.Settled, claim(worked, tree(fresh = 2, growing = 3, settled = 2)))
+        assertEquals(GrowthClaim.Met, claim(worked, tree(fresh = 4, growing = 4, settled = 1)))
+        assertEquals(GrowthClaim.Grew, claim(worked, tree(fresh = 1, growing = 6, settled = 1)))
         assertEquals(GrowthClaim.Held, claim(worked, worked))
-        assertEquals(GrowthClaim.Unclaimed, claim(worked, worked.copy(settled = 3), rest = true))
+        assertEquals(GrowthClaim.Unclaimed, claim(worked, tree(fresh = 2, growing = 4, settled = 3), rest = true))
         assertNull(growthHeadline(TreeTransition(tree(), tree(queued = 0)), false, 1, 0, 0, 0))
         assertNull(growthHeadline(null, false, 1, 0, 0, 0))
     }
 
     @Test
     fun theHeadlinesPickIsStableWithinARoundAndMovesWithTheStreak() {
-        val move = TreeTransition(tree(met = 1), tree(met = 3))
+        val move = TreeTransition(tree(fresh = 1), tree(fresh = 3))
         val picks = (1..12).map { growthHeadline(move, false, 3, 1, 9, it)!!.pick }
         assertEquals(picks, (1..12).map { growthHeadline(move, false, 3, 1, 9, it)!!.pick })
         assertTrue(picks.all { it >= 0 })
