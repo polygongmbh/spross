@@ -110,7 +110,7 @@ extension DrillRunView {
 
     private var typedControls: some View {
         let language = current.answerLanguage
-        return DrillAnswerControls(text: $input,
+        return TypedAnswerControls(text: $input,
                                    feedback: feedback,
                                    placeholder: answerPlaceholder(language, digits: current.digits),
                                    focus: $answerFocused,

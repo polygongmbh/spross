@@ -50,7 +50,7 @@ extension WordScrambleView: DrillRunning {
     /// kern — the typed drills' rule, and the only thing this drill parameterizes
     /// about the shared controls beyond the voice its correction box speaks in.
     private func typedControls(_ task: WordScrambleTask) -> some View {
-        DrillAnswerControls(text: $input,
+        TypedAnswerControls(text: $input,
                             feedback: feedback,
                             placeholder: answerPlaceholder(task.language),
                             focus: $answerFocused,

@@ -209,7 +209,7 @@ struct SentenceScrambleView: View {
     /// graded answer: a clean one moves on by itself, a miss waits for the way
     /// on and — on the second in a row — offers the way out.
     private var controls: some View {
-        DrillVerdictControls(feedback: feedback, onConfirm: { confirm() },
+        AnswerVerdict(feedback: feedback, onConfirm: { confirm() },
                              onStop: run.offersFinish ? { closeRun() } : nil)
     }
 

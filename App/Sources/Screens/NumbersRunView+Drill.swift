@@ -99,7 +99,7 @@ extension NumbersRunView {
     // counts as a miss and moves on.
     private var controls: some View {
         VStack(spacing: Theme.spacing.md) {
-            DrillAnswerControls(text: $input,
+            TypedAnswerControls(text: $input,
                                 feedback: feedback,
                                 placeholder: answerPlaceholder(language, digits: run.currentReversed),
                                 focus: $answerFocused,

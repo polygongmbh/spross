@@ -19,7 +19,7 @@ extension DrillRunView {
                             font: Theme.typography.headline,
                             pick: choose)
             // Nothing under an unanswered grid: the tiles ARE the action.
-            DrillVerdictControls(feedback: feedback, onConfirm: { confirm() }, onStop: stopOffer)
+            AnswerVerdict(feedback: feedback, onConfirm: { confirm() }, onStop: stopOffer)
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
     }

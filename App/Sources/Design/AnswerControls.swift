@@ -1,15 +1,15 @@
 import SwiftUI
 import SprossKern
 
-/// The written answer and the one action under it, on every drill that asks for
-/// one. Which drill it is changes the placeholder, the keyboard and the voice
+/// What stands under a question that is WRITTEN out, on every drill that asks
+/// one: the field and the one action under it. Which drill it is changes the placeholder, the keyboard and the voice
 /// beside the correction box — parameters, all of them; what the learner is
 /// offered is the same four states, so this is one component and not one per
 /// drill (`docs/design.md` § Review UX rules).
 ///
 /// Nothing here grades or decides: `feedback` is where kern says the answer
 /// stands, and every branch below only draws it.
-struct DrillAnswerControls: View {
+struct TypedAnswerControls: View {
 
     @Binding var text: String
     /// Where kern says the answer stands.
@@ -55,7 +55,7 @@ struct DrillAnswerControls: View {
                 .keyboardShortcut(.defaultAction)
                 .animation(.easeOut(duration: 0.15), value: text.isBlankAnswer)
             case .almost, .correct, .revealed:
-                DrillVerdictControls(feedback: feedback, onConfirm: onConfirm, onStop: onStop)
+                AnswerVerdict(feedback: feedback, onConfirm: onConfirm, onStop: onStop)
             }
         }
         .animation(.easeOut(duration: 0.25), value: feedback)
@@ -64,7 +64,7 @@ struct DrillAnswerControls: View {
 
 /// What stands under a graded answer, written or tapped alike — the way on
 /// where kern armed no beat, and the way out where the run offers one.
-struct DrillVerdictControls: View {
+struct AnswerVerdict: View {
     let feedback: AnswerInputView.Feedback
     let onConfirm: () -> Void
     /// The way out, where the run offers one: on the SECOND miss in a row.
@@ -77,18 +77,18 @@ struct DrillVerdictControls: View {
         case .almost:
             // The amber hold: the box above spells the form out, and this
             // waits for the tap that books it amber.
-            DrillNextButton(action: onConfirm)
+            ConfirmButton(action: onConfirm)
                 .transition(.opacity)
         case .correct:
             // why: the timer never arms under a screen reader, so a clean
             // hit would otherwise have nothing to move on with.
             if AutoAdvance.screenReaderOn {
-                DrillNextButton(action: onConfirm)
+                ConfirmButton(action: onConfirm)
                     .transition(.opacity)
             }
         case .revealed:
             VStack(spacing: Theme.spacing.sm) {
-                DrillNextButton(action: onConfirm)
+                ConfirmButton(action: onConfirm)
                 if let onStop { DrillStopOffer(action: onStop) }
             }
         }
@@ -97,7 +97,7 @@ struct DrillVerdictControls: View {
 
 /// The one button that books whatever the feedback already said — kern decides
 /// what that is, so every branch reaching for it says the same word.
-struct DrillNextButton: View {
+struct ConfirmButton: View {
     let action: () -> Void
 
     var body: some View {

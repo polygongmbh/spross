@@ -118,7 +118,7 @@ extension LetterDrillView {
     /// out under it, as the typed formats do; a clean hit waits only where a
     /// timed screen change would talk over the announcement it just made.
     private var choiceControls: some View {
-        DrillVerdictControls(feedback: feedback, onConfirm: { confirm() },
+        AnswerVerdict(feedback: feedback, onConfirm: { confirm() },
                              onStop: run.offersFinish ? { closeRun() } : nil)
     }
 
@@ -126,7 +126,7 @@ extension LetterDrillView {
 
     /// Every keystroke is offered to kern: a finished answer approves itself.
     private func typedControls(_ task: LetterDrillTask) -> some View {
-        DrillAnswerControls(text: $input,
+        TypedAnswerControls(text: $input,
                             feedback: feedback,
                             placeholder: answerPlaceholder(task.language),
                             focus: $answerFocused,
