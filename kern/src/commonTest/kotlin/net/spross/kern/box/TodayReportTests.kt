@@ -97,7 +97,7 @@ class TodayReportTests {
         // settled bar — that is the day the crossing is booked.
         val later = Box.plusDays(now, 30.0)
         state = Box.answered(state, "w01", Rating.Good, later)
-        assertTrue(BoxEngine.isSettled(state, "w01"))
+        assertTrue(BoxEngine.hasSettled(state, "w01"))
         assertEquals(1, BoxEngine.today(state, later, Box.TZ).settled)
 
         // Already settled — reviewing it again does not cross a second time.
@@ -126,13 +126,13 @@ class TodayReportTests {
     fun theCrossingIsBookedOnTheAnswerThatMakesIt() {
         var state = boxOf(2)
         state = Box.answered(state, "w01", Rating.Good, now)
-        assertFalse(BoxEngine.isSettled(state, "w01"))
+        assertFalse(BoxEngine.hasSettled(state, "w01"))
 
         // A second success, well after the natural interval, pushes stability past the
         // settled bar — that is the day the crossing is booked.
         val later = Box.plusDays(now, 30.0)
         state = Box.answered(state, "w01", Rating.Good, later)
-        assertTrue(BoxEngine.isSettled(state, "w01"))
+        assertTrue(BoxEngine.hasSettled(state, "w01"))
         assertEquals(1, BoxEngine.today(state, later, Box.TZ).settled)
     }
 

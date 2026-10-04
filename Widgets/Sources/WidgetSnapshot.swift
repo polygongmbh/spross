@@ -53,7 +53,7 @@ struct WidgetSnapshot: Codable {
     var chromeLanguage: String
     var entries: [Entry]
     var cards: [CardInfo]
-    /// Active cards that have settled (kern `Statistics.isSettled`); resolved
+    /// Active cards that have settled (kern `Statistics.hasSettled`); resolved
     /// phone-side because, unlike due dates, it does not move with the clock.
     var allSettledCount: Int
     /// Trailing ~70 days, keyed by ISO `yyyy-MM-dd`.

@@ -155,7 +155,7 @@ object Briefings {
         val activeIds = Inventory.active(state).mapTo(mutableSetOf()) { it.cardId }
         val (settledCards, learningCards) = Inventory.joinedCards(state)
             .filter { it.area != OwnWords.AREA && it.id in activeIds }
-            .partition { Statistics.isSettled(state, state.scheduling.getValue(it.id)) }
+            .partition { Statistics.hasSettled(state, state.scheduling.getValue(it.id)) }
         val settled = settledCards
             .groupBy { it.area }
             .map { (area, cards) ->

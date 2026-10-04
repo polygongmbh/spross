@@ -105,7 +105,7 @@ Engine contract: `../README.md`.
   a Sprosse over, and all three zero on a clean plain word, where the draw is bit-for-bit the
   uniform one. The two schedule figures ride in on `DictationCandidate`; kern reads no state.
   Dictation draws only
-  `BoxEngine.growingCardIds` through `dictationGradingCard` — it never books a
+  `BoxEngine.grownCardIds` through `dictationGradingCard` — it never books a
   review (transcription is not recall; drills are stateless).
   Android: `androidLibrary` KMP target
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.1, compileSdk 36 / minSdk 26),

@@ -112,7 +112,7 @@ class SessionRunTests {
         run = answer(run, Rating.Good, now)
 
         assertEquals(CardPhase.Review, run.box.scheduling.getValue("w01").phase)
-        assertFalse(BoxEngine.isSettled(run.box, "w01"))
+        assertFalse(BoxEngine.hasSettled(run.box, "w01"))
         assertEquals(1, run.newCards)
         assertEquals(0, run.settled)
         assertEquals(0, run.reviews)
@@ -123,7 +123,7 @@ class SessionRunTests {
         run = started(run.box, later)
         assertEquals("w01", run.currentCardId)
         run = answer(run, Rating.Easy, later)
-        assertTrue(BoxEngine.isSettled(run.box, "w01"))
+        assertTrue(BoxEngine.hasSettled(run.box, "w01"))
         assertEquals(0, run.newCards)
         assertEquals(1, run.settled)
         assertEquals(0, run.reviews)

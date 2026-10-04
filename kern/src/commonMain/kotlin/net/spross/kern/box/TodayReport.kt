@@ -16,7 +16,7 @@ data class TodayReport(
     val reviews: Int,
     /** Words met for the first time today. */
     val introduced: Int,
-    /** Words that crossed into settled today (see [Statistics.isSettled]). */
+    /** Words that crossed into settled today (see [Statistics.hasSettled]). */
     val settled: Int,
     /** Answers rated Again today. */
     val missed: Int,
@@ -89,7 +89,7 @@ enum class TallyPartKind {
     /** Words met for the first time. */
     Introduced,
 
-    /** Words that crossed the settled bar ([Statistics.isSettled]). */
+    /** Words that crossed the settled bar ([Statistics.hasSettled]). */
     Settled,
 }
 

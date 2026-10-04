@@ -9,12 +9,12 @@ import net.spross.kern.box.Box
 class ListeningPriorityTests {
 
     private fun candidate(
-        growing: Boolean,
+        grown: Boolean,
         suspended: Boolean,
         scheduled: Boolean,
     ): ListeningCandidate = ListeningCandidate(
         card = Box.word(1),
-        growing = growing,
+        grown = grown,
         suspended = suspended,
         scheduled = scheduled,
         queued = false,
@@ -29,11 +29,11 @@ class ListeningPriorityTests {
      */
     @Test
     fun aShakyWordLeadsAGrowingOne() {
-        val shaky = listeningPriority(growing = false, suspended = false)
-        val growing = listeningPriority(growing = true, suspended = false)
+        val shaky = listeningPriority(grown = false, suspended = false)
+        val grown = listeningPriority(grown = true, suspended = false)
         assertEquals(LISTENING_SHAKY_PRIORITY, shaky)
-        assertEquals(LISTENING_GROWING_PRIORITY, growing)
-        assertTrue(shaky > growing)
+        assertEquals(LISTENING_GROWING_PRIORITY, grown)
+        assertTrue(shaky > grown)
     }
 
     /**
@@ -44,8 +44,8 @@ class ListeningPriorityTests {
      */
     @Test
     fun aSuspendedWordComesInButDoesNotLead() {
-        assertEquals(LISTENING_GROWING_PRIORITY, listeningPriority(growing = false, suspended = true))
-        assertEquals(LISTENING_GROWING_PRIORITY, listeningPriority(growing = true, suspended = true))
+        assertEquals(LISTENING_GROWING_PRIORITY, listeningPriority(grown = false, suspended = true))
+        assertEquals(LISTENING_GROWING_PRIORITY, listeningPriority(grown = true, suspended = true))
     }
 
     /**
@@ -57,10 +57,10 @@ class ListeningPriorityTests {
      */
     @Test
     fun theRecallGapIsLongForAHeldWordAndShortForAnUnseenOne() {
-        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(growing = false, suspended = false, scheduled = true)))
-        assertEquals(RECALL_GAP_FRESH_MS, recallGap(candidate(growing = false, suspended = false, scheduled = false)))
+        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(grown = false, suspended = false, scheduled = true)))
+        assertEquals(RECALL_GAP_FRESH_MS, recallGap(candidate(grown = false, suspended = false, scheduled = false)))
         // Suspended is still a word the learner has answered — the gap follows the history,
         // not the box's decision about it.
-        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(growing = true, suspended = true, scheduled = true)))
+        assertEquals(RECALL_GAP_HELD_MS, recallGap(candidate(grown = true, suspended = true, scheduled = true)))
     }
 }

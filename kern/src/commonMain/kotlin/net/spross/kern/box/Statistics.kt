@@ -14,7 +14,7 @@ import net.spross.kern.model.CardScheduling
 data class BoxStatistics(
     /** Cards with an active (scheduled, non-suspended) schedule. */
     val activeCount: Int,
-    /** Active cards that have settled or matured ([Statistics.isSettled]). */
+    /** Active cards that have settled or matured ([Statistics.hasSettled]). */
     val allSettledCount: Int,
     /** Active cards due now. */
     val dueCount: Int,
@@ -38,7 +38,7 @@ data class AreaStatistics(
     val total: Int,
     /** Cards with an active schedule. */
     val active: Int,
-    /** Cards in the area that have settled or matured ([Statistics.isSettled]). */
+    /** Cards in the area that have settled or matured ([Statistics.hasSettled]). */
     val allSettled: Int,
     /** Cards packed but not yet introduced — the progress bar's clay segment. */
     val queued: Int = 0,
@@ -188,7 +188,7 @@ internal object Statistics {
             mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
         return BoxStatistics(
             activeCount = active.size,
-            allSettledCount = active.count { isSettled(state, it) },
+            allSettledCount = active.count { hasSettled(state, it) },
             dueCount = active.count { it.due != null && it.due <= now },
             suspendedCount = Inventory.suspendedCount(state),
             streak = streak(combinedDailyStats, nowEpochMillis, tzId),
@@ -202,7 +202,7 @@ internal object Statistics {
      * Review phase at or above [SETTLED_STABILITY]. A lapsed card is back in Relearning
      * and stops counting until it earns the bar back.
      */
-    fun isSettled(state: BoxState, sched: CardScheduling): Boolean =
+    fun hasSettled(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
             (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY
 
@@ -210,7 +210,7 @@ internal object Statistics {
      * Review phase at or above [BoxConfig.growingStability]. Gates phrase unlock,
      * the drill pools and the in-session support (emoji cue, sound-only prompt).
      */
-    fun isGrowing(state: BoxState, sched: CardScheduling): Boolean =
+    fun hasGrown(state: BoxState, sched: CardScheduling): Boolean =
         sched.phase == CardPhase.Review &&
             (sched.memory?.stability ?: 0.0) >= state.config.growingStability
 
@@ -302,7 +302,7 @@ internal object Statistics {
                 for (card in cards) {
                     if (card.id in activeCards) active += 1
                     val sched = state.scheduling[card.id]
-                    if (sched != null && !sched.suspended && isSettled(state, sched)) settled += 1
+                    if (sched != null && !sched.suspended && hasSettled(state, sched)) settled += 1
                     if (card.kind == CardKind.Phrase) {
                         val open = sched != null || card.components.isEmpty() ||
                             Growth.isPhraseUnlocked(state, card)

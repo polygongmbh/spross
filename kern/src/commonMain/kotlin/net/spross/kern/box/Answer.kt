@@ -47,8 +47,8 @@ internal object Answering {
             // rare — no graduating rating reaches it alone — but the check stays generic
             // rather than assuming introduction can never be the crossing day.
             settledToday = state.settledToday.booking(
-                crossed = !Statistics.isSettled(state, base) &&
-                    Statistics.isSettled(state, sched),
+                crossed = !Statistics.hasSettled(state, base) &&
+                    Statistics.hasSettled(state, sched),
                 day = dayKey(nowEpochMillis, tzId),
             ),
             enqueued = if (introducing) state.enqueued.filter { it != card.id } else state.enqueued,

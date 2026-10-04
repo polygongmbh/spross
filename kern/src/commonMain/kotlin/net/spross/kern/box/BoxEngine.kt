@@ -420,17 +420,17 @@ object BoxEngine {
         tzId: String,
     ): CardGrowth? = cardGrowthOf(state, cardId, nowEpochMillis, tzId)
 
-    /** [Statistics.isSettled] by id; a card with no schedule is not settled. */
-    fun isSettled(state: BoxState, cardId: String): Boolean =
-        state.scheduling[cardId]?.let { Statistics.isSettled(state, it) } ?: false
+    /** [Statistics.hasSettled] by id; a card with no schedule is not settled. */
+    fun hasSettled(state: BoxState, cardId: String): Boolean =
+        state.scheduling[cardId]?.let { Statistics.hasSettled(state, it) } ?: false
 
     /**
-     * Has this card cleared the growing bar? See [Statistics.isGrowing] — gate (a): phrase
+     * Has this card cleared the growing bar? See [Statistics.hasGrown] — gate (a): phrase
      * unlock, the drill pools, and the presentation support a word gets while it is still
      * on its way in. Unknown ids read as false: a card with no schedule has cleared nothing.
      */
-    fun isGrowing(state: BoxState, cardId: String): Boolean =
-        state.scheduling[cardId]?.let { Statistics.isGrowing(state, it) } ?: false
+    fun hasGrown(state: BoxState, cardId: String): Boolean =
+        state.scheduling[cardId]?.let { Statistics.hasGrown(state, it) } ?: false
 
     /**
      * Every growing card id, in seed order — the words the box may hand to a
@@ -440,7 +440,7 @@ object BoxEngine {
      * Which words those are is an ENGINE rule, not a caller's filter: this reads
      * through [Inventory.active] like every other inventory query, so a suspended,
      * non-joining, or never-scheduled card is never offered, and a lapse drops a
-     * card out on its own — [Statistics.isGrowing] wants the Review phase, and
+     * card out on its own — [Statistics.hasGrown] wants the Review phase, and
      * a lapsed card sits in Relearning until it earns the stability back. Restating
      * that predicate app-side would let two platforms drift on what "known" means.
      *
@@ -448,9 +448,9 @@ object BoxEngine {
      * wants a list that is stable under it rather than a second ordering rule.
      * The query is read-only — drills stay stateless and never book a review.
      */
-    fun growingCardIds(state: BoxState): List<String> =
+    fun grownCardIds(state: BoxState): List<String> =
         Inventory.active(state)
-            .filter { Statistics.isGrowing(state, it) }
+            .filter { Statistics.hasGrown(state, it) }
             .map { state.cards.getValue(it.cardId) }
             .sortedWith(Inventory.seedOrder)
             .map { it.id }

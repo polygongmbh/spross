@@ -11,7 +11,7 @@ import net.spross.kern.model.CardKind
  * What the word scramble can ASK of a box: the words whose spelling is worth writing back out
  * of its own letters.
  *
- * The bar is the settled one ([BoxEngine.isSettled]), not the growing one the letter drill
+ * The bar is the settled one ([BoxEngine.hasSettled]), not the growing one the letter drill
  * reads: scrambled letters cue nothing for a word the learner cannot already produce.
  * The sentence scramble reads no bar at all — an ORDER is not a word.
  *
@@ -96,7 +96,7 @@ object WordScrambleAvailability {
         Inventory.active(box)
             .map { box.cards.getValue(it.cardId) }
             .filter { it.kind in wordKinds }
-            .filter { BoxEngine.isSettled(box, it.id) }
+            .filter { BoxEngine.hasSettled(box, it.id) }
             .sortedWith(Inventory.seedOrder)
             .map { Spelling(it, spellings(it)) }
             .filter { it.forms.isNotEmpty() },

@@ -70,7 +70,7 @@ class ListeningPoolTests {
 
         assertTrue(leech.suspended)
         // The pool reads the box's own bar, the one fact the ladder stands on.
-        assertTrue(leech.growing)
+        assertTrue(leech.grown)
     }
 
     /**
@@ -124,7 +124,7 @@ class ListeningPoolTests {
 
     /**
      * RULE: a fully grown word is not in the pool.
-     * WHY: it is what the box already calls done (`Statistics.isSettled`), and an hour of
+     * WHY: it is what the box already calls done (`Statistics.hasSettled`), and an hour of
      * listening is for what is not. Left in, a well-used box — where the grown words outnumber
      * everything else — would spend its evening on the words it trusts most.
      */

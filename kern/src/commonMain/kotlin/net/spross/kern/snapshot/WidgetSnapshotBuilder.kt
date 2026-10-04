@@ -107,7 +107,7 @@ object WidgetSnapshotBuilder {
             chromeLanguage = chromeLanguage(state),
             entries = entries,
             cards = cards,
-            allSettledCount = active.count { Statistics.isSettled(state, it) },
+            allSettledCount = active.count { Statistics.hasSettled(state, it) },
             dailyStats = tailKeys.associateWith { WidgetDayDto(combinedDailyStats.getValue(it)) },
             streak = Statistics.streak(combinedDailyStats, nowEpochMillis, tzId),
             lastReviewDate = combinedDailyStats.entries.filter { it.value > 0 }.maxOfOrNull { it.key },

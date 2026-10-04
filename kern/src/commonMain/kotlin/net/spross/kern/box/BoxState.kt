@@ -27,7 +27,7 @@ data class BoxState(
     val enqueued: List<String> = emptyList(),
     /**
      * Cards that crossed into SETTLED today — the one day count the logs cannot give
-     * back, since [Statistics.isSettled] reads a stability no log entry records.
+     * back, since [Statistics.hasSettled] reads a stability no log entry records.
      * Everything else a day is asked about is counted off the logs ([answerDays]).
      */
     val settledToday: DayTally? = null,

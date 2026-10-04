@@ -157,7 +157,7 @@ object DrillSuggestion {
 
     /** What the box says about which drill would serve it. */
     data class BoxFacts(
-        /** Single words past the display bar ([BoxEngine.isSettled]). */
+        /** Single words past the display bar ([BoxEngine.hasSettled]). */
         val settledWords: Int,
         /** Whether the learned language writes in another script than the known one. */
         val newScript: Boolean,
@@ -165,7 +165,7 @@ object DrillSuggestion {
         companion object {
             fun of(box: BoxState): BoxFacts {
                 val grown = Inventory.active(box).count {
-                    box.cards[it.cardId]?.kind in singleWords && BoxEngine.isSettled(box, it.cardId)
+                    box.cards[it.cardId]?.kind in singleWords && BoxEngine.hasSettled(box, it.cardId)
                 }
                 val pairs = Inventory.joinedCards(box).asSequence()
                     .mapNotNull { card -> script(card.target.text)?.let { it to script(card.source.text) } }

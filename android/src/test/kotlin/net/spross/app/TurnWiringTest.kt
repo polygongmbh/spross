@@ -65,7 +65,7 @@ class TurnWiringTest {
         card: Card,
         role: PresentationRole = PresentationRole.Produce,
         prompt: ProducePrompt = ProducePrompt.Source,
-        growing: Boolean = false,
+        grown: Boolean = false,
         firstExposure: Boolean = false,
         platform: Platform = Platform(),
     ): Pair<TurnFlow, Platform> {
@@ -87,7 +87,7 @@ class TurnWiringTest {
                 else -> card.source.text
             },
             firstExposure = firstExposure,
-            growing = growing,
+            grown = grown,
             nowEpochMillis = T0,
         )
         var now = T0

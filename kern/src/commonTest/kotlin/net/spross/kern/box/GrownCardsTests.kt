@@ -6,10 +6,10 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardPhase
 
 /**
- * `BoxEngine.growingCardIds` — the drill's word supply: what the shelf holds,
+ * `BoxEngine.grownCardIds` — the drill's word supply: what the shelf holds,
  * what falls off it, and the order it is handed over in.
  */
-class GrowingCardsTests {
+class GrownCardsTests {
     private val now = Box.day1
 
     /** A growing schedule at the default `growingStability` of 6.0 days. */
@@ -27,9 +27,9 @@ class GrowingCardsTests {
 
     @Test
     fun anEmptyBoxHandsOverNothing() {
-        assertEquals(emptyList(), BoxEngine.growingCardIds(Box.state(emptyList())))
+        assertEquals(emptyList(), BoxEngine.grownCardIds(Box.state(emptyList())))
         // Cards without a schedule have not been seen at all, let alone growing.
-        assertEquals(emptyList(), BoxEngine.growingCardIds(Box.state((1..3).map { Box.word(it) })))
+        assertEquals(emptyList(), BoxEngine.grownCardIds(Box.state((1..3).map { Box.word(it) })))
     }
 
     @Test
@@ -56,7 +56,7 @@ class GrowingCardsTests {
         )
         state = Box.inject(state, growing("w05", stability = 40.0))
 
-        assertEquals(listOf("w01", "w05"), BoxEngine.growingCardIds(state))
+        assertEquals(listOf("w01", "w05"), BoxEngine.grownCardIds(state))
     }
 
     @Test
@@ -67,10 +67,10 @@ class GrowingCardsTests {
         // Inert schedule from another join — kept in the map, invisible to inventory reads.
         state = Box.inject(state, growing("w99"))
 
-        assertEquals(listOf("w01"), BoxEngine.growingCardIds(state))
+        assertEquals(listOf("w01"), BoxEngine.grownCardIds(state))
         // Reviving the suspended card puts it straight back on the shelf.
         val revived = BoxEngine.setSuspended(state, "w02", suspended = false, Box.day1)
-        assertEquals(listOf("w01", "w02"), BoxEngine.growingCardIds(revived))
+        assertEquals(listOf("w01", "w02"), BoxEngine.grownCardIds(revived))
     }
 
     @Test
@@ -81,6 +81,6 @@ class GrowingCardsTests {
         for (id in listOf("mike", "bravo", "alpha", "zulu")) state = Box.inject(state, growing(id))
 
         // Catalog position decides; the id only breaks a seedIndex tie, so the order is total.
-        assertEquals(listOf("zulu", "alpha", "bravo", "mike"), BoxEngine.growingCardIds(state))
+        assertEquals(listOf("zulu", "alpha", "bravo", "mike"), BoxEngine.grownCardIds(state))
     }
 }

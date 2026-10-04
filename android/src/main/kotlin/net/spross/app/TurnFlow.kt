@@ -219,7 +219,7 @@ fun AppModel.newTurn(
                 else -> card.source.text
             },
             firstExposure = ui.firstExposure,
-            growing = ui.growing,
+            grown = ui.grown,
             nowEpochMillis = System.currentTimeMillis(),
         ),
         nowMillis = { System.currentTimeMillis() },

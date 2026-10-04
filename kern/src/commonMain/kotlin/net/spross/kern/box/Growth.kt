@@ -20,10 +20,10 @@ internal object Growth {
 
     // Phrase unlock reads component schedules RAW BY CARD ID — join- and
     // source-independent, so a source switch can never re-lock a phrase.
-    // isGrowing: a phrase waits for its components to have genuinely landed.
+    // hasGrown: a phrase waits for its components to have genuinely landed.
     fun isComponentStable(state: BoxState, componentId: String): Boolean {
         val sched = state.scheduling[componentId] ?: return false
-        return Statistics.isGrowing(state, sched)
+        return Statistics.hasGrown(state, sched)
     }
 
     /** Zero-component phrases never take the fast path (they follow seed order). */

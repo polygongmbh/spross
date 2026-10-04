@@ -55,7 +55,7 @@ extension AppModel {
                                               recordingURL: audioURL(pronunciation.recordingPath))
         return SprossKern.producePrompt(cardId: card.id,
                                         reviewCount: Int32(scheduling(for: card.id)?.reviewCount ?? 0),
-                                        growing: isGrowing(card.id),
+                                        grown: hasGrown(card.id),
                                         audible: audible)
     }
 

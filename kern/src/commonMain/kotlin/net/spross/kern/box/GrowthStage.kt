@@ -4,7 +4,7 @@ import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
 
 /**
- * Days of stability at which a card counts as settled ([Statistics.isSettled]).
+ * Days of stability at which a card counts as settled ([Statistics.hasSettled]).
  * Gates no support or unlock: it backs the counts, the badge, the area-complete mark,
  * the word scramble's pool and what [Briefing] hands over as known.
  *
@@ -43,7 +43,7 @@ enum class GrowthStage {
      */
     Fresh,
 
-    /** Growing: see [Statistics.isGrowing] — the "has this word landed" bar (gate (a)). */
+    /** Growing: see [Statistics.hasGrown] — the "has this word landed" bar (gate (a)). */
     Growing,
 
     /** Settled: in Review at or above [SETTLED_STABILITY]. */
@@ -90,7 +90,7 @@ internal fun stageOf(state: BoxState, sched: CardScheduling): GrowthStage = when
     sched.phase == CardPhase.Relearning -> GrowthStage.Relearning
     sched.phase != CardPhase.Review -> GrowthStage.Fresh
     (sched.memory?.stability ?: 0.0) >= SETTLED_STABILITY -> GrowthStage.Settled
-    Statistics.isGrowing(state, sched) -> GrowthStage.Growing
+    Statistics.hasGrown(state, sched) -> GrowthStage.Growing
     sched.lapses > 0 -> GrowthStage.Relearning
     else -> GrowthStage.Fresh
 }

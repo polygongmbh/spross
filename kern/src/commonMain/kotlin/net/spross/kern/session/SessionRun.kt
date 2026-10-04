@@ -198,14 +198,14 @@ object SessionRun {
     /** Apply one answer — every answer event is an FSRS review — then advance. */
     private fun answer(state: SessionRunState, rating: Rating, nowEpochMillis: Long, tzId: String): SessionReduction {
         val cardId = state.currentCardId ?: return unchanged(state)
-        val wasSettled = BoxEngine.isSettled(state.box, cardId)
+        val wasSettled = BoxEngine.hasSettled(state.box, cardId)
         val box = BoxEngine.answer(state.box, cardId, rating, nowEpochMillis, tzId)
         val next = tallied(
             state.copy(box = box, ratings = state.ratings + rating,
                        answeredIds = state.answeredIds + cardId, answered = state.answered + 1),
             firstAnswer = box.scheduling[cardId]?.reviewCount == 1,
             wasSettled = wasSettled,
-            isSettled = BoxEngine.isSettled(box, cardId),
+            hasSettled = BoxEngine.hasSettled(box, cardId),
         )
         return advance(next.copy(queue = next.queue.drop(1)), listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
     }
@@ -245,10 +245,10 @@ object SessionRun {
         state: SessionRunState,
         firstAnswer: Boolean,
         wasSettled: Boolean,
-        isSettled: Boolean,
+        hasSettled: Boolean,
     ): SessionRunState = when {
         firstAnswer -> state.copy(newCards = state.newCards + 1)
-        !wasSettled && isSettled -> state.copy(settled = state.settled + 1)
+        !wasSettled && hasSettled -> state.copy(settled = state.settled + 1)
         else -> state.copy(reviews = state.reviews + 1)
     }
 
