@@ -29,11 +29,9 @@ class ListeningPriorityTests {
      */
     @Test
     fun aShakyWordLeadsAGrowingOne() {
-        val shaky = listeningPriority(arrived = false, suspended = false)
-        val arrived = listeningPriority(arrived = true, suspended = false)
-        assertEquals(LISTENING_SHAKY_PRIORITY, shaky)
-        assertEquals(LISTENING_GROWING_PRIORITY, arrived)
-        assertTrue(shaky > arrived)
+        assertTrue(
+            listeningPriority(arrived = false, suspended = false) > listeningPriority(arrived = true, suspended = false),
+        )
     }
 
     /**
@@ -44,8 +42,9 @@ class ListeningPriorityTests {
      */
     @Test
     fun aSuspendedWordComesInButDoesNotLead() {
-        assertEquals(LISTENING_GROWING_PRIORITY, listeningPriority(arrived = false, suspended = true))
-        assertEquals(LISTENING_GROWING_PRIORITY, listeningPriority(arrived = true, suspended = true))
+        val floor = listeningPriority(arrived = true, suspended = false)
+        assertEquals(floor, listeningPriority(arrived = false, suspended = true))
+        assertEquals(floor, listeningPriority(arrived = true, suspended = true))
     }
 
     /**

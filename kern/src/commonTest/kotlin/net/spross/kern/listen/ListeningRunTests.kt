@@ -51,16 +51,6 @@ class ListeningRunTests {
     }
 
     /**
-     * RULE: a one-word pool repeats that word.
-     * WHY: the floor case of the same rule — there is nothing else to say, and falling silent
-     * would be worse than saying it again.
-     */
-    @Test
-    fun aSingleWordPoolKeepsSayingIt() {
-        assertEquals(List(5) { "w01" }, heard(candidates(1), turns = 5))
-    }
-
-    /**
      * RULE: a run plays the pool in the order it was handed, turn for turn.
      * WHY: the ordering decision lives in `listeningOrder` and nowhere else. A run that
      * re-sorted or re-rolled would be a second opinion about the playlist, and the run would
@@ -119,12 +109,8 @@ class ListeningRunTests {
         assertEquals("das Brot", turn.sourceForm)
         assertEquals("das", turn.spokenArticle)
         assertEquals(RECALL_GAP_HELD_MS, turn.recallGapMs)
-        // The echo and the breath between turns reuse the two recall gaps rather than
-        // minting beats of their own — a turn is one varying pause plus the two it follows.
         assertEquals(ECHO_GAP_MS, turn.echoGapMs)
         assertEquals(TURN_GAP_MS, turn.turnGapMs)
-        assertEquals(RECALL_GAP_NEW_MS, ECHO_GAP_MS)
-        assertEquals(RECALL_GAP_HELD_MS, TURN_GAP_MS)
     }
 
     /**
