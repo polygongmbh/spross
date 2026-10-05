@@ -85,6 +85,8 @@ enum Theme {
     struct Typography {
         let hero = Font.system(.largeTitle, design: .rounded, weight: .bold)
         let title = Font.system(.title2, design: .rounded, weight: .bold)
+        /// The line that carries a screen's figures right under its hero title.
+        let lead = Font.system(.title3, design: .rounded)
         let headline = Font.system(.headline, design: .rounded, weight: .semibold)
         let body = Font.system(.body, design: .rounded)
         let subheadline = Font.system(.subheadline, design: .rounded)

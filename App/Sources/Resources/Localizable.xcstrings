@@ -7307,23 +7307,6 @@
         }
       }
     },
-    "trainer.pause.newSprosse" : {
-      "comment" : "A drill pause: the run cleared a Sprosse no earlier run had.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neue Sprosse geschafft!"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New Sprosse cleared!"
-          }
-        }
-      }
-    },
     "trainer.pause.sprossen %@ %@" : {
       "comment" : "A drill pause: the Sprosse the run opened on, and the highest it reached.",
       "localizations" : {
@@ -7354,23 +7337,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A lot is slipping right now — stopping here is fine; it sits better with a fresh head."
-          }
-        }
-      }
-    },
-    "trainer.pause.tally %@ %@" : {
-      "comment" : "A drill pause's clean answers out of those judged.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ von %@ richtig"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ of %2$@ right"
           }
         }
       }

@@ -78,21 +78,12 @@ struct SessionSummaryView: View {
         SummaryScaffold(title: Text(showsTree ? headlineKey : "session.done.title"),
                         tally: tallyText,
                         hint: restSuggested ? Text("session.done.restHint") : nil,
+                        // why: the area is LABELED under its tree rather than named in the
+                        // title — the area did not grow, what the learner can say did.
+                        heroLabel: showsTree ? Text(verbatim: grownAreaLabel) : nil,
                         onDone: onDone, onTalk: onTalk,
                         onPractice: canPracticeMore ? onPractice : nil) { ceiling in
-            if showsTree {
-                // why: the area is LABELED under its tree rather than named in the
-                // title — the area did not grow, what the learner can say did.
-                VStack(spacing: Theme.spacing.sm) {
-                    grownAreaHero(ceiling: ceiling)
-                    Text(verbatim: grownAreaLabel)
-                        .font(.system(.headline, design: .rounded))
-                        .foregroundStyle(Theme.colors.textSecondary)
-                        .multilineTextAlignment(.center)
-                }
-            } else {
-                burstHero
-            }
+            if showsTree { grownAreaHero(ceiling: ceiling) } else { burstHero }
         }
         .overlay(ConfettiView(run: celebration).ignoresSafeArea())
         .contentShape(Rectangle())

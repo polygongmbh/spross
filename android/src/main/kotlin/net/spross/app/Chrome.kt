@@ -163,9 +163,7 @@ interface Chrome {
     val trainerPauseTitleImproved: String
     val trainerPauseTitleStruggling: String
     val trainerPauseStrugglingHint: String
-    val trainerPauseTally: String              // %s %s
     val trainerPauseSprossen: String           // %s %s
-    val trainerPauseNewSprosse: String
     val a11yVerdictCorrect: String
     val a11yVerdictAlmost: String
     val a11yVerdictWrong: String

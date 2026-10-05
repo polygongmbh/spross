@@ -207,9 +207,8 @@ Nothing wears a prefix one scope wider than what it serves.
   answered, best answer streak, whether the record fell --
   to the page that started them;
   the page wears them as one tile above the picks and scrolls up to meet it.
-  The scrambles have no page to hand them to, so their pause is where a run's figures are seen:
-  answered, right of judged, best answer streak, the Sprosse opened on and reached,
-  and a note only for a Sprosse no earlier run had cleared.
+  The pause counts what was answered and names only what the stretch reached:
+  the climb from the Sprosse it opened on, and a record beaten.
 - **Only the numbers, atlas and calendar ladders keep a RECORD of their own** --
   the longest clean answer streak and the most answers one run took.
   The letter drill and the two scrambles keep none,

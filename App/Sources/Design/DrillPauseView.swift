@@ -16,39 +16,22 @@ struct DrillPauseView: View {
     var body: some View {
         SummaryScaffold(title: Text(title),
                         tally: Text("trainer.result.tasksDone \(Int(run.done))"),
+                        milestone: milestone,
                         hint: run.pause == DrillPauseReason.struggling
                             ? Text("trainer.pause.struggling.hint") : nil,
                         onDone: onDone,
-                        onPractice: onKeepPracticing,
-                        hero: { _ in SummaryGlyph(glyph: glyph) },
-                        details: { figures })
+                        onPractice: onKeepPracticing) { _ in SummaryGlyph(glyph: glyph) }
     }
 
-    /// What the run has done beyond its count: how many landed clean, the best
-    /// answer streak, the climb — and a note only where something new was reached.
-    private var figures: some View {
-        VStack(spacing: Theme.spacing.xs) {
-            Text("trainer.pause.tally \(Int(run.tally.clean).formatted()) \(Int(run.tally.judged).formatted())")
-            Text("trainer.result.bestStreak \(Int(run.bestAnswerStreak).formatted())")
-            if let climb { climb }
-            if pacing.newSprossen > 0 {
-                Text("trainer.pause.newSprosse").foregroundStyle(Theme.colors.accent)
-            }
-            if pacing.newRecord {
-                Text("trainer.result.newRecord").foregroundStyle(Theme.colors.accent)
-            }
+    /// What the stretch reached, only where it reached something: the climb
+    /// from the Sprosse the run opened on, and a record beaten.
+    private var milestone: Text? {
+        var parts: [Text] = []
+        if let opened = pacing.openedOn?.intValue, let reached = pacing.reached?.intValue, reached > opened {
+            parts.append(Text("trainer.pause.sprossen \(opened.formatted()) \(reached.formatted())"))
         }
-        .accessibilityElement(children: .combine)
-    }
-
-    /// The Sprosse the run opened on and the highest it reached — one Sprosse
-    /// where it has not moved, nothing where it climbs several ladders at once.
-    private var climb: Text? {
-        guard let opened = pacing.openedOn?.intValue, let reached = pacing.reached?.intValue else { return nil }
-        if reached > opened {
-            return Text("trainer.pause.sprossen \(opened.formatted()) \(reached.formatted())")
-        }
-        return Text("trainer.sprosse \(reached.formatted())")
+        if pacing.newRecord { parts.append(Text("trainer.result.newRecord")) }
+        return parts.joined()
     }
 
     private var title: LocalizedStringKey {

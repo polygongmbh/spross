@@ -157,9 +157,7 @@ internal object ChromeDe : Chrome {
     override val trainerPauseTitleStruggling = "Gerade zäh"
     override val trainerPauseStrugglingHint = "Gerade geht viel daneben — hier aufzuhören " +
         "ist völlig in Ordnung, mit frischem Kopf sitzt es besser."
-    override val trainerPauseTally = "%s von %s richtig"
     override val trainerPauseSprossen = "Sprosse %s → %s"
-    override val trainerPauseNewSprosse = "Neue Sprosse geschafft!"
     override val a11yVerdictCorrect = "Richtig"
     override val a11yVerdictAlmost = "Fast richtig"
     override val a11yVerdictWrong = "Falsch"

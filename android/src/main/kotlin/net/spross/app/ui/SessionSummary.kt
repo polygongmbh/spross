@@ -1,17 +1,11 @@
 package net.spross.app.ui
 
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
@@ -71,21 +65,15 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         // a screen that celebrates and is contradicted two lines down teaches the learner
         // not to believe it.
         hint = chrome.sessionDoneRestHint.takeIf { summary.restSuggested },
+        // why: the area is LABELED under its tree rather than named in the claim —
+        // what grew is what the learner can say, never the area itself.
+        heroLabel = if (grown != null && area != null) "${model.areaEmoji(area)} ${model.areaTitle(area)}" else null,
     ) { treeCeiling ->
         // why: the tree takes the hero slot when the round grew an area — a party popper
         // is the same picture whatever the learner did, and two celebratory graphics on
         // one screen is one too many.
         if (grown != null && area != null) {
             GrowingTree(grown, model.garden, AreaTree.heroHeight(grown.after, treeCeiling.value.toDouble()).dp)
-            // why: the area is LABELED under its tree rather than named in the claim —
-            // what grew is what the learner can say, never the area itself.
-            Spacer(Modifier.height(8.dp))
-            Text(
-                "${model.areaEmoji(area)} ${model.areaTitle(area)}",
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center,
-            )
         } else {
             SummaryGlyph("🎉")
         }

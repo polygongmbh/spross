@@ -5,6 +5,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 ## Unreleased
 
 - A drill run's score line is larger and shows just the Sprosse and your streak, leaving the record to the pause and the result.
+- A drill's pause now shows just how many you answered and, larger, what you reached: a higher Sprosse or a new record.
 
 ## 8.3.1 — 2026-10-05
 
