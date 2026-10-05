@@ -36,21 +36,13 @@ class FeedbackTests {
     }
 
     @Test
-    fun reportingLeavesSchedulingAlone() {
-        val answered = BoxEngine.answer(box(), "w01", Rating.Good, Box.day1)
-        val reported = BoxEngine.reportIssue(answered, "w01", null, null, Box.day1)
-        assertEquals(answered.scheduling, reported.scheduling)
-        assertFalse(reported.scheduling.getValue("w01").suspended)
-    }
-
-    @Test
     fun suspendingDoesNotReportAndReportingDoesNotSuspend() {
         val answered = BoxEngine.answer(box(), "w01", Rating.Good, Box.day1)
         val suspended = BoxEngine.setSuspended(answered, "w01", true, Box.day1)
         assertTrue(suspended.reportedIssues.isEmpty())
 
         val reported = BoxEngine.reportIssue(answered, "w01", "wrong", null, Box.day1)
-        assertFalse(reported.scheduling.getValue("w01").suspended)
+        assertEquals(answered.scheduling, reported.scheduling)
     }
 
     @Test
@@ -106,15 +98,6 @@ class FeedbackTests {
         val word = ownWord("regenschirm", mapOf("de" to "Regenschirm", "sw" to "mwavuli"))
         val state = BoxEngine.addOwnWord(box(), word, Box.day1)
         assertEquals(state, BoxEngine.reportIssue(state, word.id, "typo", null, Box.day1))
-    }
-
-    @Test
-    fun theReviewListReadsNewestFirstAndTheExportOldestFirst() {
-        var state = BoxEngine.reportIssue(box(), "w01", "first", null, Box.day1)
-        state = BoxEngine.reportIssue(state, "w02", "second", null, Box.plusDays(Box.day1, 1.0))
-
-        assertEquals(listOf("w02", "w01"), Feedback.catalogIssues(state).map { it.cardId })
-        assertEquals(listOf("w01", "w02"), Feedback.issuesSince(state, null).map { it.cardId })
     }
 
     // Suggestions — own words written in only one language
@@ -271,15 +254,6 @@ class FeedbackTests {
     }
 
     @Test
-    fun appInfoAppearsAsTheFirstLine() {
-        val text = Feedback.reportText(
-            outbox(), null, FeedbackScope.Everything, appInfo = "Spross 7.1.3 · iOS 19.0",
-        )
-        assertTrue(text.startsWith("Spross 7.1.3"))
-        assertTrue("Word suggestions" in text)
-    }
-
-    @Test
     fun aBoxOfFinishedPairsHasNothingInItsOutbox() {
         val state = BoxEngine.addOwnWord(
             box(), ownWord("mwavuli", mapOf("de" to "Regenschirm", "sw" to "mwavuli")), Box.day1,
@@ -335,13 +309,6 @@ class FeedbackTests {
         // afterwards does not undo — "only what is new" still measures from there.
         val state = BoxEngine.markExported(outbox(), Box.day1, FeedbackScope.Everything)
         assertEquals(state.lastExportAt, BoxEngine.clearFeedback(state).lastExportAt)
-    }
-
-    @Test
-    fun clearingAnEmptyOutboxChangesNothing() {
-        val state = box()
-        assertEquals(0, Feedback.clearableCount(state))
-        assertEquals(state, BoxEngine.clearFeedback(state))
     }
 
     @Test

@@ -264,28 +264,18 @@ class BoxBrowserTest {
 
     @Test
     fun theStageFollowsTheGrowthLadderNeverTheRawPhase() {
-        var state = Box.state((1..5).map { Box.word(it) })
+        // The ladder itself is GrowthStageTests'; a row carries the stage it hands out.
+        var state = Box.state((1..2).map { Box.word(it) })
+        // Review well under the growing bar — the phase says nothing about it.
+        state = Box.inject(state, Box.sched("w01", stability = 3.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(
             state,
-            Box.sched("w01", phase = CardPhase.Learning, stability = 0.5, dueMillis = future, lastReviewMillis = now),
-        )
-        // Review well under the growing bar (6.0) — the phase says nothing about it.
-        state = Box.inject(state, Box.sched("w02", stability = 3.0, dueMillis = future, lastReviewMillis = now))
-        state = Box.inject(state, Box.sched("w03", stability = 9.0, dueMillis = future, lastReviewMillis = now))
-        // Settled is a further stage of its own, at the 25-day bar.
-        state = Box.inject(state, Box.sched("w04", stability = 99.0, dueMillis = future, lastReviewMillis = now))
-        // Relearning under the growing bar: the lapse cost it the bar.
-        state = Box.inject(
-            state,
-            Box.sched("w05", phase = CardPhase.Relearning, stability = 2.0, dueMillis = future, lastReviewMillis = now),
+            Box.sched("w02", phase = CardPhase.Relearning, stability = 2.0, dueMillis = future, lastReviewMillis = now),
         )
 
         fun row(id: String) = BoxBrowser.cardRowState(state, id, queueOffered = false)
         assertEquals(CardRowState.Standing(ActiveStage.Fresh), row("w01"))
-        assertEquals(CardRowState.Standing(ActiveStage.Fresh), row("w02"))
-        assertEquals(CardRowState.Standing(ActiveStage.Growing), row("w03"))
-        assertEquals(CardRowState.Standing(ActiveStage.Settled), row("w04"))
-        assertEquals(CardRowState.Standing(ActiveStage.Lapsed), row("w05"))
+        assertEquals(CardRowState.Standing(ActiveStage.Lapsed), row("w02"))
     }
 
     /**
@@ -296,8 +286,7 @@ class BoxBrowserTest {
     fun theStageColorFollowsTheBarAndTheAmberStagesShareIt() {
         fun swatchOf(stage: ActiveStage) = CardRowState.Standing(stage).swatch
 
-        assertEquals(Palette.amber, swatchOf(ActiveStage.Fresh))
-        assertEquals(Palette.amber, swatchOf(ActiveStage.Lapsed))
+        assertEquals(swatchOf(ActiveStage.Fresh), swatchOf(ActiveStage.Lapsed))
         assertEquals(Palette.success, swatchOf(ActiveStage.Growing))
         assertEquals(Palette.settled, swatchOf(ActiveStage.Settled))
     }

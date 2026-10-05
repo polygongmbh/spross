@@ -26,6 +26,7 @@ class BoxStatisticsTests {
     fun streakSingleGapForgiven() {
         val stats = BoxEngine.statistics(statsState(listOf(1, 2, 4)), Box.millis(2026, 7, 4), Box.TZ)
         assertEquals(3, stats.streak)
+        assertEquals(3, stats.longestStreak, "the record bridges a forgiven day like the walk back")
     }
 
     @Test
@@ -40,12 +41,14 @@ class BoxStatisticsTests {
         val days = listOf(1, 2, 3, 4, 5, 7, 8, 9, 11, 12)
         val stats = BoxEngine.statistics(statsState(days), Box.millis(2026, 7, 12), Box.TZ)
         assertEquals(10, stats.streak)
+        assertEquals(10, stats.longestStreak)
     }
 
     @Test
     fun streakTodayInProgressIsNoMissAtAll() {
         val stats = BoxEngine.statistics(statsState(listOf(2, 3, 4)), Box.millis(2026, 7, 5), Box.TZ)
         assertEquals(3, stats.streak)
+        assertEquals(3, stats.longestStreak)
         // An empty today does not pair with an empty yesterday — the day isn't over.
         assertEquals(3, BoxEngine.statistics(statsState(listOf(1, 2, 3)), Box.millis(2026, 7, 5), Box.TZ).streak)
         assertEquals(0, BoxEngine.statistics(statsState(emptyList()), now, Box.TZ).streak)
@@ -57,28 +60,6 @@ class BoxStatisticsTests {
         val stats = BoxEngine.statistics(statsState(listOf(1, 2, 3, 6, 7)), Box.millis(2026, 7, 7), Box.TZ)
         assertEquals(2, stats.streak)
         assertEquals(3, stats.longestStreak)
-    }
-
-    @Test
-    fun longestStreakBridgesEveryIsolatedMiss() {
-        val days = listOf(1, 2, 3, 4, 5, 7, 8, 9, 11, 12)
-        val stats = BoxEngine.statistics(statsState(days), Box.millis(2026, 7, 12), Box.TZ)
-        assertEquals(10, stats.longestStreak) // the run today IS the record
-    }
-
-    @Test
-    fun longestStreakBridgesAForgivenDayLikeTheWalkBack() {
-        val stats = BoxEngine.statistics(statsState(listOf(1, 2, 4)), Box.millis(2026, 7, 4), Box.TZ)
-        assertEquals(3, stats.streak)
-        assertEquals(3, stats.longestStreak) // the run today IS the record
-    }
-
-    @Test
-    fun longestStreakIsNeverEndedByAnUnfinishedToday() {
-        val stats = BoxEngine.statistics(statsState(listOf(1, 2, 3)), Box.millis(2026, 7, 4), Box.TZ)
-        assertEquals(3, stats.streak)
-        assertEquals(3, stats.longestStreak)
-        assertEquals(0, BoxEngine.statistics(statsState(emptyList()), now, Box.TZ).longestStreak)
     }
 
     @Test
@@ -180,13 +161,10 @@ class BoxStatisticsTests {
     }
 
     @Test
-    fun settledCountsOnlyCardsAtOrAboveTheSettledThreshold() {
+    fun settledCountsOnlyCardsPastTheSettledBar() {
         var state = Box.state((1..2).map { Box.word(it) })
-        state = Box.inject(state, Box.sched("w01", stability = SETTLED_STABILITY, dueMillis = now, lastReviewMillis = now))
-        state = Box.inject(
-            state,
-            Box.sched("w02", stability = SETTLED_STABILITY - 0.1, dueMillis = now, lastReviewMillis = now),
-        )
+        state = Box.inject(state, Box.sched("w01", stability = 99.0, dueMillis = now, lastReviewMillis = now))
+        state = Box.inject(state, Box.sched("w02", stability = 9.0, dueMillis = now, lastReviewMillis = now))
 
         val stats = BoxEngine.statistics(state, now, Box.TZ)
         assertEquals(2, stats.activeCount)

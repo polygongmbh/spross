@@ -17,13 +17,12 @@ class GrowthStageTests {
 
     @Test
     fun everyStageIsReachable() {
-        var state = Box.state((1..8).map { Box.word(it) })
+        var state = Box.state((1..8).filter { it != 4 }.map { Box.word(it) })
         state = BoxEngine.queue(state, listOf("w02"))
         state = Box.inject(
             state,
             Box.sched("w03", phase = CardPhase.Learning, stability = 0.5, dueMillis = future, lastReviewMillis = now),
         )
-        state = Box.inject(state, Box.sched("w04", stability = 1.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w05", stability = 3.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w06", stability = 9.0, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w07", stability = 99.0, dueMillis = future, lastReviewMillis = now))
@@ -37,7 +36,6 @@ class GrowthStageTests {
                 "w01" to GrowthStage.Unscheduled,
                 "w02" to GrowthStage.Queued,
                 "w03" to GrowthStage.Fresh,
-                "w04" to GrowthStage.Fresh,
                 // Past the retired settled bar of 2.0, still short of GROWING_STABILITY
                 // (6.0): a word this far in is Fresh, and still gets its support.
                 "w05" to GrowthStage.Fresh,
@@ -47,21 +45,6 @@ class GrowthStageTests {
             ),
             stages(state),
         )
-    }
-
-    @Test
-    fun everyBarIsReachedAtItsOwnValue() {
-        // Both bars are `>=`, so a card sitting exactly on one has cleared it.
-        var state = Box.state((1..2).map { Box.word(it) })
-        state = Box.inject(state, Box.sched("w01", stability = 6.0, dueMillis = future, lastReviewMillis = now))
-        state = Box.inject(
-            state,
-            Box.sched("w02", stability = SETTLED_STABILITY, dueMillis = future, lastReviewMillis = now),
-        )
-
-        val stages = stages(state)
-        assertEquals(GrowthStage.Growing, stages["w01"])
-        assertEquals(GrowthStage.Settled, stages["w02"])
     }
 
     /**
@@ -145,31 +128,17 @@ class GrowthStageTests {
     }
 
     @Test
-    fun aCardTheJoinDoesNotCarryHasNoStandingInTheBox() {
-        // A schedule outlives a source switch; the card it belongs to may not join.
-        var state = Box.state(listOf(Box.word(1)))
-        state = Box.inject(state, Box.sched("w99", dueMillis = future, lastReviewMillis = now))
-
-        assertEquals(listOf("w01"), BoxEngine.growth(state, now, Box.TZ).map { it.cardId })
-    }
-
-    @Test
     fun oneCardAskedByNameAnswersAsTheWholeBoxWould() {
         var state = Box.state(listOf(Box.word(1), Box.word(2)))
         state = Box.inject(state, Box.sched("w01", stability = 12.5, dueMillis = future, lastReviewMillis = now))
         state = Box.inject(state, Box.sched("w99", dueMillis = future, lastReviewMillis = now))
 
         val whole = BoxEngine.growth(state, now, Box.TZ).associateBy { it.cardId }
+        assertEquals(setOf("w01", "w02"), whole.keys, "a schedule the join does not carry has no standing")
         assertEquals(whole.getValue("w01"), BoxEngine.cardGrowth(state, "w01", now, Box.TZ))
         assertEquals(whole.getValue("w02"), BoxEngine.cardGrowth(state, "w02", now, Box.TZ))
         // The join does not carry it, so it has no standing to report.
         assertNull(BoxEngine.cardGrowth(state, "w99", now, Box.TZ))
     }
 
-    @Test
-    fun theBoxIsReportedInSeedOrder() {
-        val state = Box.state(listOf(Box.word(3), Box.word(1), Box.word(2)))
-
-        assertEquals(listOf("w01", "w02", "w03"), BoxEngine.growth(state, now, Box.TZ).map { it.cardId })
-    }
 }

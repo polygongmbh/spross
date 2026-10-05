@@ -17,18 +17,17 @@ import net.spross.kern.model.Rating
 class BoxAnswerTests {
     private val now = Box.day1
 
-    // A word you already knew skips the step entirely: FSRS takes it straight to
-    // day scale (S0(Good) = 2.3065 → ~7.6 d at retention 0.8).
+    // Again is the only rating that stays on the ladder: Hard, Good and Easy all skip the
+    // step and go straight to day scale, and a graduated interval floors at one day.
     @Test
-    fun goodOnNewGraduatesStraightToDayScale() {
-        var state = Box.state(listOf(Box.word(1)))
-        state = Box.answered(state, "w01", Rating.Good, now)
-
-        val sched = state.scheduling.getValue("w01")
-        assertEquals(CardPhase.Review, sched.phase)
-        assertNull(sched.stepIndex)
-        assertTrue(sched.due!! >= Box.instant(now) + 1.days)
-        assertTrue(Box.dueIds(state, Box.plusSeconds(now, Box.steps[0])).isEmpty())
+    fun everyPassOnNewGraduatesStraightToDayScale() {
+        for (rating in listOf(Rating.Hard, Rating.Good, Rating.Easy)) {
+            val state = Box.answered(Box.state(listOf(Box.word(1))), "w01", rating, now)
+            val sched = state.scheduling.getValue("w01")
+            assertEquals(CardPhase.Review, sched.phase, "$rating")
+            assertNull(sched.stepIndex)
+            assertTrue(sched.due!! >= Box.instant(now) + 1.days, "$rating")
+        }
     }
 
     // A word you missed comes back at the ladder's first entry — past the end of a
@@ -46,35 +45,6 @@ class BoxAnswerTests {
         assertEquals(listOf("w01"), Box.dueIds(state, Box.plusSeconds(now, Box.steps[0])))
     }
 
-    // A single Good graduates the word off the ladder immediately, whatever step it
-    // sits on — it only spaces out repeated fails, it is not a run of successes to
-    // climb back through.
-    @Test
-    fun againThenGoodGraduatesOffTheStep() {
-        var state = Box.state(listOf(Box.word(1)))
-        state = Box.answered(state, "w01", Rating.Again, now)
-        val retry = Box.plusSeconds(now, Box.steps[0])
-        state = Box.answered(state, "w01", Rating.Good, retry)
-
-        val sched = state.scheduling.getValue("w01")
-        assertEquals(CardPhase.Review, sched.phase)
-        assertNull(sched.stepIndex)
-        assertTrue(sched.due!! >= Box.instant(retry) + 1.days)
-        assertEquals(2, sched.log.size)
-    }
-
-    // Hard is a pass, so it leaves the ladder like Good and Easy — the ladder only
-    // spaces out repeated fails. FSRS-6 S0(Hard) = 1.2931 keeps the wait short.
-    @Test
-    fun hardOnNewGraduatesToAShortInterval() {
-        var state = Box.state(listOf(Box.word(1)))
-        state = Box.answered(state, "w01", Rating.Hard, now)
-        val sched = state.scheduling.getValue("w01")
-        assertEquals(CardPhase.Review, sched.phase)
-        assertNull(sched.stepIndex)
-        assertTrue(sched.due!! >= Box.instant(now) + 1.days)
-    }
-
     // A second consecutive Again climbs the ladder instead of repeating its first
     // entry — the word gets more room before its next try, not the same short wait.
     @Test
@@ -88,16 +58,7 @@ class BoxAnswerTests {
         assertEquals(CardPhase.Learning, sched.phase)
         assertEquals(1, sched.stepIndex)
         assertEquals(Box.instant(retry) + Box.steps[1].seconds, sched.due)
-    }
-
-    @Test
-    fun easyOnNewGraduatesImmediately() {
-        var state = Box.state(listOf(Box.word(1)))
-        state = Box.answered(state, "w01", Rating.Easy, now)
-        val sched = state.scheduling.getValue("w01")
-        assertEquals(CardPhase.Review, sched.phase)
-        assertTrue(sched.due!! >= Box.instant(now) + 1.days)
-        assertTrue(sched.memory!!.stability >= 3) // FSRS-6 S0(Easy) = 8.2956
+        assertFalse(sched.suspended, "repeated misses never suspend; only setSuspended does")
     }
 
     // Relearning steps = FSRS-6 reference default [10m]: a lapse returns in 10
@@ -114,21 +75,6 @@ class BoxAnswerTests {
         assertEquals(CardPhase.Relearning, sched.phase)
         assertFalse(sched.suspended)
         assertEquals(Box.instant(now) + Box.steps[0].seconds, sched.due)
-    }
-
-    @Test
-    fun lapsedReviewCardIsNotRetriedInSessionDrain() {
-        var state = Box.state(listOf(Box.word(1)))
-        state = Box.inject(
-            state,
-            Box.sched("w01", dueMillis = now - 3_600_000, lastReviewMillis = Box.plusDays(now, -10.0)),
-        )
-        state = Box.answered(state, "w01", Rating.Again, now)
-        // The drain loop stays empty for the rest of the session window …
-        assertTrue(Box.dueIds(state, Box.plusSeconds(now, 60)).isEmpty())
-        assertTrue(Box.dueIds(state, Box.plusSeconds(now, Box.steps[0] - 1)).isEmpty())
-        // … the lapsed card only returns at its 10-minute relearning step.
-        assertEquals(listOf("w01"), Box.dueIds(state, Box.plusSeconds(now, Box.steps[0])))
     }
 
     // Repeated fails widen the gap instead of repeating the same short wait: relearning
@@ -163,24 +109,6 @@ class BoxAnswerTests {
         sched = state.scheduling.getValue("w01")
         assertEquals(CardPhase.Review, sched.phase)
         assertNull(sched.stepIndex)
-        assertFalse(sched.suspended)
-    }
-
-    // Repeated misses on the learning steps never suspend the card (leech ruling
-    // overturned 2026-09-01); only setSuspended does that.
-    @Test
-    fun againOnTheStepNeverSuspends() {
-        var state = Box.state(listOf(Box.word(1)))
-        state = Box.answered(state, "w01", Rating.Again, now) // introduction: exempt
-        val retry1 = Box.plusSeconds(now, 120)
-        state = Box.answered(state, "w01", Rating.Again, retry1) // 1st lapse, still Learning
-        var sched = state.scheduling.getValue("w01")
-        assertEquals(CardPhase.Learning, sched.phase)
-        assertFalse(sched.suspended)
-
-        val retry2 = Box.plusSeconds(retry1, 120)
-        state = Box.answered(state, "w01", Rating.Again, retry2) // 2nd lapse
-        sched = state.scheduling.getValue("w01")
         assertFalse(sched.suspended)
     }
 

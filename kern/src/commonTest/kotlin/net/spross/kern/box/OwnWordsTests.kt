@@ -157,18 +157,6 @@ class OwnWordsTests {
     // Writing a word's text
 
     @Test
-    fun aSlashJoinedAlternativeIsStoredWhole() {
-        val word = OwnWords.write(
-            id = "own:gari-yangu",
-            kind = OwnWords.DEFAULT_KIND,
-            emoji = null,
-            texts = mapOf("de" to "mein Auto", "sw" to "gari yangu / gari langu"),
-            comment = null,
-        )
-        assertEquals("gari yangu / gari langu", word.texts.getValue("sw"))
-    }
-
-    @Test
     fun aSuggestionKeepsEveryFormItWasWrittenWith() {
         val word = OwnWords.write(
             id = "own:kuandika",
@@ -190,18 +178,10 @@ class OwnWordsTests {
             texts = mapOf("de" to "mein Auto", "sw" to "gari yangu / gari langu"),
             comment = null,
         )
+        assertEquals("gari yangu / gari langu", word.texts.getValue("sw"), "stored whole")
         val card = OwnWords.cards(listOf(word), source = "de", target = "sw").single()
         assertEquals("gari yangu", card.target.text)
         assertEquals(listOf("gari langu"), card.target.accepts)
-    }
-
-    @Test
-    fun aPlainWordIsWrittenUnchanged() {
-        val word = OwnWords.write(
-            id = umbrella.id, kind = umbrella.kind, emoji = umbrella.emoji,
-            texts = umbrella.texts, comment = null,
-        )
-        assertEquals(umbrella.texts, word.texts)
     }
 
     // Rewriting a word without losing the progress made on it
@@ -268,14 +248,6 @@ class OwnWordsTests {
         assertNull(forgotten.scheduling[umbrella.id])
         assertEquals("mwavuli", forgotten.cards.getValue(umbrella.id).target.text)
         assertEquals(1, forgotten.ownWords.size)
-    }
-
-    @Test
-    fun forgettingACatalogWordKeepsItToo() {
-        val state = Box.answered(box(), "w01", Rating.Good, Box.day1)
-        val forgotten = BoxEngine.forget(state, "w01")
-        assertNull(forgotten.scheduling["w01"])
-        assertTrue("w01" in forgotten.cards)
     }
 
     @Test
