@@ -96,16 +96,12 @@ final class WatchModel {
     }
 
     /// Fresh snapshot from the phone: replaces local state (the phone is the
-    /// source of truth and already folded in applied events) — all but the
-    /// watch's misses. Stale or out-of-order deliveries are dropped.
+    /// source of truth and already folded in applied events) — a miss comes
+    /// back as the phone reschedules it. Stale or out-of-order deliveries are dropped.
     func receiveSnapshot(_ data: Data) {
-        guard var incoming = try? WatchSnapshot.decode(data) else { return }
+        guard let incoming = try? WatchSnapshot.decode(data) else { return }
         if let current = snapshot, current.generated > incoming.generated { return }
         let present = Set(incoming.entries.map(\.cardId))
-        // why: a miss stays one until the watch answers it right — the phone's
-        // reschedule puts it minutes out, and the round counts it now.
-        incoming.answers = (snapshot?.answers ?? [:])
-            .filter { $0.value == .again && present.contains($0.key) }
         snapshot = incoming
         WatchSnapshotStore.save(incoming)
         WidgetCenter.shared.reloadAllTimelines()
