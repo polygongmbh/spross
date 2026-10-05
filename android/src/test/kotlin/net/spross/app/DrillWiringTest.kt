@@ -18,7 +18,7 @@ import net.spross.kern.catalog.NationalityName
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Realization
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.CountryDrillRun
@@ -76,7 +76,7 @@ class DrillWiringTest {
         flow.type(flow.state.currentTask.accepted.first())
         assertEquals(TurnFeedback.Correct, flow.state.feedback)
         assertEquals(listOf(ToneKind.Correct), platform.tones)
-        assertEquals(AdvanceTier.Live, flow.armedBeat)
+        assertEquals(AdvanceBeat.Live, flow.armedBeat)
     }
 
     /** A timed screen change under a screen reader truncates what it just announced. */
@@ -189,7 +189,7 @@ class DrillWiringTest {
         val platform = Platform()
         val hit = letters(platform)
         hit.choose(assertNotNull(hit.state.task).display)
-        assertEquals(AdvanceTier.Explicit, hit.armedBeat)
+        assertEquals(AdvanceBeat.Explicit, hit.armedBeat)
         assertTrue(ToneKind.Correct in platform.tones)
 
         val missed = letters(Platform())
@@ -207,7 +207,7 @@ class DrillWiringTest {
         flow.type(assertNotNull(flow.state.task).display)
         assertEquals(TurnFeedback.Correct, flow.state.feedback)
         assertEquals(listOf(ToneKind.Correct), platform.tones)
-        assertEquals(AdvanceTier.Live, flow.armedBeat)
+        assertEquals(AdvanceBeat.Live, flow.armedBeat)
     }
 
     @Test
@@ -283,7 +283,7 @@ class DrillWiringTest {
         flow.type(flow.state.task.display)
         assertEquals(TurnFeedback.Correct, flow.state.feedback)
         assertEquals(listOf(ToneKind.Correct), platform.tones)
-        assertEquals(AdvanceTier.Live, flow.armedBeat)
+        assertEquals(AdvanceBeat.Live, flow.armedBeat)
     }
 
     /** Typing PAST a finished name takes the green with it, so it is never booked. */
@@ -365,7 +365,7 @@ class DrillWiringTest {
         flow.type(assertNotNull(flow.state.task).display)
         assertEquals(TurnFeedback.Correct, flow.state.feedback)
         assertEquals(listOf(ToneKind.Correct), platform.tones)
-        assertEquals(AdvanceTier.Live, flow.armedBeat)
+        assertEquals(AdvanceBeat.Live, flow.armedBeat)
     }
 
     @Test
@@ -417,7 +417,7 @@ class DrillWiringTest {
         }
         assertEquals(TurnFeedback.Correct, flow.state.feedback)
         assertEquals(listOf(ToneKind.Correct), platform.tones)
-        assertEquals(AdvanceTier.Explicit, flow.armedBeat)
+        assertEquals(AdvanceBeat.Explicit, flow.armedBeat)
     }
 
     /** A slip of the finger costs a tap rather than the question. */

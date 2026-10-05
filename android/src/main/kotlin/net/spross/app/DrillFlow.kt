@@ -4,7 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlin.random.Random
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillEffect
 import net.spross.kern.trainer.DrillRunProgress
@@ -20,7 +20,7 @@ interface DrillRun {
     val ranOut: Boolean
 
     /** The beat waiting to elapse, or null where none is armed. */
-    val armedBeat: AdvanceTier?
+    val armedBeat: AdvanceBeat?
 
     /** Bumped by every arming — what a timer effect keys on. */
     val beatToken: Int
@@ -90,7 +90,7 @@ abstract class DrillFlow<S : DrillRunProgress, I>(
 
     private var handedBack = false
 
-    override val armedBeat get() = beat.tier
+    override val armedBeat get() = beat.armed
 
     override val beatToken get() = beat.token
 

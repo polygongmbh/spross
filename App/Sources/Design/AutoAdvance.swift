@@ -3,10 +3,10 @@ import UIKit
 
 /// Central timing + accessibility guard for every "a clean correct answer
 /// flips on its own" surface — vocab review, the trainer drills, the letter
-/// drill. Two tiers (docs/design.md § Review UX rules):
+/// drill. Two beats (docs/design.md § Review UX rules):
 /// `scheduleLive` for a word confirmed by finishing typing it (no Check/Enter
 /// needed), `scheduleExplicit` for one confirmed through an explicit
-/// Check/tile tap. Both numbers are kern's `AdvanceTier`, so the turn machine
+/// Check/tile tap. Both numbers are kern's `AdvanceBeat`, so the turn machine
 /// and the drills that never reach it cannot drift apart; the screen-reader
 /// skip lives here once so no surface can forget the guard.
 enum AutoAdvance {
@@ -40,14 +40,14 @@ enum AutoAdvance {
         schedule(&task, delay: explicitDelay, action: action)
     }
 
-    /// Arm the beat a turn asked for, on the tier's own number — a surface
+    /// Arm the beat a turn asked for, on the beat's own number — a surface
     /// driven by kern never re-picks which of the two it is. `holding` is what
     /// the beat also waits out before it fires (a drill's answer being said).
     @MainActor
-    static func schedule(_ tier: AdvanceTier, _ task: inout Task<Void, Never>?,
+    static func schedule(_ beat: AdvanceBeat, _ task: inout Task<Void, Never>?,
                          holding: (@MainActor () async -> Void)? = nil,
                          action: @escaping @MainActor () -> Void) {
-        schedule(&task, delay: .milliseconds(tier.delayMs), holding: holding, action: action)
+        schedule(&task, delay: .milliseconds(beat.delayMs), holding: holding, action: action)
     }
 
     @MainActor

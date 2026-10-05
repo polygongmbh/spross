@@ -21,13 +21,13 @@ enum DrillEffects {
                       releaseFocus: () -> Void,
                       silence: () -> Void) {
         switch onEnum(of: effect) {
-        case .armAdvance(let beat):
+        case .armAdvance(let arm):
             // why: AutoAdvance skips the timer under a screen reader — it
             // truncates the correctness announcement and moves the screen under
             // the user, and the branches render "Weiter" there instead.
             // The beat also waits out the answer being said, or the next
             // question's silence would cut the word off.
-            AutoAdvance.schedule(beat.tier, &advance, holding: { await voice.said() },
+            AutoAdvance.schedule(arm.beat, &advance, holding: { await voice.said() },
                                  action: onAdvance)
         case .sayAnswer(let answer):
             guard let model else { return }

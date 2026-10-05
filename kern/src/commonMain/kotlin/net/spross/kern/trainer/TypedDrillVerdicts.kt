@@ -1,6 +1,6 @@
 package net.spross.kern.trainer
 
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
@@ -58,7 +58,7 @@ internal object TypedDrillVerdicts {
         return TypedVerdict(
             TurnFeedback.Correct,
             null,
-            tone + DrillEffect.ArmAdvance(AdvanceTier.Live),
+            tone + DrillEffect.ArmAdvance(AdvanceBeat.Live),
         )
     }
 
@@ -74,7 +74,7 @@ internal object TypedDrillVerdicts {
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
                 answer,
-                DrillEffect.ArmAdvance(AdvanceTier.Explicit),
+                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
             ),
         )
         // why: no beat on a slip — the pause shows the proper spelling and waits for the tap

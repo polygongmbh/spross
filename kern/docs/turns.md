@@ -29,7 +29,7 @@ Engine contract: `../README.md`.
     recalled-with-help (Hard); giving up on it is an honest Again;
     a self-grade is `SelfGrading` over the recall span and the prompt length.
   - **The beats belong to the engine** (`ADVANCE_LIVE_MS` 450, `ADVANCE_EXPLICIT_MS` 1200,
-    carried by `AdvanceTier`): finishing the word IS the answer, so a live-typed exact gets
+    carried by `AdvanceBeat`): finishing the word IS the answer, so a live-typed exact gets
     the short beat and an explicit Check the longer one, while an almost hold gets none at all.
     WHETHER a timer may run is the platform's fact — a screen reader makes a timed change
     hostile — but that an explicit button REPLACES it, and books exactly what the beat would
@@ -230,7 +230,7 @@ Engine contract: `../README.md`.
   it only takes the rest of the run out of the running for the store.
   Either way the next run opens on the lowest Sprosse the stored mask does not hold.
 - Feedback and cues reuse the turn machine's vocabulary
-  (`TurnFeedback`, `AlmostReason`, `AnswerOutcome`, `AdvanceTier`, `ToneKind`);
+  (`TurnFeedback`, `AlmostReason`, `AnswerOutcome`, `AdvanceBeat`, `ToneKind`);
   nothing new is minted where kern already names a rule.
   `AnswerStreakMilestone` names the summary ladder (≥10 / ≥5 / ≥2 / else);
   which glyph a milestone wears is chrome.

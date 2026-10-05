@@ -28,13 +28,13 @@ extension SessionView {
         switch onEnum(of: effect) {
         case .answer(let done):
             commit(done.rating)
-        case .armAdvance(let beat):
+        case .armAdvance(let arm):
             // why: AutoAdvance skips the timer under a screen reader (it
             // truncates the announcement and moves the screen), and the branch
             // renders "Weiter" there — same rating, through ConfirmPending.
             // The beat also waits out the answer being said, or the flip would
             // cut the word off.
-            AutoAdvance.schedule(beat.tier, &autoAdvance, holding: { await answerVoice.said() }) {
+            AutoAdvance.schedule(arm.beat, &autoAdvance, holding: { await answerVoice.said() }) {
                 dispatch(TurnIntent.AdvanceElapsed.shared)
             }
         case .cancelAdvance:

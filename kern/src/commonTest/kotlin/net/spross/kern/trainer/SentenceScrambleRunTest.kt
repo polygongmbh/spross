@@ -7,7 +7,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
 
@@ -282,6 +282,6 @@ class SentenceScrambleRunTest {
                 .state
         }
         val closing = reduce(state, SentenceScrambleIntent.PlaceAtom(task.shuffled.indexOfFirst { it.id == last.id }))
-        assertTrue(closing.effects.any { it == DrillEffect.ArmAdvance(AdvanceTier.Explicit) })
+        assertTrue(closing.effects.any { it == DrillEffect.ArmAdvance(AdvanceBeat.Explicit) })
     }
 }

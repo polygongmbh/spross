@@ -44,7 +44,7 @@ import net.spross.app.DrillRun
 import net.spross.app.Screen
 import net.spross.app.finishDrill
 import net.spross.app.speakDrillAnswer
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunProgress
 import net.spross.kern.trainer.DrillTally
@@ -181,13 +181,13 @@ fun ReadAloudSwitch(model: AppModel) {
 @Composable
 fun BeatEffect(
     beatToken: Int,
-    armedBeat: AdvanceTier?,
+    armedBeat: AdvanceBeat?,
     onElapsed: () -> Unit,
     holding: () -> Boolean = { false },
 ) {
     LaunchedEffect(beatToken) {
-        val tier = armedBeat ?: return@LaunchedEffect
-        delay(tier.delayMs)
+        val beat = armedBeat ?: return@LaunchedEffect
+        delay(beat.delayMs)
         withTimeoutOrNull(LONGEST_READING_MS) { snapshotFlow(holding).first { !it } }
         onElapsed()
     }

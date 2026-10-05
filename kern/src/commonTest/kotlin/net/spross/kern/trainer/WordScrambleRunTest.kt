@@ -8,7 +8,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.CardKind
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
@@ -62,7 +62,7 @@ class WordScrambleRunTest {
         val state = open()
         val typed = reduce(state, WordScrambleIntent.InputChanged(state.task!!.display))
         assertEquals(TurnFeedback.Correct, typed.state.feedback)
-        assertTrue(typed.effects.any { it == DrillEffect.ArmAdvance(AdvanceTier.Live) })
+        assertTrue(typed.effects.any { it == DrillEffect.ArmAdvance(AdvanceBeat.Live) })
     }
 
     /**

@@ -140,7 +140,7 @@ class TurnMachine(
             if (state.feedback == TurnFeedback.Correct) emptyList() else listOf(TurnEffect.Tone(ToneKind.Correct))
         return TurnReduction(
             state.copy(feedback = TurnFeedback.Correct),
-            cue + TurnEffect.ArmAdvance(AdvanceTier.Live),
+            cue + TurnEffect.ArmAdvance(AdvanceBeat.Live),
         )
     }
 
@@ -160,7 +160,7 @@ class TurnMachine(
         if (state.retryApproved) return unchanged(state)
         return TurnReduction(
             state.copy(retryApproved = true),
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceTier.Live)),
+            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Live)),
         )
     }
 
@@ -198,7 +198,7 @@ class TurnMachine(
 
     private fun accepted(state: TurnState): TurnReduction = TurnReduction(
         state.copy(feedback = TurnFeedback.Correct),
-        listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceTier.Explicit)),
+        listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Explicit)),
     )
 
     /**

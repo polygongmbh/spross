@@ -8,7 +8,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.LanguageInfo
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
@@ -147,7 +147,7 @@ class NumbersRunTest {
         val answer = state.currentTask.accepted.first()
         val live = reduce(state, NumbersIntent.InputChanged(answer), rng)
         assertEquals(TurnFeedback.Correct, live.state.feedback)
-        assertTrue(DrillEffect.ArmAdvance(AdvanceTier.Live) in live.effects)
+        assertTrue(DrillEffect.ArmAdvance(AdvanceBeat.Live) in live.effects)
 
         val edited = reduce(live.state, NumbersIntent.InputChanged(answer.dropLast(1)), rng)
         assertEquals(TurnFeedback.Neutral, edited.state.feedback)

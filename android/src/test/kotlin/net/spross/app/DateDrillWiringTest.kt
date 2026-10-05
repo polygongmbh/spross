@@ -11,7 +11,7 @@ import net.spross.kern.catalog.DateEntry
 import net.spross.kern.catalog.DateNames
 import net.spross.kern.catalog.DatePattern
 import net.spross.kern.catalog.DatePatterns
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.DateDrillRun
@@ -99,7 +99,7 @@ class DateDrillWiringTest {
         flow.type(flow.state.task.display)
         assertEquals(TurnFeedback.Correct, flow.state.feedback)
         assertEquals(listOf(ToneKind.Correct), platform.tones)
-        assertEquals(AdvanceTier.Live, flow.armedBeat)
+        assertEquals(AdvanceBeat.Live, flow.armedBeat)
     }
 
     /** Typing PAST a finished reading takes the green with it, so it is never booked. */

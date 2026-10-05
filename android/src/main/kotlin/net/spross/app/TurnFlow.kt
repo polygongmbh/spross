@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.CopyStep
 import net.spross.kern.session.SelfGrading
 import net.spross.kern.session.ToneKind
@@ -60,7 +60,7 @@ class TurnFlow(
     private val beat = DrillBeat(screenReaderOn)
 
     /** The beat kern armed and nobody has spent yet; null once it fired or was canceled. */
-    val armedBeat: AdvanceTier? get() = beat.tier
+    val armedBeat: AdvanceBeat? get() = beat.armed
 
     /** Bumped by every arming — what a timer effect keys on. */
     val beatToken: Int get() = beat.token
@@ -174,7 +174,7 @@ class TurnFlow(
                 beat.cancel()
                 onAnswer(effect.rating)
             }
-            is TurnEffect.ArmAdvance -> beat.arm(effect.tier)
+            is TurnEffect.ArmAdvance -> beat.arm(effect.beat)
             TurnEffect.CancelAdvance -> beat.cancel()
             // why: the field the turn owns here is the answer field — a miss never hides
             // it, so the retype picks up where the slip started.

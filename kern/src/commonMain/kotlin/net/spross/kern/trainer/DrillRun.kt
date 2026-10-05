@@ -1,7 +1,7 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.model.Language
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.ToneKind
 
@@ -18,7 +18,7 @@ import net.spross.kern.session.ToneKind
  */
 sealed class DrillEffect {
     /** Arm (or re-arm) the beat before the run moves on; a screen reader renders a tap instead. */
-    data class ArmAdvance(val tier: AdvanceTier) : DrillEffect()
+    data class ArmAdvance(val beat: AdvanceBeat) : DrillEffect()
 
     data object CancelAdvance : DrillEffect()
 

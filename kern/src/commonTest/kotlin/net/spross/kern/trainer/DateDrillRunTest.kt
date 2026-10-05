@@ -9,7 +9,7 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
@@ -115,7 +115,7 @@ class DateDrillRunTest {
         val reduction = run.reduce(DateDrillIntent.InputChanged(run.task.display))
         assertEquals(TurnFeedback.Correct, reduction.state.feedback)
         assertEquals(
-            listOf(DrillEffect.Tone(ToneKind.Correct), run.says(), DrillEffect.ArmAdvance(AdvanceTier.Live)),
+            listOf(DrillEffect.Tone(ToneKind.Correct), run.says(), DrillEffect.ArmAdvance(AdvanceBeat.Live)),
             reduction.effects,
         )
     }
@@ -147,7 +147,7 @@ class DateDrillRunTest {
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
                 run.says(),
-                DrillEffect.ArmAdvance(AdvanceTier.Explicit),
+                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
             ),
             reduction.effects,
         )

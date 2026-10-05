@@ -21,7 +21,7 @@ class TurnTest {
         val typed = TurnFixture.step(TurnFixture.produce(TurnFixture.knife), TurnIntent.InputChanged("kisu"))
         assertEquals(TurnFeedback.Correct, typed.state.feedback)
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceTier.Live)),
+            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Live)),
             typed.effects,
         )
         assertEquals(
@@ -35,7 +35,7 @@ class TurnTest {
         val submitted = TurnFixture.step(TurnFixture.produce(TurnFixture.knife), TurnIntent.Submit("kisu"))
         assertEquals(TurnFeedback.Correct, submitted.state.feedback)
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceTier.Explicit)),
+            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Explicit)),
             submitted.effects,
         )
         assertEquals(
@@ -116,7 +116,7 @@ class TurnTest {
         // The card holds its reveal open while the field turns right.
         assertEquals(TurnFeedback.Revealed, retyped.state.feedback)
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceTier.Live)),
+            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Live)),
             retyped.effects,
         )
 
@@ -238,7 +238,7 @@ class TurnTest {
         val exact = TurnFixture.step(byEar(), TurnIntent.Submit("Auto"))
         assertEquals(TurnFeedback.Correct, exact.state.feedback)
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceTier.Explicit)),
+            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Explicit)),
             exact.effects,
         )
     }

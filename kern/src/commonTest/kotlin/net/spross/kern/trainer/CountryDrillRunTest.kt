@@ -15,7 +15,7 @@ import net.spross.kern.catalog.CountryName
 import net.spross.kern.catalog.LanguageName
 import net.spross.kern.catalog.NationalityName
 import net.spross.kern.model.LanguageInfo
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
@@ -161,7 +161,7 @@ class CountryDrillRunTest {
         val reduction = open().reduce(CountryDrillIntent.InputChanged("Ujerumani"))
         assertEquals(TurnFeedback.Correct, reduction.state.feedback)
         assertEquals(
-            listOf(DrillEffect.Tone(ToneKind.Correct), saysUjerumani, DrillEffect.ArmAdvance(AdvanceTier.Live)),
+            listOf(DrillEffect.Tone(ToneKind.Correct), saysUjerumani, DrillEffect.ArmAdvance(AdvanceBeat.Live)),
             reduction.effects,
         )
     }
@@ -189,7 +189,7 @@ class CountryDrillRunTest {
         val approved = open().reduce(CountryDrillIntent.InputChanged("Ujerumani")).state
         val again = approved.reduce(CountryDrillIntent.InputChanged("Ujerumani "))
         assertEquals(TurnFeedback.Correct, again.state.feedback)
-        assertEquals(listOf(DrillEffect.ArmAdvance(AdvanceTier.Live)), again.effects)
+        assertEquals(listOf(DrillEffect.ArmAdvance(AdvanceBeat.Live)), again.effects)
     }
 
     @Test
@@ -201,7 +201,7 @@ class CountryDrillRunTest {
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
                 saysUjerumani,
-                DrillEffect.ArmAdvance(AdvanceTier.Explicit),
+                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
             ),
             reduction.effects,
         )

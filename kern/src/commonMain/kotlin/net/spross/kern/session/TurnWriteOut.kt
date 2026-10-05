@@ -55,7 +55,7 @@ internal class TurnWriteOut(private val normalizer: AnswerNormalizer) {
         val cue: List<TurnEffect> = if (step.written) emptyList() else listOf(TurnEffect.Tone(ToneKind.Correct))
         return TurnReduction(
             state.copy(copyStep = step.copy(written = true, missed = false)),
-            cue + TurnEffect.ArmAdvance(AdvanceTier.Live),
+            cue + TurnEffect.ArmAdvance(AdvanceBeat.Live),
         )
     }
 

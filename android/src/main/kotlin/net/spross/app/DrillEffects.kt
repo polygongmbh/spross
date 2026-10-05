@@ -4,7 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import net.spross.kern.model.Language
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillEffect
 
@@ -26,13 +26,13 @@ import net.spross.kern.trainer.DrillEffect
  */
 class DrillBeat(private val screenReaderOn: () -> Boolean) {
 
-    /** The tier waiting to elapse; null once it fired or was canceled. */
-    var tier by mutableStateOf<AdvanceTier?>(null)
+    /** The beat waiting to elapse; null once it fired or was canceled. */
+    var armed by mutableStateOf<AdvanceBeat?>(null)
         private set
 
     /**
      * Bumped by every arming. What a timer effect keys on: two beats in a row can be the
-     * same tier, and a key that compares equal would never fire the second one.
+     * same beat, and a key that compares equal would never fire the second one.
      */
     var token by mutableStateOf(0)
         private set
@@ -40,25 +40,25 @@ class DrillBeat(private val screenReaderOn: () -> Boolean) {
     var awaitsConfirm by mutableStateOf(false)
         private set
 
-    fun arm(next: AdvanceTier) {
+    fun arm(next: AdvanceBeat) {
         if (screenReaderOn()) {
-            tier = null
+            armed = null
             awaitsConfirm = true
             return
         }
         awaitsConfirm = false
-        tier = next
+        armed = next
         token += 1
     }
 
     fun cancel() {
-        tier = null
+        armed = null
         awaitsConfirm = false
     }
 
     /** The beat elapsed: it is spent whether or not the run had anything to book. */
     fun spend() {
-        tier = null
+        armed = null
     }
 }
 
@@ -111,7 +111,7 @@ class DrillActs(
     fun carryOut(effects: List<DrillEffect>) {
         for (effect in effects) {
             when (effect) {
-                is DrillEffect.ArmAdvance -> beat.arm(effect.tier)
+                is DrillEffect.ArmAdvance -> beat.arm(effect.beat)
                 DrillEffect.CancelAdvance -> beat.cancel()
                 is DrillEffect.Tone -> onTone(effect.kind)
                 DrillEffect.ReleaseFocus -> onReleaseFocus()

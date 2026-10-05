@@ -1,7 +1,7 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
@@ -178,7 +178,7 @@ object NumbersRun {
                 listOfNotNull(
                     DrillEffect.Tone(ToneKind.Correct),
                     state.saidOnClean,
-                    DrillEffect.ArmAdvance(AdvanceTier.Explicit),
+                    DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
                 ),
             )
             // why: no beat on a slip — the pause shows the proper spelling, and the tap that ends
@@ -228,7 +228,7 @@ object NumbersRun {
         }
         return NumbersReduction(
             state.copy(feedback = TurnFeedback.Correct),
-            tone + DrillEffect.ArmAdvance(AdvanceTier.Live),
+            tone + DrillEffect.ArmAdvance(AdvanceBeat.Live),
         )
     }
 

@@ -62,7 +62,7 @@ const val ADVANCE_EXPLICIT_MS: Long = 1200
  * How long an accepted answer stands before the turn moves on, by how it was confirmed.
  * One pair of numbers for every surface, so a new screen cannot mint a second timing.
  */
-enum class AdvanceTier(val delayMs: Long) {
+enum class AdvanceBeat(val delayMs: Long) {
     Live(ADVANCE_LIVE_MS),
     Explicit(ADVANCE_EXPLICIT_MS),
 }
@@ -79,7 +79,7 @@ data class CopyStep(
     val pendingRating: Rating,
     /** The submitted copy was a different word — point back at the card. */
     val missed: Boolean,
-    /** The word stands written exactly; the [AdvanceTier.Live] beat is armed. */
+    /** The word stands written exactly; [AdvanceBeat.Live] is armed. */
     val written: Boolean,
 )
 
@@ -256,7 +256,7 @@ sealed class TurnEffect {
      * moves the page under the user — so the platform skips the timer and renders the explicit
      * button instead, which books the same rating through [TurnIntent.ConfirmPending].
      */
-    data class ArmAdvance(val tier: AdvanceTier) : TurnEffect()
+    data class ArmAdvance(val beat: AdvanceBeat) : TurnEffect()
 
     data object CancelAdvance : TurnEffect()
 

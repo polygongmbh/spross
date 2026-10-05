@@ -9,7 +9,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Card
 import net.spross.kern.model.LanguageInfo
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
@@ -207,7 +207,7 @@ class LetterDrillRunTest {
             listOf(
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
-                DrillEffect.ArmAdvance(AdvanceTier.Explicit),
+                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
             ),
             hit.effects,
         )
@@ -263,7 +263,7 @@ class LetterDrillRunTest {
         val task = assertNotNull(state.task)
         val done = reduce(state, LetterDrillIntent.InputChanged(task.display), rng)
         assertEquals(TurnFeedback.Correct, done.state.feedback)
-        assertTrue(DrillEffect.ArmAdvance(AdvanceTier.Live) in done.effects)
+        assertTrue(DrillEffect.ArmAdvance(AdvanceBeat.Live) in done.effects)
         // Typing past the answer takes the approval back, so a longer word never books it.
         val past = reduce(done.state, LetterDrillIntent.InputChanged(task.display + "x"), rng)
         assertEquals(TurnFeedback.Neutral, past.state.feedback)

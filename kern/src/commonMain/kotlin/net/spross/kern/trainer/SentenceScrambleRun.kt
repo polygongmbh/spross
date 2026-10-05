@@ -1,7 +1,7 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
@@ -123,7 +123,7 @@ object SentenceScrambleRun {
                     DrillEffect.Silence,
                     DrillEffect.Tone(ToneKind.Correct),
                     next.saidAnswer,
-                    DrillEffect.ArmAdvance(AdvanceTier.Explicit),
+                    DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
                 ),
             )
         } else {

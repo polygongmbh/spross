@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
  * Kern decides, the platforms render.
  *
  * A kern DECISION is a value the engine computed from a rule: which rating an answer earns,
- * which tone a turn plays, which tier the advance is armed at. A platform may READ one —
+ * which tone a turn plays, which beat the advance is armed at. A platform may READ one —
  * `when (phase) { Review -> palette.success }` is rendering, which is its job. It may not
  * MINT one: writing `Rating.Hard` or `ToneKind.Correct` into an assignment, an argument or a
  * return is a platform deciding a rule kern owns, and a rule decided twice drifts. Both

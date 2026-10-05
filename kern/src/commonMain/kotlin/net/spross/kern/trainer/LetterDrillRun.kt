@@ -2,7 +2,7 @@ package net.spross.kern.trainer
 
 import kotlin.random.Random
 import net.spross.kern.model.Card
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
@@ -123,7 +123,7 @@ object LetterDrillRun {
             listOf(
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
-                DrillEffect.ArmAdvance(AdvanceTier.Explicit),
+                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
             ),
         )
     }

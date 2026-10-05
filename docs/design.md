@@ -136,8 +136,8 @@ What licenses a second component is a parameter attempted and found not to carry
   Backing out takes the confirmation with it.
   Every step keeps a way out.
 - The text field appears only where there is something to type, focused immediately.
-- **Auto-advance** has two tiers, live (typed exactly right) and explicit (a check or tile tap),
-  both from kern's `AdvanceTier`.
+- **Auto-advance** has two beats, live (typed exactly right) and explicit (a check or tile tap),
+  both from kern's `AdvanceBeat`.
   Under VoiceOver or Switch Control no timer runs; an explicit next step stands instead.
 
 ## Counts & sessions

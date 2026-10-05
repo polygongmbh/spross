@@ -12,7 +12,7 @@ import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
-import net.spross.kern.session.AdvanceTier
+import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
@@ -111,7 +111,7 @@ class TurnWiringTest {
 
         assertEquals(TurnFeedback.Correct, flow.feedback)
         assertEquals(listOf(ToneKind.Correct), platform.tones)
-        assertEquals(AdvanceTier.Live, flow.armedBeat)
+        assertEquals(AdvanceBeat.Live, flow.armedBeat)
         assertTrue(flow.beatToken > 0)
 
         flow.advanceElapsed()
