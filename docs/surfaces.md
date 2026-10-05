@@ -113,7 +113,7 @@ What has not landed there is `design.md` § Not yet.
   recall-first rule, with the latency curve compensating for it.
   Answers return as events; the phone reschedules against real timestamps and re-pushes.
   Until it does, the watch keeps each card's last rating and practice reads it:
-  its misses first, then what it has not asked, then what it got right, each in the phone's order.
+  what it has not asked first, then its misses, then what it got right, each in the phone's order.
   The due batch hands its misses straight back as another counted round while they number at least
   `WatchModel.retryFloor`; fewer would each return within three questions of their reveal and lead practice instead.
 - **A word too long for a tile is a phone word.** The wrist carries only what four tiles

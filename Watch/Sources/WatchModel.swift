@@ -283,8 +283,9 @@ final class WatchModel {
         makeQuestionForCurrent()
     }
 
-    /// One practice lap over the whole snapshot: what the watch missed since the
-    /// phone last synced, then what it has not asked yet, then what it got right —
+    /// One practice lap over the whole snapshot: what the watch has not asked
+    /// since the phone last synced, then what it missed — spaced behind the rest
+    /// rather than asked straight from the reveal — then what it got right —
     /// each part in the phone's order (weakest first). The snapshot's own schedule
     /// knows nothing of those answers until the phone reschedules them.
     /// `avoiding` is the card just answered — swapped with its neighbor (not
@@ -293,10 +294,10 @@ final class WatchModel {
     private func practiceLap(avoiding previous: String?) -> [String] {
         guard let snapshot else { return [] }
         let order = snapshot.entries.map(\.cardId)
-        let missed = order.filter { snapshot.answers[$0] == .again }
         let unasked = order.filter { snapshot.answers[$0] == nil }
+        let missed = order.filter { snapshot.answers[$0] == .again }
         let known = order.filter { snapshot.answers[$0].map { $0 != .again } ?? false }
-        var ids = missed + unasked + known
+        var ids = unasked + missed + known
         if ids.count > 1, ids.first == previous {
             ids.swapAt(0, 1)
         }
