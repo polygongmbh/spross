@@ -1,6 +1,5 @@
 import Foundation
 import SprossKern
-import WidgetKit
 
 // Read-side derivations: Home values, box browsing, presentation
 // resolution, and Fortschritt aggregates. Every count is in cards
@@ -156,13 +155,7 @@ extension AppModel {
         let fresh = BoxEngine.shared.reset(state: old)
         box = fresh
         do {
-            try await store.saveNow(state: fresh)
-            await store.saveWidgetSnapshot(state: fresh, nowEpochMillis: Date().epochMillis,
-                                           tzId: currentTzId(),
-                                           otherLanguagesAnswerDays: otherLanguagesAnswerDays)
-            // why: the wiped box is written but the tile keeps drawing the old words
-            // until its timeline is rebuilt.
-            WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
+            try await store.saveNow(state: fresh, scope: .boxAndSnapshots)
             refreshStats()
             pushWatchSnapshot()
         } catch {

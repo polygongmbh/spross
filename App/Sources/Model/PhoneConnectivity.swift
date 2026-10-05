@@ -1,6 +1,5 @@
 import Foundation
 import WatchConnectivity
-import WidgetKit
 import SprossKern
 
 /// Phone side of the watch sync ("snapshot down, events up"). The snapshot
@@ -111,7 +110,7 @@ extension AppModel {
 
     /// Apply queued watch answers ON RECEIPT, oldest first, with `now` =
     /// each event's date (FSRS elapsed time stays honest); then book them
-    /// into dailyStats, persist, and refresh widgets + the watch snapshot.
+    /// into dailyStats, and save them with the widget and watch snapshots.
     /// Answers that arrive before a box is loaded are parked on disk and
     /// applied by the next call that finds one (`activate` drains them).
     func applyWatchAnswers(_ events: [WatchAnswerEvent]) {
@@ -136,11 +135,10 @@ extension AppModel {
         }
 
         box = state
-        // why: the immediate save carries the watch snapshot with it — pushing a
-        // second one here only built the same document twice.
-        persist(state, immediate: true)
+        // why: the save carries the watch snapshot with it — pushing a second one
+        // here only built the same document twice.
+        save(state, .boxAndSnapshots)
         refreshStats()
-        WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
     }
 }
 

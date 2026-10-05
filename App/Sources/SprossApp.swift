@@ -19,12 +19,12 @@ struct SprossApp: App {
         WindowGroup {
             RootView(model: model)
                 .onChange(of: scenePhase) { _, phase in
-                    // why: leaving the app flushes the debounced save so no
-                    // answered review is ever lost;
+                    // why: leaving the app writes the box, snapshots and all,
+                    // so no answered review is ever lost;
                     // returning re-checks the join stamp (source/catalog may
                     // have moved) and refreshes time-derived stats.
                     if phase == .background {
-                        model.persistNow()
+                        model.saveNow()
                     } else if phase == .active {
                         model.handleForeground()
                     }

@@ -37,8 +37,8 @@ the round, not the day's report, not a serialization of the document, not a rebu
 the grading index. The document is written by the store, off the main thread, coalesced.
 
 The last answer of a round is an answer like any other, and it is the most expensive one:
-finishing books the day, which triggers the immediate save and the snapshots that ride on
-it (`../kern/docs/snapshots.md`). None of that may sit on the frame that raises the summary
+finishing books the day, which triggers the save that carries the snapshots
+(`../kern/docs/snapshots.md`). None of that may sit on the frame that raises the summary
 — the watch snapshot alone ranks every scheduled card against each of the entries it
 ships, and on the main thread that pause was the summary's. iOS builds both away from it
 and skips the watch one outright where no watch is paired to receive it; Android has only

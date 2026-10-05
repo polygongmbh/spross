@@ -1,23 +1,42 @@
 import Foundation
 import SprossKern
+import WidgetKit
 
 /// File-backed persistence for the box — one document per TARGET language
 /// (`box-<target>.json`), since only one language is ever active and a save should touch
 /// only what moved. A v1 document converts as it is read and is written back under the very
 /// same name (`kern/docs/snapshots.md`).
 ///
+/// The store also decides when a save reaches the disk — what it writes is Kern's `SaveScope`.
 /// The Kern `StoreCodec` is called HERE, on the actor, not by the caller: the document
 /// carries every card's log, and encoding it is the most expensive thing a save does.
-/// Answering a card hands the state over and returns; a burst of answers leaves one box
-/// waiting and pays for one encode, ≥5 s later. Atomic writes; `saveNow` at session end and
-/// scene background skips the wait.
+/// `save` hands the box over and returns; every save is written, and one the actor has not
+/// started yet gives way to a newer one, the two scopes added up. `saveNow` writes before it
+/// returns, for the caller that waits on the write or its error. Atomic writes.
+///
+/// The widget's snapshot is built and written here too, beside the box, and its timeline
+/// reloaded once it is on disk.
 actor BoxStore {
+    private struct Waiting {
+        let state: BoxState
+        let box: StoredBox
+        let scope: SaveScope
+        let at: Int64
+    }
+
+    private struct SiblingDays {
+        let target: String
+        let tzId: String
+        let days: [String: KotlinInt]
+    }
+
     private let directory: URL
-    private var pendingSave: Task<Void, Never>?
-    /// The box a debounced save left waiting, by target. Latest wins.
-    private var waiting: (box: StoredBox, target: String)?
+    /// Saves handed over and not written yet, by target. Latest wins.
+    private var waiting: [String: Waiting] = [:]
     /// What has been read or written this launch, by target.
     private var held: [String: StoredBox] = [:]
+    /// The last `answerDays` asked.
+    private var siblingDays: SiblingDays?
 
     /// App-Group container so the widget can read the box; falls back to
     /// Documents when the group is unavailable (e.g. unit tests).
@@ -51,27 +70,26 @@ actor BoxStore {
         return loaded.box
     }
 
-    /// Debounced save: coalesces bursts of answers into one encode and one write ≥5 s later.
-    func save(state: BoxState) {
-        hold(state)
-        pendingSave?.cancel()
-        pendingSave = Task { [weak self] in
-            try? await Task.sleep(for: .seconds(5))
-            guard !Task.isCancelled else { return }
-            try? await self?.flush()
-        }
+    /// Hands `state` over to be written behind the caller, with what `scope` carries.
+    func save(state: BoxState, scope: SaveScope) {
+        hold(state, scope: scope)
+        Task { [weak self] in try? await self?.flush() }
     }
 
-    func saveNow(state: BoxState) throws {
-        hold(state)
+    /// Writes `state`, with what `scope` carries, before it returns.
+    func saveNow(state: BoxState, scope: SaveScope) throws {
+        hold(state, scope: scope)
         try flush()
     }
 
-    /// Write whatever a debounced save left waiting; nothing waiting is nothing to do.
+    /// Write whatever a save left waiting; nothing waiting is nothing to do.
     func flush() throws {
-        guard let waiting else { return }
-        clearPending()
-        try write(waiting.box, target: waiting.target)
+        let due = waiting
+        waiting = [:]
+        for (target, save) in due {
+            if save.scope.writesBox { try write(save.box, target: target) }
+            if save.scope.writesSnapshots { writeWidgetSnapshot(state: save.state, at: save.at) }
+        }
     }
 
     /// The export's text — `only`, or every language worth carrying, minus what belongs to
@@ -86,10 +104,11 @@ actor BoxStore {
         BoxBackup.shared.carried(boxes: everyLanguage())
     }
 
-    /// A restore: the languages the file carries replace the ones held, the rest stay. A
-    /// debounced save still waiting holds a replaced box and would write it back, so it goes.
+    /// A restore: the languages the file carries replace the ones held and are written, the
+    /// rest stay. A save still waiting goes out first, so the restored box is the one left on disk.
     func restore(_ imported: StoredBoxes) throws {
-        clearPending()
+        try flush()
+        siblingDays = nil
         for (target, box) in imported.boxes {
             held[target] = box
             try write(box, target: target)
@@ -100,7 +119,9 @@ actor BoxStore {
     /// A sibling that cannot be read is skipped: its own load path surfaces the real error
     /// when the learner switches to it.
     func answerDays(excluding target: String, tzId: String) -> [String: KotlinInt] {
-        everyLanguage().answerDaysExcept(target: target, tzId: tzId)
+        let days = everyLanguage().answerDaysExcept(target: target, tzId: tzId)
+        siblingDays = SiblingDays(target: target, tzId: tzId, days: days)
+        return days
     }
 
     private func everyLanguage() -> StoredBoxes {
@@ -111,16 +132,12 @@ actor BoxStore {
         return StoredBoxes(boxes: held)
     }
 
-    private func hold(_ state: BoxState) {
+    private func hold(_ state: BoxState, scope: SaveScope) {
+        let target = state.joinStamp.target
         let box = StoredBox.companion.of(state: state)
-        held[state.joinStamp.target] = box
-        waiting = (box, state.joinStamp.target)
-    }
-
-    private func clearPending() {
-        waiting = nil
-        pendingSave?.cancel()
-        pendingSave = nil
+        held[target] = box
+        let owed = waiting[target].map { $0.scope.plus(other: scope) } ?? scope
+        waiting[target] = Waiting(state: state, box: box, scope: owed, at: Date().epochMillis)
     }
 
     private func write(_ box: StoredBox, target: String) throws {
@@ -135,22 +152,23 @@ actor BoxStore {
         return names.filter { $0.hasPrefix("box-") && $0.hasSuffix(".json") }
     }
 
-    /// Kern `WidgetSnapshotBuilder` JSON for the decode-only iOS widget, written
-    /// next to the box documents. Built here for the same reason the box is: it walks the
+    /// Kern `WidgetSnapshotBuilder` JSON for the decode-only iOS widget, written next to the
+    /// box documents. Built here for the same reason the box is encoded here: it walks the
     /// exposure ranking, the active cards and every day the logs carry
-    /// (`kern/docs/snapshots.md`).
-    func saveWidgetSnapshot(
-        state: BoxState,
-        nowEpochMillis: Int64,
-        tzId: String,
-        otherLanguagesAnswerDays: [String: KotlinInt],
-    ) {
+    /// (`kern/docs/snapshots.md`). Carries the other languages' days because the run is one
+    /// commitment across every box.
+    private func writeWidgetSnapshot(state: BoxState, at nowEpochMillis: Int64) {
+        let target = state.joinStamp.target
+        let tzId = currentTzId()
+        let cached = siblingDays.flatMap { $0.target == target && $0.tzId == tzId ? $0.days : nil }
         let json = WidgetSnapshotBuilder.shared.build(
             state: state, nowEpochMillis: nowEpochMillis, tzId: tzId,
             exposureLimit: WidgetSnapshotBuilder.shared.DEFAULT_EXPOSURE_LIMIT,
-            otherLanguagesAnswerDays: otherLanguagesAnswerDays)
+            otherLanguagesAnswerDays: cached ?? answerDays(excluding: target, tzId: tzId))
         try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
         try? Data(json.utf8).write(to: directory.appendingPathComponent("widget-snapshot.json"),
                                    options: .atomic)
+        // why: a placed widget keeps drawing its old timeline until it is rebuilt.
+        WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
     }
 }

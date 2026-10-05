@@ -1,13 +1,12 @@
 import Foundation
 import SprossKern
-import WidgetKit
 
 // Session flow: kern's `SessionRun` IS the machine — composition, the queue, the
 // endless refill, the summary tallies and the day's fold all live there, and every
 // command below reduces one intent against `run` and honours what comes back.
 //
 // What stays here is what kern deliberately cannot name: the fullScreenCover's
-// presentation flag, WidgetKit, and the Int/enum bridging the screens read.
+// presentation flag and the Int/enum bridging the screens read.
 
 extension AppModel {
 
@@ -24,22 +23,17 @@ extension AppModel {
                                                  tzId: currentTzId())
         self.run = reduction.state
         // why: closing an unfinished run books the day and then says so again —
-        // the day moved once, and every reload costs the widget a redraw.
+        // the day moved once, and the statistics are taken once.
         var booked = false
         for effect in reduction.effects {
             switch onEnum(of: effect) {
-            case .save(let save):
-                persist(reduction.state.box, immediate: save.scope.writesSnapshots)
+            case .save(let effect):
+                save(reduction.state.box, effect.scope)
             case .dayBooked:
                 booked = true
             }
         }
-        if booked {
-            refreshStats()
-            // why: the box just changed materially — the widget's word rotation
-            // should reflect fresh learning immediately, not at timeline end.
-            WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
-        }
+        if booked { refreshStats() }
         return reduction.effects
     }
 

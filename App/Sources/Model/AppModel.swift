@@ -1,7 +1,6 @@
 import Foundation
 import Observation
 import SprossKern
-import WidgetKit
 
 /// A failure worth showing as error chrome on Home. The model names the
 /// case only — the view localizes it (`HomeView`), so the message follows
@@ -328,14 +327,7 @@ final class AppModel {
             refreshTrainerContent()
             refreshStats()
             anyWordAudible = composedAnyWordAudible()
-            if opened.save.writesBox { try await store.saveNow(state: state) }
-            await store.saveWidgetSnapshot(state: state, nowEpochMillis: Date().epochMillis,
-                                           tzId: currentTzId(),
-                                           otherLanguagesAnswerDays: otherLanguagesAnswerDays)
-            // why: a widget left without a readable snapshot by an update shows the
-            // sprout until its timeline is rebuilt — launching is what the sprout
-            // asks for, so the handover happens then, not up to six hours later.
-            WidgetCenter.shared.reloadTimelines(ofKind: "SprossWordWidget")
+            try await store.saveNow(state: state, scope: opened.save)
             UserDefaults.standard.set(source, forKey: Self.sourceLanguageKey)
             UserDefaults.standard.set(target, forKey: Self.targetLanguageKey)
             loadFailure = nil
@@ -362,7 +354,7 @@ final class AppModel {
         let next = BoxEngine.shared.rejoin(state: box, cards: cards, joinStamp: stamp)
         self.box = next
         UserDefaults.standard.set(newSource, forKey: Self.sourceLanguageKey)
-        persist(next, immediate: true)
+        save(next, .boxAndSnapshots)
         refreshTrainerContent()
         refreshStats()
         anyWordAudible = composedAnyWordAudible()
@@ -500,58 +492,41 @@ final class AppModel {
         otherLanguagesAnswerDays = await store.answerDays(excluding: target, tzId: currentTzId())
     }
 
-    /// Scene went to background → flush whatever the debounce is still holding.
-    /// A mid-run answer is already in the box; only the disk is behind.
-    func persistNow() {
+    /// Scene went to background: every answer is already in the box, so this only makes
+    /// sure it reaches disk, snapshots and all, before the app can be suspended.
+    func saveNow() {
         guard let box else { return }
-        persist(box, immediate: true) // carries the watch snapshot with it
+        pushWatchSnapshot()
+        // why: the main actor cannot wait on the store's actor here; the write starts
+        // at once and runs inside the time a backgrounded scene is given.
+        Task { [store] in try? await store.saveNow(state: box, scope: .boxAndSnapshots) }
     }
 
-    /// Hand the box to the store. Encoding happens there, off this actor — an
-    /// answer never waits on it, and a burst of them is written once.
-    func persist(_ state: BoxState, immediate: Bool = false) {
-        // why: every save path also refreshes the watch snapshot, so config
-        // changes and session end (immediate saves) reach the watch promptly.
-        if immediate { pushWatchSnapshot() }
-        let now = Date().epochMillis
-        let tz = currentTzId()
-        let others = otherLanguagesAnswerDays
-        Task { [store] in
-            if immediate {
-                try? await store.saveNow(state: state)
-                // why: the decode-only widget renders from this precomputed file
-                // (`kern/docs/snapshots.md`). Built with the immediate saves only —
-                // session end, a config change, the app leaving the screen. Its
-                // worth is long-term exposure, so a round's worth of staleness
-                // costs nothing, and rebuilding it per answer costs a full walk
-                // of the exposure ranking and every day the box has tallied.
-                await store.saveWidgetSnapshot(state: state, nowEpochMillis: now, tzId: tz,
-                                               otherLanguagesAnswerDays: others)
-            } else {
-                await store.save(state: state)
-            }
-        }
+    /// The one way a change to the box goes to disk: the store writes it behind the caller,
+    /// with what `scope` carries (`BoxStore.save`), and the watch gets its snapshot alongside.
+    func save(_ state: BoxState, _ scope: SaveScope) {
+        if scope.writesSnapshots { pushWatchSnapshot() }
+        Task { [store] in await store.save(state: state, scope: scope) }
     }
 
     /// Apply a change nothing derived reads, and let it ride out with the next save.
     ///
     /// The counterpart to `mutate`, for the change that moves no card, no schedule and no
     /// tally: there is nothing for `refreshStats` to take again, and nothing for the watch
-    /// or the widget to be told. The debounced save carries it, and `persistNow` flushes
-    /// that before the app can leave.
+    /// or the widget to be told: it is written with the box alone.
     func stamp(_ change: (BoxState) -> BoxState) {
         guard let state = box else { return }
         let next = change(state)
         box = next
-        persist(next)
+        save(next, .box)
     }
 
-    /// Apply a change to the box, persist immediately, refresh statistics.
+    /// Apply a change to the box, save it with the snapshots, refresh statistics.
     func mutate(_ change: (inout BoxState) -> Void) {
         guard var state = box else { return }
         change(&state)
         box = state
-        persist(state, immediate: true)
+        save(state, .boxAndSnapshots)
         refreshStats()
     }
 }

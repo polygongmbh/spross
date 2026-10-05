@@ -1,7 +1,7 @@
 import Foundation
 
 /// Decode-only mirror of Kern's `WidgetSnapshotBuilder` JSON, written by the
-/// app on every persist. The widget extension links no Kotlin (no catalog in
+/// app on every snapshot save. The widget extension links no Kotlin (no catalog in
 /// its bundle, tight extension memory cap) — everything it renders is
 /// pre-resolved phone-side, the streak for every day it may be drawn on included;
 /// only `dueCount(now:)` runs here at render time.

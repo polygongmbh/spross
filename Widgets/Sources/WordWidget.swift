@@ -10,7 +10,7 @@ struct SprossWidgets: WidgetBundle {
 
 /// Passive exposure: a rotating word from the box, fresh every 15 minutes.
 /// Decode-only Swift over the app-written `WidgetSnapshot` (no engine link);
-/// the phone pre-ranks attention-worthy cards on every persist.
+/// the phone pre-ranks attention-worthy cards on every save that carries the snapshots.
 struct WordWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "SprossWordWidget", provider: WordProvider()) { entry in
