@@ -47,21 +47,10 @@ struct SentenceScrambleView: View {
             report: SentenceScrambleAvailability(model: model).report,
             cleared: TrainerProgress.held(for: Self.storageKey(language))
         )
-        #if DEBUG
-        // UI-test hook: `-uitest-sentencescramble-level N` opens the run at that
-        // Sprosse — the deterministic way to reach a band. Kern clamps it.
-        let preset = UserDefaults.standard.integer(forKey: "uitest-sentencescramble-level")
-        if preset > 0 {
-            _run = State(initialValue: SentenceScrambleRun.shared.openAt(config: config,
-                                                                         sprosse: Int32(preset),
-                                                                         rng: drillRandom))
-        } else {
-            _run = State(initialValue: SentenceScrambleRun.shared.open(config: config,
-                                                                       rng: drillRandom))
-        }
-        #else
-        _run = State(initialValue: SentenceScrambleRun.shared.open(config: config, rng: drillRandom))
-        #endif
+        let preset = uitestOpeningSprosse("uitest-sentencescramble-level")
+        _run = State(initialValue: preset > 0
+            ? SentenceScrambleRun.shared.openAt(config: config, sprosse: preset, rng: drillRandom)
+            : SentenceScrambleRun.shared.open(config: config, rng: drillRandom))
     }
 
     /// Where the ladder is filed (`SentenceScrambleRunState.storageKey`).

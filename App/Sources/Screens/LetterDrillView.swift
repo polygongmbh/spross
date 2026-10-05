@@ -53,20 +53,10 @@ struct LetterDrillView: View, LanguageNaming {
             dictationGrader: Self.dictationGrader(model: model, language: language),
             cleared: TrainerProgress.held(for: Self.storageKey(language))
         )
-        #if DEBUG
-        // UI-test hook: `-uitest-letters-level N` opens the run at that Sprosse,
-        // which is how any format is reached deterministically. Kern clamps it.
-        let preset = UserDefaults.standard.integer(forKey: "uitest-letters-level")
-        if preset > 0 {
-            _run = State(initialValue: LetterDrillRun.shared.openAt(config: config,
-                                                                    sprosse: Int32(preset),
-                                                                    rng: drillRandom))
-        } else {
-            _run = State(initialValue: LetterDrillRun.shared.open(config: config, rng: drillRandom))
-        }
-        #else
-        _run = State(initialValue: LetterDrillRun.shared.open(config: config, rng: drillRandom))
-        #endif
+        let preset = uitestOpeningSprosse("uitest-letters-level")
+        _run = State(initialValue: preset > 0
+            ? LetterDrillRun.shared.openAt(config: config, sprosse: preset, rng: drillRandom)
+            : LetterDrillRun.shared.open(config: config, rng: drillRandom))
     }
 
     /// Where the answered-out mask is filed (`LetterDrillRunState.storageKey`).

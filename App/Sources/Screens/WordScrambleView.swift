@@ -47,21 +47,10 @@ struct WordScrambleView: View, LanguageNaming {
                 .map { AnswerNormalizer.companion.drill(answerLanguage: $0) },
             cleared: TrainerProgress.held(for: Self.storageKey(language))
         )
-        #if DEBUG
-        // UI-test hook: `-uitest-wordscramble-level N` opens the run at that
-        // Sprosse, which is how a masking stage is reached deterministically.
-        // Kern clamps it.
-        let preset = UserDefaults.standard.integer(forKey: "uitest-wordscramble-level")
-        if preset > 0 {
-            _run = State(initialValue: WordScrambleRun.shared.openAt(config: config,
-                                                                     sprosse: Int32(preset),
-                                                                     rng: drillRandom))
-        } else {
-            _run = State(initialValue: WordScrambleRun.shared.open(config: config, rng: drillRandom))
-        }
-        #else
-        _run = State(initialValue: WordScrambleRun.shared.open(config: config, rng: drillRandom))
-        #endif
+        let preset = uitestOpeningSprosse("uitest-wordscramble-level")
+        _run = State(initialValue: preset > 0
+            ? WordScrambleRun.shared.openAt(config: config, sprosse: preset, rng: drillRandom)
+            : WordScrambleRun.shared.open(config: config, rng: drillRandom))
     }
 
     /// Where the ladder is filed (`WordScrambleRunState.storageKey`).

@@ -295,3 +295,14 @@ extension DrillRunning {
     }
 }
 #endif
+
+/// The Sprosse a `-uitest-<drill>-level N` launch argument opens a run on, which is
+/// how a run-through reaches an outer Sprosse deterministically (kern clamps it);
+/// 0 where none is given, and always in a release build.
+func uitestOpeningSprosse(_ key: String) -> Int32 {
+    #if DEBUG
+    Int32(UserDefaults.standard.integer(forKey: key))
+    #else
+    0
+    #endif
+}
