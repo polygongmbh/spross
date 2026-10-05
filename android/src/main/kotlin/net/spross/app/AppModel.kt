@@ -345,7 +345,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             otherLanguagesAnswerDays = days
             refreshStats()
             refreshListening()
-            if (opened.needsSave) persist(opened.box)
+            if (opened.save.writesBox) persist(opened.box)
             screen = landing
         } finally {
             switchingLanguage = false
@@ -407,8 +407,8 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         box = reduction.state.box
         for (effect in reduction.effects) {
             when (effect) {
-                is SessionEffect.Persist ->
-                    persist(reduction.state.box, widget = effect.immediate, blocking = blocking)
+                is SessionEffect.Save ->
+                    persist(reduction.state.box, widget = effect.scope.writesSnapshots, blocking = blocking)
                 SessionEffect.DayBooked -> refreshStats()
             }
         }

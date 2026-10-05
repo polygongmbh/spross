@@ -28,8 +28,8 @@ extension AppModel {
         var booked = false
         for effect in reduction.effects {
             switch onEnum(of: effect) {
-            case .persist(let write):
-                persist(reduction.state.box, immediate: write.immediate)
+            case .save(let save):
+                persist(reduction.state.box, immediate: save.scope.writesSnapshots)
             case .dayBooked:
                 booked = true
             }

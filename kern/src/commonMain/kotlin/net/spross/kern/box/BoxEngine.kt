@@ -6,6 +6,7 @@ import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
+import net.spross.kern.store.SaveScope
 import net.spross.kern.store.StoredBox
 import net.spross.kern.store.rekeyingPrefixedVerbs
 
@@ -25,15 +26,15 @@ object BoxEngine {
     /**
      * A pair's box as a launch or a language switch opens it: [saved] joined with the
      * catalog's [cards] and migrated, or bootstrapped where the device holds none.
-     * Only a bootstrapped box owes the disk a write — a re-join reproduces itself from
-     * what is already stored.
+     * Only a bootstrapped box owes the disk its document — a re-join reproduces itself from
+     * what is already stored ([OpenedBox.save]).
      */
     fun open(saved: StoredBox?, cards: List<Card>, joinStamp: JoinStamp): OpenedBox =
         if (saved == null) {
-            OpenedBox(bootstrap(cards, BoxConfig.product(), joinStamp), needsSave = true)
+            OpenedBox(bootstrap(cards, BoxConfig.product(), joinStamp), SaveScope.BOX_AND_SNAPSHOTS)
         } else {
             // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
-            OpenedBox(saved.join(cards, joinStamp).rekeyingPrefixedVerbs(), needsSave = false)
+            OpenedBox(saved.join(cards, joinStamp).rekeyingPrefixedVerbs(), SaveScope.SNAPSHOTS)
         }
 
     /**

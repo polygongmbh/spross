@@ -21,6 +21,7 @@ import net.spross.kern.session.SessionEffect
 import net.spross.kern.session.SessionIntent
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
+import net.spross.kern.store.SaveScope
 
 /**
  * What the app DOES with kern's session run — the intents each affordance sends, and the
@@ -51,8 +52,8 @@ class SessionRunWiringTest {
     private class Model(box: BoxState) {
         var state: SessionRunState = SessionRun.idle(box)
 
-        /** The `immediate` flag of every persist asked for, in order. */
-        val persists = mutableListOf<Boolean>()
+        /** The scope of every save asked for, in order. */
+        val saves = mutableListOf<SaveScope>()
         var daysBooked = 0
 
         fun dispatch(intent: SessionIntent, nowEpochMillis: Long, tzId: String): SessionRunState {
@@ -60,7 +61,7 @@ class SessionRunWiringTest {
             state = reduction.state
             for (effect in reduction.effects) {
                 when (effect) {
-                    is SessionEffect.Persist -> persists += effect.immediate
+                    is SessionEffect.Save -> saves += effect.scope
                     SessionEffect.DayBooked -> daysBooked += 1
                 }
             }
@@ -88,7 +89,7 @@ class SessionRunWiringTest {
         val model = freshModel()
         model.dispatch(SessionIntent.Start, now, tz)
         model.dispatch(SessionIntent.Answer(Rating.Good), now, tz)
-        assertEquals(listOf(false), model.persists)
+        assertEquals(listOf(SaveScope.BOX), model.saves)
     }
 
     /**
@@ -132,12 +133,12 @@ class SessionRunWiringTest {
         model.dispatch(SessionIntent.Answer(Rating.Good), now, tz)
 
         assertEquals(2, model.reviewsBooked())
-        assertTrue(model.persists.isNotEmpty())
+        assertTrue(model.saves.isNotEmpty())
 
         model.dispatch(SessionIntent.Answer(Rating.Good), now, tz) // drains → finishes
         model.dispatch(SessionIntent.Close, now, tz)
         assertEquals(3, model.reviewsBooked())
-        assertEquals(true, model.persists.last())
+        assertEquals(SaveScope.BOX_AND_SNAPSHOTS, model.saves.last())
         assertTrue(model.daysBooked > 0) // finishing and closing both tell the surfaces to re-read
     }
 
@@ -166,6 +167,6 @@ class SessionRunWiringTest {
     fun anExtraRoundWithNothingBehindItGoesNowhere() {
         val model = Model(BoxEngine.bootstrap(emptyList(), BoxConfig.product(), JoinStamp("de", "sw", "fp")))
         assertNull(model.dispatch(SessionIntent.StartExtra, now, tz).currentCardId)
-        assertTrue(model.persists.isEmpty())
+        assertTrue(model.saves.isEmpty())
     }
 }

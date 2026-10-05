@@ -10,6 +10,7 @@ import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
 import net.spross.kern.model.SessionPlan
+import net.spross.kern.store.SaveScope
 
 /** Where the run stands: a card to answer, or the summary. */
 sealed class SessionStep {
@@ -52,8 +53,8 @@ sealed class SessionIntent {
 
 /** What the reduction asks the platform to do about the world outside the box. */
 sealed class SessionEffect {
-    /** Write the box out; [immediate] skips the store's debounce. */
-    data class Persist(val immediate: Boolean) : SessionEffect()
+    /** Write the box out, and what rides along with it ([SaveScope]). */
+    data class Save(val scope: SaveScope) : SessionEffect()
 
     /** The run closed on the day — statistics and every box-derived surface read stale. */
     data object DayBooked : SessionEffect()
@@ -196,7 +197,7 @@ object SessionRun {
             tally = state.tally + RoundAnswer(cardId, rating, kind),
             queue = state.queue.drop(1),
         )
-        return advance(next, listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
+        return advance(next, listOf(SessionEffect.Save(SaveScope.BOX)), nowEpochMillis, tzId)
     }
 
     /**
@@ -220,7 +221,7 @@ object SessionRun {
             // rating, and a total under that would claim fewer parts than it holds.
             total = maxOf(state.total - 1, state.answered),
         )
-        return advance(next, listOf(SessionEffect.Persist(false)), nowEpochMillis, tzId)
+        return advance(next, listOf(SessionEffect.Save(SaveScope.BOX)), nowEpochMillis, tzId)
     }
 
     /**
@@ -293,14 +294,14 @@ object SessionRun {
 
     /**
      * Close the run out. Every answer is already in the box and the day is counted off the
-     * logs, so nothing is booked here — only the disk is still behind, which is why this
-     * persists immediately.
+     * logs, so nothing is booked here — only the surfaces drawn from the box are behind,
+     * which is why this save carries the snapshots.
      */
     private fun finish(state: SessionRunState): SessionReduction {
         if (state.finished) return unchanged(state)
         return SessionReduction(
             state.copy(finished = true),
-            listOf(SessionEffect.Persist(true), SessionEffect.DayBooked),
+            listOf(SessionEffect.Save(SaveScope.BOX_AND_SNAPSHOTS), SessionEffect.DayBooked),
         )
     }
 

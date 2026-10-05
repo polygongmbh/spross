@@ -328,7 +328,7 @@ final class AppModel {
             refreshTrainerContent()
             refreshStats()
             anyWordAudible = composedAnyWordAudible()
-            if opened.needsSave { try await store.saveNow(state: state) }
+            if opened.save.writesBox { try await store.saveNow(state: state) }
             await store.saveWidgetSnapshot(state: state, nowEpochMillis: Date().epochMillis,
                                            tzId: currentTzId(),
                                            otherLanguagesAnswerDays: otherLanguagesAnswerDays)

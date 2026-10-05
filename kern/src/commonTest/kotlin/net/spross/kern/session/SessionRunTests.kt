@@ -17,6 +17,7 @@ import net.spross.kern.box.dayKey
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
+import net.spross.kern.store.SaveScope
 
 /**
  * The session run: the promise the composed queue makes, the summary tallies,
@@ -245,7 +246,7 @@ class SessionRunTests {
         val done = SessionRun.reduce(run, SessionIntent.Finish, now, Box.TZ)
         assertEquals(5, done.state.answered)
         assertEquals(5, dayReviews(done.state))
-        assertTrue(SessionEffect.Persist(true) in done.effects)
+        assertTrue(SessionEffect.Save(SaveScope.BOX_AND_SNAPSHOTS) in done.effects)
         assertTrue(SessionEffect.DayBooked in done.effects)
         // Finishing twice changes nothing.
         assertEquals(5, dayReviews(SessionRun.reduce(done.state, SessionIntent.Finish, now, Box.TZ).state))
@@ -317,12 +318,12 @@ class SessionRunTests {
         assertEquals(0, dayReviews(quiet.state))
     }
 
-    /** Answers persist as they land; only the fold flushes immediately. */
+    /** Answers are saved as they land, the box alone; only the fold carries the snapshots. */
     @Test
     fun everyAnswerAsksForASave() {
         val run = started(backloggedState(), now)
         val reduction = SessionRun.reduce(run, SessionIntent.Answer(Rating.Good), now, Box.TZ)
-        assertTrue(SessionEffect.Persist(false) in reduction.effects)
+        assertTrue(SessionEffect.Save(SaveScope.BOX) in reduction.effects)
         assertFalse(SessionEffect.DayBooked in reduction.effects)
     }
 
