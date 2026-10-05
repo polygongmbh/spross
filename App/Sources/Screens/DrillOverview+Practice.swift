@@ -139,7 +139,7 @@ extension DrillOverview {
                             .font(Theme.typography.caption)
                             .foregroundStyle(Theme.colors.textSecondary)
                     } else {
-                        FadingPadlock(fresh: fastUnlocking)
+                        FadingPadlock(newlyUnlocked: fastUnlocking)
                     }
                     Text("trainer.modifier.fast")
                         .font(Theme.typography.headline)

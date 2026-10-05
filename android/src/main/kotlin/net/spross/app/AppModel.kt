@@ -325,7 +325,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             refreshListening()
             // why: only a box that did not exist yet owes the disk anything here. A re-join
             // is derived from what is already stored and reproduces itself on the next launch.
-            if (joined.fresh) persist(joined.box)
+            if (joined.newBox) persist(joined.box)
             screen = landing
         } finally {
             switchingLanguage = false

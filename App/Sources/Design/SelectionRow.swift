@@ -36,7 +36,7 @@ struct SelectionRow: View {
         Button(action: action) {
             HStack(spacing: Theme.spacing.md) {
                 if let symbol {
-                    UnlockingMark(fresh: unlocking) {
+                    UnlockingMark(newlyUnlocked: unlocking) {
                         Image(systemName: symbol)
                             .font(.title3)
                             .foregroundStyle(markColor)

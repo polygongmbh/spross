@@ -89,7 +89,7 @@ extension NumbersOverview {
                             .font(Theme.typography.caption)
                             .foregroundStyle(Theme.colors.textSecondary)
                     } else {
-                        FadingPadlock(fresh: unlocking.contains(DrillUnlockMark.shared.row(modifier: modifier)))
+                        FadingPadlock(newlyUnlocked: unlocking.contains(DrillUnlockMark.shared.row(modifier: modifier)))
                     }
                     Text(modifier.trainerTitleKey)
                         .font(Theme.typography.headline)

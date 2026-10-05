@@ -44,11 +44,11 @@ extension LettersOverview {
         let open = reachable(format)
         let entry = open && format == availability?.openingFormat(cleared)
         let mark = formatMark(format, entry: entry)
-        let fresh = unlocking.contains(DrillUnlockMark.shared.row(format: format))
+        let newlyUnlocked = unlocking.contains(DrillUnlockMark.shared.row(format: format))
         let step = (Self.formats.firstIndex(of: format) ?? 0) + 1
         return HStack(alignment: .center, spacing: Theme.spacing.md) {
             if open {
-                UnlockingMark(fresh: fresh) { SprosseCircle(number: step, mark: mark) }
+                UnlockingMark(newlyUnlocked: newlyUnlocked) { SprosseCircle(number: step, mark: mark) }
             } else {
                 Image(systemName: "lock.fill")
                     .font(.title3)
@@ -71,7 +71,7 @@ extension LettersOverview {
             }
             Spacer(minLength: 0)
         }
-        .unlockWash(fresh)
+        .unlockWash(newlyUnlocked)
         // why: one format is one VoiceOver stop — the mark and the name describe a
         // single thing, and the value says what the filled circle says.
         .accessibilityElement(children: .combine)

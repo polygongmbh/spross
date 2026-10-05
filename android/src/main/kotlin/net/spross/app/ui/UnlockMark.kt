@@ -38,12 +38,12 @@ private object UnlockTiming {
     const val FADE_MS = 900
 }
 
-/** Whether a fresh row's padlock is still standing: true for [UnlockTiming.HOLD_MS], then false. */
+/** Whether a newly unlocked row's padlock is still standing: true for [UnlockTiming.HOLD_MS], then false. */
 @Composable
-private fun padlockStanding(fresh: Boolean): Boolean {
-    var standing by remember(fresh) { mutableStateOf(fresh) }
-    LaunchedEffect(fresh) {
-        if (!fresh) return@LaunchedEffect
+private fun padlockStanding(newlyUnlocked: Boolean): Boolean {
+    var standing by remember(newlyUnlocked) { mutableStateOf(newlyUnlocked) }
+    LaunchedEffect(newlyUnlocked) {
+        if (!newlyUnlocked) return@LaunchedEffect
         delay(UnlockTiming.HOLD_MS)
         standing = false
     }
@@ -52,9 +52,9 @@ private fun padlockStanding(fresh: Boolean): Boolean {
 
 /** A row's mark that was a padlock the last time the page showed it: the padlock crossfades into [mark]. */
 @Composable
-fun UnlockingMark(fresh: Boolean, mark: @Composable () -> Unit) {
+fun UnlockingMark(newlyUnlocked: Boolean, mark: @Composable () -> Unit) {
     AnimatedContent(
-        targetState = padlockStanding(fresh),
+        targetState = padlockStanding(newlyUnlocked),
         transitionSpec = {
             fadeIn(tween(UnlockTiming.FADE_MS)) togetherWith
                 (fadeOut(tween(UnlockTiming.FADE_MS)) + scaleOut(tween(UnlockTiming.FADE_MS), targetScale = 0.6f))
@@ -68,9 +68,9 @@ fun UnlockingMark(fresh: Boolean, mark: @Composable () -> Unit) {
 
 /** The padlock in front of a switch's title, where the unlocked switch wears nothing. */
 @Composable
-fun FadingPadlock(fresh: Boolean) {
+fun FadingPadlock(newlyUnlocked: Boolean) {
     AnimatedVisibility(
-        visible = padlockStanding(fresh),
+        visible = padlockStanding(newlyUnlocked),
         enter = fadeIn(tween(0)),
         exit = fadeOut(tween(UnlockTiming.FADE_MS)) + shrinkHorizontally(tween(UnlockTiming.FADE_MS)),
     ) {
@@ -84,10 +84,10 @@ private fun Padlock(style: androidx.compose.ui.text.TextStyle) {
 }
 
 /** The brief wash over a row that just unlocked, gone with its padlock. */
-fun Modifier.unlockWash(fresh: Boolean): Modifier = composed {
-    val alpha = remember(fresh) { Animatable(if (fresh) 1f else 0f) }
-    LaunchedEffect(fresh) {
-        if (!fresh) return@LaunchedEffect
+fun Modifier.unlockWash(newlyUnlocked: Boolean): Modifier = composed {
+    val alpha = remember(newlyUnlocked) { Animatable(if (newlyUnlocked) 1f else 0f) }
+    LaunchedEffect(newlyUnlocked) {
+        if (!newlyUnlocked) return@LaunchedEffect
         delay(UnlockTiming.HOLD_MS)
         alpha.animateTo(0f, tween(UnlockTiming.FADE_MS, easing = FastOutSlowInEasing))
     }

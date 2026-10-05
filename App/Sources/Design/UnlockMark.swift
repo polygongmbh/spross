@@ -26,16 +26,16 @@ enum UnlockMark {
 }
 
 /// A row's mark that was a padlock the last time the page showed it: the
-/// padlock crossfades into `mark`. Where `fresh` is false it is `mark` alone.
+/// padlock crossfades into `mark`. Where `newlyUnlocked` is false it is `mark` alone.
 struct UnlockingMark<Mark: View>: View {
-    let fresh: Bool
+    let newlyUnlocked: Bool
     @ViewBuilder let mark: () -> Mark
     @State private var faded = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ZStack {
-            if fresh && !faded {
+            if newlyUnlocked && !faded {
                 Image(systemName: "lock.fill")
                     .font(.title3)
                     .foregroundStyle(Theme.colors.textSecondary)
@@ -44,40 +44,40 @@ struct UnlockingMark<Mark: View>: View {
                 mark().transition(.opacity)
             }
         }
-        .task(id: fresh) { await fadeOnce(fresh, $faded) }
+        .task(id: newlyUnlocked) { await fadeOnce(newlyUnlocked, $faded) }
     }
 }
 
 /// The padlock in front of a switch's title, where the unlocked switch wears
 /// nothing: it fades and gives its room back to the title.
 struct FadingPadlock: View {
-    let fresh: Bool
+    let newlyUnlocked: Bool
     @State private var faded = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Group {
-            if fresh && !faded {
+            if newlyUnlocked && !faded {
                 Image(systemName: "lock.fill")
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
                     .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.6)))
             }
         }
-        .task(id: fresh) { await fadeOnce(fresh, $faded) }
+        .task(id: newlyUnlocked) { await fadeOnce(newlyUnlocked, $faded) }
     }
 }
 
 extension View {
     /// The brief wash over a row that just unlocked, gone with its padlock.
     /// `bleed` reaches past a row that draws no surface of its own.
-    func unlockWash(_ fresh: Bool, bleed: CGFloat = Theme.spacing.xs) -> some View {
-        modifier(UnlockWash(fresh: fresh, bleed: bleed))
+    func unlockWash(_ newlyUnlocked: Bool, bleed: CGFloat = Theme.spacing.xs) -> some View {
+        modifier(UnlockWash(newlyUnlocked: newlyUnlocked, bleed: bleed))
     }
 }
 
 private struct UnlockWash: ViewModifier {
-    let fresh: Bool
+    let newlyUnlocked: Bool
     let bleed: CGFloat
     @State private var faded = false
 
@@ -87,16 +87,16 @@ private struct UnlockWash: ViewModifier {
                 RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
                     .fill(Theme.colors.accent.opacity(0.12))
                     .padding(-bleed)
-                    .opacity(fresh && !faded ? 1 : 0)
+                    .opacity(newlyUnlocked && !faded ? 1 : 0)
                     .allowsHitTesting(false)
             }
-            .task(id: fresh) { await fadeOnce(fresh, $faded) }
+            .task(id: newlyUnlocked) { await fadeOnce(newlyUnlocked, $faded) }
     }
 }
 
 @MainActor
-private func fadeOnce(_ fresh: Bool, _ faded: Binding<Bool>) async {
-    guard fresh, !faded.wrappedValue else { return }
+private func fadeOnce(_ newlyUnlocked: Bool, _ faded: Binding<Bool>) async {
+    guard newlyUnlocked, !faded.wrappedValue else { return }
     try? await Task.sleep(for: UnlockMark.hold)
     withAnimation(UnlockMark.fade) { faded.wrappedValue = true }
 }

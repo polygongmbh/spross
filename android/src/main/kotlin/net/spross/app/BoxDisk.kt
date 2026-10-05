@@ -110,7 +110,7 @@ class BoxDisk(val files: BoxFiles) {
 class JoinedPair(
     val box: BoxState,
     /** Whether the device held no box for the pair yet, which is what owes the disk a write. */
-    val fresh: Boolean,
+    val newBox: Boolean,
     val atlas: CountryDrillContent?,
     val dates: DateDrillContent?,
     val otherLanguagesAnswerDays: Map<String, Int>,
