@@ -34,7 +34,7 @@ import net.spross.kern.store.StoreJson
  */
 object WatchSnapshotBuilder {
     const val SCHEMA_VERSION: Int = 7
-    const val ENTRY_CAP: Int = 60
+    const val ENTRY_CAP: Int = 120
 
     /**
      * Longest text the watch will carry, per side. Four tiles in a 2×2 grid on a
@@ -95,8 +95,8 @@ object WatchSnapshotBuilder {
         // first met as somebody else's wrong answer is no longer new when it arrives.
         val pool = ranked.map { state.cards.getValue(it.sched.cardId) }
         // why: the index and both option sides are the POOL's, not an entry's —
-        // built per entry they were built sixty times over, which is most of what
-        // a snapshot used to cost.
+        // built once here rather than once per shipped entry, which would be most
+        // of what a snapshot costs.
         val shared = SharedTargetForms(pool)
         val fresh = ranked.filterNot { Statistics.hasArrived(it.sched) }.map { it.sched.cardId }.toSet()
         val reviewCounts = ranked.associate { it.sched.cardId to it.sched.reviewCount }

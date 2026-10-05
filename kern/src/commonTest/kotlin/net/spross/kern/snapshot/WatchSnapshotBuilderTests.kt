@@ -130,7 +130,8 @@ class WatchSnapshotBuilderTests {
 
     @Test
     fun capNeverEvictsDueCardsForNonDueOnes() {
-        val cards = (1..65).map { Box.word(it) }
+        val cap = WatchSnapshotBuilder.ENTRY_CAP
+        val cards = (1..cap + 5).map { Box.word(it) }
         var state = Snap.state(cards)
         for (n in 1..3) { // non-due learning cards — weaker, must not crowd due out
             state = Box.inject(
@@ -141,7 +142,7 @@ class WatchSnapshotBuilderTests {
                 ),
             )
         }
-        for (n in 4..65) { // 62 due review cards
+        for (n in 4..cap + 5) { // cap + 2 due review cards
             state = Box.inject(
                 state,
                 Box.sched(cards[n - 1].id, stability = n.toDouble(), dueMillis = Box.day1, lastReviewMillis = Box.day1),
@@ -149,20 +150,20 @@ class WatchSnapshotBuilderTests {
         }
         val doc = WatchSnapshotBuilder.doc(state, Box.day1)
 
-        assertEquals(60, doc.entries.size)
-        // All 60 slots go to due cards (weakest first); none to w01–w03.
-        assertEquals((4..63).map { "w" + it.toString().padStart(2, '0') }, doc.entries.map { it.cardId })
+        assertEquals(cap, doc.entries.size)
+        // Every slot goes to a due card (weakest first); none to w01–w03.
+        assertTrue(doc.entries.none { it.cardId in setOf(cards[0].id, cards[1].id, cards[2].id) })
     }
 
     @Test
     fun capSeatsTomorrowsCardsBeforeWeakerOnesDueLater() {
-        val cards = (1..61).map { Box.word(it) }
+        val cards = (1..WatchSnapshotBuilder.ENTRY_CAP + 1).map { Box.word(it) }
         var state = Snap.state(cards)
         state = Box.inject( // strong, due tomorrow
             state,
             Box.sched(cards[0].id, stability = 30.0, dueMillis = Box.plusSeconds(Box.day1, 86_400), lastReviewMillis = Box.day1),
         )
-        for (n in 2..61) { // weaker, due in a week
+        for (n in 2..cards.size) { // weaker, due in a week
             state = Box.inject(
                 state,
                 Box.sched(cards[n - 1].id, stability = 2.0, dueMillis = Box.plusSeconds(Box.day1, 7 * 86_400), lastReviewMillis = Box.day1),

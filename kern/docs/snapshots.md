@@ -144,7 +144,7 @@ Engine contract: `../README.md`.
   - `chromeLanguage` is `LanguageChoices.chromeLanguage` of the box's known language —
     the language the app's own chrome follows, which the watch, the complication and the
     iOS widget cannot ask the phone's model for.
-  The cap of 60 entries (the ~60 KB `updateApplicationContext` limit) fills **due-first**,
+  The cap of 120 entries (about 400 bytes each, under the ~60 KB `updateApplicationContext` limit) fills **due-first**,
   so a due card is never evicted by a non-due one,
   then **soonest-due**, so the watch counts tomorrow's cards in on its own through a night without the phone.
   The entries it keeps ship weakest first (`Urgency.weakestFirst`):
