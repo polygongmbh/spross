@@ -4,6 +4,10 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+## 8.3.1 — 2026-10-05
+
+- On Android, the letter drill now plays its question even with reading aloud switched off, as on iPhone.
+
 ## 8.3.0 — 2026-10-05
 
 - The sentence scramble now moves on by itself after a right arrangement instead of waiting for a Next tap.
