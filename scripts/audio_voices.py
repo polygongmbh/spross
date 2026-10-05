@@ -27,17 +27,17 @@ def mos_floor(lang):
     return VOICED_MOS_FLOOR if lang in WELL_VOICED else NO_VOICE_MOS_FLOOR
 
 
-# The playback `gain` at or below which a take was limited hot at its SOURCE: the fill measured
-# it more than 8 dB over its loudness target, past -10 LUFS, where a Commons upload sits
-# squashed against its own peak (sw `kuuma`: -5.5 LUFS at -3.9 dBFS). Turning it down undoes
-# none of that, so a sweep looks for another take of the word and never swaps one of these in.
-HOT_GAIN_DB = -8.0
+# The least a take's sample peak may stand over its integrated loudness. Speech keeps its
+# stress and consonant peaks well above its average; a take limited at the source has had
+# them flattened into a harsh, screamy sound the score does not hear and no gain undoes
+# (sw `kuuma`: 1.6 dB). Every voice of every pack keeps 8.5 dB or more at its 5th
+# percentile, while Waithera Were's sw takes sit at a median 7.6 (measured 2026-10-05).
+SQUASH_FLOOR_DB = 8.0
 
 
-def is_hot(index):
-    """Limited hot at the source, by the playback index the fill derives
-    (`audio-catalog.py`'s `playback_index`) or the shipped manifest entry carrying it."""
-    return index.get('gain', 0) <= HOT_GAIN_DB
+def is_squashed(peak, loudness):
+    """Limited at the source: sample peak dBFS under SQUASH_FLOOR_DB over integrated LUFS."""
+    return peak is not None and loudness is not None and peak - loudness < SQUASH_FLOOR_DB
 
 
 _verdicts = None
@@ -61,3 +61,8 @@ def is_rejected(sha256):
 def is_doubted(sha256):
     """Heard as bad or mediocre: every other take of the word is tried against it."""
     return verdict(sha256) in ('bad', 'mediocre')
+
+
+def is_vouched(sha256):
+    """Heard as okay or better: kept whatever the score or the squash measure says of it."""
+    return verdict(sha256) in ('okay', 'good', 'great')

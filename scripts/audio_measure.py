@@ -112,6 +112,22 @@ def measure(binary, path):
     )
 
 
+def peak_and_loudness(binary, path):
+    """(sample peak dBFS, integrated LUFS) of `path` alone — `measure`'s two levels without
+    its slower passes, for asking whether a take is squashed (`audio_voices.is_squashed`)."""
+    run = subprocess.run(
+        [binary, '-hide_banner', '-nostats', '-i', path, '-af',
+         'astats=measure_overall=Peak_level:measure_perchannel=none,ebur128=peak=none',
+         '-f', 'null', '-'],
+        capture_output=True, text=True)
+    if run.returncode != 0:
+        raise RuntimeError('%s: ffmpeg failed\n%s' % (path, run.stderr[-800:]))
+    loudness = INTEGRATED.findall(run.stderr)
+    peak = PEAK_LEVEL.findall(run.stderr)
+    return (float(peak[-1]) if peak and peak[-1] != '-inf' else None,
+            float(loudness[-1]) if loudness and loudness[-1] != '-inf' else None)
+
+
 def lensed_loudness(binary, path):
     """Integrated loudness of what a phone speaker can radiate of `path` (SPEAKER_LENS)."""
     run = subprocess.run(
