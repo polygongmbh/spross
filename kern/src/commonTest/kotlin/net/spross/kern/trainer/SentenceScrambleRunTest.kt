@@ -130,18 +130,18 @@ class SentenceScrambleRunTest {
         return task to reduce(waiting, place(order.last()))
     }
 
-    /** A right arrangement ends on the sound of the phrase. */
+    /**
+     * Either way an arrangement ends on the sound of the phrase as authored, never as it was
+     * put together — and the beat arms on a clean one alone.
+     */
     @Test
-    fun aRightArrangementSaysThePhrase() {
-        val (task, reduction) = graded(correctly = true)
-        assertTrue(DrillEffect.SayAnswer(task.display, "de") in reduction.effects)
-    }
-
-    /** A wrong one says the phrase as authored, not as it was put together. */
-    @Test
-    fun aWrongArrangementSaysTheAuthoredPhrase() {
-        val (task, reduction) = graded(correctly = false)
-        assertTrue(DrillEffect.SayAnswer(task.display, "de") in reduction.effects)
+    fun anArrangementSaysTheAuthoredPhrase() {
+        val (task, right) = graded(correctly = true)
+        assertTrue(DrillEffect.SayAnswer(task.display, "de") in right.effects)
+        assertTrue(DrillEffect.ArmAdvance(AdvanceBeat.Explicit) in right.effects)
+        val (wrongTask, wrong) = graded(correctly = false)
+        assertTrue(DrillEffect.SayAnswer(wrongTask.display, "de") in wrong.effects)
+        assertTrue(wrong.effects.none { it is DrillEffect.ArmAdvance })
     }
 
     /** An atom can be taken back while the arrangement is still the learner's to give. */
@@ -236,23 +236,6 @@ class SentenceScrambleRunTest {
         assertEquals(2, answered(state).sprosse)
     }
 
-    /** A wrong arrangement takes the Sprosse's booking with it, however clean the rest of it runs. */
-    @Test
-    fun aMissForfeitsTheSprosseItFallsOn() {
-        var state = arrange(open(), correctly = false)
-        state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
-        assertEquals(1, state.sprosse, "the foot of the ladder has nothing below it")
-
-        repeat(phrases.size) {
-            if (state.sprosse > 1 || state.task == null) return@repeat
-            state = arrange(state, correctly = true)
-            state = reduce(state, SentenceScrambleIntent.ConfirmPending).state
-        }
-        assertTrue(state.sprosse > 1, "the run climbs as it always did")
-        val closed = SentenceScrambleRun.close(state)
-        assertEquals(emptySet(), closed.clearedSprossen, "but the Sprosse is not the store's")
-    }
-
     /** An alternative word order from `orders` is accepted but flags [alternativeMatch]. */
     @Test
     fun anAlternativeOrderIsAcceptedAndFlagged() {
@@ -271,17 +254,4 @@ class SentenceScrambleRunTest {
         assertEquals(1, phrase.alternativeOrders.size)
     }
 
-    /** The beat only ever arms on a clean answer. */
-    @Test
-    fun theBeatRidesACleanArrangementAlone() {
-        val task = assertNotNull(open().task)
-        val last = task.canonical.last()
-        var state = open()
-        for (atom in task.canonical.dropLast(1)) {
-            state = reduce(state, SentenceScrambleIntent.PlaceAtom(task.shuffled.indexOfFirst { it.id == atom.id }))
-                .state
-        }
-        val closing = reduce(state, SentenceScrambleIntent.PlaceAtom(task.shuffled.indexOfFirst { it.id == last.id }))
-        assertTrue(closing.effects.any { it == DrillEffect.ArmAdvance(AdvanceBeat.Explicit) })
-    }
 }

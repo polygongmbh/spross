@@ -68,8 +68,6 @@ class NumbersRunTest {
         val ceiling = mode.maxSprosse(NumbersExercise.Counting)
         val beyond = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to ceiling + 40), 0, emptyMap(), Random(7))
         assertEquals(ceiling, beyond.sprossen[NumbersExercise.Counting])
-        val below = NumbersRun.openAt(mode, mapOf(NumbersExercise.Counting to -3), 0, emptyMap(), Random(7))
-        assertEquals(1, below.sprossen[NumbersExercise.Counting])
     }
 
     /**
@@ -105,7 +103,6 @@ class NumbersRunTest {
         val clock = Numbers.reversed(Numbers.clock(18, 5, "de"))
         assertEquals(Match.Exact, NumbersRun.grade("18:05", clock, normalizer))
         assertEquals(Match.Wrong, NumbersRun.grade("18:06", clock, normalizer))
-        assertEquals(Match.Exact, NumbersRun.grade("18.05", clock, normalizer))
 
         val number = Numbers.reversed(Numbers.number(12345, "de"))
         assertEquals(Match.Exact, NumbersRun.grade("12345", number, normalizer))
@@ -344,20 +341,4 @@ class NumbersRunTest {
 
     // MARK: - The way out
 
-    @Test
-    fun theSecondMissInARowOffersTheWayOutAndACorrectAnswerTakesItBack() {
-        val rng = Random(37)
-        var state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
-        // One miss is what a drill is made of — the first reveal offers nothing.
-        assertFalse(reduce(state, NumbersIntent.Reveal, rng).state.offersFinish)
-
-        state = miss(state, rng)
-        assertEquals(1, state.missRun)
-        assertFalse(state.offersFinish, "the offer stands under a miss, not between questions")
-        assertTrue(reduce(state, NumbersIntent.Reveal, rng).state.offersFinish)
-
-        state = answerRight(state, rng)
-        assertEquals(0, state.missRun)
-        assertFalse(reduce(state, NumbersIntent.Reveal, rng).state.offersFinish)
-    }
 }

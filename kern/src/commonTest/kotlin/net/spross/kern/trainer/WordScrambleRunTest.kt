@@ -266,10 +266,10 @@ class WordScrambleRunTest {
 
     /**
      * An almost costs the RUN nothing — the answer streak stands, the banked win stands, the Sprosse
-     * holds — and costs the STORE the Sprosse: it is climbed here and never booked.
+     * holds. What it costs the store is [aSlipEndsTheRunsClearing]'s.
      */
     @Test
-    fun anAlmostKeepsTheRunAndForfeitsTheSprosse() {
+    fun anAlmostCostsTheRunNothing() {
         var state = answer(open(), clean = true)
         assertEquals(1, state.winsAtSprosse)
         state = answer(state, clean = false)
@@ -277,23 +277,6 @@ class WordScrambleRunTest {
         assertEquals(2, state.answerStreak, "an almost is no miss")
         assertEquals(1, state.sprosse, "and no demotion")
         assertEquals(1, state.winsAtSprosse, "the banked win stands")
-
-        repeat(WordScrambleRun.WINS_TO_ADVANCE) { if (state.sprosse == 1) state = answer(state, clean = true) }
-        assertTrue(state.sprosse > 1, "the run climbs as it always did")
-        val closed = WordScrambleRun.close(state)
-        assertEquals(emptySet(), closed.clearedSprossen, "but the Sprosse is not the store's")
-    }
-
-    /** A miss takes the Sprosse's booking with it, even at the foot where there is nothing to drop to. */
-    @Test
-    fun aMissForfeitsTheSprosseItFallsOn() {
-        var state = reduce(open(), WordScrambleIntent.Reveal).state
-        state = reduce(state, WordScrambleIntent.ConfirmPending).state
-        assertEquals(1, state.sprosse, "the foot of the ladder has nothing below it")
-
-        repeat(WordScrambleRun.WINS_TO_ADVANCE) { if (state.sprosse == 1) state = answer(state, clean = true) }
-        assertTrue(state.sprosse > 1)
-        assertEquals(emptySet(), WordScrambleRun.close(state).clearedSprossen)
     }
 
     /** Answer whatever stands — exactly, or with one letter wrong — and book it. */
