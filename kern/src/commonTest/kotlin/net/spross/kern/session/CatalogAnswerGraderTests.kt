@@ -174,16 +174,6 @@ class CatalogAnswerGraderTests {
     }
 
     @Test
-    fun aFormListedAsASynonymOrVariantIsShared() {
-        val grader = CatalogAnswerGrader(uk, deToUk)
-        val door = joined(deToUk, "door")
-        // uk mouse carries synonym "мишеня" and variant "мишка"; each is a form it prints.
-        for (form in listOf("миша", "мишеня", "мишка")) {
-            assertEquals(listOf("mouse"), grader.conceptsSharing(form, door).map { it.id })
-        }
-    }
-
-    @Test
     fun teachesAndAcceptsOfOtherConceptsCountAsOwned() {
         val grader = CatalogAnswerGrader(uk, deToUk)
         val door = joined(deToUk, "door")

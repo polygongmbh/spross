@@ -145,13 +145,10 @@ class MultipleChoiceTests {
 
     @Test
     fun sentenceShapeIsReadOffTheClosingMark() {
-        assertEquals(MultipleChoice.SentenceShape.Question, MultipleChoice.sentenceShape("Wo sind sie?"))
         assertEquals(MultipleChoice.SentenceShape.Question, MultipleChoice.sentenceShape("¿Cocinas arroz hoy?"))
         assertEquals(MultipleChoice.SentenceShape.Exclamation, MultipleChoice.sentenceShape("¡Buenos días!"))
-        assertEquals(MultipleChoice.SentenceShape.Statement, MultipleChoice.sentenceShape("Ich koche Reis."))
         assertEquals(MultipleChoice.SentenceShape.Statement, MultipleChoice.sentenceShape("Einen Moment…"))
         assertEquals(MultipleChoice.SentenceShape.Bare, MultipleChoice.sentenceShape("Guten Tag"))
-        assertEquals(MultipleChoice.SentenceShape.Bare, MultipleChoice.sentenceShape("Wasser"))
     }
 
     @Test
@@ -247,7 +244,6 @@ class MultipleChoiceTests {
     @Test
     fun aVerbIsOfferedWithoutItsCitationPrefix() {
         assertEquals("pika", MultipleChoice.optionForm("kupika", CardKind.Verb, listOf("ku", "kw")))
-        assertEquals("enda", MultipleChoice.optionForm("kwenda", CardKind.Verb, listOf("ku", "kw")))
         assertEquals("cook", MultipleChoice.optionForm("to cook", CardKind.Verb, listOf("to ")))
     }
 

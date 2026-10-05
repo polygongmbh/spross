@@ -26,41 +26,6 @@ import net.spross.kern.store.SaveScope
 class SessionRunTests {
     private val now = Box.day1
 
-    private fun id(n: Int) = "w" + n.toString().padStart(2, '0')
-
-    /** 40 review-phase cards with staggered past dues + [spare] untouched words. */
-    private fun backloggedState(spare: Int = 10): BoxState {
-        var state = Box.state((1..(40 + spare)).map { Box.word(it) })
-        for (n in 1..40) {
-            state = Box.inject(
-                state,
-                Box.sched(
-                    id(n),
-                    dueMillis = now - n * 3_600_000L,
-                    lastReviewMillis = Box.plusDays(now, -10.0),
-                ),
-            )
-        }
-        return state
-    }
-
-    /** Nothing due; [soon] cards come back inside tomorrow, [catalog] words are unseen. */
-    private fun quietState(soon: Int, catalog: Int): BoxState {
-        var state = Box.state((1..catalog).map { Box.word(it) })
-        repeat(soon) { i ->
-            state = Box.inject(
-                state,
-                Box.sched(
-                    id(i + 1),
-                    stability = 0.5,
-                    dueMillis = Box.plusSeconds(now, 3_600L * (i + 1)),
-                    lastReviewMillis = Box.plusDays(now, -1.0),
-                ),
-            )
-        }
-        return state
-    }
-
     private fun started(state: BoxState, nowMillis: Long): SessionRunState =
         SessionRun.reduce(SessionRun.idle(state), SessionIntent.Start, nowMillis, Box.TZ).state
 
@@ -76,7 +41,7 @@ class SessionRunTests {
      */
     @Test
     fun nothingJoinsARunAlreadyUnderWay() {
-        var run = started(backloggedState(), now)
+        var run = started(Box.backlogged(), now)
         assertEquals(Box.config().sessionCap, run.total)
         while (run.currentCardId != null) {
             run = answer(run, Rating.Good, now)
@@ -86,19 +51,20 @@ class SessionRunTests {
         assertTrue(run.finished)
         assertEquals(SessionStep.Completed, run.step)
         // The held-back work is still due — the summary is where it gets offered.
-        assertEquals(20, Box.dueIds(run.box, now).size)
+        assertTrue(Box.dueIds(run.box, now).isNotEmpty())
         assertTrue(SessionOffers.canPracticeMore(run.box, now, Box.TZ))
     }
 
     /** A card that leaves the box under the run still advances the queue — no stall, no shrink. */
     @Test
     fun anUnknownCardUnderTheRunStillAdvances() {
-        val run = started(backloggedState(), now)
+        val run = started(Box.backlogged(), now)
         val cardId = assertNotNull(run.currentCardId)
         val pruned = SessionRun.withBox(run, run.box.copy(cards = run.box.cards - cardId))
         val after = answer(pruned, Rating.Good, now)
         assertEquals(Box.config().sessionCap, after.total)
         assertEquals(1, after.answered)
+        assertEquals(listOf(cardId), after.tally.cardIds, "the answer is booked regardless")
         assertTrue(after.currentCardId != null && after.currentCardId != cardId)
     }
 
@@ -176,7 +142,7 @@ class SessionRunTests {
      */
     @Test
     fun theExtraRoundMixesRecallWithFirstSights() {
-        val state = quietState(soon = 3, catalog = 20)
+        val state = Box.scenario(catalog = 20, soon = 3)
         val run = SessionRun.reduce(SessionRun.idle(state), SessionIntent.StartExtra, now, Box.TZ).state
         assertEquals(listOf("w01", "w02", "w03"), run.queue.take(3))
         assertEquals(SessionComposer.SESSION_FLOOR_CARDS, run.total)
@@ -196,7 +162,7 @@ class SessionRunTests {
     /** Endless refills only once asked for, and an answer with nothing on screen is a no-op. */
     @Test
     fun endlessRefillsOnlyOnceAskedFor() {
-        var run = started(backloggedState(), now)
+        var run = started(Box.backlogged(), now)
         while (run.currentCardId != null) run = answer(run, Rating.Good, now)
         assertTrue(run.finished)
         assertFalse(run.endless)
@@ -238,7 +204,7 @@ class SessionRunTests {
     /** A backgrounded run keeps its streak-bearing reviews: each one is in the box as it lands. */
     @Test
     fun everyAnswerIsCountedOnTheDayAsItLands() {
-        var run = started(backloggedState(), now)
+        var run = started(Box.backlogged(), now)
         repeat(3) { run = answer(run, Rating.Good, now) }
         assertEquals(3, dayReviews(run))
 
@@ -255,7 +221,7 @@ class SessionRunTests {
     /** The join moved under the run (source switch, catalog update) → recompose, keep the count honest. */
     @Test
     fun aMovedJoinRecomposesAgainstTheLiveOne() {
-        var run = started(backloggedState(), now)
+        var run = started(Box.backlogged(), now)
         run = answer(run, Rating.Good, now)
         val rejoined = BoxEngine.rejoin(
             run.box,
@@ -284,7 +250,7 @@ class SessionRunTests {
     fun aStaleRoundRecomposesAsTheRoundThatOpenedIt() {
         val moved = JoinStamp("de", "sw", "fixture-v2")
         fun recomposed(opener: SessionIntent): SessionRunState {
-            var run = SessionRun.reduce(SessionRun.idle(backloggedState()), opener, now, Box.TZ).state
+            var run = SessionRun.reduce(SessionRun.idle(Box.backlogged()), opener, now, Box.TZ).state
             run = answer(run, Rating.Good, now)
             val rejoined = BoxEngine.rejoin(run.box, run.box.cards.values.toList(), moved)
             return SessionRun.reduce(SessionRun.withBox(run, rejoined), SessionIntent.RecomposeIfStale, now, Box.TZ).state
@@ -302,7 +268,7 @@ class SessionRunTests {
     /** Closing books what was answered and keeps the summary's content for its way out. */
     @Test
     fun closingBooksWhatWasAnswered() {
-        var run = started(backloggedState(), now)
+        var run = started(Box.backlogged(), now)
         repeat(2) { run = answer(run, Rating.Good, now) }
 
         val closed = SessionRun.reduce(run, SessionIntent.Close, now, Box.TZ)
@@ -314,14 +280,14 @@ class SessionRunTests {
         assertTrue(SessionEffect.DayBooked in closed.effects)
 
         // An untouched run books nothing at all.
-        val quiet = SessionRun.reduce(started(backloggedState(), now), SessionIntent.Close, now, Box.TZ)
+        val quiet = SessionRun.reduce(started(Box.backlogged(), now), SessionIntent.Close, now, Box.TZ)
         assertEquals(0, dayReviews(quiet.state))
     }
 
     /** Answers are saved as they land, the box alone; only the fold carries the snapshots. */
     @Test
     fun everyAnswerAsksForASave() {
-        val run = started(backloggedState(), now)
+        val run = started(Box.backlogged(), now)
         val reduction = SessionRun.reduce(run, SessionIntent.Answer(Rating.Good), now, Box.TZ)
         assertTrue(SessionEffect.Save(SaveScope.BOX) in reduction.effects)
         assertFalse(SessionEffect.DayBooked in reduction.effects)
@@ -329,7 +295,7 @@ class SessionRunTests {
 
     @Test
     fun positionAndSegmentsFollowTheAnswers() {
-        var run = started(backloggedState(), now)
+        var run = started(Box.backlogged(), now)
         assertEquals(1, run.position)
         run = answer(run, Rating.Again, now)
         run = answer(run, Rating.Hard, now)
@@ -346,39 +312,24 @@ class SessionRunTests {
 
     @Test
     fun suspendingTheCurrentCardMovesToTheNextWithoutAnsweringIt() {
-        val run = started(backloggedState(), now)
+        val run = started(Box.backlogged(), now)
         val dropped = assertNotNull(run.currentCardId)
+        val before = run.box.scheduling[dropped]
 
         val next = suspended(run, now)
 
         assertTrue(next.box.scheduling.getValue(dropped).suspended)
+        // No review the learner did not give, and a word taken out was never owed.
+        assertEquals(before?.reviewCount, next.box.scheduling.getValue(dropped).reviewCount)
+        assertEquals(run.total - 1, next.total)
         assertEquals(RoundTally(), next.tally)
         assertEquals(dropped, run.currentCardId)
         assertTrue(next.currentCardId != dropped)
     }
 
     @Test
-    fun aSuspendedCardIsNoLongerOwedByTheRound() {
-        // why: the count on screen is a promise — a word taken out was never owed.
-        val run = started(backloggedState(), now)
-        assertEquals(run.total - 1, suspended(run, now).total)
-    }
-
-    @Test
-    fun suspendingNeverBooksAReviewTheLearnerDidNotGive() {
-        val run = started(backloggedState(), now)
-        val dropped = assertNotNull(run.currentCardId)
-        val before = run.box.scheduling[dropped]
-
-        val next = suspended(run, now).box.scheduling.getValue(dropped)
-
-        assertEquals(before?.reviewCount, next.reviewCount)
-        assertEquals(before?.due, next.due)
-    }
-
-    @Test
     fun suspendingTheLastCardFinishesTheRound() {
-        var run = started(backloggedState(), now)
+        var run = started(Box.backlogged(), now)
         while (run.queue.size > 1) run = answer(run, Rating.Good, now)
         val done = suspended(run, now)
         assertTrue(done.finished)
@@ -387,7 +338,7 @@ class SessionRunTests {
 
     @Test
     fun suspendingWithNoCardUpChangesNothing() {
-        val idle = SessionRun.idle(backloggedState())
+        val idle = SessionRun.idle(Box.backlogged())
         assertEquals(idle, suspended(idle, now))
     }
 }

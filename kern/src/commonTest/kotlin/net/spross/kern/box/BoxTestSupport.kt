@@ -95,6 +95,44 @@ internal object Box {
     fun inject(state: BoxState, entry: CardScheduling): BoxState =
         state.copy(scheduling = state.scheduling + (entry.cardId to entry))
 
+    /** The id [word] gives card [n]. */
+    fun id(n: Int): String = "w" + n.toString().padStart(2, '0')
+
+    /**
+     * A box at [day1] over [catalog] words, scheduled from `w01` on: [due] cards overdue by
+     * an hour more each, then [soon] shaky ones back within the next hours, then [later]
+     * ones back from day five on. Every word past those is unseen.
+     */
+    fun scenario(
+        catalog: Int,
+        due: Int = 0,
+        soon: Int = 0,
+        later: Int = 0,
+        config: BoxConfig = config(),
+    ): BoxState {
+        var state = state((1..catalog).map { word(it) }, config)
+        var n = 0
+        repeat(due) {
+            n += 1
+            state = inject(state, sched(id(n), dueMillis = day1 - n * 3_600_000L, lastReviewMillis = plusDays(day1, -10.0)))
+        }
+        repeat(soon) { i ->
+            n += 1
+            state = inject(
+                state,
+                sched(id(n), stability = 0.5, dueMillis = plusSeconds(day1, 3_600L * (i + 1)), lastReviewMillis = plusDays(day1, -1.0)),
+            )
+        }
+        repeat(later) { i ->
+            n += 1
+            state = inject(state, sched(id(n), dueMillis = plusDays(day1, 5.0 + i), lastReviewMillis = plusDays(day1, -1.0)))
+        }
+        return state
+    }
+
+    /** Forty overdue cards and [spare] unseen words: more due work than one round holds. */
+    fun backlogged(spare: Int = 10): BoxState = scenario(catalog = 40 + spare, due = 40)
+
     /** Answer, returning the resulting state. */
     fun answered(state: BoxState, cardId: String, rating: Rating, nowMillis: Long): BoxState =
         BoxEngine.answer(state, cardId, rating, nowMillis)

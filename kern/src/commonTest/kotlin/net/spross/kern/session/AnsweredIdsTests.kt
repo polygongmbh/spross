@@ -3,7 +3,6 @@ package net.spross.kern.session
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import net.spross.kern.box.Box
-import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.model.Rating
 
@@ -27,22 +26,5 @@ class AnsweredIdsTests {
         }
 
         assertEquals(seen, run.tally.cardIds)
-    }
-
-    @Test
-    fun anUnknownCardStillRecordsTheAnswer() {
-        // The join dropped the card under the run: the box is untouched, but the
-        // answer is booked regardless.
-        var run = started(Box.state((1..3).map { Box.word(it) }))
-        run = run.copy(box = BoxEngine.rejoin(run.box, emptyList(), run.box.joinStamp))
-
-        run = answered(run)
-
-        assertEquals(1, run.tally.cardIds.size)
-    }
-
-    @Test
-    fun aFreshRunStartsWithNothingTouched() {
-        assertEquals(emptyList(), started(Box.state((1..3).map { Box.word(it) })).tally.cardIds)
     }
 }

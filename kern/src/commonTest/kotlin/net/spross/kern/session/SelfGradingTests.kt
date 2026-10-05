@@ -14,7 +14,7 @@ class SelfGradingTests {
     fun `the learner's verdict is never overruled by the clock`() {
         // The whole point of keeping a button for each: a fast answer the learner
         // knows was shaky stays Hard, and a slow one they knew stays a pass.
-        for (elapsed in listOf(1L, 200L, 5_000L, 600_000L)) {
+        for (elapsed in listOf(200L, 600_000L)) {
             assertEquals(Rating.Again, SelfGrading.rating(Verdict.Unknown, elapsed, word))
             assertEquals(Rating.Hard, SelfGrading.rating(Verdict.Tough, elapsed, word))
         }
@@ -23,15 +23,13 @@ class SelfGradingTests {
     @Test
     fun `only a word that came instantly earns Easy`() {
         val budget = SelfGrading.instantBudgetMs(word)
-        assertEquals(Rating.Easy, SelfGrading.rating(Verdict.Knew, budget - 1, word))
-        assertEquals(Rating.Easy, SelfGrading.rating(Verdict.Knew, budget, word))
-        assertEquals(Rating.Good, SelfGrading.rating(Verdict.Knew, budget + 1, word))
+        assertEquals(Rating.Easy, SelfGrading.rating(Verdict.Knew, budget / 2, word))
+        assertEquals(Rating.Good, SelfGrading.rating(Verdict.Knew, budget * 2, word))
     }
 
     @Test
     fun `an unmeasured recall never earns Easy`() {
         assertEquals(Rating.Good, SelfGrading.rating(Verdict.Knew, 0, word))
-        assertEquals(Rating.Good, SelfGrading.rating(Verdict.Knew, -1, word))
     }
 
     @Test

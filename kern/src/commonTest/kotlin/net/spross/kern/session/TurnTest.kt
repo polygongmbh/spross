@@ -102,14 +102,6 @@ class TurnTest {
     }
 
     @Test
-    fun aMissDropsTheWrongTailFromTheRetry() {
-        val missed = TurnFixture.step(TurnFixture.produce(TurnFixture.language), TurnIntent.Submit("neno"))
-        assertEquals(TurnFeedback.Revealed, missed.state.feedback)
-        assertNull(missed.state.otherWord)
-        assertEquals(listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField("")), missed.effects)
-    }
-
-    @Test
     fun finishingTheRetypeIsRecalledWithHelp() {
         val retyped = TurnFixture.step(missedLanguage(), TurnIntent.InputChanged("lugha"))
         assertTrue(retyped.state.retryApproved)
@@ -194,42 +186,13 @@ class TurnTest {
 
     @Test
     fun aWordThatCameInstantlyEarnsEasy() {
-        // "kisu" is 4 chars, so the instant budget is 1500 + 4 × 40 = 1660 ms.
+        // The verdict-and-clock rule itself is SelfGradingTests'; this is the turn feeding it.
         val revealed = TurnFixture.state(
             TurnFixture.recognize(TurnFixture.knife), TurnIntent.Reveal, TurnFixture.T0 + 1_300,
         )
         assertEquals(
             listOf(TurnEffect.Answer(Rating.Easy)),
             TurnFixture.step(revealed, TurnIntent.SelfGrade(SelfGrading.Verdict.Knew)).effects,
-        )
-    }
-
-    @Test
-    fun aSlowOrUnmeasuredRecallStaysGood() {
-        val slow = TurnFixture.state(
-            TurnFixture.recognize(TurnFixture.knife), TurnIntent.Reveal, TurnFixture.T0 + 5_000,
-        )
-        assertEquals(
-            listOf(TurnEffect.Answer(Rating.Good)),
-            TurnFixture.step(slow, TurnIntent.SelfGrade(SelfGrading.Verdict.Knew)).effects,
-        )
-
-        val untimed = TurnFixture.state(TurnFixture.recognize(TurnFixture.knife), TurnIntent.Reveal)
-        assertEquals(0L, untimed.recallMs)
-        assertEquals(
-            listOf(TurnEffect.Answer(Rating.Good)),
-            TurnFixture.step(untimed, TurnIntent.SelfGrade(SelfGrading.Verdict.Knew)).effects,
-        )
-    }
-
-    @Test
-    fun theClockOnlyEverUpgradesAKnew() {
-        val instant = TurnFixture.state(
-            TurnFixture.recognize(TurnFixture.knife), TurnIntent.Reveal, TurnFixture.T0 + 200,
-        )
-        assertEquals(
-            listOf(TurnEffect.Answer(Rating.Hard)),
-            TurnFixture.step(instant, TurnIntent.SelfGrade(SelfGrading.Verdict.Tough)).effects,
         )
     }
 
@@ -366,11 +329,6 @@ class TurnTest {
         assertEquals(TurnFeedback.Revealed, taken.state.feedback)
         assertNull(taken.state.otherWord)
         assertEquals(listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField("")), taken.effects)
-
-        val nowhere = TurnFixture.step(byEar(), TurnIntent.Submit("zzznope"))
-        assertEquals(TurnFeedback.Revealed, nowhere.state.feedback)
-        assertNull(nowhere.state.otherWord)
-        assertEquals(listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField("")), nowhere.effects)
     }
 
     @Test

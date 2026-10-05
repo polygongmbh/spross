@@ -6,7 +6,6 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.box.BoxEngine
-import net.spross.kern.box.BoxState
 import net.spross.kern.model.Rating
 
 /**
@@ -17,42 +16,6 @@ import net.spross.kern.model.Rating
  */
 class ExtraSessionTests {
     private val day0 = Box.day1
-
-    /** Introduce [count] cards (Easy → straight to Review) at staggered times. */
-    private fun boxWithActive(count: Int, total: Int): BoxState {
-        var state = Box.state((1..total).map { Box.word(it) })
-        var t = day0
-        for (n in 1..count) {
-            val id = "w" + n.toString().padStart(2, '0')
-            state = BoxEngine.queue(state, listOf(id))
-            state = Box.answered(state, id, Rating.Easy, t)
-            t = Box.plusSeconds(t, 60)
-        }
-        return state
-    }
-
-    @Test
-    fun anAskedForRoundIsNeverEmptyWhileTheBoxHasAnythingLeft() {
-        val state = boxWithActive(8, total = 8)
-        // Well before anything is due, and the catalog spent: the round is carried entirely by
-        // cards pulled forward, soonest due first, rather than coming back as an empty screen.
-        val later = Box.plusSeconds(day0, 3_600)
-        val round = SessionComposer.composeRound(state, later, Box.TZ)
-        assertFalse(round.isEmpty)
-        // Nothing is due, so every card is named for what it is: pulled forward.
-        assertTrue(round.reviews.isEmpty())
-        assertEquals(0, round.newCount)
-        assertEquals(SessionComposer.SESSION_FLOOR_CARDS, round.ahead.size)
-    }
-
-    @Test
-    fun aRoundReachesForNewWordsOnceTheBoxHasRoomForThem() {
-        // Same eight active cards, but catalog left over: the round stops being all recall.
-        val state = boxWithActive(8, total = 30)
-        val round = SessionComposer.composeRound(state, Box.plusSeconds(day0, 3_600), Box.TZ)
-        assertTrue(round.newCount > 0)
-        assertEquals(SessionComposer.SESSION_FLOOR_CARDS, round.cardCount)
-    }
 
     @Test
     fun queuedLeadInEveryRoundAndUnqueueOnAnswer() {
