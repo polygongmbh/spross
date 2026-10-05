@@ -203,13 +203,13 @@ object WordScrambleRun {
         correct: Boolean,
         clean: Boolean,
     ): WordScrambleRunState {
-        val held = state.config.cleared
+        val cleared = state.config.cleared
         val step = DrillRamp.step(
             sprosse = state.sprosse,
             winsAtSprosse = state.winsAtSprosse,
             correct = correct,
             clean = clean,
-            winsRequired = DrillSprossen.winsRequired(state.sprosse, held, state.core.slipped, WINS_TO_ADVANCE),
+            winsRequired = DrillSprossen.winsRequired(state.sprosse, cleared, state.core.slipped, WINS_TO_ADVANCE),
             top = state.config.report.maxSprosse,
         )
         val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
