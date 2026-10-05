@@ -78,7 +78,7 @@ internal class Arrival(transition: TreeTransition, progress: Float) {
         for ((order, rank) in ranks.withIndex()) {
             val share = if (ranks.size > 1) order.toFloat() / (ranks.size - 1) else 0f
             val t = ((progress - (OPENS + STAGGER * share)) / TAKES).coerceIn(0f, 1f)
-            // A mark the round HUNG arrives out of nothing; one it only moved a tier was
+            // A mark the round HUNG arrives out of nothing; one it only moved a stage was
             // already hanging, so it swells where it hangs instead.
             scales[rank] = if (rank >= hanging) pop(t) else swell(t)
         }

@@ -55,7 +55,7 @@ struct RootView: View {
     private var home: some View {
         // Each item is a glyph alone; its section's name is what VoiceOver reads.
         // A grown tree rather than a leaf for the box — `leaf.fill`
-        // is the learning tier's mark on the screen it opens, and the sprout is the
+        // is the growing stage's mark on the screen it opens, and the sprout is the
         // streak's. The bar fills the selected glyph itself.
         TabView(selection: $tab) {
             NavigationStack {

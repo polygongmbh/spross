@@ -3,7 +3,7 @@ import SprossKern
 
 // MARK: - Area trees
 //
-// Kern tallies each area into its tiers (`growthByArea`) and names what a round moved
+// Kern tallies each area into its stages (`growthByArea`) and names what a round moved
 // (`TreeTransition`, `grownArea`); this reads them in the Box screen's order.
 // Both the Trees picture on Home and the single tree a round's summary draws read these,
 // so they can never disagree about what an area looks like.
@@ -30,7 +30,7 @@ extension AppModel {
     }
 }
 
-/// Which tier becomes which mark — the drawing's reading of kern's tiers,
+/// Which stage becomes which mark — the drawing's reading of kern's stages,
 /// taken once per placed tree: a Kotlin list crosses the bridge as a copy
 /// on every read, and the canopy is walked mark by mark.
 ///

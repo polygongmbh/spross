@@ -11,7 +11,7 @@ import net.spross.kern.box.AreaGrowth
 
 // One placed tree as the paths it is filled with — built once, drawn on every frame.
 //
-// Which mark a word hangs as is kern's tier, read rank by rank off [AreaGrowth] (most grown
+// Which mark a word hangs as is kern's stage, read rank by rank off [AreaGrowth] (most grown
 // first, so fruit and blossom take the first slots):
 //   fruit    — matured      blossom — settled
 //   leaf     — growing        bud     — arriving

@@ -110,7 +110,7 @@ struct TreeArrival {
             let begins = Self.opens + Self.stagger * share
             let t = min(1, max(0, (progress - begins) / Self.takes))
             // A mark the round HUNG has to arrive out of nothing; a mark it only
-            // moved a tier was already hanging there, and popping it in from
+            // moved a stage was already hanging there, and popping it in from
             // zero would read as the word having been taken off the tree first.
             scales[rank] = rank >= hanging ? Self.pop(t) : Self.swell(t)
         }

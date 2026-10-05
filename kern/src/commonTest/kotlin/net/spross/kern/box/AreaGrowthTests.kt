@@ -6,7 +6,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
 
-/** One tree per area: which word stands in which tier, and what a round moved. */
+/** One tree per area: which word stands in which stage, and what a round moved. */
 class AreaGrowthTests {
     private val now = Box.day1
     private val future = Box.plusDays(now, 5.0)
@@ -18,7 +18,7 @@ class AreaGrowthTests {
     ) = AreaGrowth("a", StageCounts(fresh, growing, 0, settled, matured), queued, false, emptyList())
 
     @Test
-    fun everyMetWordStandsInExactlyOneTierAndOnlyMetWordsDo() {
+    fun everyMetWordStandsInExactlyOneStageAndOnlyMetWordsDo() {
         var state = Box.state((1..7).map { Box.word(it) } + Box.word(8, area = "other"))
         state = BoxEngine.queue(state, listOf("w01"))
         state = Box.inject(state, Box.sched("w02", phase = CardPhase.Learning, stability = 0.5, dueMillis = future, lastReviewMillis = now))

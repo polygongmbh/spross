@@ -2,7 +2,7 @@ import SwiftUI
 
 // MARK: - The marks a canopy carries
 //
-// One shape per tier, told apart by SHAPE before color:
+// One shape per stage, told apart by SHAPE before color:
 // a leaf is long and pointed, a bud a small disc, a blossom five butter petals round an eye,
 // fruit a round disc hanging under its twig.
 
