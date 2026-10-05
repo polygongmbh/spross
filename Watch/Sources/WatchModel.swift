@@ -103,7 +103,7 @@ final class WatchModel {
             // why: mid-session the queue must not resurrect cards the user just
             // answered (their events may not be applied phone-side yet).
             // Practice is exempt: replaying answered cards is what it does.
-            let answered = run == .session ? Set(incoming.answeredCardIDs) : []
+            let answered = run == .session ? Set(incoming.answers.keys) : []
             let present = Set(incoming.entries.map(\.cardId))
             queue = queue.filter { present.contains($0) && !answered.contains($0) }
             if let id = currentID, !present.contains(id) {
@@ -189,9 +189,9 @@ final class WatchModel {
         if !correct { raiseWrongFlash() }
 
         connectivity.send(WatchAnswerEvent(cardId: id, rating: rating, date: Date()))
-        // Every answer is an FSRS review, second lap included; the local list is
-        // a set of ids the due count must skip, so a repeat adds nothing to it.
-        if !snap.answeredCardIDs.contains(id) { snap.answeredCardIDs.append(id) }
+        // Every answer is an FSRS review, second lap included; locally only the
+        // latest rating stays — the due count skips the card, practice orders by it.
+        snap.answers[id] = rating
         snapshot = snap
         WatchSnapshotStore.save(snap)
         WidgetCenter.shared.reloadAllTimelines()
@@ -246,13 +246,20 @@ final class WatchModel {
         makeQuestionForCurrent()
     }
 
-    /// One practice lap over the whole snapshot, in the phone's order (weakest first).
+    /// One practice lap over the whole snapshot: what the watch missed since the
+    /// phone last synced, then what it has not asked yet, then what it got right —
+    /// each part in the phone's order (weakest first). The snapshot's own schedule
+    /// knows nothing of those answers until the phone reschedules them.
     /// `avoiding` is the card just answered — swapped with its neighbor (not
     /// sent to the back, which would demote the very word practice is for) so
     /// no card asks twice in a row across the lap edge.
     private func practiceLap(avoiding previous: String?) -> [String] {
         guard let snapshot else { return [] }
-        var ids = snapshot.entries.map(\.cardId)
+        let order = snapshot.entries.map(\.cardId)
+        let missed = order.filter { snapshot.answers[$0] == .again }
+        let unasked = order.filter { snapshot.answers[$0] == nil }
+        let known = order.filter { snapshot.answers[$0].map { $0 != .again } ?? false }
+        var ids = missed + unasked + known
         if ids.count > 1, ids.first == previous {
             ids.swapAt(0, 1)
         }

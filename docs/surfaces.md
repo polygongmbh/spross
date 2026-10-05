@@ -112,6 +112,8 @@ What has not landed there is `design.md` § Not yet.
   Multiple choice on a keyboard-less device is a deliberate concession to the
   recall-first rule, with the latency curve compensating for it.
   Answers return as events; the phone reschedules against real timestamps and re-pushes.
+  Until it does, the watch keeps each card's last rating and practice reads it:
+  its misses first, then what it has not asked, then what it got right, each in the phone's order.
 - **A word too long for a tile is a phone word.** The wrist carries only what four tiles
   can hold at a readable size (kern `MAX_TEXT_CHARS`); a longer phrase is never pushed and
   never offered as somebody else's distractor. This costs the watch about a quarter of the

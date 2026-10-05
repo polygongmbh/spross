@@ -56,21 +56,22 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
     /// Epoch milliseconds of the build.
     var generated: Int64
     var entries: [Entry]
-    /// Card ids the watch already answered against THIS snapshot (queued as
-    /// events, removed from the local due list). Absent in phone-built JSON.
-    var answeredCardIDs: [String] = []
+    /// The last rating the watch gave each card answered against THIS snapshot
+    /// (queued as events, removed from the local due list) — what practice
+    /// reads until the phone's reschedule arrives. Absent in phone-built JSON.
+    var answers: [String: WatchRating] = [:]
 
     private enum CodingKeys: String, CodingKey {
-        case schemaVersion, chromeLanguage, generated, entries, answeredCardIDs
+        case schemaVersion, chromeLanguage, generated, entries, answers
     }
 
     init(schemaVersion: Int, chromeLanguage: String, generated: Int64, entries: [Entry],
-         answeredCardIDs: [String] = []) {
+         answers: [String: WatchRating] = [:]) {
         self.schemaVersion = schemaVersion
         self.chromeLanguage = chromeLanguage
         self.generated = generated
         self.entries = entries
-        self.answeredCardIDs = answeredCardIDs
+        self.answers = answers
     }
 
     init(from decoder: Decoder) throws {
@@ -86,8 +87,8 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         chromeLanguage = try container.decode(String.self, forKey: .chromeLanguage)
         generated = try container.decode(Int64.self, forKey: .generated)
         entries = try container.decode([Entry].self, forKey: .entries)
-        answeredCardIDs = try container.decodeIfPresent([String].self,
-                                                        forKey: .answeredCardIDs) ?? []
+        answers = try container.decodeIfPresent([String: WatchRating].self,
+                                                forKey: .answers) ?? [:]
     }
 
     // MARK: - Queries (watch side)
@@ -98,9 +99,8 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
 
     /// Due entries (`due <= now`), phone-ranked order, minus locally answered.
     func dueEntries(now: Date) -> [Entry] {
-        let answered = Set(answeredCardIDs)
         let nowMillis = Int64(now.timeIntervalSince1970 * 1000)
-        return entries.filter { $0.due <= nowMillis && !answered.contains($0.cardId) }
+        return entries.filter { $0.due <= nowMillis && answers[$0.cardId] == nil }
     }
 
     /// Entries due by tomorrow evening (mirrors the phone's tomorrow count).

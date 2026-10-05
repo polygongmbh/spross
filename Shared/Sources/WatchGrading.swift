@@ -1,7 +1,7 @@
 import Foundation
 
 /// An FSRS rating as the watch knows it; it travels to the phone by name.
-enum WatchRating: String, Sendable {
+enum WatchRating: String, Codable, Sendable {
     case again, hard, good, easy
 }
 
