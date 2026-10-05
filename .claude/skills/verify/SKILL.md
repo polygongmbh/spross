@@ -17,9 +17,12 @@ Install + launch (app binary lands in DerivedData `Build/Products/Debug-iphonesi
 ```sh
 xcrun simctl boot "iPhone 17"; open -a DeviceHub || open -a Simulator  # DeviceHub from Xcode 27
 xcrun simctl install booted <path>/Spross.app
-xcrun simctl launch booted net.spross.app            # clean install ⇒ onboarding
-xcrun simctl uninstall booted net.spross.app         # reset to clean state
+xcrun simctl launch booted net.spross.dev
 ```
+
+A clean slate is `scripts/run-sim.sh --clean`: it uninstalls and reinstalls the Release app
+(`net.spross.app`), never the Dev app (`net.spross.dev`), whose box is the operator's own.
+Release takes no `-uitest-*` flags, so drive a clean run with idb.
 
 ## Keep it quiet
 

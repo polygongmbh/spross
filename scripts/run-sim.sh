@@ -3,13 +3,14 @@
 #   scripts/run-sim.sh                        — build + (re)launch on iPhone 17
 #   scripts/run-sim.sh --no-build             — reinstall the last build, skip xcodebuild
 #   scripts/run-sim.sh --device 'iPhone 18 Pro Max' — pick another simulator by name
-#   scripts/run-sim.sh --clean                — uninstall first (⇒ onboarding runs)
+#   scripts/run-sim.sh --clean                — the Release app (net.spross.app), uninstalled first
+#                                               (⇒ onboarding runs); the Dev app keeps its data
 #   scripts/run-sim.sh --shot /tmp/home.png  — screenshot once the app has drawn
 #   scripts/run-sim.sh --mute                 — start with reading aloud switched off, this launch only
 #   scripts/run-sim.sh --shot x.png --sound   — let a screenshot run speak after all
 #   scripts/run-sim.sh -- -uitest-source de -uitest-target sw   — DEBUG launch args
 #
-# Everything after `--` is passed to the app (DEBUG only): -uitest-source/-uitest-target
+# Everything after `--` is passed to the app (DEBUG only, so not with --clean): -uitest-source/-uitest-target
 # pick a language pair, -uitest-screen box opens the Box, -uitest-autostart 1 starts the
 # session, -uitest-trainer <numbers|letters|countries|dates> opens a trainer overview
 # (read in TrainerHubView) and -uitest-run 1 starts the run from it.
@@ -21,6 +22,7 @@ cd "$(dirname "$0")/.."
 DEVICE='iPhone 17'
 BUILD=1
 CLEAN=0
+CONFIG=Debug
 SHOT=
 MUTE=
 SOUND=0
@@ -28,7 +30,7 @@ SOUND=0
 while [ $# -gt 0 ]; do
   case "$1" in
     --no-build) BUILD=0; shift ;;
-    --clean) CLEAN=1; shift ;;
+    --clean) CLEAN=1; CONFIG=Release; shift ;;
     --device) DEVICE="$2"; shift 2 ;;
     --shot) SHOT="$2"; shift 2 ;;
     --mute) MUTE='-readAloud off'; shift ;;
@@ -60,11 +62,11 @@ if [ "$BUILD" = 1 ]; then
   scripts/gen.sh >/dev/null
   echo "Building Spross for ${DEVICE}…"
   xcodebuild -project Spross.xcodeproj -scheme Spross \
-    -destination "id=$UDID" -derivedDataPath "$DERIVED" build 2>&1 \
+    -configuration "$CONFIG" -destination "id=$UDID" -derivedDataPath "$DERIVED" build 2>&1 \
     | awk -f scripts/xcode-progress.awk
 fi
 
-APP=$(xcodebuild -project Spross.xcodeproj -scheme Spross \
+APP=$(xcodebuild -project Spross.xcodeproj -scheme Spross -configuration "$CONFIG" \
         -destination "id=$UDID" -derivedDataPath "$DERIVED" -showBuildSettings 2>/dev/null \
       | awk '/ BUILT_PRODUCTS_DIR = /{ print $3; exit }')/Spross.app
 [ -d "$APP" ] || { echo "error: run-sim: no build at $APP — drop --no-build" >&2; exit 1; }
