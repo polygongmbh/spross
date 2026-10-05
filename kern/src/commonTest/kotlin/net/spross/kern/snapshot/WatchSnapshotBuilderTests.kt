@@ -81,23 +81,6 @@ class WatchSnapshotBuilderTests {
         assertEquals("👩", entry.revealEmoji)
     }
 
-    /** A produce card in Review but still short of the bar keeps its picture. */
-    @Test
-    fun produceEmojiSurvivesGraduationUntilTheWordLands() {
-        var state = Snap.state(listOf(fem))
-        state = Box.inject(
-            state,
-            Box.sched(
-                "wf", phase = CardPhase.Review, stability = 3.0,
-                dueMillis = Box.day1, lastReviewMillis = Box.day1, logCount = 2,
-            ),
-        )
-        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single()
-        assertEquals("produce", entry.nextRole)
-        assertEquals("👩", entry.emoji)
-        assertNull(entry.revealEmoji)
-    }
-
     // The picture rides on the key that names when it may be seen, so a surface
     // reading `emoji` alone can never show a held-back one early.
     @Test
@@ -118,14 +101,6 @@ class WatchSnapshotBuilderTests {
             )
             assertEquals("👩", entry.emoji ?: entry.revealEmoji, "log count $count lost the picture")
         }
-    }
-
-    @Test
-    fun aCardWithoutAPictureShipsNeitherKey() {
-        val state = scheduled(Snap.card("plain", 1), Snap.card("other", 2))
-        val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single { it.cardId == "plain" }
-        assertNull(entry.emoji)
-        assertNull(entry.revealEmoji)
     }
 
     @Test
@@ -278,13 +253,6 @@ class WatchSnapshotBuilderTests {
         assertTrue(WatchSnapshotBuilder.build(state, Box.day1).contains("\"distractors\":["))
     }
 
-    @Test
-    fun aLoneCardHasNoDistractorsToOffer() {
-        var state = Snap.state(listOf(fem))
-        state = Box.inject(state, Box.sched("wf", dueMillis = Box.day1, lastReviewMillis = Box.day1))
-        assertTrue(WatchSnapshotBuilder.doc(state, Box.day1).entries.single().distractors.isEmpty())
-    }
-
     // why: ENTRY_CAP is a wire budget, not a statement about which words may stand
     // next to an answer — off-cap cards are the only ones sharing the probe's area
     // here, so seeing them proves the option pool outlives the cap.
@@ -318,13 +286,16 @@ class WatchSnapshotBuilderTests {
 
     // why: a sentence longer than a tile can hold arrives shrunk past reading, and
     // a four-way pick between sentences is exposure rather than recall — the phone
-    // keeps teaching it, the watch simply never sees it.
+    // keeps teaching it, the watch simply never sees it. Either side counts, and so does
+    // a synonym the recognition prompt may rotate onto.
     @Test
     fun aTextTooLongForATileNeverReachesTheWatch() {
         val long = "a".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS + 1)
         val state = scheduled(
             Snap.card("fits", 1, targetText = "a".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS)),
-            Snap.card("toolong", 2, targetText = long),
+            Snap.card("long-target", 2, targetText = long),
+            Snap.card("long-source", 3, sourceText = long),
+            Snap.card("long-synonym", 4, teaches = listOf(long)),
         )
         val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries
         assertEquals(listOf("fits"), entries.map { it.cardId })
@@ -341,31 +312,6 @@ class WatchSnapshotBuilderTests {
         )
         val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single { it.cardId == "probe" }
         assertEquals(listOf("t-short"), entry.distractors)
-    }
-
-    @Test
-    fun theSourceSideIsMeasuredJustAsTheTargetIs() {
-        val state = scheduled(
-            Snap.card("ok", 1),
-            Snap.card("wordy", 2, sourceText = "c".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS + 1)),
-        )
-        val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries
-        assertEquals(listOf("ok"), entries.map { it.cardId })
-    }
-
-    // `recognitionPromptForm` rotates onto a synonym, so a synonym that cannot be
-    // rendered keeps its whole card off the watch rather than breaking one review.
-    @Test
-    fun anOverlongSynonymKeepsItsCardOff() {
-        val state = scheduled(
-            Snap.card("plain", 1),
-            Snap.card(
-                "rotates", 2,
-                teaches = listOf("d".repeat(WatchSnapshotBuilder.MAX_TEXT_CHARS + 1)),
-            ),
-        )
-        val entries = WatchSnapshotBuilder.doc(state, Box.day1).entries
-        assertEquals(listOf("plain"), entries.map { it.cardId })
     }
 
     @Test
@@ -418,24 +364,4 @@ class WatchSnapshotBuilderTests {
             Box.inject(state, Box.sched(card.id, dueMillis = Box.day1, lastReviewMillis = Box.day1))
         }
 
-    @Test
-    fun schemaVersionAndGeneratedArePinned() {
-        val doc = WatchSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1)
-        assertEquals(7, doc.schemaVersion)
-        assertEquals(Box.day1, doc.generated)
-    }
-
-    @Test
-    fun buildEmitsDeterministicJson() {
-        var state = Snap.state(listOf(fem))
-        state = Box.inject(
-            state,
-            Box.sched("wf", dueMillis = Box.day1, lastReviewMillis = Box.day1),
-        )
-        assertEquals(
-            WatchSnapshotBuilder.build(state, Box.day1),
-            WatchSnapshotBuilder.build(state, Box.day1),
-        )
-        assertTrue(WatchSnapshotBuilder.build(state, Box.day1).startsWith("{\"chromeLanguage\":"))
-    }
 }

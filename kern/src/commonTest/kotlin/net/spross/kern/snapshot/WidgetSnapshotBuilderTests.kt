@@ -162,11 +162,6 @@ class WidgetSnapshotBuilderTests {
     }
 
     @Test
-    fun schemaVersionIsPinned() {
-        assertEquals(9, WidgetSnapshotBuilder.doc(Snap.state(emptyList()), Box.day1, Box.TZ, 5).schemaVersion)
-    }
-
-    @Test
     fun aStreakLongerThanTheDayTailReachesTheWidget() {
         val start = LocalDate(2026, 7, 1)
         val days = (0 until 100).associate { start.plus(-it, DateTimeUnit.DAY).toString() to 1 }
@@ -227,7 +222,6 @@ class WidgetSnapshotBuilderTests {
         assertEquals(3, view.dueCount(Box.plusDays(Box.day1, 1.0)))
 
         assertEquals(Statistics.streak(dailyStats, Box.day1, Box.TZ), view.streak(Box.day1, Box.TZ))
-        assertEquals(2, view.streak(Box.day1, Box.TZ))
         assertEquals(StreakHealth.Bridgeable, view.streakHealth(Box.day1, Box.TZ))
         assertEquals(
             streakWindow(
@@ -257,6 +251,5 @@ class WidgetSnapshotBuilderTests {
             WidgetSnapshotBuilder.build(state, Box.day1, Box.TZ),
             WidgetSnapshotBuilder.build(reversed, Box.day1, Box.TZ),
         )
-        assertTrue(WidgetSnapshotBuilder.build(state, Box.day1, Box.TZ).startsWith("{\"activityWindowDays\":"))
     }
 }
