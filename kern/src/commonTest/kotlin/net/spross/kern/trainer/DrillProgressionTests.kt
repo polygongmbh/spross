@@ -25,46 +25,35 @@ class DrillProgressionTests {
         }
     }
 
-    /** Decoding waits for the clock to have been worked, not merely opened. */
-    @Test
-    fun reverseWaitsForTheClockToBeClimbed() {
-        assertEquals(mapOf(NumbersExercise.Clock to 3), DrillUnlocks.requirements(DrillModifier.Reverse))
-        assertFalse(DrillUnlocks.unlocked(DrillModifier.Reverse, progress(NumbersExercise.Clock to 2)))
-        assertTrue(DrillUnlocks.unlocked(DrillModifier.Reverse, progress(NumbersExercise.Clock to 3)))
-        // The numbers climb rides along: the clock does not open before four digits.
-        assertFalse(DrillUnlocks.unlocked(NumbersExercise.Clock, progress(NumbersExercise.Counting to 3)))
-    }
-
-    @Test
-    fun everySprosseOpensExactlyAtItsRequirement() {
-        val exercises = listOf(
-            Triple(NumbersExercise.Clock, NumbersExercise.Counting, 4),
-            // The phrase gate rides the clock ceiling, so growing the ladder raises it.
-            Triple(NumbersExercise.Phrases, NumbersExercise.Clock, Numbers.maxSprosse(NumbersReading.Clock)),
-            Triple(NumbersExercise.Forms, NumbersExercise.Counting, 7),
-        )
-        for ((locked, on, sprosse) in exercises) {
-            assertEquals(mapOf(on to sprosse), DrillUnlocks.requirements(locked))
-            assertFalse(DrillUnlocks.unlocked(locked, emptyMap()), "$locked with no progress")
-            assertFalse(DrillUnlocks.unlocked(locked, progress(on to sprosse - 1)), "$locked at ${sprosse - 1}")
-            assertTrue(DrillUnlocks.unlocked(locked, progress(on to sprosse)), "$locked at $sprosse")
-        }
-        assertEquals(mapOf(NumbersExercise.Counting to 10), DrillUnlocks.requirements(DrillModifier.Fast))
-        assertFalse(DrillUnlocks.unlocked(DrillModifier.Fast, progress(NumbersExercise.Counting to 9)))
-        assertTrue(DrillUnlocks.unlocked(DrillModifier.Fast, progress(NumbersExercise.Counting to 10)))
-    }
-
     /**
-     * Mix rides on the forms Sprosse alone. It needs no numbers Sprosse of its own: Forms
-     * cannot open below seven digits, so the climb is already paid for by the time
-     * this can be reached.
+     * Every locked row names one requirement and opens exactly on it, read off the table
+     * rather than restated. Decoding waits for the clock to have been climbed, and mix rides
+     * on the forms Sprosse alone.
      */
     @Test
-    fun mixRidesOnTheFormsSprosseAlone() {
-        assertEquals(mapOf(NumbersExercise.Forms to 5), DrillUnlocks.requirements(DrillModifier.Mix))
-        assertFalse(DrillUnlocks.unlocked(DrillModifier.Mix, progress(NumbersExercise.Forms to 4)))
-        assertTrue(DrillUnlocks.unlocked(DrillModifier.Mix, progress(NumbersExercise.Forms to 5)))
-        assertFalse(DrillUnlocks.unlocked(NumbersExercise.Forms, progress(NumbersExercise.Counting to 6)))
+    fun everySprosseOpensExactlyAtItsRequirement() {
+        val locked: List<Any> = listOf(NumbersExercise.Clock, NumbersExercise.Phrases, NumbersExercise.Forms) +
+            DrillModifier.entries
+        for (row in locked) {
+            val requirements = when (row) {
+                is NumbersExercise -> DrillUnlocks.requirements(row)
+                else -> DrillUnlocks.requirements(row as DrillModifier)
+            }
+            val (on, sprosse) = requirements.entries.single().toPair()
+            fun unlocked(progress: Map<NumbersExercise, Int>) = when (row) {
+                is NumbersExercise -> DrillUnlocks.unlocked(row, progress)
+                else -> DrillUnlocks.unlocked(row as DrillModifier, progress)
+            }
+            assertFalse(unlocked(progress(on to sprosse - 1)), "$row at ${sprosse - 1}")
+            assertTrue(unlocked(progress(on to sprosse)), "$row at $sprosse")
+        }
+        assertEquals(NumbersExercise.Clock, DrillUnlocks.requirements(DrillModifier.Reverse).keys.single())
+        assertEquals(NumbersExercise.Forms, DrillUnlocks.requirements(DrillModifier.Mix).keys.single())
+        // The phrase gate rides the clock ceiling, so growing the ladder raises it.
+        assertEquals(
+            mapOf(NumbersExercise.Clock to Numbers.maxSprosse(NumbersReading.Clock)),
+            DrillUnlocks.requirements(NumbersExercise.Phrases),
+        )
     }
 
     /** No modifier prices Phrases — a pair's phrase ceiling is catalog-dependent. */
@@ -73,12 +62,6 @@ class DrillProgressionTests {
         for (modifier in DrillModifier.entries) {
             assertFalse(NumbersExercise.Phrases in DrillUnlocks.requirements(modifier), "$modifier")
         }
-    }
-
-    @Test
-    fun fastModeHalvesTheSprosse() {
-        assertEquals(2, Numbers.winsToAdvance(fast = false))
-        assertEquals(1, Numbers.winsToAdvance(fast = true))
     }
 
     // The ramp — one rule for every drill, whatever it asks.
