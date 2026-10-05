@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+## 8.3.0 — 2026-10-05
+
 - The sentence scramble now moves on by itself after a right arrangement instead of waiting for a Next tap.
 - Fifteen Swahili verbs that were silent are now spoken, by a recording of the bare verb where none says its infinitive.
 - The Android home-screen widget shows the box you open right away, after a language switch or an update.
