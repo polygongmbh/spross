@@ -62,16 +62,18 @@ struct WatchWordProvider: TimelineProvider {
         guard let snapshot = WatchSnapshotStore.load() else { return [.placeholder] }
         let exposure = snapshot.exposureEntries(limit: 24)
         guard !exposure.isEmpty else { return [.placeholder] }
-        let due = snapshot.dueEntries(now: start).count
         return (0..<24).map { slot in
             let entry = exposure[slot % exposure.count]
-            return WatchWordEntry(date: start.addingTimeInterval(Double(slot) * 15 * 60),
+            let date = start.addingTimeInterval(Double(slot) * 15 * 60)
+            return WatchWordEntry(date: date,
                                   emoji: entry.emoji ?? "🗂️",
                                   article: entry.article,
                                   gender: entry.gender,
                                   word: entry.targetText,
                                   meaning: entry.sourceText,
-                                  dueCount: due,
+                                  // Counted per slot: a card coming due mid-timeline
+                                  // shows up without waiting for the phone.
+                                  dueCount: snapshot.dueEntries(now: date).count,
                                   chromeLanguage: snapshot.chromeLanguage)
         }
     }

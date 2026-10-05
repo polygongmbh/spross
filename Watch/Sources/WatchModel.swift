@@ -114,12 +114,14 @@ final class WatchModel {
 
     // MARK: - Derived
 
-    var dueCount: Int {
-        snapshot?.dueEntries(now: Date()).count ?? 0
+    /// The clock is the caller's, so a view that redraws on a timeline counts
+    /// the cards that came due while nobody touched the watch.
+    func dueCount(at now: Date) -> Int {
+        snapshot?.dueEntries(now: now).count ?? 0
     }
 
-    var tomorrowDueCount: Int {
-        snapshot?.tomorrowDueCount(now: Date(), calendar: calendar) ?? 0
+    func tomorrowDueCount(at now: Date) -> Int {
+        snapshot?.tomorrowDueCount(now: now, calendar: calendar) ?? 0
     }
 
     var currentEntry: WatchSnapshot.Entry? {
@@ -131,7 +133,7 @@ final class WatchModel {
     private var hasPool: Bool { (snapshot?.entries.count ?? 0) >= 2 }
 
     /// A due batch to work through.
-    var canStart: Bool { hasPool && dueCount > 0 }
+    func canStart(at now: Date) -> Bool { hasPool && dueCount(at: now) > 0 }
 
     /// Free practice needs no due card — it draws on the whole snapshot.
     var canPractice: Bool { hasPool }
