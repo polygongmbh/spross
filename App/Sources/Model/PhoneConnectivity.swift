@@ -15,7 +15,7 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
     private static let contextByteLimit = 60_000
 
     /// Set once from the main actor before `activate()`; called from WC
-    /// callbacks with decoded, not-yet-deduplicated events.
+    /// callbacks with decoded events.
     var onAnswerEvents: (@Sendable ([WatchAnswerEvent]) -> Void)?
 
     func activate() {
@@ -77,10 +77,6 @@ final class PhoneConnectivity: NSObject, WCSessionDelegate, @unchecked Sendable 
 
 extension AppModel {
 
-    /// UserDefaults key holding recently applied event UUIDs
-    /// (transferUserInfo may deliver duplicates).
-    private static let appliedEventIDsKey = "spross-watch-applied-event-ids"
-    private static let appliedEventIDsCap = 1000
     /// UserDefaults key holding answers that arrived before a box was loaded.
     private static let pendingEventsKey = "spross-watch-pending-events"
 
@@ -130,27 +126,14 @@ extension AppModel {
             }
             return
         }
+        guard !events.isEmpty else { return }
         if !parked.isEmpty { defaults.removeObject(forKey: Self.pendingEventsKey) }
-        var applied = defaults.stringArray(forKey: Self.appliedEventIDsKey) ?? []
-        var appliedSet = Set(applied)
 
-        let fresh = events
-            .filter { !appliedSet.contains($0.id.uuidString) }
-            .sorted { ($0.date, $0.cardId) < ($1.date, $1.cardId) }
-        guard !fresh.isEmpty else { return }
-
-        for event in fresh {
+        for event in events.sorted(by: { ($0.date, $0.cardId) < ($1.date, $1.cardId) }) {
             state = BoxEngine.shared.answer(state: state, cardId: event.cardId,
                                             rating: event.rating.kernRating,
                                             nowEpochMillis: event.date.epochMillis)
-            applied.append(event.id.uuidString)
-            appliedSet.insert(event.id.uuidString)
         }
-
-        if applied.count > Self.appliedEventIDsCap {
-            applied.removeFirst(applied.count - Self.appliedEventIDsCap)
-        }
-        defaults.set(applied, forKey: Self.appliedEventIDsKey)
 
         box = state
         // why: the immediate save carries the watch snapshot with it — pushing a
