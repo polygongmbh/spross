@@ -9,7 +9,6 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.Language
 import net.spross.kern.model.apostropheFolded
 import net.spross.kern.model.caseFolded
-import net.spross.kern.session.spokenOnly
 
 /**
  * The letter drill: hear a sound, find the letter — multiple choice, then typing, then
@@ -38,22 +37,8 @@ object LetterDrill {
     /** Arrived words from which one clean win is enough to move up a Sprosse. */
     private const val ARRIVED_FOR_SHORT_SPROSSEN = 60
 
-    /** Dictation at Sprosse 8 asks for short words; the count ignores spaces. */
-    private const val SHORT_WORD_LETTERS = 6
-
-    /** Below this many short candidates the Sprosse-8 filter is dropped — never draw from one. */
-    private const val MIN_SHORT_CANDIDATES = 3
-
     /** The same floor on the gap word's arrived-first preference; below it, the whole pool. */
     private const val MIN_ARRIVED_CANDIDATES = 3
-
-    /** Ceilings on the two things that make a word worth dictating twice (see [dictationWeight]). */
-    private const val TRICKY_CAP = 3
-    private const val DIFFICULTY_CAP = 3
-
-    /** FSRS difficulty runs 1–10; below its middle a word is not what the Sprosse is for. */
-    private const val DIFFICULTY_MIDPOINT = 5.0
-    private const val DIFFICULTY_PER_STEP = 1.0
 
     fun maxSprosse(dictationAvailable: Boolean): Int =
         if (dictationAvailable) MAX_SPROSSE_WITH_DICTATION else MAX_SPROSSE_WITHOUT_DICTATION
@@ -168,23 +153,7 @@ object LetterDrill {
         val difficulty: Double = 0.0,
     )
 
-    /**
-     * One dictation question. [candidates] arrive filtered to arrived, speakable box
-     * cards; kern drops anything with a space of its own — a transcription task is
-     * one word, whatever the caller believes.
-     *
-     * Sprosse 8 asks for short words. If fewer than [MIN_SHORT_CANDIDATES] survive that
-     * filter the whole list is used instead: a drill that always dictates the same two
-     * words is worse than one that occasionally dictates a long one.
-     *
-     * Inside whatever pool survives, the draw is WEIGHTED by [dictationWeight] — a Sprosse
-     * spent on words already spelled right is a Sprosse spent on nothing. [alphabet] is only
-     * consulted for the language's own hard graphemes; a language without one dictates
-     * fine, it just weighs the spelling half at zero.
-     *
-     * [solved] is what this run has already transcribed right; null comes back once every
-     * candidate is in it, and the run climbs past the Sprosse rather than dictating twice.
-     */
+    /** One dictation question, weighted toward the words worth dictating; see [LetterDictation.sample]. */
     fun sampleDictation(
         candidates: List<DictationCandidate>,
         alphabet: Alphabet?,
@@ -192,73 +161,14 @@ object LetterDrill {
         avoidCardId: String?,
         solved: Set<String>,
         rng: Random,
-    ): LetterDrillTask? {
-        val words = candidates.filter {
-            ' ' !in it.card.target.text &&
-                DrillSolved.letterKey(LetterFormat.Dictation, it.card.id, it.card.target.text) !in solved
-        }
-        if (words.isEmpty()) return null
-        val short = words.filter { it.card.target.text.count { ch -> ch != ' ' } <= SHORT_WORD_LETTERS }
-        val pool = if (sprosse <= 8 && short.size >= MIN_SHORT_CANDIDATES) short else words
-        val tricky = alphabet?.trickyGlyphs.orEmpty()
-        val weights = pool.map { dictationWeight(it, tricky) }
-        var card = weighted(pool, weights, rng).card
-        if (card.id == avoidCardId) card = weighted(pool, weights, rng).card
-        return LetterDrillTask(
-            format = LetterFormat.Dictation,
-            language = card.target.lang,
-            answerRef = card.id,
-            promptText = card.target.text,
-            promptKind = LetterPromptKind.Word,
-            promptSlug = card.id,
-            promptGlyph = null,
-            choices = null,
-            gapText = null,
-            // why: transcription accepts what was SPOKEN and nothing else — a synonym
-            // would credit a word the learner never heard.
-            accepted = listOf(card.target.text),
-            display = card.target.text,
-            gloss = card.source.text,
-        )
-    }
+    ): LetterDrillTask? = LetterDictation.sample(candidates, alphabet, sprosse, avoidCardId, solved, rng)
 
-    /**
-     * How much of the dictation draw a candidate is worth. One is the floor every word
-     * keeps — nothing is ever excluded, only out-drawn — and two things add to it:
-     *
-     * the SPELLING (how many of the language's own hard graphemes the word carries, which
-     * is what a transcription actually tests), and FSRS's DIFFICULTY above the midpoint,
-     * which every Again raises — the words this learner has forgotten before. Each is capped,
-     * so a single leech cannot take the Sprosse over, and both are zero on a short clean word
-     * — which is exactly when the draw stays uniform.
-     */
-    fun dictationWeight(candidate: DictationCandidate, trickyGlyphs: List<String>): Int {
-        val word = candidate.card.target.text.lowercase()
-        val spelling = minOf(TRICKY_CAP, trickyGlyphs.count { it in word })
-        val forgotten = minOf(
-            DIFFICULTY_CAP,
-            ((candidate.difficulty - DIFFICULTY_MIDPOINT) / DIFFICULTY_PER_STEP).toInt().coerceAtLeast(0),
-        )
-        return 1 + spelling + forgotten
-    }
+    /** How much of the dictation draw a candidate is worth; see [LetterDictation.weight]. */
+    fun dictationWeight(candidate: DictationCandidate, trickyGlyphs: List<String>): Int =
+        LetterDictation.weight(candidate, trickyGlyphs)
 
-    /** Cumulative draw over [weights]; identical to a uniform pick where they all match. */
-    private fun <T> weighted(pool: List<T>, weights: List<Int>, rng: Random): T {
-        val total = weights.sum()
-        var roll = rng.nextInt(total)
-        for ((index, weight) in weights.withIndex()) {
-            roll -= weight
-            if (roll < 0) return pool[index]
-        }
-        return pool.last()
-    }
-
-    /**
-     * The card a dictation answer is graded against — [spokenOnly] over what the task
-     * actually played, so no word the learner never heard is credited.
-     */
-    fun dictationGradingCard(card: Card, task: LetterDrillTask): Card =
-        spokenOnly(card, task.accepted.firstOrNull() ?: card.target.text)
+    /** The card a dictation answer is graded against; see [LetterDictation.gradingCard]. */
+    fun dictationGradingCard(card: Card, task: LetterDrillTask): Card = LetterDictation.gradingCard(card, task)
 
     /**
      * Typed-glyph grading: exact after normalization, case-insensitive, no typo budget —
