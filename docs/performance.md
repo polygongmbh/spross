@@ -1,5 +1,6 @@
 # What may run when
 What is cached, where and keyed on what, and what may run when.
+Neighbors: the kern time boundary `../kern/docs/build.md`, the snapshots a finished round writes `../kern/docs/snapshots.md`.
 
 Cache what is expensive, and key the cache on everything the answer depends on.
 
@@ -75,8 +76,8 @@ Two things sit outside it because they are not box questions:
 No catalog WALK is on that path. The two that exist wait for the surface that reads them:
 the letter drill's report (`AppModel.refreshLetters`, and iOS's `LettersOverview`) is asked
 by its own page, and the listening playlist (`AppModel.startListening` / `ListeningDriver`)
-by a run being opened. Both used to ride the foreground for a question their entry chip
-answers far more cheaply.
+by a run being opened.
+Neither rides the foreground: the entry chip answers its question far more cheaply.
 
 ## Asking kern for less
 

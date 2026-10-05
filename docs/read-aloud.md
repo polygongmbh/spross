@@ -59,10 +59,8 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
 | listening mode (between two sayings) | yes, unattended | the meaning in the known language |
 | drill answer in known language (reversed atlas) | no | prompt carries the voice instead |
 
-- **Listening mode**: target word, meaning, target word again.
-  Gap before meaning: 1.2 s for a held word, 0.6 s for a new one;
-  echo and breath between turns are the same two lengths.
-  Every beat is kern's (`../kern/docs/turns.md`).
+- **Listening mode**: target word, meaning, target word again,
+  every beat kern's (`../kern/docs/turns.md`).
   No mute button; plays under `.playback`.
   Takes audio over (no `.mixWithOthers`, spoken-audio mode),
   session released on stop.
@@ -117,4 +115,3 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   Rendered full scale (`scripts/sounds.py`), each played at its kern `Chime` level.
 - VoiceOver: no autoplay talking over it; headword labeled with its language;
   replay is an action on the word.
-- Licensing: `audio-licensing.md`.

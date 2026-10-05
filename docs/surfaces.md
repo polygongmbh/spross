@@ -4,33 +4,25 @@ Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `d
 
 ## Listening
 
-- **Listening is not a Sprosse.** Only a skill with a ladder to climb earns a chip on that
-  row (`drills.md`); listening asks nothing, grades nothing and has no
-  Sprosse to reach, so a fourth chip would say it is a peer of counting and spelling when it is
-  a different kind of thing entirely. It gets ONE CARD on Home, under the day's round: the
-  round is what the box asks of the learner, and this is what the learner can do when
-  answering is not on the table — a walk, a commute, a sink full of dishes.
+- **Listening is not a drill.** Only a skill with a ladder to climb earns a chip on the hub (`drills.md`);
+  listening asks nothing, grades nothing and has no Sprosse to reach,
+  so a chip would call it a peer of counting and spelling when it is a different kind of thing.
+  It gets ONE CARD on Home, under the day's round:
+  the round is what the box asks of the learner,
+  and this is what the learner can do when answering is not on the table — a walk, a commute, the dishes.
   Its title names the mode once, and its second line carries the two facts the name cannot:
   which words it leans on, and that it needs no hands.
 - **It keeps the drill contract even so**: it books no review, writes no schedule and moves
   no streak, so a run costs the box nothing and can be closed at any moment. It has no end
   screen for the drills' reason — a run the learner ends when they like has nothing to
   celebrate — and no way of ending by itself: it laps for as long as it is left playing.
-- **What it plays is the box, short of the words it already calls settled, shakiest first** —
-  the box's own growing bar is the whole ladder: the words still short of it play first, all
-  of them, before a word past it is heard at all, and then they keep coming back among the
-  growing ones — the fewer are slipping, the more often each of them returns, though never
-  inside thirty turns. Settled words are not in the pool: the hour is for what is not
-  sticking. Never by what is due, since a schedule is about when to ASK and nothing is being
-  asked. New words are a fixed two turns in five from the very first turn — hearing a word you
-  have never answered, target-meaning-target, is the mode's cheapest breadth — with the words
-  you have QUEUED leading them, so the mode that asks the least of you still honors the queue
-  the day's round does, and a language you have only just started plays from its basics
-  onward rather than from anywhere in the catalog. Suspended words are in the pool:
-  hand-suspending a word takes it out of the rotation, which makes the words you set aside
-  exactly the ones a due-driven surface would never reach — they come in with the growing
-  ones rather than leading. Hearing a word does NOT introduce it: introduction is the first
-  ANSWER, and this surface has none. The rule and its numbers are `../kern/docs/turns.md`.
+- **What it plays is the box, short of the words it already calls settled, shakiest first**,
+  never ordered by what is due — a schedule is about when to ASK, and nothing is being asked.
+  New words take a fixed share from the first turn, queued words leading them,
+  so the mode that asks the least still honors the queue the day's round does;
+  suspended words are in the pool, since they are exactly the ones a due-driven surface never reaches.
+  Hearing a word does NOT introduce it: introduction is the first ANSWER, and this surface has none.
+  The deal and its numbers are `../kern/docs/turns.md`.
 - **It plays with the screen locked.** That is the point of it — the mode is for the hours
   the phone is in a pocket, and one that stopped at the lock screen would be a mode for
   staring at a phone that is already speaking. Both platforms put the run on the lock screen
@@ -47,8 +39,8 @@ Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `d
 
 ## Android companion
 
-`android/` renders THIS contract with Compose — same engine facades, and since the turn
-and both drill runs moved into kern the same rules by construction, not by porting discipline.
+`android/` renders THIS contract with Compose on the same engine facades,
+so the turn and the drill runs follow the same rules by construction, not by porting discipline.
 The hub ships there whole (`drills.md`).
 Platform deltas only: the catalog and the chimes ship as APK assets synced from
 `catalog/` and `App/Resources/Sounds/`,
@@ -70,7 +62,6 @@ Only the cell's TYPE moves with it, and it moves in steps, off the cell's own bo
 the picture over the pair, beside it where a tile one row tall leaves no third line.
 The tile is app-private like the box, and one the launcher has just placed shows the
 platform's own loading face until the first composition lands.
-What has not landed there is `design.md` § Not yet.
 
 ## Watch & widgets (decode-only)
 
@@ -135,10 +126,10 @@ What has not landed there is `design.md` § Not yet.
   channels already carry it; the right answer's feedback is the subtlest the wrist has.
 - **The picture arrives with the answer.** A card that has an emoji shows it on the watch's
   prompt line once a tile is tapped, never before: on a recognition question the picture
-  depicts the very meaning being asked for. That reveal moment is also why the wire now
-  carries held-back pictures at all — the emoji cue picks which KEY the picture travels
-  under rather than whether it travels (`../kern/docs/snapshots.md`), so no surface can show one early
-  by reading the wrong field. It joins the prompt line instead of taking a slot of its own,
+  depicts the very meaning being asked for.
+  The emoji cue picks which KEY the picture travels under (`../kern/docs/snapshots.md`),
+  so no surface can show one early by reading the wrong field.
+  It joins the prompt line instead of taking a slot of its own,
   so an answered card never reflows under the thumb.
 - Two runs, and only one of them ends: the **due batch** is a counter that reaches its
   end and returns to the start screen by itself, while **free practice** takes the words
