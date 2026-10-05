@@ -13,7 +13,9 @@ A kern type or function says what may be shown and why, never where it lands on 
 `EmojiCue { Upfront, OnReveal }` (the leakage rule),
 not `EmojiPlacement { Prompt, Reveal }` (a layout that would go on compiling while silently lying
 the moment the app moves the element).
-Screen positions, sizes, and which face of a card something rides on are the platforms'.
+Screen positions, sizes, and which face of a card something rides on are the platforms',
+except layout data both platforms draw from, which lives in kern once
+(`net.spross.kern.design`, `TreesLayout`) so the two phones cannot stand the same thing differently.
 The same test applies to snapshot fields.
 
 **The contract states the rule, the declaration states the detail.**
