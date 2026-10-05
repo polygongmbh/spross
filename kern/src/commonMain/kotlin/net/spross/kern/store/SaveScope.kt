@@ -27,3 +27,24 @@ enum class SaveScope(val writesBox: Boolean, val writesSnapshots: Boolean) {
         return entries.first { it.writesBox == box && it.writesSnapshots == snapshots }
     }
 }
+
+/**
+ * What happened to the box, as a platform reports it; kern answers what the save writes ([saveScope]).
+ * An answer inside a round is kern's own to report (`SessionEffect.Save`).
+ */
+enum class BoxChange {
+    /** A stamp nothing derived reads, such as the last export. */
+    Stamped,
+
+    /** What the box holds changed: a word queued or suspended, a language switched, answers from the watch, a reset. */
+    Changed,
+
+    /** The app leaves the screen, and every answer must reach the disk. */
+    Leaving,
+    ;
+
+    val saveScope: SaveScope get() = when (this) {
+        Stamped -> SaveScope.BOX
+        Changed, Leaving -> SaveScope.BOX_AND_SNAPSHOTS
+    }
+}

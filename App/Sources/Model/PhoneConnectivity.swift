@@ -137,7 +137,7 @@ extension AppModel {
         box = state
         // why: the save carries the watch snapshot with it — pushing a second one
         // here only built the same document twice.
-        save(state, .boxAndSnapshots)
+        save(state, BoxChange.changed.saveScope)
         refreshStats()
     }
 }

@@ -155,7 +155,7 @@ extension AppModel {
         let fresh = BoxEngine.shared.reset(state: old)
         box = fresh
         do {
-            try await store.saveNow(state: fresh, scope: .boxAndSnapshots)
+            try await store.saveNow(state: fresh, scope: BoxChange.changed.saveScope)
             refreshStats()
             pushWatchSnapshot()
         } catch {

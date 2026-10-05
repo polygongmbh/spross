@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import net.spross.kern.box.BoxState
 import net.spross.kern.store.BoxBackup
+import net.spross.kern.store.BoxChange
 import net.spross.kern.store.SaveScope
 import net.spross.kern.store.StoredBox
 import net.spross.kern.store.StoredBoxes
@@ -23,7 +24,7 @@ internal fun AppModel.save(state: BoxState, scope: SaveScope) = store.save(state
  */
 fun AppModel.saveNow() {
     val state = box ?: return
-    store.saveNow(state, SaveScope.BOX_AND_SNAPSHOTS)
+    store.saveNow(state, BoxChange.Leaving.saveScope)
 }
 
 /**

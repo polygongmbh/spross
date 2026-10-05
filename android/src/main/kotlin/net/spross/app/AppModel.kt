@@ -40,7 +40,7 @@ import net.spross.kern.session.SessionEffect
 import net.spross.kern.session.SessionIntent
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
-import net.spross.kern.store.SaveScope
+import net.spross.kern.store.BoxChange
 import net.spross.kern.store.StoreFormatException
 
 class AppModel(app: Application) : AndroidViewModel(app) {
@@ -374,14 +374,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val state = box ?: return
         val next = change(state)
         box = next
-        save(next, SaveScope.BOX)
+        save(next, BoxChange.Stamped.saveScope)
     }
 
     fun updateBox(change: (BoxState) -> BoxState) {
         val state = box ?: return
         val next = change(state)
         box = next
-        save(next, SaveScope.BOX_AND_SNAPSHOTS)
+        save(next, BoxChange.Changed.saveScope)
         refreshStats()
     }
 

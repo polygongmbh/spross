@@ -354,7 +354,7 @@ final class AppModel {
         let next = BoxEngine.shared.rejoin(state: box, cards: cards, joinStamp: stamp)
         self.box = next
         UserDefaults.standard.set(newSource, forKey: Self.sourceLanguageKey)
-        save(next, .boxAndSnapshots)
+        save(next, BoxChange.changed.saveScope)
         refreshTrainerContent()
         refreshStats()
         anyWordAudible = composedAnyWordAudible()
@@ -499,7 +499,7 @@ final class AppModel {
         pushWatchSnapshot()
         // why: the main actor cannot wait on the store's actor here; the write starts
         // at once and runs inside the time a backgrounded scene is given.
-        Task { [store] in try? await store.saveNow(state: box, scope: .boxAndSnapshots) }
+        Task { [store] in try? await store.saveNow(state: box, scope: BoxChange.leaving.saveScope) }
     }
 
     /// The one way a change to the box goes to disk: the store writes it behind the caller,
@@ -518,7 +518,7 @@ final class AppModel {
         guard let state = box else { return }
         let next = change(state)
         box = next
-        save(next, .box)
+        save(next, BoxChange.stamped.saveScope)
     }
 
     /// Apply a change to the box, save it with the snapshots, refresh statistics.
@@ -526,7 +526,7 @@ final class AppModel {
         guard var state = box else { return }
         change(&state)
         box = state
-        save(state, .boxAndSnapshots)
+        save(state, BoxChange.changed.saveScope)
         refreshStats()
     }
 }
