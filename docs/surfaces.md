@@ -112,10 +112,11 @@ What has not landed there is `design.md` § Not yet.
   Multiple choice on a keyboard-less device is a deliberate concession to the
   recall-first rule, with the latency curve compensating for it.
   Answers return as events; the phone reschedules against real timestamps and re-pushes.
-  Until it does, the watch keeps each card's last rating and practice reads it:
-  what it has not asked first, then its misses, then what it got right, each in the phone's order.
-  The due batch hands its misses straight back as another counted round while they number at least
-  `WatchModel.retryFloor`; fewer would each return within three questions of their reveal and lead practice instead.
+  Until it does, the watch keeps each card's last rating — a miss until it answers that card right, syncs included.
+  A round is the due cards plus the misses, one counted run, followed by another while they number at least
+  `WatchModel.roundFloor`; below it the screen reads all done, since a miss would return within three questions
+  of its reveal, and practice asks what it has not asked (due cards first), then its misses, then what it got right,
+  each in the phone's order.
 - **A word too long for a tile is a phone word.** The wrist carries only what four tiles
   can hold at a readable size (kern `MAX_TEXT_CHARS`); a longer phrase is never pushed and
   never offered as somebody else's distractor. This costs the watch about a quarter of the

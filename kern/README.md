@@ -174,7 +174,7 @@ the numbers behind each setting are on `BoxConfig` itself, and the three stabili
   High on the ladder that hands a `Hard` a SHORTER interval than another step would have.
   **No in-session lapse retry** (breadth ruling 2026-07-22):
   the run a card lapsed in does not wait for it
-  (the watch's due batch alone hands enough misses back as another round, `docs/surfaces.md`);
+  (the watch alone folds enough misses back into a round, `docs/surfaces.md`);
   by role resolution (section 3), the retry that follows is the typed production attempt.
   Suspension is now purely the learner's own call -- `setSuspended`, reversible from the Box.
 - **A graduated interval floors at one day.**

@@ -10,9 +10,9 @@ import WatchKit
 /// review. No watch-local FSRS — the phone reschedules; an answered card simply
 /// leaves the local due list until the next snapshot.
 ///
-/// Two runs, one progress indicator each (`WatchRun`): the due batch counts to
-/// an end — rounds of its own misses following while there are enough of them —
-/// free practice recycles and counts the answer streak.
+/// Two runs, one progress indicator each (`WatchRun`): a round of the due and
+/// the missed cards counts to an end — another following while there are enough
+/// of them — free practice recycles and counts the answer streak.
 @MainActor
 @Observable
 final class WatchModel {
@@ -44,13 +44,10 @@ final class WatchModel {
     /// `answeredCount` keeps the whole run's tally for the celebration.
     var roundAnswered: Int { answeredCount - roundStart }
     private var roundStart = 0
-    /// Cards the current round of the due batch missed, in the order they were missed.
-    private var roundMisses: [String] = []
-
-    /// Fewest misses that earn another round. Below it each would come back within
-    /// three questions of its own reveal, answered from the screen rather than from
-    /// memory — those few lead free practice instead.
-    static let retryFloor = 5
+    /// Fewest due and missed cards that make a round. Below it a miss would come
+    /// back within three questions of its own reveal, answered from the screen
+    /// rather than from memory — those few lead free practice instead.
+    static let roundFloor = 5
 
     /// When the current question became visible — the response-time clock.
     private var questionShownAt = Date()
@@ -103,21 +100,21 @@ final class WatchModel {
     }
 
     /// Fresh snapshot from the phone: replaces local state (the phone is the
-    /// source of truth and already folded in applied events). Stale or
-    /// out-of-order deliveries are dropped.
+    /// source of truth and already folded in applied events) — all but the
+    /// watch's misses. Stale or out-of-order deliveries are dropped.
     func receiveSnapshot(_ data: Data) {
-        guard let incoming = try? WatchSnapshot.decode(data) else { return }
+        guard var incoming = try? WatchSnapshot.decode(data) else { return }
         if let current = snapshot, current.generated > incoming.generated { return }
+        let present = Set(incoming.entries.map(\.cardId))
+        // why: a miss stays one until the watch answers it right — the phone's
+        // reschedule puts it minutes out, and the round counts it now.
+        incoming.answers = (snapshot?.answers ?? [:])
+            .filter { $0.value == .again && present.contains($0.key) }
         snapshot = incoming
         WatchSnapshotStore.save(incoming)
         WidgetCenter.shared.reloadAllTimelines()
         if sessionPresented {
-            // why: mid-session the queue must not resurrect cards the user just
-            // answered (their events may not be applied phone-side yet).
-            // Practice is exempt: replaying answered cards is what it does.
-            let answered = run == .session ? Set(incoming.answers.keys) : []
-            let present = Set(incoming.entries.map(\.cardId))
-            queue = queue.filter { present.contains($0) && !answered.contains($0) }
+            queue = queue.filter { present.contains($0) }
             if let id = currentID, !present.contains(id) {
                 advance()
             }
@@ -128,8 +125,8 @@ final class WatchModel {
 
     /// The clock is the caller's, so a view that redraws on a timeline counts
     /// the cards that came due while nobody touched the watch.
-    func dueCount(at now: Date) -> Int {
-        snapshot?.dueEntries(now: now).count ?? 0
+    func roundCount(at now: Date) -> Int {
+        snapshot?.roundEntries(now: now).count ?? 0
     }
 
     func tomorrowDueCount(at now: Date) -> Int {
@@ -157,19 +154,19 @@ final class WatchModel {
     /// under both runs.
     private var hasPool: Bool { (snapshot?.entries.count ?? 0) >= 2 }
 
-    /// A due batch to work through.
-    func canStart(at now: Date) -> Bool { hasPool && dueCount(at: now) > 0 }
+    /// Enough due and missed cards for a round; fewer lead free practice instead.
+    func canStart(at now: Date) -> Bool { hasPool && roundCount(at: now) >= Self.roundFloor }
 
     /// Free practice needs no due card — it draws on the whole snapshot.
     var canPractice: Bool { hasPool }
 
     // MARK: - Runs
 
-    /// The due batch: exactly the cards due now, so its counter names a goal
-    /// that can be reached. Review-ahead is free practice's job, not this run's.
+    /// A round: exactly the cards due now plus the watch's misses, so its counter
+    /// names a goal that can be reached. Review-ahead is free practice's job.
     func startSession() {
         guard let snapshot, hasPool else { return }
-        queue = snapshot.dueEntries(now: Date()).map(\.cardId)
+        queue = snapshot.roundEntries(now: Date()).map(\.cardId)
         guard !queue.isEmpty else { return }
         sessionTotal = queue.count
         begin(.session)
@@ -188,7 +185,6 @@ final class WatchModel {
         self.run = run
         answeredCount = 0
         roundStart = 0
-        roundMisses = []
         answerStreak = 0
         currentID = queue.first
         makeQuestionForCurrent()
@@ -213,10 +209,7 @@ final class WatchModel {
         // why: every answer answers back, and in the shape of the rating it
         // earned — a silent correct tap used to feel the same as no tap at all.
         WKInterfaceDevice.current().play(WatchFeedback.haptic(forRating: rating))
-        if !correct {
-            raiseWrongFlash()
-            if run == .session { roundMisses.append(id) }
-        }
+        if !correct { raiseWrongFlash() }
 
         connectivity.send(WatchAnswerEvent(cardId: id, rating: rating, date: Date()))
         // Every answer is an FSRS review, second lap included; locally only the
@@ -257,7 +250,6 @@ final class WatchModel {
         currentID = nil
         currentQuestion = nil
         queue = []
-        roundMisses = []
     }
 
     private func advance() {
@@ -273,9 +265,10 @@ final class WatchModel {
             // The snapshot emptied under a running lap — nothing left to ask.
             guard !queue.isEmpty else { return endSession() }
         }
-        if queue.isEmpty, run == .session, roundMisses.count >= Self.retryFloor {
-            queue = roundMisses.filter { snapshot?.entry(id: $0) != nil }
-            roundMisses = []
+        if queue.isEmpty, run == .session,
+           let next = snapshot?.roundEntries(now: Date()).map(\.cardId), next.count >= Self.roundFloor {
+            queue = next
+            if queue.first == previous { queue.swapAt(0, 1) }
             sessionTotal = queue.count
             roundStart = answeredCount
         }
@@ -284,9 +277,10 @@ final class WatchModel {
     }
 
     /// One practice lap over the whole snapshot: what the watch has not asked
-    /// since the phone last synced, then what it missed — spaced behind the rest
-    /// rather than asked straight from the reveal — then what it got right —
-    /// each part in the phone's order (weakest first). The snapshot's own schedule
+    /// since the phone last synced — cards due now first, too few for a round —
+    /// then what it missed, spaced behind the rest rather than asked straight
+    /// from the reveal, then what it got right — each part in the phone's order
+    /// (weakest first). The snapshot's own schedule
     /// knows nothing of those answers until the phone reschedules them.
     /// `avoiding` is the card just answered — swapped with its neighbor (not
     /// sent to the back, which would demote the very word practice is for) so
@@ -294,10 +288,11 @@ final class WatchModel {
     private func practiceLap(avoiding previous: String?) -> [String] {
         guard let snapshot else { return [] }
         let order = snapshot.entries.map(\.cardId)
+        let due = Set(snapshot.dueEntries(now: Date()).map(\.cardId))
         let unasked = order.filter { snapshot.answers[$0] == nil }
         let missed = order.filter { snapshot.answers[$0] == .again }
         let known = order.filter { snapshot.answers[$0].map { $0 != .again } ?? false }
-        var ids = unasked + missed + known
+        var ids = unasked.filter(due.contains) + unasked.filter { !due.contains($0) } + missed + known
         if ids.count > 1, ids.first == previous {
             ids.swapAt(0, 1)
         }

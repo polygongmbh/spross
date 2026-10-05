@@ -12,7 +12,7 @@ struct WatchHomeView: View {
         TimelineView(.explicit(model.countChanges(after: .now))) { context in
             if model.snapshot == nil {
                 waitingForPhone
-            } else if model.dueCount(at: context.date) > 0 {
+            } else if model.canStart(at: context.date) {
                 dueState(now: context.date)
             } else {
                 restState(now: context.date)
@@ -45,27 +45,26 @@ struct WatchHomeView: View {
     private func dueState(now: Date) -> some View {
         VStack(spacing: 8) {
             HStack(alignment: .firstTextBaseline, spacing: 5) {
-                Text("\(model.dueCount(at: now))")
+                Text("\(model.roundCount(at: now))")
                     .font(.system(.largeTitle, design: .rounded, weight: .bold))
                     .foregroundStyle(WatchTheme.colors.accent)
                 Text("watch.due", tableName: GlanceChrome.table)
                     .font(.system(.headline, design: .rounded))
                     .foregroundStyle(WatchTheme.colors.textSecondary)
             }
-            if model.canStart(at: now) {
-                Button { model.startSession() } label: {
-                    Text("watch.start", tableName: GlanceChrome.table)
-                        .font(.system(.headline, design: .rounded, weight: .bold))
-                        .foregroundStyle(.black)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(WatchTheme.colors.accent)
-                .padding(.top, 6)
+            Button { model.startSession() } label: {
+                Text("watch.start", tableName: GlanceChrome.table)
+                    .font(.system(.headline, design: .rounded, weight: .bold))
+                    .foregroundStyle(.black)
             }
+            .buttonStyle(.borderedProminent)
+            .tint(WatchTheme.colors.accent)
+            .padding(.top, 6)
         }
     }
 
-    /// Nothing due — offer free practice, which recycles the whole snapshot.
+    /// Too little due or missed for a round — offer free practice, which opens
+    /// with it and then recycles the whole snapshot.
     private func restState(now: Date) -> some View {
         VStack(spacing: 8) {
             Text("watch.allDone", tableName: GlanceChrome.table)

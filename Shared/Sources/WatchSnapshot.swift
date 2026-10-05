@@ -103,6 +103,15 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         return entries.filter { $0.due <= nowMillis && answers[$0.cardId] == nil }
     }
 
+    /// What a round asks, in phone-ranked order: the entries due now that the
+    /// watch has not answered, and the ones it last missed.
+    func roundEntries(now: Date) -> [Entry] {
+        let nowMillis = Int64(now.timeIntervalSince1970 * 1000)
+        return entries.filter {
+            answers[$0.cardId] == .again || ($0.due <= nowMillis && answers[$0.cardId] == nil)
+        }
+    }
+
     /// Entries due by tomorrow evening (mirrors the phone's tomorrow count).
     func tomorrowDueCount(now: Date, calendar: Calendar) -> Int {
         guard let end = calendar.date(byAdding: .day, value: 2,
