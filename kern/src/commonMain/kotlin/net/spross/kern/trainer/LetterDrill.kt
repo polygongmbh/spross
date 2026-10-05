@@ -163,10 +163,6 @@ object LetterDrill {
         rng: Random,
     ): LetterDrillTask? = LetterDictation.sample(candidates, alphabet, sprosse, avoidCardId, solved, rng)
 
-    /** How much of the dictation draw a candidate is worth; see [LetterDictation.weight]. */
-    fun dictationWeight(candidate: DictationCandidate, trickyGlyphs: List<String>): Int =
-        LetterDictation.weight(candidate, trickyGlyphs)
-
     /** The card a dictation answer is graded against; see [LetterDictation.gradingCard]. */
     fun dictationGradingCard(card: Card, task: LetterDrillTask): Card = LetterDictation.gradingCard(card, task)
 

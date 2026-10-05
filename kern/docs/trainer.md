@@ -61,5 +61,5 @@ Neighbors: the run machines `turns.md`, per-language readings `../../docs/number
   kern favors the known words while at least three stand,
   and spends no randomness where a row offers one word.
   Dictation draws only `BoxEngine.arrivedCardIds` through `dictationGradingCard`,
-  weighted by `dictationWeight`, whose difficulty figure rides in on `DictationCandidate` —
+  weighted by `LetterDictation.weight`, whose difficulty figure rides in on `DictationCandidate` —
   kern reads no state.

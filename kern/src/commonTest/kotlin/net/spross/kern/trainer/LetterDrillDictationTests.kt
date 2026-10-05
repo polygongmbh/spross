@@ -97,7 +97,7 @@ class LetterDrillDictationTests {
             text: String,
             tricky: List<String> = listOf("ch", "ß"),
             difficulty: Double = 0.0,
-        ) = LetterDrill.dictationWeight(
+        ) = LetterDictation.weight(
             LetterDrill.DictationCandidate(LetterDrillFixture.card("x", text), difficulty),
             tricky,
         )
