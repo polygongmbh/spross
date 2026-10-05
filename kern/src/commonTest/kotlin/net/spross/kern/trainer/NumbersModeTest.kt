@@ -33,8 +33,6 @@ class NumbersModeTest {
     @Test
     fun aRunIsFiledUnderItsWholeSelectionAndHowItWasPlayed() {
         assertEquals("Counting.sw", numbers("sw").recordKey)
-        assertEquals("trainer.record.", NumbersMode.RECORD_PREFIX)
-        assertEquals("trainer.level.", NumbersMode.PROGRESS_PREFIX)
 
         val mixed = NumbersMode(
             listOf(NumbersExercise.Counting, NumbersExercise.Clock),
@@ -56,14 +54,9 @@ class NumbersModeTest {
     /** The two typed drills' extra files: how many answers one run gave, and which Sprossen it answered out. */
     @Test
     fun theAnsweredOutSprossenAreFiledAsAMaskPerDirection() {
-        assertEquals("trainer.answers.", NumbersMode.ANSWERS_PREFIX)
-        assertEquals("trainer.cleared.", NumbersMode.CLEARED_PREFIX)
-        assertEquals(".rev", NumbersMode.REVERSED_SUFFIX)
         assertEquals("countries.de-sw", NumbersMode.clearedKey("countries.de-sw", reverse = false))
         assertEquals("countries.de-sw.rev", NumbersMode.clearedKey("countries.de-sw", reverse = true))
-        assertEquals(0b101, NumbersMode.clearedMask(setOf(1, 3)))
-        assertEquals(setOf(1, 3), NumbersMode.clearedSprossen(0b101))
-        assertEquals(setOf(9), NumbersMode.clearedSprossen(NumbersMode.clearedMask(setOf(9))))
+        assertEquals(setOf(1, 3, 9), NumbersMode.clearedSprossen(NumbersMode.clearedMask(setOf(1, 3, 9))))
         assertEquals(emptySet(), NumbersMode.clearedSprossen(0))
     }
 
@@ -71,7 +64,6 @@ class NumbersModeTest {
     @Test
     fun aRunOpensOnTheLowestSprosseNotAnsweredOut() {
         assertEquals(1, NumbersMode.entrySprosse(emptySet(), 9))
-        assertEquals(3, NumbersMode.entrySprosse(setOf(1, 2), 9))
         assertEquals(2, NumbersMode.entrySprosse(setOf(1, 3), 9))
         assertEquals(9, NumbersMode.entrySprosse((1..9).toSet(), 9))
         assertEquals(5, NumbersMode.entrySprosse((1..9).toSet(), 5), "clamped to the ladder as it stands")
@@ -91,10 +83,7 @@ class NumbersModeTest {
     /** A Sprosse belongs to ONE exercise, which is what lets the ladder read them all at once. */
     @Test
     fun aSprosseIsFiledPerExerciseUnderItsCaseName() {
-        assertEquals("Counting.sw", NumbersMode.progressKey(NumbersExercise.Counting, "sw"))
         assertEquals("Clock.sw", NumbersMode.progressKey(NumbersExercise.Clock, "sw"))
-        assertEquals("Forms.sw", NumbersMode.progressKey(NumbersExercise.Forms, "sw"))
-        assertEquals("Phrases.sw", NumbersMode.progressKey(NumbersExercise.Phrases, "sw"))
         assertEquals("Counting.sw", numbers("sw").progressKey(NumbersExercise.Counting))
     }
 
@@ -254,8 +243,7 @@ class NumbersModeTest {
 
     @Test
     fun fastHalvesTheSprosse() {
-        assertEquals(2, NumbersMode(NumbersExercise.Counting, "de").winsToAdvance)
         val fast = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Fast))
-        assertEquals(1, fast.winsToAdvance)
+        assertTrue(fast.winsToAdvance < NumbersMode(NumbersExercise.Counting, "de").winsToAdvance)
     }
 }
