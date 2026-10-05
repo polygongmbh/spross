@@ -9,8 +9,8 @@ import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillEffect
 
 /**
- * The platform half both endless drills share: the beat that is armed and the four acts an
- * effect asks for.
+ * The platform half every drill run shares, and whose beat the review turn arms too: the
+ * beat that is armed and the acts an effect asks for.
  *
  * The state machines stay apart — a heard glyph and a typed numeral share no grammar — but
  * what kern asks of the world outside them is one list, and a second copy of it is how two

@@ -24,7 +24,7 @@ import net.spross.kern.session.TurnState
  * standing in whichever field the turn owns, the beat that is armed, and the acts an
  * effect asks for. The screen reads this and hands taps back; it decides nothing.
  *
- * The same shape as [LetterDrillFlow], and for the same reason: a run kept out of the
+ * The same shape as [DrillFlow], and for the same reason: a run kept out of the
  * composition is a run a test can drive without a device.
  */
 class TurnFlow(
