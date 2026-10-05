@@ -79,7 +79,7 @@ fun ActivityStrip(days: List<ActivityDay>, chrome: Chrome) {
  * The bars painted at the host's pixel density.
  *
  * A raster carries one scheme rather than both, so the column is picked here instead of
- * being left to a `ColorProvider`: the tile redraws on every persist and every update
+ * being left to a `ColorProvider`: the tile redraws on every snapshot save and every update
  * period, which is when a phone that changed scheme picks the other column up.
  */
 private fun render(bars: List<ActivityBar>, context: Context): Bitmap {

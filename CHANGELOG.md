@@ -5,6 +5,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 ## Unreleased
 
 - The sentence scramble now moves on by itself after a right arrangement instead of waiting for a Next tap.
+- The Android home-screen widget shows the box you open right away, after a language switch or an update.
 - Answers given on the watch while the phone app was closed now reach your box and streak instead of being lost when the app starts.
 - The watch and its complication now count words as due the moment they come due, even overnight without the phone.
 - A watch round now takes your missed words along with the due ones and repeats while five or more are left; below five the watch says all done and practice asks them.

@@ -16,6 +16,7 @@ import kotlinx.coroutines.withContext
 import net.spross.app.audio.CueSounds
 import net.spross.app.audio.Pronouncer
 import net.spross.app.listen.ListeningDriver
+import net.spross.app.widget.WordWidget
 import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxEngine
@@ -39,11 +40,12 @@ import net.spross.kern.session.SessionEffect
 import net.spross.kern.session.SessionIntent
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
+import net.spross.kern.store.SaveScope
 import net.spross.kern.store.StoreFormatException
 
 class AppModel(app: Application) : AndroidViewModel(app) {
 
-    internal val store = BoxStore(BoxFiles(File(app.filesDir, "box")))
+    internal val store = BoxStore(BoxFiles(File(app.filesDir, "box"))) { WordWidget.refresh(app) }
     private val prefs = app.getSharedPreferences(ProfileStore.PREFS_NAME, Context.MODE_PRIVATE)
     internal val profile = ProfileStore(prefs)
 
@@ -345,7 +347,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
             otherLanguagesAnswerDays = days
             refreshStats()
             refreshListening()
-            if (opened.save.writesBox) persist(opened.box)
+            withContext(Dispatchers.IO) { store.saveNow(opened.box, opened.save) }
             screen = landing
         } finally {
             switchingLanguage = false
@@ -372,14 +374,14 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         val state = box ?: return
         val next = change(state)
         box = next
-        persist(next, widget = false)
+        save(next, SaveScope.BOX)
     }
 
     fun updateBox(change: (BoxState) -> BoxState) {
         val state = box ?: return
         val next = change(state)
         box = next
-        persist(next)
+        save(next, SaveScope.BOX_AND_SNAPSHOTS)
         refreshStats()
     }
 
@@ -398,7 +400,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      * Step the run and honor what it asks for. The whole session machine is kern's;
      * this is the platform half — the clock, the disk, and the observable state.
      */
-    internal fun dispatch(intent: SessionIntent, blocking: Boolean = false): SessionRunState? {
+    internal fun dispatch(intent: SessionIntent): SessionRunState? {
         val state = box ?: return null
         // The box may have moved outside the run (a fresh load, settings) — carry it in.
         val current = sessionRun?.let { SessionRun.withBox(it, state) } ?: SessionRun.idle(state)
@@ -407,8 +409,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         box = reduction.state.box
         for (effect in reduction.effects) {
             when (effect) {
-                is SessionEffect.Save ->
-                    persist(reduction.state.box, widget = effect.scope.writesSnapshots, blocking = blocking)
+                is SessionEffect.Save -> save(reduction.state.box, effect.scope)
                 SessionEffect.DayBooked -> refreshStats()
             }
         }

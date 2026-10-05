@@ -113,7 +113,7 @@ class SprossActivity : ComponentActivity() {
      */
     override fun onStop() {
         super.onStop()
-        model.persistNow()
+        model.saveNow()
     }
 
     /**

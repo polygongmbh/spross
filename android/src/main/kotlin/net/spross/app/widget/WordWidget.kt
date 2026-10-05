@@ -32,7 +32,7 @@ import net.spross.app.SprossActivity
  * Passive exposure on the home screen: words out of the learner's own box, with what
  * today still owes the run.
  *
- * Decode-only — the tile reads the snapshot the app wrote on its last persist and never
+ * Decode-only — the tile reads the snapshot the app wrote on its last snapshot save and never
  * runs the join (`kern/docs/snapshots.md`). What a tile of a given shape holds is
  * `docs/surfaces.md` § Android companion; [GridFace] draws it.
  */
