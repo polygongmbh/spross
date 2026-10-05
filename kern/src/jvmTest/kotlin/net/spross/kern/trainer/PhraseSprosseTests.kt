@@ -112,7 +112,7 @@ class PhraseSprosseTests {
                     val expected = when (template.slotKind) {
                         NumbersReading.Clock -> {
                             val hour = b.nextInt(24)
-                            PhraseSlots.instantiate(template, hour, Numbers.clockMinute(sprosse, b))
+                            PhraseSlots.instantiate(template, hour, drawClockMinute(sprosse, b))
                         }
                         NumbersReading.Fraction -> {
                             val slot = Numbers.sample(template.slotKind, template.target, sprosse, b)

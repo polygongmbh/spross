@@ -31,43 +31,6 @@ fun numbersReadingEmoji(reading: NumbersReading): String = when (reading) {
 }
 
 /**
- * One procedural drill task. Pure data — the UI compares typed input against
- * [accepted] normalize-insensitively and reveals [display].
- */
-data class NumbersTask(
-    val kind: NumbersReading,
-    val language: Language,
-    /**
-     * The MACHINE form of the asked value: "347", "1978", "14:35" — never grouped,
-     * never prettified. Callers parse it ([PhraseSlots] does `prompt.toLong()`, and a
-     * Kotlin throw crossing the ObjC boundary is an app crash), so anything cosmetic
-     * belongs in [promptDisplay] instead.
-     */
-    val prompt: String,
-    /** All accepted answers, canonical reading first. */
-    val accepted: List<String>,
-    /** Canonical answer for the reveal. */
-    val display: String,
-    val gloss: String? = null,
-    /**
-     * What the UI shows — [prompt] with long runs of digits grouped ("4 072 918 300").
-     * Defaults to [prompt], so a kind that must never be grouped stays ungrouped by
-     * simply not setting it: that is why [year] and [clock] write no line for it.
-     */
-    val promptDisplay: String = prompt,
-    /**
-     * Which of the number forms this task asks, as a stable key ("negative", "decimal",
-     * "percent", "multiplicative", "fraction", "ordinal", "price"); null for every other kind.
-     *
-     * A key, not a word: kern names the rule and the app names it in the reader's own
-     * language. It exists so the first sight of a form can be introduced the way a new
-     * digit length is ([placeValueHint]) — without the app reading the mark back off the
-     * prompt string, which would put the notation rule in a view.
-     */
-    val formKey: String? = null,
-)
-
-/**
  * Procedural slot trainers (numbers, years, clock times). Pure generators —
  * Kern never self-randomizes; sampling takes an injected [Random].
  * Languages come from the pack registry (all eight declared languages authored;
@@ -279,9 +242,6 @@ object Numbers {
         )
     }
 
-    /** The minute draw at a Sprosse, shared by the plain clock drill and the phrase slots. */
-    internal fun clockMinute(sprosse: Int, rng: Random): Int = drawClockMinute(sprosse, rng)
-
     /**
      * Highest place-value word for a number of the given digit count, shown
      * the first time the drill reaches a new length ("hundert", "tausend",
@@ -326,53 +286,7 @@ object Numbers {
      * A phrase task keeps only its bare slot value as the answer, never the sentence:
      * reversing "Tuna sahani mia tatu…" asks for 347, not for the German sentence.
      */
-    fun reversed(task: NumbersTask): NumbersTask {
-        val value = slotValue(task)
-        val accepted = when (task.kind) {
-            // why: the forward prompt showed "12 345", so the separator must grade.
-            NumbersReading.Cardinal -> listOf(value, groupDigits(value)).distinct()
-            NumbersReading.Year -> listOf(value)
-            // why: "18.05" is how German writes a time, and the one separator a number
-            // pad without a colon key can type.
-            NumbersReading.Clock -> clockDigitForms(value).flatMap { listOf(it, it.replace(':', '.')) }
-            // why: a form is written, not just spelled — "3,7" and "3.7" are the same
-            // number, "20." and "20" the same rank, so the notation must not cost the Sprosse.
-            NumbersReading.Form -> formDigitForms(task.prompt, task.promptDisplay)
-            // A fraction has one notation and no separator to get wrong.
-            NumbersReading.Fraction -> listOf(value)
-            // why: the prompt showed the country's grouping, so its spaces must grade too.
-            NumbersReading.Phone -> listOf(value, phone(value, task.language).promptDisplay)
-        }
-        // The reveal shows the readable rendering, which is always one of the accepted ones.
-        val reveal = when (task.kind) {
-            NumbersReading.Cardinal -> groupDigits(value)
-            NumbersReading.Form -> task.promptDisplay
-            NumbersReading.Phone -> phone(value, task.language).promptDisplay
-            else -> value
-        }
-        return NumbersTask(
-            kind = task.kind, language = task.language,
-            prompt = task.display, accepted = accepted,
-            display = reveal, gloss = task.gloss,
-        )
-    }
-
-    /**
-     * The bare value a task asks about: a plain drill's whole prompt, and the value
-     * embedded in a phrase task's sentence ("Wir haben 347 Teller." → "347",
-     * "Ich brauche 1/4 Kilo Mehl." → "1/4").
-     */
-    private fun slotValue(task: NumbersTask): String =
-        SLOT_VALUE.find(task.prompt)?.value ?: task.prompt
-
-    /** "08:05" and "8:05" — the same pair the phrase slots grade against. */
-    internal fun clockDigitForms(time: String): List<String> {
-        val bare = time.substringBefore(':').toInt().toString() + ":" + time.substringAfter(':')
-        return listOf(time, bare).distinct()
-    }
-
-    /** A clock time, a fraction, or a plain run of digits — whichever the sentence carries. */
-    private val SLOT_VALUE = Regex("""\d+(?:[:/]\d+)?""")
+    fun reversed(task: NumbersTask): NumbersTask = reversedTask(task)
 }
 
 internal fun pad2(value: Int): String = value.toString().padStart(2, '0')

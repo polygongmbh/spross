@@ -193,7 +193,7 @@ object PhraseSlots {
      */
     private fun digitForms(slot: NumbersTask): List<String> {
         if (slot.kind != NumbersReading.Clock) return listOf(slot.prompt, slot.promptDisplay).distinct()
-        return Numbers.clockDigitForms(slot.prompt)
+        return clockDigitForms(slot.prompt)
     }
 
     /**
