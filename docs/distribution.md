@@ -141,7 +141,7 @@ company, address, managing director, register entry, VAT id —
 in `App/Sources/Resources/Localizable.xcstrings` under `legal.*`.
 They are the same values the DSA trader declaration publishes on the App Store product page, so the two say one thing or they contradict each other.
 
-The page itself is written (`web/privacy.html`, `plans/website.md` § Legal pages);
+The page itself is written (`web/privacy.html`);
 what is still missing is the host serving it, and `https://spross.net/privacy` has to answer before a build reaches anyone outside the team —
 App Store Connect demands the same URL for external TestFlight testers.
 

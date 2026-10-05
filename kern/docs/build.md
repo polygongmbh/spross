@@ -36,7 +36,7 @@ Neighbors: the engine contract `../README.md`, the trainer packs `trainer.md`.
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.1, compileSdk 36 / minSdk 26);
   androidMain's NFC actual mirrors jvmMain, and `:android` consumes the same facades.
   Gate: `./gradlew :kern:compileAndroidMain`.
-- Web: `js { browser() }` target feeds the spross.net drill (`../../docs/plans/website.md`).
+- Web: `js { browser() }` target feeds the spross.net drill.
   `binaries.executable()` → one webpack bundle, `:kern:jsBrowserDistribution` →
   `kern/build/dist/js/productionExecutable/kern.js` (UMD global `kern`).
   The page-facing surface is the `@JsExport` facade `net.spross.kern.web`

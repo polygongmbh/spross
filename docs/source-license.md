@@ -16,7 +16,7 @@ The rights holder is Polygon GmbH, the same entity the Impressum names
   the repo already rejected GPL-3.0 dependencies for exactly that reason
   (`audio-licensing.md` § 5). Permissive (MIT, Apache-2.0) and weak copyleft (MPL-2.0)
   are unaffected.
-- **Hosted sync as the paid tier** (`plans/sync.md`). A server under AGPL-3.0 obliges anyone
+- **Hosted sync as the paid tier.** A server under AGPL-3.0 obliges anyone
   running a modified copy to publish their changes, and it is never linked into the app,
   so it cannot reach the app's license. One owner may license the two differently.
 - **What ships inside keeps its own terms** whatever the repo picks: Nunito under

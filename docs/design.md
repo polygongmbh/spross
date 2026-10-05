@@ -241,4 +241,4 @@ every pairing clearing WCAG AA in both schemes.
 
 ## Not yet
 
-Couple mode, accounts/sync (`plans/sync.md`), UI chrome past de/en.
+Couple mode, accounts/sync, UI chrome past de/en.

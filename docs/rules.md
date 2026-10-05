@@ -62,6 +62,8 @@ A doc records the rule that holds, never the story of how it got there.
 Completed migrations, port inventories, comparisons to a superseded version
 and test-suite changelogs get deleted.
 Git answers "what changed" precisely and for free.
+A standing doc never links a plan: a plan is deleted once it ships, and the plan links into the standing doc instead
+(`scripts/doc-header.py`).
 
 The sharp line: code that was built and later removed leaves a diff,
 so cut the doc entry -- `git log -S'<symbol>'` finds it.
