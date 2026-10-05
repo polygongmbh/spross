@@ -6,6 +6,8 @@ import net.spross.kern.model.CardPhase
 import net.spross.kern.model.CardScheduling
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
+import net.spross.kern.store.StoredBox
+import net.spross.kern.store.rekeyingPrefixedVerbs
 
 /**
  * The growing-box engine: pure functions over [BoxState].
@@ -19,6 +21,20 @@ object BoxEngine {
     /** Fresh state for a (source, target) join; nothing scheduled yet. */
     fun bootstrap(cards: List<Card>, config: BoxConfig, joinStamp: JoinStamp): BoxState =
         BoxState(config = config, cards = cards.associateBy { it.id }, joinStamp = joinStamp)
+
+    /**
+     * A pair's box as a launch or a language switch opens it: [saved] joined with the
+     * catalog's [cards] and migrated, or bootstrapped where the device holds none.
+     * Only a bootstrapped box owes the disk a write — a re-join reproduces itself from
+     * what is already stored.
+     */
+    fun open(saved: StoredBox?, cards: List<Card>, joinStamp: JoinStamp): OpenedBox =
+        if (saved == null) {
+            OpenedBox(bootstrap(cards, BoxConfig.product(), joinStamp), needsSave = true)
+        } else {
+            // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
+            OpenedBox(saved.join(cards, joinStamp).rekeyingPrefixedVerbs(), needsSave = false)
+        }
 
     /**
      * Swap the join (source switch or catalog update) keeping every schedule, queue

@@ -40,7 +40,7 @@ actor BoxStore {
 
     /// One language's stored box, or nil where the device holds none. Throws where the file
     /// exists but cannot be read: Home says so rather than bootstrapping over it.
-    func box(target: String) throws -> StoredBox? {
+    func load(target: String) throws -> StoredBox? {
         if let cached = held[target] { return cached }
         guard let text = try? String(contentsOf: fileURL(target: target), encoding: .utf8)
         else { return nil }
@@ -106,7 +106,7 @@ actor BoxStore {
     private func everyLanguage() -> StoredBoxes {
         for name in boxFileNames() {
             let target = String(name.dropFirst("box-".count).dropLast(".json".count))
-            _ = try? box(target: target)
+            _ = try? load(target: target)
         }
         return StoredBoxes(boxes: held)
     }

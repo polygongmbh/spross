@@ -293,8 +293,8 @@ final class AppModel {
         phase = .onboarding
     }
 
-    /// Load the target's box from disk (re-joined for the profile), or
-    /// bootstrap it fresh from the catalog join.
+    /// Load the target's box from disk and open it on the catalog join
+    /// (`BoxEngine.open`).
     func activate(source: String, target: String) async {
         // why: a debounced save may still be holding the box being left behind,
         // and loading another target replaces it — `swapLanguages` promises the
@@ -308,24 +308,17 @@ final class AppModel {
         }
         switchingLanguage = true
         do {
-            let saved = try await store.box(target: target)
+            let saved = try await store.load(target: target)
             // why: joining the catalog and replaying the logs are the two heaviest
             // things a launch does — every card in the profile built, every answer
             // ever given re-applied — and neither needs this actor.
-            let state = await Task.detached {
-                let cards = catalog.join(source: source, target: target)
-                let stamp = JoinStamp(source: source, target: target,
-                                      catalogFingerprint: catalog.fingerprint)
-                guard let saved else {
-                    return BoxEngine.shared.bootstrap(cards: cards,
-                                                      config: BoxConfig.companion.product(),
-                                                      joinStamp: stamp)
-                }
-                // why: schedules are keyed by card id (source-agnostic), so a
-                // stored box re-joins under ANY source with progress intact.
-                // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
-                return saved.join(cards: cards, joinStamp: stamp).rekeyingPrefixedVerbs()
+            let opened = await Task.detached {
+                BoxEngine.shared.open(saved: saved,
+                                      cards: catalog.join(source: source, target: target),
+                                      joinStamp: JoinStamp(source: source, target: target,
+                                                           catalogFingerprint: catalog.fingerprint))
             }.value
+            let state = opened.box
             // why: resolved before `box` is published, so the Box screen's first
             // render of the new language already carries matching stats/areas —
             // an `await` between the two let SwiftUI draw the new box against the
@@ -335,10 +328,7 @@ final class AppModel {
             refreshTrainerContent()
             refreshStats()
             anyWordAudible = composedAnyWordAudible()
-            // why: only a box that did not exist yet owes the disk anything here.
-            // A re-join is derived from what is already stored and reproduces
-            // itself on the next launch, so writing it back buys nothing.
-            if saved == nil { try await store.saveNow(state: state) }
+            if opened.needsSave { try await store.saveNow(state: state) }
             await store.saveWidgetSnapshot(state: state, nowEpochMillis: Date().epochMillis,
                                            tzId: currentTzId(),
                                            otherLanguagesAnswerDays: otherLanguagesAnswerDays)

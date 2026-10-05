@@ -29,6 +29,9 @@ import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.DateDrillContent
+import net.spross.kern.catalog.countryDrillContent
+import net.spross.kern.catalog.dateDrillContent
+import net.spross.kern.model.JoinStamp
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.HomeStanding
@@ -36,10 +39,11 @@ import net.spross.kern.session.SessionEffect
 import net.spross.kern.session.SessionIntent
 import net.spross.kern.session.SessionRun
 import net.spross.kern.session.SessionRunState
+import net.spross.kern.store.StoreFormatException
 
 class AppModel(app: Application) : AndroidViewModel(app) {
 
-    internal val disk = BoxDisk(BoxFiles(File(app.filesDir, "box")))
+    internal val store = BoxStore(BoxFiles(File(app.filesDir, "box")))
     private val prefs = app.getSharedPreferences(ProfileStore.PREFS_NAME, Context.MODE_PRIVATE)
     internal val profile = ProfileStore(prefs)
 
@@ -303,9 +307,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         switchingLanguage = true
         try {
             chrome = Chrome.forSource(source)
-            val joined = disk.join(cat, source, target, tz()).getOrElse { unreadable ->
+            val saved = try {
+                withContext(Dispatchers.IO) { store.load(target) }
+            } catch (unreadable: StoreFormatException) {
                 // why: a box that exists but cannot be read must never read as an EMPTY one —
-                // bootstrapping here would hand the learner a fresh box and hide the loss, so
+                // opening it as one would hand the learner a fresh box and hide the loss, so
                 // Home says so instead and the file on disk is left exactly as it stands.
                 Log.w("Spross", "box for $target unreadable: ${unreadable.message}", unreadable)
                 loadFailure = unreadable.message ?: "StoreFormatException"
@@ -314,18 +320,32 @@ class AppModel(app: Application) : AndroidViewModel(app) {
                 screen = Screen.Home
                 return
             }
+            // why: the join builds every card the profile holds, replaying the logs re-applies
+            // every answer ever given, and the atlas walks the whole country manifest — none of
+            // it belongs on the thread that has to draw the first frame. The hub reads the atlas
+            // and the calendars on every composition, so they are built here, once per pair.
+            val (opened, pairAtlas, pairDates) = withContext(Dispatchers.Default) {
+                Triple(
+                    BoxEngine.open(saved, cat.join(source, target), JoinStamp(source, target, cat.fingerprint)),
+                    cat.countryDrillContent(source, target),
+                    cat.dateDrillContent(source, target),
+                )
+            }
+            // why: resolved before `box` is published, so the Box screen's first recomposition
+            // against the new box already carries matching stats — an IO hop between the two
+            // let Compose draw the new box against the outgoing language's stats, which is
+            // what jumbled its scroll.
+            val days = withContext(Dispatchers.IO) { store.answerDays(excluding = target, tzId = tz()) }
             loadFailure = null
-            box = joined.box
-            atlas = joined.atlas
-            dates = joined.dates
+            box = opened.box
+            atlas = pairAtlas
+            dates = pairDates
             normalizer = AnswerNormalizer(cat.languages.getValue(target))
             meaningNormalizer = AnswerNormalizer(cat.languages.getValue(source))
-            otherLanguagesAnswerDays = joined.otherLanguagesAnswerDays
+            otherLanguagesAnswerDays = days
             refreshStats()
             refreshListening()
-            // why: only a box that did not exist yet owes the disk anything here. A re-join
-            // is derived from what is already stored and reproduces itself on the next launch.
-            if (joined.newBox) persist(joined.box)
+            if (opened.needsSave) persist(opened.box)
             screen = landing
         } finally {
             switchingLanguage = false

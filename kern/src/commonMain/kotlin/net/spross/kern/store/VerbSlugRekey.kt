@@ -15,9 +15,9 @@ import net.spross.kern.box.BoxState
  * Where the prefixed id already carries progress, that progress wins and the bare entry is left
  * as it is — the box the learner actually used is never overwritten by an orphan.
  *
- * Call this once per load, alongside [revivingLeechSuspensions]. DELETE this file and its two
- * call sites (`AppModel.kt`, `AppModel.swift`) once the app is comfortably past 7.0 — by then
- * every box that could still hold a bare verb slug will have loaded through it.
+ * Runs once per load ([net.spross.kern.box.BoxEngine.open]). DELETE this file and its call
+ * site once the app is comfortably past 7.0 — by then every box that could still hold a bare
+ * verb slug will have loaded through it.
  */
 fun BoxState.rekeyingPrefixedVerbs(): BoxState {
     val moves = (scheduling.keys + queued + reportedIssues.keys)

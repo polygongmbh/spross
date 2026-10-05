@@ -30,12 +30,12 @@ import net.spross.kern.store.StoredBoxes
  */
 internal fun AppModel.persist(state: BoxState, widget: Boolean = true, blocking: Boolean = false) {
     val target = state.joinStamp.target
-    val box = disk.record(state)
+    val box = store.hold(state)
     val stamp = now()
     if (blocking) {
-        disk.write(target, box)
+        store.write(target, box)
         if (widget) {
-            disk.files.writeWidgetSnapshot(widgetSnapshot(state, stamp))
+            store.files.writeWidgetSnapshot(widgetSnapshot(state, stamp))
             nudgeWidget()
         }
         return
@@ -45,9 +45,9 @@ internal fun AppModel.persist(state: BoxState, widget: Boolean = true, blocking:
         // why: the encode is the expensive half — every card's log in this language —
         // and it belongs on this thread with the write, not on the one that has to
         // draw the next card.
-        disk.write(target, box)
+        store.write(target, box)
         if (widget) {
-            disk.files.writeWidgetSnapshot(widgetSnapshot(state, stamp))
+            store.files.writeWidgetSnapshot(widgetSnapshot(state, stamp))
             WordWidget.refresh(getApplication())
         }
     }
@@ -93,13 +93,13 @@ private fun AppModel.widgetSnapshot(state: BoxState, nowEpochMillis: Long): Stri
  * The backup file's text: [only], or every language, without what belongs to this
  * device ([BoxBackup]).
  */
-fun AppModel.backupJson(only: String? = null): String = BoxBackup.encode(disk.openEvery(), only)
+fun AppModel.backupJson(only: String? = null): String = BoxBackup.encode(store.everyLanguage(), only)
 
 /**
  * The languages an export would carry: a box the learner only ever opened is not one of
  * them, so the export neither offers it nor lands it empty on the other phone.
  */
-fun AppModel.backupLanguages(): List<String> = BoxBackup.carried(disk.openEvery())
+fun AppModel.backupLanguages(): List<String> = BoxBackup.carried(store.everyLanguage())
 
 /**
  * Writes the languages a backup restored, then re-opens the pair on screen from the
@@ -121,10 +121,10 @@ fun AppModel.restoreBoxes(imported: StoredBoxes, firstRunSource: String? = null)
     // why: a first run has no profile for the launch after this one to reopen.
     if (stamp == null) profile.set(source, target)
     viewModelScope.launch {
-        disk.restoring(imported)
+        store.restoring(imported)
         withContext(Dispatchers.IO) {
             imported.boxes.keys.forEach { language ->
-                disk.write(language, disk.boxes.boxes.getValue(language))
+                store.write(language, store.boxes.boxes.getValue(language))
             }
         }
         activate(source, target, if (stamp == null) Screen.Home else Screen.Box())
