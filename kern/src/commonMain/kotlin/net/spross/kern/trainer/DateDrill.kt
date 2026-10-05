@@ -127,9 +127,9 @@ object DateDrill {
         rng: Random,
         arriving: Boolean = false,
     ): DateDrillDraw {
-        val climbed = DrillLadder.climb(sprosse, maxSprosse(content, reverse)) { sprosse ->
+        val climbed = DrillLadder.climb(sprosse, maxSprosse(content, reverse)) { at ->
             // Climbing PAST a spent Sprosse arrives at the one above it just as a promotion does.
-            sample(content, sprosse, reverse, avoid, solved, rng, arriving || sprosse > sprosse)
+            sample(content, at, reverse, avoid, solved, rng, arriving || at > sprosse)
         }
         return DateDrillDraw(climbed.task, climbed.sprosse)
     }

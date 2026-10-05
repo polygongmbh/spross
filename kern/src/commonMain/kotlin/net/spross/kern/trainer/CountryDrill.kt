@@ -191,9 +191,9 @@ object CountryDrill {
         rng: Random,
         arriving: Boolean = false,
     ): CountryDrillDraw {
-        val climbed = DrillLadder.climb(sprosse, MAX_SPROSSE) { sprosse ->
+        val climbed = DrillLadder.climb(sprosse, MAX_SPROSSE) { at ->
             // Climbing PAST a spent Sprosse arrives at the one above it just as a promotion does.
-            sample(content, sprosse, reverse, avoidId, solved, rng, arriving || sprosse > sprosse)
+            sample(content, at, reverse, avoidId, solved, rng, arriving || at > sprosse)
         }
         return CountryDrillDraw(climbed.task, climbed.sprosse)
     }
