@@ -77,18 +77,8 @@ struct WordScrambleView: View, LanguageNaming {
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
-        Group {
-            if current != nil {
-                pausable(SessionScaffold.endless(tally: run.tally,
-                                                 outcomes: run.outcomes.map { SessionOutcome($0) },
-                                                 onClose: { closeRun() }) {
-                    drillContent
-                })
-            } else {
-                // Nothing this box can ask — the hub gates on the same
-                // predicate, so this is a closed door, not a screen.
-                Theme.colors.background.ignoresSafeArea().onAppear { dismiss() }
-            }
+        runScreen(asking: current != nil) {
+            drillContent
         }
         // why: BOTH hooks. .onChange never fires for the FIRST question, and a
         // single hook therefore ships a first card the keyboard is not up for.

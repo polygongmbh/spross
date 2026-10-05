@@ -251,6 +251,26 @@ extension DrillRunning where Run: DrillRunProgress {
             screen
         }
     }
+
+    /// The run on its endless chrome — kern's tally as the counter, its outcomes as
+    /// the segments — with the pause standing in when kern calls one. `asking` false
+    /// is a run that opened with nothing to ask: the page that offered it gates on the
+    /// same predicate, so this closes at once rather than showing a screen.
+    @ViewBuilder
+    func runScreen(asking: Bool = true, showsMuteButton: Bool = false,
+                   speaksPastMute: Bool = false,
+                   @ViewBuilder content: () -> some View) -> some View {
+        if asking {
+            pausable(SessionScaffold.endless(tally: run.tally,
+                                             outcomes: run.outcomes.map { SessionOutcome($0) },
+                                             showsMuteButton: showsMuteButton,
+                                             speaksPastMute: speaksPastMute,
+                                             onClose: { closeRun() },
+                                             content: content))
+        } else {
+            Theme.colors.background.ignoresSafeArea().onAppear { dismiss() }
+        }
+    }
 }
 
 #if DEBUG

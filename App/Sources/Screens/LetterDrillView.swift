@@ -83,19 +83,8 @@ struct LetterDrillView: View, LanguageNaming {
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
-        Group {
-            if current != nil {
-                pausable(SessionScaffold.endless(tally: run.tally,
-                                                 outcomes: run.outcomes.map { SessionOutcome($0) },
-                                                 speaksPastMute: true,
-                                                 onClose: { closeRun() }) {
-                    drillContent
-                })
-            } else {
-                // Nothing this device can ask — the hub gates on the same
-                // predicate, so this is a closed door, not a screen.
-                Theme.colors.background.ignoresSafeArea().onAppear { dismiss() }
-            }
+        runScreen(asking: current != nil, speaksPastMute: true) {
+            drillContent
         }
         // why: BOTH hooks. .onChange never fires for the FIRST item, and a
         // single hook therefore ships a silent first question.

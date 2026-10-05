@@ -100,15 +100,11 @@ struct NumbersRunView: View, LanguageNaming {
     var namingCatalog: Catalog? { catalog }
 
     var body: some View {
-        pausable(SessionScaffold.endless(tally: run.tally,
-                                         outcomes: run.outcomes.map { SessionOutcome($0) },
-                                         // why: the run says its answers out loud
-                                         // now, so it owes the learner a way to
-                                         // silence them here, not in Settings.
-                                         showsMuteButton: model != nil,
-                                         onClose: { closeRun() }) {
+        // why: the run says its answers out loud, so it owes the learner a way
+        // to silence them here, not in Settings.
+        runScreen(showsMuteButton: model != nil) {
             drillContent
-        })
+        }
         .onAppear { focusAnswerField() }
         .task { await runClock() }
         .onChange(of: shownQuestion) { _, shown in if shown != nil { focusAnswerField() } }

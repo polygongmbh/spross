@@ -82,18 +82,8 @@ struct SentenceScrambleView: View {
     }
 
     var body: some View {
-        Group {
-            if current != nil {
-                pausable(SessionScaffold.endless(tally: run.tally,
-                                                 outcomes: run.outcomes.map { SessionOutcome($0) },
-                                                 onClose: { closeRun() }) {
-                    drillContent
-                })
-            } else {
-                // Nothing this box can ask — the hub gates on the same
-                // predicate, so this is a closed door, not a screen.
-                Theme.colors.background.ignoresSafeArea().onAppear { dismiss() }
-            }
+        runScreen(asking: current != nil) {
+            drillContent
         }
         .onDisappear {
             autoAdvance?.cancel()
