@@ -163,12 +163,12 @@ struct TreeArrival {
         .background(Theme.colors.background)
 }
 
-/// An area packed and not yet opened: still a seedling, and nothing hangs.
-#Preview("An area only packed") {
-    let packed = AreaGrowth.sample("bath", queued: 12, tendedToday: true)
-    return GrowingTreeView(transition: TreeTransition(before: packed, after: packed),
+/// An area queued and not yet opened: still a seedling, and nothing hangs.
+#Preview("An area only queued") {
+    let queued = AreaGrowth.sample("bath", queued: 12, tendedToday: true)
+    return GrowingTreeView(transition: TreeTransition(before: queued, after: queued),
                            garden: "", progress: 1)
-        .frame(height: AreaTree.shared.heroHeight(tree: packed, ceiling: AreaTree.shared.HERO_MAX))
+        .frame(height: AreaTree.shared.heroHeight(tree: queued, ceiling: AreaTree.shared.HERO_MAX))
         .padding(Theme.spacing.xl)
         .background(Theme.colors.background)
 }

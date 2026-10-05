@@ -54,7 +54,7 @@ object Palette {
     val wrong = Swatch(0x70211E, 0xF08D86)
 
     /**
-     * The settled Sprosse's own color — NOT [teal]. [teal] sits only ~15°
+     * The settled stage's own color — NOT [teal]. [teal] sits only ~15°
      * from [der] on the hue wheel (both read as blue at a badge's size); this one is
      * pulled toward green until it reads unmistakably as jade rather than another blue.
      */

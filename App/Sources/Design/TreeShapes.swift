@@ -71,7 +71,7 @@ enum TreeShapes {
                        style: StrokeStyle(lineWidth: max(1.6, mark.height * 0.03), lineCap: .round))
     }
 
-    /// Nothing met yet: a stem and two leaflets. Packing a whole area puts ONE of
+    /// Nothing met yet: a stem and two leaflets. Queuing a whole area puts ONE of
     /// these on the plot; an untouched area gets the same seedling faded.
     private static func seedling(_ context: inout GraphicsContext, _ mark: TreeMark,
                                  height: CGFloat, color: Color) {

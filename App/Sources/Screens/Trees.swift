@@ -9,7 +9,7 @@ import SprossKern
 ///
 /// It is a picture of the box, not a way around it:
 /// tapping a tree opens the Box screen at that area,
-/// which is still where browsing, packing and reviving live.
+/// which is still where browsing, queuing and reviving live.
 /// What this picture adds is the thing a count cannot —
 /// how the whole box is shaped,
 /// and which corners of the language have never been opened.
