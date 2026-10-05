@@ -81,11 +81,11 @@ internal fun loadCatalog(source: CatalogSource): Catalog {
     // card join, so editing one must not restamp and recompose every running box.
     val conceptSlugs = areas.flatMap { area -> area.concepts.map { it.slug } }.toSet()
     val frames = source.read("phrases/frames.json")
-        ?.let { CatalogParser.parseFrames("phrases/frames.json", it, conceptSlugs) }.orEmpty()
+        ?.let { FrameParser.parseFrames("phrases/frames.json", it, conceptSlugs) }.orEmpty()
     val slots = frames.associate { it.slug to it.slot }
     val drills = languages.keys.mapNotNull { lang ->
         val path = "phrases/$lang.json"
-        source.read(path)?.let { lang to CatalogParser.parseFrameLanguageFile(path, it, slots) }
+        source.read(path)?.let { lang to FrameParser.parseFrameLanguageFile(path, it, slots) }
     }.toMap()
     return Catalog(
         groups, languages, areas, tracked.fingerprint(), audio, alphabets, frames,
