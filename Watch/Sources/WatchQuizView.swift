@@ -7,7 +7,7 @@ import SwiftUI
 /// answer and the retry buzz for a miss, a quick answer's speed marked on
 /// the tile — `WatchFeedback` — and the answered tile's verdict spoken as its
 /// accessibility value), then auto-advance.
-/// One progress indicator, in the title: the due batch counts to its end,
+/// One progress indicator, in the title: each round of the due batch counts to its end,
 /// free practice shows the answer streak (having no total to count toward).
 /// - recognize: prompt the target `promptForm` (article-tinted), tap the
 ///   matching source meaning.
@@ -58,7 +58,7 @@ struct WatchQuizView: View {
     private var progressTitle: String {
         switch model.run {
         case .session:
-            return "\(min(model.answeredCount + 1, max(model.sessionTotal, 1)))/\(model.sessionTotal)"
+            return "\(min(model.roundAnswered + 1, max(model.sessionTotal, 1)))/\(model.sessionTotal)"
         case .practice:
             return model.answerStreak > 0 ? "🔥\(model.answerStreak)" : "🔥"
         }

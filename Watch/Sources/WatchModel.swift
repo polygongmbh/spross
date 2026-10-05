@@ -11,7 +11,8 @@ import WatchKit
 /// leaves the local due list until the next snapshot.
 ///
 /// Two runs, one progress indicator each (`WatchRun`): the due batch counts to
-/// an end, free practice recycles and counts the answer streak.
+/// an end — rounds of its own misses following while there are enough of them —
+/// free practice recycles and counts the answer streak.
 @MainActor
 @Observable
 final class WatchModel {
@@ -37,8 +38,19 @@ final class WatchModel {
     private(set) var wrongFlash = false
     private(set) var answerStreak = 0
     private(set) var answeredCount = 0
-    /// Cards the due batch set out to answer — the counter's denominator.
+    /// Cards the current round of the due batch set out to answer — the counter's denominator.
     private(set) var sessionTotal = 0
+    /// Answers given in the current round — the counter's numerator;
+    /// `answeredCount` keeps the whole run's tally for the celebration.
+    var roundAnswered: Int { answeredCount - roundStart }
+    private var roundStart = 0
+    /// Cards the current round of the due batch missed, in the order they were missed.
+    private var roundMisses: [String] = []
+
+    /// Fewest misses that earn another round. Below it each would come back within
+    /// three questions of its own reveal, answered from the screen rather than from
+    /// memory — those few lead free practice instead.
+    static let retryFloor = 5
 
     /// When the current question became visible — the response-time clock.
     private var questionShownAt = Date()
@@ -162,6 +174,8 @@ final class WatchModel {
     private func begin(_ run: WatchRun) {
         self.run = run
         answeredCount = 0
+        roundStart = 0
+        roundMisses = []
         answerStreak = 0
         currentID = queue.first
         makeQuestionForCurrent()
@@ -186,7 +200,10 @@ final class WatchModel {
         // why: every answer answers back, and in the shape of the rating it
         // earned — a silent correct tap used to feel the same as no tap at all.
         WKInterfaceDevice.current().play(WatchFeedback.haptic(forRating: rating))
-        if !correct { raiseWrongFlash() }
+        if !correct {
+            raiseWrongFlash()
+            if run == .session { roundMisses.append(id) }
+        }
 
         connectivity.send(WatchAnswerEvent(cardId: id, rating: rating, date: Date()))
         // Every answer is an FSRS review, second lap included; locally only the
@@ -227,6 +244,7 @@ final class WatchModel {
         currentID = nil
         currentQuestion = nil
         queue = []
+        roundMisses = []
     }
 
     private func advance() {
@@ -241,6 +259,12 @@ final class WatchModel {
             queue = practiceLap(avoiding: previous)
             // The snapshot emptied under a running lap — nothing left to ask.
             guard !queue.isEmpty else { return endSession() }
+        }
+        if queue.isEmpty, run == .session, roundMisses.count >= Self.retryFloor {
+            queue = roundMisses.filter { snapshot?.entry(id: $0) != nil }
+            roundMisses = []
+            sessionTotal = queue.count
+            roundStart = answeredCount
         }
         currentID = queue.first
         makeQuestionForCurrent()

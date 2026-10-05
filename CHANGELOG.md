@@ -8,6 +8,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - Answers given on the watch while the phone app was closed now reach your box and streak instead of being lost when the app starts.
 - The watch and its complication now count words as due the moment they come due, even overnight without the phone.
 - Watch practice now starts with the words you just missed there and saves the ones you got right for last.
+- When you miss five or more words in a watch round, they come straight back as another round.
 
 ## 8.2.0 — 2026-10-04
 
