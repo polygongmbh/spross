@@ -29,7 +29,7 @@ import net.spross.kern.design.AreaTree
 
 /**
  * What the round bought, in kern's own order and only where there is something to name —
- * a round that started nothing says so plainly instead of printing three zeros.
+ * a round that counted nothing prints no three zeros under its title.
  */
 @Composable
 fun SessionSummary(model: AppModel, ui: SessionUi) {
@@ -64,8 +64,9 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         // would not come back dry.
         onTalk = if (model.hasBriefing) ({ briefingOpen = true }) else null,
         onPractice = if (ui.canPracticeMore) ({ model.continueEndless() }) else null,
-        // why: the tally counts the whole round, not the area, so it stands apart from the label.
-        tally = tally ?: chrome.sessionDoneTallyAllDone.takeIf { area == null },
+        // The tally counts the whole round, not the area, so it stands apart from the label;
+        // a round that counted nothing stands on its title alone.
+        tally = tally,
         // why: a day the box itself is telling the learner to stop makes no growth claim —
         // a screen that celebrates and is contradicted two lines down teaches the learner
         // not to believe it.
