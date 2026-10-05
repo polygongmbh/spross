@@ -10,6 +10,11 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
   the conductor runs it language by language and reads the script's own report.
   Seven audio agents in parallel tripped Commons' rate limit and took an hour
   where one sequential session took minutes.
+- The conductor merges, gates and commits; 
+  code changes and research goes through builders,
+  only small code corrections and quick lookups stay in-session
+- A running builder gets no mid-flight amendments except a cut that saves wasted work;
+  rulings are settled with the user first and land after the merge.
 
 ## Concurrency
 

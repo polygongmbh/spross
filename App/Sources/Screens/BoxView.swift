@@ -299,9 +299,7 @@ private struct BoxAreaSection: View {
             && (stats?.fullySettled ?? false)
     }
 
-    /// The count moved from the button's face into its label: an icon-only
-    /// control keeps the header one line tall, and the bar already shows
-    /// how much of the area is still untouched.
+    /// Icon-only, so the header stays one line tall; the spoken label names the area.
     ///
     /// Once queuing is done, a shelf still holding words queued for a round offers to
     /// take the whole batch back out (`AppModel.unqueueArea`) — the area is the unit
@@ -314,11 +312,11 @@ private struct BoxAreaSection: View {
         let count = model.queueableCount(area: area)
         let queued = model.unqueueableCount(area: area)
         if count > 0 {
-            QueueButton(direction: .in, label: "a11y.box.shelf.queue \(count.formatted())") {
+            QueueButton(direction: .in, label: "a11y.box.shelf.queue \(model.areaTitle(area))") {
                 model.queueArea(area)
             }
         } else if queued > 2 {
-            QueueButton(direction: .out, label: "a11y.box.shelf.unqueue \(queued.formatted())") {
+            QueueButton(direction: .out, label: "a11y.box.shelf.unqueue \(model.areaTitle(area))") {
                 model.unqueueArea(area)
             }
         } else {
@@ -327,7 +325,7 @@ private struct BoxAreaSection: View {
                 .font(Theme.typography.headline)
                 .foregroundStyle(fullySettled ? Theme.colors.settled : Theme.colors.success)
                 .frame(width: 40, height: 40)
-                .accessibilityLabel(Text("a11y.box.shelf.queued"))
+                .accessibilityHidden(true) // why: a minor status mark; the bar already says the area is done
         }
     }
 

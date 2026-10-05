@@ -5,6 +5,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 ## Unreleased
 
 - The sentence scramble now moves on by itself after a right arrangement instead of waiting for a Next tap.
+- A word you sowed for the next round can now be unsown from its menu, and Home calls the words waiting for that round sown rather than packed.
 
 ## 8.2.0 — 2026-10-04
 

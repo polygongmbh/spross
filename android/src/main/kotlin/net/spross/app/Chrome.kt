@@ -300,13 +300,12 @@ interface Chrome {
     val boxOwnWordComment: String
     /** What the form says while the note is all there is: nothing is being learned. */
     val boxOwnWordExplainerRemark: String
-    val a11yBoxShelfQueue: String          // %d
-    val a11yBoxShelfQueued: String
+    val a11yBoxShelfQueue: String          // %s = the area's name
     /** The jump from a search hit to the shelf the word lives on. */
     val boxCardShowInBox: String
     val boxCardQueue: String
     val boxCardUnqueue: String
-    val a11yBoxShelfUnqueue: String
+    val a11yBoxShelfUnqueue: String        // %s = the area's name
     val boxCardQueued: String
     val a11yBoxCardSuspended: String
     val boxCardUnsuspend: String

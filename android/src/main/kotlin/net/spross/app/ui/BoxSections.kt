@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -145,7 +146,7 @@ internal fun AreaSection(
                 verticalArrangement = Arrangement.SpaceBetween,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                QueueControl(chrome, counts?.queueable ?: 0, counts?.queued ?: 0,
+                QueueControl(chrome, naming.title(area), counts?.queueable ?: 0, counts?.queued ?: 0,
                     fullySettled = stats?.fullySettled ?: false,
                     onQueue = {
                         model.updateBox { BoxEngine.queue(it, BoxBrowser.queueableCardIds(it, area)) }
@@ -174,8 +175,8 @@ internal fun AreaSection(
 
 /**
  * What queuing this shelf would add, as a control: a plus while there is anything left to
- * take in, a settled check once there is not. The count rides in the spoken label rather
- * than on the button's face, which keeps the heading one line tall.
+ * take in, a settled check once there is not. Icon-only, so the heading stays one line tall;
+ * the spoken label names the area.
  *
  * Once nothing is left to queue, a shelf holding MORE than a couple words still queued for
  * a round offers to take them back out AS A BATCH ([onUnqueue]) — the area is the unit this
@@ -189,6 +190,7 @@ internal fun AreaSection(
 @Composable
 internal fun QueueControl(
     chrome: Chrome,
+    areaName: String,
     count: Int,
     queuedCount: Int,
     fullySettled: Boolean,
@@ -196,9 +198,9 @@ internal fun QueueControl(
     onUnqueue: () -> Unit,
 ) {
     if (count > 0) {
-        QueueButton(QueueDirection.In, chrome.a11yBoxShelfQueue.format(count), onQueue)
+        QueueButton(QueueDirection.In, chrome.a11yBoxShelfQueue.format(areaName), onQueue)
     } else if (queuedCount > 2) {
-        QueueButton(QueueDirection.Out, chrome.a11yBoxShelfUnqueue.format(queuedCount), onUnqueue)
+        QueueButton(QueueDirection.Out, chrome.a11yBoxShelfUnqueue.format(areaName), onUnqueue)
     } else {
         Text(
             SEAL,
@@ -207,7 +209,7 @@ internal fun QueueControl(
             modifier = Modifier
                 .sizeIn(minWidth = 48.dp, minHeight = 48.dp)
                 .padding(Theme.spacing.md)
-                .semantics { contentDescription = chrome.a11yBoxShelfQueued },
+                .clearAndSetSemantics {}, // why: a minor status mark; the bar already says the area is done
         )
     }
 }

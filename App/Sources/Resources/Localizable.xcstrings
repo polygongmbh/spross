@@ -169,51 +169,35 @@
       }
     },
     "a11y.box.shelf.queue %@" : {
-      "comment" : "%d = what queuing this shelf would add",
+      "comment" : "Spoken label of a shelf's queue control; %@ = the area's name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ aussäen"
+            "value" : "Wörter aus %@ aussäen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sow (%@)"
-          }
-        }
-      }
-    },
-    "a11y.box.shelf.queued" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alles gesät"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All sown"
+            "value" : "Sow the words from %@"
           }
         }
       }
     },
     "a11y.box.shelf.unqueue %@" : {
-      "comment" : "A shelf's own control, taking its whole queue back out. %d = what it would remove.",
+      "comment" : "Spoken label of a shelf's control taking its whole queue back out; %@ = the area's name",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ zurücknehmen"
+            "value" : "Aussaat der Wörter aus %@ zurücknehmen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Take back (%@)"
+            "value" : "Unsow the words from %@"
           }
         }
       }
@@ -951,13 +935,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieses Wort zurücknehmen"
+            "value" : "Aussaat zurücknehmen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Take this word back"
+            "value" : "Unsow this word"
           }
         }
       }
@@ -3049,13 +3033,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine gepackten Wörter sind in der nächsten Runde dabei."
+            "value" : "Deine gesäten Wörter sind in der nächsten Runde dabei."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your packed words are in the next round."
+            "value" : "Your sown words are in the next round."
           }
         }
       }
@@ -3654,18 +3638,18 @@
       }
     },
     "home.suggestion.reason.wordsSettled" : {
-      "comment" : "Why a scramble is suggested: enough words have grown to scramble.",
+      "comment" : "Why a scramble is suggested: enough words have settled to scramble",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Genug Wörter gewachsen, um damit zu knobeln"
+            "value" : "Genug Wörter sitzen, um damit zu knobeln"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enough words have grown to puzzle with"
+            "value" : "Enough words have settled to puzzle with"
           }
         }
       }
