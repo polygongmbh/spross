@@ -136,22 +136,6 @@
         }
       }
     },
-    "a11y.box.phase.settled" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sitzt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Settled"
-          }
-        }
-      }
-    },
     "a11y.box.search.clear" : {
       "localizations" : {
         "de" : {
@@ -198,6 +182,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unsow the words from %@"
+          }
+        }
+      }
+    },
+    "a11y.box.stage.settled" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sitzt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settled"
           }
         }
       }
@@ -1400,54 +1400,6 @@
         }
       }
     },
-    "box.phase.fresh" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Frisch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fresh"
-          }
-        }
-      }
-    },
-    "box.phase.growing" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wächst"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Growing"
-          }
-        }
-      }
-    },
-    "box.phase.lapsed" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wackelt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shaky"
-          }
-        }
-      }
-    },
     "box.search.areas" : {
       "localizations" : {
         "de" : {
@@ -1559,6 +1511,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Write “%@” yourself"
+          }
+        }
+      }
+    },
+    "box.stage.fresh" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frisch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fresh"
+          }
+        }
+      }
+    },
+    "box.stage.growing" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wächst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Growing"
+          }
+        }
+      }
+    },
+    "box.stage.lapsed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wackelt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shaky"
           }
         }
       }

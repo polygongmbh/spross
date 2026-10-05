@@ -235,12 +235,12 @@ struct BoxCardRow: View {
         case .plain:
             EmptyView()
         case .standing(let standing):
-            PhaseBadge(phase: Self.badgePhase(standing.stage), growth: Color(standing.swatch))
+            StageBadge(stage: Self.badgeStage(standing.stage), growth: Color(standing.swatch))
         }
     }
 
     /// Kern's stage in the palette's own terms.
-    private static func badgePhase(_ stage: ActiveStage) -> PhaseBadge.Phase {
+    private static func badgeStage(_ stage: ActiveStage) -> StageBadge.Stage {
         switch stage {
         case .fresh: return .fresh
         case .growing: return .growing

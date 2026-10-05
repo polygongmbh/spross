@@ -227,7 +227,7 @@ struct AreaChip: View {
     }
 }
 
-// MARK: PhaseBadge
+// MARK: StageBadge
 
 /// Where one card stands on the ladder, as one word in the stage's own color.
 ///
@@ -239,30 +239,30 @@ struct AreaChip: View {
 /// The stage's [growth] color is handed in, never re-derived here: kern resolves it
 /// once (`CardRowState.Standing.swatch`) so a row's badge and the shelf's own bar,
 /// which reads the same three tokens, cannot paint one stage two ways.
-struct PhaseBadge: View {
-    /// Kern's `ActiveStage` in Design's own terms — see `BoxCardRow.badgePhase`.
+struct StageBadge: View {
+    /// Kern's `ActiveStage` in Design's own terms — see `BoxCardRow.badgeStage`.
     /// It picks the WORD and the glyph; the color arrives with [growth] instead.
-    enum Phase: CaseIterable {
+    enum Stage: CaseIterable {
         case fresh, growing, lapsed, settled
     }
 
-    let phase: Phase
+    let stage: Stage
     /// The stage's color as the box resolved it.
     let growth: Color
 
     private var label: LocalizedStringKey {
-        switch phase {
-        case .fresh: return "box.phase.fresh"
-        case .growing: return "box.phase.growing"
-        case .lapsed: return "box.phase.lapsed"
-        case .settled: return "a11y.box.phase.settled"
+        switch stage {
+        case .fresh: return "box.stage.fresh"
+        case .growing: return "box.stage.growing"
+        case .lapsed: return "box.stage.lapsed"
+        case .settled: return "a11y.box.stage.settled"
         }
     }
 
     /// The area row's own icon at the settled end; Growing gets one, and the two
     /// amber stages share the leaf their shared color already pairs them by.
     private var icon: String {
-        switch phase {
+        switch stage {
         case .settled: return "checkmark.seal.fill"
         case .growing: return "checkmark.circle.fill"
         case .fresh, .lapsed: return "leaf.fill"
@@ -274,7 +274,7 @@ struct PhaseBadge: View {
             // Settled is the one stage that needs no word: a seal already reads as
             // "done" on its own, where Fresh/Shaky/Growing would be ambiguous
             // glyphs without one.
-            if phase == .settled {
+            if stage == .settled {
                 Image(systemName: icon)
                     .accessibilityLabel(Text(label))
             } else {
@@ -308,10 +308,10 @@ private extension View {
 /// ask, and seeing the four badges side by side is the point of it.
 private var ladder: some View {
     HStack(spacing: Theme.spacing.sm) {
-        PhaseBadge(phase: .fresh, growth: Theme.colors.amber)
-        PhaseBadge(phase: .lapsed, growth: Theme.colors.amber)
-        PhaseBadge(phase: .growing, growth: Theme.colors.success)
-        PhaseBadge(phase: .settled, growth: Theme.colors.settled)
+        StageBadge(stage: .fresh, growth: Theme.colors.amber)
+        StageBadge(stage: .lapsed, growth: Theme.colors.amber)
+        StageBadge(stage: .growing, growth: Theme.colors.success)
+        StageBadge(stage: .settled, growth: Theme.colors.settled)
     }
 }
 

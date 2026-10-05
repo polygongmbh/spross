@@ -173,18 +173,18 @@ fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
  * (kern `CardRowState.Plain`), so this is never asked about one.
  */
 @Composable
-fun PhaseBadge(standing: CardRowState.Standing, chrome: Chrome) {
+fun StageBadge(standing: CardRowState.Standing, chrome: Chrome) {
     val color = standing.swatch.tint()
     when (standing.stage) {
         // Settled needs no word: a seal already reads as "done" on its own, where
         // Fresh/Shaky/Growing would be ambiguous glyphs without one.
         ActiveStage.Settled -> Pill(
             SEAL, color,
-            modifier = Modifier.semantics { contentDescription = chrome.a11yBoxPhaseSettled },
+            modifier = Modifier.semantics { contentDescription = chrome.a11yBoxStageSettled },
         )
-        ActiveStage.Growing -> Pill("$HERB ${chrome.boxPhaseGrowing}", color)
-        ActiveStage.Lapsed -> Pill("$LEAF ${chrome.boxPhaseLapsed}", color)
-        ActiveStage.Fresh -> Pill("$LEAF ${chrome.boxPhaseFresh}", color)
+        ActiveStage.Growing -> Pill("$HERB ${chrome.boxStageGrowing}", color)
+        ActiveStage.Lapsed -> Pill("$LEAF ${chrome.boxStageLapsed}", color)
+        ActiveStage.Fresh -> Pill("$LEAF ${chrome.boxStageFresh}", color)
     }
 }
 
@@ -208,7 +208,7 @@ const val LOCK = "🔒"
  *
  * One continuous capsule whose stretches fade into each other. No amber stretch: amber
  * stays a badge-only color, distinguishing Fresh/Lapsed from Growing at the per-card
- * level ([PhaseBadge]) without the bar needing that fine a grain.
+ * level ([StageBadge]) without the bar needing that fine a grain.
  * A card never queued at all gets no stretch: the neutral track under them is what the
  * untouched rest of the shelf reads as.
  *

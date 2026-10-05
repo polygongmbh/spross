@@ -220,7 +220,7 @@ private fun CardStanding(
 
         CardRowState.Plain -> Unit
 
-        is CardRowState.Standing -> PhaseBadge(standing, chrome)
+        is CardRowState.Standing -> StageBadge(standing, chrome)
     }
 }
 

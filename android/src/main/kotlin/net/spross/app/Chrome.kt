@@ -332,12 +332,12 @@ interface Chrome {
     val boxAreaPhrasesLockedOne: String // %d
     val a11yStateExpanded: String
     val a11yStateCollapsed: String
-    // A new card has no badge; past that a row reads fresh, relearning, growing,
-    // or settled (a seal with [a11yBoxPhaseSettled] as its spoken label).
-    val boxPhaseFresh: String
-    val boxPhaseLapsed: String
-    val boxPhaseGrowing: String
-    val a11yBoxPhaseSettled: String
+    // A new card has no badge; past that a row reads fresh, lapsed, growing,
+    // or settled (a seal with [a11yBoxStageSettled] as its spoken label).
+    val boxStageFresh: String
+    val boxStageLapsed: String
+    val boxStageGrowing: String
+    val a11yBoxStageSettled: String
 
     // ── Box search ──────────────────────────────────────────────────────────────
     val boxSearchButton: String
