@@ -29,7 +29,7 @@ import net.spross.app.countLine
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.trainer.ChallengeVerdict
 import net.spross.kern.trainer.DrillRunSummary
-import net.spross.kern.trainer.AnswerStreakTier
+import net.spross.kern.trainer.AnswerStreakMilestone
 import net.spross.kern.trainer.TimedOutcome
 
 /**
@@ -109,7 +109,7 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
-        Text(tierEmoji(summary.tier), fontSize = 40.sp) // card-parity: the tier emoji's own size, not a prompt role
+        Text(milestoneEmoji(summary.milestone), fontSize = 40.sp) // card-parity: the milestone emoji's own size, not a prompt role
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(2.dp), // card-parity: the tally lines sit tighter than xs
@@ -170,14 +170,14 @@ private fun Context.shareChallenge(text: String) {
 }
 
 /**
- * The ladder a run's best answer streak earns. Kern names the TIERS and their thresholds; which
+ * The ladder a run's best answer streak earns. Kern names the MILESTONES and their thresholds; which
  * glyph wears one is this platform's chrome.
  */
-fun tierEmoji(tier: AnswerStreakTier): String = when (tier) {
-    AnswerStreakTier.Trophy -> "🏆"
-    AnswerStreakTier.Cheer -> "🎉"
-    AnswerStreakTier.Effort -> "💪"
-    AnswerStreakTier.Sprout -> "🌱"
+fun milestoneEmoji(milestone: AnswerStreakMilestone): String = when (milestone) {
+    AnswerStreakMilestone.Trophy -> "🏆"
+    AnswerStreakMilestone.Cheer -> "🎉"
+    AnswerStreakMilestone.Effort -> "💪"
+    AnswerStreakMilestone.Sprout -> "🌱"
 }
 
 /**

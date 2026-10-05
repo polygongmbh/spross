@@ -232,8 +232,8 @@ Engine contract: `../README.md`.
 - Feedback and cues reuse the turn machine's vocabulary
   (`TurnFeedback`, `AlmostReason`, `AnswerOutcome`, `AdvanceTier`, `ToneKind`);
   nothing new is minted where kern already names a rule.
-  `AnswerStreakTier` names the summary ladder (≥10 / ≥5 / ≥2 / else);
-  which glyph a tier wears is chrome.
+  `AnswerStreakMilestone` names the summary ladder (≥10 / ≥5 / ≥2 / else);
+  which glyph a milestone wears is chrome.
   `DrillTally` names the counter for every drill at once — clean wins over the answers
   judged either way, with almost in neither half for `DrillRamp.step`'s reason;
   the "2/3" string is rendering.

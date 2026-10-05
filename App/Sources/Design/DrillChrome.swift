@@ -104,10 +104,10 @@ struct DrillRunResult: Equatable {
     /// The run beat the drill's standing record. A drill that keeps no record
     /// store leaves it false, which drops the record line and the confetti with it.
     var newRecord = false
-    /// Which Sprosse the best answer streak earned. Kern's (`DrillRunSummary.tier`) — the
+    /// Which Sprosse the best answer streak earned. Kern's (`DrillRunSummary.milestone`) — the
     /// ladder is one table, and a second copy of it here is one coincidence away
     /// from praising a run the engine does not.
-    var tier: AnswerStreakTier = .sprout
+    var milestone: AnswerStreakMilestone = .sprout
     /// A timed run's score, and the challenge it answered; nil for every other run.
     var timed: TimedOutcome?
     /// What was drilled — the exercise's own name, since a page can host several.
@@ -185,7 +185,7 @@ struct DrillResultTile: View {
 
     /// The face of the Sprosse kern says the run reached.
     private var emoji: String {
-        switch result.tier {
+        switch result.milestone {
         case .trophy: return "🏆"
         case .cheer: return "🎉"
         case .effort: return "💪"
@@ -199,7 +199,7 @@ struct DrillResultTile: View {
 #Preview("Result tile · record") {
     VStack(spacing: Theme.spacing.lg) {
         DrillResultTile(result: DrillRunResult(doneCount: 17, bestAnswerStreak: 12, newRecord: true,
-                                               tier: .trophy, title: "trainer.drill.numbers"))
+                                               milestone: .trophy, title: "trainer.drill.numbers"))
         DrillResultTile(result: DrillRunResult(doneCount: 4, bestAnswerStreak: 1, title: "trainer.drill.letters"))
     }
     .padding(Theme.spacing.xl)

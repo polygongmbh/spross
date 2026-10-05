@@ -64,9 +64,9 @@ data class DrillTally(val clean: Int, val judged: Int) {
 /**
  * The ladder a run's best answer streak earns, as the RULE (the thresholds) rather than the badge:
  * canonically 🌱 [Sprout] · 💪 [Effort] · 🎉 [Cheer] · 🏆 [Trophy], but which glyph wears a
- * tier is the platform's chrome.
+ * milestone is the platform's chrome.
  */
-enum class AnswerStreakTier { Sprout, Effort, Cheer, Trophy }
+enum class AnswerStreakMilestone { Sprout, Effort, Cheer, Trophy }
 
 /**
  * The whole of what a finished run has to say. It travels back to the page that started it
@@ -87,12 +87,12 @@ data class DrillRunSummary(
     /** The record figure: a timed run's score, otherwise the best answer streak. */
     val recordFigure: Int get() = timed?.score ?: bestAnswerStreak
 
-    val tier: AnswerStreakTier
+    val milestone: AnswerStreakMilestone
         get() = when {
-            bestAnswerStreak >= TROPHY_ANSWER_STREAK -> AnswerStreakTier.Trophy
-            bestAnswerStreak >= CHEER_ANSWER_STREAK -> AnswerStreakTier.Cheer
-            bestAnswerStreak >= EFFORT_ANSWER_STREAK -> AnswerStreakTier.Effort
-            else -> AnswerStreakTier.Sprout
+            bestAnswerStreak >= TROPHY_ANSWER_STREAK -> AnswerStreakMilestone.Trophy
+            bestAnswerStreak >= CHEER_ANSWER_STREAK -> AnswerStreakMilestone.Cheer
+            bestAnswerStreak >= EFFORT_ANSWER_STREAK -> AnswerStreakMilestone.Effort
+            else -> AnswerStreakMilestone.Sprout
         }
 
     private companion object {

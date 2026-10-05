@@ -12,7 +12,7 @@ import net.spross.kern.session.TurnFeedback
 
 /**
  * What a closed run leaves behind — the two store writes and the figures the page that started
- * it wears as one tile. The tier ladder and the clean/answered counter are shared vocabulary
+ * it wears as one tile. The milestone ladder and the clean/answered counter are shared vocabulary
  * ([DrillRunSummary]), so the letter run reads them back the same way.
  */
 class NumbersCloseTest {
@@ -89,15 +89,15 @@ class NumbersCloseTest {
     // MARK: - What the page behind the run reads
 
     @Test
-    fun theTierLadderTurnsOnTwoFiveAndTen() {
-        fun tier(answerStreak: Int) = DrillRunSummary(done = 1, bestAnswerStreak = answerStreak, newRecord = false).tier
-        assertEquals(AnswerStreakTier.Sprout, tier(0))
-        assertEquals(AnswerStreakTier.Sprout, tier(1))
-        assertEquals(AnswerStreakTier.Effort, tier(2))
-        assertEquals(AnswerStreakTier.Effort, tier(4))
-        assertEquals(AnswerStreakTier.Cheer, tier(5))
-        assertEquals(AnswerStreakTier.Cheer, tier(9))
-        assertEquals(AnswerStreakTier.Trophy, tier(10))
+    fun theMilestoneLadderTurnsOnTwoFiveAndTen() {
+        fun milestone(answerStreak: Int) = DrillRunSummary(done = 1, bestAnswerStreak = answerStreak, newRecord = false).milestone
+        assertEquals(AnswerStreakMilestone.Sprout, milestone(0))
+        assertEquals(AnswerStreakMilestone.Sprout, milestone(1))
+        assertEquals(AnswerStreakMilestone.Effort, milestone(2))
+        assertEquals(AnswerStreakMilestone.Effort, milestone(4))
+        assertEquals(AnswerStreakMilestone.Cheer, milestone(5))
+        assertEquals(AnswerStreakMilestone.Cheer, milestone(9))
+        assertEquals(AnswerStreakMilestone.Trophy, milestone(10))
     }
 
     /** An exercise with one Sprosse has no Sprosse to report; the emoji leads only in a mixed run. */

@@ -387,8 +387,8 @@ $("finish").addEventListener("click", () => {
   const n = run.outcomes.length;
   if (n === 0) { backToPick(); return; }
   $("run").hidden = true;
-  const tier = run.best >= 10 ? "🏆" : run.best >= 5 ? "🎉" : run.best >= 2 ? "💪" : "🌱";
-  $("summary-emoji").textContent = tier;
+  const milestone = run.best >= 10 ? "🏆" : run.best >= 5 ? "🎉" : run.best >= 2 ? "💪" : "🌱";
+  $("summary-emoji").textContent = milestone;
   $("summary-count").textContent = `${n} ${n === 1 ? "number" : "numbers"}`;
   $("summary-best").textContent = run.best > 0 ? `Best streak: ${run.best}` : "Every seed starts somewhere.";
   $("summary-lang").textContent = `Numbers · ${lang.name}`;

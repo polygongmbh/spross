@@ -195,7 +195,7 @@ extension DrillRunResult {
     /// CALLED is chrome, so it arrives beside them.
     init(_ summary: DrillRunSummary, title: LocalizedStringKey) {
         self.init(doneCount: Int(summary.done), bestAnswerStreak: Int(summary.bestAnswerStreak),
-                  newRecord: summary.newRecord, tier: summary.tier, timed: summary.timed,
+                  newRecord: summary.newRecord, milestone: summary.milestone, timed: summary.timed,
                   title: title)
     }
 }
