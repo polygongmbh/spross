@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -37,10 +36,7 @@ fun LegalSection(chrome: Chrome) {
     val version = appVersion()
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         Text(chrome.legalTitle, style = MaterialTheme.typography.titleLarge)
-        Column(
-            modifier = Modifier.fillMaxWidth().panel().padding(Theme.spacing.lg),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-        ) {
+        Panel(spacing = Theme.spacing.md) {
             Column {
                 Text(chrome.legalCompany, style = MaterialTheme.typography.titleSmall)
                 Text(chrome.legalAddressValue, style = MaterialTheme.typography.bodyMedium)

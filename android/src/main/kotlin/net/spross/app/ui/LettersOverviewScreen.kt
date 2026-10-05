@@ -59,7 +59,7 @@ fun LettersOverviewScreen(model: AppModel) {
         startEnabled = available,
         onStart = { model.startLetterDrill() },
     ) {
-        OverviewPanel {
+        Panel {
             LetterFormat.entries.forEachIndexed { index, format ->
                 FormatRow(format, index + 1, report, cleared, DrillUnlockMark.row(format) in unlocking, chrome)
             }

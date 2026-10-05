@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.TextAutoSize
@@ -66,28 +65,21 @@ fun TrainerHubCard(model: AppModel) {
     // chip's press spring recomposes this card for the whole of its spring.
     val chips = remember(model.box, chrome) { model.hubChips(chrome) }
     if (chips.isEmpty()) return
-    Column(
-        modifier = Modifier.fillMaxWidth().panel(),
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-        ) {
-            Text(chrome.trainerHubTitle, style = MaterialTheme.typography.titleLarge)
-            Text(
-                chrome.trainerHubSubtitle,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            // why: the chips name an exercise and nothing else — spoken, "Numbers" could
-            // be an area of the box. The suffix says it is practice, and in which language.
-            val practice =
-                chrome.a11ySuffixPractice.format(model.languageName(model.box?.joinStamp?.target.orEmpty()))
-            Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                chipRows(chips).forEach { row ->
-                    Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                        row.forEach { EntryChip(it, practice) }
-                    }
+    Panel(spacing = Theme.spacing.md) {
+        Text(chrome.trainerHubTitle, style = MaterialTheme.typography.titleLarge)
+        Text(
+            chrome.trainerHubSubtitle,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        // why: the chips name an exercise and nothing else — spoken, "Numbers" could
+        // be an area of the box. The suffix says it is practice, and in which language.
+        val practice =
+            chrome.a11ySuffixPractice.format(model.languageName(model.box?.joinStamp?.target.orEmpty()))
+        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+            chipRows(chips).forEach { row ->
+                Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+                    row.forEach { EntryChip(it, practice) }
                 }
             }
         }

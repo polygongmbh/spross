@@ -39,18 +39,8 @@ import net.spross.kern.session.HomeStanding
  * on, fine print. The four Home cards differ in their content, never in that order.
  */
 @Composable
-internal fun DayCard(content: @Composable ColumnScope.() -> Unit) {
-    Column(
-        modifier = Modifier.fillMaxWidth().panel(MaterialTheme.shapes.large),
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
-            content = content,
-        )
-    }
-}
+internal fun DayCard(content: @Composable ColumnScope.() -> Unit) =
+    Panel(shape = MaterialTheme.shapes.large, horizontalAlignment = Alignment.CenterHorizontally, content = content)
 
 /**
  * The day's mark, wearing the streak where there is one to wear.

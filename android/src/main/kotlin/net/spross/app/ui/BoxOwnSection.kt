@@ -117,10 +117,7 @@ private fun OwnContentPanel(
     // The suggestion or note being rewritten, which opens as free text rather than as a
     // word pair ([OwnEntrySheet]).
     var editingEntry by remember { mutableStateOf<OwnWord?>(null) }
-    Column(
-        modifier = Modifier.fillMaxWidth().panel().padding(Theme.spacing.lg),
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-    ) {
+    Panel(spacing = Theme.spacing.md) {
         // The box handed to a conversation the app does not host. It leads the panel
         // because it is the one entry here that goes OUT and comes back: the words under
         // it are what a conversation writes home.

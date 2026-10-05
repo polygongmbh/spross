@@ -74,7 +74,7 @@ fun ReferenceSection(
                 color = Theme.colors.textSecondary,
                 modifier = Modifier.semantics { heading() },
             )
-            OverviewPanel {
+            Panel {
                 for (row in group.rows) SheetRow(row, model, source, target, chrome)
             }
         }
@@ -173,7 +173,7 @@ private fun SheetSide(
 fun ReferenceNotes(lines: List<String>, chrome: Chrome) {
     if (lines.isEmpty()) return
     OverviewHeading(chrome.commonNotes)
-    OverviewPanel {
+    Panel {
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             for (line in lines) {
                 Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {

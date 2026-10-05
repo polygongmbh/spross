@@ -111,7 +111,7 @@ fun TypedDrillOverview(
         startEnabled = true,
         onStart = start,
     ) {
-        OverviewPanel {
+        Panel {
             for (sprosse in 1..ceiling) {
                 SprosseRow(
                     sprosse = sprosse,
@@ -133,7 +133,7 @@ fun TypedDrillOverview(
                 OverviewNote(chrome.trainerLadderBest.format(ladder.standing.record, ladder.standing.answers))
             }
         }
-        OverviewPanel {
+        Panel {
             ModifierSwitchRow(
                 title = chrome.trainerModifierReverse,
                 caption = ladder.reverseHint(reverse),

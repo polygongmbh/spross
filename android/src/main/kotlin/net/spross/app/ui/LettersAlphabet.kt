@@ -1,6 +1,5 @@
 package net.spross.app.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -104,15 +103,11 @@ private fun AlphabetRow(
         speakName?.let { CustomAccessibilityAction(chrome.a11yLettersAlphabetSpeakName) { it(); true } },
         speakExample?.let { CustomAccessibilityAction(chrome.a11yLettersAlphabetSpeakExample) { it(); true } },
     )
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .panel()
-            .padding(Theme.spacing.lg)
-            .semantics(mergeDescendants = true) {
-                if (actions.isNotEmpty()) customActions = actions
-            },
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
+    Panel(
+        modifier = Modifier.semantics(mergeDescendants = true) {
+            if (actions.isNotEmpty()) customActions = actions
+        },
+        spacing = Theme.spacing.sm,
     ) {
         AlphabetHeader(entry, language, speakName)
         entry.context(reader)?.let {

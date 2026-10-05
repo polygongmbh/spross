@@ -4,11 +4,9 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
@@ -87,7 +85,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
     val audioSources = model.audioSources(box.joinStamp.target)
 
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
-        SettingsGroup {
+        Panel {
             Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
                 LanguageMenu(
                     title = chrome.settingsKnownTitle,
@@ -126,11 +124,11 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 SettingHint(chrome.settingsProfileHint)
             }
         }
-        SettingsGroup { LearnerNameSetting(model) }
+        Panel { LearnerNameSetting(model) }
         // why: nothing can say this language — a row whose every option is silence is not a
         // choice, and the two "on" segments would both promise a sound that cannot be made.
-        if (!audioSources.silent) SettingsGroup { ReadAloudSetting(model, box.joinStamp.target) }
-        SettingsGroup {
+        if (!audioSources.silent) Panel { ReadAloudSetting(model, box.joinStamp.target) }
+        Panel {
             BackupSetting(model, catalog, box.joinStamp.target)
             Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
                 TextButton(
@@ -178,18 +176,6 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
             dismissButton = {
                 TextButton(onClick = { confirmingReset = false }) { Text(chrome.commonCancel) }
             },
-        )
-    }
-}
-
-/** One settings group, on a panel of its own. */
-@Composable
-private fun SettingsGroup(content: @Composable ColumnScope.() -> Unit) {
-    Column(modifier = Modifier.fillMaxWidth().panel()) {
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(Theme.spacing.lg),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
-            content = content,
         )
     }
 }

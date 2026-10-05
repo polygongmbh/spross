@@ -3,7 +3,6 @@ package net.spross.app.ui
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,16 +24,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.dropShadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.kern.model.EmojiCue
 
@@ -79,37 +71,10 @@ fun CardFace(
 }
 
 /**
- * The ONE raised surface: the card fill, a soft shadow under it, and the hairline that
- * closes the edge.
- *
- * Every panel in the app wears this, not just the card a session asks its question on —
- * paper at `#FBFBF6` on paper at `#F2F1EA` is a four-percent step, so a panel with no
- * shadow under it is not a panel, it is a rectangle nobody can find. M3's own `Card`
- * defaults to zero elevation and the theme deliberately kills its tonal tint
- * (`surfaceTint = Transparent`), which left every surface but this one perfectly flat.
- *
- * The hairline is deliberately faint: the fill and the shadow carry the boundary and the
- * edge only closes it (iOS `cardSurface`, separator @ 0.6).
- *
- * iOS keeps a flat `panelSurface()` beside `cardSurface()`, reserving the shadow/hairline
- * for cards alone. Android tried the same split (`Modifier.card()` for cards, a flat
- * `Modifier.panel()` for everything else) and reverted it: on this platform's weaker
- * surface/background contrast a flat panel read as a rectangle nobody could find, and the
- * two phones already diverge in plenty of native ways — this is one more, not a bug.
- */
-@Composable
-fun Modifier.panel(shape: Shape = MaterialTheme.shapes.medium): Modifier = this
-    .dropShadow(shape, CARD_SHADOW)
-    .background(MaterialTheme.colorScheme.surface, shape)
-    .border(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.6f), shape)
-
-/**
  * WHERE a card puts its picture — stated as the SITUATION the card is in, never as a size.
- *
- * It was a size flag on the other phone once, and the one run that had to choose chose
- * wrong: listening drew the big picture, the words kept a column too narrow for their font,
- * and a six-letter word hyphenated ("mchele" as "mc-hele"). A caller can always say what
- * else its screen is holding; it cannot be trusted to turn that into a rendering.
+ * A caller can always say what else its screen is holding; it cannot be trusted to turn that
+ * into a rendering, and the wrong one keeps the words a column too narrow for their font
+ * ("mchele" hyphenated as "mc-hele").
  */
 enum class CardArrangement {
     /**
@@ -312,18 +277,3 @@ private val EMOJI_SLOT = 52.sp
 private val EMOJI_GLYPH = 28.sp
 private val EMOJI_HERO = 96.sp
 private val EMOJI_HERO_GLYPH = 52.sp
-
-/**
- * The one card shadow — soft and low, so the card LIFTS rather than casting a box.
- *
- * An elevation shadow is the platform's, cut for the platform's own depth ladder: tight,
- * dark, and hard at the edge. The canonical one is a wide bloom at 8 % black, dropped six
- * below the card (iOS `cardShadow`), and it is drawn here rather than asked for so the
- * two cuts lift their cards the same amount.
- */
-private val CARD_SHADOW = Shadow(
-    radius = 16.dp,
-    color = Color.Black,
-    offset = DpOffset(0.dp, 6.dp),
-    alpha = 0.08f,
-)

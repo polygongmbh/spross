@@ -7,10 +7,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -31,7 +29,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.style.TextAlign
@@ -107,19 +104,6 @@ fun OverviewStartButton(chrome: Chrome, enabled: Boolean, onStart: () -> Unit) {
     ) {
         Text(chrome.trainerOverviewStart, style = MaterialTheme.typography.titleMedium)
     }
-}
-
-/** The recessed tile a group of rows sits in — the settings pattern, on a reading page. */
-@Composable
-fun OverviewPanel(content: @Composable ColumnScope.() -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .panel()
-            .padding(Theme.spacing.lg),
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
-        content = content,
-    )
 }
 
 /**
