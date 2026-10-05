@@ -35,7 +35,7 @@ The pattern only `accepts` it and never teaches it, because it is never ungovern
 something else assigns that case, and a bare date with nothing before it is nominative
 — *Der Wievielte ist heute? Der dritte März.*
 That is what separates it from English's two orders, which are both complete readings of a
-bare date and so are both `teaches`; the tier is a ruling about the form, not about
+bare date and so are both `teaches`; taught or accepted is a ruling about the form, not about
 whether the difference happens to be a spelling.
 `GermanForms` already emits `-er`/`-en`/`-es` beside the canonical `-e` (`number-forms.md` § German),
 so the day form composes with nothing new.

@@ -130,7 +130,7 @@ It is synthesized and spoken **at the moment the card asks**, never written to a
   Live synthesis through `AVSpeechSynthesizer` is ordinary sanctioned API use;
   pre-rendering is not.
   No synthesis-to-file API is referenced anywhere in `App/Sources/Audio/`.
-- iOS speaks only voices the user has installed, and has no Swahili voice at any tier,
+- iOS speaks only voices the user has installed, and has no Swahili voice at any quality,
   so an unrecorded Swahili word is silent.
 - Android pins Google's engine (`com.google.android.tts`, offline Swahili included)
   and likewise only calls `speak()`.

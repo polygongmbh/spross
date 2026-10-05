@@ -37,10 +37,10 @@ final class Speaker: NSObject {
     }
 
     /// Whether this device can say anything at all in `language` — false for
-    /// Swahili on iOS, which has no voice at any quality tier.
+    /// Swahili on iOS, which has no voice at any quality.
     func canSpeak(language: String) -> Bool { voice(for: language) != nil }
 
-    /// The tier of the voice that would actually answer for `language`, `nil`
+    /// The quality of the voice that would actually answer for `language`, `nil`
     /// where none would. iOS bundles only `.default` (compact) voices; the
     /// `.enhanced` and `.premium` ones are a free download nobody is told
     /// about, and the difference is not subtle — which is what the hint reads.

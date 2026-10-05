@@ -176,7 +176,7 @@ val ThemeDark = ThemeColors(
     das = Palette.das.dark.opaque(),
 )
 
-// The M3 roles the tokens answer for. There is no container TIER in the canonical
+// The M3 roles the tokens answer for. There is no container STEP in the canonical
 // palette — its container IS the accent's own 14 % wash, so the container roles are
 // composited rather than given hexes of their own, and `on*Container` is the accent
 // itself: exactly the tinted-pill pairing the contrast note was cut for.
@@ -200,7 +200,7 @@ internal val SprossLight = lightColorScheme(
     surfaceTint = Color.Transparent,
     outline = ThemeLight.borderStrong, outlineVariant = ThemeLight.separator,
     surfaceContainerLowest = ThemeLight.surface, surfaceContainerLow = ThemeLight.surface,
-    // why: the container tiers are what a MENU and a DIALOG are drawn on, and nothing else
+    // why: the container steps are what a MENU and a DIALOG are drawn on, and nothing else
     // reads them now that every panel takes the card recipe directly. Pointed at the paper
     // a card is cut from: `surfaceContainer` was the page background itself, so an open
     // language menu was invisible but for its shadow, and the reset dialog arrived in the

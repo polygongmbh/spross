@@ -12,7 +12,7 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   The drills' generated readings ("dreihundertsiebenundvierzig") use the voice.
   The calendar's weekday/month names (`calendar{}`) and
   the atlas' country/nationality names (`countries{}`) are recorded.
-- **Voice tier matters.**
+- **Voice quality matters.**
   iOS bundles only the compact voice;
   enhanced and premium are a free download under
   Settings > Accessibility > Spoken Content > Voices.
