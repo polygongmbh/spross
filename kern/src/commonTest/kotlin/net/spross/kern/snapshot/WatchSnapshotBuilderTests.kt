@@ -155,6 +155,25 @@ class WatchSnapshotBuilderTests {
     }
 
     @Test
+    fun capSeatsTomorrowsCardsBeforeWeakerOnesDueLater() {
+        val cards = (1..61).map { Box.word(it) }
+        var state = Snap.state(cards)
+        state = Box.inject( // strong, due tomorrow
+            state,
+            Box.sched(cards[0].id, stability = 30.0, dueMillis = Box.plusSeconds(Box.day1, 86_400), lastReviewMillis = Box.day1),
+        )
+        for (n in 2..61) { // weaker, due in a week
+            state = Box.inject(
+                state,
+                Box.sched(cards[n - 1].id, stability = 2.0, dueMillis = Box.plusSeconds(Box.day1, 7 * 86_400), lastReviewMillis = Box.day1),
+            )
+        }
+        val ids = WatchSnapshotBuilder.doc(state, Box.day1).entries.map { it.cardId }
+
+        assertTrue(cards[0].id in ids)
+    }
+
+    @Test
     fun suspendedAndNonJoiningCardsAreExcluded() {
         var state = Snap.state(listOf(fem))
         state = Box.inject(

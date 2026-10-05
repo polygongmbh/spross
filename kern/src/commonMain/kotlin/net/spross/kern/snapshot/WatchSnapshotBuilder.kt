@@ -80,11 +80,12 @@ object WatchSnapshotBuilder {
             Ranked(due <= now, sched)
         }
         val urgency = compareBy<Ranked, CardScheduling>(Urgency.weakestFirst) { it.sched }
-        // why: the cap fills due-first, so the watch never under-reports due cards;
-        // what it keeps then ships weakest first — the practice order, which the
-        // due batch and the complication read too.
-        val entries = ranked
-            .sortedWith(compareBy<Ranked> { !it.isDue }.then(urgency))
+        // why: the cap fills due-first, so the watch never under-reports due cards,
+        // then soonest-due, so a night without the phone still finds tomorrow's
+        // cards aboard; what it keeps then ships weakest first — the practice order,
+        // which the due batch and the complication read too.
+        val (due, ahead) = ranked.partition { it.isDue }
+        val entries = (due.sortedWith(urgency) + ahead.sortedBy { it.sched.due })
             .take(ENTRY_CAP)
             .sortedWith(urgency)
             .map { entry(it.sched, state.cards.getValue(it.sched.cardId), Statistics.hasArrived(it.sched)) }
