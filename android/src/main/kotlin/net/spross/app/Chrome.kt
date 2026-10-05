@@ -156,8 +156,6 @@ interface Chrome {
     // the reader, so the words stay one string and the layout stays each phone's.
     val sessionAlmostTypo: String
     val sessionAlmostMerged: String
-    val lettersMutedTitle: String
-    val lettersMutedEnable: String
     val trainerResultTasksDoneOne: String
     val trainerResultTasksDone: String         // %d
     val trainerResultBestStreak: String        // %d
@@ -527,7 +525,6 @@ interface Chrome {
     val sessionDoneTallyNewOnly: String      // %d
     val sessionDoneTallyReviewed: String     // %d
     val sessionDoneTallyReviewedOnly: String // %d
-    val sessionDoneTallyAllDone: String
     val sessionDoneRestHint: String
 
     val sessionDoneGrowthGrew: String

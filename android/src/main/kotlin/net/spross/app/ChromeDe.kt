@@ -149,8 +149,6 @@ internal object ChromeDe : Chrome {
     override val trainerRunScore = "⭐ %d Punkte"
     override val sessionAlmostTypo = "Fast! Korrekte Schreibweise"
     override val sessionAlmostMerged = "Stimmt — heißt auch"
-    override val lettersMutedTitle = "Ton ist aus"
-    override val lettersMutedEnable = "Ton einschalten"
     override val trainerResultTasksDoneOne = "%d Aufgabe 🎯"
     override val trainerResultTasksDone = "%d Aufgaben 🎯"
     override val trainerResultBestStreak = "Beste Serie: 🔥 %s in Folge"
@@ -506,7 +504,6 @@ internal object ChromeDe : Chrome {
     override val sessionDoneTallyNewOnly = "%s neue Wörter"
     override val sessionDoneTallyReviewed = "%s gecheckt"
     override val sessionDoneTallyReviewedOnly = "%s Wörter gecheckt"
-    override val sessionDoneTallyAllDone = "Alles erledigt"
     override val sessionDoneRestHint = "Heute sitzt wenig — ein Kopf, der müde ist, behält " +
         "nichts mehr. Morgen geht's leichter."
     override val sessionDoneGrowthGrew = "Auch heute bleibt was hängen"

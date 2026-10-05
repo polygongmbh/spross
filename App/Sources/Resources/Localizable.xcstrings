@@ -4119,38 +4119,6 @@
         }
       }
     },
-    "letters.muted.enable" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ton einschalten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turn sound on"
-          }
-        }
-      }
-    },
-    "letters.muted.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ton ist aus"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sound is off"
-          }
-        }
-      }
-    },
     "letters.promptInLanguage %@" : {
       "comment" : "%s = target language name",
       "localizations" : {
@@ -5748,23 +5716,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chat about them"
-          }
-        }
-      }
-    },
-    "session.done.tally.allDone" : {
-      "comment" : "the round had nothing nameable in it",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alles erledigt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "All done"
           }
         }
       }

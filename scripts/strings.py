@@ -87,7 +87,6 @@ UNEXTRACTABLE = {
 # the rest and no Swift will ever ask for them.
 ANDROID_ONLY = {
     'a11y.state.collapsed', 'a11y.state.expanded', 'a11y.verdict.wrong',
-    'letters.muted.enable', 'letters.muted.title',
     # box.card.actions is the row's long-press label; iOS's context menu takes none.
     'box.card.actions', 'box.card.due', 'settings.about', 'letters.promptInLanguage %@',
     # The bundled typeface's notice; iOS sets the system face and bundles no font.
