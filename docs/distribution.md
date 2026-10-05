@@ -54,7 +54,8 @@ so it rises on its own as long as minor and patch stay under 100.
   language, a full English localization, error messages becoming localized.
   What stays is content, scheduling and capability —
   new areas, phrases unlocking differently, progress surviving a card-id change.
-  A change that only alters language, wording, layout, order or naming is carried by its commit message.
+  A change that only alters language, wording, layout, order, naming or a celebration's thresholds is carried by its commit message.
+  The test: does the learner need to know it to use the app? If not, no entry.
 - Content earns an entry by the SHELF, not by the CARD.
   A new area, a pass across a language, a sweep that re-cuts a whole shelf is a change the
   learner meets; a single concept added, split or reworded is not,

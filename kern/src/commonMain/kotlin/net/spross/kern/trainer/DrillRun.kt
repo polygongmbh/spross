@@ -96,8 +96,8 @@ data class DrillRunSummary(
         }
 
     private companion object {
-        const val TROPHY_ANSWER_STREAK = 10
-        const val CHEER_ANSWER_STREAK = 5
-        const val EFFORT_ANSWER_STREAK = 2
+        const val TROPHY_ANSWER_STREAK = 15
+        const val CHEER_ANSWER_STREAK = 10
+        const val EFFORT_ANSWER_STREAK = 5
     }
 }

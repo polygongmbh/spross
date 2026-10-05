@@ -89,15 +89,12 @@ class NumbersCloseTest {
     // MARK: - What the page behind the run reads
 
     @Test
-    fun theMilestoneLadderTurnsOnTwoFiveAndTen() {
+    fun theMilestoneClimbsWithTheBestAnswerStreak() {
         fun milestone(answerStreak: Int) = DrillRunSummary(done = 1, bestAnswerStreak = answerStreak, newRecord = false).milestone
-        assertEquals(AnswerStreakMilestone.Sprout, milestone(0))
         assertEquals(AnswerStreakMilestone.Sprout, milestone(1))
-        assertEquals(AnswerStreakMilestone.Effort, milestone(2))
-        assertEquals(AnswerStreakMilestone.Effort, milestone(4))
-        assertEquals(AnswerStreakMilestone.Cheer, milestone(5))
-        assertEquals(AnswerStreakMilestone.Cheer, milestone(9))
-        assertEquals(AnswerStreakMilestone.Trophy, milestone(10))
+        assertEquals(AnswerStreakMilestone.Effort, milestone(7))
+        assertEquals(AnswerStreakMilestone.Cheer, milestone(12))
+        assertEquals(AnswerStreakMilestone.Trophy, milestone(30))
     }
 
     /** An exercise with one Sprosse has no Sprosse to report; the emoji leads only in a mixed run. */
