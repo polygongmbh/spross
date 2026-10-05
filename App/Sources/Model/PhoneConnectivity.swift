@@ -81,6 +81,8 @@ extension AppModel {
     /// (transferUserInfo may deliver duplicates).
     private static let appliedEventIDsKey = "spross-watch-applied-event-ids"
     private static let appliedEventIDsCap = 1000
+    /// UserDefaults key holding answers that arrived before a box was loaded.
+    private static let pendingEventsKey = "spross-watch-pending-events"
 
     /// Wire the bridge to this model and activate the session (call once at launch).
     func startWatchBridge() {
@@ -114,9 +116,21 @@ extension AppModel {
     /// Apply queued watch answers ON RECEIPT, oldest first, with `now` =
     /// each event's date (FSRS elapsed time stays honest); then book them
     /// into dailyStats, persist, and refresh widgets + the watch snapshot.
+    /// Answers that arrive before a box is loaded are parked on disk and
+    /// applied by the next call that finds one (`activate` drains them).
     func applyWatchAnswers(_ events: [WatchAnswerEvent]) {
-        guard var state = box else { return }
         let defaults = UserDefaults.standard
+        // why: the session activates at launch, ahead of the box, and WatchConnectivity
+        // hands over its whole backlog then and never again — a dropped event is lost.
+        let parked = (defaults.array(forKey: Self.pendingEventsKey) as? [[String: Any]]) ?? []
+        let events = WatchAnswerEvent.decode(userInfo: [WatchAnswerEvent.Key.events: parked]) + events
+        guard var state = box else {
+            if !events.isEmpty {
+                defaults.set(events.map(\.userInfoEntry), forKey: Self.pendingEventsKey)
+            }
+            return
+        }
+        if !parked.isEmpty { defaults.removeObject(forKey: Self.pendingEventsKey) }
         var applied = defaults.stringArray(forKey: Self.appliedEventIDsKey) ?? []
         var appliedSet = Set(applied)
 

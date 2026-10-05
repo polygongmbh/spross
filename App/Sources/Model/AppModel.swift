@@ -349,6 +349,7 @@ final class AppModel {
             UserDefaults.standard.set(source, forKey: Self.sourceLanguageKey)
             UserDefaults.standard.set(target, forKey: Self.targetLanguageKey)
             loadFailure = nil
+            applyWatchAnswers([])
             pushWatchSnapshot()
             recomposeSessionIfStale()
             phase = .ready
