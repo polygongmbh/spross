@@ -9,7 +9,7 @@ struct WatchHomeView: View {
     var body: some View {
         // why: the counts read the timeline's clock — a card that comes due
         // overnight, with no phone sync, flips the screen to Start on its own.
-        TimelineView(.everyMinute) { context in
+        TimelineView(.explicit(model.countChanges(after: .now))) { context in
             if model.snapshot == nil {
                 waitingForPhone
             } else if model.dueCount(at: context.date) > 0 {

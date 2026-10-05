@@ -136,6 +136,19 @@ final class WatchModel {
         snapshot?.tomorrowDueCount(now: now, calendar: calendar) ?? 0
     }
 
+    /// The moments the counts can change without a sync — each card's due
+    /// moment — led by `now`, since a timeline renders its first date even
+    /// when it lies ahead.
+    func countChanges(after now: Date) -> [Date] {
+        let nowMillis = Int64(now.timeIntervalSince1970 * 1000)
+        let dues = (snapshot?.entries ?? [])
+            .map(\.due)
+            .filter { $0 > nowMillis }
+            .sorted()
+            .map { Date(timeIntervalSince1970: Double($0) / 1000) }
+        return [now] + dues
+    }
+
     var currentEntry: WatchSnapshot.Entry? {
         currentID.flatMap { snapshot?.entry(id: $0) }
     }
