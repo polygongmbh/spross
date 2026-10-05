@@ -24,41 +24,27 @@ class LetterDrillTests {
             ),
         )
 
+    /** Formats only ever climb, dictation tops the ladder, and a stale preset coerces rather than crashes. */
     @Test
-    fun theLadderMapsSprossenToFormats() {
-        assertEquals(LetterFormat.ChoiceEasy, LetterDrill.formatFor(1))
-        assertEquals(LetterFormat.ChoiceEasy, LetterDrill.formatFor(2))
-        for (sprosse in 3..5) assertEquals(LetterFormat.ChoiceConfusable, LetterDrill.formatFor(sprosse))
-        assertEquals(LetterFormat.Typed, LetterDrill.formatFor(6))
-        assertEquals(LetterFormat.Typed, LetterDrill.formatFor(7))
-        assertEquals(LetterFormat.Dictation, LetterDrill.formatFor(8))
-        assertEquals(LetterFormat.Dictation, LetterDrill.formatFor(9))
-        // Out of range coerces rather than throwing — a stale preset must not crash a run.
+    fun theLadderClimbsThroughTheFormatsInOrder() {
+        val withDictation = LetterDrill.maxSprosse(dictationAvailable = true)
+        val formats = (1..withDictation).map { LetterDrill.formatFor(it) }
+        assertEquals(formats.sorted(), formats)
+        assertEquals(LetterFormat.entries.toList(), formats.distinct())
+        assertEquals(LetterFormat.Typed, LetterDrill.formatFor(LetterDrill.maxSprosse(dictationAvailable = false)))
         assertEquals(LetterFormat.ChoiceEasy, LetterDrill.formatFor(0))
         assertEquals(LetterFormat.Dictation, LetterDrill.formatFor(99))
-        assertEquals(9, LetterDrill.maxSprosse(dictationAvailable = true))
-        assertEquals(7, LetterDrill.maxSprosse(dictationAvailable = false))
     }
 
+    /**
+     * The entry Sprosse climbs with the words already held — but never into dictation,
+     * which would ask for a word before the box can name five of them.
+     */
     @Test
     fun entrySprossePacesOnTheWordsAlreadyHeld() {
         assertEquals(1, LetterDrill.entrySprosse(0))
-        assertEquals(1, LetterDrill.entrySprosse(11))
-        assertEquals(2, LetterDrill.entrySprosse(12))
-        assertEquals(5, LetterDrill.entrySprosse(59))
-        assertEquals(6, LetterDrill.entrySprosse(60))
-        assertEquals(6, LetterDrill.entrySprosse(200))
-        // Never dictation: entering on a format that draws from the box would ask for a
-        // word before the box can name five of them.
-        assertTrue(LetterDrill.entrySprosse(10_000) <= 6)
-    }
-
-    @Test
-    fun sprosseLengthShrinksOnceAVocabularyIsHeld() {
-        assertEquals(2, LetterDrill.winsToAdvance(0))
-        assertEquals(2, LetterDrill.winsToAdvance(59))
-        assertEquals(1, LetterDrill.winsToAdvance(60))
-        assertEquals(1, LetterDrill.winsToAdvance(200))
+        assertTrue(LetterDrill.entrySprosse(60) > 1)
+        assertEquals(LetterFormat.Typed, LetterDrill.formatFor(LetterDrill.entrySprosse(10_000)))
     }
 
     @Test

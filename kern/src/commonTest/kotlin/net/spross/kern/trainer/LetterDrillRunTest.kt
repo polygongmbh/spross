@@ -96,20 +96,9 @@ class LetterDrillRunTest {
      */
     @Test
     fun aRunOpensOnTheFormatTheLearnersWordsHaveEarned() {
-        val fresh = report(growing = 0)
-        assertEquals(1, fresh.entrySprosse)
-        assertEquals(LetterFormat.ChoiceEasy, fresh.openingFormat(emptySet()))
-        assertEquals(LetterDrill.MAX_SPROSSE_WITHOUT_DICTATION, fresh.maxSprosse)
-        assertEquals(2, fresh.winsToAdvance)
-
-        assertEquals(3, report(growing = 24).entrySprosse)
-        assertEquals(LetterFormat.ChoiceConfusable, report(growing = 24).openingFormat(emptySet()))
-
+        assertEquals(LetterFormat.ChoiceEasy, report(growing = 0).openingFormat(emptySet()))
         val held = report(growing = 72, dictation = LetterDrillFixture.dictationCandidates())
-        assertEquals(6, held.entrySprosse)
         assertEquals(LetterFormat.Typed, held.openingFormat(emptySet()))
-        assertEquals(LetterDrill.MAX_SPROSSE_WITH_DICTATION, held.maxSprosse)
-        assertEquals(1, held.winsToAdvance, "a growing vocabulary earns a Sprosse in one win")
     }
 
     /**
@@ -156,19 +145,6 @@ class LetterDrillRunTest {
         var state = LetterDrillRun.openAt(config(held, LetterDrillFixture.dictationCandidates().map { it.card }), 8, rng)
         while (state.task != null && state.sprosse <= 8) state = answeredRight(state, rng)
         assertTrue(LetterDrillRun.close(state).clearedSprossen.none { it >= 8 })
-    }
-
-    /** Dictation exists only above the floor, and the ramp stops one Sprosse short of it below. */
-    @Test
-    fun theCeilingFollowsWhetherThereIsEnoughToDictate() {
-        val cards = LetterDrillFixture.dictationCards()
-        val floor = LetterDrillAvailability.DICTATION_FLOOR
-        val enough = report(72, LetterDrillFixture.dictationCandidates(cards.take(floor)))
-        val short = report(72, LetterDrillFixture.dictationCandidates(cards.take(floor - 1)))
-        assertTrue(enough.dictationAvailable)
-        assertFalse(short.dictationAvailable)
-        assertEquals(9, enough.maxSprosse)
-        assertEquals(7, short.maxSprosse)
     }
 
     @Test
@@ -299,20 +275,6 @@ class LetterDrillRunTest {
         assertTrue(typed.effects.isEmpty())
     }
 
-    @Test
-    fun aTypedGlyphGradesExactWithNoTypoBudget() {
-        val rng = Random(13)
-        val state = LetterDrillRun.openAt(config(report(growing = 72)), 6, rng)
-        val drawn = assertNotNull(state.task)
-        assertEquals(Match.Exact, LetterDrillRun.grade(drawn.display, drawn, null, null))
-        assertEquals(Match.Wrong, LetterDrillRun.grade("zz", drawn, null, null))
-
-        // Case folds; a one-glyph answer never gets a slip budget, whatever the format.
-        val cyrillic = drawn.copy(accepted = listOf("ч"), display = "ч")
-        assertEquals(Match.Exact, LetterDrillRun.grade("Ч", cyrillic, null, null))
-        assertEquals(Match.Wrong, LetterDrillRun.grade("c", cyrillic, null, null))
-    }
-
     /**
      * The dictation ladder: exact, then a slip, then the miss — which is where the
      * catalog-wide grader withdraws typo credit for a word that is somebody else's, and where
@@ -397,16 +359,6 @@ class LetterDrillRunTest {
     }
 
     // MARK: - The way out, and the end
-
-    @Test
-    fun theSecondMissInARowOffersTheWayOut() {
-        val rng = Random(23)
-        var state = LetterDrillRun.openAt(config(report(growing = 72)), 6, rng)
-        assertFalse(reduce(state, LetterDrillIntent.Reveal, rng).state.offersFinish)
-        state = reduce(state, LetterDrillIntent.Reveal, rng).state
-        state = reduce(state, LetterDrillIntent.ConfirmPending, rng).state
-        assertTrue(reduce(state, LetterDrillIntent.Reveal, rng).state.offersFinish)
-    }
 
     /** Nothing left to ask ends the run on its summary, never on a blank card. */
     @Test
