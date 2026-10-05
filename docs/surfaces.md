@@ -113,7 +113,7 @@ What has not landed there is `design.md` § Not yet.
   recall-first rule, with the latency curve compensating for it.
   Answers return as events; the phone reschedules against real timestamps and re-pushes.
   Until it does, the watch keeps each card's last rating — a miss until it answers that card right, syncs included.
-  A round is the due cards plus the misses, one counted run, followed by another while they number at least
+  A round is the due cards plus the misses, one counted run, offered on the home screen while they number at least
   `WatchModel.roundFloor`; below it the screen reads all done, since a miss would return within three questions
   of its reveal, and practice asks what it has not asked (due cards first), then its misses, then what it got right,
   each in the phone's order.

@@ -11,8 +11,8 @@ import WatchKit
 /// leaves the local due list until the next snapshot.
 ///
 /// Two runs, one progress indicator each (`WatchRun`): a round of the due and
-/// the missed cards counts to an end — another following while there are enough
-/// of them — free practice recycles and counts the answer streak.
+/// the missed cards counts to an end, free practice recycles and counts the
+/// answer streak.
 @MainActor
 @Observable
 final class WatchModel {
@@ -38,12 +38,8 @@ final class WatchModel {
     private(set) var wrongFlash = false
     private(set) var answerStreak = 0
     private(set) var answeredCount = 0
-    /// Cards the current round of the due batch set out to answer — the counter's denominator.
+    /// Cards the round set out to answer — the counter's denominator.
     private(set) var sessionTotal = 0
-    /// Answers given in the current round — the counter's numerator;
-    /// `answeredCount` keeps the whole run's tally for the celebration.
-    var roundAnswered: Int { answeredCount - roundStart }
-    private var roundStart = 0
     /// Fewest due and missed cards that make a round. Below it a miss would come
     /// back within three questions of its own reveal, answered from the screen
     /// rather than from memory — those few lead free practice instead.
@@ -184,7 +180,6 @@ final class WatchModel {
     private func begin(_ run: WatchRun) {
         self.run = run
         answeredCount = 0
-        roundStart = 0
         answerStreak = 0
         currentID = queue.first
         makeQuestionForCurrent()
@@ -264,13 +259,6 @@ final class WatchModel {
             queue = practiceLap(avoiding: previous)
             // The snapshot emptied under a running lap — nothing left to ask.
             guard !queue.isEmpty else { return endSession() }
-        }
-        if queue.isEmpty, run == .session,
-           let next = snapshot?.roundEntries(now: Date()).map(\.cardId), next.count >= Self.roundFloor {
-            queue = next
-            if queue.first == previous { queue.swapAt(0, 1) }
-            sessionTotal = queue.count
-            roundStart = answeredCount
         }
         currentID = queue.first
         makeQuestionForCurrent()

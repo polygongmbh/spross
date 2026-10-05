@@ -8,7 +8,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - The Android home-screen widget shows the box you open right away, after a language switch or an update.
 - Answers given on the watch while the phone app was closed now reach your box and streak instead of being lost when the app starts.
 - The watch and its complication now count words as due the moment they come due, even overnight without the phone.
-- A watch round now takes your missed words along with the due ones and repeats while five or more are left; below five the watch says all done and practice asks them.
+- A watch round now takes your missed words along with the due ones and is offered again while five or more are left; below five the watch says all done and practice asks them.
 - Watch practice now asks words you have not just answered first, then the ones you missed, and saves the ones you got right for last.
 
 ## 8.2.0 — 2026-10-04
