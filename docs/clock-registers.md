@@ -206,7 +206,7 @@ where an hour takes `et demie`.
 
 Every reading also grades fully spaced,
 because the comparison pipeline deletes hyphens
-(`docs/number-forms.md` owns that rule; the clock obeys it).
+(`number-forms.md` owns that rule; the clock obeys it).
 
 ## Ukrainian's time-when
 
