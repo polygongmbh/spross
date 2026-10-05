@@ -516,23 +516,6 @@
         }
       }
     },
-    "a11y.suffix.record %@" : {
-      "comment" : "%d — appended to it",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ", Rekord %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ", record %@"
-          }
-        }
-      }
-    },
     "a11y.trainer.sprosse.cleared" : {
       "comment" : "Screen-reader value of a Sprosse row a run has answered out",
       "extractionState" : "manual",
@@ -7529,23 +7512,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "trainer.run.record %@" : {
-      "comment" : "%d — the standing streak the run has not beaten yet",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekord %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Record %@"
           }
         }
       }

@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- A drill run's score line is larger and shows just the Sprosse and your streak, leaving the record to the pause and the result.
+
 ## 8.3.1 — 2026-10-05
 
 - On Android, the letter drill now plays its question even with reading aloud switched off, as on iPhone.

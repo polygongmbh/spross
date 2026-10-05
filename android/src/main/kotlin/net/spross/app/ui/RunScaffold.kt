@@ -217,9 +217,8 @@ fun <F : Any> rememberRun(model: AppModel, back: Screen, key: Any? = Unit, open:
  * corner and on the back gesture, the top bar, the score line, and the scrolling body under
  * them — plus the three effects every run owes.
  *
- * [sprosse] is worded by the drill that owns it and is null where a run has one Sprosse only;
- * [announcesRecord] carries a real difference rather than settling it, since the letter
- * drill has always spoken the answer streak alone. [showsMuteButton] is [RunTopBar]'s own gate,
+ * [sprosse] is worded by the drill that owns it and is null where a run has one Sprosse only.
+ * [showsMuteButton] is [RunTopBar]'s own gate,
  * passed through rather than defaulted here — which runs autoplay speech is a call each
  * drill screen makes for itself, matching iOS's per-run `showsMuteButton`.
  */
@@ -232,8 +231,6 @@ fun DrillRunScaffold(
     tally: DrillTally,
     sprosse: String?,
     answerStreak: Int,
-    bestAnswerStreak: Int,
-    announcesRecord: Boolean = false,
     /** False while something stands OVER the run — the number table, which the back gesture closes. */
     backLeaves: Boolean = true,
     showsMuteButton: Boolean = false,
@@ -264,7 +261,7 @@ fun DrillRunScaffold(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(spacing),
         ) {
-            DrillStreakLine(sprosse, answerStreak, bestAnswerStreak, model.chrome, announcesRecord, timed)
+            DrillStreakLine(sprosse, answerStreak, model.chrome, timed)
             body()
             Spacer(Modifier.height(Theme.spacing.sm))
         }
@@ -284,7 +281,6 @@ fun DrillRunScaffold(
     leave: () -> Unit,
     progress: DrillRunProgress,
     sprosse: String?,
-    announcesRecord: Boolean = false,
     backLeaves: Boolean = true,
     showsMuteButton: Boolean = false,
     speaksPastMute: Boolean = false,
@@ -299,8 +295,6 @@ fun DrillRunScaffold(
     tally = progress.tally,
     sprosse = sprosse,
     answerStreak = progress.answerStreak,
-    bestAnswerStreak = progress.bestAnswerStreak,
-    announcesRecord = announcesRecord,
     timed = timed,
     backLeaves = backLeaves,
     showsMuteButton = showsMuteButton,

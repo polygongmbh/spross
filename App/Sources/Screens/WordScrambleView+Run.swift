@@ -18,7 +18,7 @@ extension WordScrambleView: DrillRunning {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
                 DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
-                                answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak))
+                                answerStreak: Int(run.answerStreak))
                 if let task = current {
                     // ZStack so the outgoing and incoming word overlap during
                     // the flip; .id gives each position its identity.

@@ -220,9 +220,7 @@ interface Chrome {
     // ── Inside a run ────────────────────────────────────────────────────────────
     val numbersSprosseOne: String
     val numbersSprosse: String            // %d
-    val trainerRunRecord: String            // %d
     val a11yCountStreakInARow: String      // %d
-    val a11ySuffixRecord: String      // %d
     val numbersAnswerPlaceholder: String
     val numbersNewPlace: String          // %s
     val numbersLookup: String

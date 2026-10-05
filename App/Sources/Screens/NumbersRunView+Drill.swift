@@ -72,8 +72,7 @@ extension NumbersRunView {
     }
 
     private func scoreLine(timed: [Text]) -> some View {
-        DrillStreakLine(sprosse: sprosseText, timed: timed, answerStreak: Int(run.answerStreak),
-                        bestAnswerStreak: Int(run.bestAnswerStreak), announcesRecord: true)
+        DrillStreakLine(sprosse: sprosseText, timed: timed, answerStreak: Int(run.answerStreak))
     }
 
     /// The Sprosse part of the score line, for the exercise that just asked: numbers

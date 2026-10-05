@@ -73,7 +73,6 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
         leave = leave,
         progress = state,
         sprosse = sprosseText(state, chrome),
-        announcesRecord = true,
         // The table raised over the run takes the back gesture first; the run is still there.
         backLeaves = !flow.showingReference,
         // why: the run says its answers out loud, so it owes the learner a way to

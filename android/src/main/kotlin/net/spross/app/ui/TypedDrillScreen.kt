@@ -104,8 +104,6 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         tally = run.tally,
         sprosse = chrome.trainerSprosse.format(run.sprosse),
         answerStreak = run.answerStreak,
-        bestAnswerStreak = run.bestAnswerStreak,
-        announcesRecord = true,
         // why: the run says its answers (and, reversed, its prompts) out loud, so it
         // owes the learner a way to silence them here.
         showsMuteButton = true,

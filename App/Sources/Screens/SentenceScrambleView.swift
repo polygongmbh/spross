@@ -113,7 +113,7 @@ struct SentenceScrambleView: View {
         ScrollView {
             VStack(spacing: Theme.spacing.lg) {
                 DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
-                                answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak))
+                                answerStreak: Int(run.answerStreak))
                 if let task = current {
                     ScrambleTileBank(bank: task.shuffled,
                                      placed: run.placedAtoms,

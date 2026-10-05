@@ -30,8 +30,9 @@ extension SessionScaffold {
 
 // MARK: - Streak line
 
-/// The score line above the card: which Sprosse the run stands on, how long the
-/// answer streak is, and the standing record once the answer streak has fallen short of it.
+/// The score line above the card: which Sprosse the run stands on and how long
+/// the answer streak is. The record stays off it — a record is named where it
+/// falls, on the pause and the result tile, never counted mid-run.
 struct DrillStreakLine: View {
     /// The Sprosse, worded by the drill that owns it — a digit count reads
     /// differently from a plain Sprosse. nil where a run has one Sprosse only.
@@ -39,17 +40,13 @@ struct DrillStreakLine: View {
     /// A timed run's clock and score, standing after the Sprosse; empty elsewhere.
     var timed: [Text] = []
     let answerStreak: Int
-    let bestAnswerStreak: Int
-    /// Whether the SPOKEN line names the record as well. Only the slot drill's
-    /// does; the letter drill has always announced the answer streak alone, and this
-    /// carries that difference rather than quietly settling it.
-    var announcesRecord = false
 
     var body: some View {
         text
-            .font(Theme.typography.caption)
+            .font(Theme.typography.headline)
             .foregroundStyle(answerStreak > 0 ? Theme.colors.accent : Theme.colors.textSecondary)
             .monospacedDigit()
+            .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
             .animation(.easeOut(duration: 0.2), value: answerStreak)
             .accessibilityLabel(accessibility)
@@ -62,15 +59,12 @@ struct DrillStreakLine: View {
         if let sprosse { parts.append(sprosse) }
         parts += timed
         parts.append(Text("trainer.run.streak \(answerStreak.formatted())"))
-        if bestAnswerStreak > answerStreak { parts.append(Text("trainer.run.record \(bestAnswerStreak.formatted())")) }
         return parts.joined() ?? Text(verbatim: "")
     }
 
     private var accessibility: Text {
         let streakSpoken = Text("a11y.count.streakInARow \(answerStreak.formatted())")
-        let spoken = timed.joined(separator: ", ").map { $0 + Text(verbatim: ", ") + streakSpoken } ?? streakSpoken
-        guard announcesRecord, bestAnswerStreak > answerStreak else { return spoken }
-        return spoken + Text("a11y.suffix.record \(bestAnswerStreak.formatted())")
+        return timed.joined(separator: ", ").map { $0 + Text(verbatim: ", ") + streakSpoken } ?? streakSpoken
     }
 }
 
@@ -209,10 +203,9 @@ struct DrillResultTile: View {
 
 #Preview("Streak line") {
     VStack(spacing: Theme.spacing.xl) {
-        DrillStreakLine(sprosse: Text("trainer.sprosse \(7.formatted())"), answerStreak: 0, bestAnswerStreak: 0)
-        DrillStreakLine(sprosse: Text("numbers.sprosse \(5)"), answerStreak: 7, bestAnswerStreak: 12,
-                        announcesRecord: true)
-        DrillStreakLine(answerStreak: 3, bestAnswerStreak: 3)
+        DrillStreakLine(sprosse: Text("trainer.sprosse \(7.formatted())"), answerStreak: 0)
+        DrillStreakLine(sprosse: Text("numbers.sprosse \(5)"), answerStreak: 7)
+        DrillStreakLine(answerStreak: 3)
     }
     .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
