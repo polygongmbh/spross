@@ -36,15 +36,17 @@ class CatalogAudioLintTest {
 
     /**
      * The lookup is keyed by what the learner SEES, so an entry whose spoken form matches
-     * no surface form of its realization ships bytes that can never play — the sw `ku-`
-     * verb shape, which the converter drops instead.
+     * no surface form of its realization, nor its bare verb stem ([verbStem]), ships bytes
+     * that can never play.
      */
     @Test
     fun everyMatchesFormIsReachable() {
         for ((lang, manifest) in catalog.audio) {
             for ((slug, recording) in manifest.words) {
                 val raw = realization(lang, slug) ?: continue // reported by the rule above
-                val forms = (listOf(raw.text) + raw.teaches + raw.accepts).map { speechKey(it) }
+                val prefixes = catalog.languages[lang]?.optionalVerbPrefixes.orEmpty()
+                val shown = listOf(raw.text) + raw.teaches + raw.accepts
+                val forms = (shown + shown.mapNotNull { verbStem(it, prefixes) }).map { speechKey(it) }
                 assertTrue(
                     speechKey(checkNotNull(recording.matches)) in forms,
                     "audio/$lang/$slug: \"${recording.matches}\" reaches none of $forms",

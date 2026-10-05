@@ -5,6 +5,8 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
 - **Words are read aloud; a recording is only played for the word it actually says.**
   Kern matches recordings by the form on screen, never by concept,
   so a rotated synonym is never answered with the canonical word.
+  One exception: a verb with no recording of its citation form plays one of its bare stem
+  (sw `piga simu` under `kupiga simu`, `LanguageInfo.optionalVerbPrefixes`).
   Unmatched forms fall to the device voice;
   a target with neither stays silent.
   The drills' generated readings ("dreihundertsiebenundvierzig") use the voice.

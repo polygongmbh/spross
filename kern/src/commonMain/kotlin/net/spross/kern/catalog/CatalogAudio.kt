@@ -33,10 +33,17 @@ fun Catalog.hasRecordings(lang: Language): Boolean = audio[lang]?.isEmpty == fal
  * already asks for. Given one, a recording that speaks the article too is preferred; the
  * bare recording answers where the pack has none, and on the source side, whose grammar
  * is not what is being taught, it is the only one that can.
+ *
+ * A verb with no recording of its citation form takes one of its bare stem ([verbStem]):
+ * Commons often has sw `piga simu` where the card shows `kupiga simu`, and the stem said
+ * aloud beats a silent card in a language with no device voice.
  */
 fun Catalog.pronunciation(lang: Language, visibleForm: String, article: String? = null): Pronunciation {
     val manifest = audio[lang]
-    val recording = manifest?.recording(visibleForm, article)
+    val recording = manifest?.let { pack ->
+        pack.recording(visibleForm, article)
+            ?: verbStem(visibleForm, languages[lang]?.optionalVerbPrefixes.orEmpty())?.let(pack::recording)
+    }
     return Pronunciation(
         form = visibleForm,
         utterance = utterance(visibleForm),

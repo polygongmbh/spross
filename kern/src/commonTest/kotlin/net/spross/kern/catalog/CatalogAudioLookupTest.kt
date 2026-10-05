@@ -45,6 +45,26 @@ class CatalogAudioLookupTest {
         assertNull(catalog.letterRecording("en", "ж")) // no manifest at all
     }
 
+    /** A verb with no recording of its citation form is heard by its bare stem; an exact one still wins. */
+    @Test
+    fun aVerbFallsBackToItsBareStem() {
+        val pack = AudioFixture.catalogWith("audio/sw/manifest.json", """
+            { "language": "sw",
+              "authors": { "Juma": "CC BY-SA 4.0" },
+              "licenses": { "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/" },
+              "words": {
+                "call": { "file": "call.mp3", "matches": "piga simu",
+                          "author": "Juma", "source": "Sw-piga simu.ogg", "sha256": "c1" },
+                "cook": { "file": "cook.mp3", "matches": "kupika",
+                          "author": "Juma", "source": "Sw-kupika.ogg", "sha256": "c2" },
+                "eat":  { "file": "eat.mp3", "matches": "pika",
+                          "author": "Juma", "source": "Sw-pika.ogg", "sha256": "c3" } } }
+        """.trimIndent())
+        assertEquals("audio/sw/call.mp3", pack.pronunciation("sw", "kupiga simu").recordingPath)
+        assertEquals("audio/sw/cook.mp3", pack.pronunciation("sw", "kupika").recordingPath)
+        assertNull(pack.pronunciation("sw", "kusoma").recordingPath)
+    }
+
     // -- speechKey / utterance ---------------------------------------------------------
 
     @Test

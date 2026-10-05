@@ -190,6 +190,13 @@ def read_rows(path):
         return list(csv.DictReader(f, delimiter='\t'))
 
 
+def verb_stem(form, prefixes):
+    """kern `verbStem`: [form] without the first optional verb prefix it starts with, else None."""
+    trimmed = form.strip()
+    return next((trimmed[len(p):] for p in prefixes
+                 if len(trimmed) > len(p) and trimmed.lower().startswith(p.lower())), None)
+
+
 def load_catalog():
     """(every slug, {lang: {slug: [surface forms]}}, {lang: {slug: (article, text)}}).
 
@@ -197,6 +204,8 @@ def load_catalog():
     realizations appear in it, because only they show an article to say.
     """
     areas = [area['area'] for group in read_json(CATALOG, 'areas.json') for area in group['areas']]
+    prefixes = {code: info.get('optionalVerbPrefixes', [])
+                for code, info in read_json(CATALOG, 'languages.json').items()}
     slugs = set()
     forms = {}
     targets = {}
@@ -209,8 +218,11 @@ def load_catalog():
             for slug, word in read_json(CATALOG, 'areas', area, name).get('words', {}).items():
                 # why: reachability is measured against everything a card may SHOW —
                 # `text` and its rotating `teaches` — plus the `accepts` grading takes.
-                forms.setdefault(lang, {})[slug] = \
-                    [word['text']] + word.get('teaches', []) + word.get('accepts', [])
+                shown = [word['text']] + word.get('teaches', []) + word.get('accepts', [])
+                # why: kern's lookup falls back to a verb's bare stem (`verbStem`), so a
+                # recording of `piga simu` reaches a card showing `kupiga simu`.
+                forms.setdefault(lang, {})[slug] = shown + [
+                    stem for stem in (verb_stem(form, prefixes.get(lang, [])) for form in shown) if stem]
                 article = word.get('grammar', {}).get('gender')
                 if article:
                     targets.setdefault(lang, {})[slug] = (article, word['text'])

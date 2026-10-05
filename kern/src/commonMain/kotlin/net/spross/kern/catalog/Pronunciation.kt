@@ -32,6 +32,17 @@ fun speechKey(form: String): String {
 }
 
 /**
+ * [form] without the leading optional verb prefix it starts with (sw `kupiga simu` →
+ * `piga simu`, from `LanguageInfo.optionalVerbPrefixes`), else null: the bare stem a
+ * recording may say where none says the citation form the card shows.
+ */
+fun verbStem(form: String, prefixes: List<String>): String? {
+    val trimmed = form.trim()
+    return prefixes.firstOrNull { trimmed.length > it.length && trimmed.startsWith(it, ignoreCase = true) }
+        ?.let { trimmed.substring(it.length) }
+}
+
+/**
  * What a synthesizer is handed for [form]: the leading stem `-` removed (synthesizers
  * vocalize it — "minus zuri"), terminal punctuation KEPT, because it carries prosody.
  * Never a normalization — what is spoken stays the form the learner sees.
