@@ -39,14 +39,14 @@ enum SampleTrees {
         let settled = Int(Double(started) * max(0, reached - 0.25))
         let blossoms = Int(Double(settled) * max(0, reached - 0.55))
         let fruit = Int(Double(blossoms) * max(0, reached - 0.8))
-        let reaches = (0..<started).map { rank in
+        let strengths = (0..<started).map { rank in
             max(0, reached - Double(rank) / Double(max(started, 1)) * 0.6)
         }
         return AreaGrowth.sample(
             id, leaves: settled - blossoms, blossoms: blossoms - fruit, fruit: fruit,
             buds: started - settled, fallen: reached > 0.3 && index % 3 == 0 ? 2 : 0,
             tendedToday: tended ?? (index % 5 == 2 && reached > 0),
-            reaches: reaches
+            strengths: strengths
         )
     }
 }

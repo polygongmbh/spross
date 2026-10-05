@@ -162,7 +162,7 @@ enum TreeShapes {
         for (rank, slot) in hanging.enumerated() {
             // A mark's SIZE is its own word's standing; only its lean is hashed.
             let grain = noise("\(mark.seed)-\(rank)", 41)
-            let size = CanopyMark.size(base: base, reach: shown.reach(rank)) * arriving.scale(rank)
+            let size = CanopyMark.size(base: base, strength: shown.strength(rank)) * arriving.scale(rank)
             guard size > 0.2 else { continue }
             let angle = CanopyMark.lean(slot, grain: grain)
             if rank < shown.fruit {

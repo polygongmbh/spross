@@ -31,7 +31,7 @@ class AreaGrowthTests {
         assertEquals(StageCounts(fresh = 1, growing = 1, lapsed = 1, settled = 1, matured = 1), area.stages)
         assertEquals(1, area.queued)
         assertEquals(4, area.met)
-        assertEquals(area.reaches.sortedDescending(), area.reaches, "most-grown first")
+        assertEquals(area.strengths.sortedDescending(), area.strengths, "most-grown first")
         assertTrue(area.answeredToday)
         assertTrue(trees(state).getValue("other").isBare, "an area never opened")
     }

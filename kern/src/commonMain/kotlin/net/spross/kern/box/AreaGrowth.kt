@@ -9,7 +9,7 @@ import kotlin.math.min
  * The unit is the AREA: every word the learner has met stands in exactly one of the four
  * met stages, so the stages add up to the words the tree carries and nothing is counted twice.
  * Ranked most-grown first — matured, then settled, growing, fresh — which is the
- * order [reaches] is in and the order [TreeTransition.changedRanks] counts in.
+ * order [strengths] is in and the order [TreeTransition.changedRanks] counts in.
  */
 data class AreaGrowth(
     val area: String,
@@ -20,7 +20,7 @@ data class AreaGrowth(
     /** Something here was answered today. */
     val answeredToday: Boolean,
     /** How far each met word has come, 0…1, most-grown first — one entry per met word. */
-    val reaches: List<Double>,
+    val strengths: List<Double>,
 ) {
     /** Every word on the tree: the active words short of the lapsed ones, which hang nowhere. */
     val met: Int get() = stages.active - stages.lapsed
@@ -70,7 +70,7 @@ data class TreeTransition(val before: AreaGrowth, val after: AreaGrowth) {
         ),
         queued = min(before.queued, after.queued),
         answeredToday = before.answeredToday,
-        reaches = before.reaches,
+        strengths = before.strengths,
     )
 
     /** How many ranks were already standing when the round began; from here on each is new. */
@@ -86,7 +86,7 @@ data class TreeTransition(val before: AreaGrowth, val after: AreaGrowth) {
 }
 
 /** How far one word has come, 0…1, on a log scale — stability grows multiplicatively. */
-fun CardGrowth.reach(maximumIntervalDays: Int): Double {
+fun CardGrowth.strength(maximumIntervalDays: Int): Double {
     if (stability <= 1.0 || maximumIntervalDays <= 1) return 0.0
     return min(1.0, ln(stability) / ln(maximumIntervalDays.toDouble()))
 }
@@ -133,17 +133,17 @@ private class AreaTally {
     val stages = StageTally()
     var queued = 0
     var answeredToday = false
-    val reaches = mutableListOf<Double>()
+    val strengths = mutableListOf<Double>()
 
     fun add(entry: CardGrowth, maximumIntervalDays: Int) {
         if (entry.touchedToday) answeredToday = true
         if (entry.stage == GrowthStage.Queued) queued += 1
         if (stages.add(entry.stage, entry.stability) && entry.stage != GrowthStage.Lapsed) {
-            reaches += entry.reach(maximumIntervalDays)
+            strengths += entry.strength(maximumIntervalDays)
         }
     }
 
-    // why: most-grown first — the stages ARE stability bands, so sorting by reach
+    // why: most-grown first — the stages ARE stability bands, so sorting by strength
     // reproduces them and entry n belongs to rank n.
-    fun tree(area: String) = AreaGrowth(area, stages.counts(), queued, answeredToday, reaches.sortedDescending())
+    fun tree(area: String) = AreaGrowth(area, stages.counts(), queued, answeredToday, strengths.sortedDescending())
 }

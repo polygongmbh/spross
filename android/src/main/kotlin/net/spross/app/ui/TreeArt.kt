@@ -109,9 +109,9 @@ internal class TreeArt(
         val leafy = heavy + tree.stages.growing
         for ((rank, slot) in hanging.withIndex()) {
             val grain = noise(seed, rank * 41 + 7)
-            val reach = tree.reaches.getOrElse(rank) { 0.4 }.toFloat()
+            val strength = tree.strengths.getOrElse(rank) { 0.4 }.toFloat()
             // A mark's SIZE is its own word's standing; only its lean is hashed.
-            val size = base * (0.74f + 0.62f * reach) * scale(rank)
+            val size = base * (0.74f + 0.62f * strength) * scale(rank)
             if (size <= 0.2f) continue
             val turned = slot.angle + (grain - 0.5f) * 0.9f
             val lean = atan2(sin(turned) - 0.2f, cos(turned))

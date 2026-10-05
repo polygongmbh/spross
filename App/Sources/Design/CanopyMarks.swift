@@ -63,7 +63,7 @@ extension TreeShapes {
 
 // MARK: - Mark geometry
 //
-// How big a mark is drawn and how far it reaches past its slot — shared by the
+// How big a mark is drawn, by its word's strength, and how far it reaches past its slot — shared by the
 // drawing and the FIT, since a skeleton fitted flush to its box hangs its
 // outermost marks half outside it.
 
@@ -72,8 +72,8 @@ enum CanopyMark {
     static func base(pitch: CGFloat) -> CGFloat { max(2.4, pitch * 0.85) }
 
     /// One mark's size — its own word's standing, against that base.
-    static func size(base: CGFloat, reach: Double) -> CGFloat {
-        base * CGFloat(0.74 + 0.62 * reach)
+    static func size(base: CGFloat, strength: Double) -> CGFloat {
+        base * CGFloat(0.74 + 0.62 * strength)
     }
 
     /// Which way the mark faces: out from its wood, a touch upward, with a hashed turn.
