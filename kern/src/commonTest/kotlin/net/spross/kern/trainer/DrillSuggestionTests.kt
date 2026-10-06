@@ -72,10 +72,10 @@ class DrillSuggestionTests {
     }
 
     @Test
-    fun settledWordsSteerTowardTheWordScramble() {
+    fun settledWordsSteerTowardADrillOverWords() {
         val threeDaysAgo = Drill.entries.map { standing(it, ranOn = 17) }
         val pick = suggest(threeDaysAgo, BoxFacts(settledWords = 150, newScript = true))
-        assertEquals(Drill.WordScramble, pick?.drill)
+        assertTrue(pick?.drill in setOf(Drill.WordScramble, Drill.Opposites), "picked ${pick?.drill}")
         assertEquals(Reason.WordsSettled, pick?.reason)
     }
 

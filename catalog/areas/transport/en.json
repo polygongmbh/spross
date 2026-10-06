@@ -25,6 +25,7 @@
   "rail": { "text": "rail" },
   "fare": { "text": "fare" },
   "to-get-off": { "text": "to get off" },
+  "to-get-on": { "text": "to get on" },
   "the-bus-is-coming-soon": { "text": "The bus is coming soon." },
   "when-does-the-train-leave": { "text": "When does the train leave?" },
   "how-much-is-the-fare": { "text": "How much is the fare?" },

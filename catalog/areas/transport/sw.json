@@ -37,6 +37,7 @@
   "rail": { "text": "reli", "grammar": { "plural": "=" } },
   "fare": { "text": "nauli", "grammar": { "plural": "=" } },
   "to-get-off": { "text": "kushuka" },
+  "to-get-on": { "text": "kupanda" },
   "the-bus-is-coming-soon": { "text": "Basi linakuja sasa hivi.", "orders": ["Sasa hivi basi linakuja."] },
   "when-does-the-train-leave": { "text": "Treni inaondoka lini?" },
   "how-much-is-the-fare": { "text": "Nauli ni ngapi?" },

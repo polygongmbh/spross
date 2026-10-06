@@ -10,7 +10,7 @@ in the code, in the string keys and here:
 ```
 Trainer   the section           kern/trainer/, trainer.* keys, the store
  └ Hub    one card, one screen  the Home card and its chips
-    └ Drill   one of six        a chip
+    └ Drill   one of seven      a chip
        └ Overview   its page    picks, start, reference
           └ Run                 one sitting
 ```
@@ -28,15 +28,16 @@ Nothing wears a prefix one scope wider than what it serves.
 
 ## The hub, and what a Sprosse is
 
-- **The hub card offers SIX entries** -- numbers, letters, the atlas, the calendar
-  and the two scrambles.
+- **The hub card offers SEVEN entries** -- numbers, letters, the atlas, the calendar,
+  the two scrambles and the opposites.
   A chip is up exactly while its entry can offer something --
   counting content, an alphabet file, a joined atlas or calendars,
-  a settled word long enough to scramble or a phrase of three words
+  a settled word long enough to scramble, a phrase of three words
+  or enough opposite pairs whose both words have arrived
   (`../kern/docs/turns.md`) --
   and the hub offers only languages with authored content.
 - **The roster is kern's `Drill`, and its order is the chip order.**
-  The six are enumerated there and nowhere else:
+  The seven are enumerated there and nowhere else:
   what each entry gates on, the chip it earns, the glyph it wears and the key that names it
   all key off that one list.
   A glyph, a title, a route and a layout stay the platform's.
@@ -80,7 +81,7 @@ Nothing wears a prefix one scope wider than what it serves.
 
 ## The suggestion
 
-- **Home names ONE drill, so six chips are never the question.**
+- **Home names ONE drill, so seven chips are never the question.**
   It is named once the day has answered more cards than are still due,
   none left being the plain case of that (`DrillSuggestion.shown`).
 - **A named drill leads the day's card** (`DayLead`):
@@ -96,7 +97,7 @@ Nothing wears a prefix one scope wider than what it serves.
   local days since the drill last ran, full after a week, a drill never run counting as longest ago;
   what the box would get out of it --
   letters while the learned script is new and the box young, numbers while the box is young,
-  the scrambles once enough words have settled;
+  the scrambles and the opposites once enough words have settled;
   and how much of its ladder is left.
   The card says why in the words of whichever term carried it.
 - **It turns over with the greeting and never between renders**:
@@ -167,7 +168,7 @@ Nothing wears a prefix one scope wider than what it serves.
   and Zahlen counts its Sprosse in digits.
   The number is never trimmed to the rows on the page:
   a Sprosse goes on counting past the last named one (`DrillRamp.step`).
-- **The two scrambles have no page to wear a ladder on, and fast-climb one anyway.**
+- **The two scrambles and the opposites have no page to wear a ladder on, and fast-climb one anyway.**
   A run opens at Sprosse 1 and passes each Sprosse an earlier run cleared on one clean answer
   until its own first slip (`../kern/docs/turns.md` storage contract), filed per learned language.
   Nothing overrides where it opens: there is no row to tap and no direction to turn.
@@ -179,7 +180,7 @@ Nothing wears a prefix one scope wider than what it serves.
   a stretch of answers since it opened or last went on;
   something new after a shorter stretch --
   a Sprosse cleared for the first time
-  (climbed off in the scrambles and the letters,
+  (climbed off in the scrambles, the opposites and the letters,
   answered out in the run's own direction on the atlas and the calendar,
   climbed past where the exercise stood in numbers),
   or the standing answer-streak record beaten (numbers, atlas, calendar);
@@ -195,18 +196,18 @@ Nothing wears a prefix one scope wider than what it serves.
   so a ladder answered out hands its figures over.
 - **A run is a FULL screen however it was started, and its X is the one way out.**
   The four overviews open theirs in a cover;
-  the two scrambles the hub opens directly wear the same one.
+  the scrambles and the opposites the hub opens directly wear the same one.
 - **A closed run has no screen of its own; a paused one shows its figures in place.**
   The endless drills hand their figures --
   answered, best answer streak, whether the record fell --
   to the page that started them;
   the page wears them as one tile above the picks and scrolls up to meet it.
-  The scrambles, opened straight from the hub, leave their tile on the hub card,
+  The scrambles and the opposites, opened straight from the hub, leave their tile on the hub card,
   and only after a run long enough to report (`DrillRunSummary.worthReporting`).
   The pause counts what was answered and names only what the stretch reached:
   the climb from the Sprosse it opened on, and a record beaten.
 - **Only the numbers, atlas and calendar ladders keep a RECORD of their own** --
   the longest clean answer streak and the most answers one run took.
-  The letter drill and the two scrambles keep none,
+  The letter drill, the two scrambles and the opposites keep none,
   and no drill books a review or touches a schedule (`../kern/README.md`),
   so a run costs the box nothing and can be closed at any moment.

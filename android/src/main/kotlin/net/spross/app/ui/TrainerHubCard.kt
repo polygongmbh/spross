@@ -29,6 +29,7 @@ import net.spross.app.openDates
 import net.spross.app.openLetters
 import net.spross.app.openNumbers
 import net.spross.app.startSentenceScramble
+import net.spross.app.startOpposites
 import net.spross.app.startWordScramble
 import net.spross.app.trainerHubOffered
 import net.spross.kern.trainer.Drill
@@ -50,11 +51,11 @@ data class HubChip(
  * The trainer hub: free practice, with no schedule and no limit — open ground beside the
  * tended box, where no run ever books a review.
  *
- * Up to SIX entries — kern's [Drill] roster, in its order — on one row while there are no
+ * Up to SEVEN entries — kern's [Drill] roster, in its order — on one row while there are no
  * more than three of them and on two lines past that ([chipRows]).
  * The four that have reading matter open a PAGE rather than a run —
- * the reading and the drill it prepares you for are one surface — where the two scrambles,
- * whose material is the box itself, open their run. Each is its own DRILL, and earns a chip
+ * the reading and the drill it prepares you for are one surface — where the two scrambles
+ * and the opposites, whose material is the box itself, open their run. Each is its own DRILL, and earns a chip
  * because it asks a distinct skill; what each one gates on is `DrillAvailability`.
  * A card with no entry at all is absent rather than empty (`docs/drills.md`).
  */
@@ -89,11 +90,11 @@ fun TrainerHubCard(model: AppModel) {
 
 /**
  * The chips cut into lines. Three or fewer stand on one; past that the card breaks into
- * TWO, `ceil(n/2)` above and `floor(n/2)` below — 4 stand 2+2, 5 stand 3+2, 6 stand 3+3 —
+ * TWO, `ceil(n/2)` above and `floor(n/2)` below — 4 stand 2+2, 5 stand 3+2, 6 stand 3+3, 7 stand 4+3 —
  * and each line keeps the equal-width chips one line carries on its own.
  *
- * The break is DRAWN rather than discovered: a [Row] overflows rather than wrapping, and six
- * chips sharing one would be six slivers of a word apiece.
+ * The break is DRAWN rather than discovered: a [Row] overflows rather than wrapping, and seven
+ * chips sharing one would be seven slivers of a word apiece.
  */
 fun chipRows(chips: List<HubChip>): List<List<HubChip>> = when {
     chips.isEmpty() -> emptyList()
@@ -129,6 +130,7 @@ internal val Drill.emoji: String
         Drill.Dates -> "📅"
         Drill.WordScramble -> "🔀"
         Drill.SentenceScramble -> "🧩"
+        Drill.Opposites -> "↔️"
     }
 
 /** What each entry is called, in the chrome language. */
@@ -139,6 +141,7 @@ internal fun Drill.title(chrome: Chrome): String = when (this) {
     Drill.Dates -> chrome.trainerDrillDates
     Drill.WordScramble -> chrome.trainerDrillWordScramble
     Drill.SentenceScramble -> chrome.trainerDrillSentenceScramble
+    Drill.Opposites -> chrome.trainerDrillOpposites
 }
 
 /**
@@ -152,6 +155,7 @@ internal fun AppModel.open(drill: Drill): Unit = when (drill) {
     Drill.Dates -> openDates()
     Drill.WordScramble -> startWordScramble()
     Drill.SentenceScramble -> startSentenceScramble()
+    Drill.Opposites -> startOpposites()
 }
 
 /**

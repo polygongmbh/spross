@@ -7056,6 +7056,23 @@
         }
       }
     },
+    "trainer.drill.opposites" : {
+      "comment" : "hub chip: typing the opposite of a word in the language being learned",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gegenteile"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opposites"
+          }
+        }
+      }
+    },
     "trainer.drill.sentenceScramble" : {
       "comment" : "hub chip: putting a phrase's words back in order",
       "localizations" : {

@@ -119,7 +119,8 @@ and text reaches a machine only inside an intent — never as state.
   `close(state, …) → summary + bookings`.
   `NumbersRun` drives the numbers/clock/forms/phrases trainer, `LetterDrillRun` the letter drill,
   `CountryDrillRun` the atlas, `DateDrillRun` the calendar,
-  `WordScrambleRun` the spelling scramble and `SentenceScrambleRun` the word-order one.
+  `WordScrambleRun` the spelling scramble, `SentenceScrambleRun` the word-order one
+  and `OppositesRun` the opposites drill.
   Each keeps its own CONCRETE draw type: they cross to Swift, where a generic arrives opaque,
   so there is no shared `ScrambleRun<T>` however alike two of them read.
 - **One injected `Random` per run** feeds every draw — task, exercise, phrase frame, direction flip,
@@ -148,7 +149,7 @@ and text reaches a machine only inside an intent — never as state.
   what outlives it is the Sprosse, as `clearedSprossen` on the close, and there are two ways to earn one.
   The atlas and the calendar ENUMERATE a Sprosse and check it off (`DrillSolved.cleared`);
   a drawn Sprosse is never cleared that way.
-  The two scrambles draw out of a pool that grows with the box, so what they book is the CLIMB,
+  The two scrambles and the opposites draw out of a pool that grows with the box, so what they book is the CLIMB,
   and so does the letter drill, whose formats ask thirty prompts where its ramp climbs on two:
   `DrillSprossen` clears a Sprosse the run left UPWARD,
   whether on the wins the ladder asks for or by being answered out.
@@ -179,15 +180,15 @@ and text reaches a machine only inside an intent — never as state.
   keys byte-identical across the two stores).
   Every closed run of a drill also stamps its epoch millis under `trainer.lastRun.<drill>.<language>`,
   one key per DRILL whatever its selection (`DrillSuggestion.LAST_RUN_PREFIX`).
-  The atlas, the calendar, both scrambles and the letter drill (tile and typed Sprossen only) all keep that mask;
-  the scrambles keep NOTHING ELSE — no answer-streak record, so their `newRecord` is always false.
+  The atlas, the calendar, both scrambles, the opposites and the letter drill (tile and typed Sprossen only) all keep that mask;
+  the scrambles and the opposites keep NOTHING ELSE — no answer-streak record, so their `newRecord` is always false.
   `close` returns only bookings that beat the standing value (strictly greater);
   the platform writes blindly — except the cleared set, which it ORs into the mask it holds.
   Where a typed run OPENS is kern's too: the lowest Sprosse the mask does not hold
   (`NumbersMode.entrySprosse`), or the one the learner tapped — which may be that entry or
   anything below it, or a Sprosse some run reached, never one they have not been on
   (`NumbersMode.openable`).
-  The scrambles take the stored mask as a plain `cleared` on their run config and offer no tap at all:
+  The scrambles and the opposites take the stored mask as a plain `cleared` on their run config and offer no tap at all:
   a ladder nobody can see named is a ladder nobody needs to override.
   They open at 1 instead and FAST-CLIMB the mask:
   a Sprosse it holds passes on one clean answer until the run's first miss or almost,
@@ -201,7 +202,7 @@ and text reaches a machine only inside an intent — never as state.
 - **Closing books exactly as Weiter would** — a pending answer keeps its earned outcome,
   never upgraded (a hint-assisted clean answer closes almost) and never lost;
   a revealed-but-unconfirmed answer books nothing.
-  A drill with no STREAK record of its own — the letter drill and both scrambles — closes
+  A drill with no STREAK record of its own — the letter drill, both scrambles and the opposites — closes
   `newRecord` false, which drops the record line and the celebration with it.
 - **No drill books an FSRS review, and none touches a schedule.**
   Transcription is not recall, and neither is arrangement: a word typed back from a hearing, a
@@ -243,3 +244,10 @@ and text reaches a machine only inside an intent — never as state.
   Both ladders STOP at their ceiling rather than counting on past it the way the other drills' do
   (`DrillRamp.step`'s `top`),
   since a number there would promise words or phrases that do not exist; answering the top Sprosse out ends the run.
+- `OppositesAvailability.report(box, pairs)` is the opposites drill's gate, over the catalog's
+  `oppositePairs`: a pair is askable once BOTH its words have arrived (`BoxEngine.arrivedCardIds`),
+  and one prompt stands per FORM the target writes, so concepts written alike merge
+  and every opposite of every one of them answers it, held or not.
+  Its Sprossen are bands that overlap nothing, like the sentence scramble's:
+  adjectives, then verbs and nouns, then every prompt with more than one opposite.
+  `OppositesRun.grade` refuses the prompt itself before the typo budget can read it as a slip of its opposite.

@@ -38,6 +38,8 @@
   "to-read": { "text": "lire" },
   "to-relax": { "text": "se détendre", "accepts": ["se relaxer"] },
   "to-tidy-up": { "text": "ranger" },
+  "to-move-in": { "text": "emménager" },
+  "to-move-out": { "text": "déménager" },
   "to-water-plants": { "text": "arroser les plantes" },
   "to-play": { "text": "jouer" },
   "to-talk": {

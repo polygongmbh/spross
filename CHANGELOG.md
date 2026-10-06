@@ -11,6 +11,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - The word and sentence scrambles now leave a result tile on the practice card once a run has taken a few answers.
 - Every drill now celebrates a finished stretch with confetti and a cheer, on its pause and when you close a run of a few answers, not only when you beat a record.
 - On Android, finished rounds, drill pauses and closed drill runs now rain confetti, as on iPhone.
+- A new Opposites drill asks for the opposite of a word you know, and accepts every opposite where one word carries two meanings, like Swahili kulia for right and to cry.
 
 ## 8.3.1 — 2026-10-05
 

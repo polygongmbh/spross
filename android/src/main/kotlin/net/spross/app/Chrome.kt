@@ -277,6 +277,7 @@ interface Chrome {
 
     // ── The two scrambles: the chips, and the tile bank one of them is arranged on ──
     val trainerDrillWordScramble: String
+    val trainerDrillOpposites: String
     val trainerDrillSentenceScramble: String
     /** The empty answer row wears it — the whole instruction a tile bank needs. */
     val scrambleSentenceHint: String

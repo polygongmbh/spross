@@ -21,6 +21,8 @@
   "to-read": { "text": "legi" },
   "to-relax": { "text": "malstreĉiĝi", "accepts": ["senstreĉiĝi"] },
   "to-tidy-up": { "text": "ordigi", "accepts": ["enordigi"] },
+  "to-move-in": { "text": "enloĝiĝi" },
+  "to-move-out": { "text": "elloĝiĝi" },
   "to-water-plants": { "text": "akvumi la plantojn" },
   "to-play": { "text": "ludi" },
   "to-talk": {

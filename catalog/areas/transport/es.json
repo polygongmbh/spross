@@ -46,6 +46,7 @@
   "rail": { "text": "riel", "grammar": { "gender": "el", "plural": "rieles" } },
   "fare": { "text": "tarifa", "grammar": { "gender": "la" } },
   "to-get-off": { "text": "bajarse", "accepts": ["bajar"], "notes": { "es": "Reflexivo: me bajo aquí." } },
+  "to-get-on": { "text": "subirse", "accepts": ["subir"] },
   "the-bus-is-coming-soon": {
    "text": "El autobús llega enseguida.",
    "accepts": ["El autobús viene enseguida.", "Ahora viene el autobús."],

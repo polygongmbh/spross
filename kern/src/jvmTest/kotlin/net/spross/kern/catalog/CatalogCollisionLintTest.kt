@@ -151,6 +151,10 @@ class CatalogCollisionLintTest {
                 // names only the direction of travel and `el rumbo` a heading, so there is
                 // no honest alternative; directions/direction carries the de note naming
                 // the second sense, the ndege treatment.
+                // Reviewed 2026-10-06: eo `eniri` is entering a room AND boarding a vehicle, the
+                // en-/el- pair eo builds both from (eniri/eliri); de/en/fr split them (hereinkommen/einsteigen,
+                // to enter/to get on, entrer/monter). `enbusiĝi` names only the bus, so it stays an accepts.
+                "eo eniri: hall/to-enter, transport/to-get-on",
                 "es dirección: directions/direction, personal-details/address",
                 // Reviewed 2026-09-05: es `esperar` is to wait AND to hope — de/en/eo/fr/it/sw/uk
                 // all split the pair (warten/hoffen, attendre/espérer, kusubiri/kutumaini).

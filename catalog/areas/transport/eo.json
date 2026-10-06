@@ -33,6 +33,7 @@
    "accepts": ["elbusiĝi", "eliri el la buso"],
    "notes": { "eo": "eliri el la vagono: Mi eliras ĉe la sekva haltejo." }
   },
+  "to-get-on": { "text": "eniri", "accepts": ["enbusiĝi"] },
   "the-bus-is-coming-soon": {
    "text": "La aŭtobuso tuj venas.",
    "accepts": ["La aŭtobuso baldaŭ venas.", "La buso tuj venas."],

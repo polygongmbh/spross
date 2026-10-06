@@ -40,6 +40,8 @@ class Catalog internal constructor(
     internal val countryNames: Map<Language, Map<String, CountryName>>,
     /** Keyed by language, only where `dates/<lang>.json` exists — the dates drill's registry. */
     internal val dateCalendars: Map<Language, DateCalendar>,
+    /** `opposites/pairs.json` in authored order, empty without the folder — the opposites drill's content. */
+    val oppositePairs: List<OppositePair> = emptyList(),
 ) {
     /** Flattened default area order (groups top-to-bottom, areas as listed). */
     val areaNames: List<String> = areas.map { it.name }

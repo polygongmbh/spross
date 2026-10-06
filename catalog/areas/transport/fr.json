@@ -34,6 +34,7 @@
   "rail": { "text": "rail", "grammar": { "gender": "le", "plural": "-s" } },
   "fare": { "text": "tarif", "accepts": ["prix du billet"], "grammar": { "gender": "le" } },
   "to-get-off": { "text": "descendre", "notes": { "fr": "descendre du bus, du train · monter dans le bus." } },
+  "to-get-on": { "text": "monter" },
   "the-bus-is-coming-soon": {
    "text": "Le bus arrive bientôt.",
    "accepts": ["Le bus arrive tout de suite."],

@@ -72,6 +72,9 @@ struct TrainerHubView: View, LanguageNaming {
         SentenceScrambleAvailability(model: model).drillAvailable
     }
 
+    /// Whether the box holds enough pairs whose both words have arrived.
+    var oppositesAvailable: Bool { OppositesAvailability(model: model).drillAvailable }
+
     var body: some View {
         Group {
             if !chips.isEmpty {
@@ -101,6 +104,8 @@ struct TrainerHubView: View, LanguageNaming {
                 WordScrambleView(model: model, language: language, onFinish: report)
             case let .sentenceScramble(language):
                 SentenceScrambleView(model: model, language: language, onFinish: report)
+            case let .opposites(language):
+                OppositesView(model: model, language: language, onFinish: report)
             }
         }
         .environment(\.locale, model.knownLocale)

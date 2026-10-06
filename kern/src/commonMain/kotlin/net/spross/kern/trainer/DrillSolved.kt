@@ -86,4 +86,10 @@ internal object DrillSolved {
 
     /** The same key from the parts, for a draw that is choosing what to build. */
     fun wordKey(sprosse: Int, cardId: String): String = "word:$sprosse:$cardId"
+
+    /** An opposites prompt stands in one band only, so its card alone carries the identity. */
+    fun key(task: OppositesTask): String = oppositeKey(task.cardId)
+
+    /** The same key from the parts, for a draw that is choosing what to build. */
+    fun oppositeKey(cardId: String): String = "opposite:$cardId"
 }

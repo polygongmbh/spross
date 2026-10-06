@@ -14,14 +14,14 @@ import net.spross.kern.model.fnv1a64
 import net.spross.kern.session.SessionOffer
 
 /**
- * The ONE drill Home names, so the hub's six chips are a choice nobody has to make.
+ * The ONE drill Home names, so the hub's seven chips are a choice nobody has to make.
  *
  * Every drill the hub offers stands as a candidate unless its ladder is mastered, and each
  * scores three terms added together:
  * - **how long since it last ran**, in local days, saturating at [RECENCY_DAYS] —
  *   a drill never run scores the full term, the same as one untouched for a week;
  * - **what the box would get out of it** ([benefit]) — letters while a new script is young,
- *   numbers while the box is, the scrambles once there are settled words to scramble;
+ *   numbers while the box is, the scrambles and the opposites once there are settled words;
  * - **how much of its ladder is left** ([Ladder.share]), at [LADDER_WEIGHT].
  *
  * A seeded nudge of at most [NUDGE] per drill, keyed on the greeting's [partSlot], turns
@@ -89,6 +89,7 @@ object DrillSuggestion {
             Drill.Numbers -> 0.6 * early
             Drill.WordScramble -> 0.8 * fraction(facts.settledWords, SCRAMBLE_WORDS)
             Drill.SentenceScramble -> 0.8 * fraction(facts.settledWords, 2 * SCRAMBLE_WORDS)
+            Drill.Opposites -> 0.8 * fraction(facts.settledWords, SCRAMBLE_WORDS)
             Drill.Countries, Drill.Dates -> 0.0
         }
         return maxOf(BASE_BENEFIT, steer)
@@ -102,7 +103,7 @@ object DrillSuggestion {
         /** Numbers, while the box is young. */
         EarlyNumbers,
 
-        /** A scramble, once the box holds enough settled words. */
+        /** A scramble or the opposites, once the box holds enough settled words. */
         WordsSettled,
         NeverRun,
 
@@ -131,7 +132,7 @@ object DrillSuggestion {
         val share: Double get() = if (total <= 0) 0.5 else left.coerceIn(0, total).toDouble() / total
 
         companion object {
-            /** A ladder that files its cleared Sprossen: the atlas, the calendar, both scrambles. */
+            /** A ladder that files its cleared Sprossen: the atlas, the calendar, both scrambles, the opposites. */
             fun cleared(cleared: Set<Int>, top: Int): Ladder =
                 Ladder((1..maxOf(1, top)).count { it !in cleared }, maxOf(1, top))
 

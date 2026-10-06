@@ -46,6 +46,7 @@ import net.spross.app.ui.LettersOverviewScreen
 import net.spross.app.ui.ListeningScreen
 import net.spross.app.ui.NumbersOverviewScreen
 import net.spross.app.ui.OnboardingScreen
+import net.spross.app.ui.OppositesScreen
 import net.spross.app.ui.SentenceScrambleScreen
 import net.spross.app.ui.SessionScreen
 import net.spross.app.ui.SettingsScreen
@@ -177,6 +178,7 @@ private fun Root(model: AppModel = viewModel()) {
                         Screen.LetterDrill -> LetterDrillScreen(model)
                         Screen.WordScramble -> WordScrambleScreen(model)
                         Screen.SentenceScramble -> SentenceScrambleScreen(model)
+                        Screen.Opposites -> OppositesScreen(model)
                         is Screen.CountryDrill -> CountryDrillScreen(model, screen.reverse, screen.fast, screen.sprosse)
                         is Screen.DateDrill -> DateDrillScreen(model, screen.reverse, screen.fast, screen.sprosse)
                         Screen.Settings -> SettingsScreen(model)
