@@ -32,6 +32,17 @@ class TimedRunTest {
     }
 
     @Test
+    fun aCleanAnswerEarnsASecondPerNonZeroDigitOfTheAskedNumber() {
+        val run = at(4)
+        val digits = run.currentTask.prompt.count { it in '1'..'9' }
+        assertEquals(digits, run.answered().earnedSeconds)
+        assertEquals(0, run.missed().earnedSeconds, "a miss earns nothing")
+        val task = NumbersTask(NumbersReading.Cardinal, "de", prompt = "1050", accepted = listOf("x"), display = "x")
+        assertEquals(2, TimedRun.bonusSeconds(task, correct = true, clean = true), "zeros earn nothing")
+        assertEquals(0, TimedRun.bonusSeconds(task, correct = true, clean = false), "an almost earns nothing")
+    }
+
+    @Test
     fun timeUpEndsOnlyATimedRun() {
         assertTrue(at(1).send(NumbersIntent.TimeUp).finished)
         val plain = NumbersRun.open(NumbersMode(NumbersExercise.Counting, "de"), 0, emptyMap(), Random(5))

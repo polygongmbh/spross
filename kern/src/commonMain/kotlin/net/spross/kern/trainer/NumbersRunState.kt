@@ -109,6 +109,8 @@ data class NumbersRunState(
     override val finished: Boolean,
     /** Every clean answer's Sprosse, summed ([TimedRun.points]) — read only where [timed]. */
     val score: Int = 0,
+    /** Seconds clean answers added to the clock ([TimedRun.bonusSeconds]) — read only where [timed]. */
+    val earnedSeconds: Int = 0,
     /** The script a challenge run asks from instead of the ramp's draw; null for every other run. */
     val challenge: NumbersChallenge? = null,
     /**

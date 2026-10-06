@@ -109,8 +109,8 @@ data class NumbersChallenge(
     }
 
     companion object {
-        /** Questions a script holds — more than a minute can answer. */
-        const val LENGTH: Int = 60
+        /** Questions a script holds — more than a run with its earned seconds can answer. */
+        const val LENGTH: Int = 150
 
         private const val SEED_BITS = 25
         private const val CHECK_CHARS = 2

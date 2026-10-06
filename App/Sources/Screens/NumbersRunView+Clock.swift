@@ -1,16 +1,24 @@
 import SwiftUI
 import SprossKern
 
-/// A timed run's clock; kern sets the length (`TimedRun.SECONDS`) and handles `NumbersIntent.TimeUp`.
+/// A timed run's clock; kern sets the length (`TimedRun.SECONDS` plus `earnedSeconds`)
+/// and handles `NumbersIntent.TimeUp`.
 extension NumbersRunView {
+
+    /// When the clock runs out, pushed out by every second an answer earned; nil until on screen.
+    var deadline: Date? {
+        clockStart?.addingTimeInterval(TimeInterval(Int(TimedRun.shared.SECONDS) + Int(run.earnedSeconds)))
+    }
 
     /// Started with the run on screen and canceled with it.
     func runClock() async {
-        guard run.timed, deadline == nil else { return }
-        let seconds = Int(TimedRun.shared.SECONDS)
-        deadline = .now.addingTimeInterval(TimeInterval(seconds))
-        try? await Task.sleep(for: .seconds(seconds))
-        guard !Task.isCancelled else { return }
+        guard run.timed, clockStart == nil else { return }
+        clockStart = .now
+        // why: an answer booked while asleep moves the deadline, so wake and look again.
+        while let deadline, deadline > .now {
+            try? await Task.sleep(for: .seconds(deadline.timeIntervalSinceNow))
+            guard !Task.isCancelled else { return }
+        }
         dispatch(NumbersIntent.TimeUp.shared)
     }
 

@@ -192,7 +192,8 @@ Nothing wears a prefix one scope wider than what it serves.
   and wears the round's exit pair:
   one closes the run as the X does, the other goes on with the SAME run --
   prompts asked, ladder, answer streak -- and starts the next stretch.
-  A timed run ends on its clock and never pauses.
+  A timed run ends on its clock and never pauses;
+  each clean answer adds a second to that clock per non-zero digit of the number it asked.
   What ends a run unasked is running OUT of questions:
   a run asks each prompt once (`../kern/docs/turns.md`),
   so a ladder answered out hands its figures over.

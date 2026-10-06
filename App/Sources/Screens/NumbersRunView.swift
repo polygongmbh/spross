@@ -51,8 +51,8 @@ struct NumbersRunView: View, LanguageNaming {
     @State var reader = Reader()
     /// Second focus attempt for a field that remounts (see focusAnswerField).
     @State var focusRetry: Task<Void, Never>?
-    /// When a timed run's clock runs out; nil otherwise and until on screen.
-    @State var deadline: Date?
+    /// When a timed run's clock started; nil otherwise and until on screen.
+    @State var clockStart: Date?
     @FocusState var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) var reduceMotion
     @Environment(\.locale) var locale

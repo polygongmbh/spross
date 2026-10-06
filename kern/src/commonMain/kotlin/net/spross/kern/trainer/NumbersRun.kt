@@ -324,6 +324,7 @@ object NumbersRun {
                 ?: state.seenFormKeys,
             core = state.core.book(correct, clean, DrillSolved.key(exercise, state.currentTask)),
             score = state.score + TimedRun.points(state.currentSprosse, correct, clean),
+            earnedSeconds = state.earnedSeconds + TimedRun.bonusSeconds(state.currentTask, correct, clean),
         )
     }
 

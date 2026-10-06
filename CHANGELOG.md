@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- A right answer in a timed numbers run now adds a second to the clock for every non-zero digit of its number, so long numbers pay for the time they take.
+
 ## 8.6.0 — 2026-10-09
 
 - In the sentence scramble, a word order that is accepted but differs from the usual one now shows the usual order and the translation.

@@ -93,14 +93,16 @@ private fun sprosseText(state: NumbersRunState, chrome: Chrome): String? {
     return line.emoji?.let { "$it $label" } ?: label
 }
 
-/** A timed run's seconds left, sending kern's intent at zero; null when untimed. */
+/** A timed run's seconds left, earned ones included, sending kern's intent at zero; null when untimed. */
 @Composable
 private fun timedClock(flow: NumbersFlow): Int? {
     if (!flow.state.timed) return null
     var left by remember { mutableIntStateOf(TimedRun.SECONDS) }
     LaunchedEffect(flow) {
-        val end = SystemClock.elapsedRealtime() + TimedRun.SECONDS * 1_000L
+        val start = SystemClock.elapsedRealtime()
         while (true) {
+            // why: read each tick, so a second an answer earns pushes the end out at once.
+            val end = start + (TimedRun.SECONDS + flow.state.earnedSeconds) * 1_000L
             val remaining = end - SystemClock.elapsedRealtime()
             left = TimedRun.secondsLeft(remaining)
             if (remaining <= 0) break
