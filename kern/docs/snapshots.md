@@ -60,7 +60,9 @@ Neighbors: the engine contract `../README.md`, what the watch and widgets draw `
   so the Android Glance widget (which links Kotlin) reads the schema rather than guessing at it,
   and rejects anything but the current `schemaVersion`.
   The iOS extension links no Kotlin and does the same lookup in `Widgets/Sources/WidgetSnapshot.swift`,
-  decoding `health` into its own Swift `StreakHealth` off the serialized case name.
+  decoding `health` into its own Swift `StreakHealth` off the serialized case name;
+  each day also carries the flame's grade for that health (`flameOpacity`, `flameSaturation`),
+  which the extension cannot ask the Kotlin enum for.
 - **WatchSnapshot** (`WatchSnapshotBuilder`): one entry per CARD with BOTH sides pre-resolved,
   plus `chromeLanguage` and `schemaVersion`;
   the watch refuses any other version whole and waits for the phone's next push, as the widget does.

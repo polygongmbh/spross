@@ -52,8 +52,12 @@ struct WordEntry: TimelineEntry {
     let words: [WidgetWord]
     let dueCount: Int
     let streak: Int
-    /// Drives the flame's icon, color and count.
+    /// Whether the flame carries a count.
     let streakHealth: StreakHealth
+    /// The flame's grade for `streakHealth`, as kern ships it; full strength in the
+    /// sample entries, which carry no snapshot.
+    var flameOpacity: Double = 1
+    var flameSaturation: Double = 1
     /// Active cards that have settled — the box's growth, not a retention score.
     let settled: Int
     /// Trailing fortnight of review counts for the header strip.
@@ -160,8 +164,10 @@ struct WordProvider: TimelineProvider {
                              primary: window[0],
                              words: sortedForDisplay(window),
                              dueCount: snapshot.dueCount(now: date),
-                             streak: streakDay.streak,
-                             streakHealth: streakDay.health,
+                             streak: streakDay?.streak ?? 0,
+                             streakHealth: streakDay?.health ?? .noRun,
+                             flameOpacity: streakDay?.flameOpacity ?? 1,
+                             flameSaturation: streakDay?.flameSaturation ?? 1,
                              settled: snapshot.allSettledCount,
                              activityDays: snapshot.recentDays(now: date),
                              chromeLanguage: snapshot.chromeLanguage)

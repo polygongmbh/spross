@@ -29,14 +29,17 @@ struct WidgetSnapshot: Decodable {
         var reviews: Int
     }
 
-    /// The streak and its health on one day, as kern resolved them.
+    /// The streak and its health on one day, as kern resolved them,
+    /// with the grade the flame wears for that health (kern `StreakHealth.flameOpacity`/`flameSaturation`).
     struct StreakDay: Decodable {
         var streak: Int
         var health: StreakHealth
+        var flameOpacity: Double
+        var flameSaturation: Double
     }
 
     /// The one version this build reads (kern `WidgetSnapshotBuilder.SCHEMA_VERSION`).
-    static let currentSchemaVersion = 9
+    static let currentSchemaVersion = 10
 
     var schemaVersion: Int
     /// The language the widget's chrome is written in, the one the app's own chrome follows.
@@ -76,15 +79,15 @@ struct WidgetSnapshot: Decodable {
     }
 
     /// The streak on `now`'s day: kern's entry for it, the last one past the end,
-    /// the first one before the start (kern `streakOn`).
-    func streakDay(now: Date, timeZone: TimeZone = .current) -> StreakDay {
+    /// the first one before the start (kern `streakOn`). Nil only for a snapshot with no
+    /// streak days at all, which kern never writes.
+    func streakDay(now: Date, timeZone: TimeZone = .current) -> StreakDay? {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timeZone
         let today = Self.dayKey(now, calendar: calendar)
         let days = streakByDay.keys.sorted()
-        guard let key = days.last(where: { $0 <= today }) ?? days.first,
-              let day = streakByDay[key] else { return StreakDay(streak: 0, health: .noRun) }
-        return day
+        guard let key = days.last(where: { $0 <= today }) ?? days.first else { return nil }
+        return streakByDay[key]
     }
 
     /// Kern day keys are ISO `yyyy-MM-dd` regardless of the device calendar.

@@ -72,8 +72,8 @@ struct ActivityStripView: View {
         // and the emoji is the only half that wears it.
         HStack(spacing: Theme.spacing.xs) {
             Text(verbatim: "🔥")
-                .grayscale(health.grayscale)
-                .opacity(health.opacity)
+                .grayscale(1 - health.flameSaturation)
+                .opacity(health.flameOpacity)
             (Text(streakDays.formatted()) + Text(verbatim: " ")
                 + Text(streakDays == 1 ? "common.day.one" : "common.day.other"))
                 .foregroundStyle(Theme.colors.accent)

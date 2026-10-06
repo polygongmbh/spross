@@ -18,24 +18,12 @@ import net.spross.kern.box.StreakHealth
  * so no two of them can say different things about one day.
  *
  * 🔥 is multi-color artwork, so the grade is worn as light and COLOR rather than as a second
- * shape: full strength where the day is answered, half-cooled where a miss would only spend
- * the run's one bridge — a flame asking for renewal without being faded out — and drained to
- * gray where it would end the run, a flame gone cold, which is the loud one. The rule itself
- * is [StreakHealth]; this only dresses it.
+ * shape; the grade itself is [StreakHealth]'s, and this only dresses it.
  */
 @Composable
 fun StreakFlame(health: StreakHealth, style: TextStyle, modifier: Modifier = Modifier) {
-    val alpha = when (health) {
-        StreakHealth.Earned -> 1f
-        StreakHealth.Bridgeable -> 0.9f
-        StreakHealth.Ending -> 0.9f
-        StreakHealth.NoRun -> 0.4f
-    }
-    val saturation = when (health) {
-        StreakHealth.Earned -> 1f
-        StreakHealth.Bridgeable -> 0.5f
-        StreakHealth.Ending, StreakHealth.NoRun -> 0f
-    }
+    val alpha = health.flameOpacity.toFloat()
+    val saturation = health.flameSaturation.toFloat()
     Text(
         "🔥",
         style = style,

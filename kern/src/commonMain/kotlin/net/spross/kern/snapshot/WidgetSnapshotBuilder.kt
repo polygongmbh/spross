@@ -27,7 +27,7 @@ import net.spross.kern.store.StoreJson
  * runs at render time. Who decodes it how: `kern/docs/snapshots.md`.
  */
 object WidgetSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 9
+    const val SCHEMA_VERSION: Int = 10
 
     /**
      * Calendar days of answer counts the snapshot carries: the activity strip's window,

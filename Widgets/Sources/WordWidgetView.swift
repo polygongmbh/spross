@@ -140,20 +140,16 @@ struct WordWidgetView: View {
         .font(.caption.weight(.semibold))
     }
 
-    /// Streak flame — icon, color and count vary with `entry.streakHealth`; count is
-    /// omitted for `.noRun` (bare restart nudge, nothing to count yet).
-    @ViewBuilder
+    /// The app's 🔥 in the grade kern ships for the day, and the count beside it;
+    /// the count is omitted for `.noRun` (bare restart nudge, nothing to count yet).
     private var flameLabel: some View {
-        switch entry.streakHealth {
-        case .earned:
-            Label("\(entry.streak)", systemImage: "flame.fill").foregroundStyle(.orange)
-        case .bridgeable:
-            Label("\(entry.streak)", systemImage: "flame.fill").foregroundStyle(.orange)
-                .grayscale(0.5).opacity(0.9)
-        case .ending:
-            Label("\(entry.streak)", systemImage: "flame").foregroundStyle(.orange)
-        case .noRun:
-            Image(systemName: "flame").foregroundStyle(.secondary)
+        HStack(spacing: 2) {
+            Text(verbatim: "🔥")
+                .grayscale(1 - entry.flameSaturation)
+                .opacity(entry.flameOpacity)
+            if entry.streakHealth != .noRun {
+                Text("\(entry.streak)").foregroundStyle(.orange)
+            }
         }
     }
 

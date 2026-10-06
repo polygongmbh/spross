@@ -10,9 +10,21 @@ import net.spross.kern.box.localDate
 import net.spross.kern.box.streakHealth
 import net.spross.kern.box.zoneOf
 
-/** The streak and its health as one render day reads them. */
+/**
+ * The streak and its health as one render day reads them, with the flame's grade
+ * ([StreakHealth.flameOpacity], [StreakHealth.flameSaturation]) spelled out
+ * for the iOS extension, which cannot ask the enum.
+ */
 @Serializable
-internal data class WidgetStreakDto(val streak: Int, val health: StreakHealth)
+internal data class WidgetStreakDto(
+    val streak: Int,
+    val health: StreakHealth,
+    val flameOpacity: Double,
+    val flameSaturation: Double,
+) {
+    constructor(streak: Int, health: StreakHealth) :
+        this(streak, health, health.flameOpacity, health.flameSaturation)
+}
 
 /**
  * The streak as each render day will read it, keyed by ISO day:
