@@ -135,8 +135,7 @@ struct ListeningView: View {
         // The press `ChipButtonStyle` would give it, by hand — see below
         // for why this chip is not a Button.
         .opacity(timerHeld ? 0.7 : 1)
-        .scaleEffect(timerHeld ? 0.96 : 1)
-        .animation(.spring(response: 0.25, dampingFraction: 0.7), value: timerHeld)
+        .press(timerHeld, .chip)
         .contentShape(Capsule())
         // why: the tap and the hold sit on the SAME view rather than a hold laid
         // over a Button. A Button claims the touch for its own press tracking,

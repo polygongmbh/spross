@@ -1,6 +1,6 @@
 package net.spross.app.ui
 
-import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.SpringSpec
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.gestures.awaitEachGesture
@@ -14,12 +14,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import kotlin.math.PI
+import kotlin.math.pow
+import net.spross.kern.design.PressKind
 
-/**
- * How far a pressed control shrinks. The canonical value — iOS's button styles all press to
- * the same 97 %, which is the point: the app has ONE press, not one per control.
- */
-private const val PRESS_SCALE = 0.97f
+/** A spring given as iOS gives it — seconds to settle and a damping fraction — in Compose's terms. */
+fun <T> responseSpring(response: Double, damping: Double): SpringSpec<T> =
+    // A spring's response converts to Compose's stiffness as (2π / response)².
+    spring(dampingRatio = damping.toFloat(), stiffness = (2 * PI / response).pow(2).toFloat())
 
 /**
  * The press a control answers with: a spring-damped shrink under the thumb.
@@ -28,10 +30,7 @@ private const val PRESS_SCALE = 0.97f
  * most of what "flat" means next to the iOS cut, where every button style presses.
  * The two run together — this adds the give, M3 keeps the ripple.
  *
- * The spring is iOS's, converted rather than re-picked: `response: 0.25` is a natural
- * frequency of 2π/0.25 ≈ 25 rad/s, so the stiffness is its square (~630) and
- * [Spring.StiffnessMediumLow] lands within a few percent of it. `dampingFraction` carries
- * straight over.
+ * How far it gives and the spring it runs are kern's [PressKind].
  *
  * The press is read from the pointer directly rather than from an interaction source, so a
  * control keeps whatever source it already owns and this stays one modifier at the call site.
@@ -43,11 +42,11 @@ private const val PRESS_SCALE = 0.97f
  * anything that was laid out against the control's real bounds.
  */
 @Composable
-fun Modifier.pressSpring(): Modifier {
+fun Modifier.pressSpring(kind: PressKind = PressKind.Action): Modifier {
     var pressed by remember { mutableStateOf(false) }
     val scale = animateFloatAsState(
-        targetValue = if (pressed) PRESS_SCALE else 1f,
-        animationSpec = spring(dampingRatio = 0.7f, stiffness = Spring.StiffnessMediumLow),
+        targetValue = if (pressed) kind.scale.toFloat() else 1f,
+        animationSpec = responseSpring(PressKind.RESPONSE, PressKind.DAMPING),
         label = "pressSpring",
     )
     return this

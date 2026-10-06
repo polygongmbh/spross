@@ -1,4 +1,5 @@
 import SwiftUI
+import SprossKern
 
 // MARK: - Shared modifiers & button styles
 
@@ -50,6 +51,16 @@ extension View {
     }
 }
 
+extension View {
+    /// A control giving way under the thumb: kern's `PressKind` names how far, and the spring it runs.
+    func press(_ isPressed: Bool, _ kind: PressKind) -> some View {
+        scaleEffect(isPressed ? kind.scale : 1)
+            .animation(.spring(response: PressKind.companion.RESPONSE,
+                               dampingFraction: PressKind.companion.DAMPING),
+                       value: isPressed)
+    }
+}
+
 /// Filled terracotta primary action. Never a default gray Button.
 struct PrimaryButtonStyle: ButtonStyle {
     var color: Color = Theme.colors.accent
@@ -63,8 +74,7 @@ struct PrimaryButtonStyle: ButtonStyle {
             .frame(minHeight: 52) // card-parity: the button's own height, not a card reserve
             .background(color, in: RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous))
             .opacity(configuration.isPressed ? 0.85 : 1)
-            .scaleEffect(configuration.isPressed ? 0.97 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+            .press(configuration.isPressed, .action)
     }
 }
 
@@ -81,8 +91,7 @@ struct SoftButtonStyle: ButtonStyle {
             .frame(minHeight: 44)
             .background(color.opacity(0.14), in: RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous))
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .scaleEffect(configuration.isPressed ? 0.97 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+            .press(configuration.isPressed, .action)
     }
 }
 
@@ -97,7 +106,6 @@ struct IconButtonStyle: ButtonStyle {
             .frame(width: 40, height: 40)
             .background(color.opacity(0.14), in: Circle())
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .scaleEffect(configuration.isPressed ? 0.9 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+            .press(configuration.isPressed, .icon)
     }
 }

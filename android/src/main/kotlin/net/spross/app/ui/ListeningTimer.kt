@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
+import net.spross.kern.design.PressKind
 
 /**
  * The bedtime, as one chip: every tap adds kern's five minutes, and a long press turns it
@@ -66,7 +67,7 @@ fun SleepTimerChip(model: AppModel) {
     val tint = if (left == null) Theme.colors.textSecondary else Theme.colors.accent
     Row(
         modifier = Modifier
-            .pressSpring()
+            .pressSpring(PressKind.Chip)
             .clip(RoundedCornerShape(percent = 50))
             .background(MaterialTheme.colorScheme.surfaceVariant)
             // why: the LENGTH is a state of the timer, so the name stays put and the

@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
 import net.spross.kern.design.ChoiceTile
 import net.spross.kern.design.ChoiceVerdict
+import net.spross.kern.design.PressKind
 
 /**
  * The 2×2 a multiple-choice question is answered off, wherever one is asked:
@@ -119,7 +120,7 @@ private fun Tile(
                 ChoiceVerdict.Wrong -> stateDescription = chrome.a11yVerdictWrong
                 null -> {}
             }
-        }.pressSpring(),
+        }.pressSpring(PressKind.Chip),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = fill,
             disabledContainerColor = fill,

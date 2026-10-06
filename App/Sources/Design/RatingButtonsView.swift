@@ -1,4 +1,5 @@
 import SwiftUI
+import SprossKern
 
 // MARK: - RatingButtonsView
 //
@@ -105,8 +106,7 @@ private struct PressableStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .scaleEffect(configuration.isPressed ? 0.95 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+            .press(configuration.isPressed, .rating)
     }
 }
 
