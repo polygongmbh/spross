@@ -107,6 +107,10 @@ install_app() {  # name  app_path  launch(0|1)
 
 if [ "$DO_BUILD" -eq 1 ] && [ "$DRY" -eq 0 ]; then
   mkdir -p "$DERIVED"
+  # why: xcodebuild holds a script phase's output until it ends, so the kern's
+  # Gradle run is built here first, streaming its tasks; the phase then finds it fresh and skips.
+  echo "Building SprossKern ($CONFIG) for device…"
+  CONFIGURATION="$CONFIG" SDK_NAME=iphoneos scripts/build-kern.sh || exit 1
   echo "Building $SCHEME ($CONFIG) for device…"
   if ! xcodebuild -project Spross.xcodeproj -scheme "$SCHEME" -configuration "$CONFIG" \
         -destination 'generic/platform=iOS' -derivedDataPath "$DERIVED" \
