@@ -10,7 +10,6 @@ extension LetterDrillView {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                streakLine
                 if let task = current {
                     // ZStack so the outgoing and incoming question overlap
                     // during the flip; .id gives each position its identity.
@@ -87,7 +86,7 @@ extension LetterDrillView {
         return model.pronounceAction(for: form, lang: task.language)
     }
 
-    private var streakLine: some View {
+    var streakLine: some View {
         DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
                         answerStreak: Int(run.answerStreak))
     }

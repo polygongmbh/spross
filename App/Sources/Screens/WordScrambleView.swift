@@ -66,7 +66,9 @@ struct WordScrambleView: View, LanguageNaming {
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
-        runScreen(asking: current != nil) {
+        runScreen(asking: current != nil,
+                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
+                                             answerStreak: Int(run.answerStreak))) {
             drillContent
         }
         // why: BOTH hooks. .onChange never fires for the FIRST question, and a

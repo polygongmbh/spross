@@ -24,7 +24,6 @@ extension NumbersRunView {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                streakLine
                 // ZStack so outgoing and incoming prompt overlap during the
                 // flip; .id gives each run position its own view identity.
                 ZStack {
@@ -60,7 +59,7 @@ extension NumbersRunView {
                        isPlaying: { model.isPronouncing($0, lang: language) })
     }
 
-    @ViewBuilder private var streakLine: some View {
+    @ViewBuilder var streakLine: some View {
         if let deadline {
             // why: a timeline redraws only this line each second.
             TimelineView(.periodic(from: .now, by: 1)) { context in

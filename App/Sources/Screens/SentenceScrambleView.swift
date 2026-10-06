@@ -71,7 +71,9 @@ struct SentenceScrambleView: View {
     }
 
     var body: some View {
-        runScreen(asking: current != nil) {
+        runScreen(asking: current != nil,
+                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
+                                             answerStreak: Int(run.answerStreak))) {
             drillContent
         }
         .onDisappear {
@@ -112,8 +114,6 @@ struct SentenceScrambleView: View {
     private var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.lg) {
-                DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
-                                answerStreak: Int(run.answerStreak))
                 if let task = current {
                     ScrambleTileBank(bank: task.shuffled,
                                      placed: run.placedAtoms,

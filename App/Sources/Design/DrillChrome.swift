@@ -16,6 +16,7 @@ extension SessionScaffold {
                         outcomes: [SessionOutcome],
                         showsMuteButton: Bool = false,
                         speaksPastMute: Bool = false,
+                        scoreLine: some View,
                         onClose: @escaping () -> Void,
                         @ViewBuilder content: () -> Content) -> SessionScaffold {
         .running(endless: true,
@@ -23,6 +24,7 @@ extension SessionScaffold {
                 counter: "\(tally.clean)/\(tally.judged)",
                 showsMuteButton: showsMuteButton,
                 speaksPastMute: speaksPastMute,
+                status: AnyView(scoreLine),
                 onClose: onClose,
                 content: content)
     }

@@ -33,6 +33,9 @@ struct SessionScaffold<Content: View>: View {
     /// A run whose sound no mute reaches (the letter drill): the low-volume
     /// hint stands whatever the switch says.
     var speaksPastMute: Bool = false
+    /// The run's own line under the bar — a drill's score line — kept still
+    /// while the content under it scrolls; nil where the bar says it all.
+    var status: AnyView?
     var onClose: () -> Void = {}
     @ViewBuilder var content: Content
 
@@ -57,6 +60,7 @@ struct SessionScaffold<Content: View>: View {
             VStack(spacing: 0) {
                 topBar
                 VolumeHint(active: speaksPastMute || (showsMuteButton && !Pronouncer.shared.muted))
+                status?.padding(.top, Theme.spacing.md)
             }
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -172,6 +176,7 @@ extension SessionScaffold {
                         counter: String? = nil,
                         showsMuteButton: Bool = false,
                         speaksPastMute: Bool = false,
+                        status: AnyView? = nil,
                         onClose: @escaping () -> Void,
                         @ViewBuilder content: () -> Content) -> SessionScaffold {
         SessionScaffold(position: endless ? outcomes.count + 1 : position,
@@ -180,6 +185,7 @@ extension SessionScaffold {
                         counter: counter,
                         showsMuteButton: showsMuteButton,
                         speaksPastMute: speaksPastMute,
+                        status: status,
                         onClose: onClose,
                         content: content)
     }

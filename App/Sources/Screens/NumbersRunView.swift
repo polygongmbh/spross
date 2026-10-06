@@ -102,7 +102,7 @@ struct NumbersRunView: View, LanguageNaming {
     var body: some View {
         // why: the run says its answers out loud, so it owes the learner a way
         // to silence them here, not in Settings.
-        runScreen(showsMuteButton: model != nil) {
+        runScreen(showsMuteButton: model != nil, scoreLine: streakLine) {
             drillContent
         }
         .onAppear { focusAnswerField() }

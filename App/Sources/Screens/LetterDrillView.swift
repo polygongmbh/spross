@@ -73,7 +73,7 @@ struct LetterDrillView: View, LanguageNaming {
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
-        runScreen(asking: current != nil, speaksPastMute: true) {
+        runScreen(asking: current != nil, speaksPastMute: true, scoreLine: streakLine) {
             drillContent
         }
         // why: BOTH hooks. .onChange never fires for the FIRST item, and a

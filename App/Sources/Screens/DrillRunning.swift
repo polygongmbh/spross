@@ -259,12 +259,14 @@ extension DrillRunning where Run: DrillRunProgress {
     @ViewBuilder
     func runScreen(asking: Bool = true, showsMuteButton: Bool = false,
                    speaksPastMute: Bool = false,
+                   scoreLine: some View,
                    @ViewBuilder content: () -> some View) -> some View {
         if asking {
             pausable(SessionScaffold.endless(tally: run.tally,
                                              outcomes: run.outcomes.map { SessionOutcome($0) },
                                              showsMuteButton: showsMuteButton,
                                              speaksPastMute: speaksPastMute,
+                                             scoreLine: scoreLine,
                                              onClose: { closeRun() },
                                              content: content))
         } else {

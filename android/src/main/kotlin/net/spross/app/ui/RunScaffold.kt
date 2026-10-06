@@ -257,11 +257,12 @@ fun DrillRunScaffold(
             model, outcomes, leave, counter = tally.counter(),
             showsMuteButton = showsMuteButton, speaksPastMute = speaksPastMute,
         )
+        // why: the score line is chrome — it stays under the bar while the question scrolls.
+        DrillStreakLine(sprosse, answerStreak, model.chrome, timed)
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(spacing),
         ) {
-            DrillStreakLine(sprosse, answerStreak, model.chrome, timed)
             body()
             Spacer(Modifier.height(Theme.spacing.sm))
         }
