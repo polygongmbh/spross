@@ -88,6 +88,9 @@ fun AppModel.startDateDrill(reverse: Boolean, fast: Boolean, sprosse: Int) {
  */
 fun AppModel.finishDrill(back: Screen, summary: DrillRunSummary?, title: String) {
     pronouncer.stop()
+    // why: a close kern celebrates ([DrillRunSummary.celebrated]) is cheered as it closes —
+    // the tile the learner lands on carries the words, but not until they look.
+    if (summary?.celebrated == true) cues.cheer()
     trainer.show(summary, title)
     refreshTrainer()
     // why: a closing letter run lands back on the page that reads the report, and the
@@ -106,6 +109,7 @@ fun AppModel.closeScramble(drill: Drill, title: String, clearedKey: String, clea
     trainer.store.bookCleared(clearedKey, cleared)
     stampRun(drill, summary)
     trainer.showOnHub(summary, title)
+    if (summary?.celebrated == true) cues.cheer()
     finishDrill(Screen.Home, null, "")
 }
 

@@ -271,13 +271,8 @@ fun AppModel.stampRun(drill: Drill, summary: DrillRunSummary?) {
     trainer.store.stampRun(DrillSuggestion.lastRunKey(drill, language), System.currentTimeMillis())
 }
 
-/**
- * A new record, booked and sounded as one act — a run's own reward, sounded as it closes
- * because the result tile the learner lands on already carries the words, but not until they
- * look. A run that beat nothing is silent, and books nothing.
- */
+/** A new record, booked; a run that beat nothing books nothing. The cheer is the close's ([finishDrill]). */
 fun AppModel.bookRecord(key: String, summary: DrillRunSummary) {
     if (!summary.newRecord) return
     trainer.store.bookRecord(key, summary.recordFigure)
-    cues.cheer()
 }

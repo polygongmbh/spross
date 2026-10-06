@@ -12,6 +12,10 @@ enum class DrillPauseReason {
 
     /** A stretch's worth of answers since the run opened or last went on. */
     Count,
+    ;
+
+    /** Whether the pause earns the celebration: every one but the pause that suggests a stop. */
+    val celebrated: Boolean get() = this != Struggling
 }
 
 /**

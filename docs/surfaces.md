@@ -12,8 +12,8 @@ Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `d
   Its title names the mode once, and its second line carries the two facts the name cannot:
   which words it leans on, and that it needs no hands.
 - **It keeps the drill contract even so**: it books no review, writes no schedule and moves no streak, so a run costs the box nothing and can be closed at any moment.
-  It has no end screen for the drills' reason —
-  a run the learner ends when they like has nothing to celebrate —
+  It has no end screen —
+  a run that only laps counts no stretch to celebrate —
   and no way of ending by itself:
   it laps for as long as it is left playing.
 - **What it plays is the box, short of the words it already calls settled, shakiest first**, never ordered by what is due —

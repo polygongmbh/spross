@@ -194,10 +194,9 @@ extension DrillRunning {
         }
         answerFocused = false
         TrainerProgress.stampRun(lastRunKey)
-        // why: the cheer marks the record, not the end of a run — confetti and
-        // cheer are one thing (`docs/design.md`), and the tile rains the one.
-        // A drill with no record store never reports one.
-        if summary.newRecord { Sound.cheer() }
+        // why: confetti and cheer are one thing (`docs/design.md`); the page the
+        // run closes onto rains the one, so the close sounds the other.
+        if summary.celebrated { Sound.cheer() }
         onFinish(DrillRunResult(summary, title: resultTitle))
         dismiss()
     }

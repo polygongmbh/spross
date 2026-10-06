@@ -27,6 +27,8 @@ struct TrainerHubView: View, LanguageNaming {
     /// no page of their own, so the hub wears their tile. A run too short to
     /// report clears it rather than leaving an older one standing.
     @State private var lastRun: DrillRunResult?
+    /// Rains confetti over the screen the hub stands on — a card cannot hold it.
+    var celebrate: () -> Void = {}
 
     /// The language being learned — every drill runs in it.
     var drillLanguage: String? { model.targetLanguage }
@@ -106,6 +108,7 @@ struct TrainerHubView: View, LanguageNaming {
 
     private func report(_ result: DrillRunResult) {
         lastRun = result.worthReporting ? result : nil
+        if result.celebrated { celebrate() }
     }
 
     /// The one `destination`, seen through ONE presentation: a binding that

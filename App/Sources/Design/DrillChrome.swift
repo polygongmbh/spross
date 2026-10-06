@@ -108,6 +108,8 @@ struct DrillRunResult: Equatable {
     var timed: TimedOutcome?
     /// Long enough to report where nothing asked for it — kern's (`DrillRunSummary.worthReporting`).
     var worthReporting = true
+    /// The close earns confetti and the cheer — kern's (`DrillRunSummary.celebrated`).
+    var celebrated = false
     /// What was drilled — the exercise's own name, since a page can host several.
     let title: LocalizedStringKey
 }

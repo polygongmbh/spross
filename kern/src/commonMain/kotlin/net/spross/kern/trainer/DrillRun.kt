@@ -94,6 +94,12 @@ data class DrillRunSummary(
      */
     val worthReporting: Boolean get() = done >= DrillPacing.STRUGGLING_AFTER
 
+    /**
+     * Whether the close earns the celebration — a record beaten, or any run long enough to
+     * report: finishing a stretch of practice is cheered as a finished round is, record or not.
+     */
+    val celebrated: Boolean get() = newRecord || worthReporting
+
     val milestone: AnswerStreakMilestone
         get() = when {
             bestAnswerStreak >= TROPHY_ANSWER_STREAK -> AnswerStreakMilestone.Trophy

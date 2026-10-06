@@ -12,6 +12,7 @@ struct DrillPauseView: View {
     var onKeepPracticing: () -> Void
 
     private var pacing: DrillPacing { run.pacing }
+    private var celebrated: Bool { run.pause?.celebrated ?? false }
 
     var body: some View {
         SummaryScaffold(title: Text(title),
@@ -21,12 +22,12 @@ struct DrillPauseView: View {
                             ? Text("trainer.pause.struggling.hint") : nil,
                         onDone: onDone,
                         onPractice: onKeepPracticing) { _ in SummaryGlyph(glyph: glyph) }
-        // why: a fallen record earns the celebration wherever it is first named —
-        // confetti and cheer are one thing (`docs/design.md`).
+        // why: a pause is a round's end the run may go on from, celebrated as the
+        // round summary is — confetti and cheer are one thing (`docs/design.md`).
         .overlay {
-            if pacing.newRecord { ConfettiView().ignoresSafeArea().allowsHitTesting(false) }
+            if celebrated { ConfettiView().ignoresSafeArea().allowsHitTesting(false) }
         }
-        .onAppear { if pacing.newRecord { Sound.cheer() } }
+        .onAppear { if celebrated { Sound.cheer() } }
     }
 
     /// What the stretch reached, only where it reached something: the climb

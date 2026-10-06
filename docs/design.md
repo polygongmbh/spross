@@ -152,8 +152,9 @@ What licenses a second component is a parameter attempted and found not to carry
   whatever the round did to the counts.**
   Only the round's own marks move; Reduce Motion draws the finished tree at once.
 - **A record is named, a number is only counted.**
-  A drill run that beats its stored best is celebrated with confetti and the cheer,
-  on its pause and on the page it closes onto; the round summary always is.
+- **A finished stretch is celebrated, record or not** — confetti and the cheer, as one:
+  every round summary, every drill pause but the one suggesting a stop,
+  and a closed drill run long enough to report or that beat its stored best (kern's `celebrated`).
 - **The finish screen reports the round, not the box:**
   one claim over the tree, one line of what the round did;
   the day streak, record or not, is Home's.

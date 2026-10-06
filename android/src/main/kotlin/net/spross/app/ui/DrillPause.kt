@@ -22,8 +22,8 @@ fun DrillPause(
     onKeepPracticing: () -> Unit,
     cheer: () -> Unit,
 ) {
-    // why: a fallen record earns the cheer wherever it is first named (`docs/design.md`).
-    LaunchedEffect(Unit) { if (run.pacing.newRecord) cheer() }
+    // why: a pause is a round's end the run may go on from, cheered as the round summary is.
+    LaunchedEffect(Unit) { if (reason.celebrated) cheer() }
     SummaryScaffold(
         title = title(reason, chrome),
         chrome = chrome,
