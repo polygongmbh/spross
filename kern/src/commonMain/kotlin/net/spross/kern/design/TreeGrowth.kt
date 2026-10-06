@@ -35,8 +35,7 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
                depth: Int, parent: Int, side: Double) {
         val grown = (vigor - depth).coerceIn(0.0, 1.0)
         if (grown <= 0) return
-        // why: a branch dips a little below horizontal, no further, or it hangs its leaves under the crown.
-        val angle = heading.coerceIn(-PI - 0.25, 0.25)
+        val angle = level(heading)
         val rng = Stream(seed xor Stream.hash(path))
         // why: a branch dipping below level is a weak one: the further it dips, the shorter it and all beyond it.
         val length = length * (1 - 2 * max(0.0, sin(angle)))
@@ -123,12 +122,18 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         val along = heading(limb, t)
         val side = if ((k % 2 == 1) != flip) 1 else -1
         val bark = (limb.startWidth * (1 - t) + limb.endWidth * t) / 2 * side
-        // why: a leaf follows its wood, splayed to one side, and never points below horizontal;
-        // the turn is measured from straight up, so wood heading left clamps to the left.
-        val splay = (along + side * 0.9 + 1.5 * PI).mod(2 * PI) - 1.5 * PI
+        // A leaf follows its wood, splayed to one side.
         return TreeSlot(x + cos(along + PI / 2) * bark, y + sin(along + PI / 2) * bark,
-            splay.coerceIn(-PI + 0.3, -0.3), c.limb)
+            level(along + side * 0.9), c.limb)
     }
+
+    /**
+     * [angle] dipping a little below horizontal at most, branch and leaf alike —
+     * any further and it hangs under the crown.
+     * Measured from straight up, so a heading to the left stays on the left.
+     */
+    private fun level(angle: Double): Double =
+        ((angle + 1.5 * PI).mod(2 * PI) - 1.5 * PI).coerceIn(-PI - 0.25, 0.25)
 
     /** The point [t] of the way along [c]'s center line. */
     private fun at(c: Carrier, t: Double): Pair<Double, Double> {
