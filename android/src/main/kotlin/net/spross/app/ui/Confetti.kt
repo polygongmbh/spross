@@ -20,31 +20,24 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.withTransform
 import kotlin.math.PI
-import kotlin.math.cos
-import kotlin.math.pow
-import kotlin.math.sin
 import net.spross.app.TrainerStanding
+import net.spross.kern.design.ConfettiFrame
+import net.spross.kern.design.ConfettiInk
 
 /**
  * Paper confetti falling across a whole screen, drawn as ONE canvas rather than as a
- * composable per piece — iOS's `ConfettiView`, with its sizes, speeds and timings in dp.
- *
- * Nothing is stored per piece: every property — lane, speed, sway, spin, color — is derived
- * from (index, wave) through a hash, so the pieces are varied but reproducible.
+ * composable per piece: kern's [ConfettiFrame] places every piece; this runs the clock,
+ * inks its pieces in the theme's colors and scales its dp to px.
  *
  * A wave is thrown on entering composition and again whenever [run] changes; waves ADD,
  * so a replay lands in whatever is still in the air. With animations switched off in the
  * system settings nothing is thrown.
  */
 @Composable
-fun Confetti(run: Int = 0, modifier: Modifier = Modifier, pieceCount: Int = 130, emission: Double = 4.0) {
-    // Poster palette, minus the wrong-answer brick. Paper, not signal color.
+fun Confetti(run: Int = 0, modifier: Modifier = Modifier) {
     val colors = Theme.colors
-    val palette = remember(colors) {
-        listOf(colors.accent, colors.teal, colors.success, colors.amber, colors.der, colors.die, colors.das)
-    }
-    // Emission window plus the longest fall still to come after it.
-    val life = emission + 3.2
+    val palette = remember(colors) { ConfettiFrame.INKS.map { color(it, colors) } }
+    val frame = remember { ConfettiFrame() }
     val waves = remember { mutableStateListOf<Wave>() }
     var nextWave by remember { mutableIntStateOf(0) }
     var clock by remember { mutableLongStateOf(0L) }
@@ -54,9 +47,7 @@ fun Confetti(run: Int = 0, modifier: Modifier = Modifier, pieceCount: Int = 130,
         // that also stands the summary's tree up finished — so 0 throws nothing.
         if (coroutineContext[MotionDurationScale]?.scaleFactor == 0f) return@LaunchedEffect
         waves += Wave(nextWave++, withFrameNanos { it })
-        // why: taps can come faster than waves retire; past a few in the air the oldest is
-        // the thinnest, so it is the one to drop.
-        if (waves.size > 4) waves.removeAt(0)
+        if (waves.size > ConfettiFrame.MAX_WAVES) waves.removeAt(0)
     }
     val airborne = waves.isNotEmpty()
     // why: frames are asked for only while a wave is in the air, and each wave retires
@@ -65,7 +56,7 @@ fun Confetti(run: Int = 0, modifier: Modifier = Modifier, pieceCount: Int = 130,
         while (waves.isNotEmpty()) {
             withFrameNanos { now ->
                 clock = now
-                waves.removeAll { (now - it.start) / 1e9 >= life }
+                waves.removeAll { ConfettiFrame.retired((now - it.start) / 1e9) }
             }
         }
     }
@@ -74,10 +65,7 @@ fun Confetti(run: Int = 0, modifier: Modifier = Modifier, pieceCount: Int = 130,
         val now = clock
         for (wave in waves) {
             val elapsed = (now - wave.start) / 1e9
-            // why: the tail fade catches whatever is still airborne as a wave retires,
-            // so nothing pops out mid-screen.
-            val fade = ((life - elapsed) / 1.0).coerceIn(0.0, 1.0).toFloat()
-            drawWave(wave.id, elapsed, fade, pieceCount, emission, palette)
+            drawWave(frame, wave.id, elapsed, ConfettiFrame.fade(elapsed).toFloat(), palette)
         }
     }
 }
@@ -85,63 +73,39 @@ fun Confetti(run: Int = 0, modifier: Modifier = Modifier, pieceCount: Int = 130,
 /** One handful, identified so its retirement removes exactly it. */
 private class Wave(val id: Int, val start: Long)
 
-/** Draws in dp: every number below is iOS's in points. */
-private fun DrawScope.drawWave(
-    wave: Int, elapsed: Double, fade: Float, pieceCount: Int, emission: Double, palette: List<Color>,
-) {
+private fun color(ink: ConfettiInk, colors: ThemeColors): Color = when (ink) {
+    ConfettiInk.ACCENT -> colors.accent
+    ConfettiInk.TEAL -> colors.teal
+    ConfettiInk.SUCCESS -> colors.success
+    ConfettiInk.AMBER -> colors.amber
+    ConfettiInk.DER -> colors.der
+    ConfettiInk.DIE -> colors.die
+    ConfettiInk.DAS -> colors.das
+}
+
+private fun DrawScope.drawWave(frame: ConfettiFrame, wave: Int, elapsed: Double, fade: Float, palette: List<Color>) {
     val d = density
-    val width = size.width / d
-    val height = size.height / d
-    for (index in 0 until pieceCount) {
-        // Squaring the launch spread front-loads it: most of the handful is away in the
-        // first moment, the rest keeps trickling after it.
-        val age = elapsed - random(wave, index, 1).pow(2.2) * emission
-        if (age <= 0) continue
-
-        // Constant fall plus a gentle pull, so late pieces are visibly quicker than they
-        // started — paper does not settle into one terminal speed.
-        val speed = 210 + random(wave, index, 2) * 210
-        val y = -40 + age * speed + 30 * age * age
-        if (y >= height + 40) continue
-
-        val sway = 6 + random(wave, index, 4) * 26
-        val phase = (age + random(wave, index, 6) * 6) * (0.35 + random(wave, index, 5) * 0.7)
-        val x = random(wave, index, 3) * width + sin(phase * 2 * PI) * sway
-
-        val scale = 0.7 + random(wave, index, 10) * 0.7
-        val w = (7.0 * scale * d).toFloat()
-        val h = ((if (index % 3 == 2) 16.0 else 10.0) * scale * d).toFloat()
+    val count = frame.fill(wave, elapsed, (size.width / d).toDouble(), (size.height / d).toDouble())
+    val v = frame.values
+    for (i in 0 until count) {
+        val o = i * ConfettiFrame.STRIDE
+        val w = (v[o + ConfettiFrame.WIDTH] * d).toFloat()
+        val h = (v[o + ConfettiFrame.HEIGHT] * d).toFloat()
         val topLeft = Offset(-w / 2, -h / 2)
-        val color = palette[index % palette.size]
-        val alpha = fade * (0.75f + random(wave, index, 11).toFloat() * 0.25f)
-        // why: the horizontal squash IS the tumble — a piece turning edge-on narrows to
-        // nothing and flickers back, which is the whole difference from a spinning sticker.
-        val tumble = cos(age * (1.6 + random(wave, index, 8) * 3.4)).toFloat()
+        val color = palette[v[o + ConfettiFrame.INK].toInt()]
+        val alpha = fade * v[o + ConfettiFrame.ALPHA].toFloat()
         withTransform({
-            translate((x * d).toFloat(), (y * d).toFloat())
-            rotate((random(wave, index, 9) * 180).toFloat(), pivot = Offset.Zero)
-            scale(tumble, 1f, pivot = Offset.Zero)
+            translate((v[o + ConfettiFrame.X] * d).toFloat(), (v[o + ConfettiFrame.Y] * d).toFloat())
+            rotate((v[o + ConfettiFrame.ROTATION] * 180 / PI).toFloat(), pivot = Offset.Zero)
+            scale(v[o + ConfettiFrame.TUMBLE].toFloat(), 1f, pivot = Offset.Zero)
         }) {
-            if (index % 3 == 1) {
+            if (v[o + ConfettiFrame.OVAL] > 0) {
                 drawOval(color, topLeft, Size(w, h), alpha)
             } else {
-                // card-parity: a paper scrap's corner, not a card radius
-                drawRoundRect(color, topLeft, Size(w, h), CornerRadius(1.5f * d), alpha = alpha)
+                drawRoundRect(color, topLeft, Size(w, h), CornerRadius((ConfettiFrame.CORNER * d).toFloat()), alpha = alpha)
             }
         }
     }
-}
-
-/**
- * Stable 0..<1 noise for one (wave, piece, property) — SplitMix64 finish, which
- * decorrelates neighboring indices well enough that the pieces never fall in visible rows.
- */
-private fun random(wave: Int, index: Int, salt: Int): Double {
-    var x = (index * 0x9E3779B1L + salt * 0x85EBCA77L + wave * 0x2545F491L).toULong()
-    x = (x xor (x shr 33)) * 0xFF51AFD7ED558CCDuL
-    x = (x xor (x shr 33)) * 0xC4CEB9FE1A85EC53uL
-    x = x xor (x shr 33)
-    return (x shr 11).toDouble() / (1L shl 53).toDouble()
 }
 
 /**
