@@ -62,7 +62,7 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         // part at less than about 30° and run side by side.
         val leadTurn = rng.range(0.05, 0.20) * (if (rng.next() < 0.5) -1 else 1)
         val leadLength = rng.range(0.86, 0.95)
-        val sideTurn = rng.range(0.75, 1.10)
+        val sideTurn = offshoot(rng)
         val sideLength = rng.range(0.76, 0.90)
         // why: the trunk always forks three ways, so the crown has low limbs on both sides.
         val third = rng.next() < 0.5 || depth == 0
@@ -113,7 +113,7 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
 
     /**
      * The [k]-th of a carrier's [of] marks, spread evenly from 0.95 of the way along down to 0.15,
-     * alternating sides on the bark and leaning away from the wood.
+     * alternating sides on the bark and turned off the wood as a side branch is.
      */
     private fun slot(c: Carrier, k: Int, of: Int, flip: Boolean): TreeSlot {
         val limb = limbs[c.limb]
@@ -122,10 +122,13 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         val along = heading(limb, t)
         val side = if ((k % 2 == 1) != flip) 1 else -1
         val bark = (limb.startWidth * (1 - t) + limb.endWidth * t) / 2 * side
-        // A leaf follows its wood, splayed to one side.
+        val rng = Stream(seed xor Stream.hash(c.limb * 1024L + k))
         return TreeSlot(x + cos(along + PI / 2) * bark, y + sin(along + PI / 2) * bark,
-            level(along + side * 0.9), c.limb)
+            level(along + side * offshoot(rng)), c.limb)
     }
+
+    /** How far a side branch, or a leaf, turns off the wood it grows from. */
+    private fun offshoot(rng: Stream) = rng.range(0.75, 1.10)
 
     /**
      * [angle] dipping a little below horizontal at most, branch and leaf alike —

@@ -110,18 +110,16 @@ internal class TreeArt(
         for ((rank, slot) in hanging.withIndex()) {
             val grain = noise(seed, rank * 41 + 7)
             val strength = tree.strengths.getOrElse(rank) { 0.4 }.toFloat()
-            // A mark's SIZE is its own word's standing; only its lean is hashed.
+            // A mark's SIZE is its own word's standing.
             val size = base * (0.74f + 0.62f * strength) * scale(rank)
             if (size <= 0.2f) continue
-            val turned = slot.angle + (grain - 0.5f) * 0.9f
-            val lean = atan2(sin(turned) - 0.2f, cos(turned))
             when {
                 rank < tree.stages.matured -> fruit(slot.point, size)
-                rank < heavy -> blossom(slot.point, size, lean)
+                rank < heavy -> blossom(slot.point, size, slot.angle)
                 rank < leafy -> {
                     val height = (slot.point.y - top) / depth
                     val tone = ((height * 0.75f + grain * 0.55f) * 3.2f - 0.2f).toInt().coerceIn(0, 3)
-                    sprig(tones[tone], slot.point, size * LEAF_STRETCH, lean)
+                    sprig(tones[tone], slot.point, size * LEAF_STRETCH, slot.angle)
                 }
                 else -> buds.addOval(Rect(slot.point, size * BUD_RADIUS))
             }

@@ -160,15 +160,14 @@ enum TreeShapes {
         var tones = [Path(), Path(), Path(), Path()]
         var buds = Path(), fruit = Path(), petals = Path(), eyes = Path()
         for (rank, slot) in hanging.enumerated() {
-            // A mark's SIZE is its own word's standing; only its lean is hashed.
+            // A mark's SIZE is its own word's standing.
             let grain = noise("\(mark.seed)-\(rank)", 41)
             let size = CanopyMark.size(base: base, strength: shown.strength(rank)) * arriving.scale(rank)
             guard size > 0.2 else { continue }
-            let angle = CanopyMark.lean(slot, grain: grain)
             if rank < shown.fruit {
                 fruit.addPath(Self.fruit(at: slot.point, size: size))
             } else if rank < shown.fruit + shown.blossoms {
-                blossom(at: slot.point, size: size, angle: angle, petals: &petals, eyes: &eyes)
+                blossom(at: slot.point, size: size, angle: slot.angle, petals: &petals, eyes: &eyes)
             } else if rank < shown.count - shown.buds {
                 // why: lit from above — the crown's upper leaves take the light
                 // tones, its lower and inner ones the deep, with a hashed nudge
@@ -176,7 +175,7 @@ enum TreeShapes {
                 let height = Double((slot.point.y - top) / depth)
                 let tone = min(3, max(0, Int((height * 0.75 + grain * 0.55) * 3.2 - 0.2)))
                 tones[tone].addPath(sprig(at: slot.point, size: size * CanopyMark.leafStretch,
-                                          angle: angle))
+                                          angle: slot.angle))
             } else {
                 buds.addPath(circle(slot.point, size * CanopyMark.budRadius))
             }
