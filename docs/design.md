@@ -201,7 +201,7 @@ What licenses a second component is a parameter attempted and found not to carry
   with side branches turning well away from it, and a branch dipping below level grows short;
   its marks spread along its finer wood, never the trunk or first limbs, fruit and blossom on the levelest limbs,
   no two of them touching while the crown has room, and only wood carrying a shown mark is drawn —
-  a bud hangs beside a grown mark, never on a twig of its own.
+  a bud hangs beside a grown mark, never on a twig of its own, and nearer the tip than the marks that leafed out.
   A met word hangs as a bud until it settles into a leaf; merely queued hangs nothing.
   Height comes from how many words the area has met, never from catalog count.
   An unopened area is one faded seedling.

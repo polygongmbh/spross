@@ -82,7 +82,8 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
      * does — but never within reach of a mark already dealt while wood further off is free,
      * the reach shrinking as the crown fills, so they spread over the whole crown.
      * The rest go to whichever carrier holds the fewest for its weighted length, and so do the
-     * last [buds] of the first [marks]: a bud is too small to show a twig of its own.
+     * last [buds] of the first [marks]: a bud is too small to show a twig of its own,
+     * and hangs outermost on the twig it shares.
      * The first limbs carry nothing while the tree has finer wood.
      */
     fun hang(count: Int, marks: Int, buds: Int): List<TreeSlot> {
@@ -108,7 +109,14 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
             val i = if (fresh) used++ else (0 until used).minBy { held[it] / weights[it] }
             i to held[i]++
         }
-        return order.map { (i, k) -> slot(dealt[i], k, held[i], i % 2 == 0) }
+        // why: a twig grows from its tip — its buds hang outermost, the marks that leafed out further in.
+        val bud = marks - buds until marks
+        val place = IntArray(count)
+        for (i in 0 until used) {
+            val on = order.indices.filter { order[it].first == i }
+            on.sortedBy { if (it in bud) 0 else 1 }.forEachIndexed { k, n -> place[n] = k }
+        }
+        return order.mapIndexed { n, (i, _) -> slot(dealt[i], place[n], held[i], i % 2 == 0) }
     }
 
     /**
