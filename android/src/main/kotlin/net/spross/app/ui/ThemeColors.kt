@@ -97,10 +97,10 @@ class ThemeColors(
     val das: Color,
 ) {
     /**
-     * The tinted-pill fill: an accent at 14 % over the card surface, flattened.
+     * The tinted-pill fill: an accent at kern's [Palette.WASH] over the card surface, flattened.
      * Opaque rather than translucent, so a pill reads the same whatever it sits on.
      */
-    fun wash(color: Color): Color = color.copy(alpha = 0.14f).compositeOver(surface)
+    fun wash(color: Color): Color = color.copy(alpha = Palette.WASH.toFloat()).compositeOver(surface)
 }
 
 /** A canonical hex (0xRRGGBB, no alpha) as the opaque Compose color it names. */

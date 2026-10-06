@@ -1,4 +1,5 @@
 import SwiftUI
+import SprossKern
 
 /// The 2×2 a multiple-choice question is answered off, wherever one is asked:
 /// the letters ladder's opening stages and the calendar's warm-up Sprosse.
@@ -41,9 +42,8 @@ struct DrillChoiceGrid: View {
     }
 
     private func tile(_ option: String) -> some View {
-        let answered = chosen != nil
-        let isAnswer = option == answer
-        let isChosen = option == chosen
+        // The tile's state and what it announces are kern's (`ChoiceTile`).
+        let state = ChoiceTile.companion.of(option: option, answer: answer, chosen: chosen)
         return Button {
             pick(option)
         } label: {
@@ -56,31 +56,33 @@ struct DrillChoiceGrid: View {
                 .padding(Theme.spacing.md)
                 .background(
                     RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                        .fill(fill(answered: answered, isAnswer: isAnswer, isChosen: isChosen))
+                        .fill(fill(state))
                 )
-                // why: correctness is never color alone — the mark carries it
-                // for anyone who cannot tell the two tints apart.
-                .overlay(alignment: .topTrailing) {
-                    mark(answered: answered, isAnswer: isAnswer, isChosen: isChosen)
-                }
+                .overlay(alignment: .topTrailing) { mark(state) }
         }
         .buttonStyle(ChipButtonStyle())
-        .disabled(answered)
+        .disabled(state != .open)
         .accessibilityLabel(label?(option) ?? Text(verbatim: option))
-        .accessibilityValue(answered && isAnswer ? Text("a11y.verdict.correct") : Text(verbatim: ""))
+        .accessibilityValue(spoken(state.verdict))
     }
 
-    private func fill(answered: Bool, isAnswer: Bool, isChosen: Bool) -> Color {
-        guard answered else { return Theme.colors.surfaceTint }
-        if isAnswer { return Theme.colors.success.opacity(0.22) }
-        return isChosen ? Theme.colors.wrong.opacity(0.22) : Theme.colors.surfaceTint
+    private func fill(_ state: ChoiceTile) -> Color {
+        if state == .answer { return Theme.colors.success.opacity(Palette.shared.WASH) }
+        if state == .wrongPick { return Theme.colors.wrong.opacity(Palette.shared.WASH) }
+        return Theme.colors.surfaceTint
+    }
+
+    private func spoken(_ verdict: ChoiceVerdict?) -> Text {
+        if verdict == .correct { return Text("a11y.verdict.correct") }
+        if verdict == .wrong { return Text("a11y.verdict.wrong") }
+        return Text(verbatim: "")
     }
 
     @ViewBuilder
-    private func mark(answered: Bool, isAnswer: Bool, isChosen: Bool) -> some View {
-        if answered, isAnswer {
+    private func mark(_ state: ChoiceTile) -> some View {
+        if state == .answer {
             markImage("checkmark.circle.fill", tint: Theme.colors.success)
-        } else if answered, isChosen {
+        } else if state == .wrongPick {
             markImage("xmark.circle.fill", tint: Theme.colors.wrong)
         }
     }

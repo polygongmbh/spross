@@ -80,6 +80,12 @@ object Palette {
     /** Ripe fruit: a clear red. */
     val fruit = Swatch(0xC8352E, 0xE5584F)
 
+    /**
+     * The tinted-pill fill: an accent at this alpha over the card surface.
+     * A verdict or a standing wears its color as a wash, never as a saturated slab.
+     */
+    const val WASH = 0.14
+
     // Gendered articles.
     val der = Swatch(0x134E85, 0x90CBFF)
     val die = Swatch(0x9A2050, 0xFF9EC0)
