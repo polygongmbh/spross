@@ -59,6 +59,7 @@ object NumbersRun {
                 pacing = DrillPacing.opening(mode.exercises.singleOrNull()?.let { opening.sprossen[it] }, standingRecord),
             ),
             seenDigitCounts = emptySet(),
+            seenFormKeys = emptySet(),
             hintUsed = false,
             feedback = TurnFeedback.Neutral,
             finished = false,
@@ -322,6 +323,9 @@ object NumbersRun {
             seenDigitCounts = state.currentDigits
                 ?.let { state.seenDigitCounts + it }
                 ?: state.seenDigitCounts,
+            seenFormKeys = state.currentFormKey
+                ?.let { state.seenFormKeys + it }
+                ?: state.seenFormKeys,
             core = state.core.book(correct, clean, DrillSolved.key(exercise, state.currentTask)),
             score = state.score + TimedRun.points(state.currentSprosse, correct, clean),
         )

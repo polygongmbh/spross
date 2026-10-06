@@ -85,6 +85,8 @@ data class NumbersRunState(
     override val core: DrillRunCore,
     /** Digit counts already introduced with a place-value hint; each length is hinted once. */
     val seenDigitCounts: Set<Int>,
+    /** Form keys already introduced with a form hint; each form is hinted once. */
+    val seenFormKeys: Set<String>,
     /** The learner looked the numbers up while owing this answer: it books almost. */
     val hintUsed: Boolean,
     override val feedback: TurnFeedback,
@@ -175,6 +177,18 @@ data class NumbersRunState(
             val digits = currentDigits ?: return null
             if (digits in seenDigitCounts) return null
             return Numbers.placeValueHint(digits, mode.language)
+        }
+
+    /** The form on screen, null on a reversed task: its prompt IS the reading, which already names the mark. */
+    val currentFormKey: String?
+        get() = currentTask.formKey.takeUnless { currentReversed }
+
+    /** The word the form adds ("Komma", "menos"), the first time a form appears and never again. */
+    val formHint: String?
+        get() {
+            val key = currentFormKey ?: return null
+            if (key in seenFormKeys) return null
+            return Numbers.formHint(key, mode.language)
         }
 
     /**

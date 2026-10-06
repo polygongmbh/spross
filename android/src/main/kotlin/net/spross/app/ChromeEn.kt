@@ -218,6 +218,7 @@ internal object ChromeEn : Chrome {
     override val a11yCountStreakInARow = "Streak: %s in a row"
     override val numbersAnswerPlaceholder = "In digits …"
     override val numbersNewPlace = "New place: %s"
+    override val numbersNewForm = "New: %s"
     override val numbersLookup = "Look up numbers"
     override val trainerResultNewRecord = "New record!"
     override val lettersStageChoiceEasy = "The letter you heard, among four"

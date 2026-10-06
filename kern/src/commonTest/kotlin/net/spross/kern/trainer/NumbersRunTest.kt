@@ -339,6 +339,26 @@ class NumbersRunTest {
         assertNull(back.placeValueHint)
     }
 
+    @Test
+    fun eachFormIsIntroducedOnceAndNeverOnAReversedTask() {
+        val rng = Random(31)
+        val task = Numbers.sampleForms("de", 1, 0, rng)
+        val key = assertNotNull(task.formKey)
+        val forward = NumbersRun.open(numbers("de"), 0, emptyMap(), rng).copy(
+            current = DrawnTask(NumbersExercise.Forms, task, reversed = false),
+        )
+        assertEquals(Numbers.formHint(key, "de"), forward.formHint)
+        assertNotNull(forward.formHint)
+
+        val submitted = NumbersRun.reduce(forward, NumbersIntent.Submit(task.accepted.first()), null, rng).state
+        val booked = NumbersRun.reduce(submitted, NumbersIntent.ConfirmPending, null, rng).state
+        assertTrue(key in booked.seenFormKeys)
+        assertNull(forward.copy(seenFormKeys = setOf(key)).formHint)
+
+        val back = forward.copy(current = DrawnTask(NumbersExercise.Forms, Numbers.reversed(task), reversed = true))
+        assertNull(back.formHint)
+    }
+
     // MARK: - The way out
 
 }

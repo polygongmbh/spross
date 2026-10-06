@@ -56,6 +56,7 @@ data class NumbersChallenge(
             bestSprossen = emptyMap(),
             core = DrillRunCore(),
             seenDigitCounts = emptySet(),
+            seenFormKeys = emptySet(),
             hintUsed = false,
             feedback = TurnFeedback.Neutral,
             finished = false,

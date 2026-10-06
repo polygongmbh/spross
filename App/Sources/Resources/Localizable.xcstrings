@@ -4455,6 +4455,23 @@
         }
       }
     },
+    "numbers.newForm %@" : {
+      "comment" : "%s = the word this language adds for a number form (minus, Komma, percent), the first time that form is asked",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neu: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New: %@"
+          }
+        }
+      }
+    },
     "numbers.newPlace %@" : {
       "comment" : "%s = the place word, the first time a length appears",
       "localizations" : {

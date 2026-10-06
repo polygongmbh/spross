@@ -151,8 +151,10 @@ fun DrillPromptCard(model: AppModel, flow: NumbersFlow, chrome: Chrome) {
         revealed = state.showsAnswer,
         pronounce = model.speakFormOnTap(task.display, state.mode.language),
         chrome = chrome,
-        // A fact about THIS number: the place word the first time a length is asked.
-        hint = state.placeValueHint?.let { chrome.numbersNewPlace.format(it) },
+        // A fact about THIS number: the word a form adds the first time it is asked, else
+        // the place word the first time a length is — one slot, the form winning.
+        hint = state.formHint?.let { chrome.numbersNewForm.format(it) }
+            ?: state.placeValueHint?.let { chrome.numbersNewPlace.format(it) },
         otherWord = state.otherWord,
     )
 }

@@ -15,10 +15,12 @@ extension NumbersRunView {
     /// a composed sentence and a reversed reading are both read as what they are.
     private var wordyPrompt: Bool { current.promptDisplay.contains(where: \.isLetter) }
 
-    /// Place word shown the first time a new number length appears — on the
-    /// card itself, so the prompts that carry no hint sit exactly as high.
-    private var placeValueHint: DrillHint? {
-        run.placeValueHint.map { .init(icon: "textformat.123", text: "numbers.newPlace \($0)") }
+    /// The word a form adds the first time it appears, else the place word the first
+    /// time a length does — on the card itself, so the prompts that carry no hint sit
+    /// exactly as high. One slot, the form winning where both could fire.
+    private var firstSightHint: DrillHint? {
+        if let word = run.formHint { return .init(icon: "plusminus", text: "numbers.newForm \(word)") }
+        return run.placeValueHint.map { .init(icon: "textformat.123", text: "numbers.newPlace \($0)") }
     }
 
     var drillContent: some View {
@@ -32,7 +34,7 @@ extension NumbersRunView {
                                       answer: current.display,
                                       language: current.language,
                                       gloss: current.gloss,
-                                      hint: placeValueHint,
+                                      hint: firstSightHint,
                                       otherWord: run.otherWord.map { ($0.word, $0.meanings.joined(separator: ", ")) },
                                       revealed: run.showsAnswer,
                                       pronounce: model?.pronounceAction(for: current.display, lang: language),

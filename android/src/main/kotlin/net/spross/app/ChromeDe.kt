@@ -224,6 +224,7 @@ internal object ChromeDe : Chrome {
     override val a11yCountStreakInARow = "Serie: %s in Folge"
     override val numbersAnswerPlaceholder = "In Ziffern …"
     override val numbersNewPlace = "Neue Stelle: %s"
+    override val numbersNewForm = "Neu: %s"
     override val numbersLookup = "Zahlen nachschlagen"
     override val trainerResultNewRecord = "Neuer Rekord!"
     override val lettersStageChoiceEasy = "Der gehörte Buchstabe unter vieren"

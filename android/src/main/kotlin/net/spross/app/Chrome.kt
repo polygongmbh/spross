@@ -221,6 +221,7 @@ interface Chrome {
     val a11yCountStreakInARow: String      // %d
     val numbersAnswerPlaceholder: String
     val numbersNewPlace: String          // %s
+    val numbersNewForm: String           // %s
     val numbersLookup: String
     val trainerResultNewRecord: String
 
