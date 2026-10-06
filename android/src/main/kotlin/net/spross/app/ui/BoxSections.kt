@@ -34,6 +34,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.kern.box.AreaGroupSection
+import net.spross.kern.box.AreaNaming
 import net.spross.kern.box.AreaStatistics
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine

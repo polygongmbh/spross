@@ -94,10 +94,8 @@ final class AppModel {
     /// catalog JOIN per candidate language — every card of every pair built and
     /// thrown away — so it is held here and never asked from a view body.
     private(set) var targetChoices: [String] = []
-    /// Every shelf's heading, resolved for the reader: emoji, title, flavor line.
-    /// Each is a linear scan of the catalog's area list, and the browser asks all
-    /// three per shelf while the Trees picture asks the emoji again per tree.
-    private(set) var areaChrome: [String: AreaChrome] = [:]
+    /// Every shelf's heading, resolved for the reader once per join (`AreaNaming`).
+    private(set) var areaNaming: AreaNaming?
 
     /// Each area's numbers by name. `BoxStatistics.areas` is a LIST, so finding
     /// one area in it is a scan — and both the browser and the Trees picture do it once
@@ -365,7 +363,7 @@ final class AppModel {
             datesSprossen = 0
             phraseTemplatesForPair = []
             targetChoices = []
-            areaChrome = [:]
+            areaNaming = nil
             return
         }
         // why: kern throws on an unknown or self-paired language rather than
@@ -379,7 +377,7 @@ final class AppModel {
         targetChoices = LanguageChoices.shared.targetChoices(
             catalog: catalog,
             selection: LanguageChoices.Selection(source: sourceLanguage, target: target))
-        areaChrome = composedAreaChrome(catalog: catalog)
+        areaNaming = composedAreaNaming(catalog: catalog)
     }
 
     /// Re-asks `anyWordAudible`, wherever the join or the device's voices can have moved.

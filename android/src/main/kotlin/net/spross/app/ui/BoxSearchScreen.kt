@@ -32,6 +32,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.kern.box.AreaNaming
 import net.spross.kern.box.AreaStatistics
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxSearch

@@ -23,6 +23,7 @@ import androidx.compose.ui.semantics.contentDescription
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.kern.box.AreaGroupSection
+import net.spross.kern.box.AreaNaming
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
@@ -77,12 +78,7 @@ private fun BoxBrowserScreen(
     val sections = remember(catalog, stats, source) { BoxBrowser.sections(catalog, stats, source) }
     val areaNames = remember(catalog, stats) { BoxBrowser.areaNames(catalog, stats) }
     val naming = remember(catalog, chrome, source) {
-        AreaNaming(
-            chrome = chrome,
-            catalogTitle = { catalog.areaTitle(it, source) },
-            catalogSubtitle = { catalog.areaSubtitle(it, source) },
-            catalogEmoji = { catalog.areaEmoji(it) },
-        )
+        AreaNaming(catalog, source, chrome.boxOwnShelf, chrome.boxOwnWordExplainer)
     }
     val areaStats = remember(stats) { stats.areas.associateBy { it.name } }
 
