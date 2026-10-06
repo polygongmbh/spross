@@ -30,43 +30,6 @@ extension AppModel {
     }
 }
 
-/// Which stage becomes which mark — the drawing's reading of kern's stages,
-/// taken once per placed tree: a Kotlin list crosses the bridge as a copy
-/// on every read, and the canopy is walked mark by mark.
-///
-/// Drawn outermost rank first:
-///   fruit   — matured
-///   blossom — settled
-///   leaf    — growing
-///   bud     — met, on its way in (fresh)
-struct Canopy {
-    let fruit: Int
-    let blossoms: Int
-    let leaves: Int
-    let buds: Int
-    let fallen: Int
-    let tendedToday: Bool
-    let isBare: Bool
-    /// How far each mark's word has come, 0…1, one per mark in rank order.
-    let strengths: [Double]
-
-    init(_ tree: AreaGrowth) {
-        fruit = Int(tree.stages.matured)
-        blossoms = Int(tree.stages.settled)
-        leaves = Int(tree.stages.growing)
-        buds = Int(tree.stages.fresh)
-        fallen = Int(tree.stages.lapsed)
-        tendedToday = tree.answeredToday
-        isBare = tree.isBare
-        strengths = tree.strengths.map(\.doubleValue)
-    }
-
-    var count: Int { fruit + blossoms + leaves + buds }
-
-    /// The word at `rank`'s strength, or a middling one past the list.
-    func strength(_ rank: Int) -> Double { rank < strengths.count ? strengths[rank] : 0.4 }
-}
-
 extension AreaGrowth {
     /// A tree built by hand — the previews and the fabricated DEBUG box (`SampleTrees`).
     static func sample(_ area: String, leaves: Int = 0, blossoms: Int = 0, fruit: Int = 0,

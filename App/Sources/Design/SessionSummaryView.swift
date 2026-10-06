@@ -115,7 +115,9 @@ struct SessionSummaryView: View {
                             progress: burst || reduceMotion ? 1 : 0)
                 .frame(height: AreaTree.shared.heroHeight(tree: grownArea.after, ceiling: ceiling))
                 .animation(reduceMotion ? nil
-                            : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
+                            : .spring(response: TreeRise.companion.SPRING_RESPONSE,
+                                      dampingFraction: TreeRise.companion.SPRING_DAMPING)
+                                .delay(Double(TreeRise.companion.DELAY_MILLIS) / 1000),
                            value: burst)
         }
     }

@@ -58,7 +58,7 @@ struct Trees: View {
         let placed = placement.marks(model.trees, garden: model.garden, width: width)
         return ZStack(alignment: .topLeading) {
             BleedingCanvas(bleed: 24) { context, _ in
-                for mark in placed.marks { TreeShapes.draw(&context, mark) }
+                for mark in placed.marks { mark.art.draw(&context) }
                 // why: labels go over every tree — crowns may tangle, but a label is never covered.
                 for mark in placed.marks { label(&context, mark) }
             }
@@ -76,7 +76,7 @@ struct Trees: View {
         let text = Text(verbatim: model.areaEmoji(mark.area))
             .font(.system(size: 13)) // card-parity: a mark under a 58pt cell, below every type role
         let at = CGPoint(x: mark.foot.x, y: mark.baseline + Self.labelHeight / 2)
-        guard mark.canopy.isBare else { return context.draw(text, at: at, anchor: .center) }
+        guard mark.tree.isBare else { return context.draw(text, at: at, anchor: .center) }
         context.drawLayer { faded in
             faded.opacity = 0.4
             faded.draw(text, at: at, anchor: .center)
