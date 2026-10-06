@@ -1,6 +1,7 @@
 package net.spross.app.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.kern.trainer.DrillPauseReason
@@ -19,7 +20,10 @@ fun DrillPause(
     chrome: Chrome,
     onDone: () -> Unit,
     onKeepPracticing: () -> Unit,
+    cheer: () -> Unit,
 ) {
+    // why: a fallen record earns the cheer wherever it is first named (`docs/design.md`).
+    LaunchedEffect(Unit) { if (run.pacing.newRecord) cheer() }
     SummaryScaffold(
         title = title(reason, chrome),
         chrome = chrome,

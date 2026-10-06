@@ -250,7 +250,7 @@ fun DrillRunScaffold(
         // what it does on a question's arrival (autoplay, focus) waits for the run to go on.
         val pause = run.progress.pause
         if (pause != null) {
-            DrillPause(run.progress, pause, model.chrome, onDone = leave, onKeepPracticing = run::keepPracticing)
+            DrillPause(run.progress, pause, model.chrome, onDone = leave, onKeepPracticing = run::keepPracticing, cheer = model.cues::cheer)
             return@Column
         }
         RunTopBar(

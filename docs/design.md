@@ -152,11 +152,11 @@ What licenses a second component is a parameter attempted and found not to carry
   whatever the round did to the counts.**
   Only the round's own marks move; Reduce Motion draws the finished tree at once.
 - **A record is named, a number is only counted.**
-  A day streak at its longest says so on the finish screen;
-  a drill run that beats its stored best is celebrated.
+  A drill run that beats its stored best is celebrated with confetti and the cheer,
+  on its pause and on the page it closes onto; the round summary always is.
 - **The finish screen reports the round, not the box:**
-  one claim over the tree, one line of what the round did,
-  and the streak only when it just became a record — its count is Home's.
+  one claim over the tree, one line of what the round did;
+  the day streak, record or not, is Home's.
 - **Stopping is the default at round end**, and going on the secondary choice.
   A day going badly says so and says why stopping is the better call.
 

@@ -21,6 +21,12 @@ struct DrillPauseView: View {
                             ? Text("trainer.pause.struggling.hint") : nil,
                         onDone: onDone,
                         onPractice: onKeepPracticing) { _ in SummaryGlyph(glyph: glyph) }
+        // why: a fallen record earns the celebration wherever it is first named —
+        // confetti and cheer are one thing (`docs/design.md`).
+        .overlay {
+            if pacing.newRecord { ConfettiView().ignoresSafeArea().allowsHitTesting(false) }
+        }
+        .onAppear { if pacing.newRecord { Sound.cheer() } }
     }
 
     /// What the stretch reached, only where it reached something: the climb
