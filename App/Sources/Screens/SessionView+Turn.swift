@@ -103,7 +103,8 @@ extension SessionView {
                                  : (prompt == .sound ? card.target.text : card.source.text),
                              firstExposure: model.isFirstExposure(card.id),
                              arrived: model.hasArrived(card.id),
-                             nowEpochMillis: Date().epochMillis)
+                             nowEpochMillis: Date().epochMillis,
+                             answer: model.produceAnswer(for: card.id))
     }
 
     func resetCardState() {

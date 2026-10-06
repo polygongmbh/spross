@@ -7,9 +7,11 @@ import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.Card
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.PresentationRole
+import net.spross.kern.model.ProduceAnswer
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
+import net.spross.kern.model.produceAnswer
 import net.spross.kern.model.producePrompt
 import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.session.AnswerOutcome
@@ -24,6 +26,9 @@ data class SessionUi(
     /** Whether a produce turn asks by meaning or by ear; [ProducePrompt.Source] elsewhere. */
     // layer-ok: the drained branch has no produce turn — every real one carries kern's cue
     val producePrompt: ProducePrompt = ProducePrompt.Source,
+    /** Whether a produce turn is typed or recalled; [ProduceAnswer.Typed] elsewhere. */
+    // layer-ok: the drained branch has no produce turn — every real one carries kern's rule
+    val produceAnswer: ProduceAnswer = ProduceAnswer.Typed,
     /** `reviewCount == 0` — the word is being taught, so a miss is still written out. */
     val firstExposure: Boolean = false,
     /** A word that already sticks is never slowed down by a write-out. */
@@ -40,6 +45,9 @@ data class SessionUi(
 
 private fun AppModel.hasArrived(cardId: String): Boolean =
     box?.let { BoxEngine.hasArrived(it, cardId) } == true
+
+private fun AppModel.hasSettled(cardId: String): Boolean =
+    box?.let { BoxEngine.hasSettled(it, cardId) } == true
 
 /**
  * Whether the card's own form can be heard RIGHT NOW — the one fact kern's
@@ -92,6 +100,7 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
             role = role,
             promptForm = promptForm,
             producePrompt = prompt,
+            produceAnswer = produceAnswer(card.id, count, hasSettled(card.id)),
             // The two facts the turn's write-out rule is decided on, read where the
             // count already is: a word being taught is written once as it is met,
             // and one past the growing bar is

@@ -77,6 +77,32 @@ fun producePrompt(
     return if ((reviewCount / 2 + offset) % 2 == 0) ProducePrompt.Sound else ProducePrompt.Source
 }
 
+/** How a produce turn is ANSWERED — the question it asks is the same either way. */
+enum class ProduceAnswer {
+    /** Written out in the field and graded. */
+    Typed,
+
+    /** Recalled in the head, then revealed and self-graded: no field. */
+    Recalled,
+}
+
+/**
+ * Whether a produce review asks for the word in writing.
+ *
+ * A word that has not [settled] ([net.spross.kern.box.SETTLED_STABILITY]) is always typed:
+ * writing it is the strongest recall the box has, and the one that teaches the spelling.
+ * Past that bar every other produce turn is recalled instead, so a word the learner has
+ * long known costs a glance rather than a sentence of typing, and still gets written
+ * often enough to keep its spelling. A lapse drops it under the bar, back to typing.
+ *
+ * Rotates on `reviewCount / 2` for [producePrompt]'s reason, with its own per-card offset.
+ */
+fun produceAnswer(cardId: String, reviewCount: Int, settled: Boolean): ProduceAnswer {
+    if (!settled) return ProduceAnswer.Typed
+    val offset = (fnv1a64("$cardId|recall") % 2uL).toInt()
+    return if ((reviewCount / 2 + offset) % 2 == 0) ProduceAnswer.Recalled else ProduceAnswer.Typed
+}
+
 /**
  * The target form to PROMPT on a recognition review: rotates deterministically
  * through canonical text + `teaches` at zero extra scheduling cost. First

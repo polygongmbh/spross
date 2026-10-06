@@ -33,6 +33,14 @@ Neighbors: the contract `../README.md` §3, how a meaning answer is graded `grad
   (`TurnState.promptInText`), and nothing else about the turn moves: same question, same answer, same rating.
   It lasts the turn, not a mode or a setting:
   the next card asked by ear asks by ear again, because the device's own audibility decides that.
+- **Recalled production** (`produceAnswer`) answers whether a produce turn is typed.
+  Writing the word is the strongest recall the box has and the only one that teaches the spelling,
+  so a word that has not settled is always typed.
+  Once settled, typing every produce turn mostly buys time spent typing:
+  the breadth goal is better served by more words per minute,
+  so every other produce turn asks the same question with no field — recall, reveal, self-grade.
+  Typing stays on the other half so the spelling keeps being written.
+  Not a third role: the question and its direction are unchanged, only the way the answer is given.
 - **Emoji cue** (`emojiCue`): WHEN the picture appears, never whether or where (that is the renderer's, and fixed).
   **Upfront** iff role == Produce and the word has not landed —
   a produce prompt already names the concept in the source language, so the picture supports recall without giving the answer away;

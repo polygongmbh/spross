@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Words you have known for weeks now ask you to type them only every other time; in between you recall them, reveal and grade yourself.
 - A new Opposites drill asks for the opposite of a word you know, and accepts every opposite where one word carries two meanings, like Swahili kulia for right and to cry.
 
 ## 8.3.1 — 2026-10-05

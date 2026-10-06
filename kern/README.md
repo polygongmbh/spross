@@ -116,6 +116,9 @@ both feeding the one schedule ("every answer event is an FSRS review" holds).
     seen once, now attempt it (ruling 2026-07-22: both hash parities).
   - From `count == 2` role = parity(`count` + FNV-1a-64(cardId)) --
     the per-card phase offset keeps the box from flipping in sync.
+- **Recalled production** (`produceAnswer`): past the settled bar (`SETTLED_STABILITY`),
+  every other produce turn is recalled in the head, revealed and self-graded instead of typed;
+  a word under the bar is always typed (`docs/presentation.md`).
 - **Synonym rotation** on recognition prompts, and **sound-prompted production**
   (`producePrompt`): asking a word by ear WITHDRAWS the meaning rather than adding support,
   so it needs the growing bar (section 5),

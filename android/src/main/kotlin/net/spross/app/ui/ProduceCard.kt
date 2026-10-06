@@ -89,9 +89,9 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         return
     }
     // The blank "Aufdecken" hands the turn to the three verdicts, and a miss by ear is never
-    // retyped (kern's `retypes`); either way there is no field left.
+    // retyped (kern's `retypes`); either way there is no field left. A recalled turn never has one.
     val missedByEar = flow.feedback == TurnFeedback.Revealed && !flow.state.retypes
-    if (!flow.selfGrading && !missedByEar) {
+    if (flow.state.typesAnswer && !flow.selfGrading && !missedByEar) {
         AnswerField(
             value = flow.input,
             onValueChange = flow::type,

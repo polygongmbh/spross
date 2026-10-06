@@ -7,6 +7,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.ProduceAnswer
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
 
@@ -15,6 +16,20 @@ import net.spross.kern.model.Rating
  * The write-out step it can divert into has its own suite (`TurnCopyStepTest`).
  */
 class TurnTest {
+
+    @Test
+    fun aRecalledTurnOnlyRevealsAndSelfGrades() {
+        val recalled = TurnFixture.produce(TurnFixture.knife, arrived = true, answer = ProduceAnswer.Recalled)
+        assertFalse(recalled.typesAnswer)
+        assertEquals(TurnFeedback.Neutral, TurnFixture.state(recalled, TurnIntent.InputChanged("kisu")).feedback)
+        val revealed = TurnFixture.state(recalled, TurnIntent.Submit("kisu"), nowMillis = TurnFixture.T0 + 2_000)
+        assertTrue(revealed.revealed)
+        assertEquals(TurnFeedback.Neutral, revealed.feedback)
+        assertEquals(
+            listOf(TurnEffect.Answer(Rating.Again)),
+            TurnFixture.step(revealed, TurnIntent.SelfGrade(SelfGrading.Verdict.Unknown)).effects,
+        )
+    }
 
     @Test
     fun finishingTheWordIsTheAnswer() {

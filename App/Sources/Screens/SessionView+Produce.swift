@@ -53,10 +53,11 @@ extension SessionView {
         retryApproved ? .correct : feedback
     }
 
-    /// True while produce has nothing to type into: the blank "Aufdecken"
-    /// self-grade hides its own field and hands over the rating buttons, and a
-    /// miss on a card asked by ear is never retyped (kern's `retypes`).
+    /// True while produce has nothing to type into: a recalled turn never has a
+    /// field, the blank "Aufdecken" self-grade hides its own and hands over the
+    /// rating buttons, and a miss on a card asked by ear is never retyped (kern's `retypes`).
     var produceFieldHidden: Bool {
+        if let turn, !turn.typesAnswer { return true }
         if revealed && feedback == .neutral { return true }
         if case .revealed = feedback, let turn, !turn.retypes { return true }
         return false

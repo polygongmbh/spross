@@ -2,6 +2,7 @@ package net.spross.kern.session
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.PresentationRole
+import net.spross.kern.model.ProduceAnswer
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
 
@@ -98,6 +99,8 @@ data class TurnState(
     val role: PresentationRole,
     /** [ProducePrompt.Sound] moves the answer to the SOURCE side: the card asks what it means. */
     val prompt: ProducePrompt,
+    /** [ProduceAnswer.Recalled] puts no field on a produce turn: reveal and self-grade only. */
+    val answer: ProduceAnswer,
     /** The form the prompt stands on — the rotated target form on recognize. */
     val promptForm: String,
     /** `reviewCount == 0`: the word is being taught, so a miss is still written out. */
@@ -146,6 +149,10 @@ data class TurnState(
      */
     val answerRevealed: Boolean
         get() = feedback == TurnFeedback.Revealed || revealed
+
+    /** The turn asks for the word in writing — what mounts the answer field. */
+    val typesAnswer: Boolean
+        get() = role == PresentationRole.Produce && answer == ProduceAnswer.Typed
 
     /**
      * The word the card owes back is on screen and the turn is waiting on the learner:
