@@ -66,7 +66,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Max ~300 lines per file; split at natural boundaries. Modularity over bloat.
 - Comments only for non-obvious constraints;
   side-effectful effects get a one-line `// why:` (trigger + observable result).
-- Engine APIs name the rule, never the rendering: no screen positions in kern types.
+- Engine APIs name the rule, never the rendering: no screen positions in kern types, bar shared layout data (`net.spross.kern.design`).
 - Simplicity over Perfection: Behavior correctness is important, but don't overcomplicate the code to handle every edge case.
 
 ### Text
