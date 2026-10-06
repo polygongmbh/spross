@@ -9,6 +9,7 @@ Plans and the archive are working state and exempt; a backlog may point at a pla
   scripts/doc-header.py           report every file off the shape (same as --check)
   scripts/doc-header.py --check   exit 1 if any file is off the shape
 """
+import os
 import re
 import subprocess
 import sys
@@ -33,7 +34,9 @@ def problems(path):
 
 def main():
     files = subprocess.run(["git", "ls-files", "*.md"], capture_output=True, text=True, check=True).stdout.split()
-    bad = [(f, p) for f in files if not f.startswith(EXEMPT) for p in [problems(f)] if p]
+    # why: a tracked file deleted in the working tree is on its way out; reading it would crash the gate.
+    files = [f for f in files if not f.startswith(EXEMPT) and os.path.exists(f)]
+    bad = [(f, p) for f in files for p in [problems(f)] if p]
     for f, p in bad:
         print(f"{f}: {p}", file=sys.stderr)
     return 1 if bad else 0
