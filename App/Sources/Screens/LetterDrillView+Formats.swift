@@ -97,14 +97,13 @@ extension LetterDrillView {
     /// same draw, so a seeded run is reproducible. The grid is
     /// `DrillChoiceGrid`, shared with the calendar's warm-up Sprosse.
     private func choiceGrid(_ task: LetterDrillTask) -> some View {
-        // The ramp's glyph slot rather than a ramp entry: a letterform is the
-        // thing being READ here, so it is set at picture size the way an emoji
-        // face is — and a bare Cyrillic glyph read by a German engine is a
+        // A prompt size rather than a ramp entry: a letterform is the thing
+        // being READ here, so it is set at picture size the way an emoji face is — and a bare Cyrillic glyph read by a German engine is a
         // guess where "Buchstabe ч" is not.
         DrillChoiceGrid(options: task.choices ?? [],
                         answer: task.display,
                         chosen: run.chosen,
-                        font: .system(size: 44, weight: .bold, design: .rounded),
+                        font: Theme.prompt.letter,
                         label: { glyph in
                             Text(verbatim: String(format: ChromeStrings.string("a11y.glyph.letter %@",
                                                                                locale: locale),

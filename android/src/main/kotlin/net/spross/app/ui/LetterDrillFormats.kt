@@ -27,14 +27,14 @@ import net.spross.kern.trainer.LetterDrillTask
 @Composable
 fun ChoiceFormat(flow: LetterDrillFlow, task: LetterDrillTask, chrome: Chrome) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        // The ramp's glyph slot rather than a ramp entry: a letterform is the thing being
-        // READ here, so it is set at picture size the way an emoji face is — and a bare
+        // A prompt size rather than a ramp entry: a letterform is the thing being READ
+        // here, so it is set at picture size the way an emoji face is — and a bare
         // Cyrillic glyph read by a German engine is a guess where "Buchstabe ч" is not.
         DrillChoiceGrid(
             options = task.choices.orEmpty(),
             answer = task.display,
             chosen = flow.state.chosen,
-            optionStyle = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold),
+            optionStyle = MaterialTheme.typography.displaySmall.copy(fontSize = Theme.prompt.letter, fontWeight = FontWeight.Bold),
             chrome = chrome,
             describe = { chrome.a11yGlyphLetter.format(it) },
             onPick = flow::choose,

@@ -110,6 +110,8 @@ enum Theme {
         let digits = Font.system(size: 56, weight: .bold, design: .rounded)
         /// A picture standing where the name would: a flag that IS the question.
         let glyph = Font.system(size: 64)
+        /// A letterform offered as an answer, read as a picture rather than as text.
+        let letter = Font.system(size: 44, weight: .bold, design: .rounded)
         /// One word with a blank in it ("Ge l＿").
         let word = Font.system(size: 40, weight: .bold, design: .rounded)
         /// A name asked about ("Deutschland") — words run longer than numerals.
