@@ -43,7 +43,7 @@ IOS_FACES = ["App/Sources/Design/VocabCardView.swift", "App/Sources/Design/Count
 DROID_UI = "android/src/main/kotlin/net/spross/app/ui/"
 DROID_FACES = [DROID_UI + n for n in ("CardFace.kt", "CountryPromptCard.kt", "ProduceCard.kt",
                                       "NumbersPrompt.kt", "LetterDrillScreen.kt")]
-# The token table itself: its own declarations are the numbers the rules look for.
+# The token tables themselves (CANON on iOS): their own declarations are the numbers the rules look for.
 DROID_UNSCANNED = [DROID]
 
 # A derivation that finds fewer bodies than this is a broken glob, and a broken glob
@@ -57,6 +57,7 @@ IOS_PRIMS = ["cardSurface", "CardReveal", "CardEmoji", "SpokenWord"]
 DROID_PRIMS = ["CardFace", "CardReveal", "EmojiSlot", "SpokenWord", "Headword"]
 
 # Sizes a card may state inline: a hit target and a hairline are device facts, not design.
+# A type size is never one — a 44 pt letter is design, whatever a 44 pt target is.
 ALLOW = {"0", "1", "44", "48"}
 
 # Token group → the type that declares it. Both phones spell these alike, so one
@@ -66,14 +67,16 @@ WAIVER = "card-parity:"
 
 # (pattern, what it should have said, token table to rewrite from) — group 1 is the number.
 IOS_RULES = [
-    (re.compile(r"\.font\(\s*\.system\(size:\s*(\d+)"), "a Theme.typography role", None, None),
+    # Any fixed size, not only one written straight into `.font(` — a size picked in a
+    # ternary or held in a property is the same literal one step removed.
+    (re.compile(r"\.system\(size:\s*(\d+)"), "a Theme.typography role or Theme.prompt", None, None),
     (re.compile(r"(?:spacing|padding)\(\s*(\d+(?:\.\d+)?)\s*\)"),
      "Theme.spacing", "Theme.spacing.", "spacing"),
     (re.compile(r"minHeight:\s*(\d+(?:\.\d+)?)\b"), "Theme.reserve", "Theme.reserve.", "reserve"),
     (re.compile(r"cornerRadius:\s*(\d+(?:\.\d+)?)"), "Theme.radius", "Theme.radius.", "radius"),
 ]
 DROID_RULES = [
-    (re.compile(r"fontSize\s*=\s*(\d+(?:\.\d+)?)\.sp"),
+    (re.compile(r"fontSize\s*=[^,\n]*?\b(\d+(?:\.\d+)?)\.sp"),
      "a typography role or Theme.prompt", None, None),
     (re.compile(r"spacedBy\(\s*(\d+(?:\.\d+)?)\.dp"),
      "Theme.spacing", "Theme.spacing.", "spacing"),
@@ -156,7 +159,8 @@ def scan(files, rules, prims, tokens, report, fix):
             for pattern, wanted, prefix, group in rules:
                 for match in list(pattern.finditer(line)):
                     value = match.group(1)
-                    if value.rstrip("0").rstrip(".") in ALLOW or value in ALLOW:
+                    allowed = set() if "typography" in wanted else ALLOW
+                    if value.rstrip("0").rstrip(".") in allowed or value in allowed:
                         continue
                     named = prefix and named_token(tokens, prefix, group, value)
                     if fix and named:
@@ -194,7 +198,7 @@ def main(argv):
     report = lines.append
     ios, droid = tables()
     bad = parity(ios, droid, report)
-    ios_bodies = bodies(IOS_UI, ".swift", IOS_FACES)
+    ios_bodies = bodies(IOS_UI, ".swift", IOS_FACES, [CANON])
     droid_bodies = bodies((DROID_UI,), ".kt", DROID_FACES, DROID_UNSCANNED)
     for files, rules, prims, tokens in (
         (IOS_FACES, IOS_RULES, IOS_PRIMS, ios), (ios_bodies, IOS_RULES, None, ios),
