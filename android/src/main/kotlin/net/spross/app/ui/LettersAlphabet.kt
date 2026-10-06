@@ -23,9 +23,7 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.formPronunciation
@@ -141,8 +139,11 @@ private fun AlphabetHeader(entry: AlphabetEntry, language: Language, speak: (() 
     ) {
         Text(
             localizedTarget(glyphs, language),
-            fontSize = if (entry.kind == AlphabetKind.Rule) 20.sp else 30.sp,
-            fontWeight = FontWeight.Bold,
+            style = if (entry.kind == AlphabetKind.Rule) {
+                MaterialTheme.typography.titleLarge
+            } else {
+                MaterialTheme.typography.headlineLarge
+            },
         )
         displayName(entry)?.let {
             Text(it, style = MaterialTheme.typography.bodyMedium, color = Theme.colors.textSecondary)
