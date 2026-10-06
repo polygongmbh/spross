@@ -12,6 +12,7 @@ import net.spross.kern.trainer.DrillUnlockMark
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
+import net.spross.kern.trainer.OppositesRunState
 import net.spross.kern.trainer.SentenceScrambleRunState
 import net.spross.kern.trainer.WordScrambleRunState
 
@@ -154,6 +155,9 @@ class TrainerStore(private val prefs: SharedPreferences) {
 
         /** The sentence scramble's twin ([SentenceScrambleRunState.storageKey]). */
         fun sentenceScrambleKey(language: Language): String = SentenceScrambleRunState.storageKey(language)
+
+        /** The opposites drill's twin ([OppositesRunState.storageKey]). */
+        fun oppositesKey(language: Language): String = OppositesRunState.storageKey(language)
     }
 }
 

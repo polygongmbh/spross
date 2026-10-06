@@ -65,6 +65,10 @@ fun AppModel.startSentenceScramble() {
     navigate(Screen.SentenceScramble)
 }
 
+fun AppModel.startOpposites() {
+    navigate(Screen.Opposites)
+}
+
 /**
  * An atlas run. Both switches and the Sprosse it opens on are the page's to settle —
  * Fast has a price and the page has already checked it — so the run only obeys them.

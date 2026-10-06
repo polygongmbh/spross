@@ -16,6 +16,7 @@ import net.spross.kern.trainer.DateDrill
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.DrillSuggestion
 import net.spross.kern.trainer.NumbersMode
+import net.spross.kern.trainer.OppositesAvailability
 import net.spross.kern.trainer.SentenceScrambleAvailability
 import net.spross.kern.trainer.WordScrambleAvailability
 
@@ -77,6 +78,10 @@ private fun AppModel.ladder(
             cleared(TrainerStore.wordScrambleKey(language), WordScrambleAvailability.report(state).maxSprosse)
         Drill.SentenceScramble ->
             cleared(TrainerStore.sentenceScrambleKey(language), SentenceScrambleAvailability.report(state).maxSprosse)
+        Drill.Opposites -> cleared(
+            TrainerStore.oppositesKey(language),
+            OppositesAvailability.report(state, catalog?.oppositePairs.orEmpty()).maxSprosse,
+        )
     }
 }
 

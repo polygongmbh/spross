@@ -42,6 +42,9 @@ sealed interface Screen {
     /** A sentence-scramble run, opened straight from its chip like its word sibling. */
     data object SentenceScramble : Screen
 
+    /** An opposites run, opened straight from its chip like the scrambles. */
+    data object Opposites : Screen
+
     /**
      * An atlas run, carrying the two things the page settled before it opened: which way
      * round the questions are asked, and whether a Sprosse falls on one clean win.
@@ -105,7 +108,7 @@ fun Screen.back(): Screen? = when (this) {
     Screen.Numbers, Screen.Letters, Screen.Countries, Screen.Dates -> Screen.Home
     Screen.Loading, Screen.Onboarding, Screen.Home -> null
     Screen.Session, Screen.Listening -> null
-    is Screen.NumbersRun, Screen.LetterDrill, Screen.WordScramble, Screen.SentenceScramble,
+    is Screen.NumbersRun, Screen.LetterDrill, Screen.WordScramble, Screen.SentenceScramble, Screen.Opposites,
     is Screen.CountryDrill, is Screen.DateDrill -> null
 }
 

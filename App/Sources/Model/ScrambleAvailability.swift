@@ -1,17 +1,18 @@
 import Foundation
 import SprossKern
 
-/// The one question both scramble reports answer, so one wrapper can be asked
-/// it: can this box be asked at all. Kern keeps the two reports apart on
-/// purpose — a mixed spelling is drawn from settled WORDS and a shuffled phrase
-/// from unlocked PHRASES — so what they have in common is read here and not
-/// minted there.
+/// The one question the box-drawn drills' reports answer, so one wrapper can be
+/// asked it: can this box be asked at all. Kern keeps the reports apart on
+/// purpose — a mixed spelling is drawn from settled WORDS, a shuffled phrase
+/// from unlocked PHRASES and an opposite from arrived PAIRS — so what they have
+/// in common is read here and not minted there.
 protocol ScrambleReport {
     var drillAvailable: Bool { get }
 }
 
 extension SprossKern.WordScrambleAvailability.Report: ScrambleReport {}
 extension SprossKern.SentenceScrambleAvailability.Report: ScrambleReport {}
+extension SprossKern.OppositesAvailability.Report: ScrambleReport {}
 
 /// What a scramble can ASK on THIS profile — kern's report, whole.
 ///
@@ -45,6 +46,9 @@ typealias WordScrambleAvailability =
 typealias SentenceScrambleAvailability =
     ScrambleAvailability<SprossKern.SentenceScrambleAvailability.Report>
 
+typealias OppositesAvailability =
+    ScrambleAvailability<SprossKern.OppositesAvailability.Report>
+
 extension ScrambleAvailability where Report == SprossKern.WordScrambleAvailability.Report {
     init(model: AppModel) {
         self.init(model: model, empty: .init(words: []),
@@ -56,5 +60,13 @@ extension ScrambleAvailability where Report == SprossKern.SentenceScrambleAvaila
     init(model: AppModel) {
         self.init(model: model, empty: .init(phrases: []),
                   of: { SprossKern.SentenceScrambleAvailability.shared.report(box: $0) })
+    }
+}
+
+extension ScrambleAvailability where Report == SprossKern.OppositesAvailability.Report {
+    init(model: AppModel) {
+        let pairs = model.catalog?.oppositePairs ?? []
+        self.init(model: model, empty: .init(prompts: []),
+                  of: { SprossKern.OppositesAvailability.shared.report(box: $0, pairs: pairs) })
     }
 }

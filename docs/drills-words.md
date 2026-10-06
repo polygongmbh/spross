@@ -1,6 +1,6 @@
-# Drills over the words the box holds — letters, word scramble, sentence scramble
-What the letter, word scramble and sentence scramble drills ask and what their chrome holds, beyond what every drill wears; none keeps a record, and what each may draw is kern's (`*Availability`).
-Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/alphabet/README.md`.
+# Drills over the words the box holds — letters, word scramble, sentence scramble, opposites
+What the letter, word scramble, sentence scramble and opposites drills ask and what their chrome holds, beyond what every drill wears; none keeps a record, and what each may draw is kern's (`*Availability`).
+Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/alphabet/README.md`, which pairs are opposites `../catalog/opposites/README.md`.
 
 ## Buchstaben — the letters page and the letter drill
 
@@ -93,3 +93,18 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
 - **Nothing says what the phrase MEANS until it is graded** —
   the arrangement is made on word order alone,
   and the translation is part of what the card grows afterwards rather than a prompt above it.
+
+## Gegenteile — opposites
+
+- **The prompt is a word the box holds, and the answer is its opposite TYPED in the same language** —
+  weiß → schwarz, oben → unten, kaufen → verkaufen.
+  Both sides are the language being learned, so the drill asks a second retrieval of words already met,
+  and a pair is asked only once BOTH its words have arrived.
+  Either word of a pair is a prompt; the relation is symmetric, so there is no reverse switch.
+- **Every word comes from the catalog, and the drill authors only pairs** (`../catalog/opposites/README.md`).
+- **A word written alike for two meanings is ONE prompt with every opposite right** —
+  de "ausziehen" takes "einziehen" and "anziehen", sw "kulia" takes "kushoto" and "kucheka".
+  The reveal names all of them, each with its meaning, so the merge is the lesson rather than a trap;
+  an opposite the learner has not met yet still answers, and the reveal is where they meet it.
+  Typing the prompt back is a miss, however close it lands to an opposite.
+- **Its Sprossen are bands that share no prompt**: adjectives and adverbs, then verbs, then the prompts with several opposites.

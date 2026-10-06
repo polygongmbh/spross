@@ -58,6 +58,9 @@ extension TrainerHubView {
         case .sentenceScramble:
             return cleared(SentenceScrambleView.storageKey(language),
                            top: Int(SentenceScrambleAvailability(model: model).report.maxSprosse))
+        case .opposites:
+            return cleared(OppositesView.storageKey(language),
+                           top: Int(OppositesAvailability(model: model).report.maxSprosse))
         }
     }
 

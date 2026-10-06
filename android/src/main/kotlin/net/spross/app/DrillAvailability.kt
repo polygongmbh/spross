@@ -3,6 +3,7 @@ package net.spross.app
 import net.spross.kern.catalog.alphabet
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.LetterDrillAvailability
+import net.spross.kern.trainer.OppositesAvailability
 import net.spross.kern.trainer.SentenceScrambleAvailability
 import net.spross.kern.trainer.Numbers
 import net.spross.kern.trainer.WordScrambleAvailability
@@ -19,7 +20,7 @@ import net.spross.kern.trainer.WordScrambleAvailability
 
 /**
  * What each entry of the roster gates on — the one place a [Drill] meets its condition, so a
- * seventh drill cannot reach the hub without one.
+ * new drill cannot reach the hub without one.
  */
 fun AppModel.offers(drill: Drill): Boolean = when (drill) {
     Drill.Numbers -> numbersOffered
@@ -28,6 +29,7 @@ fun AppModel.offers(drill: Drill): Boolean = when (drill) {
     Drill.Dates -> datesOffered
     Drill.WordScramble -> wordScrambleOffered
     Drill.SentenceScramble -> sentenceScrambleOffered
+    Drill.Opposites -> oppositesOffered
 }
 
 /**
@@ -90,6 +92,10 @@ val AppModel.wordScrambleOffered: Boolean
  */
 val AppModel.sentenceScrambleOffered: Boolean
     get() = box?.let { SentenceScrambleAvailability.drillExists(it) } == true
+
+/** The opposites drill rides on the box too: enough pairs whose both words have arrived. */
+val AppModel.oppositesOffered: Boolean
+    get() = box?.let { OppositesAvailability.drillExists(it, catalog?.oppositePairs.orEmpty()) } == true
 
 /**
  * What the letter drill can ASK here, freshly swept.

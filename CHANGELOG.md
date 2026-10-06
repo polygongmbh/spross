@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- A new Opposites drill asks for the opposite of a word you know, and accepts every opposite where one word carries two meanings, like German ausziehen.
+
 ## 8.3.1 — 2026-10-05
 
 - On Android, the letter drill now plays its question even with reading aloud switched off, as on iPhone.

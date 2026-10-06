@@ -288,6 +288,7 @@ internal object ChromeDe : Chrome {
     override val datesAskMonth = "Wie heißt dieser Monat?"
     override val datesAskDate = "Wie liest man dieses Datum?"
     override val trainerDrillWordScramble = "Wortpuzzle"
+    override val trainerDrillOpposites = "Gegenteile"
     override val trainerDrillSentenceScramble = "Satzpuzzle"
     override val scrambleSentenceHint = "Tippe die Wörter der Reihe nach an"
     override val a11yScrambleArrangement = "Deine Reihenfolge"

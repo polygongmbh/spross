@@ -20,7 +20,7 @@ struct HubChip: Identifiable {
     var id: String { destination.id }
 }
 
-/// What each entry of kern's roster wears here. The six are enumerated in
+/// What each entry of kern's roster wears here. The seven are enumerated in
 /// `Drill` and nowhere else; the glyph and the catalog key are this side's,
 /// which is why they hang off the roster rather than sitting inside it.
 extension Drill {
@@ -33,6 +33,7 @@ extension Drill {
         case .dates: return "📅"
         case .wordScramble: return "🔀"
         case .sentenceScramble: return "🧩"
+        case .opposites: return "↔️"
         }
     }
 
@@ -48,16 +49,17 @@ extension Drill {
         case .dates: return "trainer.drill.dates"
         case .wordScramble: return "trainer.drill.wordScramble"
         case .sentenceScramble: return "trainer.drill.sentenceScramble"
+        case .opposites: return "trainer.drill.opposites"
         }
     }
 }
 
 /// Everything the hub presents, as ONE item: the four overviews reach the
-/// screen through its sheet and the two runs through its cover
+/// screen through its sheet and the three runs through its cover
 /// (`TrainerHubView.presented`), both off this one state.
 ///
 /// The four overviews are pages you READ from, each starting its own run; the
-/// two scrambles have nothing to read beside them — the box IS their material —
+/// two scrambles and the opposites have nothing to read beside them — the box IS their material —
 /// so their entries open the run itself.
 enum HubDestination: Identifiable {
     case numbers(language: String)
@@ -72,14 +74,16 @@ enum HubDestination: Identifiable {
     case wordScramble(language: String)
     /// Putting a phrase's words back in order, in the learned language.
     case sentenceScramble(language: String)
+    /// Typing a word's opposite, in the learned language.
+    case opposites(language: String)
 
     /// Whether this entry opens a RUN rather than a page to read from. A run is
     /// a full screen with its own ✕ wherever it is started from, the overviews'
-    /// covers included (`DrillLaunch`), so the two that skip the page still get
-    /// one.
+    /// covers included (`DrillLaunch`), so the three that skip the page still
+    /// get one.
     var isRun: Bool {
         switch self {
-        case .wordScramble, .sentenceScramble: return true
+        case .wordScramble, .sentenceScramble, .opposites: return true
         case .numbers, .letters, .countries, .dates: return false
         }
     }
@@ -92,6 +96,7 @@ enum HubDestination: Identifiable {
         case let .dates(source, target): return "dates-\(source)-\(target)"
         case let .wordScramble(language): return "wordscramble-\(language)"
         case let .sentenceScramble(language): return "sentencescramble-\(language)"
+        case let .opposites(language): return "opposites-\(language)"
         }
     }
 }
@@ -109,7 +114,7 @@ extension TrainerHubView {
     }
 
     /// Where a roster entry's chip goes, or nil where this profile cannot offer
-    /// it at all — the one place a `Drill` meets its condition, so a seventh
+    /// it at all — the one place a `Drill` meets its condition, so a new drill
     /// cannot reach the hub without one.
     func destination(for drill: Drill) -> HubDestination? {
         guard let language = drillLanguage else { return nil }
@@ -126,6 +131,8 @@ extension TrainerHubView {
             return wordScrambleAvailable ? .wordScramble(language: language) : nil
         case .sentenceScramble:
             return sentenceScrambleAvailable ? .sentenceScramble(language: language) : nil
+        case .opposites:
+            return oppositesAvailable ? .opposites(language: language) : nil
         }
     }
 }
@@ -141,13 +148,14 @@ extension Drill {
         case .dates: return "dates"
         case .wordScramble: return "wordscramble"
         case .sentenceScramble: return "sentencescramble"
+        case .opposites: return "opposites"
         }
     }
 }
 
 extension TrainerHubView {
     /// UI-test hook: `-uitest-trainer numbers|letters|countries|dates|
-    /// wordscramble|sentencescramble` resolved against what this profile
+    /// wordscramble|sentencescramble|opposites` resolved against what this profile
     /// actually offers.
     ///
     /// Clock, phrases and the alphabet are no longer surfaces of their own:
