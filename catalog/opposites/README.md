@@ -21,5 +21,5 @@ No `pairs.json`, no drill.
 - **A slug may stand in several pairs** (`old` with `new` and with `young`):
   the prompt then has several right answers, and that is the point, not a slip.
   The same happens without authoring anything where a language writes two concepts alike
-  (de `ausziehen` is moving out and taking off; sw `kulia` is right and crying) —
+  (sw `kulia` is right and crying, fr `que` is than and that) —
   a collision pinned in `CatalogCollisionLintTest` is fair game here.

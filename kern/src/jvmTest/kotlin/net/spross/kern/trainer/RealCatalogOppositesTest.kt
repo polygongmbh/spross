@@ -27,7 +27,7 @@ class RealCatalogOppositesTest {
     /** The merges the drill is there to show stay merged in the catalog. */
     @Test
     fun aMergedWordAsksForEveryOpposite() {
-        assertEquals(setOf("einziehen", "anziehen"), answers(report("en", "de"), "ausziehen"))
+        assertEquals(setOf("neu", "jung"), answers(report("en", "de"), "alt"))
         assertEquals(setOf("kushoto", "kucheka"), answers(report("en", "sw"), "kulia"))
     }
 }

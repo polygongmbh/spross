@@ -53,7 +53,6 @@
  ["to-approve", "to-reject"],
  ["to-wake-up", "to-sleep"],
  ["to-get-dressed", "to-get-undressed"],
- ["to-put-on", "to-take-off"],
  ["to-move-in", "to-move-out"],
  ["to-get-on", "to-get-off"]
 ]

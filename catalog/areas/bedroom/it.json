@@ -23,8 +23,6 @@
   "to-wake-up": { "text": "svegliarsi" },
   "to-get-up": { "text": "alzarsi" },
   "to-get-undressed": { "text": "spogliarsi", "accepts": ["svestirsi"] },
-  "to-put-on": { "text": "mettersi", "accepts": ["indossare"] },
-  "to-take-off": { "text": "togliersi", "accepts": ["levarsi"] },
   "to-cuddle": { "text": "coccolarsi", "accepts": ["fare le coccole"] },
   "to-yawn": { "text": "sbadigliare" },
   "to-snore": { "text": "russare" },

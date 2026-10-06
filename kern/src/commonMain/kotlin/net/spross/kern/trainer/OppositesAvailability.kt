@@ -15,8 +15,8 @@ import net.spross.kern.model.nfcNormalized
  * The bar is the arrived one ([BoxEngine.arrivedCardIds]), the letter drill's: naming the
  * opposite is a second retrieval of a word already met, not a first sight of it.
  *
- * Two concepts written alike are one prompt — de "ausziehen" is moving out AND taking a
- * garment off, so it is asked once and both "einziehen" and "anziehen" answer it. Every
+ * Two concepts written alike are one prompt — sw "kulia" is the right side AND crying,
+ * so it is asked once and both "kushoto" and "kucheka" answer it. Every
  * opposite of every concept the form prints counts, held or not: a right answer the
  * learner has not met yet is still right, and the reveal is where they meet it.
  */

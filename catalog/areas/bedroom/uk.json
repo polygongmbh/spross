@@ -18,8 +18,6 @@
   "to-wake-up": { "text": "прокидатися" },
   "to-get-up": { "text": "вставати" },
   "to-get-undressed": { "text": "роздягатися" },
-  "to-put-on": { "text": "вдягати", "accepts": ["одягати"] },
-  "to-take-off": { "text": "знімати" },
   "to-cuddle": { "text": "обійматися" },
   "to-yawn": { "text": "позіхати" },
   "to-snore": { "text": "хропіти" },

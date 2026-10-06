@@ -24,8 +24,6 @@
   },
   "to-get-up": { "text": "ellitiĝi", "accepts": ["leviĝi"] },
   "to-get-undressed": { "text": "senvestiĝi", "accepts": ["malvestiĝi", "senvestigi sin"] },
-  "to-put-on": { "text": "surmeti" },
-  "to-take-off": { "text": "demeti" },
   "to-cuddle": {
    "text": "karesi",
    "accepts": ["brakumi"],

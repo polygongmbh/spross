@@ -4,7 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
-- A new Opposites drill asks for the opposite of a word you know, and accepts every opposite where one word carries two meanings, like German ausziehen.
+- A new Opposites drill asks for the opposite of a word you know, and accepts every opposite where one word carries two meanings, like Swahili kulia for right and to cry.
 
 ## 8.3.1 — 2026-10-05
 

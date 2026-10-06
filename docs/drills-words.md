@@ -103,7 +103,7 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   Either word of a pair is a prompt; the relation is symmetric, so there is no reverse switch.
 - **Every word comes from the catalog, and the drill authors only pairs** (`../catalog/opposites/README.md`).
 - **A word written alike for two meanings is ONE prompt with every opposite right** —
-  de "ausziehen" takes "einziehen" and "anziehen", sw "kulia" takes "kushoto" and "kucheka".
+  de "alt" takes "neu" and "jung", sw "kulia" takes "kushoto" and "kucheka".
   The reveal names all of them, each with its meaning, so the merge is the lesson rather than a trap;
   an opposite the learner has not met yet still answers, and the reveal is where they meet it.
   Typing the prompt back is a miss, however close it lands to an opposite.

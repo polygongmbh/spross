@@ -22,8 +22,6 @@
   "to-wake-up": { "text": "despertarse" },
   "to-get-up": { "text": "levantarse" },
   "to-get-undressed": { "text": "desvestirse", "teaches": ["quitarse la ropa"], "accepts": ["desnudarse"] },
-  "to-put-on": { "text": "ponerse" },
-  "to-take-off": { "text": "quitarse", "accepts": ["sacarse"] },
   "to-cuddle": { "text": "acurrucarse", "teaches": ["hacerse mimos"], "accepts": ["achucharse", "abrazarse"] },
   "to-yawn": { "text": "bostezar" },
   "to-snore": { "text": "roncar" },

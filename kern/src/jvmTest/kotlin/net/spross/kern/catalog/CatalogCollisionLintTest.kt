@@ -110,10 +110,6 @@ class CatalogCollisionLintTest {
                 // en/es/fr/it/uk all split the pair (rail/splint, riel/férula, rail/attelle,
                 // rotaia/stecca, рейка/шина); sw has no splint card yet. There is no second
                 // German word for either sense of "rigid guiding strip," so both stay.
-                // Reviewed 2026-10-06: de `ausziehen` is moving out AND taking a garment off —
-                // de/eo/fr/sw/uk split them (moving out/taking off, elloĝiĝi/demeti, déménager/enlever),
-                // and the opposites drill asks the merge on purpose: both einziehen and anziehen answer it.
-                "de ausziehen: bedroom/to-take-off, living/to-move-out",
                 "de Schiene: illness/splint, transport/rail",
                 // Reviewed 2026-08-29: de `Stunde` is the clock hour AND the school period —
                 // en/sw both split it (hour/period, saa/kipindi); es/fr/it/uk fold `period`
@@ -194,10 +190,6 @@ class CatalogCollisionLintTest {
                 // fresco/spesa). There is no second word for fresh in French, and `les
                 // frais` is what an office actually charges, so both stay; market/fresh
                 // carries the de note naming the second sense, the ndege treatment.
-                // Reviewed 2026-10-06: fr `mettre` is putting a thing down AND putting a garment on —
-                // de/en/es/it split them (hinlegen/anziehen, to put/to put on, poner/ponerse, mettere/mettersi).
-                // `enfiler` is slipping into, not the everyday word, so it stays an accepts.
-                "fr mettre: bedroom/to-put-on, verbs/to-put",
                 "fr frais: admin/fee, market/fresh",
                 // Reviewed 2026-09-05: fr `même` is gleich (le même) AND sogar — de/en/eo/es/it/sw/uk
                 // all split the pair (gleich/sogar, same/even, sama/eĉ, igual/incluso, sawa/hata).
@@ -285,10 +277,6 @@ class CatalogCollisionLintTest {
                 // is that agreement form; every other language splits the pair (wenig/klein).
                 "sw kidogo: degree/a-little, qualities/small",
                 "sw mpaka: connectors/until, politics/border",
-                // Reviewed 2026-10-06: sw `kuvaa` is getting dressed AND putting a garment on — one verb
-                // whether or not the garment is named; de/en/fr split them (sich anziehen/anziehen,
-                // to get dressed/to put on, s'habiller/mettre).
-                "sw kuvaa: bedroom/to-put-on, hall/to-get-dressed",
                 "sw mto: bedroom/pillow, water/river",
                 // Reviewed 2026-08-04: sw `mwezi` is moon and month, exactly as uk `місяць`
                 // is — so the moon is authored without uk, which keeps this to one language
