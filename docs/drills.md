@@ -56,6 +56,11 @@ Nothing wears a prefix one scope wider than what it serves.
   A Sprosse that only turns the same demand up owes nothing of the sort,
   so the word scramble's climb takes a cue away and asks a longer word at once.
   Inside a Sprosse the shorter eligible words still come first.
+- **A Sprosse costs three clean wins, two in the numbers drill.**
+  The atlas, the calendar, the letters and both scrambles ask from a pool of rows,
+  and a climb should see more than a couple of them before it moves on;
+  the numbers drill generates every question, so there is no pool to cover.
+  The counts are kern's (`WINS_TO_ADVANCE`, `Numbers.winsToAdvance`).
 - Clock, sentences and number forms are exercises a run selects, not chips:
   a chip apiece would say they are alternatives to counting rather than what counting earns.
   Modifiers (reverse, fast, mix) are how a run is played.
