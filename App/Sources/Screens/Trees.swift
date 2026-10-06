@@ -78,7 +78,7 @@ struct Trees: View {
         let at = CGPoint(x: mark.foot.x, y: mark.baseline + Self.labelHeight / 2)
         guard mark.tree.isBare else { return context.draw(text, at: at, anchor: .center) }
         context.drawLayer { faded in
-            faded.opacity = 0.4
+            faded.opacity = TreesLayout.shared.UNOPENED_LABEL_OPACITY
             faded.draw(text, at: at, anchor: .center)
         }
     }

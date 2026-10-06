@@ -43,6 +43,8 @@ object TreesLayout {
     const val ROW_HEIGHT = 72.0
     /** The strip under the baseline that carries a tree's label. */
     const val LABEL_HEIGHT = 18.0
+    /** An unopened area's label fades with its seedling. */
+    const val UNOPENED_LABEL_OPACITY = 0.4
     const val ROW_GAP = 8.0
     /** The shortest a tap target is ever made, label strip included: a seedling is a few points of ink and a thumb is not. */
     const val MIN_TAP_HEIGHT = 44.0

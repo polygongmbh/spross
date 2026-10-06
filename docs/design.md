@@ -193,7 +193,8 @@ What licenses a second component is a parameter attempted and found not to carry
   **A tree is one organism its whole life** — trunk is growth, canopy is landed words,
   blossom and fruit appear on it.
   Which word stands in which `GrowthStage` is kern's `growthByArea`;
-  where each tree stands is kern's `TreesLayout`, its size and its wood kern's `AreaTree`;
+  where each tree stands is kern's `TreesLayout`, its size and its wood kern's `AreaTree`,
+  every mark, outline and layer it is drawn in kern's `TreePicture`, the summary's rise kern's `TreeRise`;
   a stage is one mark — fresh a bud, growing a leaf, settled a blossom, matured fruit.
   What the round summary claims over its tree is kern's `growthHeadline`.
   A tree forks further the more words it carries, each limb continued by a lead
