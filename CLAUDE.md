@@ -1,6 +1,5 @@
 # Spross — growing-box vocabulary app
 The rules every session pays for on every edit (commands, commit rules, code and text standards, invariants), one terse line each; a topic's own rules live in the `docs/` page that owns it.
-Neighbors: where a rule belongs `docs/rules.md`.
 
 A personal spaced-repetition "growing box" app:
 FSRS-6-scheduled vocab that only grows while material sits, phrases unlock from their component words.
@@ -112,9 +111,11 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Inner → outer: App depends on the kern (SprossKern framework), never the reverse;
   only the app target links Kotlin (`kern/docs/build.md`).
 - A behavioral rule lives in kern once — a platform may READ a kern decision, never MINT one
-  (`LayerBoundaryTest`, waivable per line with `// layer-ok: <reason>`); shared layout data lives in kern once;
-  platforms own presentation — drawing, animation, focus, haptics, audio, timelines, a11y and string tables — and nothing else —
-  each of those owned once per platform; sameness is the CONTROLS, never the content they
+  (`LayerBoundaryTest`, waivable per line with `// layer-ok: <reason>`);
+  nothing is written twice across platforms: any value, proportion, curve, timeline, threshold or random draw
+  both would compute — a shape's geometry and an animation's timing included — lives in kern once;
+  a platform holds only what needs its own API — issuing draw calls, running animations, focus, haptics,
+  audio playback, a11y and string tables — and converts kern's units; sameness is the CONTROLS, never the content they
   hold, and a second cut is licensed by a parameter attempted, never by an argument.
 - `phase == new ⟺ memory == null ⟺ due == null` on a card's scheduling.
 - **Introduction = first answer**, never at composition — budget accounting relies on this.
@@ -126,7 +127,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 ## Extended docs
 
 - Decisions, rationale, and major turning points live in `docs/`, not inline; this file points.
-- Which of the three homes a rule belongs in — this file, a doc, or a gate — is `docs/rules.md`.
+- A checkable rule earns a gate (pre-commit or test, `--fix` and a per-line waiver where it can) and keeps its sentence for the why; no rule lives in an agent's private memory.
 - **One fact, one home**: each topic owned by exactly one doc; narrative docs (history, status, plans) link into it, never restate it.
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
 - Negations and hardlines only where the opposite is what would otherwise happen.

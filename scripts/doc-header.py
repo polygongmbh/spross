@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Check that every tracked markdown file opens with its three-line head and links no plan.
 
-Line 1 is the heading, line 2 one unbroken line on what the file holds,
+Line 1 is the heading, line 2 one unbroken line on what the file holds, how it is laid out and what it leaves out,
 line 3 either `Neighbors: ...` (one line) followed by a blank, or blank.
-A standing doc never links a plan file: plans are deleted once shipped (docs/rules.md).
+A standing doc never links a plan file: plans are deleted once shipped.
 Plans and the archive are working state and exempt; a backlog may point at a plan.
 
   scripts/doc-header.py           report every file off the shape (same as --check)
