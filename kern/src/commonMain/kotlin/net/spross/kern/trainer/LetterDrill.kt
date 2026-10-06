@@ -30,8 +30,11 @@ object LetterDrill {
     /** One answer plus up to three distractors; two are tolerated on a tiny alphabet. */
     const val CHOICE_COUNT = 4
 
-    /** How long a Sprosse is: two clean wins, whatever the box holds. */
-    const val WINS_TO_ADVANCE = 2
+    /**
+     * Three clean wins a Sprosse, as in the atlas ([CountryDrill.WINS_TO_ADVANCE]): each Sprosse
+     * asks from the whole alphabet, so a climb should see more than a couple of its rows.
+     */
+    const val WINS_TO_ADVANCE = 3
 
     /** The same floor on the gap word's arrived-first preference; below it, the whole pool. */
     private const val MIN_ARRIVED_CANDIDATES = 3

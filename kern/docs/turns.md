@@ -193,6 +193,8 @@ and text reaches a machine only inside an intent — never as state.
   a Sprosse it holds passes on one clean answer until the run's first miss or almost,
   every other Sprosse, and every one after that slip, on the usual count (`DrillSprossen.winsRequired`).
   A Sprosse passed fast is one the store already holds, so it is nothing new to a pause.
+  The letter drill opens on the lowest Sprosse its mask does not hold,
+  and passes a held one above it, or one a miss steps it back to, on the same rule.
   Pinned quirk: a non-null `phraseSource` suffixes the record language with the
   `<source>-<target>` pair even when the run asks no sentence,
   because the overview passes the source whenever the pair realizes frames.

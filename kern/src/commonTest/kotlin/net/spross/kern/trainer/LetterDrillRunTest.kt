@@ -108,6 +108,20 @@ class LetterDrillRunTest {
         assertEquals(7, fresh.openingSprosse((1..7).toSet()))
     }
 
+    /** An open Sprosse costs three clean wins; one an earlier run answered out costs one. */
+    @Test
+    fun aClearedSprosseAboveTheOpeningIsClimbedInOneWin() {
+        val rng = Random(47)
+        var state = LetterDrillRun.open(config(report(), cleared = setOf(1, 2, 4)), rng)
+        assertEquals(3, state.sprosse)
+        repeat(2) { state = answeredRight(state, rng) }
+        assertEquals(3, state.sprosse)
+        state = answeredRight(state, rng)
+        assertEquals(4, state.sprosse)
+        state = answeredRight(state, rng)
+        assertEquals(5, state.sprosse)
+    }
+
     /** A Sprosse climbed off clean is what the close files; a slip on one keeps it out. */
     @Test
     fun aCloseFilesTheSprossenTheRunClimbedOffClean() {
