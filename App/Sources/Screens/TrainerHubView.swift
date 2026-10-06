@@ -23,6 +23,11 @@ struct TrainerHubView: View, LanguageNaming {
     /// destination through the same presentations the chips use.
     @Binding var destination: HubDestination?
 
+    /// The figures a scramble run handed back as it closed — the scrambles have
+    /// no page of their own, so the hub wears their tile. A run too short to
+    /// report clears it rather than leaving an older one standing.
+    @State private var lastRun: DrillRunResult?
+
     /// The language being learned — every drill runs in it.
     var drillLanguage: String? { model.targetLanguage }
 
@@ -91,12 +96,16 @@ struct TrainerHubView: View, LanguageNaming {
             case let .dates(source, target):
                 DatesOverview(model: model, source: source, target: target)
             case let .wordScramble(language):
-                WordScrambleView(model: model, language: language)
+                WordScrambleView(model: model, language: language, onFinish: report)
             case let .sentenceScramble(language):
-                SentenceScrambleView(model: model, language: language)
+                SentenceScrambleView(model: model, language: language, onFinish: report)
             }
         }
         .environment(\.locale, model.knownLocale)
+    }
+
+    private func report(_ result: DrillRunResult) {
+        lastRun = result.worthReporting ? result : nil
     }
 
     /// The one `destination`, seen through ONE presentation: a binding that
@@ -123,6 +132,7 @@ struct TrainerHubView: View, LanguageNaming {
             Text("trainer.hub.subtitle")
                 .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.textSecondary)
+            if let lastRun { DrillResultTile(result: lastRun) }
             VStack(spacing: Theme.spacing.md) {
                 ForEach(Array(chipRows.enumerated()), id: \.offset) { _, row in
                     HStack(spacing: Theme.spacing.md) {

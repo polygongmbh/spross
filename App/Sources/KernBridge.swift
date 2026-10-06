@@ -194,7 +194,7 @@ extension DrillRunResult {
     init(_ summary: DrillRunSummary, title: LocalizedStringKey) {
         self.init(doneCount: Int(summary.done), bestAnswerStreak: Int(summary.bestAnswerStreak),
                   newRecord: summary.newRecord, milestone: summary.milestone, timed: summary.timed,
-                  title: title)
+                  worthReporting: summary.worthReporting, title: title)
     }
 }
 

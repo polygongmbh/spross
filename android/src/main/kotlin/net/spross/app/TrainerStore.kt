@@ -239,6 +239,22 @@ class TrainerStanding(val store: TrainerStore) {
         resultTitle = title
     }
 
+    /**
+     * The figures a scramble run handed back — the scrambles have no page of their own, so
+     * the hub card wears their tile. Kept apart from [result], which an overview page owns.
+     */
+    var hubResult by mutableStateOf<DrillRunSummary?>(null)
+        private set
+
+    var hubResultTitle by mutableStateOf("")
+        private set
+
+    /** A run too short to report clears the tile rather than leaving an older one standing. */
+    fun showOnHub(summary: DrillRunSummary?, title: String) {
+        hubResult = summary?.takeIf { it.worthReporting }
+        hubResultTitle = title
+    }
+
     /** Opening a page from Home is a fresh visit — last night's figures are not news. */
     fun clearResult() {
         result = null

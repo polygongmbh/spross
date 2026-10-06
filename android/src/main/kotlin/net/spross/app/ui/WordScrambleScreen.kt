@@ -39,7 +39,7 @@ fun WordScrambleScreen(model: AppModel) {
     val state = flow.state
     val leave = {
         val closed = flow.close()
-        model.closeScramble(Drill.WordScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
+        model.closeScramble(Drill.WordScramble, model.chrome.trainerDrillWordScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
     }
 
     val inputFocus = remember { FocusRequester() }

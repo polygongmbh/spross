@@ -106,6 +106,8 @@ struct DrillRunResult: Equatable {
     var milestone: AnswerStreakMilestone = .sprout
     /// A timed run's score, and the challenge it answered; nil for every other run.
     var timed: TimedOutcome?
+    /// Long enough to report where nothing asked for it — kern's (`DrillRunSummary.worthReporting`).
+    var worthReporting = true
     /// What was drilled — the exercise's own name, since a page can host several.
     let title: LocalizedStringKey
 }

@@ -87,6 +87,13 @@ data class DrillRunSummary(
     /** The record figure: a timed run's score, otherwise the best answer streak. */
     val recordFigure: Int get() = timed?.score ?: bestAnswerStreak
 
+    /**
+     * Whether the figures are worth reporting where nothing asked for them — a drill with no
+     * page of its own reports on the hub only after a stretch a pause could also have
+     * stopped ([DrillPacing.STRUGGLING_AFTER]); a couple of answers is a peek, not a run.
+     */
+    val worthReporting: Boolean get() = done >= DrillPacing.STRUGGLING_AFTER
+
     val milestone: AnswerStreakMilestone
         get() = when {
             bestAnswerStreak >= TROPHY_ANSWER_STREAK -> AnswerStreakMilestone.Trophy

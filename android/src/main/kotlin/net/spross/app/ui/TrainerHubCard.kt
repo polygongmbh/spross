@@ -72,6 +72,7 @@ fun TrainerHubCard(model: AppModel) {
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
+        model.trainer.hubResult?.let { DrillResultTile(it, model.trainer.hubResultTitle, chrome) }
         // why: the chips name an exercise and nothing else — spoken, "Numbers" could
         // be an area of the box. The suffix says it is practice, and in which language.
         val practice =

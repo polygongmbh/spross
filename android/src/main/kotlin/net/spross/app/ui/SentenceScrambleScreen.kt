@@ -44,7 +44,7 @@ fun SentenceScrambleScreen(model: AppModel) {
     val state = flow.state
     val leave = {
         val closed = flow.close()
-        model.closeScramble(Drill.SentenceScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
+        model.closeScramble(Drill.SentenceScramble, model.chrome.trainerDrillSentenceScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
     }
 
     DrillRunScaffold(

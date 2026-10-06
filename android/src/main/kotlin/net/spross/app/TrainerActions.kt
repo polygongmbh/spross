@@ -98,13 +98,14 @@ fun AppModel.finishDrill(back: Screen, summary: DrillRunSummary?, title: String)
 
 /**
  * The way out of either scramble. Neither has a page to land on, so the run closes onto Home
- * with no figures, and neither keeps a streak record or a high-water Sprosse beside its mask,
+ * and hands its figures to the hub card ([TrainerStanding.showOnHub]); neither keeps a streak record or a high-water Sprosse beside its mask,
  * because nothing reads one back. The mask under [clearedKey] is what the NEXT run reads: it
  * passes each Sprosse held there on one clean answer.
  */
-fun AppModel.closeScramble(drill: Drill, clearedKey: String, cleared: Set<Int>, summary: DrillRunSummary?) {
+fun AppModel.closeScramble(drill: Drill, title: String, clearedKey: String, cleared: Set<Int>, summary: DrillRunSummary?) {
     trainer.store.bookCleared(clearedKey, cleared)
     stampRun(drill, summary)
+    trainer.showOnHub(summary, title)
     finishDrill(Screen.Home, null, "")
 }
 
