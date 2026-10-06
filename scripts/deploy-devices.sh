@@ -110,9 +110,9 @@ if [ "$DO_BUILD" -eq 1 ] && [ "$DRY" -eq 0 ]; then
   echo "Building $SCHEME ($CONFIG) for device…"
   if ! xcodebuild -project Spross.xcodeproj -scheme "$SCHEME" -configuration "$CONFIG" \
         -destination 'generic/platform=iOS' -derivedDataPath "$DERIVED" \
-        -allowProvisioningUpdates build >"$DERIVED/build.log" 2>&1; then
-    echo "Build FAILED — last lines of $DERIVED/build.log:"
-    tail -25 "$DERIVED/build.log"
+        -allowProvisioningUpdates build 2>&1 \
+      | tee "$DERIVED/build.log" | awk -f scripts/xcode-progress.awk; then
+    echo "Build FAILED — full log: $DERIVED/build.log"
     exit 1
   fi
 fi
