@@ -162,6 +162,9 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     var sampleTreesAge: Double? = null
 
+    /** A challenge code a link opened the app with, until the numbers page takes it ([openChallengeLink]). */
+    var pendingChallengeCode by mutableStateOf<String?>(null)
+
     /**
      * Whether the round on screen still owes the learner the three lines that teach it
      * ([SessionCoach]). Armed when onboarding opens that round, cleared when it closes,

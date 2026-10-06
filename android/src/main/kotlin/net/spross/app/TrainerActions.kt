@@ -49,6 +49,11 @@ fun AppModel.startTrainerRun(mode: NumbersMode) {
     navigate(Screen.NumbersRun(mode))
 }
 
+/** Holds the code a challenge link carries for the numbers page; any other link is ignored. */
+fun AppModel.openChallengeLink(url: String?) {
+    pendingChallengeCode = url?.let(NumbersChallenge::codeInLink) ?: return
+}
+
 /** A challenge's timed run, on the questions its code spells. */
 fun AppModel.startChallenge(challenge: NumbersChallenge) {
     navigate(Screen.NumbersRun(challenge.mode, challenge))

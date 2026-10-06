@@ -31,6 +31,14 @@ class NumbersChallengeTest {
         assertEquals(42, ready(made.code(42)).opponentScore)
     }
 
+    @Test
+    fun aLinkCarriesTheCodeFromTheSiteOrTheAppScheme() {
+        val link = requireNotNull(NumbersChallenge.codeInLink(made.link(42)))
+        assertEquals(42, ready(link).opponentScore)
+        assertEquals(made, ready(requireNotNull(NumbersChallenge.codeInLink("spross://challenge/${made.code(null)}"))))
+        assertNull(NumbersChallenge.codeInLink("https://spross.net/privacy"))
+    }
+
     /** Only what the questions depend on travels: the exercises and the direction, never Fast. */
     @Test
     fun aChallengeCarriesWhatTheRunAsksAndHowItIsTurned() {

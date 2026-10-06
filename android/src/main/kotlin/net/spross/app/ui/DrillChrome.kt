@@ -144,13 +144,14 @@ private fun TimedLines(timed: TimedOutcome, chrome: Chrome) {
         Text(verdict.format(theirs), style = MaterialTheme.typography.bodySmall, color = Theme.colors.accent)
     }
     val reply = timed.replyCode ?: return
+    val link = timed.replyLink ?: return
     val context = LocalContext.current
-    TextButton(onClick = { context.shareChallenge(chrome.trainerChallengeMessage.format(timed.score, reply)) }) {
+    TextButton(onClick = { context.shareChallenge(chrome.trainerChallengeMessage.format(timed.score, link)) }) {
         Text(chrome.trainerChallengeSend.format(reply), style = MaterialTheme.typography.bodySmall)
     }
 }
 
-/** Shares a code through the system share sheet. */
+/** Shares a challenge link through the system share sheet. */
 private fun Context.shareChallenge(text: String) {
     val send = Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"

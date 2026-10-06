@@ -71,6 +71,9 @@ data class NumbersChallenge(
         return if (score == null) base else "$base-$score"
     }
 
+    /** [code] as a link that opens the app on it, or the site's challenge page where none is installed. */
+    fun link(score: Int?): String = "$LINK_PREFIX${code(score)}"
+
     /** Question [index] as a draw at its Sprosse; a null task past the end ends the run. */
     internal fun drawAt(index: Int, sprossen: Map<NumbersExercise, Int>): NumbersDraw {
         val next = tasks.getOrNull(index) ?: return NumbersDraw(null, sprossen)
@@ -125,6 +128,16 @@ data class NumbersChallenge(
 
         /** The exercises a code can carry, in the order its bits name them. */
         private val TRAVELING = listOf(NumbersExercise.Counting, NumbersExercise.Clock, NumbersExercise.Forms)
+
+        private const val LINK_PREFIX = "https://spross.net/c?"
+        private const val SCHEME_PREFIX = "spross://challenge/"
+
+        /** The code a challenge link carries — the site's or the app scheme's — for [read]; null for any other URL. */
+        fun codeInLink(url: String): String? =
+            listOf(LINK_PREFIX, SCHEME_PREFIX)
+                .firstOrNull { url.startsWith(it, ignoreCase = true) }
+                ?.let { url.substring(it.length).substringBefore('#') }
+                ?.takeIf { it.isNotBlank() }
 
         /** Whether [create] has anything to send out of these picks. */
         fun offered(mode: NumbersMode): Boolean = mode.exercises.any { it in TRAVELING }

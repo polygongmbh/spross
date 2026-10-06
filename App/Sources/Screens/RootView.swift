@@ -87,6 +87,10 @@ struct RootView: View {
         .onChange(of: tab) { _, now in
             if now != .box { boxArea = nil }
         }
+        // why: a challenge link opens the numbers page, which hangs off Home.
+        .onChange(of: model.pendingChallengeCode) { _, code in
+            if code != nil { tab = .home }
+        }
     }
 
     private var loading: some View {

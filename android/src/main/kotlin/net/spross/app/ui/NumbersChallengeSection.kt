@@ -12,6 +12,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,6 +53,14 @@ fun NumbersChallengeSection(model: AppModel, picks: NumbersMode) {
                 chrome.trainerChallengeOtherLanguage.format(model.languageName(reading.language))
             ChallengeReading.Unreadable -> chrome.trainerChallengeUnreadable
         }
+    }
+
+    // why: a challenge link lands here entered and accepted, so a bad one is refused in place.
+    LaunchedEffect(model.pendingChallengeCode) {
+        val linked = model.pendingChallengeCode ?: return@LaunchedEffect
+        model.pendingChallengeCode = null
+        code = linked
+        accept()
     }
 
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {

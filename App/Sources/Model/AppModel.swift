@@ -143,6 +143,8 @@ final class AppModel {
     /// (`SessionCoach`). Armed when onboarding opens that round, cleared when it closes,
     /// and in memory only — an app killed in between is simply back without the coaching.
     var coachPending = false
+    /// A challenge code a link opened the app with, until the numbers page takes it.
+    var pendingChallengeCode: String?
     private(set) var autostartSession = false
     /// DEBUG hook: `-uitest-screen box` or `settings` opens that tab after launch,
     /// `finish` jumps a fresh session to its finish screen.

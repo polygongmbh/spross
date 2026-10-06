@@ -224,7 +224,7 @@ internal object ChromeDe : Chrome {
     override val trainerChallengeLost = "Dein Gegenüber hatte %d."
     override val trainerChallengeSend = "Senden: %s"
     override val trainerChallengeMessage = "Mein Ergebnis im Zahlentraining von Spross: %d. " +
-        "Schaffst du mehr? Gib diesen Code ein: %s"
+        "Schaffst du mehr? Spiel dieselben Aufgaben hier: %s"
     override val numbersCombineLocked = "Mehreres in einem Lauf, sobald alles freigeschaltet " +
         "ist."
     override val numbersUnlock = "Freischalten:"

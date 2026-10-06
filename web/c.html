@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spross — a numbers challenge</title>
+<meta name="description" content="Someone raced the clock in the Spross numbers drill. Open the challenge in Spross and play the same questions.">
+<meta property="og:title" content="A Spross numbers challenge">
+<meta property="og:description" content="Same questions, same clock. Can you beat the score?">
+<meta property="og:image" content="https://spross.net/assets/icon-512.png">
+<link rel="icon" href="assets/icon-512.png">
+<link rel="apple-touch-icon" href="assets/icon-512.png">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site">
+  <a href="/"><span class="word">Spross</span></a>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <h1>A numbers challenge</h1>
+    <p class="sub">Same questions, same clock — open it in Spross and see who counts faster.</p>
+    <p class="sub">Code: <code id="code">—</code></p>
+    <div class="cta-row">
+      <a class="btn primary" id="open" href="spross://challenge/">Open in Spross</a>
+      <a class="btn soft" href="/">Get Spross</a>
+    </div>
+    <p class="note">No app link? Type the code into the challenge field on the Numbers page.</p>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <nav>
+    <a href="impressum.html">Legal notice</a>·<a href="privacy.html">Privacy</a>
+  </nav>
+</footer>
+
+</div>
+<script>
+"use strict";
+// The code rides as the bare query (https://spross.net/c?ES-K4F7-2Q7M-42); the app checks it.
+const code = decodeURIComponent(location.search.slice(1)).replace(/[^A-Za-z0-9-]/g, "");
+if (code) {
+  document.getElementById("code").textContent = code;
+  document.getElementById("open").href = "spross://challenge/" + code;
+}
+</script>
+</body>
+</html>

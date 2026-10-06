@@ -1,5 +1,6 @@
 import AVFoundation
 import SwiftUI
+import SprossKern
 
 @main
 struct SprossApp: App {
@@ -18,6 +19,13 @@ struct SprossApp: App {
     var body: some Scene {
         WindowGroup {
             RootView(model: model)
+                // why: a challenge link — the site's universal link or the app's own scheme —
+                // opens the numbers page with its code entered and accepted.
+                .onOpenURL { url in
+                    if let code = NumbersChallenge.companion.codeInLink(url: url.absoluteString) {
+                        model.pendingChallengeCode = code
+                    }
+                }
                 .onChange(of: scenePhase) { _, phase in
                     // why: leaving the app writes the box, snapshots and all,
                     // so no answered review is ever lost;

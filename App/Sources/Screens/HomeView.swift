@@ -58,6 +58,12 @@ struct HomeView: View {
         .sheet(isPresented: $briefingPresented) {
             BriefingSheet(model: model)
         }
+        // why: a challenge link opens the numbers page, which accepts the code itself.
+        .onChange(of: model.pendingChallengeCode, initial: true) { _, code in
+            guard code != nil else { return }
+            drillDestination = TrainerHubView(model: model, destination: $drillDestination)
+                .destination(for: .numbers) ?? drillDestination
+        }
     }
 
     /// Kern's answer to what leads the day (`DayLead`).

@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["AF77U46UQ6.net.spross.app", "AF77U46UQ6.net.spross.dev"],
+        "components": [{ "/": "/c" }]
+      }
+    ]
+  }
+}

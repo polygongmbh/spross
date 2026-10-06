@@ -77,6 +77,9 @@ targets:
       path: App/Spross.entitlements
       properties:
         com.apple.security.application-groups: ["$(APP_GROUP_ID)"]
+        # why: a challenge link (https://spross.net/c?<code>) opens the app;
+        # web/.well-known/apple-app-site-association is the site's half.
+        com.apple.developer.associated-domains: ["applinks:spross.net"]
     # why: UIBackgroundModes is one of the few keys `INFOPLIST_KEY_*` cannot
     # reach — Xcode honors a fixed list and this is not on it — so the app gets
     # a base plist that the generated keys are merged into. It carries this one
@@ -90,6 +93,11 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UIBackgroundModes: [audio]
+        # why: the site's challenge page offers spross://challenge/<code> where the
+        # universal link did not open the app.
+        CFBundleURLTypes:
+          - CFBundleURLName: net.spross.challenge
+            CFBundleURLSchemes: [spross]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: "$(APP_ID_PREFIX)"

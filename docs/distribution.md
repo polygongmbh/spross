@@ -130,6 +130,14 @@ What binds it, on each side:
 - **iOS** — the first App Store Connect record.
   Moving that one alone would also break the match and orphan `group.net.spross.data`, the container the widget and watch share in a release build (`project.yml` `APP_GROUP_ID`; debug uses its own group, `group.net.spross.dev`, under the same polygon team).
 
+## Challenge links — the site's half
+
+A shared numbers challenge is `https://spross.net/c?<code>`, and it opens the app only where spross.net vouches for it.
+`scripts/build-web.sh` ships `web/.well-known/` with the site:
+`apple-app-site-association` names both iOS app ids under the team,
+and `assetlinks.json` has to name `net.spross.app` with the release key's SHA-256 (`keytool -list -v -keystore "$SPROSS_KEYSTORE"`).
+Until a file answers at `https://spross.net/.well-known/…`, the link opens `web/c.html`, whose button opens the app through `spross://challenge/<code>`.
+
 ## Impressum and privacy policy — the gate before anyone outside sees a build
 
 Both live in the app itself, on the About screen each phone reaches from Box settings:

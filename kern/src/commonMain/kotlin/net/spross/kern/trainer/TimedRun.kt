@@ -37,6 +37,9 @@ data class TimedOutcome(
     /** The challenge's code carrying this score, for sending back; null outside a challenge. */
     val replyCode: String? get() = challenge?.code(score)
 
+    /** [replyCode] as the link a reply is sent as. */
+    val replyLink: String? get() = challenge?.link(score)
+
     /** How this score stands against the one the code arrived with; null where none came. */
     val verdict: ChallengeVerdict?
         get() = challenge?.opponentScore?.let { theirs ->

@@ -74,6 +74,14 @@ extension NumbersOverview {
         launch = DrillLaunch(value: NumbersLaunch(mode: challenge.mode, challenge: challenge))
     }
 
+    /// Enters and accepts the code a challenge link brought, so a bad one is refused in place.
+    func takeLinkedChallenge() {
+        guard let code = model.pendingChallengeCode else { return }
+        model.pendingChallengeCode = nil
+        challengeCode = code
+        acceptChallenge()
+    }
+
     private func acceptChallenge() {
         switch onEnum(of: NumbersChallenge.companion.read(text: challengeCode, language: language)) {
         case .ready(let ready):

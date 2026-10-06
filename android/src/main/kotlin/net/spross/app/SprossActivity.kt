@@ -1,5 +1,6 @@
 package net.spross.app
 
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.graphics.Color
 import android.os.Build
@@ -29,6 +30,7 @@ import androidx.compose.material3.ShortNavigationBarItem
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -94,6 +96,7 @@ class SprossActivity : ComponentActivity() {
         if (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0 && intent?.hasExtra(EXTRA_TREES_AGE) == true) {
             model.sampleTreesAge = intent.getFloatExtra(EXTRA_TREES_AGE, 0f).toDouble()
         }
+        if (savedInstanceState == null) model.openChallengeLink(intent?.data?.toString())
         setContent {
             SprossTheme {
                 Surface(
@@ -104,6 +107,12 @@ class SprossActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    // why: a challenge link tapped while the app runs arrives here rather than in onCreate.
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        model.openChallengeLink(intent.data?.toString())
     }
 
     /**
@@ -147,6 +156,11 @@ class SprossActivity : ComponentActivity() {
 private fun Root(model: AppModel = viewModel()) {
     val tab = model.screen.asTab()
     val screens = rememberScreenTransition(model)
+    // why: a challenge link waits for a loaded box, then opens the numbers page, which accepts its code.
+    val linked = model.pendingChallengeCode != null && model.numbersOffered
+    LaunchedEffect(linked, tab != null) {
+        if (linked && tab != null && model.screen != Screen.Numbers) model.openNumbers()
+    }
     // why: the Scaffold owns the insets rather than a padding around it, so the tab bar reaches
     // under the system navigation area instead of leaving a strip of paper below it.
     Scaffold(

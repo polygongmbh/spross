@@ -219,7 +219,7 @@ internal object ChromeEn : Chrome {
     override val trainerChallengeLost = "They had %d."
     override val trainerChallengeSend = "Send: %s"
     override val trainerChallengeMessage = "My score in the Spross numbers drill: %d. Can " +
-        "you beat it? Enter this code: %s"
+        "you beat it? Play the same questions here: %s"
     override val numbersCombineLocked = "Several in one run, once everything is unlocked."
     override val numbersUnlock = "Unlocks at:"
     override val numbersBest = "Best yet:"

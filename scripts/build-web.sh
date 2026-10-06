@@ -12,6 +12,8 @@ mkdir -p web/dist
 # until someone follows it.
 cp web/*.html web/site.css web/site.js web/dist/
 cp -R web/assets web/dist/assets
+# why: the app-link association files — without them a challenge link opens this page, not the app.
+cp -R web/.well-known web/dist/.well-known
 # why: the drill's chimes are the app's own bytes — copied from where scripts/sounds.py
 # writes them, so a re-tune by ear reaches the website with the two apps.
 mkdir -p web/dist/assets/sounds

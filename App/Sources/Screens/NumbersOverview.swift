@@ -63,6 +63,7 @@ struct NumbersOverview: View {
             notesSection
         }
         .onAppear { reloadProgress() }
+        .onChange(of: model.pendingChallengeCode, initial: true) { takeLinkedChallenge() }
         // why: a closing run books its best Sprossen into TrainerProgress, so the
         // ladder behind it is stale the moment the cover comes down.
         .fullScreenCover(item: $launch, onDismiss: reloadProgress) { launch in

@@ -142,8 +142,8 @@ struct DrillResultTile: View {
                             .font(Theme.typography.caption)
                             .foregroundStyle(Theme.colors.accent)
                     }
-                    if let reply = timed.replyCode {
-                        ShareLink(item: message(score: Int(timed.score), code: reply)) {
+                    if let reply = timed.replyCode, let link = timed.replyLink {
+                        ShareLink(item: message(score: Int(timed.score), link: link)) {
                             Label { Text("trainer.challenge.send \(reply)") }
                                 icon: { Image(systemName: "square.and.arrow.up") }
                         }
@@ -178,9 +178,9 @@ struct DrillResultTile: View {
     }
 
     /// The share text, resolved by hand against the chrome locale.
-    private func message(score: Int, code: String) -> String {
+    private func message(score: Int, link: String) -> String {
         let format = ChromeStrings.string("trainer.challenge.message %lld %@", locale: locale)
-        return String(format: format, score, code)
+        return String(format: format, score, link)
     }
 
     /// The face of the Sprosse kern says the run reached.

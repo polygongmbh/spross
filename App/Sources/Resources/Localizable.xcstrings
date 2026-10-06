@@ -6953,13 +6953,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mein Ergebnis im Zahlentraining von Spross: %lld. Schaffst du mehr? Gib diesen Code ein: %@"
+            "value" : "Mein Ergebnis im Zahlentraining von Spross: %lld. Schaffst du mehr? Spiel dieselben Aufgaben hier: %@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "My score in the Spross numbers drill: %lld. Can you beat it? Enter this code: %@"
+            "value" : "My score in the Spross numbers drill: %lld. Can you beat it? Play the same questions here: %@"
           }
         }
       }
