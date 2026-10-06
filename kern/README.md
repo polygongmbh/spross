@@ -15,7 +15,7 @@ not `EmojiPlacement { Prompt, Reveal }` (a layout that would go on compiling whi
 the moment the app moves the element).
 Screen positions, sizes, and which face of a card something rides on are the platforms',
 except layout data both platforms draw from, which lives in kern once
-(`net.spross.kern.design`: `TreesLayout`, `TreePicture`, `TreeRise`) so the two phones cannot stand the same thing differently;
+(`net.spross.kern.design`: `TreesLayout`, `TreePicture`, `TreeRise`, `ConfettiFrame`) so the two phones cannot stand the same thing differently;
 a platform there only issues the draw calls and runs the clock.
 The same test applies to snapshot fields.
 
