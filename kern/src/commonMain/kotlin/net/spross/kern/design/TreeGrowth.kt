@@ -123,9 +123,11 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         val along = heading(limb, t)
         val side = if ((k % 2 == 1) != flip) 1 else -1
         val bark = (limb.startWidth * (1 - t) + limb.endWidth * t) / 2 * side
-        // why: a leaf follows its wood, splayed to one side, and never points below horizontal.
+        // why: a leaf follows its wood, splayed to one side, and never points below horizontal;
+        // the turn is measured from straight up, so wood heading left clamps to the left.
+        val splay = (along + side * 0.9 + 1.5 * PI).mod(2 * PI) - 1.5 * PI
         return TreeSlot(x + cos(along + PI / 2) * bark, y + sin(along + PI / 2) * bark,
-            (along + side * 0.9).coerceIn(-PI + 0.3, -0.3), c.limb)
+            splay.coerceIn(-PI + 0.3, -0.3), c.limb)
     }
 
     /** The point [t] of the way along [c]'s center line. */

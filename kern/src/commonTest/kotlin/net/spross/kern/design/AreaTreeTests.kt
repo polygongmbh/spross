@@ -1,5 +1,7 @@
 package net.spross.kern.design
 
+import kotlin.math.cos
+import kotlin.math.sin
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -18,6 +20,18 @@ class AreaTreeTests {
     fun noMarkHangsBelowTheGround() {
         for (area in listOf("kitchen", "travel", "family")) for (marks in listOf(3, 20, 60, 150)) {
             assertTrue(AreaTree.grow(area, marks, marks / 3).slots.all { it.y <= 0.0 }, "$area $marks")
+        }
+    }
+
+    @Test
+    fun aMarkLeansOutAlongItsWoodNeverBackAgainstIt() {
+        for (area in listOf("kitchen", "travel", "family", "work", "food")) for (marks in listOf(20, 60, 150)) {
+            val grown = AreaTree.grow(area, marks, 0)
+            for (slot in grown.slots) {
+                val limb = grown.limbs[slot.limb]
+                val dot = cos(slot.angle) * (limb.endX - limb.startX) + sin(slot.angle) * (limb.endY - limb.startY)
+                assertTrue(dot > 0, "$area $marks: a mark on limb ${slot.limb} points back down its wood")
+            }
         }
     }
 
