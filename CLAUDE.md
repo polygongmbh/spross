@@ -130,7 +130,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - **One fact, one home**: each topic owned by exactly one doc; narrative docs (history, status, plans) link into it, never restate it.
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
 - Negations and hardlines only where the opposite is what would otherwise happen.
-- Before editing any `.md` file, read its first three lines — heading, scope, neighbors — and put what the scope excludes where the neighbors point.
+- Before editing any `.md` file, read its first three lines — heading, scope and layout, neighbors — keep them true in the same edit,
+  put what the scope excludes where the neighbors point, and never add file-describing prose below them.
 - A doc states its content, never its own properties.
 - Out-of-scope discoveries go to `docs/backlog.md`, catalog content to `catalog/backlog.md` (one-liners with pointers); prune on fix.
 - Whose the bundled recordings are and what their licenses oblige — the ship/legal record —

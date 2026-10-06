@@ -1,82 +1,22 @@
 # Where a rule lives, and how it is written
-Where a rule belongs (`CLAUDE.md`, a `docs/` page or a gate) and how each is written; the rules themselves live in those homes.
+Which home a rule takes — `CLAUDE.md`, a `docs/` page or a gate — and the shape each is written in; the rules themselves live in those homes.
+Neighbors: the rules every edit pays for `../CLAUDE.md`.
 
-`CLAUDE.md`, a `docs/` page and a gate all carry rules,
-and which one a rule lands in decides whether it holds.
-`CLAUDE.md` is the index every session pays for,
-`docs/` is read when its topic comes up,
-and a check runs whether or not anybody read anything.
+## Pick the home
 
-## A rule belongs in the repo, not in an agent's memory
+- Checkable → a gate, run by the pre-commit hook or a test, with a `--fix` where it can and a per-line waiver (`// layer-ok: <reason>`).
+  The sentence stays beside it: the gate says what failed, the sentence why.
+- Changes behavior on every edit → one terse line in `CLAUDE.md`; anything needing a second line goes to a doc.
+- Everything else → the `docs/` page owning the topic, read when the topic comes up.
+- Never an agent's private memory: it reaches no teammate, CI run or other assistant; at most a pointer.
 
-An assistant's private memory store travels with one machine and one tool.
-A teammate, a CI run, a fresh clone and a different assistant all see a repo
-where the rule does not exist.
-It is not reviewed, diffed, or versioned.
+## Markdown head
 
-When something is worth remembering, write it into the repo --
-the owning `docs/` page, or a gate if it is checkable.
-Let the memory file hold at most a pointer.
-What genuinely belongs there is the operator's own preferences.
+Line 1 the heading, line 2 one unbroken line of what the file holds, how it is laid out and what it leaves out, line 3 `Neighbors:` and the files owning the rest.
+Nothing describing the file goes below them; `scripts/doc-header.py` holds the shape, plans and the archive are exempt.
 
-## A checkable rule earns a check, not another sentence
+## What a doc keeps
 
-Prose is advisory to an agent that never re-reads it mid-task; a hook runs every time.
-When proposing an invariant, ask first whether it is checkable, and write the check.
-Keep the sentence too -- the gate says what failed, the sentence says why --
-and give the check a `--fix` and a per-line waiver
-(`// layer-ok: <reason>`, `// card-parity: <why>`).
-
-The class that most needs a gate is the one that never shows up as a red:
-whether code was put in the right place surfaces weeks later as a consolidation commit.
-`LayerBoundaryTest` is that class made checkable.
-
-## Every markdown file opens with its scope
-
-Line 1 is the heading; line 2 says in one unbroken line what the file holds,
-and what it does not where a reader would otherwise look for it here.
-Line 3 is `Neighbors:` and the files owning what sits next to this one, or empty when none do.
-A session reads those three lines before editing the file,
-so what line 2 leaves out goes where line 3 points, never in.
-They are the one exception to semantic linebreaks: the head stays three lines whatever it says.
-`scripts/doc-header.py` holds the shape; plans and the archive are working state and exempt.
-
-## CLAUDE.md states the rule and stops
-
-One terse line per rule, matching its neighbors.
-No inline examples, no before/after pairs, no "see X" asides.
-It is loaded into every session, so every line is a tax paid on every task;
-a `docs/` page costs nothing until its topic comes up.
-A bullet that needs a second line to be understood belongs somewhere else.
-
-Architecture never earns those lines --
-module maps, folder inventories, "what lives where".
-A compressed restatement is a lossy duplicate;
-`rg` or the module doc answers the question faster.
-Only what changes an agent's behavior on every edit
-(dependency direction, hard invariants) earns default context.
-
-## Docs hold what is true now; git holds what changed
-
-A doc records the rule that holds, never the story of how it got there.
-Completed migrations, port inventories, comparisons to a superseded version
-and test-suite changelogs get deleted.
-Git answers "what changed" precisely and for free.
-A standing doc never links a plan: a plan is deleted once it ships, and the plan links into the standing doc instead
-(`scripts/doc-header.py`).
-
-The sharp line: code that was built and later removed leaves a diff,
-so cut the doc entry -- `git log -S'<symbol>'` finds it.
-A design rejected before it was written leaves no diff, so it stays.
-Keep "X used to do Y, and it was wrong because Z"
-wherever Z stops someone re-adding X.
-
-## A narrow rule is provisional until the user rules on it again
-
-Most hyper-specific lines in `docs/` were written to pin one bug's fix.
-They read as standing law to a later reader.
-
-When a documented rule would block or contort a proposed design,
-name the rule and where it came from,
-propose the design that ignores it, and let the user rule.
-When one is released, rewrite or strike it in the same series.
+The rule as it holds now: a removed thing leaves a diff, so its doc entry goes;
+a design rejected before it was built leaves none, so it stays wherever it stops someone re-adding it.
+A standing doc never links a plan; the plan links into the doc.
