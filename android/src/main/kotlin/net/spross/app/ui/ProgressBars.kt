@@ -29,6 +29,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
 import net.spross.kern.box.AreaStatistics
+import net.spross.kern.design.SegmentsBar as KernSegmentsBar
 import net.spross.kern.session.AnswerOutcome
 
 /**
@@ -37,7 +38,7 @@ import net.spross.kern.session.AnswerOutcome
  * ONE capsule carrying hairline-parted segments, never a row of loose dots — the round is
  * a single stretch of work, and the bar is what says how much of it is behind the learner.
  * The unanswered remainder is one undivided run, so a long round does not dissolve into
- * specks; the parting closes entirely past the count where it stops reading as a gap.
+ * specks; the window of answers drawn and the parting are kern's [KernSegmentsBar].
  *
  * The brick is the AGGREGATE's alone — this bar is the only place a wrong answer is shown
  * as one, and no card ever repeats it back at the learner.
@@ -50,6 +51,7 @@ fun SegmentsBar(
     modifier: Modifier = Modifier,
 ) {
     val palette = Theme.colors
+    val bar = KernSegmentsBar(segments.size, remaining)
     val slots = segments.size + remaining
     // why: colored stretches are the whole of what the bar says, and a color says nothing
     // to TalkBack — so it speaks the tally it is drawing, or where the round stands before
@@ -67,15 +69,16 @@ fun SegmentsBar(
         modifier = modifier.fillMaxWidth().height(10.dp)
             .clip(CircleShape).background(palette.separator)
             .semantics { contentDescription = spoken },
-        horizontalArrangement = Arrangement.spacedBy(if (slots > 40) 0.dp else 1.dp),
+        horizontalArrangement = Arrangement.spacedBy(bar.gap.dp),
     ) {
-        segments.forEachIndexed { index, tone ->
+        segments.takeLast(bar.shown).forEachIndexed { offset, tone ->
+            val index = bar.firstShown + offset
             val color = when (tone) {
                 AnswerOutcome.Right -> palette.success
                 AnswerOutcome.Almost -> palette.amber
                 AnswerOutcome.Wrong -> palette.wrong
             }
-            // why: keyed on the index, so a segment already on screen holds its settled
+            // why: keyed on the run-wide index, so a segment already on screen holds its settled
             // weight and color instead of replaying the entrance on every answer that
             // follows it — only the newest slot grows in and eases into its tone.
             key(index) {
@@ -93,8 +96,8 @@ fun SegmentsBar(
                 Box(Modifier.weight(grown.value).fillMaxHeight().background(eased))
             }
         }
-        if (remaining > 0) {
-            Box(Modifier.weight(remaining.toFloat()).fillMaxHeight().background(palette.separator))
+        if (bar.remaining > 0) {
+            Box(Modifier.weight(bar.remaining.toFloat()).fillMaxHeight().background(palette.separator))
         }
     }
 }

@@ -1,5 +1,6 @@
 import SprossKern
 import SwiftUI
+import SprossKern
 
 // MARK: - SessionScaffold
 //
@@ -83,14 +84,13 @@ struct SessionScaffold<Content: View>: View {
                             .frame(width: max(geo.size.width * fraction, 10))
                     }
                 } else {
-                    // why: an endless run keeps answering past any fixed total —
-                    // windowing to the latest answers keeps the bar legible (and
-                    // the view cheap) instead of one sliver per answer forever.
-                    let maxSegments = 40
-                    let remaining = max(total - outcomes.count, 0)
-                    let visible = outcomes.suffix(maxSegments)
-                    let slots = visible.count + remaining
-                    let spacing: CGFloat = slots > 40 ? 0.5 : 1
+                    // The window and the partings are kern's (`SegmentsBar`).
+                    let bar = SegmentsBar(answered: Int32(outcomes.count),
+                                          remaining: Int32(max(total - outcomes.count, 0)))
+                    let visible = outcomes.suffix(Int(bar.shown))
+                    let remaining = Int(bar.remaining)
+                    let slots = Int(bar.slots)
+                    let spacing = CGFloat(bar.gap)
                     // The partings come off the row before any slot is measured,
                     // so the remainder takes its share of what is LEFT for
                     // segments — from the full width it charged every gap to the
