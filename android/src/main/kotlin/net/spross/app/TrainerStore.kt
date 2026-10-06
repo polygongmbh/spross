@@ -237,7 +237,15 @@ class TrainerStanding(val store: TrainerStore) {
     fun show(summary: DrillRunSummary?, title: String) {
         result = summary
         resultTitle = title
+        if (summary?.celebrated == true) confettiDue = true
     }
+
+    /** A close kern celebrates ([DrillRunSummary.celebrated]) that has not rained yet. */
+    var confettiDue by mutableStateOf(false)
+        private set
+
+    /** Whether the screen a run closed onto should rain — true once per celebrated close. */
+    fun takeConfetti(): Boolean = confettiDue.also { confettiDue = false }
 
     /**
      * The figures a scramble run handed back — the scrambles have no page of their own, so
@@ -253,6 +261,7 @@ class TrainerStanding(val store: TrainerStore) {
     fun showOnHub(summary: DrillRunSummary?, title: String) {
         hubResult = summary?.takeIf { it.worthReporting }
         hubResultTitle = title
+        if (summary?.celebrated == true) confettiDue = true
     }
 
     /** Opening a page from Home is a fresh visit — last night's figures are not news. */

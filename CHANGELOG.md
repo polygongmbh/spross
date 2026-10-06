@@ -8,6 +8,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - A drill's pause now shows just how many you answered and, larger, what you reached: a higher Sprosse or a new record.
 - The word and sentence scrambles now leave a result tile on the practice card once a run has taken a few answers.
 - Every drill now celebrates a finished stretch with confetti and a cheer, on its pause and when you close a run of a few answers, not only when you beat a record.
+- On Android, finished rounds, drill pauses and closed drill runs now rain confetti, as on iPhone.
 
 ## 8.3.1 — 2026-10-05
 

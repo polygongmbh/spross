@@ -1,7 +1,10 @@
 package net.spross.app.ui
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
 import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.kern.trainer.DrillPauseReason
@@ -22,17 +25,20 @@ fun DrillPause(
     onKeepPracticing: () -> Unit,
     cheer: () -> Unit,
 ) {
-    // why: a pause is a round's end the run may go on from, cheered as the round summary is.
+    // why: a pause is a round's end the run may go on from, cheered and rained on as the round summary is.
     LaunchedEffect(Unit) { if (reason.celebrated) cheer() }
-    SummaryScaffold(
-        title = title(reason, chrome),
-        chrome = chrome,
-        onDone = onDone,
-        onPractice = onKeepPracticing,
-        tally = countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, run.done),
-        milestone = milestone(run, chrome),
-        hint = chrome.trainerPauseStrugglingHint.takeIf { reason == DrillPauseReason.Struggling },
-    ) { SummaryGlyph(glyph(reason)) }
+    Box(Modifier.fillMaxSize()) {
+        SummaryScaffold(
+            title = title(reason, chrome),
+            chrome = chrome,
+            onDone = onDone,
+            onPractice = onKeepPracticing,
+            tally = countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, run.done),
+            milestone = milestone(run, chrome),
+            hint = chrome.trainerPauseStrugglingHint.takeIf { reason == DrillPauseReason.Struggling },
+        ) { SummaryGlyph(glyph(reason)) }
+        if (reason.celebrated) Confetti()
+    }
 }
 
 /** What the stretch reached, only where it reached something: the climb from the Sprosse the run opened on, and a record beaten. */

@@ -39,11 +39,10 @@ Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `d
 
 `android/` renders THIS contract with Compose on the same engine facades, so the turn and the drill runs follow the same rules by construction, not by porting discipline.
 The hub ships there whole (`drills.md`).
-Platform deltas only: the catalog and the chimes ship as APK assets synced from `catalog/` and `App/Resources/Sounds/`, the box is app-private, runs are full screens rather than covers —
-Back mirrors ✕ everywhere, and inside a run the reference panel eats Back first —
-and a fallen record celebrates in the tile's own words, without confetti.
+Platform deltas only: the catalog and the chimes ship as APK assets synced from `catalog/` and `App/Resources/Sounds/`, the box is app-private, runs are full screens rather than covers,
+and Back mirrors ✕ everywhere — inside a run the reference panel eats Back first.
 The trees and the round summary's tree are Android's own drawing of kern's `growthByArea`, stood and grown by kern (`TreesLayout`, `AreaTree`) exactly as on iOS.
-The summary's tree rises only while the system's animations are on.
+The summary's tree rises, and confetti falls, only while the system's animations are on.
 The home-screen tile ships there too, in Glance, and it is ONE grid sized to the tile rather than iOS's three home-screen families (§ Watch & widgets): an Android tile is dragged to any shape, so a bucket boundary would change what the tile IS over a cell of width nobody can see.
 Columns and rows come off the size the host hands over, against a minimum readable cell and a bound the platform's ten-children container forces —
 the smallest tile is one word, and every shape up to that bound fills with as many as fit.

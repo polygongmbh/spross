@@ -1,11 +1,18 @@
 package net.spross.app.ui
 
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
@@ -31,6 +38,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     // why: the round's own reward, sounded once as the screen arrives — iOS cheers here too.
     LaunchedEffect(Unit) { model.cues.cheer() }
     var briefingOpen by remember { mutableStateOf(false) }
+    var celebration by remember { mutableIntStateOf(0) }
     val summary = ui.summary ?: return
     val parts = summary.parts
     val tally = if (parts.isEmpty()) null else {
@@ -47,36 +55,48 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     val headline = summary.headline
     val grown = summary.grownArea?.takeIf { headline != null }
     val area = grown?.after?.area
-    SummaryScaffold(
-        // why: one title — the growth claim where a tree stands over it, the plain
-        // "All done!" where the popper does.
-        title = if (headline != null && area != null) growthLine(chrome, headline) else chrome.sessionDoneTitle,
-        chrome = chrome,
-        onDone = { model.finishSession() },
-        // why: talking asks rather than instructs — the words are warm, the one moment a
-        // conversation costs nothing to offer; practicing on stands only while a refill
-        // would not come back dry.
-        onTalk = if (model.hasBriefing) ({ briefingOpen = true }) else null,
-        onPractice = if (ui.canPracticeMore) ({ model.continueEndless() }) else null,
-        // The tally counts the whole round, not the area, so it stands apart from the label;
-        // a round that counted nothing stands on its title alone.
-        tally = tally,
-        // why: a day the box itself is telling the learner to stop makes no growth claim —
-        // a screen that celebrates and is contradicted two lines down teaches the learner
-        // not to believe it.
-        hint = chrome.sessionDoneRestHint.takeIf { summary.restSuggested },
-        // why: the area is LABELED under its tree rather than named in the claim —
-        // what grew is what the learner can say, never the area itself.
-        heroLabel = if (grown != null && area != null) "${model.areaEmoji(area)} ${model.areaTitle(area)}" else null,
-    ) { treeCeiling ->
-        // why: the tree takes the hero slot when the round grew an area — a party popper
-        // is the same picture whatever the learner did, and two celebratory graphics on
-        // one screen is one too many.
-        if (grown != null && area != null) {
-            GrowingTree(grown, model.garden, AreaTree.heroHeight(grown.after, treeCeiling.value.toDouble()).dp)
-        } else {
-            SummaryGlyph("🎉")
+    // why: a tap anywhere but the buttons replays the celebration — confetti, cheer and the
+    // tree's rise; a button consumes its own tap, so it never reaches this.
+    Box(Modifier.fillMaxSize().pointerInput(Unit) {
+        detectTapGestures {
+            celebration++
+            model.cues.cheer()
         }
+    }) {
+        SummaryScaffold(
+            // why: one title — the growth claim where a tree stands over it, the plain
+            // "All done!" where the popper does.
+            title = if (headline != null && area != null) growthLine(chrome, headline) else chrome.sessionDoneTitle,
+            chrome = chrome,
+            onDone = { model.finishSession() },
+            // why: talking asks rather than instructs — the words are warm, the one moment a
+            // conversation costs nothing to offer; practicing on stands only while a refill
+            // would not come back dry.
+            onTalk = if (model.hasBriefing) ({ briefingOpen = true }) else null,
+            onPractice = if (ui.canPracticeMore) ({ model.continueEndless() }) else null,
+            // The tally counts the whole round, not the area, so it stands apart from the label;
+            // a round that counted nothing stands on its title alone.
+            tally = tally,
+            // why: a day the box itself is telling the learner to stop makes no growth claim —
+            // a screen that celebrates and is contradicted two lines down teaches the learner
+            // not to believe it.
+            hint = chrome.sessionDoneRestHint.takeIf { summary.restSuggested },
+            // why: the area is LABELED under its tree rather than named in the claim —
+            // what grew is what the learner can say, never the area itself.
+            heroLabel = if (grown != null && area != null) "${model.areaEmoji(area)} ${model.areaTitle(area)}" else null,
+        ) { treeCeiling ->
+            // why: the tree takes the hero slot when the round grew an area — a party popper
+            // is the same picture whatever the learner did, and two celebratory graphics on
+            // one screen is one too many.
+            if (grown != null && area != null) {
+                key(celebration) {
+                    GrowingTree(grown, model.garden, AreaTree.heroHeight(grown.after, treeCeiling.value.toDouble()).dp)
+                }
+            } else {
+                SummaryGlyph("🎉")
+            }
+        }
+        Confetti(celebration)
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
 }

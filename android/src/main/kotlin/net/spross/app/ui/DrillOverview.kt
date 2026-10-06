@@ -63,33 +63,37 @@ fun OverviewScaffold(
     // back with would sit off the top of a page the learner is still looking at.
     LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.sm),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            RunCloseButton(onClose, chrome.commonClose)
-            Text(
-                title,
-                style = MaterialTheme.typography.titleMedium,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.weight(1f).padding(horizontal = Theme.spacing.sm),
-            )
-            TextButton(onClick = onStart, enabled = startEnabled) {
-                Text(chrome.trainerOverviewStart)
+    Box(Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.sm),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                RunCloseButton(onClose, chrome.commonClose)
+                Text(
+                    title,
+                    style = MaterialTheme.typography.titleMedium,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.weight(1f).padding(horizontal = Theme.spacing.sm),
+                )
+                TextButton(onClick = onStart, enabled = startEnabled) {
+                    Text(chrome.trainerOverviewStart)
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scroll)
+                    .padding(Theme.spacing.xl),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
+            ) {
+                result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
+                OverviewHeading(chrome.trainerOverviewPractice)
+                content()
             }
         }
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scroll)
-                .padding(Theme.spacing.xl),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
-        ) {
-            result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
-            OverviewHeading(chrome.trainerOverviewPractice)
-            content()
-        }
+        // why: a celebrated close rains over the page the run came back to.
+        ClosedRunConfetti(model.trainer)
     }
 }
 
