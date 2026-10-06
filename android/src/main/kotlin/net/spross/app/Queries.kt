@@ -3,7 +3,6 @@ package net.spross.app
 import android.app.Application
 import java.util.Locale
 import net.spross.app.ui.AreaNaming
-import net.spross.app.ui.SampleTrees
 import net.spross.kern.box.AreaGrowth
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
@@ -11,6 +10,7 @@ import net.spross.kern.box.CardGrowth
 import net.spross.kern.box.growthByArea
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.design.AreaTree
+import net.spross.kern.design.SampleTrees
 
 /**
  * Where ONE word stands on the growth ladder, for a surface holding that word —

@@ -344,7 +344,7 @@ final class AppModel {
         #if DEBUG
         // UI-test hook: `-uitest-trees 0.55` stands a fabricated box of that age
         // on Home and on a round's summary (`SampleTrees`).
-        if let age = uitestTreesAge { trees = SampleTrees.trees(age: age) }
+        if let age = uitestTreesAge { trees = SampleTrees.shared.trees(age: age) }
         #endif
         activity = composedActivityWindow(now: now, tzId: tz)
         areaGroupSections = composedAreaGroupSections()

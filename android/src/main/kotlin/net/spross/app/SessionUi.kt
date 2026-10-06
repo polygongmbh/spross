@@ -2,8 +2,8 @@ package net.spross.app
 
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
-import net.spross.app.ui.SampleTrees
 import net.spross.kern.catalog.pronunciation
+import net.spross.kern.design.SampleTrees
 import net.spross.kern.model.Card
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.PresentationRole

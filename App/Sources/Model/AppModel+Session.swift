@@ -151,7 +151,7 @@ extension AppModel {
         let streak = Int32(stats?.streakDays ?? 0)
         #if DEBUG
         if let age = uitestTreesAge {
-            return RoundSummary.companion.withArea(run: run, grownArea: SampleTrees.round(age: age),
+            return RoundSummary.companion.withArea(run: run, grownArea: SampleTrees.shared.round(age: age),
                                                    streakDays: streak, nowEpochMillis: now, tzId: tz)
         }
         #endif

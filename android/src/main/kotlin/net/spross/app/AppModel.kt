@@ -162,7 +162,7 @@ class AppModel(app: Application) : AndroidViewModel(app) {
         private set
 
     /**
-     * Debug launches only: the age of a fabricated box ([net.spross.app.ui.SampleTrees])
+     * Debug launches only: the age of a fabricated box ([net.spross.kern.design.SampleTrees])
      * that stands in the Trees picture and on a round's summary instead of this one.
      */
     var sampleTreesAge: Double? = null
