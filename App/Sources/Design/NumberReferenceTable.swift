@@ -121,7 +121,7 @@ struct NumberReferenceTable: View {
 
     private func reading(_ entry: ReferenceEntry) -> some View {
         Text(verbatim: entry.reading)
-            .font(.system(.title3, design: .rounded, weight: .semibold))
+            .font(Theme.typography.title)
             .foregroundStyle(Theme.colors.textPrimary)
             .fixedSize(horizontal: false, vertical: true)
             .spoken(entry.reading, language: language)
