@@ -8,6 +8,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 - A right answer in a timed numbers run now adds a second to the clock for every non-zero digit of its number, so long numbers pay for the time they take.
 - A tree still mostly in bud now grows only the slender branches its words need and fills out as they leaf out.
 - A word you just met now shows on its tree as a bud breaking into two spring-green leaflets instead of an ochre dot.
+- Words you have known for weeks now ask you to type them only every other time; in between you recall them, reveal and grade yourself.
 
 ## 8.6.0 — 2026-10-09
 

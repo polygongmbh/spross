@@ -1,6 +1,5 @@
 package net.spross.kern.session
 
-import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.session.AnswerControls.Confirm
 import net.spross.kern.session.AnswerControls.GiveUp
@@ -10,8 +9,8 @@ import net.spross.kern.session.AnswerControls.Slot
 /**
  * What stands under the review card:
  * - the write-out owns the turn while it is open;
- * - recognition is never typed: one reveal, then the three verdicts;
- * - production is typed, and a blank reveal hands the turn to the verdicts too;
+ * - recognition and a recalled production are never typed: one reveal, then the three verdicts;
+ * - other production is typed, and a blank reveal hands the turn to the verdicts too;
  * - a miss keeps the field open for the retype, with a quiet skip beside it —
  *   except a miss asked by ear, which retypes nothing and goes on with one Next;
  * - a near miss holds on its correction until tapped, a clean answer and a finished retype
@@ -31,8 +30,9 @@ val TurnState.controls: AnswerControls
             revealed && feedback == TurnFeedback.Neutral -> AnswerControls(
                 slot = Slot.SelfGrade, fieldFeedback = feedback, primary = null, confirm = null, giveUp = null,
             )
-            role == PresentationRole.Recognize -> AnswerControls(
+            !typesAnswer -> AnswerControls(
                 slot = null, fieldFeedback = feedback, primary = Primary.Reveal, confirm = null, giveUp = null,
+                cantListen = prompt == ProducePrompt.Sound && !promptInText,
             )
             feedback == TurnFeedback.Revealed && !retypes -> AnswerControls(
                 slot = null, fieldFeedback = feedback, primary = null, confirm = null, giveUp = GiveUp.Next,

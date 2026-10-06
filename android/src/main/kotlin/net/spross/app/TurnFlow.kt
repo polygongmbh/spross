@@ -226,6 +226,7 @@ fun AppModel.newTurn(
             firstExposure = ui.firstExposure,
             arrived = ui.arrived,
             nowEpochMillis = System.currentTimeMillis(),
+            answer = ui.produceAnswer,
         ),
         nowMillis = { System.currentTimeMillis() },
         onAnswer = { rating -> answerCurrent(rating) },

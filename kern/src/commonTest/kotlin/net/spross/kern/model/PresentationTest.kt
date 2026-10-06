@@ -194,4 +194,18 @@ class PresentationTest {
         val once = (0..12).map { producePrompt("kitchen/fridge", it, arrived = true, audible = true) }
         assertEquals(once, (0..12).map { producePrompt("kitchen/fridge", it, arrived = true, audible = true) })
     }
+
+    // -- recalled production -----------------------------------------------------------
+
+    @Test
+    fun aSettledWordIsTypedEveryOtherProduceTurnAndAnUnsettledOneAlways() {
+        for (id in listOf("w01", "w02", "kitchen/fridge", "тест")) {
+            val produceCounts = (0..20).filter { presentationRole(id, it) == produce }
+            assertTrue(produceCounts.all { produceAnswer(id, it, settled = false) == ProduceAnswer.Typed })
+            val settled = produceCounts.map { produceAnswer(id, it, settled = true) }
+            for (pair in settled.windowed(2)) {
+                assertTrue(pair.toSet().size == 2, "$id does not alternate typing and recall: $settled")
+            }
+        }
+    }
 }

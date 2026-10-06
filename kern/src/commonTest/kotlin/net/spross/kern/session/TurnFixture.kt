@@ -4,6 +4,7 @@ import net.spross.kern.catalog.Fixture
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.PresentationRole
+import net.spross.kern.model.ProduceAnswer
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.PromptForm
 import net.spross.kern.model.Realization
@@ -72,10 +73,11 @@ internal object TurnFixture {
         prompt: ProducePrompt = ProducePrompt.Source,
         firstExposure: Boolean = false,
         arrived: Boolean = false,
+        answer: ProduceAnswer = ProduceAnswer.Typed,
     ): TurnState = machine.begin(
         card, PresentationRole.Produce, prompt,
         turnPrompt(card, PresentationRole.Produce, prompt, reviewCount = 0),
-        firstExposure, arrived, T0,
+        firstExposure, arrived, T0, answer,
     )
 
     fun recognize(

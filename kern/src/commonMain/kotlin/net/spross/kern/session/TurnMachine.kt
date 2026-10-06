@@ -2,6 +2,7 @@ package net.spross.kern.session
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.PresentationRole
+import net.spross.kern.model.ProduceAnswer
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.PromptForm
 import net.spross.kern.model.Rating
@@ -46,10 +47,12 @@ class TurnMachine(
         firstExposure: Boolean,
         arrived: Boolean,
         nowEpochMillis: Long,
+        answer: ProduceAnswer = ProduceAnswer.Typed,
     ): TurnState = TurnState(
         card = card,
         role = role,
         prompt = prompt,
+        answer = answer,
         promptForm = promptForm.text,
         promptTag = promptForm.tag,
         firstExposure = firstExposure,
@@ -89,6 +92,7 @@ class TurnMachine(
         // is ever graded against a language it was not learned with. The write-out is the one
         // field it can carry, and that is reduced before this.
         state.role == PresentationRole.Recognize -> unchanged(state)
+        state.answer == ProduceAnswer.Recalled -> unchanged(state)
         // The blank reveal handed the turn to the self-grade buttons; there is no field left.
         state.revealed -> unchanged(state)
         state.retypes -> approveRetry(state, text)
@@ -162,7 +166,8 @@ class TurnMachine(
         ) {
             return unchanged(state)
         }
-        if (trimmed.isEmpty()) return reveal(state, nowEpochMillis)
+        // A recalled turn has no field, so its one action can only ever ask for the answer.
+        if (trimmed.isEmpty() || state.answer == ProduceAnswer.Recalled) return reveal(state, nowEpochMillis)
         val graded = grading.grade(state, trimmed)
         // why: a meaning borrowed from the concept next door is right and books as much, but
         // the word this card teaches has still not been said — so it holds on it (§3).

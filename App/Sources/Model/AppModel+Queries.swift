@@ -59,6 +59,15 @@ extension AppModel {
         return BoxEngine.shared.hasArrived(state: box, cardId: cardID)
     }
 
+    /// Whether a produce review of this card is typed or recalled: a word past the
+    /// settled bar is typed only every other time (contract §3).
+    func produceAnswer(for cardID: String) -> ProduceAnswer {
+        let settled = box.map { BoxEngine.shared.hasSettled(state: $0, cardId: cardID) } ?? false
+        return SprossKern.produceAnswer(cardId: cardID,
+                                        reviewCount: Int32(scheduling(for: cardID)?.reviewCount ?? 0),
+                                        settled: settled)
+    }
+
     /// One card's standing, asked by name rather than found in the whole box's `growth`.
     func cardGrowth(_ cardID: String) -> CardGrowth? {
         guard let box else { return nil }

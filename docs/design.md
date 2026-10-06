@@ -77,8 +77,9 @@ rephrase it as an availability statement or a question.
 
 **Practice means typing.**
 Writing the word is the recall the box schedules;
-revealing is the way out for three cases:
-a first exposure, a recognition turn, or a learner who does not want to type.
+revealing is the way out for four cases:
+a first exposure, a recognition turn, a settled word's recalled produce turn (no field at all),
+or a learner who does not want to type.
 Grade buttons live on that path only.
 
 - The role alternates between produce and recognize.
