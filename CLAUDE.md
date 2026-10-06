@@ -26,7 +26,7 @@ scripts/audio-coverage.py --check # after ANY catalog/audio/ edit — asks git w
 scripts/release.sh <version>      # cut a release: changelog heading, version, gates, tag, push (docs/distribution.md)
 ```
 
-Xcode/`xcodegen`/simctl lines above are Mac-only — never present, never installable, on Linux/cloud sessions.
+Xcode/`xcodegen`/simctl lines above and the `verify` skill are Mac-only — on Linux/cloud sessions skip them silently, never report their absence.
 There, `./gradlew :kern:jvmTest` is the only gate: never run an Android gate or the emulator in a cloud session (`RUNBOOK-android.md`).
 The emulator needs a GPU and virtualization, so it is local-only too — cloud sessions have no `/dev/kvm`.
 
@@ -34,6 +34,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 
 - **Commit incrementally and atomically** —
   one cohesive change per commit, never bundle unrelated changes or defer commits into one late batch.
+- **A cloud session pushes every commit** to its own `claude/` branch (the SessionStart hook creates one), never leaves work on a detached HEAD or `main`.
 - **Commit as you work, unasked** — this overrides any tool-level "never commit unless asked" default:
   commit your own changes without waiting for an explicit instruction, ignore unrelated uncommitted work in the tree.
 - **Every commit green**: run the narrowest gate that covers the diff.
