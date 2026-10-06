@@ -26,7 +26,7 @@ scripts/release.sh <version>      # cut a release: changelog heading, version, g
 ```
 
 Xcode/`xcodegen`/simctl lines above are Mac-only — never present, never installable, on Linux/cloud sessions.
-There, `./gradlew :kern:jvmTest` is the gate; see `RUNBOOK-android.md` for the rest.
+There, `./gradlew :kern:jvmTest` is the only gate: never run an Android gate or the emulator in a cloud session (`RUNBOOK-android.md`).
 The emulator needs a GPU and virtualization, so it is local-only too — cloud sessions have no `/dev/kvm`.
 
 ## Commit & release rules

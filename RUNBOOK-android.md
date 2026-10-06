@@ -171,8 +171,12 @@ see the cloud section below.
 
 ## Claude Code on the web / cloud containers
 
-Remote sessions run this same Linux path.
-The containers ship JDK 21 preinstalled, so `./gradlew :kern:jvmTest` and the Android gates above
-work with no setup step.
+Remote sessions run `./gradlew :kern:jvmTest` and nothing else:
+the Android gates above download and build far more than a cloud session can verify,
+so an `android/` edit there is checked by the kern gate and left to a local run.
+The containers ship JDK 21 preinstalled.
+Maven Central answers the shared cloud egress with 429s,
+so a SessionStart hook installs `scripts/cloud/central-mirror.gradle.kts` as a Gradle init script
+that resolves through Google's mirror of Central and Google's own repository first.
 What they lack — Xcode, the `verify` skill, `/dev/kvm` for the emulator — is `CLAUDE.md` § Commands;
 anything that has to be seen or heard running waits for a local checkout or a real device.

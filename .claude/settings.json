@@ -32,6 +32,15 @@
             "statusMessage": "Checking which turn machines have a kern home..."
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ \"${CLAUDE_CODE_REMOTE:-}\" = true ] || exit 0; r=$(git rev-parse --show-toplevel 2>/dev/null) && mkdir -p ~/.gradle/init.d && cp \"$r/scripts/cloud/central-mirror.gradle.kts\" ~/.gradle/init.d/",
+            "statusMessage": "Pointing Gradle at the Maven Central mirror..."
+          }
+        ]
       }
     ],
     "PreToolUse": [
