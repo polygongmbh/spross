@@ -72,9 +72,12 @@ The tile is app-private like the box, and one the launcher has just placed shows
   Only the picker advertises with a sample box, and only where a picker can hold one:
   iOS previews the gallery entry from a made-up box, while the Android widget picker gets the app's own mark rather than a second layout written to say what a real tile says better.
   Every family names its tap destination, so the tile opens the app in that state too.
-- **A tile rotates when it is redrawn, not on a schedule of its own.** iOS hands its host a timeline of quarter-hour entries and gets the rotation for free.
+- **A tile rotates when it is redrawn, not on a schedule of its own.** The head of the window is read off the clock, epoch-aligned (kern `WidgetRotation`),
+  so a reload picks the rotation up where it stands rather than starting it over;
+  how long a step lasts is the host's.
+  iOS hands its host a timeline of quarter-hour entries.
   A Glance tile has no timeline to hand over:
-  the head of the window is derived from the clock at draw time and moves every half hour, which is the shortest refresh the platform will schedule, and the app pushes a redraw itself on every persist —
+  its head moves every half hour, which is the shortest refresh the platform will schedule, and the app pushes a redraw itself on every persist —
   so the numbers are as fresh as the last answer, and the words turn over on the half hour whether or not anyone opened the app.
 - Watch: one graded **multiple-choice** loop —
   the watch never types, and the options arrive ranked from kern so that nothing but meaning tells the answer from its company:

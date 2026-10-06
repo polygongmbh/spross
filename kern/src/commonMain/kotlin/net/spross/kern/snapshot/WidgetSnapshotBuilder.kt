@@ -141,6 +141,10 @@ class WidgetSnapshotView internal constructor(private val doc: WidgetSnapshotDoc
         WidgetExposure(it.cardId, it.text, it.sourceText, it.emoji, it.article, genderOf(it.gender))
     }
 
+    /** The rows a tile of [count] cells shows at [nowEpochMillis], head first ([WidgetRotation]). */
+    fun window(nowEpochMillis: Long, count: Int, stepMillis: Long): List<WidgetExposure> =
+        WidgetRotation.window(entries.size, nowEpochMillis, count, stepMillis).map { entries[it] }
+
     /** Active cards that have settled — resolved phone-side, it does not move with the clock. */
     val allSettledCount: Int get() = doc.allSettledCount
 

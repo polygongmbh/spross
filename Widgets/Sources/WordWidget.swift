@@ -140,6 +140,9 @@ struct WordProvider: TimelineProvider {
     /// Cells in the large family's poster grid (2 × 3).
     private static let listSize = 6
 
+    /// How long one window stands: the timeline hands WidgetKit an entry per quarter hour.
+    private static let stepMillis: Int64 = 15 * 60 * 1000
+
     /// Up to 6 h of 15-minute entries cycling through attention-worthy cards.
     /// The compact families see one rotating card; the list families see a
     /// rotating window of up to `listSize` cards plus box stats.
@@ -151,14 +154,18 @@ struct WordProvider: TimelineProvider {
             WidgetWord(emoji: $0.emoji ?? "🗂️", article: $0.article, gender: $0.gender,
                        word: $0.text, meaning: $0.sourceText)
         }
+        let startMillis = Int64(start.timeIntervalSince1970 * 1000)
+        let firstStep = startMillis / Self.stepMillis
         return (0..<24).map { slot in
-            // Rotate a window of `listSize` words; the head is the compact families'
-            // card, and each quarter-hour hands the spot to the next word.
-            // why: a short box would otherwise wrap and repeat a word in one tile.
-            let window = (0..<min(Self.listSize, words.count))
-                .map { words[(slot + $0) % words.count] }
+            // The first entry is now; every later one opens a step, so the head moves
+            // when the clock says it does rather than a fraction of a step after.
+            let millis = slot == 0 ? startMillis : (firstStep + Int64(slot)) * Self.stepMillis
+            let date = Date(timeIntervalSince1970: Double(millis) / 1000)
+            // layer-ok: kern `WidgetRotation.window`, the one waived copy — the extension links
+            // no Kotlin and the head moves with the render clock, so no snapshot can carry it.
+            let head = Int((millis / Self.stepMillis) % Int64(words.count))
+            let window = (0..<min(Self.listSize, words.count)).map { words[(head + $0) % words.count] }
             // A timeline can cross midnight, so every entry reads its own moment.
-            let date = start.addingTimeInterval(Double(slot) * 15 * 60)
             let streakDay = snapshot.streakDay(now: date)
             return WordEntry(date: date,
                              primary: window[0],
