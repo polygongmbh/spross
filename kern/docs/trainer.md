@@ -51,7 +51,7 @@ Neighbors: the run machines `turns.md`, per-language readings `../../docs/number
   are not what its own siblings predict, so a band count varies.
 - **`LetterDrill` is a separate facade, not a `NumbersReading` case**:
   its registry is alphabet file presence in the catalog (adding a language edits no Kotlin),
-  and its ramp is stateless and kern-owned (`entrySprosse`/`winsToAdvance`, then `DrillRamp.step`),
+  and its ramp is stateless and kern-owned (`Report.openingSprosse`, `WINS_TO_ADVANCE`, then `DrillRamp.step`),
   so two platforms cannot drift.
   Sampling takes an injected `Random` and an app-computed promptable set
   (device voices are an app fact).

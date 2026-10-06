@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- The letter drill now starts every learner on its first Sprosse and asks two clean wins per Sprosse, climbing on its own progress rather than on how many words your box holds.
 - The numbers drill again names the word a new number form adds, such as "New: minus", the first time a run asks it.
 - A drill run's score line is larger and shows just the Sprosse and your streak, leaving the record to the pause and the result.
 - A drill's pause now shows just how many you answered and, larger, what you reached: a higher Sprosse or a new record.

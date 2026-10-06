@@ -230,7 +230,7 @@ object LetterDrillRun {
             winsAtSprosse = state.winsAtSprosse,
             correct = correct,
             clean = clean,
-            winsRequired = state.config.report.winsToAdvance,
+            winsRequired = LetterDrill.WINS_TO_ADVANCE,
         )
         val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
         return state.copy(

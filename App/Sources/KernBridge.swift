@@ -116,10 +116,6 @@ var drillRandom: KotlinRandom {
 extension LetterDrill {
     func ceiling(dictation: Bool) -> Int { Int(maxSprosse(dictationAvailable: dictation)) }
 
-    func entrySprosse(arrived: Int) -> Int { Int(entrySprosse(arrivedCards: Int32(arrived))) }
-
-    func winsToAdvance(arrived: Int) -> Int { Int(winsToAdvance(arrivedCards: Int32(arrived))) }
-
     func format(sprosse: Int) -> LetterFormat { formatFor(sprosse: Int32(sprosse)) }
 }
 

@@ -30,34 +30,14 @@ object LetterDrill {
     /** One answer plus up to three distractors; two are tolerated on a tiny alphabet. */
     const val CHOICE_COUNT = 4
 
-    /** Entry pacing stops one Sprosse below transcription — nobody starts by taking dictation. */
-    private const val ENTRY_SPROSSE_CEILING = 6
-    private const val ARRIVED_PER_SPROSSE = 12
-
-    /** Arrived words from which one clean win is enough to move up a Sprosse. */
-    private const val ARRIVED_FOR_SHORT_SPROSSEN = 60
+    /** How long a Sprosse is: two clean wins, whatever the box holds. */
+    const val WINS_TO_ADVANCE = 2
 
     /** The same floor on the gap word's arrived-first preference; below it, the whole pool. */
     private const val MIN_ARRIVED_CANDIDATES = 3
 
     fun maxSprosse(dictationAvailable: Boolean): Int =
         if (dictationAvailable) MAX_SPROSSE_WITH_DICTATION else MAX_SPROSSE_WITHOUT_DICTATION
-
-    /**
-     * Where a learner STARTS, from the words they already hold: 0–11 arrived → 1,
-     * 60+ → 6. The `Growth.newBudget` pacing shape (a step per bucket, a hard ceiling) —
-     * someone with a vocabulary should not spell out `em` four times before the drill
-     * gets interesting, and someone without one should not be dropped into typing.
-     */
-    fun entrySprosse(arrivedCards: Int): Int =
-        minOf(ENTRY_SPROSSE_CEILING, 1 + maxOf(0, arrivedCards) / ARRIVED_PER_SPROSSE)
-
-    /**
-     * How LONG a Sprosse is — the second half of the same pacing rule. An arrived
-     * vocabulary earns each Sprosse in one clean win; below that the classic two apply, so
-     * a beginner gets the repetition and nobody else gets the drag.
-     */
-    fun winsToAdvance(arrivedCards: Int): Int = if (arrivedCards >= ARRIVED_FOR_SHORT_SPROSSEN) 1 else 2
 
     /** The Sprossen [format] spans — [formatFor]'s reading turned round. */
     fun sprossen(format: LetterFormat): IntRange = when (format) {

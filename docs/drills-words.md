@@ -20,7 +20,7 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   and the rows are not tapped: the run walks the ladder by itself from that format.
 - **The tile and typed Sprossen are filed as cleared, as the scrambles' are** — a Sprosse left upward
   before the run's first miss or almost (`LetterDrillClose.clearedSprossen`) —
-  and a run opens on the lowest one at or above the vocabulary's entry not yet cleared
+  and a run opens on the lowest one not yet cleared — the drill's own progress, never the box's size
   (`LetterDrillAvailability.Report.openingSprosse`).
   Dictation is never filed: it draws from the box, which grows.
   Each row is ONE line, the format named by what it asks,

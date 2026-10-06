@@ -52,8 +52,6 @@ object LetterDrillAvailability {
         val dictationCandidates: List<LetterDrill.DictationCandidate>,
         /** Ref → every word this device can say the row's gap from, arrived words flagged. */
         val gapWords: Map<String, List<LetterDrill.AlphabetExampleWord>>,
-        /** The learner's whole arrived vocabulary — what paces the entry Sprosse and its length. */
-        val arrivedCards: Int,
     ) {
         val drillAvailable: Boolean get() = alphabet != null && promptableRefs.isNotEmpty()
 
@@ -63,19 +61,14 @@ object LetterDrillAvailability {
         val maxSprosse: Int get() = LetterDrill.maxSprosse(dictationAvailable)
 
         /**
-         * The Sprosse the learner's vocabulary puts them on — kern's step from the words they
-         * already hold, capped by [maxSprosse].
-         */
-        val entrySprosse: Int get() = minOf(LetterDrill.entrySprosse(arrivedCards), maxSprosse)
-
-        /**
-         * Which Sprosse a run OPENS on: the lowest one at or above [entrySprosse] that no run has
-         * answered out ([NumbersMode.entrySprosse] over [cleared], the store's mask). Derived
+         * Which Sprosse a run OPENS on: the lowest one no run has answered out
+         * ([NumbersMode.entrySprosse] over [cleared], the store's mask) — the drill's own
+         * progress and nothing else. Derived
          * here rather than at the run, so the overview marking the format and the run that
          * starts there read one number.
          */
         fun openingSprosse(cleared: Set<Int>): Int =
-            NumbersMode.entrySprosse(cleared + (1 until entrySprosse), maxSprosse)
+            NumbersMode.entrySprosse(cleared, maxSprosse)
 
         /** The format that Sprosse lands in — what the overview marks. */
         fun openingFormat(cleared: Set<Int>): LetterFormat = LetterDrill.formatFor(openingSprosse(cleared))
@@ -83,9 +76,6 @@ object LetterDrillAvailability {
         /** Whether some run answered out every Sprosse of [format] — never dictation's. */
         fun formatCleared(format: LetterFormat, cleared: Set<Int>): Boolean =
             format != LetterFormat.Dictation && LetterDrill.sprossen(format).all { it in cleared }
-
-        /** How long a Sprosse is for this learner. */
-        val winsToAdvance: Int get() = LetterDrill.winsToAdvance(arrivedCards)
 
         /** What kern is handed for one row — empty for a letter row, which gaps nothing. */
         fun examples(entry: AlphabetEntry): List<LetterDrill.AlphabetExampleWord> =
@@ -126,7 +116,6 @@ object LetterDrillAvailability {
                     )
                 },
             gapWords = gapWords,
-            arrivedCards = arrived.size,
         )
     }
 

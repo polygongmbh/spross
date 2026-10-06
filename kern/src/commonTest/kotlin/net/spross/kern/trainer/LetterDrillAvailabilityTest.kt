@@ -218,7 +218,6 @@ class LetterDrillAvailabilityTest {
             voiced.dictationCandidates.map { it.card.id },
         )
         assertFalse("morning" in voiced.dictationCandidates.map { it.card.id }, "a phrase card is two words")
-        assertEquals(6, voiced.arrivedCards, "the whole vocabulary paces the entry Sprosse")
     }
 
     /** The floor is `>=`: one word short and the ramp stops one Sprosse below dictation. */
