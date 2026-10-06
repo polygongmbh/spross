@@ -44,6 +44,7 @@
   "rail": { "text": "rotaia", "grammar": { "gender": "la" } },
   "fare": { "text": "tariffa", "accepts": ["prezzo del biglietto"], "grammar": { "gender": "la" } },
   "to-get-off": { "text": "scendere" },
+  "to-get-on": { "text": "salire" },
   "the-bus-is-coming-soon": {
    "text": "L'autobus arriva tra poco.",
    "accepts": ["L'autobus arriva fra poco.", "Il bus arriva tra poco."],

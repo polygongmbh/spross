@@ -18,6 +18,8 @@
   "to-wake-up": { "text": "kuamka" },
   "to-get-up": { "text": "kuinuka" },
   "to-get-undressed": { "text": "kuvua nguo" },
+  "to-put-on": { "text": "kuvaa" },
+  "to-take-off": { "text": "kuvua" },
   "to-cuddle": { "text": "kukumbatiana" },
   "to-yawn": { "text": "kupiga miayo" },
   "to-snore": { "text": "kukoroma" },

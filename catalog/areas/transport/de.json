@@ -29,6 +29,7 @@
   "rail": { "text": "Schiene", "grammar": { "gender": "die", "plural": "-n" } },
   "fare": { "text": "Fahrpreis", "grammar": { "gender": "der", "plural": "-e" } },
   "to-get-off": { "text": "aussteigen" },
+  "to-get-on": { "text": "einsteigen" },
   "the-bus-is-coming-soon": { "text": "Der Bus kommt gleich.", "orders": ["Gleich kommt der Bus."] },
   "when-does-the-train-leave": { "text": "Wann fährt der Zug ab?" },
   "how-much-is-the-fare": { "text": "Wie hoch ist der Fahrpreis?", "accepts": ["Was kostet die Fahrt?"] },

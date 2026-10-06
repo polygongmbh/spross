@@ -18,6 +18,8 @@
   "to-wake-up": { "text": "to wake up" },
   "to-get-up": { "text": "to get up" },
   "to-get-undressed": { "text": "to get undressed" },
+  "to-put-on": { "text": "to put on" },
+  "to-take-off": { "text": "to take off" },
   "to-cuddle": { "text": "to cuddle" },
   "to-yawn": { "text": "to yawn" },
   "to-snore": { "text": "to snore" },

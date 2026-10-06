@@ -14,6 +14,8 @@
  { "slug": "wardrobe", "kind": "noun" },
  { "slug": "alarm-clock", "kind": "noun", "emoji": "⏰" },
  { "slug": "to-get-undressed", "kind": "verb" },
+ { "slug": "to-put-on", "kind": "verb" },
+ { "slug": "to-take-off", "kind": "verb" },
  { "slug": "sweater", "kind": "noun", "emoji": "🧥" },
  { "slug": "t-shirt", "kind": "noun", "emoji": "👕" },
  { "slug": "underwear", "kind": "noun", "emoji": "🩲" },

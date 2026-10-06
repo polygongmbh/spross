@@ -19,6 +19,8 @@
  { "slug": "lamp", "kind": "noun", "emoji": "💡" },
  { "slug": "picture", "kind": "noun", "emoji": "🖼️" },
  { "slug": "to-tidy-up", "kind": "verb", "emoji": "🧹" },
+ { "slug": "to-move-in", "kind": "verb" },
+ { "slug": "to-move-out", "kind": "verb" },
  { "slug": "plant", "kind": "noun", "emoji": "🪴" },
  { "slug": "newspaper", "kind": "noun", "emoji": "📰" },
  { "slug": "shelf", "kind": "noun" },

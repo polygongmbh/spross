@@ -22,6 +22,8 @@
   "to-wake-up": { "text": "se réveiller" },
   "to-get-up": { "text": "se lever" },
   "to-get-undressed": { "text": "se déshabiller", "accepts": ["enlever ses vêtements"] },
+  "to-put-on": { "text": "mettre", "accepts": ["enfiler"] },
+  "to-take-off": { "text": "enlever", "accepts": ["retirer"] },
   "to-cuddle": { "text": "faire un câlin", "accepts": ["se faire un câlin", "câliner"] },
   "to-yawn": { "text": "bâiller" },
   "to-snore": { "text": "ronfler" },

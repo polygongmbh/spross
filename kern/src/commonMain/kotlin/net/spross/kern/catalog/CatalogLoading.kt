@@ -87,6 +87,10 @@ internal fun loadCatalog(source: CatalogSource): Catalog {
         val path = "phrases/$lang.json"
         source.read(path)?.let { lang to FrameParser.parseFrameLanguageFile(path, it, slots) }
     }.toMap()
+    // why: read through the RAW source, like a frame — a pair never joins a card, so
+    // editing one must not restamp a running box.
+    val oppositePairs = source.read("opposites/pairs.json")
+        ?.let { OppositePairParser.parse("opposites/pairs.json", it, conceptSlugs) }.orEmpty()
     return Catalog(
         groups, languages, areas, tracked.fingerprint(), audio, alphabets, frames,
         frameRealizations = drills.mapValues { (_, it) -> it.frames },
@@ -95,5 +99,6 @@ internal fun loadCatalog(source: CatalogSource): Catalog {
         countryAtlas = atlas,
         countryNames = countryNames,
         dateCalendars = dateCalendars,
+        oppositePairs = oppositePairs,
     )
 }

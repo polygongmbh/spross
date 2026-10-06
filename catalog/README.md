@@ -60,6 +60,9 @@ catalog/
   dates/                # the dates drill's calendars
     README.md
     <lang>.json         # { weekdays, months, numeric, patterns }
+  opposites/            # the opposites drill's pairs
+    README.md
+    pairs.json          # ordered [[slug, slug]] — language-neutral
   phrases/              # sentence frames for the generated number/year/clock drills
     README.md
     frames.json         # ordered [{slug, slot}] — language-neutral frame concepts

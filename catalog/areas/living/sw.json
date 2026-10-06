@@ -20,6 +20,8 @@
   "to-watch-tv": { "text": "kutazama runinga", "accepts": ["kutazama televisheni"] },
   "to-read": { "text": "kusoma" },
   "to-tidy-up": { "text": "kupanga vitu" },
+  "to-move-in": { "text": "kuhamia" },
+  "to-move-out": { "text": "kuhama" },
   "to-water-plants": { "text": "kumwagilia mimea" },
   "to-play": { "text": "kucheza" },
   "to-talk": { "text": "kuongea" },

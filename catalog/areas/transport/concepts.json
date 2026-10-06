@@ -5,6 +5,7 @@
  { "slug": "ticket", "kind": "noun", "emoji": "🎟️" },
  { "slug": "to-take-bus", "kind": "verb", "emoji": "🚌" },
  { "slug": "to-get-off", "kind": "verb" },
+ { "slug": "to-get-on", "kind": "verb" },
  { "slug": "to-depart", "kind": "verb" },
  { "slug": "bus-stop", "kind": "noun", "emoji": "🚏" },
  { "slug": "train-station", "kind": "noun", "emoji": "🚉" },
