@@ -7,7 +7,8 @@ import SwiftUI
 /// into two ideas of what a card shows.
 ///
 /// The answer and the closing lines grow below the prompt only once `opens`;
-/// before that the card holds the prompt and, at first sight, the hint.
+/// before that the card holds the prompt and, at first sight, the hint —
+/// or the closing note alone, where an accepted answer `growsNote`.
 struct QuestionCardView: View {
 
     /// What the screen around the card is — the card works its own layout and sizes out from that.
@@ -62,6 +63,11 @@ struct QuestionCardView: View {
                         Text("session.otherWord \(other.word) \(other.meanings.joined(separator: ", "))")
                             .pauseLine()
                     }
+                } else if growsNote {
+                    // why: an accepted answer to a question whose meaning never stood on screen
+                    // still owes that meaning — alone, since the answer stands in the learner's own text.
+                    CardReveal(note: noteText) { EmptyView() }
+                        .transition(.opacity.combined(with: .move(edge: .top)))
                 } else if let hint = question.hint {
                     // why: the reveal TAKES this slot rather than stacking under it —
                     // the hint is scaffolding for a prompt still unanswered.
@@ -80,7 +86,10 @@ struct QuestionCardView: View {
         .frame(minHeight: Theme.reserve.drillCard)
         .cardSurface()
         .animation(revealAnimation, value: opens)
+        .animation(revealAnimation, value: growsNote)
     }
+
+    private var growsNote: Bool { !opens && question.growsNote && noteText != nil }
 
     private var besidePicture: String? {
         guard let emoji = question.emoji, !emoji.isEmpty, !question.emojiIsQuestion else { return nil }

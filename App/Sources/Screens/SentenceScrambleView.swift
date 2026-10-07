@@ -137,9 +137,10 @@ struct SentenceScrambleView: View {
     /// What the graded arrangement grows, on the answer card itself — the shared
     /// reveal, so a drill card and a vocabulary card grow the same thing.
     ///
-    /// The meaning always; the authored order above it only where the
-    /// arrangement missed, since the chips of a clean one already ARE that order
-    /// and setting it a second time would read as a correction.
+    /// kern's Question says which: a missed arrangement opens onto the authored
+    /// order and its meaning, an accepted one grows the meaning alone, since its
+    /// chips already stand in an order — and none after an alternative order,
+    /// whose meaning belongs to the authored one.
     ///
     /// Two answers, never an answer and a footnote. The ORDER was the question,
     /// so where it was missed the authored one wears the accent every card's
@@ -150,23 +151,33 @@ struct SentenceScrambleView: View {
     /// Both open at the WORD reveal's size and shrink only where the phrase is
     /// long enough to need it, rather than being set small in advance against
     /// the longest one the catalog might hold: this card has the room, since the
-    /// bank is gone by the time it is drawn and no prompt stands above it. The
-    /// floor lands about where the fixed sentence size did (`Theme.prompt.sentence`).
+    /// bank is gone by the time it is drawn and no prompt stands above it.
     @ViewBuilder
     private func revealLines(_ task: SentenceScrambleTask) -> some View {
-        CardReveal(note: nil) {
-            if !run.answerAccepted || run.alternativeMatch {
-                SpokenWord(pronounce: model.pronounceAction(for: task.display, lang: task.language),
-                           isPlaying: model.isPronouncing(task.display, lang: task.language)) {
-                    sentence(Text(task.display), tint: Theme.colors.accent)
-                        .spoken(task.display, language: task.language)
+        if let question = run.question {
+            let order = question.opens ? question.answer.text : nil
+            let meaning = question.opens || question.growsNote ? ownNote(question) : nil
+            if order != nil || meaning != nil {
+                CardReveal(note: nil) {
+                    if let order {
+                        SpokenWord(pronounce: model.pronounceAction(for: order, lang: task.language),
+                                   isPlaying: model.isPronouncing(order, lang: task.language)) {
+                            sentence(Text(order), tint: Theme.colors.accent)
+                                .spoken(order, language: task.language)
+                        }
+                    }
+                    if let meaning {
+                        sentence(Text(meaning), tint: Theme.colors.textPrimary)
+                    }
                 }
-            }
-            if !run.alternativeMatch {
-                sentence(Text(task.gloss), tint: Theme.colors.textPrimary)
+                .transition(.opacity)
             }
         }
-        .transition(.opacity)
+    }
+
+    private func ownNote(_ question: Question) -> String? {
+        guard let note = question.closing.note, case .own(let own) = onEnum(of: note) else { return nil }
+        return own.text
     }
 
     private func sentence(_ text: Text, tint: Color) -> some View {
