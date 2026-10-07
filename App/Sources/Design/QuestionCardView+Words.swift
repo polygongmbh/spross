@@ -93,4 +93,22 @@ extension QuestionCardView {
                           also.meanings.joined(separator: " / "))
         }
     }
+
+    /// Which plural is a sentinel is kern's (`PluralForm`); the labels each one wears are chrome.
+    func pluralText(_ plural: PluralForm) -> String {
+        switch onEnum(of: plural) {
+        case .sameAsSingular: return ChromeStrings.string("session.grammar.plural.equals", locale: locale)
+        case .pluralOnly: return ChromeStrings.string("session.grammar.plural.only", locale: locale)
+        case .form(let form):
+            return String(format: ChromeStrings.string("session.grammar.plural %@", locale: locale), form.text)
+        }
+    }
+
+    /// "also: Amt / Verwaltung" — the word's family beyond the forms already on the card.
+    var alternatesText: String? {
+        let family = question.closing.alternates
+        guard !family.isEmpty else { return nil }
+        return String(format: ChromeStrings.string("session.grammar.also %@", locale: locale),
+                      family.joined(separator: " / "))
+    }
 }

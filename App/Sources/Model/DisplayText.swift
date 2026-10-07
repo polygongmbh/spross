@@ -108,19 +108,6 @@ enum CardDisplay {
                      targetText: realization.text)
     }
 
-    /// Labeled plural line. Which authored value is a sentinel and which resolves
-    /// against the word is kern's (`model/DisplayText.kt`); the labels each one
-    /// wears ("Pl. …", "= Pl.", "nur Pl.") are chrome.
-    static func plural(of realization: Realization, locale: Locale) -> String? {
-        guard let plural = pluralForm(realization: realization) else { return nil }
-        switch onEnum(of: plural) {
-        case .sameAsSingular: return ChromeStrings.string("session.grammar.plural.equals", locale: locale)
-        case .pluralOnly: return ChromeStrings.string("session.grammar.plural.only", locale: locale)
-        case .form(let form):
-            return String(format: ChromeStrings.string("session.grammar.plural %@", locale: locale), form.text)
-        }
-    }
-
     /// "auch: Amt / Verwaltung" — the realization's remaining family beyond
     /// `shown`, for reveal display. Which forms are left is kern's
     /// (`model/DisplayText.kt`); the label and the " / " are chrome.
@@ -130,19 +117,5 @@ enum CardDisplay {
         guard !family.isEmpty else { return nil }
         return String(format: ChromeStrings.string("session.grammar.also %@", locale: locale),
                       family.joined(separator: " / "))
-    }
-
-    /// The card's last line: its own note, or what the prompted form also means.
-    /// Which of the two is kern's (`closingNote`); the "bedeutet auch:" label is chrome.
-    static func closingNote(of realization: Realization, alsoMeans: [String],
-                            locale: Locale) -> String? {
-        guard let note = SprossKern.closingNote(realization: realization, alsoMeans: alsoMeans)
-        else { return nil }
-        switch onEnum(of: note) {
-        case .own(let own): return own.text
-        case .alsoMeans(let also):
-            return String(format: ChromeStrings.string("session.means.also %@", locale: locale),
-                          also.meanings.joined(separator: " / "))
-        }
     }
 }

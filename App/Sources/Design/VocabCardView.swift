@@ -287,13 +287,3 @@ struct VocabCardView: View {
             + word
     }
 }
-
-/// Labeled ♀ badge — marks a feminine-sibling prompt/answer; decorative
-/// grammar cue, never part of grading.
-struct FeminineBadge: View {
-    var body: some View {
-        Text(verbatim: "♀")
-            .pill(Theme.colors.die)
-            .accessibilityLabel("a11y.glyph.feminineForm")
-    }
-}

@@ -129,12 +129,6 @@ extension SessionView {
 
     var otherWord: MatchOtherWord? { turn?.otherWord }
 
-    /// The card expands only when the word was NOT produced — "Aufdecken" or a
-    /// wrong answer. A correct answer already stands in the input field, and a
-    /// typo's proper spelling is carried by the correction box, so revealing
-    /// there would put the same word on screen twice.
-    var cardRevealed: Bool { turn?.answerRevealed ?? false }
-
     /// What a report opened right now carries as the learner's answer — kern's call
     /// (`TurnState.answerForReport`): the word the catalog refused, which a miss has
     /// already primed out of the field, else whatever stands in it.

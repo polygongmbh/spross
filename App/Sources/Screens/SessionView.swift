@@ -170,26 +170,19 @@ struct SessionView: View, LanguageNaming {
                 // ZStack so outgoing and incoming card overlap during the flip
                 // instead of stacking; .id gives each card its own identity.
                 ZStack {
-                    VocabCardView(
-                        emoji: card.emoji,
-                        emojiCue: model.emojiCue(for: card),
-                        prompt: promptSide(card, role: role),
-                        answer: answerSide(card, role: role),
-                        note: CardDisplay.closingNote(of: card.target,
-                                                      alsoMeans: turn?.alsoMeans ?? [],
-                                                      locale: locale),
-                        revealed: cardRevealed,
+                    if let question = turn?.question {
                         // why: the input, the button and the keyboard share this
                         // screen with the card — the picture goes beside the words.
-                        arrangement: .beside
-                    )
-                    .id(card.id)
-                    .transition(reduceMotion ? .opacity : .cardFlip)
-                    // why: only once the answer is out — before it, the learner has
-                    // not seen the translation they would be reporting, and a menu
-                    // over the prompt is a menu over a question. A typo's hold counts:
-                    // its correction stands even though the card never expands.
-                    .contextMenu { if answerOut { cardMenu(card) } }
+                        QuestionCardView(question: question, surface: .review, voice: model.cardVoice,
+                                         areaTitle: model.areaTitle)
+                            .id(question.key)
+                            .transition(reduceMotion ? .opacity : .cardFlip)
+                            // why: only once the answer is out — before it, the learner has
+                            // not seen the translation they would be reporting, and a menu
+                            // over the prompt is a menu over a question. A typo's hold counts:
+                            // its correction stands even though the card never expands.
+                            .contextMenu { if answerOut { cardMenu(card) } }
+                    }
                 }
                 if model.coachActive,
                    let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {

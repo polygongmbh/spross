@@ -16,11 +16,16 @@ struct QuestionCardView: View {
         /// A drill task above a field, tiles or a pad: the question at the fixed size
         /// its form picks (`Theme.Prompt`), held to the drill card's reserve.
         case drill
+        /// A review card above the answer controls: its words at text size with their grammar,
+        /// the picture beside them, held to the review card's reserve.
+        case review
     }
 
     let question: Question
     var surface: Surface = .drill
     var voice: CardVoice = .silent
+    /// The title of the area an ambiguous prompt names (`Side.context` is its key).
+    var areaTitle: (String) -> String = { $0 }
     /// What a screen reader hears for the prompt where its text is no word to read — a mixed word, spelled out.
     var promptLabel: Text?
     /// VoiceOver lands on the replay control as each question goes up, where the prompt is a sound.
@@ -31,6 +36,7 @@ struct QuestionCardView: View {
     var body: some View {
         switch surface {
         case .drill: drillFace
+        case .review: reviewFace
         }
     }
 
@@ -159,7 +165,7 @@ struct QuestionCardView: View {
     ///
     /// why: it keeps its generous tap target but reserves only the glyph in layout,
     /// overhanging into the gaps above and below, where nothing is tappable.
-    private var replayGlyph: some View {
+    var replayGlyph: some View {
         SpeakerIcon(size: .large, isPlaying: isPlaying(question.prompt), pronounce: pronounce(question.prompt))
             .accessibilityLabel("a11y.action.replayPrompt")
             .accessibilityAddTraits(.startsMediaSession)
