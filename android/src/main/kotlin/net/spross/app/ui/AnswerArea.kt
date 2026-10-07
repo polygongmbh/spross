@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.kern.catalog.LanguageChoices
+import net.spross.kern.design.Palette
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerControls.Confirm
@@ -204,7 +205,7 @@ private fun NextButton(chrome: Chrome, subtitle: String?, onClick: () -> Unit) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(chrome.commonNext)
             subtitle?.let {
-                Text(it, style = MaterialTheme.typography.labelSmall, modifier = Modifier.alpha(0.75f))
+                Text(it, style = MaterialTheme.typography.labelSmall, modifier = Modifier.alpha(Palette.SUBTITLE.toFloat()))
             }
         }
     }

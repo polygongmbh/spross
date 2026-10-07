@@ -90,11 +90,11 @@ private struct GradeButton: View {
             .frame(minHeight: 60) // card-parity: the rating row's own height, not a card reserve
             .background(
                 RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                    .fill(outcome.color.opacity(0.14))
+                    .fill(outcome.color.opacity(Palette.shared.WASH))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                    .strokeBorder(outcome.color.opacity(0.35), lineWidth: 1)
+                    .strokeBorder(outcome.color.opacity(Palette.shared.EDGE), lineWidth: 1)
             )
         }
         .buttonStyle(PressableStyle())

@@ -102,7 +102,7 @@ struct ActivityStripView: View {
             } else if bar.isEmptyToday {
                 // why: an empty today reads as "nothing yet", not as a gap — an
                 // outline keeps the column present without claiming a review.
-                shape.strokeBorder(Theme.colors.accent.opacity(0.5), lineWidth: 1.5)
+                shape.strokeBorder(Theme.colors.accent.opacity(Palette.shared.TODAY_OUTLINE), lineWidth: 1.5)
             } else {
                 shape.fill(Theme.colors.separator)
             }

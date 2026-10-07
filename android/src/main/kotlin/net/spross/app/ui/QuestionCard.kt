@@ -37,10 +37,11 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.sayOnTap
-import net.spross.kern.session.Question
-import net.spross.kern.session.Saying
 import net.spross.kern.design.CardType
 import net.spross.kern.design.LetterCase
+import net.spross.kern.design.Palette
+import net.spross.kern.session.Question
+import net.spross.kern.session.Saying
 
 /**
  * Every card a question is asked on, drawn from kern's [Question]:
@@ -292,7 +293,7 @@ internal fun ReplayGlyph(replay: (() -> Unit)?, chrome: Chrome, focus: FocusRequ
             SprossIcons.Speaker,
             contentDescription = null,
             tint = Theme.colors.accent,
-            modifier = Modifier.size(40.dp).alpha(if (replay != null) 1f else 0.35f),
+            modifier = Modifier.size(40.dp).alpha(if (replay != null) 1f else Palette.DIMMED.toFloat()),
         )
     }
 }

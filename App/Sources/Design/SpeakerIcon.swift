@@ -61,7 +61,7 @@ struct SpeakerIcon: View {
             Image(systemName: "speaker.wave.2.fill")
                 .font(.system(size: size.pointSize, weight: .semibold))
                 .foregroundStyle(size == .small ? Theme.colors.textSecondary : Theme.colors.accent)
-                .opacity(pronounce == nil ? 0.35 : 1)
+                .opacity(pronounce == nil ? Palette.shared.DIMMED : 1)
                 .scaleEffect(pulsing ? SpeakerPulse.shared.SCALE : 1.0)
                 .animation(
                     pulsing

@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 
 /// A button label that reads in the user's KNOWN language, with an optional
@@ -20,7 +21,7 @@ struct ActionLabel: View {
                targetLocale.language.languageCode?.identifier != locale.language.languageCode?.identifier {
                 Text(ChromeStrings.string(key, locale: targetLocale))
                     .font(Theme.typography.caption)
-                    .opacity(0.75)
+                    .opacity(Palette.shared.SUBTITLE)
             }
         }
         .frame(maxWidth: .infinity)

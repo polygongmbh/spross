@@ -36,6 +36,7 @@ import net.spross.kern.box.StreakHealth
 import net.spross.kern.design.ActivityBar
 import net.spross.kern.design.ActivityBars
 import net.spross.kern.design.ActivityScale
+import net.spross.kern.design.Palette
 import net.spross.kern.design.StripRun
 
 /** The gutter between two columns; a joined run rules straight across it. */
@@ -142,7 +143,7 @@ private fun BarRow(bars: List<ActivityBar>, palette: ThemeColors) {
                 bar.worked -> Box(column.background(hue.copy(alpha = bar.fillOpacity.toFloat()), shape))
                 // why: an empty today reads as "nothing yet", not as a gap — an outline
                 // keeps the column present without claiming a review.
-                bar.isEmptyToday -> Box(column.border(1.5.dp, palette.accent.copy(alpha = 0.5f), shape))
+                bar.isEmptyToday -> Box(column.border(1.5.dp, palette.accent.copy(alpha = Palette.TODAY_OUTLINE.toFloat()), shape))
                 else -> Box(column.background(palette.separator, shape))
             }
         }

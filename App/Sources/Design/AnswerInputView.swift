@@ -214,11 +214,11 @@ struct AnswerInputView: View {
         .padding(Theme.spacing.lg)
         .background(
             RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                .fill(Theme.colors.amber.opacity(0.14))
+                .fill(Theme.colors.amber.opacity(Palette.shared.WASH))
         )
         .overlay(
             RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                .strokeBorder(Theme.colors.amber.opacity(0.35), lineWidth: 1)
+                .strokeBorder(Theme.colors.amber.opacity(Palette.shared.EDGE), lineWidth: 1)
         )
         // why: `contain`, not `combine` — combining would swallow the speaker,
         // and a correction the learner cannot replay is the thing this box

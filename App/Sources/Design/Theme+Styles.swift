@@ -25,8 +25,9 @@ extension View {
     }
 
     /// The one tinted capsule a standing wears: a word — never a color alone —
-    /// over that color's own 14 % wash, so a badge reads the same on a card as on
-    /// a recessed row. The wash is what makes it a standing rather than a control:
+    /// over that color's own wash (kern's `Palette.WASH`),
+    /// so a badge reads the same on a card as on a recessed row.
+    /// The wash is what makes it a standing rather than a control:
     /// a saturated fill is what a button wears, and a row of solid slabs beside
     /// each other is unreadable.
     func pill(_ color: Color) -> some View {
@@ -34,7 +35,7 @@ extension View {
             .foregroundStyle(color)
             .padding(.horizontal, Theme.spacing.md)
             .padding(.vertical, Theme.spacing.xs + 1)
-            .background(color.opacity(0.14), in: Capsule())
+            .background(color.opacity(Palette.shared.WASH), in: Capsule())
     }
 
     /// The one inline PANEL: a block of the page — a table's rows, a ladder, a
@@ -89,7 +90,7 @@ struct SoftButtonStyle: ButtonStyle {
             .padding(.vertical, Theme.spacing.md)
             .padding(.horizontal, Theme.spacing.lg)
             .frame(minHeight: 44)
-            .background(color.opacity(0.14), in: RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous))
+            .background(color.opacity(Palette.shared.WASH), in: RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous))
             .opacity(configuration.isPressed ? 0.7 : 1)
             .press(configuration.isPressed, .action)
     }
@@ -104,7 +105,7 @@ struct IconButtonStyle: ButtonStyle {
             .font(Theme.typography.headline)
             .foregroundStyle(color)
             .frame(width: 40, height: 40)
-            .background(color.opacity(0.14), in: Circle())
+            .background(color.opacity(Palette.shared.WASH), in: Circle())
             .opacity(configuration.isPressed ? 0.7 : 1)
             .press(configuration.isPressed, .icon)
     }

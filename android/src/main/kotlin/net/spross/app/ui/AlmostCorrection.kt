@@ -33,6 +33,7 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
+import net.spross.kern.design.Palette
 import net.spross.kern.design.SpeakerPulse
 
 /**
@@ -63,7 +64,7 @@ fun AlmostCorrection(
         modifier = modifier
             .fillMaxWidth()
             .background(Theme.colors.wash(amber), shape)
-            .border(1.dp, amber.copy(alpha = 0.35f), shape)
+            .border(1.dp, amber.copy(alpha = Palette.EDGE.toFloat()), shape)
             .clip(shape)
             .padding(Theme.spacing.lg),
         verticalAlignment = Alignment.CenterVertically,
