@@ -73,13 +73,15 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         ReportableCard(model, card, flow.answerOut, typed = { flow.answerForReport }) {
-            QuestionCard(
-                flow.state.question,
-                model.chrome,
-                surface = QuestionSurface.Review,
-                voice = model.cardVoice,
-                areaTitle = model::areaTitle,
-            )
+            QuestionStage(flow.state.question) { question ->
+                QuestionCard(
+                    question,
+                    model.chrome,
+                    surface = QuestionSurface.Review,
+                    voice = model.cardVoice,
+                    areaTitle = model::areaTitle,
+                )
+            }
         }
         // Recognition is never typed: a reveal, then an honest self-grade — so no schedule is
         // ever graded against a language it was not learned with (contract §3).

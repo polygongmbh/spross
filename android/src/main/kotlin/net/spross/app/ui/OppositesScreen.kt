@@ -39,7 +39,7 @@ fun OppositesScreen(model: AppModel) {
         sprosse = chrome.trainerSprosse.format(state.sprosse),
     ) {
         val task = state.task ?: return@DrillRunScaffold
-        QuestionCard(state.question ?: return@DrillRunScaffold, chrome, voice = model.cardVoice)
+        QuestionStage(state.question ?: return@DrillRunScaffold) { QuestionCard(it, chrome, voice = model.cardVoice) }
         DrillAnswerArea(
             model, state.controls ?: return@DrillRunScaffold, flow.input, flow.awaitsConfirm, inputFocus,
             onType = flow::type, onEnter = flow::enter, onConfirm = flow::confirm, onStop = leave,

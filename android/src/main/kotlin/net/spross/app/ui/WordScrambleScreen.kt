@@ -47,12 +47,15 @@ fun WordScrambleScreen(model: AppModel) {
         sprosse = chrome.trainerSprosse.format(state.sprosse),
     ) {
         val task = state.task ?: return@DrillRunScaffold
-        QuestionCard(
-            state.question ?: return@DrillRunScaffold,
-            chrome,
-            voice = model.cardVoice,
-            promptLabel = spelledOut(task.scrambled),
-        )
+        if (state.question == null) return@DrillRunScaffold
+        QuestionStage(state, key = { it.index }) { shown ->
+            QuestionCard(
+                shown.question ?: return@QuestionStage,
+                chrome,
+                voice = model.cardVoice,
+                promptLabel = shown.task?.let { spelledOut(it.scrambled) },
+            )
+        }
         Controls(model, flow, task, inputFocus, leave)
     }
 }

@@ -93,7 +93,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         // owes the learner a way to silence them here.
         showsMuteButton = true,
     ) {
-        QuestionCard(run.question, chrome, voice = model.cardVoice)
+        QuestionStage(run.question) { QuestionCard(it, chrome, voice = model.cardVoice) }
         Controls(model, flow, chrome, inputFocus, leave)
     }
 }

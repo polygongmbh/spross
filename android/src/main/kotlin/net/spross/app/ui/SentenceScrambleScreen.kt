@@ -54,24 +54,27 @@ fun SentenceScrambleScreen(model: AppModel) {
         sprosse = chrome.trainerSprosse.format(state.sprosse),
         spacing = Theme.spacing.lg,
     ) {
-        val task = state.task ?: return@DrillRunScaffold
-        ScrambleTileBank(
-            bank = task.shuffled,
-            placed = state.placedAtoms,
-            isTaken = state::isPlaced,
-            arranged = state.arranged,
-            // Kern's feedback, read — this drill grades by position, so there is no
-            // near miss to render.
-            verdict = when {
-                state.owesAnswer -> ScrambleVerdict.Owed
-                state.answerAccepted -> ScrambleVerdict.Correct
-                else -> ScrambleVerdict.Wrong
-            },
-            chrome = chrome,
-            place = flow::place,
-            take = flow::take,
-        ) {
-            state.question?.let { RevealLines(model, it, chrome) }
+        if (state.task == null) return@DrillRunScaffold
+        QuestionStage(state, key = { it.index }) { shown ->
+            val task = shown.task ?: return@QuestionStage
+            ScrambleTileBank(
+                bank = task.shuffled,
+                placed = shown.placedAtoms,
+                isTaken = shown::isPlaced,
+                arranged = shown.arranged,
+                // Kern's feedback, read — this drill grades by position, so there is no
+                // near miss to render.
+                verdict = when {
+                    shown.owesAnswer -> ScrambleVerdict.Owed
+                    shown.answerAccepted -> ScrambleVerdict.Correct
+                    else -> ScrambleVerdict.Wrong
+                },
+                chrome = chrome,
+                place = flow::place,
+                take = flow::take,
+            ) {
+                shown.question?.let { RevealLines(model, it, chrome) }
+            }
         }
         Controls(model, flow, leave)
     }

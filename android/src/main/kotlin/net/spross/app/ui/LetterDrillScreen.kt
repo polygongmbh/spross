@@ -87,14 +87,17 @@ private fun Run(
     )
 
     val question = state.question ?: return
-    QuestionCard(
-        question,
-        chrome,
-        // why: the prompt plays out of the drill's own letter recording, never the form-keyed lookup.
-        voice = CardVoice { saying ->
-            if (saying == question.prompt.saying) model.letterReplay(task) else model.letterSpeaker(task, saying.form)
-        },
-        replayFocus = replayFocus,
-    )
+    QuestionStage(question) { shown ->
+        QuestionCard(
+            shown,
+            chrome,
+            // why: the prompt plays out of the drill's own letter recording, never the form-keyed lookup.
+            voice = CardVoice { saying ->
+                if (saying == shown.prompt.saying) model.letterReplay(task) else model.letterSpeaker(task, saying.form)
+            },
+            // why: the outgoing card lets go of the requester, so TalkBack's hand-off lands on the incoming one.
+            replayFocus = replayFocus.takeIf { shown.key == question.key },
+        )
+    }
     LetterAnswer(model, flow, task, inputFocus, onFinish)
 }
