@@ -38,7 +38,9 @@ extension NumbersRunView {
                                       otherWord: run.otherWord.map { ($0.word, $0.meanings.joined(separator: ", ")) },
                                       revealed: run.showsAnswer,
                                       pronounce: model?.pronounceAction(for: current.display, lang: language),
-                                      isPlaying: model?.isPronouncing(current.display, lang: language) ?? false)
+                                      isPlaying: model?.isPronouncing(current.display, lang: language) ?? false,
+                                      promptPronounce: run.promptSaying.flatMap { model?.pronounceAction(for: $0.form, lang: $0.lang) },
+                                      promptIsPlaying: run.promptSaying.map { model?.isPronouncing($0.form, lang: $0.lang) ?? false } ?? false)
                         .id(run.index)
                         .transition(reduceMotion ? .opacity : .cardFlip)
                 }

@@ -25,7 +25,9 @@ extension OppositesView: DrillRunning {
                                         pronounce: model.pronounceAction(for: answerLine(task),
                                                                          lang: task.language),
                                         isPlaying: model.isPronouncing(answerLine(task),
-                                                                       lang: task.language))
+                                                                       lang: task.language),
+                                        promptPronounce: model.pronounceAction(for: task.prompt, lang: task.language),
+                                        promptIsPlaying: model.isPronouncing(task.prompt, lang: task.language))
                             .id(run.index)
                             .transition(reduceMotion ? .opacity : .cardFlip)
                     }

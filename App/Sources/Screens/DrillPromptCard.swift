@@ -62,17 +62,22 @@ struct DrillPromptCard: View {
     /// spoken, which drops the icon rather than showing a dead one.
     var pronounce: (() -> Void)?
     var isPlaying = false
+    /// Says the prompt, where kern says it aloud (`promptSaying`) — the tap twin of that autoplay.
+    var promptPronounce: (() -> Void)?
+    var promptIsPlaying = false
 
     var body: some View {
         VStack(spacing: Theme.spacing.md) {
-            prompt
-                .font(size.font)
-                .monospacedDigit()
-                .foregroundStyle(Theme.colors.textPrimary)
-                .lineLimit(size.lines)
-                .minimumScaleFactor(0.5)
-                .multilineTextAlignment(.center)
-                .accessibilityLabel(promptLabel ?? prompt)
+            SpokenWord(pronounce: promptPronounce, isPlaying: promptIsPlaying) {
+                prompt
+                    .font(size.font)
+                    .monospacedDigit()
+                    .foregroundStyle(Theme.colors.textPrimary)
+                    .lineLimit(size.lines)
+                    .minimumScaleFactor(0.5)
+                    .multilineTextAlignment(.center)
+                    .accessibilityLabel(promptLabel ?? prompt)
+            }
             if revealed {
                 CardReveal(note: gloss) {
                     SpokenWord(pronounce: pronounce, isPlaying: isPlaying) {
