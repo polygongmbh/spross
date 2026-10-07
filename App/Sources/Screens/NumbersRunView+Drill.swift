@@ -6,42 +6,14 @@ import SprossKern
 /// lives on NumbersRunView; split out purely for file size.
 extension NumbersRunView {
 
-    /// The question on screen. Kern hands back an ordinary task whichever way
-    /// round it was drawn, so the card never learns the direction.
-    private var current: NumbersTask { run.currentTask }
-
-    /// A prompt made of WORDS is laid out like one — smaller and wrapped — where a
-    /// numeral gets the one big line. Asked of the prompt rather than of the run, so
-    /// a composed sentence and a reversed reading are both read as what they are.
-    private var wordyPrompt: Bool { current.promptDisplay.contains(where: \.isLetter) }
-
-    /// The word a form adds the first time it appears, else the place word the first
-    /// time a length does — on the card itself, so the prompts that carry no hint sit
-    /// exactly as high. One slot, the form winning where both could fire.
-    private var firstSightHint: DrillHint? {
-        if let word = run.formHint { return .init(icon: "plusminus", text: "numbers.newForm \(word)") }
-        return run.placeValueHint.map { .init(icon: "textformat.123", text: "numbers.newPlace \($0)") }
-    }
-
     var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
                 // ZStack so outgoing and incoming prompt overlap during the
                 // flip; .id gives each run position its own view identity.
                 ZStack {
-                    DrillPromptCard(prompt: Text(current.promptDisplay),
-                                      size: wordyPrompt ? .sentence : .digits,
-                                      answer: current.display,
-                                      language: current.language,
-                                      gloss: current.gloss,
-                                      hint: firstSightHint,
-                                      otherWord: run.otherWord.map { ($0.word, $0.meanings.joined(separator: ", ")) },
-                                      revealed: run.showsAnswer,
-                                      pronounce: model?.pronounceAction(for: current.display, lang: language),
-                                      isPlaying: model?.isPronouncing(current.display, lang: language) ?? false,
-                                      promptPronounce: run.promptSaying.flatMap { model?.pronounceAction(for: $0.form, lang: $0.lang) },
-                                      promptIsPlaying: run.promptSaying.map { model?.isPronouncing($0.form, lang: $0.lang) ?? false } ?? false)
-                        .id(run.index)
+                    QuestionCardView(question: run.question, voice: model?.cardVoice ?? .silent)
+                        .id(run.question.key)
                         .transition(reduceMotion ? .opacity : .cardFlip)
                 }
                 controls
