@@ -17,22 +17,13 @@ extension WordScrambleView: DrillRunning {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                if let task = current {
+                if let task = current, let question = run.question {
                     // ZStack so the outgoing and incoming word overlap during
                     // the flip; .id gives each position its identity.
                     ZStack {
-                        DrillPromptCard(prompt: promptText(task.scrambled),
-                                          promptLabel: promptLabel(task.scrambled),
-                                          size: .word,
-                                          answer: task.display,
-                                          language: task.language,
-                                          gloss: task.gloss,
-                                          revealed: run.showsAnswer,
-                                          pronounce: model.pronounceAction(for: task.display,
-                                                                           lang: task.language),
-                                          isPlaying: model.isPronouncing(task.display,
-                                                                         lang: task.language))
-                            .id(run.index)
+                        QuestionCardView(question: question, voice: model.cardVoice,
+                                         promptLabel: promptLabel(task.scrambled))
+                            .id(question.key)
                             .transition(reduceMotion ? .opacity : .cardFlip)
                     }
                     typedControls(task)

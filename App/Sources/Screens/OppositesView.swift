@@ -73,14 +73,4 @@ struct OppositesView: View, LanguageNaming {
         .onAppear { uitestDriveRun() }
         #endif
     }
-
-    /// Every opposite on one line — two where the prompt merges two meanings.
-    func answerLine(_ task: OppositesTask) -> String {
-        task.answers.map(\.text).joined(separator: " · ")
-    }
-
-    /// What the prompt means, then what its opposites mean, in the learner's own language.
-    func glossLine(_ task: OppositesTask) -> String {
-        "\(task.gloss) ↔ \(task.answers.map(\.gloss).joined(separator: " · "))"
-    }
 }

@@ -31,7 +31,8 @@ extension QuestionCardView {
             ? Theme.typography.headline : Theme.typography.title
     }
 
-    /// The prompt as written, the opening letters a mixed word keeps standing in bold.
+    /// The prompt as written, the opening letters a mixed word keeps standing set bold —
+    /// weight alone, since that anchor is an aid the ladder takes away and not worth a legend.
     func promptText(_ side: Question.Side, _ text: String) -> Text {
         let lead = min(Int(side.fixedLeading), text.count)
         guard lead > 0 else { return Text(verbatim: text) }

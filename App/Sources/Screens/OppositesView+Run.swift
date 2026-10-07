@@ -12,23 +12,12 @@ extension OppositesView: DrillRunning {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                if let task = current {
+                if let task = current, let question = run.question {
                     // ZStack so the outgoing and incoming word overlap during
                     // the flip; .id gives each position its identity.
                     ZStack {
-                        DrillPromptCard(prompt: Text(verbatim: task.prompt),
-                                        size: .word,
-                                        answer: answerLine(task),
-                                        language: task.language,
-                                        gloss: glossLine(task),
-                                        revealed: run.showsAnswer,
-                                        pronounce: model.pronounceAction(for: answerLine(task),
-                                                                         lang: task.language),
-                                        isPlaying: model.isPronouncing(answerLine(task),
-                                                                       lang: task.language),
-                                        promptPronounce: model.pronounceAction(for: task.prompt, lang: task.language),
-                                        promptIsPlaying: model.isPronouncing(task.prompt, lang: task.language))
-                            .id(run.index)
+                        QuestionCardView(question: question, voice: model.cardVoice)
+                            .id(question.key)
                             .transition(reduceMotion ? .opacity : .cardFlip)
                     }
                     typedControls(task)

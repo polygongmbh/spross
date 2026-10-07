@@ -91,18 +91,6 @@ struct WordScrambleView: View, LanguageNaming {
 
     // MARK: - The mixed word
 
-    /// The prompt: the letters as kern mixed them, with the ones the Sprosse
-    /// left standing set bold. Kern says how many hold at the front
-    /// (`ScrambledWord.fixedLeading`) and this side says what that looks like —
-    /// weight alone, because the anchor is a recognition aid the ladder takes
-    /// away, and an aid on its way out is not worth a legend.
-    func promptText(_ word: ScrambledWord) -> Text {
-        let letters = Array(word.display)
-        let lead = min(Int(word.fixedLeading), letters.count)
-        return Text(verbatim: String(letters.prefix(lead))).bold()
-            + Text(verbatim: String(letters.dropFirst(lead)))
-    }
-
     /// A mixed word is not a word, and a voice reading it as one says nothing a
     /// learner can spell from — so it is spelled OUT, letter by letter.
     func promptLabel(_ word: ScrambledWord) -> Text {
