@@ -166,6 +166,18 @@ class NumbersRunTest {
         assertNull(unsaid.state.reading.answer)
     }
 
+    /** A reversed task says its reading as the question, and has nothing left to say after it. */
+    @Test
+    fun aReversedTaskSaysItsReadingAsThePrompt() {
+        val rng = Random(37)
+        val back = NumbersRun.open(numbers("sw"), 0, emptyMap(), rng).copy(
+            current = DrawnTask(NumbersExercise.Counting, Numbers.reversed(Numbers.number(347, "sw")), reversed = true),
+        )
+        assertEquals(Saying(back.currentTask.prompt, "sw"), back.reading.prompt)
+        val revealed = NumbersRun.reduce(back, NumbersIntent.Reveal, null, rng).state
+        assertNull(revealed.reading.answer)
+    }
+
     // MARK: - The ramp inside a run
 
     @Test

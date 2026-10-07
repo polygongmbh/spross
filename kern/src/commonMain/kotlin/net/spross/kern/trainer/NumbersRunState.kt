@@ -143,18 +143,22 @@ data class NumbersRunState(
      */
     val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
 
-    /** Nothing: a numeral, a clock or a date has no reading that is not the answer itself. */
-    override val promptSaying: Saying? get() = null
+    /**
+     * A reversed task's reading, which is then the prompt in the language being learned;
+     * a forward task's numeral has no reading that is not the answer itself.
+     */
+    override val promptSaying: Saying?
+        get() = if (currentReversed) Saying(currentTask.prompt, currentTask.language) else null
 
     /**
-     * The reading, whichever side of it was owed — a reversed task's reading is its prompt.
+     * The reading a forward task owed; a reversed one was heard as its prompt already.
      * A clean answer stays unsaid in a timed run: the clock is running, and the beat would wait the reading out.
      */
     override val answerSaying: Saying?
-        get() = if (timed && feedback == TurnFeedback.Correct) {
+        get() = if (currentReversed || timed && feedback == TurnFeedback.Correct) {
             null
         } else {
-            Saying(if (currentReversed) currentTask.prompt else currentTask.display, currentTask.language)
+            Saying(currentTask.display, currentTask.language)
         }
 
     /** The numbers page link shows on numbers tasks only, and never in a timed run. */

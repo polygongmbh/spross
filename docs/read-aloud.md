@@ -39,6 +39,7 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   a word cut off teaches nothing.
   A drill says every graded answer, right or wrong, and its beat waits for the reading to end;
   a timed run leaves its clean answers unsaid, since the clock is running,
+  a reversed numbers task says its reading as the prompt and nothing after,
   and the letter drill says nothing more, since its question already was the sound.
   Produce fires wait for the feedback chime;
   chimes are never ducked.
@@ -55,6 +56,7 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
 | near miss (typo, other form) | yes, after chime | the correction box form |
 | produce revealed (Aufdecken/wrong/other word) | yes, after chime | the bare target word, or the meaning on a card asked by ear |
 | trainer drill prompt (numeral, clock, date) | no | the reading IS the answer |
+| reversed numbers prompt (the reading) | yes, at once; not again after the verdict | the reading |
 | drill prompt in learning language (reversed run, opposites) | yes, at once | the form on the card |
 | drill prompt in known language (forward run) | no | the reveal carries the voice |
 | trainer drill graded answer (right, slip, miss, reveal) | yes, after chime | the answer in the learned language: the reading, the name, the word, the authored phrase (usually voice; weekday/month/country/nationality recorded) |
