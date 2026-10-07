@@ -57,6 +57,10 @@ enum DateDrillFace: DrillFace {
         DateDrill.shared.fastUnlocked(bestSprosse: best, content: content, reverse: reverse)
     }
 
+    static func fastPrice(_ content: DateDrillContent?, reverse: Bool) -> Int {
+        content.map { Int(DateDrill.shared.fastPrice(content: $0, reverse: reverse)) } ?? 1
+    }
+
     static func reference(model: AppModel, content: DateDrillContent,
                           source: String, target: String) -> DatesReference {
         DatesReference(model: model, content: content, source: source, target: target)

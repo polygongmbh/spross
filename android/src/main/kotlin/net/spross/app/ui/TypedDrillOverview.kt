@@ -26,6 +26,7 @@ import net.spross.app.TypedDrillStanding
 import net.spross.kern.model.Language
 import net.spross.kern.trainer.DrillUnlockMark
 import net.spross.kern.trainer.NumbersMode
+import net.spross.kern.trainer.SprosseMark
 
 /**
  * What tells one typed drill's page from the other: its own words, its own ladder, what its
@@ -48,6 +49,8 @@ class TypedDrillLadder(
     /** Kern's own ceiling for this pair and direction, never a count authored beside it. */
     val ceiling: (reverse: Boolean) -> Int,
     val fastOpen: (reverse: Boolean) -> Boolean,
+    /** The Sprosse that earns Fast — kern's price, never the ceiling read as one. */
+    val fastPrice: (reverse: Boolean) -> Int,
     /** What standing on a Sprosse is called — one line, the whole row. */
     val sprosse: (sprosse: Int, reverse: Boolean) -> String,
     /** Opens a run on [sprosse]. */
@@ -116,7 +119,7 @@ fun TypedDrillOverview(
                 SprosseRow(
                     sprosse = sprosse,
                     name = ladder.sprosse(sprosse, reverse),
-                    mark = sprosseMark(sprosse, cleared, ladder.standing.bestSprosse),
+                    mark = SprosseMark.of(sprosse, cleared, ladder.standing.bestSprosse),
                     entry = sprosse == entry,
                     open = NumbersMode.openable(sprosse, cleared, ladder.standing.bestSprosse, ceiling),
                     chrome = chrome,
@@ -144,12 +147,11 @@ fun TypedDrillOverview(
             ModifierSwitchRow(
                 title = chrome.trainerModifierFast,
                 // why: a Sprosse here costs THREE clean wins, so the shared "statt zwei" hint
-                // would misprice it — each ladder says its own. Its price is kern's ceiling
-                // rather than a Sprosse number authored beside it.
+                // would misprice it — each ladder says its own.
                 caption = if (fastOpen) {
                     ladder.fastHint
                 } else {
-                    "${chrome.numbersUnlock} ${chrome.trainerSprosse.format(ceiling)}"
+                    "${chrome.numbersUnlock} ${chrome.trainerSprosse.format(ladder.fastPrice(reverse))}"
                 },
                 open = fastOpen,
                 on = fast,

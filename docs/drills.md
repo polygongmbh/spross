@@ -142,13 +142,14 @@ Nothing wears a prefix one scope wider than what it serves.
   the field's placeholder says so and the card never does --
   and where no ladder stands behind it the switch is offered from the first run.
   FAST falls a Sprosse on one clean win instead of the usual count;
-  on the atlas and calendar it is earned by having EVER stood on the top Sprosse.
+  on the atlas and calendar it is earned by having EVER stood on the top Sprosse,
+  which the locked switch names as its price (`fastPrice`).
 
 ## A run, and what it leaves behind
 
 - **The atlas and the calendar wear their record on the Sprosse circles, and open where it
   stands.**
-  A circle is an outline where no run has stood on the Sprosse,
+  A circle (`SprosseMark`) is an outline where no run has stood on the Sprosse,
   filled ocean where one has reached it,
   filled forest where one run answered EVERY question of it before its first miss or almost --
   a run that has slipped once clears nothing more, in every drill that files Sprossen

@@ -80,8 +80,7 @@ extension LettersOverview {
 
     /// Climbed off clean beats where the run opens; the rest are outlines.
     private func formatMark(_ format: LetterFormat, entry: Bool) -> SprosseMark {
-        if availability?.formatCleared(format, cleared) == true { return .cleared }
-        return entry ? .reached : .untouched
+        SprosseMark.companion.of(cleared: availability?.formatCleared(format, cleared) == true, reached: entry)
     }
 
     private static func title(_ format: LetterFormat) -> LocalizedStringKey {

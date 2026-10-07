@@ -220,17 +220,14 @@ struct DrillResultTile: View {
 
 // MARK: - The Sprosse circle
 
-/// What a Sprosse circle says about a ladder's record: never stood on, stood on
-/// by some run (ocean), or answered out by one (forest) — the last only where the
-/// Sprosse enumerates. Untouched differs by SHAPE too: an outline against two fills.
-enum SprosseMark {
-    case untouched, reached, cleared
-
+/// How a Sprosse circle wears kern's `SprosseMark`: reached in ocean, cleared in
+/// forest. Untouched differs by SHAPE too: an outline against two fills.
+extension SprosseMark {
     var color: Color {
         switch self {
         case .untouched: return Theme.colors.textSecondary
         case .reached: return Theme.colors.teal
-        case .cleared: return Theme.colors.success
+        default: return Theme.colors.success
         }
     }
 
@@ -239,7 +236,7 @@ enum SprosseMark {
         switch self {
         case .untouched: return nil
         case .reached: return "a11y.trainer.sprosse.reached"
-        case .cleared: return "a11y.trainer.sprosse.cleared"
+        default: return "a11y.trainer.sprosse.cleared"
         }
     }
 }

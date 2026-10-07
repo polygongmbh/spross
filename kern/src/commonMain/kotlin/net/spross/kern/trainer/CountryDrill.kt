@@ -57,7 +57,10 @@ object CountryDrill {
      * Whether the Fast modifier is on offer at all. Having EVER stood on the top Sprosse is the
      * price — [bestSprosse] is the highest Sprosse any run reached, which is what the app keeps.
      */
-    fun fastUnlocked(bestSprosse: Int): Boolean = bestSprosse >= MAX_SPROSSE
+    fun fastUnlocked(bestSprosse: Int): Boolean = bestSprosse >= FAST_PRICE
+
+    /** The Sprosse that earns Fast, as the locked switch prices it: the top one. */
+    const val FAST_PRICE: Int = MAX_SPROSSE
 
     /** The Sprosse ramp, on the ladder's Sprosse length ([DrillRamp.step]). */
     fun step(

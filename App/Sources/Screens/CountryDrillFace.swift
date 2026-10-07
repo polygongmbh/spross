@@ -50,6 +50,10 @@ enum CountryDrillFace: DrillFace {
         CountryDrill.shared.fastUnlocked(bestSprosse: best)
     }
 
+    static func fastPrice(_ content: CountryDrillContent?, reverse: Bool) -> Int {
+        Int(CountryDrill.shared.FAST_PRICE)
+    }
+
     static func reference(model: AppModel, content: CountryDrillContent,
                           source: String, target: String) -> CountriesReference {
         CountriesReference(model: model, content: content, source: source, target: target)

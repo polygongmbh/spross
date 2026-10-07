@@ -40,6 +40,7 @@ fun DatesOverviewScreen(model: AppModel) {
             },
             ceiling = { reverse -> DateDrill.maxSprosse(content, reverse) },
             fastOpen = { reverse -> DateDrill.fastUnlocked(standing.bestSprosse, content, reverse) },
+            fastPrice = { reverse -> DateDrill.fastPrice(content, reverse) },
             // The wordings are keyed by KIND, not by row: the ladder has no fixed length.
             sprosse = { sprosse, reverse -> chrome.dateSprosse(DateDrill.kinds(content, sprosse, reverse)) },
             start = model::startDateDrill,

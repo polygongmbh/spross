@@ -37,6 +37,7 @@ fun CountriesOverviewScreen(model: AppModel) {
             // The atlas ladder is one fixed height, whichever way round it asks.
             ceiling = { CountryDrill.MAX_SPROSSE },
             fastOpen = { CountryDrill.fastUnlocked(standing.bestSprosse) },
+            fastPrice = { CountryDrill.FAST_PRICE },
             sprosse = { sprosse, reverse -> chrome.countrySprosse(sprosse, reverse) },
             start = model::startCountryDrill,
         ),

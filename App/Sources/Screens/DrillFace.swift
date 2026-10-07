@@ -68,6 +68,9 @@ protocol DrillFace {
     /// Whether fast mode may be picked at all — kern's rule on the stored best.
     static func fastUnlocked(best: Int, content: Content, reverse: Bool) -> Bool
 
+    /// The Sprosse that earns fast mode, as its locked switch prices it — kern's.
+    static func fastPrice(_ content: Content?, reverse: Bool) -> Int
+
     @ViewBuilder
     static func reference(model: AppModel, content: Content,
                           source: String, target: String) -> Reference
