@@ -135,7 +135,7 @@ struct WordWidgetView: View {
                     .foregroundStyle(.orange)
             }
             Spacer(minLength: 8)
-            WidgetActivityStrip(days: entry.activityDays)
+            WidgetActivityStrip(bars: entry.activityBars, height: entry.activityHeight)
         }
         .font(.caption.weight(.semibold))
     }

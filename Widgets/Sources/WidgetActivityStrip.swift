@@ -1,52 +1,38 @@
 import SwiftUI
 
-/// One column of the widget's strip: a day and what was reviewed on it.
-struct ActivityDay: Hashable {
-    /// Local midnight of the day.
-    let day: Date
-    let reviews: Int
-    let isToday: Bool
-}
-
-/// Header-sized activity strip: one bar per trailing day, no weekday letters and
-/// no streak underline — both are illegible beside a caption-height flame. The
-/// run the flame counts is the header's own business anyway.
+/// Header-sized activity strip: one bar per trailing day, oldest first and today last,
+/// each sized by kern and carried in the snapshot (`WidgetSnapshot.activityBars`).
+/// No weekday letters and no streak underline — both are illegible beside a caption-height flame,
+/// and the run the flame counts is the header's own business anyway.
 struct WidgetActivityStrip: View {
-    let days: [ActivityDay]
+    let bars: [WidgetSnapshot.Bar]
+    /// The row's reserved height, the tallest a bar grows.
+    let height: Double
 
     private static let barWidth: CGFloat = 3
     private static let spacing: CGFloat = 1.5
-    private static let maxHeight: CGFloat = 16
 
     var body: some View {
-        // why: √ of the share, mirroring App/Sources/Design/ActivityStripView.swift,
-        // so one huge day cannot flatten the rest and both surfaces agree on what a
-        // bar height means.
-        let maxReviews = max(days.map(\.reviews).max() ?? 1, 1)
         HStack(alignment: .bottom, spacing: Self.spacing) {
-            ForEach(days, id: \.day) { entry in
-                bar(entry, maxReviews: maxReviews)
+            ForEach(Array(bars.enumerated()), id: \.offset) { index, bar in
+                barShape(bar, isToday: index == bars.count - 1)
             }
         }
-        .frame(height: Self.maxHeight, alignment: .bottom)
+        .frame(height: height, alignment: .bottom)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(label)
     }
 
-    private func bar(_ entry: ActivityDay, maxReviews: Int) -> some View {
-        let scaled = entry.reviews > 0
-            ? (Double(entry.reviews) / Double(maxReviews)).squareRoot()
-            : 0
-        let height = entry.reviews > 0 ? max(3, Self.maxHeight * scaled) : 1.5
+    private func barShape(_ bar: WidgetSnapshot.Bar, isToday: Bool) -> some View {
         // Same two hues the app's strip keys to: today takes the accent, every
         // other worked day the forest green (`WordWidgetView`'s palette copy).
-        let hue = entry.isToday ? WidgetColors.accent : WidgetColors.success
+        let hue = isToday ? WidgetColors.accent : WidgetColors.success
         return Capsule()
-            .fill(entry.reviews > 0 ? hue.opacity(0.45 + 0.55 * scaled) : Color.secondary.opacity(0.3))
-            .frame(width: Self.barWidth, height: height)
+            .fill(bar.worked ? hue.opacity(bar.fillOpacity) : Color.secondary.opacity(0.3))
+            .frame(width: Self.barWidth, height: bar.height)
     }
 
     private var label: Text {
-        Text("widget.activity \(days.filter { $0.reviews > 0 }.count) \(days.count)", tableName: GlanceChrome.table)
+        Text("widget.activity \(bars.filter(\.worked).count) \(bars.count)", tableName: GlanceChrome.table)
     }
 }

@@ -7,9 +7,9 @@ import java.util.TimeZone
 import net.spross.app.BoxFiles
 import net.spross.app.Chrome
 import net.spross.app.ProfileStore
-import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.model.Gender
+import net.spross.kern.snapshot.WidgetBar
 import net.spross.kern.snapshot.WidgetSnapshotBuilder
 
 /** One row of a tile: the picture, the article that tints the word, and the pair itself. */
@@ -38,7 +38,7 @@ class WidgetFace(
     val dueCount: Int,
     val streak: Int,
     val health: StreakHealth,
-    val days: List<ActivityDay>,
+    val bars: List<WidgetBar>,
     val chrome: Chrome,
 )
 
@@ -86,7 +86,7 @@ object WidgetFaces {
             dueCount = view.dueCount(nowEpochMillis),
             streak = view.streak(nowEpochMillis, tz),
             health = view.streakHealth(nowEpochMillis, tz),
-            days = view.activityWindow(nowEpochMillis, tz),
+            bars = view.activityBars(nowEpochMillis, tz),
             chrome = chrome(context),
         )
     }

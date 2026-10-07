@@ -60,8 +60,10 @@ struct WordEntry: TimelineEntry {
     var flameSaturation: Double = 1
     /// Active cards that have settled — the box's growth, not a retention score.
     let settled: Int
-    /// Trailing fortnight of review counts for the header strip.
-    let activityDays: [ActivityDay]
+    /// Trailing fortnight of bars for the header strip, as kern sized them.
+    let activityBars: [WidgetSnapshot.Bar]
+    /// The height the strip's row reserves.
+    var activityHeight: Double = 0
     /// The snapshot's chrome language; nil with no snapshot to read.
     var chromeLanguage: String? = nil
 
@@ -78,7 +80,7 @@ struct WordEntry: TimelineEntry {
         date: .now,
         primary: WidgetWord(emoji: "🌱", word: "", meaning: ""),
         words: [], dueCount: 0, streak: 0, streakHealth: .noRun,
-        settled: 0, activityDays: [])
+        settled: 0, activityBars: [])
 
     /// A timeline entry never carries an empty window otherwise — the provider
     /// drops out to `awaitingContent` before building one.
@@ -91,7 +93,7 @@ struct WordEntry: TimelineEntry {
         // list the placed widget never shows.
         words: sortedForDisplay(placeholderWords),
         dueCount: 0, streak: 3, streakHealth: .earned, settled: 12,
-        activityDays: placeholderDays)
+        activityBars: placeholderBars, activityHeight: 16)
 
     private static let placeholderWords = [
         WidgetWord(emoji: "🧊", word: "friji", meaning: GlanceChrome.sample("widget.sample.fridge")),
@@ -102,18 +104,12 @@ struct WordEntry: TimelineEntry {
         WidgetWord(emoji: "☀️", word: "jua", meaning: GlanceChrome.sample("widget.sample.sun")),
     ]
 
-    /// A hand-written fortnight so the gallery snapshot and the previews draw a
-    /// real strip rather than a flat rule.
-    private static let placeholderDays: [ActivityDay] = {
-        let counts = [4, 0, 9, 3, 26, 6, 0, 5, 7, 0, 11, 8, 14, 5]
-        let calendar = Calendar(identifier: .gregorian)
-        let today = calendar.startOfDay(for: .now)
-        return counts.enumerated().compactMap { offset, reviews in
-            guard let day = calendar.date(byAdding: .day, value: offset - 13, to: today)
-            else { return nil }
-            return ActivityDay(day: day, reviews: reviews, isToday: offset == counts.count - 1)
-        }
-    }()
+    /// A hand-written fortnight, as kern would size it, so the gallery snapshot and the previews
+    /// draw a real strip rather than a flat rule.
+    private static let placeholderBars: [WidgetSnapshot.Bar] = [
+        (4, 6.3, 0.67), (0, 1.5, 0.45), (9, 9.4, 0.77), (3, 5.4, 0.64), (26, 16, 1), (6, 7.7, 0.71), (0, 1.5, 0.45),
+        (5, 7, 0.69), (7, 8.3, 0.74), (0, 1.5, 0.45), (11, 10.4, 0.81), (8, 8.9, 0.76), (14, 11.7, 0.85), (5, 7, 0.69),
+    ].map { WidgetSnapshot.Bar(reviews: $0.0, height: $0.1, fillOpacity: $0.2) }
 }
 
 struct WordProvider: TimelineProvider {
@@ -176,7 +172,8 @@ struct WordProvider: TimelineProvider {
                              flameOpacity: streakDay?.flameOpacity ?? 1,
                              flameSaturation: streakDay?.flameSaturation ?? 1,
                              settled: snapshot.allSettledCount,
-                             activityDays: snapshot.recentDays(now: date),
+                             activityBars: snapshot.activityBars(now: date),
+                             activityHeight: snapshot.activityHeight,
                              chromeLanguage: snapshot.chromeLanguage)
         }
     }

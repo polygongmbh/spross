@@ -23,17 +23,15 @@ import net.spross.app.countLine
 import net.spross.app.ui.ThemeColors
 import net.spross.app.ui.ThemeDark
 import net.spross.app.ui.ThemeLight
-import net.spross.kern.box.ActivityDay
-import net.spross.kern.design.ActivityBar
-import net.spross.kern.design.ActivityBars
 import net.spross.kern.design.ActivityScale
+import net.spross.kern.snapshot.WidgetBar
 
 private val BAR_WIDTH = 3.dp
 private val GUTTER = 1.5.dp
 
 /**
- * The fortnight of practice in the header, one bar per day,
- * sized by kern's [ActivityBars] at [ActivityScale.widget].
+ * The fortnight of practice in the header, one bar per day, oldest first and today last,
+ * as the snapshot carries it for the render day (`WidgetSnapshotView.activityBars`).
  * This cut drops the weekday letters and the run underline: both are
  * illegible beside a caption-height flame, and the run the flame counts is the header's
  * own business anyway.
@@ -43,10 +41,9 @@ private val GUTTER = 1.5.dp
  * squeezed but dropped — a fortnight drawn as views silently loses half its days.
  */
 @Composable
-fun ActivityStrip(days: List<ActivityDay>, chrome: Chrome) {
-    if (days.isEmpty()) return
+fun ActivityStrip(bars: List<WidgetBar>, chrome: Chrome) {
+    if (bars.isEmpty()) return
     val context = LocalContext.current
-    val bars = remember(days) { ActivityBars.of(days, ActivityScale.widget) }
     val bitmap = remember(bars, context.isNight) { render(bars, context) }
     Image(
         provider = ImageProvider(bitmap),
@@ -60,7 +57,7 @@ fun ActivityStrip(days: List<ActivityDay>, chrome: Chrome) {
                 contentDescription = countLine(
                     chrome.a11yCountActivity14DaysOne,
                     chrome.a11yCountActivity14Days,
-                    ActivityBars.activeDays(bars),
+                    bars.count { it.worked },
                 )
             },
     )
@@ -73,7 +70,7 @@ fun ActivityStrip(days: List<ActivityDay>, chrome: Chrome) {
  * being left to a `ColorProvider`: the tile redraws on every snapshot save and every update
  * period, which is when a phone that changed scheme picks the other column up.
  */
-private fun render(bars: List<ActivityBar>, context: Context): Bitmap {
+private fun render(bars: List<WidgetBar>, context: Context): Bitmap {
     val palette = if (context.isNight) ThemeDark else ThemeLight
     val density = context.resources.displayMetrics.density
     val barPx = BAR_WIDTH.value * density
@@ -88,7 +85,7 @@ private fun render(bars: List<ActivityBar>, context: Context): Bitmap {
     val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     val radius = barPx / 2f
     bars.forEachIndexed { index, bar ->
-        paint.color = fill(bar, palette).toArgb()
+        paint.color = fill(bar, isToday = index == bars.lastIndex, palette).toArgb()
         val left = index * (barPx + gutterPx)
         val top = heightPx - bar.height.toFloat() * density
         canvas.drawRoundRect(left, top, left + barPx, heightPx, radius, radius, paint)
@@ -102,8 +99,8 @@ private val Context.isNight: Boolean
         Configuration.UI_MODE_NIGHT_YES
 
 /** Today takes the accent, every other worked day the forest green, an empty day the rule. */
-private fun fill(bar: ActivityBar, palette: ThemeColors) = when {
+private fun fill(bar: WidgetBar, isToday: Boolean, palette: ThemeColors) = when {
     !bar.worked -> palette.separator
-    bar.isToday -> palette.accent.copy(alpha = bar.fillOpacity.toFloat())
+    isToday -> palette.accent.copy(alpha = bar.fillOpacity.toFloat())
     else -> palette.success.copy(alpha = bar.fillOpacity.toFloat())
 }

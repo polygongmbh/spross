@@ -53,15 +53,16 @@ internal fun streakTimeline(
 }
 
 /**
- * [timeline]'s entry for the local day of [nowEpochMillis]:
+ * A render-day timeline's entry for the local day of [nowEpochMillis]
+ * ([streakTimeline], [activityTimeline]):
  * a day past its last entry reads the last, one before its first
  * (a device clock behind the phone's) reads the first.
  */
-internal fun streakOn(
-    timeline: Map<String, WidgetStreakDto>,
+internal fun <T> onRenderDay(
+    timeline: Map<String, T>,
     nowEpochMillis: Long,
     tzId: String,
-): WidgetStreakDto {
+): T {
     val today = localDate(nowEpochMillis, tzId).toString()
     val days = timeline.keys.sorted()
     return timeline.getValue(days.lastOrNull { it <= today } ?: days.first())

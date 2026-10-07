@@ -59,7 +59,7 @@ fun StatsHeader(face: WidgetFace, full: Boolean) {
         StatsLine(face, withLabel = full)
         if (full) {
             Spacer(GlanceModifier.defaultWeight())
-            ActivityStrip(face.days, face.chrome)
+            ActivityStrip(face.bars, face.chrome)
         }
     }
 }

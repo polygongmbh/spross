@@ -16,6 +16,8 @@ import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.answerDays
 import net.spross.kern.box.mergeAnswerDays
 import net.spross.kern.box.streakWindow
+import net.spross.kern.design.ActivityBars
+import net.spross.kern.design.ActivityScale
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardPhase
 import net.spross.kern.model.Gender
@@ -131,34 +133,34 @@ class WidgetSnapshotBuilderTests {
     }
 
     @Test
-    fun dailyStatsKeepOnlyTheTrailingTailDays() {
-        val start = LocalDate(2026, 4, 1)
-        val stats = (0..91).associate { start.plus(it, DateTimeUnit.DAY).toString() to it + 1 }
-        val doc = WidgetSnapshotBuilder.doc(
-            Snap.state(emptyList()), Box.day1, Box.TZ, exposureLimit = 5,
-            otherLanguagesAnswerDays = stats,
+    fun theStripEmptiesOnRenderDaysAfterTheBuild() {
+        val days = mapOf("2026-06-30" to 4, "2026-07-01" to 6)
+        val view = assertNotNull(
+            WidgetSnapshotBuilder.decode(
+                WidgetSnapshotBuilder.build(Snap.state(emptyList()), Box.day1, Box.TZ, otherLanguagesAnswerDays = days),
+            ),
         )
 
-        assertEquals(WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS, doc.dailyStats.size)
-        assertFalse("2026-04-01" in doc.dailyStats)
-        assertEquals(92, doc.dailyStats.getValue("2026-07-01").reviews)
+        assertEquals(listOf(4, 6), view.activityBars(Box.day1, Box.TZ).takeLast(2).map { it.reviews })
+        assertEquals(6, view.activityBars(Box.plusDays(Box.day1, 2.0), Box.TZ).dropLast(2).last().reviews)
+        assertTrue(view.activityBars(Box.plusDays(Box.day1, 40.0), Box.TZ).none { it.worked })
     }
 
     @Test
-    fun dailyStatsMergeInOtherTargetLanguagesReviews() {
+    fun theStripMergesInOtherTargetLanguagesReviews() {
         val state = Box.inject(
             Snap.state(emptyList()),
             Box.sched("zz", dueMillis = Box.day1, lastReviewMillis = Box.millis(2026, 6, 30), logCount = 2),
         )
         val sibling = mapOf("2026-06-30" to 3, "2026-07-01" to 1)
 
-        val doc = WidgetSnapshotBuilder.doc(
-            state, Box.day1, Box.TZ, exposureLimit = 5,
-            otherLanguagesAnswerDays = sibling,
+        val view = assertNotNull(
+            WidgetSnapshotBuilder.decode(
+                WidgetSnapshotBuilder.build(state, Box.day1, Box.TZ, otherLanguagesAnswerDays = sibling),
+            ),
         )
 
-        assertEquals(5, doc.dailyStats.getValue("2026-06-30").reviews)
-        assertEquals(1, doc.dailyStats.getValue("2026-07-01").reviews)
+        assertEquals(listOf(5, 1), view.activityBars(Box.day1, Box.TZ).takeLast(2).map { it.reviews })
     }
 
     @Test
@@ -223,12 +225,13 @@ class WidgetSnapshotBuilderTests {
 
         assertEquals(Statistics.streak(dailyStats, Box.day1, Box.TZ), view.streak(Box.day1, Box.TZ))
         assertEquals(StreakHealth.Bridgeable, view.streakHealth(Box.day1, Box.TZ))
+        val window = streakWindow(
+            mergeAnswerDays(listOf(dailyStats, answerDays(state.scheduling, Box.TZ))),
+            ACTIVITY_WINDOW_DAYS, nowEpochMillis = Box.day1, tzId = Box.TZ,
+        )
         assertEquals(
-            streakWindow(
-                mergeAnswerDays(listOf(dailyStats, answerDays(state.scheduling, Box.TZ))),
-                ACTIVITY_WINDOW_DAYS, nowEpochMillis = Box.day1, tzId = Box.TZ,
-            ),
-            view.activityWindow(nowEpochMillis = Box.day1, tzId = Box.TZ),
+            ActivityBars.of(window, ActivityScale.widget).map { it.height },
+            view.activityBars(nowEpochMillis = Box.day1, tzId = Box.TZ).map { it.height },
         )
     }
 
