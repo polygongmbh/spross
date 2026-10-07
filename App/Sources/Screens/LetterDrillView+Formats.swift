@@ -10,18 +10,13 @@ extension LetterDrillView {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                if let task = current {
+                if let task = current, let question = run.question {
                     // ZStack so the outgoing and incoming question overlap
                     // during the flip; .id gives each position its identity.
                     ZStack {
-                        HearPromptCard(question: question(for: task),
-                                       language: task.language,
-                                       gapText: task.gapText,
-                                       revealed: cardReveal(task),
-                                       replay: replayAction,
-                                       isPlaying: promptIsPlaying,
-                                       replayFocus: $replayFocused)
-                            .id(run.index)
+                        QuestionCardView(question: question, voice: cardVoice(question),
+                                         replayFocus: $replayFocused)
+                            .id(question.key)
                             .transition(reduceMotion ? .opacity : .cardFlip)
                     }
                     switch task.format {
@@ -41,31 +36,16 @@ extension LetterDrillView {
         .scrollDismissesKeyboard(.never)
     }
 
-    /// What the question asks: a letter by its name, a grapheme missing from a
-    /// heard word, or a whole word to transcribe.
-    func question(for task: LetterDrillTask) -> LocalizedStringKey {
-        if task.format == .dictation { return "letters.ask.dictation" }
-        return task.gapText == nil ? "letters.ask.hear" : "letters.ask.spell"
+    /// The question's sound plays out of the recording the drill's own player resolves
+    /// (a letter's name, never a voice reading the bare glyph); every other saying is the model's.
+    private func cardVoice(_ question: Question) -> CardVoice {
+        let voice = model.cardVoice
+        let prompt = question.prompt.saying
+        return CardVoice(pronounce: { $0 == prompt ? replayAction : voice.pronounce($0) },
+                         isPlaying: { $0 == prompt ? promptIsPlaying : voice.isPlaying($0) })
     }
 
-    /// The answer, once the learner has stopped owing it. A gap question closes
-    /// its blank with the word Kern already handed over (`gloss`); a dictation
-    /// grows the transcription with its meaning below.
-    ///
-    /// WHETHER the card opens is kern's `showsAnswer`, a miss on every format.
-    private func cardReveal(_ task: LetterDrillTask) -> HearPromptCard.Reveal? {
-        guard run.showsAnswer,
-              let word = task.gapText == nil ? task.display : task.gloss else { return nil }
-        return .init(word: word,
-                     // why: the meaning is a REVEAL, never a cue — and a gap
-                     // question's gloss IS the word, so it would repeat it.
-                     note: task.gapText == nil ? task.gloss : nil,
-                     pronounce: speaker(task, word),
-                     isPlaying: model.isPronouncing(word, lang: task.language))
-    }
-
-    /// The speaker beside a form the drill hands back — the revealed answer,
-    /// the correction box. The dictated word only.
+    /// The speaker beside a form the drill hands back in the correction box. The dictated word only.
     ///
     /// Every other Sprosse answers with a bare GLYPH, and a glyph is not a form
     /// anything may be asked to say: the lookup never reaches the letter-name

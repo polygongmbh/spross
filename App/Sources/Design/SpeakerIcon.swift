@@ -48,7 +48,7 @@ struct SpeakerIcon: View {
     var isPlaying: Bool = false
     /// nil where nothing can be heard — renders dimmed and inert rather than
     /// vanishing, on a card where the glyph is the only content
-    /// (`HearPromptCard`).
+    /// (a letter drill question).
     /// Callers that draw the icon only where audio exists —
     /// the correction box, `SpokenWord`, an alphabet row — never pass nil.
     var pronounce: (() -> Void)?

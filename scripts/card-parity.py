@@ -38,8 +38,7 @@ DROID = "android/src/main/kotlin/net/spross/app/ui/Theme.kt"
 # Faces are named by hand, being no property of the filesystem; bodies are derived,
 # so a new UI file is scanned from its first commit.
 IOS_UI = ("App/Sources/Design", "App/Sources/Screens")
-IOS_FACES = ["App/Sources/Design/QuestionCardView.swift", "App/Sources/Design/VocabCardView.swift",
-             "App/Sources/Design/HearPromptCard.swift"]
+IOS_FACES = ["App/Sources/Design/QuestionCardView.swift", "App/Sources/Design/VocabCardView.swift"]
 DROID_UI = "android/src/main/kotlin/net/spross/app/ui/"
 DROID_FACES = [DROID_UI + n for n in ("CardFace.kt", "CountryPromptCard.kt", "ProduceCard.kt",
                                       "NumbersPrompt.kt", "LetterDrillScreen.kt")]
