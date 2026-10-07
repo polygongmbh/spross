@@ -1,37 +1,23 @@
 package net.spross.app.ui
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.role
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import net.spross.app.AppModel
 import net.spross.app.CardDisplay
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
 import net.spross.app.areaTitle
 import net.spross.app.pronounceAction
-import net.spross.app.pronounceTarget
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.session.TurnFeedback
 
@@ -169,27 +155,7 @@ private fun PromptWord(model: AppModel, ui: SessionUi) {
 @Composable
 private fun ReplayPrompt(model: AppModel, ui: SessionUi) {
     val card = ui.card ?: return
-    val chrome = model.chrome
-    Box(
-        modifier = Modifier
-            .size(72.dp)
-            .clip(CircleShape)
-            .clickable { model.pronounceTarget(card.target.text) }
-            // why: merged, or the loudspeaker would be a node of its own and TalkBack
-            // would read the picture after the button it belongs to.
-            .semantics(mergeDescendants = true) {
-                role = Role.Button
-                contentDescription = chrome.a11yActionPronounce
-            },
-        contentAlignment = Alignment.Center,
-    ) {
-        Icon(
-            SprossIcons.Speaker,
-            contentDescription = null,
-            tint = Theme.colors.accent,
-            modifier = Modifier.size(40.dp),
-        )
-    }
+    ReplayGlyph(model.pronounceAction(card.target.text), model.chrome)
 }
 
 /**

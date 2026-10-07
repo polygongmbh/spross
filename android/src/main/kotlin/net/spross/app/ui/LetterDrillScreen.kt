@@ -1,29 +1,14 @@
 package net.spross.app.ui
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.role
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
@@ -144,7 +129,7 @@ private fun HearPrompt(
             color = Theme.colors.textSecondary,
             textAlign = TextAlign.Center,
         )
-        ReplayButton(chrome, replay, replayFocus)
+        ReplayGlyph(replay, chrome, replayFocus)
         task.gapText?.let {
             Text(localizedTarget(it, task.language), fontSize = Theme.prompt.word, fontWeight = FontWeight.Bold)
         }
@@ -163,42 +148,5 @@ private fun HearPrompt(
                 }
             }
         }
-    }
-}
-
-/** Not a control beside the content: on this card it IS the content, well past 48 dp. */
-@Composable
-private fun ReplayButton(chrome: Chrome, replay: (() -> Unit)?, focus: FocusRequester) {
-    val enabled = replay != null
-    Box(
-        modifier = Modifier
-            .size(72.dp)
-            .focusRequester(focus)
-            // The wash, not the accent at full strength: this is the thing the drill
-            // asks you to LISTEN to, and a solid clay disc reads as the button to press
-            // next. Disabled keeps the recessed chip fill, so the state still shows.
-            .background(
-                if (enabled) Theme.colors.wash(Theme.colors.accent) else MaterialTheme.colorScheme.surfaceVariant,
-                CircleShape,
-            )
-            .clip(CircleShape)
-            // why: focusable in BOTH states — a disabled clickable carries no focus target,
-            // and the screen reader's hand-off to this button would land nowhere on the one
-            // device that can neither play nor say the prompt.
-            .then(if (replay != null) Modifier.clickable(onClick = replay) else Modifier.focusable())
-            // why: merged, or the loudspeaker inside would be a node of its own and
-            // TalkBack would read the picture after the button it belongs to.
-            .semantics(mergeDescendants = true) {
-                role = Role.Button
-                contentDescription = chrome.a11yActionReplayPrompt
-            },
-        contentAlignment = Alignment.Center,
-    ) {
-        Icon(
-            SprossIcons.Speaker,
-            contentDescription = null,
-            tint = if (enabled) Theme.colors.accent else Theme.colors.textSecondary,
-            modifier = Modifier.size(40.dp),
-        )
     }
 }
