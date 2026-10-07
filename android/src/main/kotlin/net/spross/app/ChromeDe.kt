@@ -136,7 +136,6 @@ internal object ChromeDe : Chrome {
     override val lettersAskDictation = "Schreib, was du hörst"
     override val a11yGlyphLetter = "Buchstabe %s"
     override val a11yActionReplayPrompt = "Noch einmal anhören"
-    override val lettersPromptInLanguage = "auf %s"
     override val trainerSprosse = "Sprosse %s"
     override val trainerLadderTap = "Tippe eine Sprosse an, um dort zu starten."
     override val trainerLadderBest = "Bestmarke: %s in Folge · %s Antworten in einem Lauf"

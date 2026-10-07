@@ -133,7 +133,6 @@ internal object ChromeEn : Chrome {
     override val lettersAskDictation = "Write what you hear"
     override val a11yGlyphLetter = "Letter %s"
     override val a11yActionReplayPrompt = "Play it again"
-    override val lettersPromptInLanguage = "in %s"
     override val trainerSprosse = "Sprosse %s"
     override val trainerLadderTap = "Tap a Sprosse to start there."
     override val trainerLadderBest = "Best yet: %s in a row · %s answers in one run"

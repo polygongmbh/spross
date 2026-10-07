@@ -141,7 +141,6 @@ interface Chrome {
     val lettersAskDictation: String
     val a11yGlyphLetter: String      // %s
     val a11yActionReplayPrompt: String
-    val lettersPromptInLanguage: String  // %s
     val trainerSprosse: String             // %d
     val trainerLadderTap: String
     val trainerLadderBest: String          // %1$s %2$s
