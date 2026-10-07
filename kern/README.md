@@ -288,7 +288,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   so a row's badge and the shelf's progress bar read the identical color on both platforms.
 - **Queuing and unqueuing act on the area, never a single word,
   except where a search reached that word by name**:
-  `BoxEngine.queue`/`unqueueArea` are the shelf's own controls;
+  `BoxEngine.queue`/`unqueueArea` are the shelf's own controls, and which one it offers is `ShelfControl`;
   `unqueue` alone (single card id) exists for the one context that names a word.
   `CardRowState.Queued.removalOffered` and `QueueOffered` both gate on the same
   `queueOffered` context flag.

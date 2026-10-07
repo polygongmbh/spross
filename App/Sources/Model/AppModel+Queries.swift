@@ -197,11 +197,10 @@ extension AppModel {
 
     func cards(inArea area: String) -> [Card] { cardsByArea[area] ?? [] }
 
-    /// What the shelf's queue control would actually add to this shelf.
-    func queueableCount(area: String) -> Int { Int(shelves[area]?.queueable ?? 0) }
-
-    /// What `unqueueArea` would take back out of this shelf.
-    func unqueueableCount(area: String) -> Int { Int(shelves[area]?.queued ?? 0) }
+    /// What the shelf's own control offers (`ShelfControl`).
+    func shelfControl(area: String) -> ShelfControl {
+        ShelfControl.companion.of(counts: shelves[area], stats: areaStats(area))
+    }
 
     /// What one listed card's row has to state about itself. `queueOffered` is
     /// the row's context, not the card's: a search hit queues a single word, an
