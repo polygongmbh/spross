@@ -10,6 +10,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.session.AdvanceBeat
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
 
@@ -248,6 +249,14 @@ class SentenceScrambleRunTest {
         assertNull(clean.answer.text)
         assertEquals(ClosingNote.Own(task.gloss), clean.closing.note)
         assertEquals(task.display, assertNotNull(missed).answer.text)
+    }
+
+    /** Placing the last piece is the answer, so no primary action asks for it. */
+    @Test
+    fun anArrangementNeedsNoPrimaryAction() {
+        val controls = assertNotNull(open().controls)
+        assertEquals(AnswerControls.Slot.Arrangement, controls.slot)
+        assertNull(controls.primary)
     }
 
     /** An alternative word order from `orders` is accepted but flags [alternativeMatch]. */

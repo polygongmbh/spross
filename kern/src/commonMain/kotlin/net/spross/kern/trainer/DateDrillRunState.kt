@@ -1,5 +1,8 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.typableOnNumberPad
+import net.spross.kern.session.AnswerControls.Slot
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.session.Question
 import net.spross.kern.session.QuestionAsk
@@ -188,5 +191,12 @@ data class DateDrillRunState(
             hint = patternWord?.let { QuestionHint.NewWord(it) },
             opens = showsAnswer,
             otherWord = otherWord,
+        )
+
+    /** The warm-up Sprosse's names are picked off tiles; every other date is written, a date owed in digits on the number pad where it fits. */
+    override val controls: AnswerControls
+        get() = answerControls(
+            task.choices?.let { Slot.Choices(it, task.display) }
+                ?: typedSlot(answerLanguage, digits = task.digits, numberPad = task.digits && typableOnNumberPad(task.accepted)),
         )
 }

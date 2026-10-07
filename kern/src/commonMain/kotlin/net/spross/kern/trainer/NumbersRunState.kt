@@ -1,5 +1,7 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.typableOnNumberPad
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.session.Question
@@ -199,6 +201,16 @@ data class NumbersRunState(
                 otherWord = otherWord,
             )
         }
+
+    /** A reversed task owes digits, on the number pad where every accepted form fits it. */
+    override val controls: AnswerControls
+        get() = answerControls(
+            typedSlot(
+                currentTask.language,
+                digits = currentReversed,
+                numberPad = currentReversed && typableOnNumberPad(currentTask.accepted),
+            ),
+        )
 
     /** The numbers page link shows on numbers tasks only, and never in a timed run. */
     val offersLookUp: Boolean get() = currentExercise == NumbersExercise.Counting && !timed

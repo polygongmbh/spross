@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Question
 import net.spross.kern.session.Reading
@@ -81,6 +82,12 @@ interface DrillRunProgress {
      * null once nothing is left to ask. No default — every drill rules on its card, as on its sayings.
      */
     val question: Question?
+
+    /**
+     * What stands under that card ([AnswerControls]), as under a review card; null once nothing is left to ask.
+     * No default — every drill rules on how its answer is given; [answerControls] holds what they share.
+     */
+    val controls: AnswerControls?
 
     /**
      * The question's [Reading], as a review card has one: the prompt held back while a pause

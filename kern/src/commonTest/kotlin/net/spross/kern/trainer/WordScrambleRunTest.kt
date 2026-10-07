@@ -9,6 +9,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.CardKind
 import net.spross.kern.session.AdvanceBeat
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
@@ -123,6 +124,22 @@ class WordScrambleRunTest {
         assertEquals(2, state.sprosse)
         assertEquals(0, state.winsAtSprosse)
         assertEquals(2, assertNotNull(state.task).sprosse)
+    }
+
+    /** A drill's field: one submit while owed, then a miss holds what was written until tapped, and a second miss offers the way out. */
+    @Test
+    fun theFieldHoldsAMissUntilTappedAndASecondMissOffersTheWayOut() {
+        val state = open()
+        val asking = assertNotNull(state.controls)
+        assertEquals(AnswerControls.Primary.Submit, asking.primary)
+        val missed = reduce(state, WordScrambleIntent.Reveal).state
+        val held = assertNotNull(missed.controls)
+        assertNull(held.primary)
+        assertFalse((held.slot as AnswerControls.Slot.Typed).editable)
+        assertEquals(AnswerControls.Confirm.Always, held.confirm)
+        assertFalse(held.stop)
+        val again = reduce(reduce(missed, WordScrambleIntent.ConfirmPending).state, WordScrambleIntent.Reveal).state
+        assertTrue(assertNotNull(again.controls).stop)
     }
 
     /**

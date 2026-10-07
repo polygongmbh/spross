@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.model.emojiCue
 import net.spross.kern.session.Question
@@ -173,4 +174,8 @@ data class CountryDrillRunState(
             closing = Question.Closing(note = task.gloss?.let { ClosingNote.Own(it) }),
             otherWord = otherWord,
         )
+
+    /** Every name is written, in the language it is owed in. */
+    override val controls: AnswerControls
+        get() = answerControls(typedSlot(answerLanguage))
 }

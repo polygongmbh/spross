@@ -1,5 +1,7 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls.Slot
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.session.Question
@@ -142,6 +144,12 @@ data class LetterDrillRunState(
                 opens = showsAnswer,
                 closing = Question.Closing(note = t.gloss?.takeUnless { gap }?.let { ClosingNote.Own(it) }),
             )
+        }
+
+    /** The tile Sprossen pick a glyph off kern's four; the typed and dictated ones write it. */
+    override val controls: AnswerControls?
+        get() = task?.let { t ->
+            answerControls(if (typing) typedSlot(t.language) else Slot.Choices(t.choices.orEmpty(), t.display))
         }
 
     /**

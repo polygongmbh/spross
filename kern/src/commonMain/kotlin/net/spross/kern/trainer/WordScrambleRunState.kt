@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.session.Question
@@ -150,4 +151,8 @@ data class WordScrambleRunState(
                 closing = Question.Closing(note = ClosingNote.Own(t.gloss)),
             )
         }
+
+    /** The word is written out whole, letters given or not. */
+    override val controls: AnswerControls?
+        get() = task?.let { answerControls(typedSlot(it.language)) }
 }

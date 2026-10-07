@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.session.Question
@@ -112,4 +113,8 @@ data class OppositesRunState(
                 ),
             )
         }
+
+    /** Any one opposite, written. */
+    override val controls: AnswerControls?
+        get() = task?.let { answerControls(typedSlot(it.language)) }
 }

@@ -274,5 +274,12 @@ and text reaches a machine only inside an intent — never as state.
   a flag that alone asks the question is `emojiIsQuestion`, a flag that would answer it waits for the reveal.
   A sentence scramble's bank is its prompt, so its prompt side holds no words,
   and the authored order closes its card only where the arrangement missed it or took another order.
+- **What stands under the card is `AnswerControls`** — `TurnState.controls`, and `DrillRunProgress.controls`,
+  again with no default: the slot the answer is given with (a field, tiles, an arrangement, the self-grade verdicts, the write-out),
+  the field's own verdict, the one primary action, the confirm tap, the give-up, the way out and the can't-listen.
+  A review miss keeps the field editable for the retype beside a quiet skip, and a miss asked by ear drops it for one Next;
+  a drill's miss holds the field as written, since a drill has nothing to retype.
+  Every drill wears one rule around its slot (`answerControls`): a submit only while a written answer is owed,
+  a near miss and a miss held until tapped, a clean answer only where no beat may run, the way out where the run offers it.
 - **A speaker is a `Side.saying`**, the tap; `Reading` stays the autoplay,
   and every target form a review card reads aloud also stands on a side with the speaker that says it.

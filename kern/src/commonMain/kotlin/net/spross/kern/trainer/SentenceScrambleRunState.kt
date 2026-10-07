@@ -1,5 +1,7 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls.Slot
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.session.Question
@@ -145,6 +147,10 @@ data class SentenceScrambleRunState(
                 closing = Question.Closing(note = t.gloss.takeUnless { alternativeMatch }?.let { ClosingNote.Own(it) }),
             )
         }
+
+    /** The bank's pieces are put in order, and placing the last one is the answer — no primary action asks for it. */
+    override val controls: AnswerControls?
+        get() = task?.let { answerControls(Slot.Arrangement) }
 
     /** Accepted via an alternative word order rather than the canonical one — gloss not shown. */
     val alternativeMatch: Boolean
