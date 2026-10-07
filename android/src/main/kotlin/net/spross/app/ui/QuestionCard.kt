@@ -46,7 +46,8 @@ import net.spross.kern.session.Saying
  * so a drill card and a review card cannot drift into two ideas of what a card shows.
  *
  * The answer and the closing lines grow below the prompt only once [Question.opens];
- * before that the card holds the prompt and, at first sight, the hint.
+ * before that the card holds the prompt and, at first sight, the hint —
+ * or the closing note alone, where an accepted answer [Question.growsNote].
  * The iOS twin is `QuestionCardView`.
  */
 @Composable
@@ -126,12 +127,17 @@ private fun CardContext.DrillFace(modifier: Modifier) {
                 question.ask?.let { Caption(askText(it, chrome)) }
                 DrillPrompt()
                 val hint = question.hint
+                val note = noteText()
                 if (opens) {
                     // why: a gap question closes over its blank where it stood, so nothing below it moves.
                     if (question.prompt.form != Question.Form.Gap) {
-                        CardReveal(note = noteText()) { DrillAnswer() }
+                        CardReveal(note = note) { DrillAnswer() }
                     }
                     OtherWordLine()
+                } else if (question.growsNote && note != null) {
+                    // why: an accepted answer to a question whose meaning never stood on screen
+                    // still owes that meaning — alone, since the answer stands in the learner's own text.
+                    CardReveal(note = note) {}
                 } else if (hint != null) {
                     // why: the reveal TAKES this slot rather than stacking under it —
                     // the hint is scaffolding for a prompt still unanswered.

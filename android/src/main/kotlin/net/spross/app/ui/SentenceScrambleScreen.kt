@@ -16,9 +16,10 @@ import net.spross.app.Screen
 import net.spross.app.SentenceScrambleFlow
 import net.spross.app.closeScramble
 import net.spross.app.newSentenceScramble
-import net.spross.app.speakFormOnTap
+import net.spross.app.sayOnTap
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.session.Question
 import net.spross.kern.trainer.Drill
-import net.spross.kern.trainer.SentenceScrambleTask
 
 /**
  * The sentence scramble: a phrase handed over as its own words, shuffled, and put
@@ -72,7 +73,7 @@ fun SentenceScrambleScreen(model: AppModel) {
             place = flow::place,
             take = flow::take,
         ) {
-            RevealLines(model, task, state.answerAccepted, state.alternativeMatch, chrome)
+            state.question?.let { RevealLines(model, it, chrome) }
         }
         Controls(flow, chrome, leave)
     }
@@ -82,31 +83,28 @@ fun SentenceScrambleScreen(model: AppModel) {
  * What the graded arrangement grows, on the answer card itself — the shared reveal, so a drill
  * card and a vocabulary card grow the same thing.
  *
- * The meaning always; the authored order above it only where the arrangement missed, since the
- * chips of a clean one already ARE that order and setting it a second time would read as a
- * correction.
+ * Kern's Question says which: a missed arrangement opens onto the authored order and its
+ * meaning, an accepted one grows the meaning alone, since its chips already stand in an order —
+ * and none after an alternative order, whose meaning belongs to the authored one.
  */
 @Composable
-private fun RevealLines(
-    model: AppModel,
-    task: SentenceScrambleTask,
-    accepted: Boolean,
-    alternativeMatch: Boolean,
-    chrome: Chrome,
-) {
+private fun RevealLines(model: AppModel, question: Question, chrome: Chrome) {
+    val answer = question.answer
+    val order = answer.text.takeIf { question.opens }
+    val meaning = (question.closing.note as? ClosingNote.Own)?.text
+        ?.takeIf { question.opens || question.growsNote }
+    if (order == null && meaning == null) return
     CardReveal(note = null) {
-        if (!accepted || alternativeMatch) {
-            SpokenWord(model.speakFormOnTap(task.display, task.language), chrome) {
+        if (order != null) {
+            SpokenWord(answer.saying?.let(model::sayOnTap), chrome) {
                 Sentence(
-                    localizedTarget(task.display, task.language),
+                    tagged(order, answer.lang),
                     Theme.colors.accent,
                     Modifier.weight(1f, fill = false),
                 )
             }
         }
-        if (!alternativeMatch) {
-            Sentence(task.gloss, Theme.colors.textPrimary)
-        }
+        meaning?.let { Sentence(it, Theme.colors.textPrimary) }
     }
 }
 
