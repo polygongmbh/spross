@@ -3,7 +3,7 @@ package net.spross.app
 import kotlin.random.Random
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerOutcome
-import net.spross.kern.session.Match
+import net.spross.kern.session.Question
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.DrillEffect
@@ -34,8 +34,8 @@ interface TypedDrill : DrillRun {
      */
     val chosen: String?
 
-    /** The question and the figures as they stand, in the words this learner reads. */
-    fun view(chrome: Chrome): TypedDrillView
+    /** The question and the figures as they stand. */
+    fun view(): TypedDrillView
 
     /** A live keystroke: writing the answer out IS the answer, within kern's exact-only guard. */
     fun type(text: String)
@@ -59,28 +59,10 @@ interface TypedDrill : DrillRun {
     fun close(standingRecord: Int): TypedDrillClose
 }
 
-/** The question on the card: what is asked, what stands there, and what the reveal grows. */
+/** What the answer controls read off the question; the card itself draws kern's [Question]. */
 data class TypedDrillPrompt(
-    /** What is being asked. Never names a language — the placeholder says which side is owed. */
-    val ask: String,
-    /** What stands on the card; null where a picture alone is the question. */
-    val text: String?,
-    /** What language [text] is written in — never shown; it tags the words for TalkBack. */
-    val language: Language?,
-    /** The canonical answer, for the reveal. */
+    /** The canonical answer — the tile the grid marks right. */
     val display: String,
-    /** The answer side's neighboring form, where the run hands one over. */
-    val gloss: String? = null,
-    /**
-     * A word in the language being LEARNED that this question adds and cannot say for
-     * itself, the first time it is asked — null on every other card and on every reversed
-     * run. The atlas hands none over.
-     */
-    val newWord: String? = null,
-    /** The picture beside the words — a country's flag; a date carries none. */
-    val emoji: String? = null,
-    /** Whether showing [emoji] while the answer is owed would ANSWER the question. */
-    val emojiIsGiveaway: Boolean = false,
     /**
      * The tiles this question is answered off, in kern's own shuffled order — null where it
      * is written instead, which is every Sprosse above the calendar's warm-up.
@@ -113,15 +95,13 @@ data class TypedDrillView(
     val outcomes: List<AnswerOutcome>,
     val tally: DrillTally,
     val feedback: TurnFeedback,
-    /** The card opens onto the answer — kern's `showsAnswer`, on a miss only. */
-    val showsAnswer: Boolean,
     /** The way out, offered under the button that goes on, on the second miss in a row. */
     val offersFinish: Boolean,
-    /** What a refused answer actually NAMED — only beside a revealed miss. */
-    val otherWord: Match.OtherWord?,
     /** The language an answer is owed in — the learner's own on a reversed run. */
     val answerLanguage: Language,
     val prompt: TypedDrillPrompt,
+    /** What the card shows. */
+    val question: Question,
 )
 
 /** What a closed typed run owes the page that started it. */

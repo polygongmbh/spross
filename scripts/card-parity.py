@@ -40,7 +40,7 @@ DROID = "android/src/main/kotlin/net/spross/app/ui/Theme.kt"
 IOS_UI = ("App/Sources/Design", "App/Sources/Screens")
 IOS_FACES = ["App/Sources/Design/QuestionCardView.swift", "App/Sources/Design/QuestionCardView+Review.swift"]
 DROID_UI = "android/src/main/kotlin/net/spross/app/ui/"
-DROID_FACES = [DROID_UI + n for n in ("CardFace.kt", "QuestionCard.kt", "CountryPromptCard.kt", "ProduceCard.kt",
+DROID_FACES = [DROID_UI + n for n in ("CardFace.kt", "QuestionCard.kt", "ProduceCard.kt",
                                       "LetterDrillScreen.kt")]
 # The token tables themselves (CANON on iOS): their own declarations are the numbers the rules look for.
 DROID_UNSCANNED = [DROID]

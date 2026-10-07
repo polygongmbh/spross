@@ -56,7 +56,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     val flow = rememberRun(model, page.back, key = reverse to fast) {
         page.open(hooks.tone, hooks.releaseFocus)
     } ?: return
-    val run = flow.view(chrome)
+    val run = flow.view()
     val store = model.trainer.store
     val key = page.key
 
@@ -95,49 +95,9 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         // owes the learner a way to silence them here.
         showsMuteButton = true,
     ) {
-        // The tap speaker rides kern's prompt saying, the one the autoplay says. A tap
-        // outranks the mute; this only says whether there is anything to hear.
-        Prompt(
-            model, run, chrome,
-            promptVoice = flow.progress.promptSaying?.let { model.speakFormOnTap(it.form, it.lang) },
-        )
+        QuestionCard(run.question, chrome, voice = model.cardVoice)
         Controls(model, flow, run, chrome, inputFocus, leave)
     }
-}
-
-@Composable
-private fun Prompt(
-    model: AppModel,
-    run: TypedDrillView,
-    chrome: Chrome,
-    promptVoice: (() -> Unit)?,
-) {
-    val prompt = run.prompt
-    CountryPromptCard(
-        ask = prompt.ask,
-        emoji = prompt.emoji,
-        emojiIsGiveaway = prompt.emojiIsGiveaway,
-        text = prompt.text,
-        language = prompt.language,
-        promptPronounce = promptVoice,
-        // why: a clean answer flips in about a second — opening the card for a beat there
-        // would read as a correction the learner did not earn.
-        reveal = if (!run.showsAnswer) {
-            null
-        } else {
-            CountryReveal(
-                word = prompt.display,
-                note = prompt.gloss,
-                language = run.answerLanguage,
-                pronounce = model.speakFormOnTap(prompt.display, run.answerLanguage),
-            )
-        },
-        // The word this question's language adds, the first time it is asked for — the
-        // numbers drill's first-sight hint, for a pattern instead of a length.
-        hint = prompt.newWord?.let { chrome.datesNewWord.format(it) },
-        otherWord = run.otherWord,
-        chrome = chrome,
-    )
 }
 
 /**
