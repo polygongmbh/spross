@@ -87,23 +87,25 @@ fun DrillPromptCard(
     hint: String? = null,
     /** What a refused answer actually named — the nudge line under the reveal. */
     otherWord: Match.OtherWord? = null,
+    /** Says the prompt where kern says it aloud as the question goes up; null drops the speaker. */
+    promptPronounce: (() -> Unit)? = null,
 ) {
     CardFace(Modifier.heightIn(min = Theme.reserve.drillCard)) {
-        Text(
-            prompt,
-            style = MaterialTheme.typography.headlineLarge.copy(
-                fontSize = size.fontSize,
-                fontWeight = FontWeight.Bold,
-                fontFamily = if (size == PromptSize.Digits) FontFamily.Monospace else FontFamily.Default,
-            ),
-            textAlign = TextAlign.Center,
-            maxLines = size.lines,
-            modifier = if (promptLabel == null) {
-                Modifier
-            } else {
-                Modifier.semantics { contentDescription = promptLabel }
-            },
-        )
+        SpokenWord(promptPronounce, chrome) {
+            Text(
+                prompt,
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    fontSize = size.fontSize,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = if (size == PromptSize.Digits) FontFamily.Monospace else FontFamily.Default,
+                ),
+                textAlign = TextAlign.Center,
+                maxLines = size.lines,
+                modifier = Modifier.weight(1f, fill = false).then(
+                    if (promptLabel == null) Modifier else Modifier.semantics { contentDescription = promptLabel },
+                ),
+            )
+        }
         if (revealed) {
             CardReveal(note = gloss) {
                 SpokenWord(pronounce, chrome) {
@@ -156,6 +158,7 @@ fun DrillPromptCard(model: AppModel, flow: NumbersFlow, chrome: Chrome) {
         hint = state.formHint?.let { chrome.numbersNewForm.format(it) }
             ?: state.placeValueHint?.let { chrome.numbersNewPlace.format(it) },
         otherWord = state.otherWord,
+        promptPronounce = state.promptSaying?.let { model.speakFormOnTap(it.form, it.lang) },
     )
 }
 

@@ -52,6 +52,7 @@ fun OppositesScreen(model: AppModel) {
             revealed = state.showsAnswer,
             pronounce = model.speakFormOnTap(answer, task.language),
             chrome = chrome,
+            promptPronounce = state.promptSaying?.let { model.speakFormOnTap(it.form, it.lang) },
         )
         val placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(task.language))
         TypedAnswerControls(
