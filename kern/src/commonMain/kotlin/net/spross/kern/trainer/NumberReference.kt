@@ -48,12 +48,9 @@ object ReferenceColumns {
      */
     fun count(entries: List<ReferenceEntry>, largeText: Boolean, width: Double = Double.POSITIVE_INFINITY): Int {
         if (largeText || width < PAIRED_MIN_WIDTH || entries.size < PAIRED_MIN_ROWS) return 1
-        val widest = entries.maxOf { it.value.letters() + it.reading.letters() }
+        val widest = entries.maxOf { it.value.letters().size + it.reading.letters().size }
         return if (widest <= PAIRED_ROW_LETTERS) 2 else 1
     }
-
-    /** What a reader sees as letters: a combining mark or a surrogate's second half adds none. */
-    private fun String.letters(): Int = count { !it.isLowSurrogate() && it !in '\u0300'..'\u036F' }
 }
 
 /**

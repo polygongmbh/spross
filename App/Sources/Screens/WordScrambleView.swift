@@ -91,10 +91,9 @@ struct WordScrambleView: View, LanguageNaming {
 
     // MARK: - The mixed word
 
-    /// A mixed word is not a word, and a voice reading it as one says nothing a
-    /// learner can spell from — so it is spelled OUT, letter by letter.
+    /// The mixed word spelled out, letter by letter (kern's `spelledOut`).
     func promptLabel(_ word: ScrambledWord) -> Text {
-        Text(verbatim: word.display.map(String.init).joined(separator: ", "))
+        Text(verbatim: word.spelledOut)
     }
 
     // The content, the conformance and the close are WordScrambleView+Run.swift's.

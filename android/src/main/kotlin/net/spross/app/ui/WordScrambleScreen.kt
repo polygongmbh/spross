@@ -10,7 +10,6 @@ import net.spross.app.closeScramble
 import net.spross.app.newWordScramble
 import net.spross.app.speakFormOnTap
 import net.spross.kern.trainer.Drill
-import net.spross.kern.trainer.ScrambledWord
 import net.spross.kern.trainer.WordScrambleTask
 
 /**
@@ -53,18 +52,12 @@ fun WordScrambleScreen(model: AppModel) {
                 shown.question ?: return@QuestionStage,
                 chrome,
                 voice = model.cardVoice,
-                promptLabel = shown.task?.let { spelledOut(it.scrambled) },
+                promptLabel = shown.task?.scrambled?.spelledOut,
             )
         }
         Controls(model, flow, task, inputFocus, leave)
     }
 }
-
-/**
- * A mixed word is not a word, and a voice reading it as one says nothing a learner can spell
- * from — so it is spelled OUT, letter by letter.
- */
-fun spelledOut(word: ScrambledWord): String = word.display.toList().joinToString(", ")
 
 /** Kern's controls on the shared answer area. */
 @Composable
