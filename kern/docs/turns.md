@@ -272,8 +272,11 @@ and text reaches a machine only inside an intent — never as state.
   The drills' first-sight words are `QuestionHint`s (a numbers place or form, a calendar pattern word),
   the atlas and letter captions `QuestionAsk`s;
   a flag that alone asks the question is `emojiIsQuestion`, a flag that would answer it waits for the reveal.
-  A sentence scramble's bank is its prompt, so its prompt side holds no words,
-  and the authored order closes its card only where the arrangement missed it or took another order.
+  A sentence scramble's bank is its prompt, so its prompt side holds no words.
+- **A card opens on a miss or a reveal only** (`Question.opens`; a drill's `showsAnswer`, one rule on `DrillRunProgress`),
+  never on an accepted answer, which already stands in the learner's own text.
+  Where the meaning never stood on screen — the scrambles, the opposites, a letter heard —
+  an accepted answer keeps the card closed and grows the meaning alone (`growsNote`).
 - **What stands under the card is `AnswerControls`** — `TurnState.controls`, and `DrillRunProgress.controls`,
   again with no default: the slot the answer is given with (a field, tiles, an arrangement, the self-grade verdicts, the write-out),
   the field's own verdict, the one primary action, the confirm tap, the give-up, the way out and the can't-listen.
@@ -283,3 +286,6 @@ and text reaches a machine only inside an intent — never as state.
   a near miss and a miss held until tapped, a clean answer only where no beat may run, the way out where the run offers it.
 - **A speaker is a `Side.saying`**, the tap; `Reading` stays the autoplay,
   and every target form a review card reads aloud also stands on a side with the speaker that says it.
+- **How a card moves is `design.CardMotion`**: the switch to the next question turns the outgoing card out
+  and the incoming one in about the vertical axis, each showing only its front half (`flipAngle`, `flipShows`),
+  and a reveal settles before the shortest beat can move the card on; each app keeps its native easing.
