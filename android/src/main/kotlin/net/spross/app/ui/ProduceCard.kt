@@ -70,6 +70,16 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                 else -> targetLines(card.target, chrome)
             },
             note = CardDisplay.closingNote(card.target, flow.state.alsoMeans, chrome, revealed),
+            footer = {
+                flow.otherWord?.takeIf { revealed }?.let { other ->
+                    // why: the line says what the learner DID write; the word it speaks is the
+                    // one they owed, the same one the card has opened onto.
+                    PauseLine(
+                        chrome.sessionOtherWord.format(other.word, other.meanings.joinToString(", ")),
+                        modifier = Modifier.pronounceOnTap(model.pronounceAction(card.target.text), chrome),
+                    )
+                }
+            },
         ) {
             when {
                 written -> WrittenPrompt(model, ui)
@@ -212,14 +222,6 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     val card = ui.card ?: return
     val chrome = model.chrome
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-        flow.otherWord?.let { other ->
-            // why: the line says what the learner DID write; the word it speaks is the
-            // one they owed, the same one the card above has opened onto.
-            PauseLine(
-                chrome.sessionOtherWord.format(other.word, other.meanings.joinToString(", ")),
-                modifier = Modifier.pronounceOnTap(model.pronounceAction(card.target.text), chrome),
-            )
-        }
         // why: the beat that books a finished retype never arms under a screen reader,
         // so without this a finished retype would have no way on but giving up — which
         // grades Again, not what it just earned.

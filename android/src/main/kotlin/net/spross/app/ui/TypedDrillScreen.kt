@@ -135,15 +135,9 @@ private fun Prompt(
         // The word this question's language adds, the first time it is asked for — the
         // numbers drill's first-sight hint, for a pattern instead of a length.
         hint = prompt.newWord?.let { chrome.datesNewWord.format(it) },
+        otherWord = run.otherWord,
         chrome = chrome,
     )
-    if (run.showsAnswer) {
-        run.otherWord?.let { other ->
-            // why: same line as the review session's — both explain what became of
-            // the answer, so they read alike.
-            PauseLine(chrome.sessionOtherWord.format(other.word, other.meanings.joinToString(", ")))
-        }
-    }
 }
 
 /**

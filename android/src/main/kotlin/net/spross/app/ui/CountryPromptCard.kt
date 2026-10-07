@@ -10,6 +10,7 @@ import androidx.compose.ui.text.style.TextAlign
 import net.spross.app.Chrome
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.Language
+import net.spross.kern.session.Match
 
 /**
  * The atlas question, on the same card face as every other session card: a caption naming
@@ -56,6 +57,8 @@ fun CountryPromptCard(
      * is asked for — a dates run's `tarehe`, `mwaka wa`. Null on the atlas.
      */
     hint: String? = null,
+    /** What a refused answer actually named — only beside a revealed miss. */
+    otherWord: Match.OtherWord? = null,
     chrome: Chrome,
 ) {
     val revealed = reveal != null
@@ -68,6 +71,15 @@ fun CountryPromptCard(
         revealed = revealed,
         modifier = Modifier.heightIn(min = Theme.reserve.drillCard),
         note = reveal?.note,
+        footer = {
+            if (reveal != null && otherWord != null) {
+                // why: the line says what the learner DID write; a tap says the answer they owed.
+                PauseLine(
+                    chrome.sessionOtherWord.format(otherWord.word, otherWord.meanings.joinToString(", ")),
+                    modifier = Modifier.pronounceOnTap(reveal.pronounce, chrome),
+                )
+            }
+        },
     ) {
         Text(
             ask,

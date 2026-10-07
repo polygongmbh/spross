@@ -136,6 +136,8 @@ fun VocabCard(
      * instead would land in the narrow column — this is where it belongs.
      */
     note: String? = null,
+    /** A line about what the learner wrote rather than the word — the other-word line — under all of it. */
+    footer: @Composable () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit,
 ) {
     val emojiShown = emojiShowing(cue, revealed)
@@ -177,6 +179,7 @@ fun VocabCard(
                     if (hasEmoji) Spacer(Modifier.width(slot))
                 }
                 ClosingLines(closingLines, note)
+                footer()
             }
 
             CardArrangement.Above -> Column(
@@ -187,6 +190,7 @@ fun VocabCard(
                 if (hasEmoji) EmojiSlot(emoji.orEmpty(), emojiShown, slot, glyph)
                 CardWords(Modifier.fillMaxWidth(), Theme.spacing.lg, content)
                 ClosingLines(closingLines, note)
+                footer()
             }
         }
     }

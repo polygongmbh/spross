@@ -211,12 +211,18 @@ private fun CardContext.DrillAnswer() {
     }
 }
 
-/** What a refused answer actually named, beside the opened answer. */
+/**
+ * What a refused answer actually named, beside the opened answer. The line says what the
+ * learner DID write; the word a tap on it plays is the one they owed, the answer above it.
+ */
 @Composable
 internal fun CardContext.OtherWordLine() {
     val other = question.otherWord ?: return
     if (!opens) return
-    PauseLine(chrome.sessionOtherWord.format(other.word, other.meanings.joinToString(", ")))
+    PauseLine(
+        chrome.sessionOtherWord.format(other.word, other.meanings.joinToString(", ")),
+        modifier = Modifier.pronounceOnTap(pronounce(question.answer), chrome),
+    )
 }
 
 @Composable
