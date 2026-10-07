@@ -30,8 +30,7 @@ fun NumbersControls(
     val state = flow.state
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         DrillAnswerArea(
-            model, state.controls, flow.input, flow.awaitsConfirm, inputFocus,
-            onType = flow::type, onEnter = flow::enter, onConfirm = flow::confirm, onStop = onFinish,
+            model, flow, inputFocus, onStop = onFinish,
             speakCorrection = { model.speakFormOnTap(it, state.mode.language) },
         )
         if (state.offersLookUp) {

@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import net.spross.app.QuestionDriver
 import net.spross.kern.design.CardMotion
 import net.spross.kern.session.Question
 
@@ -80,6 +81,12 @@ fun <S> QuestionStage(
 @Composable
 fun QuestionStage(question: Question, modifier: Modifier = Modifier, card: @Composable (Question) -> Unit) =
     QuestionStage(question, Question::key, modifier, card)
+
+/** The stage over a flow's question; nothing while there is none to ask. */
+@Composable
+fun QuestionStage(flow: QuestionDriver, modifier: Modifier = Modifier, card: @Composable (Question) -> Unit) {
+    QuestionStage(flow.question ?: return, modifier, card)
+}
 
 /** How far the eye stands from a turning card, in card-independent dp — a gentle perspective. */
 private const val CAMERA_DISTANCE = 12f

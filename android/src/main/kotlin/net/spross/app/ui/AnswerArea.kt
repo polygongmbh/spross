@@ -21,7 +21,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
-import net.spross.app.isSounding
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerControls
@@ -221,45 +220,6 @@ val AppModel.targetChrome: Chrome?
         ?.takeIf(LanguageChoices::hasChrome)
         ?.let(Chrome::forSource)
         ?.takeIf { it != chrome }
-
-/**
- * The answer area under every drill: the field and the one primary action to kern, the held
- * verdict's Next, and the way out where kern offers it ([net.spross.kern.trainer.DrillRunProgress.controls]).
- * The placeholder names the language the answer is owed in — or digits, written alike in every one.
- */
-@Composable
-fun DrillAnswerArea(
-    model: AppModel,
-    controls: AnswerControls,
-    input: String,
-    awaitsConfirm: Boolean,
-    focus: FocusRequester?,
-    onType: (String) -> Unit,
-    onEnter: () -> Unit,
-    onConfirm: () -> Unit,
-    onStop: () -> Unit,
-    speakCorrection: (String) -> (() -> Unit)? = { null },
-    tiles: @Composable (options: List<String>, answer: String) -> Unit = { _, _ -> },
-) {
-    val chrome = model.chrome
-    val typed = controls.slot as? Slot.Typed
-    AnswerArea(
-        controls = controls,
-        text = input,
-        chrome = chrome,
-        actions = AnswerActions(submit = onEnter, type = onType, confirm = onConfirm, stop = onStop),
-        placeholder = when {
-            typed == null -> ""
-            typed.digits -> chrome.numbersAnswerPlaceholder
-            else -> chrome.sessionAnswerPlaceholder.format(model.languageName(typed.lang))
-        },
-        focus = focus,
-        awaitsConfirm = awaitsConfirm,
-        correctionVoice = CorrectionVoice(speakCorrection, model::isSounding),
-        nextSubtitle = model.targetChrome?.commonNext,
-        tiles = tiles,
-    )
-}
 
 /** Which of the ambers a hold was, in the learner's own words. */
 fun almostCaption(reason: AlmostReason, chrome: Chrome): String = when (reason) {

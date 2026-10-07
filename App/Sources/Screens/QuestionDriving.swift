@@ -8,7 +8,7 @@ import SprossKern
 ///
 /// Only what both drive the same way stands here. A review's write-out text and rating,
 /// a drill's pause, Sprosse and close, and when each screen claims the keyboard
-/// stay with the screen that has them. The Android twin is `QuestionFlow`.
+/// stay with the screen that has them. The Android twin is `QuestionDriver`.
 @MainActor
 protocol QuestionDriving {
     /// The question on screen; nil while there is none to ask.

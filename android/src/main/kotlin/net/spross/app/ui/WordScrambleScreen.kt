@@ -75,10 +75,8 @@ private fun Controls(
     inputFocus: FocusRequester,
     onFinish: () -> Unit,
 ) {
-    val controls = flow.state.controls ?: return
     DrillAnswerArea(
-        model, controls, flow.input, flow.awaitsConfirm, inputFocus,
-        onType = flow::type, onEnter = flow::enter, onConfirm = flow::confirm, onStop = onFinish,
+        model, flow, inputFocus, onStop = onFinish,
         speakCorrection = { model.speakFormOnTap(it, task.language) },
     )
 }

@@ -93,7 +93,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         // owes the learner a way to silence them here.
         showsMuteButton = true,
     ) {
-        QuestionStage(run.question) { QuestionCard(it, chrome, voice = model.cardVoice) }
+        QuestionStage(flow) { QuestionCard(it, chrome, voice = model.cardVoice) }
         Controls(model, flow, chrome, inputFocus, leave)
     }
 }
@@ -105,11 +105,9 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
  */
 @Composable
 private fun Controls(model: AppModel, flow: TypedDrill, chrome: Chrome, inputFocus: FocusRequester, onFinish: () -> Unit) {
-    val controls = flow.progress.controls ?: return
-    val lang = (controls.slot as? Slot.Typed)?.lang
+    val lang = (flow.controls?.slot as? Slot.Typed)?.lang
     DrillAnswerArea(
-        model, controls, flow.input, flow.awaitsConfirm, inputFocus,
-        onType = flow::type, onEnter = flow::enter, onConfirm = flow::confirm, onStop = onFinish,
+        model, flow, inputFocus, onStop = onFinish,
         speakCorrection = { form -> lang?.let { model.speakFormOnTap(form, it) } },
     ) { options, answer ->
         DrillChoiceGrid(

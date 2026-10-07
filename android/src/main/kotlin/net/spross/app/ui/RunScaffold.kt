@@ -34,15 +34,10 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.runtime.snapshotFlow
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.withTimeoutOrNull
 import net.spross.app.AppModel
 import net.spross.app.DrillRun
 import net.spross.app.Screen
 import net.spross.app.finishDrill
-import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunProgress
 import net.spross.kern.trainer.DrillTally
@@ -170,31 +165,6 @@ fun ReadAloudSwitch(model: AppModel) {
 }
 
 /**
- * The wait a kern-armed beat owes before the run moves on — and past it, whatever [holding]
- * still says is sounding, up to a ceiling for an end that never arrives.
- *
- * Nothing is ever armed where a screen reader runs — the flow renders an explicit Weiter
- * instead — so this only waits out beats that may run.
- */
-@Composable
-fun BeatEffect(
-    beatToken: Int,
-    armedBeat: AdvanceBeat?,
-    onElapsed: () -> Unit,
-    holding: () -> Boolean = { false },
-) {
-    LaunchedEffect(beatToken) {
-        val beat = armedBeat ?: return@LaunchedEffect
-        delay(beat.delayMs)
-        withTimeoutOrNull(LONGEST_READING_MS) { snapshotFlow(holding).first { !it } }
-        onElapsed()
-    }
-}
-
-/** Far past any word or phrase a drill says. */
-private const val LONGEST_READING_MS = 8_000L
-
-/**
  * The run the page opened, or null where this device, box or pair can be asked nothing at
  * all — every entry point gates on the same predicate, so a null run is a closed door rather
  * than a screen, and the page it was opened from takes the learner straight back.
@@ -313,6 +283,5 @@ fun DrillRunEffects(run: DrillRun, leave: () -> Unit, model: AppModel) {
     LaunchedEffect(run.ranOut) { if (run.ranOut) leave() }
     // why: D5 — leaving mid-question must silence, whichever way the screen goes.
     DisposableEffect(Unit) { onDispose { model.pronouncer.stop() } }
-    val answerSounding = rememberReadAloud(model, run.progress.reading)
-    BeatEffect(run.beatToken, run.armedBeat, run::advanceElapsed, holding = answerSounding)
+    QuestionEffects(run, model)
 }

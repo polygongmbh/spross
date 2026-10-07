@@ -26,10 +26,8 @@ fun LetterAnswer(
     onFinish: () -> Unit,
 ) {
     val chrome = model.chrome
-    val controls = flow.state.controls ?: return
     DrillAnswerArea(
-        model, controls, flow.input, flow.awaitsConfirm, inputFocus,
-        onType = flow::type, onEnter = flow::enter, onConfirm = flow::confirm, onStop = onFinish,
+        model, flow, inputFocus, onStop = onFinish,
         speakCorrection = { model.letterSpeaker(task, it) },
     ) { options, answer ->
         // 2×2 in kern's shuffled order — both platforms render the same draw. A prompt size

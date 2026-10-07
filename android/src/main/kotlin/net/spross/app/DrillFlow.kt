@@ -4,37 +4,26 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlin.random.Random
-import net.spross.kern.session.AdvanceBeat
+import net.spross.app.ui.AnswerActions
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillEffect
 import net.spross.kern.trainer.DrillRunProgress
 
 /**
- * A run as the shell around it reads one: whether kern has anything left to ask, and the
- * beat it armed before the next question. Every drill screen stands on these four and on
+ * A run as the shell around it reads one: the question it is driven through ([QuestionDriver]),
+ * and whether kern has anything left to ask. Every drill screen stands on these and on
  * nothing else of the run behind it, which is why one shell serves all of them.
  */
-interface DrillRun {
+interface DrillRun : QuestionDriver {
 
     /** Kern has run out of questions: the screen hands the run back, once. */
     val ranOut: Boolean
-
-    /** The beat waiting to elapse, or null where none is armed. */
-    val armedBeat: AdvanceBeat?
-
-    /** Bumped by every arming — what a timer effect keys on. */
-    val beatToken: Int
-
-    /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
-    val awaitsConfirm: Boolean
 
     /** Kern's run as it stands — what the pause it may call ([DrillRunProgress.pause]) reads. */
     val progress: DrillRunProgress
 
     /** Keep practicing, from a pause kern called: the same run goes on. */
     fun keepPracticing()
-
-    fun advanceElapsed()
 }
 
 /**
@@ -92,6 +81,17 @@ abstract class DrillFlow<S : DrillRunProgress, I>(
     override val awaitsConfirm get() = beat.awaitsConfirm
 
     override val progress: DrillRunProgress get() = state
+
+    override val question get() = state.question
+
+    override val controls get() = state.controls
+
+    override val reading get() = state.reading
+
+    override val fieldText: String get() = input
+
+    override fun answerActions(stop: () -> Unit) =
+        AnswerActions(submit = ::enter, type = ::type, confirm = ::confirm, stop = stop)
 
     override fun keepPracticing() = dispatch(keepPracticingIntent())
 

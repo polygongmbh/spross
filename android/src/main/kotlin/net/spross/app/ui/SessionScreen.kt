@@ -20,8 +20,6 @@ import net.spross.app.SessionUi
 import net.spross.app.areaTitle
 import net.spross.app.newTurn
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.session.question
-import net.spross.kern.session.reading
 
 @Composable
 fun SessionScreen(model: AppModel) {
@@ -65,15 +63,14 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
     // why: the word in the air belongs to this card alone — leaving it stops it.
     DisposableEffect(flow) { onDispose { model.pronouncer.stop() } }
     // why: keyed on the turn too — a card dealt again straight after itself says both sides afresh.
-    val answerSounding = key(flow) { rememberReadAloud(model, flow.state.reading(model.pronouncer.saysMeaning)) }
-    BeatEffect(flow.beatToken, flow.armedBeat, flow::advanceElapsed, holding = answerSounding)
+    key(flow) { QuestionEffects(flow, model) }
 
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
         ReportableCard(model, card, flow.answerOut, typed = { flow.answerForReport }) {
-            QuestionStage(flow.state.question) { question ->
+            QuestionStage(flow) { question ->
                 QuestionCard(
                     question,
                     model.chrome,

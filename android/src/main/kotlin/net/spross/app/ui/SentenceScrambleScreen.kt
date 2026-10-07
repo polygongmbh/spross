@@ -144,9 +144,5 @@ private fun Sentence(text: String, color: Color, modifier: Modifier = Modifier) 
  */
 @Composable
 private fun Controls(model: AppModel, flow: SentenceScrambleFlow, onFinish: () -> Unit) {
-    val controls = flow.state.controls ?: return
-    DrillAnswerArea(
-        model, controls, input = "", awaitsConfirm = flow.awaitsConfirm, focus = null,
-        onType = {}, onEnter = {}, onConfirm = flow::confirm, onStop = onFinish,
-    )
+    DrillAnswerArea(model, flow, focus = null, onStop = onFinish)
 }

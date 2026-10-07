@@ -80,7 +80,7 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
         showsMuteButton = true,
         timed = secondsLeft?.let { timedLine(it, state.score, chrome) },
     ) {
-        QuestionStage(flow.state.question) { QuestionCard(it, chrome, voice = model.cardVoice) }
+        QuestionStage(flow) { QuestionCard(it, chrome, voice = model.cardVoice) }
         NumbersControls(model, flow, chrome, inputFocus, leave)
     }
 
