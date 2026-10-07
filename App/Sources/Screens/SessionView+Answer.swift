@@ -9,33 +9,39 @@ extension SessionView {
     /// The answer field and the write-out keep their own text; only one is ever mounted.
     /// Each field claims focus from its own appearance: a request made before the field
     /// is on screen lands on nothing.
-    func answerArea(_ turn: TurnState) -> some View {
-        let writing = turn.copyStep != nil
-        return AnswerArea(
-            controls: turn.controls,
-            text: writing ? $copyInput : $input,
-            placeholder: writing ? copyPlaceholder : inputPlaceholder,
-            focus: $answerFocused,
-            correctionVoice: .init(pronounce: { correctionSpeaker($0) },
-                                   isPlaying: { correctionIsPlaying($0) }),
-            nextLocale: model.targetChromeLocale,
-            caption: writing ? (model.coachActive ? SessionCoach.writeLine : nil) : gradeCaption,
-            actions: AnswerActions(
-                submit: { writing ? dispatch(TurnIntent.CopySubmit(text: copyInput)) : submitFromField() },
-                type: { dispatch(TurnIntent.InputChanged(text: $0)) },
-                reveal: { dispatch(TurnIntent.Reveal.shared) },
-                confirm: { dispatch(TurnIntent.ConfirmPending.shared) },
-                // why: giving up on a retype ends the card — that field already is the one
-                // write-out the word gets, so nothing hands it a second.
-                giveUp: { dispatch(writing ? TurnIntent.SkipCopy.shared : TurnIntent.GiveUp.shared) },
-                selfGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) },
-                cantListen: {
-                    // why: the word in the air belongs to a question that is about to stand
-                    // in writing — nothing may keep playing over the answer to "I can't listen".
-                    Pronouncer.shared.stop()
-                    dispatch(TurnIntent.ShowPromptText.shared)
-                },
-                fieldAppeared: { focusAnswerField() }))
+    func answerArea(_ controls: AnswerControls) -> some View {
+        AnswerArea(driver: self, controls: controls,
+                   placeholder: writing ? copyPlaceholder : inputPlaceholder,
+                   focus: $answerFocused,
+                   correctionVoice: .init(pronounce: { correctionSpeaker($0) },
+                                          isPlaying: { correctionIsPlaying($0) }),
+                   nextLocale: model.targetChromeLocale,
+                   caption: writing ? (model.coachActive ? SessionCoach.writeLine : nil) : gradeCaption)
+    }
+
+    /// The write-out step stands: its field, not the answer's, is the one on screen.
+    private var writing: Bool { turn?.copyStep != nil }
+
+    var answerText: Binding<String> { writing ? $copyInput : $input }
+
+    var answerActions: AnswerActions {
+        let writing = writing
+        return AnswerActions(
+            submit: { writing ? dispatch(TurnIntent.CopySubmit(text: copyInput)) : submitFromField() },
+            type: { dispatch(TurnIntent.InputChanged(text: $0)) },
+            reveal: { dispatch(TurnIntent.Reveal.shared) },
+            confirm: { dispatch(TurnIntent.ConfirmPending.shared) },
+            // why: giving up on a retype ends the card — that field already is the one
+            // write-out the word gets, so nothing hands it a second.
+            giveUp: { dispatch(writing ? TurnIntent.SkipCopy.shared : TurnIntent.GiveUp.shared) },
+            selfGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) },
+            cantListen: {
+                // why: the word in the air belongs to a question that is about to stand
+                // in writing — nothing may keep playing over the answer to "I can't listen".
+                Pronouncer.shared.stop()
+                dispatch(TurnIntent.ShowPromptText.shared)
+            },
+            fieldAppeared: { focusAnswerField() })
     }
 
     /// Enter in the answer field. Which intent it IS depends on what the field

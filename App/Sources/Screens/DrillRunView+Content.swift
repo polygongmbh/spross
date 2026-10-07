@@ -14,18 +14,11 @@ import SprossKern
 extension DrillRunView {
 
     var drillContent: some View {
-        let task = current
-        return ScrollView {
-            VStack(spacing: Theme.spacing.md) {
-                QuestionStage(key: task.question.key) {
-                    QuestionCardView(question: task.question, voice: model.cardVoice)
-                }
-                answerControls
-            }
-            .padding(.bottom, Theme.spacing.lg)
+        questionPage { question in
+            QuestionCardView(question: question, voice: model.cardVoice)
+        } area: { controls in
+            answerControls(controls)
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollDismissesKeyboard(.never)
     }
 
     // MARK: - The answer
@@ -33,22 +26,17 @@ extension DrillRunView {
     /// Written, or picked off kern's tiles where the question came with them — the calendar's
     /// warm-up Sprosse. A calendar name is prose: it is set as prose, and a screen reader saying
     /// it needs no help, where a bare glyph would.
-    @ViewBuilder
-    private var answerControls: some View {
-        if let controls = run.controls {
-            let language = current.answerLanguage
-            AnswerArea(controls: controls,
-                       text: $input,
-                       placeholder: answerPlaceholder(language, digits: current.digits),
-                       focus: $answerFocused,
-                       correctionVoice: .init(
-                           pronounce: { model.pronounceAction(for: $0, lang: language) },
-                           isPlaying: { model.isPronouncing($0, lang: language) }),
-                       nextLocale: model.targetChromeLocale,
-                       actions: answerActions) { options, answer in
-                DrillChoiceGrid(options: options, answer: answer, chosen: chosen,
-                                font: Theme.typography.headline, pick: choose)
-            }
+    private func answerControls(_ controls: AnswerControls) -> some View {
+        let language = current.answerLanguage
+        return AnswerArea(driver: self, controls: controls,
+                          placeholder: answerPlaceholder(language, digits: current.digits),
+                          focus: $answerFocused,
+                          correctionVoice: .init(
+                              pronounce: { model.pronounceAction(for: $0, lang: language) },
+                              isPlaying: { model.isPronouncing($0, lang: language) }),
+                          nextLocale: model.targetChromeLocale) { options, answer in
+            DrillChoiceGrid(options: options, answer: answer, chosen: chosen,
+                            font: Theme.typography.headline, pick: choose)
         }
     }
 }

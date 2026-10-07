@@ -5,15 +5,8 @@ import SprossKern
 /// State lives on SessionView; split out purely for file size.
 ///
 /// What a card says aloud and when is the shared `Reader`'s, over kern's
-/// `TurnState.reading`; `Pronouncer` decides whether it may be heard.
+/// `TurnState.reading` (`QuestionDriving.readAloud`); `Pronouncer` decides whether it may be heard.
 extension SessionView {
-
-    /// Says whatever of the card's `Reading` has not been said yet — its
-    /// prompt as it goes up, its answer once it has settled. Every hook that
-    /// may see either calls this; the reader fires each side once.
-    func readAloud() {
-        reader.follow(ensureTurn()?.reading(saysMeaning: Pronouncer.shared.saysMeaning), model: model)
-    }
 
     /// Tap-to-replay for a form — nil where the device can neither play nor
     /// speak it, so a word that cannot be heard grows no gesture that does

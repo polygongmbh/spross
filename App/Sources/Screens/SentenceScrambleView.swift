@@ -112,25 +112,20 @@ struct SentenceScrambleView: View {
     // MARK: - What is on screen
 
     private var drillContent: some View {
-        ScrollView {
-            VStack(spacing: Theme.spacing.lg) {
-                if let task = current, let controls = run.controls {
-                    QuestionStage(key: run.index) {
-                        ScrambleTileBank(bank: task.shuffled,
-                                         placed: run.placedAtoms,
-                                         isTaken: { run.isPlaced(index: Int32($0)) },
-                                         arranged: run.arranged,
-                                         verdict: verdict,
-                                         place: { place($0) },
-                                         take: { take($0) },
-                                         reveal: { revealLines(task) })
-                    }
-                    answerArea(controls)
-                }
+        questionPage(spacing: Theme.spacing.lg) { _ in
+            if let task = current {
+                ScrambleTileBank(bank: task.shuffled,
+                                 placed: run.placedAtoms,
+                                 isTaken: { run.isPlaced(index: Int32($0)) },
+                                 arranged: run.arranged,
+                                 verdict: verdict,
+                                 place: { place($0) },
+                                 take: { take($0) },
+                                 reveal: { revealLines(task) })
             }
-            .padding(.bottom, Theme.spacing.lg)
+        } area: { controls in
+            answerArea(controls)
         }
-        .scrollBounceBehavior(.basedOnSize)
         .animation(.cardReveal, value: run.showsAnswer)
     }
 
@@ -199,8 +194,7 @@ struct SentenceScrambleView: View {
     /// graded answer: a clean one moves on by itself, a miss waits for the way
     /// on and — on the second in a row — offers the way out.
     private func answerArea(_ controls: AnswerControls) -> some View {
-        AnswerArea(controls: controls, text: .constant(""), nextLocale: model.targetChromeLocale,
-                   actions: answerActions)
+        AnswerArea(driver: self, controls: controls, nextLocale: model.targetChromeLocale)
     }
 
     // The conformance, the driver and the close are SentenceScrambleView+Run.swift's.

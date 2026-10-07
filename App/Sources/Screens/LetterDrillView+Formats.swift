@@ -8,22 +8,12 @@ import SprossKern
 extension LetterDrillView {
 
     var drillContent: some View {
-        ScrollView {
-            VStack(spacing: Theme.spacing.md) {
-                if let task = current, let question = run.question, let controls = run.controls {
-                    QuestionStage(key: question.key) {
-                        QuestionCardView(question: question, voice: cardVoice(question),
-                                         replayFocus: $replayFocused)
-                    }
-                    answerArea(task, controls)
-                }
-            }
-            .padding(.bottom, Theme.spacing.lg)
+        questionPage { question in
+            QuestionCardView(question: question, voice: cardVoice(question),
+                             replayFocus: $replayFocused)
+        } area: { controls in
+            if let task = current { answerArea(task, controls) }
         }
-        // why: the sibling drill's focus discipline, verbatim — a keyboard that
-        // dismisses on a replay tap makes dictation unusable.
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollDismissesKeyboard(.never)
     }
 
     /// The question's sound plays out of the recording the drill's own player resolves
@@ -58,15 +48,13 @@ extension LetterDrillView {
     /// Four glyph tiles, typed or dictated: kern's controls say which, and every keystroke is
     /// offered to kern, so a finished answer approves itself.
     private func answerArea(_ task: LetterDrillTask, _ controls: AnswerControls) -> some View {
-        AnswerArea(controls: controls,
-                   text: $input,
+        AnswerArea(driver: self, controls: controls,
                    placeholder: answerPlaceholder(task.language),
                    focus: $answerFocused,
                    correctionVoice: .init(
                        pronounce: { speaker(task, $0) },
                        isPlaying: { model.isPronouncing($0, lang: task.language) }),
-                   nextLocale: model.targetChromeLocale,
-                   actions: answerActions) { options, answer in
+                   nextLocale: model.targetChromeLocale) { options, answer in
             choiceGrid(options, answer: answer)
         }
     }

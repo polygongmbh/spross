@@ -26,7 +26,7 @@ private struct CardDeal: Equatable {
 /// What an answer is WORTH, which beat it earns and what a miss opens is kern's
 /// `TurnMachine`: every event becomes a `TurnIntent`, and what comes back is the
 /// whole next state plus the only side effects this screen takes.
-struct SessionView: View, LanguageNaming {
+struct SessionView: View, LanguageNaming, QuestionDriving {
     @Bindable var model: AppModel
 
     /// The turn under way, whole: where the answer stands, what the card
@@ -172,31 +172,23 @@ struct SessionView: View, LanguageNaming {
 
     private func cardContent(_ card: Card) -> some View {
         let role = model.presentationRole(for: card.id)
-        return ScrollView {
-            VStack(spacing: Theme.spacing.md) {
-                QuestionStage(key: turn?.question.key) {
-                    if let question = turn?.question {
-                        // why: the input, the button and the keyboard share this
-                        // screen with the card — the picture goes beside the words.
-                        QuestionCardView(question: question, surface: .review, voice: model.cardVoice,
-                                         areaTitle: model.areaTitle)
-                            // why: only once the answer is out — before it, the learner has
-                            // not seen the translation they would be reporting, and a menu
-                            // over the prompt is a menu over a question. A typo's hold counts:
-                            // its correction stands even though the card never expands.
-                            .contextMenu { if answerOut { cardMenu(card) } }
-                    }
-                }
-                if model.coachActive,
-                   let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {
-                    Text(line).pauseLine()
-                }
-                if let turn { answerArea(turn) }
+        return questionPage { question in
+            // why: the input, the button and the keyboard share this
+            // screen with the card — the picture goes beside the words.
+            QuestionCardView(question: question, surface: .review, voice: model.cardVoice,
+                             areaTitle: model.areaTitle)
+                // why: only once the answer is out — before it, the learner has
+                // not seen the translation they would be reporting, and a menu
+                // over the prompt is a menu over a question. A typo's hold counts:
+                // its correction stands even though the card never expands.
+                .contextMenu { if answerOut { cardMenu(card) } }
+        } area: { controls in
+            if model.coachActive,
+               let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {
+                Text(line).pauseLine()
             }
-            .padding(.bottom, Theme.spacing.lg)
+            answerArea(controls)
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollDismissesKeyboard(.never)
         .sheet(item: $reporting) { reported in
             ReportIssueSheet(model: model, card: reported.card, learnerInput: reported.input)
                 .environment(\.locale, locale)

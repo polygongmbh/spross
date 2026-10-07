@@ -7,17 +7,11 @@ import SprossKern
 extension NumbersRunView {
 
     var drillContent: some View {
-        ScrollView {
-            VStack(spacing: Theme.spacing.md) {
-                QuestionStage(key: run.question.key) {
-                    QuestionCardView(question: run.question, voice: model?.cardVoice ?? .silent)
-                }
-                controls
-            }
-            .padding(.bottom, Theme.spacing.lg)
+        questionPage { question in
+            QuestionCardView(question: question, voice: model?.cardVoice ?? .silent)
+        } area: { controls in
+            answerSection(controls)
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollDismissesKeyboard(.never)
         .sheet(isPresented: $showingReference) {
             NumberReferenceSheet(language: language, catalog: catalog, voice: referenceVoice)
         }
@@ -67,17 +61,15 @@ extension NumbersRunView {
     // why: no "Wusste ich" under a reveal here — drills are generated, so
     // self-reporting after seeing the answer proves nothing; revealed simply
     // counts as a miss and moves on.
-    private var controls: some View {
+    private func answerSection(_ controls: AnswerControls) -> some View {
         VStack(spacing: Theme.spacing.md) {
-            AnswerArea(controls: run.controls,
-                       text: $input,
+            AnswerArea(driver: self, controls: controls,
                        placeholder: answerPlaceholder(language, digits: run.currentReversed),
                        focus: $answerFocused,
                        correctionVoice: .init(
                            pronounce: { model?.pronounceAction(for: $0, lang: language) },
                            isPlaying: { model?.isPronouncing($0, lang: language) ?? false }),
-                       nextLocale: model?.targetChromeLocale,
-                       actions: answerActions)
+                       nextLocale: model?.targetChromeLocale)
             if run.offersLookUp {
                 lookupButton
             }

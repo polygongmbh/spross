@@ -34,9 +34,7 @@ extension SessionView {
             // renders "Weiter" there — same rating, through ConfirmPending.
             // The beat also waits out the answer being said, or the flip would
             // cut the word off.
-            AutoAdvance.schedule(arm.beat, &autoAdvance, holding: { await reader.saidAnswer() }) {
-                dispatch(TurnIntent.AdvanceElapsed.shared)
-            }
+            armAdvance(arm.beat) { dispatch(TurnIntent.AdvanceElapsed.shared) }
         case .cancelAdvance:
             autoAdvance?.cancel()
         case .primeField(let primed):
@@ -116,6 +114,15 @@ extension SessionView {
     }
 
     // MARK: - What the screen reads off the turn
+
+    var question: Question? { turn?.question }
+
+    var controls: AnswerControls? { turn?.controls }
+
+    /// What the card says aloud — its prompt as it goes up, its answer once it has settled.
+    var reading: Reading? { turn?.reading(saysMeaning: Pronouncer.shared.saysMeaning) }
+
+    var voiceModel: AppModel? { model }
 
     var feedback: AnswerInputView.Feedback {
         turn.map { AnswerInputView.Feedback($0.feedback) } ?? .neutral
