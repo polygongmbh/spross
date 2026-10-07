@@ -27,9 +27,6 @@ struct AreaProgress {
     static let empty = AreaProgress(allSettled: 0, allGrowing: 0, queued: 0, progressTotal: 1)
 }
 
-/// Half the fade between two area-bar stretches, as a share of the whole track.
-private let areaBlend: CGFloat = 0.01
-
 /// Per-area chip: emoji + name + settled/growing counts over a bar that
 /// measures both against the area's FULL card count, so the untouched rest
 /// of an area stays visible instead of a bar that always reads as full.
@@ -52,34 +49,23 @@ struct AreaChip: View {
     /// counts/bar to say — so they step aside, leaving just the emoji/name.
     var hideProgress: Bool = false
 
-    /// A two-way split (matches the counts row) plus queued: settled, then
-    /// everything else active, then queued-but-unintroduced. No amber segment —
+    /// The bar's stretches, fades and fill are kern's (`AreaBar`). No amber stretch —
     /// amber stays a badge-only color, distinguishing Fresh/Shaky from
     /// Growing at the per-card level without the bar needing that fine a grain.
-    /// A card never queued at all gets no segment: the neutral track under them
-    /// is what the untouched rest of the area reads as.
-    private var stretches: [(count: Int, color: Color)] {
-        [(progress.allSettled, Theme.colors.settled),
-         (progress.allGrowing, Theme.colors.success),
-         (progress.queued, Theme.colors.accent)]
+    private var bar: AreaBar {
+        AreaBar(settled: Double(progress.allSettled), growing: Double(progress.allGrowing),
+                queued: Double(progress.queued), progressTotal: Int32(progress.progressTotal))
     }
 
-    private var denominator: CGFloat { CGFloat(max(progress.progressTotal, 1)) }
-
-    private var filled: CGFloat { CGFloat(stretches.reduce(0) { $0 + $1.count }) }
-
-    /// One continuous bar: each stretch holds its color up to a short fade
-    /// into its neighbor (half of it `areaBlend` of the whole track).
-    private var stops: [Gradient.Stop] {
-        let halfBlend = areaBlend * denominator / filled
-        var start: CGFloat = 0
-        return stretches.filter { $0.count > 0 }.flatMap { stretch -> [Gradient.Stop] in
-            let from = start / filled
-            let to = (start + CGFloat(stretch.count)) / filled
-            start += CGFloat(stretch.count)
-            let inset = min(halfBlend, (to - from) / 2)
-            return [.init(color: stretch.color, location: from + inset),
-                    .init(color: stretch.color, location: to - inset)]
+    private func stops(_ bar: AreaBar) -> [Gradient.Stop] {
+        bar.stops.map { stop in
+            let color: Color
+            switch stop.stretch {
+            case .settled: color = Theme.colors.settled
+            case .growing: color = Theme.colors.success
+            default: color = Theme.colors.accent
+            }
+            return Gradient.Stop(color: color, location: stop.location)
         }
     }
 
@@ -106,12 +92,13 @@ struct AreaChip: View {
                     // why: the neutral track is the area's untouched rest — cards
                     // never queued draw no segment, so without it the bar would end
                     // in the card's own background and read as full.
+                    let filled = self.bar
                     ZStack(alignment: .leading) {
                         Capsule().fill(Theme.colors.separator)
-                        if filled > 0 {
+                        if filled.fill > 0 {
                             Capsule()
-                                .fill(LinearGradient(stops: stops, startPoint: .leading, endPoint: .trailing))
-                                .frame(width: geo.size.width * min(filled / denominator, 1))
+                                .fill(LinearGradient(stops: stops(filled), startPoint: .leading, endPoint: .trailing))
+                                .frame(width: geo.size.width * filled.fill)
                         }
                     }
                 }

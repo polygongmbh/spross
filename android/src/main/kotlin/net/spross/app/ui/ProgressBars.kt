@@ -23,12 +23,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
 import net.spross.kern.box.AreaStatistics
+import net.spross.kern.design.AreaBar
+import net.spross.kern.design.AreaStretch
 import net.spross.kern.design.SegmentsBar as KernSegmentsBar
 import net.spross.kern.session.AnswerOutcome
 
@@ -103,20 +104,10 @@ fun SegmentsBar(
 }
 
 /**
- * An area's cards as a two-way split (matches the counts row) plus queued: settled,
- * everything else active, then queued-but-unintroduced — measured against the area's
- * FULL card count, so the untouched rest of a shelf stays visible instead of a bar
- * that always reads as full.
- *
- * One continuous capsule whose stretches fade into each other. No amber stretch: amber
- * stays a badge-only color, distinguishing Fresh/Lapsed from Growing at the per-card
- * level ([StageBadge]) without the bar needing that fine a grain.
- * A card never queued at all gets no stretch: the neutral track under them is what the
- * untouched rest of the shelf reads as.
- *
- * The split and the denominator are the box's rulings ([AreaStatistics]); an area with
- * nothing in any of them leaves the track bare rather than drawing a full bar claiming
- * everything is being learned.
+ * An area's progress bar: kern's [AreaBar] — its stretches, their order and fades, and how much
+ * of the track they fill — drawn in the stage colors.
+ * No amber stretch: amber stays a badge-only color, distinguishing Fresh/Lapsed from Growing
+ * at the per-card level ([StageBadge]) without the bar needing that fine a grain.
  */
 @Composable
 fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
@@ -126,35 +117,23 @@ fun AreaProgressBar(stats: AreaStatistics, modifier: Modifier = Modifier) {
     val settled by animateFloatAsState(stats.allSettled.toFloat(), turnTween(), label = "areaSettled")
     val growing by animateFloatAsState(stats.allGrowing.toFloat(), turnTween(), label = "areaGrowing")
     val queued by animateFloatAsState(stats.queued.toFloat(), turnTween(), label = "areaQueued")
-    val total = stats.progressTotal.coerceAtLeast(1).toFloat()
-    val filled = settled + growing + queued
+    val bar = AreaBar(settled.toDouble(), growing.toDouble(), queued.toDouble(), stats.progressTotal)
     // why: the track is the shelf's untouched rest — without it the stretches would
     // end in the card's own background and the bar would read as full.
     Box(modifier.fillMaxWidth().height(6.dp).background(palette.separator, shape)) {
-        if (filled > 0f) {
-            val stops = blendedStops(
-                listOf(settled to palette.settled, growing to palette.success, queued to palette.accent),
-                filled, halfBlend = AREA_BLEND * total / filled,
-            )
+        if (bar.fill > 0.0) {
+            val stops = bar.stops.map { stop ->
+                val color = when (stop.stretch) {
+                    AreaStretch.Settled -> palette.settled
+                    AreaStretch.Growing -> palette.success
+                    AreaStretch.Queued -> palette.accent
+                }
+                stop.location.toFloat() to color
+            }
             Box(
-                Modifier.fillMaxWidth((filled / total).coerceAtMost(1f)).fillMaxHeight()
-                    .background(Brush.horizontalGradient(*stops), shape),
+                Modifier.fillMaxWidth(bar.fill.toFloat()).fillMaxHeight()
+                    .background(Brush.horizontalGradient(*stops.toTypedArray()), shape),
             )
         }
     }
-}
-
-/** Half the fade between two stretches, as a share of the whole track. */
-private const val AREA_BLEND = 0.01f
-
-/** Each stretch holds its color up to [halfBlend] (a share of [filled]) short of a neighbor. */
-private fun blendedStops(stretches: List<Pair<Float, Color>>, filled: Float, halfBlend: Float): Array<Pair<Float, Color>> {
-    var start = 0f
-    return stretches.filter { it.first > 0f }.flatMap { (count, color) ->
-        val from = start / filled
-        val to = (start + count) / filled
-        start += count
-        val inset = minOf(halfBlend, (to - from) / 2)
-        listOf(from + inset to color, to - inset to color)
-    }.toTypedArray()
 }
