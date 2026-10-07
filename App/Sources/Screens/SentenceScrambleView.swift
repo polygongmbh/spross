@@ -115,16 +115,16 @@ struct SentenceScrambleView: View {
         ScrollView {
             VStack(spacing: Theme.spacing.lg) {
                 if let task = current, let controls = run.controls {
-                    ScrambleTileBank(bank: task.shuffled,
-                                     placed: run.placedAtoms,
-                                     isTaken: { run.isPlaced(index: Int32($0)) },
-                                     arranged: run.arranged,
-                                     verdict: verdict,
-                                     place: { place($0) },
-                                     take: { take($0) },
-                                     reveal: { revealLines(task) })
-                        .id(run.index)
-                        .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.97)))
+                    QuestionStage(key: run.index) {
+                        ScrambleTileBank(bank: task.shuffled,
+                                         placed: run.placedAtoms,
+                                         isTaken: { run.isPlaced(index: Int32($0)) },
+                                         arranged: run.arranged,
+                                         verdict: verdict,
+                                         place: { place($0) },
+                                         take: { take($0) },
+                                         reveal: { revealLines(task) })
+                    }
                     answerArea(controls)
                 }
             }
