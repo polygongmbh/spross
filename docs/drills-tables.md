@@ -15,7 +15,7 @@ Neighbors: every drill `drills.md`, readings `number-forms.md`, `clock-registers
   against. It is one component, and the "?" on a numbers task raises the very same table,
   in every language — a look-up while the answer is still owed books the task amber,
   and after the answer it is free.
-  A band of short readings stands in TWO columns,
+  A band of short readings stands in TWO columns (`ReferenceColumns`),
   which is what puts the counting words and the tens under them on one screen.
 - **Its last band is the FORMS one**: a worked example per form the language reads,
   so the marks a Forms run asks about are written down somewhere other than a failed task,

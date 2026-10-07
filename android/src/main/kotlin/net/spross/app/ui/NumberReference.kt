@@ -23,12 +23,12 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.speakFormOnTap
 import net.spross.kern.model.Language
+import net.spross.kern.trainer.ReferenceColumns
 import net.spross.kern.trainer.ReferenceEntry
 import net.spross.kern.trainer.Numbers
 
@@ -88,7 +88,11 @@ fun NumberReferenceTable(
                     }
                     ReferenceBand(
                         entries = section.entries,
-                        columns = columnCount(section.entries, fontScale, pageWidth - Theme.spacing.lg * 2),
+                        columns = ReferenceColumns.count(
+                            section.entries,
+                            largeText = fontScale > 1f,
+                            width = (pageWidth - Theme.spacing.lg * 2).value.toDouble(),
+                        ),
                         language = language,
                         chrome = chrome,
                         speak = speak,
@@ -97,26 +101,6 @@ fun NumberReferenceTable(
             }
         }
     }
-}
-
-/**
- * How many columns a band stands in: two for a band of short readings, one for everything else.
- * The counting words are read at a glance,
- * and a page that spends a whole line on "vier" is a page of scrolling.
- *
- * Two tests, because either alone gets it wrong.
- * The characters are counted rather than measured:
- * a pair picked off a measurement is picked narrower than it renders,
- * and "dreizehn" then wraps inside its column.
- * But a count knows nothing of how wide the page is,
- * so a page narrower than [PAIRED_MIN_WIDTH] keeps the single column whatever its readings weigh.
- * Anything past either bound — the accessibility font scales included —
- * stays single-column, where a reading has the whole width to grow into.
- */
-internal fun columnCount(entries: List<ReferenceEntry>, fontScale: Float, width: Dp): Int {
-    if (fontScale > 1f || width < PAIRED_MIN_WIDTH || entries.size < 6) return 1
-    val widest = entries.maxOf { it.value.length + it.reading.length }
-    return if (widest <= PAIRED_ROW_CHARS) 2 else 1
 }
 
 /** A band's rows, filled column by column, so each column still counts upward. */
@@ -236,19 +220,3 @@ fun NumberReferenceOverlay(
         }
     }
 }
-
-/**
- * The widest row a phone fits twice, in characters.
- * Ten rather than twelve because the column is only ~128 dp on the 360 dp class,
- * where a twelve-character row wraps mid-word.
- * `App/Sources/Design/NumberReferenceTable.swift` names the same bound; the two move together.
- */
-private const val PAIRED_ROW_CHARS = 10
-
-/**
- * The narrowest PANEL a pair is drawn in, measured inside its padding.
- * A 360 dp phone leaves 296 dp there and a 320 dp one only 256 dp,
- * where a half-width column is under 110 dp and even a ten-character row wraps mid-word.
- * `App/Sources/Design/NumberReferenceTable.swift` holds the same bound; the two move together.
- */
-private val PAIRED_MIN_WIDTH = 288.dp
