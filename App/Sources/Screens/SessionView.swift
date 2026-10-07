@@ -15,8 +15,8 @@ private struct ReportedCard: Identifiable {
 /// PRODUCE prompts the source side and grades typed target input
 /// ("Aufdecken" without typing falls back to self-grading);
 /// RECOGNIZE prompts one rotated target form and is reveal + self-grade
-/// only — never typed, bar the first exposure's write-it-out
-/// (SessionView+Copy.swift). Presented as a full-screen cover.
+/// only — never typed, bar the first exposure's write-it-out.
+/// Presented as a full-screen cover.
 ///
 /// What an answer is WORTH, which beat it earns and what a miss opens is kern's
 /// `TurnMachine`: every event becomes a `TurnIntent`, and what comes back is the
@@ -188,7 +188,7 @@ struct SessionView: View, LanguageNaming {
                    let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {
                     Text(line).pauseLine()
                 }
-                controls(card, role: role)
+                if let turn { answerArea(turn) }
             }
             .padding(.bottom, Theme.spacing.lg)
         }
@@ -234,31 +234,10 @@ struct SessionView: View, LanguageNaming {
         }
     }
 
-    /// A field is on screen only where there is something to type: produce
-    /// before its blank self-grade, and the write-out step. Recognize brings up
-    /// none of its own — iOS drops the keyboard for a hidden field anyway, so
-    /// pretending otherwise only cost reliable focus.
-    @ViewBuilder
-    private func controls(_ card: Card, role: PresentationRole) -> some View {
-        if let step = turn?.copyStep {
-            copyControls(step)
-        } else {
-            VStack(spacing: 0) {
-                if role == .produce, !produceFieldHidden {
-                    answerField(card)
-                }
-                switch role {
-                case .recognize: recognizeControls
-                case .produce: produceButtons(card)
-                }
-            }
-        }
-    }
-
     /// What the self-grade row stands under: the first round's coaching while it is
     /// owed, else the standing question. One slot, one line — both paths to the row
     /// (recognize, and produce's blank reveal) read it.
-    // why: internal, not private — SessionView+Produce mounts the same row.
+    // why: internal, not private — SessionView+Answer captions the row with it.
     var gradeCaption: LocalizedStringKey {
         model.coachActive ? SessionCoach.gradeCaption : "session.rating.question"
     }
@@ -269,29 +248,7 @@ struct SessionView: View, LanguageNaming {
         AnswerFocus.claim($answerFocused, retry: &focusRetry)
     }
 
-    /// Comprehension check: reveal, then honest self-grade —
-    /// never typed, so no schedule is ever graded against a language it
-    /// wasn't learned with. The very first exposure takes this path too: the
-    /// word is prompted before it is taught, so a learner who already knows it
-    /// gets the moment to recall it (contract §3).
-    @ViewBuilder
-    private var recognizeControls: some View {
-        if revealed {
-            RatingButtonsView(onGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) },
-                              caption: gradeCaption)
-        } else {
-            Button {
-                dispatch(TurnIntent.Reveal.shared)
-            } label: {
-                Text("common.reveal")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(PrimaryButtonStyle())
-            .keyboardShortcut(.defaultAction)
-        }
-    }
-
-    // Produce controls live in SessionView+Produce.swift, the write-out step in
-    // SessionView+Copy.swift; the turn they both drive — dispatch, kern's
-    // effects, and what the screen reads off the result — is SessionView+Turn.swift.
+    // The controls under the card live in SessionView+Answer.swift; the turn
+    // they drive — dispatch, kern's effects, and what the screen reads off the
+    // result — is SessionView+Turn.swift.
 }
