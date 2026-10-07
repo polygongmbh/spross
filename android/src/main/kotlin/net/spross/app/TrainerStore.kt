@@ -5,7 +5,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import net.spross.kern.model.Language
+import net.spross.kern.trainer.CountryDrill
+import net.spross.kern.trainer.DateDrill
 import net.spross.kern.trainer.Drill
+import net.spross.kern.trainer.DrillLadders
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillSuggestion
 import net.spross.kern.trainer.DrillUnlockMark
@@ -27,7 +30,7 @@ import net.spross.kern.trainer.WordScrambleRunState
  * identity kern spells for the run), so the two platforms file the same feat under the same
  * name and neither can invent a scheme of its own.
  */
-class TrainerStore(private val prefs: SharedPreferences) {
+class TrainerStore(private val prefs: SharedPreferences) : DrillLadders.Store {
 
     /**
      * The best this run selection ever did, 0 where it was never run: the longest answer streak, or
@@ -81,6 +84,8 @@ class TrainerStore(private val prefs: SharedPreferences) {
 
     private fun sprosse(key: String): Int = prefs.getInt(NumbersMode.PROGRESS_PREFIX + key, 0)
 
+    override fun reached(key: String): Int = sprosse(key)
+
     /** The most answers one run under [key] ever took, right or wrong; 0 where none has closed. */
     fun answers(key: String): Int = prefs.getInt(NumbersMode.ANSWERS_PREFIX + key, 0)
 
@@ -94,7 +99,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
      * The Sprossen every run under [key] has cleared — answered out, or climbed off, before
      * its first slip, which the store files as one thing. Kern reads the mask.
      */
-    fun cleared(key: String): Set<Int> =
+    override fun cleared(key: String): Set<Int> =
         NumbersMode.clearedSprossen(prefs.getInt(NumbersMode.CLEARED_PREFIX + key, 0))
 
     /** ORs a closed run's cleared Sprossen into the standing mask; never filtered. */
@@ -138,17 +143,11 @@ class TrainerStore(private val prefs: SharedPreferences) {
     )
 
     companion object {
-        /**
-         * Where the atlas ladder and its record are filed — one key per PAIR, because the
-         * atlas is a pair's material and not a language's. Kern spells every other drill's
-         * identity ([NumbersMode.progressKey]); this one it does not, so the two platforms
-         * agree on it by both writing the string the iOS twin authored
-         * (`CountriesOverview.storageKey`).
-         */
-        fun countriesKey(source: Language, target: Language): String = "countries.$source-$target"
+        /** Where the atlas ladder and its record are filed ([CountryDrill.storageKey]). */
+        fun countriesKey(source: Language, target: Language): String = CountryDrill.storageKey(source, target)
 
-        /** The dates ladder's twin of [countriesKey], authored by `DatesOverview.storageKey`. */
-        fun datesKey(source: Language, target: Language): String = "dates.$source-$target"
+        /** The dates ladder's twin ([DateDrill.storageKey]). */
+        fun datesKey(source: Language, target: Language): String = DateDrill.storageKey(source, target)
 
         /** Where the word scramble's mask is filed ([WordScrambleRunState.storageKey]). */
         fun wordScrambleKey(language: Language): String = WordScrambleRunState.storageKey(language)

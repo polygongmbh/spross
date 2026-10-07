@@ -58,9 +58,8 @@ struct DrillOverview<Face: DrillFace>: View {
     /// now — marked once (`DrillUnlockMark`), then filed as seen.
     @State var fastUnlocking = false
 
-    /// Where the Sprosse and the record are kept — one key per PAIR, because the
-    /// material is a pair's and not a language's.
-    var storageKey: String { "\(Face.key).\(source)-\(target)" }
+    /// Where the Sprosse and the record are kept.
+    var storageKey: String { Face.storageKey(source: source, target: target) }
 
     var body: some View {
         DrillOverviewPage(title: Text(Face.title(languageName)),

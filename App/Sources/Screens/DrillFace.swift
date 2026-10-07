@@ -27,9 +27,12 @@ protocol DrillFace {
 
     // MARK: - Who the drill is
 
-    /// The prefix under which the Sprosse and the record are kept, and the name
-    /// the hub knows the skill by.
+    /// The name the hub and the UI tests know the skill by.
     static var key: String { get }
+
+    /// Where a pair's Sprosse and record are kept (kern's `storageKey`) — one key per PAIR,
+    /// because the material is a pair's and not a language's.
+    static func storageKey(source: String, target: String) -> String
 
     /// The roster entry this face runs.
     static var drill: Drill { get }

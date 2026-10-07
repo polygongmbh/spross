@@ -93,6 +93,7 @@ Nothing wears a prefix one scope wider than what it serves.
 - **The candidates are the chips the hub offers, less every ladder that is mastered**,
   however long ago it last ran:
   a ladder with nothing left to clear has nothing to suggest.
+  A ladder is read the way its run opens, forward (`DrillLadders`).
 - **Three terms decide, added together** (`DrillSuggestion`):
   local days since the drill last ran, full after a week, a drill never run counting as longest ago;
   what the box would get out of it --

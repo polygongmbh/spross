@@ -13,11 +13,16 @@ extension TrainerHubView {
         guard let language = drillLanguage, let box = model.box,
               shown(DrillSuggestion.shared.shown(offer: model.homeOffer))
         else { return nil }
+        let store = LadderStore()
+        let pairs = model.catalog?.oppositePairs ?? []
         let standings = Drill.allCases.filter { destination(for: $0) != nil }.map { drill in
             let key = DrillSuggestion.shared.lastRunKey(drill: drill, language: language)
+            let ladder = DrillLadders.shared.ladder(drill: drill, source: model.sourceLanguage, target: language,
+                                                    box: box, oppositePairs: pairs, dates: model.dates,
+                                                    store: store)
             return DrillSuggestion.Standing(drill: drill,
                                             lastRunEpochMillis: TrainerProgress.lastRun(key).map { KotlinLong(value: $0) },
-                                            ladder: ladder(drill, language: language))
+                                            ladder: ladder)
         }
         return DrillSuggestion.shared.suggest(standings: standings,
                                               facts: DrillSuggestion.BoxFacts.companion.of(box: box),
@@ -33,43 +38,12 @@ extension TrainerHubView {
         #endif
         return kern
     }
+}
 
-    /// What each drill has filed of its ladder, read in the shape kern weighs it.
-    /// The letter drill files none.
-    private func ladder(_ drill: Drill, language: String) -> DrillSuggestion.Ladder? {
-        switch drill {
-        case .numbers:
-            let reached = Dictionary(uniqueKeysWithValues: NumbersExercise.allCases.map {
-                ($0, KotlinInt(int: Int32(TrainerProgress.best(
-                    for: NumbersMode.companion.progressKey(exercise: $0, language: language)))))
-            })
-            return DrillSuggestion.Ladder.companion.numbers(reached: reached, language: language)
-        case .letters:
-            return nil
-        case .countries:
-            return atlasPair.map { cleared("\(CountryDrillFace.key).\($0.source)-\($0.target)",
-                                           top: CountryDrill.shared.ceiling) }
-        case .dates:
-            return datesPair.map { cleared("\(DateDrillFace.key).\($0.source)-\($0.target)",
-                                           top: model.datesSprossen) }
-        case .wordScramble:
-            return cleared(WordScrambleView.storageKey(language),
-                           top: Int(WordScrambleAvailability(model: model).report.maxSprosse))
-        case .sentenceScramble:
-            return cleared(SentenceScrambleView.storageKey(language),
-                           top: Int(SentenceScrambleAvailability(model: model).report.maxSprosse))
-        case .opposites:
-            return cleared(OppositesView.storageKey(language),
-                           top: Int(OppositesAvailability(model: model).report.maxSprosse))
-        }
-    }
-
-    /// A ladder that files its cleared Sprossen, read the way its run opens: forward.
-    private func cleared(_ key: String, top: Int) -> DrillSuggestion.Ladder {
-        let forward = NumbersMode.companion.clearedKey(key: key, reverse: false)
-        return DrillSuggestion.Ladder.companion.cleared(cleared: TrainerProgress.held(for: forward),
-                                                        top: Int32(top))
-    }
+/// The trainer store, as kern's ladder table reads it.
+private final class LadderStore: NSObject, DrillLaddersStore {
+    func reached(key: String) -> Int32 { Int32(TrainerProgress.best(for: key)) }
+    func cleared(key: String) -> Set<KotlinInt> { TrainerProgress.held(for: key) }
 }
 
 extension DrillSuggestion.Pick {

@@ -15,6 +15,9 @@ enum DateDrillFace: DrillFace {
 
     static var key: String { "dates" }
     static var drill: Drill { .dates }
+    static func storageKey(source: String, target: String) -> String {
+        DateDrill.shared.storageKey(source: source, target: target)
+    }
 
     static var resultTitle: LocalizedStringKey { "trainer.drill.dates" }
 

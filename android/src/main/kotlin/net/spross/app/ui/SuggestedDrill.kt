@@ -5,20 +5,12 @@ import androidx.compose.runtime.remember
 import java.util.TimeZone
 import net.spross.app.AppModel
 import net.spross.app.Chrome
-import net.spross.app.TrainerStore
 import net.spross.app.offers
 import net.spross.app.trainerHubOffered
-import net.spross.kern.catalog.DateDrillContent
-import net.spross.kern.model.Language
 import net.spross.kern.session.HomeStanding
-import net.spross.kern.trainer.CountryDrill
-import net.spross.kern.trainer.DateDrill
 import net.spross.kern.trainer.Drill
+import net.spross.kern.trainer.DrillLadders
 import net.spross.kern.trainer.DrillSuggestion
-import net.spross.kern.trainer.NumbersMode
-import net.spross.kern.trainer.OppositesAvailability
-import net.spross.kern.trainer.SentenceScrambleAvailability
-import net.spross.kern.trainer.WordScrambleAvailability
 
 /**
  * The one drill Home names (`docs/drills.md` § The suggestion), which leads the day's card
@@ -45,7 +37,15 @@ private fun AppModel.suggestedDrill(standing: HomeStanding?): DrillSuggestion.Pi
         DrillSuggestion.Standing(
             drill,
             store.lastRun(DrillSuggestion.lastRunKey(drill, language)),
-            ladder(drill, language, state.joinStamp.source, dates),
+            DrillLadders.ladder(
+                drill,
+                state.joinStamp.source,
+                language,
+                state,
+                catalog?.oppositePairs.orEmpty(),
+                dates,
+                store,
+            ),
         )
     }
     return DrillSuggestion.suggest(
@@ -55,34 +55,6 @@ private fun AppModel.suggestedDrill(standing: HomeStanding?): DrillSuggestion.Pi
         TimeZone.getDefault().id,
         language,
     )
-}
-
-/** What each drill has filed of its ladder, in the shape kern weighs it. The letter drill files none. */
-private fun AppModel.ladder(
-    drill: Drill,
-    language: Language,
-    source: Language,
-    dates: DateDrillContent?,
-): DrillSuggestion.Ladder? {
-    val store = trainer.store
-    val state = box ?: return null
-    // A cleared ladder is read the way its run opens: forward.
-    fun cleared(key: String, top: Int) =
-        DrillSuggestion.Ladder.cleared(store.cleared(NumbersMode.clearedKey(key, false)), top)
-    return when (drill) {
-        Drill.Numbers -> DrillSuggestion.Ladder.numbers(store.ladder(language), language)
-        Drill.Letters -> null
-        Drill.Countries -> cleared(TrainerStore.countriesKey(source, language), CountryDrill.MAX_SPROSSE)
-        Drill.Dates -> dates?.let { cleared(TrainerStore.datesKey(source, language), DateDrill.maxSprosse(it, false)) }
-        Drill.WordScramble ->
-            cleared(TrainerStore.wordScrambleKey(language), WordScrambleAvailability.report(state).maxSprosse)
-        Drill.SentenceScramble ->
-            cleared(TrainerStore.sentenceScrambleKey(language), SentenceScrambleAvailability.report(state).maxSprosse)
-        Drill.Opposites -> cleared(
-            TrainerStore.oppositesKey(language),
-            OppositesAvailability.report(state, catalog?.oppositePairs.orEmpty()).maxSprosse,
-        )
-    }
 }
 
 internal fun reason(chrome: Chrome, pick: DrillSuggestion.Pick): String = when (pick.reason) {

@@ -13,6 +13,9 @@ enum CountryDrillFace: DrillFace {
 
     static var key: String { "countries" }
     static var drill: Drill { .countries }
+    static func storageKey(source: String, target: String) -> String {
+        CountryDrill.shared.storageKey(source: source, target: target)
+    }
 
     static var resultTitle: LocalizedStringKey { "trainer.drill.countries" }
 

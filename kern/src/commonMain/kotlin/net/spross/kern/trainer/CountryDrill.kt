@@ -40,6 +40,9 @@ import net.spross.kern.model.Language
 object CountryDrill {
     const val MAX_SPROSSE = 9
 
+    /** Where a pair's atlas ladder is filed: one per pair, since both languages shape its questions. */
+    fun storageKey(source: Language, target: Language): String = "countries.$source-$target"
+
     /** Three clean wins a Sprosse: more Sprossen, and more rows standing on each of them. */
     const val WINS_TO_ADVANCE = 3
 
