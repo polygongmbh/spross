@@ -39,6 +39,8 @@ import net.spross.app.Chrome
 import net.spross.app.sayOnTap
 import net.spross.kern.session.Question
 import net.spross.kern.session.Saying
+import net.spross.kern.design.CardType
+import net.spross.kern.design.LetterCase
 
 /**
  * Every card a question is asked on, drawn from kern's [Question]:
@@ -242,7 +244,7 @@ internal fun CardContext.OtherWordLine() {
 @Composable
 private fun Caption(text: String) {
     Text(
-        text,
+        if (CardType.askCase == LetterCase.Upper) text.uppercase() else text,
         style = MaterialTheme.typography.bodySmall,
         color = Theme.colors.textSecondary,
         textAlign = TextAlign.Center,

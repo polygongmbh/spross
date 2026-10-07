@@ -12,13 +12,17 @@ struct CardReveal<Content: View>: View {
     /// Literal gloss ("wörtlich: …") or the sentence's meaning — post-reveal
     /// only, and always the last line.
     var note: String?
+    /// Whether the short rule leads the reveal — every card's does but where kern says otherwise.
+    var divided = true
     @ViewBuilder var content: Content
 
     var body: some View {
         VStack(spacing: Theme.spacing.md) {
-            RoundedRectangle(cornerRadius: 1)
-                .fill(Theme.colors.separator)
-                .frame(width: 44, height: 2)
+            if divided {
+                RoundedRectangle(cornerRadius: 1)
+                    .fill(Theme.colors.separator)
+                    .frame(width: 44, height: 2)
+            }
             content
             if let note {
                 Text(note).noteLine()

@@ -88,7 +88,7 @@ extension QuestionCardView {
                     pluralLine(question.prompt)
                 }
                 if opens {
-                    CardReveal(note: noteText) {
+                    CardReveal(note: noteText, divided: CardType.shared.LISTENING_REVEAL_DIVIDED) {
                         VStack(spacing: Theme.spacing.xs) {
                             headwordBlock(question.answer, emphasized: true)
                             pluralLine(question.answer)
