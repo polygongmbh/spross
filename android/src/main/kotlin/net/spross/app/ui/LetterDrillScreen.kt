@@ -1,14 +1,9 @@
 package net.spross.app.ui
 
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
@@ -92,7 +87,16 @@ private fun Run(
         screenReader = replayFocus,
     )
 
-    HearPrompt(model, flow, task, chrome, replayFocus)
+    val question = state.question ?: return
+    QuestionCard(
+        question,
+        chrome,
+        // why: the prompt plays out of the drill's own letter recording, never the form-keyed lookup.
+        voice = CardVoice { saying ->
+            if (saying == question.prompt.saying) model.letterReplay(task) else model.letterSpeaker(task, saying.form)
+        },
+        replayFocus = replayFocus,
+    )
     when (task.format) {
         LetterFormat.ChoiceEasy, LetterFormat.ChoiceConfusable ->
             ChoiceFormat(flow, task, chrome)
@@ -100,60 +104,4 @@ private fun Run(
             TypedFormat(model, flow, task, chrome, inputFocus)
     }
     if (state.offersFinish) DrillStopOffer(chrome, onFinish)
-}
-
-/**
- * The audio question on the app's own card face: what is being asked, one big replay
- * button, the gap word with the asked grapheme blanked, and — once the answer is in — the
- * same reveal a vocabulary card grows. No answer ever renders before that, and that is the
- * whole point.
- */
-@Composable
-private fun HearPrompt(
-    model: AppModel,
-    flow: LetterDrillFlow,
-    task: LetterDrillTask,
-    chrome: Chrome,
-    replayFocus: FocusRequester,
-) {
-    val question = when {
-        task.format == LetterFormat.Dictation -> chrome.lettersAskDictation
-        task.gapText == null -> chrome.lettersAskHear
-        else -> chrome.lettersAskSpell
-    }
-    val replay = model.letterReplay(task)
-    CardFace {
-        Text(
-            question,
-            style = MaterialTheme.typography.bodySmall,
-            color = Theme.colors.textSecondary,
-            textAlign = TextAlign.Center,
-        )
-        ReplayGlyph(replay, chrome, replayFocus)
-        val opened = flow.state.showsAnswer
-        task.gapText?.let { gap ->
-            // why: a gap question closes over its blank where it stood, so nothing below it moves.
-            Text(
-                localizedTarget(if (opened) task.gloss ?: task.display else gap, task.language),
-                fontSize = Theme.prompt.word,
-                fontWeight = FontWeight.Bold,
-                color = if (opened) Theme.colors.accent else Theme.colors.textPrimary,
-            )
-        }
-        if (opened && task.gapText == null) {
-            // why: the meaning is a REVEAL, never a cue — a dictation that shows what the
-            // word means is no longer taken from the sound.
-            CardReveal(note = task.gloss) {
-                SpokenWord(model.letterSpeaker(task, task.display), chrome) {
-                    Text(
-                        localizedTarget(task.display, task.language),
-                        style = MaterialTheme.typography.titleLarge,
-                        color = Theme.colors.accent,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.weight(1f, fill = false),
-                    )
-                }
-            }
-        }
-    }
 }
