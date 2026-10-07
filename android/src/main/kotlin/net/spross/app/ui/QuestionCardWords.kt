@@ -44,8 +44,14 @@ internal fun promptText(side: Question.Side, text: String): AnnotatedString {
     return if (side.form == Question.Form.Numeral || lang == null) written else localizedTarget(written, lang)
 }
 
+/** A reveal under a sentence is set no larger than a line of it. */
 @Composable
-internal fun CardContext.answerStyle(): TextStyle = MaterialTheme.typography.titleLarge
+internal fun CardContext.answerStyle(): TextStyle =
+    if (question.prompt.form == Question.Form.Sentence || question.answer.form == Question.Form.Sentence) {
+        MaterialTheme.typography.titleMedium
+    } else {
+        MaterialTheme.typography.titleLarge
+    }
 
 internal fun askText(ask: QuestionAsk, chrome: Chrome): String = when (ask) {
     is QuestionAsk.Country -> chrome.countryAsk(ask.kind)
