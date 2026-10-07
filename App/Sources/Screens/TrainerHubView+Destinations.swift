@@ -20,23 +20,9 @@ struct HubChip: Identifiable {
     var id: String { destination.id }
 }
 
-/// What each entry of kern's roster wears here. The seven are enumerated in
-/// `Drill` and nowhere else; the glyph and the catalog key are this side's,
-/// which is why they hang off the roster rather than sitting inside it.
+/// What each entry of kern's roster is called here. The seven and their glyphs are
+/// `Drill`'s; the catalog key is this side's, which is why it hangs off the roster.
 extension Drill {
-    var emoji: String {
-        switch self {
-        // layer-ok: the chip IS the numbers one — reading its own emoji, not picking a reading
-        case .numbers: return numbersReadingEmoji(reading: .cardinal)
-        case .letters: return "🔤"
-        case .countries: return "🌍"
-        case .dates: return "📅"
-        case .wordScramble: return "🔀"
-        case .sentenceScramble: return "🧩"
-        case .opposites: return "↔️"
-        }
-    }
-
     var titleKey: LocalizedStringKey { LocalizedStringKey(titleKeyName) }
 
     /// The same key as a plain string, for a name resolved into a sentence

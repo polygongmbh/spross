@@ -188,17 +188,15 @@ struct TrainerHubView: View, LanguageNaming {
         }
     }
 
-    /// The chips cut into lines. Three or fewer stand on one; past that the card
-    /// breaks into TWO, `ceil(n/2)` above and `floor(n/2)` below — 4 stand 2+2,
-    /// 5 stand 3+2, 6 stand 3+3 — and each line keeps the equal-width chips one
-    /// line carries on its own. The break is DRAWN rather than discovered: an
-    /// HStack overflows rather than wrapping, and six chips sharing one row
-    /// would be six slivers of a word apiece.
+    /// The chips cut into the lines kern sizes (`Drill.chipRows`), each line's chips equal width.
     private var chipRows: [[HubChip]] {
         let chips = chips
-        guard chips.count > 3 else { return chips.isEmpty ? [] : [chips] }
-        let top = (chips.count + 1) / 2
-        return [Array(chips.prefix(top)), Array(chips.dropFirst(top))]
+        var start = 0
+        return Drill.companion.chipRows(count: Int32(chips.count)).map { size in
+            let row = Array(chips[start..<start + Int(truncating: size)])
+            start += Int(truncating: size)
+            return row
+        }
     }
 
     private func chip(for chip: HubChip) -> some View {

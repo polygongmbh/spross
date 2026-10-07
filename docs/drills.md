@@ -39,8 +39,8 @@ Nothing wears a prefix one scope wider than what it serves.
 - **The roster is kern's `Drill`, and its order is the chip order.**
   The seven are enumerated there and nowhere else:
   what each entry gates on, the chip it earns, the glyph it wears and the key that names it
-  all key off that one list.
-  A glyph, a title, a route and a layout stay the platform's.
+  all key off that one list, which also carries each glyph and how the chips break into lines.
+  A title, a route and the drawing stay the platform's.
 - **A step of the ladder is a Sprosse in EVERY interface language**, plural Sprossen:
   it is the brand word,
   so English chrome says "Sprosse 5".
