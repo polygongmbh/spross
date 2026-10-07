@@ -37,6 +37,7 @@ extension OppositesView: DrillRunning {
                    correctionVoice: .init(
                        pronounce: { model.pronounceAction(for: $0, lang: task.language) },
                        isPlaying: { model.isPronouncing($0, lang: task.language) }),
+                   nextLocale: model.targetChromeLocale,
                    actions: answerActions)
     }
 

@@ -69,6 +69,7 @@ extension LetterDrillView {
                    correctionVoice: .init(
                        pronounce: { speaker(task, $0) },
                        isPlaying: { model.isPronouncing($0, lang: task.language) }),
+                   nextLocale: model.targetChromeLocale,
                    actions: answerActions) { options, answer in
             choiceGrid(options, answer: answer)
         }

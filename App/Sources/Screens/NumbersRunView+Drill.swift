@@ -80,6 +80,7 @@ extension NumbersRunView {
                        correctionVoice: .init(
                            pronounce: { model?.pronounceAction(for: $0, lang: language) },
                            isPlaying: { model?.isPronouncing($0, lang: language) ?? false }),
+                       nextLocale: model?.targetChromeLocale,
                        actions: answerActions)
             if run.offersLookUp {
                 lookupButton

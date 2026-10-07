@@ -48,6 +48,7 @@ extension DrillRunView {
                        correctionVoice: .init(
                            pronounce: { model.pronounceAction(for: $0, lang: language) },
                            isPlaying: { model.isPronouncing($0, lang: language) }),
+                       nextLocale: model.targetChromeLocale,
                        actions: answerActions) { options, answer in
                 DrillChoiceGrid(options: options, answer: answer, chosen: chosen,
                                 font: Theme.typography.headline, pick: choose)

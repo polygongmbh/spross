@@ -199,7 +199,8 @@ struct SentenceScrambleView: View {
     /// graded answer: a clean one moves on by itself, a miss waits for the way
     /// on and — on the second in a row — offers the way out.
     private func answerArea(_ controls: AnswerControls) -> some View {
-        AnswerArea(controls: controls, text: .constant(""), actions: answerActions)
+        AnswerArea(controls: controls, text: .constant(""), nextLocale: model.targetChromeLocale,
+                   actions: answerActions)
     }
 
     // The conformance, the driver and the close are SentenceScrambleView+Run.swift's.
