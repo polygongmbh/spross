@@ -3,6 +3,7 @@ package net.spross.app.ui
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.tween
+import net.spross.kern.design.CardMotion
 
 /**
  * The one easing a turn's own motion shares: the segments bar filling, a choice tile's fill
@@ -15,8 +16,8 @@ import androidx.compose.animation.core.tween
  */
 private val TurnEasing = FastOutSlowInEasing
 
-/** The turn's one duration: the M3 "medium" band for a state a reveal rides on. */
-private const val TURN_MOTION_MS = 220
+/** The turn's one duration, kern's reveal timing shared with iOS. */
+private const val TURN_MOTION_MS = CardMotion.REVEAL_MS
 
 /** The shared spec every turn animation in this package reaches for, over any value type. */
 fun <T> turnTween(durationMillis: Int = TURN_MOTION_MS): FiniteAnimationSpec<T> =
