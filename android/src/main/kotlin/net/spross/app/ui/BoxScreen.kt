@@ -25,6 +25,7 @@ import net.spross.app.Chrome
 import net.spross.kern.box.AreaGroupSection
 import net.spross.kern.box.AreaNaming
 import net.spross.kern.box.BoxBrowser
+import net.spross.kern.box.BoxFold
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.BoxStatistics
 import net.spross.kern.box.OwnWords
@@ -82,18 +83,10 @@ private fun BoxBrowserScreen(
     }
     val areaStats = remember(stats) { stats.areas.associateBy { it.name } }
 
-    // why: the opening fold reads the box ONCE — a group that folded itself shut again as
-    // the learner works would be worse than one that opened on the wrong shelf. An area
-    // named on the way in opens INSTEAD of the default: the learner already said which.
-    var openGroups by remember {
-        mutableStateOf(
-            setOfNotNull(
-                openAt?.let { area -> sections.firstOrNull { area in it.areas }?.id }
-                    ?: BoxBrowser.defaultExpandedGroupId(sections, stats),
-            ),
-        )
-    }
-    var openAreas by remember { mutableStateOf(setOfNotNull(openAt)) }
+    // why: the opening fold reads the box ONCE (`BoxFold.opening`).
+    val opening = remember { BoxFold.opening(sections, stats, openAt) }
+    var openGroups by remember { mutableStateOf(opening.groups) }
+    var openAreas by remember { mutableStateOf(opening.areas) }
     var scrollTo by remember { mutableStateOf(openAt) }
     var searching by remember { mutableStateOf(false) }
     // The own-word form, on whatever draft opened it: blank from the section's add button,
@@ -116,13 +109,9 @@ private fun BoxBrowserScreen(
     }
 
     fun reveal(area: String) {
-        if (area != OwnWords.AREA) {
-            // why: the named area opens INSTEAD of whatever stood open — the learner said which
-            // area they meant, and every other shelf left open is only weight the fold has to
-            // lay out before the scroll can reach this one.
-            sections.firstOrNull { area in it.areas }?.let { openGroups = setOf(it.id) }
-            openAreas = setOf(area)
-        }
+        val fold = BoxFold(openGroups, openAreas).revealing(area, sections)
+        openGroups = fold.groups
+        openAreas = fold.areas
         scrollTo = area
     }
 

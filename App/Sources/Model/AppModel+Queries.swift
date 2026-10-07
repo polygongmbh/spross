@@ -183,10 +183,10 @@ extension AppModel {
         } ?? false
     }
 
-    /// The group the Box browser opens on — `BoxBrowser.defaultExpandedGroupId`.
-    var defaultExpandedGroupID: String? {
-        guard let stats else { return nil }
-        return BoxBrowser.shared.defaultExpandedGroupId(sections: areaGroupSections, stats: stats)
+    /// The fold the Box browser opens on (`BoxFold.opening`); nothing folds open before there are statistics.
+    func openingFold(revealArea: String?) -> BoxFold {
+        guard let stats else { return BoxFold(groups: [], areas: []) }
+        return BoxFold.companion.opening(sections: areaGroupSections, stats: stats, revealArea: revealArea)
     }
 
     func areaStats(_ name: String) -> AreaStatistics? { areaStatsByName[name] }
