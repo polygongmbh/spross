@@ -173,21 +173,17 @@ object NumbersRun {
         return when (val match = grade(text, state.currentTask, normalizer)) {
             Match.Exact -> NumbersReduction(
                 state.copy(feedback = TurnFeedback.Correct),
-                listOfNotNull(
-                    DrillEffect.Tone(ToneKind.Correct),
-                    state.saidOnClean,
-                    DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
-                ),
+                listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceBeat.Explicit)),
             )
             // why: no beat on a slip — the pause shows the proper spelling, and the tap that ends
             // it books the answer almost.
             is Match.Typo -> NumbersReduction(
                 state.copy(feedback = TurnFeedback.Almost(match.corrected, AlmostReason.Typo)),
-                listOf(DrillEffect.Tone(ToneKind.Almost), state.saidAnswer(match.corrected), DrillEffect.ReleaseFocus),
+                listOf(DrillEffect.Tone(ToneKind.Almost), DrillEffect.ReleaseFocus),
             )
             else -> NumbersReduction(
                 state.copy(feedback = TurnFeedback.Revealed, otherWord = match as? Match.OtherWord),
-                listOf(DrillEffect.Tone(ToneKind.Wrong), state.saidAnswer()),
+                listOf(DrillEffect.Tone(ToneKind.Wrong)),
             )
         }
     }
@@ -202,7 +198,7 @@ object NumbersRun {
         normalizer: AnswerNormalizer?,
     ): NumbersReduction {
         val trimmed = text.trim()
-        val verdict = TypedDrillVerdicts.typed(state.feedback, state.saidOnClean) {
+        val verdict = TypedDrillVerdicts.typed(state.feedback) {
             trimmed.isNotEmpty() &&
                 !stillGrowing(trimmed, state.currentTask) &&
                 grade(trimmed, state.currentTask, normalizer) == Match.Exact
@@ -216,7 +212,7 @@ object NumbersRun {
         // the learner would put the same word on screen twice.
         return NumbersReduction(
             state.copy(feedback = TurnFeedback.Revealed),
-            listOf(DrillEffect.Tone(ToneKind.Reveal), state.saidAnswer()),
+            listOf(DrillEffect.Tone(ToneKind.Reveal)),
         )
     }
 

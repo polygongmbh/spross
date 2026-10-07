@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Saying
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
 
@@ -142,20 +143,19 @@ data class NumbersRunState(
      */
     val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
 
-    /**
-     * What a verdict says aloud: the reading, whichever side of it was owed — a reversed task's
-     * reading is its prompt. [slip] is the spelling a typo was held for, said in its place.
-     */
-    internal fun saidAnswer(slip: String? = null): DrillEffect.SayAnswer = DrillEffect.SayAnswer(
-        if (currentReversed) currentTask.prompt else slip ?: currentTask.display,
-        currentTask.language,
-    )
+    /** Nothing: a numeral, a clock or a date has no reading that is not the answer itself. */
+    override val promptSaying: Saying? get() = null
 
     /**
-     * A clean answer's reading, unsaid in a timed run: the clock is running, and the beat
-     * would wait the reading out.
+     * The reading, whichever side of it was owed — a reversed task's reading is its prompt.
+     * A clean answer stays unsaid in a timed run: the clock is running, and the beat would wait the reading out.
      */
-    internal val saidOnClean: DrillEffect.SayAnswer? get() = if (timed) null else saidAnswer()
+    override val answerSaying: Saying?
+        get() = if (timed && feedback == TurnFeedback.Correct) {
+            null
+        } else {
+            Saying(if (currentReversed) currentTask.prompt else currentTask.display, currentTask.language)
+        }
 
     /** The numbers page link shows on numbers tasks only, and never in a timed run. */
     val offersLookUp: Boolean get() = currentExercise == NumbersExercise.Counting && !timed

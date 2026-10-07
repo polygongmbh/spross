@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.focus.FocusRequester
 import net.spross.app.AppModel
@@ -14,7 +13,6 @@ import net.spross.app.TypedDrill
 import net.spross.app.TypedDrillView
 import net.spross.app.bookRecord
 import net.spross.app.finishDrill
-import net.spross.app.speakDrillAnswer
 import net.spross.app.speakFormOnTap
 import net.spross.app.stampRun
 import net.spross.kern.session.ToneKind
@@ -78,18 +76,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         model.finishDrill(page.back, closed.summary, page.drill)
     }
 
-    // The QUESTION is said on a REVERSED run, where the prompt IS the target-language form and
-    // kern says no graded answer (it is in the learner's own language) — so without this the
-    // whole task would be unhearable. Saying it gives nothing away: the word is already on the card. No
-    // beat in front of it, unlike the answer's: nothing has chimed and the question is awaited.
     val paused = flow.progress.pause != null
-    LaunchedEffect(run.index, paused) {
-        if (!reverse || paused) return@LaunchedEffect
-        val text = run.prompt.text ?: return@LaunchedEffect
-        // A picture is written in no language, so a question that is one has nothing to say.
-        val language = run.prompt.language ?: return@LaunchedEffect
-        model.speakDrillAnswer(text, language)
-    }
 
     val inputFocus = remember { FocusRequester() }
     // A tapped question has no field to fill — a keyboard over the tiles would cover the
@@ -108,16 +95,11 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         // owes the learner a way to silence them here.
         showsMuteButton = true,
     ) {
-        // The tap speaker rides the same rule as the autoplay above: a prompt that is
-        // a name, on the side being learned. A tap outranks the mute; this only says
-        // whether there is anything to hear.
+        // The tap speaker rides kern's prompt saying, the one the autoplay says. A tap
+        // outranks the mute; this only says whether there is anything to hear.
         Prompt(
             model, run, chrome,
-            promptVoice = run.prompt.language?.let { language ->
-                run.prompt.text
-                    ?.takeIf { reverse }
-                    ?.let { model.speakFormOnTap(it, language) }
-            },
+            promptVoice = flow.progress.promptSaying?.let { model.speakFormOnTap(it.form, it.lang) },
         )
         Controls(model, flow, run, chrome, inputFocus, leave)
     }

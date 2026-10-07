@@ -9,8 +9,9 @@ Neighbors: the engine contract `../README.md`, when the app plays it `../../docs
   or the produce prompt IS the sound; `OnReveal` for a produce card that asks for that very form.
   `meaningCue(role, prompt)` is its mirror for the learner's own side — `Upfront` only where the produce prompt IS the meaning —
   so each side is said once and every card pairs the word with its meaning.
-  `TurnState.promptSaying`/`answerSaying` (`session/TurnSaying.kt`) turn the two cues into the form and language a card says
-  as it goes up and once it has `settled` — its answer out, or given clean.
+  `TurnState.reading` (`session/Reading.kt`) turns the two cues into the `Saying`s a card says
+  as it goes up and once it has `settled` — its answer out, or given clean, target side with its article.
+  Every drill state hands over the same `Reading` (`DrillRunProgress.reading`) off the two sayings it must declare.
   Both apps CONSUME these; neither re-derives `role == Recognize` for audio.
   Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../../docs/design.md`'s.
 - **How quiet is too quiet** — `isVolumeLow(fraction)` (`catalog/OutputVolume.kt`):

@@ -39,7 +39,7 @@ struct LetterDrillView: View, LanguageNaming {
     @State var autoAdvance: Task<Void, Never>?
     /// The driver's answer voice, which this drill never hands an answer:
     /// its question already was the sound.
-    @State var answerVoice = AnswerVoice()
+    @State var reader = Reader()
     @FocusState var answerFocused: Bool
     @AccessibilityFocusState var replayFocused: Bool
 

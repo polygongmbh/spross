@@ -23,7 +23,7 @@ struct OppositesView: View, LanguageNaming {
     @State var input = ""
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
-    @State var answerVoice = AnswerVoice()
+    @State var reader = Reader()
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, language: String, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
@@ -67,7 +67,7 @@ struct OppositesView: View, LanguageNaming {
         }
         .onDisappear {
             autoAdvance?.cancel()
-            answerVoice.hush()
+            reader.hush()
         }
         #if DEBUG
         .onAppear { uitestDriveRun() }

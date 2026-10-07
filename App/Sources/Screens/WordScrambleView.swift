@@ -34,7 +34,7 @@ struct WordScrambleView: View, LanguageNaming {
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
     /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
-    @State var answerVoice = AnswerVoice()
+    @State var reader = Reader()
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, language: String, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
@@ -82,7 +82,7 @@ struct WordScrambleView: View, LanguageNaming {
         }
         .onDisappear {
             autoAdvance?.cancel()
-            answerVoice.hush()
+            reader.hush()
         }
         #if DEBUG
         .onAppear { uitestDriveRun() }

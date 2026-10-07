@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Saying
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.TurnFeedback
@@ -79,7 +80,10 @@ data class OppositesRunState(
 
     internal val newSprossen: Int get() = (clearedSprossen - config.cleared).size
 
-    /** What a verdict says aloud: every opposite, so a merge is heard as well as read. */
-    internal val saidAnswer: DrillEffect.SayAnswer?
-        get() = task?.let { t -> DrillEffect.SayAnswer(t.answers.joinToString(", ") { it.text }, t.language) }
+    /** The word asked about, in the language being learned: hearing it gives no opposite away. */
+    override val promptSaying: Saying? get() = task?.let { Saying(it.prompt, it.language) }
+
+    /** Every opposite, so a merge is heard as well as read. */
+    override val answerSaying: Saying?
+        get() = task?.let { t -> Saying(t.answers.joinToString(", ") { it.text }, t.language) }
 }

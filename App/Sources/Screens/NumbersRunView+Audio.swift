@@ -14,7 +14,7 @@ extension NumbersRunView {
     /// Every way out of a task goes through here — the next prompt, the
     /// summary, the door.
     func hushAnswer() {
-        answerVoice.hush()
+        reader.hush()
     }
 
     /// It began to matter here when "Aufdecken" started REMOVING the field

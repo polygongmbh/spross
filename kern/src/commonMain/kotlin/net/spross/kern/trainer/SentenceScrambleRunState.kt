@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Saying
 import net.spross.kern.model.Language
 import net.spross.kern.session.TurnFeedback
 
@@ -112,9 +113,11 @@ data class SentenceScrambleRunState(
      */
     val showsAnswer: Boolean get() = !owesAnswer
 
-    /** What a verdict says aloud: the phrase as authored, whichever order was accepted. */
-    internal val saidAnswer: DrillEffect.SayAnswer?
-        get() = task?.let { DrillEffect.SayAnswer(it.display, it.language) }
+    /** Nothing: the phrase heard in order is the order being asked for. */
+    override val promptSaying: Saying? get() = null
+
+    /** The phrase as authored, whichever order was accepted. */
+    override val answerSaying: Saying? get() = task?.let { Saying(it.display, it.language) }
 
     /** Accepted via an alternative word order rather than the canonical one — gloss not shown. */
     val alternativeMatch: Boolean

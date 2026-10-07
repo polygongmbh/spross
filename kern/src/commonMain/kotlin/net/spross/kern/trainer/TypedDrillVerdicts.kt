@@ -41,12 +41,10 @@ internal object TypedDrillVerdicts {
      * on its correction anyway. Backing out of a finished answer withdraws the approval, so
      * typing PAST it never books it.
      *
-     * [answer] is what the verdict says aloud ([DrillEffect.SayAnswer]), null on a side that is
-     * never read out; the approval says it once, with its cue.
+     * The approval chimes once; what it says is the run's [DrillRunProgress.reading].
      */
     fun typed(
         feedback: TurnFeedback,
-        answer: DrillEffect.SayAnswer?,
         exact: () -> Boolean,
     ): TypedVerdict? {
         if (feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed) return null
@@ -55,9 +53,9 @@ internal object TypedDrillVerdicts {
             return TypedVerdict(withdrawn, null, listOf(DrillEffect.CancelAdvance))
         }
         // why: the cue sounds once per approval — a keystroke inside an already-approved
-        // answer must not re-chime on every letter, nor say it again.
+        // answer must not re-chime on every letter.
         val tone: List<DrillEffect> =
-            if (feedback == TurnFeedback.Correct) emptyList() else listOfNotNull(DrillEffect.Tone(ToneKind.Correct), answer)
+            if (feedback == TurnFeedback.Correct) emptyList() else listOf(DrillEffect.Tone(ToneKind.Correct))
         return TypedVerdict(
             TurnFeedback.Correct,
             null,
@@ -67,16 +65,14 @@ internal object TypedDrillVerdicts {
 
     /**
      * An answer handed in: taken, held for its spelling, or refused with what it really named.
-     * The slip says the spelling it was held for, every other verdict [answer].
      */
-    fun submit(match: Match, answer: DrillEffect.SayAnswer?): TypedVerdict = when (match) {
+    fun submit(match: Match): TypedVerdict = when (match) {
         Match.Exact -> TypedVerdict(
             TurnFeedback.Correct,
             null,
             listOfNotNull(
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
-                answer,
                 DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
             ),
         )
@@ -88,14 +84,13 @@ internal object TypedDrillVerdicts {
             listOfNotNull(
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Almost),
-                answer?.copy(text = match.corrected),
                 DrillEffect.ReleaseFocus,
             ),
         )
         else -> TypedVerdict(
             TurnFeedback.Revealed,
             match as? Match.OtherWord,
-            listOfNotNull(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong), answer),
+            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
         )
     }
 
@@ -103,10 +98,10 @@ internal object TypedDrillVerdicts {
      * The look-up. The field stays EMPTY — the card is where the answer stands, and typing it
      * in for the learner would put the same words on screen twice.
      */
-    fun reveal(answer: DrillEffect.SayAnswer?): TypedVerdict = TypedVerdict(
+    fun reveal(): TypedVerdict = TypedVerdict(
         TurnFeedback.Revealed,
         null,
-        listOfNotNull(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal), answer),
+        listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)),
     )
 
     /**

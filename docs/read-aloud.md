@@ -30,12 +30,14 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   Badge, plural line and alternates stay unspoken.
 - **Audio may never give the answer away**:
   recognition speaks the word at once, produce says the meaning it asks by and waits for the reveal to say the word.
-  Both apps consume kern's sayings (`TurnState.promptSaying`/`answerSaying`).
+  A review card and a drill task read aloud through ONE mechanism:
+  kern hands each question a `Reading` (its prompt saying and its answer saying),
+  and one reader per app fires it (iOS `Reader`, Android `rememberReadAloud`).
+  Every drill state must rule on both sayings (`DrillRunProgress`), so no screen decides what is heard.
 - **Autoplay fires only where the card holds the learner.**
   A clean correct answer says the word too, and its flip waits for the saying to end, up to a ceiling;
   a word cut off teaches nothing.
-  A drill says every graded answer, right or wrong, and its beat waits for the reading to end
-  (kern's `DrillEffect.SayAnswer`, one standard for every drill);
+  A drill says every graded answer, right or wrong, and its beat waits for the reading to end;
   a timed run leaves its clean answers unsaid, since the clock is running,
   and the letter drill says nothing more, since its question already was the sound.
   Produce fires wait for the feedback chime;
@@ -53,7 +55,7 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
 | near miss (typo, other form) | yes, after chime | the correction box form |
 | produce revealed (Aufdecken/wrong/other word) | yes, after chime | the bare target word, or the meaning on a card asked by ear |
 | trainer drill prompt (numeral, clock, date) | no | the reading IS the answer |
-| drill prompt in learning language (reversed run) | yes, at once | the form on the card |
+| drill prompt in learning language (reversed run, opposites) | yes, at once | the form on the card |
 | drill prompt in known language (forward run) | no | the reveal carries the voice |
 | trainer drill graded answer (right, slip, miss, reveal) | yes, after chime | the answer in the learned language: the reading, the name, the word, the authored phrase (usually voice; weekday/month/country/nationality recorded) |
 | listening mode (between two sayings) | yes, unattended | the meaning in the known language |

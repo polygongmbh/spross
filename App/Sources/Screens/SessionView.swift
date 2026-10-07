@@ -40,12 +40,8 @@ struct SessionView: View, LanguageNaming {
     @State var input = ""
     @State var copyInput = ""
     @State var autoAdvance: Task<Void, Never>?
-    /// The moments whose saying has fired, `<card id>|<answer?>`. The one-shot autoplay guard
-    /// (SessionView+Audio.swift) — stored here because a SwiftUI extension
-    /// cannot carry state of its own.
-    @State var spokenMoments: Set<String> = []
-    /// Says the answer after the chime, and is what the advance beat waits out.
-    @State var answerVoice = AnswerVoice()
+    /// Says the card's prompt and its answer, and is what the advance beat waits out.
+    @State var reader = Reader()
     /// The card whose report sheet is up, with the answer as it stood when the
     /// menu was tapped — the field itself has moved on by the time it presents.
     @State private var reporting: ReportedCard?
@@ -104,11 +100,9 @@ struct SessionView: View, LanguageNaming {
             // why: a field carried over from the previous card is not
             // re-mounted, so nothing else would re-assert focus for it.
             focusAnswerField()
-            autoplayPrompt()
+            readAloud()
         }
-        .onChange(of: turn?.settled ?? false) { was, now in
-            if !was, now { autoplayAnswer() }
-        }
+        .onChange(of: turn?.settled ?? false) { _, _ in readAloud() }
         .onAppear {
             // why: the card-change hook does not see the FIRST card, so the
             // first turn (and with it the recall clock) begins here.
@@ -118,12 +112,12 @@ struct SessionView: View, LanguageNaming {
             // reveal that carries the keyboard.
             Pronouncer.shared.warmUp()
             Sound.warmUp()
-            autoplayPrompt()
+            readAloud()
         }
         .onDisappear {
             autoAdvance?.cancel()
             focusRetry?.cancel()
-            answerVoice.hush()
+            reader.hush()
         }
         #if DEBUG
         // UI-test hooks: `-uitest-reveal 1` shows the first card revealed,

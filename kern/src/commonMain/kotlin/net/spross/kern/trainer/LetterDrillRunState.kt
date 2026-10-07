@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Saying
 import net.spross.kern.model.Card
 import net.spross.kern.model.Language
 import net.spross.kern.session.CatalogAnswerGrader
@@ -99,6 +100,12 @@ data class LetterDrillRunState(
      * a clean one opens it too, because the LETTERS were the question and the meaning never was.
      */
     val showsAnswer: Boolean get() = !owesAnswer
+
+    /** Nothing through the reader: the question's sound IS the question, and plays past the mute on its own. */
+    override val promptSaying: Saying? get() = null
+
+    /** Nothing: the question already was the sound, and the answer is the glyph or the word it said. */
+    override val answerSaying: Saying? get() = null
 
     /**
      * The Sprossen the store may keep of those climbed off so far.

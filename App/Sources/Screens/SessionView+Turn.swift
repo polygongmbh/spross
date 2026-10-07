@@ -34,7 +34,7 @@ extension SessionView {
             // renders "Weiter" there — same rating, through ConfirmPending.
             // The beat also waits out the answer being said, or the flip would
             // cut the word off.
-            AutoAdvance.schedule(arm.beat, &autoAdvance, holding: { await answerVoice.said() }) {
+            AutoAdvance.schedule(arm.beat, &autoAdvance, holding: { await reader.saidAnswer() }) {
                 dispatch(TurnIntent.AdvanceElapsed.shared)
             }
         case .cancelAdvance:
@@ -110,8 +110,8 @@ extension SessionView {
         autoAdvance?.cancel()
         // why: the word in the air belongs to the card that is leaving — the
         // one place playback is stopped, together with .onDisappear.
-        answerVoice.hush()
-        spokenMoments = []
+        reader.hush()
+        reader.forget()
         input = ""
         copyInput = ""
         beginTurn()

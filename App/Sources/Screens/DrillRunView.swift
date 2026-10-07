@@ -56,7 +56,7 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     @State var autoAdvance: Task<Void, Never>?
     /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
     // why: internal, not private — the +Run extension hands it to the driver.
-    @State var answerVoice = AnswerVoice()
+    @State var reader = Reader()
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, content: Face.Content, reverse: Bool, fast: Bool = false,
@@ -110,7 +110,6 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         })
         .onAppear {
             answerFocused = wantsKeyboard
-            autoplayPrompt()
             #if DEBUG
             uitestStart()
             #endif
@@ -119,7 +118,6 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
             chosen = nil
             guard shown != nil else { return }
             answerFocused = wantsKeyboard
-            autoplayPrompt()
         }
         .onDisappear {
             autoAdvance?.cancel()
@@ -128,30 +126,11 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         }
     }
 
-    // MARK: - Saying the question
-
-    /// Says the prompt as each question arrives, where the prompt is a name in
-    /// the language being learned (`promptVoice`). One fire per question, keyed
-    /// on the same index the card's identity is.
-    ///
-    /// No beat in front of it, unlike the answer's: nothing has just chimed, and
-    /// the question is what the learner is waiting for.
-    ///
-    /// `pronounceAloud` and not the card's own action: that one fires `.tap`,
-    /// which outranks the read-aloud switch because a tap is a request. This is
-    /// the app speaking by itself, so it goes through `.auto` and the switch —
-    /// and VoiceOver — still veto it.
-    private func autoplayPrompt() {
-        let task = current
-        guard reverse, let text = task.promptText else { return }
-        model.pronounceAloud(text, lang: task.promptLanguage)
-    }
-
     // MARK: - Saying the answer
 
     /// Every way out of a task goes through here — the next question, the door.
     func hushAnswer() {
-        answerVoice.hush()
+        reader.hush()
     }
 
     // The draw, the ramp and the verdict ladder are kern's; the driver that

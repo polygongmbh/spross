@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Saying
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.TurnFeedback
@@ -123,7 +124,9 @@ data class WordScrambleRunState(
     /** The Sprossen this run cleared that the store did not hold — what a pause for improving names. */
     internal val newSprossen: Int get() = (clearedSprossen - config.cleared).size
 
-    /** What a verdict says aloud: the word whose letters were handed over. */
-    internal val saidAnswer: DrillEffect.SayAnswer?
-        get() = task?.let { DrillEffect.SayAnswer(it.display, it.language) }
+    /** Nothing: the letters handed over spell the very word that would be heard. */
+    override val promptSaying: Saying? get() = null
+
+    /** The word whose letters were handed over. */
+    override val answerSaying: Saying? get() = task?.let { Saying(it.display, it.language) }
 }

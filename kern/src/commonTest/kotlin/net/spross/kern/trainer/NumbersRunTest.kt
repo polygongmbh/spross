@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Saying
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -157,12 +158,12 @@ class NumbersRunTest {
         val rng = Random(31)
         val untimed = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         val said = reduce(untimed, NumbersIntent.Submit(untimed.currentTask.accepted.first()), rng)
-        assertTrue(DrillEffect.SayAnswer(untimed.currentTask.display, "de") in said.effects)
+        assertEquals(Saying(untimed.currentTask.display, "de"), said.state.reading.answer)
 
         val mode = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Timed))
         val timed = NumbersRun.open(mode, 0, emptyMap(), rng)
         val unsaid = reduce(timed, NumbersIntent.Submit(timed.currentTask.accepted.first()), rng)
-        assertTrue(unsaid.effects.none { it is DrillEffect.SayAnswer })
+        assertNull(unsaid.state.reading.answer)
     }
 
     // MARK: - The ramp inside a run

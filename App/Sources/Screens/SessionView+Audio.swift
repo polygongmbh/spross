@@ -1,62 +1,18 @@
 import SwiftUI
 import SprossKern
 
-/// AUDIO half of SessionView: when a card says its word and its meaning, and
-/// which surface says them. State lives on SessionView; split out purely for
-/// file size.
+/// AUDIO half of SessionView: the tap-to-replay affordances on the card.
+/// State lives on SessionView; split out purely for file size.
 ///
-/// Kern decides WHAT each moment says (`TurnState.promptSaying` and
-/// `answerSaying` — consumed here, never re-derived from the role) and
-/// `Pronouncer` decides whether it may be heard. What is left is the timing,
-/// and it is all here: every fire passes the one-shot guard, and the answer's
-/// saying waits the feedback chime out while the advance beat waits it out in
-/// turn (`answerVoice`).
+/// What a card says aloud and when is the shared `Reader`'s, over kern's
+/// `TurnState.reading`; `Pronouncer` decides whether it may be heard.
 extension SessionView {
 
-    // MARK: - Autoplay
-
-    /// Says what the card may say from frame one: the prompted target form, or
-    /// the meaning a produce card asks by.
-    func autoplayPrompt() {
-        guard let turn = ensureTurn(),
-              let saying = turn.promptSaying(saysMeaning: Pronouncer.shared.saysMeaning),
-              claimAutoplay(turn.card.id, answer: false) else { return }
-        speak(saying.form, lang: saying.lang, trigger: .auto)
-    }
-
-    /// Says the side the prompt held back, once the card has settled — a reveal,
-    /// a hold on its correction, or a clean answer. The advance a clean answer
-    /// arms waits for it (`answerVoice.said()`), so the word is never cut off by
-    /// its own flip.
-    func autoplayAnswer() {
-        guard let turn,
-              let saying = turn.answerSaying(saysMeaning: Pronouncer.shared.saysMeaning),
-              claimAutoplay(turn.card.id, answer: true) else { return }
-        answerVoice.speak(saying.form, lang: saying.lang, via: model,
-                          article: spokenArticle(of: saying.form, lang: saying.lang))
-    }
-
-    /// The one-shot guard, asked by every autoplay path: each card says its
-    /// prompt once and its answer once. The card-change hook fires nil→id for
-    /// the FIRST card on top of `.onAppear`, and `settled` is not monotonic —
-    /// without this the first card speaks twice and typing past the answer
-    /// re-fires it. Cleared per card by `resetCardState()`.
-    private func claimAutoplay(_ cardID: String, answer: Bool) -> Bool {
-        spokenMoments.insert("\(cardID)|\(answer)").inserted
-    }
-
-    // MARK: - One fire
-
-    /// Hands one visible form to the shared pronouncer: Kern resolves what to
-    /// say and whether a bundled recording speaks that very form, the model
-    /// turns its catalog path into a bundle URL.
-    func speak(_ form: String, lang: String, trigger: Pronouncer.Trigger) {
-        guard let pronunciation = model.formPronunciation(form, lang: lang,
-                                                          article: spokenArticle(of: form, lang: lang))
-        else { return }
-        Pronouncer.shared.pronounce(pronunciation,
-                                    recordingURL: model.audioURL(pronunciation.recordingPath),
-                                    trigger: trigger, article: spokenArticle(of: form, lang: lang))
+    /// Says whatever of the card's `Reading` has not been said yet — its
+    /// prompt as it goes up, its answer once it has settled. Every hook that
+    /// may see either calls this; the reader fires each side once.
+    func readAloud() {
+        reader.follow(ensureTurn()?.reading(saysMeaning: Pronouncer.shared.saysMeaning), model: model)
     }
 
     /// Tap-to-replay for a form — nil where the device can neither play nor

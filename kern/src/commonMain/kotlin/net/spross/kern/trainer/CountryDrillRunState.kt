@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Saying
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
@@ -143,10 +144,11 @@ data class CountryDrillRunState(
     val showsAnswer: Boolean
         get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
 
-    /**
-     * What a verdict says aloud: the name, where it is owed in the language being learned.
-     * A reversed run answers in the learner's own language, and says its prompt instead.
-     */
-    internal val saidAnswer: DrillEffect.SayAnswer?
-        get() = if (config.reverse) null else DrillEffect.SayAnswer(task.display, answerLanguage)
+    /** A reversed run's prompt, which is then the form in the language being learned; a forward one says nothing until the reveal. */
+    override val promptSaying: Saying?
+        get() = if (config.reverse) task.promptText?.let { Saying(it, promptLanguage) } else null
+
+    /** The name, where it is owed in the language being learned; a reversed run answers in the learner's own. */
+    override val answerSaying: Saying?
+        get() = if (config.reverse) null else Saying(task.display, answerLanguage)
 }

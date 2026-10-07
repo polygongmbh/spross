@@ -48,7 +48,7 @@ struct NumbersRunView: View, LanguageNaming {
     // why: internal, not private — the +Run extension arms/cancels it.
     @State var autoAdvance: Task<Void, Never>?
     /// Says each graded reading kern hands over, held so leaving a task can drop it.
-    @State var answerVoice = AnswerVoice()
+    @State var reader = Reader()
     /// Second focus attempt for a field that remounts (see focusAnswerField).
     @State var focusRetry: Task<Void, Never>?
     /// When a timed run's clock runs out; nil otherwise and until on screen.

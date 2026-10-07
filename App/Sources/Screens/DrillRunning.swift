@@ -24,8 +24,10 @@ protocol DrillRunning: View {
 
     // MARK: - The machine under this drill
 
-    /// Kern's whole run state, replaced whole by every reduction.
-    associatedtype Run
+    /// Kern's whole run state, replaced whole by every reduction — always one
+    /// of kern's `DrillRunProgress` states, which is where what the question
+    /// says aloud comes from (`Reading`).
+    associatedtype Run: DrillRunProgress
     /// The vocabulary that machine takes its events in.
     associatedtype Move
 
@@ -76,8 +78,9 @@ protocol DrillRunning: View {
 
     // MARK: - What kern asks of the device
 
-    /// What says a graded answer, and what an armed beat waits on while it does.
-    var answerVoice: AnswerVoice { get }
+    /// What says the question and its answer, and what an armed beat waits on
+    /// while the answer sounds.
+    var reader: Reader { get }
 
     /// Where the voice looks an answer up; nil in a preview, which says nothing.
     var voiceModel: AppModel? { get }
@@ -141,13 +144,15 @@ extension DrillRunning {
             : .easeOut(duration: 0.25)
         withAnimation(animation) { run = step.run }
         for effect in step.effects { apply(effect) }
+        // why: after the effects — a verdict's Silence would cut the answer this
+        // starts, and an armed beat only asks the reader once its delay is up.
+        reader.follow(step.run.reading, model: voiceModel)
         // Nothing left to ask: hand the run back, never repeat a question.
         if isFinished(step.run) { closeRun() }
     }
 
     func apply(_ effect: DrillEffect) {
-        DrillEffects.apply(effect, advance: &autoAdvance,
-                           voice: answerVoice, model: voiceModel,
+        DrillEffects.apply(effect, advance: &autoAdvance, reader: reader,
                            onAdvance: { dispatch(advanceMove) },
                            releaseFocus: { releaseFocus() },
                            silence: { silence() })
@@ -221,12 +226,12 @@ extension DrillRunning {
 
     func movedOn() {}
 
-    func silence() { answerVoice.hush() }
+    func silence() { reader.hush() }
 }
 
 /// Where the run state is one of kern's own, the three figures the driver reads
 /// come off `DrillRunProgress` — the drill spells none of them out.
-extension DrillRunning where Run: DrillRunProgress {
+extension DrillRunning {
 
     func questionIndex(_ run: Run) -> Int { Int(run.index) }
 
@@ -240,14 +245,21 @@ extension DrillRunning where Run: DrillRunProgress {
     var shownQuestion: Int? { run.pause == nil ? Int(run.index) : nil }
 
     /// The run's screen, or kern's pause in its place (`DrillPacing`): Done
-    /// closes the run as the ✕ does, keep practicing carries it on.
-    @ViewBuilder
+    /// closes the run as the ✕ does, keep practicing carries it on. Every drill
+    /// screen stands in this, so it is also where each question is read aloud.
     func pausable(_ screen: some View) -> some View {
-        if run.pause != nil {
-            DrillPauseView(run: run, onDone: { closeRun() }, onKeepPracticing: { keepPracticing() })
-                .transition(.opacity)
-        } else {
-            screen
+        Group {
+            if run.pause != nil {
+                DrillPauseView(run: run, onDone: { closeRun() }, onKeepPracticing: { keepPracticing() })
+                    .transition(.opacity)
+            } else {
+                screen
+            }
+        }
+        // why: the first question, and the one a pause hands back, arrive
+        // without a dispatch — this says their prompt as they show.
+        .onChange(of: run.reading, initial: true) { _, reading in
+            reader.follow(reading, model: voiceModel)
         }
     }
 

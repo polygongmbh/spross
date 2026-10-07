@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Saying
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -137,10 +138,10 @@ class SentenceScrambleRunTest {
     @Test
     fun anArrangementSaysTheAuthoredPhrase() {
         val (task, right) = graded(correctly = true)
-        assertTrue(DrillEffect.SayAnswer(task.display, "de") in right.effects)
+        assertEquals(Saying(task.display, "de"), right.state.reading.answer)
         assertTrue(DrillEffect.ArmAdvance(AdvanceBeat.Explicit) in right.effects)
         val (wrongTask, wrong) = graded(correctly = false)
-        assertTrue(DrillEffect.SayAnswer(wrongTask.display, "de") in wrong.effects)
+        assertEquals(Saying(wrongTask.display, "de"), wrong.state.reading.answer)
         assertTrue(wrong.effects.none { it is DrillEffect.ArmAdvance })
     }
 

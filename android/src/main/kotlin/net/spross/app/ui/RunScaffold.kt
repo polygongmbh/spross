@@ -39,11 +39,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
 import net.spross.app.AppModel
-import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.DrillRun
 import net.spross.app.Screen
 import net.spross.app.finishDrill
-import net.spross.app.speakDrillAnswer
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunProgress
@@ -315,12 +313,6 @@ fun DrillRunEffects(run: DrillRun, leave: () -> Unit, model: AppModel) {
     LaunchedEffect(run.ranOut) { if (run.ranOut) leave() }
     // why: D5 — leaving mid-question must silence, whichever way the screen goes.
     DisposableEffect(Unit) { onDispose { model.pronouncer.stop() } }
-    // The answer kern owes the ear, after a beat so the verdict cue is out of the way.
-    val reading = run.owedReading
-    LaunchedEffect(reading?.token) {
-        val owed = reading ?: return@LaunchedEffect
-        delay(CHIME_CLEARANCE_MS)
-        model.speakDrillAnswer(owed.text, owed.language) { run.readingSaid(owed.token) }
-    }
-    BeatEffect(run.beatToken, run.armedBeat, run::advanceElapsed, holding = { run.owedReading != null })
+    val answerSounding = rememberReadAloud(model, run.progress.reading)
+    BeatEffect(run.beatToken, run.armedBeat, run::advanceElapsed, holding = answerSounding)
 }

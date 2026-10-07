@@ -1,6 +1,8 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.Reading
+import net.spross.kern.session.Saying
 import net.spross.kern.session.TurnFeedback
 
 /**
@@ -59,4 +61,30 @@ interface DrillRunProgress {
      * question until the run is closed or goes on. Null while it runs on.
      */
     val pause: DrillPauseReason? get() = core.pacing.pause
+
+    /**
+     * What the question says as it goes up: its prompt, where that is a form in the language
+     * being learned and hearing it gives nothing away. No default — every drill rules on it.
+     */
+    val promptSaying: Saying?
+
+    /**
+     * What a verdict says, right or wrong: the answer in the language being learned.
+     * No default either; null where the drill's answer is in the learner's own language
+     * or its question already was the sound.
+     */
+    val answerSaying: Saying?
+
+    /**
+     * The question's [Reading], as a review card has one: the prompt held back while a pause
+     * stands in for the question, the answer once a verdict is out, a hold saying its correction.
+     */
+    val reading: Reading
+        get() = Reading(
+            key = index.toString(),
+            prompt = promptSaying.takeIf { pause == null },
+            answer = answerSaying.takeUnless { owesAnswer }?.let { said ->
+                (feedback as? TurnFeedback.Almost)?.let { said.copy(form = it.correctForm) } ?: said
+            },
+        )
 }

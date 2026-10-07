@@ -50,23 +50,14 @@ extension DrillRunView {
         task.newWord.map { .init(icon: "text.append", text: "dates.newWord \($0)") }
     }
 
-    /// Hearing the question itself, on a REVERSED run — the one that asks in the
-    /// language being learned and grades in the learner's own. A target-language
-    /// word draws a speaker wherever the device can say it, drill or card alike,
-    /// and this is the drill's half of that.
-    ///
-    /// It is also where the voice was missing: a reversed run's ANSWER is the
-    /// own-language side and deliberately never autoplays, so before this the
-    /// whole task was unhearable. Saying the prompt gives nothing away — the word
-    /// is already written on the card.
-    ///
-    /// Forward runs are mute here for the ordinary reason: their prompt is the
-    /// learner's own language, which nothing outside listening mode says. Their
-    /// target-language form is the ANSWER, and that already speaks on reveal.
+    /// Hearing the question itself, wherever kern says it aloud
+    /// (`DrillRunProgress.promptSaying`): a reversed run, whose prompt is the
+    /// form in the language being learned. The tap here says what the autoplay
+    /// says; a forward run's prompt is the learner's own language and draws none.
     func promptVoice(_ task: DrillSnapshot) -> CountryPromptCard.Voice? {
-        guard reverse, let text = task.promptText else { return nil }
-        return .init(pronounce: model.pronounceAction(for: text, lang: task.promptLanguage),
-                     isPlaying: model.isPronouncing(text, lang: task.promptLanguage))
+        guard let saying = run.promptSaying else { return nil }
+        return .init(pronounce: model.pronounceAction(for: saying.form, lang: saying.lang),
+                     isPlaying: model.isPronouncing(saying.form, lang: saying.lang))
     }
 
     /// The answer, once the learner has stopped owing it — with whatever kern

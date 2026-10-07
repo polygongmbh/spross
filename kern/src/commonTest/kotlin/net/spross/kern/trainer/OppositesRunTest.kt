@@ -5,12 +5,14 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.catalog.OppositePair
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.session.Match
+import net.spross.kern.session.Saying
 
 /** What the opposites drill may ask of a box, how its bands fall, and what grades right. */
 class OppositesRunTest {
@@ -59,6 +61,17 @@ class OppositesRunTest {
         report.prompts.singleOrNull { it.form == form }
 
     private fun answers(form: String) = assertNotNull(prompt(form)).opposites.map { it.text }.toSet()
+
+    /** The word asked about is said as it goes up, and every opposite once the answer is judged. */
+    @Test
+    fun theWordIsSaidAsItGoesUpAndItsOppositesOnceJudged() {
+        val asking = OppositesRun.open(config(), Random(1))
+        val task = assertNotNull(asking.task)
+        assertEquals(Saying(task.prompt, task.language), asking.reading.prompt)
+        assertNull(asking.reading.answer)
+        val revealed = OppositesRun.reduce(asking, OppositesIntent.Reveal, Random(1)).state
+        assertEquals(task.answers.map { it.text }, assertNotNull(revealed.reading.answer).form.split(", "))
+    }
 
     @Test
     fun aPairIsAskedOnlyOnceBothSidesHaveArrived() {

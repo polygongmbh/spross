@@ -28,16 +28,11 @@ interface DrillRun {
     /** The beat became a tap: render the explicit "Weiter", which books the same answer. */
     val awaitsConfirm: Boolean
 
-    /** The graded answer owed to the learner's ear, until it has been said ([DrillVoice]). */
-    val owedReading: OwedReading?
-
     /** Kern's run as it stands — what the pause it may call ([DrillRunProgress.pause]) reads. */
     val progress: DrillRunProgress
 
     /** Keep practicing, from a pause kern called: the same run goes on. */
     fun keepPracticing()
-
-    fun readingSaid(token: Int)
 
     fun advanceElapsed()
 }
@@ -95,10 +90,6 @@ abstract class DrillFlow<S : DrillRunProgress, I>(
     override val beatToken get() = beat.token
 
     override val awaitsConfirm get() = beat.awaitsConfirm
-
-    override val owedReading get() = acts.voice.reading
-
-    override fun readingSaid(token: Int) = acts.voice.said(token)
 
     override val progress: DrillRunProgress get() = state
 
