@@ -3,14 +3,12 @@ package net.spross.app.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.text.AnnotatedString
 import net.spross.app.AppModel
 import net.spross.app.Screen
 import net.spross.app.closeScramble
 import net.spross.app.newOpposites
 import net.spross.app.speakFormOnTap
 import net.spross.kern.trainer.Drill
-import net.spross.kern.trainer.OppositesTask
 
 /**
  * The opposites drill: a word the box holds, and its opposite typed back in the same language
@@ -41,19 +39,7 @@ fun OppositesScreen(model: AppModel) {
         sprosse = chrome.trainerSprosse.format(state.sprosse),
     ) {
         val task = state.task ?: return@DrillRunScaffold
-        val answer = answerLine(task)
-        DrillPromptCard(
-            prompt = AnnotatedString(task.prompt),
-            promptLabel = null,
-            size = PromptSize.Word,
-            answer = answer,
-            language = task.language,
-            gloss = glossLine(task),
-            revealed = state.showsAnswer,
-            pronounce = model.speakFormOnTap(answer, task.language),
-            chrome = chrome,
-            promptPronounce = state.promptSaying?.let { model.speakFormOnTap(it.form, it.lang) },
-        )
+        QuestionCard(state.question ?: return@DrillRunScaffold, chrome, voice = model.cardVoice)
         val placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(task.language))
         TypedAnswerControls(
             input = flow.input,
@@ -72,10 +58,3 @@ fun OppositesScreen(model: AppModel) {
         }
     }
 }
-
-/** Every opposite on one line — two where the prompt merges two meanings. */
-fun answerLine(task: OppositesTask): String = task.answers.joinToString(" · ") { it.text }
-
-/** What the prompt means, then what its opposites mean, in the learner's own language. */
-fun glossLine(task: OppositesTask): String =
-    "${task.gloss} ↔ ${task.answers.joinToString(" · ") { it.gloss }}"

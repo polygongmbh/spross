@@ -3,11 +3,6 @@ package net.spross.app.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Screen
@@ -53,34 +48,13 @@ fun WordScrambleScreen(model: AppModel) {
         sprosse = chrome.trainerSprosse.format(state.sprosse),
     ) {
         val task = state.task ?: return@DrillRunScaffold
-        DrillPromptCard(
-            prompt = mixedWord(task.scrambled),
+        QuestionCard(
+            state.question ?: return@DrillRunScaffold,
+            chrome,
+            voice = model.cardVoice,
             promptLabel = spelledOut(task.scrambled),
-            size = PromptSize.Word,
-            answer = task.display,
-            language = task.language,
-            gloss = task.gloss,
-            revealed = state.showsAnswer,
-            pronounce = model.speakFormOnTap(task.display, task.language),
-            chrome = chrome,
         )
         Controls(model, flow, task, chrome, inputFocus, leave)
-    }
-}
-
-/**
- * The prompt: the letters as kern mixed them, with the ones the Sprosse left standing
- * set bold. Kern says how many hold at the front ([ScrambledWord.fixedLeading]) and this side
- * says what that looks like — weight alone, because the anchor is a recognition aid the ladder
- * takes away, and an aid on its way out is not worth a legend.
- */
-fun mixedWord(word: ScrambledWord): AnnotatedString {
-    val letters = word.display
-    val lead = minOf(word.fixedLeading, letters.length)
-    val anchored = SpanStyle(fontWeight = FontWeight.Bold)
-    return buildAnnotatedString {
-        withStyle(anchored) { append(letters.take(lead)) }
-        append(letters.substring(lead))
     }
 }
 
