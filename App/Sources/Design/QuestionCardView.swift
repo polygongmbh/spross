@@ -64,11 +64,7 @@ struct QuestionCardView: View {
                         CardReveal(note: noteText) { drillAnswer }
                             .transition(.opacity.combined(with: .move(edge: .top)))
                     }
-                    if let other = question.otherWord {
-                        // why: same line as the review session's — both explain what became of the answer.
-                        Text("session.otherWord \(other.word) \(other.meanings.joined(separator: ", "))")
-                            .pauseLine()
-                    }
+                    otherWordLine
                 } else if growsNote {
                     // why: an accepted answer to a question whose meaning never stood on screen
                     // still owes that meaning — alone, since the answer stands in the learner's own text.
@@ -93,6 +89,17 @@ struct QuestionCardView: View {
         .cardSurface()
         .animation(revealAnimation, value: opens)
         .animation(revealAnimation, value: growsNote)
+    }
+
+    /// What a refused answer actually named, beside the opened answer. The line says what the
+    /// learner DID write; the word a tap on it plays is the one they owed, the answer above it.
+    @ViewBuilder
+    var otherWordLine: some View {
+        if opens, let other = question.otherWord {
+            Text("session.otherWord \(other.word) \(other.meanings.joined(separator: ", "))")
+                .pauseLine()
+                .pronounceOnTap(pronounce(question.answer))
+        }
     }
 
     private var growsNote: Bool { !opens && question.growsNote && noteText != nil }

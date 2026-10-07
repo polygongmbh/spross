@@ -134,16 +134,6 @@ extension SessionView {
                 // the retype IS the self-grade: completing it books the
                 // recalled-with-help rating, giving up an honest Again.
                 VStack(spacing: Theme.spacing.md) {
-                    if let otherWord {
-                        // why: same line as the typo correction — both explain
-                        // what became of the answer, so they read alike.
-                        Text("session.otherWord \(otherWord.word) \(otherWord.meanings.joined(separator: ", "))")
-                            .pauseLine()
-                            // why: the line says what the learner DID write —
-                            // the word it plays is the one they owed, the same
-                            // one the reveal above it carries.
-                            .pronounceOnTap(pronounceAction(for: card.target.text))
-                    }
                     if retryApproved, screenReaderOn {
                         // why: the timer never arms under a screen reader, so a
                         // finished retype would have no way on but "give up" —

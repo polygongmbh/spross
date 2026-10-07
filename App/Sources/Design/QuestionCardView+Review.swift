@@ -16,6 +16,7 @@ extension QuestionCardView {
                 closingLines
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }
+            otherWordLine
         }
         .padding(Theme.spacing.lg)
         .frame(maxWidth: .infinity)

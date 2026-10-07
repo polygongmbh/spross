@@ -127,8 +127,6 @@ extension SessionView {
 
     var retryApproved: Bool { turn?.retryApproved ?? false }
 
-    var otherWord: MatchOtherWord? { turn?.otherWord }
-
     /// What a report opened right now carries as the learner's answer — kern's call
     /// (`TurnState.answerForReport`): the word the catalog refused, which a miss has
     /// already primed out of the field, else whatever stands in it.
