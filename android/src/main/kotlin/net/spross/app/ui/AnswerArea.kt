@@ -10,7 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.liveRegion
@@ -19,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerControls.Confirm
@@ -54,6 +57,8 @@ fun AnswerArea(
     correctionVoice: CorrectionVoice? = null,
     /** The line under the slot: the self-grade's question, or the write-out's coaching. */
     caption: String? = null,
+    /** The Next button's line in the language being learned ([targetChrome]); null drops it. */
+    nextSubtitle: String? = null,
     tiles: @Composable (options: List<String>, answer: String) -> Unit = { _, _ -> },
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
@@ -96,7 +101,7 @@ fun AnswerArea(
                 )
             }
         }
-        Buttons(controls, text, chrome, actions, awaitsConfirm)
+        Buttons(controls, text, chrome, actions, awaitsConfirm, nextSubtitle)
     }
 }
 
@@ -132,6 +137,7 @@ private fun Buttons(
     chrome: Chrome,
     actions: AnswerActions,
     awaitsConfirm: Boolean,
+    nextSubtitle: String?,
 ) {
     controls.primary?.let { primary ->
         PrimaryAction(primary, text, chrome, if (primary == Primary.Reveal) actions.reveal else actions.submit)
@@ -149,12 +155,12 @@ private fun Buttons(
         (controls.confirm == Confirm.WhenNoBeat && awaitsConfirm)
     if (showsConfirm || controls.stop) {
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-            if (showsConfirm) NextButton(chrome, actions.confirm)
+            if (showsConfirm) NextButton(chrome, nextSubtitle, actions.confirm)
             if (controls.stop) DrillStopOffer(chrome, actions.stop)
         }
     }
     when (controls.giveUp) {
-        GiveUp.Next -> NextButton(chrome, actions.giveUp)
+        GiveUp.Next -> NextButton(chrome, nextSubtitle, actions.giveUp)
         // why: always reachable — a step that cannot be left is a trap.
         GiveUp.Skip -> TextButton(
             onClick = actions.giveUp,
@@ -183,17 +189,36 @@ private fun PrimaryAction(primary: Primary, text: String, chrome: Chrome, onClic
     }
 }
 
-/** The button that books what the verdict already said, or goes on past a miss. */
+/**
+ * The button that books what the verdict already said, or goes on past a miss — its word
+ * over the same word in the language being learned, for the immersion (iOS `ActionLabel`).
+ */
 @Composable
-private fun NextButton(chrome: Chrome, onClick: () -> Unit) {
+private fun NextButton(chrome: Chrome, subtitle: String?, onClick: () -> Unit) {
     Button(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
         shape = MaterialTheme.shapes.small,
     ) {
-        Text(chrome.commonNext)
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(chrome.commonNext)
+            subtitle?.let {
+                Text(it, style = MaterialTheme.typography.labelSmall, modifier = Modifier.alpha(0.75f))
+            }
+        }
     }
 }
+
+/**
+ * The chrome of the language being learned, for an action's subtitle; null where that
+ * language has none of its own (kern's `LanguageChoices.hasChrome`, no fallback) or the
+ * screen already reads in it.
+ */
+val AppModel.targetChrome: Chrome?
+    get() = profile.target
+        ?.takeIf(LanguageChoices::hasChrome)
+        ?.let(Chrome::forSource)
+        ?.takeIf { it != chrome }
 
 /**
  * The answer area under every drill: the field and the one primary action to kern, the held
@@ -229,6 +254,7 @@ fun DrillAnswerArea(
         focus = focus,
         awaitsConfirm = awaitsConfirm,
         correctionVoice = CorrectionVoice(speakCorrection),
+        nextSubtitle = model.targetChrome?.commonNext,
         tiles = tiles,
     )
 }

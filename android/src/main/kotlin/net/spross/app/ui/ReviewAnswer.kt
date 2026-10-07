@@ -37,6 +37,7 @@ fun ReviewAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         // why: no speaker where the card was asked by ear — the correction is then a
         // SOURCE word, and the target voice would say a German word in Swahili.
         correctionVoice = CorrectionVoice { if (heard) null else model.pronounceAction(it) },
+        nextSubtitle = model.targetChrome?.commonNext,
         caption = if (writing) chrome.sessionCoachWrite.takeIf { model.coachActive } else model.gradeCaption,
         actions = AnswerActions(
             submit = { if (writing) flow.submitCopy() else flow.enter() },
