@@ -30,6 +30,9 @@ fun AppModel.speakOnTap(pronunciation: Pronunciation?): (() -> Unit)? {
     return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP) }
 }
 
+/** Whether [form] is the word sounding now — what a speaker beside it pulses on. */
+fun AppModel.isSounding(form: String): Boolean = pronouncer.sounding?.form == form
+
 /** The same for a plain form — what a drill card's revealed reading offers. */
 fun AppModel.speakFormOnTap(form: String, lang: Language): (() -> Unit)? =
     speakOnTap(formPronunciation(form, lang))

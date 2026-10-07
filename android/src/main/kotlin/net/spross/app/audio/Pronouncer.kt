@@ -71,6 +71,13 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
 
     private var mutedState by mutableStateOf(false)
 
+    /** The word sounding right now, for a speaker that pulses while it does; null in silence. */
+    var sounding: Pronunciation? by mutableStateOf(null)
+        private set
+
+    /** Bumped by every fire and stop, so only the latest word's end clears [sounding]. */
+    private var fires = 0
+
     /**
      * What THIS launch has picked, per language — everything else answers from the
      * preferences. Compose state, because the box picker renders it.
@@ -235,6 +242,12 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             return
         }
         speaker.stop()
+        val fire = ++fires
+        sounding = pronunciation
+        val ended: () -> Unit = {
+            if (fires == fire) sounding = null
+            onFinish?.invoke()
+        }
         val lang = pronunciation.lang
         // "Speech" preference: the voice reads everything, for one consistent sound and
         // the article always said aloud — the recording only answers where the language
@@ -245,8 +258,8 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             player.stop()
             loaded = null
             val spoken = spokenTargetForm(article, pronunciation.form, pronunciation.form)
-            if (!speaker.speak(spoken, lang, fadeVolume(fadeDb), onFinish)) {
-                onFinish?.invoke()
+            if (!speaker.speak(spoken, lang, fadeVolume(fadeDb), ended)) {
+                ended()
             }
             return
         }
@@ -255,7 +268,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         // same word answers without a second decode — the reason it keeps it.
         val (indexDb, capDb) = index(pronunciation)
         if (path != null && path == loaded &&
-            player.replay(playbackVolume(indexDb, capDb, fadeDb), onFinish)
+            player.replay(playbackVolume(indexDb, capDb, fadeDb), ended)
         ) {
             return
         }
@@ -267,19 +280,21 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             // why: the loudness and the dead air are the catalog's MEASUREMENTS of bytes
             // that stay the untouched transcode — playback is the one place they are ever
             // applied, and never the file.
-            player.play(recording, indexDb, capDb, pronunciation.leadMs, fadeDb, pronunciation.gate, onFinish)
+            player.play(recording, indexDb, capDb, pronunciation.leadMs, fadeDb, pronunciation.gate, ended)
             loaded = path
             return
         }
         // The synthesized branch, and the only one the article reaches.
         val spoken = spokenTargetForm(article, pronunciation.form, pronunciation.form)
-        if (!speaker.speak(spoken, pronunciation.lang, fadeVolume(fadeDb), onFinish)) {
+        if (!speaker.speak(spoken, pronunciation.lang, fadeVolume(fadeDb), ended)) {
             // No voice for the language: the word is silent, and it is over at once.
-            onFinish?.invoke()
+            ended()
         }
     }
 
     fun stop() {
+        fires++
+        sounding = null
         player.stop()
         speaker.stop()
         loaded = null

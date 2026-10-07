@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.isSounding
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerControls
@@ -98,6 +99,7 @@ fun AnswerArea(
                     almost.correctForm,
                     chrome,
                     correctionVoice?.pronounce?.invoke(almost.correctForm),
+                    playing = correctionVoice?.isPlaying?.invoke(almost.correctForm) == true,
                 )
             }
         }
@@ -253,7 +255,7 @@ fun DrillAnswerArea(
         },
         focus = focus,
         awaitsConfirm = awaitsConfirm,
-        correctionVoice = CorrectionVoice(speakCorrection),
+        correctionVoice = CorrectionVoice(speakCorrection, model::isSounding),
         nextSubtitle = model.targetChrome?.commonNext,
         tiles = tiles,
     )
@@ -282,7 +284,11 @@ class AnswerActions(
     val cantListen: () -> Unit = {},
 )
 
-/** How the correction box says the form it carries: null from [pronounce] drops the speaker. */
+/**
+ * How the correction box says the form it carries: null from [pronounce] drops the speaker,
+ * and [isPlaying] pulses it while that form is sounding.
+ */
 class CorrectionVoice(
     val pronounce: (String) -> (() -> Unit)?,
+    val isPlaying: (String) -> Boolean = { false },
 )

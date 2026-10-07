@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import net.spross.app.AppModel
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
+import net.spross.app.isSounding
 import net.spross.app.pronounceAction
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.session.controls
@@ -36,7 +37,10 @@ fun ReviewAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
         awaitsConfirm = flow.awaitsConfirm,
         // why: no speaker where the card was asked by ear — the correction is then a
         // SOURCE word, and the target voice would say a German word in Swahili.
-        correctionVoice = CorrectionVoice { if (heard) null else model.pronounceAction(it) },
+        correctionVoice = CorrectionVoice(
+            pronounce = { if (heard) null else model.pronounceAction(it) },
+            isPlaying = { !heard && model.isSounding(it) },
+        ),
         nextSubtitle = model.targetChrome?.commonNext,
         caption = if (writing) chrome.sessionCoachWrite.takeIf { model.coachActive } else model.gradeCaption,
         actions = AnswerActions(
