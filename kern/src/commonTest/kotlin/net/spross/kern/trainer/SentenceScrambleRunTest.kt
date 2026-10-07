@@ -8,6 +8,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import net.spross.kern.model.ClosingNote
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
@@ -235,6 +236,18 @@ class SentenceScrambleRunTest {
         val state = SentenceScrambleRun.open(resumed, Random(7))
         assertEquals(1, state.sprosse)
         assertEquals(2, answered(state).sprosse)
+    }
+
+    /** The meaning always closes the card; the authored order shows only where the arrangement missed it. */
+    @Test
+    fun theCardSetsTheOrderAgainOnlyWhereItWasMissed() {
+        val clean = arrange(open(), correctly = true).question
+        val missed = arrange(open(), correctly = false).question
+        val task = assertNotNull(open().task)
+        assertTrue(assertNotNull(clean).opens)
+        assertNull(clean.answer.text)
+        assertEquals(ClosingNote.Own(task.gloss), clean.closing.note)
+        assertEquals(task.display, assertNotNull(missed).answer.text)
     }
 
     /** An alternative word order from `orders` is accepted but flags [alternativeMatch]. */

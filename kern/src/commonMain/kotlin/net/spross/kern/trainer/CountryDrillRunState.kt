@@ -1,5 +1,9 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.emojiCue
+import net.spross.kern.session.Question
+import net.spross.kern.session.QuestionAsk
 import net.spross.kern.session.Saying
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.model.Language
@@ -151,4 +155,22 @@ data class CountryDrillRunState(
     /** The name, where it is owed in the language being learned; a reversed run answers in the learner's own. */
     override val answerSaying: Saying?
         get() = if (config.reverse) null else Saying(task.display, answerLanguage)
+
+    /** A flag is written in no language, so a question it alone asks carries none; the giveaway flag waits for the reveal. */
+    override val question: Question
+        get() = Question(
+            key = index.toString(),
+            ask = QuestionAsk.Country(task.kind),
+            prompt = Question.Side(
+                task.promptText, promptLanguage.takeIf { task.promptText != null }, Question.Form.Name,
+                saying = promptSaying,
+            ),
+            answer = Question.Side(task.display, answerLanguage, Question.Form.Name, saying = Saying(task.display, answerLanguage)),
+            emoji = task.promptEmoji,
+            emojiCue = emojiCue(givesAnswerAway = task.emojiIsGiveaway),
+            emojiIsQuestion = task.kind == CountryTaskKind.FlagCountry,
+            opens = showsAnswer,
+            closing = Question.Closing(note = task.gloss?.let { ClosingNote.Own(it) }),
+            otherWord = otherWord,
+        )
 }

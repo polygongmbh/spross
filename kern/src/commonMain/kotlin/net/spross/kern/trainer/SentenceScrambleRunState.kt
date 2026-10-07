@@ -1,5 +1,8 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
 import net.spross.kern.session.Saying
 import net.spross.kern.model.Language
 import net.spross.kern.session.TurnFeedback
@@ -118,6 +121,30 @@ data class SentenceScrambleRunState(
 
     /** The phrase as authored, whichever order was accepted. */
     override val answerSaying: Saying? get() = task?.let { Saying(it.display, it.language) }
+
+    /**
+     * The bank is the prompt, so no words stand on it.
+     * The card opens onto the meaning always, and onto the authored order only where the arrangement missed
+     * or took another order — a clean one already stands in that order, and setting it twice reads as a correction.
+     * An alternative order drops the meaning, which belongs to the authored one.
+     */
+    override val question: Question?
+        get() = task?.let { t ->
+            val showsOrder = !answerAccepted || alternativeMatch
+            Question(
+                key = index.toString(),
+                ask = null,
+                prompt = Question.Side(null, t.language, Question.Form.Sentence),
+                answer = Question.Side(
+                    t.display.takeIf { showsOrder }, t.language, Question.Form.Sentence,
+                    saying = answerSaying.takeIf { showsOrder },
+                ),
+                emoji = null,
+                emojiCue = EmojiCue.Upfront,
+                opens = showsAnswer,
+                closing = Question.Closing(note = t.gloss.takeUnless { alternativeMatch }?.let { ClosingNote.Own(it) }),
+            )
+        }
 
     /** Accepted via an alternative word order rather than the canonical one — gloss not shown. */
     val alternativeMatch: Boolean

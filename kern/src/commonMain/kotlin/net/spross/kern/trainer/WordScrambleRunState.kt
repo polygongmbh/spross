@@ -1,5 +1,8 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
 import net.spross.kern.session.Saying
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
@@ -129,4 +132,22 @@ data class WordScrambleRunState(
 
     /** The word whose letters were handed over. */
     override val answerSaying: Saying? get() = task?.let { Saying(it.display, it.language) }
+
+    /** The mixed letters, the opening ones standing as written, opening onto the word and its meaning. */
+    override val question: Question?
+        get() = task?.let { t ->
+            Question(
+                key = index.toString(),
+                ask = null,
+                prompt = Question.Side(
+                    t.scrambled.display, t.language, Question.Form.Word,
+                    fixedLeading = t.scrambled.fixedLeading, saying = promptSaying,
+                ),
+                answer = Question.Side(t.display, t.language, Question.Form.Word, saying = answerSaying),
+                emoji = null,
+                emojiCue = EmojiCue.Upfront,
+                opens = showsAnswer,
+                closing = Question.Closing(note = ClosingNote.Own(t.gloss)),
+            )
+        }
 }

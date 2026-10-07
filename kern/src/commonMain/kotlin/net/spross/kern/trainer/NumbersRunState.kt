@@ -1,5 +1,9 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
+import net.spross.kern.session.QuestionHint
 import net.spross.kern.session.Saying
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
@@ -159,6 +163,41 @@ data class NumbersRunState(
             null
         } else {
             Saying(currentTask.display, currentTask.language)
+        }
+
+    /**
+     * A prompt made of words is set like one, wrapped, where a numeral gets the one big line —
+     * asked of the prompt, so a composed sentence and a reversed reading read as what they are.
+     * A reversed task owes digits. One first-sight hint at a time, the form's winning over the place's.
+     */
+    override val question: Question
+        get() {
+            val wordy = currentTask.promptDisplay.any { it.isLetter() }
+            val language = currentTask.language
+            return Question(
+                key = index.toString(),
+                ask = null,
+                prompt = Question.Side(
+                    currentTask.promptDisplay, language,
+                    if (wordy) Question.Form.Sentence else Question.Form.Numeral,
+                    saying = promptSaying,
+                ),
+                answer = Question.Side(
+                    currentTask.display, language,
+                    when {
+                        currentReversed -> Question.Form.Numeral
+                        wordy -> Question.Form.Sentence
+                        else -> Question.Form.Word
+                    },
+                    saying = Saying(currentTask.display, language),
+                ),
+                emoji = null,
+                emojiCue = EmojiCue.Upfront,
+                hint = formHint?.let { QuestionHint.NewForm(it) } ?: placeValueHint?.let { QuestionHint.NewPlace(it) },
+                opens = showsAnswer,
+                closing = Question.Closing(note = currentTask.gloss?.let { ClosingNote.Own(it) }),
+                otherWord = otherWord,
+            )
         }
 
     /** The numbers page link shows on numbers tasks only, and never in a timed run. */

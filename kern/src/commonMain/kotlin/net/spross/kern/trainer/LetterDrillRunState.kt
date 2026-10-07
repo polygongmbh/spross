@@ -1,5 +1,9 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
+import net.spross.kern.session.QuestionAsk
 import net.spross.kern.session.Saying
 import net.spross.kern.model.Card
 import net.spross.kern.model.Language
@@ -106,6 +110,39 @@ data class LetterDrillRunState(
 
     /** Nothing: the question already was the sound, and the answer is the glyph or the word it said. */
     override val answerSaying: Saying? get() = null
+
+    /**
+     * The question is a sound, over the word with its grapheme blanked where it asks one;
+     * its replay says [LetterDrillTask.promptText], through the recording the drill's own player resolves.
+     * A gap question opens onto the whole word it blanked, which is its gloss, so it carries no note.
+     * Only a dictated word carries a speaker: every other answer is a bare glyph, which nothing may be asked to say.
+     */
+    override val question: Question?
+        get() = task?.let { t ->
+            val gap = t.gapText != null
+            val dictation = t.format == LetterFormat.Dictation
+            val word = if (gap) t.gloss ?: t.display else t.display
+            Question(
+                key = index.toString(),
+                ask = when {
+                    dictation -> QuestionAsk.LetterDictation
+                    gap -> QuestionAsk.LetterSpell
+                    else -> QuestionAsk.LetterHear
+                },
+                prompt = Question.Side(
+                    t.gapText, t.language, if (gap) Question.Form.Gap else Question.Form.Sound,
+                    saying = Saying(t.promptText, t.language),
+                ),
+                answer = Question.Side(
+                    word, t.language, if (gap || dictation) Question.Form.Word else Question.Form.Glyph,
+                    saying = Saying(word, t.language).takeIf { dictation },
+                ),
+                emoji = null,
+                emojiCue = EmojiCue.Upfront,
+                opens = showsAnswer,
+                closing = Question.Closing(note = t.gloss?.takeUnless { gap }?.let { ClosingNote.Own(it) }),
+            )
+        }
 
     /**
      * The Sprossen the store may keep of those climbed off so far.

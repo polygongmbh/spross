@@ -1,5 +1,8 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
 import net.spross.kern.session.Saying
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
@@ -53,6 +56,9 @@ class OppositesRunConfig(
     val cleared: Set<Int> = emptySet(),
 )
 
+/** Between the opposites of one prompt, and between their meanings. */
+private const val OPPOSITES_JOIN = " · "
+
 /**
  * One opposites run, whole and immutable. The learner's TEXT is not in here — the platform
  * owns the field — and no FSRS anywhere: the box is READ for the words it holds, never written.
@@ -86,4 +92,24 @@ data class OppositesRunState(
     /** Every opposite, so a merge is heard as well as read. */
     override val answerSaying: Saying?
         get() = task?.let { t -> Saying(t.answers.joinToString(", ") { it.text }, t.language) }
+
+    /** Every opposite on the answer, and the closing line pairing what the prompt means with what each of them does. */
+    override val question: Question?
+        get() = task?.let { t ->
+            Question(
+                key = index.toString(),
+                ask = null,
+                prompt = Question.Side(t.prompt, t.language, Question.Form.Word, saying = promptSaying),
+                answer = Question.Side(
+                    t.answers.joinToString(OPPOSITES_JOIN) { it.text }, t.language, Question.Form.Word,
+                    saying = answerSaying,
+                ),
+                emoji = null,
+                emojiCue = EmojiCue.Upfront,
+                opens = showsAnswer,
+                closing = Question.Closing(
+                    note = ClosingNote.Own("${t.gloss} ↔ ${t.answers.joinToString(OPPOSITES_JOIN) { it.gloss }}"),
+                ),
+            )
+        }
 }

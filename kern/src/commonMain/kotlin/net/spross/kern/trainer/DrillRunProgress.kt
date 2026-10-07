@@ -1,6 +1,7 @@
 package net.spross.kern.trainer
 
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.Question
 import net.spross.kern.session.Reading
 import net.spross.kern.session.Saying
 import net.spross.kern.session.TurnFeedback
@@ -74,6 +75,12 @@ interface DrillRunProgress {
      * or its question already was the sound.
      */
     val answerSaying: Saying?
+
+    /**
+     * What the card shows for the question on screen ([Question]), as a review card has one;
+     * null once nothing is left to ask. No default — every drill rules on its card, as on its sayings.
+     */
+    val question: Question?
 
     /**
      * The question's [Reading], as a review card has one: the prompt held back while a pause

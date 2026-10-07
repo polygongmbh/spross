@@ -267,5 +267,12 @@ and text reaches a machine only inside an intent — never as state.
   where any cue precise enough to disambiguate would hand over the answer.
   A card asked by ear asks with a sound until the learner cannot listen or the card opens,
   and then shows the word it played.
+- **A drill's card is `DrillRunProgress.question`**, which every run state declares with no default,
+  as it declares its sayings, so a new drill cannot ship without ruling on its card.
+  The drills' first-sight words are `QuestionHint`s (a numbers place or form, a calendar pattern word),
+  the atlas and letter captions `QuestionAsk`s;
+  a flag that alone asks the question is `emojiIsQuestion`, a flag that would answer it waits for the reveal.
+  A sentence scramble's bank is its prompt, so its prompt side holds no words,
+  and the authored order closes its card only where the arrangement missed it or took another order.
 - **A speaker is a `Side.saying`**, the tap; `Reading` stays the autoplay,
-  and every target form a card reads aloud also stands on a side with the speaker that says it.
+  and every target form a review card reads aloud also stands on a side with the speaker that says it.
