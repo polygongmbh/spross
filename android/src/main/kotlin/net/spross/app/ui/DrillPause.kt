@@ -36,7 +36,7 @@ fun DrillPause(
             tally = countLine(chrome.trainerResultTasksDoneOne, chrome.trainerResultTasksDone, run.done),
             milestone = milestone(run, chrome),
             hint = chrome.trainerPauseStrugglingHint.takeIf { reason == DrillPauseReason.Struggling },
-        ) { SummaryGlyph(glyph(reason)) }
+        ) { SummaryGlyph(reason.emoji) }
         if (reason.celebrated) Confetti()
     }
 }
@@ -44,10 +44,8 @@ fun DrillPause(
 /** What the stretch reached, only where it reached something: the climb from the Sprosse the run opened on, and a record beaten. */
 private fun milestone(run: DrillRunProgress, chrome: Chrome): String? {
     val pacing = run.pacing
-    val opened = pacing.openedOn
-    val reached = pacing.reached
     return listOfNotNull(
-        chrome.trainerPauseSprossen.format(opened, reached).takeIf { opened != null && reached != null && reached > opened },
+        pacing.climbed?.let { chrome.trainerPauseSprossen.format(it.from, it.to) },
         chrome.trainerResultNewRecord.takeIf { pacing.newRecord },
     ).joinToString(" · ").ifEmpty { null }
 }
@@ -56,10 +54,4 @@ private fun title(reason: DrillPauseReason, chrome: Chrome): String = when (reas
     DrillPauseReason.Improved -> chrome.trainerPauseTitleImproved
     DrillPauseReason.Struggling -> chrome.trainerPauseTitleStruggling
     DrillPauseReason.Count -> chrome.trainerPauseTitleCount
-}
-
-private fun glyph(reason: DrillPauseReason): String = when (reason) {
-    DrillPauseReason.Improved -> "🎉"
-    DrillPauseReason.Struggling -> "☕️"
-    DrillPauseReason.Count -> "💪"
 }

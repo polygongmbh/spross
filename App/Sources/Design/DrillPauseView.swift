@@ -21,7 +21,7 @@ struct DrillPauseView: View {
                         hint: run.pause == DrillPauseReason.struggling
                             ? Text("trainer.pause.struggling.hint") : nil,
                         onDone: onDone,
-                        onPractice: onKeepPracticing) { _ in SummaryGlyph(glyph: glyph) }
+                        onPractice: onKeepPracticing) { _ in SummaryGlyph(glyph: (run.pause ?? DrillPauseReason.count).emoji) }
         // why: a pause is a round's end the run may go on from, celebrated as the
         // round summary is — confetti and cheer are one thing (`docs/design.md`).
         .overlay {
@@ -34,8 +34,8 @@ struct DrillPauseView: View {
     /// from the Sprosse the run opened on, and a record beaten.
     private var milestone: Text? {
         var parts: [Text] = []
-        if let opened = pacing.openedOn?.intValue, let reached = pacing.reached?.intValue, reached > opened {
-            parts.append(Text("trainer.pause.sprossen \(opened.formatted()) \(reached.formatted())"))
+        if let climb = pacing.climbed {
+            parts.append(Text("trainer.pause.sprossen \(Int(climb.from).formatted()) \(Int(climb.to).formatted())"))
         }
         if pacing.newRecord { parts.append(Text("trainer.result.newRecord")) }
         return parts.joined()
@@ -45,11 +45,5 @@ struct DrillPauseView: View {
         if run.pause == DrillPauseReason.improved { return "trainer.pause.title.improved" }
         if run.pause == DrillPauseReason.struggling { return "trainer.pause.title.struggling" }
         return "trainer.pause.title.count"
-    }
-
-    private var glyph: String {
-        if run.pause == DrillPauseReason.improved { return "🎉" }
-        if run.pause == DrillPauseReason.struggling { return "☕️" }
-        return "💪"
     }
 }

@@ -16,7 +16,18 @@ enum class DrillPauseReason {
 
     /** Whether the pause earns the celebration: every one but the pause that suggests a stop. */
     val celebrated: Boolean get() = this != Struggling
+
+    /** The glyph the pause stands under. */
+    val emoji: String
+        get() = when (this) {
+            Improved -> "🎉"
+            Struggling -> "☕️"
+            Count -> "💪"
+        }
 }
+
+/** A climb a pause reports: from the Sprosse the run opened on to the higher one it reached. */
+data class SprosseClimb(val from: Int, val to: Int)
 
 /**
  * Where an endless run stands against its next natural stop.
@@ -59,6 +70,14 @@ data class DrillPacing(
     val pause: DrillPauseReason? = null,
 ) {
     internal val gained: Int get() = newSprossen + if (newRecord) 1 else 0
+
+    /** What the pause reports of the ladder: the climb, only where the run stood higher than it opened. */
+    val climbed: SprosseClimb?
+        get() {
+            val from = openedOn ?: return null
+            val to = reached ?: return null
+            return SprosseClimb(from, to).takeIf { to > from }
+        }
 
     /**
      * The pacing after an answer [core] has just booked: the figures brought up to date, and the
