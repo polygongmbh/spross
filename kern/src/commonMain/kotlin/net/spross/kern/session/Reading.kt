@@ -62,3 +62,16 @@ fun TurnState.answerSaying(saysMeaning: Boolean): Saying? {
 
 private fun TurnState.targetSaying(form: String): Saying =
     Saying(form, card.target.lang, shownArticle(card.target.grammar["gender"], form, card.target.text))
+
+/**
+ * How long an answer's saying waits after the verdict lands:
+ * the correct/wrong/reveal chime is never ducked or shortened for the word,
+ * so the word steps around it instead of talking over its own first syllable.
+ */
+const val READING_CHIME_CLEARANCE_MS: Long = 300
+
+/**
+ * The longest a beat waits on an answer still being said —
+ * a ceiling for an end that never arrives, far past any word or phrase a question says.
+ */
+const val READING_CEILING_MS: Long = 8_000

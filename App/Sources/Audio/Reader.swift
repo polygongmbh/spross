@@ -11,9 +11,8 @@ import SprossKern
 /// over whatever screen replaced the question.
 @MainActor
 final class Reader {
-    /// The longest a beat waits on a reading — a ceiling for an end that never
-    /// arrives, far past any word or phrase a question says.
-    private static let longestReading: Duration = .seconds(8)
+    /// The longest a beat waits on a reading (`READING_CEILING_MS`).
+    private static let longestReading: Duration = .milliseconds(READING_CEILING_MS)
 
     private var key: String?
     /// The sides already said under `key`: false the prompt, true the answer.
@@ -48,7 +47,7 @@ final class Reader {
         owed = (answer.form, answer.lang, model)
         pending = Task { @MainActor in
             // why: the correct/wrong chime lands first, or the word starts under it.
-            try? await Task.sleep(for: .milliseconds(300))
+            try? await Task.sleep(for: .milliseconds(READING_CHIME_CLEARANCE_MS))
             guard !Task.isCancelled else { return }
             pending = nil
             model.pronounceAloud(answer.form, lang: answer.lang, article: answer.article)

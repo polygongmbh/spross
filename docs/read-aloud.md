@@ -35,13 +35,13 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   and one reader per app fires it (iOS `Reader`, Android `rememberReadAloud`).
   Every drill state must rule on both sayings (`DrillRunProgress`), so no screen decides what is heard.
 - **Autoplay fires only where the card holds the learner.**
-  A clean correct answer says the word too, and its flip waits for the saying to end, up to a ceiling;
+  A clean correct answer says the word too, and its flip waits for the saying to end, up to a ceiling (`READING_CEILING_MS`);
   a word cut off teaches nothing.
   A drill says every graded answer, right or wrong, and its beat waits for the reading to end;
   a timed run leaves its clean answers unsaid, since the clock is running,
   a reversed numbers task says its reading as the prompt and nothing after,
   and the letter drill says nothing more, since its question already was the sound.
-  Produce fires wait for the feedback chime;
+  Produce fires wait for the feedback chime (`READING_CHIME_CLEARANCE_MS`);
   chimes are never ducked.
   One prompt fire and one answer fire per card, and one per drill task.
 

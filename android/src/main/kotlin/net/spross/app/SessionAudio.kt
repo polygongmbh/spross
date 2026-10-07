@@ -17,13 +17,6 @@ import net.spross.kern.session.Saying
  */
 
 /**
- * How long an answer's saying waits after its transition. The correct/wrong/reveal chime
- * is never ducked or shortened for the word, so the word steps around it instead of
- * talking over its own first syllable.
- */
-const val CHIME_CLEARANCE_MS = 300L
-
-/**
  * Says one saying as autoplay, with the article kern put on it. [onFinish] fires once the
  * saying is over, or at once where nothing sounds.
  */

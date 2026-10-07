@@ -9,6 +9,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import net.spross.app.AppModel
 import net.spross.app.QuestionDriver
 import net.spross.kern.session.AdvanceBeat
+import net.spross.kern.session.READING_CEILING_MS
 
 /**
  * What every question screen runs the same way, review and drill alike: the question's
@@ -38,10 +39,7 @@ fun BeatEffect(
     LaunchedEffect(beatToken) {
         val beat = armedBeat ?: return@LaunchedEffect
         delay(beat.delayMs)
-        withTimeoutOrNull(LONGEST_READING_MS) { snapshotFlow(holding).first { !it } }
+        withTimeoutOrNull(READING_CEILING_MS) { snapshotFlow(holding).first { !it } }
         onElapsed()
     }
 }
-
-/** Far past any word or phrase a drill says. */
-private const val LONGEST_READING_MS = 8_000L

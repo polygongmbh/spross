@@ -8,8 +8,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
-import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.say
+import net.spross.kern.session.READING_CHIME_CLEARANCE_MS
 import net.spross.kern.session.Reading
 
 /**
@@ -35,7 +35,7 @@ fun rememberReadAloud(model: AppModel, reading: Reading?): () -> Boolean {
     LaunchedEffect(key, answer != null) {
         if (answer == null || !said.add(true)) return@LaunchedEffect
         answerSounding = true
-        delay(CHIME_CLEARANCE_MS)
+        delay(READING_CHIME_CLEARANCE_MS)
         model.say(answer) { answerSounding = false }
     }
     return { answerSounding }
