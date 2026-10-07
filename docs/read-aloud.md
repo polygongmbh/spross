@@ -107,7 +107,7 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   Android's ringer mode is not read (silencing notifications leaves media playing).
 - **Audio setting: three-way row -- No audio, Recordings, Speech.**
   "Recordings" (default): bundled recording where available, voice for the rest.
-  "Speech": voice preferred, recording only where no voice exists.
+  "Speech": voice preferred, recording only where no voice exists (`soundBranch`).
   The top-bar button is the mute only; it never changes the source.
   Choosing a voice lifts autoplay past a silenced phone.
 - **Source remembered per learning language; the mute is remembered nowhere.**
@@ -118,5 +118,5 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   but play under whatever category it left standing.
   Chimes and words share one volume (one audio session).
   Rendered full scale (`scripts/sounds.py`), each played at its kern `Chime` level.
-- VoiceOver: no autoplay talking over it; headword labeled with its language;
+- VoiceOver: no autoplay talking over it (`PronounceTrigger.held`); headword labeled with its language;
   replay is an action on the word.

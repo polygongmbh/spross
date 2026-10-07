@@ -2,9 +2,10 @@ import Foundation
 import SprossKern
 import UIKit
 
-/// The one way anything in the app says a target word out loud: review cards
-/// and (later) the letter drill both go through here, so the mute flag, the
-/// VoiceOver gate and "recordings first" are decided in a single place.
+/// The one way anything in the app says a target word out loud: review cards,
+/// drills and the letter drill all go through here, so kern's mute and
+/// VoiceOver gate (`PronounceTrigger.held`) and its branch (`soundBranch`) are
+/// asked in a single place.
 ///
 /// Kern decides WHAT to say (`Pronunciation`: the form, the utterance, and the
 /// catalog-relative path of a matching recording); this decides WHETHER and
@@ -15,23 +16,8 @@ final class Pronouncer {
 
     static let shared = Pronouncer()
 
-    /// Where a fire came from. Autoplay may be silenced; a tap is a request.
-    enum Trigger {
-        case auto
-        case tap
-        /// An autoplay that carries the QUESTION itself (the letter drill):
-        /// opening a screen whose only content is a sound IS the request, so
-        /// neither mute reaches it. Only VoiceOver still holds it back.
-        case essential
-        /// A listening run, whose whole content is sound. Same request as
-        /// `.essential` and one step further: it does not touch the session
-        /// either, because the run took the audio OVER for its whole length
-        /// (`AudioSession.useListening`) and a per-word category would hand it
-        /// back mid-turn. VoiceOver does not hold it back — there is no screen
-        /// here to be talked over, and a playlist that fell silent under a
-        /// screen reader would be a mode its users could not have at all.
-        case listening
-    }
+    /// Where a fire came from — kern's, with the rule on what holds each back.
+    typealias Trigger = PronounceTrigger
 
     /// One device-wide setting (never per target language, never in the box):
     /// governs AUTOPLAY only, and every launch starts at `.followsPhone`, so
@@ -137,38 +123,28 @@ final class Pronouncer {
                    article: String? = nil, fadeDb: Double = 0,
                    recordingOnly: Bool = false,
                    onFinish: (@MainActor () -> Void)? = nil) {
+        if trigger.held(muted: muted, readsScreenAloud: UIAccessibility.isVoiceOverRunning) { return }
         switch trigger {
         case .auto:
-            if muted || UIAccessibility.isVoiceOverRunning { return }
             AudioSession.useStanding()
         case .listening:
+            // why: the run took the audio OVER for its whole length
+            // (`AudioSession.useListening`), and a per-word category would hand
+            // it back mid-turn.
             break
-        case .essential:
-            // why: the sound IS the question — either mute would leave a card
-            // with nothing on it, and the replay tap breaks through the phone's
-            // switch anyway, so deferring to it buys a tap per question and no
-            // silence at all. VoiceOver alone still holds: it must not be
-            // talked over, and the replay glyph takes its focus per task.
-            if UIAccessibility.isVoiceOverRunning { return }
-            AudioSession.useExplicit()
-        case .tap:
-            // why: a tap outranks BOTH mutes — the app's switch already let it
-            // through, and the category is what lets it past the phone's.
+        case .essential, .tap:
+            // why: the category is what lets a request past the phone's switch.
             AudioSession.useExplicit()
         }
         // why: one word at a time — a new fire replaces whatever is sounding.
         stop()
         let key = Self.key(for: pronunciation)
-        // "Speech" preference: the voice reads everything, for one consistent
-        // sound and the article always said aloud — the recording only answers
-        // where the language has no voice at all.
-        if !recordingOnly, voiceSource(for: pronunciation.lang) == .tts,
-           canSpeak(language: pronunciation.lang) {
-            say(key: key, text: spoken(pronunciation, article: article),
-                language: pronunciation.lang, fadeDb: fadeDb, onFinish: onFinish)
-            return
-        }
-        if let recordingURL {
+        let lang = pronunciation.lang
+        let prefersSpeech = voiceSource(for: lang) == .tts
+        var branch = soundBranch(prefersSpeech: prefersSpeech, recordingOnly: recordingOnly,
+                                 hasVoice: canSpeak(language: lang),
+                                 hasRecording: recordingURL != nil)
+        if branch == .recording, let recordingURL {
             // why: the loudness and the dead air are the catalog's MEASUREMENTS
             // of bytes that stay the untouched transcode — playback is the one
             // place they are ever applied, and never the file.
@@ -182,15 +158,14 @@ final class Pronouncer {
             }
             if started { return }
             playingKey = nil
+            branch = soundBranch(prefersSpeech: prefersSpeech, recordingOnly: recordingOnly,
+                                 hasVoice: canSpeak(language: lang), hasRecording: false)
+            // why: a recording that failed to open still ends, so a listening run moves on.
+            if branch != .speech { onFinish?() }
         }
-        // Silent no-op when no voice exists for the language —
-        // but a recording that failed to open still ends, so a listening run moves on.
-        guard canSpeak(language: pronunciation.lang) else {
-            if recordingURL != nil { onFinish?() }
-            return
-        }
+        guard branch == .speech else { return }
         say(key: key, text: spoken(pronunciation, article: article),
-            language: pronunciation.lang, fadeDb: fadeDb, onFinish: onFinish)
+            language: lang, fadeDb: fadeDb, onFinish: onFinish)
     }
 
     /// The synthesized branch — the only one the article reaches.

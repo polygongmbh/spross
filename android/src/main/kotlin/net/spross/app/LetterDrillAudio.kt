@@ -1,14 +1,15 @@
 package net.spross.app
 
 import net.spross.app.audio.Pronouncer
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.letterRecording
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.catalog.utterance
 import net.spross.kern.model.Language
 import net.spross.kern.trainer.LetterDrillTask
-import net.spross.kern.trainer.LetterPromptKind
 import net.spross.kern.trainer.LetterFormat
+import net.spross.kern.trainer.LetterPromptKind
 
 /**
  * The drill's audio glue — the twin of [SessionAudio]'s review-loop half, and of
@@ -36,11 +37,11 @@ fun AppModel.letterPrompt(task: LetterDrillTask): Pronunciation? = when (task.pr
 
 /**
  * Says the question on its own: the sound IS the question, so the read-aloud switch never
- * reaches it and only TalkBack holds it back ([Pronouncer.Trigger.ESSENTIAL]).
+ * reaches it and only TalkBack holds it back ([PronounceTrigger.Essential]).
  */
 fun AppModel.playLetterPrompt(task: LetterDrillTask) {
     val pronunciation = letterPrompt(task) ?: return
-    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.ESSENTIAL)
+    pronouncer.pronounce(pronunciation, PronounceTrigger.Essential)
 }
 
 /**
@@ -51,7 +52,7 @@ fun AppModel.playLetterPrompt(task: LetterDrillTask) {
 fun AppModel.letterReplay(task: LetterDrillTask): (() -> Unit)? {
     val pronunciation = letterPrompt(task) ?: return null
     if (!pronouncer.canPronounce(pronunciation)) return null
-    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP) }
+    return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap) }
 }
 
 /**

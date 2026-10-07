@@ -8,13 +8,13 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
 import net.spross.app.Screen
-import net.spross.app.audio.Pronouncer
 import net.spross.app.finishDrill
 import net.spross.app.letterReplay
 import net.spross.app.letterSpeaker
 import net.spross.app.newLetterDrill
 import net.spross.app.playLetterPrompt
 import net.spross.app.stampRun
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.LetterDrillRunState
 import net.spross.kern.trainer.LetterDrillTask
@@ -26,7 +26,7 @@ import net.spross.kern.trainer.LetterDrillTask
  *
  * The one screen in the app that shows nothing: everything the learner is given is the
  * sound, so entering it is the request to hear one. Every autoplay goes out as
- * [Pronouncer.Trigger.ESSENTIAL]: no mute reaches it, and only the TalkBack gate applies,
+ * [PronounceTrigger.Essential]: no mute reaches it, and only the TalkBack gate applies,
  * without this screen testing for it.
  *
  * What stands under the card lives in LetterDrillFormats.kt; the run itself in `LetterDrillFlow`.

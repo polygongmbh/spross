@@ -1,6 +1,7 @@
 package net.spross.app
 
 import net.spross.app.audio.Pronouncer
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.shownArticle
@@ -32,7 +33,7 @@ fun AppModel.say(saying: Saying, onFinish: (() -> Unit)? = null) {
         onFinish?.invoke()
         return
     }
-    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.AUTO, saying.article, onFinish = onFinish)
+    pronouncer.pronounce(pronunciation, PronounceTrigger.Auto, saying.article, onFinish = onFinish)
 }
 
 /**
@@ -42,13 +43,13 @@ fun AppModel.say(saying: Saying, onFinish: (() -> Unit)? = null) {
 fun AppModel.sayOnTap(saying: Saying): (() -> Unit)? {
     val pronunciation = catalog?.pronunciation(saying.lang, saying.form, saying.article) ?: return null
     if (!pronouncer.canPronounce(pronunciation)) return null
-    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP, saying.article) }
+    return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, saying.article) }
 }
 
 /** Says [form] of the card in play on a tap, which is a request and passes both mutes. */
 fun AppModel.pronounceTarget(form: String) {
     val pronunciation = pronunciationOf(form) ?: return
-    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP, spokenArticle(form))
+    pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, spokenArticle(form))
 }
 
 /**
@@ -61,7 +62,7 @@ fun AppModel.pronounceAction(form: String): (() -> Unit)? {
     if (!pronouncer.canPronounce(pronunciation)) return null
     // why: a tap speaks even while reading aloud is switched off — mute has to stay
     // usable as the accessibility affordance, and the About row's hint says so.
-    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP, spokenArticle(form)) }
+    return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, spokenArticle(form)) }
 }
 
 /**

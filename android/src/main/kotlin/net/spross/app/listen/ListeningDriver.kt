@@ -7,9 +7,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import net.spross.app.AppModel
-import net.spross.app.audio.Pronouncer
 import net.spross.app.closeListening
 import net.spross.app.ui.languageName
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.listen.LISTENING_WATCHDOG_MS
 import net.spross.kern.listen.ListeningCandidate
@@ -23,8 +23,8 @@ import net.spross.kern.listen.ListeningSeam
 import net.spross.kern.listen.ListeningTurn
 import net.spross.kern.listen.listeningGainDb
 import net.spross.kern.listen.listeningSeam
-import net.spross.kern.listen.sayings
 import net.spross.kern.listen.listeningTimerStepMs
+import net.spross.kern.listen.sayings
 
 /**
  * The platform half of a listening run: kern's reducer decides WHAT is said, this arms WHEN.
@@ -282,7 +282,7 @@ class ListeningDriver(
         }
         model.pronouncer.pronounce(
             pronunciation,
-            Pronouncer.Trigger.LISTENING,
+            PronounceTrigger.Listening,
             saying.article,
             fadeDb(),
             onFinish = finish,

@@ -11,34 +11,24 @@ import androidx.compose.runtime.setValue
 import java.io.IOException
 import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.AudioPreference
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.Pronunciation
+import net.spross.kern.catalog.SoundBranch
 import net.spross.kern.catalog.preference
+import net.spross.kern.catalog.soundBranch
 import net.spross.kern.catalog.spokenTargetForm
 import net.spross.kern.model.Language
 
 /**
  * The one way anything in the app says a target word out loud: review cards, drills and
- * the letter drill all knock here, so the mute flag, the TalkBack gate and
- * "recordings first" are decided in a single place.
+ * the letter drill all knock here, so kern's mute and TalkBack gate ([PronounceTrigger.held])
+ * and its branch ([soundBranch]) are asked in a single place.
  *
  * Kern decides WHAT to say ([Pronunciation]: the form, the utterance, and the
  * catalog-relative path of a recording that speaks that very form); this decides
  * WHETHER and WITH WHAT. The iOS `Pronouncer` is the same four steps in the same order.
  */
 class Pronouncer(context: Context, private val prefs: SharedPreferences) {
-
-    /**
-     * Where a fire came from. Autoplay may be silenced; the others are requests.
-     *
-     * [ESSENTIAL] is an autoplay that carries the QUESTION itself (the letter drill):
-     * opening a screen whose only content is a sound is the request, so the mute never
-     * reaches it — only TalkBack, which must not be talked over, still holds it back.
-     *
-     * [LISTENING] is a run whose only content is sound, which is itself the request to hear
-     * one — so it passes both gates exactly as a [TAP] does. It is named apart all the same:
-     * a tap is one word answered on the spot, and this is an hour of them playing unattended.
-     */
-    enum class Trigger { AUTO, ESSENTIAL, TAP, LISTENING }
 
     /**
      * Which voice answers a target word: the bundled recording when one matched, or the
@@ -204,20 +194,15 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      */
     fun pronounce(
         pronunciation: Pronunciation,
-        trigger: Trigger,
+        trigger: PronounceTrigger,
         article: String? = null,
         fadeDb: Double = 0.0,
         recordingOnly: Boolean = false,
         onFinish: (() -> Unit)? = null,
     ) {
         // why: TalkBack reads the card itself, target word included — autoplay on top
-        // of it is two voices over one word. A tap is never gated: it is a request.
-        val held = when (trigger) {
-            Trigger.AUTO -> muted || readsScreenAloud
-            Trigger.ESSENTIAL -> readsScreenAloud
-            Trigger.TAP, Trigger.LISTENING -> false
-        }
-        if (held) {
+        // of it is two voices over one word.
+        if (trigger.held(muted, readsScreenAloud)) {
             onFinish?.invoke()
             return
         }
@@ -229,44 +214,35 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             onFinish?.invoke()
         }
         val lang = pronunciation.lang
-        // "Speech" preference: the voice reads everything, for one consistent sound and
-        // the article always said aloud — the recording only answers where the language
-        // has no voice at all.
-        if (!recordingOnly && voiceSource(lang) == VoiceSource.TTS && canSpeak(lang)) {
-            // why: a recording from a previous fire may still be sounding — the
-            // synthesized branch takes the word over completely.
+        val path = pronunciation.recordingPath
+        val prefersSpeech = voiceSource(lang) == VoiceSource.TTS
+        var branch = soundBranch(prefersSpeech, recordingOnly, canSpeak(lang), path != null)
+        if (branch == SoundBranch.Recording && path != null) {
+            // why: the player still holds the last clip prepared, so a second ask for the
+            // same word answers without a second decode — the reason it keeps it.
+            val (indexDb, capDb) = index(pronunciation)
+            if (path == loaded && player.replay(playbackVolume(indexDb, capDb, fadeDb), ended)) return
+            // why: one word at a time — a new fire replaces whatever is sounding.
             player.stop()
             loaded = null
-            val spoken = spokenTargetForm(article, pronunciation.form, pronunciation.form)
-            if (!speaker.speak(spoken, lang, fadeVolume(fadeDb), ended)) {
-                ended()
+            val recording = openRecording(path)
+            if (recording != null) {
+                // why: the loudness and the dead air are the catalog's MEASUREMENTS of bytes
+                // that stay the untouched transcode — playback is the one place they are ever
+                // applied, and never the file.
+                player.play(recording, indexDb, capDb, pronunciation.leadMs, fadeDb, pronunciation.gate, ended)
+                loaded = path
+                return
             }
-            return
+            branch = soundBranch(prefersSpeech, recordingOnly, canSpeak(lang), hasRecording = false)
         }
-        val path = pronunciation.recordingPath
-        // why: the player still holds the last clip prepared, so a second ask for the
-        // same word answers without a second decode — the reason it keeps it.
-        val (indexDb, capDb) = index(pronunciation)
-        if (path != null && path == loaded &&
-            player.replay(playbackVolume(indexDb, capDb, fadeDb), ended)
-        ) {
-            return
-        }
-        // why: one word at a time — a new fire replaces whatever is sounding.
+        // why: a recording from a previous fire may still be sounding — the synthesized
+        // branch takes the word over completely.
         player.stop()
         loaded = null
-        val recording = path?.let(::openRecording)
-        if (recording != null) {
-            // why: the loudness and the dead air are the catalog's MEASUREMENTS of bytes
-            // that stay the untouched transcode — playback is the one place they are ever
-            // applied, and never the file.
-            player.play(recording, indexDb, capDb, pronunciation.leadMs, fadeDb, pronunciation.gate, ended)
-            loaded = path
-            return
-        }
         // The synthesized branch, and the only one the article reaches.
         val spoken = spokenTargetForm(article, pronunciation.form, pronunciation.form)
-        if (!speaker.speak(spoken, pronunciation.lang, fadeVolume(fadeDb), ended)) {
+        if (branch != SoundBranch.Speech || !speaker.speak(spoken, lang, fadeVolume(fadeDb), ended)) {
             // No voice for the language: the word is silent, and it is over at once.
             ended()
         }

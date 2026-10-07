@@ -1,6 +1,6 @@
 package net.spross.app
 
-import net.spross.app.audio.Pronouncer
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.Language
@@ -27,7 +27,7 @@ fun AppModel.formPronunciation(form: String, lang: Language): Pronunciation? =
  */
 fun AppModel.speakOnTap(pronunciation: Pronunciation?): (() -> Unit)? {
     if (pronunciation == null || !pronouncer.canPronounce(pronunciation)) return null
-    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP) }
+    return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap) }
 }
 
 /** Whether [form] is the word sounding now — what a speaker beside it pulses on. */
