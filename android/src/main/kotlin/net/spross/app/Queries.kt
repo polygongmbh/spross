@@ -46,7 +46,7 @@ fun AppModel.areaTitle(area: String): String = areaNaming().title(area)
 fun AppModel.areaEmoji(area: String): String = areaNaming().emoji(area)
 
 private fun AppModel.areaNaming(): AreaNaming =
-    AreaNaming(catalog, box?.joinStamp?.source, chrome.boxOwnShelf, chrome.boxOwnWordExplainer)
+    AreaNaming(catalog, box?.joinStamp?.source, chrome.boxOwnShelf, null)
 
 /**
  * One tree per area the box holds, in the box browser's order ([BoxBrowser.areaNames]) —
