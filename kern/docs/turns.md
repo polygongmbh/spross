@@ -111,6 +111,7 @@ and text reaches a machine only inside an intent — never as state.
   and a PAUSED run is left parked — a bedtime ends a run nobody is attending, not one somebody just touched.
   The floor holds the SUM of a recording's level and the ramp, because that is what a listener hears.
   The remaining milliseconds are the APP's to track and hand in; the run state holds no deadline.
+  The chip reads whole minutes rounded up and wakes only when one turns (`listeningTimerMinutes`, `listeningTimerWakeMs`).
 
 ## Trainer & drill runs   (package `net.spross.kern.trainer`)
 

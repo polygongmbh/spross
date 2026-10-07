@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
 import net.spross.kern.design.PressKind
+import net.spross.kern.listen.listeningTimerMinutes
+import net.spross.kern.listen.listeningTimerWakeMs
 
 /**
  * The bedtime, as one chip: every tap adds kern's five minutes, and a long press turns it
@@ -48,8 +50,8 @@ fun SleepTimerChip(model: AppModel) {
     val chrome = model.chrome
     val run = model.listening
     var minutesLeft by remember { mutableStateOf<Int?>(null) }
-    // why: the deadline is a moment, not a countdown — this wakes when the minute the chip
-    // shows turns, and on the bedtime itself, and not at all while none is set.
+    // why: the deadline is a moment, not a countdown — this wakes when kern's minute turns,
+    // and on the bedtime itself, and not at all while none is set.
     LaunchedEffect(run.deadline) {
         val deadline = run.deadline
         if (deadline == null) {
@@ -58,9 +60,9 @@ fun SleepTimerChip(model: AppModel) {
         }
         while (true) {
             val left = deadline - System.currentTimeMillis()
-            minutesLeft = sleepTimerMinutes(left)
+            minutesLeft = listeningTimerMinutes(left)
             if (left <= 0) return@LaunchedEffect
-            delay(msUntilTheMinuteTurns(left))
+            delay(listeningTimerWakeMs(left))
         }
     }
     val left = minutesLeft?.let { chrome.listenMinutesLeft.format(it) }
@@ -99,20 +101,3 @@ fun SleepTimerChip(model: AppModel) {
     }
 }
 
-/**
- * Whole minutes left, rounded UP: a chip reading zero while the run is still talking says the
- * timer is broken. Minutes are never capped — every tap adds another five, and the long press
- * is the only way they come back down.
- */
-internal fun sleepTimerMinutes(ms: Long): Int =
-    ((ms.coerceAtLeast(0) + 59_999) / 60_000).toInt()
-
-/**
- * How long the minute the chip is showing still stands: what is left, less the whole minutes
- * that will still be left after it turns. On the last minute that is the whole remainder, so
- * the final wake IS the bedtime.
- */
-internal fun msUntilTheMinuteTurns(ms: Long): Long {
-    val whole = (sleepTimerMinutes(ms) - 1).coerceAtLeast(0)
-    return (ms - whole * 60_000L).coerceAtLeast(50L)
-}

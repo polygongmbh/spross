@@ -146,6 +146,18 @@ class ListeningTimerTests {
         }
     }
 
+    /**
+     * The chip reads whole minutes rounded UP, so it only reaches zero once the bedtime has
+     * arrived, and it is woken by the minute turning rather than by the second.
+     */
+    @Test
+    fun theChipCountsWholeMinutesAndWakesWhenOneTurns() {
+        assertEquals(2, listeningTimerMinutes(90_000L))
+        assertEquals(0, listeningTimerMinutes(-5_000L))
+        assertEquals(20_000L, listeningTimerWakeMs(15 * 60_000L + 20_000L))
+        assertTrue(listeningTimerWakeMs(-1_000L) > 0, "a bedtime already reached must not spin")
+    }
+
     /** The index that plays at [level] once [Playback.OUTPUT_DB] is under it. */
     private fun playingAt(level: Double) = level - Playback.OUTPUT_DB
 }
