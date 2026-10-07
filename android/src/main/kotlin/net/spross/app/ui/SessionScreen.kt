@@ -5,26 +5,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.SessionCoach
 import net.spross.app.SessionUi
-import net.spross.app.TurnFlow
 import net.spross.app.areaTitle
 import net.spross.app.newTurn
 import net.spross.kern.model.PresentationRole
@@ -80,55 +72,21 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
-        if (ui.role == PresentationRole.Recognize) {
-            RecognizeTurn(model, ui, flow)
-        } else {
-            ProduceCard(model, ui, flow)
+        ReportableCard(model, card, flow.answerOut, typed = { flow.answerForReport }) {
+            QuestionCard(
+                flow.state.question,
+                model.chrome,
+                surface = QuestionSurface.Review,
+                voice = model.cardVoice,
+                areaTitle = model::areaTitle,
+            )
         }
+        // Recognition is never typed: a reveal, then an honest self-grade — so no schedule is
+        // ever graded against a language it was not learned with (contract §3).
+        if (ui.role == PresentationRole.Recognize && model.coachActive) {
+            SessionCoach.recognizeLine(model.chrome, ui.role, flow.answerRevealed)?.let { PauseLine(it) }
+        }
+        ReviewAnswer(model, ui, flow)
         Spacer(Modifier.height(Theme.spacing.sm))
-    }
-}
-
-/**
- * Comprehension check: reveal, then an honest self-grade — never typed, so no schedule is
- * ever graded against a language it was not learned with. The very first exposure takes
- * this path too: the word is prompted before it is taught, so a learner who already knows
- * it gets the moment to recall it (contract §3). The one field it can carry is the
- * write-out a first-exposure miss opens.
- */
-@Composable
-private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
-    val card = ui.card ?: return
-    val chrome = model.chrome
-    val revealed = flow.answerRevealed
-
-    ReportableCard(model, card, flow.answerOut, typed = { flow.answerForReport }) {
-        QuestionCard(
-            flow.state.question,
-            chrome,
-            surface = QuestionSurface.Review,
-            voice = model.cardVoice,
-            areaTitle = model::areaTitle,
-        )
-    }
-
-    if (model.coachActive) {
-        SessionCoach.recognizeLine(chrome, ui.role, revealed)?.let { PauseLine(it) }
-    }
-    if (!revealed) {
-        Button(
-            onClick = { flow.reveal() },
-            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
-            shape = MaterialTheme.shapes.small,
-        ) {
-            Text(chrome.commonReveal)
-        }
-        return
-    }
-    val step = flow.copyStep
-    if (step == null) {
-        VerdictButtons(chrome, flow, caption = model.gradeCaption)
-    } else {
-        WriteOutStep(model, flow, step, model.targetName(ui))
     }
 }

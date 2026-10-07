@@ -3,6 +3,7 @@ package net.spross.app
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.Card
@@ -14,12 +15,14 @@ import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.SelfGrading
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.session.TurnMachine
+import net.spross.kern.session.controls
 
 /**
  * What the APP does with kern's turn — which intent each affordance sends, what the screen
@@ -139,14 +142,14 @@ class TurnWiringTest {
     fun theOneProduceButtonRevealsWhileTheFieldIsEmptyAndChecksOnceItIsNot() {
         val (blank, blankPlatform) = turn(language)
         blank.primary()
-        assertTrue(blank.selfGrading)
+        assertEquals(AnswerControls.Slot.SelfGrade, blank.state.controls.slot)
         assertEquals(listOf(ToneKind.Reveal), blankPlatform.tones)
 
         val (typed, _) = turn(language)
         typed.type("neno")
         typed.primary()
         assertEquals(TurnFeedback.Revealed, typed.feedback)
-        assertFalse(typed.selfGrading)
+        assertNotEquals(AnswerControls.Slot.SelfGrade, typed.state.controls.slot)
     }
 
     /** A miss primes the FIELD with the words already right — the retype starts there. */

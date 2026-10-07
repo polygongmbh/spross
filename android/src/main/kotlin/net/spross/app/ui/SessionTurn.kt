@@ -14,21 +14,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.TextAutoSize
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.liveRegion
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,18 +33,12 @@ import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
 import net.spross.app.audio.CueSounds
 import net.spross.kern.design.PressKind
-import net.spross.kern.session.CopyStep
 import net.spross.kern.session.SelfGrading
 import net.spross.kern.session.ToneKind
-import net.spross.kern.session.TurnFeedback
 
 /**
- * The parts of a turn both roles wear: the three verdicts a reveal hands over to, and the
- * write-it-out step a miss can open. The field itself is [AnswerField], shared with the
- * drills.
- *
- * Every rule behind them is kern's `TurnMachine`, reached through [TurnFlow] — these
- * render its state and hand taps back.
+ * The parts of a turn both roles wear: the three verdicts a reveal hands over to, and how a
+ * verdict's cue sounds and feels. Everything else under the card is [AnswerArea].
  */
 
 /**
@@ -70,7 +59,7 @@ import net.spross.kern.session.TurnFeedback
 @Composable
 fun VerdictButtons(
     chrome: Chrome,
-    flow: TurnFlow,
+    onGrade: (SelfGrading.Verdict) -> Unit,
     modifier: Modifier = Modifier,
     caption: String = chrome.sessionRatingQuestion,
 ) {
@@ -81,13 +70,13 @@ fun VerdictButtons(
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
             VerdictTile(SprossIcons.Check, chrome.sessionRatingGood, palette.success, Modifier.weight(1f)) {
-                flow.selfGrade(SelfGrading.Verdict.Knew)
+                onGrade(SelfGrading.Verdict.Knew)
             }
             VerdictTile(SprossIcons.Dot, chrome.sessionRatingHard, palette.amber, Modifier.weight(1f)) {
-                flow.selfGrade(SelfGrading.Verdict.Tough)
+                onGrade(SelfGrading.Verdict.Tough)
             }
             VerdictTile(SprossIcons.Close, chrome.sessionRatingUnknown, palette.wrong, Modifier.weight(1f)) {
-                flow.selfGrade(SelfGrading.Verdict.Unknown)
+                onGrade(SelfGrading.Verdict.Unknown)
             }
         }
         PauseLine(caption)
@@ -149,49 +138,6 @@ private fun VerdictTile(
 
 /** The iOS tile's own floor — a verdict is a target for a resting thumb, not a link. */
 private val VERDICT_TILE = 60.dp
-
-/**
- * The write-it-out step: a word you MISSED is typed once with the answer in view.
- *
- * It is encoding, never a grade — the rating the turn already chose is applied unchanged
- * when the word stands written (kern `TurnWriteOut`). The word finishing IS the action,
- * so nothing here asks for a confirming tap; only the way out is a button, because a step
- * you cannot leave is a trap.
- */
-@Composable
-fun WriteOutStep(model: AppModel, flow: TurnFlow, step: CopyStep, targetName: String) {
-    val chrome = model.chrome
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-        AnswerField(
-            value = flow.copyInput,
-            onValueChange = flow::writeCopy,
-            placeholder = chrome.sessionCopyPlaceholder.format(targetName),
-            feedback = if (step.written) TurnFeedback.Correct else TurnFeedback.Neutral,
-            chrome = chrome,
-            onDone = { flow.submitCopy() },
-        )
-        // why: the field opened by itself after a miss — the first round says what it is
-        // FOR, or copying a word off the card reads as busywork.
-        if (model.coachActive) PauseLine(chrome.sessionCoachWrite)
-        if (step.missed) {
-            Text(
-                chrome.sessionCopyMismatch,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center,
-                // why: TalkBack has no cue to tell it the copy came back a different
-                // word — the line announces itself where the learner's focus already is.
-                modifier = Modifier.fillMaxWidth().semantics { liveRegion = LiveRegionMode.Polite },
-            )
-        }
-        TextButton(
-            onClick = { flow.skipCopy() },
-            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
-        ) {
-            Text(chrome.sessionSkip, style = MaterialTheme.typography.bodyMedium)
-        }
-    }
-}
 
 /**
  * What kern's verdict cue becomes on this platform: the chime [CueSounds] holds, and — on

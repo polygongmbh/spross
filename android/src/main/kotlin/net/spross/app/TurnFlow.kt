@@ -70,10 +70,6 @@ class TurnFlow(
 
     val feedback: TurnFeedback get() = state.feedback
 
-    /** The blank-reveal path: nothing was produced and the three verdicts own the turn. */
-    val selfGrading: Boolean
-        get() = state.revealed && feedback == TurnFeedback.Neutral && state.copyStep == null
-
     val retryApproved: Boolean get() = state.retryApproved
 
     val copyStep: CopyStep? get() = state.copyStep
@@ -88,18 +84,6 @@ class TurnFlow(
      * learner has something to say about the word.
      */
     val answerOut: Boolean get() = state.answerOut
-
-    val almost: TurnFeedback.Almost? get() = feedback as? TurnFeedback.Almost
-
-    val otherWord get() = state.otherWord
-
-    /**
-     * The FIELD's own state, which parts ways with the card's on a finished retype: the
-     * card holds its reveal open while the field turns right, and the two deliberately
-     * say different things at that moment.
-     */
-    val fieldFeedback: TurnFeedback
-        get() = if (retryApproved) TurnFeedback.Correct else feedback
 
     /** The word was heard and could not be: it goes on screen for the rest of this turn. */
     val promptInText: Boolean get() = state.promptInText

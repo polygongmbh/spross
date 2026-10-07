@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
-import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.TurnFeedback
 
@@ -127,12 +126,6 @@ fun AnswerVerdict(
         }
         TurnFeedback.Revealed -> if (missed != null) missed() else ConfirmButton(chrome, onConfirm)
     }
-}
-
-/** Which of the ambers a hold was, in the learner's own words. */
-fun almostCaption(reason: AlmostReason, chrome: Chrome): String = when (reason) {
-    AlmostReason.Typo -> chrome.sessionAlmostTypo
-    AlmostReason.Merged -> chrome.sessionAlmostMerged
 }
 
 /** The primary "Weiter": where a beat would have moved on under a screen reader, or a miss has nothing left to type. */
