@@ -73,10 +73,11 @@ final class ListeningBedtime {
         return (total - TimeInterval(remainingMs) / 1000, total)
     }
 
-    /// Whether the bedtime has arrived — a deadline in the past, and nothing
-    /// more; a run with none set never arrives anywhere. What to DO about it is
-    /// the run's.
-    var expired: Bool { remainingMs.map { $0 <= 0 } ?? false }
+    /// Whether the bedtime has arrived (`listeningBedtimeArrived`). What to DO
+    /// about it is the run's, at its seam.
+    var expired: Bool {
+        listeningBedtimeArrived(msRemaining: remainingMs.map { KotlinLong(value: $0) })
+    }
 
     func stop() {
         ticker?.cancel()

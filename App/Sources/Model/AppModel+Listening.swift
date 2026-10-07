@@ -192,84 +192,50 @@ final class ListeningDriver {
 
     // MARK: - One turn, three beats
 
-    /// What one beat says and how long the run waits after it. The forms and
-    /// every gap are kern's; all that is decided here is which language each
-    /// side is spoken in.
-    private struct Beat {
-        let form: String
-        let lang: String
-        /// Target-side only: the meaning is the learner's own language, whose
-        /// grammar is not what is being taught (`docs/read-aloud.md`).
-        let article: String?
-        let gapMs: Int64
-        /// The meaning beat, which is where the card gives its answer.
-        var reveals = false
-    }
-
-    private func beats(of turn: ListeningTurn) -> [Beat] {
-        let target = model.targetLanguage ?? ""
-        let source = model.sourceLanguage
-        return [
-            Beat(form: turn.targetForm, lang: target,
-                 article: turn.spokenArticle, gapMs: turn.recallGapMs),
-            Beat(form: turn.sourceForm, lang: source, article: nil,
-                 gapMs: turn.echoGapMs, reveals: true),
-            // why: the second saying of the word is where it and its meaning
-            // meet — the beat the whole mode is for.
-            Beat(form: turn.targetForm, lang: target,
-                 article: turn.spokenArticle, gapMs: turn.turnGapMs),
-        ]
-    }
-
+    /// Kern's sayings (`ListeningTurn.sayings`) — the forms, the order and every
+    /// gap; all that is decided here is which language each side is spoken in.
     private func play(_ turn: ListeningTurn) {
         generation += 1
         revealed = false
-        walk(beats(of: turn), from: 0, generation: generation)
+        walk(turn.sayings, from: 0, generation: generation)
     }
 
-    /// Says one beat, waits kern's gap on its completion, and walks on; past the
-    /// last beat the turn is over and the reducer draws the next one — unless
-    /// the bedtime arrived while it was being said, and this seam is where the
-    /// run ends.
-    private func walk(_ beats: [Beat], from index: Int, generation gen: Int) {
+    /// Says one saying, waits kern's gap on its completion, and walks on; past
+    /// the last one the turn is over and kern's seam decides between the next
+    /// turn and the bedtime ending the run (`listeningSeam`).
+    private func walk(_ sayings: [ListeningSaying], from index: Int, generation gen: Int) {
         guard gen == generation else { return }
-        guard index < beats.count else {
-            // why: the SEAM, never the deadline itself — a word cut off mid-air
-            // is exactly the change loud enough to wake someone that the ramp
-            // spends the whole bedtime avoiding. The turn is the mode's unit and
-            // it is already down at the floor by now, so the few seconds it runs
-            // over are the quietest of the run.
-            if bedtime.expired {
-                expire()
-                return
+        guard index < sayings.count else {
+            switch listeningSeam(bedtimeMsRemaining: bedtime.remainingMs.map { KotlinLong(value: $0) }) {
+            case .end: expire()
+            default: dispatch(ListeningIntent.Advance.shared)
             }
-
-            dispatch(ListeningIntent.Advance.shared)
             return
         }
-        let beat = beats[index]
-        if beat.reveals { revealed = true }
-        say(beat, generation: gen) { [weak self] in
-            self?.wait(beat.gapMs, generation: gen) {
-                self?.walk(beats, from: index + 1, generation: gen)
+        let saying = sayings[index]
+        if saying.revealed { revealed = true }
+        say(saying, generation: gen) { [weak self] in
+            self?.wait(saying.gapMs, generation: gen) {
+                self?.walk(sayings, from: index + 1, generation: gen)
             }
         }
     }
 
-    private func say(_ beat: Beat, generation gen: Int, then next: @escaping () -> Void) {
+    private func say(_ saying: ListeningSaying, generation gen: Int, then next: @escaping () -> Void) {
         pending?.cancel()
         let once = Once { [weak self] in
             guard let self, gen == self.generation else { return }
             next()
         }
-        guard let pronunciation = model.formPronunciation(beat.form, lang: beat.lang,
-                                                          article: beat.article) else {
+        let lang = saying.inTarget ? (model.targetLanguage ?? "") : model.sourceLanguage
+        guard let pronunciation = model.formPronunciation(saying.form, lang: lang,
+                                                          article: saying.article) else {
             once.fire()
             return
         }
         Pronouncer.shared.pronounce(pronunciation,
                                     recordingURL: model.audioURL(pronunciation.recordingPath),
-                                    trigger: .listening, article: beat.article,
+                                    trigger: .listening, article: saying.article,
                                     fadeDb: bedtime.fadeDb, onFinish: { once.fire() })
         // why: a completion that never arrives would leave a pocketed phone
         // silent with no way to say so — the run walks on rather than stalls.

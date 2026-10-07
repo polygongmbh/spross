@@ -34,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.closeListening
-import net.spross.app.listen.ListeningBeat
 import net.spross.kern.listen.ListeningTurn
 import net.spross.kern.listen.question
 
@@ -88,7 +87,7 @@ fun ListeningScreen(model: AppModel) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(Modifier.weight(1f))
-            run.turn?.let { ListeningCard(model, it, run.beat) }
+            run.turn?.let { ListeningCard(model, it, run.revealed) }
             Spacer(Modifier.weight(1f))
 
             Row(
@@ -155,10 +154,9 @@ private fun AskForTheShade() {
  * through the echo, where the two meet.
  */
 @Composable
-private fun ListeningCard(model: AppModel, turn: ListeningTurn, beat: ListeningBeat?) {
-    val meaningOut = beat == ListeningBeat.Meaning || beat == ListeningBeat.Echo
+private fun ListeningCard(model: AppModel, turn: ListeningTurn, revealed: Boolean) {
     QuestionCard(
-        turn.question(model.box?.cards?.get(turn.cardId), opens = meaningOut),
+        turn.question(model.box?.cards?.get(turn.cardId), opens = revealed),
         model.chrome,
         surface = QuestionSurface.Listening,
     )

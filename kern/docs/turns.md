@@ -101,13 +101,15 @@ and text reaches a machine only inside an intent — never as state.
   It walks the playlist it was handed by position and laps at its end;
   repeats are the deal's business, never the run's.
   `ListeningEffect` says `Play`/`Stop` because `Repeat` leaves the state identical and must still make the sound fire.
-- **Every beat is kern's** (`ListeningTurn`): the recall gap is long for a word answered before and short for a new one,
+- **Every beat is kern's** (`ListeningTurn.sayings`): target, meaning, target again, the article on the target sayings only,
+  and the meaning shown from its own saying on.
+  The recall gap is long for a word answered before and short for a new one,
   and the echo and the gap between turns reuse those two.
   Each beat is armed off the previous word ACTUALLY ENDING plus its gap,
   and a word that never reports a finish is walked past after `LISTENING_WATCHDOG_MS`.
 - **A bedtime fades the whole run rather than cutting it** (`listeningTimerStepMs`, `listeningGainDb`, `fadedGainDb`):
   a hard stop is loud enough to wake the listener.
-  The deadline ends the run at the seam between turns,
+  The deadline ends the run at the seam between turns (`listeningSeam`),
   and a PAUSED run is left parked — a bedtime ends a run nobody is attending, not one somebody just touched.
   The floor holds the SUM of a recording's level and the ramp, because that is what a listener hears.
   The remaining milliseconds are the APP's to track and hand in; the run state holds no deadline.
