@@ -142,7 +142,8 @@ private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
                     modifier = Modifier.weight(1f, fill = false),
                 )
             }
-            if (article != null) {
+            // The plural belongs to the cited form, article or not — a rotated synonym may have another.
+            if (promptForm == card.target.text) {
                 CardDisplay.pluralLine(card.target, chrome)?.let { CardLine(it) }
             }
             if (revealed) {
