@@ -33,6 +33,10 @@ import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.StreakHealth
+import net.spross.kern.design.ActivityBar
+import net.spross.kern.design.ActivityBars
+import net.spross.kern.design.ActivityScale
+import net.spross.kern.design.StripRun
 
 /** The gutter between two columns; a joined run rules straight across it. */
 private val GUTTER = 6.dp
@@ -48,7 +52,7 @@ private val RUN_THICKNESS = 2.5.dp
  * `AppModel.activityWindow`), oldest day first and today last, and [streakDays] is
  * `BoxStatistics.streak`: the strip NEVER counts a run of its own, or the flame in the
  * header and the underline below could disagree. [health] grades that flame the same way.
- * The arithmetic is [ActivityBars]; this file only draws it.
+ * The arithmetic is kern's [ActivityBars]; this file only draws it.
  *
  * Bars, underline and weekday letters are three rows sharing one weighting, so a column's
  * three parts line up without any of them being told where it is.
@@ -126,16 +130,16 @@ fun ActivityStrip(
 @Composable
 private fun BarRow(bars: List<ActivityBar>, palette: ThemeColors) {
     Row(
-        modifier = Modifier.fillMaxWidth().height(ActivityBars.MAX_HEIGHT_DP.dp),
+        modifier = Modifier.fillMaxWidth().height(ActivityScale.strip.maxHeight.dp),
         horizontalArrangement = Arrangement.spacedBy(GUTTER),
         verticalAlignment = Alignment.Bottom,
     ) {
         val shape = RoundedCornerShape(3.dp) // card-parity: the bar's own corner, not a card radius
         bars.forEach { bar ->
-            val column = Modifier.weight(1f).height(bar.heightDp.dp)
+            val column = Modifier.weight(1f).height(bar.height.dp)
             val hue = if (bar.isToday) palette.accent else palette.success
             when {
-                bar.reviews > 0 -> Box(column.background(hue.copy(alpha = bar.fillOpacity), shape))
+                bar.worked -> Box(column.background(hue.copy(alpha = bar.fillOpacity.toFloat()), shape))
                 // why: an empty today reads as "nothing yet", not as a gap — an outline
                 // keeps the column present without claiming a review.
                 bar.isEmptyToday -> Box(column.border(1.5.dp, palette.accent.copy(alpha = 0.5f), shape))
@@ -166,7 +170,7 @@ private fun RunRule(bars: List<ActivityBar>, palette: ThemeColors) {
         var index = 0
         while (index < bars.size) {
             val run = bars[index].run
-            if (run == StripRun.None) {
+            if (run == StripRun.Bare) {
                 index += 1
                 continue
             }

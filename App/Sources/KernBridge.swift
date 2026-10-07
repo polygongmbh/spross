@@ -230,16 +230,6 @@ extension Theme.Gender {
     }
 }
 
-extension ActivityColumn {
-    /// One day of the box's activity window. Earned and bridged days alike are
-    /// covered by the run the flame counts — the strip never walks it itself.
-    init(_ day: ActivityDay) {
-        self.init(day: Date(epochMillis: day.dayStartEpochMillis),
-                  reviews: Int(day.reviews),
-                  inStreak: day.role != .outside)
-    }
-}
-
 // The product calibration and `withProductCalibration()` are Kern's
 // (`model/Config.kt`, `store/Calibration.kt`) — a Swift copy of the table would
 // drift from the engine that answers to it.

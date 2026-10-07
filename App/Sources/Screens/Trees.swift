@@ -34,7 +34,7 @@ struct Trees: View {
             // Both pieces name themselves —
             // the strip in its own header, the tree picture in the caption under it —
             // so a section title above says the word a third time.
-            ActivityStripView(days: model.activity.map(ActivityColumn.init),
+            ActivityStripView(days: model.activity,
                               streakDays: model.stats?.streakDays ?? 0,
                               health: model.stats?.streakHealth ?? .noRun)
             picture
