@@ -58,12 +58,16 @@ fun AnswerArea(
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
         when (val slot = controls.slot) {
-            is Slot.Typed -> key(Slot.Typed::class) {
-                Field(controls, text, chrome, actions, placeholder, focus, numberPad = slot.numberPad)
+            // why: a locked, empty field is not an input — it has nothing of the learner's to
+            // show and cannot be typed into, so its placeholder would be an invitation it cannot honor.
+            is Slot.Typed -> if (slot.editable || !AnswerNormalizer.isBlankAnswer(text)) {
+                key(Slot.Typed::class) {
+                    Field(controls, text, chrome, actions, placeholder, focus, numberPad = slot.numberPad, locked = !slot.editable)
+                }
             }
             is Slot.WriteOut -> {
                 key(Slot.WriteOut::class) {
-                    Field(controls, text, chrome, actions, placeholder, focus, numberPad = false)
+                    Field(controls, text, chrome, actions, placeholder, focus, numberPad = false, locked = false)
                 }
                 caption?.let { PauseLine(it) }
                 if (slot.missed) {
@@ -106,6 +110,7 @@ private fun Field(
     placeholder: String,
     focus: FocusRequester?,
     numberPad: Boolean,
+    locked: Boolean,
 ) {
     AnswerField(
         value = text,
@@ -116,6 +121,7 @@ private fun Field(
         onDone = actions.submit,
         focus = focus,
         numberPad = numberPad,
+        locked = locked,
     )
 }
 

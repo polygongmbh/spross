@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.semantics
@@ -35,9 +36,9 @@ import net.spross.kern.session.TurnFeedback
  * it renders, and they are the same wherever the answer is written: a near miss runs amber
  * throughout — field edge, checkmark and box agree (`docs/design.md`).
  *
- * Never read-only, not even after grading: a miss keeps typing, because the retype IS the
- * answer. Kern ignores text in the states that decide nothing, and a field that locks is a
- * field the keyboard closes under.
+ * Open after grading unless [locked]: a review miss keeps typing, because the retype IS the
+ * answer; a drill's miss locks it on what was written, since nothing there is retyped
+ * (kern's `AnswerControls.Slot.Typed.editable`).
  */
 @Composable
 fun AnswerField(
@@ -57,6 +58,8 @@ fun AnswerField(
     focus: FocusRequester? = null,
     /** A task that owes digits the number pad can type — the keyboard is the one thing this decides. */
     numberPad: Boolean = false,
+    /** Keeps what was written and takes no more. */
+    locked: Boolean = false,
 ) {
     val palette = Theme.colors
     // The edge says how the answer landed: green where it was clean, amber for a near miss
@@ -73,9 +76,11 @@ fun AnswerField(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
+        readOnly = locked,
         modifier = Modifier
             .fillMaxWidth()
             .focusRequester(requester)
+            .focusProperties { canFocus = !locked }
             .semantics {
                 when (feedback) {
                     TurnFeedback.Correct -> stateDescription = chrome.a11yVerdictCorrect
