@@ -1,11 +1,9 @@
 package net.spross.app
 
 import kotlin.random.Random
-import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Question
 import net.spross.kern.session.ToneKind
-import net.spross.kern.session.TurnFeedback
 import net.spross.kern.trainer.DrillEffect
 import net.spross.kern.trainer.DrillRunProgress
 import net.spross.kern.trainer.DrillRunSummary
@@ -42,7 +40,7 @@ interface TypedDrill : DrillRun {
 
     /**
      * An answer arriving whole rather than a letter at a time — a tapped tile, which the
-     * screen offers only where the question came with [TypedDrillPrompt.choices].
+     * screen offers only where kern's controls ask with tiles.
      */
     fun choose(text: String)
 
@@ -59,32 +57,6 @@ interface TypedDrill : DrillRun {
     fun close(standingRecord: Int): TypedDrillClose
 }
 
-/** What the answer controls read off the question; the card itself draws kern's [Question]. */
-data class TypedDrillPrompt(
-    /** The canonical answer — the tile the grid marks right. */
-    val display: String,
-    /**
-     * The tiles this question is answered off, in kern's own shuffled order — null where it
-     * is written instead, which is every Sprosse above the calendar's warm-up.
-     */
-    val choices: List<String>? = null,
-    /**
-     * Whether a DATE is owed rather than a reading — the calendar turned round. The keyboard
-     * and the placeholder are the only things that follow from it.
-     */
-    val digits: Boolean = false,
-    /** Whether the owed date can be written on the number pad — see [typableOnNumberPad]. */
-    val numberPad: Boolean = false,
-)
-
-/**
- * Whether one of [accepted] needs nothing a number pad lacks. The pad carries digits,
- * `.`, `,`, `-` and a space — no `:` and no `/`, so a time or a fraction written that
- * way would be owed on a keyboard that cannot type it.
- */
-fun typableOnNumberPad(accepted: List<String>): Boolean =
-    accepted.any { form -> form.all { it.isDigit() || it in ".,- \u202F\u00A0" } }
-
 /** One typed run as it stands: the question, the ladder under it, and the score line. */
 data class TypedDrillView(
     /** Bumped per question — what the card's identity and an autoplay effect key on. */
@@ -94,12 +66,6 @@ data class TypedDrillView(
     val bestAnswerStreak: Int,
     val outcomes: List<AnswerOutcome>,
     val tally: DrillTally,
-    val feedback: TurnFeedback,
-    /** The way out, offered under the button that goes on, on the second miss in a row. */
-    val offersFinish: Boolean,
-    /** The language an answer is owed in — the learner's own on a reversed run. */
-    val answerLanguage: Language,
-    val prompt: TypedDrillPrompt,
     /** What the card shows. */
     val question: Question,
 )

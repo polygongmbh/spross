@@ -86,15 +86,6 @@ class DateDrillFlow(
         bestAnswerStreak = state.bestAnswerStreak,
         outcomes = state.outcomes,
         tally = state.tally,
-        feedback = state.feedback,
-        offersFinish = state.offersFinish,
-        answerLanguage = state.answerLanguage,
-        prompt = TypedDrillPrompt(
-            display = state.task.display,
-            choices = state.task.choices,
-            digits = state.task.digits,
-            numberPad = state.task.digits && typableOnNumberPad(state.task.accepted),
-        ),
         question = state.question,
     )
 }

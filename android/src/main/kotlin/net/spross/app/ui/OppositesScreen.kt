@@ -40,21 +40,10 @@ fun OppositesScreen(model: AppModel) {
     ) {
         val task = state.task ?: return@DrillRunScaffold
         QuestionCard(state.question ?: return@DrillRunScaffold, chrome, voice = model.cardVoice)
-        val placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(task.language))
-        TypedAnswerControls(
-            input = flow.input,
-            onType = flow::type,
-            placeholder = placeholder,
-            feedback = state.feedback,
-            awaitsConfirm = flow.awaitsConfirm,
-            chrome = chrome,
-            focus = inputFocus,
-            onPrimary = flow::primary,
-            onEnter = flow::enter,
-            onConfirm = flow::confirm,
+        DrillAnswerArea(
+            model, state.controls ?: return@DrillRunScaffold, flow.input, flow.awaitsConfirm, inputFocus,
+            onType = flow::type, onEnter = flow::enter, onConfirm = flow::confirm, onStop = leave,
             speakCorrection = { model.speakFormOnTap(it, task.language) },
-        ) {
-            if (state.offersFinish) DrillStopOffer(chrome, leave)
-        }
+        )
     }
 }

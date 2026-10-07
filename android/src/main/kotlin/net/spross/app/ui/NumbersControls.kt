@@ -1,5 +1,7 @@
 package net.spross.app.ui
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -10,13 +12,12 @@ import androidx.compose.ui.focus.FocusRequester
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.NumbersFlow
-import net.spross.app.typableOnNumberPad
 import net.spross.app.speakFormOnTap
 
 /**
- * The field and the one primary action under it. A reversed task owes DIGITS, so its
- * placeholder names those rather than the language — "auf Spanisch" over a number pad asks
- * for the wrong thing.
+ * Kern's controls on the shared answer area, with the look-up link under them — outside the
+ * verdict, because a miss is exactly when a learner wants to look the word up, and the "?"
+ * raises the very table the numbers page shows.
  */
 @Composable
 fun NumbersControls(
@@ -27,28 +28,12 @@ fun NumbersControls(
     onFinish: () -> Unit,
 ) {
     val state = flow.state
-    val placeholder = if (state.currentReversed) {
-        chrome.numbersAnswerPlaceholder
-    } else {
-        chrome.sessionAnswerPlaceholder.format(model.languageName(state.mode.language))
-    }
-    TypedAnswerControls(
-        input = flow.input,
-        onType = flow::type,
-        placeholder = placeholder,
-        feedback = state.feedback,
-        awaitsConfirm = flow.awaitsConfirm,
-        chrome = chrome,
-        focus = inputFocus,
-        onPrimary = flow::primary,
-        onEnter = flow::enter,
-        onConfirm = flow::confirm,
-        speakCorrection = { model.speakFormOnTap(it, state.mode.language) },
-        numberPad = state.currentReversed && typableOnNumberPad(state.currentTask.accepted),
-    ) {
-        if (state.offersFinish) DrillStopOffer(chrome, onFinish)
-        // Outside the verdict: a miss is exactly when a learner wants to look the word up,
-        // and the "?" raises the very table the numbers page shows.
+    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
+        DrillAnswerArea(
+            model, state.controls, flow.input, flow.awaitsConfirm, inputFocus,
+            onType = flow::type, onEnter = flow::enter, onConfirm = flow::confirm, onStop = onFinish,
+            speakCorrection = { model.speakFormOnTap(it, state.mode.language) },
+        )
         if (state.offersLookUp) {
             TextButton(onClick = { flow.lookUp() }, modifier = Modifier.fillMaxWidth()) {
                 Text(

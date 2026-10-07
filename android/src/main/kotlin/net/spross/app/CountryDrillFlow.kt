@@ -67,10 +67,6 @@ class CountryDrillFlow(
         bestAnswerStreak = state.bestAnswerStreak,
         outcomes = state.outcomes,
         tally = state.tally,
-        feedback = state.feedback,
-        offersFinish = state.offersFinish,
-        answerLanguage = state.answerLanguage,
-        prompt = TypedDrillPrompt(display = state.task.display),
         question = state.question,
     )
 }

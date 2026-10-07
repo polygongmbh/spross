@@ -1,7 +1,5 @@
 package net.spross.app.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -75,7 +73,7 @@ fun SentenceScrambleScreen(model: AppModel) {
         ) {
             state.question?.let { RevealLines(model, it, chrome) }
         }
-        Controls(flow, chrome, leave)
+        Controls(model, flow, leave)
     }
 }
 
@@ -137,14 +135,15 @@ private fun Sentence(text: AnnotatedString, color: Color, modifier: Modifier = M
 private fun Sentence(text: String, color: Color, modifier: Modifier = Modifier) =
     Sentence(AnnotatedString(text), color, modifier)
 
+/**
+ * Kern's controls on the shared answer area: NOTHING while the order is owed — this is the one
+ * drill that needs no Reveal, since placing every word reaches the authored order by itself.
+ */
 @Composable
-private fun Controls(flow: SentenceScrambleFlow, chrome: Chrome, onFinish: () -> Unit) {
-    val state = flow.state
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-        // NOTHING while the order is owed — this is the one drill that needs no Reveal. Every
-        // word it withholds is already on screen, so placing them all reaches the authored
-        // order by itself and books exactly what asking to be shown it would.
-        AnswerVerdict(state.feedback, flow.awaitsConfirm, chrome, flow::confirm)
-        if (state.offersFinish) DrillStopOffer(chrome, onFinish)
-    }
+private fun Controls(model: AppModel, flow: SentenceScrambleFlow, onFinish: () -> Unit) {
+    val controls = flow.state.controls ?: return
+    DrillAnswerArea(
+        model, controls, input = "", awaitsConfirm = flow.awaitsConfirm, focus = null,
+        onType = {}, onEnter = {}, onConfirm = flow::confirm, onStop = onFinish,
+    )
 }

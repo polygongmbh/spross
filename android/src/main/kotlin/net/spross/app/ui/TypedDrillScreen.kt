@@ -1,7 +1,5 @@
 package net.spross.app.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -10,11 +8,11 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.TypedDrill
-import net.spross.app.TypedDrillView
 import net.spross.app.bookRecord
 import net.spross.app.finishDrill
 import net.spross.app.speakFormOnTap
 import net.spross.app.stampRun
+import net.spross.kern.session.AnswerControls.Slot
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.NumbersMode
@@ -81,7 +79,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     val inputFocus = remember { FocusRequester() }
     // A tapped question has no field to fill — a keyboard over the tiles would cover the
     // very answer it is waiting for.
-    QuestionFocus(run.index to paused, model.pronouncer, inputFocus.takeIf { run.prompt.choices == null })
+    QuestionFocus(run.index to paused, model.pronouncer, inputFocus.takeIf { flow.progress.controls?.slot !is Slot.Choices })
 
     DrillRunScaffold(
         model = model,
@@ -96,67 +94,31 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         showsMuteButton = true,
     ) {
         QuestionCard(run.question, chrome, voice = model.cardVoice)
-        Controls(model, flow, run, chrome, inputFocus, leave)
+        Controls(model, flow, chrome, inputFocus, leave)
     }
 }
 
 /**
- * The answer and the one primary action under it — a field where the question is written
- * out, kern's four tiles where it is tapped ([DrillChoiceGrid]).
- *
- * The placeholder names the language the answer is owed IN — which is the learner's own on
- * a reversed run, and the only place the direction is spelled out.
+ * Kern's controls on the shared answer area — a field where the question is written out,
+ * kern's four tiles where it is tapped ([DrillChoiceGrid]). A calendar name is prose: it is
+ * set as prose, and a screen reader saying it needs no help.
  */
 @Composable
-private fun Controls(
-    model: AppModel,
-    flow: TypedDrill,
-    run: TypedDrillView,
-    chrome: Chrome,
-    inputFocus: FocusRequester,
-    onFinish: () -> Unit,
-) {
-    val choices = run.prompt.choices
-    val speakCorrection = { form: String -> model.speakFormOnTap(form, run.answerLanguage) }
-    if (choices != null) {
-        // The warm-up Sprosse: the answer is picked, not written, so the field stays away
-        // entirely rather than standing unused under the grid — the grid IS the primary
-        // action, and it waits on its own. A calendar name is prose — it is set as prose,
-        // and a screen reader saying it needs no help.
-        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-            DrillChoiceGrid(
-                options = choices,
-                answer = run.prompt.display,
-                chosen = flow.chosen,
-                optionStyle = MaterialTheme.typography.titleMedium,
-                chrome = chrome,
-                onPick = flow::choose,
-            )
-            AnswerVerdict(run.feedback, flow.awaitsConfirm, chrome, flow::confirm, speakCorrection)
-            if (run.offersFinish) DrillStopOffer(chrome, onFinish)
-        }
-        return
-    }
-    TypedAnswerControls(
-        input = flow.input,
-        onType = flow::type,
-        // why: naming the language is right only while the answer is words — a date owed in
-        // digits is written the same way in either of them.
-        placeholder = if (run.prompt.digits) {
-            chrome.numbersAnswerPlaceholder
-        } else {
-            chrome.sessionAnswerPlaceholder.format(model.languageName(run.answerLanguage))
-        },
-        feedback = run.feedback,
-        awaitsConfirm = flow.awaitsConfirm,
-        chrome = chrome,
-        focus = inputFocus,
-        onPrimary = flow::primary,
-        onEnter = flow::enter,
-        onConfirm = flow::confirm,
-        speakCorrection = speakCorrection,
-        numberPad = run.prompt.numberPad,
-    ) {
-        if (run.offersFinish) DrillStopOffer(chrome, onFinish)
+private fun Controls(model: AppModel, flow: TypedDrill, chrome: Chrome, inputFocus: FocusRequester, onFinish: () -> Unit) {
+    val controls = flow.progress.controls ?: return
+    val lang = (controls.slot as? Slot.Typed)?.lang
+    DrillAnswerArea(
+        model, controls, flow.input, flow.awaitsConfirm, inputFocus,
+        onType = flow::type, onEnter = flow::enter, onConfirm = flow::confirm, onStop = onFinish,
+        speakCorrection = { form -> lang?.let { model.speakFormOnTap(form, it) } },
+    ) { options, answer ->
+        DrillChoiceGrid(
+            options = options,
+            answer = answer,
+            chosen = flow.chosen,
+            optionStyle = MaterialTheme.typography.titleMedium,
+            chrome = chrome,
+            onPick = flow::choose,
+        )
     }
 }

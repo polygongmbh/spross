@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.focus.FocusRequester
 import net.spross.app.AppModel
-import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.WordScrambleFlow
 import net.spross.app.closeScramble
@@ -54,7 +53,7 @@ fun WordScrambleScreen(model: AppModel) {
             voice = model.cardVoice,
             promptLabel = spelledOut(task.scrambled),
         )
-        Controls(model, flow, task, chrome, inputFocus, leave)
+        Controls(model, flow, task, inputFocus, leave)
     }
 }
 
@@ -64,33 +63,19 @@ fun WordScrambleScreen(model: AppModel) {
  */
 fun spelledOut(word: ScrambledWord): String = word.display.toList().joinToString(", ")
 
-/**
- * The field and what stands under it: one primary action while the spelling is owed, the tap
- * that books a pause where kern armed none, and the way out on the second miss in a row.
- */
+/** Kern's controls on the shared answer area. */
 @Composable
 private fun Controls(
     model: AppModel,
     flow: WordScrambleFlow,
     task: WordScrambleTask,
-    chrome: Chrome,
     inputFocus: FocusRequester,
     onFinish: () -> Unit,
 ) {
-    val state = flow.state
-    TypedAnswerControls(
-        input = flow.input,
-        onType = flow::type,
-        placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(task.language)),
-        feedback = state.feedback,
-        awaitsConfirm = flow.awaitsConfirm,
-        chrome = chrome,
-        focus = inputFocus,
-        onPrimary = flow::primary,
-        onEnter = flow::enter,
-        onConfirm = flow::confirm,
+    val controls = flow.state.controls ?: return
+    DrillAnswerArea(
+        model, controls, flow.input, flow.awaitsConfirm, inputFocus,
+        onType = flow::type, onEnter = flow::enter, onConfirm = flow::confirm, onStop = onFinish,
         speakCorrection = { model.speakFormOnTap(it, task.language) },
-    ) {
-        if (state.offersFinish) DrillStopOffer(chrome, onFinish)
-    }
+    )
 }

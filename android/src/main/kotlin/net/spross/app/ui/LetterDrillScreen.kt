@@ -18,7 +18,6 @@ import net.spross.app.stampRun
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.LetterDrillRunState
 import net.spross.kern.trainer.LetterDrillTask
-import net.spross.kern.trainer.LetterFormat
 
 /**
  * The letter drill: hear a sound, find the letter. Four glyph tiles, then confusable ones,
@@ -30,7 +29,7 @@ import net.spross.kern.trainer.LetterFormat
  * [Pronouncer.Trigger.ESSENTIAL]: no mute reaches it, and only the TalkBack gate applies,
  * without this screen testing for it.
  *
- * Format bodies live in LetterDrillFormats.kt; the run itself in `LetterDrillFlow`.
+ * What stands under the card lives in LetterDrillFormats.kt; the run itself in `LetterDrillFlow`.
  */
 @Composable
 fun LetterDrillScreen(model: AppModel) {
@@ -97,11 +96,5 @@ private fun Run(
         },
         replayFocus = replayFocus,
     )
-    when (task.format) {
-        LetterFormat.ChoiceEasy, LetterFormat.ChoiceConfusable ->
-            ChoiceFormat(flow, task, chrome)
-        LetterFormat.Typed, LetterFormat.Dictation ->
-            TypedFormat(model, flow, task, chrome, inputFocus)
-    }
-    if (state.offersFinish) DrillStopOffer(chrome, onFinish)
+    LetterAnswer(model, flow, task, inputFocus, onFinish)
 }
