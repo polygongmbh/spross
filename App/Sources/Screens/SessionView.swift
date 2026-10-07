@@ -67,9 +67,9 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
         Group {
             if model.sessionCompleted, let summary = model.sessionSummary {
                 SessionSummaryView(parts: summary.parts,
-                                      grownArea: summary.grownArea,
+                                      grownArea: summary.shownTree,
                                       garden: model.garden,
-                                      grownAreaLabel: summary.grownArea.map {
+                                      grownAreaLabel: summary.shownTree.map {
                                           "\(model.areaEmoji($0.after.area)) \(model.areaTitle($0.after.area))"
                                       } ?? "",
                                       headline: summary.headline,

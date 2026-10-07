@@ -197,7 +197,7 @@ What licenses a second component is a parameter attempted and found not to carry
   where each tree stands is kern's `TreesLayout`, its size and its wood kern's `AreaTree`,
   every mark, outline and layer it is drawn in kern's `TreePicture`, the summary's rise kern's `TreeRise`;
   a stage is one mark — fresh a bud, growing a leaf, settled a blossom, matured fruit.
-  What the round summary claims over its tree is kern's `growthHeadline`.
+  Whether the round summary shows a tree is kern's `RoundSummary.shownTree`, what it claims over it and in which line `growthHeadline`.
   A tree forks further the more words it carries, each limb continued by a lead
   with side branches turning well away from it, and a branch dipping below level grows short;
   its marks spread along its finer wood, never the trunk or first limbs, fruit and blossom on the levelest limbs,

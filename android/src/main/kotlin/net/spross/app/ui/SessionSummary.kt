@@ -53,8 +53,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         }
     }
     val headline = summary.headline
-    val grown = summary.grownArea?.takeIf { headline != null }
-    val area = grown?.after?.area
+    val grown = summary.shownTree
     // why: a tap anywhere but the buttons replays the celebration — confetti, cheer and the
     // tree's rise; a button consumes its own tap, so it never reaches this.
     Box(Modifier.fillMaxSize().pointerInput(Unit) {
@@ -66,7 +65,7 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
         SummaryScaffold(
             // why: one title — the growth claim where a tree stands over it, the plain
             // "All done!" where the popper does.
-            title = if (headline != null && area != null) growthLine(chrome, headline) else chrome.sessionDoneTitle,
+            title = if (headline != null && grown != null) growthLine(chrome, headline) else chrome.sessionDoneTitle,
             chrome = chrome,
             onDone = { model.finishSession() },
             // why: talking asks rather than instructs — the words are warm, the one moment a
@@ -83,12 +82,12 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
             hint = chrome.sessionDoneRestHint.takeIf { summary.restSuggested },
             // why: the area is LABELED under its tree rather than named in the claim —
             // what grew is what the learner can say, never the area itself.
-            heroLabel = if (grown != null && area != null) "${model.areaEmoji(area)} ${model.areaTitle(area)}" else null,
+            heroLabel = grown?.after?.area?.let { "${model.areaEmoji(it)} ${model.areaTitle(it)}" },
         ) { treeCeiling ->
             // why: the tree takes the hero slot when the round grew an area — a party popper
             // is the same picture whatever the learner did, and two celebratory graphics on
             // one screen is one too many.
-            if (grown != null && area != null) {
+            if (grown != null) {
                 key(celebration) {
                     GrowingTree(grown, model.garden, AreaTree.heroHeight(grown.after, treeCeiling.value.toDouble()).dp)
                 }
@@ -101,18 +100,14 @@ fun SessionSummary(model: AppModel, ui: SessionUi) {
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
 }
 
-/**
- * Kern's claim ([net.spross.kern.box.growthHeadline]) in this table's words.
- * The first grown line says the words grew, so a round that added none reads only the others.
- */
+/** Kern's claim ([net.spross.kern.box.growthHeadline]) in this table's words, the line kern picks ([GrowthHeadline.line]). */
 internal fun growthLine(chrome: Chrome, headline: GrowthHeadline): String {
-    fun List<String>.pick() = this[headline.pick % size]
+    fun List<String>.pick() = this[headline.line(size)]
     return when (headline.claim) {
         GrowthClaim.Unclaimed -> chrome.sessionDoneGrowthGrew
         GrowthClaim.Opened -> chrome.sessionDoneGrowthOpened
         GrowthClaim.Settled -> chrome.growthBlooming.pick()
         GrowthClaim.Met -> chrome.growthSown.pick()
-        GrowthClaim.Grew -> chrome.growthGrown.pick()
-        GrowthClaim.Held -> chrome.growthGrown.drop(1).pick()
+        GrowthClaim.Grew, GrowthClaim.Held -> chrome.growthGrown.pick()
     }
 }

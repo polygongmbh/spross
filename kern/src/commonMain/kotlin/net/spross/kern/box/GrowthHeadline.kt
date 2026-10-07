@@ -23,9 +23,16 @@ enum class GrowthClaim {
 
 /**
  * The line over the round's tree: which [claim], and a stable [pick] among the lines a
- * platform holds for it (`lines[pick % lines.size]`).
+ * platform holds for it ([line]).
  */
-data class GrowthHeadline(val claim: GrowthClaim, val pick: Int)
+data class GrowthHeadline(val claim: GrowthClaim, val pick: Int) {
+    /**
+     * Which of the [count] lines a platform holds for [claim] this headline reads.
+     * [GrowthClaim.Held] shares [GrowthClaim.Grew]'s lines but skips the first, which says the words grew.
+     */
+    fun line(count: Int): Int =
+        if (claim == GrowthClaim.Held && count > 1) 1 + pick % (count - 1) else pick % count
+}
 
 /**
  * What the round's summary says about [transition] ([grownArea]) — read off what THIS
