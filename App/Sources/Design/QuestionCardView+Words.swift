@@ -7,13 +7,14 @@ extension QuestionCardView {
     // MARK: - Sizes by form
 
     /// What is asked picks the size: there is room for one numeral where there is none for a whole line.
+    /// Digits stand at one width, save in a name or a dated line, which reads as text.
     func promptFont(_ form: Question.Form) -> Font {
         switch form {
-        case .numeral: return Theme.prompt.digits
-        case .sentence: return Theme.prompt.sentence
+        case .numeral: return Theme.prompt.digits.monospacedDigit()
+        case .sentence: return Theme.prompt.sentence.monospacedDigit()
         case .name: return Theme.prompt.name
-        case .glyph: return Theme.prompt.letter
-        default: return Theme.prompt.word
+        case .glyph: return Theme.prompt.letter.monospacedDigit()
+        default: return Theme.prompt.word.monospacedDigit()
         }
     }
 

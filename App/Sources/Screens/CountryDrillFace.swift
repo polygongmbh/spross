@@ -93,16 +93,12 @@ enum CountryDrillFace: DrillFace {
         DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
                       answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
-                      offersFinish: run.offersFinish, showsAnswer: run.showsAnswer, finished: run.finished,
-                      answerLanguage: run.answerLanguage, promptLanguage: run.promptLanguage,
-                      ask: ask(run.task.kind), promptText: run.task.promptText,
-                      promptEmoji: run.task.promptEmoji,
-                      emojiIsGiveaway: run.task.emojiIsGiveaway,
+                      offersFinish: run.offersFinish, finished: run.finished,
+                      answerLanguage: run.answerLanguage, question: run.question,
                       display: run.task.display,
                       // The atlas is written all the way up: nothing is ever
                       // tapped, and every answer it takes is words.
-                      choices: nil, digits: false, gloss: run.task.gloss,
-                      otherWord: run.otherWord)
+                      choices: nil, digits: false)
     }
 
     static func reduce(_ run: CountryDrillRunState,
@@ -127,17 +123,6 @@ enum CountryDrillFace: DrillFace {
         case .confirmed: return CountryDrillIntent.ConfirmPending.shared
         case .advanced: return CountryDrillIntent.AdvanceElapsed.shared
         case .keptPracticing: return CountryDrillIntent.KeepPracticing.shared
-        }
-    }
-
-    private static func ask(_ kind: CountryTaskKind) -> LocalizedStringKey {
-        switch kind {
-        case .countryName: return "countries.ask.country"
-        case .flagCountry: return "countries.ask.flag"
-        case .languageName: return "countries.ask.language"
-        case .nationality: return "countries.ask.nationality"
-        case .spokenIn: return "countries.ask.spokenIn"
-        case .spokenWhere: return "countries.ask.spokenWhere"
         }
     }
 

@@ -106,7 +106,6 @@ struct QuestionCardView: View {
                 SpokenWord(pronounce: pronounce(side), isPlaying: isPlaying(side)) {
                     promptText(side, text)
                         .font(promptFont(side.form))
-                        .monospacedDigit()
                         .foregroundStyle(Theme.colors.textPrimary)
                         .lineLimit(promptLines(side.form))
                         .minimumScaleFactor(0.5)

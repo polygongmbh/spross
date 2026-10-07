@@ -96,19 +96,13 @@ enum DateDrillFace: DrillFace {
     }
 
     static func snapshot(_ run: DateDrillRunState) -> DrillSnapshot {
-        // A dates question carries no picture: the leading slot stays empty and
-        // the prompt — a name, or a dated line in the prompt side's digits —
-        // stands where the country's name would.
         DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
                       answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
-                      offersFinish: run.offersFinish, showsAnswer: run.showsAnswer, finished: run.finished,
-                      answerLanguage: run.answerLanguage, promptLanguage: run.promptLanguage,
-                      ask: ask(run.task.kind), promptText: run.task.promptText,
-                      promptEmoji: nil, emojiIsGiveaway: false,
+                      offersFinish: run.offersFinish, finished: run.finished,
+                      answerLanguage: run.answerLanguage, question: run.question,
                       display: run.task.display, choices: run.task.choices,
-                      digits: run.task.digits, gloss: nil, newWord: run.patternWord,
-                      otherWord: run.otherWord)
+                      digits: run.task.digits)
     }
 
     static func reduce(_ run: DateDrillRunState, _ move: DrillMove) -> DrillStep<DateDrillRunState> {
@@ -130,17 +124,6 @@ enum DateDrillFace: DrillFace {
         case .confirmed: return DateDrillIntent.ConfirmPending.shared
         case .advanced: return DateDrillIntent.AdvanceElapsed.shared
         case .keptPracticing: return DateDrillIntent.KeepPracticing.shared
-        }
-    }
-
-    /// The three assembled kinds share one sentence: what changes between them is
-    /// on the card, not in the ask.
-    private static func ask(_ kind: DateTaskKind) -> LocalizedStringKey {
-        switch kind {
-        case .nameChoice: return "dates.ask.name"
-        case .weekday: return "dates.ask.weekday"
-        case .month: return "dates.ask.month"
-        case .dayAndMonth, .fullDate, .fullDateWithYear: return "dates.ask.date"
         }
     }
 
