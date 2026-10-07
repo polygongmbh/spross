@@ -185,6 +185,13 @@ extension DrillRunning {
         dispatch(keepPracticingMove)
     }
 
+    /// Where the answer area under every drill hands its taps: the field and the one
+    /// primary action to kern, the held verdict's Next, and the way out where kern offers it.
+    var answerActions: AnswerActions {
+        AnswerActions(submit: { submit() }, type: { _ in typed() },
+                      confirm: { confirm() }, stop: { closeRun() })
+    }
+
     // MARK: - Close → back to the page that opened it
 
     /// X during a run: kern books a pending answer exactly as the tap would,

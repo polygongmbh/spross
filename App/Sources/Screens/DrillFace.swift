@@ -153,16 +153,12 @@ struct DrillSnapshot {
     let tally: DrillTally
     let outcomes: [AnswerOutcome]
     let feedback: TurnFeedback
-    /// The way out, where it is wanted: on the SECOND miss in a row.
-    let offersFinish: Bool
     /// Nothing left to ask.
     let finished: Bool
     /// BCP-47 of the language the answer is owed in.
     let answerLanguage: String
     /// The card, as kern states it.
     let question: Question
-    /// The canonical answer, which the tiles mark.
-    let display: String
     /// The tiles this question is answered off, in kern's own shuffled order —
     /// nil where it is written instead, which is every Sprosse above the
     /// calendar's warm-up.

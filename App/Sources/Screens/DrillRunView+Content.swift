@@ -10,8 +10,7 @@ import SprossKern
 /// prompt side's digits — stands where the country's name would.
 ///
 /// One question in the calendar is TAPPED rather than written — the warm-up
-/// Sprosse's four names — and the grid that answers it is
-/// DrillRunView+Choices.swift.
+/// Sprosse's four names.
 extension DrillRunView {
 
     var drillContent: some View {
@@ -35,36 +34,24 @@ extension DrillRunView {
 
     // MARK: - The answer
 
-    /// Written, or picked off kern's tiles where the question came with them.
+    /// Written, or picked off kern's tiles where the question came with them — the calendar's
+    /// warm-up Sprosse. A calendar name is prose: it is set as prose, and a screen reader saying
+    /// it needs no help, where a bare glyph would.
     @ViewBuilder
     private var answerControls: some View {
-        if let names = current.choices {
-            choiceControls(names)
-        } else {
-            typedControls
+        if let controls = run.controls {
+            let language = current.answerLanguage
+            AnswerArea(controls: controls,
+                       text: $input,
+                       placeholder: answerPlaceholder(language, digits: current.digits),
+                       focus: $answerFocused,
+                       correctionVoice: .init(
+                           pronounce: { model.pronounceAction(for: $0, lang: language) },
+                           isPlaying: { model.isPronouncing($0, lang: language) }),
+                       actions: answerActions) { options, answer in
+                DrillChoiceGrid(options: options, answer: answer, chosen: chosen,
+                                font: Theme.typography.headline, pick: choose)
+            }
         }
-    }
-
-    private var typedControls: some View {
-        let language = current.answerLanguage
-        return TypedAnswerControls(text: $input,
-                                   feedback: feedback,
-                                   placeholder: answerPlaceholder(language, digits: current.digits),
-                                   focus: $answerFocused,
-                                   correctionVoice: .init(
-                                       pronounce: { model.pronounceAction(for: $0, lang: language) },
-                                       isPlaying: { model.isPronouncing($0, lang: language) }),
-                                   keyboard: current.digits ? .numbersAndPunctuation : .default,
-                                   onType: { typed() },
-                                   onSubmit: { submit() },
-                                   onConfirm: { confirm() },
-                                   onStop: stopOffer)
-    }
-
-    /// The way out, on the second miss in a row — nil while the run is not
-    /// offering one.
-    // why: internal, not private — the choice grid offers the same way out.
-    var stopOffer: (() -> Void)? {
-        current.offersFinish ? { closeRun() } : nil
     }
 }

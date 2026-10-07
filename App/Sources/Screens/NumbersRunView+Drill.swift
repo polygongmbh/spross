@@ -73,23 +73,18 @@ extension NumbersRunView {
     // counts as a miss and moves on.
     private var controls: some View {
         VStack(spacing: Theme.spacing.md) {
-            TypedAnswerControls(text: $input,
-                                feedback: feedback,
-                                placeholder: answerPlaceholder(language, digits: run.currentReversed),
-                                focus: $answerFocused,
-                                correctionVoice: .init(
-                                    pronounce: { model?.pronounceAction(for: $0, lang: language) },
-                                    isPlaying: { model?.isPronouncing($0, lang: language) ?? false }),
-                                keyboard: run.currentReversed ? .numbersAndPunctuation : .default,
-                                onType: { typed() },
-                                onSubmit: { submit() },
-                                onConfirm: { confirm() },
-                                onStop: run.offersFinish ? { closeRun() } : nil)
+            AnswerArea(controls: run.controls,
+                       text: $input,
+                       placeholder: answerPlaceholder(language, digits: run.currentReversed),
+                       focus: $answerFocused,
+                       correctionVoice: .init(
+                           pronounce: { model?.pronounceAction(for: $0, lang: language) },
+                           isPlaying: { model?.isPronouncing($0, lang: language) ?? false }),
+                       actions: answerActions)
             if run.offersLookUp {
                 lookupButton
             }
         }
-        .animation(.easeOut(duration: 0.25), value: feedback)
     }
 
     /// The whole numbers page, one tap away mid-run — the overview's table, not

@@ -114,7 +114,7 @@ struct SentenceScrambleView: View {
     private var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.lg) {
-                if let task = current {
+                if let task = current, let controls = run.controls {
                     ScrambleTileBank(bank: task.shuffled,
                                      placed: run.placedAtoms,
                                      isTaken: { run.isPlaced(index: Int32($0)) },
@@ -125,7 +125,7 @@ struct SentenceScrambleView: View {
                                      reveal: { revealLines(task) })
                         .id(run.index)
                         .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.97)))
-                    controls
+                    answerArea(controls)
                 }
             }
             .padding(.bottom, Theme.spacing.lg)
@@ -198,9 +198,8 @@ struct SentenceScrambleView: View {
     /// Once the arrangement is graded it is what every drill wears under a
     /// graded answer: a clean one moves on by itself, a miss waits for the way
     /// on and — on the second in a row — offers the way out.
-    private var controls: some View {
-        AnswerVerdict(feedback: feedback, onConfirm: { confirm() },
-                             onStop: run.offersFinish ? { closeRun() } : nil)
+    private func answerArea(_ controls: AnswerControls) -> some View {
+        AnswerArea(controls: controls, text: .constant(""), actions: answerActions)
     }
 
     // The conformance, the driver and the close are SentenceScrambleView+Run.swift's.

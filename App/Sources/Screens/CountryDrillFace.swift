@@ -93,9 +93,8 @@ enum CountryDrillFace: DrillFace {
         DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
                       answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
-                      offersFinish: run.offersFinish, finished: run.finished,
+                      finished: run.finished,
                       answerLanguage: run.answerLanguage, question: run.question,
-                      display: run.task.display,
                       // The atlas is written all the way up: nothing is ever
                       // tapped, and every answer it takes is words.
                       choices: nil, digits: false)

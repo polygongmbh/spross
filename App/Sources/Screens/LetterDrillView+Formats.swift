@@ -10,7 +10,7 @@ extension LetterDrillView {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                if let task = current, let question = run.question {
+                if let task = current, let question = run.question, let controls = run.controls {
                     // ZStack so the outgoing and incoming question overlap
                     // during the flip; .id gives each position its identity.
                     ZStack {
@@ -19,13 +19,7 @@ extension LetterDrillView {
                             .id(question.key)
                             .transition(reduceMotion ? .opacity : .cardFlip)
                     }
-                    switch task.format {
-                    case .choiceEasy, .choiceConfusable:
-                        choiceGrid(task)
-                        choiceControls
-                    case .typed, .dictation:
-                        typedControls(task)
-                    }
+                    answerArea(task, controls)
                 }
             }
             .padding(.bottom, Theme.spacing.lg)
@@ -63,17 +57,31 @@ extension LetterDrillView {
                         answerStreak: Int(run.answerStreak))
     }
 
-    // MARK: - Multiple choice
+    // MARK: - The answer
+
+    /// Four glyph tiles, typed or dictated: kern's controls say which, and every keystroke is
+    /// offered to kern, so a finished answer approves itself.
+    private func answerArea(_ task: LetterDrillTask, _ controls: AnswerControls) -> some View {
+        AnswerArea(controls: controls,
+                   text: $input,
+                   placeholder: answerPlaceholder(task.language),
+                   focus: $answerFocused,
+                   correctionVoice: .init(
+                       pronounce: { speaker(task, $0) },
+                       isPlaying: { model.isPronouncing($0, lang: task.language) }),
+                   actions: answerActions) { options, answer in
+            choiceGrid(options, answer: answer)
+        }
+    }
 
     /// 2×2 of glyph tiles in Kern's shuffled order — both platforms render the
-    /// same draw, so a seeded run is reproducible. The grid is
-    /// `DrillChoiceGrid`, shared with the calendar's warm-up Sprosse.
-    private func choiceGrid(_ task: LetterDrillTask) -> some View {
+    /// same draw, so a seeded run is reproducible.
+    private func choiceGrid(_ options: [String], answer: String) -> some View {
         // A prompt size rather than a ramp entry: a letterform is the thing
         // being READ here, so it is set at picture size the way an emoji face is — and a bare Cyrillic glyph read by a German engine is a
         // guess where "Buchstabe ч" is not.
-        DrillChoiceGrid(options: task.choices ?? [],
-                        answer: task.display,
+        DrillChoiceGrid(options: options,
+                        answer: answer,
                         chosen: run.chosen,
                         font: Theme.prompt.letter,
                         label: { glyph in
@@ -82,30 +90,5 @@ extension LetterDrillView {
                                                   glyph))
                         },
                         pick: choose)
-    }
-
-    /// A miss always waits for a tap, and on the second in a row offers the way
-    /// out under it, as the typed formats do; a clean hit waits only where a
-    /// timed screen change would talk over the announcement it just made.
-    private var choiceControls: some View {
-        AnswerVerdict(feedback: feedback, onConfirm: { confirm() },
-                             onStop: run.offersFinish ? { closeRun() } : nil)
-    }
-
-    // MARK: - Typed and dictated
-
-    /// Every keystroke is offered to kern: a finished answer approves itself.
-    private func typedControls(_ task: LetterDrillTask) -> some View {
-        TypedAnswerControls(text: $input,
-                            feedback: feedback,
-                            placeholder: answerPlaceholder(task.language),
-                            focus: $answerFocused,
-                            correctionVoice: .init(
-                                pronounce: { speaker(task, $0) },
-                                isPlaying: { model.isPronouncing($0, lang: task.language) }),
-                            onType: { typed() },
-                            onSubmit: { submit() },
-                            onConfirm: { confirm() },
-                            onStop: run.offersFinish ? { closeRun() } : nil)
     }
 }

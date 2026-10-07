@@ -17,7 +17,7 @@ extension WordScrambleView: DrillRunning {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                if let task = current, let question = run.question {
+                if let task = current, let question = run.question, let controls = run.controls {
                     // ZStack so the outgoing and incoming word overlap during
                     // the flip; .id gives each position its identity.
                     ZStack {
@@ -26,7 +26,7 @@ extension WordScrambleView: DrillRunning {
                             .id(question.key)
                             .transition(reduceMotion ? .opacity : .cardFlip)
                     }
-                    typedControls(task)
+                    typedControls(task, controls)
                 }
             }
             .padding(.bottom, Theme.spacing.lg)
@@ -38,20 +38,15 @@ extension WordScrambleView: DrillRunning {
     /// Writing the word out is the answer, so every keystroke is offered to
     /// kern — the typed drills' rule, and the only thing this drill parameterizes
     /// about the shared controls beyond the voice its correction box speaks in.
-    private func typedControls(_ task: WordScrambleTask) -> some View {
-        TypedAnswerControls(text: $input,
-                            feedback: feedback,
-                            placeholder: answerPlaceholder(task.language),
-                            focus: $answerFocused,
-                            // Tap-to-replay for the correction box — the form
-                            // the slip owed, said in the drilled language.
-                            correctionVoice: .init(
-                                pronounce: { model.pronounceAction(for: $0, lang: task.language) },
-                                isPlaying: { model.isPronouncing($0, lang: task.language) }),
-                            onType: { typed() },
-                            onSubmit: { submit() },
-                            onConfirm: { confirm() },
-                            onStop: run.offersFinish ? { closeRun() } : nil)
+    private func typedControls(_ task: WordScrambleTask, _ controls: AnswerControls) -> some View {
+        AnswerArea(controls: controls,
+                   text: $input,
+                   placeholder: answerPlaceholder(task.language),
+                   focus: $answerFocused,
+                   correctionVoice: .init(
+                       pronounce: { model.pronounceAction(for: $0, lang: task.language) },
+                       isPlaying: { model.isPronouncing($0, lang: task.language) }),
+                   actions: answerActions)
     }
 
     // MARK: - The machine under this drill

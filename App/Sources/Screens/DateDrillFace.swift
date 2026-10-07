@@ -99,10 +99,9 @@ enum DateDrillFace: DrillFace {
         DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
                       answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
-                      offersFinish: run.offersFinish, finished: run.finished,
+                      finished: run.finished,
                       answerLanguage: run.answerLanguage, question: run.question,
-                      display: run.task.display, choices: run.task.choices,
-                      digits: run.task.digits)
+                      choices: run.task.choices, digits: run.task.digits)
     }
 
     static func reduce(_ run: DateDrillRunState, _ move: DrillMove) -> DrillStep<DateDrillRunState> {
