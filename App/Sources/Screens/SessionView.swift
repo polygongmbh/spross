@@ -9,6 +9,11 @@ private struct ReportedCard: Identifiable {
     var id: String { card.id }
 }
 
+/// Which card stands, and after how many answers — a turn begins when either moves.
+private struct CardDeal: Equatable {
+    let card: String?
+    let answered: Int
+}
 
 /// Full-screen session. The role a card is SHOWN in comes from Kern per
 /// card + log count (one schedule, alternating presentation):
@@ -93,9 +98,7 @@ struct SessionView: View, LanguageNaming {
         // clears the one-shot guard, focus lands before anything is played,
         // and only then does the new card speak. Autoplay placed ahead of the
         // reset would be killed by it on the same frame.
-        .onChange(of: currentCardID) { _, _ in
-            // why: safety net only — an answer already begins the next turn
-            // BEFORE the switch, so no card can render one frame revealed.
+        .onChange(of: dealt) { _, _ in
             resetCardState()
             // why: a field carried over from the previous card is not
             // re-mounted, so nothing else would re-assert focus for it.
@@ -144,6 +147,10 @@ struct SessionView: View, LanguageNaming {
     // why: internal, not private — the audio extension reads it to drop a
     // delayed word whose card has already gone.
     var currentCardID: String? { model.currentCardId }
+
+    /// The card on screen and the answers booked before it — what begins a turn.
+    /// The count tells a card dealt again straight after itself from the one it follows.
+    private var dealt: CardDeal { CardDeal(card: model.currentCardId, answered: model.sessionSegments.count) }
 
     /// VoiceOver and Switch Control both make a timed screen change hostile:
     /// it truncates the correctness announcement and moves the page under the
@@ -221,9 +228,6 @@ struct SessionView: View, LanguageNaming {
         Button("box.card.suspend", systemImage: "moon.zzz") {
             // why: the round moves on with it — being made to rate a word one has just
             // said should never be asked again is the exact busywork this removes.
-            // resetCardState first, so the incoming card never renders the outgoing
-            // card's reveal for a frame (same reason `commit` does).
-            resetCardState()
             withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .cardFlip) {
                 model.suspendCurrentCard()
             }

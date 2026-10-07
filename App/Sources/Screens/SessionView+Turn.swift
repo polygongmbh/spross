@@ -57,10 +57,8 @@ extension SessionView {
     /// Hand the answer to the engine and flip to the next card.
     private func commit(_ rating: Rating) {
         autoAdvance?.cancel()
-        // why: the next turn begins BEFORE the card switch, in the same
-        // transaction — the incoming card must never render one frame
-        // carrying the outgoing one's reveal.
-        resetCardState()
+        // why: the next turn begins only once the card has changed (`dealt`), so the
+        // outgoing card flips away still showing its own answer.
         withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .cardFlip) {
             model.answerCurrent(rating)
         }
