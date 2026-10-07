@@ -16,8 +16,7 @@ extension NumbersRunView {
 
     /// The timed half of the score line: the seconds left, then the score so far.
     func timedParts(left: TimeInterval) -> [Text] {
-        let seconds = max(0, Int(left.rounded(.up)))
-        let clock = String(format: "%d:%02d", seconds / 60, seconds % 60)
-        return [Text(verbatim: "⏱ \(clock)"), Text("trainer.run.score \(Int(run.score))")]
+        let seconds = TimedRun.shared.secondsLeft(remainingMillis: Int64(left * 1000))
+        return [Text(verbatim: TimedRun.shared.clock(secondsLeft: seconds)), Text("trainer.run.score \(Int(run.score))")]
     }
 }

@@ -100,14 +100,13 @@ class NumbersCloseTest {
     /** An exercise with one Sprosse has no Sprosse to report; the emoji leads only in a mixed run. */
     @Test
     fun theScoreLineOnlyReportsASprosseThereIsSomethingToClimb() {
-        val one = NumbersRun.open(numbers(), 0, emptyMap(), Random(61))
-        assertTrue(one.showsSprosse)
-        assertFalse(one.severalExercises)
+        val one = NumbersRun.open(numbers(), 0, emptyMap(), Random(61)).sprosseLine
+        assertTrue(one != null && one.digits && one.emoji == null)
         val mixed = NumbersRun.open(
-            NumbersMode(listOf(NumbersExercise.Counting, NumbersExercise.Clock), "de", emptySet()), 0, emptyMap(),
+            NumbersMode(listOf(NumbersExercise.Clock, NumbersExercise.Forms), "de", emptySet()), 0, emptyMap(),
             Random(61),
-        )
-        assertTrue(mixed.severalExercises)
+        ).sprosseLine
+        assertTrue(mixed != null && !mixed.digits && mixed.emoji != null)
         // A run carrying no frame has no sentence ladder to show.
         assertEquals(1, numbers().maxSprosse(NumbersExercise.Phrases))
     }

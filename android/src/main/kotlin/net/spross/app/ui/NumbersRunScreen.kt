@@ -13,7 +13,6 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.NumbersFlow
 import net.spross.app.Screen
-import net.spross.app.badge
 import net.spross.app.bookRecord
 import net.spross.app.countLine
 import net.spross.app.finishDrill
@@ -22,7 +21,6 @@ import net.spross.app.newTrainerRun
 import net.spross.app.stampRun
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.NumbersChallenge
-import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
 import net.spross.kern.trainer.NumbersRunState
 import net.spross.kern.trainer.TimedRun
@@ -89,23 +87,15 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
     }
 }
 
-/**
- * The Sprosse part of the score line, for the exercise that just asked: numbers count DIGITS,
- * everything else counts plain Sprossen — and an exercise with one Sprosse shows none. The face
- * leads only where the run offers more than one exercise, since a run that asks one thing
- * has already said what it asks.
- */
+/** The Sprosse part of the score line, worded as kern's [NumbersRunState.sprosseLine] says. */
 private fun sprosseText(state: NumbersRunState, chrome: Chrome): String? {
-    if (!state.showsSprosse) return null
-    val sprosse = state.currentSprosse
-    // why: the digits wording is the numbers drill's own and already wears 🔢 — putting
-    // the exercise's face in front would double it.
-    if (state.currentExercise == NumbersExercise.Counting) {
-        return countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, sprosse)
+    val line = state.sprosseLine ?: return null
+    val label = if (line.digits) {
+        countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, line.sprosse)
+    } else {
+        chrome.trainerSprosse.format(line.sprosse)
     }
-    val label = chrome.trainerSprosse.format(sprosse)
-    if (!state.severalExercises) return label
-    return "${chrome.badge(state.currentExercise)} $label"
+    return line.emoji?.let { "$it $label" } ?: label
 }
 
 /** A timed run's seconds left, sending kern's intent at zero; null when untimed. */
@@ -117,7 +107,7 @@ private fun timedClock(flow: NumbersFlow): Int? {
         val end = SystemClock.elapsedRealtime() + TimedRun.SECONDS * 1_000L
         while (true) {
             val remaining = end - SystemClock.elapsedRealtime()
-            left = ((remaining + 999) / 1_000).toInt().coerceAtLeast(0)
+            left = TimedRun.secondsLeft(remaining)
             if (remaining <= 0) break
             delay(remaining % 1_000 + 1)
         }
@@ -128,8 +118,4 @@ private fun timedClock(flow: NumbersFlow): Int? {
 
 /** The timed half of the score line: the seconds left, then the score so far. */
 private fun timedLine(secondsLeft: Int, score: Int, chrome: Chrome): String =
-    "⏱ %d:%02d · %s".format(
-        secondsLeft / 60,
-        secondsLeft % 60,
-        countLine(chrome.trainerRunScoreOne, chrome.trainerRunScore, score),
-    )
+    "${TimedRun.clock(secondsLeft)} · ${countLine(chrome.trainerRunScoreOne, chrome.trainerRunScore, score)}"

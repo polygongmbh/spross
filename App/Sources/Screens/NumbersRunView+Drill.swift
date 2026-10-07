@@ -40,22 +40,13 @@ extension NumbersRunView {
         DrillStreakLine(sprosse: sprosseText, timed: timed, answerStreak: Int(run.answerStreak))
     }
 
-    /// The Sprosse part of the score line, for the exercise that just asked: numbers
-    /// count DIGITS, everything else counts plain Sprossen — and an exercise with one
-    /// Sprosse shows none. The emoji leads only where the run offers more than one
-    /// exercise, since a run that asks one thing has already said what it asks.
+    /// The Sprosse part of the score line, worded as kern's `sprosseLine` says.
     private var sprosseText: Text? {
-        guard run.showsSprosse else { return nil }
-        let exercise = run.currentExercise
-        let sprosse = Int(run.currentSprosse)
-        guard exercise != .counting else {
-            // why: `trainer.digits` is the numbers drill's own wording and already
-            // wears 🔢 — putting the exercise's face in front would double it.
-            return Text("numbers.sprosse \(sprosse)")
-        }
-        let text = Text("trainer.sprosse \(sprosse.formatted())")
-        guard run.severalExercises else { return text }
-        return Text(verbatim: "\(numbersExerciseEmoji(exercise: exercise)) ") + text
+        guard let line = run.sprosseLine else { return nil }
+        let sprosse = Int(line.sprosse)
+        let text = line.digits ? Text("numbers.sprosse \(sprosse)") : Text("trainer.sprosse \(sprosse.formatted())")
+        guard let emoji = line.emoji else { return text }
+        return Text(verbatim: "\(emoji) ") + text
     }
 
     // why: no "Wusste ich" under a reveal here — drills are generated, so

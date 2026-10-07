@@ -144,6 +144,19 @@ data class NumbersRunState(
     val severalExercises: Boolean get() = mode.exercises.size > 1
 
     /**
+     * The Sprosse part of the score line, for the exercise that just asked; null where it has one Sprosse.
+     * Counting is worded in digits, which already wears 🔢, so it takes no face;
+     * every other exercise counts plain Sprossen, led by its face only in a run of several exercises.
+     */
+    val sprosseLine: SprosseLine?
+        get() {
+            if (!showsSprosse) return null
+            val digits = currentExercise == NumbersExercise.Counting
+            val face = numbersExerciseEmoji(currentExercise).takeIf { !digits && severalExercises }
+            return SprosseLine(currentSprosse, digits, face)
+        }
+
+    /**
      * A reversed task's reading, which is then the prompt in the language being learned;
      * a forward task's numeral has no reading that is not the answer itself.
      */
@@ -246,3 +259,6 @@ data class NumbersRunState(
      */
     internal fun cleanness(booking: DrillBooking): Boolean = booking.clean && !(booking.correct && hintUsed)
 }
+
+/** The score line's Sprosse part: worded in [digits] or as a plain Sprosse, behind [emoji] where one leads. */
+data class SprosseLine(val sprosse: Int, val digits: Boolean, val emoji: String?)
