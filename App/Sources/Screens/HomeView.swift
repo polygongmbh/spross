@@ -32,7 +32,7 @@ struct HomeView: View {
                               title: "error.title",
                               message: failure.text)
                 } else if lead == .drill, let pick {
-                    drillLeadCard(offer, pick) { drillDestination = hub.destination(for: pick.drill) }
+                    drillLeadCard(pick) { drillDestination = hub.destination(for: pick.drill) }
                 } else if lead == .round {
                     sessionCard(offer)
                 } else {

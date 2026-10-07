@@ -18,7 +18,9 @@ import net.spross.app.AppModel
 import net.spross.app.startExtraSession
 import net.spross.app.startSession
 import net.spross.kern.box.StreakHealth
+import net.spross.kern.session.DayMark as DayMarkRule
 import net.spross.kern.session.HomeStanding
+import net.spross.kern.session.RoundStart
 import net.spross.kern.trainer.DayLead
 import net.spross.kern.trainer.DrillSuggestion
 
@@ -36,7 +38,6 @@ fun DrillLeadCard(
     health: StreakHealth,
 ) {
     val chrome = model.chrome
-    val roundLeft = standing.offer.hasRound
     DayCard {
         DayHeader(model, standing, streak, health)
         HorizontalDivider()
@@ -59,10 +60,10 @@ fun DrillLeadCard(
         ) {
             Text(chrome.homeOfferStart, style = MaterialTheme.typography.titleMedium)
         }
-        // The round with reviews still due; an extra one once none are.
-        if (roundLeft || standing.canPracticeMore) {
+        // The round with reviews still due; an extra one once none are (kern's `roundInstead`).
+        standing.roundInstead?.let { round ->
             OutlinedButton(
-                onClick = { if (roundLeft) model.startSession() else model.startExtraSession() },
+                onClick = { if (round == RoundStart.Due) model.startSession() else model.startExtraSession() },
                 modifier = Modifier.fillMaxWidth().pressSpring(),
                 shape = MaterialTheme.shapes.small,
             ) { Text(chrome.homeSuggestionWordsInstead) }
@@ -98,6 +99,6 @@ private fun DayHeader(model: AppModel, standing: HomeStanding, streak: Int, heal
                 )
             }
         }
-        DayMark(null, streak, health, chrome)
+        DayMark(DayMarkRule.lead(streak), streak, health, chrome)
     }
 }
