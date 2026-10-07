@@ -167,16 +167,12 @@ struct SessionView: View, LanguageNaming {
         let role = model.presentationRole(for: card.id)
         return ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                // ZStack so outgoing and incoming card overlap during the flip
-                // instead of stacking; .id gives each card its own identity.
-                ZStack {
+                QuestionStage(key: turn?.question.key) {
                     if let question = turn?.question {
                         // why: the input, the button and the keyboard share this
                         // screen with the card — the picture goes beside the words.
                         QuestionCardView(question: question, surface: .review, voice: model.cardVoice,
                                          areaTitle: model.areaTitle)
-                            .id(question.key)
-                            .transition(reduceMotion ? .opacity : .cardFlip)
                             // why: only once the answer is out — before it, the learner has
                             // not seen the translation they would be reporting, and a menu
                             // over the prompt is a menu over a question. A typo's hold counts:

@@ -131,7 +131,7 @@ struct SentenceScrambleView: View {
             .padding(.bottom, Theme.spacing.lg)
         }
         .scrollBounceBehavior(.basedOnSize)
-        .animation(.easeOut(duration: 0.25), value: run.showsAnswer)
+        .animation(.cardReveal, value: run.showsAnswer)
     }
 
     /// What the graded arrangement grows, on the answer card itself — the shared

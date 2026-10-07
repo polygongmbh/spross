@@ -45,7 +45,7 @@ struct QuestionCardView: View {
 
     var opens: Bool { question.opens }
 
-    var revealAnimation: Animation { .easeOut(duration: Double(CardMotion.shared.REVEAL_MS) / 1000) }
+    var revealAnimation: Animation { .cardReveal }
 
     // MARK: - A drill task
 

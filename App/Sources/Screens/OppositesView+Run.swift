@@ -13,12 +13,8 @@ extension OppositesView: DrillRunning {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
                 if let task = current, let question = run.question, let controls = run.controls {
-                    // ZStack so the outgoing and incoming word overlap during
-                    // the flip; .id gives each position its identity.
-                    ZStack {
+                    QuestionStage(key: question.key) {
                         QuestionCardView(question: question, voice: model.cardVoice)
-                            .id(question.key)
-                            .transition(reduceMotion ? .opacity : .cardFlip)
                     }
                     typedControls(task, controls)
                 }

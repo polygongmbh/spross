@@ -17,12 +17,8 @@ extension DrillRunView {
         let task = current
         return ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                // ZStack so the outgoing and incoming question overlap during
-                // the flip; .id gives each position its identity.
-                ZStack {
+                QuestionStage(key: task.question.key) {
                     QuestionCardView(question: task.question, voice: model.cardVoice)
-                        .id(task.question.key)
-                        .transition(reduceMotion ? .opacity : .cardFlip)
                 }
                 answerControls
             }

@@ -27,7 +27,7 @@ struct AnswerArea<Tiles: View>: View {
             slot
             buttons
         }
-        .animation(.easeOut(duration: 0.25), value: feedback)
+        .animation(.cardReveal, value: feedback)
     }
 
     private var feedback: AnswerInputView.Feedback { .init(controls.fieldFeedback) }

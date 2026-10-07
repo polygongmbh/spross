@@ -141,7 +141,7 @@ extension DrillRunning {
         }
         let animation: Animation = moved
             ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
-            : .easeOut(duration: 0.25)
+            : .cardReveal
         withAnimation(animation) { run = step.run }
         for effect in step.effects { apply(effect) }
         // why: after the effects — a verdict's Silence would cut the answer this

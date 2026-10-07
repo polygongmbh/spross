@@ -88,7 +88,7 @@ struct CardEmoji: View {
             // why: faded rather than removed — the slot is already the right
             // size, so a held-back picture arrives without moving the words.
             .opacity(shows ? 1 : 0)
-            .animation(.easeOut(duration: 0.25), value: shows)
+            .animation(.cardReveal, value: shows)
     }
 
     /// The invariant the slot exists to keep: held back only until the reveal.

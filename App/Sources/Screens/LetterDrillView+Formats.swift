@@ -11,13 +11,9 @@ extension LetterDrillView {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
                 if let task = current, let question = run.question, let controls = run.controls {
-                    // ZStack so the outgoing and incoming question overlap
-                    // during the flip; .id gives each position its identity.
-                    ZStack {
+                    QuestionStage(key: question.key) {
                         QuestionCardView(question: question, voice: cardVoice(question),
                                          replayFocus: $replayFocused)
-                            .id(question.key)
-                            .transition(reduceMotion ? .opacity : .cardFlip)
                     }
                     answerArea(task, controls)
                 }

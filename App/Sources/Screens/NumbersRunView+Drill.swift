@@ -9,12 +9,8 @@ extension NumbersRunView {
     var drillContent: some View {
         ScrollView {
             VStack(spacing: Theme.spacing.md) {
-                // ZStack so outgoing and incoming prompt overlap during the
-                // flip; .id gives each run position its own view identity.
-                ZStack {
+                QuestionStage(key: run.question.key) {
                     QuestionCardView(question: run.question, voice: model?.cardVoice ?? .silent)
-                        .id(run.question.key)
-                        .transition(reduceMotion ? .opacity : .cardFlip)
                 }
                 controls
             }

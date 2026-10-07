@@ -78,7 +78,7 @@ struct AnswerInputView: View {
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
-        .animation(.easeOut(duration: 0.25), value: feedback)
+        .animation(.cardReveal, value: feedback)
     }
 
     /// Revealed, locked and empty: the card is carrying the answer and there is
