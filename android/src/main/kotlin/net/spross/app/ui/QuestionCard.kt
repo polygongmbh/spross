@@ -68,6 +68,7 @@ fun QuestionCard(
     when (surface) {
         QuestionSurface.Drill -> card.DrillFace(modifier)
         QuestionSurface.Review -> card.ReviewFace(modifier)
+        QuestionSurface.Listening -> card.ListeningFace(modifier)
     }
 }
 
@@ -78,6 +79,9 @@ enum class QuestionSurface {
 
     /** A review card above the answer controls: its words at headword size with their grammar, the picture beside them. */
     Review,
+
+    /** The listening card, the screen's only content: the picture above the words, at hero size. */
+    Listening,
 }
 
 /** What a card's speakers do: the tap that says a side's [Saying]; null drops the speaker. */

@@ -1,6 +1,7 @@
 package net.spross.app.ui
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,10 +10,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import net.spross.kern.session.Question
 
 /**
@@ -107,4 +112,39 @@ internal fun CardContext.HeadwordBlock(side: Question.Side, emphasized: Boolean)
 @Composable
 internal fun CardContext.PluralLine(side: Question.Side) {
     side.plural?.let { CardLine(pluralText(it, chrome)) }
+}
+
+/**
+ * The card that owns the screen: height is abundant and width is what the words are short of,
+ * so the picture stands ABOVE them at full size and the words get the card's full width.
+ */
+@Composable
+internal fun CardContext.ListeningFace(modifier: Modifier) {
+    val emoji = question.emoji?.takeIf { it.isNotEmpty() }
+    val hero = with(LocalDensity.current) { EMOJI_HERO.toDp() }
+    // why: the meaning's LINE is held for the whole turn and only its ink fades in — a card that
+    // grows and shrinks every few seconds pumps in height with nothing being revealed.
+    // Keyed on the question, so a new word re-seeds the fade at nothing rather than showing
+    // the incoming word's meaning at full ink before the word has been said once.
+    val meaning = remember(question.key) { Animatable(0f) }
+    LaunchedEffect(question.key, opens) { meaning.animateTo(if (opens) 1f else 0f) }
+    CardFace(modifier, padding = Theme.spacing.xl) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            if (emoji != null) EmojiSlot(emoji, emojiShowing(question.emojiCue, opens), hero, EMOJI_HERO_GLYPH)
+            HeadwordBlock(question.prompt, emphasized = false)
+            Column(
+                // why: alpha does not measure, so the line is there all along — but it is not YET
+                // part of the card, and a screen reader reading it would say the meaning early.
+                modifier = Modifier.alpha(meaning.value)
+                    .then(if (opens) Modifier else Modifier.clearAndSetSemantics { }),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                HeadwordBlock(question.answer, emphasized = true)
+            }
+        }
+    }
 }
