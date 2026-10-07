@@ -4,9 +4,10 @@ import SprossKern
 // MARK: - Shared modifiers & button styles
 
 extension View {
-    /// The one card shadow used everywhere.
+    /// The one card shadow used everywhere, cut by kern's `CardSurface`.
     func cardShadow() -> some View {
-        shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 6)
+        shadow(color: .black.opacity(CardSurface.shared.SHADOW_ALPHA),
+               radius: CardSurface.shared.SHADOW_RADIUS, x: 0, y: CardSurface.shared.SHADOW_Y)
     }
 
     /// The one card FACE: surface fill, hairline, shadow. Every card a session
@@ -19,7 +20,7 @@ extension View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .strokeBorder(Theme.colors.separator.opacity(0.6), lineWidth: 1)
+                .strokeBorder(Theme.colors.separator.opacity(CardSurface.shared.HAIRLINE), lineWidth: 1)
         )
         .cardShadow()
     }

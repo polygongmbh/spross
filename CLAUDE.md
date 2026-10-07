@@ -137,7 +137,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Out-of-scope discoveries go to `docs/backlog.md`, catalog content to `catalog/backlog.md` (one-liners with pointers); prune on fix.
 - Whose the bundled recordings are and what their licenses oblige — the ship/legal record —
   is `docs/audio-licensing.md`; no other doc restates a license term.
-- Write plans into docs/plans/ and delete them once shipped, even if you did not write the plan;
+- Write plans into docs/plans/ and delete them once shipped, even if you did not write the plan —
+  an audit, triage or sweep result listing work still to do is a plan, never a dated file in docs/ or /tmp;
   a plan or handoff doc stays UNCOMMITTED unless asked since it is working state
 - Never commit changes to markdown documentation files as separate commits, commit them with related code changes where sensible;
   a backlog ruling or pruning with no code stays uncommitted and rides along with the commit that acts on it

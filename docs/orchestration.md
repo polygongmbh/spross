@@ -25,6 +25,8 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
 - iOS runs on `scripts/run-sim.sh`'s default `iPhone 17`; `iPhone 18 Pro Max` only when a change is about screen size,
   and an agent never creates a simulator.
 - `scripts/catalog-format.py --fix` rewrites the WHOLE repo — only the conductor runs it,
+- Agents run one after another, never side by side:
+  parallel agents draw on one rate limit, exhaust it together and all abort.
   after all agents are done. Agents that need valid JSON write through the formatter's own
   `formatted()` function on their files only.
 
