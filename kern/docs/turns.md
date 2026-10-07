@@ -68,7 +68,8 @@ and text reaches a machine only inside an intent — never as state.
 - `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice, seed)` is the one gate,
   disciplined like `LetterDrillAvailability.report`:
   the only platform facts are the two `hasVoice` booleans, and kern caches nothing.
-  It is asked ONCE PER RUN, when the learner opens one, never on the way past the entry card.
+  It is asked ONCE PER RUN, when the learner opens one, never on the way past the entry card;
+  the card itself stands on `listeningOffered`: words in the box and something that can say each language.
   `seed` only salts the order's tiebreak; kern never reads a clock or cares what the number means.
 - **The pool is the sayable join short of the settled words, not a composed subset.**
   **Both halves must be sayable** (`audible` on both forms),

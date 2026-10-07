@@ -2,8 +2,11 @@ package net.spross.kern.listen
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
+import net.spross.kern.catalog.AudioCapability
 
-/** One turn as said, and where a bedtime ends a run. */
+/** Whether the mode is offered, one turn as said, and where a bedtime ends a run. */
 class ListeningBeatsTests {
 
     private val turn = ListeningTurn(
@@ -31,5 +34,13 @@ class ListeningBeatsTests {
         assertEquals(ListeningSeam.Advance, listeningSeam(null))
         assertEquals(ListeningSeam.Advance, listeningSeam(60_000L))
         assertEquals(ListeningSeam.End, listeningSeam(0L))
+    }
+
+    /** Offered over a box with words where both sides of a turn can be heard, and nowhere else. */
+    @Test
+    fun listeningIsOfferedOnlyWhereBothSidesCanBeHeard() {
+        assertTrue(listeningOffered(true, AudioCapability.VoiceOnly, AudioCapability.RecordingsOnly))
+        assertFalse(listeningOffered(true, AudioCapability.VoiceOnly, AudioCapability.None))
+        assertFalse(listeningOffered(false, AudioCapability.Both, AudioCapability.Both))
     }
 }

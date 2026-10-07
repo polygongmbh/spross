@@ -160,11 +160,13 @@ extension AppModel {
                                hasVoice: Pronouncer.shared.canSpeak(language: language))
     }
 
-    /// Whether the listening card stands: something can say BOTH sides of a
-    /// turn. The playlist itself is dealt when a run opens (`ListeningDriver`).
+    /// Whether the listening card stands (`listeningOffered`). The playlist
+    /// itself is dealt when a run opens (`ListeningDriver`).
     var listeningOffered: Bool {
         guard let target = targetLanguage else { return false }
-        return !audioSources(sourceLanguage).silent && !audioSources(target).silent
+        return SprossKern.listeningOffered(hasWords: box?.cards.isEmpty == false,
+                                           source: audioSources(sourceLanguage),
+                                           target: audioSources(target))
     }
 
     /// Whether a single word in the box can be said aloud here — `anyWordAudible`

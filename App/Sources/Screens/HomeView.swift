@@ -94,7 +94,7 @@ struct HomeView: View {
         // Two map lookups and two voice probes — never the walk of the whole
         // join, which is what dealing the playlist is, and that waits for the
         // run to open.
-        if model.box?.cards.isEmpty == false, model.listeningOffered {
+        if model.listeningOffered {
             Button { listeningPresented = true } label: {
                 WayInCard(emoji: "🎧", title: Text("listen.title"), subtitle: Text("listen.subtitle"))
             }

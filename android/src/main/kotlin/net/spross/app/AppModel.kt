@@ -26,7 +26,6 @@ import net.spross.kern.box.BoxStatistics
 import net.spross.kern.box.ShelfCounts
 import net.spross.kern.box.answerDays
 import net.spross.kern.box.mergeAnswerDays
-import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.CountryDrillContent
 import net.spross.kern.catalog.DateDrillContent
@@ -75,14 +74,10 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     val listening = ListeningDriver(app, this)
 
     /**
-     * Whether the listening card stands: a box with words in it, and both sides of a turn
-     * having SOMETHING that can say them ([AudioCapability]).
-     *
-     * Still no sweep — two map lookups and two voice probes, never the walk of the join that
-     * dealing the playlist is. Held as state rather than asked per composition because
-     * `canSpeak` is an uncached call into the TTS engine on this platform, and Home reads
-     * this on every frame it stands on; [refreshListening] takes it again on every
-     * foreground, which is when an installed voice can have appeared.
+     * Whether the listening card stands (kern's `listeningOffered`). Held as state rather than
+     * asked per composition because `canSpeak` is an uncached call into the TTS engine on this
+     * platform, and Home reads this on every frame it stands on; [refreshListening] takes it
+     * again on every foreground, which is when an installed voice can have appeared.
      *
      * The playlist itself is dealt in [startListening], where a run is what needs it.
      */
@@ -289,8 +284,11 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     fun refreshListening() {
         val stamp = box?.joinStamp
-        listeningOffered = stamp != null && box?.cards?.isNotEmpty() == true &&
-            !audioSources(stamp.source).silent && !audioSources(stamp.target).silent
+        listeningOffered = stamp != null && net.spross.kern.listen.listeningOffered(
+            hasWords = box?.cards?.isNotEmpty() == true,
+            source = audioSources(stamp.source),
+            target = audioSources(stamp.target),
+        )
     }
 
     /**

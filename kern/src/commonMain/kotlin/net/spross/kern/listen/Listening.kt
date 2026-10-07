@@ -3,6 +3,7 @@ package net.spross.kern.listen
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.emojiCue
 
+import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Playback
 import net.spross.kern.model.Card
 
@@ -229,3 +230,13 @@ fun listeningPriority(arrived: Boolean, suspended: Boolean): Int =
  */
 fun recallGap(candidate: ListeningCandidate): Long =
     if (candidate.scheduled) RECALL_GAP_HELD_MS else RECALL_GAP_NEW_MS
+
+/**
+ * Whether the listening card stands: a box with words in it ([hasWords]),
+ * and something on this device that can say each side of a turn.
+ *
+ * No sweep — the two capabilities are a map lookup and a voice probe each;
+ * which words make the playlist is dealt when a run opens (`ListeningPool`).
+ */
+fun listeningOffered(hasWords: Boolean, source: AudioCapability, target: AudioCapability): Boolean =
+    hasWords && !source.silent && !target.silent
