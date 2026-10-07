@@ -26,25 +26,23 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import kotlinx.coroutines.delay
 import net.spross.app.Chrome
+import net.spross.kern.trainer.DrillUnlockMark
 
-/**
- * How an overview row that just unlocked is marked, once (kern's `DrillUnlockMark` decides
- * which): the padlock it wore fades where it stood while a wash over the row fades with it.
+/*
+ * How an overview row that just unlocked is marked, once (kern's [DrillUnlockMark] decides
+ * which and times it): the padlock it wore fades where it stood while a wash over the row fades with it.
  * Short and quiet on purpose — it confirms what the learner earned rather than celebrating it.
  */
-private object UnlockTiming {
-    /** How long the padlock stands before it goes — past a screen sliding in. */
-    const val HOLD_MS = 600L
-    const val FADE_MS = 900
-}
+private const val HOLD_MS = DrillUnlockMark.HOLD_MS.toLong()
+private const val FADE_MS = DrillUnlockMark.FADE_MS
 
-/** Whether a newly unlocked row's padlock is still standing: true for [UnlockTiming.HOLD_MS], then false. */
+/** Whether a newly unlocked row's padlock is still standing: true for [HOLD_MS], then false. */
 @Composable
 private fun padlockStanding(newlyUnlocked: Boolean): Boolean {
     var standing by remember(newlyUnlocked) { mutableStateOf(newlyUnlocked) }
     LaunchedEffect(newlyUnlocked) {
         if (!newlyUnlocked) return@LaunchedEffect
-        delay(UnlockTiming.HOLD_MS)
+        delay(HOLD_MS)
         standing = false
     }
     return standing
@@ -56,8 +54,8 @@ fun UnlockingMark(newlyUnlocked: Boolean, mark: @Composable () -> Unit) {
     AnimatedContent(
         targetState = padlockStanding(newlyUnlocked),
         transitionSpec = {
-            fadeIn(tween(UnlockTiming.FADE_MS)) togetherWith
-                (fadeOut(tween(UnlockTiming.FADE_MS)) + scaleOut(tween(UnlockTiming.FADE_MS), targetScale = 0.6f))
+            fadeIn(tween(FADE_MS)) togetherWith
+                (fadeOut(tween(FADE_MS)) + scaleOut(tween(FADE_MS), targetScale = DrillUnlockMark.PADLOCK_SHRINK.toFloat()))
         },
         contentAlignment = Alignment.Center,
         label = "unlock",
@@ -72,7 +70,7 @@ fun FadingPadlock(newlyUnlocked: Boolean) {
     AnimatedVisibility(
         visible = padlockStanding(newlyUnlocked),
         enter = fadeIn(tween(0)),
-        exit = fadeOut(tween(UnlockTiming.FADE_MS)) + shrinkHorizontally(tween(UnlockTiming.FADE_MS)),
+        exit = fadeOut(tween(FADE_MS)) + shrinkHorizontally(tween(FADE_MS)),
     ) {
         Padlock(MaterialTheme.typography.titleMedium)
     }
@@ -88,10 +86,10 @@ fun Modifier.unlockWash(newlyUnlocked: Boolean): Modifier = composed {
     val alpha = remember(newlyUnlocked) { Animatable(if (newlyUnlocked) 1f else 0f) }
     LaunchedEffect(newlyUnlocked) {
         if (!newlyUnlocked) return@LaunchedEffect
-        delay(UnlockTiming.HOLD_MS)
-        alpha.animateTo(0f, tween(UnlockTiming.FADE_MS, easing = FastOutSlowInEasing))
+        delay(HOLD_MS)
+        alpha.animateTo(0f, tween(FADE_MS, easing = FastOutSlowInEasing))
     }
-    val wash = Theme.colors.accent.copy(alpha = 0.12f)
+    val wash = Theme.colors.accent.copy(alpha = DrillUnlockMark.WASH_ALPHA.toFloat())
     drawBehind { drawRect(wash.copy(alpha = wash.alpha * alpha.value)) }
 }
 
@@ -104,7 +102,7 @@ fun AnnounceUnlocks(titles: List<String>, chrome: Chrome) {
     val view = LocalView.current
     LaunchedEffect(titles) {
         if (titles.isEmpty()) return@LaunchedEffect
-        delay(700)
+        delay(DrillUnlockMark.ANNOUNCE_DELAY_MS.toLong())
         @Suppress("DEPRECATION") // why: the one call that speaks without moving focus
         view.announceForAccessibility(chrome.a11yTrainerUnlocked.format(titles.joinToString(", ")))
     }

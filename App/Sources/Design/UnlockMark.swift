@@ -2,24 +2,23 @@ import SwiftUI
 import SprossKern
 
 /// How an overview row that just unlocked is marked, once (kern's `DrillUnlockMark`
-/// decides which): the padlock it wore fades where it stood while a wash behind
+/// decides which and times it): the padlock it wore fades where it stood while a wash behind
 /// the row fades with it. Short and quiet on purpose — it confirms what the
 /// learner earned rather than celebrating it.
 enum UnlockMark {
-    /// How long the padlock stands before it goes — past a sheet sliding in,
-    /// so the eye finds it first.
-    static let hold: Duration = .milliseconds(600)
-    static let fade: Animation = .easeOut(duration: 0.9)
+    static let hold: Duration = .milliseconds(Int(DrillUnlockMark.shared.HOLD_MS))
+    static let fade: Animation = .easeOut(duration: Double(DrillUnlockMark.shared.FADE_MS) / 1000)
+    static let shrink = CGFloat(DrillUnlockMark.shared.PADLOCK_SHRINK)
+    static let wash = DrillUnlockMark.shared.WASH_ALPHA
 
-    /// Says the unlocked rows once, a beat after the page settles, so the
-    /// screen change VoiceOver is announcing is not talked over.
+    /// Says the unlocked rows once, a beat after the page settles.
     @MainActor
     static func announce(_ titles: [String], locale: Locale) {
         guard !titles.isEmpty else { return }
         let text = String(format: ChromeStrings.string("a11y.trainer.unlocked %@", locale: locale),
                           titles.formatted(.list(type: .and).locale(locale)))
         Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(700))
+            try? await Task.sleep(for: .milliseconds(Int(DrillUnlockMark.shared.ANNOUNCE_DELAY_MS)))
             AccessibilityNotification.Announcement(text).post()
         }
     }
@@ -39,7 +38,7 @@ struct UnlockingMark<Mark: View>: View {
                 Image(systemName: "lock.fill")
                     .font(.title3)
                     .foregroundStyle(Theme.colors.textSecondary)
-                    .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.6)))
+                    .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: UnlockMark.shrink)))
             } else {
                 mark().transition(.opacity)
             }
@@ -61,7 +60,7 @@ struct FadingPadlock: View {
                 Image(systemName: "lock.fill")
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
-                    .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.6)))
+                    .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: UnlockMark.shrink)))
             }
         }
         .task(id: newlyUnlocked) { await fadeOnce(newlyUnlocked, $faded) }
@@ -85,7 +84,7 @@ private struct UnlockWash: ViewModifier {
         content
             .overlay {
                 RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
-                    .fill(Theme.colors.accent.opacity(0.12))
+                    .fill(Theme.colors.accent.opacity(UnlockMark.wash))
                     .padding(-bleed)
                     .opacity(newlyUnlocked && !faded ? 1 : 0)
                     .allowsHitTesting(false)
