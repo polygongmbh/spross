@@ -130,10 +130,17 @@ private fun HearPrompt(
             textAlign = TextAlign.Center,
         )
         ReplayGlyph(replay, chrome, replayFocus)
-        task.gapText?.let {
-            Text(localizedTarget(it, task.language), fontSize = Theme.prompt.word, fontWeight = FontWeight.Bold)
+        val opened = flow.state.showsAnswer
+        task.gapText?.let { gap ->
+            // why: a gap question closes over its blank where it stood, so nothing below it moves.
+            Text(
+                localizedTarget(if (opened) task.gloss ?: task.display else gap, task.language),
+                fontSize = Theme.prompt.word,
+                fontWeight = FontWeight.Bold,
+                color = if (opened) Theme.colors.accent else Theme.colors.textPrimary,
+            )
         }
-        if (flow.state.showsAnswer) {
+        if (opened && task.gapText == null) {
             // why: the meaning is a REVEAL, never a cue — a dictation that shows what the
             // word means is no longer taken from the sound.
             CardReveal(note = task.gloss) {
