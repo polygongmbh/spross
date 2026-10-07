@@ -19,11 +19,11 @@ extension OnboardingView {
     // MARK: - What Spross is for
 
     var whyPage: some View {
-        OnboardingStoryPage(emoji: "🌱",
+        OnboardingStoryPage(emoji: page.emoji,
                             title: "onboarding.why.title",
                             actionLabel: "common.next",
-                            action: { turn(to: .firstRound) },
-                            onBack: { turn(to: .languages) }) {
+                            action: { turn(to: page.next) },
+                            onBack: { turn(to: page.back(joining: starting)) }) {
             VStack(alignment: .leading, spacing: Theme.spacing.lg) {
                 principle("onboarding.why.breadth.title", "onboarding.why.breadth.body")
                 principle("onboarding.why.companion.title", "onboarding.why.companion.body")
@@ -55,12 +55,12 @@ extension OnboardingView {
     // MARK: - What a round asks of you
 
     var firstRoundPage: some View {
-        OnboardingStoryPage(emoji: "🌿",
+        OnboardingStoryPage(emoji: page.emoji,
                             title: "onboarding.firstRound.title",
                             actionLabel: "onboarding.start",
                             busy: starting,
                             action: { start() },
-                            onBack: starting ? nil : { turn(to: .why) }) {
+                            onBack: page.back(joining: starting).map { back in { turn(to: back) } }) {
             VStack(alignment: .leading, spacing: Theme.spacing.md) {
                 moment("onboarding.firstRound.recognize")
                 moment("onboarding.firstRound.grade")

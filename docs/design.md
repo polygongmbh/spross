@@ -35,7 +35,8 @@ rephrase it as an availability statement or a question.
 - A language is named by its endonym (`LanguageChoices.name`);
   pickers add the English exonym.
 - Onboarding ends inside the first round, and only its last page commits
-  (joins the box and opens the session).
+  (joins the box and opens the session; `OnboardingPage`) —
+  with no way back once it has.
   That first round teaches itself, one line per moment, in the quiet aside line,
   and the lines last that round only.
 - Importing a backup on a first run skips onboarding:

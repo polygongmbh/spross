@@ -133,9 +133,9 @@ fun PrincipleBlock(title: String, body: String) {
  * Expectations are cheaper to set here than to correct after a week of rounds.
  */
 @Composable
-fun PrinciplesPage(chrome: Chrome, onNext: () -> Unit, onBack: () -> Unit) {
+fun PrinciplesPage(chrome: Chrome, emoji: String, onNext: () -> Unit, onBack: () -> Unit) {
     OnboardingStoryPage {
-        OnboardingHero("🌱", chrome.onboardingWhyTitle)
+        OnboardingHero(emoji, chrome.onboardingWhyTitle)
         PrincipleBlock(chrome.onboardingWhyBreadthTitle, chrome.onboardingWhyBreadthBody)
         PrincipleBlock(chrome.onboardingWhyCompanionTitle, chrome.onboardingWhyCompanionBody)
         PrincipleBlock(chrome.onboardingWhyGrammarTitle, chrome.onboardingWhyGrammarBody)
@@ -153,15 +153,16 @@ fun PrinciplesPage(chrome: Chrome, onNext: () -> Unit, onBack: () -> Unit) {
  * which is why these stay short enough to be read once and left.
  */
 @Composable
-fun FirstRoundPage(chrome: Chrome, busy: Boolean, onStart: () -> Unit, onBack: () -> Unit) {
+fun FirstRoundPage(chrome: Chrome, emoji: String, busy: Boolean, onStart: () -> Unit, onBack: (() -> Unit)?) {
     OnboardingStoryPage {
-        OnboardingHero("🌿", chrome.onboardingFirstRoundTitle)
+        OnboardingHero(emoji, chrome.onboardingFirstRoundTitle)
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             Text(chrome.onboardingFirstRoundRecognize, style = MaterialTheme.typography.bodyLarge)
             Text(chrome.onboardingFirstRoundGrade, style = MaterialTheme.typography.bodyLarge)
             Text(chrome.onboardingFirstRoundWrite, style = MaterialTheme.typography.bodyLarge)
         }
         OnboardingPrimary(chrome.onboardingStart, busy = busy, onClick = onStart)
-        OnboardingBack(chrome.commonBack, onBack)
+        // why: no way back while the box is being joined — the join leaves this screen itself.
+        onBack?.let { OnboardingBack(chrome.commonBack, it) }
     }
 }
