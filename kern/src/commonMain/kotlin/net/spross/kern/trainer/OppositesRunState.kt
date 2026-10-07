@@ -82,9 +82,6 @@ data class OppositesRunState(
         fun storageKey(language: Language): String = "opposites.$language"
     }
 
-    /** The card opens on every verdict: the other opposites are what the drill is there to show. */
-    val showsAnswer: Boolean get() = !owesAnswer
-
     internal val newSprossen: Int get() = (clearedSprossen - config.cleared).size
 
     /** The word asked about, in the language being learned: hearing it gives no opposite away. */
@@ -94,7 +91,10 @@ data class OppositesRunState(
     override val answerSaying: Saying?
         get() = task?.let { t -> Saying(t.answers.joinToString(", ") { it.text }, t.language) }
 
-    /** Every opposite on the answer, and the closing line pairing what the prompt means with what each of them does. */
+    /**
+     * Every opposite on the answer, and the closing line pairing what the prompt means with what each of them does —
+     * the one line an accepted opposite grows.
+     */
     override val question: Question?
         get() = task?.let { t ->
             Question(
@@ -108,6 +108,7 @@ data class OppositesRunState(
                 emoji = null,
                 emojiCue = EmojiCue.Upfront,
                 opens = showsAnswer,
+                growsNote = answerAccepted,
                 closing = Question.Closing(
                     note = ClosingNote.Own("${t.gloss} ↔ ${t.answers.joinToString(OPPOSITES_JOIN) { it.gloss }}"),
                 ),

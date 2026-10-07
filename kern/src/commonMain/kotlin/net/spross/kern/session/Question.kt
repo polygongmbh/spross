@@ -11,7 +11,8 @@ import net.spross.kern.trainer.DateTaskKind
  * What one question on screen shows — a review card and a drill task alike — so each app draws
  * every card from one component instead of composing its faces per screen.
  *
- * [answer] and [closing] are shown only while [opens]; before it they are the reveal held back.
+ * [answer] and [closing] are shown only while [opens]; before it they are the reveal held back —
+ * save [Closing.note] alone where [growsNote].
  * Nothing here is worded: asks, hints, plural sentinels and closing labels are structures each
  * app words from its string table, and nothing here names a position on screen.
  */
@@ -29,8 +30,16 @@ data class Question(
     val emojiIsQuestion: Boolean = false,
     /** A fact about this prompt shown until the card opens; null on nearly every question. */
     val hint: QuestionHint? = null,
-    /** The card carries its answer — the one rule for when it grows [answer] and [closing]. */
+    /**
+     * The card carries its answer — the one rule for when it grows [answer] and [closing]:
+     * on a miss or a reveal, never on an accepted answer, which already stands in the learner's own text.
+     */
     val opens: Boolean,
+    /**
+     * The card stays closed yet grows [Closing.note] alone: an accepted answer to a question
+     * whose meaning never stood on screen — the scrambles, the opposites, a letter heard.
+     */
+    val growsNote: Boolean = false,
     val closing: Closing = Closing(),
     /** What a refused answer actually named — only beside a revealed miss. */
     val otherWord: Match.OtherWord? = null,

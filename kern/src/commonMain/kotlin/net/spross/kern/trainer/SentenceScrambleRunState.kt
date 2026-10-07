@@ -110,14 +110,6 @@ data class SentenceScrambleRunState(
         fun storageKey(language: Language): String = "sentencescramble.$language"
     }
 
-    /**
-     * The card is up, whatever the arrangement was graded.
-     * A clean one raises it too: the ORDER was the question and the MEANING never was,
-     * so an arrangement that vanished the moment it landed
-     * was the one answer the drill never glossed.
-     */
-    val showsAnswer: Boolean get() = !owesAnswer
-
     /** Nothing: the phrase heard in order is the order being asked for. */
     override val promptSaying: Saying? get() = null
 
@@ -126,24 +118,21 @@ data class SentenceScrambleRunState(
 
     /**
      * The bank is the prompt, so no words stand on it.
-     * The card opens onto the meaning always, and onto the authored order only where the arrangement missed
-     * or took another order — a clean one already stands in that order, and setting it twice reads as a correction.
-     * An alternative order drops the meaning, which belongs to the authored one.
+     * A missed arrangement opens onto the authored order and its meaning;
+     * an accepted one already stands in an order, so it grows the meaning alone —
+     * none after an alternative order, since the meaning belongs to the authored one.
      */
     override val question: Question?
         get() = task?.let { t ->
-            val showsOrder = !answerAccepted || alternativeMatch
             Question(
                 key = index.toString(),
                 ask = null,
                 prompt = Question.Side(null, t.language, Question.Form.Sentence),
-                answer = Question.Side(
-                    t.display.takeIf { showsOrder }, t.language, Question.Form.Sentence,
-                    saying = answerSaying.takeIf { showsOrder },
-                ),
+                answer = Question.Side(t.display, t.language, Question.Form.Sentence, saying = answerSaying),
                 emoji = null,
                 emojiCue = EmojiCue.Upfront,
                 opens = showsAnswer,
+                growsNote = answerAccepted,
                 closing = Question.Closing(note = t.gloss.takeUnless { alternativeMatch }?.let { ClosingNote.Own(it) }),
             )
         }

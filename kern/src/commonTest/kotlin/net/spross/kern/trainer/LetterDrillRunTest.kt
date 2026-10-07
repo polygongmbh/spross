@@ -336,7 +336,6 @@ class LetterDrillRunTest {
         val state = LetterDrillRun.openAt(config(report()), 6, rng)
         val held = state.copy(feedback = TurnFeedback.Almost("миша", AlmostReason.Typo))
         assertTrue(held.answerAccepted)
-        assertTrue(held.showsAnswer, "a slip leaves a spelling worth seeing")
         val booked = reduce(held, LetterDrillIntent.ConfirmPending, rng).state
         assertEquals(listOf(AnswerOutcome.Almost), booked.outcomes)
         assertEquals(6, booked.sprosse)
@@ -403,21 +402,6 @@ class LetterDrillRunTest {
         while (!state.finished) state = answeredRight(state, rng)
         assertNull(state.task)
         assertEquals(3, state.done, "one question per format: two tile formats and the typed one")
-    }
-
-    /**
-     * The card opens on a clean answer too, the way the word scramble's does:
-     * the spelling was the question and the meaning never was.
-     */
-    @Test
-    fun aCleanSpellingIsGlossedToo() {
-        val rng = Random(17)
-        val state = LetterDrillRun.openAt(config(report()), 6, rng)
-        assertFalse(state.showsAnswer, "nothing to show while the turn is still open")
-        assertTrue(
-            state.copy(feedback = TurnFeedback.Correct).showsAnswer,
-            "a letter spelled right is still worth glossing",
-        )
     }
 
     // MARK: - Closing

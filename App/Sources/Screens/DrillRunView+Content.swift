@@ -60,7 +60,7 @@ extension DrillRunView {
                      isPlaying: model.isPronouncing(saying.form, lang: saying.lang))
     }
 
-    /// The answer, once the learner has stopped owing it — with whatever kern
+    /// The answer, once a miss opens the card (kern's `showsAnswer`) — with whatever kern
     /// hands over beside it: the neighboring form that teaches the people along
     /// with the country, or the other name a refused answer actually spelled
     /// (Juli is July).
@@ -69,19 +69,13 @@ extension DrillRunView {
     /// cannot: Swahili has no iOS voice, and a drill that only worked out loud
     /// would not exist for half the pairs the catalog joins.
     private func cardReveal(_ task: DrillSnapshot) -> CountryPromptCard.Reveal? {
-        switch feedback {
-        // why: a clean answer flips in ~1.2 s — opening the card for a beat
-        // reads as a correction the learner did not earn.
-        case .neutral, .correct:
-            return nil
-        case .almost, .revealed:
-            return .init(otherWord: task.otherWord.map { ($0.word, $0.meanings.joined(separator: ", ")) },
-                         word: task.display,
-                         note: task.gloss,
-                         language: task.answerLanguage,
-                         pronounce: model.pronounceAction(for: task.display, lang: task.answerLanguage),
-                         isPlaying: model.isPronouncing(task.display, lang: task.answerLanguage))
-        }
+        guard task.showsAnswer else { return nil }
+        return .init(otherWord: task.otherWord.map { ($0.word, $0.meanings.joined(separator: ", ")) },
+                     word: task.display,
+                     note: task.gloss,
+                     language: task.answerLanguage,
+                     pronounce: model.pronounceAction(for: task.display, lang: task.answerLanguage),
+                     isPlaying: model.isPronouncing(task.display, lang: task.answerLanguage))
     }
 
     // MARK: - The answer

@@ -51,6 +51,12 @@ interface DrillRunProgress {
     val answerAccepted: Boolean
         get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
 
+    /**
+     * The card opens onto the answer ([Question.opens]) on a miss or a reveal only, as a review card does:
+     * an accepted answer stands in the learner's own text already, and a near miss's correction box spells it out.
+     */
+    val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
+
     /** The way out, under the button that goes on, on the second miss in a row. */
     val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
 

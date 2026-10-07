@@ -239,16 +239,17 @@ class SentenceScrambleRunTest {
         assertEquals(2, answered(state).sprosse)
     }
 
-    /** The meaning always closes the card; the authored order shows only where the arrangement missed it. */
+    /** A clean arrangement grows the meaning alone; only a missed one opens onto the authored order. */
     @Test
     fun theCardSetsTheOrderAgainOnlyWhereItWasMissed() {
-        val clean = arrange(open(), correctly = true).question
-        val missed = arrange(open(), correctly = false).question
+        val clean = assertNotNull(arrange(open(), correctly = true).question)
+        val missed = assertNotNull(arrange(open(), correctly = false).question)
         val task = assertNotNull(open().task)
-        assertTrue(assertNotNull(clean).opens)
-        assertNull(clean.answer.text)
+        assertFalse(clean.opens)
+        assertTrue(clean.growsNote)
         assertEquals(ClosingNote.Own(task.gloss), clean.closing.note)
-        assertEquals(task.display, assertNotNull(missed).answer.text)
+        assertTrue(missed.opens)
+        assertEquals(task.display, missed.answer.text)
     }
 
     /** Placing the last piece is the answer, so no primary action asks for it. */

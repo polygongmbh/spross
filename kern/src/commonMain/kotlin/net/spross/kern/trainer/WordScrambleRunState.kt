@@ -118,13 +118,6 @@ data class WordScrambleRunState(
         fun storageKey(language: Language): String = "wordscramble.$language"
     }
 
-    /**
-     * The card opens, whatever the spelling was graded.
-     * A clean one raises it too: the LETTERS were the question and the meaning never was,
-     * so a word that vanished the moment it landed was the one answer the drill never glossed.
-     */
-    val showsAnswer: Boolean get() = !owesAnswer
-
     /** The Sprossen this run cleared that the store did not hold — what a pause for improving names. */
     internal val newSprossen: Int get() = (clearedSprossen - config.cleared).size
 
@@ -134,7 +127,10 @@ data class WordScrambleRunState(
     /** The word whose letters were handed over. */
     override val answerSaying: Saying? get() = task?.let { Saying(it.display, it.language) }
 
-    /** The mixed letters, the opening ones standing as written, opening onto the word and its meaning. */
+    /**
+     * The mixed letters, the opening ones standing as written; a miss opens onto the word and its meaning,
+     * an accepted spelling grows the meaning alone.
+     */
     override val question: Question?
         get() = task?.let { t ->
             Question(
@@ -148,6 +144,7 @@ data class WordScrambleRunState(
                 emoji = null,
                 emojiCue = EmojiCue.Upfront,
                 opens = showsAnswer,
+                growsNote = answerAccepted,
                 closing = Question.Closing(note = ClosingNote.Own(t.gloss)),
             )
         }

@@ -93,7 +93,7 @@ enum CountryDrillFace: DrillFace {
         DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
                       answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
-                      offersFinish: run.offersFinish, finished: run.finished,
+                      offersFinish: run.offersFinish, showsAnswer: run.showsAnswer, finished: run.finished,
                       answerLanguage: run.answerLanguage, promptLanguage: run.promptLanguage,
                       ask: ask(run.task.kind), promptText: run.task.promptText,
                       promptEmoji: run.task.promptEmoji,

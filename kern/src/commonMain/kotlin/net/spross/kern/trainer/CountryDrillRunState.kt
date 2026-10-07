@@ -145,10 +145,6 @@ data class CountryDrillRunState(
     internal val newSprossen: Int
         get() = (CountryDrill.cleared(config.content, config.reverse, core.solvedClean) - config.cleared).size
 
-    /** The card may open: the almost hold and the miss each put a name worth seeing on it. */
-    val showsAnswer: Boolean
-        get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
-
     /** A reversed run's prompt, which is then the form in the language being learned; a forward one says nothing until the reveal. */
     override val promptSaying: Saying?
         get() = if (config.reverse) task.promptText?.let { Saying(it, promptLanguage) } else null

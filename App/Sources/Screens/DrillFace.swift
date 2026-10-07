@@ -155,6 +155,8 @@ struct DrillSnapshot {
     let feedback: TurnFeedback
     /// The way out, where it is wanted: on the SECOND miss in a row.
     let offersFinish: Bool
+    /// The card opens onto the answer — kern's `showsAnswer`.
+    let showsAnswer: Bool
     /// Nothing left to ask.
     let finished: Bool
     /// BCP-47 of the language the answer is owed in.

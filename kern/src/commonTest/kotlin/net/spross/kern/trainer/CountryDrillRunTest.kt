@@ -227,7 +227,6 @@ class CountryDrillRunTest {
             reduction.effects,
         )
         assertEquals(saysUjerumani, reduction.state.reading.answer)
-        assertTrue(reduction.state.showsAnswer, "the slip's proper spelling is worth seeing whole")
     }
 
     /** A name that is not this one's is a miss, however close the ladder's other rows are. */

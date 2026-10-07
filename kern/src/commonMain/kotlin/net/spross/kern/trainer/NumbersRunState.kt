@@ -144,12 +144,6 @@ data class NumbersRunState(
     val severalExercises: Boolean get() = mode.exercises.size > 1
 
     /**
-     * The card carries the answer. A typo leaves it closed — the correction box already spells
-     * the word out, and the answer is never on screen twice.
-     */
-    val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
-
-    /**
      * A reversed task's reading, which is then the prompt in the language being learned;
      * a forward task's numeral has no reading that is not the answer itself.
      */

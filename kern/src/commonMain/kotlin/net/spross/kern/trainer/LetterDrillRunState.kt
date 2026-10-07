@@ -100,13 +100,6 @@ data class LetterDrillRunState(
     /** The formats that carry an input field. */
     val typing: Boolean get() = format == LetterFormat.Typed || format == LetterFormat.Dictation
 
-    /**
-     * The card opens, whatever the spelling was graded.
-     * A slip leaves a spelling worth seeing whole;
-     * a clean one opens it too, because the LETTERS were the question and the meaning never was.
-     */
-    val showsAnswer: Boolean get() = !owesAnswer
-
     /** Nothing through the reader: the question's sound IS the question, and plays past the mute on its own. */
     override val promptSaying: Saying? get() = null
 
@@ -118,6 +111,7 @@ data class LetterDrillRunState(
      * its replay says [LetterDrillTask.promptText], through the recording the drill's own player resolves.
      * A gap question opens onto the whole word it blanked, which is its gloss, so it carries no note.
      * Only a dictated word carries a speaker: every other answer is a bare glyph, which nothing may be asked to say.
+     * An accepted answer grows the meaning alone, which the sound never put on screen.
      */
     override val question: Question?
         get() = task?.let { t ->
@@ -142,6 +136,7 @@ data class LetterDrillRunState(
                 emoji = null,
                 emojiCue = EmojiCue.Upfront,
                 opens = showsAnswer,
+                growsNote = answerAccepted,
                 closing = Question.Closing(note = t.gloss?.takeUnless { gap }?.let { ClosingNote.Own(it) }),
             )
         }

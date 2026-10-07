@@ -104,9 +104,10 @@ What licenses a second component is a parameter attempted and found not to carry
 - **A right answer's feedback is the subtlest the surface has, because it comes all the time:**
   never a buzz beyond the lightest tap, never a chime as loud as the miss's.
 - **The answer is never on screen twice, and never in the field.**
-  Correct → card stays closed, narrated at the field.
-  Wrong → card expands onto the answer.
-  Near miss → correction box under the field.
+  Correct → card stays closed, narrated at the field;
+  where the meaning never stood on screen (a scramble, the opposites, a letter heard) it grows that meaning alone.
+  Wrong or revealed → card expands onto the answer.
+  Near miss → correction box under the field, card closed.
   Either way the owed form stands at a readable size with its speaker beside it.
 - **Near miss runs amber** — field edge, checkmark and box agree.
   Green stays the clean answer's alone.

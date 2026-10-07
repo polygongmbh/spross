@@ -113,7 +113,7 @@ data class TypedDrillView(
     val outcomes: List<AnswerOutcome>,
     val tally: DrillTally,
     val feedback: TurnFeedback,
-    /** The card may open: the almost hold and the miss each put an answer worth seeing whole. */
+    /** The card opens onto the answer — kern's `showsAnswer`, on a miss only. */
     val showsAnswer: Boolean,
     /** The way out, offered under the button that goes on, on the second miss in a row. */
     val offersFinish: Boolean,
