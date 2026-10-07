@@ -2,24 +2,22 @@ package net.spross.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
-import net.spross.app.CardDisplay
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
 import net.spross.app.areaTitle
 import net.spross.app.pronounceAction
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.session.TurnFeedback
+import net.spross.kern.session.question
 
 /**
  * PRODUCE half of the session screen: typing-first controls over kern's turn.
@@ -37,46 +35,14 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     // card — a volume key, headphones out — and a card face that flipped mid-turn would
     // show the source word while kern still grades the meaning.
     val heard = flow.state.prompt == ProducePrompt.Sound
-    val revealed = flow.answerRevealed
-    // The word takes the replay glyph's place once there is nothing left to withhold:
-    // the learner said they cannot listen, or the answer is out and the spelling is
-    // what the reveal owes.
-    val written = heard && (flow.promptInText || revealed)
-
     ReportableCard(model, card, flow.answerOut, typed = { flow.answerForReport }) {
-        VocabCard(
-            emoji = card.emoji,
-            cue = ui.emojiCue,
-            revealed = revealed,
-            closingLines = when {
-                !revealed -> emptyList()
-                // The word stands in the prompt slot with its plural under it (`WrittenPrompt`),
-                // exactly as a recognition prompt does, so only the family closes the card.
-                heard -> listOfNotNull(CardDisplay.alsoLine(card.target, chrome, listOf(card.target.text)))
-                else -> targetLines(card.target, chrome)
-            },
-            note = CardDisplay.closingNote(card.target, flow.state.alsoMeans, chrome, revealed),
-            footer = {
-                flow.otherWord?.takeIf { revealed }?.let { other ->
-                    // why: the line says what the learner DID write; the word it speaks is the
-                    // one they owed, the same one the card has opened onto.
-                    PauseLine(
-                        chrome.sessionOtherWord.format(other.word, other.meanings.joinToString(", ")),
-                        modifier = Modifier.pronounceOnTap(model.pronounceAction(card.target.text), chrome),
-                    )
-                }
-            },
-        ) {
-            when {
-                written -> WrittenPrompt(model, ui)
-                heard -> ReplayPrompt(model, ui)
-                else -> PromptWord(model, ui)
-            }
-            // The card is what OPENS onto the answer — inline, growing downward, above the
-            // field the learner is still typing in. A near miss never reaches here: its
-            // correction stands at the field, beside the attempt it is correcting.
-            if (revealed) CardReveal { ProduceReveal(model, ui, heard) }
-        }
+        QuestionCard(
+            flow.state.question,
+            chrome,
+            surface = QuestionSurface.Review,
+            voice = model.cardVoice,
+            areaTitle = model::areaTitle,
+        )
     }
 
     val step = flow.copyStep
@@ -113,7 +79,7 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             // why: no speaker where the card was asked by ear — the correction is then a
             // SOURCE word, and the target voice would say a German word in Swahili.
             speakCorrection = { if (heard) null else model.pronounceAction(it) },
-            missed = { MissedAnswer(model, ui, flow) },
+            missed = { MissedAnswer(model, flow) },
         )
     }
     // why: this card's whole content is a sound, and a learner who cannot listen to it
@@ -127,65 +93,13 @@ fun ProduceCard(model: AppModel, ui: SessionUi, flow: TurnFlow) {
 }
 
 /**
- * The source word, under the area it is asked within where the prompt would otherwise be
- * ambiguous, and with the feminine marker where the card is a demoted feminine.
- *
- * The area label is the disambiguating cue, in the source language and never graded. It
- * rides the PRODUCE prompt only: on a recognition prompt a cue precise enough to tell the
- * two concepts apart would hand over the answer (kern `Card.promptAmbiguous`).
- */
-@Composable
-private fun PromptWord(model: AppModel, ui: SessionUi) {
-    val card = ui.card ?: return
-    if (card.promptAmbiguous) CardCue(model.areaTitle(card.area))
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
-    ) {
-        Headword(card.source.text, modifier = Modifier.weight(1f, fill = false))
-        if (card.promptFeminineMarker) FeminineBadge(model.chrome)
-    }
-}
-
-/**
- * The whole question, where the question is a sound: the meaning is withheld ON PURPOSE,
- * so no cue rides along with it. Autoplay already said the word; this is the way to hear
- * it again.
- */
-@Composable
-private fun ReplayPrompt(model: AppModel, ui: SessionUi) {
-    val card = ui.card ?: return
-    ReplayGlyph(model.pronounceAction(card.target.text), model.chrome)
-}
-
-/**
- * The word that played, standing as text: a target word on a prompt, rendered as one, with
- * the speaker that says it — so the card still teaches the sound it was asking from.
- * While the question stands the meaning stays withheld; only the channel it arrives
- * through moved.
- */
-@Composable
-private fun WrittenPrompt(model: AppModel, ui: SessionUi) {
-    val card = ui.card ?: return
-    val chrome = model.chrome
-    SpokenWord(model.pronounceAction(card.target.text), chrome) {
-        Headword(
-            localizedTarget(Theme.colors.articleColoredText(card.target), card.target.lang),
-            modifier = Modifier.weight(1f, fill = false),
-        )
-    }
-    CardDisplay.pluralLine(card.target, chrome)?.let { CardLine(it) }
-}
-
-/**
  * A miss: the answer stands on the card and the field stays OPEN, primed with the whole
  * words that were already right. Finishing the retype is the self-grade — it books
  * recalled-with-help — and giving up is an honest Again. Both are kern's; the way out is
  * always on screen, because a step you cannot leave is a trap.
  */
 @Composable
-private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
-    val card = ui.card ?: return
+private fun MissedAnswer(model: AppModel, flow: TurnFlow) {
     val chrome = model.chrome
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
         // why: the beat that books a finished retype never arms under a screen reader,
@@ -204,37 +118,4 @@ private fun MissedAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             }
         }
     }
-}
-
-/**
- * What a produce card shows once it has stopped asking: the meaning it withheld, and the
- * word itself. Its grammar and family close the card (`targetLines`, above). The picture
- * is the card's own slot, which was standing empty and only now fades in — nothing here
- * moves it.
- */
-@Composable
-private fun ProduceReveal(model: AppModel, ui: SessionUi, heard: Boolean) {
-    val card = ui.card ?: return
-    val chrome = model.chrome
-    // why: a card asked by ear owes the MEANING back, so its reveal is shaped like the
-    // recognition one — the answer where the answer goes, and the word that played
-    // standing above it in writing, which is what a retype finishes against.
-    if (heard) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
-        ) {
-            Headword(
-                (listOf(card.source.text) + card.source.teaches).joinToString(" / "),
-                color = Theme.colors.accent,
-                modifier = Modifier.weight(1f, fill = false),
-            )
-            if (card.promptFeminineMarker) FeminineBadge(chrome)
-        }
-        return
-    }
-    TargetReveal(
-        card.target, chrome,
-        pronounce = model.pronounceAction(card.target.text),
-    )
 }

@@ -3,7 +3,6 @@ package net.spross.app.ui
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,25 +17,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
-import net.spross.app.CardDisplay
 import net.spross.app.SessionCoach
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
+import net.spross.app.areaTitle
 import net.spross.app.newTurn
-import net.spross.app.pronounceAction
 import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.shownArticle
+import net.spross.kern.session.question
 import net.spross.kern.session.reading
 
 @Composable
@@ -108,60 +100,16 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
 private fun RecognizeTurn(model: AppModel, ui: SessionUi, flow: TurnFlow) {
     val card = ui.card ?: return
     val chrome = model.chrome
-    val promptForm = ui.promptForm ?: card.target.text
-    // Grammar decorates the prompt only where the form on screen IS the citation: a
-    // rotated synonym is a different word and can carry a different gender, so the
-    // article steps aside rather than mislabel it (kern `shownArticle`).
-    val article = shownArticle(CardDisplay.article(card.target), promptForm, card.target.text)
     val revealed = flow.answerRevealed
 
     ReportableCard(model, card, flow.answerOut, typed = { flow.answerForReport }) {
-        VocabCard(
-            emoji = card.emoji,
-            cue = ui.emojiCue,
-            revealed = revealed,
-            // The prompt is still standing above the reveal — whatever form it rotated in
-            // is on screen and is no longer an alternative.
-            closingLines = if (revealed) {
-                listOfNotNull(CardDisplay.alsoLine(card.target, chrome, promptForm))
-            } else {
-                emptyList()
-            },
-            note = CardDisplay.closingNote(card.target, flow.state.alsoMeans, chrome, revealed),
-        ) {
-            SpokenWord(model.pronounceAction(promptForm), chrome) {
-                Headword(
-                    localizedTarget(
-                        if (article == null) {
-                            AnnotatedString(promptForm)
-                        } else {
-                            Theme.colors.articleColoredText(card.target)
-                        },
-                        card.target.lang,
-                    ),
-                    modifier = Modifier.weight(1f, fill = false),
-                )
-            }
-            // The plural belongs to the cited form, article or not — a rotated synonym may have another.
-            if (promptForm == card.target.text) {
-                CardDisplay.pluralLine(card.target, chrome)?.let { CardLine(it) }
-            }
-            if (revealed) {
-                CardReveal {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
-                    ) {
-                        Headword(
-                            (listOf(card.source.text) + card.source.teaches).joinToString(" / "),
-                            color = Theme.colors.accent,
-                            modifier = Modifier.weight(1f, fill = false),
-                        )
-                        if (card.promptFeminineMarker) FeminineBadge(chrome)
-                    }
-                }
-            }
-        }
+        QuestionCard(
+            flow.state.question,
+            chrome,
+            surface = QuestionSurface.Review,
+            voice = model.cardVoice,
+            areaTitle = model::areaTitle,
+        )
     }
 
     if (model.coachActive) {

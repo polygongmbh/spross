@@ -67,6 +67,7 @@ fun QuestionCard(
     val card = CardContext(question, chrome, voice, areaTitle, promptLabel, replayFocus)
     when (surface) {
         QuestionSurface.Drill -> card.DrillFace(modifier)
+        QuestionSurface.Review -> card.ReviewFace(modifier)
     }
 }
 
@@ -74,6 +75,9 @@ fun QuestionCard(
 enum class QuestionSurface {
     /** A drill task above a field, tiles or a pad: the question at the fixed size its form picks. */
     Drill,
+
+    /** A review card above the answer controls: its words at headword size with their grammar, the picture beside them. */
+    Review,
 }
 
 /** What a card's speakers do: the tap that says a side's [Saying]; null drops the speaker. */
@@ -242,8 +246,10 @@ private fun Caption(text: String) {
 }
 
 /** Text tagged with the language it is written in, so TalkBack reads it in that voice. */
-internal fun tagged(text: String, lang: String?): AnnotatedString =
-    if (lang == null) AnnotatedString(text) else localizedTarget(text, lang)
+internal fun tagged(text: AnnotatedString, lang: String?): AnnotatedString =
+    if (lang == null) text else localizedTarget(text, lang)
+
+internal fun tagged(text: String, lang: String?): AnnotatedString = tagged(AnnotatedString(text), lang)
 
 /**
  * The replay control a sound prompt stands as: big, but never circled or filled —
