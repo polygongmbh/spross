@@ -235,7 +235,7 @@ fun emojiShowing(cue: EmojiCue?, revealed: Boolean): Boolean =
     cue == EmojiCue.Upfront || (cue != null && revealed)
 
 @Composable
-private fun EmojiSlot(emoji: String, shown: Boolean, size: Dp, glyph: TextUnit) {
+internal fun EmojiSlot(emoji: String, shown: Boolean, size: Dp, glyph: TextUnit) {
     // why: the picture FADES into a slot that was already there — appearing would push
     // every line of the card down at the moment the answer needs reading.
     //
@@ -273,7 +273,7 @@ private fun EmojiSlot(emoji: String, shown: Boolean, size: Dp, glyph: TextUnit) 
  * takes as little of their width as it can, full size where it stands above them with
  * nothing to make room for.
  */
-private val EMOJI_SLOT = 52.sp
-private val EMOJI_GLYPH = 28.sp
+internal val EMOJI_SLOT = 52.sp
+internal val EMOJI_GLYPH = 28.sp
 private val EMOJI_HERO = 96.sp
 private val EMOJI_HERO_GLYPH = 52.sp

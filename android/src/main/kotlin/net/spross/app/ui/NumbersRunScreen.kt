@@ -80,7 +80,7 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
         showsMuteButton = true,
         timed = secondsLeft?.let { timedLine(it, state.score, chrome) },
     ) {
-        DrillPromptCard(model, flow, chrome)
+        QuestionCard(flow.state.question, chrome, voice = model.cardVoice)
         NumbersControls(model, flow, chrome, inputFocus, leave)
     }
 

@@ -35,6 +35,16 @@ fun AppModel.say(saying: Saying, onFinish: (() -> Unit)? = null) {
     pronouncer.pronounce(pronunciation, Pronouncer.Trigger.AUTO, saying.article, onFinish = onFinish)
 }
 
+/**
+ * The tap on a card's speaker: [saying] with the article kern put on it, heard past both mutes;
+ * null where the device can neither play nor say it, which drops the speaker.
+ */
+fun AppModel.sayOnTap(saying: Saying): (() -> Unit)? {
+    val pronunciation = catalog?.pronunciation(saying.lang, saying.form, saying.article) ?: return null
+    if (!pronouncer.canPronounce(pronunciation)) return null
+    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP, saying.article) }
+}
+
 /** Says [form] of the card in play on a tap, which is a request and passes both mutes. */
 fun AppModel.pronounceTarget(form: String) {
     val pronunciation = pronunciationOf(form) ?: return

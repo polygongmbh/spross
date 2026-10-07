@@ -132,37 +132,6 @@ fun DrillPromptCard(
 }
 
 /**
- * The slot run's question, on that card.
- *
- * A prompt made of WORDS is laid out like one — smaller and wrapped — where a numeral gets
- * the one big line. Asked of the PROMPT rather than of the run, so a composed sentence and
- * a reversed reading are both read as what they are.
- */
-@Composable
-fun DrillPromptCard(model: AppModel, flow: NumbersFlow, chrome: Chrome) {
-    val state = flow.state
-    val task = state.currentTask
-    val wordy = task.promptDisplay.any { it.isLetter() }
-    DrillPromptCard(
-        prompt = AnnotatedString(task.promptDisplay),
-        promptLabel = null,
-        size = if (wordy) PromptSize.Sentence else PromptSize.Digits,
-        answer = task.display,
-        language = state.mode.language,
-        gloss = task.gloss,
-        revealed = state.showsAnswer,
-        pronounce = model.speakFormOnTap(task.display, state.mode.language),
-        chrome = chrome,
-        // A fact about THIS number: the word a form adds the first time it is asked, else
-        // the place word the first time a length is — one slot, the form winning.
-        hint = state.formHint?.let { chrome.numbersNewForm.format(it) }
-            ?: state.placeValueHint?.let { chrome.numbersNewPlace.format(it) },
-        otherWord = state.otherWord,
-        promptPronounce = state.promptSaying?.let { model.speakFormOnTap(it.form, it.lang) },
-    )
-}
-
-/**
  * The field and the one primary action under it. A reversed task owes DIGITS, so its
  * placeholder names those rather than the language — "auf Spanisch" over a number pad asks
  * for the wrong thing.
