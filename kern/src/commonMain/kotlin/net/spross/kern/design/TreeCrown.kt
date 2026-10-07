@@ -106,7 +106,7 @@ private fun Painter.marks(grown: GrownTree, fit: TreeFit) {
                 // why: lit from above — the crown's upper leaves take the light tones, its lower and inner ones
                 // the deep, with a seeded nudge so the tones fall in patches rather than bands.
                 val tone = (((y - top) / depth * 0.75 + draw(GRAIN, rank) * 0.55) * 3.2 - 0.2).toInt().coerceIn(0, 3)
-                tones[tone] += shape { sprig(x, y, size * LEAF_STRETCH, slot.angle) }
+                tones[3 - tone] += shape { sprig(x, y, size * LEAF_STRETCH, slot.angle) }
             }
             else -> buds += shape { circle(x, y, size * BUD_RADIUS) }
         }
@@ -163,8 +163,9 @@ private fun Pen.sprig(x: Double, y: Double, size: Double, angle: Double) {
     leaf(x, y, size, angle)
     val forkX = x + cos(angle) * size * 0.28
     val forkY = y + sin(angle) * size * 0.28
-    leaf(forkX, forkY, size * 0.66, angle - 0.72)
-    leaf(forkX, forkY, size * 0.6, angle + 0.68)
+    // why: the leaflets part narrowly and keep to the leaf's rule, so none points back at the wood or hangs.
+    leaf(forkX, forkY, size * 0.66, level(angle - 0.45))
+    leaf(forkX, forkY, size * 0.6, level(angle + 0.42))
 }
 
 /** A settled word: five petals round where its eye goes, kept small — forty of them are still a tree in flower. */
