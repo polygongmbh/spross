@@ -251,3 +251,21 @@ and text reaches a machine only inside an intent — never as state.
   Its Sprossen are bands that overlap nothing, like the sentence scramble's:
   adjectives, then verbs and nouns, then every prompt with more than one opposite.
   `OppositesRun.grade` refuses the prompt itself before the typo budget can read it as a slip of its opposite.
+
+## The question on screen
+
+- **One `Question` per card on screen** (`session.Question`), a review card and a drill task alike:
+  its prompt and answer `Side`s, the caption (`QuestionAsk`), the picture and its cue,
+  a first-sight `QuestionHint`, the closing lines and `opens` — whether the card carries its answer.
+  Each app draws every card from it with one component, so what a face shows is decided once.
+  Nothing in it is worded or placed: asks, hints, plural sentinels and closing labels are structures the apps word.
+- **The review card** is `TurnState.question`.
+  Grammar is target-side only and rides the cited form alone, so a rotated synonym stands bare
+  and the citation it displaced closes the card as an alternate;
+  the cited form carries its plural whether or not the language writes an article.
+  The area is named over an ambiguous produce prompt and never over a recognition one,
+  where any cue precise enough to disambiguate would hand over the answer.
+  A card asked by ear asks with a sound until the learner cannot listen or the card opens,
+  and then shows the word it played.
+- **A speaker is a `Side.saying`**, the tap; `Reading` stays the autoplay,
+  and every target form a card reads aloud also stands on a side with the speaker that says it.
