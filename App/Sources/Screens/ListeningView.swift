@@ -56,35 +56,14 @@ struct ListeningView: View {
     @ViewBuilder
     private var cardFace: some View {
         if let turn {
-            VocabCardView(emoji: card(turn)?.emoji,
-                          // why: kern names the rule (LISTENING_EMOJI_CUE) — listening
-                          // owes no answer, so nothing is withheld. Picked per phone
-                          // it was picked differently, and the picture vanished and
-                          // returned on every word.
-                          emojiCue: LISTENING_EMOJI_CUE,
-                          prompt: .init(text: turn.targetForm,
-                                        article: article(of: turn),
-                                        language: model.targetLanguage),
-                          answer: .init(text: turn.sourceForm),
-                          note: nil,
-                          revealed: driver.revealed,
-                          // why: nothing is typed, pressed or scrolled here, so the card
-                          // has the screen to itself — picture above, words the full width.
-                          arrangement: .above)
+            // why: nothing is typed, pressed or scrolled here, so the card has the screen to itself.
+            QuestionCardView(question: turn.question(card: card(turn), opens: driver.revealed),
+                             surface: .listening)
         }
     }
 
     private func card(_ turn: ListeningTurn) -> Card? {
         model.box?.cards[turn.cardId]
-    }
-
-    /// The article the card paints, out of the one kern already decided is
-    /// spoken — so what is heard and what is read can never disagree.
-    private func article(of turn: ListeningTurn) -> Theme.Article? {
-        guard let article = turn.spokenArticle else { return nil }
-        return Theme.Article(article,
-                             gender: Theme.Gender(articleGender(article: article,
-                                                                lang: card(turn)?.target.lang)))
     }
 
     // MARK: - Transport

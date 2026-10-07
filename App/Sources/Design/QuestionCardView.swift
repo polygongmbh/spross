@@ -19,6 +19,8 @@ struct QuestionCardView: View {
         /// A review card above the answer controls: its words at text size with their grammar,
         /// the picture beside them, held to the review card's reserve.
         case review
+        /// The listening card, the screen's only content: the picture above the words, set at hero size.
+        case listening
     }
 
     let question: Question
@@ -37,6 +39,7 @@ struct QuestionCardView: View {
         switch surface {
         case .drill: drillFace
         case .review: reviewFace
+        case .listening: listeningFace
         }
     }
 

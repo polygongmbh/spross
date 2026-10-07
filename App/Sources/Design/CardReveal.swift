@@ -30,7 +30,7 @@ struct CardReveal<Content: View>: View {
 // MARK: - CardEmoji
 //
 // The picture on a card. WHERE it sits is the card's own call, worked out from
-// what the surface is (`VocabCardView.Arrangement`) rather than passed in as a
+// what the surface is (`QuestionCardView.Surface`) rather than passed in as a
 // size; the slot only knows how big it is. Either way it is a fixed size held
 // for the card's whole life, so a reveal can fade a picture in without moving a
 // thing. One definition, so the review card and the drill cards cannot drift

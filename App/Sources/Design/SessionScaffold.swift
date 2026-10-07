@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 
 // MARK: - SessionScaffold
@@ -229,14 +230,16 @@ extension View {
 #Preview("Session chrome") {
     SessionScaffold(position: 4, total: 12, onClose: {}) {
         VStack(spacing: Theme.spacing.xl) {
-            VocabCardView(
-                emoji: "🥄",
-                prompt: .init(text: "kijiko"),
-                answer: .init(text: "Löffel", article: .init("der", gender: .masculine),
-                              plural: "Pl. Löffel"),
-                note: nil,
-                revealed: true
-            )
+            QuestionCardView(question: Question(
+                key: "kijiko", ask: nil,
+                prompt: .init(text: "kijiko", lang: "sw", form: .word, article: nil, plural: nil,
+                              femMarker: false, context: nil, fixedLeading: 0, saying: nil),
+                answer: .init(text: "Löffel", lang: "de", form: .word, article: "der",
+                              plural: PluralForm.Form(text: "Löffel"),
+                              femMarker: false, context: nil, fixedLeading: 0, saying: nil),
+                emoji: "🥄", emojiCue: .upfront, emojiIsQuestion: false, hint: nil,
+                opens: true, growsNote: false, closing: .init(alternates: [], note: nil), otherWord: nil
+            ), surface: .review)
             RatingButtonsView { _ in }
             Spacer(minLength: 0)
         }

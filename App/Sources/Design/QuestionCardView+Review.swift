@@ -75,6 +75,39 @@ extension QuestionCardView {
         return emoji
     }
 
+    /// The card that owns the screen: height is abundant and width is what the words are short of,
+    /// so the picture stands ABOVE them at full size and the words get the card's full width.
+    var listeningFace: some View {
+        VStack(spacing: Theme.spacing.lg) {
+            if let emoji = reviewEmoji {
+                CardEmoji(emoji, size: .hero, cue: question.emojiCue, revealed: opens)
+            }
+            VStack(spacing: Theme.spacing.lg) {
+                VStack(spacing: Theme.spacing.xs) {
+                    headwordBlock(question.prompt, emphasized: false)
+                    pluralLine(question.prompt)
+                }
+                if opens {
+                    CardReveal(note: noteText) {
+                        VStack(spacing: Theme.spacing.xs) {
+                            headwordBlock(question.answer, emphasized: true)
+                            pluralLine(question.answer)
+                            alternatesLine
+                        }
+                    }
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+                }
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .padding(Theme.spacing.xl)
+        .frame(maxWidth: .infinity)
+        .cardSurface()
+        .animation(revealAnimation, value: opens)
+    }
+
+    private var headlineFont: Font { surface == .listening ? Theme.typography.hero : Theme.typography.title }
+
     // MARK: - One side
 
     /// The word itself, under the area named over an ambiguous prompt.
@@ -109,7 +142,7 @@ extension QuestionCardView {
                 let spoken = articledForm(article: side.article, form: text)
                 // why: tagged with its language, article included, as the line reads on screen.
                 WholeWords(text: headlineText(side, text, emphasized: emphasized),
-                           content: spoken, font: Theme.typography.title)
+                           content: spoken, font: headlineFont)
                     .spoken(spoken, language: side.lang)
             }
         }
@@ -119,12 +152,12 @@ extension QuestionCardView {
     /// in accent. Both sides share one font, so a word never changes size with its role.
     private func headlineText(_ side: Question.Side, _ text: String, emphasized: Bool) -> Text {
         let word = Text(verbatim: text)
-            .font(Theme.typography.title)
+            .font(headlineFont)
             .foregroundStyle(emphasized ? Theme.colors.accent : Theme.colors.textPrimary)
         guard let article = side.article else { return word }
         let gender = Theme.Gender(articleGender(article: article, lang: side.lang))
         return Text(verbatim: articledForm(article: article, form: ""))
-            .font(Theme.typography.title)
+            .font(headlineFont)
             .foregroundStyle(Theme.genderColor(gender))
             + word
     }
