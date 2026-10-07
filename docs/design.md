@@ -168,7 +168,7 @@ What licenses a second component is a parameter attempted and found not to carry
   The tab bar stands on those three and on nothing else.
 - **Home** carries the day: the round, listening, the drills, the companion, the trees.
   - The line over the round carries the language being learned in words that fit the hour
-    (`../kern/docs/reports.md`, `dayPart`/`partVariant`).
+    (`../kern/docs/reports.md`, `GreetingPlan` over `dayPart`/`partVariant`).
     Two registers: the target speaking for itself, or the known language asking about it.
     The spoken lines lead and may address the learner by name (`Greetings.addressed`).
     Every chrome line asks — never states.

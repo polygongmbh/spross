@@ -44,68 +44,55 @@ extension HomeView {
     /// known language asking about it. Either way the line carries the language, which is
     /// what the header is for.
     ///
-    /// Which stretch of the day it is and which of the candidates this one takes are kern's
-    /// (`dayPart`, `chromePart`, `partVariant`); the words are the catalog's and the
-    /// chrome's. Nil while no profile names a language — the first launch, where this
+    /// Which stretch of the day each register is in, whom the language's own lines address
+    /// and which line this one takes are kern's (`GreetingPlan`); the words are the catalog's
+    /// and the chrome's. Nil while no profile names a language — the first launch, where this
     /// screen stands behind the onboarding sheet and the header has nothing to greet.
     var greeting: Text? {
         guard let language = targetLanguageName else { return nil }
-        let now = Date().epochMillis, tz = currentTzId()
         let target = model.targetLanguage
-        // The target's own hours for its own lines: four in the afternoon is still Tag in
-        // German and already jioni in Swahili. The chrome half keeps a fixed schedule
-        // instead — a "night owl" reads as one at the same local hour no matter which
-        // language the learner's own is (kern's `chromePart`).
-        let targetPart = dayPart(nowEpochMillis: now, tzId: tz, language: target)
-        let chromePartNow = chromePart(nowEpochMillis: now, tzId: tz)
-        let lines = greetingLines(targetPart: targetPart, chromePart: chromePartNow,
-                                  language: language, target: target)
-        let pick = partVariant(nowEpochMillis: now, tzId: tz,
-                               targetLanguage: target, count: Int32(lines.count))
-        return lines[Int(pick)]
+        let plan = GreetingPlan(nowEpochMillis: Date().epochMillis, tzId: currentTzId(),
+                                target: target, learnerNamed: model.learnerName != nil)
+        let spoken = target.flatMap {
+            model.catalog?.spokenLines(lang: $0, part: plan.targetPart, name: address(plan.address))
+        } ?? []
+        let chrome = chromeLines(plan.chromePart, language: language)
+        let line = plan.pick(spoken: Int32(spoken.count), chrome: Int32(chrome.count))
+        return line.spoken ? Text(verbatim: spoken[Int(line.index)]) : chrome[Int(line.index)]
     }
 
-    /// Everything the app could say right now, the language's own lines first — they both
-    /// greet and teach, and they are the only ones that can address the learner: by name, or
-    /// by the word the hour lends when no name is known.
-    private func greetingLines(targetPart: DayPart, chromePart: DayPart, language: String, target: String?) -> [Text] {
-        var lines: [Text] = []
-        if let target {
-            let spoken = model.catalog?.spokenLines(lang: target, part: targetPart,
-                                                    name: model.learnerName ?? addressee(chromePart))
-            lines += (spoken ?? []).map { Text(verbatim: $0) }
-        }
-        switch chromePart {
+    /// The known language's own lines for the chrome's stretch of the day.
+    private func chromeLines(_ part: DayPart, language: String) -> [Text] {
+        switch part {
         case .morning:
-            lines += [Text("home.greeting.morning.0 \(language)"),
-                      Text("home.greeting.morning.1 \(language)"),
-                      Text("home.greeting.morning.epithet \(language)")]
+            return [Text("home.greeting.morning.0 \(language)"),
+                    Text("home.greeting.morning.1 \(language)"),
+                    Text("home.greeting.morning.epithet \(language)")]
         case .day:
-            lines += [Text("home.greeting.day.0 \(language)"),
-                      Text("home.greeting.day.1 \(language)")]
+            return [Text("home.greeting.day.0 \(language)"),
+                    Text("home.greeting.day.1 \(language)")]
         case .evening:
-            lines += [Text("home.greeting.evening.0 \(language)"),
-                      Text("home.greeting.evening.1 \(language)")]
-        case .night:
-            lines += [Text("home.greeting.night.0 \(language)"),
-                      Text("home.greeting.night.1 \(language)"),
-                      Text("home.greeting.night.epithet \(language)")]
+            return [Text("home.greeting.evening.0 \(language)"),
+                    Text("home.greeting.evening.1 \(language)")]
+        default:
+            return [Text("home.greeting.night.0 \(language)"),
+                    Text("home.greeting.night.1 \(language)"),
+                    Text("home.greeting.night.epithet \(language)")]
         }
-        return lines
     }
 
-    /// The word the hour lends as an address. Resolved through `ChromeStrings` against the
+    /// The word kern's `Addressee` names. Resolved through `ChromeStrings` against the
     /// profile's known language rather than `String(localized:)`, which would read the
     /// device's — and it has to be a plain String, since it goes inside a sentence the
     /// catalog wrote.
-    private func addressee(_ part: DayPart) -> String? {
-        switch part {
-        case .morning:
+    private func address(_ addressee: Addressee) -> String? {
+        switch addressee {
+        case .learner: return model.learnerName
+        case .morningWord:
             return ChromeStrings.string("home.greeting.morning.addressee", locale: model.knownLocale)
-        case .night:
+        case .nightWord:
             return ChromeStrings.string("home.greeting.night.addressee", locale: model.knownLocale)
-        case .day, .evening:
-            return nil
+        default: return nil
         }
     }
 }
