@@ -68,4 +68,21 @@ class AudioCapabilityTest {
         assertTrue(catalog.hasRecordings("de"))
         assertFalse(audible("unaufsagbar", "de", catalog, hasVoice = false))
     }
+
+    /**
+     * RULE: the audio setting offers only sources that can answer, and a stored source the
+     * language cannot answer reads as the other one; muted reads as Off whatever is stored.
+     * WHY: a chosen option that plays nothing is a broken promise on the one screen that
+     * exists to fix the sound.
+     */
+    @Test
+    fun theAudioSettingNeverShowsASourceThatCannotAnswer() {
+        assertEquals(listOf(AudioPreference.Off, AudioPreference.Recordings),
+                     AudioCapability.RecordingsOnly.preferenceOptions)
+        assertEquals(AudioPreference.Recordings,
+                     AudioCapability.RecordingsOnly.preference(muted = false, prefersSpeech = true))
+        assertEquals(AudioPreference.Speech,
+                     AudioCapability.VoiceOnly.preference(muted = false, prefersSpeech = false))
+        assertEquals(AudioPreference.Off, AudioCapability.Both.preference(muted = true, prefersSpeech = true))
+    }
 }

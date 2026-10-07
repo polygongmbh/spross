@@ -111,8 +111,9 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   The top-bar button is the mute only; it never changes the source.
   Choosing a voice lifts autoplay past a silenced phone.
 - **Source remembered per learning language; the mute is remembered nowhere.**
-  A source is offered only where it can answer
-  (`AudioCapability`, over `Catalog.hasRecordings` and the device voice table).
+  A source is offered only where it can answer,
+  and a stored source that cannot reads as the other one
+  (`AudioCapability.preference`, over `Catalog.hasRecordings` and the device voice table).
 - **Feedback chimes**: not silenced by the read-aloud switch,
   but play under whatever category it left standing.
   Chimes and words share one volume (one audio session).

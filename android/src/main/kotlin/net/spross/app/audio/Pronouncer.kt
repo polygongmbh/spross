@@ -10,7 +10,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import java.io.IOException
 import net.spross.kern.catalog.AudioCapability
+import net.spross.kern.catalog.AudioPreference
 import net.spross.kern.catalog.Pronunciation
+import net.spross.kern.catalog.preference
 import net.spross.kern.catalog.spokenTargetForm
 import net.spross.kern.model.Language
 
@@ -55,9 +57,6 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         TTS("tts"),
     }
 
-    /** The box row's three options, one per [setAudioPreference] call. */
-    enum class AudioPreference { OFF, RECORDINGS, TTS }
-
     private val assets = context.applicationContext.assets
     private val accessibility = context.applicationContext
         .getSystemService(Context.ACCESSIBILITY_SERVICE) as? AccessibilityManager
@@ -95,37 +94,18 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         prefs.edit().putString(keyFor(lang), value.storedValue).apply()
     }
 
-    /**
-     * The box row's three-way preference for [lang], derived from [muted] and
-     * [voiceSource]: there is no state where a source is chosen but the app is silent.
-     * Setting [AudioPreference.OFF] silences the review loop; picking either source also
-     * turns reading aloud back on, so the picker can never leave the app silent behind a
-     * chosen voice. A stored source the language cannot answer reads as the other one:
-     * [sources] carries both halves, so a [VoiceSource.TTS] whose voice was uninstalled and a
-     * [VoiceSource.RECORDINGS] for a language that ships no pack are corrected alike.
-     */
-    fun audioPreference(lang: Language, sources: AudioCapability): AudioPreference = when {
-        muted -> AudioPreference.OFF
-        voiceSource(lang) == VoiceSource.TTS && sources.hasVoice -> AudioPreference.TTS
-        // why: a stored source the language cannot answer reads as the other one, in BOTH
-        // directions — a pack that does not ship is as empty a promise as a voice that is
-        // not installed, and the row must never show a segment selected that plays nothing.
-        sources.hasRecordings -> AudioPreference.RECORDINGS
-        else -> AudioPreference.TTS
-    }
+    /** The audio setting's option for [lang]: kern reads the mute and the stored source over [sources]. */
+    fun audioPreference(lang: Language, sources: AudioCapability): AudioPreference =
+        sources.preference(muted, voiceSource(lang) == VoiceSource.TTS)
 
+    /** Picking a source also turns reading aloud back on, so the picker never leaves the app silent behind it. */
     fun setAudioPreference(lang: Language, preference: AudioPreference) {
-        when (preference) {
-            AudioPreference.OFF -> muted = true
-            AudioPreference.RECORDINGS -> {
-                setVoiceSource(lang, VoiceSource.RECORDINGS)
-                muted = false
-            }
-            AudioPreference.TTS -> {
-                setVoiceSource(lang, VoiceSource.TTS)
-                muted = false
-            }
+        if (preference.mutes) {
+            muted = true
+            return
         }
+        setVoiceSource(lang, if (preference.prefersSpeech) VoiceSource.TTS else VoiceSource.RECORDINGS)
+        muted = false
     }
 
     private var saysMeaningState by mutableStateOf(prefs.getBoolean(SAYS_MEANING, true))
