@@ -63,13 +63,6 @@ struct SentenceScrambleView: View {
     /// The question on screen; nil only once this box can ask nothing more.
     var current: SentenceScrambleTask? { run.task }
 
-    /// How the arrangement stands, as the bank wears it. Kern's feedback, read —
-    /// this drill grades by position, so there is no near miss to render.
-    private var verdict: ScrambleVerdict {
-        if run.owesAnswer { return .owed }
-        return run.answerAccepted ? .correct : .wrong
-    }
-
     var body: some View {
         runScreen(asking: current != nil,
                   scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
@@ -118,7 +111,7 @@ struct SentenceScrambleView: View {
                                  placed: run.placedAtoms,
                                  isTaken: { run.isPlaced(index: Int32($0)) },
                                  arranged: run.arranged,
-                                 verdict: verdict,
+                                 verdict: run.verdict,
                                  place: { place($0) },
                                  take: { take($0) },
                                  reveal: { revealLines(task) })

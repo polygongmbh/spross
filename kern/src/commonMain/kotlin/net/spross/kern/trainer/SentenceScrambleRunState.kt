@@ -110,6 +110,9 @@ data class SentenceScrambleRunState(
         fun storageKey(language: Language): String = "sentencescramble.$language"
     }
 
+    /** How the arrangement stands, as the tile bank wears it. */
+    val verdict: ScrambleVerdict get() = ScrambleVerdict.of(this)
+
     /** Nothing: the phrase heard in order is the order being asked for. */
     override val promptSaying: Saying? get() = null
 

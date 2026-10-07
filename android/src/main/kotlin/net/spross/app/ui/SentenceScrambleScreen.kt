@@ -62,13 +62,7 @@ fun SentenceScrambleScreen(model: AppModel) {
                 placed = shown.placedAtoms,
                 isTaken = shown::isPlaced,
                 arranged = shown.arranged,
-                // Kern's feedback, read — this drill grades by position, so there is no
-                // near miss to render.
-                verdict = when {
-                    shown.owesAnswer -> ScrambleVerdict.Owed
-                    shown.answerAccepted -> ScrambleVerdict.Correct
-                    else -> ScrambleVerdict.Wrong
-                },
+                verdict = shown.verdict,
                 chrome = chrome,
                 place = flow::place,
                 take = flow::take,
