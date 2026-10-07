@@ -131,7 +131,6 @@ private fun HearPrompt(
     chrome: Chrome,
     replayFocus: FocusRequester,
 ) {
-    val language = model.languageName(task.language)
     val question = when {
         task.format == LetterFormat.Dictation -> chrome.lettersAskDictation
         task.gapText == null -> chrome.lettersAskHear
@@ -140,7 +139,7 @@ private fun HearPrompt(
     val replay = model.letterReplay(task)
     CardFace {
         Text(
-            "$question · ${chrome.lettersPromptInLanguage.format(language)}",
+            question,
             style = MaterialTheme.typography.bodySmall,
             color = Theme.colors.textSecondary,
             textAlign = TextAlign.Center,
