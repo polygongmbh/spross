@@ -3,6 +3,7 @@ package net.spross.kern.session
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.LanguageInfo
+import net.spross.kern.model.answerForms
 import net.spross.kern.model.hyphensAndApostrophesStripped
 import net.spross.kern.model.nfcNormalized
 
@@ -17,7 +18,7 @@ import net.spross.kern.model.nfcNormalized
  * ONE leading listed article of the answer language is optional → iff the card is
  * a verb, any listed citation prefix (en `"to "`, sw `ku`/`kw`) is optional →
  * Damerau-Levenshtein (OSA) typo budget. Accepted forms = target
- * `text ∪ teaches ∪ accepts`.
+ * `text ∪ teaches ∪ accepts` and the `forms` agreeing with the prompt ([answerForms]).
  *
  * [articleLeniency] (the one-arg constructor's default, true) is that
  * optional-article contract for vocab reviews. Drill callers grading article
@@ -110,14 +111,19 @@ class AnswerNormalizer(
      * reviews only, see [strayLeadingWordRecovery].
      */
     fun evaluate(input: String, card: Card): Match {
-        val accepted = listOf(card.target.text) + card.target.teaches + card.target.accepts
+        val forms = answerForms(card, promptTag = null)
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
         val expectedArticle = card.target.grammar["gender"]?.lowercase()
-        val genderedForms = listOf(card.target.text) + card.target.accepts
-        val result = evaluate(input, accepted, prefixes, expectedArticle, genderedForms)
+        val genderedForms = listOf(card.target.text) + card.target.accepts + card.target.forms.map { it.text }
+        val result = evaluate(input, forms.right, prefixes, expectedArticle, genderedForms)
+        if (result != Match.Wrong) return result
+        // The word in a form the prompt did not ask for corrects to the one it did.
+        if (forms.almost.isNotEmpty() && evaluate(input, forms.almost, prefixes, expectedArticle = null) != Match.Wrong) {
+            return Match.Typo(corrected = forms.right.first())
+        }
         // Base-word answer on a feminine card grades as typo, not failure (§3):
         // anything the BASE concept would accept demotes to the feminine correction.
-        if (result == Match.Wrong && card.baseAccepted.isNotEmpty() &&
+        if (card.baseAccepted.isNotEmpty() &&
             evaluate(input, card.baseAccepted, prefixes, expectedArticle = null) != Match.Wrong
         ) {
             return Match.Typo(corrected = card.target.text)
