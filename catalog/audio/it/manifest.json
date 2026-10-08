@@ -1,5 +1,16 @@
 {
   "articles": {
+    "gli occhi": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/gliu0020occhi.mp3",
+      "gain": -4.1,
+      "gate": -72.2,
+      "matches": "gli occhi",
+      "mos": 2.8,
+      "sha256": "e28181c2b9333b2840c6a9ea5a54bd34faa23a31f868fce88b125ca3b0c62351",
+      "source": "It-gli occhi.ogg",
+      "word": "occhi"
+    },
     "i capelli": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/iu0020capelli.mp3",
@@ -106,6 +117,17 @@
       "source": "It-il cinema.ogg",
       "word": "cinema"
     },
+    "il conto": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/ilu0020conto.mp3",
+      "gain": -0.5,
+      "gate": -69.2,
+      "matches": "il conto",
+      "mos": 2.77,
+      "sha256": "05cff2e4522bfdf07c54d2765d9cee569c546b40ef9247e02bbd37d29dd4d8cd",
+      "source": "It-il conto.ogg",
+      "word": "conto"
+    },
     "il cuore": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020cuore.mp3",
@@ -128,6 +150,18 @@
       "sha256": "c8b14fbedbe5aa399836922a9d004d73eda8ffff5dfb3c1d6db401813755a149",
       "source": "It-il formaggio.ogg",
       "word": "formaggio"
+    },
+    "il governo": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/ilu0020governo.mp3",
+      "gain": -2.6,
+      "gate": -74.5,
+      "lead": 230,
+      "matches": "il governo",
+      "mos": 3.02,
+      "sha256": "c35bb0ffea5911db7c8db9c3fda9eaa2f46388592ff9962751f3c52d540c80d7",
+      "source": "It-il governo.ogg",
+      "word": "governo"
     },
     "il latte": {
       "author": "Marta Carbone, Association Shtooka",
@@ -175,6 +209,17 @@
       "source": "It-il marito.ogg",
       "word": "marito"
     },
+    "il matrimonio": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/ilu0020matrimonio.mp3",
+      "gate": -71.7,
+      "lead": 36,
+      "matches": "il matrimonio",
+      "mos": 2.63,
+      "sha256": "0592133875dc12cdd014ab38471cebfc0b236dea41ac0f2f74e3c420fdf3c59e",
+      "source": "It-il matrimonio.ogg",
+      "word": "matrimonio"
+    },
     "il mercato": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020mercato.mp3",
@@ -197,6 +242,18 @@
       "sha256": "246b76bc4f4d7d016b535e627c87536347452ed57499e5652872731dfe44f013",
       "source": "It-il naso.ogg",
       "word": "naso"
+    },
+    "il nord": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/ilu0020nord.mp3",
+      "gain": -3.7,
+      "gate": -69.6,
+      "lead": 154,
+      "matches": "il nord",
+      "mos": 2.53,
+      "sha256": "dbe7860d1ce8a38139d0525c648240f0f8b9e8eeed4d33f0a4f6f0b3c1542f82",
+      "source": "It-il nord.ogg",
+      "word": "nord"
     },
     "il padre": {
       "author": "Marta Carbone, Association Shtooka",
@@ -222,6 +279,17 @@
       "source": "It-il pane.ogg",
       "word": "pane"
     },
+    "il pavimento": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/ilu0020pavimento.mp3",
+      "gain": -0.2,
+      "gate": -70.4,
+      "matches": "il pavimento",
+      "mos": 2.64,
+      "sha256": "639eb688c3d0ebc07877c486f0ce837c585ff6aa9bb7e4fd4af861707740a9fd",
+      "source": "It-il pavimento.ogg",
+      "word": "pavimento"
+    },
     "il pesce": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020pesce.mp3",
@@ -245,6 +313,18 @@
       "source": "It-il pollo.ogg",
       "word": "pollo"
     },
+    "il prezzo": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/ilu0020prezzo.mp3",
+      "gain": -4.0,
+      "gate": -65.8,
+      "lead": 96,
+      "matches": "il prezzo",
+      "mos": 2.57,
+      "sha256": "150a06bc8706a268005789c213f4d85a8c784531169ee0112b0f33ed233c1fa5",
+      "source": "It-il prezzo.ogg",
+      "word": "prezzo"
+    },
     "il riso": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020riso.mp3",
@@ -255,6 +335,17 @@
       "sha256": "71afea2b438900bf56a0764aa19eebaec42d22c5ed784fa7bd426a4f6d2242b0",
       "source": "It-il riso.ogg",
       "word": "riso"
+    },
+    "il rumore": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/ilu0020rumore.mp3",
+      "gain": -2.4,
+      "gate": -69.6,
+      "matches": "il rumore",
+      "mos": 2.52,
+      "sha256": "7999bcbda7024f8dcef48400f8f9caa07aed9ff1b3769b2be6ffc0f6a4c4e013",
+      "source": "It-il rumore.ogg",
+      "word": "rumore"
     },
     "il sale": {
       "author": "Marta Carbone, Association Shtooka",
@@ -302,6 +393,18 @@
       "source": "It-il sole.ogg",
       "word": "sole"
     },
+    "il sud": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/ilu0020sud.mp3",
+      "gain": -0.2,
+      "gate": -66.1,
+      "lead": 98,
+      "matches": "il sud",
+      "mos": 3.0,
+      "sha256": "15f264626a2482adf2a712d7cc7c78ce1949e0964ad4c112dfdbd76a7a4c53c0",
+      "source": "It-il sud.ogg",
+      "word": "sud"
+    },
     "il tè": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020tu00e8.mp3",
@@ -336,6 +439,30 @@
       "sha256": "52e3a12802a84fe70c46fd6a309bf3f00873ce7bddfb3accb69c5c06ec7fa2c0",
       "source": "It-l'acqua.ogg",
       "word": "acqua"
+    },
+    "l'amore": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/lu0027amore.mp3",
+      "gain": -4.0,
+      "gate": -72.1,
+      "lead": 250,
+      "matches": "l'amore",
+      "mos": 2.75,
+      "sha256": "15c84db7ef1e4defd535a6df338ab88ceff33cdac9989fa6853fc827dc0b6ce6",
+      "source": "It-l'amore.ogg",
+      "word": "amore"
+    },
+    "l'entrata": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/lu0027entrata.mp3",
+      "gain": -1.4,
+      "gate": -74.0,
+      "lead": 237,
+      "matches": "l'entrata",
+      "mos": 3.14,
+      "sha256": "47578aacdb2d38961b99ba2ef2f3755c1c61212b77026c7eab23599196483f8b",
+      "source": "It-l'entrata.ogg",
+      "word": "entrata"
     },
     "l'indirizzo": {
       "author": "Marta Carbone, Association Shtooka",
@@ -372,6 +499,18 @@
       "sha256": "1b584cadcc07e93004a0ab5b45d9f4f6f26df076bd9e172e121dd7949c07f712",
       "source": "It-l'università.ogg",
       "word": "università"
+    },
+    "l'uscita": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/lu0027uscita.mp3",
+      "gain": -2.6,
+      "gate": -67.6,
+      "lead": 204,
+      "matches": "l'uscita",
+      "mos": 2.72,
+      "sha256": "fd9a023a170c0b8ede00723ef1e848f04fe0ac4922e08e57448073053e246811",
+      "source": "It-l'uscita.ogg",
+      "word": "uscita"
     },
     "la bocca": {
       "author": "Marta Carbone, Association Shtooka",
@@ -443,6 +582,29 @@
       "source": "It-la colazione.ogg",
       "word": "colazione"
     },
+    "la direzione": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/lau0020direzione.mp3",
+      "gain": -0.9,
+      "gate": -69.2,
+      "matches": "la direzione",
+      "mos": 2.92,
+      "sha256": "ad0f9dfe4e2d9eec4b75b4fcdf7833c1d7e0a47b1115427bc72df54a72631882",
+      "source": "It-la direzione.ogg",
+      "word": "direzione"
+    },
+    "la guerra": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/lau0020guerra.mp3",
+      "gain": -2.8,
+      "gate": -72.3,
+      "lead": 247,
+      "matches": "la guerra",
+      "mos": 2.93,
+      "sha256": "c968d70fb9aad948e1ec280e62543539ed15d0b84c0bbe935fc29e7c891c7e49",
+      "source": "It-la guerra.ogg",
+      "word": "guerra"
+    },
     "la lingua": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020lingua.mp3",
@@ -502,6 +664,18 @@
       "source": "It-la montagna.ogg",
       "word": "montagna"
     },
+    "la morte": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/lau0020morte.mp3",
+      "gain": -3.5,
+      "gate": -67.4,
+      "lead": 83,
+      "matches": "la morte",
+      "mos": 2.92,
+      "sha256": "4c15989dfa351b7003aa8b2e8b4236fbe5d9e5e8ea15c55fa4ce108f6b252dae",
+      "source": "It-la morte.ogg",
+      "word": "morte"
+    },
     "la musica": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020musica.mp3",
@@ -525,6 +699,18 @@
       "sha256": "4effdad8e6f590e819cee55c80cae62336f5710290e55f414681438b85a2b367",
       "source": "It-la neve.ogg",
       "word": "neve"
+    },
+    "la pace": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/lau0020pace.mp3",
+      "gain": -3.3,
+      "gate": -71.7,
+      "lead": 224,
+      "matches": "la pace",
+      "mos": 3.32,
+      "sha256": "e8ad65c91ee952d264270eca740e60a7d5ca54e9ee102045842619864b62152b",
+      "source": "It-la pace.ogg",
+      "word": "pace"
     },
     "la patata": {
       "author": "Marta Carbone, Association Shtooka",
@@ -606,6 +792,18 @@
       "source": "It-la verdura.ogg",
       "word": "verdura"
     },
+    "la vita": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/lau0020vita.mp3",
+      "gain": -0.6,
+      "gate": -74.8,
+      "lead": 125,
+      "matches": "la vita",
+      "mos": 3.09,
+      "sha256": "617b23accdd4b674b31e4a0ba4bdcf474e5d1cba2bc97996258428afd4194007",
+      "source": "It-la vita.ogg",
+      "word": "vita"
+    },
     "la zuppa": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020zuppa.mp3",
@@ -617,6 +815,29 @@
       "sha256": "5d0ce9cc7bafe5fd7dc0a5ee346c762e2b0d84742378a67100b6bca5aa649cf0",
       "source": "It-la zuppa.ogg",
       "word": "zuppa"
+    },
+    "le labbra": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/leu0020labbra.mp3",
+      "gain": -4.8,
+      "gate": -71.2,
+      "lead": 14,
+      "matches": "le labbra",
+      "mos": 2.54,
+      "sha256": "c1a52f6c15ee7e4efd4067b29bc780887c0e79e23720680973c37a48c8bb9e23",
+      "source": "It-le labbra.ogg",
+      "word": "labbra"
+    },
+    "le orecchie": {
+      "author": "Marta Carbone, Association Shtooka",
+      "file": "articles/leu0020orecchie.mp3",
+      "gain": -3.9,
+      "gate": -67.5,
+      "matches": "le orecchie",
+      "mos": 2.78,
+      "sha256": "01745301c48855d3e8625d3ce0e89e0cd36f175075b37db7e75713a8a7714680",
+      "source": "It-le orecchie.ogg",
+      "word": "orecchie"
     },
     "lo zucchero": {
       "author": "Marta Carbone, Association Shtooka",
@@ -2007,6 +2228,17 @@
       "sha256": "9deea03fee891423eadd7941550700719bd006d5abf7cbbdd613323f64b498f4",
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-allergia.wav"
     },
+    "altri": {
+      "author": "XANA000",
+      "file": "words/altri.mp3",
+      "gain": -0.6,
+      "gate": -80.7,
+      "lead": 279,
+      "matches": "altri",
+      "mos": 2.23,
+      "sha256": "23e23474b2c59bd16e63c842e5633f09e54fc825d5a35bde43d54818465013fd",
+      "source": "LL-Q652 (ita)-XANA000-altri.wav"
+    },
     "altro": {
       "author": "XANA000",
       "file": "words/altro.mp3",
@@ -2469,6 +2701,17 @@
       "mos": 2.44,
       "sha256": "6ff650bc7686a929d3405aa4249372f6b1f70e1bd0b471ffaa3f9e42f65e415e",
       "source": "LL-Q652 (ita)-LangPao-bastone.wav"
+    },
+    "bella": {
+      "author": "Jennum",
+      "file": "words/bella.mp3",
+      "gain": 8.9,
+      "gate": -78.5,
+      "lead": 95,
+      "matches": "bella",
+      "mos": 2.63,
+      "sha256": "6391a385d92aba964309a700507c7074b0da630d1aa0be792775baf7a09de16e",
+      "source": "LL-Q652 (ita)-Jennum-bella.wav"
     },
     "bello": {
       "author": "LangPao",
@@ -4522,6 +4765,18 @@
       "sha256": "68243a7c559c30daa616329235bd213e673129207c941a94f82ca66bc10dc85f",
       "source": "LL-Q652 (ita)-LangPao-festeggiare.wav"
     },
+    "figli": {
+      "author": "DiplomaticBadger",
+      "cap": 0.3,
+      "file": "words/figli.mp3",
+      "gain": 9.3,
+      "gate": -79.6,
+      "lead": 59,
+      "matches": "figli",
+      "mos": 2.73,
+      "sha256": "fef1977575f79571ec92b921506f83b0dc833cfcfd6ff72e888dc2713020fe05",
+      "source": "LL-Q652 (ita)-DiplomaticBadger-figli.wav"
+    },
     "figlia": {
       "author": "LangPao",
       "file": "words/figlia.mp3",
@@ -5223,6 +5478,18 @@
       "sha256": "cc95f422d375677472f8783371aa8d585a61af80cd24f0f83dcd1a5fbfa57342",
       "source": "LL-Q652 (ita)-XANA000-Internet.wav"
     },
+    "intestini": {
+      "author": "Ciampix",
+      "cap": 1.4,
+      "file": "words/intestini.mp3",
+      "gain": 17.7,
+      "gate": -80.6,
+      "lead": 155,
+      "matches": "intestini",
+      "mos": 2.72,
+      "sha256": "6e75f794369a8e38d42e4f0589caa6f2e34670049ea123a1b8ce77052e0592fc",
+      "source": "LL-Q652 (ita)-Ciampix-intestini.wav"
+    },
     "intestino": {
       "author": "Crunchy Cloaky Crackdown",
       "cap": 0.2,
@@ -5679,6 +5946,16 @@
       "sha256": "3016e2b2529efdc465698c98cd36c0d60289ca13da8ecd742fb7990bbae7d3c2",
       "source": "LL-Q652 (ita)-LangPao-madre.wav"
     },
+    "maestra": {
+      "author": "LangPao",
+      "file": "words/maestra.mp3",
+      "gain": 3.3,
+      "lead": 239,
+      "matches": "maestra",
+      "mos": 2.89,
+      "sha256": "4b0862c493e3930592ac986d4e7b05aeb7b545e6dc3155f2c62b477c6db7f0c1",
+      "source": "LL-Q652 (ita)-LangPao-maestra.wav"
+    },
     "maglietta": {
       "author": "LangPao",
       "cap": 1.6,
@@ -5961,6 +6238,38 @@
       "sha256": "0534f5e1fe1ba0fe97ffd582cf82e91b35f6bbff0375d9d312ff48f290fd9f48",
       "source": "LL-Q652 (ita)-LangPao-mezzogiorno.wav"
     },
+    "mia": {
+      "author": "XANA000",
+      "file": "words/mia.mp3",
+      "gain": 11.9,
+      "lead": 268,
+      "matches": "mia",
+      "mos": 2.85,
+      "sha256": "8452a3d0d02095220b931f4d5a6df916a144c9af8bfc3022bd68d65bb8202745",
+      "source": "LL-Q652 (ita)-XANA000-mia.wav"
+    },
+    "mie": {
+      "author": "XANA000",
+      "file": "words/mie.mp3",
+      "gain": -1.0,
+      "gate": -88.9,
+      "lead": 192,
+      "matches": "mie",
+      "mos": 2.34,
+      "sha256": "9e1f56fe7ccf3b82e2853dca609c663ecfda1c0aa1f29659ac03ab9c753c7fdb",
+      "source": "LL-Q652 (ita)-XANA000-mie.wav"
+    },
+    "miei": {
+      "author": "XANA000",
+      "file": "words/miei.mp3",
+      "gain": -0.7,
+      "gate": -97.4,
+      "lead": 180,
+      "matches": "miei",
+      "mos": 2.49,
+      "sha256": "301f02da3357a5802ec3345b17aaf6e160d078826de4fccd64ea3bc74a6c1754",
+      "source": "LL-Q652 (ita)-XANA000-miei.wav"
+    },
     "migliorare": {
       "author": "LangPao",
       "file": "words/migliorare.mp3",
@@ -6014,6 +6323,17 @@
       "mos": 2.39,
       "sha256": "7c9a757c0431c4a621fc9cd0d74772918b600682762f1ceff07613a0afadfef7",
       "source": "LL-Q652 (ita)-LangPao-moglie.wav"
+    },
+    "molti": {
+      "author": "XANA000",
+      "file": "words/molti.mp3",
+      "gain": 2.7,
+      "gate": -67.8,
+      "lead": 215,
+      "matches": "molti",
+      "mos": 2.85,
+      "sha256": "1df70fe60282356ee3dc94dc8a90e7c27d6389dc0d3f9df07deb3876f356fd82",
+      "source": "LL-Q652 (ita)-XANA000-molti.wav"
     },
     "molto": {
       "author": "Marta Carbone, Association Shtooka",
@@ -6386,6 +6706,36 @@
       "mos": 2.57,
       "sha256": "34cba83599785f6afd3e5516d1e39a4d5fe83204c2e7bdd9b100638a98140a46",
       "source": "LL-Q652 (ita)-LangPao-nord.wav"
+    },
+    "nostra": {
+      "author": "XANA000",
+      "file": "words/nostra.mp3",
+      "gain": 3.9,
+      "lead": 185,
+      "matches": "nostra",
+      "mos": 2.45,
+      "sha256": "91c2167f903d6142aa42f0ef79be3b89be9e3b1a0afe78e20828f9b6493116a5",
+      "source": "LL-Q652 (ita)-XANA000-nostra.wav"
+    },
+    "nostre": {
+      "author": "XANA000",
+      "file": "words/nostre.mp3",
+      "gain": 3.8,
+      "lead": 142,
+      "matches": "nostre",
+      "mos": 2.75,
+      "sha256": "ab1e2461b1515f500fdf84c72e80e0cd71d8ca5459ce124e06d45c9debe33b99",
+      "source": "LL-Q652 (ita)-XANA000-nostre.wav"
+    },
+    "nostri": {
+      "author": "XANA000",
+      "file": "words/nostri.mp3",
+      "gain": 5.8,
+      "lead": 188,
+      "matches": "nostri",
+      "mos": 2.93,
+      "sha256": "db562d350f2c13db4da4ee02376fd071eca7dcffc830a61f7dfcd439a9583c37",
+      "source": "LL-Q652 (ita)-XANA000-nostri.wav"
     },
     "nostro": {
       "author": "XANA000",
@@ -7156,6 +7506,17 @@
       "sha256": "043697092366856ad4112c8bf0a776f1a595ee89dab93d5b104b94fdd852d81a",
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-polmone.wav"
     },
+    "polmoni": {
+      "author": "Ciampix",
+      "file": "words/polmoni.mp3",
+      "gain": 11.7,
+      "gate": -79.0,
+      "lead": 190,
+      "matches": "polmoni",
+      "mos": 2.83,
+      "sha256": "315cdbe372ef27afa37ba7528476e94b64165045e3fb74a33bf11e7dab50ab4c",
+      "source": "LL-Q652 (ita)-Ciampix-polmoni.wav"
+    },
     "pomeriggio": {
       "author": "LangPao",
       "file": "words/pomeriggio.mp3",
@@ -7499,6 +7860,17 @@
       "sha256": "8ccbd18871e78eaccccc5f15a0659df525cd168981bcd3c80143648fd22d7ead",
       "source": "LL-Q652 (ita)-XANA000-quale.wav"
     },
+    "quali": {
+      "author": "XANA000",
+      "file": "words/quali.mp3",
+      "gain": -4.7,
+      "gate": -98.9,
+      "lead": 94,
+      "matches": "quali",
+      "mos": 2.3,
+      "sha256": "c44ddc2f94edcbf8c65333cf7c80926484828b98026d7cf40be2e3da75f50368",
+      "source": "LL-Q652 (ita)-XANA000-quali.wav"
+    },
     "quando": {
       "author": "LangPao",
       "file": "words/quando.mp3",
@@ -7531,6 +7903,15 @@
       "sha256": "66f68b57dc2627e8f2162176f64c4c848b52a9d00b5658591dcf6386ac6c5c3a",
       "source": "LL-Q652 (ita)-LangPao-quasi.wav"
     },
+    "quella": {
+      "author": "Fibonacci",
+      "file": "words/quella.mp3",
+      "gain": -10.9,
+      "matches": "quella",
+      "mos": 2.85,
+      "sha256": "a6dec4b8f4c272e09403aab045babf2e0dd51bcc707c1a1921f4c5c7bcfb7972",
+      "source": "It-quella.ogg"
+    },
     "quello": {
       "author": "XANA000",
       "file": "words/quello.mp3",
@@ -7540,6 +7921,17 @@
       "mos": 2.1,
       "sha256": "25bd5938c70e059e29951429158f22f956175b3dc5f249dbb3826cd1aab60a47",
       "source": "LL-Q652 (ita)-XANA000-quello.wav"
+    },
+    "questa": {
+      "author": "XANA000",
+      "file": "words/questa.mp3",
+      "gain": 1.0,
+      "gate": -95.5,
+      "lead": 185,
+      "matches": "questa",
+      "mos": 2.41,
+      "sha256": "76f795d375f354a48b534235c406a8681afcedae18944464e2ec1d4c612f46aa",
+      "source": "LL-Q652 (ita)-XANA000-questa.wav"
     },
     "questo": {
       "author": "XANA000",
@@ -7679,6 +8071,17 @@
       "mos": 2.92,
       "sha256": "d2fc47fcaac2a07bf2f3c286b0685457e345e70da2681509a94751a630521f8f",
       "source": "LL-Q652 (ita)-LangPao-rene.wav"
+    },
+    "reni": {
+      "author": "Ciampix",
+      "file": "words/reni.mp3",
+      "gain": 4.0,
+      "gate": -80.2,
+      "lead": 185,
+      "matches": "reni",
+      "mos": 2.74,
+      "sha256": "6f8afb8ba701b29c2593e70def80a0c408ed0e7b6c6b78a7091895b7e07506fc",
+      "source": "LL-Q652 (ita)-Ciampix-reni.wav"
     },
     "respirare": {
       "author": "LangPao",
@@ -7923,6 +8326,16 @@
       "mos": 2.43,
       "sha256": "fa335fa5223650502cb3e342c8f853b5be8be968389c238102f677bc3d98d543",
       "source": "LL-Q652 (ita)-XANA000-sale.wav"
+    },
+    "salire": {
+      "author": "LangPao",
+      "file": "words/salire.mp3",
+      "gain": 4.1,
+      "lead": 92,
+      "matches": "salire",
+      "mos": 2.9,
+      "sha256": "fdf89250d5aaea4b85762ff893e666a88d9079fe1ea32b059be2ff4e3a9d4fb4",
+      "source": "LL-Q652 (ita)-LangPao-salire.wav"
     },
     "salsa": {
       "author": "XANA000",
@@ -8717,6 +9130,17 @@
       "sha256": "45699fcc26475a54ee38f4501797c4e5bd5a1d25e0a6a045d20d6731c3940645",
       "source": "LL-Q652 (ita)-LangPao-studiare.wav"
     },
+    "sua": {
+      "author": "XANA000",
+      "file": "words/sua.mp3",
+      "gain": 5.4,
+      "gate": -96.0,
+      "lead": 166,
+      "matches": "sua",
+      "mos": 2.7,
+      "sha256": "4e3fb174d3695368c77537c4e8ac43091439d03e1ea00acbb0264f5efc5f88ee",
+      "source": "LL-Q652 (ita)-XANA000-Sua.wav"
+    },
     "subito": {
       "author": "LangPao",
       "file": "words/subito.mp3",
@@ -8760,6 +9184,16 @@
       "sha256": "0ea8c0757b081145941c0c6267b3443fb86f2f8b33133507663827b030ae6f38",
       "source": "LL-Q652 (ita)-LangPao-sud.wav"
     },
+    "sue": {
+      "author": "XANA000",
+      "file": "words/sue.mp3",
+      "gain": 4.4,
+      "lead": 145,
+      "matches": "sue",
+      "mos": 2.69,
+      "sha256": "743a3b60073026d8b2c47762c79aa5b1b3558c00e50bebf245aa1d2b4a22865c",
+      "source": "LL-Q652 (ita)-XANA000-Sue.wav"
+    },
     "suo": {
       "author": "XANA000",
       "file": "words/suo.mp3",
@@ -8791,6 +9225,17 @@
       "mos": 3.18,
       "sha256": "ff7457b993f741bf9bdf4e986b592e359066b57e1264f90de995ec0200fe73a2",
       "source": "LL-Q652 (ita)-LangPao-suocero.wav"
+    },
+    "suoi": {
+      "author": "XANA000",
+      "file": "words/suoi.mp3",
+      "gain": 3.7,
+      "gate": -86.8,
+      "lead": 135,
+      "matches": "suoi",
+      "mos": 2.78,
+      "sha256": "059a6e0383346cc97b36a19b06670e303286560c0f6ce51d233581fde77f5648",
+      "source": "LL-Q652 (ita)-XANA000-Suoi.wav"
     },
     "suonare": {
       "author": "LangPao",
@@ -9115,6 +9560,27 @@
       "sha256": "d406bc9c46318db340a2c821c0abce3c6ed1fd7616255aa440ff70e9f821e725",
       "source": "LL-Q652 (ita)-XANA000-tu.wav"
     },
+    "tua": {
+      "author": "XANA000",
+      "file": "words/tua.mp3",
+      "gain": 2.4,
+      "lead": 143,
+      "matches": "tua",
+      "mos": 2.83,
+      "sha256": "032651c6ee15ad6378b63e55340899c169c5a95fa8c3445f12dec38e7a901e3c",
+      "source": "LL-Q652 (ita)-XANA000-tua.wav"
+    },
+    "tue": {
+      "author": "XANA000",
+      "file": "words/tue.mp3",
+      "gain": 3.5,
+      "gate": -97.7,
+      "lead": 164,
+      "matches": "tue",
+      "mos": 2.63,
+      "sha256": "57b4f9b63e16774cbc4c4180df56f2e6f6bf4e4f996da3d49bbf2b50a2405335",
+      "source": "LL-Q652 (ita)-XANA000-tue.wav"
+    },
     "tuo": {
       "author": "XANA000",
       "file": "words/tuo.mp3",
@@ -9125,6 +9591,16 @@
       "mos": 2.26,
       "sha256": "9df0c0576afdf99f6f133b10ad118b9b54824fa86e33562bdf89f02dd368c980",
       "source": "LL-Q652 (ita)-XANA000-tuo.wav"
+    },
+    "tuoi": {
+      "author": "XANA000",
+      "file": "words/tuoi.mp3",
+      "gain": -0.5,
+      "lead": 153,
+      "matches": "tuoi",
+      "mos": 2.83,
+      "sha256": "d77de53a70e9e459f37539173a6c7f4f34447f588e01111b6f171e8afec65267",
+      "source": "LL-Q652 (ita)-XANA000-tuoi.wav"
     },
     "tuono": {
       "author": "LangPao",
@@ -9245,6 +9721,16 @@
       "sha256": "04f4ae76b4fe9444703db8da00d8f4c69f8ac65a68a5be77f203370653e05c20",
       "source": "LL-Q652 (ita)-LangPao-università.wav"
     },
+    "uomini": {
+      "author": "LangPao",
+      "file": "words/uomini.mp3",
+      "gain": 1.5,
+      "lead": 221,
+      "matches": "uomini",
+      "mos": 2.82,
+      "sha256": "bc464b63d23df6124eaa42b01d531daab92ed03e992e3f148aa6d6b3621e159d",
+      "source": "LL-Q652 (ita)-LangPao-uomini.wav"
+    },
     "uomo": {
       "author": "XANA000",
       "file": "words/uomo.mp3",
@@ -9297,6 +9783,17 @@
       "mos": 3.0,
       "sha256": "1211a71c6c1a6c251559b9f562a6907c0c50dd76e1b5d6811e0b61ea4ff83404",
       "source": "LL-Q652 (ita)-LangPao-uscita.wav"
+    },
+    "vecchia": {
+      "author": "XANA000",
+      "file": "words/vecchia.mp3",
+      "gain": -0.7,
+      "gate": -84.9,
+      "lead": 226,
+      "matches": "vecchia",
+      "mos": 2.82,
+      "sha256": "23c5ceaf669b6538bd565a7d86ba021ff0dbae455bdd9f5d142754bf724562fb",
+      "source": "LL-Q652 (ita)-XANA000-vecchia.wav"
     },
     "vecchio": {
       "author": "XANA000",
@@ -9497,6 +9994,16 @@
       "sha256": "140fba9e9e07b61996027986edd8cd35cf696c45c1e06c8037ff8aaaeee762a7",
       "source": "LL-Q652 (ita)-LangPao-vita.wav"
     },
+    "viva": {
+      "author": "XANA000",
+      "file": "words/viva.mp3",
+      "gain": 6.3,
+      "lead": 186,
+      "matches": "viva",
+      "mos": 2.5,
+      "sha256": "811d408782f14b929bb82b621eb01554f1bba16c4c56c4da75075d50661d1716",
+      "source": "LL-Q652 (ita)-XANA000-viva.wav"
+    },
     "vivere": {
       "author": "LangPao",
       "file": "words/vivere.mp3",
@@ -9560,6 +10067,36 @@
       "mos": 2.64,
       "sha256": "ebdfe4ce90b9e5210f3f02e1be9176e7653105441d11a669be088eb0f243fadf",
       "source": "LL-Q652 (ita)-LangPao-volume.wav"
+    },
+    "vostra": {
+      "author": "XANA000",
+      "file": "words/vostra.mp3",
+      "gain": 2.9,
+      "lead": 184,
+      "matches": "vostra",
+      "mos": 2.49,
+      "sha256": "e210cc529b7e2f20883477f019c6dfc57472436c54210a62b3980df9e38dbdb1",
+      "source": "LL-Q652 (ita)-XANA000-vostra.wav"
+    },
+    "vostre": {
+      "author": "XANA000",
+      "file": "words/vostre.mp3",
+      "gain": 3.2,
+      "lead": 174,
+      "matches": "vostre",
+      "mos": 2.42,
+      "sha256": "1f04dc746ea9fac9ec0ef0a321ad17431f953b8a44041ba5c91b7835f05dff69",
+      "source": "LL-Q652 (ita)-XANA000-vostre.wav"
+    },
+    "vostri": {
+      "author": "XANA000",
+      "file": "words/vostri.mp3",
+      "gain": 1.1,
+      "lead": 179,
+      "matches": "vostri",
+      "mos": 2.86,
+      "sha256": "8fe5336767a32c880c3730b58edaad4f20dd15296a07d958ae266ee71ba3a29e",
+      "source": "LL-Q652 (ita)-XANA000-vostri.wav"
     },
     "vostro": {
       "author": "XANA000",

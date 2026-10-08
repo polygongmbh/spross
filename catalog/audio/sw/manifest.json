@@ -1598,6 +1598,17 @@
       "sha256": "952f3da0131c41add29154e8985b9fe379b02dbf7bc464ac05bdfe4664f0888e",
       "source": "Sw-ke-chafu.flac"
     },
+    "chaguzi": {
+      "author": "Waithera Were",
+      "file": "words/chaguzi.mp3",
+      "gain": -10.0,
+      "gate": -68.8,
+      "lead": 43,
+      "matches": "chaguzi",
+      "mos": 2.76,
+      "sha256": "72b1e19ac5d7784722258f50a429148549fc1c295f80c11763d923761221c5e5",
+      "source": "Sw-ke-chaguzi.flac"
+    },
     "chai": {
       "author": "Waithera Were",
       "file": "words/chai.mp3",
@@ -2213,6 +2224,17 @@
       "sha256": "f33f55fbf40f4fec752ac3643cc437ac517f3cd3d0895bc9dd676d5a4729b84a",
       "source": "Sw-ke-fu.flac"
     },
+    "fukwe": {
+      "author": "Waithera Were",
+      "file": "words/fukwe.mp3",
+      "gain": -5.3,
+      "gate": -68.0,
+      "lead": 39,
+      "matches": "fukwe",
+      "mos": 2.52,
+      "sha256": "857a9a877ff2b7b1dc6aa45752232a6a2ea12fb8f4d69c1db60fb214a91a11b1",
+      "source": "Sw-ke-fukwe.flac"
+    },
     "fulana": {
       "author": "Waithera Were",
       "file": "words/fulana.mp3",
@@ -2223,6 +2245,17 @@
       "mos": 3.12,
       "sha256": "3510d5f01bec43bb4afdacb09a1368f58ed67646e0dc7a49528953af4afa85b8",
       "source": "Sw-ke-fulana.flac"
+    },
+    "funguo": {
+      "author": "Waithera Were",
+      "file": "words/funguo.mp3",
+      "gain": -1.0,
+      "gate": -69.0,
+      "lead": 40,
+      "matches": "funguo",
+      "mos": 2.61,
+      "sha256": "84ab217045be87138af53b5b5f68974b0658877e82142c0d56e36ad2d0e3dfbd",
+      "source": "Sw-ke-funguo.flac"
     },
     "fupi": {
       "author": "Waithera Were",
@@ -2986,6 +3019,17 @@
       "mos": 2.82,
       "sha256": "7e8abf5e77d2e27586da76c13e88a3e57113f95c0123568e755d83f58ef0cfd3",
       "source": "Sw-ke-juisi.flac"
+    },
+    "jumbe": {
+      "author": "Waithera Were",
+      "file": "words/jumbe.mp3",
+      "gain": -2.9,
+      "gate": -63.6,
+      "lead": 7,
+      "matches": "jumbe",
+      "mos": 2.79,
+      "sha256": "c7bfc95774625cca7644def82d8cdcfe8048ae7118a1e9bfa3a6ec29755789cf",
+      "source": "Sw-ke-jumbe.flac"
     },
     "juu": {
       "author": "Ismail Ibn Ahmed",
@@ -4495,6 +4539,28 @@
       "sha256": "a0947ef6fc887ac9a498ef1e590dddbbe3108a468897874f8fadd16d7ffdea94",
       "source": "Sw-ke-kugharimu.flac"
     },
+    "kuhama": {
+      "author": "Waithera Were",
+      "file": "words/kuhama.mp3",
+      "gain": -14.4,
+      "gate": -62.8,
+      "lead": 37,
+      "matches": "kuhama",
+      "mos": 2.46,
+      "sha256": "d05ba77ffae3102641c0c58fa6fd73cbe5db7f869e79f25a71417aee29f617cd",
+      "source": "Sw-ke-kuhama.flac"
+    },
+    "kuhamia": {
+      "author": "Waithera Were",
+      "file": "words/kuhamia.mp3",
+      "gain": -10.6,
+      "gate": -63.7,
+      "lead": 38,
+      "matches": "kuhamia",
+      "mos": 2.55,
+      "sha256": "44bedfe35cb5abb9d69218609fd6691547e8af6acbd1e97de56357b5532c32f8",
+      "source": "Sw-ke-kuhamia.flac"
+    },
     "kuhesabu": {
       "author": "Waithera Were",
       "file": "words/kuhesabu.mp3",
@@ -5100,6 +5166,17 @@
       "sha256": "068012a9e413728fdb047d78d558bc2be7ca2b3365fe32d21c0b70b0f77056d4",
       "source": "Sw-ke-kupa.flac"
     },
+    "kupanda": {
+      "author": "Waithera Were",
+      "file": "words/kupanda.mp3",
+      "gain": -13.6,
+      "gate": -62.8,
+      "lead": 43,
+      "matches": "kupanda",
+      "mos": 2.69,
+      "sha256": "c0a48a01a4e2f24e46d10ae3dce986f51c7b3a6cae4bcd90d880254c7b2b823a",
+      "source": "Sw-ke-kupanda.flac"
+    },
     "kupanga": {
       "author": "Waithera Were",
       "file": "words/kupanga.mp3",
@@ -5110,6 +5187,17 @@
       "mos": 2.72,
       "sha256": "73f840f3e5fed6d296ce4671b633628993702b4d69f3d98448557de9359b79f4",
       "source": "Sw-ke-kupanga.flac"
+    },
+    "kupata": {
+      "author": "Waithera Were",
+      "file": "words/kupata.mp3",
+      "gain": -12.7,
+      "gate": -63.1,
+      "lead": 32,
+      "matches": "kupata",
+      "mos": 2.69,
+      "sha256": "78bab92b62f42e87e3a70871bb47c4035a15678a372411fcf3bd4949e3403695",
+      "source": "Sw-ke-kupata.flac"
     },
     "kupatikana": {
       "author": "Waithera Were",
@@ -5253,6 +5341,17 @@
       "mos": 2.91,
       "sha256": "0dd2b6fc7b5c6951febef3629ac3397626c356816f5ca5451bb50dce4c4f1053",
       "source": "Sw-ke-kupumzika.flac"
+    },
+    "kurasa": {
+      "author": "Waithera Were",
+      "file": "words/kurasa.mp3",
+      "gain": -14.0,
+      "gate": -66.1,
+      "lead": 43,
+      "matches": "kurasa",
+      "mos": 3.12,
+      "sha256": "dbcd6a57123f91886da13aa0383e5c7b620e65eb49824e86b0ca7265a26eab47",
+      "source": "Sw-ke-kurasa.flac"
     },
     "kurudi": {
       "author": "Waithera Were",
@@ -5473,6 +5572,17 @@
       "mos": 3.15,
       "sha256": "9e784ae4916cdcdad11634791d8725c82a1e23d1d808d8abd348a41d054f71d9",
       "source": "Sw-ke-kusukuma.flac"
+    },
+    "kuta": {
+      "author": "Waithera Were",
+      "file": "words/kuta.mp3",
+      "gain": -5.0,
+      "gate": -67.2,
+      "lead": 39,
+      "matches": "kuta",
+      "mos": 2.6,
+      "sha256": "7ec4831b7e7c96ab8ed30b95603d71c5658ba3feccd300fea39ddbe579749635",
+      "source": "Sw-ke-kuta.flac"
     },
     "kutabasamu": {
       "author": "Waithera Were",
@@ -6087,6 +6197,160 @@
       "sha256": "e8f322fde110a118372e4eba1adde959a1dc1621d9b803352ffd5198c6b94c3c",
       "source": "Sw-ke-maana.flac"
     },
+    "mabakuli": {
+      "author": "Waithera Were",
+      "file": "words/mabakuli.mp3",
+      "gain": -9.1,
+      "gate": -62.7,
+      "lead": 39,
+      "matches": "mabakuli",
+      "mos": 2.33,
+      "sha256": "6fe14fc92cb4c1794ce827425b48130894e2b3420b9ba9c6cbb98c5ee1bdc06e",
+      "source": "Sw-ke-mabakuli.flac"
+    },
+    "mabasi": {
+      "author": "Waithera Were",
+      "file": "words/mabasi.mp3",
+      "gain": -14.0,
+      "gate": -66.7,
+      "lead": 41,
+      "matches": "mabasi",
+      "mos": 3.02,
+      "sha256": "d529c90356f1905fe364658b96aa3dedf62bf76269e6f69755388609195968df",
+      "source": "Sw-ke-mabasi.flac"
+    },
+    "mabega": {
+      "author": "Waithera Were",
+      "file": "words/mabega.mp3",
+      "gain": -13.8,
+      "gate": -65.8,
+      "lead": 30,
+      "matches": "mabega",
+      "mos": 2.54,
+      "sha256": "fe7c07ed2739e5990c537f9c58595ba7151c7636b0964e676d28e868dc394316",
+      "source": "Sw-ke-mabega.flac"
+    },
+    "mabegi": {
+      "author": "Waithera Were",
+      "file": "words/mabegi.mp3",
+      "gain": -12.0,
+      "gate": -67.9,
+      "lead": 38,
+      "matches": "mabegi",
+      "mos": 2.53,
+      "sha256": "a1e1894af0279f27d59550958a4af5dbc39144a747368ece8d277da6fb9c5871",
+      "source": "Sw-ke-mabegi.flac"
+    },
+    "macho": {
+      "author": "Waithera Were",
+      "file": "words/macho.mp3",
+      "gain": -13.0,
+      "gate": -67.3,
+      "lead": 39,
+      "matches": "macho",
+      "mos": 3.1,
+      "sha256": "81971b20ff09913ae34c0bf8ea7d5abe1dae900faa2f971a704f06631741567f",
+      "source": "Sw-ke-macho.flac"
+    },
+    "madaftari": {
+      "author": "Waithera Were",
+      "file": "words/madaftari.mp3",
+      "gain": -11.6,
+      "gate": -66.2,
+      "lead": 43,
+      "matches": "madaftari",
+      "mos": 2.83,
+      "sha256": "b324a412680c7067c77aecebf6bff976d27ede57f84af3955a002930949d1f0d",
+      "source": "Sw-ke-madaftari.flac"
+    },
+    "madaktari": {
+      "author": "Waithera Were",
+      "file": "words/madaktari.mp3",
+      "gain": -10.9,
+      "gate": -65.6,
+      "lead": 37,
+      "matches": "madaktari",
+      "mos": 3.02,
+      "sha256": "77275f30786b41f451f6b813fc4403658019e042d5ea91676bcb4ab472f59e30",
+      "source": "Sw-ke-madaktari.flac"
+    },
+    "madaktari wa meno": {
+      "author": "Waithera Were",
+      "file": "words/madaktariu0020wau0020meno.mp3",
+      "gain": -10.2,
+      "gate": -59.6,
+      "lead": 39,
+      "matches": "madaktari wa meno",
+      "mos": 2.78,
+      "sha256": "c13c0406ac40b203aba90719539be0adbe993397a6fc556c68268e7abbc43a4b",
+      "source": "Sw-ke-madaktari wa meno.flac"
+    },
+    "madaraja": {
+      "author": "Waithera Were",
+      "file": "words/madaraja.mp3",
+      "gain": -13.3,
+      "gate": -65.6,
+      "lead": 35,
+      "matches": "madaraja",
+      "mos": 2.66,
+      "sha256": "5d53159816e0147c4827dd8d0cd4b0463875c0aa47d2ad7f0bc09b7079ef09cf",
+      "source": "Sw-ke-madaraja.flac"
+    },
+    "madarasa": {
+      "author": "Waithera Were",
+      "file": "words/madarasa.mp3",
+      "gain": -13.3,
+      "gate": -66.7,
+      "lead": 41,
+      "matches": "madarasa",
+      "mos": 2.95,
+      "sha256": "7411b4126e26a6c821265765360cb54199113eb432be3b12b0094c19967e9d7c",
+      "source": "Sw-ke-madarasa.flac"
+    },
+    "madereva": {
+      "author": "Waithera Were",
+      "file": "words/madereva.mp3",
+      "gain": -14.3,
+      "gate": -65.3,
+      "lead": 40,
+      "matches": "madereva",
+      "mos": 2.75,
+      "sha256": "6cd0bad2acdc0a091c40e32d2d201c4f2ca662e682fce38e6415a8e52256346c",
+      "source": "Sw-ke-madereva.flac"
+    },
+    "madirisha": {
+      "author": "Waithera Were",
+      "file": "words/madirisha.mp3",
+      "gain": -9.8,
+      "gate": -65.7,
+      "lead": 41,
+      "matches": "madirisha",
+      "mos": 2.82,
+      "sha256": "6915932b8bc4198384b1d955bb4a2962e527693466a239c78992f8e6ebf67249",
+      "source": "Sw-ke-madirisha.flac"
+    },
+    "maduka": {
+      "author": "Waithera Were",
+      "file": "words/maduka.mp3",
+      "gain": -11.2,
+      "gate": -66.2,
+      "lead": 38,
+      "matches": "maduka",
+      "mos": 2.9,
+      "sha256": "30e82b9b5204c78665e14b56efec1176e6ce25dcf84b6b0e57e38759041a9151",
+      "source": "Sw-ke-maduka.flac"
+    },
+    "mafigo": {
+      "author": "Waithera Were",
+      "file": "words/mafigo.mp3",
+      "gain": -10.0,
+      "gate": -67.9,
+      "lead": 33,
+      "matches": "mafigo",
+      "mos": 2.88,
+      "sha256": "40719b270eeac814dad787ecb033a62f78830565765e32c5c03ae0e3fce98923",
+      "source": "Sw-ke-mafigo.flac"
+    },
     "mafua": {
       "author": "Waithera Were",
       "file": "words/mafua.mp3",
@@ -6109,6 +6373,38 @@
       "sha256": "47a64ce8544fcf798d436019c1505db981f7489f2f581fcf118f4dd835736432",
       "source": "Sw-ke-mafuta.flac"
     },
+    "magari": {
+      "author": "Waithera Were",
+      "file": "words/magari.mp3",
+      "gain": -10.5,
+      "lead": 217,
+      "matches": "magari",
+      "mos": 2.39,
+      "sha256": "80f5790068f0885ce03d2d886ff72342df8f81ec6936acbef67fd660df23c0f4",
+      "source": "Sw-ke-magari.flac"
+    },
+    "magauni": {
+      "author": "Waithera Were",
+      "file": "words/magauni.mp3",
+      "gain": -7.4,
+      "gate": -62.7,
+      "lead": 46,
+      "matches": "magauni",
+      "mos": 2.77,
+      "sha256": "067000b75ee23d48a21e1c7fac5d0b6a4070d8e3bffb0c6398b652579a51547f",
+      "source": "Sw-ke-magauni.flac"
+    },
+    "magazeti": {
+      "author": "Waithera Were",
+      "file": "words/magazeti.mp3",
+      "gain": -12.1,
+      "gate": -67.8,
+      "lead": 48,
+      "matches": "magazeti",
+      "mos": 3.03,
+      "sha256": "275428f74498ffc6b938f39320d1268df85bfcf35a28b29b7a94c3155fd01d8a",
+      "source": "Sw-ke-magazeti.flac"
+    },
     "magharibi": {
       "author": "Waithera Were",
       "file": "words/magharibi.mp3",
@@ -6119,6 +6415,49 @@
       "mos": 2.63,
       "sha256": "1b7b1fbde3427f6cb3392b358efd6c66f2fd2614af1428cf1a8b55fdcdb9350a",
       "source": "Sw-ke-magharibi.flac"
+    },
+    "magodoro": {
+      "author": "Waithera Were",
+      "file": "words/magodoro.mp3",
+      "gain": -6.1,
+      "lead": 219,
+      "matches": "magodoro",
+      "mos": 3.08,
+      "sha256": "59626fac51b397fb578bcb7dafec77d1e44325d5494ced44dbf3f1a778aacfed",
+      "source": "Sw-ke-magodoro.flac"
+    },
+    "magonjwa": {
+      "author": "Waithera Were",
+      "file": "words/magonjwa.mp3",
+      "gain": -11.4,
+      "gate": -66.1,
+      "lead": 40,
+      "matches": "magonjwa",
+      "mos": 2.73,
+      "sha256": "c4b41839450c658350439859505c90bc7aeb342d822dc1f9954bd4c074ecac5c",
+      "source": "Sw-ke-magonjwa.flac"
+    },
+    "magoti": {
+      "author": "Waithera Were",
+      "file": "words/magoti.mp3",
+      "gain": -12.4,
+      "gate": -65.2,
+      "lead": 39,
+      "matches": "magoti",
+      "mos": 3.27,
+      "sha256": "80b45894cb3a3a89c8483b80e004ae336145f665eb1926011b6c1e61d49aa262",
+      "source": "Sw-ke-magoti.flac"
+    },
+    "magurudumu": {
+      "author": "Waithera Were",
+      "file": "words/magurudumu.mp3",
+      "gain": -6.4,
+      "gate": -99.4,
+      "lead": 216,
+      "matches": "magurudumu",
+      "mos": 2.85,
+      "sha256": "b6567349b4f51a84283e0d9451f4cca6e32d6c422910b7fa434431d9ffb67122",
+      "source": "Sw-ke-magurudumu.flac"
     },
     "mahali": {
       "author": "Waithera Were",
@@ -6131,6 +6470,39 @@
       "sha256": "94af97324989a7935aa96338a3f665dfd29fc30050ea20bcd6caa5bfd3ee7a38",
       "source": "Sw-ke-mahali.flac"
     },
+    "maharagwe": {
+      "author": "Waithera Were",
+      "file": "words/maharagwe.mp3",
+      "gain": -12.8,
+      "gate": -66.4,
+      "lead": 38,
+      "matches": "maharagwe",
+      "mos": 2.92,
+      "sha256": "d40b01369ccba9643702f6113f3091cc438330702e36569edbcb63a566b372cd",
+      "source": "Sw-ke-maharagwe.flac"
+    },
+    "mahospitali": {
+      "author": "Waithera Were",
+      "file": "words/mahospitali.mp3",
+      "gain": -9.3,
+      "gate": -99.4,
+      "lead": 240,
+      "matches": "mahospitali",
+      "mos": 3.08,
+      "sha256": "975e25b51eb051381157ff570e4d521b07ce9624e9107ff9c81c824100035472",
+      "source": "Sw-ke-mahospitali.flac"
+    },
+    "maini": {
+      "author": "Waithera Were",
+      "file": "words/maini.mp3",
+      "gain": -12.1,
+      "gate": -68.1,
+      "lead": 46,
+      "matches": "maini",
+      "mos": 2.57,
+      "sha256": "4477f21844f02c040b50131fb132e0731cd17d8be935a76f984103e02c3481af",
+      "source": "Sw-ke-maini.flac"
+    },
     "maisha": {
       "author": "Waithera Were",
       "file": "words/maisha.mp3",
@@ -6141,6 +6513,28 @@
       "mos": 2.79,
       "sha256": "e7c82fd54e08c1be39f847b1077135b51ce8450dcadc843463f25473c3dc6e51",
       "source": "Sw-ke-maisha.flac"
+    },
+    "majengo": {
+      "author": "Waithera Were",
+      "file": "words/majengo.mp3",
+      "gain": -10.4,
+      "gate": -65.8,
+      "lead": 23,
+      "matches": "majengo",
+      "mos": 2.64,
+      "sha256": "120092d6288a13debe5d0c6773c062206f52eb4601ed85a23568ab1f2bddced2",
+      "source": "Sw-ke-majengo.flac"
+    },
+    "majeraha": {
+      "author": "Waithera Were",
+      "file": "words/majeraha.mp3",
+      "gain": -12.4,
+      "gate": -68.6,
+      "lead": 37,
+      "matches": "majeraha",
+      "mos": 2.98,
+      "sha256": "6623d61828eb5df77ab6b36a1da15678624cca8c354e206741a1119ee532b422",
+      "source": "Sw-ke-majeraha.flac"
     },
     "maji": {
       "author": "Goethe-Institut Cameroon",
@@ -6153,6 +6547,50 @@
       "sha256": "b110e0f46676314253a7828785420e16e69aa5d8c9c6a2b0df364e4e4cc2f412",
       "source": "LL-Q283(swa)-Mndetatsin-Maji(l'eau).wav"
     },
+    "majibu": {
+      "author": "Waithera Were",
+      "file": "words/majibu.mp3",
+      "gain": -7.8,
+      "gate": -64.9,
+      "lead": 44,
+      "matches": "majibu",
+      "mos": 2.59,
+      "sha256": "49118f5467a86374b7cb0cfac243d6f85600c4370da0d93d96a80a8a801fc5a8",
+      "source": "Sw-ke-majibu.flac"
+    },
+    "majiko": {
+      "author": "Waithera Were",
+      "file": "words/majiko.mp3",
+      "gain": -9.8,
+      "gate": -69.3,
+      "lead": 39,
+      "matches": "majiko",
+      "mos": 2.84,
+      "sha256": "1d72334c01264315b28e7ece845350bd017a06b3810c8e99a1fd830536903969",
+      "source": "Sw-ke-majiko.flac"
+    },
+    "majina": {
+      "author": "Waithera Were",
+      "file": "words/majina.mp3",
+      "gain": -8.9,
+      "gate": -99.5,
+      "lead": 219,
+      "matches": "majina",
+      "mos": 2.48,
+      "sha256": "8bc96fd5b11d9327a767c410d3f3d8373052e07c8d6381f87213b4f8b9a0a913",
+      "source": "Sw-ke-majina.flac"
+    },
+    "majirani": {
+      "author": "Waithera Were",
+      "file": "words/majirani.mp3",
+      "gain": -12.2,
+      "gate": -68.6,
+      "lead": 37,
+      "matches": "majirani",
+      "mos": 2.61,
+      "sha256": "57f6b733860ebf2e1be40f4de6b48f1b7835067ae70839763c2c0c46a42d5934",
+      "source": "Sw-ke-majirani.flac"
+    },
     "makaburi": {
       "author": "Waithera Were",
       "file": "words/makaburi.mp3",
@@ -6163,6 +6601,72 @@
       "mos": 3.01,
       "sha256": "ed65c192a8b5387fac05673555ba1f38493863940ecbbd4ddc900458b5e2e905",
       "source": "Sw-ke-makaburi.flac"
+    },
+    "makanisa": {
+      "author": "Waithera Were",
+      "file": "words/makanisa.mp3",
+      "gain": -9.5,
+      "gate": -99.2,
+      "lead": 199,
+      "matches": "makanisa",
+      "mos": 2.56,
+      "sha256": "e63f09e74ade139e0f11bee189fe72275c7c72ad5ea05bcc1bf11b50b4179439",
+      "source": "Sw-ke-makanisa.flac"
+    },
+    "makochi": {
+      "author": "Waithera Were",
+      "file": "words/makochi.mp3",
+      "gain": -10.9,
+      "gate": -69.8,
+      "lead": 41,
+      "matches": "makochi",
+      "mos": 3.19,
+      "sha256": "7bff2bb9f49dd2e46c2c8dd60bae5b53002a04fe8937a353fa69d18e4f0f4b11",
+      "source": "Sw-ke-makochi.flac"
+    },
+    "makoo": {
+      "author": "Waithera Were",
+      "file": "words/makoo.mp3",
+      "gain": -10.0,
+      "gate": -68.2,
+      "lead": 40,
+      "matches": "makoo",
+      "mos": 3.16,
+      "sha256": "44ed8c553101afde4a6d57331ee167bc7badd1de70240e2bd45936df1880ac05",
+      "source": "Sw-ke-makoo.flac"
+    },
+    "makopo": {
+      "author": "Waithera Were",
+      "file": "words/makopo.mp3",
+      "gain": -10.3,
+      "gate": -69.0,
+      "lead": 46,
+      "matches": "makopo",
+      "mos": 2.88,
+      "sha256": "120f794814ead3e4aa5024d2b40640e3fd481471e196708e09512668a180598f",
+      "source": "Sw-ke-makopo.flac"
+    },
+    "makosa": {
+      "author": "Waithera Were",
+      "file": "words/makosa.mp3",
+      "gain": -9.8,
+      "gate": -65.7,
+      "lead": 41,
+      "matches": "makosa",
+      "mos": 3.02,
+      "sha256": "9130f5c18778b20a30f04076b833b7c5ae8e50d0e45a15e79d655ff112448582",
+      "source": "Sw-ke-makosa.flac"
+    },
+    "makoti": {
+      "author": "Waithera Were",
+      "file": "words/makoti.mp3",
+      "gain": -11.2,
+      "gate": -69.1,
+      "lead": 40,
+      "matches": "makoti",
+      "mos": 3.09,
+      "sha256": "5781c2ec9836d8bbb722265c86f274daab8e1004ec6bac6b7b27e26d5c546358",
+      "source": "Sw-ke-makoti.flac"
     },
     "maktaba": {
       "author": "Waithera Were",
@@ -6185,6 +6689,28 @@
       "mos": 2.88,
       "sha256": "a3b7a8e6d8c92c589b1ca8446cb2cb00f1862854e4595ee6ff169255afb3caaf",
       "source": "Sw-ke-malazi.flac"
+    },
+    "malengo": {
+      "author": "Waithera Were",
+      "file": "words/malengo.mp3",
+      "gain": -11.1,
+      "gate": -63.8,
+      "lead": 36,
+      "matches": "malengo",
+      "mos": 2.95,
+      "sha256": "be15fb395e69d0e6f93aee152e0c39d203dd061733a3d19b53e21fef778132df",
+      "source": "Sw-ke-malengo.flac"
+    },
+    "malori": {
+      "author": "Waithera Were",
+      "file": "words/malori.mp3",
+      "gain": -13.3,
+      "gate": -67.8,
+      "lead": 36,
+      "matches": "malori",
+      "mos": 2.6,
+      "sha256": "dd6a97d14940a03f5219e99670e329f2e9b91c235b942c45c29d0be810a80792",
+      "source": "Sw-ke-malori.flac"
     },
     "mama": {
       "author": "Waithera Were",
@@ -6219,6 +6745,27 @@
       "sha256": "870827062c07dfd3914bfd2f7b6670ae7a11031a017d07cddde67740366a2934",
       "source": "Sw-ke-mamlaka.flac"
     },
+    "maneno": {
+      "author": "Waithera Were",
+      "file": "words/maneno.mp3",
+      "gain": -12.3,
+      "lead": 220,
+      "matches": "maneno",
+      "mos": 2.63,
+      "sha256": "7feee8023a3321b88912b0d3e34ebcf6c505286ee16b8d36cdbed61c5f971134",
+      "source": "Sw-ke-maneno.flac"
+    },
+    "maombi": {
+      "author": "Waithera Were",
+      "file": "words/maombi.mp3",
+      "gain": -11.9,
+      "gate": -71.3,
+      "lead": 38,
+      "matches": "maombi",
+      "mos": 2.5,
+      "sha256": "7a385454a37671b672e6c79183c8181dd23a2dffc3a2cb0bc3a97d60e368b384",
+      "source": "Sw-ke-maombi.flac"
+    },
     "maono": {
       "author": "Waithera Were",
       "file": "words/maono.mp3",
@@ -6230,6 +6777,27 @@
       "sha256": "b6745fc9ccecaf61ca6d5c911d4f43008cc08705cf9f749afbe67c3b7e8557ea",
       "source": "Sw-ke-maono.flac"
     },
+    "mapafu": {
+      "author": "Waithera Were",
+      "file": "words/mapafu.mp3",
+      "gain": -10.0,
+      "lead": 236,
+      "matches": "mapafu",
+      "mos": 3.21,
+      "sha256": "88256daf4c6b6ff9ee97d68b3ca31d3b37918d85ead428d7a61bdaa0527f3589",
+      "source": "Sw-ke-mapafu.flac"
+    },
+    "mapazia": {
+      "author": "Waithera Were",
+      "file": "words/mapazia.mp3",
+      "gain": -10.8,
+      "gate": -66.4,
+      "lead": 39,
+      "matches": "mapazia",
+      "mos": 2.92,
+      "sha256": "aac107540612f92b1398e308d45f60f4fd5e68ea162f8d284549e43a98439f01",
+      "source": "Sw-ke-mapazia.flac"
+    },
     "mapema": {
       "author": "Waithera Were",
       "file": "words/mapema.mp3",
@@ -6240,6 +6808,17 @@
       "mos": 3.11,
       "sha256": "edaf62e2600e567af45a61844eb7e153f161b434bbb79f477d0df2e1f76a1c5a",
       "source": "Sw-ke-mapema.flac"
+    },
+    "mapumziko": {
+      "author": "Waithera Were",
+      "file": "words/mapumziko.mp3",
+      "gain": -7.5,
+      "gate": -98.7,
+      "lead": 113,
+      "matches": "mapumziko",
+      "mos": 2.57,
+      "sha256": "98ea1e8ab66feaf017cf445cd8c120e0a4e2348080c444c2cf0eb3910a7c2e55",
+      "source": "Sw-ke-mapumziko.flac"
     },
     "mara moja": {
       "author": "Waithera Were",
@@ -6263,6 +6842,28 @@
       "sha256": "6b261730430fa38fa55d9ecf781e28f8e23deefb7c68b289e5054a7ab5c94cca",
       "source": "Sw-ke-mara nyingi.flac"
     },
+    "marafiki": {
+      "author": "Waithera Were",
+      "file": "words/marafiki.mp3",
+      "gain": -10.4,
+      "gate": -99.7,
+      "lead": 230,
+      "matches": "marafiki",
+      "mos": 2.81,
+      "sha256": "ca9a6be7dd8146a99cbb6af0b5ac6e771b40017f56b68c5b0d369e8450120276",
+      "source": "Sw-ke-marafiki.flac"
+    },
+    "mashaka": {
+      "author": "Waithera Were",
+      "file": "words/mashaka.mp3",
+      "gain": -12.6,
+      "gate": -68.0,
+      "lead": 42,
+      "matches": "mashaka",
+      "mos": 2.96,
+      "sha256": "908cad440dfa80c685670a4d90a730321cc40f4efe6c245e05bd4ff5314dbc94",
+      "source": "Sw-ke-mashaka.flac"
+    },
     "mashariki": {
       "author": "Waithera Were",
       "file": "words/mashariki.mp3",
@@ -6273,6 +6874,28 @@
       "mos": 2.99,
       "sha256": "91e92f07fad691c548b76b687451a961cd41f3761f858d7268ad8e7e300578bf",
       "source": "Sw-ke-mashariki.flac"
+    },
+    "mashati": {
+      "author": "Waithera Were",
+      "file": "words/mashati.mp3",
+      "gain": -13.0,
+      "gate": -69.8,
+      "lead": 44,
+      "matches": "mashati",
+      "mos": 2.4,
+      "sha256": "1f6e2674f3df225d31edaa9cd04af56b2629042e2f1a6d8f827b309d556cdfba",
+      "source": "Sw-ke-mashati.flac"
+    },
+    "mashemeji": {
+      "author": "Waithera Were",
+      "file": "words/mashemeji.mp3",
+      "gain": -12.2,
+      "gate": -70.1,
+      "lead": 36,
+      "matches": "mashemeji",
+      "mos": 2.52,
+      "sha256": "0c473c6cc99fb929476e7d61dc1e5d294398b98c5caed76684e9851c907c8561",
+      "source": "Sw-ke-mashemeji.flac"
     },
     "mashine ya kufulia": {
       "author": "Waithera Were",
@@ -6285,6 +6908,17 @@
       "sha256": "8124b076e42fa53b8cbfbe65322f5a89913fa7a18a9ea687eaec8df89f6c0e7b",
       "source": "Sw-ke-mashine ya kufulia.flac"
     },
+    "mashine za kufulia": {
+      "author": "Waithera Were",
+      "file": "words/mashineu0020zau0020kufulia.mp3",
+      "gain": -7.6,
+      "gate": -57.7,
+      "lead": 42,
+      "matches": "mashine za kufulia",
+      "mos": 2.72,
+      "sha256": "ab87b414feb8f3613cac8284428a9d92976881532fbc96f396dceac8b2ce11b7",
+      "source": "Sw-ke-mashine za kufulia.flac"
+    },
     "mashua": {
       "author": "Waithera Were",
       "file": "words/mashua.mp3",
@@ -6295,6 +6929,17 @@
       "mos": 2.43,
       "sha256": "57228799f98909fe67b8ef7efb52b7746699971e0c2f962665c3d53920aef00a",
       "source": "Sw-ke-mashua.flac"
+    },
+    "masikio": {
+      "author": "Waithera Were",
+      "file": "words/masikio.mp3",
+      "gain": -8.0,
+      "gate": -65.7,
+      "lead": 43,
+      "matches": "masikio",
+      "mos": 2.94,
+      "sha256": "ff95191460a19702746a3baddfeee00a41aa3aabd6dd5343a893eac4bc857d31",
+      "source": "Sw-ke-masikio.flac"
     },
     "maskini": {
       "author": "Waithera Were",
@@ -6307,6 +6952,49 @@
       "sha256": "3d280a6b425aef9783e1e03dc456182d4500d8df9ab7e96063b5f6a24f5eec10",
       "source": "Sw-ke-maskini.flac"
     },
+    "masoko": {
+      "author": "Waithera Were",
+      "file": "words/masoko.mp3",
+      "gain": -10.2,
+      "gate": -67.6,
+      "lead": 41,
+      "matches": "masoko",
+      "mos": 2.97,
+      "sha256": "9547fb4df4a6e6a30c7b9c07b162fceb0ffff4ba4593d4b83c9e408157735abc",
+      "source": "Sw-ke-masoko.flac"
+    },
+    "masomo": {
+      "author": "Waithera Were",
+      "file": "words/masomo.mp3",
+      "gain": -9.4,
+      "gate": -66.4,
+      "lead": 40,
+      "matches": "masomo",
+      "mos": 3.14,
+      "sha256": "cd983eae67a16eeac18764d048df0a2f74c1e7ef6f036b43564f8a898017c7bf",
+      "source": "Sw-ke-masomo.flac"
+    },
+    "maswali": {
+      "author": "Waithera Were",
+      "file": "words/maswali.mp3",
+      "gain": -13.4,
+      "gate": -66.8,
+      "matches": "maswali",
+      "mos": 2.8,
+      "sha256": "311e60b7ec2aa339d302f64af6a55e64c928422a8993f11a06d0d1f02ca50d92",
+      "source": "Sw-ke-maswali.flac"
+    },
+    "matairi": {
+      "author": "Waithera Were",
+      "file": "words/matairi.mp3",
+      "gain": -7.5,
+      "gate": -64.1,
+      "lead": 37,
+      "matches": "matairi",
+      "mos": 3.11,
+      "sha256": "390b6eba559d4449a6c572663d150c5552193fde25b9adeadab8369c1b869218",
+      "source": "Sw-ke-matairi.flac"
+    },
     "matandiko": {
       "author": "Waithera Were",
       "file": "words/matandiko.mp3",
@@ -6318,6 +7006,61 @@
       "sha256": "e74e2c8dcc2a78867e21ffbb2293c284955d4418cbb6f0bc3c610e123d863b9b",
       "source": "Sw-ke-matandiko.flac"
     },
+    "matatizo": {
+      "author": "Waithera Were",
+      "file": "words/matatizo.mp3",
+      "gain": -10.1,
+      "gate": -69.5,
+      "lead": 40,
+      "matches": "matatizo",
+      "mos": 3.25,
+      "sha256": "4803c9b86957f3406a1567be2eee08c97ca60e57974e9a6e2addee3d21142ba0",
+      "source": "Sw-ke-matatizo.flac"
+    },
+    "matufaha": {
+      "author": "Waithera Were",
+      "file": "words/matufaha.mp3",
+      "gain": -10.8,
+      "gate": -66.4,
+      "lead": 38,
+      "matches": "matufaha",
+      "mos": 3.43,
+      "sha256": "c0302f0024efc1a7c76caed823a9ea1c6e5be97c3d32f94b2e1217c9946f204d",
+      "source": "Sw-ke-matufaha.flac"
+    },
+    "matumbo": {
+      "author": "Waithera Were",
+      "file": "words/matumbo.mp3",
+      "gain": -7.0,
+      "gate": -68.3,
+      "lead": 41,
+      "matches": "matumbo",
+      "mos": 2.62,
+      "sha256": "5fdd96fb9cc7d877a1963fc65b13bafafa1c7befc8e3fb3dfd4409d57fd76ba1",
+      "source": "Sw-ke-matumbo.flac"
+    },
+    "matunda": {
+      "author": "Waithera Were",
+      "file": "words/matunda.mp3",
+      "gain": -8.4,
+      "gate": -67.9,
+      "lead": 37,
+      "matches": "matunda",
+      "mos": 2.93,
+      "sha256": "1aac444f3e736264063c3200bc5b483548a972aeea9d3f591e00ea8f555c9985",
+      "source": "Sw-ke-matunda.flac"
+    },
+    "maua": {
+      "author": "Waithera Were",
+      "file": "words/maua.mp3",
+      "gain": -12.5,
+      "gate": -64.9,
+      "lead": 43,
+      "matches": "maua",
+      "mos": 2.53,
+      "sha256": "263f6ee65633567e2ace0ed2bd5d624103e87222baa52f00c6d71a266fe6a9af",
+      "source": "Sw-ke-maua.flac"
+    },
     "maumivu": {
       "author": "Waithera Were",
       "file": "words/maumivu.mp3",
@@ -6328,6 +7071,61 @@
       "mos": 2.78,
       "sha256": "6364630fe497984f6d48e060bdbb1e7e575bbd6bfa0ec8cdb30d28d2ea6822ff",
       "source": "Sw-ke-maumivu.flac"
+    },
+    "mawe": {
+      "author": "Waithera Were",
+      "file": "words/mawe.mp3",
+      "gain": -13.4,
+      "gate": -67.1,
+      "lead": 39,
+      "matches": "mawe",
+      "mos": 2.6,
+      "sha256": "2709ceb6890aa874a97350d6bcf63323063eb6ff77093a66c222a8e1c15ef2ef",
+      "source": "Sw-ke-mawe.flac"
+    },
+    "mawengu": {
+      "author": "Waithera Were",
+      "file": "words/mawengu.mp3",
+      "gain": -11.2,
+      "gate": -69.6,
+      "lead": 44,
+      "matches": "mawengu",
+      "mos": 2.78,
+      "sha256": "91a775d2581defe1605c2dccf409006d389302a8d06792fde8b5e8e82183e677",
+      "source": "Sw-ke-mawengu.flac"
+    },
+    "mawimbi": {
+      "author": "Waithera Were",
+      "file": "words/mawimbi.mp3",
+      "gain": -9.7,
+      "gate": -69.1,
+      "lead": 43,
+      "matches": "mawimbi",
+      "mos": 2.24,
+      "sha256": "b85d7073fb186924b52082945c5f82117a8cd9f278a1ad52027fa1fcb3e53f9d",
+      "source": "Sw-ke-mawimbi.flac"
+    },
+    "mawingu": {
+      "author": "Waithera Were",
+      "file": "words/mawingu.mp3",
+      "gain": -11.2,
+      "gate": -68.6,
+      "lead": 45,
+      "matches": "mawingu",
+      "mos": 2.76,
+      "sha256": "af4762f2be53160f412cf11a8561d57585b6b3fa43fda2898645664a28aa927c",
+      "source": "Sw-ke-mawingu.flac"
+    },
+    "mayai": {
+      "author": "Waithera Were",
+      "file": "words/mayai.mp3",
+      "gain": -13.5,
+      "gate": -67.9,
+      "lead": 43,
+      "matches": "mayai",
+      "mos": 2.97,
+      "sha256": "331b0cd3c7b49d474c0d4f13400c89e440431570b4ab1b5080410a993122a14a",
+      "source": "Sw-ke-mayai.flac"
     },
     "mazishi": {
       "author": "Waithera Were",
@@ -6361,6 +7159,17 @@
       "mos": 2.74,
       "sha256": "447b06e8d574819e6abd6b448a8ac8893378d3fcb33b796e0fafb4e69d6faa57",
       "source": "Sw-ke-mazoezi.flac"
+    },
+    "mazulia": {
+      "author": "Waithera Were",
+      "file": "words/mazulia.mp3",
+      "gain": -9.2,
+      "gate": -67.5,
+      "lead": 36,
+      "matches": "mazulia",
+      "mos": 2.75,
+      "sha256": "26f77f7a3a13f4cef8fc6cd6308d73e79a95be780f3780533802839317edca8a",
+      "source": "Sw-ke-mazulia.flac"
     },
     "mbali": {
       "author": "Waithera Were",
@@ -6503,6 +7312,17 @@
       "mos": 2.71,
       "sha256": "fe086dbed99c3aa3477dac2283f9331a4c0c43aa8f04d650c0314b0e34322452",
       "source": "Sw-ke-meli.flac"
+    },
+    "meno": {
+      "author": "Waithera Were",
+      "file": "words/meno.mp3",
+      "gain": -14.8,
+      "gate": -67.8,
+      "lead": 33,
+      "matches": "meno",
+      "mos": 2.98,
+      "sha256": "2eb72c6112ede3ebb8cfe8d1d39fc90d86ef4c9574427fcb56213aeb0566ee8b",
+      "source": "Sw-ke-meno.flac"
     },
     "menyu": {
       "author": "Waithera Were",
@@ -6647,6 +7467,214 @@
       "sha256": "08f937377dcfebc77686f2502f43545d4176324a88344a8baa9f7c855b72db89",
       "source": "Sw-ke-miadi.flac"
     },
+    "miaka": {
+      "author": "Waithera Were",
+      "file": "words/miaka.mp3",
+      "gain": -12.5,
+      "lead": 227,
+      "matches": "miaka",
+      "mos": 2.74,
+      "sha256": "c1988182127cbb8208dc9f2da5f1719a2ca8ebb41d794d8517104a4bca049d47",
+      "source": "Sw-ke-miaka.flac"
+    },
+    "miavuli": {
+      "author": "Waithera Were",
+      "file": "words/miavuli.mp3",
+      "gain": -13.8,
+      "gate": -69.4,
+      "lead": 36,
+      "matches": "miavuli",
+      "mos": 2.59,
+      "sha256": "f83f11ee1903919fbf89e0460afb96b45cef2b404005aeb354d18b4d257dc2b1",
+      "source": "Sw-ke-miavuli.flac"
+    },
+    "michezo": {
+      "author": "Waithera Were",
+      "file": "words/michezo.mp3",
+      "gain": -13.2,
+      "gate": -71.0,
+      "lead": 37,
+      "matches": "michezo",
+      "mos": 3.01,
+      "sha256": "ff864091f8948cdec2245174c9c2db44f55109788cd88c6095a1df139e589fbb",
+      "source": "Sw-ke-michezo.flac"
+    },
+    "michuzi": {
+      "author": "Waithera Were",
+      "file": "words/michuzi.mp3",
+      "gain": -7.7,
+      "gate": -65.3,
+      "lead": 38,
+      "matches": "michuzi",
+      "mos": 2.78,
+      "sha256": "d88515eca1ef820bf740cd5152fbd9e4d45bf054fb4306de71a4f418c604391b",
+      "source": "Sw-ke-michuzi.flac"
+    },
+    "midomo": {
+      "author": "Waithera Were",
+      "file": "words/midomo.mp3",
+      "gain": -12.7,
+      "gate": -68.3,
+      "lead": 42,
+      "matches": "midomo",
+      "mos": 3.03,
+      "sha256": "8f69a052ce8557f1fbb098fc5f6b4552b8e47ef345abeb054c05cb50c0b767f9",
+      "source": "Sw-ke-midomo.flac"
+    },
+    "mielekeo": {
+      "author": "Waithera Were",
+      "file": "words/mielekeo.mp3",
+      "gain": -13.6,
+      "gate": -66.9,
+      "lead": 38,
+      "matches": "mielekeo",
+      "mos": 3.24,
+      "sha256": "ec3dc5fb5dc8529dae54dca931c1e4a10edde26d651dc9d3afe99a6f7a1fc577",
+      "source": "Sw-ke-mielekeo.flac"
+    },
+    "miezi": {
+      "author": "Waithera Were",
+      "file": "words/miezi.mp3",
+      "gain": -13.4,
+      "gate": -69.0,
+      "lead": 39,
+      "matches": "miezi",
+      "mos": 2.49,
+      "sha256": "419346e7806601daf5ad0820aa3d69885deb6d40abb5ddcb4443f54917179860",
+      "source": "Sw-ke-miezi.flac"
+    },
+    "mifupa": {
+      "author": "Waithera Were",
+      "file": "words/mifupa.mp3",
+      "gain": -7.1,
+      "gate": -69.2,
+      "lead": 35,
+      "matches": "mifupa",
+      "mos": 2.91,
+      "sha256": "3ca69904c254046d8701f8bf4e694e12f86862c90cbe77890afebf8dda6cfcd2",
+      "source": "Sw-ke-mifupa.flac"
+    },
+    "migongo": {
+      "author": "Waithera Were",
+      "file": "words/migongo.mp3",
+      "gain": -12.1,
+      "gate": -72.4,
+      "lead": 45,
+      "matches": "migongo",
+      "mos": 3.0,
+      "sha256": "5bb673ea1e478c878043525ed0e3748333855e868c8a5d7422d67a9f8c2c3967",
+      "source": "Sw-ke-migongo.flac"
+    },
+    "miguu": {
+      "author": "Waithera Were",
+      "file": "words/miguu.mp3",
+      "gain": -5.9,
+      "gate": -97.6,
+      "lead": 210,
+      "matches": "miguu",
+      "mos": 2.79,
+      "sha256": "829046972e935c04a4710edaeab495b9b1cd4b855c8f67e78edf13d964da6e9a",
+      "source": "Sw-ke-miguu.flac"
+    },
+    "mihadhara": {
+      "author": "Waithera Were",
+      "file": "words/mihadhara.mp3",
+      "gain": -13.5,
+      "gate": -70.4,
+      "lead": 38,
+      "matches": "mihadhara",
+      "mos": 3.17,
+      "sha256": "9d356ad61407db109ae40c86278056364b8b24a4d35d557a3229905b4cab5629",
+      "source": "Sw-ke-mihadhara.flac"
+    },
+    "mihogo": {
+      "author": "Waithera Were",
+      "file": "words/mihogo.mp3",
+      "gain": -11.0,
+      "gate": -70.4,
+      "lead": 40,
+      "matches": "mihogo",
+      "mos": 2.41,
+      "sha256": "5cbb13a9eff43f0a575d4fc92108c1b7a6b190d426a0f5f7bea48033cf99c338",
+      "source": "Sw-ke-mihogo.flac"
+    },
+    "miji": {
+      "author": "Waithera Were",
+      "file": "words/miji.mp3",
+      "gain": -11.0,
+      "gate": -98.4,
+      "lead": 214,
+      "matches": "miji",
+      "mos": 2.39,
+      "sha256": "9f680b678c84a84cd7e6ffaea8eee3522e6f7c57a5613cbf443e78b464f92f49",
+      "source": "Sw-ke-miji.flac"
+    },
+    "mikahawa": {
+      "author": "Waithera Were",
+      "file": "words/mikahawa.mp3",
+      "gain": -13.2,
+      "gate": -66.9,
+      "lead": 45,
+      "matches": "mikahawa",
+      "mos": 3.14,
+      "sha256": "d79bcb675e4459b1394b04246c442dc48ecff4c050803df5ac3d5a80c07a3dfd",
+      "source": "Sw-ke-mikahawa.flac"
+    },
+    "mikanda": {
+      "author": "Waithera Were",
+      "file": "words/mikanda.mp3",
+      "gain": -12.6,
+      "gate": -68.1,
+      "lead": 40,
+      "matches": "mikanda",
+      "mos": 2.9,
+      "sha256": "51b66884aba2fdedd583913c53584bf73c5ca608589acac25bc6b8be3f7ce00e",
+      "source": "Sw-ke-mikanda.flac"
+    },
+    "mikataba": {
+      "author": "Waithera Were",
+      "file": "words/mikataba.mp3",
+      "gain": -12.5,
+      "gate": -67.6,
+      "lead": 36,
+      "matches": "mikataba",
+      "mos": 2.96,
+      "sha256": "851e4e7db603ea0dc617cd82370cdd4afaa7fba737345ec268087aee1a8a878d",
+      "source": "Sw-ke-mikataba.flac"
+    },
+    "mikate": {
+      "author": "Waithera Were",
+      "file": "words/mikate.mp3",
+      "gain": -12.2,
+      "gate": -69.7,
+      "lead": 37,
+      "matches": "mikate",
+      "mos": 3.23,
+      "sha256": "d3a8d7fb789b66480eed9f511f60f74f2a6417191d9ed4b271c7d67ed09c716f",
+      "source": "Sw-ke-mikate.flac"
+    },
+    "mikono": {
+      "author": "Waithera Were",
+      "file": "words/mikono.mp3",
+      "gain": -12.0,
+      "gate": -66.6,
+      "lead": 42,
+      "matches": "mikono",
+      "mos": 2.93,
+      "sha256": "92defa646364a3029a6d03b9df857e5ef1fae4f90a7c2f3a7fd19a136e7984e2",
+      "source": "Sw-ke-mikono.flac"
+    },
+    "milango": {
+      "author": "Waithera Were",
+      "file": "words/milango.mp3",
+      "gain": -13.5,
+      "gate": -67.6,
+      "lead": 40,
+      "matches": "milango",
+      "mos": 2.93,
+      "sha256": "3c091b00f0ed972ee4316957b556ef3f09fce34fd9d4ef325a971ef0c5d18bb3",
+      "source": "Sw-ke-milango.flac"
+    },
     "milenia": {
       "author": "Waithera Were",
       "file": "words/milenia.mp3",
@@ -6657,6 +7685,28 @@
       "mos": 2.59,
       "sha256": "a8d9d8cbb8e2973efe332d69d5e906afdf6ae2c92f6e9140df995695a4b5f44c",
       "source": "Sw-ke-milenia.flac"
+    },
+    "milima": {
+      "author": "Waithera Were",
+      "file": "words/milima.mp3",
+      "gain": -6.8,
+      "gate": -68.4,
+      "lead": 36,
+      "matches": "milima",
+      "mos": 2.86,
+      "sha256": "fe8829cfc5019effe82eddfa77e75494cd3200bf11dd71406d446df45594cd2b",
+      "source": "Sw-ke-milima.flac"
+    },
+    "mimea": {
+      "author": "Waithera Were",
+      "file": "words/mimea.mp3",
+      "gain": -9.5,
+      "gate": -69.4,
+      "lead": 44,
+      "matches": "mimea",
+      "mos": 2.98,
+      "sha256": "2dcf267be57072981ccdaabbbba3be86bbb032c3c5e26330fbee55ab8ba60f76",
+      "source": "Sw-ke-mimea.flac"
     },
     "mimi": {
       "author": "Waithera Were",
@@ -6669,6 +7719,160 @@
       "sha256": "639f1ab805d48ca3bfd96a8d990306a777b8cfd5925d98e9953baf6a36e588f0",
       "source": "Sw-ke-mimi.flac"
     },
+    "miongo": {
+      "author": "Waithera Were",
+      "file": "words/miongo.mp3",
+      "gain": -5.2,
+      "gate": -66.4,
+      "lead": 42,
+      "matches": "miongo",
+      "mos": 2.9,
+      "sha256": "ee8d212de8adf0c409e3be831e47cf20d632ea95583f2cdece09b70af1153a10",
+      "source": "Sw-ke-miongo.flac"
+    },
+    "mioyo": {
+      "author": "Waithera Were",
+      "file": "words/mioyo.mp3",
+      "gain": -9.5,
+      "gate": -63.9,
+      "lead": 38,
+      "matches": "mioyo",
+      "mos": 2.82,
+      "sha256": "55657354312af54469f0eadd63454664d8a75d64472018112c4758c055783a78",
+      "source": "Sw-ke-mioyo.flac"
+    },
+    "mipaka": {
+      "author": "Waithera Were",
+      "file": "words/mipaka.mp3",
+      "gain": -11.7,
+      "gate": -67.7,
+      "lead": 41,
+      "matches": "mipaka",
+      "mos": 3.21,
+      "sha256": "645ea3c55aa3ee12b716ece489330cd9b79fd81bd050b2a27fbbafbf1fb4dccf",
+      "source": "Sw-ke-mipaka.flac"
+    },
+    "mipango": {
+      "author": "Waithera Were",
+      "file": "words/mipango.mp3",
+      "gain": -14.1,
+      "gate": -66.7,
+      "lead": 40,
+      "matches": "mipango",
+      "mos": 3.08,
+      "sha256": "3222bb2c59e5abca51ea54949cbeda58272f0d4c7c202bc3e3a3ba6bb1d23aaa",
+      "source": "Sw-ke-mipango.flac"
+    },
+    "misaada": {
+      "author": "Waithera Were",
+      "file": "words/misaada.mp3",
+      "gain": -13.6,
+      "gate": -66.0,
+      "lead": 38,
+      "matches": "misaada",
+      "mos": 2.64,
+      "sha256": "7ddaf1bb933a329952537f729829f340fe22ebdeac164a6122110f8d9ac6a333",
+      "source": "Sw-ke-misaada.flac"
+    },
+    "mishahara": {
+      "author": "Waithera Were",
+      "file": "words/mishahara.mp3",
+      "gain": -12.5,
+      "gate": -66.5,
+      "lead": 42,
+      "matches": "mishahara",
+      "mos": 3.08,
+      "sha256": "5508d5df80bcac4efe9ec1b2121482d8daf4faa8a1bcfd17923fd8ac5d4b8830",
+      "source": "Sw-ke-mishahara.flac"
+    },
+    "misikiti": {
+      "author": "Waithera Were",
+      "file": "words/misikiti.mp3",
+      "gain": -4.9,
+      "gate": -65.0,
+      "lead": 41,
+      "matches": "misikiti",
+      "mos": 3.24,
+      "sha256": "132638c382493a86fb977e232fd6413ed4f3f0d7420a0cd52d9b4883c1589f82",
+      "source": "Sw-ke-misikiti.flac"
+    },
+    "misitu": {
+      "author": "Waithera Were",
+      "file": "words/misitu.mp3",
+      "gain": -9.9,
+      "gate": -97.8,
+      "lead": 212,
+      "matches": "misitu",
+      "mos": 2.94,
+      "sha256": "7028e6c581e1901e072631368bb8c9e48f0cc1e18b438962fb925f7d686683e4",
+      "source": "Sw-ke-misitu.flac"
+    },
+    "misuli": {
+      "author": "Waithera Were",
+      "file": "words/misuli.mp3",
+      "gain": -8.8,
+      "gate": -65.7,
+      "lead": 36,
+      "matches": "misuli",
+      "mos": 2.53,
+      "sha256": "420a8f24ac72540d21dad096d8e533d1fa0ea4a75335c3c243126a4240440672",
+      "source": "Sw-ke-misuli.flac"
+    },
+    "miswaki": {
+      "author": "Waithera Were",
+      "file": "words/miswaki.mp3",
+      "gain": -12.9,
+      "gate": -66.1,
+      "lead": 44,
+      "matches": "miswaki",
+      "mos": 3.2,
+      "sha256": "7a5885c36c64d9c8a94481fb1b12b24b7b54957c8b463b730413ef97af068f5e",
+      "source": "Sw-ke-miswaki.flac"
+    },
+    "mitaa": {
+      "author": "Waithera Were",
+      "file": "words/mitaa.mp3",
+      "gain": -13.6,
+      "gate": -66.7,
+      "lead": 41,
+      "matches": "mitaa",
+      "mos": 2.96,
+      "sha256": "b7a24d16bb4fc06db605066dda4b8469a5e9fb70fe522e3ad0f567fd4685d858",
+      "source": "Sw-ke-mitaa.flac"
+    },
+    "miti": {
+      "author": "Waithera Were",
+      "file": "words/miti.mp3",
+      "gain": -4.5,
+      "gate": -63.2,
+      "lead": 38,
+      "matches": "miti",
+      "mos": 3.22,
+      "sha256": "4034da1d6f078020b3e17582c2be775d0564189fe17676ed270114235889d7cb",
+      "source": "Sw-ke-miti.flac"
+    },
+    "mitihani": {
+      "author": "Waithera Were",
+      "file": "words/mitihani.mp3",
+      "gain": -10.2,
+      "gate": -67.5,
+      "lead": 42,
+      "matches": "mitihani",
+      "mos": 3.01,
+      "sha256": "3cf35da89f66882d167c30e9131250d736de2da929fe2c2243e61b3c9c4d28a1",
+      "source": "Sw-ke-mitihani.flac"
+    },
+    "mito": {
+      "author": "Waithera Were",
+      "file": "words/mito.mp3",
+      "gain": -4.2,
+      "gate": -64.2,
+      "lead": 43,
+      "matches": "mito",
+      "mos": 2.83,
+      "sha256": "14d1b631d87d03eb1c41a9be02a2b3a0b1872a226f8ad19dbdc8e0a9f818438b",
+      "source": "Sw-ke-mito.flac"
+    },
     "mizani": {
       "author": "Waithera Were",
       "file": "words/mizani.mp3",
@@ -6678,6 +7882,28 @@
       "mos": 2.31,
       "sha256": "4a3b1fe1f6c93df51243464f4184ded93a406f8fd9368f7a663afdf6024fca7a",
       "source": "Sw-ke-mizani.flac"
+    },
+    "mizigo": {
+      "author": "Waithera Were",
+      "file": "words/mizigo.mp3",
+      "gain": -4.9,
+      "gate": -68.6,
+      "lead": 36,
+      "matches": "mizigo",
+      "mos": 2.86,
+      "sha256": "1e95ed4be8132397c45f89ad83220eb4a818cf1e8f62c308fb39ec93cb1e8eea",
+      "source": "Sw-ke-mizigo.flac"
+    },
+    "mizio": {
+      "author": "Waithera Were",
+      "file": "words/mizio.mp3",
+      "gain": -6.2,
+      "gate": -66.9,
+      "lead": 42,
+      "matches": "mizio",
+      "mos": 2.72,
+      "sha256": "045606d59e6b4e75c5a1460ed616b64ab49021b1a4f7c36bb46ce22316394787",
+      "source": "Sw-ke-mizio.flac"
     },
     "mjane": {
       "author": "Waithera Were",
@@ -7426,6 +8652,17 @@
       "sha256": "8a6d832a25b21724d9084481a333748f19f4368dd76901a9f4920f341f17f90c",
       "source": "Sw-ke-ndege.flac"
     },
+    "ndimi": {
+      "author": "Waithera Were",
+      "file": "words/ndimi.mp3",
+      "gain": -7.0,
+      "gate": -69.0,
+      "lead": 42,
+      "matches": "ndimi",
+      "mos": 2.77,
+      "sha256": "27797167706e885ac6c0910d93f33127d20d01a434f324422caa871ca3b901c9",
+      "source": "Sw-ke-ndimi.flac"
+    },
     "ndiyo": {
       "author": "Waithera Were",
       "file": "words/ndiyo.mp3",
@@ -7646,6 +8883,17 @@
       "sha256": "a1e56126b3a549d60735b2e236c24f18b376b74bebd84e7e5597c8d7d23290bd",
       "source": "Sw-ke-nomino.flac"
     },
+    "nyakati": {
+      "author": "Waithera Were",
+      "file": "words/nyakati.mp3",
+      "gain": -11.3,
+      "gate": -69.1,
+      "lead": 45,
+      "matches": "nyakati",
+      "mos": 3.16,
+      "sha256": "cac0f258cb16d840226b0181d49075c7153edfe9d60b3817fa7f116c11162006",
+      "source": "Sw-ke-nyakati.flac"
+    },
     "nyama": {
       "author": "Waithera Were",
       "file": "words/nyama.mp3",
@@ -7679,6 +8927,28 @@
       "sha256": "022b861fc061cdd7ddfc2066029555059e9009fc48b1d0c247582c2f9be8532e",
       "source": "Sw-ke-nyaraka.flac"
     },
+    "nyembe": {
+      "author": "Waithera Were",
+      "file": "words/nyembe.mp3",
+      "gain": -11.9,
+      "gate": -70.4,
+      "lead": 45,
+      "matches": "nyembe",
+      "mos": 2.8,
+      "sha256": "d16ab6e1ceebc7c393fd02de5937486dc9b58250e350fd01a3d26eecd3607b9c",
+      "source": "Sw-ke-nyembe.flac"
+    },
+    "nyimbo": {
+      "author": "Waithera Were",
+      "file": "words/nyimbo.mp3",
+      "gain": -7.4,
+      "gate": -67.1,
+      "lead": 41,
+      "matches": "nyimbo",
+      "mos": 2.81,
+      "sha256": "83696fa816642547e02f7dbd1180d5bd0e171f5e222b90a3c24167efc77bb463",
+      "source": "Sw-ke-nyimbo.flac"
+    },
     "nyoka": {
       "author": "Waithera Were",
       "file": "words/nyoka.mp3",
@@ -7701,6 +8971,17 @@
       "sha256": "ad31a9cebaa6eb6a97da93e8b2f7d2050ad16d09617f04dcc132aec6ffe24f53",
       "source": "Sw-ke-nyota.flac"
     },
+    "nyuma": {
+      "author": "Waithera Were",
+      "file": "words/nyuma.mp3",
+      "gain": -9.1,
+      "gate": -65.8,
+      "lead": 42,
+      "matches": "nyuma",
+      "mos": 2.61,
+      "sha256": "08e2adc4aa0d7eacdbcd4fa6f171be108558598022526e295b92df9a8cdcd7af",
+      "source": "Sw-ke-nyuma.flac"
+    },
     "nyumba": {
       "author": "Waithera Were",
       "file": "words/nyumba.mp3",
@@ -7721,6 +9002,17 @@
       "mos": 2.71,
       "sha256": "c2b25968257676b00b560f6398accc2fde5aa3ae091f1ea38f609985e2dcf010",
       "source": "Sw-ke-nyumbani.flac"
+    },
+    "nyuso": {
+      "author": "Waithera Were",
+      "file": "words/nyuso.mp3",
+      "gain": -3.8,
+      "gate": -70.7,
+      "lead": 35,
+      "matches": "nyuso",
+      "mos": 2.66,
+      "sha256": "c1ecc2a6c92e467b9f845baeecaf6fb0c0c66e01bdd37c94dcba274049b977b3",
+      "source": "Sw-ke-nyuso.flac"
     },
     "nywele": {
       "author": "Waithera Were",
@@ -7885,6 +9177,17 @@
       "mos": 2.77,
       "sha256": "c3017cf363aece1637fbd7389a4dda5f873ac361a91d06024400001b20d85cb0",
       "source": "Sw-ke-penseli.flac"
+    },
+    "pepo": {
+      "author": "Waithera Were",
+      "file": "words/pepo.mp3",
+      "gain": -12.6,
+      "gate": -64.3,
+      "lead": 48,
+      "matches": "pepo",
+      "mos": 3.02,
+      "sha256": "32b2a6f86fc7d5fe06a4520f39316f8e3f7d694643b7a41b6e237785954cb4c9",
+      "source": "Sw-ke-pepo.flac"
     },
     "pesa": {
       "author": "Waithera Were",
@@ -8281,6 +9584,17 @@
       "mos": 2.79,
       "sha256": "b2cef4f2644e0d0cc37199fec28d813d338fc8401c653fc7891d79ff239cf81d",
       "source": "Sw-ke-resiti.flac"
+    },
+    "runinga": {
+      "author": "Waithera Were",
+      "file": "words/runinga.mp3",
+      "gain": -5.6,
+      "gate": -64.9,
+      "lead": 40,
+      "matches": "runinga",
+      "mos": 2.8,
+      "sha256": "90a605a36c2cda032e26baf6367f039abfc94655a9fe72b4bdae317ac512b1c5",
+      "source": "Sw-ke-runinga.flac"
     },
     "saa": {
       "author": "Waithera Were",
@@ -9619,6 +10933,215 @@
       "sha256": "8a66175e1d2fa131e0f96ad1a684690097ca154097603e4bc6ec380076af930c",
       "source": "Sw-ke-uzazi.flac"
     },
+    "viambishi": {
+      "author": "Waithera Were",
+      "file": "words/viambishi.mp3",
+      "gain": -9.7,
+      "gate": -67.3,
+      "lead": 35,
+      "matches": "viambishi",
+      "mos": 3.04,
+      "sha256": "9269d54d3a8e65bee62dde76c1d3c761f385279010272ebe86f9b7a5582d2d74",
+      "source": "Sw-ke-viambishi.flac"
+    },
+    "viatu": {
+      "author": "Waithera Were",
+      "file": "words/viatu.mp3",
+      "gain": -13.2,
+      "gate": -67.2,
+      "lead": 38,
+      "matches": "viatu",
+      "mos": 2.8,
+      "sha256": "4e4cdf0955e4a1a7bc96ee9976b5c14b3d8002fff69b2d80341aed386762b702",
+      "source": "Sw-ke-viatu.flac"
+    },
+    "viazi": {
+      "author": "Waithera Were",
+      "file": "words/viazi.mp3",
+      "gain": -13.1,
+      "gate": -69.8,
+      "lead": 36,
+      "matches": "viazi",
+      "mos": 2.66,
+      "sha256": "ae2bcd51c9268b86783671cd9bf1afe7063fabc2563ba1722f2e7a405c64cbbe",
+      "source": "Sw-ke-viazi.flac"
+    },
+    "vibanda": {
+      "author": "Waithera Were",
+      "file": "words/vibanda.mp3",
+      "gain": -13.1,
+      "gate": -70.2,
+      "lead": 40,
+      "matches": "vibanda",
+      "mos": 2.4,
+      "sha256": "b1f803a3339817eda0918d8da3a2b38a36aead5851941546805c4c538b70b594",
+      "source": "Sw-ke-vibanda.flac"
+    },
+    "vibofu": {
+      "author": "Waithera Were",
+      "file": "words/vibofu.mp3",
+      "gain": -7.2,
+      "gate": -67.3,
+      "lead": 38,
+      "matches": "vibofu",
+      "mos": 3.07,
+      "sha256": "08b05be1cab226298c05aa6749a3dff798e0df7859b291c531df73c3b1bce6c7",
+      "source": "Sw-ke-vibofu.flac"
+    },
+    "vichwa": {
+      "author": "Waithera Were",
+      "file": "words/vichwa.mp3",
+      "gain": -6.9,
+      "gate": -67.4,
+      "lead": 38,
+      "matches": "vichwa",
+      "mos": 2.92,
+      "sha256": "ee5f3fee0e74d55437c42173bd7da70c215aadc9d3764826cacb34f7ef4d2af8",
+      "source": "Sw-ke-vichwa.flac"
+    },
+    "vidole": {
+      "author": "Waithera Were",
+      "file": "words/vidole.mp3",
+      "gain": -13.1,
+      "gate": -70.8,
+      "lead": 41,
+      "matches": "vidole",
+      "mos": 2.6,
+      "sha256": "fe5e34f1b45cd9ec08fd5d6620cedda9f2e5728a3d304621f9e68124dfaa9923",
+      "source": "Sw-ke-vidole.flac"
+    },
+    "vidonge": {
+      "author": "Waithera Were",
+      "file": "words/vidonge.mp3",
+      "gain": -12.0,
+      "gate": -67.7,
+      "lead": 34,
+      "matches": "vidonge",
+      "mos": 3.06,
+      "sha256": "df9171bf0d6e30992dea28ad24be2841b8e7f6f20617a47b6ee7eee32c6ddfa7",
+      "source": "Sw-ke-vidonge.flac"
+    },
+    "vifo": {
+      "author": "Waithera Were",
+      "file": "words/vifo.mp3",
+      "gain": -7.0,
+      "gate": -66.7,
+      "lead": 40,
+      "matches": "vifo",
+      "mos": 2.74,
+      "sha256": "cf7c17042bd9915a1e4471d39891ebeaaff7b3a4ecf293e686c68e1dfa47bbe9",
+      "source": "Sw-ke-vifo.flac"
+    },
+    "vifua": {
+      "author": "Waithera Were",
+      "file": "words/vifua.mp3",
+      "gain": -7.4,
+      "gate": -66.6,
+      "lead": 39,
+      "matches": "vifua",
+      "mos": 2.66,
+      "sha256": "a06112e189431ba21b5b987b82f35eef04760375ec2658a4c096384bd834f5b9",
+      "source": "Sw-ke-vifua.flac"
+    },
+    "vijiji": {
+      "author": "Waithera Were",
+      "file": "words/vijiji.mp3",
+      "gain": -3.5,
+      "gate": -66.9,
+      "lead": 29,
+      "matches": "vijiji",
+      "mos": 2.38,
+      "sha256": "56fbd6497e0c0443622071761642738b4ea86ade118d3147243c6335c313daff",
+      "source": "Sw-ke-vijiji.flac"
+    },
+    "vijiko": {
+      "author": "Waithera Were",
+      "file": "words/vijiko.mp3",
+      "gain": -1.7,
+      "gate": -68.6,
+      "lead": 37,
+      "matches": "vijiko",
+      "mos": 2.65,
+      "sha256": "733d191509d338b91cacda6f5e4658d7da2e0b9dbccd00baca7d97887bf957a4",
+      "source": "Sw-ke-vijiko.flac"
+    },
+    "vikaango": {
+      "author": "Waithera Were",
+      "file": "words/vikaango.mp3",
+      "gain": -13.0,
+      "gate": -70.1,
+      "lead": 39,
+      "matches": "vikaango",
+      "mos": 3.06,
+      "sha256": "f13d160be2a175cd0b8af8f6b1a0e944107b6de635fd558f43e5c19e4d822515",
+      "source": "Sw-ke-vikaango.flac"
+    },
+    "vikapu": {
+      "author": "Waithera Were",
+      "file": "words/vikapu.mp3",
+      "gain": -13.6,
+      "gate": -68.4,
+      "lead": 39,
+      "matches": "vikapu",
+      "mos": 2.85,
+      "sha256": "e6b49bba73c9b3cdf5539088098c86e41059c0b9b7606f4b098be930a1f4e378",
+      "source": "Sw-ke-vikapu.flac"
+    },
+    "vikohozi": {
+      "author": "Waithera Were",
+      "file": "words/vikohozi.mp3",
+      "gain": -8.4,
+      "gate": -66.2,
+      "lead": 39,
+      "matches": "vikohozi",
+      "mos": 2.84,
+      "sha256": "cfdd0b9a49f5e2cbb4bd2005eb34640801222efbc9d264d1e398d668644d6a1e",
+      "source": "Sw-ke-vikohozi.flac"
+    },
+    "vikombe": {
+      "author": "Waithera Were",
+      "file": "words/vikombe.mp3",
+      "gain": -7.0,
+      "gate": -66.6,
+      "lead": 31,
+      "matches": "vikombe",
+      "mos": 2.83,
+      "sha256": "5e0538d265bcec8df85adf017762ebfc2a7adb4c87da5fd380103390a389a52f",
+      "source": "Sw-ke-vikombe.flac"
+    },
+    "vinywaji": {
+      "author": "Waithera Were",
+      "file": "words/vinywaji.mp3",
+      "gain": -10.6,
+      "gate": -67.6,
+      "lead": 28,
+      "matches": "vinywaji",
+      "mos": 2.35,
+      "sha256": "d2af94efa4c1081a1969f0e5cbbb8eb88bd6b22063f7f72643f7a1a7f651524e",
+      "source": "Sw-ke-vinywaji.flac"
+    },
+    "vioo": {
+      "author": "Waithera Were",
+      "file": "words/vioo.mp3",
+      "gain": -9.9,
+      "gate": -69.0,
+      "lead": 25,
+      "matches": "vioo",
+      "mos": 2.84,
+      "sha256": "5c60e0db6c9a0bc0b6603e36970e42909de62a3db522bd99458e49914235b3c5",
+      "source": "Sw-ke-vioo.flac"
+    },
+    "vipanya": {
+      "author": "Waithera Were",
+      "file": "words/vipanya.mp3",
+      "gain": -12.0,
+      "gate": -68.5,
+      "lead": 34,
+      "matches": "vipanya",
+      "mos": 2.56,
+      "sha256": "0247bc2d2e6632e2d1541d8cebcbc84acbcf7bd131c08460cbdf10e81296c416",
+      "source": "Sw-ke-vipanya.flac"
+    },
     "vipi": {
       "author": "Waithera Were",
       "file": "words/vipi.mp3",
@@ -9629,6 +11152,39 @@
       "mos": 3.11,
       "sha256": "c40142eb33187371de227c16d6d2951fba456b11aa3717c91fe18a9fb4e1f4dc",
       "source": "Sw-ke-vipi.flac"
+    },
+    "vipindi": {
+      "author": "Waithera Were",
+      "file": "words/vipindi.mp3",
+      "gain": -3.4,
+      "gate": -68.1,
+      "lead": 43,
+      "matches": "vipindi",
+      "mos": 2.53,
+      "sha256": "5c94d12d616b8072b10fbb0adda77a82e44ea59ad1890581e5adfa319637c32c",
+      "source": "Sw-ke-vipindi.flac"
+    },
+    "visiwa": {
+      "author": "Waithera Were",
+      "file": "words/visiwa.mp3",
+      "gain": -9.0,
+      "gate": -99.1,
+      "lead": 158,
+      "matches": "visiwa",
+      "mos": 2.66,
+      "sha256": "785a886202fa4223d8ba98372c4db35b3068a815addc21100200d7a115e31133",
+      "source": "Sw-ke-Visiwa.flac"
+    },
+    "visu": {
+      "author": "Waithera Were",
+      "file": "words/visu.mp3",
+      "gain": -4.9,
+      "gate": -69.4,
+      "lead": 42,
+      "matches": "visu",
+      "mos": 3.1,
+      "sha256": "cdbc1207bfe30f9ddfea18109c7db0eb50b89d72a8425398895ab62d137d1db6",
+      "source": "Sw-ke-visu.flac"
     },
     "vita": {
       "author": "Waithera Were",
@@ -9641,6 +11197,127 @@
       "sha256": "bec63507edda41530d5e6cf8995afb56822d02978a3050179b54b0cf93e8b377",
       "source": "Sw-ke-vita.flac"
     },
+    "vitabu": {
+      "author": "Waithera Were",
+      "file": "words/vitabu.mp3",
+      "gain": -12.7,
+      "gate": -64.3,
+      "lead": 40,
+      "matches": "vitabu",
+      "mos": 2.71,
+      "sha256": "2101c1693bac4dd2a047396c5251e84297af6f506ebe0cfe98bc8b8d330961be",
+      "source": "Sw-ke-vitabu.flac"
+    },
+    "vitambulisho": {
+      "author": "Waithera Were",
+      "file": "words/vitambulisho.mp3",
+      "gain": -8.8,
+      "gate": -63.0,
+      "lead": 12,
+      "matches": "vitambulisho",
+      "mos": 2.75,
+      "sha256": "c62378936c0d06e33174b990ad5489d1f70e503aab35ddebbdb9161707ab426c",
+      "source": "Sw-ke-vitambulisho.flac"
+    },
+    "vitanda": {
+      "author": "Waithera Were",
+      "file": "words/vitanda.mp3",
+      "gain": -13.1,
+      "gate": -62.1,
+      "lead": 26,
+      "matches": "vitanda",
+      "mos": 2.79,
+      "sha256": "ea612ced9e7dd0e276cd76c151b3d370bec67fbdeb586773296765df1e2f46aa",
+      "source": "Sw-ke-vitanda.flac"
+    },
+    "vitenzi": {
+      "author": "Waithera Were",
+      "file": "words/vitenzi.mp3",
+      "gain": -10.9,
+      "gate": -72.9,
+      "lead": 46,
+      "matches": "vitenzi",
+      "mos": 2.86,
+      "sha256": "d6aaf69c99415cd23729687efe27be334f4a1c122767bb3a0d3a026a14bd65f5",
+      "source": "Sw-ke-vitenzi.flac"
+    },
+    "viti": {
+      "author": "Waithera Were",
+      "file": "words/viti.mp3",
+      "gain": -12.7,
+      "gate": -99.2,
+      "lead": 138,
+      "matches": "viti",
+      "mos": 2.98,
+      "sha256": "a157d41a4d574b8a07a33a5815082520b9ffbe7288210677031c232a6292d46e",
+      "source": "Sw-ke-viti.flac"
+    },
+    "vitunguu": {
+      "author": "Waithera Were",
+      "file": "words/vitunguu.mp3",
+      "gain": -5.2,
+      "gate": -65.3,
+      "lead": 44,
+      "matches": "vitunguu",
+      "mos": 2.81,
+      "sha256": "625ee00f65b4183337b853b2d15ea94fef85cff5e161e4c4c975d39b294791c7",
+      "source": "Sw-ke-vitunguu.flac"
+    },
+    "vitunguu saumu": {
+      "author": "Waithera Were",
+      "file": "words/vitunguuu0020saumu.mp3",
+      "gain": -10.5,
+      "gate": -65.1,
+      "lead": 39,
+      "matches": "vitunguu saumu",
+      "mos": 2.74,
+      "sha256": "1e569b30fb702a9b3c929e79b937fa68cef8488eb27858eee97444b68b31a4a2",
+      "source": "Sw-ke-vitunguu saumu.flac"
+    },
+    "viungo": {
+      "author": "Waithera Were",
+      "file": "words/viungo.mp3",
+      "gain": -5.9,
+      "gate": -63.8,
+      "lead": 37,
+      "matches": "viungo",
+      "mos": 2.49,
+      "sha256": "acf03be8e77ca55d8b90b4ebf20f7447725fd4925473bb94704f5d3ebfc7983f",
+      "source": "Sw-ke-viungo.flac"
+    },
+    "vivuli": {
+      "author": "Waithera Were",
+      "file": "words/vivuli.mp3",
+      "gain": -4.3,
+      "gate": -63.8,
+      "lead": 34,
+      "matches": "vivuli",
+      "mos": 2.34,
+      "sha256": "7d77d68cf177f4e95af962e37dd67fd1328517c5d3af4ec9144241cbbe54d6d5",
+      "source": "Sw-ke-vivuli.flac"
+    },
+    "vivumishi": {
+      "author": "Waithera Were",
+      "file": "words/vivumishi.mp3",
+      "gain": -4.4,
+      "gate": -63.8,
+      "lead": 32,
+      "matches": "vivumishi",
+      "mos": 2.91,
+      "sha256": "20bdffdc7be865d78bc82cec07a6f7891166b82e61ed7b0b812b84efe109d7fa",
+      "source": "Sw-ke-vivumishi.flac"
+    },
+    "viwanja vya ndege": {
+      "author": "Waithera Were",
+      "file": "words/viwanjau0020vyau0020ndege.mp3",
+      "gain": -11.0,
+      "gate": -67.2,
+      "lead": 35,
+      "matches": "viwanja vya ndege",
+      "mos": 2.86,
+      "sha256": "5de8b8838350b1701d61a5829ebcd3c0cb558b0fae070c55401ddcfccaf67f0d",
+      "source": "Sw-ke-viwanja vya ndege.flac"
+    },
     "viza": {
       "author": "Waithera Were",
       "file": "words/viza.mp3",
@@ -9652,6 +11329,160 @@
       "sha256": "e5f03c46d9e3647181e1107fe5374b5eda1e75c5ba877bd9d69bdb15e44899f4",
       "source": "Sw-ke-viza.flac"
     },
+    "vizunguzungu": {
+      "author": "Waithera Were",
+      "file": "words/vizunguzungu.mp3",
+      "gain": -1.8,
+      "gate": -63.4,
+      "lead": 36,
+      "matches": "vizunguzungu",
+      "mos": 2.77,
+      "sha256": "9c758f8e4ae1e3ab9c47a9615bc3337a73c8e76e0a624165bd7c7c83b0c7bdbf",
+      "source": "Sw-ke-vizunguzungu.flac"
+    },
+    "vyakula": {
+      "author": "Waithera Were",
+      "file": "words/vyakula.mp3",
+      "gain": -11.2,
+      "gate": -62.0,
+      "lead": 2,
+      "matches": "vyakula",
+      "mos": 2.53,
+      "sha256": "c632c62557906c3512b0df81d27f8b5d4b45c4d19208e1ab08d90f845f22ddea",
+      "source": "Sw-ke-vyakula.flac"
+    },
+    "vyeti": {
+      "author": "Waithera Were",
+      "file": "words/vyeti.mp3",
+      "gain": -13.3,
+      "gate": -99.7,
+      "lead": 210,
+      "matches": "vyeti",
+      "mos": 2.83,
+      "sha256": "0dbdf3f238286fd8108a203076a1ed32df19ac0e936df02aaf6989f38816bb5d",
+      "source": "Sw-ke-vyeti.flac"
+    },
+    "vyoo": {
+      "author": "Waithera Were",
+      "file": "words/vyoo.mp3",
+      "gain": -9.4,
+      "gate": -67.9,
+      "lead": 37,
+      "matches": "vyoo",
+      "mos": 2.99,
+      "sha256": "a416700a4a4139902108e9d93c110262383bfb46c61c35857be7527b9083ff1c",
+      "source": "Sw-ke-vyoo.flac"
+    },
+    "vyumba": {
+      "author": "Waithera Were",
+      "file": "words/vyumba.mp3",
+      "gain": -7.9,
+      "gate": -66.4,
+      "lead": 41,
+      "matches": "vyumba",
+      "mos": 2.74,
+      "sha256": "e2f22df3054a02368053425d224b9d9f9fbac647797b63a7ca14b4324873976e",
+      "source": "Sw-ke-vyumba.flac"
+    },
+    "vyuo vikuu": {
+      "author": "Waithera Were",
+      "file": "words/vyuou0020vikuu.mp3",
+      "gain": -8.4,
+      "gate": -63.4,
+      "lead": 33,
+      "matches": "vyuo vikuu",
+      "mos": 2.97,
+      "sha256": "c61fcf710fdaa5f8b174e09fee8891813fc4727d1928476b7837aa70e6b82f55",
+      "source": "Sw-ke-vyuo vikuu.flac"
+    },
+    "wadudu": {
+      "author": "Waithera Were",
+      "file": "words/wadudu.mp3",
+      "gain": -11.7,
+      "gate": -66.9,
+      "lead": 40,
+      "matches": "wadudu",
+      "mos": 2.56,
+      "sha256": "686cd60110e01baf0b43c3d8933e50a2e8a7611984da1958ce6e98e6001ab6d0",
+      "source": "Sw-ke-wadudu.flac"
+    },
+    "wafanyabiashara": {
+      "author": "Waithera Were",
+      "file": "words/wafanyabiashara.mp3",
+      "gain": -13.1,
+      "gate": -61.7,
+      "lead": 37,
+      "matches": "wafanyabiashara",
+      "mos": 3.2,
+      "sha256": "c2d705203f0e376dfa562cb3fddbfd68ea6065df3146de62b04146ea6944325f",
+      "source": "Sw-ke-wafanyabiashara.flac"
+    },
+    "wafanyakazi": {
+      "author": "Waithera Were",
+      "file": "words/wafanyakazi.mp3",
+      "gain": -12.8,
+      "gate": -64.3,
+      "lead": 37,
+      "matches": "wafanyakazi",
+      "mos": 3.05,
+      "sha256": "da6f0b86adfe5d3861ac17651b67e5d1234ea9fe8919917ddef7d1b027dc5815",
+      "source": "Sw-ke-wafanyakazi.flac"
+    },
+    "wageni": {
+      "author": "Waithera Were",
+      "file": "words/wageni.mp3",
+      "gain": -9.3,
+      "gate": -68.8,
+      "lead": 40,
+      "matches": "wageni",
+      "mos": 2.77,
+      "sha256": "696d1b5049dcbfccdc3c8f82499fe1d978d1c9b357d557368636ddb3834d1145",
+      "source": "Sw-ke-wageni.flac"
+    },
+    "wahudumu": {
+      "author": "Waithera Were",
+      "file": "words/wahudumu.mp3",
+      "gain": -10.3,
+      "gate": -66.9,
+      "lead": 40,
+      "matches": "wahudumu",
+      "mos": 2.75,
+      "sha256": "1611331a2a9354c9a190f6b80c93a2630b7ef07d5bf5a8d4076a4de4372de100",
+      "source": "Sw-ke-wahudumu.flac"
+    },
+    "wajane": {
+      "author": "Waithera Were",
+      "file": "words/wajane.mp3",
+      "gain": -11.6,
+      "gate": -67.4,
+      "lead": 46,
+      "matches": "wajane",
+      "mos": 3.06,
+      "sha256": "303f12eefef1321d32b8d42350ddb189cef85add7a14d502c52875e1c87b2fbd",
+      "source": "Sw-ke-wajane.flac"
+    },
+    "wajomba": {
+      "author": "Waithera Were",
+      "file": "words/wajomba.mp3",
+      "gain": -11.8,
+      "gate": -64.6,
+      "lead": 40,
+      "matches": "wajomba",
+      "mos": 3.01,
+      "sha256": "ba1fab2992fddc3f606a5d521937fc38b75b225b7ac01bd67107b71086f89778",
+      "source": "Sw-ke-wajomba.flac"
+    },
+    "wajukuu": {
+      "author": "Waithera Were",
+      "file": "words/wajukuu.mp3",
+      "gain": -7.6,
+      "gate": -63.6,
+      "lead": 45,
+      "matches": "wajukuu",
+      "mos": 3.01,
+      "sha256": "10f899b3c416db9e49bd8b736f1e99dca6a0d0e679591cbdd8e24d2e212bbf71",
+      "source": "Sw-ke-wajukuu.flac"
+    },
     "wakati": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/wakati.mp3",
@@ -9661,6 +11492,17 @@
       "mos": 3.02,
       "sha256": "8800225190236f43f797e859f474cb64d1277982e2b2bcd319811c4c79a46c34",
       "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-wakati.wav"
+    },
+    "wake": {
+      "author": "Waithera Were",
+      "file": "words/wake.mp3",
+      "gain": -11.8,
+      "gate": -64.6,
+      "lead": 40,
+      "matches": "wake",
+      "mos": 2.73,
+      "sha256": "e1697912a38209b5b7266ff95036cc885ecb3d1e17fb3567d3fa4aae134f9d2d",
+      "source": "Sw-ke-wake.flac"
     },
     "wakwe": {
       "author": "Waithera Were",
@@ -9683,6 +11525,71 @@
       "sha256": "d53aa9b2aab318bd28772d2ab562f04fb220c0da2b60a6f88cdeb23386e6c5ce",
       "source": "Sw-ke-wali.flac"
     },
+    "walimu": {
+      "author": "Waithera Were",
+      "file": "words/walimu.mp3",
+      "gain": -10.5,
+      "gate": -68.3,
+      "lead": 42,
+      "matches": "walimu",
+      "mos": 2.74,
+      "sha256": "07e81313bf410735c6acd46cc84a040d62b0c65672511e3f3d57e6959d5ab7a3",
+      "source": "Sw-ke-walimu.flac"
+    },
+    "wana": {
+      "author": "Waithera Were",
+      "file": "words/wana.mp3",
+      "gain": -11.1,
+      "lead": 155,
+      "matches": "wana",
+      "mos": 2.95,
+      "sha256": "4b8e20883201e17dd947b6320422c138e75c94cefdf09c65683f9fcbfec23383",
+      "source": "Sw-ke-wana.flac"
+    },
+    "wanafunzi": {
+      "author": "Waithera Were",
+      "file": "words/wanafunzi.mp3",
+      "gain": -12.3,
+      "gate": -68.5,
+      "lead": 37,
+      "matches": "wanafunzi",
+      "mos": 2.88,
+      "sha256": "2f2c5801c7e669b5db06b35af012f7512dcb010be205deae2e241a0733379598",
+      "source": "Sw-ke-wanafunzi.flac"
+    },
+    "wanaume": {
+      "author": "Waithera Were",
+      "file": "words/wanaume.mp3",
+      "gain": -12.8,
+      "gate": -66.3,
+      "lead": 40,
+      "matches": "wanaume",
+      "mos": 2.81,
+      "sha256": "ed03dca147f960e516cd85bd7b5c88ca071802f30fb682ed47e0c37275229598",
+      "source": "Sw-ke-wanaume.flac"
+    },
+    "wanawake": {
+      "author": "Waithera Were",
+      "file": "words/wanawake.mp3",
+      "gain": -13.9,
+      "gate": -64.1,
+      "lead": 40,
+      "matches": "wanawake",
+      "mos": 3.26,
+      "sha256": "1d32445961c71751e770fd5d6835c1e353d94869f86e33058fcaa20ec464df5f",
+      "source": "Sw-ke-wanawake.flac"
+    },
+    "wanyama": {
+      "author": "Waithera Were",
+      "file": "words/wanyama.mp3",
+      "gain": -13.1,
+      "gate": -64.2,
+      "lead": 34,
+      "matches": "wanyama",
+      "mos": 2.85,
+      "sha256": "729840d5842ad01dda2899af7d380bbcc64e8dff86ad6c0d44e00d4d9f404eaa",
+      "source": "Sw-ke-wanyama.flac"
+    },
     "wao": {
       "author": "Waithera Were",
       "file": "words/wao.mp3",
@@ -9704,6 +11611,28 @@
       "mos": 2.86,
       "sha256": "1985dba7eadeb7d5bdbc3ec3276534fa772f8abbffa8d6d28a7e4e9b8b0e1e61",
       "source": "Sw-ke-wapi.flac"
+    },
+    "wapwa": {
+      "author": "Waithera Were",
+      "file": "words/wapwa.mp3",
+      "gain": -10.3,
+      "gate": -72.2,
+      "lead": 39,
+      "matches": "wapwa",
+      "mos": 2.63,
+      "sha256": "0cfb53d09a4f4f1d77d7843a1fe41bb81fcf5c90ee49dddfde9c6e98f5b8b0aa",
+      "source": "Sw-ke-wapwa.flac"
+    },
+    "wasichana": {
+      "author": "Waithera Were",
+      "file": "words/wasichana.mp3",
+      "gain": -11.5,
+      "gate": -67.8,
+      "lead": 38,
+      "matches": "wasichana",
+      "mos": 3.08,
+      "sha256": "749465bb33b3c82553c524e7f906230225df511ad3e7142ff159cc51853fe9b7",
+      "source": "Sw-ke-wasichana.flac"
     },
     "wasifu": {
       "author": "Waithera Were",
@@ -9736,6 +11665,93 @@
       "mos": 3.18,
       "sha256": "8af784bef0056ecc1b7bd10a288eea3e257b3703350b088f06c9091ad9bba80a",
       "source": "Sw-ke-wasiwasi.flac"
+    },
+    "watalii": {
+      "author": "Waithera Were",
+      "file": "words/watalii.mp3",
+      "gain": -12.2,
+      "gate": -69.1,
+      "lead": 42,
+      "matches": "watalii",
+      "mos": 3.18,
+      "sha256": "c22e4a1afffa5dda5b3680f61c20385320934ff52f149cd310c35b9a96fff526",
+      "source": "Sw-ke-watalii.flac"
+    },
+    "wateja": {
+      "author": "Waithera Were",
+      "file": "words/wateja.mp3",
+      "gain": -9.7,
+      "gate": -67.6,
+      "lead": 38,
+      "matches": "wateja",
+      "mos": 3.09,
+      "sha256": "a9d0754e84f70835823f576fad9150d4a46b78004d3461e0b4fe3bce51045137",
+      "source": "Sw-ke-wateja.flac"
+    },
+    "watoto": {
+      "author": "Waithera Were",
+      "file": "words/watoto.mp3",
+      "gain": -8.3,
+      "lead": 245,
+      "matches": "watoto",
+      "mos": 3.03,
+      "sha256": "257901116804e8cb3fefd3a999ff92c35d7d094cb8b5d5b98f98e67f8b5427a2",
+      "source": "Sw-ke-watoto.flac"
+    },
+    "watu": {
+      "author": "Waithera Were",
+      "file": "words/watu.mp3",
+      "gain": -10.0,
+      "gate": -72.4,
+      "lead": 42,
+      "matches": "watu",
+      "mos": 3.22,
+      "sha256": "1988ff56bf2d7be4ba7116b34d2f07daf38d90816fa05bc86f2d06f75f8bf99b",
+      "source": "Sw-ke-watu.flac"
+    },
+    "wauguzi": {
+      "author": "Waithera Were",
+      "file": "words/wauguzi.mp3",
+      "gain": -11.8,
+      "gate": -67.3,
+      "lead": 42,
+      "matches": "wauguzi",
+      "mos": 2.75,
+      "sha256": "cb9ce0dc428b22ca1c0ffcb5011a9407e16490192e169be602548623eea2525c",
+      "source": "Sw-ke-wauguzi.flac"
+    },
+    "waume": {
+      "author": "Waithera Were",
+      "file": "words/waume.mp3",
+      "gain": -11.6,
+      "gate": -68.6,
+      "lead": 43,
+      "matches": "waume",
+      "mos": 2.67,
+      "sha256": "51b1325dba63a46d66a8b8d6edad39f71ccbc32dc328c79c06e23a9fed337d7b",
+      "source": "Sw-ke-waume.flac"
+    },
+    "wauzaji": {
+      "author": "Waithera Were",
+      "file": "words/wauzaji.mp3",
+      "gain": -13.2,
+      "gate": -69.1,
+      "lead": 42,
+      "matches": "wauzaji",
+      "mos": 2.77,
+      "sha256": "964c6428816d3484a3e2c1d6f9b36602d8e7ac0aa7c3b4b92c888c0de5a4a804",
+      "source": "Sw-ke-wauzaji.flac"
+    },
+    "wavulana": {
+      "author": "Waithera Were",
+      "file": "words/wavulana.mp3",
+      "gain": -13.3,
+      "gate": -68.6,
+      "lead": 36,
+      "matches": "wavulana",
+      "mos": 3.15,
+      "sha256": "ff97f247be8d0ff6f27c4dad267a86325d6bf7bb0c910ce8de7ce5819c78668e",
+      "source": "Sw-ke-wavulana.flac"
     },
     "wazazi": {
       "author": "Waithera Were",
