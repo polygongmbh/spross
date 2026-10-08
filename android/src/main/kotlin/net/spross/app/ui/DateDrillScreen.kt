@@ -29,7 +29,7 @@ fun DateDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, sprosse: I
         page = TypedDrillPage(
             back = Screen.Dates,
             drill = model.chrome.trainerDrillDates,
-            entry = Drill.Dates,
+            entry = Drill.Dates, // layer-ok: the screen names the roster entry it is
             key = key,
             open = { onTone, onReleaseFocus ->
                 val standing = key?.let { model.trainer.store.typedStanding(it) } ?: TypedDrillStanding.NONE

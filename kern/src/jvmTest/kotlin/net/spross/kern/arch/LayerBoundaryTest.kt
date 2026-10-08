@@ -114,6 +114,8 @@ private fun mints(source: String, names: Collection<String>): List<Triple<Int, S
         val code = raw.substringBefore("//")
         val hit = ref.find(code) ?: continue
         if (hit.groupValues[2] in SYNTHESIZED) continue
+        // why: `Drill.chipRows(…)` calls kern for its answer — reading, never minting.
+        if (code.getOrNull(hit.range.last + 1) == '(') continue
         if (read.any { it.containsMatchIn(code) }) continue
         if ("layer-ok:" in raw || (i > 0 && "layer-ok:" in lines[i - 1])) continue
         out += Triple(i + 1, hit.value, raw.trim().take(84))

@@ -28,7 +28,7 @@ fun CountryDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, sprosse
         page = TypedDrillPage(
             back = Screen.Countries,
             drill = model.chrome.trainerDrillCountries,
-            entry = Drill.Countries,
+            entry = Drill.Countries, // layer-ok: the screen names the roster entry it is
             key = key,
             open = { onTone, onReleaseFocus ->
                 val standing = key?.let { model.trainer.store.typedStanding(it) } ?: TypedDrillStanding.NONE
