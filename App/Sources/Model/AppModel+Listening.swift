@@ -50,6 +50,8 @@ final class ListeningDriver {
     /// The gap between two beats — canceled whenever the generation turns.
     private var pending: Task<Void, Never>?
     private var interruption: NSObjectProtocol?
+    /// Whether the pause standing was the system's doing, and so may be lifted again.
+    private var pausedByInterruption = false
 
     init(model: AppModel) {
         self.model = model
@@ -67,14 +69,15 @@ final class ListeningDriver {
             again: { [weak self] in self?.again() }
         ))
         watchInterruptions()
+        pausedByInterruption = false
         dispatch(ListeningIntent.Start.shared)
     }
 
     /// A phone call, a Siri turn, an alarm: the system takes the session, every
     /// beat after it would fall silent, and nothing announces the return. So the
     /// run PAUSES on the interruption and picks the current word up again where
-    /// the system says it may — which is also what the lock screen's own play
-    /// button would then do, by hand.
+    /// the system says it may — unless the learner had already paused it, a
+    /// pause only they lift.
     private func watchInterruptions() {
         guard interruption == nil else { return }
         interruption = NotificationCenter.default.addObserver(
@@ -92,12 +95,15 @@ final class ListeningDriver {
         guard let type = kind.flatMap(AVAudioSession.InterruptionType.init(rawValue:)) else { return }
         switch type {
         case .began:
-            if !state.paused { dispatch(ListeningIntent.TogglePause.shared) }
+            guard !state.paused else { return }
+            pausedByInterruption = true
+            dispatch(ListeningIntent.TogglePause.shared)
         case .ended:
             let resume = options.map(AVAudioSession.InterruptionOptions.init(rawValue:)) ?? []
-            guard resume.contains(.shouldResume) else { return }
+            guard resume.contains(.shouldResume), state.paused, pausedByInterruption else { return }
+            pausedByInterruption = false
             AudioSession.resumeListening()
-            if state.paused { dispatch(ListeningIntent.TogglePause.shared) }
+            dispatch(ListeningIntent.TogglePause.shared)
         @unknown default:
             break
         }
@@ -116,7 +122,11 @@ final class ListeningDriver {
         AudioSession.endListening()
     }
 
-    func togglePause() { dispatch(ListeningIntent.TogglePause.shared) }
+    func togglePause() {
+        // The learner's own pause outranks the system's: lifting it is theirs to do.
+        pausedByInterruption = false
+        dispatch(ListeningIntent.TogglePause.shared)
+    }
     func skip() { dispatch(ListeningIntent.Skip.shared) }
     func again() { dispatch(ListeningIntent.Repeat.shared) }
 

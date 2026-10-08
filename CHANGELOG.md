@@ -5,6 +5,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 ## Unreleased
 
 - Recorded words now play at one level on every output, set by how loud they sound rather than by their raw energy, so Swahili no longer drops far below the other languages on the phone speaker.
+- On iPhone, a listening run you paused stays paused after a call or another app's audio ends instead of resuming by itself.
+
 ## 8.5.0 — 2026-10-08
 
 - Feminine forms of people words (die Lehrerin) are now practiced as part of the word itself rather than as a separate card.
