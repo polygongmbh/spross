@@ -19,6 +19,7 @@ import net.spross.kern.model.recognitionPromptForm
 import net.spross.kern.model.rotatedForm
 import net.spross.kern.session.MultipleChoice
 import net.spross.kern.store.StoreJson
+import net.spross.kern.trainer.letters
 
 /**
  * Phone-side builder of the watch application-context snapshot, v7:
@@ -152,7 +153,7 @@ object WatchSnapshotBuilder {
      */
     private fun fitsOnWatch(card: Card): Boolean =
         listOf(card.source, card.target).all { side ->
-            (listOf(side.text) + side.teaches).all { it.length <= MAX_TEXT_CHARS }
+            (listOf(side.text) + side.teaches).all { it.letters().size <= MAX_TEXT_CHARS }
         }
 
     private data class Ranked(val isDue: Boolean, val sched: CardScheduling)

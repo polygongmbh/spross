@@ -12,6 +12,7 @@ import net.spross.kern.design.ActivityScale
 import net.spross.kern.model.Card
 import net.spross.kern.model.Gender
 import net.spross.kern.store.StoreJson
+import net.spross.kern.trainer.letters
 
 /**
  * Phone-side builder of the home-screen widget snapshot, and the read model
@@ -111,8 +112,8 @@ object WidgetSnapshotBuilder {
      * source is measured with its ♀ marker, since that is what the row shows.
      */
     private fun fitsOnWidget(card: Card): Boolean =
-        card.target.text.length <= MAX_TEXT_CHARS &&
-            card.source.text.length <= MAX_TEXT_CHARS
+        card.target.text.letters().size <= MAX_TEXT_CHARS &&
+            card.source.text.letters().size <= MAX_TEXT_CHARS
 }
 
 /**
