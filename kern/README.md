@@ -90,6 +90,8 @@ the rules the declarations cannot state are here.
 - **The reveal's family line** excludes every form already standing on screen
   (`alternates`) -- otherwise the reveal offers the learner
   the very word they are looking at as though it were another one.
+  It offers every tagged form that also answers the prompt, each with its marker
+  (`teacher` reveals `also: die Lehrerin ♀`), so a form is met before it is ever asked.
 
 ## 3. One schedule per card, alternating presentation   (user ruling 2026-07-22)
 

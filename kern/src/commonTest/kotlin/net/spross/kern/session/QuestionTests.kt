@@ -38,7 +38,7 @@ class QuestionTests {
         val question = TurnFixture.recognize(car).copy(promptForm = "motokaa").question
         assertEquals("motokaa", question.prompt.text)
         assertNull(question.prompt.plural)
-        assertEquals(listOf("gari"), question.closing.alternates)
+        assertEquals(listOf("gari"), question.closing.alternates.map { it.text })
         // The meaning side names what the source also teaches.
         assertEquals("Auto / Wagen", question.answer.text)
     }

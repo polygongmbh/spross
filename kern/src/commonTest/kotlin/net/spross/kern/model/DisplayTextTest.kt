@@ -33,10 +33,19 @@ class DisplayTextTest {
         assertNull(pluralForm(realization("nyumba")))
     }
 
+    private fun family(word: Realization, shown: List<String>): List<String> =
+        alternates(word, shown, word.forms).map { it.text }
+
+    @Test
+    fun aTaggedFormJoinsTheFamilyWithItsMarker() {
+        val teacher = Realization("de", "der Lehrer", forms = listOf(TaggedForm(FormTag.FEMININE, "die Lehrerin")))
+        assertEquals(listOf(Alternate("die Lehrerin", FormTag.FEMININE)), alternates(teacher, listOf("der Lehrer"), teacher.forms))
+    }
+
     @Test
     fun theFamilyIsWhateverTheLearnerIsNotLookingAt() {
         val word = realization("die Verwaltung", teaches = listOf("das Amt", "die Behörde"))
-        assertEquals(listOf("das Amt", "die Behörde"), alternates(word, listOf("die Verwaltung")))
+        assertEquals(listOf("das Amt", "die Behörde"), family(word, listOf("die Verwaltung")))
     }
 
     /**
@@ -47,14 +56,14 @@ class DisplayTextTest {
     @Test
     fun theFormOnScreenNeverAppearsAmongItsOwnAlternatives() {
         val word = realization("die Verwaltung", teaches = listOf("das Amt", "die Behörde"))
-        assertEquals(listOf("die Verwaltung", "die Behörde"), alternates(word, listOf("das Amt")))
+        assertEquals(listOf("die Verwaltung", "die Behörde"), family(word, listOf("das Amt")))
     }
 
     @Test
     fun aWordWithNothingLeftToOfferHasNoAlternates() {
         val word = realization("das Amt", teaches = listOf("die Behörde"))
-        assertEquals(emptyList<String>(), alternates(word, listOf("das Amt", "die Behörde")))
-        assertEquals(emptyList<String>(), alternates(realization("nyumba"), listOf("nyumba")))
+        assertEquals(emptyList(), family(word, listOf("das Amt", "die Behörde")))
+        assertEquals(emptyList(), family(realization("nyumba"), listOf("nyumba")))
     }
 
     /** `accepts` grades an answer, it never teaches a form — the reveal must not list it. */
@@ -66,7 +75,7 @@ class DisplayTextTest {
             teaches = listOf("die Türe"),
             accepts = listOf("die Tuer"),
         )
-        assertEquals(listOf("die Türe"), alternates(word, listOf("die Tür")))
+        assertEquals(listOf("die Türe"), family(word, listOf("die Tür")))
     }
 
     /** The card says its own thing where it has one; what the word also means takes the slot only where it has none. */

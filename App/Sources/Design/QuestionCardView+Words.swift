@@ -106,9 +106,6 @@ extension QuestionCardView {
 
     /// "also: Amt / Verwaltung" — the word's family beyond the forms already on the card.
     var alternatesText: String? {
-        let family = question.closing.alternates
-        guard !family.isEmpty else { return nil }
-        return String(format: ChromeStrings.string("session.grammar.also %@", locale: locale),
-                      family.joined(separator: " / "))
+        CardDisplay.alsoLine(question.closing.alternates, locale: locale)
     }
 }

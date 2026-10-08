@@ -41,4 +41,15 @@ class FormAgreementGradingTests {
         val fromUk = card(Realization("uk", "мій", forms = forms("pl" to "мої")))
         assertEquals(Match.Exact, de.evaluate("meiner", fromUk))
     }
+
+    @Test
+    fun aPluralIsPinnedEvenFromASourceThatDoesNotInflect() {
+        val mouse = Card(
+            id = "mouse", kind = CardKind.Noun, area = "animals", emoji = null, seedIndex = 0,
+            components = emptyList(), feminineOf = null, promptFeminineMarker = false,
+            source = Realization("en", "mouse"),
+            target = Realization("de", "Maus", forms = forms("pl" to "Mäuse")),
+        )
+        assertEquals(Match.Typo("Maus"), de.evaluate("Mäuse", mouse))
+    }
 }

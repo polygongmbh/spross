@@ -92,6 +92,17 @@ interface Chrome {
     val sessionGrammarPluralOnly: String
     val sessionGrammarPlural: String        // %s
     val a11yGlyphFeminineForm: String
+    val a11yGlyphMasculineForm: String
+    val a11yGlyphNeuterForm: String
+    val formMarkerPl: String
+    val formMarkerNom: String
+    val formMarkerGen: String
+    val formMarkerDat: String
+    val formMarkerAcc: String
+    val formMarkerIns: String
+    val formMarkerLoc: String
+    val formMarkerVoc: String
+    val formMarkerClass: String                 // %s
     val a11yActionReadAloud: String
     val a11yStateOn: String
     val a11yStateOff: String

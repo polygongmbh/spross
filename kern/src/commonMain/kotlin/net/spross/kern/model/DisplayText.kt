@@ -38,7 +38,8 @@ fun pluralForm(realization: Realization): PluralForm? {
 }
 
 /**
- * The word's remaining family — its canonical text plus its `teaches` — minus every form in [shown].
+ * The word's remaining family — its canonical text, its `teaches` and [forms], each form marked with its tag —
+ * minus every form in [shown].
  *
  * The exclusion is the whole point of the line: a recognition prompt rotates a synonym in,
  * so without it the reveal offers the learner the very word they are looking at as though
@@ -46,8 +47,9 @@ fun pluralForm(realization: Realization): PluralForm? {
  * Empty where nothing is left to offer, which is a line the surface does not draw.
  * `accepts` never appears — it grades an answer, it does not teach a form.
  */
-fun alternates(realization: Realization, shown: List<String>): List<String> =
-    (listOf(realization.text) + realization.teaches).filterNot { it in shown }
+fun alternates(realization: Realization, shown: List<String>, forms: List<TaggedForm>): List<Alternate> =
+    ((listOf(realization.text) + realization.teaches).map { Alternate(it, null) } + forms.map { Alternate(it.text, it.tag) })
+        .filterNot { it.text in shown }
 
 /** What the card's last line says, once it has stopped asking; the label a surface puts on it is chrome. */
 sealed class ClosingNote {

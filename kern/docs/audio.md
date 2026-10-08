@@ -20,7 +20,7 @@ Neighbors: the engine contract `../README.md`, when the app plays it `../../docs
   Each platform reads its own volume as a fraction of its range; the line is kern's.
   It never holds a sound or a card back.
 - **What is spoken is the headword, and on the TARGET side its article with it** —
-  never the rest of the rendering: the ♀ badge, the plural line and the area cue are grammar decoration
+  never the rest of the rendering: the form marker, the plural line and the area cue are grammar decoration
   and reach neither a synthesizer nor a lookup.
   `spokenTargetForm(article, shownForm, targetText)` builds that string once, for both branches:
   the synthesizer is handed it, and an `articles{}` recording is FOUND by it,

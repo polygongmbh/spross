@@ -351,6 +351,40 @@
         }
       }
     },
+    "a11y.glyph.masculineForm" : {
+      "comment" : "The ♂ marker's name — a glyph outside the reading order until it is given one.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Männliche Form"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masculine form"
+          }
+        }
+      }
+    },
+    "a11y.glyph.neuterForm" : {
+      "comment" : "The ⚲ marker's name — a glyph outside the reading order until it is given one.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sächliche Form"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuter form"
+          }
+        }
+      }
+    },
     "a11y.letters.alphabet.speakExample" : {
       "localizations" : {
         "de" : {
@@ -2974,6 +3008,159 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unknown language profile (%1$@ → %2$@)."
+          }
+        }
+      }
+    },
+    "form.marker.acc" : {
+      "comment" : "Marker beside a word standing for its accusative form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akk."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "acc."
+          }
+        }
+      }
+    },
+    "form.marker.class %@" : {
+      "comment" : "Marker beside a word standing for its form in a Swahili noun class; the argument is the class number.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kl. %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cl. %@"
+          }
+        }
+      }
+    },
+    "form.marker.dat" : {
+      "comment" : "Marker beside a word standing for its dative form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dat."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dat."
+          }
+        }
+      }
+    },
+    "form.marker.gen" : {
+      "comment" : "Marker beside a word standing for its genitive form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "gen."
+          }
+        }
+      }
+    },
+    "form.marker.ins" : {
+      "comment" : "Marker beside a word standing for its instrumental form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instr."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "instr."
+          }
+        }
+      }
+    },
+    "form.marker.loc" : {
+      "comment" : "Marker beside a word standing for its locative form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lok."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "loc."
+          }
+        }
+      }
+    },
+    "form.marker.nom" : {
+      "comment" : "Marker beside a word standing for its nominative form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nom."
+          }
+        }
+      }
+    },
+    "form.marker.pl" : {
+      "comment" : "Marker beside a word standing for its plural form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pl."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pl."
+          }
+        }
+      }
+    },
+    "form.marker.voc" : {
+      "comment" : "Marker beside a word standing for its vocative form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vok."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "voc."
           }
         }
       }

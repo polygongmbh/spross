@@ -106,7 +106,7 @@ internal fun CardContext.HeadwordBlock(side: Question.Side, emphasized: Boolean)
                 modifier = Modifier.weight(1f, fill = false),
             )
         }
-        if (side.femMarker) FeminineBadge(chrome)
+        side.marker?.let { FormBadge(it, chrome) }
     }
 }
 

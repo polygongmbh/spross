@@ -138,7 +138,7 @@ extension QuestionCardView {
             replayGlyph
         } else if let text = side.text {
             SpokenWord(pronounce: pronounce(side), isPlaying: isPlaying(side),
-                       badge: side.femMarker ? AnyView(FeminineBadge()) : nil) {
+                       badge: side.marker.map { AnyView(FormBadge(tag: $0)) }) {
                 let spoken = articledForm(article: side.article, form: text)
                 // why: tagged with its language, article included, as the line reads on screen.
                 WholeWords(text: headlineText(side, text, emphasized: emphasized),
@@ -184,11 +184,25 @@ extension QuestionCardView {
     }
 }
 
-/// Labeled ♀ badge — marks a feminine-sibling prompt/answer; a grammar cue, never graded.
-struct FeminineBadge: View {
+/// Which form a word stands for (`♀`, `Pl.`), tinted by the gender it names where it names one;
+/// a grammar cue, never graded.
+struct FormBadge: View {
+    let tag: FormTag
+    @Environment(\.locale) private var locale
+
     var body: some View {
-        Text(verbatim: "♀")
-            .pill(Theme.colors.die)
-            .accessibilityLabel("a11y.glyph.feminineForm")
+        Text(verbatim: CardDisplay.marker(tag, locale: locale))
+            .pill(color)
+            // why: ♀/♂/⚲ are glyphs VoiceOver skips or reads as a symbol name; the badge says what it marks.
+            .accessibilityLabel(CardDisplay.markerSpoken(tag, locale: locale))
+    }
+
+    private var color: Color {
+        switch tag.values[FormDimension.gender] {
+        case "f": Theme.colors.die
+        case "m": Theme.colors.der
+        case "n": Theme.colors.das
+        default: Theme.colors.textSecondary
+        }
     }
 }

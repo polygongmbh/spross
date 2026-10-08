@@ -37,6 +37,8 @@ import net.spross.app.Chrome
 import net.spross.kern.box.ActiveStage
 import net.spross.kern.box.CardRowState
 import net.spross.kern.box.swatch
+import net.spross.kern.model.FormDimension
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
 import net.spross.kern.model.articledForm
@@ -58,17 +60,18 @@ fun Pill(text: String, color: Color, modifier: Modifier = Modifier) {
     )
 }
 
-/**
- * The ♀ a demoted feminine wears beside its headword — decorative grammar, never graded.
- *
- * A badge rather than a bare glyph: it marks the word without joining it, so the headword
- * is still read (and heard) as the word it is.
- */
+/** Which form a word stands for (`♀`, `Pl.`), tinted by the gender it names where it names one. */
 @Composable
-fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
-    // why: ♀ is a glyph TalkBack either skips or reads as a symbol name; the badge says
+fun FormBadge(tag: FormTag, chrome: Chrome, modifier: Modifier = Modifier) {
+    val color = when (tag.values[FormDimension.Gender]) {
+        "f" -> Theme.colors.die
+        "m" -> Theme.colors.der
+        "n" -> Theme.colors.das
+        else -> Theme.colors.textSecondary
+    }
+    // why: ♀/♂/⚲ are glyphs TalkBack either skips or reads as a symbol name; the badge says
     // what it marks instead, which is the only way the grammar reaches a spoken card.
-    Pill("♀", Theme.colors.die, modifier.semantics { contentDescription = chrome.a11yGlyphFeminineForm })
+    Pill(CardDisplay.marker(tag, chrome), color, modifier.semantics { contentDescription = CardDisplay.markerSpoken(tag, chrome) })
 }
 
 /**

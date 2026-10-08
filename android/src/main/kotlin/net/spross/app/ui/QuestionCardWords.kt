@@ -9,6 +9,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
+import net.spross.app.CardDisplay
 import net.spross.app.Chrome
 import net.spross.app.countryAsk
 import net.spross.app.dateAsk
@@ -82,6 +83,4 @@ internal fun pluralText(plural: PluralForm, chrome: Chrome): String = when (plur
 }
 
 /** "auch: Amt / Verwaltung" — the word's family beyond the forms already on the card. */
-internal fun CardContext.alternatesText(): String? =
-    question.closing.alternates.takeIf { it.isNotEmpty() }
-        ?.let { chrome.sessionGrammarAlso.format(it.joinToString(" / ")) }
+internal fun CardContext.alternatesText(): String? = CardDisplay.alsoLine(question.closing.alternates, chrome)

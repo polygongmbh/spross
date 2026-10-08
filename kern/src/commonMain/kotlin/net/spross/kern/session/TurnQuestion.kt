@@ -1,8 +1,10 @@
 package net.spross.kern.session
 
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.alternates
+import net.spross.kern.model.answerForms
 import net.spross.kern.model.closingNote
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.pluralForm
@@ -33,7 +35,11 @@ val TurnState.question: Question
         opens = answerRevealed,
         closing = Question.Closing(
             // The prompt still stands above the reveal, so whatever form it put on screen is no alternative.
-            alternates = alternates(card.target, listOf(if (role == PresentationRole.Recognize) promptForm else card.target.text)),
+            alternates = alternates(
+                card.target,
+                shown = listOf(if (role == PresentationRole.Recognize) promptForm else card.target.text),
+                forms = answerForms(card, promptTag = null).rightForms,
+            ),
             note = closingNote(card.target, alsoMeans),
         ),
         otherWord = otherWord,
@@ -52,7 +58,7 @@ private val TurnState.promptSide: Question.Side
         )
         else -> Question.Side(
             text = card.source.text, lang = card.source.lang, form = Question.Form.Word,
-            femMarker = card.promptFeminineMarker,
+            marker = FormTag.FEMININE.takeIf { card.promptFeminineMarker },
             context = card.area.takeIf { card.promptAmbiguous },
         )
     }
@@ -64,7 +70,7 @@ private val TurnState.answerSide: Question.Side
         Question.Side(
             text = (listOf(card.source.text) + card.source.teaches).joinToString(FORM_JOIN),
             lang = card.source.lang, form = Question.Form.Word,
-            femMarker = card.promptFeminineMarker,
+            marker = FormTag.FEMININE.takeIf { card.promptFeminineMarker },
         )
     }
 

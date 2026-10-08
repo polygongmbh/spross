@@ -1,7 +1,9 @@
 package net.spross.kern.session
 
+import net.spross.kern.model.Alternate
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.model.EmojiCue
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.Language
 import net.spross.kern.model.PluralForm
 import net.spross.kern.trainer.CountryTaskKind
@@ -56,8 +58,8 @@ data class Question(
         /** The article set in front of [text] and tinted by its gender; null where none shows. */
         val article: String? = null,
         val plural: PluralForm? = null,
-        /** The ♀ badge of a demoted feminine. */
-        val femMarker: Boolean = false,
+        /** Which form [text] stands for where it cannot show it itself (`teacher` ♀ for `Lehrerin`); null marks none. */
+        val marker: FormTag? = null,
         /** The area key named over an ambiguous prompt; the app shows that area's title. */
         val context: String? = null,
         /** How many letters at the head of [text] stand as written — a word scramble's kept opening. */
@@ -96,7 +98,7 @@ data class Question(
      * the app labels both and joins the forms.
      */
     data class Closing(
-        val alternates: List<String> = emptyList(),
+        val alternates: List<Alternate> = emptyList(),
         val note: ClosingNote? = null,
     )
 }
