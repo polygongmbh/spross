@@ -100,6 +100,11 @@ class AnswerNormalizerTests {
     }
 
     @Test
+    fun anUnstressedAnswerMatchesAStressMarkedTargetExactly() {
+        assertEquals(Match.Exact, uk.evaluate("північ", card("uk", "пі́вніч")))
+    }
+
+    @Test
     fun sieAndDuFormsBothAccepted() {
         val phrase = joined(swToDe, "the-mouse-runs")
         assertEquals(Match.Exact, de.evaluate("Sehen Sie die Maus?", phrase))

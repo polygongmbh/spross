@@ -1,6 +1,7 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.nfcNormalized
+import net.spross.kern.model.stressFolded
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -19,11 +20,12 @@ class CatalogCollisionLintTest {
 
     /**
      * Prompt forms as the learner SEES them — text plus `teaches` (both rotate as prompts),
-     * NFC-folded. Case-SENSITIVE on purpose: `Husten`/`husten` and `jua`/`kujua` are real
-     * visual distinctions that keep noun/verb homographs unambiguous.
+     * NFC- and stress-folded (uk `пі́вніч` is still `північ`).
+     * Case-SENSITIVE on purpose: `Husten`/`husten` and `jua`/`kujua` are real visual distinctions
+     * that keep noun/verb homographs unambiguous.
      */
     private fun promptForms(raw: RawRealization): List<String> =
-        (listOf(raw.text) + raw.teaches).map { nfcNormalized(it).trim() }
+        (listOf(raw.text) + raw.teaches).map { stressFolded(nfcNormalized(it)).trim() }
 
     /** (lang, form) → concept ids sharing it, keeping only the genuine collisions. */
     private fun collisionClusters(): Map<Pair<String, String>, List<String>> {

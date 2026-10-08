@@ -5,7 +5,7 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
 ## The normalizer
 
 - **AnswerNormalizer contract** (produce only — recognition is button self-grade):
-  normalize both sides (lowercase, ß→ss, the answer language's `diacriticDigraphs`,
+  normalize both sides (stress marks dropped, lowercase, ß→ss, the answer language's `diacriticDigraphs`,
   delete joiners `-'’`, punctuation → space incl.
   `…—`, collapse whitespace) → ONE leading listed article of the answer language optional
   on both sides, an elided one (fr/it `l'`) set apart from its noun first →
@@ -44,6 +44,9 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
   and fr "ou" for "où" comes back Typo — Hard plus the correction, never Exact —
   which is what keeps the catalog-wide collision check below running on it.
   Free of the budget, it reaches the short accented words the floor hit hardest (`où`, `à`, `là`).
+  A **stress mark** (U+0301 left standing after NFC, uk `пі́вніч`) is neither rule:
+  it marks where the stress falls, not how the word is spelled,
+  so the normalizer drops it on both sides and an unmarked answer grades Exact.
   Only typing-convenience accents are listed:
   `ç` and `ñ` (es `ano`/`año` is a real minimal pair),
   Esperanto `ĉ ĝ ĥ ĵ ŝ ŭ` (separate letters of that alphabet)

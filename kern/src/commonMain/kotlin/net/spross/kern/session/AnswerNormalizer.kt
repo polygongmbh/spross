@@ -8,13 +8,14 @@ import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.answerForms
 import net.spross.kern.model.hyphensAndApostrophesStripped
 import net.spross.kern.model.nfcNormalized
+import net.spross.kern.model.stressFolded
 
 /**
  * Typed-answer grading for PRODUCE units, configured per ANSWER language (the
  * profile's target) from `languages.json` — recognize units are self-graded and
  * never pass through here.
  *
- * Pipeline (`kern/docs/grading.md`, both sides symmetric): NFC, lowercase, ß→ss, the answer
+ * Pipeline (`kern/docs/grading.md`, both sides symmetric): NFC, stress marks dropped, lowercase, ß→ss, the answer
  * language's digraph spellings (de ä→ae, ö→oe, ü→ue), delete the
  * joiners `-'’`, other punctuation → space (incl. `…—`), collapse whitespace →
  * ONE leading listed article of the answer language is optional → iff the card is
@@ -308,7 +309,7 @@ class AnswerNormalizer(
 
     /**
      * The one character pass everything shares, so tokenization can never disagree:
-     * NFC, lowercase, ß→ss (2 edits — too far for short words' typo budget), the answer
+     * NFC, stress marks dropped (uk `пі́вніч` is typed `північ`), lowercase, ß→ss (2 edits — too far for short words' typo budget), the answer
      * language's [LanguageInfo.diacriticDigraphs] (de ä→ae, ö→oe, ü→ue), joiners
      * `-` and the apostrophe class deleted outright ("E-Mail"/"Email", "geht's"/"gehts"), every other
      * non-alphanumeric — punctuation incl. `…—`, and whitespace — becomes a space.
@@ -322,7 +323,7 @@ class AnswerNormalizer(
      * the exact test and bypass [CatalogAnswerGrader]'s collision check.
      */
     private fun cleaned(raw: String): String {
-        var lowered = nfcNormalized(raw).lowercase().replace("ß", "ss")
+        var lowered = stressFolded(nfcNormalized(raw)).lowercase().replace("ß", "ss")
         for ((letter, digraph) in digraphFolds) lowered = lowered.replace(letter, digraph)
         val out = StringBuilder(lowered.length)
         for (ch in hyphensAndApostrophesStripped(lowered)) {

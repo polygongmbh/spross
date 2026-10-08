@@ -4,12 +4,26 @@ package net.spross.kern.model
 internal expect fun nfcNormalized(text: String): String
 
 /**
- * The comparison key two spellings are matched on: NFC, trimmed, lowercased.
+ * The comparison key two spellings are matched on: NFC, stress marks dropped, trimmed, lowercased.
  *
  * Shared so no caller folds a little differently and disagrees with the next one about
  * whether two words are the same word.
  */
-internal fun caseFolded(text: String): String = nfcNormalized(text).trim().lowercase()
+internal fun caseFolded(text: String): String = stressFolded(nfcNormalized(text)).trim().lowercase()
+
+/**
+ * U+0301 COMBINING ACUTE ACCENT where it survives NFC: a stress mark the catalog writes on a
+ * vowel no precomposed letter covers (uk `пі́вніч`). It tells the reader where the stress
+ * falls and is no part of the spelling, so nobody is expected to type it.
+ */
+internal const val STRESS_MARK: Char = '\u0301'
+
+/**
+ * [text] without its [STRESS_MARK]s — apply to NFC text only, where every acute a letter is
+ * spelled with (es `á`, fr `é`) is already composed into that letter and stays.
+ */
+internal fun stressFolded(text: String): String =
+    if (STRESS_MARK !in text) text else text.filterNot { it == STRESS_MARK }
 
 /**
  * Typewriter, curly, and the modifier letter — one apostrophe class for everything that

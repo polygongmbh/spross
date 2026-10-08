@@ -2,6 +2,7 @@ package net.spross.kern.session
 
 import net.spross.kern.catalog.speechKey
 import net.spross.kern.model.Card
+import net.spross.kern.model.stressFolded
 
 /**
  * The card a TRANSCRIPTION is graded against: the real card's IDENTITY with only its
@@ -36,11 +37,12 @@ fun spokenOnly(card: Card, spokenForm: String): Card = card.copy(
  *
  * Compared by [speechKey], because a learner writing down what they heard carries none of
  * the spelling edges the catalog authors — the stem dash of `-zuri`, the `¡…!` of a Spanish
- * citation, or the case of a noun.
+ * citation, the case of a noun, or the stress mark of uk `пі́вніч`.
  */
 fun alsoAccepts(card: Card, input: String): Boolean {
-    val typed = speechKey(input)
-    return (card.target.teaches + card.target.accepts + card.target.forms.map { it.text }).any { speechKey(it) == typed }
+    val typed = stressFolded(speechKey(input))
+    return (card.target.teaches + card.target.accepts + card.target.forms.map { it.text })
+        .any { stressFolded(speechKey(it)) == typed }
 }
 
 /**

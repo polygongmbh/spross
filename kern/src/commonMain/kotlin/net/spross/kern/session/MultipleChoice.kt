@@ -2,6 +2,7 @@ package net.spross.kern.session
 
 import kotlin.math.abs
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.caseFolded
 
 /**
  * Distractor selection for multiple-choice presentation — OS-independent, so
@@ -106,7 +107,7 @@ object MultipleChoice {
 
     /**
      * Up to [limit] distractors for [answer], best company first: unique
-     * case-insensitively, distinct from the answer, and ranked by word class,
+     * up to case and stress marks ([caseFolded]), distinct from the answer, and ranked by word class,
      * then [sentenceShape], then freshness, then area, then [shapeDistance]. Same
      * class first is what keeps the question about meaning; closing the same way
      * keeps a statement from being ruled out beside a question without being read;
@@ -123,13 +124,13 @@ object MultipleChoice {
      * fills four tiles rather than offering three.
      */
     fun distractors(answer: Option, candidates: List<Option>, limit: Int = SHORTLIST): List<String> {
-        val seen = mutableSetOf(answer.text.lowercase())
+        val seen = mutableSetOf(caseFolded(answer.text))
         val shape = sentenceShape(answer.text)
         // Every key is decided once per candidate rather than inside the comparator,
         // which asks for each of them O(log n) times over: `offer` ranks the whole
         // scheduled pool once per entry, and a snapshot holds sixty entries.
         val ranked = candidates
-            .filter { seen.add(it.text.lowercase()) }
+            .filter { seen.add(caseFolded(it.text)) }
             .map {
                 Ranked(
                     text = it.text,

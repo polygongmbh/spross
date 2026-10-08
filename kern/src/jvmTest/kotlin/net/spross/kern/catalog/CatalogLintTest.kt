@@ -2,6 +2,7 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.nfcNormalized
+import net.spross.kern.model.stressFolded
 import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -277,11 +278,11 @@ class CatalogLintTest {
     }
 
     // Rotation prompts cycle through text + `teaches` + `forms` — forms must stay distinct
-    // under NFC (composed vs decomposed spellings of the same word would collide).
+    // under NFC and the stress fold (composed vs decomposed spellings, or stressed vs not, would collide).
     @Test
     fun rotationFormsDistinctPerRealization() {
         forEachRealization { area, lang, slug, raw ->
-            val forms = (listOf(raw.text) + raw.teaches + raw.forms.map { it.text }).map { nfcNormalized(it).trim() }
+            val forms = (listOf(raw.text) + raw.teaches + raw.forms.map { it.text }).map { stressFolded(nfcNormalized(it)).trim() }
             assertEquals(forms.toSet().size, forms.size, "$area/$lang.json $slug: colliding forms")
         }
     }
