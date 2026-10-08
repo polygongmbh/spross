@@ -174,6 +174,40 @@ def mos(binary, path):
 
 
 def measure_all(binary, paths):
-    """{path: [measure]} for many files at once — keyed by path, so the order never leaks in."""
+    """{path: measure + (N5 phon,)} for many files at once — keyed by path, so the order never
+    leaks in. The perceived loudness runs in processes: ISO 532-1's decay is a Python loop."""
     with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as pool:
-        return dict(zip(paths, pool.map(lambda path: measure(binary, path), paths)))
+        measured = dict(zip(paths, pool.map(lambda path: measure(binary, path), paths)))
+    with concurrent.futures.ProcessPoolExecutor(max_workers=WORKERS) as pool:
+        n5 = pool.map(perceived_loudness, [binary] * len(paths), paths,
+                      [measured[path][0] for path in paths], chunksize=8)
+        return {path: measured[path] + (level,) for path, level in zip(paths, n5)}
+
+
+# PERCEIVED LOUDNESS — what a word's gain is set from. ISO 532-1:2017 time-varying loudness
+# (Zwicker), read as N5: the loudness the word exceeds 5% of the time, as phon. EBU R128 is
+# a broadcast meter of energy; for single words of different voices the loudness models are
+# what listening tests back (Zorila et al. 2016, Schlittenlacher et al. 2017), and they hear
+# a band-limited or limited voice the way the ear does where K-weighted energy does not.
+# The model is nonlinear in level, so every clip is first brought to the same listening level
+# (PERCEIVED_REF_LUFS, ~65 dB SPL at PERCEIVED_SPL_DB full scale) and the shift taken back off
+# afterwards, at one phon per dB.
+PERCEIVED_RATE = 48000
+PERCEIVED_REF_LUFS = -26.0
+PERCEIVED_SPL_DB = 91.0
+
+
+def perceived_loudness(binary, path, loudness):
+    """N5 of `path` in phon at unity gain (ISO 532-1); None for a silent file."""
+    if loudness is None:
+        return None
+    from mosqito.sq_metrics import loudness_zwtv
+    raw = subprocess.run(
+        [binary, '-v', 'error', '-i', path, '-ac', '1', '-ar', str(PERCEIVED_RATE), '-f', 'f32le', '-'],
+        capture_output=True, check=True).stdout
+    shift = PERCEIVED_REF_LUFS - loudness
+    x = np.frombuffer(raw, dtype=np.float32).astype(float) * 10 ** ((shift + PERCEIVED_SPL_DB - 94) / 20)
+    N, _, _, _ = loudness_zwtv(x, PERCEIVED_RATE, field_type='free')
+    sones = float(np.percentile(N, 95))
+    phon = 40 + 33.22 * np.log10(sones) if sones >= 1 else 40 * (sones + 0.0005) ** 0.35
+    return phon - shift

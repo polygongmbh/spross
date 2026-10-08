@@ -45,8 +45,11 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 # applied by the player. Measurement data carries no license of its own, the credits'
 # "unmodified" claim stays true, and `sha256` keeps meaning exactly what it says.
 #
-# ONE GAIN for every output, `gain` against `target_lufs` (the word packs' own median, -18.0,
-# re-derived 2026-08-15). A second, phone-speaker gain measured through a home-made roll-off
+# ONE GAIN for every output, `gain` = `target_phon` minus the recording's perceived loudness
+# (`audio_measure.perceived_loudness`, ISO 532-1 N5). The target is set so the catalog-wide
+# median word gain is where the LUFS target (-18) had it; only the balance between voices moved
+# (2026-10), and it moved by ear as well: sw, a squashed, band-limited voice, plays ~2 dB under
+# where flat R128 energy put it. A second, phone-speaker gain measured through a home-made roll-off
 # was dropped (2026-10): no standard phone weighting exists, and on the device it turned the
 # sw pack down far past where the ear put it.
 #
@@ -73,9 +76,8 @@ FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
 # by pack rather than merely fall.
 ANALYSIS = {
     'scheme': 'boost',
-    'target_lufs': -18.0,
-    # 9.0.1 reproduces 8.1.2's decimals exactly: a --reindex under it re-gained nothing.
-    'ffmpeg': 'ffmpeg version 9.0.1',
+    'target_phon': 86.1,
+    'ffmpeg': 'ffmpeg version 9.0.2',
 }
 
 # A recording's first 50 ms of near-silence is its attack, not dead air — starting past it
@@ -300,7 +302,7 @@ def copy_verified(source, target):
     return digest
 
 
-def playback_index(loudness, leading, peak, noise, loudest, mos):
+def playback_index(loudness, leading, peak, noise, loudest, mos, perceived):
     """The optional `gain`/`cap`/`lead`/`gate` plus `mos` for one entry — absent when there is nothing to say.
 
     `mos` is how good the take sounds (`audio_measure.mos`). Unlike the other fields it changes
@@ -309,7 +311,7 @@ def playback_index(loudness, leading, peak, noise, loudest, mos):
     refuse the clearly bad. Measured, never applied: filtering the file would be an adaptation
     under BY-SA and would break the sha256 that pins it.
     """
-    full = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['target_lufs'] - loudness)), 1)
+    full = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['target_phon'] - perceived)), 1)
     # why: floor, never round — a gain rounded up to the shipped decimal spends the safety
     # margin it was granted, and the file it was granted for is the one already near clipping.
     headroom = math.floor((PEAK_CEILING_DBFS - peak) * 10) / 10
@@ -347,10 +349,9 @@ def copy_and_analyze(copies):
     measured = audio_measure.measure_all(FFMPEG, [target for _, _, target in copies])
     analyzed = {}
     for id, _, target in copies:
-        loudness, leading, peak, noise, loudest, mos = measured[target]
-        if loudness is None or peak is None:
+        if measured[target][0] is None or measured[target][2] is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % target)
-        analyzed[id] = (digests[id], playback_index(loudness, leading, peak, noise, loudest, mos))
+        analyzed[id] = (digests[id], playback_index(*measured[target]))
     return analyzed
 
 
@@ -527,10 +528,9 @@ def reindex(lang):
         if digest_of(path) != item['sha256']:
             sys.exit('%s: sha256 no longer matches — the bytes changed, re-run the convert'
                      % path)
-        loudness, leading, peak, noise, loudest, mos = measured[path]
-        if loudness is None or peak is None:
+        if measured[path][0] is None or measured[path][2] is None:
             sys.exit('%s: decodes to silence — there is nothing to index' % path)
-        index = playback_index(loudness, leading, peak, noise, loudest, mos)
+        index = playback_index(*measured[path])
         was = item.get('gain', 0)
         for field in ('gain', 'cap', 'gainPhone', 'capPhone', 'lead', 'snr', 'mos', 'gate'):
             item.pop(field, None)

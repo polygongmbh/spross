@@ -3,7 +3,7 @@
     "i capelli": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/iu0020capelli.mp3",
-      "gain": -1.7,
+      "gain": -2.1,
       "gate": -71.8,
       "lead": 36,
       "matches": "i capelli",
@@ -15,7 +15,7 @@
     "i genitori": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/iu0020genitori.mp3",
-      "gain": -3.0,
+      "gain": -1.8,
       "gate": -71.6,
       "lead": 195,
       "matches": "i genitori",
@@ -27,7 +27,7 @@
     "i soldi": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/iu0020soldi.mp3",
-      "gain": -2.6,
+      "gain": -3.2,
       "gate": -73.1,
       "lead": 58,
       "matches": "i soldi",
@@ -39,7 +39,7 @@
     "i vestiti": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/iu0020vestiti.mp3",
-      "gain": -1.4,
+      "gain": 1.4,
       "gate": -74.0,
       "lead": 239,
       "matches": "i vestiti",
@@ -51,7 +51,7 @@
     "il burro": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020burro.mp3",
-      "gain": -4.0,
+      "gain": -1.6,
       "gate": -67.7,
       "lead": 60,
       "matches": "il burro",
@@ -63,7 +63,7 @@
     "il caffè": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020caffu00e8.mp3",
-      "gain": -0.8,
+      "gain": -2.6,
       "gate": -67.6,
       "lead": 130,
       "matches": "il caffè",
@@ -75,7 +75,7 @@
     "il cibo": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020cibo.mp3",
-      "gain": -2.8,
+      "gain": -0.9,
       "gate": -70.8,
       "lead": 35,
       "matches": "il cibo",
@@ -87,7 +87,7 @@
     "il cielo": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020cielo.mp3",
-      "gain": -1.7,
+      "gain": -1.9,
       "gate": -72.2,
       "matches": "il cielo",
       "mos": 3.11,
@@ -98,7 +98,7 @@
     "il cinema": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020cinema.mp3",
-      "gain": -3.1,
+      "gain": -2.0,
       "gate": -67.1,
       "matches": "il cinema",
       "mos": 2.7,
@@ -109,7 +109,7 @@
     "il cuore": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020cuore.mp3",
-      "gain": -3.1,
+      "gain": -4.9,
       "gate": -72.0,
       "matches": "il cuore",
       "mos": 3.04,
@@ -120,7 +120,7 @@
     "il formaggio": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020formaggio.mp3",
-      "gain": -1.4,
+      "gain": -3.1,
       "gate": -68.7,
       "lead": 93,
       "matches": "il formaggio",
@@ -132,7 +132,7 @@
     "il latte": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020latte.mp3",
-      "gain": -3.5,
+      "gain": -4.2,
       "gate": -69.7,
       "lead": 253,
       "matches": "il latte",
@@ -144,7 +144,7 @@
     "il lavoro": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020lavoro.mp3",
-      "gain": -3.6,
+      "gain": -2.9,
       "gate": -72.9,
       "matches": "il lavoro",
       "mos": 2.95,
@@ -155,7 +155,7 @@
     "il mare": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020mare.mp3",
-      "gain": -1.8,
+      "gain": -3.1,
       "gate": -74.2,
       "matches": "il mare",
       "mos": 2.98,
@@ -166,7 +166,7 @@
     "il marito": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020marito.mp3",
-      "gain": -1.6,
+      "gain": -1.9,
       "gate": -71.3,
       "lead": 35,
       "matches": "il marito",
@@ -178,7 +178,7 @@
     "il mercato": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020mercato.mp3",
-      "gain": -2.6,
+      "gain": -3.1,
       "gate": -66.4,
       "lead": 4,
       "matches": "il mercato",
@@ -190,7 +190,7 @@
     "il naso": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020naso.mp3",
-      "gain": -3.0,
+      "gain": -5.3,
       "gate": -71.2,
       "matches": "il naso",
       "mos": 2.86,
@@ -201,7 +201,7 @@
     "il padre": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020padre.mp3",
-      "gain": -0.8,
+      "gain": -1.3,
       "gate": -72.5,
       "lead": 5,
       "matches": "il padre",
@@ -213,7 +213,7 @@
     "il pane": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020pane.mp3",
-      "gain": -3.9,
+      "gain": -6.8,
       "gate": -68.2,
       "lead": 91,
       "matches": "il pane",
@@ -225,7 +225,7 @@
     "il pesce": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020pesce.mp3",
-      "gain": -4.2,
+      "gain": -3.4,
       "gate": -72.7,
       "lead": 257,
       "matches": "il pesce",
@@ -237,7 +237,7 @@
     "il pollo": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020pollo.mp3",
-      "gain": -2.0,
+      "gain": -0.4,
       "gate": -72.8,
       "matches": "il pollo",
       "mos": 2.79,
@@ -248,7 +248,7 @@
     "il riso": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020riso.mp3",
-      "gain": -1.1,
+      "gain": 0.3,
       "gate": -73.4,
       "matches": "il riso",
       "mos": 2.66,
@@ -259,7 +259,7 @@
     "il sale": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020sale.mp3",
-      "gain": -3.8,
+      "gain": -6.8,
       "gate": -65.8,
       "lead": 38,
       "matches": "il sale",
@@ -271,7 +271,7 @@
     "il sangue": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020sangue.mp3",
-      "gain": -2.3,
+      "gain": -3.8,
       "gate": -68.4,
       "lead": 231,
       "matches": "il sangue",
@@ -283,7 +283,7 @@
     "il sapone": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020sapone.mp3",
-      "gain": -1.8,
+      "gain": -0.9,
       "gate": -70.5,
       "matches": "il sapone",
       "mos": 3.21,
@@ -294,7 +294,7 @@
     "il sole": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020sole.mp3",
-      "gain": -4.3,
+      "gain": -2.2,
       "gate": -69.3,
       "matches": "il sole",
       "mos": 2.68,
@@ -305,7 +305,7 @@
     "il tè": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020tu00e8.mp3",
-      "gain": -1.4,
+      "gain": -3.8,
       "gate": -69.7,
       "lead": 121,
       "matches": "il tè",
@@ -317,7 +317,7 @@
     "il vento": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/ilu0020vento.mp3",
-      "gain": -1.4,
+      "gain": -2.9,
       "gate": -68.9,
       "matches": "il vento",
       "mos": 2.58,
@@ -328,7 +328,7 @@
     "l'acqua": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lu0027acqua.mp3",
-      "gain": -1.9,
+      "gain": -3.9,
       "gate": -68.7,
       "lead": 14,
       "matches": "l'acqua",
@@ -340,7 +340,7 @@
     "l'indirizzo": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lu0027indirizzo.mp3",
-      "gain": -3.4,
+      "gain": -2.3,
       "gate": -69.6,
       "lead": 221,
       "matches": "l'indirizzo",
@@ -352,7 +352,7 @@
     "l'olio": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lu0027olio.mp3",
-      "gain": -4.4,
+      "gain": -3.7,
       "gate": -69.5,
       "lead": 253,
       "matches": "l'olio",
@@ -364,7 +364,7 @@
     "l'università": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lu0027universitu00e0.mp3",
-      "gain": -1.9,
+      "gain": -3.0,
       "gate": -70.8,
       "lead": 38,
       "matches": "l'università",
@@ -376,7 +376,7 @@
     "la bocca": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020bocca.mp3",
-      "gain": 0.1,
+      "gain": 2.3,
       "gate": -74.8,
       "lead": 233,
       "matches": "la bocca",
@@ -388,7 +388,7 @@
     "la borsa": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020borsa.mp3",
-      "gain": -3.2,
+      "gain": -2.7,
       "gate": -69.7,
       "lead": 39,
       "matches": "la borsa",
@@ -400,7 +400,7 @@
     "la carne": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020carne.mp3",
-      "gain": -3.4,
+      "gain": -5.6,
       "gate": -69.7,
       "matches": "la carne",
       "mos": 2.82,
@@ -411,7 +411,7 @@
     "la carta": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020carta.mp3",
-      "gain": -0.7,
+      "gain": -3.2,
       "gate": -70.2,
       "lead": 41,
       "matches": "la carta",
@@ -423,7 +423,7 @@
     "la cena": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020cena.mp3",
-      "gain": -0.1,
+      "gain": 0.9,
       "gate": -70.6,
       "matches": "la cena",
       "mos": 2.88,
@@ -434,7 +434,7 @@
     "la colazione": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020colazione.mp3",
-      "gain": -2.8,
+      "gain": -2.1,
       "gate": -65.8,
       "lead": 87,
       "matches": "la colazione",
@@ -446,7 +446,7 @@
     "la lingua": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020lingua.mp3",
-      "gain": -2.3,
+      "gain": -3.1,
       "gate": -70.3,
       "lead": 110,
       "matches": "la lingua",
@@ -458,7 +458,7 @@
     "la luce": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020luce.mp3",
-      "gain": -2.4,
+      "gain": -2.6,
       "gate": -75.4,
       "lead": 228,
       "matches": "la luce",
@@ -470,7 +470,7 @@
     "la madre": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020madre.mp3",
-      "gain": -3.2,
+      "gain": -4.4,
       "gate": -69.6,
       "lead": 37,
       "matches": "la madre",
@@ -482,7 +482,7 @@
     "la moglie": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020moglie.mp3",
-      "gain": -4.9,
+      "gain": -4.6,
       "gate": -70.4,
       "lead": 224,
       "matches": "la moglie",
@@ -494,7 +494,7 @@
     "la montagna": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020montagna.mp3",
-      "gain": -3.6,
+      "gain": -3.3,
       "gate": -69.0,
       "matches": "la montagna",
       "mos": 3.03,
@@ -505,7 +505,7 @@
     "la musica": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020musica.mp3",
-      "gain": -1.7,
+      "gain": -0.1,
       "gate": -70.8,
       "lead": 149,
       "matches": "la musica",
@@ -517,7 +517,7 @@
     "la neve": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020neve.mp3",
-      "gain": -3.1,
+      "gain": -2.3,
       "gate": -71.3,
       "lead": 263,
       "matches": "la neve",
@@ -529,7 +529,7 @@
     "la patata": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020patata.mp3",
-      "gain": 0.4,
+      "gain": -0.4,
       "gate": -72.3,
       "matches": "la patata",
       "mos": 3.25,
@@ -540,7 +540,7 @@
     "la pelle": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020pelle.mp3",
-      "gain": -2.1,
+      "gain": -2.4,
       "gate": -72.2,
       "matches": "la pelle",
       "mos": 2.95,
@@ -551,7 +551,7 @@
     "la pioggia": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020pioggia.mp3",
-      "gain": -2.1,
+      "gain": -3.5,
       "gate": -69.5,
       "lead": 46,
       "matches": "la pioggia",
@@ -563,7 +563,7 @@
     "la polizia": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020polizia.mp3",
-      "gain": -0.7,
+      "gain": 0.8,
       "gate": -73.2,
       "lead": 264,
       "matches": "la polizia",
@@ -575,7 +575,7 @@
     "la spiaggia": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020spiaggia.mp3",
-      "gain": -1.9,
+      "gain": -2.8,
       "gate": -69.6,
       "lead": 39,
       "matches": "la spiaggia",
@@ -587,7 +587,7 @@
     "la testa": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020testa.mp3",
-      "gain": -2.8,
+      "gain": -0.7,
       "gate": -71.4,
       "matches": "la testa",
       "mos": 3.23,
@@ -598,7 +598,7 @@
     "la verdura": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020verdura.mp3",
-      "gain": -1.8,
+      "gain": -2.3,
       "gate": -71.4,
       "matches": "la verdura",
       "mos": 2.6,
@@ -609,7 +609,7 @@
     "la zuppa": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "articles/lau0020zuppa.mp3",
-      "gain": -2.3,
+      "gain": -2.5,
       "gate": -71.5,
       "lead": 89,
       "matches": "la zuppa",
@@ -620,8 +620,9 @@
     },
     "lo zucchero": {
       "author": "Marta Carbone, Association Shtooka",
+      "cap": 1.0,
       "file": "articles/lou0020zucchero.mp3",
-      "gain": 1.3,
+      "gain": 3.4,
       "gate": -74.9,
       "lead": 206,
       "matches": "lo zucchero",
@@ -655,7 +656,7 @@
     "agosto": {
       "author": "GerardM",
       "file": "calendar/agosto.mp3",
-      "gain": 11.5,
+      "gain": 10.9,
       "gate": -68.2,
       "lead": 180,
       "matches": "agosto",
@@ -666,7 +667,7 @@
     "aprile": {
       "author": "GerardM",
       "file": "calendar/aprile.mp3",
-      "gain": 13.5,
+      "gain": 10.8,
       "gate": -68.5,
       "lead": 207,
       "matches": "aprile",
@@ -677,7 +678,7 @@
     "dicembre": {
       "author": "GerardM",
       "file": "calendar/dicembre.mp3",
-      "gain": 12.6,
+      "gain": 11.5,
       "gate": -69.3,
       "lead": 363,
       "matches": "dicembre",
@@ -688,7 +689,7 @@
     "domenica": {
       "author": "Ciampix",
       "file": "calendar/domenica.mp3",
-      "gain": 8.1,
+      "gain": 9.9,
       "gate": -78.9,
       "lead": 130,
       "matches": "domenica",
@@ -699,7 +700,7 @@
     "febbraio": {
       "author": "Ciampix",
       "file": "calendar/febbraio.mp3",
-      "gain": 5.5,
+      "gain": 5.9,
       "gate": -78.7,
       "lead": 197,
       "matches": "febbraio",
@@ -710,7 +711,7 @@
     "gennaio": {
       "author": "GerardM",
       "file": "calendar/gennaio.mp3",
-      "gain": 13.4,
+      "gain": 12.6,
       "gate": -72.9,
       "lead": 48,
       "matches": "gennaio",
@@ -721,7 +722,7 @@
     "giovedì": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "calendar/giovedu00ec.mp3",
-      "gain": -1.6,
+      "gain": -1.7,
       "gate": -73.6,
       "lead": 154,
       "matches": "giovedì",
@@ -732,7 +733,7 @@
     "giugno": {
       "author": "GerardM",
       "file": "calendar/giugno.mp3",
-      "gain": 11.7,
+      "gain": 11.1,
       "gate": -67.5,
       "lead": 347,
       "matches": "giugno",
@@ -743,7 +744,7 @@
     "luglio": {
       "author": "GerardM",
       "file": "calendar/luglio.mp3",
-      "gain": 11.5,
+      "gain": 10.0,
       "gate": -67.4,
       "matches": "luglio",
       "mos": 3.0,
@@ -753,7 +754,7 @@
     "lunedì": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "calendar/lunedu00ec.mp3",
-      "gain": -1.5,
+      "gain": -2.1,
       "gate": -74.3,
       "lead": 224,
       "matches": "lunedì",
@@ -764,7 +765,7 @@
     "maggio": {
       "author": "GerardM",
       "file": "calendar/maggio.mp3",
-      "gain": 12.1,
+      "gain": 10.5,
       "gate": -68.9,
       "lead": 428,
       "matches": "maggio",
@@ -775,7 +776,7 @@
     "martedì": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "calendar/martedu00ec.mp3",
-      "gain": -0.8,
+      "gain": -3.1,
       "gate": -74.8,
       "matches": "martedì",
       "mos": 3.01,
@@ -785,7 +786,7 @@
     "marzo": {
       "author": "GerardM",
       "file": "calendar/marzo.mp3",
-      "gain": 13.7,
+      "gain": 12.0,
       "gate": -68.0,
       "lead": 117,
       "matches": "marzo",
@@ -796,7 +797,7 @@
     "mercoledì": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "calendar/mercoledu00ec.mp3",
-      "gain": -1.6,
+      "gain": -2.3,
       "gate": -75.7,
       "lead": 224,
       "matches": "mercoledì",
@@ -807,7 +808,7 @@
     "novembre": {
       "author": "GerardM",
       "file": "calendar/novembre.mp3",
-      "gain": 10.2,
+      "gain": 9.7,
       "gate": -67.5,
       "lead": 367,
       "matches": "novembre",
@@ -818,7 +819,7 @@
     "ottobre": {
       "author": "GerardM",
       "file": "calendar/ottobre.mp3",
-      "gain": 11.9,
+      "gain": 11.7,
       "gate": -69.6,
       "lead": 261,
       "matches": "ottobre",
@@ -829,7 +830,7 @@
     "sabato": {
       "author": "Ciampix",
       "file": "calendar/sabato.mp3",
-      "gain": 2.9,
+      "gain": 2.0,
       "gate": -81.7,
       "lead": 81,
       "matches": "sabato",
@@ -840,7 +841,7 @@
     "settembre": {
       "author": "GerardM",
       "file": "calendar/settembre.mp3",
-      "gain": 14.0,
+      "gain": 11.7,
       "gate": -67.6,
       "lead": 231,
       "matches": "settembre",
@@ -851,7 +852,7 @@
     "venerdì": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "calendar/venerdu00ec.mp3",
-      "gain": -2.2,
+      "gain": -3.1,
       "gate": -71.6,
       "matches": "venerdì",
       "mos": 2.66,
@@ -863,7 +864,7 @@
     "Algeria": {
       "author": "SabineWanner",
       "file": "countries/algeria.mp3",
-      "gain": 14.1,
+      "gain": 13.6,
       "gate": -79.2,
       "matches": "Algeria",
       "mos": 1.63,
@@ -873,7 +874,7 @@
     "Angola": {
       "author": "Accurimbono",
       "file": "countries/angola.mp3",
-      "gain": 8.0,
+      "gain": 7.7,
       "gate": -71.1,
       "matches": "Angola",
       "mos": 1.28,
@@ -883,7 +884,7 @@
     "Arabia Saudita": {
       "author": "Francyskus",
       "file": "countries/arabiau0020saudita.mp3",
-      "gain": 1.2,
+      "gain": 3.8,
       "gate": -49.3,
       "matches": "Arabia Saudita",
       "mos": 2.38,
@@ -893,7 +894,7 @@
     "Argentina": {
       "author": "Francyskus",
       "file": "countries/argentina.mp3",
-      "gain": 7.0,
+      "gain": 7.8,
       "gate": -60.8,
       "lead": 200,
       "matches": "Argentina",
@@ -904,7 +905,7 @@
     "Australia": {
       "author": "Francyskus",
       "file": "countries/australia.mp3",
-      "gain": 8.1,
+      "gain": 9.0,
       "gate": -58.2,
       "lead": 46,
       "matches": "Australia",
@@ -915,7 +916,7 @@
     "Austria": {
       "author": "Francyskus",
       "file": "countries/austria.mp3",
-      "gain": 7.6,
+      "gain": 8.2,
       "gate": -57.6,
       "matches": "Austria",
       "mos": 2.06,
@@ -925,7 +926,7 @@
     "Belgio": {
       "author": "Ciampix",
       "file": "countries/belgio.mp3",
-      "gain": 4.8,
+      "gain": 4.1,
       "gate": -76.2,
       "lead": 183,
       "matches": "Belgio",
@@ -936,7 +937,7 @@
     "Brasile": {
       "author": "Ciampix",
       "file": "countries/brasile.mp3",
-      "gain": 4.7,
+      "gain": 3.5,
       "gate": -74.3,
       "lead": 184,
       "matches": "Brasile",
@@ -947,7 +948,7 @@
     "Bulgaria": {
       "author": "XANA000",
       "file": "countries/bulgaria.mp3",
-      "gain": -0.1,
+      "gain": -2.0,
       "gate": -69.9,
       "lead": 214,
       "matches": "Bulgaria",
@@ -958,7 +959,7 @@
     "Canada": {
       "author": "Ciampix",
       "file": "countries/canada.mp3",
-      "gain": 8.0,
+      "gain": 7.7,
       "gate": -73.7,
       "lead": 145,
       "matches": "Canada",
@@ -969,7 +970,7 @@
     "Cile": {
       "author": "Ciampix",
       "file": "countries/cile.mp3",
-      "gain": 4.7,
+      "gain": 7.0,
       "gate": -73.3,
       "lead": 119,
       "matches": "Cile",
@@ -980,7 +981,7 @@
     "Cina": {
       "author": "Francyskus",
       "file": "countries/cina.mp3",
-      "gain": 8.2,
+      "gain": 11.7,
       "gate": -49.9,
       "matches": "Cina",
       "mos": 1.8,
@@ -990,7 +991,7 @@
     "Colombia": {
       "author": "Ciampix",
       "file": "countries/colombia.mp3",
-      "gain": 3.0,
+      "gain": 2.7,
       "gate": -75.2,
       "lead": 198,
       "matches": "Colombia",
@@ -1001,7 +1002,7 @@
     "Corea del Sud": {
       "author": "Francyskus",
       "file": "countries/coreau0020delu0020sud.mp3",
-      "gain": 2.4,
+      "gain": 4.2,
       "gate": -55.6,
       "matches": "Corea del Sud",
       "mos": 2.03,
@@ -1011,7 +1012,7 @@
     "Costa Rica": {
       "author": "Francyskus",
       "file": "countries/costau0020rica.mp3",
-      "gain": 8.8,
+      "gain": 10.8,
       "gate": -59.8,
       "lead": 161,
       "matches": "Costa Rica",
@@ -1021,9 +1022,8 @@
     },
     "Croazia": {
       "author": "Ciampix",
-      "cap": 1.5,
       "file": "countries/croazia.mp3",
-      "gain": 6.5,
+      "gain": 6.4,
       "gate": -78.5,
       "lead": 194,
       "matches": "Croazia",
@@ -1033,8 +1033,9 @@
     },
     "Cuba": {
       "author": "Ciampix",
+      "cap": 1.8,
       "file": "countries/cuba.mp3",
-      "gain": 7.0,
+      "gain": 8.4,
       "gate": -75.5,
       "lead": 136,
       "matches": "Cuba",
@@ -1045,7 +1046,7 @@
     "Danimarca": {
       "author": "Francyskus",
       "file": "countries/danimarca.mp3",
-      "gain": 8.4,
+      "gain": 9.7,
       "gate": -57.7,
       "lead": 87,
       "matches": "Danimarca",
@@ -1056,7 +1057,7 @@
     "Ecuador": {
       "author": "Francyskus",
       "file": "countries/ecuador.mp3",
-      "gain": 2.7,
+      "gain": 4.5,
       "gate": -59.7,
       "lead": 199,
       "matches": "Ecuador",
@@ -1067,7 +1068,7 @@
     "Egitto": {
       "author": "Francyskus",
       "file": "countries/egitto.mp3",
-      "gain": 7.2,
+      "gain": 9.7,
       "gate": -59.0,
       "lead": 153,
       "matches": "Egitto",
@@ -1078,7 +1079,7 @@
     "Etiopia": {
       "author": "Francyskus",
       "file": "countries/etiopia.mp3",
-      "gain": 6.0,
+      "gain": 8.4,
       "gate": -61.1,
       "lead": 188,
       "matches": "Etiopia",
@@ -1089,7 +1090,7 @@
     "Finlandia": {
       "author": "Ciampix",
       "file": "countries/finlandia.mp3",
-      "gain": 8.1,
+      "gain": 8.5,
       "gate": -75.7,
       "lead": 163,
       "matches": "Finlandia",
@@ -1099,9 +1100,8 @@
     },
     "Francia": {
       "author": "Ciampix",
-      "cap": 1.0,
       "file": "countries/francia.mp3",
-      "gain": 7.8,
+      "gain": 7.4,
       "gate": -76.5,
       "lead": 190,
       "matches": "Francia",
@@ -1112,7 +1112,7 @@
     "Germania": {
       "author": "Ciampix",
       "file": "countries/germania.mp3",
-      "gain": 6.4,
+      "gain": 3.6,
       "gate": -72.7,
       "lead": 135,
       "matches": "Germania",
@@ -1123,7 +1123,7 @@
     "Ghana": {
       "author": "Francyskus",
       "file": "countries/ghana.mp3",
-      "gain": 5.1,
+      "gain": 5.2,
       "gate": -51.8,
       "matches": "Ghana",
       "mos": 1.58,
@@ -1133,7 +1133,7 @@
     "Giappone": {
       "author": "Francyskus",
       "file": "countries/giappone.mp3",
-      "gain": 4.9,
+      "gain": 8.5,
       "gate": -56.5,
       "matches": "Giappone",
       "mos": 1.9,
@@ -1142,9 +1142,8 @@
     },
     "Grecia": {
       "author": "Ciampix",
-      "cap": 0.5,
       "file": "countries/grecia.mp3",
-      "gain": 5.2,
+      "gain": 3.9,
       "gate": -76.2,
       "lead": 175,
       "matches": "Grecia",
@@ -1155,7 +1154,7 @@
     "India": {
       "author": "Francyskus",
       "file": "countries/india.mp3",
-      "gain": 8.0,
+      "gain": 11.8,
       "gate": -52.4,
       "matches": "India",
       "mos": 1.64,
@@ -1165,7 +1164,7 @@
     "Indonesia": {
       "author": "Francyskus",
       "file": "countries/indonesia.mp3",
-      "gain": 6.1,
+      "gain": 9.3,
       "gate": -55.6,
       "matches": "Indonesia",
       "mos": 2.18,
@@ -1175,7 +1174,7 @@
     "Iran": {
       "author": "Francyskus",
       "file": "countries/iran.mp3",
-      "gain": 6.2,
+      "gain": 8.1,
       "gate": -56.1,
       "matches": "Iran",
       "mos": 1.44,
@@ -1185,7 +1184,7 @@
     "Irlanda": {
       "author": "Francyskus",
       "file": "countries/irlanda.mp3",
-      "gain": 6.1,
+      "gain": 5.7,
       "gate": -53.7,
       "matches": "Irlanda",
       "mos": 2.45,
@@ -1195,7 +1194,7 @@
     "Israele": {
       "author": "Francyskus",
       "file": "countries/israele.mp3",
-      "gain": 4.9,
+      "gain": 5.5,
       "gate": -58.7,
       "matches": "Israele",
       "mos": 2.69,
@@ -1205,7 +1204,7 @@
     "Italia": {
       "author": "XANA000",
       "file": "countries/italia.mp3",
-      "gain": -2.2,
+      "gain": -4.1,
       "gate": -69.6,
       "lead": 214,
       "matches": "Italia",
@@ -1216,7 +1215,7 @@
     "Kenya": {
       "author": "Francyskus",
       "file": "countries/kenya.mp3",
-      "gain": 2.9,
+      "gain": 3.3,
       "gate": -54.0,
       "matches": "Kenya",
       "mos": 1.57,
@@ -1226,7 +1225,7 @@
     "Lussemburgo": {
       "author": "Ciampix",
       "file": "countries/lussemburgo.mp3",
-      "gain": 9.1,
+      "gain": 12.7,
       "gate": -72.7,
       "lead": 163,
       "matches": "Lussemburgo",
@@ -1237,7 +1236,7 @@
     "Marocco": {
       "author": "Francyskus",
       "file": "countries/marocco.mp3",
-      "gain": 5.5,
+      "gain": 6.0,
       "gate": -59.3,
       "lead": 150,
       "matches": "Marocco",
@@ -1248,7 +1247,7 @@
     "Messico": {
       "author": "Francyskus",
       "file": "countries/messico.mp3",
-      "gain": 8.5,
+      "gain": 8.9,
       "gate": -58.2,
       "lead": 8,
       "matches": "Messico",
@@ -1259,7 +1258,7 @@
     "Mozambico": {
       "author": "Francyskus",
       "file": "countries/mozambico.mp3",
-      "gain": 5.3,
+      "gain": 7.1,
       "gate": -54.6,
       "matches": "Mozambico",
       "mos": 2.5,
@@ -1269,7 +1268,7 @@
     "Nigeria": {
       "author": "Francyskus",
       "file": "countries/nigeria.mp3",
-      "gain": 3.8,
+      "gain": 5.0,
       "gate": -56.6,
       "matches": "Nigeria",
       "mos": 1.6,
@@ -1279,7 +1278,7 @@
     "Norvegia": {
       "author": "Ciampix",
       "file": "countries/norvegia.mp3",
-      "gain": 7.2,
+      "gain": 6.1,
       "gate": -75.7,
       "lead": 170,
       "matches": "Norvegia",
@@ -1290,7 +1289,7 @@
     "Nuova Zelanda": {
       "author": "Francyskus",
       "file": "countries/nuovau0020zelanda.mp3",
-      "gain": 3.2,
+      "gain": 4.2,
       "gate": -54.0,
       "matches": "Nuova Zelanda",
       "mos": 2.55,
@@ -1300,7 +1299,7 @@
     "Perù": {
       "author": "Ciampix",
       "file": "countries/peru00f9.mp3",
-      "gain": 5.3,
+      "gain": 5.9,
       "gate": -75.8,
       "lead": 198,
       "matches": "Perù",
@@ -1311,7 +1310,7 @@
     "Polonia": {
       "author": "Ciampix",
       "file": "countries/polonia.mp3",
-      "gain": 7.5,
+      "gain": 7.2,
       "gate": -76.5,
       "lead": 189,
       "matches": "Polonia",
@@ -1322,7 +1321,7 @@
     "Portogallo": {
       "author": "Ciampix",
       "file": "countries/portogallo.mp3",
-      "gain": 6.4,
+      "gain": 6.0,
       "gate": -75.9,
       "lead": 190,
       "matches": "Portogallo",
@@ -1333,7 +1332,7 @@
     "Regno Unito": {
       "author": "Francyskus",
       "file": "countries/regnou0020unito.mp3",
-      "gain": 4.5,
+      "gain": 4.3,
       "gate": -51.4,
       "lead": 86,
       "matches": "Regno Unito",
@@ -1344,7 +1343,7 @@
     "Repubblica Democratica del Congo": {
       "author": "Francyskus",
       "file": "countries/repubblicau0020democraticau0020delu0020congo.mp3",
-      "gain": 3.4,
+      "gain": 7.0,
       "gate": -56.8,
       "lead": 74,
       "matches": "Repubblica Democratica del Congo",
@@ -1355,7 +1354,7 @@
     "Romania": {
       "author": "Francyskus",
       "file": "countries/romania.mp3",
-      "gain": 3.2,
+      "gain": 5.0,
       "gate": -59.3,
       "matches": "Romania",
       "mos": 2.3,
@@ -1365,7 +1364,7 @@
     "Ruanda": {
       "author": "Francyskus",
       "file": "countries/ruanda.mp3",
-      "gain": 3.7,
+      "gain": 3.6,
       "gate": -57.6,
       "matches": "Ruanda",
       "mos": 2.28,
@@ -1375,7 +1374,7 @@
     "Russia": {
       "author": "Francyskus",
       "file": "countries/russia.mp3",
-      "gain": 5.7,
+      "gain": 6.8,
       "gate": -54.7,
       "lead": 48,
       "matches": "Russia",
@@ -1386,7 +1385,7 @@
     "Senegal": {
       "author": "Francyskus",
       "file": "countries/senegal.mp3",
-      "gain": 5.7,
+      "gain": 5.3,
       "gate": -59.9,
       "lead": 32,
       "matches": "Senegal",
@@ -1397,7 +1396,7 @@
     "Serbia": {
       "author": "Francyskus",
       "file": "countries/serbia.mp3",
-      "gain": 7.6,
+      "gain": 5.0,
       "gate": -60.8,
       "lead": 71,
       "matches": "Serbia",
@@ -1408,7 +1407,7 @@
     "Singapore": {
       "author": "Francyskus",
       "file": "countries/singapore.mp3",
-      "gain": 4.4,
+      "gain": 5.3,
       "gate": -54.1,
       "matches": "Singapore",
       "mos": 2.36,
@@ -1418,7 +1417,7 @@
     "Slovacchia": {
       "author": "Ciampix",
       "file": "countries/slovacchia.mp3",
-      "gain": 8.6,
+      "gain": 8.3,
       "gate": -77.6,
       "lead": 181,
       "matches": "Slovacchia",
@@ -1428,7 +1427,7 @@
     },
     "Spagna": {
       "author": "Ciampix",
-      "cap": 1.5,
+      "cap": 1.1,
       "file": "countries/spagna.mp3",
       "gain": 4.0,
       "gate": -75.3,
@@ -1440,7 +1439,7 @@
     },
     "Stati Uniti": {
       "author": "Ciampix",
-      "cap": 0.6,
+      "cap": 1.9,
       "file": "countries/statiu0020uniti.mp3",
       "gain": 6.0,
       "gate": -75.5,
@@ -1453,7 +1452,7 @@
     "Sudafrica": {
       "author": "Francyskus",
       "file": "countries/sudafrica.mp3",
-      "gain": 3.9,
+      "gain": 2.3,
       "gate": -59.7,
       "matches": "Sudafrica",
       "mos": 2.65,
@@ -1462,9 +1461,8 @@
     },
     "Svezia": {
       "author": "Ciampix",
-      "cap": 0.2,
       "file": "countries/svezia.mp3",
-      "gain": 6.7,
+      "gain": 3.8,
       "gate": -76.5,
       "lead": 184,
       "matches": "Svezia",
@@ -1486,7 +1484,7 @@
     "Tanzania": {
       "author": "Francyskus",
       "file": "countries/tanzania.mp3",
-      "gain": 3.4,
+      "gain": 5.2,
       "gate": -52.3,
       "matches": "Tanzania",
       "mos": 1.53,
@@ -1496,7 +1494,7 @@
     "Thailandia": {
       "author": "Francyskus",
       "file": "countries/thailandia.mp3",
-      "gain": 4.0,
+      "gain": 4.4,
       "gate": -55.6,
       "lead": 22,
       "matches": "Thailandia",
@@ -1507,7 +1505,7 @@
     "Tunisia": {
       "author": "Francyskus",
       "file": "countries/tunisia.mp3",
-      "gain": 5.1,
+      "gain": 7.8,
       "gate": -49.8,
       "matches": "Tunisia",
       "mos": 1.73,
@@ -1516,8 +1514,9 @@
     },
     "Turchia": {
       "author": "Francyskus",
+      "cap": 2.7,
       "file": "countries/turchia.mp3",
-      "gain": 6.4,
+      "gain": 7.7,
       "gate": -55.3,
       "lead": 145,
       "matches": "Turchia",
@@ -1538,7 +1537,7 @@
     "Uganda": {
       "author": "Francyskus",
       "file": "countries/uganda.mp3",
-      "gain": 1.3,
+      "gain": 0.9,
       "gate": -54.3,
       "matches": "Uganda",
       "mos": 1.21,
@@ -1559,7 +1558,7 @@
     "Uruguay": {
       "author": "Francyskus",
       "file": "countries/uruguay.mp3",
-      "gain": 0.8,
+      "gain": 5.1,
       "gate": -54.1,
       "lead": 60,
       "matches": "Uruguay",
@@ -1570,7 +1569,7 @@
     "Venezuela": {
       "author": "Ciampix",
       "file": "countries/venezuela.mp3",
-      "gain": 5.5,
+      "gain": 4.9,
       "gate": -75.8,
       "lead": 188,
       "matches": "Venezuela",
@@ -1580,8 +1579,9 @@
     },
     "Vietnam": {
       "author": "Francyskus",
+      "cap": 2.3,
       "file": "countries/vietnam.mp3",
-      "gain": 9.5,
+      "gain": 10.6,
       "gate": -59.0,
       "matches": "Vietnam",
       "mos": 1.76,
@@ -1591,7 +1591,7 @@
     "italiani": {
       "author": "Ciampix",
       "file": "countries/italiani.mp3",
-      "gain": 9.1,
+      "gain": 8.4,
       "gate": -75.9,
       "lead": 184,
       "matches": "italiani",
@@ -1605,7 +1605,7 @@
     "a": {
       "author": "XANA000",
       "file": "letters/u0061.mp3",
-      "gain": 5.3,
+      "gain": 3.5,
       "gate": -100.0,
       "lead": 278,
       "mos": 1.99,
@@ -1615,7 +1615,7 @@
     "c": {
       "author": "XANA000",
       "file": "letters/u0063.mp3",
-      "gain": 2.9,
+      "gain": 5.9,
       "lead": 180,
       "mos": 3.04,
       "sha256": "eb48f6ca974361066ce2e3ed082d955c1c77f20f6a165a3fc5f890f523f02f3d",
@@ -1623,8 +1623,9 @@
     },
     "d": {
       "author": "XANA000",
+      "cap": 0.1,
       "file": "letters/u0064.mp3",
-      "gain": 3.5,
+      "gain": 7.6,
       "gate": -70.3,
       "lead": 216,
       "mos": 2.0,
@@ -1634,7 +1635,7 @@
     "e": {
       "author": "XANA000",
       "file": "letters/u0065.mp3",
-      "gain": 0.2,
+      "gain": 1.7,
       "lead": 192,
       "mos": 2.5,
       "sha256": "958bf2e7b60f06c126010f3bd382591c7cc2dc48f8ffb322ee819d6813169163",
@@ -1643,7 +1644,7 @@
     "f": {
       "author": "XANA000",
       "file": "letters/u0066.mp3",
-      "gain": 10.1,
+      "gain": 7.3,
       "lead": 182,
       "mos": 2.54,
       "sha256": "11d268e9c4769243fb143ea77b546fad16880447a4bcd454f1b0b6b35efb5321",
@@ -1652,7 +1653,7 @@
     "h": {
       "author": "XANA000",
       "file": "letters/u0068.mp3",
-      "gain": 5.4,
+      "gain": 3.5,
       "gate": -90.4,
       "lead": 191,
       "mos": 2.53,
@@ -1662,7 +1663,7 @@
     "i": {
       "author": "XANA000",
       "file": "letters/u0069.mp3",
-      "gain": 1.8,
+      "gain": 8.3,
       "gate": -40.2,
       "mos": 2.66,
       "sha256": "1b5306506f255d52431e653b0f71eb3bcc9f6c5d2fadb72bc4c445c889ae4071",
@@ -1671,7 +1672,7 @@
     "o": {
       "author": "XANA000",
       "file": "letters/u006f.mp3",
-      "gain": -0.5,
+      "gain": 4.4,
       "gate": -86.9,
       "lead": 203,
       "mos": 2.5,
@@ -1681,7 +1682,7 @@
     "s": {
       "author": "XANA000",
       "file": "letters/u0073.mp3",
-      "gain": 5.8,
+      "gain": 4.0,
       "lead": 262,
       "mos": 2.46,
       "sha256": "a6b5450b1f2461ed3631abed5cae9139d19196198e9714a0f01095fee7a58ec1",
@@ -1690,7 +1691,7 @@
     "t": {
       "author": "XANA000",
       "file": "letters/u0074.mp3",
-      "gain": -4.6,
+      "gain": -0.9,
       "gate": -67.1,
       "lead": 194,
       "mos": 2.44,
@@ -1710,7 +1711,7 @@
     "hanno": {
       "author": "XANA000",
       "file": "texts/hanno.mp3",
-      "gain": 5.1,
+      "gain": 3.3,
       "gate": -89.5,
       "matches": "hanno",
       "mos": 2.19,
@@ -1720,7 +1721,7 @@
     "jeans": {
       "author": "DanielParoliere",
       "file": "texts/jeans.mp3",
-      "gain": 0.5,
+      "gain": -0.1,
       "gate": -84.3,
       "lead": 171,
       "matches": "jeans",
@@ -1731,7 +1732,7 @@
     "kiwi": {
       "author": "Yiyi",
       "file": "texts/kiwi.mp3",
-      "gain": 3.3,
+      "gain": 7.2,
       "gate": -85.8,
       "lead": 189,
       "matches": "kiwi",
@@ -1742,7 +1743,7 @@
     "yogurt": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "texts/yogurt.mp3",
-      "gain": 6.2,
+      "gain": 6.4,
       "gate": -83.6,
       "lead": 170,
       "matches": "yogurt",
@@ -1755,7 +1756,7 @@
     "a causa di": {
       "author": "XANA000",
       "file": "words/au0020causau0020di.mp3",
-      "gain": -0.2,
+      "gain": -0.5,
       "lead": 193,
       "matches": "a causa di",
       "mos": 2.86,
@@ -1765,7 +1766,7 @@
     "a destra": {
       "author": "LangPao",
       "file": "words/au0020destra.mp3",
-      "gain": -0.3,
+      "gain": -0.4,
       "gate": -89.8,
       "lead": 209,
       "matches": "a destra",
@@ -1776,7 +1777,7 @@
     "a presto": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/au0020presto.mp3",
-      "gain": -3.6,
+      "gain": -5.5,
       "gate": -72.6,
       "lead": 252,
       "matches": "a presto",
@@ -1787,7 +1788,7 @@
     "a sinistra": {
       "author": "XANA000",
       "file": "words/au0020sinistra.mp3",
-      "gain": 9.2,
+      "gain": 9.5,
       "matches": "a sinistra",
       "mos": 2.65,
       "sha256": "4fd7fe5f6ed7d32811f5b35b7484ab7833d17d13161efba676401dc88b835a06",
@@ -1796,7 +1797,7 @@
     "a volte": {
       "author": "XANA000",
       "file": "words/au0020volte.mp3",
-      "gain": 1.0,
+      "gain": 0.7,
       "lead": 201,
       "matches": "a volte",
       "mos": 2.67,
@@ -1806,7 +1807,7 @@
     "abbastanza": {
       "author": "XANA000",
       "file": "words/abbastanza.mp3",
-      "gain": 5.5,
+      "gain": 4.7,
       "gate": -99.6,
       "lead": 261,
       "matches": "abbastanza",
@@ -1817,7 +1818,7 @@
     "abitare": {
       "author": "XANA000",
       "file": "words/abitare.mp3",
-      "gain": -3.8,
+      "gain": -5.4,
       "gate": -84.7,
       "lead": 190,
       "matches": "abitare",
@@ -1828,7 +1829,7 @@
     "accanto a": {
       "author": "XANA000",
       "file": "words/accantou0020a.mp3",
-      "gain": -4.6,
+      "gain": -3.9,
       "gate": -77.1,
       "lead": 200,
       "matches": "accanto a",
@@ -1839,7 +1840,7 @@
     "acqua": {
       "author": "XANA000",
       "file": "words/acqua.mp3",
-      "gain": 1.1,
+      "gain": -1.0,
       "gate": -68.8,
       "lead": 188,
       "matches": "acqua",
@@ -1850,7 +1851,7 @@
     "adesso": {
       "author": "XANA000",
       "file": "words/adesso.mp3",
-      "gain": 7.1,
+      "gain": 5.8,
       "lead": 260,
       "matches": "adesso",
       "mos": 2.77,
@@ -1860,7 +1861,7 @@
     "aereo": {
       "author": "LangPao",
       "file": "words/aereo.mp3",
-      "gain": -0.3,
+      "gain": -2.4,
       "lead": 183,
       "matches": "aereo",
       "mos": 3.02,
@@ -1870,7 +1871,7 @@
     "aeroporto": {
       "author": "LangPao",
       "file": "words/aeroporto.mp3",
-      "gain": 0.2,
+      "gain": -1.5,
       "lead": 216,
       "matches": "aeroporto",
       "mos": 2.89,
@@ -1892,7 +1893,7 @@
     "affinché": {
       "author": "XANA000",
       "file": "words/affinchu00e9.mp3",
-      "gain": -1.1,
+      "gain": -0.4,
       "lead": 67,
       "matches": "affinché",
       "mos": 2.29,
@@ -1901,9 +1902,8 @@
     },
     "aggettivo": {
       "author": "LangPao",
-      "cap": 0.5,
       "file": "words/aggettivo.mp3",
-      "gain": 10.3,
+      "gain": 8.8,
       "gate": -82.9,
       "lead": 264,
       "matches": "aggettivo",
@@ -1914,7 +1914,7 @@
     "aggressivo": {
       "author": "DiplomaticBadger",
       "file": "words/aggressivo.mp3",
-      "gain": 7.3,
+      "gain": 7.4,
       "gate": -85.7,
       "lead": 190,
       "matches": "aggressivo",
@@ -1925,7 +1925,7 @@
     "aglio": {
       "author": "LangPao",
       "file": "words/aglio.mp3",
-      "gain": 1.5,
+      "gain": -0.6,
       "lead": 236,
       "matches": "aglio",
       "mos": 2.96,
@@ -1935,7 +1935,7 @@
     "aiutare": {
       "author": "XANA000",
       "file": "words/aiutare.mp3",
-      "gain": -4.6,
+      "gain": -4.1,
       "lead": 201,
       "matches": "aiutare",
       "mos": 2.68,
@@ -1945,7 +1945,7 @@
     "aiuto": {
       "author": "XANA000",
       "file": "words/aiuto.mp3",
-      "gain": 0.8,
+      "gain": 3.8,
       "gate": -94.9,
       "lead": 77,
       "matches": "aiuto",
@@ -1956,7 +1956,7 @@
     "albergo": {
       "author": "XANA000",
       "file": "words/albergo.mp3",
-      "gain": -2.9,
+      "gain": -4.4,
       "gate": -92.0,
       "lead": 276,
       "matches": "albergo",
@@ -1967,7 +1967,7 @@
     "albero": {
       "author": "XANA000",
       "file": "words/albero.mp3",
-      "gain": -6.3,
+      "gain": -5.5,
       "gate": -69.7,
       "lead": 201,
       "matches": "albero",
@@ -1978,7 +1978,7 @@
     "alcuni": {
       "author": "XANA000",
       "file": "words/alcuni.mp3",
-      "gain": -2.4,
+      "gain": 2.4,
       "gate": -93.7,
       "lead": 167,
       "matches": "alcuni",
@@ -1989,7 +1989,7 @@
     "allenamento": {
       "author": "LangPao",
       "file": "words/allenamento.mp3",
-      "gain": 4.0,
+      "gain": 5.3,
       "lead": 202,
       "matches": "allenamento",
       "mos": 2.82,
@@ -1999,7 +1999,7 @@
     "allergia": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/allergia.mp3",
-      "gain": 8.5,
+      "gain": 12.2,
       "gate": -81.0,
       "lead": 190,
       "matches": "allergia",
@@ -2010,7 +2010,7 @@
     "altro": {
       "author": "XANA000",
       "file": "words/altro.mp3",
-      "gain": 2.1,
+      "gain": -1.0,
       "lead": 202,
       "matches": "altro",
       "mos": 2.84,
@@ -2020,7 +2020,7 @@
     "alzarsi": {
       "author": "XANA000",
       "file": "words/alzarsi.mp3",
-      "gain": 1.0,
+      "gain": -1.8,
       "lead": 197,
       "matches": "alzarsi",
       "mos": 2.89,
@@ -2030,7 +2030,7 @@
     "ambulanza": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/ambulanza.mp3",
-      "gain": 6.9,
+      "gain": 7.7,
       "gate": -85.5,
       "lead": 180,
       "matches": "ambulanza",
@@ -2041,7 +2041,7 @@
     "ambulatorio": {
       "author": "LangPao",
       "file": "words/ambulatorio.mp3",
-      "gain": 1.5,
+      "gain": 3.1,
       "lead": 274,
       "matches": "ambulatorio",
       "mos": 2.9,
@@ -2051,7 +2051,7 @@
     "amica": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/amica.mp3",
-      "gain": 4.7,
+      "gain": 6.5,
       "gate": -81.8,
       "lead": 191,
       "matches": "amica",
@@ -2061,6 +2061,7 @@
     },
     "amico": {
       "author": "LangPao",
+      "cap": 3.4,
       "file": "words/amico.mp3",
       "gain": 2.6,
       "lead": 213,
@@ -2072,7 +2073,7 @@
     "amore": {
       "author": "LangPao",
       "file": "words/amore.mp3",
-      "gain": 5.6,
+      "gain": 7.2,
       "gate": -77.7,
       "matches": "amore",
       "mos": 2.83,
@@ -2082,7 +2083,7 @@
     "anche": {
       "author": "XANA000",
       "file": "words/anche.mp3",
-      "gain": 2.2,
+      "gain": 0.5,
       "lead": 249,
       "matches": "anche",
       "mos": 2.67,
@@ -2092,7 +2093,7 @@
     "ancora": {
       "author": "XANA000",
       "file": "words/ancora.mp3",
-      "gain": 4.0,
+      "gain": 4.7,
       "lead": 192,
       "matches": "ancora",
       "mos": 3.12,
@@ -2102,7 +2103,7 @@
     "andare": {
       "author": "XANA000",
       "file": "words/andare.mp3",
-      "gain": 1.6,
+      "gain": -2.6,
       "lead": 198,
       "matches": "andare",
       "mos": 2.68,
@@ -2112,7 +2113,7 @@
     "angolo": {
       "author": "LangPao",
       "file": "words/angolo.mp3",
-      "gain": 4.0,
+      "gain": 3.0,
       "lead": 198,
       "matches": "angolo",
       "mos": 2.98,
@@ -2122,7 +2123,7 @@
     "animale": {
       "author": "XANA000",
       "file": "words/animale.mp3",
-      "gain": 1.9,
+      "gain": 0.2,
       "gate": -93.8,
       "lead": 220,
       "matches": "animale",
@@ -2133,7 +2134,7 @@
     "anno": {
       "author": "LangPao",
       "file": "words/anno.mp3",
-      "gain": 3.2,
+      "gain": 2.5,
       "lead": 253,
       "matches": "anno",
       "mos": 2.64,
@@ -2143,7 +2144,7 @@
     "annullare": {
       "author": "XANA000",
       "file": "words/annullare.mp3",
-      "gain": 1.1,
+      "gain": -0.8,
       "lead": 197,
       "matches": "annullare",
       "mos": 2.78,
@@ -2152,7 +2153,7 @@
     },
     "aperto": {
       "author": "Crunchy Cloaky Crackdown",
-      "cap": 1.2,
+      "cap": 0.7,
       "file": "words/aperto.mp3",
       "gain": 9.9,
       "gate": -88.9,
@@ -2164,9 +2165,8 @@
     },
     "appartamento": {
       "author": "LangPao",
-      "cap": 1.3,
       "file": "words/appartamento.mp3",
-      "gain": 7.1,
+      "gain": 5.6,
       "gate": -80.9,
       "lead": 205,
       "matches": "appartamento",
@@ -2177,7 +2177,7 @@
     "approvare": {
       "author": "XANA000",
       "file": "words/approvare.mp3",
-      "gain": -2.0,
+      "gain": -3.5,
       "lead": 80,
       "matches": "approvare",
       "mos": 2.84,
@@ -2186,8 +2186,9 @@
     },
     "appuntamento": {
       "author": "LangPao",
+      "cap": 0.2,
       "file": "words/appuntamento.mp3",
-      "gain": 2.1,
+      "gain": 4.3,
       "gate": -96.6,
       "lead": 206,
       "matches": "appuntamento",
@@ -2198,7 +2199,7 @@
     "aprire": {
       "author": "XANA000",
       "file": "words/aprire.mp3",
-      "gain": 0.9,
+      "gain": 0.7,
       "lead": 201,
       "matches": "aprire",
       "mos": 2.8,
@@ -2208,7 +2209,7 @@
     "armadio": {
       "author": "LangPao",
       "file": "words/armadio.mp3",
-      "gain": 4.3,
+      "gain": 5.3,
       "lead": 193,
       "matches": "armadio",
       "mos": 3.03,
@@ -2218,7 +2219,7 @@
     "arrivare": {
       "author": "XANA000",
       "file": "words/arrivare.mp3",
-      "gain": -3.4,
+      "gain": -4.0,
       "lead": 200,
       "matches": "arrivare",
       "mos": 2.54,
@@ -2228,7 +2229,7 @@
     "arrivederci": {
       "author": "XANA000",
       "file": "words/arrivederci.mp3",
-      "gain": 2.4,
+      "gain": -0.1,
       "lead": 187,
       "matches": "arrivederci",
       "mos": 2.66,
@@ -2238,7 +2239,7 @@
     "arteria": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/arteria.mp3",
-      "gain": 6.2,
+      "gain": 6.1,
       "gate": -78.9,
       "lead": 193,
       "matches": "arteria",
@@ -2249,7 +2250,7 @@
     "asciugacapelli": {
       "author": "DanielParoliere",
       "file": "words/asciugacapelli.mp3",
-      "gain": -1.6,
+      "gain": -3.2,
       "lead": 160,
       "matches": "asciugacapelli",
       "mos": 3.19,
@@ -2258,8 +2259,9 @@
     },
     "asciugamano": {
       "author": "LangPao",
+      "cap": 0.3,
       "file": "words/asciugamano.mp3",
-      "gain": 2.3,
+      "gain": 3.5,
       "lead": 246,
       "matches": "asciugamano",
       "mos": 2.65,
@@ -2269,7 +2271,7 @@
     "ascoltare": {
       "author": "XANA000",
       "file": "words/ascoltare.mp3",
-      "gain": 0.4,
+      "gain": -1.2,
       "lead": 202,
       "matches": "ascoltare",
       "mos": 2.72,
@@ -2279,7 +2281,7 @@
     "asino": {
       "author": "XANA000",
       "file": "words/asino.mp3",
-      "gain": -0.1,
+      "gain": -2.3,
       "gate": -78.5,
       "lead": 228,
       "matches": "asino",
@@ -2290,7 +2292,7 @@
     "aspettare": {
       "author": "XANA000",
       "file": "words/aspettare.mp3",
-      "gain": 1.4,
+      "gain": 0.3,
       "lead": 202,
       "matches": "aspettare",
       "mos": 2.48,
@@ -2299,7 +2301,7 @@
     },
     "assaggiare": {
       "author": "LangPao",
-      "cap": 3.4,
+      "cap": 4.0,
       "file": "words/assaggiare.mp3",
       "gain": 2.4,
       "lead": 251,
@@ -2310,7 +2312,7 @@
     },
     "assumere": {
       "author": "LangPao",
-      "cap": 0.6,
+      "cap": 2.1,
       "file": "words/assumere.mp3",
       "gain": 3.5,
       "lead": 276,
@@ -2322,7 +2324,7 @@
     "attenzione": {
       "author": "XANA000",
       "file": "words/attenzione.mp3",
-      "gain": 4.8,
+      "gain": 5.6,
       "gate": -98.9,
       "lead": 190,
       "matches": "attenzione",
@@ -2333,7 +2335,7 @@
     "attraversare": {
       "author": "XANA000",
       "file": "words/attraversare.mp3",
-      "gain": -1.7,
+      "gain": -2.5,
       "lead": 200,
       "matches": "attraversare",
       "mos": 2.86,
@@ -2343,7 +2345,7 @@
     "autista": {
       "author": "XANA000",
       "file": "words/autista.mp3",
-      "gain": 4.1,
+      "gain": 5.4,
       "gate": -89.5,
       "lead": 217,
       "matches": "autista",
@@ -2354,7 +2356,7 @@
     "autobus": {
       "author": "LangPao",
       "file": "words/autobus.mp3",
-      "gain": 0.5,
+      "gain": -0.2,
       "lead": 219,
       "matches": "autobus",
       "mos": 3.07,
@@ -2364,7 +2366,7 @@
     "autorità": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/autoritu00e0.mp3",
-      "gain": 6.8,
+      "gain": 8.7,
       "gate": -84.4,
       "lead": 190,
       "matches": "autorità",
@@ -2375,7 +2377,7 @@
     "avere": {
       "author": "XANA000",
       "file": "words/avere.mp3",
-      "gain": -1.4,
+      "gain": -2.0,
       "lead": 202,
       "matches": "avere",
       "mos": 2.59,
@@ -2385,7 +2387,7 @@
     "bagaglio": {
       "author": "LangPao",
       "file": "words/bagaglio.mp3",
-      "gain": 2.4,
+      "gain": 0.8,
       "lead": 201,
       "matches": "bagaglio",
       "mos": 2.81,
@@ -2395,7 +2397,7 @@
     "bambino": {
       "author": "XANA000",
       "file": "words/bambino.mp3",
-      "gain": 1.8,
+      "gain": 5.8,
       "gate": -91.2,
       "lead": 212,
       "matches": "bambino",
@@ -2406,7 +2408,7 @@
     "banana": {
       "author": "DanielParoliere",
       "file": "words/banana.mp3",
-      "gain": -1.8,
+      "gain": -2.9,
       "gate": -92.7,
       "lead": 154,
       "license": "CC BY 4.0",
@@ -2418,7 +2420,7 @@
     "banca": {
       "author": "XANA000",
       "file": "words/banca.mp3",
-      "gain": 1.0,
+      "gain": -0.1,
       "gate": -93.5,
       "lead": 208,
       "matches": "banca",
@@ -2429,7 +2431,7 @@
     "bancarella": {
       "author": "LangPao",
       "file": "words/bancarella.mp3",
-      "gain": 2.5,
+      "gain": -0.1,
       "lead": 234,
       "matches": "bancarella",
       "mos": 3.26,
@@ -2438,9 +2440,8 @@
     },
     "bancomat": {
       "author": "LangPao",
-      "cap": 0.8,
       "file": "words/bancomat.mp3",
-      "gain": 3.5,
+      "gain": 1.6,
       "lead": 192,
       "matches": "bancomat",
       "mos": 2.79,
@@ -2460,8 +2461,9 @@
     },
     "bastone": {
       "author": "LangPao",
+      "cap": 1.4,
       "file": "words/bastone.mp3",
-      "gain": 3.5,
+      "gain": 3.9,
       "lead": 241,
       "matches": "bastone",
       "mos": 2.44,
@@ -2471,7 +2473,7 @@
     "bello": {
       "author": "LangPao",
       "file": "words/bello.mp3",
-      "gain": 1.1,
+      "gain": -0.1,
       "lead": 224,
       "matches": "bello",
       "mos": 2.9,
@@ -2481,7 +2483,7 @@
     "benvenuto": {
       "author": "XANA000",
       "file": "words/benvenuto.mp3",
-      "gain": 3.7,
+      "gain": 5.3,
       "lead": 168,
       "matches": "benvenuto",
       "mos": 3.0,
@@ -2491,7 +2493,7 @@
     "bere": {
       "author": "XANA000",
       "file": "words/bere.mp3",
-      "gain": 2.2,
+      "gain": 0.8,
       "lead": 164,
       "matches": "bere",
       "mos": 2.42,
@@ -2500,9 +2502,8 @@
     },
     "berretto": {
       "author": "DivoLetto",
-      "cap": 0.1,
       "file": "words/berretto.mp3",
-      "gain": 7.5,
+      "gain": 4.4,
       "gate": -75.9,
       "matches": "berretto",
       "mos": 2.4,
@@ -2512,7 +2513,7 @@
     "bevanda": {
       "author": "LangPao",
       "file": "words/bevanda.mp3",
-      "gain": -2.3,
+      "gain": -2.6,
       "gate": -97.6,
       "lead": 206,
       "matches": "bevanda",
@@ -2523,7 +2524,7 @@
     "bianco": {
       "author": "LangPao",
       "file": "words/bianco.mp3",
-      "gain": 4.8,
+      "gain": 3.9,
       "lead": 215,
       "matches": "bianco",
       "mos": 3.13,
@@ -2533,7 +2534,7 @@
     "biblioteca": {
       "author": "LangPao",
       "file": "words/biblioteca.mp3",
-      "gain": 0.8,
+      "gain": 2.4,
       "gate": -97.4,
       "lead": 209,
       "matches": "biblioteca",
@@ -2544,7 +2545,7 @@
     "bicchiere": {
       "author": "LangPao",
       "file": "words/bicchiere.mp3",
-      "gain": 6.5,
+      "gain": 6.9,
       "lead": 198,
       "matches": "bicchiere",
       "mos": 3.19,
@@ -2554,7 +2555,7 @@
     "bicicletta": {
       "author": "XANA000",
       "file": "words/bicicletta.mp3",
-      "gain": 0.7,
+      "gain": 0.1,
       "gate": -65.7,
       "matches": "bicicletta",
       "mos": 2.89,
@@ -2564,7 +2565,7 @@
     "biglietto": {
       "author": "LangPao",
       "file": "words/biglietto.mp3",
-      "gain": 6.6,
+      "gain": 9.6,
       "lead": 223,
       "matches": "biglietto",
       "mos": 2.64,
@@ -2574,7 +2575,7 @@
     "bilancia": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/bilancia.mp3",
-      "gain": 7.4,
+      "gain": 6.2,
       "gate": -89.5,
       "lead": 185,
       "matches": "bilancia",
@@ -2585,7 +2586,7 @@
     "blu": {
       "author": "LangPao",
       "file": "words/blu.mp3",
-      "gain": 3.8,
+      "gain": 6.2,
       "lead": 253,
       "matches": "blu",
       "mos": 2.42,
@@ -2595,7 +2596,7 @@
     "bocca": {
       "author": "LangPao",
       "file": "words/bocca.mp3",
-      "gain": 2.4,
+      "gain": 3.4,
       "gate": -100.0,
       "lead": 236,
       "matches": "bocca",
@@ -2606,7 +2607,7 @@
     "bollire": {
       "author": "XANA000",
       "file": "words/bollire.mp3",
-      "gain": 1.9,
+      "gain": 1.7,
       "lead": 148,
       "matches": "bollire",
       "mos": 2.49,
@@ -2616,7 +2617,7 @@
     "borsa": {
       "author": "LangPao",
       "file": "words/borsa.mp3",
-      "gain": 3.0,
+      "gain": 2.0,
       "lead": 213,
       "matches": "borsa",
       "mos": 2.8,
@@ -2626,7 +2627,7 @@
     "bosco": {
       "author": "LangPao",
       "file": "words/bosco.mp3",
-      "gain": 7.4,
+      "gain": 8.1,
       "gate": -75.0,
       "lead": 229,
       "matches": "bosco",
@@ -2636,7 +2637,7 @@
     },
     "braccio": {
       "author": "LangPao",
-      "cap": 0.9,
+      "cap": 1.5,
       "file": "words/braccio.mp3",
       "gain": 3.3,
       "lead": 246,
@@ -2648,7 +2649,7 @@
     "buon viaggio": {
       "author": "XANA000",
       "file": "words/buonu0020viaggio.mp3",
-      "gain": 6.9,
+      "gain": 3.8,
       "lead": 185,
       "matches": "buon viaggio",
       "mos": 2.93,
@@ -2658,7 +2659,7 @@
     "buonanotte": {
       "author": "XANA000",
       "file": "words/buonanotte.mp3",
-      "gain": 3.5,
+      "gain": 3.7,
       "lead": 177,
       "matches": "buonanotte",
       "mos": 2.67,
@@ -2668,7 +2669,7 @@
     "buonasera": {
       "author": "XANA000",
       "file": "words/buonasera.mp3",
-      "gain": 4.0,
+      "gain": 3.0,
       "lead": 164,
       "matches": "buonasera",
       "mos": 2.68,
@@ -2678,7 +2679,7 @@
     "buongiorno": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/buongiorno.mp3",
-      "gain": -3.3,
+      "gain": -4.7,
       "gate": -71.0,
       "lead": 257,
       "matches": "buongiorno",
@@ -2689,7 +2690,7 @@
     "buono": {
       "author": "LangPao",
       "file": "words/buono.mp3",
-      "gain": 1.1,
+      "gain": 3.4,
       "lead": 243,
       "matches": "buono",
       "mos": 3.04,
@@ -2699,7 +2700,7 @@
     "burro": {
       "author": "LangPao",
       "file": "words/burro.mp3",
-      "gain": 1.2,
+      "gain": 3.1,
       "lead": 195,
       "matches": "burro",
       "mos": 2.91,
@@ -2709,7 +2710,7 @@
     "caffè": {
       "author": "XANA000",
       "file": "words/caffu00e8.mp3",
-      "gain": 1.3,
+      "gain": 1.5,
       "gate": -66.8,
       "lead": 231,
       "matches": "caffè",
@@ -2720,7 +2721,7 @@
     "caldo": {
       "author": "LangPao",
       "file": "words/caldo.mp3",
-      "gain": 4.6,
+      "gain": 4.0,
       "lead": 207,
       "matches": "caldo",
       "mos": 2.91,
@@ -2730,7 +2731,7 @@
     "calendario": {
       "author": "Ciampix",
       "file": "words/calendario.mp3",
-      "gain": 5.1,
+      "gain": 4.7,
       "gate": -78.9,
       "lead": 147,
       "matches": "calendario",
@@ -2741,7 +2742,7 @@
     "cameriere": {
       "author": "XANA000",
       "file": "words/cameriere.mp3",
-      "gain": 0.1,
+      "gain": 2.8,
       "gate": -86.0,
       "lead": 219,
       "matches": "cameriere",
@@ -2752,7 +2753,7 @@
     "camicia": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/camicia.mp3",
-      "gain": 4.5,
+      "gain": 7.8,
       "gate": -85.5,
       "lead": 159,
       "matches": "camicia",
@@ -2762,9 +2763,8 @@
     },
     "camion": {
       "author": "Crunchy Cloaky Crackdown",
-      "cap": 0.5,
       "file": "words/camion.mp3",
-      "gain": 5.4,
+      "gain": 4.5,
       "gate": -88.0,
       "lead": 161,
       "matches": "camion",
@@ -2775,7 +2775,7 @@
     "cammino": {
       "author": "DivoLetto",
       "file": "words/cammino.mp3",
-      "gain": 7.9,
+      "gain": 7.3,
       "gate": -89.7,
       "lead": 148,
       "matches": "cammino",
@@ -2785,7 +2785,7 @@
     },
     "campeggio": {
       "author": "LangPao",
-      "cap": 0.9,
+      "cap": 3.4,
       "file": "words/campeggio.mp3",
       "gain": 3.9,
       "lead": 267,
@@ -2796,8 +2796,9 @@
     },
     "cancellare": {
       "author": "LangPao",
+      "cap": 0.1,
       "file": "words/cancellare.mp3",
-      "gain": 3.2,
+      "gain": 3.7,
       "lead": 237,
       "matches": "cancellare",
       "mos": 2.85,
@@ -2807,7 +2808,7 @@
     "candidatura": {
       "author": "LangPao",
       "file": "words/candidatura.mp3",
-      "gain": 10.5,
+      "gain": 9.2,
       "gate": -67.4,
       "lead": 265,
       "matches": "candidatura",
@@ -2818,7 +2819,7 @@
     "cane": {
       "author": "XANA000",
       "file": "words/cane.mp3",
-      "gain": -2.8,
+      "gain": -3.7,
       "gate": -79.7,
       "lead": 204,
       "matches": "cane",
@@ -2828,8 +2829,9 @@
     },
     "canzone": {
       "author": "LangPao",
+      "cap": 2.7,
       "file": "words/canzone.mp3",
-      "gain": 0.4,
+      "gain": 2.5,
       "gate": -71.5,
       "lead": 263,
       "matches": "canzone",
@@ -2840,7 +2842,7 @@
     "capelli": {
       "author": "Jennum",
       "file": "words/capelli.mp3",
-      "gain": 10.6,
+      "gain": 9.8,
       "gate": -82.0,
       "lead": 151,
       "matches": "capelli",
@@ -2851,7 +2853,7 @@
     "capezzolo": {
       "author": "DivoLetto",
       "file": "words/capezzolo.mp3",
-      "gain": 6.3,
+      "gain": 6.6,
       "gate": -86.3,
       "lead": 173,
       "matches": "capezzolo",
@@ -2861,8 +2863,9 @@
     },
     "capire": {
       "author": "LangPao",
+      "cap": 3.1,
       "file": "words/capire.mp3",
-      "gain": 6.7,
+      "gain": 6.8,
       "lead": 15,
       "matches": "capire",
       "mos": 3.12,
@@ -2872,7 +2875,7 @@
     "capo": {
       "author": "LangPao",
       "file": "words/capo.mp3",
-      "gain": 4.3,
+      "gain": 4.2,
       "lead": 262,
       "matches": "capo",
       "mos": 2.85,
@@ -2881,7 +2884,7 @@
     },
     "cappotto": {
       "author": "LangPao",
-      "cap": 0.4,
+      "cap": 3.5,
       "file": "words/cappotto.mp3",
       "gain": 3.7,
       "lead": 221,
@@ -2892,7 +2895,7 @@
     },
     "capra": {
       "author": "LangPao",
-      "cap": 1.4,
+      "cap": 0.1,
       "file": "words/capra.mp3",
       "gain": 6.3,
       "gate": -79.2,
@@ -2905,7 +2908,7 @@
     "carino": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/carino.mp3",
-      "gain": -0.7,
+      "gain": 0.1,
       "gate": -72.5,
       "lead": 260,
       "matches": "carino",
@@ -2915,9 +2918,8 @@
     },
     "carne": {
       "author": "LangPao",
-      "cap": 0.1,
       "file": "words/carne.mp3",
-      "gain": 3.5,
+      "gain": 1.5,
       "lead": 250,
       "matches": "carne",
       "mos": 3.03,
@@ -2927,7 +2929,7 @@
     "caro": {
       "author": "LangPao",
       "file": "words/caro.mp3",
-      "gain": 3.5,
+      "gain": 2.5,
       "lead": 244,
       "matches": "caro",
       "mos": 3.0,
@@ -2937,7 +2939,7 @@
     "carota": {
       "author": "LangPao",
       "file": "words/carota.mp3",
-      "gain": 3.0,
+      "gain": 1.7,
       "lead": 280,
       "matches": "carota",
       "mos": 3.27,
@@ -2946,9 +2948,8 @@
     },
     "carta": {
       "author": "Crunchy Cloaky Crackdown",
-      "cap": 1.8,
       "file": "words/carta.mp3",
-      "gain": 8.3,
+      "gain": 7.9,
       "gate": -86.1,
       "lead": 201,
       "matches": "carta",
@@ -2959,7 +2960,7 @@
     "casa": {
       "author": "Ciampix",
       "file": "words/casa.mp3",
-      "gain": 2.2,
+      "gain": 1.4,
       "gate": -77.3,
       "lead": 138,
       "matches": "casa",
@@ -2970,7 +2971,7 @@
     "caso": {
       "author": "Accurimbono",
       "file": "words/caso.mp3",
-      "gain": 6.0,
+      "gain": 3.7,
       "gate": -71.9,
       "matches": "caso",
       "mos": 2.78,
@@ -2990,8 +2991,9 @@
     },
     "cattivo": {
       "author": "LangPao",
+      "cap": 0.8,
       "file": "words/cattivo.mp3",
-      "gain": 4.6,
+      "gain": 5.8,
       "lead": 264,
       "matches": "cattivo",
       "mos": 2.72,
@@ -3001,7 +3003,7 @@
     "cavallo": {
       "author": "XANA000",
       "file": "words/cavallo.mp3",
-      "gain": -4.8,
+      "gain": -5.1,
       "gate": -67.8,
       "lead": 160,
       "matches": "cavallo",
@@ -3012,7 +3014,7 @@
     "cavo": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/cavo.mp3",
-      "gain": 9.1,
+      "gain": 9.5,
       "gate": -85.1,
       "lead": 146,
       "matches": "cavo",
@@ -3022,7 +3024,7 @@
     },
     "cavolo": {
       "author": "LangPao",
-      "cap": 0.2,
+      "cap": 0.9,
       "file": "words/cavolo.mp3",
       "gain": 3.8,
       "lead": 275,
@@ -3034,7 +3036,7 @@
     "celibe": {
       "author": "LangPao",
       "file": "words/celibe.mp3",
-      "gain": 4.2,
+      "gain": 2.9,
       "lead": 216,
       "matches": "celibe",
       "mos": 3.09,
@@ -3044,7 +3046,7 @@
     "cellulare": {
       "author": "LangPao",
       "file": "words/cellulare.mp3",
-      "gain": 2.8,
+      "gain": 4.7,
       "lead": 194,
       "matches": "cellulare",
       "mos": 3.02,
@@ -3054,7 +3056,7 @@
     "cena": {
       "author": "LangPao",
       "file": "words/cena.mp3",
-      "gain": 2.0,
+      "gain": 2.6,
       "gate": -96.9,
       "lead": 203,
       "matches": "cena",
@@ -3065,7 +3067,7 @@
     "centro": {
       "author": "LangPao",
       "file": "words/centro.mp3",
-      "gain": 5.1,
+      "gain": 5.2,
       "lead": 180,
       "matches": "centro",
       "mos": 3.05,
@@ -3074,7 +3076,7 @@
     },
     "cercare": {
       "author": "LangPao",
-      "cap": 0.5,
+      "cap": 0.4,
       "file": "words/cercare.mp3",
       "gain": 5.3,
       "lead": 195,
@@ -3086,7 +3088,7 @@
     "cerotto": {
       "author": "LangPao",
       "file": "words/cerotto.mp3",
-      "gain": 4.7,
+      "gain": 3.7,
       "lead": 249,
       "matches": "cerotto",
       "mos": 2.49,
@@ -3095,8 +3097,9 @@
     },
     "certificato": {
       "author": "LangPao",
+      "cap": 0.6,
       "file": "words/certificato.mp3",
-      "gain": 6.0,
+      "gain": 6.3,
       "lead": 236,
       "matches": "certificato",
       "mos": 2.9,
@@ -3106,7 +3109,7 @@
     "cervello": {
       "author": "LangPao",
       "file": "words/cervello.mp3",
-      "gain": 9.9,
+      "gain": 9.3,
       "gate": -82.0,
       "lead": 234,
       "matches": "cervello",
@@ -3117,7 +3120,7 @@
     "cesto": {
       "author": "DivoLetto",
       "file": "words/cesto.mp3",
-      "gain": 3.5,
+      "gain": 5.6,
       "gate": -76.0,
       "matches": "cesto",
       "mos": 2.65,
@@ -3127,7 +3130,7 @@
     "che": {
       "author": "XANA000",
       "file": "words/che.mp3",
-      "gain": 5.3,
+      "gain": 8.3,
       "gate": -86.9,
       "lead": 194,
       "matches": "che",
@@ -3138,7 +3141,7 @@
     "che cosa": {
       "author": "LangPao",
       "file": "words/cheu0020cosa.mp3",
-      "gain": 2.3,
+      "gain": 4.8,
       "lead": 206,
       "matches": "che cosa",
       "mos": 3.18,
@@ -3148,7 +3151,7 @@
     "chi": {
       "author": "LangPao",
       "file": "words/chi.mp3",
-      "gain": 8.5,
+      "gain": 10.3,
       "lead": 234,
       "matches": "chi",
       "mos": 1.8,
@@ -3158,7 +3161,7 @@
     "chiacchierare": {
       "author": "LangPao",
       "file": "words/chiacchierare.mp3",
-      "gain": 0.8,
+      "gain": -1.4,
       "lead": 259,
       "matches": "chiacchierare",
       "mos": 3.0,
@@ -3168,7 +3171,7 @@
     "chiamare": {
       "author": "LangPao",
       "file": "words/chiamare.mp3",
-      "gain": 1.1,
+      "gain": 0.9,
       "lead": 256,
       "matches": "chiamare",
       "mos": 2.73,
@@ -3178,7 +3181,7 @@
     "chiave": {
       "author": "LangPao",
       "file": "words/chiave.mp3",
-      "gain": 3.8,
+      "gain": 3.1,
       "gate": -98.2,
       "lead": 279,
       "matches": "chiave",
@@ -3189,7 +3192,7 @@
     "chiedere": {
       "author": "LangPao",
       "file": "words/chiedere.mp3",
-      "gain": 4.0,
+      "gain": 5.3,
       "lead": 276,
       "matches": "chiedere",
       "mos": 2.93,
@@ -3199,7 +3202,7 @@
     "chiesa": {
       "author": "LangPao",
       "file": "words/chiesa.mp3",
-      "gain": 4.5,
+      "gain": 4.0,
       "lead": 243,
       "matches": "chiesa",
       "mos": 3.08,
@@ -3209,7 +3212,7 @@
     "chilo": {
       "author": "LangPao",
       "file": "words/chilo.mp3",
-      "gain": 6.1,
+      "gain": 7.4,
       "lead": 222,
       "matches": "chilo",
       "mos": 2.66,
@@ -3219,7 +3222,7 @@
     "chiudere": {
       "author": "LangPao",
       "file": "words/chiudere.mp3",
-      "gain": 6.3,
+      "gain": 9.1,
       "lead": 262,
       "matches": "chiudere",
       "mos": 2.82,
@@ -3229,7 +3232,7 @@
     "chiunque": {
       "author": "LangPao",
       "file": "words/chiunque.mp3",
-      "gain": 0.9,
+      "gain": 4.5,
       "gate": -93.9,
       "lead": 206,
       "matches": "chiunque",
@@ -3240,7 +3243,7 @@
     "ciao": {
       "author": "XANA000",
       "file": "words/ciao.mp3",
-      "gain": 6.3,
+      "gain": 3.8,
       "lead": 181,
       "matches": "ciao",
       "mos": 2.56,
@@ -3250,7 +3253,7 @@
     "cibo": {
       "author": "XANA000",
       "file": "words/cibo.mp3",
-      "gain": 3.4,
+      "gain": 8.1,
       "gate": -58.9,
       "lead": 150,
       "matches": "cibo",
@@ -3261,7 +3264,7 @@
     "cielo": {
       "author": "LangPao",
       "file": "words/cielo.mp3",
-      "gain": 3.8,
+      "gain": 3.5,
       "lead": 176,
       "matches": "cielo",
       "mos": 3.18,
@@ -3271,7 +3274,7 @@
     "cimitero": {
       "author": "LangPao",
       "file": "words/cimitero.mp3",
-      "gain": 2.5,
+      "gain": 3.6,
       "gate": -98.6,
       "lead": 184,
       "matches": "cimitero",
@@ -3282,7 +3285,7 @@
     "cinema": {
       "author": "XANA000",
       "file": "words/cinema.mp3",
-      "gain": 0.4,
+      "gain": 3.0,
       "gate": -55.2,
       "lead": 198,
       "matches": "cinema",
@@ -3293,7 +3296,7 @@
     "cintura": {
       "author": "LangPao",
       "file": "words/cintura.mp3",
-      "gain": 5.1,
+      "gain": 8.8,
       "lead": 188,
       "matches": "cintura",
       "mos": 3.3,
@@ -3303,7 +3306,7 @@
     "cipolla": {
       "author": "LangPao",
       "file": "words/cipolla.mp3",
-      "gain": 0.2,
+      "gain": 2.0,
       "gate": -95.1,
       "lead": 187,
       "matches": "cipolla",
@@ -3314,7 +3317,7 @@
     "città": {
       "author": "XANA000",
       "file": "words/cittu00e0.mp3",
-      "gain": 2.1,
+      "gain": -0.8,
       "gate": -74.1,
       "lead": 252,
       "matches": "città",
@@ -3325,7 +3328,7 @@
     "cliente": {
       "author": "LangPao",
       "file": "words/cliente.mp3",
-      "gain": 5.1,
+      "gain": 4.4,
       "lead": 280,
       "matches": "cliente",
       "mos": 3.04,
@@ -3334,8 +3337,9 @@
     },
     "cognata": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 0.3,
       "file": "words/cognata.mp3",
-      "gain": 8.6,
+      "gain": 10.4,
       "gate": -87.8,
       "lead": 201,
       "matches": "cognata",
@@ -3346,7 +3350,7 @@
     "cognato": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/cognato.mp3",
-      "gain": 5.2,
+      "gain": 6.5,
       "gate": -85.2,
       "lead": 160,
       "matches": "cognato",
@@ -3357,7 +3361,7 @@
     "cognome": {
       "author": "LangPao",
       "file": "words/cognome.mp3",
-      "gain": -0.1,
+      "gain": 0.1,
       "lead": 255,
       "matches": "cognome",
       "mos": 2.71,
@@ -3367,7 +3371,7 @@
     "colazione": {
       "author": "LangPao",
       "file": "words/colazione.mp3",
-      "gain": 3.2,
+      "gain": 3.6,
       "lead": 244,
       "matches": "colazione",
       "mos": 2.99,
@@ -3377,7 +3381,7 @@
     "collega": {
       "author": "LangPao",
       "file": "words/collega.mp3",
-      "gain": 1.7,
+      "gain": 2.9,
       "lead": 258,
       "matches": "collega",
       "mos": 2.72,
@@ -3387,7 +3391,7 @@
     "collo": {
       "author": "LangPao",
       "file": "words/collo.mp3",
-      "gain": 7.2,
+      "gain": 6.1,
       "gate": -78.0,
       "lead": 261,
       "matches": "collo",
@@ -3398,7 +3402,7 @@
     "colore": {
       "author": "LangPao",
       "file": "words/colore.mp3",
-      "gain": 4.1,
+      "gain": 5.8,
       "lead": 224,
       "matches": "colore",
       "mos": 2.84,
@@ -3408,7 +3412,7 @@
     "coltello": {
       "author": "LangPao",
       "file": "words/coltello.mp3",
-      "gain": 0.6,
+      "gain": 1.7,
       "lead": 254,
       "matches": "coltello",
       "mos": 2.9,
@@ -3418,7 +3422,7 @@
     "come": {
       "author": "XANA000",
       "file": "words/come.mp3",
-      "gain": -2.4,
+      "gain": 2.3,
       "lead": 267,
       "matches": "come",
       "mos": 1.91,
@@ -3427,8 +3431,9 @@
     },
     "cominciare": {
       "author": "LangPao",
+      "cap": 0.7,
       "file": "words/cominciare.mp3",
-      "gain": 1.2,
+      "gain": 4.4,
       "lead": 274,
       "matches": "cominciare",
       "mos": 2.92,
@@ -3438,7 +3443,7 @@
     "compleanno": {
       "author": "LangPao",
       "file": "words/compleanno.mp3",
-      "gain": 1.5,
+      "gain": -1.3,
       "lead": 228,
       "matches": "compleanno",
       "mos": 3.09,
@@ -3448,7 +3453,7 @@
     "completamente": {
       "author": "XANA000",
       "file": "words/completamente.mp3",
-      "gain": -1.2,
+      "gain": -0.4,
       "gate": -98.4,
       "lead": 99,
       "matches": "completamente",
@@ -3459,7 +3464,7 @@
     "comprare": {
       "author": "LangPao",
       "file": "words/comprare.mp3",
-      "gain": 0.7,
+      "gain": 2.2,
       "lead": 242,
       "matches": "comprare",
       "mos": 2.9,
@@ -3468,8 +3473,9 @@
     },
     "comunicazione": {
       "author": "DivoLetto",
+      "cap": 1.0,
       "file": "words/comunicazione.mp3",
-      "gain": 2.4,
+      "gain": 5.8,
       "gate": -68.7,
       "matches": "comunicazione",
       "mos": 3.03,
@@ -3479,7 +3485,7 @@
     "con": {
       "author": "LangPao",
       "file": "words/con.mp3",
-      "gain": 1.5,
+      "gain": 3.1,
       "lead": 225,
       "matches": "con",
       "mos": 2.7,
@@ -3489,7 +3495,7 @@
     "confine": {
       "author": "DivoLetto",
       "file": "words/confine.mp3",
-      "gain": 8.0,
+      "gain": 12.6,
       "gate": -79.5,
       "lead": 9,
       "matches": "confine",
@@ -3500,7 +3506,7 @@
     "confondere": {
       "author": "LangPao",
       "file": "words/confondere.mp3",
-      "gain": 10.6,
+      "gain": 11.4,
       "gate": -84.2,
       "lead": 266,
       "matches": "confondere",
@@ -3510,7 +3516,9 @@
     },
     "coniugazione": {
       "author": "LangPao",
+      "cap": 2.9,
       "file": "words/coniugazione.mp3",
+      "gain": 1.9,
       "gate": -64.8,
       "lead": 223,
       "matches": "coniugazione",
@@ -3521,7 +3529,7 @@
     "consegnare": {
       "author": "DivoLetto",
       "file": "words/consegnare.mp3",
-      "gain": 2.8,
+      "gain": 4.4,
       "gate": -74.4,
       "matches": "consegnare",
       "mos": 2.96,
@@ -3531,7 +3539,7 @@
     "contare": {
       "author": "Ciampix",
       "file": "words/contare.mp3",
-      "gain": 6.0,
+      "gain": 6.1,
       "gate": -81.2,
       "lead": 150,
       "matches": "contare",
@@ -3541,7 +3549,7 @@
     },
     "conto": {
       "author": "DivoLetto",
-      "cap": 0.2,
+      "cap": 0.8,
       "file": "words/conto.mp3",
       "gain": 8.3,
       "gate": -78.6,
@@ -3553,9 +3561,8 @@
     },
     "contratto": {
       "author": "LangPao",
-      "cap": 0.2,
       "file": "words/contratto.mp3",
-      "gain": 4.0,
+      "gain": 3.2,
       "lead": 255,
       "matches": "contratto",
       "mos": 2.89,
@@ -3565,7 +3572,7 @@
     "coperta": {
       "author": "DivoLetto",
       "file": "words/coperta.mp3",
-      "gain": 9.1,
+      "gain": 6.3,
       "gate": -81.3,
       "lead": 155,
       "matches": "coperta",
@@ -3576,7 +3583,7 @@
     "copiare": {
       "author": "LangPao",
       "file": "words/copiare.mp3",
-      "gain": 10.8,
+      "gain": 9.3,
       "gate": -81.7,
       "lead": 190,
       "matches": "copiare",
@@ -3587,7 +3594,7 @@
     "correggere": {
       "author": "LangPao",
       "file": "words/correggere.mp3",
-      "gain": 8.3,
+      "gain": 6.5,
       "gate": -69.7,
       "lead": 182,
       "matches": "correggere",
@@ -3598,7 +3605,7 @@
     "correre": {
       "author": "LangPao",
       "file": "words/correre.mp3",
-      "gain": 2.2,
+      "gain": 3.0,
       "lead": 258,
       "matches": "correre",
       "mos": 2.89,
@@ -3608,7 +3615,7 @@
     "corso": {
       "author": "XANA000",
       "file": "words/corso.mp3",
-      "gain": 2.2,
+      "gain": 1.7,
       "gate": -97.2,
       "lead": 257,
       "matches": "corso",
@@ -3618,8 +3625,9 @@
     },
     "corto": {
       "author": "LangPao",
+      "cap": 0.7,
       "file": "words/corto.mp3",
-      "gain": 2.5,
+      "gain": 4.7,
       "lead": 211,
       "matches": "corto",
       "mos": 2.46,
@@ -3629,7 +3637,7 @@
     "costa": {
       "author": "LangPao",
       "file": "words/costa.mp3",
-      "gain": 0.6,
+      "gain": 2.3,
       "lead": 223,
       "matches": "costa",
       "mos": 2.57,
@@ -3638,8 +3646,9 @@
     },
     "costare": {
       "author": "LangPao",
+      "cap": 0.7,
       "file": "words/costare.mp3",
-      "gain": 3.2,
+      "gain": 4.0,
       "gate": -98.0,
       "lead": 261,
       "matches": "costare",
@@ -3650,7 +3659,7 @@
     "crema": {
       "author": "LangPao",
       "file": "words/crema.mp3",
-      "gain": 3.3,
+      "gain": 0.8,
       "lead": 201,
       "matches": "crema",
       "mos": 3.18,
@@ -3660,7 +3669,7 @@
     "crema solare": {
       "author": "LangPao",
       "file": "words/cremau0020solare.mp3",
-      "gain": 1.1,
+      "gain": 1.5,
       "gate": -99.2,
       "lead": 209,
       "matches": "crema solare",
@@ -3671,7 +3680,7 @@
     "crescere": {
       "author": "LangPao",
       "file": "words/crescere.mp3",
-      "gain": 3.4,
+      "gain": 3.2,
       "gate": -94.8,
       "lead": 234,
       "matches": "crescere",
@@ -3681,8 +3690,9 @@
     },
     "cucchiaio": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 1.7,
       "file": "words/cucchiaio.mp3",
-      "gain": 7.8,
+      "gain": 8.5,
       "gate": -85.6,
       "lead": 163,
       "matches": "cucchiaio",
@@ -3693,7 +3703,7 @@
     "cucinare": {
       "author": "LangPao",
       "file": "words/cucinare.mp3",
-      "gain": 3.3,
+      "gain": 4.0,
       "gate": -96.4,
       "lead": 254,
       "matches": "cucinare",
@@ -3704,7 +3714,7 @@
     "cugina": {
       "author": "Jennum",
       "file": "words/cugina.mp3",
-      "gain": 7.0,
+      "gain": 9.1,
       "gate": -79.5,
       "lead": 167,
       "matches": "cugina",
@@ -3715,7 +3725,7 @@
     "cugino": {
       "author": "LangPao",
       "file": "words/cugino.mp3",
-      "gain": -4.1,
+      "gain": -2.3,
       "gate": -90.1,
       "lead": 51,
       "matches": "cugino",
@@ -3726,7 +3736,7 @@
     "cuore": {
       "author": "LangPao",
       "file": "words/cuore.mp3",
-      "gain": -3.3,
+      "gain": -1.4,
       "gate": -93.2,
       "lead": 234,
       "matches": "cuore",
@@ -3737,7 +3747,7 @@
     "curare": {
       "author": "LangPao",
       "file": "words/curare.mp3",
-      "gain": 1.3,
+      "gain": 2.2,
       "gate": -97.6,
       "lead": 146,
       "matches": "curare",
@@ -3748,7 +3758,7 @@
     "curriculum": {
       "author": "LangPao",
       "file": "words/curriculum.mp3",
-      "gain": 11.0,
+      "gain": 10.7,
       "gate": -80.7,
       "lead": 223,
       "matches": "curriculum",
@@ -3759,7 +3769,7 @@
     "cuscino": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/cuscino.mp3",
-      "gain": 6.5,
+      "gain": 8.4,
       "gate": -81.4,
       "lead": 131,
       "matches": "cuscino",
@@ -3781,7 +3791,7 @@
     "dare": {
       "author": "LangPao",
       "file": "words/dare.mp3",
-      "gain": -0.7,
+      "gain": -0.4,
       "lead": 218,
       "matches": "dare",
       "mos": 2.76,
@@ -3791,7 +3801,7 @@
     "data": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/data.mp3",
-      "gain": 6.3,
+      "gain": 4.6,
       "gate": -86.4,
       "lead": 190,
       "matches": "data",
@@ -3802,7 +3812,7 @@
     "data di nascita": {
       "author": "LangPao",
       "file": "words/datau0020diu0020nascita.mp3",
-      "gain": 3.0,
+      "gain": 2.2,
       "lead": 224,
       "matches": "data di nascita",
       "mos": 3.34,
@@ -3812,7 +3822,7 @@
     "datore di lavoro": {
       "author": "LangPao",
       "file": "words/datoreu0020diu0020lavoro.mp3",
-      "gain": 6.6,
+      "gain": 5.3,
       "gate": -68.6,
       "lead": 221,
       "matches": "datore di lavoro",
@@ -3823,7 +3833,7 @@
     "davanti": {
       "author": "XANA000",
       "file": "words/davanti.mp3",
-      "gain": -3.2,
+      "gain": -4.5,
       "lead": 189,
       "matches": "davanti",
       "mos": 3.11,
@@ -3833,7 +3843,7 @@
     "debole": {
       "author": "LangPao",
       "file": "words/debole.mp3",
-      "gain": 9.1,
+      "gain": 8.4,
       "gate": -69.5,
       "lead": 138,
       "matches": "debole",
@@ -3844,7 +3854,7 @@
     "decennio": {
       "author": "DivoLetto",
       "file": "words/decennio.mp3",
-      "gain": 5.2,
+      "gain": 4.7,
       "gate": -79.2,
       "lead": 118,
       "matches": "decennio",
@@ -3855,7 +3865,7 @@
     "dente": {
       "author": "LangPao",
       "file": "words/dente.mp3",
-      "gain": 1.4,
+      "gain": 2.2,
       "gate": -97.2,
       "lead": 263,
       "matches": "dente",
@@ -3866,7 +3876,7 @@
     "dentifricio": {
       "author": "LangPao",
       "file": "words/dentifricio.mp3",
-      "gain": 5.1,
+      "gain": 6.0,
       "lead": 185,
       "matches": "dentifricio",
       "mos": 3.01,
@@ -3876,7 +3886,7 @@
     "dentista": {
       "author": "LangPao",
       "file": "words/dentista.mp3",
-      "gain": 4.6,
+      "gain": 5.1,
       "lead": 182,
       "matches": "dentista",
       "mos": 2.66,
@@ -3886,7 +3896,7 @@
     "dentro": {
       "author": "XANA000",
       "file": "words/dentro.mp3",
-      "gain": -0.5,
+      "gain": -0.9,
       "lead": 188,
       "matches": "dentro",
       "mos": 2.86,
@@ -3896,7 +3906,7 @@
     "desiderare": {
       "author": "LangPao",
       "file": "words/desiderare.mp3",
-      "gain": 1.1,
+      "gain": 0.8,
       "lead": 251,
       "matches": "desiderare",
       "mos": 2.94,
@@ -3905,8 +3915,9 @@
     },
     "di": {
       "author": "XANA000",
+      "cap": 0.1,
       "file": "words/di.mp3",
-      "gain": 3.5,
+      "gain": 7.6,
       "gate": -70.3,
       "lead": 216,
       "matches": "di",
@@ -3917,7 +3928,7 @@
     "di nuovo": {
       "author": "LangPao",
       "file": "words/diu0020nuovo.mp3",
-      "gain": 1.1,
+      "gain": 2.9,
       "gate": -97.6,
       "lead": 203,
       "matches": "di nuovo",
@@ -3928,7 +3939,7 @@
     "dietro": {
       "author": "XANA000",
       "file": "words/dietro.mp3",
-      "gain": 0.4,
+      "gain": -0.8,
       "lead": 172,
       "matches": "dietro",
       "mos": 2.82,
@@ -3938,7 +3949,7 @@
     "differenza": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/differenza.mp3",
-      "gain": 3.4,
+      "gain": 0.5,
       "gate": -89.3,
       "lead": 165,
       "matches": "differenza",
@@ -3949,7 +3960,7 @@
     "difficile": {
       "author": "XANA000",
       "file": "words/difficile.mp3",
-      "gain": 5.5,
+      "gain": 8.4,
       "gate": -60.0,
       "lead": 124,
       "matches": "difficile",
@@ -3960,7 +3971,7 @@
     "dimenticare": {
       "author": "LangPao",
       "file": "words/dimenticare.mp3",
-      "gain": 1.4,
+      "gain": 2.8,
       "lead": 242,
       "matches": "dimenticare",
       "mos": 3.23,
@@ -3970,7 +3981,7 @@
     "dire": {
       "author": "XANA000",
       "file": "words/dire.mp3",
-      "gain": -0.6,
+      "gain": 2.5,
       "gate": -68.8,
       "lead": 157,
       "matches": "dire",
@@ -3981,6 +3992,7 @@
     "direzione": {
       "author": "LangPao",
       "file": "words/direzione.mp3",
+      "gain": -2.3,
       "lead": 266,
       "matches": "direzione",
       "mos": 3.24,
@@ -3989,7 +4001,7 @@
     },
     "disponibile": {
       "author": "LangPao",
-      "cap": 1.1,
+      "cap": 2.9,
       "file": "words/disponibile.mp3",
       "gain": 3.3,
       "gate": -73.3,
@@ -4001,8 +4013,9 @@
     },
     "dito": {
       "author": "LangPao",
+      "cap": 1.0,
       "file": "words/dito.mp3",
-      "gain": 8.0,
+      "gain": 9.8,
       "lead": 216,
       "matches": "dito",
       "mos": 2.99,
@@ -4023,7 +4036,7 @@
     "diverso": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/diverso.mp3",
-      "gain": 7.9,
+      "gain": 7.3,
       "gate": -84.7,
       "lead": 161,
       "matches": "diverso",
@@ -4034,7 +4047,7 @@
     "dizionario": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/dizionario.mp3",
-      "gain": 8.7,
+      "gain": 11.3,
       "gate": -81.2,
       "lead": 171,
       "matches": "dizionario",
@@ -4045,7 +4058,7 @@
     "doccia": {
       "author": "LangPao",
       "file": "words/doccia.mp3",
-      "gain": 5.5,
+      "gain": 5.0,
       "lead": 215,
       "matches": "doccia",
       "mos": 3.05,
@@ -4055,7 +4068,7 @@
     "dolce": {
       "author": "LangPao",
       "file": "words/dolce.mp3",
-      "gain": 6.4,
+      "gain": 7.2,
       "gate": -70.7,
       "lead": 162,
       "matches": "dolce",
@@ -4066,7 +4079,7 @@
     "dolore": {
       "author": "LangPao",
       "file": "words/dolore.mp3",
-      "gain": 7.9,
+      "gain": 9.1,
       "gate": -71.3,
       "lead": 43,
       "matches": "dolore",
@@ -4077,7 +4090,7 @@
     "domanda": {
       "author": "LangPao",
       "file": "words/domanda.mp3",
-      "gain": 3.2,
+      "gain": 2.9,
       "gate": -75.3,
       "lead": 215,
       "matches": "domanda",
@@ -4088,7 +4101,7 @@
     "domani": {
       "author": "XANA000",
       "file": "words/domani.mp3",
-      "gain": -3.7,
+      "gain": -4.6,
       "lead": 189,
       "matches": "domani",
       "mos": 2.87,
@@ -4098,7 +4111,7 @@
     "donna": {
       "author": "XANA000",
       "file": "words/donna.mp3",
-      "gain": 2.6,
+      "gain": 2.8,
       "gate": -91.2,
       "lead": 227,
       "matches": "donna",
@@ -4109,7 +4122,7 @@
     "dopo": {
       "author": "XANA000",
       "file": "words/dopo.mp3",
-      "gain": -0.6,
+      "gain": -1.1,
       "lead": 190,
       "matches": "dopo",
       "mos": 2.99,
@@ -4119,7 +4132,7 @@
     "dopodomani": {
       "author": "XANA000",
       "file": "words/dopodomani.mp3",
-      "gain": -1.5,
+      "gain": -2.1,
       "lead": 189,
       "matches": "dopodomani",
       "mos": 3.07,
@@ -4129,7 +4142,7 @@
     "dormire": {
       "author": "LangPao",
       "file": "words/dormire.mp3",
-      "gain": 2.1,
+      "gain": 4.3,
       "lead": 255,
       "matches": "dormire",
       "mos": 2.78,
@@ -4139,7 +4152,7 @@
     "dove": {
       "author": "XANA000",
       "file": "words/dove.mp3",
-      "gain": 1.1,
+      "gain": 2.7,
       "lead": 180,
       "matches": "dove",
       "mos": 2.78,
@@ -4149,7 +4162,7 @@
     "dovere": {
       "author": "LangPao",
       "file": "words/dovere.mp3",
-      "gain": 2.4,
+      "gain": 3.1,
       "lead": 228,
       "matches": "dovere",
       "mos": 3.11,
@@ -4159,7 +4172,7 @@
     "dritto": {
       "author": "XANA000",
       "file": "words/dritto.mp3",
-      "gain": 1.9,
+      "gain": 1.0,
       "lead": 189,
       "matches": "dritto",
       "mos": 2.21,
@@ -4169,7 +4182,7 @@
     "dubbio": {
       "author": "LangPao",
       "file": "words/dubbio.mp3",
-      "gain": 6.4,
+      "gain": 8.0,
       "lead": 257,
       "matches": "dubbio",
       "mos": 2.87,
@@ -4179,7 +4192,7 @@
     "durare": {
       "author": "LangPao",
       "file": "words/durare.mp3",
-      "gain": 1.8,
+      "gain": 0.7,
       "lead": 196,
       "matches": "durare",
       "mos": 2.93,
@@ -4189,7 +4202,7 @@
     "e": {
       "author": "XANA000",
       "file": "words/e.mp3",
-      "gain": 0.2,
+      "gain": 1.7,
       "lead": 192,
       "matches": "e",
       "mos": 2.5,
@@ -4198,7 +4211,7 @@
     },
     "economico": {
       "author": "LangPao",
-      "cap": 3.5,
+      "cap": 4.3,
       "file": "words/economico.mp3",
       "gain": 7.3,
       "gate": -70.5,
@@ -4210,8 +4223,9 @@
     },
     "edificio": {
       "author": "LangPao",
+      "cap": 0.8,
       "file": "words/edificio.mp3",
-      "gain": 7.9,
+      "gain": 10.6,
       "lead": 201,
       "matches": "edificio",
       "mos": 2.92,
@@ -4221,7 +4235,7 @@
     "elefante": {
       "author": "XANA000",
       "file": "words/elefante.mp3",
-      "gain": -3.2,
+      "gain": -3.9,
       "gate": -79.4,
       "lead": 253,
       "matches": "elefante",
@@ -4232,7 +4246,7 @@
     "elezione": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/elezione.mp3",
-      "gain": 8.6,
+      "gain": 9.4,
       "gate": -83.2,
       "lead": 190,
       "matches": "elezione",
@@ -4242,8 +4256,9 @@
     },
     "emergenza": {
       "author": "LangPao",
+      "cap": 0.1,
       "file": "words/emergenza.mp3",
-      "gain": 3.0,
+      "gain": 4.5,
       "lead": 187,
       "matches": "emergenza",
       "mos": 2.84,
@@ -4253,7 +4268,7 @@
     "entrare": {
       "author": "Ciampix",
       "file": "words/entrare.mp3",
-      "gain": 5.9,
+      "gain": 6.1,
       "gate": -81.0,
       "lead": 179,
       "matches": "entrare",
@@ -4263,7 +4278,7 @@
     },
     "entrata": {
       "author": "DivoLetto",
-      "cap": 1.7,
+      "cap": 0.1,
       "file": "words/entrata.mp3",
       "gain": 5.7,
       "gate": -80.2,
@@ -4276,7 +4291,7 @@
     "errore": {
       "author": "LangPao",
       "file": "words/errore.mp3",
-      "gain": 10.8,
+      "gain": 9.8,
       "gate": -69.5,
       "lead": 243,
       "matches": "errore",
@@ -4286,9 +4301,8 @@
     },
     "esame": {
       "author": "Crunchy Cloaky Crackdown",
-      "cap": 1.3,
       "file": "words/esame.mp3",
-      "gain": 7.5,
+      "gain": 7.3,
       "gate": -91.6,
       "lead": 187,
       "matches": "esame",
@@ -4298,7 +4312,7 @@
     },
     "esercizio": {
       "author": "LangPao",
-      "cap": 0.9,
+      "cap": 1.4,
       "file": "words/esercizio.mp3",
       "gain": 5.5,
       "lead": 179,
@@ -4310,7 +4324,7 @@
     "est": {
       "author": "LangPao",
       "file": "words/est.mp3",
-      "gain": 4.2,
+      "gain": 3.1,
       "gate": -84.6,
       "lead": 213,
       "matches": "est",
@@ -4321,7 +4335,7 @@
     "età": {
       "author": "XANA000",
       "file": "words/etu00e0.mp3",
-      "gain": 0.6,
+      "gain": -0.9,
       "gate": -87.2,
       "lead": 252,
       "matches": "età",
@@ -4332,7 +4346,7 @@
     "faccia": {
       "author": "LangPao",
       "file": "words/faccia.mp3",
-      "gain": 3.2,
+      "gain": 3.0,
       "lead": 269,
       "matches": "faccia",
       "mos": 2.44,
@@ -4342,7 +4356,7 @@
     "facile": {
       "author": "LangPao",
       "file": "words/facile.mp3",
-      "gain": 2.2,
+      "gain": 2.1,
       "lead": 133,
       "matches": "facile",
       "mos": 2.91,
@@ -4352,7 +4366,7 @@
     "fagiolo": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/fagiolo.mp3",
-      "gain": 6.7,
+      "gain": 6.8,
       "gate": -85.1,
       "lead": 135,
       "matches": "fagiolo",
@@ -4363,7 +4377,7 @@
     "fame": {
       "author": "LangPao",
       "file": "words/fame.mp3",
-      "gain": 0.9,
+      "gain": 0.7,
       "lead": 94,
       "matches": "fame",
       "mos": 2.99,
@@ -4373,7 +4387,7 @@
     "famiglia": {
       "author": "LangPao",
       "file": "words/famiglia.mp3",
-      "gain": 0.9,
+      "gain": 3.6,
       "lead": 254,
       "matches": "famiglia",
       "mos": 2.73,
@@ -4382,8 +4396,9 @@
     },
     "fare": {
       "author": "LangPao",
+      "cap": 0.6,
       "file": "words/fare.mp3",
-      "gain": 1.5,
+      "gain": 2.4,
       "lead": 135,
       "matches": "fare",
       "mos": 2.72,
@@ -4393,7 +4408,7 @@
     "fare il bucato": {
       "author": "LangPao",
       "file": "words/fareu0020ilu0020bucato.mp3",
-      "gain": 2.4,
+      "gain": 1.7,
       "lead": 144,
       "matches": "fare il bucato",
       "mos": 2.74,
@@ -4403,7 +4418,7 @@
     "farina": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/farina.mp3",
-      "gain": 7.8,
+      "gain": 9.5,
       "gate": -88.0,
       "lead": 191,
       "matches": "farina",
@@ -4414,7 +4429,7 @@
     "farmacia": {
       "author": "XANA000",
       "file": "words/farmacia.mp3",
-      "gain": 0.5,
+      "gain": -0.1,
       "gate": -90.8,
       "matches": "farmacia",
       "mos": 3.14,
@@ -4424,7 +4439,7 @@
     "febbre": {
       "author": "LangPao",
       "file": "words/febbre.mp3",
-      "gain": 0.8,
+      "gain": -0.2,
       "lead": 130,
       "matches": "febbre",
       "mos": 2.85,
@@ -4434,7 +4449,7 @@
     "fegato": {
       "author": "Ciampix",
       "file": "words/fegato.mp3",
-      "gain": 6.7,
+      "gain": 6.8,
       "gate": -79.8,
       "lead": 150,
       "matches": "fegato",
@@ -4445,7 +4460,7 @@
     "femminile": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/femminile.mp3",
-      "gain": 7.2,
+      "gain": 11.9,
       "gate": -81.9,
       "lead": 187,
       "matches": "femminile",
@@ -4456,7 +4471,7 @@
     "ferie": {
       "author": "LangPao",
       "file": "words/ferie.mp3",
-      "gain": 7.1,
+      "gain": 3.5,
       "gate": -83.1,
       "lead": 207,
       "matches": "ferie",
@@ -4467,7 +4482,7 @@
     "ferita": {
       "author": "LangPao",
       "file": "words/ferita.mp3",
-      "gain": 8.6,
+      "gain": 8.7,
       "gate": -74.5,
       "lead": 177,
       "matches": "ferita",
@@ -4478,7 +4493,7 @@
     "fermata": {
       "author": "LangPao",
       "file": "words/fermata.mp3",
-      "gain": 2.2,
+      "gain": 1.6,
       "lead": 116,
       "matches": "fermata",
       "mos": 3.06,
@@ -4488,7 +4503,7 @@
     "festa": {
       "author": "LangPao",
       "file": "words/festa.mp3",
-      "gain": 2.7,
+      "gain": 5.0,
       "gate": -78.1,
       "lead": 136,
       "matches": "festa",
@@ -4498,8 +4513,9 @@
     },
     "festeggiare": {
       "author": "LangPao",
+      "cap": 0.5,
       "file": "words/festeggiare.mp3",
-      "gain": 4.2,
+      "gain": 4.4,
       "lead": 217,
       "matches": "festeggiare",
       "mos": 3.01,
@@ -4509,7 +4525,7 @@
     "figlia": {
       "author": "LangPao",
       "file": "words/figlia.mp3",
-      "gain": 9.0,
+      "gain": 9.3,
       "lead": 166,
       "matches": "figlia",
       "mos": 2.58,
@@ -4519,7 +4535,7 @@
     "figlio": {
       "author": "LangPao",
       "file": "words/figlio.mp3",
-      "gain": 5.6,
+      "gain": 8.8,
       "lead": 239,
       "matches": "figlio",
       "mos": 2.52,
@@ -4529,7 +4545,7 @@
     "film": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/film.mp3",
-      "gain": 5.0,
+      "gain": 7.4,
       "gate": -82.7,
       "lead": 155,
       "matches": "film",
@@ -4540,7 +4556,7 @@
     "finalmente": {
       "author": "LangPao",
       "file": "words/finalmente.mp3",
-      "gain": 2.8,
+      "gain": 3.2,
       "lead": 183,
       "matches": "finalmente",
       "mos": 2.56,
@@ -4550,7 +4566,7 @@
     "fine settimana": {
       "author": "LangPao",
       "file": "words/fineu0020settimana.mp3",
-      "gain": 4.1,
+      "gain": 5.0,
       "lead": 196,
       "matches": "fine settimana",
       "mos": 3.34,
@@ -4559,8 +4575,9 @@
     },
     "finestra": {
       "author": "LangPao",
+      "cap": 0.1,
       "file": "words/finestra.mp3",
-      "gain": 5.8,
+      "gain": 6.3,
       "lead": 159,
       "matches": "finestra",
       "mos": 2.86,
@@ -4570,7 +4587,7 @@
     "finire": {
       "author": "XANA000",
       "file": "words/finire.mp3",
-      "gain": 3.3,
+      "gain": 8.5,
       "gate": -71.4,
       "lead": 170,
       "matches": "finire",
@@ -4581,7 +4598,7 @@
     "fino a": {
       "author": "LangPao",
       "file": "words/finou0020a.mp3",
-      "gain": 2.2,
+      "gain": 2.7,
       "lead": 230,
       "matches": "fino a",
       "mos": 2.84,
@@ -4591,7 +4608,7 @@
     "fiore": {
       "author": "XANA000",
       "file": "words/fiore.mp3",
-      "gain": -4.7,
+      "gain": -4.6,
       "gate": -70.1,
       "lead": 138,
       "matches": "fiore",
@@ -4602,7 +4619,7 @@
     "firma": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/firma.mp3",
-      "gain": 7.2,
+      "gain": 9.6,
       "gate": -88.6,
       "lead": 197,
       "matches": "firma",
@@ -4613,7 +4630,7 @@
     "firmare": {
       "author": "LangPao",
       "file": "words/firmare.mp3",
-      "gain": 3.8,
+      "gain": 5.4,
       "lead": 211,
       "matches": "firmare",
       "mos": 2.75,
@@ -4623,7 +4640,7 @@
     "fiume": {
       "author": "XANA000",
       "file": "words/fiume.mp3",
-      "gain": -0.1,
+      "gain": 3.3,
       "gate": -78.0,
       "lead": 161,
       "matches": "fiume",
@@ -4633,7 +4650,7 @@
     },
     "forchetta": {
       "author": "LangPao",
-      "cap": 1.3,
+      "cap": 1.7,
       "file": "words/forchetta.mp3",
       "gain": 4.7,
       "lead": 158,
@@ -4645,7 +4662,7 @@
     "formaggio": {
       "author": "XANA000",
       "file": "words/formaggio.mp3",
-      "gain": -0.7,
+      "gain": -1.4,
       "gate": -76.4,
       "lead": 124,
       "matches": "formaggio",
@@ -4656,7 +4673,7 @@
     "forno": {
       "author": "LangPao",
       "file": "words/forno.mp3",
-      "gain": 5.7,
+      "gain": 6.1,
       "gate": -75.9,
       "lead": 243,
       "matches": "forno",
@@ -4666,8 +4683,9 @@
     },
     "forse": {
       "author": "LangPao",
+      "cap": 0.1,
       "file": "words/forse.mp3",
-      "gain": 3.4,
+      "gain": 4.5,
       "lead": 205,
       "matches": "forse",
       "mos": 2.78,
@@ -4677,7 +4695,7 @@
     "forte": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/forte.mp3",
-      "gain": -2.4,
+      "gain": -4.1,
       "gate": -69.8,
       "lead": 188,
       "matches": "forte",
@@ -4687,9 +4705,8 @@
     },
     "frase": {
       "author": "LangPao",
-      "cap": 0.9,
       "file": "words/frase.mp3",
-      "gain": 7.2,
+      "gain": 5.3,
       "gate": -78.7,
       "lead": 237,
       "matches": "frase",
@@ -4700,7 +4717,7 @@
     "fratello": {
       "author": "LangPao",
       "file": "words/fratello.mp3",
-      "gain": 4.2,
+      "gain": 4.0,
       "lead": 129,
       "matches": "fratello",
       "mos": 2.95,
@@ -4710,7 +4727,6 @@
     "freddo": {
       "author": "LangPao",
       "file": "words/freddo.mp3",
-      "gain": 1.9,
       "lead": 234,
       "matches": "freddo",
       "mos": 2.4,
@@ -4719,7 +4735,7 @@
     },
     "fresco": {
       "author": "LangPao",
-      "cap": 0.7,
+      "cap": 1.9,
       "file": "words/fresco.mp3",
       "gain": 4.8,
       "lead": 214,
@@ -4731,7 +4747,7 @@
     "friggere": {
       "author": "LangPao",
       "file": "words/friggere.mp3",
-      "gain": 4.8,
+      "gain": 5.2,
       "lead": 230,
       "matches": "friggere",
       "mos": 2.78,
@@ -4740,7 +4756,7 @@
     },
     "frigorifero": {
       "author": "Icedlake",
-      "cap": 4.6,
+      "cap": 4.4,
       "file": "words/frigorifero.mp3",
       "gain": -2.0,
       "gate": -61.5,
@@ -4752,7 +4768,7 @@
     "frutta": {
       "author": "XANA000",
       "file": "words/frutta.mp3",
-      "gain": 2.3,
+      "gain": 4.3,
       "gate": -77.5,
       "lead": 177,
       "matches": "frutta",
@@ -4763,7 +4779,7 @@
     "fulmine": {
       "author": "LangPao",
       "file": "words/fulmine.mp3",
-      "gain": 5.6,
+      "gain": 6.3,
       "gate": -71.7,
       "lead": 226,
       "matches": "fulmine",
@@ -4774,7 +4790,7 @@
     "funerale": {
       "author": "DivoLetto",
       "file": "words/funerale.mp3",
-      "gain": 3.2,
+      "gain": 1.6,
       "gate": -77.5,
       "lead": 107,
       "matches": "funerale",
@@ -4785,7 +4801,7 @@
     "fuori": {
       "author": "Jennum",
       "file": "words/fuori.mp3",
-      "gain": 4.4,
+      "gain": 5.5,
       "gate": -79.3,
       "lead": 84,
       "matches": "fuori",
@@ -4796,7 +4812,7 @@
     "futuro": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/futuro.mp3",
-      "gain": 5.2,
+      "gain": 7.2,
       "gate": -84.9,
       "lead": 194,
       "matches": "futuro",
@@ -4806,9 +4822,8 @@
     },
     "gamba": {
       "author": "LangPao",
-      "cap": 0.5,
       "file": "words/gamba.mp3",
-      "gain": 4.5,
+      "gain": 1.9,
       "lead": 255,
       "matches": "gamba",
       "mos": 3.06,
@@ -4817,7 +4832,7 @@
     },
     "gas": {
       "author": "Crunchy Cloaky Crackdown",
-      "cap": 0.3,
+      "cap": 0.1,
       "file": "words/gas.mp3",
       "gain": 10.4,
       "gate": -84.3,
@@ -4830,7 +4845,7 @@
     "gatto": {
       "author": "XANA000",
       "file": "words/gatto.mp3",
-      "gain": -1.5,
+      "gain": -4.8,
       "gate": -71.6,
       "lead": 216,
       "matches": "gatto",
@@ -4841,7 +4856,7 @@
     "genitori": {
       "author": "DivoLetto",
       "file": "words/genitori.mp3",
-      "gain": 8.8,
+      "gain": 10.1,
       "gate": -82.5,
       "lead": 79,
       "matches": "genitori",
@@ -4851,7 +4866,7 @@
     },
     "giacca": {
       "author": "LangPao",
-      "cap": 1.4,
+      "cap": 0.2,
       "file": "words/giacca.mp3",
       "gain": 5.7,
       "lead": 233,
@@ -4863,7 +4878,7 @@
     "giallo": {
       "author": "LangPao",
       "file": "words/giallo.mp3",
-      "gain": 1.8,
+      "gain": -0.1,
       "gate": -98.7,
       "lead": 29,
       "matches": "giallo",
@@ -4874,7 +4889,7 @@
     "ginocchio": {
       "author": "LangPao",
       "file": "words/ginocchio.mp3",
-      "gain": 4.5,
+      "gain": 4.8,
       "lead": 187,
       "matches": "ginocchio",
       "mos": 2.93,
@@ -4884,7 +4899,7 @@
     "giocare": {
       "author": "LangPao",
       "file": "words/giocare.mp3",
-      "gain": 6.6,
+      "gain": 5.9,
       "lead": 186,
       "matches": "giocare",
       "mos": 2.94,
@@ -4894,7 +4909,7 @@
     "gioco": {
       "author": "LangPao",
       "file": "words/gioco.mp3",
-      "gain": 0.7,
+      "gain": 0.2,
       "lead": 36,
       "matches": "gioco",
       "mos": 2.64,
@@ -4904,7 +4919,7 @@
     "gioia": {
       "author": "LangPao",
       "file": "words/gioia.mp3",
-      "gain": 6.8,
+      "gain": 5.2,
       "gate": -84.3,
       "lead": 122,
       "matches": "gioia",
@@ -4915,7 +4930,7 @@
     "giornale": {
       "author": "LangPao",
       "file": "words/giornale.mp3",
-      "gain": 3.9,
+      "gain": 3.3,
       "lead": 253,
       "matches": "giornale",
       "mos": 3.14,
@@ -4925,7 +4940,7 @@
     "giorno": {
       "author": "XANA000",
       "file": "words/giorno.mp3",
-      "gain": 1.5,
+      "gain": 1.6,
       "gate": -95.5,
       "lead": 212,
       "matches": "giorno",
@@ -4936,7 +4951,7 @@
     "giovane": {
       "author": "LangPao",
       "file": "words/giovane.mp3",
-      "gain": 3.6,
+      "gain": 4.3,
       "lead": 225,
       "matches": "giovane",
       "mos": 2.8,
@@ -4946,7 +4961,7 @@
     "giovinezza": {
       "author": "LangPao",
       "file": "words/giovinezza.mp3",
-      "gain": -0.1,
+      "gain": 1.8,
       "gate": -97.4,
       "lead": 238,
       "matches": "giovinezza",
@@ -4957,7 +4972,7 @@
     "girare": {
       "author": "LangPao",
       "file": "words/girare.mp3",
-      "gain": 0.2,
+      "gain": -0.4,
       "gate": -98.8,
       "lead": 242,
       "matches": "girare",
@@ -4968,7 +4983,7 @@
     "gola": {
       "author": "LangPao",
       "file": "words/gola.mp3",
-      "gain": 2.6,
+      "gain": 3.3,
       "lead": 257,
       "matches": "gola",
       "mos": 3.0,
@@ -4978,7 +4993,7 @@
     "governo": {
       "author": "LangPao",
       "file": "words/governo.mp3",
-      "gain": 5.3,
+      "gain": 6.9,
       "lead": 271,
       "matches": "governo",
       "mos": 2.93,
@@ -4987,7 +5002,7 @@
     },
     "grammo": {
       "author": "DiplomaticBadger",
-      "cap": 0.7,
+      "cap": 0.3,
       "file": "words/grammo.mp3",
       "gain": 6.2,
       "gate": -87.2,
@@ -5000,7 +5015,7 @@
     "grande": {
       "author": "LangPao",
       "file": "words/grande.mp3",
-      "gain": 2.4,
+      "gain": 0.4,
       "lead": 249,
       "matches": "grande",
       "mos": 2.8,
@@ -5010,7 +5025,7 @@
     "grazie mille": {
       "author": "XANA000",
       "file": "words/grazieu0020mille.mp3",
-      "gain": 1.6,
+      "gain": 1.8,
       "lead": 186,
       "matches": "grazie mille",
       "mos": 2.75,
@@ -5020,7 +5035,7 @@
     "grigio": {
       "author": "LangPao",
       "file": "words/grigio.mp3",
-      "gain": 2.4,
+      "gain": 5.0,
       "lead": 217,
       "matches": "grigio",
       "mos": 2.42,
@@ -5030,7 +5045,7 @@
     "guadagnare": {
       "author": "LangPao",
       "file": "words/guadagnare.mp3",
-      "gain": 4.4,
+      "gain": 2.5,
       "gate": -76.0,
       "lead": 239,
       "matches": "guadagnare",
@@ -5041,7 +5056,7 @@
     "guanto": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/guanto.mp3",
-      "gain": 6.2,
+      "gain": 4.7,
       "gate": -85.1,
       "lead": 166,
       "matches": "guanto",
@@ -5052,7 +5067,7 @@
     "guardare": {
       "author": "LangPao",
       "file": "words/guardare.mp3",
-      "gain": 1.4,
+      "gain": 1.7,
       "lead": 186,
       "matches": "guardare",
       "mos": 3.05,
@@ -5062,7 +5077,7 @@
     "guerra": {
       "author": "XANA000",
       "file": "words/guerra.mp3",
-      "gain": -1.4,
+      "gain": -3.5,
       "gate": -76.9,
       "lead": 257,
       "matches": "guerra",
@@ -5073,7 +5088,7 @@
     "ieri": {
       "author": "LangPao",
       "file": "words/ieri.mp3",
-      "gain": 0.3,
+      "gain": -0.4,
       "lead": 241,
       "matches": "ieri",
       "mos": 2.36,
@@ -5083,7 +5098,7 @@
     "immaginare": {
       "author": "LangPao",
       "file": "words/immaginare.mp3",
-      "gain": 2.4,
+      "gain": 3.1,
       "lead": 236,
       "matches": "immaginare",
       "mos": 2.84,
@@ -5093,7 +5108,7 @@
     "imparare a memoria": {
       "author": "LangPao",
       "file": "words/imparareu0020au0020memoria.mp3",
-      "gain": 1.1,
+      "gain": 0.2,
       "lead": 200,
       "matches": "imparare a memoria",
       "mos": 2.76,
@@ -5103,7 +5118,7 @@
     "impiegato": {
       "author": "XANA000",
       "file": "words/impiegato.mp3",
-      "gain": 3.7,
+      "gain": 1.6,
       "gate": -87.7,
       "lead": 35,
       "matches": "impiegato",
@@ -5113,9 +5128,8 @@
     },
     "importante": {
       "author": "LangPao",
-      "cap": 1.0,
       "file": "words/importante.mp3",
-      "gain": 10.1,
+      "gain": 8.7,
       "gate": -73.6,
       "lead": 244,
       "matches": "importante",
@@ -5125,8 +5139,9 @@
     },
     "imposta": {
       "author": "DiplomaticBadger",
+      "cap": 1.6,
       "file": "words/imposta.mp3",
-      "gain": 8.9,
+      "gain": 9.6,
       "gate": -86.8,
       "lead": 163,
       "matches": "imposta",
@@ -5137,7 +5152,7 @@
     "in": {
       "author": "XANA000",
       "file": "words/in.mp3",
-      "gain": -1.9,
+      "gain": 1.7,
       "gate": -91.0,
       "lead": 224,
       "matches": "in",
@@ -5148,7 +5163,7 @@
     "indirizzo": {
       "author": "LangPao",
       "file": "words/indirizzo.mp3",
-      "gain": 6.5,
+      "gain": 10.2,
       "lead": 237,
       "matches": "indirizzo",
       "mos": 2.98,
@@ -5158,7 +5173,7 @@
     "infermiere": {
       "author": "XANA000",
       "file": "words/infermiere.mp3",
-      "gain": 3.8,
+      "gain": 2.8,
       "gate": -78.8,
       "lead": 266,
       "matches": "infermiere",
@@ -5169,7 +5184,7 @@
     "insegnare": {
       "author": "LangPao",
       "file": "words/insegnare.mp3",
-      "gain": 1.1,
+      "gain": 2.2,
       "lead": 194,
       "matches": "insegnare",
       "mos": 3.16,
@@ -5179,7 +5194,7 @@
     "insetto": {
       "author": "XANA000",
       "file": "words/insetto.mp3",
-      "gain": -0.7,
+      "gain": -2.1,
       "gate": -69.1,
       "lead": 213,
       "matches": "insetto",
@@ -5190,7 +5205,7 @@
     "insieme": {
       "author": "LangPao",
       "file": "words/insieme.mp3",
-      "gain": 5.8,
+      "gain": 7.5,
       "lead": 239,
       "matches": "insieme",
       "mos": 3.07,
@@ -5200,7 +5215,7 @@
     "internet": {
       "author": "XANA000",
       "file": "words/internet.mp3",
-      "gain": -1.1,
+      "gain": 0.7,
       "gate": -71.7,
       "lead": 256,
       "matches": "internet",
@@ -5210,8 +5225,9 @@
     },
     "intestino": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 0.2,
       "file": "words/intestino.mp3",
-      "gain": 8.5,
+      "gain": 10.0,
       "gate": -90.0,
       "lead": 195,
       "matches": "intestino",
@@ -5222,7 +5238,7 @@
     "invecchiare": {
       "author": "LangPao",
       "file": "words/invecchiare.mp3",
-      "gain": 8.0,
+      "gain": 8.2,
       "gate": -71.1,
       "lead": 234,
       "matches": "invecchiare",
@@ -5233,7 +5249,7 @@
     "inviare": {
       "author": "LangPao",
       "file": "words/inviare.mp3",
-      "gain": 7.8,
+      "gain": 4.7,
       "gate": -71.3,
       "lead": 178,
       "matches": "inviare",
@@ -5244,7 +5260,7 @@
     "invitare": {
       "author": "LangPao",
       "file": "words/invitare.mp3",
-      "gain": 1.5,
+      "gain": 2.5,
       "gate": -94.1,
       "lead": 49,
       "matches": "invitare",
@@ -5255,7 +5271,7 @@
     "io": {
       "author": "XANA000",
       "file": "words/io.mp3",
-      "gain": 3.0,
+      "gain": 6.1,
       "lead": 207,
       "matches": "io",
       "mos": 2.52,
@@ -5276,7 +5292,7 @@
     "labbro": {
       "author": "LangPao",
       "file": "words/labbro.mp3",
-      "gain": 1.3,
+      "gain": 1.0,
       "lead": 261,
       "matches": "labbro",
       "mos": 2.77,
@@ -5286,7 +5302,7 @@
     "lago": {
       "author": "XANA000",
       "file": "words/lago.mp3",
-      "gain": -1.9,
+      "gain": -4.0,
       "gate": -71.0,
       "lead": 223,
       "matches": "lago",
@@ -5297,7 +5313,7 @@
     "lampada": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/lampada.mp3",
-      "gain": 4.8,
+      "gain": 4.6,
       "gate": -85.7,
       "lead": 190,
       "matches": "lampada",
@@ -5308,7 +5324,7 @@
     "lasciare": {
       "author": "LangPao",
       "file": "words/lasciare.mp3",
-      "gain": 1.8,
+      "gain": 0.6,
       "lead": 217,
       "matches": "lasciare",
       "mos": 3.31,
@@ -5317,9 +5333,8 @@
     },
     "latte": {
       "author": "Accurimbono",
-      "cap": 2.4,
       "file": "words/latte.mp3",
-      "gain": 4.9,
+      "gain": 3.9,
       "gate": -70.5,
       "matches": "latte",
       "mos": 1.1,
@@ -5328,9 +5343,8 @@
     },
     "lavagna": {
       "author": "DivoLetto",
-      "cap": 0.5,
       "file": "words/lavagna.mp3",
-      "gain": 7.5,
+      "gain": 4.6,
       "gate": -81.6,
       "lead": 100,
       "matches": "lavagna",
@@ -5341,7 +5355,7 @@
     "lavandino": {
       "author": "LangPao",
       "file": "words/lavandino.mp3",
-      "gain": 0.1,
+      "gain": 0.2,
       "lead": 258,
       "matches": "lavandino",
       "mos": 2.91,
@@ -5351,7 +5365,7 @@
     "lavastoviglie": {
       "author": "LangPao",
       "file": "words/lavastoviglie.mp3",
-      "gain": 2.8,
+      "gain": 3.2,
       "gate": -98.5,
       "matches": "lavastoviglie",
       "mos": 2.93,
@@ -5360,9 +5374,8 @@
     },
     "lavatrice": {
       "author": "LangPao",
-      "cap": 0.3,
       "file": "words/lavatrice.mp3",
-      "gain": 3.8,
+      "gain": 3.7,
       "lead": 271,
       "matches": "lavatrice",
       "mos": 2.91,
@@ -5372,7 +5385,7 @@
     "lavorare": {
       "author": "LangPao",
       "file": "words/lavorare.mp3",
-      "gain": 1.1,
+      "gain": 1.3,
       "lead": 222,
       "matches": "lavorare",
       "mos": 3.2,
@@ -5382,7 +5395,7 @@
     "lavoratore": {
       "author": "LangPao",
       "file": "words/lavoratore.mp3",
-      "gain": 1.3,
+      "gain": 1.6,
       "lead": 258,
       "matches": "lavoratore",
       "mos": 3.2,
@@ -5392,7 +5405,7 @@
     "lavoro": {
       "author": "XANA000",
       "file": "words/lavoro.mp3",
-      "gain": 1.4,
+      "gain": 2.2,
       "gate": -84.3,
       "lead": 236,
       "matches": "lavoro",
@@ -5403,7 +5416,7 @@
     "legge": {
       "author": "LangPao",
       "file": "words/legge.mp3",
-      "gain": 5.8,
+      "gain": 6.1,
       "lead": 272,
       "matches": "legge",
       "mos": 2.7,
@@ -5413,7 +5426,7 @@
     "leggere": {
       "author": "LangPao",
       "file": "words/leggere.mp3",
-      "gain": 1.7,
+      "gain": 1.3,
       "lead": 211,
       "matches": "leggere",
       "mos": 2.56,
@@ -5423,7 +5436,7 @@
     "leggero": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/leggero.mp3",
-      "gain": 5.4,
+      "gain": 5.2,
       "gate": -85.9,
       "lead": 193,
       "matches": "leggero",
@@ -5434,7 +5447,7 @@
     "legno": {
       "author": "LangPao",
       "file": "words/legno.mp3",
-      "gain": 4.7,
+      "gain": 3.3,
       "gate": -99.6,
       "lead": 251,
       "matches": "legno",
@@ -5445,7 +5458,7 @@
     "lei": {
       "author": "LangPao",
       "file": "words/lei.mp3",
-      "gain": 1.5,
+      "gain": -1.0,
       "lead": 231,
       "matches": "lei",
       "mos": 2.74,
@@ -5455,7 +5468,7 @@
     "lento": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/lento.mp3",
-      "gain": -3.6,
+      "gain": -4.9,
       "gate": -70.0,
       "matches": "lento",
       "mos": 2.68,
@@ -5465,7 +5478,7 @@
     "lettera": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/lettera.mp3",
-      "gain": 9.5,
+      "gain": 8.6,
       "gate": -85.7,
       "lead": 180,
       "matches": "lettera",
@@ -5476,7 +5489,7 @@
     "letto": {
       "author": "LangPao",
       "file": "words/letto.mp3",
-      "gain": 6.4,
+      "gain": 4.1,
       "lead": 272,
       "matches": "letto",
       "mos": 2.63,
@@ -5486,7 +5499,7 @@
     "lezione": {
       "author": "LangPao",
       "file": "words/lezione.mp3",
-      "gain": 9.1,
+      "gain": 9.8,
       "lead": 256,
       "matches": "lezione",
       "mos": 3.21,
@@ -5496,7 +5509,7 @@
     "libertà": {
       "author": "XANA000",
       "file": "words/libertu00e0.mp3",
-      "gain": 2.2,
+      "gain": 3.0,
       "gate": -63.8,
       "lead": 198,
       "matches": "libertà",
@@ -5507,7 +5520,7 @@
     "libro": {
       "author": "LangPao",
       "file": "words/libro.mp3",
-      "gain": 2.5,
+      "gain": 2.7,
       "lead": 271,
       "matches": "libro",
       "mos": 2.43,
@@ -5516,8 +5529,9 @@
     },
     "licenziarsi": {
       "author": "LangPao",
+      "cap": 0.5,
       "file": "words/licenziarsi.mp3",
-      "gain": 2.7,
+      "gain": 5.4,
       "gate": -70.8,
       "lead": 21,
       "matches": "licenziarsi",
@@ -5528,7 +5542,7 @@
     "lingua": {
       "author": "LangPao",
       "file": "words/lingua.mp3",
-      "gain": 2.1,
+      "gain": 3.4,
       "lead": 228,
       "matches": "lingua",
       "mos": 2.76,
@@ -5537,7 +5551,6 @@
     },
     "liquido": {
       "author": "DivoLetto",
-      "cap": 0.3,
       "file": "words/liquido.mp3",
       "gain": 8.9,
       "gate": -78.3,
@@ -5550,7 +5563,7 @@
     "litro": {
       "author": "DiplomaticBadger",
       "file": "words/litro.mp3",
-      "gain": 6.0,
+      "gain": 11.2,
       "gate": -80.3,
       "lead": 166,
       "matches": "litro",
@@ -5561,7 +5574,7 @@
     "lontano": {
       "author": "LangPao",
       "file": "words/lontano.mp3",
-      "gain": 6.4,
+      "gain": 6.8,
       "lead": 218,
       "matches": "lontano",
       "mos": 2.94,
@@ -5571,7 +5584,7 @@
     "loro": {
       "author": "XANA000",
       "file": "words/loro.mp3",
-      "gain": -0.2,
+      "gain": 2.1,
       "gate": -95.6,
       "lead": 76,
       "matches": "loro",
@@ -5581,8 +5594,9 @@
     },
     "luce": {
       "author": "LangPao",
+      "cap": 0.8,
       "file": "words/luce.mp3",
-      "gain": 3.9,
+      "gain": 5.2,
       "lead": 228,
       "matches": "luce",
       "mos": 2.78,
@@ -5591,8 +5605,9 @@
     },
     "lui": {
       "author": "LangPao",
+      "cap": 1.9,
       "file": "words/lui.mp3",
-      "gain": 10.1,
+      "gain": 14.0,
       "lead": 253,
       "matches": "lui",
       "mos": 2.41,
@@ -5602,7 +5617,7 @@
     "luna": {
       "author": "XANA000",
       "file": "words/luna.mp3",
-      "gain": 0.1,
+      "gain": 1.7,
       "gate": -71.6,
       "lead": 132,
       "matches": "luna",
@@ -5612,8 +5627,9 @@
     },
     "lungo": {
       "author": "LangPao",
+      "cap": 0.3,
       "file": "words/lungo.mp3",
-      "gain": 6.2,
+      "gain": 9.1,
       "lead": 229,
       "matches": "lungo",
       "mos": 2.76,
@@ -5623,7 +5639,7 @@
     "lì": {
       "author": "XANA000",
       "file": "words/lu00ec.mp3",
-      "gain": 7.9,
+      "gain": 9.4,
       "lead": 218,
       "matches": "lì",
       "mos": 2.09,
@@ -5633,7 +5649,7 @@
     "ma": {
       "author": "XANA000",
       "file": "words/ma.mp3",
-      "gain": -1.7,
+      "gain": -2.6,
       "gate": -80.4,
       "lead": 192,
       "matches": "ma",
@@ -5643,7 +5659,7 @@
     },
     "macchina": {
       "author": "LangPao",
-      "cap": 1.2,
+      "cap": 0.8,
       "file": "words/macchina.mp3",
       "gain": 6.3,
       "lead": 250,
@@ -5654,7 +5670,7 @@
     },
     "madre": {
       "author": "LangPao",
-      "cap": 0.4,
+      "cap": 0.6,
       "file": "words/madre.mp3",
       "gain": 6.7,
       "lead": 213,
@@ -5665,7 +5681,7 @@
     },
     "maglietta": {
       "author": "LangPao",
-      "cap": 1.3,
+      "cap": 1.6,
       "file": "words/maglietta.mp3",
       "gain": 6.2,
       "lead": 267,
@@ -5677,7 +5693,7 @@
     "maglione": {
       "author": "XANA000",
       "file": "words/maglione.mp3",
-      "gain": 6.1,
+      "gain": 4.3,
       "lead": 168,
       "matches": "maglione",
       "mos": 2.79,
@@ -5687,7 +5703,7 @@
     "mai": {
       "author": "XANA000",
       "file": "words/mai.mp3",
-      "gain": 1.8,
+      "gain": -0.2,
       "lead": 182,
       "matches": "mai",
       "mos": 2.74,
@@ -5697,7 +5713,7 @@
     "malato": {
       "author": "LangPao",
       "file": "words/malato.mp3",
-      "gain": 2.9,
+      "gain": 1.7,
       "lead": 257,
       "matches": "malato",
       "mos": 3.16,
@@ -5707,7 +5723,7 @@
     "malattia": {
       "author": "LangPao",
       "file": "words/malattia.mp3",
-      "gain": 3.6,
+      "gain": 1.6,
       "gate": -96.7,
       "lead": 196,
       "matches": "malattia",
@@ -5717,7 +5733,7 @@
     },
     "mancia": {
       "author": "LangPao",
-      "cap": 1.1,
+      "cap": 0.7,
       "file": "words/mancia.mp3",
       "gain": 5.0,
       "lead": 230,
@@ -5729,7 +5745,7 @@
     "mangiare": {
       "author": "LangPao",
       "file": "words/mangiare.mp3",
-      "gain": 5.3,
+      "gain": 6.5,
       "lead": 221,
       "matches": "mangiare",
       "mos": 3.08,
@@ -5738,8 +5754,9 @@
     },
     "mano": {
       "author": "LangPao",
+      "cap": 0.2,
       "file": "words/mano.mp3",
-      "gain": 8.3,
+      "gain": 8.6,
       "lead": 243,
       "matches": "mano",
       "mos": 2.6,
@@ -5749,7 +5766,7 @@
     "mare": {
       "author": "XANA000",
       "file": "words/mare.mp3",
-      "gain": -2.8,
+      "gain": -3.6,
       "gate": -77.6,
       "lead": 262,
       "matches": "mare",
@@ -5760,7 +5777,7 @@
     "marito": {
       "author": "LangPao",
       "file": "words/marito.mp3",
-      "gain": 2.8,
+      "gain": 0.1,
       "lead": 214,
       "matches": "marito",
       "mos": 2.67,
@@ -5770,7 +5787,7 @@
     "marrone": {
       "author": "LangPao",
       "file": "words/marrone.mp3",
-      "gain": 1.4,
+      "gain": 0.4,
       "lead": 276,
       "matches": "marrone",
       "mos": 2.94,
@@ -5780,7 +5797,7 @@
     "materasso": {
       "author": "DiplomaticBadger",
       "file": "words/materasso.mp3",
-      "gain": 7.7,
+      "gain": 6.4,
       "gate": -85.7,
       "lead": 164,
       "matches": "materasso",
@@ -5791,7 +5808,7 @@
     "matita": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/matita.mp3",
-      "gain": 7.6,
+      "gain": 9.3,
       "gate": -85.3,
       "lead": 192,
       "matches": "matita",
@@ -5801,8 +5818,9 @@
     },
     "matrimonio": {
       "author": "LangPao",
+      "cap": 0.8,
       "file": "words/matrimonio.mp3",
-      "gain": 3.5,
+      "gain": 5.0,
       "lead": 212,
       "matches": "matrimonio",
       "mos": 3.06,
@@ -5811,7 +5829,7 @@
     },
     "mattina": {
       "author": "LangPao",
-      "cap": 0.6,
+      "cap": 2.7,
       "file": "words/mattina.mp3",
       "gain": 5.1,
       "lead": 247,
@@ -5823,7 +5841,7 @@
     "maturo": {
       "author": "DivoLetto",
       "file": "words/maturo.mp3",
-      "gain": 7.5,
+      "gain": 9.4,
       "gate": -73.2,
       "matches": "maturo",
       "mos": 3.22,
@@ -5833,7 +5851,7 @@
     "medicina": {
       "author": "LangPao",
       "file": "words/medicina.mp3",
-      "gain": 9.8,
+      "gain": 12.2,
       "lead": 204,
       "matches": "medicina",
       "mos": 2.77,
@@ -5843,7 +5861,7 @@
     "medico": {
       "author": "XANA000",
       "file": "words/medico.mp3",
-      "gain": 1.3,
+      "gain": -0.1,
       "gate": -84.6,
       "matches": "medico",
       "mos": 2.92,
@@ -5853,7 +5871,7 @@
     "mela": {
       "author": "LangPao",
       "file": "words/mela.mp3",
-      "gain": 2.6,
+      "gain": 5.6,
       "lead": 240,
       "matches": "mela",
       "mos": 2.85,
@@ -5863,7 +5881,7 @@
     "meno": {
       "author": "LangPao",
       "file": "words/meno.mp3",
-      "gain": 5.9,
+      "gain": 8.0,
       "lead": 237,
       "matches": "meno",
       "mos": 2.8,
@@ -5873,7 +5891,7 @@
     "mercato": {
       "author": "XANA000",
       "file": "words/mercato.mp3",
-      "gain": -1.3,
+      "gain": -3.0,
       "gate": -86.6,
       "matches": "mercato",
       "mos": 2.79,
@@ -5883,7 +5901,7 @@
     "mescolare": {
       "author": "LangPao",
       "file": "words/mescolare.mp3",
-      "gain": 5.4,
+      "gain": 4.4,
       "gate": -82.4,
       "lead": 196,
       "matches": "mescolare",
@@ -5894,7 +5912,7 @@
     "mese": {
       "author": "Ciampix",
       "file": "words/mese.mp3",
-      "gain": 5.4,
+      "gain": 4.7,
       "gate": -79.3,
       "lead": 189,
       "matches": "mese",
@@ -5905,7 +5923,7 @@
     "messaggio": {
       "author": "LangPao",
       "file": "words/messaggio.mp3",
-      "gain": 9.9,
+      "gain": 9.5,
       "gate": -97.5,
       "lead": 194,
       "matches": "messaggio",
@@ -5916,7 +5934,7 @@
     "mettere": {
       "author": "LangPao",
       "file": "words/mettere.mp3",
-      "gain": 5.8,
+      "gain": 4.7,
       "lead": 241,
       "matches": "mettere",
       "mos": 2.93,
@@ -5926,7 +5944,7 @@
     "mezzanotte": {
       "author": "LangPao",
       "file": "words/mezzanotte.mp3",
-      "gain": 0.7,
+      "gain": 2.2,
       "lead": 262,
       "matches": "mezzanotte",
       "mos": 2.72,
@@ -5936,7 +5954,7 @@
     "mezzogiorno": {
       "author": "LangPao",
       "file": "words/mezzogiorno.mp3",
-      "gain": 3.0,
+      "gain": 4.1,
       "lead": 255,
       "matches": "mezzogiorno",
       "mos": 2.69,
@@ -5946,7 +5964,7 @@
     "migliorare": {
       "author": "LangPao",
       "file": "words/migliorare.mp3",
-      "gain": 9.0,
+      "gain": 5.7,
       "gate": -80.4,
       "lead": 270,
       "matches": "migliorare",
@@ -5957,7 +5975,7 @@
     "milza": {
       "author": "Ciampix",
       "file": "words/milza.mp3",
-      "gain": 14.5,
+      "gain": 16.5,
       "gate": -82.1,
       "lead": 174,
       "matches": "milza",
@@ -5968,7 +5986,7 @@
     "minuto": {
       "author": "LangPao",
       "file": "words/minuto.mp3",
-      "gain": 5.8,
+      "gain": 9.1,
       "lead": 275,
       "matches": "minuto",
       "mos": 2.91,
@@ -5978,7 +5996,7 @@
     "mio": {
       "author": "XANA000",
       "file": "words/mio.mp3",
-      "gain": -3.6,
+      "gain": 1.1,
       "gate": -93.6,
       "lead": 188,
       "matches": "mio",
@@ -5989,7 +6007,7 @@
     "moglie": {
       "author": "LangPao",
       "file": "words/moglie.mp3",
-      "gain": 4.4,
+      "gain": 6.5,
       "gate": -96.0,
       "lead": 250,
       "matches": "moglie",
@@ -6000,7 +6018,7 @@
     "molto": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/molto.mp3",
-      "gain": -3.8,
+      "gain": -2.5,
       "gate": -69.9,
       "matches": "molto",
       "mos": 2.67,
@@ -6010,7 +6028,7 @@
     "moneta": {
       "author": "LangPao",
       "file": "words/moneta.mp3",
-      "gain": 3.1,
+      "gain": 4.2,
       "lead": 236,
       "matches": "moneta",
       "mos": 3.11,
@@ -6020,7 +6038,7 @@
     "montagna": {
       "author": "XANA000",
       "file": "words/montagna.mp3",
-      "gain": -2.0,
+      "gain": -3.5,
       "gate": -75.5,
       "lead": 233,
       "matches": "montagna",
@@ -6031,7 +6049,7 @@
     "morire": {
       "author": "LangPao",
       "file": "words/morire.mp3",
-      "gain": 7.4,
+      "gain": 7.6,
       "gate": -72.6,
       "lead": 212,
       "matches": "morire",
@@ -6042,7 +6060,7 @@
     "morte": {
       "author": "LangPao",
       "file": "words/morte.mp3",
-      "gain": 3.5,
+      "gain": 3.2,
       "lead": 232,
       "matches": "morte",
       "mos": 2.87,
@@ -6052,7 +6070,7 @@
     "morto": {
       "author": "LangPao",
       "file": "words/morto.mp3",
-      "gain": 11.9,
+      "gain": 10.7,
       "gate": -78.7,
       "lead": 254,
       "matches": "morto",
@@ -6062,8 +6080,9 @@
     },
     "moschea": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 0.1,
       "file": "words/moschea.mp3",
-      "gain": 10.5,
+      "gain": 12.0,
       "gate": -85.0,
       "lead": 186,
       "matches": "moschea",
@@ -6073,8 +6092,9 @@
     },
     "mostrare": {
       "author": "LangPao",
+      "cap": 1.3,
       "file": "words/mostrare.mp3",
-      "gain": 3.9,
+      "gain": 4.8,
       "lead": 264,
       "matches": "mostrare",
       "mos": 2.61,
@@ -6083,8 +6103,9 @@
     },
     "moto": {
       "author": "LangPao",
+      "cap": 0.3,
       "file": "words/moto.mp3",
-      "gain": 3.0,
+      "gain": 3.8,
       "lead": 235,
       "matches": "moto",
       "mos": 3.01,
@@ -6094,7 +6115,7 @@
     "motore": {
       "author": "LangPao",
       "file": "words/motore.mp3",
-      "gain": 10.0,
+      "gain": 8.3,
       "gate": -79.2,
       "lead": 234,
       "matches": "motore",
@@ -6105,7 +6126,7 @@
     "mouse": {
       "author": "DanielParoliere",
       "file": "words/mouse.mp3",
-      "gain": -0.9,
+      "gain": -3.8,
       "gate": -87.4,
       "lead": 140,
       "matches": "mouse",
@@ -6116,7 +6137,7 @@
     "mucca": {
       "author": "XANA000",
       "file": "words/mucca.mp3",
-      "gain": -0.5,
+      "gain": 0.4,
       "gate": -69.2,
       "lead": 234,
       "matches": "mucca",
@@ -6126,8 +6147,9 @@
     },
     "multa": {
       "author": "LangPao",
+      "cap": 1.1,
       "file": "words/multa.mp3",
-      "gain": 4.0,
+      "gain": 5.0,
       "lead": 267,
       "matches": "multa",
       "mos": 2.92,
@@ -6137,7 +6159,7 @@
     "muscolo": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/muscolo.mp3",
-      "gain": 2.0,
+      "gain": 4.2,
       "gate": -65.9,
       "lead": 192,
       "matches": "muscolo",
@@ -6147,8 +6169,9 @@
     },
     "musica": {
       "author": "LangPao",
+      "cap": 0.2,
       "file": "words/musica.mp3",
-      "gain": 4.4,
+      "gain": 7.3,
       "lead": 200,
       "matches": "musica",
       "mos": 2.86,
@@ -6158,7 +6181,7 @@
     "nascere": {
       "author": "LangPao",
       "file": "words/nascere.mp3",
-      "gain": 3.4,
+      "gain": 1.3,
       "lead": 203,
       "matches": "nascere",
       "mos": 2.85,
@@ -6168,7 +6191,7 @@
     "nascita": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/nascita.mp3",
-      "gain": 6.6,
+      "gain": 4.7,
       "gate": -84.3,
       "lead": 185,
       "matches": "nascita",
@@ -6178,9 +6201,8 @@
     },
     "naso": {
       "author": "LangPao",
-      "cap": 0.3,
       "file": "words/naso.mp3",
-      "gain": 6.6,
+      "gain": 6.5,
       "lead": 227,
       "matches": "naso",
       "mos": 2.91,
@@ -6190,7 +6212,7 @@
     "nave": {
       "author": "XANA000",
       "file": "words/nave.mp3",
-      "gain": -0.9,
+      "gain": -2.3,
       "gate": -73.3,
       "lead": 214,
       "matches": "nave",
@@ -6201,7 +6223,7 @@
     "nazione": {
       "author": "LangPao",
       "file": "words/nazione.mp3",
-      "gain": 3.6,
+      "gain": 5.8,
       "gate": -94.7,
       "lead": 21,
       "matches": "nazione",
@@ -6212,7 +6234,7 @@
     "negativo": {
       "author": "XANA000",
       "file": "words/negativo.mp3",
-      "gain": 3.1,
+      "gain": 1.4,
       "lead": 179,
       "matches": "negativo",
       "mos": 2.81,
@@ -6222,7 +6244,7 @@
     "negozio": {
       "author": "LangPao",
       "file": "words/negozio.mp3",
-      "gain": 2.6,
+      "gain": 2.1,
       "lead": 271,
       "matches": "negozio",
       "mos": 2.96,
@@ -6232,7 +6254,7 @@
     "nero": {
       "author": "LangPao",
       "file": "words/nero.mp3",
-      "gain": 4.7,
+      "gain": 5.7,
       "lead": 275,
       "matches": "nero",
       "mos": 2.58,
@@ -6242,7 +6264,7 @@
     "nervo": {
       "author": "DivoLetto",
       "file": "words/nervo.mp3",
-      "gain": 4.9,
+      "gain": 2.2,
       "gate": -75.9,
       "lead": 58,
       "matches": "nervo",
@@ -6253,7 +6275,7 @@
     "nessuno": {
       "author": "XANA000",
       "file": "words/nessuno.mp3",
-      "gain": -0.3,
+      "gain": 3.6,
       "gate": -93.7,
       "lead": 189,
       "matches": "nessuno",
@@ -6264,7 +6286,7 @@
     "neve": {
       "author": "XANA000",
       "file": "words/neve.mp3",
-      "gain": 1.3,
+      "gain": 2.9,
       "gate": -67.1,
       "lead": 222,
       "matches": "neve",
@@ -6275,7 +6297,7 @@
     "niente": {
       "author": "LangPao",
       "file": "words/niente.mp3",
-      "gain": 3.9,
+      "gain": 2.9,
       "lead": 278,
       "matches": "niente",
       "mos": 3.04,
@@ -6284,8 +6306,9 @@
     },
     "nipote": {
       "author": "LangPao",
+      "cap": 0.5,
       "file": "words/nipote.mp3",
-      "gain": 7.2,
+      "gain": 10.0,
       "lead": 273,
       "matches": "nipote",
       "mos": 3.19,
@@ -6295,7 +6318,7 @@
     "no": {
       "author": "LangPao",
       "file": "words/no.mp3",
-      "gain": 5.4,
+      "gain": 6.0,
       "lead": 229,
       "matches": "no",
       "mos": 2.17,
@@ -6305,7 +6328,7 @@
     "noi": {
       "author": "XANA000",
       "file": "words/noi.mp3",
-      "gain": 4.0,
+      "gain": 5.7,
       "gate": -96.5,
       "lead": 209,
       "matches": "noi",
@@ -6316,7 +6339,7 @@
     "nome": {
       "author": "LangPao",
       "file": "words/nome.mp3",
-      "gain": 4.7,
+      "gain": 6.3,
       "lead": 198,
       "matches": "nome",
       "mos": 2.72,
@@ -6326,7 +6349,7 @@
     "non": {
       "author": "XANA000",
       "file": "words/non.mp3",
-      "gain": -2.0,
+      "gain": 0.7,
       "lead": 264,
       "matches": "non",
       "mos": 2.49,
@@ -6335,7 +6358,7 @@
     },
     "nonna": {
       "author": "LangPao",
-      "cap": 0.4,
+      "cap": 2.1,
       "file": "words/nonna.mp3",
       "gain": 6.6,
       "lead": 222,
@@ -6347,7 +6370,7 @@
     "nonno": {
       "author": "LangPao",
       "file": "words/nonno.mp3",
-      "gain": 2.2,
+      "gain": 1.8,
       "lead": 270,
       "matches": "nonno",
       "mos": 2.86,
@@ -6357,7 +6380,7 @@
     "nord": {
       "author": "LangPao",
       "file": "words/nord.mp3",
-      "gain": 2.6,
+      "gain": 1.6,
       "lead": 240,
       "matches": "nord",
       "mos": 2.57,
@@ -6377,7 +6400,7 @@
     "notte": {
       "author": "XANA000",
       "file": "words/notte.mp3",
-      "gain": 4.4,
+      "gain": 3.1,
       "gate": -90.2,
       "lead": 247,
       "matches": "notte",
@@ -6388,7 +6411,7 @@
     "nuotare": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/nuotare.mp3",
-      "gain": 5.7,
+      "gain": 4.9,
       "gate": -86.2,
       "lead": 189,
       "matches": "nuotare",
@@ -6399,7 +6422,7 @@
     "nuovo": {
       "author": "LangPao",
       "file": "words/nuovo.mp3",
-      "gain": 0.4,
+      "gain": 1.8,
       "lead": 210,
       "matches": "nuovo",
       "mos": 2.81,
@@ -6409,7 +6432,7 @@
     "nuvola": {
       "author": "XANA000",
       "file": "words/nuvola.mp3",
-      "gain": 2.5,
+      "gain": 2.8,
       "gate": -66.7,
       "lead": 273,
       "matches": "nuvola",
@@ -6420,7 +6443,7 @@
     "o": {
       "author": "XANA000",
       "file": "words/o.mp3",
-      "gain": -0.5,
+      "gain": 4.4,
       "gate": -86.9,
       "lead": 203,
       "matches": "o",
@@ -6430,7 +6453,7 @@
     },
     "occhio": {
       "author": "Ciampix",
-      "cap": 0.8,
+      "cap": 2.2,
       "file": "words/occhio.mp3",
       "gain": 10.1,
       "gate": -80.2,
@@ -6443,7 +6466,7 @@
     "oggi": {
       "author": "LangPao",
       "file": "words/oggi.mp3",
-      "gain": 1.6,
+      "gain": 2.7,
       "lead": 246,
       "matches": "oggi",
       "mos": 2.78,
@@ -6453,7 +6476,7 @@
     "ogni": {
       "author": "LangPao",
       "file": "words/ogni.mp3",
-      "gain": -0.5,
+      "gain": 0.5,
       "lead": 243,
       "matches": "ogni",
       "mos": 2.62,
@@ -6463,7 +6486,7 @@
     "olio": {
       "author": "LangPao",
       "file": "words/olio.mp3",
-      "gain": -0.7,
+      "gain": 1.2,
       "lead": 258,
       "matches": "olio",
       "mos": 2.66,
@@ -6473,7 +6496,7 @@
     "ombra": {
       "author": "LangPao",
       "file": "words/ombra.mp3",
-      "gain": 6.1,
+      "gain": 6.6,
       "gate": -74.8,
       "lead": 254,
       "matches": "ombra",
@@ -6484,7 +6507,7 @@
     "ombrello": {
       "author": "LangPao",
       "file": "words/ombrello.mp3",
-      "gain": 5.1,
+      "gain": 2.5,
       "gate": -74.3,
       "lead": 255,
       "matches": "ombrello",
@@ -6495,7 +6518,7 @@
     "onda": {
       "author": "LangPao",
       "file": "words/onda.mp3",
-      "gain": 1.6,
+      "gain": 3.1,
       "lead": 196,
       "matches": "onda",
       "mos": 2.56,
@@ -6505,7 +6528,7 @@
     "ora": {
       "author": "XANA000",
       "file": "words/ora.mp3",
-      "gain": -3.8,
+      "gain": -3.6,
       "lead": 190,
       "matches": "ora",
       "mos": 2.65,
@@ -6515,7 +6538,7 @@
     "ordinare": {
       "author": "DivoLetto",
       "file": "words/ordinare.mp3",
-      "gain": 9.6,
+      "gain": 8.8,
       "gate": -85.3,
       "lead": 191,
       "matches": "ordinare",
@@ -6526,7 +6549,7 @@
     "orecchio": {
       "author": "LangPao",
       "file": "words/orecchio.mp3",
-      "gain": 3.7,
+      "gain": 3.8,
       "lead": 201,
       "matches": "orecchio",
       "mos": 2.38,
@@ -6536,7 +6559,7 @@
     "ospedale": {
       "author": "LangPao",
       "file": "words/ospedale.mp3",
-      "gain": 4.5,
+      "gain": 3.7,
       "lead": 261,
       "matches": "ospedale",
       "mos": 3.03,
@@ -6545,7 +6568,7 @@
     },
     "ospite": {
       "author": "DiplomaticBadger",
-      "cap": 0.5,
+      "cap": 2.6,
       "file": "words/ospite.mp3",
       "gain": 8.3,
       "gate": -85.0,
@@ -6558,7 +6581,6 @@
     "osso": {
       "author": "XANA000",
       "file": "words/osso.mp3",
-      "gain": -0.2,
       "lead": 279,
       "matches": "osso",
       "mos": 2.17,
@@ -6568,7 +6590,7 @@
     "ovest": {
       "author": "LangPao",
       "file": "words/ovest.mp3",
-      "gain": 3.9,
+      "gain": 3.6,
       "gate": -81.2,
       "lead": 239,
       "matches": "ovest",
@@ -6579,7 +6601,7 @@
     "pace": {
       "author": "XANA000",
       "file": "words/pace.mp3",
-      "gain": -1.1,
+      "gain": -3.0,
       "gate": -76.9,
       "matches": "pace",
       "mos": 2.8,
@@ -6588,7 +6610,7 @@
     },
     "padella": {
       "author": "LangPao",
-      "cap": 2.4,
+      "cap": 0.9,
       "file": "words/padella.mp3",
       "gain": 7.7,
       "gate": -80.6,
@@ -6612,7 +6634,7 @@
     "paese": {
       "author": "XANA000",
       "file": "words/paese.mp3",
-      "gain": -1.8,
+      "gain": -1.9,
       "gate": -74.2,
       "lead": 256,
       "matches": "paese",
@@ -6623,7 +6645,7 @@
     "pagare": {
       "author": "LangPao",
       "file": "words/pagare.mp3",
-      "gain": 2.5,
+      "gain": 3.0,
       "lead": 261,
       "matches": "pagare",
       "mos": 3.01,
@@ -6632,7 +6654,7 @@
     },
     "pagina": {
       "author": "LangPao",
-      "cap": 2.2,
+      "cap": 2.3,
       "file": "words/pagina.mp3",
       "gain": 5.6,
       "gate": -79.4,
@@ -6644,8 +6666,9 @@
     },
     "pancia": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 0.1,
       "file": "words/pancia.mp3",
-      "gain": 8.0,
+      "gain": 8.1,
       "gate": -88.2,
       "lead": 179,
       "matches": "pancia",
@@ -6656,7 +6679,7 @@
     "pane": {
       "author": "XANA000",
       "file": "words/pane.mp3",
-      "gain": -3.7,
+      "gain": -5.0,
       "gate": -83.7,
       "lead": 263,
       "matches": "pane",
@@ -6667,7 +6690,7 @@
     "pantaloni": {
       "author": "Jennum",
       "file": "words/pantaloni.mp3",
-      "gain": 6.4,
+      "gain": 5.1,
       "gate": -77.1,
       "lead": 191,
       "matches": "pantaloni",
@@ -6677,7 +6700,7 @@
     },
     "parco": {
       "author": "LangPao",
-      "cap": 2.0,
+      "cap": 3.0,
       "file": "words/parco.mp3",
       "gain": 3.5,
       "lead": 262,
@@ -6688,9 +6711,8 @@
     },
     "parete": {
       "author": "LangPao",
-      "cap": 0.2,
       "file": "words/parete.mp3",
-      "gain": 3.6,
+      "gain": 3.4,
       "lead": 228,
       "matches": "parete",
       "mos": 2.87,
@@ -6700,7 +6722,7 @@
     "parlare": {
       "author": "LangPao",
       "file": "words/parlare.mp3",
-      "gain": 1.6,
+      "gain": 1.9,
       "lead": 241,
       "matches": "parlare",
       "mos": 2.59,
@@ -6710,7 +6732,6 @@
     "parola": {
       "author": "LangPao",
       "file": "words/parola.mp3",
-      "gain": 0.1,
       "lead": 260,
       "matches": "parola",
       "mos": 2.85,
@@ -6719,7 +6740,7 @@
     },
     "partire": {
       "author": "LangPao",
-      "cap": 0.7,
+      "cap": 1.9,
       "file": "words/partire.mp3",
       "gain": 3.7,
       "lead": 210,
@@ -6730,8 +6751,9 @@
     },
     "passaporto": {
       "author": "LangPao",
+      "cap": 1.4,
       "file": "words/passaporto.mp3",
-      "gain": 3.8,
+      "gain": 4.3,
       "lead": 252,
       "matches": "passaporto",
       "mos": 3.15,
@@ -6740,7 +6762,7 @@
     },
     "passato": {
       "author": "LangPao",
-      "cap": 1.1,
+      "cap": 2.1,
       "file": "words/passato.mp3",
       "gain": 3.3,
       "lead": 243,
@@ -6751,7 +6773,7 @@
     },
     "passeggero": {
       "author": "LangPao",
-      "cap": 0.6,
+      "cap": 1.8,
       "file": "words/passeggero.mp3",
       "gain": 3.6,
       "lead": 205,
@@ -6763,7 +6785,7 @@
     "password": {
       "author": "DanielParoliere",
       "file": "words/password.mp3",
-      "gain": -0.5,
+      "gain": -1.9,
       "lead": 187,
       "matches": "password",
       "mos": 2.95,
@@ -6773,7 +6795,7 @@
     "patata": {
       "author": "LangPao",
       "file": "words/patata.mp3",
-      "gain": 0.3,
+      "gain": 1.6,
       "lead": 240,
       "matches": "patata",
       "mos": 3.1,
@@ -6783,7 +6805,7 @@
     "paura": {
       "author": "LangPao",
       "file": "words/paura.mp3",
-      "gain": -0.3,
+      "gain": 1.4,
       "lead": 255,
       "matches": "paura",
       "mos": 2.77,
@@ -6792,8 +6814,9 @@
     },
     "pavimento": {
       "author": "DiplomaticBadger",
+      "cap": 1.1,
       "file": "words/pavimento.mp3",
-      "gain": 7.3,
+      "gain": 7.7,
       "gate": -84.8,
       "lead": 179,
       "matches": "pavimento",
@@ -6804,7 +6827,7 @@
     "pecora": {
       "author": "XANA000",
       "file": "words/pecora.mp3",
-      "gain": -2.9,
+      "gain": -4.5,
       "gate": -64.2,
       "lead": 221,
       "matches": "pecora",
@@ -6815,7 +6838,7 @@
     "pelle": {
       "author": "LangPao",
       "file": "words/pelle.mp3",
-      "gain": -0.2,
+      "gain": -0.5,
       "lead": 261,
       "matches": "pelle",
       "mos": 2.83,
@@ -6825,7 +6848,7 @@
     "penna": {
       "author": "LangPao",
       "file": "words/penna.mp3",
-      "gain": 4.9,
+      "gain": 2.4,
       "gate": -76.3,
       "lead": 232,
       "matches": "penna",
@@ -6836,7 +6859,7 @@
     "pensare": {
       "author": "LangPao",
       "file": "words/pensare.mp3",
-      "gain": 2.2,
+      "gain": 3.1,
       "lead": 268,
       "matches": "pensare",
       "mos": 2.78,
@@ -6846,7 +6869,7 @@
     "pentola": {
       "author": "DivoLetto",
       "file": "words/pentola.mp3",
-      "gain": 8.5,
+      "gain": 6.5,
       "gate": -83.1,
       "lead": 200,
       "matches": "pentola",
@@ -6857,7 +6880,7 @@
     "per": {
       "author": "XANA000",
       "file": "words/per.mp3",
-      "gain": 1.6,
+      "gain": -0.3,
       "gate": -78.7,
       "lead": 257,
       "matches": "per",
@@ -6868,7 +6891,7 @@
     "per favore": {
       "author": "XANA000",
       "file": "words/peru0020favore.mp3",
-      "gain": -0.7,
+      "gain": -0.3,
       "lead": 170,
       "matches": "per favore",
       "mos": 2.37,
@@ -6878,7 +6901,7 @@
     "perché": {
       "author": "XANA000",
       "file": "words/perchu00e9.mp3",
-      "gain": -0.3,
+      "gain": 0.7,
       "lead": 187,
       "matches": "perché",
       "mos": 2.57,
@@ -6888,7 +6911,7 @@
     "perdere": {
       "author": "LangPao",
       "file": "words/perdere.mp3",
-      "gain": 1.7,
+      "gain": 1.3,
       "lead": 278,
       "matches": "perdere",
       "mos": 2.43,
@@ -6897,7 +6920,7 @@
     },
     "persino": {
       "author": "LangPao",
-      "cap": 0.7,
+      "cap": 1.5,
       "file": "words/persino.mp3",
       "gain": 3.9,
       "lead": 231,
@@ -6908,7 +6931,7 @@
     },
     "persona": {
       "author": "LangPao",
-      "cap": 2.0,
+      "cap": 1.9,
       "file": "words/persona.mp3",
       "gain": 4.5,
       "lead": 242,
@@ -6920,7 +6943,7 @@
     "pesante": {
       "author": "LangPao",
       "file": "words/pesante.mp3",
-      "gain": 6.1,
+      "gain": 3.6,
       "gate": -80.6,
       "lead": 265,
       "matches": "pesante",
@@ -6931,7 +6954,7 @@
     "pescare": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/pescare.mp3",
-      "gain": 7.8,
+      "gain": 7.0,
       "gate": -85.6,
       "lead": 173,
       "matches": "pescare",
@@ -6942,7 +6965,7 @@
     "pesce": {
       "author": "XANA000",
       "file": "words/pesce.mp3",
-      "gain": -0.9,
+      "gain": 0.3,
       "gate": -69.1,
       "lead": 263,
       "matches": "pesce",
@@ -6952,9 +6975,8 @@
     },
     "petto": {
       "author": "Crunchy Cloaky Crackdown",
-      "cap": 0.1,
       "file": "words/petto.mp3",
-      "gain": 7.3,
+      "gain": 6.2,
       "gate": -88.7,
       "lead": 188,
       "matches": "petto",
@@ -6965,7 +6987,7 @@
     "piacere": {
       "author": "LangPao",
       "file": "words/piacere.mp3",
-      "gain": 5.0,
+      "gain": 4.9,
       "lead": 233,
       "matches": "piacere",
       "mos": 3.21,
@@ -6975,7 +6997,7 @@
     "piangere": {
       "author": "LangPao",
       "file": "words/piangere.mp3",
-      "gain": 5.8,
+      "gain": 2.0,
       "gate": -75.5,
       "lead": 233,
       "matches": "piangere",
@@ -6986,7 +7008,7 @@
     "piano": {
       "author": "LangPao",
       "file": "words/piano.mp3",
-      "gain": 1.8,
+      "gain": 1.1,
       "lead": 216,
       "matches": "piano",
       "mos": 2.99,
@@ -6996,7 +7018,7 @@
     "pianta": {
       "author": "XANA000",
       "file": "words/pianta.mp3",
-      "gain": -4.1,
+      "gain": -6.2,
       "gate": -59.7,
       "lead": 243,
       "matches": "pianta",
@@ -7006,7 +7028,7 @@
     },
     "piatto": {
       "author": "LangPao",
-      "cap": 0.5,
+      "cap": 0.9,
       "file": "words/piatto.mp3",
       "gain": 6.9,
       "lead": 213,
@@ -7017,8 +7039,9 @@
     },
     "piccolo": {
       "author": "LangPao",
+      "cap": 0.3,
       "file": "words/piccolo.mp3",
-      "gain": 8.6,
+      "gain": 8.8,
       "lead": 282,
       "matches": "piccolo",
       "mos": 3.08,
@@ -7028,7 +7051,7 @@
     "piede": {
       "author": "Ciampix",
       "file": "words/piede.mp3",
-      "gain": 12.9,
+      "gain": 13.9,
       "gate": -88.5,
       "lead": 163,
       "matches": "piede",
@@ -7039,7 +7062,7 @@
     "pieno": {
       "author": "LangPao",
       "file": "words/pieno.mp3",
-      "gain": 6.6,
+      "gain": 6.5,
       "lead": 218,
       "matches": "pieno",
       "mos": 2.79,
@@ -7049,7 +7072,7 @@
     "pietra": {
       "author": "LangPao",
       "file": "words/pietra.mp3",
-      "gain": 5.8,
+      "gain": 6.5,
       "lead": 208,
       "matches": "pietra",
       "mos": 2.83,
@@ -7059,7 +7082,7 @@
     "pigiama": {
       "author": "DanielParoliere",
       "file": "words/pigiama.mp3",
-      "gain": -1.5,
+      "gain": -4.4,
       "lead": 201,
       "license": "CC BY 4.0",
       "matches": "pigiama",
@@ -7070,7 +7093,7 @@
     "pioggia": {
       "author": "XANA000",
       "file": "words/pioggia.mp3",
-      "gain": 0.5,
+      "gain": 0.6,
       "gate": -75.9,
       "lead": 152,
       "matches": "pioggia",
@@ -7081,7 +7104,7 @@
     "più": {
       "author": "XANA000",
       "file": "words/piu00f9.mp3",
-      "gain": 2.8,
+      "gain": 4.2,
       "gate": -70.3,
       "lead": 202,
       "matches": "più",
@@ -7092,7 +7115,7 @@
     "poi": {
       "author": "XANA000",
       "file": "words/poi.mp3",
-      "gain": -1.6,
+      "gain": -1.0,
       "lead": 172,
       "matches": "poi",
       "mos": 2.7,
@@ -7101,8 +7124,9 @@
     },
     "polizia": {
       "author": "LangPao",
+      "cap": 0.5,
       "file": "words/polizia.mp3",
-      "gain": 3.1,
+      "gain": 4.2,
       "lead": 195,
       "matches": "polizia",
       "mos": 2.76,
@@ -7112,7 +7136,7 @@
     "pollo": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/pollo.mp3",
-      "gain": 4.9,
+      "gain": 5.6,
       "gate": -86.4,
       "lead": 167,
       "matches": "pollo",
@@ -7122,8 +7146,9 @@
     },
     "polmone": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 1.3,
       "file": "words/polmone.mp3",
-      "gain": 6.6,
+      "gain": 7.1,
       "gate": -89.4,
       "lead": 178,
       "matches": "polmone",
@@ -7134,7 +7159,7 @@
     "pomeriggio": {
       "author": "LangPao",
       "file": "words/pomeriggio.mp3",
-      "gain": 4.5,
+      "gain": 5.3,
       "lead": 231,
       "matches": "pomeriggio",
       "mos": 2.69,
@@ -7144,7 +7169,7 @@
     "pomodoro": {
       "author": "LangPao",
       "file": "words/pomodoro.mp3",
-      "gain": -0.9,
+      "gain": 1.4,
       "lead": 221,
       "matches": "pomodoro",
       "mos": 2.89,
@@ -7153,7 +7178,7 @@
     },
     "ponte": {
       "author": "Ciampix",
-      "cap": 0.5,
+      "cap": 2.2,
       "file": "words/ponte.mp3",
       "gain": 9.9,
       "gate": -79.3,
@@ -7166,7 +7191,7 @@
     "porta": {
       "author": "LangPao",
       "file": "words/porta.mp3",
-      "gain": 0.7,
+      "gain": 3.1,
       "lead": 192,
       "matches": "porta",
       "mos": 2.82,
@@ -7176,7 +7201,7 @@
     "portafoglio": {
       "author": "LangPao",
       "file": "words/portafoglio.mp3",
-      "gain": 1.5,
+      "gain": 3.7,
       "lead": 267,
       "matches": "portafoglio",
       "mos": 3.34,
@@ -7186,7 +7211,7 @@
     "portare": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/portare.mp3",
-      "gain": 0.2,
+      "gain": -0.6,
       "gate": -70.9,
       "lead": 226,
       "matches": "portare",
@@ -7197,7 +7222,7 @@
     "porto": {
       "author": "LangPao",
       "file": "words/porto.mp3",
-      "gain": 0.5,
+      "gain": 2.2,
       "lead": 208,
       "matches": "porto",
       "mos": 2.79,
@@ -7206,8 +7231,9 @@
     },
     "posta": {
       "author": "LangPao",
+      "cap": 1.2,
       "file": "words/posta.mp3",
-      "gain": 2.2,
+      "gain": 3.5,
       "lead": 246,
       "matches": "posta",
       "mos": 2.37,
@@ -7217,7 +7243,7 @@
     "posto": {
       "author": "Jennum",
       "file": "words/posto.mp3",
-      "gain": 5.4,
+      "gain": 6.3,
       "gate": -83.8,
       "lead": 190,
       "matches": "posto",
@@ -7227,8 +7253,9 @@
     },
     "potere": {
       "author": "LangPao",
+      "cap": 0.7,
       "file": "words/potere.mp3",
-      "gain": 7.4,
+      "gain": 8.9,
       "lead": 235,
       "matches": "potere",
       "mos": 3.03,
@@ -7237,8 +7264,9 @@
     },
     "povero": {
       "author": "LangPao",
+      "cap": 0.1,
       "file": "words/povero.mp3",
-      "gain": 1.4,
+      "gain": 3.5,
       "lead": 228,
       "matches": "povero",
       "mos": 2.9,
@@ -7247,7 +7275,7 @@
     },
     "prendere": {
       "author": "LangPao",
-      "cap": 0.9,
+      "cap": 1.5,
       "file": "words/prendere.mp3",
       "gain": 6.8,
       "lead": 273,
@@ -7259,7 +7287,7 @@
     "prenotare": {
       "author": "LangPao",
       "file": "words/prenotare.mp3",
-      "gain": 2.5,
+      "gain": 2.6,
       "lead": 284,
       "matches": "prenotare",
       "mos": 2.96,
@@ -7268,8 +7296,9 @@
     },
     "presentare": {
       "author": "LangPao",
+      "cap": 0.3,
       "file": "words/presentare.mp3",
-      "gain": 2.7,
+      "gain": 3.9,
       "lead": 247,
       "matches": "presentare",
       "mos": 2.95,
@@ -7279,7 +7308,7 @@
     "presente": {
       "author": "XANA000",
       "file": "words/presente.mp3",
-      "gain": 4.0,
+      "gain": 1.7,
       "lead": 192,
       "matches": "presente",
       "mos": 3.02,
@@ -7289,7 +7318,7 @@
     "presto": {
       "author": "LangPao",
       "file": "words/presto.mp3",
-      "gain": 3.2,
+      "gain": 1.1,
       "lead": 243,
       "matches": "presto",
       "mos": 2.07,
@@ -7298,7 +7327,7 @@
     },
     "prezzo": {
       "author": "LangPao",
-      "cap": 0.7,
+      "cap": 0.1,
       "file": "words/prezzo.mp3",
       "gain": 3.4,
       "lead": 209,
@@ -7310,7 +7339,7 @@
     "prima di": {
       "author": "XANA000",
       "file": "words/primau0020di.mp3",
-      "gain": -5.8,
+      "gain": -5.6,
       "gate": -75.2,
       "lead": 197,
       "matches": "prima di",
@@ -7321,7 +7350,7 @@
     "primo": {
       "author": "XANA000",
       "file": "words/primo.mp3",
-      "gain": -5.0,
+      "gain": -2.5,
       "lead": 179,
       "matches": "primo",
       "mos": 2.13,
@@ -7331,7 +7360,7 @@
     "problema": {
       "author": "LangPao",
       "file": "words/problema.mp3",
-      "gain": 7.7,
+      "gain": 7.2,
       "gate": -75.4,
       "lead": 211,
       "matches": "problema",
@@ -7341,7 +7370,7 @@
     },
     "professione": {
       "author": "DiplomaticBadger",
-      "cap": 0.5,
+      "cap": 2.0,
       "file": "words/professione.mp3",
       "gain": 7.2,
       "gate": -86.4,
@@ -7353,7 +7382,7 @@
     },
     "professore": {
       "author": "Crunchy Cloaky Crackdown",
-      "cap": 0.8,
+      "cap": 0.5,
       "file": "words/professore.mp3",
       "gain": 6.1,
       "gate": -83.6,
@@ -7366,7 +7395,7 @@
     "pronto": {
       "author": "XANA000",
       "file": "words/pronto.mp3",
-      "gain": 2.0,
+      "gain": 4.1,
       "lead": 194,
       "matches": "pronto",
       "mos": 2.77,
@@ -7376,7 +7405,7 @@
     "prossimo": {
       "author": "LangPao",
       "file": "words/prossimo.mp3",
-      "gain": 2.8,
+      "gain": 2.2,
       "lead": 258,
       "matches": "prossimo",
       "mos": 2.91,
@@ -7386,7 +7415,7 @@
     "provare": {
       "author": "LangPao",
       "file": "words/provare.mp3",
-      "gain": 3.3,
+      "gain": 4.2,
       "lead": 231,
       "matches": "provare",
       "mos": 2.83,
@@ -7396,7 +7425,7 @@
     "pulire": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/pulire.mp3",
-      "gain": -1.6,
+      "gain": -3.4,
       "gate": -70.5,
       "matches": "pulire",
       "mos": 2.57,
@@ -7406,7 +7435,7 @@
     "pulito": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/pulito.mp3",
-      "gain": -3.8,
+      "gain": -4.1,
       "gate": -66.8,
       "lead": 233,
       "matches": "pulito",
@@ -7416,7 +7445,7 @@
     },
     "quaderno": {
       "author": "LangPao",
-      "cap": 2.3,
+      "cap": 0.8,
       "file": "words/quaderno.mp3",
       "gain": 4.9,
       "gate": -76.7,
@@ -7429,7 +7458,7 @@
     "quadro": {
       "author": "LangPao",
       "file": "words/quadro.mp3",
-      "gain": 9.9,
+      "gain": 8.2,
       "gate": -80.1,
       "lead": 218,
       "matches": "quadro",
@@ -7440,7 +7469,7 @@
     "qualcosa": {
       "author": "XANA000",
       "file": "words/qualcosa.mp3",
-      "gain": -4.1,
+      "gain": -3.1,
       "gate": -74.7,
       "lead": 39,
       "matches": "qualcosa",
@@ -7451,7 +7480,7 @@
     "qualcuno": {
       "author": "XANA000",
       "file": "words/qualcuno.mp3",
-      "gain": -4.9,
+      "gain": -3.4,
       "gate": -73.7,
       "lead": 66,
       "matches": "qualcuno",
@@ -7462,7 +7491,7 @@
     "quale": {
       "author": "XANA000",
       "file": "words/quale.mp3",
-      "gain": -1.0,
+      "gain": -1.8,
       "gate": -95.5,
       "lead": 228,
       "matches": "quale",
@@ -7473,7 +7502,7 @@
     "quando": {
       "author": "LangPao",
       "file": "words/quando.mp3",
-      "gain": 2.9,
+      "gain": 2.5,
       "lead": 233,
       "matches": "quando",
       "mos": 2.83,
@@ -7482,8 +7511,9 @@
     },
     "quartiere": {
       "author": "LangPao",
+      "cap": 0.5,
       "file": "words/quartiere.mp3",
-      "gain": 3.1,
+      "gain": 4.0,
       "lead": 201,
       "matches": "quartiere",
       "mos": 3.38,
@@ -7492,8 +7522,9 @@
     },
     "quasi": {
       "author": "LangPao",
+      "cap": 0.6,
       "file": "words/quasi.mp3",
-      "gain": 3.2,
+      "gain": 3.6,
       "lead": 256,
       "matches": "quasi",
       "mos": 2.8,
@@ -7503,7 +7534,7 @@
     "quello": {
       "author": "XANA000",
       "file": "words/quello.mp3",
-      "gain": -1.8,
+      "gain": -1.0,
       "lead": 110,
       "matches": "quello",
       "mos": 2.1,
@@ -7513,7 +7544,7 @@
     "questo": {
       "author": "XANA000",
       "file": "words/questo.mp3",
-      "gain": -3.4,
+      "gain": -2.6,
       "gate": -99.9,
       "lead": 199,
       "matches": "questo",
@@ -7524,7 +7555,7 @@
     "qui": {
       "author": "LangPao",
       "file": "words/qui.mp3",
-      "gain": 7.7,
+      "gain": 9.7,
       "lead": 202,
       "matches": "qui",
       "mos": 2.13,
@@ -7534,7 +7565,7 @@
     "quindi": {
       "author": "XANA000",
       "file": "words/quindi.mp3",
-      "gain": -1.4,
+      "gain": -0.5,
       "lead": 159,
       "matches": "quindi",
       "mos": 2.22,
@@ -7544,7 +7575,7 @@
     "rabbia": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/rabbia.mp3",
-      "gain": 3.8,
+      "gain": 2.5,
       "gate": -82.2,
       "lead": 190,
       "matches": "rabbia",
@@ -7555,7 +7586,7 @@
     "radio": {
       "author": "XANA000",
       "file": "words/radio.mp3",
-      "gain": -3.3,
+      "gain": -5.3,
       "gate": -73.9,
       "lead": 228,
       "matches": "radio",
@@ -7565,9 +7596,8 @@
     },
     "raffreddore": {
       "author": "LangPao",
-      "cap": 2.3,
       "file": "words/raffreddore.mp3",
-      "gain": 5.6,
+      "gain": 5.0,
       "gate": -73.4,
       "lead": 206,
       "matches": "raffreddore",
@@ -7578,7 +7608,7 @@
     "ragazza": {
       "author": "XANA000",
       "file": "words/ragazza.mp3",
-      "gain": 0.4,
+      "gain": -0.7,
       "gate": -91.5,
       "lead": 206,
       "matches": "ragazza",
@@ -7589,7 +7619,7 @@
     "ragazzo": {
       "author": "XANA000",
       "file": "words/ragazzo.mp3",
-      "gain": -3.0,
+      "gain": -4.1,
       "gate": -84.1,
       "lead": 275,
       "matches": "ragazzo",
@@ -7600,7 +7630,7 @@
     "rasoio": {
       "author": "DivoLetto",
       "file": "words/rasoio.mp3",
-      "gain": 5.7,
+      "gain": 6.8,
       "gate": -74.0,
       "matches": "rasoio",
       "mos": 2.83,
@@ -7610,7 +7640,7 @@
     "reale": {
       "author": "Ciampix",
       "file": "words/reale.mp3",
-      "gain": 4.7,
+      "gain": 4.0,
       "gate": -78.5,
       "lead": 196,
       "matches": "reale",
@@ -7621,7 +7651,7 @@
     "regalare": {
       "author": "LangPao",
       "file": "words/regalare.mp3",
-      "gain": 0.4,
+      "gain": -1.8,
       "lead": 228,
       "matches": "regalare",
       "mos": 2.95,
@@ -7631,7 +7661,7 @@
     "regalo": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/regalo.mp3",
-      "gain": 12.2,
+      "gain": 12.0,
       "gate": -73.0,
       "lead": 8,
       "matches": "regalo",
@@ -7642,7 +7672,7 @@
     "rene": {
       "author": "LangPao",
       "file": "words/rene.mp3",
-      "gain": 6.6,
+      "gain": 4.4,
       "gate": -77.0,
       "lead": 246,
       "matches": "rene",
@@ -7653,7 +7683,6 @@
     "respirare": {
       "author": "LangPao",
       "file": "words/respirare.mp3",
-      "gain": 0.2,
       "lead": 232,
       "matches": "respirare",
       "mos": 2.88,
@@ -7662,7 +7691,7 @@
     },
     "ricco": {
       "author": "LangPao",
-      "cap": 0.2,
+      "cap": 2.1,
       "file": "words/ricco.mp3",
       "gain": 7.9,
       "lead": 206,
@@ -7674,7 +7703,7 @@
     "ricetta": {
       "author": "LangPao",
       "file": "words/ricetta.mp3",
-      "gain": 5.1,
+      "gain": 6.4,
       "gate": -68.6,
       "lead": 202,
       "matches": "ricetta",
@@ -7685,7 +7714,7 @@
     "ricevere": {
       "author": "LangPao",
       "file": "words/ricevere.mp3",
-      "gain": 2.3,
+      "gain": 1.9,
       "gate": -67.7,
       "lead": 200,
       "matches": "ricevere",
@@ -7696,7 +7725,7 @@
     "richiedere": {
       "author": "LangPao",
       "file": "words/richiedere.mp3",
-      "gain": 6.2,
+      "gain": 7.4,
       "lead": 213,
       "matches": "richiedere",
       "mos": 3.12,
@@ -7706,7 +7735,7 @@
     "richiesta": {
       "author": "DivoLetto",
       "file": "words/richiesta.mp3",
-      "gain": 6.2,
+      "gain": 4.4,
       "gate": -82.2,
       "lead": 79,
       "matches": "richiesta",
@@ -7717,7 +7746,7 @@
     "ricordare": {
       "author": "Ciampix",
       "file": "words/ricordare.mp3",
-      "gain": 5.4,
+      "gain": 6.0,
       "gate": -79.9,
       "lead": 191,
       "matches": "ricordare",
@@ -7728,7 +7757,7 @@
     "ricordarsi": {
       "author": "LangPao",
       "file": "words/ricordarsi.mp3",
-      "gain": 3.3,
+      "gain": 4.3,
       "lead": 222,
       "matches": "ricordarsi",
       "mos": 3.05,
@@ -7737,7 +7766,6 @@
     },
     "ridere": {
       "author": "LangPao",
-      "cap": 0.3,
       "file": "words/ridere.mp3",
       "gain": 7.7,
       "gate": -75.0,
@@ -7750,7 +7778,7 @@
     "ringraziare": {
       "author": "LangPao",
       "file": "words/ringraziare.mp3",
-      "gain": 2.2,
+      "gain": 3.9,
       "lead": 263,
       "matches": "ringraziare",
       "mos": 3.39,
@@ -7759,9 +7787,8 @@
     },
     "riparare": {
       "author": "LangPao",
-      "cap": 0.8,
       "file": "words/riparare.mp3",
-      "gain": 7.4,
+      "gain": 5.0,
       "gate": -70.9,
       "lead": 261,
       "matches": "riparare",
@@ -7772,7 +7799,7 @@
     "riposare": {
       "author": "LangPao",
       "file": "words/riposare.mp3",
-      "gain": 3.3,
+      "gain": 3.7,
       "lead": 208,
       "matches": "riposare",
       "mos": 2.9,
@@ -7782,7 +7809,7 @@
     "riso": {
       "author": "XANA000",
       "file": "words/riso.mp3",
-      "gain": -1.3,
+      "gain": 2.3,
       "gate": -69.0,
       "lead": 259,
       "matches": "riso",
@@ -7792,8 +7819,9 @@
     },
     "rispondere": {
       "author": "LangPao",
+      "cap": 1.5,
       "file": "words/rispondere.mp3",
-      "gain": 5.5,
+      "gain": 6.5,
       "lead": 215,
       "matches": "rispondere",
       "mos": 2.86,
@@ -7803,7 +7831,7 @@
     "risposta": {
       "author": "LangPao",
       "file": "words/risposta.mp3",
-      "gain": -0.7,
+      "gain": 1.4,
       "gate": -96.7,
       "lead": 189,
       "matches": "risposta",
@@ -7814,7 +7842,7 @@
     "ristorante": {
       "author": "XANA000",
       "file": "words/ristorante.mp3",
-      "gain": 2.8,
+      "gain": 0.6,
       "gate": -91.7,
       "lead": 275,
       "matches": "ristorante",
@@ -7825,7 +7853,7 @@
     "rompere": {
       "author": "LangPao",
       "file": "words/rompere.mp3",
-      "gain": -0.2,
+      "gain": -0.5,
       "lead": 235,
       "matches": "rompere",
       "mos": 2.85,
@@ -7846,7 +7874,7 @@
     "rotto": {
       "author": "LangPao",
       "file": "words/rotto.mp3",
-      "gain": 12.4,
+      "gain": 10.7,
       "gate": -78.5,
       "lead": 234,
       "matches": "rotto",
@@ -7857,7 +7885,7 @@
     "rubinetto": {
       "author": "LangPao",
       "file": "words/rubinetto.mp3",
-      "gain": 4.3,
+      "gain": 6.3,
       "lead": 172,
       "matches": "rubinetto",
       "mos": 2.69,
@@ -7867,7 +7895,7 @@
     "rumore": {
       "author": "LangPao",
       "file": "words/rumore.mp3",
-      "gain": 8.7,
+      "gain": 11.8,
       "gate": -77.0,
       "lead": 187,
       "matches": "rumore",
@@ -7878,7 +7906,7 @@
     "ruota": {
       "author": "XANA000",
       "file": "words/ruota.mp3",
-      "gain": 0.2,
+      "gain": -1.5,
       "gate": -77.2,
       "lead": 193,
       "matches": "ruota",
@@ -7889,7 +7917,7 @@
     "sale": {
       "author": "XANA000",
       "file": "words/sale.mp3",
-      "gain": -3.8,
+      "gain": -4.8,
       "gate": -67.1,
       "matches": "sale",
       "mos": 2.43,
@@ -7899,7 +7927,7 @@
     "salsa": {
       "author": "XANA000",
       "file": "words/salsa.mp3",
-      "gain": 2.0,
+      "gain": -1.1,
       "lead": 159,
       "matches": "salsa",
       "mos": 2.99,
@@ -7909,7 +7937,7 @@
     "salutare": {
       "author": "LangPao",
       "file": "words/salutare.mp3",
-      "gain": 3.1,
+      "gain": 4.5,
       "lead": 151,
       "matches": "salutare",
       "mos": 3.06,
@@ -7919,7 +7947,7 @@
     "salute": {
       "author": "Fibonacci",
       "file": "words/salute.mp3",
-      "gain": -1.1,
+      "gain": -2.7,
       "lead": 8,
       "matches": "salute",
       "mos": 2.95,
@@ -7929,7 +7957,7 @@
     "salvare": {
       "author": "LangPao",
       "file": "words/salvare.mp3",
-      "gain": 3.3,
+      "gain": 3.6,
       "lead": 175,
       "matches": "salvare",
       "mos": 3.09,
@@ -7938,7 +7966,7 @@
     },
     "sangue": {
       "author": "LangPao",
-      "cap": 1.6,
+      "cap": 0.8,
       "file": "words/sangue.mp3",
       "gain": 3.7,
       "lead": 215,
@@ -7950,7 +7978,7 @@
     "sano": {
       "author": "DiplomaticBadger",
       "file": "words/sano.mp3",
-      "gain": 10.9,
+      "gain": 9.4,
       "gate": -79.5,
       "lead": 51,
       "matches": "sano",
@@ -7961,7 +7989,7 @@
     "sapere": {
       "author": "LangPao",
       "file": "words/sapere.mp3",
-      "gain": 6.8,
+      "gain": 8.3,
       "gate": -99.6,
       "lead": 116,
       "matches": "sapere",
@@ -7971,8 +7999,9 @@
     },
     "sapone": {
       "author": "LangPao",
+      "cap": 2.7,
       "file": "words/sapone.mp3",
-      "gain": 1.4,
+      "gain": 4.3,
       "gate": -72.8,
       "lead": 231,
       "matches": "sapone",
@@ -7982,8 +8011,9 @@
     },
     "sbadigliare": {
       "author": "LangPao",
+      "cap": 0.4,
       "file": "words/sbadigliare.mp3",
-      "gain": 3.0,
+      "gain": 3.5,
       "lead": 208,
       "matches": "sbadigliare",
       "mos": 2.77,
@@ -7993,7 +8023,7 @@
     "scaffale": {
       "author": "LangPao",
       "file": "words/scaffale.mp3",
-      "gain": 2.1,
+      "gain": 1.8,
       "lead": 134,
       "matches": "scaffale",
       "mos": 3.24,
@@ -8002,7 +8032,7 @@
     },
     "scarpa": {
       "author": "LangPao",
-      "cap": 0.4,
+      "cap": 0.2,
       "file": "words/scarpa.mp3",
       "gain": 4.5,
       "lead": 178,
@@ -8014,7 +8044,7 @@
     "scendere": {
       "author": "LangPao",
       "file": "words/scendere.mp3",
-      "gain": 2.4,
+      "gain": 2.3,
       "lead": 229,
       "matches": "scendere",
       "mos": 3.14,
@@ -8023,8 +8053,9 @@
     },
     "schermo": {
       "author": "LangPao",
+      "cap": 1.8,
       "file": "words/schermo.mp3",
-      "gain": 1.0,
+      "gain": 3.9,
       "gate": -68.6,
       "lead": 266,
       "matches": "schermo",
@@ -8035,7 +8066,7 @@
     "schiena": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/schiena.mp3",
-      "gain": 7.0,
+      "gain": 6.3,
       "gate": -84.4,
       "lead": 10,
       "matches": "schiena",
@@ -8046,7 +8077,7 @@
     "scimmia": {
       "author": "LangPao",
       "file": "words/scimmia.mp3",
-      "gain": 5.6,
+      "gain": 7.3,
       "gate": -74.9,
       "lead": 188,
       "matches": "scimmia",
@@ -8057,7 +8088,7 @@
     "scrivania": {
       "author": "LangPao",
       "file": "words/scrivania.mp3",
-      "gain": 2.5,
+      "gain": 2.1,
       "lead": 163,
       "matches": "scrivania",
       "mos": 3.07,
@@ -8067,7 +8098,7 @@
     "scrivere": {
       "author": "LangPao",
       "file": "words/scrivere.mp3",
-      "gain": 4.0,
+      "gain": 4.6,
       "lead": 96,
       "matches": "scrivere",
       "mos": 2.84,
@@ -8077,7 +8108,7 @@
     "scuola": {
       "author": "LangPao",
       "file": "words/scuola.mp3",
-      "gain": 0.1,
+      "gain": 3.0,
       "lead": 251,
       "matches": "scuola",
       "mos": 2.91,
@@ -8087,7 +8118,7 @@
     "scusi": {
       "author": "XANA000",
       "file": "words/scusi.mp3",
-      "gain": 2.0,
+      "gain": 3.0,
       "lead": 176,
       "matches": "scusi",
       "mos": 2.68,
@@ -8097,7 +8128,7 @@
     "se": {
       "author": "XANA000",
       "file": "words/se.mp3",
-      "gain": 0.1,
+      "gain": -0.1,
       "lead": 54,
       "matches": "se",
       "mos": 2.18,
@@ -8106,7 +8137,7 @@
     },
     "secchio": {
       "author": "LangPao",
-      "cap": 0.4,
+      "cap": 3.8,
       "file": "words/secchio.mp3",
       "gain": 6.7,
       "gate": -79.6,
@@ -8119,7 +8150,7 @@
     "secco": {
       "author": "LangPao",
       "file": "words/secco.mp3",
-      "gain": 3.2,
+      "gain": 3.0,
       "lead": 171,
       "matches": "secco",
       "mos": 2.82,
@@ -8128,8 +8159,9 @@
     },
     "secolo": {
       "author": "LangPao",
+      "cap": 0.9,
       "file": "words/secolo.mp3",
-      "gain": 6.3,
+      "gain": 8.9,
       "gate": -73.7,
       "lead": 253,
       "matches": "secolo",
@@ -8140,7 +8172,7 @@
     "secondo": {
       "author": "XANA000",
       "file": "words/secondo.mp3",
-      "gain": 3.0,
+      "gain": 6.2,
       "gate": -62.7,
       "matches": "secondo",
       "mos": 2.61,
@@ -8150,7 +8182,7 @@
     "sedia": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/sedia.mp3",
-      "gain": 9.0,
+      "gain": 9.3,
       "gate": -87.8,
       "lead": 89,
       "matches": "sedia",
@@ -8161,7 +8193,7 @@
     "seguire": {
       "author": "LangPao",
       "file": "words/seguire.mp3",
-      "gain": 6.6,
+      "gain": 7.9,
       "lead": 210,
       "matches": "seguire",
       "mos": 2.89,
@@ -8170,8 +8202,9 @@
     },
     "semaforo": {
       "author": "LangPao",
+      "cap": 0.4,
       "file": "words/semaforo.mp3",
-      "gain": 4.2,
+      "gain": 4.4,
       "lead": 234,
       "matches": "semaforo",
       "mos": 3.17,
@@ -8181,7 +8214,7 @@
     "sempre": {
       "author": "XANA000",
       "file": "words/sempre.mp3",
-      "gain": 3.2,
+      "gain": 4.6,
       "gate": -58.3,
       "lead": 120,
       "matches": "sempre",
@@ -8192,7 +8225,7 @@
     "sentire": {
       "author": "LangPao",
       "file": "words/sentire.mp3",
-      "gain": 4.1,
+      "gain": 7.8,
       "gate": -94.9,
       "lead": 104,
       "matches": "sentire",
@@ -8203,7 +8236,7 @@
     "senza": {
       "author": "LangPao",
       "file": "words/senza.mp3",
-      "gain": -1.5,
+      "gain": -1.6,
       "gate": -90.9,
       "lead": 255,
       "matches": "senza",
@@ -8214,7 +8247,7 @@
     "seppellire": {
       "author": "LangPao",
       "file": "words/seppellire.mp3",
-      "gain": 8.1,
+      "gain": 8.5,
       "gate": -69.8,
       "lead": 240,
       "matches": "seppellire",
@@ -8225,7 +8258,7 @@
     "sera": {
       "author": "LangPao",
       "file": "words/sera.mp3",
-      "gain": 3.6,
+      "gain": 3.0,
       "lead": 99,
       "matches": "sera",
       "mos": 2.79,
@@ -8235,7 +8268,7 @@
     "serpente": {
       "author": "XANA000",
       "file": "words/serpente.mp3",
-      "gain": -3.1,
+      "gain": -3.9,
       "gate": -76.3,
       "lead": 139,
       "matches": "serpente",
@@ -8246,7 +8279,7 @@
     "sesso": {
       "author": "LangPao",
       "file": "words/sesso.mp3",
-      "gain": 3.9,
+      "gain": 7.2,
       "gate": -78.1,
       "lead": 213,
       "matches": "sesso",
@@ -8257,7 +8290,7 @@
     "sete": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/sete.mp3",
-      "gain": 10.4,
+      "gain": 9.6,
       "gate": -86.3,
       "lead": 79,
       "matches": "sete",
@@ -8268,7 +8301,7 @@
     "settimana": {
       "author": "LangPao",
       "file": "words/settimana.mp3",
-      "gain": -2.2,
+      "gain": -0.4,
       "gate": -85.3,
       "lead": 205,
       "matches": "settimana",
@@ -8278,8 +8311,9 @@
     },
     "sfida": {
       "author": "LangPao",
+      "cap": 1.1,
       "file": "words/sfida.mp3",
-      "gain": 4.6,
+      "gain": 7.8,
       "gate": -76.7,
       "lead": 216,
       "matches": "sfida",
@@ -8289,8 +8323,9 @@
     },
     "sicuro": {
       "author": "LangPao",
+      "cap": 0.6,
       "file": "words/sicuro.mp3",
-      "gain": 1.6,
+      "gain": 4.6,
       "gate": -93.4,
       "lead": 158,
       "matches": "sicuro",
@@ -8301,7 +8336,7 @@
     "significato": {
       "author": "LangPao",
       "file": "words/significato.mp3",
-      "gain": 8.5,
+      "gain": 9.3,
       "gate": -73.0,
       "lead": 229,
       "matches": "significato",
@@ -8311,8 +8346,9 @@
     },
     "silenzioso": {
       "author": "LangPao",
+      "cap": 2.9,
       "file": "words/silenzioso.mp3",
-      "gain": -1.0,
+      "gain": 3.2,
       "gate": -56.5,
       "lead": 218,
       "matches": "silenzioso",
@@ -8323,7 +8359,7 @@
     "smettere": {
       "author": "LangPao",
       "file": "words/smettere.mp3",
-      "gain": -3.4,
+      "gain": -1.2,
       "gate": -88.7,
       "lead": 237,
       "matches": "smettere",
@@ -8334,7 +8370,7 @@
     "sognare": {
       "author": "LangPao",
       "file": "words/sognare.mp3",
-      "gain": -4.6,
+      "gain": -2.8,
       "gate": -89.4,
       "lead": 181,
       "matches": "sognare",
@@ -8344,8 +8380,9 @@
     },
     "soldi": {
       "author": "LangPao",
+      "cap": 0.1,
       "file": "words/soldi.mp3",
-      "gain": 5.3,
+      "gain": 7.3,
       "gate": -70.9,
       "lead": 125,
       "matches": "soldi",
@@ -8356,7 +8393,7 @@
     "sole": {
       "author": "XANA000",
       "file": "words/sole.mp3",
-      "gain": -1.0,
+      "gain": 0.9,
       "gate": -60.5,
       "lead": 49,
       "matches": "sole",
@@ -8367,7 +8404,7 @@
     "solo": {
       "author": "LangPao",
       "file": "words/solo.mp3",
-      "gain": 4.1,
+      "gain": 6.7,
       "lead": 142,
       "matches": "solo",
       "mos": 2.9,
@@ -8377,7 +8414,7 @@
     "sopra": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/sopra.mp3",
-      "gain": 8.1,
+      "gain": 7.7,
       "gate": -83.7,
       "lead": 104,
       "matches": "sopra",
@@ -8388,7 +8425,7 @@
     "sorella": {
       "author": "LangPao",
       "file": "words/sorella.mp3",
-      "gain": -2.7,
+      "gain": -2.6,
       "gate": -91.6,
       "lead": 202,
       "matches": "sorella",
@@ -8399,7 +8436,7 @@
     "sorpresa": {
       "author": "LangPao",
       "file": "words/sorpresa.mp3",
-      "gain": -0.1,
+      "gain": -0.3,
       "gate": -92.2,
       "lead": 244,
       "matches": "sorpresa",
@@ -8410,7 +8447,7 @@
     "sorridere": {
       "author": "LangPao",
       "file": "words/sorridere.mp3",
-      "gain": 5.1,
+      "gain": 3.9,
       "gate": -77.7,
       "lead": 241,
       "matches": "sorridere",
@@ -8432,7 +8469,7 @@
     "sostantivo": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/sostantivo.mp3",
-      "gain": 9.0,
+      "gain": 11.1,
       "gate": -84.9,
       "lead": 129,
       "matches": "sostantivo",
@@ -8442,8 +8479,9 @@
     },
     "sotto": {
       "author": "LangPao",
+      "cap": 0.9,
       "file": "words/sotto.mp3",
-      "gain": 5.4,
+      "gain": 5.6,
       "lead": 172,
       "matches": "sotto",
       "mos": 2.71,
@@ -8453,7 +8491,7 @@
     "spalla": {
       "author": "Ciampix",
       "file": "words/spalla.mp3",
-      "gain": 3.3,
+      "gain": 2.7,
       "gate": -77.8,
       "lead": 73,
       "matches": "spalla",
@@ -8475,7 +8513,7 @@
     "sperare": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/sperare.mp3",
-      "gain": 7.6,
+      "gain": 6.8,
       "gate": -86.8,
       "lead": 39,
       "matches": "sperare",
@@ -8486,7 +8524,7 @@
     "spesso": {
       "author": "LangPao",
       "file": "words/spesso.mp3",
-      "gain": 2.3,
+      "gain": 3.5,
       "gate": -99.4,
       "lead": 189,
       "matches": "spesso",
@@ -8497,7 +8535,7 @@
     "spiaggia": {
       "author": "LangPao",
       "file": "words/spiaggia.mp3",
-      "gain": -0.1,
+      "gain": -0.4,
       "gate": -95.5,
       "lead": 176,
       "matches": "spiaggia",
@@ -8508,7 +8546,7 @@
     "spiegare": {
       "author": "LangPao",
       "file": "words/spiegare.mp3",
-      "gain": -1.2,
+      "gain": -0.8,
       "gate": -98.6,
       "lead": 195,
       "matches": "spiegare",
@@ -8519,7 +8557,7 @@
     "spingere": {
       "author": "LangPao",
       "file": "words/spingere.mp3",
-      "gain": 8.3,
+      "gain": 6.8,
       "gate": -97.8,
       "lead": 204,
       "matches": "spingere",
@@ -8529,8 +8567,9 @@
     },
     "sporco": {
       "author": "LangPao",
+      "cap": 0.6,
       "file": "words/sporco.mp3",
-      "gain": 2.6,
+      "gain": 4.0,
       "lead": 91,
       "matches": "sporco",
       "mos": 2.83,
@@ -8540,7 +8579,7 @@
     "spugna": {
       "author": "LangPao",
       "file": "words/spugna.mp3",
-      "gain": 7.1,
+      "gain": 8.3,
       "lead": 181,
       "matches": "spugna",
       "mos": 2.7,
@@ -8550,7 +8589,7 @@
     "stampante": {
       "author": "DanielParoliere",
       "file": "words/stampante.mp3",
-      "gain": -1.3,
+      "gain": -2.6,
       "gate": -80.3,
       "matches": "stampante",
       "mos": 3.2,
@@ -8559,8 +8598,9 @@
     },
     "stanco": {
       "author": "LangPao",
+      "cap": 0.4,
       "file": "words/stanco.mp3",
-      "gain": 4.2,
+      "gain": 4.4,
       "lead": 72,
       "matches": "stanco",
       "mos": 3.03,
@@ -8569,7 +8609,7 @@
     },
     "stanza": {
       "author": "Crunchy Cloaky Crackdown",
-      "cap": 1.0,
+      "cap": 0.6,
       "file": "words/stanza.mp3",
       "gain": 6.3,
       "gate": -83.8,
@@ -8582,7 +8622,7 @@
     "stare in piedi": {
       "author": "LangPao",
       "file": "words/stareu0020inu0020piedi.mp3",
-      "gain": -0.9,
+      "gain": 0.5,
       "gate": -98.7,
       "lead": 251,
       "matches": "stare in piedi",
@@ -8592,8 +8632,9 @@
     },
     "stazione": {
       "author": "LangPao",
+      "cap": 0.9,
       "file": "words/stazione.mp3",
-      "gain": 3.0,
+      "gain": 4.1,
       "gate": -98.6,
       "lead": 165,
       "matches": "stazione",
@@ -8604,7 +8645,7 @@
     "stella": {
       "author": "XANA000",
       "file": "words/stella.mp3",
-      "gain": -1.5,
+      "gain": -0.8,
       "gate": -73.3,
       "lead": 77,
       "matches": "stella",
@@ -8615,7 +8656,7 @@
     "stesso": {
       "author": "XANA000",
       "file": "words/stesso.mp3",
-      "gain": -4.1,
+      "gain": -4.4,
       "gate": -72.0,
       "lead": 186,
       "matches": "stesso",
@@ -8625,8 +8666,9 @@
     },
     "stipendio": {
       "author": "LangPao",
+      "cap": 2.3,
       "file": "words/stipendio.mp3",
-      "gain": 2.8,
+      "gain": 3.1,
       "lead": 195,
       "matches": "stipendio",
       "mos": 3.02,
@@ -8636,7 +8678,7 @@
     "stomaco": {
       "author": "LangPao",
       "file": "words/stomaco.mp3",
-      "gain": 1.1,
+      "gain": 2.7,
       "lead": 184,
       "matches": "stomaco",
       "mos": 3.12,
@@ -8646,7 +8688,7 @@
     "strada": {
       "author": "LangPao",
       "file": "words/strada.mp3",
-      "gain": 0.8,
+      "gain": 0.4,
       "lead": 62,
       "matches": "strada",
       "mos": 2.73,
@@ -8656,7 +8698,7 @@
     "studente": {
       "author": "LangPao",
       "file": "words/studente.mp3",
-      "gain": 1.7,
+      "gain": 3.1,
       "gate": -94.7,
       "lead": 209,
       "matches": "studente",
@@ -8667,7 +8709,7 @@
     "studiare": {
       "author": "LangPao",
       "file": "words/studiare.mp3",
-      "gain": 4.3,
+      "gain": 6.1,
       "gate": -93.3,
       "lead": 43,
       "matches": "studiare",
@@ -8678,7 +8720,7 @@
     "subito": {
       "author": "LangPao",
       "file": "words/subito.mp3",
-      "gain": 1.8,
+      "gain": 5.1,
       "lead": 198,
       "matches": "subito",
       "mos": 2.99,
@@ -8688,7 +8730,7 @@
     "succedere": {
       "author": "LangPao",
       "file": "words/succedere.mp3",
-      "gain": 2.9,
+      "gain": 3.0,
       "gate": -96.6,
       "lead": 143,
       "matches": "succedere",
@@ -8699,7 +8741,7 @@
     "succo": {
       "author": "XANA000",
       "file": "words/succo.mp3",
-      "gain": 6.2,
+      "gain": 10.4,
       "gate": -83.7,
       "lead": 102,
       "matches": "succo",
@@ -8709,8 +8751,9 @@
     },
     "sud": {
       "author": "LangPao",
+      "cap": 0.6,
       "file": "words/sud.mp3",
-      "gain": 2.8,
+      "gain": 6.8,
       "lead": 194,
       "matches": "sud",
       "mos": 2.75,
@@ -8720,7 +8763,7 @@
     "suo": {
       "author": "XANA000",
       "file": "words/suo.mp3",
-      "gain": -0.1,
+      "gain": 5.7,
       "gate": -95.6,
       "lead": 178,
       "matches": "suo",
@@ -8731,7 +8774,7 @@
     "suocera": {
       "author": "LangPao",
       "file": "words/suocera.mp3",
-      "gain": -1.5,
+      "gain": -1.0,
       "lead": 177,
       "matches": "suocera",
       "mos": 3.2,
@@ -8741,7 +8784,7 @@
     "suocero": {
       "author": "LangPao",
       "file": "words/suocero.mp3",
-      "gain": 3.5,
+      "gain": 4.8,
       "gate": -71.7,
       "lead": 222,
       "matches": "suocero",
@@ -8752,7 +8795,7 @@
     "suonare": {
       "author": "LangPao",
       "file": "words/suonare.mp3",
-      "gain": 1.3,
+      "gain": 1.8,
       "lead": 175,
       "matches": "suonare",
       "mos": 3.09,
@@ -8762,7 +8805,7 @@
     "supermercato": {
       "author": "XANA000",
       "file": "words/supermercato.mp3",
-      "gain": 3.0,
+      "gain": 1.5,
       "gate": -89.5,
       "lead": 146,
       "matches": "supermercato",
@@ -8773,7 +8816,7 @@
     "svegliarsi": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/svegliarsi.mp3",
-      "gain": -0.9,
+      "gain": -2.0,
       "gate": -71.8,
       "matches": "svegliarsi",
       "mos": 2.81,
@@ -8783,7 +8826,7 @@
     "sì": {
       "author": "XANA000",
       "file": "words/su00ec.mp3",
-      "gain": 5.0,
+      "gain": 7.3,
       "lead": 193,
       "matches": "sì",
       "mos": 2.43,
@@ -8793,7 +8836,7 @@
     "taglia": {
       "author": "LangPao",
       "file": "words/taglia.mp3",
-      "gain": 0.9,
+      "gain": 0.7,
       "lead": 281,
       "matches": "taglia",
       "mos": 2.64,
@@ -8802,9 +8845,8 @@
     },
     "tagliare": {
       "author": "LangPao",
-      "cap": 0.1,
       "file": "words/tagliare.mp3",
-      "gain": 6.0,
+      "gain": 3.6,
       "gate": -71.7,
       "lead": 205,
       "matches": "tagliare",
@@ -8814,7 +8856,7 @@
     },
     "tappeto": {
       "author": "LangPao",
-      "cap": 2.4,
+      "cap": 5.5,
       "file": "words/tappeto.mp3",
       "gain": 4.4,
       "lead": 216,
@@ -8826,7 +8868,7 @@
     "tardi": {
       "author": "LangPao",
       "file": "words/tardi.mp3",
-      "gain": 3.4,
+      "gain": 3.0,
       "lead": 204,
       "matches": "tardi",
       "mos": 2.92,
@@ -8835,7 +8877,7 @@
     },
     "tassa": {
       "author": "LangPao",
-      "cap": 0.5,
+      "cap": 0.6,
       "file": "words/tassa.mp3",
       "gain": 3.9,
       "lead": 269,
@@ -8847,7 +8889,7 @@
     "tastiera": {
       "author": "GiovanniPen",
       "file": "words/tastiera.mp3",
-      "gain": 7.5,
+      "gain": 6.4,
       "gate": -83.7,
       "lead": 89,
       "matches": "tastiera",
@@ -8857,8 +8899,9 @@
     },
     "tavolo": {
       "author": "LangPao",
+      "cap": 1.7,
       "file": "words/tavolo.mp3",
-      "gain": 3.5,
+      "gain": 4.2,
       "lead": 268,
       "matches": "tavolo",
       "mos": 3.06,
@@ -8867,9 +8910,8 @@
     },
     "taxi": {
       "author": "LangPao",
-      "cap": 1.0,
       "file": "words/taxi.mp3",
-      "gain": 4.2,
+      "gain": 3.6,
       "lead": 214,
       "matches": "taxi",
       "mos": 2.87,
@@ -8878,7 +8920,7 @@
     },
     "tazza": {
       "author": "Crunchy Cloaky Crackdown",
-      "cap": 3.7,
+      "cap": 2.6,
       "file": "words/tazza.mp3",
       "gain": 6.5,
       "gate": -87.7,
@@ -8891,7 +8933,7 @@
     "telecomando": {
       "author": "DanielParoliere",
       "file": "words/telecomando.mp3",
-      "gain": -2.7,
+      "gain": -4.9,
       "gate": -86.0,
       "lead": 182,
       "matches": "telecomando",
@@ -8902,7 +8944,7 @@
     "televisione": {
       "author": "XANA000",
       "file": "words/televisione.mp3",
-      "gain": -3.3,
+      "gain": -3.1,
       "gate": -73.7,
       "lead": 210,
       "matches": "televisione",
@@ -8913,7 +8955,7 @@
     "tempesta": {
       "author": "XANA000",
       "file": "words/tempesta.mp3",
-      "gain": -3.2,
+      "gain": -5.2,
       "gate": -65.2,
       "matches": "tempesta",
       "mos": 2.7,
@@ -8923,7 +8965,7 @@
     "tempo": {
       "author": "XANA000",
       "file": "words/tempo.mp3",
-      "gain": 0.8,
+      "gain": -0.6,
       "gate": -85.6,
       "lead": 244,
       "matches": "tempo",
@@ -8934,7 +8976,7 @@
     "tenda": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/tenda.mp3",
-      "gain": 6.7,
+      "gain": 6.1,
       "gate": -89.9,
       "lead": 200,
       "matches": "tenda",
@@ -8945,7 +8987,7 @@
     "testa": {
       "author": "Ciampix",
       "file": "words/testa.mp3",
-      "gain": 8.3,
+      "gain": 5.8,
       "gate": -81.1,
       "lead": 184,
       "matches": "testa",
@@ -8956,7 +8998,7 @@
     "tirare": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/tirare.mp3",
-      "gain": 5.2,
+      "gain": 4.9,
       "gate": -87.3,
       "lead": 154,
       "matches": "tirare",
@@ -8967,7 +9009,7 @@
     "tomba": {
       "author": "LangPao",
       "file": "words/tomba.mp3",
-      "gain": 8.2,
+      "gain": 7.4,
       "gate": -71.1,
       "lead": 240,
       "matches": "tomba",
@@ -8977,8 +9019,9 @@
     },
     "tornare": {
       "author": "Crunchy Cloaky Crackdown",
+      "cap": 0.5,
       "file": "words/tornare.mp3",
-      "gain": 7.7,
+      "gain": 8.9,
       "gate": -88.1,
       "lead": 201,
       "matches": "tornare",
@@ -8989,7 +9032,7 @@
     "tosse": {
       "author": "LangPao",
       "file": "words/tosse.mp3",
-      "gain": 1.2,
+      "gain": 3.7,
       "gate": -67.8,
       "lead": 199,
       "matches": "tosse",
@@ -8999,9 +9042,8 @@
     },
     "tra": {
       "author": "LangPao",
-      "cap": 0.2,
       "file": "words/tra.mp3",
-      "gain": 4.0,
+      "gain": 3.5,
       "lead": 193,
       "matches": "tra",
       "mos": 2.34,
@@ -9011,7 +9053,7 @@
     "tradurre": {
       "author": "LangPao",
       "file": "words/tradurre.mp3",
-      "gain": 4.4,
+      "gain": 4.6,
       "lead": 201,
       "matches": "tradurre",
       "mos": 2.43,
@@ -9021,7 +9063,7 @@
     "treno": {
       "author": "XANA000",
       "file": "words/treno.mp3",
-      "gain": 0.7,
+      "gain": -0.3,
       "gate": -79.6,
       "lead": 228,
       "matches": "treno",
@@ -9031,8 +9073,9 @@
     },
     "tristezza": {
       "author": "LangPao",
+      "cap": 0.7,
       "file": "words/tristezza.mp3",
-      "gain": 0.9,
+      "gain": 3.3,
       "gate": -72.8,
       "lead": 261,
       "matches": "tristezza",
@@ -9042,7 +9085,7 @@
     },
     "troppo": {
       "author": "LangPao",
-      "cap": 0.1,
+      "cap": 0.3,
       "file": "words/troppo.mp3",
       "gain": 8.5,
       "lead": 213,
@@ -9054,7 +9097,7 @@
     "trovare": {
       "author": "LangPao",
       "file": "words/trovare.mp3",
-      "gain": 4.3,
+      "gain": 4.7,
       "lead": 190,
       "matches": "trovare",
       "mos": 3.04,
@@ -9063,8 +9106,9 @@
     },
     "tu": {
       "author": "XANA000",
+      "cap": 1.0,
       "file": "words/tu.mp3",
-      "gain": 5.1,
+      "gain": 12.8,
       "gate": -69.1,
       "matches": "tu",
       "mos": 2.58,
@@ -9074,7 +9118,7 @@
     "tuo": {
       "author": "XANA000",
       "file": "words/tuo.mp3",
-      "gain": -6.2,
+      "gain": -2.8,
       "gate": -77.0,
       "lead": 181,
       "matches": "tuo",
@@ -9085,7 +9129,7 @@
     "tuono": {
       "author": "LangPao",
       "file": "words/tuono.mp3",
-      "gain": 6.1,
+      "gain": 5.2,
       "gate": -78.8,
       "lead": 32,
       "matches": "tuono",
@@ -9096,7 +9140,7 @@
     "turista": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/turista.mp3",
-      "gain": 6.0,
+      "gain": 8.3,
       "gate": -89.1,
       "lead": 171,
       "matches": "turista",
@@ -9106,8 +9150,9 @@
     },
     "tutti": {
       "author": "LangPao",
+      "cap": 1.2,
       "file": "words/tutti.mp3",
-      "gain": 6.9,
+      "gain": 8.6,
       "lead": 219,
       "matches": "tutti",
       "mos": 2.65,
@@ -9117,7 +9162,7 @@
     "tutto": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/tutto.mp3",
-      "gain": 10.7,
+      "gain": 13.9,
       "gate": -86.1,
       "lead": 199,
       "matches": "tutto",
@@ -9128,7 +9173,7 @@
     "tè": {
       "author": "XANA000",
       "file": "words/tu00e8.mp3",
-      "gain": 1.3,
+      "gain": -0.6,
       "gate": -90.2,
       "lead": 247,
       "matches": "tè",
@@ -9139,7 +9184,7 @@
     "uccello": {
       "author": "XANA000",
       "file": "words/uccello.mp3",
-      "gain": -3.4,
+      "gain": -4.1,
       "gate": -75.2,
       "lead": 246,
       "matches": "uccello",
@@ -9149,8 +9194,9 @@
     },
     "ufficio": {
       "author": "LangPao",
+      "cap": 0.4,
       "file": "words/ufficio.mp3",
-      "gain": 6.6,
+      "gain": 8.7,
       "lead": 224,
       "matches": "ufficio",
       "mos": 2.72,
@@ -9160,7 +9206,7 @@
     "uguaglianza": {
       "author": "LangPao",
       "file": "words/uguaglianza.mp3",
-      "gain": -1.0,
+      "gain": -0.8,
       "lead": 190,
       "matches": "uguaglianza",
       "mos": 2.78,
@@ -9170,7 +9216,7 @@
     "ultimo": {
       "author": "LangPao",
       "file": "words/ultimo.mp3",
-      "gain": 5.0,
+      "gain": 10.2,
       "lead": 256,
       "matches": "ultimo",
       "mos": 2.83,
@@ -9179,8 +9225,9 @@
     },
     "umido": {
       "author": "LangPao",
+      "cap": 0.4,
       "file": "words/umido.mp3",
-      "gain": 11.6,
+      "gain": 14.3,
       "gate": -70.8,
       "lead": 205,
       "matches": "umido",
@@ -9191,7 +9238,7 @@
     "università": {
       "author": "LangPao",
       "file": "words/universitu00e0.mp3",
-      "gain": 3.2,
+      "gain": 3.9,
       "lead": 254,
       "matches": "università",
       "mos": 2.86,
@@ -9201,7 +9248,7 @@
     "uomo": {
       "author": "XANA000",
       "file": "words/uomo.mp3",
-      "gain": 2.4,
+      "gain": 3.4,
       "gate": -82.3,
       "lead": 270,
       "matches": "uomo",
@@ -9212,6 +9259,7 @@
     "uovo": {
       "author": "LangPao",
       "file": "words/uovo.mp3",
+      "gain": 2.4,
       "lead": 206,
       "matches": "uovo",
       "mos": 2.87,
@@ -9221,7 +9269,7 @@
     "urgente": {
       "author": "LangPao",
       "file": "words/urgente.mp3",
-      "gain": 3.8,
+      "gain": 2.6,
       "lead": 194,
       "matches": "urgente",
       "mos": 2.95,
@@ -9231,7 +9279,7 @@
     "usare": {
       "author": "LangPao",
       "file": "words/usare.mp3",
-      "gain": 1.2,
+      "gain": 3.9,
       "gate": -98.8,
       "lead": 24,
       "matches": "usare",
@@ -9242,7 +9290,7 @@
     "uscita": {
       "author": "LangPao",
       "file": "words/uscita.mp3",
-      "gain": 2.8,
+      "gain": 2.3,
       "gate": -74.3,
       "lead": 180,
       "matches": "uscita",
@@ -9253,7 +9301,7 @@
     "vecchio": {
       "author": "XANA000",
       "file": "words/vecchio.mp3",
-      "gain": 3.2,
+      "gain": -0.1,
       "gate": -87.1,
       "lead": 227,
       "matches": "vecchio",
@@ -9274,7 +9322,7 @@
     "veloce": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/veloce.mp3",
-      "gain": -2.4,
+      "gain": -0.9,
       "gate": -73.6,
       "lead": 147,
       "matches": "veloce",
@@ -9285,7 +9333,7 @@
     "vena": {
       "author": "DivoLetto",
       "file": "words/vena.mp3",
-      "gain": 4.9,
+      "gain": 3.3,
       "gate": -79.1,
       "lead": 84,
       "matches": "vena",
@@ -9296,7 +9344,7 @@
     "vendere": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/vendere.mp3",
-      "gain": -4.3,
+      "gain": -4.9,
       "gate": -68.4,
       "lead": 27,
       "matches": "vendere",
@@ -9307,7 +9355,7 @@
     "venire": {
       "author": "LangPao",
       "file": "words/venire.mp3",
-      "gain": 0.9,
+      "gain": 2.2,
       "lead": 214,
       "matches": "venire",
       "mos": 2.58,
@@ -9317,7 +9365,7 @@
     "vento": {
       "author": "LangPao",
       "file": "words/vento.mp3",
-      "gain": 3.2,
+      "gain": 0.9,
       "lead": 221,
       "matches": "vento",
       "mos": 3.02,
@@ -9327,7 +9375,7 @@
     "verbo": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/verbo.mp3",
-      "gain": 7.8,
+      "gain": 7.3,
       "gate": -86.9,
       "lead": 138,
       "matches": "verbo",
@@ -9338,7 +9386,7 @@
     "verde": {
       "author": "LangPao",
       "file": "words/verde.mp3",
-      "gain": 4.4,
+      "gain": 3.4,
       "lead": 184,
       "matches": "verde",
       "mos": 2.75,
@@ -9348,7 +9396,7 @@
     "verdura": {
       "author": "XANA000",
       "file": "words/verdura.mp3",
-      "gain": 1.7,
+      "gain": 4.2,
       "gate": -81.4,
       "lead": 236,
       "matches": "verdura",
@@ -9359,7 +9407,7 @@
     "vergogna": {
       "author": "LangPao",
       "file": "words/vergogna.mp3",
-      "gain": 7.4,
+      "gain": 4.4,
       "gate": -75.6,
       "lead": 218,
       "matches": "vergogna",
@@ -9370,7 +9418,7 @@
     "vestito": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/vestito.mp3",
-      "gain": 8.3,
+      "gain": 10.0,
       "gate": -84.5,
       "lead": 162,
       "matches": "vestito",
@@ -9381,7 +9429,7 @@
     "viaggiare": {
       "author": "LangPao",
       "file": "words/viaggiare.mp3",
-      "gain": 3.9,
+      "gain": 2.6,
       "lead": 195,
       "matches": "viaggiare",
       "mos": 2.73,
@@ -9391,7 +9439,7 @@
     "viaggio": {
       "author": "LangPao",
       "file": "words/viaggio.mp3",
-      "gain": 3.0,
+      "gain": 1.6,
       "lead": 242,
       "matches": "viaggio",
       "mos": 2.94,
@@ -9401,7 +9449,7 @@
     "vicino": {
       "author": "Marta Carbone, Association Shtooka",
       "file": "words/vicino.mp3",
-      "gain": -0.1,
+      "gain": 1.2,
       "gate": -67.7,
       "matches": "vicino",
       "mos": 3.13,
@@ -9411,7 +9459,7 @@
     "viola": {
       "author": "LangPao",
       "file": "words/viola.mp3",
-      "gain": 1.0,
+      "gain": 2.0,
       "lead": 215,
       "matches": "viola",
       "mos": 2.81,
@@ -9432,7 +9480,7 @@
     "visto": {
       "author": "DivoLetto",
       "file": "words/visto.mp3",
-      "gain": 1.7,
+      "gain": 4.7,
       "gate": -69.0,
       "matches": "visto",
       "mos": 2.41,
@@ -9442,7 +9490,7 @@
     "vita": {
       "author": "LangPao",
       "file": "words/vita.mp3",
-      "gain": 2.7,
+      "gain": 2.2,
       "lead": 21,
       "matches": "vita",
       "mos": 2.78,
@@ -9452,7 +9500,7 @@
     "vivere": {
       "author": "LangPao",
       "file": "words/vivere.mp3",
-      "gain": 1.5,
+      "gain": 1.0,
       "lead": 220,
       "matches": "vivere",
       "mos": 2.68,
@@ -9461,8 +9509,9 @@
     },
     "vivo": {
       "author": "DiplomaticBadger",
+      "cap": 0.3,
       "file": "words/vivo.mp3",
-      "gain": 8.9,
+      "gain": 12.7,
       "gate": -88.3,
       "lead": 171,
       "matches": "vivo",
@@ -9473,7 +9522,7 @@
     "voi": {
       "author": "XANA000",
       "file": "words/voi.mp3",
-      "gain": -3.6,
+      "gain": -0.3,
       "gate": -78.7,
       "lead": 208,
       "matches": "voi",
@@ -9484,7 +9533,7 @@
     "volentieri": {
       "author": "LangPao",
       "file": "words/volentieri.mp3",
-      "gain": 2.6,
+      "gain": 4.1,
       "lead": 238,
       "matches": "volentieri",
       "mos": 3.1,
@@ -9494,7 +9543,7 @@
     "volere": {
       "author": "LangPao",
       "file": "words/volere.mp3",
-      "gain": 0.7,
+      "gain": 1.2,
       "lead": 245,
       "matches": "volere",
       "mos": 2.85,
@@ -9504,7 +9553,7 @@
     "volume": {
       "author": "LangPao",
       "file": "words/volume.mp3",
-      "gain": 10.4,
+      "gain": 10.8,
       "gate": -57.1,
       "lead": 140,
       "matches": "volume",
@@ -9515,7 +9564,7 @@
     "vostro": {
       "author": "XANA000",
       "file": "words/vostro.mp3",
-      "gain": 3.1,
+      "gain": 2.8,
       "lead": 182,
       "matches": "vostro",
       "mos": 2.47,
@@ -9524,8 +9573,9 @@
     },
     "votare": {
       "author": "LangPao",
+      "cap": 0.8,
       "file": "words/votare.mp3",
-      "gain": 3.8,
+      "gain": 4.7,
       "gate": -97.4,
       "lead": 231,
       "matches": "votare",
@@ -9536,7 +9586,7 @@
     "voto": {
       "author": "DivoLetto",
       "file": "words/voto.mp3",
-      "gain": 5.0,
+      "gain": 5.9,
       "gate": -77.5,
       "matches": "voto",
       "mos": 3.02,
@@ -9546,7 +9596,7 @@
     "vuoto": {
       "author": "LangPao",
       "file": "words/vuoto.mp3",
-      "gain": 2.7,
+      "gain": 3.1,
       "lead": 249,
       "matches": "vuoto",
       "mos": 3.05,
@@ -9556,7 +9606,7 @@
     "zia": {
       "author": "LangPao",
       "file": "words/zia.mp3",
-      "gain": 4.7,
+      "gain": 3.8,
       "lead": 120,
       "matches": "zia",
       "mos": 2.9,
@@ -9566,7 +9616,7 @@
     "zio": {
       "author": "LangPao",
       "file": "words/zio.mp3",
-      "gain": 5.0,
+      "gain": 5.4,
       "lead": 134,
       "matches": "zio",
       "mos": 2.96,
@@ -9576,7 +9626,7 @@
     "zucchero": {
       "author": "UofG Language Modules",
       "file": "words/zucchero.mp3",
-      "gain": 3.5,
+      "gain": 6.4,
       "gate": -91.1,
       "lead": 390,
       "matches": "zucchero",
@@ -9587,7 +9637,7 @@
     "zuppa": {
       "author": "Crunchy Cloaky Crackdown",
       "file": "words/zuppa.mp3",
-      "gain": 7.7,
+      "gain": 8.2,
       "gate": -84.7,
       "lead": 190,
       "matches": "zuppa",

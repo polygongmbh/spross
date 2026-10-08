@@ -9,7 +9,7 @@
     "Agosti": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/agosti.mp3",
-      "gain": -5.4,
+      "gain": -3.1,
       "gate": -90.5,
       "lead": 873,
       "matches": "Agosti",
@@ -20,7 +20,7 @@
     "Alhamisi": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/alhamisi.mp3",
-      "gain": -6.2,
+      "gain": -5.5,
       "gate": -80.0,
       "lead": 704,
       "matches": "Alhamisi",
@@ -31,7 +31,7 @@
     "Aprili": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/aprili.mp3",
-      "gain": -4.5,
+      "gain": -3.1,
       "gate": -80.1,
       "lead": 636,
       "matches": "Aprili",
@@ -42,7 +42,7 @@
     "Desemba": {
       "author": "Waithera Were",
       "file": "calendar/desemba.mp3",
-      "gain": -7.1,
+      "gain": -9.4,
       "gate": -65.0,
       "lead": 33,
       "matches": "Desemba",
@@ -53,7 +53,7 @@
     "Februari": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/februari.mp3",
-      "gain": -7.9,
+      "gain": -8.4,
       "gate": -86.7,
       "lead": 686,
       "matches": "Februari",
@@ -64,7 +64,7 @@
     "Ijumaa": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/ijumaa.mp3",
-      "gain": -4.1,
+      "gain": -2.9,
       "gate": -80.8,
       "lead": 391,
       "matches": "Ijumaa",
@@ -75,7 +75,7 @@
     "Januari": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/januari.mp3",
-      "gain": -6.6,
+      "gain": -6.2,
       "gate": -82.9,
       "lead": 581,
       "matches": "Januari",
@@ -97,7 +97,7 @@
     "Jumamosi": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/jumamosi.mp3",
-      "gain": -8.0,
+      "gain": -5.3,
       "gate": -84.1,
       "lead": 809,
       "matches": "Jumamosi",
@@ -108,7 +108,7 @@
     "Jumanne": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/jumanne.mp3",
-      "gain": -4.9,
+      "gain": -3.6,
       "gate": -85.4,
       "lead": 188,
       "matches": "Jumanne",
@@ -119,7 +119,7 @@
     "Jumapili": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/jumapili.mp3",
-      "gain": -7.4,
+      "gain": -3.6,
       "gate": -79.2,
       "lead": 792,
       "matches": "Jumapili",
@@ -130,7 +130,7 @@
     "Jumatano": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/jumatano.mp3",
-      "gain": -7.2,
+      "gain": -6.7,
       "gate": -86.7,
       "lead": 678,
       "matches": "Jumatano",
@@ -141,7 +141,7 @@
     "Jumatatu": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/jumatatu.mp3",
-      "gain": -5.8,
+      "gain": -3.9,
       "gate": -86.6,
       "lead": 583,
       "matches": "Jumatatu",
@@ -152,7 +152,7 @@
     "Juni": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/juni.mp3",
-      "gain": -6.3,
+      "gain": -2.0,
       "gate": -82.4,
       "lead": 669,
       "matches": "Juni",
@@ -163,7 +163,7 @@
     "Machi": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/machi.mp3",
-      "gain": -2.1,
+      "gain": -3.9,
       "gate": -87.8,
       "lead": 618,
       "matches": "Machi",
@@ -174,7 +174,7 @@
     "Mei": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/mei.mp3",
-      "gain": -4.0,
+      "gain": -3.5,
       "gate": -89.6,
       "lead": 432,
       "matches": "Mei",
@@ -196,7 +196,7 @@
     "Oktoba": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/oktoba.mp3",
-      "gain": -6.7,
+      "gain": -6.9,
       "gate": -86.6,
       "lead": 308,
       "matches": "Oktoba",
@@ -207,7 +207,7 @@
     "Septemba": {
       "author": "Goethe-Institut Cameroon",
       "file": "calendar/septemba.mp3",
-      "gain": -7.3,
+      "gain": -6.5,
       "gate": -82.4,
       "lead": 409,
       "matches": "Septemba",
@@ -220,7 +220,7 @@
     "Afrika Kusini": {
       "author": "Waithera Were",
       "file": "countries/afrikau0020kusini.mp3",
-      "gain": -2.9,
+      "gain": -5.8,
       "gate": -66.1,
       "lead": 41,
       "matches": "Afrika Kusini",
@@ -231,7 +231,7 @@
     "Aljeria": {
       "author": "Waithera Were",
       "file": "countries/aljeria.mp3",
-      "gain": -4.4,
+      "gain": -7.3,
       "gate": -57.9,
       "lead": 42,
       "matches": "Aljeria",
@@ -242,7 +242,7 @@
     "Angola": {
       "author": "Waithera Were",
       "file": "countries/angola.mp3",
-      "gain": -4.3,
+      "gain": -3.7,
       "gate": -67.3,
       "lead": 46,
       "matches": "Angola",
@@ -253,7 +253,7 @@
     "Argentina": {
       "author": "Waithera Were",
       "file": "countries/argentina.mp3",
-      "gain": -5.3,
+      "gain": -9.0,
       "gate": -63.3,
       "lead": 44,
       "matches": "Argentina",
@@ -264,7 +264,7 @@
     "Austria": {
       "author": "Waithera Were",
       "file": "countries/austria.mp3",
-      "gain": -1.4,
+      "gain": -3.0,
       "gate": -63.5,
       "lead": 46,
       "matches": "Austria",
@@ -275,7 +275,7 @@
     "Brazili": {
       "author": "Waithera Were",
       "file": "countries/brazili.mp3",
-      "gain": -4.6,
+      "gain": -8.5,
       "gate": -65.2,
       "lead": 22,
       "matches": "Brazili",
@@ -286,7 +286,7 @@
     "Bulgaria": {
       "author": "Waithera Were",
       "file": "countries/bulgaria.mp3",
-      "gain": -6.0,
+      "gain": -9.0,
       "gate": -99.7,
       "lead": 191,
       "matches": "Bulgaria",
@@ -297,7 +297,7 @@
     "Ethiopia": {
       "author": "Waithera Were",
       "file": "countries/ethiopia.mp3",
-      "gain": -3.6,
+      "gain": -5.4,
       "gate": -70.3,
       "lead": 42,
       "matches": "Ethiopia",
@@ -308,7 +308,7 @@
     "Ghana": {
       "author": "Waithera Were",
       "file": "countries/ghana.mp3",
-      "gain": -11.0,
+      "gain": -13.1,
       "gate": -66.3,
       "lead": 27,
       "matches": "Ghana",
@@ -319,7 +319,7 @@
     "Israeli": {
       "author": "Waithera Were",
       "file": "countries/israeli.mp3",
-      "gain": -7.1,
+      "gain": -10.6,
       "gate": -66.9,
       "lead": 41,
       "matches": "Israeli",
@@ -330,7 +330,7 @@
     "Jamhuri ya Kidemokrasia ya Kongo": {
       "author": "Waithera Were",
       "file": "countries/jamhuriu0020yau0020kidemokrasiau0020yau0020kongo.mp3",
-      "gain": -2.2,
+      "gain": -4.2,
       "gate": -62.8,
       "lead": 8,
       "matches": "Jamhuri ya Kidemokrasia ya Kongo",
@@ -341,7 +341,7 @@
     "Kanada": {
       "author": "Waithera Were",
       "file": "countries/kanada.mp3",
-      "gain": -10.7,
+      "gain": -12.9,
       "gate": -59.3,
       "lead": 55,
       "matches": "Kanada",
@@ -352,7 +352,7 @@
     "Kenya": {
       "author": "Waithera Were",
       "file": "countries/kenya.mp3",
-      "gain": -4.7,
+      "gain": -7.5,
       "gate": -70.1,
       "lead": 46,
       "matches": "Kenya",
@@ -363,7 +363,7 @@
     "Kolombia": {
       "author": "Waithera Were",
       "file": "countries/kolombia.mp3",
-      "gain": -2.6,
+      "gain": -4.4,
       "gate": -68.6,
       "lead": 45,
       "matches": "Kolombia",
@@ -374,7 +374,7 @@
     "Korea Kusini": {
       "author": "Waithera Were",
       "file": "countries/koreau0020kusini.mp3",
-      "gain": -4.1,
+      "gain": -7.7,
       "gate": -65.6,
       "lead": 41,
       "matches": "Korea Kusini",
@@ -396,7 +396,7 @@
     "Marekani": {
       "author": "Ismail Ibn Ahmed",
       "file": "countries/marekani.mp3",
-      "gain": 6.8,
+      "gain": 5.0,
       "lead": 184,
       "matches": "Marekani",
       "mos": 3.01,
@@ -406,7 +406,7 @@
     "Meksiko": {
       "author": "Waithera Were",
       "file": "countries/meksiko.mp3",
-      "gain": 2.1,
+      "gain": -1.6,
       "gate": -67.9,
       "lead": 46,
       "matches": "Meksiko",
@@ -417,7 +417,7 @@
     "Misri": {
       "author": "Waithera Were",
       "file": "countries/misri.mp3",
-      "gain": -2.2,
+      "gain": -3.9,
       "gate": -65.0,
       "lead": 43,
       "matches": "Misri",
@@ -428,7 +428,7 @@
     "Moroko": {
       "author": "Waithera Were",
       "file": "countries/moroko.mp3",
-      "gain": -4.9,
+      "gain": -5.7,
       "gate": -69.0,
       "lead": 41,
       "matches": "Moroko",
@@ -439,6 +439,7 @@
     "Msumbiji": {
       "author": "Waithera Were",
       "file": "countries/msumbiji.mp3",
+      "gain": -1.6,
       "gate": -63.2,
       "lead": 38,
       "matches": "Msumbiji",
@@ -449,7 +450,7 @@
     "Nigeria": {
       "author": "Waithera Were",
       "file": "countries/nigeria.mp3",
-      "gain": -4.9,
+      "gain": -7.6,
       "gate": -62.5,
       "lead": 43,
       "matches": "Nigeria",
@@ -460,7 +461,7 @@
     "Nyuzilandi": {
       "author": "Waithera Were",
       "file": "countries/nyuzilandi.mp3",
-      "gain": -5.7,
+      "gain": -7.9,
       "gate": -64.7,
       "lead": 41,
       "matches": "Nyuzilandi",
@@ -471,7 +472,7 @@
     "Rwanda": {
       "author": "Waithera Were",
       "file": "countries/rwanda.mp3",
-      "gain": -8.4,
+      "gain": -11.0,
       "gate": -62.4,
       "lead": 46,
       "matches": "Rwanda",
@@ -482,7 +483,7 @@
     "Senegal": {
       "author": "Waithera Were",
       "file": "countries/senegal.mp3",
-      "gain": -7.0,
+      "gain": -10.2,
       "gate": -69.1,
       "lead": 17,
       "matches": "Senegal",
@@ -493,7 +494,7 @@
     "Tanzania": {
       "author": "Byera04",
       "file": "countries/tanzania.mp3",
-      "gain": -0.7,
+      "gain": 1.4,
       "gate": -56.7,
       "matches": "Tanzania",
       "mos": 2.6,
@@ -503,7 +504,7 @@
     "Tunisia": {
       "author": "Waithera Were",
       "file": "countries/tunisia.mp3",
-      "gain": 3.8,
+      "gain": 3.3,
       "gate": -64.8,
       "lead": 50,
       "matches": "Tunisia",
@@ -514,7 +515,7 @@
     "Ubelgiji": {
       "author": "Waithera Were",
       "file": "countries/ubelgiji.mp3",
-      "gain": -1.0,
+      "gain": -2.3,
       "gate": -67.5,
       "lead": 43,
       "matches": "Ubelgiji",
@@ -525,7 +526,7 @@
     "Uchina": {
       "author": "Waithera Were",
       "file": "countries/uchina.mp3",
-      "gain": -2.6,
+      "gain": -4.1,
       "gate": -66.0,
       "lead": 45,
       "matches": "Uchina",
@@ -536,7 +537,7 @@
     "Ufaransa": {
       "author": "Waithera Were",
       "file": "countries/ufaransa.mp3",
-      "gain": -5.4,
+      "gain": -7.3,
       "gate": -67.7,
       "lead": 49,
       "matches": "Ufaransa",
@@ -547,7 +548,7 @@
     "Ufini": {
       "author": "Waithera Were",
       "file": "countries/ufini.mp3",
-      "gain": -1.7,
+      "gain": -2.3,
       "gate": -63.4,
       "lead": 42,
       "matches": "Ufini",
@@ -558,7 +559,7 @@
     "Uganda": {
       "author": "Waithera Were",
       "file": "countries/uganda.mp3",
-      "gain": -9.2,
+      "gain": -11.5,
       "gate": -63.5,
       "lead": 44,
       "matches": "Uganda",
@@ -569,7 +570,7 @@
     "Ugiriki": {
       "author": "Waithera Were",
       "file": "countries/ugiriki.mp3",
-      "gain": -1.2,
+      "gain": -1.8,
       "gate": -61.5,
       "lead": 41,
       "matches": "Ugiriki",
@@ -580,7 +581,7 @@
     "Uhindi": {
       "author": "Waithera Were",
       "file": "countries/uhindi.mp3",
-      "gain": -3.0,
+      "gain": -2.2,
       "gate": -67.5,
       "lead": 44,
       "matches": "Uhindi",
@@ -591,7 +592,7 @@
     "Uhispania": {
       "author": "Waithera Were",
       "file": "countries/uhispania.mp3",
-      "gain": -2.3,
+      "gain": -4.6,
       "gate": -65.9,
       "lead": 49,
       "matches": "Uhispania",
@@ -602,7 +603,7 @@
     "Uholanzi": {
       "author": "Waithera Were",
       "file": "countries/uholanzi.mp3",
-      "gain": -6.9,
+      "gain": -9.1,
       "gate": -64.8,
       "lead": 43,
       "matches": "Uholanzi",
@@ -613,7 +614,7 @@
     "Uingereza": {
       "author": "Waithera Were",
       "file": "countries/uingereza.mp3",
-      "gain": -5.5,
+      "gain": -6.9,
       "gate": -64.8,
       "lead": 43,
       "matches": "Uingereza",
@@ -624,7 +625,7 @@
     "Ujerumani": {
       "author": "Ismail Ibn Ahmed",
       "file": "countries/ujerumani.mp3",
-      "gain": 4.5,
+      "gain": 3.6,
       "lead": 183,
       "matches": "Ujerumani",
       "mos": 2.88,
@@ -634,7 +635,7 @@
     "Ureno": {
       "author": "Waithera Were",
       "file": "countries/ureno.mp3",
-      "gain": -8.9,
+      "gain": -11.2,
       "gate": -71.0,
       "lead": 46,
       "matches": "Ureno",
@@ -645,7 +646,7 @@
     "Urusi": {
       "author": "Waithera Were",
       "file": "countries/urusi.mp3",
-      "gain": -1.9,
+      "gain": -1.3,
       "gate": -68.1,
       "lead": 47,
       "matches": "Urusi",
@@ -656,7 +657,7 @@
     "Uswidi": {
       "author": "Waithera Were",
       "file": "countries/uswidi.mp3",
-      "gain": -3.0,
+      "gain": -3.8,
       "gate": -63.1,
       "lead": 50,
       "matches": "Uswidi",
@@ -667,7 +668,7 @@
     "Uswisi": {
       "author": "Waithera Were",
       "file": "countries/uswisi.mp3",
-      "gain": -3.0,
+      "gain": -3.1,
       "gate": -69.8,
       "lead": 47,
       "matches": "Uswisi",
@@ -678,7 +679,7 @@
     "Uturuki": {
       "author": "Waithera Were",
       "file": "countries/uturuki.mp3",
-      "gain": -4.7,
+      "gain": -5.2,
       "gate": -66.3,
       "lead": 46,
       "matches": "Uturuki",
@@ -689,7 +690,7 @@
     "Waaljeria": {
       "author": "Waithera Were",
       "file": "countries/waaljeria.mp3",
-      "gain": -6.5,
+      "gain": -10.2,
       "gate": -99.0,
       "lead": 223,
       "matches": "Waaljeria",
@@ -700,7 +701,7 @@
     "Wabelgiji": {
       "author": "Waithera Were",
       "file": "countries/wabelgiji.mp3",
-      "gain": -7.4,
+      "gain": -8.7,
       "gate": -64.5,
       "lead": 46,
       "matches": "Wabelgiji",
@@ -711,7 +712,7 @@
     "Wabrazili": {
       "author": "Waithera Were",
       "file": "countries/wabrazili.mp3",
-      "gain": -6.9,
+      "gain": -10.5,
       "gate": -66.3,
       "lead": 42,
       "matches": "Wabrazili",
@@ -722,7 +723,7 @@
     "Wabulgaria": {
       "author": "Waithera Were",
       "file": "countries/wabulgaria.mp3",
-      "gain": -5.7,
+      "gain": -8.3,
       "gate": -98.7,
       "lead": 206,
       "matches": "Wabulgaria",
@@ -733,7 +734,7 @@
     "Wachina": {
       "author": "Waithera Were",
       "file": "countries/wachina.mp3",
-      "gain": -4.6,
+      "gain": -5.8,
       "gate": -70.0,
       "lead": 45,
       "matches": "Wachina",
@@ -744,7 +745,7 @@
     "Wafaransa": {
       "author": "Waithera Were",
       "file": "countries/wafaransa.mp3",
-      "gain": -10.6,
+      "gain": -13.5,
       "gate": -65.7,
       "lead": 35,
       "matches": "Wafaransa",
@@ -755,7 +756,7 @@
     "Waganda": {
       "author": "Waithera Were",
       "file": "countries/waganda.mp3",
-      "gain": -8.9,
+      "gain": -12.1,
       "gate": -65.7,
       "lead": 31,
       "matches": "Waganda",
@@ -766,7 +767,7 @@
     "Waghana": {
       "author": "Waithera Were",
       "file": "countries/waghana.mp3",
-      "gain": -9.2,
+      "gain": -12.2,
       "gate": -68.5,
       "lead": 45,
       "matches": "Waghana",
@@ -777,7 +778,7 @@
     "Wagiriki": {
       "author": "Waithera Were",
       "file": "countries/wagiriki.mp3",
-      "gain": -8.6,
+      "gain": -8.8,
       "gate": -68.6,
       "lead": 41,
       "matches": "Wagiriki",
@@ -788,7 +789,7 @@
     "Wahindi": {
       "author": "Waithera Were",
       "file": "countries/wahindi.mp3",
-      "gain": -7.8,
+      "gain": -10.5,
       "gate": -69.3,
       "lead": 42,
       "matches": "Wahindi",
@@ -799,7 +800,7 @@
     "Wahispania": {
       "author": "Waithera Were",
       "file": "countries/wahispania.mp3",
-      "gain": -7.6,
+      "gain": -10.6,
       "gate": -63.6,
       "lead": 21,
       "matches": "Wahispania",
@@ -810,7 +811,7 @@
     "Waholanzi": {
       "author": "Waithera Were",
       "file": "countries/waholanzi.mp3",
-      "gain": -8.7,
+      "gain": -11.5,
       "gate": -66.5,
       "lead": 38,
       "matches": "Waholanzi",
@@ -821,7 +822,7 @@
     "Waingereza": {
       "author": "Waithera Were",
       "file": "countries/waingereza.mp3",
-      "gain": -8.6,
+      "gain": -10.7,
       "gate": -68.1,
       "lead": 45,
       "matches": "Waingereza",
@@ -832,7 +833,7 @@
     "Wajapani": {
       "author": "Waithera Were",
       "file": "countries/wajapani.mp3",
-      "gain": -8.9,
+      "gain": -11.6,
       "gate": -62.7,
       "lead": 42,
       "matches": "Wajapani",
@@ -843,7 +844,7 @@
     "Wajerumani": {
       "author": "Waithera Were",
       "file": "countries/wajerumani.mp3",
-      "gain": -10.0,
+      "gain": -12.1,
       "gate": -60.6,
       "lead": 39,
       "matches": "Wajerumani",
@@ -854,7 +855,7 @@
     "Wakanada": {
       "author": "Waithera Were",
       "file": "countries/wakanada.mp3",
-      "gain": -6.9,
+      "gain": -9.5,
       "gate": -98.7,
       "lead": 147,
       "matches": "Wakanada",
@@ -865,7 +866,7 @@
     "Wakenya": {
       "author": "Waithera Were",
       "file": "countries/wakenya.mp3",
-      "gain": -6.8,
+      "gain": -10.8,
       "gate": -99.2,
       "lead": 235,
       "matches": "Wakenya",
@@ -876,7 +877,7 @@
     "Wakolombia": {
       "author": "Waithera Were",
       "file": "countries/wakolombia.mp3",
-      "gain": -5.5,
+      "gain": -6.7,
       "gate": -98.8,
       "lead": 238,
       "matches": "Wakolombia",
@@ -887,7 +888,7 @@
     "Wakongo": {
       "author": "Waithera Were",
       "file": "countries/wakongo.mp3",
-      "gain": -7.8,
+      "gain": -8.9,
       "gate": -66.6,
       "lead": 43,
       "matches": "Wakongo",
@@ -898,7 +899,7 @@
     "Wakorea": {
       "author": "Waithera Were",
       "file": "countries/wakorea.mp3",
-      "gain": -8.2,
+      "gain": -9.4,
       "gate": -67.5,
       "lead": 43,
       "matches": "Wakorea",
@@ -909,7 +910,7 @@
     "Wamarekani": {
       "author": "Waithera Were",
       "file": "countries/wamarekani.mp3",
-      "gain": -9.3,
+      "gain": -12.0,
       "gate": -66.6,
       "lead": 44,
       "matches": "Wamarekani",
@@ -920,7 +921,7 @@
     "Wamisri": {
       "author": "Waithera Were",
       "file": "countries/wamisri.mp3",
-      "gain": -9.0,
+      "gain": -11.2,
       "gate": -70.9,
       "lead": 35,
       "matches": "Wamisri",
@@ -931,7 +932,7 @@
     "Wanyarwanda": {
       "author": "Waithera Were",
       "file": "countries/wanyarwanda.mp3",
-      "gain": -10.4,
+      "gain": -12.8,
       "gate": -66.2,
       "lead": 41,
       "matches": "Wanyarwanda",
@@ -942,7 +943,7 @@
     "Waperuu": {
       "author": "Waithera Were",
       "file": "countries/waperuu.mp3",
-      "gain": -6.3,
+      "gain": -8.0,
       "gate": -99.9,
       "lead": 241,
       "matches": "Waperuu",
@@ -953,7 +954,7 @@
     "Wareno": {
       "author": "Waithera Were",
       "file": "countries/wareno.mp3",
-      "gain": -8.4,
+      "gain": -11.5,
       "lead": 180,
       "matches": "Wareno",
       "mos": 2.99,
@@ -963,7 +964,7 @@
     "Warusi": {
       "author": "Waithera Were",
       "file": "countries/warusi.mp3",
-      "gain": -6.5,
+      "gain": -8.8,
       "gate": -68.2,
       "lead": 44,
       "matches": "Warusi",
@@ -974,7 +975,7 @@
     "Wasenegali": {
       "author": "Waithera Were",
       "file": "countries/wasenegali.mp3",
-      "gain": -6.5,
+      "gain": -9.6,
       "gate": -99.5,
       "lead": 218,
       "matches": "Wasenegali",
@@ -985,7 +986,7 @@
     "Waswidi": {
       "author": "Waithera Were",
       "file": "countries/waswidi.mp3",
-      "gain": -7.8,
+      "gain": -8.1,
       "lead": 227,
       "matches": "Waswidi",
       "mos": 2.9,
@@ -995,7 +996,7 @@
     "Waswisi": {
       "author": "Waithera Were",
       "file": "countries/waswisi.mp3",
-      "gain": -5.7,
+      "gain": -5.9,
       "gate": -74.5,
       "lead": 40,
       "matches": "Waswisi",
@@ -1006,7 +1007,7 @@
     "Watanzania": {
       "author": "Waithera Were",
       "file": "countries/watanzania.mp3",
-      "gain": -10.1,
+      "gain": -12.4,
       "gate": -64.6,
       "lead": 41,
       "matches": "Watanzania",
@@ -1017,7 +1018,7 @@
     "Waturuki": {
       "author": "Waithera Were",
       "file": "countries/waturuki.mp3",
-      "gain": -5.7,
+      "gain": -6.2,
       "gate": -68.8,
       "lead": 36,
       "matches": "Waturuki",
@@ -1035,7 +1036,7 @@
     "abiria": {
       "author": "Waithera Were",
       "file": "words/abiria.mp3",
-      "gain": -3.4,
+      "gain": -4.8,
       "gate": -64.1,
       "lead": 40,
       "matches": "abiria",
@@ -1046,7 +1047,7 @@
     "ada": {
       "author": "Waithera Were",
       "file": "words/ada.mp3",
-      "gain": -8.0,
+      "gain": -9.3,
       "gate": -68.6,
       "lead": 48,
       "matches": "ada",
@@ -1057,7 +1058,7 @@
     "adhuhuri": {
       "author": "Waithera Were",
       "file": "words/adhuhuri.mp3",
-      "gain": -5.2,
+      "gain": -7.7,
       "gate": -64.7,
       "lead": 47,
       "matches": "adhuhuri",
@@ -1068,7 +1069,7 @@
     "afya": {
       "author": "Waithera Were",
       "file": "words/afya.mp3",
-      "gain": -7.0,
+      "gain": -10.5,
       "gate": -64.0,
       "lead": 42,
       "matches": "afya",
@@ -1079,7 +1080,7 @@
     "aibu": {
       "author": "Waithera Were",
       "file": "words/aibu.mp3",
-      "gain": -3.8,
+      "gain": -7.7,
       "gate": -69.5,
       "lead": 42,
       "matches": "aibu",
@@ -1090,7 +1091,7 @@
     "ake": {
       "author": "Waithera Were",
       "file": "words/ake.mp3",
-      "gain": -8.0,
+      "gain": -10.1,
       "gate": -68.8,
       "lead": 40,
       "matches": "ake",
@@ -1101,7 +1102,7 @@
     "ako": {
       "author": "Waithera Were",
       "file": "words/ako.mp3",
-      "gain": -6.6,
+      "gain": -9.0,
       "gate": -70.3,
       "lead": 43,
       "matches": "ako",
@@ -1112,7 +1113,7 @@
     "alama": {
       "author": "Waithera Were",
       "file": "words/alama.mp3",
-      "gain": -9.6,
+      "gain": -12.8,
       "gate": -62.3,
       "lead": 44,
       "matches": "alama",
@@ -1123,7 +1124,7 @@
     "amani": {
       "author": "Waithera Were",
       "file": "words/amani.mp3",
-      "gain": -5.2,
+      "gain": -6.7,
       "gate": -69.6,
       "lead": 43,
       "matches": "amani",
@@ -1134,7 +1135,7 @@
     "anga": {
       "author": "Waithera Were",
       "file": "words/anga.mp3",
-      "gain": -7.1,
+      "gain": -9.7,
       "gate": -67.8,
       "lead": 43,
       "matches": "anga",
@@ -1145,7 +1146,7 @@
     "angu": {
       "author": "Waithera Were",
       "file": "words/angu.mp3",
-      "gain": -6.2,
+      "gain": -9.0,
       "gate": -68.0,
       "lead": 42,
       "matches": "angu",
@@ -1156,7 +1157,7 @@
     "anwani": {
       "author": "Waithera Were",
       "file": "words/anwani.mp3",
-      "gain": -8.9,
+      "gain": -10.0,
       "gate": -64.8,
       "lead": 46,
       "matches": "anwani",
@@ -1167,7 +1168,7 @@
     "asubuhi": {
       "author": "Waithera Were",
       "file": "words/asubuhi.mp3",
-      "gain": 1.0,
+      "gain": -0.4,
       "gate": -59.3,
       "lead": 48,
       "matches": "asubuhi",
@@ -1178,7 +1179,7 @@
     "ateri": {
       "author": "Waithera Were",
       "file": "words/ateri.mp3",
-      "gain": -3.5,
+      "gain": -5.7,
       "gate": -66.0,
       "lead": 48,
       "matches": "ateri",
@@ -1189,7 +1190,7 @@
     "au": {
       "author": "Waithera Were",
       "file": "words/au.mp3",
-      "gain": -8.5,
+      "gain": -9.7,
       "gate": -68.6,
       "lead": 14,
       "matches": "au",
@@ -1200,7 +1201,7 @@
     "baada ya": {
       "author": "Waithera Were",
       "file": "words/baadau0020ya.mp3",
-      "gain": -5.7,
+      "gain": -7.1,
       "gate": -99.0,
       "lead": 145,
       "matches": "baada ya",
@@ -1211,7 +1212,7 @@
     "baadaye": {
       "author": "Waithera Were",
       "file": "words/baadaye.mp3",
-      "gain": -11.5,
+      "gain": -13.2,
       "gate": -66.0,
       "lead": 26,
       "matches": "baadaye",
@@ -1222,7 +1223,7 @@
     "baba": {
       "author": "Waithera Were",
       "file": "words/baba.mp3",
-      "gain": -9.1,
+      "gain": -11.8,
       "gate": -68.2,
       "lead": 28,
       "matches": "baba",
@@ -1233,7 +1234,7 @@
     "baba mkwe": {
       "author": "Waithera Were",
       "file": "words/babau0020mkwe.mp3",
-      "gain": -6.7,
+      "gain": -10.5,
       "gate": -66.5,
       "lead": 31,
       "matches": "baba mkwe",
@@ -1244,7 +1245,7 @@
     "babu": {
       "author": "Waithera Were",
       "file": "words/babu.mp3",
-      "gain": -9.9,
+      "gain": -13.4,
       "gate": -71.3,
       "lead": 38,
       "matches": "babu",
@@ -1255,7 +1256,7 @@
     "bado": {
       "author": "Waithera Were",
       "file": "words/bado.mp3",
-      "gain": -6.9,
+      "gain": -9.3,
       "gate": -67.2,
       "lead": 13,
       "matches": "bado",
@@ -1266,7 +1267,7 @@
     "bahari": {
       "author": "Waithera Were",
       "file": "words/bahari.mp3",
-      "gain": -12.1,
+      "gain": -15.2,
       "gate": -58.2,
       "lead": 48,
       "matches": "bahari",
@@ -1277,7 +1278,7 @@
     "baiskeli": {
       "author": "Waithera Were",
       "file": "words/baiskeli.mp3",
-      "gain": -6.8,
+      "gain": -8.9,
       "gate": -65.9,
       "lead": 4,
       "matches": "baiskeli",
@@ -1288,7 +1289,7 @@
     "bakshishi": {
       "author": "Waithera Were",
       "file": "words/bakshishi.mp3",
-      "gain": -4.4,
+      "gain": -9.9,
       "gate": -66.4,
       "lead": 40,
       "matches": "bakshishi",
@@ -1299,7 +1300,7 @@
     "bakuli": {
       "author": "Waithera Were",
       "file": "words/bakuli.mp3",
-      "gain": -6.1,
+      "gain": -7.1,
       "gate": -69.6,
       "lead": 28,
       "matches": "bakuli",
@@ -1310,7 +1311,7 @@
     "bandari": {
       "author": "Waithera Were",
       "file": "words/bandari.mp3",
-      "gain": -7.9,
+      "gain": -10.0,
       "gate": -60.3,
       "matches": "bandari",
       "mos": 3.05,
@@ -1320,7 +1321,7 @@
     "barabara": {
       "author": "Waithera Were",
       "file": "words/barabara.mp3",
-      "gain": -3.5,
+      "gain": -4.8,
       "gate": -68.8,
       "lead": 31,
       "matches": "barabara",
@@ -1331,7 +1332,7 @@
     "baridi": {
       "author": "Waithera Were",
       "file": "words/baridi.mp3",
-      "gain": -6.7,
+      "gain": -10.3,
       "gate": -65.5,
       "lead": 26,
       "matches": "baridi",
@@ -1342,7 +1343,7 @@
     "barua": {
       "author": "Waithera Were",
       "file": "words/barua.mp3",
-      "gain": -6.1,
+      "gain": -8.2,
       "gate": -64.3,
       "lead": 18,
       "matches": "barua",
@@ -1353,7 +1354,7 @@
     "barua pepe": {
       "author": "Waithera Were",
       "file": "words/baruau0020pepe.mp3",
-      "gain": -9.3,
+      "gain": -11.2,
       "gate": -61.8,
       "lead": 35,
       "matches": "barua pepe",
@@ -1364,7 +1365,7 @@
     "basi": {
       "author": "Waithera Were",
       "file": "words/basi.mp3",
-      "gain": -5.3,
+      "gain": -7.2,
       "gate": -69.0,
       "matches": "basi",
       "mos": 2.54,
@@ -1374,7 +1375,7 @@
     "baya": {
       "author": "Waithera Were",
       "file": "words/baya.mp3",
-      "gain": -12.4,
+      "gain": -15.3,
       "gate": -60.8,
       "lead": 43,
       "matches": "baya",
@@ -1385,7 +1386,7 @@
     "bega": {
       "author": "Waithera Were",
       "file": "words/bega.mp3",
-      "gain": -6.0,
+      "gain": -9.1,
       "gate": -67.1,
       "lead": 26,
       "matches": "bega",
@@ -1396,7 +1397,7 @@
     "begi": {
       "author": "Waithera Were",
       "file": "words/begi.mp3",
-      "gain": -7.6,
+      "gain": -10.1,
       "gate": -65.3,
       "matches": "begi",
       "mos": 2.73,
@@ -1406,7 +1407,7 @@
     "bei": {
       "author": "Waithera Were",
       "file": "words/bei.mp3",
-      "gain": -3.5,
+      "gain": -3.7,
       "gate": -53.4,
       "matches": "bei",
       "mos": 2.46,
@@ -1416,7 +1417,7 @@
     "bendeji": {
       "author": "Waithera Were",
       "file": "words/bendeji.mp3",
-      "gain": -4.8,
+      "gain": -5.9,
       "gate": -66.2,
       "lead": 13,
       "matches": "bendeji",
@@ -1427,7 +1428,7 @@
     "benki": {
       "author": "Waithera Were",
       "file": "words/benki.mp3",
-      "gain": -6.5,
+      "gain": -9.2,
       "gate": -62.9,
       "lead": 37,
       "matches": "benki",
@@ -1438,7 +1439,7 @@
     "bichi": {
       "author": "Waithera Were",
       "file": "words/bichi.mp3",
-      "gain": -1.5,
+      "gain": -2.9,
       "gate": -69.8,
       "lead": 41,
       "matches": "bichi",
@@ -1449,7 +1450,7 @@
     "bila": {
       "author": "Waithera Were",
       "file": "words/bila.mp3",
-      "gain": -3.9,
+      "gain": -4.5,
       "gate": -65.9,
       "lead": 37,
       "matches": "bila",
@@ -1460,7 +1461,7 @@
     "bili": {
       "author": "Waithera Were",
       "file": "words/bili.mp3",
-      "gain": -8.1,
+      "gain": -7.3,
       "gate": -66.9,
       "lead": 31,
       "matches": "bili",
@@ -1471,7 +1472,7 @@
     "binadamu": {
       "author": "Waithera Were",
       "file": "words/binadamu.mp3",
-      "gain": -9.3,
+      "gain": -11.4,
       "gate": -64.2,
       "lead": 29,
       "matches": "binadamu",
@@ -1482,7 +1483,7 @@
     "binamu": {
       "author": "Waithera Were",
       "file": "words/binamu.mp3",
-      "gain": -8.2,
+      "gain": -10.4,
       "gate": -69.6,
       "lead": 38,
       "matches": "binamu",
@@ -1493,7 +1494,7 @@
     "binti": {
       "author": "Waithera Were",
       "file": "words/binti.mp3",
-      "gain": 0.1,
+      "gain": -3.0,
       "gate": -70.1,
       "matches": "binti",
       "mos": 2.76,
@@ -1503,7 +1504,7 @@
     "bivu": {
       "author": "Waithera Were",
       "file": "words/bivu.mp3",
-      "gain": -7.9,
+      "gain": -9.6,
       "gate": -59.5,
       "lead": 50,
       "matches": "bivu",
@@ -1514,7 +1515,7 @@
     "blanketi": {
       "author": "Waithera Were",
       "file": "words/blanketi.mp3",
-      "gain": -7.3,
+      "gain": -10.8,
       "gate": -63.0,
       "lead": 43,
       "matches": "blanketi",
@@ -1525,7 +1526,7 @@
     "bosi": {
       "author": "Waithera Were",
       "file": "words/bosi.mp3",
-      "gain": -7.9,
+      "gain": -9.5,
       "gate": -69.2,
       "lead": 10,
       "matches": "bosi",
@@ -1536,7 +1537,7 @@
     "bovu": {
       "author": "Waithera Were",
       "file": "words/bovu.mp3",
-      "gain": -8.0,
+      "gain": -10.1,
       "gate": -59.1,
       "matches": "bovu",
       "mos": 2.85,
@@ -1546,7 +1547,7 @@
     "buluu": {
       "author": "Waithera Were",
       "file": "words/buluu.mp3",
-      "gain": -7.6,
+      "gain": -6.5,
       "gate": -64.4,
       "lead": 37,
       "matches": "buluu",
@@ -1567,7 +1568,7 @@
     "bustani": {
       "author": "Waithera Were",
       "file": "words/bustani.mp3",
-      "gain": -4.9,
+      "gain": -6.6,
       "gate": -58.3,
       "lead": 1,
       "matches": "bustani",
@@ -1578,7 +1579,7 @@
     "chache": {
       "author": "Waithera Were",
       "file": "words/chache.mp3",
-      "gain": -7.4,
+      "gain": -12.3,
       "gate": -66.4,
       "lead": 34,
       "matches": "chache",
@@ -1589,7 +1590,7 @@
     "chafu": {
       "author": "Waithera Were",
       "file": "words/chafu.mp3",
-      "gain": -5.4,
+      "gain": -7.2,
       "gate": -67.4,
       "lead": 14,
       "matches": "chafu",
@@ -1600,7 +1601,7 @@
     "chai": {
       "author": "Waithera Were",
       "file": "words/chai.mp3",
-      "gain": -6.6,
+      "gain": -7.7,
       "gate": -67.3,
       "lead": 25,
       "matches": "chai",
@@ -1611,7 +1612,7 @@
     "chaja": {
       "author": "Waithera Were",
       "file": "words/chaja.mp3",
-      "gain": -7.9,
+      "gain": -11.5,
       "gate": -66.4,
       "lead": 26,
       "matches": "chaja",
@@ -1622,7 +1623,7 @@
     "chakula": {
       "author": "Waithera Were",
       "file": "words/chakula.mp3",
-      "gain": -4.0,
+      "gain": -6.1,
       "gate": -66.1,
       "lead": 23,
       "matches": "chakula",
@@ -1633,7 +1634,7 @@
     "chakula cha jioni": {
       "author": "Waithera Were",
       "file": "words/chakulau0020chau0020jioni.mp3",
-      "gain": -4.6,
+      "gain": -7.6,
       "gate": -97.2,
       "lead": 234,
       "matches": "chakula cha jioni",
@@ -1644,7 +1645,7 @@
     "changa": {
       "author": "Waithera Were",
       "file": "words/changa.mp3",
-      "gain": -5.7,
+      "gain": -7.6,
       "gate": -65.8,
       "lead": 32,
       "matches": "changa",
@@ -1655,7 +1656,7 @@
     "changamoto": {
       "author": "Waithera Were",
       "file": "words/changamoto.mp3",
-      "gain": -8.0,
+      "gain": -8.9,
       "gate": -66.0,
       "matches": "changamoto",
       "mos": 3.18,
@@ -1665,7 +1666,7 @@
     "changanyikiwa": {
       "author": "Waithera Were",
       "file": "words/changanyikiwa.mp3",
-      "gain": -2.7,
+      "gain": -5.7,
       "gate": -68.0,
       "lead": 35,
       "matches": "changanyikiwa",
@@ -1676,7 +1677,7 @@
     "chanjo": {
       "author": "Waithera Were",
       "file": "words/chanjo.mp3",
-      "gain": -6.8,
+      "gain": -10.5,
       "gate": -70.7,
       "lead": 34,
       "matches": "chanjo",
@@ -1687,7 +1688,7 @@
     "chanya": {
       "author": "Waithera Were",
       "file": "words/chanya.mp3",
-      "gain": -7.1,
+      "gain": -10.3,
       "gate": -99.9,
       "lead": 143,
       "matches": "chanya",
@@ -1698,7 +1699,7 @@
     "chenji": {
       "author": "Waithera Were",
       "file": "words/chenji.mp3",
-      "gain": -5.8,
+      "gain": -8.6,
       "gate": -67.4,
       "lead": 45,
       "matches": "chenji",
@@ -1709,7 +1710,7 @@
     "cheti": {
       "author": "Waithera Were",
       "file": "words/cheti.mp3",
-      "gain": -3.0,
+      "gain": -6.5,
       "gate": -67.0,
       "lead": 24,
       "matches": "cheti",
@@ -1720,7 +1721,7 @@
     "cheti cha daktari": {
       "author": "Waithera Were",
       "file": "words/chetiu0020chau0020daktari.mp3",
-      "gain": -5.4,
+      "gain": -8.9,
       "gate": -65.3,
       "lead": 24,
       "matches": "cheti cha daktari",
@@ -1731,7 +1732,7 @@
     "chini": {
       "author": "Waithera Were",
       "file": "words/chini.mp3",
-      "gain": 0.3,
+      "gain": -0.2,
       "gate": -58.7,
       "lead": 36,
       "matches": "chini",
@@ -1742,7 +1743,7 @@
     "chochote": {
       "author": "Waithera Were",
       "file": "words/chochote.mp3",
-      "gain": -6.2,
+      "gain": -8.6,
       "gate": -99.6,
       "lead": 142,
       "matches": "chochote",
@@ -1753,7 +1754,7 @@
     "choo": {
       "author": "Waithera Were",
       "file": "words/choo.mp3",
-      "gain": -9.8,
+      "gain": -9.3,
       "gate": -69.9,
       "lead": 38,
       "matches": "choo",
@@ -1764,7 +1765,7 @@
     "chovu": {
       "author": "Waithera Were",
       "file": "words/chovu.mp3",
-      "gain": -8.2,
+      "gain": -9.1,
       "lead": 134,
       "matches": "chovu",
       "mos": 2.77,
@@ -1774,7 +1775,7 @@
     "chuchu": {
       "author": "Waithera Were",
       "file": "words/chuchu.mp3",
-      "gain": -1.4,
+      "gain": -1.7,
       "gate": -68.3,
       "lead": 25,
       "matches": "chuchu",
@@ -1785,7 +1786,7 @@
     "chumba": {
       "author": "Waithera Were",
       "file": "words/chumba.mp3",
-      "gain": -4.5,
+      "gain": -3.5,
       "gate": -68.9,
       "lead": 46,
       "matches": "chumba",
@@ -1796,7 +1797,7 @@
     "chumvi": {
       "author": "Waithera Were",
       "file": "words/chumvi.mp3",
-      "gain": -2.4,
+      "gain": -3.4,
       "gate": -64.1,
       "lead": 49,
       "matches": "chumvi",
@@ -1807,7 +1808,7 @@
     "chuo kikuu": {
       "author": "Waithera Were",
       "file": "words/chuou0020kikuu.mp3",
-      "gain": -3.5,
+      "gain": -4.8,
       "gate": -67.0,
       "lead": 35,
       "matches": "chuo kikuu",
@@ -1818,7 +1819,7 @@
     "dada": {
       "author": "Waithera Were",
       "file": "words/dada.mp3",
-      "gain": -2.7,
+      "gain": -4.6,
       "gate": -69.3,
       "lead": 43,
       "matches": "dada",
@@ -1829,7 +1830,7 @@
     "daftari": {
       "author": "Waithera Were",
       "file": "words/daftari.mp3",
-      "gain": -7.1,
+      "gain": -8.3,
       "gate": -58.6,
       "matches": "daftari",
       "mos": 2.68,
@@ -1839,7 +1840,7 @@
     "daima": {
       "author": "Waithera Were",
       "file": "words/daima.mp3",
-      "gain": -6.3,
+      "gain": -11.2,
       "gate": -68.0,
       "lead": 29,
       "matches": "daima",
@@ -1850,7 +1851,7 @@
     "dakika": {
       "author": "Waithera Were",
       "file": "words/dakika.mp3",
-      "gain": -1.2,
+      "gain": -5.0,
       "gate": -70.5,
       "lead": 40,
       "matches": "dakika",
@@ -1861,7 +1862,7 @@
     "daktari": {
       "author": "Waithera Were",
       "file": "words/daktari.mp3",
-      "gain": -8.1,
+      "gain": -10.6,
       "gate": -63.3,
       "matches": "daktari",
       "mos": 2.84,
@@ -1871,7 +1872,7 @@
     "daktari wa meno": {
       "author": "Waithera Were",
       "file": "words/daktariu0020wau0020meno.mp3",
-      "gain": -5.1,
+      "gain": -7.1,
       "gate": -58.2,
       "lead": 24,
       "matches": "daktari wa meno",
@@ -1882,7 +1883,7 @@
     "damu": {
       "author": "Waithera Were",
       "file": "words/damu.mp3",
-      "gain": -8.0,
+      "gain": -9.3,
       "gate": -49.4,
       "matches": "damu",
       "mos": 2.71,
@@ -1892,7 +1893,7 @@
     "daraja": {
       "author": "Waithera Were",
       "file": "words/daraja.mp3",
-      "gain": -8.6,
+      "gain": -11.4,
       "gate": -63.6,
       "matches": "daraja",
       "mos": 2.49,
@@ -1902,7 +1903,7 @@
     "darasa": {
       "author": "Waithera Were",
       "file": "words/darasa.mp3",
-      "gain": -8.4,
+      "gain": -11.4,
       "gate": -66.8,
       "lead": 31,
       "matches": "darasa",
@@ -1913,7 +1914,7 @@
     "dawa": {
       "author": "Waithera Were",
       "file": "words/dawa.mp3",
-      "gain": -9.4,
+      "gain": -11.9,
       "gate": -65.0,
       "lead": 9,
       "matches": "dawa",
@@ -1924,7 +1925,7 @@
     "dawa ya meno": {
       "author": "Waithera Were",
       "file": "words/dawau0020yau0020meno.mp3",
-      "gain": -7.4,
+      "gain": -9.3,
       "gate": -56.3,
       "lead": 38,
       "matches": "dawa ya meno",
@@ -1935,7 +1936,7 @@
     "dereva": {
       "author": "Waithera Were",
       "file": "words/dereva.mp3",
-      "gain": -6.3,
+      "gain": -8.5,
       "lead": 149,
       "matches": "dereva",
       "mos": 3.11,
@@ -1945,7 +1946,7 @@
     "dhaifu": {
       "author": "Waithera Were",
       "file": "words/dhaifu.mp3",
-      "gain": -5.8,
+      "gain": -9.6,
       "gate": -62.3,
       "matches": "dhaifu",
       "mos": 2.52,
@@ -1955,7 +1956,7 @@
     "dharura": {
       "author": "Waithera Were",
       "file": "words/dharura.mp3",
-      "gain": -8.9,
+      "gain": -11.9,
       "gate": -63.2,
       "lead": 42,
       "matches": "dharura",
@@ -1966,7 +1967,7 @@
     "dhoruba": {
       "author": "Waithera Were",
       "file": "words/dhoruba.mp3",
-      "gain": -4.9,
+      "gain": -6.9,
       "gate": -65.3,
       "lead": 6,
       "matches": "dhoruba",
@@ -1977,7 +1978,7 @@
     "dirisha": {
       "author": "Waithera Were",
       "file": "words/dirisha.mp3",
-      "gain": 2.4,
+      "gain": 2.1,
       "gate": -64.9,
       "lead": 19,
       "matches": "dirisha",
@@ -1988,7 +1989,7 @@
     "dogo": {
       "author": "Waithera Were",
       "file": "words/dogo.mp3",
-      "gain": -7.5,
+      "gain": -10.1,
       "gate": -67.2,
       "matches": "dogo",
       "mos": 2.73,
@@ -1998,7 +1999,7 @@
     "duka": {
       "author": "Waithera Were",
       "file": "words/duka.mp3",
-      "gain": -6.2,
+      "gain": -4.9,
       "gate": -67.8,
       "lead": 39,
       "matches": "duka",
@@ -2009,7 +2010,7 @@
     "duka la dawa": {
       "author": "Waithera Were",
       "file": "words/dukau0020lau0020dawa.mp3",
-      "gain": -4.8,
+      "gain": -8.4,
       "gate": -97.8,
       "lead": 200,
       "matches": "duka la dawa",
@@ -2020,7 +2021,7 @@
     "ekundu": {
       "author": "Waithera Were",
       "file": "words/ekundu.mp3",
-      "gain": 2.3,
+      "gain": 1.3,
       "gate": -67.5,
       "lead": 47,
       "matches": "ekundu",
@@ -2031,7 +2032,7 @@
     "enu": {
       "author": "Waithera Were",
       "file": "words/enu.mp3",
-      "gain": -4.2,
+      "gain": -6.9,
       "gate": -67.2,
       "lead": 44,
       "matches": "enu",
@@ -2042,7 +2043,7 @@
     "epesi": {
       "author": "Waithera Were",
       "file": "words/epesi.mp3",
-      "gain": -6.2,
+      "gain": -8.4,
       "gate": -63.3,
       "lead": 44,
       "matches": "epesi",
@@ -2053,7 +2054,7 @@
     "etu": {
       "author": "Waithera Were",
       "file": "words/etu.mp3",
-      "gain": -6.2,
+      "gain": -9.1,
       "gate": -69.4,
       "lead": 41,
       "matches": "etu",
@@ -2064,7 +2065,7 @@
     "eupe": {
       "author": "Waithera Were",
       "file": "words/eupe.mp3",
-      "gain": -3.2,
+      "gain": -6.1,
       "gate": -64.7,
       "lead": 40,
       "matches": "eupe",
@@ -2075,7 +2076,7 @@
     "eusi": {
       "author": "Waithera Were",
       "file": "words/eusi.mp3",
-      "gain": -1.5,
+      "gain": -4.5,
       "gate": -71.0,
       "lead": 40,
       "matches": "eusi",
@@ -2086,7 +2087,7 @@
     "faini": {
       "author": "Waithera Were",
       "file": "words/faini.mp3",
-      "gain": -5.4,
+      "gain": -7.9,
       "gate": -62.7,
       "matches": "faini",
       "mos": 2.77,
@@ -2096,7 +2097,7 @@
     "familia": {
       "author": "Waithera Were",
       "file": "words/familia.mp3",
-      "gain": -5.1,
+      "gain": -7.1,
       "gate": -62.2,
       "lead": 27,
       "matches": "familia",
@@ -2107,7 +2108,7 @@
     "fanya kazi": {
       "author": "Waithera Were",
       "file": "words/fanyau0020kazi.mp3",
-      "gain": -10.6,
+      "gain": -13.2,
       "gate": -61.5,
       "lead": 37,
       "matches": "fanya kazi",
@@ -2118,7 +2119,7 @@
     "farasi": {
       "author": "Waithera Were",
       "file": "words/farasi.mp3",
-      "gain": -7.1,
+      "gain": -8.2,
       "gate": -63.9,
       "matches": "farasi",
       "mos": 3.0,
@@ -2128,7 +2129,7 @@
     "figo": {
       "author": "Waithera Were",
       "file": "words/figo.mp3",
-      "gain": -1.8,
+      "gain": -2.5,
       "gate": -66.3,
       "lead": 14,
       "matches": "figo",
@@ -2139,7 +2140,7 @@
     "filamu": {
       "author": "Waithera Were",
       "file": "words/filamu.mp3",
-      "gain": -7.1,
+      "gain": -9.1,
       "gate": -60.6,
       "matches": "filamu",
       "mos": 2.71,
@@ -2160,7 +2161,7 @@
     "fleti": {
       "author": "Waithera Were",
       "file": "words/fleti.mp3",
-      "gain": -4.8,
+      "gain": -7.1,
       "gate": -67.2,
       "lead": 20,
       "matches": "fleti",
@@ -2171,7 +2172,7 @@
     "folda": {
       "author": "Waithera Were",
       "file": "words/folda.mp3",
-      "gain": -5.8,
+      "gain": -6.4,
       "gate": -59.0,
       "lead": 2,
       "matches": "folda",
@@ -2182,7 +2183,7 @@
     "fomu": {
       "author": "Waithera Were",
       "file": "words/fomu.mp3",
-      "gain": -9.4,
+      "gain": -10.4,
       "gate": -66.6,
       "lead": 30,
       "matches": "fomu",
@@ -2193,7 +2194,7 @@
     "friji": {
       "author": "Waithera Were",
       "file": "words/friji.mp3",
-      "gain": -1.1,
+      "gain": -3.2,
       "gate": -67.3,
       "lead": 22,
       "matches": "friji",
@@ -2204,7 +2205,7 @@
     "fu": {
       "author": "Waithera Were",
       "file": "words/fu.mp3",
-      "gain": -6.9,
+      "gain": -5.0,
       "gate": -67.5,
       "lead": 42,
       "matches": "fu",
@@ -2215,7 +2216,7 @@
     "fulana": {
       "author": "Waithera Were",
       "file": "words/fulana.mp3",
-      "gain": -8.4,
+      "gain": -10.6,
       "gate": -65.5,
       "lead": 21,
       "matches": "fulana",
@@ -2226,7 +2227,7 @@
     "fupi": {
       "author": "Waithera Were",
       "file": "words/fupi.mp3",
-      "gain": -4.1,
+      "gain": -3.1,
       "gate": -67.0,
       "lead": 20,
       "matches": "fupi",
@@ -2237,7 +2238,7 @@
     "furaha": {
       "author": "Waithera Were",
       "file": "words/furaha.mp3",
-      "gain": -7.2,
+      "gain": -9.3,
       "gate": -67.5,
       "lead": 34,
       "matches": "furaha",
@@ -2248,7 +2249,7 @@
     "gani": {
       "author": "Waithera Were",
       "file": "words/gani.mp3",
-      "gain": -10.4,
+      "gain": -13.3,
       "gate": -67.2,
       "lead": 42,
       "matches": "gani",
@@ -2259,7 +2260,7 @@
     "gari": {
       "author": "Waithera Were",
       "file": "words/gari.mp3",
-      "gain": -9.6,
+      "gain": -11.7,
       "gate": -64.4,
       "lead": 37,
       "matches": "gari",
@@ -2270,7 +2271,7 @@
     "gauni": {
       "author": "Waithera Were",
       "file": "words/gauni.mp3",
-      "gain": -6.8,
+      "gain": -10.2,
       "gate": -63.3,
       "lead": 18,
       "matches": "gauni",
@@ -2281,7 +2282,7 @@
     "gazeti": {
       "author": "Waithera Were",
       "file": "words/gazeti.mp3",
-      "gain": -8.4,
+      "gain": -10.5,
       "gate": -65.4,
       "lead": 33,
       "matches": "gazeti",
@@ -2292,7 +2293,7 @@
     "gesi": {
       "author": "Waithera Were",
       "file": "words/gesi.mp3",
-      "gain": -3.7,
+      "gain": -6.8,
       "gate": -60.0,
       "matches": "gesi",
       "mos": 3.02,
@@ -2302,7 +2303,7 @@
     "ghali": {
       "author": "Waithera Were",
       "file": "words/ghali.mp3",
-      "gain": -7.7,
+      "gain": -8.4,
       "gate": -64.3,
       "lead": 47,
       "matches": "ghali",
@@ -2313,7 +2314,7 @@
     "ghorofa": {
       "author": "Waithera Were",
       "file": "words/ghorofa.mp3",
-      "gain": -10.4,
+      "gain": -11.7,
       "gate": -63.5,
       "lead": 15,
       "matches": "ghorofa",
@@ -2324,7 +2325,7 @@
     "glasi": {
       "author": "Waithera Were",
       "file": "words/glasi.mp3",
-      "gain": -9.8,
+      "gain": -12.8,
       "gate": -67.5,
       "lead": 47,
       "matches": "glasi",
@@ -2335,7 +2336,7 @@
     "glavu": {
       "author": "Waithera Were",
       "file": "words/glavu.mp3",
-      "gain": -9.7,
+      "gain": -13.5,
       "gate": -65.5,
       "lead": 21,
       "matches": "glavu",
@@ -2346,7 +2347,7 @@
     "godoro": {
       "author": "Waithera Were",
       "file": "words/godoro.mp3",
-      "gain": -2.8,
+      "gain": -1.9,
       "gate": -53.1,
       "matches": "godoro",
       "mos": 2.72,
@@ -2356,7 +2357,7 @@
     "goti": {
       "author": "Waithera Were",
       "file": "words/goti.mp3",
-      "gain": -5.9,
+      "gain": -6.7,
       "gate": -61.4,
       "matches": "goti",
       "mos": 2.5,
@@ -2366,7 +2367,7 @@
     "gramu": {
       "author": "Waithera Were",
       "file": "words/gramu.mp3",
-      "gain": -8.8,
+      "gain": -11.2,
       "gate": -64.4,
       "lead": 54,
       "matches": "gramu",
@@ -2377,7 +2378,7 @@
     "gumu": {
       "author": "Waithera Were",
       "file": "words/gumu.mp3",
-      "gain": -6.5,
+      "gain": -3.0,
       "gate": -63.4,
       "lead": 33,
       "matches": "gumu",
@@ -2388,7 +2389,7 @@
     "gurudumu": {
       "author": "Waithera Were",
       "file": "words/gurudumu.mp3",
-      "gain": -4.0,
+      "gain": -5.9,
       "gate": -68.0,
       "lead": 33,
       "matches": "gurudumu",
@@ -2399,7 +2400,7 @@
     "habari": {
       "author": "Waithera Were",
       "file": "words/habari.mp3",
-      "gain": -8.6,
+      "gain": -9.9,
       "gate": -68.3,
       "lead": 26,
       "matches": "habari",
@@ -2410,7 +2411,7 @@
     "habari za asubuhi": {
       "author": "Waithera Were",
       "file": "words/habariu0020zau0020asubuhi.mp3",
-      "gain": -10.4,
+      "gain": -13.6,
       "gate": -53.2,
       "lead": 22,
       "matches": "habari za asubuhi",
@@ -2421,7 +2422,7 @@
     "hai": {
       "author": "Waithera Were",
       "file": "words/hai.mp3",
-      "gain": -8.0,
+      "gain": -9.4,
       "gate": -70.9,
       "lead": 23,
       "matches": "hai",
@@ -2432,7 +2433,7 @@
     "hakuna matata": {
       "author": "Waithera Were",
       "file": "words/hakunau0020matata.mp3",
-      "gain": -5.7,
+      "gain": -8.1,
       "gate": -58.9,
       "lead": 35,
       "matches": "hakuna matata",
@@ -2443,7 +2444,7 @@
     "halafu": {
       "author": "Waithera Were",
       "file": "words/halafu.mp3",
-      "gain": -8.8,
+      "gain": -12.0,
       "gate": -64.7,
       "lead": 38,
       "matches": "halafu",
@@ -2454,7 +2455,7 @@
     "hali ya hewa": {
       "author": "Waithera Were",
       "file": "words/haliu0020yau0020hewa.mp3",
-      "gain": -6.1,
+      "gain": -9.3,
       "gate": -64.6,
       "lead": 26,
       "matches": "hali ya hewa",
@@ -2465,7 +2466,7 @@
     "halisi": {
       "author": "Waithera Were",
       "file": "words/halisi.mp3",
-      "gain": -1.2,
+      "gain": -4.2,
       "gate": -70.0,
       "lead": 33,
       "matches": "halisi",
@@ -2476,7 +2477,7 @@
     "hamu": {
       "author": "Waithera Were",
       "file": "words/hamu.mp3",
-      "gain": -10.1,
+      "gain": -12.2,
       "gate": -68.0,
       "lead": 31,
       "matches": "hamu",
@@ -2487,7 +2488,7 @@
     "hapa": {
       "author": "Waithera Were",
       "file": "words/hapa.mp3",
-      "gain": -8.1,
+      "gain": -10.8,
       "gate": -67.3,
       "lead": 40,
       "matches": "hapa",
@@ -2498,7 +2499,7 @@
     "hapana": {
       "author": "Waithera Were",
       "file": "words/hapana.mp3",
-      "gain": -8.0,
+      "gain": -9.4,
       "gate": -65.2,
       "lead": 32,
       "matches": "hapana",
@@ -2509,7 +2510,7 @@
     "haragwe": {
       "author": "Waithera Were",
       "file": "words/haragwe.mp3",
-      "gain": -9.1,
+      "gain": -12.1,
       "gate": -64.5,
       "lead": 33,
       "matches": "haragwe",
@@ -2520,7 +2521,7 @@
     "haraka": {
       "author": "Waithera Were",
       "file": "words/haraka.mp3",
-      "gain": -8.6,
+      "gain": -10.2,
       "gate": -63.8,
       "lead": 35,
       "matches": "haraka",
@@ -2531,7 +2532,7 @@
     "harusi": {
       "author": "Waithera Were",
       "file": "words/harusi.mp3",
-      "gain": -4.9,
+      "gain": -7.4,
       "gate": -66.3,
       "lead": 32,
       "matches": "harusi",
@@ -2542,7 +2543,7 @@
     "hasi": {
       "author": "Waithera Were",
       "file": "words/hasi.mp3",
-      "gain": -7.4,
+      "gain": -10.0,
       "gate": -63.8,
       "lead": 46,
       "matches": "hasi",
@@ -2553,7 +2554,7 @@
     "hasira": {
       "author": "Waithera Were",
       "file": "words/hasira.mp3",
-      "gain": -1.5,
+      "gain": -3.2,
       "gate": -67.0,
       "lead": 32,
       "matches": "hasira",
@@ -2564,7 +2565,7 @@
     "hata": {
       "author": "Waithera Were",
       "file": "words/hata.mp3",
-      "gain": -6.3,
+      "gain": -8.6,
       "gate": -64.0,
       "lead": 27,
       "matches": "hata",
@@ -2575,7 +2576,7 @@
     "hatimaye": {
       "author": "Waithera Were",
       "file": "words/hatimaye.mp3",
-      "gain": 2.8,
+      "gain": 1.1,
       "gate": -63.1,
       "lead": 18,
       "matches": "hatimaye",
@@ -2586,7 +2587,7 @@
     "hii": {
       "author": "Waithera Were",
       "file": "words/hii.mp3",
-      "gain": -8.3,
+      "gain": -9.0,
       "gate": -62.1,
       "lead": 51,
       "matches": "hii",
@@ -2597,7 +2598,7 @@
     "hiyo": {
       "author": "Waithera Were",
       "file": "words/hiyo.mp3",
-      "gain": -5.9,
+      "gain": -4.9,
       "gate": -64.2,
       "lead": 15,
       "matches": "hiyo",
@@ -2608,7 +2609,7 @@
     "hodi": {
       "author": "Waithera Were",
       "file": "words/hodi.mp3",
-      "gain": -9.2,
+      "gain": -10.4,
       "gate": -66.9,
       "lead": 11,
       "matches": "hodi",
@@ -2619,7 +2620,7 @@
     "homa": {
       "author": "Waithera Were",
       "file": "words/homa.mp3",
-      "gain": -11.1,
+      "gain": -12.2,
       "gate": -61.2,
       "lead": 46,
       "matches": "homa",
@@ -2630,7 +2631,7 @@
     "hospitali": {
       "author": "Waithera Were",
       "file": "words/hospitali.mp3",
-      "gain": -4.9,
+      "gain": -7.1,
       "gate": -63.5,
       "lead": 33,
       "matches": "hospitali",
@@ -2641,7 +2642,7 @@
     "hoteli": {
       "author": "Waithera Were",
       "file": "words/hoteli.mp3",
-      "gain": -8.5,
+      "gain": -11.3,
       "gate": -66.0,
       "lead": 23,
       "matches": "hoteli",
@@ -2652,7 +2653,7 @@
     "hujambo": {
       "author": "Waithera Were",
       "file": "words/hujambo.mp3",
-      "gain": -6.6,
+      "gain": -8.1,
       "gate": -62.0,
       "lead": 22,
       "matches": "hujambo",
@@ -2663,7 +2664,7 @@
     "husika": {
       "author": "Waithera Were",
       "file": "words/husika.mp3",
-      "gain": -9.0,
+      "gain": -9.3,
       "gate": -59.4,
       "lead": 49,
       "matches": "husika",
@@ -2674,7 +2675,7 @@
     "huzuni": {
       "author": "Waithera Were",
       "file": "words/huzuni.mp3",
-      "gain": -0.4,
+      "gain": -1.0,
       "gate": -60.7,
       "lead": 29,
       "matches": "huzuni",
@@ -2685,6 +2686,7 @@
     "ili": {
       "author": "Waithera Were",
       "file": "words/ili.mp3",
+      "gain": 0.7,
       "gate": -69.1,
       "lead": 46,
       "matches": "ili",
@@ -2695,7 +2697,7 @@
     "imara": {
       "author": "Waithera Were",
       "file": "words/imara.mp3",
-      "gain": -9.4,
+      "gain": -11.7,
       "gate": -67.3,
       "lead": 44,
       "matches": "imara",
@@ -2706,7 +2708,7 @@
     "ingawa": {
       "author": "Waithera Were",
       "file": "words/ingawa.mp3",
-      "gain": -9.0,
+      "gain": -10.9,
       "gate": -67.4,
       "lead": 39,
       "matches": "ingawa",
@@ -2717,7 +2719,7 @@
     "ingi": {
       "author": "Waithera Were",
       "file": "words/ingi.mp3",
-      "gain": 0.4,
+      "gain": 1.2,
       "gate": -65.6,
       "lead": 45,
       "matches": "ingi",
@@ -2728,7 +2730,7 @@
     "ingine": {
       "author": "Waithera Were",
       "file": "words/ingine.mp3",
-      "gain": -0.6,
+      "gain": -1.3,
       "gate": -64.3,
       "lead": 41,
       "matches": "ingine",
@@ -2739,7 +2741,7 @@
     "ini": {
       "author": "Waithera Were",
       "file": "words/ini.mp3",
-      "gain": -0.4,
+      "gain": -1.4,
       "gate": -71.6,
       "lead": 49,
       "matches": "ini",
@@ -2750,7 +2752,7 @@
     "injini": {
       "author": "Waithera Were",
       "file": "words/injini.mp3",
-      "gain": 2.5,
+      "gain": 1.6,
       "gate": -64.0,
       "lead": 45,
       "matches": "injini",
@@ -2761,7 +2763,7 @@
     "intaneti": {
       "author": "Waithera Were",
       "file": "words/intaneti.mp3",
-      "gain": -3.5,
+      "gain": -5.8,
       "gate": -67.2,
       "lead": 40,
       "matches": "intaneti",
@@ -2772,7 +2774,7 @@
     "jaketi": {
       "author": "Waithera Were",
       "file": "words/jaketi.mp3",
-      "gain": -2.1,
+      "gain": -4.4,
       "gate": -68.1,
       "lead": 39,
       "matches": "jaketi",
@@ -2783,7 +2785,7 @@
     "jana": {
       "author": "Waithera Were",
       "file": "words/jana.mp3",
-      "gain": -9.8,
+      "gain": -12.7,
       "gate": -66.0,
       "lead": 37,
       "matches": "jana",
@@ -2794,7 +2796,7 @@
     "jengo": {
       "author": "Waithera Were",
       "file": "words/jengo.mp3",
-      "gain": -3.7,
+      "gain": -6.4,
       "gate": -69.6,
       "lead": 39,
       "matches": "jengo",
@@ -2805,7 +2807,7 @@
     "jeraha": {
       "author": "Waithera Were",
       "file": "words/jeraha.mp3",
-      "gain": -9.2,
+      "gain": -10.9,
       "gate": -67.1,
       "lead": 13,
       "matches": "jeraha",
@@ -2816,7 +2818,7 @@
     "jiandikisha": {
       "author": "Waithera Were",
       "file": "words/jiandikisha.mp3",
-      "gain": -6.7,
+      "gain": -11.0,
       "gate": -62.0,
       "lead": 30,
       "matches": "jiandikisha",
@@ -2827,7 +2829,7 @@
     "jibini": {
       "author": "Waithera Were",
       "file": "words/jibini.mp3",
-      "gain": 1.8,
+      "gain": 2.1,
       "gate": -62.1,
       "lead": 5,
       "matches": "jibini",
@@ -2838,7 +2840,7 @@
     "jibu": {
       "author": "Waithera Were",
       "file": "words/jibu.mp3",
-      "gain": 0.7,
+      "gain": -0.1,
       "gate": -67.1,
       "lead": 25,
       "matches": "jibu",
@@ -2849,7 +2851,7 @@
     "jicho": {
       "author": "Waithera Were",
       "file": "words/jicho.mp3",
-      "gain": 1.2,
+      "gain": -0.4,
       "gate": -65.0,
       "matches": "jicho",
       "mos": 2.41,
@@ -2859,7 +2861,7 @@
     "jiko": {
       "author": "Waithera Were",
       "file": "words/jiko.mp3",
-      "gain": 2.0,
+      "gain": 0.7,
       "gate": -66.0,
       "matches": "jiko",
       "mos": 2.57,
@@ -2869,7 +2871,7 @@
     "jina": {
       "author": "Waithera Were",
       "file": "words/jina.mp3",
-      "gain": -0.6,
+      "gain": -1.5,
       "gate": -57.2,
       "matches": "jina",
       "mos": 2.64,
@@ -2879,7 +2881,7 @@
     "jina la kwanza": {
       "author": "Waithera Were",
       "file": "words/jinau0020lau0020kwanza.mp3",
-      "gain": -5.0,
+      "gain": -7.6,
       "gate": -98.1,
       "lead": 135,
       "matches": "jina la kwanza",
@@ -2890,7 +2892,7 @@
     "jina la ukoo": {
       "author": "Waithera Were",
       "file": "words/jinau0020lau0020ukoo.mp3",
-      "gain": -5.1,
+      "gain": -8.4,
       "gate": -97.0,
       "lead": 132,
       "matches": "jina la ukoo",
@@ -2901,7 +2903,7 @@
     "jino": {
       "author": "Waithera Were",
       "file": "words/jino.mp3",
-      "gain": 0.3,
+      "gain": -0.1,
       "gate": -67.2,
       "lead": 40,
       "matches": "jino",
@@ -2912,7 +2914,7 @@
     "jinsia": {
       "author": "Waithera Were",
       "file": "words/jinsia.mp3",
-      "gain": -5.4,
+      "gain": -6.8,
       "gate": -63.1,
       "lead": 13,
       "matches": "jinsia",
@@ -2923,7 +2925,7 @@
     "jioni": {
       "author": "Waithera Were",
       "file": "words/jioni.mp3",
-      "gain": -8.4,
+      "gain": -10.9,
       "gate": -66.5,
       "lead": 35,
       "matches": "jioni",
@@ -2934,7 +2936,7 @@
     "jirani": {
       "author": "Waithera Were",
       "file": "words/jirani.mp3",
-      "gain": -5.2,
+      "gain": -7.0,
       "gate": -69.4,
       "lead": 8,
       "matches": "jirani",
@@ -2945,7 +2947,7 @@
     "jisikia": {
       "author": "Waithera Were",
       "file": "words/jisikia.mp3",
-      "gain": -6.7,
+      "gain": -10.0,
       "gate": -99.7,
       "lead": 129,
       "matches": "jisikia",
@@ -2956,7 +2958,7 @@
     "jiwe": {
       "author": "Waithera Were",
       "file": "words/jiwe.mp3",
-      "gain": 1.0,
+      "gain": 0.5,
       "gate": -59.9,
       "matches": "jiwe",
       "mos": 1.92,
@@ -2966,7 +2968,7 @@
     "jua": {
       "author": "Waithera Were",
       "file": "words/jua.mp3",
-      "gain": -9.7,
+      "gain": -10.5,
       "gate": -69.0,
       "lead": 42,
       "matches": "jua",
@@ -2977,7 +2979,7 @@
     "juisi": {
       "author": "Waithera Were",
       "file": "words/juisi.mp3",
-      "gain": -4.8,
+      "gain": -6.0,
       "gate": -68.4,
       "lead": 38,
       "matches": "juisi",
@@ -2988,7 +2990,7 @@
     "juu": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/juu.mp3",
-      "gain": 6.8,
+      "gain": 8.6,
       "lead": 106,
       "matches": "juu",
       "mos": 2.5,
@@ -2998,7 +3000,7 @@
     "juu ya": {
       "author": "Waithera Were",
       "file": "words/juuu0020ya.mp3",
-      "gain": -4.9,
+      "gain": -7.5,
       "gate": -67.1,
       "lead": 39,
       "matches": "juu ya",
@@ -3009,7 +3011,7 @@
     "juzi": {
       "author": "Waithera Were",
       "file": "words/juzi.mp3",
-      "gain": -9.2,
+      "gain": -9.7,
       "gate": -62.1,
       "lead": 53,
       "matches": "juzi",
@@ -3020,7 +3022,7 @@
     "kabichi": {
       "author": "Waithera Were",
       "file": "words/kabichi.mp3",
-      "gain": 1.0,
+      "gain": -2.1,
       "gate": -68.0,
       "lead": 43,
       "matches": "kabichi",
@@ -3031,7 +3033,7 @@
     "kabisa": {
       "author": "Waithera Were",
       "file": "words/kabisa.mp3",
-      "gain": -2.6,
+      "gain": -4.6,
       "gate": -68.6,
       "lead": 41,
       "matches": "kabisa",
@@ -3042,7 +3044,7 @@
     "kabla ya": {
       "author": "Waithera Were",
       "file": "words/kablau0020ya.mp3",
-      "gain": -6.4,
+      "gain": -7.8,
       "lead": 149,
       "matches": "kabla ya",
       "mos": 2.64,
@@ -3052,7 +3054,7 @@
     "kaburi": {
       "author": "Waithera Were",
       "file": "words/kaburi.mp3",
-      "gain": -3.5,
+      "gain": -6.8,
       "gate": -69.1,
       "lead": 47,
       "matches": "kaburi",
@@ -3063,7 +3065,7 @@
     "kahawa": {
       "author": "Waithera Were",
       "file": "words/kahawa.mp3",
-      "gain": -12.0,
+      "gain": -12.8,
       "gate": -64.0,
       "lead": 43,
       "matches": "kahawa",
@@ -3074,7 +3076,7 @@
     "kahawia": {
       "author": "Waithera Were",
       "file": "words/kahawia.mp3",
-      "gain": -6.5,
+      "gain": -8.7,
       "gate": -67.6,
       "lead": 47,
       "matches": "kahawia",
@@ -3085,7 +3087,7 @@
     "kaka": {
       "author": "Waithera Were",
       "file": "words/kaka.mp3",
-      "gain": -6.8,
+      "gain": -8.2,
       "gate": -68.3,
       "lead": 41,
       "matches": "kaka",
@@ -3096,7 +3098,7 @@
     "kalamu": {
       "author": "Waithera Were",
       "file": "words/kalamu.mp3",
-      "gain": -10.4,
+      "gain": -13.5,
       "gate": -66.2,
       "lead": 49,
       "matches": "kalamu",
@@ -3107,7 +3109,7 @@
     "kalenda": {
       "author": "Waithera Were",
       "file": "words/kalenda.mp3",
-      "gain": -4.5,
+      "gain": -6.5,
       "gate": -61.9,
       "lead": 49,
       "matches": "kalenda",
@@ -3118,7 +3120,7 @@
     "kali": {
       "author": "Waithera Were",
       "file": "words/kali.mp3",
-      "gain": -7.6,
+      "gain": -10.8,
       "lead": 147,
       "matches": "kali",
       "mos": 2.52,
@@ -3128,7 +3130,7 @@
     "kama": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/kama.mp3",
-      "gain": 6.1,
+      "gain": 3.7,
       "lead": 199,
       "matches": "kama",
       "mos": 2.65,
@@ -3138,7 +3140,7 @@
     "kambi": {
       "author": "Waithera Were",
       "file": "words/kambi.mp3",
-      "gain": -7.5,
+      "gain": -10.7,
       "gate": -65.8,
       "lead": 41,
       "matches": "kambi",
@@ -3149,7 +3151,7 @@
     "kampuni": {
       "author": "Waithera Were",
       "file": "words/kampuni.mp3",
-      "gain": -4.6,
+      "gain": -7.8,
       "gate": -68.1,
       "lead": 48,
       "matches": "kampuni",
@@ -3160,7 +3162,7 @@
     "kamusi": {
       "author": "Waithera Were",
       "file": "words/kamusi.mp3",
-      "gain": -2.2,
+      "gain": -3.7,
       "gate": -70.5,
       "lead": 41,
       "matches": "kamusi",
@@ -3171,7 +3173,7 @@
     "kamwe": {
       "author": "Waithera Were",
       "file": "words/kamwe.mp3",
-      "gain": -3.5,
+      "gain": -5.1,
       "gate": -68.3,
       "lead": 47,
       "matches": "kamwe",
@@ -3182,7 +3184,7 @@
     "kando ya": {
       "author": "Waithera Were",
       "file": "words/kandou0020ya.mp3",
-      "gain": -5.8,
+      "gain": -8.7,
       "gate": -98.4,
       "lead": 232,
       "matches": "kando ya",
@@ -3193,7 +3195,7 @@
     "kanisa": {
       "author": "Waithera Were",
       "file": "words/kanisa.mp3",
-      "gain": -0.6,
+      "gain": -3.8,
       "gate": -69.4,
       "lead": 41,
       "matches": "kanisa",
@@ -3204,7 +3206,7 @@
     "karatasi": {
       "author": "Waithera Were",
       "file": "words/karatasi.mp3",
-      "gain": -7.5,
+      "gain": -10.0,
       "gate": -64.8,
       "lead": 41,
       "matches": "karatasi",
@@ -3215,7 +3217,7 @@
     "karibu": {
       "author": "Waithera Were",
       "file": "words/karibu.mp3",
-      "gain": -5.1,
+      "gain": -7.7,
       "gate": -70.2,
       "lead": 43,
       "matches": "karibu",
@@ -3226,7 +3228,7 @@
     "karne": {
       "author": "Waithera Were",
       "file": "words/karne.mp3",
-      "gain": -8.7,
+      "gain": -10.9,
       "gate": -64.4,
       "lead": 56,
       "matches": "karne",
@@ -3237,7 +3239,7 @@
     "karoti": {
       "author": "Waithera Were",
       "file": "words/karoti.mp3",
-      "gain": -10.8,
+      "gain": -12.4,
       "gate": -65.0,
       "lead": 45,
       "matches": "karoti",
@@ -3248,7 +3250,7 @@
     "kaskazini": {
       "author": "Waithera Were",
       "file": "words/kaskazini.mp3",
-      "gain": -2.3,
+      "gain": -4.4,
       "gate": -67.5,
       "lead": 43,
       "matches": "kaskazini",
@@ -3259,7 +3261,7 @@
     "kati ya": {
       "author": "Waithera Were",
       "file": "words/katiu0020ya.mp3",
-      "gain": -6.5,
+      "gain": -8.4,
       "gate": -100.0,
       "lead": 148,
       "matches": "kati ya",
@@ -3270,7 +3272,7 @@
     "katika": {
       "author": "Waithera Were",
       "file": "words/katika.mp3",
-      "gain": 1.8,
+      "gain": -0.6,
       "gate": -66.1,
       "lead": 45,
       "matches": "katika",
@@ -3281,7 +3283,7 @@
     "katikati": {
       "author": "Waithera Were",
       "file": "words/katikati.mp3",
-      "gain": -7.2,
+      "gain": -11.0,
       "gate": -68.2,
       "lead": 45,
       "matches": "katikati",
@@ -3292,7 +3294,7 @@
     "kavu": {
       "author": "Waithera Were",
       "file": "words/kavu.mp3",
-      "gain": -8.9,
+      "gain": -10.0,
       "gate": -65.8,
       "lead": 48,
       "matches": "kavu",
@@ -3303,7 +3305,7 @@
     "kazi": {
       "author": "Waithera Were",
       "file": "words/kazi.mp3",
-      "gain": -7.3,
+      "gain": -9.1,
       "gate": -62.2,
       "lead": 40,
       "matches": "kazi",
@@ -3314,7 +3316,7 @@
     "kazi ya nyumbani": {
       "author": "Waithera Were",
       "file": "words/kaziu0020yau0020nyumbani.mp3",
-      "gain": -6.8,
+      "gain": -10.0,
       "gate": -97.6,
       "lead": 249,
       "matches": "kazi ya nyumbani",
@@ -3325,7 +3327,7 @@
     "kebo": {
       "author": "Waithera Were",
       "file": "words/kebo.mp3",
-      "gain": -10.8,
+      "gain": -13.1,
       "gate": -55.6,
       "lead": 55,
       "matches": "kebo",
@@ -3336,7 +3338,7 @@
     "kelele": {
       "author": "Waithera Were",
       "file": "words/kelele.mp3",
-      "gain": -7.7,
+      "gain": -10.1,
       "gate": -61.1,
       "lead": 47,
       "matches": "kelele",
@@ -3347,7 +3349,7 @@
     "kengele": {
       "author": "Waithera Were",
       "file": "words/kengele.mp3",
-      "gain": -7.0,
+      "gain": -9.0,
       "gate": -64.9,
       "lead": 48,
       "matches": "kengele",
@@ -3358,7 +3360,7 @@
     "kesho": {
       "author": "Waithera Were",
       "file": "words/kesho.mp3",
-      "gain": -5.0,
+      "gain": -7.1,
       "gate": -66.9,
       "lead": 42,
       "matches": "kesho",
@@ -3369,7 +3371,7 @@
     "kesho kutwa": {
       "author": "Waithera Were",
       "file": "words/keshou0020kutwa.mp3",
-      "gain": -5.3,
+      "gain": -6.9,
       "gate": -62.7,
       "lead": 47,
       "matches": "kesho kutwa",
@@ -3380,7 +3382,7 @@
     "kiambishi": {
       "author": "Waithera Were",
       "file": "words/kiambishi.mp3",
-      "gain": -5.2,
+      "gain": -9.2,
       "gate": -63.4,
       "lead": 44,
       "matches": "kiambishi",
@@ -3391,7 +3393,7 @@
     "kiatu": {
       "author": "Waithera Were",
       "file": "words/kiatu.mp3",
-      "gain": -6.4,
+      "gain": -9.0,
       "gate": -70.3,
       "lead": 48,
       "matches": "kiatu",
@@ -3402,7 +3404,7 @@
     "kiazi": {
       "author": "Goethe-Institut Cameroon",
       "file": "words/kiazi.mp3",
-      "gain": -3.3,
+      "gain": -3.9,
       "gate": -85.8,
       "lead": 591,
       "matches": "kiazi",
@@ -3413,7 +3415,7 @@
     "kibanda": {
       "author": "Waithera Were",
       "file": "words/kibanda.mp3",
-      "gain": -8.3,
+      "gain": -11.8,
       "gate": -67.2,
       "lead": 47,
       "matches": "kibanda",
@@ -3424,7 +3426,7 @@
     "kibodi": {
       "author": "Waithera Were",
       "file": "words/kibodi.mp3",
-      "gain": -8.1,
+      "gain": -9.4,
       "gate": -68.4,
       "lead": 47,
       "matches": "kibodi",
@@ -3435,7 +3437,7 @@
     "kibofu": {
       "author": "Waithera Were",
       "file": "words/kibofu.mp3",
-      "gain": -10.0,
+      "gain": -12.5,
       "gate": -58.5,
       "lead": 51,
       "matches": "kibofu",
@@ -3446,7 +3448,7 @@
     "kichwa": {
       "author": "Waithera Were",
       "file": "words/kichwa.mp3",
-      "gain": -2.3,
+      "gain": -4.5,
       "gate": -70.0,
       "lead": 48,
       "matches": "kichwa",
@@ -3457,7 +3459,7 @@
     "kidogo": {
       "author": "Waithera Were",
       "file": "words/kidogo.mp3",
-      "gain": -4.0,
+      "gain": -4.9,
       "gate": -63.5,
       "lead": 46,
       "matches": "kidogo",
@@ -3468,7 +3470,7 @@
     "kidole": {
       "author": "Waithera Were",
       "file": "words/kidole.mp3",
-      "gain": -9.8,
+      "gain": -11.5,
       "gate": -65.8,
       "lead": 40,
       "matches": "kidole",
@@ -3479,7 +3481,7 @@
     "kidonge": {
       "author": "Waithera Were",
       "file": "words/kidonge.mp3",
-      "gain": -3.2,
+      "gain": -5.5,
       "gate": -68.4,
       "lead": 47,
       "matches": "kidonge",
@@ -3500,7 +3502,7 @@
     "kifua": {
       "author": "Waithera Were",
       "file": "words/kifua.mp3",
-      "gain": -5.7,
+      "gain": -8.5,
       "gate": -64.3,
       "lead": 45,
       "matches": "kifua",
@@ -3511,7 +3513,7 @@
     "kifungua kinywa": {
       "author": "Waithera Were",
       "file": "words/kifunguau0020kinywa.mp3",
-      "gain": -4.0,
+      "gain": -6.6,
       "gate": -60.5,
       "lead": 49,
       "matches": "kifungua kinywa",
@@ -3522,7 +3524,7 @@
     "kijani": {
       "author": "Waithera Were",
       "file": "words/kijani.mp3",
-      "gain": -6.0,
+      "gain": -7.4,
       "gate": -65.7,
       "lead": 42,
       "matches": "kijani",
@@ -3533,7 +3535,7 @@
     "kijiji": {
       "author": "Waithera Were",
       "file": "words/kijiji.mp3",
-      "gain": -3.6,
+      "gain": -4.7,
       "gate": -64.7,
       "matches": "kijiji",
       "mos": 2.78,
@@ -3543,7 +3545,7 @@
     "kijiko": {
       "author": "Waithera Were",
       "file": "words/kijiko.mp3",
-      "gain": 0.5,
+      "gain": -1.6,
       "gate": -68.0,
       "lead": 50,
       "matches": "kijiko",
@@ -3554,7 +3556,7 @@
     "kijivu": {
       "author": "Waithera Were",
       "file": "words/kijivu.mp3",
-      "gain": 0.8,
+      "gain": -1.5,
       "gate": -66.1,
       "lead": 41,
       "matches": "kijivu",
@@ -3565,7 +3567,7 @@
     "kikaango": {
       "author": "Waithera Were",
       "file": "words/kikaango.mp3",
-      "gain": -6.1,
+      "gain": -7.3,
       "gate": -66.8,
       "lead": 44,
       "matches": "kikaango",
@@ -3576,7 +3578,7 @@
     "kikapu": {
       "author": "Waithera Were",
       "file": "words/kikapu.mp3",
-      "gain": -3.4,
+      "gain": -5.5,
       "gate": -69.6,
       "lead": 41,
       "matches": "kikapu",
@@ -3587,7 +3589,7 @@
     "kike": {
       "author": "Waithera Were",
       "file": "words/kike.mp3",
-      "gain": 3.5,
+      "gain": 3.4,
       "gate": -69.2,
       "lead": 36,
       "matches": "kike",
@@ -3609,7 +3611,7 @@
     "kikombe": {
       "author": "Waithera Were",
       "file": "words/kikombe.mp3",
-      "gain": -7.4,
+      "gain": -7.5,
       "gate": -64.5,
       "lead": 41,
       "matches": "kikombe",
@@ -3620,7 +3622,7 @@
     "kila": {
       "author": "Waithera Were",
       "file": "words/kila.mp3",
-      "gain": -4.0,
+      "gain": -6.2,
       "gate": -69.3,
       "lead": 48,
       "matches": "kila",
@@ -3631,7 +3633,7 @@
     "kila kitu": {
       "author": "Waithera Were",
       "file": "words/kilau0020kitu.mp3",
-      "gain": -5.9,
+      "gain": -11.1,
       "gate": -99.8,
       "lead": 140,
       "matches": "kila kitu",
@@ -3642,7 +3644,7 @@
     "kila mtu": {
       "author": "Waithera Were",
       "file": "words/kilau0020mtu.mp3",
-      "gain": -6.7,
+      "gain": -11.1,
       "lead": 144,
       "matches": "kila mtu",
       "mos": 3.15,
@@ -3652,7 +3654,7 @@
     "kilo": {
       "author": "Waithera Were",
       "file": "words/kilo.mp3",
-      "gain": -5.8,
+      "gain": -6.0,
       "gate": -67.5,
       "lead": 44,
       "matches": "kilo",
@@ -3663,6 +3665,7 @@
     "kimya": {
       "author": "Waithera Were",
       "file": "words/kimya.mp3",
+      "gain": -1.0,
       "gate": -69.8,
       "lead": 44,
       "matches": "kimya",
@@ -3673,6 +3676,7 @@
     "kinyume": {
       "author": "Waithera Were",
       "file": "words/kinyume.mp3",
+      "gain": 0.4,
       "gate": -62.9,
       "lead": 49,
       "matches": "kinyume",
@@ -3683,7 +3687,7 @@
     "kinywaji": {
       "author": "Waithera Were",
       "file": "words/kinywaji.mp3",
-      "gain": -5.3,
+      "gain": -7.7,
       "gate": -70.0,
       "lead": 46,
       "matches": "kinywaji",
@@ -3694,7 +3698,7 @@
     "kioo": {
       "author": "Waithera Were",
       "file": "words/kioo.mp3",
-      "gain": -4.0,
+      "gain": -5.0,
       "gate": -67.4,
       "lead": 41,
       "matches": "kioo",
@@ -3705,7 +3709,7 @@
     "kipanya": {
       "author": "Waithera Were",
       "file": "words/kipanya.mp3",
-      "gain": -10.6,
+      "gain": -13.1,
       "gate": -61.7,
       "lead": 46,
       "matches": "kipanya",
@@ -3716,7 +3720,7 @@
     "kipindi": {
       "author": "Waithera Were",
       "file": "words/kipindi.mp3",
-      "gain": 2.1,
+      "gain": 1.6,
       "gate": -68.4,
       "lead": 42,
       "matches": "kipindi",
@@ -3727,7 +3731,7 @@
     "kisiwa": {
       "author": "Waithera Were",
       "file": "words/kisiwa.mp3",
-      "gain": -3.8,
+      "gain": -4.6,
       "gate": -65.6,
       "lead": 49,
       "matches": "kisiwa",
@@ -3738,7 +3742,7 @@
     "kisu": {
       "author": "Waithera Were",
       "file": "words/kisu.mp3",
-      "gain": 0.3,
+      "gain": 0.6,
       "gate": -66.7,
       "lead": 40,
       "matches": "kisu",
@@ -3749,7 +3753,7 @@
     "kitabu": {
       "author": "Waithera Were",
       "file": "words/kitabu.mp3",
-      "gain": -7.7,
+      "gain": -10.9,
       "gate": -67.9,
       "lead": 45,
       "matches": "kitabu",
@@ -3760,7 +3764,7 @@
     "kitambo": {
       "author": "Waithera Were",
       "file": "words/kitambo.mp3",
-      "gain": -7.8,
+      "gain": -10.3,
       "gate": -63.8,
       "lead": 43,
       "matches": "kitambo",
@@ -3771,7 +3775,7 @@
     "kitambulisho": {
       "author": "Waithera Were",
       "file": "words/kitambulisho.mp3",
-      "gain": -3.8,
+      "gain": -7.0,
       "gate": -65.3,
       "lead": 44,
       "matches": "kitambulisho",
@@ -3782,7 +3786,7 @@
     "kitanda": {
       "author": "Waithera Were",
       "file": "words/kitanda.mp3",
-      "gain": -6.1,
+      "gain": -8.3,
       "gate": -67.0,
       "lead": 46,
       "matches": "kitanda",
@@ -3793,7 +3797,7 @@
     "kitenzi": {
       "author": "Waithera Were",
       "file": "words/kitenzi.mp3",
-      "gain": -10.2,
+      "gain": -13.7,
       "gate": -62.8,
       "lead": 59,
       "matches": "kitenzi",
@@ -3804,7 +3808,7 @@
     "kiti": {
       "author": "Waithera Were",
       "file": "words/kiti.mp3",
-      "gain": 1.0,
+      "gain": 0.7,
       "gate": -70.1,
       "lead": 47,
       "matches": "kiti",
@@ -3815,7 +3819,7 @@
     "kitindamlo": {
       "author": "Waithera Were",
       "file": "words/kitindamlo.mp3",
-      "gain": -5.6,
+      "gain": -9.1,
       "gate": -53.4,
       "lead": 40,
       "matches": "kitindamlo",
@@ -3826,7 +3830,7 @@
     "kitu": {
       "author": "Waithera Were",
       "file": "words/kitu.mp3",
-      "gain": -3.4,
+      "gain": -4.4,
       "gate": -66.6,
       "lead": 46,
       "matches": "kitu",
@@ -3837,7 +3841,7 @@
     "kitunguu": {
       "author": "Waithera Were",
       "file": "words/kitunguu.mp3",
-      "gain": -0.4,
+      "gain": 0.7,
       "gate": -67.5,
       "lead": 42,
       "matches": "kitunguu",
@@ -3848,7 +3852,7 @@
     "kitunguu saumu": {
       "author": "Waithera Were",
       "file": "words/kitunguuu0020saumu.mp3",
-      "gain": -3.9,
+      "gain": -7.0,
       "gate": -64.5,
       "lead": 46,
       "matches": "kitunguu saumu",
@@ -3859,7 +3863,7 @@
     "kituo cha basi": {
       "author": "Waithera Were",
       "file": "words/kituou0020chau0020basi.mp3",
-      "gain": -7.4,
+      "gain": -10.7,
       "gate": -65.5,
       "lead": 45,
       "matches": "kituo cha basi",
@@ -3870,7 +3874,7 @@
     "kiu": {
       "author": "Waithera Were",
       "file": "words/kiu.mp3",
-      "gain": -8.6,
+      "gain": -10.9,
       "gate": -99.4,
       "lead": 225,
       "matches": "kiu",
@@ -3881,7 +3885,7 @@
     "kiume": {
       "author": "Waithera Were",
       "file": "words/kiume.mp3",
-      "gain": -6.0,
+      "gain": -5.9,
       "gate": -68.0,
       "lead": 47,
       "matches": "kiume",
@@ -3892,7 +3896,7 @@
     "kiungo": {
       "author": "Waithera Were",
       "file": "words/kiungo.mp3",
-      "gain": -3.3,
+      "gain": -1.9,
       "gate": -66.3,
       "lead": 49,
       "matches": "kiungo",
@@ -3903,7 +3907,7 @@
     "kivuli": {
       "author": "Waithera Were",
       "file": "words/kivuli.mp3",
-      "gain": -3.0,
+      "gain": -3.2,
       "gate": -69.3,
       "lead": 46,
       "matches": "kivuli",
@@ -3914,7 +3918,7 @@
     "kivumishi": {
       "author": "Waithera Were",
       "file": "words/kivumishi.mp3",
-      "gain": 1.0,
+      "gain": 2.1,
       "gate": -64.0,
       "lead": 49,
       "matches": "kivumishi",
@@ -3925,7 +3929,7 @@
     "kizunguzungu": {
       "author": "Waithera Were",
       "file": "words/kizunguzungu.mp3",
-      "gain": 0.8,
+      "gain": -0.3,
       "gate": -61.8,
       "lead": 40,
       "matches": "kizunguzungu",
@@ -3936,7 +3940,7 @@
     "kliniki": {
       "author": "Waithera Were",
       "file": "words/kliniki.mp3",
-      "gain": 1.6,
+      "gain": 0.5,
       "gate": -67.8,
       "lead": 43,
       "matches": "kliniki",
@@ -3947,7 +3951,7 @@
     "kochi": {
       "author": "Waithera Were",
       "file": "words/kochi.mp3",
-      "gain": -8.6,
+      "gain": -11.0,
       "gate": -66.7,
       "lead": 43,
       "matches": "kochi",
@@ -3958,7 +3962,7 @@
     "kodi": {
       "author": "Waithera Were",
       "file": "words/kodi.mp3",
-      "gain": -4.5,
+      "gain": -7.4,
       "gate": -70.3,
       "lead": 41,
       "matches": "kodi",
@@ -3969,7 +3973,7 @@
     "kofia": {
       "author": "Waithera Were",
       "file": "words/kofia.mp3",
-      "gain": -3.2,
+      "gain": -4.5,
       "gate": -68.2,
       "lead": 46,
       "matches": "kofia",
@@ -3980,7 +3984,7 @@
     "kona": {
       "author": "Waithera Were",
       "file": "words/kona.mp3",
-      "gain": -7.6,
+      "gain": -6.7,
       "gate": -65.4,
       "lead": 41,
       "matches": "kona",
@@ -3991,7 +3995,7 @@
     "kondoo": {
       "author": "Waithera Were",
       "file": "words/kondoo.mp3",
-      "gain": -5.2,
+      "gain": -4.9,
       "gate": -68.3,
       "lead": 34,
       "matches": "kondoo",
@@ -4002,7 +4006,7 @@
     "koo": {
       "author": "Waithera Were",
       "file": "words/koo.mp3",
-      "gain": -1.6,
+      "gain": -0.9,
       "gate": -69.6,
       "lead": 47,
       "matches": "koo",
@@ -4013,7 +4017,7 @@
     "kopo": {
       "author": "Waithera Were",
       "file": "words/kopo.mp3",
-      "gain": -2.1,
+      "gain": -2.6,
       "gate": -69.7,
       "lead": 38,
       "matches": "kopo",
@@ -4024,7 +4028,7 @@
     "kosa": {
       "author": "Waithera Were",
       "file": "words/kosa.mp3",
-      "gain": -6.0,
+      "gain": -6.9,
       "gate": -70.0,
       "lead": 49,
       "matches": "kosa",
@@ -4035,7 +4039,7 @@
     "kosea": {
       "author": "Waithera Were",
       "file": "words/kosea.mp3",
-      "gain": -7.1,
+      "gain": -10.0,
       "lead": 137,
       "matches": "kosea",
       "mos": 3.05,
@@ -4045,7 +4049,7 @@
     "koti": {
       "author": "Waithera Were",
       "file": "words/koti.mp3",
-      "gain": -4.8,
+      "gain": -7.9,
       "gate": -67.5,
       "lead": 48,
       "matches": "koti",
@@ -4056,7 +4060,7 @@
     "kozi": {
       "author": "Waithera Were",
       "file": "words/kozi.mp3",
-      "gain": -6.0,
+      "gain": -6.8,
       "gate": -69.7,
       "lead": 45,
       "matches": "kozi",
@@ -4067,7 +4071,7 @@
     "krimu": {
       "author": "Waithera Were",
       "file": "words/krimu.mp3",
-      "gain": -3.6,
+      "gain": -2.9,
       "gate": -66.2,
       "lead": 47,
       "matches": "krimu",
@@ -4078,7 +4082,7 @@
     "kuacha": {
       "author": "Waithera Were",
       "file": "words/kuacha.mp3",
-      "gain": -8.4,
+      "gain": -11.7,
       "gate": -62.5,
       "lead": 48,
       "matches": "kuacha",
@@ -4089,7 +4093,7 @@
     "kuaga": {
       "author": "Waithera Were",
       "file": "words/kuaga.mp3",
-      "gain": -8.2,
+      "gain": -10.5,
       "gate": -65.0,
       "lead": 49,
       "matches": "kuaga",
@@ -4100,7 +4104,7 @@
     "kuagiza": {
       "author": "Waithera Were",
       "file": "words/kuagiza.mp3",
-      "gain": -7.0,
+      "gain": -11.0,
       "gate": -61.5,
       "lead": 45,
       "matches": "kuagiza",
@@ -4111,7 +4115,7 @@
     "kuahirisha": {
       "author": "Waithera Were",
       "file": "words/kuahirisha.mp3",
-      "gain": -7.5,
+      "gain": -9.8,
       "gate": -60.5,
       "lead": 27,
       "matches": "kuahirisha",
@@ -4122,7 +4126,7 @@
     "kuajiri": {
       "author": "Waithera Were",
       "file": "words/kuajiri.mp3",
-      "gain": -8.6,
+      "gain": -11.9,
       "gate": -64.4,
       "lead": 43,
       "matches": "kuajiri",
@@ -4133,7 +4137,7 @@
     "kualika": {
       "author": "Waithera Were",
       "file": "words/kualika.mp3",
-      "gain": -6.6,
+      "gain": -11.4,
       "gate": -64.5,
       "lead": 46,
       "matches": "kualika",
@@ -4144,7 +4148,7 @@
     "kuamka": {
       "author": "Waithera Were",
       "file": "words/kuamka.mp3",
-      "gain": -6.8,
+      "gain": -9.5,
       "gate": -63.4,
       "matches": "kuamka",
       "mos": 2.13,
@@ -4154,7 +4158,7 @@
     "kuandika": {
       "author": "Waithera Were",
       "file": "words/kuandika.mp3",
-      "gain": -9.2,
+      "gain": -11.1,
       "gate": -61.8,
       "lead": 41,
       "matches": "kuandika",
@@ -4165,7 +4169,7 @@
     "kuangalia": {
       "author": "Waithera Were",
       "file": "words/kuangalia.mp3",
-      "gain": -9.5,
+      "gain": -12.0,
       "gate": -60.5,
       "lead": 40,
       "matches": "kuangalia",
@@ -4176,7 +4180,7 @@
     "kuanza": {
       "author": "Waithera Were",
       "file": "words/kuanza.mp3",
-      "gain": -10.4,
+      "gain": -13.3,
       "gate": -64.2,
       "lead": 48,
       "matches": "kuanza",
@@ -4187,7 +4191,7 @@
     "kubeba": {
       "author": "Waithera Were",
       "file": "words/kubeba.mp3",
-      "gain": -8.8,
+      "gain": -12.0,
       "gate": -63.4,
       "lead": 46,
       "matches": "kubeba",
@@ -4198,7 +4202,7 @@
     "kuboresha": {
       "author": "Waithera Were",
       "file": "words/kuboresha.mp3",
-      "gain": -10.8,
+      "gain": -13.3,
       "gate": -62.0,
       "lead": 43,
       "matches": "kuboresha",
@@ -4209,7 +4213,7 @@
     "kubwa": {
       "author": "Waithera Were",
       "file": "words/kubwa.mp3",
-      "gain": -3.7,
+      "gain": -2.0,
       "gate": -68.9,
       "lead": 38,
       "matches": "kubwa",
@@ -4220,7 +4224,7 @@
     "kuchanganya": {
       "author": "Waithera Were",
       "file": "words/kuchanganya.mp3",
-      "gain": -8.1,
+      "gain": -11.4,
       "gate": -62.7,
       "lead": 46,
       "matches": "kuchanganya",
@@ -4231,7 +4235,7 @@
     "kuchapisha": {
       "author": "Waithera Were",
       "file": "words/kuchapisha.mp3",
-      "gain": -6.3,
+      "gain": -8.4,
       "gate": -64.1,
       "lead": 34,
       "matches": "kuchapisha",
@@ -4242,7 +4246,7 @@
     "kucheka": {
       "author": "Waithera Were",
       "file": "words/kucheka.mp3",
-      "gain": -7.2,
+      "gain": -10.6,
       "gate": -64.5,
       "lead": 32,
       "matches": "kucheka",
@@ -4253,7 +4257,7 @@
     "kuchelewa": {
       "author": "Waithera Were",
       "file": "words/kuchelewa.mp3",
-      "gain": -8.1,
+      "gain": -11.7,
       "gate": -61.7,
       "lead": 46,
       "matches": "kuchelewa",
@@ -4264,7 +4268,7 @@
     "kuchemsha": {
       "author": "Waithera Were",
       "file": "words/kuchemsha.mp3",
-      "gain": -6.9,
+      "gain": -9.2,
       "gate": -62.3,
       "lead": 49,
       "matches": "kuchemsha",
@@ -4275,7 +4279,7 @@
     "kucheza": {
       "author": "Waithera Were",
       "file": "words/kucheza.mp3",
-      "gain": -7.8,
+      "gain": -12.0,
       "gate": -63.1,
       "lead": 42,
       "matches": "kucheza",
@@ -4286,7 +4290,7 @@
     "kuchukua": {
       "author": "Waithera Were",
       "file": "words/kuchukua.mp3",
-      "gain": -7.8,
+      "gain": -10.2,
       "gate": -60.5,
       "lead": 27,
       "matches": "kuchukua",
@@ -4297,7 +4301,7 @@
     "kuchunguza": {
       "author": "Waithera Were",
       "file": "words/kuchunguza.mp3",
-      "gain": -5.3,
+      "gain": -6.9,
       "gate": -62.9,
       "lead": 47,
       "matches": "kuchunguza",
@@ -4308,7 +4312,7 @@
     "kuelewa": {
       "author": "Waithera Were",
       "file": "words/kuelewa.mp3",
-      "gain": -9.6,
+      "gain": -11.8,
       "gate": -62.3,
       "lead": 40,
       "matches": "kuelewa",
@@ -4319,7 +4323,7 @@
     "kueleza": {
       "author": "Waithera Were",
       "file": "words/kueleza.mp3",
-      "gain": -9.6,
+      "gain": -12.4,
       "gate": -63.1,
       "lead": 39,
       "matches": "kueleza",
@@ -4330,7 +4334,7 @@
     "kuendesha baiskeli": {
       "author": "Waithera Were",
       "file": "words/kuendeshau0020baiskeli.mp3",
-      "gain": -5.4,
+      "gain": -7.3,
       "gate": -65.2,
       "lead": 40,
       "matches": "kuendesha baiskeli",
@@ -4341,7 +4345,7 @@
     "kufa": {
       "author": "Waithera Were",
       "file": "words/kufa.mp3",
-      "gain": -6.5,
+      "gain": -6.8,
       "gate": -63.8,
       "lead": 43,
       "matches": "kufa",
@@ -4352,7 +4356,7 @@
     "kufanana": {
       "author": "Waithera Were",
       "file": "words/kufanana.mp3",
-      "gain": -9.1,
+      "gain": -12.2,
       "gate": -62.4,
       "lead": 49,
       "matches": "kufanana",
@@ -4363,7 +4367,7 @@
     "kufanya": {
       "author": "Waithera Were",
       "file": "words/kufanya.mp3",
-      "gain": -7.6,
+      "gain": -10.1,
       "gate": -62.9,
       "lead": 37,
       "matches": "kufanya",
@@ -4374,7 +4378,7 @@
     "kufika": {
       "author": "Waithera Were",
       "file": "words/kufika.mp3",
-      "gain": -7.1,
+      "gain": -9.6,
       "gate": -99.0,
       "lead": 239,
       "matches": "kufika",
@@ -4385,7 +4389,7 @@
     "kufikia": {
       "author": "Waithera Were",
       "file": "words/kufikia.mp3",
-      "gain": -5.3,
+      "gain": -9.4,
       "gate": -63.8,
       "lead": 42,
       "matches": "kufikia",
@@ -4396,7 +4400,7 @@
     "kufikiri": {
       "author": "Waithera Were",
       "file": "words/kufikiri.mp3",
-      "gain": -6.5,
+      "gain": -6.7,
       "gate": -62.0,
       "lead": 40,
       "matches": "kufikiri",
@@ -4407,7 +4411,7 @@
     "kufuata": {
       "author": "Waithera Were",
       "file": "words/kufuata.mp3",
-      "gain": -9.2,
+      "gain": -12.6,
       "gate": -63.2,
       "lead": 36,
       "matches": "kufuata",
@@ -4429,7 +4433,7 @@
     "kufunga": {
       "author": "Waithera Were",
       "file": "words/kufunga.mp3",
-      "gain": -6.3,
+      "gain": -9.1,
       "gate": -60.7,
       "matches": "kufunga",
       "mos": 2.28,
@@ -4439,7 +4443,7 @@
     "kufungua": {
       "author": "Waithera Were",
       "file": "words/kufungua.mp3",
-      "gain": -8.2,
+      "gain": -10.9,
       "gate": -61.3,
       "lead": 45,
       "matches": "kufungua",
@@ -4450,7 +4454,7 @@
     "kufuta": {
       "author": "Waithera Were",
       "file": "words/kufuta.mp3",
-      "gain": -7.3,
+      "gain": -7.2,
       "gate": -61.8,
       "lead": 36,
       "matches": "kufuta",
@@ -4461,7 +4465,7 @@
     "kugeuka": {
       "author": "Waithera Were",
       "file": "words/kugeuka.mp3",
-      "gain": -6.5,
+      "gain": -10.3,
       "gate": -61.1,
       "lead": 48,
       "matches": "kugeuka",
@@ -4472,7 +4476,7 @@
     "kughairi": {
       "author": "Waithera Were",
       "file": "words/kughairi.mp3",
-      "gain": -8.8,
+      "gain": -12.4,
       "gate": -64.4,
       "lead": 45,
       "matches": "kughairi",
@@ -4483,7 +4487,7 @@
     "kugharimu": {
       "author": "Waithera Were",
       "file": "words/kugharimu.mp3",
-      "gain": -9.6,
+      "gain": -13.1,
       "gate": -62.1,
       "lead": 46,
       "matches": "kugharimu",
@@ -4494,7 +4498,7 @@
     "kuhesabu": {
       "author": "Waithera Were",
       "file": "words/kuhesabu.mp3",
-      "gain": -7.4,
+      "gain": -9.5,
       "gate": -63.5,
       "lead": 44,
       "matches": "kuhesabu",
@@ -4505,7 +4509,7 @@
     "kuhifadhi": {
       "author": "Waithera Were",
       "file": "words/kuhifadhi.mp3",
-      "gain": -8.2,
+      "gain": -11.6,
       "gate": -65.0,
       "lead": 48,
       "matches": "kuhifadhi",
@@ -4516,7 +4520,7 @@
     "kuhitaji": {
       "author": "Waithera Were",
       "file": "words/kuhitaji.mp3",
-      "gain": -8.3,
+      "gain": -10.9,
       "gate": -65.0,
       "lead": 42,
       "matches": "kuhitaji",
@@ -4527,7 +4531,7 @@
     "kuhuisha": {
       "author": "Waithera Were",
       "file": "words/kuhuisha.mp3",
-      "gain": -6.9,
+      "gain": -7.1,
       "gate": -63.6,
       "lead": 42,
       "matches": "kuhuisha",
@@ -4549,7 +4553,7 @@
     "kuingia": {
       "author": "Waithera Were",
       "file": "words/kuingia.mp3",
-      "gain": -6.6,
+      "gain": -10.2,
       "gate": -99.6,
       "lead": 220,
       "matches": "kuingia",
@@ -4560,7 +4564,7 @@
     "kuinuka": {
       "author": "Waithera Were",
       "file": "words/kuinuka.mp3",
-      "gain": -2.6,
+      "gain": -2.1,
       "gate": -62.3,
       "lead": 49,
       "matches": "kuinuka",
@@ -4571,7 +4575,7 @@
     "kuishi": {
       "author": "Waithera Were",
       "file": "words/kuishi.mp3",
-      "gain": -5.6,
+      "gain": -7.3,
       "gate": -63.4,
       "lead": 41,
       "matches": "kuishi",
@@ -4582,7 +4586,7 @@
     "kuitwa": {
       "author": "Waithera Were",
       "file": "words/kuitwa.mp3",
-      "gain": -5.8,
+      "gain": -6.7,
       "gate": -65.3,
       "lead": 40,
       "matches": "kuitwa",
@@ -4593,7 +4597,7 @@
     "kuja": {
       "author": "Waithera Were",
       "file": "words/kuja.mp3",
-      "gain": -5.8,
+      "gain": -6.6,
       "gate": -64.4,
       "lead": 37,
       "matches": "kuja",
@@ -4604,7 +4608,7 @@
     "kujaa": {
       "author": "Waithera Were",
       "file": "words/kujaa.mp3",
-      "gain": -10.1,
+      "gain": -13.1,
       "gate": -62.8,
       "lead": 46,
       "matches": "kujaa",
@@ -4615,7 +4619,7 @@
     "kujaribu": {
       "author": "Waithera Were",
       "file": "words/kujaribu.mp3",
-      "gain": -9.7,
+      "gain": -13.2,
       "gate": -61.1,
       "lead": 40,
       "matches": "kujaribu",
@@ -4626,7 +4630,7 @@
     "kujaza": {
       "author": "Waithera Were",
       "file": "words/kujaza.mp3",
-      "gain": -9.6,
+      "gain": -13.9,
       "gate": -62.7,
       "lead": 30,
       "matches": "kujaza",
@@ -4637,7 +4641,7 @@
     "kujibu": {
       "author": "Waithera Were",
       "file": "words/kujibu.mp3",
-      "gain": -5.1,
+      "gain": -7.2,
       "gate": -60.8,
       "lead": 49,
       "matches": "kujibu",
@@ -4648,7 +4652,7 @@
     "kujifunza": {
       "author": "Waithera Were",
       "file": "words/kujifunza.mp3",
-      "gain": -1.4,
+      "gain": -2.4,
       "gate": -61.7,
       "lead": 35,
       "matches": "kujifunza",
@@ -4659,7 +4663,7 @@
     "kujua": {
       "author": "Waithera Were",
       "file": "words/kujua.mp3",
-      "gain": -10.2,
+      "gain": -12.7,
       "gate": -61.4,
       "lead": 40,
       "matches": "kujua",
@@ -4670,7 +4674,7 @@
     "kukaa": {
       "author": "Waithera Were",
       "file": "words/kukaa.mp3",
-      "gain": -9.6,
+      "gain": -12.1,
       "gate": -65.5,
       "lead": 47,
       "matches": "kukaa",
@@ -4681,7 +4685,7 @@
     "kukaanga": {
       "author": "Waithera Were",
       "file": "words/kukaanga.mp3",
-      "gain": -8.3,
+      "gain": -10.5,
       "gate": -61.7,
       "lead": 38,
       "matches": "kukaanga",
@@ -4692,7 +4696,7 @@
     "kukabidhi": {
       "author": "Waithera Were",
       "file": "words/kukabidhi.mp3",
-      "gain": -8.3,
+      "gain": -11.5,
       "gate": -63.6,
       "lead": 49,
       "matches": "kukabidhi",
@@ -4703,7 +4707,7 @@
     "kukariri": {
       "author": "Waithera Were",
       "file": "words/kukariri.mp3",
-      "gain": -7.3,
+      "gain": -11.1,
       "gate": -62.1,
       "lead": 44,
       "matches": "kukariri",
@@ -4714,7 +4718,7 @@
     "kukata": {
       "author": "Waithera Were",
       "file": "words/kukata.mp3",
-      "gain": -6.8,
+      "gain": -9.6,
       "gate": -64.4,
       "lead": 47,
       "matches": "kukata",
@@ -4725,7 +4729,7 @@
     "kukataa": {
       "author": "Waithera Were",
       "file": "words/kukataa.mp3",
-      "gain": -9.7,
+      "gain": -12.0,
       "gate": -62.6,
       "lead": 40,
       "matches": "kukataa",
@@ -4736,7 +4740,7 @@
     "kukimbia": {
       "author": "Waithera Were",
       "file": "words/kukimbia.mp3",
-      "gain": -5.1,
+      "gain": -5.6,
       "gate": -61.2,
       "lead": 24,
       "matches": "kukimbia",
@@ -4747,7 +4751,7 @@
     "kukohoa": {
       "author": "Waithera Were",
       "file": "words/kukohoa.mp3",
-      "gain": -10.0,
+      "gain": -11.1,
       "gate": -63.1,
       "lead": 38,
       "matches": "kukohoa",
@@ -4758,7 +4762,7 @@
     "kukoroga": {
       "author": "Waithera Were",
       "file": "words/kukoroga.mp3",
-      "gain": -11.5,
+      "gain": -14.6,
       "gate": -61.2,
       "lead": 39,
       "matches": "kukoroga",
@@ -4769,7 +4773,7 @@
     "kukoroma": {
       "author": "Waithera Were",
       "file": "words/kukoroma.mp3",
-      "gain": -9.3,
+      "gain": -10.3,
       "gate": -62.6,
       "lead": 35,
       "matches": "kukoroma",
@@ -4780,7 +4784,7 @@
     "kuku": {
       "author": "Waithera Were",
       "file": "words/kuku.mp3",
-      "gain": -4.2,
+      "gain": -3.0,
       "gate": -69.0,
       "lead": 47,
       "matches": "kuku",
@@ -4791,7 +4795,7 @@
     "kukua": {
       "author": "Waithera Were",
       "file": "words/kukua.mp3",
-      "gain": -7.4,
+      "gain": -9.5,
       "gate": -65.8,
       "lead": 39,
       "matches": "kukua",
@@ -4802,7 +4806,7 @@
     "kukumbuka": {
       "author": "Waithera Were",
       "file": "words/kukumbuka.mp3",
-      "gain": -4.2,
+      "gain": -4.1,
       "gate": -61.9,
       "lead": 47,
       "matches": "kukumbuka",
@@ -4813,7 +4817,7 @@
     "kukumbusha": {
       "author": "Waithera Were",
       "file": "words/kukumbusha.mp3",
-      "gain": -4.0,
+      "gain": -4.1,
       "gate": -62.2,
       "lead": 37,
       "matches": "kukumbusha",
@@ -4824,7 +4828,7 @@
     "kukuta": {
       "author": "Waithera Were",
       "file": "words/kukuta.mp3",
-      "gain": -5.5,
+      "gain": -4.7,
       "gate": -63.2,
       "lead": 49,
       "matches": "kukuta",
@@ -4835,7 +4839,7 @@
     "kukutana": {
       "author": "Waithera Were",
       "file": "words/kukutana.mp3",
-      "gain": -10.6,
+      "gain": -14.8,
       "gate": -61.1,
       "lead": 38,
       "matches": "kukutana",
@@ -4846,7 +4850,7 @@
     "kula": {
       "author": "Waithera Were",
       "file": "words/kula.mp3",
-      "gain": -8.9,
+      "gain": -9.7,
       "gate": -61.9,
       "lead": 39,
       "matches": "kula",
@@ -4857,7 +4861,7 @@
     "kulala": {
       "author": "Waithera Were",
       "file": "words/kulala.mp3",
-      "gain": -10.5,
+      "gain": -13.8,
       "gate": -62.9,
       "lead": 40,
       "matches": "kulala",
@@ -4868,7 +4872,7 @@
     "kuleta": {
       "author": "Waithera Were",
       "file": "words/kuleta.mp3",
-      "gain": -8.7,
+      "gain": -12.7,
       "gate": -63.1,
       "lead": 36,
       "matches": "kuleta",
@@ -4879,7 +4883,7 @@
     "kulia": {
       "author": "Goethe-Institut Cameroon",
       "file": "words/kulia.mp3",
-      "gain": -1.6,
+      "gain": 1.3,
       "gate": -90.5,
       "lead": 838,
       "matches": "kulia",
@@ -4890,7 +4894,7 @@
     "kuliko": {
       "author": "Waithera Were",
       "file": "words/kuliko.mp3",
-      "gain": -6.6,
+      "gain": -7.7,
       "gate": -99.6,
       "lead": 145,
       "matches": "kuliko",
@@ -4901,7 +4905,7 @@
     "kulinganisha": {
       "author": "Waithera Were",
       "file": "words/kulinganisha.mp3",
-      "gain": -4.9,
+      "gain": -8.1,
       "gate": -61.6,
       "lead": 44,
       "matches": "kulinganisha",
@@ -4923,7 +4927,7 @@
     "kumaliza": {
       "author": "Waithera Were",
       "file": "words/kumaliza.mp3",
-      "gain": -5.8,
+      "gain": -9.4,
       "gate": -62.4,
       "lead": 30,
       "matches": "kumaliza",
@@ -4934,7 +4938,7 @@
     "kumbukumbu": {
       "author": "Waithera Were",
       "file": "words/kumbukumbu.mp3",
-      "gain": -0.1,
+      "gain": 0.8,
       "gate": -63.4,
       "lead": 31,
       "matches": "kumbukumbu",
@@ -4945,7 +4949,7 @@
     "kunakili": {
       "author": "Waithera Were",
       "file": "words/kunakili.mp3",
-      "gain": -6.1,
+      "gain": -9.8,
       "gate": -60.6,
       "lead": 48,
       "matches": "kunakili",
@@ -4956,7 +4960,7 @@
     "kununua": {
       "author": "Waithera Were",
       "file": "words/kununua.mp3",
-      "gain": -8.5,
+      "gain": -9.5,
       "gate": -62.1,
       "lead": 44,
       "matches": "kununua",
@@ -4967,7 +4971,7 @@
     "kunywa": {
       "author": "Waithera Were",
       "file": "words/kunywa.mp3",
-      "gain": -10.0,
+      "gain": -9.4,
       "gate": -61.0,
       "lead": 46,
       "matches": "kunywa",
@@ -4978,7 +4982,7 @@
     "kuoa": {
       "author": "Waithera Were",
       "file": "words/kuoa.mp3",
-      "gain": -11.5,
+      "gain": -12.6,
       "gate": -62.8,
       "lead": 43,
       "matches": "kuoa",
@@ -4989,7 +4993,7 @@
     "kuoga": {
       "author": "Waithera Were",
       "file": "words/kuoga.mp3",
-      "gain": -8.2,
+      "gain": -7.5,
       "gate": -62.6,
       "lead": 25,
       "matches": "kuoga",
@@ -5000,7 +5004,7 @@
     "kuogelea": {
       "author": "Waithera Were",
       "file": "words/kuogelea.mp3",
-      "gain": -3.8,
+      "gain": -3.9,
       "gate": -63.7,
       "lead": 40,
       "matches": "kuogelea",
@@ -5011,7 +5015,7 @@
     "kuoka": {
       "author": "Waithera Were",
       "file": "words/kuoka.mp3",
-      "gain": -7.0,
+      "gain": -6.9,
       "gate": -63.4,
       "lead": 38,
       "matches": "kuoka",
@@ -5022,7 +5026,7 @@
     "kuomba": {
       "author": "Waithera Were",
       "file": "words/kuomba.mp3",
-      "gain": -9.1,
+      "gain": -10.0,
       "gate": -53.7,
       "lead": 45,
       "matches": "kuomba",
@@ -5033,7 +5037,7 @@
     "kuona": {
       "author": "Waithera Were",
       "file": "words/kuona.mp3",
-      "gain": -8.5,
+      "gain": -9.2,
       "gate": -62.3,
       "lead": 37,
       "matches": "kuona",
@@ -5044,7 +5048,7 @@
     "kuondoka": {
       "author": "Waithera Were",
       "file": "words/kuondoka.mp3",
-      "gain": -5.7,
+      "gain": -6.9,
       "gate": -99.7,
       "lead": 234,
       "matches": "kuondoka",
@@ -5055,7 +5059,7 @@
     "kuongea": {
       "author": "Waithera Were",
       "file": "words/kuongea.mp3",
-      "gain": -7.4,
+      "gain": -8.5,
       "gate": -62.9,
       "lead": 44,
       "matches": "kuongea",
@@ -5066,7 +5070,7 @@
     "kuonja": {
       "author": "Waithera Were",
       "file": "words/kuonja.mp3",
-      "gain": -8.3,
+      "gain": -10.0,
       "gate": -63.5,
       "lead": 46,
       "matches": "kuonja",
@@ -5077,7 +5081,7 @@
     "kuonyesha": {
       "author": "Waithera Were",
       "file": "words/kuonyesha.mp3",
-      "gain": -8.9,
+      "gain": -12.0,
       "gate": -60.9,
       "lead": 42,
       "matches": "kuonyesha",
@@ -5088,7 +5092,7 @@
     "kupa": {
       "author": "Waithera Were",
       "file": "words/kupa.mp3",
-      "gain": -7.1,
+      "gain": -7.4,
       "gate": -63.9,
       "lead": 44,
       "matches": "kupa",
@@ -5099,7 +5103,7 @@
     "kupanga": {
       "author": "Waithera Were",
       "file": "words/kupanga.mp3",
-      "gain": -9.6,
+      "gain": -13.3,
       "gate": -64.1,
       "lead": 46,
       "matches": "kupanga",
@@ -5110,7 +5114,7 @@
     "kupatikana": {
       "author": "Waithera Were",
       "file": "words/kupatikana.mp3",
-      "gain": -7.3,
+      "gain": -10.5,
       "gate": -63.4,
       "lead": 47,
       "matches": "kupatikana",
@@ -5121,7 +5125,7 @@
     "kupeleka": {
       "author": "Waithera Were",
       "file": "words/kupeleka.mp3",
-      "gain": -8.8,
+      "gain": -12.1,
       "gate": -62.6,
       "lead": 49,
       "matches": "kupeleka",
@@ -5132,7 +5136,7 @@
     "kupenda": {
       "author": "Waithera Were",
       "file": "words/kupenda.mp3",
-      "gain": -8.6,
+      "gain": -12.4,
       "gate": -65.2,
       "lead": 47,
       "matches": "kupenda",
@@ -5143,7 +5147,7 @@
     "kupendekeza": {
       "author": "Waithera Were",
       "file": "words/kupendekeza.mp3",
-      "gain": -8.6,
+      "gain": -11.1,
       "gate": -61.1,
       "lead": 42,
       "matches": "kupendekeza",
@@ -5154,7 +5158,7 @@
     "kupika": {
       "author": "Waithera Were",
       "file": "words/kupika.mp3",
-      "gain": -4.7,
+      "gain": -5.3,
       "gate": -61.3,
       "lead": 45,
       "matches": "kupika",
@@ -5165,7 +5169,7 @@
     "kupima": {
       "author": "Waithera Were",
       "file": "words/kupima.mp3",
-      "gain": -6.6,
+      "gain": -8.2,
       "gate": -99.4,
       "lead": 145,
       "matches": "kupima",
@@ -5176,7 +5180,7 @@
     "kupokea": {
       "author": "Waithera Were",
       "file": "words/kupokea.mp3",
-      "gain": -7.3,
+      "gain": -10.2,
       "gate": -62.6,
       "lead": 43,
       "matches": "kupokea",
@@ -5187,7 +5191,7 @@
     "kupona": {
       "author": "Waithera Were",
       "file": "words/kupona.mp3",
-      "gain": -8.5,
+      "gain": -9.7,
       "gate": -64.1,
       "lead": 43,
       "matches": "kupona",
@@ -5198,7 +5202,7 @@
     "kupongeza": {
       "author": "Waithera Were",
       "file": "words/kupongeza.mp3",
-      "gain": -8.1,
+      "gain": -11.1,
       "gate": -64.1,
       "lead": 45,
       "matches": "kupongeza",
@@ -5209,7 +5213,7 @@
     "kupotea": {
       "author": "Waithera Were",
       "file": "words/kupotea.mp3",
-      "gain": -7.1,
+      "gain": -9.1,
       "gate": -60.8,
       "lead": 35,
       "matches": "kupotea",
@@ -5220,7 +5224,7 @@
     "kupoteza": {
       "author": "Waithera Were",
       "file": "words/kupoteza.mp3",
-      "gain": -7.1,
+      "gain": -9.6,
       "gate": -63.7,
       "lead": 41,
       "matches": "kupoteza",
@@ -5231,7 +5235,7 @@
     "kupumua": {
       "author": "Waithera Were",
       "file": "words/kupumua.mp3",
-      "gain": -7.5,
+      "gain": -9.2,
       "gate": -62.9,
       "lead": 43,
       "matches": "kupumua",
@@ -5242,7 +5246,7 @@
     "kupumzika": {
       "author": "Waithera Were",
       "file": "words/kupumzika.mp3",
-      "gain": -4.5,
+      "gain": -4.2,
       "gate": -61.7,
       "lead": 39,
       "matches": "kupumzika",
@@ -5253,7 +5257,7 @@
     "kurudi": {
       "author": "Waithera Were",
       "file": "words/kurudi.mp3",
-      "gain": -8.3,
+      "gain": -8.5,
       "gate": -61.9,
       "lead": 39,
       "matches": "kurudi",
@@ -5264,7 +5268,7 @@
     "kusafiri": {
       "author": "Waithera Were",
       "file": "words/kusafiri.mp3",
-      "gain": -5.0,
+      "gain": -7.8,
       "gate": -64.3,
       "lead": 39,
       "matches": "kusafiri",
@@ -5275,7 +5279,7 @@
     "kusafisha": {
       "author": "Waithera Were",
       "file": "words/kusafisha.mp3",
-      "gain": -7.9,
+      "gain": -9.3,
       "gate": -60.9,
       "lead": 40,
       "matches": "kusafisha",
@@ -5286,7 +5290,7 @@
     "kusahau": {
       "author": "Waithera Were",
       "file": "words/kusahau.mp3",
-      "gain": -11.1,
+      "gain": -13.3,
       "gate": -63.4,
       "lead": 44,
       "matches": "kusahau",
@@ -5297,7 +5301,7 @@
     "kusahihisha": {
       "author": "Waithera Were",
       "file": "words/kusahihisha.mp3",
-      "gain": -7.1,
+      "gain": -10.2,
       "gate": -64.1,
       "lead": 43,
       "matches": "kusahihisha",
@@ -5308,7 +5312,7 @@
     "kusaidia": {
       "author": "Waithera Were",
       "file": "words/kusaidia.mp3",
-      "gain": -9.5,
+      "gain": -12.5,
       "gate": -60.3,
       "lead": 44,
       "matches": "kusaidia",
@@ -5319,7 +5323,7 @@
     "kusalimia": {
       "author": "Waithera Were",
       "file": "words/kusalimia.mp3",
-      "gain": -5.8,
+      "gain": -8.6,
       "gate": -61.3,
       "lead": 23,
       "matches": "kusalimia",
@@ -5330,7 +5334,7 @@
     "kusema": {
       "author": "Waithera Were",
       "file": "words/kusema.mp3",
-      "gain": -4.5,
+      "gain": -7.0,
       "gate": -65.6,
       "lead": 45,
       "matches": "kusema",
@@ -5341,7 +5345,7 @@
     "kusherehekea": {
       "author": "Waithera Were",
       "file": "words/kusherehekea.mp3",
-      "gain": -7.1,
+      "gain": -9.6,
       "gate": -59.9,
       "lead": 45,
       "matches": "kusherehekea",
@@ -5352,7 +5356,7 @@
     "kushoto": {
       "author": "Goethe-Institut Cameroon",
       "file": "words/kushoto.mp3",
-      "gain": -1.4,
+      "gain": -0.7,
       "gate": -85.4,
       "lead": 853,
       "matches": "kushoto",
@@ -5363,7 +5367,7 @@
     "kushughulikia": {
       "author": "Waithera Were",
       "file": "words/kushughulikia.mp3",
-      "gain": -6.2,
+      "gain": -8.5,
       "gate": -60.3,
       "lead": 39,
       "matches": "kushughulikia",
@@ -5374,7 +5378,7 @@
     "kushuka": {
       "author": "Waithera Were",
       "file": "words/kushuka.mp3",
-      "gain": -6.0,
+      "gain": -7.2,
       "gate": -63.1,
       "lead": 40,
       "matches": "kushuka",
@@ -5385,7 +5389,7 @@
     "kushukuru": {
       "author": "Waithera Were",
       "file": "words/kushukuru.mp3",
-      "gain": -7.9,
+      "gain": -8.8,
       "gate": -62.8,
       "lead": 47,
       "matches": "kushukuru",
@@ -5396,7 +5400,7 @@
     "kusikia": {
       "author": "Waithera Were",
       "file": "words/kusikia.mp3",
-      "gain": -5.2,
+      "gain": -9.0,
       "gate": -66.4,
       "lead": 42,
       "matches": "kusikia",
@@ -5407,7 +5411,7 @@
     "kusikiliza": {
       "author": "Waithera Were",
       "file": "words/kusikiliza.mp3",
-      "gain": -4.3,
+      "gain": -6.2,
       "gate": -60.3,
       "lead": 22,
       "matches": "kusikiliza",
@@ -5418,7 +5422,7 @@
     "kusimama": {
       "author": "Waithera Were",
       "file": "words/kusimama.mp3",
-      "gain": -8.1,
+      "gain": -11.4,
       "gate": -65.0,
       "lead": 45,
       "matches": "kusimama",
@@ -5429,7 +5433,7 @@
     "kusini": {
       "author": "Waithera Were",
       "file": "words/kusini.mp3",
-      "gain": -5.3,
+      "gain": -3.5,
       "gate": -64.6,
       "lead": 31,
       "matches": "kusini",
@@ -5440,7 +5444,7 @@
     "kusoma": {
       "author": "Waithera Were",
       "file": "words/kusoma.mp3",
-      "gain": -7.1,
+      "gain": -7.6,
       "gate": -62.5,
       "lead": 30,
       "matches": "kusoma",
@@ -5451,7 +5455,7 @@
     "kusubiri": {
       "author": "Waithera Were",
       "file": "words/kusubiri.mp3",
-      "gain": -3.4,
+      "gain": -3.6,
       "gate": -58.4,
       "lead": 27,
       "matches": "kusubiri",
@@ -5462,7 +5466,7 @@
     "kusukuma": {
       "author": "Waithera Were",
       "file": "words/kusukuma.mp3",
-      "gain": -3.2,
+      "gain": -4.2,
       "gate": -63.2,
       "lead": 36,
       "matches": "kusukuma",
@@ -5473,7 +5477,7 @@
     "kutabasamu": {
       "author": "Waithera Were",
       "file": "words/kutabasamu.mp3",
-      "gain": -9.7,
+      "gain": -12.2,
       "gate": -62.2,
       "lead": 49,
       "matches": "kutabasamu",
@@ -5484,7 +5488,7 @@
     "kutafsiri": {
       "author": "Waithera Were",
       "file": "words/kutafsiri.mp3",
-      "gain": -3.7,
+      "gain": -6.6,
       "gate": -65.3,
       "lead": 41,
       "matches": "kutafsiri",
@@ -5495,7 +5499,7 @@
     "kutafuta": {
       "author": "Waithera Were",
       "file": "words/kutafuta.mp3",
-      "gain": -5.1,
+      "gain": -8.5,
       "gate": -65.0,
       "lead": 47,
       "matches": "kutafuta",
@@ -5506,7 +5510,7 @@
     "kutaka": {
       "author": "Waithera Were",
       "file": "words/kutaka.mp3",
-      "gain": -9.2,
+      "gain": -13.2,
       "gate": -66.2,
       "lead": 43,
       "matches": "kutaka",
@@ -5517,7 +5521,7 @@
     "kutamani": {
       "author": "Waithera Were",
       "file": "words/kutamani.mp3",
-      "gain": -9.5,
+      "gain": -12.6,
       "gate": -59.9,
       "lead": 48,
       "matches": "kutamani",
@@ -5528,7 +5532,7 @@
     "kutamka": {
       "author": "Waithera Were",
       "file": "words/kutamka.mp3",
-      "gain": -8.0,
+      "gain": -11.8,
       "gate": -65.6,
       "lead": 33,
       "matches": "kutamka",
@@ -5539,7 +5543,7 @@
     "kutatua": {
       "author": "Waithera Were",
       "file": "words/kutatua.mp3",
-      "gain": -6.6,
+      "gain": -9.6,
       "gate": -63.1,
       "lead": 36,
       "matches": "kutatua",
@@ -5550,7 +5554,7 @@
     "kutembea": {
       "author": "Waithera Were",
       "file": "words/kutembea.mp3",
-      "gain": -7.7,
+      "gain": -9.6,
       "gate": -64.6,
       "lead": 33,
       "matches": "kutembea",
@@ -5561,7 +5565,7 @@
     "kutembelea": {
       "author": "Waithera Were",
       "file": "words/kutembelea.mp3",
-      "gain": -9.0,
+      "gain": -11.5,
       "gate": -62.4,
       "lead": 40,
       "matches": "kutembelea",
@@ -5572,7 +5576,7 @@
     "kutengeneza": {
       "author": "Waithera Were",
       "file": "words/kutengeneza.mp3",
-      "gain": -8.6,
+      "gain": -11.3,
       "gate": -60.5,
       "lead": 40,
       "matches": "kutengeneza",
@@ -5583,7 +5587,7 @@
     "kuthibitisha": {
       "author": "Waithera Were",
       "file": "words/kuthibitisha.mp3",
-      "gain": -4.0,
+      "gain": -4.7,
       "gate": -59.7,
       "lead": 43,
       "matches": "kuthibitisha",
@@ -5594,7 +5598,7 @@
     "kutoka": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/kutoka.mp3",
-      "gain": 6.2,
+      "gain": 5.0,
       "lead": 192,
       "matches": "kutoka",
       "mos": 2.77,
@@ -5604,7 +5608,7 @@
     "kutokea": {
       "author": "Waithera Were",
       "file": "words/kutokea.mp3",
-      "gain": -8.2,
+      "gain": -10.2,
       "gate": -63.1,
       "lead": 47,
       "matches": "kutokea",
@@ -5615,7 +5619,7 @@
     "kutuma": {
       "author": "Waithera Were",
       "file": "words/kutuma.mp3",
-      "gain": -7.1,
+      "gain": -8.4,
       "gate": -64.2,
       "lead": 40,
       "matches": "kutuma",
@@ -5626,7 +5630,7 @@
     "kutumaini": {
       "author": "Waithera Were",
       "file": "words/kutumaini.mp3",
-      "gain": -7.8,
+      "gain": -11.8,
       "gate": -61.4,
       "lead": 43,
       "matches": "kutumaini",
@@ -5637,7 +5641,7 @@
     "kutumia": {
       "author": "Waithera Were",
       "file": "words/kutumia.mp3",
-      "gain": -7.9,
+      "gain": -10.8,
       "gate": -62.0,
       "lead": 43,
       "matches": "kutumia",
@@ -5648,7 +5652,7 @@
     "kutunza": {
       "author": "Waithera Were",
       "file": "words/kutunza.mp3",
-      "gain": -6.5,
+      "gain": -8.0,
       "gate": -67.8,
       "lead": 42,
       "matches": "kutunza",
@@ -5659,7 +5663,7 @@
     "kuuliza": {
       "author": "Waithera Were",
       "file": "words/kuuliza.mp3",
-      "gain": -6.3,
+      "gain": -7.0,
       "gate": -61.5,
       "lead": 44,
       "matches": "kuuliza",
@@ -5670,7 +5674,7 @@
     "kuuma": {
       "author": "Waithera Were",
       "file": "words/kuuma.mp3",
-      "gain": -12.5,
+      "gain": -13.0,
       "gate": -62.5,
       "lead": 44,
       "matches": "kuuma",
@@ -5681,7 +5685,7 @@
     "kuuza": {
       "author": "Waithera Were",
       "file": "words/kuuza.mp3",
-      "gain": -5.7,
+      "gain": -5.6,
       "gate": -64.2,
       "lead": 45,
       "matches": "kuuza",
@@ -5692,7 +5696,7 @@
     "kuvaa": {
       "author": "Waithera Were",
       "file": "words/kuvaa.mp3",
-      "gain": -9.5,
+      "gain": -11.8,
       "gate": -66.6,
       "lead": 47,
       "matches": "kuvaa",
@@ -5703,7 +5707,7 @@
     "kuvuka": {
       "author": "Waithera Were",
       "file": "words/kuvuka.mp3",
-      "gain": -2.0,
+      "gain": -0.6,
       "gate": -63.5,
       "lead": 42,
       "matches": "kuvuka",
@@ -5714,7 +5718,7 @@
     "kuvunja": {
       "author": "Waithera Were",
       "file": "words/kuvunja.mp3",
-      "gain": -4.3,
+      "gain": -4.2,
       "gate": -62.5,
       "lead": 22,
       "matches": "kuvunja",
@@ -5725,7 +5729,7 @@
     "kuvuta": {
       "author": "Waithera Were",
       "file": "words/kuvuta.mp3",
-      "gain": -6.8,
+      "gain": -5.8,
       "gate": -63.1,
       "lead": 38,
       "matches": "kuvuta",
@@ -5736,7 +5740,7 @@
     "kuwa na": {
       "author": "Waithera Were",
       "file": "words/kuwau0020na.mp3",
-      "gain": -8.8,
+      "gain": -10.0,
       "gate": -65.2,
       "lead": 44,
       "matches": "kuwa na",
@@ -5747,7 +5751,7 @@
     "kuwazia": {
       "author": "Waithera Were",
       "file": "words/kuwazia.mp3",
-      "gain": -6.0,
+      "gain": -8.9,
       "gate": -63.1,
       "lead": 47,
       "matches": "kuwazia",
@@ -5758,7 +5762,7 @@
     "kuweka": {
       "author": "Waithera Were",
       "file": "words/kuweka.mp3",
-      "gain": -5.6,
+      "gain": -8.5,
       "gate": -65.3,
       "lead": 46,
       "matches": "kuweka",
@@ -5769,7 +5773,7 @@
     "kuwepo": {
       "author": "Waithera Were",
       "file": "words/kuwepo.mp3",
-      "gain": -6.7,
+      "gain": -8.4,
       "gate": -66.6,
       "lead": 41,
       "matches": "kuwepo",
@@ -5780,7 +5784,7 @@
     "kuweza": {
       "author": "Waithera Were",
       "file": "words/kuweza.mp3",
-      "gain": -7.5,
+      "gain": -10.3,
       "gate": -64.1,
       "lead": 42,
       "matches": "kuweza",
@@ -5791,7 +5795,7 @@
     "kuzaliwa": {
       "author": "Waithera Were",
       "file": "words/kuzaliwa.mp3",
-      "gain": -7.3,
+      "gain": -11.1,
       "gate": -61.8,
       "lead": 44,
       "matches": "kuzaliwa",
@@ -5802,7 +5806,7 @@
     "kuzeeka": {
       "author": "Waithera Were",
       "file": "words/kuzeeka.mp3",
-      "gain": -6.2,
+      "gain": -9.8,
       "gate": -64.9,
       "lead": 47,
       "matches": "kuzeeka",
@@ -5813,7 +5817,7 @@
     "kuzika": {
       "author": "Waithera Were",
       "file": "words/kuzika.mp3",
-      "gain": -6.7,
+      "gain": -8.4,
       "gate": -63.4,
       "lead": 49,
       "matches": "kuzika",
@@ -5835,7 +5839,7 @@
     "kwa": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/kwa.mp3",
-      "gain": 5.7,
+      "gain": 4.0,
       "lead": 194,
       "matches": "kwa",
       "mos": 2.75,
@@ -5845,7 +5849,7 @@
     "kwa hiyo": {
       "author": "Waithera Were",
       "file": "words/kwau0020hiyo.mp3",
-      "gain": -3.6,
+      "gain": -6.1,
       "gate": -61.0,
       "lead": 5,
       "matches": "kwa hiyo",
@@ -5856,7 +5860,7 @@
     "kwa kawaida": {
       "author": "Waithera Were",
       "file": "words/kwau0020kawaida.mp3",
-      "gain": -6.8,
+      "gain": -8.0,
       "gate": -63.2,
       "lead": 40,
       "matches": "kwa kawaida",
@@ -5867,7 +5871,7 @@
     "kwa nini": {
       "author": "Waithera Were",
       "file": "words/kwau0020nini.mp3",
-      "gain": -1.0,
+      "gain": -4.4,
       "gate": -68.6,
       "lead": 33,
       "matches": "kwa nini",
@@ -5878,7 +5882,7 @@
     "kwa sababu": {
       "author": "Waithera Were",
       "file": "words/kwau0020sababu.mp3",
-      "gain": -7.4,
+      "gain": -9.3,
       "gate": -65.9,
       "lead": 38,
       "matches": "kwa sababu",
@@ -5888,8 +5892,9 @@
     },
     "kwaheri": {
       "author": "Goethe-Institut Cameroon",
+      "cap": 3.2,
       "file": "words/kwaheri.mp3",
-      "gain": -2.8,
+      "gain": -0.4,
       "gate": -75.1,
       "lead": 890,
       "matches": "kwaheri",
@@ -5900,7 +5905,7 @@
     "kwamba": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/kwamba.mp3",
-      "gain": 5.5,
+      "gain": 4.5,
       "lead": 148,
       "matches": "kwamba",
       "mos": 2.86,
@@ -5910,7 +5915,7 @@
     "kwanza": {
       "author": "Waithera Were",
       "file": "words/kwanza.mp3",
-      "gain": -10.8,
+      "gain": -12.7,
       "gate": -59.2,
       "lead": 54,
       "matches": "kwanza",
@@ -5921,7 +5926,7 @@
     "kwenda": {
       "author": "Waithera Were",
       "file": "words/kwenda.mp3",
-      "gain": -7.1,
+      "gain": -9.8,
       "gate": -64.4,
       "lead": 25,
       "matches": "kwenda",
@@ -5932,7 +5937,7 @@
     "labda": {
       "author": "Waithera Were",
       "file": "words/labda.mp3",
-      "gain": -3.1,
+      "gain": -6.5,
       "gate": -67.9,
       "lead": 44,
       "matches": "labda",
@@ -5943,7 +5948,7 @@
     "laini": {
       "author": "Waithera Were",
       "file": "words/laini.mp3",
-      "gain": -4.8,
+      "gain": -8.5,
       "gate": -66.0,
       "lead": 41,
       "matches": "laini",
@@ -5954,7 +5959,7 @@
     "lakini": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/lakini.mp3",
-      "gain": 6.7,
+      "gain": 7.9,
       "lead": 184,
       "matches": "lakini",
       "mos": 2.67,
@@ -5964,7 +5969,7 @@
     "lala salama": {
       "author": "Waithera Were",
       "file": "words/lalau0020salama.mp3",
-      "gain": -6.0,
+      "gain": -8.4,
       "gate": -60.9,
       "lead": 41,
       "matches": "lala salama",
@@ -5975,7 +5980,7 @@
     "lazima": {
       "author": "Waithera Were",
       "file": "words/lazima.mp3",
-      "gain": -5.4,
+      "gain": -9.5,
       "gate": -67.4,
       "lead": 34,
       "matches": "lazima",
@@ -5986,7 +5991,7 @@
     "lengo": {
       "author": "Waithera Were",
       "file": "words/lengo.mp3",
-      "gain": -4.2,
+      "gain": -7.8,
       "gate": -70.9,
       "lead": 39,
       "matches": "lengo",
@@ -5997,7 +6002,7 @@
     "leo": {
       "author": "Waithera Were",
       "file": "words/leo.mp3",
-      "gain": -9.7,
+      "gain": -11.6,
       "gate": -66.0,
       "lead": 39,
       "matches": "leo",
@@ -6008,7 +6013,7 @@
     "likizo": {
       "author": "Waithera Were",
       "file": "words/likizo.mp3",
-      "gain": -2.6,
+      "gain": -2.9,
       "gate": -67.3,
       "lead": 37,
       "matches": "likizo",
@@ -6019,7 +6024,7 @@
     "lini": {
       "author": "Goethe-Institut Cameroon",
       "file": "words/lini.mp3",
-      "gain": -5.6,
+      "gain": -1.6,
       "gate": -84.5,
       "lead": 642,
       "matches": "lini",
@@ -6030,7 +6035,7 @@
     "lita": {
       "author": "Waithera Were",
       "file": "words/lita.mp3",
-      "gain": -1.4,
+      "gain": -2.8,
       "gate": -67.5,
       "lead": 40,
       "matches": "lita",
@@ -6041,7 +6046,7 @@
     "lori": {
       "author": "Waithera Were",
       "file": "words/lori.mp3",
-      "gain": -6.5,
+      "gain": -7.9,
       "gate": -68.9,
       "lead": 42,
       "matches": "lori",
@@ -6052,7 +6057,7 @@
     "lugha": {
       "author": "Waithera Were",
       "file": "words/lugha.mp3",
-      "gain": -4.9,
+      "gain": -5.2,
       "gate": -62.2,
       "lead": 40,
       "matches": "lugha",
@@ -6063,7 +6068,7 @@
     "lugha ya mama": {
       "author": "Waithera Were",
       "file": "words/lughau0020yau0020mama.mp3",
-      "gain": -11.7,
+      "gain": -13.8,
       "gate": -62.3,
       "lead": 40,
       "matches": "lugha ya mama",
@@ -6074,7 +6079,7 @@
     "maana": {
       "author": "Waithera Were",
       "file": "words/maana.mp3",
-      "gain": -9.6,
+      "gain": -10.7,
       "gate": -67.6,
       "lead": 41,
       "matches": "maana",
@@ -6085,7 +6090,7 @@
     "mafua": {
       "author": "Waithera Were",
       "file": "words/mafua.mp3",
-      "gain": -3.2,
+      "gain": -4.8,
       "gate": -66.7,
       "lead": 44,
       "matches": "mafua",
@@ -6096,7 +6101,7 @@
     "mafuta": {
       "author": "Waithera Were",
       "file": "words/mafuta.mp3",
-      "gain": -4.7,
+      "gain": -7.2,
       "gate": -66.1,
       "lead": 36,
       "matches": "mafuta",
@@ -6107,7 +6112,7 @@
     "magharibi": {
       "author": "Waithera Were",
       "file": "words/magharibi.mp3",
-      "gain": -9.1,
+      "gain": -12.2,
       "gate": -60.4,
       "lead": 41,
       "matches": "magharibi",
@@ -6118,7 +6123,7 @@
     "mahali": {
       "author": "Waithera Were",
       "file": "words/mahali.mp3",
-      "gain": -9.4,
+      "gain": -11.4,
       "gate": -63.2,
       "lead": 42,
       "matches": "mahali",
@@ -6129,7 +6134,7 @@
     "maisha": {
       "author": "Waithera Were",
       "file": "words/maisha.mp3",
-      "gain": -4.7,
+      "gain": -8.4,
       "gate": -65.3,
       "lead": 38,
       "matches": "maisha",
@@ -6140,7 +6145,7 @@
     "maji": {
       "author": "Goethe-Institut Cameroon",
       "file": "words/maji.mp3",
-      "gain": -1.5,
+      "gain": -4.6,
       "gate": -89.0,
       "lead": 681,
       "matches": "maji",
@@ -6151,7 +6156,7 @@
     "makaburi": {
       "author": "Waithera Were",
       "file": "words/makaburi.mp3",
-      "gain": -3.0,
+      "gain": -2.9,
       "gate": -67.1,
       "lead": 43,
       "matches": "makaburi",
@@ -6162,7 +6167,7 @@
     "maktaba": {
       "author": "Waithera Were",
       "file": "words/maktaba.mp3",
-      "gain": -1.8,
+      "gain": -4.7,
       "gate": -67.2,
       "lead": 41,
       "matches": "maktaba",
@@ -6173,7 +6178,7 @@
     "malazi": {
       "author": "Waithera Were",
       "file": "words/malazi.mp3",
-      "gain": -10.1,
+      "gain": -13.5,
       "gate": -66.4,
       "lead": 43,
       "matches": "malazi",
@@ -6184,7 +6189,7 @@
     "mama": {
       "author": "Waithera Were",
       "file": "words/mama.mp3",
-      "gain": -8.0,
+      "gain": -9.3,
       "gate": -67.5,
       "lead": 43,
       "matches": "mama",
@@ -6195,7 +6200,7 @@
     "mama mkwe": {
       "author": "Waithera Were",
       "file": "words/mamau0020mkwe.mp3",
-      "gain": -5.8,
+      "gain": -9.3,
       "gate": -67.0,
       "lead": 43,
       "matches": "mama mkwe",
@@ -6206,7 +6211,7 @@
     "mamlaka": {
       "author": "Waithera Were",
       "file": "words/mamlaka.mp3",
-      "gain": -10.9,
+      "gain": -13.6,
       "gate": -67.0,
       "lead": 44,
       "matches": "mamlaka",
@@ -6217,7 +6222,7 @@
     "maono": {
       "author": "Waithera Were",
       "file": "words/maono.mp3",
-      "gain": -10.8,
+      "gain": -12.1,
       "gate": -63.4,
       "lead": 52,
       "matches": "maono",
@@ -6228,7 +6233,7 @@
     "mapema": {
       "author": "Waithera Were",
       "file": "words/mapema.mp3",
-      "gain": -5.6,
+      "gain": -7.9,
       "gate": -67.2,
       "lead": 41,
       "matches": "mapema",
@@ -6239,7 +6244,7 @@
     "mara moja": {
       "author": "Waithera Were",
       "file": "words/marau0020moja.mp3",
-      "gain": -9.2,
+      "gain": -12.4,
       "gate": -61.9,
       "lead": 55,
       "matches": "mara moja",
@@ -6250,7 +6255,7 @@
     "mara nyingi": {
       "author": "Waithera Were",
       "file": "words/marau0020nyingi.mp3",
-      "gain": -6.0,
+      "gain": -9.8,
       "gate": -99.0,
       "lead": 222,
       "matches": "mara nyingi",
@@ -6261,7 +6266,7 @@
     "mashariki": {
       "author": "Waithera Were",
       "file": "words/mashariki.mp3",
-      "gain": -8.9,
+      "gain": -11.7,
       "gate": -67.5,
       "lead": 40,
       "matches": "mashariki",
@@ -6272,7 +6277,7 @@
     "mashine ya kufulia": {
       "author": "Waithera Were",
       "file": "words/mashineu0020yau0020kufulia.mp3",
-      "gain": -3.6,
+      "gain": -7.1,
       "gate": -62.0,
       "lead": 42,
       "matches": "mashine ya kufulia",
@@ -6283,7 +6288,7 @@
     "mashua": {
       "author": "Waithera Were",
       "file": "words/mashua.mp3",
-      "gain": -9.7,
+      "gain": -10.5,
       "gate": -58.2,
       "lead": 55,
       "matches": "mashua",
@@ -6294,7 +6299,7 @@
     "maskini": {
       "author": "Waithera Were",
       "file": "words/maskini.mp3",
-      "gain": 1.5,
+      "gain": -1.2,
       "gate": -68.6,
       "lead": 41,
       "matches": "maskini",
@@ -6305,7 +6310,7 @@
     "matandiko": {
       "author": "Waithera Were",
       "file": "words/matandiko.mp3",
-      "gain": 0.3,
+      "gain": -1.5,
       "gate": -64.9,
       "lead": 41,
       "matches": "matandiko",
@@ -6316,7 +6321,7 @@
     "maumivu": {
       "author": "Waithera Were",
       "file": "words/maumivu.mp3",
-      "gain": -8.2,
+      "gain": -11.8,
       "gate": -61.3,
       "lead": 46,
       "matches": "maumivu",
@@ -6327,7 +6332,7 @@
     "mazishi": {
       "author": "Waithera Were",
       "file": "words/mazishi.mp3",
-      "gain": -2.8,
+      "gain": -5.6,
       "gate": -67.6,
       "lead": 41,
       "matches": "mazishi",
@@ -6338,7 +6343,7 @@
     "maziwa": {
       "author": "Waithera Were",
       "file": "words/maziwa.mp3",
-      "gain": -5.8,
+      "gain": -9.8,
       "gate": -66.5,
       "lead": 44,
       "matches": "maziwa",
@@ -6349,7 +6354,7 @@
     "mazoezi": {
       "author": "Waithera Were",
       "file": "words/mazoezi.mp3",
-      "gain": -10.2,
+      "gain": -12.1,
       "gate": -66.3,
       "lead": 39,
       "matches": "mazoezi",
@@ -6360,7 +6365,7 @@
     "mbali": {
       "author": "Waithera Were",
       "file": "words/mbali.mp3",
-      "gain": -10.1,
+      "gain": -12.1,
       "gate": -69.3,
       "lead": 46,
       "matches": "mbali",
@@ -6371,7 +6376,7 @@
     "mbao": {
       "author": "Waithera Were",
       "file": "words/mbao.mp3",
-      "gain": -8.2,
+      "gain": -10.2,
       "lead": 150,
       "matches": "mbao",
       "mos": 2.35,
@@ -6381,7 +6386,7 @@
     "mbele": {
       "author": "Waithera Were",
       "file": "words/mbele.mp3",
-      "gain": -5.9,
+      "gain": -8.7,
       "gate": -68.7,
       "lead": 33,
       "matches": "mbele",
@@ -6392,7 +6397,7 @@
     "mboga": {
       "author": "Goethe-Institut Cameroon",
       "file": "words/mboga.mp3",
-      "gain": -2.8,
+      "gain": -0.6,
       "gate": -88.3,
       "lead": 315,
       "matches": "mboga",
@@ -6403,7 +6408,7 @@
     "mbuzi": {
       "author": "Waithera Were",
       "file": "words/mbuzi.mp3",
-      "gain": -6.8,
+      "gain": -6.2,
       "gate": -65.2,
       "lead": 44,
       "matches": "mbuzi",
@@ -6414,7 +6419,7 @@
     "mbwa": {
       "author": "Waithera Were",
       "file": "words/mbwa.mp3",
-      "gain": -5.5,
+      "gain": -4.7,
       "gate": -65.6,
       "lead": 42,
       "matches": "mbwa",
@@ -6425,7 +6430,7 @@
     "mchana": {
       "author": "Waithera Were",
       "file": "words/mchana.mp3",
-      "gain": -8.0,
+      "gain": -9.5,
       "gate": -68.5,
       "lead": 39,
       "matches": "mchana",
@@ -6436,7 +6441,7 @@
     "mchele": {
       "author": "Waithera Were",
       "file": "words/mchele.mp3",
-      "gain": -5.3,
+      "gain": -7.4,
       "gate": -66.5,
       "lead": 42,
       "matches": "mchele",
@@ -6447,7 +6452,7 @@
     "mchezo": {
       "author": "Waithera Were",
       "file": "words/mchezo.mp3",
-      "gain": -5.8,
+      "gain": -7.8,
       "gate": -66.1,
       "lead": 40,
       "matches": "mchezo",
@@ -6458,7 +6463,7 @@
     "mchuzi": {
       "author": "Waithera Were",
       "file": "words/mchuzi.mp3",
-      "gain": -8.7,
+      "gain": -8.4,
       "gate": -64.5,
       "lead": 45,
       "matches": "mchuzi",
@@ -6469,7 +6474,7 @@
     "mdomo": {
       "author": "Waithera Were",
       "file": "words/mdomo.mp3",
-      "gain": -7.9,
+      "gain": -9.2,
       "gate": -67.3,
       "lead": 43,
       "matches": "mdomo",
@@ -6480,7 +6485,7 @@
     "mdudu": {
       "author": "Waithera Were",
       "file": "words/mdudu.mp3",
-      "gain": -7.3,
+      "gain": -7.1,
       "gate": -66.6,
       "lead": 47,
       "matches": "mdudu",
@@ -6491,7 +6496,7 @@
     "meli": {
       "author": "Waithera Were",
       "file": "words/meli.mp3",
-      "gain": -4.2,
+      "gain": -6.4,
       "gate": -68.7,
       "lead": 45,
       "matches": "meli",
@@ -6502,7 +6507,7 @@
     "menyu": {
       "author": "Waithera Were",
       "file": "words/menyu.mp3",
-      "gain": -4.6,
+      "gain": -7.5,
       "gate": -68.1,
       "lead": 38,
       "matches": "menyu",
@@ -6513,7 +6518,7 @@
     "meza": {
       "author": "Waithera Were",
       "file": "words/meza.mp3",
-      "gain": -7.4,
+      "gain": -9.9,
       "gate": -65.1,
       "lead": 36,
       "matches": "meza",
@@ -6524,7 +6529,7 @@
     "meza ya kulia": {
       "author": "Waithera Were",
       "file": "words/mezau0020yau0020kulia.mp3",
-      "gain": -5.0,
+      "gain": -7.9,
       "gate": -97.7,
       "lead": 201,
       "matches": "meza ya kulia",
@@ -6535,7 +6540,7 @@
     "mfanyabiashara": {
       "author": "Waithera Were",
       "file": "words/mfanyabiashara.mp3",
-      "gain": -8.2,
+      "gain": -9.7,
       "gate": -61.7,
       "lead": 38,
       "matches": "mfanyabiashara",
@@ -6546,7 +6551,7 @@
     "mfanyakazi": {
       "author": "Waithera Were",
       "file": "words/mfanyakazi.mp3",
-      "gain": -4.5,
+      "gain": -6.5,
       "gate": -67.1,
       "lead": 46,
       "matches": "mfanyakazi",
@@ -6557,7 +6562,7 @@
     "mfupa": {
       "author": "Waithera Were",
       "file": "words/mfupa.mp3",
-      "gain": -5.4,
+      "gain": -2.3,
       "gate": -68.0,
       "lead": 41,
       "matches": "mfupa",
@@ -6568,7 +6573,7 @@
     "mgeni": {
       "author": "Waithera Were",
       "file": "words/mgeni.mp3",
-      "gain": -1.2,
+      "gain": -2.6,
       "gate": -66.4,
       "lead": 41,
       "matches": "mgeni",
@@ -6579,7 +6584,7 @@
     "mgongo": {
       "author": "Waithera Were",
       "file": "words/mgongo.mp3",
-      "gain": -8.2,
+      "gain": -9.7,
       "gate": -64.0,
       "lead": 46,
       "matches": "mgongo",
@@ -6590,7 +6595,7 @@
     "mgonjwa": {
       "author": "Waithera Were",
       "file": "words/mgonjwa.mp3",
-      "gain": -6.7,
+      "gain": -9.0,
       "gate": -56.0,
       "lead": 47,
       "matches": "mgonjwa",
@@ -6601,7 +6606,7 @@
     "mguu": {
       "author": "Waithera Were",
       "file": "words/mguu.mp3",
-      "gain": -9.2,
+      "gain": -5.3,
       "gate": -67.4,
       "lead": 46,
       "matches": "mguu",
@@ -6612,7 +6617,7 @@
     "mhadhara": {
       "author": "Waithera Were",
       "file": "words/mhadhara.mp3",
-      "gain": -7.8,
+      "gain": -9.1,
       "gate": -66.2,
       "lead": 41,
       "matches": "mhadhara",
@@ -6634,7 +6639,7 @@
     "miadi": {
       "author": "Waithera Were",
       "file": "words/miadi.mp3",
-      "gain": -9.2,
+      "gain": -11.8,
       "gate": -68.8,
       "lead": 44,
       "matches": "miadi",
@@ -6645,7 +6650,7 @@
     "milenia": {
       "author": "Waithera Were",
       "file": "words/milenia.mp3",
-      "gain": -1.5,
+      "gain": -4.0,
       "gate": -68.3,
       "lead": 46,
       "matches": "milenia",
@@ -6656,7 +6661,7 @@
     "mimi": {
       "author": "Waithera Were",
       "file": "words/mimi.mp3",
-      "gain": -3.8,
+      "gain": -3.6,
       "gate": -67.0,
       "lead": 39,
       "matches": "mimi",
@@ -6667,7 +6672,7 @@
     "mizani": {
       "author": "Waithera Were",
       "file": "words/mizani.mp3",
-      "gain": -8.6,
+      "gain": -11.8,
       "lead": 124,
       "matches": "mizani",
       "mos": 2.31,
@@ -6677,7 +6682,7 @@
     "mjane": {
       "author": "Waithera Were",
       "file": "words/mjane.mp3",
-      "gain": -3.4,
+      "gain": -4.3,
       "gate": -68.2,
       "lead": 38,
       "matches": "mjane",
@@ -6688,7 +6693,7 @@
     "mji": {
       "author": "Waithera Were",
       "file": "words/mji.mp3",
-      "gain": 1.2,
+      "gain": 1.4,
       "gate": -67.6,
       "lead": 38,
       "matches": "mji",
@@ -6699,7 +6704,7 @@
     "mjomba": {
       "author": "Waithera Were",
       "file": "words/mjomba.mp3",
-      "gain": -5.0,
+      "gain": -6.7,
       "gate": -67.7,
       "lead": 46,
       "matches": "mjomba",
@@ -6710,7 +6715,7 @@
     "mjukuu": {
       "author": "Waithera Were",
       "file": "words/mjukuu.mp3",
-      "gain": -3.7,
+      "gain": -2.0,
       "gate": -67.0,
       "lead": 46,
       "matches": "mjukuu",
@@ -6721,7 +6726,7 @@
     "mkahawa": {
       "author": "Waithera Were",
       "file": "words/mkahawa.mp3",
-      "gain": -7.2,
+      "gain": -7.6,
       "gate": -67.0,
       "lead": 45,
       "matches": "mkahawa",
@@ -6732,7 +6737,7 @@
     "mkanda": {
       "author": "Waithera Were",
       "file": "words/mkanda.mp3",
-      "gain": -8.1,
+      "gain": -9.9,
       "gate": -65.2,
       "lead": 40,
       "matches": "mkanda",
@@ -6743,7 +6748,7 @@
     "mkataba": {
       "author": "Waithera Were",
       "file": "words/mkataba.mp3",
-      "gain": -9.1,
+      "gain": -11.0,
       "gate": -63.0,
       "lead": 49,
       "matches": "mkataba",
@@ -6754,7 +6759,7 @@
     "mkate": {
       "author": "Waithera Were",
       "file": "words/mkate.mp3",
-      "gain": -6.8,
+      "gain": -8.9,
       "gate": -66.5,
       "lead": 46,
       "matches": "mkate",
@@ -6765,7 +6770,7 @@
     "mke": {
       "author": "Waithera Were",
       "file": "words/mke.mp3",
-      "gain": -2.4,
+      "gain": -2.6,
       "gate": -70.4,
       "lead": 46,
       "matches": "mke",
@@ -6776,7 +6781,7 @@
     "mkono": {
       "author": "Waithera Were",
       "file": "words/mkono.mp3",
-      "gain": -1.5,
+      "gain": -2.0,
       "gate": -70.7,
       "lead": 43,
       "matches": "mkono",
@@ -6787,7 +6792,7 @@
     "mlango": {
       "author": "Waithera Were",
       "file": "words/mlango.mp3",
-      "gain": -10.3,
+      "gain": -13.9,
       "gate": -66.2,
       "lead": 38,
       "matches": "mlango",
@@ -6798,7 +6803,7 @@
     "mlima": {
       "author": "Waithera Were",
       "file": "words/mlima.mp3",
-      "gain": -3.1,
+      "gain": -2.5,
       "gate": -69.4,
       "lead": 44,
       "matches": "mlima",
@@ -6809,7 +6814,7 @@
     "mmea": {
       "author": "Waithera Were",
       "file": "words/mmea.mp3",
-      "gain": -6.9,
+      "gain": -7.6,
       "gate": -61.9,
       "lead": 36,
       "matches": "mmea",
@@ -6820,7 +6825,7 @@
     "mno": {
       "author": "Waithera Were",
       "file": "words/mno.mp3",
-      "gain": -5.0,
+      "gain": -4.4,
       "gate": -62.0,
       "lead": 45,
       "matches": "mno",
@@ -6831,7 +6836,7 @@
     "mnyama": {
       "author": "Waithera Were",
       "file": "words/mnyama.mp3",
-      "gain": -8.9,
+      "gain": -11.2,
       "gate": -67.9,
       "lead": 43,
       "matches": "mnyama",
@@ -6842,7 +6847,7 @@
     "mnyambuliko": {
       "author": "Waithera Were",
       "file": "words/mnyambuliko.mp3",
-      "gain": -8.3,
+      "gain": -11.5,
       "gate": -60.4,
       "lead": 53,
       "matches": "mnyambuliko",
@@ -6853,7 +6858,7 @@
     "moja kwa moja": {
       "author": "Waithera Were",
       "file": "words/mojau0020kwau0020moja.mp3",
-      "gain": -5.4,
+      "gain": -6.9,
       "gate": -62.5,
       "lead": 41,
       "matches": "moja kwa moja",
@@ -6864,7 +6869,7 @@
     "moto": {
       "author": "Waithera Were",
       "file": "words/moto.mp3",
-      "gain": -7.6,
+      "gain": -9.7,
       "gate": -68.1,
       "lead": 39,
       "matches": "moto",
@@ -6875,7 +6880,7 @@
     "moyo": {
       "author": "Waithera Were",
       "file": "words/moyo.mp3",
-      "gain": -10.2,
+      "gain": -11.1,
       "gate": -64.7,
       "lead": 38,
       "matches": "moyo",
@@ -6886,7 +6891,7 @@
     "mpaka": {
       "author": "Waithera Were",
       "file": "words/mpaka.mp3",
-      "gain": -8.4,
+      "gain": -10.8,
       "gate": -68.2,
       "lead": 45,
       "matches": "mpaka",
@@ -6897,7 +6902,7 @@
     "mpango": {
       "author": "Waithera Were",
       "file": "words/mpango.mp3",
-      "gain": -6.6,
+      "gain": -8.7,
       "gate": -67.2,
       "lead": 47,
       "matches": "mpango",
@@ -6908,7 +6913,7 @@
     "mpwa": {
       "author": "Waithera Were",
       "file": "words/mpwa.mp3",
-      "gain": 0.4,
+      "gain": -0.5,
       "gate": -67.5,
       "lead": 47,
       "matches": "mpwa",
@@ -6919,7 +6924,7 @@
     "msaada": {
       "author": "Waithera Were",
       "file": "words/msaada.mp3",
-      "gain": -9.3,
+      "gain": -10.5,
       "gate": -65.6,
       "lead": 38,
       "matches": "msaada",
@@ -6930,7 +6935,7 @@
     "mshahara": {
       "author": "Waithera Were",
       "file": "words/mshahara.mp3",
-      "gain": -9.1,
+      "gain": -10.4,
       "gate": -66.0,
       "lead": 38,
       "matches": "mshahara",
@@ -6941,7 +6946,7 @@
     "mshangao": {
       "author": "Waithera Were",
       "file": "words/mshangao.mp3",
-      "gain": -5.2,
+      "gain": -6.4,
       "gate": -66.8,
       "lead": 36,
       "matches": "mshangao",
@@ -6952,7 +6957,7 @@
     "msichana": {
       "author": "Waithera Were",
       "file": "words/msichana.mp3",
-      "gain": -4.3,
+      "gain": -7.0,
       "gate": -68.2,
       "lead": 37,
       "matches": "msichana",
@@ -6963,7 +6968,7 @@
     "msikiti": {
       "author": "Waithera Were",
       "file": "words/msikiti.mp3",
-      "gain": 1.3,
+      "gain": 1.7,
       "gate": -67.1,
       "lead": 45,
       "matches": "msikiti",
@@ -6974,7 +6979,7 @@
     "msitu": {
       "author": "Waithera Were",
       "file": "words/msitu.mp3",
-      "gain": -1.2,
+      "gain": -0.8,
       "gate": -66.0,
       "lead": 45,
       "matches": "msitu",
@@ -6996,7 +7001,7 @@
     "mswaki": {
       "author": "Waithera Were",
       "file": "words/mswaki.mp3",
-      "gain": -6.2,
+      "gain": -8.5,
       "gate": -67.2,
       "lead": 39,
       "matches": "mswaki",
@@ -7006,8 +7011,9 @@
     },
     "mtaa": {
       "author": "Goethe-Institut Cameroon",
+      "cap": 5.1,
       "file": "words/mtaa.mp3",
-      "gain": -2.0,
+      "gain": -0.3,
       "gate": -88.4,
       "lead": 864,
       "matches": "mtaa",
@@ -7018,7 +7024,7 @@
     "mtalii": {
       "author": "Waithera Were",
       "file": "words/mtalii.mp3",
-      "gain": -3.9,
+      "gain": -6.6,
       "gate": -67.1,
       "lead": 40,
       "matches": "mtalii",
@@ -7029,7 +7035,7 @@
     "mteja": {
       "author": "Waithera Were",
       "file": "words/mteja.mp3",
-      "gain": -3.5,
+      "gain": -5.6,
       "gate": -66.7,
       "lead": 40,
       "matches": "mteja",
@@ -7040,7 +7046,7 @@
     "mti": {
       "author": "Waithera Were",
       "file": "words/mti.mp3",
-      "gain": 1.7,
+      "gain": 0.7,
       "gate": -70.3,
       "lead": 44,
       "matches": "mti",
@@ -7051,7 +7057,7 @@
     "mtihani": {
       "author": "Waithera Were",
       "file": "words/mtihani.mp3",
-      "gain": -3.2,
+      "gain": -4.9,
       "gate": -67.7,
       "lead": 42,
       "matches": "mtihani",
@@ -7062,7 +7068,7 @@
     "mto": {
       "author": "Waithera Were",
       "file": "words/mto.mp3",
-      "gain": -4.3,
+      "gain": -5.2,
       "gate": -64.1,
       "lead": 39,
       "matches": "mto",
@@ -7073,7 +7079,7 @@
     "mtoto": {
       "author": "Waithera Were",
       "file": "words/mtoto.mp3",
-      "gain": -2.1,
+      "gain": -4.2,
       "gate": -67.0,
       "lead": 41,
       "matches": "mtoto",
@@ -7084,7 +7090,7 @@
     "mtu": {
       "author": "Waithera Were",
       "file": "words/mtu.mp3",
-      "gain": -5.3,
+      "gain": -4.1,
       "gate": -66.6,
       "lead": 47,
       "matches": "mtu",
@@ -7095,7 +7101,7 @@
     "muhimu": {
       "author": "Waithera Were",
       "file": "words/muhimu.mp3",
-      "gain": -0.3,
+      "gain": -1.2,
       "gate": -66.7,
       "lead": 42,
       "matches": "muhimu",
@@ -7106,7 +7112,7 @@
     "muhogo": {
       "author": "Waithera Were",
       "file": "words/muhogo.mp3",
-      "gain": -1.0,
+      "gain": -0.7,
       "gate": -65.5,
       "lead": 43,
       "matches": "muhogo",
@@ -7117,7 +7123,7 @@
     "mume": {
       "author": "Waithera Were",
       "file": "words/mume.mp3",
-      "gain": -6.3,
+      "gain": -5.2,
       "gate": -68.7,
       "lead": 40,
       "matches": "mume",
@@ -7128,7 +7134,7 @@
     "muuguzi": {
       "author": "Waithera Were",
       "file": "words/muuguzi.mp3",
-      "gain": -6.7,
+      "gain": -6.5,
       "gate": -65.7,
       "lead": 44,
       "matches": "muuguzi",
@@ -7139,7 +7145,7 @@
     "muuzaji": {
       "author": "Waithera Were",
       "file": "words/muuzaji.mp3",
-      "gain": -8.7,
+      "gain": -11.9,
       "gate": -64.3,
       "lead": 44,
       "matches": "muuzaji",
@@ -7150,7 +7156,7 @@
     "muziki": {
       "author": "Waithera Were",
       "file": "words/muziki.mp3",
-      "gain": -2.1,
+      "gain": -4.5,
       "gate": -67.3,
       "lead": 37,
       "matches": "muziki",
@@ -7161,7 +7167,7 @@
     "mvua": {
       "author": "Waithera Were",
       "file": "words/mvua.mp3",
-      "gain": -8.3,
+      "gain": -9.7,
       "gate": -68.1,
       "lead": 41,
       "matches": "mvua",
@@ -7172,7 +7178,7 @@
     "mvulana": {
       "author": "Waithera Were",
       "file": "words/mvulana.mp3",
-      "gain": -6.1,
+      "gain": -8.8,
       "gate": -67.2,
       "lead": 42,
       "matches": "mvulana",
@@ -7183,7 +7189,7 @@
     "mwajiri": {
       "author": "Waithera Were",
       "file": "words/mwajiri.mp3",
-      "gain": -7.6,
+      "gain": -11.8,
       "gate": -64.0,
       "lead": 42,
       "matches": "mwajiri",
@@ -7194,7 +7200,7 @@
     "mwaka": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/mwaka.mp3",
-      "gain": 5.9,
+      "gain": 4.4,
       "lead": 181,
       "matches": "mwaka",
       "mos": 2.66,
@@ -7204,7 +7210,7 @@
     "mwalimu": {
       "author": "Waithera Were",
       "file": "words/mwalimu.mp3",
-      "gain": -8.2,
+      "gain": -11.9,
       "gate": -65.3,
       "lead": 43,
       "matches": "mwalimu",
@@ -7215,7 +7221,7 @@
     "mwana": {
       "author": "Waithera Were",
       "file": "words/mwana.mp3",
-      "gain": -7.0,
+      "gain": -8.7,
       "gate": -65.2,
       "lead": 42,
       "matches": "mwana",
@@ -7226,7 +7232,7 @@
     "mwanachuo": {
       "author": "Waithera Were",
       "file": "words/mwanachuo.mp3",
-      "gain": -9.1,
+      "gain": -13.3,
       "gate": -61.8,
       "lead": 49,
       "matches": "mwanachuo",
@@ -7237,7 +7243,7 @@
     "mwanafunzi": {
       "author": "Waithera Were",
       "file": "words/mwanafunzi.mp3",
-      "gain": -2.1,
+      "gain": -5.0,
       "gate": -65.0,
       "lead": 39,
       "matches": "mwanafunzi",
@@ -7248,7 +7254,7 @@
     "mwanamke": {
       "author": "Waithera Were",
       "file": "words/mwanamke.mp3",
-      "gain": -5.2,
+      "gain": -8.4,
       "gate": -68.7,
       "lead": 39,
       "matches": "mwanamke",
@@ -7259,7 +7265,7 @@
     "mwanaume": {
       "author": "Waithera Were",
       "file": "words/mwanaume.mp3",
-      "gain": -7.5,
+      "gain": -10.6,
       "gate": -68.2,
       "lead": 44,
       "matches": "mwanaume",
@@ -7270,7 +7276,7 @@
     "mwanga": {
       "author": "Waithera Were",
       "file": "words/mwanga.mp3",
-      "gain": -5.8,
+      "gain": -7.9,
       "gate": -67.8,
       "lead": 38,
       "matches": "mwanga",
@@ -7281,7 +7287,7 @@
     "mwavuli": {
       "author": "Waithera Were",
       "file": "words/mwavuli.mp3",
-      "gain": -8.1,
+      "gain": -11.9,
       "gate": -63.6,
       "lead": 41,
       "matches": "mwavuli",
@@ -7292,7 +7298,7 @@
     "mwelekeo": {
       "author": "Waithera Were",
       "file": "words/mwelekeo.mp3",
-      "gain": -5.6,
+      "gain": -8.5,
       "gate": -65.3,
       "lead": 38,
       "matches": "mwelekeo",
@@ -7303,7 +7309,7 @@
     "mwezi": {
       "author": "Waithera Were",
       "file": "words/mwezi.mp3",
-      "gain": -4.8,
+      "gain": -6.3,
       "gate": -68.3,
       "lead": 47,
       "matches": "mwezi",
@@ -7314,7 +7320,7 @@
     "mwongo": {
       "author": "Waithera Were",
       "file": "words/mwongo.mp3",
-      "gain": -7.7,
+      "gain": -9.4,
       "gate": -69.5,
       "lead": 47,
       "matches": "mwongo",
@@ -7325,7 +7331,7 @@
     "mzigo": {
       "author": "Waithera Were",
       "file": "words/mzigo.mp3",
-      "gain": -5.6,
+      "gain": -4.6,
       "gate": -64.1,
       "lead": 39,
       "matches": "mzigo",
@@ -7336,7 +7342,7 @@
     "mzio": {
       "author": "Waithera Were",
       "file": "words/mzio.mp3",
-      "gain": -3.1,
+      "gain": -1.4,
       "gate": -62.9,
       "lead": 40,
       "matches": "mzio",
@@ -7347,7 +7353,7 @@
     "na": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/na.mp3",
-      "gain": 6.0,
+      "gain": 3.1,
       "lead": 193,
       "matches": "na",
       "mos": 2.57,
@@ -7356,8 +7362,9 @@
     },
     "nakupenda": {
       "author": "Goethe-Institut Cameroon",
+      "cap": 1.4,
       "file": "words/nakupenda.mp3",
-      "gain": -2.6,
+      "gain": -0.2,
       "gate": -86.7,
       "lead": 536,
       "matches": "nakupenda",
@@ -7368,7 +7375,7 @@
     "nani": {
       "author": "Waithera Were",
       "file": "words/nani.mp3",
-      "gain": -7.5,
+      "gain": -9.9,
       "gate": -70.6,
       "lead": 37,
       "matches": "nani",
@@ -7379,7 +7386,7 @@
     "nauli": {
       "author": "Waithera Were",
       "file": "words/nauli.mp3",
-      "gain": -7.8,
+      "gain": -11.0,
       "gate": -65.4,
       "lead": 42,
       "matches": "nauli",
@@ -7390,7 +7397,7 @@
     "nchi": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/nchi.mp3",
-      "gain": 3.6,
+      "gain": 6.0,
       "lead": 148,
       "matches": "nchi",
       "mos": 2.67,
@@ -7400,7 +7407,7 @@
     "ndani": {
       "author": "Waithera Were",
       "file": "words/ndani.mp3",
-      "gain": -5.3,
+      "gain": -6.4,
       "gate": -68.1,
       "lead": 44,
       "matches": "ndani",
@@ -7411,7 +7418,7 @@
     "ndege": {
       "author": "Waithera Were",
       "file": "words/ndege.mp3",
-      "gain": -5.1,
+      "gain": -7.3,
       "gate": -67.6,
       "lead": 38,
       "matches": "ndege",
@@ -7422,7 +7429,7 @@
     "ndiyo": {
       "author": "Waithera Were",
       "file": "words/ndiyo.mp3",
-      "gain": -1.3,
+      "gain": -1.1,
       "gate": -70.7,
       "lead": 44,
       "matches": "ndiyo",
@@ -7433,7 +7440,7 @@
     "ndizi": {
       "author": "Waithera Were",
       "file": "words/ndizi.mp3",
-      "gain": -6.4,
+      "gain": -5.1,
       "gate": -66.6,
       "lead": 41,
       "matches": "ndizi",
@@ -7444,7 +7451,7 @@
     "ndoo": {
       "author": "Waithera Were",
       "file": "words/ndoo.mp3",
-      "gain": -7.0,
+      "gain": -6.6,
       "gate": -67.7,
       "lead": 36,
       "matches": "ndoo",
@@ -7455,7 +7462,7 @@
     "ndugu": {
       "author": "Waithera Were",
       "file": "words/ndugu.mp3",
-      "gain": -3.6,
+      "gain": -5.3,
       "gate": -68.0,
       "lead": 42,
       "matches": "ndugu",
@@ -7466,7 +7473,7 @@
     "neno": {
       "author": "Waithera Were",
       "file": "words/neno.mp3",
-      "gain": -5.1,
+      "gain": -8.0,
       "gate": -68.7,
       "lead": 37,
       "matches": "neno",
@@ -7477,7 +7484,7 @@
     "ng'ombe": {
       "author": "Waithera Were",
       "file": "words/ngu0027ombe.mp3",
-      "gain": -8.2,
+      "gain": -8.7,
       "gate": -66.3,
       "lead": 48,
       "matches": "ng'ombe",
@@ -7488,7 +7495,7 @@
     "ngapi": {
       "author": "Waithera Were",
       "file": "words/ngapi.mp3",
-      "gain": -5.8,
+      "gain": -8.5,
       "gate": -66.7,
       "lead": 43,
       "matches": "ngapi",
@@ -7499,7 +7506,7 @@
     "ngazi": {
       "author": "Waithera Were",
       "file": "words/ngazi.mp3",
-      "gain": -6.0,
+      "gain": -8.2,
       "gate": -68.0,
       "lead": 40,
       "matches": "ngazi",
@@ -7510,7 +7517,7 @@
     "ngeli": {
       "author": "Waithera Were",
       "file": "words/ngeli.mp3",
-      "gain": -5.8,
+      "gain": -8.6,
       "gate": -68.0,
       "lead": 39,
       "matches": "ngeli",
@@ -7521,7 +7528,7 @@
     "ngozi": {
       "author": "Waithera Were",
       "file": "words/ngozi.mp3",
-      "gain": -9.5,
+      "gain": -9.6,
       "gate": -67.4,
       "lead": 39,
       "matches": "ngozi",
@@ -7532,7 +7539,7 @@
     "nguo": {
       "author": "Waithera Were",
       "file": "words/nguo.mp3",
-      "gain": -4.1,
+      "gain": -2.0,
       "gate": -57.2,
       "lead": 46,
       "matches": "nguo",
@@ -7543,7 +7550,7 @@
     "nguo za ndani": {
       "author": "Waithera Were",
       "file": "words/nguou0020zau0020ndani.mp3",
-      "gain": -7.6,
+      "gain": -11.5,
       "gate": -68.6,
       "lead": 41,
       "matches": "nguo za ndani",
@@ -7554,7 +7561,7 @@
     "nini": {
       "author": "Waithera Were",
       "file": "words/nini.mp3",
-      "gain": 2.2,
+      "gain": 2.9,
       "gate": -61.8,
       "lead": 27,
       "matches": "nini",
@@ -7565,7 +7572,7 @@
     "ninyi": {
       "author": "Waithera Were",
       "file": "words/ninyi.mp3",
-      "gain": 0.6,
+      "gain": -0.1,
       "gate": -66.4,
       "lead": 38,
       "matches": "ninyi",
@@ -7576,7 +7583,7 @@
     "njaa": {
       "author": "Waithera Were",
       "file": "words/njaa.mp3",
-      "gain": -10.4,
+      "gain": -12.0,
       "gate": -66.5,
       "lead": 40,
       "matches": "njaa",
@@ -7587,7 +7594,7 @@
     "njano": {
       "author": "Waithera Were",
       "file": "words/njano.mp3",
-      "gain": -6.9,
+      "gain": -9.3,
       "gate": -67.5,
       "lead": 43,
       "matches": "njano",
@@ -7598,7 +7605,7 @@
     "nje": {
       "author": "Waithera Were",
       "file": "words/nje.mp3",
-      "gain": -2.3,
+      "gain": -2.6,
       "gate": -69.3,
       "lead": 7,
       "matches": "nje",
@@ -7609,7 +7616,7 @@
     "njia": {
       "author": "Waithera Were",
       "file": "words/njia.mp3",
-      "gain": -5.2,
+      "gain": -7.2,
       "gate": -69.2,
       "lead": 36,
       "matches": "njia",
@@ -7620,7 +7627,7 @@
     "njia panda": {
       "author": "Waithera Were",
       "file": "words/njiau0020panda.mp3",
-      "gain": -8.9,
+      "gain": -11.7,
       "gate": -63.4,
       "lead": 37,
       "matches": "njia panda",
@@ -7631,7 +7638,7 @@
     "nomino": {
       "author": "Waithera Were",
       "file": "words/nomino.mp3",
-      "gain": -4.7,
+      "gain": -5.8,
       "gate": -64.0,
       "lead": 38,
       "matches": "nomino",
@@ -7642,7 +7649,7 @@
     "nyama": {
       "author": "Waithera Were",
       "file": "words/nyama.mp3",
-      "gain": -7.8,
+      "gain": -10.4,
       "gate": -70.2,
       "lead": 44,
       "matches": "nyama",
@@ -7653,7 +7660,7 @@
     "nyanya": {
       "author": "Waithera Were",
       "file": "words/nyanya.mp3",
-      "gain": -7.6,
+      "gain": -10.5,
       "gate": -70.7,
       "lead": 42,
       "matches": "nyanya",
@@ -7664,7 +7671,7 @@
     "nyaraka": {
       "author": "Waithera Were",
       "file": "words/nyaraka.mp3",
-      "gain": -8.9,
+      "gain": -12.3,
       "gate": -69.8,
       "lead": 41,
       "matches": "nyaraka",
@@ -7675,7 +7682,7 @@
     "nyoka": {
       "author": "Waithera Were",
       "file": "words/nyoka.mp3",
-      "gain": -5.7,
+      "gain": -7.1,
       "gate": -68.6,
       "lead": 40,
       "matches": "nyoka",
@@ -7686,7 +7693,7 @@
     "nyota": {
       "author": "Waithera Were",
       "file": "words/nyota.mp3",
-      "gain": -6.7,
+      "gain": -9.1,
       "gate": -67.3,
       "lead": 37,
       "matches": "nyota",
@@ -7697,7 +7704,7 @@
     "nyumba": {
       "author": "Waithera Were",
       "file": "words/nyumba.mp3",
-      "gain": -5.5,
+      "gain": -4.4,
       "gate": -69.1,
       "lead": 45,
       "matches": "nyumba",
@@ -7708,7 +7715,7 @@
     "nyumbani": {
       "author": "Waithera Were",
       "file": "words/nyumbani.mp3",
-      "gain": -6.7,
+      "gain": -9.8,
       "lead": 234,
       "matches": "nyumbani",
       "mos": 2.71,
@@ -7718,7 +7725,7 @@
     "nywele": {
       "author": "Waithera Were",
       "file": "words/nywele.mp3",
-      "gain": -8.0,
+      "gain": -11.4,
       "gate": -68.9,
       "lead": 37,
       "matches": "nywele",
@@ -7729,7 +7736,7 @@
     "ofisi": {
       "author": "Waithera Were",
       "file": "words/ofisi.mp3",
-      "gain": -2.6,
+      "gain": -2.8,
       "gate": -68.9,
       "lead": 47,
       "matches": "ofisi",
@@ -7740,7 +7747,7 @@
     "ombi": {
       "author": "Waithera Were",
       "file": "words/ombi.mp3",
-      "gain": -3.9,
+      "gain": -4.2,
       "gate": -66.1,
       "lead": 48,
       "matches": "ombi",
@@ -7751,7 +7758,7 @@
     "orodha": {
       "author": "Waithera Were",
       "file": "words/orodha.mp3",
-      "gain": -8.6,
+      "gain": -9.5,
       "gate": -65.5,
       "lead": 41,
       "matches": "orodha",
@@ -7762,7 +7769,7 @@
     "ota jua": {
       "author": "Waithera Were",
       "file": "words/otau0020jua.mp3",
-      "gain": -5.8,
+      "gain": -9.5,
       "gate": -99.3,
       "lead": 132,
       "matches": "ota jua",
@@ -7773,7 +7780,7 @@
     "ota ndoto": {
       "author": "Waithera Were",
       "file": "words/otau0020ndoto.mp3",
-      "gain": -5.3,
+      "gain": -7.3,
       "gate": -98.5,
       "lead": 125,
       "matches": "ota ndoto",
@@ -7784,7 +7791,7 @@
     "ote": {
       "author": "Waithera Were",
       "file": "words/ote.mp3",
-      "gain": -3.3,
+      "gain": -4.6,
       "gate": -65.6,
       "lead": 49,
       "matches": "ote",
@@ -7795,7 +7802,7 @@
     "oveni": {
       "author": "Waithera Were",
       "file": "words/oveni.mp3",
-      "gain": -4.9,
+      "gain": -6.1,
       "gate": -67.0,
       "lead": 42,
       "matches": "oveni",
@@ -7806,7 +7813,7 @@
     "pafu": {
       "author": "Waithera Were",
       "file": "words/pafu.mp3",
-      "gain": -6.6,
+      "gain": -9.5,
       "gate": -66.4,
       "lead": 42,
       "matches": "pafu",
@@ -7817,7 +7824,7 @@
     "paka": {
       "author": "Waithera Were",
       "file": "words/paka.mp3",
-      "gain": -5.8,
+      "gain": -8.5,
       "gate": -71.0,
       "lead": 48,
       "matches": "paka",
@@ -7828,7 +7835,7 @@
     "pale": {
       "author": "Waithera Were",
       "file": "words/pale.mp3",
-      "gain": -7.5,
+      "gain": -10.5,
       "lead": 148,
       "matches": "pale",
       "mos": 2.58,
@@ -7838,7 +7845,7 @@
     "pamoja": {
       "author": "Waithera Were",
       "file": "words/pamoja.mp3",
-      "gain": -4.1,
+      "gain": -6.0,
       "gate": -66.0,
       "lead": 47,
       "matches": "pamoja",
@@ -7849,7 +7856,7 @@
     "pasipoti": {
       "author": "Waithera Were",
       "file": "words/pasipoti.mp3",
-      "gain": -2.6,
+      "gain": -4.3,
       "gate": -69.6,
       "lead": 42,
       "matches": "pasipoti",
@@ -7860,7 +7867,7 @@
     "pazia": {
       "author": "Waithera Were",
       "file": "words/pazia.mp3",
-      "gain": -7.6,
+      "gain": -11.5,
       "gate": -65.2,
       "lead": 39,
       "matches": "pazia",
@@ -7871,7 +7878,7 @@
     "penseli": {
       "author": "Waithera Were",
       "file": "words/penseli.mp3",
-      "gain": -6.8,
+      "gain": -8.2,
       "gate": -65.1,
       "lead": 41,
       "matches": "penseli",
@@ -7882,7 +7889,7 @@
     "pesa": {
       "author": "Waithera Were",
       "file": "words/pesa.mp3",
-      "gain": -0.6,
+      "gain": -2.8,
       "gate": -64.7,
       "lead": 35,
       "matches": "pesa",
@@ -7893,7 +7900,7 @@
     "pia": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/pia.mp3",
-      "gain": 3.7,
+      "gain": 4.5,
       "lead": 159,
       "matches": "pia",
       "mos": 2.66,
@@ -7903,7 +7910,7 @@
     "picha": {
       "author": "Waithera Were",
       "file": "words/picha.mp3",
-      "gain": -2.0,
+      "gain": -2.8,
       "gate": -65.3,
       "lead": 40,
       "matches": "picha",
@@ -7914,7 +7921,7 @@
     "piga kengele": {
       "author": "Waithera Were",
       "file": "words/pigau0020kengele.mp3",
-      "gain": -5.2,
+      "gain": -7.5,
       "gate": -55.5,
       "lead": 47,
       "matches": "piga kengele",
@@ -7925,7 +7932,7 @@
     "piga kura": {
       "author": "Waithera Were",
       "file": "words/pigau0020kura.mp3",
-      "gain": -6.7,
+      "gain": -9.6,
       "gate": -66.7,
       "lead": 40,
       "matches": "piga kura",
@@ -7936,7 +7943,7 @@
     "piga mbizi": {
       "author": "Waithera Were",
       "file": "words/pigau0020mbizi.mp3",
-      "gain": -2.5,
+      "gain": -5.9,
       "gate": -64.5,
       "lead": 42,
       "matches": "piga mbizi",
@@ -7947,7 +7954,7 @@
     "piga miayo": {
       "author": "Waithera Were",
       "file": "words/pigau0020miayo.mp3",
-      "gain": -5.6,
+      "gain": -7.4,
       "gate": -65.7,
       "lead": 49,
       "matches": "piga miayo",
@@ -7958,7 +7965,7 @@
     "piga mswaki": {
       "author": "Waithera Were",
       "file": "words/pigau0020mswaki.mp3",
-      "gain": -7.0,
+      "gain": -10.1,
       "gate": -65.2,
       "lead": 40,
       "matches": "piga mswaki",
@@ -7969,7 +7976,7 @@
     "piga simu": {
       "author": "Waithera Were",
       "file": "words/pigau0020simu.mp3",
-      "gain": 2.2,
+      "gain": 0.9,
       "gate": -65.7,
       "lead": 42,
       "matches": "piga simu",
@@ -7980,7 +7987,7 @@
     "pikipiki": {
       "author": "Byera04",
       "file": "words/pikipiki.mp3",
-      "gain": 6.6,
+      "gain": 9.5,
       "gate": -60.0,
       "lead": 148,
       "license": "CC BY-SA 4.0",
@@ -8003,7 +8010,7 @@
     "plagi": {
       "author": "Waithera Were",
       "file": "words/plagi.mp3",
-      "gain": -8.3,
+      "gain": -10.9,
       "gate": -67.5,
       "lead": 43,
       "matches": "plagi",
@@ -8014,7 +8021,7 @@
     "plasta": {
       "author": "Waithera Were",
       "file": "words/plasta.mp3",
-      "gain": 0.9,
+      "gain": -1.2,
       "gate": -68.3,
       "lead": 43,
       "matches": "plasta",
@@ -8025,7 +8032,7 @@
     "pochi": {
       "author": "Waithera Were",
       "file": "words/pochi.mp3",
-      "gain": -8.7,
+      "gain": -12.1,
       "gate": -63.0,
       "lead": 55,
       "matches": "pochi",
@@ -8036,7 +8043,7 @@
     "pole": {
       "author": "Waithera Were",
       "file": "words/pole.mp3",
-      "gain": -3.0,
+      "gain": -4.2,
       "gate": -67.6,
       "lead": 44,
       "matches": "pole",
@@ -8047,7 +8054,7 @@
     "polepole": {
       "author": "Waithera Were",
       "file": "words/polepole.mp3",
-      "gain": -6.6,
+      "gain": -7.1,
       "gate": -63.8,
       "lead": 48,
       "matches": "polepole",
@@ -8058,7 +8065,7 @@
     "polisi": {
       "author": "Waithera Were",
       "file": "words/polisi.mp3",
-      "gain": -3.3,
+      "gain": -4.3,
       "gate": -69.4,
       "lead": 43,
       "matches": "polisi",
@@ -8069,7 +8076,7 @@
     "posta": {
       "author": "Waithera Were",
       "file": "words/posta.mp3",
-      "gain": -5.1,
+      "gain": -5.9,
       "gate": -67.8,
       "lead": 45,
       "matches": "posta",
@@ -8080,7 +8087,7 @@
     "printa": {
       "author": "Waithera Were",
       "file": "words/printa.mp3",
-      "gain": -2.9,
+      "gain": -4.4,
       "gate": -69.5,
       "lead": 41,
       "matches": "printa",
@@ -8091,7 +8098,7 @@
     "pua": {
       "author": "Waithera Were",
       "file": "words/pua.mp3",
-      "gain": -6.7,
+      "gain": -7.0,
       "gate": -67.4,
       "lead": 48,
       "matches": "pua",
@@ -8102,7 +8109,7 @@
     "pumziko": {
       "author": "Waithera Were",
       "file": "words/pumziko.mp3",
-      "gain": -5.7,
+      "gain": -4.2,
       "gate": -65.7,
       "lead": 49,
       "matches": "pumziko",
@@ -8113,7 +8120,7 @@
     "punda": {
       "author": "Waithera Were",
       "file": "words/punda.mp3",
-      "gain": -2.1,
+      "gain": -1.8,
       "gate": -69.7,
       "lead": 47,
       "matches": "punda",
@@ -8124,7 +8131,7 @@
     "pwani": {
       "author": "Byera04",
       "file": "words/pwani.mp3",
-      "gain": -1.5,
+      "gain": -1.4,
       "gate": -55.3,
       "lead": 110,
       "license": "CC BY-SA 4.0",
@@ -8136,7 +8143,7 @@
     "pya": {
       "author": "Waithera Were",
       "file": "words/pya.mp3",
-      "gain": -7.5,
+      "gain": -10.4,
       "lead": 134,
       "matches": "pya",
       "mos": 2.61,
@@ -8146,7 +8153,7 @@
     "radi": {
       "author": "Waithera Were",
       "file": "words/radi.mp3",
-      "gain": -7.7,
+      "gain": -11.1,
       "gate": -69.7,
       "lead": 41,
       "matches": "radi",
@@ -8157,7 +8164,7 @@
     "rafiki": {
       "author": "Waithera Were",
       "file": "words/rafiki.mp3",
-      "gain": -2.4,
+      "gain": -6.2,
       "gate": -69.6,
       "lead": 36,
       "matches": "rafiki",
@@ -8168,7 +8175,7 @@
     "rafu": {
       "author": "Waithera Were",
       "file": "words/rafu.mp3",
-      "gain": -8.5,
+      "gain": -11.3,
       "gate": -67.3,
       "lead": 34,
       "matches": "rafu",
@@ -8179,7 +8186,7 @@
     "rahisi": {
       "author": "Waithera Were",
       "file": "words/rahisi.mp3",
-      "gain": -8.2,
+      "gain": -11.6,
       "gate": -66.9,
       "lead": 31,
       "matches": "rahisi",
@@ -8190,7 +8197,7 @@
     "ramani": {
       "author": "Waithera Were",
       "file": "words/ramani.mp3",
-      "gain": -5.8,
+      "gain": -7.3,
       "gate": -67.6,
       "lead": 38,
       "matches": "ramani",
@@ -8201,7 +8208,7 @@
     "rangi": {
       "author": "Waithera Were",
       "file": "words/rangi.mp3",
-      "gain": -7.1,
+      "gain": -9.6,
       "gate": -67.3,
       "lead": 40,
       "matches": "rangi",
@@ -8212,7 +8219,7 @@
     "ratiba": {
       "author": "Waithera Were",
       "file": "words/ratiba.mp3",
-      "gain": -6.7,
+      "gain": -8.3,
       "gate": -98.3,
       "lead": 216,
       "matches": "ratiba",
@@ -8223,7 +8230,7 @@
     "redio": {
       "author": "Waithera Were",
       "file": "words/redio.mp3",
-      "gain": -4.5,
+      "gain": -6.4,
       "gate": -67.0,
       "lead": 35,
       "matches": "redio",
@@ -8234,7 +8241,7 @@
     "refu": {
       "author": "Waithera Were",
       "file": "words/refu.mp3",
-      "gain": -8.0,
+      "gain": -12.1,
       "gate": -67.6,
       "lead": 38,
       "matches": "refu",
@@ -8245,7 +8252,7 @@
     "reli": {
       "author": "Waithera Were",
       "file": "words/reli.mp3",
-      "gain": -8.3,
+      "gain": -10.9,
       "gate": -67.3,
       "lead": 31,
       "matches": "reli",
@@ -8256,7 +8263,7 @@
     "rembo": {
       "author": "Waithera Were",
       "file": "words/rembo.mp3",
-      "gain": -6.3,
+      "gain": -10.0,
       "gate": -67.8,
       "lead": 18,
       "matches": "rembo",
@@ -8267,7 +8274,7 @@
     "resiti": {
       "author": "Waithera Were",
       "file": "words/resiti.mp3",
-      "gain": 1.7,
+      "gain": 1.5,
       "gate": -65.5,
       "lead": 35,
       "matches": "resiti",
@@ -8278,7 +8285,7 @@
     "saa": {
       "author": "Waithera Were",
       "file": "words/saa.mp3",
-      "gain": -8.9,
+      "gain": -9.8,
       "gate": -74.4,
       "lead": 31,
       "matches": "saa",
@@ -8289,7 +8296,7 @@
     "sabuni": {
       "author": "Waithera Were",
       "file": "words/sabuni.mp3",
-      "gain": -6.3,
+      "gain": -10.2,
       "gate": -69.7,
       "lead": 25,
       "matches": "sabuni",
@@ -8300,7 +8307,7 @@
     "safari": {
       "author": "Waithera Were",
       "file": "words/safari.mp3",
-      "gain": -6.8,
+      "gain": -8.6,
       "gate": -67.6,
       "lead": 29,
       "matches": "safari",
@@ -8311,7 +8318,7 @@
     "safari njema": {
       "author": "Waithera Were",
       "file": "words/safariu0020njema.mp3",
-      "gain": -2.4,
+      "gain": -4.0,
       "gate": -69.3,
       "lead": 26,
       "matches": "safari njema",
@@ -8322,7 +8329,7 @@
     "safi": {
       "author": "Waithera Were",
       "file": "words/safi.mp3",
-      "gain": -8.3,
+      "gain": -11.1,
       "gate": -68.7,
       "lead": 24,
       "matches": "safi",
@@ -8333,7 +8340,7 @@
     "sahani": {
       "author": "Waithera Were",
       "file": "words/sahani.mp3",
-      "gain": -10.2,
+      "gain": -12.1,
       "gate": -69.3,
       "lead": 30,
       "matches": "sahani",
@@ -8344,7 +8351,7 @@
     "sahihi": {
       "author": "Waithera Were",
       "file": "words/sahihi.mp3",
-      "gain": -3.2,
+      "gain": -6.2,
       "gate": -65.1,
       "lead": 38,
       "matches": "sahihi",
@@ -8355,7 +8362,7 @@
     "saizi": {
       "author": "Waithera Were",
       "file": "words/saizi.mp3",
-      "gain": -7.4,
+      "gain": -9.8,
       "gate": -70.2,
       "lead": 30,
       "matches": "saizi",
@@ -8366,7 +8373,7 @@
     "sakafu": {
       "author": "Waithera Were",
       "file": "words/sakafu.mp3",
-      "gain": -2.9,
+      "gain": -4.2,
       "gate": -69.6,
       "lead": 19,
       "matches": "sakafu",
@@ -8377,7 +8384,7 @@
     "salama": {
       "author": "Waithera Were",
       "file": "words/salama.mp3",
-      "gain": -9.0,
+      "gain": -11.3,
       "gate": -71.2,
       "lead": 32,
       "matches": "salama",
@@ -8388,7 +8395,7 @@
     "samahani": {
       "author": "Waithera Were",
       "file": "words/samahani.mp3",
-      "gain": -6.7,
+      "gain": -8.6,
       "gate": -61.9,
       "matches": "samahani",
       "mos": 2.28,
@@ -8397,7 +8404,7 @@
     },
     "samaki": {
       "author": "Goethe-Institut Cameroon",
-      "cap": 3.0,
+      "cap": 5.7,
       "file": "words/samaki.mp3",
       "gain": 0.6,
       "gate": -78.8,
@@ -8410,7 +8417,7 @@
     "samani": {
       "author": "Waithera Were",
       "file": "words/samani.mp3",
-      "gain": -9.3,
+      "gain": -11.7,
       "gate": -69.5,
       "lead": 26,
       "matches": "samani",
@@ -8421,7 +8428,7 @@
     "sambusa": {
       "author": "Waithera Were",
       "file": "words/sambusa.mp3",
-      "gain": -3.8,
+      "gain": -4.7,
       "gate": -65.1,
       "lead": 14,
       "matches": "sambusa",
@@ -8432,7 +8439,7 @@
     "sana": {
       "author": "Waithera Were",
       "file": "words/sana.mp3",
-      "gain": -9.2,
+      "gain": -10.9,
       "gate": -70.9,
       "lead": 28,
       "matches": "sana",
@@ -8443,7 +8450,7 @@
     "sanduku la barua": {
       "author": "Waithera Were",
       "file": "words/sandukuu0020lau0020barua.mp3",
-      "gain": -5.5,
+      "gain": -8.8,
       "gate": -96.6,
       "lead": 171,
       "matches": "sanduku la barua",
@@ -8454,7 +8461,7 @@
     "sarafu": {
       "author": "Waithera Were",
       "file": "words/sarafu.mp3",
-      "gain": -8.6,
+      "gain": -10.8,
       "gate": -69.3,
       "lead": 32,
       "matches": "sarafu",
@@ -8465,7 +8472,7 @@
     "sasa": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/sasa.mp3",
-      "gain": 8.0,
+      "gain": 4.8,
       "lead": 75,
       "matches": "sasa",
       "mos": 2.75,
@@ -8475,7 +8482,7 @@
     "sasa hivi": {
       "author": "Waithera Were",
       "file": "words/sasau0020hivi.mp3",
-      "gain": -3.3,
+      "gain": -5.5,
       "gate": -68.8,
       "lead": 25,
       "matches": "sasa hivi",
@@ -8486,7 +8493,7 @@
     "sauti": {
       "author": "Waithera Were",
       "file": "words/sauti.mp3",
-      "gain": -4.6,
+      "gain": -6.5,
       "gate": -69.9,
       "lead": 27,
       "matches": "sauti",
@@ -8497,7 +8504,7 @@
     "sawa": {
       "author": "Waithera Were",
       "file": "words/sawa.mp3",
-      "gain": -10.3,
+      "gain": -11.9,
       "gate": -67.1,
       "lead": 38,
       "matches": "sawa",
@@ -8508,7 +8515,7 @@
     "sentensi": {
       "author": "Waithera Were",
       "file": "words/sentensi.mp3",
-      "gain": -3.1,
+      "gain": -5.4,
       "gate": -71.2,
       "lead": 22,
       "matches": "sentensi",
@@ -8519,7 +8526,7 @@
     "serikali": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/serikali.mp3",
-      "gain": 5.5,
+      "gain": 3.9,
       "lead": 103,
       "matches": "serikali",
       "mos": 3.02,
@@ -8529,7 +8536,7 @@
     "shaka": {
       "author": "Waithera Were",
       "file": "words/shaka.mp3",
-      "gain": -7.2,
+      "gain": -9.8,
       "gate": -69.8,
       "lead": 32,
       "matches": "shaka",
@@ -8540,7 +8547,7 @@
     "shangazi": {
       "author": "Waithera Were",
       "file": "words/shangazi.mp3",
-      "gain": -6.7,
+      "gain": -8.7,
       "gate": -68.3,
       "lead": 37,
       "matches": "shangazi",
@@ -8551,7 +8558,7 @@
     "shati": {
       "author": "Waithera Were",
       "file": "words/shati.mp3",
-      "gain": -8.3,
+      "gain": -11.7,
       "gate": -67.6,
       "lead": 24,
       "matches": "shati",
@@ -8562,7 +8569,7 @@
     "shemeji": {
       "author": "Waithera Were",
       "file": "words/shemeji.mp3",
-      "gain": -8.4,
+      "gain": -11.8,
       "gate": -62.3,
       "lead": 49,
       "matches": "shemeji",
@@ -8573,7 +8580,7 @@
     "sherehe": {
       "author": "Waithera Were",
       "file": "words/sherehe.mp3",
-      "gain": -9.3,
+      "gain": -11.1,
       "gate": -66.0,
       "lead": 34,
       "matches": "sherehe",
@@ -8584,7 +8591,7 @@
     "sheria": {
       "author": "Waithera Were",
       "file": "words/sheria.mp3",
-      "gain": -6.2,
+      "gain": -7.9,
       "gate": -69.5,
       "lead": 14,
       "matches": "sheria",
@@ -8595,7 +8602,7 @@
     "shikamoo": {
       "author": "Waithera Were",
       "file": "words/shikamoo.mp3",
-      "gain": -5.8,
+      "gain": -5.7,
       "gate": -67.3,
       "lead": 12,
       "matches": "shikamoo",
@@ -8606,7 +8613,7 @@
     "shingo": {
       "author": "Waithera Were",
       "file": "words/shingo.mp3",
-      "gain": 2.2,
+      "gain": 1.8,
       "gate": -68.9,
       "lead": 21,
       "matches": "shingo",
@@ -8617,7 +8624,7 @@
     "shule": {
       "author": "Waithera Were",
       "file": "words/shule.mp3",
-      "gain": -4.7,
+      "gain": -4.8,
       "gate": -64.7,
       "lead": 18,
       "matches": "shule",
@@ -8628,7 +8635,7 @@
     "shuleni": {
       "author": "Waithera Were",
       "file": "words/shuleni.mp3",
-      "gain": -12.4,
+      "gain": -14.8,
       "gate": -67.8,
       "lead": 23,
       "matches": "shuleni",
@@ -8639,7 +8646,7 @@
     "si": {
       "author": "Waithera Were",
       "file": "words/si.mp3",
-      "gain": 0.4,
+      "gain": 0.6,
       "gate": -74.4,
       "lead": 27,
       "matches": "si",
@@ -8650,7 +8657,7 @@
     "siagi": {
       "author": "Waithera Were",
       "file": "words/siagi.mp3",
-      "gain": -4.7,
+      "gain": -7.3,
       "gate": -67.0,
       "lead": 20,
       "matches": "siagi",
@@ -8661,7 +8668,7 @@
     "sikio": {
       "author": "Waithera Were",
       "file": "words/sikio.mp3",
-      "gain": -3.0,
+      "gain": -5.1,
       "gate": -71.6,
       "lead": 32,
       "matches": "sikio",
@@ -8672,7 +8679,7 @@
     "siku": {
       "author": "Waithera Were",
       "file": "words/siku.mp3",
-      "gain": -4.4,
+      "gain": -5.7,
       "gate": -69.4,
       "lead": 35,
       "matches": "siku",
@@ -8683,7 +8690,7 @@
     "siku hizi": {
       "author": "Waithera Were",
       "file": "words/sikuu0020hizi.mp3",
-      "gain": -5.8,
+      "gain": -4.9,
       "gate": -67.9,
       "lead": 38,
       "matches": "siku hizi",
@@ -8694,7 +8701,7 @@
     "siku ya kuzaliwa": {
       "author": "Waithera Were",
       "file": "words/sikuu0020yau0020kuzaliwa.mp3",
-      "gain": -4.5,
+      "gain": -7.9,
       "gate": -95.7,
       "lead": 202,
       "matches": "siku ya kuzaliwa",
@@ -8705,7 +8712,7 @@
     "simu": {
       "author": "Byera04",
       "file": "words/simu.mp3",
-      "gain": -0.9,
+      "gain": 2.2,
       "gate": -63.6,
       "lead": 167,
       "matches": "simu",
@@ -8716,7 +8723,7 @@
     "sina pesa": {
       "author": "Waithera Were",
       "file": "words/sinau0020pesa.mp3",
-      "gain": -10.6,
+      "gain": -12.6,
       "gate": -66.3,
       "lead": 36,
       "matches": "sina pesa",
@@ -8727,7 +8734,7 @@
     "sinema": {
       "author": "Waithera Were",
       "file": "words/sinema.mp3",
-      "gain": -1.1,
+      "gain": -4.0,
       "gate": -69.9,
       "lead": 18,
       "matches": "sinema",
@@ -8738,7 +8745,7 @@
     "sisi": {
       "author": "Waithera Were",
       "file": "words/sisi.mp3",
-      "gain": -2.1,
+      "gain": -3.4,
       "gate": -69.8,
       "lead": 30,
       "matches": "sisi",
@@ -8749,7 +8756,7 @@
     "skrini": {
       "author": "Waithera Were",
       "file": "words/skrini.mp3",
-      "gain": -1.3,
+      "gain": -2.1,
       "gate": -70.7,
       "lead": 25,
       "matches": "skrini",
@@ -8760,7 +8767,7 @@
     "soketi": {
       "author": "Waithera Were",
       "file": "words/soketi.mp3",
-      "gain": -5.7,
+      "gain": -7.6,
       "gate": -64.4,
       "lead": 38,
       "matches": "soketi",
@@ -8771,7 +8778,7 @@
     "soko": {
       "author": "Waithera Were",
       "file": "words/soko.mp3",
-      "gain": -7.2,
+      "gain": -9.1,
       "gate": -69.5,
       "lead": 43,
       "matches": "soko",
@@ -8782,7 +8789,7 @@
     "soksi": {
       "author": "Waithera Were",
       "file": "words/soksi.mp3",
-      "gain": -0.1,
+      "gain": -1.5,
       "gate": -71.6,
       "lead": 33,
       "matches": "soksi",
@@ -8793,7 +8800,7 @@
     "soma kwa sauti": {
       "author": "Waithera Were",
       "file": "words/somau0020kwau0020sauti.mp3",
-      "gain": -5.1,
+      "gain": -6.3,
       "gate": -98.0,
       "lead": 133,
       "matches": "soma kwa sauti",
@@ -8804,7 +8811,7 @@
     "somo": {
       "author": "Waithera Were",
       "file": "words/somo.mp3",
-      "gain": -6.1,
+      "gain": -6.6,
       "gate": -71.5,
       "lead": 21,
       "matches": "somo",
@@ -8815,7 +8822,7 @@
     "spika": {
       "author": "Waithera Were",
       "file": "words/spika.mp3",
-      "gain": -2.3,
+      "gain": -2.5,
       "gate": -69.6,
       "lead": 30,
       "matches": "spika",
@@ -8826,7 +8833,7 @@
     "stesheni ya treni": {
       "author": "Waithera Were",
       "file": "words/stesheniu0020yau0020treni.mp3",
-      "gain": -6.9,
+      "gain": -9.5,
       "gate": -67.1,
       "lead": 32,
       "matches": "stesheni ya treni",
@@ -8837,7 +8844,7 @@
     "sufuria": {
       "author": "Waithera Were",
       "file": "words/sufuria.mp3",
-      "gain": -2.3,
+      "gain": -4.9,
       "gate": -69.7,
       "lead": 31,
       "matches": "sufuria",
@@ -8848,7 +8855,7 @@
     "sukari": {
       "author": "Waithera Were",
       "file": "words/sukari.mp3",
-      "gain": -5.1,
+      "gain": -7.5,
       "gate": -69.9,
       "lead": 26,
       "matches": "sukari",
@@ -8859,7 +8866,7 @@
     "supu": {
       "author": "Waithera Were",
       "file": "words/supu.mp3",
-      "gain": 0.2,
+      "gain": -0.9,
       "gate": -74.6,
       "lead": 36,
       "matches": "supu",
@@ -8870,7 +8877,7 @@
     "suruali": {
       "author": "Waithera Were",
       "file": "words/suruali.mp3",
-      "gain": -4.5,
+      "gain": -6.7,
       "gate": -70.0,
       "lead": 26,
       "matches": "suruali",
@@ -8881,7 +8888,7 @@
     "swali": {
       "author": "Waithera Were",
       "file": "words/swali.mp3",
-      "gain": -7.5,
+      "gain": -10.0,
       "gate": -73.0,
       "lead": 21,
       "matches": "swali",
@@ -8892,7 +8899,7 @@
     "sweta": {
       "author": "Waithera Were",
       "file": "words/sweta.mp3",
-      "gain": -4.0,
+      "gain": -6.3,
       "gate": -65.3,
       "lead": 30,
       "matches": "sweta",
@@ -8903,7 +8910,7 @@
     "taa": {
       "author": "Waithera Were",
       "file": "words/taa.mp3",
-      "gain": -9.3,
+      "gain": -10.3,
       "gate": -67.8,
       "lead": 41,
       "matches": "taa",
@@ -8914,7 +8921,7 @@
     "taaluma": {
       "author": "Waithera Were",
       "file": "words/taaluma.mp3",
-      "gain": -9.1,
+      "gain": -12.5,
       "gate": -65.4,
       "lead": 48,
       "matches": "taaluma",
@@ -8925,7 +8932,7 @@
     "tabasamu": {
       "author": "Waithera Were",
       "file": "words/tabasamu.mp3",
-      "gain": -9.2,
+      "gain": -10.8,
       "gate": -65.3,
       "lead": 47,
       "matches": "tabasamu",
@@ -8936,7 +8943,7 @@
     "tafadhali": {
       "author": "Waithera Were",
       "file": "words/tafadhali.mp3",
-      "gain": -10.2,
+      "gain": -13.0,
       "gate": -64.2,
       "lead": 50,
       "matches": "tafadhali",
@@ -8947,7 +8954,7 @@
     "tahadhari": {
       "author": "Waithera Were",
       "file": "words/tahadhari.mp3",
-      "gain": -6.8,
+      "gain": -8.8,
       "gate": -99.7,
       "lead": 244,
       "matches": "tahadhari",
@@ -8958,7 +8965,7 @@
     "tairi": {
       "author": "Waithera Were",
       "file": "words/tairi.mp3",
-      "gain": -3.8,
+      "gain": -7.7,
       "gate": -72.6,
       "lead": 43,
       "matches": "tairi",
@@ -8969,7 +8976,7 @@
     "tajiri": {
       "author": "Waithera Were",
       "file": "words/tajiri.mp3",
-      "gain": -2.0,
+      "gain": -5.5,
       "gate": -68.7,
       "lead": 44,
       "matches": "tajiri",
@@ -8980,7 +8987,7 @@
     "takriban": {
       "author": "Waithera Were",
       "file": "words/takriban.mp3",
-      "gain": -6.6,
+      "gain": -9.1,
       "gate": -99.3,
       "lead": 230,
       "matches": "takriban",
@@ -8991,7 +8998,7 @@
     "tamu": {
       "author": "Waithera Were",
       "file": "words/tamu.mp3",
-      "gain": -9.3,
+      "gain": -12.4,
       "gate": -63.8,
       "lead": 59,
       "matches": "tamu",
@@ -9002,7 +9009,7 @@
     "tangu": {
       "author": "Waithera Were",
       "file": "words/tangu.mp3",
-      "gain": -8.6,
+      "gain": -10.1,
       "gate": -69.2,
       "lead": 44,
       "matches": "tangu",
@@ -9013,7 +9020,7 @@
     "tarehe": {
       "author": "Waithera Were",
       "file": "words/tarehe.mp3",
-      "gain": -9.8,
+      "gain": -12.3,
       "gate": -67.1,
       "lead": 44,
       "matches": "tarehe",
@@ -9024,7 +9031,7 @@
     "tatizo": {
       "author": "Waithera Were",
       "file": "words/tatizo.mp3",
-      "gain": -0.1,
+      "gain": -2.2,
       "gate": -69.9,
       "lead": 49,
       "matches": "tatizo",
@@ -9035,7 +9042,7 @@
     "taulo": {
       "author": "Waithera Were",
       "file": "words/taulo.mp3",
-      "gain": -7.4,
+      "gain": -10.2,
       "gate": -66.8,
       "lead": 44,
       "matches": "taulo",
@@ -9046,7 +9053,7 @@
     "tayari": {
       "author": "Waithera Were",
       "file": "words/tayari.mp3",
-      "gain": -10.6,
+      "gain": -12.4,
       "gate": -65.4,
       "lead": 41,
       "matches": "tayari",
@@ -9057,7 +9064,7 @@
     "teksi": {
       "author": "Waithera Were",
       "file": "words/teksi.mp3",
-      "gain": -0.1,
+      "gain": -4.1,
       "gate": -70.8,
       "lead": 41,
       "matches": "teksi",
@@ -9068,7 +9075,7 @@
     "televisheni": {
       "author": "Waithera Were",
       "file": "words/televisheni.mp3",
-      "gain": -0.1,
+      "gain": -2.3,
       "gate": -67.7,
       "matches": "televisheni",
       "mos": 2.63,
@@ -9078,7 +9085,7 @@
     "tembo": {
       "author": "Waithera Were",
       "file": "words/tembo.mp3",
-      "gain": -6.5,
+      "gain": -9.5,
       "gate": -66.9,
       "lead": 48,
       "matches": "tembo",
@@ -9089,7 +9096,7 @@
     "tena": {
       "author": "Waithera Were",
       "file": "words/tena.mp3",
-      "gain": -7.8,
+      "gain": -10.9,
       "gate": -67.0,
       "lead": 43,
       "matches": "tena",
@@ -9100,7 +9107,7 @@
     "tezi": {
       "author": "Waithera Were",
       "file": "words/tezi.mp3",
-      "gain": -7.5,
+      "gain": -10.8,
       "gate": -69.5,
       "lead": 40,
       "matches": "tezi",
@@ -9111,7 +9118,7 @@
     "theluji": {
       "author": "Waithera Were",
       "file": "words/theluji.mp3",
-      "gain": -1.4,
+      "gain": -4.2,
       "gate": -65.4,
       "lead": 27,
       "matches": "theluji",
@@ -9122,7 +9129,7 @@
     "tiketi": {
       "author": "Waithera Were",
       "file": "words/tiketi.mp3",
-      "gain": -6.1,
+      "gain": -10.0,
       "gate": -67.0,
       "lead": 46,
       "matches": "tiketi",
@@ -9133,7 +9140,7 @@
     "tofauti": {
       "author": "Waithera Were",
       "file": "words/tofauti.mp3",
-      "gain": -7.4,
+      "gain": -9.3,
       "gate": -66.9,
       "lead": 46,
       "matches": "tofauti",
@@ -9144,7 +9151,7 @@
     "toroli": {
       "author": "Waithera Were",
       "file": "words/toroli.mp3",
-      "gain": -7.2,
+      "gain": -7.5,
       "gate": -68.2,
       "lead": 44,
       "matches": "toroli",
@@ -9155,7 +9162,7 @@
     "treni": {
       "author": "Waithera Were",
       "file": "words/treni.mp3",
-      "gain": -6.1,
+      "gain": -8.0,
       "gate": -67.9,
       "lead": 47,
       "matches": "treni",
@@ -9166,7 +9173,7 @@
     "tu": {
       "author": "Waithera Were",
       "file": "words/tu.mp3",
-      "gain": -1.3,
+      "gain": -1.2,
       "gate": -68.5,
       "lead": 49,
       "matches": "tu",
@@ -9177,7 +9184,7 @@
     "tufaha": {
       "author": "Waithera Were",
       "file": "words/tufaha.mp3",
-      "gain": -10.2,
+      "gain": -12.7,
       "gate": -61.4,
       "lead": 44,
       "matches": "tufaha",
@@ -9188,7 +9195,7 @@
     "tumbili": {
       "author": "Waithera Were",
       "file": "words/tumbili.mp3",
-      "gain": -2.7,
+      "gain": -4.0,
       "gate": -69.8,
       "lead": 41,
       "matches": "tumbili",
@@ -9199,7 +9206,7 @@
     "tumbo": {
       "author": "Waithera Were",
       "file": "words/tumbo.mp3",
-      "gain": -7.1,
+      "gain": -6.6,
       "gate": -66.9,
       "lead": 44,
       "matches": "tumbo",
@@ -9210,7 +9217,7 @@
     "tunda": {
       "author": "Waithera Were",
       "file": "words/tunda.mp3",
-      "gain": -1.6,
+      "gain": -3.3,
       "gate": -68.0,
       "lead": 44,
       "matches": "tunda",
@@ -9221,7 +9228,7 @@
     "tupu": {
       "author": "Waithera Were",
       "file": "words/tupu.mp3",
-      "gain": -4.0,
+      "gain": -3.1,
       "gate": -68.9,
       "lead": 40,
       "matches": "tupu",
@@ -9232,7 +9239,7 @@
     "ua": {
       "author": "Waithera Were",
       "file": "words/ua.mp3",
-      "gain": -4.9,
+      "gain": -6.5,
       "gate": -70.8,
       "lead": 39,
       "matches": "ua",
@@ -9243,7 +9250,7 @@
     "ubao": {
       "author": "Waithera Were",
       "file": "words/ubao.mp3",
-      "gain": -9.1,
+      "gain": -10.9,
       "gate": -68.8,
       "lead": 45,
       "matches": "ubao",
@@ -9254,7 +9261,7 @@
     "ubongo": {
       "author": "Waithera Were",
       "file": "words/ubongo.mp3",
-      "gain": -7.2,
+      "gain": -7.9,
       "gate": -69.2,
       "lead": 41,
       "matches": "ubongo",
@@ -9265,7 +9272,7 @@
     "uchaguzi": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/uchaguzi.mp3",
-      "gain": 8.2,
+      "gain": 8.3,
       "lead": 189,
       "matches": "uchaguzi",
       "mos": 3.28,
@@ -9275,7 +9282,6 @@
     "ufukwe": {
       "author": "Waithera Were",
       "file": "words/ufukwe.mp3",
-      "gain": -1.4,
       "gate": -66.5,
       "lead": 39,
       "matches": "ufukwe",
@@ -9286,7 +9292,7 @@
     "ufunguo": {
       "author": "Waithera Were",
       "file": "words/ufunguo.mp3",
-      "gain": -2.0,
+      "gain": -1.0,
       "gate": -67.8,
       "lead": 46,
       "matches": "ufunguo",
@@ -9297,7 +9303,7 @@
     "ugali": {
       "author": "Waithera Were",
       "file": "words/ugali.mp3",
-      "gain": -8.3,
+      "gain": -9.9,
       "gate": -67.4,
       "lead": 46,
       "matches": "ugali",
@@ -9308,7 +9314,7 @@
     "ugonjwa": {
       "author": "Waithera Were",
       "file": "words/ugonjwa.mp3",
-      "gain": -3.0,
+      "gain": -2.6,
       "gate": -66.1,
       "lead": 41,
       "matches": "ugonjwa",
@@ -9319,7 +9325,7 @@
     "uhuru": {
       "author": "Waithera Were",
       "file": "words/uhuru.mp3",
-      "gain": -0.3,
+      "gain": 0.7,
       "gate": -69.8,
       "lead": 44,
       "matches": "uhuru",
@@ -9330,7 +9336,7 @@
     "ujana": {
       "author": "Waithera Were",
       "file": "words/ujana.mp3",
-      "gain": -6.5,
+      "gain": -8.4,
       "gate": -67.1,
       "lead": 41,
       "matches": "ujana",
@@ -9341,7 +9347,7 @@
     "uji": {
       "author": "Goethe-Institut Cameroon",
       "file": "words/uji.mp3",
-      "gain": -1.6,
+      "gain": 2.4,
       "gate": -90.2,
       "lead": 593,
       "matches": "uji",
@@ -9352,7 +9358,7 @@
     "ujumbe": {
       "author": "Waithera Were",
       "file": "words/ujumbe.mp3",
-      "gain": 0.4,
+      "gain": 1.2,
       "gate": -68.1,
       "lead": 44,
       "matches": "ujumbe",
@@ -9363,7 +9369,7 @@
     "ujuzi": {
       "author": "Waithera Were",
       "file": "words/ujuzi.mp3",
-      "gain": -4.2,
+      "gain": -5.3,
       "gate": -64.3,
       "lead": 49,
       "matches": "ujuzi",
@@ -9374,7 +9380,7 @@
     "ukurasa": {
       "author": "Waithera Were",
       "file": "words/ukurasa.mp3",
-      "gain": -6.3,
+      "gain": -9.0,
       "gate": -63.8,
       "lead": 48,
       "matches": "ukurasa",
@@ -9385,7 +9391,7 @@
     "ukuta": {
       "author": "Waithera Were",
       "file": "words/ukuta.mp3",
-      "gain": -3.8,
+      "gain": -3.4,
       "gate": -68.1,
       "lead": 40,
       "matches": "ukuta",
@@ -9407,7 +9413,7 @@
     "uma": {
       "author": "Waithera Were",
       "file": "words/uma.mp3",
-      "gain": 2.0,
+      "gain": 1.3,
       "gate": -69.1,
       "lead": 47,
       "matches": "uma",
@@ -9418,7 +9424,7 @@
     "umeme": {
       "author": "Waithera Were",
       "file": "words/umeme.mp3",
-      "gain": -4.5,
+      "gain": -6.8,
       "gate": -66.4,
       "lead": 49,
       "matches": "umeme",
@@ -9429,7 +9435,7 @@
     "umri": {
       "author": "Waithera Were",
       "file": "words/umri.mp3",
-      "gain": -2.7,
+      "gain": -2.4,
       "gate": -69.1,
       "lead": 42,
       "matches": "umri",
@@ -9440,7 +9446,7 @@
     "unatoka wapi": {
       "author": "Waithera Were",
       "file": "words/unatokau0020wapi.mp3",
-      "gain": -7.8,
+      "gain": -9.7,
       "gate": -59.3,
       "lead": 40,
       "matches": "unatoka wapi",
@@ -9451,7 +9457,7 @@
     "unga": {
       "author": "Waithera Were",
       "file": "words/unga.mp3",
-      "gain": -3.0,
+      "gain": -5.0,
       "gate": -69.4,
       "lead": 42,
       "matches": "unga",
@@ -9462,7 +9468,7 @@
     "upendo": {
       "author": "Waithera Were",
       "file": "words/upendo.mp3",
-      "gain": -4.5,
+      "gain": -6.1,
       "gate": -65.2,
       "lead": 43,
       "matches": "upendo",
@@ -9473,7 +9479,7 @@
     "upepo": {
       "author": "Waithera Were",
       "file": "words/upepo.mp3",
-      "gain": -4.2,
+      "gain": -6.3,
       "gate": -66.7,
       "lead": 48,
       "matches": "upepo",
@@ -9484,7 +9490,7 @@
     "uraia": {
       "author": "Waithera Were",
       "file": "words/uraia.mp3",
-      "gain": -8.4,
+      "gain": -11.7,
       "gate": -64.9,
       "lead": 42,
       "matches": "uraia",
@@ -9495,7 +9501,7 @@
     "usajili": {
       "author": "Waithera Were",
       "file": "words/usajili.mp3",
-      "gain": -0.6,
+      "gain": -3.3,
       "gate": -65.7,
       "lead": 39,
       "matches": "usajili",
@@ -9506,7 +9512,7 @@
     "usawa": {
       "author": "Waithera Were",
       "file": "words/usawa.mp3",
-      "gain": -7.8,
+      "gain": -9.9,
       "gate": -65.0,
       "lead": 49,
       "matches": "usawa",
@@ -9517,7 +9523,7 @@
     "ushauri": {
       "author": "Waithera Were",
       "file": "words/ushauri.mp3",
-      "gain": -2.6,
+      "gain": -5.5,
       "gate": -64.1,
       "lead": 44,
       "matches": "ushauri",
@@ -9528,7 +9534,7 @@
     "usiku": {
       "author": "Waithera Were",
       "file": "words/usiku.mp3",
-      "gain": -1.1,
+      "gain": 0.7,
       "gate": -67.8,
       "lead": 48,
       "matches": "usiku",
@@ -9539,7 +9545,7 @@
     "usiku mwema": {
       "author": "Waithera Were",
       "file": "words/usikuu0020mwema.mp3",
-      "gain": -4.7,
+      "gain": -7.2,
       "gate": -63.2,
       "lead": 40,
       "matches": "usiku mwema",
@@ -9550,7 +9556,7 @@
     "usiku wa manane": {
       "author": "Waithera Were",
       "file": "words/usikuu0020wau0020manane.mp3",
-      "gain": -6.2,
+      "gain": -7.9,
       "gate": -97.6,
       "lead": 243,
       "matches": "usiku wa manane",
@@ -9561,7 +9567,7 @@
     "uso": {
       "author": "Waithera Were",
       "file": "words/uso.mp3",
-      "gain": -8.7,
+      "gain": -7.8,
       "gate": -60.7,
       "lead": 59,
       "matches": "uso",
@@ -9572,7 +9578,7 @@
     "utoto": {
       "author": "Waithera Were",
       "file": "words/utoto.mp3",
-      "gain": -5.7,
+      "gain": -7.9,
       "gate": -65.6,
       "lead": 49,
       "matches": "utoto",
@@ -9583,7 +9589,7 @@
     "utumbo": {
       "author": "Waithera Were",
       "file": "words/utumbo.mp3",
-      "gain": 1.7,
+      "gain": 3.5,
       "gate": -65.1,
       "lead": 45,
       "matches": "utumbo",
@@ -9594,7 +9600,7 @@
     "uwanja wa ndege": {
       "author": "Byera04",
       "file": "words/uwanjau0020wau0020ndege.mp3",
-      "gain": 3.9,
+      "gain": 4.4,
       "gate": -66.0,
       "lead": 187,
       "matches": "uwanja wa ndege",
@@ -9605,7 +9611,7 @@
     "uzazi": {
       "author": "Waithera Were",
       "file": "words/uzazi.mp3",
-      "gain": -5.4,
+      "gain": -7.3,
       "gate": -57.5,
       "lead": 40,
       "matches": "uzazi",
@@ -9616,7 +9622,7 @@
     "vipi": {
       "author": "Waithera Were",
       "file": "words/vipi.mp3",
-      "gain": -4.0,
+      "gain": -4.8,
       "gate": -67.7,
       "lead": 35,
       "matches": "vipi",
@@ -9627,7 +9633,7 @@
     "vita": {
       "author": "Waithera Were",
       "file": "words/vita.mp3",
-      "gain": -7.2,
+      "gain": -9.9,
       "gate": -100.0,
       "lead": 162,
       "matches": "vita",
@@ -9638,7 +9644,7 @@
     "viza": {
       "author": "Waithera Were",
       "file": "words/viza.mp3",
-      "gain": -5.0,
+      "gain": -5.1,
       "gate": -63.3,
       "lead": 31,
       "matches": "viza",
@@ -9649,7 +9655,7 @@
     "wakati": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/wakati.mp3",
-      "gain": 7.9,
+      "gain": 7.6,
       "lead": 194,
       "matches": "wakati",
       "mos": 3.02,
@@ -9659,7 +9665,7 @@
     "wakwe": {
       "author": "Waithera Were",
       "file": "words/wakwe.mp3",
-      "gain": -7.3,
+      "gain": -10.8,
       "lead": 228,
       "matches": "wakwe",
       "mos": 2.75,
@@ -9669,7 +9675,7 @@
     "wali": {
       "author": "Waithera Were",
       "file": "words/wali.mp3",
-      "gain": -8.6,
+      "gain": -10.7,
       "gate": -65.9,
       "lead": 41,
       "matches": "wali",
@@ -9680,7 +9686,7 @@
     "wao": {
       "author": "Waithera Were",
       "file": "words/wao.mp3",
-      "gain": -11.0,
+      "gain": -11.8,
       "gate": -65.7,
       "lead": 39,
       "matches": "wao",
@@ -9691,7 +9697,7 @@
     "wapi": {
       "author": "Waithera Were",
       "file": "words/wapi.mp3",
-      "gain": -4.4,
+      "gain": -6.8,
       "gate": -69.6,
       "lead": 45,
       "matches": "wapi",
@@ -9702,7 +9708,7 @@
     "wasifu": {
       "author": "Waithera Were",
       "file": "words/wasifu.mp3",
-      "gain": -7.9,
+      "gain": -9.9,
       "lead": 222,
       "matches": "wasifu",
       "mos": 3.04,
@@ -9712,7 +9718,7 @@
     "wasilisha": {
       "author": "Waithera Were",
       "file": "words/wasilisha.mp3",
-      "gain": -6.2,
+      "gain": -7.1,
       "gate": -98.7,
       "lead": 226,
       "matches": "wasilisha",
@@ -9723,7 +9729,7 @@
     "wasiwasi": {
       "author": "Waithera Were",
       "file": "words/wasiwasi.mp3",
-      "gain": -8.3,
+      "gain": -11.1,
       "gate": -64.5,
       "lead": 38,
       "matches": "wasiwasi",
@@ -9734,7 +9740,7 @@
     "wazazi": {
       "author": "Waithera Were",
       "file": "words/wazazi.mp3",
-      "gain": -8.1,
+      "gain": -11.6,
       "gate": -70.9,
       "lead": 43,
       "matches": "wazazi",
@@ -9745,7 +9751,7 @@
     "wazi": {
       "author": "Waithera Were",
       "file": "words/wazi.mp3",
-      "gain": -8.8,
+      "gain": -11.3,
       "gate": -61.2,
       "lead": 38,
       "matches": "wazi",
@@ -9756,7 +9762,7 @@
     "wembe": {
       "author": "Waithera Were",
       "file": "words/wembe.mp3",
-      "gain": -6.5,
+      "gain": -9.7,
       "gate": -63.6,
       "lead": 40,
       "matches": "wembe",
@@ -9767,7 +9773,7 @@
     "wengu": {
       "author": "Waithera Were",
       "file": "words/wengu.mp3",
-      "gain": -2.5,
+      "gain": -4.8,
       "gate": -68.1,
       "lead": 35,
       "matches": "wengu",
@@ -9778,7 +9784,7 @@
     "wewe": {
       "author": "Waithera Were",
       "file": "words/wewe.mp3",
-      "gain": -6.1,
+      "gain": -9.2,
       "gate": -70.2,
       "lead": 48,
       "matches": "wewe",
@@ -9789,7 +9795,7 @@
     "wikendi": {
       "author": "Waithera Were",
       "file": "words/wikendi.mp3",
-      "gain": -2.8,
+      "gain": -4.9,
       "gate": -69.6,
       "lead": 41,
       "matches": "wikendi",
@@ -9800,7 +9806,7 @@
     "wiki": {
       "author": "Waithera Were",
       "file": "words/wiki.mp3",
-      "gain": 0.2,
+      "gain": -2.1,
       "gate": -67.2,
       "lead": 35,
       "matches": "wiki",
@@ -9811,7 +9817,7 @@
     "wiki ijayo": {
       "author": "Waithera Were",
       "file": "words/wikiu0020ijayo.mp3",
-      "gain": -6.4,
+      "gain": -10.2,
       "gate": -99.2,
       "lead": 223,
       "matches": "wiki ijayo",
@@ -9822,7 +9828,7 @@
     "wimbi": {
       "author": "Waithera Were",
       "file": "words/wimbi.mp3",
-      "gain": -4.1,
+      "gain": -5.0,
       "gate": -64.9,
       "lead": 45,
       "matches": "wimbi",
@@ -9833,7 +9839,7 @@
     "wimbo": {
       "author": "Waithera Were",
       "file": "words/wimbo.mp3",
-      "gain": -3.2,
+      "gain": -3.8,
       "gate": -64.9,
       "lead": 45,
       "matches": "wimbo",
@@ -9844,7 +9850,7 @@
     "wingu": {
       "author": "Waithera Were",
       "file": "words/wingu.mp3",
-      "gain": -3.2,
+      "gain": -4.4,
       "gate": -63.3,
       "lead": 28,
       "matches": "wingu",
@@ -9855,7 +9861,7 @@
     "wivu": {
       "author": "Waithera Were",
       "file": "words/wivu.mp3",
-      "gain": -4.3,
+      "gain": -5.1,
       "gate": -65.3,
       "lead": 42,
       "matches": "wivu",
@@ -9866,7 +9872,7 @@
     "woga": {
       "author": "Waithera Were",
       "file": "words/woga.mp3",
-      "gain": -8.8,
+      "gain": -8.6,
       "gate": -68.7,
       "lead": 44,
       "matches": "woga",
@@ -9877,7 +9883,7 @@
     "yai": {
       "author": "Goethe-Institut Cameroon",
       "file": "words/yai.mp3",
-      "gain": -3.7,
+      "gain": -4.7,
       "gate": -93.5,
       "lead": 669,
       "matches": "yai",
@@ -9888,7 +9894,7 @@
     "yeye": {
       "author": "Waithera Were",
       "file": "words/yeye.mp3",
-      "gain": -6.8,
+      "gain": -9.6,
       "gate": -66.1,
       "lead": 33,
       "matches": "yeye",
@@ -9899,7 +9905,7 @@
     "zaidi": {
       "author": "Ismail Ibn Ahmed",
       "file": "words/zaidi.mp3",
-      "gain": 6.3,
+      "gain": 5.8,
       "lead": 179,
       "matches": "zaidi",
       "mos": 2.47,
@@ -9909,7 +9915,7 @@
     "zamani": {
       "author": "Waithera Were",
       "file": "words/zamani.mp3",
-      "gain": -9.3,
+      "gain": -12.0,
       "gate": -64.7,
       "lead": 37,
       "matches": "zamani",
@@ -9920,7 +9926,7 @@
     "zambarau": {
       "author": "Waithera Were",
       "file": "words/zambarau.mp3",
-      "gain": -12.0,
+      "gain": -13.3,
       "gate": -63.8,
       "lead": 10,
       "matches": "zambarau",
@@ -9931,7 +9937,7 @@
     "zamu": {
       "author": "Waithera Were",
       "file": "words/zamu.mp3",
-      "gain": -7.3,
+      "gain": -9.3,
       "gate": -70.4,
       "lead": 37,
       "matches": "zamu",
@@ -9942,7 +9948,7 @@
     "zawadi": {
       "author": "Waithera Were",
       "file": "words/zawadi.mp3",
-      "gain": -9.7,
+      "gain": -12.1,
       "gate": -66.1,
       "lead": 31,
       "matches": "zawadi",
@@ -9953,7 +9959,7 @@
     "zee": {
       "author": "Waithera Were",
       "file": "words/zee.mp3",
-      "gain": -8.6,
+      "gain": -10.8,
       "gate": -65.4,
       "lead": 44,
       "matches": "zee",
@@ -9964,7 +9970,7 @@
     "zima": {
       "author": "Waithera Were",
       "file": "words/zima.mp3",
-      "gain": -5.1,
+      "gain": -5.3,
       "gate": -67.0,
       "lead": 29,
       "matches": "zima",
@@ -9975,7 +9981,7 @@
     "zito": {
       "author": "Waithera Were",
       "file": "words/zito.mp3",
-      "gain": -4.4,
+      "gain": -5.1,
       "gate": -69.8,
       "lead": 37,
       "matches": "zito",
@@ -9986,7 +9992,7 @@
     "ziwa": {
       "author": "Waithera Were",
       "file": "words/ziwa.mp3",
-      "gain": -0.8,
+      "gain": -1.0,
       "gate": -67.2,
       "lead": 21,
       "matches": "ziwa",
@@ -9997,7 +10003,7 @@
     "zoezi": {
       "author": "Waithera Were",
       "file": "words/zoezi.mp3",
-      "gain": -3.3,
+      "gain": -5.3,
       "gate": -65.0,
       "lead": 39,
       "matches": "zoezi",
@@ -10008,7 +10014,7 @@
     "zulia": {
       "author": "Waithera Were",
       "file": "words/zulia.mp3",
-      "gain": 0.7,
+      "gain": -1.2,
       "gate": -69.6,
       "lead": 26,
       "matches": "zulia",
@@ -10019,7 +10025,7 @@
     "zuri": {
       "author": "Waithera Were",
       "file": "words/zuri.mp3",
-      "gain": -6.7,
+      "gain": -7.4,
       "gate": -64.3,
       "lead": 22,
       "matches": "zuri",
