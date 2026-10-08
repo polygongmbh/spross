@@ -7,15 +7,15 @@
   "what": { "text": "що" },
   "this": { "text": "це" },
   "that": { "text": "те" },
-  "when": { "text": "коли" },
-  "why": { "text": "чому" },
+  "when": { "text": "коли́" },
+  "why": { "text": "чому́" },
   "how": { "text": "як" },
-  "which": { "text": "який", "forms": { "f": "яка", "n": "яке" } },
-  "how-many": { "text": "скільки" },
-  "where-are-they": { "text": "Де вони?" },
+  "which": { "text": "яки́й", "forms": { "f": "яка́", "n": "яке́" } },
+  "how-many": { "text": "скі́льки" },
+  "where-are-they": { "text": "Де вони́?" },
   "who-is-there": { "text": "Хто там?" },
-  "do-you-need-this": { "text": "Вам це потрібне?", "orders": ["Це вам потрібне?"] },
-  "when-does-it-start": { "text": "Коли це починається?" },
-  "what-time-is-it": { "text": "Котра година?" }
+  "do-you-need-this": { "text": "Вам це потрі́бне?", "orders": ["Це вам потрібне?"] },
+  "when-does-it-start": { "text": "Коли́ це почина́ється?" },
+  "what-time-is-it": { "text": "Котра́ годи́на?" }
  }
 }

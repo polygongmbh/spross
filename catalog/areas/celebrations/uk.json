@@ -2,16 +2,16 @@
  "title": "Свята",
  "subtitle": "Що ми святкуємо разом.",
  "words": {
-  "celebration": { "text": "свято", "teaches": ["святкування"] },
-  "to-celebrate": { "text": "святкувати" },
-  "birthday": { "text": "день народження", "forms": { "pl": "дні народження" } },
-  "birthday-party": { "text": "святкування дня народження" },
-  "gift": { "text": "подарунок" },
-  "to-give-a-present": { "text": "дарувати" },
-  "to-congratulate": { "text": "вітати", "accepts": ["поздоровляти"] },
-  "wedding": { "text": "весілля" },
-  "birth": { "text": "народження" },
-  "we-give-her-something-for-her-birthday": { "text": "Ми даруємо їй щось на день народження." },
-  "i-congratulate-them-on-their-wedding": { "text": "Я вітаю їх з весіллям." }
+  "celebration": { "text": "свя́то", "teaches": ["святкува́ння"] },
+  "to-celebrate": { "text": "святкува́ти" },
+  "birthday": { "text": "день наро́дження", "forms": { "pl": "дні наро́дження" } },
+  "birthday-party": { "text": "святкува́ння дня наро́дження" },
+  "gift": { "text": "подару́нок" },
+  "to-give-a-present": { "text": "дарува́ти" },
+  "to-congratulate": { "text": "віта́ти", "accepts": ["поздоровляти"] },
+  "wedding": { "text": "весі́лля" },
+  "birth": { "text": "наро́дження" },
+  "we-give-her-something-for-her-birthday": { "text": "Ми дару́ємо їй щось на день наро́дження." },
+  "i-congratulate-them-on-their-wedding": { "text": "Я віта́ю їх з весі́ллям." }
  }
 }

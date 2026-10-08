@@ -2,14 +2,14 @@
  "title": "Розум",
  "subtitle": "Що діється в голові.",
  "words": {
-  "to-think": { "text": "думати" },
-  "to-remember": { "text": "пам'ятати" },
-  "to-forget": { "text": "забувати" },
-  "to-imagine-something": { "text": "уявляти" },
-  "to-dream": { "text": "бачити сни" },
-  "to-hope": { "text": "сподіватися" },
-  "vision": { "text": "бачення" },
-  "to-remind": { "text": "нагадувати" },
-  "to-wish": { "text": "бажати" }
+  "to-think": { "text": "ду́мати" },
+  "to-remember": { "text": "пам'ята́ти" },
+  "to-forget": { "text": "забува́ти" },
+  "to-imagine-something": { "text": "уявля́ти" },
+  "to-dream": { "text": "ба́чити сни" },
+  "to-hope": { "text": "сподіва́тися" },
+  "vision": { "text": "ба́чення" },
+  "to-remind": { "text": "нага́дувати" },
+  "to-wish": { "text": "бажа́ти" }
  }
 }

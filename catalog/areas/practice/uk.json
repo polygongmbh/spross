@@ -1,13 +1,13 @@
 {
  "title": "Вправи та цілі",
  "words": {
-  "to-practice": { "text": "вправлятися" },
-  "to-try": { "text": "намагатися", "accepts": ["пробувати"] },
-  "to-study": { "text": "вчитися" },
-  "goal": { "text": "мета" },
-  "to-achieve": { "text": "досягати" },
-  "exercise": { "text": "вправа" },
-  "training": { "text": "тренування" },
-  "you-can-do-it": { "text": "Ти точно впораєшся!" }
+  "to-practice": { "text": "вправля́тися" },
+  "to-try": { "text": "намага́тися", "accepts": ["пробувати"] },
+  "to-study": { "text": "вчи́тися" },
+  "goal": { "text": "мета́" },
+  "to-achieve": { "text": "досяга́ти" },
+  "exercise": { "text": "впра́ва" },
+  "training": { "text": "тренува́ння" },
+  "you-can-do-it": { "text": "Ти то́чно впо́раєшся!" }
  }
 }

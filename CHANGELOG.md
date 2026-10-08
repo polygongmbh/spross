@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Ukrainian words now show which syllable carries the stress, and an answer typed without the mark still counts as right.
 - Plurals, feminine forms and other word forms now play a recorded voice where Wikimedia Commons has one, with their article too in German, Italian and French.
 - Recorded words now play at one level on every output, set by how loud they sound rather than by their raw energy, so Swahili no longer drops far below the other languages on the phone speaker.
 - On iPhone, a listening run you paused stays paused after a call or another app's audio ends instead of resuming by itself.

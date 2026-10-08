@@ -75,6 +75,12 @@ def speech_key(form):
     return apostrophe_folded(unicodedata.normalize('NFC', stem).lower())
 
 
+def stress_free(text):
+    """`text` without U+0301, the stress mark a catalog writes where NFC leaves it standing
+    (uk `пі́вніч`): Commons titles never carry it, so a title is compared without it."""
+    return text.replace('\u0301', '')
+
+
 def digest_of(path):
     with open(path, 'rb') as f:
         return hashlib.sha256(f.read()).hexdigest()
@@ -154,7 +160,7 @@ def keep_named_by_its_file(rows, drops):
         rest = apostrophe_folded(unicodedata.normalize("NFC", match.group("rest")).lower()) if match else ""
         if not match or not author or not rest.startswith(author + "-"):
             kept.append(row)
-        elif rest[len(author) + 1:] == speech_key(row["text"]):
+        elif rest[len(author) + 1:] == stress_free(speech_key(row["text"])):
             kept.append(row)
         else:
             drops.append(("misnamed", row["text"], '%s is not %s saying "%s"'

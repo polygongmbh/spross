@@ -1,18 +1,18 @@
 {
  "title": "Звуки та слух",
  "words": {
-  "loud": { "text": "гучний", "accepts": ["голосний", "гучно", "голосно"] },
-  "quiet": { "text": "тихий" },
+  "loud": { "text": "гучни́й", "accepts": ["голосний", "гучно", "голосно"] },
+  "quiet": { "text": "ти́хий" },
   "noise": { "text": "шум" },
-  "music": { "text": "музика" },
-  "radio": { "text": "радіо" },
-  "speaker": { "text": "колонка", "accepts": ["динамік"], "forms": { "pl": "колонки" } },
-  "headphones": { "text": "навушники", "grammar": { "plural": "only" } },
-  "microphone": { "text": "мікрофон", "forms": { "pl": "мікрофони" } },
-  "volume": { "text": "гучність" },
-  "to-listen-to": { "text": "слухати" },
-  "to-listen-to-music": { "text": "слухати музику" },
-  "to-play-instrument": { "text": "грати на інструменті", "notes": { "uk": "грати на гітарі, на піаніно." } },
-  "louder": { "text": "Голосніше!", "accepts": ["Гучніше!"] }
+  "music": { "text": "му́зика" },
+  "radio": { "text": "ра́діо" },
+  "speaker": { "text": "коло́нка", "accepts": ["динамік"], "forms": { "pl": "коло́нки" } },
+  "headphones": { "text": "наву́шники", "grammar": { "plural": "only" } },
+  "microphone": { "text": "мікрофо́н", "forms": { "pl": "мікрофо́ни" } },
+  "volume": { "text": "гу́чність" },
+  "to-listen-to": { "text": "слу́хати" },
+  "to-listen-to-music": { "text": "слу́хати му́зику" },
+  "to-play-instrument": { "text": "гра́ти на інструме́нті", "notes": { "uk": "грати на гітарі, на піаніно." } },
+  "louder": { "text": "Голосні́ше!", "accepts": ["Гучніше!"] }
  }
 }

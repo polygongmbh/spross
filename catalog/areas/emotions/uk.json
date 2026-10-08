@@ -2,29 +2,29 @@
  "title": "Емоції",
  "subtitle": "Настрої, що фарбують день.",
  "words": {
-  "joy": { "text": "радість" },
+  "joy": { "text": "ра́дість" },
   "sadness": { "text": "сум" },
   "anger": { "text": "гнів" },
   "fear": { "text": "страх" },
-  "surprise": { "text": "здивування" },
-  "worry": { "text": "тривога" },
-  "love": { "text": "любов" },
-  "shame": { "text": "сором" },
-  "jealousy": { "text": "ревнощі" },
-  "smile": { "text": "усмішка", "teaches": ["посмішка"] },
-  "to-smile": { "text": "усміхатися" },
+  "surprise": { "text": "здивува́ння" },
+  "worry": { "text": "триво́га" },
+  "love": { "text": "любо́в" },
+  "shame": { "text": "со́ром" },
+  "jealousy": { "text": "ре́внощі" },
+  "smile": { "text": "у́смішка", "teaches": ["по́смішка"] },
+  "to-smile": { "text": "усміха́тися" },
   "to-feel": {
-   "text": "почуватися",
+   "text": "почува́тися",
    "notes": {
     "uk": "Як ти почуваєшся? · коротше: мені добре, мені погано.",
     "de": "Unpersönlich mit Dativ: Мені погано — mir ist schlecht."
    }
   },
-  "to-cry": { "text": "плакати" },
-  "longing": { "text": "туга" },
-  "to-long-for": { "text": "тужити" },
-  "doubt": { "text": "сумнів" },
-  "to-confuse": { "text": "заплутувати" },
-  "to-be-confused": { "text": "бути розгубленим" }
+  "to-cry": { "text": "пла́кати" },
+  "longing": { "text": "ту́га" },
+  "to-long-for": { "text": "тужи́ти" },
+  "doubt": { "text": "су́мнів" },
+  "to-confuse": { "text": "заплу́тувати" },
+  "to-be-confused": { "text": "бу́ти розгу́бленим" }
  }
 }

@@ -2,29 +2,29 @@
  "title": "Органи",
  "subtitle": "Те, що всередині і про що йдеться в лікаря.",
  "words": {
-  "lung": { "text": "легеня" },
-  "liver": { "text": "печінка" },
-  "kidney": { "text": "нирка" },
-  "intestine": { "text": "кишківник", "teaches": ["кишка"] },
-  "bladder": { "text": "міхур", "accepts": ["сечовий міхур"] },
+  "lung": { "text": "леге́ня" },
+  "liver": { "text": "печі́нка" },
+  "kidney": { "text": "ни́рка" },
+  "intestine": { "text": "кишківни́к", "teaches": ["ки́шка"] },
+  "bladder": { "text": "міху́р", "accepts": ["сечовий міхур"] },
   "nerve": { "text": "нерв" },
-  "vein": { "text": "вена" },
+  "vein": { "text": "ве́на" },
   "thyroid": {
-   "text": "щитоподібна залоза",
+   "text": "щитоподі́бна за́лоза",
    "accepts": ["щитовидна залоза"],
-   "forms": { "pl": "щитоподібні залози" }
+   "forms": { "pl": "щитоподі́бні за́лози" }
   },
-  "to-breathe": { "text": "дихати" },
-  "stomach-organ": { "text": "шлунок", "forms": { "pl": "шлунки" } },
-  "artery": { "text": "артерія" },
-  "joint": { "text": "суглоб" },
-  "gland": { "text": "залоза" },
-  "spleen": { "text": "селезінка" },
+  "to-breathe": { "text": "ди́хати" },
+  "stomach-organ": { "text": "шлу́нок", "forms": { "pl": "шлу́нки" } },
+  "artery": { "text": "арте́рія" },
+  "joint": { "text": "сугло́б" },
+  "gland": { "text": "за́лоза" },
+  "spleen": { "text": "селезі́нка" },
   "bile": { "text": "жовч" },
-  "appendix": { "text": "апендикс" },
-  "womb": { "text": "матка" },
-  "pancreas": { "text": "підшлункова залоза", "forms": { "pl": "підшлункові залози" } },
-  "ovary": { "text": "яєчник" },
-  "tendon": { "text": "сухожилля" }
+  "appendix": { "text": "апе́ндикс" },
+  "womb": { "text": "ма́тка" },
+  "pancreas": { "text": "підшлунко́ва за́лоза", "forms": { "pl": "підшлунко́ві за́лози" } },
+  "ovary": { "text": "яє́чник" },
+  "tendon": { "text": "сухожи́лля" }
  }
 }

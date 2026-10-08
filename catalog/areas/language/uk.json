@@ -2,16 +2,16 @@
  "title": "Вивчення мови",
  "subtitle": "Слова, речення і те, що вони означають.",
  "words": {
-  "meaning": { "text": "значення", "grammar": { "plural": "=" } },
-  "to-translate": { "text": "перекладати" },
-  "sentence": { "text": "речення", "grammar": { "plural": "=" } },
-  "word": { "text": "слово" },
-  "language": { "text": "мова" },
-  "mother-tongue": { "text": "рідна мова", "forms": { "pl": "рідні мови" } },
-  "what-does-this-word-mean": { "text": "Що означає це слово?", "orders": ["Що це слово означає?"] },
-  "how-do-you-say-this": { "text": "Як це сказати {language-in}?" },
+  "meaning": { "text": "зна́чення", "grammar": { "plural": "=" } },
+  "to-translate": { "text": "переклада́ти" },
+  "sentence": { "text": "ре́чення", "grammar": { "plural": "=" } },
+  "word": { "text": "сло́во" },
+  "language": { "text": "мо́ва" },
+  "mother-tongue": { "text": "рі́дна мо́ва", "forms": { "pl": "рі́дні мо́ви" } },
+  "what-does-this-word-mean": { "text": "Що означа́є це сло́во?", "orders": ["Що це слово означає?"] },
+  "how-do-you-say-this": { "text": "Як це сказа́ти {language-in}?" },
   "im-learning-your-language": { "text": "Я вчу {language-learn}." },
-  "ready-to-learn": { "text": "Готовий вчитися?", "forms": { "f": "Готова вчитися?" } },
-  "one-more-word": { "text": "Ще одне слово?" }
+  "ready-to-learn": { "text": "Гото́вий вчи́тися?", "forms": { "f": "Гото́ва вчи́тися?" } },
+  "one-more-word": { "text": "Ще одне́ сло́во?" }
  }
 }

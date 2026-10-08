@@ -2,32 +2,32 @@
  "title": "У магазині",
  "subtitle": "Де ціна вже стоїть на етикетці.",
  "words": {
-  "supermarket": { "text": "супермаркет" },
-  "mall": { "text": "торговий центр", "forms": { "pl": "торгові центри" } },
-  "checkout": { "text": "каса" },
+  "supermarket": { "text": "суперма́ркет" },
+  "mall": { "text": "торго́вий центр", "forms": { "pl": "торго́ві це́нтри" } },
+  "checkout": { "text": "ка́са" },
   "shop-assistant": {
-   "text": "продавець",
+   "text": "продаве́ць",
    "accepts": ["продавщиця"],
-   "forms": { "f": "продавчиня", "pl": "продавці" }
+   "forms": { "f": "продавчи́ня", "pl": "продавці́" }
   },
-  "shopping-cart": { "text": "візок", "forms": { "pl": "візки" } },
+  "shopping-cart": { "text": "візо́к", "forms": { "pl": "візки́" } },
   "offer": {
-   "text": "знижка",
+   "text": "зни́жка",
    "accepts": ["акція"],
    "notes": {
     "uk": "знижка = менша ціна · акція = тимчасова пропозиція.",
     "de": "знижка ist der Preisnachlass; акція heißt im Handel die Aktion, sonst die Aktie."
    }
   },
-  "size": { "text": "розмір" },
-  "to-shop": { "text": "ходити за покупками" },
-  "store": { "text": "магазин" },
+  "size": { "text": "ро́змір" },
+  "to-shop": { "text": "ходи́ти за поку́пками" },
+  "store": { "text": "магази́н" },
   "open": {
-   "text": "відчинений",
-   "teaches": ["відкритий"],
-   "forms": { "f": "відчинена", "n": "відчинене" }
+   "text": "відчи́нений",
+   "teaches": ["відкри́тий"],
+   "forms": { "f": "відчи́нена", "n": "відчи́нене" }
   },
-  "the-store-is-still-open": { "text": "Магазин ще відчинений." },
-  "do-you-have-this-in-my-size": { "text": "У вас є це мого розміру?" }
+  "the-store-is-still-open": { "text": "Магази́н ще відчи́нений." },
+  "do-you-have-this-in-my-size": { "text": "У вас є це мого́ ро́зміру?" }
  }
 }

@@ -116,6 +116,14 @@ a typed form that is exactly some card's answer grades `Match.OtherWord`
 The bar that does bind is a display-identical prompt inside ONE area,
 where the area label would be the same cue on both -- and lint holds that.
 
+**Ukrainian marks its stress**, which writing leaves out and a reader cannot guess:
+the combining acute U+0301 directly after the stressed vowel (`пі́вніч`),
+on `text`, `teaches` and tagged `forms`, never on `accepts`, which nobody sees.
+A one-syllable word goes unmarked, and so does a word no dictionary confidently stresses;
+a phrase is marked only once every word in it is known.
+Grading drops the mark on both sides, so nobody has to type it;
+a recording is filed under the stressed form, so a stress-marked card hears only a take of that reading.
+
 **Realizations and notes write the typewriter apostrophe** (U+0027);
 the modifier letter U+02BC belongs only inside `alphabet/`
 (`CatalogLintTest.contentWritesTheTypewriterApostrophe`).

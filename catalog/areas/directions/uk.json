@@ -2,40 +2,40 @@
  "title": "Знайти дорогу",
  "subtitle": "Відповідь на питання «як дійти?».",
  "words": {
-  "straight-ahead": { "text": "прямо" },
-  "to-turn": { "text": "повертати", "accepts": ["повернути"] },
+  "straight-ahead": { "text": "пря́мо" },
+  "to-turn": { "text": "поверта́ти", "accepts": ["повернути"] },
   "corner": {
    "text": "ріг",
-   "forms": { "pl": "роги" },
+   "forms": { "pl": "ро́ги" },
    "notes": { "uk": "на розі вулиці · ріг — це також ріг тварини." }
   },
-  "crossing": { "text": "перехрестя", "grammar": { "plural": "=" } },
-  "to-cross": { "text": "переходити", "accepts": ["перейти"] },
-  "direction": { "text": "напрямок", "forms": { "pl": "напрямки" } },
-  "city-map": { "text": "план міста", "accepts": ["мапа", "карта"] },
-  "entrance": { "text": "вхід", "forms": { "pl": "входи" } },
-  "exit": { "text": "вихід", "forms": { "pl": "виходи" } },
+  "crossing": { "text": "перехре́стя", "grammar": { "plural": "=" } },
+  "to-cross": { "text": "перехо́дити", "accepts": ["перейти"] },
+  "direction": { "text": "на́прямок", "forms": { "pl": "на́прямки" } },
+  "city-map": { "text": "план мі́ста", "accepts": ["мапа", "карта"] },
+  "entrance": { "text": "вхід", "forms": { "pl": "вхо́ди" } },
+  "exit": { "text": "ви́хід", "forms": { "pl": "ви́ходи" } },
   "to-follow": {
-   "text": "іти за",
+   "text": "іти́ за",
    "accepts": ["йти за", "слідувати"],
    "notes": {
     "uk": "іти за мною, за татом, за нею.",
     "de": "іти за steht mit dem Instrumental: іти за мною."
    }
   },
-  "way": { "text": "дорога" },
-  "north": { "text": "північ" },
-  "south": { "text": "південь" },
+  "way": { "text": "доро́га" },
+  "north": { "text": "пі́вніч" },
+  "south": { "text": "пі́вдень" },
   "east": { "text": "схід" },
-  "west": { "text": "захід" },
-  "go-straight-ahead": { "text": "Ідіть прямо.", "accepts": ["Іди прямо."] },
+  "west": { "text": "за́хід" },
+  "go-straight-ahead": { "text": "Іді́ть пря́мо.", "accepts": ["Іди прямо."] },
   "turn-left-at-the-corner": {
-   "text": "Поверніть ліворуч на розі.",
+   "text": "Поверні́ть ліво́руч на ро́зі.",
    "accepts": ["Поверни ліворуч на розі."],
    "orders": ["На розі поверніть ліворуч."]
   },
-  "how-do-i-get-to-the-station": { "text": "Як дійти до вокзалу?", "accepts": ["Як мені дістатися до вокзалу?"] },
-  "im-lost": { "text": "Я заблукав.", "forms": { "f": "Я заблукала." } },
-  "to-get-lost": { "text": "заблукати" }
+  "how-do-i-get-to-the-station": { "text": "Як дійти́ до вокза́лу?", "accepts": ["Як мені дістатися до вокзалу?"] },
+  "im-lost": { "text": "Я заблука́в.", "forms": { "f": "Я заблука́ла." } },
+  "to-get-lost": { "text": "заблука́ти" }
  }
 }

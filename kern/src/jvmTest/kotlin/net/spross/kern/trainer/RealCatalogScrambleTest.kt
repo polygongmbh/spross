@@ -268,5 +268,5 @@ class RealCatalogScrambleTest {
      * SPELLED with. A hyphen, a digit or a stop is not something a scramble may hand over.
      */
     private fun spellableOutOfLetters(form: String): Boolean =
-        form.all { it.isLetter() || it == '\'' || it == '’' || it == 'ʼ' }
+        form.all { it.isLetter() || it == '\u0301' || it == '\'' || it == '’' || it == 'ʼ' }
 }

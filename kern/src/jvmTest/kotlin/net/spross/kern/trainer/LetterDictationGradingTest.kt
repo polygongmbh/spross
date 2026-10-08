@@ -12,6 +12,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
+import net.spross.kern.model.stressFolded
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
 import net.spross.kern.session.Match
@@ -45,7 +46,7 @@ class LetterDictationGradingTest {
     )
 
     private fun List<Card>.byText(text: String): Card =
-        firstOrNull { it.target.text == text } ?: throw AssertionError("no card answers \"$text\"")
+        firstOrNull { stressFolded(it.target.text) == text } ?: throw AssertionError("no card answers \"$text\"")
 
     @Test
     fun theNeighboringVerbIsNamedAsItselfNotForgivenAsASlip() {

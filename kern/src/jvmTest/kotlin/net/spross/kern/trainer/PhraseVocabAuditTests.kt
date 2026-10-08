@@ -225,11 +225,11 @@ class PhraseVocabAuditTests {
     }
 
     /**
-     * Lowercase word tokens; apostrophes/hyphens dropped in-word
+     * Lowercase word tokens; apostrophes/hyphens and stress marks dropped in-word
      * (mirrors AnswerNormalizer), all other non-letters split.
      */
     private fun tokens(text: String): List<String> {
-        val joined = text.lowercase().filter { it != '\'' && it != '’' && it != '-' }
+        val joined = text.lowercase().filter { it != '\'' && it != '’' && it != '-' && it != '\u0301' }
         return joined
             .map { if (it.isLetter()) it else ' ' }
             .joinToString("")

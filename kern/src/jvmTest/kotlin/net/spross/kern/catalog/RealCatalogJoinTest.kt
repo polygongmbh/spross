@@ -81,7 +81,7 @@ class RealCatalogJoinTest {
     fun teacherFeminineIsTheBaseCardsFeminineForm() {
         val toUk = catalog.join("sw", "uk").byId("teacher")
         assertEquals("mwalimu", toUk.source.text)
-        assertTrue(TaggedForm(FormTag.FEMININE, "вчителька") in toUk.target.forms)
+        assertTrue(TaggedForm(FormTag.FEMININE, "вчи\u0301телька") in toUk.target.forms)
         val toSw = catalog.join("de", "sw").byId("teacher")
         assertTrue(TaggedForm(FormTag.FEMININE, "Lehrerin", article = "die") in toSw.source.forms)
         assertTrue(toSw.target.forms.none { it.tag == FormTag.FEMININE })
@@ -102,7 +102,7 @@ class RealCatalogJoinTest {
         // Former variantOf twin: the uk realization now lives on the base slug.
         val id = "the-pot-is-still-on-the-stove"
         assertEquals("The pot is still on the stove.", catalog.join("de", "en").byId(id).target.text)
-        assertEquals("Каструля ще стоїть на плиті.", catalog.join("de", "uk").byId(id).target.text)
+        assertEquals("Кастру\u0301ля ще стої\u0301ть на плиті\u0301.", catalog.join("de", "uk").byId(id).target.text)
         for (target in listOf("en", "eo", "es", "fr", "it", "uk")) {
             assertFalse(catalog.join("de", target).any { it.id == "the-big-pot-is-on-the-stove" })
         }
@@ -144,7 +144,7 @@ class RealCatalogJoinTest {
         // `teaches` joins the recognition-prompt rotation; `accepts` is grading-only.
         val boss = cards.byId("boss")
         assertEquals("шеф", boss.target.text)
-        assertEquals(listOf("керівник"), boss.target.teaches)
+        assertEquals(listOf("керівни\u0301к"), boss.target.teaches)
         val contract = cards.byId("contract")
         assertEquals("договір", contract.target.text)
         assertTrue(contract.target.teaches.isEmpty())

@@ -2,24 +2,28 @@
  "title": "На ринку",
  "subtitle": "Де ціна ще обговорюється.",
  "words": {
-  "stall": { "text": "прилавок", "accepts": ["ятка"], "forms": { "pl": "прилавки" } },
-  "trader": { "text": "торговець", "accepts": ["торгівка"], "forms": { "f": "торговка", "pl": "торговці" } },
-  "scales": { "text": "ваги", "grammar": { "plural": "only" } },
-  "to-weigh": { "text": "важити" },
-  "kilo": { "text": "кілограм", "accepts": ["кіло"] },
+  "stall": { "text": "прила́вок", "accepts": ["ятка"], "forms": { "pl": "прила́вки" } },
+  "trader": {
+   "text": "торго́вець",
+   "accepts": ["торгівка"],
+   "forms": { "f": "торго́вка", "pl": "торго́вці" }
+  },
+  "scales": { "text": "ва́ги", "grammar": { "plural": "only" } },
+  "to-weigh": { "text": "ва́жити" },
+  "kilo": { "text": "кілогра́м", "accepts": ["кіло"] },
   "gram": { "text": "грам" },
   "liter": { "text": "літр" },
-  "fresh": { "text": "свіжий" },
-  "ripe": { "text": "стиглий" },
-  "to-haggle": { "text": "торгуватися" },
-  "market": { "text": "ринок", "forms": { "pl": "ринки" } },
+  "fresh": { "text": "сві́жий" },
+  "ripe": { "text": "сти́глий" },
+  "to-haggle": { "text": "торгува́тися" },
+  "market": { "text": "ри́нок", "forms": { "pl": "ри́нки" } },
   "lets-meet-at-the-market": {
-   "text": "Зустріньмося на ринку.",
+   "text": "Зустрі́ньмося на ри́нку.",
    "accepts": ["Зустрінемось на ринку."],
    "orders": ["На ринку зустріньмося."]
   },
-  "a-kilo-of-tomatoes": { "text": "Кілограм помідорів, будь ласка." },
-  "what-does-a-kilo-cost": { "text": "Скільки коштує кілограм?" },
-  "can-you-come-down-a-bit": { "text": "Можете трохи поступитися?" }
+  "a-kilo-of-tomatoes": { "text": "Кілогра́м помідо́рів, будь ла́ска." },
+  "what-does-a-kilo-cost": { "text": "Скі́льки ко́штує кілогра́м?" },
+  "can-you-come-down-a-bit": { "text": "Мо́жете тро́хи поступи́тися?" }
  }
 }

@@ -85,10 +85,8 @@ Ready work comes first, then the items that end in a question for the owner, the
   final-devoicing trio, `er`; es `c`, `g`, `gu`, `r`, `d`) rides its one authored example
   because `context` is prose keyed by the reader rather than a rule the engine can test — a
   machine-readable environment field would open both.
-- No field carries Ukrainian stress, which is unmarked in writing and load-bearing (учень,
-  миша and одяг teach their vowel only if the sheet can show which syllable carries it); a
-  `stress` field on realizations (`catalog/README.md`) is the shape the pronunciation plan
-  proposed, and the alphabet table cannot teach it in the plan's place.
+- Ukrainian stress is marked on card texts (`areas/README.md`) but not yet on the alphabet sheet's
+  example words, the phrase frames, the clock readings or the calendar and country names.
 - Alphabet hints and contexts carry de+en only (`catalog/alphabet/*.json`), so a sw- or
   uk-reading learner — both already selectable as source — meets unhinted rows, and each
   needs its own hint pass rather than a translation of the English: the German pivot prose
@@ -136,6 +134,7 @@ Ready work comes first, then the items that end in a question for the owner, the
   `../../docs/sprachposter-learnings.md`); uk carries 3 of 9 (сьоме небо, як з відра, тримати
   кулаки) and sw 0, and filling them needs a speaker finding real equivalents, not a
   translation pass.
+- 20 Ukrainian words stay unstressed on 25 cards, mostly standard doublets (за́вжди/завжди́, до́говір/догові́р) and unlisted loans (імейл, угалі), plus north and midnight both read пі́вніч: pick one stress each (`../docs/2026-10-09-uk-stress-open.tsv`).
 - `mos` ranks voices the way the ear does but strays per file (`../docs/audio-verdicts.tsv`: Natschoba's "der Finger", heard meh, scores 3.22; joni's "es", heard clean, 1.67), so its floors refuse only the clearly bad until the dataset grows.
 - Recordings nobody has made yet: phrases have none (no `catalog/audio/*/manifest.json` has a
   phrases section, so every phrase falls to TTS, silent on sw-iOS) and need commissioning or a
