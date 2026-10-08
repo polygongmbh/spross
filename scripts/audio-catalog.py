@@ -239,7 +239,8 @@ def load_catalog():
                 # why: a tagged form (`forms.f`) is shown too, its authored article split off
                 # as kern's join splits it, so the bare word and the articled one both reach it.
                 tagged = [split_article(form, languages.get(lang, {}).get('articles') or [])
-                          for form in word.get('forms', {}).values()]
+                          for value in word.get('forms', {}).values()
+                          for form in (value if isinstance(value, list) else [value])]
                 shown += [form for _, form in tagged]
                 # why: kern's lookup falls back to a verb's bare stem (`verbStem`), so a
                 # recording of `piga simu` reaches a card showing `kupiga simu`.
