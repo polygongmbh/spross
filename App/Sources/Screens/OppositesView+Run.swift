@@ -7,6 +7,8 @@ import SprossKern
 /// on OppositesView; split out for file size, the way the word scramble splits.
 extension OppositesView: DrillRunning {
 
+    var appModel: AppModel? { model }
+
     // MARK: - What is on screen
 
     var drillContent: some View {

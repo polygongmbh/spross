@@ -11,7 +11,8 @@ Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `d
   a walk, a commute, the dishes.
   Its title names the mode once, and its second line carries the two facts the name cannot:
   which words it leans on, and that it needs no hands.
-- **It keeps the drill contract even so**: it books no review, writes no schedule and moves no streak, so a run costs the box nothing and can be closed at any moment.
+- **It keeps the drill contract even so**: it books no review and writes no schedule, so a run costs the box nothing and can be closed at any moment.
+  Unlike a drill it asks nothing, so it moves no streak either.
   It has no end screen —
   a run that only laps counts no stretch to celebrate —
   and no way of ending by itself:

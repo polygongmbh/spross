@@ -12,6 +12,8 @@ import SprossKern
 /// All this side owes is the STRICT drill normalizer, resolved when the run opens.
 extension WordScrambleView: DrillRunning {
 
+    var appModel: AppModel? { model }
+
     // MARK: - What is on screen
 
     var drillContent: some View {

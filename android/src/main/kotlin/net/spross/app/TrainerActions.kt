@@ -1,5 +1,6 @@
 package net.spross.app
 
+import net.spross.kern.box.BoxEngine
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.NumbersChallenge
@@ -92,6 +93,7 @@ fun AppModel.startDateDrill(reverse: Boolean, fast: Boolean, sprosse: Int) {
  */
 fun AppModel.finishDrill(back: Screen, summary: DrillRunSummary?, title: String) {
     pronouncer.stop()
+    bookDrillAnswers(summary)
     // why: a close kern celebrates ([DrillRunSummary.celebrated]) is cheered as it closes —
     // the tile the learner lands on carries the words, but not until they look.
     if (summary?.celebrated == true) cues.cheer()
@@ -103,6 +105,12 @@ fun AppModel.finishDrill(back: Screen, summary: DrillRunSummary?, title: String)
     navigate(back)
 }
 
+/** A closed run's answers, booked to today so the streak and the activity strip count them. */
+private fun AppModel.bookDrillAnswers(summary: DrillRunSummary?) {
+    val answers = summary?.done ?: return
+    updateBox { BoxEngine.bookDrillAnswers(it, answers, now(), tz()) }
+}
+
 /**
  * The way out of either scramble. Neither has a page to land on, so the run closes onto Home
  * and hands its figures to the hub card ([TrainerStanding.showOnHub]); neither keeps a streak record or a high-water Sprosse beside its mask,
@@ -111,6 +119,7 @@ fun AppModel.finishDrill(back: Screen, summary: DrillRunSummary?, title: String)
  */
 fun AppModel.closeScramble(drill: Drill, title: String, clearedKey: String, cleared: Set<Int>, summary: DrillRunSummary?) {
     trainer.store.bookCleared(clearedKey, cleared)
+    bookDrillAnswers(summary)
     stampRun(drill, summary)
     trainer.showOnHub(summary, title)
     if (summary?.celebrated == true) cues.cheer()

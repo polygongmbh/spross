@@ -13,6 +13,8 @@ import SprossKern
 /// grader itself — one strict normalizer over the learner's own cards.
 extension LetterDrillView: DrillRunning {
 
+    var appModel: AppModel? { model }
+
     // MARK: - The machine under this drill
 
     func reduce(_ run: LetterDrillRunState,

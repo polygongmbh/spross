@@ -34,6 +34,14 @@ extension AppModel {
         save(next, BoxChange.stamped.saveScope)
     }
 
+    /// A closed drill run's answers, booked to today so the streak and the activity strip count them.
+    func bookDrillAnswers(_ answers: Int) {
+        mutate {
+            $0 = BoxEngine.shared.bookDrillAnswers(state: $0, answers: Int32(answers),
+                                                   nowEpochMillis: Date().epochMillis, tzId: currentTzId())
+        }
+    }
+
     /// Apply a change to the box, save it with the snapshots, refresh statistics.
     func mutate(_ change: (inout BoxState) -> Void) {
         guard var state = box else { return }

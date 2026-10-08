@@ -213,3 +213,6 @@ Nothing wears a prefix one scope wider than what it serves.
   The letter drill, the two scrambles and the opposites keep none,
   and no drill books a review or touches a schedule (`../kern/README.md`),
   so a run costs the box nothing and can be closed at any moment.
+- **A closed run's answers count toward the day streak** --
+  booked once, as the X closes it, onto the day's bar of the activity strip;
+  the day's round budget never sees them.

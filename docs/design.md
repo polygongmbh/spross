@@ -25,6 +25,7 @@ rephrase it as an availability statement or a question.
   not a figure the learner tunes (`growth-evidence.md`).
 - Drill records live outside the box: a drill run touches no card and no schedule,
   so losing one costs a climb, never learning history.
+  Only its answer count per day lives in the box, since the streak reads it.
 
 ## Profile & onboarding
 

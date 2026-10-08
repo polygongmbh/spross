@@ -43,6 +43,8 @@ protocol DrillRunning: View, QuestionDriving {
     var answerFocused: Bool { get nonmutating set }
     var reduceMotion: Bool { get }
     var dismiss: DismissAction { get }
+    /// Where a closed run books its answers to the day; nil where the view runs without one.
+    var appModel: AppModel? { get }
     /// Handed the run's figures just before it closes (see `DrillResultTile`).
     var onFinish: (DrillRunResult) -> Void { get }
 
@@ -210,6 +212,7 @@ extension DrillRunning {
             return
         }
         answerFocused = false
+        appModel?.bookDrillAnswers(Int(summary.done))
         TrainerProgress.stampRun(lastRunKey)
         // why: confetti and cheer are one thing (`docs/design.md`); the page the
         // run closes onto rains the one, so the close sounds the other.
