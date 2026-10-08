@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+## 8.5.0 — 2026-10-08
+
 - Feminine forms of people words (die Lehrerin) are now practiced as part of the word itself rather than as a separate card.
 - Adjectives, pronouns and phrases now practice their feminine, neuter, plural and case forms too, marked on the meaning side.
 - Drill answers now count toward your day streak and fill that day's bar in the activity chart.
