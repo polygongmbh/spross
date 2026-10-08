@@ -18,6 +18,7 @@ data class FormTag(val values: Map<FormDimension, String>) {
 
     companion object {
         val FEMININE = FormTag(mapOf(FormDimension.Gender to "f"))
+        val PLURAL = FormTag(mapOf(FormDimension.Number to "pl"))
 
         private val VOCABULARY: Map<String, FormDimension> =
             listOf("m", "f", "n").associateWith { FormDimension.Gender } +

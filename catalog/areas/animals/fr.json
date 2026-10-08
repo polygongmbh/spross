@@ -2,15 +2,25 @@
  "title": "Les animaux",
  "subtitle": "Du chien de la cour à l'éléphant.",
  "words": {
-  "animal": { "text": "animal", "accepts": ["l'animal"], "grammar": { "gender": "l'", "plural": "animaux" } },
+  "animal": {
+   "text": "animal",
+   "accepts": ["l'animal"],
+   "forms": { "pl": "animaux" },
+   "grammar": { "gender": "l'" }
+  },
   "dog": { "text": "chien", "grammar": { "gender": "le" } },
   "cat": { "text": "chat", "grammar": { "gender": "le" } },
-  "bird": { "text": "oiseau", "accepts": ["l'oiseau"], "grammar": { "gender": "l'", "plural": "-x" } },
+  "bird": {
+   "text": "oiseau",
+   "accepts": ["l'oiseau"],
+   "forms": { "pl": "oiseaux" },
+   "grammar": { "gender": "l'" }
+  },
   "cow": { "text": "vache", "grammar": { "gender": "la" } },
   "goat": { "text": "chèvre", "grammar": { "gender": "la" } },
   "sheep": { "text": "mouton", "grammar": { "gender": "le" } },
   "donkey": { "text": "âne", "accepts": ["l'âne"], "grammar": { "gender": "l'" } },
-  "horse": { "text": "cheval", "grammar": { "gender": "le", "plural": "chevaux" } },
+  "horse": { "text": "cheval", "forms": { "pl": "chevaux" }, "grammar": { "gender": "le" } },
   "elephant": { "text": "éléphant", "accepts": ["l'éléphant"], "grammar": { "gender": "l'" } },
   "monkey": { "text": "singe", "grammar": { "gender": "le" } },
   "snake": { "text": "serpent", "grammar": { "gender": "le" } },

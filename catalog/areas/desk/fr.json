@@ -4,7 +4,8 @@
  "words": {
   "desk": {
    "text": "bureau",
-   "grammar": { "gender": "le", "plural": "-x" },
+   "forms": { "pl": "bureaux" },
+   "grammar": { "gender": "le" },
    "notes": { "fr": "ici le meuble." }
   },
   "laptop": {
@@ -56,7 +57,7 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "un dossier sur l'ordinateur, un dossier de papiers sur le bureau." }
   },
-  "password": { "text": "mot de passe", "grammar": { "gender": "le", "plural": "mots de passe" } },
+  "password": { "text": "mot de passe", "forms": { "pl": "mots de passe" }, "grammar": { "gender": "le" } },
   "internet": {
    "text": "internet",
    "notes": { "fr": "souvent sans article : je n'ai pas internet, il n'y a plus d'internet." }
@@ -98,7 +99,7 @@
   "coffee-break": { "text": "Pause café ?", "accepts": ["Une pause café ?", "On prend un café ?"] },
   "i-have-a-lot-to-do": { "text": "J'ai beaucoup à faire.", "accepts": ["J'ai beaucoup de choses à faire."] },
   "send-him-the-email": { "text": "Envoie-lui l'e-mail.", "accepts": ["Envoie-lui le mail.", "Envoie-lui le courriel."] },
-  "pencil": { "text": "crayon", "grammar": { "gender": "le", "plural": "-s" } },
-  "plug": { "text": "fiche", "grammar": { "gender": "la", "plural": "-s" } }
+  "pencil": { "text": "crayon", "forms": { "pl": "crayons" }, "grammar": { "gender": "le" } },
+  "plug": { "text": "fiche", "forms": { "pl": "fiches" }, "grammar": { "gender": "la" } }
  }
 }

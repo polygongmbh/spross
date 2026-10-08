@@ -43,12 +43,14 @@
   "grandmother": {
    "text": "grand-mère",
    "accepts": ["mamie"],
-   "grammar": { "gender": "la", "plural": "grands-mères" }
+   "forms": { "pl": "grands-mères" },
+   "grammar": { "gender": "la" }
   },
   "grandfather": {
    "text": "grand-père",
    "accepts": ["papi"],
-   "grammar": { "gender": "le", "plural": "grands-pères" }
+   "forms": { "pl": "grands-pères" },
+   "grammar": { "gender": "le" }
   },
   "husband": { "text": "mari", "teaches": ["époux"], "grammar": { "gender": "le" } },
   "wife": {

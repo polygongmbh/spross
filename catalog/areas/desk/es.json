@@ -100,7 +100,7 @@
    "text": "Mándale el correo.",
    "accepts": ["Envíale el correo.", "Mándale el correo electrónico.", "Mándale el email."]
   },
-  "pencil": { "text": "lápiz", "grammar": { "gender": "el", "plural": "lápices" } },
-  "plug": { "text": "clavija", "grammar": { "gender": "la", "plural": "-s" } }
+  "pencil": { "text": "lápiz", "forms": { "pl": "lápices" }, "grammar": { "gender": "el" } },
+  "plug": { "text": "clavija", "forms": { "pl": "clavijas" }, "grammar": { "gender": "la" } }
  }
 }

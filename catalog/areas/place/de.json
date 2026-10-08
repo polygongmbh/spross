@@ -25,8 +25,8 @@
   "between": { "text": "zwischen" },
   "near": { "text": "nah", "accepts": ["nahe", "in der Nähe"] },
   "far": { "text": "weit" },
-  "place": { "text": "Ort", "grammar": { "gender": "der", "plural": "-e" } },
-  "country": { "text": "Land", "grammar": { "gender": "das", "plural": "Länder" } },
+  "place": { "text": "Ort", "forms": { "pl": "Orte" }, "grammar": { "gender": "der" } },
+  "country": { "text": "Land", "forms": { "pl": "Länder" }, "grammar": { "gender": "das" } },
   "in-front": { "text": "vorne" },
   "next-to": { "text": "neben" },
   "to-be-there": { "text": "da sein" },
@@ -49,6 +49,6 @@
    "accepts": ["Gehen Sie schon nach Hause?", "Gehst du schon nach Hause?"],
    "orders": ["Ihr geht schon nach Hause?"]
   },
-  "center": { "text": "Mitte", "grammar": { "gender": "die", "plural": "-n" } }
+  "center": { "text": "Mitte", "forms": { "pl": "Mitten" }, "grammar": { "gender": "die" } }
  }
 }

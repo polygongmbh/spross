@@ -23,7 +23,7 @@
   "near": { "text": "cerca" },
   "far": { "text": "lejos" },
   "place": { "text": "lugar", "teaches": ["sitio"], "grammar": { "gender": "el" } },
-  "country": { "text": "país", "grammar": { "gender": "el", "plural": "países" } },
+  "country": { "text": "país", "forms": { "pl": "países" }, "grammar": { "gender": "el" } },
   "in-front": { "text": "delante" },
   "next-to": { "text": "al lado de" },
   "to-be-there": { "text": "estar" },

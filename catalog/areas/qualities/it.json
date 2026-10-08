@@ -57,9 +57,9 @@
   "lightweight": { "text": "leggero", "accepts": ["leggera"] },
   "difficult": { "text": "difficile" },
   "easy": { "text": "facile" },
-  "problem": { "text": "problema", "grammar": { "gender": "il", "plural": "problemi" } },
+  "problem": { "text": "problema", "forms": { "pl": "problemi" }, "grammar": { "gender": "il" } },
   "to-solve": { "text": "risolvere" },
-  "challenge": { "text": "sfida", "grammar": { "gender": "la", "plural": "sfide" } },
+  "challenge": { "text": "sfida", "forms": { "pl": "sfide" }, "grammar": { "gender": "la" } },
   "clean-adj": { "text": "pulito", "accepts": ["pulita"] },
   "sharp": {
    "text": "affilato",

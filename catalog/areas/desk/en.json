@@ -6,7 +6,7 @@
   "laptop": { "text": "laptop" },
   "keyboard": { "text": "keyboard" },
   "screen": { "text": "screen" },
-  "mouse": { "text": "mouse", "grammar": { "plural": "mice" } },
+  "mouse": { "text": "mouse", "forms": { "pl": "mice" } },
   "cable": { "text": "cable" },
   "pen": { "text": "pen" },
   "notebook": { "text": "notebook" },

@@ -3,14 +3,14 @@
  "subtitle": "Ambapo bei ipo tayari kwenye lebo.",
  "words": {
   "supermarket": { "text": "supamaketi", "grammar": { "plural": "=" }, "accepts": ["duka kubwa"] },
-  "mall": { "text": "kituo cha manunuzi", "grammar": { "plural": "vituo vya manunuzi" } },
-  "checkout": { "text": "kaunta ya malipo", "grammar": { "plural": "kaunta za malipo" } },
-  "shop-assistant": { "text": "muuzaji", "grammar": { "plural": "wauzaji" }, "accepts": ["mwuzaji"] },
+  "mall": { "text": "kituo cha manunuzi", "forms": { "pl": "vituo vya manunuzi" } },
+  "checkout": { "text": "kaunta ya malipo", "forms": { "pl": "kaunta za malipo" } },
+  "shop-assistant": { "text": "muuzaji", "forms": { "pl": "wauzaji" }, "accepts": ["mwuzaji"] },
   "shopping-cart": { "text": "toroli", "grammar": { "plural": "=" } },
   "offer": { "text": "ofa", "grammar": { "plural": "=" } },
   "size": { "text": "saizi", "grammar": { "plural": "=" } },
   "to-shop": { "text": "kwenda madukani" },
-  "store": { "text": "duka", "grammar": { "plural": "maduka" } },
+  "store": { "text": "duka", "forms": { "pl": "maduka" } },
   "open": { "text": "wazi", "notes": { "sw": "duka liko wazi · ni wazi kwamba amechelewa" } },
   "the-store-is-still-open": { "text": "Duka bado liko wazi." },
   "do-you-have-this-in-my-size": { "text": "Una hii kwa saizi yangu?" }

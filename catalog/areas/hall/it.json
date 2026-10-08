@@ -11,7 +11,7 @@
   },
   "door": { "text": "porta", "grammar": { "gender": "la" } },
   "key": { "text": "chiave", "grammar": { "gender": "la" } },
-  "jacket": { "text": "giacca", "grammar": { "gender": "la", "plural": "giacche" } },
+  "jacket": { "text": "giacca", "forms": { "pl": "giacche" }, "grammar": { "gender": "la" } },
   "coat": { "text": "cappotto", "grammar": { "gender": "il" } },
   "umbrella": { "text": "ombrello", "accepts": ["l'ombrello"], "grammar": { "gender": "l'" } },
   "hat": {
@@ -78,7 +78,8 @@
   "wallet": {
    "text": "portafoglio",
    "teaches": ["portamonete"],
-   "grammar": { "gender": "il", "plural": "portafogli" },
+   "forms": { "pl": "portafogli" },
+   "grammar": { "gender": "il" },
    "notes": { "it": "nel portafoglio stanno soldi e carte · le monete nel portamonete." }
   },
   "glove": { "text": "guanto", "grammar": { "gender": "il" } },

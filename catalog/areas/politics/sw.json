@@ -10,8 +10,8 @@
   "peace": { "text": "amani" },
   "freedom": { "text": "uhuru" },
   "government": { "text": "serikali", "grammar": { "plural": "=" } },
-  "election": { "text": "uchaguzi", "grammar": { "plural": "chaguzi" } },
+  "election": { "text": "uchaguzi", "forms": { "pl": "chaguzi" } },
   "to-vote": { "text": "kupiga kura" },
-  "border": { "text": "mpaka", "grammar": { "plural": "mipaka" } }
+  "border": { "text": "mpaka", "forms": { "pl": "mipaka" } }
  }
 }

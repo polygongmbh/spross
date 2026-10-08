@@ -6,15 +6,17 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.PluralForm
 import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.TaggedForm
 
 class QuestionTests {
 
     /** A noun with a plural and a note, asked in an area it shares with another card. */
     private val knife = TurnFixture.knife.copy(
         promptAmbiguous = true,
-        target = TurnFixture.knife.target.copy(grammar = mapOf("plural" to "visu"), note = "also a blade"),
+        target = TurnFixture.knife.target.copy(forms = listOf(TaggedForm(FormTag.PLURAL, "visu")), note = "also a blade"),
     )
 
     @Test
@@ -34,7 +36,7 @@ class QuestionTests {
 
     @Test
     fun aRotatedSynonymCarriesNoCitationGrammarAndLeavesTheCitationAsAnAlternate() {
-        val car = TurnFixture.car.let { it.copy(target = it.target.copy(grammar = mapOf("plural" to "magari"))) }
+        val car = TurnFixture.car.let { it.copy(target = it.target.copy(forms = listOf(TaggedForm(FormTag.PLURAL, "magari")))) }
         val question = TurnFixture.recognize(car).copy(promptForm = "motokaa").question
         assertEquals("motokaa", question.prompt.text)
         assertNull(question.prompt.plural)

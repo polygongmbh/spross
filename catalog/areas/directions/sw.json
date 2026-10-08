@@ -7,13 +7,9 @@
   "corner": { "text": "kona", "grammar": { "plural": "=" } },
   "crossing": { "text": "njia panda", "accepts": ["makutano"], "grammar": { "plural": "=" } },
   "to-cross": { "text": "kuvuka" },
-  "direction": { "text": "mwelekeo", "grammar": { "plural": "mielekeo" } },
+  "direction": { "text": "mwelekeo", "forms": { "pl": "mielekeo" } },
   "city-map": { "text": "ramani", "grammar": { "plural": "=" }, "accepts": ["ramani ya mji"] },
-  "entrance": {
-   "text": "mlango wa kuingia",
-   "grammar": { "plural": "milango ya kuingia" },
-   "accepts": ["kiingilio"]
-  },
+  "entrance": { "text": "mlango wa kuingia", "forms": { "pl": "milango ya kuingia" }, "accepts": ["kiingilio"] },
   "exit": { "text": "njia ya kutoka", "grammar": { "plural": "=" }, "accepts": ["mlango wa kutoka"] },
   "to-follow": { "text": "kufuata" },
   "way": { "text": "njia", "grammar": { "plural": "=" } },

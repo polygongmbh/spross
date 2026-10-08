@@ -5,11 +5,12 @@
   "stall": {
    "text": "Marktstand",
    "accepts": ["Stand"],
-   "grammar": { "gender": "der", "plural": "Marktstände" }
+   "forms": { "pl": "Marktstände" },
+   "grammar": { "gender": "der" }
   },
   "trader": { "text": "Händler", "grammar": { "gender": "der", "plural": "=" } },
-  "trader-f": { "text": "Händlerin", "grammar": { "gender": "die", "plural": "-nen" } },
-  "scales": { "text": "Waage", "grammar": { "gender": "die", "plural": "-n" } },
+  "trader-f": { "text": "Händlerin", "forms": { "pl": "Händlerinnen" }, "grammar": { "gender": "die" } },
+  "scales": { "text": "Waage", "forms": { "pl": "Waagen" }, "grammar": { "gender": "die" } },
   "to-weigh": { "text": "wiegen" },
   "kilo": {
    "text": "Kilo",
@@ -27,7 +28,7 @@
     "de": "feilschen meint nur das Handeln um den Preis; handeln heißt auch tun und Handel treiben."
    }
   },
-  "market": { "text": "Markt", "grammar": { "gender": "der", "plural": "Märkte" } },
+  "market": { "text": "Markt", "forms": { "pl": "Märkte" }, "grammar": { "gender": "der" } },
   "lets-meet-at-the-market": {
    "text": "Treffen wir uns am Markt.",
    "orders": ["Wir treffen uns am Markt.", "Am Markt treffen wir uns."]

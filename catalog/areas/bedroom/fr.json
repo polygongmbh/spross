@@ -12,7 +12,8 @@
   "nightstand": {
    "text": "table de nuit",
    "accepts": ["table de chevet"],
-   "grammar": { "gender": "la", "plural": "tables de nuit" }
+   "forms": { "pl": "tables de nuit" },
+   "grammar": { "gender": "la" }
   },
   "pajamas": { "text": "pyjama", "grammar": { "gender": "le" } },
   "sock": { "text": "chaussette", "grammar": { "gender": "la" } },

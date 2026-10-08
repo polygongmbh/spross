@@ -3,7 +3,7 @@
  "subtitle": "Time for bed.",
  "words": {
   "bed": { "text": "bed" },
-  "mattress": { "text": "mattress", "grammar": { "plural": "mattresses" } },
+  "mattress": { "text": "mattress", "forms": { "pl": "mattresses" } },
   "pillow": { "text": "pillow" },
   "blanket": { "text": "blanket" },
   "bedding": { "text": "bedding" },
@@ -23,7 +23,7 @@
   "to-snore": { "text": "to snore" },
   "clothes": { "text": "clothes", "grammar": { "plural": "only" } },
   "shirt": { "text": "shirt" },
-  "dress": { "text": "dress", "grammar": { "plural": "dresses" } },
+  "dress": { "text": "dress", "forms": { "pl": "dresses" } },
   "sweater": { "text": "sweater" },
   "underwear": { "text": "underwear" },
   "belt": { "text": "belt" },

@@ -4,12 +4,12 @@
  "words": {
   "pain": { "text": "maumivu", "grammar": { "plural": "only" } },
   "fever": { "text": "homa" },
-  "cough": { "text": "kikohozi", "grammar": { "plural": "vikohozi" } },
+  "cough": { "text": "kikohozi", "forms": { "pl": "vikohozi" } },
   "cold": { "text": "mafua", "grammar": { "plural": "only" } },
   "to-hurt": { "text": "kuuma" },
   "to-cough": { "text": "kukohoa" },
   "sick": { "text": "mgonjwa" },
-  "illness": { "text": "ugonjwa", "grammar": { "plural": "magonjwa" } },
+  "illness": { "text": "ugonjwa", "forms": { "pl": "magonjwa" } },
   "tired": {
    "text": "-chovu",
    "teaches": ["mchovu", "wachovu"],
@@ -19,13 +19,13 @@
    }
   },
   "weak": { "text": "dhaifu" },
-  "dizziness": { "text": "kizunguzungu", "grammar": { "plural": "vizunguzungu" } },
-  "wound": { "text": "jeraha", "grammar": { "plural": "majeraha" } },
+  "dizziness": { "text": "kizunguzungu", "forms": { "pl": "vizunguzungu" } },
+  "wound": { "text": "jeraha", "forms": { "pl": "majeraha" } },
   "to-hurt-oneself": { "text": "kujiumiza" },
   "bandage": { "text": "bendeji", "accepts": ["bandeji"], "grammar": { "plural": "=" } },
   "band-aid": { "text": "plasta", "grammar": { "plural": "=" } },
   "to-recover": { "text": "kupona" },
-  "allergy": { "text": "mzio", "grammar": { "plural": "mizio" } },
+  "allergy": { "text": "mzio", "forms": { "pl": "mizio" } },
   "my-throat-hurts-a-lot": {
    "text": "Koo linaniuma sana.",
    "notes": {

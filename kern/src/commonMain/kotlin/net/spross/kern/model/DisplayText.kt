@@ -13,27 +13,22 @@ sealed class PluralForm {
     /** Authored "only": the word has no singular to teach. */
     data object PluralOnly : PluralForm()
 
-    /** A real form, any suffix already resolved against the word. */
+    /** The word's `pl` form. */
     data class Form(val text: String) : PluralForm()
 }
 
 /**
- * The plural [realization] carries, or null where it carries none.
- *
- * Absent and EMPTY answer the same: an authored-but-empty value is not a form,
- * and a surface that took it for one would print a bare label with nothing behind it.
- * A leading `-` is a dictionary suffix and resolves against the word
- * ("-nen" on "die Lehrerin" → "die Lehrerinnen"); anything else is the full form as authored.
+ * The plural [realization] carries, or null where it carries none:
+ * its `pl` form, else the catalog's sentinels in `grammar.plural`.
  *
  * Grammar is target-side only (contract §2) — the caller passes the realization it renders.
  */
 fun pluralForm(realization: Realization): PluralForm? {
-    val authored = realization.grammar["plural"]?.takeIf { it.isNotEmpty() } ?: return null
-    return when {
-        authored == "=" -> PluralForm.SameAsSingular
-        authored == "only" -> PluralForm.PluralOnly
-        authored.startsWith("-") -> PluralForm.Form(realization.text + authored.drop(1))
-        else -> PluralForm.Form(authored)
+    realization.forms.firstOrNull { it.tag == FormTag.PLURAL }?.let { return PluralForm.Form(it.text) }
+    return when (realization.grammar["plural"]) {
+        "=" -> PluralForm.SameAsSingular
+        "only" -> PluralForm.PluralOnly
+        else -> null
     }
 }
 

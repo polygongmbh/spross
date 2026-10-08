@@ -42,7 +42,8 @@
   "hospital": {
    "text": "hôpital",
    "accepts": ["l'hôpital"],
-   "grammar": { "gender": "l'", "plural": "hôpitaux" }
+   "forms": { "pl": "hôpitaux" },
+   "grammar": { "gender": "l'" }
   },
   "emergency": {
    "text": "urgence",
@@ -53,7 +54,8 @@
   "doctors-note": {
    "text": "arrêt de travail",
    "accepts": ["l'arrêt de travail", "arrêt maladie"],
-   "grammar": { "gender": "l'", "plural": "arrêts de travail" },
+   "forms": { "pl": "arrêts de travail" },
+   "grammar": { "gender": "l'" },
    "notes": { "fr": "le médecin donne un arrêt de travail : on est en arrêt maladie." }
   },
   "to-examine": { "text": "examiner", "accepts": ["ausculter"] },

@@ -6,15 +6,15 @@
   "to-turn": { "text": "повертати", "accepts": ["повернути"] },
   "corner": {
    "text": "ріг",
-   "grammar": { "plural": "роги" },
+   "forms": { "pl": "роги" },
    "notes": { "uk": "на розі вулиці · ріг — це також ріг тварини." }
   },
   "crossing": { "text": "перехрестя", "grammar": { "plural": "=" } },
   "to-cross": { "text": "переходити", "accepts": ["перейти"] },
-  "direction": { "text": "напрямок", "grammar": { "plural": "напрямки" } },
+  "direction": { "text": "напрямок", "forms": { "pl": "напрямки" } },
   "city-map": { "text": "план міста", "accepts": ["мапа", "карта"] },
-  "entrance": { "text": "вхід", "grammar": { "plural": "входи" } },
-  "exit": { "text": "вихід", "grammar": { "plural": "виходи" } },
+  "entrance": { "text": "вхід", "forms": { "pl": "входи" } },
+  "exit": { "text": "вихід", "forms": { "pl": "виходи" } },
   "to-follow": {
    "text": "іти за",
    "accepts": ["йти за", "слідувати"],

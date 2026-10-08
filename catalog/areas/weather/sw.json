@@ -5,10 +5,10 @@
   "weather": { "text": "hali ya hewa" },
   "sky": { "text": "anga" },
   "sun": { "text": "jua" },
-  "cloud": { "text": "wingu", "grammar": { "plural": "mawingu" } },
+  "cloud": { "text": "wingu", "forms": { "pl": "mawingu" } },
   "rain": { "text": "mvua" },
   "snow": { "text": "theluji" },
-  "wind": { "text": "upepo", "grammar": { "plural": "pepo" } },
+  "wind": { "text": "upepo", "forms": { "pl": "pepo" } },
   "storm": { "text": "dhoruba", "grammar": { "plural": "=" } },
   "thunder": {
    "text": "radi",

@@ -5,7 +5,8 @@
   "traffic-light": {
    "text": "feu",
    "accepts": ["feu rouge", "feu de signalisation"],
-   "grammar": { "gender": "le", "plural": "-x" }
+   "forms": { "pl": "feux" },
+   "grammar": { "gender": "le" }
   },
   "bicycle": { "text": "vélo", "accepts": ["bicyclette"], "grammar": { "gender": "le" } },
   "bus": { "text": "bus", "accepts": ["autobus"], "grammar": { "gender": "le", "plural": "=" } },
@@ -31,7 +32,7 @@
   "passenger": { "text": "passager", "grammar": { "gender": "le" } },
   "wheel": { "text": "roue", "grammar": { "gender": "la" } },
   "engine": { "text": "moteur", "grammar": { "gender": "le" } },
-  "rail": { "text": "rail", "grammar": { "gender": "le", "plural": "-s" } },
+  "rail": { "text": "rail", "forms": { "pl": "rails" }, "grammar": { "gender": "le" } },
   "fare": { "text": "tarif", "accepts": ["prix du billet"], "grammar": { "gender": "le" } },
   "to-get-off": { "text": "descendre", "notes": { "fr": "descendre du bus, du train · monter dans le bus." } },
   "to-get-on": { "text": "monter" },

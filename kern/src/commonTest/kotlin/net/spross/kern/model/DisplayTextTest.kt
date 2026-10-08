@@ -14,16 +14,9 @@ class DisplayTextTest {
     }
 
     @Test
-    fun aSuffixPluralResolvesAgainstTheWord() {
-        assertEquals(
-            PluralForm.Form("die Lehrerinnen"),
-            pluralForm(realization("die Lehrerin", plural = "-nen")),
-        )
-    }
-
-    @Test
-    fun aFullFormIsTakenAsAuthored() {
-        assertEquals(PluralForm.Form("die Häuser"), pluralForm(realization("das Haus", plural = "die Häuser")))
+    fun aPluralFormIsThePlural() {
+        val haus = Realization("de", "das Haus", forms = listOf(TaggedForm(FormTag.PLURAL, "die Häuser")))
+        assertEquals(PluralForm.Form("die Häuser"), pluralForm(haus))
     }
 
     /** An authored-but-empty plural is not a form — it used to render a bare label. */

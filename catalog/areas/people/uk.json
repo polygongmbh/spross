@@ -2,7 +2,7 @@
  "title": "Родина",
  "subtitle": "Найближчі тобі люди.",
  "words": {
-  "person": { "text": "людина", "grammar": { "plural": "люди" } },
+  "person": { "text": "людина", "forms": { "pl": "люди" } },
   "family": { "text": "сім'я", "accepts": ["родина"] },
   "mother": {
    "text": "мама",
@@ -14,7 +14,7 @@
    "notes": { "uk": "тато — вдома · батько — офіційніше, обидва звичні." }
   },
   "parents": { "text": "батьки", "grammar": { "plural": "only" } },
-  "child": { "text": "дитина", "grammar": { "plural": "діти" } },
+  "child": { "text": "дитина", "forms": { "pl": "діти" } },
   "son": { "text": "син" },
   "daughter": { "text": "дочка", "accepts": ["донька"] },
   "brother": { "text": "брат" },
@@ -23,8 +23,8 @@
   "woman": { "text": "жінка" },
   "boy": { "text": "хлопчик" },
   "girl": { "text": "дівчинка" },
-  "baby": { "text": "немовля", "grammar": { "plural": "немовлята" } },
-  "friend": { "text": "друг", "grammar": { "plural": "друзі" } },
+  "baby": { "text": "немовля", "forms": { "pl": "немовлята" } },
+  "friend": { "text": "друг", "forms": { "pl": "друзі" } },
   "friend-f": { "text": "подруга" },
   "grandmother": { "text": "бабуся" },
   "grandfather": { "text": "дідусь" },

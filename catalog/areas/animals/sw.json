@@ -2,7 +2,7 @@
  "title": "Wanyama",
  "subtitle": "Kutoka mbwa wa nyumbani hadi tembo.",
  "words": {
-  "animal": { "text": "mnyama", "grammar": { "plural": "wanyama" } },
+  "animal": { "text": "mnyama", "forms": { "pl": "wanyama" } },
   "dog": { "text": "mbwa", "grammar": { "plural": "=" } },
   "cat": { "text": "paka", "grammar": { "plural": "=" } },
   "bird": { "text": "ndege", "grammar": { "plural": "=" } },
@@ -14,7 +14,7 @@
   "elephant": { "text": "tembo", "teaches": ["ndovu"], "grammar": { "plural": "=" } },
   "monkey": { "text": "tumbili", "teaches": ["kima"], "grammar": { "plural": "=" } },
   "snake": { "text": "nyoka", "grammar": { "plural": "=" } },
-  "insect": { "text": "mdudu", "grammar": { "plural": "wadudu" } },
+  "insect": { "text": "mdudu", "forms": { "pl": "wadudu" } },
   "look-a-bird": { "text": "Angalia, ndege!", "accepts": ["Tazama, ndege!"] },
   "the-dog-is-barking": { "text": "Mbwa anabweka.", "accepts": ["Mbwa hubweka."] },
   "the-cat-is-meowing": { "text": "Paka analia.", "accepts": ["Paka hulia.", "Paka anasema miau."] },

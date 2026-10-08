@@ -2,7 +2,12 @@
  "title": "Le travail",
  "subtitle": "Bon courage au boulot !",
  "words": {
-  "work": { "text": "travail", "accepts": ["boulot"], "grammar": { "gender": "le", "plural": "travaux" } },
+  "work": {
+   "text": "travail",
+   "accepts": ["boulot"],
+   "forms": { "pl": "travaux" },
+   "grammar": { "gender": "le" }
+  },
   "job-application": { "text": "candidature", "accepts": ["demande d'emploi"], "grammar": { "gender": "la" } },
   "cv": {
    "text": "CV",
@@ -122,7 +127,8 @@
   "we-knock-off-at-5": { "text": "Aujourd'hui, on débauche à 5h.", "orders": ["On débauche à 5h aujourd'hui."] },
   "workplace": {
    "text": "bureau",
-   "grammar": { "gender": "le", "plural": "-x" },
+   "forms": { "pl": "bureaux" },
+   "grammar": { "gender": "le" },
    "notes": { "fr": "ici la pièce." }
   }
  }

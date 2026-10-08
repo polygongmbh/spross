@@ -2,8 +2,8 @@
  "title": "На ринку",
  "subtitle": "Де ціна ще обговорюється.",
  "words": {
-  "stall": { "text": "прилавок", "accepts": ["ятка"], "grammar": { "plural": "прилавки" } },
-  "trader": { "text": "торговець", "grammar": { "plural": "торговці" } },
+  "stall": { "text": "прилавок", "accepts": ["ятка"], "forms": { "pl": "прилавки" } },
+  "trader": { "text": "торговець", "forms": { "pl": "торговці" } },
   "trader-f": { "text": "торговка", "accepts": ["торгівка"] },
   "scales": { "text": "ваги", "grammar": { "plural": "only" } },
   "to-weigh": { "text": "важити" },
@@ -13,7 +13,7 @@
   "fresh": { "text": "свіжий" },
   "ripe": { "text": "стиглий" },
   "to-haggle": { "text": "торгуватися" },
-  "market": { "text": "ринок", "grammar": { "plural": "ринки" } },
+  "market": { "text": "ринок", "forms": { "pl": "ринки" } },
   "lets-meet-at-the-market": {
    "text": "Зустріньмося на ринку.",
    "accepts": ["Зустрінемось на ринку."],

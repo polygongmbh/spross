@@ -9,7 +9,7 @@
   },
   "to-be-alive": { "text": "kuwa hai" },
   "alive": { "text": "hai" },
-  "death": { "text": "kifo", "grammar": { "plural": "vifo" } },
+  "death": { "text": "kifo", "forms": { "pl": "vifo" } },
   "to-die": { "text": "kufa" },
   "to-be-born": { "text": "kuzaliwa" },
   "childhood": { "text": "utoto" },
@@ -18,7 +18,7 @@
   "to-get-old": { "text": "kuzeeka" },
   "dead": { "text": "-fu", "teaches": ["mfu", "wafu"], "accepts": ["aliyekufa", "waliokufa"] },
   "funeral": { "text": "mazishi", "grammar": { "plural": "only" } },
-  "grave": { "text": "kaburi", "grammar": { "plural": "makaburi" } },
+  "grave": { "text": "kaburi", "forms": { "pl": "makaburi" } },
   "cemetery": { "text": "makaburi", "accepts": ["makaburini"] },
   "to-bury": { "text": "kuzika" },
   "my-condolences": {

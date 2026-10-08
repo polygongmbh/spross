@@ -15,7 +15,7 @@
   "door": { "text": "porte", "grammar": { "gender": "la" } },
   "key": { "text": "clé", "accepts": ["clef"], "grammar": { "gender": "la" } },
   "jacket": { "text": "veste", "grammar": { "gender": "la" } },
-  "coat": { "text": "manteau", "grammar": { "gender": "le", "plural": "-x" } },
+  "coat": { "text": "manteau", "forms": { "pl": "manteaux" }, "grammar": { "gender": "le" } },
   "umbrella": { "text": "parapluie", "grammar": { "gender": "le" } },
   "hat": {
    "text": "bonnet",
@@ -26,7 +26,11 @@
     "en": "le bonnet is the knit cap with no brim; a peaked cap is la casquette and a brimmed hat le chapeau."
    }
   },
-  "mailbox": { "text": "boîte aux lettres", "grammar": { "gender": "la", "plural": "boîtes aux lettres" } },
+  "mailbox": {
+   "text": "boîte aux lettres",
+   "forms": { "pl": "boîtes aux lettres" },
+   "grammar": { "gender": "la" }
+  },
   "doorbell": { "text": "sonnette", "grammar": { "gender": "la" } },
   "stairs": { "text": "escalier", "accepts": ["l'escalier", "escaliers"], "grammar": { "gender": "l'" } },
   "bag": { "text": "sac", "grammar": { "gender": "le" } },

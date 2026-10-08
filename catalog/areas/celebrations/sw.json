@@ -4,7 +4,7 @@
  "words": {
   "celebration": { "text": "sherehe", "grammar": { "plural": "=" } },
   "to-celebrate": { "text": "kusherehekea" },
-  "birthday": { "text": "siku ya kuzaliwa", "grammar": { "plural": "siku za kuzaliwa" } },
+  "birthday": { "text": "siku ya kuzaliwa", "forms": { "pl": "siku za kuzaliwa" } },
   "birthday-party": { "text": "sherehe ya siku ya kuzaliwa", "grammar": { "plural": "=" } },
   "gift": { "text": "zawadi", "grammar": { "plural": "=" } },
   "to-give-a-present": { "text": "kuzawadia", "accepts": ["kutoa zawadi"] },

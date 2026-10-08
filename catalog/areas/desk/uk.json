@@ -2,7 +2,7 @@
  "title": "Робоче місце",
  "subtitle": "Час зосередитися.",
  "words": {
-  "desk": { "text": "письмовий стіл", "grammar": { "plural": "письмові столи" } },
+  "desk": { "text": "письмовий стіл", "forms": { "pl": "письмові столи" } },
   "laptop": { "text": "ноутбук" },
   "keyboard": { "text": "клавіатура" },
   "screen": { "text": "монітор" },
@@ -23,7 +23,7 @@
   "to-repair": { "text": "ремонтувати", "teaches": ["лагодити"] },
   "phone": { "text": "телефон" },
   "email": { "text": "імейл", "teaches": ["електронна пошта"] },
-  "paper": { "text": "папір", "grammar": { "plural": "папери" } },
+  "paper": { "text": "папір", "forms": { "pl": "папери" } },
   "folder": { "text": "папка" },
   "password": { "text": "пароль" },
   "internet": { "text": "інтернет" },

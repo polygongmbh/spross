@@ -4,7 +4,7 @@
  "words": {
   "traffic-light": { "text": "traffic light" },
   "bicycle": { "text": "bicycle" },
-  "bus": { "text": "bus", "grammar": { "plural": "buses" } },
+  "bus": { "text": "bus", "forms": { "pl": "buses" } },
   "bus-stop": { "text": "bus stop" },
   "train": { "text": "train" },
   "car": { "text": "car" },

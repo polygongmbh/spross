@@ -11,7 +11,7 @@
   "noise": { "text": "bruit", "grammar": { "gender": "le" } },
   "music": { "text": "musique", "grammar": { "gender": "la" } },
   "radio": { "text": "radio", "grammar": { "gender": "la" } },
-  "speaker": { "text": "haut-parleur", "grammar": { "gender": "le", "plural": "haut-parleurs" } },
+  "speaker": { "text": "haut-parleur", "forms": { "pl": "haut-parleurs" }, "grammar": { "gender": "le" } },
   "headphones": {
    "text": "écouteurs",
    "accepts": ["casque", "casque audio"],

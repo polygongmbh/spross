@@ -2,20 +2,30 @@
  "title": "Im Laden",
  "subtitle": "Wo der Preis schon am Regal steht.",
  "words": {
-  "supermarket": { "text": "Supermarkt", "grammar": { "gender": "der", "plural": "Supermärkte" } },
-  "mall": { "text": "Einkaufszentrum", "grammar": { "gender": "das", "plural": "Einkaufszentren" } },
-  "checkout": { "text": "Kasse", "grammar": { "gender": "die", "plural": "-n" } },
+  "supermarket": { "text": "Supermarkt", "forms": { "pl": "Supermärkte" }, "grammar": { "gender": "der" } },
+  "mall": {
+   "text": "Einkaufszentrum",
+   "forms": { "pl": "Einkaufszentren" },
+   "grammar": { "gender": "das" }
+  },
+  "checkout": { "text": "Kasse", "forms": { "pl": "Kassen" }, "grammar": { "gender": "die" } },
   "shop-assistant": { "text": "Verkäufer", "grammar": { "gender": "der", "plural": "=" } },
-  "shop-assistant-f": { "text": "Verkäuferin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "shop-assistant-f": { "text": "Verkäuferin", "forms": { "pl": "Verkäuferinnen" }, "grammar": { "gender": "die" } },
   "shopping-cart": { "text": "Einkaufswagen", "grammar": { "gender": "der", "plural": "=" } },
   "offer": {
    "text": "Angebot",
-   "grammar": { "gender": "das", "plural": "-e" },
+   "forms": { "pl": "Angebote" },
+   "grammar": { "gender": "das" },
    "notes": { "de": "im Angebot heißt reduziert." }
   },
-  "size": { "text": "Größe", "grammar": { "gender": "die", "plural": "-n" } },
+  "size": { "text": "Größe", "forms": { "pl": "Größen" }, "grammar": { "gender": "die" } },
   "to-shop": { "text": "einkaufen" },
-  "store": { "text": "Laden", "accepts": ["Geschäft"], "grammar": { "gender": "der", "plural": "Läden" } },
+  "store": {
+   "text": "Laden",
+   "accepts": ["Geschäft"],
+   "forms": { "pl": "Läden" },
+   "grammar": { "gender": "der" }
+  },
   "open": { "text": "offen", "teaches": ["geöffnet"] },
   "the-store-is-still-open": { "text": "Der Laden ist noch offen." },
   "do-you-have-this-in-my-size": { "text": "Haben Sie das in meiner Größe?", "orders": ["Sie haben das in meiner Größe?"] }

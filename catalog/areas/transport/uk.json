@@ -10,7 +10,7 @@
   "car": { "text": "машина" },
   "taxi": { "text": "таксі", "grammar": { "plural": "=" } },
   "train-station": { "text": "вокзал" },
-  "ticket": { "text": "квиток", "grammar": { "plural": "квитки" } },
+  "ticket": { "text": "квиток", "forms": { "pl": "квитки" } },
   "to-ride-bike": { "text": "їздити на велосипеді" },
   "to-take-bus": { "text": "їхати автобусом" },
   "to-depart": { "text": "від'їжджати" },

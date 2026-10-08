@@ -2,7 +2,7 @@
  "title": "Sexual Organs",
  "subtitle": "The words that come up at the doctor's.",
  "words": {
-  "penis": { "text": "penis", "grammar": { "plural": "penises" } },
+  "penis": { "text": "penis", "forms": { "pl": "penises" } },
   "vagina": { "text": "vagina" },
   "testicle": { "text": "testicle" }
  }

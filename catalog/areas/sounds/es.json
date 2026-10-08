@@ -16,7 +16,7 @@
   "noise": { "text": "ruido", "grammar": { "gender": "el" } },
   "music": { "text": "música", "grammar": { "gender": "la" } },
   "radio": { "text": "radio", "grammar": { "gender": "la" } },
-  "speaker": { "text": "altavoz", "grammar": { "gender": "el", "plural": "altavoces" } },
+  "speaker": { "text": "altavoz", "forms": { "pl": "altavoces" }, "grammar": { "gender": "el" } },
   "headphones": {
    "text": "auriculares",
    "teaches": ["cascos"],

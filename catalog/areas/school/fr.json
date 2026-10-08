@@ -14,7 +14,8 @@
   "classroom": {
    "text": "salle de classe",
    "accepts": ["salle de cours"],
-   "grammar": { "gender": "la", "plural": "salles de classe" }
+   "forms": { "pl": "salles de classe" },
+   "grammar": { "gender": "la" }
   },
   "teacher": {
    "text": "professeur",
@@ -32,7 +33,8 @@
   "board": {
    "text": "tableau",
    "accepts": ["tableau noir", "tableau blanc"],
-   "grammar": { "gender": "le", "plural": "-x" }
+   "forms": { "pl": "tableaux" },
+   "grammar": { "gender": "le" }
   },
   "exercise-book": { "text": "cahier", "grammar": { "gender": "le" } },
   "homework": {
@@ -81,7 +83,8 @@
   "class-schedule": {
    "text": "emploi du temps",
    "accepts": ["l'emploi du temps"],
-   "grammar": { "gender": "l'", "plural": "emplois du temps" }
+   "forms": { "pl": "emplois du temps" },
+   "grammar": { "gender": "l'" }
   },
   "to-count": { "text": "compter" },
   "to-learn-by-heart": { "text": "apprendre par cœur", "teaches": ["mémoriser"], "accepts": ["apprendre par coeur"] },

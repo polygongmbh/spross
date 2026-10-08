@@ -13,7 +13,8 @@
   "speaker": {
    "text": "altoparlante",
    "accepts": ["l'altoparlante"],
-   "grammar": { "gender": "l'", "plural": "altoparlanti" }
+   "forms": { "pl": "altoparlanti" },
+   "grammar": { "gender": "l'" }
   },
   "headphones": {
    "text": "cuffie",

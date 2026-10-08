@@ -6,20 +6,17 @@
   "doctor-f": { "text": "лікарка" },
   "practice": {
    "text": "лікарський кабінет",
-   "grammar": { "plural": "лікарські кабінети" },
+   "forms": { "pl": "лікарські кабінети" },
    "notes": { "uk": "приватний кабінет часто називають практика." }
   },
   "pill": { "text": "таблетка", "teaches": ["пігулка"] },
   "prescription": { "text": "рецепт" },
   "pharmacy": { "text": "аптека" },
-  "insurance-card": {
-   "text": "картка медичного страхування",
-   "grammar": { "plural": "картки медичного страхування" }
-  },
-  "health-insurance": { "text": "лікарняна каса", "grammar": { "plural": "лікарняні каси" } },
+  "insurance-card": { "text": "картка медичного страхування", "forms": { "pl": "картки медичного страхування" } },
+  "health-insurance": { "text": "лікарняна каса", "forms": { "pl": "лікарняні каси" } },
   "hospital": { "text": "лікарня" },
-  "emergency": { "text": "екстрений випадок", "grammar": { "plural": "екстрені випадки" } },
-  "doctors-note": { "text": "лікарняний", "grammar": { "plural": "лікарняні" } },
+  "emergency": { "text": "екстрений випадок", "forms": { "pl": "екстрені випадки" } },
+  "doctors-note": { "text": "лікарняний", "forms": { "pl": "лікарняні" } },
   "to-examine": { "text": "обстежувати" },
   "to-prescribe-medicine": { "text": "виписувати ліки" },
   "to-take-medicine": { "text": "приймати ліки" },

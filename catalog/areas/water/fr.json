@@ -10,7 +10,7 @@
    "notes": { "fr": "la rivière coule dans un fleuve · le fleuve va à la mer." }
   },
   "lake": { "text": "lac", "grammar": { "gender": "le" } },
-  "ship": { "text": "bateau", "grammar": { "gender": "le", "plural": "-x" } },
+  "ship": { "text": "bateau", "forms": { "pl": "bateaux" }, "grammar": { "gender": "le" } },
   "boat": { "text": "barque", "teaches": ["canot"], "grammar": { "gender": "la" } },
   "port": { "text": "port", "grammar": { "gender": "le" } },
   "island": { "text": "île", "accepts": ["l'île"], "grammar": { "gender": "l'" } },

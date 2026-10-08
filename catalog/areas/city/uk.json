@@ -5,7 +5,7 @@
   "street": { "text": "вулиця" },
   "park": { "text": "парк" },
   "city": { "text": "місто" },
-  "village": { "text": "село", "grammar": { "plural": "села" } },
+  "village": { "text": "село", "forms": { "pl": "села" } },
   "neighborhood": { "text": "район" },
   "building": { "text": "будівля" },
   "bank": { "text": "банк" },
@@ -15,7 +15,7 @@
   "library": { "text": "бібліотека" },
   "police": { "text": "поліція" },
   "cinema": { "text": "кінотеатр", "accepts": ["кіно"] },
-  "bridge": { "text": "міст", "grammar": { "plural": "мости" } },
+  "bridge": { "text": "міст", "forms": { "pl": "мости" } },
   "is-there-a-bank-here": { "text": "Тут є банк?" },
   "i-live-in-this-neighborhood": { "text": "Я живу в цьому районі.", "orders": ["В цьому районі я живу."] }
  }

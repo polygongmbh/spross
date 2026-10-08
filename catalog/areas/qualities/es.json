@@ -57,7 +57,7 @@
   "easy": { "text": "fácil" },
   "problem": { "text": "problema", "grammar": { "gender": "el" } },
   "to-solve": { "text": "resolver", "teaches": ["solucionar"] },
-  "challenge": { "text": "desafío", "grammar": { "gender": "el", "plural": "desafíos" } },
+  "challenge": { "text": "desafío", "forms": { "pl": "desafíos" }, "grammar": { "gender": "el" } },
   "clean-adj": { "text": "limpio", "accepts": ["limpia"] },
   "sharp": {
    "text": "afilado",

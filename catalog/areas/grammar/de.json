@@ -2,15 +2,20 @@
  "title": "Grammatik",
  "subtitle": "Wortarten und Zeitformen benannt.",
  "words": {
-  "verb": { "text": "Verb", "grammar": { "gender": "das", "plural": "-en" } },
+  "verb": { "text": "Verb", "forms": { "pl": "Verben" }, "grammar": { "gender": "das" } },
   "noun": { "text": "Nomen", "teaches": ["Substantiv"], "grammar": { "gender": "das", "plural": "=" } },
-  "adjective": { "text": "Adjektiv", "grammar": { "gender": "das", "plural": "-e" } },
-  "noun-class": { "text": "Nomenklasse", "grammar": { "gender": "die", "plural": "-n" } },
-  "affix": { "text": "Affix", "grammar": { "gender": "das", "plural": "-e" } },
+  "adjective": { "text": "Adjektiv", "forms": { "pl": "Adjektive" }, "grammar": { "gender": "das" } },
+  "noun-class": { "text": "Nomenklasse", "forms": { "pl": "Nomenklassen" }, "grammar": { "gender": "die" } },
+  "affix": { "text": "Affix", "forms": { "pl": "Affixe" }, "grammar": { "gender": "das" } },
   "past": { "text": "Vergangenheit", "teaches": ["Präteritum"], "grammar": { "gender": "die" } },
   "present": { "text": "Gegenwart", "teaches": ["Präsens"], "grammar": { "gender": "die" } },
   "future": { "text": "Zukunft", "teaches": ["Futur"], "grammar": { "gender": "die" } },
-  "case": { "text": "Fall", "accepts": ["Kasus"], "grammar": { "gender": "der", "plural": "Fälle" } },
-  "conjugation": { "text": "Konjugation", "grammar": { "gender": "die", "plural": "-en" } }
+  "case": {
+   "text": "Fall",
+   "accepts": ["Kasus"],
+   "forms": { "pl": "Fälle" },
+   "grammar": { "gender": "der" }
+  },
+  "conjugation": { "text": "Konjugation", "forms": { "pl": "Konjugationen" }, "grammar": { "gender": "die" } }
  }
 }

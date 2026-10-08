@@ -22,7 +22,8 @@
   "to-cross": { "text": "cruzar", "teaches": ["atravesar"] },
   "direction": {
    "text": "dirección",
-   "grammar": { "gender": "la", "plural": "direcciones" },
+   "forms": { "pl": "direcciones" },
+   "grammar": { "gender": "la" },
    "notes": {
     "es": "La dirección es hacia dónde vas y también dónde vives.",
     "de": "la dirección ist die Richtung und zugleich die Anschrift; el sentido meint die Fahrtrichtung."

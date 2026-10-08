@@ -8,7 +8,12 @@
   "fear": { "text": "paura", "grammar": { "gender": "la" } },
   "surprise": { "text": "sorpresa", "grammar": { "gender": "la" } },
   "worry": { "text": "preoccupazione", "grammar": { "gender": "la" } },
-  "love": { "text": "amore", "accepts": ["l'amore"], "grammar": { "gender": "l'", "plural": "amori" } },
+  "love": {
+   "text": "amore",
+   "accepts": ["l'amore"],
+   "forms": { "pl": "amori" },
+   "grammar": { "gender": "l'" }
+  },
   "shame": { "text": "vergogna", "grammar": { "gender": "la" } },
   "jealousy": { "text": "gelosia", "grammar": { "gender": "la" } },
   "smile": { "text": "sorriso", "grammar": { "gender": "il" } },

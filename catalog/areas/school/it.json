@@ -67,13 +67,14 @@
   "class-schedule": {
    "text": "orario",
    "accepts": ["l'orario", "orario delle lezioni"],
-   "grammar": { "gender": "l'", "plural": "orari" },
+   "forms": { "pl": "orari" },
+   "grammar": { "gender": "l'" },
    "notes": { "it": "l'orario è ogni orario · a scuola è l'orario delle lezioni." }
   },
   "to-count": { "text": "contare" },
   "to-learn-by-heart": { "text": "imparare a memoria", "teaches": ["memorizzare"] },
   "to-read-aloud": { "text": "leggere ad alta voce" },
-  "dictionary": { "text": "dizionario", "grammar": { "gender": "il", "plural": "dizionari" } },
+  "dictionary": { "text": "dizionario", "forms": { "pl": "dizionari" }, "grammar": { "gender": "il" } },
   "to-pronounce": { "text": "pronunciare" },
   "to-teach": { "text": "insegnare" },
   "report-card": { "text": "pagella", "grammar": { "gender": "la" } },

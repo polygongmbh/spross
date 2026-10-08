@@ -2,8 +2,8 @@
  "title": "Asili",
  "subtitle": "Hewa safi na anga wazi.",
  "words": {
-  "tree": { "text": "mti", "grammar": { "plural": "miti" } },
-  "flower": { "text": "ua", "grammar": { "plural": "maua" } },
+  "tree": { "text": "mti", "forms": { "pl": "miti" } },
+  "flower": { "text": "ua", "forms": { "pl": "maua" } },
   "to-go-for-walk": { "text": "kutembea" },
   "to-jog": {
    "text": "kukimbia",
@@ -14,11 +14,11 @@
   },
   "to-plant-flowers": { "text": "kupanda maua" },
   "to-grill-meat": { "text": "kuchoma nyama" },
-  "mountain": { "text": "mlima", "grammar": { "plural": "milima" } },
-  "forest": { "text": "msitu", "grammar": { "plural": "misitu" } },
-  "stone": { "text": "jiwe", "grammar": { "plural": "mawe" } },
-  "stone-wall": { "text": "ukuta wa mawe", "grammar": { "plural": "kuta za mawe" } },
-  "moon": { "text": "mwezi", "grammar": { "plural": "miezi" } },
+  "mountain": { "text": "mlima", "forms": { "pl": "milima" } },
+  "forest": { "text": "msitu", "forms": { "pl": "misitu" } },
+  "stone": { "text": "jiwe", "forms": { "pl": "mawe" } },
+  "stone-wall": { "text": "ukuta wa mawe", "forms": { "pl": "kuta za mawe" } },
+  "moon": { "text": "mwezi", "forms": { "pl": "miezi" } },
   "star": { "text": "nyota", "grammar": { "plural": "=" } },
   "wood": {
    "text": "mbao",
@@ -27,7 +27,7 @@
    "notes": { "sw": "mbao za ujenzi · kuni za kupikia" }
   },
   "stick": { "text": "fimbo", "grammar": { "plural": "=" } },
-  "shadow": { "text": "kivuli", "grammar": { "plural": "vivuli" } },
+  "shadow": { "text": "kivuli", "forms": { "pl": "vivuli" } },
   "we-are-going-to-the-mountains": { "text": "Tunaenda milimani." },
   "its-cold-in-the-mountains": { "text": "Milimani kuna baridi.", "orders": ["Kuna baridi milimani."] }
  }

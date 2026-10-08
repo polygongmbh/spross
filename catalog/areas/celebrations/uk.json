@@ -4,7 +4,7 @@
  "words": {
   "celebration": { "text": "свято", "teaches": ["святкування"] },
   "to-celebrate": { "text": "святкувати" },
-  "birthday": { "text": "день народження", "grammar": { "plural": "дні народження" } },
+  "birthday": { "text": "день народження", "forms": { "pl": "дні народження" } },
   "birthday-party": { "text": "святкування дня народження" },
   "gift": { "text": "подарунок" },
   "to-give-a-present": { "text": "дарувати" },

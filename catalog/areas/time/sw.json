@@ -5,7 +5,7 @@
   "time": {
    "text": "wakati",
    "teaches": ["muda"],
-   "grammar": { "plural": "nyakati" },
+   "forms": { "pl": "nyakati" },
    "notes": {
     "sw": "wakati wa jioni · muda mrefu, muda kidogo",
     "de": "wakati = Zeit allgemein · muda = Zeitspanne: „Sina muda“ = Ich habe keine Zeit."
@@ -17,10 +17,10 @@
   "minute": { "text": "dakika", "grammar": { "plural": "=" } },
   "month": {
    "text": "mwezi",
-   "grammar": { "plural": "miezi" },
+   "forms": { "pl": "miezi" },
    "notes": { "sw": "mwezi huu, miezi mingi · mwezi pia ni ule wa angani" }
   },
-  "year": { "text": "mwaka", "grammar": { "plural": "miaka" } },
+  "year": { "text": "mwaka", "forms": { "pl": "miaka" } },
   "now": { "text": "sasa" },
   "today": { "text": "leo" },
   "tomorrow": { "text": "kesho" },
@@ -76,7 +76,7 @@
   "right-now": { "text": "sasa hivi" },
   "weekend": { "text": "wikendi", "teaches": ["mwishoni mwa wiki"], "grammar": { "plural": "=" } },
   "century": { "text": "karne", "grammar": { "plural": "=" } },
-  "decade": { "text": "mwongo", "grammar": { "plural": "miongo" } },
+  "decade": { "text": "mwongo", "forms": { "pl": "miongo" } },
   "millennium": { "text": "milenia", "grammar": { "plural": "=" } },
   "nowadays": { "text": "siku hizi" },
   "to-last": { "text": "kuchukua muda", "accepts": ["kudumu"] },

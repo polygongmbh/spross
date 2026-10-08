@@ -5,7 +5,7 @@
   "form": { "text": "form" },
   "to-fill-in": { "text": "to fill in" },
   "signature": { "text": "signature" },
-  "address": { "text": "address", "grammar": { "plural": "addresses" } },
+  "address": { "text": "address", "forms": { "pl": "addresses" } },
   "first-name": { "text": "first name" },
   "surname": { "text": "last name", "accepts": ["surname", "family name"] },
   "date-of-birth": { "text": "date of birth", "accepts": ["birth date"] },

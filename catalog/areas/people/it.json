@@ -18,11 +18,16 @@
    "grammar": { "gender": "il" },
    "notes": { "it": "il bambino è ogni bambino · il tuo è tuo figlio." }
   },
-  "son": { "text": "figlio", "grammar": { "gender": "il", "plural": "figli" } },
+  "son": { "text": "figlio", "forms": { "pl": "figli" }, "grammar": { "gender": "il" } },
   "daughter": { "text": "figlia", "grammar": { "gender": "la" } },
   "brother": { "text": "fratello", "grammar": { "gender": "il" } },
   "sister": { "text": "sorella", "grammar": { "gender": "la" } },
-  "man": { "text": "uomo", "accepts": ["l'uomo"], "grammar": { "gender": "l'", "plural": "uomini" } },
+  "man": {
+   "text": "uomo",
+   "accepts": ["l'uomo"],
+   "forms": { "pl": "uomini" },
+   "grammar": { "gender": "l'" }
+  },
   "woman": { "text": "donna", "grammar": { "gender": "la" } },
   "boy": { "text": "ragazzo", "grammar": { "gender": "il" } },
   "girl": { "text": "ragazza", "grammar": { "gender": "la" } },
@@ -32,17 +37,23 @@
    "grammar": { "gender": "il" },
    "notes": { "it": "il neonato è appena nato · dopo è un bambino piccolo." }
   },
-  "friend": { "text": "amico", "accepts": ["l'amico"], "grammar": { "gender": "l'", "plural": "amici" } },
+  "friend": {
+   "text": "amico",
+   "accepts": ["l'amico"],
+   "forms": { "pl": "amici" },
+   "grammar": { "gender": "l'" }
+  },
   "friend-f": {
    "text": "amica",
    "accepts": ["l'amica", "un'amica"],
-   "grammar": { "gender": "l'", "plural": "amiche" }
+   "forms": { "pl": "amiche" },
+   "grammar": { "gender": "l'" }
   },
   "grandmother": { "text": "nonna", "grammar": { "gender": "la" } },
   "grandfather": { "text": "nonno", "grammar": { "gender": "il" } },
   "husband": { "text": "marito", "grammar": { "gender": "il" } },
-  "wife": { "text": "moglie", "grammar": { "gender": "la", "plural": "mogli" } },
-  "uncle": { "text": "zio", "grammar": { "gender": "lo", "plural": "zii" } },
+  "wife": { "text": "moglie", "forms": { "pl": "mogli" }, "grammar": { "gender": "la" } },
+  "uncle": { "text": "zio", "forms": { "pl": "zii" }, "grammar": { "gender": "lo" } },
   "aunt": { "text": "zia", "grammar": { "gender": "la" } },
   "to-visit": { "text": "andare a trovare" },
   "to-marry": { "text": "sposarsi" },

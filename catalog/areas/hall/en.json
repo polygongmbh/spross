@@ -9,7 +9,7 @@
   "coat": { "text": "coat" },
   "umbrella": { "text": "umbrella" },
   "hat": { "text": "hat" },
-  "mailbox": { "text": "mailbox", "grammar": { "plural": "mailboxes" } },
+  "mailbox": { "text": "mailbox", "forms": { "pl": "mailboxes" } },
   "doorbell": { "text": "doorbell" },
   "stairs": { "text": "stairs", "grammar": { "plural": "only" } },
   "bag": { "text": "bag" },

@@ -22,7 +22,7 @@
   "between": { "text": "між" },
   "near": { "text": "близько", "accepts": ["поруч"] },
   "far": { "text": "далеко" },
-  "place": { "text": "місце", "grammar": { "plural": "місця" } },
+  "place": { "text": "місце", "forms": { "pl": "місця" } },
   "country": { "text": "країна" },
   "in-front": { "text": "спереду", "teaches": ["попереду"] },
   "next-to": { "text": "поруч з" },

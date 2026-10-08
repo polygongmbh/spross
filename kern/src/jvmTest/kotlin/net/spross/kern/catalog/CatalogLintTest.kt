@@ -535,6 +535,9 @@ class CatalogLintTest {
                 assertTrue(value.isNotBlank() && value.trim() == value, "$where: bad value \"$value\"")
                 assertTrue(!value.startsWith("Pl."), "$where: labeled value \"$value\"")
             }
+            raw.grammar["plural"]?.let {
+                assertTrue(it == "=" || it == "only", "$area/$lang.json $slug: a plural form belongs in forms.pl, not grammar (\"$it\")")
+            }
             val gender = raw.grammar["gender"] ?: return@forEachRealization
             val where = "$area/$lang.json $slug.gender"
             assertTrue(gender in catalog.languages.getValue(lang).articles, "$where: no declared $lang article")

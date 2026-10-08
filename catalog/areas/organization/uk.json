@@ -2,7 +2,7 @@
  "title": "Записи та терміни",
  "subtitle": "Щоб нічого не загубилося.",
  "words": {
-  "appointment": { "text": "запис на прийом", "teaches": ["візит"], "grammar": { "plural": "записи на прийом" } },
+  "appointment": { "text": "запис на прийом", "teaches": ["візит"], "forms": { "pl": "записи на прийом" } },
   "date": { "text": "дата" },
   "opening-hours": { "text": "години роботи", "grammar": { "plural": "only" } },
   "deadline": { "text": "строк", "teaches": ["термін"] },

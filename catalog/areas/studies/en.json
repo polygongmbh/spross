@@ -2,7 +2,7 @@
  "title": "Studies and Training",
  "subtitle": "School is done, and then?",
  "words": {
-  "university": { "text": "university", "grammar": { "plural": "universities" } },
+  "university": { "text": "university", "forms": { "pl": "universities" } },
   "student": { "text": "student" },
   "studies": { "text": "studies", "grammar": { "plural": "only" } },
   "to-study-at-university": { "text": "to study at university", "accepts": ["to go to university"] },

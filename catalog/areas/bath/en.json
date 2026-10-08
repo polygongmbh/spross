@@ -8,7 +8,7 @@
   "shower": { "text": "shower" },
   "sink": { "text": "sink" },
   "mirror": { "text": "mirror" },
-  "toothbrush": { "text": "toothbrush", "grammar": { "plural": "toothbrushes" } },
+  "toothbrush": { "text": "toothbrush", "forms": { "pl": "toothbrushes" } },
   "toothpaste": { "text": "toothpaste" },
   "towel": { "text": "towel" },
   "soap": { "text": "soap" },

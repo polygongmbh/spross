@@ -186,7 +186,7 @@ and always through `../scripts/catalog-rename-slugs.py`, which carries every ref
 ```json
 { "title": "Die Küche", "subtitle": "Hier duftet es nach Abendessen.",
   "words": {
-    "fridge": { "text": "Kühlschrank", "grammar": { "gender": "der", "plural": "Kühlschränke" } },
+    "fridge": { "text": "Kühlschrank", "forms": { "pl": "Kühlschränke" }, "grammar": { "gender": "der" } },
     "to-cook": { "text": "kochen" },
     "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." } } }
 ```
@@ -236,6 +236,16 @@ Realization fields — only `text` is required:
   gender `m`/`f`/`n`, number `pl`, case `nom`/`gen`/`dat`/`acc`/`ins`/`loc`/`voc`, Swahili class `1`–`18`;
   a dimension it leaves out is `text`'s value on it.
   `text` stays the citation form and carries no tag.
+  A form is written bare where `text`'s article fits it or none applies (the plural `Kühlschränke`),
+  and with its own article where it takes another (`"f": "die Lehrerin"`), which grading then reads back.
+  **The plural is `pl`**, and how much to author is per language — the test is always the same:
+  write it down when the learner could not derive it.
+  de and sw author every countable noun — German plurals are unpredictable by class,
+  and a Swahili plural IS the noun class (`kiti`→`viti`), the most load-bearing fact about the word.
+  en and uk author only what the regular pattern does not give: en beyond a bare +s
+  (`knife`→`knives`), uk beyond swapping the ending — stem alternations (`ніж`→`ножі`),
+  fleeting vowels (`день`→`дні`), suppletives (`людина`→`люди`),
+  and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
 - `orders` — alternative valid **word orders** of the same sentence (array; omit if none):
   grammatically valid rearrangements whose atoms are a permutation of `text`'s atoms
   (de "Gehen Sie geradeaus." → order "Sie gehen geradeaus.").
@@ -246,8 +256,7 @@ Realization fields — only `text` is required:
   Each entry must tokenize to the same word bag as `text`; an order with different words
   is silently dropped at availability-build time.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
-  labels, no `(selten)` qualifier), one fact per key: de and es `gender` + `plural`,
-  sw `plural`, en `plural`, uk `plural`. Omit if empty.
+  labels, no `(selten)` qualifier), one fact per key: `gender` and `plural`. Omit if empty.
   `gender` is the ARTICLE the learner says, and always one the language declares
   in `languages.json` — de der/die/das, es el/la, and `los`/`las` on the nouns
   whose article genuinely IS the plural one (los auriculares, las vacaciones).
@@ -258,18 +267,10 @@ Realization fields — only `text` is required:
   (fr `le vaccin` on la vaccination), and grading reads that one back instead.
   Omit `gender` where the language allows both and neither is taught
   (es `internet`, which RAE writes without an article).
-  `plural` is a bare full form (`"Wörter"`), a suffix (`"-n"`, `"-nen"`),
-  `"="` (identical to the singular → render `"= Pl."`), or
-  `"only"` (pluralia tantum, no singular → render `"nur Pl."`).
-  True uncountables (Regen, Hunger) simply omit `plural`.
-  **How much to author is per language**, and the test is always the same:
-  write it down when the learner could not derive it.
-  de and sw author every countable noun — German plurals are unpredictable by class,
-  and a Swahili plural IS the noun class (`kiti`→`viti`), the most load-bearing fact about the word.
-  en and uk author only what the regular pattern does not give: en beyond a bare +s
-  (`knife`→`knives`), uk beyond swapping the ending — stem alternations (`ніж`→`ножі`),
-  fleeting vowels (`день`→`дні`), suppletives (`людина`→`люди`), indeclinables and `-ння`
-  neuters (`"="`), and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
+  `plural` holds only what is no form: `"="` (identical to the singular → render `"= Pl."`,
+  uk indeclinables and `-ння` neuters) or `"only"` (pluralia tantum, no singular → render `"nur Pl."`);
+  a plural that IS a form is `forms.pl`, and lint holds the split.
+  True uncountables (Regen, Hunger) carry neither.
 - `notes` — keyed by the language the note is WRITTEN IN, and that key decides who reads it.
   A note reaches a card only while this file's language is the one being LEARNED, never
   while it is the learner's own — so it is always written for somebody meeting this word.

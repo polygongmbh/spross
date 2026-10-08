@@ -31,7 +31,8 @@
   "sweater": {
    "text": "jersey",
    "accepts": ["jerséi", "suéter"],
-   "grammar": { "gender": "el", "plural": "jerséis" }
+   "forms": { "pl": "jerséis" },
+   "grammar": { "gender": "el" }
   },
   "underwear": { "text": "ropa interior", "grammar": { "gender": "la" } },
   "belt": { "text": "cinturón", "accepts": ["correa"], "grammar": { "gender": "el" } },

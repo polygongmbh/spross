@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Plurals are now practiced, not just shown: a recognition card can ask with the plural, marked "pl." on its meaning, and every other form that would also have been right is listed on the reveal.
+
 ## 8.4.0 — 2026-10-08
 
 - Restarting the tutorial now keeps your saved name in the name field instead of blanking it, so finishing no longer erases it.

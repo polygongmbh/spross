@@ -35,7 +35,8 @@
   "potato": {
    "text": "pomme de terre",
    "accepts": ["patate"],
-   "grammar": { "gender": "la", "plural": "pommes de terre" }
+   "forms": { "pl": "pommes de terre" },
+   "grammar": { "gender": "la" }
   },
   "onion": { "text": "oignon", "accepts": ["l'oignon"], "grammar": { "gender": "l'" } },
   "tomato": { "text": "tomate", "grammar": { "gender": "la" } },
@@ -52,13 +53,14 @@
   "bean": { "text": "haricot", "grammar": { "gender": "le" } },
   "garlic": { "text": "ail", "accepts": ["l'ail"], "grammar": { "gender": "l'" } },
   "carrot": { "text": "carotte", "grammar": { "gender": "la" } },
-  "cabbage": { "text": "chou", "grammar": { "gender": "le", "plural": "choux" } },
+  "cabbage": { "text": "chou", "forms": { "pl": "choux" }, "grammar": { "gender": "le" } },
   "porridge": { "text": "bouillie", "grammar": { "gender": "la" } },
   "samosa": { "text": "samoussa", "grammar": { "gender": "le" } },
   "breakfast": {
    "text": "petit-déjeuner",
    "accepts": ["petit déjeuner"],
-   "grammar": { "gender": "le", "plural": "petits-déjeuners" }
+   "forms": { "pl": "petits-déjeuners" },
+   "grammar": { "gender": "le" }
   },
   "dinner": { "text": "dîner", "accepts": ["souper"], "grammar": { "gender": "le" } },
   "water": { "text": "eau", "accepts": ["l'eau"], "grammar": { "gender": "l'" } },

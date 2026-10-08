@@ -36,7 +36,12 @@
   "juice": { "text": "zumo", "teaches": ["jugo"], "grammar": { "gender": "el" } },
   "cooked-rice": { "text": "arroz cocido" },
   "cassava": { "text": "yuca", "teaches": ["mandioca"], "grammar": { "gender": "la" } },
-  "bean": { "text": "frijol", "teaches": ["judía"], "grammar": { "gender": "el", "plural": "frijoles" } },
+  "bean": {
+   "text": "frijol",
+   "teaches": ["judía"],
+   "forms": { "pl": "frijoles" },
+   "grammar": { "gender": "el" }
+  },
   "garlic": { "text": "ajo", "grammar": { "gender": "el" } },
   "carrot": { "text": "zanahoria", "grammar": { "gender": "la" } },
   "cabbage": { "text": "col", "teaches": ["repollo"], "grammar": { "gender": "la" } },

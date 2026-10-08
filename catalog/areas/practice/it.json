@@ -7,7 +7,8 @@
   "goal": {
    "text": "obiettivo",
    "accepts": ["l'obiettivo"],
-   "grammar": { "gender": "l'", "plural": "obiettivi" }
+   "forms": { "pl": "obiettivi" },
+   "grammar": { "gender": "l'" }
   },
   "to-achieve": { "text": "raggiungere" },
   "exercise": { "text": "esercizio", "accepts": ["l'esercizio"], "grammar": { "gender": "l'" } },

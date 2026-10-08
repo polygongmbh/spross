@@ -8,7 +8,7 @@
   "dishwasher": { "text": "dishwasher" },
   "pot": { "text": "pot" },
   "pan": { "text": "pan" },
-  "knife": { "text": "knife", "grammar": { "plural": "knives" } },
+  "knife": { "text": "knife", "forms": { "pl": "knives" } },
   "spoon": { "text": "spoon" },
   "fork": { "text": "fork" },
   "plate": { "text": "plate" },

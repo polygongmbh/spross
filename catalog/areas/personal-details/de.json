@@ -2,29 +2,36 @@
  "title": "Persönliche Angaben",
  "subtitle": "Schwarz auf weiß, in jedes Kästchen.",
  "words": {
-  "form": { "text": "Formular", "grammar": { "gender": "das", "plural": "-e" } },
+  "form": { "text": "Formular", "forms": { "pl": "Formulare" }, "grammar": { "gender": "das" } },
   "to-fill-in": { "text": "ausfüllen" },
-  "signature": { "text": "Unterschrift", "grammar": { "gender": "die", "plural": "-en" } },
-  "address": { "text": "Adresse", "grammar": { "gender": "die", "plural": "-n" } },
-  "first-name": { "text": "Vorname", "grammar": { "gender": "der", "plural": "-n" } },
+  "signature": { "text": "Unterschrift", "forms": { "pl": "Unterschriften" }, "grammar": { "gender": "die" } },
+  "address": { "text": "Adresse", "forms": { "pl": "Adressen" }, "grammar": { "gender": "die" } },
+  "first-name": { "text": "Vorname", "forms": { "pl": "Vornamen" }, "grammar": { "gender": "der" } },
   "surname": {
    "text": "Familienname",
    "teaches": ["Nachname"],
-   "grammar": { "gender": "der", "plural": "-n" }
+   "forms": { "pl": "Familiennamen" },
+   "grammar": { "gender": "der" }
   },
-  "date-of-birth": { "text": "Geburtsdatum", "grammar": { "gender": "das", "plural": "Geburtsdaten" } },
-  "place-of-birth": { "text": "Geburtsort", "grammar": { "gender": "der", "plural": "-e" } },
-  "place-of-residence": { "text": "Wohnort", "grammar": { "gender": "der", "plural": "-e" } },
-  "house-number": { "text": "Hausnummer", "grammar": { "gender": "die", "plural": "-n" } },
-  "zip-code": { "text": "Postleitzahl", "accepts": ["PLZ"], "grammar": { "gender": "die", "plural": "-en" } },
-  "phone-number": { "text": "Telefonnummer", "grammar": { "gender": "die", "plural": "-n" } },
-  "email-address": { "text": "E-Mail-Adresse", "grammar": { "gender": "die", "plural": "-n" } },
+  "date-of-birth": { "text": "Geburtsdatum", "forms": { "pl": "Geburtsdaten" }, "grammar": { "gender": "das" } },
+  "place-of-birth": { "text": "Geburtsort", "forms": { "pl": "Geburtsorte" }, "grammar": { "gender": "der" } },
+  "place-of-residence": { "text": "Wohnort", "forms": { "pl": "Wohnorte" }, "grammar": { "gender": "der" } },
+  "house-number": { "text": "Hausnummer", "forms": { "pl": "Hausnummern" }, "grammar": { "gender": "die" } },
+  "zip-code": {
+   "text": "Postleitzahl",
+   "accepts": ["PLZ"],
+   "forms": { "pl": "Postleitzahlen" },
+   "grammar": { "gender": "die" }
+  },
+  "phone-number": { "text": "Telefonnummer", "forms": { "pl": "Telefonnummern" }, "grammar": { "gender": "die" } },
+  "email-address": { "text": "E-Mail-Adresse", "forms": { "pl": "E-Mail-Adressen" }, "grammar": { "gender": "die" } },
   "nationality": {
    "text": "Staatsangehörigkeit",
    "accepts": ["Nationalität"],
-   "grammar": { "gender": "die", "plural": "-en" }
+   "forms": { "pl": "Staatsangehörigkeiten" },
+   "grammar": { "gender": "die" }
   },
-  "sex": { "text": "Geschlecht", "grammar": { "gender": "das", "plural": "-er" } },
+  "sex": { "text": "Geschlecht", "forms": { "pl": "Geschlechter" }, "grammar": { "gender": "das" } },
   "male": { "text": "männlich" },
   "female": { "text": "weiblich" },
   "marital-status": { "text": "Familienstand", "grammar": { "gender": "der" } },

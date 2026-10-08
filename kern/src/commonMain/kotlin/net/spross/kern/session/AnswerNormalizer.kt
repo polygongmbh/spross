@@ -115,7 +115,9 @@ class AnswerNormalizer(
         val forms = answerForms(card, promptTag)
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
         val expectedArticle = card.target.grammar["gender"]?.lowercase()
-        val genderedForms = listOf(card.target.text) + card.target.accepts + card.target.forms.map { it.text }
+        // A form authored with its own article is read back against it; a bare one (a plural) is not the citation's gender.
+        val genderedForms = listOf(card.target.text) + card.target.accepts +
+            card.target.forms.map { it.text }.filter { leadingArticle(it) != null }
         val result = evaluate(input, forms.right, prefixes, expectedArticle, genderedForms)
         if (result != Match.Wrong) return result
         // The word in a form the prompt did not ask for corrects to the one it did.

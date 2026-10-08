@@ -23,6 +23,7 @@ fun spokenOnly(card: Card, spokenForm: String): Card = card.copy(
         text = spokenForm,
         teaches = emptyList(),
         accepts = emptyList(),
+        forms = emptyList(),
     ),
 )
 
@@ -41,7 +42,7 @@ fun spokenOnly(card: Card, spokenForm: String): Card = card.copy(
  */
 fun alsoAccepts(card: Card, input: String): Boolean {
     val typed = speechKey(input)
-    return (card.target.teaches + card.target.accepts).any { speechKey(it) == typed }
+    return (card.target.teaches + card.target.accepts + card.target.forms.map { it.text }).any { speechKey(it) == typed }
 }
 
 /**

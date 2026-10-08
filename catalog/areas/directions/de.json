@@ -4,13 +4,13 @@
  "words": {
   "straight-ahead": { "text": "geradeaus" },
   "to-turn": { "text": "abbiegen", "notes": { "de": "trennbar, ab steht hinten: Biegen Sie links ab." } },
-  "corner": { "text": "Ecke", "grammar": { "gender": "die", "plural": "-n" } },
-  "crossing": { "text": "Kreuzung", "grammar": { "gender": "die", "plural": "-en" } },
+  "corner": { "text": "Ecke", "forms": { "pl": "Ecken" }, "grammar": { "gender": "die" } },
+  "crossing": { "text": "Kreuzung", "forms": { "pl": "Kreuzungen" }, "grammar": { "gender": "die" } },
   "to-cross": { "text": "überqueren" },
-  "direction": { "text": "Richtung", "grammar": { "gender": "die", "plural": "-en" } },
-  "city-map": { "text": "Stadtplan", "grammar": { "gender": "der", "plural": "Stadtpläne" } },
-  "entrance": { "text": "Eingang", "grammar": { "gender": "der", "plural": "Eingänge" } },
-  "exit": { "text": "Ausgang", "grammar": { "gender": "der", "plural": "Ausgänge" } },
+  "direction": { "text": "Richtung", "forms": { "pl": "Richtungen" }, "grammar": { "gender": "die" } },
+  "city-map": { "text": "Stadtplan", "forms": { "pl": "Stadtpläne" }, "grammar": { "gender": "der" } },
+  "entrance": { "text": "Eingang", "forms": { "pl": "Eingänge" }, "grammar": { "gender": "der" } },
+  "exit": { "text": "Ausgang", "forms": { "pl": "Ausgänge" }, "grammar": { "gender": "der" } },
   "to-follow": {
    "text": "folgen",
    "notes": {
@@ -19,7 +19,7 @@
     "es": "folgen rige dativo: Folgen Sie mir, folgen Sie dem Schild."
    }
   },
-  "way": { "text": "Weg", "grammar": { "gender": "der", "plural": "-e" } },
+  "way": { "text": "Weg", "forms": { "pl": "Wege" }, "grammar": { "gender": "der" } },
   "north": { "text": "Norden", "grammar": { "gender": "der" } },
   "south": { "text": "Süden", "grammar": { "gender": "der" } },
   "east": { "text": "Osten", "grammar": { "gender": "der" } },
