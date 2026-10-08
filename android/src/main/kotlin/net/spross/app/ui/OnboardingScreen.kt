@@ -78,9 +78,11 @@ fun OnboardingScreen(model: AppModel) {
         mutableStateOf(joined?.target ?: catalog.availableTargets(initialSource).firstOrNull()?.code)
     }
     var pickingSource by rememberSaveable { mutableStateOf(false) }
-    // The device's own guess, where it is named after somebody ([DeviceName]) — offered
-    // filled in, and worth nothing until the last page commits it.
-    var name by rememberSaveable { mutableStateOf(model.suggestedLearnerName().orEmpty()) }
+    // The name already saved, else the device's own guess where it is named after somebody
+    // ([DeviceName]) — offered filled in, and worth nothing until the last page commits it.
+    var name by rememberSaveable {
+        mutableStateOf(model.learnerName ?: model.suggestedLearnerName().orEmpty())
+    }
     // Plain remember: a restored `true` would outlive the model's coroutine and leave a
     // spinner nothing ever resolves. Rotation keeps the activity (`configChanges`), so
     // the only way back here is process death, where the join is gone anyway.

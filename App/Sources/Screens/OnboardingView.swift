@@ -32,7 +32,7 @@ struct OnboardingView: View {
     @State private var target: String?
     @State private var pickingSource = false
     /// Worth nothing until the last page commits it, like the pair beside it.
-    @State private var name = ""
+    @State private var name: String
     // why: internal, not private — the story pages live in an extension of their own.
     @State var starting = false
     @State var page: Page
@@ -44,6 +44,7 @@ struct OnboardingView: View {
     /// already-made pair (`RootView`) has nothing left for it to ask there.
     init(model: AppModel, skipLanguagePick: Bool = false) {
         self.model = model
+        _name = State(initialValue: model.learnerName ?? "")
         let restart = skipLanguagePick && model.targetLanguage != nil
         _page = State(initialValue: Onboarding.shared.openingPage(restart: restart))
         if restart, let target = model.targetLanguage {
@@ -165,7 +166,7 @@ struct OnboardingView: View {
     /// The one question this page does not need answered: it gates nothing.
     /// The greeting has a wording for a learner it cannot name.
     ///
-    /// It opens empty. `UIDevice.current.name` returns the MODEL ("iPhone") on iOS 16 and
+    /// It opens with the saved name, else empty. `UIDevice.current.name` returns the MODEL ("iPhone") on iOS 16 and
     /// later for any app without the user-assigned-device-name entitlement, which is a
     /// granted one and not among this app's — a model name is nobody, so there is nothing
     /// here to prefill from. Android fills the same field in from its device name
