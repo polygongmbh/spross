@@ -36,21 +36,16 @@ internal data class AudioRecording(
      * The ANALYSIS INDEX: dB from the catalog's analysis targets, and dead air at the head
      * in ms. Both are MEASUREMENTS of the shipped bytes, never edits to them — the packs
      * were recorded by different people and differ by up to 20 dB, and re-encoding is an
-     * adaptation under BY-SA. `gain` is the full-range plane; `gainPhone` the built-in phone
-     * speaker's, null where no phone plane was measured (letters and texts) — see
-     * [AudioIndex] for who picks which. Absent `gain` means 0, i.e. nothing to correct.
+     * adaptation under BY-SA. Absent `gain` means 0, i.e. nothing to correct.
      */
     val gain: Double,
-    val gainPhone: Double?,
     /**
      * What the converter's peak ceiling held back from [gain] — 0 where the loudness number
      * stood as measured. The cap is only true at FULL VOLUME, so a player that has already
      * attenuated may hand as much of this back as it has taken off (`fadedGainDb`); nothing
-     * outside a fade ever reads it. [capPhone] is [gainPhone]'s own, and null in the same
-     * places [gainPhone] is.
+     * outside a fade ever reads it.
      */
     val cap: Double,
-    val capPhone: Double?,
     val leadMs: Long,
     /**
      * How good the take sounds, as a predicted mean opinion score from 1 to 5.
@@ -113,9 +108,7 @@ internal class AudioManifest(
      * [texts]' shape and [texts]' reason — no concept covers a weekday, so nothing here has
      * a slug — and it shares the same form index, which is what lets the dates drill hear a
      * recorded `Montag` through the ordinary form-keyed lookup rather than a route of its
-     * own. A section apart from [texts] because the two are measured differently: these are
-     * words said on a drill card, so they carry the phone-speaker plane that the alphabet's
-     * flat reference rows do not.
+     * own.
      */
     val calendar: Map<String, AudioRecording> = emptyMap(),
     /**

@@ -37,29 +37,6 @@ enum AudioSession {
     /// says.
     static func useExplicit() { use(.playback) }
 
-    /// Which of the catalog's two playback planes the current output route
-    /// deserves. The built-in speaker radiates almost none of a word's low end,
-    /// so a recording measured for full-range output plays too loud there and
-    /// too quiet through anything that can actually radiate it. The manifest
-    /// carries one gain per plane (`gain` full-range, `gainPhone` the built-in
-    /// speaker) and the caller picks; this only reads the route.
-    enum Plane {
-        /// The built-in speaker or earpiece — what `gainPhone` was measured for.
-        case phone
-        /// Headphones, Bluetooth, CarPlay, AirPlay, USB, HDMI — the full range.
-        case fullRange
-    }
-
-    /// Reads the route once per fire, so a headphone change between words is
-    /// picked up by the next word. Absent outputs fall back to the full-range
-    /// plane, the figure the packs have always shipped.
-    static func plane() -> Plane {
-        let ports = Set(AVAudioSession.sharedInstance().currentRoute.outputs.map(\.portType))
-        return ports.isDisjoint(with: phonePorts) ? .fullRange : .phone
-    }
-
-    private static let phonePorts: Set<AVAudioSession.Port> = [.builtInSpeaker, .builtInReceiver]
-
     /// Whether the device's volume is too low for a word to be heard (kern
     /// `isVolumeLow`) — what a screen about to play one asks before it shows
     /// `VolumeHint`, never a reason to silence or withhold a sound.

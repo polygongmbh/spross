@@ -8,7 +8,7 @@ import net.spross.kern.model.Language
 internal object AudioManifestParser {
     private val WORD_KEYS =
         setOf("file", "matches", "license", "author", "source", "sha256",
-              "gain", "cap", "gainPhone", "capPhone", "lead", "mos", "gate")
+              "gain", "cap", "lead", "mos", "gate")
     private val LETTER_KEYS = WORD_KEYS - "matches"
     private val ARTICLE_KEYS = WORD_KEYS + "word"
 
@@ -105,9 +105,7 @@ internal object AudioManifestParser {
                 source = entry.requireNonBlank(path, context, "source"),
                 sha256 = entry.requireNonBlank(path, context, "sha256"),
                 gain = entry.gain(path, context, "gain"),
-                gainPhone = entry.optionalGain(path, context, "gainPhone"),
                 cap = entry.optionalCap(path, context, "cap") ?: 0.0,
-                capPhone = entry.optionalCap(path, context, "capPhone"),
                 leadMs = entry.leadMs(path, context),
                 mos = entry.optionalDouble(path, context, "mos") ?: 0.0,
                 gate = entry.gate(path, context),
@@ -128,7 +126,6 @@ internal object AudioManifestParser {
     private fun JsonObject.gain(path: String, context: String, key: String): Double =
         optionalGain(path, context, key) ?: 0.0
 
-    /** [gain]'s optional twin — `gainPhone` is absent exactly where no phone plane was measured. */
     private fun JsonObject.optionalGain(path: String, context: String, key: String): Double? {
         val gain = optionalDouble(path, context, key) ?: return null
         val limit = Playback.GAIN_LIMIT_DB

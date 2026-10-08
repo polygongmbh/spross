@@ -149,8 +149,7 @@ final class Pronouncer {
             // of bytes that stay the untouched transcode — playback is the one
             // place they are ever applied, and never the file.
             playingKey = key
-            let index = index(for: pronunciation)
-            let started = player.play(url: recordingURL, gainDb: index.gain, capDb: index.cap,
+            let started = player.play(url: recordingURL, gainDb: pronunciation.gain, capDb: pronunciation.cap,
                                       leadMs: pronunciation.leadMs,
                                       gate: pronunciation.gate?.doubleValue, fadeDb: fadeDb) { [weak self] in
                 self?.clearPlaying(key)
@@ -190,17 +189,6 @@ final class Pronouncer {
         return spokenTargetForm(article: article,
                                 shownForm: pronunciation.form,
                                 targetText: pronunciation.form)
-    }
-
-    /// The recording's index for the current output route — `gainPhone` on the
-    /// built-in speaker, the full-range `gain` elsewhere, and `gain` wherever no
-    /// phone plane was measured (letters, texts). The cap belongs to the plane its
-    /// gain does, so the two are picked together and never crossed.
-    private func index(for pronunciation: Pronunciation) -> (gain: Double, cap: Double) {
-        if AudioSession.plane() == .phone, let phone = pronunciation.gainPhone {
-            return (phone.doubleValue, pronunciation.capPhone?.doubleValue ?? 0)
-        }
-        return (pronunciation.gain, pronunciation.cap)
     }
 
     /// The level as the linear factor `AVSpeechUtterance.volume` wants — the
@@ -244,7 +232,7 @@ final class Pronouncer {
         stop()
         if let recordingURL {
             let path = pronunciation.recordingPath ?? recordingURL.lastPathComponent
-            player.play(url: recordingURL, gainDb: index(for: pronunciation).gain,
+            player.play(url: recordingURL, gainDb: pronunciation.gain,
                         leadMs: pronunciation.leadMs, gate: pronunciation.gate?.doubleValue) {
                 print("Pronounce probe: recording \(path) played to completion")
             }

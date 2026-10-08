@@ -220,7 +220,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         if (branch == SoundBranch.Recording && path != null) {
             // why: the player still holds the last clip prepared, so a second ask for the
             // same word answers without a second decode — the reason it keeps it.
-            val (indexDb, capDb) = index(pronunciation)
+            val (indexDb, capDb) = pronunciation.gain to pronunciation.cap
             if (path == loaded && player.replay(playbackVolume(indexDb, capDb, fadeDb), ended)) return
             // why: one word at a time — a new fire replaces whatever is sounding.
             player.stop()
@@ -260,26 +260,6 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     fun release() {
         player.release()
         speaker.shutdown()
-    }
-
-    /**
-     * The recording's gain for the current output route — `gainPhone` on the built-in
-     * speaker, the full-range `gain` elsewhere, and `gain` wherever no phone plane was
-     * measured (letters, texts). Reads the route once per fire, so a headphone change
-     * between words is picked up by the next one.
-     */
-    private fun gain(pronunciation: Pronunciation): Double = index(pronunciation).first
-
-    /** The picked plane's gain and the cap ITS ceiling held back — the two always travel together. */
-    private fun index(pronunciation: Pronunciation): Pair<Double, Double> {
-        val devices = audioManager?.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
-            ?.map { it.type }?.toSet() ?: emptySet()
-        val phone = pronunciation.gainPhone
-        return if (playbackPlane(devices) == PlaybackPlane.PHONE && phone != null) {
-            phone to (pronunciation.capPhone ?: 0.0)
-        } else {
-            pronunciation.gain to pronunciation.cap
-        }
     }
 
     // why: the "catalog/" prefix mirrors AssetCatalogSource — kern hands out

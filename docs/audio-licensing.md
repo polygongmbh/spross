@@ -105,8 +105,7 @@ the word packs sit at a median -18.0 LUFS, the uk letters at -31.4.
 
 The correction is **not applied to the files**.
 Each entry carries the numbers measured off the shipped bytes --
-`gain` (dB from the full-range analysis target)
-and `gainPhone` (phone-speaker plane, absent on letters and texts),
+`gain` (dB from the analysis target)
 plus `lead` (dead air at the head, ms) --
 and only a player ever applies them
 (iOS through an EQ node, Android through `LoudnessEnhancer` and a seek).

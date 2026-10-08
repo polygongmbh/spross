@@ -77,14 +77,13 @@ Neighbors: the engine contract `../README.md`, when the app plays it `../../docs
   A pack answers for the forms it recorded and no others, so the second never stands in for
   the first. `hasVoice` is the caller's in both, and cached in neither.
 - **The analysis index is measurement data, never an edit** (user ruling 2026-08-01).
-  An entry may carry `gain` (dB from the full-range analysis target), `gainPhone`
-  (the same loudness through the phone-speaker plane, null where none was measured — letters and texts),
-  `cap`/`capPhone` (what the converter's peak ceiling held back from each of those, 0 where the loudness number stood)
+  An entry may carry `gain` (dB from the analysis target, one for every output route),
+  `cap` (what the converter's peak ceiling held back from it, 0 where the loudness number stood)
   and `lead` (dead air at its head, ms), and `Pronunciation`/`LetterRecording` carry them on as `AudioIndex` —
-  0/0 for `gain`/`lead` where a field is absent or nothing plays, `gainPhone`/`capPhone` null where no phone plane was measured.
+  0/0 for `gain`/`lead` where a field is absent or nothing plays.
   A cap is spent ONLY under a fade, which is the one thing that opens the headroom it was taken for (`fadedGainDb`);
   at full volume nothing reads it.
-  A platform picks the plane by its output route and never mints a number of its own.
+  A platform applies it as given and never mints a number of its own.
   The mp3 bytes stay the untouched Commons transcode (`../../docs/audio-licensing.md` §3);
   the packs share no loudness and the uk letters open a second late, so what corrects them is a MEASUREMENT of the shipped bytes
   which only the player applies.

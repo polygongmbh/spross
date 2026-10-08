@@ -84,24 +84,6 @@ class CatalogAudioPlaybackTest {
     }
 
     /**
-     * The phone-plane twin of [theWordPacksStayCenteredOnTheAnalysisTarget]: `speaker_lufs`
-     * is the packs' own median loudness through the lens, so the `gainPhone` figures center
-     * on zero the same way. Every word carries one (the generator writes 0.0 rather than
-     * omitting it — a player must be able to tell "no phone correction" from "no phone
-     * plane", which is the letters/texts case), so a missing field is itself the drift.
-     */
-    @Test
-    fun theWordPacksStayCenteredOnThePhoneTarget() {
-        val phoneGains = catalog.audio.values
-            .flatMap { manifest -> manifest.words.values.map { it.gainPhone } }
-        assertTrue(phoneGains.isNotEmpty(), "no word recordings ship")
-        assertTrue(phoneGains.none { it == null }, "a word ships without its phone-plane gain")
-        val sorted = phoneGains.filterNotNull().sorted()
-        val median = sorted[sorted.size / 2]
-        assertTrue(median in -1.0..1.0, "phone gains center on $median dB, not on the speaker target")
-    }
-
-    /**
      * `Catalog.hasRecordings` answers for exactly the packs that ship.
      *
      * That predicate decides what the audio setting may offer and whether a language has any

@@ -107,11 +107,9 @@ class CatalogAudioParseTest {
         assertEquals(1069L, letter.leadMs)
         val loud = catalog.audio.getValue("sw").words.getValue("door")
         assertEquals(-5.4, loud.gain) // loud: the same field, the other sign
-        assertEquals(-9.8, loud.gainPhone) // the phone plane, measured through the lens
         // Absent is not "unknown" — it is a recording with nothing to correct.
         val plain = catalog.audio.getValue("uk").words.getValue("mouse")
         assertEquals(0.0, plain.gain)
-        assertNull(plain.gainPhone) // no phone plane measured on this entry
         assertEquals(0L, plain.leadMs)
         // `mos` rides along the same way, but corrects nothing — it is carried so lint can
         // see how clean a pack is, and never reaches a player.

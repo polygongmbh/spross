@@ -101,11 +101,11 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
     "die Adresse": { "file": "articles/dieu0020adresse.mp3", "matches": "die Adresse", "word": "Adresse",
                  "author": "Natschoba",
                  "source": "LL-Q188 (deu)-Natschoba-die Adresse.wav", "sha256": "a15c…",
-                 "gain": 8.0, "gainPhone": 3.9, "lead": 240 } },
+                 "gain": 8.0, "lead": 240 } },
   "calendar": {
     "Montag": { "file": "calendar/montag.mp3", "matches": "Montag",
                 "author": "Jeuwre", "source": "De-Montag.ogg", "sha256": "fa2d…",
-                "gain": -5.4, "gainPhone": -4.1, "lead": 439 } } }
+                "gain": -5.4, "lead": 439 } } }
 ```
 
 - `language` must equal the folder name, and a folder for a language `languages.json`
@@ -128,9 +128,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   so merging, renaming or moving a concept never touches audio:
   a recording stays reachable while some card shows its form.
   Every field is required except `license`, present only on the entries that
-  depart from their author's, `gain`/`cap`/`capPhone`/`lead`, absent where they would be
-  zero, and `gainPhone` — present on every word and article entry (0.0 when no
-  correction) but absent on letters and texts.
+  depart from their author's, and `gain`/`cap`/`lead`/`gate`, absent where they would be zero or unmeasured.
 - `articles` (optional, de and it today) is keyed by the whole spoken form like `words`
   and holds recordings that speak an ARTICLE and then the word — `die Adresse`, files
   under `articles/`. `matches` is the whole spoken form, `word` the bare form inside
@@ -154,9 +152,6 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   `teaches` beside them included — a card may show `Sonnabend`, and a recording is only
   ever played for the form it actually says. `abbr` is never recorded: it is a written
   short form the prompt wears, and nothing says it aloud.
-  It carries `gainPhone` where `texts` does not — these are words spoken on a drill card,
-  beside the very vocabulary the phone-speaker plane was measured for, while the
-  alphabet's reference rows stay flat.
 - `countries` (optional) is `calendar`'s twin for `../countries/`, holding the country and
   the nationality name of every atlas row — `Deutschland` and `Deutsche`.
   `accepts` are not recorded on either half, being accept-only and never displayed, so a
@@ -186,13 +181,11 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   `sha256` is the digest the generator verified after the copy
   and lint re-hashes what was committed, which makes it a gate rather than a promise.
 - `gain` (dB) and `lead` (ms) are the generator's own MEASUREMENT of those untouched
-  bytes. `gain` is the full-range plane and `gainPhone` the phone-speaker plane
-  (absent on letters and texts, where no phone plane was measured, and present on
-  calendar entries, which are drill-card words); `lead` is how much
-  dead air to start past. The files stay unmodified and only the player corrects them,
-  picking the plane by its output route. What was measured, against which target,
+  bytes, one gain for every output route; `lead` is how much
+  dead air to start past. The files stay unmodified and only the player corrects them.
+  What was measured, against which target,
   is `../../scripts/audio-catalog.py`'s `ANALYSIS`.
-- `cap` (dB) and `capPhone` are what the peak ceiling held back from each plane's gain:
+- `cap` (dB) is what the peak ceiling held back from the gain:
   a boost is capped at the headroom the file's own peak leaves, so a quiet word with sharp
   peaks ships under the loudness target rather than clipping. That ceiling is only true at
   full volume — a listening run's bedtime ramp attenuates ahead of the boost and opens the

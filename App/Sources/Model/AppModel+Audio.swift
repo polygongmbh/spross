@@ -74,9 +74,7 @@ extension AppModel {
                              lang: lang,
                              recordingPath: recording?.path,
                              gain: recording?.gain ?? 0,
-                             gainPhone: recording?.gainPhone,
                              cap: recording?.cap ?? 0,
-                             capPhone: recording?.capPhone,
                              leadMs: recording?.leadMs ?? 0,
                              gate: recording?.gate)
     }
@@ -102,9 +100,7 @@ extension AppModel {
                       lang: lang,
                       recordingPath: nil,
                       gain: 0,
-                      gainPhone: nil,
                       cap: 0,
-                      capPhone: nil,
                       leadMs: 0,
                       gate: nil)
     }

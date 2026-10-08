@@ -79,7 +79,6 @@ class CatalogArticleAudioTest {
     fun theArticleRecordingCarriesItsOwnIndex() {
         val spoken = catalog.pronunciation("de", "Kellner", "der")
         assertEquals(4.2, spoken.gain)
-        assertEquals(2.1, spoken.gainPhone)
         assertEquals(210L, spoken.leadMs)
         // The form on the card is what is returned and what a synthesizer would say —
         // the article joins it through `spokenTargetForm`, never through the lookup.

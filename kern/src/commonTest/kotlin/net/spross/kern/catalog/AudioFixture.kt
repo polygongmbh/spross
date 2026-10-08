@@ -50,10 +50,10 @@ internal object AudioFixture {
               "articles": {
                 "waiter": { "file": "articles/waiter.mp3", "matches": "der Kellner", "word": "Kellner",
                             "author": "Nina", "source": "LL-Q188 (deu)-Nina-der Kellner.wav",
-                            "sha256": "d7", "gain": 4.2, "gainPhone": 2.1, "lead": 210, "mos": 3.05 },
+                            "sha256": "d7", "gain": 4.2, "lead": 210, "mos": 3.05 },
                 "mouse":  { "file": "articles/mouse.mp3", "matches": "die Maus", "word": "Maus",
                             "author": "Nina", "source": "LL-Q188 (deu)-Nina-die Maus.wav",
-                            "sha256": "d8", "gain": 3.9, "gainPhone": 1.8, "mos": 2.98 } } }
+                            "sha256": "d8", "gain": 3.9, "mos": 2.98 } } }
         """.trimIndent(),
         // mouse/waiter are ONE recording fetched under two slugs (the sw slow/slower
         // shape): identical bytes, so the shared speech key still resolves.
@@ -64,7 +64,7 @@ internal object AudioFixture {
               "words": {
                 "door":   { "file": "door.mp3", "matches": "mlango",
                             "author": "Juma", "source": "Sw-mlango.ogg", "sha256": "s1",
-                            "gain": -5.4, "gainPhone": -9.8, "lead": 41, "mos": 3.12,
+                            "gain": -5.4, "lead": 41, "mos": 3.12,
                             "gate": -58.5 },
                 "mouse":  { "file": "mouse.mp3", "matches": "panya",
                             "author": "Juma", "source": "Sw-panya.ogg", "sha256": "s2" },
