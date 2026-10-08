@@ -215,7 +215,7 @@ object SessionOffers {
         val due = BoxEngine.dueCount(state, nowEpochMillis)
         val heldBack = max(0, due - reviews)
         val runDays =
-            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
+            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId, state.drillDays)))
         return SessionOffer(
             kind = kind,
             reviews = reviews,

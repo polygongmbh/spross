@@ -246,11 +246,18 @@ object BoxEngine {
         tzId: String,
         otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
     ): List<ActivityDay> = streakWindow(
-        mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId))),
+        mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId, state.drillDays))),
         days,
         nowEpochMillis,
         tzId,
     )
+
+    /** A closed drill run's [answers], booked to today for the streak ([answerDays]). */
+    fun bookDrillAnswers(state: BoxState, answers: Int, nowEpochMillis: Long, tzId: String): BoxState {
+        if (answers <= 0) return state
+        val day = dayKey(nowEpochMillis, tzId)
+        return state.copy(drillDays = state.drillDays + (day to (state.drillDays[day] ?: 0) + answers))
+    }
 
     /** What the learner did today, live from the logs and the day counters. */
     fun today(state: BoxState, nowEpochMillis: Long, tzId: String): TodayReport =

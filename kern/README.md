@@ -214,11 +214,13 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 
 - **The streak is one commitment across every target language.**
   A day's answers are counted off the review logs
-  (`answerDays`, keyed `yyyy-MM-dd` in the CALLER's zone),
+  (`answerDays`, keyed `yyyy-MM-dd` in the CALLER's zone)
+  plus the drill answers a closed run booked to its day (`BoxState.drillDays`, `BoxEngine.bookDrillAnswers`),
   so `BoxEngine.statistics` and `BoxEngine.activityWindow` take
   `otherLanguagesAnswerDays` and merge them with THIS state's own
   via `mergeAnswerDays` before walking the streak.
   Suspended and unjoined schedules count too: the answer really happened.
+  A round's budget reads reviews alone (`answersOn`), so drilling never eats the day's round.
   Every other bucket (`activeCount`, `dueCount`, the areas) stays scoped to the join in view.
   `WidgetSnapshotBuilder.build` takes the same parameter (`docs/snapshots.md`).
 - **Introduction is the card's first answer.**

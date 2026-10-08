@@ -67,7 +67,7 @@ internal object Statistics {
         // why: the streak is a box-wide commitment, not a per-target-language one —
         // see [mergeAnswerDays] — everything else here stays scoped to THIS join.
         val combinedDailyStats =
-            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
+            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId, state.drillDays)))
         return BoxStatistics(
             stages = StageCounts.of(active),
             dueCount = active.count { it.due != null && it.due <= now },

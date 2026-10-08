@@ -43,5 +43,7 @@ data class BoxState(
      * they ever have. What "only what is new" measures against — see [Feedback].
      */
     val lastExportAt: Instant? = null,
+    /** Drill answers per day key ([dayKey]); a drill touches no card, so no log holds them. */
+    val drillDays: Map<String, Int> = emptyMap(),
 )
 

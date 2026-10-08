@@ -93,7 +93,7 @@ object WidgetSnapshotBuilder {
             WidgetCardDto(cardId = sched.cardId, due = due.toEpochMilliseconds())
         }
         val combinedDailyStats =
-            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
+            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId, state.drillDays)))
         return WidgetSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             chromeLanguage = chromeLanguage(state),
