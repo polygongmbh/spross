@@ -27,7 +27,7 @@
   "clean-adj": { "text": "sauber" },
   "sharp": { "text": "scharf" },
   "available": { "text": "verfügbar" },
-  "other": { "text": "andere", "accepts": ["anderer", "anderes"] },
+  "other": { "text": "andere", "forms": { "m": "anderer", "n": "anderes" } },
   "hot": { "text": "heiß" },
   "cold-adj": { "text": "kalt" },
   "empty": { "text": "leer" },

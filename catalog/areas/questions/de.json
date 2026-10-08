@@ -10,7 +10,7 @@
   "when": { "text": "wann" },
   "why": { "text": "warum" },
   "how": { "text": "wie" },
-  "which": { "text": "welcher", "accepts": ["welche", "welches"] },
+  "which": { "text": "welcher", "forms": { "f": "welche", "n": "welches" } },
   "how-many": { "text": "wie viele" },
   "where-are-they": { "text": "Wo sind sie?" },
   "who-is-there": { "text": "Wer ist da?" },

@@ -45,7 +45,7 @@
   "basket": { "text": "cesta", "accepts": ["cesto", "canasta"], "grammar": { "gender": "la" } },
   "tin-can": { "text": "lata", "grammar": { "gender": "la" } },
   "gas": { "text": "gas", "grammar": { "gender": "el" } },
-  "tasty": { "text": "sabroso", "accepts": ["sabrosa"] },
+  "tasty": { "text": "sabroso", "forms": { "f": "sabrosa" } },
   "the-knife-is-sharp": {
    "text": "¡El cuchillo está afilado!",
    "accepts": ["¡El cuchillo corta mucho!"],

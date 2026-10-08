@@ -19,7 +19,7 @@
   "completely": { "text": "повністю" },
   "all": { "text": "всі", "accepts": ["усі"] },
   "some": { "text": "деякі", "accepts": ["кілька"] },
-  "every": { "text": "кожен", "accepts": ["кожна", "кожне"] },
+  "every": { "text": "кожен", "forms": { "f": "кожна", "n": "кожне" } },
   "most": { "text": "більшість" },
   "almost": { "text": "майже" },
   "a-little": { "text": "трохи" },

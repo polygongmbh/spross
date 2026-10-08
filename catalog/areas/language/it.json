@@ -14,7 +14,7 @@
   },
   "how-do-you-say-this": { "text": "Come si dice questo {language-in}?", "accepts": ["Come si dice {language-in}?"] },
   "im-learning-your-language": { "text": "Imparo {language-learn}.", "accepts": ["Sto imparando {language-learn}."] },
-  "ready-to-learn": { "text": "Pronto a imparare?", "accepts": ["Pronta a imparare?"] },
+  "ready-to-learn": { "text": "Pronto a imparare?", "forms": { "f": "Pronta a imparare?" } },
   "one-more-word": { "text": "Ancora una parola?", "accepts": ["Un'altra parola?"] }
  }
 }

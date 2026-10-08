@@ -14,9 +14,18 @@
   "we": { "text": "wir" },
   "you-plural": { "text": "ihr" },
   "they": { "text": "sie" },
-  "my": { "text": "mein", "accepts": ["meine", "meinen", "meinem", "meines", "meiner"] },
-  "your": { "text": "dein", "accepts": ["deine", "deinen", "deinem", "deines", "deiner"] },
-  "his": { "text": "sein", "accepts": ["seine", "seinen", "seinem", "seines", "seiner"] },
+  "my": {
+   "text": "mein",
+   "forms": { "f": "meine", "gen": "meines", "f.dat": "meiner", "m.acc": "meinen", "dat": "meinem" }
+  },
+  "your": {
+   "text": "dein",
+   "forms": { "f": "deine", "gen": "deines", "f.dat": "deiner", "m.acc": "deinen", "dat": "deinem" }
+  },
+  "his": {
+   "text": "sein",
+   "forms": { "f": "seine", "gen": "seines", "f.dat": "seiner", "m.acc": "seinen", "dat": "seinem" }
+  },
   "something": { "text": "etwas" },
   "nothing": { "text": "nichts" },
   "everything": { "text": "alles" },
@@ -25,7 +34,13 @@
   "everyone": { "text": "jeder Mensch" },
   "no-one": { "text": "niemand" },
   "anyone": { "text": "irgendjemand" },
-  "our": { "text": "unser", "accepts": ["unsere", "unseren", "unserem", "unseres", "unserer"] },
-  "your-plural": { "text": "euer", "accepts": ["eure", "euren", "eurem", "eures", "eurer"] }
+  "our": {
+   "text": "unser",
+   "forms": { "f": "unsere", "gen": "unseres", "f.dat": "unserer", "m.acc": "unseren", "dat": "unserem" }
+  },
+  "your-plural": {
+   "text": "euer",
+   "forms": { "f": "eure", "m.acc": "euren", "dat": "eurem", "gen": "eures", "f.dat": "eurer" }
+  }
  }
 }

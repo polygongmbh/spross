@@ -43,14 +43,14 @@
   "underwear": { "text": "biancheria intima", "grammar": { "gender": "la" } },
   "belt": { "text": "cintura", "grammar": { "gender": "la" } },
   "to-make-bed": { "text": "fare il letto" },
-  "soft": { "text": "morbido", "accepts": ["morbida"] },
+  "soft": { "text": "morbido", "forms": { "f": "morbida" } },
   "to-rest": { "text": "riposare", "accepts": ["riposarsi"] },
   "sleep-well": { "text": "Dormi bene!" },
   "good-morning-my-love": {
    "text": "Buongiorno, amore mio!",
    "accepts": ["Buongiorno, tesoro mio!", "Buon giorno, amore mio!"]
   },
-  "im-tired": { "text": "Sono stanco.", "accepts": ["Sono stanca."] },
+  "im-tired": { "text": "Sono stanco.", "forms": { "f": "Sono stanca." } },
   "did-you-set-the-alarm": { "text": "Hai messo la sveglia?", "accepts": ["Hai puntato la sveglia?"] },
   "i-love-you": {
    "text": "Ti amo.",

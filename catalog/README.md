@@ -220,9 +220,9 @@ Realization fields — only `text` is required:
   concepts, and different-meaning words belong to their own concept.
 - `accepts` — ACCEPTED surface forms of the SAME knowledge (array; omit if none):
   alternate renderings a learner already knows if they know `text` — register pairs
-  (de Sie-form in `text`, du-form here), gender-agreement forms of a phrase
-  (uk `Ти завів/завела …?`), diminutives (uk миша/мишка), internationalism spellings
-  (uk договір/контракт).
+  (de Sie-form in `text`, du-form here; es `Gire`/`Gira`), diminutives (uk миша/мишка),
+  internationalism spellings (uk договір/контракт).
+  Agreement and number forms (gender, case, Swahili class, plural) are taught, so they are `forms`.
   The name is again the whole of the behavior: the card ACCEPTS them on produce and does
   nothing else with them — **never scheduled, never shown**. `text` is the form prompted on
   recognize and the form the reveal teaches, and the `teaches` entries rotate beside it.

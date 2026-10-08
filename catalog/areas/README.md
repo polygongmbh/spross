@@ -103,6 +103,11 @@ stops reaching the widget.
   the counter, the surgery and the office say Sie, the kitchen and the hall say du --
   so a phrase whose scene fixes the register carries no register alternate at all,
   and only the phrases that travel between scenes carry both.
+- **An inflected form is taught.**
+  An agreement or number form is something the learner meets and must recognize,
+  so it is a tagged `form`, never an accept (es `blanco` → `"f": "blanca"`).
+  A phrase's speaker-gender form is taught once its recording state matches `text`'s,
+  and accepted until then.
 
 **Pick the word a speaker says, never the word that sits furthest from another card.**
 Two realizations one edit apart are safe by construction:

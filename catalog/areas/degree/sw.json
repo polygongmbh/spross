@@ -15,7 +15,8 @@
   "too": { "text": "mno", "notes": { "sw": "kubwa mno, ndogo mno, moto mno" } },
   "enough": {
    "text": "ya kutosha",
-   "accepts": ["cha kutosha", "vya kutosha", "wa kutosha", "za kutosha"],
+   "accepts": ["wa kutosha"],
+   "forms": { "7": "cha kutosha", "8": "vya kutosha", "10": "za kutosha" },
    "notes": {
     "sw": "maji ya kutosha · msaada wa kutosha · meza za kutosha",
     "de": "Es reicht. heißt Inatosha."

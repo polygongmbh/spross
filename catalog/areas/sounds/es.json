@@ -4,7 +4,7 @@
   "loud": {
    "text": "alto",
    "teaches": ["fuerte"],
-   "accepts": ["alta"],
+   "forms": { "f": "alta" },
    "notes": { "es": "habla alto = habla fuerte · alto es de mucha altura" }
   },
   "quiet": {

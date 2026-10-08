@@ -37,7 +37,11 @@
   "underwear": { "text": "sous-vêtements", "grammar": { "gender": "les" } },
   "belt": { "text": "ceinture", "grammar": { "gender": "la" } },
   "to-make-bed": { "text": "faire le lit" },
-  "soft": { "text": "doux", "accepts": ["douce"], "notes": { "fr": "une peau douce, une voix douce." } },
+  "soft": {
+   "text": "doux",
+   "forms": { "f": "douce" },
+   "notes": { "fr": "une peau douce, une voix douce." }
+  },
   "to-rest": { "text": "se reposer" },
   "sleep-well": { "text": "Dors bien !" },
   "good-morning-my-love": {
@@ -45,7 +49,7 @@
    "accepts": ["Bonjour, mon cœur !", "Bonjour, chéri !"],
    "notes": { "fr": "le matin aussi, on dit bonjour · bon matin se dit au Québec." }
   },
-  "im-tired": { "text": "Je suis fatigué.", "accepts": ["Je suis fatiguée."] },
+  "im-tired": { "text": "Je suis fatigué.", "forms": { "f": "Je suis fatiguée." } },
   "did-you-set-the-alarm": {
    "text": "Tu as mis le réveil ?",
    "accepts": ["As-tu mis le réveil ?", "Tu as réglé le réveil ?"]

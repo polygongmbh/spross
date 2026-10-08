@@ -21,7 +21,7 @@
    "notes": { "it": "fare la spesa è al supermercato · fare spese è nei negozi." }
   },
   "store": { "text": "negozio", "forms": { "pl": "i negozi" }, "grammar": { "gender": "il" } },
-  "open": { "text": "aperto", "accepts": ["aperta"] },
+  "open": { "text": "aperto", "forms": { "f": "aperta" } },
   "the-store-is-still-open": { "text": "Il negozio è ancora aperto." },
   "do-you-have-this-in-my-size": { "text": "Ce l'ha nella mia taglia?", "accepts": ["Ce l'hai nella mia taglia?"] }
  }

@@ -23,9 +23,9 @@
    }
   },
   "to-cough": { "text": "toser" },
-  "sick": { "text": "enfermo", "accepts": ["enferma"] },
+  "sick": { "text": "enfermo", "forms": { "f": "enferma" } },
   "illness": { "text": "enfermedad", "grammar": { "gender": "la" } },
-  "tired": { "text": "cansado", "accepts": ["cansada"] },
+  "tired": { "text": "cansado", "forms": { "f": "cansada" } },
   "weak": { "text": "débil" },
   "dizziness": {
    "text": "mareo",

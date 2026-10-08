@@ -32,7 +32,7 @@
    "notes": { "uk": "банка — і скляна, і бляшана · тільки бляшана — бляшанка." }
   },
   "gas": { "text": "газ" },
-  "tasty": { "text": "смачний", "accepts": ["смачна", "смачне"] },
+  "tasty": { "text": "смачний", "forms": { "f": "смачна", "n": "смачне" } },
   "the-knife-is-sharp": { "text": "Ніж гострий!" },
   "this-is-very-tasty": { "text": "Це дуже смачно!", "accepts": ["Це так смачно!"] },
   "are-you-cooking-rice-today": {

@@ -49,8 +49,13 @@
   "to-say-goodbye": { "text": "dire au revoir", "accepts": ["prendre congé"] },
   "shoe": { "text": "chaussure", "grammar": { "gender": "la" } },
   "apartment": { "text": "appartement", "accepts": ["l'appartement", "appart"], "grammar": { "gender": "l'" } },
-  "neighbor": { "text": "voisin", "accepts": ["voisine"], "grammar": { "gender": "le" } },
-  "guest": { "text": "invité", "accepts": ["l'invité", "invitée"], "grammar": { "gender": "l'" } },
+  "neighbor": { "text": "voisin", "forms": { "f": "la voisine" }, "grammar": { "gender": "le" } },
+  "guest": {
+   "text": "invité",
+   "accepts": ["l'invité"],
+   "forms": { "f": "l'invitée" },
+   "grammar": { "gender": "l'" }
+  },
   "wallet": {
    "text": "portefeuille",
    "teaches": ["porte-monnaie"],

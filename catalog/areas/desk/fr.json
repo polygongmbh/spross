@@ -70,10 +70,11 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "le calendrier est au mur · les rendez-vous vont dans l'agenda." }
   },
-  "important": { "text": "important", "accepts": ["importante"] },
+  "important": { "text": "important", "forms": { "f": "importante" } },
   "ready": {
    "text": "prêt",
-   "accepts": ["prête", "fini", "finie", "terminé", "terminée"],
+   "accepts": ["fini", "finie", "terminé", "terminée"],
+   "forms": { "f": "prête" },
    "notes": {
     "fr": "je suis prêt, le repas est prêt · un travail fini est terminé.",
     "de": "prêt heißt „bereit“: je suis prêt. Fertig im Sinne von beendet ist fini oder terminé."
@@ -81,7 +82,8 @@
   },
   "broken": {
    "text": "cassé",
-   "accepts": ["cassée", "en panne", "abîmé"],
+   "accepts": ["en panne", "abîmé"],
+   "forms": { "f": "cassée" },
    "notes": { "fr": "un verre cassé · un appareil qui ne marche plus est en panne." }
   },
   "message": { "text": "message", "grammar": { "gender": "le" } },

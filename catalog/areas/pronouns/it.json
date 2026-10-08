@@ -12,9 +12,9 @@
   "we": { "text": "noi" },
   "you-plural": { "text": "voi" },
   "they": { "text": "loro" },
-  "my": { "text": "mio", "accepts": ["mia", "miei", "mie"] },
-  "your": { "text": "tuo", "accepts": ["tua", "tuoi", "tue"] },
-  "his": { "text": "suo", "accepts": ["sua", "suoi", "sue"] },
+  "my": { "text": "mio", "forms": { "f": "mia", "pl": "miei", "f.pl": "mie" } },
+  "your": { "text": "tuo", "forms": { "f": "tua", "pl": "tuoi", "f.pl": "tue" } },
+  "his": { "text": "suo", "forms": { "f": "sua", "pl": "suoi", "f.pl": "sue" } },
   "something": { "text": "qualcosa" },
   "nothing": { "text": "niente", "accepts": ["nulla"] },
   "everything": { "text": "tutto" },
@@ -23,7 +23,7 @@
   "everyone": { "text": "ogni persona" },
   "no-one": { "text": "nessuno" },
   "anyone": { "text": "chiunque" },
-  "our": { "text": "nostro", "accepts": ["nostra", "nostri", "nostre"] },
-  "your-plural": { "text": "vostro", "accepts": ["vostra", "vostri", "vostre"] }
+  "our": { "text": "nostro", "forms": { "f": "nostra", "pl": "nostri", "f.pl": "nostre" } },
+  "your-plural": { "text": "vostro", "forms": { "f": "vostra", "pl": "vostri", "f.pl": "vostre" } }
  }
 }

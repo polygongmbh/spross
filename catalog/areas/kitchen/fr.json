@@ -64,7 +64,7 @@
    "grammar": { "gender": "la" }
   },
   "gas": { "text": "gaz", "grammar": { "gender": "le", "plural": "=" } },
-  "tasty": { "text": "délicieux", "accepts": ["délicieuse"] },
+  "tasty": { "text": "délicieux", "forms": { "f": "délicieuse" } },
   "the-knife-is-sharp": {
    "text": "Le couteau est tranchant !",
    "accepts": ["Le couteau est bien aiguisé !", "Le couteau coupe bien !"]

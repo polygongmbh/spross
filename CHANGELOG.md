@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Adjectives, pronouns and phrases now practice their feminine, neuter, plural and case forms too, marked on the meaning side.
 - Drill answers now count toward your day streak and fill that day's bar in the activity chart.
 - Plurals are now practiced, not just shown: a recognition card can ask with the plural, marked "pl." on its meaning, and every other form that would also have been right is listed on the reveal.
 

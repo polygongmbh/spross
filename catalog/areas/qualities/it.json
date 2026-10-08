@@ -4,7 +4,8 @@
  "words": {
   "good": {
    "text": "buono",
-   "accepts": ["buona", "buon"],
+   "accepts": ["buon"],
+   "forms": { "f": "buona" },
    "notes": {
     "it": "un buon giorno, una buona parola · tutto bene: buono → bene.",
     "de": "vor männlichem Substantiv verkürzt: un buon amico · als Adverb bene: tutto bene."
@@ -12,7 +13,7 @@
   },
   "bad": {
    "text": "cattivo",
-   "accepts": ["cattiva"],
+   "forms": { "f": "cattiva" },
    "notes": {
     "it": "una cattiva parola · una brutta città: brutto non è cattivo.",
     "de": "als Adverb male: sto male · schlechtes Wetter und schlechtes Aussehen: brutto."
@@ -26,70 +27,70 @@
     "de": "gilt für beide Geschlechter · vor dem Substantiv oft gran: un gran giorno · Körpergröße: alto."
    }
   },
-  "small": { "text": "piccolo", "accepts": ["piccola"] },
+  "small": { "text": "piccolo", "forms": { "f": "piccola" } },
   "much": {
    "text": "molto",
-   "accepts": ["molta", "molti", "molte"],
+   "forms": { "f": "molta", "pl": "molti", "f.pl": "molte" },
    "notes": {
     "it": "molto aiuto, molta acqua, molti posti · molto bene, molto alto.",
     "de": "richtet sich nach dem Substantiv: molto pane, molta acqua, molti amici · vor Adjektiv oder Verb unveränderlich und heißt sehr: molto bene."
    }
   },
-  "new": { "text": "nuovo", "accepts": ["nuova"] },
+  "new": { "text": "nuovo", "forms": { "f": "nuova" } },
   "old": {
    "text": "vecchio",
-   "accepts": ["vecchia"],
+   "forms": { "f": "vecchia" },
    "notes": { "it": "vecchio → anziano è più gentile · antico per le cose." }
   },
   "slow": {
    "text": "lento",
-   "accepts": ["lenta"],
+   "forms": { "f": "lenta" },
    "notes": { "it": "lento → lentamente · parla piano, parla lentamente." }
   },
   "fast": { "text": "veloce", "accepts": ["rapido", "rapida"] },
-  "long": { "text": "lungo", "accepts": ["lunga"] },
+  "long": { "text": "lungo", "forms": { "f": "lunga" } },
   "short": {
    "text": "corto",
-   "accepts": ["corta"],
+   "forms": { "f": "corta" },
    "notes": { "it": "corto è la lunghezza · breve è un'ora · basso è chi non è alto." }
   },
   "heavy": { "text": "pesante" },
-  "lightweight": { "text": "leggero", "accepts": ["leggera"] },
+  "lightweight": { "text": "leggero", "forms": { "f": "leggera" } },
   "difficult": { "text": "difficile" },
   "easy": { "text": "facile" },
   "problem": { "text": "problema", "forms": { "pl": "i problemi" }, "grammar": { "gender": "il" } },
   "to-solve": { "text": "risolvere" },
   "challenge": { "text": "sfida", "forms": { "pl": "le sfide" }, "grammar": { "gender": "la" } },
-  "clean-adj": { "text": "pulito", "accepts": ["pulita"] },
+  "clean-adj": { "text": "pulito", "forms": { "f": "pulita" } },
   "sharp": {
    "text": "affilato",
-   "accepts": ["affilata"],
+   "forms": { "f": "affilata" },
    "notes": {
     "it": "affilato è la lama · piccante è il peperoncino.",
     "de": "nur für Klingen; scharf im Geschmack ist piccante."
    }
   },
   "available": { "text": "disponibile" },
-  "other": { "text": "altro", "accepts": ["altra", "altri", "altre"] },
-  "hot": { "text": "caldo", "accepts": ["calda"] },
+  "other": { "text": "altro", "forms": { "f": "altra", "pl": "altri", "f.pl": "altre" } },
+  "hot": { "text": "caldo", "forms": { "f": "calda" } },
   "cold-adj": {
    "text": "freddo",
-   "accepts": ["fredda"],
+   "forms": { "f": "fredda" },
    "notes": {
     "it": "ho freddo io · l'acqua è fredda.",
     "de": "mit avere beim Menschen: ho freddo = mir ist kalt · mit essere bei Sachen: il caffè è freddo."
    }
   },
-  "empty": { "text": "vuoto", "accepts": ["vuota"] },
-  "full": { "text": "pieno", "accepts": ["piena"] },
-  "dirty": { "text": "sporco", "accepts": ["sporca"] },
+  "empty": { "text": "vuoto", "forms": { "f": "vuota" } },
+  "full": { "text": "pieno", "forms": { "f": "piena" } },
+  "dirty": { "text": "sporco", "forms": { "f": "sporca" } },
   "dry": { "text": "secco" },
-  "pretty": { "text": "carino", "accepts": ["carina"] },
-  "beautiful": { "text": "bello", "accepts": ["bella"] },
+  "pretty": { "text": "carino", "forms": { "f": "carina" } },
+  "beautiful": { "text": "bello", "forms": { "f": "bella" } },
   "health": { "text": "salute", "grammar": { "gender": "la" } },
-  "healthy": { "text": "sano", "accepts": ["sana"] },
-  "firm": { "text": "solido", "accepts": ["solida"] },
-  "liquid": { "text": "liquido", "accepts": ["liquida"] },
+  "healthy": { "text": "sano", "forms": { "f": "sana" } },
+  "firm": { "text": "solido", "forms": { "f": "solida" } },
+  "liquid": { "text": "liquido", "forms": { "f": "liquida" } },
   "young": { "text": "giovane" },
   "a-lot-of-water": { "text": "molta acqua" },
   "safe": { "text": "sicuro" }

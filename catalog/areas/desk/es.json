@@ -75,7 +75,8 @@
   },
   "broken": {
    "text": "roto",
-   "accepts": ["rota", "estropeado", "averiado"],
+   "accepts": ["estropeado", "averiado"],
+   "forms": { "f": "rota" },
    "notes": {
     "es": "Con estar: el móvil está roto.",
     "de": "Mit estar: el móvil está roto. Ein Gerät, das nur nicht mehr geht, ist estropeado."

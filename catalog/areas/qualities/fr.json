@@ -4,34 +4,37 @@
  "words": {
   "good": {
    "text": "bon",
-   "accepts": ["bonne"],
+   "forms": { "f": "bonne" },
    "notes": { "fr": "un bon livre · ça va bien : bon → bien." }
   },
   "bad": {
    "text": "mauvais",
-   "accepts": ["mauvaise"],
+   "forms": { "f": "mauvaise" },
    "notes": { "fr": "un mauvais livre · ça va mal : mauvais → mal." }
   },
   "big": {
    "text": "grand",
-   "accepts": ["grande"],
+   "forms": { "f": "grande" },
    "notes": { "fr": "une grande maison · une maison haute : grand va devant." }
   },
-  "small": { "text": "petit", "accepts": ["petite"] },
+  "small": { "text": "petit", "forms": { "f": "petite" } },
   "much": { "text": "beaucoup", "notes": { "fr": "beaucoup d'eau, beaucoup de mots, beaucoup de bruit." } },
   "new": {
    "text": "nouveau",
-   "accepts": ["nouvelle", "nouvel"],
+   "accepts": ["nouvel"],
+   "forms": { "f": "nouvelle" },
    "notes": { "fr": "un nouveau livre → un nouvel ami · une table neuve = pas servie." }
   },
   "old": {
    "text": "vieux",
-   "accepts": ["vieille", "vieil"],
+   "accepts": ["vieil"],
+   "forms": { "f": "vieille" },
    "notes": { "fr": "un vieux livre → un vieil ami · âgé est plus poli." }
   },
   "slow": {
    "text": "lent",
-   "accepts": ["lente", "lentement"],
+   "accepts": ["lentement"],
+   "forms": { "f": "lente" },
    "notes": { "fr": "un train lent · parle lentement : lent → lentement." }
   },
   "fast": {
@@ -39,15 +42,15 @@
    "accepts": ["vite"],
    "notes": { "fr": "un train rapide · il va vite : rapide → vite." }
   },
-  "long": { "text": "long", "accepts": ["longue"] },
+  "long": { "text": "long", "forms": { "f": "longue" } },
   "short": {
    "text": "court",
-   "accepts": ["courte"],
+   "forms": { "f": "courte" },
    "notes": { "fr": "des mots courts, une phrase courte · moi, je suis petit." }
   },
   "heavy": {
    "text": "lourd",
-   "accepts": ["lourde"],
+   "forms": { "f": "lourde" },
    "notes": {
     "fr": "une valise lourde · un problème est difficile, pas lourd.",
     "de": "lourd meint nur das Gewicht; schwierig ist difficile."
@@ -55,7 +58,7 @@
   },
   "lightweight": {
    "text": "léger",
-   "accepts": ["légère"],
+   "forms": { "f": "légère" },
    "notes": {
     "fr": "une valise légère · un problème est facile, pas léger.",
     "de": "léger meint nur das Gewicht; einfach ist facile."
@@ -70,27 +73,32 @@
   "sharp": {
    "text": "tranchant",
    "teaches": ["aiguisé"],
-   "accepts": ["tranchante", "aiguisée"],
+   "accepts": ["aiguisée"],
+   "forms": { "f": "tranchante" },
    "notes": {
     "fr": "tranchant, c'est la lame, pas le goût.",
     "de": "nur für Klingen; scharf im Geschmack ist épicé."
    }
   },
   "available": { "text": "disponible" },
-  "other": { "text": "autre", "accepts": ["autres"] },
-  "hot": { "text": "chaud", "accepts": ["chaude"] },
-  "cold-adj": { "text": "froid", "accepts": ["froide"], "notes": { "fr": "j'ai froid · l'eau est froide." } },
+  "other": { "text": "autre", "forms": { "pl": "autres" } },
+  "hot": { "text": "chaud", "forms": { "f": "chaude" } },
+  "cold-adj": {
+   "text": "froid",
+   "forms": { "f": "froide" },
+   "notes": { "fr": "j'ai froid · l'eau est froide." }
+  },
   "empty": { "text": "vide" },
-  "full": { "text": "plein", "accepts": ["pleine"] },
+  "full": { "text": "plein", "forms": { "f": "pleine" } },
   "dirty": { "text": "sale" },
   "dry": { "text": "sec" },
-  "pretty": { "text": "joli", "accepts": ["jolie"] },
-  "beautiful": { "text": "beau", "accepts": ["belle", "bel"] },
+  "pretty": { "text": "joli", "forms": { "f": "jolie" } },
+  "beautiful": { "text": "beau", "accepts": ["bel"], "forms": { "f": "belle" } },
   "health": { "text": "santé", "grammar": { "gender": "la" } },
   "healthy": {
    "text": "sain",
    "teaches": ["en bonne santé"],
-   "accepts": ["saine"],
+   "forms": { "f": "saine" },
    "notes": { "fr": "une alimentation saine · je suis en bonne santé." }
   },
   "firm": { "text": "solide" },

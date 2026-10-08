@@ -12,7 +12,7 @@
   "storm": { "text": "буря" },
   "thunder": { "text": "грім", "forms": { "pl": "громи" } },
   "lightning": { "text": "блискавка" },
-  "humid": { "text": "вологий", "accepts": ["волога", "вологе"] },
+  "humid": { "text": "вологий", "forms": { "f": "волога", "n": "вологе" } },
   "hows-the-weather-today": { "text": "Яка сьогодні погода?", "orders": ["Яка погода сьогодні?"] },
   "its-raining": { "text": "Йде дощ." },
   "the-rain-has-stopped": { "text": "Дощ припинився.", "accepts": ["Дощ перестав.", "Дощ закінчився."] },

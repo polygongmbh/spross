@@ -17,7 +17,7 @@
   "beverage": { "text": "напій", "forms": { "pl": "напої" } },
   "restaurant": { "text": "ресторан" },
   "a-table-for-two": { "text": "Столик на двох, будь ласка." },
-  "id-like-to-order": { "text": "Я хотів би замовити.", "accepts": ["Я хотіла б замовити."] },
+  "id-like-to-order": { "text": "Я хотів би замовити.", "forms": { "f": "Я хотіла б замовити." } },
   "is-this-vegetarian": { "text": "Це вегетаріанське?" },
   "the-bill-please": { "text": "Рахунок, будь ласка." },
   "id-like-some-water": { "text": "Можна води?" }

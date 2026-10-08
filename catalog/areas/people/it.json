@@ -73,7 +73,7 @@
    "accepts": ["gli anziani", "la gente anziana"],
    "notes": { "it": "si dice persone anziane · persone vecchie suona male." }
   },
-  "many-friends": { "text": "molti amici", "accepts": ["molte amiche"] },
+  "many-friends": { "text": "molti amici", "forms": { "f": "molte amiche" } },
   "mom-help-me": { "text": "Mamma, aiutami!" },
   "dad-where-are-you": { "text": "Papà, dove sei?" },
   "help-your-brother": { "text": "Aiuta tuo fratello!" },

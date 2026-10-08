@@ -62,7 +62,8 @@
   "apartment": { "text": "appartamento", "accepts": ["l'appartamento"], "grammar": { "gender": "l'" } },
   "neighbor": {
    "text": "vicino di casa",
-   "accepts": ["vicino", "vicina", "vicina di casa"],
+   "accepts": ["vicino", "vicina"],
+   "forms": { "f": "la vicina di casa" },
    "grammar": { "gender": "il" },
    "notes": { "it": "vicino vuol dire anche non lontano: si dice il vicino di casa." }
   },
@@ -100,7 +101,7 @@
   "take-off-your-shoes": { "text": "Togliti le scarpe.", "accepts": ["Levati le scarpe."] },
   "hurry-were-late": { "text": "Sbrigatevi, siamo in ritardo!", "accepts": ["Fate presto, siamo in ritardo!"] },
   "see-you-later": { "text": "A dopo!", "accepts": ["Ci vediamo dopo!", "A più tardi!"] },
-  "welcome-home": { "text": "Benvenuto a casa!", "accepts": ["Benvenuta a casa!"] },
+  "welcome-home": { "text": "Benvenuto a casa!", "forms": { "f": "Benvenuta a casa!" } },
   "dont-forget-your-jacket": {
    "text": "Non dimenticare la giacca!",
    "accepts": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]

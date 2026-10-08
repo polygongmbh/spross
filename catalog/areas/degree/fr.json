@@ -17,7 +17,7 @@
   "partially": { "text": "partiellement" },
   "gladly": { "text": "volontiers" },
   "completely": { "text": "complètement" },
-  "all": { "text": "tous", "accepts": ["toutes"] },
+  "all": { "text": "tous", "forms": { "f": "toutes" } },
   "some": { "text": "quelques" },
   "every": { "text": "chaque" },
   "most": { "text": "la plupart" },

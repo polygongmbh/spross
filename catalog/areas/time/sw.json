@@ -47,12 +47,14 @@
   "night": { "text": "usiku", "grammar": { "plural": "=" } },
   "first": {
    "text": "kwanza",
-   "accepts": ["wa kwanza", "ya kwanza", "cha kwanza"],
+   "accepts": ["wa kwanza", "ya kwanza"],
+   "forms": { "7": "cha kwanza" },
    "notes": { "sw": "mtu wa kwanza, siku ya kwanza · kwanza peke yake = mwanzoni" }
   },
   "second": {
    "text": "pili",
-   "accepts": ["wa pili", "ya pili", "cha pili"],
+   "accepts": ["wa pili", "ya pili"],
+   "forms": { "7": "cha pili" },
    "notes": { "sw": "mtu wa pili, siku ya pili, neno la pili" }
   },
   "next": {

@@ -20,7 +20,7 @@
   "excuse-me": { "text": "Excusez-moi !", "accepts": ["Excuse-moi !", "Pardon !"] },
   "no-problem": { "text": "Pas de problème !" },
   "pardon": { "text": "Pardon ?", "accepts": ["Comment ?"] },
-  "sorry-to-hear-that": { "text": "Je suis désolé !", "accepts": ["Je suis désolée !", "Désolé !"] },
+  "sorry-to-hear-that": { "text": "Je suis désolé !", "accepts": ["Désolé !"], "forms": { "f": "Je suis désolée !" } },
   "whats-your-name": {
    "text": "Comment vous appelez-vous ?",
    "accepts": ["Comment tu t'appelles ?", "Comment t'appelles-tu ?"]

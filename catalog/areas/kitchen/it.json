@@ -56,7 +56,7 @@
    "notes": { "it": "il barattolo è di vetro o di latta · la lattina è della bibita." }
   },
   "gas": { "text": "gas", "grammar": { "gender": "il", "plural": "=" } },
-  "tasty": { "text": "gustoso", "teaches": ["saporito"], "accepts": ["gustosa"] },
+  "tasty": { "text": "gustoso", "teaches": ["saporito"], "forms": { "f": "gustosa" } },
   "the-knife-is-sharp": { "text": "Il coltello è affilato!", "accepts": ["Il coltello taglia bene!"] },
   "this-is-very-tasty": {
    "text": "Questo è molto buono!",

@@ -28,7 +28,7 @@
   "do-you-speak-english": { "text": "Ви розмовляєте англійською?", "orders": ["Ви англійською розмовляєте?"] },
   "i-need-help": { "text": "Мені потрібна допомога.", "orders": ["Допомога мені потрібна."] },
   "i-dont-know": { "text": "Я не знаю." },
-  "i-forgot": { "text": "Я забув.", "accepts": ["Я забула."] },
+  "i-forgot": { "text": "Я забув.", "forms": { "f": "Я забула." } },
   "what-is-this-called": { "text": "Як це називається?" },
   "to-introduce-oneself": { "text": "представлятися" }
  }

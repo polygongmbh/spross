@@ -2,22 +2,22 @@
  "title": "La comparaison",
  "subtitle": "Pareil, différent, pour ou contre.",
  "words": {
-  "different": { "text": "différent", "accepts": ["différente", "différents"] },
+  "different": { "text": "différent", "forms": { "f": "différente", "pl": "différents" } },
   "difference": { "text": "différence", "grammar": { "gender": "la" } },
   "real": { "text": "réel" },
   "same": {
    "text": "même",
-   "accepts": ["mêmes"],
+   "forms": { "pl": "mêmes" },
    "notes": { "fr": "la même heure · moi-même, toi-même : moi et pas un autre." }
   },
-  "similar": { "text": "similaire", "accepts": ["similaires"] },
-  "opposite": { "text": "opposé", "teaches": ["contraire"], "accepts": ["opposée"] },
+  "similar": { "text": "similaire", "forms": { "pl": "similaires" } },
+  "opposite": { "text": "opposé", "teaches": ["contraire"], "forms": { "f": "opposée" } },
   "to-compare": { "text": "comparer" },
-  "positive": { "text": "positif", "accepts": ["positive"] },
-  "negative": { "text": "négatif", "accepts": ["négative"] },
+  "positive": { "text": "positif", "forms": { "f": "positive" } },
+  "negative": { "text": "négatif", "forms": { "f": "négative" } },
   "neutral": { "text": "neutre" },
-  "aggressive": { "text": "agressif", "accepts": ["agressive"] },
-  "defensive": { "text": "défensif", "accepts": ["défensive"] },
+  "aggressive": { "text": "agressif", "forms": { "f": "agressive" } },
+  "defensive": { "text": "défensif", "forms": { "f": "défensive" } },
   "equality": { "text": "égalité", "grammar": { "gender": "l'" }, "accepts": ["l'égalité"] },
   "than": { "text": "que", "notes": { "fr": "plus grand que moi." } }
  }
