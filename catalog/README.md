@@ -175,8 +175,8 @@ two areas claiming one slug would fuse two concepts into a single schedule,
 so a genuine repeat across areas is disambiguated by qualifying the slug.
 The price is that **renaming a slug is a breaking act**:
 it orphans the schedule and the word returns as new — so rename deliberately, never just to polish a lemma,
-and always through `../scripts/catalog-rename-slugs.py`, which carries every reference and the word packs along
-(recordings are keyed by the form they speak, so none moves).
+and always through `../scripts/catalog-rename-slugs.py`, which carries every reference along
+(recordings, shipped and in the audio packs, are keyed by the form they speak, so none moves).
 
 **`areas/<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json

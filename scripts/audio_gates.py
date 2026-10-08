@@ -1,24 +1,23 @@
 #!/usr/bin/env python3
 """Which pack rows may ship, and who gets credited — the gates of `audio-catalog.py`.
 
-A pack row ships only once it survives all of them, each decision printed by the caller:
-  · the catalog knows the slug AND the language realizes it — packs go stale as
-    content moves, and a manifest entry for a word nobody studies is dead weight;
-  · the recording SPEAKS a form the card can show: `speechKey(matched_word)` has to
-    equal the key of `text`, a synonym or a variant, because lookup is keyed by what
-    stands on the card. This is what drops the sw `ku-` verbs, whose recordings say
-    the bare stem — playing "wasilisha" for "kuwasilisha" would teach the wrong word,
-    while punctuation ("Hujambo!") and the citation dash ("-zuri") fold away and stay;
-  · an ARTICLE row speaks its realization's own article in front of a form it shows, or a
-    tagged form's authored article in front of it — a row saying a different article
-    would teach the gender wrong, which is what these recordings exist to fix;
+A pack row is keyed by the form it SPEAKS (`text`), like the shipped manifest, so whether
+that form is a concept's text, a synonym or a tagged form is the catalog's business and never
+the audio's. A row ships only once it survives all of these, each decision printed by the caller:
+  · some card in its language shows the form it speaks (`speechKey` equal to a text, teaches,
+    accepts or tagged form, or the bare stem of one) — packs go stale as content moves, and
+    lookup is keyed by what stands on the card; punctuation ("Hujambo!") and the citation
+    dash ("-zuri") fold away;
+  · an ARTICLE row speaks the article some card shows in front of that word — a realization's
+    own gender or a tagged form's authored article; a different article would teach the
+    gender wrong, which is what these recordings exist to fix;
   · a Lingua Libre filename ENDS in the word its row claims — that grammar puts the
     speaker and the word in one dash-joined string, so a compound like `Earl-Grey-Tee`
     can be read as a recording of "Tee" by anything that guesses the boundary. Two such
     files shipped before this gate existed;
-  · no two entries claim one speech key with differing bytes: the runtime cannot pick
-    between two takes of de `husten` (cough / to cough), so the first slug wins;
-    byte-identical twins are one recording and ship once, under the form they speak;
+  · no two rows claim one speech key with differing bytes: the runtime cannot pick
+    between two takes of de `Morgen`/`morgen`, so the first row wins;
+    byte-identical twins are one recording and ship once;
   · the author names somebody. "Own work"/"myself" credit nobody, and Commons' "X assumed
     (based on copyright claims)" credits a bot's guess at the uploader, while BY and BY-SA
     both require naming — so those rows are re-resolved against the Commons API and
@@ -95,55 +94,32 @@ def spoken_target_form(article, text):
     return '%s %s' % (article, text.strip())
 
 
-def keep_article_forms(rows, lang, targets, drops):
-    """The ARTICLE gate: the row says the realization's own article in front of one of its
-    forms, or a tagged form with the article it was authored with (`die Lehrerin`) — and the
-    row records WHICH form, so one file can answer either way it is asked.
+def keep_article_forms(rows, lang, articled, drops):
+    """The ARTICLE gate: the row says an article some card shows in front of a word
+    (`articled`: speech key of "die Lehrerin" -> "Lehrerin"), and records WHICH word, so the
+    one file answers the card asking with the article and the card asking without it.
 
-    The article has to be the authored one because a recording is the only thing on the card
-    that can teach a gender, and a wrong one teaches it wrong. The WORD it stands in front of
-    may be any form the realization carries, not only the canonical text: a recording of
-    "der Großvater" is a perfectly good recording of "Großvater", and dropping it for not
-    being "der Opa" throws away a file the card could still use.
-
-    What a card asks with is a separate question, answered at lookup: the article form is
-    preferred, the bare word answers too. That is why 33 of the catalog's 90 rotatable
-    `teaches` disagreeing in gender costs nothing here — a recording only ever answers the
-    form it actually speaks.
+    The article has to be one a card shows because a recording is the only thing on the card
+    that can teach a gender, and a wrong one teaches it wrong.
     """
     kept = []
     for row in rows:
-        pairs = targets.get(lang, {}).get(row['slug'])
-        if not pairs:
-            drops.append(('unrealized', row['slug'], 'no gendered realization in %s' % lang))
-            continue
-        said = speech_key(row['matched_word'])
-        spoken = next((form for article, form in pairs
-                       if speech_key(spoken_target_form(article, form)) == said), None)
-        if spoken is None:
-            drops.append(('not-the-article', row['slug'],
-                          'recording says "%s", not any of %s'
-                          % (row['matched_word'], sorted({a for a, _ in pairs}))))
+        word = articled.get(lang, {}).get(speech_key(row['text']))
+        if word is None:
+            drops.append(('not-the-article', row['text'], 'no card shows "%s"' % row['text']))
         else:
-            kept.append(dict(row, word=spoken))
+            kept.append(dict(row, word=word))
     return kept
 
 
-def keep_reachable(rows, lang, slugs, forms, drops):
-    """Gates 1 and 2: the catalog still knows the row, and the recording speaks a visible form."""
-    realized = forms.get(lang, {})
+def keep_reachable(rows, lang, shown, drops):
+    """Some card in `lang` shows the form the row speaks (`shown`: speech keys, see `load_catalog`)."""
     kept = []
     for row in rows:
-        slug, spoken = row['slug'], row['matched_word']
-        if slug not in slugs:
-            drops.append(('unknown-slug', slug, 'no such concept in the catalog'))
-        elif slug not in realized:
-            drops.append(('unrealized', slug, 'the catalog knows it, %s does not say it' % lang))
-        elif speech_key(spoken) not in {speech_key(form) for form in realized[slug]}:
-            drops.append(('unreachable', slug,
-                          'recording says "%s", the card shows "%s"' % (spoken, realized[slug][0])))
-        else:
+        if speech_key(row['text']) in shown.get(lang, set()):
             kept.append(row)
+        else:
+            drops.append(('unreachable', row['text'], 'no card shows "%s"' % row['text']))
     return kept
 
 
@@ -178,31 +154,31 @@ def keep_named_by_its_file(rows, drops):
         rest = apostrophe_folded(unicodedata.normalize("NFC", match.group("rest")).lower()) if match else ""
         if not match or not author or not rest.startswith(author + "-"):
             kept.append(row)
-        elif rest[len(author) + 1:] == speech_key(row["matched_word"]):
+        elif rest[len(author) + 1:] == speech_key(row["text"]):
             kept.append(row)
         else:
-            drops.append(("misnamed", row["slug"], '%s is not %s saying "%s"'
-                          % (row["file"], row["author"], row["matched_word"])))
+            drops.append(("misnamed", row["text"], '%s is not %s saying "%s"'
+                          % (row["file"], row["author"], row["text"])))
     return kept
 
 
 def keep_unambiguous(rows, mp3_dir, drops):
-    """Gate 3: one speech key, one sound. Byte-identical twins stay; homographs lose the later slug."""
+    """Gate 3: one speech key, one sound. Byte-identical twins stay; of differing takes the first row wins."""
     groups = {}
     for row in rows:
-        groups.setdefault(speech_key(row['matched_word']), []).append(row)
+        groups.setdefault(speech_key(row['text']), []).append(row)
     kept = []
     for key, group in sorted(groups.items()):
-        digests = {row['slug']: digest_of(os.path.join(mp3_dir, row['slug'] + '.mp3')) for row in group}
+        digests = {row['local_file']: digest_of(os.path.join(mp3_dir, row['local_file'])) for row in group}
         if len(set(digests.values())) == 1:
             kept += group
             continue
         winner = min(digests)
-        for row in sorted(group, key=lambda r: r['slug']):
-            if digests[row['slug']] == digests[winner]:
+        for row in sorted(group, key=lambda r: r['local_file']):
+            if digests[row['local_file']] == digests[winner]:
                 kept.append(row)
             else:
-                drops.append(('collision', row['slug'], '"%s" is already %s\'s sound' % (key, winner)))
+                drops.append(('collision', row['text'], '"%s" is already %s\'s sound' % (key, winner)))
     return kept
 
 
@@ -245,9 +221,7 @@ def attribute(rows, drops):
     for row in rows:
         author = resolved.get(row['file'].replace('_', ' '), '') if unnamed(row['author']) else row['author']
         if unnamed(author):
-            # why: `slug` where the row has one, else the form it speaks — the calendar's
-            # rows are keyed by their text, and this gate is otherwise slug-free.
-            drops.append(('unattributable', row.get('slug') or row.get('text', '?'),
+            drops.append(('unattributable', row.get('text', '?'),
                           '%s credits nobody' % row['file']))
         else:
             kept.append(dict(row, author=author))

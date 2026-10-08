@@ -16,12 +16,20 @@ form a SHIPPED row already claims under different bytes: two files for one sound
 runtime nothing to pick, so filling one word would silence another. German `poor` is
 "arm", which the body part already speaks; French `entrance` and `fresh` are the same story.
 
+The packs (`pack-<lang>-words`, `pack-<lang>-articles` and their siblings) are keyed like this manifest,
+by the form a recording speaks, never by the concept that shows it:
+a concept's text, a synonym and a tagged form (a plural, a feminine, an agreement form) are one kind of row,
+so a form moving between those roles keeps its recording.
+Every form is looked for bare in the words pack and, where a card shows it with an article, with that article in the articles pack.
+
 After authoring words, per language and one language at a time (Commons throttles parallel
 fetches), a matter of seconds:
 
 ```sh
 ../data/reference/audio/build-packs.sh words <lang>          # resolves only what the pack lacks
+../data/reference/audio/build-packs.sh articles <lang>       # the same forms with their article
 scripts/audio-catalog.py --packs ../data/reference/audio --lang <lang> --fill
+scripts/audio-catalog.py --packs ../data/reference/audio --lang <lang> --articles
 scripts/audio-coverage.py --missing <lang>                   # what nobody has recorded
 ```
 
@@ -39,7 +47,7 @@ picks among takes and refuses only the clearly bad.
 
 ```sh
 W=../data/reference/audio   # <route> is the language's from $W/build-packs.sh
-$W/sync-from-shipped.py <lang>                              # the pack says what ships
+$W/sync-from-shipped.py <lang>                              # the word and article packs say what ships
 $W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <its siblings>
                                                             # voices with ≤3 takes onto established ones
 $W/requalify-pack.py --lang <lang> <route>                  # under 2.8 or squashed: the best other take
@@ -157,8 +165,8 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   `accepts` are not recorded on either half, being accept-only and never displayed, so a
   recording keyed by one could never be reached.
 - `matches` — the surface form the recording actually SPEAKS, repeated from the key, and the lookup key:
-  playback is keyed by what stands on the card, never by the slug the file was fetched
-  for, so a rotated synonym nobody recorded falls through to the app's own voice
+  playback is keyed by what stands on the card, never by the concept that shows it,
+  so a rotated synonym nobody recorded falls through to the app's own voice
   instead of playing the canonical word. It may differ from `text` in case
   (`unterlagen` / "Unterlagen"), edge punctuation (`hallo` / "Hallo!") or the citation
   dash (`zuri` / "-zuri") — the engine folds those away (`../../kern/docs/audio.md`).
