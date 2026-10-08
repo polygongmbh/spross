@@ -4,6 +4,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.FormTag
 import net.spross.kern.model.TaggedForm
+import net.spross.kern.model.emojiFor
 import net.spross.kern.trainer.NumbersReading
 import net.spross.kern.trainer.SwahiliConcord
 import kotlin.test.Test
@@ -47,6 +48,13 @@ class CatalogFixtureTest {
     @Test
     fun aFormsAuthoredArticleIsSetApartAtJoin() {
         assertEquals(TaggedForm(FormTag.PLURAL, "Mäuse", article = "die"), catalog.join("uk", "de").byId("mouse").target.forms.single())
+    }
+
+    @Test
+    fun aTaggedFormWearsItsOwnPicture() {
+        val mouse = catalog.join("uk", "de").byId("mouse")
+        assertEquals("🐁🐁", mouse.emojiFor(FormTag.PLURAL))
+        assertEquals("🐭", mouse.emojiFor(null))
     }
 
     @Test

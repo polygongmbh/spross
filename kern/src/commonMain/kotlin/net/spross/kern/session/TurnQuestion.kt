@@ -6,6 +6,7 @@ import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.alternates
 import net.spross.kern.model.answerForms
 import net.spross.kern.model.counterpart
+import net.spross.kern.model.emojiFor
 import net.spross.kern.model.closingNote
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.pluralForm
@@ -31,7 +32,7 @@ val TurnState.question: Question
         ask = null,
         prompt = promptSide,
         answer = answerSide,
-        emoji = card.emoji,
+        emoji = card.emojiFor(promptTag),
         emojiCue = emojiCue(role, arrived),
         opens = answerRevealed,
         closing = Question.Closing(

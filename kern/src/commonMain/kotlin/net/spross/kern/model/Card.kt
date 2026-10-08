@@ -78,6 +78,8 @@ data class Card(
     val kind: CardKind,
     val area: String,
     val emoji: String?,
+    /** The picture a tagged form wears instead of [emoji] (`f` → 👩‍🏫). */
+    val formEmoji: Map<FormTag, String> = emptyMap(),
     /** Global catalog position (groups → areas → concepts), join-independent. */
     val seedIndex: Int,
     /**
@@ -109,3 +111,6 @@ data class Card(
      */
     val promptAmbiguous: Boolean = false,
 )
+
+/** The picture a prompt in [tag] shows: the form's own where the concept gives it one. */
+fun Card.emojiFor(tag: FormTag?): String? = tag?.let { formEmoji[it] } ?: emoji

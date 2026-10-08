@@ -1,6 +1,7 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.Language
 import net.spross.kern.model.TaggedForm
 import net.spross.kern.trainer.NumbersReading
@@ -33,6 +34,8 @@ internal data class CatalogConcept(
     val slug: String,
     val kind: CardKind,
     val emoji: String?,
+    /** The picture a tagged form wears instead of [emoji] (`f` → 👩‍🏫). */
+    val formEmoji: Map<FormTag, String>,
     /** Same-area word slugs (phrases only). */
     val components: List<String>,
     val feminineOf: String?,

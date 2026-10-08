@@ -152,6 +152,7 @@ class Catalog internal constructor(
                     // why: idiom emoji is a kind marker, not a per-concept picture —
                     // see IDIOM_EMOJI — applied here so every consumer sees it, never null.
                     emoji = if (concept.kind == CardKind.Idiom) IDIOM_EMOJI else concept.emoji,
+                    formEmoji = concept.formEmoji,
                     seedIndex = concept.seedIndex,
                     // why: components without a target realization can never be studied —
                     // filtering here keeps the phrase-unlock gate a plain all-components check.

@@ -150,6 +150,7 @@ A verb slug carries `to-` and nothing else does (lint-enforced), so `help`/`to-h
 - `emoji` — optional on EVERY kind, not just nouns. It is the engine's meaning cue, shown
   upfront on a first exposure and on an unsettled produce prompt (`../kern/README.md` §3).
   Which concepts get one, and which must not, is `areas/README.md`.
+- `formEmoji` — optional, a picture per form tag (`{ "f": "👩‍🏫" }`), which a prompt in that form shows instead of `emoji`.
 - `components` (phrases only) — same-area word slugs the phrase is built from;
   the box gates a phrase's unlock on those words being learned. Empty = no gate.
   A gate can only name a concept that HAS a card and that every target realizes:

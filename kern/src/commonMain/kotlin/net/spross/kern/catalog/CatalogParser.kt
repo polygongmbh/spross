@@ -144,7 +144,7 @@ internal object CatalogParser {
     fun parseConcepts(area: String, path: String, text: String, firstSeedIndex: Int): List<CatalogConcept> {
         val concepts = parseJson(path, text).arr(path, "root").mapIndexed { i, el ->
             val o = el.obj(path, "[$i]")
-            o.rejectUnknownKeys(path, "[$i]", setOf("slug", "kind", "emoji", "components", "feminineOf"))
+            o.rejectUnknownKeys(path, "[$i]", setOf("slug", "kind", "emoji", "formEmoji", "components", "feminineOf"))
             val slug = o.requireString(path, "[$i]", "slug")
             if (slug.isEmpty() || '|' in slug || '/' in slug) parseError(path, "[$i]: bad slug \"$slug\"")
             val kind = when (val raw = o.requireString(path, slug, "kind")) {
@@ -159,7 +159,7 @@ internal object CatalogParser {
                 parseError(path, "$slug: components on a ${kind.name.lowercase()}")
             }
             if (kind != CardKind.Noun && "feminineOf" in o.keys) parseError(path, "$slug: feminineOf on a non-noun")
-            if (kind == CardKind.Idiom && "emoji" in o.keys) {
+            if (kind == CardKind.Idiom && ("emoji" in o.keys || "formEmoji" in o.keys)) {
                 parseError(path, "$slug: idioms use the fixed idiom emoji, not a per-concept one")
             }
             CatalogConcept(
@@ -167,6 +167,9 @@ internal object CatalogParser {
                 slug = slug,
                 kind = kind,
                 emoji = o.optionalString(path, slug, "emoji"),
+                formEmoji = o.stringMap(path, slug, "formEmoji").mapKeys { (tag, _) ->
+                    FormTag.parse(tag) ?: parseError(path, "$slug: unknown form tag \"$tag\" in formEmoji")
+                },
                 components = o.stringList(path, slug, "components"),
                 feminineOf = o.optionalString(path, slug, "feminineOf"),
                 seedIndex = firstSeedIndex + i,

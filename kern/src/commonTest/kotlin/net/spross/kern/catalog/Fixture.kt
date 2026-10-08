@@ -124,7 +124,7 @@ internal object Fixture {
              { "slug": "waiter", "kind": "noun", "emoji": "🧑‍🍳" },
              { "slug": "waiter-f", "kind": "noun", "emoji": "👩‍🍳", "feminineOf": "waiter" },
              { "slug": "cook", "kind": "verb" },
-             { "slug": "mouse", "kind": "noun", "emoji": "🐭" },
+             { "slug": "mouse", "kind": "noun", "emoji": "🐭", "formEmoji": { "pl": "🐁🐁" } },
              { "slug": "hello", "kind": "phrase", "components": [] },
              { "slug": "the-mouse-runs", "kind": "phrase", "components": ["mouse", "cook"] },
              { "slug": "the-mouse-sprints", "kind": "phrase", "components": ["mouse", "cook"] }
