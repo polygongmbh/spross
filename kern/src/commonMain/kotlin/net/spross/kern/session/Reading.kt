@@ -2,6 +2,7 @@ package net.spross.kern.session
 
 import net.spross.kern.model.Language
 import net.spross.kern.model.PronunciationCue
+import net.spross.kern.model.counterpart
 import net.spross.kern.model.meaningCue
 import net.spross.kern.model.pronunciationCue
 import net.spross.kern.model.shownArticle
@@ -54,8 +55,8 @@ fun TurnState.answerSaying(saysMeaning: Boolean): Saying? {
     if (!settled) return null
     val correction = (feedback as? TurnFeedback.Almost)?.correctForm
     return when {
-        pronunciationCue(role, prompt) == PronunciationCue.OnReveal -> targetSaying(correction ?: card.target.text)
-        saysMeaning -> Saying(correction ?: card.source.text, card.source.lang)
+        pronunciationCue(role, prompt) == PronunciationCue.OnReveal -> targetSaying(correction ?: answerText)
+        saysMeaning -> Saying(correction ?: counterpart(card.source, promptTag).text, card.source.lang)
         else -> null
     }
 }

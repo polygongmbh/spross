@@ -73,10 +73,10 @@ extension AppModel {
                                   arrived: hasArrived(card.id))
     }
 
-    /// The rotated target form to prompt on a recognition review.
-    func promptForm(for card: Card) -> String {
-        SprossKern.recognitionPromptForm(card: card,
-                                         reviewCount: scheduling(for: card.id)?.reviewCount ?? 0)
+    /// The form a turn asks with, and which inflected form it is (`turnPrompt`).
+    func promptForm(for card: Card, role: PresentationRole, prompt: ProducePrompt) -> PromptForm {
+        SprossKern.turnPrompt(card: card, role: role, prompt: prompt,
+                              reviewCount: scheduling(for: card.id)?.reviewCount ?? 0)
     }
 
     /// Typed-answer grader for the profile's target (produce only).

@@ -5,6 +5,7 @@ import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.alternates
 import net.spross.kern.model.answerForms
+import net.spross.kern.model.counterpart
 import net.spross.kern.model.closingNote
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.pluralForm
@@ -37,8 +38,8 @@ val TurnState.question: Question
             // The prompt still stands above the reveal, so whatever form it put on screen is no alternative.
             alternates = alternates(
                 card.target,
-                shown = listOf(if (role == PresentationRole.Recognize) promptForm else card.target.text),
-                forms = answerForms(card, promptTag = null).rightForms,
+                shown = listOf(if (role == PresentationRole.Recognize) promptForm else answerText),
+                forms = answerForms(card, promptTag).rightForms,
             ),
             note = closingNote(card.target, alsoMeans),
         ),
@@ -57,22 +58,27 @@ private val TurnState.promptSide: Question.Side
             saying = targetSide(card.target.text).saying,
         )
         else -> Question.Side(
-            text = card.source.text, lang = card.source.lang, form = Question.Form.Word,
-            marker = FormTag.FEMININE.takeIf { card.promptFeminineMarker },
+            text = promptForm, lang = card.source.lang, form = Question.Form.Word,
+            marker = feminineMarker,
             context = card.area.takeIf { card.promptAmbiguous },
         )
     }
 
 private val TurnState.answerSide: Question.Side
     get() = if (role == PresentationRole.Produce && !askedByEar) {
-        targetSide(card.target.text)
+        targetSide(answerText)
     } else {
+        // The meaning in the prompt's form: its own where the source has one, else its citation marked.
+        val meaning = counterpart(card.source, promptTag)
+        val synonyms = card.source.teaches.takeIf { meaning.text == card.source.text }.orEmpty()
         Question.Side(
-            text = (listOf(card.source.text) + card.source.teaches).joinToString(FORM_JOIN),
+            text = (listOf(meaning.text) + synonyms).joinToString(FORM_JOIN),
             lang = card.source.lang, form = Question.Form.Word,
-            marker = FormTag.FEMININE.takeIf { card.promptFeminineMarker },
+            marker = meaning.marker ?: feminineMarker,
         )
     }
+
+private val TurnState.feminineMarker: FormTag? get() = FormTag.FEMININE.takeIf { card.promptFeminineMarker }
 
 /** [form] on the target side: its article and plural only where it is the cited form, and the speaker that says it. */
 private fun TurnState.targetSide(form: String): Question.Side {

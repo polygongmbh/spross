@@ -2,10 +2,13 @@
 Which form a prompt shows, whether the meaning is given or withdrawn and when the picture appears: render-time rules only, never the schedule or a screen position.
 Neighbors: the contract `../README.md` §3, how a meaning answer is graded `grading.md`.
 
-- **Synonym rotation** on recognition prompts (`recognitionPromptForm`):
-  the prompted form cycles deterministically through `text` + `teaches`,
+- **Form rotation** (`turnPrompt`, `model/PromptForm.kt`):
+  a recognition prompt cycles deterministically through `text` + `teaches` + every tagged `forms` entry,
+  a produce prompt through the source's `text` and those of its tagged forms whose tag the target has too,
   so every form gets prompted at zero extra scheduling cost;
   the first exposure always prompts the canonical text, and `accepts` never rotates.
+  The other side answers in the prompt's form where it has one,
+  else in its citation with a marker for what that cannot show (`Lehrerin` → `teacher` ♀, `counterpart`).
   The reveal always shows the full family;
   the source-side reveal may show the source `teaches` informatively ("Amt / Verwaltung").
 - **Sound-prompted production** (`producePrompt`) answers whether a produce turn asks by sight or by ear.

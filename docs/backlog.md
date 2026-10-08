@@ -33,6 +33,7 @@ Parked work is not an issue: its own doc says it is parked.
   drill needing curated component-boundary data, and syllable data would not deliver it since a
   syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries
   "Feier") — considered for word scramble (`drills-words.md`) and left out.
+- The watch rotates tagged `forms` into its recognize prompt but reveals the bare source text and its tiles ignore the tag — `WatchEntryDto` should carry kern's `counterpart` marker (`WatchSnapshotBuilder.kt`).
 - The watch speed mark (⚡) is visual only: VoiceOver hears right or wrong but not how quick (`WatchQuizView.verdict`).
 
 ## Platform reach

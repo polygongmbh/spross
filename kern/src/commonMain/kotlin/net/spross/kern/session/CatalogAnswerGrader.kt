@@ -1,6 +1,7 @@
 package net.spross.kern.session
 
 import net.spross.kern.model.Card
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.SharedTargetForms
 
@@ -42,8 +43,8 @@ class CatalogAnswerGrader(
      * share belongs to the prompted one first. Otherwise the other concept's
      * word if the catalog owns the input, else the plain one-card verdict.
      */
-    fun grade(input: String, card: Card): Match {
-        val direct = normalizer.evaluate(input, card)
+    fun grade(input: String, card: Card, promptTag: FormTag? = null): Match {
+        val direct = normalizer.evaluate(input, card, promptTag)
         if (direct == Match.Exact) return direct
         return otherWord(input, card) ?: direct
     }

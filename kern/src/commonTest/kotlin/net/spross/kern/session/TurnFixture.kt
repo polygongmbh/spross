@@ -5,7 +5,9 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.PromptForm
 import net.spross.kern.model.Realization
+import net.spross.kern.model.turnPrompt
 
 /**
  * Cards and one machine both turn suites answer against: sw answers, a near-twin pair the
@@ -73,7 +75,7 @@ internal object TurnFixture {
         arrived: Boolean = false,
     ): TurnState = machine.begin(
         card, PresentationRole.Produce, prompt,
-        if (prompt == ProducePrompt.Sound) card.target.text else card.source.text,
+        turnPrompt(card, PresentationRole.Produce, prompt, reviewCount = 0),
         firstExposure, arrived, T0,
     )
 
@@ -82,7 +84,7 @@ internal object TurnFixture {
         firstExposure: Boolean = false,
         arrived: Boolean = false,
     ): TurnState = machine.begin(
-        card, PresentationRole.Recognize, ProducePrompt.Source, card.target.text,
+        card, PresentationRole.Recognize, ProducePrompt.Source, PromptForm(card.target.text, null),
         firstExposure, arrived, T0,
     )
 

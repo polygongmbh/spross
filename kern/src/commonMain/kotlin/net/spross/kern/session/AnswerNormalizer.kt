@@ -2,6 +2,7 @@ package net.spross.kern.session
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.answerForms
 import net.spross.kern.model.hyphensAndApostrophesStripped
@@ -110,8 +111,8 @@ class AnswerNormalizer(
      * and, once dropped, makes the rest match is a typo, not a failure — in vocab
      * reviews only, see [strayLeadingWordRecovery].
      */
-    fun evaluate(input: String, card: Card): Match {
-        val forms = answerForms(card, promptTag = null)
+    fun evaluate(input: String, card: Card, promptTag: FormTag? = null): Match {
+        val forms = answerForms(card, promptTag)
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
         val expectedArticle = card.target.grammar["gender"]?.lowercase()
         val genderedForms = listOf(card.target.text) + card.target.accepts + card.target.forms.map { it.text }

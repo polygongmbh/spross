@@ -11,6 +11,7 @@ import net.spross.kern.model.CardKind
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.turnPrompt
 import net.spross.kern.model.Rating
 import net.spross.kern.model.Realization
 import net.spross.kern.session.AdvanceBeat
@@ -83,12 +84,7 @@ class TurnWiringTest {
             card = card,
             role = role,
             prompt = prompt,
-            // The form the prompt stands on, as `newTurn` resolves it.
-            promptForm = when {
-                role == PresentationRole.Recognize -> card.target.text
-                prompt == ProducePrompt.Sound -> card.target.text
-                else -> card.source.text
-            },
+            promptForm = turnPrompt(card, role, prompt, reviewCount = 0),
             firstExposure = firstExposure,
             arrived = arrived,
             nowEpochMillis = T0,

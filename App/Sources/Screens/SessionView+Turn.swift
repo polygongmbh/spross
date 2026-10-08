@@ -92,11 +92,7 @@ extension SessionView {
         turn = machine.begin(card: card,
                              role: role,
                              prompt: prompt,
-                             // The form the prompt stands on: the rotated one on
-                             // recognition, else the source word — or, where the
-                             // question is the sound, the very form that plays.
-                             promptForm: role == .recognize ? model.promptForm(for: card)
-                                 : (prompt == .sound ? card.target.text : card.source.text),
+                             promptForm: model.promptForm(for: card, role: role, prompt: prompt),
                              firstExposure: model.isFirstExposure(card.id),
                              arrived: model.hasArrived(card.id),
                              nowEpochMillis: Date().epochMillis)

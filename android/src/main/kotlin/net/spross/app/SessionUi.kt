@@ -8,10 +8,11 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.PromptForm
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.producePrompt
-import net.spross.kern.model.recognitionPromptForm
+import net.spross.kern.model.turnPrompt
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.RoundSummary
 import net.spross.kern.session.SessionRun
@@ -20,7 +21,7 @@ import net.spross.kern.session.SessionRunState
 data class SessionUi(
     val card: Card?,               // null ⇒ drained: show the summary
     val role: PresentationRole?,
-    val promptForm: String?,       // rotated recognition prompt
+    val promptForm: PromptForm?,   // the form the turn asks with (`turnPrompt`)
     /** Whether a produce turn asks by meaning or by ear; [ProducePrompt.Source] elsewhere. */
     // layer-ok: the drained branch has no produce turn — every real one carries kern's cue
     val producePrompt: ProducePrompt = ProducePrompt.Source,
@@ -84,9 +85,9 @@ internal fun AppModel.sessionUiFor(active: SessionRunState): SessionUi {
     } else {
         val count = state.scheduling[card.id]?.reviewCount ?: 0
         val role = presentationRole(card.id, count)
-        val promptForm = recognitionPromptForm(card, count)
         val arrived = hasArrived(card.id)
         val prompt = producePrompt(card.id, count, arrived, audible(card))
+        val promptForm = turnPrompt(card, role, prompt, count)
         SessionUi(
             card = card,
             role = role,

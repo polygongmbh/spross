@@ -37,6 +37,14 @@ class FormAgreementGradingTests {
     }
 
     @Test
+    fun aTaggedPromptAsksForItsAgreeingForm() {
+        val fromEs = card(Realization("es", "mío", forms = forms("f" to "mía")))
+        val f = FormTag.FEMININE
+        assertEquals(Match.Exact, de.evaluate("meine", fromEs, f))
+        assertEquals(Match.Typo("meine"), de.evaluate("mein", fromEs, f))
+    }
+
+    @Test
     fun aDimensionOnlyTheSourceInflectsPinsNothing() {
         val fromUk = card(Realization("uk", "мій", forms = forms("pl" to "мої")))
         assertEquals(Match.Exact, de.evaluate("meiner", fromUk))

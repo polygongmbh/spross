@@ -3,8 +3,6 @@ package net.spross.app
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
 import net.spross.app.ui.AnswerActions
 import net.spross.kern.session.AdvanceBeat
@@ -224,13 +222,7 @@ fun AppModel.newTurn(
             card = card,
             role = role,
             prompt = ui.producePrompt,
-            // The form the prompt stands on: the rotated one on recognition, else the
-            // source word — or, where the question is the sound, the form that plays.
-            promptForm = when {
-                role == PresentationRole.Recognize -> ui.promptForm ?: card.target.text
-                ui.producePrompt == ProducePrompt.Sound -> card.target.text
-                else -> card.source.text
-            },
+            promptForm = ui.promptForm ?: return null,
             firstExposure = ui.firstExposure,
             arrived = ui.arrived,
             nowEpochMillis = System.currentTimeMillis(),
