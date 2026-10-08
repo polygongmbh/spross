@@ -2,8 +2,7 @@
  "title": "У лікаря",
  "subtitle": "Від запису до рецепта.",
  "words": {
-  "doctor": { "text": "лікар" },
-  "doctor-f": { "text": "лікарка" },
+  "doctor": { "text": "лікар", "forms": { "f": "лікарка" } },
   "practice": {
    "text": "лікарський кабінет",
    "forms": { "pl": "лікарські кабінети" },
@@ -22,8 +21,7 @@
   "to-take-medicine": { "text": "приймати ліки" },
   "to-call-in-sick": { "text": "повідомляти, що захворів", "teaches": ["іти на лікарняний"] },
   "medicine": { "text": "ліки", "grammar": { "plural": "only" } },
-  "nurse": { "text": "медбрат" },
-  "nurse-f": { "text": "медсестра" },
+  "nurse": { "text": "медбрат", "forms": { "f": "медсестра" } },
   "dentist": { "text": "стоматолог", "teaches": ["зубний лікар"] },
   "vaccination": { "text": "щеплення", "teaches": ["вакцинація"], "grammar": { "plural": "=" } },
   "ambulance": { "text": "швидка допомога", "accepts": ["швидка"] },

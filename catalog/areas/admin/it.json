@@ -32,15 +32,10 @@
   "case-worker": {
    "text": "impiegato",
    "teaches": ["funzionario"],
-   "accepts": ["l'impiegato"],
+   "accepts": ["l'impiegato", "un'impiegata"],
+   "forms": { "f": ["l'impiegata", "la funzionaria"] },
    "grammar": { "gender": "l'" },
    "notes": { "it": "l'impiegato sta allo sportello · il funzionario decide la pratica." }
-  },
-  "case-worker-f": {
-   "text": "impiegata",
-   "teaches": ["funzionaria"],
-   "accepts": ["l'impiegata", "un'impiegata"],
-   "grammar": { "gender": "l'" }
   },
   "registration": {
    "text": "iscrizione anagrafica",

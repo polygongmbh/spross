@@ -5,8 +5,7 @@
   "supermarket": { "text": "supermarché", "grammar": { "gender": "le" } },
   "mall": { "text": "centre commercial", "grammar": { "gender": "le" } },
   "checkout": { "text": "caisse", "grammar": { "gender": "la" } },
-  "shop-assistant": { "text": "vendeur", "grammar": { "gender": "le" } },
-  "shop-assistant-f": { "text": "vendeuse", "grammar": { "gender": "la" } },
+  "shop-assistant": { "text": "vendeur", "forms": { "f": "la vendeuse" }, "grammar": { "gender": "le" } },
   "shopping-cart": { "text": "chariot", "grammar": { "gender": "le" } },
   "offer": { "text": "promotion", "accepts": ["promo"], "grammar": { "gender": "la" } },
   "size": {

@@ -3,8 +3,12 @@
  "subtitle": "Dove il prezzo si tratta ancora.",
  "words": {
   "stall": { "text": "bancarella", "grammar": { "gender": "la" } },
-  "trader": { "text": "venditore", "grammar": { "gender": "il" }, "teaches": ["commerciante"] },
-  "trader-f": { "text": "venditrice", "grammar": { "gender": "la" } },
+  "trader": {
+   "text": "venditore",
+   "forms": { "f": "la venditrice" },
+   "grammar": { "gender": "il" },
+   "teaches": ["commerciante"]
+  },
   "scales": { "text": "bilancia", "grammar": { "gender": "la" } },
   "to-weigh": { "text": "pesare" },
   "kilo": { "text": "chilo", "grammar": { "gender": "il" } },

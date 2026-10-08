@@ -4,12 +4,11 @@
  "words": {
   "grandparents": { "text": "Großeltern", "grammar": { "gender": "die", "plural": "only" } },
   "siblings": { "text": "Geschwister", "grammar": { "gender": "die", "plural": "only" } },
-  "cousin": { "text": "Cousin", "forms": { "pl": "die Cousins" }, "grammar": { "gender": "der" } },
-  "cousin-f": {
-   "text": "Cousine",
+  "cousin": {
+   "text": "Cousin",
    "accepts": ["Kusine"],
-   "forms": { "pl": "die Cousinen" },
-   "grammar": { "gender": "die" }
+   "forms": { "f": "die Cousine", "pl": "die Cousins", "f.pl": "die Cousinen" },
+   "grammar": { "gender": "der" }
   },
   "nephew": { "text": "Neffe", "forms": { "pl": "die Neffen" }, "grammar": { "gender": "der" } },
   "niece": { "text": "Nichte", "forms": { "pl": "die Nichten" }, "grammar": { "gender": "die" } },

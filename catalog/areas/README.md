@@ -199,7 +199,7 @@ A word that fits none of them is evidence that a shelf is missing.
 
 The area is the folder, and three things ride on it:
 it is the produce prompt's disambiguator,
-`components` and `feminineOf` resolve inside it,
+`components` resolve inside it,
 and it is the unit a contributor writes and reviews.
 A phrase gating on a component travels with it --
 `components` is an unlock gate, not a claim about the sentence's words,

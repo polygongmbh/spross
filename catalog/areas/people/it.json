@@ -39,14 +39,8 @@
   },
   "friend": {
    "text": "amico",
-   "accepts": ["l'amico"],
-   "forms": { "pl": "gli amici" },
-   "grammar": { "gender": "l'" }
-  },
-  "friend-f": {
-   "text": "amica",
-   "accepts": ["l'amica", "un'amica"],
-   "forms": { "pl": "le amiche" },
+   "accepts": ["l'amico", "un'amica"],
+   "forms": { "f": "l'amica", "pl": "gli amici", "f.pl": "le amiche" },
    "grammar": { "gender": "l'" }
   },
   "grandmother": { "text": "nonna", "grammar": { "gender": "la" } },

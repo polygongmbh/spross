@@ -5,8 +5,12 @@
   "supermarket": { "text": "supermercado", "grammar": { "gender": "el" } },
   "mall": { "text": "centro comercial", "grammar": { "gender": "el" } },
   "checkout": { "text": "caja", "grammar": { "gender": "la" } },
-  "shop-assistant": { "text": "dependiente", "teaches": ["vendedor"], "grammar": { "gender": "el" } },
-  "shop-assistant-f": { "text": "dependienta", "teaches": ["vendedora"], "grammar": { "gender": "la" } },
+  "shop-assistant": {
+   "text": "dependiente",
+   "teaches": ["vendedor"],
+   "forms": { "f": ["la dependienta", "la vendedora"] },
+   "grammar": { "gender": "el" }
+  },
   "shopping-cart": { "text": "carrito", "grammar": { "gender": "el" }, "accepts": ["carrito de la compra"] },
   "offer": { "text": "oferta", "grammar": { "gender": "la" } },
   "size": {

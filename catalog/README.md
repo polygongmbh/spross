@@ -138,7 +138,7 @@ which is how `greetings` opens the whole course on `Hallo!` and `basics` on `Ja.
 [ { "slug": "fridge",  "kind": "noun", "emoji": "🧊" },
   { "slug": "to-cook", "kind": "verb", "emoji": "🧑‍🍳" },
   { "slug": "caution", "kind": "adjective", "emoji": "⚠️" },
-  { "slug": "teacher-f", "kind": "noun", "emoji": "👩‍🏫", "feminineOf": "teacher" },
+  { "slug": "teacher", "kind": "noun", "emoji": "🧑‍🏫", "formEmoji": { "f": "👩‍🏫" } },
   { "slug": "the-fridge-is-empty", "kind": "phrase", "emoji": "🧊",
     "components": ["fridge"] } ]
 ```
@@ -153,9 +153,7 @@ A verb slug carries `to-` and nothing else does (lint-enforced), so `help`/`to-h
 - `formEmoji` — optional, a picture per form tag (`{ "f": "👩‍🏫" }`), which a prompt in that form shows instead of `emoji`.
 - `components` (phrases only) — same-area word slugs the phrase is built from;
   the box gates a phrase's unlock on those words being learned. Empty = no gate.
-  A gate can only name a concept that HAS a card and that every target realizes:
-  a `feminineOf` component would leave the phrase locked forever in a pair whose target
-  has no feminine form (en, sw).
+  A gate can only name a concept that HAS a card and that every target realizes.
 - `idiom` — a figurative expression, curated (not auto-linked) for genuine
   cross-language meaning-equivalence (`areas/README.md`).
   Structurally forbidden from carrying `emoji`, `components`, or `feminineOf` —
@@ -165,12 +163,9 @@ A verb slug carries `to-` and nothing else does (lint-enforced), so `help`/`to-h
   behind the vocabulary they presuppose.
 - `adjective` is the catch-all for single words that are neither noun nor verb:
   adjectives, adverbs, and interjections (`draußen`, `immer`, `Vorsicht`).
-- `feminineOf` (nouns only) — marks this concept as the feminine form of `<base-slug>`.
-  It carries the distinct `de` form always, and a realization only where that language
-  grammatically distinguishes the feminine (uk `вчителька`; NOT sw or en, which are
-  genderless; NOT uk for epicene nouns like колега). It may carry its own female-specific `emoji`
-  where one exists (`👩‍🏫`), else none. How this drives per-direction card emission and
-  the ♀ prompt marker is engine behavior — see the engine contract (`../kern/README.md` §2/§3).
+- A feminine noun is its base word's `f` form (de `"f": "die Lehrerin"`), never a concept of its own:
+  it shares the base's schedule, and its picture is the base's `formEmoji.f`.
+  `feminineOf` is no longer authored.
 
 **The slug IS the card id.** The engine keys each learner's schedule by it,
 and neither the area nor the `kind` appears in that key —
@@ -218,8 +213,8 @@ Realization fields — only `text` is required:
   it grades as correct when producing this language, and takes its turn as the recognize
   prompt when learning FROM it, on the concept's one schedule, never as a unit of its own
   (`../kern/README.md` §3).
-  NOT a home for distinct learnable items: feminine nouns belong to `feminineOf`
-  concepts, and different-meaning words belong to their own concept.
+  NOT a home for distinct learnable items: a feminine noun is the base's `f` form,
+  and different-meaning words belong to their own concept.
 - `accepts` — ACCEPTED surface forms of the SAME knowledge (array; omit if none):
   alternate renderings a learner already knows if they know `text` — register pairs
   (de Sie-form in `text`, du-form here; es `Gire`/`Gira`), diminutives (uk миша/мишка),

@@ -7,10 +7,16 @@
   "cv": { "text": "Lebenslauf", "forms": { "pl": "die Lebensläufe" }, "grammar": { "gender": "der" } },
   "contract": { "text": "Vertrag", "forms": { "pl": "die Verträge" }, "grammar": { "gender": "der" } },
   "salary": { "text": "Gehalt", "forms": { "pl": "die Gehälter" }, "grammar": { "gender": "das" } },
-  "colleague": { "text": "Kollege", "forms": { "pl": "die Kollegen" }, "grammar": { "gender": "der" } },
-  "colleague-f": { "text": "Kollegin", "forms": { "pl": "die Kolleginnen" }, "grammar": { "gender": "die" } },
-  "boss": { "text": "Chef", "forms": { "pl": "die Chefs" }, "grammar": { "gender": "der" } },
-  "boss-f": { "text": "Chefin", "forms": { "pl": "die Chefinnen" }, "grammar": { "gender": "die" } },
+  "colleague": {
+   "text": "Kollege",
+   "forms": { "f": "die Kollegin", "pl": "die Kollegen", "f.pl": "die Kolleginnen" },
+   "grammar": { "gender": "der" }
+  },
+  "boss": {
+   "text": "Chef",
+   "forms": { "f": "die Chefin", "pl": "die Chefs", "f.pl": "die Chefinnen" },
+   "grammar": { "gender": "der" }
+  },
   "shift": { "text": "Schicht", "forms": { "pl": "die Schichten" }, "grammar": { "gender": "die" } },
   "company": { "text": "Firma", "forms": { "pl": "die Firmen" }, "grammar": { "gender": "die" } },
   "to-apply": {

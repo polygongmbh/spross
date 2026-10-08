@@ -3,8 +3,7 @@
  "subtitle": "Kie la prezo ankoraŭ diskuteblas.",
  "words": {
   "stall": { "text": "budo" },
-  "trader": { "text": "komercisto" },
-  "trader-f": { "text": "komercistino" },
+  "trader": { "text": "komercisto", "forms": { "f": "komercistino" } },
   "scales": { "text": "pesilo" },
   "to-weigh": { "text": "pesi" },
   "kilo": { "text": "kilogramo", "accepts": ["kilo"] },

@@ -2,8 +2,11 @@
  "title": "Beim Arzt",
  "subtitle": "Vom Termin bis zum Rezept.",
  "words": {
-  "doctor": { "text": "Arzt", "forms": { "pl": "die Ärzte" }, "grammar": { "gender": "der" } },
-  "doctor-f": { "text": "Ärztin", "forms": { "pl": "die Ärztinnen" }, "grammar": { "gender": "die" } },
+  "doctor": {
+   "text": "Arzt",
+   "forms": { "f": "die Ärztin", "pl": "die Ärzte", "f.pl": "die Ärztinnen" },
+   "grammar": { "gender": "der" }
+  },
   "practice": { "text": "Praxis", "forms": { "pl": "die Praxen" }, "grammar": { "gender": "die" } },
   "pill": { "text": "Tablette", "forms": { "pl": "die Tabletten" }, "grammar": { "gender": "die" } },
   "prescription": { "text": "Rezept", "forms": { "pl": "die Rezepte" }, "grammar": { "gender": "das" } },
@@ -31,12 +34,10 @@
    "forms": { "pl": "die Medikamente" },
    "grammar": { "gender": "das" }
   },
-  "nurse": { "text": "Krankenpfleger", "grammar": { "gender": "der", "plural": "=" } },
-  "nurse-f": {
-   "text": "Krankenpflegerin",
-   "teaches": ["Krankenschwester"],
-   "forms": { "pl": "die Krankenpflegerinnen" },
-   "grammar": { "gender": "die" }
+  "nurse": {
+   "text": "Krankenpfleger",
+   "forms": { "f": ["die Krankenpflegerin", "die Krankenschwester"], "f.pl": "die Krankenpflegerinnen" },
+   "grammar": { "gender": "der", "plural": "=" }
   },
   "dentist": { "text": "Zahnarzt", "forms": { "pl": "die Zahnärzte" }, "grammar": { "gender": "der" } },
   "vaccination": { "text": "Impfung", "forms": { "pl": "die Impfungen" }, "grammar": { "gender": "die" } },

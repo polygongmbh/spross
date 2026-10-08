@@ -3,8 +3,7 @@
  "subtitle": "Де вас обслуговують.",
  "words": {
   "menu": { "text": "меню", "grammar": { "plural": "=" } },
-  "waiter": { "text": "офіціант" },
-  "waiter-f": { "text": "офіціантка" },
+  "waiter": { "text": "офіціант", "forms": { "f": "офіціантка" } },
   "table": { "text": "стіл", "forms": { "pl": "столи" } },
   "to-order": { "text": "замовляти", "accepts": ["замовити"] },
   "bill": { "text": "рахунок", "forms": { "pl": "рахунки" } },

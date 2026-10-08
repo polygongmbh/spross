@@ -9,8 +9,11 @@
    "grammar": { "gender": "das" }
   },
   "checkout": { "text": "Kasse", "forms": { "pl": "die Kassen" }, "grammar": { "gender": "die" } },
-  "shop-assistant": { "text": "Verkäufer", "grammar": { "gender": "der", "plural": "=" } },
-  "shop-assistant-f": { "text": "Verkäuferin", "forms": { "pl": "die Verkäuferinnen" }, "grammar": { "gender": "die" } },
+  "shop-assistant": {
+   "text": "Verkäufer",
+   "forms": { "f": "die Verkäuferin", "f.pl": "die Verkäuferinnen" },
+   "grammar": { "gender": "der", "plural": "=" }
+  },
   "shopping-cart": { "text": "Einkaufswagen", "grammar": { "gender": "der", "plural": "=" } },
   "offer": {
    "text": "Angebot",

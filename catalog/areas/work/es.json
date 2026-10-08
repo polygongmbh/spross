@@ -21,12 +21,11 @@
    "text": "compañero",
    "teaches": ["colega"],
    "accepts": ["compañero de trabajo"],
+   "forms": { "f": "la compañera" },
    "grammar": { "gender": "el" },
    "notes": { "es": "El compañero de trabajo · colega en España es también amigo." }
   },
-  "colleague-f": { "text": "compañera", "grammar": { "gender": "la" } },
-  "boss": { "text": "jefe", "grammar": { "gender": "el" } },
-  "boss-f": { "text": "jefa", "grammar": { "gender": "la" } },
+  "boss": { "text": "jefe", "forms": { "f": "la jefa" }, "grammar": { "gender": "el" } },
   "shift": { "text": "turno", "grammar": { "gender": "el" } },
   "company": {
    "text": "empresa",

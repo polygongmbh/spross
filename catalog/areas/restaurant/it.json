@@ -3,8 +3,7 @@
  "subtitle": "Dove qualcuno ti serve.",
  "words": {
   "menu": { "text": "menu", "accepts": ["menù"], "grammar": { "gender": "il" } },
-  "waiter": { "text": "cameriere", "grammar": { "gender": "il" } },
-  "waiter-f": { "text": "cameriera", "grammar": { "gender": "la" } },
+  "waiter": { "text": "cameriere", "forms": { "f": "la cameriera" }, "grammar": { "gender": "il" } },
   "table": { "text": "tavolo", "grammar": { "gender": "il" } },
   "to-order": { "text": "ordinare" },
   "bill": { "text": "conto", "grammar": { "gender": "il" } },

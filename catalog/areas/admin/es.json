@@ -25,10 +25,10 @@
   "case-worker": {
    "text": "funcionario",
    "teaches": ["tramitador"],
+   "forms": { "f": ["la funcionaria", "la tramitadora"] },
    "grammar": { "gender": "el" },
    "notes": { "es": "El funcionario atiende en ventanilla; el tramitador lleva el expediente." }
   },
-  "case-worker-f": { "text": "funcionaria", "teaches": ["tramitadora"], "grammar": { "gender": "la" } },
   "registration": {
    "text": "empadronamiento",
    "grammar": { "gender": "el" },

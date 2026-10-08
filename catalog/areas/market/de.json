@@ -8,8 +8,11 @@
    "forms": { "pl": "die Marktstände" },
    "grammar": { "gender": "der" }
   },
-  "trader": { "text": "Händler", "grammar": { "gender": "der", "plural": "=" } },
-  "trader-f": { "text": "Händlerin", "forms": { "pl": "die Händlerinnen" }, "grammar": { "gender": "die" } },
+  "trader": {
+   "text": "Händler",
+   "forms": { "f": "die Händlerin", "f.pl": "die Händlerinnen" },
+   "grammar": { "gender": "der", "plural": "=" }
+  },
   "scales": { "text": "Waage", "forms": { "pl": "die Waagen" }, "grammar": { "gender": "die" } },
   "to-weigh": { "text": "wiegen" },
   "kilo": {

@@ -5,8 +5,11 @@
   "supermarket": { "text": "супермаркет" },
   "mall": { "text": "торговий центр", "forms": { "pl": "торгові центри" } },
   "checkout": { "text": "каса" },
-  "shop-assistant": { "text": "продавець", "forms": { "pl": "продавці" } },
-  "shop-assistant-f": { "text": "продавчиня", "accepts": ["продавщиця"] },
+  "shop-assistant": {
+   "text": "продавець",
+   "accepts": ["продавщиця"],
+   "forms": { "f": "продавчиня", "pl": "продавці" }
+  },
   "shopping-cart": { "text": "візок", "forms": { "pl": "візки" } },
   "offer": {
    "text": "знижка",

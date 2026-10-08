@@ -2,8 +2,12 @@
  "title": "En el médico",
  "subtitle": "De la cita a la receta.",
  "words": {
-  "doctor": { "text": "médico", "accepts": ["doctor"], "grammar": { "gender": "el" } },
-  "doctor-f": { "text": "médica", "accepts": ["doctora"], "grammar": { "gender": "la" } },
+  "doctor": {
+   "text": "médico",
+   "accepts": ["doctor", "doctora"],
+   "forms": { "f": "la médica" },
+   "grammar": { "gender": "el" }
+  },
   "practice": {
    "text": "consulta",
    "accepts": ["consultorio"],
@@ -57,8 +61,7 @@
    "notes": { "es": "La da el médico: coger la baja, estar de baja · en América, coger es vulgar." }
   },
   "medicine": { "text": "medicamento", "accepts": ["medicina"], "grammar": { "gender": "el" } },
-  "nurse": { "text": "enfermero", "grammar": { "gender": "el" } },
-  "nurse-f": { "text": "enfermera", "grammar": { "gender": "la" } },
+  "nurse": { "text": "enfermero", "forms": { "f": "la enfermera" }, "grammar": { "gender": "el" } },
   "dentist": { "text": "dentista", "accepts": ["odontólogo"], "grammar": { "gender": "el" } },
   "vaccination": {
    "text": "vacuna",

@@ -2,10 +2,11 @@
  "title": "Dal medico",
  "subtitle": "Dall'appuntamento alla ricetta.",
  "words": {
-  "doctor": { "text": "medico", "accepts": ["dottore"], "grammar": { "gender": "il" } },
-  "doctor-f": {
-   "text": "dottoressa",
-   "grammar": { "gender": "la" },
+  "doctor": {
+   "text": "medico",
+   "accepts": ["dottore"],
+   "forms": { "f": "la dottoressa" },
+   "grammar": { "gender": "il" },
    "notes": { "it": "si dice la dottoressa · medico resta al maschile: è un bravo medico." }
   },
   "practice": {
@@ -73,10 +74,10 @@
    "grammar": { "gender": "la" },
    "notes": { "it": "la medicina si prende ed è anche la materia · sulla scatola: farmaco." }
   },
-  "nurse": { "text": "infermiere", "accepts": ["l'infermiere"], "grammar": { "gender": "l'" } },
-  "nurse-f": {
-   "text": "infermiera",
-   "accepts": ["l'infermiera", "un'infermiera"],
+  "nurse": {
+   "text": "infermiere",
+   "accepts": ["l'infermiere", "un'infermiera"],
+   "forms": { "f": "l'infermiera" },
    "grammar": { "gender": "l'" }
   },
   "dentist": {

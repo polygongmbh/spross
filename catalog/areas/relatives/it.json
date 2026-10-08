@@ -4,8 +4,7 @@
  "words": {
   "grandparents": { "text": "nonni", "grammar": { "gender": "i", "plural": "only" } },
   "siblings": { "text": "fratelli", "grammar": { "gender": "i", "plural": "only" } },
-  "cousin": { "text": "cugino", "grammar": { "gender": "il" } },
-  "cousin-f": { "text": "cugina", "grammar": { "gender": "la" } },
+  "cousin": { "text": "cugino", "forms": { "f": "la cugina" }, "grammar": { "gender": "il" } },
   "nephew": {
    "text": "nipote",
    "notes": {

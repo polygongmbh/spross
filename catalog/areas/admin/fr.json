@@ -37,10 +37,10 @@
    "text": "employé",
    "teaches": ["agent"],
    "accepts": ["l'employé", "l'agent"],
+   "forms": { "f": "l'employée" },
    "grammar": { "gender": "l'" },
    "notes": { "fr": "au guichet : l'employé ou l'agent · le gestionnaire suit le dossier." }
   },
-  "case-worker-f": { "text": "employée", "accepts": ["l'employée"], "grammar": { "gender": "l'" } },
   "registration": {
    "text": "inscription",
    "accepts": ["l'inscription"],

@@ -18,8 +18,11 @@
   "boy": { "text": "Junge", "forms": { "pl": "die Jungen" }, "grammar": { "gender": "der" } },
   "girl": { "text": "Mädchen", "grammar": { "gender": "das", "plural": "=" } },
   "baby": { "text": "Baby", "forms": { "pl": "die Babys" }, "grammar": { "gender": "das" } },
-  "friend": { "text": "Freund", "forms": { "pl": "die Freunde" }, "grammar": { "gender": "der" } },
-  "friend-f": { "text": "Freundin", "forms": { "pl": "die Freundinnen" }, "grammar": { "gender": "die" } },
+  "friend": {
+   "text": "Freund",
+   "forms": { "f": "die Freundin", "pl": "die Freunde", "f.pl": "die Freundinnen" },
+   "grammar": { "gender": "der" }
+  },
   "grandmother": {
    "text": "Oma",
    "accepts": ["Großmutter"],

@@ -7,8 +7,7 @@
   "id-card": { "text": "посвідчення особи", "grammar": { "plural": "=" } },
   "residence-permit": { "text": "посвідка на проживання", "forms": { "pl": "посвідки на проживання" } },
   "ticket-number": { "text": "номерок у черзі", "forms": { "pl": "номерки у черзі" } },
-  "case-worker": { "text": "працівник" },
-  "case-worker-f": { "text": "працівниця" },
+  "case-worker": { "text": "працівник", "forms": { "f": "працівниця" } },
   "registration": {
    "text": "реєстрація",
    "notes": {

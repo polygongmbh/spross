@@ -3,8 +3,7 @@
  "subtitle": "Де ціна ще обговорюється.",
  "words": {
   "stall": { "text": "прилавок", "accepts": ["ятка"], "forms": { "pl": "прилавки" } },
-  "trader": { "text": "торговець", "forms": { "pl": "торговці" } },
-  "trader-f": { "text": "торговка", "accepts": ["торгівка"] },
+  "trader": { "text": "торговець", "accepts": ["торгівка"], "forms": { "f": "торговка", "pl": "торговці" } },
   "scales": { "text": "ваги", "grammar": { "plural": "only" } },
   "to-weigh": { "text": "важити" },
   "kilo": { "text": "кілограм", "accepts": ["кіло"] },

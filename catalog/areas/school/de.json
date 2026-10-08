@@ -4,8 +4,11 @@
  "words": {
   "school": { "text": "Schule", "forms": { "pl": "die Schulen" }, "grammar": { "gender": "die" } },
   "classroom": { "text": "Klassenzimmer", "grammar": { "gender": "das", "plural": "=" } },
-  "teacher": { "text": "Lehrer", "grammar": { "gender": "der", "plural": "=" } },
-  "teacher-f": { "text": "Lehrerin", "forms": { "pl": "die Lehrerinnen" }, "grammar": { "gender": "die" } },
+  "teacher": {
+   "text": "Lehrer",
+   "forms": { "f": "die Lehrerin", "f.pl": "die Lehrerinnen" },
+   "grammar": { "gender": "der", "plural": "=" }
+  },
   "board": { "text": "Tafel", "forms": { "pl": "die Tafeln" }, "grammar": { "gender": "die" } },
   "exercise-book": { "text": "Heft", "forms": { "pl": "die Hefte" }, "grammar": { "gender": "das" } },
   "homework": { "text": "Hausaufgabe", "forms": { "pl": "die Hausaufgaben" }, "grammar": { "gender": "die" } },
@@ -13,8 +16,11 @@
   "break": { "text": "Pause", "forms": { "pl": "die Pausen" }, "grammar": { "gender": "die" } },
   "to-pass-exam": { "text": "die Prüfung bestehen" },
   "to-raise-hand": { "text": "die Hand heben", "accepts": ["sich melden"] },
-  "pupil": { "text": "Schüler", "grammar": { "gender": "der", "plural": "=" } },
-  "pupil-f": { "text": "Schülerin", "forms": { "pl": "die Schülerinnen" }, "grammar": { "gender": "die" } },
+  "pupil": {
+   "text": "Schüler",
+   "forms": { "f": "die Schülerin", "f.pl": "die Schülerinnen" },
+   "grammar": { "gender": "der", "plural": "=" }
+  },
   "course": { "text": "Kurs", "forms": { "pl": "die Kurse" }, "grammar": { "gender": "der" } },
   "lesson": { "text": "Unterricht", "grammar": { "gender": "der" } },
   "period": { "text": "Stunde", "forms": { "pl": "die Stunden" }, "grammar": { "gender": "die" } },

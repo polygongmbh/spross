@@ -3,8 +3,7 @@
  "subtitle": "Після школи — що далі?",
  "words": {
   "university": { "text": "університет" },
-  "student": { "text": "студент" },
-  "student-f": { "text": "студентка" },
+  "student": { "text": "студент", "forms": { "f": "студентка" } },
   "studies": { "text": "навчання" },
   "to-study-at-university": { "text": "навчатися в університеті", "accepts": ["вчитися в університеті"] },
   "lecture": { "text": "лекція" },

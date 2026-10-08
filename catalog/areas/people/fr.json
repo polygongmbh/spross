@@ -38,8 +38,12 @@
   },
   "boy": { "text": "garçon", "grammar": { "gender": "le" } },
   "baby": { "text": "bébé", "grammar": { "gender": "le" } },
-  "friend": { "text": "ami", "accepts": ["l'ami", "copain"], "grammar": { "gender": "l'" } },
-  "friend-f": { "text": "amie", "accepts": ["l'amie", "copine"], "grammar": { "gender": "l'" } },
+  "friend": {
+   "text": "ami",
+   "accepts": ["l'ami", "copain", "copine"],
+   "forms": { "f": "l'amie" },
+   "grammar": { "gender": "l'" }
+  },
   "grandmother": {
    "text": "grand-mère",
    "accepts": ["mamie"],

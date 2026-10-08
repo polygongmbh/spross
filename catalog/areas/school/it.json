@@ -13,15 +13,9 @@
    "text": "professore",
    "teaches": ["insegnante", "maestro"],
    "accepts": ["prof"],
+   "forms": { "f": ["la professoressa", "la maestra"] },
    "grammar": { "gender": "il" },
    "notes": { "it": "il maestro alle elementari · il professore dopo · l'insegnante sempre." }
-  },
-  "teacher-f": {
-   "text": "professoressa",
-   "teaches": ["maestra"],
-   "accepts": ["prof"],
-   "grammar": { "gender": "la" },
-   "notes": { "it": "l'insegnante vale anche per lei: non ha una forma femminile." }
   },
   "board": { "text": "lavagna", "grammar": { "gender": "la" } },
   "exercise-book": { "text": "quaderno", "grammar": { "gender": "il" } },
@@ -49,11 +43,11 @@
   "to-raise-hand": { "text": "alzare la mano" },
   "pupil": {
    "text": "alunno",
+   "forms": { "f": "l'alunna" },
    "grammar": { "gender": "l'" },
    "notes": { "it": "l'alunno va a scuola · lo studente anche all'università." },
    "accepts": ["l'alunno"]
   },
-  "pupil-f": { "text": "alunna", "grammar": { "gender": "l'" }, "accepts": ["l'alunna"] },
   "course": { "text": "corso", "grammar": { "gender": "il" } },
   "lesson": {
    "text": "lezione",

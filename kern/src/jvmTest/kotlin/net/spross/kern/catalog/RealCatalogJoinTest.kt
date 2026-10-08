@@ -2,6 +2,8 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.FormTag
+import net.spross.kern.model.TaggedForm
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -77,20 +79,13 @@ class RealCatalogJoinTest {
     }
 
     @Test
-    fun teacherFeminineJoinsFromSwSourceViaBaseFallback() {
-        val teacherF = catalog.join("sw", "uk").byId("teacher-f")
-        assertTrue(teacherF.promptFeminineMarker)
-        assertEquals("mwalimu", teacherF.source.text)
-        assertEquals("вчителька", teacherF.target.text)
-        assertEquals("teacher", teacherF.feminineOf)
-    }
-
-    @Test
-    fun teacherFeminineSkippedForSwTargetButDistinctFromDeSource() {
-        assertTrue(catalog.join("de", "sw").none { it.id == "teacher-f" })
-        val fromDe = catalog.join("de", "uk").byId("teacher-f")
-        assertFalse(fromDe.promptFeminineMarker)
-        assertEquals("Lehrerin", fromDe.source.text)
+    fun teacherFeminineIsTheBaseCardsFeminineForm() {
+        val toUk = catalog.join("sw", "uk").byId("teacher")
+        assertEquals("mwalimu", toUk.source.text)
+        assertTrue(TaggedForm(FormTag.FEMININE, "вчителька") in toUk.target.forms)
+        val toSw = catalog.join("de", "sw").byId("teacher")
+        assertTrue(TaggedForm(FormTag.FEMININE, "Lehrerin", article = "die") in toSw.source.forms)
+        assertTrue(toSw.target.forms.none { it.tag == FormTag.FEMININE })
     }
 
     @Test

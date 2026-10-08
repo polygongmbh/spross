@@ -3,8 +3,11 @@
  "subtitle": "Wo man bedient wird.",
  "words": {
   "menu": { "text": "Speisekarte", "forms": { "pl": "die Speisekarten" }, "grammar": { "gender": "die" } },
-  "waiter": { "text": "Kellner", "grammar": { "gender": "der", "plural": "=" } },
-  "waiter-f": { "text": "Kellnerin", "forms": { "pl": "die Kellnerinnen" }, "grammar": { "gender": "die" } },
+  "waiter": {
+   "text": "Kellner",
+   "forms": { "f": "die Kellnerin", "f.pl": "die Kellnerinnen" },
+   "grammar": { "gender": "der", "plural": "=" }
+  },
   "table": { "text": "Tisch", "forms": { "pl": "die Tische" }, "grammar": { "gender": "der" } },
   "to-order": { "text": "bestellen" },
   "bill": { "text": "Rechnung", "forms": { "pl": "die Rechnungen" }, "grammar": { "gender": "die" } },

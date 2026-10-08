@@ -21,14 +21,9 @@
    "text": "professeur",
    "teaches": ["enseignant"],
    "accepts": ["prof"],
+   "forms": { "f": ["la professeure", "l'enseignante"] },
    "grammar": { "gender": "le" },
    "notes": { "fr": "à l'école : le maître, la maîtresse · au collège : le professeur, le prof." }
-  },
-  "teacher-f": {
-   "text": "professeure",
-   "teaches": ["enseignante"],
-   "accepts": ["prof"],
-   "grammar": { "gender": "la" }
   },
   "board": {
    "text": "tableau",

@@ -2,8 +2,7 @@
  "title": "Ĉe la kuracisto",
  "subtitle": "De la rendevuo ĝis la recepto.",
  "words": {
-  "doctor": { "text": "kuracisto", "accepts": ["doktoro"] },
-  "doctor-f": { "text": "kuracistino", "accepts": ["doktorino"] },
+  "doctor": { "text": "kuracisto", "accepts": ["doktoro", "doktorino"], "forms": { "f": "kuracistino" } },
   "practice": { "text": "konsultejo", "accepts": ["kuracista kabineto"] },
   "pill": {
    "text": "pilolo",
@@ -26,8 +25,7 @@
   "to-take-medicine": { "text": "preni medikamentojn", "accepts": ["enpreni medikamentojn"] },
   "to-call-in-sick": { "text": "anonci sin malsana", "accepts": ["sin anonci malsana"] },
   "medicine": { "text": "medikamento", "teaches": ["kuracilo"] },
-  "nurse": { "text": "flegisto" },
-  "nurse-f": { "text": "flegistino" },
+  "nurse": { "text": "flegisto", "forms": { "f": "flegistino" } },
   "dentist": { "text": "dentisto", "accepts": ["dentokuracisto"] },
   "vaccination": {
    "text": "vakcinado",

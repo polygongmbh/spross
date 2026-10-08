@@ -11,11 +11,10 @@
    "teaches": ["Aufenthaltserlaubnis"]
   },
   "ticket-number": { "text": "Wartenummer", "forms": { "pl": "die Wartenummern" }, "grammar": { "gender": "die" } },
-  "case-worker": { "text": "Sachbearbeiter", "grammar": { "gender": "der", "plural": "=" } },
-  "case-worker-f": {
-   "text": "Sachbearbeiterin",
-   "forms": { "pl": "die Sachbearbeiterinnen" },
-   "grammar": { "gender": "die" }
+  "case-worker": {
+   "text": "Sachbearbeiter",
+   "forms": { "f": "die Sachbearbeiterin", "f.pl": "die Sachbearbeiterinnen" },
+   "grammar": { "gender": "der", "plural": "=" }
   },
   "registration": { "text": "Anmeldung", "forms": { "pl": "die Anmeldungen" }, "grammar": { "gender": "die" } },
   "documents": { "text": "Unterlagen", "grammar": { "gender": "die", "plural": "only" } },

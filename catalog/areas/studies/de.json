@@ -8,8 +8,11 @@
    "forms": { "pl": "die Universitäten" },
    "grammar": { "gender": "die" }
   },
-  "student": { "text": "Student", "forms": { "pl": "die Studenten" }, "grammar": { "gender": "der" } },
-  "student-f": { "text": "Studentin", "forms": { "pl": "die Studentinnen" }, "grammar": { "gender": "die" } },
+  "student": {
+   "text": "Student",
+   "forms": { "f": "die Studentin", "pl": "die Studenten", "f.pl": "die Studentinnen" },
+   "grammar": { "gender": "der" }
+  },
   "studies": { "text": "Studium", "forms": { "pl": "die Studien" }, "grammar": { "gender": "das" } },
   "to-study-at-university": { "text": "an der Uni studieren", "accepts": ["studieren", "an der Universität studieren"] },
   "lecture": { "text": "Vorlesung", "forms": { "pl": "die Vorlesungen" }, "grammar": { "gender": "die" } },

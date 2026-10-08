@@ -4,8 +4,7 @@
  "words": {
   "grandparents": { "text": "grands-parents", "grammar": { "gender": "les", "plural": "only" } },
   "siblings": { "text": "frères et sœurs", "grammar": { "gender": "les", "plural": "only" } },
-  "cousin": { "text": "cousin", "grammar": { "gender": "le" } },
-  "cousin-f": { "text": "cousine", "grammar": { "gender": "la" } },
+  "cousin": { "text": "cousin", "forms": { "f": "la cousine" }, "grammar": { "gender": "le" } },
   "nephew": { "text": "neveu", "forms": { "pl": "les neveux" }, "grammar": { "gender": "le" } },
   "niece": { "text": "nièce", "grammar": { "gender": "la" } },
   "grandson": { "text": "petit-fils", "forms": { "pl": "les petits-fils" }, "grammar": { "gender": "le" } },

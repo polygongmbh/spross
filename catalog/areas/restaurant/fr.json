@@ -7,8 +7,7 @@
    "grammar": { "gender": "la" },
    "notes": { "fr": "la carte donne tous les plats · le menu est un repas à prix fixe." }
   },
-  "waiter": { "text": "serveur", "grammar": { "gender": "le" } },
-  "waiter-f": { "text": "serveuse", "grammar": { "gender": "la" } },
+  "waiter": { "text": "serveur", "forms": { "f": "la serveuse" }, "grammar": { "gender": "le" } },
   "table": { "text": "table", "grammar": { "gender": "la" } },
   "to-order": { "text": "commander" },
   "bill": { "text": "addition", "accepts": ["l'addition"], "grammar": { "gender": "l'" } },

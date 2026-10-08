@@ -2,10 +2,11 @@
  "title": "Chez le médecin",
  "subtitle": "Du rendez-vous à l'ordonnance.",
  "words": {
-  "doctor": { "text": "médecin", "accepts": ["docteur"], "grammar": { "gender": "le" } },
-  "doctor-f": {
-   "text": "docteure",
-   "grammar": { "gender": "la" },
+  "doctor": {
+   "text": "médecin",
+   "accepts": ["docteur"],
+   "forms": { "f": "la docteure" },
+   "grammar": { "gender": "le" },
    "notes": { "fr": "le médecin vaut pour tous · pour une femme : la docteure, une médecin." }
   },
   "practice": {
@@ -71,8 +72,12 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "on prend un médicament · la médecine est la science du médecin." }
   },
-  "nurse": { "text": "infirmier", "accepts": ["l'infirmier"], "grammar": { "gender": "l'" } },
-  "nurse-f": { "text": "infirmière", "accepts": ["l'infirmière"], "grammar": { "gender": "l'" } },
+  "nurse": {
+   "text": "infirmier",
+   "accepts": ["l'infirmier"],
+   "forms": { "f": "l'infirmière" },
+   "grammar": { "gender": "l'" }
+  },
   "dentist": { "text": "dentiste", "accepts": ["chirurgien-dentiste"], "grammar": { "gender": "le" } },
   "vaccination": {
    "text": "vaccination",

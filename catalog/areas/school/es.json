@@ -20,17 +20,12 @@
    "text": "profesor",
    "teaches": ["maestro"],
    "accepts": ["profe"],
+   "forms": { "f": ["la profesora", "la maestra"] },
    "grammar": { "gender": "el" },
    "notes": {
     "es": "El profesor da clase en el instituto y en los cursos.",
     "de": "el maestro unterrichtet in der Grundschule, el profesor an weiterführenden Schulen und im Sprachkurs."
    }
-  },
-  "teacher-f": {
-   "text": "profesora",
-   "teaches": ["maestra"],
-   "accepts": ["profe"],
-   "grammar": { "gender": "la" }
   },
   "board": { "text": "pizarra", "accepts": ["pizarrón"], "grammar": { "gender": "la" } },
   "exercise-book": { "text": "cuaderno", "grammar": { "gender": "el" } },
@@ -53,8 +48,7 @@
    "notes": { "es": "aprobar el examen · lo contrario es suspender." }
   },
   "to-raise-hand": { "text": "levantar la mano", "accepts": ["alzar la mano"] },
-  "pupil": { "text": "alumno", "grammar": { "gender": "el" } },
-  "pupil-f": { "text": "alumna", "grammar": { "gender": "la" } },
+  "pupil": { "text": "alumno", "forms": { "f": "la alumna" }, "grammar": { "gender": "el" } },
   "course": { "text": "curso", "grammar": { "gender": "el" } },
   "lesson": {
    "text": "clase",

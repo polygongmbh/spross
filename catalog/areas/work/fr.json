@@ -23,11 +23,10 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "le collègue, la collègue : le mot ne change pas." }
   },
-  "boss": { "text": "chef", "grammar": { "gender": "le" } },
-  "boss-f": {
-   "text": "cheffe",
-   "accepts": ["chef"],
-   "grammar": { "gender": "la" },
+  "boss": {
+   "text": "chef",
+   "forms": { "f": "la cheffe" },
+   "grammar": { "gender": "le" },
    "notes": { "fr": "on écrit la cheffe ; on entend aussi la chef." }
   },
   "shift": {

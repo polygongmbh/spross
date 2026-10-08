@@ -3,8 +3,12 @@
  "subtitle": "Où le prix se discute encore.",
  "words": {
   "stall": { "text": "étal", "accepts": ["l'étal", "stand"], "grammar": { "gender": "l'" } },
-  "trader": { "text": "marchand", "grammar": { "gender": "le" }, "teaches": ["commerçant"] },
-  "trader-f": { "text": "marchande", "grammar": { "gender": "la" }, "teaches": ["commerçante"] },
+  "trader": {
+   "text": "marchand",
+   "forms": { "f": ["la marchande", "la commerçante"] },
+   "grammar": { "gender": "le" },
+   "teaches": ["commerçant"]
+  },
   "scales": { "text": "balance", "grammar": { "gender": "la" } },
   "to-weigh": { "text": "peser" },
   "kilo": { "text": "kilo", "grammar": { "gender": "le" } },
