@@ -165,7 +165,7 @@ data class DateDrillRunState(
 
     /** A reversed run's prompt, which is then the form in the language being learned; a forward one says nothing until the reveal. */
     override val promptSaying: Saying?
-        get() = if (config.reverse) task.promptText?.let { Saying(it, promptLanguage) } else null
+        get() = if (config.reverse) Saying(task.promptText, promptLanguage) else null
 
     /** The reading, where it is owed in the language being learned; a reversed run answers in the learner's own. */
     override val answerSaying: Saying?
