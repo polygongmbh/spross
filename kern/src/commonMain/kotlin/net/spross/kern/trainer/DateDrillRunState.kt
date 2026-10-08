@@ -61,7 +61,11 @@ data class DateDrillClose(
      */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
-)
+) {
+    /** What this run files for the pair [source]→[target] it drilled, in the direction it ran. */
+    fun bookings(source: Language, target: Language, reverse: Boolean): DrillBookings =
+        DrillBookings.typed(Drill.Dates, DateDrill.storageKey(source, target), target, reverse, summary, bestSprosse, clearedSprossen)
+}
 
 /**
  * Everything one dates run is fixed to, resolved when it opens and never per question:

@@ -61,7 +61,11 @@ data class SentenceScrambleClose(
      */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
-)
+) {
+    /** What this run files for the [target] language it drilled. */
+    fun bookings(target: Language): DrillBookings =
+        DrillBookings.masked(Drill.SentenceScramble, SentenceScrambleRunState.storageKey(target), target, summary, clearedSprossen)
+}
 
 /**
  * Everything one sentence run is fixed to, resolved when it opens: the phrases it may ask and

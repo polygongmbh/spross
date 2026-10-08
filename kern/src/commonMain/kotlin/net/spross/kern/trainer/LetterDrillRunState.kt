@@ -49,7 +49,11 @@ data class LetterDrillClose(
      */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
-)
+) {
+    /** What this run files for the [target] language it drilled. */
+    fun bookings(target: Language): DrillBookings =
+        DrillBookings.masked(Drill.Letters, LetterDrillRunState.storageKey(target), target, summary, clearedSprossen)
+}
 
 /**
  * Everything one letter run is fixed to: what this device can ask, the learner's own cards, and

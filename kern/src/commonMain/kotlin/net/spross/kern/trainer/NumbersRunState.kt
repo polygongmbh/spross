@@ -58,7 +58,14 @@ data class NumbersClose(
      */
     val progressBookings: Map<String, Int>,
     val effects: List<DrillEffect>,
-)
+) {
+    /** What this run files: its Sprossen and a record it beat, once it was answered at all. */
+    fun bookings(): DrillBookings = DrillBookings.of(
+        Drill.Numbers, state.mode.language, summary,
+        sprossen = if (summary == null) emptyMap() else progressBookings,
+        records = summary?.takeIf { it.newRecord }?.let { mapOf(recordKey to it.recordFigure) } ?: emptyMap(),
+    )
+}
 
 /**
  * One slot run, whole and immutable: what is on screen, what the answers have done to it, and

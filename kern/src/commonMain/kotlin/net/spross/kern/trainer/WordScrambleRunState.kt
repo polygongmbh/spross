@@ -62,7 +62,11 @@ data class WordScrambleClose(
      */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
-)
+) {
+    /** What this run files for the [target] language it drilled. */
+    fun bookings(target: Language): DrillBookings =
+        DrillBookings.masked(Drill.WordScramble, WordScrambleRunState.storageKey(target), target, summary, clearedSprossen)
+}
 
 /**
  * Everything one word run is fixed to, resolved when it opens and never per question: the words

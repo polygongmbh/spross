@@ -46,7 +46,11 @@ data class OppositesClose(
     /** The Sprossen this run climbed off before its first slip ([DrillSprossen]). */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
-)
+) {
+    /** What this run files for the [target] language it drilled. */
+    fun bookings(target: Language): DrillBookings =
+        DrillBookings.masked(Drill.Opposites, OppositesRunState.storageKey(target), target, summary, clearedSprossen)
+}
 
 /** Everything one opposites run is fixed to, resolved when it opens. */
 class OppositesRunConfig(
