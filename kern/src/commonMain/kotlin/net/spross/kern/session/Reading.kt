@@ -62,7 +62,7 @@ fun TurnState.answerSaying(saysMeaning: Boolean): Saying? {
 }
 
 private fun TurnState.targetSaying(form: String): Saying =
-    Saying(form, card.target.lang, shownArticle(card.target.grammar["gender"], form, card.target.text))
+    Saying(form, card.target.lang, formArticle(form))
 
 /**
  * How long an answer's saying waits after the verdict lands:

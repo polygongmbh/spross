@@ -24,7 +24,7 @@ sealed class PluralForm {
  * Grammar is target-side only (contract §2) — the caller passes the realization it renders.
  */
 fun pluralForm(realization: Realization): PluralForm? {
-    realization.forms.firstOrNull { it.tag == FormTag.PLURAL }?.let { return PluralForm.Form(it.text) }
+    realization.forms.firstOrNull { it.tag == FormTag.PLURAL }?.let { return PluralForm.Form(it.written) }
     return when (realization.grammar["plural"]) {
         "=" -> PluralForm.SameAsSingular
         "only" -> PluralForm.PluralOnly
@@ -43,8 +43,8 @@ fun pluralForm(realization: Realization): PluralForm? {
  * `accepts` never appears — it grades an answer, it does not teach a form.
  */
 fun alternates(realization: Realization, shown: List<String>, forms: List<TaggedForm>): List<Alternate> =
-    ((listOf(realization.text) + realization.teaches).map { Alternate(it, null) } + forms.map { Alternate(it.text, it.tag) })
-        .filterNot { it.text in shown }
+    (listOf(realization.text) + realization.teaches).filterNot { it in shown }.map { Alternate(it, null) } +
+        forms.filterNot { it.text in shown }.map { Alternate(it.written, it.tag) }
 
 /** What the card's last line says, once it has stopped asking; the label a surface puts on it is chrome. */
 sealed class ClosingNote {

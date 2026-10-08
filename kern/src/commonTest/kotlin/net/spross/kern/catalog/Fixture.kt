@@ -136,7 +136,7 @@ internal object Fixture {
                 "waiter": { "text": "Kellner", "grammar": { "gender": "der", "plural": "=" } },
                 "waiter-f": { "text": "Kellnerin", "forms": { "pl": "Kellnerinnen" }, "grammar": { "gender": "die" } },
                 "cook": { "text": "kochen" },
-                "mouse": { "text": "Maus", "forms": { "pl": "Mäuse" }, "grammar": { "gender": "die" } },
+                "mouse": { "text": "Maus", "forms": { "pl": "die Mäuse" }, "grammar": { "gender": "die" } },
                 "hello": { "text": "Hallo!" },
                 "the-mouse-runs": { "text": "Sehen Sie die Maus?", "accepts": ["Siehst du die Maus?"] },
                 "the-mouse-sprints": { "text": "Die Maus sprintet los." } } }

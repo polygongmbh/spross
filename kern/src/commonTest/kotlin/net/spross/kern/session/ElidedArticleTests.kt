@@ -24,7 +24,8 @@ class ElidedArticleTests {
         source = Realization("en", "guest"),
         target = Realization(
             "fr", "invité", grammar = mapOf("gender" to "l'"),
-            forms = listOf(TaggedForm(FormTag.FEMININE, "l'invitée")),
+            // As the join leaves it: the authored `l'invitée` with its article set apart.
+            forms = listOf(TaggedForm(FormTag.FEMININE, "invitée", article = "l'")),
         ),
     )
 

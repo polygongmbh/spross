@@ -61,6 +61,22 @@ fun shownArticle(article: String?, shownForm: String, targetText: String): Strin
  * ear and the page cannot disagree about it
  * ([net.spross.kern.catalog.spokenTargetForm] speaks what this writes).
  */
+/**
+ * [form] split into a leading listed article and the word behind it — the inverse of [articledForm].
+ * No split where [form] opens with none of [articles] or nothing follows it.
+ */
+fun splitArticle(form: String, articles: List<String>): Pair<String?, String> {
+    for (article in articles) {
+        val elided = article.lastOrNull() in APOSTROPHES
+        val head = if (elided) article.dropLast(1) else "$article "
+        if (form.length <= head.length || !form.startsWith(head, ignoreCase = true)) continue
+        if (elided && form[head.length] !in APOSTROPHES) continue
+        val word = form.substring(head.length + if (elided) 1 else 0).trimStart()
+        if (word.isNotEmpty()) return form.substring(0, form.length - word.length).trimEnd() to word
+    }
+    return null to form
+}
+
 fun articledForm(article: String?, form: String): String {
     val prefix = article?.trim()?.takeIf { it.isNotEmpty() } ?: return form
     return if (prefix.last() in APOSTROPHES) "$prefix$form" else "$prefix $form"

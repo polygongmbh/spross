@@ -50,8 +50,15 @@ fun formGlyph(part: String): String? = when (part) {
     else -> null
 }
 
-/** One inflected form of a realization, beside its citation `text`. */
-data class TaggedForm(val tag: FormTag, val text: String)
+/**
+ * One inflected form of a realization, beside its citation `text`.
+ * Authored with its article in front (`die Lehrerin`); the join sets that apart as [article],
+ * so [text] is the bare word a card shows and a recording says.
+ */
+data class TaggedForm(val tag: FormTag, val text: String, val article: String? = null) {
+    /** The form as written, its article in front — what an answer is graded against. */
+    val written: String get() = articledForm(article, text)
+}
 
 /** A form offered beside the card's own, with the marker that says which form it is; null marks none. */
 data class Alternate(val text: String, val marker: FormTag?)

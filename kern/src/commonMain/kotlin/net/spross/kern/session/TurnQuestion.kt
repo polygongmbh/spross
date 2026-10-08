@@ -82,7 +82,7 @@ private val TurnState.feminineMarker: FormTag? get() = FormTag.FEMININE.takeIf {
 
 /** [form] on the target side: its article and plural only where it is the cited form, and the speaker that says it. */
 private fun TurnState.targetSide(form: String): Question.Side {
-    val article = shownArticle(card.target.grammar["gender"], form, card.target.text)
+    val article = formArticle(form)
     return Question.Side(
         text = form, lang = card.target.lang, form = Question.Form.Word,
         article = article,
@@ -90,3 +90,8 @@ private fun TurnState.targetSide(form: String): Question.Side {
         saying = Saying(form, card.target.lang, article),
     )
 }
+
+/** The article [form] is shown with: the card's own on its citation, a tagged form's own, none on a synonym. */
+internal fun TurnState.formArticle(form: String): String? =
+    shownArticle(card.target.grammar["gender"], form, card.target.text)
+        ?: card.target.forms.firstOrNull { it.text == form }?.article

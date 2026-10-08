@@ -45,6 +45,11 @@ class CatalogFixtureTest {
     }
 
     @Test
+    fun aFormsAuthoredArticleIsSetApartAtJoin() {
+        assertEquals(TaggedForm(FormTag.PLURAL, "Mäuse", article = "die"), catalog.join("uk", "de").byId("mouse").target.forms.single())
+    }
+
+    @Test
     fun unknownFormTagRejected() =
         rejectsEdit("areas/alpha/uk.json", "\"pl\": \"миші\"", "\"plural\": \"миші\"", "unknown form tag")
 

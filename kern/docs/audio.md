@@ -26,8 +26,9 @@ Neighbors: the engine contract `../README.md`, when the app plays it `../../docs
   the synthesizer is handed it, and an `articles{}` recording is FOUND by it,
   so "die Adresse" plays where one was recorded and the bare file plays where none was.
   The source side takes no article — its grammar is not what is being taught —
-  and `shownArticle` withholds one from any form the card rotated in, which is what keeps
-  a synonym's own gender from being mislabeled by the canonical word's.
+  and `shownArticle` withholds one from any synonym the card rotated in, which is what keeps
+  a synonym's own gender from being mislabeled by the canonical word's;
+  a tagged form says the article it was authored with (`die Lehrerin`, `TaggedForm.article`).
 - **Two normalizations, both normative** (`catalog/Pronunciation.kt`):
   `speechKey(form)` — trim whitespace, strip ONE leading `-` (the Swahili adjective stem citation `-zuri`),
   strip leading/trailing sentence punctuation and quote marks — `¡`/`¿` among them, because Spanish writes them and no one says them —, NFC, lowercase,

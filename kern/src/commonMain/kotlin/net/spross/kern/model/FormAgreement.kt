@@ -36,8 +36,8 @@ fun answerForms(card: Card, promptTag: FormTag?): AnswerForms {
     val (agreeing, disagreeing) = target.forms.partition { agrees(it.tag, promptTag, pinned) }
     val citationAgrees = agrees(null, promptTag, pinned)
     return AnswerForms(
-        right = (if (citationAgrees) citation else emptyList()) + agreeing.map { it.text },
-        almost = disagreeing.map { it.text } + if (citationAgrees) emptyList() else citation,
+        right = (if (citationAgrees) citation else emptyList()) + agreeing.map { it.written },
+        almost = disagreeing.map { it.written } + if (citationAgrees) emptyList() else citation,
         rightForms = agreeing,
     )
 }

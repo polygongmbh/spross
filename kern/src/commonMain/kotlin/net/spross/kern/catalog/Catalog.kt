@@ -8,6 +8,7 @@ import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.Realization
 import net.spross.kern.model.nfcNormalized
+import net.spross.kern.model.splitArticle
 import net.spross.kern.trainer.PhraseTemplate
 import net.spross.kern.trainer.Numbers
 
@@ -303,7 +304,10 @@ class Catalog internal constructor(
             text = raw.text,
             teaches = raw.teaches,
             accepts = raw.accepts,
-            forms = raw.forms,
+            forms = raw.forms.map { form ->
+                val (article, word) = splitArticle(form.text, languages[lang]?.articles.orEmpty())
+                form.copy(text = word, article = article)
+            },
             orders = raw.orders,
             grammar = raw.grammar,
             // why: a note written FOR this reader wins; otherwise the one written in the

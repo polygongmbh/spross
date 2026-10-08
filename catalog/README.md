@@ -239,6 +239,7 @@ Realization fields — only `text` is required:
   A noun's form carries its own article in every language that writes one,
   just as `grammar.gender` gives `text`'s (`"pl": "die Kühlschränke"`, `"f": "die Lehrerin"`),
   and grading reads it back; a language without articles writes the form bare.
+  The join sets that article apart, so a card shows it tinted and the voice finds an article recording or the bare word, as for `text`.
   **The plural is `pl`**, and how much to author is per language — the test is always the same:
   write it down when the learner could not derive it.
   de and sw author every countable noun — German plurals are unpredictable by class,
