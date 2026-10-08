@@ -193,8 +193,14 @@ internal fun gapText(word: String, glyph: String): String? {
     if (needle.isEmpty()) return null
     val at = apostropheFolded(source).indexOf(needle, ignoreCase = true)
     if (at < 0) return null
-    return source.substring(0, at) + GAP_MARKER + source.substring(at + needle.length)
+    // why: a mark riding on the blanked letter (the stress of uk `пі́вніч`) goes with it,
+    // or it would sit on the blank.
+    var end = at + needle.length
+    while (end < source.length && source[end] in COMBINING_MARKS) end++
+    return source.substring(0, at) + GAP_MARKER + source.substring(end)
 }
+
+private val COMBINING_MARKS = '\u0300'..'\u036f'
 
 /**
  * Whether a realization can carry a gap at all: ONE word, and none of the punctuation a

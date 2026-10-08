@@ -101,5 +101,15 @@ class WordScrambleMaskingTest {
         assertEquals("Ei", WordScrambleMasking.scramble("Ei", 1, Random(3)).display)
     }
 
+    /** A stress mark is part of its vowel, so it moves with it and never lands on another letter. */
+    @Test
+    fun aStressMarkMovesWithItsVowel() {
+        for (rng in seeds()) {
+            val mixed = WordScrambleMasking.scramble("пі\u0301вніч", 3, rng).display
+            assertEquals(1, Regex("і\u0301").findAll(mixed).count(), mixed)
+            assertEquals(1, mixed.count { it == '\u0301' }, mixed)
+        }
+    }
+
     private fun letters(text: String): List<Char> = text.lowercase().toList().sorted()
 }

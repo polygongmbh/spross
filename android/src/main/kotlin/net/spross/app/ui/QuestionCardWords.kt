@@ -18,6 +18,7 @@ import net.spross.kern.model.PluralForm
 import net.spross.kern.session.Question
 import net.spross.kern.session.QuestionAsk
 import net.spross.kern.session.QuestionHint
+import java.text.BreakIterator
 
 /** What [Question] leaves unworded — the asks, the hints, the closing lines — and the sizes a side's form picks. */
 
@@ -36,13 +37,21 @@ internal fun promptLines(form: Question.Form): Int = if (form == Question.Form.S
  * tagged with its language — save a numeral, which read in the learned language would say the answer.
  */
 internal fun promptText(side: Question.Side, text: String): AnnotatedString {
-    val lead = minOf(side.fixedLeading, text.length)
+    val lead = letterOffset(text, side.fixedLeading)
     val written = buildAnnotatedString {
         withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append(text.take(lead)) }
         append(text.substring(lead))
     }
     val lang = side.lang
     return if (side.form == Question.Form.Numeral || lang == null) written else localizedTarget(written, lang)
+}
+
+/** Where [text]'s first [letters] letters end, a stress mark riding on its vowel counted with it. */
+private fun letterOffset(text: String, letters: Int): Int {
+    val breaks = BreakIterator.getCharacterInstance().apply { setText(text) }
+    var end = 0
+    repeat(letters) { end = breaks.next().takeIf { it != BreakIterator.DONE } ?: return text.length }
+    return end
 }
 
 /** A reveal under a sentence is set no larger than a line of it. */

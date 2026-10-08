@@ -69,7 +69,7 @@ internal object ScrambleCapitals {
     private fun positionalCapitalOff(text: String): String? {
         val first = text.firstOrNull() ?: return null
         if (!first.isUpperCase()) return null
-        if (text.getOrNull(1)?.isLetter() != true) return null
+        if (text.letters().getOrNull(1)?.first()?.isLetter() != true) return null
         return first.lowercaseChar() + text.substring(1)
     }
 }

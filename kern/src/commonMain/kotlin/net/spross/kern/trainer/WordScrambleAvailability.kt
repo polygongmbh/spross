@@ -138,15 +138,15 @@ object WordScrambleAvailability {
     }
 
     /**
-     * Nothing but letters — plus the apostrophe, which sw "ng'ombe" and uk "м'який" are SPELLED
-     * with rather than merely punctuated by.
+     * Nothing but letters — a stress mark riding on its vowel included (uk "пі́вніч") — plus the
+     * apostrophe, which sw "ng'ombe" and uk "м'який" are SPELLED with rather than merely punctuated by.
      *
      * The guard is the character class rather than the hyphen alone. Whatever a letter scramble
      * mixes has to BE a letter, or the Sprosse that anchors "the first letter" anchors a dash,
      * and the one above it shuffles that dash into the middle of the word.
      */
     private fun writtenInLetters(word: String): Boolean =
-        word.all { it.isLetter() || it in APOSTROPHES }
+        word.letters().all { it.first().isLetter() || it.first() in APOSTROPHES }
 }
 
 /**

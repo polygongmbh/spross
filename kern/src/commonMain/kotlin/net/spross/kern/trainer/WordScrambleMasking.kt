@@ -55,11 +55,13 @@ object WordScrambleMasking {
      * other arrangement of it, and re-rolling for one would loop.
      */
     fun scramble(text: String, sprosse: Int, rng: Random): ScrambledWord {
-        val word = text.trim()
-        val lead = minOf(fixedLeading(sprosse), word.length)
-        val head = word.take(lead)
-        val interior = word.substring(lead).lowercase()
-        return ScrambledWord(head + mixed(interior, rng), lead)
+        // why: a letter is its base plus the marks riding on it (uk `і́`), so a stress mark
+        // moves with its vowel instead of landing on whatever letter the mix puts before it.
+        val letters = text.trim().letters()
+        val lead = minOf(fixedLeading(sprosse), letters.size)
+        val head = letters.take(lead).joinToString("")
+        val interior = letters.drop(lead).map { it.lowercase() }
+        return ScrambledWord(head + mixed(interior, rng).joinToString(""), lead)
     }
 
     /**
@@ -71,11 +73,11 @@ object WordScrambleMasking {
      * [MIX_ATTEMPTS] arrangements are tried for one that clears both, then the best swap that
      * came up stands, and only letters with no other arrangement at all come back as written.
      */
-    private fun mixed(letters: String, rng: Random): String {
-        if (letters.length < 2) return letters
-        var swap: String? = null
+    private fun mixed(letters: List<String>, rng: Random): List<String> {
+        if (letters.size < 2) return letters
+        var swap: List<String>? = null
         repeat(MIX_ATTEMPTS) {
-            val mix = letters.toList().shuffled(rng).joinToString("")
+            val mix = letters.shuffled(rng)
             if (mix == letters) return@repeat
             if (!isAdjacentSwap(mix, letters)) return mix
             if (swap == null) swap = mix
@@ -84,7 +86,7 @@ object WordScrambleMasking {
     }
 
     /** Whether [mix] is [letters] with one neighboring pair traded and nothing else moved. */
-    private fun isAdjacentSwap(mix: String, letters: String): Boolean {
+    private fun isAdjacentSwap(mix: List<String>, letters: List<String>): Boolean {
         val moved = letters.indices.filter { mix[it] != letters[it] }
         if (moved.size != 2) return false
         val (first, second) = moved
