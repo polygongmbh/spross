@@ -1,6 +1,7 @@
 package net.spross.app
 
 import kotlin.random.Random
+import net.spross.kern.model.Language
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.SentenceScrambleAvailability
 import net.spross.kern.trainer.SentenceScrambleClose
@@ -21,16 +22,13 @@ import net.spross.kern.trainer.SentenceScrambleRunState
  *
  * No review is ever booked: the box is READ for the phrases it has unlocked and never
  * written, and the run keeps no streak record — arrangement is not recall. What DOES outlive
- * the run is the ladder it climbed, filed under [clearedKey].
+ * the run is the ladder it climbed, filed for [language].
  */
 class SentenceScrambleFlow(
     start: SentenceScrambleRunState,
     rng: Random,
-    /**
-     * Where the Sprossen this run clears are filed, and where it read the ones it opened
-     * above ([TrainerStore.sentenceScrambleKey]) — one string, so the two sides cannot drift.
-     */
-    val clearedKey: String,
+    /** The language drilled, which its close files under ([SentenceScrambleClose.bookings]). */
+    val language: Language,
     onTone: (ToneKind) -> Unit = {},
     onSilence: () -> Unit = {},
     screenReaderOn: () -> Boolean = { false },
@@ -83,7 +81,7 @@ fun AppModel.newSentenceScramble(
             rng,
         ),
         rng = rng,
-        clearedKey = key,
+        language = state.joinStamp.target,
         onTone = onTone,
         onSilence = { pronouncer.stop() },
         screenReaderOn = { pronouncer.readsScreenAloud },

@@ -42,7 +42,7 @@ class CountryDrillFlow(
         return DrillEnd(
             closed.state,
             closed.effects,
-            TypedDrillClose(closed.summary, closed.bestSprosse, closed.clearedSprossen),
+            TypedDrillClose(closed.summary, closed.bookings()),
         )
     }
 

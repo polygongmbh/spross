@@ -135,15 +135,12 @@ struct DrillStep<Run> {
     let effects: [DrillEffect]
 }
 
-/// A closed run: the figures for the page that started it, and the furthest
-/// Sprosse it stood on for that page to file.
+/// A closed run: the figures for the page that started it, and what kern says it files.
 struct DrillEnd<Run> {
     let run: Run
-    /// nil ⇒ the run was never answered: dismiss, store nothing.
+    /// nil ⇒ the run was never answered: dismiss, report nothing.
     let summary: DrillRunSummary?
-    let bestSprosse: Int
-    /// The Sprossen this run answered OUT, for the page to add to what it holds.
-    let clearedSprossen: Set<KotlinInt>
+    let bookings: DrillBookings
     let effects: [DrillEffect]
 }
 

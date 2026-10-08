@@ -105,6 +105,6 @@ class DateDrillWiringTest {
         // The pending clean answer books on the way out, exactly as the tap would.
         assertEquals(1, summary.done)
         assertTrue(summary.newRecord, "a first streak beats a standing record of none")
-        assertEquals(flow.state.bestSprosse, closed.bestSprosse)
+        assertEquals(flow.state.bestSprosse, closed.bookings.sprossen.values.single())
     }
 }

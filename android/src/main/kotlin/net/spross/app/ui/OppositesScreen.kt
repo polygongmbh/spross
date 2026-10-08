@@ -5,7 +5,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.focus.FocusRequester
 import net.spross.app.AppModel
 import net.spross.app.Screen
-import net.spross.app.closeScramble
+import net.spross.app.finishDrill
 import net.spross.app.newOpposites
 import net.spross.app.speakFormOnTap
 import net.spross.kern.trainer.Drill
@@ -25,7 +25,7 @@ fun OppositesScreen(model: AppModel) {
     val state = flow.state
     val leave = {
         val closed = flow.close()
-        model.closeScramble(Drill.Opposites, model.chrome.trainerDrillOpposites, flow.clearedKey, closed.clearedSprossen, closed.summary)
+        model.finishDrill(Screen.Home, closed.summary, model.chrome.trainerDrillOpposites, closed.bookings(flow.language))
     }
 
     val inputFocus = remember { FocusRequester() }

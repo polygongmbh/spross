@@ -69,16 +69,11 @@ extension SentenceScrambleView: DrillRunning {
 
     // MARK: - Close → back to the hub that opened it
 
-    /// An untouched run leaves nothing to report, and no record line either —
-    /// arrangement is not recall, so this drill keeps no streak record. What it
-    /// DOES file is the ladder: the next run passes each Sprosse the mask
-    /// holds on one clean arrangement.
-    var lastRunKey: String { DrillSuggestion.shared.lastRunKey(drill: .sentenceScramble, language: language) }
 
     func closing() -> DrillClose<SentenceScrambleRunState> {
         let closed = SentenceScrambleRun.shared.close(state: run)
-        TrainerProgress.bookCleared(closed.clearedSprossen, for: storageKey)
-        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects)
+        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects,
+                          bookings: closed.bookings(target: language))
     }
 }
 

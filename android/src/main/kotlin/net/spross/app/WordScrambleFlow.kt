@@ -1,6 +1,7 @@
 package net.spross.app
 
 import kotlin.random.Random
+import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.WordScrambleAvailability
@@ -21,16 +22,13 @@ import net.spross.kern.trainer.WordScrambleRunState
  * No review is ever booked: the box is READ for the words it has settled and never
  * written, and the run keeps no streak record — spelling a word back out of its own letters
  * is not the recall the schedule measures. What DOES outlive the run is the ladder it
- * climbed, filed under [clearedKey].
+ * climbed, filed for [language].
  */
 class WordScrambleFlow(
     start: WordScrambleRunState,
     rng: Random,
-    /**
-     * Where the Sprossen this run clears are filed, and where it read the ones it opened
-     * above ([TrainerStore.wordScrambleKey]) — one string, so the two sides cannot drift.
-     */
-    val clearedKey: String,
+    /** The language drilled, which its close files under ([WordScrambleClose.bookings]). */
+    val language: Language,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
@@ -84,7 +82,7 @@ fun AppModel.newWordScramble(
     return WordScrambleFlow(
         start = WordScrambleRun.open(config, rng),
         rng = rng,
-        clearedKey = key,
+        language = state.joinStamp.target,
         onTone = onTone,
         onReleaseFocus = onReleaseFocus,
         onSilence = { pronouncer.stop() },

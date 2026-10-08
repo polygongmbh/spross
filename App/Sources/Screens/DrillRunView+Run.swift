@@ -52,25 +52,10 @@ extension DrillRunView: DrillRunning {
 
     // MARK: - Close → back to the page that opened it
 
-    /// What the overview reads back off a closed run: where the next one opens,
-    /// what Fast is priced against, and the record line.
-    // why: neither Sprosse figure buys a padlock (the drill is ungated), and both
-    // are filed whether or not the run was ever answered — a run closed on a
-    // Sprosse still stood on it.
-    var lastRunKey: String {
-        DrillSuggestion.shared.lastRunKey(drill: Face.drill, language: model.targetLanguage ?? "")
-    }
 
     func closing() -> DrillClose<Face.Run> {
         let closed = Face.close(run, standingRecord: TrainerRecords.best(for: storageKey))
-        TrainerProgress.record(closed.bestSprosse, for: storageKey)
-        TrainerProgress.bookCleared(closed.clearedSprossen,
-                                    for: NumbersMode.companion.clearedKey(key: storageKey, reverse: reverse))
-        if let summary = closed.summary {
-            TrainerRecords.record(Int(summary.bestAnswerStreak), for: storageKey)
-            TrainerRecords.recordAnswers(Int(summary.done), for: storageKey)
-        }
-        return DrillClose(run: closed.run, summary: closed.summary, effects: closed.effects)
+        return DrillClose(run: closed.run, summary: closed.summary, effects: closed.effects, bookings: closed.bookings)
     }
 
     /// The STRICT drill normalizer, built exactly as the letter drill builds

@@ -8,10 +8,8 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.TypedDrill
-import net.spross.app.bookRecord
 import net.spross.app.finishDrill
 import net.spross.app.speakFormOnTap
-import net.spross.app.stampRun
 import net.spross.kern.session.AnswerControls.Slot
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.Drill
@@ -60,18 +58,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
 
     val leave = {
         val closed = flow.close(standingRecord = key?.let { store.record(it) } ?: 0)
-        if (key != null) {
-            // Neither buys a padlock (the drill is ungated); they are what the page reads
-            // back — where the next run opens, and what Fast is priced against.
-            store.bookSprosse(key, closed.bestSprosse)
-            store.bookCleared(NumbersMode.clearedKey(key, reverse), closed.clearedSprossen)
-            closed.summary?.let {
-                store.bookAnswers(key, it.done)
-                model.bookRecord(key, it)
-            }
-        }
-        model.stampRun(page.entry, closed.summary)
-        model.finishDrill(page.back, closed.summary, page.drill)
+        model.finishDrill(page.back, closed.summary, page.drill, closed.bookings)
     }
 
     val paused = flow.progress.pause != null

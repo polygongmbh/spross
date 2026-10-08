@@ -4,6 +4,7 @@ import kotlin.random.Random
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Question
 import net.spross.kern.session.ToneKind
+import net.spross.kern.trainer.DrillBookings
 import net.spross.kern.trainer.DrillEffect
 import net.spross.kern.trainer.DrillRunProgress
 import net.spross.kern.trainer.DrillRunSummary
@@ -70,14 +71,11 @@ data class TypedDrillView(
     val question: Question,
 )
 
-/** What a closed typed run owes the page that started it. */
+/** What a closed typed run owes the page that started it: its figures, and what it files. */
 data class TypedDrillClose(
-    /** null ⇒ the run was never answered: dismiss, store nothing. */
+    /** null ⇒ the run was never answered: dismiss, report nothing. */
     val summary: DrillRunSummary?,
-    /** The Sprosse the run REACHED, not the one it ends on. */
-    val bestSprosse: Int,
-    /** The Sprossen the run answered OUT, for the page to add to what it holds. */
-    val clearedSprossen: Set<Int>,
+    val bookings: DrillBookings,
 )
 
 /**

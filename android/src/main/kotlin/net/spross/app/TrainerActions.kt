@@ -2,6 +2,7 @@ package net.spross.app
 
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.trainer.Drill
+import net.spross.kern.trainer.DrillBookings
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.NumbersChallenge
 import net.spross.kern.trainer.NumbersMode
@@ -84,46 +85,30 @@ fun AppModel.startDateDrill(reverse: Boolean, fast: Boolean, sprosse: Int) {
 }
 
 /**
- * A closed run has no screen of its own: its figures travel back to the page that
- * started it, which wears them as one tile above the picks.
+ * A closed run has no screen of its own: it files what kern says it owes ([DrillBookings]),
+ * then its figures travel back to the page that started it, which wears them as one tile above
+ * the picks. A drill with no page of its own closes onto Home and leaves its tile on the hub card
+ * ([TrainerStanding.showOnHub]).
  *
  * [summary] null ⇒ nothing was answered; the run simply closes. The ladder is re-read
  * because a closing run books the Sprossen it stood on, and the rows behind it are stale
  * the moment it leaves.
  */
-fun AppModel.finishDrill(back: Screen, summary: DrillRunSummary?, title: String) {
+fun AppModel.finishDrill(back: Screen, summary: DrillRunSummary?, title: String, bookings: DrillBookings? = null) {
     pronouncer.stop()
-    bookDrillAnswers(summary)
+    if (bookings != null) {
+        trainer.store.book(bookings, now())
+        if (bookings.dayAnswers > 0) updateBox { BoxEngine.bookDrillAnswers(it, bookings.dayAnswers, now(), tz()) }
+    }
     // why: a close kern celebrates ([DrillRunSummary.celebrated]) is cheered as it closes —
     // the tile the learner lands on carries the words, but not until they look.
     if (summary?.celebrated == true) cues.cheer()
-    trainer.show(summary, title)
+    if (back == Screen.Home) trainer.showOnHub(summary, title) else trainer.show(summary, title)
     refreshTrainer()
     // why: a closing letter run lands back on the page that reads the report, and the
     // box it walks has moved — every other drill's page reads prefs alone.
     if (back == Screen.Letters) refreshLetters()
     navigate(back)
-}
-
-/** A closed run's answers, booked to today so the streak and the activity strip count them. */
-private fun AppModel.bookDrillAnswers(summary: DrillRunSummary?) {
-    val answers = summary?.done ?: return
-    updateBox { BoxEngine.bookDrillAnswers(it, answers, now(), tz()) }
-}
-
-/**
- * The way out of either scramble. Neither has a page to land on, so the run closes onto Home
- * and hands its figures to the hub card ([TrainerStanding.showOnHub]); neither keeps a streak record or a high-water Sprosse beside its mask,
- * because nothing reads one back. The mask under [clearedKey] is what the NEXT run reads: it
- * passes each Sprosse held there on one clean answer.
- */
-fun AppModel.closeScramble(drill: Drill, title: String, clearedKey: String, cleared: Set<Int>, summary: DrillRunSummary?) {
-    trainer.store.bookCleared(clearedKey, cleared)
-    bookDrillAnswers(summary)
-    stampRun(drill, summary)
-    trainer.showOnHub(summary, title)
-    if (summary?.celebrated == true) cues.cheer()
-    finishDrill(Screen.Home, null, "")
 }
 
 /**

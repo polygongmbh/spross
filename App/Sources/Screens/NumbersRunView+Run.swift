@@ -51,21 +51,13 @@ extension NumbersRunView: DrillRunning {
 
     // MARK: - Close → summary
 
-    /// The record and the Sprossen, both booked here: a run that is still going
-    /// can still climb, so a Sprosse is only final once the run closes.
-    // why: internal, not private — the +UITest hook closes a run the way the ✕ does.
-    var lastRunKey: String { DrillSuggestion.shared.lastRunKey(drill: .numbers, language: language) }
 
     func closing() -> DrillClose<NumbersRunState> {
         let closed = NumbersRun.shared.close(state: run,
                                              standingRecord: Int32(TrainerRecords.best(for: mode.recordKey)),
                                              standingProgress: Self.standingProgress(mode))
-        if let summary = closed.summary {
-            // why: kern measures the record; only a broken one is written.
-            if summary.newRecord { TrainerRecords.record(Int(summary.recordFigure), for: closed.recordKey) }
-            TrainerProgress.book(closed.progressBookings)
-        }
-        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects)
+        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects,
+                          bookings: closed.bookings())
     }
 
     /// What the Sprosse store holds now for every exercise `mode` could book —

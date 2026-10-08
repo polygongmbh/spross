@@ -12,7 +12,7 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.SentenceScrambleFlow
-import net.spross.app.closeScramble
+import net.spross.app.finishDrill
 import net.spross.app.newSentenceScramble
 import net.spross.app.sayOnTap
 import net.spross.kern.model.ClosingNote
@@ -43,7 +43,7 @@ fun SentenceScrambleScreen(model: AppModel) {
     val state = flow.state
     val leave = {
         val closed = flow.close()
-        model.closeScramble(Drill.SentenceScramble, model.chrome.trainerDrillSentenceScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
+        model.finishDrill(Screen.Home, closed.summary, model.chrome.trainerDrillSentenceScramble, closed.bookings(flow.language))
     }
 
     DrillRunScaffold(

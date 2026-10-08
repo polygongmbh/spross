@@ -36,6 +36,7 @@ extension AppModel {
 
     /// A closed drill run's answers, booked to today so the streak and the activity strip count them.
     func bookDrillAnswers(_ answers: Int) {
+        guard answers > 0 else { return }
         mutate {
             $0 = BoxEngine.shared.bookDrillAnswers(state: $0, answers: Int32(answers),
                                                    nowEpochMillis: Date().epochMillis, tzId: currentTzId())

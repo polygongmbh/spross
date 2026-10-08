@@ -118,8 +118,7 @@ enum CountryDrillFace: DrillFace {
                       standingRecord: Int) -> DrillEnd<CountryDrillRunState> {
         let closed = CountryDrillRun.shared.close(state: run, standingRecord: Int32(standingRecord))
         return DrillEnd(run: closed.state, summary: closed.summary,
-                        bestSprosse: Int(closed.bestSprosse),
-                        clearedSprossen: closed.clearedSprossen, effects: closed.effects)
+                        bookings: closed.bookings(), effects: closed.effects)
     }
 
     private static func intent(_ move: DrillMove) -> CountryDrillIntent {

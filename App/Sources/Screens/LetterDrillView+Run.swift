@@ -60,15 +60,14 @@ extension LetterDrillView: DrillRunning {
 
     // MARK: - Close → back to the page that opened it
 
-    var lastRunKey: String { DrillSuggestion.shared.lastRunKey(drill: .letters, language: language) }
 
     /// An untouched run leaves nothing to report, and no record line either —
     /// the letter drill keeps no record store (D12). What it files is the mask
     /// the next run opens above.
     func closing() -> DrillClose<LetterDrillRunState> {
         let closed = LetterDrillRun.shared.close(state: run)
-        TrainerProgress.bookCleared(closed.clearedSprossen, for: Self.storageKey(language))
-        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects)
+        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects,
+                          bookings: closed.bookings(target: language))
     }
 
     /// The STRICT drill grader with the whole join in view: a per-word slip

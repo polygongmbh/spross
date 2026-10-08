@@ -1,6 +1,7 @@
 package net.spross.app
 
 import kotlin.random.Random
+import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.OppositesAvailability
@@ -13,13 +14,13 @@ import net.spross.kern.trainer.OppositesRunState
 /**
  * One opposites run as this platform holds it — the twin of [WordScrambleFlow], over kern's
  * own [OppositesRun]. What is left here is [DrillFlow]'s: the field's text and the armed beat.
- * No review is ever booked; what outlives the run is the ladder, filed under [clearedKey].
+ * No review is ever booked; what outlives the run is the ladder, filed for [language].
  */
 class OppositesFlow(
     start: OppositesRunState,
     rng: Random,
-    /** Where the Sprossen this run clears are filed, and where it read the ones it opened above. */
-    val clearedKey: String,
+    /** The language drilled, which its close files under ([OppositesClose.bookings]). */
+    val language: Language,
     onTone: (ToneKind) -> Unit = {},
     onReleaseFocus: () -> Unit = {},
     onSilence: () -> Unit = {},
@@ -67,7 +68,7 @@ fun AppModel.newOpposites(
     return OppositesFlow(
         start = OppositesRun.open(config, rng),
         rng = rng,
-        clearedKey = key,
+        language = state.joinStamp.target,
         onTone = onTone,
         onReleaseFocus = onReleaseFocus,
         onSilence = { pronouncer.stop() },

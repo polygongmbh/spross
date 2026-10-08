@@ -2,6 +2,7 @@ package net.spross.app
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import net.spross.kern.trainer.DrillBookings
 import net.spross.kern.trainer.NumbersExercise
 import net.spross.kern.trainer.NumbersMode
 
@@ -118,7 +119,7 @@ class TrainerStoreTest {
     fun aClosedRunsBookingsAreReadBackByTheLadder() {
         val store = TrainerStore(FakePrefs())
         val numbers = NumbersMode.progressKey(NumbersExercise.Counting, language)
-        store.book(mapOf(numbers to 4))
+        store.book(progress(mapOf(numbers to 4)), nowEpochMillis = 0)
         assertEquals(4, store.ladder(language)[NumbersExercise.Counting])
         assertEquals(4, store.standing(language)[numbers])
         assertEquals(0, store.ladder(language)[NumbersExercise.Clock])
@@ -128,8 +129,11 @@ class TrainerStoreTest {
     fun aSecondStoreReadsWhatTheFirstBooked() {
         val file = mutableMapOf<String, Any?>()
         val numbers = NumbersMode.progressKey(NumbersExercise.Counting, language)
-        TrainerStore(FakePrefs(file)).book(mapOf(numbers to 6))
+        TrainerStore(FakePrefs(file)).book(progress(mapOf(numbers to 6)), nowEpochMillis = 0)
         val relaunched = TrainerStore(FakePrefs(file))
         assertEquals(6, relaunched.ladder(language)[NumbersExercise.Counting])
     }
+
+    private fun progress(sprossen: Map<String, Int>) =
+        DrillBookings(sprossen, emptyMap(), emptyMap(), emptyMap(), lastRun = null, dayAnswers = 0)
 }

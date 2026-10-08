@@ -34,11 +34,14 @@ enum TrainerProgress {
                    uniquingKeysWith: { first, _ in first })
     }
 
-    /// The Sprossen a closed run earned (`NumbersClose.progressBookings`). The
-    /// strictly-greater guard is kept as a belt: kern already filtered, and a
-    /// re-closed run must never claim a Sprosse twice.
-    static func book(_ bookings: [String: KotlinInt]) {
-        for (key, sprosse) in bookings { record(Int(truncating: sprosse), for: key) }
+    /// Everything a closed run files (`DrillBookings`): each store keeps the
+    /// higher figure, or ORs the mask in, so a re-closed run claims nothing twice.
+    static func book(_ bookings: DrillBookings) {
+        for (key, sprosse) in bookings.sprossen { record(Int(truncating: sprosse), for: key) }
+        for (key, sprossen) in bookings.cleared { bookCleared(sprossen, for: key) }
+        for (key, figure) in bookings.records { TrainerRecords.record(Int(truncating: figure), for: key) }
+        for (key, answers) in bookings.answers { TrainerRecords.recordAnswers(Int(truncating: answers), for: key) }
+        if let lastRun = bookings.lastRun { stampRun(lastRun) }
     }
 
     /// Books `sprosse` as the new best if it beats the standing one, and says

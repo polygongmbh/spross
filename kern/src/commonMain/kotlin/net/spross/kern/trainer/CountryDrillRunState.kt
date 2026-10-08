@@ -60,9 +60,14 @@ data class CountryDrillClose(
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
 ) {
-    /** What this run files for the pair [source]→[target] it drilled, in the direction it ran. */
-    fun bookings(source: Language, target: Language, reverse: Boolean): DrillBookings =
-        DrillBookings.typed(Drill.Countries, CountryDrill.storageKey(source, target), target, reverse, summary, bestSprosse, clearedSprossen)
+    /** What this run files for the pair it drilled, in the direction it ran. */
+    fun bookings(): DrillBookings {
+        val content = state.config.content
+        return DrillBookings.typed(
+            Drill.Countries, CountryDrill.storageKey(content.source, content.target), content.target,
+            state.config.reverse, summary, bestSprosse, clearedSprossen,
+        )
+    }
 }
 
 /**

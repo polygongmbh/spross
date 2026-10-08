@@ -8,6 +8,7 @@ import net.spross.kern.model.Language
 import net.spross.kern.trainer.CountryDrill
 import net.spross.kern.trainer.DateDrill
 import net.spross.kern.trainer.Drill
+import net.spross.kern.trainer.DrillBookings
 import net.spross.kern.trainer.DrillLadders
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillSuggestion
@@ -62,12 +63,13 @@ class TrainerStore(private val prefs: SharedPreferences) : DrillLadders.Store {
             key to sprosse(key)
         }
 
-    /** What a closed run left behind — already filtered by kern to what beats the standing. */
-    fun book(bookings: Map<String, Int>) {
-        if (bookings.isEmpty()) return
-        val edit = prefs.edit()
-        for ((key, sprosse) in bookings) edit.putInt(NumbersMode.PROGRESS_PREFIX + key, sprosse)
-        edit.apply()
+    /** Everything a closed run files ([DrillBookings]); each store keeps the higher figure, or ORs the mask in. */
+    fun book(bookings: DrillBookings, nowEpochMillis: Long) {
+        for ((key, sprosse) in bookings.sprossen) bookSprosse(key, sprosse)
+        for ((key, sprossen) in bookings.cleared) bookCleared(key, sprossen)
+        for ((key, figure) in bookings.records) bookRecord(key, figure)
+        for ((key, answers) in bookings.answers) bookAnswers(key, answers)
+        bookings.lastRun?.let { stampRun(it, nowEpochMillis) }
     }
 
     /** The highest Sprosse ever reached under [key], 0 where it was never run. */
@@ -273,18 +275,3 @@ class TrainerStanding(val store: TrainerStore) {
     }
 }
 
-/**
- * A closed run of [drill] stamped as its last, where it was answered at all — an untouched
- * run is no run to the suggestion either ([DrillSuggestion]).
- */
-fun AppModel.stampRun(drill: Drill, summary: DrillRunSummary?) {
-    if (summary == null) return
-    val language = box?.joinStamp?.target ?: return
-    trainer.store.stampRun(DrillSuggestion.lastRunKey(drill, language), System.currentTimeMillis())
-}
-
-/** A new record, booked; a run that beat nothing books nothing. The cheer is the close's ([finishDrill]). */
-fun AppModel.bookRecord(key: String, summary: DrillRunSummary) {
-    if (!summary.newRecord) return
-    trainer.store.bookRecord(key, summary.recordFigure)
-}

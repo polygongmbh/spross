@@ -94,15 +94,12 @@ protocol DrillRunning: View, QuestionDriving {
 
     // MARK: - Closing
 
-    /// kern's close, with whatever this drill's own stores take from it already
-    /// filed: WHICH stores those are is the drill's, every value written kern's.
+    /// kern's close, with what it files (`DrillBookings`) — `closeRun` writes it.
     func closing() -> DrillClose<Run>
 
     /// What the tile a closed run leaves calls it.
     var resultTitle: LocalizedStringKey { get }
 
-    /// Where an answered close stamps this drill's last run (`DrillSuggestion.lastRunKey`).
-    var lastRunKey: String { get }
 
     #if DEBUG
     /// `-uitest-streak N`: stand the run mid-streak.
@@ -116,9 +113,11 @@ protocol DrillRunning: View, QuestionDriving {
 /// written by the time this is handed over.
 struct DrillClose<Run> {
     let run: Run
-    /// nil ⇒ the run was never answered: dismiss, store nothing.
+    /// nil ⇒ the run was never answered: dismiss, report nothing.
     let summary: DrillRunSummary?
     let effects: [DrillEffect]
+    /// What kern says the close files (`DrillBookings`), written as the run closes.
+    let bookings: DrillBookings
 }
 
 // MARK: - Driving the run
@@ -207,13 +206,13 @@ extension DrillRunning {
         let closed = closing()
         run = closed.run
         for effect in closed.effects { apply(effect) }
+        TrainerProgress.book(closed.bookings)
+        appModel?.bookDrillAnswers(Int(closed.bookings.dayAnswers))
         guard let summary = closed.summary else {
             dismiss()
             return
         }
         answerFocused = false
-        appModel?.bookDrillAnswers(Int(summary.done))
-        TrainerProgress.stampRun(lastRunKey)
         // why: confetti and cheer are one thing (`docs/design.md`); the page the
         // run closes onto rains the one, so the close sounds the other.
         if summary.celebrated { Sound.cheer() }

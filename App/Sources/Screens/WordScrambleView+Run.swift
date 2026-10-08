@@ -66,15 +66,11 @@ extension WordScrambleView: DrillRunning {
 
     // MARK: - Close → back to the hub that opened it
 
-    /// An untouched run leaves nothing to report, and no record line either —
-    /// this drill keeps no streak record. What it DOES file is the ladder:
-    /// the next run passes each Sprosse the mask holds on one clean answer.
-    var lastRunKey: String { DrillSuggestion.shared.lastRunKey(drill: .wordScramble, language: language) }
 
     func closing() -> DrillClose<WordScrambleRunState> {
         let closed = WordScrambleRun.shared.close(state: run)
-        TrainerProgress.bookCleared(closed.clearedSprossen, for: storageKey)
-        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects)
+        return DrillClose(run: closed.state, summary: closed.summary, effects: closed.effects,
+                          bookings: closed.bookings(target: language))
     }
 }
 

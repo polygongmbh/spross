@@ -13,7 +13,6 @@ import net.spross.app.letterReplay
 import net.spross.app.letterSpeaker
 import net.spross.app.newLetterDrill
 import net.spross.app.playLetterPrompt
-import net.spross.app.stampRun
 import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.LetterDrillRunState
@@ -42,9 +41,8 @@ fun LetterDrillScreen(model: AppModel) {
     // The letter drill keeps no streak record; what it files is the mask the next run opens above.
     val leave = {
         val closed = flow.close()
-        model.stampRun(Drill.Letters, closed.summary)
-        model.trainer.store.bookCleared(LetterDrillRunState.storageKey(closed.state.config.report.language), closed.clearedSprossen)
-        model.finishDrill(Screen.Letters, closed.summary, chrome.trainerDrillLetters)
+        val language = closed.state.config.report.language
+        model.finishDrill(Screen.Letters, closed.summary, chrome.trainerDrillLetters, closed.bookings(language))
     }
 
     DrillRunScaffold(

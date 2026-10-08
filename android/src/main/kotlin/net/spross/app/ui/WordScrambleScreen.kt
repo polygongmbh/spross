@@ -6,7 +6,7 @@ import androidx.compose.ui.focus.FocusRequester
 import net.spross.app.AppModel
 import net.spross.app.Screen
 import net.spross.app.WordScrambleFlow
-import net.spross.app.closeScramble
+import net.spross.app.finishDrill
 import net.spross.app.newWordScramble
 import net.spross.app.speakFormOnTap
 import net.spross.kern.trainer.Drill
@@ -32,7 +32,7 @@ fun WordScrambleScreen(model: AppModel) {
     val state = flow.state
     val leave = {
         val closed = flow.close()
-        model.closeScramble(Drill.WordScramble, model.chrome.trainerDrillWordScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
+        model.finishDrill(Screen.Home, closed.summary, model.chrome.trainerDrillWordScramble, closed.bookings(flow.language))
     }
 
     val inputFocus = remember { FocusRequester() }
