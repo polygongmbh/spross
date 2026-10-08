@@ -83,7 +83,7 @@ final class WatchModel {
         }
         #endif
         snapshot = WatchSnapshotStore.load()
-        connectivity.onSnapshotData = { data in
+        connectivity.onSnapshotData = { [weak self] data in
             Task { @MainActor [weak self] in self?.receiveSnapshot(data) }
         }
         connectivity.activate()

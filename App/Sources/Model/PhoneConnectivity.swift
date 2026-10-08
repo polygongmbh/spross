@@ -81,7 +81,7 @@ extension AppModel {
 
     /// Wire the bridge to this model and activate the session (call once at launch).
     func startWatchBridge() {
-        watchBridge.onAnswerEvents = { events in
+        watchBridge.onAnswerEvents = { [weak self] events in
             Task { @MainActor [weak self] in self?.applyWatchAnswers(events) }
         }
         watchBridge.activate()
