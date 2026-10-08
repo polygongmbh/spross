@@ -2,7 +2,7 @@
 """What `catalog/audio/` covers, and what it names but does not ship.
 
     scripts/audio-coverage.py               # per-language coverage table
-    scripts/audio-coverage.py --missing de  # the slugs de realizes and cannot say
+    scripts/audio-coverage.py --missing de  # the words de shows and cannot say
     scripts/audio-coverage.py --credits     # who spoke what, under which license, per pack
     scripts/audio-coverage.py --check       # exit 1 if a manifest names an untracked file
 
@@ -11,7 +11,9 @@ walks the WORKING TREE, so a recording that was fetched but never `git add`ed lo
 like one that ships — the manifests once named 517 files that existed on one machine and in
 no checkout, and nothing caught it. Reading `git ls-files` is the only way to tell.
 
-Coverage is measured against SINGLE-WORD realizations as well as all of them: the word packs
+Coverage is measured per realization against the form its card shows, the way playback
+finds a recording: by the spoken form, bare or inside an article recording, or the verb's
+bare stem. It is counted over SINGLE-WORD realizations as well as all of them: the word packs
 resolve one word at a time, so a phrase is not a gap they could ever close.
 """
 import argparse
@@ -20,6 +22,8 @@ import json
 import os
 import subprocess
 import sys
+
+from audio_gates import speech_key
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
@@ -52,25 +56,45 @@ def manifests():
             if os.path.isfile(os.path.join(audio, lang, 'manifest.json'))}
 
 
+def recorded_forms(manifest):
+    """The speech keys a card's own form can be heard by: a bare recording, or the word inside an article one."""
+    return ({speech_key(form) for form in manifest.get('words', {})} |
+            {speech_key(item['word']) for item in manifest.get('articles', {}).values()})
+
+
+def heard(text, recorded, prefixes):
+    """Whether playback finds a recording for [text] — itself, or its bare verb stem."""
+    stem = next((text.strip()[len(p):] for p in prefixes
+                 if len(text.strip()) > len(p) and text.strip().lower().startswith(p.lower())), None)
+    return speech_key(text) in recorded or (stem is not None and speech_key(stem) in recorded)
+
+
+def verb_prefixes():
+    return {code: info.get('optionalVerbPrefixes', [])
+            for code, info in read_json(CATALOG, 'languages.json').items()}
+
+
 def coverage(realized, shipped):
+    prefixes = verb_prefixes()
     print('lang  words  realized  covered   single-word  covered   calendar  countries')
     for lang, manifest in shipped.items():
-        recorded = set(manifest.get('words', {}))
+        recorded = recorded_forms(manifest)
         mine = realized.get(lang, {})
         single = {slug for slug, text in mine.items() if ' ' not in text}
-        hit = [slug for slug in mine if slug in recorded]
-        hit_single = [slug for slug in single if slug in recorded]
+        hit = [slug for slug in mine if heard(mine[slug], recorded, prefixes.get(lang, []))]
+        hit_single = [slug for slug in single if slug in hit]
         print('%-4s  %5d  %8d   %5.1f%%  %11d   %5.1f%%  %9d  %9d' % (
-            lang, len(recorded), len(mine), 100 * len(hit) / max(1, len(mine)),
+            lang, len(manifest.get('words', {})), len(mine), 100 * len(hit) / max(1, len(mine)),
             len(single), 100 * len(hit_single) / max(1, len(single)),
             len(manifest.get('calendar', {})), len(manifest.get('countries', {}))))
 
 
 def missing(realized, shipped, langs):
+    prefixes = verb_prefixes()
     for lang in langs or sorted(shipped):
-        recorded = set(shipped[lang].get('words', {}))
+        recorded = recorded_forms(shipped[lang])
         gap = sorted(slug for slug, text in realized.get(lang, {}).items()
-                     if slug not in recorded and ' ' not in text)
+                     if ' ' not in text and not heard(text, recorded, prefixes.get(lang, [])))
         print('%s: %d single-word realizations with no recording' % (lang, len(gap)))
         for slug in gap:
             print('  %-28s %s' % (slug, realized[lang][slug]))
@@ -96,7 +120,7 @@ def credit_rows(shipped):
             licenses = collections.Counter(
                 entry.get('license') or authors[entry['author']] for entry in entries.values())
             who = collections.Counter(entry['author'] for entry in entries.values())
-            where = 'audio/%s/' % lang if section == 'words' else 'audio/%s/%s/' % (lang, section)
+            where = 'audio/%s/%s/' % (lang, section)
             rows[where] = (
                 str(len(entries)),
                 ' · '.join('%s %d' % (name, n) for name, n in licenses.most_common()),

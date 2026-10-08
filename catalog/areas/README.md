@@ -42,9 +42,9 @@ two distinct WORDS in one area sharing a picture is not,
 unless one names the other (`Zähne putzen` may wear the toothbrush's).
 
 **A card that has not earned its slot moves back; it is deleted only on request.**
-Content and audio are keyed by slug,
+Content is keyed by slug and recordings by the form they speak,
 so a move to a later shelf preserves every realization and every recording,
-while a rename orphans them (`../README.md`).
+while a rename orphans the schedule (`../README.md`).
 `../../scripts/catalog-move.py` carries the move.
 Deletion stays available and is the user's call to make.
 

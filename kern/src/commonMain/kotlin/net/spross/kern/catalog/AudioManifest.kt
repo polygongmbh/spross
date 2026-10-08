@@ -5,8 +5,8 @@ import net.spross.kern.model.nfcNormalized
 
 /** One bundled recording as authored in `audio/<lang>/manifest.json`. */
 internal data class AudioRecording(
-    /** Path relative to `audio/<lang>/`: `<slug>.mp3`, or `letters/u<codepoint>….mp3`
-     *  (one `u<cp>` per codepoint — a named row may be a digraph). */
+    /** Path relative to `audio/<lang>/`: `<section>/<ascii stem of the form>.mp3`, or
+     *  `letters/u<codepoint>….mp3` (one `u<cp>` per codepoint — a named row may be a digraph). */
     val file: String,
     /** The exact surface form the recording speaks; null for letters (they speak a name). */
     val matches: String?,
@@ -80,7 +80,7 @@ internal data class AudioRecording(
  */
 internal class AudioManifest(
     val language: Language,
-    /** slug → recording, in manifest order. */
+    /** spoken form → recording, in manifest order. */
     val words: Map<String, AudioRecording>,
     /** lowercase glyph → recording, in manifest order. */
     val letters: Map<String, AudioRecording>,
@@ -93,7 +93,7 @@ internal class AudioManifest(
      */
     val texts: Map<String, AudioRecording>,
     /**
-     * slug → a recording that speaks an ARTICLE and then the word, in manifest order.
+     * spoken form ("der Ausweis") → a recording that speaks an ARTICLE and then the word, in manifest order.
      *
      * It is indexed twice: by the whole spoken form ([AudioRecording.matches], "der
      * Ausweis") which is the string [spokenTargetForm] builds for a card showing that
@@ -102,8 +102,8 @@ internal class AudioManifest(
      * The bare-word route is the LAST thing tried, so a recording of exactly what the card
      * shows always wins where the pack has one.
      *
-     * A section of its own rather than a second `words` entry because both files ship for
-     * one slug: the bare recording stays what the source side reads, where the article is
+     * A section of its own rather than more `words` because both files may ship for one
+     * word: the bare recording stays what the source side reads, where the article is
      * not what is being taught.
      */
     val articles: Map<String, AudioRecording>,
@@ -183,7 +183,7 @@ internal class AudioManifest(
     /** The letter's recording, NFC-folded so a decomposed glyph still resolves. */
     fun letterRecording(glyph: String): AudioRecording? = byGlyph[nfcNormalized(glyph)]
 
-    /** Catalog-relative path of one of this manifest's recordings ("audio/uk/office.mp3"). */
+    /** Catalog-relative path of one of this manifest's recordings ("audio/de/words/hund.mp3"). */
     fun path(recording: AudioRecording): String = "audio/$language/${recording.file}"
 
     /**
@@ -209,7 +209,7 @@ internal class AudioManifest(
             .mapNotNull { recording -> recording.matches?.let { key(it) to recording } }
             .groupBy({ (formKey, _) -> formKey }, { (_, recording) -> recording })
             .mapValues { (_, group) ->
-                // why: one recording fetched under two slugs is the same bytes twice, so
+                // why: one recording shipped in two sections is the same bytes twice, so
                 // either file speaks the right word; differing bytes have no right answer.
                 if (group.mapTo(mutableSetOf()) { it.sha256 }.size == 1) group.first() else null
             }

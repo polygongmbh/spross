@@ -129,7 +129,7 @@ data class Pronunciation( // data class: Swift sees value equality
     val form: String,
     val utterance: String,
     val lang: Language,
-    /** Catalog-relative path of the recording ("audio/uk/office.mp3"), null → synthesize. */
+    /** Catalog-relative path of the recording ("audio/de/words/hund.mp3"), null → synthesize. */
     val recordingPath: String?,
     override val gain: Double = 0.0,
     override val gainPhone: Double? = null,

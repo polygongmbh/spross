@@ -70,8 +70,8 @@ catalog/
   audio/                # GENERATED pronunciation recordings, one folder per language
     README.md           # the manifest schema and the provenance every recording carries
     <lang>/
-      manifest.json     # { language, words: { slug: … }, letters?: { glyph: … } }
-      <slug>.mp3
+      manifest.json     # { language, words: { form: … }, letters?: { glyph: … }, … }
+      words/<ascii stem>.mp3
       letters/u<hex>.mp3
 ```
 
@@ -181,7 +181,8 @@ two areas claiming one slug would fuse two concepts into a single schedule,
 so a genuine repeat across areas is disambiguated by qualifying the slug.
 The price is that **renaming a slug is a breaking act**:
 it orphans the schedule and the word returns as new — so rename deliberately, never just to polish a lemma,
-and always through `../scripts/catalog-rename-slugs.py`, which carries every reference and recording along.
+and always through `../scripts/catalog-rename-slugs.py`, which carries every reference and the word packs along
+(recordings are keyed by the form they speak, so none moves).
 
 **`areas/<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json

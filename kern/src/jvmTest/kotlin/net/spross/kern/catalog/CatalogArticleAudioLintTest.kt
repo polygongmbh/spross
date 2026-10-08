@@ -17,12 +17,11 @@ import kotlin.test.assertTrue
 class CatalogArticleAudioLintTest {
     private val catalog get() = RealCatalog.catalog
 
-    private fun realization(lang: String, slug: String): RawRealization? =
-        catalog.areas.firstNotNullOfOrNull { it.realizations[lang]?.get(slug) }
-
     /**
-     * An article entry says its realization's OWN article in front of a form that
-     * realization actually carries, and its `word` names which one.
+     * An article entry says an article some card in its language shows, in front of the
+     * form it stands before there, and its `word` names which one: a realization's own
+     * `grammar.gender` before any form it carries, or a tagged form's authored article
+     * before that form (`die Lehrerin`).
      *
      * The article is pinned because a recording is the only thing that can teach a gender
      * aloud, and a wrong one teaches it wrong — 33 of the catalog's 90 rotatable `teaches`
@@ -32,40 +31,22 @@ class CatalogArticleAudioLintTest {
      * the pack's.
      */
     @Test
-    fun everyArticleEntrySaysItsArticleInFrontOfAFormItHas() {
+    fun everyArticleEntrySaysAnArticleACardShowsBeforeItsWord() {
         for ((lang, manifest) in catalog.audio) {
-            for ((slug, recording) in manifest.articles) {
-                val raw = realization(lang, slug)
-                assertTrue(raw != null, "audio/$lang: \"$slug (article)\" is not realized in $lang")
-                val article = raw.grammar["gender"]
-                assertTrue(!article.isNullOrBlank(), "audio/$lang/$slug: no article authored to speak")
-                val word = checkNotNull(recording.word) { "audio/$lang/$slug (article): no word recorded" }
-                val forms = (listOf(raw.text) + raw.teaches + raw.accepts).map { speechKey(it) }
+            if (manifest.articles.isEmpty()) continue
+            val said = catalog.articledForms(lang)
+            for ((form, recording) in manifest.articles) {
+                val word = checkNotNull(recording.word) { "audio/$lang article \"$form\": no word recorded" }
                 assertTrue(
-                    speechKey(word) in forms,
-                    "audio/$lang/$slug (article): \"$word\" is none of $forms",
+                    (speechKey(form) to speechKey(word)) in said,
+                    "audio/$lang article \"$form\": no card in $lang says \"$word\" with that article",
                 )
-                assertEquals(
-                    speechKey(spokenTargetForm(article, word, word)),
-                    speechKey(checkNotNull(recording.matches)),
-                    "audio/$lang/$slug (article): \"${recording.matches}\" is not \"$article $word\"",
-                )
-            }
-        }
-    }
-
-    /** Article files live beside the bare ones under their own folder, slug-named as those are. */
-    @Test
-    fun articleFilesAreNamedAfterTheirSlug() {
-        for ((lang, manifest) in catalog.audio) {
-            for ((slug, recording) in manifest.articles) {
-                assertEquals("articles/$slug.mp3", recording.file, "audio/$lang/$slug (article): misnamed file")
             }
         }
     }
 
     /**
-     * One spoken form, one sound — the words' rule, applied inside the section. Two slugs
+     * One spoken form, one sound — the words' rule, applied inside the section. Two entries
      * whose article forms collide (de `die Bank`) have no right answer, so the converter
      * resolves them rather than letting the runtime pick.
      */

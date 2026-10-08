@@ -17,7 +17,7 @@ extension AppModel {
     /// `loadCatalog()` reads its JSON through.
     var catalogDirectory: URL? { Self.bundledCatalog }
 
-    /// Bundle URL for a recording path from Kern ("audio/uk/office.mp3").
+    /// Bundle URL for a recording path from Kern ("audio/de/words/hund.mp3").
     /// A nil path means no recording matched the visible form; it stays nil,
     /// and the caller falls back to the live voice.
     func audioURL(_ path: String?) -> URL? {

@@ -132,8 +132,8 @@ fun Catalog.exampleMeaning(slug: String, lang: Language): String? =
  * the shipped manifests, so the surface can never credit what is not bundled. Order is
  * stable: languages as declared, credits as the manifest first names them, and each
  * credit's files alphabetically by the form they speak — case and accented vowels folded,
- * so `Ägypten` files under A — since a manifest lists its words by concept slug, which
- * reads as no order at all in any language but English.
+ * so `Ägypten` files under A — since a manifest's order is its keys' codepoint order,
+ * which puts every capital ahead of every lowercase word.
  */
 fun Catalog.audioCredits(): List<AudioCredit> {
     val files = LinkedHashMap<CreditKey, MutableList<AudioCreditFile>>()

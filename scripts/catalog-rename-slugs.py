@@ -1,30 +1,27 @@
 #!/usr/bin/env python3
-"""Rename concept slugs — the concept, every realization, every reference, the recordings.
+"""Rename concept slugs — the concept, every realization, every reference, the word packs.
 
     scripts/catalog-rename-slugs.py renames.tsv --check
     scripts/catalog-rename-slugs.py renames.tsv [--packs ../data/reference/audio]
 
 The mapping file is `old<TAB>new` per line (`#` comments). A slug is the card id, so one
 rename is the concept's row in `concepts.json`, its key in every `<lang>.json`, every
-`components` entry, `feminineOf` value and alphabet `example` that names it, and — where a
-recording exists — the `audio/<lang>/<slug>.mp3` file plus its `manifest.json` entry,
-`git mv`'d so history follows the bytes, and the row and mp3 in the unversioned word pack
-it came from (`--packs`, the workspace `audio-catalog.py` reads), so the next
-regeneration still knows the word. A dozen-plus files per slug, which is why it is a script.
+`components` entry, `feminineOf` value and alphabet `example` that names it, and the row
+and mp3 in the unversioned word pack a recording came from (`--packs`, the workspace
+`audio-catalog.py` reads), so the next fill still knows the word. The shipped recordings
+are keyed by the form they speak and stay put. A dozen-plus files per slug, which is why
+it is a script.
 
 What is REFUSED, rather than written (non-zero exit naming the slugs): an unknown old
 slug, a new slug the catalog already claims, and two renames landing on one slug.
 
 Formatting fidelity is a GATE, as in `catalog-move.py`: every area file the run does not
 touch is re-serialized through `catalog-format.py` and compared to its bytes on disk, so
-a drifted serializer stops the run instead of reformatting the catalog. Audio manifests
-are re-emitted on `audio-catalog.py`'s own contract (2-space indent, sorted keys), which
-is what keeps a rename's diff down to the renamed keys.
+a drifted serializer stops the run instead of reformatting the catalog.
 """
 import argparse
 import json
 import os
-import subprocess
 import sys
 
 from sibling import load
@@ -32,7 +29,6 @@ from sibling import load
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
 AREAS = os.path.join(CATALOG, 'areas')
-AUDIO = os.path.join(CATALOG, 'audio')
 
 catalog_format = load('catalog_format', 'catalog-format.py')
 
@@ -119,30 +115,6 @@ def alphabet_rewrites(mapping):
     return out
 
 
-def audio_renames(mapping):
-    """[(lang, manifest text, [(old file, new file)])] for every language that recorded a renamed slug."""
-    out = []
-    for lang in sorted(os.listdir(AUDIO)) if os.path.isdir(AUDIO) else []:
-        path = os.path.join(AUDIO, lang, 'manifest.json')
-        if not os.path.isfile(path):
-            continue
-        manifest = json.loads(read_text(path))
-        moves = []
-        for old, new in mapping.items():
-            entry = manifest['words'].get(old)
-            if entry is None:
-                continue
-            moves.append((os.path.join('audio', lang, entry['file']),
-                          os.path.join('audio', lang, '%s.mp3' % new)))
-            entry['file'] = '%s.mp3' % new
-            manifest['words'][new] = manifest['words'].pop(old)
-        if moves:
-            # why: audio-catalog.py's own contract, so the next rebuild does not re-emit us.
-            text = json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + '\n'
-            out.append((lang, text, moves))
-    return out
-
-
 def pack_renames(packs, mapping):
     """[(pack, new TSV text, [(old mp3, new mp3)])] for every word pack naming a renamed slug."""
     out = []
@@ -201,22 +173,14 @@ def main():
                            'scripts/catalog-format.py --fix first' % path)
                 written[path] = text
     written.update(alphabet_rewrites(mapping))
-    moves = []
-    for lang, text, files in audio_renames(mapping):
-        written[os.path.join('audio', lang, 'manifest.json')] = text
-        moves.extend(files)
 
-    for old, new in moves:
-        print('%s %s -> %s' % ('would move' if args.check else 'moving', old, new))
-        if not args.check:
-            subprocess.run(['git', 'mv', old, new], cwd=CATALOG, check=True)
     for path, text in sorted(written.items()):
         print('%s %s' % ('would write' if args.check else 'wrote', path))
         if not args.check:
             with open(os.path.join(CATALOG, path), 'w', encoding='utf-8') as f:
                 f.write(text)
-    print('%d slug(s) renamed, %d recording(s) moved, %d file(s) %s'
-          % (len(mapping), len(moves), len(written), 'to write' if args.check else 'written'))
+    print('%d slug(s) renamed, %d file(s) %s'
+          % (len(mapping), len(written), 'to write' if args.check else 'written'))
     carry_into_packs(args.packs, mapping, args.check)
 
 
