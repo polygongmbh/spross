@@ -1,5 +1,6 @@
 package net.spross.kern.session
 
+import net.spross.kern.model.APOSTROPHES
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.FormTag
@@ -48,6 +49,10 @@ class AnswerNormalizer(
 
     private val articles: Set<String> = answerLanguage.articles.map { it.lowercase() }.toSet()
 
+    /** The listed articles that elide (`l'`), without their apostrophe. */
+    private val elidedArticles: List<String> =
+        articles.filter { it.lastOrNull() in APOSTROPHES }.map { it.dropLast(1) }.filter { it.isNotEmpty() }
+
     /** The same articles in comparison shape, so a typed token can be measured against them. */
     private val articleForms: Set<String> =
         articles.map { cleaned(it).trim() }.filter { it.isNotEmpty() }.toSet()
@@ -62,7 +67,7 @@ class AnswerNormalizer(
      */
     fun normalize(raw: String): String {
         var words = tokenize(raw)
-        if (articleLeniency && words.size > 1 && words.first() in articles) words = words.subList(1, words.size)
+        if (articleLeniency && words.size > 1 && words.first() in articleForms) words = words.subList(1, words.size)
         return words.joinToString(" ")
     }
 
@@ -114,7 +119,7 @@ class AnswerNormalizer(
     fun evaluate(input: String, card: Card, promptTag: FormTag? = null): Match {
         val forms = answerForms(card, promptTag)
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
-        val expectedArticle = card.target.grammar["gender"]?.lowercase()
+        val expectedArticle = card.target.grammar["gender"]?.let { cleaned(it.lowercase()).trim() }
         // A form authored with its own article is read back against it; one without (a language that writes none) never against the citation's.
         val genderedForms = listOf(card.target.text) + card.target.accepts +
             card.target.forms.map { it.text }.filter { leadingArticle(it) != null }
@@ -276,7 +281,7 @@ class AnswerNormalizer(
     /** The listed leading article a raw answer starts with (only when more words follow). */
     private fun leadingArticle(raw: String): String? {
         val words = tokenize(raw)
-        return words.firstOrNull()?.takeIf { it in articles && words.size > 1 }
+        return words.firstOrNull()?.takeIf { it in articleForms && words.size > 1 }
     }
 
     /** The form plus, per matching prefix, the form with that leading prefix dropped. */
@@ -291,7 +296,22 @@ class AnswerNormalizer(
     }
 
     private fun tokenize(raw: String): List<String> =
-        cleaned(raw).split(' ').filter { it.isNotEmpty() }
+        cleaned(elisionSeparated(raw)).split(' ').filter { it.isNotEmpty() }
+
+    /**
+     * [raw] with a leading elided article (fr/it `l'`) set apart as its own word, so the article
+     * rules see it as they see `la` — the apostrophe pass would otherwise glue it on (`linvitée`).
+     */
+    private fun elisionSeparated(raw: String): String {
+        val trimmed = raw.trimStart()
+        val head = trimmed.lowercase()
+        for (article in elidedArticles) {
+            if (head.length > article.length && head.startsWith(article) && head[article.length] in APOSTROPHES) {
+                return trimmed.substring(0, article.length + 1) + " " + trimmed.substring(article.length + 1)
+            }
+        }
+        return raw
+    }
 
     /**
      * The one character pass everything shares, so tokenization can never disagree:

@@ -8,7 +8,8 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
   normalize both sides (lowercase, ß→ss, the answer language's `diacriticDigraphs`,
   delete joiners `-'’`, punctuation → space incl.
   `…—`, collapse whitespace) → ONE leading listed article of the answer language optional
-  on both sides → iff `kind == verb`: any listed `optionalVerbPrefixes` entry (normalized
+  on both sides, an elided one (fr/it `l'`) set apart from its noun first →
+  iff `kind == verb`: any listed `optionalVerbPrefixes` entry (normalized
   the same way, space-preserving — en `"to "`) optional on both sides → Damerau-Levenshtein
   typo budget → article-mismatch-demotes-to-typo only when the expected
   answer's grammar carries `gender` AND the form matched is the text or an `accepts` entry —
