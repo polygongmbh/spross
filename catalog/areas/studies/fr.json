@@ -14,7 +14,7 @@
   "to-study-at-university": { "text": "étudier à l'université", "accepts": ["faire des études"] },
   "lecture": {
    "text": "cours magistral",
-   "forms": { "pl": "cours magistraux" },
+   "forms": { "pl": "les cours magistraux" },
    "grammar": { "gender": "le" }
   },
   "school-diploma": { "text": "baccalauréat", "accepts": ["bac"], "grammar": { "gender": "le" } },

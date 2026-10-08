@@ -22,7 +22,7 @@
   "to-cross": { "text": "cruzar", "teaches": ["atravesar"] },
   "direction": {
    "text": "dirección",
-   "forms": { "pl": "direcciones" },
+   "forms": { "pl": "las direcciones" },
    "grammar": { "gender": "la" },
    "notes": {
     "es": "La dirección es hacia dónde vas y también dónde vives.",

@@ -5,21 +5,21 @@
   "celebration": {
    "text": "Feier",
    "teaches": ["Fest"],
-   "forms": { "pl": "Feiern" },
+   "forms": { "pl": "die Feiern" },
    "grammar": { "gender": "die" }
   },
   "to-celebrate": { "text": "feiern" },
-  "birthday": { "text": "Geburtstag", "forms": { "pl": "Geburtstage" }, "grammar": { "gender": "der" } },
+  "birthday": { "text": "Geburtstag", "forms": { "pl": "die Geburtstage" }, "grammar": { "gender": "der" } },
   "birthday-party": {
    "text": "Geburtstagsfeier",
-   "forms": { "pl": "Geburtstagsfeiern" },
+   "forms": { "pl": "die Geburtstagsfeiern" },
    "grammar": { "gender": "die" }
   },
-  "gift": { "text": "Geschenk", "forms": { "pl": "Geschenke" }, "grammar": { "gender": "das" } },
+  "gift": { "text": "Geschenk", "forms": { "pl": "die Geschenke" }, "grammar": { "gender": "das" } },
   "to-give-a-present": { "text": "schenken" },
   "to-congratulate": { "text": "gratulieren" },
-  "wedding": { "text": "Hochzeit", "forms": { "pl": "Hochzeiten" }, "grammar": { "gender": "die" } },
-  "birth": { "text": "Geburt", "forms": { "pl": "Geburten" }, "grammar": { "gender": "die" } },
+  "wedding": { "text": "Hochzeit", "forms": { "pl": "die Hochzeiten" }, "grammar": { "gender": "die" } },
+  "birth": { "text": "Geburt", "forms": { "pl": "die Geburten" }, "grammar": { "gender": "die" } },
   "we-give-her-something-for-her-birthday": { "text": "Wir schenken ihr etwas zum Geburtstag." },
   "i-congratulate-them-on-their-wedding": { "text": "Ich gratuliere ihnen zu ihrer Hochzeit." }
  }

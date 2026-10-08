@@ -2,17 +2,17 @@
  "title": "Die Arbeit",
  "subtitle": "Viel Erfolg im Job.",
  "words": {
-  "work": { "text": "Arbeit", "forms": { "pl": "Arbeiten" }, "grammar": { "gender": "die" } },
-  "job-application": { "text": "Bewerbung", "forms": { "pl": "Bewerbungen" }, "grammar": { "gender": "die" } },
-  "cv": { "text": "Lebenslauf", "forms": { "pl": "Lebensläufe" }, "grammar": { "gender": "der" } },
-  "contract": { "text": "Vertrag", "forms": { "pl": "Verträge" }, "grammar": { "gender": "der" } },
-  "salary": { "text": "Gehalt", "forms": { "pl": "Gehälter" }, "grammar": { "gender": "das" } },
-  "colleague": { "text": "Kollege", "forms": { "pl": "Kollegen" }, "grammar": { "gender": "der" } },
-  "colleague-f": { "text": "Kollegin", "forms": { "pl": "Kolleginnen" }, "grammar": { "gender": "die" } },
-  "boss": { "text": "Chef", "forms": { "pl": "Chefs" }, "grammar": { "gender": "der" } },
-  "boss-f": { "text": "Chefin", "forms": { "pl": "Chefinnen" }, "grammar": { "gender": "die" } },
-  "shift": { "text": "Schicht", "forms": { "pl": "Schichten" }, "grammar": { "gender": "die" } },
-  "company": { "text": "Firma", "forms": { "pl": "Firmen" }, "grammar": { "gender": "die" } },
+  "work": { "text": "Arbeit", "forms": { "pl": "die Arbeiten" }, "grammar": { "gender": "die" } },
+  "job-application": { "text": "Bewerbung", "forms": { "pl": "die Bewerbungen" }, "grammar": { "gender": "die" } },
+  "cv": { "text": "Lebenslauf", "forms": { "pl": "die Lebensläufe" }, "grammar": { "gender": "der" } },
+  "contract": { "text": "Vertrag", "forms": { "pl": "die Verträge" }, "grammar": { "gender": "der" } },
+  "salary": { "text": "Gehalt", "forms": { "pl": "die Gehälter" }, "grammar": { "gender": "das" } },
+  "colleague": { "text": "Kollege", "forms": { "pl": "die Kollegen" }, "grammar": { "gender": "der" } },
+  "colleague-f": { "text": "Kollegin", "forms": { "pl": "die Kolleginnen" }, "grammar": { "gender": "die" } },
+  "boss": { "text": "Chef", "forms": { "pl": "die Chefs" }, "grammar": { "gender": "der" } },
+  "boss-f": { "text": "Chefin", "forms": { "pl": "die Chefinnen" }, "grammar": { "gender": "die" } },
+  "shift": { "text": "Schicht", "forms": { "pl": "die Schichten" }, "grammar": { "gender": "die" } },
+  "company": { "text": "Firma", "forms": { "pl": "die Firmen" }, "grammar": { "gender": "die" } },
   "to-apply": {
    "text": "sich um den Job bewerben",
    "accepts": ["sich bewerben", "sich um eine Stelle bewerben"]
@@ -31,25 +31,25 @@
    }
   },
   "to-work-overtime": { "text": "Überstunden machen" },
-  "profession": { "text": "Beruf", "forms": { "pl": "Berufe" }, "grammar": { "gender": "der" } },
+  "profession": { "text": "Beruf", "forms": { "pl": "die Berufe" }, "grammar": { "gender": "der" } },
   "interview": {
    "text": "Vorstellungsgespräch",
-   "forms": { "pl": "Vorstellungsgespräche" },
+   "forms": { "pl": "die Vorstellungsgespräche" },
    "grammar": { "gender": "das" }
   },
-  "working-hours": { "text": "Arbeitszeit", "forms": { "pl": "Arbeitszeiten" }, "grammar": { "gender": "die" } },
+  "working-hours": { "text": "Arbeitszeit", "forms": { "pl": "die Arbeitszeiten" }, "grammar": { "gender": "die" } },
   "full-time": { "text": "Vollzeit", "grammar": { "gender": "die" } },
   "part-time": { "text": "Teilzeit", "grammar": { "gender": "die" } },
-  "tax": { "text": "Steuer", "forms": { "pl": "Steuern" }, "grammar": { "gender": "die" } },
+  "tax": { "text": "Steuer", "forms": { "pl": "die Steuern" }, "grammar": { "gender": "die" } },
   "work-permit": {
    "text": "Arbeitserlaubnis",
-   "forms": { "pl": "Arbeitserlaubnisse" },
+   "forms": { "pl": "die Arbeitserlaubnisse" },
    "grammar": { "gender": "die" }
   },
-  "notice": { "text": "Kündigung", "forms": { "pl": "Kündigungen" }, "grammar": { "gender": "die" } },
+  "notice": { "text": "Kündigung", "forms": { "pl": "die Kündigungen" }, "grammar": { "gender": "die" } },
   "worker": { "text": "Arbeiter", "grammar": { "gender": "der", "plural": "=" } },
   "employer": { "text": "Arbeitgeber", "grammar": { "gender": "der", "plural": "=" } },
-  "customer": { "text": "Kunde", "forms": { "pl": "Kunden" }, "grammar": { "gender": "der" } },
+  "customer": { "text": "Kunde", "forms": { "pl": "die Kunden" }, "grammar": { "gender": "der" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Morgen stelle ich mich bei der Firma vor.",
    "orders": ["Ich stelle mich morgen bei der Firma vor."]
@@ -73,6 +73,6 @@
    "text": "Wir machen heute um 5 Feierabend.",
    "orders": ["Heute machen wir um 5 Feierabend.", "Um 5 machen wir heute Feierabend."]
   },
-  "workplace": { "text": "Büro", "forms": { "pl": "Büros" }, "grammar": { "gender": "das" } }
+  "workplace": { "text": "Büro", "forms": { "pl": "die Büros" }, "grammar": { "gender": "das" } }
  }
 }

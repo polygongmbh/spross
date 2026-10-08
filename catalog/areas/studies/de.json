@@ -5,20 +5,28 @@
   "university": {
    "text": "Universität",
    "accepts": ["Uni"],
-   "forms": { "pl": "Universitäten" },
+   "forms": { "pl": "die Universitäten" },
    "grammar": { "gender": "die" }
   },
-  "student": { "text": "Student", "forms": { "pl": "Studenten" }, "grammar": { "gender": "der" } },
-  "student-f": { "text": "Studentin", "forms": { "pl": "Studentinnen" }, "grammar": { "gender": "die" } },
-  "studies": { "text": "Studium", "forms": { "pl": "Studien" }, "grammar": { "gender": "das" } },
+  "student": { "text": "Student", "forms": { "pl": "die Studenten" }, "grammar": { "gender": "der" } },
+  "student-f": { "text": "Studentin", "forms": { "pl": "die Studentinnen" }, "grammar": { "gender": "die" } },
+  "studies": { "text": "Studium", "forms": { "pl": "die Studien" }, "grammar": { "gender": "das" } },
   "to-study-at-university": { "text": "an der Uni studieren", "accepts": ["studieren", "an der Universität studieren"] },
-  "lecture": { "text": "Vorlesung", "forms": { "pl": "Vorlesungen" }, "grammar": { "gender": "die" } },
-  "school-diploma": { "text": "Schulabschluss", "forms": { "pl": "Schulabschlüsse" }, "grammar": { "gender": "der" } },
-  "vocational-training": { "text": "Ausbildung", "forms": { "pl": "Ausbildungen" }, "grammar": { "gender": "die" } },
-  "vocational-school": { "text": "Berufsschule", "forms": { "pl": "Berufsschulen" }, "grammar": { "gender": "die" } },
-  "internship": { "text": "Praktikum", "forms": { "pl": "Praktika" }, "grammar": { "gender": "das" } },
-  "further-training": { "text": "Weiterbildung", "forms": { "pl": "Weiterbildungen" }, "grammar": { "gender": "die" } },
-  "counseling": { "text": "Beratung", "forms": { "pl": "Beratungen" }, "grammar": { "gender": "die" } },
+  "lecture": { "text": "Vorlesung", "forms": { "pl": "die Vorlesungen" }, "grammar": { "gender": "die" } },
+  "school-diploma": {
+   "text": "Schulabschluss",
+   "forms": { "pl": "die Schulabschlüsse" },
+   "grammar": { "gender": "der" }
+  },
+  "vocational-training": { "text": "Ausbildung", "forms": { "pl": "die Ausbildungen" }, "grammar": { "gender": "die" } },
+  "vocational-school": { "text": "Berufsschule", "forms": { "pl": "die Berufsschulen" }, "grammar": { "gender": "die" } },
+  "internship": { "text": "Praktikum", "forms": { "pl": "die Praktika" }, "grammar": { "gender": "das" } },
+  "further-training": {
+   "text": "Weiterbildung",
+   "forms": { "pl": "die Weiterbildungen" },
+   "grammar": { "gender": "die" }
+  },
+  "counseling": { "text": "Beratung", "forms": { "pl": "die Beratungen" }, "grammar": { "gender": "die" } },
   "skills": { "text": "Kenntnisse", "grammar": { "gender": "die", "plural": "only" } },
   "to-finish-training": { "text": "die Ausbildung abschließen" },
   "she-completed-her-training-in-2015": {

@@ -43,13 +43,13 @@
   "grandmother": {
    "text": "grand-mère",
    "accepts": ["mamie"],
-   "forms": { "pl": "grands-mères" },
+   "forms": { "pl": "les grands-mères" },
    "grammar": { "gender": "la" }
   },
   "grandfather": {
    "text": "grand-père",
    "accepts": ["papi"],
-   "forms": { "pl": "grands-pères" },
+   "forms": { "pl": "les grands-pères" },
    "grammar": { "gender": "le" }
   },
   "husband": { "text": "mari", "teaches": ["époux"], "grammar": { "gender": "le" } },

@@ -2,25 +2,29 @@
  "title": "Urlaub",
  "subtitle": "Koffer packen und los.",
  "words": {
-  "beach": { "text": "Strand", "forms": { "pl": "Strände" }, "grammar": { "gender": "der" } },
+  "beach": { "text": "Strand", "forms": { "pl": "die Strände" }, "grammar": { "gender": "der" } },
   "to-sunbathe": { "text": "sich sonnen" },
-  "hotel": { "text": "Hotel", "forms": { "pl": "Hotels" }, "grammar": { "gender": "das" } },
+  "hotel": { "text": "Hotel", "forms": { "pl": "die Hotels" }, "grammar": { "gender": "das" } },
   "luggage": { "text": "Gepäck", "grammar": { "gender": "das" } },
   "to-travel": { "text": "reisen" },
-  "journey": { "text": "Reise", "forms": { "pl": "Reisen" }, "grammar": { "gender": "die" } },
-  "vacation": { "text": "Urlaub", "forms": { "pl": "Urlaube" }, "grammar": { "gender": "der" } },
-  "overnight-stay": { "text": "Übernachtung", "forms": { "pl": "Übernachtungen" }, "grammar": { "gender": "die" } },
+  "journey": { "text": "Reise", "forms": { "pl": "die Reisen" }, "grammar": { "gender": "die" } },
+  "vacation": { "text": "Urlaub", "forms": { "pl": "die Urlaube" }, "grammar": { "gender": "der" } },
+  "overnight-stay": {
+   "text": "Übernachtung",
+   "forms": { "pl": "die Übernachtungen" },
+   "grammar": { "gender": "die" }
+  },
   "to-book-a-room": { "text": "ein Zimmer buchen" },
-  "tourist": { "text": "Tourist", "forms": { "pl": "Touristen" }, "grammar": { "gender": "der" } },
+  "tourist": { "text": "Tourist", "forms": { "pl": "die Touristen" }, "grammar": { "gender": "der" } },
   "souvenir": {
    "text": "Souvenir",
    "teaches": ["Andenken"],
-   "forms": { "pl": "Souvenirs" },
+   "forms": { "pl": "die Souvenirs" },
    "grammar": { "gender": "das" }
   },
-  "sunscreen": { "text": "Sonnencreme", "forms": { "pl": "Sonnencremes" }, "grammar": { "gender": "die" } },
+  "sunscreen": { "text": "Sonnencreme", "forms": { "pl": "die Sonnencremes" }, "grammar": { "gender": "die" } },
   "to-pack": { "text": "packen" },
-  "campsite": { "text": "Campingplatz", "forms": { "pl": "Campingplätze" }, "grammar": { "gender": "der" } },
+  "campsite": { "text": "Campingplatz", "forms": { "pl": "die Campingplätze" }, "grammar": { "gender": "der" } },
   "lets-go-to-the-beach": {
    "text": "Gehen wir an den Strand!",
    "accepts": ["Lass uns an den Strand gehen!"],

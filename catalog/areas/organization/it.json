@@ -7,7 +7,7 @@
   "opening-hours": {
    "text": "orario di apertura",
    "accepts": ["l'orario di apertura", "orario"],
-   "forms": { "pl": "orari di apertura" },
+   "forms": { "pl": "gli orari di apertura" },
    "grammar": { "gender": "l'" },
    "notes": {
     "it": "di solito al singolare: l'orario di apertura · spesso solo l'orario.",

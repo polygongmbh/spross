@@ -3,7 +3,7 @@
  "subtitle": "C'è sempre movimento.",
  "words": {
   "street": { "text": "strada", "grammar": { "gender": "la" } },
-  "park": { "text": "parco", "forms": { "pl": "parchi" }, "grammar": { "gender": "il" } },
+  "park": { "text": "parco", "forms": { "pl": "i parchi" }, "grammar": { "gender": "il" } },
   "city": { "text": "città", "grammar": { "gender": "la", "plural": "=" } },
   "village": {
    "text": "paese",
@@ -14,10 +14,10 @@
   "building": {
    "text": "edificio",
    "accepts": ["l'edificio"],
-   "forms": { "pl": "edifici" },
+   "forms": { "pl": "gli edifici" },
    "grammar": { "gender": "l'" }
   },
-  "bank": { "text": "banca", "forms": { "pl": "banche" }, "grammar": { "gender": "la" } },
+  "bank": { "text": "banca", "forms": { "pl": "le banche" }, "grammar": { "gender": "la" } },
   "post-office": {
    "text": "posta",
    "teaches": ["ufficio postale"],
@@ -26,7 +26,7 @@
   },
   "church": { "text": "chiesa", "grammar": { "gender": "la" } },
   "mosque": { "text": "moschea", "grammar": { "gender": "la" } },
-  "library": { "text": "biblioteca", "forms": { "pl": "biblioteche" }, "grammar": { "gender": "la" } },
+  "library": { "text": "biblioteca", "forms": { "pl": "le biblioteche" }, "grammar": { "gender": "la" } },
   "police": { "text": "polizia", "grammar": { "gender": "la" } },
   "cinema": { "text": "cinema", "grammar": { "gender": "il", "plural": "=" } },
   "bridge": { "text": "ponte", "grammar": { "gender": "il" } },

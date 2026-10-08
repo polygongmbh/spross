@@ -17,11 +17,11 @@
   "lightweight": { "text": "leicht", "notes": { "de": "ein leichter Tisch · eine leichte Frage = einfach." } },
   "difficult": { "text": "schwierig" },
   "easy": { "text": "einfach" },
-  "problem": { "text": "Problem", "forms": { "pl": "Probleme" }, "grammar": { "gender": "das" } },
+  "problem": { "text": "Problem", "forms": { "pl": "die Probleme" }, "grammar": { "gender": "das" } },
   "to-solve": { "text": "lösen" },
   "challenge": {
    "text": "Herausforderung",
-   "forms": { "pl": "Herausforderungen" },
+   "forms": { "pl": "die Herausforderungen" },
    "grammar": { "gender": "die" }
   },
   "clean-adj": { "text": "sauber" },

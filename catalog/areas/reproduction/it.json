@@ -2,8 +2,8 @@
  "title": "Gli organi sessuali",
  "subtitle": "Le parole che si dicono dal medico.",
  "words": {
-  "penis": { "text": "pene", "forms": { "pl": "peni" }, "grammar": { "gender": "il" } },
-  "vagina": { "text": "vagina", "forms": { "pl": "vagine" }, "grammar": { "gender": "la" } },
-  "testicle": { "text": "testicolo", "forms": { "pl": "testicoli" }, "grammar": { "gender": "il" } }
+  "penis": { "text": "pene", "forms": { "pl": "i peni" }, "grammar": { "gender": "il" } },
+  "vagina": { "text": "vagina", "forms": { "pl": "le vagine" }, "grammar": { "gender": "la" } },
+  "testicle": { "text": "testicolo", "forms": { "pl": "i testicoli" }, "grammar": { "gender": "il" } }
  }
 }

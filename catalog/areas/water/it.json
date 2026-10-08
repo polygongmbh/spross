@@ -4,9 +4,9 @@
  "words": {
   "sea": { "text": "mare", "grammar": { "gender": "il" } },
   "river": { "text": "fiume", "grammar": { "gender": "il" } },
-  "lake": { "text": "lago", "forms": { "pl": "laghi" }, "grammar": { "gender": "il" } },
+  "lake": { "text": "lago", "forms": { "pl": "i laghi" }, "grammar": { "gender": "il" } },
   "ship": { "text": "nave", "grammar": { "gender": "la" } },
-  "boat": { "text": "barca", "forms": { "pl": "barche" }, "grammar": { "gender": "la" } },
+  "boat": { "text": "barca", "forms": { "pl": "le barche" }, "grammar": { "gender": "la" } },
   "port": { "text": "porto", "grammar": { "gender": "il" } },
   "island": { "text": "isola", "accepts": ["l'isola"], "grammar": { "gender": "l'" } },
   "coast": { "text": "costa", "grammar": { "gender": "la" } },

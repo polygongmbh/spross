@@ -65,7 +65,7 @@
   "easy": { "text": "facile" },
   "problem": { "text": "problème", "grammar": { "gender": "le" } },
   "to-solve": { "text": "résoudre" },
-  "challenge": { "text": "défi", "forms": { "pl": "défis" }, "grammar": { "gender": "le" } },
+  "challenge": { "text": "défi", "forms": { "pl": "les défis" }, "grammar": { "gender": "le" } },
   "clean-adj": { "text": "propre", "notes": { "fr": "une chambre propre · ma propre chambre = à moi." } },
   "sharp": {
    "text": "tranchant",

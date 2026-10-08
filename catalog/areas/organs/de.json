@@ -2,48 +2,48 @@
  "title": "Organe",
  "subtitle": "Was innen liegt und beim Arzt zur Sprache kommt.",
  "words": {
-  "lung": { "text": "Lunge", "forms": { "pl": "Lungen" }, "grammar": { "gender": "die" } },
-  "liver": { "text": "Leber", "forms": { "pl": "Lebern" }, "grammar": { "gender": "die" } },
-  "kidney": { "text": "Niere", "forms": { "pl": "Nieren" }, "grammar": { "gender": "die" } },
-  "intestine": { "text": "Darm", "forms": { "pl": "Därme" }, "grammar": { "gender": "der" } },
+  "lung": { "text": "Lunge", "forms": { "pl": "die Lungen" }, "grammar": { "gender": "die" } },
+  "liver": { "text": "Leber", "forms": { "pl": "die Lebern" }, "grammar": { "gender": "die" } },
+  "kidney": { "text": "Niere", "forms": { "pl": "die Nieren" }, "grammar": { "gender": "die" } },
+  "intestine": { "text": "Darm", "forms": { "pl": "die Därme" }, "grammar": { "gender": "der" } },
   "bladder": {
    "text": "Blase",
-   "forms": { "pl": "Blasen" },
+   "forms": { "pl": "die Blasen" },
    "grammar": { "gender": "die" },
    "notes": { "de": "Blase ist auch die am Fuß und die im Wasser." }
   },
-  "nerve": { "text": "Nerv", "forms": { "pl": "Nerven" }, "grammar": { "gender": "der" } },
+  "nerve": { "text": "Nerv", "forms": { "pl": "die Nerven" }, "grammar": { "gender": "der" } },
   "vein": {
    "text": "Vene",
    "teaches": ["Ader"],
-   "forms": { "pl": "Venen" },
+   "forms": { "pl": "die Venen" },
    "grammar": { "gender": "die" }
   },
-  "thyroid": { "text": "Schilddrüse", "forms": { "pl": "Schilddrüsen" }, "grammar": { "gender": "die" } },
+  "thyroid": { "text": "Schilddrüse", "forms": { "pl": "die Schilddrüsen" }, "grammar": { "gender": "die" } },
   "to-breathe": { "text": "atmen" },
-  "stomach-organ": { "text": "Magen", "forms": { "pl": "Mägen" }, "grammar": { "gender": "der" } },
+  "stomach-organ": { "text": "Magen", "forms": { "pl": "die Mägen" }, "grammar": { "gender": "der" } },
   "artery": {
    "text": "Arterie",
    "teaches": ["Schlagader"],
-   "forms": { "pl": "Arterien" },
+   "forms": { "pl": "die Arterien" },
    "grammar": { "gender": "die" }
   },
-  "joint": { "text": "Gelenk", "forms": { "pl": "Gelenke" }, "grammar": { "gender": "das" } },
-  "gland": { "text": "Drüse", "forms": { "pl": "Drüsen" }, "grammar": { "gender": "die" } },
-  "spleen": { "text": "Milz", "forms": { "pl": "Milzen" }, "grammar": { "gender": "die" } },
+  "joint": { "text": "Gelenk", "forms": { "pl": "die Gelenke" }, "grammar": { "gender": "das" } },
+  "gland": { "text": "Drüse", "forms": { "pl": "die Drüsen" }, "grammar": { "gender": "die" } },
+  "spleen": { "text": "Milz", "forms": { "pl": "die Milzen" }, "grammar": { "gender": "die" } },
   "bile": {
    "text": "Galle",
    "grammar": { "gender": "die" },
    "notes": { "de": "Galle heißt auch kurz die Gallenblase: Ich habe Gallensteine." }
   },
-  "appendix": { "text": "Blinddarm", "forms": { "pl": "Blinddärme" }, "grammar": { "gender": "der" } },
-  "womb": { "text": "Gebärmutter", "forms": { "pl": "Gebärmütter" }, "grammar": { "gender": "die" } },
+  "appendix": { "text": "Blinddarm", "forms": { "pl": "die Blinddärme" }, "grammar": { "gender": "der" } },
+  "womb": { "text": "Gebärmutter", "forms": { "pl": "die Gebärmütter" }, "grammar": { "gender": "die" } },
   "pancreas": {
    "text": "Bauchspeicheldrüse",
-   "forms": { "pl": "Bauchspeicheldrüsen" },
+   "forms": { "pl": "die Bauchspeicheldrüsen" },
    "grammar": { "gender": "die" }
   },
-  "ovary": { "text": "Eierstock", "forms": { "pl": "Eierstöcke" }, "grammar": { "gender": "der" } },
-  "tendon": { "text": "Sehne", "forms": { "pl": "Sehnen" }, "grammar": { "gender": "die" } }
+  "ovary": { "text": "Eierstock", "forms": { "pl": "die Eierstöcke" }, "grammar": { "gender": "der" } },
+  "tendon": { "text": "Sehne", "forms": { "pl": "die Sehnen" }, "grammar": { "gender": "die" } }
  }
 }

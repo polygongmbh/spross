@@ -4,7 +4,7 @@
  "words": {
   "washing-machine": {
    "text": "machine à laver",
-   "forms": { "pl": "machines à laver" },
+   "forms": { "pl": "les machines à laver" },
    "grammar": { "gender": "la" }
   },
   "laundry": {
@@ -25,7 +25,11 @@
    "notes": { "fr": "le lavabo est dans la salle de bains, l'évier dans la cuisine." }
   },
   "mirror": { "text": "miroir", "grammar": { "gender": "le" } },
-  "toothbrush": { "text": "brosse à dents", "forms": { "pl": "brosses à dents" }, "grammar": { "gender": "la" } },
+  "toothbrush": {
+   "text": "brosse à dents",
+   "forms": { "pl": "les brosses à dents" },
+   "grammar": { "gender": "la" }
+  },
   "toothpaste": { "text": "dentifrice", "grammar": { "gender": "le" } },
   "towel": {
    "text": "serviette",
@@ -52,7 +56,7 @@
   "cream": { "text": "crème", "grammar": { "gender": "la" } },
   "faucet": { "text": "robinet", "grammar": { "gender": "le" } },
   "trash-can": { "text": "poubelle", "grammar": { "gender": "la" } },
-  "bucket": { "text": "seau", "forms": { "pl": "seaux" }, "grammar": { "gender": "le" } },
+  "bucket": { "text": "seau", "forms": { "pl": "les seaux" }, "grammar": { "gender": "le" } },
   "im-taking-a-quick-shower": {
    "text": "Je vais vite me doucher.",
    "accepts": ["Je vais me doucher rapidement.", "Je vais prendre une douche rapide."],

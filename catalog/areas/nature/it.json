@@ -12,7 +12,7 @@
   "forest": {
    "text": "bosco",
    "accepts": ["foresta"],
-   "forms": { "pl": "boschi" },
+   "forms": { "pl": "i boschi" },
    "grammar": { "gender": "il" }
   },
   "stone": { "text": "pietra", "accepts": ["sasso"], "grammar": { "gender": "la" } },

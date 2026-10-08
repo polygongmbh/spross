@@ -42,7 +42,7 @@
   "hospital": {
    "text": "hôpital",
    "accepts": ["l'hôpital"],
-   "forms": { "pl": "hôpitaux" },
+   "forms": { "pl": "les hôpitaux" },
    "grammar": { "gender": "l'" }
   },
   "emergency": {
@@ -54,7 +54,7 @@
   "doctors-note": {
    "text": "arrêt de travail",
    "accepts": ["l'arrêt de travail", "arrêt maladie"],
-   "forms": { "pl": "arrêts de travail" },
+   "forms": { "pl": "les arrêts de travail" },
    "grammar": { "gender": "l'" },
    "notes": { "fr": "le médecin donne un arrêt de travail : on est en arrêt maladie." }
   },

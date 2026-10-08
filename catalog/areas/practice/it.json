@@ -7,7 +7,7 @@
   "goal": {
    "text": "obiettivo",
    "accepts": ["l'obiettivo"],
-   "forms": { "pl": "obiettivi" },
+   "forms": { "pl": "gli obiettivi" },
    "grammar": { "gender": "l'" }
   },
   "to-achieve": { "text": "raggiungere" },

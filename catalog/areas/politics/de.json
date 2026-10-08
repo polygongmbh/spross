@@ -2,12 +2,12 @@
  "title": "Politik",
  "subtitle": "Wer regiert und worüber gestritten wird.",
  "words": {
-  "war": { "text": "Krieg", "forms": { "pl": "Kriege" }, "grammar": { "gender": "der" } },
+  "war": { "text": "Krieg", "forms": { "pl": "die Kriege" }, "grammar": { "gender": "der" } },
   "peace": { "text": "Frieden", "grammar": { "gender": "der" } },
-  "freedom": { "text": "Freiheit", "forms": { "pl": "Freiheiten" }, "grammar": { "gender": "die" } },
-  "government": { "text": "Regierung", "forms": { "pl": "Regierungen" }, "grammar": { "gender": "die" } },
-  "election": { "text": "Wahl", "forms": { "pl": "Wahlen" }, "grammar": { "gender": "die" } },
+  "freedom": { "text": "Freiheit", "forms": { "pl": "die Freiheiten" }, "grammar": { "gender": "die" } },
+  "government": { "text": "Regierung", "forms": { "pl": "die Regierungen" }, "grammar": { "gender": "die" } },
+  "election": { "text": "Wahl", "forms": { "pl": "die Wahlen" }, "grammar": { "gender": "die" } },
   "to-vote": { "text": "wählen", "notes": { "de": "wählen heißt auch aussuchen und eine Nummer wählen." } },
-  "border": { "text": "Grenze", "forms": { "pl": "Grenzen" }, "grammar": { "gender": "die" } }
+  "border": { "text": "Grenze", "forms": { "pl": "die Grenzen" }, "grammar": { "gender": "die" } }
  }
 }

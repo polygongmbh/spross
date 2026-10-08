@@ -67,7 +67,7 @@
   "calendar": {
    "text": "calendario",
    "teaches": ["agenda"],
-   "forms": { "pl": "calendari" },
+   "forms": { "pl": "i calendari" },
    "grammar": { "gender": "il" },
    "notes": { "it": "il calendario sta al muro · l'agenda porta gli appuntamenti." }
   },

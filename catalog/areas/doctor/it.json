@@ -12,7 +12,7 @@
    "text": "ambulatorio",
    "teaches": ["studio medico"],
    "accepts": ["l'ambulatorio"],
-   "forms": { "pl": "ambulatori" },
+   "forms": { "pl": "gli ambulatori" },
    "grammar": { "gender": "l'" },
    "notes": { "it": "l'ambulatorio è del medico di base · lo studio medico è privato." }
   },
@@ -82,7 +82,7 @@
   "dentist": {
    "text": "dentista",
    "accepts": ["odontoiatra"],
-   "forms": { "pl": "dentisti" },
+   "forms": { "pl": "i dentisti" },
    "grammar": { "gender": "il" },
    "notes": { "it": "il dentista, la dentista: cambia solo l'articolo." }
   },

@@ -4,10 +4,10 @@
   "to-practice": { "text": "üben" },
   "to-try": { "text": "versuchen" },
   "to-study": { "text": "lernen" },
-  "goal": { "text": "Ziel", "forms": { "pl": "Ziele" }, "grammar": { "gender": "das" } },
+  "goal": { "text": "Ziel", "forms": { "pl": "die Ziele" }, "grammar": { "gender": "das" } },
   "to-achieve": { "text": "erreichen" },
-  "exercise": { "text": "Übung", "forms": { "pl": "Übungen" }, "grammar": { "gender": "die" } },
-  "training": { "text": "Training", "forms": { "pl": "Trainings" }, "grammar": { "gender": "das" } },
+  "exercise": { "text": "Übung", "forms": { "pl": "die Übungen" }, "grammar": { "gender": "die" } },
+  "training": { "text": "Training", "forms": { "pl": "die Trainings" }, "grammar": { "gender": "das" } },
   "you-can-do-it": { "text": "Du schaffst das bestimmt!", "orders": ["Bestimmt schaffst du das!"] }
  }
 }

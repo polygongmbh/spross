@@ -2,18 +2,18 @@
  "title": "Vacanze",
  "subtitle": "Tempo di vacanze.",
  "words": {
-  "beach": { "text": "spiaggia", "forms": { "pl": "spiagge" }, "grammar": { "gender": "la" } },
+  "beach": { "text": "spiaggia", "forms": { "pl": "le spiagge" }, "grammar": { "gender": "la" } },
   "to-sunbathe": { "text": "prendere il sole", "accepts": ["abbronzarsi"] },
   "hotel": {
    "text": "albergo",
    "teaches": ["hotel"],
    "accepts": ["l'albergo", "l'hotel"],
-   "forms": { "pl": "alberghi" },
+   "forms": { "pl": "gli alberghi" },
    "grammar": { "gender": "l'" }
   },
-  "luggage": { "text": "bagaglio", "forms": { "pl": "bagagli" }, "grammar": { "gender": "il" } },
+  "luggage": { "text": "bagaglio", "forms": { "pl": "i bagagli" }, "grammar": { "gender": "il" } },
   "to-travel": { "text": "viaggiare" },
-  "journey": { "text": "viaggio", "forms": { "pl": "viaggi" }, "grammar": { "gender": "il" } },
+  "journey": { "text": "viaggio", "forms": { "pl": "i viaggi" }, "grammar": { "gender": "il" } },
   "vacation": {
    "text": "ferie",
    "teaches": ["vacanze"],

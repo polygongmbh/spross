@@ -31,7 +31,7 @@
   },
   "noon": { "text": "mezzogiorno", "grammar": { "gender": "il" } },
   "midnight": { "text": "mezzanotte", "grammar": { "gender": "la" } },
-  "afternoon": { "text": "pomeriggio", "forms": { "pl": "pomeriggi" }, "grammar": { "gender": "il" } },
+  "afternoon": { "text": "pomeriggio", "forms": { "pl": "i pomeriggi" }, "grammar": { "gender": "il" } },
   "morning": { "text": "mattina", "accepts": ["mattino"], "grammar": { "gender": "la" } },
   "evening": { "text": "sera", "grammar": { "gender": "la" } },
   "night": { "text": "notte", "grammar": { "gender": "la" } },

@@ -21,7 +21,7 @@
   "pot": { "text": "pentola", "accepts": ["casseruola"], "grammar": { "gender": "la" } },
   "pan": { "text": "padella", "grammar": { "gender": "la" } },
   "knife": { "text": "coltello", "grammar": { "gender": "il" } },
-  "spoon": { "text": "cucchiaio", "forms": { "pl": "cucchiai" }, "grammar": { "gender": "il" } },
+  "spoon": { "text": "cucchiaio", "forms": { "pl": "i cucchiai" }, "grammar": { "gender": "il" } },
   "fork": { "text": "forchetta", "grammar": { "gender": "la" } },
   "plate": { "text": "piatto", "grammar": { "gender": "il" } },
   "to-cook": { "text": "cucinare", "notes": { "it": "si cucina il pranzo · l'acqua si fa bollire." } },

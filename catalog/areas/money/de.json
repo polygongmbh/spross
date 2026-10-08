@@ -2,7 +2,7 @@
  "title": "Geld und Preise",
  "subtitle": "Was etwas kostet und wie man es bezahlt.",
  "words": {
-  "price": { "text": "Preis", "forms": { "pl": "Preise" }, "grammar": { "gender": "der" } },
+  "price": { "text": "Preis", "forms": { "pl": "die Preise" }, "grammar": { "gender": "der" } },
   "to-cost": { "text": "kosten" },
   "expensive": { "text": "teuer" },
   "cheap": {
@@ -15,10 +15,10 @@
   "bank-card": {
    "text": "Bankkarte",
    "accepts": ["Karte", "EC-Karte"],
-   "forms": { "pl": "Bankkarten" },
+   "forms": { "pl": "die Bankkarten" },
    "grammar": { "gender": "die" }
   },
-  "coin": { "text": "Münze", "forms": { "pl": "Münzen" }, "grammar": { "gender": "die" } },
+  "coin": { "text": "Münze", "forms": { "pl": "die Münzen" }, "grammar": { "gender": "die" } },
   "change-money": {
    "text": "Wechselgeld",
    "grammar": { "gender": "das" },

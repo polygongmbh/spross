@@ -8,7 +8,7 @@
   "death": { "text": "Tod", "grammar": { "gender": "der" } },
   "to-die": { "text": "sterben" },
   "to-be-born": { "text": "geboren werden" },
-  "childhood": { "text": "Kindheit", "forms": { "pl": "Kindheiten" }, "grammar": { "gender": "die" } },
+  "childhood": { "text": "Kindheit", "forms": { "pl": "die Kindheiten" }, "grammar": { "gender": "die" } },
   "youth": { "text": "Jugend", "grammar": { "gender": "die" } },
   "to-grow-up": { "text": "aufwachsen" },
   "to-get-old": { "text": "alt werden" },
@@ -16,11 +16,11 @@
   "funeral": {
    "text": "Beerdigung",
    "accepts": ["Begräbnis"],
-   "forms": { "pl": "Beerdigungen" },
+   "forms": { "pl": "die Beerdigungen" },
    "grammar": { "gender": "die" }
   },
-  "grave": { "text": "Grab", "forms": { "pl": "Gräber" }, "grammar": { "gender": "das" } },
-  "cemetery": { "text": "Friedhof", "forms": { "pl": "Friedhöfe" }, "grammar": { "gender": "der" } },
+  "grave": { "text": "Grab", "forms": { "pl": "die Gräber" }, "grammar": { "gender": "das" } },
+  "cemetery": { "text": "Friedhof", "forms": { "pl": "die Friedhöfe" }, "grammar": { "gender": "der" } },
   "to-bury": { "text": "begraben", "accepts": ["beerdigen"] },
   "my-condolences": { "text": "Mein herzliches Beileid." },
   "where-did-you-grow-up": { "text": "Wo seid ihr aufgewachsen?" },

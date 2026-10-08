@@ -2,21 +2,25 @@
  "title": "Beim Arzt",
  "subtitle": "Vom Termin bis zum Rezept.",
  "words": {
-  "doctor": { "text": "Arzt", "forms": { "pl": "Ärzte" }, "grammar": { "gender": "der" } },
-  "doctor-f": { "text": "Ärztin", "forms": { "pl": "Ärztinnen" }, "grammar": { "gender": "die" } },
-  "practice": { "text": "Praxis", "forms": { "pl": "Praxen" }, "grammar": { "gender": "die" } },
-  "pill": { "text": "Tablette", "forms": { "pl": "Tabletten" }, "grammar": { "gender": "die" } },
-  "prescription": { "text": "Rezept", "forms": { "pl": "Rezepte" }, "grammar": { "gender": "das" } },
-  "pharmacy": { "text": "Apotheke", "forms": { "pl": "Apotheken" }, "grammar": { "gender": "die" } },
+  "doctor": { "text": "Arzt", "forms": { "pl": "die Ärzte" }, "grammar": { "gender": "der" } },
+  "doctor-f": { "text": "Ärztin", "forms": { "pl": "die Ärztinnen" }, "grammar": { "gender": "die" } },
+  "practice": { "text": "Praxis", "forms": { "pl": "die Praxen" }, "grammar": { "gender": "die" } },
+  "pill": { "text": "Tablette", "forms": { "pl": "die Tabletten" }, "grammar": { "gender": "die" } },
+  "prescription": { "text": "Rezept", "forms": { "pl": "die Rezepte" }, "grammar": { "gender": "das" } },
+  "pharmacy": { "text": "Apotheke", "forms": { "pl": "die Apotheken" }, "grammar": { "gender": "die" } },
   "insurance-card": {
    "text": "Versichertenkarte",
-   "forms": { "pl": "Versichertenkarten" },
+   "forms": { "pl": "die Versichertenkarten" },
    "grammar": { "gender": "die" }
   },
-  "health-insurance": { "text": "Krankenkasse", "forms": { "pl": "Krankenkassen" }, "grammar": { "gender": "die" } },
-  "hospital": { "text": "Krankenhaus", "forms": { "pl": "Krankenhäuser" }, "grammar": { "gender": "das" } },
-  "emergency": { "text": "Notfall", "forms": { "pl": "Notfälle" }, "grammar": { "gender": "der" } },
-  "doctors-note": { "text": "Krankmeldung", "forms": { "pl": "Krankmeldungen" }, "grammar": { "gender": "die" } },
+  "health-insurance": { "text": "Krankenkasse", "forms": { "pl": "die Krankenkassen" }, "grammar": { "gender": "die" } },
+  "hospital": { "text": "Krankenhaus", "forms": { "pl": "die Krankenhäuser" }, "grammar": { "gender": "das" } },
+  "emergency": { "text": "Notfall", "forms": { "pl": "die Notfälle" }, "grammar": { "gender": "der" } },
+  "doctors-note": {
+   "text": "Krankmeldung",
+   "forms": { "pl": "die Krankmeldungen" },
+   "grammar": { "gender": "die" }
+  },
   "to-examine": { "text": "untersuchen" },
   "to-prescribe-medicine": { "text": "Medikamente verschreiben" },
   "to-take-medicine": { "text": "Medikamente einnehmen" },
@@ -24,18 +28,18 @@
   "medicine": {
    "text": "Medikament",
    "accepts": ["Arzneimittel"],
-   "forms": { "pl": "Medikamente" },
+   "forms": { "pl": "die Medikamente" },
    "grammar": { "gender": "das" }
   },
   "nurse": { "text": "Krankenpfleger", "grammar": { "gender": "der", "plural": "=" } },
   "nurse-f": {
    "text": "Krankenpflegerin",
    "teaches": ["Krankenschwester"],
-   "forms": { "pl": "Krankenpflegerinnen" },
+   "forms": { "pl": "die Krankenpflegerinnen" },
    "grammar": { "gender": "die" }
   },
-  "dentist": { "text": "Zahnarzt", "forms": { "pl": "Zahnärzte" }, "grammar": { "gender": "der" } },
-  "vaccination": { "text": "Impfung", "forms": { "pl": "Impfungen" }, "grammar": { "gender": "die" } },
+  "dentist": { "text": "Zahnarzt", "forms": { "pl": "die Zahnärzte" }, "grammar": { "gender": "der" } },
+  "vaccination": { "text": "Impfung", "forms": { "pl": "die Impfungen" }, "grammar": { "gender": "die" } },
   "ambulance": {
    "text": "Krankenwagen",
    "accepts": ["Rettungswagen"],

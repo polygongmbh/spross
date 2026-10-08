@@ -14,7 +14,7 @@
   "classroom": {
    "text": "salle de classe",
    "accepts": ["salle de cours"],
-   "forms": { "pl": "salles de classe" },
+   "forms": { "pl": "les salles de classe" },
    "grammar": { "gender": "la" }
   },
   "teacher": {
@@ -33,7 +33,7 @@
   "board": {
    "text": "tableau",
    "accepts": ["tableau noir", "tableau blanc"],
-   "forms": { "pl": "tableaux" },
+   "forms": { "pl": "les tableaux" },
    "grammar": { "gender": "le" }
   },
   "exercise-book": { "text": "cahier", "grammar": { "gender": "le" } },
@@ -83,7 +83,7 @@
   "class-schedule": {
    "text": "emploi du temps",
    "accepts": ["l'emploi du temps"],
-   "forms": { "pl": "emplois du temps" },
+   "forms": { "pl": "les emplois du temps" },
    "grammar": { "gender": "l'" }
   },
   "to-count": { "text": "compter" },

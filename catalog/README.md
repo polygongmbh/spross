@@ -186,7 +186,7 @@ and always through `../scripts/catalog-rename-slugs.py`, which carries every ref
 ```json
 { "title": "Die Küche", "subtitle": "Hier duftet es nach Abendessen.",
   "words": {
-    "fridge": { "text": "Kühlschrank", "forms": { "pl": "Kühlschränke" }, "grammar": { "gender": "der" } },
+    "fridge": { "text": "Kühlschrank", "forms": { "pl": "die Kühlschränke" }, "grammar": { "gender": "der" } },
     "to-cook": { "text": "kochen" },
     "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." } } }
 ```
@@ -236,8 +236,9 @@ Realization fields — only `text` is required:
   gender `m`/`f`/`n`, number `pl`, case `nom`/`gen`/`dat`/`acc`/`ins`/`loc`/`voc`, Swahili class `1`–`18`;
   a dimension it leaves out is `text`'s value on it.
   `text` stays the citation form and carries no tag.
-  A form is written bare where `text`'s article fits it or none applies (the plural `Kühlschränke`),
-  and with its own article where it takes another (`"f": "die Lehrerin"`), which grading then reads back.
+  A noun's form carries its own article in every language that writes one,
+  just as `grammar.gender` gives `text`'s (`"pl": "die Kühlschränke"`, `"f": "die Lehrerin"`),
+  and grading reads it back; a language without articles writes the form bare.
   **The plural is `pl`**, and how much to author is per language — the test is always the same:
   write it down when the learner could not derive it.
   de and sw author every countable noun — German plurals are unpredictable by class,

@@ -6,7 +6,7 @@
    "text": "ufficio pubblico",
    "teaches": ["pubblica amministrazione"],
    "accepts": ["l'ufficio pubblico"],
-   "forms": { "pl": "uffici pubblici" },
+   "forms": { "pl": "gli uffici pubblici" },
    "grammar": { "gender": "l'" },
    "notes": { "it": "il comune, l'anagrafe, la questura: ogni ufficio ha il suo nome." }
   },
@@ -19,7 +19,7 @@
   "id-card": {
    "text": "carta d'identità",
    "accepts": ["carta di identità"],
-   "forms": { "pl": "carte d'identità" },
+   "forms": { "pl": "le carte d'identità" },
    "grammar": { "gender": "la" },
    "notes": { "it": "la carta d'identità è di tutti · gli stranieri hanno il permesso di soggiorno." }
   },
@@ -93,7 +93,7 @@
   "office-hours": {
    "text": "orario di ricevimento",
    "accepts": ["l'orario di ricevimento", "orario di ricevimento al pubblico"],
-   "forms": { "pl": "orari di ricevimento" },
+   "forms": { "pl": "gli orari di ricevimento" },
    "grammar": { "gender": "l'" },
    "notes": { "it": "di ricevimento = quando ricevono il pubblico · di apertura = quando è aperto." }
   },

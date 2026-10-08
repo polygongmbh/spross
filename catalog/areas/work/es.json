@@ -12,7 +12,7 @@
   "cv": {
    "text": "currículum",
    "accepts": ["currículum vítae", "currículum vitae", "CV"],
-   "forms": { "pl": "currículums" },
+   "forms": { "pl": "los currículums" },
    "grammar": { "gender": "el" }
   },
   "contract": { "text": "contrato", "grammar": { "gender": "el" } },
@@ -116,6 +116,6 @@
    "text": "Hoy salimos del trabajo a las cinco.",
    "orders": ["Salimos del trabajo a las cinco hoy."]
   },
-  "workplace": { "text": "oficina", "forms": { "pl": "oficinas" }, "grammar": { "gender": "la" } }
+  "workplace": { "text": "oficina", "forms": { "pl": "las oficinas" }, "grammar": { "gender": "la" } }
  }
 }

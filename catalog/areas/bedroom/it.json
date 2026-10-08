@@ -10,12 +10,12 @@
   "wardrobe": {
    "text": "armadio",
    "accepts": ["l'armadio"],
-   "forms": { "pl": "armadi" },
+   "forms": { "pl": "gli armadi" },
    "grammar": { "gender": "l'" }
   },
   "alarm-clock": { "text": "sveglia", "grammar": { "gender": "la" } },
   "nightstand": { "text": "comodino", "grammar": { "gender": "il" } },
-  "pajamas": { "text": "pigiama", "forms": { "pl": "pigiami" }, "grammar": { "gender": "il" } },
+  "pajamas": { "text": "pigiama", "forms": { "pl": "i pigiami" }, "grammar": { "gender": "il" } },
   "sock": { "text": "calzino", "grammar": { "gender": "il" } },
   "pants": {
    "text": "pantaloni",

@@ -18,14 +18,14 @@
    "grammar": { "gender": "il" },
    "notes": { "it": "il bambino è ogni bambino · il tuo è tuo figlio." }
   },
-  "son": { "text": "figlio", "forms": { "pl": "figli" }, "grammar": { "gender": "il" } },
+  "son": { "text": "figlio", "forms": { "pl": "i figli" }, "grammar": { "gender": "il" } },
   "daughter": { "text": "figlia", "grammar": { "gender": "la" } },
   "brother": { "text": "fratello", "grammar": { "gender": "il" } },
   "sister": { "text": "sorella", "grammar": { "gender": "la" } },
   "man": {
    "text": "uomo",
    "accepts": ["l'uomo"],
-   "forms": { "pl": "uomini" },
+   "forms": { "pl": "gli uomini" },
    "grammar": { "gender": "l'" }
   },
   "woman": { "text": "donna", "grammar": { "gender": "la" } },
@@ -40,20 +40,20 @@
   "friend": {
    "text": "amico",
    "accepts": ["l'amico"],
-   "forms": { "pl": "amici" },
+   "forms": { "pl": "gli amici" },
    "grammar": { "gender": "l'" }
   },
   "friend-f": {
    "text": "amica",
    "accepts": ["l'amica", "un'amica"],
-   "forms": { "pl": "amiche" },
+   "forms": { "pl": "le amiche" },
    "grammar": { "gender": "l'" }
   },
   "grandmother": { "text": "nonna", "grammar": { "gender": "la" } },
   "grandfather": { "text": "nonno", "grammar": { "gender": "il" } },
   "husband": { "text": "marito", "grammar": { "gender": "il" } },
-  "wife": { "text": "moglie", "forms": { "pl": "mogli" }, "grammar": { "gender": "la" } },
-  "uncle": { "text": "zio", "forms": { "pl": "zii" }, "grammar": { "gender": "lo" } },
+  "wife": { "text": "moglie", "forms": { "pl": "le mogli" }, "grammar": { "gender": "la" } },
+  "uncle": { "text": "zio", "forms": { "pl": "gli zii" }, "grammar": { "gender": "lo" } },
   "aunt": { "text": "zia", "grammar": { "gender": "la" } },
   "to-visit": { "text": "andare a trovare" },
   "to-marry": { "text": "sposarsi" },

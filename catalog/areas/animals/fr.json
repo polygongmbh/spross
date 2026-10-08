@@ -5,7 +5,7 @@
   "animal": {
    "text": "animal",
    "accepts": ["l'animal"],
-   "forms": { "pl": "animaux" },
+   "forms": { "pl": "les animaux" },
    "grammar": { "gender": "l'" }
   },
   "dog": { "text": "chien", "grammar": { "gender": "le" } },
@@ -13,14 +13,14 @@
   "bird": {
    "text": "oiseau",
    "accepts": ["l'oiseau"],
-   "forms": { "pl": "oiseaux" },
+   "forms": { "pl": "les oiseaux" },
    "grammar": { "gender": "l'" }
   },
   "cow": { "text": "vache", "grammar": { "gender": "la" } },
   "goat": { "text": "chèvre", "grammar": { "gender": "la" } },
   "sheep": { "text": "mouton", "grammar": { "gender": "le" } },
   "donkey": { "text": "âne", "accepts": ["l'âne"], "grammar": { "gender": "l'" } },
-  "horse": { "text": "cheval", "forms": { "pl": "chevaux" }, "grammar": { "gender": "le" } },
+  "horse": { "text": "cheval", "forms": { "pl": "les chevaux" }, "grammar": { "gender": "le" } },
   "elephant": { "text": "éléphant", "accepts": ["l'éléphant"], "grammar": { "gender": "l'" } },
   "monkey": { "text": "singe", "grammar": { "gender": "le" } },
   "snake": { "text": "serpent", "grammar": { "gender": "le" } },

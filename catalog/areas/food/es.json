@@ -39,7 +39,7 @@
   "bean": {
    "text": "frijol",
    "teaches": ["judía"],
-   "forms": { "pl": "frijoles" },
+   "forms": { "pl": "los frijoles" },
    "grammar": { "gender": "el" }
   },
   "garlic": { "text": "ajo", "grammar": { "gender": "el" } },

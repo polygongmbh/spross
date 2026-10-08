@@ -5,7 +5,7 @@
   "traffic-light": {
    "text": "feu",
    "accepts": ["feu rouge", "feu de signalisation"],
-   "forms": { "pl": "feux" },
+   "forms": { "pl": "les feux" },
    "grammar": { "gender": "le" }
   },
   "bicycle": { "text": "vélo", "accepts": ["bicyclette"], "grammar": { "gender": "le" } },
@@ -32,7 +32,7 @@
   "passenger": { "text": "passager", "grammar": { "gender": "le" } },
   "wheel": { "text": "roue", "grammar": { "gender": "la" } },
   "engine": { "text": "moteur", "grammar": { "gender": "le" } },
-  "rail": { "text": "rail", "forms": { "pl": "rails" }, "grammar": { "gender": "le" } },
+  "rail": { "text": "rail", "forms": { "pl": "les rails" }, "grammar": { "gender": "le" } },
   "fare": { "text": "tarif", "accepts": ["prix du billet"], "grammar": { "gender": "le" } },
   "to-get-off": { "text": "descendre", "notes": { "fr": "descendre du bus, du train · monter dans le bus." } },
   "to-get-on": { "text": "monter" },

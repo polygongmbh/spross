@@ -43,7 +43,7 @@
   "passenger": { "text": "pasajero", "grammar": { "gender": "el" } },
   "wheel": { "text": "rueda", "grammar": { "gender": "la" } },
   "engine": { "text": "motor", "grammar": { "gender": "el" } },
-  "rail": { "text": "riel", "forms": { "pl": "rieles" }, "grammar": { "gender": "el" } },
+  "rail": { "text": "riel", "forms": { "pl": "los rieles" }, "grammar": { "gender": "el" } },
   "fare": { "text": "tarifa", "grammar": { "gender": "la" } },
   "to-get-off": { "text": "bajarse", "accepts": ["bajar"], "notes": { "es": "Reflexivo: me bajo aquí." } },
   "to-get-on": { "text": "subirse", "accepts": ["subir"] },

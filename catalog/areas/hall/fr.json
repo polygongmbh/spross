@@ -15,7 +15,7 @@
   "door": { "text": "porte", "grammar": { "gender": "la" } },
   "key": { "text": "clé", "accepts": ["clef"], "grammar": { "gender": "la" } },
   "jacket": { "text": "veste", "grammar": { "gender": "la" } },
-  "coat": { "text": "manteau", "forms": { "pl": "manteaux" }, "grammar": { "gender": "le" } },
+  "coat": { "text": "manteau", "forms": { "pl": "les manteaux" }, "grammar": { "gender": "le" } },
   "umbrella": { "text": "parapluie", "grammar": { "gender": "le" } },
   "hat": {
    "text": "bonnet",
@@ -28,7 +28,7 @@
   },
   "mailbox": {
    "text": "boîte aux lettres",
-   "forms": { "pl": "boîtes aux lettres" },
+   "forms": { "pl": "les boîtes aux lettres" },
    "grammar": { "gender": "la" }
   },
   "doorbell": { "text": "sonnette", "grammar": { "gender": "la" } },

@@ -11,7 +11,7 @@
   "love": {
    "text": "amore",
    "accepts": ["l'amore"],
-   "forms": { "pl": "amori" },
+   "forms": { "pl": "gli amori" },
    "grammar": { "gender": "l'" }
   },
   "shame": { "text": "vergogna", "grammar": { "gender": "la" } },

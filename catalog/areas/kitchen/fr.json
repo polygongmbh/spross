@@ -20,7 +20,7 @@
    "grammar": { "gender": "la" },
    "notes": { "fr": "la poêle pour cuire · le poêle chauffe la maison." }
   },
-  "knife": { "text": "couteau", "forms": { "pl": "couteaux" }, "grammar": { "gender": "le" } },
+  "knife": { "text": "couteau", "forms": { "pl": "les couteaux" }, "grammar": { "gender": "le" } },
   "spoon": { "text": "cuillère", "accepts": ["cuiller"], "grammar": { "gender": "la" } },
   "fork": { "text": "fourchette", "grammar": { "gender": "la" } },
   "plate": { "text": "assiette", "accepts": ["l'assiette"], "grammar": { "gender": "l'" } },
@@ -60,7 +60,7 @@
   "tin-can": {
    "text": "boîte de conserve",
    "accepts": ["conserve"],
-   "forms": { "pl": "boîtes de conserve" },
+   "forms": { "pl": "les boîtes de conserve" },
    "grammar": { "gender": "la" }
   },
   "gas": { "text": "gaz", "grammar": { "gender": "le", "plural": "=" } },

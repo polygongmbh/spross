@@ -9,11 +9,11 @@
   "egg": {
    "text": "uovo",
    "accepts": ["l'uovo"],
-   "forms": { "pl": "uova" },
+   "forms": { "pl": "le uova" },
    "grammar": { "gender": "l'" },
    "notes": { "it": "un uovo → due uova." }
   },
-  "cheese": { "text": "formaggio", "forms": { "pl": "formaggi" }, "grammar": { "gender": "il" } },
+  "cheese": { "text": "formaggio", "forms": { "pl": "i formaggi" }, "grammar": { "gender": "il" } },
   "salt": { "text": "sale", "grammar": { "gender": "il" } },
   "sugar": { "text": "zucchero", "grammar": { "gender": "lo" } },
   "rice": { "text": "riso", "grammar": { "gender": "il" } },
@@ -38,7 +38,12 @@
   "tomato": { "text": "pomodoro", "grammar": { "gender": "il" } },
   "banana": { "text": "banana", "grammar": { "gender": "la" } },
   "apple": { "text": "mela", "grammar": { "gender": "la" } },
-  "oil": { "text": "olio", "accepts": ["l'olio"], "forms": { "pl": "oli" }, "grammar": { "gender": "l'" } },
+  "oil": {
+   "text": "olio",
+   "accepts": ["l'olio"],
+   "forms": { "pl": "gli oli" },
+   "grammar": { "gender": "l'" }
+  },
   "flour": { "text": "farina", "grammar": { "gender": "la" } },
   "butter": { "text": "burro", "grammar": { "gender": "il" } },
   "soup": { "text": "zuppa", "accepts": ["minestra"], "grammar": { "gender": "la" } },
@@ -48,7 +53,7 @@
    "grammar": { "gender": "la" },
    "notes": { "it": "il sugo è quello della pasta · la salsa è tutto il resto." }
   },
-  "juice": { "text": "succo", "forms": { "pl": "succhi" }, "grammar": { "gender": "il" } },
+  "juice": { "text": "succo", "forms": { "pl": "i succhi" }, "grammar": { "gender": "il" } },
   "cooked-rice": { "text": "riso cotto", "accepts": ["riso bollito"] },
   "cassava": { "text": "manioca", "grammar": { "gender": "la" } },
   "bean": { "text": "fagiolo", "grammar": { "gender": "il" } },
