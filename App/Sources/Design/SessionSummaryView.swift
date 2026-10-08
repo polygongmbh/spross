@@ -33,8 +33,6 @@ struct SessionSummaryView: View {
     var onDone: () -> Void = {}
 
     @State private var burst = false
-    /// Bumped on every replay; ConfettiView adds a wave per value.
-    @State private var celebration = 0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     /// The ring around the popper — one sign per idea (sprout, star, hands,
@@ -83,29 +81,22 @@ struct SessionSummaryView: View {
                         // title — the area did not grow, what the learner can say did.
                         heroLabel: showsTree ? Text(verbatim: grownAreaLabel) : nil,
                         onDone: onDone, onTalk: onTalk,
-                        onPractice: canPracticeMore ? onPractice : nil) { ceiling in
-            if showsTree { grownAreaHero(ceiling: ceiling) } else { burstHero }
+                        onPractice: canPracticeMore ? onPractice : nil) { ceiling, celebration in
+            Group {
+                if showsTree { grownAreaHero(ceiling: ceiling) } else { burstHero }
+            }
+            .onChange(of: celebration) { replayBurst() }
         }
-        .overlay(ConfettiView(run: celebration).ignoresSafeArea())
-        .contentShape(Rectangle())
-        .onTapGesture(perform: replay)
-        .onAppear {
-            burst = true
-            Sound.cheer()
-        }
+        .onAppear { burst = true }
     }
 
     /// Snaps the burst back to rest with no animation, then re-triggers it
     /// on the next runloop turn so the spring actually replays.
-    private func replay() {
+    private func replayBurst() {
         var reset = Transaction()
         reset.disablesAnimations = true
         withTransaction(reset) { burst = false }
-        DispatchQueue.main.async {
-            burst = true
-            celebration += 1
-        }
-        Sound.cheer()
+        DispatchQueue.main.async { burst = true }
     }
 
     /// The area the round moved most, as it stood before this round and as it stands now.

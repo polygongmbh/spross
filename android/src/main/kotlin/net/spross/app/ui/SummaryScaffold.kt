@@ -1,6 +1,8 @@
 package net.spross.app.ui
 
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -23,9 +25,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -38,11 +46,13 @@ import net.spross.app.Chrome
  * The screen a round stops on — the session summary and a drill's pause alike, standing in
  * place of the run's whole screen with only a close button above it: a hero, one title,
  * the round's tally, a milestone line where something new was reached, an optional hint, and
- * the exit pair on the bottom edge. Each fills the slots with words; the layout, the type and
- * the ways out are this one's, so the two never drift apart (`docs/design.md` § Counts & sessions).
+ * the exit pair on the bottom edge. Each fills the slots with words; the layout, the type,
+ * the ways out and the celebration are this one's, so the two never drift apart (`docs/design.md` § Counts & sessions).
  *
- * [hero] is handed the height it may grow to — a grown tree's ceiling — and [heroLabel] names
- * what it shows; [milestone] is set off in the accent; [hint] says why stopping is the better call.
+ * [hero] is handed the height it may grow to — a grown tree's ceiling — and the replay count, which a
+ * hero with its own rise replays on; [heroLabel] names what it shows; [milestone] is set off in the
+ * accent; [hint] says why stopping is the better call. [cheer] non-null celebrates: it sounds as the
+ * screen arrives under confetti, and a tap anywhere but the buttons replays both.
  */
 @Composable
 fun SummaryScaffold(
@@ -55,6 +65,35 @@ fun SummaryScaffold(
     milestone: String? = null,
     hint: String? = null,
     heroLabel: String? = null,
+    cheer: (() -> Unit)? = null,
+    hero: @Composable ColumnScope.(ceiling: Dp, celebration: Int) -> Unit,
+) {
+    var celebration by remember { mutableIntStateOf(0) }
+    if (cheer != null) LaunchedEffect(Unit) { cheer() }
+    // why: a button consumes its own tap, so only the rest of the screen replays.
+    val replay = if (cheer == null) Modifier else Modifier.pointerInput(Unit) {
+        detectTapGestures {
+            celebration++
+            cheer()
+        }
+    }
+    Box(Modifier.fillMaxSize().then(replay)) {
+        SummaryLayout(title, chrome, onDone, onTalk, onPractice, tally, milestone, hint, heroLabel) { hero(it, celebration) }
+        if (cheer != null) Confetti(celebration)
+    }
+}
+
+@Composable
+private fun SummaryLayout(
+    title: String,
+    chrome: Chrome,
+    onDone: () -> Unit,
+    onTalk: (() -> Unit)?,
+    onPractice: (() -> Unit)?,
+    tally: String?,
+    milestone: String?,
+    hint: String?,
+    heroLabel: String?,
     hero: @Composable ColumnScope.(ceiling: Dp) -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {

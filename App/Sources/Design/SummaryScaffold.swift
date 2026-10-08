@@ -5,8 +5,8 @@ import SwiftUI
 // The screen a round stops on — the session summary and a drill's pause
 // alike: a hero, one title, the round's tally, a milestone line where
 // something new was reached, an optional hint, and the exit pair on the
-// bottom edge. Each fills the slots with words; the layout, the type and the
-// ways out are this one's, so the two never drift apart
+// bottom edge. Each fills the slots with words; the layout, the type, the
+// ways out and the celebration are this one's, so the two never drift apart
 // (`docs/design.md` § Counts & sessions).
 
 struct SummaryScaffold<Hero: View>: View {
@@ -23,10 +23,31 @@ struct SummaryScaffold<Hero: View>: View {
     var onTalk: (() -> Void)?
     /// Left out when there is nothing more to practice.
     var onPractice: (() -> Void)?
-    /// Handed the height a hero may grow to — a grown tree's ceiling.
-    @ViewBuilder let hero: (_ ceiling: CGFloat) -> Hero
+    /// Confetti and the cheer as the screen arrives, both replayed by a tap anywhere but the buttons.
+    var celebrated = true
+    /// Handed the height a hero may grow to — a grown tree's ceiling — and the
+    /// replay count, which a hero with its own burst replays on.
+    @ViewBuilder let hero: (_ ceiling: CGFloat, _ celebration: Int) -> Hero
+
+    /// Bumped on every replay; ConfettiView adds a wave per value.
+    @State private var celebration = 0
 
     var body: some View {
+        if celebrated {
+            layout
+                .overlay(ConfettiView(run: celebration).ignoresSafeArea())
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    celebration += 1
+                    Sound.cheer()
+                }
+                .onAppear { Sound.cheer() }
+        } else {
+            layout
+        }
+    }
+
+    private var layout: some View {
         // why: Spacer()-centered content overflows a fixed frame under large
         // Dynamic Type — a fixed hero height leaves no give, so the caption
         // below it got compressed and truncated instead. A GeometryReader'd
@@ -53,7 +74,7 @@ struct SummaryScaffold<Hero: View>: View {
         VStack(spacing: Theme.spacing.xl) {
             Spacer()
             VStack(spacing: Theme.spacing.sm) {
-                hero(ceiling)
+                hero(ceiling, celebration)
                 heroLabel?
                     .font(Theme.typography.headline)
                     .foregroundStyle(Theme.colors.textSecondary)

@@ -21,13 +21,8 @@ struct DrillPauseView: View {
                         hint: run.pause == DrillPauseReason.struggling
                             ? Text("trainer.pause.struggling.hint") : nil,
                         onDone: onDone,
-                        onPractice: onKeepPracticing) { _ in SummaryGlyph(glyph: (run.pause ?? DrillPauseReason.count).emoji) }
-        // why: a pause is a round's end the run may go on from, celebrated as the
-        // round summary is — confetti and cheer are one thing (`docs/design.md`).
-        .overlay {
-            if celebrated { ConfettiView().ignoresSafeArea().allowsHitTesting(false) }
-        }
-        .onAppear { if celebrated { Sound.cheer() } }
+                        onPractice: onKeepPracticing,
+                        celebrated: celebrated) { _, _ in SummaryGlyph(glyph: (run.pause ?? DrillPauseReason.count).emoji) }
     }
 
     /// What the stretch reached, only where it reached something: the climb
