@@ -156,7 +156,7 @@ A verb slug carries `to-` and nothing else does (lint-enforced), so `help`/`to-h
   A gate can only name a concept that HAS a card and that every target realizes.
 - `idiom` — a figurative expression, curated (not auto-linked) for genuine
   cross-language meaning-equivalence (`areas/README.md`).
-  Structurally forbidden from carrying `emoji`, `components`, or `feminineOf` —
+  Structurally forbidden from carrying `emoji`, `formEmoji` or `components` —
   the parser rejects a concept that tries. Every idiom card shows the engine's
   fixed `IDIOM_EMOJI` instead (`../kern/README.md` §2), and idioms carry no
   unlock gate, so ordering (last group in `areas.json`) is what keeps them
@@ -165,7 +165,6 @@ A verb slug carries `to-` and nothing else does (lint-enforced), so `help`/`to-h
   adjectives, adverbs, and interjections (`draußen`, `immer`, `Vorsicht`).
 - A feminine noun is its base word's `f` form (de `"f": "die Lehrerin"`), never a concept of its own:
   it shares the base's schedule, and its picture is the base's `formEmoji.f`.
-  `feminineOf` is no longer authored.
 
 **The slug IS the card id.** The engine keys each learner's schedule by it,
 and neither the area nor the `kind` appears in that key —

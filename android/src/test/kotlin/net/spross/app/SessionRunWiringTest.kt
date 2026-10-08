@@ -43,10 +43,8 @@ class SessionRunWiringTest {
         emoji = "🧪",
         seedIndex = index,
         components = emptyList(),
-        feminineOf = null,
         source = Realization(lang = "de", text = "Wort $index"),
         target = Realization(lang = "sw", text = "neno $index"),
-        promptFeminineMarker = false,
     )
 
     private class Model(box: BoxState) {

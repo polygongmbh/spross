@@ -71,10 +71,8 @@ class NumbersDrill(private val language: String, seed: Int, articles: Array<Stri
             emoji = null,
             seedIndex = 0,
             components = emptyList(),
-            feminineOf = null,
             source = answer,
             target = answer,
-            promptFeminineMarker = false,
         )
     }
 }

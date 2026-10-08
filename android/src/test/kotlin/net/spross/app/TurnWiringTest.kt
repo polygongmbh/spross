@@ -46,10 +46,8 @@ class TurnWiringTest {
         emoji = null,
         seedIndex = 0,
         components = emptyList(),
-        feminineOf = null,
         source = Realization(lang = "de", text = source),
         target = Realization(lang = "sw", text = target, teaches = teaches),
-        promptFeminineMarker = false,
     )
 
     private val knife = card("knife", "Messer", "kisu")

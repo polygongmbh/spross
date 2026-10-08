@@ -60,7 +60,6 @@ private val TurnState.promptSide: Question.Side
         )
         else -> Question.Side(
             text = promptForm, lang = card.source.lang, form = Question.Form.Word,
-            marker = feminineMarker,
             context = card.area.takeIf { card.promptAmbiguous },
         )
     }
@@ -75,11 +74,9 @@ private val TurnState.answerSide: Question.Side
         Question.Side(
             text = (listOf(meaning.text) + synonyms).joinToString(FORM_JOIN),
             lang = card.source.lang, form = Question.Form.Word,
-            marker = meaning.marker ?: feminineMarker,
+            marker = meaning.marker,
         )
     }
-
-private val TurnState.feminineMarker: FormTag? get() = FormTag.FEMININE.takeIf { card.promptFeminineMarker }
 
 /** [form] on the target side: its article and plural only where it is the cited form, and the speaker that says it. */
 private fun TurnState.targetSide(form: String): Question.Side {

@@ -20,25 +20,22 @@ internal object StoreFixture {
     val cards: List<Card> = listOf(
         Card(
             id = "fixture-noun", kind = CardKind.Noun, area = "fixture-area",
-            emoji = "🧊", seedIndex = 0, components = emptyList(), feminineOf = null,
+            emoji = "🧊", seedIndex = 0, components = emptyList(),
             source = Realization("de", "Kühlschrank", grammar = mapOf("gender" to "der")),
             target = Realization("uk", "холодильник", teaches = listOf("рефрижератор")),
-            promptFeminineMarker = false,
         ),
         Card(
             id = "fixture-verb", kind = CardKind.Verb, area = "fixture-area",
-            emoji = null, seedIndex = 1, components = emptyList(), feminineOf = null,
+            emoji = null, seedIndex = 1, components = emptyList(),
             source = Realization("de", "kochen"),
             target = Realization("uk", "готувати", accepts = listOf("варити")),
-            promptFeminineMarker = false,
         ),
         Card(
             id = "fixture-phrase", kind = CardKind.Phrase, area = "fixture-area",
             emoji = null, seedIndex = 2,
-            components = listOf("fixture-noun", "fixture-verb"), feminineOf = null,
+            components = listOf("fixture-noun", "fixture-verb"),
             source = Realization("de", "Der Kühlschrank ist leer."),
             target = Realization("uk", "Холодильник порожній."),
-            promptFeminineMarker = false,
         ),
     )
 

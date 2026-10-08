@@ -10,7 +10,7 @@ class PromptFormTests {
 
     private fun card(source: Realization, target: Realization) = Card(
         id = "teacher", kind = CardKind.Noun, area = "school", emoji = null, seedIndex = 0,
-        components = emptyList(), feminineOf = null, source = source, target = target, promptFeminineMarker = false,
+        components = emptyList(), source = source, target = target,
     )
 
     private val lehrer = Realization("de", "Lehrer", forms = listOf(TaggedForm(f, "Lehrerin")))

@@ -67,35 +67,6 @@ class CatalogFixtureTest {
         assertNull(FormTag.parse("m.f"))
     }
 
-    // -- feminine base-fallback ♀ ------------------------------------------------------
-
-    @Test
-    fun feminineFallsBackToBaseSourceRealizationWithMarker() {
-        val card = catalog.join("sw", "uk").byId("waiter-f")
-        assertTrue(card.promptFeminineMarker)
-        assertEquals("mhudumu", card.source.text)
-        assertEquals("офіціантка", card.target.text)
-        assertEquals("waiter", card.feminineOf)
-    }
-
-    @Test
-    fun feminineUsesOwnSourceRealizationWithoutMarker() {
-        val card = catalog.join("de", "uk").byId("waiter-f")
-        assertFalse(card.promptFeminineMarker)
-        assertEquals("Kellnerin", card.source.text)
-    }
-
-    @Test
-    fun feminineSkippedWhenBaseSourceRealizationAlsoMissing() {
-        // beta has no sw file: neither royal-f nor base royal realize in the source.
-        assertTrue(catalog.join("sw", "uk").none { it.id == "royal-f" })
-    }
-
-    @Test
-    fun feminineSkippedWhenTargetDoesNotRealizeIt() {
-        assertTrue(catalog.join("de", "sw").none { it.id == "waiter-f" })
-    }
-
     // -- coverage skips ----------------------------------------------------------------
 
     @Test

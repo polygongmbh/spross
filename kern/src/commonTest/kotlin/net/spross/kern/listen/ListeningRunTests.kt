@@ -239,9 +239,7 @@ class ListeningRunTests {
         emoji = null,
         seedIndex = 1,
         components = emptyList(),
-        feminineOf = null,
         source = Realization(lang = "de", text = source),
         target = Realization(lang = "sw", text = target, grammar = mapOf("gender" to article)),
-        promptFeminineMarker = false,
     )
 }

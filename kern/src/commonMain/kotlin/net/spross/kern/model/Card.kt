@@ -87,25 +87,15 @@ data class Card(
      * TARGET realizes — the unlock gate reads them as-is.
      */
     val components: List<String>,
-    /** Base concept's card id when this is a feminine sibling concept. */
-    val feminineOf: String?,
-    /**
-     * TARGET-side accepted texts (`text ∪ teaches ∪ accepts`) of the base concept,
-     * resolved at join time — non-empty only on feminine cards whose base the target
-     * realizes. Grading demotes a base-word answer to typo, not failure (§3).
-     */
-    val baseAccepted: List<String> = emptyList(),
     /** Known-language side (the prompt on produce). */
     val source: Realization,
     /** Learning-language side (the answer on produce, the prompt on recognize). */
     val target: Realization,
-    /** True when the prompt is the base concept's source realization + ♀ badge. */
-    val promptFeminineMarker: Boolean,
     /**
      * True when another emitted card carries an IDENTICAL produce prompt — a
      * target-language merge (sw `kuvaa` = anziehen AND sich anziehen) or a source
      * homonym. The UI adds this card's area label as a non-leaking disambiguating
-     * cue, generalizing the ♀-badge pattern. PRODUCE only: on recognize any cue
+     * cue. PRODUCE only: on recognize any cue
      * strong enough to identify the concept would reveal the answer, and
      * self-grading absorbs the residue (§3).
      */

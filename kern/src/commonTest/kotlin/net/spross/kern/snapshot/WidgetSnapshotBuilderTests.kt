@@ -26,7 +26,6 @@ class WidgetSnapshotBuilderTests {
 
     private val fem = Snap.card(
         "wf", 1, emoji = "👩", sourceText = "Kellner", targetText = "ofisantka",
-        feminineMarker = true,
     )
     private val gendered = Snap.card(
         "wg", 2, emoji = "🧊", sourceText = "Kühlschrank", targetText = "friji", gender = "der",
@@ -42,13 +41,13 @@ class WidgetSnapshotBuilderTests {
         }
 
     @Test
-    fun entriesRenderTargetSideWithTintAndMarker() {
+    fun entriesRenderTargetSideWithTint() {
         val doc = WidgetSnapshotBuilder.doc(scheduledState(), Box.day1, Box.TZ, exposureLimit = 10)
         val byCard = doc.entries.associateBy { it.cardId }
 
         val femEntry = byCard.getValue("wf")
         assertEquals("ofisantka", femEntry.text)
-        assertEquals("Kellner ♀", femEntry.sourceText)
+        assertEquals("Kellner", femEntry.sourceText)
         assertEquals("👩", femEntry.emoji)
         assertNull(femEntry.article)
         assertNull(femEntry.gender)
@@ -87,7 +86,7 @@ class WidgetSnapshotBuilderTests {
         val longTarget = Snap.card("wl", 4, targetText = "a".repeat(WidgetSnapshotBuilder.MAX_TEXT_CHARS + 1))
         val longSource = Snap.card(
             "ws", 5,
-            sourceText = "b".repeat(WidgetSnapshotBuilder.MAX_TEXT_CHARS), feminineMarker = true,
+            sourceText = "b".repeat(WidgetSnapshotBuilder.MAX_TEXT_CHARS + 1),
         )
         val fits = Snap.card("wk", 6, sourceText = "c".repeat(WidgetSnapshotBuilder.MAX_TEXT_CHARS))
         val cards = listOf(longTarget, longSource, fits)
@@ -96,7 +95,7 @@ class WidgetSnapshotBuilderTests {
         }
 
         val ids = WidgetSnapshotBuilder.doc(state, Box.day1, Box.TZ, exposureLimit = 10).entries.map { it.cardId }
-        assertEquals(listOf("wk"), ids) // the ♀ marker pushes "ws" over the limit
+        assertEquals(listOf("wk"), ids)
     }
 
     @Test
@@ -214,7 +213,7 @@ class WidgetSnapshotBuilderTests {
             otherLanguagesAnswerDays = dailyStats,
         )
         assertEquals(doc.entries.map { it.cardId }, view.entries.map { it.cardId })
-        assertEquals("Kellner ♀", view.entries.first { it.cardId == "wf" }.sourceText)
+        assertEquals("Kellner", view.entries.first { it.cardId == "wf" }.sourceText)
         assertEquals("der", view.entries.first { it.cardId == "wg" }.article)
         assertEquals(Gender.Masculine, view.entries.first { it.cardId == "wg" }.gender)
         assertEquals(doc.allSettledCount, view.allSettledCount)

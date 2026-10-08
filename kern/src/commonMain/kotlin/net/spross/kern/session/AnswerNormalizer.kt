@@ -129,13 +129,6 @@ class AnswerNormalizer(
         if (forms.almost.isNotEmpty() && evaluate(input, forms.almost, prefixes, expectedArticle = null) != Match.Wrong) {
             return Match.Typo(corrected = forms.right.first())
         }
-        // Base-word answer on a feminine card grades as typo, not failure (§3):
-        // anything the BASE concept would accept demotes to the feminine correction.
-        if (card.baseAccepted.isNotEmpty() &&
-            evaluate(input, card.baseAccepted, prefixes, expectedArticle = null) != Match.Wrong
-        ) {
-            return Match.Typo(corrected = card.target.text)
-        }
         return result
     }
 

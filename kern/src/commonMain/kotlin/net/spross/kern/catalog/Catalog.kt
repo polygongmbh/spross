@@ -119,9 +119,8 @@ class Catalog internal constructor(
 
     /**
      * Emits one [Card] per joinable concept, in catalog order. A concept joins iff the
-     * TARGET realizes it AND a source prompt exists: its source realization, else
-     * (feminineOf only) the base concept's source realization with `promptFeminineMarker`;
-     * skipped when neither exists — or when either side names the target language
+     * TARGET realizes it AND the source realizes it too;
+     * skipped otherwise — or when either side names the target language
      * ([LanguageMarker]) and its own table cannot.
      */
     fun join(source: Language, target: Language): List<Card> {
@@ -142,9 +141,7 @@ class Catalog internal constructor(
 
             for (concept in area.concepts) {
                 val targetRaw = targetRealization(concept.slug) ?: continue
-                val ownSource = sourceWords[concept.slug]
-                val promptRaw = (ownSource ?: concept.feminineOf?.let { sourceWords[it] })
-                    ?.resolved(sourceName) ?: continue
+                val promptRaw = sourceWords[concept.slug]?.resolved(sourceName) ?: continue
                 cards += Card(
                     id = concept.id,
                     kind = concept.kind,
@@ -157,29 +154,21 @@ class Catalog internal constructor(
                     // why: components without a target realization can never be studied —
                     // filtering here keeps the phrase-unlock gate a plain all-components check.
                     components = concept.components.filter { targetRealization(it) != null },
-                    feminineOf = concept.feminineOf,
-                    // why: grading needs the base concept's TARGET texts (answer side)
-                    // to demote a base-word answer — absent when the target never
-                    // realizes the base, and the demotion simply has nothing to match.
-                    baseAccepted = concept.feminineOf?.let { base ->
-                        targetRealization(base)?.let { listOf(it.text) + it.teaches + it.accepts }
-                    }.orEmpty(),
                     source = realize(source, promptRaw, reader = null),
                     target = realize(target, targetRaw, reader = source),
-                    promptFeminineMarker = ownSource == null,
                 )
             }
         }
         // why: a produce prompt two cards share is unanswerable without a cue, so flag
         // it once per join and let the UI add the area label. Keyed on what the learner
         // SEES — citation conventions (de noun capitals, en "to ", sw ku-) keep
-        // noun/verb homographs apart, and a ♀ sibling is disambiguated by its badge.
+        // noun/verb homographs apart.
         val promptCounts = cards.groupingBy(::promptKey).eachCount()
         return cards.map { it.copy(promptAmbiguous = promptCounts.getValue(promptKey(it)) > 1) }
     }
 
     private fun promptKey(card: Card): String =
-        nfcNormalized(card.source.text).trim() + if (card.promptFeminineMarker) "♀" else ""
+        nfcNormalized(card.source.text).trim()
 
     /**
      * The frames' half of [join]: one [PhraseTemplate] per frame realized in BOTH languages,

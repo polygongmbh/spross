@@ -104,8 +104,7 @@ private fun refusal(word: String, values: Set<NumberIdentity>): Match.OtherWord 
 
 /**
  * The accepted forms as one synthetic card. The non-verb kind keeps the verb-prefix option
- * off and an empty `baseAccepted` skips the feminine demotion — a generated answer has
- * neither a base concept nor a conjugation to forgive.
+ * off — a generated answer has no conjugation to forgive.
  */
 internal fun drillGradingCard(
     cardId: String,
@@ -125,11 +124,8 @@ internal fun drillGradingCard(
         emoji = null,
         seedIndex = 0,
         components = emptyList(),
-        feminineOf = null,
-        baseAccepted = emptyList(),
         source = side,
         target = side,
-        promptFeminineMarker = false,
     )
 }
 

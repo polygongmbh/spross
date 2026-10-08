@@ -33,10 +33,9 @@ class CatalogAnswerGraderTests {
         lang: String = "sw",
     ): Card = Card(
         id = id, kind = kind, area = "test", emoji = null, seedIndex = seedIndex,
-        components = emptyList(), feminineOf = null,
+        components = emptyList(),
         source = Realization(lang = "de", text = source),
         target = Realization(lang = lang, text = target),
-        promptFeminineMarker = false,
     )
 
     @Test
@@ -107,28 +106,6 @@ class CatalogAnswerGraderTests {
         assertEquals(listOf("Maus"), verdict.meanings)
     }
 
-    @Test
-    fun theBaseWordStaysTheFeminineCorrection() {
-        val grader = CatalogAnswerGrader(uk, deToUk)
-        val waiterF = joined(deToUk, "waiter-f")
-        // §3 leniency: the base concept's word demotes to the feminine spelling,
-        // it is never re-labeled as another concept's word.
-        val verdict = grader.grade("офіціант", waiterF)
-        assertIs<Match.Typo>(verdict)
-        assertEquals("офіціантка", verdict.corrected)
-
-        // The other way round there is no leniency to protect: name the sibling.
-        val named = grader.grade("офіціантка", joined(deToUk, "waiter"))
-        assertIs<Match.OtherWord>(named)
-        assertEquals(listOf("Kellnerin"), named.meanings)
-    }
-
-    /**
-     * The normalizer can reach its verdict by peeling a mistyped article, and then the
-     * remainder — not the string that was typed — is the form that matched. The owner
-     * index has to be asked about it, or a slip behind a fumbled article bridges one
-     * concept's word to another with nobody looking.
-     */
     @Test
     fun aFumbledArticleNeverBridgesOneWordToAnother() {
         // "Keller" sits one edit from the fixture's "Kellner".

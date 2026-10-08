@@ -210,7 +210,6 @@ object WatchSnapshotBuilder {
             revealEmoji = card.emoji?.takeIf { cue == EmojiCue.OnReveal },
             article = article(card),
             gender = wireGender(card),
-            femMarker = card.promptFeminineMarker,
             due = sched.due!!.toEpochMilliseconds(),
             nextRole = when (nextRole) {
                 PresentationRole.Produce -> "produce"
@@ -232,8 +231,8 @@ internal data class WatchSnapshotDoc(
 )
 
 /**
- * One drainable card with both sides. [nextRole] "produce": prompt [sourceText]
- * (+ labeled ♀ badge when [femMarker]), reveal the target family. "recognize":
+ * One drainable card with both sides. [nextRole] "produce": prompt [sourceText],
+ * reveal the target family. "recognize":
  * prompt [promptForm] (the rotated target form), reveal [sourceText] decorated.
  * [emoji]/[revealEmoji] split the picture by the emoji policy's cue — the first may
  * be seen from frame one, the second only once the answer is out. [distractors] are
@@ -257,7 +256,6 @@ internal data class WatchEntryDto(
     val article: String? = null,
     /** `masculine`/`feminine`/`neuter` ([wireGender]); the tint reads this, never [article]. */
     val gender: String? = null,
-    val femMarker: Boolean,
     val due: Long,
     val nextRole: String,
     val promptForm: String,

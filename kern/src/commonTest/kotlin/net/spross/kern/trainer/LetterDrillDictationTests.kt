@@ -148,8 +148,6 @@ class LetterDrillDictationTests {
             emoji = null,
             seedIndex = 4,
             components = emptyList(),
-            feminineOf = "people/teacher",
-            baseAccepted = listOf("Lehrer"),
             source = Realization(lang = "en", text = "teacher"),
             target = Realization(
                 lang = "xx",
@@ -157,7 +155,6 @@ class LetterDrillDictationTests {
                 teaches = listOf("Dozentin"),
                 accepts = listOf("Lehrerinnen"),
             ),
-            promptFeminineMarker = true,
         )
         val task = assertNotNull(
             LetterDrill.sampleDictation(
@@ -169,11 +166,9 @@ class LetterDrillDictationTests {
         // The identity survives — the grader skips the prompted concept by id, and the
         // learner's OWN word must never come back named as somebody else's.
         assertEquals(real.id, grading.id)
-        assertEquals(real.feminineOf, grading.feminineOf)
         assertEquals(real.kind, grading.kind)
         // Only the answer set narrows: a synonym is a different word than the one played.
         assertEquals("Lehrerin", grading.target.text)
         assertTrue(grading.target.teaches.isEmpty() && grading.target.accepts.isEmpty())
-        assertTrue(grading.baseAccepted.isEmpty(), "the base word is not what was spoken either")
     }
 }

@@ -67,16 +67,10 @@ the rules the declarations cannot state are here.
   (`catalog/README.md`).
   `area` and `kind` are presentation metadata the content may restructure freely:
   moving or reclassifying a concept keeps its schedule.
-  `components` and `feminineOf` are card ids (bare slugs).
-- **Join rule**: emit iff TARGET realizes the concept AND a source prompt exists:
-  source realization, else (feminineOf only) the base concept's source realization
-  with `promptFeminineMarker = true`; if that is also absent, skip.
-  Non-feminine concepts without a source realization are skipped.
-  A feminine card additionally carries `baseAccepted` --
-  the base concept's TARGET-side `text + teaches + accepts` --
-  empty when the target never realizes the base.
+  `components` are card ids (bare slugs).
+- **Join rule**: emit iff both TARGET and source realize the concept.
 - **Homonyms / target-language merges**: after emitting, the join counts cards per
-  *displayed* prompt key -- NFC-normalized `source.text` plus the female state --
+  *displayed* prompt key -- NFC-normalized `source.text` --
   and sets `promptAmbiguous` on every member of a key shared by >1 card.
   Keying on what the learner SEES means citation conventions
   (de noun capitals, en `"to "`, sw `ku-`) correctly keep noun/verb homographs apart.
@@ -130,9 +124,6 @@ both feeding the one schedule ("every answer event is an FSRS review" holds).
   **OnReveal** everywhere else --
   **the first exposure included** (ruling 2026-08-07).
   Why each branch falls where it does is `docs/presentation.md`.
-- **Female** is a labeled badge, never graded:
-  a base-word answer typed on a feminine produce card grades as typo, not failure
-  (graded against `Card.baseAccepted`; corrected shows the feminine canonical text).
 - Composition is **role-agnostic** -- plans carry card ids;
   the role of each entry is resolved at render from the card's log count.
 - Scheduling keys are source-agnostic -> **switching source preserves every schedule**.

@@ -46,10 +46,9 @@ internal object Box {
     ): Card = Card(
         id = "w" + n.toString().padStart(2, '0'),
         kind = kind, area = area, emoji = null, seedIndex = n,
-        components = emptyList(), feminineOf = null,
+        components = emptyList(),
         source = Realization(lang = "de", text = "g$n"),
         target = Realization(lang = "sw", text = "t$n", teaches = teaches, accepts = accepts),
-        promptFeminineMarker = false,
     )
 
     fun phrase(
@@ -59,10 +58,9 @@ internal object Box {
         seedIndex: Int = 90,
     ): Card = Card(
         id = id, kind = CardKind.Phrase, area = area, emoji = null, seedIndex = seedIndex,
-        components = components, feminineOf = null,
+        components = components,
         source = Realization(lang = "de", text = id),
         target = Realization(lang = "sw", text = id),
-        promptFeminineMarker = false,
     )
 
     fun config(sessionCap: Int = BoxConfig().sessionCap): BoxConfig = BoxConfig(sessionCap = sessionCap)

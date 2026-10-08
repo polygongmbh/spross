@@ -6,7 +6,7 @@
 
 The mapping file is `old<TAB>new` per line (`#` comments). A slug is the card id, so one
 rename is the concept's row in `concepts.json`, its key in every `<lang>.json`, every
-`components` entry, `feminineOf` value and alphabet `example` that names it, and the row
+`components` entry and alphabet `example` that names it, and the row
 and mp3 in the unversioned word pack a recording came from (`--packs`, the workspace
 `audio-catalog.py` reads), so the next fill still knows the word. The shipped recordings
 are keyed by the form they speak and stay put. A dozen-plus files per slug, which is why
@@ -82,9 +82,6 @@ class Area:
                 self.touched = True
             if any(c in mapping for c in concept.get('components', [])):
                 concept['components'] = [mapping.get(c, c) for c in concept['components']]
-                self.touched = True
-            if concept.get('feminineOf') in mapping:
-                concept['feminineOf'] = mapping[concept['feminineOf']]
                 self.touched = True
         for file in self.files.values():
             if any(slug in mapping for slug in file['words']):

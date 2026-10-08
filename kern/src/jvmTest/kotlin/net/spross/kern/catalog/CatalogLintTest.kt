@@ -345,21 +345,6 @@ class CatalogLintTest {
                     val target = area.conceptsBySlug[component]
                     assertTrue(target != null && target.kind != CardKind.Phrase, "${concept.id}: bad component $component")
                 }
-                concept.feminineOf?.let {
-                    assertEquals(CardKind.Noun, area.conceptsBySlug[it]?.kind, "${concept.id}: bad feminineOf")
-                }
-            }
-        }
-    }
-
-    @Test
-    fun feminineConceptsAlwaysCarryTheDeForm() {
-        for (area in catalog.areas) {
-            val de = area.realizations["de"].orEmpty()
-            for (concept in area.concepts) {
-                if (concept.feminineOf != null) {
-                    assertTrue(concept.slug in de, "${concept.id}: feminine without de realization")
-                }
             }
         }
     }

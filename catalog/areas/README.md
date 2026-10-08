@@ -208,5 +208,5 @@ so a phrase whose second component would stay behind simply drops it.
 Moving is mechanical:
 `../../scripts/catalog-move.py` carries every language's realization verbatim,
 appends words before the destination's phrase block,
-and refuses a move that would part a phrase from a component,
-a feminine from its base, or mint a same-area prompt collision.
+and refuses a move that would part a phrase from a component
+or mint a same-area prompt collision.

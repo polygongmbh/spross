@@ -44,7 +44,6 @@ class RealCatalogJoinTest {
                 val targetWords = area.realizations[target].orEmpty()
                 area.concepts.filter { concept ->
                     val prompt = sourceWords[concept.slug]
-                        ?: concept.feminineOf?.let { base -> sourceWords[base] }
                     targetWords[concept.slug].resolvable(target) && prompt.resolvable("de")
                 }.map { it.id }
             }

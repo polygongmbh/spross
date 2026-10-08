@@ -16,7 +16,7 @@ what stays, and the destination gets words before phrases
 (`CatalogLintTest.wordsPrecedeTheirPhrasesWithinEachArea`).
 
 What is REFUSED, rather than written (each a non-zero exit naming the concepts):
-a phrase parted from a `components` word, a `feminineOf` pair split, an unknown slug, a
+a phrase parted from a `components` word, an unknown slug, a
 destination that already claims the slug, a prompt form that would collide inside the
 destination, and a destination area that does not exist without `--create`.
 
@@ -168,7 +168,7 @@ def check_collisions(areas, moves):
 
 
 def check_references(areas):
-    """`components` and `feminineOf` resolve INSIDE one area — a split pair is a parse error."""
+    """`components` resolve INSIDE one area — a split pair is a parse error."""
     home = {c['slug']: area.name for area in areas.values() for c in area.concepts}
     broken = []
     for area in areas.values():
@@ -177,10 +177,6 @@ def check_references(areas):
                 if home.get(component) != area.name:
                     broken.append('%s (%s) needs component %s, now in %s'
                                   % (concept['slug'], area.name, component, home.get(component, '?')))
-            base = concept.get('feminineOf')
-            if base is not None and home.get(base) != area.name:
-                broken.append('%s (%s) is feminineOf %s, now in %s'
-                              % (concept['slug'], area.name, base, home.get(base, '?')))
     if broken:
         refuse('the move would separate concepts that must share an area:', *broken,
                'move the whole group in one mapping, or leave it where it is.')

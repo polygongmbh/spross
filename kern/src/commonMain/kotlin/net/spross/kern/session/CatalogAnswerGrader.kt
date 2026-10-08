@@ -57,10 +57,6 @@ class CatalogAnswerGrader(
     fun conceptsSharing(form: String, card: Card): List<Card> = sharedForms.concepts(form, card)
 
     private fun otherWord(input: String, card: Card): Match.OtherWord? {
-        // why: the base concept's word is deliberately lenient on a feminine card
-        // (§3 demotes it to the feminine correction) — it must not be re-labeled
-        // as somebody else's word.
-        val skipped = setOfNotNull(card.id, card.feminineOf)
         // why: a form the prompted card accepts belongs to it first (see [grade]), and a
         // fumbled article in front of it changes nothing about that — otherwise a word
         // two concepts share would be withdrawn from the one that was asked for.
@@ -69,7 +65,7 @@ class CatalogAnswerGrader(
         // The whole string first, so a form owned outright names itself before the
         // remainder a mistyped article leaves behind does.
         val hits = (ownersOf(input) + ownersOf(peeled))
-            .filter { it.id !in skipped }
+            .filter { it.id != card.id }
             .distinctBy { it.id }
         if (hits.isEmpty()) return null
         return Match.OtherWord(

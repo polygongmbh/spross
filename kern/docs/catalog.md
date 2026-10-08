@@ -33,7 +33,7 @@ Neighbors: the engine contract `../README.md`, the file format `../../catalog/RE
 - **CatalogLintTest** (permanent, on the real catalog) enforces:
   parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, teaches ≠ text,
   no duplicate `teaches`/`accepts` entries, no `" / "` in text, components resolve same-area,
-  feminineOf resolves, concept emoji well-formed, every manifest area carries an emoji.
+  concept emoji well-formed, every manifest area carries an emoji.
 - **Homonym gates** (**`CatalogCollisionLintTest`**; no schema field — the area label is the
   disambiguator, `../README.md` §2/§3).
   Lint owns what the engine cannot fix, runtime tolerates the rest:

@@ -38,7 +38,6 @@ internal data class CatalogConcept(
     val formEmoji: Map<FormTag, String>,
     /** Same-area word slugs (phrases only). */
     val components: List<String>,
-    val feminineOf: String?,
     /** Global catalog position across groups → areas → concepts. */
     val seedIndex: Int,
 ) {

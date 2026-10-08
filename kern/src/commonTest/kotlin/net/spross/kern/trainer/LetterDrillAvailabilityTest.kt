@@ -75,10 +75,8 @@ class LetterDrillAvailabilityTest {
         emoji = null,
         seedIndex = seed,
         components = emptyList(),
-        feminineOf = null,
         source = Realization(lang = "de", text = "de-$id"),
         target = Realization(lang = "uk", text = text),
-        promptFeminineMarker = false,
     )
 
     /** Five growing single words plus a phrase card, so the floor can be crossed exactly. */

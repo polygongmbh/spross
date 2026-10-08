@@ -122,7 +122,7 @@ internal object Fixture {
         "areas/alpha/concepts.json" to """
             [
              { "slug": "waiter", "kind": "noun", "emoji": "🧑‍🍳" },
-             { "slug": "waiter-f", "kind": "noun", "emoji": "👩‍🍳", "feminineOf": "waiter" },
+             { "slug": "waiter-f", "kind": "noun", "emoji": "👩‍🍳" },
              { "slug": "cook", "kind": "verb" },
              { "slug": "mouse", "kind": "noun", "emoji": "🐭", "formEmoji": { "pl": "🐁🐁" } },
              { "slug": "hello", "kind": "phrase", "components": [] },
@@ -174,7 +174,7 @@ internal object Fixture {
         "areas/beta/concepts.json" to """
             [
              { "slug": "royal", "kind": "noun" },
-             { "slug": "royal-f", "kind": "noun", "feminineOf": "royal" },
+             { "slug": "royal-f", "kind": "noun" },
              { "slug": "greet", "kind": "verb" }
             ]
         """.trimIndent(),

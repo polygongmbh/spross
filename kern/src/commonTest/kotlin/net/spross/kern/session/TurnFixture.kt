@@ -34,10 +34,9 @@ internal object TurnFixture {
         sourceTeaches: List<String> = emptyList(),
     ): Card = Card(
         id = id, kind = kind, area = "test", emoji = null, seedIndex = seedIndex,
-        components = emptyList(), feminineOf = null,
+        components = emptyList(),
         source = Realization(lang = "de", text = source, teaches = sourceTeaches),
         target = Realization(lang = "sw", text = target, teaches = teaches, accepts = accepts),
-        promptFeminineMarker = false,
     )
 
     /** Four letters: exactly at the typo budget's floor, so one slip is forgiven. */

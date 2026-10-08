@@ -81,7 +81,7 @@ object WidgetSnapshotBuilder {
             WidgetEntryDto(
                 cardId = card.id,
                 text = card.target.text,
-                sourceText = decoratedSourceText(card),
+                sourceText = card.source.text,
                 emoji = card.emoji,
                 article = article(card),
                 gender = wireGender(card),
@@ -112,7 +112,7 @@ object WidgetSnapshotBuilder {
      */
     private fun fitsOnWidget(card: Card): Boolean =
         card.target.text.length <= MAX_TEXT_CHARS &&
-            decoratedSourceText(card).length <= MAX_TEXT_CHARS
+            card.source.text.length <= MAX_TEXT_CHARS
 }
 
 /**
