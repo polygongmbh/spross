@@ -165,7 +165,7 @@ internal object Fixture {
               "words": {
                 "waiter": { "text": "офіціант" },
                 "waiter-f": { "text": "офіціантка" },
-                "mouse": { "text": "миша", "teaches": ["мишеня"], "accepts": ["мишка"],
+                "mouse": { "text": "миша", "teaches": ["мишеня"], "accepts": ["мишка"], "forms": { "pl": "миші" },
                            "notes": { "sw": "Panya tu." } },
                 "the-mouse-sprints": {
                   "text": "Миша спринтує.",

@@ -219,14 +219,14 @@ class CatalogLintTest {
     fun textAndAlternatesAreClean() {
         forEachRealization { area, lang, slug, raw ->
             val where = "$area/$lang.json $slug"
-            val all = listOf(raw.text) + raw.teaches + raw.accepts
+            val all = listOf(raw.text) + raw.teaches + raw.accepts + raw.forms.map { it.text }
             for (entry in all) {
                 assertTrue(entry.isNotBlank(), "$where: blank entry")
                 assertTrue(entry.trim() == entry, "$where: untrimmed \"$entry\"")
                 assertTrue(" / " !in entry, "$where: slash-joined \"$entry\"")
                 assertTrue('|' !in entry && '\n' !in entry, "$where: bad char in \"$entry\"")
             }
-            val alternates = raw.teaches + raw.accepts
+            val alternates = raw.teaches + raw.accepts + raw.forms.map { it.text }
             assertTrue(alternates.toSet().size == alternates.size, "$where: duplicate alternates")
             assertTrue(raw.text !in alternates, "$where: alternate equals text")
         }
@@ -276,12 +276,12 @@ class CatalogLintTest {
         }
     }
 
-    // Rotation prompts cycle through text + `teaches` — forms must stay distinct
+    // Rotation prompts cycle through text + `teaches` + `forms` — forms must stay distinct
     // under NFC (composed vs decomposed spellings of the same word would collide).
     @Test
     fun rotationFormsDistinctPerRealization() {
         forEachRealization { area, lang, slug, raw ->
-            val forms = (listOf(raw.text) + raw.teaches).map { nfcNormalized(it).trim() }
+            val forms = (listOf(raw.text) + raw.teaches + raw.forms.map { it.text }).map { nfcNormalized(it).trim() }
             assertEquals(forms.toSet().size, forms.size, "$area/$lang.json $slug: colliding forms")
         }
     }

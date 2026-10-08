@@ -2,6 +2,8 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.FormTag
+import net.spross.kern.model.TaggedForm
 import net.spross.kern.trainer.NumbersReading
 import net.spross.kern.trainer.SwahiliConcord
 import kotlin.test.Test
@@ -33,6 +35,24 @@ class CatalogFixtureTest {
 
     private fun List<Card>.byId(id: String): Card =
         firstOrNull { it.id == id } ?: throw AssertionError("card $id not joined: ${map { it.id }}")
+
+    // -- tagged forms -----------------------------------------------------------------
+
+    @Test
+    fun formsJoinWithTheirTag() {
+        val pl = FormTag.parse("pl")!!
+        assertEquals(listOf(TaggedForm(pl, "миші")), catalog.join("de", "uk").byId("mouse").target.forms)
+    }
+
+    @Test
+    fun unknownFormTagRejected() =
+        rejectsEdit("areas/alpha/uk.json", "\"pl\": \"миші\"", "\"plural\": \"миші\"", "unknown form tag")
+
+    @Test
+    fun formTagNamesEachDimensionOnce() {
+        assertEquals("f.pl.dat", FormTag.parse("dat.pl.f").toString())
+        assertNull(FormTag.parse("m.f"))
+    }
 
     // -- feminine base-fallback ♀ ------------------------------------------------------
 

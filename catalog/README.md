@@ -230,6 +230,12 @@ Realization fields — only `text` is required:
   Which of the two an alternate belongs in is the question the two names ask — does the card
   teach it, or merely accept it — against what a learner already knows from `text`;
   `areas/README.md` works it through.
+- `forms` — INFLECTED forms of `text`, keyed by tag (object; omit if none):
+  `{ "f": "larga", "pl": "largos", "f.pl": "largas" }`, a value one form or an array of them.
+  A tag is dot-joined values from one vocabulary shared by every language (`../kern/src/commonMain/kotlin/net/spross/kern/model/FormTag.kt`):
+  gender `m`/`f`/`n`, number `pl`, case `nom`/`gen`/`dat`/`acc`/`ins`/`loc`/`voc`, Swahili class `1`–`18`;
+  a dimension it leaves out is `text`'s value on it.
+  `text` stays the citation form and carries no tag.
 - `orders` — alternative valid **word orders** of the same sentence (array; omit if none):
   grammatically valid rearrangements whose atoms are a permutation of `text`'s atoms
   (de "Gehen Sie geradeaus." → order "Sie gehen geradeaus.").

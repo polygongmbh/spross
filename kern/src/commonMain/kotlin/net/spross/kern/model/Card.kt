@@ -51,6 +51,8 @@ data class Realization(
     val teaches: List<String> = emptyList(),
     /** Accepted surface forms of the same knowledge — grading/display only, never prompted. */
     val accepts: List<String> = emptyList(),
+    /** Inflected forms beside [text] — gender, number, case or noun class, each tagged. */
+    val forms: List<TaggedForm> = emptyList(),
     /** Alternative valid word orders of the same sentence — scramble-only, never prompted. */
     val orders: List<String> = emptyList(),
     /** Language-specific bare facts (de `gender`/`plural`, …). */

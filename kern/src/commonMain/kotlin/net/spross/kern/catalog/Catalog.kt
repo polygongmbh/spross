@@ -303,6 +303,7 @@ class Catalog internal constructor(
             text = raw.text,
             teaches = raw.teaches,
             accepts = raw.accepts,
+            forms = raw.forms,
             orders = raw.orders,
             grammar = raw.grammar,
             // why: a note written FOR this reader wins; otherwise the one written in the

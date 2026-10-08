@@ -1,9 +1,12 @@
 package net.spross.kern.catalog
 
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
+import net.spross.kern.model.TaggedForm
 
 /** Wraps a [CatalogSource], folding every read into an FNV-1a 64 fingerprint. */
 internal class FingerprintingSource(private val delegate: CatalogSource) {
@@ -212,22 +215,35 @@ internal object CatalogParser {
     }
 
     private fun parseRealization(path: String, slug: String, o: JsonObject): RawRealization {
-        o.rejectUnknownKeys(path, slug, setOf("text", "teaches", "accepts", "orders", "grammar", "notes"))
+        o.rejectUnknownKeys(path, slug, setOf("text", "teaches", "accepts", "forms", "orders", "grammar", "notes"))
         val text = o.requireString(path, slug, "text")
         if (text.isBlank()) parseError(path, "$slug: blank text")
         val teaches = o.stringList(path, slug, "teaches")
         val accepts = o.stringList(path, slug, "accepts")
         val orders = o.stringList(path, slug, "orders")
-        for (form in listOf(text) + teaches + accepts + orders) {
+        val forms = parseForms(path, slug, o)
+        for (form in listOf(text) + teaches + accepts + forms.map { it.text } + orders) {
             LanguageNames.markerError(form)?.let { parseError(path, "$slug: $it") }
         }
         return RawRealization(
             text = text,
             teaches = teaches,
             accepts = accepts,
+            forms = forms,
             orders = orders,
             grammar = o.stringMap(path, slug, "grammar"),
             notes = o.stringMap(path, slug, "notes"),
         )
+    }
+
+    /** `"forms": { "f": "larga", "f.pl": ["largas"] }` — a value is one form or several. */
+    private fun parseForms(path: String, slug: String, o: JsonObject): List<TaggedForm> {
+        val obj = o["forms"]?.obj(path, "$slug.forms") ?: return emptyList()
+        return obj.entries.flatMap { (key, value) ->
+            val tag = FormTag.parse(key) ?: parseError(path, "$slug: unknown form tag \"$key\"")
+            val texts = (value as? JsonArray)?.mapIndexed { i, el -> el.str(path, "$slug.forms.$key[$i]") }
+                ?: listOf(value.str(path, "$slug.forms.$key"))
+            texts.map { TaggedForm(tag, it) }
+        }
     }
 }
