@@ -1,7 +1,9 @@
 package net.spross.app.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,10 +11,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuAnchorType
-import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -24,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -42,13 +43,12 @@ import net.spross.kern.model.Language
  * row was clipped from both ends down to its flag. Here the name is text on a control — ink
  * on the recessed fill, left where a value belongs, stepping down before it is cut.
  *
- * [ExposedDropdownMenuBox] carries the open/close and positioning — the menu now matches the
- * field's own width and dismisses on the platform's own terms — but the anchor stays this
- * row rather than a full M3 `TextField`: a filled field's fixed label gutter would cost the
- * pill its 48 dp floor and the autosize step that keeps a long exonym ("Українська") on one
- * line without shrinking below [PICKER_FLOOR].
+ * A plain click opens a [DropdownMenu] under the row: M3's `ExposedDropdownMenuBox` does not
+ * open on a device with this custom row as its anchor. The row stays custom
+ * rather than a full M3 `TextField`: a filled field's fixed label gutter would cost the pill
+ * its 48 dp floor and the autosize step that keeps a long exonym ("Українська") on one line
+ * without shrinking below [PICKER_FLOOR].
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun LanguageMenu(
     title: String,
@@ -63,7 +63,7 @@ internal fun LanguageMenu(
     val label = LanguageChoices.pickerLabel(selected, catalog.languages[selected])
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(title, style = MaterialTheme.typography.titleMedium)
-        ExposedDropdownMenuBox(expanded = open, onExpandedChange = { open = it }) {
+        Box {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -72,7 +72,7 @@ internal fun LanguageMenu(
                     .pressSpring()
                     .clip(MaterialTheme.shapes.small)
                     .background(Theme.colors.surfaceTint)
-                    .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, enabled)
+                    .clickable(enabled = enabled, role = Role.DropdownList) { open = true }
                     // why: one stable label, the pick as its VALUE — the field's own text is
                     // a merged child, so without this TalkBack announces which language but
                     // never which of the two questions it answers.
@@ -101,11 +101,7 @@ internal fun LanguageMenu(
             }
             // why: the rows name each language twice ("Deutsch · German"); held to the
             // half-width field they would wrap, so the list takes the width it needs.
-            ExposedDropdownMenu(
-                expanded = open,
-                onDismissRequest = { open = false },
-                matchAnchorWidth = false,
-            ) {
+            DropdownMenu(expanded = open, onDismissRequest = { open = false }) {
                 choices.forEach { code ->
                     DropdownMenuItem(
                         text = { Text(LanguageChoices.pickerRow(code, catalog.languages[code])) },
