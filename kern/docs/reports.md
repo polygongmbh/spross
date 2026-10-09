@@ -88,7 +88,7 @@ Neighbors: the engine contract `../README.md` §6, what a screen makes of them `
   so the number a shelf promises and the queuing it performs cannot come from two different rules.
   Missing components are the one thing it does not count:
   queuing a phrase also prepends the components it lacks,
-  and where those live on another shelf, queuing it takes in more than the count said (`../../docs/backlog.md`).
+  and where those live on another shelf, queuing it takes in more than the count said.
 - **`CardRowState`** (`BoxBrowser.cardRowState`) is what one listed card states besides the word itself:
   `Suspended`, `QueueOffered`, `Queued`, `Plain`, or `Standing(stage)`.
   `queueOffered` is the caller's context — a surface that queues a SINGLE word,

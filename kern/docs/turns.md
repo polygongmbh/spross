@@ -17,9 +17,7 @@ and text reaches a machine only inside an intent — never as state.
   `Answer` (the rating leaves for the run), `ArmAdvance`/`CancelAdvance`,
   `PrimeField`, `Tone` and `ReleaseFocus`.
   The one text it holds is the answer it takes out of the field itself (`rejectedAnswer`, below).
-  Every rule about what that text is worth is here,
-  because it lived twice before and drifted both ways —
-  a pickable Easy on one platform, no retype after a miss on the other.
+  Every rule about what that text is worth is here.
   - **What each branch earns**: a clean answer is `Match.Exact.producedRating()`;
     a typo and a borrowed meaning are `TurnFeedback.Almost`, holding the rating grading decided
     until the owed form has been seen; finishing the retype after a miss is
@@ -253,7 +251,7 @@ and text reaches a machine only inside an intent — never as state.
   and one prompt stands per FORM the target writes, so concepts written alike merge
   and every opposite of every one of them answers it, held or not.
   Its Sprossen are bands that overlap nothing, like the sentence scramble's:
-  adjectives, then verbs and nouns, then every prompt with more than one opposite.
+  adjectives and adverbs, then verbs and nouns, then every prompt with more than one opposite.
   `OppositesRun.grade` refuses the prompt itself before the typo budget can read it as a slip of its opposite.
 
 ## The question on screen

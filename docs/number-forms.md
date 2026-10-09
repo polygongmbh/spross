@@ -416,8 +416,8 @@ That is the contrast the frames teach: *viti viwili* against *sahani mbili*.
 while a numeral multiplying *mia*/*elfu* stays bare — it agrees with those, not with the noun.
 Readings past 9999 are left unconcorded on purpose; the sources part ways there.
 A frame opts in with `swahiliNounClass` (`catalog/phrases/README.md`);
-the fuller noun-class table and the source excerpts live outside the repo
-in `../../data/reference/grammar-sw.md`.
+the fuller noun-class table and the source excerpts live
+in `data/reference/grammar-sw.md` (external workspace).
 
 **Ordinals are excluded, structurally.**
 A Swahili ordinal is `-a kwanza`,

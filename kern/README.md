@@ -64,7 +64,7 @@ the rules the declarations cannot state are here.
 - Cards derive at load from the catalog join; **never persisted**.
   The learner's own words are the one other source (section 6) and follow every rule here.
 - **Identity is the slug alone** -- globally unique across areas, lint-enforced
-  (`catalog/README.md`).
+  (`../catalog/README.md`).
   `area` and `kind` are presentation metadata the content may restructure freely:
   moving or reclassifying a concept keeps its schedule.
   `components` are card ids (bare slugs).
@@ -166,7 +166,7 @@ the numbers behind each setting are on `BoxConfig` itself, and the three stabili
   High on the ladder that hands a `Hard` a SHORTER interval than another step would have.
   **No in-session lapse retry** (breadth ruling 2026-07-22):
   the run a card lapsed in does not wait for it
-  (the watch alone folds enough misses back into a round, `docs/surfaces.md`);
+  (the watch alone folds enough misses back into a round, `../docs/surfaces.md`);
   by role resolution (section 3), the retry that follows is the typed production attempt.
   Suspension is the learner's own call -- `setSuspended`, reversible from the Box.
 - **A graduated interval floors at one day.**
@@ -230,7 +230,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   A round's worth of first sights, across EVERY composed round and including queued cards.
   **Nothing throttles on how shaky the material is,
   and nothing on how far behind the box has fallen** --
-  neither predicts retention (`docs/growth-evidence.md`).
+  neither predicts retention (`../docs/growth-evidence.md`).
 - **Phrase unlock** reads each component's schedule **by card id** --
   join- and source-independent, so a source switch can never re-lock phrases.
   Components with no TARGET realization are excluded from the gate.
@@ -253,7 +253,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **A round shorter than `SESSION_FLOOR_CARDS` is filled out** (user ruling 2026-07-30):
   topped up with reviews pulled forward --
   honest FSRS reviews, never extra new words, which are capped per round on purpose
-  (`docs/growth-evidence.md`).
+  (`../docs/growth-evidence.md`).
 - **A long round can be taken short** (user ruling 2026-08-20):
   a strict PREFIX of the round the day promised,
   so it inherits the day-done question with it.
@@ -437,4 +437,4 @@ What was built and later removed is git's to remember.
   and reach every sweep;
   a reading is generated, never authored,
   and `numberNotes` is the one place a language's irregularities get said in words
-  (`catalog/phrases/README.md`).
+  (`../catalog/phrases/README.md`).

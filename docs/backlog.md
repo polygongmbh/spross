@@ -4,15 +4,16 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ## Needs the owner
 
-- Reconcile the `website` branch (`../app-website` worktree, `docs/plans/website.md`) with `main` and decide what of it ships.
+- The site lives in `web/` on `main` (`docs/plans/website.md`);
+  what is open is `SIGNUP_ENDPOINT` in `web/site.js` being empty and spross.net having no host.
 - No release has carried an IPA yet: the `ios` job needs the App Store Connect secrets
   (`docs/distribution.md` § Secrets) present to get past `App Store Connect API key from
   secret`, and iPhones are served by `scripts/deploy-devices.sh` until a run has published one.
 - A live spross.net gates the iPhone install link: GitHub renders the release notes'
-  `itms-services://` URL as code, not a tappable link (`.github/workflows/release.yml:229`),
+  `itms-services://` URL as code, not a tappable link (`.github/workflows/release.yml:263`),
   and a `web/install.html` taking `?v=` would make it a button (`docs/plans/website.md`).
 - CC BY-SA §2(a)(5)(B) vs FairPlay needs a legal read before the FIRST submission
-  (`docs/audio-licensing.md` § 6 item 1: 2094 of 3597 files, mitigation on record); items 2–3
+  (`docs/audio-licensing.md` § 6 item 1, mitigation on record); items 2–3
   there are the es accent and Azure S0.
 - Real hardware has to time the assembled dates accepted set, an uncapped cross-product graded
   on every keystroke (worst de Sprosse 6 ≈ 128 five-word forms per `evaluate`, typical ~16),
@@ -30,14 +31,14 @@ Neighbors: catalog content `../catalog/backlog.md`.
 ## Needs a decision
 
 - A missed letter-name tile question opens its card although the tiles already mark the answer (`DrillRunProgress.showsAnswer`) — keep it closed there, as iOS once did?
-- The repo grants nobody anything — there is no `LICENSE` file, while `docs/sync.md` plans a
+- The repo grants nobody anything — there is no `LICENSE` file, while `docs/plans/sync.md` plans a
   paid service around a free and open app; the options and what constrains them are
   `docs/source-license.md`, and the decision is the owner's.
 - Watch practice laps repeat one order within each part (unasked, misses, right) until the next snapshot, since `fb7668f4` dropped the lap jitter — should words of similar standing reorder again, and does kern or Swift decide it? (`WatchModel.practiceLap`)
 - Phone recognition could ask by multiple choice after the watch's recall pause instead of self-grading, with time-based ratings moved into kern so iOS, Android and the watch grade alike (`WatchGrading`, `kern/docs/presentation.md`).
 - `tools/FaceGen --seed` reads the retired `vocab-*.json` and a `../../content` that no longer exists — port it to the catalog join or delete it (`docs/facegen.md`).
 - Audio ships un-thinned: both installs copy all of `catalog/audio/` (129 MB, 13–25 MB per
-  language — `project.yml:35` folder reference, `android/build.gradle.kts:131` asset sync with
+  language — `project.yml:55` folder reference, `android/build.gradle.kts:131` asset sync with
   mp3/wav uncompressed), so a Swahili learner carries ~116 MB they can never hear, and
   per-language delivery (on-demand resources / Play asset packs) is the fix, measured per
   platform first.
@@ -51,11 +52,11 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Engine
 
-- `VerbSlugRekey` is marked "delete at 7.0+" and still runs on every load at 8.3.0 — delete it with its test and its `snapshots.md` paragraph (`kern/.../store/VerbSlugRekey.kt`).
+- `VerbSlugRekey` is marked "delete at 7.0+" and still runs on every load at 8.7.0 — delete it with its test and its `snapshots.md` paragraph (`kern/.../store/VerbSlugRekey.kt`).
 - Only tests read `AreaStatistics.notIntroduced`, `CatalogArea.conceptsBySlug`, `WordScrambleMasking.fullyScrambled` and `Catalog.dateNames` (the last documented as API in `kern/docs/catalog.md`) — drop each with its test.
 - `CountryDrillRun` and `DateDrillRun` reduce near line for line (~200 lines), and `CountryDrill`/`DateDrill` repeat `answerLanguage`, `promptLanguage`, `winsToAdvance` and `fastUnlocked`; one shared reducer changes the ObjC header, so both apps move with it.
 - `TypedDrillVerdicts` is pinned only through `CountryDrillRunTest`; a direct test would let the country run's verdict tests shrink to wiring.
-- Both phones mint rules kern should name: an own word's id side and trimming (`ui/BoxLogic.kt` `OwnWordDraft.word`), the shelf's "fully queued and settled" (`BoxAreaSection.swift` `fullyQueuedAndSettled`, `ui/BoxSections.kt:120`) and the backup file name `Spross-<lang>-<day>` (`BackupRow.swift` `BackupFile.taken`, `ui/BackupSetting.kt:80`).
+- Both phones mint the backup file name `Spross-<lang>-<day>` kern should name (`BackupRow.swift` `BackupFile.taken`, `ui/BackupSetting.kt:~80`, `ui/BoxSettings.kt:~146`).
 - `Presentation.kt` KDoc on `emojiCue` and `producePrompt` justifies against the past ("came to disagree once already", "bit-exact v1 contract").
 
 ### Apps & tooling
@@ -64,12 +65,17 @@ Neighbors: catalog content `../catalog/backlog.md`.
 - The iOS drill run (`DrillRunView`) still wraps its scaffold by hand, because its run state arrives through `Face.snapshot` rather than kern's run progress — exposing that would let `runScreen` reach it.
 - The widget kind `"SprossWordWidget"` is a literal at the iOS reload sites and in `Widgets/Sources/WordWidget.swift` — one constant in `Shared/Sources`.
 - `HomeStandingTest`, `CardDisplayTest` and `UnlockPriceTest` assert literal German/English copy and break on a copy edit (`android/src/test`).
-- Still over ~300 lines after the 2026-10 sweep: Android `AppModel.kt` (452, wants holder classes for its private setters), `RunScaffold.kt`, `Pronouncer.kt`, `ListeningDriver.kt`, `BoxSections.kt`, `ListeningService.kt`; iOS `AppModel.swift` (398), `AppModel+Listening.swift`, `SessionView.swift`; kern `AnswerNormalizer.kt` (375), `NumbersRun.kt`, `SessionRun.kt`, `Catalog.kt`.
+- Still over ~300 lines: Android `AppModel.kt` (453, wants holder classes for its private setters), `ListeningService.kt`, `ListeningDriver.kt`;
+  iOS `AppModel.swift` (397), `WatchModel.swift`, `TrainerHubView.swift`, `AnswerInputView.swift`, `Theme.swift`, `BoxSettingsSection.swift`;
+  kern `AnswerNormalizer.kt` (398), `NumbersRun.kt`, `SessionRun.kt`, `BoxEngine.kt`, `Catalog.kt`, `LetterDrillRun.kt`;
+  Android `Chrome.kt` (570) is a hand-declared field table the owner may exempt, and the generated `ChromeDe.kt`/`ChromeEn.kt` are exempt by nature.
 - A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
   duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
   screens, a second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`
-  and a panel cut by hand at 15 sites — and still stands at 46 groups after six clusters shipped.
-- `kern/docs` `grading.md`, `catalog.md`, `audio.md`, `reports.md`, the head of `snapshots.md` and the drill-runs section of `turns.md` still hard-wrap at a column instead of semantic linebreaks.
+  and a panel cut by hand at 15 sites — and stands at 7 groups.
+- `kern/docs` `grading.md`, `catalog.md`, `audio.md`, `reports.md`, the head of `snapshots.md` and all of `turns.md`,
+  plus `catalog/README.md`, `catalog/audio/README.md`, `catalog/alphabet/README.md`, `docs/date-readings.md`, `RUNBOOK-android.md` and `docs/backlog.md`,
+  still hard-wrap at a column instead of semantic linebreaks.
 - `compileSdk` sits at 36 and holds androidx back — lifecycle 2.11 refuses to resolve below
   37 (`checkDebugAarMetadata`) and the next Compose BOM will follow — so the bump is one edit
   to `gradle/libs.versions.toml` once the android-37 platform is installed, plus a separate
@@ -79,7 +85,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ## Revisit when it grows
 
-- Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch, but revisit the cap
+- Watch snapshot entry cap (`WatchSnapshotBuilder.ENTRY_CAP`, 120): due-first ranking keeps due cards on-watch, but revisit the cap
   if the active box outgrows it (`../kern/docs/snapshots.md`).
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).

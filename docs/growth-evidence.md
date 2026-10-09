@@ -134,10 +134,6 @@ The tail of `R(t) = (1 + 0.98*t/S)^-0.1542` is flat in proportion to stability:
 30 days late leaves a mature card (S 60) at 0.79, a settling one (S 10) at 0.74,
 and a word met once (S 2.31) at 0.65.
 
-**The health gate cost fell on the returning learner:**
-coming back after two weeks away was exactly when it shut,
-so the box went silent at the moment the learner re-engaged.
-
 ## What the other systems do is not evidence
 
 - **Anki** defaults to 20 new cards/day; its stated rationale is downstream load.

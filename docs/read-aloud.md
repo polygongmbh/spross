@@ -25,8 +25,8 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   The meaning is the learner's own language, on until the audio setting's "Say the meaning too" turns it off.
 - **The target language is spoken with its article; the learner's own language is not.**
   The voice says "das Brot"; kern decides whether there is an article (`shownArticle`).
-  Where a pack recorded the article too, the recording says it:
-  German and Italian carry an `articles{}` section.
+  Where a pack recorded the article too, the recording says it
+  (`scripts/audio-coverage.py --credits` lists which packs carry an `articles{}` section).
   Badge, plural line and alternates stay unspoken.
 - **Audio may never give the answer away**:
   recognition speaks the word at once, produce says the meaning it asks by and waits for the reveal to say the word.

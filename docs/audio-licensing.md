@@ -3,7 +3,7 @@ The ship/legal record for the bundled audio and content (what is in the app, who
 Neighbors: schema `../catalog/audio/README.md`, engine `../kern/docs/audio.md`, codec `audio-format.md`, the source's license `source-license.md`.
 
 The pack research (how each source was found, what was rejected, the coverage gaps)
-lives outside the repo in `data/reference/audio/README.md`.
+lives in `data/reference/audio/README.md` (external workspace).
 
 ## 1. What ships, and under what
 
@@ -168,7 +168,7 @@ Notable rejections:
 1. **BY-SA section 2(a)(5)(B) versus App Store DRM -- the pre-submission gate.**
    The license forbids "Effective Technological Measures" on the shared material,
    and every App Store binary is FairPlay-encrypted;
-   2094 of the 3597 files are BY-SA.
+   the majority of the files are BY-SA (`scripts/audio-coverage.py --credits` prints the split).
    **Mitigation on record:** additionally publish the same recordings at a public un-DRM'd URL
    under the same licenses, in **separate per-language files** --
    the `catalog/audio/<lang>/` split already prepares that shape.

@@ -18,7 +18,7 @@ Neighbors: the engine contract `../README.md`, the trainer packs `trainer.md`.
   An in-target xcodegen `preBuildScripts` phase branches on `$CONFIGURATION`/`$SDK_NAME`,
   runs the matching `linkDebug/ReleaseFramework<Target>` Gradle task,
   and copies the framework to a configuration-neutral search path.
-  `scripts/bootstrap.sh` for fresh clones; a Release archive smoke check joins the gates.
+  `scripts/bootstrap.sh` for fresh clones; the archive runs in CI after the tag (`../../docs/distribution.md`).
   Only the APP target links Kotlin; widget/watch/complication are decode-only Swift (`snapshots.md`).
 - Swift ergonomics: UI-crossing Kotlin types are data classes;
   `App/Sources/KernBridge.swift` adds `Date ↔ epochMillis` helpers and `Identifiable`/`Equatable` conformances;
