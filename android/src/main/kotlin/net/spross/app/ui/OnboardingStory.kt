@@ -137,7 +137,7 @@ fun TourStopRow(emoji: String, title: String, body: String) {
 
 /**
  * Where things are, before the first round:
- * the day's round on Home, the box where the learner picks what comes next, and the ways to practice beside it.
+ * the day's round on Home, and the box where the learner picks what comes next.
  * Each stop is named by its own screen's chrome, so the learner recognizes it on arrival.
  */
 @Composable
@@ -149,8 +149,6 @@ fun TourPage(chrome: Chrome, emoji: String, onNext: () -> Unit, onBack: () -> Un
                 val (title, body) = when (stop) {
                     OnboardingTourStop.Home -> chrome.homeName to chrome.onboardingTourHome
                     OnboardingTourStop.Box -> chrome.boxName to chrome.onboardingTourBox
-                    OnboardingTourStop.Drills -> chrome.trainerHubTitle to chrome.onboardingTourDrills
-                    OnboardingTourStop.Listening -> chrome.listenTitle to chrome.onboardingTourListening
                 }
                 TourStopRow(stop.emoji, title, body)
             }

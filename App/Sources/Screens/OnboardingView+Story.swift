@@ -36,8 +36,6 @@ extension OnboardingView {
         switch stop {
         case .home: ("home.name", "onboarding.tour.home")
         case .box: ("box.name", "onboarding.tour.box")
-        case .drills: ("trainer.hub.title", "onboarding.tour.drills")
-        case .listening: ("listen.title", "onboarding.tour.listening")
         }
     }
 

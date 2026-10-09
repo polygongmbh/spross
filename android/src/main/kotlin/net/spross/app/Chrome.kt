@@ -62,8 +62,6 @@ interface Chrome {
     val onboardingTourTitle: String
     val onboardingTourHome: String
     val onboardingTourBox: String
-    val onboardingTourDrills: String
-    val onboardingTourListening: String
     val onboardingFirstRoundTitle: String
     val onboardingFirstRoundRecognize: String
     val onboardingFirstRoundGrade: String

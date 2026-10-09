@@ -5026,53 +5026,19 @@
         }
       }
     },
-    "onboarding.tour.drills" : {
-      "comment" : "The onboarding tour's line under the drills card's name.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kurze Spiele mit Zahlen, Buchstaben, Daten und mehr, wann immer du magst."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quick games with numbers, letters, dates and more, whenever you like."
-          }
-        }
-      }
-    },
     "onboarding.tour.home" : {
-      "comment" : "The onboarding tour's line under Home's name: what the day's card at the top offers.",
+      "comment" : "The onboarding tour's line under Home's name: where the day's round starts, and that more practice sits below it.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oben steht deine Runde für heute: neue Wörter und die, die wieder dran sind. Ein Tipp startet sie."
+            "value" : "Tipp oben auf die Karte für deine Runde von heute. Darunter findest du weitere Übungen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your round for today sits at the top: new words and the ones due again. One tap starts it."
-          }
-        }
-      }
-    },
-    "onboarding.tour.listening" : {
-      "comment" : "The onboarding tour's line under the listening card's name.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deine Wörter zum Anhören, nebenbei oder beim Einschlafen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your words read aloud, hands-free or at bedtime."
+            "value" : "Tap the card at the top for today's round. More ways to practice sit below it."
           }
         }
       }
@@ -5083,13 +5049,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "So funktioniert Spross"
+            "value" : "Wo du anfängst"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "How Spross Works"
+            "value" : "Where to Start"
           }
         }
       }

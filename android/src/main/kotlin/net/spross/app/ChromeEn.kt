@@ -43,15 +43,12 @@ internal object ChromeEn : Chrome {
     override val onboardingNameQuestion = "How should Spross greet you?"
     override val onboardingStart = "Let's go!"
     override val commonBack = "Back"
-    override val onboardingTourTitle = "How Spross Works"
-    override val onboardingTourHome = "Your round for today sits at the top: new words and " +
-        "the ones due again. One tap starts it."
+    override val onboardingTourTitle = "Where to Start"
+    override val onboardingTourHome = "Tap the card at the top for today's round. More ways " +
+        "to practice sit below it."
     override val onboardingTourBox = "Choose what you learn: tap the arrow beside an area, " +
         "like food or animals, and its words come next. Pick nothing and Spross starts with " +
         "everyday words."
-    override val onboardingTourDrills = "Quick games with numbers, letters, dates and more, " +
-        "whenever you like."
-    override val onboardingTourListening = "Your words read aloud, hands-free or at bedtime."
     override val onboardingFirstRoundTitle = "Your First Round"
     override val onboardingFirstRoundRecognize = "You see a word. Do you know it?"
     override val onboardingFirstRoundGrade = "Reveal it and say honestly how well you knew " +

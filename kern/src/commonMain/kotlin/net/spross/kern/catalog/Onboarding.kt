@@ -38,19 +38,16 @@ enum class OnboardingPage {
 
 /**
  * The tour's stops, in the order the page lists them:
- * the day's round on Home, the box where the learner picks what comes next,
- * then the two ways to practice beside the round.
+ * the day's round on Home, then the box where the learner picks what comes next.
  */
 enum class OnboardingTourStop {
-    Home, Box, Drills, Listening;
+    Home, Box;
 
     /** The glyph beside the stop's name. */
     val emoji: String
         get() = when (this) {
             Home -> "🏡"
             Box -> "🌳"
-            Drills -> "🌼"
-            Listening -> "🎧"
         }
 }
 
