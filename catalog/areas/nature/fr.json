@@ -19,7 +19,8 @@
   "shadow": { "text": "ombre", "accepts": ["l'ombre"], "grammar": { "gender": "l'" } },
   "we-are-going-to-the-mountains": {
    "text": "Nous allons à la montagne.",
-   "accepts": ["On va à la montagne.", "Nous allons en montagne."]
+   "accepts": ["On va à la montagne.", "Nous allons en montagne."],
+   "orders": ["À la montagne, nous allons."]
   },
   "its-cold-in-the-mountains": { "text": "Il fait froid à la montagne.", "orders": ["À la montagne, il fait froid."] }
  }

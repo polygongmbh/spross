@@ -69,7 +69,8 @@
   },
   "wash-the-dishes-in-the-sink": {
    "text": "¡Friega los platos en el fregadero!",
-   "accepts": ["¡Lava los platos en el fregadero!"]
+   "accepts": ["¡Lava los platos en el fregadero!"],
+   "orders": ["¡En el fregadero friega los platos!"]
   },
   "the-fridge-is-empty": {
    "text": "La nevera está vacía.",

@@ -13,7 +13,7 @@
   "thunder": { "text": "Donner", "grammar": { "gender": "der" } },
   "lightning": { "text": "Blitz", "forms": { "pl": "die Blitze" }, "grammar": { "gender": "der" } },
   "humid": { "text": "feucht" },
-  "hows-the-weather-today": { "text": "Wie ist das Wetter heute?" },
+  "hows-the-weather-today": { "text": "Wie ist das Wetter heute?", "orders": ["Heute, wie ist das Wetter?"] },
   "its-raining": { "text": "Es regnet." },
   "the-rain-has-stopped": { "text": "Der Regen hat aufgehört.", "accepts": ["Es regnet nicht mehr."] },
   "the-sun-is-shining": { "text": "Die Sonne scheint!" },

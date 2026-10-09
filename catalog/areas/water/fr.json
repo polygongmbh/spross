@@ -26,6 +26,10 @@
    "text": "Les vagues sont grandes aujourd'hui.",
    "orders": ["Aujourd'hui, les vagues sont grandes."]
   },
-  "we-sailed-to-the-island": { "text": "Nous avons navigué jusqu'à l'île.", "accepts": ["On a navigué jusqu'à l'île."] }
+  "we-sailed-to-the-island": {
+   "text": "Nous avons navigué jusqu'à l'île.",
+   "accepts": ["On a navigué jusqu'à l'île."],
+   "orders": ["Jusqu'à l'île nous avons navigué."]
+  }
  }
 }

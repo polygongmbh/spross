@@ -15,9 +15,9 @@
   "counseling": { "text": "konsilado" },
   "skills": { "text": "scioj" },
   "to-finish-training": { "text": "fini la trejnadon" },
-  "she-completed-her-training-in-2015": { "text": "Ŝi finis sian trejnadon en 2015." },
+  "she-completed-her-training-in-2015": { "text": "Ŝi finis sian trejnadon en 2015.", "orders": ["En 2015 ŝi finis sian trejnadon."] },
   "are-you-doing-an-internship": { "text": "Ĉu vi faras staĝon?" },
-  "the-lecture-is-canceled-today": { "text": "La prelego hodiaŭ ne okazas." },
+  "the-lecture-is-canceled-today": { "text": "La prelego hodiaŭ ne okazas.", "orders": ["Hodiaŭ la prelego ne okazas."] },
   "no-prior-knowledge-needed": { "text": "Vi ne bezonas antaŭajn sciojn." }
  }
 }

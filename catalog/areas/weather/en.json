@@ -13,7 +13,7 @@
   "thunder": { "text": "thunder" },
   "lightning": { "text": "lightning" },
   "humid": { "text": "humid" },
-  "hows-the-weather-today": { "text": "How's the weather today?" },
+  "hows-the-weather-today": { "text": "How's the weather today?", "orders": ["Today, how's the weather?"] },
   "its-raining": { "text": "It's raining." },
   "the-rain-has-stopped": { "text": "The rain has stopped.", "accepts": ["It's stopped raining.", "It stopped raining."] },
   "the-sun-is-shining": { "text": "The sun is shining!" },

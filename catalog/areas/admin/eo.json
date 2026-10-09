@@ -44,7 +44,8 @@
   "where-do-i-sign": { "text": "Kie mi subskribu?", "accepts": ["Kie mi devas subskribi?"] },
   "i-want-to-extend-my-residence-permit": {
    "text": "Mi ŝatus plilongigi la loĝpermeson.",
-   "accepts": ["Mi volas plilongigi la loĝpermeson.", "Mi ŝatus renovigi la loĝpermeson."]
+   "accepts": ["Mi volas plilongigi la loĝpermeson.", "Mi ŝatus renovigi la loĝpermeson."],
+   "orders": ["La loĝpermeson mi ŝatus plilongigi."]
   },
   "i-need-an-interpreter-for-the-application": {
    "text": "Mi bezonas interpretiston por la peto.",

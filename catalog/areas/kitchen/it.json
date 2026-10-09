@@ -68,7 +68,11 @@
    "orders": ["Oggi cucini il riso?"]
   },
   "the-pot-is-still-on-the-stove": { "text": "La pentola è ancora sul fornello.", "accepts": ["La pentola è ancora sul fuoco."] },
-  "wash-the-dishes-in-the-sink": { "text": "Lava i piatti nel lavello!", "accepts": ["Lava i piatti nel lavandino!"] },
+  "wash-the-dishes-in-the-sink": {
+   "text": "Lava i piatti nel lavello!",
+   "accepts": ["Lava i piatti nel lavandino!"],
+   "orders": ["Nel lavello lava i piatti!"]
+  },
   "the-fridge-is-empty": { "text": "Il frigorifero è vuoto.", "accepts": ["Il frigo è vuoto."] },
   "can-you-set-the-table": {
    "text": "Puoi apparecchiare la tavola?",

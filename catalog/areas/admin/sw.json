@@ -42,7 +42,7 @@
   "to-take-a-number": { "text": "kuchukua namba" },
   "where-do-i-sign": { "text": "Nitie sahihi wapi?" },
   "i-want-to-extend-my-residence-permit": { "text": "Ningependa kuhuisha kibali cha ukaaji." },
-  "i-need-an-interpreter-for-the-application": { "text": "Nahitaji mkalimani kwa ombi." },
+  "i-need-an-interpreter-for-the-application": { "text": "Nahitaji mkalimani kwa ombi.", "orders": ["Kwa ombi nahitaji mkalimani."] },
   "did-you-bring-all-the-documents": { "text": "Umeleta nyaraka zote?" },
   "the-decision-comes-by-mail": { "text": "Barua ya uamuzi itakuja kwa posta.", "orders": ["Kwa posta itakuja barua ya uamuzi."] },
   "when-does-my-id-expire": { "text": "Kitambulisho changu kinaisha lini?" },

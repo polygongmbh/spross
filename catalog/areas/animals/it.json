@@ -20,6 +20,10 @@
   "the-cat-is-meowing": { "text": "Il gatto miagola.", "accepts": ["Il gatto sta miagolando."] },
   "the-bird-is-singing": { "text": "L'uccello canta.", "accepts": ["L'uccello sta cantando."] },
   "the-lion-is-roaring": { "text": "Il leone ruggisce.", "accepts": ["Il leone sta ruggendo."] },
-  "the-mosquito-is-biting-me": { "text": "La zanzara mi punge.", "accepts": ["La zanzara mi sta pungendo."] }
+  "the-mosquito-is-biting-me": {
+   "text": "La zanzara mi punge.",
+   "accepts": ["La zanzara mi sta pungendo."],
+   "orders": ["Mi punge la zanzara."]
+  }
  }
 }

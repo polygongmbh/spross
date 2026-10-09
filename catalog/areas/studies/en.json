@@ -17,10 +17,15 @@
   "to-finish-training": { "text": "to complete the training", "accepts": ["to finish the training"] },
   "she-completed-her-training-in-2015": {
    "text": "She completed her training in 2015.",
-   "accepts": ["She finished her training in 2015."]
+   "accepts": ["She finished her training in 2015."],
+   "orders": ["In 2015, she completed her training."]
   },
   "are-you-doing-an-internship": { "text": "Are you doing an internship?" },
-  "the-lecture-is-canceled-today": { "text": "The lecture is canceled today.", "accepts": ["The lecture is cancelled today."] },
+  "the-lecture-is-canceled-today": {
+   "text": "The lecture is canceled today.",
+   "accepts": ["The lecture is cancelled today."],
+   "orders": ["Today the lecture is canceled."]
+  },
   "no-prior-knowledge-needed": { "text": "You don't need any prior knowledge." }
  }
 }

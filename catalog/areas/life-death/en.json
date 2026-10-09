@@ -19,6 +19,10 @@
   "to-bury": { "text": "to bury" },
   "my-condolences": { "text": "My deepest condolences.", "accepts": ["My condolences."] },
   "where-did-you-grow-up": { "text": "Where did you grow up?" },
-  "my-grandpa-died-last-year": { "text": "My grandpa died last year.", "accepts": ["My grandfather died last year."] }
+  "my-grandpa-died-last-year": {
+   "text": "My grandpa died last year.",
+   "accepts": ["My grandfather died last year."],
+   "orders": ["Last year my grandpa died."]
+  }
  }
 }

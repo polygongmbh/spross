@@ -37,9 +37,15 @@
   "counseling": { "text": "conseil", "accepts": ["orientation"], "grammar": { "gender": "le" } },
   "skills": { "text": "connaissances", "grammar": { "gender": "les", "plural": "only" } },
   "to-finish-training": { "text": "terminer la formation", "accepts": ["finir la formation"] },
-  "she-completed-her-training-in-2015": { "text": "Elle a terminé sa formation en 2015." },
+  "she-completed-her-training-in-2015": {
+   "text": "Elle a terminé sa formation en 2015.",
+   "orders": ["En 2015, elle a terminé sa formation."]
+  },
   "are-you-doing-an-internship": { "text": "Vous faites un stage ?" },
-  "the-lecture-is-canceled-today": { "text": "Le cours magistral est annulé aujourd'hui." },
+  "the-lecture-is-canceled-today": {
+   "text": "Le cours magistral est annulé aujourd'hui.",
+   "orders": ["Aujourd'hui, le cours magistral est annulé."]
+  },
   "no-prior-knowledge-needed": { "text": "Vous n'avez pas besoin de connaissances préalables." }
  }
 }

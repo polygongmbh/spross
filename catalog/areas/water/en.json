@@ -18,6 +18,6 @@
   "to-fish": { "text": "to fish" },
   "can-you-swim": { "text": "Can you swim?" },
   "the-waves-are-big-today": { "text": "The waves are big today.", "orders": ["Today the waves are big."] },
-  "we-sailed-to-the-island": { "text": "We sailed to the island." }
+  "we-sailed-to-the-island": { "text": "We sailed to the island.", "orders": ["To the island we sailed."] }
  }
 }

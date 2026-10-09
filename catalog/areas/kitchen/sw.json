@@ -51,7 +51,7 @@
    "orders": ["Leo unapika wali?"]
   },
   "the-pot-is-still-on-the-stove": { "text": "Sufuria bado iko juu ya jiko." },
-  "wash-the-dishes-in-the-sink": { "text": "Osha vyombo sinkini!" },
+  "wash-the-dishes-in-the-sink": { "text": "Osha vyombo sinkini!", "orders": ["Sinkini osha vyombo!"] },
   "the-fridge-is-empty": { "text": "Friji iko tupu." },
   "can-you-set-the-table": { "text": "Unaweza kuandaa meza?" },
   "the-water-is-boiling-hot": { "text": "Maji yanachemka." },

@@ -25,6 +25,6 @@
   "cinema": { "text": "sinema", "grammar": { "plural": "=" } },
   "bridge": { "text": "daraja", "forms": { "pl": "madaraja" } },
   "is-there-a-bank-here": { "text": "Kuna benki hapa?", "orders": ["Hapa kuna benki?"] },
-  "i-live-in-this-neighborhood": { "text": "Ninaishi katika mtaa huu." }
+  "i-live-in-this-neighborhood": { "text": "Ninaishi katika mtaa huu.", "orders": ["Katika mtaa huu ninaishi."] }
  }
 }

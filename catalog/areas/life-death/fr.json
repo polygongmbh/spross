@@ -19,6 +19,9 @@
   "to-bury": { "text": "enterrer" },
   "my-condolences": { "text": "Toutes mes condoléances.", "accepts": ["Sincères condoléances."] },
   "where-did-you-grow-up": { "text": "Où avez-vous grandi ?" },
-  "my-grandpa-died-last-year": { "text": "Mon grand-père est mort l'année dernière." }
+  "my-grandpa-died-last-year": {
+   "text": "Mon grand-père est mort l'année dernière.",
+   "orders": ["L'année dernière, mon grand-père est mort."]
+  }
  }
 }

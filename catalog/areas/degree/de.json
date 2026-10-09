@@ -26,7 +26,7 @@
   "few": { "text": "wenige" },
   "once": { "text": "einmal" },
   "more-or-less": { "text": "mehr oder weniger" },
-  "i-am-always-there": { "text": "Ich bin immer da." },
+  "i-am-always-there": { "text": "Ich bin immer da.", "orders": ["Immer bin ich da."] },
   "hang-it-higher": { "text": "Häng es höher." },
   "is-that-enough": { "text": "Ist das genug?", "orders": ["Das ist genug?"] }
  }

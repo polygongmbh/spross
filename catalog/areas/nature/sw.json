@@ -28,7 +28,7 @@
   },
   "stick": { "text": "fimbo", "grammar": { "plural": "=" } },
   "shadow": { "text": "kivuli", "forms": { "pl": "vivuli" } },
-  "we-are-going-to-the-mountains": { "text": "Tunaenda milimani." },
+  "we-are-going-to-the-mountains": { "text": "Tunaenda milimani.", "orders": ["Milimani tunaenda."] },
   "its-cold-in-the-mountains": { "text": "Milimani kuna baridi.", "orders": ["Kuna baridi milimani."] }
  }
 }

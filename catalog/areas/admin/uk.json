@@ -42,8 +42,14 @@
   "to-submit-application": { "text": "пода́ти зая́ву" },
   "to-take-a-number": { "text": "взя́ти тало́н", "accepts": ["взяти номерок"] },
   "where-do-i-sign": { "text": "Де мені́ підписа́ти?" },
-  "i-want-to-extend-my-residence-permit": { "text": "Я хоті́в би продо́вжити по́свідку на прожива́ння." },
-  "i-need-an-interpreter-for-the-application": { "text": "Для зая́ви мені́ потрі́бен переклада́ч." },
+  "i-want-to-extend-my-residence-permit": {
+   "text": "Я хоті́в би продо́вжити по́свідку на прожива́ння.",
+   "orders": ["Посвідку на проживання я хотів би продовжити."]
+  },
+  "i-need-an-interpreter-for-the-application": {
+   "text": "Для зая́ви мені́ потрі́бен переклада́ч.",
+   "orders": ["Мені потрібен перекладач для заяви."]
+  },
   "did-you-bring-all-the-documents": { "text": "Ви принесли́ всі докуме́нти?", "orders": ["Всі документи ви принесли?"] },
   "the-decision-comes-by-mail": { "text": "Рі́шення наді́йде по́штою.", "orders": ["Поштою надійде рішення."] },
   "when-does-my-id-expire": {

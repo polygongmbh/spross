@@ -19,6 +19,10 @@
   "to-bury": { "text": "enterigi" },
   "my-condolences": { "text": "Miajn sincerajn kondolencojn." },
   "where-did-you-grow-up": { "text": "Kie vi kreskis?" },
-  "my-grandpa-died-last-year": { "text": "Mia avo mortis pasintjare.", "accepts": ["Mia avo mortis pasintan jaron."] }
+  "my-grandpa-died-last-year": {
+   "text": "Mia avo mortis pasintjare.",
+   "accepts": ["Mia avo mortis pasintan jaron."],
+   "orders": ["Pasintjare mia avo mortis."]
+  }
  }
 }

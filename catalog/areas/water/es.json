@@ -18,6 +18,6 @@
   "to-fish": { "text": "pescar" },
   "can-you-swim": { "text": "¿Sabes nadar?", "accepts": ["¿Puedes nadar?"] },
   "the-waves-are-big-today": { "text": "Las olas son grandes hoy.", "orders": ["Hoy las olas son grandes."] },
-  "we-sailed-to-the-island": { "text": "Navegamos hasta la isla." }
+  "we-sailed-to-the-island": { "text": "Navegamos hasta la isla.", "orders": ["Hasta la isla navegamos."] }
  }
 }

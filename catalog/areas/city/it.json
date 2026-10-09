@@ -35,6 +35,10 @@
    "accepts": ["C'è una banca qui vicino?", "Qui c'è una banca?"],
    "orders": ["Qui c'è una banca?"]
   },
-  "i-live-in-this-neighborhood": { "text": "Abito in questo quartiere.", "accepts": ["Vivo in questo quartiere."] }
+  "i-live-in-this-neighborhood": {
+   "text": "Abito in questo quartiere.",
+   "accepts": ["Vivo in questo quartiere."],
+   "orders": ["In questo quartiere abito."]
+  }
  }
 }

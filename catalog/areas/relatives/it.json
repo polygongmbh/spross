@@ -18,6 +18,10 @@
   "father-in-law": { "text": "suocero", "grammar": { "gender": "il" } },
   "mother-in-law": { "text": "suocera", "grammar": { "gender": "la" } },
   "do-you-have-siblings": { "text": "Avete fratelli?" },
-  "my-mother-in-law-lives-with-us": { "text": "Mia suocera abita da noi.", "accepts": ["Mia suocera vive con noi."] }
+  "my-mother-in-law-lives-with-us": {
+   "text": "Mia suocera abita da noi.",
+   "accepts": ["Mia suocera vive con noi."],
+   "orders": ["Da noi abita mia suocera."]
+  }
  }
 }

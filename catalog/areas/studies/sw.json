@@ -15,7 +15,7 @@
   "counseling": { "text": "ushauri" },
   "skills": { "text": "ujuzi" },
   "to-finish-training": { "text": "kumaliza mafunzo" },
-  "she-completed-her-training-in-2015": { "text": "Alimaliza mafunzo yake mwaka 2015." },
+  "she-completed-her-training-in-2015": { "text": "Alimaliza mafunzo yake mwaka 2015.", "orders": ["Mwaka 2015 alimaliza mafunzo yake."] },
   "are-you-doing-an-internship": { "text": "Mnafanya mafunzo kwa vitendo?" },
   "the-lecture-is-canceled-today": { "text": "Mhadhara wa leo umefutwa." },
   "no-prior-knowledge-needed": { "text": "Huhitaji ujuzi wa awali." }

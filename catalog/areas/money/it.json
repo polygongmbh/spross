@@ -35,6 +35,6 @@
   "that-is-too-expensive": { "text": "Questo è troppo caro.", "accepts": ["È troppo caro.", "Costa troppo."] },
   "i-have-no-money": { "text": "Non ho soldi.", "accepts": ["Non ho denaro."] },
   "can-i-pay-by-card": { "text": "Posso pagare con la carta?" },
-  "ive-already-paid": { "text": "Ho già pagato." }
+  "ive-already-paid": { "text": "Ho già pagato.", "orders": ["Già ho pagato."] }
  }
 }

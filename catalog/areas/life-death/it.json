@@ -19,6 +19,6 @@
   "to-bury": { "text": "seppellire" },
   "my-condolences": { "text": "Sentite condoglianze.", "accepts": ["Le mie condoglianze."] },
   "where-did-you-grow-up": { "text": "Dove siete cresciuti?" },
-  "my-grandpa-died-last-year": { "text": "Mio nonno è morto l'anno scorso." }
+  "my-grandpa-died-last-year": { "text": "Mio nonno è morto l'anno scorso.", "orders": ["L'anno scorso è morto mio nonno."] }
  }
 }

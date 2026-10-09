@@ -30,6 +30,10 @@
    }
   },
   "where-did-you-grow-up": { "text": "Mlikulia wapi?" },
-  "my-grandpa-died-last-year": { "text": "Babu yangu alifariki mwaka jana.", "accepts": ["Babu yangu alikufa mwaka jana."] }
+  "my-grandpa-died-last-year": {
+   "text": "Babu yangu alifariki mwaka jana.",
+   "accepts": ["Babu yangu alikufa mwaka jana."],
+   "orders": ["Mwaka jana babu yangu alifariki."]
+  }
  }
 }

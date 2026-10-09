@@ -118,12 +118,14 @@
   },
   "i-need-an-interpreter-for-the-application": {
    "text": "Ho bisogno di un interprete per la richiesta.",
-   "accepts": ["Mi serve un interprete per la richiesta.", "Ho bisogno di un interprete per la domanda."]
+   "accepts": ["Mi serve un interprete per la richiesta.", "Ho bisogno di un interprete per la domanda."],
+   "orders": ["Per la richiesta ho bisogno di un interprete."]
   },
   "did-you-bring-all-the-documents": { "text": "Ha portato tutti i documenti?", "accepts": ["Hai portato tutti i documenti?"] },
   "the-decision-comes-by-mail": {
    "text": "La comunicazione arriva per posta.",
-   "accepts": ["Il provvedimento arriva per posta."]
+   "accepts": ["Il provvedimento arriva per posta."],
+   "orders": ["Per posta arriva la comunicazione."]
   },
   "when-does-my-id-expire": {
    "text": "Quando scade la mia carta d'identità?",

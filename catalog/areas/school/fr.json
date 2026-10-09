@@ -93,7 +93,11 @@
   "the-break-is-over": { "text": "La pause est finie.", "accepts": ["La pause est terminée."] },
   "ask-the-teacher": { "text": "Demande au professeur.", "accepts": ["Demandez au professeur.", "Demande au prof."] },
   "i-have-a-good-grade": { "text": "J'ai une bonne note." },
-  "we-go-to-the-classroom": { "text": "Nous allons dans la salle de classe.", "accepts": ["On va dans la salle de classe."] },
+  "we-go-to-the-classroom": {
+   "text": "Nous allons dans la salle de classe.",
+   "accepts": ["On va dans la salle de classe."],
+   "orders": ["Dans la salle de classe, nous allons."]
+  },
   "the-exam-is-already-corrected": { "text": "L'examen est déjà corrigé.", "orders": ["Déjà, l'examen est corrigé."] },
   "mistake": { "text": "erreur", "grammar": { "gender": "la" } },
   "to-be-wrong": { "text": "se tromper" }

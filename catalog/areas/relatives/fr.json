@@ -15,6 +15,10 @@
   "father-in-law": { "text": "beau-père", "forms": { "pl": "les beaux-pères" }, "grammar": { "gender": "le" } },
   "mother-in-law": { "text": "belle-mère", "forms": { "pl": "les belles-mères" }, "grammar": { "gender": "la" } },
   "do-you-have-siblings": { "text": "Vous avez des frères et sœurs ?", "accepts": ["Avez-vous des frères et sœurs ?"] },
-  "my-mother-in-law-lives-with-us": { "text": "Ma belle-mère habite chez nous.", "accepts": ["Ma belle-mère vit chez nous."] }
+  "my-mother-in-law-lives-with-us": {
+   "text": "Ma belle-mère habite chez nous.",
+   "accepts": ["Ma belle-mère vit chez nous."],
+   "orders": ["Chez nous habite ma belle-mère."]
+  }
  }
 }

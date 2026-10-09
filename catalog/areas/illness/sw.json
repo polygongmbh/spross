@@ -40,6 +40,6 @@
    "notes": { "de": "pole = Mitgefühls-Wort ohne direktes deutsches Gegenstück" }
   },
   "the-wound-hurts": { "text": "Jeraha linauma." },
-  "i-hurt-myself-yesterday": { "text": "Jana nilijiumiza." }
+  "i-hurt-myself-yesterday": { "text": "Jana nilijiumiza.", "orders": ["Nilijiumiza jana."] }
  }
 }

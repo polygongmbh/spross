@@ -80,7 +80,7 @@
    "notes": { "es": "Ante una persona el objeto lleva a: pregunta al profesor, pero mira la pizarra." }
   },
   "i-have-a-good-grade": { "text": "Tengo una buena nota." },
-  "we-go-to-the-classroom": { "text": "Vamos al aula." },
+  "we-go-to-the-classroom": { "text": "Vamos al aula.", "orders": ["Al aula vamos."] },
   "the-exam-is-already-corrected": { "text": "El examen ya está corregido.", "orders": ["Ya está corregido el examen."] },
   "mistake": { "text": "error", "grammar": { "gender": "el" } },
   "to-be-wrong": { "text": "equivocarse" }

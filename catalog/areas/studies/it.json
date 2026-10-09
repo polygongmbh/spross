@@ -33,7 +33,8 @@
   },
   "she-completed-her-training-in-2015": {
    "text": "Ha finito la sua formazione nel 2015.",
-   "accepts": ["Lei ha finito la sua formazione nel 2015."]
+   "accepts": ["Lei ha finito la sua formazione nel 2015."],
+   "orders": ["Nel 2015 ha finito la sua formazione."]
   },
   "are-you-doing-an-internship": { "text": "Fate un tirocinio?" },
   "the-lecture-is-canceled-today": { "text": "Oggi la lezione frontale è annullata." },

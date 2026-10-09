@@ -17,6 +17,6 @@
   "cinema": { "text": "cine", "grammar": { "gender": "el" } },
   "bridge": { "text": "puente", "grammar": { "gender": "el" } },
   "is-there-a-bank-here": { "text": "¿Hay un banco por aquí?", "orders": ["¿Por aquí hay un banco?"] },
-  "i-live-in-this-neighborhood": { "text": "Vivo en este barrio." }
+  "i-live-in-this-neighborhood": { "text": "Vivo en este barrio.", "orders": ["En este barrio vivo."] }
  }
 }

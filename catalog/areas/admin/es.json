@@ -97,7 +97,10 @@
    "text": "Quiero renovar el permiso de residencia.",
    "accepts": ["Quisiera renovar el permiso de residencia.", "Quería renovar el permiso de residencia."]
   },
-  "i-need-an-interpreter-for-the-application": { "text": "Necesito un intérprete para la solicitud." },
+  "i-need-an-interpreter-for-the-application": {
+   "text": "Necesito un intérprete para la solicitud.",
+   "orders": ["Para la solicitud necesito un intérprete."]
+  },
   "did-you-bring-all-the-documents": {
    "text": "¿Ha traído toda la documentación?",
    "accepts": ["¿Has traído toda la documentación?", "¿Ha traído todos los documentos?"]

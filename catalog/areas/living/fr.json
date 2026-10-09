@@ -81,7 +81,8 @@
   "lets-hang-the-picture": { "text": "Accrochons le tableau !", "accepts": ["On accroche le tableau ?"] },
   "the-curtains-hang-over-the-window": {
    "text": "Les rideaux pendent devant la fenêtre.",
-   "accepts": ["Les rideaux sont devant la fenêtre."]
+   "accepts": ["Les rideaux sont devant la fenêtre."],
+   "orders": ["Devant la fenêtre pendent les rideaux."]
   },
   "the-window-is-closed": { "text": "La fenêtre est fermée." },
   "the-window-is-open": { "text": "La fenêtre est ouverte." }

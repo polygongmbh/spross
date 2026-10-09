@@ -12,6 +12,10 @@
   "father-in-law": { "text": "baba mkwe", "grammar": { "plural": "=" } },
   "mother-in-law": { "text": "mama mkwe", "grammar": { "plural": "=" } },
   "do-you-have-siblings": { "text": "Mna ndugu?" },
-  "my-mother-in-law-lives-with-us": { "text": "Mama mkwe wangu anaishi nasi.", "accepts": ["Mama mkwe wangu anaishi pamoja nasi."] }
+  "my-mother-in-law-lives-with-us": {
+   "text": "Mama mkwe wangu anaishi nasi.",
+   "accepts": ["Mama mkwe wangu anaishi pamoja nasi."],
+   "orders": ["Nasi anaishi mama mkwe wangu."]
+  }
  }
 }

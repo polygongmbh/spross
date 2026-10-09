@@ -18,6 +18,6 @@
   "father-in-law": { "text": "bopatro" },
   "mother-in-law": { "text": "bopatrino" },
   "do-you-have-siblings": { "text": "Ĉu vi havas gefratojn?" },
-  "my-mother-in-law-lives-with-us": { "text": "Mia bopatrino loĝas ĉe ni." }
+  "my-mother-in-law-lives-with-us": { "text": "Mia bopatrino loĝas ĉe ni.", "orders": ["Ĉe ni loĝas mia bopatrino."] }
  }
 }

@@ -97,6 +97,10 @@
   "to-improve": { "text": "migliorare" },
   "to-suggest": { "text": "suggerire" },
   "what-happened": { "text": "Cos'è successo?", "accepts": ["Che cosa è successo?"] },
-  "my-parents-come-from-italy": { "text": "I miei genitori vengono dall'Italia.", "accepts": ["I miei genitori sono italiani."] }
+  "my-parents-come-from-italy": {
+   "text": "I miei genitori vengono dall'Italia.",
+   "accepts": ["I miei genitori sono italiani."],
+   "orders": ["Dall'Italia vengono i miei genitori."]
+  }
  }
 }

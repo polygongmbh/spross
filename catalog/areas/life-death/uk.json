@@ -19,6 +19,6 @@
   "to-bury": { "text": "похова́ти", "accepts": ["ховати"] },
   "my-condolences": { "text": "Мої́ щи́рі співчуття́.", "accepts": ["Щиро співчуваю."] },
   "where-did-you-grow-up": { "text": "Де ви ви́росли?" },
-  "my-grandpa-died-last-year": { "text": "Мій діду́сь поме́р мину́лого ро́ку." }
+  "my-grandpa-died-last-year": { "text": "Мій діду́сь поме́р мину́лого ро́ку.", "orders": ["Минулого року мій дідусь помер."] }
  }
 }

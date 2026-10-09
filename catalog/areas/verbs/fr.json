@@ -87,6 +87,6 @@
   "to-improve": { "text": "améliorer" },
   "to-suggest": { "text": "proposer" },
   "what-happened": { "text": "Qu'est-ce qui s'est passé ?" },
-  "my-parents-come-from-italy": { "text": "Mes parents viennent d'Italie." }
+  "my-parents-come-from-italy": { "text": "Mes parents viennent d'Italie.", "orders": ["D'Italie viennent mes parents."] }
  }
 }

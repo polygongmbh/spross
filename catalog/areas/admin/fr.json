@@ -134,7 +134,10 @@
    "text": "Je voudrais renouveler mon titre de séjour.",
    "accepts": ["Je veux renouveler mon titre de séjour.", "Je voudrais renouveler ma carte de séjour."]
   },
-  "i-need-an-interpreter-for-the-application": { "text": "J'ai besoin d'un interprète pour la demande." },
+  "i-need-an-interpreter-for-the-application": {
+   "text": "J'ai besoin d'un interprète pour la demande.",
+   "orders": ["Pour la demande, j'ai besoin d'un interprète."]
+  },
   "did-you-bring-all-the-documents": {
    "text": "Avez-vous apporté tous les documents ?",
    "accepts": ["As-tu apporté tous les documents ?", "Avez-vous apporté tous les papiers ?"]

@@ -32,7 +32,7 @@
   "few": { "text": "pochi", "forms": { "f": "poche" } },
   "once": { "text": "una volta" },
   "more-or-less": { "text": "più o meno" },
-  "i-am-always-there": { "text": "Ci sono sempre." },
+  "i-am-always-there": { "text": "Ci sono sempre.", "orders": ["Sempre ci sono."] },
   "hang-it-higher": { "text": "Appendilo più in alto.", "accepts": ["Appendilo più alto."] },
   "is-that-enough": { "text": "È abbastanza?" }
  }

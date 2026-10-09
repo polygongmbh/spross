@@ -70,7 +70,7 @@
    "accepts": ["Hast du alle Unterlagen mitgebracht?"],
    "orders": ["Sie haben alle Unterlagen mitgebracht?"]
   },
-  "the-decision-comes-by-mail": { "text": "Der Bescheid kommt per Post." },
+  "the-decision-comes-by-mail": { "text": "Der Bescheid kommt per Post.", "orders": ["Per Post kommt der Bescheid."] },
   "when-does-my-id-expire": { "text": "Wann läuft mein Ausweis ab?" },
   "who-is-responsible-for-this": { "text": "Wer ist dafür zuständig?" }
  }

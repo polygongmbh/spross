@@ -17,7 +17,11 @@
   "wood": { "text": "madera", "grammar": { "gender": "la" } },
   "stick": { "text": "palo", "grammar": { "gender": "el" } },
   "shadow": { "text": "sombra", "grammar": { "gender": "la" } },
-  "we-are-going-to-the-mountains": { "text": "Vamos a la montaña.", "accepts": ["Nos vamos a la montaña.", "Vamos a las montañas."] },
+  "we-are-going-to-the-mountains": {
+   "text": "Vamos a la montaña.",
+   "accepts": ["Nos vamos a la montaña.", "Vamos a las montañas."],
+   "orders": ["A la montaña vamos."]
+  },
   "its-cold-in-the-mountains": { "text": "En la montaña hace frío.", "orders": ["Hace frío en la montaña."] }
  }
 }

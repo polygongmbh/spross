@@ -55,6 +55,10 @@
   "to-improve": { "text": "покра́щувати" },
   "to-suggest": { "text": "пропонува́ти" },
   "what-happened": { "text": "Що ста́лося?" },
-  "my-parents-come-from-italy": { "text": "Мої́ батьки́ з Іта́лії.", "accepts": ["Мої батьки походять з Італії."] }
+  "my-parents-come-from-italy": {
+   "text": "Мої́ батьки́ з Іта́лії.",
+   "accepts": ["Мої батьки походять з Італії."],
+   "orders": ["З Італії мої батьки."]
+  }
  }
 }
