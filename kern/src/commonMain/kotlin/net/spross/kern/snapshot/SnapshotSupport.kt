@@ -5,18 +5,16 @@ import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.model.Card
 import net.spross.kern.model.Gender
 import net.spross.kern.model.Language
+import net.spross.kern.model.article
 import net.spross.kern.model.articleGender
 
-/** The article the TARGET is shown with, or null where its grammar carries none. */
-internal fun article(card: Card): String? = card.target.grammar["gender"]
-
 /**
- * The gender [article] marks in the target's own language, as the wire spells it
+ * The gender the target's article marks in its own language, as the wire spells it
  * (`masculine`/`feminine`/`neuter`) — resolved here because the decode-only surfaces
  * cannot tell fr `le` from it `le`. Null where the box names no gender.
  */
 internal fun wireGender(card: Card): String? =
-    articleGender(article(card), card.target.lang)?.name?.lowercase()
+    articleGender(card.target.article, card.target.lang)?.name?.lowercase()
 
 /** The [Gender] a snapshot's wire string names, or null for none (or one this build does not know). */
 internal fun genderOf(wire: String?): Gender? = Gender.entries.firstOrNull { it.name.lowercase() == wire }

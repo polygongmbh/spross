@@ -7,6 +7,7 @@ import kotlin.test.assertIs
 import kotlin.test.assertTrue
 import net.spross.kern.catalog.RealCatalog
 import net.spross.kern.model.Card
+import net.spross.kern.model.article
 
 /**
  * [CatalogAnswerGrader] against the real catalog: the known confusion is told apart
@@ -23,7 +24,7 @@ class RealCatalogGradingTest {
             for (target in catalog.availableTargets(source).map { it.code }) {
                 val normalizer = AnswerNormalizer(catalog.languages.getValue(target))
                 for (card in catalog.join(source, target)) {
-                    val gender = card.target.grammar["gender"] ?: continue
+                    val gender = card.target.article ?: continue
                     // why: an elided article writes onto its noun — the citation an
                     // it/fr reveal teaches is "l'acqua", never a spaced "l' acqua",
                     // and the authored elided variant is what accepts it.

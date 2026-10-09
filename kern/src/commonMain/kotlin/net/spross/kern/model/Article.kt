@@ -12,6 +12,13 @@ package net.spross.kern.model
 enum class Gender { Masculine, Feminine, Neuter }
 
 /**
+ * The article this realization's word is cited with ("der", "la", "l'"), or null where the catalog authored none.
+ * The catalog writes it under `grammar["gender"]`: the article itself, never a gender name.
+ */
+val Realization.article: String?
+    get() = grammar["gender"]
+
+/**
  * Which gender a target-language article marks, or null when the box cannot
  * say (no article authored, or one this table does not know — a genderless
  * target and an unlisted article degrade the same way).
@@ -19,7 +26,7 @@ enum class Gender { Masculine, Feminine, Neuter }
  * Plurals and indefinites follow the gender they inflect: `los`/`un` are the
  * masculine's, `las`/`una` the feminine's. An article that marks BOTH genders
  * — fr/it `l'`, fr `les` — names none, like a genderless target. The article
- * string is the one the catalog authored in the target's `grammar["gender"]`;
+ * string is the one the catalog authored as the target's [Realization.article];
  * matching is case-insensitive because that is authoring slack, not a rule.
  *
  * One table serves de, es, fr and it; [lang] is consulted only where a form

@@ -1,5 +1,6 @@
 package net.spross.kern.listen
 
+import net.spross.kern.model.article
 import net.spross.kern.model.shownArticle
 
 /**
@@ -194,7 +195,7 @@ object ListeningRun {
             cardId = card.id,
             targetForm = card.target.text,
             sourceForm = card.source.text,
-            spokenArticle = shownArticle(card.target.grammar["gender"], card.target.text, card.target.text),
+            spokenArticle = shownArticle(card.target.article, card.target.text, card.target.text),
             recallGapMs = recallGap(candidate),
             echoGapMs = ECHO_GAP_MS,
             turnGapMs = TURN_GAP_MS,

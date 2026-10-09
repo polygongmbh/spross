@@ -12,7 +12,7 @@ They describe the tree at 8.7.0, before the fixes this branch shipped.
 
 ## Kern rule plus platform callers — needs a Mac and the Android gate
 
-- `Realization.article` in kern; nine sites spell `grammar["gender"]`, two of them platforms.
+- `Realization.article` is kern's now; the two platform copies (`DisplayText.swift`, `CardDisplay.kt`) swap to it once a Mac can build.
 - Rules both phones mint: summary hero share `0.45`, reset-export gate `allSettledCount > 0`, backup file name (three sites), Commons credit URL (two encoders), a report's carried answer, own-word row texts, prompt line limits per form (Name already differs, 3 vs 2), coach caption.
 - Trainer: `LetterDrillAvailability.Report.formatOpen`, reference-sheet captions, lock-screen now-playing lines, milestone glyphs beside `DrillPauseReason.emoji`, numbers run title rule.
 - Widgets: display sort, strip bar width and gutter, the 🗂️ fallback; Android's widget recomputes the chrome language the snapshot already carries (`WidgetSnapshotView` lacks the accessor).
