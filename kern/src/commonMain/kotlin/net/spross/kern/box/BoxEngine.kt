@@ -8,7 +8,6 @@ import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
 import net.spross.kern.store.SaveScope
 import net.spross.kern.store.StoredBox
-import net.spross.kern.store.rekeyingPrefixedVerbs
 
 /**
  * The growing-box engine: pure functions over [BoxState].
@@ -25,7 +24,7 @@ object BoxEngine {
 
     /**
      * A pair's box as a launch or a language switch opens it: [saved] joined with the
-     * catalog's [cards] and migrated, or bootstrapped where the device holds none.
+     * catalog's [cards], or bootstrapped where the device holds none.
      * Only a bootstrapped box owes the disk its document — a re-join reproduces itself from
      * what is already stored ([OpenedBox.save]).
      */
@@ -33,8 +32,7 @@ object BoxEngine {
         if (saved == null) {
             OpenedBox(bootstrap(cards, BoxConfig.product(), joinStamp), SaveScope.BOX_AND_SNAPSHOTS)
         } else {
-            // rekeyingPrefixedVerbs: TODO remove once the app is past 7.0.
-            OpenedBox(saved.join(cards, joinStamp).rekeyingPrefixedVerbs(), SaveScope.SNAPSHOTS)
+            OpenedBox(saved.join(cards, joinStamp), SaveScope.SNAPSHOTS)
         }
 
     /**

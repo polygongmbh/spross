@@ -21,9 +21,6 @@ Neighbors: the engine contract `../README.md`, what the watch and widgets draw `
   carry the rest.
   Timestamps are epoch seconds, and the engine floors every stamp it mints (`box/Time.kt`,
   `stampOf`), so a live box equals its own reloaded self.
-  `BoxState.rekeyingPrefixedVerbs()` still runs on load (`BoxEngine.open`), a temporary migration (delete at 7.0+)
-  moving progress stored under a bare verb slug onto the `to-` prefixed card the 2026-09-03
-  ruling renamed it to.
   kotlinx.serialization; the facade encodes with **sorted keys** (deterministic bytes).
   All `@Serializable` types are `internal`; the public surface is a narrow facade
   (`encode` / `decode` / `load`) — keeps the ObjC header small (probe showed serialization
