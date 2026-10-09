@@ -6,12 +6,13 @@ root=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
 mkdir -p ~/.gradle/init.d
 cp "$root/scripts/cloud/central-mirror.gradle.kts" ~/.gradle/init.d/
 
-# why: a detached or main checkout leaves commits nowhere to be pushed, and the container is dropped with them.
+# why: a detached checkout leaves commits nowhere to be pushed, and the container is dropped with them.
 current=$(git -C "$root" symbolic-ref -q --short HEAD)
-if [ -z "$current" ] || [ "$current" = main ]; then
+if [ -z "$current" ]; then
     id=${CLAUDE_CODE_REMOTE_SESSION_ID:-$(date +%Y%m%d-%H%M%S)}
     branch="claude/session-${id: -8}"
     git -C "$root" switch -q -c "$branch" 2>/dev/null || git -C "$root" switch -q "$branch"
     echo "On branch $branch: push every commit with git push -u origin $branch."
 fi
+$root/gradlew :kern:compileTestKotlinJvm -q
 exit 0
