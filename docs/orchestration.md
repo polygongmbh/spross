@@ -4,17 +4,21 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
 ## Agent sizing
 
 - Offload open-ended research and large implementations to subagents;
-  hand each the full spec + the relevant `docs/` pointer.
+  hand each the relevant spec + the relevant `docs/` pointer.
 - Fewer, larger agents: batch 2–3 work packages per agent, share context via a short digest.
-- A sweep that is one script per language (an audio fill, a catalog format) is no agent work:
-  the conductor runs it language by language and reads the script's own report.
-  Seven audio agents in parallel tripped Commons' rate limit and took an hour
-  where one sequential session took minutes.
 - The conductor merges, gates and commits; 
   code changes and research goes through builders,
-  only small code corrections and quick lookups stay in-session
+  only small code corrections and quick lookups stay in session
 - A running builder gets no mid-flight amendments except a cut that saves wasted work;
   rulings are settled with the user first and land after the merge.
+
+## Verification agents
+
+- A content gap pass ships every gap it found rather than parking some as a later tier; 
+  a Sonnet agent with web access (if the dictionaries are inconclusive) fact-checks the unclear words, and cuts still go to the user.
+- Generated visuals (icons, the procedural trees) get an independent review agent before they count as fixed:
+  several renders across seeds and maturities, the user's complaints as its criteria, measured numbers and the smallest fix back,
+  kept warm through SendMessage between rounds.
 
 ## Concurrency
 
@@ -25,8 +29,6 @@ How a multi-agent wave is launched and conducted; single-agent sessions do not n
 - iOS runs on `scripts/run-sim.sh`'s default `iPhone 17`; `iPhone 18 Pro Max` only when a change is about screen size,
   and an agent never creates a simulator.
 - `scripts/catalog-format.py --fix` rewrites the WHOLE repo — only the conductor runs it,
-- Agents run one after another, never side by side:
-  parallel agents draw on one rate limit, exhaust it together and all abort.
   after all agents are done. Agents that need valid JSON write through the formatter's own
   `formatted()` function on their files only.
 
