@@ -26,7 +26,7 @@ import net.spross.kern.trainer.letters
 object WidgetSnapshotBuilder {
     const val SCHEMA_VERSION: Int = 11
 
-    /** v1 widget timeline depth (24 quarter-hour rotations). */
+    /** Widget timeline depth (24 quarter-hour rotations). */
     const val DEFAULT_EXPOSURE_LIMIT: Int = 24
 
     /**

@@ -8,8 +8,8 @@ import net.spross.kern.catalog.RealCatalog
 import net.spross.kern.model.Language
 
 /**
- * What moving the frames into the catalog was for: a frame authored once lights up every
- * pair that realizes it on both sides, and no pair that used to exist lost anything.
+ * A frame authored once lights up every pair that realizes it on both sides,
+ * and no pinned pair drops a frame it carries.
  *
  * The expectation is derived from the catalog (which language realizes which slug), never
  * pinned per pair — authoring a frame moves this sweep instead of breaking it. The one

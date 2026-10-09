@@ -2,8 +2,8 @@ package net.spross.kern.trainer
 
 /**
  * What a run has already answered RIGHT, and the two rules that follow from it — shared by
- * all three drills, because all three drew from the same pool every question and asked the
- * same handful of prompts round an evening.
+ * every drill, because each draws from one pool every question
+ * and would otherwise ask the same handful of prompts round an evening.
  *
  * **A prompt is asked once.** Every draw skips what the run already holds, so it is spent on
  * the questions the learner still owes rather than on the ones they have just answered. Only

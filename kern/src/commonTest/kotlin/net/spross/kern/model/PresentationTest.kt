@@ -16,7 +16,7 @@ class PresentationTest {
     private val produce = PresentationRole.Produce
     private val recognize = PresentationRole.Recognize
 
-    // Vectors derived from v1's Swift `BoxEngine.stableHash` (FNV-1a 64-bit over
+    // Reference vectors for FNV-1a 64-bit over
     // UTF-8: offset 0xcbf29ce484222325, prime 0x100000001b3, wrapping multiply);
     // "kitchen/fridge", "alpha/mouse", and "тест" cross-checked independently in
     // python3 — bit-exactness keeps alternation parity stable across platforms.

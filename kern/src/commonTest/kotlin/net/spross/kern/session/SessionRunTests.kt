@@ -137,8 +137,7 @@ class SessionRunTests {
 
     /**
      * The extra round is an ordinary round: recall pulled forward AND new words, in the mix the
-     * box asks for. It used to be composed by rules of its own and kept arriving as one extreme
-     * or the other — all first sights, or all cards dragged forward.
+     * box asks for, never one extreme or the other — all first sights, or all cards dragged forward.
      */
     @Test
     fun theExtraRoundMixesRecallWithFirstSights() {

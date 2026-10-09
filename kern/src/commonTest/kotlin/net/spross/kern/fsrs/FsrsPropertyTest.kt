@@ -8,7 +8,7 @@ import net.spross.kern.model.MemoryState
 import net.spross.kern.model.Rating
 
 /**
- * FSRS-6 re-expression of the v1 property suite: structural guarantees of the
+ * FSRS-6 property suite: structural guarantees of the
  * formula set, seeded-random sampled (no reference numerics asserted here).
  */
 class FsrsPropertyTest {

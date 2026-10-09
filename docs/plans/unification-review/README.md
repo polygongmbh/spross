@@ -7,7 +7,6 @@ They describe the tree at 8.7.0, before the fixes this branch shipped.
 
 ## Kern only — `:kern:jvmTest` covers it, runnable in a cloud session
 
-- Past-justifying KDoc: `SessionRun`, `TurnMachine`, `NumbersRun`, `SessionComposer`, `SlotDraws`, `StabilityBars`, `BoxBrowser`, the "v1" mentions (`Time`, `Config`, `Language`, `TrainerLanguagePack`, `WidgetSnapshotBuilder`), stale copy counts (`DrillSolved`, `DrillRunCore`, `DrillRunProgress`, `DrillProgression`), `Presentation.kt` (backlog).
 - `scripts/arch-status.py` prints a wrong survey: suffix stripping misses `NumbersRunView+*.swift`, and `DrillRun.kt`/`TimedRun.kt` count as machines.
 
 ## Kern rule plus platform callers — needs a Mac and the Android gate

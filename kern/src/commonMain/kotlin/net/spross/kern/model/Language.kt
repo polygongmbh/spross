@@ -10,7 +10,7 @@ data class LanguageInfo(
     val name: String,
     /** English exonym ("German", "Ukrainian"). */
     val englishName: String,
-    /** Exactly one emoji flag sequence (sw uses 🇹🇿, the v1 choice). */
+    /** Exactly one emoji flag sequence (sw uses 🇹🇿). */
     val flag: String,
     /**
      * Infinitive citation prefixes (en `"to "`, sw `"ku"`/`"kw"`).

@@ -30,7 +30,7 @@ import net.spross.kern.session.TurnFeedback
  *
  * The ladder, the draw and the task shapes are [CountryDrill]'s and pinned in
  * [CountryDrillTests]; what is asserted here is the run that steps through them — the half
- * both apps used to hold a copy of, which is where the two of them drifted apart.
+ * both apps drive.
  *
  * The atlas is one tier-1 country, so Sprosse 1 has exactly one question and every assertion
  * below reads a task it can predict.

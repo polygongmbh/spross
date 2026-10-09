@@ -8,8 +8,7 @@ import net.spross.kern.model.PromptForm
 import net.spross.kern.model.Rating
 
 /**
- * The produce/recognize turn as pure state plus one reducer — the machine both apps
- * used to re-derive, each drifting its own way (a pickable Easy here, no retype there).
+ * The produce/recognize turn as pure state plus one reducer, the one machine both apps drive.
  *
  * Same shape as [SessionRun]: immutable state, sealed intents, a reduction of state + effects,
  * and `nowEpochMillis` from the caller. Grading needs catalog context, so [grader] and

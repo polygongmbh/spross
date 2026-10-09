@@ -12,7 +12,7 @@ internal data class YearReading(val display: String, val accepted: List<String>)
 
 /**
  * Per-language generator bundle. All cardinal arithmetic is Long — Kotlin Int
- * is 32-bit on every platform (the v1 arm64_32 guard, generalized): values
+ * is 32-bit on every platform, arm64_32 watches included: values
  * beyond 9 999 999 999 fall back to digits inside each generator; a negative
  * is read by [formReading] (`NumberValue.Negative`), and [number] refuses one.
  */

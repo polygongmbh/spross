@@ -28,7 +28,7 @@ class ModelDefaultsTest {
     @Test
     fun schedulingRejectsInvalidCardIds() {
         assertFailsWith<IllegalArgumentException> { CardScheduling(cardId = "") }
-        // Card ids never contain '|' (v1 reserved it for scheduling keys).
+        // Card ids never contain '|', the separator derived keys are built with.
         assertFailsWith<IllegalArgumentException> { CardScheduling(cardId = "a|produce") }
     }
 

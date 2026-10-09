@@ -104,7 +104,7 @@ class DateDrillRunTest {
     /**
      * Reverse is a DIRECTION, not a shorter ladder: a reversed run climbs off the nineteen
      * names into the parse, where the card carries the reading and the answer is the date
-     * written in digits — which is also why such a run no longer runs out.
+     * written in digits — which is also why such a run does not run out.
      */
     @Test
     fun aReversedRunClimbsOffTheNamesIntoTheParse() {

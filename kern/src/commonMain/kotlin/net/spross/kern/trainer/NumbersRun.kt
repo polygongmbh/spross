@@ -6,7 +6,7 @@ import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
 
 /**
- * The slot drill as pure state plus one reducer — the machine both apps used to re-derive.
+ * The slot drill as pure state plus one reducer, the one machine both apps drive.
  * The run's shape is [NumbersRunState]; what it is spelled out of is [NumbersMode].
  *
  * Kern never self-randomizes: every draw takes the caller's [Random]. No clock is read

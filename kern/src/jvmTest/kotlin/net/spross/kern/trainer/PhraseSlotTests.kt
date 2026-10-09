@@ -262,7 +262,7 @@ class PhraseSlotTests {
     /**
      * No marker ever reaches the learner. Agreement is authored per realization, so the
      * language supplying the PROMPT fills its own `{count}` — uk authors it on three frames,
-     * which used to surface literally the moment Ukrainian became a source (uk→en, uk→sw).
+     * which would surface literally wherever Ukrainian is the source (uk→en, uk→sw).
      */
     @Test
     fun noMarkerSurvivesIntoAnythingTheLearnerSees() {

@@ -240,9 +240,10 @@ class ListeningPoolTests {
 
     /**
      * RULE: every shaky word plays before any growing word does.
-     * WHY: the hour is for what is slipping. A learner with plenty of words short of the bar
-     * used to hear a word the box already trusted within the first handful of turns, because
-     * every lane was dealt a fixed slice of the run whatever it held.
+     * WHY: the hour is for what is slipping.
+     * Dealing every lane a fixed slice of the run, whatever it held,
+     * would play a word the box already trusts within the first handful of turns
+     * to a learner with plenty of words short of the bar.
      */
     @Test
     fun theShakyWordsPlayOutBeforeAGrowingOneIsHeard() {
@@ -347,9 +348,9 @@ class ListeningPoolTests {
      * RULE: the same box dealt with the same seed repeats; dealt with a different one, both the
      * scheduled lane and the new one reshuffle — the new one including inside its basics.
      * WHY: the apps re-sweep the pool on every foreground and hand in the current instant, so
-     * a learner who listens more than once a day must not hear the identical sequence — and an
-     * unlearned box used to lead every sweep with the same earliest unseen word until growth
-     * reached it. A single report is still a pure function of the box and the seed it names.
+     * a learner who listens more than once a day must not hear the identical sequence, and an
+     * unlearned box must not lead every sweep with the same earliest unseen word until growth
+     * reaches it. A single report is still a pure function of the box and the seed it names.
      */
     @Test
     fun bothLanesReshuffleBetweenTwoDealingsOfTheSameBox() {

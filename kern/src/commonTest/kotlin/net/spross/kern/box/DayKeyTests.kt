@@ -39,7 +39,7 @@ class DayKeyTests {
         assertEquals("2026-07-01", dayKey(noonUtc, "America/New_York"))
     }
 
-    // A non-Gregorian device region still yields ISO keys (v1's latent bug, fixed).
+    // A non-Gregorian device region still yields ISO keys.
     @Test
     fun dayKeyIsIsoRegardlessOfRegionalCalendar() {
         val lateUtc = Box.millis(2026, 7, 1, 23, 30)

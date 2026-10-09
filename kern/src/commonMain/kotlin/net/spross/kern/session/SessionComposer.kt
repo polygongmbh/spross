@@ -106,9 +106,9 @@ object SessionComposer {
     /**
      * A round, whatever asked for it — [composeSession] when the day opens one, and the app
      * directly for the rounds the learner asks for (the extra round off the done card, each
-     * endless refill). One set of rules for all three: they used to have their own, which is
-     * why the asked-for ones kept arriving as a wall of first sights or a wall of cards
-     * dragged forward from days out.
+     * endless refill).
+     * One set of rules for all three,
+     * so an asked-for round never arrives as a wall of first sights or a wall of cards dragged forward from days out.
      *
      * Due cards oldest-first (ties by id), review slots capped at `sessionCap − growthReserve`,
      * then new candidates fill the remaining capacity — queued cards lead, unlocked phrases

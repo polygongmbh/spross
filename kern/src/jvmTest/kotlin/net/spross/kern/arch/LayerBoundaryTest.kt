@@ -12,9 +12,8 @@ import net.spross.kern.repoRoot
  * which tone a turn plays, which beat the advance is armed at. A platform may READ one —
  * `when (phase) { Review -> palette.success }` is rendering, which is its job. It may not
  * MINT one: writing `Rating.Hard` or `ToneKind.Correct` into an assignment, an argument or a
- * return is a platform deciding a rule kern owns, and a rule decided twice drifts. Both
- * produce screens once graded a typo themselves, and for thirteen days iOS called it Good
- * while Android called it Hard.
+ * return is a platform deciding a rule kern owns, and a rule decided twice drifts:
+ * two produce screens each grading a typo for itself can call it Good on one phone and Hard on the other.
  *
  * The list of decision types is NOT written down here — a hand-kept list goes stale the
  * first time kern grows an enum, and a stale list is the same prose-rot this gate exists to

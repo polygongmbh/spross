@@ -173,7 +173,8 @@ object BoxBrowser {
      * Every area's cards, each shelf in seed order — [cardsInArea] for all of them at once.
      *
      * A browser listing shelves opens more than one, and each asked on its own filters
-     * and sorts the whole box. Grouping once costs what a single shelf used to.
+     * and sorts the whole box.
+     * Grouping once costs one shelf's filter and sort, however many shelves are open.
      */
     fun cardsByArea(state: BoxState): Map<String, List<Card>> =
         state.cards.values.groupBy { it.area }

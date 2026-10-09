@@ -109,7 +109,7 @@ data class SessionRunState(
 }
 
 /**
- * The session run as pure state plus one reducer — the machine both apps used to re-derive.
+ * The session run as pure state plus one reducer, the one machine both apps drive.
  *
  * Time discipline as everywhere in kern: `nowEpochMillis`/`tzId` come from the caller.
  * No default arguments: they do not cross the ObjC boundary, so every entry point is explicit.
@@ -150,9 +150,8 @@ object SessionRun {
      * The extra round is [SessionComposer.composeRound] itself — the day-done question is
      * [SessionComposer.composeSession]'s alone, and a round the learner opens is an ordinary one.
      *
-     * why: it used to be composed by rules of its own, so it kept arriving as either a wall of
-     * first sights or a wall of cards dragged forward from days out, depending on which of the
-     * two bespoke composers happened to win.
+     * why: one composer for every round,
+     * so an extra round never arrives as a wall of first sights or a wall of cards dragged forward from days out.
      */
     private fun startExtra(state: SessionRunState, nowEpochMillis: Long, tzId: String): SessionReduction {
         val plan = SessionComposer.composeRound(state.box, nowEpochMillis, tzId)
@@ -227,9 +226,10 @@ object SessionRun {
     /**
      * Next step: composed queue → endless refill (only once asked for) → done.
      *
-     * why: no mid-run drain. Cards coming due while the learner sits there used to be pulled
-     * straight in, so "12/30" quietly became "12/37" and the finish line moved away from someone
-     * already counting down to it. They are still due — the summary offers them as extra practice.
+     * why: no mid-run drain.
+     * Cards coming due while the learner sits there stay out of the queue,
+     * so "12/30" never quietly becomes "12/37" and the finish line holds still for someone counting down to it.
+     * They are still due — the summary offers them as extra practice.
      */
     private fun advance(
         state: SessionRunState,

@@ -136,8 +136,7 @@ class NumberReferenceTests {
     }
 
     /**
-     * The Swahili tens — the one look-up the app used to offer, and the reason the
-     * table exists at all — read exactly as they always did, now inside a page every
+     * The Swahili tens, the reason the table exists at all, read exactly inside the page every
      * language gets. 10 sits in the base band, which is where its own generator puts it.
      */
     @Test

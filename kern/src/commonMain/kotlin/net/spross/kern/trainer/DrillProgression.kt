@@ -181,8 +181,7 @@ internal object DrillSprossen {
  * Sprosse has left to ask.
  *
  * Each drill keeps its own draw type (they cross to Swift, where a generic would arrive
- * opaque) and its own sampler; what they share, and what lived four times before, is the
- * climb itself.
+ * opaque) and its own sampler; what they share is the climb itself.
  */
 internal object DrillLadder {
 
