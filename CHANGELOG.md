@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- In a timed numbers run or a challenge, the line above the card no longer shows the answer streak, which the score already stands in for.
+
 ## 8.7.0 — 2026-10-09
 
 - A numbers challenge is now sent as a link that opens Spross on the same questions, and its code shrank to eight characters for anyone typing it.

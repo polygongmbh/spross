@@ -41,7 +41,8 @@ import net.spross.kern.trainer.TimedOutcome
 /**
  * The score line above the card: which Sprosse the run stands on and how long the answer streak
  * is. The record stays off it — a record is named where it falls, on the pause and the result
- * tile, never counted mid-run. A timed run's clock and score ([timed]) stand after the Sprosse.
+ * tile, never counted mid-run. A timed run is scored, not streaked: its clock and score ([timed])
+ * stand after the Sprosse in the streak's place.
  *
  * [Sprosse] is worded by the drill that owns it — a digit count reads differently from a plain
  * Sprosse — and is null where a run has one Sprosse only.
@@ -53,12 +54,13 @@ fun DrillStreakLine(
     chrome: Chrome,
     timed: String? = null,
 ) {
-    val parts = listOfNotNull(sprosse, timed, chrome.trainerRunStreak.format(answerStreak))
-    val spoken = listOfNotNull(timed, chrome.a11yCountStreakInARow.format(answerStreak)).joinToString(", ")
+    val streak = answerStreak.takeIf { timed == null }
+    val parts = listOfNotNull(sprosse, timed, streak?.let { chrome.trainerRunStreak.format(it) })
+    val spoken = listOfNotNull(timed, streak?.let { chrome.a11yCountStreakInARow.format(it) }).joinToString(", ")
     Text(
         parts.joinToString(" · "),
         style = MaterialTheme.typography.titleMedium,
-        color = if (answerStreak > 0) Theme.colors.accent else Theme.colors.textSecondary,
+        color = if ((streak ?: 0) > 0) Theme.colors.accent else Theme.colors.textSecondary,
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth().semantics { contentDescription = spoken },
     )
