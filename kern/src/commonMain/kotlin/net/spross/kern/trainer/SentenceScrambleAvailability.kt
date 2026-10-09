@@ -4,6 +4,7 @@ import net.spross.kern.box.BoxState
 import net.spross.kern.box.Inventory
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.caseFolded
 
 /**
  * What the sentence scramble can ASK of a box: the phrases whose word order is worth putting
@@ -129,17 +130,30 @@ object SentenceScrambleAvailability {
                 .filter { card -> card.target.text.trimEnd().lastOrNull()?.let(TERMINATORS::contains) == true }
                 .map { card ->
                     val atoms = ScrambleCapitals.neutralized(ScrambleTokenizer.atoms(card.target.text), inherent)
-                    val alts = card.target.orders
-                        .map { ScrambleCapitals.neutralized(ScrambleTokenizer.atoms(it), inherent) }
-                        .filter { sameWordBag(atoms, it) } + listOfNotNull(ScrambleCommaSwap.of(atoms))
+                    val alts = card.target.orders.mapNotNull { arranged(atoms, ScrambleTokenizer.atoms(it)) } +
+                        listOfNotNull(ScrambleCommaSwap.of(atoms))
                     Phrase(card, atoms, alts)
                 }
                 .filter { it.words >= MIN_ATOMS },
         )
     }
 
-    private fun sameWordBag(a: List<ScrambleAtom>, b: List<ScrambleAtom>): Boolean =
-        a.map { it.text.lowercase() }.sorted() == b.map { it.text.lowercase() }.sorted()
+    /**
+     * [order] re-spelled in the chips of [atoms] — an authored order is written plain, while the
+     * chips carry the stress marks and the dropped positional capital the learner will place —
+     * or null when it is not a permutation of them.
+     * A comma the phrase does not print has no chip to place, so an order that sets one off
+     * ("Yesterday, I hurt myself.") is read without it.
+     */
+    private fun arranged(atoms: List<ScrambleAtom>, order: List<ScrambleAtom>): List<ScrambleAtom>? {
+        val free = atoms.toMutableList()
+        val spelled = if (atoms.any { it.text == "," }) order else order.filter { it.text != "," }
+        return spelled.map { atom ->
+            val at = free.indexOfFirst { caseFolded(it.text) == caseFolded(atom.text) }
+            if (at < 0) return null
+            free.removeAt(at)
+        }.takeIf { free.isEmpty() }
+    }
 
     /** Whether the drill exists at all — the hub-chip predicate. */
     fun drillExists(box: BoxState): Boolean = report(box).drillAvailable

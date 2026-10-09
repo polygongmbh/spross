@@ -288,4 +288,19 @@ class SentenceScrambleRunTest {
         assertNull(swapped("Wait, think, go!"))
         assertNull(swapped("Hello there!"))
     }
+
+    /** An order is authored plain, yet it must land on the chips the learner is dealt. */
+    @Test
+    fun anOrderMapsOntoTheChipsWithTheirStressAndComma() {
+        val ordered = words + listOf(
+            ScrambleFixture.phrase("stress", "Мамо́, допоможи́ мені́!", listOf("mouse"), seed = 21,
+                orders = listOf("Мамо, мені допоможи!")),
+            ScrambleFixture.phrase("front", "I hurt myself yesterday.", listOf("mouse"), seed = 22,
+                orders = listOf("Yesterday, I hurt myself.")),
+        )
+        val report = SentenceScrambleAvailability.report(ScrambleFixture.box(ordered))
+        assertEquals(2, report.phrases.single { it.card.id == "stress" }.alternativeOrders.size)
+        val front = report.phrases.single { it.card.id == "front" }.alternativeOrders
+        assertEquals(listOf("yesterday", "I", "hurt", "myself"), front.first().map { it.text })
+    }
 }
