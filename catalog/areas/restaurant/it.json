@@ -15,10 +15,10 @@
   "dessert": { "text": "dolce", "grammar": { "gender": "il" }, "accepts": ["dessert"] },
   "beverage": { "text": "bevanda", "grammar": { "gender": "la" } },
   "restaurant": { "text": "ristorante", "grammar": { "gender": "il" } },
-  "a-table-for-two": { "text": "Un tavolo per due, per favore.", "orders": ["Per favore, un tavolo per due."] },
+  "a-table-for-two": { "text": "Un tavolo per due, per favore." },
   "id-like-to-order": { "text": "Vorrei ordinare." },
   "is-this-vegetarian": { "text": "È vegetariano?" },
-  "the-bill-please": { "text": "Il conto, per favore.", "orders": ["Per favore, il conto."] },
+  "the-bill-please": { "text": "Il conto, per favore." },
   "id-like-some-water": { "text": "Vorrei dell'acqua." }
  }
 }

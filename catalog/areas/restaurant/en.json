@@ -15,10 +15,10 @@
   "dessert": { "text": "dessert" },
   "beverage": { "text": "drink", "teaches": ["beverage"] },
   "restaurant": { "text": "restaurant" },
-  "a-table-for-two": { "text": "A table for two, please.", "orders": ["Please, a table for two."] },
+  "a-table-for-two": { "text": "A table for two, please." },
   "id-like-to-order": { "text": "I'd like to order." },
   "is-this-vegetarian": { "text": "Is this vegetarian?" },
-  "the-bill-please": { "text": "The bill, please.", "orders": ["Please, the bill."] },
+  "the-bill-please": { "text": "The bill, please." },
   "id-like-some-water": { "text": "Could I have some water?" }
  }
 }

@@ -24,13 +24,10 @@
   "dessert": { "text": "dessert", "grammar": { "gender": "le" } },
   "beverage": { "text": "boisson", "grammar": { "gender": "la" } },
   "restaurant": { "text": "restaurant", "grammar": { "gender": "le" } },
-  "a-table-for-two": {
-   "text": "Une table pour deux, s'il vous plaît.",
-   "orders": ["S'il vous plaît, une table pour deux."]
-  },
+  "a-table-for-two": { "text": "Une table pour deux, s'il vous plaît." },
   "id-like-to-order": { "text": "Je voudrais commander." },
   "is-this-vegetarian": { "text": "C'est végétarien ?" },
-  "the-bill-please": { "text": "L'addition, s'il vous plaît.", "orders": ["S'il vous plaît, l'addition."] },
+  "the-bill-please": { "text": "L'addition, s'il vous plaît." },
   "id-like-some-water": { "text": "Je voudrais de l'eau." }
  }
 }

@@ -87,6 +87,8 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   a phrase authored without one is a fragment ("auf dem Tisch", "plus ou moins", "zwei Uhr nachmittags"),
   and a fragment's order is idiom rather than grammar,
   so arranging it the other way round is not wrong the way this drill marks it wrong.
+- **A phrase with exactly one comma also accepts its two halves swapped** —
+  "Mom, help me!" is as right as "Help me, Mom!", so no catalog entry authors that order (`ScrambleCommaSwap`).
 - **Its Sprossen are bands of difficulty, easiest first, that share no phrase** —
   so a miss drops to phrases genuinely easier than the one missed,
   and the ladder ends at its hardest band rather than counting on past it (`../kern/docs/turns.md`).

@@ -45,11 +45,7 @@
   },
   "to-rest": { "text": "descansar" },
   "sleep-well": { "text": "¡Que duermas bien!", "accepts": ["¡Duerme bien!"] },
-  "good-morning-my-love": {
-   "text": "¡Buenos días, mi amor!",
-   "accepts": ["¡Buenos días, cariño!"],
-   "orders": ["¡Mi amor, buenos días!"]
-  },
+  "good-morning-my-love": { "text": "¡Buenos días, mi amor!", "accepts": ["¡Buenos días, cariño!"] },
   "im-tired": { "text": "Estoy cansado.", "forms": { "f": "Estoy cansada." } },
   "did-you-set-the-alarm": { "text": "¿Has puesto el despertador?", "accepts": ["¿Pusiste el despertador?"] },
   "i-love-you": {

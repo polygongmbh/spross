@@ -131,7 +131,7 @@ object SentenceScrambleAvailability {
                     val atoms = ScrambleCapitals.neutralized(ScrambleTokenizer.atoms(card.target.text), inherent)
                     val alts = card.target.orders
                         .map { ScrambleCapitals.neutralized(ScrambleTokenizer.atoms(it), inherent) }
-                        .filter { sameWordBag(atoms, it) }
+                        .filter { sameWordBag(atoms, it) } + listOfNotNull(ScrambleCommaSwap.of(atoms))
                     Phrase(card, atoms, alts)
                 }
                 .filter { it.words >= MIN_ATOMS },

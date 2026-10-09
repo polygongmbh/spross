@@ -65,8 +65,8 @@
   "her-boyfriend": { "text": "mpenzi wake" },
   "old-people": { "text": "watu wazee" },
   "many-friends": { "text": "marafiki wengi", "notes": { "sw": "rafiki ni mtu: marafiki wazuri, marafiki wote" } },
-  "mom-help-me": { "text": "Mama, nisaidie!", "orders": ["Nisaidie, mama!"] },
-  "dad-where-are-you": { "text": "Baba, uko wapi?", "orders": ["Uko wapi, baba?"] },
+  "mom-help-me": { "text": "Mama, nisaidie!" },
+  "dad-where-are-you": { "text": "Baba, uko wapi?" },
   "help-your-brother": { "text": "Msaidie kaka yako!" },
   "this-is-my-parents-house": { "text": "Hii ni nyumba ya wazazi wangu." },
   "im-looking-for-my-son": { "text": "Namtafuta mwanangu.", "accepts": ["Ninamtafuta mwanangu.", "Namtafuta mwana wangu."] }

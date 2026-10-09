@@ -36,8 +36,8 @@
   "her-boyfriend": { "text": "her boyfriend" },
   "old-people": { "text": "old people" },
   "many-friends": { "text": "many friends" },
-  "mom-help-me": { "text": "Mom, help me!", "accepts": ["Mum, help me!"], "orders": ["Help me, Mom!"] },
-  "dad-where-are-you": { "text": "Dad, where are you?", "orders": ["Where are you, Dad?"] },
+  "mom-help-me": { "text": "Mom, help me!", "accepts": ["Mum, help me!"] },
+  "dad-where-are-you": { "text": "Dad, where are you?" },
   "help-your-brother": { "text": "Help your brother!" },
   "this-is-my-parents-house": { "text": "This is my parents' house." },
   "im-looking-for-my-son": { "text": "I'm looking for my son." }

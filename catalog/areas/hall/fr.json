@@ -80,16 +80,12 @@
   "take-off-your-shoes": { "text": "Enlève tes chaussures.", "accepts": ["Retire tes chaussures."] },
   "hurry-were-late": {
    "text": "Dépêchez-vous, on est en retard !",
-   "accepts": ["Dépêchez-vous, nous sommes en retard !"],
-   "orders": ["On est en retard, dépêchez-vous !"]
+   "accepts": ["Dépêchez-vous, nous sommes en retard !"]
   },
   "see-you-later": { "text": "À plus tard !", "teaches": ["À tout à l'heure !", "À bientôt !"] },
   "welcome-home": { "text": "Bienvenue à la maison !" },
   "dont-forget-your-jacket": { "text": "N'oublie pas ta veste !" },
   "put-on-the-jacket": { "text": "mettre la veste", "accepts": ["mettre sa veste", "enfiler la veste"] },
-  "children-where-are-your-shoes": {
-   "text": "Les enfants, où sont vos chaussures ?",
-   "orders": ["Où sont vos chaussures, les enfants ?"]
-  }
+  "children-where-are-your-shoes": { "text": "Les enfants, où sont vos chaussures ?" }
  }
 }

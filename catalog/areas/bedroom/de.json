@@ -35,7 +35,7 @@
   "soft": { "text": "weich" },
   "to-rest": { "text": "sich ausruhen" },
   "sleep-well": { "text": "Schlaf gut!" },
-  "good-morning-my-love": { "text": "Guten Morgen, mein Schatz!", "orders": ["Mein Schatz, guten Morgen!"] },
+  "good-morning-my-love": { "text": "Guten Morgen, mein Schatz!" },
   "im-tired": { "text": "Ich bin müde." },
   "did-you-set-the-alarm": { "text": "Hast du den Wecker gestellt?", "orders": ["Du hast den Wecker gestellt?"] },
   "i-love-you": { "text": "Ich liebe dich.", "orders": ["Dich liebe ich."] },

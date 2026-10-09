@@ -26,10 +26,7 @@
    "accepts": ["Retrouvons-nous au marché.", "On se voit au marché."],
    "orders": ["Au marché, on se retrouve."]
   },
-  "a-kilo-of-tomatoes": {
-   "text": "Un kilo de tomates, s'il vous plaît.",
-   "orders": ["S'il vous plaît, un kilo de tomates."]
-  },
+  "a-kilo-of-tomatoes": { "text": "Un kilo de tomates, s'il vous plaît." },
   "what-does-a-kilo-cost": { "text": "Combien coûte le kilo ?", "orders": ["Le kilo coûte combien ?"] },
   "can-you-come-down-a-bit": { "text": "Vous pouvez baisser un peu ?" }
  }

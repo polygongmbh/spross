@@ -18,7 +18,7 @@
   "to-haggle": { "text": "kupatana bei" },
   "market": { "text": "soko", "forms": { "pl": "masoko" } },
   "lets-meet-at-the-market": { "text": "Tukutane sokoni." },
-  "a-kilo-of-tomatoes": { "text": "Kilo moja ya nyanya, tafadhali.", "orders": ["Tafadhali, kilo moja ya nyanya."] },
+  "a-kilo-of-tomatoes": { "text": "Kilo moja ya nyanya, tafadhali." },
   "what-does-a-kilo-cost": { "text": "Kilo moja ni bei gani?" },
   "can-you-come-down-a-bit": { "text": "Unaweza kupunguza kidogo?" }
  }

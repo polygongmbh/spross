@@ -47,8 +47,7 @@
   "good-morning-my-love": {
    "text": "Bonjour, mon amour !",
    "accepts": ["Bonjour, mon cœur !", "Bonjour, chéri !"],
-   "notes": { "fr": "le matin aussi, on dit bonjour · bon matin se dit au Québec." },
-   "orders": ["Mon amour, bonjour !"]
+   "notes": { "fr": "le matin aussi, on dit bonjour · bon matin se dit au Québec." }
   },
   "im-tired": { "text": "Je suis fatigué.", "forms": { "f": "Je suis fatiguée." } },
   "did-you-set-the-alarm": {

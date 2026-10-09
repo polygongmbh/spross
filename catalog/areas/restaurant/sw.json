@@ -15,7 +15,7 @@
   "dessert": { "text": "kitindamlo", "forms": { "pl": "vitindamlo" } },
   "beverage": { "text": "kinywaji", "forms": { "pl": "vinywaji" } },
   "restaurant": { "text": "mkahawa", "forms": { "pl": "mikahawa" } },
-  "a-table-for-two": { "text": "Meza ya watu wawili, tafadhali.", "orders": ["Tafadhali, meza ya watu wawili."] },
+  "a-table-for-two": { "text": "Meza ya watu wawili, tafadhali." },
   "id-like-to-order": { "text": "Ningependa kuagiza." },
   "is-this-vegetarian": {
    "text": "Hii ni bila nyama?",
@@ -24,7 +24,7 @@
     "de": "Kiswahili hat kein eigenes Wort für vegetarisch — man fragt: ist das ohne Fleisch?"
    }
   },
-  "the-bill-please": { "text": "Bili, tafadhali.", "orders": ["Tafadhali, bili."] },
+  "the-bill-please": { "text": "Bili, tafadhali." },
   "id-like-some-water": { "text": "Naomba maji.", "notes": { "sw": "Naomba maji · Naomba chai · tafadhali haihitajiki" } }
  }
 }

@@ -278,4 +278,14 @@ class SentenceScrambleRunTest {
         assertEquals(1, phrase.alternativeOrders.size)
     }
 
+    /** A phrase with one comma accepts its halves swapped, marks staying at the sentence's edges. */
+    @Test
+    fun aSingleCommaSwapsItsHalves() {
+        fun swapped(text: String) = ScrambleCommaSwap.of(ScrambleTokenizer.atoms(text))?.let(ScrambleTokenizer::joined)
+        assertEquals("help me, Mom!", swapped("Mom, help me!"))
+        assertEquals("¡ayúdame, mamá!", swapped("¡mamá, ayúdame!"))
+        assertEquals("¿dónde estás, papá?", swapped("papá, ¿dónde estás?"))
+        assertNull(swapped("Wait, think, go!"))
+        assertNull(swapped("Hello there!"))
+    }
 }

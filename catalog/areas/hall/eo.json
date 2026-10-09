@@ -72,15 +72,11 @@
    "accepts": ["Demetu la ŝuojn."],
    "orders": ["Viajn ŝuojn demetu."]
   },
-  "hurry-were-late": {
-   "text": "Rapidu, ni malfruas!",
-   "accepts": ["Rapidu, ni jam malfruas!"],
-   "orders": ["Ni malfruas, rapidu!"]
-  },
+  "hurry-were-late": { "text": "Rapidu, ni malfruas!", "accepts": ["Rapidu, ni jam malfruas!"] },
   "see-you-later": { "text": "Ĝis poste!", "accepts": ["Ĝis baldaŭ!"] },
   "welcome-home": { "text": "Bonvenon hejmen!" },
   "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!", "orders": ["Vian jakon ne forgesu!"] },
   "put-on-the-jacket": { "text": "surmeti la jakon" },
-  "children-where-are-your-shoes": { "text": "Infanoj, kie estas viaj ŝuoj?", "orders": ["Kie estas viaj ŝuoj, infanoj?"] }
+  "children-where-are-your-shoes": { "text": "Infanoj, kie estas viaj ŝuoj?" }
  }
 }

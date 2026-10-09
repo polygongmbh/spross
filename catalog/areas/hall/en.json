@@ -35,12 +35,12 @@
   "to-live": { "text": "to live" },
   "do-you-have-the-keys": { "text": "Do you have the keys?" },
   "ill-be-right-back": { "text": "I'll be right back!" },
-  "hurry-were-late": { "text": "Hurry up, we're late!", "orders": ["We're late, hurry up!"] },
+  "hurry-were-late": { "text": "Hurry up, we're late!" },
   "see-you-later": { "text": "See you later!" },
   "welcome-home": { "text": "Welcome home!" },
   "dont-forget-your-jacket": { "text": "Don't forget your jacket!" },
   "put-on-the-jacket": { "text": "to put on the jacket" },
   "take-off-your-shoes": { "text": "Take off your shoes." },
-  "children-where-are-your-shoes": { "text": "Children, where are your shoes?", "orders": ["Where are your shoes, children?"] }
+  "children-where-are-your-shoes": { "text": "Children, where are your shoes?" }
  }
 }
