@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -200,6 +201,8 @@ private fun RowScope.SecondaryAction(label: String, icon: ImageVector, onClick: 
         onClick = onClick,
         modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp),
         shape = MaterialTheme.shapes.small,
+        // why: Material's 24dp sides leave half a row too narrow for a two-word label.
+        contentPadding = PaddingValues(horizontal = Theme.spacing.md, vertical = 8.dp),
     ) {
         ButtonIcon(icon)
         Text(label, textAlign = TextAlign.Center, maxLines = 2)
