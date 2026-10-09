@@ -84,9 +84,7 @@ instead of on pixels. A tap costs ~0.2 s, `ui text` ~0.2 s.
 
 `ui text` is how a typed answer gets in — the sim takes no host keystrokes without an
 Accessibility grant. Read the prompt out of `describe-all`, then type the answer that
-fits it: that ordering is why an unseeded drill RNG is no problem for a typed answer,
-and why the old `-uitest-input`/`-uitest-submit` pair, which had to prefill before the
-prompt was known, is gone.
+fits it: that ordering is why an unseeded drill RNG is no problem for a typed answer.
 
 Box documents (per-target, progress evidence) live in the shared app group:
 `~/Library/Developer/CoreSimulator/Devices/<UDID>/data/Containers/Shared/AppGroup/*/box/box-<target>.json`

@@ -1,8 +1,6 @@
 #!/bin/sh
 # `!` promises that state already on a device no longer loads — the one thing that obliges
-# a migration, and the one thing a catalog edit never does. Three commits carried it in one
-# session for a card removal and a field rename, neither of which touches a stored box,
-# because the rule said "the SHAPE of stored state" without naming what holds it.
+# a migration, and the one thing a catalog edit, a card removal or a field rename never does.
 set -e
 
 SUBJECT=$(head -n 1 "$1")

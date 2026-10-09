@@ -2,8 +2,7 @@
 """Which turn machines have one home in kern and which are written once per platform.
 
 `git status` for the layering. A machine that lives in kern collapses its platform half to
-a driver; one that does not gets written twice and drifts — the atlas drill reached 386 lines
-of Kotlin and 264 of Swift that way, against 122 and 163 for the drill that has a kern run.
+a driver; one that does not gets written twice and drifts.
 
 This is the only architecture fact a search cannot answer, because the finding is an ABSENCE:
 no query returns the file that was never written. Run with --check to exit 1 on one.
