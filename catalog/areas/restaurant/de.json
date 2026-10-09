@@ -24,10 +24,10 @@
   },
   "beverage": { "text": "Getränk", "forms": { "pl": "die Getränke" }, "grammar": { "gender": "das" } },
   "restaurant": { "text": "Restaurant", "forms": { "pl": "die Restaurants" }, "grammar": { "gender": "das" } },
-  "a-table-for-two": { "text": "Einen Tisch für zwei, bitte." },
+  "a-table-for-two": { "text": "Einen Tisch für zwei, bitte.", "orders": ["Bitte, einen Tisch für zwei."] },
   "id-like-to-order": { "text": "Ich möchte bestellen." },
   "is-this-vegetarian": { "text": "Ist das vegetarisch?", "orders": ["Das ist vegetarisch?"] },
-  "the-bill-please": { "text": "Die Rechnung, bitte." },
+  "the-bill-please": { "text": "Die Rechnung, bitte.", "orders": ["Bitte, die Rechnung."] },
   "id-like-some-water": { "text": "Ich hätte gern Wasser.", "orders": ["Wasser hätte ich gern."] }
  }
 }

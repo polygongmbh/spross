@@ -53,6 +53,6 @@
   "dont-forget-your-jacket": { "text": "Не забу́дь ку́ртку!", "orders": ["Куртку не забудь!"] },
   "put-on-the-jacket": { "text": "одяга́ти ку́ртку" },
   "take-off-your-shoes": { "text": "Зніми́ своє́ взуття́.", "accepts": ["Роззуйся."], "orders": ["Своє взуття зніми."] },
-  "children-where-are-your-shoes": { "text": "Ді́ти, де ва́ші череви́ки?" }
+  "children-where-are-your-shoes": { "text": "Ді́ти, де ва́ші череви́ки?", "orders": ["Де ва́ші череви́ки, ді́ти?"] }
  }
 }

@@ -23,7 +23,7 @@
    "accepts": ["Incontriamoci al mercato."],
    "orders": ["Al mercato ci vediamo."]
   },
-  "a-kilo-of-tomatoes": { "text": "Un chilo di pomodori, per favore." },
+  "a-kilo-of-tomatoes": { "text": "Un chilo di pomodori, per favore.", "orders": ["Per favore, un chilo di pomodori."] },
   "what-does-a-kilo-cost": { "text": "Quanto costa un chilo?" },
   "can-you-come-down-a-bit": {
    "text": "Può abbassare un po' il prezzo?",

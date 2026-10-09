@@ -99,7 +99,11 @@
   "do-you-have-the-keys": { "text": "Hai le chiavi?", "accepts": ["Hai preso le chiavi?"] },
   "ill-be-right-back": { "text": "Torno subito!", "accepts": ["Torno tra un attimo!"] },
   "take-off-your-shoes": { "text": "Togliti le scarpe.", "accepts": ["Levati le scarpe."] },
-  "hurry-were-late": { "text": "Sbrigatevi, siamo in ritardo!", "accepts": ["Fate presto, siamo in ritardo!"] },
+  "hurry-were-late": {
+   "text": "Sbrigatevi, siamo in ritardo!",
+   "accepts": ["Fate presto, siamo in ritardo!"],
+   "orders": ["Siamo in ritardo, sbrigatevi!"]
+  },
   "see-you-later": { "text": "A dopo!", "accepts": ["Ci vediamo dopo!", "A più tardi!"] },
   "welcome-home": { "text": "Benvenuto a casa!", "forms": { "f": "Benvenuta a casa!" } },
   "dont-forget-your-jacket": {
@@ -107,6 +111,9 @@
    "accepts": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]
   },
   "put-on-the-jacket": { "text": "mettersi la giacca" },
-  "children-where-are-your-shoes": { "text": "Bambini, dove sono le vostre scarpe?" }
+  "children-where-are-your-shoes": {
+   "text": "Bambini, dove sono le vostre scarpe?",
+   "orders": ["Dove sono le vostre scarpe, bambini?"]
+  }
  }
 }

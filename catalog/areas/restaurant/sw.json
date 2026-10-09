@@ -24,7 +24,7 @@
     "de": "Kiswahili hat kein eigenes Wort für vegetarisch — man fragt: ist das ohne Fleisch?"
    }
   },
-  "the-bill-please": { "text": "Bili, tafadhali." },
+  "the-bill-please": { "text": "Bili, tafadhali.", "orders": ["Tafadhali, bili."] },
   "id-like-some-water": { "text": "Naomba maji.", "notes": { "sw": "Naomba maji · Naomba chai · tafadhali haihitajiki" } }
  }
 }

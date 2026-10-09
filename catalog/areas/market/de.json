@@ -36,7 +36,7 @@
    "text": "Treffen wir uns am Markt.",
    "orders": ["Wir treffen uns am Markt.", "Am Markt treffen wir uns."]
   },
-  "a-kilo-of-tomatoes": { "text": "Ein Kilo Tomaten, bitte." },
+  "a-kilo-of-tomatoes": { "text": "Ein Kilo Tomaten, bitte.", "orders": ["Bitte, ein Kilo Tomaten."] },
   "what-does-a-kilo-cost": { "text": "Was kostet ein Kilo?" },
   "can-you-come-down-a-bit": {
    "text": "Geht da noch was am Preis?",

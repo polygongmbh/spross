@@ -48,8 +48,8 @@
    "notes": { "es": "Se dice personas mayores; personas viejas suena mal." }
   },
   "many-friends": { "text": "muchos amigos", "forms": { "f": "muchas amigas" } },
-  "mom-help-me": { "text": "¡Mamá, ayúdame!" },
-  "dad-where-are-you": { "text": "Papá, ¿dónde estás?" },
+  "mom-help-me": { "text": "¡Mamá, ayúdame!", "orders": ["¡Ayúdame, mamá!"] },
+  "dad-where-are-you": { "text": "Papá, ¿dónde estás?", "orders": ["¿Dónde estás, papá?"] },
   "help-your-brother": { "text": "¡Ayuda a tu hermano!" },
   "this-is-my-parents-house": { "text": "Esta es la casa de mis padres." },
   "im-looking-for-my-son": { "text": "Busco a mi hijo." }

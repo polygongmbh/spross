@@ -15,10 +15,10 @@
   "dessert": { "text": "десе́рт" },
   "beverage": { "text": "напі́й", "forms": { "pl": "напо́ї" } },
   "restaurant": { "text": "рестора́н" },
-  "a-table-for-two": { "text": "Сто́лик на двох, будь ла́ска." },
+  "a-table-for-two": { "text": "Сто́лик на двох, будь ла́ска.", "orders": ["Будь ла́ска, сто́лик на двох."] },
   "id-like-to-order": { "text": "Я хоті́в би замо́вити.", "forms": { "f": "Я хоті́ла б замо́вити." } },
   "is-this-vegetarian": { "text": "Це вегетаріа́нське?" },
-  "the-bill-please": { "text": "Раху́нок, будь ла́ска." },
+  "the-bill-please": { "text": "Раху́нок, будь ла́ска.", "orders": ["Будь ла́ска, раху́нок."] },
   "id-like-some-water": { "text": "Мо́жна води́?" }
  }
 }

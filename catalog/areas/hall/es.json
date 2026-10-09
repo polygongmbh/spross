@@ -83,7 +83,8 @@
     "¡Daos prisa, que llegamos tarde!",
     "¡Apúrense, llegamos tarde!",
     "¡Dense prisa, llegamos tarde!"
-   ]
+   ],
+   "orders": ["¡Llegamos tarde, daos prisa!"]
   },
   "see-you-later": { "text": "¡Nos vemos luego!", "accepts": ["¡Hasta luego!", "¡Hasta después!", "¡Nos vemos!"] },
   "welcome-home": { "text": "¡Bienvenido a casa!", "forms": { "f": "¡Bienvenida a casa!" } },
@@ -91,7 +92,8 @@
   "put-on-the-jacket": { "text": "ponerse la chaqueta" },
   "children-where-are-your-shoes": {
    "text": "Niños, ¿dónde están vuestros zapatos?",
-   "accepts": ["Niños, ¿dónde están sus zapatos?"]
+   "accepts": ["Niños, ¿dónde están sus zapatos?"],
+   "orders": ["¿Dónde están vuestros zapatos, niños?"]
   }
  }
 }

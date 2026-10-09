@@ -68,8 +68,8 @@
    "notes": { "it": "si dice persone anziane · persone vecchie suona male." }
   },
   "many-friends": { "text": "molti amici", "forms": { "f": "molte amiche" } },
-  "mom-help-me": { "text": "Mamma, aiutami!" },
-  "dad-where-are-you": { "text": "Papà, dove sei?" },
+  "mom-help-me": { "text": "Mamma, aiutami!", "orders": ["Aiutami, mamma!"] },
+  "dad-where-are-you": { "text": "Papà, dove sei?", "orders": ["Dove sei, papà?"] },
   "help-your-brother": { "text": "Aiuta tuo fratello!" },
   "this-is-my-parents-house": { "text": "Questa è la casa dei miei genitori." },
   "im-looking-for-my-son": { "text": "Cerco mio figlio.", "accepts": ["Sto cercando mio figlio."] }

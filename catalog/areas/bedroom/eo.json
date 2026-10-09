@@ -46,7 +46,8 @@
   "sleep-well": { "text": "Dormu bone!" },
   "good-morning-my-love": {
    "text": "Bonan matenon, mia amo!",
-   "accepts": ["Bonan matenon, karulo!", "Bonan matenon, karulino!", "Bonan matenon, mia kara!"]
+   "accepts": ["Bonan matenon, karulo!", "Bonan matenon, karulino!", "Bonan matenon, mia kara!"],
+   "orders": ["Mia amo, bonan matenon!"]
   },
   "im-tired": { "text": "Mi estas laca.", "accepts": ["Mi lacas."] },
   "did-you-set-the-alarm": {

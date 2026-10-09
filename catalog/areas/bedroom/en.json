@@ -31,7 +31,7 @@
   "soft": { "text": "soft" },
   "to-rest": { "text": "to rest" },
   "sleep-well": { "text": "Sleep well!" },
-  "good-morning-my-love": { "text": "Good morning, my love!" },
+  "good-morning-my-love": { "text": "Good morning, my love!", "orders": ["My love, good morning!"] },
   "im-tired": { "text": "I'm tired." },
   "did-you-set-the-alarm": { "text": "Did you set the alarm?" },
   "i-love-you": { "text": "I love you." },

@@ -81,6 +81,6 @@
   "welcome-home": { "text": "Bonvenon hejmen!" },
   "dont-forget-your-jacket": { "text": "Ne forgesu vian jakon!", "orders": ["Vian jakon ne forgesu!"] },
   "put-on-the-jacket": { "text": "surmeti la jakon" },
-  "children-where-are-your-shoes": { "text": "Infanoj, kie estas viaj ŝuoj?" }
+  "children-where-are-your-shoes": { "text": "Infanoj, kie estas viaj ŝuoj?", "orders": ["Kie estas viaj ŝuoj, infanoj?"] }
  }
 }
