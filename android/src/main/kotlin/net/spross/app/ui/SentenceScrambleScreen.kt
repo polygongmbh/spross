@@ -18,6 +18,7 @@ import net.spross.app.sayOnTap
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.session.Question
 import net.spross.kern.trainer.Drill
+import net.spross.kern.trainer.SentenceScrambleRunState
 
 /**
  * The sentence scramble: a phrase handed over as its own words, shuffled, and put
@@ -67,7 +68,7 @@ fun SentenceScrambleScreen(model: AppModel) {
                 place = flow::place,
                 take = flow::take,
             ) {
-                shown.question?.let { RevealLines(model, it, chrome) }
+                shown.question?.let { RevealLines(model, it, shown.showsAuthoredOrder, chrome) }
             }
         }
         Controls(model, flow, leave)
@@ -78,14 +79,14 @@ fun SentenceScrambleScreen(model: AppModel) {
  * What the graded arrangement grows, on the answer card itself — the shared reveal, so a drill
  * card and a vocabulary card grow the same thing.
  *
- * Kern's Question says which: a missed arrangement opens onto the authored order and its
- * meaning, an accepted one grows the meaning alone, since its chips already stand in an order —
- * and none after an alternative order, whose meaning belongs to the authored one.
+ * Kern says which: a missed arrangement opens onto the authored order and its meaning, an
+ * accepted one grows the meaning alone, since its chips already stand in an order — beside the
+ * authored order after an alternative one ([SentenceScrambleRunState.showsAuthoredOrder]).
  */
 @Composable
-private fun RevealLines(model: AppModel, question: Question, chrome: Chrome) {
+private fun RevealLines(model: AppModel, question: Question, showsOrder: Boolean, chrome: Chrome) {
     val answer = question.answer
-    val order = answer.text.takeIf { question.opens }
+    val order = answer.text.takeIf { showsOrder }
     val meaning = (question.closing.note as? ClosingNote.Own)?.text
         ?.takeIf { question.opens || question.growsNote }
     if (order == null && meaning == null) return

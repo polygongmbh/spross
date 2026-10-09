@@ -127,7 +127,7 @@ data class SentenceScrambleRunState(
      * The bank is the prompt, so no words stand on it.
      * A missed arrangement opens onto the authored order and its meaning;
      * an accepted one already stands in an order, so it grows the meaning alone —
-     * none after an alternative order, since the meaning belongs to the authored one.
+     * beside the authored order where the learner's was an alternative ([showsAuthoredOrder]).
      */
     override val question: Question?
         get() = task?.let { t ->
@@ -140,7 +140,7 @@ data class SentenceScrambleRunState(
                 emojiCue = EmojiCue.Upfront,
                 opens = showsAnswer,
                 growsNote = answerAccepted,
-                closing = Question.Closing(note = t.gloss.takeUnless { alternativeMatch }?.let { ClosingNote.Own(it) }),
+                closing = Question.Closing(note = t.gloss?.let { ClosingNote.Own(it) }),
             )
         }
 
@@ -148,7 +148,13 @@ data class SentenceScrambleRunState(
     override val controls: AnswerControls?
         get() = task?.let { answerControls(Slot.Arrangement) }
 
-    /** Accepted via an alternative word order rather than the canonical one — gloss not shown. */
+    /**
+     * The card carries the authored order: on a miss, and after an alternative order,
+     * whose meaning reads against the authored one.
+     */
+    val showsAuthoredOrder: Boolean get() = showsAnswer || alternativeMatch
+
+    /** Accepted via an alternative word order rather than the canonical one. */
     val alternativeMatch: Boolean
         get() {
             if (!answerAccepted) return false

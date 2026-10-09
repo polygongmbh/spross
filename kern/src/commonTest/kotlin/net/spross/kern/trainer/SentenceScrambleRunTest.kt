@@ -252,6 +252,20 @@ class SentenceScrambleRunTest {
         assertEquals(task.display, missed.answer.text)
     }
 
+    /** An accepted alternative order still grows the meaning, beside the authored order. */
+    @Test
+    fun anAlternativeOrderIsShownTheAuthoredOneAndItsMeaning() {
+        val start = open()
+        val task = assertNotNull(start.task)
+        val reversed = start.copy(task = task.copy(alternatives = listOf(task.canonical.reversed())))
+        val state = arrange(reversed, correctly = false)
+        val question = assertNotNull(state.question)
+        assertTrue(state.answerAccepted)
+        assertTrue(state.showsAuthoredOrder)
+        assertEquals(ClosingNote.Own(task.gloss), question.closing.note)
+        assertFalse(arrange(open(), correctly = true).showsAuthoredOrder)
+    }
+
     /** Placing the last piece is the answer, so no primary action asks for it. */
     @Test
     fun anArrangementNeedsNoPrimaryAction() {

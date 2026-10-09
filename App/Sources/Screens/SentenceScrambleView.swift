@@ -125,10 +125,10 @@ struct SentenceScrambleView: View {
     /// What the graded arrangement grows, on the answer card itself — the shared
     /// reveal, so a drill card and a vocabulary card grow the same thing.
     ///
-    /// kern's Question says which: a missed arrangement opens onto the authored
-    /// order and its meaning, an accepted one grows the meaning alone, since its
-    /// chips already stand in an order — and none after an alternative order,
-    /// whose meaning belongs to the authored one.
+    /// kern says which: a missed arrangement opens onto the authored order and
+    /// its meaning, an accepted one grows the meaning alone, since its chips
+    /// already stand in an order — beside the authored order after an
+    /// alternative one (`showsAuthoredOrder`).
     ///
     /// Two answers, never an answer and a footnote. The ORDER was the question,
     /// so where it was missed the authored one wears the accent every card's
@@ -143,7 +143,7 @@ struct SentenceScrambleView: View {
     @ViewBuilder
     private func revealLines(_ task: SentenceScrambleTask) -> some View {
         if let question = run.question {
-            let order = question.opens ? question.answer.text : nil
+            let order = run.showsAuthoredOrder ? question.answer.text : nil
             let meaning = question.opens || question.growsNote ? ownNote(question) : nil
             if order != nil || meaning != nil {
                 CardReveal(note: nil) {
