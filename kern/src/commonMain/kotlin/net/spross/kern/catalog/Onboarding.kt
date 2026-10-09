@@ -2,18 +2,18 @@ package net.spross.kern.catalog
 
 /**
  * The first run's pages, in the order they are walked: the pair ([LanguageChoices]),
- * what the box is for, then what a round asks of the learner.
+ * where things are ([OnboardingTourStop]), then what a round asks of the learner.
  * Only the last one commits — the two before it merely turn the page —
  * so the box is joined once, behind something worth reading.
  */
 enum class OnboardingPage {
-    Languages, Why, FirstRound;
+    Languages, Tour, FirstRound;
 
     /** The page the forward button turns to; null on the last, whose button joins the box. */
     val next: OnboardingPage?
         get() = when (this) {
-            Languages -> Why
-            Why -> FirstRound
+            Languages -> Tour
+            Tour -> FirstRound
             FirstRound -> null
         }
 
@@ -23,16 +23,34 @@ enum class OnboardingPage {
      */
     fun back(joining: Boolean): OnboardingPage? = when (this) {
         Languages -> null
-        Why -> Languages
-        FirstRound -> Why.takeUnless { joining }
+        Tour -> Languages
+        FirstRound -> Tour.takeUnless { joining }
     }
 
     /** The glyph heading the page. */
     val emoji: String
         get() = when (this) {
             Languages -> "👋"
-            Why -> "🌱"
+            Tour -> "🧭"
             FirstRound -> "🌿"
+        }
+}
+
+/**
+ * The tour's stops, in the order the page lists them:
+ * the day's round on Home, the box where the learner picks what comes next,
+ * then the two ways to practice beside the round.
+ */
+enum class OnboardingTourStop {
+    Home, Box, Drills, Listening;
+
+    /** The glyph beside the stop's name. */
+    val emoji: String
+        get() = when (this) {
+            Home -> "🏡"
+            Box -> "🌳"
+            Drills -> "🌼"
+            Listening -> "🎧"
         }
 }
 
@@ -41,5 +59,5 @@ object Onboarding {
     const val PAGE_FADE_MS: Int = 200
 
     /** Where the pages open: a restart of a pair already made has nothing left to ask on the pair's own page. */
-    fun openingPage(restart: Boolean): OnboardingPage = if (restart) OnboardingPage.Why else OnboardingPage.Languages
+    fun openingPage(restart: Boolean): OnboardingPage = if (restart) OnboardingPage.Tour else OnboardingPage.Languages
 }

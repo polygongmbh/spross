@@ -1,54 +1,67 @@
 import SwiftUI
+import SprossKern
 
-/// The picker's two story pages: what Spross is for, then what a round asks of you.
+/// The picker's two story pages: where things are, then what a round asks of you.
 ///
 /// They stand BETWEEN the pick and the box being built, which is the only place they can:
 /// activating the profile ends onboarding (`phase → .ready`) and takes the sheet with it,
 /// so a page shown afterwards would have nothing to stand on. Reading them also covers the
 /// join, so the wait for a first box is spent on something.
 ///
-/// The first page answers what the box is for — breadth over mastery, a companion to a
-/// course rather than a replacement, no grammar past the gender a word carries — because
-/// those are the three things it is easiest to be disappointed by later. The second is the
-/// round itself, in the order the learner will meet it — recognize, grade, write — and
-/// nothing about scheduling: the app's one job here is that a blank card is not a test
-/// you can fail. The session then coaches the same three at the moment each applies
-/// (`SessionCoach`), which is why these stay short enough to be read once and left.
+/// The tour names each stop by the name its own screen carries, so the learner
+/// recognizes it on arrival. The round page says nothing about scheduling: its one job is
+/// that a blank card is not a test you can fail. The session then coaches the same three
+/// moments as each applies (`SessionCoach`), which is why these stay short.
 extension OnboardingView {
 
-    // MARK: - What Spross is for
+    // MARK: - Where things are
 
-    var whyPage: some View {
+    var tourPage: some View {
         OnboardingStoryPage(emoji: page.emoji,
-                            title: "onboarding.why.title",
+                            title: "onboarding.tour.title",
                             actionLabel: "common.next",
                             action: { turn(to: page.next) },
                             onBack: { turn(to: page.back(joining: starting)) }) {
             VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-                principle("onboarding.why.breadth.title", "onboarding.why.breadth.body")
-                principle("onboarding.why.companion.title", "onboarding.why.companion.body")
-                principle("onboarding.why.grammar.title", "onboarding.why.grammar.body")
+                ForEach(OnboardingTourStop.allCases, id: \.self) { stop in
+                    let (title, body) = Self.tourCopy(stop)
+                    tourStop(stop.emoji, title, body)
+                }
             }
         }
     }
 
-    /// One principle: what it is called, and what it means for the learner.
-    /// Unnumbered on purpose — the three are facets of one box, not steps up a ladder
-    /// (the numbered kind is `LettersOverview+Practice.swift`).
-    private func principle(_ title: LocalizedStringKey,
-                           _ body: LocalizedStringKey) -> some View {
-        VStack(alignment: .leading, spacing: Theme.spacing.xs) {
-            Text(title)
+    /// Each stop's name is the key its own screen shows, so the two can never disagree.
+    private static func tourCopy(_ stop: OnboardingTourStop) -> (LocalizedStringKey, LocalizedStringKey) {
+        switch stop {
+        case .home: ("home.name", "onboarding.tour.home")
+        case .box: ("box.name", "onboarding.tour.box")
+        case .drills: ("trainer.hub.title", "onboarding.tour.drills")
+        case .listening: ("listen.title", "onboarding.tour.listening")
+        }
+    }
+
+    /// One stop: its glyph, its name, and what the learner does there.
+    private func tourStop(_ emoji: String,
+                          _ title: LocalizedStringKey,
+                          _ body: LocalizedStringKey) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: Theme.spacing.md) {
+            // why: verbatim — a plain Text would take the emoji for a localization key.
+            Text(verbatim: emoji)
                 .font(Theme.typography.headline)
-                .foregroundStyle(Theme.colors.textPrimary)
-            Text(body)
-                .font(Theme.typography.body)
-                .foregroundStyle(Theme.colors.textPrimary)
-                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: Theme.spacing.xs) {
+                Text(title)
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.textPrimary)
+                Text(body)
+                    .font(Theme.typography.body)
+                    .foregroundStyle(Theme.colors.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        // why: name and meaning are one thought — VoiceOver stops on the principle,
-        // not twice inside it.
+        // why: name and meaning are one thought — VoiceOver stops on the stop, not twice inside it.
         .accessibilityElement(children: .combine)
     }
 

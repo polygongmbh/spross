@@ -4867,13 +4867,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dann deckst du auf und sagst, wie gut du es wusstest. Ehrlich schlägt großzügig: Deine Antwort entscheidet, wann du das Wort wiedersiehst."
+            "value" : "Deck es auf und sag ehrlich, wie gut du es wusstest. Das entscheidet, wann es wiederkommt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Then you reveal and say how well you knew it. Honest beats generous: your answer decides when you see the word again."
+            "value" : "Reveal it and say honestly how well you knew it. That decides when it comes back."
           }
         }
       }
@@ -4883,13 +4883,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wenn Spross dir ein Wort zeigt, nimm dir einen Moment: Kommt es dir bekannt vor?"
+            "value" : "Du siehst ein Wort. Kennst du es?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "When Spross shows you a word, take a moment. Does it ring a bell?"
+            "value" : "You see a word. Do you know it?"
           }
         }
       }
@@ -4916,13 +4916,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ein Wort, das du nicht wusstest, darfst du einmal abschreiben, damit es besser hängen bleibt."
+            "value" : "Nicht gewusst? Schreib es einmal ab, damit es hängen bleibt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "When you don't know a word, you can write it out once to solidify your memory."
+            "value" : "Didn't know it? Write it out once so it sticks."
           }
         }
       }
@@ -5009,6 +5009,91 @@
         }
       }
     },
+    "onboarding.tour.box" : {
+      "comment" : "The onboarding tour's line under the box's name: queuing an area picks the next words.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hier wählst du, was du lernst: Tipp auf den Pfeil neben einem Bereich, etwa Essen oder Tiere, und seine Wörter kommen als Nächstes. Wählst du nichts, fängt Spross mit Alltagswörtern an."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose what you learn: tap the arrow beside an area, like food or animals, and its words come next. Pick nothing and Spross starts with everyday words."
+          }
+        }
+      }
+    },
+    "onboarding.tour.drills" : {
+      "comment" : "The onboarding tour's line under the drills card's name.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurze Spiele mit Zahlen, Buchstaben, Daten und mehr, wann immer du magst."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick games with numbers, letters, dates and more, whenever you like."
+          }
+        }
+      }
+    },
+    "onboarding.tour.home" : {
+      "comment" : "The onboarding tour's line under Home's name: what the day's card at the top offers.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oben steht deine Runde für heute: neue Wörter und die, die wieder dran sind. Ein Tipp startet sie."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your round for today sits at the top: new words and the ones due again. One tap starts it."
+          }
+        }
+      }
+    },
+    "onboarding.tour.listening" : {
+      "comment" : "The onboarding tour's line under the listening card's name.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Wörter zum Anhören, nebenbei oder beim Einschlafen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your words read aloud, hands-free or at bedtime."
+          }
+        }
+      }
+    },
+    "onboarding.tour.title" : {
+      "comment" : "The onboarding page that shows where things are, before the first round.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So funktioniert Spross"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How Spross Works"
+          }
+        }
+      }
+    },
     "onboarding.welcome" : {
       "localizations" : {
         "de" : {
@@ -5021,119 +5106,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welcome to Spross!"
-          }
-        }
-      }
-    },
-    "onboarding.why.breadth.body" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ein paar neue Wörter am Tag, so verteilt, dass sie bleiben. Lieber viele Wörter ein bisschen kennen als wenige perfekt."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A few new words a day, spaced so they stay. Better to know many words a little than a few perfectly."
-          }
-        }
-      }
-    },
-    "onboarding.why.breadth.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gesät, nicht gepaukt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sown, not crammed"
-          }
-        }
-      }
-    },
-    "onboarding.why.companion.body" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spross ersetzt weder deinen Kurs noch deinen Sprachpartner. Zwischen den Gesprächen wächst dein Wortschatz weiter, damit du beim nächsten Mal mehr zu sagen hast."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spross doesn't replace your course or your language partner. Your vocabulary keeps growing between conversations, so you have more to say next time."
-          }
-        }
-      }
-    },
-    "onboarding.why.companion.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Begleiter, kein Ersatz"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A companion, not a replacement"
-          }
-        }
-      }
-    },
-    "onboarding.why.grammar.body" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spross bringt dir keine Grammatik bei, nur das Geschlecht der Wörter. Wo du die Wörter wirklich benutzt, kommt der Rest von selbst."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spross doesn't teach grammar, just the gender a word carries. Where you actually use the words, the rest takes care of itself."
-          }
-        }
-      }
-    },
-    "onboarding.why.grammar.title" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grammatik kommt vom Sprechen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grammar comes from speaking"
-          }
-        }
-      }
-    },
-    "onboarding.why.title" : {
-      "comment" : "What Spross is for, said once before the first round asks anything of you.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wofür Spross da ist"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "What Spross is for"
           }
         }
       }

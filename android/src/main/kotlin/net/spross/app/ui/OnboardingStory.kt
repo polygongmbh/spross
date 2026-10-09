@@ -26,11 +26,12 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
+import net.spross.kern.catalog.OnboardingTourStop
 
 /**
  * The frame every onboarding page stands in: one scrolling column, one rhythm.
  *
- * The two pages built on it here ([PrinciplesPage], [FirstRoundPage]) take chrome and callbacks
+ * The two pages built on it here ([TourPage], [FirstRoundPage]) take chrome and callbacks
  * and never the model, so [OnboardingScreen] stays the one place the flow is decided.
  * The scroll is the reachability floor for a large font scale, never a step of the flow.
  */
@@ -117,37 +118,43 @@ private fun ColumnScope.OnboardingBack(label: String, onBack: () -> Unit) {
 }
 
 /**
- * One thing Spross believes, in a title and the sentences that make it concrete.
- *
- * Both lines carry the page's own ink — the body is a principle, not a caption,
- * so it is not muted the way a hint under a control would be.
+ * One stop of the tour: its glyph, the name its own screen carries, and what the learner does there.
  * The pair reads as one item to a screen reader.
  */
 @Composable
-fun PrincipleBlock(title: String, body: String) {
-    Column(
+fun TourStopRow(emoji: String, title: String, body: String) {
+    Row(
         modifier = Modifier.fillMaxWidth().semantics(mergeDescendants = true) {},
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
+        horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {
-        Text(title, style = MaterialTheme.typography.titleMedium)
-        Text(body, style = MaterialTheme.typography.bodyLarge)
+        Text(emoji, style = MaterialTheme.typography.titleMedium, modifier = Modifier.clearAndSetSemantics {})
+        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
+            Text(title, style = MaterialTheme.typography.titleMedium)
+            Text(body, style = MaterialTheme.typography.bodyLarge)
+        }
     }
 }
 
 /**
- * What Spross is for, said once before it asks anything of the learner.
- *
- * Three principles, in the order they matter: breadth over perfection,
- * a companion rather than a course, and grammar left to the speaking.
- * Expectations are cheaper to set here than to correct after a week of rounds.
+ * Where things are, before the first round:
+ * the day's round on Home, the box where the learner picks what comes next, and the ways to practice beside it.
+ * Each stop is named by its own screen's chrome, so the learner recognizes it on arrival.
  */
 @Composable
-fun PrinciplesPage(chrome: Chrome, emoji: String, onNext: () -> Unit, onBack: () -> Unit) {
+fun TourPage(chrome: Chrome, emoji: String, onNext: () -> Unit, onBack: () -> Unit) {
     OnboardingStoryPage {
-        OnboardingHero(emoji, chrome.onboardingWhyTitle)
-        PrincipleBlock(chrome.onboardingWhyBreadthTitle, chrome.onboardingWhyBreadthBody)
-        PrincipleBlock(chrome.onboardingWhyCompanionTitle, chrome.onboardingWhyCompanionBody)
-        PrincipleBlock(chrome.onboardingWhyGrammarTitle, chrome.onboardingWhyGrammarBody)
+        OnboardingHero(emoji, chrome.onboardingTourTitle)
+        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg)) {
+            OnboardingTourStop.entries.forEach { stop ->
+                val (title, body) = when (stop) {
+                    OnboardingTourStop.Home -> chrome.homeName to chrome.onboardingTourHome
+                    OnboardingTourStop.Box -> chrome.boxName to chrome.onboardingTourBox
+                    OnboardingTourStop.Drills -> chrome.trainerHubTitle to chrome.onboardingTourDrills
+                    OnboardingTourStop.Listening -> chrome.listenTitle to chrome.onboardingTourListening
+                }
+                TourStopRow(stop.emoji, title, body)
+            }
+        }
         OnboardingPrimary(chrome.commonNext, onClick = onNext)
         OnboardingBack(chrome.commonBack, onBack)
     }

@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- Onboarding now shows where things are, from the day's round on Home to choosing what you learn in the Orchard, in place of a page about what Spross is for, and its first-round lines are shorter.
 - A numbers challenge is now sent as a link that opens Spross on the same questions, and its code shrank to eight characters for anyone typing it.
 - A right answer in a timed numbers run now adds a second to the clock for every non-zero digit of its number, so long numbers pay for the time they take.
 
