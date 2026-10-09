@@ -23,7 +23,7 @@ class NumbersChallengeTest {
     @Test
     fun aCodeSpellsTheSameRunOnTheOtherPhone() {
         val code = made.code(null)
-        assertTrue(Regex("^ES-[0-9A-Z]{4}-[0-9A-Z]{4}$").matches(code), code)
+        assertTrue(Regex("^[0-9A-Z]{4}-[0-9A-Z]{4}$").matches(code), code)
         val received = ready(code)
         assertEquals(made, received)
         assertEquals(made.tasks, received.tasks)
@@ -53,6 +53,7 @@ class NumbersChallengeTest {
         val code = made.code(17)
         assertEquals(made.copy(opponentScore = 17), ready(code.lowercase().replace("-", " ")))
         assertEquals(made, ready(made.code(null).replace('0', 'O').replace('1', 'l')))
+        assertEquals(made, ready(made.code(null).replace("-", "")))
     }
 
     @Test

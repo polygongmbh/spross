@@ -6,7 +6,8 @@ import net.spross.kern.session.TurnFeedback
 
 /**
  * A timed numbers run two learners play on the same questions, shared as a short code
- * (`ES-K4F7-2Q7M`, optionally `-42` with the sender's score).
+ * (`K4F7-2Q7M`): eight Crockford characters carrying the seed, the language, the picks,
+ * the sender's score on a reply, and a check.
  *
  * The seed spells the whole question list, since kern's [Random] draws the same on every platform.
  * Unlike a ramp it is a fixed SCRIPT ([tasks]): question k is at Sprosse `1 + k / 2` regardless
@@ -66,9 +67,9 @@ data class NumbersChallenge(
 
     /** The code as the sender shares it; with [score], the code a reply carries. */
     fun code(score: Int?): String {
-        val chars = payload() + check()
-        val base = "${language.uppercase()}-${chars.substring(0, 4)}-${chars.substring(4)}"
-        return if (score == null) base else "$base-$score"
+        val body = body(score)
+        val chars = base32((body shl CHECK_BITS) or check(body), CODE_CHARS)
+        return "${chars.substring(0, CODE_CHARS / 2)}-${chars.substring(CODE_CHARS / 2)}"
     }
 
     /** [code] as a link that opens the app on it, or the site's challenge page where none is installed. */
@@ -97,31 +98,45 @@ data class NumbersChallenge(
         return out
     }
 
-    private fun payload(): String =
-        base32(specBits(), 1) + base32(seed, SEED_BITS / 5)
+    /** Everything but the check, high bits first: seed, language, picks, score. */
+    private fun body(score: Int?): Long {
+        val scoreField = score?.let { minOf(it, MAX_SCORE) + 1 } ?: 0
+        return (seed.toLong() shl (LANGUAGE_BITS + SPEC_BITS + SCORE_BITS)) or
+            (CODE_LANGUAGES.indexOf(language).toLong() shl (SPEC_BITS + SCORE_BITS)) or
+            (specBits().toLong() shl SCORE_BITS) or
+            scoreField.toLong()
+    }
 
     private fun specBits(): Int =
         exercises.sumOf { 1 shl TRAVELING.indexOf(it) } +
             (if (reverse) REVERSE_BIT else 0) +
             (if (mix) MIX_BIT else 0)
 
-    /** Over the code's own letters AND the questions they spell ([NumbersChallenge]). */
-    private fun check(): String {
+    /** Over the code's own bits AND the questions they spell ([NumbersChallenge]). */
+    private fun check(body: Long): Long {
         val questions = tasks.joinToString("|") { "${it.drawn.task.prompt}=${it.drawn.task.display}" }
-        return base32(fnv1a("$language|${payload()}|$questions") and CHECK_MASK, CHECK_CHARS)
+        return (fnv1a("$body|$questions") and CHECK_MASK).toLong()
     }
 
     companion object {
         /** Questions a script holds — more than a run with its earned seconds can answer. */
         const val LENGTH: Int = 150
 
-        private const val SEED_BITS = 25
-        private const val CHECK_CHARS = 2
-        private const val CHECK_MASK = (1 shl (5 * CHECK_CHARS)) - 1
+        // The 40 bits of eight characters: 14 + 5 + 5 + 10 + 6.
+        private const val CODE_CHARS = 8
+        private const val SEED_BITS = 14
+        private const val LANGUAGE_BITS = 5
+        private const val SPEC_BITS = 5
+        private const val SCORE_BITS = 10
+        private const val CHECK_BITS = 6
+        private const val CHECK_MASK = (1 shl CHECK_BITS) - 1
+        /** The highest score a reply carries; 0 in the field means none. */
+        private const val MAX_SCORE = (1 shl SCORE_BITS) - 2
         private const val REVERSE_BIT = 8
         private const val MIX_BIT = 16
-        private const val PAYLOAD_CHARS = 1 + SEED_BITS / 5 + CHECK_CHARS
-        private const val MAX_SCORE_DIGITS = 5
+
+        /** The languages a code can name, by index: append a new one, never insert or reorder. */
+        private val CODE_LANGUAGES = listOf("de", "en", "eo", "es", "fr", "it", "sw", "uk")
 
         /** Crockford's base32: no I, L, O or U, so a code read aloud cannot be misheard. */
         private const val ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
@@ -140,7 +155,8 @@ data class NumbersChallenge(
                 ?.takeIf { it.isNotBlank() }
 
         /** Whether [create] has anything to send out of these picks. */
-        fun offered(mode: NumbersMode): Boolean = mode.exercises.any { it in TRAVELING }
+        fun offered(mode: NumbersMode): Boolean =
+            mode.language in CODE_LANGUAGES && mode.exercises.any { it in TRAVELING }
 
         /** A fresh challenge from the page's picks, minus Phrases; null if nothing is left. */
         fun create(mode: NumbersMode, rng: Random): NumbersChallenge? {
@@ -158,16 +174,15 @@ data class NumbersChallenge(
 
         /** Parses a typed code for [language], forgiving case, spaces, dashes, O for 0 and I/L for 1. */
         fun read(text: String, language: Language): ChallengeReading {
-            val plain = text.uppercase().filter { it.isLetterOrDigit() }
-            if (plain.length < 2 + PAYLOAD_CHARS) return ChallengeReading.Unreadable
-            val codeLanguage = plain.substring(0, 2).lowercase()
-            val payload = plain.substring(2, 2 + PAYLOAD_CHARS).map(::crockford)
-            val tail = plain.substring(2 + PAYLOAD_CHARS)
-            if (payload.any { it < 0 } || tail.length > MAX_SCORE_DIGITS || tail.any { !it.isDigit() }) {
-                return ChallengeReading.Unreadable
-            }
-            if (!Numbers.supports(codeLanguage)) return ChallengeReading.Unreadable
-            val spec = payload[0]
+            val chars = text.uppercase().filter { it.isLetterOrDigit() }.map(::crockford)
+            if (chars.size != CODE_CHARS || chars.any { it < 0 }) return ChallengeReading.Unreadable
+            val all = chars.fold(0L) { acc, v -> acc * 32 + v }
+            val body = all shr CHECK_BITS
+            fun field(shift: Int, bits: Int) = ((body shr shift) and ((1L shl bits) - 1)).toInt()
+            val scoreField = field(0, SCORE_BITS)
+            val spec = field(SCORE_BITS, SPEC_BITS)
+            val codeLanguage = CODE_LANGUAGES.getOrNull(field(SCORE_BITS + SPEC_BITS, LANGUAGE_BITS))
+            if (codeLanguage == null || !Numbers.supports(codeLanguage)) return ChallengeReading.Unreadable
             val exercises = TRAVELING.filterIndexed { bit, _ -> spec and (1 shl bit) != 0 }
             val offered = DrillSelection.offered(codeLanguage, phrasesRealized = false)
             if (exercises.isEmpty() || !offered.containsAll(exercises)) return ChallengeReading.Unreadable
@@ -176,17 +191,16 @@ data class NumbersChallenge(
                 exercises = exercises,
                 reverse = spec and REVERSE_BIT != 0,
                 mix = spec and MIX_BIT != 0,
-                seed = payload.subList(1, 1 + SEED_BITS / 5).fold(0) { acc, v -> acc * 32 + v },
-                opponentScore = tail.toIntOrNull(),
+                seed = field(SCORE_BITS + SPEC_BITS + LANGUAGE_BITS, SEED_BITS),
+                opponentScore = (scoreField - 1).takeIf { scoreField > 0 },
             )
-            val given = payload.takeLast(CHECK_CHARS).joinToString("") { ALPHABET[it].toString() }
-            if (challenge.check() != given) return ChallengeReading.Unreadable
+            if (challenge.check(body) != (all and CHECK_MASK.toLong())) return ChallengeReading.Unreadable
             if (codeLanguage != language) return ChallengeReading.OtherLanguage(codeLanguage)
             return ChallengeReading.Ready(challenge)
         }
 
-        private fun base32(value: Int, chars: Int): String =
-            (chars - 1 downTo 0).map { ALPHABET[(value shr (5 * it)) and 31] }.joinToString("")
+        private fun base32(value: Long, chars: Int): String =
+            (chars - 1 downTo 0).map { ALPHABET[((value shr (5 * it)) and 31).toInt()] }.joinToString("")
 
         private fun crockford(c: Char): Int = ALPHABET.indexOf(canonical(c))
 
