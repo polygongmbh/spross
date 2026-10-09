@@ -1,21 +1,20 @@
 package net.spross.app.ui
 
+import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.SpringSpec
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import kotlin.math.PI
 import kotlin.math.pow
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import net.spross.kern.design.PressKind
 
 /** A spring given as iOS gives it — seconds to settle and a damping fraction — in Compose's terms. */
@@ -43,28 +42,25 @@ fun <T> responseSpring(response: Double, damping: Double): SpringSpec<T> =
  */
 @Composable
 fun Modifier.pressSpring(kind: PressKind = PressKind.Action): Modifier {
-    var pressed by remember { mutableStateOf(false) }
-    val scale = animateFloatAsState(
-        targetValue = if (pressed) kind.scale.toFloat() else 1f,
-        animationSpec = responseSpring(PressKind.RESPONSE, PressKind.DAMPING),
-        label = "pressSpring",
-    )
+    val scale = remember { Animatable(1f) }
+    val spec = remember { responseSpring<Float>(PressKind.RESPONSE, PressKind.DAMPING) }
     return this
-        // why: the animated value is read inside the layer block — in the DRAW phase,
-        // and by this modifier. Read out here it would land in the CALLING composable's
-        // restart scope, and every press would recompose that whole composable once per
-        // frame for the length of the spring: on Home, the greeting and the date line
-        // rebuilt twenty times because a button was held.
+        // why: driven from the pointer coroutine and read only in the DRAW phase, so a press
+        // never recomposes the calling composable — on Home that rebuilt the greeting per
+        // frame of the spring, and mid-gesture it rebuilt a component that tracks the press
+        // itself (ExposedDropdownMenuBox), which then lost the click.
         .graphicsLayer {
             scaleX = scale.value
             scaleY = scale.value
         }
-        .pointerInput(Unit) {
-            awaitEachGesture {
-                awaitFirstDown(requireUnconsumed = false)
-                pressed = true
-                waitForUpOrCancellation()
-                pressed = false
+        .pointerInput(kind) {
+            coroutineScope {
+                awaitEachGesture {
+                    awaitFirstDown(requireUnconsumed = false)
+                    launch { scale.animateTo(kind.scale.toFloat(), spec) }
+                    waitForUpOrCancellation()
+                    launch { scale.animateTo(1f, spec) }
+                }
             }
         }
 }
