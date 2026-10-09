@@ -131,9 +131,6 @@ data class NumbersRunState(
     /** The run ends on a clock and is scored ([TimedRun]). */
     val timed: Boolean get() = mode.isTimed
 
-    /** A timed run's clock stands still while a miss's answer is shown, so the learner can read it. */
-    val clockStopped: Boolean get() = timed && feedback == TurnFeedback.Revealed
-
     /** A timed run ends on its clock, so it offers no way out of its own beyond the ✕. */
     override val offersFinish: Boolean get() = !timed && super.offersFinish
 

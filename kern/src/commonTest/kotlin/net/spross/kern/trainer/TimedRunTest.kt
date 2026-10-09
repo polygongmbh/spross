@@ -69,16 +69,6 @@ class TimedRunTest {
     }
 
     @Test
-    fun theClockStandsStillOnlyWhileAMissShowsItsAnswer() {
-        val revealed = at(2).send(NumbersIntent.Reveal)
-        assertTrue(revealed.clockStopped)
-        assertFalse(revealed.send(NumbersIntent.ConfirmPending).clockStopped, "the next question runs again")
-        assertFalse(at(2).send(NumbersIntent.Submit(at(2).currentTask.display)).clockStopped, "a right answer keeps it running")
-        val plain = NumbersRun.open(NumbersMode(NumbersExercise.Counting, "de"), 0, emptyMap(), Random(5))
-        assertFalse(plain.send(NumbersIntent.Reveal).clockStopped, "an untimed run has no clock")
-    }
-
-    @Test
     fun aTimedRunOffersNeitherTheLookUpNorAnEarlyFinish() {
         val twoMisses = at(1).missed().send(NumbersIntent.Reveal)
         assertFalse(twoMisses.offersLookUp)

@@ -4,7 +4,6 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
-- In a timed numbers run or a challenge, the clock now pauses while a missed answer is shown, so there is time to read it.
 - In a timed numbers run or a challenge, the line above the card no longer shows the answer streak, which the score already stands in for.
 
 ## 8.7.0 — 2026-10-09

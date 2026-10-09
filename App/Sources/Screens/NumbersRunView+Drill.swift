@@ -26,10 +26,10 @@ extension NumbersRunView {
     }
 
     @ViewBuilder var streakLine: some View {
-        if clockStart != nil {
+        if let deadline {
             // why: a timeline redraws only this line each second.
             TimelineView(.periodic(from: .now, by: 1)) { context in
-                scoreLine(timed: timedParts(left: clockLeft(at: context.date) ?? 0))
+                scoreLine(timed: timedParts(left: deadline.timeIntervalSince(context.date)))
             }
         } else {
             scoreLine(timed: [])

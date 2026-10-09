@@ -7,19 +7,12 @@ package net.spross.kern.trainer
  * a miss drops a Sprosse, an almost scores nothing.
  * The clock is [SECONDS] plus what clean answers earned ([NumbersRunState.earnedSeconds]),
  * so a long number pays back the time it takes to type.
- * The platform owns the timer, holds it while [NumbersRunState.clockStopped], and sends [NumbersIntent.TimeUp].
+ * The platform owns the timer and sends [NumbersIntent.TimeUp].
  */
 object TimedRun {
 
     /** How long a timed run lasts before any answer earned it more. */
     const val SECONDS: Int = 60
-
-    /**
-     * What is left of the clock after [runningMillis] of it ran —
-     * time spent where [NumbersRunState.clockStopped] excluded — with what answers earned added.
-     */
-    fun remainingMillis(runningMillis: Long, earnedSeconds: Int): Long =
-        (SECONDS + earnedSeconds) * 1_000L - runningMillis
 
     /** Whole seconds left of [remainingMillis], counted up: the clock reads 0:00 only once time is up. */
     fun secondsLeft(remainingMillis: Long): Int = ((remainingMillis + 999) / 1_000).toInt().coerceAtLeast(0)
