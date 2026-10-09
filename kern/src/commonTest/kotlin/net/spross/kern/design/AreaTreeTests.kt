@@ -60,6 +60,13 @@ class AreaTreeTests {
     }
 
     @Test
+    fun aCrownStillInBudGrowsLessWoodThanTheSameWordsLeafedOut() {
+        for (area in listOf("kitchen", "travel", "family")) {
+            assertTrue(AreaTree.grow(area, 12, 12).limbs.size < AreaTree.grow(area, 12, 0).limbs.size, area)
+        }
+    }
+
+    @Test
     fun aLearnerKeepsTheirGardenAndEachLanguageGrowsItsOwn() {
         fun limbs(name: String?, target: String) =
             AreaTree.grow(AreaTree.seed(AreaTree.garden(name, target), "kitchen"), 30, 0).limbs

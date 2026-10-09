@@ -201,11 +201,12 @@ What licenses a second component is a parameter attempted and found not to carry
   every mark, outline and layer it is drawn in kern's `TreePicture`, the summary's rise kern's `TreeRise`;
   a stage is one mark — fresh a bud breaking into two folded leaflets, growing a leaf, settled a blossom, matured fruit.
   Whether the round summary shows a tree is kern's `RoundSummary.shownTree`, what it claims over it and in which line `growthHeadline`.
-  A tree forks further the more words it carries, each limb continued by a lead
-  with side branches turning well away from it, and a branch dipping below level grows short;
-  its marks spread along its finer wood, never the trunk or first limbs, fruit and blossom on the levelest limbs,
+  A tree forks further and its trunk widens the more leaf it carries (the pipe model), a bud counting a quarter of a leafed-out word,
+  so a first round forks once and the wood grows as its words leaf out;
+  each limb is continued by a lead with side branches turning well away from it, and a branch dipping below level grows short;
+  its marks spread along its finest wood, never the trunk or first limbs while there is finer, fruit and blossom on the levelest limbs,
   no two of them touching while the crown has room, and only wood carrying a shown mark is drawn —
-  a bud hangs beside a grown mark rather than on a twig of its own once three twigs show,
+  a bud hangs beside a grown mark rather than on a twig of its own once three twigs show and each holds three,
   so a crown still mostly in bud stands as a tree, and nearer the tip than the marks that leafed out.
   A met word hangs as a bud until it settles into a leaf; merely queued hangs nothing.
   Height comes from how many words the area has met, never from catalog count.

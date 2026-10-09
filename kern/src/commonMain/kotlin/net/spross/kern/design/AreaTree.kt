@@ -129,10 +129,14 @@ object AreaTree {
      */
     fun grow(seed: String, marks: Int, buds: Int): GrownTree {
         if (marks <= 0) return GrownTree(emptyList(), emptyList(), 0.05, -0.5, 0.5, 1.0)
+        // why: wood grows to carry leaf (Shinozaki's pipe model), and a breaking bud shows about a quarter
+        // of a sprig's leaf, so a crown still in bud forks once and grows its wood as its words leaf out.
+        val foliage = min(1.0, (marks - buds + buds * BUD_FOLIAGE) / 30.0)
         // How far the tree has forked, in generations: 1.3 a trunk just forking, 5 a crown forked all the way out.
-        val vigor = 1.3 + 3.7 * min(1.0, sqrt(marks / 30.0))
+        val vigor = 1.3 + 3.7 * sqrt(foliage)
         val growth = TreeGrowth(fnv1a64(seed).toLong(), vigor)
-        growth.branch(1L, 0.0, 0.0, -PI / 2, 0.16, 0.014 + 0.011 * vigor, 0, -1, 1.0)
+        // Da Vinci's rule carried down to the ground: the trunk's section is the sum of its twigs', so it widens with the root of the foliage.
+        growth.branch(1L, 0.0, 0.0, -PI / 2, 0.16, 0.069 * sqrt(foliage), 0, -1, 1.0)
         val hung = growth.hang(max(8, marks), marks, buds)
         var left = 0.0; var right = 0.0; var top = 0.0
         fun take(x: Double, y: Double) { left = min(left, x); right = max(right, x); top = min(top, y) }
@@ -142,6 +146,9 @@ object AreaTree {
         for (slot in hung) take(slot.x, slot.y)
         return GrownTree(growth.limbs, hung.take(marks), pitch(hung), left, max(right, left + 0.001), max(-top, 0.001))
     }
+
+    /** How much leaf a bud carries against a leafed-out mark, when the wood under it is grown. */
+    private const val BUD_FOLIAGE = 0.25
 
     private fun pitch(slots: List<TreeSlot>): Double {
         val spread = slots.maxOf { it.x } - slots.minOf { it.x }
