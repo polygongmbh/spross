@@ -2,7 +2,8 @@
 
 Five read-only reviewers (session/box, trainer/listening/watch, kern, platform hygiene, docs/gates) ran on 8.7.0.
 Shipped: doc truth fixes, backlog refresh, release lint parity, strings.py drift fix, dead codemod, hook path, platform comments.
-Full evidence (file:line, both sides) was in the session scratchpad reports; each item below names its sites.
+Full evidence (file:line, both sides) is in the five reports beside this file: `session-box.md`, `trainer-listening-watch.md`, `kern.md`, `platform-tooling.md`, `docs-gates.md`.
+They describe the tree at 8.7.0, before the fixes this branch shipped.
 
 ## Kern only — `:kern:jvmTest` covers it, runnable in a cloud session
 
