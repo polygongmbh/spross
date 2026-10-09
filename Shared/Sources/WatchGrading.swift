@@ -24,11 +24,20 @@ enum WatchGrading {
     static let perCharMs = 15      // per displayed option character
     static let easyFactor = 0.5    // Easy window is the inner half of Good
 
+    /// The time it takes to read `chars` characters and act on them — the Good window.
+    static func budgetMs(chars: Int) -> Int { baseMs + perCharMs * chars }
+
+    /// How long a recognition prompt stands alone before its options appear:
+    /// the Good window over the PROMPT, so recall gets as long as the word takes to read.
+    /// Trying to recall before the options can do the recalling for you is what makes
+    /// a multiple-choice question practice rather than a spotting game.
+    static func recallPauseMs(promptChars: Int) -> Int { budgetMs(chars: promptChars) }
+
     /// Again when wrong; else Easy very fast, Good fast, Hard slow —
-    /// thresholds scaled by the total option characters.
+    /// thresholds scaled by the total option characters, timed from when the options appear.
     static func rating(correct: Bool, elapsedMs: Int, optionChars: Int) -> WatchRating {
         guard correct else { return .again }
-        let goodBudget = Double(baseMs + perCharMs * optionChars)
+        let goodBudget = Double(budgetMs(chars: optionChars))
         let easyBudget = goodBudget * easyFactor
         let elapsed = Double(elapsedMs)
         if elapsed <= easyBudget { return .easy }

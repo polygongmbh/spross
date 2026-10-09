@@ -9,8 +9,8 @@ import SwiftUI
 /// accessibility value), then auto-advance.
 /// One progress indicator, in the title: a round counts to its end,
 /// free practice shows the answer streak (having no total to count toward).
-/// - recognize: prompt the target `promptForm` (article-tinted), tap the
-///   matching source meaning.
+/// - recognize: prompt the target `promptForm` (article-tinted) alone for a
+///   recall pause, then tap the matching source meaning.
 /// - produce:   prompt the source meaning, tap the target word.
 ///
 /// A card that has a picture shows it on the prompt line once answered — never
@@ -80,15 +80,24 @@ struct WatchQuizView: View {
                     .frame(maxWidth: .infinity)
                 // why: 2×2 grid instead of a tall list — all four options stay
                 // in sight at once, so no tap lands on an unseen tile.
+                // why: the tiles keep their place while hidden, so they never
+                // shift in under a thumb on their way in.
                 LazyVGrid(columns: Self.columns, spacing: 6) {
                     ForEach(Array(question.options.enumerated()), id: \.offset) { index, option in
                         optionButton(index, option, question)
                     }
                 }
+                .opacity(model.optionsShown ? 1 : 0)
+                .allowsHitTesting(model.optionsShown)
+                .accessibilityHidden(!model.optionsShown)
             }
             .frame(maxWidth: .infinity)
             .padding(.horizontal, 2)
+            // why: during the recall pause a tap anywhere brings the options up early.
+            .contentShape(Rectangle())
+            .onTapGesture { model.showOptions() }
         }
+        .animation(.easeOut(duration: 0.2), value: model.optionsShown)
     }
 
     // MARK: - Prompt (role-aware)

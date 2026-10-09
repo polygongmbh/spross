@@ -34,6 +34,9 @@ final class WatchModel {
     /// The rating the last tap earned (raw FSRS 1–4), for the tile's badge —
     /// the quiz marks a quick one's speed, never names it (`WatchFeedback`).
     private(set) var lastRating: WatchRating?
+    /// False while a recognition prompt stands alone for its recall pause
+    /// (`WatchGrading.recallPauseMs`); a tap or the pause running out shows the options.
+    private(set) var optionsShown = true
     /// Raised for a moment after a wrong pick; the quiz washes the screen red.
     private(set) var wrongFlash = false
     private(set) var answerStreak = 0
@@ -50,6 +53,7 @@ final class WatchModel {
     private var rng = SystemRandomNumberGenerator()
     private var autoAdvance: Task<Void, Never>?
     private var flash: Task<Void, Never>?
+    private var recallPause: Task<Void, Never>?
 
     /// How long the wrong-answer wash stays up — long enough to register, short
     /// enough that it is gone before the eye returns to the tiles.
@@ -186,7 +190,7 @@ final class WatchModel {
     /// FSRS review to the phone, drop the card locally, then flip to the next
     /// question. A second tap while feedback shows is ignored.
     func choose(_ index: Int) {
-        guard selectedIndex == nil, let question = currentQuestion,
+        guard optionsShown, selectedIndex == nil, let question = currentQuestion,
               let id = currentID, var snap = snapshot else { return }
         selectedIndex = index
         let correct = index == question.correctIndex
@@ -233,7 +237,16 @@ final class WatchModel {
         }
     }
 
+    /// End the recall pause: the options appear and the response clock starts.
+    func showOptions() {
+        recallPause?.cancel()
+        guard !optionsShown else { return }
+        optionsShown = true
+        questionShownAt = Date()
+    }
+
     func endSession() {
+        recallPause?.cancel()
         autoAdvance?.cancel()
         flash?.cancel()
         wrongFlash = false
@@ -293,5 +306,24 @@ final class WatchModel {
         }
         currentQuestion = WatchPracticeGenerator.makeQuestion(promptEntry: entry, using: &rng)
         questionShownAt = Date()
+        startRecallPause(entry)
+    }
+
+    /// A recognition prompt asks for its meaning alone first; a produce prompt and a
+    /// VoiceOver user, who could not find hidden tiles, get the options at once.
+    private func startRecallPause(_ entry: WatchSnapshot.Entry) {
+        recallPause?.cancel()
+        guard currentQuestion != nil, entry.isRecognize, !WKAccessibilityIsVoiceOverRunning() else {
+            optionsShown = true
+            return
+        }
+        optionsShown = false
+        let pause = WatchGrading.recallPauseMs(promptChars: entry.promptForm.count)
+        // why: the pause running out shows the options and starts the response clock.
+        recallPause = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .milliseconds(pause))
+            guard !Task.isCancelled else { return }
+            self?.showOptions()
+        }
     }
 }

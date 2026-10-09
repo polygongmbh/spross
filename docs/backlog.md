@@ -34,6 +34,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
   paid service around a free and open app; the options and what constrains them are
   `docs/source-license.md`, and the decision is the owner's.
 - Watch practice laps repeat one order within each part (unasked, misses, right) until the next snapshot, since `fb7668f4` dropped the lap jitter — should words of similar standing reorder again, and does kern or Swift decide it? (`WatchModel.practiceLap`)
+- Phone recognition could ask by multiple choice after the watch's recall pause instead of self-grading, with time-based ratings moved into kern so iOS, Android and the watch grade alike (`WatchGrading`, `kern/docs/presentation.md`).
 - `tools/FaceGen --seed` reads the retired `vocab-*.json` and a `../../content` that no longer exists — port it to the catalog join or delete it (`docs/facegen.md`).
 - Audio ships un-thinned: both installs copy all of `catalog/audio/` (129 MB, 13–25 MB per
   language — `project.yml:35` folder reference, `android/build.gradle.kts:131` asset sync with

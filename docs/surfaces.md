@@ -84,6 +84,9 @@ The tile is app-private like the box, and one the launcher has just placed shows
   the watch never types, and the options arrive ranked from kern so that nothing but meaning tells the answer from its company:
   word class, then how the sentence closes, then area, then string shape (`../kern/docs/snapshots.md`).
   No self-grading: correctness and response time derive the rating.
+  A recognition question shows its prompt alone first, for as long as the Good window gives the prompt's own characters,
+  so the meaning is recalled before options can be spotted; a tap shows them early, the response clock starts when they appear,
+  and VoiceOver skips the pause.
   Multiple choice on a keyboard-less device is a deliberate concession to the recall-first rule, with the latency curve compensating for it.
   Answers return as events; the phone reschedules against real timestamps and re-pushes.
   Until it does, the watch keeps each card's last rating;
