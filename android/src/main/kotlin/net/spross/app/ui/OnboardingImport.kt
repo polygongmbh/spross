@@ -17,6 +17,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
@@ -70,6 +73,8 @@ fun OnboardingImport(model: AppModel, chrome: Chrome, source: String, modifier: 
             },
             style = MaterialTheme.typography.labelMedium,
             textAlign = TextAlign.End,
+            // why: the inline icon's placeholder character would otherwise be read out with the label.
+            modifier = Modifier.clearAndSetSemantics { text = AnnotatedString(chrome.onboardingImport) },
             inlineContent = mapOf(
                 IMPORT_ICON to InlineTextContent(
                     Placeholder(1.em, 1.em, PlaceholderVerticalAlign.TextCenter),

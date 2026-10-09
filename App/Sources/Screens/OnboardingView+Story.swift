@@ -84,17 +84,24 @@ extension OnboardingView {
 
 /// The face of an onboarding page: a mark large enough to be seen across the room,
 /// and the page's title under it.
-struct OnboardingHero: View {
+struct OnboardingHero<Trailing: View>: View {
     let emoji: String
     let title: LocalizedStringKey
+    /// Stands beside the emoji in the space to its right, wrapping inside it,
+    /// so a long label never covers the centered emoji.
+    @ViewBuilder var trailing: Trailing
 
     var body: some View {
         VStack(spacing: Theme.spacing.lg) {
-            // why: verbatim — a plain Text would take the emoji for a localization key
-            // and read the key back on a screen that has no entry for it.
-            Text(verbatim: emoji)
-                .font(.system(size: 56)) // card-parity: the story page's own glyph, not a card prompt
-                .accessibilityHidden(true)
+            HStack(spacing: 0) {
+                Color.clear.frame(maxWidth: .infinity, maxHeight: 0)
+                // why: verbatim — a plain Text would take the emoji for a localization key
+                // and read the key back on a screen that has no entry for it.
+                Text(verbatim: emoji)
+                    .font(.system(size: 56)) // card-parity: the story page's own glyph, not a card prompt
+                    .accessibilityHidden(true)
+                trailing.frame(maxWidth: .infinity, alignment: .trailing)
+            }
             Text(title)
                 .font(Theme.typography.title)
                 .foregroundStyle(Theme.colors.textPrimary)
@@ -102,6 +109,12 @@ struct OnboardingHero: View {
                 .accessibilityAddTraits(.isHeader)
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+extension OnboardingHero where Trailing == EmptyView {
+    init(emoji: String, title: LocalizedStringKey) {
+        self.init(emoji: emoji, title: title) { EmptyView() }
     }
 }
 

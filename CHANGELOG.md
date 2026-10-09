@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- The import link on the welcome page no longer covers the waving hand when its label runs long.
 - A first round's tree now stands on three young limbs instead of one bent stick.
 - On Android, changing a language in Settings keeps you on Settings instead of jumping to the box.
 - On Android, buttons and cards answer a press with Material's ripple alone and no longer shrink under the finger.

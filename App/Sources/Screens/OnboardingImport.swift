@@ -20,6 +20,7 @@ struct OnboardingImport: View {
             importing = true
         } label: {
             LinkLabel("onboarding.import", icon: "square.and.arrow.down", font: Theme.typography.caption)
+                .multilineTextAlignment(.trailing)
         }
         .buttonStyle(.plain)
         .fileImporter(isPresented: $importing, allowedContentTypes: [.json]) { result in
