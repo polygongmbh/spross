@@ -43,11 +43,11 @@ import net.spross.kern.model.Language
  * row was clipped from both ends down to its flag. Here the name is text on a control — ink
  * on the recessed fill, left where a value belongs, stepping down before it is cut.
  *
- * A plain click opens a [DropdownMenu] under the row: M3's `ExposedDropdownMenuBox` does not
- * open on a device with this custom row as its anchor. The row stays custom
- * rather than a full M3 `TextField`: a filled field's fixed label gutter would cost the pill
- * its 48 dp floor and the autosize step that keeps a long exonym ("Українська") on one line
- * without shrinking below [PICKER_FLOOR].
+ * A plain click opens a [DropdownMenu] under the row: under [pressSpring], M3's
+ * `ExposedDropdownMenuBox` drops every press held longer than an instant, so a real finger
+ * never opens it. The row stays custom rather than a full M3 `TextField`: a filled field's
+ * fixed label gutter would cost the pill its 48 dp floor and the autosize step that keeps a
+ * long exonym ("Українська") on one line without shrinking below [PICKER_FLOOR].
  */
 @Composable
 internal fun LanguageMenu(
