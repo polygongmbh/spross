@@ -35,7 +35,7 @@ Neighbors: the engine contract `../README.md`, the trainer packs `trainer.md`.
 - Android: `androidLibrary` KMP target
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.1, compileSdk 36 / minSdk 26);
   androidMain's NFC actual mirrors jvmMain, and `:android` consumes the same facades.
-  Gate: `./gradlew :kern:compileAndroidMain`.
+  Gate: `./gradlew :android:testDebugUnitTest`, which compiles androidMain on the way.
 - Web: `js { browser() }` target feeds the spross.net drill.
   `binaries.executable()` → one webpack bundle, `:kern:jsBrowserDistribution` →
   `kern/build/dist/js/productionExecutable/kern.js` (UMD global `kern`).
@@ -45,4 +45,4 @@ Neighbors: the engine contract `../README.md`, the trainer packs `trainer.md`.
   jsMain's NFC actual is `String.prototype.normalize("NFC")`.
   Gradle provisions Node/Yarn on first build (network) and pins
   `kotlin-js-store/yarn.lock` (committed).
-  Gate: `./gradlew :kern:jsBrowserDistribution`.
+  `scripts/build-web.sh` runs it; no gate does.

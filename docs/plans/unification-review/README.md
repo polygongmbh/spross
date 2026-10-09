@@ -5,10 +5,6 @@ Shipped: doc truth fixes, backlog refresh, release lint parity, strings.py drift
 Full evidence (file:line, both sides) is in the five reports beside this file: `session-box.md`, `trainer-listening-watch.md`, `kern.md`, `platform-tooling.md`, `docs-gates.md`.
 They describe the tree at 8.7.0, before the fixes this branch shipped.
 
-## Kern only — `:kern:jvmTest` covers it, runnable in a cloud session
-
-- `scripts/arch-status.py` prints a wrong survey: suffix stripping misses `NumbersRunView+*.swift`, and `DrillRun.kt`/`TimedRun.kt` count as machines.
-
 ## Kern rule plus platform callers — needs a Mac and the Android gate
 
 - `Realization.article` is kern's now; the two platform copies (`DisplayText.swift`, `CardDisplay.kt`) swap to it once a Mac can build.
