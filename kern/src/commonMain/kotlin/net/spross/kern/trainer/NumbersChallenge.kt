@@ -15,7 +15,7 @@ import net.spross.kern.session.TurnFeedback
  *
  * Only exercises independent of the source language travel; Phrases does not.
  * The check covers the spelled questions too, so a mistyped code or one from a differently
- * drawing app is refused.
+ * drawing app is refused; a language index or exercise bit nothing names yet refuses it as well.
  */
 data class NumbersChallenge(
     val language: Language,
@@ -122,18 +122,20 @@ data class NumbersChallenge(
         /** Questions a script holds — more than a run with its earned seconds can answer. */
         const val LENGTH: Int = 150
 
-        // The 40 bits of eight characters: 14 + 5 + 5 + 10 + 6.
+        // The 40 bits of eight characters: 14 + 6 + 6 + 10 + 4, with room for more languages and a fourth exercise.
         private const val CODE_CHARS = 8
         private const val SEED_BITS = 14
-        private const val LANGUAGE_BITS = 5
-        private const val SPEC_BITS = 5
+        private const val LANGUAGE_BITS = 6
+        private const val SPEC_BITS = 6
         private const val SCORE_BITS = 10
-        private const val CHECK_BITS = 6
+        private const val CHECK_BITS = 4
         private const val CHECK_MASK = (1 shl CHECK_BITS) - 1
         /** The highest score a reply carries; 0 in the field means none. */
         private const val MAX_SCORE = (1 shl SCORE_BITS) - 2
-        private const val REVERSE_BIT = 8
-        private const val MIX_BIT = 16
+        /** Bits 0–3 name exercises ([TRAVELING]), the fourth one unused so far. */
+        private const val EXERCISE_MASK = 15
+        private const val REVERSE_BIT = 16
+        private const val MIX_BIT = 32
 
         /** The languages a code can name, by index: append a new one, never insert or reorder. */
         private val CODE_LANGUAGES = listOf("de", "en", "eo", "es", "fr", "it", "sw", "uk")
@@ -184,6 +186,8 @@ data class NumbersChallenge(
             val codeLanguage = CODE_LANGUAGES.getOrNull(field(SCORE_BITS + SPEC_BITS, LANGUAGE_BITS))
             if (codeLanguage == null || !Numbers.supports(codeLanguage)) return ChallengeReading.Unreadable
             val exercises = TRAVELING.filterIndexed { bit, _ -> spec and (1 shl bit) != 0 }
+            // why: an exercise this app does not know yet comes from a newer app — refused, not dropped.
+            if (spec and EXERCISE_MASK != exercises.sumOf { 1 shl TRAVELING.indexOf(it) }) return ChallengeReading.Unreadable
             val offered = DrillSelection.offered(codeLanguage, phrasesRealized = false)
             if (exercises.isEmpty() || !offered.containsAll(exercises)) return ChallengeReading.Unreadable
             val challenge = NumbersChallenge(
