@@ -63,7 +63,7 @@ data class NumbersClose(
     fun bookings(): DrillBookings = DrillBookings.of(
         Drill.Numbers, state.mode.language, summary,
         sprossen = if (summary == null) emptyMap() else progressBookings,
-        records = summary?.takeIf { it.newRecord }?.let { mapOf(recordKey to it.recordFigure) } ?: emptyMap(),
+        records = summary?.takeIf { it.newRecord }?.let { mapOf(recordKey to it.bestAnswerStreak) } ?: emptyMap(),
     )
 }
 
@@ -128,8 +128,8 @@ data class NumbersRunState(
             maxOf(0, best - maxOf(1, standingSprossen[exercise] ?: 0))
         }
 
-    /** The run ends on a clock and is scored ([TimedRun]). */
-    val timed: Boolean get() = mode.isTimed
+    /** A challenge ends on a clock and is scored ([TimedRun]); every other run is endless. */
+    val timed: Boolean get() = challenge != null
 
     /** A timed run ends on its clock, so it offers no way out of its own beyond the ✕. */
     override val offersFinish: Boolean get() = !timed && super.offersFinish

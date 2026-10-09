@@ -4,7 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
-- In a timed numbers run or a challenge, the line above the card no longer shows the answer streak, which the score already stands in for.
+- The numbers page drops its Timed switch: a challenge, started from your picks or from a code, is now the one race against the clock.
+- In a numbers challenge, the line above the card no longer shows the answer streak, which the score already stands in for.
 
 ## 8.7.0 — 2026-10-09
 

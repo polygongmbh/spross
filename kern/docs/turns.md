@@ -173,8 +173,7 @@ and text reaches a machine only inside an intent — never as state.
   `DrillTally` names the counter for every drill at once — clean wins over the answers
   judged either way, with almost in neither half for `DrillRamp.step`'s reason;
   the "2/3" string is rendering.
-- **Storage contract**: the answer-streak record under `trainer.record.<key>` —
-  a timed run's is its score instead (`DrillRunSummary.recordFigure`), on a key its own modifier already separates —
+- **Storage contract**: the answer-streak record under `trainer.record.<key>`,
   per-exercise Sprosse progress under `trainer.level.<key>`,
   the most answers one run took under `trainer.answers.<key>` (`DrillRunSummary.done`, right or wrong),
   and the cleared Sprossen as a bitmask under `trainer.cleared.<key>` —

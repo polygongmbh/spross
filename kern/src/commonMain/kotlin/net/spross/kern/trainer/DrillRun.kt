@@ -71,12 +71,9 @@ data class DrillRunSummary(
      * false, which drops the record line and the celebration with it.
      */
     val newRecord: Boolean,
-    /** A timed run's score, and the challenge it answered; null for a run that was not timed. */
+    /** A challenge's score and the challenge it answered; null for every other run. */
     val timed: TimedOutcome? = null,
 ) {
-    /** The record figure: a timed run's score, otherwise the best answer streak. */
-    val recordFigure: Int get() = timed?.score ?: bestAnswerStreak
-
     /**
      * Whether the figures are worth reporting where nothing asked for them — a drill with no
      * page of its own reports on the hub only after a stretch a pause could also have

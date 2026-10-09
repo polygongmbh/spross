@@ -29,13 +29,12 @@ data class NumbersChallenge(
     val opponentScore: Int?,
 ) {
 
-    /** What the run is spelled out of — timed, and played the way the code says. */
+    /** What the run is spelled out of, played the way the code says; the clock is the challenge's ([TimedRun]). */
     val mode: NumbersMode
         get() = NumbersMode(
             exercises,
             language,
             setOfNotNull(
-                DrillModifier.Timed,
                 DrillModifier.Reverse.takeIf { reverse },
                 DrillModifier.Mix.takeIf { mix },
             ),

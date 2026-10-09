@@ -112,11 +112,7 @@ fun NumbersOverviewScreen(model: AppModel) {
             if (!combining) OverviewNote(chrome.numbersCombineLocked)
         }
         Panel {
-            // why: timed runs are hidden from screen reader users.
-            val playable = DrillModifier.entries.filter {
-                it != DrillModifier.Timed || !model.pronouncer.readsScreenAloud
-            }
-            for (modifier in playable) {
+            for (modifier in DrillModifier.entries) {
                 ModifierRow(modifier, chrome, ladder, modifier in modifiers, DrillUnlockMark.row(modifier) in unlocking) { on ->
                     modifierNames = if (on) {
                         modifierNames + modifier.name

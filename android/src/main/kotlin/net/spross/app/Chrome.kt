@@ -206,8 +206,6 @@ interface Chrome {
     val trainerModifierFastHint: String   // %d
     val trainerModifierMix: String
     val trainerModifierMixHint: String
-    val trainerModifierTimed: String
-    val trainerModifierTimedHint: String  // %d
     val trainerChallengeTitle: String
     val trainerChallengeHint: String      // %d
     val trainerChallengeStart: String

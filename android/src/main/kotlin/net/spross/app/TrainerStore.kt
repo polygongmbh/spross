@@ -33,10 +33,7 @@ import net.spross.kern.trainer.WordScrambleRunState
  */
 class TrainerStore(private val prefs: SharedPreferences) : DrillLadders.Store {
 
-    /**
-     * The best this run selection ever did, 0 where it was never run: the longest answer streak, or
-     * a timed run's score ([DrillRunSummary.recordFigure]).
-     */
+    /** The longest answer streak this run selection ever reached, 0 where it was never run. */
     fun record(key: String): Int = prefs.getInt(NumbersMode.RECORD_PREFIX + key, 0)
 
     /**

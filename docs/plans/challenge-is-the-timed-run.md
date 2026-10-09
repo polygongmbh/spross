@@ -22,7 +22,7 @@ A clock paused on that reveal would be a breather after every mistake, so the ra
 
 - [x] Drop the streak from a timed run's score line — `f846012`
 - [x] Revert the clock pause — `f2d1542`
-- [ ] A: remove `DrillModifier.Timed`; `NumbersRunState.timed` = a challenge; drop its unlock, storage tag,
+- [x] A: remove `DrillModifier.Timed`; `NumbersRunState.timed` = a challenge; drop its unlock, storage tag,
       iOS/Android modifier naming and the overview's screen-reader filter, the `trainer.modifier.timed*` strings,
       the `-uitest-modifiers timed` hook; tests via a challenge; docs and changelog
 - [ ] B: kern strict turn for a challenge (`NumbersRun.submit/typed/reveal` book at once; `question` without hint, closing note or other word);

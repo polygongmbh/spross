@@ -160,8 +160,7 @@ class NumbersRunTest {
         val said = reduce(untimed, NumbersIntent.Submit(untimed.currentTask.accepted.first()), rng)
         assertEquals(Saying(untimed.currentTask.display, "de"), said.state.reading.answer)
 
-        val mode = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Timed))
-        val timed = NumbersRun.open(mode, 0, emptyMap(), rng)
+        val timed = requireNotNull(NumbersChallenge.create(numbers(), rng)).open()
         val unsaid = reduce(timed, NumbersIntent.Submit(timed.currentTask.accepted.first()), rng)
         assertNull(unsaid.state.reading.answer)
     }

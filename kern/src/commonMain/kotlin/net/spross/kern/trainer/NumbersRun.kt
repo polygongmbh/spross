@@ -146,11 +146,10 @@ object NumbersRun {
             .map { (exercise, best) -> state.mode.progressKey(exercise) to best }
             .filter { (key, best) -> best > (standingProgress[key] ?: 0) }
             .toMap()
-        val timed = if (state.timed) TimedOutcome(ended.score, state.challenge) else null
-        val figure = timed?.score ?: ended.bestAnswerStreak
+        val timed = state.challenge?.let { TimedOutcome(ended.score, it) }
         return NumbersClose(
             state = ended,
-            summary = DrillRunSummary(ended.done, ended.bestAnswerStreak, !scripted && figure > standingRecord, timed),
+            summary = DrillRunSummary(ended.done, ended.bestAnswerStreak, !scripted && ended.bestAnswerStreak > standingRecord, timed),
             recordKey = state.mode.recordKey,
             progressBookings = bookings,
             effects = effects,
@@ -278,7 +277,7 @@ object NumbersRun {
             // why: a mixed run climbs one ladder per exercise, and no one of them is the run's.
             sprosse = state.mode.exercises.singleOrNull()?.let { state.sprossen[it] },
             newSprossen = state.newSprossen,
-            endless = !state.finished && !state.timed && state.challenge == null,
+            endless = !state.finished && state.challenge == null,
         ),
     )
 

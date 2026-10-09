@@ -55,7 +55,7 @@ data class DrillBookings(
             drill, target, summary,
             sprossen = mapOf(key to bestSprosse),
             cleared = mapOf(NumbersMode.clearedKey(key, reverse) to cleared),
-            records = summary?.takeIf { it.newRecord }?.let { mapOf(key to it.recordFigure) } ?: emptyMap(),
+            records = summary?.takeIf { it.newRecord }?.let { mapOf(key to it.bestAnswerStreak) } ?: emptyMap(),
             answers = summary?.let { mapOf(key to it.done) } ?: emptyMap(),
         )
 
