@@ -7,8 +7,7 @@ They describe the tree at 8.7.0, before the fixes this branch shipped.
 
 ## Kern only — `:kern:jvmTest` covers it, runnable in a cloud session
 
-- One `internal` booking helper under the six drill reducers (`WordScrambleRun`, `SentenceScrambleRun`, `OppositesRun`, `LetterDrillRun`, `CountryDrillRun`, `DateDrillRun`): the `close`/`confirm`/`booked`/`paced`/`advanced` block is written six times, `WINS_TO_ADVANCE = 3` six times; public types stay put so the ObjC header does not move.
-- Then thin the per-drill copies of the shared rule's tests (ladder-out ×3, pending-books-on-close ×3, resample-once ×5, same-seed ×2) to one helper test plus one wiring case per drill.
+- Thin the per-drill copies of the booking rule `LadderStanding` now holds once (ladder-out ×3, pending-books-on-close ×3, resample-once ×5, same-seed ×2) to one helper test plus one wiring case per drill.
 - Past-justifying KDoc: `SessionRun`, `TurnMachine`, `NumbersRun`, `SessionComposer`, `SlotDraws`, `StabilityBars`, `BoxBrowser`, the "v1" mentions (`Time`, `Config`, `Language`, `TrainerLanguagePack`, `WidgetSnapshotBuilder`), stale copy counts (`DrillSolved`, `DrillRunCore`, `DrillRunProgress`, `DrillProgression`), `Presentation.kt` (backlog).
 - `scripts/arch-status.py` prints a wrong survey: suffix stripping misses `NumbersRunView+*.swift`, and `DrillRun.kt`/`TimedRun.kt` count as machines.
 

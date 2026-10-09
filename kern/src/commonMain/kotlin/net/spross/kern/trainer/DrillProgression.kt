@@ -88,6 +88,14 @@ object DrillUnlocks {
 object DrillRamp {
 
     /**
+     * Three clean answers carry a Sprosse on every ladder but the numbers one
+     * ([Numbers.winsToAdvance]), each drill naming it as its own `WINS_TO_ADVANCE`.
+     * With two, clean–almost–clean promoted and read as if the almost had counted;
+     * three in a row already say as much about one difficulty as five would.
+     */
+    internal const val USUAL_WINS: Int = 3
+
+    /**
      * [winsRequired] clean wins up, one miss down, floor 1.
      *
      * An almost answer ([clean] false: a typo, a revealed hint, a synonym) moves NOTHING.

@@ -40,25 +40,12 @@ data class SentenceScrambleReduction(
     val effects: List<DrillEffect>,
 )
 
-/**
- * What a closed sentence run leaves behind: the figures, the furthest Sprosse it stood on, and
- * the Sprossen it EARNED for the store to keep.
- */
+/** What a closed sentence run leaves behind: the figures, and the ladder as [LadderStanding] books it. */
 data class SentenceScrambleClose(
     val state: SentenceScrambleRunState,
     /** null ⇒ nothing was answered: dismiss, report nothing. */
     val summary: DrillRunSummary?,
-    /**
-     * The Sprosse the run REACHED, not the one it ends on — the ramp drops back on a miss, and
-     * the ladder rewards standing on a Sprosse rather than finishing there.
-     */
     val bestSprosse: Int,
-    /**
-     * The Sprossen this run climbed off before its first slip ([DrillSprossen]), for the store to add
-     * to the mask it holds — the Sprossen later runs pass on one clean answer
-     * ([DrillSprossen.winsRequired]).
-     * Unfiltered: unlike [bestSprosse] there is no standing value to beat.
-     */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
 ) {

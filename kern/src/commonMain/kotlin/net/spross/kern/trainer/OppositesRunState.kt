@@ -37,13 +37,12 @@ data class OppositesReduction(
     val effects: List<DrillEffect>,
 )
 
-/** What a closed opposites run leaves behind — [WordScrambleClose]'s shape. */
+/** What a closed opposites run leaves behind: the figures, and the ladder as [LadderStanding] books it. */
 data class OppositesClose(
     val state: OppositesRunState,
     /** null ⇒ nothing was answered: dismiss, report nothing. */
     val summary: DrillRunSummary?,
     val bestSprosse: Int,
-    /** The Sprossen this run climbed off before its first slip ([DrillSprossen]). */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
 ) {

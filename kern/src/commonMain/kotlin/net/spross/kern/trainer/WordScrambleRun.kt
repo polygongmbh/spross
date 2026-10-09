@@ -21,11 +21,8 @@ import net.spross.kern.session.TurnFeedback
  */
 object WordScrambleRun {
 
-    /**
-     * Three clean spellings carry a Sprosse, as in the atlas ([CountryDrill.WINS_TO_ADVANCE]).
-     * With two, clean–almost–clean promoted and read as if the almost had counted.
-     */
-    const val WINS_TO_ADVANCE: Int = 3
+    /** Three clean spellings carry a Sprosse ([DrillRamp.USUAL_WINS]). */
+    const val WINS_TO_ADVANCE: Int = DrillRamp.USUAL_WINS
 
     /**
      * How wide the draw reaches into the shortest words the Sprosse still has unasked. The
@@ -67,8 +64,8 @@ object WordScrambleRun {
         is WordScrambleIntent.InputChanged -> typed(state, intent.text)
         is WordScrambleIntent.Submit -> submit(state, intent.text)
         WordScrambleIntent.Reveal -> reveal(state)
-        WordScrambleIntent.ConfirmPending -> confirm(state, rng)
-        WordScrambleIntent.AdvanceElapsed -> elapsed(state, rng)
+        WordScrambleIntent.ConfirmPending -> booked(state, TypedDrillVerdicts.confirmed(state.feedback), rng)
+        WordScrambleIntent.AdvanceElapsed -> booked(state, TypedDrillVerdicts.elapsed(state.feedback), rng)
         WordScrambleIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
     }
 
@@ -96,27 +93,17 @@ object WordScrambleRun {
         )
 
     /**
-     * Leaving the run. A pending accepted answer books exactly as the explicit tap would, so
-     * closing can neither lose it nor upgrade it; a revealed answer nobody confirmed books
-     * nothing. [DrillRunSummary.newRecord] is always false — this drill keeps no streak record,
-     * so nothing it does can beat one.
+     * Leaving the run ([LadderStanding.closing]). [DrillRunSummary.newRecord] is always false —
+     * this drill keeps no streak record, so nothing it does can beat one.
      *
      * The Sprosse the run stands on when it leaves is NOT booked: a Sprosse is earned by being
      * climbed off before the run's first slip ([DrillSprossen]), and stopping halfway up one
      * earns nothing.
      */
     fun close(state: WordScrambleRunState): WordScrambleClose {
-        val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
-        val pending = TypedDrillVerdicts.pending(state.feedback)
-            ?.let { advanced(state, it.correct, it.clean) }
-            ?: state
-        val ended = pending.copy(feedback = TurnFeedback.Neutral, finished = true)
-        val summary = if (ended.done == 0) {
-            null
-        } else {
-            DrillRunSummary(ended.done, ended.bestAnswerStreak, newRecord = false)
-        }
-        return WordScrambleClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, effects)
+        val ended = LadderStanding.closing(state, ::advanced).copy(feedback = TurnFeedback.Neutral, finished = true)
+        val summary = LadderStanding.summary(ended, standingRecord = null)
+        return WordScrambleClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, LadderStanding.EFFECTS)
     }
 
     // MARK: - Intents
@@ -148,84 +135,44 @@ object WordScrambleRun {
         return WordScrambleReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
-    private fun confirm(state: WordScrambleRunState, rng: Random): WordScrambleReduction =
-        TypedDrillVerdicts.confirmed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
-    private fun elapsed(state: WordScrambleRunState, rng: Random): WordScrambleReduction =
-        TypedDrillVerdicts.elapsed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
     // MARK: - Booking
 
-    private fun booked(
-        state: WordScrambleRunState,
-        correct: Boolean,
-        clean: Boolean,
-        rng: Random,
-    ): WordScrambleReduction {
-        val next = advanced(state, correct, clean)
+    private fun booked(state: WordScrambleRunState, answer: DrillBooking?, rng: Random): WordScrambleReduction {
+        answer ?: return unchanged(state)
+        val next = advanced(state, answer)
         val question = draw(state.config, next.sprosse, state.task?.cardId, next.solved, rng)
-        return WordScrambleReduction(
-            paced(next.copy(
-                task = question.task,
-                sprosse = question.sprosse,
-                bestSprosse = maxOf(next.bestSprosse, question.sprosse),
-                // A Sprosse the run was carried past keeps none of the wins banked below it.
-                winsAtSprosse = if (question.sprosse == next.sprosse) next.winsAtSprosse else 0,
-                // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
-                clearedSprossen = DrillSprossen.leaving(
-                    next.clearedSprossen,
-                    next.sprosse,
-                    question.sprosse,
-                    next.core.slipped,
-                ),
-                index = state.index + 1,
-                // why: cleared in the SAME transaction as the question — the next card must
-                // never render a frame carrying the last one's answer.
-                feedback = TurnFeedback.Neutral,
-                // Nothing left to ask: end on the summary, never on a blank card.
-                finished = question.task == null,
-            )),
-            listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
+        val moved = next.withStanding(next.standing.carriedTo(question.sprosse)).copy(
+            task = question.task,
+            index = state.index + 1,
+            // why: cleared in the SAME transaction as the question — the next card must
+            // never render a frame carrying the last one's answer.
+            feedback = TurnFeedback.Neutral,
+            // Nothing left to ask: end on the summary, never on a blank card.
+            finished = question.task == null,
         )
+        // The pause a booked answer leaves due, if one is ([DrillPacing]).
+        val paced = moved.copy(core = moved.core.paced(moved.sprosse, moved.newSprossen, endless = !moved.finished))
+        return WordScrambleReduction(paced, LadderStanding.EFFECTS)
     }
 
-    /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
-    private fun paced(state: WordScrambleRunState): WordScrambleRunState = state.copy(
-        core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished),
-    )
-
-    private fun advanced(
-        state: WordScrambleRunState,
-        correct: Boolean,
-        clean: Boolean,
-    ): WordScrambleRunState {
-        val cleared = state.config.cleared
-        val step = DrillRamp.step(
-            sprosse = state.sprosse,
-            winsAtSprosse = state.winsAtSprosse,
-            correct = correct,
-            clean = clean,
-            winsRequired = DrillSprossen.winsRequired(state.sprosse, cleared, state.core.slipped, WINS_TO_ADVANCE),
+    private fun advanced(state: WordScrambleRunState, answer: DrillBooking): WordScrambleRunState =
+        state.withStanding(state.standing.answered(
+            answer,
+            winsRequired = DrillSprossen.winsRequired(state.sprosse, state.config.cleared, state.core.slipped, WINS_TO_ADVANCE),
             top = state.config.report.maxSprosse,
-        )
-        val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
-        return state.copy(
-            sprosse = step.sprosse,
-            bestSprosse = maxOf(state.bestSprosse, step.sprosse),
-            winsAtSprosse = step.winsAtSprosse,
-            clearedSprossen = DrillSprossen.leaving(
-                state.clearedSprossen,
-                state.sprosse,
-                step.sprosse,
-                core.slipped,
-            ),
-            core = core,
-        )
-    }
+            solves = state.task?.let { DrillSolved.key(it) },
+        ))
+
+    private val WordScrambleRunState.standing: LadderStanding
+        get() = LadderStanding(sprosse, bestSprosse, winsAtSprosse, clearedSprossen, core)
+
+    private fun WordScrambleRunState.withStanding(to: LadderStanding): WordScrambleRunState = copy(
+        sprosse = to.sprosse,
+        bestSprosse = to.bestSprosse,
+        winsAtSprosse = to.winsAtSprosse,
+        clearedSprossen = to.clearedSprossen,
+        core = to.core,
+    )
 
     /**
      * The first Sprosse at or above [from] with a word left to ask ([DrillLadder.climb]). A

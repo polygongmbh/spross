@@ -36,17 +36,12 @@ sealed class LetterDrillIntent {
 /** The closed result of one intent. */
 data class LetterDrillReduction(val state: LetterDrillRunState, val effects: List<DrillEffect>)
 
-/** What a closed letter run leaves behind — its figures and the Sprossen it answered out. */
+/** What a closed letter run leaves behind: the figures, and the ladder as [LadderStanding] books it. */
 data class LetterDrillClose(
     val state: LetterDrillRunState,
     /** null ⇒ nothing was answered: dismiss, report nothing. */
     val summary: DrillRunSummary?,
-    /**
-     * The tile and typed Sprossen this run climbed off or answered out before its first slip
-     * ([DrillSprossen], the scrambles' ledger), for the store to OR into the mask under
-     * [LetterDrillRunState.storageKey]. Dictation draws from the box, which grows, so it is
-     * never cleared.
-     */
+    /** Tile and typed Sprossen only: dictation draws from the box, which grows, so it is never cleared. */
     val clearedSprossen: Set<Int>,
     val effects: List<DrillEffect>,
 ) {

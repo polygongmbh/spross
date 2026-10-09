@@ -25,14 +25,8 @@ import net.spross.kern.session.TurnFeedback
  */
 object SentenceScrambleRun {
 
-    /**
-     * Three clean arrangements carry a Sprosse.
-     *
-     * A band is one difficulty, so three in a row say as much about it as five would;
-     * there is no almost to mis-credit either — this drill grades whole-position —
-     * which is what made two too quick on the drills that have one.
-     */
-    const val WINS_TO_ADVANCE: Int = 3
+    /** Three clean arrangements carry a Sprosse ([DrillRamp.USUAL_WINS]). */
+    const val WINS_TO_ADVANCE: Int = DrillRamp.USUAL_WINS
 
     /** How many deals a shuffle gets before an already-ordered one is allowed to stand. */
     private const val DEAL_ATTEMPTS = 8
@@ -74,33 +68,19 @@ object SentenceScrambleRun {
     ): SentenceScrambleReduction = when (intent) {
         is SentenceScrambleIntent.PlaceAtom -> place(state, intent.index)
         is SentenceScrambleIntent.ReturnAtom -> take(state, intent.index)
-        SentenceScrambleIntent.ConfirmPending -> confirm(state, rng)
-        SentenceScrambleIntent.AdvanceElapsed -> elapsed(state, rng)
+        SentenceScrambleIntent.ConfirmPending -> booked(state, TypedDrillVerdicts.confirmed(state.feedback), rng)
+        SentenceScrambleIntent.AdvanceElapsed -> booked(state, TypedDrillVerdicts.elapsed(state.feedback), rng)
         SentenceScrambleIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
     }
 
     /**
-     * Leaving the run. A pending accepted answer books exactly as the explicit tap would, so
-     * closing can neither lose it nor upgrade it; a revealed arrangement nobody confirmed books
-     * nothing. [DrillRunSummary.newRecord] is always false — this drill keeps no streak record,
-     * so nothing it does can beat one.
-     *
-     * The Sprosse the run stands on when it leaves is NOT booked: a Sprosse is earned by being
-     * climbed off before the run's first slip ([DrillSprossen]), and stopping halfway up one
-     * earns nothing.
+     * Leaving the run, on [WordScrambleRun.close]'s terms ([LadderStanding.closing]):
+     * no streak record is kept, and the Sprosse the run stands on is not booked.
      */
     fun close(state: SentenceScrambleRunState): SentenceScrambleClose {
-        val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
-        val pending = TypedDrillVerdicts.pending(state.feedback)
-            ?.let { advanced(state, it.correct, it.clean) }
-            ?: state
-        val ended = pending.copy(feedback = TurnFeedback.Neutral, finished = true)
-        val summary = if (ended.done == 0) {
-            null
-        } else {
-            DrillRunSummary(ended.done, ended.bestAnswerStreak, newRecord = false)
-        }
-        return SentenceScrambleClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, effects)
+        val ended = LadderStanding.closing(state, ::advanced).copy(feedback = TurnFeedback.Neutral, finished = true)
+        val summary = LadderStanding.summary(ended, standingRecord = null)
+        return SentenceScrambleClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, LadderStanding.EFFECTS)
     }
 
     // MARK: - Intents
@@ -141,95 +121,49 @@ object SentenceScrambleRun {
         return SentenceScrambleReduction(state.copy(placed = kept), emptyList())
     }
 
-    private fun confirm(
-        state: SentenceScrambleRunState,
-        rng: Random,
-    ): SentenceScrambleReduction = TypedDrillVerdicts.confirmed(state.feedback)
-        ?.let { booked(state, it.correct, it.clean, rng) }
-        ?: unchanged(state)
-
-    private fun elapsed(
-        state: SentenceScrambleRunState,
-        rng: Random,
-    ): SentenceScrambleReduction = TypedDrillVerdicts.elapsed(state.feedback)
-        ?.let { booked(state, it.correct, it.clean, rng) }
-        ?: unchanged(state)
-
     // MARK: - Booking
 
     private fun booked(
         state: SentenceScrambleRunState,
-        correct: Boolean,
-        clean: Boolean,
+        answer: DrillBooking?,
         rng: Random,
     ): SentenceScrambleReduction {
-        val next = advanced(state, correct, clean)
-        val question = draw(
-            state.config,
-            next.sprosse,
-            state.task?.cardId,
-            next.solved,
-            rng,
+        answer ?: return unchanged(state)
+        val next = advanced(state, answer)
+        val question = draw(state.config, next.sprosse, state.task?.cardId, next.solved, rng)
+        val moved = next.withStanding(next.standing.carriedTo(question.sprosse)).copy(
+            task = question.task,
+            index = state.index + 1,
+            // why: cleared in the SAME transaction as the question — the next arrangement
+            // must never render a frame carrying the last one's atoms.
+            placed = emptyList(),
+            feedback = TurnFeedback.Neutral,
+            // Nothing left to ask: end on the summary, never on a blank card.
+            finished = question.task == null,
         )
-        return SentenceScrambleReduction(
-            paced(next.copy(
-                task = question.task,
-                sprosse = question.sprosse,
-                bestSprosse = maxOf(next.bestSprosse, question.sprosse),
-                // A Sprosse the run was carried past keeps none of the wins banked below it.
-                winsAtSprosse = if (question.sprosse == next.sprosse) next.winsAtSprosse else 0,
-                // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
-                clearedSprossen = DrillSprossen.leaving(
-                    next.clearedSprossen,
-                    next.sprosse,
-                    question.sprosse,
-                    next.core.slipped,
-                ),
-                index = state.index + 1,
-                // why: cleared in the SAME transaction as the question — the next arrangement
-                // must never render a frame carrying the last one's atoms.
-                placed = emptyList(),
-                feedback = TurnFeedback.Neutral,
-                // Nothing left to ask: end on the summary, never on a blank card.
-                finished = question.task == null,
-            )),
-            listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
-        )
+        // The pause a booked answer leaves due, if one is ([DrillPacing]).
+        val paced = moved.copy(core = moved.core.paced(moved.sprosse, moved.newSprossen, endless = !moved.finished))
+        return SentenceScrambleReduction(paced, LadderStanding.EFFECTS)
     }
 
-    /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
-    private fun paced(state: SentenceScrambleRunState): SentenceScrambleRunState = state.copy(
-        core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished),
-    )
-
-    private fun advanced(
-        state: SentenceScrambleRunState,
-        correct: Boolean,
-        clean: Boolean,
-    ): SentenceScrambleRunState {
-        val held = state.config.cleared
-        val step = DrillRamp.step(
-            sprosse = state.sprosse,
-            winsAtSprosse = state.winsAtSprosse,
-            correct = correct,
-            clean = clean,
-            winsRequired = DrillSprossen.winsRequired(state.sprosse, held, state.core.slipped, WINS_TO_ADVANCE),
+    private fun advanced(state: SentenceScrambleRunState, answer: DrillBooking): SentenceScrambleRunState =
+        state.withStanding(state.standing.answered(
+            answer,
+            winsRequired = DrillSprossen.winsRequired(state.sprosse, state.config.cleared, state.core.slipped, WINS_TO_ADVANCE),
             top = state.config.report.maxSprosse,
-        )
-        val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
-        return state.copy(
-            sprosse = step.sprosse,
-            bestSprosse = maxOf(state.bestSprosse, step.sprosse),
-            winsAtSprosse = step.winsAtSprosse,
-            clearedSprossen = DrillSprossen.leaving(
-                state.clearedSprossen,
-                state.sprosse,
-                step.sprosse,
-                core.slipped,
-            ),
-            core = core,
-        )
-    }
+            solves = state.task?.let { DrillSolved.key(it) },
+        ))
+
+    private val SentenceScrambleRunState.standing: LadderStanding
+        get() = LadderStanding(sprosse, bestSprosse, winsAtSprosse, clearedSprossen, core)
+
+    private fun SentenceScrambleRunState.withStanding(to: LadderStanding): SentenceScrambleRunState = copy(
+        sprosse = to.sprosse,
+        bestSprosse = to.bestSprosse,
+        winsAtSprosse = to.winsAtSprosse,
+        clearedSprossen = to.clearedSprossen,
+        core = to.core,
+    )
 
     /**
      * The first Sprosse at or above [from] with a phrase left to ask ([DrillLadder.climb]).

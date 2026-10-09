@@ -125,6 +125,9 @@ and text reaches a machine only inside an intent — never as state.
   and `OppositesRun` the opposites drill.
   Each keeps its own CONCRETE draw type: they cross to Swift, where a generic arrives opaque,
   so there is no shared `ScrambleRun<T>` however alike two of them read.
+  What never crosses is shared instead: every run but `NumbersRun` books an answer onto its ladder,
+  carries it to the Sprosse the next question was drawn at and books a pending answer on close
+  through one internal `LadderStanding`, read out of its own state and copied back.
 - **One injected `Random` per run** feeds every draw — task, exercise, phrase frame, direction flip,
   the letters a word scramble mixes and the atoms a sentence scramble deals out —
   so a seeded run is reproducible end to end and identical on both platforms —

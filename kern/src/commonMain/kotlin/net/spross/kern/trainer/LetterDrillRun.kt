@@ -52,8 +52,8 @@ object LetterDrillRun {
         is LetterDrillIntent.InputChanged -> typed(state, intent.text)
         is LetterDrillIntent.Submit -> submit(state, intent.text)
         LetterDrillIntent.Reveal -> reveal(state)
-        LetterDrillIntent.ConfirmPending -> confirm(state, rng)
-        LetterDrillIntent.AdvanceElapsed -> elapsed(state, rng)
+        LetterDrillIntent.ConfirmPending -> booked(state, TypedDrillVerdicts.confirmed(state.feedback), rng)
+        LetterDrillIntent.AdvanceElapsed -> booked(state, TypedDrillVerdicts.elapsed(state.feedback), rng)
         LetterDrillIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
     }
 
@@ -87,24 +87,15 @@ object LetterDrillRun {
     }
 
     /**
-     * Leaving the run. A pending accepted answer books exactly as the explicit tap would, so
-     * closing can neither lose it nor upgrade it; a revealed answer nobody confirmed books
-     * nothing. [DrillRunSummary.newRecord] is always false — the letter drill keeps no record
-     * store, so nothing it does can beat one. What it does leave is the tile and typed
-     * Sprossen it climbed off before its first slip ([LetterDrillClose.clearedSprossen]).
+     * Leaving the run ([LadderStanding.closing]). [DrillRunSummary.newRecord] is always false —
+     * the letter drill keeps no record store, so nothing it does can beat one. What it does leave
+     * is the tile and typed Sprossen it climbed off before its first slip ([LetterDrillClose.clearedSprossen]).
      */
     fun close(state: LetterDrillRunState): LetterDrillClose {
-        val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
-        val pending = TypedDrillVerdicts.pending(state.feedback)
-            ?.let { advanced(state, it.correct, it.clean) }
-            ?: state
-        val ended = pending.copy(feedback = TurnFeedback.Neutral, chosen = null, finished = true)
-        val summary = if (ended.done == 0) {
-            null
-        } else {
-            DrillRunSummary(ended.done, ended.bestAnswerStreak, newRecord = false)
-        }
-        return LetterDrillClose(ended, summary, ended.keptSprossen, effects)
+        val ended = LadderStanding.closing(state, ::advanced)
+            .copy(feedback = TurnFeedback.Neutral, chosen = null, finished = true)
+        val summary = LadderStanding.summary(ended, standingRecord = null)
+        return LetterDrillClose(ended, summary, ended.keptSprossen, LadderStanding.EFFECTS)
     }
 
     // MARK: - Intents
@@ -164,25 +155,11 @@ object LetterDrillRun {
         return LetterDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
-    private fun confirm(state: LetterDrillRunState, rng: Random): LetterDrillReduction =
-        TypedDrillVerdicts.confirmed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
-    private fun elapsed(state: LetterDrillRunState, rng: Random): LetterDrillReduction =
-        TypedDrillVerdicts.elapsed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
     // MARK: - Booking
 
-    private fun booked(
-        state: LetterDrillRunState,
-        correct: Boolean,
-        clean: Boolean,
-        rng: Random,
-    ): LetterDrillReduction {
-        val next = advanced(state, correct, clean)
+    private fun booked(state: LetterDrillRunState, answer: DrillBooking?, rng: Random): LetterDrillReduction {
+        answer ?: return unchanged(state)
+        val next = advanced(state, answer)
         val question = draw(
             state.config,
             next.sprosse,
@@ -191,56 +168,40 @@ object LetterDrillRun {
             next.solved,
             rng,
         )
-        return LetterDrillReduction(
-            paced(next.copy(
-                task = question.task,
-                sprosse = question.sprosse,
-                // A Sprosse the run was carried past keeps none of the wins banked below it.
-                winsAtSprosse = if (question.sprosse == next.sprosse) next.winsAtSprosse else 0,
-                // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
-                clearedSprossen = DrillSprossen.leaving(
-                    next.clearedSprossen,
-                    next.sprosse,
-                    question.sprosse,
-                    next.core.slipped,
-                ),
-                index = state.index + 1,
-                // why: cleared in the SAME transaction as the question — the next one must never
-                // render a frame carrying the last one's answer.
-                feedback = TurnFeedback.Neutral,
-                chosen = null,
-                // Nothing left to ask: end on the summary, never on a blank card.
-                finished = question.task == null,
-            )),
-            listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
+        val moved = next.withStanding(next.standing.carriedTo(question.sprosse)).copy(
+            task = question.task,
+            index = state.index + 1,
+            // why: cleared in the SAME transaction as the question — the next one must never
+            // render a frame carrying the last one's answer.
+            feedback = TurnFeedback.Neutral,
+            chosen = null,
+            // Nothing left to ask: end on the summary, never on a blank card.
+            finished = question.task == null,
         )
+        // The pause a booked answer leaves due, if one is ([DrillPacing]).
+        val paced = moved.copy(core = moved.core.paced(moved.sprosse, moved.newSprossen, endless = !moved.finished))
+        return LetterDrillReduction(paced, LadderStanding.EFFECTS)
     }
 
-    /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
-    private fun paced(state: LetterDrillRunState): LetterDrillRunState = state.copy(
-        core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished),
+    private fun advanced(state: LetterDrillRunState, answer: DrillBooking): LetterDrillRunState =
+        state.withStanding(state.standing.answered(
+            answer,
+            winsRequired = DrillSprossen.winsRequired(
+                state.sprosse, state.config.cleared, state.core.slipped, LetterDrill.WINS_TO_ADVANCE,
+            ),
+            solves = state.task?.let { DrillSolved.key(it) },
+        ))
+
+    /** The letter run reports no best Sprosse, so its standing carries the one it is on. */
+    private val LetterDrillRunState.standing: LadderStanding
+        get() = LadderStanding(sprosse, sprosse, winsAtSprosse, clearedSprossen, core)
+
+    private fun LetterDrillRunState.withStanding(to: LadderStanding): LetterDrillRunState = copy(
+        sprosse = to.sprosse,
+        winsAtSprosse = to.winsAtSprosse,
+        clearedSprossen = to.clearedSprossen,
+        core = to.core,
     )
-
-    private fun advanced(
-        state: LetterDrillRunState,
-        correct: Boolean,
-        clean: Boolean,
-    ): LetterDrillRunState {
-        val step = DrillRamp.step(
-            sprosse = state.sprosse,
-            winsAtSprosse = state.winsAtSprosse,
-            correct = correct,
-            clean = clean,
-            winsRequired = DrillSprossen.winsRequired(state.sprosse, state.config.cleared, state.core.slipped, LetterDrill.WINS_TO_ADVANCE),
-        )
-        val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
-        return state.copy(
-            sprosse = step.sprosse,
-            winsAtSprosse = step.winsAtSprosse,
-            clearedSprossen = DrillSprossen.leaving(state.clearedSprossen, state.sprosse, step.sprosse, core.slipped),
-            core = core,
-        )
-    }
 
     /**
      * The first Sprosse at or above [from] with something left to ask ([DrillLadder.climb]).

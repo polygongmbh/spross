@@ -47,8 +47,8 @@ object DateDrill {
     /** Where a pair's calendar ladder is filed — [CountryDrill.storageKey]'s twin. */
     fun storageKey(source: Language, target: Language): String = "dates.$source-$target"
 
-    /** Three clean wins a Sprosse — the country drill's pacing, for the country drill's reason. */
-    const val WINS_TO_ADVANCE = 3
+    /** Three clean wins a Sprosse ([DrillRamp.USUAL_WINS]), for the country drill's reason. */
+    const val WINS_TO_ADVANCE = DrillRamp.USUAL_WINS
 
     fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else WINS_TO_ADVANCE
 
