@@ -46,7 +46,7 @@ internal class TurnWriteOut(private val normalizer: AnswerNormalizer) {
      */
     private fun writing(state: TurnState, step: CopyStep, text: String): TurnReduction {
         val trimmed = text.trim()
-        val written = trimmed.isNotEmpty() && normalizer.evaluate(trimmed, state.card) == Match.Exact
+        val written = trimmed.isNotEmpty() && normalizer.evaluate(trimmed, state.card, state.promptTag) == Match.Exact
         if (!written) {
             // why: backing out of a finished word takes the green with it.
             if (!step.written) return unchanged(state)
@@ -66,7 +66,7 @@ internal class TurnWriteOut(private val normalizer: AnswerNormalizer) {
     private fun submitted(state: TurnState, step: CopyStep, text: String): TurnReduction {
         val trimmed = text.trim()
         if (trimmed.isEmpty()) return unchanged(state)
-        if (normalizer.evaluate(trimmed, state.card) == Match.Wrong) {
+        if (normalizer.evaluate(trimmed, state.card, state.promptTag) == Match.Wrong) {
             return TurnReduction(
                 state.copy(copyStep = step.copy(missed = true)),
                 listOf(TurnEffect.Tone(ToneKind.Wrong)),

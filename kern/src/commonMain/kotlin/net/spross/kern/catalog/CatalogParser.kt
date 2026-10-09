@@ -1,9 +1,12 @@
 package net.spross.kern.catalog
 
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
+import net.spross.kern.model.TaggedForm
 
 /** Wraps a [CatalogSource], folding every read into an FNV-1a 64 fingerprint. */
 internal class FingerprintingSource(private val delegate: CatalogSource) {
@@ -141,7 +144,7 @@ internal object CatalogParser {
     fun parseConcepts(area: String, path: String, text: String, firstSeedIndex: Int): List<CatalogConcept> {
         val concepts = parseJson(path, text).arr(path, "root").mapIndexed { i, el ->
             val o = el.obj(path, "[$i]")
-            o.rejectUnknownKeys(path, "[$i]", setOf("slug", "kind", "emoji", "components", "feminineOf"))
+            o.rejectUnknownKeys(path, "[$i]", setOf("slug", "kind", "emoji", "formEmoji", "components"))
             val slug = o.requireString(path, "[$i]", "slug")
             if (slug.isEmpty() || '|' in slug || '/' in slug) parseError(path, "[$i]: bad slug \"$slug\"")
             val kind = when (val raw = o.requireString(path, slug, "kind")) {
@@ -155,8 +158,7 @@ internal object CatalogParser {
             if (kind != CardKind.Phrase && "components" in o.keys) {
                 parseError(path, "$slug: components on a ${kind.name.lowercase()}")
             }
-            if (kind != CardKind.Noun && "feminineOf" in o.keys) parseError(path, "$slug: feminineOf on a non-noun")
-            if (kind == CardKind.Idiom && "emoji" in o.keys) {
+            if (kind == CardKind.Idiom && ("emoji" in o.keys || "formEmoji" in o.keys)) {
                 parseError(path, "$slug: idioms use the fixed idiom emoji, not a per-concept one")
             }
             CatalogConcept(
@@ -164,8 +166,10 @@ internal object CatalogParser {
                 slug = slug,
                 kind = kind,
                 emoji = o.optionalString(path, slug, "emoji"),
+                formEmoji = o.stringMap(path, slug, "formEmoji").mapKeys { (tag, _) ->
+                    FormTag.parse(tag) ?: parseError(path, "$slug: unknown form tag \"$tag\" in formEmoji")
+                },
                 components = o.stringList(path, slug, "components"),
-                feminineOf = o.optionalString(path, slug, "feminineOf"),
                 seedIndex = firstSeedIndex + i,
             )
         }
@@ -181,12 +185,6 @@ internal object CatalogParser {
             for (component in c.components) {
                 val target = bySlug[component] ?: parseError(path, "${c.slug}: unresolved component \"$component\"")
                 if (target.kind == CardKind.Phrase) parseError(path, "${c.slug}: component \"$component\" is a phrase")
-            }
-            c.feminineOf?.let { base ->
-                val target = bySlug[base] ?: parseError(path, "${c.slug}: unresolved feminineOf \"$base\"")
-                if (target.kind != CardKind.Noun || target.slug == c.slug || target.feminineOf != null) {
-                    parseError(path, "${c.slug}: feminineOf must reference a plain same-area noun")
-                }
             }
         }
     }
@@ -212,22 +210,35 @@ internal object CatalogParser {
     }
 
     private fun parseRealization(path: String, slug: String, o: JsonObject): RawRealization {
-        o.rejectUnknownKeys(path, slug, setOf("text", "teaches", "accepts", "orders", "grammar", "notes"))
+        o.rejectUnknownKeys(path, slug, setOf("text", "teaches", "accepts", "forms", "orders", "grammar", "notes"))
         val text = o.requireString(path, slug, "text")
         if (text.isBlank()) parseError(path, "$slug: blank text")
         val teaches = o.stringList(path, slug, "teaches")
         val accepts = o.stringList(path, slug, "accepts")
         val orders = o.stringList(path, slug, "orders")
-        for (form in listOf(text) + teaches + accepts + orders) {
+        val forms = parseForms(path, slug, o)
+        for (form in listOf(text) + teaches + accepts + forms.map { it.text } + orders) {
             LanguageNames.markerError(form)?.let { parseError(path, "$slug: $it") }
         }
         return RawRealization(
             text = text,
             teaches = teaches,
             accepts = accepts,
+            forms = forms,
             orders = orders,
             grammar = o.stringMap(path, slug, "grammar"),
             notes = o.stringMap(path, slug, "notes"),
         )
+    }
+
+    /** `"forms": { "f": "larga", "f.pl": ["largas"] }` — a value is one form or several. */
+    private fun parseForms(path: String, slug: String, o: JsonObject): List<TaggedForm> {
+        val obj = o["forms"]?.obj(path, "$slug.forms") ?: return emptyList()
+        return obj.entries.flatMap { (key, value) ->
+            val tag = FormTag.parse(key) ?: parseError(path, "$slug: unknown form tag \"$key\"")
+            val texts = (value as? JsonArray)?.mapIndexed { i, el -> el.str(path, "$slug.forms.$key[$i]") }
+                ?: listOf(value.str(path, "$slug.forms.$key"))
+            texts.map { TaggedForm(tag, it) }
+        }
     }
 }

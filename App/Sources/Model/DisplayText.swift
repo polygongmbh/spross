@@ -108,41 +108,53 @@ enum CardDisplay {
                      targetText: realization.text)
     }
 
-    /// Labeled plural line. Which authored value is a sentinel and which resolves
-    /// against the word is kern's (`model/DisplayText.kt`); the labels each one
-    /// wears ("Pl. …", "= Pl.", "nur Pl.") are chrome.
-    static func plural(of realization: Realization, locale: Locale) -> String? {
-        guard let plural = pluralForm(realization: realization) else { return nil }
-        switch onEnum(of: plural) {
-        case .sameAsSingular: return ChromeStrings.string("session.grammar.plural.equals", locale: locale)
-        case .pluralOnly: return ChromeStrings.string("session.grammar.plural.only", locale: locale)
-        case .form(let form):
-            return String(format: ChromeStrings.string("session.grammar.plural %@", locale: locale), form.text)
-        }
-    }
-
     /// "auch: Amt / Verwaltung" — the realization's remaining family beyond
     /// `shown`, for reveal display. Which forms are left is kern's
     /// (`model/DisplayText.kt`); the label and the " / " are chrome.
     static func alternates(of realization: Realization, shown: String,
                            locale: Locale) -> String? {
-        let family = SprossKern.alternates(realization: realization, shown: [shown])
-        guard !family.isEmpty else { return nil }
-        return String(format: ChromeStrings.string("session.grammar.also %@", locale: locale),
-                      family.joined(separator: " / "))
+        alsoLine(SprossKern.alternates(realization: realization, shown: [shown], forms: realization.forms),
+                 locale: locale)
     }
 
-    /// The card's last line: its own note, or what the prompted form also means.
-    /// Which of the two is kern's (`closingNote`); the "bedeutet auch:" label is chrome.
-    static func closingNote(of realization: Realization, alsoMeans: [String],
-                            locale: Locale) -> String? {
-        guard let note = SprossKern.closingNote(realization: realization, alsoMeans: alsoMeans)
-        else { return nil }
-        switch onEnum(of: note) {
-        case .own(let own): return own.text
-        case .alsoMeans(let also):
-            return String(format: ChromeStrings.string("session.means.also %@", locale: locale),
-                          also.meanings.joined(separator: " / "))
+    /// "also: die Lehrerin ♀ / …" — each form with the marker that says which one it is.
+    static func alsoLine(_ family: [Alternate], locale: Locale) -> String? {
+        guard !family.isEmpty else { return nil }
+        let forms = family.map { alternate in
+            alternate.marker.map { "\(alternate.text) \(marker($0, locale: locale))" } ?? alternate.text
+        }
+        return String(format: ChromeStrings.string("session.grammar.also %@", locale: locale),
+                      forms.joined(separator: " / "))
+    }
+
+    /// A form tag as the badge reads it: gender as its glyph, the rest as the grammar's abbreviation.
+    static func marker(_ tag: FormTag, locale: Locale) -> String {
+        tag.parts.map { formGlyph(part: $0) ?? abbreviation($0, locale: locale) }.joined(separator: " ")
+    }
+
+    /// `marker` as a screen reader says it: the gender glyphs by name.
+    static func markerSpoken(_ tag: FormTag, locale: Locale) -> String {
+        tag.parts.map { part in
+            switch part {
+            case "f": ChromeStrings.string("a11y.glyph.feminineForm", locale: locale)
+            case "m": ChromeStrings.string("a11y.glyph.masculineForm", locale: locale)
+            case "n": ChromeStrings.string("a11y.glyph.neuterForm", locale: locale)
+            default: abbreviation(part, locale: locale)
+            }
+        }.joined(separator: " ")
+    }
+
+    private static func abbreviation(_ part: String, locale: Locale) -> String {
+        switch part {
+        case "pl": ChromeStrings.string("form.marker.pl", locale: locale)
+        case "nom": ChromeStrings.string("form.marker.nom", locale: locale)
+        case "gen": ChromeStrings.string("form.marker.gen", locale: locale)
+        case "dat": ChromeStrings.string("form.marker.dat", locale: locale)
+        case "acc": ChromeStrings.string("form.marker.acc", locale: locale)
+        case "ins": ChromeStrings.string("form.marker.ins", locale: locale)
+        case "loc": ChromeStrings.string("form.marker.loc", locale: locale)
+        case "voc": ChromeStrings.string("form.marker.voc", locale: locale)
+        default: String(format: ChromeStrings.string("form.marker.class %@", locale: locale), part)
         }
     }
 }

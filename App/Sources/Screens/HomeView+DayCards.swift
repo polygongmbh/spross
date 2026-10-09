@@ -53,13 +53,21 @@ extension HomeView {
     /// divide work done by work still queued — and both climb through the day, which
     /// leaves the ring near-full from the second round on and fullest exactly when a
     /// capped backlog is worst. The counts below say it without the false comfort.
-    @ViewBuilder
     var sessionStats: some View {
+        dayMark(.companion.offer(streak: Int32(model.stats?.streakDays ?? 0)))
+    }
+
+    /// The day's mark as kern names it (`DayMark`): the card's own emoji or the run's flame,
+    /// with the run's count beside it as one badge.
+    @ViewBuilder
+    func dayMark(_ mark: DayMark) -> some View {
         let streak = model.stats?.streakDays ?? 0
-        if streak > 0 {
+        if mark.counted, let emoji = mark.emoji {
+            StreakFlameView(days: streak, emoji: emoji)
+        } else if mark.counted {
             StreakFlameView(days: streak, health: model.stats?.streakHealth ?? .noRun)
-        } else {
-            Text(verbatim: "✨")
+        } else if let emoji = mark.emoji {
+            Text(verbatim: emoji)
                 .font(.system(size: 56)) // card-parity: the card's own glyph, not a card prompt
                 .accessibilityHidden(true)
         }
@@ -133,21 +141,8 @@ extension HomeView {
         .homeCard()
     }
 
-    /// The day's mark: the celebration wearing the streak, or the bare emoji when there
-    /// is no run to name yet — the same fallback `sessionStats` makes with ✨, and the
-    /// reason the badge is guarded at all: unguarded it put a flame over "0 Tage" for
-    /// anyone who had not started one.
-    @ViewBuilder
     func doneMark(worked: Bool) -> some View {
-        let emoji = worked ? "🎉" : "🌱"
-        let streak = model.stats?.streakDays ?? 0
-        if streak > 0 {
-            StreakFlameView(days: streak, emoji: emoji)
-        } else {
-            Text(verbatim: emoji)
-                .font(.system(size: 56)) // card-parity: the card's own glyph, not a card prompt
-                .accessibilityHidden(true)
-        }
+        dayMark(.companion.done(worked: worked, streak: Int32(model.stats?.streakDays ?? 0)))
     }
 
     /// "3 Neue · 24 Checks · 2 gefestigt" — the day's gain, not just

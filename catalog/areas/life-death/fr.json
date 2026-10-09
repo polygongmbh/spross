@@ -4,7 +4,7 @@
  "words": {
   "life": { "text": "vie", "grammar": { "gender": "la" } },
   "to-be-alive": { "text": "vivre" },
-  "alive": { "text": "vivant", "accepts": ["vivante"] },
+  "alive": { "text": "vivant", "forms": { "f": "vivante" } },
   "death": { "text": "mort", "grammar": { "gender": "la" } },
   "to-die": { "text": "mourir" },
   "to-be-born": { "text": "naître" },
@@ -12,7 +12,7 @@
   "youth": { "text": "jeunesse", "grammar": { "gender": "la" } },
   "to-grow-up": { "text": "grandir" },
   "to-get-old": { "text": "vieillir" },
-  "dead": { "text": "décédé", "accepts": ["décédée", "mort", "morte"] },
+  "dead": { "text": "décédé", "accepts": ["mort", "morte"], "forms": { "f": "décédée" } },
   "funeral": { "text": "enterrement", "accepts": ["l'enterrement", "obsèques"], "grammar": { "gender": "l'" } },
   "grave": { "text": "tombe", "grammar": { "gender": "la" } },
   "cemetery": { "text": "cimetière", "grammar": { "gender": "le" } },

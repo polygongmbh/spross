@@ -26,9 +26,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
-import net.spross.app.CardDisplay
 import net.spross.app.Chrome
-import net.spross.kern.model.Realization
 
 /**
  * The words a card is made of: the headword the whole card is about, the speaker beside
@@ -116,47 +114,6 @@ fun Headword(text: String, modifier: Modifier = Modifier, color: Color = Color.U
     Headword(AnnotatedString(text), modifier, color)
 
 /**
- * Target-side reveal: the word in the accent, its article in its own tint.
- *
- * The accent is the REVEAL's, not the target language's — a card is styled by role, so
- * the same word is neutral ink where it stands as the prompt. This is a headword and
- * nothing else: the grammar and the family it carries are [targetLines], handed to the
- * card so they close it at full width instead of wrapping in the picture's row.
- */
-@Composable
-fun TargetReveal(
-    target: Realization,
-    chrome: Chrome,
-    modifier: Modifier = Modifier,
-    pronounce: (() -> Unit)? = null,
-) {
-    SpokenWord(pronounce, chrome, modifier) {
-        Headword(
-            localizedTarget(Theme.colors.articleColoredText(target), target.lang),
-            color = Theme.colors.accent,
-            modifier = Modifier.weight(1f, fill = false),
-        )
-    }
-}
-
-/**
- * The small print a target word owes its reveal: the plural, then the synonym family.
- * Grammar renders here and nowhere else, because it is the target side's alone.
- *
- * [alsoShown] names forms of this word standing ELSEWHERE on the screen — a rotated
- * recognition prompt, say. The citation form is always one of them, since the reveal
- * draws it.
- */
-fun targetLines(
-    target: Realization,
-    chrome: Chrome,
-    alsoShown: List<String> = emptyList(),
-): List<String> = listOfNotNull(
-    CardDisplay.pluralLine(target, chrome),
-    CardDisplay.alsoLine(target, chrome, alsoShown + target.text),
-)
-
-/**
  * What a card GROWS when the answer comes out: a short rule, the answer, and the note
  * last. Always below the prompt, always the same shape — a vocabulary card and a drill
  * card reveal alike, so the two never drift into two ideas of "the answer".
@@ -165,6 +122,7 @@ fun targetLines(
 fun CardReveal(
     modifier: Modifier = Modifier,
     note: String? = null,
+    divided: Boolean = true,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Column(
@@ -172,10 +130,12 @@ fun CardReveal(
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Box(
-            Modifier.width(44.dp).height(2.dp)
-                .background(Theme.colors.separator, RoundedCornerShape(1.dp))
-        )
+        if (divided) {
+            Box(
+                Modifier.width(44.dp).height(2.dp)
+                    .background(Theme.colors.separator, RoundedCornerShape(1.dp))
+            )
+        }
         content()
         note?.let { PauseLine(it) }
     }

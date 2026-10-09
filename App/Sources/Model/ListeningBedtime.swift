@@ -73,10 +73,11 @@ final class ListeningBedtime {
         return (total - TimeInterval(remainingMs) / 1000, total)
     }
 
-    /// Whether the bedtime has arrived — a deadline in the past, and nothing
-    /// more; a run with none set never arrives anywhere. What to DO about it is
-    /// the run's.
-    var expired: Bool { remainingMs.map { $0 <= 0 } ?? false }
+    /// Whether the bedtime has arrived (`listeningBedtimeArrived`). What to DO
+    /// about it is the run's, at its seam.
+    var expired: Bool {
+        listeningBedtimeArrived(msRemaining: remainingMs.map { KotlinLong(value: $0) })
+    }
 
     func stop() {
         ticker?.cancel()
@@ -84,9 +85,9 @@ final class ListeningBedtime {
     }
 
     /// Wakes when the MINUTE the capsule shows changes, and on the deadline
-    /// itself — nothing here needs a per-second clock: the number moves a
-    /// minute at a time and the fade reads the deadline whenever it is asked.
-    /// No bedtime, no ticker.
+    /// itself — kern's reading and wake (`listeningTimerMinutes`,
+    /// `listeningTimerWakeMs`); the fade reads the deadline whenever it is
+    /// asked. No bedtime, no ticker.
     private func startTicking() {
         ticker?.cancel()
         guard let deadline else {
@@ -96,7 +97,8 @@ final class ListeningBedtime {
         }
         ticker = Task { @MainActor [weak self] in
             while !Task.isCancelled, let self {
-                minutesLeft = Self.minutes(until: deadline)
+                let left = Self.millis(until: deadline)
+                minutesLeft = Int(listeningTimerMinutes(msRemaining: left))
                 // why: the bedtime does not END anything — the run reads it at the
                 // seam between two turns and stops itself there. All this clock
                 // owes past the deadline is to stop counting.
@@ -104,25 +106,12 @@ final class ListeningBedtime {
                     stop()
                     return
                 }
-                try? await Task.sleep(for: .milliseconds(Self.msUntilTheMinuteTurns(deadline)))
+                try? await Task.sleep(for: .milliseconds(listeningTimerWakeMs(msRemaining: left)))
             }
         }
     }
 
     private static func millis(until deadline: Date) -> Int64 {
         Int64(max(0, deadline.timeIntervalSinceNow * 1000))
-    }
-
-    private static func minutes(until deadline: Date) -> Int {
-        Int((Double(millis(until: deadline)) / 60_000).rounded(.up))
-    }
-
-    /// How long the shown minute still stands: what is left, less the whole
-    /// minutes that will still be left after it turns. On the last minute that
-    /// is the whole remainder, so the final wake IS the deadline.
-    private static func msUntilTheMinuteTurns(_ deadline: Date) -> Int64 {
-        let left = millis(until: deadline)
-        let whole = Int64(max(minutes(until: deadline) - 1, 0))
-        return max(left - whole * 60_000, 50)
     }
 }

@@ -12,6 +12,8 @@ import SprossKern
 /// normalizer for the language the answer is owed in.
 extension DrillRunView: DrillRunning {
 
+    var appModel: AppModel? { model }
+
     // MARK: - The machine under this drill
 
     func reduce(_ run: Face.Run, _ move: DrillMove) -> DrillStep<Face.Run> {

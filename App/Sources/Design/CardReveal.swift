@@ -12,13 +12,17 @@ struct CardReveal<Content: View>: View {
     /// Literal gloss ("wörtlich: …") or the sentence's meaning — post-reveal
     /// only, and always the last line.
     var note: String?
+    /// Whether the short rule leads the reveal — every card's does but where kern says otherwise.
+    var divided = true
     @ViewBuilder var content: Content
 
     var body: some View {
         VStack(spacing: Theme.spacing.md) {
-            RoundedRectangle(cornerRadius: 1)
-                .fill(Theme.colors.separator)
-                .frame(width: 44, height: 2)
+            if divided {
+                RoundedRectangle(cornerRadius: 1)
+                    .fill(Theme.colors.separator)
+                    .frame(width: 44, height: 2)
+            }
             content
             if let note {
                 Text(note).noteLine()
@@ -30,7 +34,7 @@ struct CardReveal<Content: View>: View {
 // MARK: - CardEmoji
 //
 // The picture on a card. WHERE it sits is the card's own call, worked out from
-// what the surface is (`VocabCardView.Arrangement`) rather than passed in as a
+// what the surface is (`QuestionCardView.Surface`) rather than passed in as a
 // size; the slot only knows how big it is. Either way it is a fixed size held
 // for the card's whole life, so a reveal can fade a picture in without moving a
 // thing. One definition, so the review card and the drill cards cannot drift
@@ -88,7 +92,7 @@ struct CardEmoji: View {
             // why: faded rather than removed — the slot is already the right
             // size, so a held-back picture arrives without moving the words.
             .opacity(shows ? 1 : 0)
-            .animation(.easeOut(duration: 0.25), value: shows)
+            .animation(.cardReveal, value: shows)
     }
 
     /// The invariant the slot exists to keep: held back only until the reveal.

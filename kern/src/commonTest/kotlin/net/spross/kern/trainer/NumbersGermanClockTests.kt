@@ -94,8 +94,8 @@ class NumbersGermanClockTests {
                 val side = Realization(lang = "de", text = forms.first(), teaches = forms.drop(1))
                 val card = Card(
                     id = "drill", kind = CardKind.Noun, area = "drill", emoji = null, seedIndex = 0,
-                    components = emptyList(), feminineOf = null,
-                    source = side, target = side, promptFeminineMarker = false,
+                    components = emptyList(),
+                    source = side, target = side,
                 )
                 if (normalizer.evaluate(bare, card) != Match.Wrong) offenders += "\"$bare\" at $h:$m"
             }

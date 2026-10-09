@@ -2,7 +2,12 @@
  "title": "Le travail",
  "subtitle": "Bon courage au boulot !",
  "words": {
-  "work": { "text": "travail", "accepts": ["boulot"], "grammar": { "gender": "le", "plural": "travaux" } },
+  "work": {
+   "text": "travail",
+   "accepts": ["boulot"],
+   "forms": { "pl": "les travaux" },
+   "grammar": { "gender": "le" }
+  },
   "job-application": { "text": "candidature", "accepts": ["demande d'emploi"], "grammar": { "gender": "la" } },
   "cv": {
    "text": "CV",
@@ -18,11 +23,10 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "le collègue, la collègue : le mot ne change pas." }
   },
-  "boss": { "text": "chef", "grammar": { "gender": "le" } },
-  "boss-f": {
-   "text": "cheffe",
-   "accepts": ["chef"],
-   "grammar": { "gender": "la" },
+  "boss": {
+   "text": "chef",
+   "forms": { "f": "la cheffe" },
+   "grammar": { "gender": "le" },
    "notes": { "fr": "on écrit la cheffe ; on entend aussi la chef." }
   },
   "shift": {
@@ -122,7 +126,8 @@
   "we-knock-off-at-5": { "text": "Aujourd'hui, on débauche à 5h.", "orders": ["On débauche à 5h aujourd'hui."] },
   "workplace": {
    "text": "bureau",
-   "grammar": { "gender": "le", "plural": "-x" },
+   "forms": { "pl": "les bureaux" },
+   "grammar": { "gender": "le" },
    "notes": { "fr": "ici la pièce." }
   }
  }

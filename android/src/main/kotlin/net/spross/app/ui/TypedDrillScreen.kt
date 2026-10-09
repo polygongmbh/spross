@@ -1,22 +1,18 @@
 package net.spross.app.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.focus.FocusRequester
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.TypedDrill
-import net.spross.app.TypedDrillView
 import net.spross.app.bookRecord
 import net.spross.app.finishDrill
-import net.spross.app.speakDrillAnswer
 import net.spross.app.speakFormOnTap
 import net.spross.app.stampRun
+import net.spross.kern.session.AnswerControls.Slot
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.NumbersMode
@@ -58,7 +54,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     val flow = rememberRun(model, page.back, key = reverse to fast) {
         page.open(hooks.tone, hooks.releaseFocus)
     } ?: return
-    val run = flow.view(chrome)
+    val run = flow.view()
     val store = model.trainer.store
     val key = page.key
 
@@ -78,23 +74,12 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         model.finishDrill(page.back, closed.summary, page.drill)
     }
 
-    // The QUESTION is said on a REVERSED run, where the prompt IS the target-language form and
-    // kern says no graded answer (it is in the learner's own language) — so without this the
-    // whole task would be unhearable. Saying it gives nothing away: the word is already on the card. No
-    // beat in front of it, unlike the answer's: nothing has chimed and the question is awaited.
     val paused = flow.progress.pause != null
-    LaunchedEffect(run.index, paused) {
-        if (!reverse || paused) return@LaunchedEffect
-        val text = run.prompt.text ?: return@LaunchedEffect
-        // A picture is written in no language, so a question that is one has nothing to say.
-        val language = run.prompt.language ?: return@LaunchedEffect
-        model.speakDrillAnswer(text, language)
-    }
 
     val inputFocus = remember { FocusRequester() }
     // A tapped question has no field to fill — a keyboard over the tiles would cover the
     // very answer it is waiting for.
-    QuestionFocus(run.index to paused, model.pronouncer, inputFocus.takeIf { run.prompt.choices == null })
+    QuestionFocus(run.index to paused, model.pronouncer, inputFocus.takeIf { flow.progress.controls?.slot !is Slot.Choices })
 
     DrillRunScaffold(
         model = model,
@@ -104,125 +89,34 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         tally = run.tally,
         sprosse = chrome.trainerSprosse.format(run.sprosse),
         answerStreak = run.answerStreak,
-        bestAnswerStreak = run.bestAnswerStreak,
-        announcesRecord = true,
         // why: the run says its answers (and, reversed, its prompts) out loud, so it
         // owes the learner a way to silence them here.
         showsMuteButton = true,
     ) {
-        // The tap speaker rides the same rule as the autoplay above: a prompt that is
-        // a name, on the side being learned. A tap outranks the mute; this only says
-        // whether there is anything to hear.
-        Prompt(
-            model, run, chrome,
-            promptVoice = run.prompt.language?.let { language ->
-                run.prompt.text
-                    ?.takeIf { reverse }
-                    ?.let { model.speakFormOnTap(it, language) }
-            },
-        )
-        Controls(model, flow, run, chrome, inputFocus, leave)
-    }
-}
-
-@Composable
-private fun Prompt(
-    model: AppModel,
-    run: TypedDrillView,
-    chrome: Chrome,
-    promptVoice: (() -> Unit)?,
-) {
-    val prompt = run.prompt
-    CountryPromptCard(
-        ask = prompt.ask,
-        emoji = prompt.emoji,
-        emojiIsGiveaway = prompt.emojiIsGiveaway,
-        text = prompt.text,
-        language = prompt.language,
-        promptPronounce = promptVoice,
-        // why: a clean answer flips in about a second — opening the card for a beat there
-        // would read as a correction the learner did not earn.
-        reveal = if (!run.showsAnswer) {
-            null
-        } else {
-            CountryReveal(
-                word = prompt.display,
-                note = prompt.gloss,
-                language = run.answerLanguage,
-                pronounce = model.speakFormOnTap(prompt.display, run.answerLanguage),
-            )
-        },
-        // The word this question's language adds, the first time it is asked for — the
-        // numbers drill's first-sight hint, for a pattern instead of a length.
-        hint = prompt.newWord?.let { chrome.datesNewWord.format(it) },
-        chrome = chrome,
-    )
-    if (run.showsAnswer) {
-        run.otherWord?.let { other ->
-            // why: same line as the review session's — both explain what became of
-            // the answer, so they read alike.
-            PauseLine(chrome.sessionOtherWord.format(other.word, other.meanings.joinToString(", ")))
-        }
+        QuestionStage(flow) { QuestionCard(it, chrome, voice = model.cardVoice) }
+        Controls(model, flow, chrome, inputFocus, leave)
     }
 }
 
 /**
- * The answer and the one primary action under it — a field where the question is written
- * out, kern's four tiles where it is tapped ([DrillChoiceGrid]).
- *
- * The placeholder names the language the answer is owed IN — which is the learner's own on
- * a reversed run, and the only place the direction is spelled out.
+ * Kern's controls on the shared answer area — a field where the question is written out,
+ * kern's four tiles where it is tapped ([DrillChoiceGrid]). A calendar name is prose: it is
+ * set as prose, and a screen reader saying it needs no help.
  */
 @Composable
-private fun Controls(
-    model: AppModel,
-    flow: TypedDrill,
-    run: TypedDrillView,
-    chrome: Chrome,
-    inputFocus: FocusRequester,
-    onFinish: () -> Unit,
-) {
-    val choices = run.prompt.choices
-    val speakCorrection = { form: String -> model.speakFormOnTap(form, run.answerLanguage) }
-    if (choices != null) {
-        // The warm-up Sprosse: the answer is picked, not written, so the field stays away
-        // entirely rather than standing unused under the grid — the grid IS the primary
-        // action, and it waits on its own. A calendar name is prose — it is set as prose,
-        // and a screen reader saying it needs no help.
-        Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-            DrillChoiceGrid(
-                options = choices,
-                answer = run.prompt.display,
-                chosen = flow.chosen,
-                optionStyle = MaterialTheme.typography.titleMedium,
-                chrome = chrome,
-                onPick = flow::choose,
-            )
-            AnswerVerdict(run.feedback, flow.awaitsConfirm, chrome, flow::confirm, speakCorrection)
-            if (run.offersFinish) DrillStopOffer(chrome, onFinish)
-        }
-        return
-    }
-    TypedAnswerControls(
-        input = flow.input,
-        onType = flow::type,
-        // why: naming the language is right only while the answer is words — a date owed in
-        // digits is written the same way in either of them.
-        placeholder = if (run.prompt.digits) {
-            chrome.numbersAnswerPlaceholder
-        } else {
-            chrome.sessionAnswerPlaceholder.format(model.languageName(run.answerLanguage))
-        },
-        feedback = run.feedback,
-        awaitsConfirm = flow.awaitsConfirm,
-        chrome = chrome,
-        focus = inputFocus,
-        onPrimary = flow::primary,
-        onEnter = flow::enter,
-        onConfirm = flow::confirm,
-        speakCorrection = speakCorrection,
-        numberPad = run.prompt.numberPad,
-    ) {
-        if (run.offersFinish) DrillStopOffer(chrome, onFinish)
+private fun Controls(model: AppModel, flow: TypedDrill, chrome: Chrome, inputFocus: FocusRequester, onFinish: () -> Unit) {
+    val lang = (flow.controls?.slot as? Slot.Typed)?.lang
+    DrillAnswerArea(
+        model, flow, inputFocus, onStop = onFinish,
+        speakCorrection = { form -> lang?.let { model.speakFormOnTap(form, it) } },
+    ) { options, answer ->
+        DrillChoiceGrid(
+            options = options,
+            answer = answer,
+            chosen = flow.chosen,
+            optionStyle = MaterialTheme.typography.titleMedium,
+            chrome = chrome,
+            onPick = flow::choose,
+        )
     }
 }

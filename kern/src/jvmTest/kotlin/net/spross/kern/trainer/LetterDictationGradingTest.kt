@@ -94,7 +94,7 @@ class LetterDictationGradingTest {
 
         // The proof that the real id is what holds that: a synthetic one breaks it, and the
         // drill would answer "мишка" with "that is somebody's word for mouse — миша".
-        val impostor = grading(mouse).copy(id = "drill", feminineOf = null)
+        val impostor = grading(mouse).copy(id = "drill")
         val leak = CatalogAnswerGrader(normalizer("uk"), cards).grade(variant, impostor)
         assertIs<Match.OtherWord>(leak, "the guard has stopped guarding anything")
         assertEquals(mouse.target.text, leak.word)
@@ -107,9 +107,7 @@ class LetterDictationGradingTest {
         emoji = null,
         seedIndex = 0,
         components = emptyList(),
-        feminineOf = null,
         source = Realization(lang = "de", text = id),
         target = Realization(lang = "uk", text = reading),
-        promptFeminineMarker = false,
     )
 }

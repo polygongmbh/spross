@@ -3,6 +3,7 @@ package net.spross.kern.listen
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.emojiCue
 
+import net.spross.kern.catalog.AudioCapability
 import net.spross.kern.catalog.Playback
 import net.spross.kern.model.Card
 
@@ -53,35 +54,6 @@ const val TURN_GAP_MS: Long = RECALL_GAP_HELD_MS
  * long they wait.
  */
 const val LISTENING_WATCHDOG_MS: Long = 5_000
-
-/**
- * The sleep-timer step: every tap on the bedtime chip adds this many minutes, starting
- * from 0 (OFF, the default, where the playlist laps for as long as it is left alone) —
- * so a bedtime can be had at any multiple of five, and a long press jumps straight back
- * to OFF. Kern owns the number so the two phones step the same way, and so the shape
- * stays one chip rather than a picker: the ask is "let it run while I fall asleep", and
- * a tap is the whole gesture that answer needs.
- */
-const val LISTENING_TIMER_STEP_MIN: Int = 5
-
-/**
- * What a tap on the bedtime chip leaves standing, in milliseconds: kern's step added to what
- * is LEFT of the timer, never to what was picked.
- *
- * The difference is the whole gesture. A chip that re-anchored on the pick would give a run
- * five minutes in and tapped again its original five plus five — ten minutes from the tap,
- * not the five more the tap asked for — and the longer the run had gone the further the two
- * readings drift apart. What a learner reaching for it at midnight means is "keep going a bit
- * longer than you were about to", and that is arithmetic on the REMAINDER.
- *
- * [steps] is signed, so the accessible picker walks back down the same ladder it walked up,
- * and a step past the end lands on 0 — OFF, where the playlist laps for as long as it is
- * left alone. Kern owns it so a bedtime cannot mean two things on two phones.
- */
-fun listeningTimerStepMs(msRemaining: Long, steps: Int): Long {
-    val step = steps * LISTENING_TIMER_STEP_MIN * 60_000L
-    return maxOf(0L, maxOf(0L, msRemaining) + step)
-}
 
 /**
  * The picture cue every listening card wears.
@@ -258,3 +230,13 @@ fun listeningPriority(arrived: Boolean, suspended: Boolean): Int =
  */
 fun recallGap(candidate: ListeningCandidate): Long =
     if (candidate.scheduled) RECALL_GAP_HELD_MS else RECALL_GAP_NEW_MS
+
+/**
+ * Whether the listening card stands: a box with words in it ([hasWords]),
+ * and something on this device that can say each side of a turn.
+ *
+ * No sweep — the two capabilities are a map lookup and a voice probe each;
+ * which words make the playlist is dealt when a run opens (`ListeningPool`).
+ */
+fun listeningOffered(hasWords: Boolean, source: AudioCapability, target: AudioCapability): Boolean =
+    hasWords && !source.silent && !target.silent

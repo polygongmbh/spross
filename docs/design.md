@@ -25,6 +25,7 @@ rephrase it as an availability statement or a question.
   not a figure the learner tunes (`growth-evidence.md`).
 - Drill records live outside the box: a drill run touches no card and no schedule,
   so losing one costs a climb, never learning history.
+  Only its answer count per day lives in the box, since the streak reads it.
 
 ## Profile & onboarding
 
@@ -35,7 +36,8 @@ rephrase it as an availability statement or a question.
 - A language is named by its endonym (`LanguageChoices.name`);
   pickers add the English exonym.
 - Onboarding ends inside the first round, and only its last page commits
-  (joins the box and opens the session).
+  (joins the box and opens the session; `OnboardingPage`) —
+  with no way back once it has.
   That first round teaches itself, one line per moment, in the quiet aside line,
   and the lines last that round only.
 - Importing a backup on a first run skips onboarding:
@@ -105,9 +107,10 @@ What licenses a second component is a parameter attempted and found not to carry
 - **A right answer's feedback is the subtlest the surface has, because it comes all the time:**
   never a buzz beyond the lightest tap, never a chime as loud as the miss's.
 - **The answer is never on screen twice, and never in the field.**
-  Correct → card stays closed, narrated at the field.
-  Wrong → card expands onto the answer.
-  Near miss → correction box under the field.
+  Correct → card stays closed, narrated at the field;
+  where the meaning never stood on screen (a scramble, the opposites, a letter heard) it grows that meaning alone.
+  Wrong or revealed → card expands onto the answer.
+  Near miss → correction box under the field, card closed.
   Either way the owed form stands at a readable size with its speaker beside it.
 - **Near miss runs amber** — field edge, checkmark and box agree.
   Green stays the clean answer's alone.
@@ -153,11 +156,12 @@ What licenses a second component is a parameter attempted and found not to carry
   whatever the round did to the counts.**
   Only the round's own marks move; Reduce Motion draws the finished tree at once.
 - **A record is named, a number is only counted.**
-  A day streak at its longest says so on the finish screen;
-  a drill run that beats its stored best is celebrated.
+- **A finished stretch is celebrated, record or not** — confetti and the cheer, as one:
+  every round summary, every drill pause but the one suggesting a stop,
+  and a closed drill run long enough to report or that beat its stored best (kern's `celebrated`).
 - **The finish screen reports the round, not the box:**
-  one claim over the tree, one line of what the round did,
-  and the streak only when it just became a record — its count is Home's.
+  one claim over the tree, one line of what the round did;
+  the day streak, record or not, is Home's.
 - **Stopping is the default at round end**, and going on the secondary choice.
   A day going badly says so and says why stopping is the better call.
 
@@ -167,7 +171,7 @@ What licenses a second component is a parameter attempted and found not to carry
   The tab bar stands on those three and on nothing else.
 - **Home** carries the day: the round, listening, the drills, the companion, the trees.
   - The line over the round carries the language being learned in words that fit the hour
-    (`../kern/docs/reports.md`, `dayPart`/`partVariant`).
+    (`../kern/docs/reports.md`, `GreetingPlan` over `dayPart`/`partVariant`).
     Two registers: the target speaking for itself, or the known language asking about it.
     The spoken lines lead and may address the learner by name (`Greetings.addressed`).
     Every chrome line asks — never states.
@@ -176,7 +180,7 @@ What licenses a second component is a parameter attempted and found not to carry
     opening what that drill's chip opens, the round a smaller button under it
     (`drills.md` § The suggestion).
   - The streak flame is one grade (`BoxStatistics.streakHealth`), merged across every language,
-    and every surface that draws a flame reads it.
+    and every surface that draws a flame reads it — the 🔥 itself, worn at the opacity and saturation that grade names.
   - The round card names what the round is led by (due work or new-word offer).
     What it promises is what the round will hand over — the cap, never the pile.
     A day not worked is never called done;
@@ -193,14 +197,15 @@ What licenses a second component is a parameter attempted and found not to carry
   **A tree is one organism its whole life** — trunk is growth, canopy is landed words,
   blossom and fruit appear on it.
   Which word stands in which `GrowthStage` is kern's `growthByArea`;
-  where each tree stands is kern's `TreesLayout`, its size and its wood kern's `AreaTree`;
+  where each tree stands is kern's `TreesLayout`, its size and its wood kern's `AreaTree`,
+  every mark, outline and layer it is drawn in kern's `TreePicture`, the summary's rise kern's `TreeRise`;
   a stage is one mark — fresh a bud, growing a leaf, settled a blossom, matured fruit.
-  What the round summary claims over its tree is kern's `growthHeadline`.
+  Whether the round summary shows a tree is kern's `RoundSummary.shownTree`, what it claims over it and in which line `growthHeadline`.
   A tree forks further the more words it carries, each limb continued by a lead
   with side branches turning well away from it, and a branch dipping below level grows short;
   its marks spread along its finer wood, never the trunk or first limbs, fruit and blossom on the levelest limbs,
   no two of them touching while the crown has room, and only wood carrying a shown mark is drawn —
-  a bud hangs beside a grown mark, never on a twig of its own.
+  a bud hangs beside a grown mark, never on a twig of its own, and nearer the tip than the marks that leafed out.
   A met word hangs as a bud until it settles into a leaf; merely queued hangs nothing.
   Height comes from how many words the area has met, never from catalog count.
   An unopened area is one faded seedling.

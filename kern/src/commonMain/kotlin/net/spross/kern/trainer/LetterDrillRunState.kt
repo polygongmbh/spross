@@ -1,5 +1,12 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls.Slot
+import net.spross.kern.session.AnswerControls
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
+import net.spross.kern.session.QuestionAsk
+import net.spross.kern.session.Saying
 import net.spross.kern.model.Card
 import net.spross.kern.model.Language
 import net.spross.kern.session.CatalogAnswerGrader
@@ -93,12 +100,52 @@ data class LetterDrillRunState(
     /** The formats that carry an input field. */
     val typing: Boolean get() = format == LetterFormat.Typed || format == LetterFormat.Dictation
 
+    /** Nothing through the reader: the question's sound IS the question, and plays past the mute on its own. */
+    override val promptSaying: Saying? get() = null
+
+    /** Nothing: the question already was the sound, and the answer is the glyph or the word it said. */
+    override val answerSaying: Saying? get() = null
+
     /**
-     * The card opens, whatever the spelling was graded.
-     * A slip leaves a spelling worth seeing whole;
-     * a clean one opens it too, because the LETTERS were the question and the meaning never was.
+     * The question is a sound, over the word with its grapheme blanked where it asks one;
+     * its replay says [LetterDrillTask.promptText], through the recording the drill's own player resolves.
+     * A gap question opens onto the whole word it blanked, which is its gloss, so it carries no note.
+     * Only a dictated word carries a speaker: every other answer is a bare glyph, which nothing may be asked to say.
+     * An accepted answer grows the meaning alone, which the sound never put on screen.
      */
-    val showsAnswer: Boolean get() = !owesAnswer
+    override val question: Question?
+        get() = task?.let { t ->
+            val gap = t.gapText != null
+            val dictation = t.format == LetterFormat.Dictation
+            val word = if (gap) t.gloss ?: t.display else t.display
+            Question(
+                key = index.toString(),
+                ask = when {
+                    dictation -> QuestionAsk.LetterDictation
+                    gap -> QuestionAsk.LetterSpell
+                    else -> QuestionAsk.LetterHear
+                },
+                prompt = Question.Side(
+                    t.gapText, t.language, if (gap) Question.Form.Gap else Question.Form.Sound,
+                    saying = Saying(t.promptText, t.language),
+                ),
+                answer = Question.Side(
+                    word, t.language, if (gap || dictation) Question.Form.Word else Question.Form.Glyph,
+                    saying = Saying(word, t.language).takeIf { dictation },
+                ),
+                emoji = null,
+                emojiCue = EmojiCue.Upfront,
+                opens = showsAnswer,
+                growsNote = answerAccepted,
+                closing = Question.Closing(note = t.gloss?.takeUnless { gap }?.let { ClosingNote.Own(it) }),
+            )
+        }
+
+    /** The tile Sprossen pick a glyph off kern's four; the typed and dictated ones write it. */
+    override val controls: AnswerControls?
+        get() = task?.let { t ->
+            answerControls(if (typing) typedSlot(t.language) else Slot.Choices(t.choices.orEmpty(), t.display))
+        }
 
     /**
      * The Sprossen the store may keep of those climbed off so far.

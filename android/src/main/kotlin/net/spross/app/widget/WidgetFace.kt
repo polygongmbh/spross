@@ -7,9 +7,9 @@ import java.util.TimeZone
 import net.spross.app.BoxFiles
 import net.spross.app.Chrome
 import net.spross.app.ProfileStore
-import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.model.Gender
+import net.spross.kern.snapshot.WidgetBar
 import net.spross.kern.snapshot.WidgetSnapshotBuilder
 
 /** One row of a tile: the picture, the article that tints the word, and the pair itself. */
@@ -38,7 +38,7 @@ class WidgetFace(
     val dueCount: Int,
     val streak: Int,
     val health: StreakHealth,
-    val days: List<ActivityDay>,
+    val bars: List<WidgetBar>,
     val chrome: Chrome,
 )
 
@@ -54,7 +54,7 @@ object WidgetFaces {
     val WINDOW: Int = minOf(GRID_CELLS, WidgetSnapshotBuilder.DEFAULT_EXPOSURE_LIMIT)
 
     /**
-     * How long one window stands before the head moves on.
+     * How long one window stands before the head moves on ([net.spross.kern.snapshot.WidgetRotation]).
      *
      * Half an hour rather than the iOS timeline's quarter: a Glance tile has no timeline
      * of future entries to hand the host, so a window only changes when the tile is
@@ -73,31 +73,22 @@ object WidgetFaces {
     fun load(context: Context, nowEpochMillis: Long): WidgetFace? {
         val json = BoxFiles(File(context.filesDir, "box")).readWidgetSnapshot() ?: return null
         val view = WidgetSnapshotBuilder.decode(json) ?: return null
-        val words = view.entries.map {
+        if (view.entries.isEmpty()) return null
+        // The window stays in kern's ranking order from its head on: a tile takes as many cells as its shape fits off the FRONT of this list, and a
+        // window sorted by length would hand a one-cell tile the shortest word rather than
+        // the one most worth seeing. Where the cells then land is [GridFace]'s.
+        val words = view.window(nowEpochMillis, WINDOW, ROTATION_MILLIS).map {
             WidgetWord(it.emoji ?: FALLBACK_PICTURE, it.article, it.gender, it.text, it.sourceText)
         }
-        if (words.isEmpty()) return null
         val tz = TimeZone.getDefault().id
         return WidgetFace(
-            words = window(words, nowEpochMillis),
+            words = words,
             dueCount = view.dueCount(nowEpochMillis),
             streak = view.streak(nowEpochMillis, tz),
             health = view.streakHealth(nowEpochMillis, tz),
-            days = view.activityWindow(nowEpochMillis, tz),
+            bars = view.activityBars(nowEpochMillis, tz),
             chrome = chrome(context),
         )
-    }
-
-    /**
-     * The window this moment shows: the head advances one card every [ROTATION_MILLIS]
-     * through kern's attention ranking, and the order stands as kern ranked it — a tile
-     * takes as many cells as its shape fits off the FRONT of this list, so a window
-     * already sorted by length would hand a one-cell tile the shortest of sixteen rather
-     * than the word most worth seeing. Where the cells it took then land is [GridFace]'s.
-     */
-    fun window(words: List<WidgetWord>, nowEpochMillis: Long): List<WidgetWord> {
-        val head = ((nowEpochMillis / ROTATION_MILLIS) % words.size).toInt()
-        return (0 until minOf(WINDOW, words.size)).map { words[(head + it) % words.size] }
     }
 
     /**

@@ -20,7 +20,8 @@ class TurnTest {
     @Test
     fun aRecalledTurnOnlyRevealsAndSelfGrades() {
         val recalled = TurnFixture.produce(TurnFixture.knife, arrived = true, answer = ProduceAnswer.Recalled)
-        assertFalse(recalled.typesAnswer)
+        assertNull(recalled.controls.slot)
+        assertEquals(AnswerControls.Primary.Reveal, recalled.controls.primary)
         assertEquals(TurnFeedback.Neutral, TurnFixture.state(recalled, TurnIntent.InputChanged("kisu")).feedback)
         val revealed = TurnFixture.state(recalled, TurnIntent.Submit("kisu"), nowMillis = TurnFixture.T0 + 2_000)
         assertTrue(revealed.revealed)

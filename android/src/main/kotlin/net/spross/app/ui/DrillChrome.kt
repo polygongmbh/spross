@@ -39,35 +39,25 @@ import net.spross.kern.trainer.TimedOutcome
  */
 
 /**
- * The score line above the card: which Sprosse the run stands on, how long the answer streak is, and
- * the standing record while the answer streak has fallen short of it.
- * A timed run's clock and score ([timed]) stand after the Sprosse.
+ * The score line above the card: which Sprosse the run stands on and how long the answer streak
+ * is. The record stays off it — a record is named where it falls, on the pause and the result
+ * tile, never counted mid-run. A timed run's clock and score ([timed]) stand after the Sprosse.
  *
  * [Sprosse] is worded by the drill that owns it — a digit count reads differently from a plain
- * Sprosse — and is null where a run has one Sprosse only. [announcesRecord] carries a real
- * difference rather than settling it: the letter drill has always spoken the answer streak alone.
+ * Sprosse — and is null where a run has one Sprosse only.
  */
 @Composable
 fun DrillStreakLine(
     sprosse: String?,
     answerStreak: Int,
-    bestAnswerStreak: Int,
     chrome: Chrome,
-    announcesRecord: Boolean = false,
     timed: String? = null,
 ) {
-    val showsRecord = bestAnswerStreak > answerStreak
-    val parts = listOfNotNull(
-        sprosse,
-        timed,
-        chrome.trainerRunStreak.format(answerStreak),
-        if (showsRecord) chrome.trainerRunRecord.format(bestAnswerStreak) else null,
-    )
-    val spoken = listOfNotNull(timed, chrome.a11yCountStreakInARow.format(answerStreak)).joinToString(", ") +
-        if (announcesRecord && showsRecord) chrome.a11ySuffixRecord.format(bestAnswerStreak) else ""
+    val parts = listOfNotNull(sprosse, timed, chrome.trainerRunStreak.format(answerStreak))
+    val spoken = listOfNotNull(timed, chrome.a11yCountStreakInARow.format(answerStreak)).joinToString(", ")
     Text(
         parts.joinToString(" · "),
-        style = MaterialTheme.typography.bodySmall,
+        style = MaterialTheme.typography.titleMedium,
         color = if (answerStreak > 0) Theme.colors.accent else Theme.colors.textSecondary,
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth().semantics { contentDescription = spoken },

@@ -4,8 +4,7 @@
  "words": {
   "grandparents": { "text": "geavoj" },
   "siblings": { "text": "gefratoj" },
-  "cousin": { "text": "kuzo" },
-  "cousin-f": { "text": "kuzino" },
+  "cousin": { "text": "kuzo", "forms": { "f": "kuzino" } },
   "nephew": { "text": "nevo" },
   "niece": { "text": "nevino" },
   "grandson": { "text": "nepo" },

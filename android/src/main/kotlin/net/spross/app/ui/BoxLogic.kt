@@ -1,50 +1,12 @@
 package net.spross.app.ui
 
 import java.text.BreakIterator
-import net.spross.app.Chrome
 import net.spross.kern.box.DraftKind
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
-import net.spross.kern.box.SearchableArea
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.model.Language
 import net.spross.kern.model.LanguageInfo
-
-/**
- * How the browser names one shelf to this reader.
- *
- * Catalog areas name themselves in the SOURCE language — that is content, authored per
- * area — while the learner's own shelf has no catalog entry at all and takes its name
- * from the chrome. The three lookups arrive as functions so the rule can be read (and
- * pinned) without a parsed catalog behind it.
- */
-class AreaNaming(
-    private val chrome: Chrome,
-    private val catalogTitle: (String) -> String?,
-    private val catalogSubtitle: (String) -> String?,
-    private val catalogEmoji: (String) -> String?,
-) {
-    /** An area the catalog cannot name falls back to its own key — a visible content bug, not a blank. */
-    fun title(area: String): String =
-        if (area == OwnWords.AREA) chrome.boxOwnShelf else catalogTitle(area) ?: area
-
-    fun subtitle(area: String): String? =
-        if (area == OwnWords.AREA) chrome.boxOwnWordExplainer else catalogSubtitle(area)
-
-    fun emoji(area: String): String =
-        if (area == OwnWords.AREA) OwnWords.EMOJI else catalogEmoji(area) ?: FALLBACK_EMOJI
-
-    /**
-     * The areas as the search matches them: on the heading the learner READ, never on the
-     * key underneath it — nobody types "own" looking for their own words.
-     */
-    fun searchable(areas: List<String>): List<SearchableArea> =
-        areas.map { SearchableArea(it, title(it)) }
-
-    private companion object {
-        const val FALLBACK_EMOJI = "📦"
-    }
-}
 
 /**
  * A word being written down, before it is one.

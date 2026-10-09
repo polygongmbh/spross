@@ -81,11 +81,10 @@ struct DrillOverviewPage<Sections: View>: View {
             }
         }
         .tint(Theme.colors.accent)
-        // why: the record is what the confetti is for, and it rains over the page
-        // the run came back to — a wave retires itself, so no dismissal and no
-        // state to clear.
+        // why: the confetti rains over the page the run came back to — a wave
+        // retires itself, so no dismissal and no state to clear.
         .overlay {
-            if lastRun?.newRecord == true {
+            if lastRun?.celebrated == true {
                 ConfettiView().ignoresSafeArea().allowsHitTesting(false)
             }
         }

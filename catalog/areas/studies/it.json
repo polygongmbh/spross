@@ -7,8 +7,7 @@
    "accepts": ["l'università", "un'università", "uni"],
    "grammar": { "gender": "l'", "plural": "=" }
   },
-  "student": { "text": "studente", "grammar": { "gender": "lo" } },
-  "student-f": { "text": "studentessa", "grammar": { "gender": "la" } },
+  "student": { "text": "studente", "forms": { "f": "la studentessa" }, "grammar": { "gender": "lo" } },
   "studies": { "text": "studi", "grammar": { "gender": "gli", "plural": "only" } },
   "to-study-at-university": { "text": "studiare all'università" },
   "lecture": { "text": "lezione frontale", "grammar": { "gender": "la" } },

@@ -14,7 +14,7 @@ import SprossKern
 /// The run spec is `Mode` (NumbersRunView+Mode.swift), the driver is the shared
 /// one (`DrillRunning`) wired up in NumbersRunView+Run.swift, screen content
 /// NumbersRunView+Drill.swift,
-/// and the prompt card DrillPromptCard.swift. State stays here — members are
+/// and the card `QuestionCardView`. State stays here — members are
 /// internal, not private, where an extension reaches them.
 struct NumbersRunView: View, LanguageNaming {
     /// The run SPEC — kern's, and never edited once the run is open.
@@ -48,7 +48,7 @@ struct NumbersRunView: View, LanguageNaming {
     // why: internal, not private — the +Run extension arms/cancels it.
     @State var autoAdvance: Task<Void, Never>?
     /// Says each graded reading kern hands over, held so leaving a task can drop it.
-    @State var answerVoice = AnswerVoice()
+    @State var reader = Reader()
     /// Second focus attempt for a field that remounts (see focusAnswerField).
     @State var focusRetry: Task<Void, Never>?
     /// When a timed run's clock runs out; nil otherwise and until on screen.
@@ -102,7 +102,7 @@ struct NumbersRunView: View, LanguageNaming {
     var body: some View {
         // why: the run says its answers out loud, so it owes the learner a way
         // to silence them here, not in Settings.
-        runScreen(showsMuteButton: model != nil) {
+        runScreen(showsMuteButton: model != nil, scoreLine: streakLine) {
             drillContent
         }
         .onAppear { focusAnswerField() }

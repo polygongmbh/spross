@@ -118,7 +118,7 @@ final class PronunciationPlayer {
     private func configureGate() {
         let unit = gate.audioUnit
         let set = { (id: AudioUnitParameterID, value: Double) in
-            AudioUnitSetParameter(unit, id, kAudioUnitScope_Global, 0, AudioUnitParameterValue(value), 0)
+            _ = AudioUnitSetParameter(unit, id, kAudioUnitScope_Global, 0, AudioUnitParameterValue(value), 0)
         }
         set(kDynamicsProcessorParam_Threshold, 20)
         set(kDynamicsProcessorParam_HeadRoom, 40)

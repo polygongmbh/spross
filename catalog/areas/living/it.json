@@ -63,7 +63,7 @@
    "grammar": { "gender": "i", "plural": "only" },
    "notes": { "it": "quasi sempre al plurale: i mobili · un mobile è uno solo." }
   },
-  "game": { "text": "gioco", "grammar": { "gender": "il", "plural": "giochi" } },
+  "game": { "text": "gioco", "forms": { "pl": "i giochi" }, "grammar": { "gender": "il" } },
   "come-sit-with-me": {
    "text": "Vieni, siediti con me!",
    "accepts": ["Vieni, siediti accanto a me!", "Vieni, siediti vicino a me!"]

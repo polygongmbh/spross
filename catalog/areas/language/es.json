@@ -16,7 +16,7 @@
   "what-does-this-word-mean": { "text": "¿Qué significa esta palabra?", "accepts": ["¿Qué quiere decir esta palabra?"] },
   "how-do-you-say-this": { "text": "¿Cómo se dice esto {language-in}?", "accepts": ["¿Cómo se dice eso {language-in}?"] },
   "im-learning-your-language": { "text": "Estoy aprendiendo {language}.", "accepts": ["Aprendo {language}."] },
-  "ready-to-learn": { "text": "¿Listo para aprender?", "accepts": ["¿Lista para aprender?"] },
+  "ready-to-learn": { "text": "¿Listo para aprender?", "forms": { "f": "¿Lista para aprender?" } },
   "one-more-word": { "text": "¿Una palabra más?" }
  }
 }

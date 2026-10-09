@@ -17,12 +17,14 @@
   "salary": {
    "text": "stipendio",
    "teaches": ["salario"],
-   "grammar": { "gender": "lo", "plural": "stipendi" },
+   "forms": { "pl": "gli stipendi" },
+   "grammar": { "gender": "lo" },
    "notes": { "it": "lo stipendio arriva ogni mese · il salario si conta sul lavoro fatto." }
   },
   "colleague": {
    "text": "collega",
-   "grammar": { "gender": "il", "plural": "colleghi" },
+   "forms": { "pl": "i colleghi" },
+   "grammar": { "gender": "il" },
    "notes": { "it": "il collega, la collega: cambia solo l'articolo." }
   },
   "boss": { "text": "capo", "grammar": { "gender": "il" } },
@@ -73,12 +75,14 @@
   "interview": {
    "text": "colloquio di lavoro",
    "accepts": ["colloquio"],
-   "grammar": { "gender": "il", "plural": "colloqui di lavoro" }
+   "forms": { "pl": "i colloqui di lavoro" },
+   "grammar": { "gender": "il" }
   },
   "working-hours": {
    "text": "orario di lavoro",
    "accepts": ["l'orario di lavoro"],
-   "grammar": { "gender": "l'", "plural": "orari di lavoro" }
+   "forms": { "pl": "gli orari di lavoro" },
+   "grammar": { "gender": "l'" }
   },
   "full-time": {
    "text": "tempo pieno",

@@ -1,5 +1,11 @@
 package net.spross.app.ui
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -18,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -26,6 +33,8 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
+import net.spross.kern.design.Palette
+import net.spross.kern.design.SpeakerPulse
 
 /**
  * The form an accepted-but-unclean answer owes back — a slip's proper spelling, or the
@@ -38,7 +47,7 @@ import net.spross.app.Chrome
  * (iOS `AnswerInputView.correctionBox`).
  *
  * The speaker drops entirely where nothing can be heard, rather than offering a control
- * that would do nothing.
+ * that would do nothing, and pulses while its form is sounding ([SpeakerPulse]).
  */
 @Composable
 fun AlmostCorrection(
@@ -47,6 +56,7 @@ fun AlmostCorrection(
     chrome: Chrome,
     pronounce: (() -> Unit)?,
     modifier: Modifier = Modifier,
+    playing: Boolean = false,
 ) {
     val amber = Theme.colors.amber
     val shape = MaterialTheme.shapes.small
@@ -54,7 +64,7 @@ fun AlmostCorrection(
         modifier = modifier
             .fillMaxWidth()
             .background(Theme.colors.wash(amber), shape)
-            .border(1.dp, amber.copy(alpha = 0.35f), shape)
+            .border(1.dp, amber.copy(alpha = Palette.EDGE.toFloat()), shape)
             .clip(shape)
             .padding(Theme.spacing.lg),
         verticalAlignment = Alignment.CenterVertically,
@@ -106,9 +116,25 @@ fun AlmostCorrection(
                     SprossIcons.Speaker,
                     contentDescription = null,
                     tint = Theme.colors.textSecondary,
-                    modifier = Modifier.size(SPEAKER_GLYPH),
+                    modifier = Modifier.size(SPEAKER_GLYPH).scale(pulseScale(playing)),
                 )
             }
         }
     }
+}
+
+/** The speaker's scale: swelling and ebbing while its word sounds, at rest otherwise. */
+@Composable
+private fun pulseScale(playing: Boolean): Float {
+    if (!playing) return 1f
+    val swell = rememberInfiniteTransition(label = "speakerPulse").animateFloat(
+        initialValue = 1f,
+        targetValue = SpeakerPulse.SCALE.toFloat(),
+        animationSpec = infiniteRepeatable(
+            tween(SpeakerPulse.HALF_MS, easing = FastOutSlowInEasing),
+            RepeatMode.Reverse,
+        ),
+        label = "speakerSwell",
+    )
+    return swell.value
 }

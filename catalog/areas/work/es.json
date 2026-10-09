@@ -12,7 +12,8 @@
   "cv": {
    "text": "currículum",
    "accepts": ["currículum vítae", "currículum vitae", "CV"],
-   "grammar": { "gender": "el", "plural": "currículums" }
+   "forms": { "pl": "los currículums" },
+   "grammar": { "gender": "el" }
   },
   "contract": { "text": "contrato", "grammar": { "gender": "el" } },
   "salary": { "text": "sueldo", "teaches": ["salario"], "grammar": { "gender": "el" } },
@@ -20,12 +21,11 @@
    "text": "compañero",
    "teaches": ["colega"],
    "accepts": ["compañero de trabajo"],
+   "forms": { "f": "la compañera" },
    "grammar": { "gender": "el" },
    "notes": { "es": "El compañero de trabajo · colega en España es también amigo." }
   },
-  "colleague-f": { "text": "compañera", "grammar": { "gender": "la" } },
-  "boss": { "text": "jefe", "grammar": { "gender": "el" } },
-  "boss-f": { "text": "jefa", "grammar": { "gender": "la" } },
+  "boss": { "text": "jefe", "forms": { "f": "la jefa" }, "grammar": { "gender": "el" } },
   "shift": { "text": "turno", "grammar": { "gender": "el" } },
   "company": {
    "text": "empresa",
@@ -115,6 +115,6 @@
    "text": "Hoy salimos del trabajo a las cinco.",
    "orders": ["Salimos del trabajo a las cinco hoy."]
   },
-  "workplace": { "text": "oficina", "grammar": { "gender": "la", "plural": "-s" } }
+  "workplace": { "text": "oficina", "forms": { "pl": "las oficinas" }, "grammar": { "gender": "la" } }
  }
 }

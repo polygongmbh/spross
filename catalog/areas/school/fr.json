@@ -14,25 +14,22 @@
   "classroom": {
    "text": "salle de classe",
    "accepts": ["salle de cours"],
-   "grammar": { "gender": "la", "plural": "salles de classe" }
+   "forms": { "pl": "les salles de classe" },
+   "grammar": { "gender": "la" }
   },
   "teacher": {
    "text": "professeur",
    "teaches": ["enseignant"],
    "accepts": ["prof"],
+   "forms": { "f": ["la professeure", "l'enseignante"] },
    "grammar": { "gender": "le" },
    "notes": { "fr": "à l'école : le maître, la maîtresse · au collège : le professeur, le prof." }
-  },
-  "teacher-f": {
-   "text": "professeure",
-   "teaches": ["enseignante"],
-   "accepts": ["prof"],
-   "grammar": { "gender": "la" }
   },
   "board": {
    "text": "tableau",
    "accepts": ["tableau noir", "tableau blanc"],
-   "grammar": { "gender": "le", "plural": "-x" }
+   "forms": { "pl": "les tableaux" },
+   "grammar": { "gender": "le" }
   },
   "exercise-book": { "text": "cahier", "grammar": { "gender": "le" } },
   "homework": {
@@ -81,7 +78,8 @@
   "class-schedule": {
    "text": "emploi du temps",
    "accepts": ["l'emploi du temps"],
-   "grammar": { "gender": "l'", "plural": "emplois du temps" }
+   "forms": { "pl": "les emplois du temps" },
+   "grammar": { "gender": "l'" }
   },
   "to-count": { "text": "compter" },
   "to-learn-by-heart": { "text": "apprendre par cœur", "teaches": ["mémoriser"], "accepts": ["apprendre par coeur"] },

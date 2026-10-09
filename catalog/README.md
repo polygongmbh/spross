@@ -70,8 +70,8 @@ catalog/
   audio/                # GENERATED pronunciation recordings, one folder per language
     README.md           # the manifest schema and the provenance every recording carries
     <lang>/
-      manifest.json     # { language, words: { slug: … }, letters?: { glyph: … } }
-      <slug>.mp3
+      manifest.json     # { language, words: { form: … }, letters?: { glyph: … }, … }
+      words/<ascii stem>.mp3
       letters/u<hex>.mp3
 ```
 
@@ -138,7 +138,7 @@ which is how `greetings` opens the whole course on `Hallo!` and `basics` on `Ja.
 [ { "slug": "fridge",  "kind": "noun", "emoji": "🧊" },
   { "slug": "to-cook", "kind": "verb", "emoji": "🧑‍🍳" },
   { "slug": "caution", "kind": "adjective", "emoji": "⚠️" },
-  { "slug": "teacher-f", "kind": "noun", "emoji": "👩‍🏫", "feminineOf": "teacher" },
+  { "slug": "teacher", "kind": "noun", "emoji": "🧑‍🏫", "formEmoji": { "f": "👩‍🏫" } },
   { "slug": "the-fridge-is-empty", "kind": "phrase", "emoji": "🧊",
     "components": ["fridge"] } ]
 ```
@@ -150,26 +150,21 @@ A verb slug carries `to-` and nothing else does (lint-enforced), so `help`/`to-h
 - `emoji` — optional on EVERY kind, not just nouns. It is the engine's meaning cue, shown
   upfront on a first exposure and on an unsettled produce prompt (`../kern/README.md` §3).
   Which concepts get one, and which must not, is `areas/README.md`.
+- `formEmoji` — optional, a picture per form tag (`{ "f": "👩‍🏫" }`), which a prompt in that form shows instead of `emoji`.
 - `components` (phrases only) — same-area word slugs the phrase is built from;
   the box gates a phrase's unlock on those words being learned. Empty = no gate.
-  A gate can only name a concept that HAS a card and that every target realizes:
-  a `feminineOf` component would leave the phrase locked forever in a pair whose target
-  has no feminine form (en, sw).
+  A gate can only name a concept that HAS a card and that every target realizes.
 - `idiom` — a figurative expression, curated (not auto-linked) for genuine
   cross-language meaning-equivalence (`areas/README.md`).
-  Structurally forbidden from carrying `emoji`, `components`, or `feminineOf` —
+  Structurally forbidden from carrying `emoji`, `formEmoji` or `components` —
   the parser rejects a concept that tries. Every idiom card shows the engine's
   fixed `IDIOM_EMOJI` instead (`../kern/README.md` §2), and idioms carry no
   unlock gate, so ordering (last group in `areas.json`) is what keeps them
   behind the vocabulary they presuppose.
 - `adjective` is the catch-all for single words that are neither noun nor verb:
   adjectives, adverbs, and interjections (`draußen`, `immer`, `Vorsicht`).
-- `feminineOf` (nouns only) — marks this concept as the feminine form of `<base-slug>`.
-  It carries the distinct `de` form always, and a realization only where that language
-  grammatically distinguishes the feminine (uk `вчителька`; NOT sw or en, which are
-  genderless; NOT uk for epicene nouns like колега). It may carry its own female-specific `emoji`
-  where one exists (`👩‍🏫`), else none. How this drives per-direction card emission and
-  the ♀ prompt marker is engine behavior — see the engine contract (`../kern/README.md` §2/§3).
+- A feminine noun is its base word's `f` form (de `"f": "die Lehrerin"`), never a concept of its own:
+  it shares the base's schedule, and its picture is the base's `formEmoji.f`.
 
 **The slug IS the card id.** The engine keys each learner's schedule by it,
 and neither the area nor the `kind` appears in that key —
@@ -180,13 +175,14 @@ two areas claiming one slug would fuse two concepts into a single schedule,
 so a genuine repeat across areas is disambiguated by qualifying the slug.
 The price is that **renaming a slug is a breaking act**:
 it orphans the schedule and the word returns as new — so rename deliberately, never just to polish a lemma,
-and always through `../scripts/catalog-rename-slugs.py`, which carries every reference and recording along.
+and always through `../scripts/catalog-rename-slugs.py`, which carries every reference and the word packs along
+(recordings are keyed by the form they speak, so none moves).
 
 **`areas/<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
 { "title": "Die Küche", "subtitle": "Hier duftet es nach Abendessen.",
   "words": {
-    "fridge": { "text": "Kühlschrank", "grammar": { "gender": "der", "plural": "Kühlschränke" } },
+    "fridge": { "text": "Kühlschrank", "forms": { "pl": "die Kühlschränke" }, "grammar": { "gender": "der" } },
     "to-cook": { "text": "kochen" },
     "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." } } }
 ```
@@ -216,13 +212,13 @@ Realization fields — only `text` is required:
   it grades as correct when producing this language, and takes its turn as the recognize
   prompt when learning FROM it, on the concept's one schedule, never as a unit of its own
   (`../kern/README.md` §3).
-  NOT a home for distinct learnable items: feminine nouns belong to `feminineOf`
-  concepts, and different-meaning words belong to their own concept.
+  NOT a home for distinct learnable items: a feminine noun is the base's `f` form,
+  and different-meaning words belong to their own concept.
 - `accepts` — ACCEPTED surface forms of the SAME knowledge (array; omit if none):
   alternate renderings a learner already knows if they know `text` — register pairs
-  (de Sie-form in `text`, du-form here), gender-agreement forms of a phrase
-  (uk `Ти завів/завела …?`), diminutives (uk миша/мишка), internationalism spellings
-  (uk договір/контракт).
+  (de Sie-form in `text`, du-form here; es `Gire`/`Gira`), diminutives (uk миша/мишка),
+  internationalism spellings (uk договір/контракт).
+  Agreement and number forms (gender, case, Swahili class, plural) are taught, so they are `forms`.
   The name is again the whole of the behavior: the card ACCEPTS them on produce and does
   nothing else with them — **never scheduled, never shown**. `text` is the form prompted on
   recognize and the form the reveal teaches, and the `teaches` entries rotate beside it.
@@ -230,6 +226,24 @@ Realization fields — only `text` is required:
   Which of the two an alternate belongs in is the question the two names ask — does the card
   teach it, or merely accept it — against what a learner already knows from `text`;
   `areas/README.md` works it through.
+- `forms` — INFLECTED forms of `text`, keyed by tag (object; omit if none):
+  `{ "f": "larga", "pl": "largos", "f.pl": "largas" }`, a value one form or an array of them.
+  A tag is dot-joined values from one vocabulary shared by every language (`../kern/src/commonMain/kotlin/net/spross/kern/model/FormTag.kt`):
+  gender `m`/`f`/`n`, number `pl`, case `nom`/`gen`/`dat`/`acc`/`ins`/`loc`/`voc`, Swahili class `1`–`18`;
+  a dimension it leaves out is `text`'s value on it.
+  `text` stays the citation form and carries no tag.
+  A noun's form carries its own article in every language that writes one,
+  just as `grammar.gender` gives `text`'s (`"pl": "die Kühlschränke"`, `"f": "die Lehrerin"`),
+  and grading reads it back; a language without articles writes the form bare.
+  The join sets that article apart, so a card shows it tinted and the voice finds an article recording or the bare word, as for `text`.
+  **The plural is `pl`**, and how much to author is per language — the test is always the same:
+  write it down when the learner could not derive it.
+  de and sw author every countable noun — German plurals are unpredictable by class,
+  and a Swahili plural IS the noun class (`kiti`→`viti`), the most load-bearing fact about the word.
+  en and uk author only what the regular pattern does not give: en beyond a bare +s
+  (`knife`→`knives`), uk beyond swapping the ending — stem alternations (`ніж`→`ножі`),
+  fleeting vowels (`день`→`дні`), suppletives (`людина`→`люди`),
+  and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
 - `orders` — alternative valid **word orders** of the same sentence (array; omit if none):
   grammatically valid rearrangements whose atoms are a permutation of `text`'s atoms
   (de "Gehen Sie geradeaus." → order "Sie gehen geradeaus.").
@@ -240,8 +254,7 @@ Realization fields — only `text` is required:
   Each entry must tokenize to the same word bag as `text`; an order with different words
   is silently dropped at availability-build time.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
-  labels, no `(selten)` qualifier), one fact per key: de and es `gender` + `plural`,
-  sw `plural`, en `plural`, uk `plural`. Omit if empty.
+  labels, no `(selten)` qualifier), one fact per key: `gender` and `plural`. Omit if empty.
   `gender` is the ARTICLE the learner says, and always one the language declares
   in `languages.json` — de der/die/das, es el/la, and `los`/`las` on the nouns
   whose article genuinely IS the plural one (los auriculares, las vacaciones).
@@ -252,18 +265,10 @@ Realization fields — only `text` is required:
   (fr `le vaccin` on la vaccination), and grading reads that one back instead.
   Omit `gender` where the language allows both and neither is taught
   (es `internet`, which RAE writes without an article).
-  `plural` is a bare full form (`"Wörter"`), a suffix (`"-n"`, `"-nen"`),
-  `"="` (identical to the singular → render `"= Pl."`), or
-  `"only"` (pluralia tantum, no singular → render `"nur Pl."`).
-  True uncountables (Regen, Hunger) simply omit `plural`.
-  **How much to author is per language**, and the test is always the same:
-  write it down when the learner could not derive it.
-  de and sw author every countable noun — German plurals are unpredictable by class,
-  and a Swahili plural IS the noun class (`kiti`→`viti`), the most load-bearing fact about the word.
-  en and uk author only what the regular pattern does not give: en beyond a bare +s
-  (`knife`→`knives`), uk beyond swapping the ending — stem alternations (`ніж`→`ножі`),
-  fleeting vowels (`день`→`дні`), suppletives (`людина`→`люди`), indeclinables and `-ння`
-  neuters (`"="`), and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
+  `plural` holds only what is no form: `"="` (identical to the singular → render `"= Pl."`,
+  uk indeclinables and `-ння` neuters) or `"only"` (pluralia tantum, no singular → render `"nur Pl."`);
+  a plural that IS a form is `forms.pl`, and lint holds the split.
+  True uncountables (Regen, Hunger) carry neither.
 - `notes` — keyed by the language the note is WRITTEN IN, and that key decides who reads it.
   A note reaches a card only while this file's language is the one being LEARNED, never
   while it is the learner's own — so it is always written for somebody meeting this word.

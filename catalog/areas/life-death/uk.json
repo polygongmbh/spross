@@ -12,7 +12,7 @@
   "youth": { "text": "юність", "accepts": ["молодість"] },
   "to-grow-up": { "text": "вирости", "accepts": ["виростати"] },
   "to-get-old": { "text": "старіти", "accepts": ["постаріти"] },
-  "dead": { "text": "мертвий", "accepts": ["мертва"] },
+  "dead": { "text": "мертвий", "forms": { "f": "мертва" } },
   "funeral": { "text": "похорон" },
   "grave": { "text": "могила" },
   "cemetery": { "text": "кладовище", "accepts": ["цвинтар"] },

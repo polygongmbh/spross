@@ -113,9 +113,7 @@ internal object LetterDrillFixture {
         emoji = null,
         seedIndex = 0,
         components = emptyList(),
-        feminineOf = null,
         source = Realization(lang = "en", text = id),
         target = Realization(lang = LANGUAGE, text = text, teaches = teaches),
-        promptFeminineMarker = false,
     )
 }

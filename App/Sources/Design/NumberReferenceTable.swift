@@ -38,43 +38,21 @@ struct NumberReferenceTable: View {
         return Numbers.shared.reference(language: language)
     }
 
-    /// The widest row a paired column still fits on one line, in characters,
-    /// and the narrowest panel it fits in — the panel's INNER width, inside its padding.
-    /// A 375 pt phone leaves 295 pt there and a 320 pt one only 240 pt,
-    /// where even a ten-character row wraps mid-word.
-    /// Android holds both as `PAIRED_ROW_CHARS` / `PAIRED_MIN_WIDTH` in `NumberReference.kt`;
-    /// the two platforms move together.
-    private static let pairedRowChars = 10
-    private static let pairedMinWidth: CGFloat = 288
-
-    /// A band of short readings stands in two columns where the page is wide enough to hold
-    /// them — the counting words are read at a glance,
-    /// and a page that spends a whole line on "vier" is a page of scrolling.
-    ///
-    /// Two tests, because either alone gets it wrong.
-    /// The characters are counted rather than measured:
-    /// a `ViewThatFits` pair measures a row narrower than it renders (the trailing spacer),
-    /// which picks two columns and then wraps "dreizehn" inside one.
-    /// But a count knows nothing of how wide the page is,
-    /// so the pair is also proposed at [pairedMinWidth] and kept only where that much fits —
-    /// a narrower phone, or a sliver of one beside another app, gets the single column.
-    /// Anything past the character bound — the accessibility sizes included — stays single-column too,
-    /// where a reading has the whole width to grow into.
+    /// How many columns a band stands in (kern's `ReferenceColumns`). The width is
+    /// not known up front here: `bandPanel` proposes the pair at kern's minimum instead.
     private func columnCount(_ entries: [ReferenceEntry]) -> Int {
-        guard typeSize <= .large, entries.count >= 6 else { return 1 }
-        let widest = entries.map { $0.value.count + $0.reading.count }.max() ?? 0
-        return widest <= Self.pairedRowChars ? 2 : 1
+        Int(ReferenceColumns.shared.count(entries: entries, largeText: typeSize > .large, width: .infinity))
     }
 
     /// The band's rows, paired where they fit. `ViewThatFits` is asked one question only —
-    /// is there [pairedMinWidth] to work with — since the pair's own ideal width is
+    /// is there kern's `PAIRED_MIN_WIDTH` to work with — since the pair's own ideal width is
     /// unmeasurable through the rows' trailing spacer.
     @ViewBuilder
     private func bandPanel(_ entries: [ReferenceEntry]) -> some View {
         if columnCount(entries) == 2 {
             ViewThatFits(in: .horizontal) {
                 columns(entries, count: 2)
-                    .frame(minWidth: Self.pairedMinWidth)
+                    .frame(minWidth: CGFloat(ReferenceColumns.shared.PAIRED_MIN_WIDTH))
                 columns(entries, count: 1)
             }
         } else {
@@ -121,7 +99,7 @@ struct NumberReferenceTable: View {
 
     private func reading(_ entry: ReferenceEntry) -> some View {
         Text(verbatim: entry.reading)
-            .font(.system(.title3, design: .rounded, weight: .semibold))
+            .font(Theme.typography.title)
             .foregroundStyle(Theme.colors.textPrimary)
             .fixedSize(horizontal: false, vertical: true)
             .spoken(entry.reading, language: language)

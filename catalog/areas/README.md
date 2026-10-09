@@ -42,9 +42,9 @@ two distinct WORDS in one area sharing a picture is not,
 unless one names the other (`Zähne putzen` may wear the toothbrush's).
 
 **A card that has not earned its slot moves back; it is deleted only on request.**
-Content and audio are keyed by slug,
+Content is keyed by slug and recordings by the form they speak,
 so a move to a later shelf preserves every realization and every recording,
-while a rename orphans them (`../README.md`).
+while a rename orphans the schedule (`../README.md`).
 `../../scripts/catalog-move.py` carries the move.
 Deletion stays available and is the user's call to make.
 
@@ -103,6 +103,11 @@ stops reaching the widget.
   the counter, the surgery and the office say Sie, the kitchen and the hall say du --
   so a phrase whose scene fixes the register carries no register alternate at all,
   and only the phrases that travel between scenes carry both.
+- **An inflected form is taught.**
+  An agreement or number form is something the learner meets and must recognize,
+  so it is a tagged `form`, never an accept (es `blanco` → `"f": "blanca"`).
+  A phrase's speaker-gender form is taught once its recording state matches `text`'s,
+  and accepted until then.
 
 **Pick the word a speaker says, never the word that sits furthest from another card.**
 Two realizations one edit apart are safe by construction:
@@ -194,7 +199,7 @@ A word that fits none of them is evidence that a shelf is missing.
 
 The area is the folder, and three things ride on it:
 it is the produce prompt's disambiguator,
-`components` and `feminineOf` resolve inside it,
+`components` resolve inside it,
 and it is the unit a contributor writes and reviews.
 A phrase gating on a component travels with it --
 `components` is an unlock gate, not a claim about the sentence's words,
@@ -203,5 +208,5 @@ so a phrase whose second component would stay behind simply drops it.
 Moving is mechanical:
 `../../scripts/catalog-move.py` carries every language's realization verbatim,
 appends words before the destination's phrase block,
-and refuses a move that would part a phrase from a component,
-a feminine from its base, or mint a same-area prompt collision.
+and refuses a move that would part a phrase from a component
+or mint a same-area prompt collision.

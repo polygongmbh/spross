@@ -1,11 +1,13 @@
 import SwiftUI
+import SprossKern
 
 // MARK: - Shared modifiers & button styles
 
 extension View {
-    /// The one card shadow used everywhere.
+    /// The one card shadow used everywhere, cut by kern's `CardSurface`.
     func cardShadow() -> some View {
-        shadow(color: .black.opacity(0.08), radius: 16, x: 0, y: 6)
+        shadow(color: .black.opacity(CardSurface.shared.SHADOW_ALPHA),
+               radius: CardSurface.shared.SHADOW_RADIUS, x: 0, y: CardSurface.shared.SHADOW_Y)
     }
 
     /// The one card FACE: surface fill, hairline, shadow. Every card a session
@@ -18,14 +20,15 @@ extension View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .strokeBorder(Theme.colors.separator.opacity(0.6), lineWidth: 1)
+                .strokeBorder(Theme.colors.separator.opacity(CardSurface.shared.HAIRLINE), lineWidth: 1)
         )
         .cardShadow()
     }
 
     /// The one tinted capsule a standing wears: a word — never a color alone —
-    /// over that color's own 14 % wash, so a badge reads the same on a card as on
-    /// a recessed row. The wash is what makes it a standing rather than a control:
+    /// over that color's own wash (kern's `Palette.WASH`),
+    /// so a badge reads the same on a card as on a recessed row.
+    /// The wash is what makes it a standing rather than a control:
     /// a saturated fill is what a button wears, and a row of solid slabs beside
     /// each other is unreadable.
     func pill(_ color: Color) -> some View {
@@ -33,7 +36,7 @@ extension View {
             .foregroundStyle(color)
             .padding(.horizontal, Theme.spacing.md)
             .padding(.vertical, Theme.spacing.xs + 1)
-            .background(color.opacity(0.14), in: Capsule())
+            .background(color.opacity(Palette.shared.WASH), in: Capsule())
     }
 
     /// The one inline PANEL: a block of the page — a table's rows, a ladder, a
@@ -50,6 +53,16 @@ extension View {
     }
 }
 
+extension View {
+    /// A control giving way under the thumb: kern's `PressKind` names how far, and the spring it runs.
+    func press(_ isPressed: Bool, _ kind: PressKind) -> some View {
+        scaleEffect(isPressed ? kind.scale : 1)
+            .animation(.spring(response: PressKind.companion.RESPONSE,
+                               dampingFraction: PressKind.companion.DAMPING),
+                       value: isPressed)
+    }
+}
+
 /// Filled terracotta primary action. Never a default gray Button.
 struct PrimaryButtonStyle: ButtonStyle {
     var color: Color = Theme.colors.accent
@@ -63,8 +76,7 @@ struct PrimaryButtonStyle: ButtonStyle {
             .frame(minHeight: 52) // card-parity: the button's own height, not a card reserve
             .background(color, in: RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous))
             .opacity(configuration.isPressed ? 0.85 : 1)
-            .scaleEffect(configuration.isPressed ? 0.97 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+            .press(configuration.isPressed, .action)
     }
 }
 
@@ -79,10 +91,9 @@ struct SoftButtonStyle: ButtonStyle {
             .padding(.vertical, Theme.spacing.md)
             .padding(.horizontal, Theme.spacing.lg)
             .frame(minHeight: 44)
-            .background(color.opacity(0.14), in: RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous))
+            .background(color.opacity(Palette.shared.WASH), in: RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous))
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .scaleEffect(configuration.isPressed ? 0.97 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+            .press(configuration.isPressed, .action)
     }
 }
 
@@ -95,9 +106,8 @@ struct IconButtonStyle: ButtonStyle {
             .font(Theme.typography.headline)
             .foregroundStyle(color)
             .frame(width: 40, height: 40)
-            .background(color.opacity(0.14), in: Circle())
+            .background(color.opacity(Palette.shared.WASH), in: Circle())
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .scaleEffect(configuration.isPressed ? 0.9 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+            .press(configuration.isPressed, .icon)
     }
 }

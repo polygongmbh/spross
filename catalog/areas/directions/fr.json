@@ -35,7 +35,11 @@
    "orders": ["Au coin, tournez à gauche."]
   },
   "how-do-i-get-to-the-station": { "text": "Comment aller à la gare ?", "accepts": ["Comment je vais à la gare ?"] },
-  "im-lost": { "text": "Je me suis perdu.", "accepts": ["Je me suis perdue.", "Je suis perdu."] },
+  "im-lost": {
+   "text": "Je me suis perdu.",
+   "accepts": ["Je suis perdu."],
+   "forms": { "f": "Je me suis perdue." }
+  },
   "to-get-lost": { "text": "se perdre" }
  }
 }

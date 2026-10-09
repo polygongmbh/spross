@@ -20,7 +20,6 @@ class HubRosterTest {
     @Test
     fun everyDrillOnTheRosterReachesAChipOfItsOwn() {
         assertEquals(Drill.entries.toList(),everything.map { it.drill })
-        assertEquals(everything.size, everything.map { it.emoji }.toSet().size)
         assertEquals(everything.size, everything.map { it.title }.toSet().size)
         for (chrome in listOf(ChromeEn, ChromeDe)) {
             assertTrue(

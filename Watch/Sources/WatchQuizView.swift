@@ -11,7 +11,7 @@ import SwiftUI
 /// free practice shows the answer streak (having no total to count toward).
 /// - recognize: prompt the target `promptForm` (article-tinted) alone for a
 ///   recall pause, then tap the matching source meaning.
-/// - produce:   prompt the source meaning (+ ♀ badge), tap the target word.
+/// - produce:   prompt the source meaning, tap the target word.
 ///
 /// A card that has a picture shows it on the prompt line once answered — never
 /// before, since on a recognition question the picture depicts the answer.
@@ -130,11 +130,8 @@ struct WatchQuizView: View {
         entry.revealEmoji ?? entry.emoji
     }
 
-    /// Source meaning; ♀ is a labeled badge, never part of the word.
     private func sourceLine(_ entry: WatchSnapshot.Entry) -> Text {
-        let word = Text(entry.sourceText)
-        guard entry.femMarker else { return word }
-        return word + Text(" ♀").foregroundStyle(WatchTheme.colors.die)
+        Text(entry.sourceText)
     }
 
     /// Target side, e.g. "die Kellnerin" — the article leads and the gender

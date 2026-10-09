@@ -6,12 +6,12 @@
   "you": { "text": "tú", "notes": { "es": "tú en casa: ¿Cómo estás? · usted con los demás" } },
   "you-formal": { "text": "usted", "notes": { "es": "respeto: ¿Cómo se llama usted? · usted habla, tú hablas" } },
   "he": { "text": "él", "accepts": ["ella"] },
-  "we": { "text": "nosotros", "accepts": ["nosotras"] },
+  "we": { "text": "nosotros", "forms": { "f": "nosotras" } },
   "you-plural": { "text": "ustedes", "accepts": ["vosotros", "vosotras"] },
-  "they": { "text": "ellos", "accepts": ["ellas"] },
-  "my": { "text": "mi", "accepts": ["mis"] },
-  "your": { "text": "tu", "accepts": ["tus"] },
-  "his": { "text": "su", "accepts": ["sus"] },
+  "they": { "text": "ellos", "forms": { "f": "ellas" } },
+  "my": { "text": "mi", "forms": { "pl": "mis" } },
+  "your": { "text": "tu", "forms": { "pl": "tus" } },
+  "his": { "text": "su", "forms": { "pl": "sus" } },
   "something": { "text": "algo" },
   "nothing": { "text": "nada" },
   "everything": { "text": "todo" },
@@ -20,7 +20,7 @@
   "everyone": { "text": "cada persona" },
   "no-one": { "text": "nadie" },
   "anyone": { "text": "cualquiera" },
-  "our": { "text": "nuestro", "accepts": ["nuestra", "nuestros", "nuestras"] },
-  "your-plural": { "text": "vuestro", "accepts": ["vuestra", "vuestros", "vuestras"] }
+  "our": { "text": "nuestro", "forms": { "f": "nuestra", "pl": "nuestros", "f.pl": "nuestras" } },
+  "your-plural": { "text": "vuestro", "forms": { "f": "vuestra", "pl": "vuestros", "f.pl": "vuestras" } }
  }
 }

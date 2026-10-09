@@ -79,28 +79,14 @@ class DateDrillFlow(
      * picture, so the leading slot stays empty and the prompt — a name, or a dated line in
      * the prompt side's digits — stands where the country's name would.
      */
-    override fun view(chrome: Chrome): TypedDrillView = TypedDrillView(
+    override fun view(): TypedDrillView = TypedDrillView(
         index = state.index,
         sprosse = state.sprosse,
         answerStreak = state.answerStreak,
         bestAnswerStreak = state.bestAnswerStreak,
         outcomes = state.outcomes,
         tally = state.tally,
-        feedback = state.feedback,
-        showsAnswer = state.showsAnswer,
-        offersFinish = state.offersFinish,
-        otherWord = state.otherWord,
-        answerLanguage = state.answerLanguage,
-        prompt = TypedDrillPrompt(
-            ask = chrome.dateAsk(state.task.kind),
-            text = state.task.promptText,
-            language = state.promptLanguage,
-            display = state.task.display,
-            choices = state.task.choices,
-            digits = state.task.digits,
-            numberPad = state.task.digits && typableOnNumberPad(state.task.accepted),
-            newWord = state.patternWord,
-        ),
+        question = state.question,
     )
 }
 

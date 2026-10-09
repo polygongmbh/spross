@@ -64,7 +64,7 @@ fi
 # edited blind — the three lines are checked wherever markdown is staged.
 if printf '%s\n' "$STAGED" | grep -qE '\.md$'; then
   if ! python3 scripts/doc-header.py; then
-    echo "error: a markdown file is missing its head (docs/rules.md § Every markdown file opens with its scope)." >&2
+    echo "error: a markdown file is missing its head (scripts/doc-header.py states the shape)." >&2
     exit 1
   fi
 fi

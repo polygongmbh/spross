@@ -11,9 +11,10 @@ Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `d
   a walk, a commute, the dishes.
   Its title names the mode once, and its second line carries the two facts the name cannot:
   which words it leans on, and that it needs no hands.
-- **It keeps the drill contract even so**: it books no review, writes no schedule and moves no streak, so a run costs the box nothing and can be closed at any moment.
-  It has no end screen for the drills' reason —
-  a run the learner ends when they like has nothing to celebrate —
+- **It keeps the drill contract even so**: it books no review and writes no schedule, so a run costs the box nothing and can be closed at any moment.
+  Unlike a drill it asks nothing, so it moves no streak either.
+  It has no end screen —
+  a run that only laps counts no stretch to celebrate —
   and no way of ending by itself:
   it laps for as long as it is left playing.
 - **What it plays is the box, short of the words it already calls settled, shakiest first**, never ordered by what is due —
@@ -39,11 +40,10 @@ Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `d
 
 `android/` renders THIS contract with Compose on the same engine facades, so the turn and the drill runs follow the same rules by construction, not by porting discipline.
 The hub ships there whole (`drills.md`).
-Platform deltas only: the catalog and the chimes ship as APK assets synced from `catalog/` and `App/Resources/Sounds/`, the box is app-private, runs are full screens rather than covers —
-Back mirrors ✕ everywhere, and inside a run the reference panel eats Back first —
-and a fallen record celebrates in the tile's own words, without confetti.
+Platform deltas only: the catalog and the chimes ship as APK assets synced from `catalog/` and `App/Resources/Sounds/`, the box is app-private, runs are full screens rather than covers,
+and Back mirrors ✕ everywhere — inside a run the reference panel eats Back first.
 The trees and the round summary's tree are Android's own drawing of kern's `growthByArea`, stood and grown by kern (`TreesLayout`, `AreaTree`) exactly as on iOS.
-The summary's tree rises only while the system's animations are on.
+The summary's tree rises, and confetti falls, only while the system's animations are on.
 The home-screen tile ships there too, in Glance, and it is ONE grid sized to the tile rather than iOS's three home-screen families (§ Watch & widgets): an Android tile is dragged to any shape, so a bucket boundary would change what the tile IS over a cell of width nobody can see.
 Columns and rows come off the size the host hands over, against a minimum readable cell and a bound the platform's ten-children container forces —
 the smallest tile is one word, and every shape up to that bound fills with as many as fit.
@@ -73,9 +73,12 @@ The tile is app-private like the box, and one the launcher has just placed shows
   Only the picker advertises with a sample box, and only where a picker can hold one:
   iOS previews the gallery entry from a made-up box, while the Android widget picker gets the app's own mark rather than a second layout written to say what a real tile says better.
   Every family names its tap destination, so the tile opens the app in that state too.
-- **A tile rotates when it is redrawn, not on a schedule of its own.** iOS hands its host a timeline of quarter-hour entries and gets the rotation for free.
+- **A tile rotates when it is redrawn, not on a schedule of its own.** The head of the window is read off the clock, epoch-aligned (kern `WidgetRotation`),
+  so a reload picks the rotation up where it stands rather than starting it over;
+  how long a step lasts is the host's.
+  iOS hands its host a timeline of quarter-hour entries.
   A Glance tile has no timeline to hand over:
-  the head of the window is derived from the clock at draw time and moves every half hour, which is the shortest refresh the platform will schedule, and the app pushes a redraw itself on every persist —
+  its head moves every half hour, which is the shortest refresh the platform will schedule, and the app pushes a redraw itself on every persist —
   so the numbers are as fresh as the last answer, and the words turn over on the half hour whether or not anyone opened the app.
 - Watch: one graded **multiple-choice** loop —
   the watch never types, and the options arrive ranked from kern so that nothing but meaning tells the answer from its company:

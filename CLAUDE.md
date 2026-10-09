@@ -1,6 +1,5 @@
 # Spross — growing-box vocabulary app
 The rules every session pays for on every edit (commands, commit rules, code and text standards, invariants), one terse line each; a topic's own rules live in the `docs/` page that owns it.
-Neighbors: where a rule belongs `docs/rules.md`.
 
 A personal spaced-repetition "growing box" app:
 FSRS-6-scheduled vocab that only grows while material sits, phrases unlock from their component words.
@@ -67,7 +66,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Max ~300 lines per file; split at natural boundaries. Modularity over bloat.
 - Comments only for non-obvious constraints;
   side-effectful effects get a one-line `// why:` (trigger + observable result).
-- Engine APIs name the rule, never the rendering: no screen positions in kern types.
+- Engine APIs name the rule, never the rendering: no screen positions in kern types, bar shared layout data (`net.spross.kern.design`).
 - Simplicity over Perfection: Behavior correctness is important, but don't overcomplicate the code to handle every edge case.
 
 ### Text
@@ -113,9 +112,11 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 - Inner → outer: App depends on the kern (SprossKern framework), never the reverse;
   only the app target links Kotlin (`kern/docs/build.md`).
 - A behavioral rule lives in kern once — a platform may READ a kern decision, never MINT one
-  (`LayerBoundaryTest`, waivable per line with `// layer-ok: <reason>`); shared layout data lives in kern once;
-  platforms own presentation — drawing, animation, focus, haptics, audio, timelines, a11y and string tables — and nothing else —
-  each of those owned once per platform; sameness is the CONTROLS, never the content they
+  (`LayerBoundaryTest`, waivable per line with `// layer-ok: <reason>`);
+  nothing is written twice across platforms: any value, proportion, curve, timeline, threshold or random draw
+  both would compute — a shape's geometry and an animation's timing included — lives in kern once;
+  a platform holds only what needs its own API — issuing draw calls, running animations, focus, haptics,
+  audio playback, a11y and string tables — and converts kern's units; sameness is the CONTROLS, never the content they
   hold, and a second cut is licensed by a parameter attempted, never by an argument.
 - `phase == new ⟺ memory == null ⟺ due == null` on a card's scheduling.
 - **Introduction = first answer**, never at composition — budget accounting relies on this.
@@ -127,16 +128,18 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 ## Extended docs
 
 - Decisions, rationale, and major turning points live in `docs/`, not inline; this file points.
-- Which of the three homes a rule belongs in — this file, a doc, or a gate — is `docs/rules.md`.
+- A checkable rule earns a gate (pre-commit or test, `--fix` and a per-line waiver where it can) and keeps its sentence for the why; no rule lives in an agent's private memory.
 - **One fact, one home**: each topic owned by exactly one doc; narrative docs (history, status, plans) link into it, never restate it.
 - Docs carry foundations; what the running app or the code answers faster stays out, and a needed cross-link means it is filed wrong.
 - Negations and hardlines only where the opposite is what would otherwise happen.
-- Before editing any `.md` file, read its first three lines — heading, scope, neighbors — and put what the scope excludes where the neighbors point.
+- Before editing any `.md` file, read its first three lines — heading, scope and layout, neighbors — keep them true in the same edit,
+  put what the scope excludes where the neighbors point, and never add file-describing prose below them.
 - A doc states its content, never its own properties.
 - Out-of-scope discoveries go to `docs/backlog.md`, catalog content to `catalog/backlog.md` (one-liners with pointers); prune on fix.
 - Whose the bundled recordings are and what their licenses oblige — the ship/legal record —
   is `docs/audio-licensing.md`; no other doc restates a license term.
-- Write plans into docs/plans/ and delete them once shipped, even if you did not write the plan;
+- Write plans into docs/plans/ and delete them once shipped, even if you did not write the plan —
+  an audit, triage or sweep result listing work still to do is a plan, never a dated file in docs/ or /tmp;
   a plan or handoff doc stays UNCOMMITTED unless asked since it is working state
 - Never commit changes to markdown documentation files as separate commits, commit them with related code changes where sensible;
   a backlog ruling or pruning with no code stays uncommitted and rides along with the commit that acts on it

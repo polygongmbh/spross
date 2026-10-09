@@ -6,8 +6,9 @@
   "date": { "text": "data", "grammar": { "gender": "la" } },
   "opening-hours": {
    "text": "orario di apertura",
-   "accepts": ["l'orario di apertura", "orari di apertura", "orario"],
-   "grammar": { "gender": "l'", "plural": "orari di apertura" },
+   "accepts": ["l'orario di apertura", "orario"],
+   "forms": { "pl": "gli orari di apertura" },
+   "grammar": { "gender": "l'" },
    "notes": {
     "it": "di solito al singolare: l'orario di apertura · spesso solo l'orario.",
     "de": "Italienisch hat keinen festen Plural wie „die Öffnungszeiten“: meist l'orario di apertura, im Alltag oft nur l'orario."

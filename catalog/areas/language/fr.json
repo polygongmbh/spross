@@ -17,7 +17,7 @@
    "text": "J'apprends {language-learn}.",
    "accepts": ["Je suis en train d'apprendre {language-learn}."]
   },
-  "ready-to-learn": { "text": "Prêt à apprendre ?", "accepts": ["Prête à apprendre ?"] },
+  "ready-to-learn": { "text": "Prêt à apprendre ?", "forms": { "f": "Prête à apprendre ?" } },
   "one-more-word": { "text": "Encore un mot ?" }
  }
 }

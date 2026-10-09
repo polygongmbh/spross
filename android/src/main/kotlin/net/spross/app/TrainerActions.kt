@@ -1,5 +1,6 @@
 package net.spross.app
 
+import net.spross.kern.box.BoxEngine
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.NumbersChallenge
@@ -92,6 +93,10 @@ fun AppModel.startDateDrill(reverse: Boolean, fast: Boolean, sprosse: Int) {
  */
 fun AppModel.finishDrill(back: Screen, summary: DrillRunSummary?, title: String) {
     pronouncer.stop()
+    bookDrillAnswers(summary)
+    // why: a close kern celebrates ([DrillRunSummary.celebrated]) is cheered as it closes —
+    // the tile the learner lands on carries the words, but not until they look.
+    if (summary?.celebrated == true) cues.cheer()
     trainer.show(summary, title)
     refreshTrainer()
     // why: a closing letter run lands back on the page that reads the report, and the
@@ -100,15 +105,24 @@ fun AppModel.finishDrill(back: Screen, summary: DrillRunSummary?, title: String)
     navigate(back)
 }
 
+/** A closed run's answers, booked to today so the streak and the activity strip count them. */
+private fun AppModel.bookDrillAnswers(summary: DrillRunSummary?) {
+    val answers = summary?.done ?: return
+    updateBox { BoxEngine.bookDrillAnswers(it, answers, now(), tz()) }
+}
+
 /**
  * The way out of either scramble. Neither has a page to land on, so the run closes onto Home
- * with no figures, and neither keeps a streak record or a high-water Sprosse beside its mask,
+ * and hands its figures to the hub card ([TrainerStanding.showOnHub]); neither keeps a streak record or a high-water Sprosse beside its mask,
  * because nothing reads one back. The mask under [clearedKey] is what the NEXT run reads: it
  * passes each Sprosse held there on one clean answer.
  */
-fun AppModel.closeScramble(drill: Drill, clearedKey: String, cleared: Set<Int>, summary: DrillRunSummary?) {
+fun AppModel.closeScramble(drill: Drill, title: String, clearedKey: String, cleared: Set<Int>, summary: DrillRunSummary?) {
     trainer.store.bookCleared(clearedKey, cleared)
+    bookDrillAnswers(summary)
     stampRun(drill, summary)
+    trainer.showOnHub(summary, title)
+    if (summary?.celebrated == true) cues.cheer()
     finishDrill(Screen.Home, null, "")
 }
 

@@ -10,33 +10,25 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import java.io.IOException
 import net.spross.kern.catalog.AudioCapability
+import net.spross.kern.catalog.AudioPreference
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.Pronunciation
+import net.spross.kern.catalog.SoundBranch
+import net.spross.kern.catalog.preference
+import net.spross.kern.catalog.soundBranch
 import net.spross.kern.catalog.spokenTargetForm
 import net.spross.kern.model.Language
 
 /**
  * The one way anything in the app says a target word out loud: review cards, drills and
- * the letter drill all knock here, so the mute flag, the TalkBack gate and
- * "recordings first" are decided in a single place.
+ * the letter drill all knock here, so kern's mute and TalkBack gate ([PronounceTrigger.held])
+ * and its branch ([soundBranch]) are asked in a single place.
  *
  * Kern decides WHAT to say ([Pronunciation]: the form, the utterance, and the
  * catalog-relative path of a recording that speaks that very form); this decides
  * WHETHER and WITH WHAT. The iOS `Pronouncer` is the same four steps in the same order.
  */
 class Pronouncer(context: Context, private val prefs: SharedPreferences) {
-
-    /**
-     * Where a fire came from. Autoplay may be silenced; the others are requests.
-     *
-     * [ESSENTIAL] is an autoplay that carries the QUESTION itself (the letter drill):
-     * opening a screen whose only content is a sound is the request, so the mute never
-     * reaches it — only TalkBack, which must not be talked over, still holds it back.
-     *
-     * [LISTENING] is a run whose only content is sound, which is itself the request to hear
-     * one — so it passes both gates exactly as a [TAP] does. It is named apart all the same:
-     * a tap is one word answered on the spot, and this is an hour of them playing unattended.
-     */
-    enum class Trigger { AUTO, ESSENTIAL, TAP, LISTENING }
 
     /**
      * Which voice answers a target word: the bundled recording when one matched, or the
@@ -55,9 +47,6 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         TTS("tts"),
     }
 
-    /** The box row's three options, one per [setAudioPreference] call. */
-    enum class AudioPreference { OFF, RECORDINGS, TTS }
-
     private val assets = context.applicationContext.assets
     private val accessibility = context.applicationContext
         .getSystemService(Context.ACCESSIBILITY_SERVICE) as? AccessibilityManager
@@ -70,6 +59,13 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     private var loaded: String? = null
 
     private var mutedState by mutableStateOf(false)
+
+    /** The word sounding right now, for a speaker that pulses while it does; null in silence. */
+    var sounding: Pronunciation? by mutableStateOf(null)
+        private set
+
+    /** Bumped by every fire and stop, so only the latest word's end clears [sounding]. */
+    private var fires = 0
 
     /**
      * What THIS launch has picked, per language — everything else answers from the
@@ -88,37 +84,18 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         prefs.edit().putString(keyFor(lang), value.storedValue).apply()
     }
 
-    /**
-     * The box row's three-way preference for [lang], derived from [muted] and
-     * [voiceSource]: there is no state where a source is chosen but the app is silent.
-     * Setting [AudioPreference.OFF] silences the review loop; picking either source also
-     * turns reading aloud back on, so the picker can never leave the app silent behind a
-     * chosen voice. A stored source the language cannot answer reads as the other one:
-     * [sources] carries both halves, so a [VoiceSource.TTS] whose voice was uninstalled and a
-     * [VoiceSource.RECORDINGS] for a language that ships no pack are corrected alike.
-     */
-    fun audioPreference(lang: Language, sources: AudioCapability): AudioPreference = when {
-        muted -> AudioPreference.OFF
-        voiceSource(lang) == VoiceSource.TTS && sources.hasVoice -> AudioPreference.TTS
-        // why: a stored source the language cannot answer reads as the other one, in BOTH
-        // directions — a pack that does not ship is as empty a promise as a voice that is
-        // not installed, and the row must never show a segment selected that plays nothing.
-        sources.hasRecordings -> AudioPreference.RECORDINGS
-        else -> AudioPreference.TTS
-    }
+    /** The audio setting's option for [lang]: kern reads the mute and the stored source over [sources]. */
+    fun audioPreference(lang: Language, sources: AudioCapability): AudioPreference =
+        sources.preference(muted, voiceSource(lang) == VoiceSource.TTS)
 
+    /** Picking a source also turns reading aloud back on, so the picker never leaves the app silent behind it. */
     fun setAudioPreference(lang: Language, preference: AudioPreference) {
-        when (preference) {
-            AudioPreference.OFF -> muted = true
-            AudioPreference.RECORDINGS -> {
-                setVoiceSource(lang, VoiceSource.RECORDINGS)
-                muted = false
-            }
-            AudioPreference.TTS -> {
-                setVoiceSource(lang, VoiceSource.TTS)
-                muted = false
-            }
+        if (preference.mutes) {
+            muted = true
+            return
         }
+        setVoiceSource(lang, if (preference.prefersSpeech) VoiceSource.TTS else VoiceSource.RECORDINGS)
+        muted = false
     }
 
     private var saysMeaningState by mutableStateOf(prefs.getBoolean(SAYS_MEANING, true))
@@ -217,69 +194,63 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      */
     fun pronounce(
         pronunciation: Pronunciation,
-        trigger: Trigger,
+        trigger: PronounceTrigger,
         article: String? = null,
         fadeDb: Double = 0.0,
         recordingOnly: Boolean = false,
         onFinish: (() -> Unit)? = null,
     ) {
         // why: TalkBack reads the card itself, target word included — autoplay on top
-        // of it is two voices over one word. A tap is never gated: it is a request.
-        val held = when (trigger) {
-            Trigger.AUTO -> muted || readsScreenAloud
-            Trigger.ESSENTIAL -> readsScreenAloud
-            Trigger.TAP, Trigger.LISTENING -> false
-        }
-        if (held) {
+        // of it is two voices over one word.
+        if (trigger.held(muted, readsScreenAloud)) {
             onFinish?.invoke()
             return
         }
         speaker.stop()
+        val fire = ++fires
+        sounding = pronunciation
+        val ended: () -> Unit = {
+            if (fires == fire) sounding = null
+            onFinish?.invoke()
+        }
         val lang = pronunciation.lang
-        // "Speech" preference: the voice reads everything, for one consistent sound and
-        // the article always said aloud — the recording only answers where the language
-        // has no voice at all.
-        if (!recordingOnly && voiceSource(lang) == VoiceSource.TTS && canSpeak(lang)) {
-            // why: a recording from a previous fire may still be sounding — the
-            // synthesized branch takes the word over completely.
+        val path = pronunciation.recordingPath
+        val prefersSpeech = voiceSource(lang) == VoiceSource.TTS
+        var branch = soundBranch(prefersSpeech, recordingOnly, canSpeak(lang), path != null)
+        if (branch == SoundBranch.Recording && path != null) {
+            // why: the player still holds the last clip prepared, so a second ask for the
+            // same word answers without a second decode — the reason it keeps it.
+            val (indexDb, capDb) = index(pronunciation)
+            if (path == loaded && player.replay(playbackVolume(indexDb, capDb, fadeDb), ended)) return
+            // why: one word at a time — a new fire replaces whatever is sounding.
             player.stop()
             loaded = null
-            val spoken = spokenTargetForm(article, pronunciation.form, pronunciation.form)
-            if (!speaker.speak(spoken, lang, fadeVolume(fadeDb), onFinish)) {
-                onFinish?.invoke()
+            val recording = openRecording(path)
+            if (recording != null) {
+                // why: the loudness and the dead air are the catalog's MEASUREMENTS of bytes
+                // that stay the untouched transcode — playback is the one place they are ever
+                // applied, and never the file.
+                player.play(recording, indexDb, capDb, pronunciation.leadMs, fadeDb, pronunciation.gate, ended)
+                loaded = path
+                return
             }
-            return
+            branch = soundBranch(prefersSpeech, recordingOnly, canSpeak(lang), hasRecording = false)
         }
-        val path = pronunciation.recordingPath
-        // why: the player still holds the last clip prepared, so a second ask for the
-        // same word answers without a second decode — the reason it keeps it.
-        val (indexDb, capDb) = index(pronunciation)
-        if (path != null && path == loaded &&
-            player.replay(playbackVolume(indexDb, capDb, fadeDb), onFinish)
-        ) {
-            return
-        }
-        // why: one word at a time — a new fire replaces whatever is sounding.
+        // why: a recording from a previous fire may still be sounding — the synthesized
+        // branch takes the word over completely.
         player.stop()
         loaded = null
-        val recording = path?.let(::openRecording)
-        if (recording != null) {
-            // why: the loudness and the dead air are the catalog's MEASUREMENTS of bytes
-            // that stay the untouched transcode — playback is the one place they are ever
-            // applied, and never the file.
-            player.play(recording, indexDb, capDb, pronunciation.leadMs, fadeDb, pronunciation.gate, onFinish)
-            loaded = path
-            return
-        }
         // The synthesized branch, and the only one the article reaches.
         val spoken = spokenTargetForm(article, pronunciation.form, pronunciation.form)
-        if (!speaker.speak(spoken, pronunciation.lang, fadeVolume(fadeDb), onFinish)) {
+        if (branch != SoundBranch.Speech || !speaker.speak(spoken, lang, fadeVolume(fadeDb), ended)) {
             // No voice for the language: the word is silent, and it is over at once.
-            onFinish?.invoke()
+            ended()
         }
     }
 
     fun stop() {
+        fires++
+        sounding = null
         player.stop()
         speaker.stop()
         loaded = null

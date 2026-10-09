@@ -8,6 +8,8 @@ import SprossKern
 /// `NumbersIntent` and kern's next state replaces the run whole.
 extension NumbersRunView: DrillRunning {
 
+    var appModel: AppModel? { model }
+
     // MARK: - The machine under this drill
 
     func reduce(_ run: NumbersRunState, _ intent: NumbersIntent) -> DrillStep<NumbersRunState> {

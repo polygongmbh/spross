@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """Check that every tracked markdown file opens with its three-line head and links no plan.
 
-Line 1 is the heading, line 2 one unbroken line on what the file holds,
+Line 1 is the heading, line 2 one unbroken line on what the file holds, how it is laid out and what it leaves out,
 line 3 either `Neighbors: ...` (one line) followed by a blank, or blank.
-A standing doc never links a plan file: plans are deleted once shipped (docs/rules.md).
+A standing doc never links a plan file: plans are deleted once shipped.
 Plans and the archive are working state and exempt; a backlog may point at a plan.
 
   scripts/doc-header.py           report every file off the shape (same as --check)
   scripts/doc-header.py --check   exit 1 if any file is off the shape
 """
+import os
 import re
 import subprocess
 import sys
@@ -33,7 +34,9 @@ def problems(path):
 
 def main():
     files = subprocess.run(["git", "ls-files", "*.md"], capture_output=True, text=True, check=True).stdout.split()
-    bad = [(f, p) for f in files if not f.startswith(EXEMPT) for p in [problems(f)] if p]
+    # why: a tracked file deleted in the working tree is on its way out; reading it would crash the gate.
+    files = [f for f in files if not f.startswith(EXEMPT) and os.path.exists(f)]
+    bad = [(f, p) for f in files for p in [problems(f)] if p]
     for f, p in bad:
         print(f"{f}: {p}", file=sys.stderr)
     return 1 if bad else 0

@@ -27,7 +27,8 @@
   "driver": {
    "text": "autista",
    "accepts": ["l'autista", "conducente"],
-   "grammar": { "gender": "l'", "plural": "autisti" }
+   "forms": { "pl": "gli autisti" },
+   "grammar": { "gender": "l'" }
   },
   "plane": { "text": "aereo", "accepts": ["l'aereo", "aeroplano"], "grammar": { "gender": "l'" } },
   "airport": { "text": "aeroporto", "accepts": ["l'aeroporto"], "grammar": { "gender": "l'" } },

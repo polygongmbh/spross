@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.closeOverview
+import net.spross.kern.trainer.SprosseMark
 
 /**
  * The shape every drill's page wears — the letters, the numbers, the atlas, the calendar:
@@ -63,33 +64,37 @@ fun OverviewScaffold(
     // back with would sit off the top of a page the learner is still looking at.
     LaunchedEffect(result) { if (result != null) scroll.animateScrollTo(0) }
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.sm),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            RunCloseButton(onClose, chrome.commonClose)
-            Text(
-                title,
-                style = MaterialTheme.typography.titleMedium,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.weight(1f).padding(horizontal = Theme.spacing.sm),
-            )
-            TextButton(onClick = onStart, enabled = startEnabled) {
-                Text(chrome.trainerOverviewStart)
+    Box(Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = Theme.spacing.sm),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                RunCloseButton(onClose, chrome.commonClose)
+                Text(
+                    title,
+                    style = MaterialTheme.typography.titleMedium,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.weight(1f).padding(horizontal = Theme.spacing.sm),
+                )
+                TextButton(onClick = onStart, enabled = startEnabled) {
+                    Text(chrome.trainerOverviewStart)
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scroll)
+                    .padding(Theme.spacing.xl),
+                verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
+            ) {
+                result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
+                OverviewHeading(chrome.trainerOverviewPractice)
+                content()
             }
         }
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scroll)
-                .padding(Theme.spacing.xl),
-            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
-        ) {
-            result?.let { DrillResultTile(it, model.trainer.resultTitle, chrome) }
-            OverviewHeading(chrome.trainerOverviewPractice)
-            content()
-        }
+        // why: a celebrated close rains over the page the run came back to.
+        ClosedRunConfetti(model.trainer)
     }
 }
 
@@ -229,21 +234,8 @@ fun OverviewNote(text: String, modifier: Modifier = Modifier) {
 }
 
 /**
- * What a Sprosse circle says about a ladder's record: never stood on, stood on by some run
- * ([Reached], ocean), or answered out by one ([Cleared], forest) — the last only where the
- * Sprosse enumerates. Untouched differs by SHAPE too: an outline against two fills.
- */
-enum class SprosseMark { Untouched, Reached, Cleared }
-
-/** What the record says of one Sprosse: answered out beats stood on. */
-fun sprosseMark(sprosse: Int, cleared: Set<Int>, bestSprosse: Int): SprosseMark = when {
-    sprosse in cleared -> SprosseMark.Cleared
-    sprosse <= bestSprosse -> SprosseMark.Reached
-    else -> SprosseMark.Untouched
-}
-
-/**
- * A Sprosse's number in its circle — the mark on every ladder row. The letters ladder
+ * A Sprosse's number in its circle — the mark on every ladder row, kern's [SprosseMark]:
+ * reached in ocean, cleared in forest, and untouched differs by SHAPE too — an outline against two fills. The letters ladder
  * wears it per stage: forest where a run climbed the stage off clean, filled on the stage
  * its run opens on.
  */

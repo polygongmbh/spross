@@ -3,20 +3,13 @@ package net.spross.app.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import net.spross.app.AppModel
-import net.spross.app.Chrome
 import net.spross.app.Screen
 import net.spross.app.WordScrambleFlow
 import net.spross.app.closeScramble
 import net.spross.app.newWordScramble
 import net.spross.app.speakFormOnTap
 import net.spross.kern.trainer.Drill
-import net.spross.kern.trainer.ScrambledWord
 import net.spross.kern.trainer.WordScrambleTask
 
 /**
@@ -39,7 +32,7 @@ fun WordScrambleScreen(model: AppModel) {
     val state = flow.state
     val leave = {
         val closed = flow.close()
-        model.closeScramble(Drill.WordScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
+        model.closeScramble(Drill.WordScramble, model.chrome.trainerDrillWordScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
     }
 
     val inputFocus = remember { FocusRequester() }
@@ -53,70 +46,30 @@ fun WordScrambleScreen(model: AppModel) {
         sprosse = chrome.trainerSprosse.format(state.sprosse),
     ) {
         val task = state.task ?: return@DrillRunScaffold
-        DrillPromptCard(
-            prompt = mixedWord(task.scrambled),
-            promptLabel = spelledOut(task.scrambled),
-            size = PromptSize.Word,
-            answer = task.display,
-            language = task.language,
-            gloss = task.gloss,
-            revealed = state.showsAnswer,
-            pronounce = model.speakFormOnTap(task.display, task.language),
-            chrome = chrome,
-        )
-        Controls(model, flow, task, chrome, inputFocus, leave)
+        if (state.question == null) return@DrillRunScaffold
+        QuestionStage(state, key = { it.index }) { shown ->
+            QuestionCard(
+                shown.question ?: return@QuestionStage,
+                chrome,
+                voice = model.cardVoice,
+                promptLabel = shown.task?.scrambled?.spelledOut,
+            )
+        }
+        Controls(model, flow, task, inputFocus, leave)
     }
 }
 
-/**
- * The prompt: the letters as kern mixed them, with the ones the Sprosse left standing
- * set bold. Kern says how many hold at the front ([ScrambledWord.fixedLeading]) and this side
- * says what that looks like — weight alone, because the anchor is a recognition aid the ladder
- * takes away, and an aid on its way out is not worth a legend.
- */
-fun mixedWord(word: ScrambledWord): AnnotatedString {
-    val letters = word.display
-    val lead = minOf(word.fixedLeading, letters.length)
-    val anchored = SpanStyle(fontWeight = FontWeight.Bold)
-    return buildAnnotatedString {
-        withStyle(anchored) { append(letters.take(lead)) }
-        append(letters.substring(lead))
-    }
-}
-
-/**
- * A mixed word is not a word, and a voice reading it as one says nothing a learner can spell
- * from — so it is spelled OUT, letter by letter.
- */
-fun spelledOut(word: ScrambledWord): String = word.display.toList().joinToString(", ")
-
-/**
- * The field and what stands under it: one primary action while the spelling is owed, the tap
- * that books a pause where kern armed none, and the way out on the second miss in a row.
- */
+/** Kern's controls on the shared answer area. */
 @Composable
 private fun Controls(
     model: AppModel,
     flow: WordScrambleFlow,
     task: WordScrambleTask,
-    chrome: Chrome,
     inputFocus: FocusRequester,
     onFinish: () -> Unit,
 ) {
-    val state = flow.state
-    TypedAnswerControls(
-        input = flow.input,
-        onType = flow::type,
-        placeholder = chrome.sessionAnswerPlaceholder.format(model.languageName(task.language)),
-        feedback = state.feedback,
-        awaitsConfirm = flow.awaitsConfirm,
-        chrome = chrome,
-        focus = inputFocus,
-        onPrimary = flow::primary,
-        onEnter = flow::enter,
-        onConfirm = flow::confirm,
+    DrillAnswerArea(
+        model, flow, inputFocus, onStop = onFinish,
         speakCorrection = { model.speakFormOnTap(it, task.language) },
-    ) {
-        if (state.offersFinish) DrillStopOffer(chrome, onFinish)
-    }
+    )
 }

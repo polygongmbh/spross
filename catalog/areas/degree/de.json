@@ -19,7 +19,7 @@
   "completely": { "text": "völlig" },
   "all": { "text": "alle" },
   "some": { "text": "einige", "accepts": ["ein paar"] },
-  "every": { "text": "jeder", "accepts": ["jede", "jedes"] },
+  "every": { "text": "jeder", "forms": { "f": "jede", "n": "jedes" } },
   "most": { "text": "die meisten" },
   "almost": { "text": "fast" },
   "a-little": { "text": "ein bisschen", "teaches": ["ein wenig"] },

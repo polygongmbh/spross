@@ -8,7 +8,9 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.ClosingNote
 import net.spross.kern.session.AdvanceBeat
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
@@ -125,18 +127,35 @@ class WordScrambleRunTest {
         assertEquals(2, assertNotNull(state.task).sprosse)
     }
 
+    /** A drill's field: one submit while owed, then a miss holds what was written until tapped, and a second miss offers the way out. */
+    @Test
+    fun theFieldHoldsAMissUntilTappedAndASecondMissOffersTheWayOut() {
+        val state = open()
+        val asking = assertNotNull(state.controls)
+        assertEquals(AnswerControls.Primary.Submit, asking.primary)
+        val missed = reduce(state, WordScrambleIntent.Reveal).state
+        val held = assertNotNull(missed.controls)
+        assertNull(held.primary)
+        assertFalse((held.slot as AnswerControls.Slot.Typed).editable)
+        assertEquals(AnswerControls.Confirm.Always, held.confirm)
+        assertFalse(held.stop)
+        val again = reduce(reduce(missed, WordScrambleIntent.ConfirmPending).state, WordScrambleIntent.Reveal).state
+        assertTrue(assertNotNull(again.controls).stop)
+    }
+
     /**
-     * The gloss is what the scramble never said, so a clean spelling opens the card too:
-     * the letters were the question and the meaning never was.
+     * The gloss is what the scramble never said, so a clean spelling grows it on a card that stays closed:
+     * the word already stands in the learner's own text.
      */
     @Test
-    fun aCleanSpellingIsGlossedToo() {
+    fun aCleanSpellingIsGlossedOnAClosedCard() {
         val state = open()
         val task = assertNotNull(state.task)
-        val answered = reduce(state, WordScrambleIntent.Submit(task.display)).state
-        assertEquals(TurnFeedback.Correct, answered.feedback)
-        assertTrue(answered.showsAnswer, "a word spelled right is still worth glossing")
-        assertFalse(open().showsAnswer, "nothing to show while the turn is still open")
+        val answered = assertNotNull(reduce(state, WordScrambleIntent.Submit(task.display)).state.question)
+        assertFalse(answered.opens)
+        assertTrue(answered.growsNote)
+        assertEquals(ClosingNote.Own(task.gloss), answered.closing.note)
+        assertTrue(assertNotNull(reduce(state, WordScrambleIntent.Reveal).state.question).opens)
     }
 
     /**

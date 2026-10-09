@@ -32,6 +32,7 @@ import net.spross.app.startSentenceScramble
 import net.spross.app.startOpposites
 import net.spross.app.startWordScramble
 import net.spross.app.trainerHubOffered
+import net.spross.kern.design.PressKind
 import net.spross.kern.trainer.Drill
 
 /**
@@ -52,7 +53,7 @@ data class HubChip(
  * tended box, where no run ever books a review.
  *
  * Up to SEVEN entries — kern's [Drill] roster, in its order — on one row while there are no
- * more than three of them and on two lines past that ([chipRows]).
+ * more than three of them and on two lines past that ([chipRows]); each wears kern's [Drill.emoji].
  * The four that have reading matter open a PAGE rather than a run —
  * the reading and the drill it prepares you for are one surface — where the two scrambles
  * and the opposites, whose material is the box itself, open their run. Each is its own DRILL, and earns a chip
@@ -73,6 +74,7 @@ fun TrainerHubCard(model: AppModel) {
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
+        model.trainer.hubResult?.let { DrillResultTile(it, model.trainer.hubResultTitle, chrome) }
         // why: the chips name an exercise and nothing else — spoken, "Numbers" could
         // be an area of the box. The suffix says it is practice, and in which language.
         val practice =
@@ -87,22 +89,10 @@ fun TrainerHubCard(model: AppModel) {
     }
 }
 
-/**
- * The chips cut into lines. Three or fewer stand on one; past that the card breaks into
- * TWO, `ceil(n/2)` above and `floor(n/2)` below — 4 stand 2+2, 5 stand 3+2, 6 stand 3+3, 7 stand 4+3 —
- * and each line keeps the equal-width chips one line carries on its own.
- *
- * The break is DRAWN rather than discovered: a [Row] overflows rather than wrapping, and seven
- * chips sharing one would be seven slivers of a word apiece.
- */
-fun chipRows(chips: List<HubChip>): List<List<HubChip>> = when {
-    chips.isEmpty() -> emptyList()
-    chips.size <= 3 -> listOf(chips)
-    else -> {
-        // The odd chip goes on TOP, so the card narrows as it is read rather than widening.
-        val top = (chips.size + 1) / 2
-        listOf(chips.take(top), chips.drop(top))
-    }
+/** The chips cut into the lines kern sizes ([Drill.Companion.chipRows]), each line's chips equal width. */
+fun chipRows(chips: List<HubChip>): List<List<HubChip>> {
+    var start = 0
+    return Drill.chipRows(chips.size).map { size -> chips.subList(start, start + size).also { start += size } }
 }
 
 /** Every entry this profile can reach, in the order the card offers them. */
@@ -118,18 +108,6 @@ private fun AppModel.hubChips(chrome: Chrome): List<HubChip> {
 fun hubChips(chrome: Chrome, offered: (Drill) -> Boolean, open: (Drill) -> Unit): List<HubChip> =
     Drill.entries.filter(offered).map { drill ->
         HubChip(drill, drill.emoji, drill.title(chrome)) { open(drill) }
-    }
-
-/** The face each entry wears on its chip. */
-internal val Drill.emoji: String
-    get() = when (this) {
-        Drill.Numbers -> "🔢"
-        Drill.Letters -> "🔤"
-        Drill.Countries -> "🌍"
-        Drill.Dates -> "📅"
-        Drill.WordScramble -> "🔀"
-        Drill.SentenceScramble -> "🧩"
-        Drill.Opposites -> "↔️"
     }
 
 /** What each entry is called, in the chrome language. */
@@ -172,7 +150,7 @@ private fun RowScope.EntryChip(chip: HubChip, suffix: String) {
             .weight(1f)
             // why: the spring sits OUTSIDE the fill — a press must shrink the tile,
             // not just the label inside it.
-            .pressSpring()
+            .pressSpring(PressKind.Chip)
             .clip(MaterialTheme.shapes.medium)
             .background(Theme.colors.surfaceTint)
             .clickable(role = Role.Button, onClick = chip.open)

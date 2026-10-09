@@ -2,14 +2,19 @@
  "title": "Gli organi",
  "subtitle": "Ciò che sta dentro e si dice dal medico.",
  "words": {
-  "lung": { "text": "polmone", "grammar": { "gender": "il", "plural": "polmoni" } },
+  "lung": { "text": "polmone", "forms": { "pl": "i polmoni" }, "grammar": { "gender": "il" } },
   "liver": { "text": "fegato", "grammar": { "gender": "il" } },
-  "kidney": { "text": "rene", "grammar": { "gender": "il", "plural": "reni" } },
-  "intestine": { "text": "intestino", "grammar": { "gender": "il", "plural": "intestini" } },
-  "bladder": { "text": "vescica", "grammar": { "gender": "la", "plural": "vesciche" } },
-  "nerve": { "text": "nervo", "grammar": { "gender": "il", "plural": "nervi" } },
-  "vein": { "text": "vena", "grammar": { "gender": "la", "plural": "vene" } },
-  "thyroid": { "text": "tiroide", "grammar": { "gender": "la", "plural": "tiroidi" } },
+  "kidney": { "text": "rene", "forms": { "pl": "i reni" }, "grammar": { "gender": "il" } },
+  "intestine": {
+   "text": "intestino",
+   "accepts": ["l'intestino"],
+   "forms": { "pl": "gli intestini" },
+   "grammar": { "gender": "l'" }
+  },
+  "bladder": { "text": "vescica", "forms": { "pl": "le vesciche" }, "grammar": { "gender": "la" } },
+  "nerve": { "text": "nervo", "forms": { "pl": "i nervi" }, "grammar": { "gender": "il" } },
+  "vein": { "text": "vena", "forms": { "pl": "le vene" }, "grammar": { "gender": "la" } },
+  "thyroid": { "text": "tiroide", "forms": { "pl": "le tiroidi" }, "grammar": { "gender": "la" } },
   "to-breathe": {
    "text": "respirare",
    "notes": {
@@ -17,31 +22,40 @@
     "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere."
    }
   },
-  "stomach-organ": { "text": "stomaco", "grammar": { "gender": "lo", "plural": "stomachi" } },
+  "stomach-organ": { "text": "stomaco", "forms": { "pl": "gli stomachi" }, "grammar": { "gender": "lo" } },
   "artery": {
    "text": "arteria",
-   "grammar": { "gender": "l'", "plural": "arterie" },
+   "forms": { "pl": "le arterie" },
+   "grammar": { "gender": "l'" },
    "accepts": ["l'arteria"]
   },
   "joint": {
    "text": "articolazione",
-   "grammar": { "gender": "l'", "plural": "articolazioni" },
+   "forms": { "pl": "le articolazioni" },
+   "grammar": { "gender": "l'" },
    "accepts": ["l'articolazione"]
   },
-  "gland": { "text": "ghiandola", "grammar": { "gender": "la", "plural": "ghiandole" } },
-  "spleen": { "text": "milza", "grammar": { "gender": "la", "plural": "milze" } },
+  "gland": { "text": "ghiandola", "forms": { "pl": "le ghiandole" }, "grammar": { "gender": "la" } },
+  "spleen": { "text": "milza", "forms": { "pl": "le milze" }, "grammar": { "gender": "la" } },
   "bile": { "text": "bile", "grammar": { "gender": "la" } },
   "appendix": {
    "text": "appendice",
-   "grammar": { "gender": "l'", "plural": "appendici" },
+   "forms": { "pl": "le appendici" },
+   "grammar": { "gender": "l'" },
    "accepts": ["l'appendice"]
   },
-  "womb": { "text": "utero", "grammar": { "gender": "l'", "plural": "uteri" }, "accepts": ["l'utero"] },
+  "womb": {
+   "text": "utero",
+   "forms": { "pl": "gli uteri" },
+   "grammar": { "gender": "l'" },
+   "accepts": ["l'utero"]
+  },
   "pancreas": { "text": "pancreas", "grammar": { "gender": "il", "plural": "=" } },
   "ovary": {
    "text": "ovaia",
    "accepts": ["l'ovaia", "ovario"],
-   "grammar": { "gender": "l'", "plural": "ovaie" }
+   "forms": { "pl": "le ovaie" },
+   "grammar": { "gender": "l'" }
   },
   "tendon": { "text": "tendine", "grammar": { "gender": "il" } }
  }

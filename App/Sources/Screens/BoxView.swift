@@ -39,15 +39,10 @@ struct BoxView: View {
     init(model: AppModel, revealArea: String? = nil) {
         self.model = model
         self.revealArea = revealArea
-        // why: the opening fold reads the box once, at construction — a group
-        // that folds itself shut again as the learner works would be worse.
-        // An area named on the way in opens INSTEAD of the default group: the
-        // learner already said which one they meant.
-        let opening = revealArea.flatMap { area in
-            model.areaGroupSections.first { $0.areas.contains(area) }?.id
-        } ?? model.defaultExpandedGroupID
-        _expandedGroups = State(initialValue: Set([opening].compactMap { $0 }))
-        _expandedAreas = State(initialValue: Set([revealArea].compactMap { $0 }))
+        // why: the opening fold reads the box once, at construction (`BoxFold.opening`).
+        let opening = model.openingFold(revealArea: revealArea)
+        _expandedGroups = State(initialValue: opening.groups)
+        _expandedAreas = State(initialValue: opening.areas)
     }
 
     var body: some View {
@@ -148,21 +143,14 @@ struct BoxView: View {
         )
     }
 
-    /// A search hit names the area it lives in: the group unfolds, the area
-    /// unfolds, and the box scrolls it into reach. Own words have no shelf to
-    /// unfold — they list in the own-content section, which stands open always,
-    /// so naming their area is only ever a scroll.
+    /// A search hit names the area it lives in: the fold moves to it (`BoxFold.revealing`),
+    /// and the box scrolls it into reach.
     private func reveal(area: String) {
-        if area != model.ownArea {
-            let group = model.areaGroupSections.first { $0.areas.contains(area) }
-            withAnimation(.easeInOut(duration: 0.2)) {
-                // why: the named area opens INSTEAD of whatever stood open, exactly as
-                // `init` opens one instead of the default — the learner said which area
-                // they meant, and every other shelf left open is only weight the fold
-                // has to lay out before the scroll can reach this one.
-                if let group { expandedGroups = [group.id] }
-                expandedAreas = [area]
-            }
+        let fold = BoxFold(groups: expandedGroups, areas: expandedAreas)
+            .revealing(area: area, sections: model.areaGroupSections)
+        withAnimation(.easeInOut(duration: 0.2)) {
+            expandedGroups = fold.groups
+            expandedAreas = fold.areas
         }
         scrollTarget = area
     }

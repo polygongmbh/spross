@@ -18,9 +18,9 @@
    }
   },
   "to-cough": { "text": "tossire" },
-  "sick": { "text": "malato", "accepts": ["malata"] },
+  "sick": { "text": "malato", "forms": { "f": "malata" } },
   "illness": { "text": "malattia", "grammar": { "gender": "la" } },
-  "tired": { "text": "stanco", "accepts": ["stanca"] },
+  "tired": { "text": "stanco", "forms": { "f": "stanca" } },
   "weak": { "text": "debole" },
   "dizziness": {
    "text": "capogiro",
@@ -40,7 +40,7 @@
   "the-wound-hurts": { "text": "La ferita fa male.", "accepts": ["Mi fa male la ferita."] },
   "i-hurt-myself-yesterday": {
    "text": "Mi sono fatto male ieri.",
-   "accepts": ["Mi sono fatta male ieri."],
+   "forms": { "f": "Mi sono fatta male ieri." },
    "orders": ["Ieri mi sono fatto male."]
   }
  }

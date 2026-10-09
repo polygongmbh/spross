@@ -152,7 +152,7 @@ extension LettersOverview {
     private func glyphFont(_ entry: AlphabetEntry) -> Font {
         entry.kind == .rule
             ? Theme.typography.title
-            : .system(size: 34, weight: .bold, design: .rounded)
+            : Theme.typography.hero
     }
 
     /// The example word, in the fallback chain the schema promises: the

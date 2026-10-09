@@ -15,6 +15,9 @@ enum DateDrillFace: DrillFace {
 
     static var key: String { "dates" }
     static var drill: Drill { .dates }
+    static func storageKey(source: String, target: String) -> String {
+        DateDrill.shared.storageKey(source: source, target: target)
+    }
 
     static var resultTitle: LocalizedStringKey { "trainer.drill.dates" }
 
@@ -52,6 +55,10 @@ enum DateDrillFace: DrillFace {
 
     static func fastUnlocked(best: Int, content: DateDrillContent, reverse: Bool) -> Bool {
         DateDrill.shared.fastUnlocked(bestSprosse: best, content: content, reverse: reverse)
+    }
+
+    static func fastPrice(_ content: DateDrillContent?, reverse: Bool) -> Int {
+        content.map { Int(DateDrill.shared.fastPrice(content: $0, reverse: reverse)) } ?? 1
     }
 
     static func reference(model: AppModel, content: DateDrillContent,
@@ -96,19 +103,12 @@ enum DateDrillFace: DrillFace {
     }
 
     static func snapshot(_ run: DateDrillRunState) -> DrillSnapshot {
-        // A dates question carries no picture: the leading slot stays empty and
-        // the prompt — a name, or a dated line in the prompt side's digits —
-        // stands where the country's name would.
         DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
                       answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
-                      offersFinish: run.offersFinish, finished: run.finished,
-                      answerLanguage: run.answerLanguage, promptLanguage: run.promptLanguage,
-                      ask: ask(run.task.kind), promptText: run.task.promptText,
-                      promptEmoji: nil, emojiIsGiveaway: false,
-                      display: run.task.display, choices: run.task.choices,
-                      digits: run.task.digits, gloss: nil, newWord: run.patternWord,
-                      otherWord: run.otherWord)
+                      finished: run.finished,
+                      answerLanguage: run.answerLanguage, question: run.question,
+                      choices: run.task.choices, digits: run.task.digits)
     }
 
     static func reduce(_ run: DateDrillRunState, _ move: DrillMove) -> DrillStep<DateDrillRunState> {
@@ -130,17 +130,6 @@ enum DateDrillFace: DrillFace {
         case .confirmed: return DateDrillIntent.ConfirmPending.shared
         case .advanced: return DateDrillIntent.AdvanceElapsed.shared
         case .keptPracticing: return DateDrillIntent.KeepPracticing.shared
-        }
-    }
-
-    /// The three assembled kinds share one sentence: what changes between them is
-    /// on the card, not in the ask.
-    private static func ask(_ kind: DateTaskKind) -> LocalizedStringKey {
-        switch kind {
-        case .nameChoice: return "dates.ask.name"
-        case .weekday: return "dates.ask.weekday"
-        case .month: return "dates.ask.month"
-        case .dayAndMonth, .fullDate, .fullDateWithYear: return "dates.ask.date"
         }
     }
 

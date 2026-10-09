@@ -183,7 +183,7 @@ struct BoxCardRow: View {
     }
 
     /// The citation form, with its article in the gender's own color — the same
-    /// mark the card face wears (`VocabCardView.headlineText`) and the same one
+    /// mark the card face wears (`QuestionCardView.headlineText`) and the same one
     /// the Android rows already draw, so a word does not lose its gender just
     /// because it is being listed instead of asked. Where the box hands over no
     /// article — a genderless target, or a rotated synonym the card's article

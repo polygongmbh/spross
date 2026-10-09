@@ -14,6 +14,8 @@ import SprossKern
 /// dealt itself, so this side owes it no normalizer either.
 extension SentenceScrambleView: DrillRunning {
 
+    var appModel: AppModel? { model }
+
     // MARK: - The two things this drill has none of
 
     /// No field: the words are given and only their order is withheld, so there

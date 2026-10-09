@@ -5,10 +5,10 @@
   "quiet": { "text": "leise" },
   "noise": { "text": "Lärm", "grammar": { "gender": "der" } },
   "music": { "text": "Musik", "grammar": { "gender": "die" } },
-  "radio": { "text": "Radio", "grammar": { "gender": "das", "plural": "Radios" } },
+  "radio": { "text": "Radio", "forms": { "pl": "die Radios" }, "grammar": { "gender": "das" } },
   "speaker": { "text": "Lautsprecher", "grammar": { "gender": "der", "plural": "=" } },
   "headphones": { "text": "Kopfhörer", "grammar": { "gender": "der", "plural": "=" } },
-  "microphone": { "text": "Mikrofon", "grammar": { "gender": "das", "plural": "Mikrofone" } },
+  "microphone": { "text": "Mikrofon", "forms": { "pl": "die Mikrofone" }, "grammar": { "gender": "das" } },
   "volume": { "text": "Lautstärke", "grammar": { "gender": "die" } },
   "to-listen-to": {
    "text": "zuhören",

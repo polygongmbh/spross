@@ -1,10 +1,12 @@
 package net.spross.kern.session
 
 import net.spross.kern.model.Card
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProduceAnswer
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
+import net.spross.kern.model.counterpart
 
 /**
  * Where one answer stands inside a turn.
@@ -103,6 +105,8 @@ data class TurnState(
     val answer: ProduceAnswer,
     /** The form the prompt stands on — the rotated target form on recognize. */
     val promptForm: String,
+    /** Which inflected form [promptForm] is; null for the citation form or a synonym. */
+    val promptTag: FormTag? = null,
     /** `reviewCount == 0`: the word is being taught, so a miss is still written out. */
     val firstExposure: Boolean,
     /** A word past the growing bar is never slowed down by a write-out. */
@@ -188,10 +192,10 @@ data class TurnState(
 
     /**
      * The form the turn owes back: the meaning on a card asked by ear, the target word
-     * everywhere else. What a miss reveals as the answer.
+     * everywhere else, in the form the prompt asks for. What a miss reveals as the answer.
      */
     val answerText: String
-        get() = if (prompt == ProducePrompt.Sound) card.source.text else card.target.text
+        get() = if (prompt == ProducePrompt.Sound) card.source.text else counterpart(card.target, promptTag).text
 
     /**
      * A miss keeps the field open for the retype — except on a card asked by ear, whose miss

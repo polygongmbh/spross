@@ -1,5 +1,10 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
+import net.spross.kern.session.Saying
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.TurnFeedback
@@ -113,17 +118,38 @@ data class WordScrambleRunState(
         fun storageKey(language: Language): String = "wordscramble.$language"
     }
 
-    /**
-     * The card opens, whatever the spelling was graded.
-     * A clean one raises it too: the LETTERS were the question and the meaning never was,
-     * so a word that vanished the moment it landed was the one answer the drill never glossed.
-     */
-    val showsAnswer: Boolean get() = !owesAnswer
-
     /** The Sprossen this run cleared that the store did not hold — what a pause for improving names. */
     internal val newSprossen: Int get() = (clearedSprossen - config.cleared).size
 
-    /** What a verdict says aloud: the word whose letters were handed over. */
-    internal val saidAnswer: DrillEffect.SayAnswer?
-        get() = task?.let { DrillEffect.SayAnswer(it.display, it.language) }
+    /** Nothing: the letters handed over spell the very word that would be heard. */
+    override val promptSaying: Saying? get() = null
+
+    /** The word whose letters were handed over. */
+    override val answerSaying: Saying? get() = task?.let { Saying(it.display, it.language) }
+
+    /**
+     * The mixed letters, the opening ones standing as written; a miss opens onto the word and its meaning,
+     * an accepted spelling grows the meaning alone.
+     */
+    override val question: Question?
+        get() = task?.let { t ->
+            Question(
+                key = index.toString(),
+                ask = null,
+                prompt = Question.Side(
+                    t.scrambled.display, t.language, Question.Form.Word,
+                    fixedLeading = t.scrambled.fixedLeading, saying = promptSaying,
+                ),
+                answer = Question.Side(t.display, t.language, Question.Form.Word, saying = answerSaying),
+                emoji = null,
+                emojiCue = EmojiCue.Upfront,
+                opens = showsAnswer,
+                growsNote = answerAccepted,
+                closing = Question.Closing(note = ClosingNote.Own(t.gloss)),
+            )
+        }
+
+    /** The word is written out whole, letters given or not. */
+    override val controls: AnswerControls?
+        get() = task?.let { answerControls(typedSlot(it.language)) }
 }

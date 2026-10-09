@@ -4,17 +4,29 @@
  "words": {
   "grandparents": { "text": "Großeltern", "grammar": { "gender": "die", "plural": "only" } },
   "siblings": { "text": "Geschwister", "grammar": { "gender": "die", "plural": "only" } },
-  "cousin": { "text": "Cousin", "grammar": { "gender": "der", "plural": "-s" } },
-  "cousin-f": { "text": "Cousine", "accepts": ["Kusine"], "grammar": { "gender": "die", "plural": "-n" } },
-  "nephew": { "text": "Neffe", "grammar": { "gender": "der", "plural": "-n" } },
-  "niece": { "text": "Nichte", "grammar": { "gender": "die", "plural": "-n" } },
+  "cousin": {
+   "text": "Cousin",
+   "accepts": ["Kusine"],
+   "forms": { "f": "die Cousine", "pl": "die Cousins", "f.pl": "die Cousinen" },
+   "grammar": { "gender": "der" }
+  },
+  "nephew": { "text": "Neffe", "forms": { "pl": "die Neffen" }, "grammar": { "gender": "der" } },
+  "niece": { "text": "Nichte", "forms": { "pl": "die Nichten" }, "grammar": { "gender": "die" } },
   "grandson": { "text": "Enkel", "grammar": { "gender": "der", "plural": "=" } },
-  "granddaughter": { "text": "Enkelin", "grammar": { "gender": "die", "plural": "-nen" } },
-  "brother-in-law": { "text": "Schwager", "grammar": { "gender": "der", "plural": "Schwäger" } },
-  "sister-in-law": { "text": "Schwägerin", "grammar": { "gender": "die", "plural": "-nen" } },
+  "granddaughter": { "text": "Enkelin", "forms": { "pl": "die Enkelinnen" }, "grammar": { "gender": "die" } },
+  "brother-in-law": { "text": "Schwager", "forms": { "pl": "die Schwäger" }, "grammar": { "gender": "der" } },
+  "sister-in-law": { "text": "Schwägerin", "forms": { "pl": "die Schwägerinnen" }, "grammar": { "gender": "die" } },
   "parents-in-law": { "text": "Schwiegereltern", "grammar": { "gender": "die", "plural": "only" } },
-  "father-in-law": { "text": "Schwiegervater", "grammar": { "gender": "der", "plural": "Schwiegerväter" } },
-  "mother-in-law": { "text": "Schwiegermutter", "grammar": { "gender": "die", "plural": "Schwiegermütter" } },
+  "father-in-law": {
+   "text": "Schwiegervater",
+   "forms": { "pl": "die Schwiegerväter" },
+   "grammar": { "gender": "der" }
+  },
+  "mother-in-law": {
+   "text": "Schwiegermutter",
+   "forms": { "pl": "die Schwiegermütter" },
+   "grammar": { "gender": "die" }
+  },
   "do-you-have-siblings": { "text": "Habt ihr Geschwister?" },
   "my-mother-in-law-lives-with-us": {
    "text": "Meine Schwiegermutter wohnt bei uns.",

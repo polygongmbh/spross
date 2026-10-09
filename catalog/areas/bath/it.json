@@ -22,11 +22,11 @@
     "en": "Italian il water (from water closet, said vater) is the toilet bowl, not water; ask for one with Dov'è il bagno?"
    }
   },
-  "shower": { "text": "doccia", "grammar": { "gender": "la", "plural": "docce" } },
+  "shower": { "text": "doccia", "forms": { "pl": "le docce" }, "grammar": { "gender": "la" } },
   "sink": { "text": "lavandino", "accepts": ["lavabo"], "grammar": { "gender": "il" } },
-  "mirror": { "text": "specchio", "grammar": { "gender": "lo", "plural": "specchi" } },
+  "mirror": { "text": "specchio", "forms": { "pl": "gli specchi" }, "grammar": { "gender": "lo" } },
   "toothbrush": { "text": "spazzolino da denti", "accepts": ["spazzolino"], "grammar": { "gender": "lo" } },
-  "toothpaste": { "text": "dentifricio", "grammar": { "gender": "il", "plural": "dentifrici" } },
+  "toothpaste": { "text": "dentifricio", "forms": { "pl": "i dentifrici" }, "grammar": { "gender": "il" } },
   "towel": { "text": "asciugamano", "accepts": ["l'asciugamano"], "grammar": { "gender": "l'" } },
   "soap": { "text": "sapone", "grammar": { "gender": "il" } },
   "shampoo": { "text": "shampoo", "grammar": { "gender": "lo", "plural": "=" } },
@@ -54,10 +54,11 @@
   "bathtub": {
    "text": "vasca da bagno",
    "accepts": ["vasca"],
-   "grammar": { "gender": "la", "plural": "vasche da bagno" }
+   "forms": { "pl": "le vasche da bagno" },
+   "grammar": { "gender": "la" }
   },
   "toilet-paper": { "text": "carta igienica", "grammar": { "gender": "la" } },
-  "razor": { "text": "rasoio", "grammar": { "gender": "il", "plural": "rasoi" } },
+  "razor": { "text": "rasoio", "forms": { "pl": "i rasoi" }, "grammar": { "gender": "il" } },
   "sponge": { "text": "spugna", "grammar": { "gender": "la" } },
   "cream": { "text": "crema", "grammar": { "gender": "la" } },
   "faucet": { "text": "rubinetto", "grammar": { "gender": "il" } },
@@ -67,7 +68,7 @@
    "grammar": { "gender": "la" },
    "notes": { "it": "la pattumiera sta in cucina · il cestino è piccolo, per la carta." }
   },
-  "bucket": { "text": "secchio", "grammar": { "gender": "il", "plural": "secchi" } },
+  "bucket": { "text": "secchio", "forms": { "pl": "i secchi" }, "grammar": { "gender": "il" } },
   "im-taking-a-quick-shower": {
    "text": "Vado a farmi una doccia veloce.",
    "accepts": ["Mi faccio una doccia veloce.", "Vado a fare una doccia veloce."]

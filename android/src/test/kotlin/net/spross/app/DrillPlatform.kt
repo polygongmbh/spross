@@ -25,8 +25,6 @@ internal fun grownWord(id: String, text: String) = Card(
     emoji = null,
     seedIndex = 0,
     components = emptyList(),
-    feminineOf = null,
     source = Realization(lang = "de", text = "das $id"),
     target = Realization(lang = "sw", text = text),
-    promptFeminineMarker = false,
 )

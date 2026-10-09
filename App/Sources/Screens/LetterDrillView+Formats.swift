@@ -8,73 +8,24 @@ import SprossKern
 extension LetterDrillView {
 
     var drillContent: some View {
-        ScrollView {
-            VStack(spacing: Theme.spacing.md) {
-                streakLine
-                if let task = current {
-                    // ZStack so the outgoing and incoming question overlap
-                    // during the flip; .id gives each position its identity.
-                    ZStack {
-                        HearPromptCard(question: question(for: task),
-                                       language: task.language,
-                                       gapText: task.gapText,
-                                       revealed: cardReveal(task),
-                                       replay: replayAction,
-                                       isPlaying: promptIsPlaying,
-                                       replayFocus: $replayFocused)
-                            .id(run.index)
-                            .transition(reduceMotion ? .opacity : .cardFlip)
-                    }
-                    switch task.format {
-                    case .choiceEasy, .choiceConfusable:
-                        choiceGrid(task)
-                        choiceControls
-                    case .typed, .dictation:
-                        typedControls(task)
-                    }
-                }
-            }
-            .padding(.bottom, Theme.spacing.lg)
+        questionPage { question in
+            QuestionCardView(question: question, voice: cardVoice(question),
+                             replayFocus: $replayFocused)
+        } area: { controls in
+            if let task = current { answerArea(task, controls) }
         }
-        // why: the sibling drill's focus discipline, verbatim — a keyboard that
-        // dismisses on a replay tap makes dictation unusable.
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollDismissesKeyboard(.never)
     }
 
-    /// What the question asks: a letter by its name, a grapheme missing from a
-    /// heard word, or a whole word to transcribe.
-    func question(for task: LetterDrillTask) -> LocalizedStringKey {
-        if task.format == .dictation { return "letters.ask.dictation" }
-        return task.gapText == nil ? "letters.ask.hear" : "letters.ask.spell"
+    /// The question's sound plays out of the recording the drill's own player resolves
+    /// (a letter's name, never a voice reading the bare glyph); every other saying is the model's.
+    private func cardVoice(_ question: Question) -> CardVoice {
+        let voice = model.cardVoice
+        let prompt = question.prompt.saying
+        return CardVoice(pronounce: { $0 == prompt ? replayAction : voice.pronounce($0) },
+                         isPlaying: { $0 == prompt ? promptIsPlaying : voice.isPlaying($0) })
     }
 
-    /// The answer, once the learner has stopped owing it. A gap question closes
-    /// its blank with the word Kern already handed over (`gloss`); a dictation
-    /// grows the transcription with its meaning below.
-    ///
-    /// WHETHER the card opens is kern's `showsAnswer`: unlike the slot drill
-    /// the amber hold reveals too, because a slip leaves a spelling worth
-    /// seeing whole.
-    ///
-    /// A letter-name question on a choice Sprosse is the one case that skips it:
-    /// the tiles below already mark the answer, so a second glyph — spoken by
-    /// a lookup that never resolves to the letter-name recording the big
-    /// speaker played — would only repeat it, off-key.
-    private func cardReveal(_ task: LetterDrillTask) -> HearPromptCard.Reveal? {
-        guard run.showsAnswer,
-              !(task.gapText == nil && (task.format == .choiceEasy || task.format == .choiceConfusable)),
-              let word = task.gapText == nil ? task.display : task.gloss else { return nil }
-        return .init(word: word,
-                     // why: the meaning is a REVEAL, never a cue — and a gap
-                     // question's gloss IS the word, so it would repeat it.
-                     note: task.gapText == nil ? task.gloss : nil,
-                     pronounce: speaker(task, word),
-                     isPlaying: model.isPronouncing(word, lang: task.language))
-    }
-
-    /// The speaker beside a form the drill hands back — the revealed answer,
-    /// the correction box. The dictated word only.
+    /// The speaker beside a form the drill hands back in the correction box. The dictated word only.
     ///
     /// Every other Sprosse answers with a bare GLYPH, and a glyph is not a form
     /// anything may be asked to say: the lookup never reaches the letter-name
@@ -87,55 +38,42 @@ extension LetterDrillView {
         return model.pronounceAction(for: form, lang: task.language)
     }
 
-    private var streakLine: some View {
+    var streakLine: some View {
         DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
-                        answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak))
+                        answerStreak: Int(run.answerStreak))
     }
 
-    // MARK: - Multiple choice
+    // MARK: - The answer
+
+    /// Four glyph tiles, typed or dictated: kern's controls say which, and every keystroke is
+    /// offered to kern, so a finished answer approves itself.
+    private func answerArea(_ task: LetterDrillTask, _ controls: AnswerControls) -> some View {
+        AnswerArea(driver: self, controls: controls,
+                   placeholder: answerPlaceholder(task.language),
+                   focus: $answerFocused,
+                   correctionVoice: .init(
+                       pronounce: { speaker(task, $0) },
+                       isPlaying: { model.isPronouncing($0, lang: task.language) }),
+                   nextLocale: model.targetChromeLocale) { options, answer in
+            choiceGrid(options, answer: answer)
+        }
+    }
 
     /// 2×2 of glyph tiles in Kern's shuffled order — both platforms render the
-    /// same draw, so a seeded run is reproducible. The grid is
-    /// `DrillChoiceGrid`, shared with the calendar's warm-up Sprosse.
-    private func choiceGrid(_ task: LetterDrillTask) -> some View {
-        // The ramp's glyph slot rather than a ramp entry: a letterform is the
-        // thing being READ here, so it is set at picture size the way an emoji
-        // face is — and a bare Cyrillic glyph read by a German engine is a
+    /// same draw, so a seeded run is reproducible.
+    private func choiceGrid(_ options: [String], answer: String) -> some View {
+        // A prompt size rather than a ramp entry: a letterform is the thing
+        // being READ here, so it is set at picture size the way an emoji face is — and a bare Cyrillic glyph read by a German engine is a
         // guess where "Buchstabe ч" is not.
-        DrillChoiceGrid(options: task.choices ?? [],
-                        answer: task.display,
+        DrillChoiceGrid(options: options,
+                        answer: answer,
                         chosen: run.chosen,
-                        font: .system(size: 44, weight: .bold, design: .rounded),
+                        font: Theme.prompt.letter,
                         label: { glyph in
                             Text(verbatim: String(format: ChromeStrings.string("a11y.glyph.letter %@",
                                                                                locale: locale),
                                                   glyph))
                         },
                         pick: choose)
-    }
-
-    /// A miss always waits for a tap, and on the second in a row offers the way
-    /// out under it, as the typed formats do; a clean hit waits only where a
-    /// timed screen change would talk over the announcement it just made.
-    private var choiceControls: some View {
-        AnswerVerdict(feedback: feedback, onConfirm: { confirm() },
-                             onStop: run.offersFinish ? { closeRun() } : nil)
-    }
-
-    // MARK: - Typed and dictated
-
-    /// Every keystroke is offered to kern: a finished answer approves itself.
-    private func typedControls(_ task: LetterDrillTask) -> some View {
-        TypedAnswerControls(text: $input,
-                            feedback: feedback,
-                            placeholder: answerPlaceholder(task.language),
-                            focus: $answerFocused,
-                            correctionVoice: .init(
-                                pronounce: { speaker(task, $0) },
-                                isPlaying: { model.isPronouncing($0, lang: task.language) }),
-                            onType: { typed() },
-                            onSubmit: { submit() },
-                            onConfirm: { confirm() },
-                            onStop: run.offersFinish ? { closeRun() } : nil)
     }
 }

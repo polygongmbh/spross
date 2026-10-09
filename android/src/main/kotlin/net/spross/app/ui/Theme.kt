@@ -238,6 +238,9 @@ object Theme {
         /** A picture standing where the name would: a flag that IS the question. */
         val glyph = 64.sp
 
+        /** A letterform offered as an answer, read as a picture rather than as text. */
+        val letter = 36.sp
+
         /** One word with a blank in it ("Ge l＿"). */
         val word = 30.sp
 

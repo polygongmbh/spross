@@ -2,7 +2,7 @@
  "title": "Die Farben",
  "subtitle": "Rot, blau und alles dazwischen.",
  "words": {
-  "color": { "text": "Farbe", "grammar": { "gender": "die", "plural": "-n" } },
+  "color": { "text": "Farbe", "forms": { "pl": "die Farben" }, "grammar": { "gender": "die" } },
   "white": { "text": "weiß" },
   "black": { "text": "schwarz" },
   "red": { "text": "rot" },

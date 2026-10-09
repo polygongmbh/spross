@@ -6,16 +6,14 @@ import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
 import java.util.concurrent.ConcurrentHashMap
+import kotlin.math.roundToInt
 import net.spross.kern.box.StreakHealth
 
 /**
  * The run's mark, rasterized.
  *
  * The flame is the 🔥 emoji, here as everywhere else in the app, and the grade today has
- * earned it is carried by COLOR rather than by shape: full color while the day is
- * answered, half-cooled while a miss would only spend the run's one bridge — a flame asking
- * for renewal without being faded out — and cold — drained of all color — where a miss
- * would end it, which is the loud one.
+ * earned it is carried by light and COLOR rather than by shape.
  *
  * It is a bitmap because Glance draws through RemoteViews, where a `Text` takes neither an
  * alpha nor a color filter: the emoji is multi-color artwork the platform paints itself,
@@ -44,9 +42,9 @@ object WidgetFlame {
             textSize = sizePx * FILL
             textAlign = Paint.Align.CENTER
             colorFilter = ColorMatrixColorFilter(
-                ColorMatrix().apply { setSaturation(saturation(health)) },
+                ColorMatrix().apply { setSaturation(health.flameSaturation.toFloat()) },
             )
-            alpha = alpha(health)
+            alpha = (health.flameOpacity * 255).roundToInt()
         }
         val bitmap = Bitmap.createBitmap(sizePx, sizePx, Bitmap.Config.ARGB_8888)
         val metrics = paint.fontMetrics
@@ -57,21 +55,5 @@ object WidgetFlame {
             paint,
         )
         return bitmap
-    }
-
-    /** A run in danger goes cold rather than dim — gray is the one state color cannot say. */
-    private fun saturation(health: StreakHealth): Float = when (health) {
-        StreakHealth.Earned -> 1f
-        StreakHealth.Bridgeable -> 0.5f
-        StreakHealth.Ending, StreakHealth.NoRun -> 0f
-    }
-
-    private fun alpha(health: StreakHealth): Int = when (health) {
-        StreakHealth.Earned -> 255
-        StreakHealth.Bridgeable -> 230
-        StreakHealth.Ending -> 235
-        // No run to protect: the mark stays on the line as a restart nudge, but faint,
-        // and the stats line drops the count beside it rather than printing a zero.
-        StreakHealth.NoRun -> 90
     }
 }

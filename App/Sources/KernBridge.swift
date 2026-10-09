@@ -116,10 +116,6 @@ var drillRandom: KotlinRandom {
 extension LetterDrill {
     func ceiling(dictation: Bool) -> Int { Int(maxSprosse(dictationAvailable: dictation)) }
 
-    func entrySprosse(arrived: Int) -> Int { Int(entrySprosse(arrivedCards: Int32(arrived))) }
-
-    func winsToAdvance(arrived: Int) -> Int { Int(winsToAdvance(arrivedCards: Int32(arrived))) }
-
     func format(sprosse: Int) -> LetterFormat { formatFor(sprosse: Int32(sprosse)) }
 }
 
@@ -194,7 +190,7 @@ extension DrillRunResult {
     init(_ summary: DrillRunSummary, title: LocalizedStringKey) {
         self.init(doneCount: Int(summary.done), bestAnswerStreak: Int(summary.bestAnswerStreak),
                   newRecord: summary.newRecord, milestone: summary.milestone, timed: summary.timed,
-                  title: title)
+                  worthReporting: summary.worthReporting, celebrated: summary.celebrated, title: title)
     }
 }
 
@@ -231,16 +227,6 @@ extension Theme.Gender {
         case .feminine: self = .feminine
         case .neuter: self = .neuter
         }
-    }
-}
-
-extension ActivityColumn {
-    /// One day of the box's activity window. Earned and bridged days alike are
-    /// covered by the run the flame counts — the strip never walks it itself.
-    init(_ day: ActivityDay) {
-        self.init(day: Date(epochMillis: day.dayStartEpochMillis),
-                  reviews: Int(day.reviews),
-                  inStreak: day.role != .outside)
     }
 }
 

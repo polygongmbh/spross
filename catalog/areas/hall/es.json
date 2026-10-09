@@ -49,10 +49,10 @@
    "grammar": { "gender": "el" },
    "notes": { "es": "En España se vive en un piso; el apartamento es pequeño o de vacaciones." }
   },
-  "neighbor": { "text": "vecino", "accepts": ["vecina"], "grammar": { "gender": "el" } },
+  "neighbor": { "text": "vecino", "forms": { "f": "la vecina" }, "grammar": { "gender": "el" } },
   "guest": {
    "text": "invitado",
-   "accepts": ["invitada"],
+   "forms": { "f": "la invitada" },
    "grammar": { "gender": "el" },
    "notes": { "es": "El invitado viene a casa; en el hotel es el huésped." }
   },
@@ -86,7 +86,7 @@
    ]
   },
   "see-you-later": { "text": "¡Nos vemos luego!", "accepts": ["¡Hasta luego!", "¡Hasta después!", "¡Nos vemos!"] },
-  "welcome-home": { "text": "¡Bienvenido a casa!", "accepts": ["¡Bienvenida a casa!"] },
+  "welcome-home": { "text": "¡Bienvenido a casa!", "forms": { "f": "¡Bienvenida a casa!" } },
   "dont-forget-your-jacket": { "text": "¡No olvides tu chaqueta!", "accepts": ["¡No te olvides de la chaqueta!"] },
   "put-on-the-jacket": { "text": "ponerse la chaqueta" },
   "children-where-are-your-shoes": {

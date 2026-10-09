@@ -6,47 +6,12 @@ import SprossKern
 /// lives on NumbersRunView; split out purely for file size.
 extension NumbersRunView {
 
-    /// The question on screen. Kern hands back an ordinary task whichever way
-    /// round it was drawn, so the card never learns the direction.
-    private var current: NumbersTask { run.currentTask }
-
-    /// A prompt made of WORDS is laid out like one — smaller and wrapped — where a
-    /// numeral gets the one big line. Asked of the prompt rather than of the run, so
-    /// a composed sentence and a reversed reading are both read as what they are.
-    private var wordyPrompt: Bool { current.promptDisplay.contains(where: \.isLetter) }
-
-    /// Place word shown the first time a new number length appears — on the
-    /// card itself, so the prompts that carry no hint sit exactly as high.
-    private var placeValueHint: DrillHint? {
-        run.placeValueHint.map { .init(icon: "textformat.123", text: "numbers.newPlace \($0)") }
-    }
-
     var drillContent: some View {
-        ScrollView {
-            VStack(spacing: Theme.spacing.md) {
-                streakLine
-                // ZStack so outgoing and incoming prompt overlap during the
-                // flip; .id gives each run position its own view identity.
-                ZStack {
-                    DrillPromptCard(prompt: Text(current.promptDisplay),
-                                      size: wordyPrompt ? .sentence : .digits,
-                                      answer: current.display,
-                                      language: current.language,
-                                      gloss: current.gloss,
-                                      hint: placeValueHint,
-                                      otherWord: run.otherWord.map { ($0.word, $0.meanings.joined(separator: ", ")) },
-                                      revealed: run.showsAnswer,
-                                      pronounce: model?.pronounceAction(for: current.display, lang: language),
-                                      isPlaying: model?.isPronouncing(current.display, lang: language) ?? false)
-                        .id(run.index)
-                        .transition(reduceMotion ? .opacity : .cardFlip)
-                }
-                controls
-            }
-            .padding(.bottom, Theme.spacing.lg)
+        questionPage { question in
+            QuestionCardView(question: question, voice: model?.cardVoice ?? .silent)
+        } area: { controls in
+            answerSection(controls)
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollDismissesKeyboard(.never)
         .sheet(isPresented: $showingReference) {
             NumberReferenceSheet(language: language, catalog: catalog, voice: referenceVoice)
         }
@@ -60,7 +25,7 @@ extension NumbersRunView {
                        isPlaying: { model.isPronouncing($0, lang: language) })
     }
 
-    @ViewBuilder private var streakLine: some View {
+    @ViewBuilder var streakLine: some View {
         if let deadline {
             // why: a timeline redraws only this line each second.
             TimelineView(.periodic(from: .now, by: 1)) { context in
@@ -72,50 +37,34 @@ extension NumbersRunView {
     }
 
     private func scoreLine(timed: [Text]) -> some View {
-        DrillStreakLine(sprosse: sprosseText, timed: timed, answerStreak: Int(run.answerStreak),
-                        bestAnswerStreak: Int(run.bestAnswerStreak), announcesRecord: true)
+        DrillStreakLine(sprosse: sprosseText, timed: timed, answerStreak: Int(run.answerStreak))
     }
 
-    /// The Sprosse part of the score line, for the exercise that just asked: numbers
-    /// count DIGITS, everything else counts plain Sprossen — and an exercise with one
-    /// Sprosse shows none. The emoji leads only where the run offers more than one
-    /// exercise, since a run that asks one thing has already said what it asks.
+    /// The Sprosse part of the score line, worded as kern's `sprosseLine` says.
     private var sprosseText: Text? {
-        guard run.showsSprosse else { return nil }
-        let exercise = run.currentExercise
-        let sprosse = Int(run.currentSprosse)
-        guard exercise != .counting else {
-            // why: `trainer.digits` is the numbers drill's own wording and already
-            // wears 🔢 — putting the exercise's face in front would double it.
-            return Text("numbers.sprosse \(sprosse)")
-        }
-        let text = Text("trainer.sprosse \(sprosse.formatted())")
-        guard run.severalExercises else { return text }
-        return Text(verbatim: "\(numbersExerciseEmoji(exercise: exercise)) ") + text
+        guard let line = run.sprosseLine else { return nil }
+        let sprosse = Int(line.sprosse)
+        let text = line.digits ? Text("numbers.sprosse \(sprosse)") : Text("trainer.sprosse \(sprosse.formatted())")
+        guard let emoji = line.emoji else { return text }
+        return Text(verbatim: "\(emoji) ") + text
     }
 
     // why: no "Wusste ich" under a reveal here — drills are generated, so
     // self-reporting after seeing the answer proves nothing; revealed simply
     // counts as a miss and moves on.
-    private var controls: some View {
+    private func answerSection(_ controls: AnswerControls) -> some View {
         VStack(spacing: Theme.spacing.md) {
-            TypedAnswerControls(text: $input,
-                                feedback: feedback,
-                                placeholder: answerPlaceholder(language, digits: run.currentReversed),
-                                focus: $answerFocused,
-                                correctionVoice: .init(
-                                    pronounce: { model?.pronounceAction(for: $0, lang: language) },
-                                    isPlaying: { model?.isPronouncing($0, lang: language) ?? false }),
-                                keyboard: run.currentReversed ? .numbersAndPunctuation : .default,
-                                onType: { typed() },
-                                onSubmit: { submit() },
-                                onConfirm: { confirm() },
-                                onStop: run.offersFinish ? { closeRun() } : nil)
+            AnswerArea(driver: self, controls: controls,
+                       placeholder: answerPlaceholder(language, digits: run.currentReversed),
+                       focus: $answerFocused,
+                       correctionVoice: .init(
+                           pronounce: { model?.pronounceAction(for: $0, lang: language) },
+                           isPlaying: { model?.isPronouncing($0, lang: language) ?? false }),
+                       nextLocale: model?.targetChromeLocale)
             if run.offersLookUp {
                 lookupButton
             }
         }
-        .animation(.easeOut(duration: 0.25), value: feedback)
     }
 
     /// The whole numbers page, one tap away mid-run — the overview's table, not

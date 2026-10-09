@@ -32,6 +32,7 @@ import net.spross.app.startListening
 import net.spross.app.startSession
 import net.spross.app.startShortSession
 import net.spross.kern.box.StreakHealth
+import net.spross.kern.session.DayMark as DayMarkRule
 import net.spross.kern.session.HomeStanding
 
 /**
@@ -43,18 +44,14 @@ internal fun DayCard(content: @Composable ColumnScope.() -> Unit) =
     Panel(shape = MaterialTheme.shapes.large, horizontalAlignment = Alignment.CenterHorizontally, content = content)
 
 /**
- * The day's mark, wearing the streak where there is one to wear.
- *
- * The mark and the run are ONE badge: as two elements they sandwiched the prose between
- * them, and a card that both cheers and counts says one thing, not two. Guarded, because
- * unguarded it read "🔥 0 Tage" to anyone who had not started a run.
- *
- * [emoji] is the card's OWN mark — a celebration, a sprout. Where it is null the badge
- * wears the run's flame instead, at the grade [health] gives it.
+ * The day's mark as kern names it ([DayMarkRule]): the card's own emoji or the run's flame
+ * (at the grade [health] gives it), and the run's count beside it as ONE badge —
+ * as two elements they sandwiched the prose between them.
  */
 @Composable
-internal fun DayMark(emoji: String?, streak: Int, health: StreakHealth, chrome: Chrome) {
-    if (streak <= 0) {
+internal fun DayMark(mark: DayMarkRule, streak: Int, health: StreakHealth, chrome: Chrome) {
+    val emoji = mark.emoji
+    if (!mark.counted) {
         emoji?.let { Text(it, style = MaterialTheme.typography.displaySmall) }
         return
     }
@@ -97,7 +94,7 @@ fun SessionCard(model: AppModel, standing: HomeStanding, streak: Int, health: St
     DayCard {
         // A run wears its own flame; without one there is nothing to grade, so the day
         // gets a plain mark instead.
-        DayMark(if (streak > 0) null else "✨", streak, health, chrome)
+        DayMark(DayMarkRule.offer(streak), streak, health, chrome)
         Text(
             headlineText(chrome, offer.headline(model.now(), model.tz())),
             style = MaterialTheme.typography.titleLarge,
@@ -148,7 +145,7 @@ fun DoneCard(model: AppModel, standing: HomeStanding, streak: Int, health: Strea
     val chrome = model.chrome
     val worked = standing.today.worked
     DayCard {
-        DayMark(if (worked) "🎉" else "🌱", streak, health, chrome)
+        DayMark(DayMarkRule.done(worked, streak), streak, health, chrome)
         Text(
             if (worked) chrome.homeDoneTitle else chrome.homeDoneCaughtUp,
             style = MaterialTheme.typography.titleLarge,

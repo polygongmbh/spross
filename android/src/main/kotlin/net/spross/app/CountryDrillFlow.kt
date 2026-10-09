@@ -60,28 +60,14 @@ class CountryDrillFlow(
      * The run as the shared typed-drill screen reads it. The one rule about a picture — when
      * a withheld flag comes back — is the card's; this only hands over what kern drew.
      */
-    override fun view(chrome: Chrome): TypedDrillView = TypedDrillView(
+    override fun view(): TypedDrillView = TypedDrillView(
         index = state.index,
         sprosse = state.sprosse,
         answerStreak = state.answerStreak,
         bestAnswerStreak = state.bestAnswerStreak,
         outcomes = state.outcomes,
         tally = state.tally,
-        feedback = state.feedback,
-        showsAnswer = state.showsAnswer,
-        offersFinish = state.offersFinish,
-        otherWord = state.otherWord,
-        answerLanguage = state.answerLanguage,
-        prompt = TypedDrillPrompt(
-            ask = chrome.countryAsk(state.task.kind),
-            text = state.task.promptText,
-            // A flag is written in no language, so it is tagged with none.
-            language = if (state.task.promptText == null) null else state.promptLanguage,
-            display = state.task.display,
-            gloss = state.task.gloss,
-            emoji = state.task.promptEmoji,
-            emojiIsGiveaway = state.task.emojiIsGiveaway,
-        ),
+        question = state.question,
     )
 }
 

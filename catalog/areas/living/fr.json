@@ -6,7 +6,8 @@
   "dining-table": {
    "text": "table à manger",
    "accepts": ["table de salle à manger"],
-   "grammar": { "gender": "la", "plural": "tables à manger" }
+   "forms": { "pl": "les tables à manger" },
+   "grammar": { "gender": "la" }
   },
   "chair": { "text": "chaise", "grammar": { "gender": "la" } },
   "tv": {
@@ -26,12 +27,13 @@
   "shelf": { "text": "étagère", "accepts": ["l'étagère"], "grammar": { "gender": "l'" } },
   "plant": { "text": "plante", "grammar": { "gender": "la" } },
   "window": { "text": "fenêtre", "grammar": { "gender": "la" } },
-  "curtain": { "text": "rideau", "grammar": { "gender": "le", "plural": "-x" } },
+  "curtain": { "text": "rideau", "forms": { "pl": "les rideaux" }, "grammar": { "gender": "le" } },
   "carpet": { "text": "tapis", "grammar": { "gender": "le", "plural": "=" } },
   "lamp": { "text": "lampe", "grammar": { "gender": "la" } },
   "picture": {
    "text": "tableau",
-   "grammar": { "gender": "le", "plural": "-x" },
+   "forms": { "pl": "les tableaux" },
+   "grammar": { "gender": "le" },
    "notes": { "fr": "un tableau au mur · à l'école, le tableau où le maître écrit." }
   },
   "to-watch-tv": { "text": "regarder la télévision", "accepts": ["regarder la télé"] },
@@ -52,7 +54,7 @@
    "grammar": { "gender": "la" },
    "notes": { "fr": "un appartement de trois pièces · la chambre est pour dormir." }
   },
-  "newspaper": { "text": "journal", "grammar": { "gender": "le", "plural": "journaux" } },
+  "newspaper": { "text": "journal", "forms": { "pl": "les journaux" }, "grammar": { "gender": "le" } },
   "light": { "text": "lumière", "grammar": { "gender": "la" } },
   "wall": { "text": "mur", "grammar": { "gender": "le" } },
   "movie": { "text": "film", "grammar": { "gender": "le" } },
@@ -67,7 +69,7 @@
    "grammar": { "gender": "les" },
    "notes": { "fr": "au pluriel : les meubles · un meuble, c'est une chaise, une table." }
   },
-  "game": { "text": "jeu", "grammar": { "gender": "le", "plural": "-x" } },
+  "game": { "text": "jeu", "forms": { "pl": "les jeux" }, "grammar": { "gender": "le" } },
   "come-sit-with-me": {
    "text": "Viens, assieds-toi à côté de moi !",
    "accepts": ["Viens t'asseoir à côté de moi !", "Viens, assieds-toi près de moi !"]

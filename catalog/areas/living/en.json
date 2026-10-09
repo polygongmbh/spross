@@ -10,7 +10,7 @@
   "floor": { "text": "floor" },
   "song": { "text": "song" },
   "story": { "text": "story" },
-  "shelf": { "text": "shelf", "grammar": { "plural": "shelves" } },
+  "shelf": { "text": "shelf", "forms": { "pl": "shelves" } },
   "plant": { "text": "plant" },
   "window": { "text": "window" },
   "curtain": { "text": "curtain" },

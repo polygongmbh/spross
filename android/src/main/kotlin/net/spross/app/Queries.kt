@@ -2,15 +2,15 @@ package net.spross.app
 
 import android.app.Application
 import java.util.Locale
-import net.spross.app.ui.AreaNaming
-import net.spross.app.ui.SampleTrees
 import net.spross.kern.box.AreaGrowth
+import net.spross.kern.box.AreaNaming
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.CardGrowth
 import net.spross.kern.box.growthByArea
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.design.AreaTree
+import net.spross.kern.design.SampleTrees
 
 /**
  * Where ONE word stands on the growth ladder, for a surface holding that word —
@@ -45,16 +45,8 @@ fun AppModel.areaTitle(area: String): String = areaNaming().title(area)
 /** The emoji an area wears — the same naming rule as [areaTitle]. */
 fun AppModel.areaEmoji(area: String): String = areaNaming().emoji(area)
 
-private fun AppModel.areaNaming(): AreaNaming {
-    val cat = catalog
-    val source = box?.joinStamp?.source
-    return AreaNaming(
-        chrome = chrome,
-        catalogTitle = { if (source == null) null else cat?.areaTitle(it, source) },
-        catalogSubtitle = { if (source == null) null else cat?.areaSubtitle(it, source) },
-        catalogEmoji = { cat?.areaEmoji(it) },
-    )
-}
+private fun AppModel.areaNaming(): AreaNaming =
+    AreaNaming(catalog, box?.joinStamp?.source, chrome.boxOwnShelf, null)
 
 /**
  * One tree per area the box holds, in the box browser's order ([BoxBrowser.areaNames]) —

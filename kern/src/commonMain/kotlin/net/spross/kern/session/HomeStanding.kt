@@ -32,6 +32,13 @@ data class HomeStanding(
     /** What leads Home under the drill the platform's stores name ([DrillSuggestion.suggest]). */
     fun lead(pick: DrillSuggestion.Pick?): DayLead = DayLead.of(offer, pick)
 
+    /** The words-instead button under a drill lead; null where the box can compose no round at all. */
+    val roundInstead: RoundStart? get() = when {
+        offer.hasRound -> RoundStart.Due
+        canPracticeMore -> RoundStart.Extra
+        else -> null
+    }
+
     companion object {
         /**
          * [otherLanguagesAnswerDays] reaches the offer for its streak warning alone: the run

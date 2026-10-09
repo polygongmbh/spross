@@ -44,6 +44,9 @@ import net.spross.kern.model.Language
  */
 object DateDrill {
 
+    /** Where a pair's calendar ladder is filed — [CountryDrill.storageKey]'s twin. */
+    fun storageKey(source: Language, target: Language): String = "dates.$source-$target"
+
     /** Three clean wins a Sprosse — the country drill's pacing, for the country drill's reason. */
     const val WINS_TO_ADVANCE = 3
 
@@ -54,7 +57,10 @@ object DateDrill {
 
     /** Fast is earned by having EVER stood on this ladder's top Sprosse, like the atlas'. */
     fun fastUnlocked(bestSprosse: Int, content: DateDrillContent, reverse: Boolean): Boolean =
-        bestSprosse >= maxSprosse(content, reverse)
+        bestSprosse >= fastPrice(content, reverse)
+
+    /** The Sprosse that earns Fast, as the locked switch prices it: this ladder's top one. */
+    fun fastPrice(content: DateDrillContent, reverse: Boolean): Int = maxSprosse(content, reverse)
 
     /** The Sprosse ramp, on this ladder's Sprosse length ([DrillRamp.step]). */
     fun step(

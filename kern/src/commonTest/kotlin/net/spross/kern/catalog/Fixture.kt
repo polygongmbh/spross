@@ -122,9 +122,9 @@ internal object Fixture {
         "areas/alpha/concepts.json" to """
             [
              { "slug": "waiter", "kind": "noun", "emoji": "🧑‍🍳" },
-             { "slug": "waiter-f", "kind": "noun", "emoji": "👩‍🍳", "feminineOf": "waiter" },
+             { "slug": "waiter-f", "kind": "noun", "emoji": "👩‍🍳" },
              { "slug": "cook", "kind": "verb" },
-             { "slug": "mouse", "kind": "noun", "emoji": "🐭" },
+             { "slug": "mouse", "kind": "noun", "emoji": "🐭", "formEmoji": { "pl": "🐁🐁" } },
              { "slug": "hello", "kind": "phrase", "components": [] },
              { "slug": "the-mouse-runs", "kind": "phrase", "components": ["mouse", "cook"] },
              { "slug": "the-mouse-sprints", "kind": "phrase", "components": ["mouse", "cook"] }
@@ -134,9 +134,9 @@ internal object Fixture {
             { "title": "Alpha",
               "words": {
                 "waiter": { "text": "Kellner", "grammar": { "gender": "der", "plural": "=" } },
-                "waiter-f": { "text": "Kellnerin", "grammar": { "gender": "die", "plural": "-nen" } },
+                "waiter-f": { "text": "Kellnerin", "forms": { "pl": "Kellnerinnen" }, "grammar": { "gender": "die" } },
                 "cook": { "text": "kochen" },
-                "mouse": { "text": "Maus", "grammar": { "gender": "die", "plural": "Mäuse" } },
+                "mouse": { "text": "Maus", "forms": { "pl": "die Mäuse" }, "grammar": { "gender": "die" } },
                 "hello": { "text": "Hallo!" },
                 "the-mouse-runs": { "text": "Sehen Sie die Maus?", "accepts": ["Siehst du die Maus?"] },
                 "the-mouse-sprints": { "text": "Die Maus sprintet los." } } }
@@ -165,7 +165,7 @@ internal object Fixture {
               "words": {
                 "waiter": { "text": "офіціант" },
                 "waiter-f": { "text": "офіціантка" },
-                "mouse": { "text": "миша", "teaches": ["мишеня"], "accepts": ["мишка"],
+                "mouse": { "text": "миша", "teaches": ["мишеня"], "accepts": ["мишка"], "forms": { "pl": "миші" },
                            "notes": { "sw": "Panya tu." } },
                 "the-mouse-sprints": {
                   "text": "Миша спринтує.",
@@ -174,15 +174,15 @@ internal object Fixture {
         "areas/beta/concepts.json" to """
             [
              { "slug": "royal", "kind": "noun" },
-             { "slug": "royal-f", "kind": "noun", "feminineOf": "royal" },
+             { "slug": "royal-f", "kind": "noun" },
              { "slug": "greet", "kind": "verb" }
             ]
         """.trimIndent(),
         "areas/beta/de.json" to """
             { "title": "Beta",
               "words": {
-                "royal": { "text": "Fürst", "grammar": { "gender": "der", "plural": "-en" } },
-                "royal-f": { "text": "Fürstin", "grammar": { "gender": "die", "plural": "-nen" } },
+                "royal": { "text": "Fürst", "forms": { "pl": "Fürsten" }, "grammar": { "gender": "der" } },
+                "royal-f": { "text": "Fürstin", "forms": { "pl": "Fürstinnen" }, "grammar": { "gender": "die" } },
                 "greet": { "text": "grüßen" } } }
         """.trimIndent(),
         "areas/beta/uk.json" to """
@@ -199,8 +199,8 @@ internal object Fixture {
         "areas/gamma/de.json" to """
             { "title": "Gamma", "subtitle": "Alles dreht sich.",
               "words": {
-                "door": { "text": "T${du}r", "teaches": ["die  T${du}re"],
-                          "grammar": { "gender": "die", "plural": "-en" } },
+                "door": { "text": "T${du}r", "teaches": ["die  T${du}re"], "forms": { "pl": "T${du}ren" },
+                          "grammar": { "gender": "die" } },
                 "im-learning": { "text": "Ich lerne {language}." },
                 "i-speak-a-little": { "text": "Ich spreche ein bisschen {language}." },
                 "how-do-you-say-this": { "text": "Wie sagt man das {language-in}?" } } }

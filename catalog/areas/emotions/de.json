@@ -18,7 +18,7 @@
   "doubt": { "text": "Zweifel", "grammar": { "gender": "der", "plural": "=" } },
   "to-confuse": { "text": "verwirren" },
   "to-be-confused": { "text": "verwirrt sein" },
-  "longing": { "text": "Sehnsucht", "grammar": { "gender": "die", "plural": "Sehnsüchte" } },
+  "longing": { "text": "Sehnsucht", "forms": { "pl": "die Sehnsüchte" }, "grammar": { "gender": "die" } },
   "to-long-for": { "text": "sich sehnen" }
  }
 }

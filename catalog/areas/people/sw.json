@@ -2,7 +2,7 @@
  "title": "Familia",
  "subtitle": "Watu wa karibu nawe.",
  "words": {
-  "person": { "text": "mtu", "grammar": { "plural": "watu" } },
+  "person": { "text": "mtu", "forms": { "pl": "watu" } },
   "human": {
    "text": "binadamu",
    "grammar": { "plural": "=" },
@@ -16,31 +16,31 @@
   },
   "father": { "text": "baba", "grammar": { "plural": "=" } },
   "parents": { "text": "wazazi", "grammar": { "plural": "only" } },
-  "child": { "text": "mtoto", "grammar": { "plural": "watoto" } },
-  "son": { "text": "mwana", "grammar": { "plural": "wana" } },
+  "child": { "text": "mtoto", "forms": { "pl": "watoto" } },
+  "son": { "text": "mwana", "forms": { "pl": "wana" } },
   "daughter": { "text": "binti", "grammar": { "plural": "=" } },
   "brother": { "text": "kaka", "grammar": { "plural": "=" } },
   "sister": { "text": "dada", "grammar": { "plural": "=" } },
-  "man": { "text": "mwanaume", "accepts": ["mwanamume"], "grammar": { "plural": "wanaume" } },
-  "woman": { "text": "mwanamke", "grammar": { "plural": "wanawake" } },
-  "boy": { "text": "mvulana", "grammar": { "plural": "wavulana" } },
-  "girl": { "text": "msichana", "grammar": { "plural": "wasichana" } },
+  "man": { "text": "mwanaume", "accepts": ["mwanamume"], "forms": { "pl": "wanaume" } },
+  "woman": { "text": "mwanamke", "forms": { "pl": "wanawake" } },
+  "boy": { "text": "mvulana", "forms": { "pl": "wavulana" } },
+  "girl": { "text": "msichana", "forms": { "pl": "wasichana" } },
   "baby": {
    "text": "mtoto mchanga",
-   "grammar": { "plural": "watoto wachanga" },
+   "forms": { "pl": "watoto wachanga" },
    "notes": {
     "sw": "mtoto mchanga = mtoto aliyezaliwa karibuni",
     "de": "Ein eigenes Wort für Baby gibt es nicht: mtoto mchanga ist der Säugling."
    }
   },
-  "friend": { "text": "rafiki", "grammar": { "plural": "marafiki" } },
+  "friend": { "text": "rafiki", "forms": { "pl": "marafiki" } },
   "grandmother": { "text": "nyanya", "grammar": { "plural": "=" } },
   "grandfather": { "text": "babu", "grammar": { "plural": "=" } },
-  "husband": { "text": "mume", "grammar": { "plural": "waume" } },
-  "wife": { "text": "mke", "grammar": { "plural": "wake" } },
+  "husband": { "text": "mume", "forms": { "pl": "waume" } },
+  "wife": { "text": "mke", "forms": { "pl": "wake" } },
   "uncle": {
    "text": "mjomba",
-   "grammar": { "plural": "wajomba" },
+   "forms": { "pl": "wajomba" },
    "notes": { "sw": "mjomba = kaka wa mama · kaka wa baba ni baba mdogo au mkubwa" }
   },
   "aunt": {
@@ -54,7 +54,7 @@
   "where-is-your-father": { "text": "Baba yenu yuko wapi?" },
   "i-have-two-children": { "text": "Nina watoto wawili." },
   "how-is-your-grandmother": { "text": "Nyanya yako hajambo?" },
-  "a-good-friend": { "text": "rafiki mzuri", "grammar": { "plural": "marafiki wazuri" } },
+  "a-good-friend": { "text": "rafiki mzuri", "forms": { "pl": "marafiki wazuri" } },
   "my-girlfriend": {
    "text": "mpenzi wangu",
    "notes": {

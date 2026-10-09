@@ -23,6 +23,13 @@ struct TrainerHubView: View, LanguageNaming {
     /// destination through the same presentations the chips use.
     @Binding var destination: HubDestination?
 
+    /// The figures a scramble run handed back as it closed — the scrambles have
+    /// no page of their own, so the hub wears their tile. A run too short to
+    /// report clears it rather than leaving an older one standing.
+    @State private var lastRun: DrillRunResult?
+    /// Rains confetti over the screen the hub stands on — a card cannot hold it.
+    var celebrate: () -> Void = {}
+
     /// The language being learned — every drill runs in it.
     var drillLanguage: String? { model.targetLanguage }
 
@@ -94,14 +101,19 @@ struct TrainerHubView: View, LanguageNaming {
             case let .dates(source, target):
                 DatesOverview(model: model, source: source, target: target)
             case let .wordScramble(language):
-                WordScrambleView(model: model, language: language)
+                WordScrambleView(model: model, language: language, onFinish: report)
             case let .sentenceScramble(language):
-                SentenceScrambleView(model: model, language: language)
+                SentenceScrambleView(model: model, language: language, onFinish: report)
             case let .opposites(language):
-                OppositesView(model: model, language: language)
+                OppositesView(model: model, language: language, onFinish: report)
             }
         }
         .environment(\.locale, model.knownLocale)
+    }
+
+    private func report(_ result: DrillRunResult) {
+        lastRun = result.worthReporting ? result : nil
+        if result.celebrated { celebrate() }
     }
 
     /// The one `destination`, seen through ONE presentation: a binding that
@@ -128,6 +140,7 @@ struct TrainerHubView: View, LanguageNaming {
             Text("trainer.hub.subtitle")
                 .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.textSecondary)
+            if let lastRun { DrillResultTile(result: lastRun) }
             VStack(spacing: Theme.spacing.md) {
                 ForEach(Array(chipRows.enumerated()), id: \.offset) { _, row in
                     HStack(spacing: Theme.spacing.md) {
@@ -175,17 +188,15 @@ struct TrainerHubView: View, LanguageNaming {
         }
     }
 
-    /// The chips cut into lines. Three or fewer stand on one; past that the card
-    /// breaks into TWO, `ceil(n/2)` above and `floor(n/2)` below — 4 stand 2+2,
-    /// 5 stand 3+2, 6 stand 3+3 — and each line keeps the equal-width chips one
-    /// line carries on its own. The break is DRAWN rather than discovered: an
-    /// HStack overflows rather than wrapping, and six chips sharing one row
-    /// would be six slivers of a word apiece.
+    /// The chips cut into the lines kern sizes (`Drill.chipRows`), each line's chips equal width.
     private var chipRows: [[HubChip]] {
         let chips = chips
-        guard chips.count > 3 else { return chips.isEmpty ? [] : [chips] }
-        let top = (chips.count + 1) / 2
-        return [Array(chips.prefix(top)), Array(chips.dropFirst(top))]
+        var start = 0
+        return Drill.companion.chipRows(count: Int32(chips.count)).map { size in
+            let row = Array(chips[start..<start + Int(truncating: size)])
+            start += Int(truncating: size)
+            return row
+        }
     }
 
     private func chip(for chip: HubChip) -> some View {
@@ -228,8 +239,7 @@ struct ChipButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .scaleEffect(configuration.isPressed ? 0.96 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+            .press(configuration.isPressed, .chip)
     }
 }
 

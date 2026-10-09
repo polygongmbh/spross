@@ -47,8 +47,8 @@ internal class TurnGrading(
      */
     fun primed(state: TurnState, text: String): String {
         if (state.prompt == ProducePrompt.Sound) return ""
-        val expected = AnswerNormalizer.words(state.card.target.text)
-        val count = normalizer.matchingPrefixWordCount(text, state.card.target.text)
+        val expected = AnswerNormalizer.words(state.answerText)
+        val count = normalizer.matchingPrefixWordCount(text, state.answerText)
         val kept = expected
             .take(minOf(count, expected.size - 1))
             .joinToString(" ")
@@ -82,7 +82,7 @@ internal class TurnGrading(
      * it has one — and a borrowed one comes back [Graded.merged], for the turn to hold on.
      */
     fun grade(state: TurnState, text: String): Graded {
-        if (state.prompt != ProducePrompt.Sound) return Graded(grader.grade(text, state.card))
+        if (state.prompt != ProducePrompt.Sound) return Graded(grader.grade(text, state.card, state.promptTag))
         val own = meaningNormalizer.evaluate(text, meaningSide(state.card))
         if (own == Match.Exact) return Graded(own)
         val shared = grader.conceptsSharing(state.promptForm, state.card)

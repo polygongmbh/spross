@@ -51,7 +51,7 @@
    "notes": { "sw": "swali gumu, lugha ngumu, kitanda kigumu" }
   },
   "easy": { "text": "rahisi", "notes": { "sw": "swali rahisi · rahisi pia ni bei ndogo" } },
-  "problem": { "text": "tatizo", "grammar": { "plural": "matatizo" }, "teaches": ["shida"] },
+  "problem": { "text": "tatizo", "forms": { "pl": "matatizo" }, "teaches": ["shida"] },
   "to-solve": { "text": "kutatua", "notes": { "sw": "kutatua tatizo, kutatua ugomvi" } },
   "challenge": { "text": "changamoto", "grammar": { "plural": "=" } },
   "clean-adj": { "text": "safi", "notes": { "sw": "maji safi, nyumba safi · Safi! = vizuri!" } },

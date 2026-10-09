@@ -35,9 +35,9 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.closeAbout
 import net.spross.app.countLine
-import net.spross.app.audio.Pronouncer
 import net.spross.kern.catalog.AudioCredit
 import net.spross.kern.catalog.AudioCreditFile
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.audioCredits
 
 /**
@@ -184,7 +184,7 @@ private fun CreditFileRow(model: AppModel, file: AudioCreditFile, chrome: Chrome
                 .weight(1f)
                 .clickable(onClickLabel = chrome.a11yActionPronounce) {
                     model.pronouncer.pronounce(
-                        file.pronunciation, Pronouncer.Trigger.TAP, recordingOnly = true,
+                        file.pronunciation, PronounceTrigger.Tap, recordingOnly = true,
                     )
                 },
         ) {

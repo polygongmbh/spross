@@ -5,10 +5,10 @@
   "fridge": { "text": "холодильник" },
   "stove": { "text": "плита" },
   "oven": { "text": "духовка" },
-  "dishwasher": { "text": "посудомийна машина", "grammar": { "plural": "посудомийні машини" } },
+  "dishwasher": { "text": "посудомийна машина", "forms": { "pl": "посудомийні машини" } },
   "pot": { "text": "каструля" },
   "pan": { "text": "сковорідка" },
-  "knife": { "text": "ніж", "grammar": { "plural": "ножі" } },
+  "knife": { "text": "ніж", "forms": { "pl": "ножі" } },
   "spoon": { "text": "ложка" },
   "fork": { "text": "виделка" },
   "plate": { "text": "тарілка" },
@@ -32,7 +32,7 @@
    "notes": { "uk": "банка — і скляна, і бляшана · тільки бляшана — бляшанка." }
   },
   "gas": { "text": "газ" },
-  "tasty": { "text": "смачний", "accepts": ["смачна", "смачне"] },
+  "tasty": { "text": "смачний", "forms": { "f": "смачна", "n": "смачне" } },
   "the-knife-is-sharp": { "text": "Ніж гострий!" },
   "this-is-very-tasty": { "text": "Це дуже смачно!", "accepts": ["Це так смачно!"] },
   "are-you-cooking-rice-today": {

@@ -15,7 +15,7 @@
   "to-smile": { "text": "kutabasamu" },
   "to-feel": { "text": "kujisikia" },
   "to-cry": { "text": "kulia" },
-  "doubt": { "text": "shaka", "grammar": { "plural": "mashaka" } },
+  "doubt": { "text": "shaka", "forms": { "pl": "mashaka" } },
   "to-confuse": { "text": "kuchanganya" },
   "to-be-confused": { "text": "kuchanganyikiwa" },
   "longing": { "text": "hamu", "grammar": { "plural": "=" } },

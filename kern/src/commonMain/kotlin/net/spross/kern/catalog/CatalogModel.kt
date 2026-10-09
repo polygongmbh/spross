@@ -1,7 +1,9 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.Language
+import net.spross.kern.model.TaggedForm
 import net.spross.kern.trainer.NumbersReading
 import net.spross.kern.trainer.PhraseTemplate
 import net.spross.kern.trainer.SwahiliConcord
@@ -32,9 +34,10 @@ internal data class CatalogConcept(
     val slug: String,
     val kind: CardKind,
     val emoji: String?,
+    /** The picture a tagged form wears instead of [emoji] (`f` → 👩‍🏫). */
+    val formEmoji: Map<FormTag, String>,
     /** Same-area word slugs (phrases only). */
     val components: List<String>,
-    val feminineOf: String?,
     /** Global catalog position across groups → areas → concepts. */
     val seedIndex: Int,
 ) {
@@ -59,6 +62,7 @@ internal data class RawRealization(
     val text: String,
     val teaches: List<String>,
     val accepts: List<String>,
+    val forms: List<TaggedForm>,
     /** Alternative valid word orders of the same sentence — scramble-only, never prompted. */
     val orders: List<String>,
     val grammar: Map<String, String>,

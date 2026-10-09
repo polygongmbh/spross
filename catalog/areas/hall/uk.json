@@ -6,11 +6,11 @@
   "door": { "text": "двері", "grammar": { "plural": "only" } },
   "key": { "text": "ключ" },
   "jacket": { "text": "куртка" },
-  "coat": { "text": "пальто", "grammar": { "plural": "пальта" } },
+  "coat": { "text": "пальто", "forms": { "pl": "пальта" } },
   "umbrella": { "text": "парасолька" },
   "hat": { "text": "шапка" },
-  "mailbox": { "text": "поштова скринька", "grammar": { "plural": "поштові скриньки" } },
-  "doorbell": { "text": "дзвінок", "grammar": { "plural": "дзвінки" } },
+  "mailbox": { "text": "поштова скринька", "forms": { "pl": "поштові скриньки" } },
+  "doorbell": { "text": "дзвінок", "forms": { "pl": "дзвінки" } },
   "stairs": { "text": "сходи", "grammar": { "plural": "only" } },
   "bag": { "text": "сумка" },
   "to-lock": { "text": "замикати на ключ" },
@@ -26,7 +26,7 @@
   "apartment": { "text": "квартира" },
   "neighbor": { "text": "сусід" },
   "guest": { "text": "гість" },
-  "wallet": { "text": "гаманець", "grammar": { "plural": "гаманці" } },
+  "wallet": { "text": "гаманець", "forms": { "pl": "гаманці" } },
   "glove": { "text": "рукавичка" },
   "letter": { "text": "лист" },
   "to-knock-on-door": { "text": "стукати у двері" },
@@ -34,7 +34,7 @@
   "house": {
    "text": "будинок",
    "teaches": ["дім"],
-   "grammar": { "plural": "будинки" },
+   "forms": { "pl": "будинки" },
    "notes": { "uk": "будинок = будівля · дім = рідна домівка." }
   },
   "to-live": {

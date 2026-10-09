@@ -17,7 +17,7 @@
   "storm": { "text": "tormenta", "accepts": ["tempestad"], "grammar": { "gender": "la" } },
   "thunder": { "text": "trueno", "grammar": { "gender": "el" } },
   "lightning": { "text": "relámpago", "accepts": ["rayo"], "grammar": { "gender": "el" } },
-  "humid": { "text": "húmedo", "accepts": ["húmeda"] },
+  "humid": { "text": "húmedo", "forms": { "f": "húmeda" } },
   "hows-the-weather-today": { "text": "¿Qué tiempo hace hoy?", "accepts": ["¿Cómo está el tiempo hoy?"] },
   "its-raining": { "text": "Está lloviendo.", "accepts": ["Llueve."] },
   "the-rain-has-stopped": {

@@ -20,7 +20,7 @@
    "grammar": { "gender": "la" },
    "notes": { "fr": "la poêle pour cuire · le poêle chauffe la maison." }
   },
-  "knife": { "text": "couteau", "grammar": { "gender": "le", "plural": "-x" } },
+  "knife": { "text": "couteau", "forms": { "pl": "les couteaux" }, "grammar": { "gender": "le" } },
   "spoon": { "text": "cuillère", "accepts": ["cuiller"], "grammar": { "gender": "la" } },
   "fork": { "text": "fourchette", "grammar": { "gender": "la" } },
   "plate": { "text": "assiette", "accepts": ["l'assiette"], "grammar": { "gender": "l'" } },
@@ -60,10 +60,11 @@
   "tin-can": {
    "text": "boîte de conserve",
    "accepts": ["conserve"],
-   "grammar": { "gender": "la", "plural": "boîtes de conserve" }
+   "forms": { "pl": "les boîtes de conserve" },
+   "grammar": { "gender": "la" }
   },
   "gas": { "text": "gaz", "grammar": { "gender": "le", "plural": "=" } },
-  "tasty": { "text": "délicieux", "accepts": ["délicieuse"] },
+  "tasty": { "text": "délicieux", "forms": { "f": "délicieuse" } },
   "the-knife-is-sharp": {
    "text": "Le couteau est tranchant !",
    "accepts": ["Le couteau est bien aiguisé !", "Le couteau coupe bien !"]

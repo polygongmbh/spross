@@ -67,13 +67,15 @@
   "calendar": {
    "text": "calendario",
    "teaches": ["agenda"],
-   "grammar": { "gender": "il", "plural": "calendari" },
+   "forms": { "pl": "i calendari" },
+   "grammar": { "gender": "il" },
    "notes": { "it": "il calendario sta al muro · l'agenda porta gli appuntamenti." }
   },
   "important": { "text": "importante" },
   "ready": {
    "text": "pronto",
-   "accepts": ["pronta", "finito"],
+   "accepts": ["finito"],
+   "forms": { "f": "pronta" },
    "notes": {
     "it": "sono pronto = posso partire · ho finito = ho terminato.",
     "de": "sono pronto = ich bin fertig (bereit); ho finito = ich bin fertig (damit)."
@@ -81,7 +83,8 @@
   },
   "broken": {
    "text": "rotto",
-   "accepts": ["rotta", "guasto"],
+   "accepts": ["guasto"],
+   "forms": { "f": "rotta" },
    "notes": { "it": "va con essere: il telefono è rotto · se non funziona è guasto." }
   },
   "message": { "text": "messaggio", "grammar": { "gender": "il" } },

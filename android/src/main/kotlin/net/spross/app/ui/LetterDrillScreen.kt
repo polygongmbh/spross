@@ -1,44 +1,23 @@
 package net.spross.app.ui
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.role
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.LetterDrillFlow
 import net.spross.app.Screen
-import net.spross.app.audio.Pronouncer
 import net.spross.app.finishDrill
 import net.spross.app.letterReplay
 import net.spross.app.letterSpeaker
 import net.spross.app.newLetterDrill
 import net.spross.app.playLetterPrompt
 import net.spross.app.stampRun
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.LetterDrillRunState
 import net.spross.kern.trainer.LetterDrillTask
-import net.spross.kern.trainer.LetterFormat
 
 /**
  * The letter drill: hear a sound, find the letter. Four glyph tiles, then confusable ones,
@@ -47,10 +26,10 @@ import net.spross.kern.trainer.LetterFormat
  *
  * The one screen in the app that shows nothing: everything the learner is given is the
  * sound, so entering it is the request to hear one. Every autoplay goes out as
- * [Pronouncer.Trigger.ESSENTIAL]: no mute reaches it, and only the TalkBack gate applies,
+ * [PronounceTrigger.Essential]: no mute reaches it, and only the TalkBack gate applies,
  * without this screen testing for it.
  *
- * Format bodies live in LetterDrillFormats.kt; the run itself in `LetterDrillFlow`.
+ * What stands under the card lives in LetterDrillFormats.kt; the run itself in `LetterDrillFlow`.
  */
 @Composable
 fun LetterDrillScreen(model: AppModel) {
@@ -107,99 +86,18 @@ private fun Run(
         screenReader = replayFocus,
     )
 
-    HearPrompt(model, flow, task, chrome, replayFocus)
-    when (task.format) {
-        LetterFormat.ChoiceEasy, LetterFormat.ChoiceConfusable ->
-            ChoiceFormat(flow, task, chrome)
-        LetterFormat.Typed, LetterFormat.Dictation ->
-            TypedFormat(model, flow, task, chrome, inputFocus)
-    }
-    if (state.offersFinish) DrillStopOffer(chrome, onFinish)
-}
-
-/**
- * The audio question on the app's own card face: what is being asked, one big replay
- * button, the gap word with the asked grapheme blanked, and — once the answer is in — the
- * same reveal a vocabulary card grows. No answer ever renders before that, and that is the
- * whole point.
- */
-@Composable
-private fun HearPrompt(
-    model: AppModel,
-    flow: LetterDrillFlow,
-    task: LetterDrillTask,
-    chrome: Chrome,
-    replayFocus: FocusRequester,
-) {
-    val language = model.languageName(task.language)
-    val question = when {
-        task.format == LetterFormat.Dictation -> chrome.lettersAskDictation
-        task.gapText == null -> chrome.lettersAskHear
-        else -> chrome.lettersAskSpell
-    }
-    val replay = model.letterReplay(task)
-    CardFace {
-        Text(
-            "$question · ${chrome.lettersPromptInLanguage.format(language)}",
-            style = MaterialTheme.typography.bodySmall,
-            color = Theme.colors.textSecondary,
-            textAlign = TextAlign.Center,
-        )
-        ReplayButton(chrome, replay, replayFocus)
-        task.gapText?.let {
-            Text(localizedTarget(it, task.language), fontSize = Theme.prompt.word, fontWeight = FontWeight.Bold)
-        }
-        if (flow.state.showsAnswer) {
-            // why: the meaning is a REVEAL, never a cue — a dictation that shows what the
-            // word means is no longer taken from the sound.
-            CardReveal(note = task.gloss) {
-                SpokenWord(model.letterSpeaker(task, task.display), chrome) {
-                    Text(
-                        localizedTarget(task.display, task.language),
-                        style = MaterialTheme.typography.titleLarge,
-                        color = Theme.colors.accent,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.weight(1f, fill = false),
-                    )
-                }
-            }
-        }
-    }
-}
-
-/** Not a control beside the content: on this card it IS the content, well past 48 dp. */
-@Composable
-private fun ReplayButton(chrome: Chrome, replay: (() -> Unit)?, focus: FocusRequester) {
-    val enabled = replay != null
-    Box(
-        modifier = Modifier
-            .size(72.dp)
-            .focusRequester(focus)
-            // The wash, not the accent at full strength: this is the thing the drill
-            // asks you to LISTEN to, and a solid clay disc reads as the button to press
-            // next. Disabled keeps the recessed chip fill, so the state still shows.
-            .background(
-                if (enabled) Theme.colors.wash(Theme.colors.accent) else MaterialTheme.colorScheme.surfaceVariant,
-                CircleShape,
-            )
-            .clip(CircleShape)
-            // why: focusable in BOTH states — a disabled clickable carries no focus target,
-            // and the screen reader's hand-off to this button would land nowhere on the one
-            // device that can neither play nor say the prompt.
-            .then(if (replay != null) Modifier.clickable(onClick = replay) else Modifier.focusable())
-            // why: merged, or the loudspeaker inside would be a node of its own and
-            // TalkBack would read the picture after the button it belongs to.
-            .semantics(mergeDescendants = true) {
-                role = Role.Button
-                contentDescription = chrome.a11yActionReplayPrompt
+    val question = state.question ?: return
+    QuestionStage(question) { shown ->
+        QuestionCard(
+            shown,
+            chrome,
+            // why: the prompt plays out of the drill's own letter recording, never the form-keyed lookup.
+            voice = CardVoice { saying ->
+                if (saying == shown.prompt.saying) model.letterReplay(task) else model.letterSpeaker(task, saying.form)
             },
-        contentAlignment = Alignment.Center,
-    ) {
-        Icon(
-            SprossIcons.Speaker,
-            contentDescription = null,
-            tint = if (enabled) Theme.colors.accent else Theme.colors.textSecondary,
-            modifier = Modifier.size(40.dp),
+            // why: the outgoing card lets go of the requester, so TalkBack's hand-off lands on the incoming one.
+            replayFocus = replayFocus.takeIf { shown.key == question.key },
         )
     }
+    LetterAnswer(model, flow, task, inputFocus, onFinish)
 }

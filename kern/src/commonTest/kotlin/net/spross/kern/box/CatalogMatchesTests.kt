@@ -22,13 +22,12 @@ class CatalogMatchesTests {
         gender: String? = null,
     ) = Card(
         id = id, kind = CardKind.Noun, area = "area1", emoji = null, seedIndex = 1,
-        components = emptyList(), feminineOf = null,
+        components = emptyList(),
         source = Realization(lang = "de", text = known),
         target = Realization(
             lang = "sw", text = learning, teaches = teaches,
             grammar = gender?.let { mapOf("gender" to it) } ?: emptyMap(),
         ),
-        promptFeminineMarker = false,
     )
 
     private fun own(id: String, texts: Map<String, String>) =

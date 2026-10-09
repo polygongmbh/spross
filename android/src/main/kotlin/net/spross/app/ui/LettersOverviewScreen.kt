@@ -22,6 +22,7 @@ import net.spross.kern.trainer.DrillUnlockMark
 import net.spross.kern.trainer.LetterDrillAvailability
 import net.spross.kern.trainer.LetterDrillRunState
 import net.spross.kern.trainer.LetterFormat
+import net.spross.kern.trainer.SprosseMark
 
 /**
  * The Letters entry: the alphabet of the language being learned, and the place its
@@ -89,11 +90,8 @@ private fun FormatRow(
     val ready = report?.takeIf { it.drillAvailable }
     val open = formatOpen(format, report)
     val entry = open && ready?.openingFormat(cleared) == format
-    val mark = when {
-        ready?.formatCleared(format, cleared) == true -> SprosseMark.Cleared
-        entry -> SprosseMark.Reached
-        else -> SprosseMark.Untouched
-    }
+    // Climbed off clean beats where the run opens; the rest are outlines.
+    val mark = SprosseMark.of(cleared = ready?.formatCleared(format, cleared) == true, reached = entry)
     val caption = if (!open && ready != null) chrome.lettersStageDictationLocked else null
     Row(
         modifier = Modifier

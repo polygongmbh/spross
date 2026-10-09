@@ -86,18 +86,16 @@ final class AppModel {
     /// Whether the pair joins the two calendars the dates drill needs — the
     /// same kind of walk, resolved beside the atlas and never per composition.
     private(set) var datesJoinPair = false
-    /// How many Sprossen the joined calendars' forward ladder names — what the
+    /// The joined calendars, which set how tall the dates ladder runs — what the
     /// suggestion reads "mastered" against, out of the same join.
-    private(set) var datesSprossen = 0
+    private(set) var dates: DateDrillContent?
     private(set) var phraseTemplatesForPair: [PhraseTemplate] = []
     /// The target languages the settings picker offers. Resolving it is a full
     /// catalog JOIN per candidate language — every card of every pair built and
     /// thrown away — so it is held here and never asked from a view body.
     private(set) var targetChoices: [String] = []
-    /// Every shelf's heading, resolved for the reader: emoji, title, flavor line.
-    /// Each is a linear scan of the catalog's area list, and the browser asks all
-    /// three per shelf while the Trees picture asks the emoji again per tree.
-    private(set) var areaChrome: [String: AreaChrome] = [:]
+    /// Every shelf's heading, resolved for the reader once per join (`AreaNaming`).
+    private(set) var areaNaming: AreaNaming?
 
     /// Each area's numbers by name. `BoxStatistics.areas` is a LIST, so finding
     /// one area in it is a scan — and both the browser and the Trees picture do it once
@@ -344,7 +342,7 @@ final class AppModel {
         #if DEBUG
         // UI-test hook: `-uitest-trees 0.55` stands a fabricated box of that age
         // on Home and on a round's summary (`SampleTrees`).
-        if let age = uitestTreesAge { trees = SampleTrees.trees(age: age) }
+        if let age = uitestTreesAge { trees = SampleTrees.shared.trees(age: age) }
         #endif
         activity = composedActivityWindow(now: now, tzId: tz)
         areaGroupSections = composedAreaGroupSections()
@@ -362,24 +360,23 @@ final class AppModel {
         else {
             atlasJoinsPair = false
             datesJoinPair = false
-            datesSprossen = 0
+            dates = nil
             phraseTemplatesForPair = []
             targetChoices = []
-            areaChrome = [:]
+            areaNaming = nil
             return
         }
         // why: kern throws on an unknown or self-paired language rather than
         // returning empty, and a Kotlin throw crossing back is a crash — hence
         // the guard above.
         atlasJoinsPair = catalog.countryDrillContent(source: sourceLanguage, target: target) != nil
-        let dates = catalog.dateDrillContent(source: sourceLanguage, target: target)
+        dates = catalog.dateDrillContent(source: sourceLanguage, target: target)
         datesJoinPair = dates != nil
-        datesSprossen = dates.map { DateDrill.shared.ceiling(content: $0, reverse: false) } ?? 0
         phraseTemplatesForPair = catalog.phraseTemplates(source: sourceLanguage, target: target)
         targetChoices = LanguageChoices.shared.targetChoices(
             catalog: catalog,
             selection: LanguageChoices.Selection(source: sourceLanguage, target: target))
-        areaChrome = composedAreaChrome(catalog: catalog)
+        areaNaming = composedAreaNaming(catalog: catalog)
     }
 
     /// Re-asks `anyWordAudible`, wherever the join or the device's voices can have moved.

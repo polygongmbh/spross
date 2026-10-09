@@ -3,19 +3,19 @@
  "subtitle": "Rojo, azul y todo lo demás.",
  "words": {
   "color": { "text": "color", "grammar": { "gender": "el" } },
-  "white": { "text": "blanco", "accepts": ["blanca"] },
-  "black": { "text": "negro", "accepts": ["negra"] },
-  "red": { "text": "rojo", "accepts": ["roja"] },
+  "white": { "text": "blanco", "forms": { "f": "blanca" } },
+  "black": { "text": "negro", "forms": { "f": "negra" } },
+  "red": { "text": "rojo", "forms": { "f": "roja" } },
   "blue": { "text": "azul" },
   "green": { "text": "verde" },
-  "yellow": { "text": "amarillo", "accepts": ["amarilla"] },
+  "yellow": { "text": "amarillo", "forms": { "f": "amarilla" } },
   "brown": {
    "text": "marrón",
    "accepts": ["café", "castaño"],
    "notes": { "es": "una mesa marrón · en América suele ser café." }
   },
   "gray": { "text": "gris" },
-  "purple": { "text": "morado", "accepts": ["morada", "violeta"] },
+  "purple": { "text": "morado", "accepts": ["violeta"], "forms": { "f": "morada" } },
   "what-color-is-it": { "text": "¿De qué color es?" },
   "a-white-car": { "text": "Un coche blanco." }
  }

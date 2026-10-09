@@ -126,7 +126,7 @@ object DateDrillRun {
 
     /** "Finishing the reading IS the answer" — the live approve ([TypedDrillVerdicts.typed]). */
     private fun typed(state: DateDrillRunState, text: String): DateDrillReduction {
-        val verdict = TypedDrillVerdicts.typed(state.feedback, state.saidAnswer) {
+        val verdict = TypedDrillVerdicts.typed(state.feedback) {
             grade(text, state.task, state.config) == Match.Exact
         } ?: return unchanged(state)
         return DateDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
@@ -139,7 +139,7 @@ object DateDrillRun {
     private fun submit(state: DateDrillRunState, text: String): DateDrillReduction {
         if (!state.owesAnswer) return unchanged(state)
         if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
-        val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config), state.saidAnswer)
+        val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config))
         return DateDrillReduction(
             state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord),
             verdict.effects,
@@ -148,7 +148,7 @@ object DateDrillRun {
 
     private fun reveal(state: DateDrillRunState): DateDrillReduction {
         if (!state.owesAnswer) return unchanged(state)
-        val verdict = TypedDrillVerdicts.reveal(state.saidAnswer)
+        val verdict = TypedDrillVerdicts.reveal()
         return DateDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 

@@ -98,4 +98,10 @@ class AreaGrowthTests {
         assertTrue(picks.all { it >= 0 })
         assertTrue(picks.map { it % 3 }.toSet().size > 1, "a steady habit still reads more than one line")
     }
+
+    @Test
+    fun aRoundThatOnlyHeldNeverReadsTheLineSayingTheWordsGrew() {
+        assertTrue((0..20).none { GrowthHeadline(GrowthClaim.Held, it).line(3) == 0 })
+        assertTrue((0..20).any { GrowthHeadline(GrowthClaim.Grew, it).line(3) == 0 })
+    }
 }

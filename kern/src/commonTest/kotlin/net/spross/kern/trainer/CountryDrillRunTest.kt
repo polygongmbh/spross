@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Saying
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -65,7 +66,7 @@ class CountryDrillRunTest {
         ),
     )
 
-    private val saysUjerumani = DrillEffect.SayAnswer("Ujerumani", "sw")
+    private val saysUjerumani = Saying("Ujerumani", "sw")
 
     private val swahili = LanguageInfo(code = "sw", name = "Kiswahili", englishName = "Swahili", flag = "🇹🇿")
 
@@ -161,9 +162,10 @@ class CountryDrillRunTest {
         val reduction = open().reduce(CountryDrillIntent.InputChanged("Ujerumani"))
         assertEquals(TurnFeedback.Correct, reduction.state.feedback)
         assertEquals(
-            listOf(DrillEffect.Tone(ToneKind.Correct), saysUjerumani, DrillEffect.ArmAdvance(AdvanceBeat.Live)),
+            listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceBeat.Live)),
             reduction.effects,
         )
+        assertEquals(saysUjerumani, reduction.state.reading.answer)
     }
 
     /** A slip mid-word is not an answer yet: the live approve never fires on one. */
@@ -200,7 +202,6 @@ class CountryDrillRunTest {
             listOf(
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Correct),
-                saysUjerumani,
                 DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
             ),
             reduction.effects,
@@ -221,12 +222,11 @@ class CountryDrillRunTest {
             listOf(
                 DrillEffect.Silence,
                 DrillEffect.Tone(ToneKind.Almost),
-                saysUjerumani,
                 DrillEffect.ReleaseFocus,
             ),
             reduction.effects,
         )
-        assertTrue(reduction.state.showsAnswer, "the slip's proper spelling is worth seeing whole")
+        assertEquals(saysUjerumani, reduction.state.reading.answer)
     }
 
     /** A name that is not this one's is a miss, however close the ladder's other rows are. */
@@ -235,17 +235,22 @@ class CountryDrillRunTest {
         val reduction = open().reduce(CountryDrillIntent.Submit("Uhispania"))
         assertEquals(TurnFeedback.Revealed, reduction.state.feedback)
         assertEquals(
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong), saysUjerumani),
+            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
             reduction.effects,
         )
     }
 
-    /** A reversed run answers in the learner's own language, which no verdict reads out. */
+    /**
+     * A reversed run asks in the language being learned, so its prompt is said as it goes up;
+     * it answers in the learner's own, which no verdict reads out.
+     */
     @Test
-    fun aReversedVerdictSaysNothing() {
+    fun aReversedRunSaysItsPromptAndNotItsVerdict() {
         val reversed = open(reverse = true)
+        assertEquals(Saying(assertNotNull(reversed.task.promptText), "sw"), reversed.reading.prompt)
         val reduction = reversed.reduce(CountryDrillIntent.Submit(reversed.task.display))
-        assertTrue(reduction.effects.none { it is DrillEffect.SayAnswer })
+        assertNull(reduction.state.reading.answer)
+        assertNull(open().reading.prompt)
     }
 
     /**
@@ -275,7 +280,7 @@ class CountryDrillRunTest {
         val revealed = open().reduce(CountryDrillIntent.Reveal)
         assertEquals(TurnFeedback.Revealed, revealed.state.feedback)
         assertEquals(
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal), saysUjerumani),
+            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)),
             revealed.effects,
         )
 

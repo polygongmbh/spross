@@ -42,10 +42,9 @@ class RealCatalogGradingTest {
     }
 
     /**
-     * The elision ruling, end to end on the shipping catalog (content brief): the
-     * tokenizer deletes apostrophes, so an elided article is one token that can never
-     * be stripped or read back — the l'-noun therefore authors gender `l'` and carries
-     * its elided surface as a variant, and a correct typed answer is never demoted.
+     * The elision ruling, end to end on the shipping catalog: an elided article (`l'`)
+     * is set apart as a word of its own, so it is stripped and read back like `la`,
+     * and a correct typed answer is never demoted.
      */
     @Test
     fun theElidedItalianArticleNeverDemotesACorrectAnswer() {
@@ -53,7 +52,6 @@ class RealCatalogGradingTest {
         val normalizer = AnswerNormalizer(catalog.languages.getValue("it"))
         val water = cards.first { it.id == "water" }
         assertEquals(Match.Exact, normalizer.evaluate("acqua", water))
-        // One token via the authored variant; no leading article exists to read back.
         assertEquals(Match.Exact, normalizer.evaluate("l'acqua", water))
         // A spaced article IS readable — and `la` disagrees with the authored `l'`.
         assertIs<Match.Typo>(normalizer.evaluate("la acqua", water))

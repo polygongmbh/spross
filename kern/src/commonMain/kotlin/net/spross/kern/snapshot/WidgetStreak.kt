@@ -10,9 +10,21 @@ import net.spross.kern.box.localDate
 import net.spross.kern.box.streakHealth
 import net.spross.kern.box.zoneOf
 
-/** The streak and its health as one render day reads them. */
+/**
+ * The streak and its health as one render day reads them, with the flame's grade
+ * ([StreakHealth.flameOpacity], [StreakHealth.flameSaturation]) spelled out
+ * for the iOS extension, which cannot ask the enum.
+ */
 @Serializable
-internal data class WidgetStreakDto(val streak: Int, val health: StreakHealth)
+internal data class WidgetStreakDto(
+    val streak: Int,
+    val health: StreakHealth,
+    val flameOpacity: Double,
+    val flameSaturation: Double,
+) {
+    constructor(streak: Int, health: StreakHealth) :
+        this(streak, health, health.flameOpacity, health.flameSaturation)
+}
 
 /**
  * The streak as each render day will read it, keyed by ISO day:
@@ -41,15 +53,16 @@ internal fun streakTimeline(
 }
 
 /**
- * [timeline]'s entry for the local day of [nowEpochMillis]:
+ * A render-day timeline's entry for the local day of [nowEpochMillis]
+ * ([streakTimeline], [activityTimeline]):
  * a day past its last entry reads the last, one before its first
  * (a device clock behind the phone's) reads the first.
  */
-internal fun streakOn(
-    timeline: Map<String, WidgetStreakDto>,
+internal fun <T> onRenderDay(
+    timeline: Map<String, T>,
     nowEpochMillis: Long,
     tzId: String,
-): WidgetStreakDto {
+): T {
     val today = localDate(nowEpochMillis, tzId).toString()
     val days = timeline.keys.sorted()
     return timeline.getValue(days.lastOrNull { it <= today } ?: days.first())

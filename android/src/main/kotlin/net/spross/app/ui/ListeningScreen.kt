@@ -6,7 +6,6 @@ import android.os.Build
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,24 +23,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.closeListening
-import net.spross.app.listen.ListeningBeat
-import net.spross.kern.listen.LISTENING_EMOJI_CUE
 import net.spross.kern.listen.ListeningTurn
+import net.spross.kern.listen.question
 
 /**
  * The listening run: a playlist over the learner's own words, made entirely of sound.
@@ -93,7 +87,7 @@ fun ListeningScreen(model: AppModel) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(Modifier.weight(1f))
-            run.turn?.let { ListeningCard(model, it, run.beat) }
+            run.turn?.let { ListeningCard(model, it, run.revealed) }
             Spacer(Modifier.weight(1f))
 
             Row(
@@ -154,57 +148,18 @@ private fun AskForTheShade() {
 }
 
 /**
- * The word on air. The card face is the review loop's, so a word looks the same wherever it
- * is met — with its article in the gender's color, since that is the half of the noun this
- * mode exists to teach by ear.
+ * The word on air, on the review loop's card, so a word looks the same wherever it is met —
+ * with its article in the gender's color, since that is the half of the noun this mode
+ * exists to teach by ear. The meaning is out from the moment its reading starts and stays
+ * through the echo, where the two meet.
  */
 @Composable
-private fun ListeningCard(model: AppModel, turn: ListeningTurn, beat: ListeningBeat?) {
-    val card = model.box?.cards?.get(turn.cardId)
-    val target = card?.target
-    val lang = target?.lang ?: model.box?.joinStamp?.target ?: return
-    // The meaning is out from the moment its reading starts and stays through the echo —
-    // that second saying of the target is where the two meet, and a meaning gone by then
-    // would leave it meeting nothing.
-    val meaningOut = beat == ListeningBeat.Meaning || beat == ListeningBeat.Echo
-    // why: the meaning's LINE is held for the whole turn and only its ink fades in, the
-    // same bargain the picture's slot makes — a card that grows and shrinks every few
-    // seconds pumps in height with nothing being revealed.
-    //
-    // Keyed on the turn, exactly as the picture is keyed on the picture: a new word
-    // re-seeds the fade at nothing. Animating across the swap instead showed the INCOMING
-    // word's meaning at full ink and then faded it away — the answer handed over before
-    // the word had been said once.
-    val meaning = remember(turn.cardId) { Animatable(0f) }
-    LaunchedEffect(turn.cardId, meaningOut) { meaning.animateTo(if (meaningOut) 1f else 0f) }
-    // why: the picture is a cue withheld while an answer is OWED, and listening owes
-    // none — held back on the meaning it vanished and returned on every word, which
-    // reads as a flicker rather than as a reveal.
-    // why: this card OWNS the screen — nothing to type, nothing to press, no keyboard — so
-    // the picture stands above the words and they take the card's whole width, which is
-    // the width a long target word needs to stay one unbroken line.
-    VocabCard(
-        card?.emoji,
-        cue = LISTENING_EMOJI_CUE,
-        revealed = false,
-        arrangement = CardArrangement.Above,
-    ) {
-        Headword(
-            localizedTarget(
-                target?.let { Theme.colors.articleColoredText(it) } ?: AnnotatedString(turn.targetForm),
-                lang,
-            ),
-        )
-        Headword(
-            turn.sourceForm,
-            color = Theme.colors.accent,
-            // why: alpha does not measure, so the line is there all along — but it is
-            // not YET part of the card, and a screen reader that read it out would be
-            // saying the meaning ahead of the voice that owes it.
-            modifier = Modifier.alpha(meaning.value)
-                .then(if (meaningOut) Modifier else Modifier.clearAndSetSemantics { }),
-        )
-    }
+private fun ListeningCard(model: AppModel, turn: ListeningTurn, revealed: Boolean) {
+    QuestionCard(
+        turn.question(model.box?.cards?.get(turn.cardId), opens = revealed),
+        model.chrome,
+        surface = QuestionSurface.Listening,
+    )
 }
 
 /**

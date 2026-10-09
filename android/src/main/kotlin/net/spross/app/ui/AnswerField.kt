@@ -12,16 +12,22 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
@@ -35,9 +41,9 @@ import net.spross.kern.session.TurnFeedback
  * it renders, and they are the same wherever the answer is written: a near miss runs amber
  * throughout — field edge, checkmark and box agree (`docs/design.md`).
  *
- * Never read-only, not even after grading: a miss keeps typing, because the retype IS the
- * answer. Kern ignores text in the states that decide nothing, and a field that locks is a
- * field the keyboard closes under.
+ * Open after grading unless [locked]: a review miss keeps typing, because the retype IS the
+ * answer; a drill's miss locks it on what was written, since nothing there is retyped
+ * (kern's `AnswerControls.Slot.Typed.editable`).
  */
 @Composable
 fun AnswerField(
@@ -57,6 +63,8 @@ fun AnswerField(
     focus: FocusRequester? = null,
     /** A task that owes digits the number pad can type — the keyboard is the one thing this decides. */
     numberPad: Boolean = false,
+    /** Keeps what was written and takes no more. */
+    locked: Boolean = false,
 ) {
     val palette = Theme.colors
     // The edge says how the answer landed: green where it was clean, amber for a near miss
@@ -70,12 +78,21 @@ fun AnswerField(
     val owned = remember { FocusRequester() }
     val requester = focus ?: owned
     LaunchedEffect(Unit) { if (focus == null) requester.claimWhenPlaced() }
+    // why: held as a TextFieldValue so a lock can drop the keyboard's composing region —
+    // the String overload keeps it, and the locked word stood underlined as if still typed.
+    var field by remember { mutableStateOf(TextFieldValue(value, TextRange(value.length))) }
+    val synced = if (field.text == value) field else TextFieldValue(value, TextRange(value.length))
     OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
+        value = if (locked) synced.copy(composition = null) else synced,
+        onValueChange = {
+            field = it
+            if (it.text != value) onValueChange(it.text)
+        },
+        readOnly = locked,
         modifier = Modifier
             .fillMaxWidth()
             .focusRequester(requester)
+            .focusProperties { canFocus = !locked }
             .semantics {
                 when (feedback) {
                     TurnFeedback.Correct -> stateDescription = chrome.a11yVerdictCorrect

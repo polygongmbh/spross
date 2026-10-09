@@ -34,17 +34,10 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.runtime.snapshotFlow
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.withTimeoutOrNull
 import net.spross.app.AppModel
-import net.spross.app.CHIME_CLEARANCE_MS
 import net.spross.app.DrillRun
 import net.spross.app.Screen
 import net.spross.app.finishDrill
-import net.spross.app.speakDrillAnswer
-import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.trainer.DrillRunProgress
 import net.spross.kern.trainer.DrillTally
@@ -172,31 +165,6 @@ fun ReadAloudSwitch(model: AppModel) {
 }
 
 /**
- * The wait a kern-armed beat owes before the run moves on — and past it, whatever [holding]
- * still says is sounding, up to a ceiling for an end that never arrives.
- *
- * Nothing is ever armed where a screen reader runs — the flow renders an explicit Weiter
- * instead — so this only waits out beats that may run.
- */
-@Composable
-fun BeatEffect(
-    beatToken: Int,
-    armedBeat: AdvanceBeat?,
-    onElapsed: () -> Unit,
-    holding: () -> Boolean = { false },
-) {
-    LaunchedEffect(beatToken) {
-        val beat = armedBeat ?: return@LaunchedEffect
-        delay(beat.delayMs)
-        withTimeoutOrNull(LONGEST_READING_MS) { snapshotFlow(holding).first { !it } }
-        onElapsed()
-    }
-}
-
-/** Far past any word or phrase a drill says. */
-private const val LONGEST_READING_MS = 8_000L
-
-/**
  * The run the page opened, or null where this device, box or pair can be asked nothing at
  * all — every entry point gates on the same predicate, so a null run is a closed door rather
  * than a screen, and the page it was opened from takes the learner straight back.
@@ -217,9 +185,8 @@ fun <F : Any> rememberRun(model: AppModel, back: Screen, key: Any? = Unit, open:
  * corner and on the back gesture, the top bar, the score line, and the scrolling body under
  * them — plus the three effects every run owes.
  *
- * [sprosse] is worded by the drill that owns it and is null where a run has one Sprosse only;
- * [announcesRecord] carries a real difference rather than settling it, since the letter
- * drill has always spoken the answer streak alone. [showsMuteButton] is [RunTopBar]'s own gate,
+ * [sprosse] is worded by the drill that owns it and is null where a run has one Sprosse only.
+ * [showsMuteButton] is [RunTopBar]'s own gate,
  * passed through rather than defaulted here — which runs autoplay speech is a call each
  * drill screen makes for itself, matching iOS's per-run `showsMuteButton`.
  */
@@ -232,8 +199,6 @@ fun DrillRunScaffold(
     tally: DrillTally,
     sprosse: String?,
     answerStreak: Int,
-    bestAnswerStreak: Int,
-    announcesRecord: Boolean = false,
     /** False while something stands OVER the run — the number table, which the back gesture closes. */
     backLeaves: Boolean = true,
     showsMuteButton: Boolean = false,
@@ -253,18 +218,19 @@ fun DrillRunScaffold(
         // what it does on a question's arrival (autoplay, focus) waits for the run to go on.
         val pause = run.progress.pause
         if (pause != null) {
-            DrillPause(run.progress, pause, model.chrome, onDone = leave, onKeepPracticing = run::keepPracticing)
+            DrillPause(run.progress, pause, model.chrome, onDone = leave, onKeepPracticing = run::keepPracticing, cheer = model.cues::cheer)
             return@Column
         }
         RunTopBar(
             model, outcomes, leave, counter = tally.counter(),
             showsMuteButton = showsMuteButton, speaksPastMute = speaksPastMute,
         )
+        // why: the score line is chrome — it stays under the bar while the question scrolls.
+        DrillStreakLine(sprosse, answerStreak, model.chrome, timed)
         Column(
             modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(spacing),
         ) {
-            DrillStreakLine(sprosse, answerStreak, bestAnswerStreak, model.chrome, announcesRecord, timed)
             body()
             Spacer(Modifier.height(Theme.spacing.sm))
         }
@@ -284,7 +250,6 @@ fun DrillRunScaffold(
     leave: () -> Unit,
     progress: DrillRunProgress,
     sprosse: String?,
-    announcesRecord: Boolean = false,
     backLeaves: Boolean = true,
     showsMuteButton: Boolean = false,
     speaksPastMute: Boolean = false,
@@ -299,8 +264,6 @@ fun DrillRunScaffold(
     tally = progress.tally,
     sprosse = sprosse,
     answerStreak = progress.answerStreak,
-    bestAnswerStreak = progress.bestAnswerStreak,
-    announcesRecord = announcesRecord,
     timed = timed,
     backLeaves = backLeaves,
     showsMuteButton = showsMuteButton,
@@ -320,12 +283,5 @@ fun DrillRunEffects(run: DrillRun, leave: () -> Unit, model: AppModel) {
     LaunchedEffect(run.ranOut) { if (run.ranOut) leave() }
     // why: D5 — leaving mid-question must silence, whichever way the screen goes.
     DisposableEffect(Unit) { onDispose { model.pronouncer.stop() } }
-    // The answer kern owes the ear, after a beat so the verdict cue is out of the way.
-    val reading = run.owedReading
-    LaunchedEffect(reading?.token) {
-        val owed = reading ?: return@LaunchedEffect
-        delay(CHIME_CLEARANCE_MS)
-        model.speakDrillAnswer(owed.text, owed.language) { run.readingSaid(owed.token) }
-    }
-    BeatEffect(run.beatToken, run.armedBeat, run::advanceElapsed, holding = { run.owedReading != null })
+    QuestionEffects(run, model)
 }

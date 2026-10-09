@@ -219,14 +219,14 @@ class CatalogLintTest {
     fun textAndAlternatesAreClean() {
         forEachRealization { area, lang, slug, raw ->
             val where = "$area/$lang.json $slug"
-            val all = listOf(raw.text) + raw.teaches + raw.accepts
+            val all = listOf(raw.text) + raw.teaches + raw.accepts + raw.forms.map { it.text }
             for (entry in all) {
                 assertTrue(entry.isNotBlank(), "$where: blank entry")
                 assertTrue(entry.trim() == entry, "$where: untrimmed \"$entry\"")
                 assertTrue(" / " !in entry, "$where: slash-joined \"$entry\"")
                 assertTrue('|' !in entry && '\n' !in entry, "$where: bad char in \"$entry\"")
             }
-            val alternates = raw.teaches + raw.accepts
+            val alternates = raw.teaches + raw.accepts + raw.forms.map { it.text }
             assertTrue(alternates.toSet().size == alternates.size, "$where: duplicate alternates")
             assertTrue(raw.text !in alternates, "$where: alternate equals text")
         }
@@ -276,12 +276,12 @@ class CatalogLintTest {
         }
     }
 
-    // Rotation prompts cycle through text + `teaches` — forms must stay distinct
+    // Rotation prompts cycle through text + `teaches` + `forms` — forms must stay distinct
     // under NFC (composed vs decomposed spellings of the same word would collide).
     @Test
     fun rotationFormsDistinctPerRealization() {
         forEachRealization { area, lang, slug, raw ->
-            val forms = (listOf(raw.text) + raw.teaches).map { nfcNormalized(it).trim() }
+            val forms = (listOf(raw.text) + raw.teaches + raw.forms.map { it.text }).map { nfcNormalized(it).trim() }
             assertEquals(forms.toSet().size, forms.size, "$area/$lang.json $slug: colliding forms")
         }
     }
@@ -344,21 +344,6 @@ class CatalogLintTest {
                 for (component in concept.components) {
                     val target = area.conceptsBySlug[component]
                     assertTrue(target != null && target.kind != CardKind.Phrase, "${concept.id}: bad component $component")
-                }
-                concept.feminineOf?.let {
-                    assertEquals(CardKind.Noun, area.conceptsBySlug[it]?.kind, "${concept.id}: bad feminineOf")
-                }
-            }
-        }
-    }
-
-    @Test
-    fun feminineConceptsAlwaysCarryTheDeForm() {
-        for (area in catalog.areas) {
-            val de = area.realizations["de"].orEmpty()
-            for (concept in area.concepts) {
-                if (concept.feminineOf != null) {
-                    assertTrue(concept.slug in de, "${concept.id}: feminine without de realization")
                 }
             }
         }
@@ -534,6 +519,9 @@ class CatalogLintTest {
                 val where = "$area/$lang.json $slug.$key"
                 assertTrue(value.isNotBlank() && value.trim() == value, "$where: bad value \"$value\"")
                 assertTrue(!value.startsWith("Pl."), "$where: labeled value \"$value\"")
+            }
+            raw.grammar["plural"]?.let {
+                assertTrue(it == "=" || it == "only", "$area/$lang.json $slug: a plural form belongs in forms.pl, not grammar (\"$it\")")
             }
             val gender = raw.grammar["gender"] ?: return@forEachRealization
             val where = "$area/$lang.json $slug.gender"

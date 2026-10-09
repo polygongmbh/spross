@@ -19,7 +19,7 @@ struct AnswerInputView: View {
         case typo
         case merged
 
-        var caption: LocalizedStringKey {
+        var caption: String {
             switch self {
             case .typo: return "session.almost.typo"
             case .merged: return "session.almost.merged"
@@ -62,6 +62,7 @@ struct AnswerInputView: View {
     var onSubmit: () -> Void = {}
 
     @FocusState private var fallbackFocus: Bool
+    @Environment(\.locale) private var locale
 
     var body: some View {
         VStack(spacing: Theme.spacing.md) {
@@ -72,11 +73,12 @@ struct AnswerInputView: View {
                 inputField
             }
             if case .almost(let form, let reason) = feedback {
-                correctionBox(form: form, caption: reason.caption)
+                correctionBox(form: form, caption: LocalizedStringKey(reason.caption))
+                    .onAppear { announceCorrection(form: form, reason: reason) }
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
-        .animation(.easeOut(duration: 0.25), value: feedback)
+        .animation(.cardReveal, value: feedback)
     }
 
     /// Revealed, locked and empty: the card is carrying the answer and there is
@@ -212,12 +214,25 @@ struct AnswerInputView: View {
         .padding(Theme.spacing.lg)
         .background(
             RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                .fill(Theme.colors.amber.opacity(0.14))
+                .fill(Theme.colors.amber.opacity(Palette.shared.WASH))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                .strokeBorder(Theme.colors.amber.opacity(Palette.shared.EDGE), lineWidth: 1)
         )
         // why: `contain`, not `combine` — combining would swallow the speaker,
         // and a correction the learner cannot replay is the thing this box
         // exists to fix. Caption and form stay two stops.
         .accessibilityElement(children: .contain)
+    }
+
+    /// why: a near miss has no autoplay to tell a screen reader what became of the answer,
+    /// so the box says its caption and form once as it appears — queued behind whatever is
+    /// being spoken, never cutting it off.
+    private func announceCorrection(form: String, reason: AlmostReason) {
+        var text = AttributedString(ChromeStrings.string(reason.caption, locale: locale) + " " + form)
+        text.accessibilitySpeechAnnouncementPriority = .low
+        AccessibilityNotification.Announcement(text).post()
     }
 }
 

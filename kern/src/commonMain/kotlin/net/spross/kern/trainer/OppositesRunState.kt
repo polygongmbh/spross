@@ -1,5 +1,10 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
+import net.spross.kern.session.Saying
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.TurnFeedback
@@ -52,6 +57,9 @@ class OppositesRunConfig(
     val cleared: Set<Int> = emptySet(),
 )
 
+/** Between the opposites of one prompt, and between their meanings. */
+private const val OPPOSITES_JOIN = " · "
+
 /**
  * One opposites run, whole and immutable. The learner's TEXT is not in here — the platform
  * owns the field — and no FSRS anywhere: the box is READ for the words it holds, never written.
@@ -74,12 +82,40 @@ data class OppositesRunState(
         fun storageKey(language: Language): String = "opposites.$language"
     }
 
-    /** The card opens on every verdict: the other opposites are what the drill is there to show. */
-    val showsAnswer: Boolean get() = !owesAnswer
-
     internal val newSprossen: Int get() = (clearedSprossen - config.cleared).size
 
-    /** What a verdict says aloud: every opposite, so a merge is heard as well as read. */
-    internal val saidAnswer: DrillEffect.SayAnswer?
-        get() = task?.let { t -> DrillEffect.SayAnswer(t.answers.joinToString(", ") { it.text }, t.language) }
+    /** The word asked about, in the language being learned: hearing it gives no opposite away. */
+    override val promptSaying: Saying? get() = task?.let { Saying(it.prompt, it.language) }
+
+    /** Every opposite, so a merge is heard as well as read. */
+    override val answerSaying: Saying?
+        get() = task?.let { t -> Saying(t.answers.joinToString(", ") { it.text }, t.language) }
+
+    /**
+     * Every opposite on the answer, and the closing line pairing what the prompt means with what each of them does —
+     * the one line an accepted opposite grows.
+     */
+    override val question: Question?
+        get() = task?.let { t ->
+            Question(
+                key = index.toString(),
+                ask = null,
+                prompt = Question.Side(t.prompt, t.language, Question.Form.Word, saying = promptSaying),
+                answer = Question.Side(
+                    t.answers.joinToString(OPPOSITES_JOIN) { it.text }, t.language, Question.Form.Word,
+                    saying = answerSaying,
+                ),
+                emoji = null,
+                emojiCue = EmojiCue.Upfront,
+                opens = showsAnswer,
+                growsNote = answerAccepted,
+                closing = Question.Closing(
+                    note = ClosingNote.Own("${t.gloss} ↔ ${t.answers.joinToString(OPPOSITES_JOIN) { it.gloss }}"),
+                ),
+            )
+        }
+
+    /** Any one opposite, written. */
+    override val controls: AnswerControls?
+        get() = task?.let { answerControls(typedSlot(it.language)) }
 }

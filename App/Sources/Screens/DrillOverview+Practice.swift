@@ -79,10 +79,10 @@ extension DrillOverview {
         .accessibilityValue(Text(value ?? ""))
     }
 
-    /// What the record says of one Sprosse: answered out beats stood on.
     private func mark(_ number: Int) -> SprosseMark {
-        if cleared.contains(number) { return .cleared }
-        return number <= bestSprosse ? .reached : .untouched
+        SprosseMark.companion.of(sprosse: Int32(number),
+                                 cleared: Set(cleared.map { KotlinInt(int: Int32($0)) }),
+                                 bestSprosse: Int32(bestSprosse))
     }
 
     /// Under the ladder: that the rows are the control, and — once a run has
@@ -152,7 +152,7 @@ extension DrillOverview {
             // kern's count, so no ladder's line can misstate what it costs.
             (open ? Text("trainer.modifier.fast.hint \(Face.winsToAdvance)")
                   : Text("numbers.unlock") + Text(verbatim: " ")
-                      + Text("trainer.sprosse \(ladderCeiling.formatted())"))
+                      + Text("trainer.sprosse \(Face.fastPrice(content, reverse: reverse).formatted())"))
                 .font(Theme.typography.caption)
                 .foregroundStyle(Theme.colors.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)

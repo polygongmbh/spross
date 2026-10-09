@@ -34,7 +34,7 @@ struct WordScrambleView: View, LanguageNaming {
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
     /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
-    @State var answerVoice = AnswerVoice()
+    @State var reader = Reader()
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, language: String, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
@@ -66,7 +66,9 @@ struct WordScrambleView: View, LanguageNaming {
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
-        runScreen(asking: current != nil) {
+        runScreen(asking: current != nil,
+                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
+                                             answerStreak: Int(run.answerStreak))) {
             drillContent
         }
         // why: BOTH hooks. .onChange never fires for the FIRST question, and a
@@ -80,7 +82,7 @@ struct WordScrambleView: View, LanguageNaming {
         }
         .onDisappear {
             autoAdvance?.cancel()
-            answerVoice.hush()
+            reader.hush()
         }
         #if DEBUG
         .onAppear { uitestDriveRun() }
@@ -89,22 +91,9 @@ struct WordScrambleView: View, LanguageNaming {
 
     // MARK: - The mixed word
 
-    /// The prompt: the letters as kern mixed them, with the ones the Sprosse
-    /// left standing set bold. Kern says how many hold at the front
-    /// (`ScrambledWord.fixedLeading`) and this side says what that looks like —
-    /// weight alone, because the anchor is a recognition aid the ladder takes
-    /// away, and an aid on its way out is not worth a legend.
-    func promptText(_ word: ScrambledWord) -> Text {
-        let letters = Array(word.display)
-        let lead = min(Int(word.fixedLeading), letters.count)
-        return Text(verbatim: String(letters.prefix(lead))).bold()
-            + Text(verbatim: String(letters.dropFirst(lead)))
-    }
-
-    /// A mixed word is not a word, and a voice reading it as one says nothing a
-    /// learner can spell from — so it is spelled OUT, letter by letter.
+    /// The mixed word spelled out, letter by letter (kern's `spelledOut`).
     func promptLabel(_ word: ScrambledWord) -> Text {
-        Text(verbatim: word.display.map(String.init).joined(separator: ", "))
+        Text(verbatim: word.spelledOut)
     }
 
     // The content, the conformance and the close are WordScrambleView+Run.swift's.

@@ -37,6 +37,8 @@ import net.spross.app.Chrome
 import net.spross.kern.box.ActiveStage
 import net.spross.kern.box.CardRowState
 import net.spross.kern.box.swatch
+import net.spross.kern.model.FormDimension
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
 import net.spross.kern.model.articledForm
@@ -58,17 +60,18 @@ fun Pill(text: String, color: Color, modifier: Modifier = Modifier) {
     )
 }
 
-/**
- * The ♀ a demoted feminine wears beside its headword — decorative grammar, never graded.
- *
- * A badge rather than a bare glyph: it marks the word without joining it, so the headword
- * is still read (and heard) as the word it is.
- */
+/** Which form a word stands for (`♀`, `Pl.`), tinted by the gender it names where it names one. */
 @Composable
-fun FeminineBadge(chrome: Chrome, modifier: Modifier = Modifier) {
-    // why: ♀ is a glyph TalkBack either skips or reads as a symbol name; the badge says
+fun FormBadge(tag: FormTag, chrome: Chrome, modifier: Modifier = Modifier) {
+    val color = when (tag.values[FormDimension.Gender]) {
+        "f" -> Theme.colors.die
+        "m" -> Theme.colors.der
+        "n" -> Theme.colors.das
+        else -> Theme.colors.textSecondary
+    }
+    // why: ♀/♂/⚲ are glyphs TalkBack either skips or reads as a symbol name; the badge says
     // what it marks instead, which is the only way the grammar reaches a spoken card.
-    Pill("♀", Theme.colors.die, modifier.semantics { contentDescription = chrome.a11yGlyphFeminineForm })
+    Pill(CardDisplay.marker(tag, chrome), color, modifier.semantics { contentDescription = CardDisplay.markerSpoken(tag, chrome) })
 }
 
 /**
@@ -233,12 +236,16 @@ fun localizedTarget(text: String, lang: Language): AnnotatedString =
  * with a space — is kern's [articledForm]; the tinted span is the article and its join.
  * Genderless targets render exactly the text and nothing else.
  */
-fun ThemeColors.articleColoredText(realization: Realization): AnnotatedString {
-    val article = CardDisplay.article(realization) ?: return AnnotatedString(realization.text)
-    val shown = articledForm(article, realization.text)
+fun ThemeColors.articleColoredText(realization: Realization): AnnotatedString =
+    articleColoredText(CardDisplay.article(realization), realization.text, realization.lang)
+
+/** [text] behind [article] in its gender's tint; no article renders the text alone. */
+fun ThemeColors.articleColoredText(article: String?, text: String, lang: Language?): AnnotatedString {
+    if (article == null) return AnnotatedString(text)
+    val shown = articledForm(article, text)
     val head = article.trim()
     return buildAnnotatedString {
-        withStyle(SpanStyle(color = articleTint(article, realization.lang) ?: Color.Unspecified)) {
+        withStyle(SpanStyle(color = articleTint(article, lang) ?: Color.Unspecified)) {
             append(head)
         }
         append(shown.removePrefix(head))

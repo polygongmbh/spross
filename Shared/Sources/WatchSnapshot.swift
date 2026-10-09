@@ -7,9 +7,8 @@ import Foundation
 /// drains this snapshot's due list and queues answer events back.
 struct WatchSnapshot: Codable, Sendable, Equatable {
 
-    /// One drainable card. `nextRole` "produce": prompt `sourceText`
-    /// (+ ♀ badge when `femMarker`), reveal the target family. "recognize":
-    /// prompt `promptForm` (the rotated target form), reveal `sourceText`.
+    /// One drainable card. `nextRole` "produce": prompt `sourceText`,
+    /// reveal the target family. "recognize": prompt `promptForm` (the rotated target form), reveal `sourceText`.
     /// The picture arrives under the key that names when it may be seen —
     /// `emoji` from frame one, `revealEmoji` only after the answer.
     struct Entry: Codable, Sendable, Equatable, Identifiable {
@@ -26,7 +25,6 @@ struct WatchSnapshot: Codable, Sendable, Equatable {
         var article: String?
         /// What the article marks; the tint reads this, never `article`.
         var gender: SnapshotGender?
-        var femMarker: Bool
         /// Epoch milliseconds (trivial Swift decoding, no date strategy).
         var due: Int64
         var nextRole: String

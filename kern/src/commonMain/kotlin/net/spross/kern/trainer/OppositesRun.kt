@@ -87,7 +87,7 @@ object OppositesRun {
 
     private fun typed(state: OppositesRunState, text: String): OppositesReduction {
         val task = state.task ?: return unchanged(state)
-        val verdict = TypedDrillVerdicts.typed(state.feedback, state.saidAnswer) {
+        val verdict = TypedDrillVerdicts.typed(state.feedback) {
             grade(text, task, state.config) == Match.Exact
         } ?: return unchanged(state)
         return OppositesReduction(state.copy(feedback = verdict.feedback), verdict.effects)
@@ -98,13 +98,13 @@ object OppositesRun {
         val task = state.task ?: return unchanged(state)
         if (!state.owesAnswer) return unchanged(state)
         if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
-        val verdict = TypedDrillVerdicts.submit(grade(text, task, state.config), state.saidAnswer)
+        val verdict = TypedDrillVerdicts.submit(grade(text, task, state.config))
         return OppositesReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     private fun reveal(state: OppositesRunState): OppositesReduction {
         if (state.task == null || !state.owesAnswer) return unchanged(state)
-        val verdict = TypedDrillVerdicts.reveal(state.saidAnswer)
+        val verdict = TypedDrillVerdicts.reveal()
         return OppositesReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 

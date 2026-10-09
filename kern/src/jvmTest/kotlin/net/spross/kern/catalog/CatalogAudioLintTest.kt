@@ -18,47 +18,28 @@ class CatalogAudioLintTest {
     private val catalog get() = RealCatalog.catalog
     private val letterFileName = Regex("^letters/(u[0-9a-f]{4})+\\.mp3$")
 
-    private fun realization(lang: String, slug: String): RawRealization? =
-        catalog.areas.firstNotNullOfOrNull { it.realizations[lang]?.get(slug) }
-
     /**
-     * An entry keyed by a slug the language does not realize is left over from a content
-     * edit: it can never be reached, and its mp3 is dead weight. Regenerate the manifest.
+     * The lookup is keyed by what the learner SEES, so a word entry whose spoken form no card
+     * in its language shows — no `text`, `teaches`, `accepts` or tagged form of any
+     * realization, nor such a form's bare verb stem ([verbStem]) — ships bytes that can never
+     * play. Which concept the recording was fetched for is not asked: a merge or a move
+     * keeps the form on some card, and the recording with it.
      */
     @Test
-    fun everyWordEntryNamesASlugItsLanguageRealizes() {
+    fun everyWordEntrySpeaksAFormSomeCardShows() {
         for ((lang, manifest) in catalog.audio) {
-            for (slug in manifest.words.keys) {
-                assertTrue(realization(lang, slug) != null, "audio/$lang: \"$slug\" is not realized in $lang")
-            }
-        }
-    }
-
-    /**
-     * The lookup is keyed by what the learner SEES, so an entry whose spoken form matches
-     * no surface form of its realization, nor its bare verb stem ([verbStem]), ships bytes
-     * that can never play.
-     */
-    @Test
-    fun everyMatchesFormIsReachable() {
-        for ((lang, manifest) in catalog.audio) {
-            for ((slug, recording) in manifest.words) {
-                val raw = realization(lang, slug) ?: continue // reported by the rule above
-                val prefixes = catalog.languages[lang]?.optionalVerbPrefixes.orEmpty()
-                val shown = listOf(raw.text) + raw.teaches + raw.accepts
-                val forms = (shown + shown.mapNotNull { verbStem(it, prefixes) }).map { speechKey(it) }
-                assertTrue(
-                    speechKey(checkNotNull(recording.matches)) in forms,
-                    "audio/$lang/$slug: \"${recording.matches}\" reaches none of $forms",
-                )
+            val shown = catalog.shownForms(lang).mapTo(mutableSetOf()) { speechKey(it) }
+            for (form in manifest.words.keys) {
+                assertTrue(speechKey(form) in shown, "audio/$lang word \"$form\": no card in $lang shows it")
             }
         }
     }
 
     /**
      * Two entries may share a speech key only when their bytes are identical (one
-     * recording fetched under two slugs). Differing bytes have no right answer, so the
-     * runtime plays nothing — a silent card the converter must resolve at generation time.
+     * recording shipped in two sections, a word and an alphabet text). Differing bytes have
+     * no right answer, so the runtime plays nothing — a silent card the converter must
+     * resolve at generation time.
      */
     @Test
     fun noAmbiguousMatchedForm() {
@@ -80,14 +61,26 @@ class CatalogAudioLintTest {
     }
 
     /**
-     * Word files are slug-named; letter files are codepoint-named, never glyph-named —
-     * `й`/`ї` decompose under NFD on APFS and Unicode filenames cross four toolchains.
+     * Every form-keyed file is its section's folder plus the form's ASCII stem; letter files
+     * are codepoint-named, never glyph-named — `й`/`ї` decompose under NFD on APFS and
+     * Unicode filenames cross four toolchains.
      */
     @Test
     fun audioFileNamesFollowTheNamingRules() {
         for ((lang, manifest) in catalog.audio) {
-            for ((slug, recording) in manifest.words) {
-                assertEquals("$slug.mp3", recording.file, "audio/$lang/$slug: file is not slug-named")
+            for ((form, recording) in manifest.words) {
+                assertEquals(
+                    "words/${asciiStem(form)}.mp3",
+                    recording.file,
+                    "audio/$lang word \"$form\": file is not the form's ASCII stem",
+                )
+            }
+            for ((form, recording) in manifest.articles) {
+                assertEquals(
+                    "articles/${asciiStem(form)}.mp3",
+                    recording.file,
+                    "audio/$lang article \"$form\": file is not the form's ASCII stem",
+                )
             }
             for ((glyph, recording) in manifest.letters) {
                 val where = "audio/$lang letter \"$glyph\""

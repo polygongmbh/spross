@@ -6,6 +6,24 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 - On the watch, a word to recognize now shows alone for a moment before its options appear, so you recall it first; tap to see the options sooner.
 - Words you have known for weeks now ask you to type them only every other time; in between you recall them, reveal and grade yourself.
+
+## 8.5.0 — 2026-10-08
+
+- Feminine forms of people words (die Lehrerin) are now practiced as part of the word itself rather than as a separate card.
+- Adjectives, pronouns and phrases now practice their feminine, neuter, plural and case forms too, marked on the meaning side.
+- Drill answers now count toward your day streak and fill that day's bar in the activity chart.
+- Plurals are now practiced, not just shown: a recognition card can ask with the plural, marked "pl." on its meaning, and every other form that would also have been right is listed on the reveal.
+
+## 8.4.0 — 2026-10-08
+
+- Restarting the tutorial now keeps your saved name in the name field instead of blanking it, so finishing no longer erases it.
+- The letter drill now starts every learner on its first Sprosse and asks three clean wins per Sprosse, one where an earlier run already cleared it, climbing on its own progress rather than on how many words your box holds.
+- The numbers drill again names the word a new number form adds, such as "New: minus", the first time a run asks it.
+- A drill run's score line is larger and shows just the Sprosse and your streak, leaving the record to the pause and the result.
+- A drill's pause now shows just how many you answered and, larger, what you reached: a higher Sprosse or a new record.
+- The word and sentence scrambles now leave a result tile on the practice card once a run has taken a few answers.
+- Every drill now celebrates a finished stretch with confetti and a cheer, on its pause and when you close a run of a few answers, not only when you beat a record.
+- On Android, finished rounds, drill pauses and closed drill runs now rain confetti, as on iPhone.
 - A new Opposites drill asks for the opposite of a word you know, and accepts every opposite where one word carries two meanings, like Swahili kulia for right and to cry.
 
 ## 8.3.1 — 2026-10-05

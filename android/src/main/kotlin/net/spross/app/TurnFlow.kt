@@ -3,11 +3,13 @@ package net.spross.app
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import net.spross.kern.model.PresentationRole
-import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.Rating
+import net.spross.app.ui.AnswerActions
 import net.spross.kern.session.AdvanceBeat
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.CopyStep
+import net.spross.kern.session.Question
+import net.spross.kern.session.Reading
 import net.spross.kern.session.SelfGrading
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnEffect
@@ -15,6 +17,9 @@ import net.spross.kern.session.TurnFeedback
 import net.spross.kern.session.TurnIntent
 import net.spross.kern.session.TurnMachine
 import net.spross.kern.session.TurnState
+import net.spross.kern.session.controls
+import net.spross.kern.session.question
+import net.spross.kern.session.reading
 
 /**
  * One review turn as this platform holds it.
@@ -37,7 +42,9 @@ class TurnFlow(
     private val onReleaseFocus: () -> Unit = {},
     /** Whether a screen reader is reading the screen ([DrillBeat]). */
     screenReaderOn: () -> Boolean = { false },
-) {
+    /** Whether the meaning may be read aloud too ([TurnState.reading]). */
+    private val saysMeaning: () -> Boolean = { false },
+) : QuestionDriver {
 
     var state by mutableStateOf(start)
         private set
@@ -59,20 +66,22 @@ class TurnFlow(
 
     private val beat = DrillBeat(screenReaderOn)
 
-    /** The beat kern armed and nobody has spent yet; null once it fired or was canceled. */
-    val armedBeat: AdvanceBeat? get() = beat.armed
+    override val armedBeat: AdvanceBeat? get() = beat.armed
 
-    /** Bumped by every arming — what a timer effect keys on. */
-    val beatToken: Int get() = beat.token
+    override val beatToken: Int get() = beat.token
 
-    /** The beat became a tap: render the explicit "Weiter", which books the same rating. */
-    val awaitsConfirm: Boolean get() = beat.awaitsConfirm
+    override val awaitsConfirm: Boolean get() = beat.awaitsConfirm
+
+    override val question: Question get() = state.question
+
+    override val controls: AnswerControls get() = state.controls
+
+    override val reading: Reading get() = state.reading(saysMeaning())
+
+    /** Only ever one field is mounted: the write-out's while it stands, else the answer's. */
+    override val fieldText: String get() = if (copyStep != null) copyInput else input
 
     val feedback: TurnFeedback get() = state.feedback
-
-    /** The blank-reveal path: nothing was produced and the three verdicts own the turn. */
-    val selfGrading: Boolean
-        get() = state.revealed && feedback == TurnFeedback.Neutral && state.copyStep == null
 
     val retryApproved: Boolean get() = state.retryApproved
 
@@ -88,18 +97,6 @@ class TurnFlow(
      * learner has something to say about the word.
      */
     val answerOut: Boolean get() = state.answerOut
-
-    val almost: TurnFeedback.Almost? get() = feedback as? TurnFeedback.Almost
-
-    val otherWord get() = state.otherWord
-
-    /**
-     * The FIELD's own state, which parts ways with the card's on a finished retype: the
-     * card holds its reveal open while the field turns right, and the two deliberately
-     * say different things at that moment.
-     */
-    val fieldFeedback: TurnFeedback
-        get() = if (retryApproved) TurnFeedback.Correct else feedback
 
     /** The word was heard and could not be: it goes on screen for the rest of this turn. */
     val promptInText: Boolean get() = state.promptInText
@@ -137,8 +134,7 @@ class TurnFlow(
 
     fun skipCopy() = dispatch(TurnIntent.SkipCopy)
 
-    /** The armed beat elapsed; it is spent whether or not the turn had anything to book. */
-    fun advanceElapsed() {
+    override fun advanceElapsed() {
         beat.spend()
         dispatch(TurnIntent.AdvanceElapsed)
     }
@@ -156,6 +152,21 @@ class TurnFlow(
             feedback == TurnFeedback.Revealed -> giveUp()
             else -> primary()
         }
+    }
+
+    override fun answerActions(stop: () -> Unit): AnswerActions {
+        val writing = copyStep != null
+        return AnswerActions(
+            submit = { if (writing) submitCopy() else enter() },
+            type = { if (writing) writeCopy(it) else type(it) },
+            reveal = ::reveal,
+            confirm = ::confirm,
+            // why: giving up on a retype ends the card — that field already is the one
+            // write-out the word gets, so nothing hands it a second.
+            giveUp = { if (writing) skipCopy() else giveUp() },
+            selfGrade = ::selfGrade,
+            cantListen = ::showPromptText,
+        )
     }
 
     private fun dispatch(intent: TurnIntent) {
@@ -211,13 +222,7 @@ fun AppModel.newTurn(
             card = card,
             role = role,
             prompt = ui.producePrompt,
-            // The form the prompt stands on: the rotated one on recognition, else the
-            // source word — or, where the question is the sound, the form that plays.
-            promptForm = when {
-                role == PresentationRole.Recognize -> ui.promptForm ?: card.target.text
-                ui.producePrompt == ProducePrompt.Sound -> card.target.text
-                else -> card.source.text
-            },
+            promptForm = ui.promptForm ?: return null,
             firstExposure = ui.firstExposure,
             arrived = ui.arrived,
             nowEpochMillis = System.currentTimeMillis(),
@@ -228,5 +233,6 @@ fun AppModel.newTurn(
         onTone = onTone,
         onReleaseFocus = onReleaseFocus,
         screenReaderOn = { pronouncer.readsScreenAloud },
+        saysMeaning = { pronouncer.saysMeaning },
     )
 }

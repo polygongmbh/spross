@@ -52,12 +52,18 @@ struct WordEntry: TimelineEntry {
     let words: [WidgetWord]
     let dueCount: Int
     let streak: Int
-    /// Drives the flame's icon, color and count.
+    /// Whether the flame carries a count.
     let streakHealth: StreakHealth
+    /// The flame's grade for `streakHealth`, as kern ships it; full strength in the
+    /// sample entries, which carry no snapshot.
+    var flameOpacity: Double = 1
+    var flameSaturation: Double = 1
     /// Active cards that have settled — the box's growth, not a retention score.
     let settled: Int
-    /// Trailing fortnight of review counts for the header strip.
-    let activityDays: [ActivityDay]
+    /// Trailing fortnight of bars for the header strip, as kern sized them.
+    let activityBars: [WidgetSnapshot.Bar]
+    /// The height the strip's row reserves.
+    var activityHeight: Double = 0
     /// The snapshot's chrome language; nil with no snapshot to read.
     var chromeLanguage: String? = nil
 
@@ -74,7 +80,7 @@ struct WordEntry: TimelineEntry {
         date: .now,
         primary: WidgetWord(emoji: "🌱", word: "", meaning: ""),
         words: [], dueCount: 0, streak: 0, streakHealth: .noRun,
-        settled: 0, activityDays: [])
+        settled: 0, activityBars: [])
 
     /// A timeline entry never carries an empty window otherwise — the provider
     /// drops out to `awaitingContent` before building one.
@@ -87,7 +93,7 @@ struct WordEntry: TimelineEntry {
         // list the placed widget never shows.
         words: sortedForDisplay(placeholderWords),
         dueCount: 0, streak: 3, streakHealth: .earned, settled: 12,
-        activityDays: placeholderDays)
+        activityBars: placeholderBars, activityHeight: 16)
 
     private static let placeholderWords = [
         WidgetWord(emoji: "🧊", word: "friji", meaning: GlanceChrome.sample("widget.sample.fridge")),
@@ -98,18 +104,12 @@ struct WordEntry: TimelineEntry {
         WidgetWord(emoji: "☀️", word: "jua", meaning: GlanceChrome.sample("widget.sample.sun")),
     ]
 
-    /// A hand-written fortnight so the gallery snapshot and the previews draw a
-    /// real strip rather than a flat rule.
-    private static let placeholderDays: [ActivityDay] = {
-        let counts = [4, 0, 9, 3, 26, 6, 0, 5, 7, 0, 11, 8, 14, 5]
-        let calendar = Calendar(identifier: .gregorian)
-        let today = calendar.startOfDay(for: .now)
-        return counts.enumerated().compactMap { offset, reviews in
-            guard let day = calendar.date(byAdding: .day, value: offset - 13, to: today)
-            else { return nil }
-            return ActivityDay(day: day, reviews: reviews, isToday: offset == counts.count - 1)
-        }
-    }()
+    /// A hand-written fortnight, as kern would size it, so the gallery snapshot and the previews
+    /// draw a real strip rather than a flat rule.
+    private static let placeholderBars: [WidgetSnapshot.Bar] = [
+        (4, 6.3, 0.67), (0, 1.5, 0.45), (9, 9.4, 0.77), (3, 5.4, 0.64), (26, 16, 1), (6, 7.7, 0.71), (0, 1.5, 0.45),
+        (5, 7, 0.69), (7, 8.3, 0.74), (0, 1.5, 0.45), (11, 10.4, 0.81), (8, 8.9, 0.76), (14, 11.7, 0.85), (5, 7, 0.69),
+    ].map { WidgetSnapshot.Bar(reviews: $0.0, height: $0.1, fillOpacity: $0.2) }
 }
 
 struct WordProvider: TimelineProvider {
@@ -136,6 +136,9 @@ struct WordProvider: TimelineProvider {
     /// Cells in the large family's poster grid (2 × 3).
     private static let listSize = 6
 
+    /// How long one window stands: the timeline hands WidgetKit an entry per quarter hour.
+    private static let stepMillis: Int64 = 15 * 60 * 1000
+
     /// Up to 6 h of 15-minute entries cycling through attention-worthy cards.
     /// The compact families see one rotating card; the list families see a
     /// rotating window of up to `listSize` cards plus box stats.
@@ -147,23 +150,30 @@ struct WordProvider: TimelineProvider {
             WidgetWord(emoji: $0.emoji ?? "🗂️", article: $0.article, gender: $0.gender,
                        word: $0.text, meaning: $0.sourceText)
         }
+        let startMillis = Int64(start.timeIntervalSince1970 * 1000)
+        let firstStep = startMillis / Self.stepMillis
         return (0..<24).map { slot in
-            // Rotate a window of `listSize` words; the head is the compact families'
-            // card, and each quarter-hour hands the spot to the next word.
-            // why: a short box would otherwise wrap and repeat a word in one tile.
-            let window = (0..<min(Self.listSize, words.count))
-                .map { words[(slot + $0) % words.count] }
+            // The first entry is now; every later one opens a step, so the head moves
+            // when the clock says it does rather than a fraction of a step after.
+            let millis = slot == 0 ? startMillis : (firstStep + Int64(slot)) * Self.stepMillis
+            let date = Date(timeIntervalSince1970: Double(millis) / 1000)
+            // layer-ok: kern `WidgetRotation.window`, the one waived copy — the extension links
+            // no Kotlin and the head moves with the render clock, so no snapshot can carry it.
+            let head = Int((millis / Self.stepMillis) % Int64(words.count))
+            let window = (0..<min(Self.listSize, words.count)).map { words[(head + $0) % words.count] }
             // A timeline can cross midnight, so every entry reads its own moment.
-            let date = start.addingTimeInterval(Double(slot) * 15 * 60)
             let streakDay = snapshot.streakDay(now: date)
             return WordEntry(date: date,
                              primary: window[0],
                              words: sortedForDisplay(window),
                              dueCount: snapshot.dueCount(now: date),
-                             streak: streakDay.streak,
-                             streakHealth: streakDay.health,
+                             streak: streakDay?.streak ?? 0,
+                             streakHealth: streakDay?.health ?? .noRun,
+                             flameOpacity: streakDay?.flameOpacity ?? 1,
+                             flameSaturation: streakDay?.flameSaturation ?? 1,
                              settled: snapshot.allSettledCount,
-                             activityDays: snapshot.recentDays(now: date),
+                             activityBars: snapshot.activityBars(now: date),
+                             activityHeight: snapshot.activityHeight,
                              chromeLanguage: snapshot.chromeLanguage)
         }
     }

@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import net.spross.kern.design.CardSurface
 
 /**
  * The ONE raised surface: the card fill, a soft shadow under it, and the hairline that
@@ -30,7 +31,7 @@ import androidx.compose.ui.unit.dp
  * (`surfaceTint = Transparent`), which left every surface but this one perfectly flat.
  *
  * The hairline is deliberately faint: the fill and the shadow carry the boundary and the
- * edge only closes it (iOS `cardSurface`, separator @ 0.6).
+ * edge only closes it (kern's `CardSurface`, as iOS `cardSurface` draws it).
  *
  * iOS keeps a flat `panelSurface()` beside `cardSurface()`, reserving the shadow and hairline
  * for cards alone; on this platform's weaker surface/background contrast a flat panel reads
@@ -40,7 +41,7 @@ import androidx.compose.ui.unit.dp
 fun Modifier.panel(shape: Shape = MaterialTheme.shapes.medium): Modifier = this
     .dropShadow(shape, CARD_SHADOW)
     .background(MaterialTheme.colorScheme.surface, shape)
-    .border(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.6f), shape)
+    .border(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = CardSurface.HAIRLINE.toFloat()), shape)
 
 /**
  * A group of rows on its raised tile: [panel] with the page's inset inside it, full width.
@@ -65,13 +66,12 @@ fun Panel(
  * The one card shadow — soft and low, so the card LIFTS rather than casting a box.
  *
  * An elevation shadow is the platform's, cut for the platform's own depth ladder: tight,
- * dark, and hard at the edge. The canonical one is a wide bloom at 8 % black, dropped six
- * below the card (iOS `cardShadow`), and it is drawn here rather than asked for so the
- * two cuts lift their cards the same amount.
+ * dark, and hard at the edge. The canonical one is kern's `CardSurface` bloom,
+ * drawn here rather than asked for so both apps lift their cards the same amount.
  */
 private val CARD_SHADOW = Shadow(
-    radius = 16.dp,
+    radius = CardSurface.SHADOW_RADIUS.dp,
     color = Color.Black,
-    offset = DpOffset(0.dp, 6.dp),
-    alpha = 0.08f,
+    offset = DpOffset(0.dp, CardSurface.SHADOW_Y.dp),
+    alpha = CardSurface.SHADOW_ALPHA.toFloat(),
 )

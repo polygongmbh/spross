@@ -24,7 +24,7 @@
   "only": { "text": "solo", "accepts": ["sólo", "solamente"] },
   "together": {
    "text": "juntos",
-   "accepts": ["juntas"],
+   "forms": { "f": "juntas" },
    "notes": { "es": "juntos (ellos o mixto) · juntas (solo ellas)." }
   },
   "therefore": { "text": "por eso" },
@@ -32,7 +32,7 @@
   "although": { "text": "aunque" },
   "that-conj": { "text": "que" },
   "if-you-want": { "text": "Si quiere.", "accepts": ["Si quieres."] },
-  "finally-done": { "text": "¡Por fin terminado!", "accepts": ["¡Por fin terminada!"] },
+  "finally-done": { "text": "¡Por fin terminado!", "forms": { "f": "¡Por fin terminada!" } },
   "usually": { "text": "normalmente" },
   "from-monday-to-friday": { "text": "De lunes a viernes.", "accepts": ["Desde el lunes hasta el viernes."] }
  }

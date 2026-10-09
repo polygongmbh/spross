@@ -30,15 +30,18 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   Badge, plural line and alternates stay unspoken.
 - **Audio may never give the answer away**:
   recognition speaks the word at once, produce says the meaning it asks by and waits for the reveal to say the word.
-  Both apps consume kern's sayings (`TurnState.promptSaying`/`answerSaying`).
+  A review card and a drill task read aloud through ONE mechanism:
+  kern hands each question a `Reading` (its prompt saying and its answer saying),
+  and one reader per app fires it (iOS `Reader`, Android `rememberReadAloud`).
+  Every drill state must rule on both sayings (`DrillRunProgress`), so no screen decides what is heard.
 - **Autoplay fires only where the card holds the learner.**
-  A clean correct answer says the word too, and its flip waits for the saying to end, up to a ceiling;
+  A clean correct answer says the word too, and its flip waits for the saying to end, up to a ceiling (`READING_CEILING_MS`);
   a word cut off teaches nothing.
-  A drill says every graded answer, right or wrong, and its beat waits for the reading to end
-  (kern's `DrillEffect.SayAnswer`, one standard for every drill);
+  A drill says every graded answer, right or wrong, and its beat waits for the reading to end;
   a timed run leaves its clean answers unsaid, since the clock is running,
+  a reversed numbers task says its reading as the prompt and nothing after,
   and the letter drill says nothing more, since its question already was the sound.
-  Produce fires wait for the feedback chime;
+  Produce fires wait for the feedback chime (`READING_CHIME_CLEARANCE_MS`);
   chimes are never ducked.
   One prompt fire and one answer fire per card, and one per drill task.
 
@@ -53,7 +56,8 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
 | near miss (typo, other form) | yes, after chime | the correction box form |
 | produce revealed (Aufdecken/wrong/other word) | yes, after chime | the bare target word, or the meaning on a card asked by ear |
 | trainer drill prompt (numeral, clock, date) | no | the reading IS the answer |
-| drill prompt in learning language (reversed run) | yes, at once | the form on the card |
+| reversed numbers prompt (the reading) | yes, at once; not again after the verdict | the reading |
+| drill prompt in learning language (reversed run, opposites) | yes, at once | the form on the card |
 | drill prompt in known language (forward run) | no | the reveal carries the voice |
 | trainer drill graded answer (right, slip, miss, reveal) | yes, after chime | the answer in the learned language: the reading, the name, the word, the authored phrase (usually voice; weekday/month/country/nationality recorded) |
 | listening mode (between two sayings) | yes, unattended | the meaning in the known language |
@@ -103,15 +107,16 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   Android's ringer mode is not read (silencing notifications leaves media playing).
 - **Audio setting: three-way row -- No audio, Recordings, Speech.**
   "Recordings" (default): bundled recording where available, voice for the rest.
-  "Speech": voice preferred, recording only where no voice exists.
+  "Speech": voice preferred, recording only where no voice exists (`soundBranch`).
   The top-bar button is the mute only; it never changes the source.
   Choosing a voice lifts autoplay past a silenced phone.
 - **Source remembered per learning language; the mute is remembered nowhere.**
-  A source is offered only where it can answer
-  (`AudioCapability`, over `Catalog.hasRecordings` and the device voice table).
+  A source is offered only where it can answer,
+  and a stored source that cannot reads as the other one
+  (`AudioCapability.preference`, over `Catalog.hasRecordings` and the device voice table).
 - **Feedback chimes**: not silenced by the read-aloud switch,
   but play under whatever category it left standing.
   Chimes and words share one volume (one audio session).
   Rendered full scale (`scripts/sounds.py`), each played at its kern `Chime` level.
-- VoiceOver: no autoplay talking over it; headword labeled with its language;
+- VoiceOver: no autoplay talking over it (`PronounceTrigger.held`); headword labeled with its language;
   replay is an action on the word.

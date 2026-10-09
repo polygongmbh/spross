@@ -23,7 +23,7 @@ struct OppositesView: View, LanguageNaming {
     @State var input = ""
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
-    @State var answerVoice = AnswerVoice()
+    @State var reader = Reader()
     @FocusState var answerFocused: Bool
 
     init(model: AppModel, language: String, onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
@@ -51,7 +51,9 @@ struct OppositesView: View, LanguageNaming {
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
-        runScreen(asking: current != nil) {
+        runScreen(asking: current != nil,
+                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
+                                             answerStreak: Int(run.answerStreak))) {
             drillContent
         }
         // why: BOTH hooks. .onChange never fires for the FIRST question, and a
@@ -65,20 +67,10 @@ struct OppositesView: View, LanguageNaming {
         }
         .onDisappear {
             autoAdvance?.cancel()
-            answerVoice.hush()
+            reader.hush()
         }
         #if DEBUG
         .onAppear { uitestDriveRun() }
         #endif
-    }
-
-    /// Every opposite on one line — two where the prompt merges two meanings.
-    func answerLine(_ task: OppositesTask) -> String {
-        task.answers.map(\.text).joined(separator: " · ")
-    }
-
-    /// What the prompt means, then what its opposites mean, in the learner's own language.
-    func glossLine(_ task: OppositesTask) -> String {
-        "\(task.gloss) ↔ \(task.answers.map(\.gloss).joined(separator: " · "))"
     }
 }

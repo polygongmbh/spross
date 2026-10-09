@@ -1,8 +1,11 @@
 package net.spross.kern.session
 
+import net.spross.kern.model.APOSTROPHES
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.LanguageInfo
+import net.spross.kern.model.answerForms
 import net.spross.kern.model.hyphensAndApostrophesStripped
 import net.spross.kern.model.nfcNormalized
 
@@ -17,7 +20,7 @@ import net.spross.kern.model.nfcNormalized
  * ONE leading listed article of the answer language is optional → iff the card is
  * a verb, any listed citation prefix (en `"to "`, sw `ku`/`kw`) is optional →
  * Damerau-Levenshtein (OSA) typo budget. Accepted forms = target
- * `text ∪ teaches ∪ accepts`.
+ * `text ∪ teaches ∪ accepts` and the `forms` agreeing with the prompt ([answerForms]).
  *
  * [articleLeniency] (the one-arg constructor's default, true) is that
  * optional-article contract for vocab reviews. Drill callers grading article
@@ -46,6 +49,10 @@ class AnswerNormalizer(
 
     private val articles: Set<String> = answerLanguage.articles.map { it.lowercase() }.toSet()
 
+    /** The listed articles that elide (`l'`), without their apostrophe. */
+    private val elidedArticles: List<String> =
+        articles.filter { it.lastOrNull() in APOSTROPHES }.map { it.dropLast(1) }.filter { it.isNotEmpty() }
+
     /** The same articles in comparison shape, so a typed token can be measured against them. */
     private val articleForms: Set<String> =
         articles.map { cleaned(it).trim() }.filter { it.isNotEmpty() }.toSet()
@@ -60,7 +67,7 @@ class AnswerNormalizer(
      */
     fun normalize(raw: String): String {
         var words = tokenize(raw)
-        if (articleLeniency && words.size > 1 && words.first() in articles) words = words.subList(1, words.size)
+        if (articleLeniency && words.size > 1 && words.first() in articleForms) words = words.subList(1, words.size)
         return words.joinToString(" ")
     }
 
@@ -109,18 +116,18 @@ class AnswerNormalizer(
      * and, once dropped, makes the rest match is a typo, not a failure — in vocab
      * reviews only, see [strayLeadingWordRecovery].
      */
-    fun evaluate(input: String, card: Card): Match {
-        val accepted = listOf(card.target.text) + card.target.teaches + card.target.accepts
+    fun evaluate(input: String, card: Card, promptTag: FormTag? = null): Match {
+        val forms = answerForms(card, promptTag)
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
-        val expectedArticle = card.target.grammar["gender"]?.lowercase()
-        val genderedForms = listOf(card.target.text) + card.target.accepts
-        val result = evaluate(input, accepted, prefixes, expectedArticle, genderedForms)
-        // Base-word answer on a feminine card grades as typo, not failure (§3):
-        // anything the BASE concept would accept demotes to the feminine correction.
-        if (result == Match.Wrong && card.baseAccepted.isNotEmpty() &&
-            evaluate(input, card.baseAccepted, prefixes, expectedArticle = null) != Match.Wrong
-        ) {
-            return Match.Typo(corrected = card.target.text)
+        val expectedArticle = card.target.grammar["gender"]?.let { cleaned(it.lowercase()).trim() }
+        // A form authored with its own article is read back against it; one without (a language that writes none) never against the citation's.
+        val genderedForms = listOf(card.target.text) + card.target.accepts +
+            card.target.forms.filter { it.article != null }.map { it.written }
+        val result = evaluate(input, forms.right, prefixes, expectedArticle, genderedForms)
+        if (result != Match.Wrong) return result
+        // The word in a form the prompt did not ask for corrects to the one it did.
+        if (forms.almost.isNotEmpty() && evaluate(input, forms.almost, prefixes, expectedArticle = null) != Match.Wrong) {
+            return Match.Typo(corrected = forms.right.first())
         }
         return result
     }
@@ -267,7 +274,7 @@ class AnswerNormalizer(
     /** The listed leading article a raw answer starts with (only when more words follow). */
     private fun leadingArticle(raw: String): String? {
         val words = tokenize(raw)
-        return words.firstOrNull()?.takeIf { it in articles && words.size > 1 }
+        return words.firstOrNull()?.takeIf { it in articleForms && words.size > 1 }
     }
 
     /** The form plus, per matching prefix, the form with that leading prefix dropped. */
@@ -282,7 +289,22 @@ class AnswerNormalizer(
     }
 
     private fun tokenize(raw: String): List<String> =
-        cleaned(raw).split(' ').filter { it.isNotEmpty() }
+        cleaned(elisionSeparated(raw)).split(' ').filter { it.isNotEmpty() }
+
+    /**
+     * [raw] with a leading elided article (fr/it `l'`) set apart as its own word, so the article
+     * rules see it as they see `la` — the apostrophe pass would otherwise glue it on (`linvitée`).
+     */
+    private fun elisionSeparated(raw: String): String {
+        val trimmed = raw.trimStart()
+        val head = trimmed.lowercase()
+        for (article in elidedArticles) {
+            if (head.length > article.length && head.startsWith(article) && head[article.length] in APOSTROPHES) {
+                return trimmed.substring(0, article.length + 1) + " " + trimmed.substring(article.length + 1)
+            }
+        }
+        return raw
+    }
 
     /**
      * The one character pass everything shares, so tokenization can never disagree:

@@ -36,7 +36,7 @@ struct SentenceScrambleView: View {
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
     /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
-    @State var answerVoice = AnswerVoice()
+    @State var reader = Reader()
 
     init(model: AppModel, language: String,
          onFinish: @escaping (DrillRunResult) -> Void = { _ in }) {
@@ -63,20 +63,15 @@ struct SentenceScrambleView: View {
     /// The question on screen; nil only once this box can ask nothing more.
     var current: SentenceScrambleTask? { run.task }
 
-    /// How the arrangement stands, as the bank wears it. Kern's feedback, read —
-    /// this drill grades by position, so there is no near miss to render.
-    private var verdict: ScrambleVerdict {
-        if run.owesAnswer { return .owed }
-        return run.answerAccepted ? .correct : .wrong
-    }
-
     var body: some View {
-        runScreen(asking: current != nil) {
+        runScreen(asking: current != nil,
+                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
+                                             answerStreak: Int(run.answerStreak))) {
             drillContent
         }
         .onDisappear {
             autoAdvance?.cancel()
-            answerVoice.hush()
+            reader.hush()
         }
         #if DEBUG
         .onAppear {
@@ -110,36 +105,30 @@ struct SentenceScrambleView: View {
     // MARK: - What is on screen
 
     private var drillContent: some View {
-        ScrollView {
-            VStack(spacing: Theme.spacing.lg) {
-                DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
-                                answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak))
-                if let task = current {
-                    ScrambleTileBank(bank: task.shuffled,
-                                     placed: run.placedAtoms,
-                                     isTaken: { run.isPlaced(index: Int32($0)) },
-                                     arranged: run.arranged,
-                                     verdict: verdict,
-                                     place: { place($0) },
-                                     take: { take($0) },
-                                     reveal: { revealLines(task) })
-                        .id(run.index)
-                        .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.97)))
-                    controls
-                }
+        questionPage(spacing: Theme.spacing.lg) { _ in
+            if let task = current {
+                ScrambleTileBank(bank: task.shuffled,
+                                 placed: run.placedAtoms,
+                                 isTaken: { run.isPlaced(index: Int32($0)) },
+                                 arranged: run.arranged,
+                                 verdict: run.verdict,
+                                 place: { place($0) },
+                                 take: { take($0) },
+                                 reveal: { revealLines(task) })
             }
-            .padding(.bottom, Theme.spacing.lg)
+        } area: { controls in
+            answerArea(controls)
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .animation(.easeOut(duration: 0.25), value: run.showsAnswer)
+        .animation(.cardReveal, value: run.showsAnswer)
     }
 
     /// What the graded arrangement grows, on the answer card itself — the shared
     /// reveal, so a drill card and a vocabulary card grow the same thing.
     ///
-    /// The meaning always; the authored order above it only where the
-    /// arrangement missed, since the chips of a clean one already ARE that order
-    /// and setting it a second time would read as a correction.
+    /// kern's Question says which: a missed arrangement opens onto the authored
+    /// order and its meaning, an accepted one grows the meaning alone, since its
+    /// chips already stand in an order — and none after an alternative order,
+    /// whose meaning belongs to the authored one.
     ///
     /// Two answers, never an answer and a footnote. The ORDER was the question,
     /// so where it was missed the authored one wears the accent every card's
@@ -150,23 +139,33 @@ struct SentenceScrambleView: View {
     /// Both open at the WORD reveal's size and shrink only where the phrase is
     /// long enough to need it, rather than being set small in advance against
     /// the longest one the catalog might hold: this card has the room, since the
-    /// bank is gone by the time it is drawn and no prompt stands above it. The
-    /// floor lands about where the fixed sentence size did (`DrillPromptCard`).
+    /// bank is gone by the time it is drawn and no prompt stands above it.
     @ViewBuilder
     private func revealLines(_ task: SentenceScrambleTask) -> some View {
-        CardReveal(note: nil) {
-            if !run.answerAccepted || run.alternativeMatch {
-                SpokenWord(pronounce: model.pronounceAction(for: task.display, lang: task.language),
-                           isPlaying: model.isPronouncing(task.display, lang: task.language)) {
-                    sentence(Text(task.display), tint: Theme.colors.accent)
-                        .spoken(task.display, language: task.language)
+        if let question = run.question {
+            let order = question.opens ? question.answer.text : nil
+            let meaning = question.opens || question.growsNote ? ownNote(question) : nil
+            if order != nil || meaning != nil {
+                CardReveal(note: nil) {
+                    if let order {
+                        SpokenWord(pronounce: model.pronounceAction(for: order, lang: task.language),
+                                   isPlaying: model.isPronouncing(order, lang: task.language)) {
+                            sentence(Text(order), tint: Theme.colors.accent)
+                                .spoken(order, language: task.language)
+                        }
+                    }
+                    if let meaning {
+                        sentence(Text(meaning), tint: Theme.colors.textPrimary)
+                    }
                 }
-            }
-            if !run.alternativeMatch {
-                sentence(Text(task.gloss), tint: Theme.colors.textPrimary)
+                .transition(.opacity)
             }
         }
-        .transition(.opacity)
+    }
+
+    private func ownNote(_ question: Question) -> String? {
+        guard let note = question.closing.note, case .own(let own) = onEnum(of: note) else { return nil }
+        return own.text
     }
 
     private func sentence(_ text: Text, tint: Color) -> some View {
@@ -187,9 +186,8 @@ struct SentenceScrambleView: View {
     /// Once the arrangement is graded it is what every drill wears under a
     /// graded answer: a clean one moves on by itself, a miss waits for the way
     /// on and — on the second in a row — offers the way out.
-    private var controls: some View {
-        AnswerVerdict(feedback: feedback, onConfirm: { confirm() },
-                             onStop: run.offersFinish ? { closeRun() } : nil)
+    private func answerArea(_ controls: AnswerControls) -> some View {
+        AnswerArea(driver: self, controls: controls, nextLocale: model.targetChromeLocale)
     }
 
     // The conformance, the driver and the close are SentenceScrambleView+Run.swift's.

@@ -41,7 +41,10 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
+import net.spross.kern.design.ChoiceVerdict
 import net.spross.kern.trainer.ScrambleAtom
+import net.spross.kern.trainer.ScrambleBank
+import net.spross.kern.trainer.ScrambleVerdict
 
 /**
  * The two halves a sentence is arranged on: the order taken shape above, the words still to
@@ -91,15 +94,6 @@ fun ScrambleTileBank(
 }
 
 /**
- * How the arrangement stands. Anything but [Owed] locks every chip: the question has been
- * answered, and an order that could still be permuted afterwards would let a learner
- * brute-force one.
- */
-enum class ScrambleVerdict { Owed, Correct, Wrong }
-
-private val ScrambleVerdict.locked: Boolean get() = this != ScrambleVerdict.Owed
-
-/**
  * The order taken shape, and what it grew when it was graded — one surface, filled once there
  * is a reveal standing on it.
  */
@@ -112,11 +106,7 @@ private fun AnswerCard(
     take: (Int) -> Unit,
     reveal: @Composable () -> Unit,
 ) {
-    val border = when (verdict) {
-        ScrambleVerdict.Owed -> Theme.colors.borderStrong
-        ScrambleVerdict.Correct -> Theme.colors.success
-        ScrambleVerdict.Wrong -> Theme.colors.wrong
-    }
+    val border = verdict.edge.tint()
     // why: the border and the fill behind it ease into their verdict together, rather than
     // the row snapping the instant an arrangement is graded.
     val easedBorder by animateColorAsState(border, turnTween(), label = "scrambleBorder")
@@ -134,18 +124,14 @@ private fun AnswerCard(
             // why: AFTER the fill, so the stroke draws over it — a surface laid on top of the
             // stroke swallows the one tint saying how the arrangement was graded.
             .drawBehind {
-                val width = (if (verdict.locked) 2.dp else 1.dp).toPx()
+                val width = verdict.edgeWidth.dp.toPx()
+                val dash = verdict.edgeDash.map { it.dp.toPx() }
                 drawRoundRect(
                     color = easedBorder,
                     cornerRadius = CornerRadius(radius.toPx()),
                     style = Stroke(
                         width = width,
-                        // The dashes say the row is still open; a graded one closes solid.
-                        pathEffect = if (verdict.locked) {
-                            null
-                        } else {
-                            PathEffect.dashPathEffect(floatArrayOf(5.dp.toPx(), 4.dp.toPx()))
-                        },
+                        pathEffect = if (dash.isEmpty()) null else PathEffect.dashPathEffect(dash.toFloatArray()),
                     ),
                 )
             }
@@ -158,19 +144,16 @@ private fun AnswerCard(
                 contentDescription = chrome.a11yScrambleArrangement
                 // why: the border tint is the whole verdict on screen, and a border is
                 // nothing TalkBack can read — so the state carries it in words.
-                stateDescription = when (verdict) {
-                    ScrambleVerdict.Owed -> arranged
-                    ScrambleVerdict.Correct -> "$arranged, ${chrome.a11yVerdictCorrect}"
-                    ScrambleVerdict.Wrong -> "$arranged, ${chrome.a11yVerdictWrong}"
+                stateDescription = when (verdict.spoken) {
+                    null -> arranged
+                    ChoiceVerdict.Correct -> "$arranged, ${chrome.a11yVerdictCorrect}"
+                    ChoiceVerdict.Wrong -> "$arranged, ${chrome.a11yVerdictWrong}"
                 }
             },
         contentAlignment = Alignment.Center,
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-            // why: a graded card with nothing in the row is a reveal nobody arranged for — the
-            // row would hold its reserve and its "tap the words into order" over an answer
-            // there is no longer one to give.
-            if (!verdict.locked || placed.isNotEmpty()) Box(
+            if (verdict.showsRow(placed.isNotEmpty())) Box(
                 // why: the row is reserved whether or not anything stands in it, so the bank
                 // below never walks up the screen as the sentence is built — and once it is
                 // graded there is no bank to hold still for, so the reserve would only pad the
@@ -276,7 +259,7 @@ private fun ScrambleChip(
     onClick: () -> Unit,
 ) {
     // why: spent eases to dimmed rather than snapping there the instant a chip is taken.
-    val dimAlpha by animateFloatAsState(if (dimmed) 0.35f else 1f, turnTween(), label = "chipDim")
+    val dimAlpha by animateFloatAsState(if (dimmed) ScrambleBank.SPENT_ALPHA.toFloat() else 1f, turnTween(), label = "chipDim")
     Box(
         modifier = modifier
             .alpha(dimAlpha)

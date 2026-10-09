@@ -12,7 +12,8 @@
   "eye": {
    "text": "œil",
    "accepts": ["l'œil", "oeil", "l'oeil"],
-   "grammar": { "gender": "l'", "plural": "yeux" }
+   "forms": { "pl": "les yeux" },
+   "grammar": { "gender": "l'" }
   },
   "ear": { "text": "oreille", "accepts": ["l'oreille"], "grammar": { "gender": "l'" } },
   "nose": { "text": "nez", "grammar": { "gender": "le", "plural": "=" } },
@@ -38,11 +39,11 @@
    }
   },
   "shoulder": { "text": "épaule", "accepts": ["l'épaule"], "grammar": { "gender": "l'" } },
-  "knee": { "text": "genou", "grammar": { "gender": "le", "plural": "genoux" } },
+  "knee": { "text": "genou", "forms": { "pl": "les genoux" }, "grammar": { "gender": "le" } },
   "chest": { "text": "poitrine", "grammar": { "gender": "la" } },
   "heart": { "text": "cœur", "accepts": ["coeur"], "grammar": { "gender": "le" } },
   "blood": { "text": "sang", "grammar": { "gender": "le" } },
-  "skin": { "text": "peau", "grammar": { "gender": "la", "plural": "-x" } },
+  "skin": { "text": "peau", "forms": { "pl": "les peaux" }, "grammar": { "gender": "la" } },
   "bone": { "text": "os", "accepts": ["l'os"], "grammar": { "gender": "l'", "plural": "=" } },
   "finger": {
    "text": "doigt",
@@ -50,7 +51,7 @@
    "notes": { "fr": "le doigt de la main · le doigt de pied, c'est l'orteil." }
   },
   "neck": { "text": "cou", "grammar": { "gender": "le" } },
-  "brain": { "text": "cerveau", "grammar": { "gender": "le", "plural": "cerveaux" } },
+  "brain": { "text": "cerveau", "forms": { "pl": "les cerveaux" }, "grammar": { "gender": "le" } },
   "muscle": { "text": "muscle", "grammar": { "gender": "le" } },
   "nipple": { "text": "mamelon", "grammar": { "gender": "le" } },
   "my-head-hurts": { "text": "J'ai mal à la tête.", "accepts": ["Ma tête me fait mal."] },

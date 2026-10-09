@@ -9,7 +9,12 @@
   "to-plant-flowers": { "text": "piantare fiori" },
   "to-grill-meat": { "text": "grigliare la carne", "accepts": ["arrostire la carne", "fare una grigliata"] },
   "mountain": { "text": "montagna", "grammar": { "gender": "la" } },
-  "forest": { "text": "bosco", "accepts": ["foresta"], "grammar": { "gender": "il", "plural": "boschi" } },
+  "forest": {
+   "text": "bosco",
+   "accepts": ["foresta"],
+   "forms": { "pl": "i boschi" },
+   "grammar": { "gender": "il" }
+  },
   "stone": { "text": "pietra", "accepts": ["sasso"], "grammar": { "gender": "la" } },
   "stone-wall": { "text": "muro di pietra", "grammar": { "gender": "il" } },
   "moon": { "text": "luna", "grammar": { "gender": "la" } },

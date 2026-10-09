@@ -16,19 +16,33 @@ enum class StreakRole {
     Outside,
 }
 
-/** What today still owes the current run, safest first. */
-enum class StreakHealth {
+/**
+ * What today still owes the current run, safest first —
+ * and the grade the 🔥 mark wears for it on every surface that draws the run.
+ *
+ * The flame is multi-color artwork, so the grade is light and COLOR rather than a second shape:
+ * full strength where the day is answered, only a whisper of fade and half the color
+ * where a miss would only spend the bridge — a flame cooling, asking for renewal without
+ * being faded out — and drained to gray where a miss would end the run, a flame gone cold,
+ * which is louder than any amount of fading. With no run behind it the mark is faint as well.
+ */
+enum class StreakHealth(
+    /** How much of the flame shows, 0 (none) to 1 (full). */
+    val flameOpacity: Double,
+    /** How much of the flame's color is left, 0 (gray) to 1 (full color). */
+    val flameSaturation: Double,
+) {
     /** Today has reviews: the run is earned and safe until tomorrow. */
-    Earned,
+    Earned(flameOpacity = 1.0, flameSaturation = 1.0),
 
     /** Nothing today yet, but yesterday was earned — a miss today is only the run's one bridge. */
-    Bridgeable,
+    Bridgeable(flameOpacity = 0.9, flameSaturation = 0.5),
 
     /** Nothing today, and yesterday was already the bridge — a miss today ends the run. */
-    Ending,
+    Ending(flameOpacity = 0.9, flameSaturation = 0.0),
 
     /** The streak is 0: there is no run to protect. */
-    NoRun,
+    NoRun(flameOpacity = 0.4, flameSaturation = 0.0),
     ;
 
     /**

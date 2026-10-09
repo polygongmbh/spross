@@ -1,4 +1,5 @@
 import SwiftUI
+import SprossKern
 
 // MARK: - RatingButtonsView
 //
@@ -89,11 +90,11 @@ private struct GradeButton: View {
             .frame(minHeight: 60) // card-parity: the rating row's own height, not a card reserve
             .background(
                 RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                    .fill(outcome.color.opacity(0.14))
+                    .fill(outcome.color.opacity(Palette.shared.WASH))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                    .strokeBorder(outcome.color.opacity(0.35), lineWidth: 1)
+                    .strokeBorder(outcome.color.opacity(Palette.shared.EDGE), lineWidth: 1)
             )
         }
         .buttonStyle(PressableStyle())
@@ -105,8 +106,7 @@ private struct PressableStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .scaleEffect(configuration.isPressed ? 0.95 : 1)
-            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: configuration.isPressed)
+            .press(configuration.isPressed, .rating)
     }
 }
 

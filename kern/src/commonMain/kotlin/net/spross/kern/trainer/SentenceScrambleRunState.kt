@@ -1,5 +1,11 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls.Slot
+import net.spross.kern.session.AnswerControls
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
+import net.spross.kern.session.Saying
 import net.spross.kern.model.Language
 import net.spross.kern.session.TurnFeedback
 
@@ -104,17 +110,39 @@ data class SentenceScrambleRunState(
         fun storageKey(language: Language): String = "sentencescramble.$language"
     }
 
-    /**
-     * The card is up, whatever the arrangement was graded.
-     * A clean one raises it too: the ORDER was the question and the MEANING never was,
-     * so an arrangement that vanished the moment it landed
-     * was the one answer the drill never glossed.
-     */
-    val showsAnswer: Boolean get() = !owesAnswer
+    /** How the arrangement stands, as the tile bank wears it. */
+    val verdict: ScrambleVerdict get() = ScrambleVerdict.of(this)
 
-    /** What a verdict says aloud: the phrase as authored, whichever order was accepted. */
-    internal val saidAnswer: DrillEffect.SayAnswer?
-        get() = task?.let { DrillEffect.SayAnswer(it.display, it.language) }
+    /** Nothing: the phrase heard in order is the order being asked for. */
+    override val promptSaying: Saying? get() = null
+
+    /** The phrase as authored, whichever order was accepted. */
+    override val answerSaying: Saying? get() = task?.let { Saying(it.display, it.language) }
+
+    /**
+     * The bank is the prompt, so no words stand on it.
+     * A missed arrangement opens onto the authored order and its meaning;
+     * an accepted one already stands in an order, so it grows the meaning alone —
+     * none after an alternative order, since the meaning belongs to the authored one.
+     */
+    override val question: Question?
+        get() = task?.let { t ->
+            Question(
+                key = index.toString(),
+                ask = null,
+                prompt = Question.Side(null, t.language, Question.Form.Sentence),
+                answer = Question.Side(t.display, t.language, Question.Form.Sentence, saying = answerSaying),
+                emoji = null,
+                emojiCue = EmojiCue.Upfront,
+                opens = showsAnswer,
+                growsNote = answerAccepted,
+                closing = Question.Closing(note = t.gloss.takeUnless { alternativeMatch }?.let { ClosingNote.Own(it) }),
+            )
+        }
+
+    /** The bank's pieces are put in order, and placing the last one is the answer — no primary action asks for it. */
+    override val controls: AnswerControls?
+        get() = task?.let { answerControls(Slot.Arrangement) }
 
     /** Accepted via an alternative word order rather than the canonical one — gloss not shown. */
     val alternativeMatch: Boolean

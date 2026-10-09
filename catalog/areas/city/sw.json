@@ -10,20 +10,20 @@
   },
   "city": {
    "text": "mji",
-   "grammar": { "plural": "miji" },
+   "forms": { "pl": "miji" },
    "notes": { "sw": "mji = mahali penye watu wengi · jiji = mji mkubwa kama Dar" }
   },
-  "village": { "text": "kijiji", "grammar": { "plural": "vijiji" } },
-  "neighborhood": { "text": "mtaa", "grammar": { "plural": "mitaa" } },
-  "building": { "text": "jengo", "grammar": { "plural": "majengo" } },
+  "village": { "text": "kijiji", "forms": { "pl": "vijiji" } },
+  "neighborhood": { "text": "mtaa", "forms": { "pl": "mitaa" } },
+  "building": { "text": "jengo", "forms": { "pl": "majengo" } },
   "bank": { "text": "benki", "grammar": { "plural": "=" } },
   "post-office": { "text": "posta", "grammar": { "plural": "=" } },
-  "church": { "text": "kanisa", "grammar": { "plural": "makanisa" } },
-  "mosque": { "text": "msikiti", "grammar": { "plural": "misikiti" } },
+  "church": { "text": "kanisa", "forms": { "pl": "makanisa" } },
+  "mosque": { "text": "msikiti", "forms": { "pl": "misikiti" } },
   "library": { "text": "maktaba", "grammar": { "plural": "=" } },
   "police": { "text": "polisi", "grammar": { "plural": "=" } },
   "cinema": { "text": "sinema", "grammar": { "plural": "=" } },
-  "bridge": { "text": "daraja", "grammar": { "plural": "madaraja" } },
+  "bridge": { "text": "daraja", "forms": { "pl": "madaraja" } },
   "is-there-a-bank-here": { "text": "Kuna benki hapa?", "orders": ["Hapa kuna benki?"] },
   "i-live-in-this-neighborhood": { "text": "Ninaishi katika mtaa huu." }
  }

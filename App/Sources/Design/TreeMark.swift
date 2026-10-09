@@ -4,16 +4,12 @@ import SprossKern
 // MARK: - Tree mark
 //
 // One tree placed for drawing: kern says where it stands (`TreesLayout`, `AreaTree.solitary`)
-// and this carries that in points, with what hangs on it and the wood it hangs on.
+// and this carries that in points, with kern's picture of it (`TreePicture`) ready to draw.
 
 struct TreeMark {
     let tree: AreaGrowth
     /// The area's name, read off the kern value once rather than per mark drawn.
     let area: String
-    /// What the wood and the marks' scatter grow from (`AreaTree.seed`).
-    let seed: String
-    /// What hangs on it, by mark.
-    let canopy: Canopy
     /// Where the trunk meets the ground.
     let foot: CGPoint
     /// Foot to the top of the crown.
@@ -22,34 +18,26 @@ struct TreeMark {
     let cell: CGRect
     /// The ground line this tree's whole row shares.
     let baseline: CGFloat
-    /// The branches, grown from the seed and the FINISHED count —
-    /// never from the height it is drawn at, so a tree rising through a transition
-    /// keeps every mark where it hangs and only what hangs on it moves.
-    let skeleton: TreeSkeleton
+    /// The tree as it is drawn, grown from its seed (`AreaTree.seed`) and converted once.
+    let art: TreeArt
 
-    init(tree: AreaGrowth, garden: String, canopy: Canopy, foot: CGPoint, height: CGFloat, cell: CGRect, baseline: CGFloat) {
+    init(tree: AreaGrowth, garden: String, foot: CGPoint, height: CGFloat, cell: CGRect, baseline: CGFloat) {
         self.tree = tree
         self.area = tree.area
-        self.seed = AreaTree.shared.seed(garden: garden, area: tree.area)
-        self.canopy = canopy
         self.foot = foot
         self.height = height
         self.cell = cell
         self.baseline = baseline
-        self.skeleton = TreeSkeleton.grown(seed: seed, marks: canopy.count, buds: canopy.buds,
-                                           foot: foot, height: height)
+        art = TreeArt(TreePicture.companion.of(tree: tree, seed: AreaTree.shared.seed(garden: garden, area: tree.area),
+                                               footX: foot.x, footY: foot.y, height: height))
     }
 
-    /// The shortest a tree is drawn, a seedling.
-    static let minHeight = CGFloat(AreaTree.shared.MIN_HEIGHT)
-
-    /// One tree alone, filling a box of its own — what a session summary draws —
-    /// at `risen` of its full height.
-    static func solitary(_ tree: AreaGrowth, garden: String, canopy: Canopy, in size: CGSize, risen: CGFloat = 1) -> TreeMark {
+    /// One tree alone, filling a box of its own — what a session summary draws.
+    static func solitary(_ tree: AreaGrowth, garden: String, in size: CGSize) -> TreeMark {
         let stand = AreaTree.shared.solitary(width: size.width, height: size.height)
-        return TreeMark(tree: tree, garden: garden, canopy: canopy,
+        return TreeMark(tree: tree, garden: garden,
                         foot: CGPoint(x: stand.footX, y: stand.footY),
-                        height: CGFloat(stand.height) * risen,
+                        height: CGFloat(stand.height),
                         cell: CGRect(origin: .zero, size: size),
                         baseline: CGFloat(stand.footY))
     }
@@ -59,7 +47,7 @@ struct TreeMark {
         let plan = TreesLayout.shared.place(trees: trees, width: width)
         let marks = plan.spots.map { spot in
             let tree = trees[Int(spot.index)]
-            return TreeMark(tree: tree, garden: garden, canopy: Canopy(tree),
+            return TreeMark(tree: tree, garden: garden,
                             foot: CGPoint(x: spot.footX, y: spot.baseline),
                             height: CGFloat(spot.height),
                             cell: CGRect(x: spot.cellX, y: spot.cellY,

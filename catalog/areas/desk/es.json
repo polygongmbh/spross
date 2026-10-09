@@ -75,7 +75,8 @@
   },
   "broken": {
    "text": "roto",
-   "accepts": ["rota", "estropeado", "averiado"],
+   "accepts": ["estropeado", "averiado"],
+   "forms": { "f": "rota" },
    "notes": {
     "es": "Con estar: el móvil está roto.",
     "de": "Mit estar: el móvil está roto. Ein Gerät, das nur nicht mehr geht, ist estropeado."
@@ -100,7 +101,7 @@
    "text": "Mándale el correo.",
    "accepts": ["Envíale el correo.", "Mándale el correo electrónico.", "Mándale el email."]
   },
-  "pencil": { "text": "lápiz", "grammar": { "gender": "el", "plural": "lápices" } },
-  "plug": { "text": "clavija", "grammar": { "gender": "la", "plural": "-s" } }
+  "pencil": { "text": "lápiz", "forms": { "pl": "los lápices" }, "grammar": { "gender": "el" } },
+  "plug": { "text": "clavija", "forms": { "pl": "las clavijas" }, "grammar": { "gender": "la" } }
  }
 }

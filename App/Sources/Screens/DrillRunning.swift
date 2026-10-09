@@ -15,17 +15,22 @@ import SprossKern
 /// vocabulary, and each files a close in stores of its own. Those are the two
 /// associated types and the handful of members under them; nothing else varies.
 ///
+/// It is the drills' `QuestionDriving`, the surface the review session drives through too:
+/// the question, its controls and its reading come off the run, the intents go back to it.
+///
 /// Nothing here decides a rule. Which branch waits, what an answer is worth and
 /// when a run is over are kern's, read off `DrillStep`, `DrillEffect` and
 /// `DrillClose`; what this owns is the field, the animation, the keyboard and
 /// the voice — the platform's half (`CLAUDE.md`).
 @MainActor
-protocol DrillRunning: View {
+protocol DrillRunning: View, QuestionDriving {
 
     // MARK: - The machine under this drill
 
-    /// Kern's whole run state, replaced whole by every reduction.
-    associatedtype Run
+    /// Kern's whole run state, replaced whole by every reduction — always one
+    /// of kern's `DrillRunProgress` states, which is where what the question
+    /// says aloud comes from (`Reading`).
+    associatedtype Run: DrillRunProgress
     /// The vocabulary that machine takes its events in.
     associatedtype Move
 
@@ -35,10 +40,11 @@ protocol DrillRunning: View {
     /// The learner's text — the one thing kern deliberately does not hold, and
     /// so the one thing the driver has to clear itself.
     var input: String { get nonmutating set }
-    var autoAdvance: Task<Void, Never>? { get nonmutating set }
     var answerFocused: Bool { get nonmutating set }
     var reduceMotion: Bool { get }
     var dismiss: DismissAction { get }
+    /// Where a closed run books its answers to the day; nil where the view runs without one.
+    var appModel: AppModel? { get }
     /// Handed the run's figures just before it closes (see `DrillResultTile`).
     var onFinish: (DrillRunResult) -> Void { get }
 
@@ -75,12 +81,6 @@ protocol DrillRunning: View {
     var turnFeedback: TurnFeedback { get }
 
     // MARK: - What kern asks of the device
-
-    /// What says a graded answer, and what an armed beat waits on while it does.
-    var answerVoice: AnswerVoice { get }
-
-    /// Where the voice looks an answer up; nil in a preview, which says nothing.
-    var voiceModel: AppModel? { get }
 
     /// Silencing whatever the question being left was saying.
     func silence()
@@ -138,19 +138,31 @@ extension DrillRunning {
         }
         let animation: Animation = moved
             ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
-            : .easeOut(duration: 0.25)
+            : .cardReveal
         withAnimation(animation) { run = step.run }
         for effect in step.effects { apply(effect) }
+        // why: after the effects — a verdict's Silence would cut the answer this
+        // starts, and an armed beat only asks the reader once its delay is up.
+        readAloud()
         // Nothing left to ask: hand the run back, never repeat a question.
         if isFinished(step.run) { closeRun() }
     }
 
+    /// What a reduction's effects become on this device — the list Android's `DrillActs` carries out.
     func apply(_ effect: DrillEffect) {
-        DrillEffects.apply(effect, advance: &autoAdvance,
-                           voice: answerVoice, model: voiceModel,
-                           onAdvance: { dispatch(advanceMove) },
-                           releaseFocus: { releaseFocus() },
-                           silence: { silence() })
+        switch onEnum(of: effect) {
+        case .armAdvance(let arm):
+            armAdvance(arm.beat) { dispatch(advanceMove) }
+        case .cancelAdvance:
+            autoAdvance?.cancel()
+        case .tone(let cue):
+            Sound.play(cue.kind)
+        case .releaseFocus:
+            releaseFocus()
+        case .silence:
+            // why: the reading belongs to the question being left.
+            silence()
+        }
     }
 
     // MARK: - What the learner does
@@ -180,6 +192,13 @@ extension DrillRunning {
         dispatch(keepPracticingMove)
     }
 
+    /// Where the answer area under every drill hands its taps: the field and the one
+    /// primary action to kern, the held verdict's Next, and the way out where kern offers it.
+    var answerActions: AnswerActions {
+        AnswerActions(submit: { submit() }, type: { _ in typed() },
+                      confirm: { confirm() }, stop: { closeRun() })
+    }
+
     // MARK: - Close → back to the page that opened it
 
     /// X during a run: kern books a pending answer exactly as the tap would,
@@ -193,11 +212,11 @@ extension DrillRunning {
             return
         }
         answerFocused = false
+        appModel?.bookDrillAnswers(Int(summary.done))
         TrainerProgress.stampRun(lastRunKey)
-        // why: the cheer marks the record, not the end of a run — confetti and
-        // cheer are one thing (`docs/design.md`), and the tile rains the one.
-        // A drill with no record store never reports one.
-        if summary.newRecord { Sound.cheer() }
+        // why: confetti and cheer are one thing (`docs/design.md`); the page the
+        // run closes onto rains the one, so the close sounds the other.
+        if summary.celebrated { Sound.cheer() }
         onFinish(DrillRunResult(summary, title: resultTitle))
         dismiss()
     }
@@ -222,87 +241,5 @@ extension DrillRunning {
 
     func movedOn() {}
 
-    func silence() { answerVoice.hush() }
-}
-
-/// Where the run state is one of kern's own, the three figures the driver reads
-/// come off `DrillRunProgress` — the drill spells none of them out.
-extension DrillRunning where Run: DrillRunProgress {
-
-    func questionIndex(_ run: Run) -> Int { Int(run.index) }
-
-    func isFinished(_ run: Run) -> Bool { run.finished }
-
-    var turnFeedback: TurnFeedback { run.feedback }
-
-    /// The question the learner can see — nil while a pause stands in its place,
-    /// so what a view does on a question's arrival (autoplay, focus) waits until
-    /// the run goes on rather than playing under the pause.
-    var shownQuestion: Int? { run.pause == nil ? Int(run.index) : nil }
-
-    /// The run's screen, or kern's pause in its place (`DrillPacing`): Done
-    /// closes the run as the ✕ does, keep practicing carries it on.
-    @ViewBuilder
-    func pausable(_ screen: some View) -> some View {
-        if run.pause != nil {
-            DrillPauseView(run: run, onDone: { closeRun() }, onKeepPracticing: { keepPracticing() })
-                .transition(.opacity)
-        } else {
-            screen
-        }
-    }
-
-    /// The run on its endless chrome — kern's tally as the counter, its outcomes as
-    /// the segments — with the pause standing in when kern calls one. `asking` false
-    /// is a run that opened with nothing to ask: the page that offered it gates on the
-    /// same predicate, so this closes at once rather than showing a screen.
-    @ViewBuilder
-    func runScreen(asking: Bool = true, showsMuteButton: Bool = false,
-                   speaksPastMute: Bool = false,
-                   @ViewBuilder content: () -> some View) -> some View {
-        if asking {
-            pausable(SessionScaffold.endless(tally: run.tally,
-                                             outcomes: run.outcomes.map { SessionOutcome($0) },
-                                             showsMuteButton: showsMuteButton,
-                                             speaksPastMute: speaksPastMute,
-                                             onClose: { closeRun() },
-                                             content: content))
-        } else {
-            Theme.colors.background.ignoresSafeArea().onAppear { dismiss() }
-        }
-    }
-}
-
-#if DEBUG
-extension DrillRunning {
-
-    /// The two run-through hooks (UserDefaults launch arguments) every drill
-    /// takes, so a screenshot run needs no thumb: `-uitest-streak N` stands a run
-    /// mid-streak, and `-uitest-close 1` leaves the way the ✕ leaves, so the tile
-    /// the run drops on the page behind it can be photographed.
-    ///
-    /// Each drill's own hooks sit beside this call, never inside it.
-    func uitestDriveRun() {
-        let defaults = UserDefaults.standard
-        let preset = defaults.integer(forKey: "uitest-streak")
-        if preset > 0 { seedAnswerStreak(preset) }
-        if defaults.bool(forKey: "uitest-close") {
-            Task { @MainActor in
-                try? await Task.sleep(for: .milliseconds(400))
-                closeRun()
-            }
-        }
-    }
-}
-#endif
-
-/// The Sprosse a `-uitest-<drill>-level N` launch argument opens a run on, which is
-/// how a run-through reaches an outer Sprosse deterministically (kern clamps it);
-/// 0 where none is given, and always in a release build.
-func uitestOpeningSprosse(_ key: String) -> Int32 {
-    #if DEBUG
-    Int32(UserDefaults.standard.integer(forKey: key))
-    #else
-    0
-    #endif
+    func silence() { reader.hush() }
 }

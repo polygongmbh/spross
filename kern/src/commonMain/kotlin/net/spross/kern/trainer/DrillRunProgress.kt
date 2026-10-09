@@ -1,6 +1,10 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.Question
+import net.spross.kern.session.Reading
+import net.spross.kern.session.Saying
 import net.spross.kern.session.TurnFeedback
 
 /**
@@ -47,6 +51,12 @@ interface DrillRunProgress {
     val answerAccepted: Boolean
         get() = feedback == TurnFeedback.Correct || feedback is TurnFeedback.Almost
 
+    /**
+     * The card opens onto the answer ([Question.opens]) on a miss or a reveal only, as a review card does:
+     * an accepted answer stands in the learner's own text already, and a near miss's correction box spells it out.
+     */
+    val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
+
     /** The way out, under the button that goes on, on the second miss in a row. */
     val offersFinish: Boolean get() = missRun >= 1 && feedback == TurnFeedback.Revealed
 
@@ -59,4 +69,42 @@ interface DrillRunProgress {
      * question until the run is closed or goes on. Null while it runs on.
      */
     val pause: DrillPauseReason? get() = core.pacing.pause
+
+    /**
+     * What the question says as it goes up: its prompt, where that is a form in the language
+     * being learned and hearing it gives nothing away. No default — every drill rules on it.
+     */
+    val promptSaying: Saying?
+
+    /**
+     * What a verdict says, right or wrong: the answer in the language being learned.
+     * No default either; null where the drill's answer is in the learner's own language
+     * or its question already was the sound.
+     */
+    val answerSaying: Saying?
+
+    /**
+     * What the card shows for the question on screen ([Question]), as a review card has one;
+     * null once nothing is left to ask. No default — every drill rules on its card, as on its sayings.
+     */
+    val question: Question?
+
+    /**
+     * What stands under that card ([AnswerControls]), as under a review card; null once nothing is left to ask.
+     * No default — every drill rules on how its answer is given; [answerControls] holds what they share.
+     */
+    val controls: AnswerControls?
+
+    /**
+     * The question's [Reading], as a review card has one: the prompt held back while a pause
+     * stands in for the question, the answer once a verdict is out, a hold saying its correction.
+     */
+    val reading: Reading
+        get() = Reading(
+            key = index.toString(),
+            prompt = promptSaying.takeIf { pause == null },
+            answer = answerSaying.takeUnless { owesAnswer }?.let { said ->
+                (feedback as? TurnFeedback.Almost)?.let { said.copy(form = it.correctForm) } ?: said
+            },
+        )
 }

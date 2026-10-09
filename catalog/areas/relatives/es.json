@@ -4,8 +4,7 @@
  "words": {
   "grandparents": { "text": "abuelos", "grammar": { "gender": "los", "plural": "only" } },
   "siblings": { "text": "hermanos", "grammar": { "gender": "los", "plural": "only" } },
-  "cousin": { "text": "primo", "grammar": { "gender": "el" } },
-  "cousin-f": { "text": "prima", "grammar": { "gender": "la" } },
+  "cousin": { "text": "primo", "forms": { "f": "la prima" }, "grammar": { "gender": "el" } },
   "nephew": { "text": "sobrino", "grammar": { "gender": "el" } },
   "niece": { "text": "sobrina", "grammar": { "gender": "la" } },
   "grandson": { "text": "nieto", "grammar": { "gender": "el" } },

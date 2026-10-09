@@ -49,18 +49,22 @@ Neighbors: the engine contract `../README.md`, what the watch and widgets draw `
   A widget decodes and draws; it cannot run the join
   (no catalog in its bundle, ~30 MB extension memory cap against a 33 MB Kotlin debug framework).
   Everything clock-free is resolved phone-side;
-  what ages with the clock ships raw (per-card `due`, the activity strip's answer counts, `streakByDay`).
+  what ages with the clock ships raw (per-card `due`) or resolved per render day (`streakByDay`, `activityByDay`).
   **Both sides of the wire are kern's answer, nowhere re-derived.**
   `streakByDay` (`snapshot/WidgetStreak.kt`) is the streak resolved for every day a widget may render on,
   from the build day through the first day with no run left:
   an answer only reaches a widget through a fresh build, so the run can only age after it.
+  `activityByDay` (`snapshot/WidgetActivity.kt`) is the header strip's bars, sized by `ActivityBars`,
+  for every day from the build day through the first whose window holds no answer.
   A widget looks its render day up, so one rendered days after the app last ran
-  shows the streak and flame kern would show.
+  shows the streak, flame and strip kern would show.
   `WidgetSnapshotBuilder.decode` returns a public `WidgetSnapshotView` over that lookup,
   so the Android Glance widget (which links Kotlin) reads the schema rather than guessing at it,
   and rejects anything but the current `schemaVersion`.
   The iOS extension links no Kotlin and does the same lookup in `Widgets/Sources/WidgetSnapshot.swift`,
-  decoding `health` into its own Swift `StreakHealth` off the serialized case name.
+  decoding `health` into its own Swift `StreakHealth` off the serialized case name;
+  each day also carries the flame's grade for that health (`flameOpacity`, `flameSaturation`),
+  which the extension cannot ask the Kotlin enum for.
 - **WatchSnapshot** (`WatchSnapshotBuilder`): one entry per CARD with BOTH sides pre-resolved,
   plus `chromeLanguage` and `schemaVersion`;
   the watch refuses any other version whole and waits for the phone's next push, as the widget does.

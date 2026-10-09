@@ -1,4 +1,6 @@
+import SprossKern
 import SwiftUI
+import SprossKern
 
 // MARK: - SessionScaffold
 //
@@ -33,6 +35,9 @@ struct SessionScaffold<Content: View>: View {
     /// A run whose sound no mute reaches (the letter drill): the low-volume
     /// hint stands whatever the switch says.
     var speaksPastMute: Bool = false
+    /// The run's own line under the bar — a drill's score line — kept still
+    /// while the content under it scrolls; nil where the bar says it all.
+    var status: AnyView?
     var onClose: () -> Void = {}
     @ViewBuilder var content: Content
 
@@ -57,6 +62,7 @@ struct SessionScaffold<Content: View>: View {
             VStack(spacing: 0) {
                 topBar
                 VolumeHint(active: speaksPastMute || (showsMuteButton && !Pronouncer.shared.muted))
+                status?.padding(.top, Theme.spacing.md)
             }
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -78,14 +84,13 @@ struct SessionScaffold<Content: View>: View {
                             .frame(width: max(geo.size.width * fraction, 10))
                     }
                 } else {
-                    // why: an endless run keeps answering past any fixed total —
-                    // windowing to the latest answers keeps the bar legible (and
-                    // the view cheap) instead of one sliver per answer forever.
-                    let maxSegments = 40
-                    let remaining = max(total - outcomes.count, 0)
-                    let visible = outcomes.suffix(maxSegments)
-                    let slots = visible.count + remaining
-                    let spacing: CGFloat = slots > 40 ? 0.5 : 1
+                    // The window and the partings are kern's (`SegmentsBar`).
+                    let bar = SegmentsBar(answered: Int32(outcomes.count),
+                                          remaining: Int32(max(total - outcomes.count, 0)))
+                    let visible = outcomes.suffix(Int(bar.shown))
+                    let remaining = Int(bar.remaining)
+                    let slots = Int(bar.slots)
+                    let spacing = CGFloat(bar.gap)
                     // The partings come off the row before any slot is measured,
                     // so the remainder takes its share of what is LEFT for
                     // segments — from the full width it charged every gap to the
@@ -172,6 +177,7 @@ extension SessionScaffold {
                         counter: String? = nil,
                         showsMuteButton: Bool = false,
                         speaksPastMute: Bool = false,
+                        status: AnyView? = nil,
                         onClose: @escaping () -> Void,
                         @ViewBuilder content: () -> Content) -> SessionScaffold {
         SessionScaffold(position: endless ? outcomes.count + 1 : position,
@@ -180,6 +186,7 @@ extension SessionScaffold {
                         counter: counter,
                         showsMuteButton: showsMuteButton,
                         speaksPastMute: speaksPastMute,
+                        status: status,
                         onClose: onClose,
                         content: content)
     }
@@ -223,14 +230,16 @@ extension View {
 #Preview("Session chrome") {
     SessionScaffold(position: 4, total: 12, onClose: {}) {
         VStack(spacing: Theme.spacing.xl) {
-            VocabCardView(
-                emoji: "🥄",
-                prompt: .init(text: "kijiko"),
-                answer: .init(text: "Löffel", article: .init("der", gender: .masculine),
-                              plural: "Pl. Löffel"),
-                note: nil,
-                revealed: true
-            )
+            QuestionCardView(question: Question(
+                key: "kijiko", ask: nil,
+                prompt: .init(text: "kijiko", lang: "sw", form: .word, article: nil, plural: nil,
+                              marker: nil, context: nil, fixedLeading: 0, saying: nil),
+                answer: .init(text: "Löffel", lang: "de", form: .word, article: "der",
+                              plural: PluralForm.Form(text: "Löffel"),
+                              marker: nil, context: nil, fixedLeading: 0, saying: nil),
+                emoji: "🥄", emojiCue: .upfront, emojiIsQuestion: false, hint: nil,
+                opens: true, growsNote: false, closing: .init(alternates: [], note: nil), otherWord: nil
+            ), surface: .review)
             RatingButtonsView { _ in }
             Spacer(minLength: 0)
         }

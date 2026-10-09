@@ -1,19 +1,14 @@
 package net.spross.kern.snapshot
 
-import kotlinx.datetime.DateTimeUnit
-import kotlinx.datetime.minus
 import kotlinx.serialization.Serializable
-import net.spross.kern.box.ACTIVITY_WINDOW_DAYS
-import net.spross.kern.box.ActivityDay
 import net.spross.kern.box.BoxState
 import net.spross.kern.box.Exposure
 import net.spross.kern.box.Inventory
 import net.spross.kern.box.Statistics
 import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.answerDays
-import net.spross.kern.box.localDate
 import net.spross.kern.box.mergeAnswerDays
-import net.spross.kern.box.streakWindow
+import net.spross.kern.design.ActivityScale
 import net.spross.kern.model.Card
 import net.spross.kern.model.Gender
 import net.spross.kern.store.StoreJson
@@ -22,18 +17,12 @@ import net.spross.kern.store.StoreJson
  * Phone-side builder of the home-screen widget snapshot, and the read model
  * ([decode]) a widget draws it with. A widget surface never runs the join (no catalog
  * in its bundle, tight memory cap), so everything it renders is pre-resolved here on
- * every persist, the streak included for every day it will be rendered on
- * ([WidgetSnapshotDoc.streakByDay]) — only `dueCount(now)`, which genuinely moves within a day,
- * runs at render time. Who decodes it how: `kern/docs/snapshots.md`.
+ * every persist, the streak and the activity strip included for every day it will be rendered on
+ * ([WidgetSnapshotDoc.streakByDay], [WidgetSnapshotDoc.activityByDay]) — only `dueCount(now)`,
+ * which genuinely moves within a day, runs at render time. Who decodes it how: `kern/docs/snapshots.md`.
  */
 object WidgetSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 9
-
-    /**
-     * Calendar days of answer counts the snapshot carries: the activity strip's window,
-     * plus the day before it, which decides whether the window's oldest empty day is bridged.
-     */
-    const val DAILY_STATS_TAIL_DAYS: Int = ACTIVITY_WINDOW_DAYS + 1
+    const val SCHEMA_VERSION: Int = 11
 
     /** v1 widget timeline depth (24 quarter-hour rotations). */
     const val DEFAULT_EXPOSURE_LIMIT: Int = 24
@@ -92,7 +81,7 @@ object WidgetSnapshotBuilder {
             WidgetEntryDto(
                 cardId = card.id,
                 text = card.target.text,
-                sourceText = decoratedSourceText(card),
+                sourceText = card.source.text,
                 emoji = card.emoji,
                 article = article(card),
                 gender = wireGender(card),
@@ -104,18 +93,15 @@ object WidgetSnapshotBuilder {
             WidgetCardDto(cardId = sched.cardId, due = due.toEpochMilliseconds())
         }
         val combinedDailyStats =
-            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId)))
-        // why: yyyy-MM-dd keys compare chronologically as strings.
-        val oldestTailDay =
-            localDate(nowEpochMillis, tzId).minus(DAILY_STATS_TAIL_DAYS - 1, DateTimeUnit.DAY).toString()
+            mergeAnswerDays(listOf(otherLanguagesAnswerDays, answerDays(state.scheduling, tzId, state.drillDays)))
         return WidgetSnapshotDoc(
             schemaVersion = SCHEMA_VERSION,
             chromeLanguage = chromeLanguage(state),
             entries = entries,
             cards = cards,
             allSettledCount = active.count { Statistics.hasSettled(it) },
-            activityWindowDays = ACTIVITY_WINDOW_DAYS,
-            dailyStats = combinedDailyStats.filterKeys { it >= oldestTailDay }.mapValues { WidgetDayDto(it.value) },
+            activityByDay = activityTimeline(combinedDailyStats, nowEpochMillis, tzId),
+            activityHeight = ActivityScale.widget.maxHeight,
             streakByDay = streakTimeline(combinedDailyStats, nowEpochMillis, tzId),
         )
     }
@@ -126,7 +112,7 @@ object WidgetSnapshotBuilder {
      */
     private fun fitsOnWidget(card: Card): Boolean =
         card.target.text.length <= MAX_TEXT_CHARS &&
-            decoratedSourceText(card).length <= MAX_TEXT_CHARS
+            card.source.text.length <= MAX_TEXT_CHARS
 }
 
 /**
@@ -141,23 +127,25 @@ class WidgetSnapshotView internal constructor(private val doc: WidgetSnapshotDoc
         WidgetExposure(it.cardId, it.text, it.sourceText, it.emoji, it.article, genderOf(it.gender))
     }
 
+    /** The rows a tile of [count] cells shows at [nowEpochMillis], head first ([WidgetRotation]). */
+    fun window(nowEpochMillis: Long, count: Int, stepMillis: Long): List<WidgetExposure> =
+        WidgetRotation.window(entries.size, nowEpochMillis, count, stepMillis).map { entries[it] }
+
     /** Active cards that have settled — resolved phone-side, it does not move with the clock. */
     val allSettledCount: Int get() = doc.allSettledCount
-
-    private val dailyStats: Map<String, Int> = doc.dailyStats.mapValues { it.value.reviews }
 
     /** Active cards due at [nowEpochMillis]. */
     fun dueCount(nowEpochMillis: Long): Int = doc.cards.count { it.due <= nowEpochMillis }
 
     fun streak(nowEpochMillis: Long, tzId: String): Int =
-        streakOn(doc.streakByDay, nowEpochMillis, tzId).streak
+        onRenderDay(doc.streakByDay, nowEpochMillis, tzId).streak
 
     fun streakHealth(nowEpochMillis: Long, tzId: String): StreakHealth =
-        streakOn(doc.streakByDay, nowEpochMillis, tzId).health
+        onRenderDay(doc.streakByDay, nowEpochMillis, tzId).health
 
-    /** The trailing [WidgetSnapshotDoc.activityWindowDays] local days, oldest first — the header strip's input. */
-    fun activityWindow(nowEpochMillis: Long, tzId: String): List<ActivityDay> =
-        streakWindow(dailyStats, doc.activityWindowDays, nowEpochMillis, tzId)
+    /** The header strip's bars on the local day of [nowEpochMillis], oldest first, today last. */
+    fun activityBars(nowEpochMillis: Long, tzId: String): List<WidgetBar> =
+        onRenderDay(doc.activityByDay, nowEpochMillis, tzId)
 }
 
 /** One exposure row: TARGET-side [text]; the ♀ marker is baked into [sourceText]. */
@@ -184,23 +172,16 @@ internal data class WidgetSnapshotDoc(
     val cards: List<WidgetCardDto>,
     /** Active cards that have settled; time-independent, so it is resolved here. */
     val allSettledCount: Int,
-    /** How many trailing days the activity strip shows: [ACTIVITY_WINDOW_DAYS], so no widget keeps its own. */
-    val activityWindowDays: Int,
-    /** Answered days among the trailing [WidgetSnapshotBuilder.DAILY_STATS_TAIL_DAYS] — the strip's input. */
-    val dailyStats: Map<String, WidgetDayDto>,
+    /** The activity strip's bars for each day a widget may render on ([activityTimeline]), read by [onRenderDay]. */
+    val activityByDay: Map<String, List<WidgetBar>>,
+    /** The height the strip's row reserves, its tallest bar's ([ActivityScale.widget]). */
+    val activityHeight: Double,
     /**
-     * The streak for each day a widget may render on ([streakTimeline]), read by [streakOn] —
+     * The streak for each day a widget may render on ([streakTimeline]), read by [onRenderDay] —
      * a widget extension with no Kotlin cannot ask [Statistics] later, so it looks its day up here.
      */
     val streakByDay: Map<String, WidgetStreakDto>,
 )
-
-/**
- * One day as a widget reads it. An object rather than a bare count because that is the
- * shape the hand-written Swift mirror already decodes (`Widgets/Sources/WidgetSnapshot.swift`).
- */
-@Serializable
-internal data class WidgetDayDto(val reviews: Int)
 
 /** One exposure row: TARGET-side text; the ♀ marker is baked into [sourceText]. */
 @Serializable

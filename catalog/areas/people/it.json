@@ -18,11 +18,16 @@
    "grammar": { "gender": "il" },
    "notes": { "it": "il bambino è ogni bambino · il tuo è tuo figlio." }
   },
-  "son": { "text": "figlio", "grammar": { "gender": "il", "plural": "figli" } },
+  "son": { "text": "figlio", "forms": { "pl": "i figli" }, "grammar": { "gender": "il" } },
   "daughter": { "text": "figlia", "grammar": { "gender": "la" } },
   "brother": { "text": "fratello", "grammar": { "gender": "il" } },
   "sister": { "text": "sorella", "grammar": { "gender": "la" } },
-  "man": { "text": "uomo", "accepts": ["l'uomo"], "grammar": { "gender": "l'", "plural": "uomini" } },
+  "man": {
+   "text": "uomo",
+   "accepts": ["l'uomo"],
+   "forms": { "pl": "gli uomini" },
+   "grammar": { "gender": "l'" }
+  },
   "woman": { "text": "donna", "grammar": { "gender": "la" } },
   "boy": { "text": "ragazzo", "grammar": { "gender": "il" } },
   "girl": { "text": "ragazza", "grammar": { "gender": "la" } },
@@ -32,17 +37,17 @@
    "grammar": { "gender": "il" },
    "notes": { "it": "il neonato è appena nato · dopo è un bambino piccolo." }
   },
-  "friend": { "text": "amico", "accepts": ["l'amico"], "grammar": { "gender": "l'", "plural": "amici" } },
-  "friend-f": {
-   "text": "amica",
-   "accepts": ["l'amica", "un'amica"],
-   "grammar": { "gender": "l'", "plural": "amiche" }
+  "friend": {
+   "text": "amico",
+   "accepts": ["l'amico", "un'amica"],
+   "forms": { "f": "l'amica", "pl": "gli amici", "f.pl": "le amiche" },
+   "grammar": { "gender": "l'" }
   },
   "grandmother": { "text": "nonna", "grammar": { "gender": "la" } },
   "grandfather": { "text": "nonno", "grammar": { "gender": "il" } },
   "husband": { "text": "marito", "grammar": { "gender": "il" } },
-  "wife": { "text": "moglie", "grammar": { "gender": "la", "plural": "mogli" } },
-  "uncle": { "text": "zio", "grammar": { "gender": "lo", "plural": "zii" } },
+  "wife": { "text": "moglie", "forms": { "pl": "le mogli" }, "grammar": { "gender": "la" } },
+  "uncle": { "text": "zio", "forms": { "pl": "gli zii" }, "grammar": { "gender": "lo" } },
   "aunt": { "text": "zia", "grammar": { "gender": "la" } },
   "to-visit": { "text": "andare a trovare" },
   "to-marry": { "text": "sposarsi" },
@@ -62,7 +67,7 @@
    "accepts": ["gli anziani", "la gente anziana"],
    "notes": { "it": "si dice persone anziane · persone vecchie suona male." }
   },
-  "many-friends": { "text": "molti amici", "accepts": ["molte amiche"] },
+  "many-friends": { "text": "molti amici", "forms": { "f": "molte amiche" } },
   "mom-help-me": { "text": "Mamma, aiutami!" },
   "dad-where-are-you": { "text": "Papà, dove sei?" },
   "help-your-brother": { "text": "Aiuta tuo fratello!" },

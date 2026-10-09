@@ -2,6 +2,7 @@ package net.spross.app.ui
 
 import android.text.format.DateFormat
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -65,55 +66,60 @@ fun HomeScreen(model: AppModel) {
     var briefingOpen by remember { mutableStateOf(false) }
     val standing = model.homeStanding
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = Theme.spacing.xl),
-        verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
-    ) {
-        PageTitle(hello, eyebrow = today)
+    Box(Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = Theme.spacing.xl),
+            verticalArrangement = Arrangement.spacedBy(Theme.spacing.xl),
+        ) {
+            PageTitle(hello, eyebrow = today)
 
-        val pick = rememberSuggestedDrill(model, standing)
-        val lead = standing?.lead(pick) ?: DayLead.Done
-        val card = homeCard(failed = model.loadFailure != null, lead = lead)
-        when (card) {
-            HomeCard.Failure -> StateCard(
-                emoji = "🫤",
-                title = chrome.errorTitle,
-                // The catalog is present — the box is what could not be read, so the card
-                // names the reason the decode gave rather than a missing content pack.
-                message = model.loadFailure
-                    ?.let { chrome.errorContentUnavailable.format(it) }
-                    ?: chrome.errorCatalogMissing,
-            )
+            val pick = rememberSuggestedDrill(model, standing)
+            val lead = standing?.lead(pick) ?: DayLead.Done
+            val card = homeCard(failed = model.loadFailure != null, lead = lead)
+            when (card) {
+                HomeCard.Failure -> StateCard(
+                    emoji = "🫤",
+                    title = chrome.errorTitle,
+                    // The catalog is present — the box is what could not be read, so the card
+                    // names the reason the decode gave rather than a missing content pack.
+                    message = model.loadFailure
+                        ?.let { chrome.errorContentUnavailable.format(it) }
+                        ?: chrome.errorCatalogMissing,
+                )
 
-            HomeCard.Session -> standing?.let {
-                SessionCard(model, it, stats?.streak ?: 0, health)
+                HomeCard.Session -> standing?.let {
+                    SessionCard(model, it, stats?.streak ?: 0, health)
+                }
+
+                HomeCard.Drill -> if (standing != null && pick != null) {
+                    DrillLeadCard(model, standing, pick, stats?.streak ?: 0, health)
+                }
+
+                HomeCard.Done -> standing?.let {
+                    DoneCard(model, it, stats?.streak ?: 0, health)
+                }
             }
 
-            HomeCard.Drill -> if (standing != null && pick != null) {
-                DrillLeadCard(model, standing, pick, stats?.streak ?: 0, health)
-            }
+            ListenCard(model)
 
-            HomeCard.Done -> standing?.let {
-                DoneCard(model, it, stats?.streak ?: 0, health)
-            }
+            TrainerHubCard(model)
+
+            TalkCard(model) { briefingOpen = true }
+
+            // The same fortnight the streak was counted from, on the very refresh that
+            // produced it — the strip reads kern's walk, never one of its own. It names
+            // itself, so nothing announces it a second time above.
+            ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
+
+            HomeTrees(model)
+            Spacer(Modifier.height(Theme.spacing.lg))
         }
-
-        ListenCard(model)
-
-        TrainerHubCard(model)
-
-        TalkCard(model) { briefingOpen = true }
-
-        // The same fortnight the streak was counted from, on the very refresh that
-        // produced it — the strip reads kern's walk, never one of its own. It names
-        // itself, so nothing announces it a second time above.
-        ActivityStrip(model.activityWindow, stats?.streak ?: 0, health, chrome, locale)
-
-        HomeTrees(model)
-        Spacer(Modifier.height(Theme.spacing.lg))
+        // why: a celebrated scramble close rains over the whole screen — the hub card wearing
+        // its tile cannot hold it.
+        ClosedRunConfetti(model.trainer)
     }
     if (briefingOpen) BriefingSheet(model) { briefingOpen = false }
 }

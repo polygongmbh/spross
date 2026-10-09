@@ -22,17 +22,15 @@ internal object Snap {
         teaches: List<String> = emptyList(),
         accepts: List<String> = emptyList(),
         gender: String? = null,
-        feminineMarker: Boolean = false,
         targetLang: String = "sw",
     ): Card = Card(
         id = id, kind = kind, area = area, emoji = emoji, seedIndex = seed,
-        components = emptyList(), feminineOf = null,
+        components = emptyList(),
         source = Realization("de", sourceText),
         target = Realization(
             targetLang, targetText, teaches = teaches, accepts = accepts,
             grammar = if (gender != null) mapOf("gender" to gender) else emptyMap(),
         ),
-        promptFeminineMarker = feminineMarker,
     )
 
     fun state(cards: List<Card>, source: String = "de"): BoxState =

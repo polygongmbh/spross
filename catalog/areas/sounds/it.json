@@ -4,7 +4,8 @@
   "loud": { "text": "forte", "accepts": ["alto"], "notes": { "it": "parla più forte! · forte = robusto." } },
   "quiet": {
    "text": "silenzioso",
-   "accepts": ["silenziosa", "piano", "sottovoce", "a bassa voce"],
+   "accepts": ["piano", "sottovoce", "a bassa voce"],
+   "forms": { "f": "silenziosa" },
    "notes": { "it": "una stanza silenziosa · si parla piano o a bassa voce." }
   },
   "noise": { "text": "rumore", "grammar": { "gender": "il" } },
@@ -13,7 +14,8 @@
   "speaker": {
    "text": "altoparlante",
    "accepts": ["l'altoparlante"],
-   "grammar": { "gender": "l'", "plural": "altoparlanti" }
+   "forms": { "pl": "gli altoparlanti" },
+   "grammar": { "gender": "l'" }
   },
   "headphones": {
    "text": "cuffie",

@@ -36,17 +36,6 @@ class LetterDrillTests {
         assertEquals(LetterFormat.Dictation, LetterDrill.formatFor(99))
     }
 
-    /**
-     * The entry Sprosse climbs with the words already held — but never into dictation,
-     * which would ask for a word before the box can name five of them.
-     */
-    @Test
-    fun entrySprossePacesOnTheWordsAlreadyHeld() {
-        assertEquals(1, LetterDrill.entrySprosse(0))
-        assertTrue(LetterDrill.entrySprosse(60) > 1)
-        assertEquals(LetterFormat.Typed, LetterDrill.formatFor(LetterDrill.entrySprosse(10_000)))
-    }
-
     @Test
     fun onlyEntriesThatCanBeAskedAreEverPrompted() {
         val asked = (1..400).map { sample(sprosse = 1, seed = it).answerRef }.toSet()

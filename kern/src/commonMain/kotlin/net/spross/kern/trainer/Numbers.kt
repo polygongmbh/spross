@@ -274,7 +274,6 @@ object Numbers {
     /**
      * How LONG a Sprosse is. Two clean wins per Sprosse is the climb; fast mode spends
      * one, which is the reward for having topped the ladder the hard way.
-     * (Same shape as [LetterDrill.winsToAdvance], whose pacing rule this follows.)
      */
     fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else 2
 

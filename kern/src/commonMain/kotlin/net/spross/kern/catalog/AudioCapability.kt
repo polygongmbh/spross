@@ -59,3 +59,52 @@ fun audioCapability(catalog: Catalog, language: Language, hasVoice: Boolean): Au
         hasVoice -> AudioCapability.VoiceOnly
         else -> AudioCapability.None
     }
+
+/**
+ * The audio setting's three options, each a combination of the read-aloud mute and the
+ * learned language's voice source: there is no state where a source is chosen but the app is
+ * silent. Picking either source also turns reading aloud back on.
+ */
+enum class AudioPreference {
+    Off,
+
+    /** Bundled recordings first, the live voice for the rest — the default source. */
+    Recordings,
+
+    /** The live voice for everything it can say, so every word sounds the same and the article is always spoken. */
+    Speech,
+    ;
+
+    /** Whether picking it mutes reading aloud rather than choosing a source. */
+    val mutes: Boolean get() = this == Off
+
+    /** The source it chooses, where it chooses one: whether the live voice leads. */
+    val prefersSpeech: Boolean get() = this == Speech
+}
+
+/**
+ * What the audio setting offers here: Off, and one option per source that can actually answer —
+ * Speech only where the device has a voice, Recordings only where a pack ships.
+ * Either option without its source promises a sound nothing can make.
+ */
+val AudioCapability.preferenceOptions: List<AudioPreference>
+    get() = listOfNotNull(
+        AudioPreference.Off,
+        AudioPreference.Recordings.takeIf { hasRecordings },
+        AudioPreference.Speech.takeIf { hasVoice },
+    )
+
+/**
+ * The option the setting shows chosen, read from the mute and the stored source
+ * ([prefersSpeech]: the live voice leads for this language).
+ *
+ * A stored source the language cannot answer reads as the other one, in both directions:
+ * a voice uninstalled since it was picked and a pack that does not ship are equally empty
+ * promises, and the setting must never show an option chosen that plays nothing.
+ */
+fun AudioCapability.preference(muted: Boolean, prefersSpeech: Boolean): AudioPreference = when {
+    muted -> AudioPreference.Off
+    prefersSpeech && hasVoice -> AudioPreference.Speech
+    hasRecordings -> AudioPreference.Recordings
+    else -> AudioPreference.Speech
+}

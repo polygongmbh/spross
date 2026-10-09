@@ -1,6 +1,7 @@
 package net.spross.kern.session
 
 import net.spross.kern.model.Card
+import net.spross.kern.model.FormTag
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.SharedTargetForms
 
@@ -42,8 +43,8 @@ class CatalogAnswerGrader(
      * share belongs to the prompted one first. Otherwise the other concept's
      * word if the catalog owns the input, else the plain one-card verdict.
      */
-    fun grade(input: String, card: Card): Match {
-        val direct = normalizer.evaluate(input, card)
+    fun grade(input: String, card: Card, promptTag: FormTag? = null): Match {
+        val direct = normalizer.evaluate(input, card, promptTag)
         if (direct == Match.Exact) return direct
         return otherWord(input, card) ?: direct
     }
@@ -56,10 +57,6 @@ class CatalogAnswerGrader(
     fun conceptsSharing(form: String, card: Card): List<Card> = sharedForms.concepts(form, card)
 
     private fun otherWord(input: String, card: Card): Match.OtherWord? {
-        // why: the base concept's word is deliberately lenient on a feminine card
-        // (§3 demotes it to the feminine correction) — it must not be re-labeled
-        // as somebody else's word.
-        val skipped = setOfNotNull(card.id, card.feminineOf)
         // why: a form the prompted card accepts belongs to it first (see [grade]), and a
         // fumbled article in front of it changes nothing about that — otherwise a word
         // two concepts share would be withdrawn from the one that was asked for.
@@ -68,7 +65,7 @@ class CatalogAnswerGrader(
         // The whole string first, so a form owned outright names itself before the
         // remainder a mistyped article leaves behind does.
         val hits = (ownersOf(input) + ownersOf(peeled))
-            .filter { it.id !in skipped }
+            .filter { it.id != card.id }
             .distinctBy { it.id }
         if (hits.isEmpty()) return null
         return Match.OtherWord(
@@ -95,7 +92,7 @@ class CatalogAnswerGrader(
         val index = mutableMapOf<String, MutableList<Card>>()
         for (card in cards.sortedBy { it.seedIndex }) {
             val verb = card.kind == CardKind.Verb
-            val accepted = listOf(card.target.text) + card.target.teaches + card.target.accepts
+            val accepted = listOf(card.target.text) + card.target.teaches + card.target.accepts + card.target.forms.map { it.written }
             for (form in accepted) {
                 for (shape in normalizer.comparisonForms(form, verbLeniency = verb)) {
                     val holders = index.getOrPut(shape) { mutableListOf() }

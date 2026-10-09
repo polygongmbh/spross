@@ -104,21 +104,24 @@ fun produceAnswer(cardId: String, reviewCount: Int, settled: Boolean): ProduceAn
 }
 
 /**
- * The target form to PROMPT on a recognition review: rotates deterministically
- * through canonical text + `teaches` at zero extra scheduling cost. First
- * exposure always prompts the canonical text; afterwards the index advances
- * once per recognition review (recognition happens every other review, so
- * `reviewCount / 2` is parity-independent), offset per card by the id hash.
- * `accepts` never rotates (accept-only). Produce prompts ignore this.
+ * The target form to PROMPT on a recognition review — [turnPrompt]'s, without its tag.
+ * `accepts` never rotates (accept-only).
  */
 fun recognitionPromptForm(card: Card, reviewCount: Int): String =
-    rotatedForm(card.id, listOf(card.target.text) + card.target.teaches, reviewCount)
+    turnPrompt(card, PresentationRole.Recognize, ProducePrompt.Source, reviewCount).text
 
-/** The member of [forms] that review [reviewCount] of [cardId] shows, by [recognitionPromptForm]'s rotation. */
-fun rotatedForm(cardId: String, forms: List<String>, reviewCount: Int): String {
-    if (forms.size == 1 || reviewCount == 0) return forms.first()
-    val offset = (fnv1a64(cardId) % forms.size.toULong()).toInt()
-    return forms[(reviewCount / 2 + offset) % forms.size]
+/** The member of [forms] that review [reviewCount] of [cardId] shows, by [turnPrompt]'s rotation. */
+fun rotatedForm(cardId: String, forms: List<String>, reviewCount: Int): String = rotated(cardId, forms, reviewCount)
+
+/**
+ * Rotates deterministically at zero extra scheduling cost: the first exposure takes the first item,
+ * afterwards the index advances once per review of the role (roles alternate, so `reviewCount / 2`
+ * is parity-independent), offset per card by the id hash.
+ */
+internal fun <T> rotated(cardId: String, items: List<T>, reviewCount: Int): T {
+    if (items.size == 1 || reviewCount == 0) return items.first()
+    val offset = (fnv1a64(cardId) % items.size.toULong()).toInt()
+    return items[(reviewCount / 2 + offset) % items.size]
 }
 
 /** WHEN the picture is shown. Where it sits is the renderer's business and never moves. */

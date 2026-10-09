@@ -351,6 +351,40 @@
         }
       }
     },
+    "a11y.glyph.masculineForm" : {
+      "comment" : "The ♂ marker's name — a glyph outside the reading order until it is given one.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Männliche Form"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masculine form"
+          }
+        }
+      }
+    },
+    "a11y.glyph.neuterForm" : {
+      "comment" : "The ⚲ marker's name — a glyph outside the reading order until it is given one.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sächliche Form"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuter form"
+          }
+        }
+      }
+    },
     "a11y.letters.alphabet.speakExample" : {
       "localizations" : {
         "de" : {
@@ -512,23 +546,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : " practice, in %@"
-          }
-        }
-      }
-    },
-    "a11y.suffix.record %@" : {
-      "comment" : "%d — appended to it",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ", Rekord %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ", record %@"
           }
         }
       }
@@ -2995,6 +3012,159 @@
         }
       }
     },
+    "form.marker.acc" : {
+      "comment" : "Marker beside a word standing for its accusative form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akk."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "acc."
+          }
+        }
+      }
+    },
+    "form.marker.class %@" : {
+      "comment" : "Marker beside a word standing for its form in a Swahili noun class; the argument is the class number.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kl. %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cl. %@"
+          }
+        }
+      }
+    },
+    "form.marker.dat" : {
+      "comment" : "Marker beside a word standing for its dative form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dat."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dat."
+          }
+        }
+      }
+    },
+    "form.marker.gen" : {
+      "comment" : "Marker beside a word standing for its genitive form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "gen."
+          }
+        }
+      }
+    },
+    "form.marker.ins" : {
+      "comment" : "Marker beside a word standing for its instrumental form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instr."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "instr."
+          }
+        }
+      }
+    },
+    "form.marker.loc" : {
+      "comment" : "Marker beside a word standing for its locative form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lok."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "loc."
+          }
+        }
+      }
+    },
+    "form.marker.nom" : {
+      "comment" : "Marker beside a word standing for its nominative form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nom."
+          }
+        }
+      }
+    },
+    "form.marker.pl" : {
+      "comment" : "Marker beside a word standing for its plural form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pl."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pl."
+          }
+        }
+      }
+    },
+    "form.marker.voc" : {
+      "comment" : "Marker beside a word standing for its vocative form.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vok."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "voc."
+          }
+        }
+      }
+    },
     "home.done.caughtUp" : {
       "comment" : "Nothing due, and nothing done yet — never home.done.title, which the day must earn.",
       "localizations" : {
@@ -4119,23 +4289,6 @@
         }
       }
     },
-    "letters.promptInLanguage %@" : {
-      "comment" : "%s = target language name",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "auf %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "in %@"
-          }
-        }
-      }
-    },
     "letters.stage.choiceConfusable" : {
       "localizations" : {
         "de" : {
@@ -4468,6 +4621,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Look up numbers"
+          }
+        }
+      }
+    },
+    "numbers.newForm %@" : {
+      "comment" : "%s = the word this language adds for a number form (minus, Komma, percent), the first time that form is asked",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neu: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New: %@"
           }
         }
       }
@@ -7341,23 +7511,6 @@
         }
       }
     },
-    "trainer.pause.newSprosse" : {
-      "comment" : "A drill pause: the run cleared a Sprosse no earlier run had.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neue Sprosse geschafft!"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New Sprosse cleared!"
-          }
-        }
-      }
-    },
     "trainer.pause.sprossen %@ %@" : {
       "comment" : "A drill pause: the Sprosse the run opened on, and the highest it reached.",
       "localizations" : {
@@ -7388,23 +7541,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A lot is slipping right now — stopping here is fine; it sits better with a fresh head."
-          }
-        }
-      }
-    },
-    "trainer.pause.tally %@ %@" : {
-      "comment" : "A drill pause's clean answers out of those judged.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ von %@ richtig"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ of %2$@ right"
           }
         }
       }
@@ -7546,23 +7682,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "trainer.run.record %@" : {
-      "comment" : "%d — the standing streak the run has not beaten yet",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekord %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Record %@"
           }
         }
       }

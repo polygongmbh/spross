@@ -1,13 +1,6 @@
 import SwiftUI
 import SprossKern
 
-/// How the arrangement stands. Anything but `owed` locks every chip: the
-/// question has been answered, and an order that could still be permuted
-/// afterwards would let a learner brute-force one.
-enum ScrambleVerdict {
-    case owed, correct, wrong
-}
-
 /// The two halves a sentence is arranged on: the order taken shape above, the
 /// words still to be spent below.
 ///
@@ -43,6 +36,7 @@ struct ScrambleTileBank<Reveal: View>: View {
     /// is not one. nil ⇒ the word reads as itself.
     var label: ((String) -> Text)?
     var verdict: ScrambleVerdict = .owed
+
     /// A bank slot tapped — an index into `bank`.
     let place: (Int) -> Void
     /// An answer-row slot tapped — an index into `placed`.
@@ -58,11 +52,11 @@ struct ScrambleTileBank<Reveal: View>: View {
             // second time under the answer read as a second answer.
             if !locked { bankRow }
         }
-        .animation(.easeOut(duration: 0.2), value: placed.count)
-        .animation(.easeOut(duration: 0.2), value: verdict)
+        .animation(.cardReveal, value: placed.count)
+        .animation(.cardReveal, value: verdict)
     }
 
-    private var locked: Bool { verdict != .owed }
+    private var locked: Bool { verdict.locked }
 
     // MARK: - The arrangement
 
@@ -70,10 +64,7 @@ struct ScrambleTileBank<Reveal: View>: View {
     /// filled once there is a reveal standing on it.
     private var answerCard: some View {
         VStack(spacing: Theme.spacing.md) {
-            // why: a graded card with nothing in the row is a reveal nobody
-            // arranged for — the row would hold its reserve and its "tap the
-            // words into order" over an answer there is no longer one to give.
-            if !locked || !placed.isEmpty { answerRow }
+            if verdict.showsRow(placedAny: !placed.isEmpty) { answerRow }
             if locked { reveal() }
         }
         // why: wider than it is tall — a sentence set across the card's full width
@@ -91,8 +82,9 @@ struct ScrambleTileBank<Reveal: View>: View {
         // stroke swallows the one tint saying how the arrangement was graded.
         .overlay(
             RoundedRectangle(cornerRadius: Theme.radius.card, style: .continuous)
-                .strokeBorder(rowBorder, style: StrokeStyle(lineWidth: locked ? 2 : 1,
-                                                            dash: locked ? [] : [5, 4]))
+                .strokeBorder(Color(verdict.edge),
+                              style: StrokeStyle(lineWidth: CGFloat(verdict.edgeWidth),
+                                                 dash: verdict.edgeDash.map { CGFloat(truncating: $0) }))
                 .allowsHitTesting(false)
         )
     }
@@ -138,18 +130,10 @@ struct ScrambleTileBank<Reveal: View>: View {
     }
 
     private var spokenValue: Text {
-        switch verdict {
-        case .owed: return Text(verbatim: arranged)
+        switch verdict.spoken {
         case .correct: return Text(verbatim: arranged) + Text(verbatim: ", ") + Text("a11y.verdict.correct")
         case .wrong: return Text(verbatim: arranged) + Text(verbatim: ", ") + Text("a11y.verdict.wrong")
-        }
-    }
-
-    private var rowBorder: Color {
-        switch verdict {
-        case .owed: return Theme.colors.borderStrong
-        case .correct: return Theme.colors.success
-        case .wrong: return Theme.colors.wrong
+        default: return Text(verbatim: arranged)
         }
     }
 
@@ -187,7 +171,7 @@ struct ScrambleTileBank<Reveal: View>: View {
                 RoundedRectangle(cornerRadius: Theme.radius.tile, style: .continuous)
                     .fill(Theme.colors.surfaceTint)
             )
-            .opacity(dimmed ? 0.35 : 1)
+            .opacity(dimmed ? ScrambleBank.shared.SPENT_ALPHA : 1)
     }
 }
 

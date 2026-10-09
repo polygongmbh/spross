@@ -40,10 +40,8 @@ internal object ScrambleFixture {
         emoji = null,
         seedIndex = seed,
         components = emptyList(),
-        feminineOf = null,
         source = Realization(lang = "en", text = "en-$id"),
         target = Realization(lang = TARGET, text = text, teaches = teaches, accepts = accepts),
-        promptFeminineMarker = false,
     )
 
     fun phrase(
@@ -59,10 +57,8 @@ internal object ScrambleFixture {
         emoji = null,
         seedIndex = seed,
         components = components,
-        feminineOf = null,
         source = Realization(lang = "en", text = "en-$id"),
         target = Realization(lang = TARGET, text = text, orders = orders),
-        promptFeminineMarker = false,
     )
 
     /**

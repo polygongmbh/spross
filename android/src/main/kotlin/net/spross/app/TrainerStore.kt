@@ -5,7 +5,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import net.spross.kern.model.Language
+import net.spross.kern.trainer.CountryDrill
+import net.spross.kern.trainer.DateDrill
 import net.spross.kern.trainer.Drill
+import net.spross.kern.trainer.DrillLadders
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillSuggestion
 import net.spross.kern.trainer.DrillUnlockMark
@@ -27,7 +30,7 @@ import net.spross.kern.trainer.WordScrambleRunState
  * identity kern spells for the run), so the two platforms file the same feat under the same
  * name and neither can invent a scheme of its own.
  */
-class TrainerStore(private val prefs: SharedPreferences) {
+class TrainerStore(private val prefs: SharedPreferences) : DrillLadders.Store {
 
     /**
      * The best this run selection ever did, 0 where it was never run: the longest answer streak, or
@@ -81,6 +84,8 @@ class TrainerStore(private val prefs: SharedPreferences) {
 
     private fun sprosse(key: String): Int = prefs.getInt(NumbersMode.PROGRESS_PREFIX + key, 0)
 
+    override fun reached(key: String): Int = sprosse(key)
+
     /** The most answers one run under [key] ever took, right or wrong; 0 where none has closed. */
     fun answers(key: String): Int = prefs.getInt(NumbersMode.ANSWERS_PREFIX + key, 0)
 
@@ -94,7 +99,7 @@ class TrainerStore(private val prefs: SharedPreferences) {
      * The Sprossen every run under [key] has cleared — answered out, or climbed off, before
      * its first slip, which the store files as one thing. Kern reads the mask.
      */
-    fun cleared(key: String): Set<Int> =
+    override fun cleared(key: String): Set<Int> =
         NumbersMode.clearedSprossen(prefs.getInt(NumbersMode.CLEARED_PREFIX + key, 0))
 
     /** ORs a closed run's cleared Sprossen into the standing mask; never filtered. */
@@ -138,17 +143,11 @@ class TrainerStore(private val prefs: SharedPreferences) {
     )
 
     companion object {
-        /**
-         * Where the atlas ladder and its record are filed — one key per PAIR, because the
-         * atlas is a pair's material and not a language's. Kern spells every other drill's
-         * identity ([NumbersMode.progressKey]); this one it does not, so the two platforms
-         * agree on it by both writing the string the iOS twin authored
-         * (`CountriesOverview.storageKey`).
-         */
-        fun countriesKey(source: Language, target: Language): String = "countries.$source-$target"
+        /** Where the atlas ladder and its record are filed ([CountryDrill.storageKey]). */
+        fun countriesKey(source: Language, target: Language): String = CountryDrill.storageKey(source, target)
 
-        /** The dates ladder's twin of [countriesKey], authored by `DatesOverview.storageKey`. */
-        fun datesKey(source: Language, target: Language): String = "dates.$source-$target"
+        /** The dates ladder's twin ([DateDrill.storageKey]). */
+        fun datesKey(source: Language, target: Language): String = DateDrill.storageKey(source, target)
 
         /** Where the word scramble's mask is filed ([WordScrambleRunState.storageKey]). */
         fun wordScrambleKey(language: Language): String = WordScrambleRunState.storageKey(language)
@@ -241,6 +240,31 @@ class TrainerStanding(val store: TrainerStore) {
     fun show(summary: DrillRunSummary?, title: String) {
         result = summary
         resultTitle = title
+        if (summary?.celebrated == true) confettiDue = true
+    }
+
+    /** A close kern celebrates ([DrillRunSummary.celebrated]) that has not rained yet. */
+    var confettiDue by mutableStateOf(false)
+        private set
+
+    /** Whether the screen a run closed onto should rain — true once per celebrated close. */
+    fun takeConfetti(): Boolean = confettiDue.also { confettiDue = false }
+
+    /**
+     * The figures a scramble run handed back — the scrambles have no page of their own, so
+     * the hub card wears their tile. Kept apart from [result], which an overview page owns.
+     */
+    var hubResult by mutableStateOf<DrillRunSummary?>(null)
+        private set
+
+    var hubResultTitle by mutableStateOf("")
+        private set
+
+    /** A run too short to report clears the tile rather than leaving an older one standing. */
+    fun showOnHub(summary: DrillRunSummary?, title: String) {
+        hubResult = summary?.takeIf { it.worthReporting }
+        hubResultTitle = title
+        if (summary?.celebrated == true) confettiDue = true
     }
 
     /** Opening a page from Home is a fresh visit — last night's figures are not news. */
@@ -259,13 +283,8 @@ fun AppModel.stampRun(drill: Drill, summary: DrillRunSummary?) {
     trainer.store.stampRun(DrillSuggestion.lastRunKey(drill, language), System.currentTimeMillis())
 }
 
-/**
- * A new record, booked and sounded as one act — a run's own reward, sounded as it closes
- * because the result tile the learner lands on already carries the words, but not until they
- * look. A run that beat nothing is silent, and books nothing.
- */
+/** A new record, booked; a run that beat nothing books nothing. The cheer is the close's ([finishDrill]). */
 fun AppModel.bookRecord(key: String, summary: DrillRunSummary) {
     if (!summary.newRecord) return
     trainer.store.bookRecord(key, summary.recordFigure)
-    cues.cheer()
 }

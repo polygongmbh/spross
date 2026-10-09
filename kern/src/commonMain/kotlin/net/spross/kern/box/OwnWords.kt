@@ -169,10 +169,8 @@ object OwnWords {
                 emoji = word.emoji,
                 seedIndex = SEED_BASE + position,
                 components = emptyList(),
-                feminineOf = null,
                 source = realization(source, sourceText),
                 target = realization(target, targetText),
-                promptFeminineMarker = false,
             )
         }
 

@@ -9,7 +9,7 @@
   "bill": { "text": "bill", "teaches": ["check"] },
   "tip": { "text": "tip" },
   "to-reserve": { "text": "to reserve", "teaches": ["to book"] },
-  "glass": { "text": "glass", "grammar": { "plural": "glasses" } },
+  "glass": { "text": "glass", "forms": { "pl": "glasses" } },
   "cutlery": { "text": "cutlery", "teaches": ["silverware"] },
   "napkin": { "text": "napkin" },
   "dessert": { "text": "dessert" },

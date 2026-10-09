@@ -1,32 +1,6 @@
 import SprossKern
 import SwiftUI
 
-/// How bright and how colorful the mark burns in each `StreakHealth`.
-extension StreakHealth {
-    /// Full strength where the day is answered, only a whisper of fade where it is
-    /// still owed, and faint where there is no run behind the mark at all.
-    var opacity: Double {
-        switch self {
-        case .earned: return 1
-        case .bridgeable: return 0.9
-        case .ending: return 0.9
-        case .noRun: return 0.4
-        }
-    }
-
-    /// How much color is drained out of the emoji: none while the run is whole,
-    /// half of it while today still owes the run — a flame cooling, which asks for
-    /// renewal without being faded out — and all of it once a missed today would
-    /// end the run, a flame gone cold, which is louder than any amount of fading.
-    var grayscale: Double {
-        switch self {
-        case .earned: return 0
-        case .bridgeable: return 0.5
-        case .ending, .noRun: return 1
-        }
-    }
-}
-
 struct StreakFlameView: View {
     let days: Int
     /// What today still owes the run, worn by the flame itself — the mark says
@@ -67,8 +41,8 @@ struct StreakFlameView: View {
             Text(verbatim: emoji)
         } else {
             Text(verbatim: "🔥")
-                .grayscale(health.grayscale)
-                .opacity(health.opacity)
+                .grayscale(1 - health.flameSaturation)
+                .opacity(health.flameOpacity)
         }
     }
 }

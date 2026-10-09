@@ -1,4 +1,5 @@
 import SwiftUI
+import SprossKern
 
 // MARK: - SpeakerIcon
 //
@@ -48,7 +49,7 @@ struct SpeakerIcon: View {
     var isPlaying: Bool = false
     /// nil where nothing can be heard — renders dimmed and inert rather than
     /// vanishing, on a card where the glyph is the only content
-    /// (`HearPromptCard`).
+    /// (a letter drill question).
     /// Callers that draw the icon only where audio exists —
     /// the correction box, `SpokenWord`, an alphabet row — never pass nil.
     var pronounce: (() -> Void)?
@@ -60,11 +61,11 @@ struct SpeakerIcon: View {
             Image(systemName: "speaker.wave.2.fill")
                 .font(.system(size: size.pointSize, weight: .semibold))
                 .foregroundStyle(size == .small ? Theme.colors.textSecondary : Theme.colors.accent)
-                .opacity(pronounce == nil ? 0.35 : 1)
-                .scaleEffect(pulsing ? 1.16 : 1.0)
+                .opacity(pronounce == nil ? Palette.shared.DIMMED : 1)
+                .scaleEffect(pulsing ? SpeakerPulse.shared.SCALE : 1.0)
                 .animation(
                     pulsing
-                        ? .easeInOut(duration: 0.35).repeatForever(autoreverses: true)
+                        ? .easeInOut(duration: Double(SpeakerPulse.shared.HALF_MS) / 1000).repeatForever(autoreverses: true)
                         : .easeOut(duration: 0.15),
                     value: pulsing
                 )

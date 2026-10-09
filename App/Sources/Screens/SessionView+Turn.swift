@@ -34,9 +34,7 @@ extension SessionView {
             // renders "Weiter" there — same rating, through ConfirmPending.
             // The beat also waits out the answer being said, or the flip would
             // cut the word off.
-            AutoAdvance.schedule(arm.beat, &autoAdvance, holding: { await answerVoice.said() }) {
-                dispatch(TurnIntent.AdvanceElapsed.shared)
-            }
+            armAdvance(arm.beat) { dispatch(TurnIntent.AdvanceElapsed.shared) }
         case .cancelAdvance:
             autoAdvance?.cancel()
         case .primeField(let primed):
@@ -57,10 +55,8 @@ extension SessionView {
     /// Hand the answer to the engine and flip to the next card.
     private func commit(_ rating: Rating) {
         autoAdvance?.cancel()
-        // why: the next turn begins BEFORE the card switch, in the same
-        // transaction — the incoming card must never render one frame
-        // carrying the outgoing one's reveal.
-        resetCardState()
+        // why: the next turn begins only once the card has changed (`dealt`), so the
+        // outgoing card flips away still showing its own answer.
         withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .cardFlip) {
             model.answerCurrent(rating)
         }
@@ -96,11 +92,7 @@ extension SessionView {
         turn = machine.begin(card: card,
                              role: role,
                              prompt: prompt,
-                             // The form the prompt stands on: the rotated one on
-                             // recognition, else the source word — or, where the
-                             // question is the sound, the very form that plays.
-                             promptForm: role == .recognize ? model.promptForm(for: card)
-                                 : (prompt == .sound ? card.target.text : card.source.text),
+                             promptForm: model.promptForm(for: card, role: role, prompt: prompt),
                              firstExposure: model.isFirstExposure(card.id),
                              arrived: model.hasArrived(card.id),
                              nowEpochMillis: Date().epochMillis,
@@ -111,14 +103,23 @@ extension SessionView {
         autoAdvance?.cancel()
         // why: the word in the air belongs to the card that is leaving — the
         // one place playback is stopped, together with .onDisappear.
-        answerVoice.hush()
-        spokenMoments = []
+        reader.hush()
+        reader.forget()
         input = ""
         copyInput = ""
         beginTurn()
     }
 
     // MARK: - What the screen reads off the turn
+
+    var question: Question? { turn?.question }
+
+    var controls: AnswerControls? { turn?.controls }
+
+    /// What the card says aloud — its prompt as it goes up, its answer once it has settled.
+    var reading: Reading? { turn?.reading(saysMeaning: Pronouncer.shared.saysMeaning) }
+
+    var voiceModel: AppModel? { model }
 
     var feedback: AnswerInputView.Feedback {
         turn.map { AnswerInputView.Feedback($0.feedback) } ?? .neutral
@@ -127,14 +128,6 @@ extension SessionView {
     var revealed: Bool { turn?.revealed ?? false }
 
     var retryApproved: Bool { turn?.retryApproved ?? false }
-
-    var otherWord: MatchOtherWord? { turn?.otherWord }
-
-    /// The card expands only when the word was NOT produced — "Aufdecken" or a
-    /// wrong answer. A correct answer already stands in the input field, and a
-    /// typo's proper spelling is carried by the correction box, so revealing
-    /// there would put the same word on screen twice.
-    var cardRevealed: Bool { turn?.answerRevealed ?? false }
 
     /// What a report opened right now carries as the learner's answer — kern's call
     /// (`TurnState.answerForReport`): the word the catalog refused, which a miss has

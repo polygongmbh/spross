@@ -26,16 +26,16 @@ import SprossKern
 struct OnboardingView: View {
     let model: AppModel
 
-    enum Page { case languages, why, firstRound }
+    typealias Page = OnboardingPage
 
     @State private var source: String
     @State private var target: String?
     @State private var pickingSource = false
     /// Worth nothing until the last page commits it, like the pair beside it.
-    @State private var name = ""
+    @State private var name: String
     // why: internal, not private — the story pages live in an extension of their own.
     @State var starting = false
-    @State var page: Page = .languages
+    @State var page: Page
 
     /// The head of the shared scroll, so a page turn opens on the new page's first line.
     private let topAnchor = "onboarding.top"
@@ -44,10 +44,12 @@ struct OnboardingView: View {
     /// already-made pair (`RootView`) has nothing left for it to ask there.
     init(model: AppModel, skipLanguagePick: Bool = false) {
         self.model = model
-        if skipLanguagePick, let target = model.targetLanguage {
+        _name = State(initialValue: model.learnerName ?? "")
+        let restart = skipLanguagePick && model.targetLanguage != nil
+        _page = State(initialValue: Onboarding.shared.openingPage(restart: restart))
+        if restart, let target = model.targetLanguage {
             _source = State(initialValue: model.sourceLanguage)
             _target = State(initialValue: target)
-            _page = State(initialValue: .why)
         } else {
             let source = model.defaultSource
             _source = State(initialValue: source)
@@ -97,8 +99,9 @@ struct OnboardingView: View {
     }
 
     // why: internal, not private — the story pages turn to their neighbors themselves.
-    func turn(to next: Page) {
-        withAnimation(.easeInOut(duration: 0.2)) { page = next }
+    func turn(to next: Page?) {
+        guard let next else { return }
+        withAnimation(.easeInOut(duration: Double(Onboarding.shared.PAGE_FADE_MS) / 1000)) { page = next }
     }
 
     // MARK: - The pair
@@ -107,7 +110,7 @@ struct OnboardingView: View {
     /// which is why it takes the hero alone and not the story pages' scaffold.
     private var languagesPage: some View {
         VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-            OnboardingHero(emoji: "👋", title: "onboarding.welcome")
+            OnboardingHero(emoji: page.emoji, title: "onboarding.welcome")
                 // why: a first run only — a restart already has a box the file would replace.
                 .overlay(alignment: .topTrailing) {
                     if model.targetLanguage == nil { OnboardingImport(model: model, source: source) }
@@ -163,7 +166,7 @@ struct OnboardingView: View {
     /// The one question this page does not need answered: it gates nothing.
     /// The greeting has a wording for a learner it cannot name.
     ///
-    /// It opens empty. `UIDevice.current.name` returns the MODEL ("iPhone") on iOS 16 and
+    /// It opens with the saved name, else empty. `UIDevice.current.name` returns the MODEL ("iPhone") on iOS 16 and
     /// later for any app without the user-assigned-device-name entitlement, which is a
     /// granted one and not among this app's — a model name is nobody, so there is nothing
     /// here to prefill from. Android fills the same field in from its device name
@@ -211,7 +214,7 @@ struct OnboardingView: View {
     private var nextButton: some View {
         Button {
             guard target != nil else { return }
-            turn(to: .why)
+            turn(to: page.next)
         } label: {
             Text("common.next")
                 .frame(maxWidth: .infinity)

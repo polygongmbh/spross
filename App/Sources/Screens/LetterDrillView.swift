@@ -17,7 +17,7 @@ import SprossKern
 ///
 /// The driver is the shared one (`DrillRunning`), wired up in
 /// LetterDrillView+Run.swift; format bodies live in
-/// LetterDrillView+Formats.swift, the prompt card in HearPromptCard.swift. State
+/// LetterDrillView+Formats.swift, the card is `QuestionCardView`. State
 /// stays here — members are internal where an extension reaches them.
 struct LetterDrillView: View, LanguageNaming {
     let model: AppModel
@@ -39,7 +39,7 @@ struct LetterDrillView: View, LanguageNaming {
     @State var autoAdvance: Task<Void, Never>?
     /// The driver's answer voice, which this drill never hands an answer:
     /// its question already was the sound.
-    @State var answerVoice = AnswerVoice()
+    @State var reader = Reader()
     @FocusState var answerFocused: Bool
     @AccessibilityFocusState var replayFocused: Bool
 
@@ -73,7 +73,7 @@ struct LetterDrillView: View, LanguageNaming {
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
-        runScreen(asking: current != nil, speaksPastMute: true) {
+        runScreen(asking: current != nil, speaksPastMute: true, scoreLine: streakLine) {
             drillContent
         }
         // why: BOTH hooks. .onChange never fires for the FIRST item, and a
@@ -135,7 +135,7 @@ struct LetterDrillView: View, LanguageNaming {
     }
 
     /// Whether the current question's prompt is sounding right now — pulses
-    /// the replay glyph on `HearPromptCard`.
+    /// the replay glyph on the card.
     var promptIsPlaying: Bool {
         guard let task = current, let pronunciation = model.promptPronunciation(for: task) else { return false }
         return Pronouncer.shared.playingKey == Pronouncer.key(for: pronunciation)

@@ -1,47 +1,48 @@
 package net.spross.app
 
 import net.spross.app.audio.Pronouncer
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.shownArticle
-import net.spross.kern.session.TurnSaying
+import net.spross.kern.session.Saying
 
 /**
- * The review loop's audio glue, kept beside the model rather than in it: what a card
- * says at each moment is kern's (`TurnState.promptSaying` / `answerSaying`), whether it
- * may be heard is [Pronouncer], and all that is left — which transition fires it — is
- * the session screen's.
+ * The review loop's audio glue, kept beside the model rather than in it: what a card or a
+ * drill says at each moment is kern's ([net.spross.kern.session.Reading]), when it is
+ * said is [net.spross.app.ui.rememberReadAloud]'s, and whether it may be heard is [Pronouncer].
  *
  * The iOS twin is `SessionView+Audio.swift`; the firing table both follow is
  * docs/read-aloud.md.
  */
 
 /**
- * How long an answer's saying waits after its transition. The correct/wrong/reveal chime
- * is never ducked or shortened for the word, so the word steps around it instead of
- * talking over its own first syllable.
+ * Says one saying as autoplay, with the article kern put on it. [onFinish] fires once the
+ * saying is over, or at once where nothing sounds.
  */
-const val CHIME_CLEARANCE_MS = 300L
-
-/**
- * Says one of the turn's sayings as autoplay. The target side takes the card's article
- * where the form is its canonical word; the learner's own side never does. [onFinish]
- * fires once the saying is over, or at once where nothing sounds.
- */
-fun AppModel.say(saying: TurnSaying, onFinish: (() -> Unit)? = null) {
-    val article = spokenArticle(saying.form).takeIf { saying.lang == sessionUi?.card?.target?.lang }
-    val pronunciation = catalog?.pronunciation(saying.lang, saying.form, article)
+fun AppModel.say(saying: Saying, onFinish: (() -> Unit)? = null) {
+    val pronunciation = catalog?.pronunciation(saying.lang, saying.form, saying.article)
     if (pronunciation == null) {
         onFinish?.invoke()
         return
     }
-    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.AUTO, article, onFinish = onFinish)
+    pronouncer.pronounce(pronunciation, PronounceTrigger.Auto, saying.article, onFinish = onFinish)
+}
+
+/**
+ * The tap on a card's speaker: [saying] with the article kern put on it, heard past both mutes;
+ * null where the device can neither play nor say it, which drops the speaker.
+ */
+fun AppModel.sayOnTap(saying: Saying): (() -> Unit)? {
+    val pronunciation = catalog?.pronunciation(saying.lang, saying.form, saying.article) ?: return null
+    if (!pronouncer.canPronounce(pronunciation)) return null
+    return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, saying.article) }
 }
 
 /** Says [form] of the card in play on a tap, which is a request and passes both mutes. */
 fun AppModel.pronounceTarget(form: String) {
     val pronunciation = pronunciationOf(form) ?: return
-    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP, spokenArticle(form))
+    pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, spokenArticle(form))
 }
 
 /**
@@ -54,7 +55,7 @@ fun AppModel.pronounceAction(form: String): (() -> Unit)? {
     if (!pronouncer.canPronounce(pronunciation)) return null
     // why: a tap speaks even while reading aloud is switched off — mute has to stay
     // usable as the accessibility affordance, and the About row's hint says so.
-    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP, spokenArticle(form)) }
+    return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, spokenArticle(form)) }
 }
 
 /**

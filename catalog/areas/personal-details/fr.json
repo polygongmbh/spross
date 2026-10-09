@@ -29,9 +29,9 @@
    "grammar": { "gender": "la" }
   },
   "single": { "text": "célibataire" },
-  "married": { "text": "marié", "accepts": ["mariée"] },
-  "divorced": { "text": "divorcé", "accepts": ["divorcée"] },
-  "widowed": { "text": "veuf", "accepts": ["veuve"] },
+  "married": { "text": "marié", "forms": { "f": "mariée" } },
+  "divorced": { "text": "divorcé", "forms": { "f": "divorcée" } },
+  "widowed": { "text": "veuf", "forms": { "f": "veuve" } },
   "age": { "text": "âge", "accepts": ["l'âge"], "grammar": { "gender": "l'" } },
   "fill-out-the-form": { "text": "Remplissez le formulaire.", "accepts": ["Remplis le formulaire."] },
   "what-is-your-last-name": { "text": "Quel est votre nom de famille ?" },

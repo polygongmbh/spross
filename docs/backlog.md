@@ -34,6 +34,7 @@ Parked work is not an issue: its own doc says it is parked.
   syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries
   "Feier") — considered for word scramble (`drills-words.md`) and left out.
 - Phone recognition could ask by multiple choice after the watch's recall pause instead of self-grading, with time-based ratings moved into kern so iOS, Android and the watch grade alike (`WatchGrading`, `kern/docs/presentation.md`).
+- The watch rotates tagged `forms` into its recognize prompt but reveals the bare source text and its tiles ignore the tag — `WatchEntryDto` should carry kern's `counterpart` marker (`WatchSnapshotBuilder.kt`).
 - The watch speed mark (⚡) is visual only: VoiceOver hears right or wrong but not how quick (`WatchQuizView.verdict`).
 
 ## Platform reach

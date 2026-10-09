@@ -14,7 +14,6 @@
       ],
       "due": 1767254400000,
       "emoji": "🧊",
-      "femMarker": false,
       "nextRole": "produce",
       "promptForm": "Kühlschrank",
       "sourceText": "fridge",
@@ -31,7 +30,6 @@
         "television"
       ],
       "due": 1767258000000,
-      "femMarker": false,
       "nextRole": "recognize",
       "promptForm": "Spülmaschine",
       "revealEmoji": "🍽️",
@@ -49,7 +47,6 @@
         "TV"
       ],
       "due": 1767261600000,
-      "femMarker": true,
       "nextRole": "recognize",
       "promptForm": "Serviererin",
       "sourceText": "waiter",
@@ -67,7 +64,6 @@
       ],
       "due": 1767265200000,
       "emoji": "🛋️",
-      "femMarker": false,
       "nextRole": "produce",
       "promptForm": "Sofa",
       "sourceText": "sofa",
@@ -81,7 +77,6 @@
         "Would you need this one?"
       ],
       "due": 1767268800000,
-      "femMarker": false,
       "nextRole": "recognize",
       "promptForm": "Wo sind sie?",
       "sourceText": "Where are they?",
@@ -95,7 +90,6 @@
         "Was kostet das?"
       ],
       "due": 1767272400000,
-      "femMarker": false,
       "nextRole": "produce",
       "promptForm": "Brauchen Sie das hier?",
       "sourceText": "Do you need this?",
@@ -109,7 +103,6 @@
         "ask"
       ],
       "due": 1767276000000,
-      "femMarker": false,
       "nextRole": "recognize",
       "optionForm": "cook",
       "promptForm": "kochen",
@@ -128,7 +121,6 @@
         "dishwasher"
       ],
       "due": 4070937600000,
-      "femMarker": false,
       "nextRole": "recognize",
       "promptForm": "Fernseher",
       "revealEmoji": "📺",

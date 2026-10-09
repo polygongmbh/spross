@@ -34,9 +34,11 @@ import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.countLine
 import net.spross.kern.box.AreaGroupSection
+import net.spross.kern.box.AreaNaming
 import net.spross.kern.box.AreaStatistics
 import net.spross.kern.box.BoxBrowser
 import net.spross.kern.box.BoxEngine
+import net.spross.kern.box.ShelfControl
 import net.spross.kern.box.StageCounts
 
 /**
@@ -113,11 +115,7 @@ internal fun AreaSection(
     // once the words hang under it, so it never bleeds past the card's own corners.
     val headingShape = if (expanded) shape.copy(bottomStart = CornerSize(0), bottomEnd = CornerSize(0)) else shape
     val chevronTurn by animateFloatAsState(if (expanded) 180f else 0f, label = "areaChevron")
-    // Nothing left to queue or unqueue, and every active card has settled —
-    // the one condition that swaps the queue control's mark jade and leaves the
-    // chip's bar/counts with nothing to say (Part D).
-    val fullyQueuedAndSettled = (counts?.queueable ?: 0) == 0 && (counts?.queued ?: 0) == 0 &&
-        (stats?.fullySettled ?: false)
+    val control = ShelfControl.of(counts, stats)
 
     Column(Modifier.fillMaxWidth().panel(shape)) {
         Row(
@@ -138,7 +136,7 @@ internal fun AreaSection(
                 subtitle = naming.subtitle(area),
                 stats = stats,
                 chrome = chrome,
-                hideProgress = fullyQueuedAndSettled,
+                hideProgress = control.hidesProgress,
                 modifier = Modifier.weight(1f),
             )
             Column(
@@ -146,8 +144,7 @@ internal fun AreaSection(
                 verticalArrangement = Arrangement.SpaceBetween,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                QueueControl(chrome, naming.title(area), counts?.queueable ?: 0, counts?.queued ?: 0,
-                    fullySettled = stats?.fullySettled ?: false,
+                QueueControl(chrome, naming.title(area), control,
                     onQueue = {
                         model.updateBox { BoxEngine.queue(it, BoxBrowser.queueableCardIds(it, area)) }
                     },
@@ -174,37 +171,26 @@ internal fun AreaSection(
 }
 
 /**
- * What queuing this shelf would add, as a control: a plus while there is anything left to
- * take in, a settled check once there is not. Icon-only, so the heading stays one line tall;
- * the spoken label names the area.
- *
- * Once nothing is left to queue, a shelf holding MORE than a couple words still queued for
- * a round offers to take them back out AS A BATCH ([onUnqueue]) — the area is the unit this
- * control acts on. Below that (1–2 queued, nothing queueable) the bulk control steps aside
- * for the per-word row's own unqueue, but the shelf still wears the settled check.
- *
- * [fullySettled] turns the settled check jade instead of green once every active card in the
- * area has settled AND nothing is queued — the same mark, not a second indicator
- * (kern `AreaStatistics.fullySettled`).
+ * The shelf's own control as kern's [ShelfControl] names it: a plus, a minus taking the queue
+ * back out as a batch, or a check — jade once settled, green otherwise.
+ * Icon-only, so the heading stays one line tall; the spoken label names the area.
  */
 @Composable
 internal fun QueueControl(
     chrome: Chrome,
     areaName: String,
-    count: Int,
-    queuedCount: Int,
-    fullySettled: Boolean,
+    control: ShelfControl,
     onQueue: () -> Unit,
     onUnqueue: () -> Unit,
 ) {
-    if (count > 0) {
+    if (control == ShelfControl.Queue) {
         QueueButton(QueueDirection.In, chrome.a11yBoxShelfQueue.format(areaName), onQueue)
-    } else if (queuedCount > 2) {
+    } else if (control == ShelfControl.Unqueue) {
         QueueButton(QueueDirection.Out, chrome.a11yBoxShelfUnqueue.format(areaName), onUnqueue)
     } else {
         Text(
             SEAL,
-            color = if (queuedCount == 0 && fullySettled) Theme.colors.settled else Theme.colors.success,
+            color = if (control == ShelfControl.Settled) Theme.colors.settled else Theme.colors.success,
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier
                 .sizeIn(minWidth = 48.dp, minHeight = 48.dp)

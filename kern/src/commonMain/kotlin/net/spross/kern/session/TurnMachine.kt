@@ -4,6 +4,7 @@ import net.spross.kern.model.Card
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProduceAnswer
 import net.spross.kern.model.ProducePrompt
+import net.spross.kern.model.PromptForm
 import net.spross.kern.model.Rating
 
 /**
@@ -42,7 +43,7 @@ class TurnMachine(
         card: Card,
         role: PresentationRole,
         prompt: ProducePrompt,
-        promptForm: String,
+        promptForm: PromptForm,
         firstExposure: Boolean,
         arrived: Boolean,
         nowEpochMillis: Long,
@@ -52,14 +53,15 @@ class TurnMachine(
         role = role,
         prompt = prompt,
         answer = answer,
-        promptForm = promptForm,
+        promptForm = promptForm.text,
+        promptTag = promptForm.tag,
         firstExposure = firstExposure,
         arrived = arrived,
         feedback = TurnFeedback.Neutral,
         revealed = false,
         pendingRating = null,
         otherWord = null,
-        alsoMeans = grading.alsoMeans(card, role, prompt, promptForm),
+        alsoMeans = grading.alsoMeans(card, role, prompt, promptForm.text),
         retryApproved = false,
         copyStep = null,
         promptInText = false,

@@ -31,7 +31,8 @@
   "sweater": {
    "text": "jersey",
    "accepts": ["jerséi", "suéter"],
-   "grammar": { "gender": "el", "plural": "jerséis" }
+   "forms": { "pl": "los jerséis" },
+   "grammar": { "gender": "el" }
   },
   "underwear": { "text": "ropa interior", "grammar": { "gender": "la" } },
   "belt": { "text": "cinturón", "accepts": ["correa"], "grammar": { "gender": "el" } },
@@ -39,13 +40,13 @@
   "soft": {
    "text": "blando",
    "teaches": ["suave"],
-   "accepts": ["blanda"],
+   "forms": { "f": "blanda" },
    "notes": { "es": "blando = almohada, cojín · suave = piel, tela." }
   },
   "to-rest": { "text": "descansar" },
   "sleep-well": { "text": "¡Que duermas bien!", "accepts": ["¡Duerme bien!"] },
   "good-morning-my-love": { "text": "¡Buenos días, mi amor!", "accepts": ["¡Buenos días, cariño!"] },
-  "im-tired": { "text": "Estoy cansado.", "accepts": ["Estoy cansada."] },
+  "im-tired": { "text": "Estoy cansado.", "forms": { "f": "Estoy cansada." } },
   "did-you-set-the-alarm": { "text": "¿Has puesto el despertador?", "accepts": ["¿Pusiste el despertador?"] },
   "i-love-you": {
    "text": "Te quiero.",

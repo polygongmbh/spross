@@ -1,7 +1,5 @@
 package net.spross.app.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,9 +14,10 @@ import net.spross.app.Screen
 import net.spross.app.SentenceScrambleFlow
 import net.spross.app.closeScramble
 import net.spross.app.newSentenceScramble
-import net.spross.app.speakFormOnTap
+import net.spross.app.sayOnTap
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.session.Question
 import net.spross.kern.trainer.Drill
-import net.spross.kern.trainer.SentenceScrambleTask
 
 /**
  * The sentence scramble: a phrase handed over as its own words, shuffled, and put
@@ -44,7 +43,7 @@ fun SentenceScrambleScreen(model: AppModel) {
     val state = flow.state
     val leave = {
         val closed = flow.close()
-        model.closeScramble(Drill.SentenceScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
+        model.closeScramble(Drill.SentenceScramble, model.chrome.trainerDrillSentenceScramble, flow.clearedKey, closed.clearedSprossen, closed.summary)
     }
 
     DrillRunScaffold(
@@ -55,26 +54,23 @@ fun SentenceScrambleScreen(model: AppModel) {
         sprosse = chrome.trainerSprosse.format(state.sprosse),
         spacing = Theme.spacing.lg,
     ) {
-        val task = state.task ?: return@DrillRunScaffold
-        ScrambleTileBank(
-            bank = task.shuffled,
-            placed = state.placedAtoms,
-            isTaken = state::isPlaced,
-            arranged = state.arranged,
-            // Kern's feedback, read — this drill grades by position, so there is no
-            // near miss to render.
-            verdict = when {
-                state.owesAnswer -> ScrambleVerdict.Owed
-                state.answerAccepted -> ScrambleVerdict.Correct
-                else -> ScrambleVerdict.Wrong
-            },
-            chrome = chrome,
-            place = flow::place,
-            take = flow::take,
-        ) {
-            RevealLines(model, task, state.answerAccepted, state.alternativeMatch, chrome)
+        if (state.task == null) return@DrillRunScaffold
+        QuestionStage(state, key = { it.index }) { shown ->
+            val task = shown.task ?: return@QuestionStage
+            ScrambleTileBank(
+                bank = task.shuffled,
+                placed = shown.placedAtoms,
+                isTaken = shown::isPlaced,
+                arranged = shown.arranged,
+                verdict = shown.verdict,
+                chrome = chrome,
+                place = flow::place,
+                take = flow::take,
+            ) {
+                shown.question?.let { RevealLines(model, it, chrome) }
+            }
         }
-        Controls(flow, chrome, leave)
+        Controls(model, flow, leave)
     }
 }
 
@@ -82,31 +78,28 @@ fun SentenceScrambleScreen(model: AppModel) {
  * What the graded arrangement grows, on the answer card itself — the shared reveal, so a drill
  * card and a vocabulary card grow the same thing.
  *
- * The meaning always; the authored order above it only where the arrangement missed, since the
- * chips of a clean one already ARE that order and setting it a second time would read as a
- * correction.
+ * Kern's Question says which: a missed arrangement opens onto the authored order and its
+ * meaning, an accepted one grows the meaning alone, since its chips already stand in an order —
+ * and none after an alternative order, whose meaning belongs to the authored one.
  */
 @Composable
-private fun RevealLines(
-    model: AppModel,
-    task: SentenceScrambleTask,
-    accepted: Boolean,
-    alternativeMatch: Boolean,
-    chrome: Chrome,
-) {
+private fun RevealLines(model: AppModel, question: Question, chrome: Chrome) {
+    val answer = question.answer
+    val order = answer.text.takeIf { question.opens }
+    val meaning = (question.closing.note as? ClosingNote.Own)?.text
+        ?.takeIf { question.opens || question.growsNote }
+    if (order == null && meaning == null) return
     CardReveal(note = null) {
-        if (!accepted || alternativeMatch) {
-            SpokenWord(model.speakFormOnTap(task.display, task.language), chrome) {
+        if (order != null) {
+            SpokenWord(answer.saying?.let(model::sayOnTap), chrome) {
                 Sentence(
-                    localizedTarget(task.display, task.language),
+                    tagged(order, answer.lang),
                     Theme.colors.accent,
                     Modifier.weight(1f, fill = false),
                 )
             }
         }
-        if (!alternativeMatch) {
-            Sentence(task.gloss, Theme.colors.textPrimary)
-        }
+        meaning?.let { Sentence(it, Theme.colors.textPrimary) }
     }
 }
 
@@ -139,14 +132,11 @@ private fun Sentence(text: AnnotatedString, color: Color, modifier: Modifier = M
 private fun Sentence(text: String, color: Color, modifier: Modifier = Modifier) =
     Sentence(AnnotatedString(text), color, modifier)
 
+/**
+ * Kern's controls on the shared answer area: NOTHING while the order is owed — this is the one
+ * drill that needs no Reveal, since placing every word reaches the authored order by itself.
+ */
 @Composable
-private fun Controls(flow: SentenceScrambleFlow, chrome: Chrome, onFinish: () -> Unit) {
-    val state = flow.state
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm)) {
-        // NOTHING while the order is owed — this is the one drill that needs no Reveal. Every
-        // word it withholds is already on screen, so placing them all reaches the authored
-        // order by itself and books exactly what asking to be shown it would.
-        AnswerVerdict(state.feedback, flow.awaitsConfirm, chrome, flow::confirm)
-        if (state.offersFinish) DrillStopOffer(chrome, onFinish)
-    }
+private fun Controls(model: AppModel, flow: SentenceScrambleFlow, onFinish: () -> Unit) {
+    DrillAnswerArea(model, flow, focus = null, onStop = onFinish)
 }

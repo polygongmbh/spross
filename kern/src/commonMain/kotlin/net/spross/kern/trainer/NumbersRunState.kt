@@ -1,5 +1,12 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.typableOnNumberPad
+import net.spross.kern.session.AnswerControls
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
+import net.spross.kern.session.QuestionHint
+import net.spross.kern.session.Saying
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
 
@@ -85,6 +92,8 @@ data class NumbersRunState(
     override val core: DrillRunCore,
     /** Digit counts already introduced with a place-value hint; each length is hinted once. */
     val seenDigitCounts: Set<Int>,
+    /** Form keys already introduced with a form hint; each form is hinted once. */
+    val seenFormKeys: Set<String>,
     /** The learner looked the numbers up while owing this answer: it books almost. */
     val hintUsed: Boolean,
     override val feedback: TurnFeedback,
@@ -135,25 +144,80 @@ data class NumbersRunState(
     val severalExercises: Boolean get() = mode.exercises.size > 1
 
     /**
-     * The card carries the answer. A typo leaves it closed — the correction box already spells
-     * the word out, and the answer is never on screen twice.
+     * The Sprosse part of the score line, for the exercise that just asked; null where it has one Sprosse.
+     * Counting is worded in digits, which already wears 🔢, so it takes no face;
+     * every other exercise counts plain Sprossen, led by its face only in a run of several exercises.
      */
-    val showsAnswer: Boolean get() = feedback == TurnFeedback.Revealed
+    val sprosseLine: SprosseLine?
+        get() {
+            if (!showsSprosse) return null
+            val digits = currentExercise == NumbersExercise.Counting
+            val face = numbersExerciseEmoji(currentExercise).takeIf { !digits && severalExercises }
+            return SprosseLine(currentSprosse, digits, face)
+        }
 
     /**
-     * What a verdict says aloud: the reading, whichever side of it was owed — a reversed task's
-     * reading is its prompt. [slip] is the spelling a typo was held for, said in its place.
+     * A reversed task's reading, which is then the prompt in the language being learned;
+     * a forward task's numeral has no reading that is not the answer itself.
      */
-    internal fun saidAnswer(slip: String? = null): DrillEffect.SayAnswer = DrillEffect.SayAnswer(
-        if (currentReversed) currentTask.prompt else slip ?: currentTask.display,
-        currentTask.language,
-    )
+    override val promptSaying: Saying?
+        get() = if (currentReversed) Saying(currentTask.prompt, currentTask.language) else null
 
     /**
-     * A clean answer's reading, unsaid in a timed run: the clock is running, and the beat
-     * would wait the reading out.
+     * The reading a forward task owed; a reversed one was heard as its prompt already.
+     * A clean answer stays unsaid in a timed run: the clock is running, and the beat would wait the reading out.
      */
-    internal val saidOnClean: DrillEffect.SayAnswer? get() = if (timed) null else saidAnswer()
+    override val answerSaying: Saying?
+        get() = if (currentReversed || timed && feedback == TurnFeedback.Correct) {
+            null
+        } else {
+            Saying(currentTask.display, currentTask.language)
+        }
+
+    /**
+     * A prompt made of words is set like one, wrapped, where a numeral gets the one big line —
+     * asked of the prompt, so a composed sentence and a reversed reading read as what they are.
+     * A reversed task owes digits. One first-sight hint at a time, the form's winning over the place's.
+     */
+    override val question: Question
+        get() {
+            val wordy = currentTask.promptDisplay.any { it.isLetter() }
+            val language = currentTask.language
+            return Question(
+                key = index.toString(),
+                ask = null,
+                prompt = Question.Side(
+                    currentTask.promptDisplay, language,
+                    if (wordy) Question.Form.Sentence else Question.Form.Numeral,
+                    saying = promptSaying,
+                ),
+                answer = Question.Side(
+                    currentTask.display, language,
+                    when {
+                        currentReversed -> Question.Form.Numeral
+                        wordy -> Question.Form.Sentence
+                        else -> Question.Form.Word
+                    },
+                    saying = Saying(currentTask.display, language),
+                ),
+                emoji = null,
+                emojiCue = EmojiCue.Upfront,
+                hint = formHint?.let { QuestionHint.NewForm(it) } ?: placeValueHint?.let { QuestionHint.NewPlace(it) },
+                opens = showsAnswer,
+                closing = Question.Closing(note = currentTask.gloss?.let { ClosingNote.Own(it) }),
+                otherWord = otherWord,
+            )
+        }
+
+    /** A reversed task owes digits, on the number pad where every accepted form fits it. */
+    override val controls: AnswerControls
+        get() = answerControls(
+            typedSlot(
+                currentTask.language,
+                digits = currentReversed,
+                numberPad = currentReversed && typableOnNumberPad(currentTask.accepted),
+            ),
+        )
 
     /** The numbers page link shows on numbers tasks only, and never in a timed run. */
     val offersLookUp: Boolean get() = currentExercise == NumbersExercise.Counting && !timed
@@ -177,9 +241,24 @@ data class NumbersRunState(
             return Numbers.placeValueHint(digits, mode.language)
         }
 
+    /** The form on screen, null on a reversed task: its prompt IS the reading, which already names the mark. */
+    val currentFormKey: String?
+        get() = currentTask.formKey.takeUnless { currentReversed }
+
+    /** The word the form adds ("Komma", "menos"), the first time a form appears and never again. */
+    val formHint: String?
+        get() {
+            val key = currentFormKey ?: return null
+            if (key in seenFormKeys) return null
+            return Numbers.formHint(key, mode.language)
+        }
+
     /**
      * Whether [booking] stays clean: a correct answer books almost where the reference was
      * read while the answer was owed.
      */
     internal fun cleanness(booking: DrillBooking): Boolean = booking.clean && !(booking.correct && hintUsed)
 }
+
+/** The score line's Sprosse part: worded in [digits] or as a plain Sprosse, behind [emoji] where one leads. */
+data class SprosseLine(val sprosse: Int, val digits: Boolean, val emoji: String?)

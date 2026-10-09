@@ -2,11 +2,12 @@
  "title": "Geschlechtsorgane",
  "subtitle": "Die Wörter, die beim Arzt fallen.",
  "words": {
-  "penis": { "text": "Penis", "grammar": { "gender": "der", "plural": "-se" } },
+  "penis": { "text": "Penis", "forms": { "pl": "die Penisse" }, "grammar": { "gender": "der" } },
   "vagina": {
    "text": "Vagina",
    "teaches": ["Scheide"],
-   "grammar": { "gender": "die", "plural": "Vaginen" },
+   "forms": { "pl": "die Vaginen" },
+   "grammar": { "gender": "die" },
    "notes": { "de": "Scheide ist auch die Hülle für ein Messer." }
   },
   "testicle": { "text": "Hoden", "grammar": { "gender": "der", "plural": "=" } }

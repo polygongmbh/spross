@@ -2,7 +2,6 @@
  { "slug": "grandparents", "kind": "noun" },
  { "slug": "siblings", "kind": "noun" },
  { "slug": "cousin", "kind": "noun" },
- { "slug": "cousin-f", "kind": "noun", "feminineOf": "cousin" },
  { "slug": "nephew", "kind": "noun" },
  { "slug": "niece", "kind": "noun" },
  { "slug": "grandson", "kind": "noun" },

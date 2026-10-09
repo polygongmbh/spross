@@ -86,10 +86,10 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
                 "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
                 "CC BY 2.0 fr": "https://creativecommons.org/licenses/by/2.0/fr/" },
   "words": {
-    "office": { "file": "office.mp3", "matches": "установа",
+    "установа": { "file": "words/u0443u0441u0442u0430u043du043eu0432u0430.mp3", "matches": "установа",
                 "author": "Галя Раптова, Nicolas Vion",
                 "source": "Uk-установа.ogg", "sha256": "ca9d…" },
-    "prescription": { "file": "prescription.mp3", "matches": "рецепт",
+    "рецепт": { "file": "words/u0440u0435u0446u0435u043fu0442.mp3", "matches": "рецепт",
                       "license": "CC BY 2.0 fr",
                       "author": "Галя Раптова, Nicolas Vion",
                       "source": "Uk-рецепт.ogg", "sha256": "91d9…" } },
@@ -98,7 +98,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
            "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "77b0…",
            "gain": 20.0, "lead": 1069 } },
   "articles": {
-    "address": { "file": "articles/address.mp3", "matches": "die Adresse", "word": "Adresse",
+    "die Adresse": { "file": "articles/dieu0020adresse.mp3", "matches": "die Adresse", "word": "Adresse",
                  "author": "Natschoba",
                  "source": "LL-Q188 (deu)-Natschoba-die Adresse.wav", "sha256": "a15c…",
                  "gain": 8.0, "gainPhone": 3.9, "lead": 240 } },
@@ -122,32 +122,35 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   omission is the one thing a BY notice may not do.
   Every row of both maps has to be used by some recording (lint), so they describe the
   pack rather than accumulating its history.
-- `words` is keyed by concept slug, `letters` (optional) by lowercase
-  glyph. Every field is required except `license`, present only on the entries that
+- `words` is keyed by the FORM it speaks, like every section but `letters` (optional),
+  which is keyed by lowercase glyph.
+  No key or file names the concept a recording was fetched for,
+  so merging, renaming or moving a concept never touches audio:
+  a recording stays reachable while some card shows its form.
+  Every field is required except `license`, present only on the entries that
   depart from their author's, `gain`/`cap`/`capPhone`/`lead`, absent where they would be
   zero, and `gainPhone` — present on every word and article entry (0.0 when no
   correction) but absent on letters and texts.
-- `articles` (optional, de and it today) is keyed by slug like `words` and holds
-  recordings that speak an ARTICLE and then the word — `die Adresse`, files under
-  `articles/<slug>.mp3`. `matches` is the whole spoken form, `word` the bare form inside
+- `articles` (optional, de and it today) is keyed by the whole spoken form like `words`
+  and holds recordings that speak an ARTICLE and then the word — `die Adresse`, files
+  under `articles/`. `matches` is the whole spoken form, `word` the bare form inside
   it, and the entry is indexed by BOTH: the spoken form answers a card asking with its
   article (the string `spokenTargetForm` builds), the bare word answers one asking
   without, last, so a recording of exactly what the card shows always wins.
   `word` is carried rather than derived — cutting a leading article off is a guess, and
   an elided one (`l'acqua`) has no space to cut at.
-  The article must be the realization's own `grammar.gender`, because a recording is the
-  only thing that teaches a gender aloud and a wrong one teaches it wrong; the `word` may
-  be any form the realization carries, so a file saying "der Großvater" ships as a
-  recording of the form it actually says.
+  The article must be one a card shows in front of that word — a realization's own
+  `grammar.gender`, or the article a tagged form was authored with (`die Lehrerin`) —
+  because a recording is the only thing that teaches a gender aloud and a wrong one
+  teaches it wrong; the `word` may be any form the realization carries, so a file saying
+  "der Großvater" ships as a recording of the form it actually says.
   Usually an addition beside a bare `words` entry — the source side reads the learner's
   own language, where the article is not what is being taught — but not dependent on one:
   five words ship the article recording alone and it answers both asks.
-- `texts` (optional) is keyed by the FORM it speaks, because it holds the `exampleText`
-  rows of `../alphabet/`, which carry no concept slug. A key no alphabet row cites is
+- `texts` (optional) holds the `exampleText` rows of `../alphabet/`.
+  A key no alphabet row cites is
   refused by lint: it could never be reached and its mp3 would ship for nothing.
-- `calendar` (optional) is keyed by the FORM it speaks like `texts`, and for the same
-  reason: no concept covers a weekday, so there is no slug to key one by. Files are
-  `calendar/<ascii stem>.mp3`. It holds the weekday and month names of `../dates/`, the
+- `calendar` (optional) holds the weekday and month names of `../dates/`, the
   `teaches` beside them included — a card may show `Sonnabend`, and a recording is only
   ever played for the form it actually says. `abbr` is never recorded: it is a written
   short form the prompt wears, and nothing says it aloud.
@@ -155,12 +158,10 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   beside the very vocabulary the phone-speaker plane was measured for, while the
   alphabet's reference rows stay flat.
 - `countries` (optional) is `calendar`'s twin for `../countries/`, holding the country and
-  the nationality name of every atlas row, under `countries/<ascii stem>.mp3`. Keyed by the
-  form for a reason of its own: the countries DO carry slugs, but a slug holds one file
-  while a row holds two names the drill shows and asks for — `Deutschland` and `Deutsche`.
+  the nationality name of every atlas row — `Deutschland` and `Deutsche`.
   `accepts` are not recorded on either half, being accept-only and never displayed, so a
   recording keyed by one could never be reached.
-- `matches` — the surface form the recording actually SPEAKS, and the lookup key:
+- `matches` — the surface form the recording actually SPEAKS, repeated from the key, and the lookup key:
   playback is keyed by what stands on the card, never by the slug the file was fetched
   for, so a rotated synonym nobody recorded falls through to the app's own voice
   instead of playing the canonical word. It may differ from `text` in case
@@ -170,9 +171,10 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   alphabet file.
 - `source` — the original Commons filename; the credits screen links `File:<source>`,
   which is what keeps attribution checkable rather than merely present.
-- Word files are `<slug>.mp3`, article files `articles/<slug>.mp3`, and text and calendar
-  files their form's ASCII stem under `texts/` and `calendar/`; letter files are
-  `letters/u<codepoint>….mp3`, one
+- A form-keyed file is its form's ASCII stem under its section's folder — `[a-z0-9-]`
+  stays, every other character becomes `u<hex>`, so `die Adresse` is
+  `articles/dieu0020adresse.mp3`; byte-identical recordings of one form ship once.
+  Letter files are `letters/u<codepoint>….mp3`, one
   `u` + four lowercase hex digits PER CODEPOINT, never glyph-named — `й`/`ї` decompose
   under NFD on APFS and a Unicode filename has to survive git, Gradle sync and AAPT
   unchanged. A sequence rather than one codepoint because a named row may be a digraph
@@ -207,8 +209,8 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   the hiss in pauses and between syllables while the word plays untouched.
   Absent means no gate: the file measured as digital silence, or nothing was measured.
 
-Lint (`CatalogAudioLintTest`, `CatalogAudioProvenanceTest`) holds the rest: every entry names a slug its language
-realizes and a form some card can show, no two entries claim one spoken form with
+Lint (`CatalogAudioLintTest`, `CatalogAudioProvenanceTest`) holds the rest: every entry is keyed by the form it
+speaks and some card of its language shows it, no two entries claim one spoken form with
 different bytes, every file ships and is referenced exactly once, every `authors` and
 `licenses` row is used, and no author is a placeholder like "Own work" — BY and BY-SA
 both require naming somebody.

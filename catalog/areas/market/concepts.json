@@ -1,7 +1,6 @@
 [
  { "slug": "stall", "kind": "noun", "emoji": "🏪" },
- { "slug": "trader", "kind": "noun", "emoji": "🧑‍🌾" },
- { "slug": "trader-f", "kind": "noun", "emoji": "👩‍🌾", "feminineOf": "trader" },
+ { "slug": "trader", "kind": "noun", "emoji": "🧑‍🌾", "formEmoji": { "f": "👩‍🌾" } },
  { "slug": "scales", "kind": "noun", "emoji": "⚖️" },
  { "slug": "to-weigh", "kind": "verb" },
  { "slug": "kilo", "kind": "noun" },

@@ -68,7 +68,8 @@ and text reaches a machine only inside an intent — never as state.
 - `ListeningPool.report(catalog, box, source, target, hasTargetVoice, hasSourceVoice, seed)` is the one gate,
   disciplined like `LetterDrillAvailability.report`:
   the only platform facts are the two `hasVoice` booleans, and kern caches nothing.
-  It is asked ONCE PER RUN, when the learner opens one, never on the way past the entry card.
+  It is asked ONCE PER RUN, when the learner opens one, never on the way past the entry card;
+  the card itself stands on `listeningOffered`: words in the box and something that can say each language.
   `seed` only salts the order's tiebreak; kern never reads a clock or cares what the number means.
 - **The pool is the sayable join short of the settled words, not a composed subset.**
   **Both halves must be sayable** (`audible` on both forms),
@@ -101,16 +102,19 @@ and text reaches a machine only inside an intent — never as state.
   It walks the playlist it was handed by position and laps at its end;
   repeats are the deal's business, never the run's.
   `ListeningEffect` says `Play`/`Stop` because `Repeat` leaves the state identical and must still make the sound fire.
-- **Every beat is kern's** (`ListeningTurn`): the recall gap is long for a word answered before and short for a new one,
+- **Every beat is kern's** (`ListeningTurn.sayings`): target, meaning, target again, the article on the target sayings only,
+  and the meaning shown from its own saying on.
+  The recall gap is long for a word answered before and short for a new one,
   and the echo and the gap between turns reuse those two.
   Each beat is armed off the previous word ACTUALLY ENDING plus its gap,
   and a word that never reports a finish is walked past after `LISTENING_WATCHDOG_MS`.
 - **A bedtime fades the whole run rather than cutting it** (`listeningTimerStepMs`, `listeningGainDb`, `fadedGainDb`):
   a hard stop is loud enough to wake the listener.
-  The deadline ends the run at the seam between turns,
+  The deadline ends the run at the seam between turns (`listeningSeam`),
   and a PAUSED run is left parked — a bedtime ends a run nobody is attending, not one somebody just touched.
   The floor holds the SUM of a recording's level and the ramp, because that is what a listener hears.
   The remaining milliseconds are the APP's to track and hand in; the run state holds no deadline.
+  The chip reads whole minutes rounded up and wakes only when one turns (`listeningTimerMinutes`, `listeningTimerWakeMs`).
 
 ## Trainer & drill runs   (package `net.spross.kern.trainer`)
 
@@ -194,6 +198,8 @@ and text reaches a machine only inside an intent — never as state.
   a Sprosse it holds passes on one clean answer until the run's first miss or almost,
   every other Sprosse, and every one after that slip, on the usual count (`DrillSprossen.winsRequired`).
   A Sprosse passed fast is one the store already holds, so it is nothing new to a pause.
+  The letter drill opens on the lowest Sprosse its mask does not hold,
+  and passes a held one above it, or one a miss steps it back to, on the same rule.
   Pinned quirk: a non-null `phraseSource` suffixes the record language with the
   `<source>-<target>` pair even when the run asks no sentence,
   because the overview passes the source whenever the pair realizes frames.
@@ -249,3 +255,41 @@ and text reaches a machine only inside an intent — never as state.
   Its Sprossen are bands that overlap nothing, like the sentence scramble's:
   adjectives, then verbs and nouns, then every prompt with more than one opposite.
   `OppositesRun.grade` refuses the prompt itself before the typo budget can read it as a slip of its opposite.
+
+## The question on screen
+
+- **One `Question` per card on screen** (`session.Question`), a review card and a drill task alike:
+  its prompt and answer `Side`s, the caption (`QuestionAsk`), the picture and its cue,
+  a first-sight `QuestionHint`, the closing lines and `opens` — whether the card carries its answer.
+  Each app draws every card from it with one component, so what a face shows is decided once.
+  Nothing in it is worded or placed: asks, hints, plural sentinels and closing labels are structures the apps word.
+- **The review card** is `TurnState.question`.
+  Grammar is target-side only and rides the cited form alone, so a rotated synonym stands bare
+  and the citation it displaced closes the card as an alternate;
+  the cited form carries its plural whether or not the language writes an article.
+  The area is named over an ambiguous produce prompt and never over a recognition one,
+  where any cue precise enough to disambiguate would hand over the answer.
+  A card asked by ear asks with a sound until the learner cannot listen or the card opens,
+  and then shows the word it played.
+- **A drill's card is `DrillRunProgress.question`**, which every run state declares with no default,
+  as it declares its sayings, so a new drill cannot ship without ruling on its card.
+  The drills' first-sight words are `QuestionHint`s (a numbers place or form, a calendar pattern word),
+  the atlas and letter captions `QuestionAsk`s;
+  a flag that alone asks the question is `emojiIsQuestion`, a flag that would answer it waits for the reveal.
+  A sentence scramble's bank is its prompt, so its prompt side holds no words.
+- **A card opens on a miss or a reveal only** (`Question.opens`; a drill's `showsAnswer`, one rule on `DrillRunProgress`),
+  never on an accepted answer, which already stands in the learner's own text.
+  Where the meaning never stood on screen — the scrambles, the opposites, a letter heard —
+  an accepted answer keeps the card closed and grows the meaning alone (`growsNote`).
+- **What stands under the card is `AnswerControls`** — `TurnState.controls`, and `DrillRunProgress.controls`,
+  again with no default: the slot the answer is given with (a field, tiles, an arrangement, the self-grade verdicts, the write-out),
+  the field's own verdict, the one primary action, the confirm tap, the give-up, the way out and the can't-listen.
+  A review miss keeps the field editable for the retype beside a quiet skip, and a miss asked by ear drops it for one Next;
+  a drill's miss holds the field as written, since a drill has nothing to retype.
+  Every drill wears one rule around its slot (`answerControls`): a submit only while a written answer is owed,
+  a near miss and a miss held until tapped, a clean answer only where no beat may run, the way out where the run offers it.
+- **A speaker is a `Side.saying`**, the tap; `Reading` stays the autoplay,
+  and every target form a review card reads aloud also stands on a side with the speaker that says it.
+- **How a card moves is `design.CardMotion`**: the switch to the next question turns the outgoing card out
+  and the incoming one in about the vertical axis, each showing only its front half (`flipAngle`, `flipShows`),
+  and a reveal settles before the shortest beat can move the card on; each app keeps its native easing.

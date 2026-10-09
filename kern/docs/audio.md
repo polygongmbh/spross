@@ -9,8 +9,9 @@ Neighbors: the engine contract `../README.md`, when the app plays it `../../docs
   or the produce prompt IS the sound; `OnReveal` for a produce card that asks for that very form.
   `meaningCue(role, prompt)` is its mirror for the learner's own side — `Upfront` only where the produce prompt IS the meaning —
   so each side is said once and every card pairs the word with its meaning.
-  `TurnState.promptSaying`/`answerSaying` (`session/TurnSaying.kt`) turn the two cues into the form and language a card says
-  as it goes up and once it has `settled` — its answer out, or given clean.
+  `TurnState.reading` (`session/Reading.kt`) turns the two cues into the `Saying`s a card says
+  as it goes up and once it has `settled` — its answer out, or given clean, target side with its article.
+  Every drill state hands over the same `Reading` (`DrillRunProgress.reading`) off the two sayings it must declare.
   Both apps CONSUME these; neither re-derives `role == Recognize` for audio.
   Which transitions actually fire, and how autoplay sits beside the auto-advance timers, is `../../docs/design.md`'s.
 - **How quiet is too quiet** — `isVolumeLow(fraction)` (`catalog/OutputVolume.kt`):
@@ -19,14 +20,15 @@ Neighbors: the engine contract `../README.md`, when the app plays it `../../docs
   Each platform reads its own volume as a fraction of its range; the line is kern's.
   It never holds a sound or a card back.
 - **What is spoken is the headword, and on the TARGET side its article with it** —
-  never the rest of the rendering: the ♀ badge, the plural line and the area cue are grammar decoration
+  never the rest of the rendering: the form marker, the plural line and the area cue are grammar decoration
   and reach neither a synthesizer nor a lookup.
   `spokenTargetForm(article, shownForm, targetText)` builds that string once, for both branches:
   the synthesizer is handed it, and an `articles{}` recording is FOUND by it,
   so "die Adresse" plays where one was recorded and the bare file plays where none was.
   The source side takes no article — its grammar is not what is being taught —
-  and `shownArticle` withholds one from any form the card rotated in, which is what keeps
-  a synonym's own gender from being mislabeled by the canonical word's.
+  and `shownArticle` withholds one from any synonym the card rotated in, which is what keeps
+  a synonym's own gender from being mislabeled by the canonical word's;
+  a tagged form says the article it was authored with (`die Lehrerin`, `TaggedForm.article`).
 - **Two normalizations, both normative** (`catalog/Pronunciation.kt`):
   `speechKey(form)` — trim whitespace, strip ONE leading `-` (the Swahili adjective stem citation `-zuri`),
   strip leading/trailing sentence punctuation and quote marks — `¡`/`¿` among them, because Spanish writes them and no one says them —, NFC, lowercase,
@@ -36,12 +38,13 @@ Neighbors: the engine contract `../README.md`, when the app plays it `../../docs
   terminal punctuation KEPT, because it carries prosody.
   `speechKey` is applied identically to a manifest's `matches` and to the visible form; nothing else folds.
 - **Lookup is keyed by the MATCHED SPOKEN FORM, never by the slug.**
-  `audio/<lang>/manifest.json` records, per slug, the form the recording actually speaks (`matches`).
+  `audio/<lang>/manifest.json` keys every section but the letters by the form its recording actually speaks (`matches`),
+  and files it as `<section>/<ascii stem>.mp3`,
+  so no recording names the concept it was fetched for, and a merge, rename or move of one never touches audio.
   `AudioManifest` builds two indices — the exact NFC form, then the `speechKey` — and exact wins.
   Four sections feed them: `words`, the alphabet's slugless `texts`, and the two drills'
   own vocabularies — `calendar`, the weekday and month names no concept covers, and
-  `countries`, the atlas' country and nationality names, which carry slugs but two names per
-  slug and so are keyed by the form like the rest.
+  `countries`, the atlas' country and nationality names.
   One index, so a drill hears a recorded `Montag` or `Deutschland` through the very lookup a
   card uses, and no surface needs a route of its own.
   The manifest's `articles{}` section indexes TWICE, by the speech key of the whole spoken form
@@ -54,14 +57,15 @@ Neighbors: the engine contract `../README.md`, when the app plays it `../../docs
   `teaches` would disagree with it (`../../../data/reference/audio/README.md`, outside the repo).
   A rotated synonym nobody recorded simply misses, and the app speaks it live:
   a card never plays a word it does not show.
-- **Collision rule.** Entries sharing a `speechKey` whose bytes are IDENTICAL are one recording fetched under two slugs, and resolve.
+- **Collision rule.** Entries sharing a `speechKey` whose bytes are IDENTICAL are one recording in two sections (a word and an alphabet text), and resolve;
+  inside one section such a recording ships once.
   Entries whose bytes differ (de `husten` = cough / to cough) have no right answer,
   so the lookup returns null and the visible form is spoken live instead of guessed at.
   That state may not ship: `CatalogAudioLintTest.noAmbiguousMatchedForm` fails the build,
   and the converter resolves collisions when it generates the manifest.
 - **Kern returns paths and strings, never bytes.**
   Manifests are JSON text read through `CatalogSource` like every other catalog file;
-  recording paths come back catalog-relative (`audio/uk/office.mp3`),
+  recording paths come back catalog-relative (`audio/de/words/hund.mp3`),
   and every player, synthesizer and voice table stays app-side.
 - **Two predicates, one per FORM and one per LANGUAGE.**
   `audible(form, lang, catalog, hasVoice)` is what a pool filters on — a recording of that
@@ -104,8 +108,10 @@ Neighbors: the engine contract `../README.md`, when the app plays it `../../docs
   BY and BY-SA cannot share one notice, so the groups ARE the credit rows,
   and they derive from the shipped manifests, so the screen can never credit what is not bundled.
 - Lint (`CatalogAudioLintTest`, `CatalogAudioProvenanceTest`, real catalog):
-  entries name slugs their language realizes, every `matches` is reachable from a visible form,
-  no ambiguous speech key, slug-named word files and codepoint-named letter files
+  every entry is keyed by the form it speaks, and that form stands on some card of its language —
+  any realization's `text`, `teaches`, `accepts` or tagged form, or a verb's bare stem —
+  an article entry's article being one a card shows in front of its word;
+  no ambiguous speech key, ASCII-stem-named form files and codepoint-named letter files
   (glyph filenames decompose under NFD on APFS), every file ships and is referenced exactly once,
   each sha256 re-hashed against the committed bytes — Commons transcodes ship untouched
   (`../../docs/audio-licensing.md` §3) —

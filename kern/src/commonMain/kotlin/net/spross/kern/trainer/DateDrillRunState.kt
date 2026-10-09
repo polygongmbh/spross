@@ -1,5 +1,13 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.typableOnNumberPad
+import net.spross.kern.session.AnswerControls.Slot
+import net.spross.kern.session.AnswerControls
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.Question
+import net.spross.kern.session.QuestionAsk
+import net.spross.kern.session.QuestionHint
+import net.spross.kern.session.Saying
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.model.Language
 import net.spross.kern.session.AnswerNormalizer
@@ -155,14 +163,36 @@ data class DateDrillRunState(
     internal val newSprossen: Int
         get() = (DateDrill.cleared(config.content, config.reverse, core.solvedClean) - config.cleared).size
 
-    /** The card may open: the almost hold and the miss each put a reading worth seeing whole. */
-    val showsAnswer: Boolean
-        get() = feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed
+    /** A reversed run's prompt, which is then the form in the language being learned; a forward one says nothing until the reveal. */
+    override val promptSaying: Saying?
+        get() = if (config.reverse) Saying(task.promptText, promptLanguage) else null
 
-    /**
-     * What a verdict says aloud: the reading, where it is owed in the language being learned.
-     * A reversed run answers in the learner's own notation, and says its prompt instead.
-     */
-    internal val saidAnswer: DrillEffect.SayAnswer?
-        get() = if (config.reverse) null else DrillEffect.SayAnswer(task.display, answerLanguage)
+    /** The reading, where it is owed in the language being learned; a reversed run answers in the learner's own. */
+    override val answerSaying: Saying?
+        get() = if (config.reverse) null else Saying(task.display, answerLanguage)
+
+    /** No picture; a date owed in digits is a numeral, and the pattern word is the first-sight hint. */
+    override val question: Question
+        get() = Question(
+            key = index.toString(),
+            ask = QuestionAsk.Date(task.kind),
+            prompt = Question.Side(task.promptText, promptLanguage, Question.Form.Name, saying = promptSaying),
+            answer = Question.Side(
+                task.display, answerLanguage,
+                if (task.digits) Question.Form.Numeral else Question.Form.Name,
+                saying = Saying(task.display, answerLanguage),
+            ),
+            emoji = null,
+            emojiCue = EmojiCue.Upfront,
+            hint = patternWord?.let { QuestionHint.NewWord(it) },
+            opens = showsAnswer,
+            otherWord = otherWord,
+        )
+
+    /** The warm-up Sprosse's names are picked off tiles; every other date is written, a date owed in digits on the number pad where it fits. */
+    override val controls: AnswerControls
+        get() = answerControls(
+            task.choices?.let { Slot.Choices(it, task.display) }
+                ?: typedSlot(answerLanguage, digits = task.digits, numberPad = task.digits && typableOnNumberPad(task.accepted)),
+        )
 }

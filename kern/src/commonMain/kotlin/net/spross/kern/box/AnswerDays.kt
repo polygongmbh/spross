@@ -6,17 +6,21 @@ import kotlinx.datetime.plus
 import net.spross.kern.model.CardScheduling
 
 /**
- * Answers per local day, counted off the review logs — what the streak, the activity strip
- * and "done today" read. The logs already carry every answer, so the box keeps no tally
- * beside them that could disagree with them.
+ * Answers per local day, counted off the review logs plus [drillDays] — what the streak and the
+ * activity strip read. The logs already carry every review, so the box keeps no tally beside
+ * them that could disagree with them; a drill answer touches no card, so its day is tallied apart.
  *
  * Days are cut in the CALLER's timezone, the one the learner is standing in now; an answer
  * given elsewhere can therefore move a day, which costs a traveler nothing that matters.
  * Suspended and unjoined schedules count as well — the answer really happened, and a source
  * switch must not un-happen a day.
  */
-fun answerDays(scheduling: Map<String, CardScheduling>, tzId: String): Map<String, Int> {
-    val days = mutableMapOf<String, Int>()
+fun answerDays(
+    scheduling: Map<String, CardScheduling>,
+    tzId: String,
+    drillDays: Map<String, Int> = emptyMap(),
+): Map<String, Int> {
+    val days = drillDays.toMutableMap()
     for (sched in scheduling.values) {
         for (entry in sched.log) {
             val day = dayKey(entry.date.toEpochMilliseconds(), tzId)
@@ -40,8 +44,8 @@ fun mergeAnswerDays(answerDaysByLanguage: List<Map<String, Int>>): Map<String, I
 }
 
 /**
- * Answers logged on the local day [nowEpochMillis] falls in — the same count [answerDays]
- * would report for it, without building the whole history to read one day.
+ * Reviews logged on the local day [nowEpochMillis] falls in — [answerDays]' count for it
+ * without the drill answers, which no round's budget spends.
  */
 internal fun answersOn(
     scheduling: Map<String, CardScheduling>,

@@ -4,7 +4,8 @@
  "words": {
   "good": {
    "text": "bueno",
-   "accepts": ["buena", "buen"],
+   "accepts": ["buen"],
+   "forms": { "f": "buena" },
    "notes": {
     "es": "un buen día · el día es bueno · una buena casa · todo bien",
     "de": "vor männlichem Substantiv verkürzt: un buen amigo · als Adverb bien: todo bien."
@@ -12,7 +13,8 @@
   },
   "bad": {
    "text": "malo",
-   "accepts": ["mala", "mal"],
+   "accepts": ["mal"],
+   "forms": { "f": "mala" },
    "notes": {
     "es": "un mal día · el día es malo · una mala hora · todo mal",
     "de": "vor männlichem Substantiv verkürzt: un mal día · als Adverb mal."
@@ -23,73 +25,73 @@
    "accepts": ["gran"],
    "notes": { "es": "un país grande · gran delante del nombre: un gran país" }
   },
-  "small": { "text": "pequeño", "accepts": ["pequeña"] },
+  "small": { "text": "pequeño", "forms": { "f": "pequeña" } },
   "much": {
    "text": "mucho",
-   "accepts": ["mucha", "muchos", "muchas"],
+   "forms": { "f": "mucha", "pl": "muchos", "f.pl": "muchas" },
    "notes": { "es": "mucho sitio, mucha agua, muchos países, muchas preguntas" }
   },
-  "new": { "text": "nuevo", "accepts": ["nueva"] },
+  "new": { "text": "nuevo", "forms": { "f": "nueva" } },
   "old": {
    "text": "viejo",
-   "accepts": ["vieja"],
+   "forms": { "f": "vieja" },
    "notes": { "es": "una casa vieja · antiguo es de otra época." }
   },
   "slow": {
    "text": "lento",
    "teaches": ["despacio"],
-   "accepts": ["lenta"],
+   "forms": { "f": "lenta" },
    "notes": {
     "es": "habla despacio · una respuesta lenta",
     "de": "lento = Adjektiv · despacio = Adverb: habla despacio."
    }
   },
-  "fast": { "text": "rápido", "accepts": ["rápida", "deprisa"] },
-  "long": { "text": "largo", "accepts": ["larga"] },
+  "fast": { "text": "rápido", "accepts": ["deprisa"], "forms": { "f": "rápida" } },
+  "long": { "text": "largo", "forms": { "f": "larga" } },
   "short": {
    "text": "corto",
-   "accepts": ["corta"],
+   "forms": { "f": "corta" },
    "notes": { "es": "corto es de longitud; de estatura se dice bajo." }
   },
-  "heavy": { "text": "pesado", "accepts": ["pesada"] },
-  "lightweight": { "text": "ligero", "accepts": ["ligera"] },
+  "heavy": { "text": "pesado", "forms": { "f": "pesada" } },
+  "lightweight": { "text": "ligero", "forms": { "f": "ligera" } },
   "difficult": { "text": "difícil" },
   "easy": { "text": "fácil" },
   "problem": { "text": "problema", "grammar": { "gender": "el" } },
   "to-solve": { "text": "resolver", "teaches": ["solucionar"] },
-  "challenge": { "text": "desafío", "grammar": { "gender": "el", "plural": "desafíos" } },
-  "clean-adj": { "text": "limpio", "accepts": ["limpia"] },
+  "challenge": { "text": "desafío", "forms": { "pl": "los desafíos" }, "grammar": { "gender": "el" } },
+  "clean-adj": { "text": "limpio", "forms": { "f": "limpia" } },
   "sharp": {
    "text": "afilado",
-   "accepts": ["afilada"],
+   "forms": { "f": "afilada" },
    "notes": { "de": "nur für Klingen; scharf im Geschmack ist picante." }
   },
   "available": { "text": "disponible" },
-  "other": { "text": "otro", "accepts": ["otra", "otros", "otras"] },
+  "other": { "text": "otro", "forms": { "f": "otra", "pl": "otros", "f.pl": "otras" } },
   "hot": { "text": "caliente" },
   "cold-adj": {
    "text": "frío",
-   "accepts": ["fría"],
+   "forms": { "f": "fría" },
    "notes": {
     "es": "¿Tienes frío? · el agua está fría",
     "de": "mit tener beim Menschen: tengo frío = mir ist kalt · mit estar bei Sachen: el café está frío."
    }
   },
-  "empty": { "text": "vacío", "accepts": ["vacía"] },
-  "full": { "text": "lleno", "accepts": ["llena"] },
-  "dirty": { "text": "sucio", "accepts": ["sucia"] },
+  "empty": { "text": "vacío", "forms": { "f": "vacía" } },
+  "full": { "text": "lleno", "forms": { "f": "llena" } },
+  "dirty": { "text": "sucio", "forms": { "f": "sucia" } },
   "dry": { "text": "seco" },
-  "pretty": { "text": "bonito", "accepts": ["bonita"] },
-  "beautiful": { "text": "hermoso", "accepts": ["hermosa"] },
+  "pretty": { "text": "bonito", "forms": { "f": "bonita" } },
+  "beautiful": { "text": "hermoso", "forms": { "f": "hermosa" } },
   "health": { "text": "salud", "grammar": { "gender": "la" } },
   "healthy": {
    "text": "sano",
    "teaches": ["saludable"],
-   "accepts": ["sana"],
+   "forms": { "f": "sana" },
    "notes": { "es": "Estoy sano · agua saludable" }
   },
   "firm": { "text": "firme" },
-  "liquid": { "text": "líquido", "accepts": ["líquida"] },
+  "liquid": { "text": "líquido", "forms": { "f": "líquida" } },
   "young": { "text": "joven" },
   "a-lot-of-water": { "text": "mucha agua", "notes": { "es": "el agua · mucha agua · el agua fría" } },
   "safe": { "text": "seguro" }

@@ -4,7 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import net.spross.kern.model.Rating
 
-/** Answers per day, counted off the logs: the streak's input, and every strip built on it. */
+/** Answers per day, counted off the logs and the drill tally: the streak's input, and every strip built on it. */
 class AnswerDaysTests {
 
     @Test
@@ -65,5 +65,18 @@ class AnswerDaysTests {
             answerDays(state.scheduling, Box.TZ)["2026-07-01"],
             answersOn(state.scheduling, Box.day1, Box.TZ),
         )
+    }
+
+    /** A day spent only drilling keeps the run going, yet spends nothing of a round's budget. */
+    @Test
+    fun drillAnswersCountForTheStreakButNotTheRound() {
+        var state = Box.state(listOf(Box.word(1)))
+        state = Box.answered(state, "w01", Rating.Good, Box.day1)
+        val nextDay = Box.plusDays(Box.day1, 1.0)
+        state = BoxEngine.bookDrillAnswers(state, 7, nextDay, Box.TZ)
+
+        assertEquals(mapOf("2026-07-01" to 1, "2026-07-02" to 7), answerDays(state.scheduling, Box.TZ, state.drillDays))
+        assertEquals(2, BoxEngine.statistics(state, nextDay, Box.TZ).streak)
+        assertEquals(0, answersOn(state.scheduling, nextDay, Box.TZ))
     }
 }

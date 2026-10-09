@@ -4,9 +4,9 @@
  "words": {
   "school": { "text": "lernejo" },
   "classroom": { "text": "klasĉambro", "accepts": ["lernoĉambro"] },
-  "teacher": { "text": "instruisto" },
-  "teacher-f": {
-   "text": "instruistino",
+  "teacher": {
+   "text": "instruisto",
+   "forms": { "f": "instruistino" },
    "notes": { "de": "Die weibliche Form bildet immer das Suffix -in-: instruisto → instruistino." }
   },
   "board": { "text": "tabulo", "accepts": ["nigra tabulo", "lerneja tabulo"] },
@@ -20,8 +20,7 @@
    "notes": { "eo": "sukcesi = bona rezulto · malsukcesi = malbona · trapasi = nur fari ĝin." }
   },
   "to-raise-hand": { "text": "levi la manon" },
-  "pupil": { "text": "lernanto", "accepts": ["lernejano"] },
-  "pupil-f": { "text": "lernantino", "accepts": ["lernejanino"] },
+  "pupil": { "text": "lernanto", "accepts": ["lernejano", "lernejanino"], "forms": { "f": "lernantino" } },
   "course": { "text": "kurso" },
   "lesson": {
    "text": "leciono",

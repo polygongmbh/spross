@@ -9,16 +9,16 @@ A pack row ships only once it survives all of them, each decision printed by the
     stands on the card. This is what drops the sw `ku-` verbs, whose recordings say
     the bare stem — playing "wasilisha" for "kuwasilisha" would teach the wrong word,
     while punctuation ("Hujambo!") and the citation dash ("-zuri") fold away and stay;
-  · an ARTICLE row speaks its realization's own article in front of the canonical word,
-    the one string a card showing that article ever asks for — a row saying a different
-    article would teach the gender wrong, which is what these recordings exist to fix;
+  · an ARTICLE row speaks its realization's own article in front of a form it shows, or a
+    tagged form's authored article in front of it — a row saying a different article
+    would teach the gender wrong, which is what these recordings exist to fix;
   · a Lingua Libre filename ENDS in the word its row claims — that grammar puts the
     speaker and the word in one dash-joined string, so a compound like `Earl-Grey-Tee`
     can be read as a recording of "Tee" by anything that guesses the boundary. Two such
     files shipped before this gate existed;
   · no two entries claim one speech key with differing bytes: the runtime cannot pick
-    between de `husten` cough/to-cough, so the first slug wins and the others lose a
-    credit line, not a sound;
+    between two takes of de `husten` (cough / to cough), so the first slug wins;
+    byte-identical twins are one recording and ship once, under the form they speak;
   · the author names somebody. "Own work"/"myself" credit nobody, and Commons' "X assumed
     (based on copyright claims)" credits a bot's guess at the uploader, while BY and BY-SA
     both require naming — so those rows are re-resolved against the Commons API and
@@ -95,9 +95,10 @@ def spoken_target_form(article, text):
     return '%s %s' % (article, text.strip())
 
 
-def keep_article_forms(rows, lang, targets, forms, drops):
+def keep_article_forms(rows, lang, targets, drops):
     """The ARTICLE gate: the row says the realization's own article in front of one of its
-    forms — and the row records WHICH form, so one file can answer either way it is asked.
+    forms, or a tagged form with the article it was authored with (`die Lehrerin`) — and the
+    row records WHICH form, so one file can answer either way it is asked.
 
     The article has to be the authored one because a recording is the only thing on the card
     that can teach a gender, and a wrong one teaches it wrong. The WORD it stands in front of
@@ -112,18 +113,17 @@ def keep_article_forms(rows, lang, targets, forms, drops):
     """
     kept = []
     for row in rows:
-        target = targets.get(lang, {}).get(row['slug'])
-        if not target:
+        pairs = targets.get(lang, {}).get(row['slug'])
+        if not pairs:
             drops.append(('unrealized', row['slug'], 'no gendered realization in %s' % lang))
             continue
-        article, text = target
         said = speech_key(row['matched_word'])
-        spoken = next((form for form in forms.get(lang, {}).get(row['slug'], [])
+        spoken = next((form for article, form in pairs
                        if speech_key(spoken_target_form(article, form)) == said), None)
         if spoken is None:
             drops.append(('not-the-article', row['slug'],
-                          'recording says "%s", not "%s" in front of any form it has'
-                          % (row['matched_word'], article)))
+                          'recording says "%s", not any of %s'
+                          % (row['matched_word'], sorted({a for a, _ in pairs}))))
         else:
             kept.append(dict(row, word=spoken))
     return kept

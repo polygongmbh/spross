@@ -39,12 +39,8 @@ import net.spross.app.Chrome
 import net.spross.app.defaultSource
 import net.spross.app.suggestedLearnerName
 import net.spross.kern.catalog.LanguageChoices
-
-/** The three pages of the first run, in the order they are walked. */
-private enum class Page { Languages, Why, FirstRound }
-
-/** Long enough to read as a page turn, short enough that the tap still feels answered — iOS's. */
-private const val PAGE_FADE_MS = 200
+import net.spross.kern.catalog.Onboarding
+import net.spross.kern.catalog.OnboardingPage
 
 /**
  * First launch, in three pages: the pair, what Spross is for ([PrinciplesPage]),
@@ -76,17 +72,17 @@ fun OnboardingScreen(model: AppModel) {
     // is the one in force and the page that asks for it has nothing left to ask.
     val joined = model.box?.joinStamp
     val initialSource = joined?.source ?: model.defaultSource(catalog)
-    var page by rememberSaveable {
-        mutableStateOf(if (joined == null) Page.Languages else Page.Why)
-    }
+    var page by rememberSaveable { mutableStateOf(Onboarding.openingPage(restart = joined != null)) }
     var source by rememberSaveable { mutableStateOf(initialSource) }
     var target by rememberSaveable {
         mutableStateOf(joined?.target ?: catalog.availableTargets(initialSource).firstOrNull()?.code)
     }
     var pickingSource by rememberSaveable { mutableStateOf(false) }
-    // The device's own guess, where it is named after somebody ([DeviceName]) — offered
-    // filled in, and worth nothing until the last page commits it.
-    var name by rememberSaveable { mutableStateOf(model.suggestedLearnerName().orEmpty()) }
+    // The name already saved, else the device's own guess where it is named after somebody
+    // ([DeviceName]) — offered filled in, and worth nothing until the last page commits it.
+    var name by rememberSaveable {
+        mutableStateOf(model.learnerName ?: model.suggestedLearnerName().orEmpty())
+    }
     // Plain remember: a restored `true` would outlive the model's coroutine and leave a
     // spinner nothing ever resolves. Rotation keeps the activity (`configChanges`), so
     // the only way back here is process death, where the join is gone anyway.
@@ -106,8 +102,8 @@ fun OnboardingScreen(model: AppModel) {
     // why: without a handler, back on a reading page finishes the activity and throws the
     // language pick away. Page one keeps the default — leaving a first-run screen with no
     // profile is what back means there.
-    BackHandler(enabled = page != Page.Languages) {
-        page = if (page == Page.FirstRound) Page.Why else Page.Languages
+    BackHandler(enabled = page != OnboardingPage.Languages) {
+        page.back(starting)?.let { page = it }
     }
 
     AnimatedContent(
@@ -115,15 +111,15 @@ fun OnboardingScreen(model: AppModel) {
         // why: `using null` drops the default size transform — the three pages differ in
         // height, and animating the container drags the button up the screen mid-fade.
         transitionSpec = {
-            fadeIn(tween(PAGE_FADE_MS)) togetherWith fadeOut(tween(PAGE_FADE_MS)) using null
+            fadeIn(tween(Onboarding.PAGE_FADE_MS)) togetherWith fadeOut(tween(Onboarding.PAGE_FADE_MS)) using null
         },
         label = "onboarding",
     ) { current ->
         when (current) {
-            Page.Languages -> OnboardingStoryPage {
+            OnboardingPage.Languages -> OnboardingStoryPage {
                 // why: a first run only — a restart already has a box the file would replace.
                 Box(Modifier.fillMaxWidth()) {
-                    OnboardingHero("👋", chrome.onboardingWelcome)
+                    OnboardingHero(current.emoji, chrome.onboardingWelcome)
                     if (joined == null) {
                         OnboardingImport(model, chrome, source, Modifier.align(Alignment.TopEnd))
                     }
@@ -164,18 +160,20 @@ fun OnboardingScreen(model: AppModel) {
                 NameSection(chrome, name) { name = it }
 
                 OnboardingPrimary(chrome.commonNext, enabled = target != null) {
-                    if (target != null) page = Page.Why
+                    if (target != null) current.next?.let { page = it }
                 }
             }
 
-            Page.Why -> PrinciplesPage(
+            OnboardingPage.Why -> PrinciplesPage(
                 chrome = chrome,
-                onNext = { page = Page.FirstRound },
-                onBack = { page = Page.Languages },
+                emoji = current.emoji,
+                onNext = { current.next?.let { page = it } },
+                onBack = { current.back(starting)?.let { page = it } },
             )
 
-            Page.FirstRound -> FirstRoundPage(
+            OnboardingPage.FirstRound -> FirstRoundPage(
                 chrome = chrome,
+                emoji = current.emoji,
                 busy = starting,
                 onStart = {
                     // why: the join activates the profile and raises the first round, both
@@ -187,7 +185,7 @@ fun OnboardingScreen(model: AppModel) {
                         model.completeOnboarding(source, it, thenPractice = true)
                     }
                 },
-                onBack = { page = Page.Why },
+                onBack = current.back(starting)?.let { back -> { page = back } },
             )
         }
     }

@@ -17,9 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import net.spross.app.AppModel
 import net.spross.app.Chrome
-import net.spross.app.audio.Pronouncer.AudioPreference
 import net.spross.app.audioSources
 import net.spross.kern.catalog.AudioCapability
+import net.spross.kern.catalog.AudioPreference
+import net.spross.kern.catalog.preferenceOptions
 import net.spross.kern.model.Language
 
 /**
@@ -44,16 +45,13 @@ internal fun ReadAloudSetting(model: AppModel, target: Language) {
             style = MaterialTheme.typography.titleMedium,
         )
         SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
-            val options = listOfNotNull(
-                chrome.settingsAudioOptionOff to AudioPreference.OFF,
-                (chrome.settingsAudioOptionRecordings to
-                    AudioPreference.RECORDINGS)
-                    .takeIf { sources.hasRecordings },
-                (chrome.settingsAudioOptionTts to
-                    AudioPreference.TTS)
-                    .takeIf { sources.hasVoice },
-            )
-            options.forEachIndexed { index, (label, option) ->
+            val options = sources.preferenceOptions
+            options.forEachIndexed { index, option ->
+                val label = when (option) {
+                    AudioPreference.Off -> chrome.settingsAudioOptionOff
+                    AudioPreference.Recordings -> chrome.settingsAudioOptionRecordings
+                    AudioPreference.Speech -> chrome.settingsAudioOptionTts
+                }
                 SegmentedButton(
                     selected = option == preference,
                     onClick = { model.pronouncer.setAudioPreference(target, option) },
@@ -68,10 +66,9 @@ internal fun ReadAloudSetting(model: AppModel, target: Language) {
         // preference where a learner might think the app has gone silent for good.
         SettingHint(
             when (preference) {
-                AudioPreference.OFF -> chrome.settingsAudioHintOff
-                AudioPreference.RECORDINGS ->
-                    chrome.settingsAudioHintRecordings
-                AudioPreference.TTS -> chrome.settingsAudioHintTts
+                AudioPreference.Off -> chrome.settingsAudioHintOff
+                AudioPreference.Recordings -> chrome.settingsAudioHintRecordings
+                AudioPreference.Speech -> chrome.settingsAudioHintTts
             }
         )
         // why: only where there is a choice to be scoped — a language with one source

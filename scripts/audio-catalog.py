@@ -25,10 +25,11 @@ import math
 import os
 import shutil
 import sys
+import unicodedata
 
 import audio_measure
 from audio_voices import is_rejected, mos_floor
-from audio_gates import (attribute, digest_of, keep_article_forms, keep_named_by_its_file,
+from audio_gates import (APOSTROPHES, attribute, digest_of, keep_article_forms, keep_named_by_its_file,
                          keep_reachable, keep_unambiguous, speech_key)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -197,15 +198,31 @@ def verb_stem(form, prefixes):
                  if len(trimmed) > len(p) and trimmed.lower().startswith(p.lower())), None)
 
 
-def load_catalog():
-    """(every slug, {lang: {slug: [surface forms]}}, {lang: {slug: (article, text)}}).
+def split_article(form, articles):
+    """kern `splitArticle`: (the listed article [form] opens with, the word behind it), else (None, form)."""
+    for article in articles:
+        elided = article[-1:] in APOSTROPHES
+        head = article[:-1] if elided else article + ' '
+        if len(form) <= len(head) or not form.lower().startswith(head.lower()):
+            continue
+        if elided and form[len(head)] not in APOSTROPHES:
+            continue
+        word = form[len(head) + (1 if elided else 0):].lstrip()
+        if word:
+            return form[:len(form) - len(word)].rstrip(), word
+    return None, form
 
-    The third is what an ARTICLE recording is measured against — only gendered
-    realizations appear in it, because only they show an article to say.
+
+def load_catalog():
+    """(every slug, {lang: {slug: [surface forms]}}, {lang: {slug: [(article, form)]}}).
+
+    The third is what an ARTICLE recording is measured against: the realization's own
+    `grammar.gender` in front of each form it shows, and each tagged form with the article
+    it was authored with — only those show an article to say.
     """
     areas = [area['area'] for group in read_json(CATALOG, 'areas.json') for area in group['areas']]
-    prefixes = {code: info.get('optionalVerbPrefixes', [])
-                for code, info in read_json(CATALOG, 'languages.json').items()}
+    languages = read_json(CATALOG, 'languages.json')
+    prefixes = {code: info.get('optionalVerbPrefixes', []) for code, info in languages.items()}
     slugs = set()
     forms = {}
     targets = {}
@@ -219,14 +236,51 @@ def load_catalog():
                 # why: reachability is measured against everything a card may SHOW —
                 # `text` and its rotating `teaches` — plus the `accepts` grading takes.
                 shown = [word['text']] + word.get('teaches', []) + word.get('accepts', [])
+                # why: a tagged form (`forms.f`) is shown too, its authored article split off
+                # as kern's join splits it, so the bare word and the articled one both reach it.
+                tagged = [split_article(form, languages.get(lang, {}).get('articles') or [])
+                          for value in word.get('forms', {}).values()
+                          for form in (value if isinstance(value, list) else [value])]
+                shown += [form for _, form in tagged]
                 # why: kern's lookup falls back to a verb's bare stem (`verbStem`), so a
                 # recording of `piga simu` reaches a card showing `kupiga simu`.
                 forms.setdefault(lang, {})[slug] = shown + [
                     stem for stem in (verb_stem(form, prefixes.get(lang, [])) for form in shown) if stem]
-                article = word.get('grammar', {}).get('gender')
-                if article:
-                    targets.setdefault(lang, {})[slug] = (article, word['text'])
+                gender = word.get('grammar', {}).get('gender')
+                said = [(gender, form) for form in shown[:len(shown) - len(tagged)] if gender]
+                said += [(article, form) for article, form in tagged if article]
+                if said:
+                    targets.setdefault(lang, {})[slug] = said
     return slugs, forms, targets
+
+
+def ascii_stem(form):
+    """A shipped file's ASCII name for [form]: [a-z0-9-] stays, every other character is `u<hex>`.
+
+    macOS normalises filenames, so a name carrying ü or а cannot be looked up by the string
+    the manifest stores — the letters are codepoint-named for the same reason.
+    """
+    return ''.join(char if char.isascii() and (char.isalnum() or char == '-') else 'u%04x' % ord(char)
+                   for char in unicodedata.normalize('NFC', form).strip().lower())
+
+
+def form_file(section, form):
+    """`<section>/<ascii stem>.mp3` — a recording is filed under the form it speaks, never a slug."""
+    return '%s/%s.mp3' % (section, ascii_stem(form))
+
+
+def one_per_form(rows):
+    """One row per spoken form. [keep_unambiguous] has left only byte-identical twins under
+    one speech key — one recording fetched for two slugs — and a form-keyed section holds it once."""
+    kept = {}
+    for row in sorted(rows, key=lambda row: row['slug']):
+        kept.setdefault(speech_key(row['matched_word']), row)
+    return list(kept.values())
+
+
+def pack_mp3(pack, row):
+    """Where a word or article pack keeps a row's bytes: the packs stay slug-named."""
+    return os.path.join(pack, 'mp3', row['slug'] + '.mp3')
 
 
 def license_url(license, where):
@@ -340,15 +394,16 @@ def convert_words(lang, pack, out_dir, slugs, forms):
     mp3_dir = os.path.join(pack, 'mp3')
     rows = read_rows(os.path.join(pack, 'manifest.tsv'))
     reachable = keep_named_by_its_file(keep_reachable(rows, lang, slugs, forms, drops), drops)
-    kept = attribute(keep_unambiguous(reachable, mp3_dir, drops), drops)
-    analyzed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
-                                  os.path.join(out_dir, row['slug'] + '.mp3')) for row in kept],
-                                phone=True)
+    kept = one_per_form(attribute(keep_unambiguous(reachable, mp3_dir, drops), drops))
+    analyzed = copy_and_analyze([(row['matched_word'], pack_mp3(pack, row),
+                                  os.path.join(out_dir, form_file('words', row['matched_word'])))
+                                 for row in kept], phone=True)
     words = {}
     for row in kept:
-        digest, index = analyzed[row['slug']]
-        words[row['slug']] = entry(row['slug'] + '.mp3', row['license'], row['author'],
-                                   row['file'], digest, index, matches=row['matched_word'])
+        form = row['matched_word']
+        digest, index = analyzed[form]
+        words[form] = entry(form_file('words', form), row['license'], row['author'],
+                            row['file'], digest, index, matches=form)
     for reason, slug, detail in sorted(drops):
         print('  drop %-15s %-22s %s' % (reason, slug, detail))
     counts = {reason: sum(1 for drop in drops if drop[0] == reason)
@@ -359,7 +414,7 @@ def convert_words(lang, pack, out_dir, slugs, forms):
     return words
 
 
-def convert_articles(lang, pack, out_dir, targets, forms):
+def convert_articles(lang, pack, out_dir, targets):
     """Every shipping `articles` entry: recordings that say the article, then the word.
 
     An addition beside the bare files rather than a replacement of them — the source side
@@ -371,17 +426,17 @@ def convert_articles(lang, pack, out_dir, targets, forms):
     drops = []
     mp3_dir = os.path.join(pack, 'mp3')
     rows = read_rows(os.path.join(pack, 'manifest.tsv'))
-    spoken = keep_named_by_its_file(keep_article_forms(rows, lang, targets, forms, drops), drops)
-    kept = attribute(keep_unambiguous(spoken, mp3_dir, drops), drops)
-    analyzed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
-                                  os.path.join(out_dir, 'articles', row['slug'] + '.mp3'))
+    spoken = keep_named_by_its_file(keep_article_forms(rows, lang, targets, drops), drops)
+    kept = one_per_form(attribute(keep_unambiguous(spoken, mp3_dir, drops), drops))
+    analyzed = copy_and_analyze([(row['matched_word'], pack_mp3(pack, row),
+                                  os.path.join(out_dir, form_file('articles', row['matched_word'])))
                                  for row in kept], phone=True)
     articles = {}
     for row in kept:
-        digest, index = analyzed[row['slug']]
-        articles[row['slug']] = entry('articles/' + row['slug'] + '.mp3', row['license'],
-                                      row['author'], row['file'], digest, index,
-                                      matches=row['matched_word'], word=row['word'])
+        form = row['matched_word']
+        digest, index = analyzed[form]
+        articles[form] = entry(form_file('articles', form), row['license'], row['author'],
+                               row['file'], digest, index, matches=form, word=row['word'])
     for reason, slug, detail in sorted(drops):
         print('  drop %-15s %-22s %s' % (reason, slug, detail))
     print('  articles: %d rows → %d spoken with their article' % (len(rows), len(articles)))
@@ -546,7 +601,7 @@ def convert_articles_only(packs, languages):
     re-derive the other three from a workspace that can no longer produce them; this
     reads the manifest, replaces one section, and leaves the rest byte-identical.
     """
-    _, forms, targets = load_catalog()
+    _, _, targets = load_catalog()
     found = sorted(name[len('pack-'):-len('-articles')] for name in os.listdir(packs)
                    if name.startswith('pack-') and name.endswith('-articles')
                    and os.path.isdir(os.path.join(packs, name)))
@@ -558,7 +613,7 @@ def convert_articles_only(packs, languages):
         manifest = read_manifest(out_dir)
         print('pack-%s-articles' % lang)
         shutil.rmtree(os.path.join(out_dir, 'articles'), ignore_errors=True)
-        articles = convert_articles(lang, pack, out_dir, targets, forms)
+        articles = convert_articles(lang, pack, out_dir, targets)
         write_manifest(lang, out_dir, manifest['words'], manifest.get('letters', {}),
                        manifest.get('texts', {}), articles, manifest.get('calendar', {}),
                        manifest.get('countries', {}))
@@ -621,11 +676,13 @@ def fill_words(packs, languages, reseat=False):
     language wholesale out of a research workspace that has since moved on: the German pack's
     hiss was fixed by reseating rows onto another speaker (`consolidate-pack.py`), several
     packs carry hand-curated appended tails, and none of that survives a re-resolve. So this
-    only ever ADDS. A slug already in the manifest keeps its file, its digest and its credit,
+    only ever ADDS. A form already in the manifest keeps its file, its digest and its credit,
     and a re-run after another catalog edit costs only the words that edit introduced.
 
-    A new row is also dropped where it would collide with a SHIPPED entry's spoken form under
-    differing bytes: the runtime could pick neither, so filling one word would silence another.
+    The manifest is keyed by the form a recording speaks and the pack by the slug it was
+    fetched for, so a pack row meets what ships through its `matched_word`. A row whose form
+    already ships under the same bytes IS that recording; one under differing bytes is dropped,
+    because the runtime could pick neither, so filling one word would silence another.
     """
     slugs, forms, _ = load_catalog()
     for lang in languages or sorted(name[len('pack-'):] for name in os.listdir(packs)
@@ -643,50 +700,48 @@ def fill_words(packs, languages, reseat=False):
             # somebody decided (`consolidate-pack.py`, `requalify-pack.py`) — the entry goes,
             # and the fill below ships the row as it would a new word, measured afresh.
             # Run `sync-from-shipped.py` first, or a drifted pack reseats words nobody chose.
-            by_slug = {row['slug']: row for row in read_rows(os.path.join(pack, 'manifest.tsv'))}
+            by_form = {}
+            for row in read_rows(os.path.join(pack, 'manifest.tsv')):
+                by_form.setdefault(speech_key(row['matched_word']), []).append(row)
             for key, item in sorted(shipped.items()):
-                row = by_slug.get(key)
+                rows = by_form.get(speech_key(key), [])
                 # A synced pack holds every shipped word, so a row gone is a decision too:
                 # the builder re-resolved it (a take saying more than the card) and found
                 # nothing shippable, and the device voice or silence takes over.
-                if not row:
+                if not rows:
                     print('  unrecord %-16s %s' % (key, item['source']))
                     os.remove(os.path.join(out_dir, item['file']))
                     del shipped[key]
-                elif row['file'].replace('_', ' ') != item['source'].replace('_', ' '):
-                    print('  reseat %-18s %s -> %s' % (key, item['source'], row['file']))
+                elif not any(row['file'].replace('_', ' ') == item['source'].replace('_', ' ')
+                             for row in rows):
+                    print('  reseat %-18s %s -> %s' % (key, item['source'], rows[0]['file']))
                     os.remove(os.path.join(out_dir, item['file']))
                     del shipped[key]
 
         drops = []
         mp3_dir = os.path.join(pack, 'mp3')
-        rows = [row for row in shippable(read_rows(os.path.join(pack, 'manifest.tsv')), pack)
-                if row['slug'] not in shipped
-                and os.path.isfile(os.path.join(mp3_dir, row['slug'] + '.mp3'))]
-        reachable = keep_named_by_its_file(keep_reachable(rows, lang, slugs, forms, drops), drops)
-        kept = attribute(keep_unambiguous(reachable, mp3_dir, drops), drops)
-
         # why: against what already SHIPS, not just against this batch — `keep_unambiguous`
         # only sees the new rows, and a new word claiming a shipped word's sound mutes both.
-        spoken = {}
-        for key, item in shipped.items():
-            if item.get('matches'):
-                spoken.setdefault(speech_key(item['matches']), set()).add(item['sha256'])
-        fresh = []
-        for row in kept:
-            digest = digest_of(os.path.join(mp3_dir, row['slug'] + '.mp3'))
+        spoken = {speech_key(form): item['sha256'] for form, item in shipped.items()}
+        rows = []
+        for row in shippable(read_rows(os.path.join(pack, 'manifest.tsv')), pack):
+            if not os.path.isfile(pack_mp3(pack, row)):
+                continue
             claimed = spoken.get(speech_key(row['matched_word']))
-            if claimed and digest not in claimed:
+            if claimed is None:
+                rows.append(row)
+            elif claimed != digest_of(pack_mp3(pack, row)):
                 drops.append(('shipped-collision', row['slug'],
-                              '"%s" is already spoken by another file' % row['matched_word']))
-            else:
-                fresh.append(row)
+                              '"%s" already ships as another file' % row['matched_word']))
+        reachable = keep_named_by_its_file(keep_reachable(rows, lang, slugs, forms, drops), drops)
+        fresh = one_per_form(attribute(keep_unambiguous(reachable, mp3_dir, drops), drops))
 
-        analyzed = copy_and_analyze([(row['slug'], os.path.join(mp3_dir, row['slug'] + '.mp3'),
-                                      os.path.join(out_dir, row['slug'] + '.mp3'))
+        analyzed = copy_and_analyze([(row['matched_word'], pack_mp3(pack, row),
+                                      os.path.join(out_dir, form_file('words', row['matched_word'])))
                                      for row in fresh], phone=True)
         for row in fresh:
-            digest, index = analyzed[row['slug']]
+            form = row['matched_word']
+            digest, index = analyzed[form]
             # why: the floor is applied AFTER the copy, because `mos` is measured off the
             # bytes that landed and nothing earlier knows it. The file is then removed
             # again rather than left orphaned in the tree.
@@ -695,20 +750,20 @@ def fill_words(packs, languages, reseat=False):
             if any(abs(index.get(field, 0)) > GAIN_LIMIT_DB for field in ('gain', 'gainPhone')):
                 drops.append(('unmeasurable', row['slug'], 'gain %.1f dB is past ±%.0f — clipped'
                               % (index.get('gain', 0), GAIN_LIMIT_DB)))
-                os.remove(os.path.join(out_dir, row['slug'] + '.mp3'))
+                os.remove(os.path.join(out_dir, form_file('words', form)))
                 continue
             # A word refused here is spoken by the device voice, as before the fill;
             # `requalify-pack.py` is how a pack finds a cleaner take of it.
             if is_rejected(digest) or index.get('mos', mos_floor(lang)) < mos_floor(lang):
                 drops.append(('poor', row['slug'], 'heard as bad' if is_rejected(digest) else
                               'mos %.2f, floor is %.2f' % (index['mos'], mos_floor(lang))))
-                os.remove(os.path.join(out_dir, row['slug'] + '.mp3'))
+                os.remove(os.path.join(out_dir, form_file('words', form)))
                 continue
-            shipped[row['slug']] = entry(row['slug'] + '.mp3', row['license'], row['author'],
-                                         row['file'], digest, index, matches=row['matched_word'])
+            shipped[form] = entry(form_file('words', form), row['license'], row['author'],
+                                  row['file'], digest, index, matches=form)
         for reason, slug, detail in sorted(drops):
             print('  drop %-18s %-22s %s' % (reason, slug, detail))
-        added = sum(1 for row in fresh if row['slug'] in shipped)
+        added = sum(1 for row in fresh if row['matched_word'] in shipped)
         print('  %s: %d added, %d words now' % (lang, added, len(shipped)))
         write_manifest(lang, out_dir, shipped, manifest.get('letters', {}),
                        manifest.get('texts', {}), manifest.get('articles', {}),
@@ -880,7 +935,7 @@ def main():
         texts_pack = os.path.join(args.packs, 'pack-%s-texts' % lang)
         texts = convert_texts(texts_pack, out_dir) if os.path.isdir(texts_pack) else {}
         articles_pack = os.path.join(args.packs, 'pack-%s-articles' % lang)
-        articles = (convert_articles(lang, articles_pack, out_dir, targets, forms)
+        articles = (convert_articles(lang, articles_pack, out_dir, targets)
                     if os.path.isdir(articles_pack) else {})
         calendar_pack = os.path.join(args.packs, 'pack-%s-calendar' % lang)
         calendar = convert_calendar(calendar_pack, out_dir) if os.path.isdir(calendar_pack) else {}

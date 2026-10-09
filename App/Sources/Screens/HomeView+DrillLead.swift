@@ -7,8 +7,7 @@ import SprossKern
 /// round still one button away.
 extension HomeView {
 
-    func drillLeadCard(_ offer: SessionOffer, _ pick: DrillSuggestion.Pick,
-                       open: @escaping () -> Void) -> some View {
+    func drillLeadCard(_ pick: DrillSuggestion.Pick, open: @escaping () -> Void) -> some View {
         VStack(spacing: Theme.spacing.lg) {
             dayHeader
             Divider()
@@ -27,10 +26,10 @@ extension HomeView {
                 ActionLabel(key: "home.offer.start", targetLocale: model.targetChromeLocale)
             }
             .buttonStyle(PrimaryButtonStyle())
-            // The round with reviews still due; an extra one once none are.
-            if offer.hasRound || model.canPracticeMore {
+            // The round with reviews still due; an extra one once none are (kern's `roundInstead`).
+            if let round = model.home?.roundInstead {
                 Button("home.suggestion.wordsInstead") {
-                    if offer.hasRound { model.startSession() } else { model.startExtraSession() }
+                    if round == .due { model.startSession() } else { model.startExtraSession() }
                 }
                 .buttonStyle(SoftButtonStyle())
             }
@@ -52,9 +51,7 @@ extension HomeView {
                 }
             }
             Spacer(minLength: 0)
-            if let streak = model.stats?.streakDays, streak > 0 {
-                StreakFlameView(days: streak, health: model.stats?.streakHealth ?? .noRun)
-            }
+            dayMark(.companion.lead(streak: Int32(model.stats?.streakDays ?? 0)))
         }
     }
 }

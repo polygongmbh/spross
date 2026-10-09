@@ -27,9 +27,12 @@ protocol DrillFace {
 
     // MARK: - Who the drill is
 
-    /// The prefix under which the Sprosse and the record are kept, and the name
-    /// the hub knows the skill by.
+    /// The name the hub and the UI tests know the skill by.
     static var key: String { get }
+
+    /// Where a pair's Sprosse and record are kept (kern's `storageKey`) — one key per PAIR,
+    /// because the material is a pair's and not a language's.
+    static func storageKey(source: String, target: String) -> String
 
     /// The roster entry this face runs.
     static var drill: Drill { get }
@@ -64,6 +67,9 @@ protocol DrillFace {
 
     /// Whether fast mode may be picked at all — kern's rule on the stored best.
     static func fastUnlocked(best: Int, content: Content, reverse: Bool) -> Bool
+
+    /// The Sprosse that earns fast mode, as its locked switch prices it — kern's.
+    static func fastPrice(_ content: Content?, reverse: Bool) -> Int
 
     @ViewBuilder
     static func reference(model: AppModel, content: Content,
@@ -153,27 +159,12 @@ struct DrillSnapshot {
     let tally: DrillTally
     let outcomes: [AnswerOutcome]
     let feedback: TurnFeedback
-    /// The way out, where it is wanted: on the SECOND miss in a row.
-    let offersFinish: Bool
     /// Nothing left to ask.
     let finished: Bool
     /// BCP-47 of the language the answer is owed in.
     let answerLanguage: String
-    /// BCP-47 of the language the prompt is written in.
-    let promptLanguage: String
-
-    /// What the question asks, in words. Kern's task KIND names the rule and the
-    /// face is the only place it turns into a sentence, so nothing above the face
-    /// ever sees a machine's own vocabulary.
-    let ask: LocalizedStringKey
-    /// The name or line asked about; nil where a picture alone is the question.
-    let promptText: String?
-    /// The picture beside the words, where the drill has one.
-    let promptEmoji: String?
-    /// Whether showing that picture while the answer is owed would answer it.
-    let emojiIsGiveaway: Bool
-    /// The canonical answer, for the reveal.
-    let display: String
+    /// The card, as kern states it.
+    let question: Question
     /// The tiles this question is answered off, in kern's own shuffled order —
     /// nil where it is written instead, which is every Sprosse above the
     /// calendar's warm-up.
@@ -181,14 +172,6 @@ struct DrillSnapshot {
     /// Whether a DATE is owed rather than a reading — the calendar turned
     /// round. The keyboard and the placeholder are all that follows from it.
     let digits: Bool
-    /// The answer side's neighboring form, where kern hands one over.
-    let gloss: String?
-    /// A word in the language being LEARNED that this question adds and cannot
-    /// say for itself, the first time it is asked — nil on every other card
-    /// and on every reversed run. The atlas hands none over.
-    var newWord: String? = nil
-    /// What a refused answer actually named — only beside a revealed miss.
-    let otherWord: MatchOtherWord?
 }
 
 /// Scroll targets on the overview. Here rather than on the page itself: a

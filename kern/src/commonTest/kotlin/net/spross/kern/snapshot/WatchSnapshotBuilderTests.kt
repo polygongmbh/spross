@@ -16,7 +16,7 @@ class WatchSnapshotBuilderTests {
     private val fem = Snap.card(
         "wf", 1, emoji = "👩", sourceText = "Kellner", targetText = "Kellnerin",
         teaches = listOf("Serviererin"), accepts = listOf("Bedienung"),
-        gender = "die", feminineMarker = true,
+        gender = "die",
     )
 
     @Test
@@ -33,8 +33,7 @@ class WatchSnapshotBuilderTests {
         val entry = WatchSnapshotBuilder.doc(state, Box.day1).entries.single()
 
         assertEquals("wf", entry.cardId)
-        assertEquals("Kellner", entry.sourceText) // bare — femMarker carries the badge
-        assertEquals(true, entry.femMarker)
+        assertEquals("Kellner", entry.sourceText)
         assertEquals("Kellnerin", entry.targetText)
         assertEquals("produce", entry.nextRole)
         assertEquals("👩", entry.emoji) // produce + learning → visible

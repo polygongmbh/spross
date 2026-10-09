@@ -122,7 +122,7 @@ object CountryDrillRun {
      * one a learner arrives here already knowing ([TypedDrillVerdicts.typed]).
      */
     private fun typed(state: CountryDrillRunState, text: String): CountryDrillReduction {
-        val verdict = TypedDrillVerdicts.typed(state.feedback, state.saidAnswer) {
+        val verdict = TypedDrillVerdicts.typed(state.feedback) {
             grade(text, state.task, state.config) == Match.Exact
         } ?: return unchanged(state)
         return CountryDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
@@ -135,7 +135,7 @@ object CountryDrillRun {
     private fun submit(state: CountryDrillRunState, text: String): CountryDrillReduction {
         if (!state.owesAnswer) return unchanged(state)
         if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
-        val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config), state.saidAnswer)
+        val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config))
         return CountryDrillReduction(
             state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord),
             verdict.effects,
@@ -144,7 +144,7 @@ object CountryDrillRun {
 
     private fun reveal(state: CountryDrillRunState): CountryDrillReduction {
         if (!state.owesAnswer) return unchanged(state)
-        val verdict = TypedDrillVerdicts.reveal(state.saidAnswer)
+        val verdict = TypedDrillVerdicts.reveal()
         return CountryDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 

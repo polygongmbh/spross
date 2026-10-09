@@ -19,10 +19,9 @@ class BoxSearchTests {
         targetAccepts: List<String> = emptyList(),
     ): Card = Card(
         id = id, kind = CardKind.Noun, area = area, emoji = null, seedIndex = seedIndex,
-        components = emptyList(), feminineOf = null,
+        components = emptyList(),
         source = Realization(lang = "de", text = source, teaches = sourceTeaches),
         target = Realization(lang = "sw", text = target, accepts = targetAccepts),
-        promptFeminineMarker = false,
     )
 
     private val kitchen = SearchableArea("kitchen", "Küche")

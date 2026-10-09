@@ -1,7 +1,6 @@
 [
  { "slug": "university", "kind": "noun", "emoji": "🏛️" },
- { "slug": "student", "kind": "noun", "emoji": "🧑‍🎓" },
- { "slug": "student-f", "kind": "noun", "emoji": "👩‍🎓", "feminineOf": "student" },
+ { "slug": "student", "kind": "noun", "emoji": "🧑‍🎓", "formEmoji": { "f": "👩‍🎓" } },
  { "slug": "studies", "kind": "noun", "emoji": "🎓" },
  { "slug": "to-study-at-university", "kind": "verb" },
  { "slug": "lecture", "kind": "noun" },

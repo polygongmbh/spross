@@ -113,7 +113,7 @@ internal fun Trees(
                     val label = labels[spot.planted.tree.area] ?: continue
                     val center = Offset(spot.planted.foot.x, spot.planted.foot.y + TreesLayout.LABEL_HEIGHT.toFloat() * density.density / 2)
                     drawText(label, topLeft = Offset(center.x - label.size.width / 2f, center.y - label.size.height / 2f),
-                        alpha = if (spot.planted.tree.isBare) 0.4f else 1f)
+                        alpha = if (spot.planted.tree.isBare) TreesLayout.UNOPENED_LABEL_OPACITY.toFloat() else 1f)
                 }
             }
             for (spot in spots) {

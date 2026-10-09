@@ -3,8 +3,7 @@
  "subtitle": "Post la lernejo — kio poste?",
  "words": {
   "university": { "text": "universitato" },
-  "student": { "text": "studento" },
-  "student-f": { "text": "studentino" },
+  "student": { "text": "studento", "forms": { "f": "studentino" } },
   "studies": { "text": "studado" },
   "to-study-at-university": { "text": "studi en universitato" },
   "lecture": { "text": "prelego" },

@@ -17,7 +17,7 @@
   "storm": { "text": "tempesta", "grammar": { "gender": "la" } },
   "thunder": { "text": "tuono", "grammar": { "gender": "il" } },
   "lightning": { "text": "fulmine", "accepts": ["lampo"], "grammar": { "gender": "il" } },
-  "humid": { "text": "umido", "accepts": ["umida"] },
+  "humid": { "text": "umido", "forms": { "f": "umida" } },
   "hows-the-weather-today": {
    "text": "Che tempo fa oggi?",
    "accepts": ["Com'è il tempo oggi?"],

@@ -130,6 +130,17 @@ class BoxBrowserTest {
     }
 
     @Test
+    fun aNamedAreaOpensWithItsGroupInsteadOfWhatStoodOpen() {
+        val state = Box.state(listOf(Box.word(1, area = "kitchen"), Box.word(2, area = "office")))
+        val opening = BoxFold.opening(sections(state), stats(state), revealArea = "office")
+        assertEquals(BoxFold(setOf("work"), setOf("office")), opening)
+
+        val revealed = BoxFold(setOf("home", "work"), setOf("office", "kitchen")).revealing("kitchen", sections(state))
+        assertEquals(BoxFold(setOf("home"), setOf("kitchen")), revealed)
+        assertEquals(revealed, revealed.revealing(OwnWords.AREA, sections(state)))
+    }
+
+    @Test
     fun noSectionsMeansNothingToOpen() {
         val state = Box.state(emptyList())
 

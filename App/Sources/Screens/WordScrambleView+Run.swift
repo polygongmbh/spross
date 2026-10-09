@@ -12,57 +12,30 @@ import SprossKern
 /// All this side owes is the STRICT drill normalizer, resolved when the run opens.
 extension WordScrambleView: DrillRunning {
 
+    var appModel: AppModel? { model }
+
     // MARK: - What is on screen
 
     var drillContent: some View {
-        ScrollView {
-            VStack(spacing: Theme.spacing.md) {
-                DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
-                                answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak))
-                if let task = current {
-                    // ZStack so the outgoing and incoming word overlap during
-                    // the flip; .id gives each position its identity.
-                    ZStack {
-                        DrillPromptCard(prompt: promptText(task.scrambled),
-                                          promptLabel: promptLabel(task.scrambled),
-                                          size: .word,
-                                          answer: task.display,
-                                          language: task.language,
-                                          gloss: task.gloss,
-                                          revealed: run.showsAnswer,
-                                          pronounce: model.pronounceAction(for: task.display,
-                                                                           lang: task.language),
-                                          isPlaying: model.isPronouncing(task.display,
-                                                                         lang: task.language))
-                            .id(run.index)
-                            .transition(reduceMotion ? .opacity : .cardFlip)
-                    }
-                    typedControls(task)
-                }
-            }
-            .padding(.bottom, Theme.spacing.lg)
+        questionPage { question in
+            QuestionCardView(question: question, voice: model.cardVoice,
+                             promptLabel: current.map { promptLabel($0.scrambled) })
+        } area: { controls in
+            if let task = current { typedControls(task, controls) }
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollDismissesKeyboard(.never)
     }
 
     /// Writing the word out is the answer, so every keystroke is offered to
     /// kern — the typed drills' rule, and the only thing this drill parameterizes
     /// about the shared controls beyond the voice its correction box speaks in.
-    private func typedControls(_ task: WordScrambleTask) -> some View {
-        TypedAnswerControls(text: $input,
-                            feedback: feedback,
-                            placeholder: answerPlaceholder(task.language),
-                            focus: $answerFocused,
-                            // Tap-to-replay for the correction box — the form
-                            // the slip owed, said in the drilled language.
-                            correctionVoice: .init(
-                                pronounce: { model.pronounceAction(for: $0, lang: task.language) },
-                                isPlaying: { model.isPronouncing($0, lang: task.language) }),
-                            onType: { typed() },
-                            onSubmit: { submit() },
-                            onConfirm: { confirm() },
-                            onStop: run.offersFinish ? { closeRun() } : nil)
+    private func typedControls(_ task: WordScrambleTask, _ controls: AnswerControls) -> some View {
+        AnswerArea(driver: self, controls: controls,
+                   placeholder: answerPlaceholder(task.language),
+                   focus: $answerFocused,
+                   correctionVoice: .init(
+                       pronounce: { model.pronounceAction(for: $0, lang: task.language) },
+                       isPlaying: { model.isPronouncing($0, lang: task.language) }),
+                   nextLocale: model.targetChromeLocale)
     }
 
     // MARK: - The machine under this drill

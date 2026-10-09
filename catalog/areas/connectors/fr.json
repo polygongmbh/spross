@@ -34,7 +34,7 @@
   "although": { "text": "bien que" },
   "that-conj": { "text": "que" },
   "if-you-want": { "text": "Si vous voulez.", "accepts": ["Si tu veux."] },
-  "finally-done": { "text": "Enfin fini !", "accepts": ["Enfin finie !"] },
+  "finally-done": { "text": "Enfin fini !", "forms": { "f": "Enfin finie !" } },
   "usually": { "text": "normalement" },
   "from-monday-to-friday": { "text": "Du lundi au vendredi." }
  }

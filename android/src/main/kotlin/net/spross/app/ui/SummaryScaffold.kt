@@ -37,12 +37,12 @@ import net.spross.app.Chrome
 /**
  * The screen a round stops on — the session summary and a drill's pause alike, standing in
  * place of the run's whole screen with only a close button above it: a hero, one title,
- * the round's tally with any detail lines under it, an optional hint, and the exit pair on
- * the bottom edge. Each fills the slots; the layout, the type and the ways out are
- * this one's, so the two never drift apart (`docs/design.md` § Counts & sessions).
+ * the round's tally, a milestone line where something new was reached, an optional hint, and
+ * the exit pair on the bottom edge. Each fills the slots with words; the layout, the type and
+ * the ways out are this one's, so the two never drift apart (`docs/design.md` § Counts & sessions).
  *
- * [hero] is handed the height it may grow to — a grown tree's ceiling; [details] are lines
- * under the tally, in its caption voice; [hint] says why stopping is the better call.
+ * [hero] is handed the height it may grow to — a grown tree's ceiling — and [heroLabel] names
+ * what it shows; [milestone] is set off in the accent; [hint] says why stopping is the better call.
  */
 @Composable
 fun SummaryScaffold(
@@ -52,8 +52,9 @@ fun SummaryScaffold(
     onTalk: (() -> Unit)? = null,
     onPractice: (() -> Unit)? = null,
     tally: String? = null,
+    milestone: String? = null,
     hint: String? = null,
-    details: @Composable ColumnScope.() -> Unit = {},
+    heroLabel: String? = null,
     hero: @Composable ColumnScope.(ceiling: Dp) -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -71,6 +72,15 @@ fun SummaryScaffold(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 hero(ceiling)
+                if (heroLabel != null) {
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        heroLabel,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textAlign = TextAlign.Center,
+                    )
+                }
                 Spacer(Modifier.height(16.dp))
                 Text(title, style = MaterialTheme.typography.headlineLarge, textAlign = TextAlign.Center)
                 if (tally != null) {
@@ -82,7 +92,15 @@ fun SummaryScaffold(
                         textAlign = TextAlign.Center,
                     )
                 }
-                details()
+                if (milestone != null) {
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        milestone,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Theme.colors.accent,
+                        textAlign = TextAlign.Center,
+                    )
+                }
                 if (hint != null) {
                     Spacer(Modifier.height(16.dp))
                     Text(

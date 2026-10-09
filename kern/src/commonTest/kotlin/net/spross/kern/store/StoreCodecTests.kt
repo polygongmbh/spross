@@ -28,6 +28,13 @@ class StoreCodecTests {
     }
 
     @Test
+    fun theDrillTallyRoundTrips() {
+        val drilled = BoxEngine.bookDrillAnswers(state, 4, Box.day1, Box.TZ)
+        val back = StoreCodec.decode(StoreCodec.encode(StoredBox.of(drilled)))
+        assertEquals(drilled.drillDays, back.drillDays)
+    }
+
+    @Test
     fun theFileCarriesItsOwnSchemaVersion() {
         assertTrue(""""schemaVersion":2""" in StoreCodec.encode(box))
     }

@@ -12,6 +12,12 @@ object TimedRun {
     /** How long a timed run lasts. */
     const val SECONDS: Int = 60
 
+    /** Whole seconds left of [remainingMillis], counted up: the clock reads 0:00 only once time is up. */
+    fun secondsLeft(remainingMillis: Long): Int = ((remainingMillis + 999) / 1_000).toInt().coerceAtLeast(0)
+
+    /** The clock at the head of the score line, as minutes and seconds. */
+    fun clock(secondsLeft: Int): String = "⏱ ${secondsLeft / 60}:${(secondsLeft % 60).toString().padStart(2, '0')}"
+
     /** What one booked answer adds to the score. */
     fun points(sprosse: Int, correct: Boolean, clean: Boolean): Int =
         if (correct && clean) maxOf(1, sprosse) else 0

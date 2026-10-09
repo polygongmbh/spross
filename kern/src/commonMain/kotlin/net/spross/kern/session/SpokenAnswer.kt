@@ -7,22 +7,21 @@ import net.spross.kern.model.Card
  * The card a TRANSCRIPTION is graded against: the real card's IDENTITY with only its
  * answer set narrowed to the form that played.
  *
- * The id, `feminineOf` and `kind` must survive. [CatalogAnswerGrader] skips the prompted
+ * The id and `kind` must survive. [CatalogAnswerGrader] skips the prompted
  * concept when it looks for the word somebody else owns, so a synthetic id would let the
  * learner's own concept come back as another word — «мишка» reported as a different word
  * than «миша», naming the right answer as somebody else's. `kind` keys the verb-prefix
- * leniency. `baseAccepted` goes, with the `teaches`: the feminine demotion accepts the base
- * word, which in a transcription is simply not what played.
+ * leniency.
  *
  * The letter drill's dictation Sprosse is the one surface that transcribes: a sound-prompted
  * produce review owes the meaning instead ([meaningSide]).
  */
 fun spokenOnly(card: Card, spokenForm: String): Card = card.copy(
-    baseAccepted = emptyList(),
     target = card.target.copy(
         text = spokenForm,
         teaches = emptyList(),
         accepts = emptyList(),
+        forms = emptyList(),
     ),
 )
 
@@ -41,7 +40,7 @@ fun spokenOnly(card: Card, spokenForm: String): Card = card.copy(
  */
 fun alsoAccepts(card: Card, input: String): Boolean {
     val typed = speechKey(input)
-    return (card.target.teaches + card.target.accepts).any { speechKey(it) == typed }
+    return (card.target.teaches + card.target.accepts + card.target.forms.map { it.text }).any { speechKey(it) == typed }
 }
 
 /**
@@ -53,12 +52,9 @@ fun alsoAccepts(card: Card, input: String): Boolean {
  * side's `text ∪ teaches ∪ accepts`, which [AnswerNormalizer] already reads off
  * `target`, and the whole grading pipeline is reused rather than re-cut for one prompt.
  *
- * The id, `kind` and `feminineOf` survive, as they do in [spokenOnly] and for the same
- * reasons. `baseAccepted` goes: it holds the base concept's TARGET forms, which on this
- * side of the card are not what is being asked for.
+ * The id and `kind` survive, as they do in [spokenOnly] and for the same reasons.
  */
 fun meaningSide(card: Card): Card = card.copy(
-    baseAccepted = emptyList(),
     source = card.target,
     target = card.source,
 )

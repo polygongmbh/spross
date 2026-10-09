@@ -44,6 +44,8 @@ internal data class StoredBoxDto(
     val ownWords: List<StoredOwnWordDto> = emptyList(),
     val reportedIssues: List<StoredReportDto> = emptyList(),
     val lastExportAt: Long? = null,
+    /** Day key → drill answers that day. */
+    val drillDays: Map<String, Int> = emptyMap(),
 )
 
 /** Every language in one document — what an export is, and nothing else. */
@@ -108,6 +110,7 @@ private fun storedBoxDto(box: StoredBox): StoredBoxDto = StoredBoxDto(
         StoredReportDto(it.cardId, it.comment, it.learnerInput, it.reportedAt.epochSeconds)
     },
     lastExportAt = box.lastExportAt?.epochSeconds,
+    drillDays = box.drillDays,
 )
 
 private fun cardEntry(sched: CardScheduling): JsonArray = JsonArray(
@@ -203,6 +206,7 @@ private fun StoredBoxDto.toStored(target: Language): StoredBox {
         ownWords = ownWords.map { it.toDomain(target) },
         reportedIssues = reportedIssues.associate { it.cardId to it.toDomain(target) },
         lastExportAt = lastExportAt?.let { Instant.fromEpochSeconds(it) },
+        drillDays = drillDays,
     )
 }
 

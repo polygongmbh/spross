@@ -12,54 +12,38 @@ struct DrillPauseView: View {
     var onKeepPracticing: () -> Void
 
     private var pacing: DrillPacing { run.pacing }
+    private var celebrated: Bool { run.pause?.celebrated ?? false }
 
     var body: some View {
         SummaryScaffold(title: Text(title),
                         tally: Text("trainer.result.tasksDone \(Int(run.done))"),
+                        milestone: milestone,
                         hint: run.pause == DrillPauseReason.struggling
                             ? Text("trainer.pause.struggling.hint") : nil,
                         onDone: onDone,
-                        onPractice: onKeepPracticing,
-                        hero: { _ in SummaryGlyph(glyph: glyph) },
-                        details: { figures })
+                        onPractice: onKeepPracticing) { _ in SummaryGlyph(glyph: (run.pause ?? DrillPauseReason.count).emoji) }
+        // why: a pause is a round's end the run may go on from, celebrated as the
+        // round summary is — confetti and cheer are one thing (`docs/design.md`).
+        .overlay {
+            if celebrated { ConfettiView().ignoresSafeArea().allowsHitTesting(false) }
+        }
+        .onAppear { if celebrated { Sound.cheer() } }
     }
 
-    /// What the run has done beyond its count: how many landed clean, the best
-    /// answer streak, the climb — and a note only where something new was reached.
-    private var figures: some View {
-        VStack(spacing: Theme.spacing.xs) {
-            Text("trainer.pause.tally \(Int(run.tally.clean).formatted()) \(Int(run.tally.judged).formatted())")
-            Text("trainer.result.bestStreak \(Int(run.bestAnswerStreak).formatted())")
-            if let climb { climb }
-            if pacing.newSprossen > 0 {
-                Text("trainer.pause.newSprosse").foregroundStyle(Theme.colors.accent)
-            }
-            if pacing.newRecord {
-                Text("trainer.result.newRecord").foregroundStyle(Theme.colors.accent)
-            }
+    /// What the stretch reached, only where it reached something: the climb
+    /// from the Sprosse the run opened on, and a record beaten.
+    private var milestone: Text? {
+        var parts: [Text] = []
+        if let climb = pacing.climbed {
+            parts.append(Text("trainer.pause.sprossen \(Int(climb.from).formatted()) \(Int(climb.to).formatted())"))
         }
-        .accessibilityElement(children: .combine)
-    }
-
-    /// The Sprosse the run opened on and the highest it reached — one Sprosse
-    /// where it has not moved, nothing where it climbs several ladders at once.
-    private var climb: Text? {
-        guard let opened = pacing.openedOn?.intValue, let reached = pacing.reached?.intValue else { return nil }
-        if reached > opened {
-            return Text("trainer.pause.sprossen \(opened.formatted()) \(reached.formatted())")
-        }
-        return Text("trainer.sprosse \(reached.formatted())")
+        if pacing.newRecord { parts.append(Text("trainer.result.newRecord")) }
+        return parts.joined()
     }
 
     private var title: LocalizedStringKey {
         if run.pause == DrillPauseReason.improved { return "trainer.pause.title.improved" }
         if run.pause == DrillPauseReason.struggling { return "trainer.pause.title.struggling" }
         return "trainer.pause.title.count"
-    }
-
-    private var glyph: String {
-        if run.pause == DrillPauseReason.improved { return "🎉" }
-        if run.pause == DrillPauseReason.struggling { return "☕️" }
-        return "💪"
     }
 }

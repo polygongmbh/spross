@@ -14,10 +14,13 @@ struct HomeView: View {
     @State private var briefingPresented = false
     /// What the hub has open — here, so the day's card can open a drill too.
     @State private var drillDestination: HubDestination?
+    /// Bumped by a hub run's celebrated close; each bump throws a wave.
+    @State private var confetti = 0
 
     var body: some View {
         let offer = model.homeOffer
-        let hub = TrainerHubView(model: model, destination: $drillDestination)
+        let hub = TrainerHubView(model: model, destination: $drillDestination,
+                                 celebrate: { confetti += 1 })
         let pick = hub.suggestedDrill
         let lead = dayLead(pick)
         ScrollView {
@@ -29,7 +32,7 @@ struct HomeView: View {
                               title: "error.title",
                               message: failure.text)
                 } else if lead == .drill, let pick {
-                    drillLeadCard(offer, pick) { drillDestination = hub.destination(for: pick.drill) }
+                    drillLeadCard(pick) { drillDestination = hub.destination(for: pick.drill) }
                 } else if lead == .round {
                     sessionCard(offer)
                 } else {
@@ -44,6 +47,10 @@ struct HomeView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .background(Theme.colors.background.ignoresSafeArea())
+        // why: absent until the first celebration — ConfettiView throws a wave on appear.
+        .overlay {
+            if confetti > 0 { ConfettiView(run: confetti).ignoresSafeArea() }
+        }
         .fullScreenCover(isPresented: $listeningPresented) {
             ListeningView(model: model)
                 .environment(\.locale, model.knownLocale)
@@ -87,7 +94,7 @@ struct HomeView: View {
         // Two map lookups and two voice probes — never the walk of the whole
         // join, which is what dealing the playlist is, and that waits for the
         // run to open.
-        if model.box?.cards.isEmpty == false, model.listeningOffered {
+        if model.listeningOffered {
             Button { listeningPresented = true } label: {
                 WayInCard(emoji: "🎧", title: Text("listen.title"), subtitle: Text("listen.subtitle"))
             }

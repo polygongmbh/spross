@@ -5,53 +5,16 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
-import net.spross.app.Chrome
 import net.spross.kern.box.OwnWords
 import net.spross.kern.catalog.LanguageChoices
 import net.spross.kern.model.LanguageInfo
 
 /**
- * What the box browser ADDS around kern's rules: how a shelf names itself to this reader,
- * what the search is handed to match on, and when a picker tap is worth re-joining the box
- * for. The matching, the ranking and the id minting are kern's and tested there.
+ * What the box browser ADDS around kern's rules: how a written word reopens in the form,
+ * and when a picker tap is worth re-joining the box for.
+ * The naming, the matching, the ranking and the id minting are kern's and tested there.
  */
 class BoxLogicTest {
-
-    private val chrome = Chrome.forSource("de")
-
-    private val naming = AreaNaming(
-        chrome = chrome,
-        catalogTitle = { mapOf("kitchen" to "Küche", "bath" to "Bad")[it] },
-        catalogSubtitle = { mapOf("kitchen" to "Hier duftet es")[it] },
-        catalogEmoji = { mapOf("kitchen" to "🍳")[it] },
-    )
-
-    @Test
-    fun theOwnShelfIsNamedByChromeAndCatalogShelvesNameThemselves() {
-        assertEquals("Küche", naming.title("kitchen"))
-        assertEquals("Hier duftet es", naming.subtitle("kitchen"))
-        assertEquals("🍳", naming.emoji("kitchen"))
-
-        assertEquals(chrome.boxOwnShelf, naming.title(OwnWords.AREA))
-        assertEquals(chrome.boxOwnWordExplainer, naming.subtitle(OwnWords.AREA))
-        assertEquals(OwnWords.EMOJI, naming.emoji(OwnWords.AREA))
-    }
-
-    @Test
-    fun anAreaTheCatalogCannotNameFallsBackToItsKeyRatherThanABlank() {
-        assertEquals("attic", naming.title("attic"))
-        assertNull(naming.subtitle("attic"))
-        assertEquals("📦", naming.emoji("attic"))
-    }
-
-    @Test
-    fun theSearchMatchesOnTheHeadingTheLearnerRead() {
-        val searchable = naming.searchable(listOf("kitchen", "bath", OwnWords.AREA))
-
-        assertEquals(listOf("kitchen", "bath", OwnWords.AREA), searchable.map { it.area })
-        // Nobody types "own" looking for their own words.
-        assertEquals(listOf("Küche", "Bad", chrome.boxOwnShelf), searchable.map { it.title })
-    }
 
     @Test
     fun aStoredWordOpensUnderTheProfilesTwoLanguages() {

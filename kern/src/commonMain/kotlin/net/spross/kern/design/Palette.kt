@@ -80,6 +80,24 @@ object Palette {
     /** Ripe fruit: a clear red. */
     val fruit = Swatch(0xC8352E, 0xE5584F)
 
+    /**
+     * The tinted-pill fill: an accent at this alpha over the card surface.
+     * A verdict or a standing wears its color as a wash, never as a saturated slab.
+     */
+    const val WASH = 0.14
+
+    /** The edge that closes a washed tile — a verdict button, the correction box: its accent at this alpha. */
+    const val EDGE = 0.35
+
+    /** Today's empty column in the activity strip: an accent outline at this alpha, a slot not yet filled. */
+    const val TODAY_OUTLINE = 0.5
+
+    /** A control with nothing to do yet — the speaker before there is audio — dims its glyph to this alpha. */
+    const val DIMMED = 0.35
+
+    /** A button's second line in the language being learned sits at this alpha under its first. */
+    const val SUBTITLE = 0.75
+
     // Gendered articles.
     val der = Swatch(0x134E85, 0x90CBFF)
     val die = Swatch(0x9A2050, 0xFF9EC0)

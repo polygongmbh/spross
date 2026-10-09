@@ -85,6 +85,8 @@ enum Theme {
     struct Typography {
         let hero = Font.system(.largeTitle, design: .rounded, weight: .bold)
         let title = Font.system(.title2, design: .rounded, weight: .bold)
+        /// The line that carries a screen's figures right under its hero title.
+        let lead = Font.system(.title3, design: .rounded)
         let headline = Font.system(.headline, design: .rounded, weight: .semibold)
         let body = Font.system(.body, design: .rounded)
         let subheadline = Font.system(.subheadline, design: .rounded)
@@ -108,6 +110,8 @@ enum Theme {
         let digits = Font.system(size: 56, weight: .bold, design: .rounded)
         /// A picture standing where the name would: a flag that IS the question.
         let glyph = Font.system(size: 64)
+        /// A letterform offered as an answer, read as a picture rather than as text.
+        let letter = Font.system(size: 44, weight: .bold, design: .rounded)
         /// One word with a blank in it ("Ge l＿").
         let word = Font.system(size: 40, weight: .bold, design: .rounded)
         /// A name asked about ("Deutschland") — words run longer than numerals.

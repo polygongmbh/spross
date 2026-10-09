@@ -1,6 +1,6 @@
 package net.spross.app
 
-import net.spross.app.audio.Pronouncer
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.Language
@@ -27,23 +27,12 @@ fun AppModel.formPronunciation(form: String, lang: Language): Pronunciation? =
  */
 fun AppModel.speakOnTap(pronunciation: Pronunciation?): (() -> Unit)? {
     if (pronunciation == null || !pronouncer.canPronounce(pronunciation)) return null
-    return { pronouncer.pronounce(pronunciation, Pronouncer.Trigger.TAP) }
+    return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap) }
 }
+
+/** Whether [form] is the word sounding now — what a speaker beside it pulses on. */
+fun AppModel.isSounding(form: String): Boolean = pronouncer.sounding?.form == form
 
 /** The same for a plain form — what a drill card's revealed reading offers. */
 fun AppModel.speakFormOnTap(form: String, lang: Language): (() -> Unit)? =
     speakOnTap(formPronunciation(form, lang))
-
-/**
- * Says a drill's form out loud. AUTO, so the read-aloud switch and the TalkBack gate
- * both apply without this asking about either. [onFinish] fires once it is over, or at
- * once where nothing will sound.
- */
-fun AppModel.speakDrillAnswer(form: String, lang: Language, onFinish: (() -> Unit)? = null) {
-    val pronunciation = formPronunciation(form, lang)
-    if (pronunciation == null) {
-        onFinish?.invoke()
-        return
-    }
-    pronouncer.pronounce(pronunciation, Pronouncer.Trigger.AUTO, onFinish = onFinish)
-}

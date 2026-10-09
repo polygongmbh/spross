@@ -376,9 +376,7 @@ class ListeningPoolTests {
         emoji = null,
         seedIndex = n,
         components = emptyList(),
-        feminineOf = null,
         source = Realization(lang = "de", text = source),
         target = Realization(lang = "sw", text = target),
-        promptFeminineMarker = false,
     )
 }

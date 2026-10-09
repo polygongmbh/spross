@@ -92,6 +92,17 @@ interface Chrome {
     val sessionGrammarPluralOnly: String
     val sessionGrammarPlural: String        // %s
     val a11yGlyphFeminineForm: String
+    val a11yGlyphMasculineForm: String
+    val a11yGlyphNeuterForm: String
+    val formMarkerPl: String
+    val formMarkerNom: String
+    val formMarkerGen: String
+    val formMarkerDat: String
+    val formMarkerAcc: String
+    val formMarkerIns: String
+    val formMarkerLoc: String
+    val formMarkerVoc: String
+    val formMarkerClass: String                 // %s
     val a11yActionReadAloud: String
     val a11yStateOn: String
     val a11yStateOff: String
@@ -141,7 +152,6 @@ interface Chrome {
     val lettersAskDictation: String
     val a11yGlyphLetter: String      // %s
     val a11yActionReplayPrompt: String
-    val lettersPromptInLanguage: String  // %s
     val trainerSprosse: String             // %d
     val trainerLadderTap: String
     val trainerLadderBest: String          // %1$s %2$s
@@ -163,9 +173,7 @@ interface Chrome {
     val trainerPauseTitleImproved: String
     val trainerPauseTitleStruggling: String
     val trainerPauseStrugglingHint: String
-    val trainerPauseTally: String              // %s %s
     val trainerPauseSprossen: String           // %s %s
-    val trainerPauseNewSprosse: String
     val a11yVerdictCorrect: String
     val a11yVerdictAlmost: String
     val a11yVerdictWrong: String
@@ -220,11 +228,10 @@ interface Chrome {
     // ── Inside a run ────────────────────────────────────────────────────────────
     val numbersSprosseOne: String
     val numbersSprosse: String            // %d
-    val trainerRunRecord: String            // %d
     val a11yCountStreakInARow: String      // %d
-    val a11ySuffixRecord: String      // %d
     val numbersAnswerPlaceholder: String
     val numbersNewPlace: String          // %s
+    val numbersNewForm: String           // %s
     val numbersLookup: String
     val trainerResultNewRecord: String
 

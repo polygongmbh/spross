@@ -124,26 +124,18 @@ class LanguageChoicesTest {
 
     private companion object {
         const val SHARED = 50
-        const val FEMININES = 5
 
         /**
          * A catalog whose pairs are deliberately lopsided:
-         * en, de and sw share [SHARED] concepts, de adds [FEMININES] feminines of them
-         * (so en→de counts five more than de→en — the base carries the prompt),
-         * and uk realizes only feminines of concepts nobody but en has,
-         * so en teaches uk while uk teaches nothing at all.
+         * en, de and sw share [SHARED] concepts, and en and uk share [SHARED] more
+         * whose English side names the language being learned — and English's own table
+         * names Ukrainian but not English, so en teaches uk while uk teaches nothing at all.
          * Declaration order is en, de, sw, uk — [Catalog.availableTargets] answers in it.
          */
         val catalog: Catalog = run {
             val concepts =
                 (0 until SHARED).map { """{ "slug": "a$it", "kind": "noun" }""" } +
-                    (0 until FEMININES).map {
-                        """{ "slug": "af$it", "kind": "noun", "feminineOf": "a$it" }"""
-                    } +
-                    (0 until SHARED).map { """{ "slug": "c$it", "kind": "noun" }""" } +
-                    (0 until SHARED).map {
-                        """{ "slug": "cf$it", "kind": "noun", "feminineOf": "c$it" }"""
-                    }
+                    (0 until SHARED).map { """{ "slug": "c$it", "kind": "noun" }""" }
             Catalog.load(
                 MapCatalogSource(
                     mapOf(
@@ -157,26 +149,26 @@ class LanguageChoicesTest {
                              "uk": { "name": "Українська", "englishName": "Ukrainian", "flag": "🇺🇦" }
                             }
                         """.trimIndent(),
+                        "language-names/en.json" to
+                            """{ "languageNames": { "uk": { "name": "Ukrainian", "in": "in Ukrainian" } } }""",
                         "areas/core/concepts.json" to concepts.joinToString(",", "[", "]"),
                         "areas/core/en.json" to words(
                             "en",
                             (0 until SHARED).map { "a$it" } + (0 until SHARED).map { "c$it" },
-                        ),
-                        "areas/core/de.json" to words(
-                            "de",
-                            (0 until SHARED).map { "a$it" } + (0 until FEMININES).map { "af$it" },
-                        ),
+                        ) { if (it.startsWith("c")) "en-$it {language}" else "en-$it" },
+                        "areas/core/de.json" to words("de", (0 until SHARED).map { "a$it" }),
                         "areas/core/sw.json" to words("sw", (0 until SHARED).map { "a$it" }),
-                        "areas/core/uk.json" to words("uk", (0 until SHARED).map { "cf$it" }),
+                        "areas/core/uk.json" to words("uk", (0 until SHARED).map { "c$it" }),
                     ),
                 ),
             )
         }
 
-        fun words(code: String, slugs: List<String>): String = slugs.joinToString(
-            separator = ",",
-            prefix = """{ "title": "Core", "words": {""",
-            postfix = "} }",
-        ) { """"$it": { "text": "$code-$it" }""" }
+        fun words(code: String, slugs: List<String>, text: (String) -> String = { "$code-$it" }): String =
+            slugs.joinToString(
+                separator = ",",
+                prefix = """{ "title": "Core", "words": {""",
+                postfix = "} }",
+            ) { """"$it": { "text": "${text(it)}" }""" }
     }
 }

@@ -2,20 +2,20 @@
  "title": "Likizo",
  "subtitle": "Wakati wa likizo.",
  "words": {
-  "beach": { "text": "ufukwe", "teaches": ["pwani"], "grammar": { "plural": "fukwe" } },
+  "beach": { "text": "ufukwe", "teaches": ["pwani"], "forms": { "pl": "fukwe" } },
   "to-sunbathe": { "text": "kuota jua" },
   "hotel": {
    "text": "hoteli",
    "grammar": { "plural": "=" },
    "notes": { "sw": "hoteli ni pa kulala na pia pa kula: hoteli ya chakula" }
   },
-  "luggage": { "text": "mzigo", "grammar": { "plural": "mizigo" } },
+  "luggage": { "text": "mzigo", "forms": { "pl": "mizigo" } },
   "to-travel": { "text": "kusafiri" },
   "journey": { "text": "safari", "grammar": { "plural": "=" } },
   "vacation": { "text": "likizo", "grammar": { "plural": "=" } },
   "overnight-stay": { "text": "malazi", "grammar": { "plural": "=" } },
   "to-book-a-room": { "text": "kuhifadhi chumba", "accepts": ["kubuku chumba"] },
-  "tourist": { "text": "mtalii", "grammar": { "plural": "watalii" } },
+  "tourist": { "text": "mtalii", "forms": { "pl": "watalii" } },
   "souvenir": { "text": "kumbukumbu", "grammar": { "plural": "=" } },
   "sunscreen": { "text": "mafuta ya jua", "grammar": { "plural": "=" } },
   "to-pack": { "text": "kufunga mizigo" },

@@ -7,51 +7,26 @@ import SprossKern
 /// on OppositesView; split out for file size, the way the word scramble splits.
 extension OppositesView: DrillRunning {
 
+    var appModel: AppModel? { model }
+
     // MARK: - What is on screen
 
     var drillContent: some View {
-        ScrollView {
-            VStack(spacing: Theme.spacing.md) {
-                DrillStreakLine(sprosse: Text("trainer.sprosse \(Int(run.sprosse).formatted())"),
-                                answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak))
-                if let task = current {
-                    // ZStack so the outgoing and incoming word overlap during
-                    // the flip; .id gives each position its identity.
-                    ZStack {
-                        DrillPromptCard(prompt: Text(verbatim: task.prompt),
-                                        size: .word,
-                                        answer: answerLine(task),
-                                        language: task.language,
-                                        gloss: glossLine(task),
-                                        revealed: run.showsAnswer,
-                                        pronounce: model.pronounceAction(for: answerLine(task),
-                                                                         lang: task.language),
-                                        isPlaying: model.isPronouncing(answerLine(task),
-                                                                       lang: task.language))
-                            .id(run.index)
-                            .transition(reduceMotion ? .opacity : .cardFlip)
-                    }
-                    typedControls(task)
-                }
-            }
-            .padding(.bottom, Theme.spacing.lg)
+        questionPage { question in
+            QuestionCardView(question: question, voice: model.cardVoice)
+        } area: { controls in
+            if let task = current { typedControls(task, controls) }
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollDismissesKeyboard(.never)
     }
 
-    private func typedControls(_ task: OppositesTask) -> some View {
-        TypedAnswerControls(text: $input,
-                            feedback: feedback,
-                            placeholder: answerPlaceholder(task.language),
-                            focus: $answerFocused,
-                            correctionVoice: .init(
-                                pronounce: { model.pronounceAction(for: $0, lang: task.language) },
-                                isPlaying: { model.isPronouncing($0, lang: task.language) }),
-                            onType: { typed() },
-                            onSubmit: { submit() },
-                            onConfirm: { confirm() },
-                            onStop: run.offersFinish ? { closeRun() } : nil)
+    private func typedControls(_ task: OppositesTask, _ controls: AnswerControls) -> some View {
+        AnswerArea(driver: self, controls: controls,
+                   placeholder: answerPlaceholder(task.language),
+                   focus: $answerFocused,
+                   correctionVoice: .init(
+                       pronounce: { model.pronounceAction(for: $0, lang: task.language) },
+                       isPlaying: { model.isPronouncing($0, lang: task.language) }),
+                   nextLocale: model.targetChromeLocale)
     }
 
     // MARK: - The machine under this drill

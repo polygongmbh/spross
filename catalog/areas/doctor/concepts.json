@@ -1,6 +1,5 @@
 [
- { "slug": "doctor", "kind": "noun", "emoji": "🧑‍⚕️" },
- { "slug": "doctor-f", "kind": "noun", "emoji": "👩‍⚕️", "feminineOf": "doctor" },
+ { "slug": "doctor", "kind": "noun", "emoji": "🧑‍⚕️", "formEmoji": { "f": "👩‍⚕️" } },
  { "slug": "medicine", "kind": "noun" },
  { "slug": "pharmacy", "kind": "noun", "emoji": "⚕️" },
  { "slug": "practice", "kind": "noun", "emoji": "🩺" },
@@ -14,7 +13,6 @@
  { "slug": "insurance-card", "kind": "noun", "emoji": "💳" },
  { "slug": "health-insurance", "kind": "noun", "emoji": "🛡️" },
  { "slug": "nurse", "kind": "noun", "emoji": "🩹" },
- { "slug": "nurse-f", "kind": "noun", "feminineOf": "nurse" },
  { "slug": "ambulance", "kind": "noun", "emoji": "🚑" },
  { "slug": "dentist", "kind": "noun", "emoji": "🦷" },
  { "slug": "to-prescribe-medicine", "kind": "verb", "emoji": "📝" },

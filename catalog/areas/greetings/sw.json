@@ -3,7 +3,7 @@
  "subtitle": "Unachosema mnapokutana.",
  "words": {
   "to-thank": { "text": "kushukuru" },
-  "name": { "text": "jina", "grammar": { "plural": "majina" } },
+  "name": { "text": "jina", "forms": { "pl": "majina" } },
   "to-be-called": { "text": "kuitwa" },
   "hello": { "text": "Hujambo!", "notes": { "sw": "Hujambo? — Sijambo. · Hamjambo? — Hatujambo." } },
   "good-day": {

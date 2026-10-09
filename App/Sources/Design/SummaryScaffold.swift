@@ -3,16 +3,21 @@ import SwiftUI
 // MARK: - SummaryScaffold
 //
 // The screen a round stops on — the session summary and a drill's pause
-// alike: a hero, one title, the round's tally with any detail lines under it,
-// an optional hint, and the exit pair on the bottom edge. Each fills the
-// slots; the layout, the type and the ways out are this one's, so the two
-// never drift apart (`docs/design.md` § Counts & sessions).
+// alike: a hero, one title, the round's tally, a milestone line where
+// something new was reached, an optional hint, and the exit pair on the
+// bottom edge. Each fills the slots with words; the layout, the type and the
+// ways out are this one's, so the two never drift apart
+// (`docs/design.md` § Counts & sessions).
 
-struct SummaryScaffold<Hero: View, Details: View>: View {
+struct SummaryScaffold<Hero: View>: View {
     let title: Text
     var tally: Text?
+    /// What the round reached that no earlier one had, set off in the accent.
+    var milestone: Text?
     /// Why stopping is the better call, where the round says so.
     var hint: Text?
+    /// Names what the hero shows, right under it.
+    var heroLabel: Text?
     let onDone: () -> Void
     /// Left out where there is no box to brief (`AppModel.hasBriefing`).
     var onTalk: (() -> Void)?
@@ -20,8 +25,6 @@ struct SummaryScaffold<Hero: View, Details: View>: View {
     var onPractice: (() -> Void)?
     /// Handed the height a hero may grow to — a grown tree's ceiling.
     @ViewBuilder let hero: (_ ceiling: CGFloat) -> Hero
-    /// Lines under the tally, in its caption voice.
-    @ViewBuilder let details: () -> Details
 
     var body: some View {
         // why: Spacer()-centered content overflows a fixed frame under large
@@ -49,38 +52,32 @@ struct SummaryScaffold<Hero: View, Details: View>: View {
     private func content(ceiling: CGFloat) -> some View {
         VStack(spacing: Theme.spacing.xl) {
             Spacer()
-            hero(ceiling)
+            VStack(spacing: Theme.spacing.sm) {
+                hero(ceiling)
+                heroLabel?
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.textSecondary)
+            }
             title
                 .font(Theme.typography.hero)
                 .foregroundStyle(Theme.colors.textPrimary)
-                .multilineTextAlignment(.center)
                 .minimumScaleFactor(0.8)
-            VStack(spacing: Theme.spacing.xs) {
+            VStack(spacing: Theme.spacing.sm) {
                 tally?
-                    .font(.system(.title3, design: .rounded))
+                    .font(Theme.typography.lead)
                     .foregroundStyle(Theme.colors.textSecondary)
-                details()
-                    .font(Theme.typography.caption)
-                    .foregroundStyle(Theme.colors.textSecondary)
+                milestone?
+                    .font(Theme.typography.headline)
+                    .foregroundStyle(Theme.colors.accent)
             }
-            .multilineTextAlignment(.center)
+            .accessibilityElement(children: .combine)
             hint?
-                .font(Theme.typography.caption)
+                .font(Theme.typography.subheadline)
                 .foregroundStyle(Theme.colors.textSecondary)
-                .multilineTextAlignment(.center)
             Spacer()
         }
+        .multilineTextAlignment(.center)
         .frame(maxWidth: .infinity)
-    }
-}
-
-extension SummaryScaffold where Details == EmptyView {
-    init(title: Text, tally: Text? = nil, hint: Text? = nil,
-         onDone: @escaping () -> Void, onTalk: (() -> Void)? = nil,
-         onPractice: (() -> Void)? = nil,
-         @ViewBuilder hero: @escaping (_ ceiling: CGFloat) -> Hero) {
-        self.init(title: title, tally: tally, hint: hint, onDone: onDone, onTalk: onTalk,
-                  onPractice: onPractice, hero: hero, details: { EmptyView() })
     }
 }
 

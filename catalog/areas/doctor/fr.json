@@ -2,10 +2,11 @@
  "title": "Chez le médecin",
  "subtitle": "Du rendez-vous à l'ordonnance.",
  "words": {
-  "doctor": { "text": "médecin", "accepts": ["docteur"], "grammar": { "gender": "le" } },
-  "doctor-f": {
-   "text": "docteure",
-   "grammar": { "gender": "la" },
+  "doctor": {
+   "text": "médecin",
+   "accepts": ["docteur"],
+   "forms": { "f": "la docteure" },
+   "grammar": { "gender": "le" },
    "notes": { "fr": "le médecin vaut pour tous · pour une femme : la docteure, une médecin." }
   },
   "practice": {
@@ -42,7 +43,8 @@
   "hospital": {
    "text": "hôpital",
    "accepts": ["l'hôpital"],
-   "grammar": { "gender": "l'", "plural": "hôpitaux" }
+   "forms": { "pl": "les hôpitaux" },
+   "grammar": { "gender": "l'" }
   },
   "emergency": {
    "text": "urgence",
@@ -53,7 +55,8 @@
   "doctors-note": {
    "text": "arrêt de travail",
    "accepts": ["l'arrêt de travail", "arrêt maladie"],
-   "grammar": { "gender": "l'", "plural": "arrêts de travail" },
+   "forms": { "pl": "les arrêts de travail" },
+   "grammar": { "gender": "l'" },
    "notes": { "fr": "le médecin donne un arrêt de travail : on est en arrêt maladie." }
   },
   "to-examine": { "text": "examiner", "accepts": ["ausculter"] },
@@ -69,8 +72,12 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "on prend un médicament · la médecine est la science du médecin." }
   },
-  "nurse": { "text": "infirmier", "accepts": ["l'infirmier"], "grammar": { "gender": "l'" } },
-  "nurse-f": { "text": "infirmière", "accepts": ["l'infirmière"], "grammar": { "gender": "l'" } },
+  "nurse": {
+   "text": "infirmier",
+   "accepts": ["l'infirmier"],
+   "forms": { "f": "l'infirmière" },
+   "grammar": { "gender": "l'" }
+  },
   "dentist": { "text": "dentiste", "accepts": ["chirurgien-dentiste"], "grammar": { "gender": "le" } },
   "vaccination": {
    "text": "vaccination",

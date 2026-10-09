@@ -25,6 +25,12 @@ data class RoundSummary(
      */
     val restSuggested: Boolean,
 ) {
+    /**
+     * The tree that takes the hero slot, under the growth claim; null where there is none to
+     * speak of, and the summary stands on its plain title and the popper instead.
+     */
+    val shownTree: TreeTransition? get() = grownArea?.takeIf { headline != null }
+
     companion object {
         /**
          * The summary of [run] against the box it opened on ([SessionRunState.startBox]).

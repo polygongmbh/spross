@@ -3,7 +3,7 @@
  "subtitle": "Was man sagt, wenn man sich begegnet.",
  "words": {
   "to-thank": { "text": "danken" },
-  "name": { "text": "Name", "grammar": { "gender": "der", "plural": "-n" } },
+  "name": { "text": "Name", "forms": { "pl": "die Namen" }, "grammar": { "gender": "der" } },
   "to-be-called": { "text": "heißen" },
   "hello": { "text": "Hallo!" },
   "good-day": { "text": "Guten Tag!" },

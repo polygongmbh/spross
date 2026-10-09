@@ -34,6 +34,7 @@ data class StoredBox(
     val ownWords: List<OwnWord> = emptyList(),
     val reportedIssues: Map<String, ReportedIssue> = emptyMap(),
     val lastExportAt: Instant? = null,
+    val drillDays: Map<String, Int> = emptyMap(),
 ) {
     /**
      * Something the learner did or wrote. A language they only ever opened has a file like
@@ -42,7 +43,7 @@ data class StoredBox(
      */
     val hasContent: Boolean
         get() = scheduling.isNotEmpty() || queued.isNotEmpty() ||
-            ownWords.isNotEmpty() || reportedIssues.isNotEmpty()
+            ownWords.isNotEmpty() || reportedIssues.isNotEmpty() || drillDays.isNotEmpty()
 
     /**
      * Attach a fresh catalog join to obtain a live [BoxState]. Calibration belongs to the
@@ -62,6 +63,7 @@ data class StoredBox(
         ownWords = ownWords,
         reportedIssues = reportedIssues,
         lastExportAt = lastExportAt,
+        drillDays = drillDays,
     )
 
     companion object {
@@ -72,6 +74,7 @@ data class StoredBox(
             ownWords = state.ownWords,
             reportedIssues = state.reportedIssues,
             lastExportAt = state.lastExportAt,
+            drillDays = state.drillDays,
         )
     }
 }
@@ -104,7 +107,7 @@ data class StoredBoxes(val boxes: Map<Language, StoredBox> = emptyMap()) {
 
     /** Answers per day across every language but [target] — the cross-language streak's input. */
     fun answerDaysExcept(target: Language, tzId: String): Map<String, Int> = mergeAnswerDays(
-        boxes.filterKeys { it != target }.values.map { answerDays(it.scheduling, tzId) },
+        boxes.filterKeys { it != target }.values.map { answerDays(it.scheduling, tzId, it.drillDays) },
     )
 
     companion object {

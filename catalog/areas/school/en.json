@@ -24,7 +24,7 @@
   "to-count": { "text": "to count" },
   "to-learn-by-heart": { "text": "to learn by heart" },
   "to-read-aloud": { "text": "to read aloud" },
-  "dictionary": { "text": "dictionary", "grammar": { "plural": "dictionaries" } },
+  "dictionary": { "text": "dictionary", "forms": { "pl": "dictionaries" } },
   "to-pronounce": { "text": "to pronounce" },
   "to-teach": { "text": "to teach" },
   "report-card": { "text": "report card" },

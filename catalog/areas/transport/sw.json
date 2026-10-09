@@ -2,37 +2,37 @@
  "title": "Usafiri",
  "subtitle": "Twende zetu.",
  "words": {
-  "traffic-light": { "text": "taa ya barabarani", "grammar": { "plural": "taa za barabarani" } },
+  "traffic-light": { "text": "taa ya barabarani", "forms": { "pl": "taa za barabarani" } },
   "bicycle": { "text": "baiskeli", "grammar": { "plural": "=" } },
-  "bus": { "text": "basi", "grammar": { "plural": "mabasi" } },
+  "bus": { "text": "basi", "forms": { "pl": "mabasi" } },
   "bus-stop": {
    "text": "kituo cha basi",
-   "grammar": { "plural": "vituo vya basi" },
+   "forms": { "pl": "vituo vya basi" },
    "notes": { "sw": "Kituo ni mahali pa kusimama: kituo cha basi, kituo cha polisi." }
   },
   "train": { "text": "treni", "grammar": { "plural": "=" } },
-  "car": { "text": "gari", "grammar": { "plural": "magari" } },
+  "car": { "text": "gari", "forms": { "pl": "magari" } },
   "taxi": { "text": "teksi", "grammar": { "plural": "=" } },
-  "train-station": { "text": "stesheni ya treni", "grammar": { "plural": "stesheni za treni" } },
+  "train-station": { "text": "stesheni ya treni", "forms": { "pl": "stesheni za treni" } },
   "ticket": { "text": "tiketi", "grammar": { "plural": "=" } },
   "to-ride-bike": { "text": "kuendesha baiskeli" },
   "to-take-bus": { "text": "kupanda basi" },
   "to-depart": { "text": "kuondoka" },
-  "driver": { "text": "dereva", "grammar": { "plural": "madereva" } },
+  "driver": { "text": "dereva", "forms": { "pl": "madereva" } },
   "plane": {
    "text": "ndege",
    "grammar": { "plural": "=" },
    "notes": { "sw": "ndege inaruka = ya chuma · ndege anaruka = mwenye mabawa" }
   },
-  "airport": { "text": "uwanja wa ndege", "grammar": { "plural": "viwanja vya ndege" } },
+  "airport": { "text": "uwanja wa ndege", "forms": { "pl": "viwanja vya ndege" } },
   "motorbike": {
    "text": "pikipiki",
    "grammar": { "plural": "=" },
    "notes": { "sw": "pikipiki ya kubeba abiria huitwa bodaboda" }
   },
-  "truck": { "text": "lori", "grammar": { "plural": "malori" } },
+  "truck": { "text": "lori", "forms": { "pl": "malori" } },
   "passenger": { "text": "abiria", "grammar": { "plural": "=" } },
-  "wheel": { "text": "gurudumu", "grammar": { "plural": "magurudumu" } },
+  "wheel": { "text": "gurudumu", "forms": { "pl": "magurudumu" } },
   "engine": { "text": "injini", "grammar": { "plural": "=" } },
   "rail": { "text": "reli", "grammar": { "plural": "=" } },
   "fare": { "text": "nauli", "grammar": { "plural": "=" } },
@@ -43,7 +43,7 @@
   "how-much-is-the-fare": { "text": "Nauli ni ngapi?" },
   "the-bus-has-already-departed": { "text": "Basi limeshaondoka.", "notes": { "sw": "limeshaondoka = tayari limeondoka" } },
   "my-parents-are-coming-by-train": { "text": "Wazazi wangu wanakuja kwa treni.", "accepts": ["Wazazi wangu wanakuja na treni."] },
-  "tire": { "text": "tairi", "grammar": { "plural": "matairi" } },
+  "tire": { "text": "tairi", "forms": { "pl": "matairi" } },
   "my-car-has-four-tires": {
    "text": "Gari langu lina matairi manne.",
    "notes": { "sw": "gari → magari: gari langu, magari yangu." }

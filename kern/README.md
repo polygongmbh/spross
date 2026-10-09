@@ -15,7 +15,8 @@ not `EmojiPlacement { Prompt, Reveal }` (a layout that would go on compiling whi
 the moment the app moves the element).
 Screen positions, sizes, and which face of a card something rides on are the platforms',
 except layout data both platforms draw from, which lives in kern once
-(`net.spross.kern.design`, `TreesLayout`) so the two phones cannot stand the same thing differently.
+(`net.spross.kern.design`: `TreesLayout`, `TreePicture`, `TreeRise`, `ConfettiFrame`, `SegmentsBar`, `ActivityBars`, `AreaBar`, `PressKind`, `CardSurface`) so the two phones cannot stand the same thing differently;
+a platform there only issues the draw calls and runs the clock.
 The same test applies to snapshot fields.
 
 **The contract states the rule, the declaration states the detail.**
@@ -66,16 +67,10 @@ the rules the declarations cannot state are here.
   (`catalog/README.md`).
   `area` and `kind` are presentation metadata the content may restructure freely:
   moving or reclassifying a concept keeps its schedule.
-  `components` and `feminineOf` are card ids (bare slugs).
-- **Join rule**: emit iff TARGET realizes the concept AND a source prompt exists:
-  source realization, else (feminineOf only) the base concept's source realization
-  with `promptFeminineMarker = true`; if that is also absent, skip.
-  Non-feminine concepts without a source realization are skipped.
-  A feminine card additionally carries `baseAccepted` --
-  the base concept's TARGET-side `text + teaches + accepts` --
-  empty when the target never realizes the base.
+  `components` are card ids (bare slugs).
+- **Join rule**: emit iff both TARGET and source realize the concept.
 - **Homonyms / target-language merges**: after emitting, the join counts cards per
-  *displayed* prompt key -- NFC-normalized `source.text` plus the female state --
+  *displayed* prompt key -- NFC-normalized `source.text` --
   and sets `promptAmbiguous` on every member of a key shared by >1 card.
   Keying on what the learner SEES means citation conventions
   (de noun capitals, en `"to "`, sw `ku-`) correctly keep noun/verb homographs apart.
@@ -89,6 +84,8 @@ the rules the declarations cannot state are here.
 - **The reveal's family line** excludes every form already standing on screen
   (`alternates`) -- otherwise the reveal offers the learner
   the very word they are looking at as though it were another one.
+  It offers every tagged form that also answers the prompt, each with its marker
+  (`teacher` reveals `also: die Lehrerin ♀`), so a form is met before it is ever asked.
 
 ## 3. One schedule per card, alternating presentation   (user ruling 2026-07-22)
 
@@ -119,7 +116,7 @@ both feeding the one schedule ("every answer event is an FSRS review" holds).
 - **Recalled production** (`produceAnswer`): past the settled bar (`SETTLED_STABILITY`),
   every other produce turn is recalled in the head, revealed and self-graded instead of typed;
   a word under the bar is always typed (`docs/presentation.md`).
-- **Synonym rotation** on recognition prompts, and **sound-prompted production**
+- **Form rotation** on both roles' prompts, and **sound-prompted production**
   (`producePrompt`): asking a word by ear WITHDRAWS the meaning rather than adding support,
   so it needs the growing bar (section 5),
   and what is typed back is the meaning, in the source language (`docs/presentation.md`).
@@ -130,9 +127,6 @@ both feeding the one schedule ("every answer event is an FSRS review" holds).
   **OnReveal** everywhere else --
   **the first exposure included** (ruling 2026-08-07).
   Why each branch falls where it does is `docs/presentation.md`.
-- **Female** is a labeled badge, never graded:
-  a base-word answer typed on a feminine produce card grades as typo, not failure
-  (graded against `Card.baseAccepted`; corrected shows the feminine canonical text).
 - Composition is **role-agnostic** -- plans carry card ids;
   the role of each entry is resolved at render from the card's log count.
 - Scheduling keys are source-agnostic -> **switching source preserves every schedule**.
@@ -214,11 +208,13 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 
 - **The streak is one commitment across every target language.**
   A day's answers are counted off the review logs
-  (`answerDays`, keyed `yyyy-MM-dd` in the CALLER's zone),
+  (`answerDays`, keyed `yyyy-MM-dd` in the CALLER's zone)
+  plus the drill answers a closed run booked to its day (`BoxState.drillDays`, `BoxEngine.bookDrillAnswers`),
   so `BoxEngine.statistics` and `BoxEngine.activityWindow` take
   `otherLanguagesAnswerDays` and merge them with THIS state's own
   via `mergeAnswerDays` before walking the streak.
   Suspended and unjoined schedules count too: the answer really happened.
+  A round's budget reads reviews alone (`answersOn`), so drilling never eats the day's round.
   Every other bucket (`activeCount`, `dueCount`, the areas) stays scoped to the join in view.
   `WidgetSnapshotBuilder.build` takes the same parameter (`docs/snapshots.md`).
 - **Introduction is the card's first answer.**
@@ -290,7 +286,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   so a row's badge and the shelf's progress bar read the identical color on both platforms.
 - **Queuing and unqueuing act on the area, never a single word,
   except where a search reached that word by name**:
-  `BoxEngine.queue`/`unqueueArea` are the shelf's own controls;
+  `BoxEngine.queue`/`unqueueArea` are the shelf's own controls, and which one it offers is `ShelfControl`;
   `unqueue` alone (single card id) exists for the one context that names a word.
   `CardRowState.Queued.removalOffered` and `QueueOffered` both gate on the same
   `queueOffered` context flag.

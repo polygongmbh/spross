@@ -8,7 +8,7 @@
   "cheap": { "text": "rahisi", "notes": { "sw": "gari rahisi = bei ndogo · kazi rahisi = isiyo ngumu" } },
   "to-sell": { "text": "kuuza" },
   "cash": { "text": "pesa taslimu", "grammar": { "plural": "=" } },
-  "bank-card": { "text": "kadi ya benki", "grammar": { "plural": "kadi za benki" } },
+  "bank-card": { "text": "kadi ya benki", "forms": { "pl": "kadi za benki" } },
   "coin": { "text": "sarafu", "grammar": { "plural": "=" } },
   "change-money": { "text": "chenji", "grammar": { "plural": "=" } },
   "money": { "text": "pesa" },

@@ -1,5 +1,6 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Saying
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -7,7 +8,9 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import net.spross.kern.model.ClosingNote
 import net.spross.kern.session.AdvanceBeat
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.TurnFeedback
 
@@ -137,10 +140,10 @@ class SentenceScrambleRunTest {
     @Test
     fun anArrangementSaysTheAuthoredPhrase() {
         val (task, right) = graded(correctly = true)
-        assertTrue(DrillEffect.SayAnswer(task.display, "de") in right.effects)
+        assertEquals(Saying(task.display, "de"), right.state.reading.answer)
         assertTrue(DrillEffect.ArmAdvance(AdvanceBeat.Explicit) in right.effects)
         val (wrongTask, wrong) = graded(correctly = false)
-        assertTrue(DrillEffect.SayAnswer(wrongTask.display, "de") in wrong.effects)
+        assertEquals(Saying(wrongTask.display, "de"), wrong.state.reading.answer)
         assertTrue(wrong.effects.none { it is DrillEffect.ArmAdvance })
     }
 
@@ -234,6 +237,27 @@ class SentenceScrambleRunTest {
         val state = SentenceScrambleRun.open(resumed, Random(7))
         assertEquals(1, state.sprosse)
         assertEquals(2, answered(state).sprosse)
+    }
+
+    /** A clean arrangement grows the meaning alone; only a missed one opens onto the authored order. */
+    @Test
+    fun theCardSetsTheOrderAgainOnlyWhereItWasMissed() {
+        val clean = assertNotNull(arrange(open(), correctly = true).question)
+        val missed = assertNotNull(arrange(open(), correctly = false).question)
+        val task = assertNotNull(open().task)
+        assertFalse(clean.opens)
+        assertTrue(clean.growsNote)
+        assertEquals(ClosingNote.Own(task.gloss), clean.closing.note)
+        assertTrue(missed.opens)
+        assertEquals(task.display, missed.answer.text)
+    }
+
+    /** Placing the last piece is the answer, so no primary action asks for it. */
+    @Test
+    fun anArrangementNeedsNoPrimaryAction() {
+        val controls = assertNotNull(open().controls)
+        assertEquals(AnswerControls.Slot.Arrangement, controls.slot)
+        assertNull(controls.primary)
     }
 
     /** An alternative word order from `orders` is accepted but flags [alternativeMatch]. */

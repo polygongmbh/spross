@@ -16,7 +16,7 @@ struct SettingsAudioRow: View {
                 .font(Theme.typography.headline)
                 .foregroundStyle(Theme.colors.textPrimary)
             Picker("settings.audio.title", selection: audioPreferenceBinding) {
-                ForEach(audioOptions) { option in
+                ForEach(audioSources.preferenceOptions, id: \.self) { option in
                     Text(optionLabel(option)).tag(option)
                 }
             }
@@ -49,14 +49,6 @@ struct SettingsAudioRow: View {
         }
     }
 
-    /// The three options the row carries, each a combination of the mute switch
-    /// and the voice source. The picker alone decides both: there is no state
-    /// where a source is chosen but the app is silent.
-    private enum AudioPreference: String, CaseIterable, Identifiable {
-        case off, recordings, tts
-        var id: String { rawValue }
-    }
-
     /// What can carry the learned language's sound here — kern's rule over the
     /// catalog's pack and this device's voice.
     static func sources(_ model: AppModel) -> AudioCapability {
@@ -67,22 +59,11 @@ struct SettingsAudioRow: View {
 
     private var audioSources: AudioCapability { Self.sources(model) }
 
-    /// What the row offers: one segment per source that can actually answer.
-    /// Speech only where the device has a voice — Swahili has none on iOS —
-    /// and Recordings only where a pack ships, which English does not have.
-    /// Either segment without its source promises a sound nothing can make.
-    private var audioOptions: [AudioPreference] {
-        let sources = audioSources
-        return [.off]
-            + (sources.hasRecordings ? [.recordings] : [])
-            + (sources.hasVoice ? [.tts] : [])
-    }
-
     private func optionLabel(_ option: AudioPreference) -> LocalizedStringKey {
         switch option {
         case .off: return "settings.audio.option.off"
         case .recordings: return "settings.audio.option.recordings"
-        case .tts: return "settings.audio.option.tts"
+        case .speech: return "settings.audio.option.tts"
         }
     }
 
@@ -93,37 +74,28 @@ struct SettingsAudioRow: View {
         switch audioPreferenceBinding.wrappedValue {
         case .off: return "settings.audio.hint.off"
         case .recordings: return "settings.audio.hint.recordings"
-        case .tts: return "settings.audio.hint.tts"
+        case .speech: return "settings.audio.hint.tts"
         }
     }
 
-    /// `.off` is the read-aloud switch off; the two "on" options are the voice
-    /// source of the language being learned, with the switch on. Picking one of
-    /// them turns reading aloud back on, so the picker can never leave the app
-    /// silent behind a chosen source. A stored Speech that the phone can no
-    /// longer answer (a voice uninstalled) reads as Recordings, which is what
-    /// would sound anyway.
+    /// Kern's mapping (`AudioPreference`) over the mute and this language's
+    /// stored source. Picking a source turns reading aloud back on only where
+    /// it was off, so a read-aloud that follows the phone keeps following it.
     private var audioPreferenceBinding: Binding<AudioPreference> {
         Binding(
             get: {
-                if Pronouncer.shared.muted { return .off }
-                let sources = audioSources
-                guard let target = model.targetLanguage, sources.hasVoice,
-                      Pronouncer.shared.voiceSource(for: target) == .tts
-                else {
-                    // A stored source the language cannot answer reads as the other one:
-                    // a pack that does not ship is as empty a promise as a missing voice.
-                    return sources.hasRecordings ? .recordings : .tts
-                }
-                return .tts
+                let prefersSpeech = model.targetLanguage
+                    .map { Pronouncer.shared.voiceSource(for: $0) == .tts } ?? false
+                return audioSources.preference(muted: Pronouncer.shared.muted,
+                                               prefersSpeech: prefersSpeech)
             },
             set: { preference in
-                guard preference != .off else {
+                guard !preference.mutes else {
                     Pronouncer.shared.setReadAloud(on: false)
                     return
                 }
                 if let target = model.targetLanguage {
-                    Pronouncer.shared.setVoiceSource(preference == .tts ? .tts : .recordings,
+                    Pronouncer.shared.setVoiceSource(preference.prefersSpeech ? .tts : .recordings,
                                                      for: target)
                 }
                 if Pronouncer.shared.muted { Pronouncer.shared.setReadAloud(on: true) }

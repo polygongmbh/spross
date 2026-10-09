@@ -20,18 +20,16 @@ class SharedTargetForms(cards: Collection<Card>) {
     private val index: Map<String, List<Card>> = build(cards)
 
     /**
-     * Every OTHER concept that lists [form], seed order. [card]'s own id and its feminine
-     * base are skipped: neither is somebody else's meaning.
+     * Every OTHER concept that lists [form], seed order — [card]'s own is not somebody else's meaning.
      */
     fun concepts(form: String, card: Card): List<Card> {
-        val skipped = setOfNotNull(card.id, card.feminineOf)
-        return index[key(form)].orEmpty().filter { it.id !in skipped }
+        return index[key(form)].orEmpty().filter { it.id != card.id }
     }
 
     private fun build(cards: Collection<Card>): Map<String, List<Card>> {
         val index = mutableMapOf<String, MutableList<Card>>()
         for (card in cards.sortedBy { it.seedIndex }) {
-            for (form in listOf(card.target.text) + card.target.teaches + card.target.accepts) {
+            for (form in listOf(card.target.text) + card.target.teaches + card.target.accepts + card.target.forms.map { it.written }) {
                 val shape = key(form)
                 if (shape.isEmpty()) continue
                 val holders = index.getOrPut(shape) { mutableListOf() }

@@ -2,6 +2,9 @@ package net.spross.kern.catalog
 
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.FormTag
+import net.spross.kern.model.TaggedForm
+import net.spross.kern.model.emojiFor
 import net.spross.kern.trainer.NumbersReading
 import net.spross.kern.trainer.SwahiliConcord
 import kotlin.test.Test
@@ -34,33 +37,34 @@ class CatalogFixtureTest {
     private fun List<Card>.byId(id: String): Card =
         firstOrNull { it.id == id } ?: throw AssertionError("card $id not joined: ${map { it.id }}")
 
-    // -- feminine base-fallback ♀ ------------------------------------------------------
+    // -- tagged forms -----------------------------------------------------------------
 
     @Test
-    fun feminineFallsBackToBaseSourceRealizationWithMarker() {
-        val card = catalog.join("sw", "uk").byId("waiter-f")
-        assertTrue(card.promptFeminineMarker)
-        assertEquals("mhudumu", card.source.text)
-        assertEquals("офіціантка", card.target.text)
-        assertEquals("waiter", card.feminineOf)
+    fun formsJoinWithTheirTag() {
+        val pl = FormTag.parse("pl")!!
+        assertEquals(listOf(TaggedForm(pl, "миші")), catalog.join("de", "uk").byId("mouse").target.forms)
     }
 
     @Test
-    fun feminineUsesOwnSourceRealizationWithoutMarker() {
-        val card = catalog.join("de", "uk").byId("waiter-f")
-        assertFalse(card.promptFeminineMarker)
-        assertEquals("Kellnerin", card.source.text)
+    fun aFormsAuthoredArticleIsSetApartAtJoin() {
+        assertEquals(TaggedForm(FormTag.PLURAL, "Mäuse", article = "die"), catalog.join("uk", "de").byId("mouse").target.forms.single())
     }
 
     @Test
-    fun feminineSkippedWhenBaseSourceRealizationAlsoMissing() {
-        // beta has no sw file: neither royal-f nor base royal realize in the source.
-        assertTrue(catalog.join("sw", "uk").none { it.id == "royal-f" })
+    fun aTaggedFormWearsItsOwnPicture() {
+        val mouse = catalog.join("uk", "de").byId("mouse")
+        assertEquals("🐁🐁", mouse.emojiFor(FormTag.PLURAL))
+        assertEquals("🐭", mouse.emojiFor(null))
     }
 
     @Test
-    fun feminineSkippedWhenTargetDoesNotRealizeIt() {
-        assertTrue(catalog.join("de", "sw").none { it.id == "waiter-f" })
+    fun unknownFormTagRejected() =
+        rejectsEdit("areas/alpha/uk.json", "\"pl\": \"миші\"", "\"plural\": \"миші\"", "unknown form tag")
+
+    @Test
+    fun formTagNamesEachDimensionOnce() {
+        assertEquals("f.pl.dat", FormTag.parse("dat.pl.f").toString())
+        assertNull(FormTag.parse("m.f"))
     }
 
     // -- coverage skips ----------------------------------------------------------------
@@ -165,7 +169,7 @@ class CatalogFixtureTest {
     @Test
     fun grammarRidesThroughPerSide() {
         val door = catalog.join("de", "uk").byId("door")
-        assertEquals(mapOf("gender" to "die", "plural" to "-en"), door.source.grammar)
+        assertEquals(mapOf("gender" to "die"), door.source.grammar)
         assertEquals(mapOf("plural" to "only"), door.target.grammar)
     }
 

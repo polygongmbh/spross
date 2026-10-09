@@ -82,6 +82,7 @@ extension NumbersRunState {
                                  solvedClean: core.solvedClean,
                                  pacing: core.pacing),
                seenDigitCounts: seenDigitCounts,
+               seenFormKeys: seenFormKeys,
                hintUsed: hintUsed,
                feedback: feedback ?? self.feedback,
                otherWord: self.otherWord,

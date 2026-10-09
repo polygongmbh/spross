@@ -13,32 +13,28 @@ sealed class PluralForm {
     /** Authored "only": the word has no singular to teach. */
     data object PluralOnly : PluralForm()
 
-    /** A real form, any suffix already resolved against the word. */
+    /** The word's `pl` form. */
     data class Form(val text: String) : PluralForm()
 }
 
 /**
- * The plural [realization] carries, or null where it carries none.
- *
- * Absent and EMPTY answer the same: an authored-but-empty value is not a form,
- * and a surface that took it for one would print a bare label with nothing behind it.
- * A leading `-` is a dictionary suffix and resolves against the word
- * ("-nen" on "die Lehrerin" → "die Lehrerinnen"); anything else is the full form as authored.
+ * The plural [realization] carries, or null where it carries none:
+ * its `pl` form, else the catalog's sentinels in `grammar.plural`.
  *
  * Grammar is target-side only (contract §2) — the caller passes the realization it renders.
  */
 fun pluralForm(realization: Realization): PluralForm? {
-    val authored = realization.grammar["plural"]?.takeIf { it.isNotEmpty() } ?: return null
-    return when {
-        authored == "=" -> PluralForm.SameAsSingular
-        authored == "only" -> PluralForm.PluralOnly
-        authored.startsWith("-") -> PluralForm.Form(realization.text + authored.drop(1))
-        else -> PluralForm.Form(authored)
+    realization.forms.firstOrNull { it.tag == FormTag.PLURAL }?.let { return PluralForm.Form(it.written) }
+    return when (realization.grammar["plural"]) {
+        "=" -> PluralForm.SameAsSingular
+        "only" -> PluralForm.PluralOnly
+        else -> null
     }
 }
 
 /**
- * The word's remaining family — its canonical text plus its `teaches` — minus every form in [shown].
+ * The word's remaining family — its canonical text, its `teaches` and [forms], each form marked with its tag —
+ * minus every form in [shown].
  *
  * The exclusion is the whole point of the line: a recognition prompt rotates a synonym in,
  * so without it the reveal offers the learner the very word they are looking at as though
@@ -46,8 +42,9 @@ fun pluralForm(realization: Realization): PluralForm? {
  * Empty where nothing is left to offer, which is a line the surface does not draw.
  * `accepts` never appears — it grades an answer, it does not teach a form.
  */
-fun alternates(realization: Realization, shown: List<String>): List<String> =
-    (listOf(realization.text) + realization.teaches).filterNot { it in shown }
+fun alternates(realization: Realization, shown: List<String>, forms: List<TaggedForm>): List<Alternate> =
+    (listOf(realization.text) + realization.teaches).filterNot { it in shown }.map { Alternate(it, null) } +
+        forms.filterNot { it.text in shown }.map { Alternate(it.written, it.tag) }
 
 /** What the card's last line says, once it has stopped asking; the label a surface puts on it is chrome. */
 sealed class ClosingNote {

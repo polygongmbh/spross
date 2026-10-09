@@ -30,10 +30,10 @@ class CatalogAudioProvenanceTest {
 
     private fun forEachEntry(action: (lang: String, id: String, recording: AudioRecording) -> Unit) {
         for ((lang, manifest) in catalog.audio) {
-            for ((slug, recording) in manifest.words) action(lang, slug, recording)
+            for ((form, recording) in manifest.words) action(lang, form, recording)
             for ((glyph, recording) in manifest.letters) action(lang, glyph, recording)
             for ((form, recording) in manifest.texts) action(lang, form, recording)
-            for ((slug, recording) in manifest.articles) action(lang, "$slug (article)", recording)
+            for ((form, recording) in manifest.articles) action(lang, "$form (article)", recording)
             for ((form, recording) in manifest.calendar) action(lang, form, recording)
             for ((form, recording) in manifest.countries) action(lang, form, recording)
         }
@@ -57,8 +57,14 @@ class CatalogAudioProvenanceTest {
             }
         }
         for ((lang, manifest) in catalog.audio) {
-            for ((slug, recording) in manifest.words) {
-                assertTrue(!recording.matches.isNullOrBlank(), "audio/$lang/$slug: blank matches")
+            for ((form, recording) in manifest.words) {
+                // why: every section but the letters is keyed by the form it speaks, so a
+                // merge, rename or move of the concept it was fetched for never touches it;
+                // the two disagreeing would index the recording under a word it does not say.
+                assertEquals(form, recording.matches, "audio/$lang word \"$form\": key is not what it speaks")
+            }
+            for ((form, recording) in manifest.articles) {
+                assertEquals(form, recording.matches, "audio/$lang article \"$form\": key is not what it speaks")
             }
             for ((glyph, recording) in manifest.letters) {
                 assertEquals(null, recording.matches, "audio/$lang letter \"$glyph\": letters speak a name")

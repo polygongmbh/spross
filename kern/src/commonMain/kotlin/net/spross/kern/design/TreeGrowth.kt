@@ -35,8 +35,7 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
                depth: Int, parent: Int, side: Double) {
         val grown = (vigor - depth).coerceIn(0.0, 1.0)
         if (grown <= 0) return
-        // why: a branch dips a little below horizontal, no further, or it hangs its leaves under the crown.
-        val angle = heading.coerceIn(-PI - 0.25, 0.25)
+        val angle = level(heading)
         val rng = Stream(seed xor Stream.hash(path))
         // why: a branch dipping below level is a weak one: the further it dips, the shorter it and all beyond it.
         val length = length * (1 - 2 * max(0.0, sin(angle)))
@@ -63,7 +62,7 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         // part at less than about 30° and run side by side.
         val leadTurn = rng.range(0.05, 0.20) * (if (rng.next() < 0.5) -1 else 1)
         val leadLength = rng.range(0.86, 0.95)
-        val sideTurn = rng.range(0.75, 1.10)
+        val sideTurn = offshoot(rng)
         val sideLength = rng.range(0.76, 0.90)
         // why: the trunk always forks three ways, so the crown has low limbs on both sides.
         val third = rng.next() < 0.5 || depth == 0
@@ -73,8 +72,14 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
         // why: limbs sag under their weight, the more level and the later-born the further.
         val sagged = angle + 0.02 * (depth + 1) * cos(angle)
         branch(path * 4 + 1, endX, endY, sagged + leadTurn, next * leadLength, width * 0.8, depth + 1, index, -side)
-        branch(path * 4 + 2, endX, endY, sagged + side * sideTurn, next * sideLength, width * 0.6, depth + 1, index, -side)
-        if (third) branch(path * 4 + 3, endX, endY, sagged - side * thirdTurn, next * 0.7, width * 0.45, depth + 1, index, side)
+        // why: a side branch that would dip past level turns to the other side instead of being clamped
+        // flat — two clamped siblings lie on top of each other and stack their leaves.
+        val flipped = dips(sagged + side * sideTurn)
+        branch(path * 4 + 2, endX, endY, sagged + (if (flipped) -side else side) * sideTurn, next * sideLength,
+            width * 0.6, depth + 1, index, -side)
+        if (third && !flipped && !dips(sagged - side * thirdTurn)) {
+            branch(path * 4 + 3, endX, endY, sagged - side * thirdTurn, next * 0.7, width * 0.45, depth + 1, index, side)
+        }
     }
 
     /**
@@ -83,7 +88,8 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
      * does — but never within reach of a mark already dealt while wood further off is free,
      * the reach shrinking as the crown fills, so they spread over the whole crown.
      * The rest go to whichever carrier holds the fewest for its weighted length, and so do the
-     * last [buds] of the first [marks]: a bud is too small to show a twig of its own.
+     * last [buds] of the first [marks]: a bud is too small to show a twig of its own,
+     * and hangs outermost on the twig it shares.
      * The first limbs carry nothing while the tree has finer wood.
      */
     fun hang(count: Int, marks: Int, buds: Int): List<TreeSlot> {
@@ -109,24 +115,36 @@ internal class TreeGrowth(private val seed: Long, private val vigor: Double) {
             val i = if (fresh) used++ else (0 until used).minBy { held[it] / weights[it] }
             i to held[i]++
         }
-        return order.map { (i, k) -> slot(dealt[i], k, held[i], i % 2 == 0) }
+        // why: a twig grows from its tip — its buds hang outermost, the marks that leafed out further in.
+        val bud = marks - buds until marks
+        val place = IntArray(count)
+        for (i in 0 until used) {
+            val on = order.indices.filter { order[it].first == i }
+            on.sortedBy { if (it in bud) 0 else 1 }.forEachIndexed { k, n -> place[n] = k }
+        }
+        return order.mapIndexed { n, (i, _) -> slot(dealt[i], place[n], held[i], i % 2 == 0) }
     }
 
     /**
      * The [k]-th of a carrier's [of] marks, spread evenly from 0.95 of the way along down to 0.15,
-     * alternating sides on the bark and leaning away from the wood.
+     * alternating sides on the bark and turned off the wood as a side branch is.
      */
     private fun slot(c: Carrier, k: Int, of: Int, flip: Boolean): TreeSlot {
         val limb = limbs[c.limb]
         val t = 0.95 - 0.8 * k / of
         val (x, y) = at(c, t)
         val along = heading(limb, t)
-        val side = if ((k % 2 == 1) != flip) 1 else -1
+        val turn = offshoot(Stream(seed xor Stream.hash(c.limb * 1024L + k)))
+        val alternate = if ((k % 2 == 1) != flip) 1 else -1
+        // As a side branch does: a leaf that would dip past level grows off the other side of its wood.
+        val side = if (dips(along + alternate * turn)) -alternate else alternate
         val bark = (limb.startWidth * (1 - t) + limb.endWidth * t) / 2 * side
-        // why: a leaf follows its wood, splayed to one side, and never points below horizontal.
         return TreeSlot(x + cos(along + PI / 2) * bark, y + sin(along + PI / 2) * bark,
-            (along + side * 0.9).coerceIn(-PI + 0.3, -0.3), c.limb)
+            level(along + side * turn), c.limb)
     }
+
+    /** How far a side branch, or a leaf, turns off the wood it grows from. */
+    private fun offshoot(rng: Stream) = rng.range(0.75, 1.10)
 
     /** The point [t] of the way along [c]'s center line. */
     private fun at(c: Carrier, t: Double): Pair<Double, Double> {
@@ -162,3 +180,18 @@ internal class Stream(private var state: Long) {
         }
     }
 }
+
+/** [angle] measured from straight up: a heading to the left stays on the left, in −3π/2 … π/2. */
+private fun upright(angle: Double): Double = (angle + 1.5 * PI).mod(2 * PI) - 1.5 * PI
+
+/**
+ * [angle] dipping a little below horizontal at most — branch, leaf and leaflet alike;
+ * any further and it hangs under the crown.
+ */
+internal fun level(angle: Double): Double = upright(angle).coerceIn(-PI - DIP, DIP)
+
+/** Whether [angle] dips further below horizontal than [level] lets it. */
+internal fun dips(angle: Double): Boolean = upright(angle).let { it < -PI - DIP || it > DIP }
+
+/** How far below horizontal wood and leaves may dip. */
+private const val DIP = 0.25

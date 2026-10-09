@@ -2,7 +2,7 @@
  "title": "Holidays",
  "subtitle": "Time to get away.",
  "words": {
-  "beach": { "text": "beach", "grammar": { "plural": "beaches" } },
+  "beach": { "text": "beach", "forms": { "pl": "beaches" } },
   "to-sunbathe": { "text": "to sunbathe" },
   "hotel": { "text": "hotel" },
   "luggage": { "text": "luggage", "accepts": ["baggage"] },

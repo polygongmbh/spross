@@ -11,8 +11,7 @@
     "de": "la carta ist die Speisekarte, el menú oft das Tagesmenü — carta ist auch der Brief."
    }
   },
-  "waiter": { "text": "camarero", "grammar": { "gender": "el" } },
-  "waiter-f": { "text": "camarera", "grammar": { "gender": "la" } },
+  "waiter": { "text": "camarero", "forms": { "f": "la camarera" }, "grammar": { "gender": "el" } },
   "table": { "text": "mesa", "grammar": { "gender": "la" } },
   "to-order": { "text": "pedir", "notes": { "es": "e → i: pido, pide." } },
   "bill": { "text": "cuenta", "grammar": { "gender": "la" } },

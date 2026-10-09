@@ -7,9 +7,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import net.spross.app.AppModel
-import net.spross.app.audio.Pronouncer
 import net.spross.app.closeListening
 import net.spross.app.ui.languageName
+import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.listen.LISTENING_WATCHDOG_MS
 import net.spross.kern.listen.ListeningCandidate
@@ -18,18 +18,19 @@ import net.spross.kern.listen.ListeningIntent
 import net.spross.kern.listen.ListeningReduction
 import net.spross.kern.listen.ListeningRun
 import net.spross.kern.listen.ListeningRunState
+import net.spross.kern.listen.ListeningSaying
+import net.spross.kern.listen.ListeningSeam
 import net.spross.kern.listen.ListeningTurn
 import net.spross.kern.listen.listeningGainDb
+import net.spross.kern.listen.listeningSeam
 import net.spross.kern.listen.listeningTimerStepMs
-
-/** Which of a turn's three sayings is in the air. The meaning arrives with its reading. */
-enum class ListeningBeat { Target, Meaning, Echo }
+import net.spross.kern.listen.sayings
 
 /**
  * The platform half of a listening run: kern's reducer decides WHAT is said, this arms WHEN.
  *
- * A turn is three sayings and three gaps, and every beat after the first is armed off the
- * previous word ACTUALLY ENDING plus kern's number — never off a timer guessing how long a
+ * A turn is kern's three sayings and their gaps (`ListeningTurn.sayings`), and every beat
+ * after the first is armed off the previous word ACTUALLY ENDING plus kern's number — never off a timer guessing how long a
  * word lasts, which is the one thing that would make the mode drift on a slow voice or a long
  * phrase. Each beat takes a token; anything that arrives in between — a skip, a pause, the
  * lock screen, a focus loss — bumps the counter and the chain in flight simply stops firing.
@@ -51,8 +52,11 @@ class ListeningDriver(
     var state by mutableStateOf<ListeningRunState?>(null)
         private set
 
-    /** Which saying is in the air, so the screen can let the meaning arrive with its reading. */
-    var beat by mutableStateOf<ListeningBeat?>(null)
+    /**
+     * Whether this turn's meaning has been said yet — the card follows the SOUND rather than a
+     * timer of its own, so what is read and what is heard arrive together.
+     */
+    var revealed by mutableStateOf(false)
         private set
 
     /**
@@ -133,7 +137,7 @@ class ListeningDriver(
         if (state != null) dispatch(ListeningIntent.Close)
         generation++
         state = null
-        beat = null
+        revealed = false
         deadline = null
         timerTotalMs = 0
         pausedByFocus = false
@@ -183,11 +187,10 @@ class ListeningDriver(
         state = reduction.state
         for (effect in reduction.effects) {
             when (effect) {
-                is ListeningEffect.Play -> sound(effect.turn, ListeningBeat.Target)
-                ListeningEffect.Stop -> {
-                    model.pronouncer.stop()
-                    beat = null
-                }
+                is ListeningEffect.Play -> play(effect.turn)
+                // why: a pause keeps the card as it stood — resuming replays the turn from its
+                // first saying, which is what hides the meaning again.
+                ListeningEffect.Stop -> model.pronouncer.stop()
             }
         }
         // why: the card carries nothing that moves with a turn, so a turn is not a reason to
@@ -231,44 +234,38 @@ class ListeningDriver(
         return "${model.languageName(stamp.source)} – ${model.languageName(stamp.target)}"
     }
 
-    /** One saying, and the gap that follows it once the word has actually ended. */
-    private fun sound(turn: ListeningTurn, at: ListeningBeat) {
-        beat = at
-        val token = ++generation
-        val gap = when (at) {
-            ListeningBeat.Target -> turn.recallGapMs
-            ListeningBeat.Meaning -> turn.echoGapMs
-            ListeningBeat.Echo -> turn.turnGapMs
-        }
-        say(turn, at, token) {
-            handler.postDelayed({
-                if (token != generation) return@postDelayed
-                when (at) {
-                    ListeningBeat.Target -> sound(turn, ListeningBeat.Meaning)
-                    ListeningBeat.Meaning -> sound(turn, ListeningBeat.Echo)
-                    // why: the bedtime ends the run at the SEAM between turns, never at the
-                    // deadline itself — a word cut off mid-air is exactly the change loud
-                    // enough to wake someone that the ramp spends the whole bedtime avoiding.
-                    // The turn is already down at the floor by now, so the few seconds it
-                    // runs over are the quietest of the run.
-                    ListeningBeat.Echo ->
-                        if (expired()) model.closeListening() else dispatch(ListeningIntent.Advance)
-                }
-            }, gap)
-        }
+    private fun play(turn: ListeningTurn) {
+        revealed = false
+        walk(turn.sayings, 0)
     }
 
     /**
-     * Says one side of the turn and reports back when the word has ended.
-     *
-     * The article rides the TARGET sayings alone: the meaning is there to identify the word,
-     * and its grammar is not what is being taught (`docs/read-aloud.md`).
+     * Says one saying, waits kern's gap once its word has actually ended, and walks on; past
+     * the last one the turn is over and kern's seam decides between the next turn and the
+     * bedtime ending the run (`listeningSeam`).
      */
-    private fun say(turn: ListeningTurn, at: ListeningBeat, token: Int, onDone: () -> Unit) {
+    private fun walk(sayings: List<ListeningSaying>, index: Int) {
+        val token = ++generation
+        val saying = sayings.getOrNull(index)
+        if (saying == null) {
+            when (listeningSeam(remainingMs())) {
+                ListeningSeam.End -> model.closeListening()
+                ListeningSeam.Advance -> dispatch(ListeningIntent.Advance)
+            }
+            return
+        }
+        if (saying.revealed) revealed = true
+        say(saying, token) {
+            handler.postDelayed({
+                if (token == generation) walk(sayings, index + 1)
+            }, saying.gapMs)
+        }
+    }
+
+    /** Says one saying in its language and reports back, once, when the word has ended. */
+    private fun say(saying: ListeningSaying, token: Int, onDone: () -> Unit) {
         val stamp = model.box?.joinStamp
-        val meaning = at == ListeningBeat.Meaning
-        val lang = if (meaning) stamp?.source else stamp?.target
-        val form = if (meaning) turn.sourceForm else turn.targetForm
+        val lang = if (saying.inTarget) stamp?.target else stamp?.source
         var reported = false
         val finish = {
             if (!reported && token == generation) {
@@ -276,18 +273,17 @@ class ListeningDriver(
                 onDone()
             }
         }
-        // why: the article rides into the LOOKUP as well as into the voice — the target
-        // beat may have a recording that speaks it, the meaning beat never does.
-        val article = if (meaning) null else turn.spokenArticle
-        val pronunciation = lang?.let { model.catalog?.pronunciation(it, form, article) }
+        // why: the article rides into the LOOKUP as well as into the voice — a target saying
+        // may have a recording that speaks it.
+        val pronunciation = lang?.let { model.catalog?.pronunciation(it, saying.form, saying.article) }
         if (pronunciation == null) {
             finish()
             return
         }
         model.pronouncer.pronounce(
             pronunciation,
-            Pronouncer.Trigger.LISTENING,
-            article,
+            PronounceTrigger.Listening,
+            saying.article,
             fadeDb(),
             onFinish = finish,
         )
@@ -304,11 +300,4 @@ class ListeningDriver(
      */
     private fun fadeDb(): Double =
         remainingMs()?.let { listeningGainDb(it, timerTotalMs) } ?: 0.0
-
-    /**
-     * The bedtime has arrived: a deadline in the past. A run with none set never arrives.
-     * Asked at the seam between turns and nowhere else, so what it ends is a turn that
-     * finished rather than a word halfway out.
-     */
-    private fun expired(): Boolean = remainingMs()?.let { it <= 0 } == true
 }

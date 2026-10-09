@@ -9,19 +9,24 @@ private struct ReportedCard: Identifiable {
     var id: String { card.id }
 }
 
+/// Which card stands, and after how many answers — a turn begins when either moves.
+private struct CardDeal: Equatable {
+    let card: String?
+    let answered: Int
+}
 
 /// Full-screen session. The role a card is SHOWN in comes from Kern per
 /// card + log count (one schedule, alternating presentation):
 /// PRODUCE prompts the source side and grades typed target input
 /// ("Aufdecken" without typing falls back to self-grading);
 /// RECOGNIZE prompts one rotated target form and is reveal + self-grade
-/// only — never typed, bar the first exposure's write-it-out
-/// (SessionView+Copy.swift). Presented as a full-screen cover.
+/// only — never typed, bar the first exposure's write-it-out.
+/// Presented as a full-screen cover.
 ///
 /// What an answer is WORTH, which beat it earns and what a miss opens is kern's
 /// `TurnMachine`: every event becomes a `TurnIntent`, and what comes back is the
 /// whole next state plus the only side effects this screen takes.
-struct SessionView: View, LanguageNaming {
+struct SessionView: View, LanguageNaming, QuestionDriving {
     @Bindable var model: AppModel
 
     /// The turn under way, whole: where the answer stands, what the card
@@ -40,12 +45,8 @@ struct SessionView: View, LanguageNaming {
     @State var input = ""
     @State var copyInput = ""
     @State var autoAdvance: Task<Void, Never>?
-    /// The moments whose saying has fired, `<card id>|<answer?>`. The one-shot autoplay guard
-    /// (SessionView+Audio.swift) — stored here because a SwiftUI extension
-    /// cannot carry state of its own.
-    @State var spokenMoments: Set<String> = []
-    /// Says the answer after the chime, and is what the advance beat waits out.
-    @State var answerVoice = AnswerVoice()
+    /// Says the card's prompt and its answer, and is what the advance beat waits out.
+    @State var reader = Reader()
     /// The card whose report sheet is up, with the answer as it stood when the
     /// menu was tapped — the field itself has moved on by the time it presents.
     @State private var reporting: ReportedCard?
@@ -66,9 +67,9 @@ struct SessionView: View, LanguageNaming {
         Group {
             if model.sessionCompleted, let summary = model.sessionSummary {
                 SessionSummaryView(parts: summary.parts,
-                                      grownArea: summary.grownArea,
+                                      grownArea: summary.shownTree,
                                       garden: model.garden,
-                                      grownAreaLabel: summary.grownArea.map {
+                                      grownAreaLabel: summary.shownTree.map {
                                           "\(model.areaEmoji($0.after.area)) \(model.areaTitle($0.after.area))"
                                       } ?? "",
                                       headline: summary.headline,
@@ -97,18 +98,14 @@ struct SessionView: View, LanguageNaming {
         // clears the one-shot guard, focus lands before anything is played,
         // and only then does the new card speak. Autoplay placed ahead of the
         // reset would be killed by it on the same frame.
-        .onChange(of: currentCardID) { _, _ in
-            // why: safety net only — an answer already begins the next turn
-            // BEFORE the switch, so no card can render one frame revealed.
+        .onChange(of: dealt) { _, _ in
             resetCardState()
             // why: a field carried over from the previous card is not
             // re-mounted, so nothing else would re-assert focus for it.
             focusAnswerField()
-            autoplayPrompt()
+            readAloud()
         }
-        .onChange(of: turn?.settled ?? false) { was, now in
-            if !was, now { autoplayAnswer() }
-        }
+        .onChange(of: turn?.settled ?? false) { _, _ in readAloud() }
         .onAppear {
             // why: the card-change hook does not see the FIRST card, so the
             // first turn (and with it the recall clock) begins here.
@@ -118,12 +115,12 @@ struct SessionView: View, LanguageNaming {
             // reveal that carries the keyboard.
             Pronouncer.shared.warmUp()
             Sound.warmUp()
-            autoplayPrompt()
+            readAloud()
         }
         .onDisappear {
             autoAdvance?.cancel()
             focusRetry?.cancel()
-            answerVoice.hush()
+            reader.hush()
         }
         #if DEBUG
         // UI-test hooks: `-uitest-reveal 1` shows the first card revealed,
@@ -151,6 +148,10 @@ struct SessionView: View, LanguageNaming {
     // delayed word whose card has already gone.
     var currentCardID: String? { model.currentCardId }
 
+    /// The card on screen and the answers booked before it — what begins a turn.
+    /// The count tells a card dealt again straight after itself from the one it follows.
+    private var dealt: CardDeal { CardDeal(card: model.currentCardId, answered: model.sessionSegments.count) }
+
     /// VoiceOver and Switch Control both make a timed screen change hostile:
     /// it truncates the correctness announcement and moves the page under the
     /// user. Where either runs, an explicit "Weiter" replaces the beat.
@@ -171,42 +172,23 @@ struct SessionView: View, LanguageNaming {
 
     private func cardContent(_ card: Card) -> some View {
         let role = model.presentationRole(for: card.id)
-        return ScrollView {
-            VStack(spacing: Theme.spacing.md) {
-                // ZStack so outgoing and incoming card overlap during the flip
-                // instead of stacking; .id gives each card its own identity.
-                ZStack {
-                    VocabCardView(
-                        emoji: card.emoji,
-                        emojiCue: model.emojiCue(for: card),
-                        prompt: promptSide(card, role: role),
-                        answer: answerSide(card, role: role),
-                        note: CardDisplay.closingNote(of: card.target,
-                                                      alsoMeans: turn?.alsoMeans ?? [],
-                                                      locale: locale),
-                        revealed: cardRevealed,
-                        // why: the input, the button and the keyboard share this
-                        // screen with the card — the picture goes beside the words.
-                        arrangement: .beside
-                    )
-                    .id(card.id)
-                    .transition(reduceMotion ? .opacity : .cardFlip)
-                    // why: only once the answer is out — before it, the learner has
-                    // not seen the translation they would be reporting, and a menu
-                    // over the prompt is a menu over a question. A typo's hold counts:
-                    // its correction stands even though the card never expands.
-                    .contextMenu { if answerOut { cardMenu(card) } }
-                }
-                if model.coachActive,
-                   let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {
-                    Text(line).pauseLine()
-                }
-                controls(card, role: role)
+        return questionPage { question in
+            // why: the input, the button and the keyboard share this
+            // screen with the card — the picture goes beside the words.
+            QuestionCardView(question: question, surface: .review, voice: model.cardVoice,
+                             areaTitle: model.areaTitle)
+                // why: only once the answer is out — before it, the learner has
+                // not seen the translation they would be reporting, and a menu
+                // over the prompt is a menu over a question. A typo's hold counts:
+                // its correction stands even though the card never expands.
+                .contextMenu { if answerOut { cardMenu(card) } }
+        } area: { controls in
+            if model.coachActive,
+               let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {
+                Text(line).pauseLine()
             }
-            .padding(.bottom, Theme.spacing.lg)
+            answerArea(controls)
         }
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollDismissesKeyboard(.never)
         .sheet(item: $reporting) { reported in
             ReportIssueSheet(model: model, card: reported.card, learnerInput: reported.input)
                 .environment(\.locale, locale)
@@ -238,32 +220,8 @@ struct SessionView: View, LanguageNaming {
         Button("box.card.suspend", systemImage: "moon.zzz") {
             // why: the round moves on with it — being made to rate a word one has just
             // said should never be asked again is the exact busywork this removes.
-            // resetCardState first, so the incoming card never renders the outgoing
-            // card's reveal for a frame (same reason `commit` does).
-            resetCardState()
             withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .cardFlip) {
                 model.suspendCurrentCard()
-            }
-        }
-    }
-
-    /// A field is on screen only where there is something to type: produce
-    /// before its blank self-grade, and the write-out step. Recognize brings up
-    /// none of its own — iOS drops the keyboard for a hidden field anyway, so
-    /// pretending otherwise only cost reliable focus.
-    @ViewBuilder
-    private func controls(_ card: Card, role: PresentationRole) -> some View {
-        if let step = turn?.copyStep {
-            copyControls(step)
-        } else {
-            VStack(spacing: 0) {
-                if role == .produce, !produceFieldHidden {
-                    answerField(card)
-                }
-                switch role {
-                case .recognize: recognizeControls
-                case .produce: produceButtons(card)
-                }
             }
         }
     }
@@ -271,7 +229,7 @@ struct SessionView: View, LanguageNaming {
     /// What the self-grade row stands under: the first round's coaching while it is
     /// owed, else the standing question. One slot, one line — both paths to the row
     /// (recognize, and produce's blank reveal) read it.
-    // why: internal, not private — SessionView+Produce mounts the same row.
+    // why: internal, not private — SessionView+Answer captions the row with it.
     var gradeCaption: LocalizedStringKey {
         model.coachActive ? SessionCoach.gradeCaption : "session.rating.question"
     }
@@ -282,29 +240,7 @@ struct SessionView: View, LanguageNaming {
         AnswerFocus.claim($answerFocused, retry: &focusRetry)
     }
 
-    /// Comprehension check: reveal, then honest self-grade —
-    /// never typed, so no schedule is ever graded against a language it
-    /// wasn't learned with. The very first exposure takes this path too: the
-    /// word is prompted before it is taught, so a learner who already knows it
-    /// gets the moment to recall it (contract §3).
-    @ViewBuilder
-    private var recognizeControls: some View {
-        if revealed {
-            RatingButtonsView(onGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) },
-                              caption: gradeCaption)
-        } else {
-            Button {
-                dispatch(TurnIntent.Reveal.shared)
-            } label: {
-                Text("common.reveal")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(PrimaryButtonStyle())
-            .keyboardShortcut(.defaultAction)
-        }
-    }
-
-    // Produce controls live in SessionView+Produce.swift, the write-out step in
-    // SessionView+Copy.swift; the turn they both drive — dispatch, kern's
-    // effects, and what the screen reads off the result — is SessionView+Turn.swift.
+    // The controls under the card live in SessionView+Answer.swift; the turn
+    // they drive — dispatch, kern's effects, and what the screen reads off the
+    // result — is SessionView+Turn.swift.
 }

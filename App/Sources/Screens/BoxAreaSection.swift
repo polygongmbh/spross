@@ -53,7 +53,7 @@ struct BoxAreaSection: View {
                      subtitle: model.areaSubtitle(area),
                      progress: stats?.progress ?? .empty,
                      lockedPhrases: stats?.lockedPhrases ?? 0,
-                     hideProgress: fullyQueuedAndSettled(stats))
+                     hideProgress: model.shelfControl(area: area).hidesProgress)
             FoldChevron(open: expanded)
                 .foregroundStyle(Theme.colors.textSecondary)
                 .padding(.top, Theme.spacing.sm)
@@ -61,41 +61,24 @@ struct BoxAreaSection: View {
         .contentShape(Rectangle())
     }
 
-    /// Whether nothing is left to queue or unqueue AND every active card in the
-    /// area has settled — the one condition that swaps the green "All
-    /// queued" mark for a jade one and hides the chip's bar/counts, leaving
-    /// just the emoji/name/jade mark in the header (Part D).
-    private func fullyQueuedAndSettled(_ stats: AreaStatistics?) -> Bool {
-        model.queueableCount(area: area) == 0
-            && model.unqueueableCount(area: area) == 0
-            && (stats?.fullySettled ?? false)
-    }
-
+    /// The shelf's own control as kern names it (`ShelfControl`): queue, take the batch
+    /// back out, or a mark — jade once settled, green otherwise.
     /// Icon-only, so the header stays one line tall; the spoken label names the area.
-    ///
-    /// Once queuing is done, a shelf still holding words queued for a round offers to
-    /// take the whole batch back out (`AppModel.unqueueArea`) — the area is the unit
-    /// this control acts on, same as queuing itself. Below three queued words the
-    /// bulk control steps aside for the per-word one instead (`BoxCardRow.standing`),
-    /// and the shelf wears the green "queued" mark; the jade mark is reserved for
-    /// nothing queued at all (`fullyQueuedAndSettled`).
     @ViewBuilder
     private var queueControl: some View {
-        let count = model.queueableCount(area: area)
-        let queued = model.unqueueableCount(area: area)
-        if count > 0 {
+        let control = model.shelfControl(area: area)
+        if control == .queue {
             QueueButton(direction: .in, label: "a11y.box.shelf.queue \(model.areaTitle(area))") {
                 model.queueArea(area)
             }
-        } else if queued > 2 {
+        } else if control == .unqueue {
             QueueButton(direction: .out, label: "a11y.box.shelf.unqueue \(model.areaTitle(area))") {
                 model.unqueueArea(area)
             }
         } else {
-            let fullySettled = queued == 0 && (model.areaStats(area)?.fullySettled ?? false)
             Image(systemName: "checkmark.circle.fill")
                 .font(Theme.typography.headline)
-                .foregroundStyle(fullySettled ? Theme.colors.settled : Theme.colors.success)
+                .foregroundStyle(control == .settled ? Theme.colors.settled : Theme.colors.success)
                 .frame(width: 40, height: 40)
                 .accessibilityHidden(true) // why: a minor status mark; the bar already says the area is done
         }

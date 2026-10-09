@@ -5,8 +5,12 @@
   "supermarket": { "text": "supermercado", "grammar": { "gender": "el" } },
   "mall": { "text": "centro comercial", "grammar": { "gender": "el" } },
   "checkout": { "text": "caja", "grammar": { "gender": "la" } },
-  "shop-assistant": { "text": "dependiente", "teaches": ["vendedor"], "grammar": { "gender": "el" } },
-  "shop-assistant-f": { "text": "dependienta", "teaches": ["vendedora"], "grammar": { "gender": "la" } },
+  "shop-assistant": {
+   "text": "dependiente",
+   "teaches": ["vendedor"],
+   "forms": { "f": ["la dependienta", "la vendedora"] },
+   "grammar": { "gender": "el" }
+  },
   "shopping-cart": { "text": "carrito", "grammar": { "gender": "el" }, "accepts": ["carrito de la compra"] },
   "offer": { "text": "oferta", "grammar": { "gender": "la" } },
   "size": {
@@ -20,7 +24,7 @@
    "notes": { "es": "hacer la compra es la comida; ir de compras es mirar tiendas." }
   },
   "store": { "text": "tienda", "grammar": { "gender": "la" } },
-  "open": { "text": "abierto", "accepts": ["abierta"] },
+  "open": { "text": "abierto", "forms": { "f": "abierta" } },
   "the-store-is-still-open": { "text": "La tienda todavía está abierta.", "orders": ["Todavía está abierta la tienda."] },
   "do-you-have-this-in-my-size": { "text": "¿Lo tiene en mi talla?", "accepts": ["¿Lo tienes en mi talla?"] }
  }

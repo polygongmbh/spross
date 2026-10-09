@@ -11,7 +11,8 @@ struct SessionSummaryView: View {
     /// The round's answers spelled out (`RoundSummary.parts`).
     var parts: [TallyPart] = []
     /// The area this round worked hardest, as it stood before the round and as
-    /// it stands now. The round just moved it, so its tree is the one thing on
+    /// it stands now, where the summary shows its tree (`RoundSummary.shownTree`).
+    /// The round just moved it, so its tree is the one thing on
     /// this screen about THIS learner's box rather than about having finished.
     var grownArea: TreeTransition?
     /// The garden its tree grows in (`AppModel.garden`).
@@ -56,7 +57,7 @@ struct SessionSummaryView: View {
         parts.map { Self.partText($0, alone: parts.count == 1) }.joined()
     }
 
-    private var showsTree: Bool { grownArea.map { !$0.after.isBare } ?? false }
+    private var showsTree: Bool { grownArea != nil }
 
     private static func partText(_ part: TallyPart, alone: Bool) -> Text {
         let count = Int(part.count).formatted()
@@ -78,21 +79,12 @@ struct SessionSummaryView: View {
         SummaryScaffold(title: Text(showsTree ? headlineKey : "session.done.title"),
                         tally: tallyText,
                         hint: restSuggested ? Text("session.done.restHint") : nil,
+                        // why: the area is LABELED under its tree rather than named in the
+                        // title — the area did not grow, what the learner can say did.
+                        heroLabel: showsTree ? Text(verbatim: grownAreaLabel) : nil,
                         onDone: onDone, onTalk: onTalk,
                         onPractice: canPracticeMore ? onPractice : nil) { ceiling in
-            if showsTree {
-                // why: the area is LABELED under its tree rather than named in the
-                // title — the area did not grow, what the learner can say did.
-                VStack(spacing: Theme.spacing.sm) {
-                    grownAreaHero(ceiling: ceiling)
-                    Text(verbatim: grownAreaLabel)
-                        .font(.system(.headline, design: .rounded))
-                        .foregroundStyle(Theme.colors.textSecondary)
-                        .multilineTextAlignment(.center)
-                }
-            } else {
-                burstHero
-            }
+            if showsTree { grownAreaHero(ceiling: ceiling) } else { burstHero }
         }
         .overlay(ConfettiView(run: celebration).ignoresSafeArea())
         .contentShape(Rectangle())
@@ -124,7 +116,9 @@ struct SessionSummaryView: View {
                             progress: burst || reduceMotion ? 1 : 0)
                 .frame(height: AreaTree.shared.heroHeight(tree: grownArea.after, ceiling: ceiling))
                 .animation(reduceMotion ? nil
-                            : .spring(response: 1.5, dampingFraction: 0.85).delay(0.25),
+                            : .spring(response: TreeRise.companion.SPRING_RESPONSE,
+                                      dampingFraction: TreeRise.companion.SPRING_DAMPING)
+                                .delay(Double(TreeRise.companion.DELAY_MILLIS) / 1000),
                            value: burst)
         }
     }
@@ -139,16 +133,15 @@ struct SessionSummaryView: View {
         // inside `LocalizedStringKey("…\(n)")` takes the string-INTERPOLATION
         // initializer, which makes the key "…%lld" with an argument — it
         // compiles, and renders the raw key at runtime.
-        let pick = Int(headline.pick)
+        // Three lines per family in the string table; which one is kern's (`GrowthHeadline.line`).
+        let line = Int(headline.line(count: 3))
         let key: String
         switch headline.claim {
         case .unclaimed: key = "session.done.growth.grew"
         case .opened: key = "session.done.growth.opened"
-        case .settled: key = "session.done.growth.blooming.\(pick % 3)"
-        case .met: key = "session.done.growth.sown.\(pick % 3)"
-        // Line 0 says the words grew; a round that added none claims only depth.
-        case .held: key = "session.done.growth.grown.\(1 + pick % 2)"
-        case .grew: key = "session.done.growth.grown.\(pick % 3)"
+        case .settled: key = "session.done.growth.blooming.\(line)"
+        case .met: key = "session.done.growth.sown.\(line)"
+        case .held, .grew: key = "session.done.growth.grown.\(line)"
         }
         return LocalizedStringKey(key)
     }

@@ -26,6 +26,9 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
+import net.spross.kern.design.ChoiceTile
+import net.spross.kern.design.ChoiceVerdict
+import net.spross.kern.design.PressKind
 
 /**
  * The 2×2 a multiple-choice question is answered off, wherever one is asked:
@@ -83,20 +86,19 @@ private fun Tile(
     modifier: Modifier,
     onClick: () -> Unit,
 ) {
-    val answered = chosen != null
-    val isAnswer = option == answer
-    val isChosen = option == chosen
+    // The tile's state and what it announces are kern's ([ChoiceTile]).
+    val state = ChoiceTile.of(option, answer, chosen)
     // why: correctness is never color alone — the mark carries it on screen and the state
     // description carries it to TalkBack.
-    val mark = when {
-        answered && isAnswer -> "✓"
-        answered && isChosen -> "✗"
+    val mark = when (state) {
+        ChoiceTile.Answer -> "✓"
+        ChoiceTile.WrongPick -> "✗"
         else -> null
     }
     val palette = Theme.colors
-    val target = when {
-        answered && isAnswer -> palette.wash(palette.success)
-        answered && isChosen -> palette.wash(palette.wrong)
+    val target = when (state) {
+        ChoiceTile.Answer -> palette.wash(palette.success)
+        ChoiceTile.WrongPick -> palette.wash(palette.wrong)
         // A tile is a recessed slot, not a card: it takes the chip fill, so an unanswered
         // one still reads as a tile against the paper behind it.
         else -> palette.surfaceTint
@@ -105,17 +107,20 @@ private fun Tile(
     val fill by animateColorAsState(target, turnTween(), label = "tileFill")
     // why: the mark fades in rather than snapping alongside the fill.
     val markAlpha by animateFloatAsState(if (mark != null) 1f else 0f, turnTween(), label = "tileMark")
-    val markColor = if (isAnswer) palette.success else palette.wrong
+    val markColor = if (state == ChoiceTile.Answer) palette.success else palette.wrong
     OutlinedButton(
         onClick = onClick,
-        enabled = !answered,
+        enabled = state == ChoiceTile.Open,
         shape = MaterialTheme.shapes.medium,
         contentPadding = PaddingValues(0.dp),
         modifier = modifier.heightIn(min = Theme.reserve.tile).semantics {
             described?.let { contentDescription = it }
-            if (answered && isAnswer) stateDescription = chrome.a11yVerdictCorrect
-            if (answered && isChosen && !isAnswer) stateDescription = chrome.a11yVerdictWrong
-        }.pressSpring(),
+            when (state.verdict) {
+                ChoiceVerdict.Correct -> stateDescription = chrome.a11yVerdictCorrect
+                ChoiceVerdict.Wrong -> stateDescription = chrome.a11yVerdictWrong
+                null -> {}
+            }
+        }.pressSpring(PressKind.Chip),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = fill,
             disabledContainerColor = fill,

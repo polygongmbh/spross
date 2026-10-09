@@ -20,7 +20,7 @@
   "to-cough": { "text": "tousser" },
   "sick": { "text": "malade" },
   "illness": { "text": "maladie", "grammar": { "gender": "la" } },
-  "tired": { "text": "fatigué", "accepts": ["fatiguée"] },
+  "tired": { "text": "fatigué", "forms": { "f": "fatiguée" } },
   "weak": { "text": "faible" },
   "dizziness": {
    "text": "vertige",
@@ -57,7 +57,7 @@
   "the-wound-hurts": { "text": "La blessure fait mal.", "accepts": ["Ma blessure me fait mal."] },
   "i-hurt-myself-yesterday": {
    "text": "Je me suis blessé hier.",
-   "accepts": ["Je me suis blessée hier."],
+   "forms": { "f": "Je me suis blessée hier." },
    "orders": ["Hier, je me suis blessé."]
   }
  }

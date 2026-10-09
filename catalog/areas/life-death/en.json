@@ -2,7 +2,7 @@
  "title": "Life & Death",
  "subtitle": "What begins, and what ends.",
  "words": {
-  "life": { "text": "life", "grammar": { "plural": "lives" } },
+  "life": { "text": "life", "forms": { "pl": "lives" } },
   "to-be-alive": { "text": "to be alive" },
   "alive": { "text": "alive" },
   "death": { "text": "death" },
@@ -15,7 +15,7 @@
   "dead": { "text": "dead" },
   "funeral": { "text": "funeral" },
   "grave": { "text": "grave" },
-  "cemetery": { "text": "cemetery", "accepts": ["graveyard"], "grammar": { "plural": "cemeteries" } },
+  "cemetery": { "text": "cemetery", "accepts": ["graveyard"], "forms": { "pl": "cemeteries" } },
   "to-bury": { "text": "to bury" },
   "my-condolences": { "text": "My deepest condolences.", "accepts": ["My condolences."] },
   "where-did-you-grow-up": { "text": "Where did you grow up?" },

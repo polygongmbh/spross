@@ -23,7 +23,7 @@
   "everyone": { "text": "chaque personne" },
   "no-one": { "text": "aucune personne" },
   "anyone": { "text": "qui que ce soit" },
-  "our": { "text": "notre", "accepts": ["nos"] },
-  "your-plural": { "text": "votre", "accepts": ["vos"] }
+  "our": { "text": "notre", "forms": { "pl": "nos" } },
+  "your-plural": { "text": "votre", "forms": { "pl": "vos" } }
  }
 }
