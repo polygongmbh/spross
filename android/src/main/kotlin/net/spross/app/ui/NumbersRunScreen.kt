@@ -5,6 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.focus.FocusRequester
@@ -93,17 +95,33 @@ private fun sprosseText(state: NumbersRunState, chrome: Chrome): String? {
     return line.emoji?.let { "$it $label" } ?: label
 }
 
-/** A timed run's seconds left, earned ones included, sending kern's intent at zero; null when untimed. */
+/**
+ * A timed run's seconds left, earned ones included and stopped stretches excluded,
+ * sending kern's intent at zero; null when untimed.
+ */
 @Composable
 private fun timedClock(flow: NumbersFlow): Int? {
     if (!flow.state.timed) return null
     var left by remember { mutableIntStateOf(TimedRun.SECONDS) }
+    var stoppedAt by remember { mutableStateOf<Long?>(null) }
+    var stoppedFor by remember { mutableLongStateOf(0L) }
+    val stopped = flow.state.clockStopped
+    // why: a shown miss holds the clock; the stretch it stood still is booked when it runs again.
+    LaunchedEffect(stopped) {
+        val now = SystemClock.elapsedRealtime()
+        if (stopped) {
+            stoppedAt = now
+        } else {
+            stoppedAt?.let { stoppedFor += now - it }
+            stoppedAt = null
+        }
+    }
     LaunchedEffect(flow) {
         val start = SystemClock.elapsedRealtime()
         while (true) {
-            // why: read each tick, so a second an answer earns pushes the end out at once.
-            val end = start + (TimedRun.SECONDS + flow.state.earnedSeconds) * 1_000L
-            val remaining = end - SystemClock.elapsedRealtime()
+            // why: read each tick, so an earned second or a stopped stretch moves the end at once.
+            val running = (stoppedAt ?: SystemClock.elapsedRealtime()) - start - stoppedFor
+            val remaining = TimedRun.remainingMillis(running, flow.state.earnedSeconds)
             left = TimedRun.secondsLeft(remaining)
             if (remaining <= 0) break
             delay(remaining % 1_000 + 1)

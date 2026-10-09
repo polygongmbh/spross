@@ -53,6 +53,10 @@ struct NumbersRunView: View, LanguageNaming {
     @State var focusRetry: Task<Void, Never>?
     /// When a timed run's clock started; nil otherwise and until on screen.
     @State var clockStart: Date?
+    /// When kern stopped the clock, while it stands still.
+    @State var clockStoppedAt: Date?
+    /// How long the clock has stood still in all.
+    @State var clockStoppedFor: TimeInterval = 0
     @FocusState var answerFocused: Bool
     @Environment(\.accessibilityReduceMotion) var reduceMotion
     @Environment(\.locale) var locale
@@ -107,6 +111,7 @@ struct NumbersRunView: View, LanguageNaming {
         }
         .onAppear { focusAnswerField() }
         .task { await runClock() }
+        .onChange(of: run.clockStopped) { _, stopped in clockStopChanged(stopped) }
         .onChange(of: shownQuestion) { _, shown in if shown != nil { focusAnswerField() } }
         .onDisappear {
             autoAdvance?.cancel()

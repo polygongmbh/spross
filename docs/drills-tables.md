@@ -24,7 +24,8 @@ Neighbors: every drill `drills.md`, readings `number-forms.md`, `clock-registers
   and each clean answer scores the Sprosse it was given on.
   The ramp is the whole of the scoring — a miss drops a Sprosse and everything after it is worth less,
   and an almost scores nothing yet still spends its seconds.
-  Its score line carries the clock and the score in the answer streak's place.
+  Its score line carries the clock and the score in the answer streak's place,
+  and the clock stands still while a miss shows its answer, so the learner can read what they got wrong.
   Its record is the score, under the run's own key,
   and it offers neither the look-up nor the early "Fertig": against a clock, one is a shortcut and the other is the clock's job.
   A screen reader never sees its switch, since a run ending under the learner is the timed change `../kern/docs/turns.md` keeps from one.
