@@ -1,64 +1,23 @@
 # Backlog — session-discovered, out-of-scope issues
-Out-of-scope issues found mid-session, pruned when fixed.
+Out-of-scope issues, one pointered bullet each, filed by who moves them next: the owner, a decision (ends in its question), ready for any session, or revisit when it grows.
 Neighbors: catalog content `../catalog/backlog.md`.
 
-One item per bullet, with a file or context pointer, filed under the section it belongs to —
-as short as that allows, longer only to carry evidence or reasoning a fixer would otherwise have to redo.
-Within a section, ready work comes first, then the items that end in a question for the owner,
-then open design work, then what waits on someone else, grouped by who that is.
-Parked work is not an issue: its own doc says it is parked.
+## Needs the owner
 
-## Engine & scheduling
-
-- Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch, but revisit the cap
-  if the active box outgrows it (`../kern/docs/snapshots.md`).
-- Real hardware has to time the assembled dates accepted set, an uncapped cross-product graded
-  on every keystroke (worst de Sprosse 6 ≈ 128 five-word forms per `evaluate`, typical ~16),
-  on the oldest supported phone before it is trusted free (`DateDrillTasks.fill`;
-  `NumberReadingIndex.INDEXED_CARDINALS` states the bound precedent).
-
-## App & UX
-
-- Android's mute holds back the letter drill's autoplay (its "Sound is off" row) where no mute reaches it on iOS (`docs/read-aloud.md` § the letter drill is the one autoplay no mute reaches).
-- The Android round summary still wears the run's progress bar and speaker at the top, where iOS shows only a close button (`android/.../ui/SessionSummary.kt`).
-- A round that counts nothing and grows no tree reads "All done!" over "All done" on its summary (`SessionSummaryView.swift`, `ui/SessionSummary.kt`).
-- A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
-  duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
-  screens, a second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`
-  and a panel cut by hand at 15 sites — and still stands at 46 groups after six clusters shipped.
-- Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
-  fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).
-- Compound/morpheme-boundary training for a compounding language (marking the component seams
-  inside a German compound, the way Leichte Sprache's mediopunkt does) is a distinct unbuilt
-  drill needing curated component-boundary data, and syllable data would not deliver it since a
-  syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries
-  "Feier") — considered for word scramble (`drills-words.md`) and left out.
-- The watch rotates tagged `forms` into its recognize prompt but reveals the bare source text and its tiles ignore the tag — `WatchEntryDto` should carry kern's `counterpart` marker (`WatchSnapshotBuilder.kt`).
-- The watch speed mark (⚡) is visual only: VoiceOver hears right or wrong but not how quick (`WatchQuizView.verdict`).
-
-## Platform reach
-
-- `compileSdk` sits at 36 and holds androidx back — lifecycle 2.11 refuses to resolve below
-  37 (`checkDebugAarMetadata`) and the next Compose BOM will follow — so the bump is one edit
-  to `gradle/libs.versions.toml` once the android-37 platform is installed, plus a separate
-  re-check of `targetSdk`, since compiling against 37 does not opt the app into its runtime behavior.
-- Audio ships un-thinned: both installs copy all of `catalog/audio/` (129 MB, 13–25 MB per
-  language — `project.yml:35` folder reference, `android/build.gradle.kts:131` asset sync with
-  mp3/wav uncompressed), so a Swahili learner carries ~116 MB they can never hear, and
-  per-language delivery (on-demand resources / Play asset packs) is the fix, measured per
-  platform first.
+- Reconcile the `website` branch (`../app-website` worktree, `docs/plans/website.md`) with `main` and decide what of it ships.
 - No release has carried an IPA yet: the `ios` job needs the App Store Connect secrets
   (`docs/distribution.md` § Secrets) present to get past `App Store Connect API key from
   secret`, and iPhones are served by `scripts/deploy-devices.sh` until a run has published one.
 - A live spross.net gates the iPhone install link: GitHub renders the release notes'
   `itms-services://` URL as code, not a tappable link (`.github/workflows/release.yml:229`),
   and a `web/install.html` taking `?v=` would make it a button (`docs/plans/website.md`).
-- The repo grants nobody anything — there is no `LICENSE` file, while `docs/sync.md` plans a
-  paid service around a free and open app; the options and what constrains them are
-  `docs/source-license.md`, and the decision is the owner's.
-
-## Verification gaps
-
+- CC BY-SA §2(a)(5)(B) vs FairPlay needs a legal read before the FIRST submission
+  (`docs/audio-licensing.md` § 6 item 1: 2094 of 3597 files, mitigation on record); items 2–3
+  there are the es accent and Azure S0.
+- Real hardware has to time the assembled dates accepted set, an uncapped cross-product graded
+  on every keystroke (worst de Sprosse 6 ≈ 128 five-word forms per `evaluate`, typical ~16),
+  on the oldest supported phone before it is trusted free (`DateDrillTasks.fill`;
+  `NumberReadingIndex.INDEXED_CARDINALS` states the bound precedent).
 - Real hardware still has to answer three things about the Android player
   (`android/.../audio/Pronouncer.kt`): how the boost and lead skip sound, one letter-drill run
   end to end, and whether `MODIFY_AUDIO_SETTINGS` is needed for a session-scoped effect.
@@ -68,8 +27,58 @@ Parked work is not an issue: its own doc says it is parked.
   walk focus onto the session top-bar mute toggle and flip it, probably an emulator artifact
   (`android/.../ui/SessionScreen.kt` top bar).
 
-## Compliance
+## Needs a decision
 
-- CC BY-SA §2(a)(5)(B) vs FairPlay needs a legal read before the FIRST submission
-  (`docs/audio-licensing.md` § 6 item 1: 2094 of 3597 files, mitigation on record); items 2–3
-  there are the es accent and Azure S0.
+- A missed letter-name tile question opens its card although the tiles already mark the answer (`DrillRunProgress.showsAnswer`) — keep it closed there, as iOS once did?
+- The repo grants nobody anything — there is no `LICENSE` file, while `docs/sync.md` plans a
+  paid service around a free and open app; the options and what constrains them are
+  `docs/source-license.md`, and the decision is the owner's.
+- Watch practice laps repeat one order within each part (unasked, misses, right) until the next snapshot, since `fb7668f4` dropped the lap jitter — should words of similar standing reorder again, and does kern or Swift decide it? (`WatchModel.practiceLap`)
+- `tools/FaceGen --seed` reads the retired `vocab-*.json` and a `../../content` that no longer exists — port it to the catalog join or delete it (`docs/facegen.md`).
+- Audio ships un-thinned: both installs copy all of `catalog/audio/` (129 MB, 13–25 MB per
+  language — `project.yml:35` folder reference, `android/build.gradle.kts:131` asset sync with
+  mp3/wav uncompressed), so a Swahili learner carries ~116 MB they can never hear, and
+  per-language delivery (on-demand resources / Play asset packs) is the fix, measured per
+  platform first.
+- Compound/morpheme-boundary training for a compounding language (marking the component seams
+  inside a German compound, the way Leichte Sprache's mediopunkt does) is a distinct unbuilt
+  drill needing curated component-boundary data, and syllable data would not deliver it since a
+  syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries
+  "Feier") — considered for word scramble (`drills-words.md`) and left out.
+
+## Ready
+
+### Engine
+
+- `VerbSlugRekey` is marked "delete at 7.0+" and still runs on every load at 8.3.0 — delete it with its test and its `snapshots.md` paragraph (`kern/.../store/VerbSlugRekey.kt`).
+- Only tests read `AreaStatistics.notIntroduced`, `CatalogArea.conceptsBySlug`, `WordScrambleMasking.fullyScrambled` and `Catalog.dateNames` (the last documented as API in `kern/docs/catalog.md`) — drop each with its test.
+- `CountryDrillRun` and `DateDrillRun` reduce near line for line (~200 lines), and `CountryDrill`/`DateDrill` repeat `answerLanguage`, `promptLanguage`, `winsToAdvance` and `fastUnlocked`; one shared reducer changes the ObjC header, so both apps move with it.
+- `TypedDrillVerdicts` is pinned only through `CountryDrillRunTest`; a direct test would let the country run's verdict tests shrink to wiring.
+- Both phones mint rules kern should name: an own word's id side and trimming (`ui/BoxLogic.kt` `OwnWordDraft.word`), the shelf's "fully queued and settled" (`BoxAreaSection.swift` `fullyQueuedAndSettled`, `ui/BoxSections.kt:120`) and the backup file name `Spross-<lang>-<day>` (`BackupRow.swift` `BackupFile.taken`, `ui/BackupSetting.kt:80`).
+- `Presentation.kt` KDoc on `emojiCue` and `producePrompt` justifies against the past ("came to disagree once already", "bit-exact v1 contract").
+
+### Apps & tooling
+
+- The watch speed mark (⚡) is visual only: VoiceOver hears right or wrong but not how quick (`WatchQuizView.verdict`).
+- The iOS drill run (`DrillRunView`) still wraps its scaffold by hand, because its run state arrives through `Face.snapshot` rather than kern's run progress — exposing that would let `runScreen` reach it.
+- The widget kind `"SprossWordWidget"` is a literal at the iOS reload sites and in `Widgets/Sources/WordWidget.swift` — one constant in `Shared/Sources`.
+- `HomeStandingTest`, `CardDisplayTest` and `UnlockPriceTest` assert literal German/English copy and break on a copy edit (`android/src/test`).
+- Still over ~300 lines after the 2026-10 sweep: Android `AppModel.kt` (452, wants holder classes for its private setters), `RunScaffold.kt`, `Pronouncer.kt`, `ListeningDriver.kt`, `BoxSections.kt`, `ListeningService.kt`; iOS `AppModel.swift` (398), `AppModel+Listening.swift`, `SessionView.swift`; kern `AnswerNormalizer.kt` (375), `NumbersRun.kt`, `SessionRun.kt`, `Catalog.kt`.
+- A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
+  duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
+  screens, a second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`
+  and a panel cut by hand at 15 sites — and still stands at 46 groups after six clusters shipped.
+- `kern/docs` `grading.md`, `catalog.md`, `audio.md`, `reports.md`, the head of `snapshots.md` and the drill-runs section of `turns.md` still hard-wrap at a column instead of semantic linebreaks.
+- `compileSdk` sits at 36 and holds androidx back — lifecycle 2.11 refuses to resolve below
+  37 (`checkDebugAarMetadata`) and the next Compose BOM will follow — so the bump is one edit
+  to `gradle/libs.versions.toml` once the android-37 platform is installed, plus a separate
+  re-check of `targetSdk`, since compiling against 37 does not opt the app into its runtime behavior.
+
+- Pronouncer parity: a held or unsayable word still calls `onFinish` on Android but not on iOS, where the reader polls to a ceiling; one end-of-reading signal would let kern rule it (`App/Sources/Audio/Pronouncer.swift`, `android/.../audio/Pronouncer.kt`).
+
+## Revisit when it grows
+
+- Watch snapshot 60-entry cap: due-first ranking keeps due cards on-watch, but revisit the cap
+  if the active box outgrows it (`../kern/docs/snapshots.md`).
+- Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
+  fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).

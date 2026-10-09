@@ -1,31 +1,14 @@
 # Catalog backlog
-Open catalog work: content, forms, audio and questions for a native speaker.
+Open catalog work, one pointered bullet each, filed by who moves it next: the owner, a decision (ends in its question), ready for any session, or a native speaker; never a gap a script lists (`audio-coverage.py --missing`, `audio_voices.is_squashed`).
 Neighbors: app and code issues `../docs/backlog.md`.
 
-Catalog content, its forms, its audio and the per-language questions that want a speaker are filed here,
-one item per bullet with a file or context pointer — as short as that allows,
-longer only to carry evidence or reasoning an author would otherwise have to redo — and pruned when fixed.
-Ready work comes first, then the items that end in a question for the owner, then what waits on a native speaker.
+## Needs the owner
 
-- sw: 241 recordings by the main speaker are still limited hot at the source with no other take on Commons; only a re-recording fixes them (`docs/2026-09-30-sw-hot-recording-swaps.md`).
-- An invariability claim proves nothing when every example is N-class, where the concord is
-  phonologically zero: `tupu` and `kavu` both read as invariable that way and both agree
-  (`kiti kitupu`, `mkate mkavu`), so both are now dashed stems. Any future note asserting a
-  Swahili word does not change needs examples from two classes at least — and mostly should
-  not exist, since "this word does not change" is not something a learner would say differently for.
-- sw `verbs/to-send` lost the `kutuma`/`kupeleka` contrast when its German note was cut, and it
-  stays lost: `kupeleka` is `verbs/to-deliver`'s own card, so naming it here would break "a note
-  explains its own word and no other". The pair wants a contrast card if it wants anything.
-- `scripts/notes-vocabulary.py` still flags ~170 notes in areas 13+ on a later word and ~50 on a grammar term;
-  that is the floor after a conservative pass (own-word forms, the contrast word a note exists for, transparent `plural`), so only a new flag wants work.
-- `rufen` → sw `kuita` has no card: en/es/fr/it say one word for calling and phoning (to call,
-  llamar, appeler, chiamare — all already `desk/to-call`), so a second card would author one
-  meaning twice (`CatalogLintTest.noConceptPairCollidesInTwoLanguages`); `desk/to-call` would
-  have to be re-cut to phone/telefonear/téléphoner/telefonare first.
-- `verbs/to-deliver` liefern ↔ sw `kupeleka` mirrors hinbringen (take somebody or something
-  somewhere), not liefern; an honest re-cut touches all eight languages.
-- uk `the-exam-is-already-corrected` is built on `перевірити` (check) while the `to-correct`
-  component it unlocks from is `виправляти` (fix errors) — phrase and gate name different verbs.
+- Download Mozilla Common Voice Swahili (CC0, only from Mozilla Data Collective since 2025-10, behind an account and its terms) and unpack it under `../data/reference/`:
+  the one source left for sw phrases and for re-voicing the squashed takes.
+
+## Needs a decision
+
 - 58/212 phrases (27%) carry no `components`: 20 are greetings, component-free by design
   (`catalog/README.md:127`), 9 gained theirs in 2db13420, and ~29 (`im-tired`, `wash-your-hands`,
   `i-love-you`, …) have no same-area word to gate on — author the missing word in eight languages,
@@ -36,6 +19,77 @@ Ready work comes first, then the items that end in a question for the owner, the
   unfixable at runtime, so Spanish meets the morning only as `de la mañana` in
   `time/nine-am-sharp` — accept the gap, allow one form on two cards in one area (a lint
   change), or move one of each pair to another area?
+- `food` holds 47 concepts and `desk` and `admin` 41 each, all past the ~40 line
+  (`catalog/areas/README.md` § which area a concept lives in), and `food`'s seam is raw
+  ingredients against meals and drinks — name the new shelf and its members, or accept the
+  three past the line?
+- Italian dates: the dayMonth reveal teaches `il otto`/`il undici marzo` on 2 of 31 days
+  because a static pattern cannot elide, though the elided `l'{day} {month}` already grades as
+  a variant (`catalog/dates/it.json`) — elision-aware date patterns in the engine, or wait for
+  an Italian native's ruling on `il otto` vs `l'otto` and the weekday article
+  (`docs/date-readings.md:88`)?
+- `CountryAtlas.notes` parses and reaches no screen, the shape the dates calendar just
+  answered with a calendar-level `dateNotes` band (`catalog/dates/README.md`) — render the
+  atlas' on its reference row, drop the field, or give the atlas page its own prose band?
+- `life-death` ships 5 concepts and `people/to-be-born` is the obvious sixth, but moving it
+  thins `people`'s family block — does this stay a watch note, or go until a seventh candidate
+  (`funeral`? `grave`? `to-grow-up`?) turns up?
+- `rufen` → sw `kuita` has no card: en/es/fr/it say one word for calling and phoning (to call,
+  llamar, appeler, chiamare — all already `desk/to-call`), so a second card would author one
+  meaning twice (`CatalogLintTest.noConceptPairCollidesInTwoLanguages`); `desk/to-call` would
+  have to be re-cut to phone/telefonear/téléphoner/telefonare first.
+- `verbs/to-deliver` liefern ↔ sw `kupeleka` mirrors hinbringen (take somebody or something
+  somewhere), not liefern; an honest re-cut touches all eight languages.
+- sw `verbs/to-send` lost the `kutuma`/`kupeleka` contrast when its German note was cut, and it
+  stays lost: `kupeleka` is `verbs/to-deliver`'s own card, so naming it here would break "a note
+  explains its own word and no other". The pair wants a contrast card if it wants anything.
+- The catalog-wide gap sweep reaches only plain digraphs, so two gaps stay one word deep:
+  Ukrainian gains nothing (33 of its 35 rows are `letter` rows asked by spoken name, and it
+  authors no digraph to sweep), and every position-bound row (de `ch`×3, `s`×2, the
+  final-devoicing trio, `er`; es `c`, `g`, `gu`, `r`, `d`) rides its one authored example
+  because `context` is prose keyed by the reader rather than a rule the engine can test — a
+  machine-readable environment field would open both.
+- Ukrainian stress is marked on card texts (`areas/README.md`) but not yet on the alphabet sheet's
+  example words, the phrase frames, the clock readings or the calendar and country names.
+- Ordinal phrase frames ("Ich bin auf dem vierten Platz") wait on a numeral-side agreement
+  field in every language, since the frame must decline the NUMERAL while the general device
+  runs the other way (`PhraseTemplate.CountForms` inflects the noun from the numeral) and
+  `swahiliNounClass` prefixes a cardinal stem where an ordinal's `-a` concord belongs to the
+  frame — ordinals are drilled bare meanwhile (`docs/number-forms.md`), and Swahili cannot
+  drill them at all.
+- Swahili noun class is a frame-only fact (`swahiliNounClass` names it per phrase frame) while
+  the nouns carry no class the way de/fr/es nouns carry `grammar.gender`; a catalog
+  `"grammar": { "class": "KI_VI" }` on `catalog/areas/*/sw.json` would let an author state it
+  once for the frames, the card itself and a future concord drill.
+
+## Ready
+
+- sw class agreement is only partly tagged: the `-zuri`-style stems still list their agreement forms as untagged `teaches`, and `wa`/`ya` agreements (`wa kutosha`, `wa pili`) stay `accepts` — tag them with their class (`forms`, `catalog/README.md`) for future agreement-built phrases.
+- uk `the-exam-is-already-corrected` is built on `перевірити` (check) while the `to-correct`
+  component it unlocks from is `виправляти` (fix errors) — phrase and gate name different verbs.
+- uk leaves the `meeting-is-at` clock frame unrealized until a `зустріч` card exists for `PhraseVocabAuditTests`.
+- Alphabet hints and contexts carry de+en only (`catalog/alphabet/*.json`), so a sw- or
+  uk-reading learner — both already selectable as source — meets unhinted rows, and each
+  needs its own hint pass rather than a translation of the English: the German pivot prose
+  for de is parked in the drafts' notes, while sw needs authoring from scratch (sw `j` is /ɟ/,
+  so the en "y in yes" anchor is wrong).
+- Swahili concord is taught by note, not exposure: 26 stem entries (`text` opening with `-`)
+  across `colors`, `degree`, `desk`, `illness`, `market`, `qualities`, `questions` and `time`
+  carry the rule in different wordings and 11 carry nothing, so turning them into phrases the
+  way `colors/a-white-car` does (a `concepts.json` entry with emoji and `components` plus a
+  realization in all eight language files) is a content project.
+- An invariability claim proves nothing when every example is N-class, where the concord is
+  phonologically zero: `tupu` and `kavu` both read as invariable that way and both agree
+  (`kiti kitupu`, `mkate mkavu`), so both are now dashed stems. Any future note asserting a
+  Swahili word does not change needs examples from two classes at least — and mostly should
+  not exist, since "this word does not change" is not something a learner would say differently for.
+- `scripts/notes-vocabulary.py` still flags ~170 notes in areas 13+ on a later word and ~50 on a grammar term;
+  that is the floor after a conservative pass (own-word forms, the contrast word a note exists for, transparent `plural`), so only a new flag wants work.
+- `mos` ranks voices the way the ear does but strays per file (`../docs/audio-verdicts.tsv`: Natschoba's "der Finger", heard meh, scores 3.22; joni's "es", heard clean, 1.67), so its floors refuse only the clearly bad until the dataset grows.
+
+## Waits on a native speaker
+
+- 20 Ukrainian words stay unstressed on 25 cards, mostly standard doublets (за́вжди/завжди́, до́говір/догові́р) and unlisted loans (імейл, угалі), plus north and midnight both read пі́вніч: pick one stress each (`../../data/review/2026-10-09-uk-stress-open.tsv`).
 - The es review queue — 20 lowest-confidence picks (`admin/office`, `work/leave`,
   `kitchen/reheat`, `bedroom/cuddle` lead it), ~24 medium flags, 49 per-area disputes, the
   author's choice standing in the JSON in every case — waits on a native es-ES speaker
@@ -57,57 +111,6 @@ Ready work comes first, then the items that end in a question for the owner, the
   changes the `name` FIELD, never the audio (no lint pins a letter clip to its name by design,
   `CatalogAudioProvenanceTest.audioEntryFieldsAreWellFormed`) — and es's two scope calls are the owner's: do the en-only
   vowel rows i/e/u (Q13) stay, and does a written-accent row (Q14) belong in an alphabet file?
-- `food` holds 47 concepts and `desk` and `admin` 41 each, all past the ~40 line
-  (`catalog/areas/README.md` § which area a concept lives in), and `food`'s seam is raw
-  ingredients against meals and drinks — name the new shelf and its members, or accept the
-  three past the line?
-- Italian dates: the dayMonth reveal teaches `il otto`/`il undici marzo` on 2 of 31 days
-  because a static pattern cannot elide, though the elided `l'{day} {month}` already grades as
-  a variant (`catalog/dates/it.json`) — elision-aware date patterns in the engine, or wait for
-  an Italian native's ruling on `il otto` vs `l'otto` and the weekday article
-  (`docs/date-readings.md:88`)?
-- `CountryAtlas.notes` parses and reaches no screen, the shape the dates calendar just
-  answered with a calendar-level `dateNotes` band (`catalog/dates/README.md`) — render the
-  atlas' on its reference row, drop the field, or give the atlas page its own prose band?
-- `life-death` ships 5 concepts and `people/to-be-born` is the obvious sixth, but moving it
-  thins `people`'s family block — does this stay a watch note, or go until a seventh candidate
-  (`funeral`? `grave`? `to-grow-up`?) turns up?
-- Voice consistency varies by pack (sw and uk one speaker throughout, de mostly Jeuwre with a
-  Lingua Libre remainder, es a crowd of Lingua Libre speakers in twenty credit groups with no
-  stated variety, `data/reference/audio/pack-es/ATTRIBUTION.md` carries the accent caveat),
-  and the settled answer is a quality floor rather than more voices (only 18% of German and
-  29% of Spanish words have a second voice on Commons, uk and sw effectively none, usually the
-  noisier take) — does that decision stay here, or move into `ATTRIBUTION.md` as the ruling
-  and leave the backlog?
-- The catalog-wide gap sweep reaches only plain digraphs, so two gaps stay one word deep:
-  Ukrainian gains nothing (33 of its 35 rows are `letter` rows asked by spoken name, and it
-  authors no digraph to sweep), and every position-bound row (de `ch`×3, `s`×2, the
-  final-devoicing trio, `er`; es `c`, `g`, `gu`, `r`, `d`) rides its one authored example
-  because `context` is prose keyed by the reader rather than a rule the engine can test — a
-  machine-readable environment field would open both.
-- Ukrainian stress is marked on card texts (`areas/README.md`) but not yet on the alphabet sheet's
-  example words, the phrase frames, the clock readings or the calendar and country names.
-- Alphabet hints and contexts carry de+en only (`catalog/alphabet/*.json`), so a sw- or
-  uk-reading learner — both already selectable as source — meets unhinted rows, and each
-  needs its own hint pass rather than a translation of the English: the German pivot prose
-  for de is parked in the drafts' notes, while sw needs authoring from scratch (sw `j` is /ɟ/,
-  so the en "y in yes" anchor is wrong).
-- Swahili concord is taught by note, not exposure: 26 stem entries (`text` opening with `-`)
-  across `colors`, `degree`, `desk`, `illness`, `market`, `qualities`, `questions` and `time`
-  carry the rule in different wordings and 11 carry nothing, so turning them into phrases the
-  way `colors/a-white-car` does (a `concepts.json` entry with emoji and `components` plus a
-  realization in all eight language files) is a content project.
-- uk leaves the `meeting-is-at` clock frame unrealized until a `зустріч` card exists for `PhraseVocabAuditTests`.
-- Ordinal phrase frames ("Ich bin auf dem vierten Platz") wait on a numeral-side agreement
-  field in every language, since the frame must decline the NUMERAL while the general device
-  runs the other way (`PhraseTemplate.CountForms` inflects the noun from the numeral) and
-  `swahiliNounClass` prefixes a cardinal stem where an ordinal's `-a` concord belongs to the
-  frame — ordinals are drilled bare meanwhile (`docs/number-forms.md`), and Swahili cannot
-  drill them at all.
-- Swahili noun class is a frame-only fact (`swahiliNounClass` names it per phrase frame) while
-  the nouns carry no class the way de/fr/es nouns carry `grammar.gender`; a catalog
-  `"grammar": { "class": "KI_VI" }` on `catalog/areas/*/sw.json` would let an author state it
-  once for the frames, the card itself and a future concord drill.
 - A Swahili speaker's vocabulary queue: `comparison/neutral`, `aggressive`, `defensive` and
   `organs/thyroid`, `nerve`, `vein` have no honest sw word (absent from `comparison/sw.json`,
   `organs/sw.json`; checked 2026-09-02 against kaikki, freedict, the ipa-dict wordlist and
@@ -134,15 +137,3 @@ Ready work comes first, then the items that end in a question for the owner, the
   `../../docs/sprachposter-learnings.md`); uk carries 3 of 9 (сьоме небо, як з відра, тримати
   кулаки) and sw 0, and filling them needs a speaker finding real equivalents, not a
   translation pass.
-- 20 Ukrainian words stay unstressed on 25 cards, mostly standard doublets (за́вжди/завжди́, до́говір/догові́р) and unlisted loans (імейл, угалі), plus north and midnight both read пі́вніч: pick one stress each (`../docs/2026-10-09-uk-stress-open.tsv`).
-- `mos` ranks voices the way the ear does but strays per file (`../docs/audio-verdicts.tsv`: Natschoba's "der Finger", heard meh, scores 3.22; joni's "es", heard clean, 1.67), so its floors refuse only the clearly bad until the dataset grows.
-- Recordings nobody has made yet: phrases have none (no `catalog/audio/*/manifest.json` has a
-  phrases section, so every phrase falls to TTS, silent on sw-iOS) and need commissioning or a
-  paid voice; single words sit at 83–99% per language, the rest in `audio-coverage.py --missing`.
-- Recordings nobody has made yet, seven letter-name clips: uk «мʼякий знак» (the
-  `<Аа> – ukrainian.ogg` series has no soft-sign entry, Lingua Libre nothing for the phrase,
-  and splicing `Uk-м'який.ogg` + `Uk-знак.ogg` would be a BY-SA adaptation of something nobody
-  said, so `ь` falls to the device voice or silence) and es `elle`, `ye`, `erre doble`,
-  `hache`, `eñe`, `uve` (absent from the whole `Category:Lingua Libre pronunciation-spa` and
-  the `Es-<name>.ogg` convention in every casing), which from one speaker would also stop the
-  Spanish letter block changing voice row to row.
