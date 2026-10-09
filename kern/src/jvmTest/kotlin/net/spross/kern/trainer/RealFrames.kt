@@ -28,13 +28,13 @@ internal object RealFrames {
     fun frame(target: Language, slug: String, source: Language = "de"): PhraseTemplate =
         of(source, target).first { it.id == slug }
 
+    /** A fixed number of [target]'s own plan, so a sweep reads the same one every run. */
+    fun phone(target: Language): String = checkNotNull(Numbers.pack(target).phonePlan).draw(Random(7))
+
     /**
      * One hand-picked task per template, whatever its slot takes — what the structural
      * sweeps want.
      */
-    /** A fixed number of [target]'s own plan, so a sweep reads the same one every run. */
-    fun phone(target: Language): String = checkNotNull(Numbers.pack(target).phonePlan).draw(Random(7))
-
     fun instantiate(
         template: PhraseTemplate,
         value: Long,

@@ -61,14 +61,6 @@ fun shownArticle(article: String?, shownForm: String, targetText: String): Strin
     if (shownForm == targetText) article else null
 
 /**
- * [form] with [article] written in front of it, or [form] alone where there is none.
- *
- * An ELIDED article writes ONTO its word — "l'acqua", never "l' acqua": the apostrophe is
- * the join, and a space beside it spells a word nobody writes. The rule lives here so the
- * ear and the page cannot disagree about it
- * ([net.spross.kern.catalog.spokenTargetForm] speaks what this writes).
- */
-/**
  * [form] split into a leading listed article and the word behind it — the inverse of [articledForm].
  * No split where [form] opens with none of [articles] or nothing follows it.
  */
@@ -84,6 +76,14 @@ fun splitArticle(form: String, articles: List<String>): Pair<String?, String> {
     return null to form
 }
 
+/**
+ * [form] with [article] written in front of it, or [form] alone where there is none.
+ *
+ * An ELIDED article writes ONTO its word — "l'acqua", never "l' acqua": the apostrophe is
+ * the join, and a space beside it spells a word nobody writes. The rule lives here so the
+ * ear and the page cannot disagree about it
+ * ([net.spross.kern.catalog.spokenTargetForm] speaks what this writes).
+ */
 fun articledForm(article: String?, form: String): String {
     val prefix = article?.trim()?.takeIf { it.isNotEmpty() } ?: return form
     return if (prefix.last() in APOSTROPHES) "$prefix$form" else "$prefix $form"
