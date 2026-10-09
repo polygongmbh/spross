@@ -54,7 +54,8 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     @State var chosen: String?
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
-    /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
+    /// Says the run's `reading`: the prompt where the drill has one, and each
+    /// graded answer.
     // why: internal, not private — the +Run extension hands it to the driver.
     @State var reader = Reader()
     @FocusState var answerFocused: Bool

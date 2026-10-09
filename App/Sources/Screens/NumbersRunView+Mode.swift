@@ -88,9 +88,8 @@ private extension NumbersMode {
 
 extension NumbersReading {
     /// The ladder a reading is climbed on. Year maps onto Counting because it has no
-    /// Sprosse of its own: the standalone years drill was dropped as redundant, and
-    /// years live on only as a phrase slot, as a phone number does. Fraction is a phrase slot too, and belongs
-    /// to Forms — a fraction is one of the number forms.
+    /// Sprosse of its own: a year is a phrase slot, as a phone number is. Fraction is
+    /// a phrase slot too, and belongs to Forms — a fraction is one of the number forms.
     var exercise: NumbersExercise {
         switch self {
         case .cardinal, .year, .phone: return .counting

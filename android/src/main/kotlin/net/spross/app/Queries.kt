@@ -22,8 +22,8 @@ fun AppModel.cardGrowth(cardId: String): CardGrowth? =
 
 /**
  * The source a fresh install opens with. Kern's rule, over the device's report:
- * asking [Catalog.availableTargets] about an undeclared locale THROWS, so a French
- * or Italian phone used to crash on launch here.
+ * asking [Catalog.availableTargets] about an undeclared locale THROWS, and a device
+ * may report any locale at all.
  */
 fun AppModel.defaultSource(cat: Catalog): String = cat.defaultSource(Locale.getDefault().language)
 
