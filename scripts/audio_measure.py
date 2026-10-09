@@ -97,6 +97,18 @@ def peak_and_loudness(binary, path):
             float(loudness[-1]) if loudness and loudness[-1] != '-inf' else None)
 
 
+def side_balance(binary, path):
+    """dB the louder side stands over the quieter one; 0.0 for a mono file. A take whose
+    one side is near silent plays in one ear on headphones (`audio_voices.is_one_sided`)."""
+    raw = subprocess.run([binary, '-v', 'error', '-i', path, '-ac', '2', '-f', 'f32le', '-'],
+                         capture_output=True, check=True).stdout
+    sides = np.frombuffer(raw, dtype=np.float32).reshape(-1, 2).astype(np.float64)
+    if not len(sides):
+        return 0.0
+    left, right = (10 * np.log10(max((sides[:, i] ** 2).mean(), 1e-20)) for i in (0, 1))
+    return float(abs(left - right))
+
+
 def noise(binary, path):
     """(dB the loudest frame stands above the noise, its RMS in dBFS) — one decode for both,
     since the noise LEVEL a playback gate sits on is the loudest frame less the margin;

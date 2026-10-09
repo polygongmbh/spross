@@ -324,7 +324,6 @@
     "Bananax47": "CC0",
     "Ben": "CC0",
     "Benoît Prieur": "CC0",
-    "Clément Bucco-Lechat": "CC BY-SA 3.0",
     "DSwissK": "CC BY 4.0",
     "Damian B.": "CC BY-SA 4.0",
     "DenisdeShawi": "CC BY-SA 4.0",
@@ -1237,15 +1236,14 @@
       "source": "LL-Q150 (fra)-Lyokoï-luxembourgeois.wav"
     },
     "Maroc": {
-      "author": "Clément Bucco-Lechat",
+      "author": "Sartus85",
       "file": "countries/maroc.mp3",
-      "gain": 20.0,
-      "gate": -70.1,
-      "lead": 94,
+      "gain": 3.8,
+      "gate": -92.2,
       "matches": "Maroc",
-      "mos": 2.32,
-      "sha256": "564fb638f4c9c73973b444c17ed2957ba1576c51fad54f018c461dc6f248f3f0",
-      "source": "Fr-Maroc.ogg"
+      "mos": 3.27,
+      "sha256": "498bd18623deb2d2c117ca00b810767be71659c6b0e77f77422a16c0a1d1114e",
+      "source": "LL-Q150 (fra)-Sartus85-Maroc.wav"
     },
     "Mexique": {
       "author": "Vion Nicolas",
@@ -1258,26 +1256,25 @@
       "source": "Fr-Mexique.ogg"
     },
     "Mozambique": {
-      "author": "Clément Bucco-Lechat",
+      "author": "Jules78120",
       "file": "countries/mozambique.mp3",
-      "gain": 20.0,
-      "gate": -65.3,
-      "lead": 41,
+      "gain": 10.0,
+      "lead": 11,
       "matches": "Mozambique",
-      "mos": 2.36,
-      "sha256": "285da4536f26f535f36562029d8e46068dd8c98ecfb050c69a76d2e6e03b1f24",
-      "source": "Fr-Mozambique.ogg"
+      "mos": 3.05,
+      "sha256": "70938589f263d710dbbb25e6abae45500ab46e6351d2f1a8be8a7909cb4cebdf",
+      "source": "LL-Q150 (fra)-Jules78120-Mozambique.wav"
     },
     "Nigeria": {
-      "author": "Clément Bucco-Lechat",
+      "author": "Jules78120",
       "file": "countries/nigeria.mp3",
-      "gain": 20.0,
-      "gate": -66.9,
-      "lead": 69,
+      "gain": 6.7,
+      "gate": -94.4,
+      "lead": 109,
       "matches": "Nigeria",
-      "mos": 2.44,
-      "sha256": "9e6090afdc3d7c1d946b0ba53a711efe98aa04abc03c6f878a159201303fa913",
-      "source": "Fr-Nigeria.ogg"
+      "mos": 3.24,
+      "sha256": "d10457e92215322319061d733378a4e0566cb9aa625608f063dcbe76bfd6656b",
+      "source": "LL-Q150 (fra)-Jules78120-Nigeria.wav"
     },
     "Norvège": {
       "author": "Jules78120",
@@ -1333,16 +1330,13 @@
       "source": "LL-Q150 (fra)-Le Commissaire-néo-zélandais.wav"
     },
     "Ouganda": {
-      "author": "Clément Bucco-Lechat",
-      "cap": 0.2,
+      "author": "Jules78120",
       "file": "countries/ouganda.mp3",
-      "gain": 19.8,
-      "gate": -69.4,
-      "lead": 66,
+      "gain": 8.2,
       "matches": "Ouganda",
-      "mos": 2.74,
-      "sha256": "364b8d88d89d9c6c051d05f75992df949ea039c4cbe57ac6e0a84b1ad4bb3875",
-      "source": "Fr-Ouganda.ogg"
+      "mos": 2.98,
+      "sha256": "9d3f5c4b3f77b859d6b06746bacd71bd578dde74ce421e16f462568e2872095d",
+      "source": "LL-Q150 (fra)-Jules78120-Ouganda.wav"
     },
     "Ougandais": {
       "author": "Pamputt",
@@ -1471,16 +1465,14 @@
       "source": "LL-Q150 (fra)-Jules78120-Russie.wav"
     },
     "Rwanda": {
-      "author": "Clément Bucco-Lechat",
-      "cap": 3.3,
+      "author": "Jules78120",
       "file": "countries/rwanda.mp3",
-      "gain": 16.7,
-      "gate": -63.9,
-      "lead": 47,
+      "gain": 11.4,
+      "lead": 1,
       "matches": "Rwanda",
-      "mos": 2.37,
-      "sha256": "8f8eca4b6bc272d90451b5fc7948bbe60b2bacbd46416ccb5cefe0f8460fd8c5",
-      "source": "Fr-Rwanda.ogg"
+      "mos": 3.04,
+      "sha256": "24fe2940da4dfd21d4832a1a7b2c739eff2638ca49492ade6eff497d174e902b",
+      "source": "LL-Q150 (fra)-Jules78120-Rwanda.wav"
     },
     "Rwandais": {
       "author": "Pamputt",
@@ -1494,15 +1486,16 @@
       "source": "LL-Q150 (fra)-Pamputt-Rwandais.wav"
     },
     "République démocratique du Congo": {
-      "author": "Clément Bucco-Lechat",
+      "author": "GrandCelinien",
+      "cap": 0.1,
       "file": "countries/ru00e9publiqueu0020du00e9mocratiqueu0020duu0020congo.mp3",
-      "gain": 20.0,
-      "gate": -67.7,
-      "lead": 131,
+      "gain": 4.3,
+      "gate": -70.8,
+      "lead": 219,
       "matches": "République démocratique du Congo",
-      "mos": 2.43,
-      "sha256": "213e90f906e7cf57b827474806f75c11df7423deaf043ecb075acbdd86bd323f",
-      "source": "Fr-République démocratique du Congo.ogg"
+      "mos": 3.25,
+      "sha256": "267ab18d8ca1d5622e0cc218c64909b6414090fc23533192097623d6f451bfbe",
+      "source": "LL-Q150 (fra)-GrandCelinien-République démocratique du Congo.wav"
     },
     "Serbes": {
       "author": "WikiLucas00",
@@ -1610,16 +1603,14 @@
       "source": "LL-Q150 (fra)-Poslovitch-suédois.wav"
     },
     "Sénégal": {
-      "author": "Clément Bucco-Lechat",
-      "cap": 0.1,
+      "author": "Jules78120",
       "file": "countries/su00e9nu00e9gal.mp3",
-      "gain": 19.9,
-      "gate": -69.8,
-      "lead": 63,
+      "gain": 10.4,
+      "lead": 218,
       "matches": "Sénégal",
-      "mos": 2.97,
-      "sha256": "faef7ed634accb1f9d8fa68442d89ea8ee52b1bf5bc84102943476e7c8831f7b",
-      "source": "Fr-Sénégal.ogg"
+      "mos": 2.84,
+      "sha256": "0277e7d80dd605eafd3afde175e62adc949f13248363e908cb16bf734a212387",
+      "source": "LL-Q150 (fra)-Jules78120-Sénégal.wav"
     },
     "Sénégalais": {
       "author": "Pamputt",
@@ -1633,16 +1624,14 @@
       "source": "LL-Q150 (fra)-Pamputt-Sénégalais.wav"
     },
     "Tanzanie": {
-      "author": "Clément Bucco-Lechat",
-      "cap": 1.9,
+      "author": "Jules78120",
       "file": "countries/tanzanie.mp3",
-      "gain": 18.1,
-      "gate": -67.0,
-      "lead": 83,
+      "gain": 8.5,
+      "lead": 209,
       "matches": "Tanzanie",
-      "mos": 1.86,
-      "sha256": "a555c8621ba2ff7d524df281284bc6626aa8befdf99aef268c1e2411fe80c446",
-      "source": "Fr-Tanzanie.ogg"
+      "mos": 3.07,
+      "sha256": "c554d83f1742cc29ce1474ee752ca870a34151975c1bb53e0de879ab2c983474",
+      "source": "LL-Q150 (fra)-Jules78120-Tanzanie.wav"
     },
     "Tchèques": {
       "author": "WikiLucas00",
@@ -1690,15 +1679,15 @@
       "source": "LL-Q150 (fra)-GrandCelinien-Thaïlande.wav"
     },
     "Tunisie": {
-      "author": "Clément Bucco-Lechat",
+      "author": "Jules78120",
       "file": "countries/tunisie.mp3",
-      "gain": 20.0,
-      "gate": -63.5,
-      "lead": 117,
+      "gain": 14.5,
+      "gate": -99.8,
+      "lead": 193,
       "matches": "Tunisie",
-      "mos": 2.66,
-      "sha256": "d205d56f2ea459ab393abe2c036371fbba433a7a10847cfb8fa9f1561a97c453",
-      "source": "Fr-Tunisie.ogg"
+      "mos": 3.01,
+      "sha256": "0b21fba7e9790676f08bc919d03019ff6f0f36fd70117906f377e212e6db858a",
+      "source": "LL-Q150 (fra)-Jules78120-Tunisie.wav"
     },
     "Tunisiens": {
       "author": "Lyokoï",

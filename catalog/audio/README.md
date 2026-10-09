@@ -34,8 +34,8 @@ scripts/audio-coverage.py --missing <lang>                   # what nobody has r
 ```
 
 The fill's own drops are the quality check: `poor` (under its language's floor, or heard as bad),
-`unmeasurable` (clipped), `misnamed`, `unreachable` and `shipped-collision` each name the
-row and why. Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
+`unmeasurable` (clipped), `one-sided` (one channel near silent), `misnamed`, `unreachable`
+and `shipped-collision` each name the row and why. Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
 and the floor follows the device voice (`../../scripts/audio_voices.py`): where it is
 missing (eo, sw) only the clearly bad are refused, where it is good a recording has to beat
 it, and `--prune-poor` hands anything shipped under the floor to it.
@@ -47,13 +47,13 @@ picks among takes and refuses only the clearly bad.
 
 ```sh
 W=../data/reference/audio   # <route> is the language's from $W/build-packs.sh
-$W/sync-from-shipped.py <lang>                              # the word and article packs say what ships
+$W/sync-from-shipped.py <lang>                              # every pack says what ships
 $W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <its siblings>
                                                             # voices with ≤3 takes onto established ones
-$W/requalify-pack.py --lang <lang> <route>                  # under 2.8 or squashed: the best other take
-$W/requalify-pack.py --lang <lang> --pack $W/pack-<lang>-calendar <route>   # the same for the calendar
+$W/requalify-pack.py --lang <lang> <route>                  # under 2.8, squashed or one-sided: the best other take
+$W/requalify-pack.py --lang <lang> --pack $W/pack-<lang>-<section> <route>  # the same for calendar, countries
 scripts/audio-catalog.py --packs $W --lang <lang> --fill --reseat   # ships the chosen swaps
-scripts/audio-catalog.py --packs $W --lang <lang> --calendar        # ships the calendar pack whole
+scripts/audio-catalog.py --packs $W --lang <lang> --<section>       # ships that section's pack whole
 scripts/audio-catalog.py --lang <lang> --prune-poor         # what is still under the floor
 ```
 

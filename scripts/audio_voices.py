@@ -48,6 +48,17 @@ POOR_VOICES = {
     "it": ["Francyskus"],
 }
 
+# The most one side of a take may stand over the other. A recorder that took the voice on
+# one channel only plays it in one ear on headphones; the one voice found doing so (fr
+# Clément Bucco-Lechat's country names) runs 13–25 dB lopsided, every other take under 10.
+ONE_SIDED_DB = 10.0
+
+
+def is_one_sided(balance):
+    """One side near silent: `audio_measure.side_balance` over ONE_SIDED_DB."""
+    return balance is not None and balance > ONE_SIDED_DB
+
+
 _verdicts = None
 
 

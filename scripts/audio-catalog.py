@@ -28,7 +28,7 @@ import sys
 import unicodedata
 
 import audio_measure
-from audio_voices import is_rejected, mos_floor
+from audio_voices import is_one_sided, is_rejected, mos_floor
 from audio_gates import (APOSTROPHES, attribute, digest_of, keep_article_forms, keep_named_by_its_file,
                          keep_reachable, keep_unambiguous, speech_key, spoken_target_form)
 
@@ -717,6 +717,11 @@ def fill_words(packs, languages, reseat=False):
             if heard or index.get('mos', mos_floor(lang)) < mos_floor(lang):
                 drops.append(('poor', row['text'], 'heard as bad' if heard else
                               'mos %.2f, floor is %.2f' % (index['mos'], mos_floor(lang))))
+                os.remove(os.path.join(out_dir, form_file('words', form)))
+                continue
+            balance = audio_measure.side_balance(FFMPEG, os.path.join(out_dir, form_file('words', form)))
+            if is_one_sided(balance):
+                drops.append(('one-sided', row['text'], '%.1f dB between its sides' % balance))
                 os.remove(os.path.join(out_dir, form_file('words', form)))
                 continue
             shipped[form] = entry(form_file('words', form), row['license'], row['author'],
