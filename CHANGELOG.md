@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+## 8.6.0 — 2026-10-09
+
 - In the sentence scramble, a word order that is accepted but differs from the usual one now shows the usual order and the translation.
 - The import link on the welcome page no longer covers the waving hand when its label runs long.
 - A first round's tree now stands on three young limbs instead of one bent stick.
