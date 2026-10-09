@@ -252,15 +252,15 @@ class AppModel(app: Application) : AndroidViewModel(app) {
     /**
      * The pair is settled. [thenPractice] is the FIRST-RUN path only — the picker is the
      * last question the app asks, so the round it was made for opens straight away rather
-     * than behind one more button on Home. A language change from the box's settings
-     * passes false: it must not raise a session over the screen you were reading, and it
-     * comes back to the box it was made in — with no area, since the old one may not
-     * exist in the new join.
+     * than behind one more button on Home. A language change from the settings passes
+     * false: it must not raise a session over the screen you were reading, and it stays
+     * on the screen it was made from.
      */
     fun completeOnboarding(source: String, target: String, thenPractice: Boolean = false) {
         profile.set(source, target)
+        val from = screen
         viewModelScope.launch {
-            activate(source, target, if (thenPractice) Screen.Home else Screen.Box())
+            activate(source, target, if (thenPractice) Screen.Home else from)
             if (!thenPractice) return@launch
             // why: the coaching arms with the round that actually opens — an install with
             // nothing to practice yet must not carry it into some later round.
