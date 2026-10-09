@@ -16,11 +16,12 @@ VERDICTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs'
 WELL_VOICED = frozenset({"de", "es", "fr", "it", "uk"})
 
 # The lowest `mos` a recording may ship at. Where the device voice is missing (eo, sw) the
-# bar only refuses the clearly bad; where it is good, the bar is higher and a word under it
-# is left to the voice. Both sit where they refuse nothing a listener rated passable: the
-# lowest-scoring take heard at all (es `litro`, 1.51) was rated okay.
-NO_VOICE_MOS_FLOOR = 1.5
-VOICED_MOS_FLOOR = 1.5
+# bar only refuses the clearly bad; where it is good, the bar is a notch higher and a word
+# under it is left to the voice. Under 1.4 a listener heard only bad takes (it Francyskus);
+# from 1.42 up voices split by speaker, not by score (es Marreromarco okay at 1.42 and good
+# at 1.46, uk Галя Раптова good throughout 2.2–2.4), so the score cannot draw a higher line.
+NO_VOICE_MOS_FLOOR = 1.3
+VOICED_MOS_FLOOR = 1.4
 
 
 def mos_floor(lang):
@@ -40,6 +41,13 @@ def is_squashed(peak, loudness):
     return peak is not None and loudness is not None and peak - loudness < SQUASH_FLOOR_DB
 
 
+# POOR voices: heard as bad across their takes, not in one file — what the score cannot be
+# trusted to catch (it Francyskus, all 7 heard bad for background noise, scores up to 2.3).
+# Every take of theirs counts as heard bad, except a file a listener passed on its own.
+POOR_VOICES = {
+    "it": ["Francyskus"],
+}
+
 _verdicts = None
 
 
@@ -53,14 +61,19 @@ def verdict(sha256):
     return _verdicts.get(sha256)
 
 
-def is_rejected(sha256):
-    """Heard as bad: never ships, whatever it scores."""
-    return verdict(sha256) == 'bad'
+def _poor(sha256, lang, author):
+    return author in POOR_VOICES.get(lang, ()) and not is_vouched(sha256)
 
 
-def is_doubted(sha256):
-    """Heard as bad or mediocre: every other take of the word is tried against it."""
-    return verdict(sha256) in ('bad', 'mediocre')
+def is_rejected(sha256, lang=None, author=None):
+    """Heard as bad, or by a POOR voice: never ships, whatever it scores."""
+    return verdict(sha256) == 'bad' or _poor(sha256, lang, author)
+
+
+def is_doubted(sha256, lang=None, author=None):
+    """Heard as bad or mediocre, or by a POOR voice: every other take of the word is tried
+    against it."""
+    return verdict(sha256) in ('bad', 'mediocre') or _poor(sha256, lang, author)
 
 
 def is_vouched(sha256):

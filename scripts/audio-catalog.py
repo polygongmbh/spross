@@ -713,8 +713,9 @@ def fill_words(packs, languages, reseat=False):
                 continue
             # A word refused here is spoken by the device voice, as before the fill;
             # `requalify-pack.py` is how a pack finds a cleaner take of it.
-            if is_rejected(digest) or index.get('mos', mos_floor(lang)) < mos_floor(lang):
-                drops.append(('poor', row['text'], 'heard as bad' if is_rejected(digest) else
+            heard = is_rejected(digest, lang, row['author'])
+            if heard or index.get('mos', mos_floor(lang)) < mos_floor(lang):
+                drops.append(('poor', row['text'], 'heard as bad' if heard else
                               'mos %.2f, floor is %.2f' % (index['mos'], mos_floor(lang))))
                 os.remove(os.path.join(out_dir, form_file('words', form)))
                 continue
@@ -778,7 +779,7 @@ def prune_poor(languages):
         floor, pruned = mos_floor(lang), []
         for section in SECTIONS:
             for key, item in list(manifest.get(section, {}).items()):
-                heard = is_rejected(item['sha256'])
+                heard = is_rejected(item['sha256'], lang, item['author'])
                 if heard or item.get('mos', floor) < floor:
                     os.remove(os.path.join(out_dir, item['file']))
                     del manifest[section][key]
