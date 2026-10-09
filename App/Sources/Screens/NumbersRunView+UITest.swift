@@ -88,6 +88,7 @@ extension NumbersRunState {
                otherWord: self.otherWord,
                finished: finished,
                score: score,
+               earnedSeconds: earnedSeconds,
                challenge: challenge,
                standingSprossen: standingSprossen)
     }
