@@ -2,9 +2,8 @@ package net.spross.app.ui
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -16,10 +15,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.em
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -36,6 +38,8 @@ import net.spross.kern.store.BoxBackup
  * a phone with no box yet has nothing for the file to replace.
  * [source] is the known language picked so far — the pair's other half where the file names none.
  */
+private const val IMPORT_ICON = "import"
+
 @Composable
 fun OnboardingImport(model: AppModel, chrome: Chrome, source: String, modifier: Modifier = Modifier) {
     val resolver = LocalContext.current.contentResolver
@@ -57,13 +61,21 @@ fun OnboardingImport(model: AppModel, chrome: Chrome, source: String, modifier: 
 
     // Every type: providers label a .json file inconsistently, and the decode is the check.
     TextButton(onClick = { import.launch(arrayOf("*/*")) }, modifier = modifier) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Icon(SprossIcons.Import, contentDescription = null, modifier = Modifier.size(16.dp))
-            Text(chrome.onboardingImport, style = MaterialTheme.typography.labelMedium)
-        }
+        // why: the icon rides inline, so a label wrapped beside the hero keeps it on its first line.
+        Text(
+            buildAnnotatedString {
+                appendInlineContent(IMPORT_ICON)
+                append(" ")
+                append(chrome.onboardingImport)
+            },
+            style = MaterialTheme.typography.labelMedium,
+            textAlign = TextAlign.End,
+            inlineContent = mapOf(
+                IMPORT_ICON to InlineTextContent(
+                    Placeholder(1.em, 1.em, PlaceholderVerticalAlign.TextCenter),
+                ) { Icon(SprossIcons.Import, contentDescription = null) },
+            ),
+        )
     }
 
     if (failed) {

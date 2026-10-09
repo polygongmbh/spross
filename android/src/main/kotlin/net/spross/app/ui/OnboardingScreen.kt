@@ -8,7 +8,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -118,11 +117,8 @@ fun OnboardingScreen(model: AppModel) {
         when (current) {
             OnboardingPage.Languages -> OnboardingStoryPage {
                 // why: a first run only — a restart already has a box the file would replace.
-                Box(Modifier.fillMaxWidth()) {
-                    OnboardingHero(current.emoji, chrome.onboardingWelcome)
-                    if (joined == null) {
-                        OnboardingImport(model, chrome, source, Modifier.align(Alignment.TopEnd))
-                    }
+                OnboardingHero(current.emoji, chrome.onboardingWelcome) {
+                    if (joined == null) OnboardingImport(model, chrome, source)
                 }
 
                 PickerSection(

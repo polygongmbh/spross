@@ -1,8 +1,11 @@
 package net.spross.app.ui
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -48,17 +51,23 @@ fun OnboardingStoryPage(content: @Composable ColumnScope.() -> Unit) {
  * the mark says nothing a screen reader could pass on, so it is skipped rather than read out.
  */
 @Composable
-fun OnboardingHero(mark: String, title: String) {
+fun OnboardingHero(mark: String, title: String, trailing: @Composable () -> Unit = {}) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
-        Text(
-            mark,
-            style = MaterialTheme.typography.displaySmall,
-            modifier = Modifier.clearAndSetSemantics {},
-        )
+        // why: [trailing] gets the space beside the mark and wraps inside it,
+        // so a long label never covers the centered mark.
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Spacer(Modifier.weight(1f))
+            Text(
+                mark,
+                style = MaterialTheme.typography.displaySmall,
+                modifier = Modifier.clearAndSetSemantics {},
+            )
+            Box(Modifier.weight(1f), contentAlignment = Alignment.CenterEnd) { trailing() }
+        }
         Text(
             title,
             style = MaterialTheme.typography.headlineSmall,
