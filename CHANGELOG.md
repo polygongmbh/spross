@@ -4,7 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
-- On Android, the language pickers in Settings open again when tapped.
+- On Android, the language pickers in Settings open again when tapped, now as Material dropdown fields labeled with their question.
 - Ukrainian words now show which syllable carries the stress, and an answer typed without the mark still counts as right.
 - Plurals, feminine forms and other word forms now play a recorded voice where Wikimedia Commons has one, with their article too in German, Italian and French.
 - Recorded words now play at one level on every output, set by how loud they sound rather than by their raw energy, so Swahili no longer drops far below the other languages on the phone speaker.
