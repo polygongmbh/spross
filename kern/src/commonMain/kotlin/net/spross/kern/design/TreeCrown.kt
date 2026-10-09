@@ -19,7 +19,9 @@ private const val SHADED_TRUNK = 2.4
 /** A leaf runs longer than the base a disc is cut to: it is the one mark meant to merge with its neighbors. */
 private const val LEAF_STRETCH = 1.45
 private const val LEAF_WAIST = 0.27
-private const val BUD_RADIUS = 0.11
+/** A breaking bud: its scale and the two folded leaflets just out of it, against a sprig's run. */
+private const val BUD_SCALE = 0.36
+private const val SHOOT_STRETCH = 0.66
 /** The smallest a fruit's radius is drawn, so a small tree's fruit stays visible. */
 private const val FRUIT_FLOOR = 1.6
 /** Below this size a blossom's petals are one disc: they blur. */
@@ -83,7 +85,7 @@ private fun Painter.marks(grown: GrownTree, fit: TreeFit) {
     val top = fit.y + slots.minOf { it.y } * fit.scale
     val depth = max((slots.maxOf { it.y } - slots.minOf { it.y }) * fit.scale, 1.0)
     val base = max(MARK_FLOOR, grown.pitch * fit.scale * 0.85)
-    val buds = mutableListOf<TreeShape>(); val fruit = mutableListOf<TreeShape>()
+    val buds = mutableListOf<TreeShape>(); val shoots = mutableListOf<TreeShape>(); val fruit = mutableListOf<TreeShape>()
     val tones = List(4) { mutableListOf<TreeShape>() }
     val petals = mutableListOf<TreeShape>(); val eyes = mutableListOf<TreeShape>()
     for ((rank, slot) in slots.withIndex()) {
@@ -108,11 +110,26 @@ private fun Painter.marks(grown: GrownTree, fit: TreeFit) {
                 val tone = (((y - top) / depth * 0.75 + draw(GRAIN, rank) * 0.55) * 3.2 - 0.2).toInt().coerceIn(0, 3)
                 tones[3 - tone] += shape { sprig(x, y, size * LEAF_STRETCH, slot.angle) }
             }
-            else -> buds += shape { circle(x, y, size * BUD_RADIUS) }
+            else -> {
+                // why: a bud breaking in spring — the scale on the wood, two folded leaflets out of its tip —
+                // so a first round greens the crown and still differs from a sprig in shape: two closed, not three open.
+                val scale = size * BUD_SCALE
+                // Its base sunk into the bark, so it grows out of the wood rather than touching it at a point.
+                val baseX = x - cos(slot.angle) * scale * 0.3
+                val baseY = y - sin(slot.angle) * scale * 0.3
+                buds += shape { leaf(baseX, baseY, scale, slot.angle, 1.3) }
+                shoots += shape {
+                    val tipX = baseX + cos(slot.angle) * scale * 0.6
+                    val tipY = baseY + sin(slot.angle) * scale * 0.6
+                    leaf(tipX, tipY, size * SHOOT_STRETCH, level(slot.angle - 0.38), 0.8)
+                    leaf(tipX, tipY, size * SHOOT_STRETCH * 0.86, level(slot.angle + 0.4), 0.8)
+                }
+            }
         }
     }
-    // Ochre, not green: a bud is a scale of wood, the word has not leafed out yet.
-    layer(TreeInk.BUD, 0.8, buds)
+    // A bud's leaflets take spring's yellow-green and its scale is ochre: the word has not leafed out yet.
+    layer(TreeInk.SHOOT, 0.9, shoots)
+    layer(TreeInk.BUD, 0.9, buds)
     layer(TreeInk.FRUIT, 1.0, fruit)
     layer(TreeInk.LEAF_DEEP, 0.92, tones[0])
     layer(TreeInk.LEAF, 1.0, tones[1])
@@ -147,9 +164,9 @@ private fun Pen.taper(limb: TreeLimb, from: Double, to: Double) {
 }
 
 /** A leaf from ([x], [y]) outward along [angle]: pointed at both ends, broadest a little before its middle. */
-internal fun Pen.leaf(x: Double, y: Double, size: Double, angle: Double) {
+internal fun Pen.leaf(x: Double, y: Double, size: Double, angle: Double, girth: Double = 1.0) {
     val ux = cos(angle); val uy = sin(angle)
-    val belly = size * LEAF_WAIST * 1.9
+    val belly = size * LEAF_WAIST * 1.9 * girth
     fun px(along: Double, across: Double) = x + ux * along - uy * across
     fun py(along: Double, across: Double) = y + uy * along + ux * across
     move(x, y)

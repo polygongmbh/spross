@@ -6,6 +6,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 - A numbers challenge is now sent as a link that opens Spross on the same questions, and its code shrank to eight characters for anyone typing it.
 - A right answer in a timed numbers run now adds a second to the clock for every non-zero digit of its number, so long numbers pay for the time they take.
+- A word you just met now shows on its tree as a bud breaking into two spring-green leaflets instead of an ochre dot.
 
 ## 8.6.0 — 2026-10-09
 

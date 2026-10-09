@@ -7,7 +7,7 @@ import net.spross.kern.box.AreaGrowth
 import net.spross.kern.model.fnv1a64
 
 /** The theme color a layer is inked in; each platform maps it onto its own color table. */
-enum class TreeInk { GROUND, WOOD, WOOD_SHADE, LEAF, LEAF_DEEP, BUD, FRUIT, BLOSSOM, FALLEN, ACCENT }
+enum class TreeInk { GROUND, WOOD, WOOD_SHADE, LEAF, LEAF_DEEP, BUD, SHOOT, FRUIT, BLOSSOM, FALLEN, ACCENT }
 
 /** One outline as plain numbers, in points (dp): a run of commands, each its opcode, then its arguments. */
 object TreePath {
@@ -43,7 +43,7 @@ class TreeLayer(val ink: TreeInk, val opacity: Double, val stroke: Double, val s
  *   fruit    — matured: a round disc hanging under its twig
  *   blossom  — settled: five petals round an eye
  *   leaf     — growing: a sprig of three pointed leaflets
- *   bud      — fresh: a small disc
+ *   bud      — fresh: an ochre scale breaking into two folded, fainter leaflets
  */
 class TreePicture internal constructor(val layers: List<TreeLayer>) {
     companion object {

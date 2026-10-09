@@ -72,6 +72,8 @@ object Palette {
     val leafDeep = Swatch(0x18602C, 0x6FDC85)
     /** A bud: a scale of wood, the word has not leafed out yet. */
     val bud = Swatch(0x87510A, 0xF2C078)
+    /** The two leaflets breaking out of a bud: spring's yellow-green, paler and fresher than any leaf. */
+    val shoot = Swatch(0x6E9F1C, 0xC2E66A)
     /** A leaf fallen by the trunk: a word that lapsed. */
     val fallen = Swatch(0x87510A, 0xF2C078)
     // The tree's marks, apart from each other and from the leaves by hue and lightness alike.

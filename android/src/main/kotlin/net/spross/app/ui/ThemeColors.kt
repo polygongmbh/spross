@@ -83,6 +83,8 @@ class ThemeColors(
     val leafDeep: Color,
     /** A bud on a tree. */
     val bud: Color,
+    /** The leaflets breaking out of a bud. */
+    val shoot: Color,
     /** A fallen leaf by a tree. */
     val fallen: Color,
     /** Open blossom on a tree: soft butter. */
@@ -138,6 +140,7 @@ val ThemeLight = ThemeColors(
     leaf = Palette.leaf.light.opaque(),
     leafDeep = Palette.leafDeep.light.opaque(),
     bud = Palette.bud.light.opaque(),
+    shoot = Palette.shoot.light.opaque(),
     fallen = Palette.fallen.light.opaque(),
     blossom = Palette.blossom.light.opaque(),
     fruit = Palette.fruit.light.opaque(),
@@ -168,6 +171,7 @@ val ThemeDark = ThemeColors(
     leaf = Palette.leaf.dark.opaque(),
     leafDeep = Palette.leafDeep.dark.opaque(),
     bud = Palette.bud.dark.opaque(),
+    shoot = Palette.shoot.dark.opaque(),
     fallen = Palette.fallen.dark.opaque(),
     blossom = Palette.blossom.dark.opaque(),
     fruit = Palette.fruit.dark.opaque(),

@@ -63,6 +63,7 @@ struct TreeArt {
         case .leaf: Theme.colors.leaf
         case .leafDeep: Theme.colors.leafDeep
         case .bud: Theme.colors.bud
+        case .shoot: Theme.colors.shoot
         case .fruit: Theme.colors.fruit
         case .blossom: Theme.colors.blossom
         case .fallen: Theme.colors.fallen
