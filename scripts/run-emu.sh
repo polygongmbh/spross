@@ -78,7 +78,8 @@ fi
 [ -f "$APK" ] || { echo "error: run-emu: no APK at $APK — drop --no-build" >&2; exit 1; }
 
 [ "$CLEAN" = 1 ] && $ADB uninstall "$PKG" >/dev/null 2>&1
-$ADB install -r "$APK" >/dev/null
+# why: -d lets an older checkout install over a newer build — bisecting would otherwise stop at INSTALL_FAILED_VERSION_DOWNGRADE
+$ADB install -r -d "$APK" >/dev/null
 # why: `set -e` would take a false `[ ] && [ ] && x=y` chain as the script's failure
 if [ -n "$SHOT" ] && [ "$SOUND" = 0 ]; then MUTE=1; fi
 if [ "$MUTE" = 1 ]; then
