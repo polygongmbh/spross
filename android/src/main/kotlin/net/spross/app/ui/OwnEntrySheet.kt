@@ -95,8 +95,7 @@ internal fun OwnEntrySheet(model: AppModel, entry: OwnWord, onDismiss: () -> Uni
                 },
                 enabled = text.isNotBlank() || comment.isNotBlank(),
                 modifier = Modifier.fillMaxWidth()
-                    .padding(horizontal = Theme.spacing.lg, vertical = Theme.spacing.md)
-                    .pressSpring(),
+                    .padding(horizontal = Theme.spacing.lg, vertical = Theme.spacing.md),
                 shape = MaterialTheme.shapes.small,
             ) { Text(chrome.boxOwnWordSave) }
         }

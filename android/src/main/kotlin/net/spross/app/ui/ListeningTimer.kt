@@ -28,7 +28,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import net.spross.app.AppModel
-import net.spross.kern.design.PressKind
 import net.spross.kern.listen.listeningTimerMinutes
 import net.spross.kern.listen.listeningTimerWakeMs
 
@@ -69,7 +68,6 @@ fun SleepTimerChip(model: AppModel) {
     val tint = if (left == null) Theme.colors.textSecondary else Theme.colors.accent
     Row(
         modifier = Modifier
-            .pressSpring(PressKind.Chip)
             .clip(RoundedCornerShape(percent = 50))
             .background(MaterialTheme.colorScheme.surfaceVariant)
             // why: the LENGTH is a state of the timer, so the name stays put and the

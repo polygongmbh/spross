@@ -33,7 +33,6 @@ import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
 import net.spross.app.audio.CueSounds
 import net.spross.kern.design.Palette
-import net.spross.kern.design.PressKind
 import net.spross.kern.session.SelfGrading
 import net.spross.kern.session.ToneKind
 
@@ -113,7 +112,6 @@ private fun VerdictTile(
             .border(1.dp, color.copy(alpha = Palette.EDGE.toFloat()), shape)
             .clip(shape)
             .clickable(role = Role.Button, onClick = onClick)
-            .pressSpring(PressKind.Rating)
             .padding(horizontal = Theme.spacing.xs, vertical = Theme.spacing.sm),
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,

@@ -186,7 +186,7 @@ fun SessionExitButtons(
     }
     Button(
         onClick = onDone,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
+        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
         shape = MaterialTheme.shapes.small,
     ) {
         ButtonIcon(SprossIcons.Check)
@@ -198,7 +198,7 @@ fun SessionExitButtons(
 private fun RowScope.SecondaryAction(label: String, icon: ImageVector, onClick: () -> Unit) {
     OutlinedButton(
         onClick = onClick,
-        modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp).pressSpring(),
+        modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp),
         shape = MaterialTheme.shapes.small,
     ) {
         ButtonIcon(icon)

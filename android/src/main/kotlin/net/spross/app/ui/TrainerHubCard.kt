@@ -32,7 +32,6 @@ import net.spross.app.startSentenceScramble
 import net.spross.app.startOpposites
 import net.spross.app.startWordScramble
 import net.spross.app.trainerHubOffered
-import net.spross.kern.design.PressKind
 import net.spross.kern.trainer.Drill
 
 /**
@@ -148,9 +147,6 @@ private fun RowScope.EntryChip(chip: HubChip, suffix: String) {
     Column(
         modifier = Modifier
             .weight(1f)
-            // why: the spring sits OUTSIDE the fill — a press must shrink the tile,
-            // not just the label inside it.
-            .pressSpring(PressKind.Chip)
             .clip(MaterialTheme.shapes.medium)
             .background(Theme.colors.surfaceTint)
             .clickable(role = Role.Button, onClick = chip.open)

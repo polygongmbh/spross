@@ -84,7 +84,7 @@ fun OnboardingPrimary(
     Button(
         onClick = onClick,
         enabled = enabled && !busy,
-        modifier = Modifier.fillMaxWidth().pressSpring(),
+        modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.small,
     ) {
         if (busy) {

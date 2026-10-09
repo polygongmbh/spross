@@ -181,7 +181,6 @@ private fun TransportButton(
     FilledIconButton(
         onClick = onClick,
         modifier = Modifier
-            .pressSpring()
             .size(if (big) 72.dp else 56.dp)
             .semantics(mergeDescendants = true) { contentDescription = label },
         colors = if (big) {

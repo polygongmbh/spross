@@ -104,7 +104,7 @@ fun OverviewStartButton(chrome: Chrome, enabled: Boolean, onStart: () -> Unit) {
     Button(
         onClick = onStart,
         enabled = enabled,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
+        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
         shape = MaterialTheme.shapes.small,
     ) {
         Text(chrome.trainerOverviewStart, style = MaterialTheme.typography.titleMedium)

@@ -55,7 +55,7 @@ fun DrillLeadCard(
         )
         Button(
             onClick = { model.open(pick.drill) },
-            modifier = Modifier.fillMaxWidth().pressSpring(),
+            modifier = Modifier.fillMaxWidth(),
             shape = MaterialTheme.shapes.small,
         ) {
             Text(chrome.homeOfferStart, style = MaterialTheme.typography.titleMedium)
@@ -64,7 +64,7 @@ fun DrillLeadCard(
         standing.roundInstead?.let { round ->
             OutlinedButton(
                 onClick = { if (round == RoundStart.Due) model.startSession() else model.startExtraSession() },
-                modifier = Modifier.fillMaxWidth().pressSpring(),
+                modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.small,
             ) { Text(chrome.homeSuggestionWordsInstead) }
         }

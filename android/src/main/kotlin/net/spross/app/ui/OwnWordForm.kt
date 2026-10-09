@@ -148,7 +148,7 @@ fun OwnWordForm(
                 onDone()
             },
             enabled = draft.hasAnything,
-            modifier = Modifier.fillMaxWidth().pressSpring(),
+            modifier = Modifier.fillMaxWidth(),
             shape = MaterialTheme.shapes.small,
         ) { Text(if (rewriting) chrome.boxOwnWordSave else chrome.boxOwnWordAdd) }
     }

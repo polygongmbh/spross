@@ -182,7 +182,7 @@ private fun Buttons(
 private fun PrimaryAction(primary: Primary, text: String, chrome: Chrome, onClick: () -> Unit) {
     Button(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
+        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
         shape = MaterialTheme.shapes.small,
     ) {
         Text(
@@ -199,7 +199,7 @@ private fun PrimaryAction(primary: Primary, text: String, chrome: Chrome, onClic
 private fun NextButton(chrome: Chrome, subtitle: String?, onClick: () -> Unit) {
     Button(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
+        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
         shape = MaterialTheme.shapes.small,
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {

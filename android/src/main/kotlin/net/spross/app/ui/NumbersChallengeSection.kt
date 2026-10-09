@@ -60,7 +60,7 @@ fun NumbersChallengeSection(model: AppModel, picks: NumbersMode) {
         OutlinedButton(
             onClick = { NumbersChallenge.create(picks, Random.Default)?.let(model::startChallenge) },
             enabled = offered,
-            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).pressSpring(),
+            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
             shape = MaterialTheme.shapes.small,
         ) {
             Text(chrome.trainerChallengeStart)
@@ -87,7 +87,7 @@ fun NumbersChallengeSection(model: AppModel, picks: NumbersMode) {
             OutlinedButton(
                 onClick = accept,
                 enabled = code.isNotBlank(),
-                modifier = Modifier.heightIn(min = 48.dp).pressSpring(),
+                modifier = Modifier.heightIn(min = 48.dp),
                 shape = MaterialTheme.shapes.small,
             ) {
                 Text(chrome.trainerChallengeAccept)

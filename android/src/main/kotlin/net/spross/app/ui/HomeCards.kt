@@ -118,7 +118,7 @@ fun SessionCard(model: AppModel, standing: HomeStanding, streak: Int, health: St
         }
         Button(
             onClick = { model.startSession() },
-            modifier = Modifier.fillMaxWidth().pressSpring(),
+            modifier = Modifier.fillMaxWidth(),
             shape = MaterialTheme.shapes.small,
         ) {
             Text(chrome.homeOfferStart, style = MaterialTheme.typography.titleMedium)
@@ -128,7 +128,7 @@ fun SessionCard(model: AppModel, standing: HomeStanding, streak: Int, health: St
         if (offer.shortRound > 0) {
             OutlinedButton(
                 onClick = { model.startShortSession() },
-                modifier = Modifier.fillMaxWidth().pressSpring(),
+                modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.small,
             ) { Text(chrome.homeOfferShortRound) }
         }
@@ -164,7 +164,7 @@ fun DoneCard(model: AppModel, standing: HomeStanding, streak: Int, health: Strea
         if (standing.canPracticeMore) {
             OutlinedButton(
                 onClick = { model.startExtraSession() },
-                modifier = Modifier.fillMaxWidth().pressSpring(),
+                modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.small,
             ) { Text(chrome.homeDoneExtraRound) }
         }
@@ -215,7 +215,6 @@ internal fun WayInCard(glyph: String, title: String, subtitle: String, onOpen: (
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .pressSpring()
             .panel(MaterialTheme.shapes.large)
             .clip(MaterialTheme.shapes.large)
             .semantics(mergeDescendants = true) { }
