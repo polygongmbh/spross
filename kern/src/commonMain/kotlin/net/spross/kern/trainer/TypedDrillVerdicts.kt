@@ -26,8 +26,9 @@ internal data class DrillBooking(val correct: Boolean, val clean: Boolean)
  * almost hold that shows a spelling, the reveal that counts as a miss. Written once, because
  * two copies is how the same slip comes to be worth two different things.
  *
- * The slot run shares the approve and the bookings; its submit and reveal stay its own
- * ([NumbersRun]), since a timed run keeps a clean answer unsaid and a reversed one says its prompt.
+ * The slot run shares the whole ladder but for the [DrillEffect.Silence] a verdict opens on
+ * ([submit] and [reveal] take `silence = false` there), since a timed run keeps a clean answer
+ * unsaid and a reversed one says its prompt.
  */
 internal object TypedDrillVerdicts {
 
@@ -66,12 +67,12 @@ internal object TypedDrillVerdicts {
     /**
      * An answer handed in: taken, held for its spelling, or refused with what it really named.
      */
-    fun submit(match: Match): TypedVerdict = when (match) {
+    fun submit(match: Match, silence: Boolean = true): TypedVerdict = when (match) {
         Match.Exact -> TypedVerdict(
             TurnFeedback.Correct,
             null,
             listOfNotNull(
-                DrillEffect.Silence,
+                DrillEffect.Silence.takeIf { silence },
                 DrillEffect.Tone(ToneKind.Correct),
                 DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
             ),
@@ -82,7 +83,7 @@ internal object TypedDrillVerdicts {
             TurnFeedback.Almost(match.corrected, AlmostReason.Typo),
             null,
             listOfNotNull(
-                DrillEffect.Silence,
+                DrillEffect.Silence.takeIf { silence },
                 DrillEffect.Tone(ToneKind.Almost),
                 DrillEffect.ReleaseFocus,
             ),
@@ -90,7 +91,7 @@ internal object TypedDrillVerdicts {
         else -> TypedVerdict(
             TurnFeedback.Revealed,
             match as? Match.OtherWord,
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
+            listOfNotNull(DrillEffect.Silence.takeIf { silence }, DrillEffect.Tone(ToneKind.Wrong)),
         )
     }
 
@@ -98,10 +99,10 @@ internal object TypedDrillVerdicts {
      * The look-up. The field stays EMPTY — the card is where the answer stands, and typing it
      * in for the learner would put the same words on screen twice.
      */
-    fun reveal(): TypedVerdict = TypedVerdict(
+    fun reveal(silence: Boolean = true): TypedVerdict = TypedVerdict(
         TurnFeedback.Revealed,
         null,
-        listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)),
+        listOfNotNull(DrillEffect.Silence.takeIf { silence }, DrillEffect.Tone(ToneKind.Reveal)),
     )
 
     /**
