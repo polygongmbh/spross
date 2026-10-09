@@ -6,7 +6,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.model.CardPhase
 
-/** The all-settled / all-growing / not-yet-introduced split, box-wide and per area. */
+/** The all-settled / all-growing split and the bar's denominator, box-wide and per area. */
 class StatisticsBucketsTests {
     private val now = Box.day1
 
@@ -29,9 +29,7 @@ class StatisticsBucketsTests {
         assertEquals(1, stats.allGrowingCount) // w02: active, not settled
         val kitchen = stats.areas.single()
         assertEquals(1, kitchen.allGrowing)
-        assertEquals(2, kitchen.notIntroduced) // w03, w04 never scheduled
         assertEquals(4, kitchen.progressTotal)
-        assertEquals(kitchen.total, kitchen.allSettled + kitchen.allGrowing + kitchen.notIntroduced)
     }
 
     /** Each active card counts on its own stage; the two halves of the split are sums of them. */
@@ -74,7 +72,6 @@ class StatisticsBucketsTests {
             name = "kitchen", total = 1, stages = StageCounts(fresh = 2, settled = 3),
         )
         assertEquals(2, area.allGrowing)
-        assertEquals(0, area.notIntroduced) // never negative
         assertEquals(5, area.progressTotal) // the introduced cards still fit
     }
 
@@ -84,7 +81,6 @@ class StatisticsBucketsTests {
             name = "empty", total = 0, stages = StageCounts(),
         )
         assertEquals(0, area.allGrowing)
-        assertEquals(0, area.notIntroduced)
         assertEquals(1, area.progressTotal)
     }
 

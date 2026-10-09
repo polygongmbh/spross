@@ -71,7 +71,7 @@ Neither rides the foreground: the entry chip answers its question far more cheap
 Where only the SIZE of something is wanted, there is a counting entry point that does not compose an order —
 `BoxEngine.dueCount` rather than the due queue's size.
 Where a screen draws one number per area, there is one that answers for every area in a walk —
-`BoxBrowser.shelfCounts` rather than `queueableCount` per shelf.
+`BoxBrowser.shelfCounts` rather than `queueableCardIds` per shelf.
 Prefer these to caching a more expensive answer:
 an answer cheap enough to just ask for is one nothing has to remember to invalidate.
 

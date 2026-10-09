@@ -7,7 +7,6 @@ They describe the tree at 8.7.0, before the fixes this branch shipped.
 
 ## Kern only — `:kern:jvmTest` covers it, runnable in a cloud session
 
-- Drop public read models only tests read: `AreaStatistics.notIntroduced`, `CatalogArea.conceptsBySlug`, `WordScrambleMasking.fullyScrambled`, `Catalog.dateNames`, `BoxStatistics.longestStreak` (an every-day walk per `statistics()` call), `BoxStatistics.suspendedCount`, `BoxBrowser.queueableCount`/`unqueueableCount`.
 - One `internal` booking helper under the six drill reducers (`WordScrambleRun`, `SentenceScrambleRun`, `OppositesRun`, `LetterDrillRun`, `CountryDrillRun`, `DateDrillRun`): the `close`/`confirm`/`booked`/`paced`/`advanced` block is written six times, `WINS_TO_ADVANCE = 3` six times; public types stay put so the ObjC header does not move.
 - Then thin the per-drill copies of the shared rule's tests (ladder-out ×3, pending-books-on-close ×3, resample-once ×5, same-seed ×2) to one helper test plus one wiring case per drill.
 - Overtests: `FsrsBehavioralTest.theProductShipsAnAlternatingTenMinuteToOneMonthLadder` pins the calibration; `StoreGoldenTest`'s two byte pins contradict the pre-production invariant; `BoxBackupTests.aRestoreReplacesWhatItCarriesAndKeepsTheRest` duplicates `StoredBoxesTests`; four repo-root walkers in jvmTest should share `repoRoot`.

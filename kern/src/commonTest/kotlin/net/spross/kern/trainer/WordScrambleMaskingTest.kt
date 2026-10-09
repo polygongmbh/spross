@@ -42,7 +42,7 @@ class WordScrambleMaskingTest {
     fun theThirdSprosseAnchorsNothingAndKeepsNoCapital() {
         for (rng in seeds()) {
             val mixed = WordScrambleMasking.scramble(word, 3, rng)
-            assertTrue(mixed.fullyScrambled)
+            assertEquals(0, mixed.fixedLeading)
             assertEquals(mixed.display.lowercase(), mixed.display)
             assertEquals(letters(word), letters(mixed.display))
         }
@@ -52,7 +52,7 @@ class WordScrambleMaskingTest {
     @Test
     fun aSprosseAboveTheLadderStillAnchorsNothing() {
         val mixed = WordScrambleMasking.scramble(word, WordScrambleMasking.MAX_SPROSSE + 4, Random(7))
-        assertTrue(mixed.fullyScrambled)
+        assertEquals(0, mixed.fixedLeading)
     }
 
     /** A mix that reads as the spelling is no question at all, so it is rolled again. */
