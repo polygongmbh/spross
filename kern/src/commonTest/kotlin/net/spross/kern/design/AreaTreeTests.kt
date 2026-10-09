@@ -53,6 +53,13 @@ class AreaTreeTests {
     }
 
     @Test
+    fun aFirstRoundStillInBudSpreadsOverMoreThanOneTwig() {
+        for (area in listOf("kitchen", "travel", "family")) {
+            assertTrue(AreaTree.grow(area, 7, 6).slots.map { it.limb }.distinct().size > 1, area)
+        }
+    }
+
+    @Test
     fun aLearnerKeepsTheirGardenAndEachLanguageGrowsItsOwn() {
         fun limbs(name: String?, target: String) =
             AreaTree.grow(AreaTree.seed(AreaTree.garden(name, target), "kitchen"), 30, 0).limbs
