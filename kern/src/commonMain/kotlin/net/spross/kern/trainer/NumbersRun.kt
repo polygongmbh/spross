@@ -73,9 +73,9 @@ object NumbersRun {
         normalizer: AnswerNormalizer?,
         rng: Random,
     ): NumbersReduction = when (intent) {
-        is NumbersIntent.InputChanged -> typed(state, intent.text, normalizer)
-        is NumbersIntent.Submit -> submit(state, intent.text, normalizer)
-        NumbersIntent.Reveal -> reveal(state)
+        is NumbersIntent.InputChanged -> typed(state, intent.text, normalizer, rng)
+        is NumbersIntent.Submit -> submit(state, intent.text, normalizer, rng)
+        NumbersIntent.Reveal -> reveal(state, rng)
         NumbersIntent.LookUp -> lookUp(state)
         NumbersIntent.ConfirmPending -> confirm(state, rng)
         NumbersIntent.AdvanceElapsed -> elapsed(state, rng)
@@ -166,10 +166,19 @@ object NumbersRun {
         state: NumbersRunState,
         text: String,
         normalizer: AnswerNormalizer?,
+        rng: Random,
     ): NumbersReduction {
         if (!state.owesAnswer) return unchanged(state)
-        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
-        return when (val match = grade(text, state.currentTask, normalizer)) {
+        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state, rng)
+        val match = grade(text, state.currentTask, normalizer)
+        if (state.timed) {
+            return when (match) {
+                Match.Exact -> raced(state, ToneKind.Correct, correct = true, clean = true, rng)
+                is Match.Typo -> raced(state, ToneKind.Almost, correct = true, clean = false, rng)
+                else -> raced(state, ToneKind.Wrong, correct = false, clean = false, rng)
+            }
+        }
+        return when (match) {
             Match.Exact -> NumbersReduction(
                 state.copy(feedback = TurnFeedback.Correct),
                 listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceBeat.Explicit)),
@@ -195,6 +204,7 @@ object NumbersRun {
         state: NumbersRunState,
         text: String,
         normalizer: AnswerNormalizer?,
+        rng: Random,
     ): NumbersReduction {
         val trimmed = text.trim()
         val verdict = TypedDrillVerdicts.typed(state.feedback) {
@@ -202,11 +212,16 @@ object NumbersRun {
                 !stillGrowing(trimmed, state.currentTask) &&
                 grade(trimmed, state.currentTask, normalizer) == Match.Exact
         } ?: return unchanged(state)
+        if (state.timed && verdict.feedback == TurnFeedback.Correct) {
+            return raced(state, ToneKind.Correct, correct = true, clean = true, rng)
+        }
         return NumbersReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
-    private fun reveal(state: NumbersRunState): NumbersReduction {
+    /** The answer asked for on an empty field; a challenge's Skip books the miss instead, its answer never shown. */
+    private fun reveal(state: NumbersRunState, rng: Random): NumbersReduction {
         if (!state.owesAnswer) return unchanged(state)
+        if (state.timed) return raced(state, ToneKind.Wrong, correct = false, clean = false, rng)
         // why: the field stays empty — the card is where the answer stands, and typing it in for
         // the learner would put the same word on screen twice.
         return NumbersReduction(
@@ -241,6 +256,13 @@ object NumbersRun {
             ?: unchanged(state)
 
     // MARK: - Booking
+
+    /**
+     * A challenge books an answer the moment it is graded and asks the next question:
+     * nothing is shown, so nothing waits — a shown answer would be a breather against the clock.
+     */
+    private fun raced(state: NumbersRunState, tone: ToneKind, correct: Boolean, clean: Boolean, rng: Random): NumbersReduction =
+        booked(state, correct, clean, rng).let { it.copy(effects = listOf(DrillEffect.Tone(tone)) + it.effects) }
 
     /** Book the answer, then put the next question up at the Sprossen the booking left. */
     private fun booked(

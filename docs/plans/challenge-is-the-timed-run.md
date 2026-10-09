@@ -25,8 +25,8 @@ A clock paused on that reveal would be a breather after every mistake, so the ra
 - [x] A: remove `DrillModifier.Timed`; `NumbersRunState.timed` = a challenge; drop its unlock, storage tag,
       iOS/Android modifier naming and the overview's screen-reader filter, the `trainer.modifier.timed*` strings,
       the `-uitest-modifiers timed` hook; tests via a challenge; docs and changelog
-- [ ] B: kern strict turn for a challenge (`NumbersRun.submit/typed/reveal` book at once; `question` without hint, closing note or other word);
-      the "Skip" label for the reveal button on iOS and Android (new string key); tests; docs and changelog
+- [x] B: kern strict turn for a challenge (`NumbersRun.submit/typed/reveal` book at once; `question` without hint, closing note or other word);
+      the "Skip" label (`session.skip`, reused) via `AnswerControls.Primary.SubmitOrSkip` on iOS and Android; tests; docs and changelog
 - [ ] Prune this plan
 
 ## Not verifiable in a cloud session

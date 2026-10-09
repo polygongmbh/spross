@@ -4,7 +4,11 @@ import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import net.spross.kern.session.AnswerControls
+import net.spross.kern.session.ToneKind
+import net.spross.kern.session.TurnFeedback
 
 /** A challenge against the clock: scored by the Sprosse each clean answer stood on, ended by [NumbersIntent.TimeUp]. */
 class TimedRunTest {
@@ -19,10 +23,9 @@ class TimedRunTest {
 
     private fun NumbersRunState.send(intent: NumbersIntent) = NumbersRun.reduce(this, intent, null, Random(9)).state
 
-    private fun NumbersRunState.answered() =
-        send(NumbersIntent.Submit(currentTask.display)).send(NumbersIntent.ConfirmPending)
+    private fun NumbersRunState.answered() = send(NumbersIntent.Submit(currentTask.display))
 
-    private fun NumbersRunState.missed() = send(NumbersIntent.Reveal).send(NumbersIntent.ConfirmPending)
+    private fun NumbersRunState.missed() = send(NumbersIntent.Reveal)
 
     @Test
     fun aCleanAnswerScoresTheSprosseItWasAskedAt() {
@@ -40,6 +43,33 @@ class TimedRunTest {
         val task = NumbersTask(NumbersReading.Cardinal, "de", prompt = "1050", accepted = listOf("x"), display = "x")
         assertEquals(2, TimedRun.bonusSeconds(task, correct = true, clean = true), "zeros earn nothing")
         assertEquals(0, TimedRun.bonusSeconds(task, correct = true, clean = false), "an almost earns nothing")
+    }
+
+    /** Nothing is shown, so nothing waits: right, wrong and skipped alike ask the next question at once. */
+    @Test
+    fun aChallengeBooksEveryAnswerTheMomentItIsGraded() {
+        val run = at(3)
+        for ((intent, tone) in listOf(
+            NumbersIntent.Submit(run.currentTask.display) to ToneKind.Correct,
+            NumbersIntent.InputChanged(run.currentTask.display) to ToneKind.Correct,
+            NumbersIntent.Submit("nichts") to ToneKind.Wrong,
+            NumbersIntent.Submit("") to ToneKind.Wrong,
+        )) {
+            val step = NumbersRun.reduce(run, intent, null, Random(9))
+            assertEquals(run.index + 1, step.state.index, "$intent")
+            assertEquals(TurnFeedback.Neutral, step.state.feedback, "$intent")
+            assertTrue(DrillEffect.Tone(tone) in step.effects, "$intent")
+        }
+        assertEquals(1, run.send(NumbersIntent.Submit("nichts")).done)
+    }
+
+    @Test
+    fun aChallengeShowsNoHintNoGlossAndSaysNoAnswer() {
+        val run = at(0)
+        assertNull(run.question.hint)
+        assertNull(run.question.closing.note)
+        assertNull(run.answerSaying)
+        assertEquals(AnswerControls.Primary.SubmitOrSkip, run.controls.primary)
     }
 
     @Test

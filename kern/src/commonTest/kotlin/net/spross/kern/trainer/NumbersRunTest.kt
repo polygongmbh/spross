@@ -152,9 +152,9 @@ class NumbersRunTest {
         assertTrue(DrillEffect.CancelAdvance in edited.effects)
     }
 
-    /** A graded answer says its reading, except a clean one against a running clock. */
+    /** A graded answer says its reading, except in a challenge, where only the tone says how it went. */
     @Test
-    fun aTimedRunLeavesACleanAnswerUnsaid() {
+    fun aChallengeLeavesTheAnswerUnsaid() {
         val rng = Random(31)
         val untimed = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         val said = reduce(untimed, NumbersIntent.Submit(untimed.currentTask.accepted.first()), rng)

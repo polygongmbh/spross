@@ -25,6 +25,9 @@ Neighbors: every drill `drills.md`, readings `number-forms.md`, `clock-registers
   one started from the picks is the same race, its code waiting to be sent.
   It is scored, not streaked (`TimedRun`): the clock ends it, each clean answer scores the Sprosse it was asked at,
   and an almost scores nothing yet still spends its seconds.
+  Every answer is booked the moment it is graded, with only its tone, and the next question follows:
+  no reveal, gloss, first-sight hint or read-out answer gives a breather against the clock,
+  and an empty field offers Skip, an immediate miss, where a practice run offers the reveal.
   Its score line carries the clock and the score in the answer streak's place,
   and it offers neither the look-up nor the early "Fertig": against a clock, one is a shortcut and the other is the clock's job.
   A screen reader never sees its section, since a run ending under the learner is the timed change `../kern/docs/turns.md` keeps from one.
