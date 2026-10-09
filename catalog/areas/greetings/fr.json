@@ -10,7 +10,7 @@
   "good-evening": { "text": "Bonsoir !" },
   "good-night": { "text": "Bonne nuit !" },
   "goodbye": { "text": "Au revoir !" },
-  "bye": { "text": "Ciao !" },
+  "bye": { "text": "À plus !", "accepts": ["Salut !", "Ciao !"] },
   "welcome": { "text": "Bienvenue !" },
   "may-i-come-in": { "text": "Puis-je entrer ?", "accepts": ["Je peux entrer ?"] },
   "how-are-you": { "text": "Comment allez-vous ?", "accepts": ["Comment vas-tu ?", "Ça va ?"] },
