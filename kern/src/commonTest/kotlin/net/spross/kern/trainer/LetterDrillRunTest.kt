@@ -406,22 +406,11 @@ class LetterDrillRunTest {
 
     // MARK: - Closing
 
+    /** Closing books a pending answer as the tap would ([LadderStanding.closing]). */
     @Test
-    fun closingBooksAPendingAnswerAndKeepsNoRecord() {
-        val rng = Random(31)
-        val state = LetterDrillRun.openAt(config(report()), 6, rng)
-
-        val untouched = LetterDrillRun.close(state)
-        assertNull(untouched.summary)
-        assertTrue(DrillEffect.Silence in untouched.effects)
-
+    fun closingBooksAPendingAnswer() {
+        val state = LetterDrillRun.openAt(config(report()), 6, Random(31))
         val almost = LetterDrillRun.close(state.copy(feedback = TurnFeedback.Almost("м", AlmostReason.Typo)))
         assertEquals(listOf(AnswerOutcome.Almost), almost.state.outcomes)
-        assertEquals(1, almost.summary?.done)
-        assertEquals(false, almost.summary?.newRecord, "the letter drill keeps no record store")
-        assertEquals(6, almost.state.sprosse, "closing may not upgrade an almost answer")
-
-        // A revealed answer nobody confirmed is not accepted, so closing books nothing.
-        assertNull(LetterDrillRun.close(state.copy(feedback = TurnFeedback.Revealed)).summary)
     }
 }

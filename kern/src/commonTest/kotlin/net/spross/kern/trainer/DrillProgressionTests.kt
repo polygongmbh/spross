@@ -151,6 +151,17 @@ class DrillProgressionTests {
         assertEquals(DrillLadder.Sprosse(null, 4), DrillLadder.climb(4, 5) { null })
     }
 
+    /** The question just asked is drawn again ONCE, never until it misses: a repeat needs two unlucky draws. */
+    @Test
+    fun theQuestionJustAskedIsResampledOnce() {
+        val pool = listOf("asked", "other")
+        val repeats = (1..400).count { seed ->
+            DrillLadder.pickAvoiding(pool, Random(seed.toLong())) { it == "asked" } == "asked"
+        }
+        assertTrue(repeats > 0, "a resample loop: the question just asked can never come back")
+        assertTrue(repeats < 200, "avoiding the question just asked bought nothing")
+    }
+
     // Direction
 
     @Test

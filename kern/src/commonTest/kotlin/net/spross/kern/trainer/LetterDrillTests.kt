@@ -94,12 +94,12 @@ class LetterDrillTests {
         assertEquals(listOf("ch"), tasks.getValue("ch-ach").accepted)
     }
 
+    /** The draw avoids the answer just asked ([DrillLadder.pickAvoiding]). */
     @Test
     fun theWordJustAskedIsResampledOnce() {
-        val refs = listOf("m", "n")
-        val repeats = (1..200).count { sample(sprosse = 1, seed = it, refs = refs, avoid = "m").answerRef == "m" }
-        // One resample on a hit: a repeat now needs two unlucky draws, ~¼ of them.
-        assertTrue(repeats in 20..80, "repeats after one resample: $repeats of 200")
+        fun repeats(avoid: String?) =
+            (1..200).count { sample(sprosse = 1, seed = it, refs = listOf("m", "n"), avoid = avoid).answerRef == "m" }
+        assertTrue(repeats("m") < repeats(null), "avoiding the answer just asked bought nothing")
     }
 
     /**
@@ -109,13 +109,12 @@ class LetterDrillTests {
     private fun gapped(
         words: List<AlphabetExampleWord>,
         count: Int = 200,
-        avoidWord: String? = null,
     ): List<String> {
         val rng = Random(4)
         return (1..count).map {
             assertNotNull(
                 LetterDrill.sample(
-                    fixture.alphabet, { words }, 6, listOf("ß"), null, avoidWord, emptySet(), rng,
+                    fixture.alphabet, { words }, 6, listOf("ß"), null, null, emptySet(), rng,
                 ),
             ).promptText
         }
@@ -131,13 +130,6 @@ class LetterDrillTests {
             gapped(sharpWords).toSet(),
             "every word the caller offered must be reachable",
         )
-    }
-
-    @Test
-    fun theWordItJustGappedIsResampledOnce() {
-        val repeats = gapped(sharpWords, avoidWord = "Fuß").count { it == "Fuß" }
-        // Same courtesy as the entry draw: a repeat needs two unlucky draws out of four.
-        assertTrue(repeats in 2..30, "repeats after one resample: $repeats of 200")
     }
 
     /**
