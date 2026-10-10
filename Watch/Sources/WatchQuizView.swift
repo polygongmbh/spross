@@ -9,8 +9,9 @@ import SwiftUI
 /// accessibility value), then auto-advance.
 /// One progress indicator, in the title: a round counts to its end,
 /// free practice shows the answer streak (having no total to count toward).
-/// - recognize: prompt the target `promptForm` (article-tinted) alone for a
-///   recall pause, then tap the matching source meaning.
+/// Either role shows its prompt alone for a recall pause before the options:
+/// - recognize: prompt the target `promptForm` (article-tinted), tap the
+///   matching source meaning.
 /// - produce:   prompt the source meaning, tap the target word.
 ///
 /// A card that has a picture shows it on the prompt line once answered — never

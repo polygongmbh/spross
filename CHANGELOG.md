@@ -4,6 +4,8 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- On the watch, a word to produce now also shows alone for a moment before its options appear, as a word to recognize already did.
+
 ## 8.7.0 — 2026-10-09
 
 - A numbers challenge is now sent as a link that opens Spross on the same questions, and its code shrank to eight characters for anyone typing it.

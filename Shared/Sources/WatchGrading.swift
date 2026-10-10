@@ -27,7 +27,7 @@ enum WatchGrading {
     /// The time it takes to read `chars` characters and act on them — the Good window.
     static func budgetMs(chars: Int) -> Int { baseMs + perCharMs * chars }
 
-    /// How long a recognition prompt stands alone before its options appear:
+    /// How long a prompt stands alone before its options appear:
     /// the Good window over the PROMPT, so recall gets as long as the word takes to read.
     /// Trying to recall before the options can do the recalling for you is what makes
     /// a multiple-choice question practice rather than a spotting game.

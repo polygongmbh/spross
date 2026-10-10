@@ -34,7 +34,7 @@ final class WatchModel {
     /// The rating the last tap earned (raw FSRS 1–4), for the tile's badge —
     /// the quiz marks a quick one's speed, never names it (`WatchFeedback`).
     private(set) var lastRating: WatchRating?
-    /// False while a recognition prompt stands alone for its recall pause
+    /// False while a prompt stands alone for its recall pause
     /// (`WatchGrading.recallPauseMs`); a tap or the pause running out shows the options.
     private(set) var optionsShown = true
     /// Raised for a moment after a wrong pick; the quiz washes the screen red.
@@ -309,16 +309,17 @@ final class WatchModel {
         startRecallPause(entry)
     }
 
-    /// A recognition prompt asks for its meaning alone first; a produce prompt and a
-    /// VoiceOver user, who could not find hidden tiles, get the options at once.
+    /// Every prompt asks for its answer alone first; a VoiceOver user, who could not
+    /// find hidden tiles, gets the options at once.
     private func startRecallPause(_ entry: WatchSnapshot.Entry) {
         recallPause?.cancel()
-        guard currentQuestion != nil, entry.isRecognize, !WKAccessibilityIsVoiceOverRunning() else {
+        guard currentQuestion != nil, !WKAccessibilityIsVoiceOverRunning() else {
             optionsShown = true
             return
         }
         optionsShown = false
-        let pause = WatchGrading.recallPauseMs(promptChars: entry.promptForm.count)
+        let prompt = entry.isRecognize ? entry.promptForm : entry.sourceText
+        let pause = WatchGrading.recallPauseMs(promptChars: prompt.count)
         // why: the pause running out shows the options and starts the response clock.
         recallPause = Task { @MainActor [weak self] in
             try? await Task.sleep(for: .milliseconds(pause))
