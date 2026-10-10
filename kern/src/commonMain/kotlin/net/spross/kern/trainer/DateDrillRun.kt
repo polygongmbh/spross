@@ -53,8 +53,8 @@ object DateDrillRun {
         is DateDrillIntent.InputChanged -> typed(state, intent.text)
         is DateDrillIntent.Submit -> submit(state, intent.text)
         DateDrillIntent.Reveal -> reveal(state)
-        DateDrillIntent.ConfirmPending -> confirm(state, rng)
-        DateDrillIntent.AdvanceElapsed -> elapsed(state, rng)
+        DateDrillIntent.ConfirmPending -> booked(state, TypedDrillVerdicts.confirmed(state.feedback), rng)
+        DateDrillIntent.AdvanceElapsed -> booked(state, TypedDrillVerdicts.elapsed(state.feedback), rng)
         DateDrillIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
     }
 
@@ -98,28 +98,19 @@ object DateDrillRun {
     }
 
     /**
-     * Leaving, from the corner or from "Fertig". A pending accepted answer books first,
-     * exactly as the explicit tap would — closing may neither lose it nor upgrade it —
-     * and a revealed answer nobody confirmed books nothing. An untouched run reports
-     * nothing at all, though it still names the Sprosse it opened on, which the page files
-     * either way.
+     * Leaving, from the corner or from "Fertig" ([LadderStanding.closing]). An untouched run
+     * reports nothing at all, though it still names the Sprosse it opened on, which the page
+     * files either way.
      *
      * [standingRecord] is what the platform's store holds now; the write is strictly
      * greater, so re-closing a resumed run never double-claims.
      */
     fun close(state: DateDrillRunState, standingRecord: Int): DateDrillClose {
-        val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
-        val pending = TypedDrillVerdicts.pending(state.feedback)
-            ?.let { advanced(state, it.correct, it.clean) }
-            ?: state
-        val ended = pending.copy(feedback = TurnFeedback.Neutral, otherWord = null, finished = true)
-        val summary = if (ended.done == 0) {
-            null
-        } else {
-            DrillRunSummary(ended.done, ended.bestAnswerStreak, ended.bestAnswerStreak > standingRecord)
-        }
+        val ended = LadderStanding.closing(state, ::advanced)
+            .copy(feedback = TurnFeedback.Neutral, otherWord = null, finished = true)
+        val summary = LadderStanding.summary(ended, standingRecord)
         val cleared = DateDrill.cleared(state.config.content, state.config.reverse, ended.core.solvedClean)
-        return DateDrillClose(ended, summary, ended.bestSprosse, cleared, effects)
+        return DateDrillClose(ended, summary, ended.bestSprosse, cleared, LadderStanding.EFFECTS)
     }
 
     // MARK: - Intents
@@ -152,26 +143,12 @@ object DateDrillRun {
         return DateDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
-    private fun confirm(state: DateDrillRunState, rng: Random): DateDrillReduction =
-        TypedDrillVerdicts.confirmed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
-    private fun elapsed(state: DateDrillRunState, rng: Random): DateDrillReduction =
-        TypedDrillVerdicts.elapsed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
     // MARK: - Booking
 
     /** Book the answer, then put the next question up at the Sprosse the booking left. */
-    private fun booked(
-        state: DateDrillRunState,
-        correct: Boolean,
-        clean: Boolean,
-        rng: Random,
-    ): DateDrillReduction {
-        val next = advanced(state, correct, clean)
+    private fun booked(state: DateDrillRunState, answer: DrillBooking?, rng: Random): DateDrillReduction {
+        answer ?: return unchanged(state)
+        val next = advanced(state, answer)
         // why: sampled against the key it must avoid — kern resamples once, so a repeat needs
         // two unlucky draws rather than one.
         val draw = DateDrill.draw(
@@ -183,56 +160,44 @@ object DateDrillRun {
             rng,
             arriving = next.sprosse > state.sprosse,
         )
-        return DateDrillReduction(
-            paced(next.copy(
-                // Nothing left to ask: end on the summary, never on a question already answered.
-                task = draw.task ?: state.task,
-                finished = draw.task == null,
-                sprosse = draw.sprosse,
-                // A Sprosse the run answered out is a Sprosse it stood on, and the wins banked on
-                // the one below stay behind with it.
-                bestSprosse = maxOf(next.bestSprosse, draw.sprosse),
-                winsAtSprosse = if (draw.sprosse == next.sprosse) next.winsAtSprosse else 0,
-                index = state.index + 1,
-                // why: cleared in the SAME transaction as the question — the next card must
-                // never render one frame carrying the last one's answer.
-                feedback = TurnFeedback.Neutral,
-                otherWord = null,
-            )),
-            listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
+        val moved = next.withStanding(next.standing.carriedTo(draw.sprosse)).copy(
+            // Nothing left to ask: end on the summary, never on a question already answered.
+            task = draw.task ?: state.task,
+            finished = draw.task == null,
+            index = state.index + 1,
+            // why: cleared in the SAME transaction as the question — the next card must
+            // never render one frame carrying the last one's answer.
+            feedback = TurnFeedback.Neutral,
+            otherWord = null,
         )
+        // The pause a booked answer leaves due, if one is ([DrillPacing]).
+        val paced = moved.copy(core = moved.core.paced(moved.sprosse, moved.newSprossen, endless = !moved.finished))
+        return DateDrillReduction(paced, LadderStanding.EFFECTS)
     }
-
-    /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
-    private fun paced(state: DateDrillRunState): DateDrillRunState =
-        state.copy(core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished))
 
     /** The booking itself: the ramp, the answer streak, the tallies — the Sprosse it reached included. */
-    private fun advanced(
-        state: DateDrillRunState,
-        correct: Boolean,
-        clean: Boolean,
-    ): DateDrillRunState {
-        val step = DateDrill.step(
-            content = state.config.content,
-            reverse = state.config.reverse,
-            sprosse = state.sprosse,
-            winsAtSprosse = state.winsAtSprosse,
-            correct = correct,
-            clean = clean,
-            fast = state.config.fast,
-        )
-        return state.copy(
-            sprosse = step.sprosse,
-            bestSprosse = maxOf(state.bestSprosse, step.sprosse),
-            winsAtSprosse = step.winsAtSprosse,
-            core = state.core.book(correct, clean, DrillSolved.key(state.task)),
-            // why: booked with the answer, so the word is shown for exactly the one card
-            // that owed it — a run that closes and reopens meets it again, which is the
-            // place-value hint's rule and the honest one for a Sprosse climbed twice.
-            seenKinds = state.seenKinds + state.task.kind,
-        )
+    private fun advanced(state: DateDrillRunState, answer: DrillBooking): DateDrillRunState {
+        val stood = state.withStanding(state.standing.answered(
+            answer,
+            winsRequired = DateDrill.winsToAdvance(state.config.fast),
+            solves = DrillSolved.key(state.task),
+        ))
+        // why: booked with the answer, so the word is shown for exactly the one card
+        // that owed it — a run that closes and reopens meets it again, which is the
+        // place-value hint's rule and the honest one for a Sprosse climbed twice.
+        return stood.copy(seenKinds = state.seenKinds + state.task.kind)
     }
+
+    /** The run clears by answering a Sprosse out ([DateDrill.cleared]), so its standing carries no climb ledger. */
+    private val DateDrillRunState.standing: LadderStanding
+        get() = LadderStanding(sprosse, bestSprosse, winsAtSprosse, emptySet(), core)
+
+    private fun DateDrillRunState.withStanding(to: LadderStanding): DateDrillRunState = copy(
+        sprosse = to.sprosse,
+        bestSprosse = to.bestSprosse,
+        winsAtSprosse = to.winsAtSprosse,
+        core = to.core,
+    )
 
     /**
      * The value check, on the Sprossen whose answer is a NUMERAL — a reading like `dritte`,

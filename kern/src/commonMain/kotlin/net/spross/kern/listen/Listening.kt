@@ -59,9 +59,9 @@ const val LISTENING_WATCHDOG_MS: Long = 5_000
  * The picture cue every listening card wears.
  *
  * A picture is held back while an answer is OWED — it would give it away — and listening owes
- * none: nothing is asked, so nothing is withheld. Named here rather than picked on each phone
- * because that is exactly how the two came to disagree: one held it until the meaning was out
- * and the other until a reveal, and both made the picture vanish and return on every word.
+ * none: nothing is asked, so nothing is withheld.
+ * Named here rather than picked on each phone,
+ * so neither holds it back and makes the picture vanish and return on every word.
  */
 val LISTENING_EMOJI_CUE: EmojiCue = emojiCue(givesAnswerAway = false)
 

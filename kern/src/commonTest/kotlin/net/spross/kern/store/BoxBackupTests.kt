@@ -59,18 +59,6 @@ class BoxBackupTests {
         assertTrue(json.startsWith("""{"boxes":{"""), json)
     }
 
-    @Test
-    fun aRestoreReplacesWhatItCarriesAndKeepsTheRest() {
-        val sw = swahili()
-        val held = boxes.with(sw)
-        val imported = BoxBackup.decode(BoxBackup.encode(StoredBoxes.EMPTY.with(state)))
-
-        val restored = held.restoring(imported)
-        assertEquals(setOf("uk", "sw"), restored.boxes.keys)
-        assertEquals(state.scheduling, restored.boxes.getValue("uk").scheduling)
-        assertEquals(sw.scheduling, restored.boxes.getValue("sw").scheduling)
-    }
-
     /** A language only ever opened would land as an emptiness over a real box. */
     @Test
     fun anUntouchedBoxIsNotCarried() {

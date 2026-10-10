@@ -5,6 +5,7 @@ import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.ProducePrompt
 import net.spross.kern.model.alternates
 import net.spross.kern.model.answerForms
+import net.spross.kern.model.article
 import net.spross.kern.model.counterpart
 import net.spross.kern.model.emojiFor
 import net.spross.kern.model.closingNote
@@ -91,5 +92,5 @@ private fun TurnState.targetSide(form: String): Question.Side {
 
 /** The article [form] is shown with: the card's own on its citation, a tagged form's own, none on a synonym. */
 internal fun TurnState.formArticle(form: String): String? =
-    shownArticle(card.target.grammar["gender"], form, card.target.text)
+    shownArticle(card.target.article, form, card.target.text)
         ?: card.target.forms.firstOrNull { it.text == form }?.article

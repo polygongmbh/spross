@@ -164,9 +164,8 @@ object Feedback {
      *
      * Newest first because a review list is a queue of what still wants dealing with, and
      * the freshest problem is the one the learner can still say something about. The export
-     * keeps the opposite order for the opposite reason ([issuesSince]). Both orders are
-     * decided here: a surface that sorted for itself is how the two apps came to read the
-     * same list in opposite directions.
+     * keeps the opposite order for the opposite reason ([issuesSince]).
+     * Both orders are decided here, so the two apps never read the same list in opposite directions.
      *
      * Own words are left out ([isReportable]): a reported one already stands in the list
      * above wearing its flag, and naming it twice in one section reads as two problems.

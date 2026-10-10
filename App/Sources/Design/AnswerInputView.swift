@@ -124,9 +124,9 @@ struct AnswerInputView: View {
             color: feedback == .correct ? Theme.colors.success.opacity(0.35) : .clear,
             radius: 10
         )
-        // why: the amber edge is the only thing left marking a reveal once the
-        // lightbulb is gone, and a color alone says nothing to a screen reader
-        // (WCAG 1.4.1). The state is spoken instead of drawn.
+        // why: the amber edge is the only thing marking a reveal, and a color
+        // alone says nothing to a screen reader (WCAG 1.4.1). The state is
+        // spoken instead of drawn.
         .accessibilityValue(statusValue)
     }
 
@@ -144,8 +144,8 @@ struct AnswerInputView: View {
 
     /// The checkmark says ACCEPTED and rides both correct states; its color
     /// says how cleanly, and its label says the same in words. A reveal gets no
-    /// mark at all — the amber edge already carries the state, and the lightbulb
-    /// that used to sit here read as a button it never was.
+    /// mark at all — the amber edge already carries the state, and a mark here
+    /// would read as a button.
     @ViewBuilder
     private var statusIcon: some View {
         switch feedback {
@@ -242,16 +242,16 @@ extension String {
     /// Nothing but whitespace typed. The state where a typing-first surface's
     /// ONE primary action reveals the answer instead of checking it.
     /// Kern's own answer, not a second one: `.whitespaces` excludes newlines where
-    /// kern's trim does not, so a newline-only field used to offer Check and then
-    /// meet an inert submit.
+    /// kern's trim does not, and a newline-only field offers Reveal like a blank
+    /// one rather than a Check that submits nothing.
     var isBlankAnswer: Bool { AnswerNormalizer.companion.isBlankAnswer(raw: self) }
 }
 
 /// Asking whichever answer field is on screen for focus. The immediate request
 /// covers a field already mounted; the retry covers one mounting in the same
 /// frame — a request that arrives before its field exists is simply dropped,
-/// which is what left the keyboard down when a reveal started REMOVING the
-/// field rather than disabling it.
+/// and a reveal from a blank field REMOVES it, so the next task mounts a fresh
+/// one.
 @MainActor
 enum AnswerFocus {
     static func claim(_ focused: FocusState<Bool>.Binding, retry: inout Task<Void, Never>?) {

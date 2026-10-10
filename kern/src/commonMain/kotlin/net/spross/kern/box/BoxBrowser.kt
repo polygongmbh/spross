@@ -155,9 +155,6 @@ object BoxBrowser {
             .map { it.id }
     }
 
-    /** What queuing this shelf would add — the size of [queueableCardIds]. */
-    fun queueableCount(state: BoxState, area: String): Int = queueableCardIds(state, area).size
-
     /**
      * The area's cards a [BoxEngine.unqueueArea] would take back out, in seed order:
      * queued, and belonging to this area — [BoxEngine.unqueueArea]'s own guard asked
@@ -172,14 +169,12 @@ object BoxBrowser {
         return cardsInArea(state, area).filter { it.id in queued }.map { it.id }
     }
 
-    /** What taking this shelf's queue back out would remove — the size of [unqueueableCardIds]. */
-    fun unqueueableCount(state: BoxState, area: String): Int = unqueueableCardIds(state, area).size
-
     /**
      * Every area's cards, each shelf in seed order — [cardsInArea] for all of them at once.
      *
      * A browser listing shelves opens more than one, and each asked on its own filters
-     * and sorts the whole box. Grouping once costs what a single shelf used to.
+     * and sorts the whole box.
+     * Grouping once costs one shelf's filter and sort, however many shelves are open.
      */
     fun cardsByArea(state: BoxState): Map<String, List<Card>> =
         state.cards.values.groupBy { it.area }

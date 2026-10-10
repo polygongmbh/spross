@@ -1,8 +1,8 @@
 package net.spross.kern.model
 
 /**
- * Product box configuration — v1 calibration (one schedule per card, so every
- * count is denominated in CARDS).
+ * Product box configuration — one schedule per card,
+ * so every count is denominated in CARDS.
  */
 data class BoxConfig(
     /**

@@ -30,7 +30,7 @@ import net.spross.kern.session.TurnFeedback
  *
  * The ladder, the draw and the task shapes are [CountryDrill]'s and pinned in
  * [CountryDrillTests]; what is asserted here is the run that steps through them — the half
- * both apps used to hold a copy of, which is where the two of them drifted apart.
+ * both apps drive.
  *
  * The atlas is one tier-1 country, so Sprosse 1 has exactly one question and every assertion
  * below reads a task it can predict.
@@ -476,32 +476,12 @@ class CountryDrillRunTest {
         assertEquals(listOf(DrillEffect.CancelAdvance, DrillEffect.Silence), closed.effects)
     }
 
-    /** Closing may neither lose a pending answer nor upgrade it. */
+    /** Closing books a pending answer as the tap would, against the record the store holds ([LadderStanding]). */
     @Test
-    fun aPendingAnswerBooksOnTheWayOutExactlyAsTheTapWould() {
+    fun aPendingAnswerBooksOnTheWayOutAgainstTheStandingRecord() {
         val clean = open().reduce(CountryDrillIntent.Submit("Ujerumani")).state
-        val closedClean = CountryDrillRun.close(clean, standingRecord = 0)
-        val summary = assertNotNull(closedClean.summary)
+        val summary = assertNotNull(CountryDrillRun.close(clean, standingRecord = 0).summary)
         assertEquals(1, summary.done)
-        assertEquals(1, summary.bestAnswerStreak)
         assertTrue(summary.newRecord, "a first streak beats a standing record of none")
-
-        val held = open().reduce(CountryDrillIntent.Submit("Ujerumami")).state
-        val closedHeld = CountryDrillRun.close(held, standingRecord = 0)
-        assertEquals(listOf(AnswerOutcome.Almost), closedHeld.state.outcomes)
-
-        val revealed = open().reduce(CountryDrillIntent.Reveal).state
-        assertNull(
-            CountryDrillRun.close(revealed, standingRecord = 0).summary,
-            "a revealed answer nobody confirmed books nothing",
-        )
-    }
-
-    /** The record write is strictly greater, so a run that only equaled it claims nothing. */
-    @Test
-    fun aStandingRecordIsOnlyBeatenStrictly() {
-        val run = open().answered("Ujerumani")
-        assertFalse(assertNotNull(CountryDrillRun.close(run, standingRecord = 1).summary).newRecord)
-        assertTrue(assertNotNull(CountryDrillRun.close(run, standingRecord = 0).summary).newRecord)
     }
 }

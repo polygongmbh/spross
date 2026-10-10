@@ -4,7 +4,6 @@ import kotlin.time.Instant
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.minus
-import kotlinx.datetime.plus
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.CardScheduling
 
@@ -14,14 +13,10 @@ data class BoxStatistics(
     val stages: StageCounts,
     /** Active cards due now. */
     val dueCount: Int,
-    /** Cards whose schedule is suspended (out of rotation). */
-    val suspendedCount: Int,
     /** Days with reviews > 0; a missed day is bridged, two in a row end the run. */
     val streak: Int,
     /** What today still owes the run — see [streakHealth]. */
     val streakHealth: StreakHealth,
-    /** The longest such run the box has ever held; equals [streak] when today's run is it. */
-    val longestStreak: Int,
     val areas: List<AreaStatistics>,
 ) {
     val activeCount: Int get() = stages.active
@@ -43,9 +38,6 @@ data class AreaStatistics(
     val active: Int get() = stages.active
     val allSettled: Int get() = stages.allSettled
     val allGrowing: Int get() = stages.allGrowing
-
-    /** Cards never introduced. [total] comes from the join and can lag the schedules. */
-    val notIntroduced: Int get() = maxOf(total - active, 0)
 
     /** What the bar is measured against — never below the introduced count. */
     val progressTotal: Int get() = maxOf(total, active, 1)
@@ -71,10 +63,8 @@ internal object Statistics {
         return BoxStatistics(
             stages = StageCounts.of(active),
             dueCount = active.count { it.due != null && it.due <= now },
-            suspendedCount = Inventory.suspendedCount(state),
             streak = streak(combinedDailyStats, nowEpochMillis, tzId),
             streakHealth = streakHealth(combinedDailyStats, nowEpochMillis, tzId),
-            longestStreak = longestStreak(combinedDailyStats, nowEpochMillis, tzId),
             areas = areaStatistics(state, active),
         )
     }
@@ -135,36 +125,6 @@ internal object Statistics {
         val oldestEarned = walked.indexOfLast { it.second }
         if (oldestEarned < 0) return emptyMap()
         return walked.take(oldestEarned + 1).toMap()
-    }
-
-    /**
-     * The longest run the box has ever held, under the same rule [streak] walks back
-     * with: a 0-review day inside a run is bridged and does not count, two in a row end
-     * it. The logs are never pruned, so this reaches back to the first day the box
-     * was used.
-     *
-     * Today can extend a run but never end one — the day is not over — which is what
-     * keeps a record set today standing while it is still being added to, and keeps
-     * this ≥ [streak] at all times.
-     */
-    fun longestStreak(answerDays: Map<String, Int>, nowEpochMillis: Long, tzId: String): Int {
-        val today = localDate(nowEpochMillis, tzId)
-        var day = answerDays.keys.minOrNull()?.let { LocalDate.parse(it) } ?: return 0
-        var best = 0
-        var run = 0
-        var previousWasMiss = false
-        while (day <= today) {
-            val reviews = answerDays[day.toString()] ?: 0
-            if (reviews > 0) {
-                run += 1
-                if (run > best) best = run
-                previousWasMiss = false
-            } else if (day != today) {
-                if (previousWasMiss) run = 0 else previousWasMiss = true
-            }
-            day = day.plus(1, DateTimeUnit.DAY)
-        }
-        return best
     }
 
     private fun areaStatistics(state: BoxState, active: List<CardScheduling>): List<AreaStatistics> {

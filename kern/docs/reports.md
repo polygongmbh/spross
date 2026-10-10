@@ -84,11 +84,11 @@ Neighbors: the engine contract `../README.md` §6, what a screen makes of them `
   where the learner left off — else the first section, so the browser never opens fully folded.
   `cardsInArea` is the shelf in seed order.
   `queueableCardIds` is what queuing that shelf would take in — unscheduled, not already queued,
-  which are `queue`'s own guards asked in advance — and `queueableCount` is its size,
+  which are `queue`'s own guards asked in advance — and `shelfCounts` counts every shelf under that same predicate,
   so the number a shelf promises and the queuing it performs cannot come from two different rules.
   Missing components are the one thing it does not count:
   queuing a phrase also prepends the components it lacks,
-  and where those live on another shelf, queuing it takes in more than the count said (`../../docs/backlog.md`).
+  and where those live on another shelf, queuing it takes in more than the count said.
 - **`CardRowState`** (`BoxBrowser.cardRowState`) is what one listed card states besides the word itself:
   `Suspended`, `QueueOffered`, `Queued`, `Plain`, or `Standing(stage)`.
   `queueOffered` is the caller's context — a surface that queues a SINGLE word,
@@ -133,11 +133,7 @@ Neighbors: the engine contract `../README.md` §6, what a screen makes of them `
 
 ## The streak
 
-- **`BoxStatistics.longestStreak`**: the longest run ever held, under the same forgiveness
-  rule the current streak walks back with, over the whole (never pruned) `dailyStats`.
-  An unfinished today can extend a run but never end one, so it is always ≥ `streak` —
-  equality is what says today's run IS the record.
-- **`BoxStatistics.streakHealth`**: what today still owes the run, off the same walk —
+- **`BoxStatistics.streakHealth`**: what today still owes the run, off the walk `streak` counts —
   `Earned` once today has reviews, `Bridgeable` while an empty today would only spend the
   run's one bridge, `Ending` when yesterday already spent it, `None` when the streak is 0.
   Surfaces render the urgency; the engine names only the rule.

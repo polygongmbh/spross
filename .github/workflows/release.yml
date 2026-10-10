@@ -34,14 +34,17 @@ jobs:
           fi
           printf '%s' "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
 
-      # The text lints live in the pre-commit hook, which a clone that never set
-      # hooksPath does not have; this is the backstop for what slipped past it.
+      # The pre-commit hook's text lints run only on a clone that set hooksPath;
+      # this is the backstop for what slipped past it.
       - name: Text lints
         run: |
           python3 scripts/catalog-format.py --check
           python3 scripts/strings.py --check-format App/Sources/Resources/Localizable.xcstrings
           python3 scripts/chrome.py
           python3 scripts/card-parity.py --check
+          python3 scripts/doc-header.py --check
+          python3 scripts/audio-coverage.py --check
+          python3 scripts/arch-status.py --check
 
       - name: Test and assemble
         env:
@@ -186,9 +189,9 @@ jobs:
 
   publish:
     name: GitHub Release
-    # why: it waits for the IPA but does not depend on it — an expired Apple credential
-    # or a macOS runner outage used to skip this job and take the Android release with
-    # it, and Obtainium can only offer what a release actually carries.
+    # why: it waits for the IPA but does not depend on it — an Apple-side failure must
+    # not take the Android release with it, and Obtainium can only offer what a release
+    # actually carries.
     needs: [android, ios]
     if: always() && needs.android.result == 'success'
     runs-on: ubuntu-latest
@@ -207,7 +210,7 @@ jobs:
       - name: Version from tag
         run: |
           echo "SPROSS_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
-          # why: the IPA is optional now, so everything iPhone-shaped below is written
+          # why: the IPA is optional, so everything iPhone-shaped below is written
           # only when its artifact actually arrived.
           ls dist/spross-*.ipa >/dev/null 2>&1 && echo "HAS_IPA=1" >> "$GITHUB_ENV" || true
 

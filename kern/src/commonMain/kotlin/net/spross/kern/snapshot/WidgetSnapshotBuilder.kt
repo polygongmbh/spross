@@ -11,6 +11,7 @@ import net.spross.kern.box.mergeAnswerDays
 import net.spross.kern.design.ActivityScale
 import net.spross.kern.model.Card
 import net.spross.kern.model.Gender
+import net.spross.kern.model.article
 import net.spross.kern.store.StoreJson
 import net.spross.kern.trainer.letters
 
@@ -25,7 +26,7 @@ import net.spross.kern.trainer.letters
 object WidgetSnapshotBuilder {
     const val SCHEMA_VERSION: Int = 11
 
-    /** v1 widget timeline depth (24 quarter-hour rotations). */
+    /** Widget timeline depth (24 quarter-hour rotations). */
     const val DEFAULT_EXPOSURE_LIMIT: Int = 24
 
     /**
@@ -84,7 +85,7 @@ object WidgetSnapshotBuilder {
                 text = card.target.text,
                 sourceText = card.source.text,
                 emoji = card.emoji,
-                article = article(card),
+                article = card.target.article,
                 gender = wireGender(card),
             )
         }

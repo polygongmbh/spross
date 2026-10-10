@@ -13,7 +13,7 @@ import net.spross.kern.session.TurnFeedback
  * [OppositesRunState], [CountryDrillRunState] and [DateDrillRunState] each embed a
  * [DrillRunCore] and answer with the same [TurnFeedback] vocabulary, so what a question is
  * worth and whether the run offers a way out — under the button, or as a pause
- * ([DrillPacing]) — is one formula, not seven copies of it.
+ * ([DrillPacing]) — is one formula.
  *
  * A run's own business — the draw, the ladder, what an intent does to either — stays on the
  * concrete type; this is only the handful of figures the run shell on each phone reads to

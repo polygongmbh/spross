@@ -4,13 +4,13 @@ Neighbors: app and code issues `../docs/backlog.md`.
 
 ## Needs the owner
 
-- Download Mozilla Common Voice Swahili (CC0, only from Mozilla Data Collective since 2025-10, behind an account and its terms) and unpack it under `../data/reference/`:
+- Download Mozilla Common Voice Swahili (CC0, only from Mozilla Data Collective since 2025-10, behind an account and its terms) and unpack it under `data/reference/` (external workspace):
   the one source left for sw phrases and for re-voicing the squashed takes.
 
 ## Needs a decision
 
 - 58/212 phrases (27%) carry no `components`: 20 are greetings, component-free by design
-  (`catalog/README.md:127`), 9 gained theirs in 2db13420, and ~29 (`im-tired`, `wash-your-hands`,
+  (`catalog/README.md:133-135`), 9 gained theirs in 2db13420, and ~29 (`im-tired`, `wash-your-hands`,
   `i-love-you`, …) have no same-area word to gate on — author the missing word in eight languages,
   move the phrase via `scripts/catalog-move.py`, or declare it a building block?
 - es has no `morning`, `afternoon` or `late` and uk no `afternoon` because `mañana` and `tarde`
@@ -19,10 +19,10 @@ Neighbors: app and code issues `../docs/backlog.md`.
   unfixable at runtime, so Spanish meets the morning only as `de la mañana` in
   `time/nine-am-sharp` — accept the gap, allow one form on two cards in one area (a lint
   change), or move one of each pair to another area?
-- `food` holds 47 concepts and `desk` and `admin` 41 each, all past the ~40 line
-  (`catalog/areas/README.md` § which area a concept lives in), and `food`'s seam is raw
-  ingredients against meals and drinks — name the new shelf and its members, or accept the
-  three past the line?
+- `food`, `desk` and `admin` sit between the few dozen `catalog/areas/README.md` § which area a concept lives in describes
+  and the line `CatalogLintTest.noAreaGrowsIntoADrawer` holds,
+  and `food`'s seam is raw ingredients against meals and drinks —
+  is 50 the line, or 40 with waivers?
 - Italian dates: the dayMonth reveal teaches `il otto`/`il undici marzo` on 2 of 31 days
   because a static pattern cannot elide, though the elided `l'{day} {month}` already grades as
   a variant (`catalog/dates/it.json`) — elision-aware date patterns in the engine, or wait for
@@ -89,12 +89,12 @@ Neighbors: app and code issues `../docs/backlog.md`.
 
 ## Waits on a native speaker
 
-- 20 Ukrainian words stay unstressed on 25 cards, mostly standard doublets (за́вжди/завжди́, до́говір/догові́р) and unlisted loans (імейл, угалі), plus north and midnight both read пі́вніч: pick one stress each (`../../data/review/2026-10-09-uk-stress-open.tsv`).
+- 20 Ukrainian words stay unstressed on 25 cards, mostly standard doublets (за́вжди/завжди́, до́говір/догові́р) and unlisted loans (імейл, угалі), plus north and midnight both read пі́вніч: pick one stress each (`data/review/2026-10-09-uk-stress-open.tsv`, external workspace).
 - The es review queue — 20 lowest-confidence picks (`admin/office`, `work/leave`,
   `kitchen/reheat`, `bedroom/cuddle` lead it), ~24 medium flags, 49 per-area disputes, the
   author's choice standing in the JSON in every case — waits on a native es-ES speaker
-  (`data/orchestration/audio-langs-2026-07/es-content/final/REPORT.md` §5 A first, then the
-  seven `drafts/*-notes.md` "Review disputes"; method `../../docs/sprachposter-learnings.md`),
+  (`data/orchestration/audio-langs-2026-07/es-content/final/REPORT.md` §5 A first, external workspace, then the
+  seven `drafts/*-notes.md` "Review disputes"),
   while five cross-cutting rulings stay with the catalog owner (REPORT §5 C: C2 `desk/internet`
   ships without `gender`, C3 cross-gender synonyms under the wrong article tint, C6 `accepts`
   as a demotion bucket, C7 Tatoeba-verbatim strings, C8 cross-area accept-set overlaps) — rule
@@ -104,7 +104,7 @@ Neighbors: app and code issues `../docs/backlog.md`.
   11 de (s→/z/ and -ig as the variety anchor, the English respellings, the ẞ policy, the
   Vau/We/Jot/Zett/Eszett strings against the de-DE voice), 15 es (the ll/y merger, which jota,
   the vanishing final d, /s/ in the after-l-n-s trill rule, 2026 letter names), each written up
-  in `data/orchestration/audio-langs-2026-07/alphabet-drafts/*-notes.md`, the es file teaching
+  in `data/orchestration/audio-langs-2026-07/alphabet-drafts/*-notes.md` (external workspace), the es file teaching
   es-ES throughout so an es-MX voice contradicts the c/z rows out loud (every LatAm divergence
   is in `es-notes.md`), and the 33 uk letter clips (`catalog/audio/uk/manifest.json` `letters`,
   incl. ʼ) never heard against the names the file speaks, where a clip that says something else
@@ -121,10 +121,10 @@ Neighbors: app and code issues `../docs/backlog.md`.
   `utumbo` class XI with plural `tumbo`).
 - A Swahili speaker's forms queue: `catalog/phrases/sw.json:47-60` repeat/write-the-year are
   byte-identical to repeat/write-please and need a heading word (mwaka or tarehe before a bare
-  cardinal, as uk cut to `… дату: {slot}`); `time/sw.json:58` `saa tatu asubuhi kamili` (does
-  `kamili` follow the day part?) and :54 `mchana` over `alasiri` for early afternoon, with
-  `en.json:29` teaching the meridiem where the other four teach the day part; and the weekday
-  `abbr` Jtt/Jnn/Jtn/Alh/Ijm/Jmo/Jpl (`catalog/dates/sw.json:3-9`, modeled on it.json) may
+  cardinal, as uk cut to `… дату: {slot}`); `time/sw.json:91` `saa tatu asubuhi kamili` (does
+  `kamili` follow the day part?) and :38 `mchana` over `alasiri` for early afternoon, with
+  `en.json:44` teaching the meridiem where the other four teach the day part; and the weekday
+  `abbr` Jtt/Jnn/Jtn/Alh/Ijm/Jmo/Jpl (`catalog/dates/sw.json:17-23`, modeled on it.json) may
   want other truncations.
 - A Swahili or Ukrainian native's atlas check: the country atlas ships exonyms and
   nationalities a native has never read (`catalog/countries/*.json`,
@@ -133,7 +133,7 @@ Neighbors: app and code issues `../docs/backlog.md`.
   Ukrainian feminines exist at all — is listed with its evidence in the bodies of the two
   `feat(catalog): the atlas reaches …` commits.
 - A native speaker per language confirms the 9 idiom pairings in `catalog/areas/idioms/`, whose
-  meaning-equivalence judgment is unrecoverable from the JSON (method:
-  `../../docs/sprachposter-learnings.md`); uk carries 3 of 9 (сьоме небо, як з відра, тримати
+  meaning-equivalence judgment is unrecoverable from the JSON;
+  uk carries 3 of 9 (сьоме небо, як з відра, тримати
   кулаки) and sw 0, and filling them needs a speaker finding real equivalents, not a
   translation pass.

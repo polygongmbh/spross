@@ -5,7 +5,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertNotEquals
-import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.session.AnswerNormalizer
@@ -105,7 +104,7 @@ class DateDrillRunTest {
     /**
      * Reverse is a DIRECTION, not a shorter ladder: a reversed run climbs off the nineteen
      * names into the parse, where the card carries the reading and the answer is the date
-     * written in digits — which is also why such a run no longer runs out.
+     * written in digits — which is also why such a run does not run out.
      */
     @Test
     fun aReversedRunClimbsOffTheNamesIntoTheParse() {
@@ -158,22 +157,11 @@ class DateDrillRunTest {
         assertEquals(4, DateDrillRun.close(run, standingRecord = 0).bestSprosse)
     }
 
-    /** Closing may neither lose a pending answer nor upgrade it; an untouched run reports nothing. */
+    /** Closing books a pending answer as the tap would ([LadderStanding.closing]). */
     @Test
-    fun aPendingAnswerBooksOnTheWayOutExactlyAsTheTapWould() {
+    fun aPendingAnswerBooksOnTheWayOut() {
         val opened = open()
-        assertNull(DateDrillRun.close(opened, standingRecord = 0).summary)
-
-        val clean = opened.reduce(DateDrillIntent.Submit(opened.task.display)).state
-        assertEquals(1, assertNotNull(DateDrillRun.close(clean, standingRecord = 0).summary).done)
-
         val held = opened.reduce(DateDrillIntent.Submit(opened.slipped())).state
         assertEquals(listOf(AnswerOutcome.Almost), DateDrillRun.close(held, standingRecord = 0).state.outcomes)
-
-        val revealed = opened.reduce(DateDrillIntent.Reveal).state
-        assertNull(
-            DateDrillRun.close(revealed, standingRecord = 0).summary,
-            "a revealed answer nobody confirmed books nothing",
-        )
     }
 }

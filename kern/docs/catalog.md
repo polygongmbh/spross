@@ -93,7 +93,7 @@ Neighbors: the engine contract `../README.md`, the file format `../../catalog/RE
   ISO order are the same list in every language, so file presence is the whole registry.
   Read through the **RAW** source, not the fingerprinting wrapper — a calendar joins no
   card, so editing one must not restamp a running box (the atlas' exemption, for its
-  reason). `Catalog.dateNames(lang)` is null where no file is authored;
+  reason).
   `Catalog.dateDrillContent(source, target)` joins a pair and is null where either side has
   no file or the TARGET has no trainer pack — the day of the month is the pack's to read
   (`../../docs/date-readings.md`), so a pack-less calendar may prompt and never answer.

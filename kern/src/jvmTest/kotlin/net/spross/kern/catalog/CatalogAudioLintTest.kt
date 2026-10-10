@@ -163,7 +163,7 @@ class CatalogAudioLintTest {
         for ((lang, manifest) in catalog.audio) {
             if (manifest.calendar.isEmpty()) continue
             val calendar = assertNotNull(
-                catalog.dateNames(lang),
+                catalog.dateCalendars[lang],
                 "audio/$lang ships calendar recordings but no dates file is authored",
             )
             val authored = (calendar.weekdays + calendar.months)

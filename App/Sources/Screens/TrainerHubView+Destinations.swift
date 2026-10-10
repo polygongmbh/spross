@@ -144,7 +144,7 @@ extension TrainerHubView {
     /// wordscramble|sentencescramble|opposites` resolved against what this profile
     /// actually offers.
     ///
-    /// Clock, phrases and the alphabet are no longer surfaces of their own:
+    /// Clock, phrases and the alphabet live inside numbers and letters:
     /// reach them with `-uitest-trainer numbers -uitest-exercises clock
     /// -uitest-run 1` and `-uitest-trainer letters`, which is also the only way
     /// to photograph a modifier or a mixed selection.

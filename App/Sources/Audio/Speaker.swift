@@ -14,7 +14,8 @@ final class Speaker: NSObject {
     private let synthesizer = AVSpeechSynthesizer()
     /// language code → best installed voice, `nil` = looked and found none.
     private var voices: [String: AVSpeechSynthesisVoice?] = [:]
-    /// Probe-only completion (§9); gameplay speech is fire-and-forget.
+    /// What the utterance in the air owes back when it ends: a listening beat
+    /// arms off it (`Pronouncer.pronounce`), as does the sound probe (§9).
     private var onFinish: (@MainActor () -> Void)?
 
     override init() {

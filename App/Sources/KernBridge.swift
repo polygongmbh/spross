@@ -14,7 +14,7 @@ extension Date {
     }
 }
 
-/// Engine boundary time zone: device-current per call (v1 parity).
+/// Engine boundary time zone: device-current per call.
 func currentTzId() -> String { TimeZone.current.identifier }
 
 extension KotlinInstant {
@@ -156,11 +156,11 @@ extension DateDrill {
 
 // MARK: - Kern → Design value types
 //
-// `App/Sources/Design` is kern-free by design, so every rule it renders arrives
-// as one of its own value types. These are the only places the two meet — bar
-// the Design files where the rendered thing IS kern's own value and a copy would
-// drift: `AutoAdvance` (the two beat lengths), `NumberReferenceTable` (the primer
-// rows) and `SessionSummaryView` (the round's tally parts).
+// The Design value types that stand in for a kern ruling — a bar segment, a
+// self-grade verdict, a run's figures, a field's feedback, a gender hue — are
+// built from kern's here. A Design file that renders kern's
+// own value reads it directly instead (`AutoAdvance`, `NumberReferenceTable`,
+// `SessionSummaryView` among them).
 
 extension SessionOutcome {
     /// The bar segment one answer draws. The bucketing is kern's (`AnswerOutcome`).

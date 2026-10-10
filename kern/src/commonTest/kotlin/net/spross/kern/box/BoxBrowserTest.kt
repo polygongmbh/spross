@@ -161,19 +161,18 @@ class BoxBrowserTest {
     }
 
     @Test
-    fun queuingCountsOnlyWhatTheEngineWouldTakeIn() {
+    fun queuingOffersOnlyWhatTheEngineWouldTakeIn() {
         var state = Box.state((1..3).map { Box.word(it, area = "kitchen") } + Box.word(4, area = "office"))
         state = Box.inject(state, Box.sched("w01", dueMillis = future, lastReviewMillis = now))
         state = BoxEngine.queue(state, listOf("w03"))
 
         // w01 is already scheduled, w03 already queued — only w02 is left to add.
         assertEquals(listOf("w02"), BoxBrowser.queueableCardIds(state, "kitchen"))
-        assertEquals(1, BoxBrowser.queueableCount(state, "kitchen"))
 
-        // The count and the queuing read the same predicate, so queuing the shelf empties it.
+        // The offer and the queuing read the same predicate, so queuing the shelf empties it.
         val queued = BoxEngine.queue(state, BoxBrowser.queueableCardIds(state, "kitchen"))
-        assertEquals(0, BoxBrowser.queueableCount(queued, "kitchen"))
-        assertEquals(1, BoxBrowser.queueableCount(queued, "office"))
+        assertEquals(emptyList(), BoxBrowser.queueableCardIds(queued, "kitchen"))
+        assertEquals(listOf("w04"), BoxBrowser.queueableCardIds(queued, "office"))
     }
 
     @Test
@@ -223,7 +222,6 @@ class BoxBrowserTest {
 
         // Seed order, not queue order: a shelf listing reads like the shelf, not the queue.
         assertEquals(listOf("w01", "w03"), BoxBrowser.unqueueableCardIds(state, "kitchen"))
-        assertEquals(2, BoxBrowser.unqueueableCount(state, "kitchen"))
         assertEquals(listOf("w04"), BoxBrowser.unqueueableCardIds(state, "office"))
     }
 
@@ -256,8 +254,8 @@ class BoxBrowserTest {
 
         val counts = BoxBrowser.shelfCounts(state)
         for (area in listOf("kitchen", "office")) {
-            assertEquals(BoxBrowser.queueableCount(state, area), counts[area]?.queueable, area)
-            assertEquals(BoxBrowser.unqueueableCount(state, area), counts[area]?.queued, area)
+            assertEquals(BoxBrowser.queueableCardIds(state, area).size, counts[area]?.queueable, area)
+            assertEquals(BoxBrowser.unqueueableCardIds(state, area).size, counts[area]?.queued, area)
         }
         assertEquals(ShelfCounts(queueable = 2, queued = 1), counts["kitchen"])
         assertEquals(ShelfCounts(queueable = 1, queued = 1), counts["office"])

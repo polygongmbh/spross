@@ -341,9 +341,10 @@ class CatalogLintTest {
     @Test
     fun conceptReferencesResolveSameArea() {
         for (area in catalog.areas) {
+            val bySlug = area.concepts.associateBy { it.slug }
             for (concept in area.concepts) {
                 for (component in concept.components) {
-                    val target = area.conceptsBySlug[component]
+                    val target = bySlug[component]
                     assertTrue(target != null && target.kind != CardKind.Phrase, "${concept.id}: bad component $component")
                 }
             }

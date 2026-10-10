@@ -1,15 +1,12 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
-import net.spross.kern.session.AdvanceBeat
-import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.Match
-import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
 /**
- * The slot drill as pure state plus one reducer — the machine both apps used to re-derive.
+ * The slot drill as pure state plus one reducer, the one machine both apps drive.
  * The run's shape is [NumbersRunState]; what it is spelled out of is [NumbersMode].
  *
  * Kern never self-randomizes: every draw takes the caller's [Random]. No clock is read
@@ -170,22 +167,8 @@ object NumbersRun {
     ): NumbersReduction {
         if (!state.owesAnswer) return unchanged(state)
         if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
-        return when (val match = grade(text, state.currentTask, normalizer)) {
-            Match.Exact -> NumbersReduction(
-                state.copy(feedback = TurnFeedback.Correct),
-                listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceBeat.Explicit)),
-            )
-            // why: no beat on a slip — the pause shows the proper spelling, and the tap that ends
-            // it books the answer almost.
-            is Match.Typo -> NumbersReduction(
-                state.copy(feedback = TurnFeedback.Almost(match.corrected, AlmostReason.Typo)),
-                listOf(DrillEffect.Tone(ToneKind.Almost), DrillEffect.ReleaseFocus),
-            )
-            else -> NumbersReduction(
-                state.copy(feedback = TurnFeedback.Revealed, otherWord = match as? Match.OtherWord),
-                listOf(DrillEffect.Tone(ToneKind.Wrong)),
-            )
-        }
+        val verdict = TypedDrillVerdicts.submit(grade(text, state.currentTask, normalizer), silence = false)
+        return NumbersReduction(state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord), verdict.effects)
     }
 
     /**
@@ -208,12 +191,8 @@ object NumbersRun {
 
     private fun reveal(state: NumbersRunState): NumbersReduction {
         if (!state.owesAnswer) return unchanged(state)
-        // why: the field stays empty — the card is where the answer stands, and typing it in for
-        // the learner would put the same word on screen twice.
-        return NumbersReduction(
-            state.copy(feedback = TurnFeedback.Revealed),
-            listOf(DrillEffect.Tone(ToneKind.Reveal)),
-        )
+        val verdict = TypedDrillVerdicts.reveal(silence = false)
+        return NumbersReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     /**

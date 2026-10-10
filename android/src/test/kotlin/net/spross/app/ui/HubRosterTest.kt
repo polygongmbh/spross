@@ -38,7 +38,7 @@ class HubRosterTest {
         )
     }
 
-    /** Each chip opens ITS drill — the wiring a roster of parallel lists used to cross. */
+    /** Each chip opens ITS drill, never a neighbor's. */
     @Test
     fun eachChipOpensItsOwnDrill() {
         val opened = mutableListOf<Drill>()

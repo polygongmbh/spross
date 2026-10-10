@@ -35,7 +35,7 @@ struct SentenceScrambleView: View {
     @State var run: SentenceScrambleRunState
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
-    /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
+    /// Says each graded answer's reading kern hands over (`run.reading`).
     @State var reader = Reader()
 
     init(model: AppModel, language: String,

@@ -10,11 +10,11 @@ import net.spross.kern.session.AnswerOutcome
  *
  * A run's own business is the questions it draws and the ladder it climbs where that ladder is
  * its own; the typed runs share theirs down to the verdicts ([TypedDrillVerdicts]). These
- * move the same way in every drill, so an answer is booked here once ([book]); four copies of
- * one piece of arithmetic is how two streaks come to disagree.
+ * move the same way in every drill, so an answer is booked here once ([book])
+ * and no two streaks can disagree.
  *
  * Each run state embeds one and forwards the fields it shows, so nothing outside kern has to
- * know the counters moved house.
+ * know where the counters live.
  */
 data class DrillRunCore(
     val done: Int = 0,

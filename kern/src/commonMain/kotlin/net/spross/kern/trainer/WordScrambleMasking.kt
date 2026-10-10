@@ -13,9 +13,6 @@ data class ScrambledWord(
     val display: String,
     val fixedLeading: Int,
 ) {
-    /** Nothing stands: the whole word has to be read out of its letters. */
-    val fullyScrambled: Boolean get() = fixedLeading == 0
-
     /**
      * What a screen reader hears for the mixed word: its letters one by one.
      * A mixed word is not a word, and a voice reading it as one says nothing a learner can spell from.

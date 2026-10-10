@@ -78,7 +78,7 @@ data class NumbersMode(
      * from either alone, and a reversed or fast run a different feat again, so none of them
      * may share a standing record.
      *
-     * CAUTION, live quirk carried over verbatim: [recordLanguage] takes the pair suffix
+     * CAUTION: [recordLanguage] takes the pair suffix
      * whenever [phraseSource] stands, EVEN when Phrases is not among [exercises] — the
      * numbers overview passes the source whenever the pair realizes frames, so a
      * counting-only run in a phrase-capable pair files under `Counting.de-uk`, not

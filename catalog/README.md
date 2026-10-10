@@ -6,8 +6,8 @@ Language learning content organized **one folder per area**.
 Designed for reuse (any language pair is a runtime join of shared parts)
 and potential future crowdsourced per-language contribution.
 
-Reference grammars, audit logs and offline dictionaries live in `../../data/` (the parent repo's content workspace) —
-check a target-language fact there before the web: Wiktionary dumps, FreeDict and Tatoeba, inventoried in `reference/README.md`.
+Reference grammars, audit logs and offline dictionaries live in a content workspace OUTSIDE the repo (`data/`, beside the checkout; no clone carries it) —
+check a target-language fact there before the web: Wiktionary dumps, FreeDict and Tatoeba, inventoried in its `reference/README.md`.
 
 ## The key modeling decision: everything is a concept
 
@@ -15,8 +15,8 @@ check a target-language fact there before the web: Wiktionary dumps, FreeDict an
   (`noun` | `verb` | `adjective` | `phrase` | `idiom`), and an optional `emoji`.
   Words and phrases live in one ordered list.
 - A **realization** is one concept rendered in one language (`text` + grammar + notes).
-- A **pair** (de↔sw, de↔uk, later sw↔uk) is a **runtime join** on slug — never stored.
-  The German side is authored once and shared across every pair that includes German.
+- A **pair** (any two of the languages `languages.json` declares) is a **runtime join** on slug — never stored.
+  Each language file is authored once and serves every pair it joins.
 - **Coverage may be non-uniform.**
   A concept without a realization in a language never appears in pairs involving that language.
   This is how pair-specific content works: `relax` has `de`, `en` and `uk` realizations and no `sw`,
@@ -28,7 +28,7 @@ check a target-language fact there before the web: Wiktionary dumps, FreeDict an
   The **area** is the disambiguator, and the engine renders the area label on an ambiguous
   *produce* prompt only — never on recognize, where any cue strong enough to identify the concept
   would reveal the answer.
-  Tolerated cross-area collisions are pinned by `CatalogLintTest`, so minting a new one has to be
+  Tolerated cross-area collisions are pinned by `CatalogCollisionLintTest`, so minting a new one has to be
   a conscious decision. Asked the other way — what does this word MEAN — the merge is simply
   honored: every concept printing the form answers for it, and the reveal names the rest
   (`../kern/docs/grading.md`).

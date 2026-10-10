@@ -6,7 +6,7 @@ import net.spross.kern.session.TurnFeedback
 import net.spross.kern.session.AnswerNormalizer
 
 /**
- * The atlas drill as pure state plus one reducer — the third sibling of [NumbersRun] and
+ * The atlas drill as pure state plus one reducer — a sibling of [NumbersRun] and
  * [LetterDrillRun]. The run's shape is [CountryDrillRunState]; what it can ask is
  * [CountryDrill].
  *
@@ -60,8 +60,8 @@ object CountryDrillRun {
         is CountryDrillIntent.InputChanged -> typed(state, intent.text)
         is CountryDrillIntent.Submit -> submit(state, intent.text)
         CountryDrillIntent.Reveal -> reveal(state)
-        CountryDrillIntent.ConfirmPending -> confirm(state, rng)
-        CountryDrillIntent.AdvanceElapsed -> elapsed(state, rng)
+        CountryDrillIntent.ConfirmPending -> booked(state, TypedDrillVerdicts.confirmed(state.feedback), rng)
+        CountryDrillIntent.AdvanceElapsed -> booked(state, TypedDrillVerdicts.elapsed(state.feedback), rng)
         CountryDrillIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
     }
 
@@ -92,27 +92,19 @@ object CountryDrillRun {
     }
 
     /**
-     * Leaving, from the corner or from "Fertig". A pending accepted answer books first,
-     * exactly as the explicit tap would — closing may neither lose it nor upgrade it — and a
-     * revealed answer nobody confirmed books nothing. An untouched run reports nothing at
-     * all, though it still names the Sprosse it opened on, which the page files either way.
+     * Leaving, from the corner or from "Fertig" ([LadderStanding.closing]). An untouched run
+     * reports nothing at all, though it still names the Sprosse it opened on, which the page
+     * files either way.
      *
      * [standingRecord] is what the platform's store holds now; the write is strictly
      * greater, so re-closing a resumed run never double-claims.
      */
     fun close(state: CountryDrillRunState, standingRecord: Int): CountryDrillClose {
-        val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
-        val pending = TypedDrillVerdicts.pending(state.feedback)
-            ?.let { advanced(state, it.correct, it.clean) }
-            ?: state
-        val ended = pending.copy(feedback = TurnFeedback.Neutral, otherWord = null, finished = true)
-        val summary = if (ended.done == 0) {
-            null
-        } else {
-            DrillRunSummary(ended.done, ended.bestAnswerStreak, ended.bestAnswerStreak > standingRecord)
-        }
+        val ended = LadderStanding.closing(state, ::advanced)
+            .copy(feedback = TurnFeedback.Neutral, otherWord = null, finished = true)
+        val summary = LadderStanding.summary(ended, standingRecord)
         val cleared = CountryDrill.cleared(state.config.content, state.config.reverse, ended.core.solvedClean)
-        return CountryDrillClose(ended, summary, ended.bestSprosse, cleared, effects)
+        return CountryDrillClose(ended, summary, ended.bestSprosse, cleared, LadderStanding.EFFECTS)
     }
 
     // MARK: - Intents
@@ -148,26 +140,12 @@ object CountryDrillRun {
         return CountryDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
-    private fun confirm(state: CountryDrillRunState, rng: Random): CountryDrillReduction =
-        TypedDrillVerdicts.confirmed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
-    private fun elapsed(state: CountryDrillRunState, rng: Random): CountryDrillReduction =
-        TypedDrillVerdicts.elapsed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
     // MARK: - Booking
 
     /** Book the answer, then put the next question up at the Sprosse the booking left. */
-    private fun booked(
-        state: CountryDrillRunState,
-        correct: Boolean,
-        clean: Boolean,
-        rng: Random,
-    ): CountryDrillReduction {
-        val next = advanced(state, correct, clean)
+    private fun booked(state: CountryDrillRunState, answer: DrillBooking?, rng: Random): CountryDrillReduction {
+        answer ?: return unchanged(state)
+        val next = advanced(state, answer)
         // why: sampled against the id it must avoid — kern resamples once, so a repeat needs
         // two unlucky draws rather than one.
         val draw = CountryDrill.draw(
@@ -179,50 +157,39 @@ object CountryDrillRun {
             rng,
             arriving = next.sprosse > state.sprosse,
         )
-        return CountryDrillReduction(
-            paced(next.copy(
-                // Nothing left to ask: end on the summary, never on a question already answered.
-                task = draw.task ?: state.task,
-                finished = draw.task == null,
-                sprosse = draw.sprosse,
-                // A Sprosse the run answered out is a Sprosse it stood on, and the wins banked on the
-                // one below stay behind with it.
-                bestSprosse = maxOf(next.bestSprosse, draw.sprosse),
-                winsAtSprosse = if (draw.sprosse == next.sprosse) next.winsAtSprosse else 0,
-                index = state.index + 1,
-                // why: cleared in the SAME transaction as the question — the next card must
-                // never render one frame carrying the last one's answer.
-                feedback = TurnFeedback.Neutral,
-                otherWord = null,
-            )),
-            listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
+        val moved = next.withStanding(next.standing.carriedTo(draw.sprosse)).copy(
+            // Nothing left to ask: end on the summary, never on a question already answered.
+            task = draw.task ?: state.task,
+            finished = draw.task == null,
+            index = state.index + 1,
+            // why: cleared in the SAME transaction as the question — the next card must
+            // never render one frame carrying the last one's answer.
+            feedback = TurnFeedback.Neutral,
+            otherWord = null,
         )
+        // The pause a booked answer leaves due, if one is ([DrillPacing]).
+        val paced = moved.copy(core = moved.core.paced(moved.sprosse, moved.newSprossen, endless = !moved.finished))
+        return CountryDrillReduction(paced, LadderStanding.EFFECTS)
     }
-
-    /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
-    private fun paced(state: CountryDrillRunState): CountryDrillRunState =
-        state.copy(core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished))
 
     /** The booking itself: the ramp, the answer streak, the tallies — the Sprosse it reached included. */
-    private fun advanced(
-        state: CountryDrillRunState,
-        correct: Boolean,
-        clean: Boolean,
-    ): CountryDrillRunState {
-        val step = CountryDrill.step(
-            sprosse = state.sprosse,
-            winsAtSprosse = state.winsAtSprosse,
-            correct = correct,
-            clean = clean,
-            fast = state.config.fast,
-        )
-        return state.copy(
-            sprosse = step.sprosse,
-            bestSprosse = maxOf(state.bestSprosse, step.sprosse),
-            winsAtSprosse = step.winsAtSprosse,
-            core = state.core.book(correct, clean, DrillSolved.key(state.task)),
-        )
-    }
+    private fun advanced(state: CountryDrillRunState, answer: DrillBooking): CountryDrillRunState =
+        state.withStanding(state.standing.answered(
+            answer,
+            winsRequired = CountryDrill.winsToAdvance(state.config.fast),
+            solves = DrillSolved.key(state.task),
+        ))
+
+    /** The run clears by answering a Sprosse out ([CountryDrill.cleared]), so its standing carries no climb ledger. */
+    private val CountryDrillRunState.standing: LadderStanding
+        get() = LadderStanding(sprosse, bestSprosse, winsAtSprosse, emptySet(), core)
+
+    private fun CountryDrillRunState.withStanding(to: LadderStanding): CountryDrillRunState = copy(
+        sprosse = to.sprosse,
+        bestSprosse = to.bestSprosse,
+        winsAtSprosse = to.winsAtSprosse,
+        core = to.core,
+    )
 
     private fun unchanged(state: CountryDrillRunState) = CountryDrillReduction(state, emptyList())
 }

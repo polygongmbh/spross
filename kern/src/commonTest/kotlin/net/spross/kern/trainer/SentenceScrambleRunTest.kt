@@ -204,18 +204,11 @@ class SentenceScrambleRunTest {
         assertNotNull(state.task, "the band still has phrases to ask")
     }
 
-    /** Closing books a pending answer as the tap would, and an untouched run reports nothing. */
+    /** Closing books a pending answer as the tap would ([LadderStanding.closing]). */
     @Test
-    fun closingBooksWhatWeiterWouldAndNothingMore() {
-        assertNull(SentenceScrambleRun.close(open()).summary)
-
+    fun closingBooksAPendingAnswer() {
         val done = arrange(open(), correctly = true)
-        val closed = SentenceScrambleRun.close(done)
-        val summary = assertNotNull(closed.summary)
-        assertEquals(1, summary.done)
-        assertEquals(1, summary.bestAnswerStreak)
-        assertFalse(summary.newRecord, "the drill keeps no streak record")
-        assertTrue(closed.state.finished)
+        assertEquals(1, assertNotNull(SentenceScrambleRun.close(done).summary).done)
     }
 
     // MARK: - What the store keeps

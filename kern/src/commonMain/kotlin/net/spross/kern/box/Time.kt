@@ -50,7 +50,7 @@ internal fun stampOf(nowEpochMillis: Long): Instant =
 
 /**
  * Day key = ISO-8601 `yyyy-MM-dd` of the local date — ISO regardless of any device
- * calendar (fixes v1's latent non-Gregorian bug). Keys compare chronologically as strings.
+ * calendar, so a non-Gregorian one never renames a day. Keys compare chronologically as strings.
  *
  * Public because it is the key [answerDays] counts under: anything reading those days
  * has to agree with the engine on what a day is called, and a platform that formats the

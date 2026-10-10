@@ -70,10 +70,6 @@ internal object Inventory {
             .map { it.entry }
     }
 
-    /** How many joined schedules are suspended — [scheduled] minus [active], counted. */
-    fun suspendedCount(state: BoxState): Int =
-        state.scheduling.entries.count { it.key in state.cards && it.value.suspended }
-
     /**
      * How many active cards stand due — the same population [due] lists, counted.
      *

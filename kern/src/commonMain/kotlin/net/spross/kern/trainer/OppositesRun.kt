@@ -18,8 +18,8 @@ import net.spross.kern.session.TurnFeedback
  */
 object OppositesRun {
 
-    /** Three clean answers carry a Sprosse, as in the word scramble ([WordScrambleRun.WINS_TO_ADVANCE]). */
-    const val WINS_TO_ADVANCE: Int = 3
+    /** Three clean answers carry a Sprosse ([DrillRamp.USUAL_WINS]). */
+    const val WINS_TO_ADVANCE: Int = DrillRamp.USUAL_WINS
 
     /** A fresh run, at the foot of the ladder: it fast-climbs the Sprossen earlier runs cleared. */
     fun open(config: OppositesRunConfig, rng: Random): OppositesRunState {
@@ -43,8 +43,8 @@ object OppositesRun {
             is OppositesIntent.InputChanged -> typed(state, intent.text)
             is OppositesIntent.Submit -> submit(state, intent.text)
             OppositesIntent.Reveal -> reveal(state)
-            OppositesIntent.ConfirmPending -> confirm(state, rng)
-            OppositesIntent.AdvanceElapsed -> elapsed(state, rng)
+            OppositesIntent.ConfirmPending -> booked(state, TypedDrillVerdicts.confirmed(state.feedback), rng)
+            OppositesIntent.AdvanceElapsed -> booked(state, TypedDrillVerdicts.elapsed(state.feedback), rng)
             OppositesIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
         }
 
@@ -69,18 +69,11 @@ object OppositesRun {
         return against(task.accepted)
     }
 
-    /**
-     * Leaving the run, on [WordScrambleRun.close]'s terms: a pending accepted answer books as
-     * the tap would, a revealed one nobody confirmed books nothing, and no record is kept.
-     */
+    /** Leaving the run, on [WordScrambleRun.close]'s terms ([LadderStanding.closing]): no record is kept. */
     fun close(state: OppositesRunState): OppositesClose {
-        val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
-        val pending = TypedDrillVerdicts.pending(state.feedback)
-            ?.let { advanced(state, it.correct, it.clean) }
-            ?: state
-        val ended = pending.copy(feedback = TurnFeedback.Neutral, finished = true)
-        val summary = if (ended.done == 0) null else DrillRunSummary(ended.done, ended.bestAnswerStreak, newRecord = false)
-        return OppositesClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, effects)
+        val ended = LadderStanding.closing(state, ::advanced).copy(feedback = TurnFeedback.Neutral, finished = true)
+        val summary = LadderStanding.summary(ended, standingRecord = null)
+        return OppositesClose(ended, summary, ended.bestSprosse, ended.clearedSprossen, LadderStanding.EFFECTS)
     }
 
     // MARK: - Intents
@@ -108,29 +101,14 @@ object OppositesRun {
         return OppositesReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
-    private fun confirm(state: OppositesRunState, rng: Random): OppositesReduction =
-        TypedDrillVerdicts.confirmed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
-    private fun elapsed(state: OppositesRunState, rng: Random): OppositesReduction =
-        TypedDrillVerdicts.elapsed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
     // MARK: - Booking
 
-    private fun booked(state: OppositesRunState, correct: Boolean, clean: Boolean, rng: Random): OppositesReduction {
-        val next = advanced(state, correct, clean)
+    private fun booked(state: OppositesRunState, answer: DrillBooking?, rng: Random): OppositesReduction {
+        answer ?: return unchanged(state)
+        val next = advanced(state, answer)
         val question = draw(state.config, next.sprosse, state.task?.cardId, next.core.solved, rng)
-        val moved = next.copy(
+        val moved = next.withStanding(next.standing.carriedTo(question.sprosse)).copy(
             task = question.task,
-            sprosse = question.sprosse,
-            bestSprosse = maxOf(next.bestSprosse, question.sprosse),
-            // A Sprosse the run was carried past keeps none of the wins banked below it.
-            winsAtSprosse = if (question.sprosse == next.sprosse) next.winsAtSprosse else 0,
-            // A Sprosse answered out is a Sprosse climbed off, and books on the same terms.
-            clearedSprossen = DrillSprossen.leaving(next.clearedSprossen, next.sprosse, question.sprosse, next.core.slipped),
             index = state.index + 1,
             // why: cleared in the SAME transaction as the question — the next card must
             // never render a frame carrying the last one's answer.
@@ -138,27 +116,27 @@ object OppositesRun {
             finished = question.task == null,
         )
         val paced = moved.copy(core = moved.core.paced(moved.sprosse, moved.newSprossen, endless = !moved.finished))
-        return OppositesReduction(paced, listOf(DrillEffect.CancelAdvance, DrillEffect.Silence))
+        return OppositesReduction(paced, LadderStanding.EFFECTS)
     }
 
-    private fun advanced(state: OppositesRunState, correct: Boolean, clean: Boolean): OppositesRunState {
-        val step = DrillRamp.step(
-            sprosse = state.sprosse,
-            winsAtSprosse = state.winsAtSprosse,
-            correct = correct,
-            clean = clean,
+    private fun advanced(state: OppositesRunState, answer: DrillBooking): OppositesRunState =
+        state.withStanding(state.standing.answered(
+            answer,
             winsRequired = DrillSprossen.winsRequired(state.sprosse, state.config.cleared, state.core.slipped, WINS_TO_ADVANCE),
             top = state.config.report.maxSprosse,
-        )
-        val core = state.core.book(correct, clean, state.task?.let { DrillSolved.key(it) })
-        return state.copy(
-            sprosse = step.sprosse,
-            bestSprosse = maxOf(state.bestSprosse, step.sprosse),
-            winsAtSprosse = step.winsAtSprosse,
-            clearedSprossen = DrillSprossen.leaving(state.clearedSprossen, state.sprosse, step.sprosse, core.slipped),
-            core = core,
-        )
-    }
+            solves = state.task?.let { DrillSolved.key(it) },
+        ))
+
+    private val OppositesRunState.standing: LadderStanding
+        get() = LadderStanding(sprosse, bestSprosse, winsAtSprosse, clearedSprossen, core)
+
+    private fun OppositesRunState.withStanding(to: LadderStanding): OppositesRunState = copy(
+        sprosse = to.sprosse,
+        bestSprosse = to.bestSprosse,
+        winsAtSprosse = to.winsAtSprosse,
+        clearedSprossen = to.clearedSprossen,
+        core = to.core,
+    )
 
     /** The first Sprosse at or above [from] with a prompt left to ask ([DrillLadder.climb]). */
     private fun draw(

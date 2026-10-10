@@ -119,8 +119,8 @@ extension AppModel {
     /// Stamped rather than mutated: `mutate` re-walks the whole box for the statistics,
     /// the trees and the activity strip and re-encodes it for the watch and the widget,
     /// and the stamp feeds none of them — it is read by this file alone. Paying for all
-    /// of that is what made the copy button hang, and what left the mail button's share
-    /// of it landing as the app came back.
+    /// of that would hang the copy button and leave the mail button's share of it
+    /// landing as the app came back.
     func markExported(scope: FeedbackScope) {
         stamp { BoxEngine.shared.markExported(state: $0, nowEpochMillis: Date().epochMillis,
                                               scope: scope) }

@@ -202,7 +202,7 @@ final class WatchModel {
                                          optionChars: optionChars)
         lastRating = rating
         // why: every answer answers back, and in the shape of the rating it
-        // earned — a silent correct tap used to feel the same as no tap at all.
+        // earned — a silent correct tap would feel the same as no tap at all.
         WKInterfaceDevice.current().play(WatchFeedback.haptic(forRating: rating))
         if !correct { raiseWrongFlash() }
 

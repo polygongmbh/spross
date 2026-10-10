@@ -47,6 +47,7 @@ picks among takes and refuses only the clearly bad.
 
 ```sh
 W=../data/reference/audio   # <route> is the language's from $W/build-packs.sh
+scripts/audio-restress.py --lang <lang>                     # after a stress-mark edit: shipped takes follow the marked form
 $W/sync-from-shipped.py <lang>                              # every pack says what ships
 $W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <its siblings>
                                                             # voices with ≤3 takes onto established ones

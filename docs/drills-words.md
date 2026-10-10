@@ -109,4 +109,4 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   The reveal names all of them, each with its meaning, so the merge is the lesson rather than a trap;
   an opposite the learner has not met yet still answers, and the reveal is where they meet it.
   Typing the prompt back is a miss, however close it lands to an opposite.
-- **Its Sprossen are bands that share no prompt**: adjectives and adverbs, then verbs, then the prompts with several opposites.
+- **Its Sprossen are three bands that share no prompt** (`../kern/docs/turns.md`).

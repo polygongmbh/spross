@@ -41,19 +41,18 @@ final class PronunciationPlayer {
     /// recordings are 44.1 kHz stereo and convert not at all. nil is
     /// unreachable; then nothing ever sounds.
     private let wiring = AVAudioFormat(standardFormatWithSampleRate: 44_100, channels: 2)
-    /// Probe-only completion (§9); gameplay playback is fire-and-forget.
+    /// What the clip in the air owes back when it ends: a listening beat arms off
+    /// it (`Pronouncer.pronounce`), as does the sound probe (§9).
     private var onFinish: (@MainActor () -> Void)?
     /// Which playback a pending completion belongs to — a scheduled segment
     /// calls back after `stop()` as well, and that one answers to nobody.
     private var playback = 0
     private var warmedUp = false
     /// The word in the air, kept whole so it can be put back. The engine's I/O
-    /// is rebuilt under us on a route change — headphones, and now the category
+    /// is rebuilt under us on a route change — headphones, and the category
     /// flip a tap performs (`AudioSession`) — which drops a segment scheduled a
-    /// moment earlier without it ever sounding. That is a word that has to be
-    /// tapped twice: the first tap paid for the route change, the second found
-    /// the session already right. Recovery used to be the NEXT word; it is this
-    /// one.
+    /// moment earlier without it ever sounding. Re-arming THIS word is what
+    /// spares the learner a second tap on it.
     private var pending: Request?
     /// Re-arms spent on `pending` — a rebuild that arrives in a run must not
     /// become a loop of restarts.

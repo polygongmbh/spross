@@ -31,7 +31,7 @@ class TodayReportTests {
         assertEquals(3, today.answers)
         assertEquals(3, today.introduced)
         assertEquals(1, today.missed)
-        // A single Good answer no longer settles on sight (only Easy does) —
+        // A single Good answer does not settle on sight (only Easy does) —
         // none of today's words have proven themselves yet.
         assertEquals(0, today.settled)
     }

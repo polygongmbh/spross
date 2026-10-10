@@ -33,7 +33,7 @@ struct WordScrambleView: View, LanguageNaming {
     @State var input = ""
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
-    /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
+    /// Says each graded answer's reading kern hands over (`run.reading`).
     @State var reader = Reader()
     @FocusState var answerFocused: Bool
 

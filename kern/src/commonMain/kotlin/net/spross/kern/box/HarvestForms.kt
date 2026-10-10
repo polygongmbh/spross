@@ -1,5 +1,6 @@
 package net.spross.kern.box
 
+import net.spross.kern.model.article
 import net.spross.kern.model.articledForm
 import net.spross.kern.model.caseFolded
 
@@ -55,7 +56,7 @@ internal class BoxForms(state: BoxState) {
 
     init {
         for (card in state.cards.values) {
-            val shown = articledForm(card.target.grammar["gender"], card.target.text)
+            val shown = articledForm(card.target.article, card.target.text)
             val gloss = stems(card.source.text)
             put(card.target.text, shown, gloss)
             put(shown, shown, gloss)

@@ -6,6 +6,7 @@ import net.spross.kern.model.CardKind
 import net.spross.kern.model.FormTag
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.answerForms
+import net.spross.kern.model.article
 import net.spross.kern.model.hyphensAndApostrophesStripped
 import net.spross.kern.model.nfcNormalized
 import net.spross.kern.model.stressFolded
@@ -120,7 +121,7 @@ class AnswerNormalizer(
     fun evaluate(input: String, card: Card, promptTag: FormTag? = null): Match {
         val forms = answerForms(card, promptTag)
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
-        val expectedArticle = card.target.grammar["gender"]?.let { cleaned(it.lowercase()).trim() }
+        val expectedArticle = card.target.article?.let { cleaned(it.lowercase()).trim() }
         // A form authored with its own article is read back against it; one without (a language that writes none) never against the citation's.
         val genderedForms = listOf(card.target.text) + card.target.accepts +
             card.target.forms.filter { it.article != null }.map { it.written }

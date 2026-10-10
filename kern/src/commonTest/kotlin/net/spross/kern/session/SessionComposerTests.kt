@@ -132,7 +132,7 @@ class SessionComposerTests {
     /**
      * A day the learner has not really worked is never closed: nothing due plus nothing
      * done means a round, not a finish line. A round's worth of answers is the bar —
-     * one tap used to be enough, which closed a day nobody had worked.
+     * one tap is not, or a day nobody had worked would close.
      *
      * Nothing comes back for days in this box, so a worked day genuinely has nothing left;
      * a word returning within hours is the other half of the rule ([aWordComingBackKeepsTheDayOpen]).
@@ -197,10 +197,9 @@ class SessionComposerTests {
     }
 
     /**
-     * The bug this rule was written for: queuing a category on a finished day used to compose
-     * a daily round of FOUR first sights and nothing else — the tomorrow reservation docked the
-     * new-word budget, and the pull-aheads it was docked FOR never came, because a done day
-     * skipped the fill. Four cards, no recall, under the floor, behind a "done" screen.
+     * Queuing a category on a finished day composes no daily round of FOUR first sights and nothing else:
+     * the tomorrow reservation docks the new-word budget for pull-aheads,
+     * so a done day that skipped the fill would serve four cards, no recall, under the floor, behind a "done" screen.
      */
     @Test
     fun queuingOnAFinishedDayNeverComposesAHalfRound() {
