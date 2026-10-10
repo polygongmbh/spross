@@ -43,24 +43,17 @@ internal object ChromeEn : Chrome {
     override val onboardingNameQuestion = "How should Spross greet you?"
     override val onboardingStart = "Let's go!"
     override val commonBack = "Back"
-    override val onboardingWhyTitle = "What Spross is for"
-    override val onboardingWhyBreadthTitle = "Sown, not crammed"
-    override val onboardingWhyBreadthBody = "A few new words a day, spaced so they stay. " +
-        "Better to know many words a little than a few perfectly."
-    override val onboardingWhyCompanionTitle = "A companion, not a replacement"
-    override val onboardingWhyCompanionBody = "Spross doesn't replace your course or your " +
-        "language partner. Your vocabulary keeps growing between conversations, so you have " +
-        "more to say next time."
-    override val onboardingWhyGrammarTitle = "Grammar comes from speaking"
-    override val onboardingWhyGrammarBody = "Spross doesn't teach grammar, just the gender a " +
-        "word carries. Where you actually use the words, the rest takes care of itself."
+    override val onboardingTourTitle = "Where to Start"
+    override val onboardingTourHome = "Tap the card at the top for today's round. More ways " +
+        "to practice sit below it."
+    override val onboardingTourBox = "Choose what you learn: tap the arrow beside an area, " +
+        "like food or animals, and its words come next. Pick nothing and Spross starts with " +
+        "everyday words."
     override val onboardingFirstRoundTitle = "Your First Round"
-    override val onboardingFirstRoundRecognize = "When Spross shows you a word, take a " +
-        "moment. Does it ring a bell?"
-    override val onboardingFirstRoundGrade = "Then you reveal and say how well you knew it. " +
-        "Honest beats generous: your answer decides when you see the word again."
-    override val onboardingFirstRoundWrite = "When you don't know a word, you can write it " +
-        "out once to solidify your memory."
+    override val onboardingFirstRoundRecognize = "You see a word. Do you know it?"
+    override val onboardingFirstRoundGrade = "Reveal it and say honestly how well you knew " +
+        "it. That decides when it comes back."
+    override val onboardingFirstRoundWrite = "Didn't know it? Write it out once so it sticks."
     override val commonCheck = "Check"
     override val commonReveal = "Reveal"
     override val commonNext = "Next"

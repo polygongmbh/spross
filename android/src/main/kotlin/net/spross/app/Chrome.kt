@@ -59,13 +59,9 @@ interface Chrome {
     val onboardingNameQuestion: String
     val onboardingStart: String
     val commonBack: String
-    val onboardingWhyTitle: String
-    val onboardingWhyBreadthTitle: String
-    val onboardingWhyBreadthBody: String
-    val onboardingWhyCompanionTitle: String
-    val onboardingWhyCompanionBody: String
-    val onboardingWhyGrammarTitle: String
-    val onboardingWhyGrammarBody: String
+    val onboardingTourTitle: String
+    val onboardingTourHome: String
+    val onboardingTourBox: String
     val onboardingFirstRoundTitle: String
     val onboardingFirstRoundRecognize: String
     val onboardingFirstRoundGrade: String

@@ -41,26 +41,18 @@ internal object ChromeDe : Chrome {
     override val onboardingNameQuestion = "Wie soll Spross dich ansprechen?"
     override val onboardingStart = "Los geht's!"
     override val commonBack = "Zurück"
-    override val onboardingWhyTitle = "Wofür Spross da ist"
-    override val onboardingWhyBreadthTitle = "Gesät, nicht gepaukt"
-    override val onboardingWhyBreadthBody = "Ein paar neue Wörter am Tag, so verteilt, dass " +
-        "sie bleiben. Lieber viele Wörter ein bisschen kennen als wenige perfekt."
-    override val onboardingWhyCompanionTitle = "Begleiter, kein Ersatz"
-    override val onboardingWhyCompanionBody = "Spross ersetzt weder deinen Kurs noch deinen " +
-        "Sprachpartner. Zwischen den Gesprächen wächst dein Wortschatz weiter, damit du beim " +
-        "nächsten Mal mehr zu sagen hast."
-    override val onboardingWhyGrammarTitle = "Grammatik kommt vom Sprechen"
-    override val onboardingWhyGrammarBody = "Spross bringt dir keine Grammatik bei, nur das " +
-        "Geschlecht der Wörter. Wo du die Wörter wirklich benutzt, kommt der Rest von " +
-        "selbst."
+    override val onboardingTourTitle = "Wo du anfängst"
+    override val onboardingTourHome = "Tipp oben auf die Karte für deine Runde von heute. " +
+        "Darunter findest du weitere Übungen."
+    override val onboardingTourBox = "Hier wählst du, was du lernst: Tipp auf den Pfeil " +
+        "neben einem Bereich, etwa Essen oder Tiere, und seine Wörter kommen als Nächstes. " +
+        "Wählst du nichts, fängt Spross mit Alltagswörtern an."
     override val onboardingFirstRoundTitle = "Deine erste Runde"
-    override val onboardingFirstRoundRecognize = "Wenn Spross dir ein Wort zeigt, nimm dir " +
-        "einen Moment: Kommt es dir bekannt vor?"
-    override val onboardingFirstRoundGrade = "Dann deckst du auf und sagst, wie gut du es " +
-        "wusstest. Ehrlich schlägt großzügig: Deine Antwort entscheidet, wann du das Wort " +
-        "wiedersiehst."
-    override val onboardingFirstRoundWrite = "Ein Wort, das du nicht wusstest, darfst du " +
-        "einmal abschreiben, damit es besser hängen bleibt."
+    override val onboardingFirstRoundRecognize = "Du siehst ein Wort. Kennst du es?"
+    override val onboardingFirstRoundGrade = "Deck es auf und sag ehrlich, wie gut du es " +
+        "wusstest. Das entscheidet, wann es wiederkommt."
+    override val onboardingFirstRoundWrite = "Nicht gewusst? Schreib es einmal ab, damit es " +
+        "hängen bleibt."
     override val commonCheck = "Prüfen"
     override val commonReveal = "Aufdecken"
     override val commonNext = "Weiter"

@@ -15,7 +15,7 @@ import SprossKern
 /// its own question — so choosing a source hands the screen to the target.
 /// The known side opens folded, the device language being a good guess already.
 ///
-/// Three pages: the pair, what the box is for, then what a round asks of you
+/// Three pages: the pair, where things are, then what a round asks of you
 /// (`OnboardingView+Story.swift`). Only the last one commits — the two before it
 /// merely turn the page — so the box is joined once, behind something worth reading,
 /// and the pair stays reachable through the way back the story pages carry.
@@ -80,7 +80,7 @@ struct OnboardingView: View {
                     Group {
                         switch page {
                         case .languages: languagesPage
-                        case .why: whyPage
+                        case .tour: tourPage
                         case .firstRound: firstRoundPage
                         }
                     }

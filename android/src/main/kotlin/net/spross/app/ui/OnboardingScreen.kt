@@ -42,7 +42,7 @@ import net.spross.kern.catalog.Onboarding
 import net.spross.kern.catalog.OnboardingPage
 
 /**
- * First launch, in three pages: the pair, what Spross is for ([PrinciplesPage]),
+ * First launch, in three pages: the pair, where things are ([TourPage]),
  * and what a round asks of you ([FirstRoundPage]).
  * Only the last one commits — the two before it merely turn the page —
  * so the box is joined once, behind something worth reading.
@@ -160,7 +160,7 @@ fun OnboardingScreen(model: AppModel) {
                 }
             }
 
-            OnboardingPage.Why -> PrinciplesPage(
+            OnboardingPage.Tour -> TourPage(
                 chrome = chrome,
                 emoji = current.emoji,
                 onNext = { current.next?.let { page = it } },

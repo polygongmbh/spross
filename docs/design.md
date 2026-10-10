@@ -40,6 +40,9 @@ rephrase it as an availability statement or a question.
   with no way back once it has.
   That first round teaches itself, one line per moment, in the quiet aside line,
   and the lines last that round only.
+- Onboarding copy teaches where things are and what to do there, not what the app believes:
+  the tour names each stop by its own screen's name (`OnboardingTourStop`),
+  and choosing what to learn (queuing an area in the box) is one of them.
 - Importing a backup on a first run skips onboarding:
   the backup brings its own pair and nothing is replaced, so it asks no confirmation.
 
