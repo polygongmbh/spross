@@ -385,13 +385,13 @@
     "Kuba": {
       "author": "Waithera Were",
       "file": "countries/kuba.mp3",
-      "gain": -7.0,
-      "gate": -68.1,
-      "lead": 42,
+      "gain": -4.2,
+      "gate": -69.7,
+      "lead": 40,
       "matches": "Kuba",
-      "mos": 2.49,
-      "sha256": "4af19e277462d3b3851ec00c4caa9343c318d9410a5e431f6deb0ac0fb6cc9f3",
-      "source": "Sw-ke-Kuba.flac"
+      "mos": 2.74,
+      "sha256": "ea3fa0a361dc146069b5351bf74e5a6e700411a170c0c534ea4a2a84fbec1d1e",
+      "source": "Sw-ke-kuba.flac"
     },
     "Marekani": {
       "author": "Ismail Ibn Ahmed",
@@ -5706,14 +5706,15 @@
       "source": "Sw-ke-kuthibitisha.flac"
     },
     "kutoka": {
-      "author": "Ismail Ibn Ahmed",
+      "author": "Waithera Were",
       "file": "words/kutoka.mp3",
-      "gain": 5.0,
-      "lead": 192,
+      "gain": -3.9,
+      "gate": -63.1,
+      "lead": 16,
       "matches": "kutoka",
-      "mos": 2.77,
-      "sha256": "9fde971d59ae350f554c27c03eb04d737693f7fc7e8f98c0c5a9f65a235841d0",
-      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-kutoka.wav"
+      "mos": 3.07,
+      "sha256": "1d07e58441352392d56c7a3a851f49f0ffb47f8953fc5c88e50197e426b39bb5",
+      "source": "Sw-ke-Kutoka.flac"
     },
     "kutokea": {
       "author": "Waithera Were",
@@ -6471,15 +6472,15 @@
       "source": "Sw-ke-mahali.flac"
     },
     "maharagwe": {
-      "author": "Waithera Were",
+      "author": "Goethe-Institut Cameroon",
       "file": "words/maharagwe.mp3",
-      "gain": -12.8,
-      "gate": -66.4,
-      "lead": 38,
+      "gain": -5.7,
+      "gate": -89.0,
+      "lead": 497,
       "matches": "maharagwe",
-      "mos": 2.92,
-      "sha256": "d40b01369ccba9643702f6113f3091cc438330702e36569edbcb63a566b372cd",
-      "source": "Sw-ke-maharagwe.flac"
+      "mos": 2.99,
+      "sha256": "81eb1151acc88c937de6718690c87256a2a16f80575452980d7a5e880ff60e92",
+      "source": "LL-Q42339(swa)-Mndetatsin-Maharagwe(les haricots).wav"
     },
     "mahospitali": {
       "author": "Waithera Were",
@@ -7338,13 +7339,13 @@
     "meza": {
       "author": "Waithera Were",
       "file": "words/meza.mp3",
-      "gain": -9.9,
-      "gate": -65.1,
-      "lead": 36,
+      "gain": -8.8,
+      "gate": -68.7,
+      "lead": 45,
       "matches": "meza",
-      "mos": 2.93,
-      "sha256": "3f80b286ef83a7956954b98302cc63e5c671bbc627dbc50941611d750c380c29",
-      "source": "Sw-ke-meza.flac"
+      "mos": 3.06,
+      "sha256": "577ab48e5d542a5da3045fe5f2527237f814d668f16addd33d9ad5494c8b68bd",
+      "source": "Sw-ke-Meza.flac"
     },
     "meza ya kulia": {
       "author": "Waithera Were",
@@ -8721,13 +8722,13 @@
     "ng'ombe": {
       "author": "Waithera Were",
       "file": "words/ngu0027ombe.mp3",
-      "gain": -8.7,
-      "gate": -66.3,
-      "lead": 48,
+      "gain": -5.3,
+      "gate": -68.9,
+      "lead": 37,
       "matches": "ng'ombe",
-      "mos": 2.99,
-      "sha256": "2eb948d66fc6da81ddb03a3ba7a1297ccff6012c74f4e362b0072f6edf02cb6a",
-      "source": "Sw-ke-ng'ombe.flac"
+      "mos": 3.15,
+      "sha256": "2a718df13bb844a59353dafae11a2f0ff5fecefcfe6847631e08ae3b89ffd508",
+      "source": "Sw-ke-Ng'ombe.flac"
     },
     "ngapi": {
       "author": "Waithera Were",
@@ -9288,16 +9289,15 @@
       "source": "Sw-ke-piga simu.flac"
     },
     "pikipiki": {
-      "author": "Byera04",
+      "author": "Waithera Were",
       "file": "words/pikipiki.mp3",
-      "gain": 9.5,
-      "gate": -60.0,
-      "lead": 148,
-      "license": "CC BY-SA 4.0",
+      "gain": -4.7,
+      "gate": -64.4,
+      "lead": 44,
       "matches": "pikipiki",
-      "mos": 2.15,
-      "sha256": "5118babc55d1ec09ad82e05a8197f96839693ade75e6a2d0e2b91408a8aae8f1",
-      "source": "LL-Q7838 (swa)-Byera04-Pikipiki.wav"
+      "mos": 2.63,
+      "sha256": "d1ab3a662c09a2329ff25649df5925b21812d6f376d96320cd80b6c62fcdb97e",
+      "source": "Sw-ke-pikipiki.flac"
     },
     "pili": {
       "author": "Waithera Were",
@@ -9599,13 +9599,13 @@
     "saa": {
       "author": "Waithera Were",
       "file": "words/saa.mp3",
-      "gain": -9.8,
-      "gate": -74.4,
+      "gain": -6.0,
+      "gate": -69.2,
       "lead": 31,
       "matches": "saa",
-      "mos": 2.94,
-      "sha256": "cbfbc28f9407c3d1bb73d5c8d9697f808ce048b3176cc809baaf56362e1f32a0",
-      "source": "Sw-ke-saa.flac"
+      "mos": 3.03,
+      "sha256": "9ca543ea192ed011216a1722fa00e082de5dd62bd5715e16745d1678f3c96c54",
+      "source": "Sw-ke-Saa.flac"
     },
     "sabuni": {
       "author": "Waithera Were",
@@ -11494,15 +11494,14 @@
       "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-wakati.wav"
     },
     "wake": {
-      "author": "Waithera Were",
+      "author": "Ismail Ibn Ahmed",
       "file": "words/wake.mp3",
-      "gain": -11.8,
-      "gate": -64.6,
-      "lead": 40,
+      "gain": 3.2,
+      "lead": 138,
       "matches": "wake",
-      "mos": 2.73,
-      "sha256": "e1697912a38209b5b7266ff95036cc885ecb3d1e17fb3567d3fa4aae134f9d2d",
-      "source": "Sw-ke-wake.flac"
+      "mos": 2.79,
+      "sha256": "fa662592cc5168426f2d47480ebd19ed67b2693ad7d5c8b9fcd4ea9655be980f",
+      "source": "LL-Q7838 (swa)-Ismail Ibn Ahmed-wake.wav"
     },
     "wakwe": {
       "author": "Waithera Were",

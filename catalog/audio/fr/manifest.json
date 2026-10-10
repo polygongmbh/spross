@@ -327,6 +327,7 @@
     "DSwissK": "CC BY 4.0",
     "Damian B.": "CC BY-SA 4.0",
     "DenisdeShawi": "CC BY-SA 4.0",
+    "Didierwiki": "CC BY-SA 4.0",
     "Eihel": "CC BY-SA 3.0",
     "FASETECLO": "CC BY-SA 4.0",
     "Fhala.K": "CC0",
@@ -359,14 +360,14 @@
   },
   "calendar": {
     "août": {
-      "author": "Vion Nicolas",
+      "author": "Helenou66",
       "file": "calendar/aou00fbt.mp3",
-      "gain": 2.6,
-      "gate": -57.6,
+      "gain": 10.9,
+      "lead": 196,
       "matches": "août",
-      "mos": 1.81,
-      "sha256": "2c85bc54359446b11a93517a56dad235dc86e0313f30a10cddf7ee0eef488375",
-      "source": "Fr-août.ogg"
+      "mos": 2.55,
+      "sha256": "b409b7461d34f5b57cc44f7ddb01643debadb9616a732041d615225c63f013de",
+      "source": "LL-Q150 (fra)-Helenou66-août.wav"
     },
     "avril": {
       "author": "Vion Nicolas",
@@ -402,26 +403,26 @@
       "source": "Fr-décembre.ogg"
     },
     "février": {
-      "author": "Vion Nicolas",
+      "author": "Sartus85",
       "file": "calendar/fu00e9vrier.mp3",
-      "gain": 0.4,
-      "gate": -66.2,
-      "lead": 74,
+      "gain": 9.8,
+      "gate": -86.0,
+      "lead": 140,
       "matches": "février",
-      "mos": 2.66,
-      "sha256": "84430decd97880fe94764264f66ec913fabb1de20e20a1623bee450846b5344d",
-      "source": "Fr-février.ogg"
+      "mos": 3.26,
+      "sha256": "70bd16b47da3fadda22664d79c32ac5200c22c9ba5ef28c20c6af05a313aefb8",
+      "source": "LL-Q150 (fra)-Sartus85-février.wav"
     },
     "janvier": {
-      "author": "Vion Nicolas",
+      "author": "Sartus85",
       "file": "calendar/janvier.mp3",
-      "gain": 1.0,
-      "gate": -69.5,
-      "lead": 44,
+      "gain": 8.2,
+      "gate": -87.3,
+      "lead": 100,
       "matches": "janvier",
-      "mos": 2.64,
-      "sha256": "21e7187fa646677e6bc1095f6cf965803765492c15623c8e0e07a90c6ee321f6",
-      "source": "Fr-janvier.ogg"
+      "mos": 3.16,
+      "sha256": "5e7d09600b0c77c4266e9e38c1dd9e11ecc9f425f5bf3d0428ae2b52b01b9653",
+      "source": "LL-Q150 (fra)-Sartus85-janvier.wav"
     },
     "jeudi": {
       "author": "Poslovitch",
@@ -479,15 +480,14 @@
       "source": "Fr-mai.ogg"
     },
     "mardi": {
-      "author": "Poslovitch",
+      "author": "Jules78120",
       "file": "calendar/mardi.mp3",
-      "gain": 3.0,
-      "gate": -74.3,
-      "lead": 232,
+      "gain": 9.1,
+      "lead": 136,
       "matches": "mardi",
-      "mos": 2.73,
-      "sha256": "6b5608e3af4cddd082624799d0b6ccc3572f8ed248bef4309085eb6a77d58368",
-      "source": "LL-Q150 (fra)-Poslovitch-mardi.wav"
+      "mos": 3.07,
+      "sha256": "f89b723e2e0df42af41bea63c75c5bba1cd867e489747cb7b4694e6d90c1a71e",
+      "source": "LL-Q150 (fra)-Jules78120-mardi.wav"
     },
     "mars": {
       "author": "Vion Nicolas",
@@ -689,14 +689,15 @@
       "source": "LL-Q150 (fra)-WikiLucas00-argentins.wav"
     },
     "Australie": {
-      "author": "Vive la Rosière",
+      "author": "Mecanautes",
       "file": "countries/australie.mp3",
-      "gain": 9.0,
-      "gate": -61.3,
+      "gain": 5.6,
+      "gate": -93.7,
+      "lead": 204,
       "matches": "Australie",
-      "mos": 2.78,
-      "sha256": "9e19313053d3fb91d56c97a9e73f49ee57e78e11d56fd929100ca31c17fc9dad",
-      "source": "Fr-Australie.ogg"
+      "mos": 3.29,
+      "sha256": "7165c17cff29ec0dc1573916cd795b29425a59c09f07c21f5668f0856955eae0",
+      "source": "LL-Q150 (fra)-Mecanautes-Australie.wav"
     },
     "Australiens": {
       "author": "Lepticed7",
@@ -742,15 +743,16 @@
       "source": "LL-Q150 (fra)-Lepticed7-belges.wav"
     },
     "Belgique": {
-      "author": "Poslovitch",
+      "author": "Sartus85",
+      "cap": 0.3,
       "file": "countries/belgique.mp3",
-      "gain": 2.5,
-      "gate": -73.9,
-      "lead": 163,
+      "gain": 8.8,
+      "gate": -84.0,
+      "lead": 129,
       "matches": "Belgique",
-      "mos": 2.5,
-      "sha256": "186e865943528b6203be49b680241951266b963ad8ecffe52f0148ed6bd359de",
-      "source": "LL-Q150 (fra)-Poslovitch-Belgique.wav"
+      "mos": 3.17,
+      "sha256": "f9b51f9717225e3998f77088484704bf4f1e39ff8aac1e2e4a93387d539b76de",
+      "source": "LL-Q150 (fra)-Sartus85-Belgique.wav"
     },
     "Britanniques": {
       "author": "Lyokoï",
@@ -825,24 +827,26 @@
       "source": "LL-Q150 (fra)-Lepticed7-canadiens.wav"
     },
     "Chili": {
-      "author": "Jules78120",
+      "author": "Mecanautes",
       "file": "countries/chili.mp3",
-      "gain": 6.1,
-      "lead": 191,
+      "gain": 5.9,
+      "gate": -92.9,
+      "lead": 204,
       "matches": "Chili",
-      "mos": 2.24,
-      "sha256": "17212bcfa1f08aa97601977c82f22ff1ca7caf29b504f75a43b36f483400fccf",
-      "source": "LL-Q150 (fra)-Jules78120-Chili.wav"
+      "mos": 3.09,
+      "sha256": "8c35e760ed0c8c5a38df59156119d41670fc66df552f6aa7ff4e25cfa84370f8",
+      "source": "LL-Q150 (fra)-Mecanautes-Chili.wav"
     },
     "Chine": {
-      "author": "Jules78120",
+      "author": "Lyokoï",
       "file": "countries/chine.mp3",
-      "gain": 9.2,
-      "lead": 178,
+      "gain": 2.3,
+      "gate": -70.9,
+      "lead": 246,
       "matches": "Chine",
-      "mos": 2.75,
-      "sha256": "7661532663469d6da35dddb8da91598f6a349f2faefbe398da77ef63809bc9d9",
-      "source": "LL-Q150 (fra)-Jules78120-Chine.wav"
+      "mos": 3.17,
+      "sha256": "2a27cf95f167640793b32e09f05a54733cf48b335eaff1e678aa064019c0dfcb",
+      "source": "LL-Q150 (fra)-Lyokoï-chine.wav"
     },
     "Chinois": {
       "author": "Poslovitch",
@@ -866,15 +870,15 @@
       "source": "LL-Q150 (fra)-Jules78120-Colombie.wav"
     },
     "Congolais": {
-      "author": "Pamputt",
+      "author": "Mecanautes",
       "file": "countries/congolais.mp3",
-      "gain": 9.6,
-      "gate": -58.9,
-      "lead": 173,
+      "gain": 6.0,
+      "gate": -94.3,
+      "lead": 270,
       "matches": "Congolais",
-      "mos": 2.19,
-      "sha256": "3ecc10430f0003c7c76b8772a556e5a0286c8e1230e1d63244dfeaedfb10f9f7",
-      "source": "LL-Q150 (fra)-Pamputt-Congolais.wav"
+      "mos": 3.07,
+      "sha256": "91d79c244747eb65ad8c6294939d65a11962959d960c77803c6853900ba5f3cd",
+      "source": "LL-Q150 (fra)-Mecanautes-congolais.wav"
     },
     "Corée du Sud": {
       "author": "Jules78120",
@@ -909,24 +913,26 @@
       "source": "LL-Q150 (fra)-Poslovitch-croates.wav"
     },
     "Croatie": {
-      "author": "Jules78120",
+      "author": "Poslovitch",
       "file": "countries/croatie.mp3",
-      "gain": 11.4,
-      "lead": 237,
+      "gain": -4.1,
+      "gate": -72.3,
+      "lead": 80,
       "matches": "Croatie",
-      "mos": 2.55,
-      "sha256": "fb9c6405025463fbeaf939d6af166af9960bddb544a082e600c7adb32455f4c8",
-      "source": "LL-Q150 (fra)-Jules78120-Croatie.wav"
+      "mos": 3.25,
+      "sha256": "4b664c6c1b8707a0a4122ce0cfc7d4a65d8f44ebe1f9e0ed8f1a7b221d32f3c4",
+      "source": "LL-Q150 (fra)-Poslovitch-Croatie.wav"
     },
     "Cuba": {
-      "author": "Jules78120",
+      "author": "Mecanautes",
       "file": "countries/cuba.mp3",
-      "gain": 9.4,
-      "lead": 107,
+      "gain": 9.9,
+      "gate": -92.7,
+      "lead": 211,
       "matches": "Cuba",
-      "mos": 2.46,
-      "sha256": "53df4d6739c2d2ccad208c745713b6f5fa1ac215e7f1485ec77eb7969199bc24",
-      "source": "LL-Q150 (fra)-Jules78120-Cuba.wav"
+      "mos": 3.11,
+      "sha256": "1c9709602aaa379ad9c02dcfccdbf7ba926581afaf2d54889766177f70219496",
+      "source": "LL-Q150 (fra)-Mecanautes-Cuba.wav"
     },
     "Danemark": {
       "author": "Jules78120",
@@ -983,25 +989,26 @@
       "source": "LL-Q150 (fra)-Poslovitch-Finlandais.wav"
     },
     "Finlande": {
-      "author": "Jules78120",
+      "author": "Poslovitch",
       "file": "countries/finlande.mp3",
-      "gain": 9.5,
-      "lead": 85,
+      "gain": -1.6,
+      "gate": -74.8,
+      "lead": 121,
       "matches": "Finlande",
-      "mos": 2.66,
-      "sha256": "7181d662b35383a5e29a71173631ec702725845b8587c8f70b0e01edb51c15b1",
-      "source": "LL-Q150 (fra)-Jules78120-Finlande.wav"
+      "mos": 2.96,
+      "sha256": "68361ddca6b742b3dfaccf69dfd9d127cb6dedf467887412703f2fb84288c445",
+      "source": "LL-Q150 (fra)-Poslovitch-Finlande.wav"
     },
     "France": {
-      "author": "Poslovitch",
+      "author": "DSwissK",
       "file": "countries/france.mp3",
-      "gain": -1.4,
-      "gate": -69.5,
-      "lead": 102,
+      "gain": 7.6,
+      "lead": 83,
+      "license": "CC BY-SA 4.0",
       "matches": "France",
-      "mos": 2.59,
-      "sha256": "285cc6437f2cdd87f12b744fc9197125efa5327817827b08a13fe7a2132246bf",
-      "source": "LL-Q150 (fra)-Poslovitch-France.wav"
+      "mos": 3.12,
+      "sha256": "43ae13874ff3adabe0cddf7499f57a9a3212e8fd7baf5fc37014a0cc90c0f8a1",
+      "source": "LL-Q150 (fra)-DSwissK-France.wav"
     },
     "Français": {
       "author": "Poslovitch",
@@ -1339,25 +1346,26 @@
       "source": "LL-Q150 (fra)-Jules78120-Ouganda.wav"
     },
     "Ougandais": {
-      "author": "Pamputt",
+      "author": "Lyokoï",
       "file": "countries/ougandais.mp3",
-      "gain": 9.8,
-      "gate": -54.6,
-      "lead": 246,
+      "gain": -2.2,
+      "gate": -72.4,
+      "lead": 261,
       "matches": "Ougandais",
-      "mos": 2.75,
-      "sha256": "545fcf71e1390c492ae8bb107e55c82c14e4f8dbc0f1e019f11c05e9e81cc758",
-      "source": "LL-Q150 (fra)-Pamputt-Ougandais.wav"
+      "mos": 3.09,
+      "sha256": "b59bda81c18f9917f3ea9654ddecc69f73809c84ca6186060dd461b1ea704476",
+      "source": "LL-Q150 (fra)-Lyokoï-ougandais.wav"
     },
     "Pays-Bas": {
-      "author": "Jules78120",
+      "author": "Sartus85",
       "file": "countries/pays-bas.mp3",
-      "gain": 11.6,
-      "lead": 202,
+      "gain": 7.9,
+      "gate": -86.1,
+      "lead": 169,
       "matches": "Pays-Bas",
-      "mos": 2.72,
-      "sha256": "c9bf2df6197b81c296827ac17dc4ddc73e2cb600978700814c1df1cc100f0748",
-      "source": "LL-Q150 (fra)-Jules78120-Pays-Bas.wav"
+      "mos": 3.09,
+      "sha256": "044d18c08bac4388241f68d2d406ce7d88bea0ed35e7fa4ae493bed7587ea1a0",
+      "source": "LL-Q150 (fra)-Sartus85-Pays-Bas.wav"
     },
     "Pologne": {
       "author": "Jules78120",
@@ -1424,14 +1432,15 @@
       "source": "LL-Q150 (fra)-WikiLucas00-roumains.wav"
     },
     "Roumanie": {
-      "author": "Jules78120",
+      "author": "Mecanautes",
       "file": "countries/roumanie.mp3",
-      "gain": 9.8,
-      "lead": 84,
+      "gain": 1.5,
+      "gate": -87.4,
+      "lead": 138,
       "matches": "Roumanie",
-      "mos": 2.78,
-      "sha256": "0c388fbfb8f0a392c4c1e7cc8dc33b008e1dad00bb9d40956ee3fdba8e8bcbe8",
-      "source": "LL-Q150 (fra)-Jules78120-Roumanie.wav"
+      "mos": 3.13,
+      "sha256": "08e00f71b89d431b772f509cf01e805c6377baae3e439e2b0ed1dc6c7bec6566",
+      "source": "LL-Q150 (fra)-Mecanautes-Roumanie.wav"
     },
     "Royaume-Uni": {
       "author": "Jules78120",
@@ -1475,15 +1484,15 @@
       "source": "LL-Q150 (fra)-Jules78120-Rwanda.wav"
     },
     "Rwandais": {
-      "author": "Pamputt",
+      "author": "Sartus85",
       "file": "countries/rwandais.mp3",
-      "gain": 8.5,
-      "gate": -55.2,
-      "lead": 130,
+      "gain": 4.0,
+      "gate": -91.0,
+      "lead": 58,
       "matches": "Rwandais",
-      "mos": 2.35,
-      "sha256": "4e0ba2568e0a2217e8cf7f231b0fdccf2e811f10ea21751f9a42c89d984aa7d5",
-      "source": "LL-Q150 (fra)-Pamputt-Rwandais.wav"
+      "mos": 3.06,
+      "sha256": "51337640dd2f6090bdc9bbd871b8f0be7d6792de56473215b8168b5bad0e053b",
+      "source": "LL-Q150 (fra)-Sartus85-rwandais.wav"
     },
     "République démocratique du Congo": {
       "author": "GrandCelinien",
@@ -1561,14 +1570,15 @@
       "source": "LL-Q150 (fra)-WikiLucas00-sud-coréens.wav"
     },
     "Suisse": {
-      "author": "Jules78120",
+      "author": "DenisdeShawi",
       "file": "countries/suisse.mp3",
-      "gain": 11.7,
-      "lead": 181,
+      "gain": 0.5,
+      "gate": -68.3,
+      "lead": 200,
       "matches": "Suisse",
-      "mos": 2.49,
-      "sha256": "78f54ab94fcc6ba62a4037ed5a51ffd5b67b660dfefebe35d57a69b6c5cab02b",
-      "source": "LL-Q150 (fra)-Jules78120-Suisse.wav"
+      "mos": 2.95,
+      "sha256": "b48540043a91c3430d46f56fa6fa5e9605a28ff340cce16e3b9ff8b336cbe86f",
+      "source": "LL-Q150 (fra)-DenisdeShawi-suisse.wav"
     },
     "Suisses": {
       "author": "WikiLucas00",
@@ -1613,15 +1623,14 @@
       "source": "LL-Q150 (fra)-Jules78120-Sénégal.wav"
     },
     "Sénégalais": {
-      "author": "Pamputt",
+      "author": "VictorDtmtc",
       "file": "countries/su00e9nu00e9galais.mp3",
-      "gain": 6.7,
-      "gate": -56.4,
-      "lead": 143,
+      "gain": 0.9,
+      "lead": 265,
       "matches": "Sénégalais",
-      "mos": 2.73,
-      "sha256": "6926c5dbdf0d9cf645929164a5ac4cc7e3465697dc1f6cec546841e8fe5185e4",
-      "source": "LL-Q150 (fra)-Pamputt-Sénégalais.wav"
+      "mos": 3.13,
+      "sha256": "73cdda145c7d0df8e9d3809557580f72a887b9260518c82612d9b333659f5edb",
+      "source": "LL-Q150 (fra)-VictorDtmtc-sénégalais.wav"
     },
     "Tanzanie": {
       "author": "Jules78120",
@@ -1668,15 +1677,15 @@
       "source": "LL-Q150 (fra)-Pamputt-Thaïlandais.wav"
     },
     "Thaïlande": {
-      "author": "GrandCelinien",
+      "author": "Didierwiki",
       "file": "countries/thau00eflande.mp3",
-      "gain": 3.2,
-      "gate": -73.5,
-      "lead": 211,
+      "gain": 4.8,
+      "gate": -92.4,
+      "lead": 194,
       "matches": "Thaïlande",
-      "mos": 2.67,
-      "sha256": "0375322a136a436c9261d381aaf2b6df75a389acc0c0fb403f0807f0d9e3630b",
-      "source": "LL-Q150 (fra)-GrandCelinien-Thaïlande.wav"
+      "mos": 3.0,
+      "sha256": "6c0b802519aec265cef158ecbe986bd0e0ff5b4793abb23917d77cc316c0b167",
+      "source": "LL-Q150 (fra)-Didierwiki-Thaïlande.wav"
     },
     "Tunisie": {
       "author": "Jules78120",
@@ -1723,14 +1732,13 @@
       "source": "LL-Q150 (fra)-Jules78120-Turquie.wav"
     },
     "Ukraine": {
-      "author": "Jules78120",
+      "author": "LoquaxFR",
       "file": "countries/ukraine.mp3",
-      "gain": 8.0,
-      "lead": 255,
+      "gain": 2.9,
       "matches": "Ukraine",
-      "mos": 2.74,
-      "sha256": "1d393a53ce4a55fe5fd70a4a8062e8645b4dea2caf9011b7dc94c23cd6a8d912",
-      "source": "LL-Q150 (fra)-Jules78120-Ukraine.wav"
+      "mos": 3.28,
+      "sha256": "eb2102a77ba0819ac33f3494b8cc2dfdbaa1ac5f2027f15332c48a76d083f94c",
+      "source": "LL-Q150 (fra)-LoquaxFR-Ukraine.wav"
     },
     "Ukrainiens": {
       "author": "Lyokoï",
@@ -1796,14 +1804,15 @@
       "source": "LL-Q150 (fra)-Lyokoï-vietnamiens.wav"
     },
     "Égypte": {
-      "author": "Jules78120",
+      "author": "Mecanautes",
       "file": "countries/u00e9gypte.mp3",
-      "gain": 5.7,
-      "lead": 220,
+      "gain": 2.8,
+      "gate": -93.7,
+      "lead": 206,
       "matches": "Égypte",
-      "mos": 2.06,
-      "sha256": "09391fdbc1e4e52e1f5ddfee3dbf4218ed883229de0cd863a045990403e4119e",
-      "source": "LL-Q150 (fra)-Jules78120-Égypte.wav"
+      "mos": 3.05,
+      "sha256": "80ab4603e4ce8ba4840eb3e1abcf111ab2305316718665f0d4bfe0f047dfa7cb",
+      "source": "LL-Q150 (fra)-Mecanautes-Égypte.wav"
     },
     "Équateur": {
       "author": "Jules78120",
@@ -1826,14 +1835,15 @@
       "source": "LL-Q150 (fra)-Jules78120-États-Unis.wav"
     },
     "Éthiopie": {
-      "author": "Jules78120",
+      "author": "Didierwiki",
       "file": "countries/u00e9thiopie.mp3",
-      "gain": 7.9,
-      "lead": 222,
+      "gain": 8.5,
+      "gate": -82.7,
+      "lead": 189,
       "matches": "Éthiopie",
-      "mos": 2.44,
-      "sha256": "d9e3cb643e8ca8c9dbd155e2de21319eb8e618fcda701d81b8feebb3e8ce95f2",
-      "source": "LL-Q150 (fra)-Jules78120-Éthiopie.wav"
+      "mos": 3.01,
+      "sha256": "fcccc1aafafa3c5dad886724c5aed8fa30fea8fd58c037922f68ff17c8ec78de",
+      "source": "LL-Q150 (fra)-Didierwiki-Éthiopie.wav"
     }
   },
   "language": "fr",
