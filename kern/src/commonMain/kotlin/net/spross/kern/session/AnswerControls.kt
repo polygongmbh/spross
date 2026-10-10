@@ -58,6 +58,9 @@ data class AnswerControls(
 
         /** Show the answer; nothing is typed ([TurnIntent.Reveal]). */
         Reveal,
+
+        /** Check what stands, or skip on a blank field: a race books the miss and shows no answer. */
+        SubmitOrSkip,
     }
 
     enum class Confirm {

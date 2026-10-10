@@ -45,7 +45,7 @@ class NumbersChallengeTest {
         assertEquals(listOf(NumbersExercise.Counting, NumbersExercise.Clock), made.exercises)
         assertTrue(made.mix)
         assertFalse(made.reverse)
-        assertEquals(setOf(DrillModifier.Timed, DrillModifier.Mix), made.mode.modifiers)
+        assertEquals(setOf(DrillModifier.Mix), made.mode.modifiers)
     }
 
     @Test

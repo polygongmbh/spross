@@ -200,9 +200,6 @@ internal object ChromeEn : Chrome {
     override val trainerModifierMix = "Mixed Up"
     override val trainerModifierMixHint = "The direction flips every task, and forms grow to " +
         "the size the numbers reached."
-    override val trainerModifierTimed = "Timed"
-    override val trainerModifierTimedHint = "%d seconds on the clock, and every clean answer " +
-        "scores the Sprosse it stands on."
     override val trainerChallengeTitle = "Challenge"
     override val trainerChallengeHint = "%d seconds on the same questions as someone else: " +
         "start one and send its code, or enter a code you were sent."

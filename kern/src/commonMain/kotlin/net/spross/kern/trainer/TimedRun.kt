@@ -1,7 +1,7 @@
 package net.spross.kern.trainer
 
 /**
- * A run against a clock ([DrillModifier.Timed]), scored instead of streaked.
+ * A challenge's clock and score ([NumbersChallenge]): the run is scored instead of streaked.
  *
  * Each clean answer scores its Sprosse, so the ramp ([DrillRamp.step]) is the penalty:
  * a miss drops a Sprosse, an almost scores nothing.

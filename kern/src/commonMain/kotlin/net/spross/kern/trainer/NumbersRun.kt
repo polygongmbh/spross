@@ -70,9 +70,9 @@ object NumbersRun {
         normalizer: AnswerNormalizer?,
         rng: Random,
     ): NumbersReduction = when (intent) {
-        is NumbersIntent.InputChanged -> typed(state, intent.text, normalizer)
-        is NumbersIntent.Submit -> submit(state, intent.text, normalizer)
-        NumbersIntent.Reveal -> reveal(state)
+        is NumbersIntent.InputChanged -> typed(state, intent.text, normalizer, rng)
+        is NumbersIntent.Submit -> submit(state, intent.text, normalizer, rng)
+        NumbersIntent.Reveal -> reveal(state, rng)
         NumbersIntent.LookUp -> lookUp(state)
         NumbersIntent.ConfirmPending -> confirm(state, rng)
         NumbersIntent.AdvanceElapsed -> elapsed(state, rng)
@@ -143,11 +143,10 @@ object NumbersRun {
             .map { (exercise, best) -> state.mode.progressKey(exercise) to best }
             .filter { (key, best) -> best > (standingProgress[key] ?: 0) }
             .toMap()
-        val timed = if (state.timed) TimedOutcome(ended.score, state.challenge) else null
-        val figure = timed?.score ?: ended.bestAnswerStreak
+        val timed = state.challenge?.let { TimedOutcome(ended.score, it) }
         return NumbersClose(
             state = ended,
-            summary = DrillRunSummary(ended.done, ended.bestAnswerStreak, !scripted && figure > standingRecord, timed),
+            summary = DrillRunSummary(ended.done, ended.bestAnswerStreak, !scripted && ended.bestAnswerStreak > standingRecord, timed),
             recordKey = state.mode.recordKey,
             progressBookings = bookings,
             effects = effects,
@@ -164,10 +163,19 @@ object NumbersRun {
         state: NumbersRunState,
         text: String,
         normalizer: AnswerNormalizer?,
+        rng: Random,
     ): NumbersReduction {
         if (!state.owesAnswer) return unchanged(state)
-        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
-        val verdict = TypedDrillVerdicts.submit(grade(text, state.currentTask, normalizer), silence = false)
+        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state, rng)
+        val match = grade(text, state.currentTask, normalizer)
+        if (state.timed) {
+            return when (match) {
+                Match.Exact -> raced(state, ToneKind.Correct, correct = true, clean = true, rng)
+                is Match.Typo -> raced(state, ToneKind.Almost, correct = true, clean = false, rng)
+                else -> raced(state, ToneKind.Wrong, correct = false, clean = false, rng)
+            }
+        }
+        val verdict = TypedDrillVerdicts.submit(match, silence = false)
         return NumbersReduction(state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord), verdict.effects)
     }
 
@@ -179,6 +187,7 @@ object NumbersRun {
         state: NumbersRunState,
         text: String,
         normalizer: AnswerNormalizer?,
+        rng: Random,
     ): NumbersReduction {
         val trimmed = text.trim()
         val verdict = TypedDrillVerdicts.typed(state.feedback) {
@@ -186,11 +195,16 @@ object NumbersRun {
                 !stillGrowing(trimmed, state.currentTask) &&
                 grade(trimmed, state.currentTask, normalizer) == Match.Exact
         } ?: return unchanged(state)
+        if (state.timed && verdict.feedback == TurnFeedback.Correct) {
+            return raced(state, ToneKind.Correct, correct = true, clean = true, rng)
+        }
         return NumbersReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
-    private fun reveal(state: NumbersRunState): NumbersReduction {
+    /** The answer asked for on an empty field; a challenge's Skip books the miss instead, its answer never shown. */
+    private fun reveal(state: NumbersRunState, rng: Random): NumbersReduction {
         if (!state.owesAnswer) return unchanged(state)
+        if (state.timed) return raced(state, ToneKind.Wrong, correct = false, clean = false, rng)
         val verdict = TypedDrillVerdicts.reveal(silence = false)
         return NumbersReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
@@ -221,6 +235,13 @@ object NumbersRun {
             ?: unchanged(state)
 
     // MARK: - Booking
+
+    /**
+     * A challenge books an answer the moment it is graded and asks the next question:
+     * nothing is shown, so nothing waits — a shown answer would be a breather against the clock.
+     */
+    private fun raced(state: NumbersRunState, tone: ToneKind, correct: Boolean, clean: Boolean, rng: Random): NumbersReduction =
+        booked(state, correct, clean, rng).let { it.copy(effects = listOf(DrillEffect.Tone(tone)) + it.effects) }
 
     /** Book the answer, then put the next question up at the Sprossen the booking left. */
     private fun booked(
@@ -257,7 +278,7 @@ object NumbersRun {
             // why: a mixed run climbs one ladder per exercise, and no one of them is the run's.
             sprosse = state.mode.exercises.singleOrNull()?.let { state.sprossen[it] },
             newSprossen = state.newSprossen,
-            endless = !state.finished && !state.timed && state.challenge == null,
+            endless = !state.finished && state.challenge == null,
         ),
     )
 

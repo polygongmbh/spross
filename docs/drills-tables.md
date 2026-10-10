@@ -20,15 +20,17 @@ Neighbors: every drill `drills.md`, readings `number-forms.md`, `clock-registers
 - **Its last band is the FORMS one**: a worked example per form the language reads,
   so the marks a Forms run asks about are written down somewhere other than a failed task,
   and a form the language cannot read has no row there either.
-- **A Timed run is scored, not streaked** (`TimedRun`): the clock ends it,
-  and each clean answer scores the Sprosse it was given on.
-  The ramp is the whole of the scoring — a miss drops a Sprosse and everything after it is worth less,
+- **A challenge is the one timed run, and two learners play it on the SAME questions** (`NumbersChallenge`),
+  carried between phones as a short code with no server behind it;
+  one started from the picks is the same race, its code waiting to be sent.
+  It is scored, not streaked (`TimedRun`): the clock ends it, each clean answer scores the Sprosse it was asked at,
   and an almost scores nothing yet still spends its seconds.
-  Its record is the score, under the run's own key,
+  Every answer is booked the moment it is graded, with only its tone, and the next question follows:
+  no reveal, gloss, first-sight hint or read-out answer gives a breather against the clock,
+  and an empty field offers Skip, an immediate miss, where a practice run offers the reveal.
+  Its score line carries the clock and the score in the answer streak's place,
   and it offers neither the look-up nor the early "Fertig": against a clock, one is a shortcut and the other is the clock's job.
-  A screen reader never sees its switch, since a run ending under the learner is the timed change `../kern/docs/turns.md` keeps from one.
-- **A challenge is a timed run two learners play on the SAME questions** (`NumbersChallenge`),
-  carried between phones as a short code with no server behind it.
+  A screen reader never sees its section, since a run ending under the learner is the timed change `../kern/docs/turns.md` keeps from one.
   Its questions are a script rather than a ramp, which would part the two runs at the first miss,
   and only what never shows the learner's own language travels, so Phrases stays home.
   It books neither ladder nor record: the tile sets its score against the one the code arrived with,

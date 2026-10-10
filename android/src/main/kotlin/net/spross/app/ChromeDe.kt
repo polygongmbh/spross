@@ -204,9 +204,6 @@ internal object ChromeDe : Chrome {
     override val trainerModifierMix = "Bunt gemischt"
     override val trainerModifierMixHint = "Die Richtung wechselt bei jeder Aufgabe, und " +
         "Formen werden so groß wie die Zahlen."
-    override val trainerModifierTimed = "Auf Zeit"
-    override val trainerModifierTimedHint = "%d Sekunden auf der Uhr, und jede saubere " +
-        "Antwort zählt so viel wie ihre Sprosse."
     override val trainerChallengeTitle = "Herausforderung"
     override val trainerChallengeHint = "%d Sekunden auf dieselben Aufgaben wie jemand " +
         "anderes: Starte eine und schick den Code, oder gib den Code ein, den du bekommen " +

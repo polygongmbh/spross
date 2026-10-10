@@ -6,29 +6,32 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import net.spross.kern.session.AnswerControls
+import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
-/** A run against the clock: scored by the Sprosse each clean answer stood on, ended by [NumbersIntent.TimeUp]. */
+/** A challenge against the clock: scored by the Sprosse each clean answer stood on, ended by [NumbersIntent.TimeUp]. */
 class TimedRunTest {
 
-    private val timed = NumbersMode(listOf(NumbersExercise.Counting), "de", setOf(DrillModifier.Timed))
+    private val challenge = requireNotNull(
+        NumbersChallenge.create(NumbersMode(NumbersExercise.Counting, "de"), Random(5)),
+    )
 
-    private fun at(sprosse: Int) = NumbersRun.openAt(timed, mapOf(NumbersExercise.Counting to sprosse), 0, emptyMap(), Random(5))
+    /** The run standing on script question [index]. */
+    private fun at(index: Int) = challenge.open().copy(current = challenge.tasks[index].drawn, index = index)
+        .let { it.copy(sprossen = it.sprossen + (NumbersExercise.Counting to challenge.tasks[index].sprosse)) }
 
     private fun NumbersRunState.send(intent: NumbersIntent) = NumbersRun.reduce(this, intent, null, Random(9)).state
 
-    private fun NumbersRunState.answered() =
-        send(NumbersIntent.Submit(currentTask.display)).send(NumbersIntent.ConfirmPending)
+    private fun NumbersRunState.answered() = send(NumbersIntent.Submit(currentTask.display))
 
-    private fun NumbersRunState.missed() = send(NumbersIntent.Reveal).send(NumbersIntent.ConfirmPending)
+    private fun NumbersRunState.missed() = send(NumbersIntent.Reveal)
 
     @Test
-    fun aCleanAnswerScoresTheSprosseItWasGivenOn() {
-        assertEquals(3, at(3).answered().score)
-        assertEquals(0, at(3).missed().score, "a miss scores nothing")
-        assertEquals(2, at(3).missed().currentSprosse, "and drops the run a Sprosse, so what follows is worth less")
-        val slipped = at(3).copy(feedback = TurnFeedback.Correct, hintUsed = true).send(NumbersIntent.ConfirmPending)
-        assertEquals(0, slipped.score, "an almost scores nothing")
+    fun aCleanAnswerScoresTheSprosseItWasAskedAt() {
+        val late = at(6)
+        assertEquals(challenge.tasks[6].sprosse, late.answered().score)
+        assertEquals(0, late.missed().score, "a miss scores nothing")
     }
 
     @Test
@@ -42,35 +45,43 @@ class TimedRunTest {
         assertEquals(0, TimedRun.bonusSeconds(task, correct = true, clean = false), "an almost earns nothing")
     }
 
+    /** Nothing is shown, so nothing waits: right, wrong and skipped alike ask the next question at once. */
     @Test
-    fun timeUpEndsOnlyATimedRun() {
-        assertTrue(at(1).send(NumbersIntent.TimeUp).finished)
+    fun aChallengeBooksEveryAnswerTheMomentItIsGraded() {
+        val run = at(3)
+        for ((intent, tone) in listOf(
+            NumbersIntent.Submit(run.currentTask.display) to ToneKind.Correct,
+            NumbersIntent.InputChanged(run.currentTask.display) to ToneKind.Correct,
+            NumbersIntent.Submit("nichts") to ToneKind.Wrong,
+            NumbersIntent.Submit("") to ToneKind.Wrong,
+        )) {
+            val step = NumbersRun.reduce(run, intent, null, Random(9))
+            assertEquals(run.index + 1, step.state.index, "$intent")
+            assertEquals(TurnFeedback.Neutral, step.state.feedback, "$intent")
+            assertTrue(DrillEffect.Tone(tone) in step.effects, "$intent")
+        }
+        assertEquals(1, run.send(NumbersIntent.Submit("nichts")).done)
+    }
+
+    @Test
+    fun aChallengeShowsNoHintNoGlossAndSaysNoAnswer() {
+        val run = at(0)
+        assertNull(run.question.hint)
+        assertNull(run.question.closing.note)
+        assertNull(run.answerSaying)
+        assertEquals(AnswerControls.Primary.SubmitOrSkip, run.controls.primary)
+    }
+
+    @Test
+    fun timeUpEndsOnlyAChallenge() {
+        assertTrue(at(0).send(NumbersIntent.TimeUp).finished)
         val plain = NumbersRun.open(NumbersMode(NumbersExercise.Counting, "de"), 0, emptyMap(), Random(5))
         assertFalse(plain.send(NumbersIntent.TimeUp).finished)
     }
 
-    /** The clock can run out on an accepted answer; the close books it exactly as the ✕ would. */
     @Test
-    fun theCloseBooksWhatWasPendingWhenTheTimeRanOut() {
-        val pending = at(4).send(NumbersIntent.Submit(at(4).currentTask.display)).send(NumbersIntent.TimeUp)
-        val closed = NumbersRun.close(pending, standingRecord = 3, standingProgress = emptyMap())
-        assertEquals(4, closed.summary?.timed?.score)
-        assertEquals(1, closed.summary?.done)
-    }
-
-    @Test
-    fun theRecordATimedRunChasesIsItsScore() {
-        val run = at(5).answered()
-        val summary = NumbersRun.close(run, standingRecord = 4, standingProgress = emptyMap()).summary!!
-        assertTrue(summary.newRecord)
-        assertEquals(5, summary.recordFigure)
-        assertFalse(NumbersRun.close(run, standingRecord = 5, standingProgress = emptyMap()).summary!!.newRecord)
-        assertNull(summary.timed?.challenge)
-    }
-
-    @Test
-    fun aTimedRunOffersNeitherTheLookUpNorAnEarlyFinish() {
-        val twoMisses = at(1).missed().send(NumbersIntent.Reveal)
+    fun aChallengeOffersNeitherTheLookUpNorAnEarlyFinish() {
+        val twoMisses = at(0).missed().send(NumbersIntent.Reveal)
         assertFalse(twoMisses.offersLookUp)
         assertFalse(twoMisses.offersFinish)
     }

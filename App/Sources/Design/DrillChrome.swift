@@ -33,7 +33,7 @@ extension SessionScaffold {
 // MARK: - Streak line
 
 /// The score line above the card: which Sprosse the run stands on and how long
-/// the answer streak is. The record stays off it — a record is named where it
+/// the answer streak is, or a timed run's clock and score in the streak's place. The record stays off it — a record is named where it
 /// falls, on the pause and the result tile, never counted mid-run.
 struct DrillStreakLine: View {
     /// The Sprosse, worded by the drill that owns it — a digit count reads
@@ -41,12 +41,13 @@ struct DrillStreakLine: View {
     var sprosse: Text?
     /// A timed run's clock and score, standing after the Sprosse; empty elsewhere.
     var timed: [Text] = []
-    let answerStreak: Int
+    /// nil where the run is scored rather than streaked.
+    let answerStreak: Int?
 
     var body: some View {
         text
             .font(Theme.typography.headline)
-            .foregroundStyle(answerStreak > 0 ? Theme.colors.accent : Theme.colors.textSecondary)
+            .foregroundStyle(answerStreak ?? 0 > 0 ? Theme.colors.accent : Theme.colors.textSecondary)
             .monospacedDigit()
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
@@ -60,13 +61,13 @@ struct DrillStreakLine: View {
         var parts: [Text] = []
         if let sprosse { parts.append(sprosse) }
         parts += timed
-        parts.append(Text("trainer.run.streak \(answerStreak.formatted())"))
+        if let answerStreak { parts.append(Text("trainer.run.streak \(answerStreak.formatted())")) }
         return parts.joined() ?? Text(verbatim: "")
     }
 
     private var accessibility: Text {
-        let streakSpoken = Text("a11y.count.streakInARow \(answerStreak.formatted())")
-        return timed.joined(separator: ", ").map { $0 + Text(verbatim: ", ") + streakSpoken } ?? streakSpoken
+        let streakSpoken = answerStreak.map { [Text("a11y.count.streakInARow \($0.formatted())")] } ?? []
+        return (timed + streakSpoken).joined(separator: ", ") ?? Text(verbatim: "")
     }
 }
 
