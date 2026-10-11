@@ -127,7 +127,7 @@ data class SentenceScrambleRunState(
                 emojiCue = EmojiCue.Upfront,
                 opens = showsAnswer,
                 growsNote = answerAccepted,
-                closing = Question.Closing(note = t.gloss?.let { ClosingNote.Own(it) }),
+                closing = Question.Closing(note = ClosingNote.Own(t.gloss)),
             )
         }
 
