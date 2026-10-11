@@ -53,7 +53,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 ### Engine
 
 - `CountryDrillRun` and `DateDrillRun` still carry twin public intent, reduction, state and close types (their booking is `LadderStanding`), `CountryDrill.step`/`DateDrill.step` are read by tests alone, and `CountryDrill`/`DateDrill` repeat `answerLanguage`, `promptLanguage`, `winsToAdvance` and `fastUnlocked`; one shared reducer changes the ObjC header, so both apps move with it.
-- `TypedDrillVerdicts` is pinned only through `CountryDrillRunTest`; a direct test would let the country run's verdict tests shrink to wiring.
 - Both phones mint the backup file name `Spross-<lang>-<day>` kern should name (`BackupRow.swift` `BackupFile.taken`, `ui/BackupSetting.kt:~80`, `ui/BoxSettings.kt:~146`).
 
 ### Apps & tooling

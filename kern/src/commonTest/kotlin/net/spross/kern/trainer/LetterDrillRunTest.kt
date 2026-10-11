@@ -219,10 +219,7 @@ class LetterDrillRunTest {
         assertEquals(LetterFormat.Typed, state.format)
         assertTrue(state.typing)
         val revealed = reduce(state, LetterDrillIntent.Reveal, rng)
-        assertEquals(
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)),
-            revealed.effects,
-        )
+        assertEquals(TypedDrillVerdicts.reveal().effects, revealed.effects)
         assertTrue(revealed.state.showsAnswer)
         // Nothing typed is the same ask, so the check button and Enter agree; once the
         // answer is in, nothing is owed and a stray blank changes nothing.

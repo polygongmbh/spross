@@ -5,7 +5,6 @@ import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
-import kotlin.test.assertIs
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -16,20 +15,18 @@ import net.spross.kern.catalog.CountryName
 import net.spross.kern.catalog.LanguageName
 import net.spross.kern.catalog.NationalityName
 import net.spross.kern.model.LanguageInfo
-import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
-import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
 /**
- * The atlas run: what a typed name earns, which beat it arms, what the ramp does with it,
+ * The atlas run: how a typed name is graded, what the ramp does with it,
  * and what a close leaves behind.
  *
  * The ladder, the draw and the task shapes are [CountryDrill]'s and pinned in
- * [CountryDrillTests]; what is asserted here is the run that steps through them — the half
+ * [CountryDrillTests], the verdicts [TypedDrillVerdicts]' in [TypedDrillVerdictsTest]; what is asserted here is the run that steps through them — the half
  * both apps drive.
  *
  * The atlas is one tier-1 country, so Sprosse 1 has exactly one question and every assertion
@@ -152,81 +149,28 @@ class CountryDrillRunTest {
 
     // MARK: - What a typed name earns
 
-    /**
-     * Writing the name out IS the answer — the review loop's rule, which the letter drill
-     * does not offer and this one does. Exact only: a typo budget would fire a letter early
-     * and grade the name before it was finished.
-     */
+    /** A keystroke reaches the live approve ([TypedDrillVerdictsTest] pins the ladder), and an approved name is said. */
     @Test
-    fun finishingTheNameArmsTheLiveBeatWithoutACheckTap() {
-        val reduction = open().reduce(CountryDrillIntent.InputChanged("Ujerumani"))
-        assertEquals(TurnFeedback.Correct, reduction.state.feedback)
-        assertEquals(
-            listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceBeat.Live)),
-            reduction.effects,
-        )
-        assertEquals(saysUjerumani, reduction.state.reading.answer)
+    fun aKeystrokeIsGradedForTheLiveApprove() {
+        val finished = open().reduce(CountryDrillIntent.InputChanged("Ujerumani"))
+        assertEquals(TurnFeedback.Correct, finished.state.feedback)
+        assertEquals(assertNotNull(TypedDrillVerdicts.typed(TurnFeedback.Neutral) { true }).effects, finished.effects)
+        assertEquals(saysUjerumani, finished.state.reading.answer)
+
+        val slipped = open().reduce(CountryDrillIntent.InputChanged("Ujerumami"))
+        assertEquals(TurnFeedback.Neutral, slipped.state.feedback, "a slip mid-word is not an answer yet")
     }
 
-    /** A slip mid-word is not an answer yet: the live approve never fires on one. */
+    /** A check reaches the verdict ladder with the run's own grade: a slip holds on the atlas spelling. */
     @Test
-    fun aSlipNeverApprovesLive() {
-        val reduction = open().reduce(CountryDrillIntent.InputChanged("Ujerumami"))
-        assertEquals(TurnFeedback.Neutral, reduction.state.feedback)
-        assertEquals(listOf(DrillEffect.CancelAdvance), reduction.effects)
-    }
+    fun aCheckIsGradedAgainstTheAtlas() {
+        val exact = open().reduce(CountryDrillIntent.Submit("Ujerumani"))
+        assertEquals(TurnFeedback.Correct, exact.state.feedback)
+        assertEquals(TypedDrillVerdicts.submit(Match.Exact).effects, exact.effects)
 
-    /** Typing PAST a finished name takes the green with it, so it is never booked. */
-    @Test
-    fun backingOutOfAFinishedNameWithdrawsTheApproval() {
-        val approved = open().reduce(CountryDrillIntent.InputChanged("Ujerumani")).state
-        val reduction = approved.reduce(CountryDrillIntent.InputChanged("Ujerumanix"))
-        assertEquals(TurnFeedback.Neutral, reduction.state.feedback)
-        assertEquals(listOf(DrillEffect.CancelAdvance), reduction.effects)
-    }
-
-    /** The cue sounds once per approval, not once per keystroke inside an approved name. */
-    @Test
-    fun aKeystrokeInsideAnApprovedNameDoesNotReChime() {
-        val approved = open().reduce(CountryDrillIntent.InputChanged("Ujerumani")).state
-        val again = approved.reduce(CountryDrillIntent.InputChanged("Ujerumani "))
-        assertEquals(TurnFeedback.Correct, again.state.feedback)
-        assertEquals(listOf(DrillEffect.ArmAdvance(AdvanceBeat.Live)), again.effects)
-    }
-
-    @Test
-    fun anExplicitCheckOnTheRightNameArmsTheLongerBeat() {
-        val reduction = open().reduce(CountryDrillIntent.Submit("Ujerumani"))
-        assertEquals(TurnFeedback.Correct, reduction.state.feedback)
-        assertEquals(
-            listOf(
-                DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Correct),
-                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
-            ),
-            reduction.effects,
-        )
-    }
-
-    /**
-     * A slip on an explicit check is the almost hold: it waits for a tap rather than a beat,
-     * and gives the keyboard back so the button it waits for is not covered.
-     */
-    @Test
-    fun aSlipOnACheckHoldsAlmostAndGivesTheKeyboardBack() {
-        val reduction = open().reduce(CountryDrillIntent.Submit("Ujerumami"))
-        val hold = assertIs<TurnFeedback.Almost>(reduction.state.feedback)
-        assertEquals("Ujerumani", hold.correctForm)
-        assertEquals(AlmostReason.Typo, hold.reason)
-        assertEquals(
-            listOf(
-                DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Almost),
-                DrillEffect.ReleaseFocus,
-            ),
-            reduction.effects,
-        )
-        assertEquals(saysUjerumani, reduction.state.reading.answer)
+        val slip = open().reduce(CountryDrillIntent.Submit("Ujerumami"))
+        assertEquals(TurnFeedback.Almost("Ujerumani", AlmostReason.Typo), slip.state.feedback)
+        assertEquals(saysUjerumani, slip.state.reading.answer)
     }
 
     /** A name that is not this one's is a miss, however close the ladder's other rows are. */
@@ -234,10 +178,6 @@ class CountryDrillRunTest {
     fun anotherCountrysNameIsAMissAndNotASlip() {
         val reduction = open().reduce(CountryDrillIntent.Submit("Uhispania"))
         assertEquals(TurnFeedback.Revealed, reduction.state.feedback)
-        assertEquals(
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
-            reduction.effects,
-        )
     }
 
     /**
@@ -279,10 +219,7 @@ class CountryDrillRunTest {
     fun revealingOpensTheCardAndBooksAMiss() {
         val revealed = open().reduce(CountryDrillIntent.Reveal)
         assertEquals(TurnFeedback.Revealed, revealed.state.feedback)
-        assertEquals(
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)),
-            revealed.effects,
-        )
+        assertEquals(TypedDrillVerdicts.reveal().effects, revealed.effects)
 
         val booked = revealed.state.reduce(CountryDrillIntent.ConfirmPending).state
         assertEquals(listOf(AnswerOutcome.Wrong), booked.outcomes)
@@ -304,7 +241,7 @@ class CountryDrillRunTest {
         assertTrue(inert.effects.isEmpty())
     }
 
-    /** The beat only ever arms on a clean answer, so nothing else may ride it. */
+    /** The elapsed beat reaches the ramp only from a clean answer ([TypedDrillVerdicts.elapsed]). */
     @Test
     fun anElapsedBeatBooksOnlyACleanAnswer() {
         val held = open().reduce(CountryDrillIntent.Submit("Ujerumami")).state

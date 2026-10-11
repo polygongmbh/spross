@@ -13,7 +13,7 @@ import net.spross.kern.session.Match
 
 /**
  * What the dates run adds to the typed-drill verdicts it shares with the atlas run
- * ([CountryDrillRunTest] pins those): the value check, the pattern word, the parse a
+ * ([TypedDrillVerdictsTest] pins those): the value check, the pattern word, the parse a
  * reversed run climbs into, and what a close leaves behind. The ladder, the draw and the
  * task shapes are [DateDrillTests]'.
  */
