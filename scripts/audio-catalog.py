@@ -447,11 +447,10 @@ def convert_texts(pack, out_dir):
     letter drill, and shown on no card, so the word gate — which asks what a card shows —
     can never reach them. They index by the FORM they speak, exactly
     as words do, so a recording still only ever plays over the word it actually says.
-    Files are ASCII-named for the reason the letters are codepoint-named: macOS normalises
-    filenames, and `pingüino.mp3` cannot be looked up by the string a manifest stores.
+    Files are named after the form they speak (`form_file`), never the pack's own name.
     """
     rows = read_rows(os.path.join(pack, 'manifest.tsv'))
-    names = {row['text']: 'texts/' + row['local_file'] for row in rows}
+    names = {row['text']: form_file('texts', row['text']) for row in rows}
     analyzed = copy_and_analyze([(row['text'], os.path.join(pack, 'mp3', row['local_file']),
                                   os.path.join(out_dir, names[row['text']])) for row in rows])
     texts = {}
@@ -474,7 +473,7 @@ def convert_calendar(pack, out_dir):
     # guess at the uploader ("X assumed (based on copyright claims)"), and BY and BY-SA
     # both require naming the actual author. It is the same gate the word pack runs.
     rows = attribute(shippable(read_rows(os.path.join(pack, 'manifest.tsv')), pack), drops)
-    names = {row['text']: 'calendar/' + row['local_file'] for row in rows}
+    names = {row['text']: form_file('calendar', row['text']) for row in rows}
     analyzed = copy_and_analyze([(row['text'], os.path.join(pack, 'mp3', row['local_file']),
                                   os.path.join(out_dir, names[row['text']])) for row in rows])
     calendar = {}
@@ -497,7 +496,7 @@ def convert_countries(pack, out_dir):
     """
     drops = []
     rows = attribute(shippable(read_rows(os.path.join(pack, 'manifest.tsv')), pack), drops)
-    names = {row['text']: 'countries/' + row['local_file'] for row in rows}
+    names = {row['text']: form_file('countries', row['text']) for row in rows}
     analyzed = copy_and_analyze([(row['text'], os.path.join(pack, 'mp3', row['local_file']),
                                   os.path.join(out_dir, names[row['text']])) for row in rows])
     countries = {}
