@@ -54,8 +54,8 @@ $W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <i
                                                             # voices with ≤3 takes onto established ones
 $W/requalify-pack.py --lang <lang> <route>                  # under 2.8, squashed or one-sided: the best other take
 $W/requalify-pack.py --lang <lang> --pack $W/pack-<lang>-<section> <route>  # the same for calendar, countries
-scripts/audio-catalog.py --packs $W --lang <lang> --fill --reseat   # ships the chosen swaps
-scripts/audio-catalog.py --packs $W --lang <lang> --<section>       # ships that section's pack whole
+scripts/audio-catalog.py --ship --from-packs --lang <lang> --dry-run   # the swaps the packs now name, judged
+scripts/audio-catalog.py --ship --from-packs --lang <lang>             # ships them, any section but letters
 scripts/audio-catalog.py --lang <lang> --prune-poor         # what the judge still refuses
 ```
 
@@ -63,9 +63,11 @@ A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudn
 the score hears it as clean, the ear hears it squashed, and no gain undoes that.
 Requalification reconsiders it like a poor take and never swaps one in.
 
-Both reseating scripts only report until given `--apply`. The sections other than `words`
-ship through their own converter (`--calendar`, `--countries`), rebuilt from a pack that
-matched what ships.
+Both reseating scripts only report until given `--apply`.
+`--ship` replaces a take only while the one it was chosen over still ships, and only once the
+take judge passes the replacement; a refused swap leaves the old recording standing.
+It applies `$W/staged.tsv` (bytes in `$W/staged/`), `--from-packs` first stages every pack row
+naming another Commons file than what ships, and each applied swap is appended to `$W/shipped.tsv`.
 A new speaker is another voice change on the cards and another credit group, so every
 picker takes an established voice's take over a slightly better stranger's, and a voice
 with three recordings or fewer is moved onto an established one wherever it can be —

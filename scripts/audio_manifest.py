@@ -180,7 +180,8 @@ def copy_and_analyze(copies):
 
 def put(lang, takes, dry_run=False):
     """Ship [takes] — dicts of `section key mp3 source author license` and, for an article, `word` —
-    into [lang]'s manifest, each replacing whatever its key held. → `{(section, key): refusal or None}`.
+    into [lang]'s manifest, each replacing whatever its key held.
+    → `{(section, key): (refusal or None, mos)}`.
 
     Every take is copied aside, measured and judged (`audio_judge.py`) first; only one that passes replaces the
     entry and file standing under its key, so a refused take leaves the recording it would have
@@ -204,7 +205,7 @@ def put(lang, takes, dry_run=False):
                 (('shipped-collision', '"%s" already ships as other bytes' % other)
                  for other, item in shipped.items()
                  if other != key and speech_key(other) == speech_key(key) and item['sha256'] != digest), None)
-            outcome[(section, key)] = why
+            outcome[(section, key)] = why, judged.mos
             if why or dry_run:
                 continue
             old = shipped.get(key)
@@ -217,7 +218,7 @@ def put(lang, takes, dry_run=False):
             word = take.get('word') or (old or {}).get('word')
             shipped[key] = entry(file, take['license'], take['author'], take['source'], digest,
                                  indexes[path], None if section == 'letters' else key, word)
-        if not dry_run and any(why is None for why in outcome.values()):
+        if not dry_run and any(why is None for why, _ in outcome.values()):
             write_manifest(out_dir, manifest)
         return outcome
     finally:

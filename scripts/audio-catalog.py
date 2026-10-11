@@ -20,7 +20,6 @@ Deterministic: sorted keys, 2-space indent, unchanged packs give byte-identical 
 """
 import argparse
 import concurrent.futures
-import csv
 import os
 import shutil
 import sys
@@ -28,6 +27,7 @@ import sys
 import audio_judge
 import audio_manifest
 import audio_measure
+import audio_ship
 from audio_index import ANALYSIS, FFMPEG, INDEX_FIELDS, playback_index
 from audio_gates import (APOSTROPHES, UNSHIPPABLE_LICENSES, attribute, digest_of,
                          keep_article_forms, keep_named_by_its_file, keep_reachable,
@@ -35,6 +35,7 @@ from audio_gates import (APOSTROPHES, UNSHIPPABLE_LICENSES, attribute, digest_of
 # why: workspace scripts load this file by path and read these names off it.
 from audio_manifest import (AUDIO, ROOT, SECTIONS, ascii_stem, audio_dir, copy_and_analyze, entry,
                             form_file, letter_file, read_json, read_manifest, write_manifest)
+from audio_ship import pack_mp3, read_rows
 
 CATALOG = os.path.join(ROOT, 'catalog')
 
@@ -49,11 +50,6 @@ def shippable(rows, where):
         else:
             kept.append(row)
     return kept
-
-
-def read_rows(path):
-    with open(path, encoding='utf-8', newline='') as f:
-        return list(csv.DictReader(f, delimiter='\t'))
 
 
 def verb_stem(form, prefixes):
@@ -129,11 +125,6 @@ def one_per_form(rows):
     for row in sorted(rows, key=lambda row: row['local_file']):
         kept.setdefault(speech_key(row['text']), row)
     return list(kept.values())
-
-
-def pack_mp3(pack, row):
-    """Where a pack keeps a row's bytes: `mp3/<local_file>`, named by the form it speaks."""
-    return os.path.join(pack, 'mp3', row['local_file'])
 
 
 def convert_words(lang, pack, out_dir, shown):
@@ -557,12 +548,22 @@ def main():
                         help='remove shipped recordings the take judge refuses — under their '
                              "language's mos floor, heard as bad, one-sided (scripts/audio_judge.py); "
                              'no packs needed')
+    parser.add_argument('--ship', action='store_true',
+                        help='apply the staged swaps in <packs>/staged.tsv whose incumbent still ships')
+    parser.add_argument('--from-packs', action='store_true',
+                        help='with --ship, first stage every pack row naming another Commons file '
+                             'than what ships under its form (any section but letters)')
+    parser.add_argument('--section', choices=SECTIONS, help='with --ship, only this section')
+    parser.add_argument('--dry-run', action='store_true', help='with --ship, judge and print, write nothing')
     parser.add_argument('--restore', nargs=3, metavar=('LANG', 'SECTION', 'KEY'),
                         help='put back the entry and bytes KEY held at --from REV')
     parser.add_argument('--from', dest='rev', metavar='REV', help='the git revision --restore reads')
     parser.add_argument('--remove', nargs=3, metavar=('LANG', 'SECTION', 'KEY'),
                         help='drop one shipped entry and its file')
     args = parser.parse_args()
+    if args.ship:
+        return audio_ship.ship(args.packs or audio_ship.WORKSPACE, args.lang, args.dry_run,
+                               args.from_packs, args.section)
     if args.restore:
         if not args.rev:
             parser.error('--restore needs --from REV')
