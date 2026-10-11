@@ -71,6 +71,14 @@ never onto a take requalification would refuse.
 A second voice earns its place with a chunk of words, never a scattering of one-offs:
 where the main voice is poor, a few good voices each take every word they say well.
 
+One entry comes back out of git, or goes, without a pack;
+a restore checks the bytes against the `sha256` the manifest pinned at that revision:
+
+```sh
+scripts/audio-catalog.py --restore <lang> <section> <key> --from <rev>
+scripts/audio-catalog.py --remove <lang> <section> <key>
+```
+
 **Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`**
 with its source, sha256 and `mos`, so the next revision of the measure is tested against
 the ear rather than tuned to a handful of files. A verdict also overrules the score for
@@ -196,7 +204,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   bytes, one gain for every output route; `lead` is how much
   dead air to start past. The files stay unmodified and only the player corrects them.
   What was measured, against which target,
-  is `../../scripts/audio-catalog.py`'s `ANALYSIS`.
+  is `../../scripts/audio_index.py`'s `ANALYSIS`.
 - `cap` (dB) is what the peak ceiling held back from the gain:
   a boost is capped at the headroom the file's own peak leaves, so a quiet word with sharp
   peaks ships under the loudness target rather than clipping. That ceiling is only true at

@@ -58,6 +58,46 @@ EDGE_PUNCTUATION = '!?¡¿.,;:…"\'«»„“”‘’‹›'
 APOSTROPHES = '\u0027\u2019\u02bc'
 
 
+# Every license the packs actually carry → its canonical deed. An unlisted one is a
+# hard stop: the credits screen links what it names, and PD has no deed to link.
+LICENSE_URLS = {
+    'CC BY-SA 4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
+    'CC BY-SA 3.0': 'https://creativecommons.org/licenses/by-sa/3.0/',
+    'CC BY-SA 2.5': 'https://creativecommons.org/licenses/by-sa/2.5/',
+    'CC BY-SA 2.0': 'https://creativecommons.org/licenses/by-sa/2.0/',
+    'CC BY 4.0': 'https://creativecommons.org/licenses/by/4.0/',
+    'CC BY 3.0 us': 'https://creativecommons.org/licenses/by/3.0/us/',
+    'CC BY 3.0': 'https://creativecommons.org/licenses/by/3.0/',
+    'CC BY 2.0 fr': 'https://creativecommons.org/licenses/by/2.0/fr/',
+    # CC0 waives the credit BY and BY-SA demand, but it is a dedication with a deed of
+    # its own — unlike a public-domain file, which has nothing to point the reader at.
+    'CC0': 'https://creativecommons.org/publicdomain/zero/1.0/',
+    'Public domain': None,
+}
+
+# Licenses we have LOOKED AT and will not bundle. Separate from an unlisted license, which
+# stays a hard stop: the difference is whether a human has ruled on it, and a row dropped
+# here is a decision, not a surprise.
+#
+# GFDL is written for documents — it obliges shipping the full license text and keeping a
+# "Transparent copy" available, neither of which a credits screen linking a deed does, and
+# unlike every CC license here it grants no media-shaped permission. Two Wiktionary German
+# recordings carry it (`docs/audio-licensing.md`); the drill says those two words in the
+# device voice instead, which costs a learner nothing a license notice would not.
+# GPLv3 is a SOFTWARE license: its copyleft reaches the work as a whole, and its
+# anti-tivoization and Installation Information terms are famously irreconcilable with App
+# Store distribution — which is where this app ships. It also carries no media-shaped
+# permission at all. The Esperanto calendar is where it turns up (Kurso de Esperanto
+# recorded 16 of the 19 names), and that is the whole cost of refusing it: those names are
+# said by the device voice, which Esperanto has on both platforms.
+# "Attribution" is Commons' legacy bare template: the uploader asks to be credited and names
+# no versioned license, so there is no deed for the credits screen to link and no stated terms
+# to hold anyone to. Unlike `Public domain`, which also has no deed, it is a claim of rights
+# rather than a waiver of them — so it is refused rather than deeded to null. One recording
+# carries it (es `Chile`).
+UNSHIPPABLE_LICENSES = {'GFDL', 'GPLv3', 'Attribution'}
+
+
 def apostrophe_folded(text):
     return ''.join('\u02bc' if char in APOSTROPHES else char for char in text)
 

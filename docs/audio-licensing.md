@@ -33,7 +33,7 @@ Five words ship only the article recording, which answers both ways.
 Both carry their own author and license row.
 
 **Three licenses are refused outright**
-(`scripts/audio-catalog.py`'s `UNSHIPPABLE_LICENSES`):
+(`scripts/audio_gates.py`'s `UNSHIPPABLE_LICENSES`):
 
 - **GFDL** obliges shipping the full license text and a "Transparent copy" --
   a document's terms, which a credits screen linking a deed does not meet.
@@ -118,7 +118,7 @@ Consequences:
 - A measurement of a file is our own factual data: it carries no license of its own.
 
 What was measured, against which target and under which scheme
-is `scripts/audio-catalog.py`'s `ANALYSIS`.
+is `scripts/audio_index.py`'s `ANALYSIS`.
 
 ## 4. Text-to-speech: live only, never an asset
 

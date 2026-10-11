@@ -91,7 +91,7 @@ Neighbors: the engine contract `../README.md`, when the app plays it `../../docs
   it exists so lint can hold a pack's median and bad tail, and refuse a rebuild that reintroduces removed hiss.
   A fourth, `gate` (the file's noise level plus a margin, dBFS of the raw bytes, null where none was measured),
   rides on `AudioIndex.gate` to a downward expander that quiets that hiss at playback.
-  What was measured, against which target and under which scheme is `scripts/audio-catalog.py`'s `ANALYSIS`;
+  What was measured, against which target and under which scheme is `scripts/audio_index.py`'s `ANALYSIS`;
   the sha256 gate is untouched by any of it.
 - **Audio is exempt from the fingerprint.**
   `Catalog.load` reads the manifests through the RAW source, outside `FingerprintingSource`:

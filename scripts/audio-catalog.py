@@ -13,129 +13,29 @@ never `catalog/audio/`.
 Three stages. Four GATES decide which pack rows may ship and who is credited, each
 decision printed (`audio_gates.py`). Survivors are COPIED byte-for-byte, and the copy
 that landed is then ANALYZED (`audio_measure.py`) into the optional `gain`/`cap`/
-`lead`/`gate` playback fields — see [ANALYSIS], which also decides the players' scheme.
+`lead`/`gate` playback fields — see `audio_index.ANALYSIS`, which also decides the players' scheme.
+Reading, writing and editing one shipped manifest is `audio_manifest.py`.
 
 Deterministic: sorted keys, 2-space indent, unchanged packs give byte-identical output.
 """
 import argparse
 import csv
-import hashlib
-import json
-import math
 import os
 import shutil
 import sys
-import unicodedata
 
+import audio_manifest
 import audio_measure
+from audio_index import ANALYSIS, FFMPEG, GAIN_LIMIT_DB, playback_index
 from audio_voices import is_one_sided, is_rejected, mos_floor
-from audio_gates import (APOSTROPHES, attribute, digest_of, keep_article_forms, keep_named_by_its_file,
-                         keep_reachable, keep_unambiguous, speech_key, spoken_target_form)
+from audio_gates import (APOSTROPHES, UNSHIPPABLE_LICENSES, attribute, digest_of,
+                         keep_article_forms, keep_named_by_its_file, keep_reachable,
+                         keep_unambiguous, speech_key, spoken_target_form)
+# why: workspace scripts load this file by path and read these names off it.
+from audio_manifest import (AUDIO, ROOT, SECTIONS, ascii_stem, audio_dir, copy_and_analyze, entry,
+                            form_file, letter_file, read_json, read_manifest, write_manifest)
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
-
-FFMPEG = os.environ.get('FFMPEG', 'ffmpeg')
-
-# The PLAYBACK ANALYSIS INDEX (user ruling 2026-08-01). The packs were recorded by
-# different people on different equipment and do not share a loudness; the uk letters are
-# both the quietest and the latest to start speaking. Re-encoding them is out — that is an
-# adaptation under BY-SA, and it would break the untouched-transcode gate — so what
-# corrects them is our own MEASUREMENT of the untouched bytes, carried in the manifest and
-# applied by the player. Measurement data carries no license of its own, the credits'
-# "unmodified" claim stays true, and `sha256` keeps meaning exactly what it says.
-#
-# ONE GAIN for every output, `gain` = `target_phon` minus the recording's perceived loudness
-# (`audio_measure.perceived_loudness`, ISO 532-1 N5). The target is set so the catalog-wide
-# median word gain is where the LUFS target (-18) had it; only the balance between voices moved
-# (2026-10), and it moved by ear as well: sw, a squashed, band-limited voice, plays ~2 dB under
-# where flat R128 energy put it. A second, phone-speaker gain measured through a home-made roll-off
-# was dropped (2026-10): no standard phone weighting exists, and on the device it turned the
-# sw pack down far past where the ear put it.
-#
-# The rule was ≤ 6 dB → attenuate everything down to the quietest class; past that the
-# whole app would whisper, so the scheme is BOOST against the pack median: letters take
-# up to +20 dB and the players need a boost path. (Letters also open with a median 1077 ms
-# of dead air, against 173 ms for words.)
-#
-# A boost is also a CLIPPING risk, so the loudness number never decides a gain alone: the
-# player adds it to samples that already peak where they peak, and past full scale iOS's EQ
-# hard-clips while Android's `LoudnessEnhancer` compresses — one number, two sounds, neither
-# the recording. Every gain is therefore CAPPED at the headroom its own file has, measured on
-# the same decode: `gain = min(loudness gain, PEAK_CEILING_DBFS - peak)`, floored to the
-# decimal it ships at so rounding can never spend the margin. The cap only ever lowers; the
-# files it binds land under the loudness target instead of distorting: user ruling
-# 2026-08-01, quiet is the lesser loss.
-#
-# What the cap held back ships beside the gain as `cap`, because the cap is only
-# true at FULL VOLUME. A listening run's bedtime ramp attenuates before the boost is applied
-# and opens exactly that much headroom again, so a player under a fade can hand the deficit
-# back — as much of it as the ramp has already taken off — and the word lands on the loudness
-# target after all (`fadedGainDb`). It binds 5-25% of every pack but sw, which is the loud
-# one and is never capped at all, so without this the fade made a run's levels DRIFT APART
-# by pack rather than merely fall.
-ANALYSIS = {
-    'scheme': 'boost',
-    'target_phon': 86.1,
-    'ffmpeg': 'ffmpeg version 9.0.2',
-}
-
-# A recording's first 50 ms of near-silence is its attack, not dead air — starting past it
-# clips the consonant off the front. Everything before that the player may skip.
-LEAD_KEEP_MS = 50
-# ±20 dB is 10× amplitude and the point where a measurement is likelier broken than the
-# recording. uk `ж` (-37.4 LUFS, +20.7 measured) is the one entry the clamp catches today.
-GAIN_LIMIT_DB = 20.0
-# The ceiling a boosted sample may reach. 1 dB of full scale stays unspent: the sample peak
-# we measure is not the inter-sample peak a resampler reconstructs, and the players' gain
-# stages add their own ringing on top of it.
-PEAK_CEILING_DBFS = -1.0
-
-
-# How far above its measured noise a recording's playback gate opens. Enough that the
-# noise's own swing does not flutter the gate, little enough that the word is never under it.
-GATE_MARGIN_DB = 6.0
-# kern `Playback.GATE_FLOOR_DB`: below it a file is digital silence and needs no gate.
-GATE_FLOOR_DB = -100.0
-
-# Every license the packs actually carry → its canonical deed. An unlisted one is a
-# hard stop: the credits screen links what it names, and PD has no deed to link.
-LICENSE_URLS = {
-    'CC BY-SA 4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
-    'CC BY-SA 3.0': 'https://creativecommons.org/licenses/by-sa/3.0/',
-    'CC BY-SA 2.5': 'https://creativecommons.org/licenses/by-sa/2.5/',
-    'CC BY-SA 2.0': 'https://creativecommons.org/licenses/by-sa/2.0/',
-    'CC BY 4.0': 'https://creativecommons.org/licenses/by/4.0/',
-    'CC BY 3.0 us': 'https://creativecommons.org/licenses/by/3.0/us/',
-    'CC BY 3.0': 'https://creativecommons.org/licenses/by/3.0/',
-    'CC BY 2.0 fr': 'https://creativecommons.org/licenses/by/2.0/fr/',
-    # CC0 waives the credit BY and BY-SA demand, but it is a dedication with a deed of
-    # its own — unlike a public-domain file, which has nothing to point the reader at.
-    'CC0': 'https://creativecommons.org/publicdomain/zero/1.0/',
-    'Public domain': None,
-}
-
-# Licenses we have LOOKED AT and will not bundle. Separate from an unlisted license, which
-# stays a hard stop: the difference is whether a human has ruled on it, and a row dropped
-# here is a decision, not a surprise.
-#
-# GFDL is written for documents — it obliges shipping the full license text and keeping a
-# "Transparent copy" available, neither of which a credits screen linking a deed does, and
-# unlike every CC license here it grants no media-shaped permission. Two Wiktionary German
-# recordings carry it (`docs/audio-licensing.md`); the drill says those two words in the
-# device voice instead, which costs a learner nothing a license notice would not.
-# GPLv3 is a SOFTWARE license: its copyleft reaches the work as a whole, and its
-# anti-tivoization and Installation Information terms are famously irreconcilable with App
-# Store distribution — which is where this app ships. It also carries no media-shaped
-# permission at all. The Esperanto calendar is where it turns up (Kurso de Esperanto
-# recorded 16 of the 19 names), and that is the whole cost of refusing it: those names are
-# said by the device voice, which Esperanto has on both platforms.
-# "Attribution" is Commons' legacy bare template: the uploader asks to be credited and names
-# no versioned license, so there is no deed for the credits screen to link and no stated terms
-# to hold anyone to. Unlike `Public domain`, which also has no deed, it is a claim of rights
-# rather than a waiver of them — so it is refused rather than deeded to null. One recording
-# carries it (es `Chile`).
-UNSHIPPABLE_LICENSES = {'GFDL', 'GPLv3', 'Attribution'}
 
 
 def shippable(rows, where):
@@ -148,31 +48,6 @@ def shippable(rows, where):
         else:
             kept.append(row)
     return kept
-
-
-def read_json(*parts):
-    with open(os.path.join(*parts), encoding='utf-8') as f:
-        return json.load(f)
-
-
-SECTIONS = ('words', 'letters', 'texts', 'articles', 'calendar', 'countries')
-
-
-def read_manifest(out_dir):
-    """A shipped manifest with every entry's `license` written back into it.
-
-    The inverse of what [write_manifest] factors out, so the two entry points that rebuild
-    ONE section of what already ships (`--reindex`, `--articles`) hand `write_manifest`
-    the same inline shape a fresh convert does, and the root maps are re-derived rather
-    than carried along stale.
-    """
-    manifest = read_json(out_dir, 'manifest.json')
-    authors = manifest.get('authors', {})
-    for name in SECTIONS:
-        for item in manifest.get(name, {}).values():
-            if 'license' not in item:
-                item['license'] = authors[item['author']]
-    return manifest
 
 
 def read_rows(path):
@@ -246,23 +121,6 @@ def load_catalog():
     return shown, articled
 
 
-def ascii_stem(form):
-    """A shipped file's ASCII name for [form]: [a-z0-9-] stays, a space is `_`, every other
-    character is `u<hex>`.
-
-    macOS normalises filenames, so a name carrying ü or а cannot be looked up by the string
-    the manifest stores — the letters are codepoint-named for the same reason.
-    """
-    return ''.join(char if char.isascii() and (char.isalnum() or char == '-')
-                   else '_' if char == ' ' else 'u%04x' % ord(char)
-                   for char in unicodedata.normalize('NFC', form).strip().lower())
-
-
-def form_file(section, form):
-    """`<section>/<ascii stem>.mp3` — a recording is filed under the form it speaks, never a slug."""
-    return '%s/%s.mp3' % (section, ascii_stem(form))
-
-
 def one_per_form(rows):
     """One row per spoken form. [keep_unambiguous] has left only byte-identical twins under
     one speech key — one recording under two spellings — and a form-keyed section holds it once."""
@@ -275,89 +133,6 @@ def one_per_form(rows):
 def pack_mp3(pack, row):
     """Where a pack keeps a row's bytes: `mp3/<local_file>`, named by the form it speaks."""
     return os.path.join(pack, 'mp3', row['local_file'])
-
-
-def license_url(license, where):
-    if license not in LICENSE_URLS:
-        sys.exit('%s: unknown license "%s" — add its deed to LICENSE_URLS' % (where, license))
-    return LICENSE_URLS[license]
-
-
-def entry(file, license, author, source, digest, index, matches=None, word=None):
-    """One manifest value, licensed inline; `write_manifest` factors that out again."""
-    record = {'file': file, 'license': license, 'author': author,
-              'source': source, 'sha256': digest, **index}
-    if matches is not None:
-        record['matches'] = matches
-    if word is not None:
-        record['word'] = word
-    return record
-
-
-def copy_verified(source, target):
-    """Ships the transcode untouched and returns the digest of what actually landed."""
-    with open(source, 'rb') as f:
-        data = f.read()
-    os.makedirs(os.path.dirname(target), exist_ok=True)
-    with open(target, 'wb') as f:
-        f.write(data)
-    digest = digest_of(target)
-    if digest != hashlib.sha256(data).hexdigest():
-        sys.exit('%s: what landed is not what was read from %s' % (target, source))
-    return digest
-
-
-def playback_index(loudness, leading, peak, noise, loudest, mos, perceived):
-    """The optional `gain`/`cap`/`lead`/`gate` plus `mos` for one entry — absent when there is nothing to say.
-
-    `mos` is how good the take sounds (`audio_measure.mos`). Unlike the other fields it changes
-    no playback — it is carried so the lint can see the SHAPE of a pack and refuse a rebuild
-    that quietly reintroduces the noise a previous one removed, and so a fill or prune can
-    refuse the clearly bad. Measured, never applied: filtering the file would be an adaptation
-    under BY-SA and would break the sha256 that pins it.
-    """
-    full = round(min(GAIN_LIMIT_DB, max(-GAIN_LIMIT_DB, ANALYSIS['target_phon'] - perceived)), 1)
-    # why: floor, never round — a gain rounded up to the shipped decimal spends the safety
-    # margin it was granted, and the file it was granted for is the one already near clipping.
-    headroom = math.floor((PEAK_CEILING_DBFS - peak) * 10) / 10
-    gain = min(full, headroom)
-    index = {}
-    if gain:
-        index['gain'] = gain
-    # What the ceiling held back, for a player that has attenuated its way to the headroom
-    # again (see [ANALYSIS]). Absent means the loudness number stood as measured.
-    cap = round(full - gain, 1)
-    if cap:
-        index['cap'] = cap
-    lead = max(0, round(leading * 1000) - LEAD_KEEP_MS)
-    if lead:
-        index['lead'] = lead
-    if mos is not None:
-        index['mos'] = round(mos, 2)
-    if noise is not None:
-        # why: the noise sits `noise` dB under the loudest frame; a gate a few dB above it
-        # quiets the hiss in the pauses and never reaches the word (kern `Playback`).
-        gate = round(loudest - noise + GATE_MARGIN_DB, 1)
-        if GATE_FLOOR_DB <= gate < 0:
-            index['gate'] = gate
-    return index
-
-
-def copy_and_analyze(copies):
-    """`[(id, source, target)]` → `{id: (sha256, playback index)}`: ship the bytes, then measure.
-
-    why: the analysis runs over the file that LANDED, so an index can never describe other
-    bytes than the ones its own `sha256` pins — and one batched ffmpeg pass keeps a
-    thousand decodes off the converter's wall clock.
-    """
-    digests = {id: copy_verified(source, target) for id, source, target in copies}
-    measured = audio_measure.measure_all(FFMPEG, [target for _, _, target in copies])
-    analyzed = {}
-    for id, _, target in copies:
-        if measured[target][0] is None or measured[target][2] is None:
-            sys.exit('%s: decodes to silence — there is nothing to index' % target)
-        analyzed[id] = (digests[id], playback_index(*measured[target]))
-    return analyzed
 
 
 def convert_words(lang, pack, out_dir, shown):
@@ -413,16 +188,6 @@ def convert_articles(lang, pack, out_dir, articled):
         print('  drop %-15s %-22s %s' % (reason, form, detail))
     print('  articles: %d rows → %d spoken with their article' % (len(rows), len(articles)))
     return articles
-
-
-def letter_file(glyph):
-    """`letters/u<cp>…mp3` — one `u<cp>` per codepoint, because glyph names decompose on APFS.
-
-    A sequence rather than a single codepoint: a named row may be a DIGRAPH (es `ch` che,
-    and `ll`/`rr` if anyone ever records them). Single-codepoint glyphs are unaffected, so
-    nothing already shipped is renamed.
-    """
-    return 'letters/%s.mp3' % ''.join('u%04x' % ord(char) for char in glyph)
 
 
 def convert_letters(pack, out_dir):
@@ -519,7 +284,7 @@ def reindex(lang):
     is right here and pinned. Every file's `sha256` is re-verified first, so a re-index can
     never quietly re-describe changed bytes — which is also the whole claim the credits make.
     """
-    out_dir = os.path.join(CATALOG, 'audio', lang)
+    out_dir = audio_dir(lang)
     manifest = read_manifest(out_dir)
     entries = {(section, key): item
                for section in SECTIONS if section in manifest
@@ -543,9 +308,7 @@ def reindex(lang):
             moved.append(index.get('gain', 0) - was)
         if index.get('cap'):
             limited += 1
-    write_manifest(lang, out_dir, manifest.get('words', {}), manifest.get('letters', {}),
-                   manifest.get('texts', {}), manifest.get('articles', {}),
-                   manifest.get('calendar', {}), manifest.get('countries', {}))
+    write_manifest(out_dir, manifest)
     moved.sort()
     print('  %s: %d entries, %d re-gained (median %+.1f dB, widest %+.1f), %d held by the '
           'peak ceiling' % (lang, len(entries), len(moved),
@@ -570,14 +333,12 @@ def convert_articles_only(packs, languages):
         pack = os.path.join(packs, 'pack-%s-articles' % lang)
         if not os.path.isdir(pack):
             sys.exit('%s: no pack-%s-articles' % (packs, lang))
-        out_dir = os.path.join(CATALOG, 'audio', lang)
+        out_dir = audio_dir(lang)
         manifest = read_manifest(out_dir)
         print('pack-%s-articles' % lang)
         shutil.rmtree(os.path.join(out_dir, 'articles'), ignore_errors=True)
         articles = convert_articles(lang, pack, out_dir, articled)
-        write_manifest(lang, out_dir, manifest['words'], manifest.get('letters', {}),
-                       manifest.get('texts', {}), articles, manifest.get('calendar', {}),
-                       manifest.get('countries', {}))
+        write_manifest(out_dir, dict(manifest, articles=articles))
 
 
 def convert_calendar_only(packs, languages):
@@ -595,14 +356,12 @@ def convert_calendar_only(packs, languages):
         pack = os.path.join(packs, 'pack-%s-calendar' % lang)
         if not os.path.isdir(pack):
             sys.exit('%s: no pack-%s-calendar' % (packs, lang))
-        out_dir = os.path.join(CATALOG, 'audio', lang)
+        out_dir = audio_dir(lang)
         manifest = read_manifest(out_dir)
         print('pack-%s-calendar' % lang)
         shutil.rmtree(os.path.join(out_dir, 'calendar'), ignore_errors=True)
         calendar = convert_calendar(pack, out_dir)
-        write_manifest(lang, out_dir, manifest['words'], manifest.get('letters', {}),
-                       manifest.get('texts', {}), manifest.get('articles', {}), calendar,
-                       manifest.get('countries', {}))
+        write_manifest(out_dir, dict(manifest, calendar=calendar))
 
 
 def convert_countries_only(packs, languages):
@@ -619,14 +378,12 @@ def convert_countries_only(packs, languages):
         pack = os.path.join(packs, 'pack-%s-countries' % lang)
         if not os.path.isdir(pack):
             sys.exit('%s: no pack-%s-countries' % (packs, lang))
-        out_dir = os.path.join(CATALOG, 'audio', lang)
+        out_dir = audio_dir(lang)
         manifest = read_manifest(out_dir)
         print('pack-%s-countries' % lang)
         shutil.rmtree(os.path.join(out_dir, 'countries'), ignore_errors=True)
         countries = convert_countries(pack, out_dir)
-        write_manifest(lang, out_dir, manifest['words'], manifest.get('letters', {}),
-                       manifest.get('texts', {}), manifest.get('articles', {}),
-                       manifest.get('calendar', {}), countries)
+        write_manifest(out_dir, dict(manifest, countries=countries))
 
 
 def fill_words(packs, languages, reseat=False):
@@ -651,7 +408,7 @@ def fill_words(packs, languages, reseat=False):
         pack = os.path.join(packs, 'pack-%s-words' % lang)
         if not os.path.isdir(pack):
             sys.exit('%s: no pack-%s-words' % (packs, lang))
-        out_dir = os.path.join(CATALOG, 'audio', lang)
+        out_dir = audio_dir(lang)
         manifest = read_manifest(out_dir)
         shipped = manifest.get('words', {})
         print('pack-%s-words fill' % lang)
@@ -747,52 +504,14 @@ def fill_words(packs, languages, reseat=False):
             print('  drop %-18s %-22s %s' % (reason, form, detail))
         added = sum(1 for row in fresh if row['text'] in shipped)
         print('  %s: %d added, %d words now' % (lang, added, len(shipped)))
-        write_manifest(lang, out_dir, shipped, manifest.get('letters', {}),
-                       manifest.get('texts', {}), manifest.get('articles', {}),
-                       manifest.get('calendar', {}), manifest.get('countries', {}))
-
-
-def credit_index(sections, where):
-    """`(authors, licenses)`: who records under what, and what each license deeds to.
-
-    A license is effectively a property of the SPEAKER — only a handful of entries across
-    every shipped pack depart from their own author's usual one — so it is carried
-    once per author instead of once per file, and the deed URL once per license instead
-    of once per file again. An author's default is the license covering the most of their
-    files, ties broken by the alphabetically first license string, so a rebuild of
-    unchanged packs picks the same one twice.
-    """
-    per_author = {}
-    for section in sections:
-        for item in section.values():
-            per_author.setdefault(item['author'], {})
-            counts = per_author[item['author']]
-            counts[item['license']] = counts.get(item['license'], 0) + 1
-    authors = {author: min(sorted(counts), key=lambda name: (-counts[name], name))
-               for author, counts in sorted(per_author.items())}
-    used = sorted({license for counts in per_author.values() for license in counts})
-    return authors, {license: license_url(license, where) for license in used}
-
-
-def attributed(item, authors):
-    """One entry with what the root maps now say for it removed.
-
-    `licenseUrl` goes unconditionally — it is derivable from the license and nothing
-    outside `LICENSE_URLS` ever decided it — while `license` survives exactly where the
-    entry departs from its author's default, which is the escape hatch a speaker who
-    published one file differently needs.
-    """
-    dropped = {'licenseUrl'}
-    if item['license'] == authors[item['author']]:
-        dropped.add('license')
-    return {key: value for key, value in item.items() if key not in dropped}
+        write_manifest(out_dir, dict(manifest, words=shipped))
 
 
 def prune_poor(languages):
     """Remove every shipped recording under its language's `mos_floor` or heard as bad, file
     and entry, so the device voice or silence takes over. Run `requalify-pack.py` first, so
     such a word gets a better take where one exists."""
-    root = os.path.join(CATALOG, 'audio')
+    root = AUDIO
     for lang in languages or sorted(os.listdir(root)):
         out_dir = os.path.join(root, lang)
         if not os.path.isdir(out_dir):
@@ -810,24 +529,7 @@ def prune_poor(languages):
         print('  %s: %d pruned under mos %.2f%s' % (lang, len(pruned), floor,
                                                    ''.join('\n    ' + p for p in pruned)))
         if pruned:
-            write_manifest(lang, out_dir, manifest.get('words', {}), manifest.get('letters', {}),
-                           manifest.get('texts', {}), manifest.get('articles', {}),
-                           manifest.get('calendar', {}), manifest.get('countries', {}))
-
-
-def write_manifest(lang, out_dir, words, letters, texts, articles, calendar, countries):
-    sections = [section for section in (words, letters, texts, articles, calendar, countries)
-                if section]
-    authors, licenses = credit_index(sections, 'audio/%s/manifest.json' % lang)
-    manifest = {'language': lang, 'authors': authors, 'licenses': licenses,
-                'words': {key: attributed(item, authors) for key, item in words.items()}}
-    for name, section in (('letters', letters), ('texts', texts), ('articles', articles),
-                          ('calendar', calendar), ('countries', countries)):
-        if section:
-            manifest[name] = {key: attributed(item, authors) for key, item in section.items()}
-    with open(os.path.join(out_dir, 'manifest.json'), 'w', encoding='utf-8') as f:
-        json.dump(manifest, f, ensure_ascii=False, indent=2, sort_keys=True)
-        f.write('\n')
+            write_manifest(out_dir, manifest)
 
 
 def main():
@@ -854,7 +556,19 @@ def main():
     parser.add_argument('--prune-poor', action='store_true',
                         help="remove shipped recordings under their language's mos floor or heard as bad "
                              '(scripts/audio_voices.py); no packs needed')
+    parser.add_argument('--restore', nargs=3, metavar=('LANG', 'SECTION', 'KEY'),
+                        help='put back the entry and bytes KEY held at --from REV')
+    parser.add_argument('--from', dest='rev', metavar='REV', help='the git revision --restore reads')
+    parser.add_argument('--remove', nargs=3, metavar=('LANG', 'SECTION', 'KEY'),
+                        help='drop one shipped entry and its file')
     args = parser.parse_args()
+    if args.restore:
+        if not args.rev:
+            parser.error('--restore needs --from REV')
+        item = audio_manifest.restore(*args.restore, args.rev)
+        return print('  restore %s %s' % (args.restore[2], item['source']))
+    if args.remove:
+        return print('  remove %s %s' % (args.remove[2], audio_manifest.remove(*args.remove)['source']))
     if args.prune_poor:
         return prune_poor(args.lang)
     if not args.packs and not args.reindex:
@@ -881,8 +595,8 @@ def main():
         return fill_words(args.packs, args.lang, args.reseat)
 
     if args.reindex:
-        shipped = sorted(name for name in os.listdir(os.path.join(CATALOG, 'audio'))
-                         if os.path.isdir(os.path.join(CATALOG, 'audio', name)))
+        shipped = sorted(name for name in os.listdir(AUDIO)
+                         if os.path.isdir(os.path.join(AUDIO, name)))
         for lang in args.lang or shipped:
             print('reindex %s' % lang)
             reindex(lang)
@@ -906,7 +620,7 @@ def main():
         if missing:
             sys.exit('pack-%s-words: %d rows have no mp3 (%s) — re-fetch the pack; nothing was touched'
                      % (lang, len(missing), ', '.join(sorted(missing)[:5])))
-        out_dir = os.path.join(CATALOG, 'audio', lang)
+        out_dir = audio_dir(lang)
         shutil.rmtree(out_dir, ignore_errors=True)
         os.makedirs(out_dir)
         words = convert_words(lang, pack, out_dir, shown)
@@ -922,7 +636,8 @@ def main():
         countries_pack = os.path.join(args.packs, 'pack-%s-countries' % lang)
         countries = (convert_countries(countries_pack, out_dir)
                      if os.path.isdir(countries_pack) else {})
-        write_manifest(lang, out_dir, words, letters, texts, articles, calendar, countries)
+        write_manifest(out_dir, {'language': lang, 'words': words, 'letters': letters, 'texts': texts,
+                                 'articles': articles, 'calendar': calendar, 'countries': countries})
 
 
 if __name__ == '__main__':
