@@ -254,40 +254,6 @@ class Catalog internal constructor(
         else -> covered.firstOrNull() ?: FALLBACK_SOURCE
     }
 
-    /**
-     * [this] with its language markers filled in from [name], or null when it carries one
-     * and [name] is absent: a side that cannot name the target drops the concept, the same
-     * honest-out as a missing realization. Marker-free realizations pass through untouched.
-     */
-    private fun RawRealization.resolved(name: LanguageName?): RawRealization? {
-        if (!carriesLanguageMarker()) return this
-        val named = name ?: return null
-        return copy(
-            text = LanguageNames.resolve(text, named),
-            teaches = teaches.map { LanguageNames.resolve(it, named) },
-            accepts = accepts.map { LanguageNames.resolve(it, named) },
-            orders = orders.map { LanguageNames.resolve(it, named) },
-        )
-    }
-
-    private fun RawRealization.carriesLanguageMarker(): Boolean =
-        LanguageNames.hasLanguageMarker(text) ||
-            teaches.any { LanguageNames.hasLanguageMarker(it) } ||
-            accepts.any { LanguageNames.hasLanguageMarker(it) } ||
-            orders.any { LanguageNames.hasLanguageMarker(it) }
-
-    /** The frames' half of [resolved]; agreement forms name a counted noun, never a language. */
-    private fun RawFrame.resolved(name: LanguageName?): RawFrame? {
-        val marked = LanguageNames.hasLanguageMarker(text) ||
-            accepts.any { LanguageNames.hasLanguageMarker(it) }
-        if (!marked) return this
-        val named = name ?: return null
-        return copy(
-            text = LanguageNames.resolve(text, named),
-            accepts = accepts.map { LanguageNames.resolve(it, named) },
-        )
-    }
-
     private fun realize(lang: Language, raw: RawRealization, reader: Language?): Realization =
         Realization(
             lang = lang,

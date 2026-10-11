@@ -61,7 +61,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 - `HomeStandingTest`, `CardDisplayTest` and `UnlockPriceTest` assert literal German/English copy and break on a copy edit (`android/src/test`).
 - Still over ~300 lines: Android `AppModel.kt` (453, wants holder classes for its private setters), `ListeningService.kt`, `ListeningDriver.kt`;
   iOS `AppModel.swift` (397), `WatchModel.swift`, `TrainerHubView.swift`, `AnswerInputView.swift`, `Theme.swift`, `BoxSettingsSection.swift`;
-  kern `AnswerNormalizer.kt` (398), `NumbersRun.kt`, `SessionRun.kt`, `BoxEngine.kt`, `Catalog.kt`, `LetterDrillRun.kt`;
+  kern `BoxEngine.kt`;
   Android `Chrome.kt` (570) is a hand-declared field table the owner may exempt, and the generated `ChromeDe.kt`/`ChromeEn.kt` are exempt by nature.
 - A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
   duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
