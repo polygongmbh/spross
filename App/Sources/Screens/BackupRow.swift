@@ -144,14 +144,12 @@ struct BackupFile: FileDocument {
         FileWrapper(regularFileWithContents: Data(text.utf8))
     }
 
-    /// Every language's progress, or `only` that one's, named for what it carries and
-    /// the day it was taken — so two of them in one folder are told apart before either
-    /// is opened.
+    /// Every language's progress, or `only` that one's, under kern's name for it (`BoxBackup.fileName`).
     @MainActor
     static func taken(from model: AppModel, only: String?) async throws -> BackupFile {
-        let day = Date.now.formatted(.iso8601.year().month().day())
-        return BackupFile(text: try await model.backupJSON(only: only),
-                          name: "Spross-\(only.map { "\($0)-" } ?? "")\(day)")
+        BackupFile(text: try await model.backupJSON(only: only),
+                   name: BoxBackup.shared.fileName(only: only, nowEpochMillis: Date().epochMillis,
+                                                   tzId: currentTzId()))
     }
 }
 

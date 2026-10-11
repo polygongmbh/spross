@@ -28,7 +28,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
-import java.time.LocalDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,6 +39,7 @@ import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.LanguageChoices
+import net.spross.kern.store.BoxBackup
 
 /**
  * What the settings hold: which pair is being learned, whether words are read aloud,
@@ -143,7 +143,9 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
                 TextButton(
                     onClick = {
                         if ((model.stats?.allSettledCount ?: 0) > 0) {
-                            resetExport.launch("Spross-${box.joinStamp.target}-${LocalDate.now()}.json")
+                            resetExport.launch(
+                                BoxBackup.fileName(box.joinStamp.target, model.now(), model.tz()) + ".json",
+                            )
                         } else {
                             confirmingReset = true
                         }

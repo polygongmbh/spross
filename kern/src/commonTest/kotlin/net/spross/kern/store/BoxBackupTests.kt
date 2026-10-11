@@ -89,4 +89,12 @@ class BoxBackupTests {
         val shouty = """{"boxes":{"UK":{"cards":{}}},"schemaVersion":2}"""
         assertFailsWith<StoreFormatException> { BoxBackup.decode(shouty) }
     }
+
+    /** The file is named for what it carries and the learner's own day, not the UTC one. */
+    @Test
+    fun anExportIsNamedForWhatItCarriesAndTheLocalDay() {
+        val laEvening = 1_791_774_000_000L // 2026-10-12T03:00Z, still the 11th in Los Angeles
+        assertEquals("Spross-sw-2026-10-11", BoxBackup.fileName("sw", laEvening, "America/Los_Angeles"))
+        assertEquals("Spross-2026-10-12", BoxBackup.fileName(null, laEvening, "UTC"))
+    }
 }
