@@ -247,12 +247,14 @@ def load_catalog():
 
 
 def ascii_stem(form):
-    """A shipped file's ASCII name for [form]: [a-z0-9-] stays, every other character is `u<hex>`.
+    """A shipped file's ASCII name for [form]: [a-z0-9-] stays, a space is `_`, every other
+    character is `u<hex>`.
 
     macOS normalises filenames, so a name carrying ü or а cannot be looked up by the string
     the manifest stores — the letters are codepoint-named for the same reason.
     """
-    return ''.join(char if char.isascii() and (char.isalnum() or char == '-') else 'u%04x' % ord(char)
+    return ''.join(char if char.isascii() and (char.isalnum() or char == '-')
+                   else '_' if char == ' ' else 'u%04x' % ord(char)
                    for char in unicodedata.normalize('NFC', form).strip().lower())
 
 

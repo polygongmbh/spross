@@ -270,7 +270,7 @@
     },
     "Arabia Saudí": {
       "author": "Rodelar",
-      "file": "countries/arabiau0020saudu00ed.mp3",
+      "file": "countries/arabia_saudu00ed.mp3",
       "gain": -2.9,
       "gate": -95.8,
       "lead": 213,
@@ -395,7 +395,7 @@
     },
     "Corea del Sur": {
       "author": "Rodelar",
-      "file": "countries/coreau0020delu0020sur.mp3",
+      "file": "countries/corea_del_sur.mp3",
       "gain": -1.9,
       "lead": 228,
       "matches": "Corea del Sur",
@@ -405,7 +405,7 @@
     },
     "Costa Rica": {
       "author": "Rubýñ",
-      "file": "countries/costau0020rica.mp3",
+      "file": "countries/costa_rica.mp3",
       "gain": 9.6,
       "gate": -78.7,
       "lead": 201,
@@ -491,7 +491,7 @@
     },
     "Estados Unidos": {
       "author": "Rodelar",
-      "file": "countries/estadosu0020unidos.mp3",
+      "file": "countries/estados_unidos.mp3",
       "gain": 1.7,
       "lead": 246,
       "matches": "Estados Unidos",
@@ -708,7 +708,7 @@
     },
     "Nueva Zelanda": {
       "author": "Rodelar",
-      "file": "countries/nuevau0020zelanda.mp3",
+      "file": "countries/nueva_zelanda.mp3",
       "gain": 1.2,
       "lead": 210,
       "matches": "Nueva Zelanda",
@@ -718,7 +718,7 @@
     },
     "Países Bajos": {
       "author": "Rodelar",
-      "file": "countries/pau00edsesu0020bajos.mp3",
+      "file": "countries/pau00edses_bajos.mp3",
       "gain": 3.7,
       "lead": 247,
       "matches": "Países Bajos",
@@ -759,7 +759,7 @@
     },
     "Reino Unido": {
       "author": "Rodelar",
-      "file": "countries/reinou0020unido.mp3",
+      "file": "countries/reino_unido.mp3",
       "gain": -0.8,
       "lead": 272,
       "matches": "Reino Unido",
@@ -769,7 +769,7 @@
     },
     "República Democrática del Congo": {
       "author": "Rodelar",
-      "file": "countries/repu00fablicau0020democru00e1ticau0020delu0020congo.mp3",
+      "file": "countries/repu00fablica_democru00e1tica_del_congo.mp3",
       "gain": -0.5,
       "lead": 267,
       "matches": "República Democrática del Congo",
@@ -1148,7 +1148,7 @@
   "words": {
     "a menudo": {
       "author": "Marreromarco",
-      "file": "words/au0020menudo.mp3",
+      "file": "words/a_menudo.mp3",
       "gain": 4.1,
       "gate": -62.2,
       "lead": 202,
@@ -1159,7 +1159,7 @@
     },
     "a veces": {
       "author": "Marreromarco",
-      "file": "words/au0020veces.mp3",
+      "file": "words/a_veces.mp3",
       "gain": 4.5,
       "gate": -69.3,
       "lead": 255,
@@ -2261,7 +2261,7 @@
     },
     "buenas noches": {
       "author": "Marreromarco",
-      "file": "words/buenasu0020noches.mp3",
+      "file": "words/buenas_noches.mp3",
       "gain": 1.7,
       "gate": -67.4,
       "lead": 247,
@@ -2272,7 +2272,7 @@
     },
     "buenas tardes": {
       "author": "Marreromarco",
-      "file": "words/buenasu0020tardes.mp3",
+      "file": "words/buenas_tardes.mp3",
       "gain": 5.3,
       "gate": -68.8,
       "lead": 212,
@@ -2294,7 +2294,7 @@
     },
     "buenos días": {
       "author": "Rodrigo5260",
-      "file": "words/buenosu0020du00edas.mp3",
+      "file": "words/buenos_du00edas.mp3",
       "gain": 3.9,
       "gate": -86.1,
       "lead": 221,
@@ -2810,7 +2810,7 @@
     },
     "cepillo de dientes": {
       "author": "Marreromarco",
-      "file": "words/cepillou0020deu0020dientes.mp3",
+      "file": "words/cepillo_de_dientes.mp3",
       "gain": 5.5,
       "gate": -68.8,
       "lead": 210,
@@ -3312,7 +3312,7 @@
     },
     "correo electrónico": {
       "author": "Wikipedian-walker",
-      "file": "words/correou0020electru00f3nico.mp3",
+      "file": "words/correo_electru00f3nico.mp3",
       "gain": 3.6,
       "gate": -77.9,
       "lead": 182,
@@ -4582,7 +4582,7 @@
     "estar de pie": {
       "author": "Anonymât",
       "cap": 1.6,
-      "file": "words/estaru0020deu0020pie.mp3",
+      "file": "words/estar_de_pie.mp3",
       "gain": 2.2,
       "gate": -58.1,
       "matches": "estar de pie",
@@ -4766,7 +4766,7 @@
     },
     "fin de semana": {
       "author": "Marreromarco",
-      "file": "words/finu0020deu0020semana.mp3",
+      "file": "words/fin_de_semana.mp3",
       "gain": 4.9,
       "gate": -63.3,
       "lead": 222,
@@ -5198,7 +5198,7 @@
     },
     "hasta luego": {
       "author": "Orgullomoore",
-      "file": "words/hastau0020luego.mp3",
+      "file": "words/hasta_luego.mp3",
       "gain": 7.2,
       "gate": -68.2,
       "lead": 55,
@@ -6714,7 +6714,7 @@
     },
     "muchas gracias": {
       "author": "Mentxuwiki",
-      "file": "words/muchasu0020gracias.mp3",
+      "file": "words/muchas_gracias.mp3",
       "gain": 0.9,
       "lead": 37,
       "matches": "muchas gracias",
@@ -7556,7 +7556,7 @@
     },
     "papel higiénico": {
       "author": "Marreromarco",
-      "file": "words/papelu0020higiu00e9nico.mp3",
+      "file": "words/papel_higiu00e9nico.mp3",
       "gain": 2.4,
       "gate": -70.8,
       "lead": 263,
@@ -7644,7 +7644,7 @@
     },
     "pasado mañana": {
       "author": "Marreromarco",
-      "file": "words/pasadou0020mau00f1ana.mp3",
+      "file": "words/pasado_mau00f1ana.mp3",
       "gain": 3.4,
       "gate": -62.3,
       "lead": 235,
@@ -8158,7 +8158,7 @@
     },
     "por favor": {
       "author": "AdrianAbdulBaha",
-      "file": "words/poru0020favor.mp3",
+      "file": "words/por_favor.mp3",
       "gain": 1.8,
       "gate": -74.7,
       "lead": 240,
@@ -8169,7 +8169,7 @@
     },
     "por qué": {
       "author": "AdrianAbdulBaha",
-      "file": "words/poru0020quu00e9.mp3",
+      "file": "words/por_quu00e9.mp3",
       "gain": 0.9,
       "gate": -73.2,
       "lead": 227,
@@ -9294,7 +9294,7 @@
     },
     "ser humano": {
       "author": "Rodelar",
-      "file": "words/seru0020humano.mp3",
+      "file": "words/ser_humano.mp3",
       "gain": -4.9,
       "lead": 220,
       "matches": "ser humano",

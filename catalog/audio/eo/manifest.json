@@ -232,7 +232,7 @@
     },
     "Demokratia Respubliko Kongo": {
       "author": "Lepticed7",
-      "file": "countries/demokratiau0020respublikou0020kongo.mp3",
+      "file": "countries/demokratia_respubliko_kongo.mp3",
       "gain": 1.0,
       "gate": -74.3,
       "lead": 123,
@@ -1169,7 +1169,7 @@
   "texts": {
     "Eĥoŝanĝo ĉiuĵaŭde": {
       "author": "NMaia",
-      "file": "texts/eu0125ou015danu011dou0020u0109iuu0135au016dde.mp3",
+      "file": "texts/eu0125ou015danu011do_u0109iuu0135au016dde.mp3",
       "gain": 0.1,
       "gate": -62.4,
       "lead": 188,
@@ -2066,7 +2066,7 @@
     },
     "bonan matenon": {
       "author": "Lepticed7",
-      "file": "words/bonanu0020matenon.mp3",
+      "file": "words/bonan_matenon.mp3",
       "gain": 7.2,
       "gate": -80.8,
       "lead": 269,
@@ -2077,7 +2077,7 @@
     },
     "bonan nokton": {
       "author": "Lepticed7",
-      "file": "words/bonanu0020nokton.mp3",
+      "file": "words/bonan_nokton.mp3",
       "gain": 8.5,
       "gate": -78.8,
       "lead": 194,
@@ -2088,7 +2088,7 @@
     },
     "bonan tagon": {
       "author": "Lepticed7",
-      "file": "words/bonanu0020tagon.mp3",
+      "file": "words/bonan_tagon.mp3",
       "gain": 1.4,
       "gate": -71.8,
       "lead": 206,
@@ -2099,7 +2099,7 @@
     },
     "bonan vesperon": {
       "author": "Lepticed7",
-      "file": "words/bonanu0020vesperon.mp3",
+      "file": "words/bonan_vesperon.mp3",
       "gain": 8.6,
       "gate": -79.7,
       "lead": 208,
@@ -2395,7 +2395,7 @@
     },
     "de kie vi venas": {
       "author": "Tiguliano",
-      "file": "words/deu0020kieu0020viu0020venas.mp3",
+      "file": "words/de_kie_vi_venas.mp3",
       "gain": -2.8,
       "lead": 164,
       "matches": "de kie vi venas",
@@ -3107,7 +3107,7 @@
     },
     "familia nomo": {
       "author": "Lepticed7",
-      "file": "words/familiau0020nomo.mp3",
+      "file": "words/familia_nomo.mp3",
       "gain": 6.5,
       "gate": -78.4,
       "lead": 172,
@@ -3678,7 +3678,7 @@
     },
     "gepatra lingvo": {
       "author": "Lepticed7",
-      "file": "words/gepatrau0020lingvo.mp3",
+      "file": "words/gepatra_lingvo.mp3",
       "gain": 5.6,
       "gate": -78.8,
       "lead": 161,
@@ -4642,7 +4642,7 @@
     },
     "kiel vi fartas": {
       "author": "Lepticed7",
-      "file": "words/kielu0020viu0020fartas.mp3",
+      "file": "words/kiel_vi_fartas.mp3",
       "gain": 6.0,
       "gate": -79.2,
       "lead": 73,
@@ -4653,7 +4653,7 @@
     },
     "kiel vi nomiĝas": {
       "author": "Tiguliano",
-      "file": "words/kielu0020viu0020nomiu011das.mp3",
+      "file": "words/kiel_vi_nomiu011das.mp3",
       "gain": -3.4,
       "lead": 212,
       "matches": "kiel vi nomiĝas",
@@ -4707,7 +4707,7 @@
     },
     "kioma horo estas": {
       "author": "Tiguliano",
-      "file": "words/kiomau0020horou0020estas.mp3",
+      "file": "words/kioma_horo_estas.mp3",
       "gain": 6.1,
       "lead": 175,
       "matches": "kioma horo estas",
@@ -6418,7 +6418,7 @@
     },
     "mi amas vin": {
       "author": "Lepticed7",
-      "file": "words/miu0020amasu0020vin.mp3",
+      "file": "words/mi_amas_vin.mp3",
       "gain": 5.1,
       "gate": -78.7,
       "lead": 144,
@@ -6429,7 +6429,7 @@
     },
     "mi bedaŭras": {
       "author": "Tiguliano",
-      "file": "words/miu0020bedau016dras.mp3",
+      "file": "words/mi_bedau016dras.mp3",
       "gain": -3.5,
       "lead": 168,
       "matches": "mi bedaŭras",
@@ -6439,7 +6439,7 @@
     },
     "mi malsatas": {
       "author": "NMaia",
-      "file": "words/miu0020malsatas.mp3",
+      "file": "words/mi_malsatas.mp3",
       "gain": 2.6,
       "gate": -65.2,
       "lead": 240,
@@ -6450,7 +6450,7 @@
     },
     "mi ne komprenas": {
       "author": "NMaia",
-      "file": "words/miu0020neu0020komprenas.mp3",
+      "file": "words/mi_ne_komprenas.mp3",
       "gain": -2.7,
       "lead": 171,
       "matches": "mi ne komprenas",
@@ -6460,7 +6460,7 @@
     },
     "mi ne scias": {
       "author": "Tiguliano",
-      "file": "words/miu0020neu0020scias.mp3",
+      "file": "words/mi_ne_scias.mp3",
       "gain": -4.2,
       "lead": 164,
       "matches": "mi ne scias",
@@ -6679,7 +6679,7 @@
     },
     "multan dankon": {
       "author": "Lepticed7",
-      "file": "words/multanu0020dankon.mp3",
+      "file": "words/multan_dankon.mp3",
       "gain": 0.3,
       "gate": -71.2,
       "lead": 192,
@@ -6831,7 +6831,7 @@
     },
     "ne ĝenu min": {
       "author": "Tiguliano",
-      "file": "words/neu0020u011denuu0020min.mp3",
+      "file": "words/ne_u011denu_min.mp3",
       "gain": -4.7,
       "lead": 181,
       "matches": "ne ĝenu min",
@@ -6895,7 +6895,7 @@
     },
     "neniu problemo": {
       "author": "Tiguliano",
-      "file": "words/neniuu0020problemo.mp3",
+      "file": "words/neniu_problemo.mp3",
       "gain": -4.0,
       "lead": 174,
       "matches": "neniu problemo",
@@ -10475,7 +10475,7 @@
     },
     "voku ambulancon": {
       "author": "Tiguliano",
-      "file": "words/vokuu0020ambulancon.mp3",
+      "file": "words/voku_ambulancon.mp3",
       "gain": 3.4,
       "lead": 137,
       "matches": "voku ambulancon",
@@ -10650,7 +10650,7 @@
     },
     "ĉi tie": {
       "author": "Poslovitch",
-      "file": "words/u0109iu0020tie.mp3",
+      "file": "words/u0109i_tie.mp3",
       "gain": 4.0,
       "gate": -73.0,
       "lead": 112,
@@ -10661,7 +10661,7 @@
     },
     "ĉi tio": {
       "author": "Poslovitch",
-      "file": "words/u0109iu0020tio.mp3",
+      "file": "words/u0109i_tio.mp3",
       "gain": 3.2,
       "gate": -82.2,
       "lead": 250,
@@ -10727,7 +10727,7 @@
     },
     "ĉu vi parolas la anglan": {
       "author": "NMaia",
-      "file": "words/u0109uu0020viu0020parolasu0020lau0020anglan.mp3",
+      "file": "words/u0109u_vi_parolas_la_anglan.mp3",
       "gain": -0.3,
       "gate": -61.5,
       "lead": 212,
@@ -10760,7 +10760,7 @@
     },
     "ĝis revido": {
       "author": "Lepticed7",
-      "file": "words/u011disu0020revido.mp3",
+      "file": "words/u011dis_revido.mp3",
       "gain": 11.9,
       "gate": -81.1,
       "lead": 146,

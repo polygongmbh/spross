@@ -2,7 +2,7 @@
   "articles": {
     "gli occhi": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/gliu0020occhi.mp3",
+      "file": "articles/gli_occhi.mp3",
       "gain": -4.1,
       "gate": -72.2,
       "matches": "gli occhi",
@@ -13,7 +13,7 @@
     },
     "i capelli": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/iu0020capelli.mp3",
+      "file": "articles/i_capelli.mp3",
       "gain": -2.1,
       "gate": -71.8,
       "lead": 36,
@@ -25,7 +25,7 @@
     },
     "i genitori": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/iu0020genitori.mp3",
+      "file": "articles/i_genitori.mp3",
       "gain": -1.8,
       "gate": -71.6,
       "lead": 195,
@@ -37,7 +37,7 @@
     },
     "i soldi": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/iu0020soldi.mp3",
+      "file": "articles/i_soldi.mp3",
       "gain": -3.2,
       "gate": -73.1,
       "lead": 58,
@@ -49,7 +49,7 @@
     },
     "i vestiti": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/iu0020vestiti.mp3",
+      "file": "articles/i_vestiti.mp3",
       "gain": 1.4,
       "gate": -74.0,
       "lead": 239,
@@ -61,7 +61,7 @@
     },
     "il burro": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020burro.mp3",
+      "file": "articles/il_burro.mp3",
       "gain": -1.6,
       "gate": -67.7,
       "lead": 60,
@@ -73,7 +73,7 @@
     },
     "il caffè": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020caffu00e8.mp3",
+      "file": "articles/il_caffu00e8.mp3",
       "gain": -2.6,
       "gate": -67.6,
       "lead": 130,
@@ -85,7 +85,7 @@
     },
     "il cibo": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020cibo.mp3",
+      "file": "articles/il_cibo.mp3",
       "gain": -0.9,
       "gate": -70.8,
       "lead": 35,
@@ -97,7 +97,7 @@
     },
     "il cielo": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020cielo.mp3",
+      "file": "articles/il_cielo.mp3",
       "gain": -1.9,
       "gate": -72.2,
       "matches": "il cielo",
@@ -108,7 +108,7 @@
     },
     "il cinema": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020cinema.mp3",
+      "file": "articles/il_cinema.mp3",
       "gain": -2.0,
       "gate": -67.1,
       "matches": "il cinema",
@@ -119,7 +119,7 @@
     },
     "il conto": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020conto.mp3",
+      "file": "articles/il_conto.mp3",
       "gain": -0.5,
       "gate": -69.2,
       "matches": "il conto",
@@ -130,7 +130,7 @@
     },
     "il cuore": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020cuore.mp3",
+      "file": "articles/il_cuore.mp3",
       "gain": -4.9,
       "gate": -72.0,
       "matches": "il cuore",
@@ -141,7 +141,7 @@
     },
     "il formaggio": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020formaggio.mp3",
+      "file": "articles/il_formaggio.mp3",
       "gain": -3.1,
       "gate": -68.7,
       "lead": 93,
@@ -153,7 +153,7 @@
     },
     "il governo": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020governo.mp3",
+      "file": "articles/il_governo.mp3",
       "gain": -2.6,
       "gate": -74.5,
       "lead": 230,
@@ -165,7 +165,7 @@
     },
     "il latte": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020latte.mp3",
+      "file": "articles/il_latte.mp3",
       "gain": -4.2,
       "gate": -69.7,
       "lead": 253,
@@ -177,7 +177,7 @@
     },
     "il lavoro": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020lavoro.mp3",
+      "file": "articles/il_lavoro.mp3",
       "gain": -2.9,
       "gate": -72.9,
       "matches": "il lavoro",
@@ -188,7 +188,7 @@
     },
     "il mare": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020mare.mp3",
+      "file": "articles/il_mare.mp3",
       "gain": -3.1,
       "gate": -74.2,
       "matches": "il mare",
@@ -199,7 +199,7 @@
     },
     "il marito": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020marito.mp3",
+      "file": "articles/il_marito.mp3",
       "gain": -1.9,
       "gate": -71.3,
       "lead": 35,
@@ -211,7 +211,7 @@
     },
     "il matrimonio": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020matrimonio.mp3",
+      "file": "articles/il_matrimonio.mp3",
       "gate": -71.7,
       "lead": 36,
       "matches": "il matrimonio",
@@ -222,7 +222,7 @@
     },
     "il mercato": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020mercato.mp3",
+      "file": "articles/il_mercato.mp3",
       "gain": -3.1,
       "gate": -66.4,
       "lead": 4,
@@ -234,7 +234,7 @@
     },
     "il naso": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020naso.mp3",
+      "file": "articles/il_naso.mp3",
       "gain": -5.3,
       "gate": -71.2,
       "matches": "il naso",
@@ -245,7 +245,7 @@
     },
     "il nord": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020nord.mp3",
+      "file": "articles/il_nord.mp3",
       "gain": -3.7,
       "gate": -69.6,
       "lead": 154,
@@ -257,7 +257,7 @@
     },
     "il padre": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020padre.mp3",
+      "file": "articles/il_padre.mp3",
       "gain": -1.3,
       "gate": -72.5,
       "lead": 5,
@@ -269,7 +269,7 @@
     },
     "il pane": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020pane.mp3",
+      "file": "articles/il_pane.mp3",
       "gain": -6.8,
       "gate": -68.2,
       "lead": 91,
@@ -281,7 +281,7 @@
     },
     "il pavimento": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020pavimento.mp3",
+      "file": "articles/il_pavimento.mp3",
       "gain": -0.2,
       "gate": -70.4,
       "matches": "il pavimento",
@@ -292,7 +292,7 @@
     },
     "il pesce": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020pesce.mp3",
+      "file": "articles/il_pesce.mp3",
       "gain": -3.4,
       "gate": -72.7,
       "lead": 257,
@@ -304,7 +304,7 @@
     },
     "il pollo": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020pollo.mp3",
+      "file": "articles/il_pollo.mp3",
       "gain": -0.4,
       "gate": -72.8,
       "matches": "il pollo",
@@ -315,7 +315,7 @@
     },
     "il prezzo": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020prezzo.mp3",
+      "file": "articles/il_prezzo.mp3",
       "gain": -4.0,
       "gate": -65.8,
       "lead": 96,
@@ -327,7 +327,7 @@
     },
     "il riso": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020riso.mp3",
+      "file": "articles/il_riso.mp3",
       "gain": 0.3,
       "gate": -73.4,
       "matches": "il riso",
@@ -338,7 +338,7 @@
     },
     "il rumore": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020rumore.mp3",
+      "file": "articles/il_rumore.mp3",
       "gain": -2.4,
       "gate": -69.6,
       "matches": "il rumore",
@@ -349,7 +349,7 @@
     },
     "il sale": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020sale.mp3",
+      "file": "articles/il_sale.mp3",
       "gain": -6.8,
       "gate": -65.8,
       "lead": 38,
@@ -361,7 +361,7 @@
     },
     "il sangue": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020sangue.mp3",
+      "file": "articles/il_sangue.mp3",
       "gain": -3.8,
       "gate": -68.4,
       "lead": 231,
@@ -373,7 +373,7 @@
     },
     "il sapone": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020sapone.mp3",
+      "file": "articles/il_sapone.mp3",
       "gain": -0.9,
       "gate": -70.5,
       "matches": "il sapone",
@@ -384,7 +384,7 @@
     },
     "il sole": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020sole.mp3",
+      "file": "articles/il_sole.mp3",
       "gain": -2.2,
       "gate": -69.3,
       "matches": "il sole",
@@ -395,7 +395,7 @@
     },
     "il sud": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020sud.mp3",
+      "file": "articles/il_sud.mp3",
       "gain": -0.2,
       "gate": -66.1,
       "lead": 98,
@@ -407,7 +407,7 @@
     },
     "il tè": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020tu00e8.mp3",
+      "file": "articles/il_tu00e8.mp3",
       "gain": -3.8,
       "gate": -69.7,
       "lead": 121,
@@ -419,7 +419,7 @@
     },
     "il vento": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020vento.mp3",
+      "file": "articles/il_vento.mp3",
       "gain": -2.9,
       "gate": -68.9,
       "matches": "il vento",
@@ -514,7 +514,7 @@
     },
     "la bocca": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020bocca.mp3",
+      "file": "articles/la_bocca.mp3",
       "gain": 2.3,
       "gate": -74.8,
       "lead": 233,
@@ -526,7 +526,7 @@
     },
     "la borsa": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020borsa.mp3",
+      "file": "articles/la_borsa.mp3",
       "gain": -2.7,
       "gate": -69.7,
       "lead": 39,
@@ -538,7 +538,7 @@
     },
     "la carne": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020carne.mp3",
+      "file": "articles/la_carne.mp3",
       "gain": -5.6,
       "gate": -69.7,
       "matches": "la carne",
@@ -549,7 +549,7 @@
     },
     "la carta": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020carta.mp3",
+      "file": "articles/la_carta.mp3",
       "gain": -3.2,
       "gate": -70.2,
       "lead": 41,
@@ -561,7 +561,7 @@
     },
     "la cena": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020cena.mp3",
+      "file": "articles/la_cena.mp3",
       "gain": 0.9,
       "gate": -70.6,
       "matches": "la cena",
@@ -572,7 +572,7 @@
     },
     "la colazione": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020colazione.mp3",
+      "file": "articles/la_colazione.mp3",
       "gain": -2.1,
       "gate": -65.8,
       "lead": 87,
@@ -584,7 +584,7 @@
     },
     "la direzione": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020direzione.mp3",
+      "file": "articles/la_direzione.mp3",
       "gain": -0.9,
       "gate": -69.2,
       "matches": "la direzione",
@@ -595,7 +595,7 @@
     },
     "la guerra": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020guerra.mp3",
+      "file": "articles/la_guerra.mp3",
       "gain": -2.8,
       "gate": -72.3,
       "lead": 247,
@@ -607,7 +607,7 @@
     },
     "la lingua": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020lingua.mp3",
+      "file": "articles/la_lingua.mp3",
       "gain": -3.1,
       "gate": -70.3,
       "lead": 110,
@@ -619,7 +619,7 @@
     },
     "la luce": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020luce.mp3",
+      "file": "articles/la_luce.mp3",
       "gain": -2.6,
       "gate": -75.4,
       "lead": 228,
@@ -631,7 +631,7 @@
     },
     "la madre": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020madre.mp3",
+      "file": "articles/la_madre.mp3",
       "gain": -4.4,
       "gate": -69.6,
       "lead": 37,
@@ -643,7 +643,7 @@
     },
     "la moglie": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020moglie.mp3",
+      "file": "articles/la_moglie.mp3",
       "gain": -4.6,
       "gate": -70.4,
       "lead": 224,
@@ -655,7 +655,7 @@
     },
     "la montagna": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020montagna.mp3",
+      "file": "articles/la_montagna.mp3",
       "gain": -3.3,
       "gate": -69.0,
       "matches": "la montagna",
@@ -666,7 +666,7 @@
     },
     "la morte": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020morte.mp3",
+      "file": "articles/la_morte.mp3",
       "gain": -3.5,
       "gate": -67.4,
       "lead": 83,
@@ -678,7 +678,7 @@
     },
     "la musica": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020musica.mp3",
+      "file": "articles/la_musica.mp3",
       "gain": -0.1,
       "gate": -70.8,
       "lead": 149,
@@ -690,7 +690,7 @@
     },
     "la neve": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020neve.mp3",
+      "file": "articles/la_neve.mp3",
       "gain": -2.3,
       "gate": -71.3,
       "lead": 263,
@@ -702,7 +702,7 @@
     },
     "la pace": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020pace.mp3",
+      "file": "articles/la_pace.mp3",
       "gain": -3.3,
       "gate": -71.7,
       "lead": 224,
@@ -714,7 +714,7 @@
     },
     "la patata": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020patata.mp3",
+      "file": "articles/la_patata.mp3",
       "gain": -0.4,
       "gate": -72.3,
       "matches": "la patata",
@@ -725,7 +725,7 @@
     },
     "la pelle": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020pelle.mp3",
+      "file": "articles/la_pelle.mp3",
       "gain": -2.4,
       "gate": -72.2,
       "matches": "la pelle",
@@ -736,7 +736,7 @@
     },
     "la pioggia": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020pioggia.mp3",
+      "file": "articles/la_pioggia.mp3",
       "gain": -3.5,
       "gate": -69.5,
       "lead": 46,
@@ -748,7 +748,7 @@
     },
     "la polizia": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020polizia.mp3",
+      "file": "articles/la_polizia.mp3",
       "gain": 0.8,
       "gate": -73.2,
       "lead": 264,
@@ -760,7 +760,7 @@
     },
     "la spiaggia": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020spiaggia.mp3",
+      "file": "articles/la_spiaggia.mp3",
       "gain": -2.8,
       "gate": -69.6,
       "lead": 39,
@@ -772,7 +772,7 @@
     },
     "la testa": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020testa.mp3",
+      "file": "articles/la_testa.mp3",
       "gain": -0.7,
       "gate": -71.4,
       "matches": "la testa",
@@ -783,7 +783,7 @@
     },
     "la verdura": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020verdura.mp3",
+      "file": "articles/la_verdura.mp3",
       "gain": -2.3,
       "gate": -71.4,
       "matches": "la verdura",
@@ -794,7 +794,7 @@
     },
     "la vita": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020vita.mp3",
+      "file": "articles/la_vita.mp3",
       "gain": -0.6,
       "gate": -74.8,
       "lead": 125,
@@ -806,7 +806,7 @@
     },
     "la zuppa": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020zuppa.mp3",
+      "file": "articles/la_zuppa.mp3",
       "gain": -2.5,
       "gate": -71.5,
       "lead": 89,
@@ -818,7 +818,7 @@
     },
     "le labbra": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/leu0020labbra.mp3",
+      "file": "articles/le_labbra.mp3",
       "gain": -4.8,
       "gate": -71.2,
       "lead": 14,
@@ -830,7 +830,7 @@
     },
     "le orecchie": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/leu0020orecchie.mp3",
+      "file": "articles/le_orecchie.mp3",
       "gain": -3.9,
       "gate": -67.5,
       "matches": "le orecchie",
@@ -842,7 +842,7 @@
     "lo zucchero": {
       "author": "Marta Carbone, Association Shtooka",
       "cap": 1.0,
-      "file": "articles/lou0020zucchero.mp3",
+      "file": "articles/lo_zucchero.mp3",
       "gain": 3.4,
       "gate": -74.9,
       "lead": 206,
@@ -1105,7 +1105,7 @@
     },
     "Arabia Saudita": {
       "author": "Francyskus",
-      "file": "countries/arabiau0020saudita.mp3",
+      "file": "countries/arabia_saudita.mp3",
       "gain": 3.8,
       "gate": -49.3,
       "matches": "Arabia Saudita",
@@ -1224,7 +1224,7 @@
     },
     "Corea del Sud": {
       "author": "Francyskus",
-      "file": "countries/coreau0020delu0020sud.mp3",
+      "file": "countries/corea_del_sud.mp3",
       "gain": 4.2,
       "gate": -55.6,
       "matches": "Corea del Sud",
@@ -1234,7 +1234,7 @@
     },
     "Costa Rica": {
       "author": "Francyskus",
-      "file": "countries/costau0020rica.mp3",
+      "file": "countries/costa_rica.mp3",
       "gain": 10.8,
       "gate": -59.8,
       "lead": 161,
@@ -1510,7 +1510,7 @@
     },
     "Nuova Zelanda": {
       "author": "Francyskus",
-      "file": "countries/nuovau0020zelanda.mp3",
+      "file": "countries/nuova_zelanda.mp3",
       "gain": 4.2,
       "gate": -54.0,
       "matches": "Nuova Zelanda",
@@ -1553,7 +1553,7 @@
     },
     "Regno Unito": {
       "author": "Francyskus",
-      "file": "countries/regnou0020unito.mp3",
+      "file": "countries/regno_unito.mp3",
       "gain": 4.3,
       "gate": -51.4,
       "lead": 86,
@@ -1564,7 +1564,7 @@
     },
     "Repubblica Democratica del Congo": {
       "author": "Francyskus",
-      "file": "countries/repubblicau0020democraticau0020delu0020congo.mp3",
+      "file": "countries/repubblica_democratica_del_congo.mp3",
       "gain": 7.0,
       "gate": -56.8,
       "lead": 74,
@@ -1662,7 +1662,7 @@
     "Stati Uniti": {
       "author": "Ciampix",
       "cap": 1.9,
-      "file": "countries/statiu0020uniti.mp3",
+      "file": "countries/stati_uniti.mp3",
       "gain": 6.0,
       "gate": -75.5,
       "lead": 102,
@@ -1976,7 +1976,7 @@
   "words": {
     "a causa di": {
       "author": "XANA000",
-      "file": "words/au0020causau0020di.mp3",
+      "file": "words/a_causa_di.mp3",
       "gain": -0.5,
       "lead": 193,
       "matches": "a causa di",
@@ -1986,7 +1986,7 @@
     },
     "a destra": {
       "author": "LangPao",
-      "file": "words/au0020destra.mp3",
+      "file": "words/a_destra.mp3",
       "gain": -0.4,
       "gate": -89.8,
       "lead": 209,
@@ -1997,7 +1997,7 @@
     },
     "a presto": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "words/au0020presto.mp3",
+      "file": "words/a_presto.mp3",
       "gain": -5.5,
       "gate": -72.6,
       "lead": 252,
@@ -2008,7 +2008,7 @@
     },
     "a sinistra": {
       "author": "XANA000",
-      "file": "words/au0020sinistra.mp3",
+      "file": "words/a_sinistra.mp3",
       "gain": 9.5,
       "matches": "a sinistra",
       "mos": 2.65,
@@ -2018,7 +2018,7 @@
     "a volte": {
       "author": "LangPao",
       "cap": 0.8,
-      "file": "words/au0020volte.mp3",
+      "file": "words/a_volte.mp3",
       "gain": 3.5,
       "lead": 8,
       "matches": "a volte",
@@ -2049,7 +2049,7 @@
     },
     "accanto a": {
       "author": "XANA000",
-      "file": "words/accantou0020a.mp3",
+      "file": "words/accanto_a.mp3",
       "gain": -3.9,
       "gate": -77.1,
       "lead": 200,
@@ -2890,7 +2890,7 @@
     },
     "buon viaggio": {
       "author": "XANA000",
-      "file": "words/buonu0020viaggio.mp3",
+      "file": "words/buon_viaggio.mp3",
       "gain": 3.8,
       "lead": 185,
       "matches": "buon viaggio",
@@ -3385,7 +3385,7 @@
     },
     "che cosa": {
       "author": "LangPao",
-      "file": "words/cheu0020cosa.mp3",
+      "file": "words/che_cosa.mp3",
       "gain": 4.8,
       "lead": 206,
       "matches": "che cosa",
@@ -3914,7 +3914,7 @@
     },
     "crema solare": {
       "author": "LangPao",
-      "file": "words/cremau0020solare.mp3",
+      "file": "words/crema_solare.mp3",
       "gain": 1.5,
       "gate": -99.2,
       "lead": 209,
@@ -4057,7 +4057,7 @@
     },
     "data di nascita": {
       "author": "LangPao",
-      "file": "words/datau0020diu0020nascita.mp3",
+      "file": "words/data_di_nascita.mp3",
       "gain": 2.2,
       "lead": 224,
       "matches": "data di nascita",
@@ -4067,7 +4067,7 @@
     },
     "datore di lavoro": {
       "author": "LangPao",
-      "file": "words/datoreu0020diu0020lavoro.mp3",
+      "file": "words/datore_di_lavoro.mp3",
       "gain": 5.3,
       "gate": -68.6,
       "lead": 221,
@@ -4174,7 +4174,7 @@
     },
     "di nuovo": {
       "author": "Happypheasant",
-      "file": "words/diu0020nuovo.mp3",
+      "file": "words/di_nuovo.mp3",
       "gain": 2.8,
       "gate": -97.2,
       "lead": 265,
@@ -4653,7 +4653,7 @@
     },
     "fare il bucato": {
       "author": "LangPao",
-      "file": "words/fareu0020ilu0020bucato.mp3",
+      "file": "words/fare_il_bucato.mp3",
       "gain": 1.7,
       "lead": 144,
       "matches": "fare il bucato",
@@ -4824,7 +4824,7 @@
     },
     "fine settimana": {
       "author": "LangPao",
-      "file": "words/fineu0020settimana.mp3",
+      "file": "words/fine_settimana.mp3",
       "gain": 5.0,
       "lead": 196,
       "matches": "fine settimana",
@@ -4856,7 +4856,7 @@
     },
     "fino a": {
       "author": "LangPao",
-      "file": "words/finou0020a.mp3",
+      "file": "words/fino_a.mp3",
       "gain": 2.7,
       "lead": 230,
       "matches": "fino a",
@@ -5283,7 +5283,7 @@
     },
     "grazie mille": {
       "author": "XANA000",
-      "file": "words/grazieu0020mille.mp3",
+      "file": "words/grazie_mille.mp3",
       "gain": 1.8,
       "lead": 186,
       "matches": "grazie mille",
@@ -5367,7 +5367,7 @@
     },
     "imparare a memoria": {
       "author": "LangPao",
-      "file": "words/imparareu0020au0020memoria.mp3",
+      "file": "words/imparare_a_memoria.mp3",
       "gain": 0.2,
       "lead": 200,
       "matches": "imparare a memoria",
@@ -7252,7 +7252,7 @@
     },
     "per favore": {
       "author": "LangPao",
-      "file": "words/peru0020favore.mp3",
+      "file": "words/per_favore.mp3",
       "gain": 2.0,
       "lead": 232,
       "matches": "per favore",
@@ -7706,7 +7706,7 @@
     },
     "prima di": {
       "author": "LangPao",
-      "file": "words/primau0020di.mp3",
+      "file": "words/prima_di.mp3",
       "gain": 1.6,
       "lead": 229,
       "matches": "prima di",
@@ -9041,7 +9041,7 @@
     },
     "stare in piedi": {
       "author": "LangPao",
-      "file": "words/stareu0020inu0020piedi.mp3",
+      "file": "words/stare_in_piedi.mp3",
       "gain": 0.5,
       "gate": -98.7,
       "lead": 251,

@@ -123,10 +123,11 @@ class CatalogAudioLintTest {
         }
     }
 
-    /** The converter's file-stem rule: [a-z0-9-] survives, everything else becomes `u<hex>`. */
+    /** The converter's file-stem rule: [a-z0-9-] survives, a space is `_`, the rest `u<hex>`. */
     private fun asciiStem(form: String): String = buildString {
         for (ch in form.trim().lowercase()) {
             if (ch.code < 128 && (ch.isLetterOrDigit() || ch == '-')) append(ch)
+            else if (ch == ' ') append('_')
             else append("u%04x".format(ch.code))
         }
     }

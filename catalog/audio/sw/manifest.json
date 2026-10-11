@@ -219,7 +219,7 @@
   "countries": {
     "Afrika Kusini": {
       "author": "Waithera Were",
-      "file": "countries/afrikau0020kusini.mp3",
+      "file": "countries/afrika_kusini.mp3",
       "gain": -5.8,
       "gate": -66.1,
       "lead": 41,
@@ -329,7 +329,7 @@
     },
     "Jamhuri ya Kidemokrasia ya Kongo": {
       "author": "Waithera Were",
-      "file": "countries/jamhuriu0020yau0020kidemokrasiau0020yau0020kongo.mp3",
+      "file": "countries/jamhuri_ya_kidemokrasia_ya_kongo.mp3",
       "gain": -4.2,
       "gate": -62.8,
       "lead": 8,
@@ -373,7 +373,7 @@
     },
     "Korea Kusini": {
       "author": "Waithera Were",
-      "file": "countries/koreau0020kusini.mp3",
+      "file": "countries/korea_kusini.mp3",
       "gain": -7.7,
       "gate": -65.6,
       "lead": 41,
@@ -1200,7 +1200,7 @@
     },
     "baada ya": {
       "author": "Waithera Were",
-      "file": "words/baadau0020ya.mp3",
+      "file": "words/baada_ya.mp3",
       "gain": -7.1,
       "gate": -99.0,
       "lead": 145,
@@ -1233,7 +1233,7 @@
     },
     "baba mkwe": {
       "author": "Waithera Were",
-      "file": "words/babau0020mkwe.mp3",
+      "file": "words/baba_mkwe.mp3",
       "gain": -10.5,
       "gate": -66.5,
       "lead": 31,
@@ -1353,7 +1353,7 @@
     },
     "barua pepe": {
       "author": "Waithera Were",
-      "file": "words/baruau0020pepe.mp3",
+      "file": "words/barua_pepe.mp3",
       "gain": -11.2,
       "gate": -61.8,
       "lead": 35,
@@ -1644,7 +1644,7 @@
     },
     "chakula cha jioni": {
       "author": "Waithera Were",
-      "file": "words/chakulau0020chau0020jioni.mp3",
+      "file": "words/chakula_cha_jioni.mp3",
       "gain": -7.6,
       "gate": -97.2,
       "lead": 234,
@@ -1731,7 +1731,7 @@
     },
     "cheti cha daktari": {
       "author": "Waithera Were",
-      "file": "words/chetiu0020chau0020daktari.mp3",
+      "file": "words/cheti_cha_daktari.mp3",
       "gain": -8.9,
       "gate": -65.3,
       "lead": 24,
@@ -1818,7 +1818,7 @@
     },
     "chuo kikuu": {
       "author": "Waithera Were",
-      "file": "words/chuou0020kikuu.mp3",
+      "file": "words/chuo_kikuu.mp3",
       "gain": -4.8,
       "gate": -67.0,
       "lead": 35,
@@ -1882,7 +1882,7 @@
     },
     "daktari wa meno": {
       "author": "Waithera Were",
-      "file": "words/daktariu0020wau0020meno.mp3",
+      "file": "words/daktari_wa_meno.mp3",
       "gain": -7.1,
       "gate": -58.2,
       "lead": 24,
@@ -1935,7 +1935,7 @@
     },
     "dawa ya meno": {
       "author": "Waithera Were",
-      "file": "words/dawau0020yau0020meno.mp3",
+      "file": "words/dawa_ya_meno.mp3",
       "gain": -9.3,
       "gate": -56.3,
       "lead": 38,
@@ -2020,7 +2020,7 @@
     },
     "duka la dawa": {
       "author": "Waithera Were",
-      "file": "words/dukau0020lau0020dawa.mp3",
+      "file": "words/duka_la_dawa.mp3",
       "gain": -8.4,
       "gate": -97.8,
       "lead": 200,
@@ -2118,7 +2118,7 @@
     },
     "fanya kazi": {
       "author": "Waithera Were",
-      "file": "words/fanyau0020kazi.mp3",
+      "file": "words/fanya_kazi.mp3",
       "gain": -13.2,
       "gate": -61.5,
       "lead": 37,
@@ -2443,7 +2443,7 @@
     },
     "habari za asubuhi": {
       "author": "Waithera Were",
-      "file": "words/habariu0020zau0020asubuhi.mp3",
+      "file": "words/habari_za_asubuhi.mp3",
       "gain": -13.6,
       "gate": -53.2,
       "lead": 22,
@@ -2465,7 +2465,7 @@
     },
     "hakuna matata": {
       "author": "Waithera Were",
-      "file": "words/hakunau0020matata.mp3",
+      "file": "words/hakuna_matata.mp3",
       "gain": -8.1,
       "gate": -58.9,
       "lead": 35,
@@ -2487,7 +2487,7 @@
     },
     "hali ya hewa": {
       "author": "Waithera Were",
-      "file": "words/haliu0020yau0020hewa.mp3",
+      "file": "words/hali_ya_hewa.mp3",
       "gain": -9.3,
       "gate": -64.6,
       "lead": 26,
@@ -2913,7 +2913,7 @@
     },
     "jina la kwanza": {
       "author": "Waithera Were",
-      "file": "words/jinau0020lau0020kwanza.mp3",
+      "file": "words/jina_la_kwanza.mp3",
       "gain": -7.6,
       "gate": -98.1,
       "lead": 135,
@@ -2924,7 +2924,7 @@
     },
     "jina la ukoo": {
       "author": "Waithera Were",
-      "file": "words/jinau0020lau0020ukoo.mp3",
+      "file": "words/jina_la_ukoo.mp3",
       "gain": -8.4,
       "gate": -97.0,
       "lead": 132,
@@ -3043,7 +3043,7 @@
     },
     "juu ya": {
       "author": "Waithera Were",
-      "file": "words/juuu0020ya.mp3",
+      "file": "words/juu_ya.mp3",
       "gain": -7.5,
       "gate": -67.1,
       "lead": 39,
@@ -3087,7 +3087,7 @@
     },
     "kabla ya": {
       "author": "Waithera Were",
-      "file": "words/kablau0020ya.mp3",
+      "file": "words/kabla_ya.mp3",
       "gain": -7.8,
       "lead": 149,
       "matches": "kabla ya",
@@ -3227,7 +3227,7 @@
     },
     "kando ya": {
       "author": "Waithera Were",
-      "file": "words/kandou0020ya.mp3",
+      "file": "words/kando_ya.mp3",
       "gain": -8.7,
       "gate": -98.4,
       "lead": 232,
@@ -3304,7 +3304,7 @@
     },
     "kati ya": {
       "author": "Waithera Were",
-      "file": "words/katiu0020ya.mp3",
+      "file": "words/kati_ya.mp3",
       "gain": -8.4,
       "gate": -100.0,
       "lead": 148,
@@ -3359,7 +3359,7 @@
     },
     "kazi ya nyumbani": {
       "author": "Waithera Were",
-      "file": "words/kaziu0020yau0020nyumbani.mp3",
+      "file": "words/kazi_ya_nyumbani.mp3",
       "gain": -10.0,
       "gate": -97.6,
       "lead": 249,
@@ -3414,7 +3414,7 @@
     },
     "kesho kutwa": {
       "author": "Waithera Were",
-      "file": "words/keshou0020kutwa.mp3",
+      "file": "words/kesho_kutwa.mp3",
       "gain": -6.9,
       "gate": -62.7,
       "lead": 47,
@@ -3556,7 +3556,7 @@
     },
     "kifungua kinywa": {
       "author": "Waithera Were",
-      "file": "words/kifunguau0020kinywa.mp3",
+      "file": "words/kifungua_kinywa.mp3",
       "gain": -6.6,
       "gate": -60.5,
       "lead": 49,
@@ -3676,7 +3676,7 @@
     },
     "kila kitu": {
       "author": "Waithera Were",
-      "file": "words/kilau0020kitu.mp3",
+      "file": "words/kila_kitu.mp3",
       "gain": -11.1,
       "gate": -99.8,
       "lead": 140,
@@ -3687,7 +3687,7 @@
     },
     "kila mtu": {
       "author": "Waithera Were",
-      "file": "words/kilau0020mtu.mp3",
+      "file": "words/kila_mtu.mp3",
       "gain": -11.1,
       "lead": 144,
       "matches": "kila mtu",
@@ -3895,7 +3895,7 @@
     },
     "kitunguu saumu": {
       "author": "Waithera Were",
-      "file": "words/kitunguuu0020saumu.mp3",
+      "file": "words/kitunguu_saumu.mp3",
       "gain": -7.0,
       "gate": -64.5,
       "lead": 46,
@@ -3906,7 +3906,7 @@
     },
     "kituo cha basi": {
       "author": "Waithera Were",
-      "file": "words/kituou0020chau0020basi.mp3",
+      "file": "words/kituo_cha_basi.mp3",
       "gain": -10.7,
       "gate": -65.5,
       "lead": 45,
@@ -4377,7 +4377,7 @@
     },
     "kuendesha baiskeli": {
       "author": "Waithera Were",
-      "file": "words/kuendeshau0020baiskeli.mp3",
+      "file": "words/kuendesha_baiskeli.mp3",
       "gain": -7.3,
       "gate": -65.2,
       "lead": 40,
@@ -5850,7 +5850,7 @@
     },
     "kuwa na": {
       "author": "Waithera Were",
-      "file": "words/kuwau0020na.mp3",
+      "file": "words/kuwa_na.mp3",
       "gain": -10.0,
       "gate": -65.2,
       "lead": 44,
@@ -5959,7 +5959,7 @@
     },
     "kwa hiyo": {
       "author": "Waithera Were",
-      "file": "words/kwau0020hiyo.mp3",
+      "file": "words/kwa_hiyo.mp3",
       "gain": -6.1,
       "gate": -61.0,
       "lead": 5,
@@ -5970,7 +5970,7 @@
     },
     "kwa kawaida": {
       "author": "Waithera Were",
-      "file": "words/kwau0020kawaida.mp3",
+      "file": "words/kwa_kawaida.mp3",
       "gain": -8.0,
       "gate": -63.2,
       "lead": 40,
@@ -5981,7 +5981,7 @@
     },
     "kwa nini": {
       "author": "Waithera Were",
-      "file": "words/kwau0020nini.mp3",
+      "file": "words/kwa_nini.mp3",
       "gain": -4.4,
       "gate": -68.6,
       "lead": 33,
@@ -5992,7 +5992,7 @@
     },
     "kwa sababu": {
       "author": "Waithera Were",
-      "file": "words/kwau0020sababu.mp3",
+      "file": "words/kwa_sababu.mp3",
       "gain": -9.3,
       "gate": -65.9,
       "lead": 38,
@@ -6079,7 +6079,7 @@
     },
     "lala salama": {
       "author": "Waithera Were",
-      "file": "words/lalau0020salama.mp3",
+      "file": "words/lala_salama.mp3",
       "gain": -8.4,
       "gate": -60.9,
       "lead": 41,
@@ -6178,7 +6178,7 @@
     },
     "lugha ya mama": {
       "author": "Waithera Were",
-      "file": "words/lughau0020yau0020mama.mp3",
+      "file": "words/lugha_ya_mama.mp3",
       "gain": -13.8,
       "gate": -62.3,
       "lead": 40,
@@ -6277,7 +6277,7 @@
     },
     "madaktari wa meno": {
       "author": "Waithera Were",
-      "file": "words/madaktariu0020wau0020meno.mp3",
+      "file": "words/madaktari_wa_meno.mp3",
       "gain": -10.2,
       "gate": -59.6,
       "lead": 39,
@@ -6726,7 +6726,7 @@
     },
     "mama mkwe": {
       "author": "Waithera Were",
-      "file": "words/mamau0020mkwe.mp3",
+      "file": "words/mama_mkwe.mp3",
       "gain": -9.3,
       "gate": -67.0,
       "lead": 43,
@@ -6823,7 +6823,7 @@
     },
     "mara moja": {
       "author": "Waithera Were",
-      "file": "words/marau0020moja.mp3",
+      "file": "words/mara_moja.mp3",
       "gain": -12.4,
       "gate": -61.9,
       "lead": 55,
@@ -6834,7 +6834,7 @@
     },
     "mara nyingi": {
       "author": "Waithera Were",
-      "file": "words/marau0020nyingi.mp3",
+      "file": "words/mara_nyingi.mp3",
       "gain": -9.8,
       "gate": -99.0,
       "lead": 222,
@@ -6900,7 +6900,7 @@
     },
     "mashine ya kufulia": {
       "author": "Waithera Were",
-      "file": "words/mashineu0020yau0020kufulia.mp3",
+      "file": "words/mashine_ya_kufulia.mp3",
       "gain": -7.1,
       "gate": -62.0,
       "lead": 42,
@@ -6911,7 +6911,7 @@
     },
     "mashine za kufulia": {
       "author": "Waithera Were",
-      "file": "words/mashineu0020zau0020kufulia.mp3",
+      "file": "words/mashine_za_kufulia.mp3",
       "gain": -7.6,
       "gate": -57.7,
       "lead": 42,
@@ -7349,7 +7349,7 @@
     },
     "meza ya kulia": {
       "author": "Waithera Were",
-      "file": "words/mezau0020yau0020kulia.mp3",
+      "file": "words/meza_ya_kulia.mp3",
       "gain": -7.9,
       "gate": -97.7,
       "lead": 201,
@@ -8084,7 +8084,7 @@
     },
     "moja kwa moja": {
       "author": "Waithera Were",
-      "file": "words/mojau0020kwau0020moja.mp3",
+      "file": "words/moja_kwa_moja.mp3",
       "gain": -6.9,
       "gate": -62.5,
       "lead": 41,
@@ -8787,7 +8787,7 @@
     },
     "nguo za ndani": {
       "author": "Waithera Were",
-      "file": "words/nguou0020zau0020ndani.mp3",
+      "file": "words/nguo_za_ndani.mp3",
       "gain": -11.5,
       "gate": -68.6,
       "lead": 41,
@@ -8864,7 +8864,7 @@
     },
     "njia panda": {
       "author": "Waithera Were",
-      "file": "words/njiau0020panda.mp3",
+      "file": "words/njia_panda.mp3",
       "gain": -11.7,
       "gate": -63.4,
       "lead": 37,
@@ -9061,7 +9061,7 @@
     },
     "ota jua": {
       "author": "Waithera Were",
-      "file": "words/otau0020jua.mp3",
+      "file": "words/ota_jua.mp3",
       "gain": -9.5,
       "gate": -99.3,
       "lead": 132,
@@ -9072,7 +9072,7 @@
     },
     "ota ndoto": {
       "author": "Waithera Were",
-      "file": "words/otau0020ndoto.mp3",
+      "file": "words/ota_ndoto.mp3",
       "gain": -7.3,
       "gate": -98.5,
       "lead": 125,
@@ -9224,7 +9224,7 @@
     },
     "piga kengele": {
       "author": "Waithera Were",
-      "file": "words/pigau0020kengele.mp3",
+      "file": "words/piga_kengele.mp3",
       "gain": -7.5,
       "gate": -55.5,
       "lead": 47,
@@ -9235,7 +9235,7 @@
     },
     "piga kura": {
       "author": "Waithera Were",
-      "file": "words/pigau0020kura.mp3",
+      "file": "words/piga_kura.mp3",
       "gain": -9.6,
       "gate": -66.7,
       "lead": 40,
@@ -9246,7 +9246,7 @@
     },
     "piga mbizi": {
       "author": "Waithera Were",
-      "file": "words/pigau0020mbizi.mp3",
+      "file": "words/piga_mbizi.mp3",
       "gain": -5.9,
       "gate": -64.5,
       "lead": 42,
@@ -9257,7 +9257,7 @@
     },
     "piga miayo": {
       "author": "Waithera Were",
-      "file": "words/pigau0020miayo.mp3",
+      "file": "words/piga_miayo.mp3",
       "gain": -7.4,
       "gate": -65.7,
       "lead": 49,
@@ -9268,7 +9268,7 @@
     },
     "piga mswaki": {
       "author": "Waithera Were",
-      "file": "words/pigau0020mswaki.mp3",
+      "file": "words/piga_mswaki.mp3",
       "gain": -10.1,
       "gate": -65.2,
       "lead": 40,
@@ -9279,7 +9279,7 @@
     },
     "piga simu": {
       "author": "Waithera Were",
-      "file": "words/pigau0020simu.mp3",
+      "file": "words/piga_simu.mp3",
       "gain": 0.9,
       "gate": -65.7,
       "lead": 42,
@@ -9631,7 +9631,7 @@
     },
     "safari njema": {
       "author": "Waithera Were",
-      "file": "words/safariu0020njema.mp3",
+      "file": "words/safari_njema.mp3",
       "gain": -4.0,
       "gate": -69.3,
       "lead": 26,
@@ -9763,7 +9763,7 @@
     },
     "sanduku la barua": {
       "author": "Waithera Were",
-      "file": "words/sandukuu0020lau0020barua.mp3",
+      "file": "words/sanduku_la_barua.mp3",
       "gain": -8.8,
       "gate": -96.6,
       "lead": 171,
@@ -9795,7 +9795,7 @@
     },
     "sasa hivi": {
       "author": "Waithera Were",
-      "file": "words/sasau0020hivi.mp3",
+      "file": "words/sasa_hivi.mp3",
       "gain": -5.5,
       "gate": -68.8,
       "lead": 25,
@@ -10003,7 +10003,7 @@
     },
     "siku hizi": {
       "author": "Waithera Were",
-      "file": "words/sikuu0020hizi.mp3",
+      "file": "words/siku_hizi.mp3",
       "gain": -4.9,
       "gate": -67.9,
       "lead": 38,
@@ -10014,7 +10014,7 @@
     },
     "siku ya kuzaliwa": {
       "author": "Waithera Were",
-      "file": "words/sikuu0020yau0020kuzaliwa.mp3",
+      "file": "words/siku_ya_kuzaliwa.mp3",
       "gain": -7.9,
       "gate": -95.7,
       "lead": 202,
@@ -10036,7 +10036,7 @@
     },
     "sina pesa": {
       "author": "Waithera Were",
-      "file": "words/sinau0020pesa.mp3",
+      "file": "words/sina_pesa.mp3",
       "gain": -12.6,
       "gate": -66.3,
       "lead": 36,
@@ -10113,7 +10113,7 @@
     },
     "soma kwa sauti": {
       "author": "Waithera Were",
-      "file": "words/somau0020kwau0020sauti.mp3",
+      "file": "words/soma_kwa_sauti.mp3",
       "gain": -6.3,
       "gate": -98.0,
       "lead": 133,
@@ -10146,7 +10146,7 @@
     },
     "stesheni ya treni": {
       "author": "Waithera Were",
-      "file": "words/stesheniu0020yau0020treni.mp3",
+      "file": "words/stesheni_ya_treni.mp3",
       "gain": -9.5,
       "gate": -67.1,
       "lead": 32,
@@ -10759,7 +10759,7 @@
     },
     "unatoka wapi": {
       "author": "Waithera Were",
-      "file": "words/unatokau0020wapi.mp3",
+      "file": "words/unatoka_wapi.mp3",
       "gain": -9.7,
       "gate": -59.3,
       "lead": 40,
@@ -10858,7 +10858,7 @@
     },
     "usiku mwema": {
       "author": "Waithera Were",
-      "file": "words/usikuu0020mwema.mp3",
+      "file": "words/usiku_mwema.mp3",
       "gain": -7.2,
       "gate": -63.2,
       "lead": 40,
@@ -10869,7 +10869,7 @@
     },
     "usiku wa manane": {
       "author": "Waithera Were",
-      "file": "words/usikuu0020wau0020manane.mp3",
+      "file": "words/usiku_wa_manane.mp3",
       "gain": -7.9,
       "gate": -97.6,
       "lead": 243,
@@ -10913,7 +10913,7 @@
     },
     "uwanja wa ndege": {
       "author": "Byera04",
-      "file": "words/uwanjau0020wau0020ndege.mp3",
+      "file": "words/uwanja_wa_ndege.mp3",
       "gain": 4.4,
       "gate": -66.0,
       "lead": 187,
@@ -11265,7 +11265,7 @@
     },
     "vitunguu saumu": {
       "author": "Waithera Were",
-      "file": "words/vitunguuu0020saumu.mp3",
+      "file": "words/vitunguu_saumu.mp3",
       "gain": -10.5,
       "gate": -65.1,
       "lead": 39,
@@ -11309,7 +11309,7 @@
     },
     "viwanja vya ndege": {
       "author": "Waithera Were",
-      "file": "words/viwanjau0020vyau0020ndege.mp3",
+      "file": "words/viwanja_vya_ndege.mp3",
       "gain": -11.0,
       "gate": -67.2,
       "lead": 35,
@@ -11386,7 +11386,7 @@
     },
     "vyuo vikuu": {
       "author": "Waithera Were",
-      "file": "words/vyuou0020vikuu.mp3",
+      "file": "words/vyuo_vikuu.mp3",
       "gain": -8.4,
       "gate": -63.4,
       "lead": 33,
@@ -11831,7 +11831,7 @@
     },
     "wiki ijayo": {
       "author": "Waithera Were",
-      "file": "words/wikiu0020ijayo.mp3",
+      "file": "words/wiki_ijayo.mp3",
       "gain": -10.2,
       "gate": -99.2,
       "lead": 223,
