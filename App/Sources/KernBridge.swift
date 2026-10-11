@@ -119,20 +119,10 @@ extension LetterDrill {
     func format(sprosse: Int) -> LetterFormat { formatFor(sprosse: Int32(sprosse)) }
 }
 
-/// Same bridge for the atlas drill: its ladder is Kotlin `Int`, its ceiling and
-/// its Sprosse length are its own, and no view of it writes `Int32(…)`.
+/// Same bridge for the atlas drill: its ladder is Kotlin `Int`, its ceiling is
+/// its own, and no view of it writes `Int32(…)`.
 extension CountryDrill {
     var ceiling: Int { Int(MAX_SPROSSE) }
-
-    func step(sprosse: Int, winsAtSprosse: Int, correct: Bool, clean: Bool,
-              fast: Bool) -> DrillRamp.SprosseStep {
-        step(sprosse: Int32(sprosse), winsAtSprosse: Int32(winsAtSprosse),
-             correct: correct, clean: clean, fast: fast)
-    }
-
-    /// Whether the top Sprosse has EVER been stood on — the whole price of fast
-    /// mode, kept in kern so the page never spells the number out itself.
-    func fastUnlocked(bestSprosse: Int) -> Bool { fastUnlocked(bestSprosse: Int32(bestSprosse)) }
 }
 
 /// Same bridge for the dates drill. Its ladder has no constant ceiling: how
@@ -143,15 +133,20 @@ extension DateDrill {
         Int(maxSprosse(content: content, reverse: reverse))
     }
 
-    /// Whether the top Sprosse has EVER been stood on — the whole price of fast
-    /// mode, kept in kern so the page never spells the number out itself.
-    func fastUnlocked(bestSprosse: Int, content: DateDrillContent, reverse: Bool) -> Bool {
-        fastUnlocked(bestSprosse: Int32(bestSprosse), content: content, reverse: reverse)
-    }
-
     func kinds(content: DateDrillContent, sprosse: Int, reverse: Bool) -> [DateTaskKind] {
         kinds(content: content, sprosse: Int32(sprosse), reverse: reverse)
     }
+}
+
+/// The pricing both pair drills share, on the drill's own ceiling.
+extension PairDrill {
+    /// Whether the top Sprosse has EVER been stood on — the whole price of fast
+    /// mode, kept in kern so the page never spells the number out itself.
+    func fastUnlocked(bestSprosse: Int, top: Int) -> Bool {
+        fastUnlocked(bestSprosse: Int32(bestSprosse), top: Int32(top))
+    }
+
+    func fastPrice(top: Int) -> Int { Int(fastPrice(top: Int32(top))) }
 }
 
 // MARK: - Kern → Design value types

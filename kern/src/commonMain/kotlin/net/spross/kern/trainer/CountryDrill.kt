@@ -43,35 +43,6 @@ object CountryDrill {
     /** Where a pair's atlas ladder is filed: one per pair, since both languages shape its questions. */
     fun storageKey(source: Language, target: Language): String = "countries.$source-$target"
 
-    /** Three clean wins a Sprosse ([DrillRamp.USUAL_WINS]): more Sprossen, and more rows standing on each of them. */
-    const val WINS_TO_ADVANCE = DrillRamp.USUAL_WINS
-
-    /**
-     * How LONG a Sprosse is. Fast spends one clean win instead of the three, and is the reward
-     * for having topped the ladder the hard way ([fastUnlocked]) — the numbers drill's rule
-     * ([Numbers.winsToAdvance]), read off this ladder's own pacing.
-     */
-    fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else WINS_TO_ADVANCE
-
-    /**
-     * Whether the Fast modifier is on offer at all. Having EVER stood on the top Sprosse is the
-     * price — [bestSprosse] is the highest Sprosse any run reached, which is what the app keeps.
-     */
-    fun fastUnlocked(bestSprosse: Int): Boolean = bestSprosse >= FAST_PRICE
-
-    /** The Sprosse that earns Fast, as the locked switch prices it: the top one. */
-    const val FAST_PRICE: Int = MAX_SPROSSE
-
-    /** The Sprosse ramp, on the ladder's Sprosse length ([DrillRamp.step]). */
-    fun step(
-        sprosse: Int,
-        winsAtSprosse: Int,
-        correct: Boolean,
-        clean: Boolean,
-        fast: Boolean = false,
-    ): DrillRamp.SprosseStep =
-        DrillRamp.step(sprosse, winsAtSprosse, correct, clean, winsToAdvance(fast))
-
     /** How far out [sprosse] reaches — tier 1 is the profile's own, 4 the regional rest. */
     fun tierCeiling(sprosse: Int): Int = when (sprosse.coerceIn(1, MAX_SPROSSE)) {
         1, 2, 3 -> 1
@@ -212,18 +183,6 @@ object CountryDrill {
         DrillSolved.cleared(solved, MAX_SPROSSE) { sprosse ->
             tasks(content, sprosse, reverse).map { DrillSolved.key(it) }
         }
-
-    /**
-     * The language an answer is owed in — the learned one, or the learner's own where the
-     * run is turned round. Named here because the page that opens a run has to build the
-     * grader for it before there is a run to ask.
-     */
-    fun answerLanguage(content: CountryDrillContent, reverse: Boolean): Language =
-        if (reverse) content.source else content.target
-
-    /** The other side of the same pair: the language the prompt is written in. */
-    fun promptLanguage(content: CountryDrillContent, reverse: Boolean): Language =
-        if (reverse) content.target else content.source
 
     /**
      * The overview table, from the same joined rows the drill grades against — a reference

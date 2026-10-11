@@ -62,25 +62,10 @@ class DateDrillTests {
         )
     }
 
+    /** The NUMBER climbs past the short ladder's last named Sprosse, and asks the top Sprosse's questions up there. */
     @Test
-    fun fastIsOfferedOnlyOnceThisLaddersTopSprosseHasBeenReached() {
-        assertFalse(DateDrill.fastUnlocked(2, german, reverse = false))
-        assertTrue(DateDrill.fastUnlocked(6, german, reverse = false))
-        assertTrue(DateDrill.fastUnlocked(5, ukrainian, reverse = false), "the short ladder tops at 5")
-        assertTrue(DateDrill.fastUnlocked(5, german, reverse = true), "one Sprosse shorter back")
-    }
-
-    /** The ramp moves on this pair's own ceiling, and fast climbs on a single win. */
-    @Test
-    fun theRampMovesOnThisPairsOwnCeiling() {
-        assertEquals(2, DateDrill.step(german, false, 1, 0, correct = true, clean = true, fast = true).sprosse)
-        val top = DateDrill.step(ukrainian, false, 6, 2, correct = true, clean = true, fast = false)
-        assertEquals(7, top.sprosse, "the number climbs past the short ladder's last named Sprosse")
-        assertEquals(
-            DateDrill.kinds(ukrainian, 6, reverse = false),
-            DateDrill.kinds(ukrainian, top.sprosse, reverse = false),
-            "and asks the top Sprosse's questions up there",
-        )
+    fun aSprossePastTheTopAsksTheTopSprossesQuestions() {
+        assertEquals(DateDrill.kinds(ukrainian, 5, reverse = false), DateDrill.kinds(ukrainian, 7, reverse = false))
     }
 
     // MARK: - Task shapes
@@ -441,13 +426,5 @@ class DateDrillTests {
         assertEquals("березня", march.dateForm)
         val saturday = DateDrill.reference(german)[0].rows[5]
         assertEquals(listOf("Sonnabend"), saturday.teaches)
-    }
-
-    @Test
-    fun theDirectionSettlesTheLanguages() {
-        assertEquals("de", DateDrill.answerLanguage(german, reverse = false))
-        assertEquals("en", DateDrill.answerLanguage(german, reverse = true))
-        assertEquals("en", DateDrill.promptLanguage(german, reverse = false))
-        assertEquals("de", DateDrill.promptLanguage(german, reverse = true))
     }
 }

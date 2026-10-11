@@ -6,11 +6,11 @@ import androidx.compose.runtime.setValue
 import kotlin.random.Random
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.ToneKind
-import net.spross.kern.trainer.DateDrill
 import net.spross.kern.trainer.DateDrillIntent
 import net.spross.kern.trainer.DateDrillRun
 import net.spross.kern.trainer.DateDrillRunConfig
 import net.spross.kern.trainer.DateDrillRunState
+import net.spross.kern.trainer.PairDrill
 
 /**
  * One dates run as this platform holds it — the fourth sibling of [NumbersFlow],
@@ -111,7 +111,7 @@ fun AppModel.newDateDrill(
     rng: Random = Random.Default,
 ): DateDrillFlow? {
     val content = dates ?: return null
-    val info = catalog?.languages?.get(DateDrill.answerLanguage(content, reverse)) ?: return null
+    val info = catalog?.languages?.get(PairDrill.answerLanguage(content.source, content.target, reverse)) ?: return null
     val config = DateDrillRunConfig(
         content = content,
         reverse = reverse,

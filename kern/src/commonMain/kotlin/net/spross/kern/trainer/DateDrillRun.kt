@@ -179,7 +179,7 @@ object DateDrillRun {
     private fun advanced(state: DateDrillRunState, answer: DrillBooking): DateDrillRunState {
         val stood = state.withStanding(state.standing.answered(
             answer,
-            winsRequired = DateDrill.winsToAdvance(state.config.fast),
+            winsRequired = PairDrill.winsToAdvance(state.config.fast),
             solves = DrillSolved.key(state.task),
         ))
         // why: booked with the answer, so the word is shown for exactly the one card

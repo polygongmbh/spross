@@ -83,7 +83,7 @@ class DateDrillRunConfig(
     val reverse: Boolean,
     /**
      * Whether a Sprosse falls on ONE clean win instead of three. Its price is
-     * [DateDrill.fastUnlocked]'s and the page that opened the run has already paid it.
+     * [PairDrill.fastUnlocked]'s and the page that opened the run has already paid it.
      */
     val fast: Boolean,
     /**
@@ -104,7 +104,7 @@ class DateDrillRunConfig(
     val cleared: Set<Int> = emptySet(),
 ) {
     /** The language an answer is owed in — the learned one, or the learner's own reversed. */
-    val answerLanguage: Language get() = DateDrill.answerLanguage(content, reverse)
+    val answerLanguage: Language get() = PairDrill.answerLanguage(content.source, content.target, reverse)
 
     /** The calendar turned around for the refusal check — null exactly where [normalizer] is. */
     internal val nameIndex: DateNameIndex? by lazy {
@@ -112,7 +112,7 @@ class DateDrillRunConfig(
     }
 
     /** The language the prompt is written in — the other side of the same pair. */
-    val promptLanguage: Language get() = DateDrill.promptLanguage(content, reverse)
+    val promptLanguage: Language get() = PairDrill.promptLanguage(content.source, content.target, reverse)
 }
 
 /**

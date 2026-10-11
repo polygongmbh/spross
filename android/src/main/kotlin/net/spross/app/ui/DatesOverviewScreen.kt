@@ -6,6 +6,7 @@ import net.spross.app.TrainerStore
 import net.spross.app.dateSprosse
 import net.spross.app.startDateDrill
 import net.spross.kern.trainer.DateDrill
+import net.spross.kern.trainer.PairDrill
 
 /**
  * The Dates entry: the calendar as the two languages name it, and the place its drill is
@@ -31,7 +32,7 @@ fun DatesOverviewScreen(model: AppModel) {
             title = chrome.datesTitle.format(model.languageName(content.target)),
             page = TrainerStore.datesKey(content.source, content.target),
             standing = standing,
-            fastHint = chrome.trainerModifierFastHint.format(DateDrill.winsToAdvance(fast = false)),
+            fastHint = chrome.trainerModifierFastHint.format(PairDrill.winsToAdvance(fast = false)),
             reverseHint = { reverse ->
                 // Two sentences, not one: turned round the calendar asks for a DATE, which is
                 // written in digits rather than in either language.
@@ -39,8 +40,8 @@ fun DatesOverviewScreen(model: AppModel) {
                 reverseHint(model, line, content.source, content.target, reverse)
             },
             ceiling = { reverse -> DateDrill.maxSprosse(content, reverse) },
-            fastOpen = { reverse -> DateDrill.fastUnlocked(standing.bestSprosse, content, reverse) },
-            fastPrice = { reverse -> DateDrill.fastPrice(content, reverse) },
+            fastOpen = { reverse -> PairDrill.fastUnlocked(standing.bestSprosse, DateDrill.maxSprosse(content, reverse)) },
+            fastPrice = { reverse -> PairDrill.fastPrice(DateDrill.maxSprosse(content, reverse)) },
             // The wordings are keyed by KIND, not by row: the ladder has no fixed length.
             sprosse = { sprosse, reverse -> chrome.dateSprosse(DateDrill.kinds(content, sprosse, reverse)) },
             start = model::startDateDrill,

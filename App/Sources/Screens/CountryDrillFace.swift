@@ -21,7 +21,7 @@ enum CountryDrillFace: DrillFace {
 
     static func title(_ language: String) -> LocalizedStringKey { "countries.title \(language)" }
 
-    static var winsToAdvance: Int { Int(CountryDrill.shared.winsToAdvance(fast: false)) }
+    static var winsToAdvance: Int { Int(PairDrill.shared.winsToAdvance(fast: false)) }
 
     /// One line either way: the atlas swaps which language owes the answer and
     /// nothing else about what is owed.
@@ -47,11 +47,11 @@ enum CountryDrillFace: DrillFace {
     }
 
     static func fastUnlocked(best: Int, content: CountryDrillContent, reverse: Bool) -> Bool {
-        CountryDrill.shared.fastUnlocked(bestSprosse: best)
+        PairDrill.shared.fastUnlocked(bestSprosse: best, top: ceiling(content, reverse: reverse))
     }
 
     static func fastPrice(_ content: CountryDrillContent?, reverse: Bool) -> Int {
-        Int(CountryDrill.shared.FAST_PRICE)
+        PairDrill.shared.fastPrice(top: ceiling(content, reverse: reverse))
     }
 
     static func reference(model: AppModel, content: CountryDrillContent,
@@ -83,7 +83,7 @@ enum CountryDrillFace: DrillFace {
     // MARK: - The run
 
     static func answerLanguage(content: CountryDrillContent, reverse: Bool) -> String {
-        CountryDrill.shared.answerLanguage(content: content, reverse: reverse)
+        PairDrill.shared.answerLanguage(source: content.source, target: content.target, reverse: reverse)
     }
 
     static func open(content: CountryDrillContent, reverse: Bool, fast: Bool,

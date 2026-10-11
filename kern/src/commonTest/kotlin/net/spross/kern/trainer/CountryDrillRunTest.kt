@@ -110,6 +110,14 @@ class CountryDrillRunTest {
     private fun CountryDrillRunState.missed(): CountryDrillRunState =
         reduce(CountryDrillIntent.Reveal).state.reduce(CountryDrillIntent.ConfirmPending).state
 
+    /** Fast is earned by having STOOD on the top Sprosse: the app keeps the highest any run reached. */
+    @Test
+    fun fastIsOfferedOnlyOnceTheTopSprosseHasBeenReached() {
+        assertFalse(PairDrill.fastUnlocked(bestSprosse = 3, top = 6))
+        assertTrue(PairDrill.fastUnlocked(bestSprosse = 6, top = 6))
+        assertTrue(PairDrill.fastUnlocked(bestSprosse = 9, top = 6), "a stored best above the top")
+    }
+
     // MARK: - Where a run opens
 
     @Test
@@ -261,7 +269,7 @@ class CountryDrillRunTest {
     @Test
     fun threeCleanWinsCarryTheRun() {
         var run = open(sprosse = 5)
-        repeat(CountryDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
+        repeat(PairDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
         assertEquals(6, run.sprosse)
         assertEquals(6, run.bestSprosse)
         assertEquals(3, run.done)
@@ -291,7 +299,7 @@ class CountryDrillRunTest {
     @Test
     fun aMissDropsTheSprosseButNotTheOneTheRunReached() {
         var run = open(sprosse = 5)
-        repeat(CountryDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
+        repeat(PairDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
         assertEquals(6, run.sprosse)
         run = run.missed()
         assertEquals(5, run.sprosse)

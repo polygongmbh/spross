@@ -176,7 +176,7 @@ object CountryDrillRun {
     private fun advanced(state: CountryDrillRunState, answer: DrillBooking): CountryDrillRunState =
         state.withStanding(state.standing.answered(
             answer,
-            winsRequired = CountryDrill.winsToAdvance(state.config.fast),
+            winsRequired = PairDrill.winsToAdvance(state.config.fast),
             solves = DrillSolved.key(state.task),
         ))
 

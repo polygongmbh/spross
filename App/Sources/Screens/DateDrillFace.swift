@@ -23,7 +23,7 @@ enum DateDrillFace: DrillFace {
 
     static func title(_ language: String) -> LocalizedStringKey { "dates.title \(language)" }
 
-    static var winsToAdvance: Int { Int(DateDrill.shared.winsToAdvance(fast: false)) }
+    static var winsToAdvance: Int { Int(PairDrill.shared.winsToAdvance(fast: false)) }
 
     /// Turned round the calendar asks for a DATE, written in digits rather than
     /// in either language — which is a different sentence, not a swapped one.
@@ -54,11 +54,11 @@ enum DateDrillFace: DrillFace {
     }
 
     static func fastUnlocked(best: Int, content: DateDrillContent, reverse: Bool) -> Bool {
-        DateDrill.shared.fastUnlocked(bestSprosse: best, content: content, reverse: reverse)
+        PairDrill.shared.fastUnlocked(bestSprosse: best, top: ceiling(content, reverse: reverse))
     }
 
     static func fastPrice(_ content: DateDrillContent?, reverse: Bool) -> Int {
-        content.map { Int(DateDrill.shared.fastPrice(content: $0, reverse: reverse)) } ?? 1
+        PairDrill.shared.fastPrice(top: ceiling(content, reverse: reverse))
     }
 
     static func reference(model: AppModel, content: DateDrillContent,
@@ -89,7 +89,7 @@ enum DateDrillFace: DrillFace {
     // MARK: - The run
 
     static func answerLanguage(content: DateDrillContent, reverse: Bool) -> String {
-        DateDrill.shared.answerLanguage(content: content, reverse: reverse)
+        PairDrill.shared.answerLanguage(source: content.source, target: content.target, reverse: reverse)
     }
 
     static func open(content: DateDrillContent, reverse: Bool, fast: Bool,

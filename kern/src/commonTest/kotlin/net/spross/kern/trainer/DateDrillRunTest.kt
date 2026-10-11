@@ -151,7 +151,7 @@ class DateDrillRunTest {
     @Test
     fun theCloseReportsTheSprosseTheRunStoodOn() {
         var run = open(sprosse = 3)
-        repeat(DateDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
+        repeat(PairDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
         run = run.reduce(DateDrillIntent.Reveal).state.reduce(DateDrillIntent.ConfirmPending).state
         assertEquals(3, run.sprosse)
         assertEquals(4, DateDrillRun.close(run, standingRecord = 0).bestSprosse)

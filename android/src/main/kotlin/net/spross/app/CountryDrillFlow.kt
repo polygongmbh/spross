@@ -3,11 +3,11 @@ package net.spross.app
 import kotlin.random.Random
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.ToneKind
-import net.spross.kern.trainer.CountryDrill
 import net.spross.kern.trainer.CountryDrillIntent
 import net.spross.kern.trainer.CountryDrillRun
 import net.spross.kern.trainer.CountryDrillRunConfig
 import net.spross.kern.trainer.CountryDrillRunState
+import net.spross.kern.trainer.PairDrill
 
 /**
  * One atlas run as this platform holds it — the third sibling of [NumbersFlow] and
@@ -92,7 +92,7 @@ fun AppModel.newCountryDrill(
     rng: Random = Random.Default,
 ): CountryDrillFlow? {
     val content = atlas ?: return null
-    val info = catalog?.languages?.get(CountryDrill.answerLanguage(content, reverse)) ?: return null
+    val info = catalog?.languages?.get(PairDrill.answerLanguage(content.source, content.target, reverse)) ?: return null
     val config = CountryDrillRunConfig(
         content = content,
         reverse = reverse,
