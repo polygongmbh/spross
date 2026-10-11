@@ -3,6 +3,7 @@ package net.spross.kern.trainer
 import kotlin.random.Random
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.Match
+import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
 /**
