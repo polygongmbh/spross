@@ -17,7 +17,8 @@ import tempfile
 import unicodedata
 
 import audio_index
-from audio_gates import LICENSE_URLS, UNSHIPPABLE_LICENSES, digest_of, speech_key
+import audio_judge
+from audio_gates import LICENSE_URLS, digest_of, speech_key
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUDIO = os.environ.get('AUDIO_CATALOG') or os.path.join(ROOT, 'catalog', 'audio')
@@ -177,22 +178,11 @@ def copy_and_analyze(copies):
     return analyzed
 
 
-def refusal(take, index):
-    """(reason, detail) for why [take] may not replace what ships, or None."""
-    if take['license'] in UNSHIPPABLE_LICENSES or take['license'] not in LICENSE_URLS:
-        return 'license', take['license']
-    if index is None:
-        return 'silent', 'decodes to silence'
-    if abs(index.get('gain', 0)) > audio_index.GAIN_LIMIT_DB:
-        return 'unmeasurable', 'gain %.1f dB is past ±%.0f' % (index['gain'], audio_index.GAIN_LIMIT_DB)
-    return None
-
-
 def put(lang, takes, dry_run=False):
     """Ship [takes] — dicts of `section key mp3 source author license` and, for an article, `word` —
     into [lang]'s manifest, each replacing whatever its key held. → `{(section, key): refusal or None}`.
 
-    Every take is copied aside, measured and judged first; only one that passes replaces the
+    Every take is copied aside, measured and judged (`audio_judge.py`) first; only one that passes replaces the
     entry and file standing under its key, so a refused take leaves the recording it would have
     replaced exactly where it was. [dry_run] judges and writes nothing.
     """
@@ -209,7 +199,8 @@ def put(lang, takes, dry_run=False):
             section, key = take['section'], take['key']
             shipped = manifest.setdefault(section, {})
             digest = digest_of(path)
-            why = refusal(take, indexes[path]) or next(
+            judged = audio_judge.judge(dict(take, lang=lang, sha256=digest, path=path), indexes[path])
+            why = judged.refused or next(
                 (('shipped-collision', '"%s" already ships as other bytes' % other)
                  for other, item in shipped.items()
                  if other != key and speech_key(other) == speech_key(key) and item['sha256'] != digest), None)

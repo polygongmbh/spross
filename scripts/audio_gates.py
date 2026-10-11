@@ -193,19 +193,25 @@ def keep_named_by_its_file(rows, drops):
     """
     kept = []
     for row in rows:
-        match = LINGUA_LIBRE.match(unicodedata.normalize("NFC", row["file"]))
-        author = apostrophe_folded(row["author"].strip().lower())
-        # why: the tail is apostrophe-folded like the speech key it is compared against —
-        # Commons titles French elision with U+2019 while the catalog writes U+0027.
-        rest = apostrophe_folded(unicodedata.normalize("NFC", match.group("rest")).lower()) if match else ""
-        if not match or not author or not rest.startswith(author + "-"):
-            kept.append(row)
-        elif rest[len(author) + 1:] == stress_free(speech_key(row["text"])):
+        if named_by_its_file(row["file"], row["author"], row["text"]):
             kept.append(row)
         else:
             drops.append(("misnamed", row["text"], '%s is not %s saying "%s"'
                           % (row["file"], row["author"], row["text"])))
     return kept
+
+
+def named_by_its_file(file, author, text):
+    """[keep_named_by_its_file] for one take: False only where a Lingua Libre [file] opens with
+    its credited [author] and the rest is not [text]."""
+    match = LINGUA_LIBRE.match(unicodedata.normalize("NFC", file))
+    author = apostrophe_folded(author.strip().lower())
+    # why: the tail is apostrophe-folded like the speech key it is compared against —
+    # Commons titles French elision with U+2019 while the catalog writes U+0027.
+    rest = apostrophe_folded(unicodedata.normalize("NFC", match.group("rest")).lower()) if match else ""
+    if not match or not author or not rest.startswith(author + "-"):
+        return True
+    return rest[len(author) + 1:] == stress_free(speech_key(text))
 
 
 def keep_unambiguous(rows, mp3_dir, drops):
@@ -253,20 +259,22 @@ def commons_authors(sources):
     return resolved
 
 
+def names_nobody(author):
+    """A placeholder or a bot's guess at the uploader: no credit a BY notice can carry."""
+    return author.strip().lower() in JUNK_AUTHORS or bool(ASSUMED_AUTHOR.search(author))
+
+
 def attribute(rows, drops):
     """Gate 4: re-resolve placeholder authorship against Commons, drop what stays anonymous."""
-    def unnamed(author):
-        return author.strip().lower() in JUNK_AUTHORS or bool(ASSUMED_AUTHOR.search(author))
-
-    files = sorted({row['file'] for row in rows if unnamed(row['author'])})
+    files = sorted({row['file'] for row in rows if names_nobody(row['author'])})
     if not files:
         return rows
     print('  resolving %d unattributed file(s) against Commons…' % len(files))
     resolved = commons_authors(files)
     kept = []
     for row in rows:
-        author = resolved.get(row['file'].replace('_', ' '), '') if unnamed(row['author']) else row['author']
-        if unnamed(author):
+        author = resolved.get(row['file'].replace('_', ' '), '') if names_nobody(row['author']) else row['author']
+        if names_nobody(author):
             drops.append(('unattributable', row.get('text', '?'),
                           '%s credits nobody' % row['file']))
         else:

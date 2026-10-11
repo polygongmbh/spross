@@ -71,6 +71,9 @@ GATE_MARGIN_DB = 6.0
 # kern `Playback.GATE_FLOOR_DB`: below it a file is digital silence and needs no gate.
 GATE_FLOOR_DB = -100.0
 
+# The fields [playback_index] writes onto an entry.
+INDEX_FIELDS = ('gain', 'cap', 'lead', 'gate', 'mos')
+
 
 def playback_index(loudness, leading, peak, noise, loudest, mos, perceived):
     """The optional `gain`/`cap`/`lead`/`gate` plus `mos` for one entry — absent when there is nothing to say.

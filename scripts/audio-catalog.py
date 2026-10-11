@@ -19,15 +19,16 @@ Reading, writing and editing one shipped manifest is `audio_manifest.py`.
 Deterministic: sorted keys, 2-space indent, unchanged packs give byte-identical output.
 """
 import argparse
+import concurrent.futures
 import csv
 import os
 import shutil
 import sys
 
+import audio_judge
 import audio_manifest
 import audio_measure
-from audio_index import ANALYSIS, FFMPEG, GAIN_LIMIT_DB, playback_index
-from audio_voices import is_one_sided, is_rejected, mos_floor
+from audio_index import ANALYSIS, FFMPEG, INDEX_FIELDS, playback_index
 from audio_gates import (APOSTROPHES, UNSHIPPABLE_LICENSES, attribute, digest_of,
                          keep_article_forms, keep_named_by_its_file, keep_reachable,
                          keep_unambiguous, speech_key, spoken_target_form)
@@ -464,28 +465,17 @@ def fill_words(packs, languages, reseat=False):
         for row in fresh:
             form = row['text']
             digest, index = analyzed[form]
-            # why: the floor is applied AFTER the copy, because `mos` is measured off the
-            # bytes that landed and nothing earlier knows it. The file is then removed
-            # again rather than left orphaned in the tree.
-            # why: the kern parser refuses a gain past ±GAIN_LIMIT_DB, and so every test that
-            # loads the catalog; such a gain is a clipped or broken file, not one to correct.
-            if any(abs(index.get(field, 0)) > GAIN_LIMIT_DB for field in ('gain',)):
-                drops.append(('unmeasurable', row['text'], 'gain %.1f dB is past ±%.0f — clipped'
-                              % (index.get('gain', 0), GAIN_LIMIT_DB)))
-                os.remove(os.path.join(out_dir, form_file('words', form)))
-                continue
-            # A word refused here is spoken by the device voice, as before the fill;
-            # `requalify-pack.py` is how a pack finds a cleaner take of it.
-            heard = is_rejected(digest, lang, row['author'])
-            if heard or index.get('mos', mos_floor(lang)) < mos_floor(lang):
-                drops.append(('poor', row['text'], 'heard as bad' if heard else
-                              'mos %.2f, floor is %.2f' % (index['mos'], mos_floor(lang))))
-                os.remove(os.path.join(out_dir, form_file('words', form)))
-                continue
-            balance = audio_measure.side_balance(FFMPEG, os.path.join(out_dir, form_file('words', form)))
-            if is_one_sided(balance):
-                drops.append(('one-sided', row['text'], '%.1f dB between its sides' % balance))
-                os.remove(os.path.join(out_dir, form_file('words', form)))
+            # why: judged AFTER the copy, because `mos` is measured off the bytes that landed
+            # and nothing earlier knows it; a refused file is removed again rather than left
+            # orphaned in the tree. A word refused here is spoken by the device voice, as
+            # before the fill; `requalify-pack.py` is how a pack finds a cleaner take of it.
+            path = os.path.join(out_dir, form_file('words', form))
+            verdict = audio_judge.judge(dict(lang=lang, section='words', key=form, source=row['file'],
+                                             author=row['author'], license=row['license'],
+                                             sha256=digest, path=path), index)
+            if verdict.refused:
+                drops.append((verdict.refused[0], form, verdict.refused[1]))
+                os.remove(path)
                 continue
             shipped[form] = entry(form_file('words', form), row['license'], row['author'],
                                   row['file'], digest, index, matches=form)
@@ -507,27 +497,37 @@ def fill_words(packs, languages, reseat=False):
         write_manifest(out_dir, dict(manifest, words=shipped))
 
 
+def shipped_take(lang, section, key, item, out_dir):
+    """A shipped entry as the judge reads a take, its bytes where they ship."""
+    return dict(lang=lang, section=section, key=key, source=item['source'], author=item['author'],
+                license=item['license'], sha256=item['sha256'], path=os.path.join(out_dir, item['file']))
+
+
 def prune_poor(languages):
-    """Remove every shipped recording under its language's `mos_floor` or heard as bad, file
-    and entry, so the device voice or silence takes over. Run `requalify-pack.py` first, so
-    such a word gets a better take where one exists."""
-    root = AUDIO
-    for lang in languages or sorted(os.listdir(root)):
-        out_dir = os.path.join(root, lang)
+    """Remove every shipped recording the take judge refuses (`audio_judge.py`) — under its
+    language's `mos_floor`, heard as bad, one-sided — file and entry, so the device voice or
+    silence takes over. Run `requalify-pack.py` first, so such a word gets a better take where
+    one exists."""
+    for lang in languages or sorted(os.listdir(AUDIO)):
+        out_dir = audio_dir(lang)
         if not os.path.isdir(out_dir):
             continue
         manifest = read_manifest(out_dir)
-        floor, pruned = mos_floor(lang), []
-        for section in SECTIONS:
-            for key, item in list(manifest.get(section, {}).items()):
-                heard = is_rejected(item['sha256'], lang, item['author'])
-                if heard or item.get('mos', floor) < floor:
-                    os.remove(os.path.join(out_dir, item['file']))
-                    del manifest[section][key]
-                    pruned.append('%s/%s %s%s' % (section, key, item.get('mos', '-'),
-                                                  ' (heard as bad)' if heard else ''))
-        print('  %s: %d pruned under mos %.2f%s' % (lang, len(pruned), floor,
-                                                   ''.join('\n    ' + p for p in pruned)))
+        entries = [(section, key, item) for section in SECTIONS
+                   for key, item in manifest.get(section, {}).items()]
+        # why: the shipped index stands for the bytes its sha256 pins, so only what it does
+        # not carry (the side balance, the squash) is measured, a few ffmpeg passes per file.
+        with concurrent.futures.ThreadPoolExecutor(max_workers=audio_measure.WORKERS) as pool:
+            judged = list(pool.map(lambda e: audio_judge.judge(
+                shipped_take(lang, e[0], e[1], e[2], out_dir),
+                {field: e[2][field] for field in INDEX_FIELDS if field in e[2]}), entries))
+        pruned = []
+        for (section, key, item), verdict in zip(entries, judged):
+            if verdict.refused:
+                os.remove(os.path.join(out_dir, item['file']))
+                del manifest[section][key]
+                pruned.append('%s/%s %s: %s' % (section, key, verdict.refused[0], verdict.refused[1]))
+        print('  %s: %d pruned%s' % (lang, len(pruned), ''.join('\n    ' + p for p in pruned)))
         if pruned:
             write_manifest(out_dir, manifest)
 
@@ -554,8 +554,9 @@ def main():
                         help='with --fill, also replace every shipped word whose pack row now '
                              'names a different Commons file')
     parser.add_argument('--prune-poor', action='store_true',
-                        help="remove shipped recordings under their language's mos floor or heard as bad "
-                             '(scripts/audio_voices.py); no packs needed')
+                        help='remove shipped recordings the take judge refuses — under their '
+                             "language's mos floor, heard as bad, one-sided (scripts/audio_judge.py); "
+                             'no packs needed')
     parser.add_argument('--restore', nargs=3, metavar=('LANG', 'SECTION', 'KEY'),
                         help='put back the entry and bytes KEY held at --from REV')
     parser.add_argument('--from', dest='rev', metavar='REV', help='the git revision --restore reads')

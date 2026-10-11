@@ -35,10 +35,12 @@ scripts/audio-coverage.py --missing <lang>                   # what nobody has r
 
 The fill's own drops are the quality check: `poor` (under its language's floor, or heard as bad),
 `unmeasurable` (clipped), `one-sided` (one channel near silent), `misnamed`, `unreachable`
-and `shipped-collision` each name the row and why. Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
+and `shipped-collision` each name the row and why;
+what a take must pass on its own is the take judge's (`../../scripts/audio_judge.py`).
+Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
 and the floor follows the device voice (`../../scripts/audio_voices.py`): where it is
 missing (eo, sw) only the clearly bad are refused, where it is good a recording has to beat
-it, and `--prune-poor` hands anything shipped under the floor to it.
+it, and `--prune-poor` hands anything shipped that the judge now refuses to it.
 
 A full sweep also re-checks what already ships, in any language: anything not clearly good
 has every other take of its word fetched and compared, and the best one wins.
@@ -54,7 +56,7 @@ $W/requalify-pack.py --lang <lang> <route>                  # under 2.8, squashe
 $W/requalify-pack.py --lang <lang> --pack $W/pack-<lang>-<section> <route>  # the same for calendar, countries
 scripts/audio-catalog.py --packs $W --lang <lang> --fill --reseat   # ships the chosen swaps
 scripts/audio-catalog.py --packs $W --lang <lang> --<section>       # ships that section's pack whole
-scripts/audio-catalog.py --lang <lang> --prune-poor         # what is still under the floor
+scripts/audio-catalog.py --lang <lang> --prune-poor         # what the judge still refuses
 ```
 
 A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source:
