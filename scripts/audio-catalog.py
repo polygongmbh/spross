@@ -655,10 +655,13 @@ def fill_words(packs, languages, reseat=False):
         manifest = read_manifest(out_dir)
         shipped = manifest.get('words', {})
         print('pack-%s-words fill' % lang)
+        held = {}
         if reseat:
             # why: a pack row naming another Commons file than the shipped entry is a swap
-            # somebody decided (`consolidate-pack.py`, `requalify-pack.py`) — the entry goes,
-            # and the fill below ships the row as it would a new word, measured afresh.
+            # somebody decided (`consolidate-pack.py`, `requalify-pack.py`) — the entry is set
+            # aside, and the fill below ships the row as it would a new word, measured afresh.
+            # Only once the replacement passes every gate does the old take go; one refused
+            # puts it back, so a reseat never leaves a word without the recording it had.
             # Run `sync-from-shipped.py` first, or a drifted pack reseats words nobody chose.
             by_form = {}
             for row in read_rows(os.path.join(pack, 'manifest.tsv')):
@@ -675,7 +678,9 @@ def fill_words(packs, languages, reseat=False):
                 elif not any(row['file'].replace('_', ' ') == item['source'].replace('_', ' ')
                              for row in rows):
                     print('  reseat %-18s %s -> %s' % (key, item['source'], rows[0]['file']))
-                    os.remove(os.path.join(out_dir, item['file']))
+                    os.rename(os.path.join(out_dir, item['file']),
+                              os.path.join(out_dir, item['file'] + '.held'))
+                    held[key] = item
                     del shipped[key]
 
         drops = []
@@ -727,6 +732,17 @@ def fill_words(packs, languages, reseat=False):
                 continue
             shipped[form] = entry(form_file('words', form), row['license'], row['author'],
                                   row['file'], digest, index, matches=form)
+        landed = {speech_key(form) for form in shipped}
+        for key, item in held.items():
+            old = os.path.join(out_dir, item['file'])
+            if speech_key(key) in landed:
+                os.remove(old + '.held')
+            else:
+                if os.path.exists(old):
+                    os.remove(old)
+                os.rename(old + '.held', old)
+                shipped[key] = item
+                drops.append(('reseat-refused', key, 'keeps %s' % item['source']))
         for reason, form, detail in sorted(drops):
             print('  drop %-18s %-22s %s' % (reason, form, detail))
         added = sum(1 for row in fresh if row['text'] in shipped)
