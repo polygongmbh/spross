@@ -10,7 +10,7 @@ import net.spross.kern.session.TurnFeedback
 /**
  * The read surface every drill run shares, whatever it happens to ask: [NumbersRunState],
  * [LetterDrillRunState], [WordScrambleRunState], [SentenceScrambleRunState],
- * [OppositesRunState], [CountryDrillRunState] and [DateDrillRunState] each embed a
+ * [OppositesRunState] and [PairDrillRunState] each embed a
  * [DrillRunCore] and answer with the same [TurnFeedback] vocabulary, so what a question is
  * worth and whether the run offers a way out — under the button, or as a pause
  * ([DrillPacing]) — is one formula.

@@ -152,11 +152,11 @@ All verified by `rg`; each line names what used to be, not what is.
 - Fix: describe `onFinish` as what a listening beat arms off (Android's `Speaker.kt:52`/`PronunciationPlayer.kt:54-58` already word it that way). Size: S. Gate: none. Confidence: verified.
 
 ### D4. Dead Swift bridges in `KernBridge.swift`
-- Evidence: `App/Sources/KernBridge.swift:117` `LetterDrill.ceiling(dictation:)`, `:119` `LetterDrill.format(sprosse:)`, `:127-131` `CountryDrill.step(sprosse:…)` — `rg -n 'ceiling\(dictation|format\(sprosse:|\.step\(sprosse:' App` finds only the declarations. `CountryDrill.ceiling` (`:125`) and `DateDrill.ceiling(content:reverse:)` (`:142`) are live but rename kern's `MAX_SPROSSE`/`maxSprosse` — Android calls the kern names (`CountriesOverviewScreen.kt:38`, `DatesOverviewScreen.kt:41`), so a reader of both sees two names for one rule.
-- Fix: delete the three dead bridges; keep the `Int32` conversions but name them after kern (`maxSprosse`). Size: S. Gate: Mac. Confidence: verified.
+- Evidence: `App/Sources/KernBridge.swift:117` `LetterDrill.ceiling(dictation:)`, `:119` `LetterDrill.format(sprosse:)` (`CountryDrill.step(sprosse:…)` is gone) — `rg -n 'ceiling\(dictation|format\(sprosse:' App` finds only the declarations. `CountryDrill.ceiling` (`:125`) and `DateDrill.ceiling(content:reverse:)` (`:142`) are live but rename kern's `MAX_SPROSSE`/`maxSprosse` — Android calls the kern names (`CountriesOverviewScreen.kt:38`, `DatesOverviewScreen.kt:41`), so a reader of both sees two names for one rule.
+- Fix: delete the two dead bridges; keep the `Int32` conversions but name them after kern (`maxSprosse`). Size: S. Gate: Mac. Confidence: verified.
 
-### D5. Seven copies of the UI-test "stand the run mid-streak" arithmetic
-- Evidence: `done: Int32(answerStreak + 6)`, `bestAnswerStreak: Int32(max(answerStreak, 12))` plus the full `core.doCopy(...)` field list at `CountryDrillFace.swift:139-154`, `DateDrillFace.swift:140-155`, `LetterDrillView+Run.swift:91-106`, `WordScrambleView+Run.swift:80-95`, `SentenceScrambleView+Run.swift:83-98`, `OppositesView+Run.swift:71-86`, `NumbersRunView+UITest.swift:15-18`.
+### D5. Six copies of the UI-test "stand the run mid-streak" arithmetic
+- Evidence: `done: Int32(answerStreak + 6)`, `bestAnswerStreak: Int32(max(answerStreak, 12))` plus the full `core.doCopy(...)` field list at `DrillFace.swift` `seededAnswerStreak` (the two pair faces share it), `LetterDrillView+Run.swift:91-106`, `WordScrambleView+Run.swift:80-95`, `SentenceScrambleView+Run.swift:83-98`, `OppositesView+Run.swift:71-86`, `NumbersRunView+UITest.swift:15-18`.
 - Why: a kern value (`DrillRunCore`) copied by hand seven times, each listing every `DrillRunCore` field — the next field added to the core is seven compile errors.
 - Fix: `DrillRunCore.seededStreak(answerStreak: Int): DrillRunCore` in kern (DEBUG-only use, but a one-liner), each face calls `run.doCopy(core: run.core.seededStreak(n), …)`; or one Swift extension on `DrillRunCore`.
 - Size: S. Gate: kern (no test) + Mac. Confidence: verified.
@@ -188,7 +188,7 @@ All verified by `rg`; each line names what used to be, not what is.
 ---
 
 ## Already in the backlog (not re-reported)
-`DrillRunView`/`DrillSnapshot` wrapping its scaffold by hand (C1 adds the Android twin); Pronouncer `onFinish` parity (iOS `Reader.saidAnswer` polling, `Reader.swift:59-64`); watch practice-lap order and watch time-based grading (`WatchGrading`); `CountryDrillRun`/`DateDrillRun` near-duplicate reducers; `Presentation.kt` past-justifying KDoc; the duplicate-why scan; the >300 list (corrected in E).
+`DrillRunView`/`DrillSnapshot` wrapping its scaffold by hand (C1 adds the Android twin); Pronouncer `onFinish` parity (iOS `Reader.saidAnswer` polling, `Reader.swift:59-64`); watch practice-lap order and watch time-based grading (`WatchGrading`); `Presentation.kt` past-justifying KDoc; the duplicate-why scan; the >300 list (corrected in E).
 
 ---
 

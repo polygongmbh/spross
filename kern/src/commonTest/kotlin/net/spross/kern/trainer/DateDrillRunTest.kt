@@ -8,14 +8,13 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.session.AnswerNormalizer
-import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Match
+import net.spross.kern.session.QuestionHint
 
 /**
- * What the dates run adds to the typed-drill verdicts it shares with the atlas run
- * ([TypedDrillVerdictsTest] pins those): the value check, the pattern word, the parse a
- * reversed run climbs into, and what a close leaves behind. The ladder, the draw and the
- * task shapes are [DateDrillTests]'.
+ * What the calendar brings to the shared run ([PairDrillRunTest] steps through that): the
+ * warm-up tiles, the value check, the pattern word, the parse a reversed run climbs into, and
+ * which Sprossen can be answered out. The ladder, the draw and the task shapes are [DateDrillTests]'.
  */
 class DateDrillRunTest {
 
@@ -38,14 +37,15 @@ class DateDrillRunTest {
     private fun open(reverse: Boolean = false, sprosse: Int = 1) =
         DateDrillRun.openAt(config(reverse), sprosse, Random(7))
 
-    private fun DateDrillRunState.reduce(intent: DateDrillIntent) =
+    private fun PairDrillRunState<DateDrillTask>.reduce(intent: PairDrillIntent) =
         DateDrillRun.reduce(this, intent, Random(7))
 
     /** The run stepped by one whole answer, the way the platform steps it. */
-    private fun DateDrillRunState.answered(text: String): DateDrillRunState =
-        reduce(DateDrillIntent.Submit(text)).state.reduce(DateDrillIntent.ConfirmPending).state
+    private fun PairDrillRunState<DateDrillTask>.answered(text: String): PairDrillRunState<DateDrillTask> =
+        reduce(PairDrillIntent.Submit(text)).state.reduce(PairDrillIntent.ConfirmPending).state
 
-    private fun DateDrillRunState.slipped(): String = task.display.dropLast(1) + "x"
+    private val PairDrillRunState<DateDrillTask>.patternWord: String?
+        get() = (question.hint as? QuestionHint.NewWord)?.word
 
     @Test
     fun aRunOpensOnTheWarmUpTiles() {
@@ -116,8 +116,8 @@ class DateDrillRunTest {
         assertTrue(run.task.digits, "the run never reached a date to parse")
         assertTrue(run.sprosse > 3)
         assertEquals("en", run.answerLanguage, "the digits are written in the learner's own format")
-        assertEquals(Match.Exact, DateDrillRun.grade(run.task.display, run.task, run.config))
-        assertNotEquals(Match.Exact, DateDrillRun.grade("the third of June", run.task, run.config))
+        assertEquals(Match.Exact, DateDrillRun.grade(run.task.display, run.task, config(reverse = true)))
+        assertNotEquals(Match.Exact, DateDrillRun.grade("the third of June", run.task, config(reverse = true)))
     }
 
     // MARK: - Answering out
@@ -143,25 +143,5 @@ class DateDrillRunTest {
         repeat(40) { run = run.answered(run.task.display) }
         val closed = DateDrillRun.close(run, standingRecord = 0)
         assertTrue(closed.clearedSprossen.none { it >= 4 }, "an assembled Sprosse was cleared")
-    }
-
-    // MARK: - Leaving
-
-    /** The close reports the Sprosse the run REACHED, which is what the page files. */
-    @Test
-    fun theCloseReportsTheSprosseTheRunStoodOn() {
-        var run = open(sprosse = 3)
-        repeat(PairDrill.WINS_TO_ADVANCE) { run = run.answered(run.task.display) }
-        run = run.reduce(DateDrillIntent.Reveal).state.reduce(DateDrillIntent.ConfirmPending).state
-        assertEquals(3, run.sprosse)
-        assertEquals(4, DateDrillRun.close(run, standingRecord = 0).bestSprosse)
-    }
-
-    /** Closing books a pending answer as the tap would ([LadderStanding.closing]). */
-    @Test
-    fun aPendingAnswerBooksOnTheWayOut() {
-        val opened = open()
-        val held = opened.reduce(DateDrillIntent.Submit(opened.slipped())).state
-        assertEquals(listOf(AnswerOutcome.Almost), DateDrillRun.close(held, standingRecord = 0).state.outcomes)
     }
 }

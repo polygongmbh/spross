@@ -238,7 +238,7 @@ class DrillWiringTest {
     )
 
     private fun countries(platform: DrillPlatform, reverse: Boolean = false, seed: Int = 5) =
-        CountryDrillFlow(
+        TypedDrillFlow(
             start = CountryDrillRun.open(
                 CountryDrillRunConfig(
                     content = atlas,
@@ -249,6 +249,7 @@ class DrillWiringTest {
                 ),
                 Random(seed),
             ),
+            run = CountryDrillRun,
             rng = Random(seed),
             onTone = { platform.tones += it },
             onReleaseFocus = { platform.focusReleases += 1 },

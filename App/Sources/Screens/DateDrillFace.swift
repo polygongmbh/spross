@@ -94,7 +94,7 @@ enum DateDrillFace: DrillFace {
 
     static func open(content: DateDrillContent, reverse: Bool, fast: Bool,
                      normalizer: AnswerNormalizer?, sprosse: Int?,
-                     standingRecord: Int, cleared: Set<KotlinInt>) -> DateDrillRunState {
+                     standingRecord: Int, cleared: Set<KotlinInt>) -> PairDrillRunState<DateDrillTask> {
         let config = DateDrillRunConfig(content: content, reverse: reverse, fast: fast,
                                         normalizer: normalizer, standingRecord: Int32(standingRecord),
                                         cleared: cleared)
@@ -102,7 +102,7 @@ enum DateDrillFace: DrillFace {
         return DateDrillRun.shared.openAt(config: config, sprosse: Int32(sprosse), rng: drillRandom)
     }
 
-    static func snapshot(_ run: DateDrillRunState) -> DrillSnapshot {
+    static func snapshot(_ run: PairDrillRunState<DateDrillTask>) -> DrillSnapshot {
         DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
                       answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
@@ -111,25 +111,15 @@ enum DateDrillFace: DrillFace {
                       choices: run.task.choices, digits: run.task.digits)
     }
 
-    static func reduce(_ run: DateDrillRunState, _ move: DrillMove) -> DrillStep<DateDrillRunState> {
-        let reduction = DateDrillRun.shared.reduce(state: run, intent: intent(move), rng: drillRandom)
+    static func reduce(_ run: PairDrillRunState<DateDrillTask>, _ move: DrillMove) -> DrillStep<PairDrillRunState<DateDrillTask>> {
+        let reduction = DateDrillRun.shared.reduce(state: run, intent: move.pairIntent, rng: drillRandom)
         return DrillStep(run: reduction.state, effects: reduction.effects)
     }
 
-    static func close(_ run: DateDrillRunState, standingRecord: Int) -> DrillEnd<DateDrillRunState> {
+    static func close(_ run: PairDrillRunState<DateDrillTask>, standingRecord: Int) -> DrillEnd<PairDrillRunState<DateDrillTask>> {
         let closed = DateDrillRun.shared.close(state: run, standingRecord: Int32(standingRecord))
         return DrillEnd(run: closed.state, summary: closed.summary,
                         bookings: closed.bookings(), effects: closed.effects)
-    }
-
-    private static func intent(_ move: DrillMove) -> DateDrillIntent {
-        switch move {
-        case .typed(let text): return DateDrillIntent.InputChanged(text: text)
-        case .submitted(let text): return DateDrillIntent.Submit(text: text)
-        case .confirmed: return DateDrillIntent.ConfirmPending.shared
-        case .advanced: return DateDrillIntent.AdvanceElapsed.shared
-        case .keptPracticing: return DateDrillIntent.KeepPracticing.shared
-        }
     }
 
     #if DEBUG
@@ -137,21 +127,9 @@ enum DateDrillFace: DrillFace {
 
     static var uitestBestKey: String { "uitest-dates-best" }
 
-    static func seedAnswerStreak(_ run: DateDrillRunState, _ answerStreak: Int) -> DateDrillRunState {
-        run.doCopy(config: run.config, task: run.task, index: run.index,
-                   sprosse: run.sprosse, bestSprosse: run.bestSprosse,
-                   winsAtSprosse: run.winsAtSprosse,
-                   core: run.core.doCopy(done: Int32(answerStreak + 6),
-                                         answerStreak: Int32(answerStreak),
-                                         bestAnswerStreak: Int32(max(answerStreak, 12)),
-                                         missRun: run.core.missRun,
-                                         outcomes: run.core.outcomes,
-                                         solved: run.core.solved,
-                                         slipped: run.core.slipped,
-                                         solvedClean: run.core.solvedClean,
-                                               pacing: run.core.pacing),
-                   feedback: run.feedback,
-                   otherWord: run.otherWord, seenKinds: run.seenKinds, finished: run.finished)
+    static func seedAnswerStreak(_ run: PairDrillRunState<DateDrillTask>,
+                                 _ answerStreak: Int) -> PairDrillRunState<DateDrillTask> {
+        seededAnswerStreak(run, answerStreak)
     }
     #endif
 }

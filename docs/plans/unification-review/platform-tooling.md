@@ -19,9 +19,9 @@ Scripts were read, never run (so the chrome-table agreement below was checked by
 - Why it matters: a `// why:` that describes a reader that is gone is the comment class CLAUDE.md forbids, and `askedByEar` carries a five-line rationale for a rule kern now owns.
 - Fix: delete both members with their comments. Size S. Gate: Mac. Confidence: verified.
 
-### 1.2 The DEBUG `seedAnswerStreak` hook is cut by hand at six sites and mints two numbers per site
+### 1.2 The DEBUG `seedAnswerStreak` hook is cut by hand at five sites and mints two numbers per site
 - Evidence: identical `run.core.doCopy(done: Int32(answerStreak + 6), answerStreak: ..., bestAnswerStreak: Int32(max(answerStreak, 12)), missRun: run.core.missRun, outcomes: ..., solved: ..., slipped: ..., solvedClean: ..., pacing: ...)` at
-  `OppositesView+Run.swift:71-87`, `WordScrambleView+Run.swift:80-`, `SentenceScrambleView+Run.swift:83-`, `LetterDrillView+Run.swift:91-106`, `CountryDrillFace.swift:139-155`, `DateDrillFace.swift:140-156` (the last two even keep a mis-indented `pacing:` line in common, which is how a paste travels).
+  `OppositesView+Run.swift:71-87`, `WordScrambleView+Run.swift:80-`, `SentenceScrambleView+Run.swift:83-`, `LetterDrillView+Run.swift:91-106`, and `DrillFace.swift` `seededAnswerStreak`, which the two pair faces share.
 - Why it matters: the `+6` / `max(…, 12)` seed shape is a value both platforms would compute if Android ever grew the same screenshot hook, and CLAUDE.md puts such a value in kern once; six copies of a nine-argument `doCopy` also break every time `DrillCore` gains a field.
 - Fix: one `DrillCore.seeded(answerStreak:)` in kern (or, if it must stay DEBUG-only Swift, one `extension DrillCore` in `DrillRunning.swift`) and six one-line calls; the per-run outer `doCopy` stays since each run state differs. Size M. Gate: kern jvmTest if kern, Mac for the Swift side. Confidence: verified.
 
@@ -107,7 +107,7 @@ Scripts were read, never run (so the chrome-table agreement below was checked by
   - Growable bottom sheet: `ui/BriefingSheet.kt:71-80`, `ui/OwnEntrySheet.kt:52-61` and `ui/CatalogMatchSheet.kt:~60-66` repeat `ModalBottomSheet { Column(fillMaxWidth) { Column(weight(1f, fill=false).verticalScroll().padding(lg), spacedBy(md)) {…} /* action outside */ } }`, with the `// why: the primary action stands OUTSIDE the scrolling half…` prose re-worded at each site — the "copy whose prose drifted" the backlog's duplicate-why line says a scan cannot catch.
 - Fix: `LearnerNameField(value, onChange)` and `GrowableSheet(onDismiss, action: @Composable, content: ColumnScope)` in `ui/Components.kt` (253 lines; or a new file). Size M. Gate: Android. Confidence: verified.
 
-### 2.5 `CountryDrillFlow.view()` / `DateDrillFlow.view()` are the same nine lines (adds to a backlog item)
+### ~~2.5 `CountryDrillFlow.view()` / `DateDrillFlow.view()` are the same nine lines~~ (done: one `TypedDrillFlow<T>`)
 - Evidence: `CountryDrillFlow.kt:63-71` and `DateDrillFlow.kt:82-90` build `TypedDrillView(index, sprosse, answerStreak, bestAnswerStreak, outcomes, tally, question)` identically.
 - Already in backlog ("`CountryDrillRun` and `DateDrillRun` reduce near line for line"); the Android mapping is a third copy of the same seam and collapses with the shared reducer — worth naming on that line so the kern change takes the two flows with it. Size S (rides along). Gate: Android. Confidence: verified.
 

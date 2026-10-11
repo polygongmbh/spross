@@ -1,22 +1,26 @@
 package net.spross.app
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import kotlin.random.Random
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.Question
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillBookings
-import net.spross.kern.trainer.DrillEffect
-import net.spross.kern.trainer.DrillRunProgress
 import net.spross.kern.trainer.DrillRunSummary
 import net.spross.kern.trainer.DrillTally
+import net.spross.kern.trainer.PairDrillIntent
+import net.spross.kern.trainer.PairDrillRun
+import net.spross.kern.trainer.PairDrillRunState
+import net.spross.kern.trainer.PairDrillTask
 
 /**
  * A TYPED endless drill — the atlas and the calendar — as its screen sees it.
  *
- * Their kern runs share no type: a country and a date are drawn, graded and laddered by
- * rules of their own, and kern keeps them apart. What the SCREEN does with either is one
- * thing — a card, a field, one primary action, a beat, a way out — so the run reaches it
- * through this face instead of through two screens written twice.
+ * Kern runs both on one reducer ([PairDrillRun]), each drawing, grading and laddering by
+ * rules of its own. What the SCREEN does with either is one thing — a card, a field, one
+ * primary action, a beat, a way out — so the run reaches it through this face.
  *
  * Nothing here decides anything: [view] is the run as it stands right now, read fresh every
  * composition, and the rest is the same handful of taps kern already names.
@@ -79,32 +83,43 @@ data class TypedDrillClose(
 )
 
 /**
- * The platform half of a typed endless drill — the atlas and the calendar — over whichever
- * run kern keeps it in.
+ * The platform half of a typed endless drill — the atlas and the calendar — over kern's one
+ * pair drill run ([PairDrillRun]), which [run] names the drill of.
  *
- * Their kern runs share no type on purpose: a country and a date are drawn, graded and
- * laddered by rules of their own. The run itself is [DrillFlow], which every drill stands
- * on; what this adds is the face the shared screen reads — [view], [chosen], and a close
- * that hands back the figures the atlas and the calendar both file.
+ * Everything decidable is kern's: which question a Sprosse may ask, which row is drawn, what a
+ * typed answer earns, how far one answer moves the ramp, which beat is armed. The run itself is
+ * [DrillFlow], which every drill stands on; what this adds is the face the shared screen reads —
+ * [view], [chosen], and a close that hands back the figures the atlas and the calendar both file.
+ *
+ * Stateless like every drill: no review is ever booked and the box is never read at all — the
+ * material is the catalog's, not the learner's own words.
  */
-abstract class TypedDrillFlow<S : DrillRunProgress, I>(
-    start: S,
+class TypedDrillFlow<T : PairDrillTask>(
+    start: PairDrillRunState<T>,
+    private val run: PairDrillRun<T>,
     rng: Random,
-    onTone: (ToneKind) -> Unit,
-    onReleaseFocus: () -> Unit,
-    onSilence: () -> Unit,
-    screenReaderOn: () -> Boolean,
-) : DrillFlow<S, I>(start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn), TypedDrill {
+    onTone: (ToneKind) -> Unit = {},
+    onReleaseFocus: () -> Unit = {},
+    onSilence: () -> Unit = {},
+    screenReaderOn: () -> Boolean = { false },
+) : DrillFlow<PairDrillRunState<T>, PairDrillIntent>(start, rng, onTone, onReleaseFocus, onSilence, screenReaderOn),
+    TypedDrill {
 
-    /** A run whose questions are all written was never answered off a tile. */
-    override val chosen: String? get() = null
+    /** The tile the question was answered off, cleared with the question itself; null on a written one. */
+    override var chosen by mutableStateOf<String?>(null)
+        private set
 
     /**
      * A tapped tile: submitted as the text it carries, so kern grades it against the same
      * accepted set a written answer meets and nothing here decides what a tap is worth.
      */
     override fun choose(text: String) {
-        submit(text)?.let(::dispatch)
+        chosen = text
+        dispatch(submit(text))
+    }
+
+    override fun onQuestionChanged() {
+        chosen = null
     }
 
     /**
@@ -112,18 +127,32 @@ abstract class TypedDrillFlow<S : DrillRunProgress, I>(
      * tap would, then says what the page owes its store.
      */
     override fun close(standingRecord: Int): TypedDrillClose {
-        val closed = closeRun(state, standingRecord)
+        val closed = run.close(state, standingRecord)
         land(closed.state, closed.effects)
-        return closed.close
+        return TypedDrillClose(closed.summary, closed.bookings())
     }
 
-    /** Kern's close, in this run's own types. */
-    protected abstract fun closeRun(state: S, standingRecord: Int): DrillEnd<S>
+    /** The run as the shared typed-drill screen reads it; a picture's rules are the card's. */
+    override fun view(): TypedDrillView = TypedDrillView(
+        index = state.index,
+        sprosse = state.sprosse,
+        answerStreak = state.answerStreak,
+        bestAnswerStreak = state.bestAnswerStreak,
+        outcomes = state.outcomes,
+        tally = state.tally,
+        question = state.question,
+    )
 
-    abstract override fun inputChanged(text: String): I
+    override fun reduce(state: PairDrillRunState<T>, intent: PairDrillIntent, rng: Random) =
+        run.reduce(state, intent, rng).let { DrillStep(it.state, it.effects) }
 
-    abstract override fun submit(text: String): I
+    override fun inputChanged(text: String): PairDrillIntent = PairDrillIntent.InputChanged(text)
+
+    override fun submit(text: String): PairDrillIntent = PairDrillIntent.Submit(text)
+
+    override fun confirmPending() = PairDrillIntent.ConfirmPending
+
+    override fun advanceElapsedIntent() = PairDrillIntent.AdvanceElapsed
+
+    override fun keepPracticingIntent() = PairDrillIntent.KeepPracticing
 }
-
-/** A close as the shared flow reads it: the ended run, its effects, and what the page owes its store. */
-data class DrillEnd<S>(val state: S, val effects: List<DrillEffect>, val close: TypedDrillClose)

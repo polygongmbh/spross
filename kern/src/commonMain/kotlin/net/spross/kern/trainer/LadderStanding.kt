@@ -2,8 +2,8 @@ package net.spross.kern.trainer
 
 /**
  * Where a laddered drill run stands, and the booking every such run shares:
- * [WordScrambleRun], [SentenceScrambleRun], [OppositesRun], [LetterDrillRun], [CountryDrillRun]
- * and [DateDrillRun] each read theirs out of their own concrete state and copy it back,
+ * [WordScrambleRun], [SentenceScrambleRun], [OppositesRun], [LetterDrillRun] and [PairDrillRun]
+ * each read theirs out of their own concrete state and copy it back,
  * so the rule is written once while the run states stay concrete for Swift.
  *
  * [bestSprosse] is the Sprosse the run REACHED, not the one it ends on —

@@ -123,8 +123,10 @@ and text reaches a machine only inside an intent — never as state.
   `CountryDrillRun` the atlas, `DateDrillRun` the calendar,
   `WordScrambleRun` the spelling scramble, `SentenceScrambleRun` the word-order one
   and `OppositesRun` the opposites drill.
-  Each keeps its own CONCRETE draw type: they cross to Swift, where a generic arrives opaque,
-  so there is no shared `ScrambleRun<T>` however alike two of them read.
+  The atlas and the calendar are one machine, `PairDrillRun<T>`, typed by the question they hold:
+  a generic CLASS crosses to Swift typed, each drill's run an object of its own on it,
+  while a generic FUNCTION arrives opaque — so a shared reducer is a class, never a function over a type parameter.
+  Each drill's config supplies what is its own: the draw, the grade and the card.
   What never crosses is shared instead: every run but `NumbersRun` books an answer onto its ladder,
   carries it to the Sprosse the next question was drawn at and books a pending answer on close
   through one internal `LadderStanding`, read out of its own state and copied back.

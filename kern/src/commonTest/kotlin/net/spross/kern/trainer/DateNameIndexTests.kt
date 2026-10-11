@@ -47,7 +47,7 @@ class DateNameIndexTests {
     @Test
     fun aRefusedBareNameLandsRevealedWithItsOtherWord() {
         val run = DateDrillRun.openAt(config, 2, Random(7)).copy(task = monthTask(5))
-        val reduction = DateDrillRun.reduce(run, DateDrillIntent.Submit("Juli"), Random(7))
+        val reduction = DateDrillRun.reduce(run, PairDrillIntent.Submit("Juli"), Random(7))
         assertEquals(TurnFeedback.Revealed, reduction.state.feedback)
         assertEquals("Juli", assertNotNull(reduction.state.otherWord).word)
     }

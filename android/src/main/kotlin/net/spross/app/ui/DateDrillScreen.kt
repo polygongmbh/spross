@@ -13,7 +13,7 @@ import net.spross.kern.trainer.Drill
  * numeral alone — and then the whole spoken date assembled out of them. Typed answers
  * only, in whichever direction the page was started with.
  *
- * Every rule is kern's `DateDrill`, reached through `DateDrillFlow`; every pixel is
+ * Every rule is kern's `DateDrill`, reached through `newDateDrill`; every pixel is
  * [TypedDrillScreen], the screen this shares with the atlas drill. What is left here is
  * the three things that tell the two apart.
  */

@@ -30,11 +30,11 @@ data class DateDrillTask(
     /** The drawn identity inside [kind] — indexes and digits, never a rendering. */
     val id: String,
     /** A prompt-side name on the bare Sprossen; the date in the prompt side's digits above them. */
-    val promptText: String,
+    override val promptText: String,
     /** Every reading that grades correct, canonical first. */
     val accepted: List<String>,
     /** The reading the reveal teaches — one of [accepted], drawn where the language says a date two ways. */
-    val display: String,
+    override val display: String,
     /**
      * The tiles a [DateTaskKind.NameChoice] question is answered off, in render order and
      * including [display]; null on every written Sprosse. A tapped tile is submitted as the
@@ -58,7 +58,7 @@ data class DateDrillTask(
      * that the placeholder names digits rather than a language.
      */
     val digits: Boolean = false,
-)
+) : PairDrillTask
 
 /** One draw: the task and the Sprosse it was found on — a null task ends the run. */
 data class DateDrillDraw(val task: DateDrillTask?, val sprosse: Int)

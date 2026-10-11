@@ -4,7 +4,7 @@ import net.spross.kern.model.Language
 
 /**
  * Everything a closed run leaves behind, keyed where each store files it — the platforms write it and decide nothing.
- * Each close builds its own ([CountryDrillClose.bookings] and its siblings), so which stores a drill writes is said once.
+ * Each close builds its own ([PairDrillClose.bookings] and its siblings), so which stores a drill writes is said once.
  *
  * The stores keep the higher of a figure and what stands ([sprossen], [answers]) and OR a mask in ([cleared]);
  * [records] holds only a record the run beat.

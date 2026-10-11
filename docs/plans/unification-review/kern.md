@@ -19,7 +19,7 @@ Gate legend — **jvmTest**: `./gradlew :kern:jvmTest` alone covers it (Kotlin-i
 - `trainer/SentenceScrambleRun.kt:92-232`
 - `trainer/OppositesRun.kt:76-161`
 - `trainer/LetterDrillRun.kt:96-243`
-- `trainer/CountryDrillRun.kt:103-225`, `trainer/DateDrillRun.kt:105-245` (**already in backlog** as the Country/Date pair)
+- ~~`trainer/CountryDrillRun.kt:103-225`, `trainer/DateDrillRun.kt:105-245`~~ (done: one `PairDrillRun<T>`)
 
 The four scramble-family copies are line-for-line identical apart from the state type, e.g.
 `WordScrambleRun.kt:108-120` vs `OppositesRun.kt:76-84`:
@@ -207,7 +207,7 @@ rule tests `ClockRevealTests`/`NumbersUkrainianTests` already hold and keep a ha
 rule (`DrillLadder.pickAvoiding`) five times (`CountryDrillTests:361`, `DateDrillTests:181`, `LetterDrillTests:98`,
 `:137`, `LetterDrillDictationTests:82`); `theSameSeedDrawsTheSameRun` in `CountryDrillTests:350` and
 `DateDrillTests:168`. **Already in backlog**: `TypedDrillVerdicts` pinned only through `CountryDrillRunTest`.
-**Fix.** With the shared booking helper from 1.1, one `DrillBookingTest` holds these; each drill test keeps one wiring
+**Fix.** (Country/Date done: `PairDrillRunTest`.) With the shared booking helper from 1.1, one `DrillBookingTest` holds these; each drill test keeps one wiring
 case.
 **Size** S (after 1.1). **Gate** jvmTest. **Confidence** verified.
 

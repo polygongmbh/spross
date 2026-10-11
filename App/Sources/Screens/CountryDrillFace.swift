@@ -88,7 +88,7 @@ enum CountryDrillFace: DrillFace {
 
     static func open(content: CountryDrillContent, reverse: Bool, fast: Bool,
                      normalizer: AnswerNormalizer?, sprosse: Int?,
-                     standingRecord: Int, cleared: Set<KotlinInt>) -> CountryDrillRunState {
+                     standingRecord: Int, cleared: Set<KotlinInt>) -> PairDrillRunState<CountryDrillTask> {
         let config = CountryDrillRunConfig(content: content, reverse: reverse, fast: fast,
                                            normalizer: normalizer, standingRecord: Int32(standingRecord),
                                            cleared: cleared)
@@ -96,7 +96,7 @@ enum CountryDrillFace: DrillFace {
         return CountryDrillRun.shared.openAt(config: config, sprosse: Int32(sprosse), rng: drillRandom)
     }
 
-    static func snapshot(_ run: CountryDrillRunState) -> DrillSnapshot {
+    static func snapshot(_ run: PairDrillRunState<CountryDrillTask>) -> DrillSnapshot {
         DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
                       answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
                       tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
@@ -107,28 +107,18 @@ enum CountryDrillFace: DrillFace {
                       choices: nil, digits: false)
     }
 
-    static func reduce(_ run: CountryDrillRunState,
-                       _ move: DrillMove) -> DrillStep<CountryDrillRunState> {
-        let reduction = CountryDrillRun.shared.reduce(state: run, intent: intent(move),
+    static func reduce(_ run: PairDrillRunState<CountryDrillTask>,
+                       _ move: DrillMove) -> DrillStep<PairDrillRunState<CountryDrillTask>> {
+        let reduction = CountryDrillRun.shared.reduce(state: run, intent: move.pairIntent,
                                                       rng: drillRandom)
         return DrillStep(run: reduction.state, effects: reduction.effects)
     }
 
-    static func close(_ run: CountryDrillRunState,
-                      standingRecord: Int) -> DrillEnd<CountryDrillRunState> {
+    static func close(_ run: PairDrillRunState<CountryDrillTask>,
+                      standingRecord: Int) -> DrillEnd<PairDrillRunState<CountryDrillTask>> {
         let closed = CountryDrillRun.shared.close(state: run, standingRecord: Int32(standingRecord))
         return DrillEnd(run: closed.state, summary: closed.summary,
                         bookings: closed.bookings(), effects: closed.effects)
-    }
-
-    private static func intent(_ move: DrillMove) -> CountryDrillIntent {
-        switch move {
-        case .typed(let text): return CountryDrillIntent.InputChanged(text: text)
-        case .submitted(let text): return CountryDrillIntent.Submit(text: text)
-        case .confirmed: return CountryDrillIntent.ConfirmPending.shared
-        case .advanced: return CountryDrillIntent.AdvanceElapsed.shared
-        case .keptPracticing: return CountryDrillIntent.KeepPracticing.shared
-        }
     }
 
     #if DEBUG
@@ -136,21 +126,9 @@ enum CountryDrillFace: DrillFace {
 
     static var uitestBestKey: String { "uitest-countries-best" }
 
-    static func seedAnswerStreak(_ run: CountryDrillRunState, _ answerStreak: Int) -> CountryDrillRunState {
-        run.doCopy(config: run.config, task: run.task, index: run.index,
-                   sprosse: run.sprosse, bestSprosse: run.bestSprosse,
-                   winsAtSprosse: run.winsAtSprosse,
-                   core: run.core.doCopy(done: Int32(answerStreak + 6),
-                                         answerStreak: Int32(answerStreak),
-                                         bestAnswerStreak: Int32(max(answerStreak, 12)),
-                                         missRun: run.core.missRun,
-                                         outcomes: run.core.outcomes,
-                                         solved: run.core.solved,
-                                         slipped: run.core.slipped,
-                                         solvedClean: run.core.solvedClean,
-                                               pacing: run.core.pacing),
-                   feedback: run.feedback,
-                   otherWord: run.otherWord, finished: run.finished)
+    static func seedAnswerStreak(_ run: PairDrillRunState<CountryDrillTask>,
+                                 _ answerStreak: Int) -> PairDrillRunState<CountryDrillTask> {
+        seededAnswerStreak(run, answerStreak)
     }
     #endif
 }

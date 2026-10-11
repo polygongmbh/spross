@@ -53,7 +53,7 @@ data class CountryDrillTask(
      * exactly what makes [CountryTaskKind.FlagCountry] a different question: the flag is
      * then the whole of what the learner is given.
      */
-    val promptText: String?,
+    override val promptText: String?,
     /**
      * The country's flag, where the question is about one; null for a language. It is
      * carried in BOTH directions — whether it may be shown while the answer is still owed
@@ -76,7 +76,7 @@ data class CountryDrillTask(
     /** Everything graded correct, [display] first — every accepted form of every valid answer. */
     val accepted: List<String>,
     /** The canonical answer, for the reveal. */
-    val display: String,
+    override val display: String,
     /**
      * The reveal's second line — never shown before the answer is in. It is the answer
      * side's neighboring form: the nationality beside the country, the country beside the
@@ -85,7 +85,7 @@ data class CountryDrillTask(
      * a miss leaves the learner not knowing which country they got wrong.
      */
     val gloss: String?,
-)
+) : PairDrillTask
 
 /**
  * What [CountryDrill.draw] hands back: the question, and the Sprosse it actually came from —

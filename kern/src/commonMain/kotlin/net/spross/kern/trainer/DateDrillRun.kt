@@ -1,62 +1,23 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
-import net.spross.kern.session.Match
-import net.spross.kern.session.TurnFeedback
+import net.spross.kern.catalog.DateDrillContent
+import net.spross.kern.model.EmojiCue
+import net.spross.kern.session.AnswerControls
+import net.spross.kern.session.AnswerControls.Slot
 import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.Match
+import net.spross.kern.session.Question
+import net.spross.kern.session.QuestionAsk
+import net.spross.kern.session.QuestionHint
+import net.spross.kern.session.Saying
+import net.spross.kern.session.typableOnNumberPad
 
 /**
- * The dates drill as pure state plus one reducer — the atlas run's shape on the dates
- * ladder. The run's shape is [DateDrillRunState]; what it can ask is [DateDrill].
- *
- * Kern never self-randomizes: every draw takes the caller's [Random]. No clock is needed,
- * so none is taken. No default arguments: they do not cross the ObjC boundary.
+ * The dates drill's run: the shared pair drill reducer ([PairDrillRun]) over the calendars.
+ * What it can ask is [DateDrill]; what the run is fixed to is [DateDrillRunConfig].
  */
-object DateDrillRun {
-
-    /** A fresh run from the foot of the ladder. */
-    fun open(config: DateDrillRunConfig, rng: Random): DateDrillRunState =
-        openAt(config, 1, rng)
-
-    /**
-     * A fresh run opened ON [sprosse], clamped to the ladder. The page opens a run on the lowest
-     * Sprosse the learner has not answered out ([DateDrillClose.clearedSprossen]), or on the
-     * one they tapped.
-     */
-    fun openAt(config: DateDrillRunConfig, sprosse: Int, rng: Random): DateDrillRunState {
-        val content = config.content
-        val start = sprosse.coerceIn(1, DateDrill.maxSprosse(content, config.reverse))
-        // A run opens on a Sprosse ARRIVED at, so its first question is one that Sprosse added.
-        val opening =
-            DateDrill.draw(content, start, config.reverse, null, emptySet(), rng, arriving = true)
-        return DateDrillRunState(
-            config = config,
-            // why: nothing is solved yet, so a fresh calendar's first Sprosse always has a question.
-            task = requireNotNull(opening.task) {
-                "no dates question for ${content.source}→${content.target}"
-            },
-            index = 0,
-            sprosse = opening.sprosse,
-            bestSprosse = opening.sprosse,
-            winsAtSprosse = 0,
-            core = DrillRunCore(pacing = DrillPacing.opening(opening.sprosse, config.standingRecord)),
-            feedback = TurnFeedback.Neutral,
-            finished = false,
-        )
-    }
-
-    fun reduce(
-        state: DateDrillRunState,
-        intent: DateDrillIntent,
-        rng: Random,
-    ): DateDrillReduction = when (intent) {
-        is DateDrillIntent.InputChanged -> typed(state, intent.text)
-        is DateDrillIntent.Submit -> submit(state, intent.text)
-        DateDrillIntent.Reveal -> reveal(state)
-        DateDrillIntent.ConfirmPending -> booked(state, TypedDrillVerdicts.confirmed(state.feedback), rng)
-        DateDrillIntent.AdvanceElapsed -> booked(state, TypedDrillVerdicts.elapsed(state.feedback), rng)
-        DateDrillIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
-    }
+object DateDrillRun : PairDrillRun<DateDrillTask>() {
 
     /**
      * Grade [input] against every reading the task accepts, the way a drill grades: no
@@ -75,11 +36,7 @@ object DateDrillRun {
      * The warm-up Sprosse consults neither: a tapped tile is a name the learner READ, so a
      * miss is nothing but the wrong one of four and the reveal already stands on the card.
      */
-    fun grade(
-        input: String,
-        task: DateDrillTask,
-        config: DateDrillRunConfig,
-    ): Match {
+    fun grade(input: String, task: DateDrillTask, config: DateDrillRunConfig): Match {
         val match = gradeDrillAnswer(
             input = input,
             accepted = task.accepted,
@@ -98,108 +55,6 @@ object DateDrillRun {
     }
 
     /**
-     * Leaving, from the corner or from "Fertig" ([LadderStanding.closing]). An untouched run
-     * reports nothing at all, though it still names the Sprosse it opened on, which the page
-     * files either way.
-     *
-     * [standingRecord] is what the platform's store holds now; the write is strictly
-     * greater, so re-closing a resumed run never double-claims.
-     */
-    fun close(state: DateDrillRunState, standingRecord: Int): DateDrillClose {
-        val ended = LadderStanding.closing(state, ::advanced)
-            .copy(feedback = TurnFeedback.Neutral, otherWord = null, finished = true)
-        val summary = LadderStanding.summary(ended, standingRecord)
-        val cleared = DateDrill.cleared(state.config.content, state.config.reverse, ended.core.solvedClean)
-        return DateDrillClose(ended, summary, ended.bestSprosse, cleared, LadderStanding.EFFECTS)
-    }
-
-    // MARK: - Intents
-
-    /** "Finishing the reading IS the answer" — the live approve ([TypedDrillVerdicts.typed]). */
-    private fun typed(state: DateDrillRunState, text: String): DateDrillReduction {
-        val verdict = TypedDrillVerdicts.typed(state.feedback) {
-            grade(text, state.task, state.config) == Match.Exact
-        } ?: return unchanged(state)
-        return DateDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
-    }
-
-    /**
-     * The explicit check. Nothing typed means the ask to see the answer ([reveal]) — the run
-     * has ONE primary action, and its button and its Enter key may not disagree on it.
-     */
-    private fun submit(state: DateDrillRunState, text: String): DateDrillReduction {
-        if (!state.owesAnswer) return unchanged(state)
-        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
-        val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config))
-        return DateDrillReduction(
-            state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord),
-            verdict.effects,
-        )
-    }
-
-    private fun reveal(state: DateDrillRunState): DateDrillReduction {
-        if (!state.owesAnswer) return unchanged(state)
-        val verdict = TypedDrillVerdicts.reveal()
-        return DateDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
-    }
-
-    // MARK: - Booking
-
-    /** Book the answer, then put the next question up at the Sprosse the booking left. */
-    private fun booked(state: DateDrillRunState, answer: DrillBooking?, rng: Random): DateDrillReduction {
-        answer ?: return unchanged(state)
-        val next = advanced(state, answer)
-        // why: sampled against the key it must avoid — kern resamples once, so a repeat needs
-        // two unlucky draws rather than one.
-        val draw = DateDrill.draw(
-            state.config.content,
-            next.sprosse,
-            state.config.reverse,
-            DrillSolved.key(state.task),
-            next.solved,
-            rng,
-            arriving = next.sprosse > state.sprosse,
-        )
-        val moved = next.withStanding(next.standing.carriedTo(draw.sprosse)).copy(
-            // Nothing left to ask: end on the summary, never on a question already answered.
-            task = draw.task ?: state.task,
-            finished = draw.task == null,
-            index = state.index + 1,
-            // why: cleared in the SAME transaction as the question — the next card must
-            // never render one frame carrying the last one's answer.
-            feedback = TurnFeedback.Neutral,
-            otherWord = null,
-        )
-        // The pause a booked answer leaves due, if one is ([DrillPacing]).
-        val paced = moved.copy(core = moved.core.paced(moved.sprosse, moved.newSprossen, endless = !moved.finished))
-        return DateDrillReduction(paced, LadderStanding.EFFECTS)
-    }
-
-    /** The booking itself: the ramp, the answer streak, the tallies — the Sprosse it reached included. */
-    private fun advanced(state: DateDrillRunState, answer: DrillBooking): DateDrillRunState {
-        val stood = state.withStanding(state.standing.answered(
-            answer,
-            winsRequired = PairDrill.winsToAdvance(state.config.fast),
-            solves = DrillSolved.key(state.task),
-        ))
-        // why: booked with the answer, so the word is shown for exactly the one card
-        // that owed it — a run that closes and reopens meets it again, which is the
-        // place-value hint's rule and the honest one for a Sprosse climbed twice.
-        return stood.copy(seenKinds = state.seenKinds + state.task.kind)
-    }
-
-    /** The run clears by answering a Sprosse out ([DateDrill.cleared]), so its standing carries no climb ledger. */
-    private val DateDrillRunState.standing: LadderStanding
-        get() = LadderStanding(sprosse, bestSprosse, winsAtSprosse, emptySet(), core)
-
-    private fun DateDrillRunState.withStanding(to: LadderStanding): DateDrillRunState = copy(
-        sprosse = to.sprosse,
-        bestSprosse = to.bestSprosse,
-        winsAtSprosse = to.winsAtSprosse,
-        core = to.core,
-    )
-
-    /**
      * The value check, on the Sprossen whose answer is a NUMERAL — a reading like `dritte`,
      * never a date like `3.6.`. Nothing is inherited: `gradeDrillAnswer` defaults to none,
      * and the bare-name and parsed Sprossen stay without one.
@@ -213,6 +68,91 @@ object DateDrillRun {
             task.kind == DateTaskKind.Weekday || task.kind == DateTaskKind.Month -> null
             else -> config.normalizer?.let { NumberReadingIndex.of(config.answerLanguage, it) }
         }
+}
 
-    private fun unchanged(state: DateDrillRunState) = DateDrillReduction(state, emptyList())
+/**
+ * Everything one dates run is fixed to ([PairDrillRunConfig]): the joined calendars, handed
+ * over once by the page that opened the run, and how its questions are drawn, graded and shown.
+ */
+class DateDrillRunConfig(
+    val content: DateDrillContent,
+    reverse: Boolean,
+    fast: Boolean,
+    normalizer: AnswerNormalizer?,
+    standingRecord: Int = 0,
+    cleared: Set<Int> = emptySet(),
+) : PairDrillRunConfig<DateDrillTask>(
+    content.source, content.target, reverse, fast, normalizer, standingRecord, cleared,
+) {
+    /** The calendar turned around for the refusal check — null exactly where [normalizer] is. */
+    internal val nameIndex: DateNameIndex? by lazy {
+        normalizer?.let { DateNameIndex(content, reverse, it) }
+    }
+
+    override val drill: Drill get() = Drill.Dates
+
+    override val storageKey: String get() = DateDrill.storageKey(content.source, content.target)
+
+    override val top: Int get() = DateDrill.maxSprosse(content, reverse)
+
+    override fun draw(
+        sprosse: Int,
+        avoid: DateDrillTask?,
+        solved: Set<String>,
+        rng: Random,
+        arriving: Boolean,
+    ): DrillLadder.Sprosse<DateDrillTask> =
+        DateDrill.draw(content, sprosse, reverse, avoid?.let { DrillSolved.key(it) }, solved, rng, arriving)
+            .let { DrillLadder.Sprosse(it.task, it.sprosse) }
+
+    override fun grade(input: String, task: DateDrillTask): Match = DateDrillRun.grade(input, task, this)
+
+    override fun solvedKey(task: DateDrillTask): String = DrillSolved.key(task)
+
+    override fun answeredOut(solved: Set<String>): Set<Int> = DateDrill.cleared(content, reverse, solved)
+
+    /** Each assembled kind is introduced with its pattern word once. */
+    override fun firstSight(task: DateDrillTask): String = task.kind.name
+
+    /**
+     * The word this language adds to assemble the question on screen, the first time it is
+     * asked and never again — the numbers drill's first-sight hint ([Numbers.placeValueHint]),
+     * for a pattern instead of a length, and always a word in the language being LEARNED.
+     *
+     * Nothing REVERSED: the card then carries the reading, which says the word already, and
+     * the answer owed is digits.
+     */
+    private fun patternWord(run: PairDrillRunState<DateDrillTask>): String? {
+        if (reverse || firstSight(run.task) in run.hinted) return null
+        return DateDrill.patternWord(content, run.task.kind)
+    }
+
+    /** No picture; a date owed in digits is a numeral, and the pattern word is the first-sight hint. */
+    override fun question(run: PairDrillRunState<DateDrillTask>): Question {
+        val task = run.task
+        return Question(
+            key = run.index.toString(),
+            ask = QuestionAsk.Date(task.kind),
+            prompt = Question.Side(task.promptText, promptLanguage, Question.Form.Name, saying = run.promptSaying),
+            answer = Question.Side(
+                task.display, answerLanguage,
+                if (task.digits) Question.Form.Numeral else Question.Form.Name,
+                saying = Saying(task.display, answerLanguage),
+            ),
+            emoji = null,
+            emojiCue = EmojiCue.Upfront,
+            hint = patternWord(run)?.let { QuestionHint.NewWord(it) },
+            opens = run.showsAnswer,
+            otherWord = run.otherWord,
+        )
+    }
+
+    /** The warm-up Sprosse's names are picked off tiles; every other date is written, a date owed in digits on the number pad where it fits. */
+    override fun controls(run: PairDrillRunState<DateDrillTask>): AnswerControls {
+        val task = run.task
+        return run.answerControls(
+            task.choices?.let { Slot.Choices(it, task.display) }
+                ?: run.typedSlot(answerLanguage, digits = task.digits, numberPad = task.digits && typableOnNumberPad(task.accepted)),
+        )
+    }
 }
