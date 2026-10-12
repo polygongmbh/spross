@@ -120,17 +120,6 @@
       "source": "Fr-la pomme de terre.ogg",
       "word": "pomme de terre"
     },
-    "la table": {
-      "author": "Aurore1212121",
-      "file": "articles/la_table.mp3",
-      "gain": -1.7,
-      "gate": -47.6,
-      "matches": "la table",
-      "mos": 1.38,
-      "sha256": "c7412bdb917fed2ff1b9497d59ee4ff52216a29c26fdfdaa36f33ee333f7aa21",
-      "source": "LL-Q150 (fra)-Aurore1212121-La table.wav",
-      "word": "table"
-    },
     "la tête": {
       "author": "Julien Baley",
       "cap": 0.1,
@@ -4947,17 +4936,6 @@
       "mos": 2.65,
       "sha256": "cefccf2b4c00b6698c07db874604d6bc2ff0ab7ef21d2c9b04d54cf5300b97c0",
       "source": "LL-Q150 (fra)-Pamputt-douce.wav"
-    },
-    "douche": {
-      "author": "Vion Nicolas",
-      "file": "words/douche.mp3",
-      "gain": 2.6,
-      "gate": -57.0,
-      "lead": 155,
-      "matches": "douche",
-      "mos": 2.95,
-      "sha256": "0dcb1639884e0f964346abb7624872de3732f7f924b546eb89f1dd5884ba2b25",
-      "source": "Fr-douche.ogg"
     },
     "douleur": {
       "author": "Vion Nicolas",
@@ -11844,16 +11822,6 @@
       "mos": 2.82,
       "sha256": "55070dd2204577433f4c45ed2cea77c1596344b9e55bbb9f197a04f2ae2be6eb",
       "source": "LL-Q150 (fra)-Poslovitch-tonnerre.wav"
-    },
-    "toujours": {
-      "author": "Vion Nicolas",
-      "file": "words/toujours.mp3",
-      "gain": -1.9,
-      "gate": -57.3,
-      "matches": "toujours",
-      "mos": 2.68,
-      "sha256": "86b80e43e7315dc4cad586a40adca545e193dfa293ac7353a3b47c994f81fcd0",
-      "source": "Fr-toujours.ogg"
     },
     "touriste": {
       "author": "Sartus85",

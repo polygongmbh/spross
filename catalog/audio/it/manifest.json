@@ -861,7 +861,6 @@
     "DiplomaticBadger": "CC0",
     "DivoLetto": "CC BY 4.0",
     "Fibonacci": "CC BY-SA 2.0",
-    "Francyskus": "CC BY-SA 4.0",
     "GerardM": "CC BY-SA 3.0",
     "GiovanniPen": "CC BY-SA 4.0",
     "Happypheasant": "CC BY-SA 4.0",
@@ -1093,58 +1092,6 @@
       "sha256": "a2106491548b2c1a8de6db3a13642d1b92029c92cc64764cfaaf9a30e3fc654c",
       "source": "It-Algeria.ogg"
     },
-    "Angola": {
-      "author": "Accurimbono",
-      "file": "countries/angola.mp3",
-      "gain": 7.7,
-      "gate": -71.1,
-      "matches": "Angola",
-      "mos": 1.28,
-      "sha256": "96a68922c904c0b731aca1968cf3d4f317e231d39771d3ddf79952c50c803636",
-      "source": "It-Angola.ogg"
-    },
-    "Arabia Saudita": {
-      "author": "Francyskus",
-      "file": "countries/arabia_saudita.mp3",
-      "gain": 3.8,
-      "gate": -49.3,
-      "matches": "Arabia Saudita",
-      "mos": 2.38,
-      "sha256": "8af0c4db3503db1f1b5c66b2f5b6e7d5830ff96e920b7a403241d2fc41347d6d",
-      "source": "LL-Q652 (ita)-Francyskus-Arabia Saudita.wav"
-    },
-    "Argentina": {
-      "author": "Francyskus",
-      "file": "countries/argentina.mp3",
-      "gain": 7.8,
-      "gate": -60.8,
-      "lead": 200,
-      "matches": "Argentina",
-      "mos": 2.64,
-      "sha256": "82aea6082fd8d90ba36802038e0c20eaf97a762a75946023fc651ce2fadfbc2d",
-      "source": "LL-Q652 (ita)-Francyskus-Argentina.wav"
-    },
-    "Australia": {
-      "author": "Francyskus",
-      "file": "countries/australia.mp3",
-      "gain": 9.0,
-      "gate": -58.2,
-      "lead": 46,
-      "matches": "Australia",
-      "mos": 2.31,
-      "sha256": "d243726da3edecfe107a3fd70b240242f7af29b95bad0405a8688da4a9864b53",
-      "source": "LL-Q652 (ita)-Francyskus-Australia.wav"
-    },
-    "Austria": {
-      "author": "Francyskus",
-      "file": "countries/austria.mp3",
-      "gain": 8.2,
-      "gate": -57.6,
-      "matches": "Austria",
-      "mos": 2.06,
-      "sha256": "71f39334e0394eebb7202a343751fde0b90cf48afa3d92a8cc19cc185cc6e8f3",
-      "source": "LL-Q652 (ita)-Francyskus-Austria.wav"
-    },
     "Belgio": {
       "author": "Ciampix",
       "file": "countries/belgio.mp3",
@@ -1222,27 +1169,6 @@
       "sha256": "0b5a3f64e9f95ff6953e8fa56b7f09690f7a41d510145ec655f71295e424eaf7",
       "source": "LL-Q652 (ita)-Ciampix-Colombia.wav"
     },
-    "Corea del Sud": {
-      "author": "Francyskus",
-      "file": "countries/corea_del_sud.mp3",
-      "gain": 4.2,
-      "gate": -55.6,
-      "matches": "Corea del Sud",
-      "mos": 2.03,
-      "sha256": "7539a08d4f1f9e3bc56974a944cea42383edb4fb9d7f7fc50162043d47c4e71e",
-      "source": "LL-Q652 (ita)-Francyskus-Corea del Sud.wav"
-    },
-    "Costa Rica": {
-      "author": "Francyskus",
-      "file": "countries/costa_rica.mp3",
-      "gain": 10.8,
-      "gate": -59.8,
-      "lead": 161,
-      "matches": "Costa Rica",
-      "mos": 2.51,
-      "sha256": "c536b75e500a03742380ea2b55062d9773900f2b7a7eff7937f119b6ea9e88ff",
-      "source": "LL-Q652 (ita)-Francyskus-Costa Rica.wav"
-    },
     "Croazia": {
       "author": "XANA000",
       "file": "countries/croazia.mp3",
@@ -1264,50 +1190,6 @@
       "mos": 2.79,
       "sha256": "b80a42acaf9ec965494b073e57316cc91bedc484aa01e7b5c8c213384df2a79c",
       "source": "LL-Q652 (ita)-XANA000-Cuba.wav"
-    },
-    "Danimarca": {
-      "author": "Francyskus",
-      "file": "countries/danimarca.mp3",
-      "gain": 9.7,
-      "gate": -57.7,
-      "lead": 87,
-      "matches": "Danimarca",
-      "mos": 2.61,
-      "sha256": "871fcf9e6bf47d0c778441c1e9ae00fefc16e059c5b9f97658556e893ac0d303",
-      "source": "LL-Q652 (ita)-Francyskus-Danimarca.wav"
-    },
-    "Ecuador": {
-      "author": "Francyskus",
-      "file": "countries/ecuador.mp3",
-      "gain": 4.5,
-      "gate": -59.7,
-      "lead": 199,
-      "matches": "Ecuador",
-      "mos": 2.12,
-      "sha256": "365dae95ec6777b3f9dd3b7df2ea2537dd401a19bc836879b7d03ee4d1aebc73",
-      "source": "LL-Q652 (ita)-Francyskus-Ecuador.wav"
-    },
-    "Egitto": {
-      "author": "Francyskus",
-      "file": "countries/egitto.mp3",
-      "gain": 9.7,
-      "gate": -59.0,
-      "lead": 153,
-      "matches": "Egitto",
-      "mos": 2.03,
-      "sha256": "7b4e74e6cd209069a3ef528a9f6a342b24d187f21067c1c437008c22f6aa0b58",
-      "source": "LL-Q652 (ita)-Francyskus-Egitto.wav"
-    },
-    "Etiopia": {
-      "author": "Francyskus",
-      "file": "countries/etiopia.mp3",
-      "gain": 8.4,
-      "gate": -61.1,
-      "lead": 188,
-      "matches": "Etiopia",
-      "mos": 2.51,
-      "sha256": "4946039025d6fe05f6a32da811c1470576377c8d335e8364083297cca002d96a",
-      "source": "LL-Q652 (ita)-Francyskus-Etiopia.wav"
     },
     "Finlandia": {
       "author": "XANA000",
@@ -1342,26 +1224,6 @@
       "sha256": "b995090e37bbfd011195d708db3978e843b72fbb614ccad96d96ec5b4705897d",
       "source": "LL-Q652 (ita)-Ciampix-Germania.wav"
     },
-    "Ghana": {
-      "author": "Francyskus",
-      "file": "countries/ghana.mp3",
-      "gain": 5.2,
-      "gate": -51.8,
-      "matches": "Ghana",
-      "mos": 1.58,
-      "sha256": "78ea2ef3ac59c8a97222b8d2329bbacaeb6157060ec5074a829c2b4f50dbb415",
-      "source": "LL-Q652 (ita)-Francyskus-Ghana.wav"
-    },
-    "Giappone": {
-      "author": "Francyskus",
-      "file": "countries/giappone.mp3",
-      "gain": 8.5,
-      "gate": -56.5,
-      "matches": "Giappone",
-      "mos": 1.9,
-      "sha256": "a34f99dd846a8c86b2f80d058cdf7b63a5dbe9d2f27ed34f9e2597db6330f308",
-      "source": "LL-Q652 (ita)-Francyskus-Giappone.wav"
-    },
     "Grecia": {
       "author": "Ciampix",
       "file": "countries/grecia.mp3",
@@ -1372,56 +1234,6 @@
       "mos": 2.84,
       "sha256": "22bccb606d8cebc3819f8a89cf9bbe58b2f665e44e0438a2a3bade5b9d293b0b",
       "source": "LL-Q652 (ita)-Ciampix-Grecia.wav"
-    },
-    "India": {
-      "author": "Francyskus",
-      "file": "countries/india.mp3",
-      "gain": 11.8,
-      "gate": -52.4,
-      "matches": "India",
-      "mos": 1.64,
-      "sha256": "7ffc4036d434355598fc2f48a6a6e17ed1c2e6239edc9330b2502487579ae275",
-      "source": "LL-Q652 (ita)-Francyskus-India.wav"
-    },
-    "Indonesia": {
-      "author": "Francyskus",
-      "file": "countries/indonesia.mp3",
-      "gain": 9.3,
-      "gate": -55.6,
-      "matches": "Indonesia",
-      "mos": 2.18,
-      "sha256": "6ee1c01c95de11bbf9fd5865b9609a86e5dcaa6fc877ac2632e2f592454c5ace",
-      "source": "LL-Q652 (ita)-Francyskus-Indonesia.wav"
-    },
-    "Iran": {
-      "author": "Francyskus",
-      "file": "countries/iran.mp3",
-      "gain": 8.1,
-      "gate": -56.1,
-      "matches": "Iran",
-      "mos": 1.44,
-      "sha256": "f27455fe60c44f34e614d28492360f07af7ccfcdc653eb94904e4bad5e172042",
-      "source": "LL-Q652 (ita)-Francyskus-Iran.wav"
-    },
-    "Irlanda": {
-      "author": "Francyskus",
-      "file": "countries/irlanda.mp3",
-      "gain": 5.7,
-      "gate": -53.7,
-      "matches": "Irlanda",
-      "mos": 2.45,
-      "sha256": "e345e8a030afba8cda63839a5ebe6a8f76a0d2c5619cbeb86ca2fa65221a6604",
-      "source": "LL-Q652 (ita)-Francyskus-Irlanda.wav"
-    },
-    "Israele": {
-      "author": "Francyskus",
-      "file": "countries/israele.mp3",
-      "gain": 5.5,
-      "gate": -58.7,
-      "matches": "Israele",
-      "mos": 2.69,
-      "sha256": "590018fa1149b318cd93f0e2d95a5579f8f724514c4d30eb892ba653ae37ef73",
-      "source": "LL-Q652 (ita)-Francyskus-Israele.wav"
     },
     "Italia": {
       "author": "Ciampix",
@@ -1434,16 +1246,6 @@
       "sha256": "321070103d583e428ece84b92dcd6a63b53241e52a62696e8b6ed3cdf6d98439",
       "source": "LL-Q652 (ita)-Ciampix-Italia.wav"
     },
-    "Kenya": {
-      "author": "Francyskus",
-      "file": "countries/kenya.mp3",
-      "gain": 3.3,
-      "gate": -54.0,
-      "matches": "Kenya",
-      "mos": 1.57,
-      "sha256": "3622aec7297b635c6a34ad6c20ddea5055079938cbebfb74a508d265f29982a7",
-      "source": "LL-Q652 (ita)-Francyskus-Kenya.wav"
-    },
     "Lussemburgo": {
       "author": "Ciampix",
       "file": "countries/lussemburgo.mp3",
@@ -1455,48 +1257,6 @@
       "sha256": "cc7c3aac6cced530b420831a7ad023f7fd24462b52408ad6086c475850727fd6",
       "source": "LL-Q652 (ita)-Ciampix-Lussemburgo.wav"
     },
-    "Marocco": {
-      "author": "Francyskus",
-      "file": "countries/marocco.mp3",
-      "gain": 6.0,
-      "gate": -59.3,
-      "lead": 150,
-      "matches": "Marocco",
-      "mos": 2.75,
-      "sha256": "bdedb704b3e03f0ff4e4750f27abd2470a8e62d7b5f4080d9d5aa2318e55f222",
-      "source": "LL-Q652 (ita)-Francyskus-Marocco.wav"
-    },
-    "Messico": {
-      "author": "Francyskus",
-      "file": "countries/messico.mp3",
-      "gain": 8.9,
-      "gate": -58.2,
-      "lead": 8,
-      "matches": "Messico",
-      "mos": 2.54,
-      "sha256": "432df18bd07727376798742c46f1416d5309029ea860f3a2bb11e75ff2ed7b07",
-      "source": "LL-Q652 (ita)-Francyskus-Messico.wav"
-    },
-    "Mozambico": {
-      "author": "Francyskus",
-      "file": "countries/mozambico.mp3",
-      "gain": 7.1,
-      "gate": -54.6,
-      "matches": "Mozambico",
-      "mos": 2.5,
-      "sha256": "c73e02479c3963061a9f8ce51ff0be625853447cff612133ccc9b41f39511bae",
-      "source": "LL-Q652 (ita)-Francyskus-Mozambico.wav"
-    },
-    "Nigeria": {
-      "author": "Francyskus",
-      "file": "countries/nigeria.mp3",
-      "gain": 5.0,
-      "gate": -56.6,
-      "matches": "Nigeria",
-      "mos": 1.6,
-      "sha256": "7d830b8a80cbc28b7a85ae8d8a13593ceaf41ca6459bcbea8fd868c38f6c6800",
-      "source": "LL-Q652 (ita)-Francyskus-Nigeria.wav"
-    },
     "Norvegia": {
       "author": "Ciampix",
       "file": "countries/norvegia.mp3",
@@ -1507,16 +1267,6 @@
       "mos": 3.08,
       "sha256": "318f53ef5e45417b25703a4c15596ff9c81e1a85a6e04babe18eeaf606eab25c",
       "source": "LL-Q652 (ita)-Ciampix-Norvegia.wav"
-    },
-    "Nuova Zelanda": {
-      "author": "Francyskus",
-      "file": "countries/nuova_zelanda.mp3",
-      "gain": 4.2,
-      "gate": -54.0,
-      "matches": "Nuova Zelanda",
-      "mos": 2.55,
-      "sha256": "d10f7c7ccbe3a7c0e260e6e53637b8f2f14e5c95dc60c726d5555f12894c54f7",
-      "source": "LL-Q652 (ita)-Francyskus-Nuova Zelanda.wav"
     },
     "Perù": {
       "author": "Ciampix",
@@ -1550,91 +1300,6 @@
       "mos": 3.3,
       "sha256": "dbe3294fce69f70fb050430382312d91038c2f33b0b11df09c4cb923207df317",
       "source": "LL-Q652 (ita)-Ciampix-Portogallo.wav"
-    },
-    "Regno Unito": {
-      "author": "Francyskus",
-      "file": "countries/regno_unito.mp3",
-      "gain": 4.3,
-      "gate": -51.4,
-      "lead": 86,
-      "matches": "Regno Unito",
-      "mos": 1.36,
-      "sha256": "1c9f334ec79b5b5c4453a7ca350fa5648706a3a3c97745eaa5c4dcab53e618db",
-      "source": "LL-Q652 (ita)-Francyskus-Regno Unito.wav"
-    },
-    "Repubblica Democratica del Congo": {
-      "author": "Francyskus",
-      "file": "countries/repubblica_democratica_del_congo.mp3",
-      "gain": 7.0,
-      "gate": -56.8,
-      "lead": 74,
-      "matches": "Repubblica Democratica del Congo",
-      "mos": 2.62,
-      "sha256": "1f4dc28ba6ccb8b5f4973e61261a9778dd4118e685055e71e13aa1ebd80a6a5d",
-      "source": "LL-Q652 (ita)-Francyskus-Repubblica Democratica del Congo.wav"
-    },
-    "Romania": {
-      "author": "Francyskus",
-      "file": "countries/romania.mp3",
-      "gain": 5.0,
-      "gate": -59.3,
-      "matches": "Romania",
-      "mos": 2.3,
-      "sha256": "15addf71199a212d9122379d88a2dc8f72615ea3b1f7c742a481f2df6944a9d1",
-      "source": "LL-Q652 (ita)-Francyskus-Romania.wav"
-    },
-    "Ruanda": {
-      "author": "Francyskus",
-      "file": "countries/ruanda.mp3",
-      "gain": 3.6,
-      "gate": -57.6,
-      "matches": "Ruanda",
-      "mos": 2.28,
-      "sha256": "1b46b12b885fc47a4fa9828fa90d1a672f4b2992a0a7bc2a0a9d0533ddd0cb10",
-      "source": "LL-Q652 (ita)-Francyskus-Ruanda.wav"
-    },
-    "Russia": {
-      "author": "Francyskus",
-      "file": "countries/russia.mp3",
-      "gain": 6.8,
-      "gate": -54.7,
-      "lead": 48,
-      "matches": "Russia",
-      "mos": 1.22,
-      "sha256": "ce30c8b219c25ebb52a8830a90d4e69b999a9907b862a0cf708b5d152750079e",
-      "source": "LL-Q652 (ita)-Francyskus-Russia.wav"
-    },
-    "Senegal": {
-      "author": "Francyskus",
-      "file": "countries/senegal.mp3",
-      "gain": 5.3,
-      "gate": -59.9,
-      "lead": 32,
-      "matches": "Senegal",
-      "mos": 2.79,
-      "sha256": "20aea8763fac8eb8cecc64da7636f92de2ec51c46b3c6abd3ef51895324955ac",
-      "source": "LL-Q652 (ita)-Francyskus-Senegal.wav"
-    },
-    "Serbia": {
-      "author": "Francyskus",
-      "file": "countries/serbia.mp3",
-      "gain": 5.0,
-      "gate": -60.8,
-      "lead": 71,
-      "matches": "Serbia",
-      "mos": 2.27,
-      "sha256": "14ea70ee9326df987fa004a1fa388840797cbba9d48b7ce246b52175a7f62bd0",
-      "source": "LL-Q652 (ita)-Francyskus-Serbia.wav"
-    },
-    "Singapore": {
-      "author": "Francyskus",
-      "file": "countries/singapore.mp3",
-      "gain": 5.3,
-      "gate": -54.1,
-      "matches": "Singapore",
-      "mos": 2.36,
-      "sha256": "699374a2e983775e4c989fa4627809a26d8a7e8fe3996efb0fb0bd5a9b4a12c8",
-      "source": "LL-Q652 (ita)-Francyskus-Singapore.wav"
     },
     "Slovacchia": {
       "author": "XANA000",
@@ -1671,16 +1336,6 @@
       "sha256": "34fe4d82a4beede1734069a67d2312a75c681160bed8176fe6e142cdacbd5e56",
       "source": "LL-Q652 (ita)-Ciampix-Stati Uniti.wav"
     },
-    "Sudafrica": {
-      "author": "Francyskus",
-      "file": "countries/sudafrica.mp3",
-      "gain": 2.3,
-      "gate": -59.7,
-      "matches": "Sudafrica",
-      "mos": 2.65,
-      "sha256": "4eb9284685ba588b16abaacbbc81225d47cfe29ece9166618f8c6bc77757b203",
-      "source": "LL-Q652 (ita)-Francyskus-Sudafrica.wav"
-    },
     "Svezia": {
       "author": "Ciampix",
       "file": "countries/svezia.mp3",
@@ -1703,37 +1358,6 @@
       "sha256": "d1ce20cb04111f6b01053da972afdfaa351302a7014cc97fcf145cc19e9956e4",
       "source": "LL-Q652 (ita)-XANA000-Svizzera.wav"
     },
-    "Tanzania": {
-      "author": "Francyskus",
-      "file": "countries/tanzania.mp3",
-      "gain": 5.2,
-      "gate": -52.3,
-      "matches": "Tanzania",
-      "mos": 1.53,
-      "sha256": "0ebf14371a539cb0da68d8058fba17db945e0c0020120af9c1af826c774b857c",
-      "source": "LL-Q652 (ita)-Francyskus-Tanzania.wav"
-    },
-    "Thailandia": {
-      "author": "Francyskus",
-      "file": "countries/thailandia.mp3",
-      "gain": 4.4,
-      "gate": -55.6,
-      "lead": 22,
-      "matches": "Thailandia",
-      "mos": 2.57,
-      "sha256": "d30f3307a972f7b2f36a911bc24bf5f6aed4b17a993fab77a64b7bc3fec86c1c",
-      "source": "LL-Q652 (ita)-Francyskus-Thailandia.wav"
-    },
-    "Tunisia": {
-      "author": "Francyskus",
-      "file": "countries/tunisia.mp3",
-      "gain": 7.8,
-      "gate": -49.8,
-      "matches": "Tunisia",
-      "mos": 1.73,
-      "sha256": "a1559feabb5016bb1f76228c8154cfbb6e209312fe2aba5dddd00c16ad3427b3",
-      "source": "LL-Q652 (ita)-Francyskus-Tunisia.wav"
-    },
     "Turchia": {
       "author": "LangPao",
       "file": "countries/turchia.mp3",
@@ -1744,26 +1368,6 @@
       "mos": 3.21,
       "sha256": "ad0589b9924bf4877c45db5ff6539b4b91578eb1f29516e94518649497e1f6fa",
       "source": "LL-Q652 (ita)-LangPao-Turchia.wav"
-    },
-    "Ucraina": {
-      "author": "Francyskus",
-      "file": "countries/ucraina.mp3",
-      "gain": 4.2,
-      "gate": -50.5,
-      "matches": "Ucraina",
-      "mos": 2.63,
-      "sha256": "5a89dda5f0d45f10cbd319b5d7be58001ae497708fc388bfe4d9a6d0e193503a",
-      "source": "LL-Q652 (ita)-Francyskus-Ucraina.wav"
-    },
-    "Uganda": {
-      "author": "Francyskus",
-      "file": "countries/uganda.mp3",
-      "gain": 0.9,
-      "gate": -54.3,
-      "matches": "Uganda",
-      "mos": 1.21,
-      "sha256": "85d933fd317da561f3eaddbed490fa78d5d0482a8e1d7c733148ab1de08406d2",
-      "source": "LL-Q652 (ita)-Francyskus-Uganda.wav"
     },
     "Ungheria": {
       "author": "Ciampix",
@@ -1776,17 +1380,6 @@
       "sha256": "1c0122c3e05432dca2c233d98dcb8ed3f3c00bfd2ea5a21f52cf1326b7c4aac2",
       "source": "LL-Q652 (ita)-Ciampix-Ungheria.wav"
     },
-    "Uruguay": {
-      "author": "Francyskus",
-      "file": "countries/uruguay.mp3",
-      "gain": 5.1,
-      "gate": -54.1,
-      "lead": 60,
-      "matches": "Uruguay",
-      "mos": 2.42,
-      "sha256": "8e58933d0f96a79f4c2395948e9c6fe6bfc92425d33f3814c969854af494bd79",
-      "source": "LL-Q652 (ita)-Francyskus-Uruguay.wav"
-    },
     "Venezuela": {
       "author": "Ciampix",
       "file": "countries/venezuela.mp3",
@@ -1797,17 +1390,6 @@
       "mos": 3.17,
       "sha256": "67a47a2016a5d961c70e53b502c52c7453032fc49847452bd9bf13ef45802668",
       "source": "LL-Q652 (ita)-Ciampix-Venezuela.wav"
-    },
-    "Vietnam": {
-      "author": "Francyskus",
-      "cap": 2.3,
-      "file": "countries/vietnam.mp3",
-      "gain": 10.6,
-      "gate": -59.0,
-      "matches": "Vietnam",
-      "mos": 1.76,
-      "sha256": "01e95fa46f63490eabf6ad347ee84d77bf62c7b8a155da71e8c5c703ad9001df",
-      "source": "LL-Q652 (ita)-Francyskus-Vietnam.wav"
     },
     "italiani": {
       "author": "Ciampix",
@@ -4204,17 +3786,6 @@
       "sha256": "d72e591883a7aaaa09807ea482f660b95399cb12fc252d926691bc210a8f92dd",
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-differenza.wav"
     },
-    "difficile": {
-      "author": "XANA000",
-      "file": "words/difficile.mp3",
-      "gain": 8.4,
-      "gate": -60.0,
-      "lead": 124,
-      "matches": "difficile",
-      "mos": 2.54,
-      "sha256": "e7e591534a46d86803217c92e1722c0fc707c250c3a97e24aca12a9e2add11c7",
-      "source": "LL-Q652 (ita)-XANA000-difficile.wav"
-    },
     "dimenticare": {
       "author": "LangPao",
       "file": "words/dimenticare.mp3",
@@ -4267,17 +3838,6 @@
       "mos": 2.99,
       "sha256": "3cf6afd69e358c9d5655e2444424310b7e2cc781942e7d6fe2aaaabff3c88049",
       "source": "LL-Q652 (ita)-LangPao-dito.wav"
-    },
-    "divano": {
-      "author": "Icedlake",
-      "cap": 5.8,
-      "file": "words/divano.mp3",
-      "gain": -2.3,
-      "gate": -55.8,
-      "matches": "divano",
-      "mos": 1.25,
-      "sha256": "279e3b734ad4bbfb1c775a44a1e85075f3e2a877c55df2ccf4fb41e73ed49511",
-      "source": "It-divano.oga"
     },
     "diverso": {
       "author": "Crunchy Cloaky Crackdown",
@@ -5602,16 +5162,6 @@
       "mos": 3.31,
       "sha256": "59cdfef6643b1e7f593987fedc4cf238d838017c3998b84cf78f2a0f0cc760a6",
       "source": "LL-Q652 (ita)-LangPao-lasciare.wav"
-    },
-    "latte": {
-      "author": "Accurimbono",
-      "file": "words/latte.mp3",
-      "gain": 3.9,
-      "gate": -70.5,
-      "matches": "latte",
-      "mos": 1.1,
-      "sha256": "7707a594068b863bb2e3296880fd5f536996d7d9ec5dbc74962427cd4ddafbcb",
-      "source": "It-latte.ogg"
     },
     "lavagna": {
       "author": "DivoLetto",

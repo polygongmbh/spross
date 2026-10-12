@@ -1322,17 +1322,6 @@
       "sha256": "23c9bdf5f4b4046e36ea187147a21448bdf39d94a49589f4ceb044029e959fe4",
       "source": "LL-Q143 (epo)-Poslovitch-alia.wav"
     },
-    "aliĝi": {
-      "author": "Lepticed7",
-      "file": "words/aliu011di.mp3",
-      "gain": 7.7,
-      "gate": -61.6,
-      "lead": 189,
-      "matches": "aliĝi",
-      "mos": 2.92,
-      "sha256": "428afcfd55c3f214db98c96097471b5ae20e9bb8861bf8d2fedffe8b4a06f79b",
-      "source": "LL-Q143 (epo)-Lepticed7-aliĝi.wav"
-    },
     "alveni": {
       "author": "Lepticed7",
       "file": "words/alveni.mp3",
