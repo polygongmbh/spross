@@ -142,7 +142,7 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
             Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
                 TextButton(
                     onClick = {
-                        if ((model.stats?.allSettledCount ?: 0) > 0) {
+                        if (BoxBackup.offeredBeforeReset(model.stats)) {
                             resetExport.launch(
                                 BoxBackup.fileName(box.joinStamp.target, model.now(), model.tz()) + ".json",
                             )

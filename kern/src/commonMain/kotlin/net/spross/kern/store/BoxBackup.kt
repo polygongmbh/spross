@@ -1,5 +1,6 @@
 package net.spross.kern.store
 
+import net.spross.kern.box.BoxStatistics
 import net.spross.kern.box.dayKey
 import net.spross.kern.model.Language
 
@@ -20,6 +21,12 @@ object BoxBackup {
      */
     fun carried(boxes: StoredBoxes): List<Language> =
         boxes.boxes.filterValues { it.hasContent }.keys.sorted()
+
+    /**
+     * Whether resetting the box offers to export it first: only once a word has settled is
+     * there progress worth keeping, and a save sheet in front of a box with less only stands in the way.
+     */
+    fun offeredBeforeReset(stats: BoxStatistics?): Boolean = (stats?.allSettledCount ?: 0) > 0
 
     /** Every carried language, or [only] alone where the learner exports the one box. */
     fun encode(boxes: StoredBoxes, only: Language? = null): String = encodeStore(
