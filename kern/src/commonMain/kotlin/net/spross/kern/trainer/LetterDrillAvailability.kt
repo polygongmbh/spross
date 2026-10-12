@@ -73,6 +73,14 @@ object LetterDrillAvailability {
         /** The format that Sprosse lands in — what the overview marks. */
         fun openingFormat(cleared: Set<Int>): LetterFormat = LetterDrill.formatFor(openingSprosse(cleared))
 
+        /**
+         * Whether a run can reach [format]: nothing is open where the drill cannot run,
+         * and dictation only above [DICTATION_FLOOR] — below it the ramp stops one Sprosse short,
+         * so the format is a padlock with its price rather than one that never arrives.
+         */
+        fun formatOpen(format: LetterFormat): Boolean =
+            drillAvailable && (format != LetterFormat.Dictation || dictationAvailable)
+
         /** Whether some run answered out every Sprosse of [format] — never dictation's. */
         fun formatCleared(format: LetterFormat, cleared: Set<Int>): Boolean =
             format != LetterFormat.Dictation && LetterDrill.sprossen(format).all { it in cleared }

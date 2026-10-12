@@ -232,6 +232,16 @@ class LetterDrillAvailabilityTest {
         assertEquals(LetterDrill.MAX_SPROSSE_WITHOUT_DICTATION, short.maxSprosse)
     }
 
+    /** Below the floor dictation is a padlock while the other formats stand open; with no drill nothing does. */
+    @Test
+    fun dictationOpensOnlyAboveTheFloor() {
+        val short = report(hasVoice = false)
+        assertTrue(short.formatOpen(LetterFormat.Typed))
+        assertFalse(short.formatOpen(LetterFormat.Dictation))
+        assertTrue(report(hasVoice = true).formatOpen(LetterFormat.Dictation))
+        assertFalse(report(hasVoice = false, uk = silentAlphabet).formatOpen(LetterFormat.ChoiceEasy))
+    }
+
     /** The difficulty the draw weighs is READ from the schedule, never re-derived. */
     @Test
     fun aCandidateCarriesItsDifficulty() {

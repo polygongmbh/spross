@@ -43,7 +43,7 @@ fun LettersOverviewScreen(model: AppModel) {
     // An unlock is marked once. Only a priced padlock counts: where the drill cannot run at
     // all, every format is shut for a reason that is not the learner's to earn.
     val priced = if (available) LetterFormat.entries else emptyList()
-    val reach = priced.associateWith { formatOpen(it, report) }
+    val reach = priced.associateWith { report?.formatOpen(it) == true }
     val locked = priced.filter { reach[it] == false }.map { DrillUnlockMark.row(it) }.toSet()
     val unlocking = remember(language, locked) {
         model.trainer.store.unlockMarks(
@@ -88,7 +88,7 @@ private fun FormatRow(
     chrome: Chrome,
 ) {
     val ready = report?.takeIf { it.drillAvailable }
-    val open = formatOpen(format, report)
+    val open = report?.formatOpen(format) == true
     val entry = open && ready?.openingFormat(cleared) == format
     // Climbed off clean beats where the run opens; the rest are outlines.
     val mark = SprosseMark.of(cleared = ready?.formatCleared(format, cleared) == true, reached = entry)
@@ -129,15 +129,4 @@ private fun FormatRow(
             }
         }
     }
-}
-
-/**
- * Dictation needs a pool of playable words the learner already holds; below that floor the
- * ramp stops one Sprosse short of it, so the row is a padlock with its price. Where the drill
- * cannot run at all, every format is out of reach for the one reason the line under the button
- * already gives.
- */
-private fun formatOpen(format: LetterFormat, report: LetterDrillAvailability.Report?): Boolean {
-    val ready = report?.takeIf { it.drillAvailable } ?: return false
-    return format != LetterFormat.Dictation || ready.dictationAvailable
 }
