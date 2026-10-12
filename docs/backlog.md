@@ -49,7 +49,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
   "Feier") — considered for word scramble (`drills-words.md`) and left out.
 - The iOS session summary burst has geometry and timing Android does not draw — port it through kern `design/`, or keep it an iOS flourish? (`App/Sources/Design/SessionSummaryView.swift`)
 - Card geometry is still written on both platforms (emoji slot, reveal rule, replay target, verdict tile, card reserves, activity strip gutter) — where does native spacing end and a kern `design/` value begin?
-- Emoji as chrome or content: `Drill.emoji` and `DrillPauseReason.emoji` live in kern while the milestone KDoc calls glyphs chrome — which side owns a glyph?
+- Emoji as chrome or content: `Drill.emoji` and `DrillPauseReason.emoji` live in kern while the milestone KDoc calls glyphs chrome and both phones keep their own `AnswerStreakMilestone` glyph table — which side owns a glyph?
 - `web/site.js` runs its own numbers ramp beside kern's `NumbersRun` — should the site read kern's JS export instead?
 - The dated audio research docs (`docs/2026-09-28-audio-quality-*.md`, `docs/2026-10-09-audio-rating-sources.md`) and `docs/audio-verdicts.tsv` sit under `docs/` as if current — archive, fold into `docs/audio-format.md`, or keep?
 
@@ -57,7 +57,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Engine
 
-- Trainer rules both phones mint: milestone glyphs beside `DrillPauseReason.emoji`, the numbers run title.
 - Widget rules both phones mint: display sort, strip bar width and gutter, the 🗂️ fallback; Android's widget recomputes the chrome language the snapshot already carries (`WidgetSnapshotView` lacks the accessor).
 - `TurnEffect` and `DrillEffect` repeat `ArmAdvance`/`CancelAdvance`/`Tone`/`ReleaseFocus`, so each app dispatches the cue contract twice.
 - Layout data sits in `trainer/` rather than `design/`: `Drill.chipRows`, `ReferenceColumns.PAIRED_MIN_WIDTH`, `DrillUnlockMark` timings.

@@ -29,7 +29,11 @@ extension NumbersRunView: DrillRunning {
     var keepPracticingMove: NumbersIntent { NumbersIntent.KeepPracticing.shared }
 
     var resultTitle: LocalizedStringKey {
-        run.challenge == nil ? mode.titleKey : "trainer.challenge.title"
+        switch onEnum(of: run.namedAfter) {
+        case .challenge: "trainer.challenge.title"
+        case .exercise(let named): named.exercise.trainerTitleKey
+        case .trainer: "trainer.hub.title"
+        }
     }
 
     var voiceModel: AppModel? { model }

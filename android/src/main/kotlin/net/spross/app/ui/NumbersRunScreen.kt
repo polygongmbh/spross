@@ -20,6 +20,7 @@ import net.spross.app.newTrainerRun
 import net.spross.kern.trainer.Drill
 import net.spross.kern.trainer.NumbersChallenge
 import net.spross.kern.trainer.NumbersMode
+import net.spross.kern.trainer.NumbersRunName
 import net.spross.kern.trainer.NumbersRunState
 import net.spross.kern.trainer.TimedRun
 
@@ -44,11 +45,10 @@ fun NumbersRunScreen(model: AppModel, mode: NumbersMode, challenge: NumbersChall
     val state = flow.state
     val store = model.trainer.store
 
-    // The result tile's title: the challenge, the single exercise, or the hub card's title.
-    val title = if (challenge != null) {
-        chrome.trainerChallengeTitle
-    } else {
-        mode.exercises.singleOrNull()?.let { chrome.name(it) } ?: chrome.trainerHubTitle
+    val title = when (val named = state.namedAfter) {
+        NumbersRunName.Challenge -> chrome.trainerChallengeTitle
+        is NumbersRunName.Exercise -> chrome.name(named.exercise)
+        NumbersRunName.Trainer -> chrome.trainerHubTitle
     }
 
     val leave = {

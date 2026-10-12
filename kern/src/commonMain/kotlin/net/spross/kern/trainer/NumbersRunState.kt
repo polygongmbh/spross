@@ -67,6 +67,13 @@ data class NumbersClose(
     )
 }
 
+/** What a numbers run is named after: the challenge it plays, the one exercise it asks, or the trainer where it asks several. */
+sealed interface NumbersRunName {
+    data object Challenge : NumbersRunName
+    data class Exercise(val exercise: NumbersExercise) : NumbersRunName
+    data object Trainer : NumbersRunName
+}
+
 /**
  * One slot run, whole and immutable: what is on screen, what the answers have done to it, and
  * the per-exercise Sprossen it is standing on.
@@ -151,6 +158,13 @@ data class NumbersRunState(
 
     /** A run that asks one thing has already said what it asks. */
     val severalExercises: Boolean get() = mode.exercises.size > 1
+
+    /** What the run's result is named after; each app words it. */
+    val namedAfter: NumbersRunName
+        get() = when {
+            challenge != null -> NumbersRunName.Challenge
+            else -> mode.exercises.singleOrNull()?.let { NumbersRunName.Exercise(it) } ?: NumbersRunName.Trainer
+        }
 
     /**
      * The Sprosse part of the score line, for the exercise that just asked; null where it has one Sprosse.

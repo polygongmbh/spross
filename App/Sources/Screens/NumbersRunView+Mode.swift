@@ -42,13 +42,6 @@ extension NumbersMode {
                     phraseSource: source, templates: templates)
     }
 
-    /// Catalog key for the run title — the exercise's own where the run asks one
-    /// thing, and the trainer's own name where it asks several. Chrome, so it
-    /// lives here: kern names the rule, never the rendering.
-    var titleKey: LocalizedStringKey {
-        exercises.count == 1 ? exercises[0].trainerTitleKey : "trainer.hub.title"
-    }
-
     /// The grader this run is played with — one home, because both surfaces that
     /// open a run owe it the same one. Drills grade strictly (no article
     /// forgiveness, digits exact-only), and kern's value check keeps one number
