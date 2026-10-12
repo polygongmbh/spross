@@ -1,3 +1,4 @@
+import SprossKern
 import SwiftUI
 
 // MARK: - SummaryScaffold
@@ -55,7 +56,7 @@ struct SummaryScaffold<Hero: View>: View {
         // to scrolling when it does not.
         GeometryReader { geo in
             ScrollView {
-                content(ceiling: geo.size.height * 0.45)
+                content(ceiling: geo.size.height * AreaTree.shared.HERO_SHARE)
                     .padding(Theme.spacing.xl)
                     .frame(minWidth: geo.size.width, minHeight: geo.size.height)
             }
