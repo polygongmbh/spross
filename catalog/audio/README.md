@@ -3,18 +3,19 @@ The bundled recordings' file format, naming and provenance fields.
 Neighbors: engine `../../kern/docs/audio.md`, when one is heard `../../docs/read-aloud.md`, whose they are `../../docs/audio-licensing.md`.
 
 Bundled pronunciation recordings, one folder per language, **generated** by
-`app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
-`--articles`, `--calendar` and `--countries` rebuild only their own section of what ships,
-so a late pack lands without re-deriving the others.
+`app/scripts/audio-catalog.py` out of the workspace's packs — edit packs, not this directory.
+A full convert builds a language that ships no manifest yet and refuses one that does.
 
-**`--fill` is how a language catches up with the catalog**, and the only way that should be
-used: it ADDS words the manifest lacks and leaves every entry it already has byte-identical
-— file, digest and credit. A plain re-convert replaces a language wholesale out of a
-workspace that has moved on, which would discard the German pack's reseated rows (the fix
-for its hiss) and several packs' hand-curated tails. A fill also refuses a row whose spoken
-form a SHIPPED row already claims under different bytes: two files for one sound leave the
-runtime nothing to pick, so filling one word would silence another. German `poor` is
-"arm", which the body part already speaks; French `entrance` and `fresh` are the same story.
+**`--fill [--section S]` is how a language catches up with the catalog**, in any section:
+it ADDS forms the section lacks and leaves every entry it already has byte-identical
+— file, digest and credit — so the German pack's reseated rows (the fix for its hiss) and
+several packs' hand-curated tails survive whatever the workspace has moved on to.
+A fill also refuses a row whose spoken form a SHIPPED row already claims under different bytes:
+two files for one sound leave the runtime nothing to pick, so filling one word would silence another.
+German `poor` is "arm", which the body part already speaks; French `entrance` and `fresh` are the same story.
+A row whose bytes already ship in that section is that entry, under the key it was moved to.
+`--articles`, `--calendar` and `--countries` ship their section's staged pack swaps (`--ship --from-packs`),
+then fill it.
 
 The packs (`pack-<lang>-words`, `pack-<lang>-articles` and their siblings) are keyed like this manifest,
 by the form a recording speaks, never by the concept that shows it:
@@ -28,8 +29,8 @@ fetches), a matter of seconds:
 ```sh
 ../data/reference/audio/build-packs.sh words <lang>          # resolves only what the pack lacks
 ../data/reference/audio/build-packs.sh articles <lang>       # the same forms with their article
-scripts/audio-catalog.py --packs ../data/reference/audio --lang <lang> --fill
-scripts/audio-catalog.py --packs ../data/reference/audio --lang <lang> --articles
+scripts/audio-catalog.py --lang <lang> --fill
+scripts/audio-catalog.py --lang <lang> --articles
 scripts/audio-coverage.py --missing <lang>                   # what nobody has recorded
 ```
 

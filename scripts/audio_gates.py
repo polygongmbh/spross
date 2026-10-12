@@ -126,6 +126,28 @@ def digest_of(path):
         return hashlib.sha256(f.read()).hexdigest()
 
 
+def verb_stem(form, prefixes):
+    """kern `verbStem`: [form] without the first optional verb prefix it starts with, else None."""
+    trimmed = form.strip()
+    return next((trimmed[len(p):] for p in prefixes
+                 if len(trimmed) > len(p) and trimmed.lower().startswith(p.lower())), None)
+
+
+def split_article(form, articles):
+    """kern `splitArticle`: (the listed article [form] opens with, the word behind it), else (None, form)."""
+    for article in articles:
+        elided = article[-1:] in APOSTROPHES
+        head = article[:-1] if elided else article + ' '
+        if len(form) <= len(head) or not form.lower().startswith(head.lower()):
+            continue
+        if elided and form[len(head)] not in APOSTROPHES:
+            continue
+        word = form[len(head) + (1 if elided else 0):].lstrip()
+        if word:
+            return form[:len(form) - len(word)].rstrip(), word
+    return None, form
+
+
 def spoken_target_form(article, text):
     """Port of kern's `spokenTargetForm` for a card showing its canonical word.
 
