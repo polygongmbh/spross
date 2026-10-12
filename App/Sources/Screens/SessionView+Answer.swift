@@ -16,7 +16,8 @@ extension SessionView {
                    correctionVoice: .init(pronounce: { correctionSpeaker($0) },
                                           isPlaying: { correctionIsPlaying($0) }),
                    nextLocale: model.targetChromeLocale,
-                   caption: writing ? (model.coachActive ? SessionCoach.writeLine : nil) : gradeCaption)
+                   caption: Coaching.shared.controlsLine(coaching: model.coachActive, writing: writing)
+                       .map(SessionCoach.key))
     }
 
     /// The write-out step stands: its field, not the answer's, is the one on screen.

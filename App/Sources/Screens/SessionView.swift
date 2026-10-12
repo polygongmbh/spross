@@ -183,9 +183,9 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
                 // its correction stands even though the card never expands.
                 .contextMenu { if answerOut { cardMenu(card) } }
         } area: { controls in
-            if model.coachActive,
-               let line = SessionCoach.recognizeLine(role: role, revealed: revealed) {
-                Text(line).pauseLine()
+            if let line = Coaching.shared.promptLine(coaching: model.coachActive, role: role,
+                                                     revealed: revealed) {
+                Text(SessionCoach.key(line)).pauseLine()
             }
             answerArea(controls)
         }
@@ -224,14 +224,6 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
                 model.suspendCurrentCard()
             }
         }
-    }
-
-    /// What the self-grade row stands under: the first round's coaching while it is
-    /// owed, else the standing question. One slot, one line — both paths to the row
-    /// (recognize, and produce's blank reveal) read it.
-    // why: internal, not private — SessionView+Answer captions the row with it.
-    var gradeCaption: LocalizedStringKey {
-        model.coachActive ? SessionCoach.gradeCaption : "session.rating.question"
     }
 
     /// It matters here for the step "Unbekannt" opens: the write-it-out field

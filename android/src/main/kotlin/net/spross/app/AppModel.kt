@@ -172,14 +172,6 @@ class AppModel(app: Application) : AndroidViewModel(app) {
      */
     var coachActive by mutableStateOf(false)
         private set
-
-    /**
-     * What the self-grade row stands under: the first round's coaching while it is owed,
-     * else the standing question. One slot, one line — both paths to the row (recognize,
-     * and produce's blank reveal) read it.
-     */
-    val gradeCaption: String
-        get() = if (coachActive) chrome.sessionCoachGrade else chrome.sessionRatingQuestion
     var sessionUi by mutableStateOf<SessionUi?>(null)
         private set
     var chrome by mutableStateOf(Chrome.forSource("en"))

@@ -2,11 +2,13 @@ package net.spross.app.ui
 
 import androidx.compose.runtime.Composable
 import net.spross.app.AppModel
+import net.spross.app.SessionCoach
 import net.spross.app.SessionUi
 import net.spross.app.TurnFlow
 import net.spross.app.isSounding
 import net.spross.app.pronounceAction
 import net.spross.kern.model.ProducePrompt
+import net.spross.kern.session.Coaching
 
 /**
  * What stands under the review card: kern's `TurnState.controls` on the shared [AnswerArea].
@@ -39,6 +41,6 @@ fun ReviewAnswer(model: AppModel, ui: SessionUi, flow: TurnFlow) {
             isPlaying = { !heard && model.isSounding(it) },
         ),
         nextSubtitle = model.targetChrome?.commonNext,
-        caption = if (writing) chrome.sessionCoachWrite.takeIf { model.coachActive } else model.gradeCaption,
+        caption = Coaching.controlsLine(model.coachActive, writing)?.let { SessionCoach.line(chrome, it) },
     )
 }

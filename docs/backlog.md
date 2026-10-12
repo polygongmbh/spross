@@ -57,7 +57,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Engine
 
-- Rules both phones still mint, each wanting a kern home and two callers: coach caption.
 - Trainer rules both phones mint: `LetterDrillAvailability.Report.formatOpen`, reference-sheet captions, lock-screen now-playing lines, milestone glyphs beside `DrillPauseReason.emoji`, the numbers run title.
 - Widget rules both phones mint: display sort, strip bar width and gutter, the 🗂️ fallback; Android's widget recomputes the chrome language the snapshot already carries (`WidgetSnapshotView` lacks the accessor).
 - `TurnEffect` and `DrillEffect` repeat `ArmAdvance`/`CancelAdvance`/`Tone`/`ReleaseFocus`, so each app dispatches the cue contract twice.
