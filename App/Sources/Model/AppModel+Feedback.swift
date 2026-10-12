@@ -51,19 +51,6 @@ extension AppModel {
         return Feedback.shared.catalogIssues(state: box)
     }
 
-    /// The half a suggestion does carry, whichever language it is in. A suggestion
-    /// joins nothing and is never scheduled (`OwnWords.cards`), so the box holds no
-    /// card to read it off, and the one text it has is the one to show.
-    func suggestionText(_ word: OwnWord) -> String {
-        word.languages.first.flatMap { word.texts[$0] } ?? ""
-    }
-
-    /// A pair this profile cannot study, read in the order kern names its languages —
-    /// both halves the learner wrote, neither of them the known or the learning side here.
-    func otherPairText(_ word: OwnWord) -> String {
-        word.languages.compactMap { word.texts[$0] }.joined(separator: " → ")
-    }
-
     /// The flags of the languages it is written in that this pair cannot read
     /// (`OwnWord.languagesOutside`) — the whole of why it has no card, said without words.
     /// Named for a screen reader, which is handed no picture at all.

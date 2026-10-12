@@ -29,8 +29,8 @@ extension BoxOwnContentSection {
     /// rather than as a card — and a flag says it in the space a sentence would not fit.
     private func otherPairRow(_ word: OwnWord) -> some View {
         entryRow(word, lines: 1, said: word.comment, tail: model.otherPairFlags(word),
-                 copying: model.otherPairText(word), opening: .editing(word)) {
-            Text(verbatim: model.otherPairText(word))
+                 copying: word.writtenLine, opening: .editing(word)) {
+            Text(verbatim: word.writtenLine)
         }
     }
 
@@ -51,8 +51,8 @@ extension BoxOwnContentSection {
                  // why: a missing half is not a shortcoming of the word, it is the whole
                  // point of the entry — it is what the catalog owes.
                  tail: Text("box.own.word.needsTranslation"),
-                 copying: model.suggestionText(word), opening: .entry(word)) {
-            Text(verbatim: model.suggestionText(word))
+                 copying: word.suggestionText, opening: .entry(word)) {
+            Text(verbatim: word.suggestionText)
         }
     }
 
@@ -128,8 +128,7 @@ extension BoxOwnContentSection {
             Text(verbatim: "🚩")
                 .accessibilityLabel("a11y.report.reported")
             VStack(alignment: .leading, spacing: 2) {
-                // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
-                Text(verbatim: "\(card.target.text) → \(card.source.text)")
+                Text(verbatim: card.pairLine)
                     .font(Theme.typography.body)
                     .foregroundStyle(Theme.colors.textPrimary)
                     .lineLimit(2)
