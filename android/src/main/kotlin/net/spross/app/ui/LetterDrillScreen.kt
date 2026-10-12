@@ -50,8 +50,7 @@ fun LetterDrillScreen(model: AppModel) {
         run = flow,
         leave = leave,
         progress = state,
-        // One Sprosse, mapped to formats by kern — there is no Sprosse to name.
-        sprosse = null,
+        sprosse = chrome.trainerSprosse.format(state.sprosse),
         speaksPastMute = true,
     ) {
         val task = state.task ?: return@DrillRunScaffold
