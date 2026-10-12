@@ -52,30 +52,34 @@ The score ranks voices the way the ear does, but a single file strays by a few t
 picks among takes and refuses only the clearly bad.
 
 ```sh
-W=../data/reference/audio   # <route> is the language's from $W/build-packs.sh
-$W/sync-from-shipped.py <lang>                              # every pack says what ships
-$W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <its siblings>
-                                                            # voices with ≤3 takes onto established ones
-$W/requalify-pack.py --lang <lang> <route>                  # under 2.8, squashed or one-sided: the best other take
-$W/requalify-pack.py --lang <lang> --pack $W/pack-<lang>-<section> <route>  # the same for calendar, countries
-scripts/audio-catalog.py --ship --from-packs --lang <lang> --dry-run   # the swaps the packs now name, judged
-scripts/audio-catalog.py --ship --from-packs --lang <lang>             # ships them, any section but letters
+scripts/audio-packs.py consolidate <lang>... --apply        # voices with ≤3 takes onto established ones
+scripts/audio-packs.py sweep <lang>... --apply              # poor, doubted, squashed, one-sided or refused: the best other take
+scripts/audio-catalog.py --ship --lang <lang> --dry-run     # the staged swaps, judged
+scripts/audio-catalog.py --ship --lang <lang>               # ships them
 scripts/audio-catalog.py --lang <lang> --prune-poor         # what the judge still refuses
 ```
 
+A sweep runs for hours: every run prints its `tail -f` line first and tees each pack's log to
+`$W/logs/<date>-<command>/`, beside a one-line-per-pack `summary.log`.
+One run at a time — Commons throttles a second.
+`--only <forms>` reconsiders named forms whatever they score, and a rerun resumes:
+fetches and measures are cached in the workspace, and a key already staged against what ships is passed over.
+An item Commons stays unreachable for keeps its take, and the run exits nonzero with the count.
+
 A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source:
 the score hears it as clean, the ear hears it squashed, and no gain undoes that.
-Requalification reconsiders it like a poor take and never swaps one in.
+A sweep reconsiders it like a poor take and never swaps one in.
 
-Both reseating scripts only report until given `--apply`.
+Both pickers only print until given `--apply`, and never write a pack: a swap is a row in
+`$W/staged.tsv`, its bytes in `$W/staged/`, and a form that ships nothing yet is staged against nothing.
 `--ship` replaces a take only while the one it was chosen over still ships, and only once the
 take judge passes the replacement; a refused swap leaves the old recording standing.
-It applies `$W/staged.tsv` (bytes in `$W/staged/`), `--from-packs` first stages every pack row
-naming another Commons file than what ships, and each applied swap is appended to `$W/shipped.tsv`.
+Each applied swap is appended to `$W/shipped.tsv`;
+`--from-packs` first stages every pack row naming another Commons file than what ships under its form.
 A new speaker is another voice change on the cards and another credit group, so every
 picker takes an established voice's take over a slightly better stranger's, and a voice
 with three recordings or fewer is moved onto an established one wherever it can be —
-never onto a take requalification would refuse.
+never onto a take the sweep would refuse.
 A second voice earns its place with a chunk of words, never a scattering of one-offs:
 where the main voice is poor, a few good voices each take every word they say well.
 

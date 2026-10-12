@@ -89,7 +89,7 @@ def shipped_take(lang, section, key, item, out_dir):
 def prune_poor(languages):
     """Remove every shipped recording the take judge refuses (`audio_judge.py`) — under its
     language's `mos_floor`, heard as bad, one-sided — file and entry, so the device voice or
-    silence takes over. Run `requalify-pack.py` first, so such a word gets a better take where
+    silence takes over. Run `audio-packs.py sweep` first, so such a word gets a better take where
     one exists."""
     for lang in languages or sorted(os.listdir(AUDIO)):
         out_dir = audio_dir(lang)

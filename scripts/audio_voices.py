@@ -32,6 +32,22 @@ def mos_floor(lang):
 # and the best one may replace it. Well over every floor, because here the score only ranks.
 RECONSIDER_MOS = 2.8
 
+# What a challenger has to beat a passable incumbent by: a swap costs a voice change and a
+# re-credit, and a single file's score strays by a few tenths. Also the most a consolidation may
+# give up for a tidier credits screen.
+SWAP_MARGIN = 0.3
+
+# Takes a voice ships in a language before it counts as established: every new speaker is another
+# voice change on the cards and another credit group, so a picker takes an established voice's
+# take over a slightly better stranger's. A voice with ONE_OFF_TAKES or fewer is moved onto an
+# established one wherever it can be.
+ESTABLISHED_TAKES = 5
+ONE_OFF_TAKES = 3
+
+# The most energy above 6 kHz (`audio_measure.brightness`) a consolidation may give up: a take lopped
+# off at 7 kHz has no hiss because it has nothing up there, scores clean and sounds like a telephone.
+DULLNESS_DB = 12.0
+
 
 # The least a take's sample peak may stand over its integrated loudness. Speech keeps its
 # stress and consonant peaks well above its average; a take limited at the source has had

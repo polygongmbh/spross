@@ -8,6 +8,7 @@ bytes wait at `$W/staged/<to_sha256>.mp3`. It applies only while its `from_sha25
 and through `audio_manifest.put`, which judges the take before it replaces anything.
 An applied row moves to `$W/shipped.tsv`; a row whose incumbent moved, or whose take the judge
 refuses, is named and leaves the journal, so a picker stages it afresh if it still holds.
+An empty `from_sha256` is a take for a form that ships nothing, applied while that still holds.
 `--from-packs` first stages every pack row naming another Commons file than what ships under
 its form — the swaps a sweep or a consolidation wrote into a pack — in any section but `letters`.
 """
@@ -82,6 +83,12 @@ def from_packs(workspace, langs, sections):
     return staged
 
 
+def article_word(lang, key):
+    """The word a card shows behind the article [key] says — what a new `articles` entry records."""
+    from audio_forms import load_catalog
+    return load_catalog()[1].get(lang, {}).get(speech_key(key))
+
+
 def ship(workspace, langs, dry_run, packs, section):
     staged_path = os.path.join(workspace, 'staged.tsv')
     journal = read_rows(staged_path) if os.path.exists(staged_path) else []
@@ -103,8 +110,10 @@ def ship(workspace, langs, dry_run, packs, section):
         latest = {}
         for row in (row for row in due if row['lang'] == lang):
             item = manifest.get(row['section'], {}).get(row['key'])
-            if not item or item['sha256'] != row['from_sha256']:
-                print('  moved    %s %s/%s: %s no longer ships' % (lang, row['section'], row['key'], row['from_source']))
+            # why: an empty `from_sha256` stages a take for a form that ships nothing yet.
+            if (item['sha256'] if item else '') != row['from_sha256']:
+                print('  moved    %s %s/%s: %s' % (lang, row['section'], row['key'], '%s no longer ships' % row['from_source']
+                                                  if row['from_sha256'] else 'ships a take now'))
                 settled.append(row)
                 continue
             row.setdefault('mp3', os.path.join(workspace, 'staged', '%s.mp3' % row['to_sha256']))
@@ -116,7 +125,9 @@ def ship(workspace, langs, dry_run, packs, section):
             latest[(row['section'], row['key'])] = row
         rows = list(latest.values())
         outcome = put(lang, [dict(section=row['section'], key=row['key'], mp3=row['mp3'],
-                                  source=row['to_source'], author=row['author'], license=row['license'])
+                                  source=row['to_source'], author=row['author'], license=row['license'],
+                                  **({'word': article_word(lang, row['key'])} if row['section'] == 'articles'
+                                     and not row['from_sha256'] else {}))
                              for row in rows], dry_run)
         for row in rows:
             why, mos = outcome[(row['section'], row['key'])]
