@@ -21,6 +21,7 @@ import net.spross.kern.listen.ListeningRunState
 import net.spross.kern.listen.ListeningSaying
 import net.spross.kern.listen.ListeningSeam
 import net.spross.kern.listen.ListeningTurn
+import net.spross.kern.listen.NowPlayingLines
 import net.spross.kern.listen.listeningGainDb
 import net.spross.kern.listen.listeningSeam
 import net.spross.kern.listen.listeningTimerStepMs
@@ -213,7 +214,7 @@ class ListeningDriver(
             null
         } else {
             ListeningNowPlaying(
-                title = "$SPROSS_BRAND · ${chrome.listenTitle}",
+                title = NowPlayingLines.title(chrome.listenTitle),
                 languages = languages(),
                 paused = run.paused,
                 bedtime = remainingMs()?.let {
@@ -231,7 +232,7 @@ class ListeningDriver(
     /** The pair the box joins, known first — the order the mode says them in. */
     private fun languages(): String {
         val stamp = model.box?.joinStamp ?: return ""
-        return "${model.languageName(stamp.source)} – ${model.languageName(stamp.target)}"
+        return NowPlayingLines.languages(model.languageName(stamp.source), model.languageName(stamp.target))
     }
 
     private fun play(turn: ListeningTurn) {

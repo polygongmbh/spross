@@ -30,10 +30,6 @@ final class ListeningDriver {
     /// holds stays well under it.
     private static let watchdog: Duration = .milliseconds(LISTENING_WATCHDOG_MS)
 
-    /// The app's own name, which needs no translating — it is the name on the
-    /// home screen in every language.
-    private static let brand = "Spross"
-
     private(set) var state: ListeningRunState
     /// The sleep timer, whole (`ListeningBedtime`) — the chip reads it, the run
     /// only asks it how loud to play and when to stop.
@@ -153,8 +149,8 @@ final class ListeningDriver {
         let target = model.targetLanguage.map {
             LanguageNames.display($0, catalog: model.catalog)
         }
-        return .init(title: "\(Self.brand) · \(mode)",
-                     languages: target.map { "\(source) – \($0)" } ?? source)
+        return .init(title: NowPlayingLines.shared.title(mode: mode),
+                     languages: NowPlayingLines.shared.languages(source: source, target: target))
     }
 
     /// The run is over and the screen leaves with it.

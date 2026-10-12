@@ -44,9 +44,6 @@ interface ListeningControls {
     fun close()
 }
 
-/** The app's own name, which needs no translating — it is the name on the launcher too. */
-const val SPROSS_BRAND = "Spross"
-
 /**
  * The run as the lock screen shows it — the RUN, and nothing that moves with a turn.
  *
