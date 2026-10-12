@@ -22,6 +22,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import audio_manifest  # noqa: E402
 from audio_gates import speech_key, stress_free  # noqa: E402
 
 _spec = importlib.util.spec_from_file_location('audio_catalog', os.path.join(HERE, 'audio-catalog.py'))
@@ -72,9 +73,7 @@ def moves(shown, displayed, words):
 
 
 def restress(lang, shown, check):
-    out_dir = os.path.join(_catalog.CATALOG, 'audio', lang)
-    manifest = _catalog.read_manifest(out_dir)
-    words = manifest.get('words', {})
+    words = audio_manifest.read_manifest(audio_manifest.audio_dir(lang)).get('words', {})
     found, ambiguous = moves(shown.get(lang, set()), displayed_forms(lang), words)
     for key, said in ambiguous:
         print('  %s %s: two readings %s — left as it is' % (lang, key, ' / '.join(said)))
@@ -83,13 +82,7 @@ def restress(lang, shown, check):
     if check or not found:
         return len(found)
     for key, stressed in found:
-        item = words.pop(key)
-        moved = _catalog.form_file('words', stressed)
-        os.rename(os.path.join(out_dir, item['file']), os.path.join(out_dir, moved))
-        words[stressed] = dict(item, file=moved, matches=stressed)
-    _catalog.write_manifest(lang, out_dir, words, manifest.get('letters', {}),
-                            manifest.get('texts', {}), manifest.get('articles', {}),
-                            manifest.get('calendar', {}), manifest.get('countries', {}))
+        audio_manifest.rename(lang, 'words', key, stressed)
     return 0
 
 
@@ -99,7 +92,7 @@ def main():
     parser.add_argument('--check', action='store_true', help='report what would move, write nothing')
     args = parser.parse_args()
     shown, _ = _catalog.load_catalog()
-    audio = os.path.join(_catalog.CATALOG, 'audio')
+    audio = audio_manifest.AUDIO
     langs = args.lang or sorted(name for name in os.listdir(audio) if os.path.isdir(os.path.join(audio, name)))
     pending = sum(restress(lang, shown, args.check) for lang in langs)
     sys.exit(1 if args.check and pending else 0)

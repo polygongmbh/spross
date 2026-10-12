@@ -10,7 +10,7 @@ import net.spross.kern.listen.fadedGainDb
  * The catalog's ANALYSIS INDEX in the units an Android player takes: a linear volume, a
  * boost in millibels and a noise gate's expander band.
  *
- * The scheme is `scripts/audio-catalog.py`'s `ANALYSIS['scheme']` = **boost**. The uk
+ * The scheme is `scripts/audio_index.py`'s `ANALYSIS['scheme']` = **boost**. The uk
  * letters sit 14.7 dB under the word packs, so attenuating everything down to them would
  * leave the whole app whispering; the quiet files are lifted instead. `setVolume` only
  * ever attenuates, so the index splits in two — a negative gain is the volume's business

@@ -58,8 +58,8 @@ def main():
                 for row in csv.DictReader(handle, fieldnames=fields, delimiter='\t')}
     todo = [row for row in rows
             if (row['sha256'], row.get('context') or default_context) not in done]
-    print('%d of %d takes to rate — 1-5 rate, r replay, d defect, n note, s skip, q quit\n'
-          % (len(todo), len(rows)))
+    print('%d of %d takes to rate\n  1 bad  2 mediocre  3 okay  4 good  5 great'
+          '  ·  r replay  d defect  n note  s skip  q quit\n' % (len(todo), len(rows)))
     player = None
     for number, row in enumerate(todo, 1):
         audio = row['file'] if os.path.isabs(row['file']) else os.path.join(base, row['file'])

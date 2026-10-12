@@ -2,7 +2,9 @@
   "authors": {
     "Association Shtooka, Світлана Чурак (Svitlana Churak)": "CC BY 3.0 us",
     "Bicolino34": "CC BY-SA 4.0",
+    "Fanat22012": "CC BY-SA 4.0",
     "Po ukraińsku (Andriana)": "CC0",
+    "Renvoy": "CC0",
     "Tabrus": "CC BY-SA 4.0",
     "Tohaomg": "CC BY-SA 4.0",
     "UnconcernedCape": "CC0",
@@ -290,24 +292,26 @@
       "source": "LL-Q8798 (ukr)-Tohaomg-Іспанія.wav"
     },
     "Італія": {
-      "author": "Tohaomg",
+      "author": "Renvoy",
       "file": "countries/u0456u0442u0430u043bu0456u044f.mp3",
-      "gain": -2.6,
-      "lead": 239,
+      "gain": 2.3,
+      "gate": -77.5,
+      "lead": 226,
       "matches": "Італія",
-      "mos": 2.48,
-      "sha256": "a50c7dc0852f4d7379d086bbd4170c6fc6222cab05086768753568345a693167",
-      "source": "LL-Q8798 (ukr)-Tohaomg-Італія.wav"
+      "mos": 2.92,
+      "sha256": "50694427f466668bbad356ae6e3523d655ba2f53297aa21ae5a51d4993931a24",
+      "source": "LL-Q8798 (ukr)-Renvoy-Італія.wav"
     },
     "Австралія": {
-      "author": "Bicolino34",
+      "author": "Fanat22012",
       "file": "countries/u0430u0432u0441u0442u0440u0430u043bu0456u044f.mp3",
-      "gain": 12.3,
-      "gate": -68.4,
+      "gain": 2.5,
+      "gate": -86.9,
+      "lead": 231,
       "matches": "Австралія",
-      "mos": 2.28,
-      "sha256": "5832d55dae16b28017c69a1d1a047d6ca706d2627d9feff18b9ad1f9f3afc715",
-      "source": "LL-Q8798 (ukr)-Bicolino34-Австралія.wav"
+      "mos": 3.28,
+      "sha256": "aac65bbf62ef95b7dc4708fbad55f8375c565dc8c565fcc9bb80fec7eaf51a3b",
+      "source": "LL-Q8798 (ukr)-Fanat22012-Австралія.wav"
     },
     "Австрія": {
       "author": "Bicolino34",
@@ -363,14 +367,15 @@
       "source": "LL-Q8798 (ukr)-Tohaomg-Бельгія.wav"
     },
     "Болгарія": {
-      "author": "Tohaomg",
+      "author": "Renvoy",
       "file": "countries/u0431u043eu043bu0433u0430u0440u0456u044f.mp3",
-      "gain": -1.1,
-      "lead": 91,
+      "gain": 0.9,
+      "gate": -74.6,
+      "lead": 259,
       "matches": "Болгарія",
-      "mos": 2.45,
-      "sha256": "1de580f08e7a830fe7d89afc2bfa05f600e0bc8d3339b0cfb677f0f9f2258e11",
-      "source": "LL-Q8798 (ukr)-Tohaomg-Болгарія.wav"
+      "mos": 3.0,
+      "sha256": "852acb8f2bffbf306241b4228934df436400ab4839f6b293023ff46617636606",
+      "source": "LL-Q8798 (ukr)-Renvoy-Болгарія.wav"
     },
     "Бразилія": {
       "author": "Tohaomg",
@@ -395,7 +400,7 @@
     },
     "Велика Британія": {
       "author": "Tohaomg",
-      "file": "countries/u0432u0435u043bu0438u043au0430u0020u0431u0440u0438u0442u0430u043du0456u044f.mp3",
+      "file": "countries/u0432u0435u043bu0438u043au0430_u0431u0440u0438u0442u0430u043du0456u044f.mp3",
       "gain": 1.4,
       "gate": -86.0,
       "lead": 203,
@@ -447,7 +452,7 @@
     },
     "Демократична Республіка Конго": {
       "author": "Tohaomg",
-      "file": "countries/u0434u0435u043cu043eu043au0440u0430u0442u0438u0447u043du0430u0020u0440u0435u0441u043fu0443u0431u043bu0456u043au0430u0020u043au043eu043du0433u043e.mp3",
+      "file": "countries/u0434u0435u043cu043eu043au0440u0430u0442u0438u0447u043du0430_u0440u0435u0441u043fu0443u0431u043bu0456u043au0430_u043au043eu043du0433u043e.mp3",
       "gain": 2.8,
       "lead": 183,
       "matches": "Демократична Республіка Конго",
@@ -580,7 +585,7 @@
     },
     "Нова Зеландія": {
       "author": "Tohaomg",
-      "file": "countries/u043du043eu0432u0430u0020u0437u0435u043bu0430u043du0434u0456u044f.mp3",
+      "file": "countries/u043du043eu0432u0430_u0437u0435u043bu0430u043du0434u0456u044f.mp3",
       "gain": -2.2,
       "lead": 259,
       "matches": "Нова Зеландія",
@@ -659,7 +664,7 @@
     },
     "Південна Корея": {
       "author": "Tohaomg",
-      "file": "countries/u043fu0456u0432u0434u0435u043du043du0430u0020u043au043eu0440u0435u044f.mp3",
+      "file": "countries/u043fu0456u0432u0434u0435u043du043du0430_u043au043eu0440u0435u044f.mp3",
       "gain": -1.5,
       "lead": 269,
       "matches": "Південна Корея",
@@ -669,7 +674,7 @@
     },
     "Південно-Африканська Республіка": {
       "author": "Tohaomg",
-      "file": "countries/u043fu0456u0432u0434u0435u043du043du043e-u0430u0444u0440u0438u043au0430u043du0441u044cu043au0430u0020u0440u0435u0441u043fu0443u0431u043bu0456u043au0430.mp3",
+      "file": "countries/u043fu0456u0432u0434u0435u043du043du043e-u0430u0444u0440u0438u043au0430u043du0441u044cu043au0430_u0440u0435u0441u043fu0443u0431u043bu0456u043au0430.mp3",
       "gain": -1.0,
       "gate": -90.4,
       "lead": 201,
@@ -721,7 +726,7 @@
     },
     "Саудівська Аравія": {
       "author": "Tohaomg",
-      "file": "countries/u0441u0430u0443u0434u0456u0432u0441u044cu043au0430u0020u0430u0440u0430u0432u0456u044f.mp3",
+      "file": "countries/u0441u0430u0443u0434u0456u0432u0441u044cu043au0430_u0430u0440u0430u0432u0456u044f.mp3",
       "gain": 0.6,
       "gate": -95.7,
       "lead": 200,
@@ -833,14 +838,15 @@
       "source": "LL-Q8798 (ukr)-Tohaomg-Угорщина.wav"
     },
     "Україна": {
-      "author": "Женя Музика, Nicolas Vion",
+      "author": "Fanat22012",
       "file": "countries/u0443u043au0440u0430u0457u043du0430.mp3",
-      "gain": -0.7,
-      "gate": -54.0,
+      "gain": 5.3,
+      "gate": -92.5,
+      "lead": 178,
       "matches": "Україна",
-      "mos": 2.61,
-      "sha256": "a73ba075a9dc77c7ec9516d7a97c2eaf430932b824c639458179ab0f3ed3b98c",
-      "source": "Uk-Україна.ogg"
+      "mos": 3.07,
+      "sha256": "680c3280e0ae56683d74e38b26414b709c89b745d35d2f6b2f340d1d0db3b243",
+      "source": "LL-Q8798 (ukr)-Fanat22012-Україна.wav"
     },
     "Уругвай": {
       "author": "Tohaomg",
@@ -896,15 +902,15 @@
       "source": "LL-Q8798 (ukr)-Tohaomg-Чехія.wav"
     },
     "Чилі": {
-      "author": "Tohaomg",
+      "author": "Po ukraińsku (Andriana)",
       "file": "countries/u0447u0438u043bu0456.mp3",
-      "gain": 3.3,
-      "gate": -90.7,
-      "lead": 185,
+      "gain": 7.8,
+      "gate": -82.3,
+      "lead": 247,
       "matches": "Чилі",
-      "mos": 2.27,
-      "sha256": "fc85e59f821693748e84cb4506a1a05749e44b9276ce02ca476427ec5fc61271",
-      "source": "LL-Q8798 (ukr)-Tohaomg-Чилі.wav"
+      "mos": 2.87,
+      "sha256": "8f7f6bf98199b41abe2353c03d53c5a9963c8952cd52b6783c9fd3c1d0149435",
+      "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-чилі.wav"
     },
     "Швейцарія": {
       "author": "Tohaomg",
@@ -1738,7 +1744,7 @@
     },
     "будь ла́ска": {
       "author": "Женя Музика, Nicolas Vion",
-      "file": "words/u0431u0443u0434u044cu0020u043bu0430u0301u0441u043au0430.mp3",
+      "file": "words/u0431u0443u0434u044c_u043bu0430u0301u0441u043au0430.mp3",
       "gain": 1.3,
       "gate": -55.7,
       "matches": "будь ла́ска",
@@ -1875,15 +1881,15 @@
       "source": "Uk-більш-менш.ogg"
     },
     "в": {
-      "author": "Галя Раптова, Nicolas Vion",
+      "author": "UnconcernedCape",
       "file": "words/u0432.mp3",
-      "gain": -0.6,
-      "gate": -58.9,
-      "lead": 90,
+      "gain": 6.3,
+      "gate": -81.0,
+      "lead": 181,
       "matches": "в",
-      "mos": 2.58,
-      "sha256": "b9679d07426f6c49b170009474a0269e2b1172efd8362b9814f4eb60d1e10647",
-      "source": "Uk-в.ogg"
+      "mos": 2.96,
+      "sha256": "2761003fb3b139f6507d4ce632a2075a33132e26c14fda67dc3ace72724173f1",
+      "source": "LL-Q8798 (ukr)-UnconcernedCape-в.wav"
     },
     "ва́ги": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -1967,14 +1973,15 @@
       "source": "Uk-варити.ogg"
     },
     "ваш": {
-      "author": "Галя Раптова, Nicolas Vion",
+      "author": "UnconcernedCape",
       "file": "words/u0432u0430u0448.mp3",
-      "gain": -3.4,
-      "gate": -58.9,
+      "gain": 4.2,
+      "gate": -89.4,
+      "lead": 194,
       "matches": "ваш",
-      "mos": 2.65,
-      "sha256": "73bb18b7ad6e8cdbb906ab180db07324479c39f4b4d6da95285bb15a0919bfc2",
-      "source": "Uk-ваш.ogg"
+      "mos": 3.0,
+      "sha256": "49f175f58318d853d573f41509c75f8ebf54c3f14318946f9c8843aefe29f6ea",
+      "source": "LL-Q8798 (ukr)-UnconcernedCape-ваш.wav"
     },
     "вгорі́": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -3174,7 +3181,7 @@
     },
     "день наро́дження": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
-      "file": "words/u0434u0435u043du044cu0020u043du0430u0440u043eu0301u0434u0436u0435u043du043du044f.mp3",
+      "file": "words/u0434u0435u043du044c_u043du0430u0440u043eu0301u0434u0436u0435u043du043du044f.mp3",
       "gain": -2.4,
       "gate": -60.2,
       "matches": "день наро́дження",
@@ -3315,7 +3322,7 @@
     "до зу́стрічі": {
       "author": "Василь Бабич",
       "cap": 8.1,
-      "file": "words/u0434u043eu0020u0437u0443u0301u0441u0442u0440u0456u0447u0456.mp3",
+      "file": "words/u0434u043e_u0437u0443u0301u0441u0442u0440u0456u0447u0456.mp3",
       "gain": 0.1,
       "gate": -45.8,
       "matches": "до зу́стрічі",
@@ -3325,7 +3332,7 @@
     },
     "до поба́чення": {
       "author": "Женя Музика, Nicolas Vion",
-      "file": "words/u0434u043eu0020u043fu043eu0431u0430u0301u0447u0435u043du043du044f.mp3",
+      "file": "words/u0434u043e_u043fu043eu0431u0430u0301u0447u0435u043du043du044f.mp3",
       "gain": -0.7,
       "gate": -54.4,
       "matches": "до поба́чення",
@@ -3346,7 +3353,7 @@
     },
     "до́брий ве́чір": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
-      "file": "words/u0434u043eu0301u0431u0440u0438u0439u0020u0432u0435u0301u0447u0456u0440.mp3",
+      "file": "words/u0434u043eu0301u0431u0440u0438u0439_u0432u0435u0301u0447u0456u0440.mp3",
       "gain": -1.7,
       "gate": -59.3,
       "matches": "до́брий ве́чір",
@@ -3356,7 +3363,7 @@
     },
     "до́брий день": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
-      "file": "words/u0434u043eu0301u0431u0440u0438u0439u0020u0434u0435u043du044c.mp3",
+      "file": "words/u0434u043eu0301u0431u0440u0438u0439_u0434u0435u043du044c.mp3",
       "gain": 0.4,
       "gate": -63.3,
       "matches": "до́брий день",
@@ -3366,7 +3373,7 @@
     },
     "до́брого ра́нку": {
       "author": "Женя Музика, Nicolas Vion",
-      "file": "words/u0434u043eu0301u0431u0440u043eu0433u043eu0020u0440u0430u0301u043du043au0443.mp3",
+      "file": "words/u0434u043eu0301u0431u0440u043eu0433u043e_u0440u0430u0301u043du043au0443.mp3",
       "gain": -1.6,
       "gate": -50.2,
       "matches": "до́брого ра́нку",
@@ -4313,7 +4320,7 @@
     },
     "зубна́ па́ста": {
       "author": "Tohaomg",
-      "file": "words/u0437u0443u0431u043du0430u0301u0020u043fu0430u0301u0441u0442u0430.mp3",
+      "file": "words/u0437u0443u0431u043du0430u0301_u043fu0430u0301u0441u0442u0430.mp3",
       "gain": 0.6,
       "lead": 172,
       "matches": "зубна́ па́ста",
@@ -4323,7 +4330,7 @@
     },
     "зубна́ щі́тка": {
       "author": "Tohaomg",
-      "file": "words/u0437u0443u0431u043du0430u0301u0020u0449u0456u0301u0442u043au0430.mp3",
+      "file": "words/u0437u0443u0431u043du0430u0301_u0449u0456u0301u0442u043au0430.mp3",
       "gain": 0.2,
       "gate": -100.0,
       "lead": 212,
@@ -5091,7 +5098,7 @@
     },
     "ласка́во про́симо": {
       "author": "Женя Музика, Nicolas Vion",
-      "file": "words/u043bu0430u0441u043au0430u0301u0432u043eu0020u043fu0440u043eu0301u0441u0438u043cu043e.mp3",
+      "file": "words/u043bu0430u0441u043au0430u0301u0432u043e_u043fu0440u043eu0301u0441u0438u043cu043e.mp3",
       "gain": 0.3,
       "gate": -57.5,
       "matches": "ласка́во про́симо",
@@ -5536,15 +5543,15 @@
       "source": "LL-Q8798 (ukr)-Tohaomg-мечеть.wav"
     },
     "ми": {
-      "author": "Галя Раптова, Nicolas Vion",
+      "author": "UnconcernedCape",
       "file": "words/u043cu0438.mp3",
-      "gain": -1.3,
-      "gate": -54.9,
-      "lead": 12,
+      "gain": 7.5,
+      "gate": -78.1,
+      "lead": 181,
       "matches": "ми",
-      "mos": 2.21,
-      "sha256": "c72672f4e7cddaa43f1fb35c521905dd01c527690bbd2a02cbe59d5d1dc21602",
-      "source": "Uk-ми.ogg"
+      "mos": 2.67,
+      "sha256": "741b6a39e495219e5025289c33d3443152e5b282a5c32942755bafee22495555",
+      "source": "LL-Q8798 (ukr)-UnconcernedCape-ми.wav"
     },
     "ми́ло": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
@@ -5901,7 +5908,7 @@
     },
     "на добра́ніч": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
-      "file": "words/u043du0430u0020u0434u043eu0431u0440u0430u0301u043du0456u0447.mp3",
+      "file": "words/u043du0430_u0434u043eu0431u0440u0430u0301u043du0456u0447.mp3",
       "gain": -1.1,
       "gate": -61.2,
       "matches": "на добра́ніч",
@@ -7334,7 +7341,7 @@
     },
     "посудоми́йна маши́на": {
       "author": "Po ukraińsku (Andriana)",
-      "file": "words/u043fu043eu0441u0443u0434u043eu043cu0438u0301u0439u043du0430u0020u043cu0430u0448u0438u0301u043du0430.mp3",
+      "file": "words/u043fu043eu0441u0443u0434u043eu043cu0438u0301u0439u043du0430_u043cu0430u0448u0438u0301u043du0430.mp3",
       "gain": 5.4,
       "gate": -76.3,
       "lead": 239,
@@ -7386,7 +7393,7 @@
     },
     "пошто́ва скри́нька": {
       "author": "Tohaomg",
-      "file": "words/u043fu043eu0448u0442u043eu0301u0432u0430u0020u0441u043au0440u0438u0301u043du044cu043au0430.mp3",
+      "file": "words/u043fu043eu0448u0442u043eu0301u0432u0430_u0441u043au0440u0438u0301u043du044cu043au0430.mp3",
       "gain": -1.3,
       "lead": 194,
       "matches": "пошто́ва скри́нька",
@@ -7407,7 +7414,7 @@
     },
     "пра́льна маши́на": {
       "author": "Tohaomg",
-      "file": "words/u043fu0440u0430u0301u043bu044cu043du0430u0020u043cu0430u0448u0438u0301u043du0430.mp3",
+      "file": "words/u043fu0440u0430u0301u043bu044cu043du0430_u043cu0430u0448u0438u0301u043du0430.mp3",
       "gain": -2.5,
       "lead": 230,
       "matches": "пра́льна маши́на",
@@ -7816,7 +7823,7 @@
     },
     "підшлунко́ва за́лоза": {
       "author": "Tohaomg",
-      "file": "words/u043fu0456u0434u0448u043bu0443u043du043au043eu0301u0432u0430u0020u0437u0430u0301u043bu043eu0437u0430.mp3",
+      "file": "words/u043fu0456u0434u0448u043bu0443u043du043au043eu0301u0432u0430_u0437u0430u0301u043bu043eu0437u0430.mp3",
       "gain": -1.7,
       "lead": 215,
       "matches": "підшлунко́ва за́лоза",
@@ -8333,7 +8340,7 @@
     },
     "рі́дна мо́ва": {
       "author": "Tohaomg",
-      "file": "words/u0440u0456u0301u0434u043du0430u0020u043cu043eu0301u0432u0430.mp3",
+      "file": "words/u0440u0456u0301u0434u043du0430_u043cu043eu0301u0432u0430.mp3",
       "gain": -0.9,
       "lead": 270,
       "matches": "рі́дна мо́ва",
@@ -8688,7 +8695,7 @@
     },
     "скі́льки це ко́штує": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
-      "file": "words/u0441u043au0456u0301u043bu044cu043au0438u0020u0446u0435u0020u043au043eu0301u0448u0442u0443u0454.mp3",
+      "file": "words/u0441u043au0456u0301u043bu044cu043au0438_u0446u0435_u043au043eu0301u0448u0442u0443u0454.mp3",
       "gain": 0.4,
       "gate": -57.5,
       "matches": "скі́льки це ко́штує",
@@ -9505,14 +9512,15 @@
       "source": "Uk-твої.ogg"
     },
     "твій": {
-      "author": "Галя Раптова, Nicolas Vion",
+      "author": "UnconcernedCape",
       "file": "words/u0442u0432u0456u0439.mp3",
-      "gain": -2.8,
-      "gate": -52.8,
+      "gain": 10.7,
+      "gate": -84.1,
+      "lead": 170,
       "matches": "твій",
-      "mos": 2.51,
-      "sha256": "3a2e8ecb51776befe20b868734f3047fbe7ed95d13c2ac4ffa0eae977ca827cd",
-      "source": "Uk-твій.ogg"
+      "mos": 2.71,
+      "sha256": "edad830b4819331b30e53c743104a616c4e218524648a243f866ac0dfa48b079",
+      "source": "LL-Q8798 (ukr)-UnconcernedCape-твій.wav"
     },
     "те": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -9592,14 +9600,15 @@
       "source": "Uk-терміновий.ogg"
     },
     "ти": {
-      "author": "Галя Раптова, Nicolas Vion",
+      "author": "UnconcernedCape",
       "file": "words/u0442u0438.mp3",
-      "gain": -0.9,
-      "gate": -63.8,
+      "gain": 7.6,
+      "gate": -81.7,
+      "lead": 177,
       "matches": "ти",
-      "mos": 2.57,
-      "sha256": "bb3f503dba3964797400f0fc6bbac21c8789e0f00b130728582e76094f70f1df",
-      "source": "Uk-ти.ogg"
+      "mos": 3.02,
+      "sha256": "f82c83e354f6c4362c0d42e046b1a92eb7f3651c140b45467ea08f7c1074761a",
+      "source": "LL-Q8798 (ukr)-UnconcernedCape-ти.wav"
     },
     "ти́ждень": {
       "author": "Галя Раптова, Nicolas Vion",
@@ -9729,7 +9738,7 @@
     },
     "туале́тний папі́р": {
       "author": "Tohaomg",
-      "file": "words/u0442u0443u0430u043bu0435u0301u0442u043du0438u0439u0020u043fu0430u043fu0456u0301u0440.mp3",
+      "file": "words/u0442u0443u0430u043bu0435u0301u0442u043du0438u0439_u043fu0430u043fu0456u0301u0440.mp3",
       "gain": -1.6,
       "lead": 203,
       "matches": "туале́тний папі́р",
@@ -10665,7 +10674,7 @@
     },
     "я не зна́ю": {
       "author": "Association Shtooka, Світлана Чурак (Svitlana Churak)",
-      "file": "words/u044fu0020u043du0435u0020u0437u043du0430u0301u044e.mp3",
+      "file": "words/u044f_u043du0435_u0437u043du0430u0301u044e.mp3",
       "gain": -0.1,
       "gate": -64.2,
       "matches": "я не зна́ю",

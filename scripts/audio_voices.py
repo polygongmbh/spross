@@ -28,6 +28,11 @@ def mos_floor(lang):
     return VOICED_MOS_FLOOR if lang in WELL_VOICED else NO_VOICE_MOS_FLOOR
 
 
+# Under this `mos` a shipped take goes up for a sweep: every other take of its word is fetched
+# and the best one may replace it. Well over every floor, because here the score only ranks.
+RECONSIDER_MOS = 2.8
+
+
 # The least a take's sample peak may stand over its integrated loudness. Speech keeps its
 # stress and consonant peaks well above its average; a take limited at the source has had
 # them flattened into a harsh, screamy sound the score does not hear and no gain undoes

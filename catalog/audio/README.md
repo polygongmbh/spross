@@ -35,10 +35,12 @@ scripts/audio-coverage.py --missing <lang>                   # what nobody has r
 
 The fill's own drops are the quality check: `poor` (under its language's floor, or heard as bad),
 `unmeasurable` (clipped), `one-sided` (one channel near silent), `misnamed`, `unreachable`
-and `shipped-collision` each name the row and why. Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
+and `shipped-collision` each name the row and why;
+what a take must pass on its own is the take judge's (`../../scripts/audio_judge.py`).
+Quality is `mos`, a predicted listener score (`../../scripts/audio_measure.py`),
 and the floor follows the device voice (`../../scripts/audio_voices.py`): where it is
 missing (eo, sw) only the clearly bad are refused, where it is good a recording has to beat
-it, and `--prune-poor` hands anything shipped under the floor to it.
+it, and `--prune-poor` hands anything shipped that the judge now refuses to it.
 
 A full sweep also re-checks what already ships, in any language: anything not clearly good
 has every other take of its word fetched and compared, and the best one wins.
@@ -53,24 +55,34 @@ $W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <i
                                                             # voices with ≤3 takes onto established ones
 $W/requalify-pack.py --lang <lang> <route>                  # under 2.8, squashed or one-sided: the best other take
 $W/requalify-pack.py --lang <lang> --pack $W/pack-<lang>-<section> <route>  # the same for calendar, countries
-scripts/audio-catalog.py --packs $W --lang <lang> --fill --reseat   # ships the chosen swaps
-scripts/audio-catalog.py --packs $W --lang <lang> --<section>       # ships that section's pack whole
-scripts/audio-catalog.py --lang <lang> --prune-poor         # what is still under the floor
+scripts/audio-catalog.py --ship --from-packs --lang <lang> --dry-run   # the swaps the packs now name, judged
+scripts/audio-catalog.py --ship --from-packs --lang <lang>             # ships them, any section but letters
+scripts/audio-catalog.py --lang <lang> --prune-poor         # what the judge still refuses
 ```
 
 A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source:
 the score hears it as clean, the ear hears it squashed, and no gain undoes that.
 Requalification reconsiders it like a poor take and never swaps one in.
 
-Both reseating scripts only report until given `--apply`. The sections other than `words`
-ship through their own converter (`--calendar`, `--countries`), rebuilt from a pack that
-matched what ships.
+Both reseating scripts only report until given `--apply`.
+`--ship` replaces a take only while the one it was chosen over still ships, and only once the
+take judge passes the replacement; a refused swap leaves the old recording standing.
+It applies `$W/staged.tsv` (bytes in `$W/staged/`), `--from-packs` first stages every pack row
+naming another Commons file than what ships, and each applied swap is appended to `$W/shipped.tsv`.
 A new speaker is another voice change on the cards and another credit group, so every
 picker takes an established voice's take over a slightly better stranger's, and a voice
 with three recordings or fewer is moved onto an established one wherever it can be —
 never onto a take requalification would refuse.
 A second voice earns its place with a chunk of words, never a scattering of one-offs:
 where the main voice is poor, a few good voices each take every word they say well.
+
+One entry comes back out of git, or goes, without a pack;
+a restore checks the bytes against the `sha256` the manifest pinned at that revision:
+
+```sh
+scripts/audio-catalog.py --restore <lang> <section> <key> --from <rev>
+scripts/audio-catalog.py --remove <lang> <section> <key>
+```
 
 **Every verdict a listener gives on a recording goes into `../../docs/audio-verdicts.tsv`**
 with its source, sha256 and `mos`, so the next revision of the measure is tested against
@@ -111,7 +123,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
            "author": "Tabrus", "source": "Жж – ukrainian.ogg", "sha256": "77b0…",
            "gain": 20.0, "lead": 1069 } },
   "articles": {
-    "die Adresse": { "file": "articles/dieu0020adresse.mp3", "matches": "die Adresse", "word": "Adresse",
+    "die Adresse": { "file": "articles/die_adresse.mp3", "matches": "die Adresse", "word": "Adresse",
                  "author": "Natschoba",
                  "source": "LL-Q188 (deu)-Natschoba-die Adresse.wav", "sha256": "a15c…",
                  "gain": 8.0, "lead": 240 } },
@@ -180,8 +192,8 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
 - `source` — the original Commons filename; the credits screen links `File:<source>`,
   which is what keeps attribution checkable rather than merely present.
 - A form-keyed file is its form's ASCII stem under its section's folder — `[a-z0-9-]`
-  stays, every other character becomes `u<hex>`, so `die Adresse` is
-  `articles/dieu0020adresse.mp3`; byte-identical recordings of one form ship once.
+  stays, a space becomes `_`, every other character `u<hex>`, so `die Adresse` is
+  `articles/die_adresse.mp3`; byte-identical recordings of one form ship once.
   Letter files are `letters/u<codepoint>….mp3`, one
   `u` + four lowercase hex digits PER CODEPOINT, never glyph-named — `й`/`ї` decompose
   under NFD on APFS and a Unicode filename has to survive git, Gradle sync and AAPT
@@ -197,7 +209,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   bytes, one gain for every output route; `lead` is how much
   dead air to start past. The files stay unmodified and only the player corrects them.
   What was measured, against which target,
-  is `../../scripts/audio-catalog.py`'s `ANALYSIS`.
+  is `../../scripts/audio_index.py`'s `ANALYSIS`.
 - `cap` (dB) is what the peak ceiling held back from the gain:
   a boost is capped at the headroom the file's own peak leaves, so a quiet word with sharp
   peaks ships under the loudness target rather than clipping. That ceiling is only true at

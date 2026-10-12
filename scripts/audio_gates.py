@@ -58,6 +58,46 @@ EDGE_PUNCTUATION = '!?¡¿.,;:…"\'«»„“”‘’‹›'
 APOSTROPHES = '\u0027\u2019\u02bc'
 
 
+# Every license the packs actually carry → its canonical deed. An unlisted one is a
+# hard stop: the credits screen links what it names, and PD has no deed to link.
+LICENSE_URLS = {
+    'CC BY-SA 4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
+    'CC BY-SA 3.0': 'https://creativecommons.org/licenses/by-sa/3.0/',
+    'CC BY-SA 2.5': 'https://creativecommons.org/licenses/by-sa/2.5/',
+    'CC BY-SA 2.0': 'https://creativecommons.org/licenses/by-sa/2.0/',
+    'CC BY 4.0': 'https://creativecommons.org/licenses/by/4.0/',
+    'CC BY 3.0 us': 'https://creativecommons.org/licenses/by/3.0/us/',
+    'CC BY 3.0': 'https://creativecommons.org/licenses/by/3.0/',
+    'CC BY 2.0 fr': 'https://creativecommons.org/licenses/by/2.0/fr/',
+    # CC0 waives the credit BY and BY-SA demand, but it is a dedication with a deed of
+    # its own — unlike a public-domain file, which has nothing to point the reader at.
+    'CC0': 'https://creativecommons.org/publicdomain/zero/1.0/',
+    'Public domain': None,
+}
+
+# Licenses we have LOOKED AT and will not bundle. Separate from an unlisted license, which
+# stays a hard stop: the difference is whether a human has ruled on it, and a row dropped
+# here is a decision, not a surprise.
+#
+# GFDL is written for documents — it obliges shipping the full license text and keeping a
+# "Transparent copy" available, neither of which a credits screen linking a deed does, and
+# unlike every CC license here it grants no media-shaped permission. Two Wiktionary German
+# recordings carry it (`docs/audio-licensing.md`); the drill says those two words in the
+# device voice instead, which costs a learner nothing a license notice would not.
+# GPLv3 is a SOFTWARE license: its copyleft reaches the work as a whole, and its
+# anti-tivoization and Installation Information terms are famously irreconcilable with App
+# Store distribution — which is where this app ships. It also carries no media-shaped
+# permission at all. The Esperanto calendar is where it turns up (Kurso de Esperanto
+# recorded 16 of the 19 names), and that is the whole cost of refusing it: those names are
+# said by the device voice, which Esperanto has on both platforms.
+# "Attribution" is Commons' legacy bare template: the uploader asks to be credited and names
+# no versioned license, so there is no deed for the credits screen to link and no stated terms
+# to hold anyone to. Unlike `Public domain`, which also has no deed, it is a claim of rights
+# rather than a waiver of them — so it is refused rather than deeded to null. One recording
+# carries it (es `Chile`).
+UNSHIPPABLE_LICENSES = {'GFDL', 'GPLv3', 'Attribution'}
+
+
 def apostrophe_folded(text):
     return ''.join('\u02bc' if char in APOSTROPHES else char for char in text)
 
@@ -153,19 +193,25 @@ def keep_named_by_its_file(rows, drops):
     """
     kept = []
     for row in rows:
-        match = LINGUA_LIBRE.match(unicodedata.normalize("NFC", row["file"]))
-        author = apostrophe_folded(row["author"].strip().lower())
-        # why: the tail is apostrophe-folded like the speech key it is compared against —
-        # Commons titles French elision with U+2019 while the catalog writes U+0027.
-        rest = apostrophe_folded(unicodedata.normalize("NFC", match.group("rest")).lower()) if match else ""
-        if not match or not author or not rest.startswith(author + "-"):
-            kept.append(row)
-        elif rest[len(author) + 1:] == stress_free(speech_key(row["text"])):
+        if named_by_its_file(row["file"], row["author"], row["text"]):
             kept.append(row)
         else:
             drops.append(("misnamed", row["text"], '%s is not %s saying "%s"'
                           % (row["file"], row["author"], row["text"])))
     return kept
+
+
+def named_by_its_file(file, author, text):
+    """[keep_named_by_its_file] for one take: False only where a Lingua Libre [file] opens with
+    its credited [author] and the rest is not [text]."""
+    match = LINGUA_LIBRE.match(unicodedata.normalize("NFC", file))
+    author = apostrophe_folded(author.strip().lower())
+    # why: the tail is apostrophe-folded like the speech key it is compared against —
+    # Commons titles French elision with U+2019 while the catalog writes U+0027.
+    rest = apostrophe_folded(unicodedata.normalize("NFC", match.group("rest")).lower()) if match else ""
+    if not match or not author or not rest.startswith(author + "-"):
+        return True
+    return rest[len(author) + 1:] == stress_free(speech_key(text))
 
 
 def keep_unambiguous(rows, mp3_dir, drops):
@@ -213,20 +259,22 @@ def commons_authors(sources):
     return resolved
 
 
+def names_nobody(author):
+    """A placeholder or a bot's guess at the uploader: no credit a BY notice can carry."""
+    return author.strip().lower() in JUNK_AUTHORS or bool(ASSUMED_AUTHOR.search(author))
+
+
 def attribute(rows, drops):
     """Gate 4: re-resolve placeholder authorship against Commons, drop what stays anonymous."""
-    def unnamed(author):
-        return author.strip().lower() in JUNK_AUTHORS or bool(ASSUMED_AUTHOR.search(author))
-
-    files = sorted({row['file'] for row in rows if unnamed(row['author'])})
+    files = sorted({row['file'] for row in rows if names_nobody(row['author'])})
     if not files:
         return rows
     print('  resolving %d unattributed file(s) against Commons…' % len(files))
     resolved = commons_authors(files)
     kept = []
     for row in rows:
-        author = resolved.get(row['file'].replace('_', ' '), '') if unnamed(row['author']) else row['author']
-        if unnamed(author):
+        author = resolved.get(row['file'].replace('_', ' '), '') if names_nobody(row['author']) else row['author']
+        if names_nobody(author):
             drops.append(('unattributable', row.get('text', '?'),
                           '%s credits nobody' % row['file']))
         else:

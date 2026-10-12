@@ -51,7 +51,7 @@
     },
     "la bouche": {
       "author": "Julien Baley",
-      "file": "articles/lau0020bouche.mp3",
+      "file": "articles/la_bouche.mp3",
       "gain": 16.4,
       "gate": -94.6,
       "lead": 281,
@@ -63,7 +63,7 @@
     },
     "la langue": {
       "author": "Julien Baley",
-      "file": "articles/lau0020langue.mp3",
+      "file": "articles/la_langue.mp3",
       "gain": 10.7,
       "gate": -91.7,
       "lead": 203,
@@ -75,7 +75,7 @@
     },
     "la main": {
       "author": "Aurore1212121",
-      "file": "articles/lau0020main.mp3",
+      "file": "articles/la_main.mp3",
       "gain": 3.1,
       "gate": -55.9,
       "matches": "la main",
@@ -86,7 +86,7 @@
     },
     "la mère": {
       "author": "DenisdeShawi",
-      "file": "articles/lau0020mu00e8re.mp3",
+      "file": "articles/la_mu00e8re.mp3",
       "gain": 0.7,
       "gate": -80.2,
       "lead": 186,
@@ -99,7 +99,7 @@
     "la peau": {
       "author": "LoquaxFR",
       "cap": 1.0,
-      "file": "articles/lau0020peau.mp3",
+      "file": "articles/la_peau.mp3",
       "gain": 10.5,
       "gate": -96.1,
       "matches": "la peau",
@@ -110,7 +110,7 @@
     },
     "la pomme de terre": {
       "author": "Vion Nicolas",
-      "file": "articles/lau0020pommeu0020deu0020terre.mp3",
+      "file": "articles/la_pomme_de_terre.mp3",
       "gain": -1.9,
       "gate": -66.2,
       "lead": 185,
@@ -120,21 +120,10 @@
       "source": "Fr-la pomme de terre.ogg",
       "word": "pomme de terre"
     },
-    "la table": {
-      "author": "Aurore1212121",
-      "file": "articles/lau0020table.mp3",
-      "gain": -1.7,
-      "gate": -47.6,
-      "matches": "la table",
-      "mos": 1.38,
-      "sha256": "c7412bdb917fed2ff1b9497d59ee4ff52216a29c26fdfdaa36f33ee333f7aa21",
-      "source": "LL-Q150 (fra)-Aurore1212121-La table.wav",
-      "word": "table"
-    },
     "la tête": {
       "author": "Julien Baley",
       "cap": 0.1,
-      "file": "articles/lau0020tu00eate.mp3",
+      "file": "articles/la_tu00eate.mp3",
       "gain": 10.3,
       "gate": -91.4,
       "lead": 496,
@@ -146,7 +135,7 @@
     },
     "la vache": {
       "author": "LoquaxFR",
-      "file": "articles/lau0020vache.mp3",
+      "file": "articles/la_vache.mp3",
       "gain": 0.5,
       "gate": -84.6,
       "lead": 238,
@@ -158,7 +147,7 @@
     },
     "le beau-père": {
       "author": "DenisdeShawi",
-      "file": "articles/leu0020beau-pu00e8re.mp3",
+      "file": "articles/le_beau-pu00e8re.mp3",
       "gain": -2.9,
       "gate": -82.0,
       "lead": 230,
@@ -171,7 +160,7 @@
     "le cou": {
       "author": "Julien Baley",
       "cap": 1.3,
-      "file": "articles/leu0020cou.mp3",
+      "file": "articles/le_cou.mp3",
       "gain": 12.9,
       "gate": -88.7,
       "lead": 217,
@@ -183,7 +172,7 @@
     },
     "le dos": {
       "author": "Julien Baley",
-      "file": "articles/leu0020dos.mp3",
+      "file": "articles/le_dos.mp3",
       "gain": 11.0,
       "gate": -88.5,
       "lead": 255,
@@ -195,7 +184,7 @@
     },
     "le lieu de naissance": {
       "author": "Vion Nicolas",
-      "file": "articles/leu0020lieuu0020deu0020naissance.mp3",
+      "file": "articles/le_lieu_de_naissance.mp3",
       "gain": 0.3,
       "gate": -67.1,
       "lead": 260,
@@ -207,7 +196,7 @@
     },
     "le linge": {
       "author": "Julien Baley",
-      "file": "articles/leu0020linge.mp3",
+      "file": "articles/le_linge.mp3",
       "gain": 5.0,
       "gate": -77.6,
       "lead": 208,
@@ -220,7 +209,7 @@
     "le lit": {
       "author": "Aurore1212121",
       "cap": 0.5,
-      "file": "articles/leu0020lit.mp3",
+      "file": "articles/le_lit.mp3",
       "gain": 6.4,
       "gate": -51.3,
       "matches": "le lit",
@@ -231,7 +220,7 @@
     },
     "le mariage": {
       "author": "FASETECLO",
-      "file": "articles/leu0020mariage.mp3",
+      "file": "articles/le_mariage.mp3",
       "gain": 9.5,
       "gate": -54.9,
       "lead": 48,
@@ -243,7 +232,7 @@
     },
     "le nez": {
       "author": "Julien Baley",
-      "file": "articles/leu0020nez.mp3",
+      "file": "articles/le_nez.mp3",
       "gain": 9.6,
       "gate": -89.3,
       "lead": 622,
@@ -255,7 +244,7 @@
     },
     "le nom de famille": {
       "author": "Vion Nicolas",
-      "file": "articles/leu0020nomu0020deu0020famille.mp3",
+      "file": "articles/le_nom_de_famille.mp3",
       "gain": -1.8,
       "gate": -63.3,
       "lead": 95,
@@ -267,7 +256,7 @@
     },
     "le tarif": {
       "author": "Vion Nicolas",
-      "file": "articles/leu0020tarif.mp3",
+      "file": "articles/le_tarif.mp3",
       "gain": -2.7,
       "gate": -70.6,
       "lead": 212,
@@ -279,7 +268,7 @@
     },
     "le ventre": {
       "author": "Julien Baley",
-      "file": "articles/leu0020ventre.mp3",
+      "file": "articles/le_ventre.mp3",
       "gain": 7.6,
       "gate": -88.4,
       "lead": 204,
@@ -291,7 +280,7 @@
     },
     "les animaux": {
       "author": "Issakaf",
-      "file": "articles/lesu0020animaux.mp3",
+      "file": "articles/les_animaux.mp3",
       "gain": 3.8,
       "gate": -70.6,
       "lead": 124,
@@ -303,7 +292,7 @@
     },
     "les yeux": {
       "author": "Julien Baley",
-      "file": "articles/lesu0020yeux.mp3",
+      "file": "articles/les_yeux.mp3",
       "gain": 17.5,
       "gate": -94.1,
       "lead": 373,
@@ -327,6 +316,7 @@
     "DSwissK": "CC BY 4.0",
     "Damian B.": "CC BY-SA 4.0",
     "DenisdeShawi": "CC BY-SA 4.0",
+    "Didierwiki": "CC BY-SA 4.0",
     "Eihel": "CC BY-SA 3.0",
     "FASETECLO": "CC BY-SA 4.0",
     "Fhala.K": "CC0",
@@ -359,14 +349,14 @@
   },
   "calendar": {
     "août": {
-      "author": "Vion Nicolas",
+      "author": "Helenou66",
       "file": "calendar/aou00fbt.mp3",
-      "gain": 2.6,
-      "gate": -57.6,
+      "gain": 10.9,
+      "lead": 196,
       "matches": "août",
-      "mos": 1.81,
-      "sha256": "2c85bc54359446b11a93517a56dad235dc86e0313f30a10cddf7ee0eef488375",
-      "source": "Fr-août.ogg"
+      "mos": 2.55,
+      "sha256": "b409b7461d34f5b57cc44f7ddb01643debadb9616a732041d615225c63f013de",
+      "source": "LL-Q150 (fra)-Helenou66-août.wav"
     },
     "avril": {
       "author": "Vion Nicolas",
@@ -402,26 +392,26 @@
       "source": "Fr-décembre.ogg"
     },
     "février": {
-      "author": "Vion Nicolas",
+      "author": "Sartus85",
       "file": "calendar/fu00e9vrier.mp3",
-      "gain": 0.4,
-      "gate": -66.2,
-      "lead": 74,
+      "gain": 9.8,
+      "gate": -86.0,
+      "lead": 140,
       "matches": "février",
-      "mos": 2.66,
-      "sha256": "84430decd97880fe94764264f66ec913fabb1de20e20a1623bee450846b5344d",
-      "source": "Fr-février.ogg"
+      "mos": 3.26,
+      "sha256": "70bd16b47da3fadda22664d79c32ac5200c22c9ba5ef28c20c6af05a313aefb8",
+      "source": "LL-Q150 (fra)-Sartus85-février.wav"
     },
     "janvier": {
-      "author": "Vion Nicolas",
+      "author": "Sartus85",
       "file": "calendar/janvier.mp3",
-      "gain": 1.0,
-      "gate": -69.5,
-      "lead": 44,
+      "gain": 8.2,
+      "gate": -87.3,
+      "lead": 100,
       "matches": "janvier",
-      "mos": 2.64,
-      "sha256": "21e7187fa646677e6bc1095f6cf965803765492c15623c8e0e07a90c6ee321f6",
-      "source": "Fr-janvier.ogg"
+      "mos": 3.16,
+      "sha256": "5e7d09600b0c77c4266e9e38c1dd9e11ecc9f425f5bf3d0428ae2b52b01b9653",
+      "source": "LL-Q150 (fra)-Sartus85-janvier.wav"
     },
     "jeudi": {
       "author": "Poslovitch",
@@ -479,15 +469,14 @@
       "source": "Fr-mai.ogg"
     },
     "mardi": {
-      "author": "Poslovitch",
+      "author": "Jules78120",
       "file": "calendar/mardi.mp3",
-      "gain": 3.0,
-      "gate": -74.3,
-      "lead": 232,
+      "gain": 9.1,
+      "lead": 136,
       "matches": "mardi",
-      "mos": 2.73,
-      "sha256": "6b5608e3af4cddd082624799d0b6ccc3572f8ed248bef4309085eb6a77d58368",
-      "source": "LL-Q150 (fra)-Poslovitch-mardi.wav"
+      "mos": 3.07,
+      "sha256": "f89b723e2e0df42af41bea63c75c5bba1cd867e489747cb7b4694e6d90c1a71e",
+      "source": "LL-Q150 (fra)-Jules78120-mardi.wav"
     },
     "mars": {
       "author": "Vion Nicolas",
@@ -570,7 +559,7 @@
   "countries": {
     "Afrique du Sud": {
       "author": "Vive la Rosière",
-      "file": "countries/afriqueu0020duu0020sud.mp3",
+      "file": "countries/afrique_du_sud.mp3",
       "gain": 7.3,
       "gate": -75.0,
       "lead": 22,
@@ -656,7 +645,7 @@
     "Arabie saoudite": {
       "author": "Vive la Rosière",
       "cap": 0.3,
-      "file": "countries/arabieu0020saoudite.mp3",
+      "file": "countries/arabie_saoudite.mp3",
       "gain": 7.9,
       "gate": -86.2,
       "lead": 18,
@@ -689,14 +678,15 @@
       "source": "LL-Q150 (fra)-WikiLucas00-argentins.wav"
     },
     "Australie": {
-      "author": "Vive la Rosière",
+      "author": "Mecanautes",
       "file": "countries/australie.mp3",
-      "gain": 9.0,
-      "gate": -61.3,
+      "gain": 5.6,
+      "gate": -93.7,
+      "lead": 204,
       "matches": "Australie",
-      "mos": 2.78,
-      "sha256": "9e19313053d3fb91d56c97a9e73f49ee57e78e11d56fd929100ca31c17fc9dad",
-      "source": "Fr-Australie.ogg"
+      "mos": 3.29,
+      "sha256": "7165c17cff29ec0dc1573916cd795b29425a59c09f07c21f5668f0856955eae0",
+      "source": "LL-Q150 (fra)-Mecanautes-Australie.wav"
     },
     "Australiens": {
       "author": "Lepticed7",
@@ -742,15 +732,16 @@
       "source": "LL-Q150 (fra)-Lepticed7-belges.wav"
     },
     "Belgique": {
-      "author": "Poslovitch",
+      "author": "Sartus85",
+      "cap": 0.3,
       "file": "countries/belgique.mp3",
-      "gain": 2.5,
-      "gate": -73.9,
-      "lead": 163,
+      "gain": 8.8,
+      "gate": -84.0,
+      "lead": 129,
       "matches": "Belgique",
-      "mos": 2.5,
-      "sha256": "186e865943528b6203be49b680241951266b963ad8ecffe52f0148ed6bd359de",
-      "source": "LL-Q150 (fra)-Poslovitch-Belgique.wav"
+      "mos": 3.17,
+      "sha256": "f9b51f9717225e3998f77088484704bf4f1e39ff8aac1e2e4a93387d539b76de",
+      "source": "LL-Q150 (fra)-Sartus85-Belgique.wav"
     },
     "Britanniques": {
       "author": "Lyokoï",
@@ -825,24 +816,26 @@
       "source": "LL-Q150 (fra)-Lepticed7-canadiens.wav"
     },
     "Chili": {
-      "author": "Jules78120",
+      "author": "Mecanautes",
       "file": "countries/chili.mp3",
-      "gain": 6.1,
-      "lead": 191,
+      "gain": 5.9,
+      "gate": -92.9,
+      "lead": 204,
       "matches": "Chili",
-      "mos": 2.24,
-      "sha256": "17212bcfa1f08aa97601977c82f22ff1ca7caf29b504f75a43b36f483400fccf",
-      "source": "LL-Q150 (fra)-Jules78120-Chili.wav"
+      "mos": 3.09,
+      "sha256": "8c35e760ed0c8c5a38df59156119d41670fc66df552f6aa7ff4e25cfa84370f8",
+      "source": "LL-Q150 (fra)-Mecanautes-Chili.wav"
     },
     "Chine": {
-      "author": "Jules78120",
+      "author": "Lyokoï",
       "file": "countries/chine.mp3",
-      "gain": 9.2,
-      "lead": 178,
+      "gain": 2.3,
+      "gate": -70.9,
+      "lead": 246,
       "matches": "Chine",
-      "mos": 2.75,
-      "sha256": "7661532663469d6da35dddb8da91598f6a349f2faefbe398da77ef63809bc9d9",
-      "source": "LL-Q150 (fra)-Jules78120-Chine.wav"
+      "mos": 3.17,
+      "sha256": "2a27cf95f167640793b32e09f05a54733cf48b335eaff1e678aa064019c0dfcb",
+      "source": "LL-Q150 (fra)-Lyokoï-chine.wav"
     },
     "Chinois": {
       "author": "Poslovitch",
@@ -866,19 +859,19 @@
       "source": "LL-Q150 (fra)-Jules78120-Colombie.wav"
     },
     "Congolais": {
-      "author": "Pamputt",
+      "author": "Mecanautes",
       "file": "countries/congolais.mp3",
-      "gain": 9.6,
-      "gate": -58.9,
-      "lead": 173,
+      "gain": 6.0,
+      "gate": -94.3,
+      "lead": 270,
       "matches": "Congolais",
-      "mos": 2.19,
-      "sha256": "3ecc10430f0003c7c76b8772a556e5a0286c8e1230e1d63244dfeaedfb10f9f7",
-      "source": "LL-Q150 (fra)-Pamputt-Congolais.wav"
+      "mos": 3.07,
+      "sha256": "91d79c244747eb65ad8c6294939d65a11962959d960c77803c6853900ba5f3cd",
+      "source": "LL-Q150 (fra)-Mecanautes-congolais.wav"
     },
     "Corée du Sud": {
       "author": "Jules78120",
-      "file": "countries/coru00e9eu0020duu0020sud.mp3",
+      "file": "countries/coru00e9e_du_sud.mp3",
       "gain": 6.3,
       "lead": 157,
       "matches": "Corée du Sud",
@@ -889,7 +882,7 @@
     "Costa Rica": {
       "author": "Jules78120",
       "cap": 0.1,
-      "file": "countries/costau0020rica.mp3",
+      "file": "countries/costa_rica.mp3",
       "gain": 10.0,
       "lead": 193,
       "matches": "Costa Rica",
@@ -909,24 +902,26 @@
       "source": "LL-Q150 (fra)-Poslovitch-croates.wav"
     },
     "Croatie": {
-      "author": "Jules78120",
+      "author": "Poslovitch",
       "file": "countries/croatie.mp3",
-      "gain": 11.4,
-      "lead": 237,
+      "gain": -4.1,
+      "gate": -72.3,
+      "lead": 80,
       "matches": "Croatie",
-      "mos": 2.55,
-      "sha256": "fb9c6405025463fbeaf939d6af166af9960bddb544a082e600c7adb32455f4c8",
-      "source": "LL-Q150 (fra)-Jules78120-Croatie.wav"
+      "mos": 3.25,
+      "sha256": "4b664c6c1b8707a0a4122ce0cfc7d4a65d8f44ebe1f9e0ed8f1a7b221d32f3c4",
+      "source": "LL-Q150 (fra)-Poslovitch-Croatie.wav"
     },
     "Cuba": {
-      "author": "Jules78120",
+      "author": "Mecanautes",
       "file": "countries/cuba.mp3",
-      "gain": 9.4,
-      "lead": 107,
+      "gain": 9.9,
+      "gate": -92.7,
+      "lead": 211,
       "matches": "Cuba",
-      "mos": 2.46,
-      "sha256": "53df4d6739c2d2ccad208c745713b6f5fa1ac215e7f1485ec77eb7969199bc24",
-      "source": "LL-Q150 (fra)-Jules78120-Cuba.wav"
+      "mos": 3.11,
+      "sha256": "1c9709602aaa379ad9c02dcfccdbf7ba926581afaf2d54889766177f70219496",
+      "source": "LL-Q150 (fra)-Mecanautes-Cuba.wav"
     },
     "Danemark": {
       "author": "Jules78120",
@@ -983,25 +978,26 @@
       "source": "LL-Q150 (fra)-Poslovitch-Finlandais.wav"
     },
     "Finlande": {
-      "author": "Jules78120",
+      "author": "Poslovitch",
       "file": "countries/finlande.mp3",
-      "gain": 9.5,
-      "lead": 85,
+      "gain": -1.6,
+      "gate": -74.8,
+      "lead": 121,
       "matches": "Finlande",
-      "mos": 2.66,
-      "sha256": "7181d662b35383a5e29a71173631ec702725845b8587c8f70b0e01edb51c15b1",
-      "source": "LL-Q150 (fra)-Jules78120-Finlande.wav"
+      "mos": 2.96,
+      "sha256": "68361ddca6b742b3dfaccf69dfd9d127cb6dedf467887412703f2fb84288c445",
+      "source": "LL-Q150 (fra)-Poslovitch-Finlande.wav"
     },
     "France": {
-      "author": "Poslovitch",
+      "author": "DSwissK",
       "file": "countries/france.mp3",
-      "gain": -1.4,
-      "gate": -69.5,
-      "lead": 102,
+      "gain": 7.6,
+      "lead": 83,
+      "license": "CC BY-SA 4.0",
       "matches": "France",
-      "mos": 2.59,
-      "sha256": "285cc6437f2cdd87f12b744fc9197125efa5327817827b08a13fe7a2132246bf",
-      "source": "LL-Q150 (fra)-Poslovitch-France.wav"
+      "mos": 3.12,
+      "sha256": "43ae13874ff3adabe0cddf7499f57a9a3212e8fd7baf5fc37014a0cc90c0f8a1",
+      "source": "LL-Q150 (fra)-DSwissK-France.wav"
     },
     "Français": {
       "author": "Poslovitch",
@@ -1339,25 +1335,26 @@
       "source": "LL-Q150 (fra)-Jules78120-Ouganda.wav"
     },
     "Ougandais": {
-      "author": "Pamputt",
+      "author": "Lyokoï",
       "file": "countries/ougandais.mp3",
-      "gain": 9.8,
-      "gate": -54.6,
-      "lead": 246,
+      "gain": -2.2,
+      "gate": -72.4,
+      "lead": 261,
       "matches": "Ougandais",
-      "mos": 2.75,
-      "sha256": "545fcf71e1390c492ae8bb107e55c82c14e4f8dbc0f1e019f11c05e9e81cc758",
-      "source": "LL-Q150 (fra)-Pamputt-Ougandais.wav"
+      "mos": 3.09,
+      "sha256": "b59bda81c18f9917f3ea9654ddecc69f73809c84ca6186060dd461b1ea704476",
+      "source": "LL-Q150 (fra)-Lyokoï-ougandais.wav"
     },
     "Pays-Bas": {
-      "author": "Jules78120",
+      "author": "Sartus85",
       "file": "countries/pays-bas.mp3",
-      "gain": 11.6,
-      "lead": 202,
+      "gain": 7.9,
+      "gate": -86.1,
+      "lead": 169,
       "matches": "Pays-Bas",
-      "mos": 2.72,
-      "sha256": "c9bf2df6197b81c296827ac17dc4ddc73e2cb600978700814c1df1cc100f0748",
-      "source": "LL-Q150 (fra)-Jules78120-Pays-Bas.wav"
+      "mos": 3.09,
+      "sha256": "044d18c08bac4388241f68d2d406ce7d88bea0ed35e7fa4ae493bed7587ea1a0",
+      "source": "LL-Q150 (fra)-Sartus85-Pays-Bas.wav"
     },
     "Pologne": {
       "author": "Jules78120",
@@ -1424,14 +1421,15 @@
       "source": "LL-Q150 (fra)-WikiLucas00-roumains.wav"
     },
     "Roumanie": {
-      "author": "Jules78120",
+      "author": "Mecanautes",
       "file": "countries/roumanie.mp3",
-      "gain": 9.8,
-      "lead": 84,
+      "gain": 1.5,
+      "gate": -87.4,
+      "lead": 138,
       "matches": "Roumanie",
-      "mos": 2.78,
-      "sha256": "0c388fbfb8f0a392c4c1e7cc8dc33b008e1dad00bb9d40956ee3fdba8e8bcbe8",
-      "source": "LL-Q150 (fra)-Jules78120-Roumanie.wav"
+      "mos": 3.13,
+      "sha256": "08e00f71b89d431b772f509cf01e805c6377baae3e439e2b0ed1dc6c7bec6566",
+      "source": "LL-Q150 (fra)-Mecanautes-Roumanie.wav"
     },
     "Royaume-Uni": {
       "author": "Jules78120",
@@ -1475,20 +1473,20 @@
       "source": "LL-Q150 (fra)-Jules78120-Rwanda.wav"
     },
     "Rwandais": {
-      "author": "Pamputt",
+      "author": "Sartus85",
       "file": "countries/rwandais.mp3",
-      "gain": 8.5,
-      "gate": -55.2,
-      "lead": 130,
+      "gain": 4.0,
+      "gate": -91.0,
+      "lead": 58,
       "matches": "Rwandais",
-      "mos": 2.35,
-      "sha256": "4e0ba2568e0a2217e8cf7f231b0fdccf2e811f10ea21751f9a42c89d984aa7d5",
-      "source": "LL-Q150 (fra)-Pamputt-Rwandais.wav"
+      "mos": 3.06,
+      "sha256": "51337640dd2f6090bdc9bbd871b8f0be7d6792de56473215b8168b5bad0e053b",
+      "source": "LL-Q150 (fra)-Sartus85-rwandais.wav"
     },
     "République démocratique du Congo": {
       "author": "GrandCelinien",
       "cap": 0.1,
-      "file": "countries/ru00e9publiqueu0020du00e9mocratiqueu0020duu0020congo.mp3",
+      "file": "countries/ru00e9publique_du00e9mocratique_du_congo.mp3",
       "gain": 4.3,
       "gate": -70.8,
       "lead": 219,
@@ -1561,14 +1559,15 @@
       "source": "LL-Q150 (fra)-WikiLucas00-sud-coréens.wav"
     },
     "Suisse": {
-      "author": "Jules78120",
+      "author": "DenisdeShawi",
       "file": "countries/suisse.mp3",
-      "gain": 11.7,
-      "lead": 181,
+      "gain": 0.5,
+      "gate": -68.3,
+      "lead": 200,
       "matches": "Suisse",
-      "mos": 2.49,
-      "sha256": "78f54ab94fcc6ba62a4037ed5a51ffd5b67b660dfefebe35d57a69b6c5cab02b",
-      "source": "LL-Q150 (fra)-Jules78120-Suisse.wav"
+      "mos": 2.95,
+      "sha256": "b48540043a91c3430d46f56fa6fa5e9605a28ff340cce16e3b9ff8b336cbe86f",
+      "source": "LL-Q150 (fra)-DenisdeShawi-suisse.wav"
     },
     "Suisses": {
       "author": "WikiLucas00",
@@ -1613,15 +1612,14 @@
       "source": "LL-Q150 (fra)-Jules78120-Sénégal.wav"
     },
     "Sénégalais": {
-      "author": "Pamputt",
+      "author": "VictorDtmtc",
       "file": "countries/su00e9nu00e9galais.mp3",
-      "gain": 6.7,
-      "gate": -56.4,
-      "lead": 143,
+      "gain": 0.9,
+      "lead": 265,
       "matches": "Sénégalais",
-      "mos": 2.73,
-      "sha256": "6926c5dbdf0d9cf645929164a5ac4cc7e3465697dc1f6cec546841e8fe5185e4",
-      "source": "LL-Q150 (fra)-Pamputt-Sénégalais.wav"
+      "mos": 3.13,
+      "sha256": "73cdda145c7d0df8e9d3809557580f72a887b9260518c82612d9b333659f5edb",
+      "source": "LL-Q150 (fra)-VictorDtmtc-sénégalais.wav"
     },
     "Tanzanie": {
       "author": "Jules78120",
@@ -1668,15 +1666,15 @@
       "source": "LL-Q150 (fra)-Pamputt-Thaïlandais.wav"
     },
     "Thaïlande": {
-      "author": "GrandCelinien",
+      "author": "Didierwiki",
       "file": "countries/thau00eflande.mp3",
-      "gain": 3.2,
-      "gate": -73.5,
-      "lead": 211,
+      "gain": 4.8,
+      "gate": -92.4,
+      "lead": 194,
       "matches": "Thaïlande",
-      "mos": 2.67,
-      "sha256": "0375322a136a436c9261d381aaf2b6df75a389acc0c0fb403f0807f0d9e3630b",
-      "source": "LL-Q150 (fra)-GrandCelinien-Thaïlande.wav"
+      "mos": 3.0,
+      "sha256": "6c0b802519aec265cef158ecbe986bd0e0ff5b4793abb23917d77cc316c0b167",
+      "source": "LL-Q150 (fra)-Didierwiki-Thaïlande.wav"
     },
     "Tunisie": {
       "author": "Jules78120",
@@ -1723,14 +1721,13 @@
       "source": "LL-Q150 (fra)-Jules78120-Turquie.wav"
     },
     "Ukraine": {
-      "author": "Jules78120",
+      "author": "LoquaxFR",
       "file": "countries/ukraine.mp3",
-      "gain": 8.0,
-      "lead": 255,
+      "gain": 2.9,
       "matches": "Ukraine",
-      "mos": 2.74,
-      "sha256": "1d393a53ce4a55fe5fd70a4a8062e8645b4dea2caf9011b7dc94c23cd6a8d912",
-      "source": "LL-Q150 (fra)-Jules78120-Ukraine.wav"
+      "mos": 3.28,
+      "sha256": "eb2102a77ba0819ac33f3494b8cc2dfdbaa1ac5f2027f15332c48a76d083f94c",
+      "source": "LL-Q150 (fra)-LoquaxFR-Ukraine.wav"
     },
     "Ukrainiens": {
       "author": "Lyokoï",
@@ -1796,14 +1793,15 @@
       "source": "LL-Q150 (fra)-Lyokoï-vietnamiens.wav"
     },
     "Égypte": {
-      "author": "Jules78120",
+      "author": "Mecanautes",
       "file": "countries/u00e9gypte.mp3",
-      "gain": 5.7,
-      "lead": 220,
+      "gain": 2.8,
+      "gate": -93.7,
+      "lead": 206,
       "matches": "Égypte",
-      "mos": 2.06,
-      "sha256": "09391fdbc1e4e52e1f5ddfee3dbf4218ed883229de0cd863a045990403e4119e",
-      "source": "LL-Q150 (fra)-Jules78120-Égypte.wav"
+      "mos": 3.05,
+      "sha256": "80ab4603e4ce8ba4840eb3e1abcf111ab2305316718665f0d4bfe0f047dfa7cb",
+      "source": "LL-Q150 (fra)-Mecanautes-Égypte.wav"
     },
     "Équateur": {
       "author": "Jules78120",
@@ -1826,14 +1824,15 @@
       "source": "LL-Q150 (fra)-Jules78120-États-Unis.wav"
     },
     "Éthiopie": {
-      "author": "Jules78120",
+      "author": "Didierwiki",
       "file": "countries/u00e9thiopie.mp3",
-      "gain": 7.9,
-      "lead": 222,
+      "gain": 8.5,
+      "gate": -82.7,
+      "lead": 189,
       "matches": "Éthiopie",
-      "mos": 2.44,
-      "sha256": "d9e3cb643e8ca8c9dbd155e2de21319eb8e618fcda701d81b8feebb3e8ce95f2",
-      "source": "LL-Q150 (fra)-Jules78120-Éthiopie.wav"
+      "mos": 3.01,
+      "sha256": "fcccc1aafafa3c5dad886724c5aed8fa30fea8fd58c037922f68ff17c8ec78de",
+      "source": "LL-Q150 (fra)-Didierwiki-Éthiopie.wav"
     }
   },
   "language": "fr",
@@ -1933,7 +1932,7 @@
     },
     "acte de naissance": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/acteu0020deu0020naissance.mp3",
+      "file": "words/acte_de_naissance.mp3",
       "gain": 9.4,
       "gate": -79.2,
       "lead": 165,
@@ -1988,7 +1987,7 @@
     },
     "adresse e-mail": {
       "author": "LoquaxFR",
-      "file": "words/adresseu0020e-mail.mp3",
+      "file": "words/adresse_e-mail.mp3",
       "gain": 0.6,
       "gate": -79.7,
       "lead": 108,
@@ -2065,7 +2064,7 @@
     },
     "aimer bien": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/aimeru0020bien.mp3",
+      "file": "words/aimer_bien.mp3",
       "gain": 7.0,
       "gate": -75.2,
       "lead": 191,
@@ -2263,7 +2262,7 @@
     },
     "apprendre par cœur": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/apprendreu0020paru0020cu0153ur.mp3",
+      "file": "words/apprendre_par_cu0153ur.mp3",
       "gain": 8.1,
       "gate": -76.2,
       "lead": 192,
@@ -2349,7 +2348,7 @@
     },
     "arrêt de bus": {
       "author": "Lyokoï",
-      "file": "words/arru00eatu0020deu0020bus.mp3",
+      "file": "words/arru00eat_de_bus.mp3",
       "gain": -1.8,
       "gate": -67.0,
       "lead": 263,
@@ -2360,7 +2359,7 @@
     },
     "arrêt de travail": {
       "author": "DenisdeShawi",
-      "file": "words/arru00eatu0020deu0020travail.mp3",
+      "file": "words/arru00eat_de_travail.mp3",
       "gain": 1.0,
       "gate": -81.4,
       "lead": 198,
@@ -2426,7 +2425,7 @@
     },
     "assurance maladie": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/assuranceu0020maladie.mp3",
+      "file": "words/assurance_maladie.mp3",
       "gain": 5.6,
       "gate": -78.5,
       "lead": 184,
@@ -2612,7 +2611,7 @@
     },
     "avoir besoin de": {
       "author": "Mecanautes",
-      "file": "words/avoiru0020besoinu0020de.mp3",
+      "file": "words/avoir_besoin_de.mp3",
       "gain": 4.2,
       "gate": -79.7,
       "lead": 140,
@@ -2917,7 +2916,7 @@
     },
     "bien que": {
       "author": "Vion Nicolas",
-      "file": "words/bienu0020que.mp3",
+      "file": "words/bien_que.mp3",
       "gain": -2.0,
       "gate": -70.0,
       "lead": 114,
@@ -3070,7 +3069,7 @@
     },
     "bon marché": {
       "author": "Jules78120",
-      "file": "words/bonu0020marchu00e9.mp3",
+      "file": "words/bon_marchu00e9.mp3",
       "gain": 2.5,
       "matches": "bon marché",
       "mos": 2.83,
@@ -3134,7 +3133,7 @@
     },
     "boîte aux lettres": {
       "author": "Poslovitch",
-      "file": "words/bou00eeteu0020auxu0020lettres.mp3",
+      "file": "words/bou00eete_aux_lettres.mp3",
       "gate": -73.3,
       "lead": 76,
       "matches": "boîte aux lettres",
@@ -3144,7 +3143,7 @@
     },
     "boîte de conserve": {
       "author": "Lyokoï",
-      "file": "words/bou00eeteu0020deu0020conserve.mp3",
+      "file": "words/bou00eete_de_conserve.mp3",
       "gain": -3.0,
       "gate": -69.3,
       "lead": 201,
@@ -3166,7 +3165,7 @@
     },
     "brosse à dents": {
       "author": "Pamputt",
-      "file": "words/brosseu0020u00e0u0020dents.mp3",
+      "file": "words/brosse_u00e0_dents.mp3",
       "gain": 10.8,
       "gate": -70.1,
       "lead": 66,
@@ -3188,7 +3187,7 @@
     },
     "bulletin scolaire": {
       "author": "WikiLucas00",
-      "file": "words/bulletinu0020scolaire.mp3",
+      "file": "words/bulletin_scolaire.mp3",
       "gain": 2.7,
       "gate": -80.3,
       "lead": 194,
@@ -3442,7 +3441,7 @@
     },
     "carte bancaire": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/carteu0020bancaire.mp3",
+      "file": "words/carte_bancaire.mp3",
       "gain": 7.0,
       "gate": -77.1,
       "lead": 160,
@@ -3454,7 +3453,7 @@
     "carte d'identité": {
       "author": "Lepticed7",
       "cap": 4.2,
-      "file": "words/carteu0020du0027identitu00e9.mp3",
+      "file": "words/carte_du0027identitu00e9.mp3",
       "gain": 3.6,
       "lead": 232,
       "matches": "carte d'identité",
@@ -3464,7 +3463,7 @@
     },
     "carte vitale": {
       "author": "WikiLucas00",
-      "file": "words/carteu0020vitale.mp3",
+      "file": "words/carte_vitale.mp3",
       "gain": 4.8,
       "gate": -87.1,
       "lead": 193,
@@ -3574,7 +3573,7 @@
     },
     "centre commercial": {
       "author": "Helenou66",
-      "file": "words/centreu0020commercial.mp3",
+      "file": "words/centre_commercial.mp3",
       "gain": 7.7,
       "gate": -85.0,
       "lead": 19,
@@ -3934,7 +3933,7 @@
     },
     "code postal": {
       "author": "Lyokoï",
-      "file": "words/codeu0020postal.mp3",
+      "file": "words/code_postal.mp3",
       "gain": -1.6,
       "gate": -83.6,
       "lead": 202,
@@ -4218,7 +4217,7 @@
     },
     "cours magistral": {
       "author": "Lepticed7",
-      "file": "words/coursu0020magistral.mp3",
+      "file": "words/cours_magistral.mp3",
       "gain": 7.3,
       "gate": -81.7,
       "lead": 207,
@@ -4362,7 +4361,7 @@
     },
     "crème solaire": {
       "author": "Poslovitch",
-      "file": "words/cru00e8meu0020solaire.mp3",
+      "file": "words/cru00e8me_solaire.mp3",
       "gain": 3.5,
       "gate": -75.8,
       "lead": 248,
@@ -4483,7 +4482,7 @@
     },
     "date de naissance": {
       "author": "Benoît Prieur",
-      "file": "words/dateu0020deu0020naissance.mp3",
+      "file": "words/date_de_naissance.mp3",
       "gain": -1.4,
       "gate": -88.6,
       "lead": 99,
@@ -4494,7 +4493,7 @@
     },
     "de nos jours": {
       "author": "WikiLucas00",
-      "file": "words/deu0020nosu0020jours.mp3",
+      "file": "words/de_nos_jours.mp3",
       "gain": 4.9,
       "gate": -75.1,
       "lead": 160,
@@ -4505,7 +4504,7 @@
     },
     "de nouveau": {
       "author": "WikiLucas00",
-      "file": "words/deu0020nouveau.mp3",
+      "file": "words/de_nouveau.mp3",
       "gain": 4.8,
       "gate": -98.5,
       "lead": 222,
@@ -4788,7 +4787,7 @@
     },
     "dire au revoir": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/direu0020auu0020revoir.mp3",
+      "file": "words/dire_au_revoir.mp3",
       "gain": 8.4,
       "gate": -73.6,
       "lead": 111,
@@ -4937,17 +4936,6 @@
       "mos": 2.65,
       "sha256": "cefccf2b4c00b6698c07db874604d6bc2ff0ab7ef21d2c9b04d54cf5300b97c0",
       "source": "LL-Q150 (fra)-Pamputt-douce.wav"
-    },
-    "douche": {
-      "author": "Vion Nicolas",
-      "file": "words/douche.mp3",
-      "gain": 2.6,
-      "gate": -57.0,
-      "lead": 155,
-      "matches": "douche",
-      "mos": 2.95,
-      "sha256": "0dcb1639884e0f964346abb7624872de3732f7f924b546eb89f1dd5884ba2b25",
-      "source": "Fr-douche.ogg"
     },
     "douleur": {
       "author": "Vion Nicolas",
@@ -5190,7 +5178,7 @@
     },
     "emploi du temps": {
       "author": "Lepticed7",
-      "file": "words/emploiu0020duu0020temps.mp3",
+      "file": "words/emploi_du_temps.mp3",
       "gain": 5.8,
       "gate": -81.9,
       "lead": 118,
@@ -5234,7 +5222,7 @@
     },
     "en bas": {
       "author": "Poslovitch",
-      "file": "words/enu0020bas.mp3",
+      "file": "words/en_bas.mp3",
       "gain": 1.8,
       "gate": -62.5,
       "lead": 181,
@@ -5245,7 +5233,7 @@
     },
     "en haut": {
       "author": "Poslovitch",
-      "file": "words/enu0020haut.mp3",
+      "file": "words/en_haut.mp3",
       "gain": 1.8,
       "gate": -62.4,
       "lead": 222,
@@ -5411,7 +5399,7 @@
     "entre nous": {
       "author": "Sagnamadr",
       "cap": 2.0,
-      "file": "words/entreu0020nous.mp3",
+      "file": "words/entre_nous.mp3",
       "gain": 16.8,
       "gate": -92.2,
       "lead": 186,
@@ -5640,7 +5628,7 @@
     },
     "faire du vélo": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/faireu0020duu0020vu00e9lo.mp3",
+      "file": "words/faire_du_vu00e9lo.mp3",
       "gain": 5.6,
       "gate": -69.2,
       "lead": 48,
@@ -5651,7 +5639,7 @@
     },
     "faire la vaisselle": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/faireu0020lau0020vaisselle.mp3",
+      "file": "words/faire_la_vaisselle.mp3",
       "gain": 7.3,
       "gate": -74.3,
       "lead": 73,
@@ -5662,7 +5650,7 @@
     },
     "faire le lit": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/faireu0020leu0020lit.mp3",
+      "file": "words/faire_le_lit.mp3",
       "gain": 5.7,
       "gate": -72.4,
       "lead": 44,
@@ -5673,7 +5661,7 @@
     },
     "faire les courses": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/faireu0020lesu0020courses.mp3",
+      "file": "words/faire_les_courses.mp3",
       "gain": 9.1,
       "gate": -79.2,
       "lead": 56,
@@ -5684,7 +5672,7 @@
     },
     "faire mal": {
       "author": "Poslovitch",
-      "file": "words/faireu0020mal.mp3",
+      "file": "words/faire_mal.mp3",
       "gain": 5.6,
       "gate": -76.0,
       "lead": 145,
@@ -5695,7 +5683,7 @@
     },
     "faire une pause": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/faireu0020uneu0020pause.mp3",
+      "file": "words/faire_une_pause.mp3",
       "gain": 6.6,
       "gate": -73.1,
       "lead": 104,
@@ -5783,7 +5771,7 @@
     },
     "fermer à clé": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/fermeru0020u00e0u0020clu00e9.mp3",
+      "file": "words/fermer_u00e0_clu00e9.mp3",
       "gain": 7.0,
       "gate": -75.1,
       "lead": 75,
@@ -5926,7 +5914,7 @@
     },
     "formation continue": {
       "author": "WikiLucas00",
-      "file": "words/formationu0020continue.mp3",
+      "file": "words/formation_continue.mp3",
       "gain": 0.2,
       "gate": -77.8,
       "lead": 132,
@@ -6014,7 +6002,7 @@
     },
     "frapper à la porte": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/frapperu0020u00e0u0020lau0020porte.mp3",
+      "file": "words/frapper_u00e0_la_porte.mp3",
       "gain": 8.4,
       "gate": -68.6,
       "lead": 36,
@@ -6102,7 +6090,7 @@
     },
     "frères et sœurs": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/fru00e8resu0020etu0020su0153urs.mp3",
+      "file": "words/fru00e8res_et_su0153urs.mp3",
       "gain": 2.4,
       "gate": -78.2,
       "lead": 81,
@@ -6595,7 +6583,7 @@
     },
     "il pleut": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/ilu0020pleut.mp3",
+      "file": "words/il_pleut.mp3",
       "gain": 9.7,
       "gate": -77.5,
       "lead": 197,
@@ -6791,7 +6779,7 @@
     },
     "j'ai faim": {
       "author": "Justforoc",
-      "file": "words/ju0027aiu0020faim.mp3",
+      "file": "words/ju0027ai_faim.mp3",
       "gain": 2.1,
       "gate": -96.5,
       "lead": 275,
@@ -6802,7 +6790,7 @@
     },
     "j'ai mal à la tête": {
       "author": "Vion Nicolas",
-      "file": "words/ju0027aiu0020malu0020u00e0u0020lau0020tu00eate.mp3",
+      "file": "words/ju0027ai_mal_u00e0_la_tu00eate.mp3",
       "gain": -5.4,
       "gate": -70.4,
       "lead": 217,
@@ -6867,7 +6855,7 @@
     },
     "je t'aime": {
       "author": "Pamputt",
-      "file": "words/jeu0020tu0027aime.mp3",
+      "file": "words/je_tu0027aime.mp3",
       "gain": 15.5,
       "gate": -70.8,
       "lead": 142,
@@ -7074,7 +7062,7 @@
     },
     "langue maternelle": {
       "author": "Poslovitch",
-      "file": "words/langueu0020maternelle.mp3",
+      "file": "words/langue_maternelle.mp3",
       "gain": -2.5,
       "gate": -71.4,
       "lead": 206,
@@ -7139,7 +7127,7 @@
     },
     "lever la main": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/leveru0020lau0020main.mp3",
+      "file": "words/lever_la_main.mp3",
       "gain": 5.0,
       "gate": -74.1,
       "lead": 183,
@@ -7345,7 +7333,7 @@
     },
     "lycée professionnel": {
       "author": "WikiLucas00",
-      "file": "words/lycu00e9eu0020professionnel.mp3",
+      "file": "words/lycu00e9e_professionnel.mp3",
       "gain": 3.7,
       "gate": -81.4,
       "lead": 203,
@@ -7410,7 +7398,7 @@
     },
     "machine à laver": {
       "author": "Lepticed7",
-      "file": "words/machineu0020u00e0u0020laver.mp3",
+      "file": "words/machine_u00e0_laver.mp3",
       "gain": 0.8,
       "gate": -98.1,
       "lead": 170,
@@ -7919,7 +7907,7 @@
     },
     "mot de passe": {
       "author": "LoquaxFR",
-      "file": "words/motu0020deu0020passe.mp3",
+      "file": "words/mot_de_passe.mp3",
       "gain": 2.2,
       "gate": -85.2,
       "lead": 240,
@@ -8260,7 +8248,7 @@
     "nom de famille": {
       "author": "Pamputt",
       "cap": 1.5,
-      "file": "words/nomu0020deu0020famille.mp3",
+      "file": "words/nom_de_famille.mp3",
       "gain": 12.9,
       "gate": -67.2,
       "lead": 146,
@@ -8414,7 +8402,7 @@
     },
     "numéro de téléphone": {
       "author": "Damian B.",
-      "file": "words/numu00e9rou0020deu0020tu00e9lu00e9phone.mp3",
+      "file": "words/numu00e9ro_de_tu00e9lu00e9phone.mp3",
       "gain": 1.0,
       "gate": -67.4,
       "lead": 159,
@@ -8534,7 +8522,7 @@
     },
     "ordinateur portable": {
       "author": "Poslovitch",
-      "file": "words/ordinateuru0020portable.mp3",
+      "file": "words/ordinateur_portable.mp3",
       "gain": 12.2,
       "gate": -85.6,
       "lead": 253,
@@ -8773,7 +8761,7 @@
     },
     "papier toilette": {
       "author": "Lyokoï",
-      "file": "words/papieru0020toilette.mp3",
+      "file": "words/papier_toilette.mp3",
       "gain": -3.3,
       "gate": -72.4,
       "lead": 229,
@@ -8806,7 +8794,7 @@
     },
     "parce que": {
       "author": "Poslovitch",
-      "file": "words/parceu0020que.mp3",
+      "file": "words/parce_que.mp3",
       "gain": 4.1,
       "gate": -74.6,
       "lead": 267,
@@ -9266,7 +9254,7 @@
     },
     "plus haut": {
       "author": "Poslovitch",
-      "file": "words/plusu0020haut.mp3",
+      "file": "words/plus_haut.mp3",
       "gain": 0.5,
       "gate": -69.7,
       "lead": 166,
@@ -9277,7 +9265,7 @@
     },
     "plus ou moins": {
       "author": "Lepticed7",
-      "file": "words/plusu0020ouu0020moins.mp3",
+      "file": "words/plus_ou_moins.mp3",
       "gain": 14.0,
       "gate": -77.7,
       "lead": 204,
@@ -9343,7 +9331,7 @@
     },
     "pomme de terre": {
       "author": "Poslovitch",
-      "file": "words/pommeu0020deu0020terre.mp3",
+      "file": "words/pomme_de_terre.mp3",
       "gain": 0.5,
       "gate": -71.8,
       "lead": 78,
@@ -9354,7 +9342,7 @@
     },
     "pommes de terre": {
       "author": "Lyokoï",
-      "file": "words/pommesu0020deu0020terre.mp3",
+      "file": "words/pommes_de_terre.mp3",
       "gain": 0.1,
       "gate": -68.5,
       "lead": 274,
@@ -9509,7 +9497,7 @@
     },
     "pour que": {
       "author": "Vion Nicolas",
-      "file": "words/pouru0020que.mp3",
+      "file": "words/pour_que.mp3",
       "gain": -2.0,
       "gate": -63.4,
       "matches": "pour que",
@@ -9923,7 +9911,7 @@
     },
     "quelque chose": {
       "author": "Kitel WP",
-      "file": "words/quelqueu0020chose.mp3",
+      "file": "words/quelque_chose.mp3",
       "gain": 0.7,
       "gate": -90.2,
       "lead": 239,
@@ -10187,7 +10175,7 @@
     },
     "rendre visite": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/rendreu0020visite.mp3",
+      "file": "words/rendre_visite.mp3",
       "gain": 8.9,
       "gate": -78.2,
       "lead": 191,
@@ -10570,7 +10558,7 @@
     },
     "s'en aller": {
       "author": "WikiLucas00",
-      "file": "words/su0027enu0020aller.mp3",
+      "file": "words/su0027en_aller.mp3",
       "gain": 2.5,
       "gate": -78.9,
       "lead": 148,
@@ -10666,7 +10654,7 @@
     },
     "salle de classe": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/salleu0020deu0020classe.mp3",
+      "file": "words/salle_de_classe.mp3",
       "gain": 7.1,
       "gate": -74.3,
       "lead": 40,
@@ -10763,7 +10751,7 @@
     },
     "se blesser": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/seu0020blesser.mp3",
+      "file": "words/se_blesser.mp3",
       "gain": 6.5,
       "gate": -77.0,
       "lead": 131,
@@ -10774,7 +10762,7 @@
     },
     "se doucher": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/seu0020doucher.mp3",
+      "file": "words/se_doucher.mp3",
       "gain": 9.8,
       "gate": -77.1,
       "lead": 135,
@@ -10785,7 +10773,7 @@
     },
     "se déshabiller": {
       "author": "Poslovitch",
-      "file": "words/seu0020du00e9shabiller.mp3",
+      "file": "words/se_du00e9shabiller.mp3",
       "gain": -0.9,
       "gate": -70.6,
       "lead": 58,
@@ -10796,7 +10784,7 @@
     },
     "se détendre": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/seu0020du00e9tendre.mp3",
+      "file": "words/se_du00e9tendre.mp3",
       "gain": 8.9,
       "gate": -67.9,
       "lead": 147,
@@ -10807,7 +10795,7 @@
     },
     "se lever": {
       "author": "Poslovitch",
-      "file": "words/seu0020lever.mp3",
+      "file": "words/se_lever.mp3",
       "gain": 1.0,
       "gate": -71.5,
       "lead": 176,
@@ -10818,7 +10806,7 @@
     },
     "se marier": {
       "author": "Poslovitch",
-      "file": "words/seu0020marier.mp3",
+      "file": "words/se_marier.mp3",
       "gain": -0.7,
       "gate": -61.6,
       "lead": 68,
@@ -10829,7 +10817,7 @@
     },
     "se passer": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/seu0020passer.mp3",
+      "file": "words/se_passer.mp3",
       "gain": 10.7,
       "gate": -76.6,
       "lead": 152,
@@ -10840,7 +10828,7 @@
     },
     "se peigner": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/seu0020peigner.mp3",
+      "file": "words/se_peigner.mp3",
       "gain": 9.4,
       "gate": -78.0,
       "lead": 142,
@@ -10851,7 +10839,7 @@
     },
     "se perdre": {
       "author": "Poslovitch",
-      "file": "words/seu0020perdre.mp3",
+      "file": "words/se_perdre.mp3",
       "gain": -3.0,
       "gate": -59.5,
       "lead": 57,
@@ -10862,7 +10850,7 @@
     },
     "se promener": {
       "author": "Poslovitch",
-      "file": "words/seu0020promener.mp3",
+      "file": "words/se_promener.mp3",
       "gain": 5.6,
       "gate": -56.0,
       "lead": 44,
@@ -10873,7 +10861,7 @@
     },
     "se présenter": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/seu0020pru00e9senter.mp3",
+      "file": "words/se_pru00e9senter.mp3",
       "gain": 6.9,
       "gate": -69.4,
       "matches": "se présenter",
@@ -10883,7 +10871,7 @@
     },
     "se raser": {
       "author": "Poslovitch",
-      "file": "words/seu0020raser.mp3",
+      "file": "words/se_raser.mp3",
       "gain": -0.4,
       "gate": -61.2,
       "lead": 20,
@@ -10895,7 +10883,7 @@
     "se reposer": {
       "author": "Jérémy-Günther-Heinz Jähnick",
       "cap": 0.6,
-      "file": "words/seu0020reposer.mp3",
+      "file": "words/se_reposer.mp3",
       "gain": 6.3,
       "gate": -74.5,
       "lead": 108,
@@ -10906,7 +10894,7 @@
     },
     "se réunir": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/seu0020ru00e9unir.mp3",
+      "file": "words/se_ru00e9unir.mp3",
       "gain": 7.5,
       "gate": -74.0,
       "lead": 123,
@@ -10917,7 +10905,7 @@
     },
     "se réveiller": {
       "author": "Poslovitch",
-      "file": "words/seu0020ru00e9veiller.mp3",
+      "file": "words/se_ru00e9veiller.mp3",
       "gain": -0.2,
       "gate": -71.8,
       "lead": 172,
@@ -10928,7 +10916,7 @@
     },
     "se sentir": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/seu0020sentir.mp3",
+      "file": "words/se_sentir.mp3",
       "gain": 6.6,
       "gate": -73.3,
       "lead": 118,
@@ -10939,7 +10927,7 @@
     },
     "se souvenir": {
       "author": "Poslovitch",
-      "file": "words/seu0020souvenir.mp3",
+      "file": "words/se_souvenir.mp3",
       "gain": 5.0,
       "gate": -70.2,
       "lead": 98,
@@ -10950,7 +10938,7 @@
     },
     "se sécher": {
       "author": "Poslovitch",
-      "file": "words/seu0020su00e9cher.mp3",
+      "file": "words/se_su00e9cher.mp3",
       "gain": -1.1,
       "gate": -56.6,
       "lead": 56,
@@ -10962,7 +10950,7 @@
     "se tromper": {
       "author": "Jérémy-Günther-Heinz Jähnick",
       "cap": 0.3,
-      "file": "words/seu0020tromper.mp3",
+      "file": "words/se_tromper.mp3",
       "gain": 12.0,
       "gate": -69.5,
       "lead": 60,
@@ -11572,7 +11560,7 @@
     },
     "table de nuit": {
       "author": "Mecanautes",
-      "file": "words/tableu0020deu0020nuit.mp3",
+      "file": "words/table_de_nuit.mp3",
       "gain": 4.3,
       "gate": -84.6,
       "lead": 283,
@@ -11583,7 +11571,7 @@
     },
     "table à manger": {
       "author": "Adem M.",
-      "file": "words/tableu0020u00e0u0020manger.mp3",
+      "file": "words/table_u00e0_manger.mp3",
       "gain": 3.7,
       "gate": -76.4,
       "lead": 181,
@@ -11771,7 +11759,7 @@
     "titre de séjour": {
       "author": "Jérémy-Günther-Heinz Jähnick",
       "cap": 1.1,
-      "file": "words/titreu0020deu0020su00e9jour.mp3",
+      "file": "words/titre_de_su00e9jour.mp3",
       "gain": 7.1,
       "gate": -75.8,
       "lead": 106,
@@ -11835,16 +11823,6 @@
       "sha256": "55070dd2204577433f4c45ed2cea77c1596344b9e55bbb9f197a04f2ae2be6eb",
       "source": "LL-Q150 (fra)-Poslovitch-tonnerre.wav"
     },
-    "toujours": {
-      "author": "Vion Nicolas",
-      "file": "words/toujours.mp3",
-      "gain": -1.9,
-      "gate": -57.3,
-      "matches": "toujours",
-      "mos": 2.68,
-      "sha256": "86b80e43e7315dc4cad586a40adca545e193dfa293ac7353a3b47c994f81fcd0",
-      "source": "Fr-toujours.ogg"
-    },
     "touriste": {
       "author": "Sartus85",
       "file": "words/touriste.mp3",
@@ -11902,7 +11880,7 @@
     },
     "tout de suite": {
       "author": "Poslovitch",
-      "file": "words/toutu0020deu0020suite.mp3",
+      "file": "words/tout_de_suite.mp3",
       "gain": 4.5,
       "gate": -58.5,
       "lead": 216,
@@ -11913,7 +11891,7 @@
     },
     "tout droit": {
       "author": "Poslovitch",
-      "file": "words/toutu0020droit.mp3",
+      "file": "words/tout_droit.mp3",
       "gain": -1.7,
       "gate": -63.3,
       "lead": 39,
@@ -12140,7 +12118,7 @@
     },
     "un peu": {
       "author": "Poslovitch",
-      "file": "words/unu0020peu.mp3",
+      "file": "words/un_peu.mp3",
       "gain": 2.1,
       "gate": -74.2,
       "lead": 282,
@@ -12151,7 +12129,7 @@
     },
     "une fois": {
       "author": "Lyokoï",
-      "file": "words/uneu0020fois.mp3",
+      "file": "words/une_fois.mp3",
       "gain": 7.8,
       "gate": -90.5,
       "lead": 208,
@@ -12809,7 +12787,7 @@
     },
     "à cause de": {
       "author": "Yug",
-      "file": "words/u00e0u0020causeu0020de.mp3",
+      "file": "words/u00e0_cause_de.mp3",
       "gain": 4.5,
       "gate": -75.3,
       "lead": 195,
@@ -12820,7 +12798,7 @@
     },
     "à côté de": {
       "author": "Poslovitch",
-      "file": "words/u00e0u0020cu00f4tu00e9u0020de.mp3",
+      "file": "words/u00e0_cu00f4tu00e9_de.mp3",
       "gain": -0.2,
       "gate": -64.4,
       "lead": 227,
@@ -12831,7 +12809,7 @@
     },
     "à droite": {
       "author": "Poslovitch",
-      "file": "words/u00e0u0020droite.mp3",
+      "file": "words/u00e0_droite.mp3",
       "gain": -2.2,
       "gate": -66.1,
       "lead": 16,
@@ -12842,7 +12820,7 @@
     },
     "à gauche": {
       "author": "Poslovitch",
-      "file": "words/u00e0u0020gauche.mp3",
+      "file": "words/u00e0_gauche.mp3",
       "gain": -3.1,
       "gate": -66.7,
       "lead": 207,
@@ -12853,7 +12831,7 @@
     },
     "à la maison": {
       "author": "WikiLucas00",
-      "file": "words/u00e0u0020lau0020maison.mp3",
+      "file": "words/u00e0_la_maison.mp3",
       "gain": 3.6,
       "lead": 209,
       "matches": "à la maison",
@@ -12885,7 +12863,7 @@
     },
     "ça marche": {
       "author": "WikiLucas00",
-      "file": "words/u00e7au0020marche.mp3",
+      "file": "words/u00e7a_marche.mp3",
       "gain": -1.0,
       "gate": -84.5,
       "lead": 172,
@@ -13140,7 +13118,7 @@
     },
     "être debout": {
       "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/u00eatreu0020debout.mp3",
+      "file": "words/u00eatre_debout.mp3",
       "gain": 6.6,
       "gate": -67.2,
       "lead": 163,
@@ -13151,7 +13129,7 @@
     },
     "être humain": {
       "author": "Poslovitch",
-      "file": "words/u00eatreu0020humain.mp3",
+      "file": "words/u00eatre_humain.mp3",
       "gain": 0.7,
       "gate": -77.0,
       "lead": 237,

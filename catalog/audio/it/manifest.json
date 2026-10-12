@@ -2,7 +2,7 @@
   "articles": {
     "gli occhi": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/gliu0020occhi.mp3",
+      "file": "articles/gli_occhi.mp3",
       "gain": -4.1,
       "gate": -72.2,
       "matches": "gli occhi",
@@ -13,7 +13,7 @@
     },
     "i capelli": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/iu0020capelli.mp3",
+      "file": "articles/i_capelli.mp3",
       "gain": -2.1,
       "gate": -71.8,
       "lead": 36,
@@ -25,7 +25,7 @@
     },
     "i genitori": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/iu0020genitori.mp3",
+      "file": "articles/i_genitori.mp3",
       "gain": -1.8,
       "gate": -71.6,
       "lead": 195,
@@ -37,7 +37,7 @@
     },
     "i soldi": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/iu0020soldi.mp3",
+      "file": "articles/i_soldi.mp3",
       "gain": -3.2,
       "gate": -73.1,
       "lead": 58,
@@ -49,7 +49,7 @@
     },
     "i vestiti": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/iu0020vestiti.mp3",
+      "file": "articles/i_vestiti.mp3",
       "gain": 1.4,
       "gate": -74.0,
       "lead": 239,
@@ -61,7 +61,7 @@
     },
     "il burro": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020burro.mp3",
+      "file": "articles/il_burro.mp3",
       "gain": -1.6,
       "gate": -67.7,
       "lead": 60,
@@ -73,7 +73,7 @@
     },
     "il caffè": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020caffu00e8.mp3",
+      "file": "articles/il_caffu00e8.mp3",
       "gain": -2.6,
       "gate": -67.6,
       "lead": 130,
@@ -85,7 +85,7 @@
     },
     "il cibo": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020cibo.mp3",
+      "file": "articles/il_cibo.mp3",
       "gain": -0.9,
       "gate": -70.8,
       "lead": 35,
@@ -97,7 +97,7 @@
     },
     "il cielo": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020cielo.mp3",
+      "file": "articles/il_cielo.mp3",
       "gain": -1.9,
       "gate": -72.2,
       "matches": "il cielo",
@@ -108,7 +108,7 @@
     },
     "il cinema": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020cinema.mp3",
+      "file": "articles/il_cinema.mp3",
       "gain": -2.0,
       "gate": -67.1,
       "matches": "il cinema",
@@ -119,7 +119,7 @@
     },
     "il conto": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020conto.mp3",
+      "file": "articles/il_conto.mp3",
       "gain": -0.5,
       "gate": -69.2,
       "matches": "il conto",
@@ -130,7 +130,7 @@
     },
     "il cuore": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020cuore.mp3",
+      "file": "articles/il_cuore.mp3",
       "gain": -4.9,
       "gate": -72.0,
       "matches": "il cuore",
@@ -141,7 +141,7 @@
     },
     "il formaggio": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020formaggio.mp3",
+      "file": "articles/il_formaggio.mp3",
       "gain": -3.1,
       "gate": -68.7,
       "lead": 93,
@@ -153,7 +153,7 @@
     },
     "il governo": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020governo.mp3",
+      "file": "articles/il_governo.mp3",
       "gain": -2.6,
       "gate": -74.5,
       "lead": 230,
@@ -165,7 +165,7 @@
     },
     "il latte": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020latte.mp3",
+      "file": "articles/il_latte.mp3",
       "gain": -4.2,
       "gate": -69.7,
       "lead": 253,
@@ -177,7 +177,7 @@
     },
     "il lavoro": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020lavoro.mp3",
+      "file": "articles/il_lavoro.mp3",
       "gain": -2.9,
       "gate": -72.9,
       "matches": "il lavoro",
@@ -188,7 +188,7 @@
     },
     "il mare": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020mare.mp3",
+      "file": "articles/il_mare.mp3",
       "gain": -3.1,
       "gate": -74.2,
       "matches": "il mare",
@@ -199,7 +199,7 @@
     },
     "il marito": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020marito.mp3",
+      "file": "articles/il_marito.mp3",
       "gain": -1.9,
       "gate": -71.3,
       "lead": 35,
@@ -211,7 +211,7 @@
     },
     "il matrimonio": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020matrimonio.mp3",
+      "file": "articles/il_matrimonio.mp3",
       "gate": -71.7,
       "lead": 36,
       "matches": "il matrimonio",
@@ -222,7 +222,7 @@
     },
     "il mercato": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020mercato.mp3",
+      "file": "articles/il_mercato.mp3",
       "gain": -3.1,
       "gate": -66.4,
       "lead": 4,
@@ -234,7 +234,7 @@
     },
     "il naso": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020naso.mp3",
+      "file": "articles/il_naso.mp3",
       "gain": -5.3,
       "gate": -71.2,
       "matches": "il naso",
@@ -245,7 +245,7 @@
     },
     "il nord": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020nord.mp3",
+      "file": "articles/il_nord.mp3",
       "gain": -3.7,
       "gate": -69.6,
       "lead": 154,
@@ -257,7 +257,7 @@
     },
     "il padre": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020padre.mp3",
+      "file": "articles/il_padre.mp3",
       "gain": -1.3,
       "gate": -72.5,
       "lead": 5,
@@ -269,7 +269,7 @@
     },
     "il pane": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020pane.mp3",
+      "file": "articles/il_pane.mp3",
       "gain": -6.8,
       "gate": -68.2,
       "lead": 91,
@@ -281,7 +281,7 @@
     },
     "il pavimento": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020pavimento.mp3",
+      "file": "articles/il_pavimento.mp3",
       "gain": -0.2,
       "gate": -70.4,
       "matches": "il pavimento",
@@ -292,7 +292,7 @@
     },
     "il pesce": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020pesce.mp3",
+      "file": "articles/il_pesce.mp3",
       "gain": -3.4,
       "gate": -72.7,
       "lead": 257,
@@ -304,7 +304,7 @@
     },
     "il pollo": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020pollo.mp3",
+      "file": "articles/il_pollo.mp3",
       "gain": -0.4,
       "gate": -72.8,
       "matches": "il pollo",
@@ -315,7 +315,7 @@
     },
     "il prezzo": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020prezzo.mp3",
+      "file": "articles/il_prezzo.mp3",
       "gain": -4.0,
       "gate": -65.8,
       "lead": 96,
@@ -327,7 +327,7 @@
     },
     "il riso": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020riso.mp3",
+      "file": "articles/il_riso.mp3",
       "gain": 0.3,
       "gate": -73.4,
       "matches": "il riso",
@@ -338,7 +338,7 @@
     },
     "il rumore": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020rumore.mp3",
+      "file": "articles/il_rumore.mp3",
       "gain": -2.4,
       "gate": -69.6,
       "matches": "il rumore",
@@ -349,7 +349,7 @@
     },
     "il sale": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020sale.mp3",
+      "file": "articles/il_sale.mp3",
       "gain": -6.8,
       "gate": -65.8,
       "lead": 38,
@@ -361,7 +361,7 @@
     },
     "il sangue": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020sangue.mp3",
+      "file": "articles/il_sangue.mp3",
       "gain": -3.8,
       "gate": -68.4,
       "lead": 231,
@@ -373,7 +373,7 @@
     },
     "il sapone": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020sapone.mp3",
+      "file": "articles/il_sapone.mp3",
       "gain": -0.9,
       "gate": -70.5,
       "matches": "il sapone",
@@ -384,7 +384,7 @@
     },
     "il sole": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020sole.mp3",
+      "file": "articles/il_sole.mp3",
       "gain": -2.2,
       "gate": -69.3,
       "matches": "il sole",
@@ -395,7 +395,7 @@
     },
     "il sud": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020sud.mp3",
+      "file": "articles/il_sud.mp3",
       "gain": -0.2,
       "gate": -66.1,
       "lead": 98,
@@ -407,7 +407,7 @@
     },
     "il tè": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020tu00e8.mp3",
+      "file": "articles/il_tu00e8.mp3",
       "gain": -3.8,
       "gate": -69.7,
       "lead": 121,
@@ -419,7 +419,7 @@
     },
     "il vento": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/ilu0020vento.mp3",
+      "file": "articles/il_vento.mp3",
       "gain": -2.9,
       "gate": -68.9,
       "matches": "il vento",
@@ -514,7 +514,7 @@
     },
     "la bocca": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020bocca.mp3",
+      "file": "articles/la_bocca.mp3",
       "gain": 2.3,
       "gate": -74.8,
       "lead": 233,
@@ -526,7 +526,7 @@
     },
     "la borsa": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020borsa.mp3",
+      "file": "articles/la_borsa.mp3",
       "gain": -2.7,
       "gate": -69.7,
       "lead": 39,
@@ -538,7 +538,7 @@
     },
     "la carne": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020carne.mp3",
+      "file": "articles/la_carne.mp3",
       "gain": -5.6,
       "gate": -69.7,
       "matches": "la carne",
@@ -549,7 +549,7 @@
     },
     "la carta": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020carta.mp3",
+      "file": "articles/la_carta.mp3",
       "gain": -3.2,
       "gate": -70.2,
       "lead": 41,
@@ -561,7 +561,7 @@
     },
     "la cena": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020cena.mp3",
+      "file": "articles/la_cena.mp3",
       "gain": 0.9,
       "gate": -70.6,
       "matches": "la cena",
@@ -572,7 +572,7 @@
     },
     "la colazione": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020colazione.mp3",
+      "file": "articles/la_colazione.mp3",
       "gain": -2.1,
       "gate": -65.8,
       "lead": 87,
@@ -584,7 +584,7 @@
     },
     "la direzione": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020direzione.mp3",
+      "file": "articles/la_direzione.mp3",
       "gain": -0.9,
       "gate": -69.2,
       "matches": "la direzione",
@@ -595,7 +595,7 @@
     },
     "la guerra": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020guerra.mp3",
+      "file": "articles/la_guerra.mp3",
       "gain": -2.8,
       "gate": -72.3,
       "lead": 247,
@@ -607,7 +607,7 @@
     },
     "la lingua": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020lingua.mp3",
+      "file": "articles/la_lingua.mp3",
       "gain": -3.1,
       "gate": -70.3,
       "lead": 110,
@@ -619,7 +619,7 @@
     },
     "la luce": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020luce.mp3",
+      "file": "articles/la_luce.mp3",
       "gain": -2.6,
       "gate": -75.4,
       "lead": 228,
@@ -631,7 +631,7 @@
     },
     "la madre": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020madre.mp3",
+      "file": "articles/la_madre.mp3",
       "gain": -4.4,
       "gate": -69.6,
       "lead": 37,
@@ -643,7 +643,7 @@
     },
     "la moglie": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020moglie.mp3",
+      "file": "articles/la_moglie.mp3",
       "gain": -4.6,
       "gate": -70.4,
       "lead": 224,
@@ -655,7 +655,7 @@
     },
     "la montagna": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020montagna.mp3",
+      "file": "articles/la_montagna.mp3",
       "gain": -3.3,
       "gate": -69.0,
       "matches": "la montagna",
@@ -666,7 +666,7 @@
     },
     "la morte": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020morte.mp3",
+      "file": "articles/la_morte.mp3",
       "gain": -3.5,
       "gate": -67.4,
       "lead": 83,
@@ -678,7 +678,7 @@
     },
     "la musica": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020musica.mp3",
+      "file": "articles/la_musica.mp3",
       "gain": -0.1,
       "gate": -70.8,
       "lead": 149,
@@ -690,7 +690,7 @@
     },
     "la neve": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020neve.mp3",
+      "file": "articles/la_neve.mp3",
       "gain": -2.3,
       "gate": -71.3,
       "lead": 263,
@@ -702,7 +702,7 @@
     },
     "la pace": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020pace.mp3",
+      "file": "articles/la_pace.mp3",
       "gain": -3.3,
       "gate": -71.7,
       "lead": 224,
@@ -714,7 +714,7 @@
     },
     "la patata": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020patata.mp3",
+      "file": "articles/la_patata.mp3",
       "gain": -0.4,
       "gate": -72.3,
       "matches": "la patata",
@@ -725,7 +725,7 @@
     },
     "la pelle": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020pelle.mp3",
+      "file": "articles/la_pelle.mp3",
       "gain": -2.4,
       "gate": -72.2,
       "matches": "la pelle",
@@ -736,7 +736,7 @@
     },
     "la pioggia": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020pioggia.mp3",
+      "file": "articles/la_pioggia.mp3",
       "gain": -3.5,
       "gate": -69.5,
       "lead": 46,
@@ -748,7 +748,7 @@
     },
     "la polizia": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020polizia.mp3",
+      "file": "articles/la_polizia.mp3",
       "gain": 0.8,
       "gate": -73.2,
       "lead": 264,
@@ -760,7 +760,7 @@
     },
     "la spiaggia": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020spiaggia.mp3",
+      "file": "articles/la_spiaggia.mp3",
       "gain": -2.8,
       "gate": -69.6,
       "lead": 39,
@@ -772,7 +772,7 @@
     },
     "la testa": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020testa.mp3",
+      "file": "articles/la_testa.mp3",
       "gain": -0.7,
       "gate": -71.4,
       "matches": "la testa",
@@ -783,7 +783,7 @@
     },
     "la verdura": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020verdura.mp3",
+      "file": "articles/la_verdura.mp3",
       "gain": -2.3,
       "gate": -71.4,
       "matches": "la verdura",
@@ -794,7 +794,7 @@
     },
     "la vita": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020vita.mp3",
+      "file": "articles/la_vita.mp3",
       "gain": -0.6,
       "gate": -74.8,
       "lead": 125,
@@ -806,7 +806,7 @@
     },
     "la zuppa": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/lau0020zuppa.mp3",
+      "file": "articles/la_zuppa.mp3",
       "gain": -2.5,
       "gate": -71.5,
       "lead": 89,
@@ -818,7 +818,7 @@
     },
     "le labbra": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/leu0020labbra.mp3",
+      "file": "articles/le_labbra.mp3",
       "gain": -4.8,
       "gate": -71.2,
       "lead": 14,
@@ -830,7 +830,7 @@
     },
     "le orecchie": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "articles/leu0020orecchie.mp3",
+      "file": "articles/le_orecchie.mp3",
       "gain": -3.9,
       "gate": -67.5,
       "matches": "le orecchie",
@@ -842,7 +842,7 @@
     "lo zucchero": {
       "author": "Marta Carbone, Association Shtooka",
       "cap": 1.0,
-      "file": "articles/lou0020zucchero.mp3",
+      "file": "articles/lo_zucchero.mp3",
       "gain": 3.4,
       "gate": -74.9,
       "lead": 206,
@@ -861,13 +861,14 @@
     "DiplomaticBadger": "CC0",
     "DivoLetto": "CC BY 4.0",
     "Fibonacci": "CC BY-SA 2.0",
-    "Francyskus": "CC BY-SA 4.0",
     "GerardM": "CC BY-SA 3.0",
     "GiovanniPen": "CC BY-SA 4.0",
+    "Happypheasant": "CC BY-SA 4.0",
     "Icedlake": "CC BY-SA 3.0",
     "Jennum": "CC BY 4.0",
     "LangPao": "CC BY-SA 4.0",
     "Marta Carbone, Association Shtooka": "CC BY 3.0 us",
+    "Punsisil": "CC BY-SA 4.0",
     "SabineWanner": "CC BY-SA 3.0",
     "UofG Language Modules": "CC BY-SA 4.0",
     "XANA000": "CC0",
@@ -973,15 +974,15 @@
       "source": "It-luglio.ogg"
     },
     "lunedì": {
-      "author": "Marta Carbone, Association Shtooka",
+      "author": "Ciampix",
       "file": "calendar/lunedu00ec.mp3",
-      "gain": -2.1,
-      "gate": -74.3,
-      "lead": 224,
+      "gain": 3.1,
+      "gate": -77.2,
+      "lead": 190,
       "matches": "lunedì",
-      "mos": 2.71,
-      "sha256": "c62776bf32311ac79d19b68def0a76eaeb809368bb895d0ebd592591ef5b4fa4",
-      "source": "It-lunedì.ogg"
+      "mos": 3.05,
+      "sha256": "b48c1655a26cab67dbd341b277fe947a229f59973d329b6daea716b58d6c3890",
+      "source": "LL-Q652 (ita)-Ciampix-lunedì.wav"
     },
     "maggio": {
       "author": "GerardM",
@@ -1016,15 +1017,14 @@
       "source": "It-marzo.ogg"
     },
     "mercoledì": {
-      "author": "Marta Carbone, Association Shtooka",
+      "author": "LangPao",
       "file": "calendar/mercoledu00ec.mp3",
-      "gain": -2.3,
-      "gate": -75.7,
-      "lead": 224,
+      "gain": 2.0,
+      "lead": 215,
       "matches": "mercoledì",
-      "mos": 2.7,
-      "sha256": "c1b1d37b951a594ba3d3895720e5fd2abfd8c09d015eda67eccb1b2924061d76",
-      "source": "It-mercoledì.ogg"
+      "mos": 3.0,
+      "sha256": "d8a328817bd2709c863b89d07d2740eb832cba3b993bef49fa196e438b521fe9",
+      "source": "LL-Q652 (ita)-LangPao-mercoledì.wav"
     },
     "novembre": {
       "author": "GerardM",
@@ -1092,58 +1092,6 @@
       "sha256": "a2106491548b2c1a8de6db3a13642d1b92029c92cc64764cfaaf9a30e3fc654c",
       "source": "It-Algeria.ogg"
     },
-    "Angola": {
-      "author": "Accurimbono",
-      "file": "countries/angola.mp3",
-      "gain": 7.7,
-      "gate": -71.1,
-      "matches": "Angola",
-      "mos": 1.28,
-      "sha256": "96a68922c904c0b731aca1968cf3d4f317e231d39771d3ddf79952c50c803636",
-      "source": "It-Angola.ogg"
-    },
-    "Arabia Saudita": {
-      "author": "Francyskus",
-      "file": "countries/arabiau0020saudita.mp3",
-      "gain": 3.8,
-      "gate": -49.3,
-      "matches": "Arabia Saudita",
-      "mos": 2.38,
-      "sha256": "8af0c4db3503db1f1b5c66b2f5b6e7d5830ff96e920b7a403241d2fc41347d6d",
-      "source": "LL-Q652 (ita)-Francyskus-Arabia Saudita.wav"
-    },
-    "Argentina": {
-      "author": "Francyskus",
-      "file": "countries/argentina.mp3",
-      "gain": 7.8,
-      "gate": -60.8,
-      "lead": 200,
-      "matches": "Argentina",
-      "mos": 2.64,
-      "sha256": "82aea6082fd8d90ba36802038e0c20eaf97a762a75946023fc651ce2fadfbc2d",
-      "source": "LL-Q652 (ita)-Francyskus-Argentina.wav"
-    },
-    "Australia": {
-      "author": "Francyskus",
-      "file": "countries/australia.mp3",
-      "gain": 9.0,
-      "gate": -58.2,
-      "lead": 46,
-      "matches": "Australia",
-      "mos": 2.31,
-      "sha256": "d243726da3edecfe107a3fd70b240242f7af29b95bad0405a8688da4a9864b53",
-      "source": "LL-Q652 (ita)-Francyskus-Australia.wav"
-    },
-    "Austria": {
-      "author": "Francyskus",
-      "file": "countries/austria.mp3",
-      "gain": 8.2,
-      "gate": -57.6,
-      "matches": "Austria",
-      "mos": 2.06,
-      "sha256": "71f39334e0394eebb7202a343751fde0b90cf48afa3d92a8cc19cc185cc6e8f3",
-      "source": "LL-Q652 (ita)-Francyskus-Austria.wav"
-    },
     "Belgio": {
       "author": "Ciampix",
       "file": "countries/belgio.mp3",
@@ -1200,14 +1148,15 @@
       "source": "LL-Q652 (ita)-Ciampix-Cile.wav"
     },
     "Cina": {
-      "author": "Francyskus",
+      "author": "LangPao",
       "file": "countries/cina.mp3",
-      "gain": 11.7,
-      "gate": -49.9,
+      "gain": 3.9,
+      "gate": -97.6,
+      "lead": 208,
       "matches": "Cina",
-      "mos": 1.8,
-      "sha256": "4396983b7ce28636fda42e39105f92913bfb30eece79109ee6a031f0f2feaf8a",
-      "source": "LL-Q652 (ita)-Francyskus-Cina.wav"
+      "mos": 2.88,
+      "sha256": "3a94052b41d1d2bfa820737638e7098ee5a701d107075be9ec0908c9b62064a4",
+      "source": "LL-Q652 (ita)-LangPao-Cina.wav"
     },
     "Colombia": {
       "author": "Ciampix",
@@ -1220,104 +1169,38 @@
       "sha256": "0b5a3f64e9f95ff6953e8fa56b7f09690f7a41d510145ec655f71295e424eaf7",
       "source": "LL-Q652 (ita)-Ciampix-Colombia.wav"
     },
-    "Corea del Sud": {
-      "author": "Francyskus",
-      "file": "countries/coreau0020delu0020sud.mp3",
-      "gain": 4.2,
-      "gate": -55.6,
-      "matches": "Corea del Sud",
-      "mos": 2.03,
-      "sha256": "7539a08d4f1f9e3bc56974a944cea42383edb4fb9d7f7fc50162043d47c4e71e",
-      "source": "LL-Q652 (ita)-Francyskus-Corea del Sud.wav"
-    },
-    "Costa Rica": {
-      "author": "Francyskus",
-      "file": "countries/costau0020rica.mp3",
-      "gain": 10.8,
-      "gate": -59.8,
-      "lead": 161,
-      "matches": "Costa Rica",
-      "mos": 2.51,
-      "sha256": "c536b75e500a03742380ea2b55062d9773900f2b7a7eff7937f119b6ea9e88ff",
-      "source": "LL-Q652 (ita)-Francyskus-Costa Rica.wav"
-    },
     "Croazia": {
-      "author": "Ciampix",
+      "author": "XANA000",
       "file": "countries/croazia.mp3",
-      "gain": 6.4,
-      "gate": -78.5,
-      "lead": 194,
+      "gain": -4.9,
+      "gate": -69.9,
+      "lead": 249,
       "matches": "Croazia",
-      "mos": 2.42,
-      "sha256": "10e3f6c0f894395548d3cd2fea68f87d9aa1232babf13b75ae2a6a6a3feda864",
-      "source": "LL-Q652 (ita)-Ciampix-Croazia.wav"
+      "mos": 2.9,
+      "sha256": "96f378069492fe05ae5750b1319fd2f4076f98604726cebddf4aeee494a50f19",
+      "source": "LL-Q652 (ita)-XANA000-Croazia.wav"
     },
     "Cuba": {
-      "author": "Ciampix",
-      "cap": 1.8,
+      "author": "XANA000",
       "file": "countries/cuba.mp3",
-      "gain": 8.4,
-      "gate": -75.5,
-      "lead": 136,
+      "gain": 1.5,
+      "gate": -82.3,
+      "lead": 133,
       "matches": "Cuba",
-      "mos": 2.1,
-      "sha256": "22d8eeb4aa64cf30a9de7d508c660c91624b051350f5a0e80720df58ad8910f7",
-      "source": "LL-Q652 (ita)-Ciampix-Cuba.wav"
-    },
-    "Danimarca": {
-      "author": "Francyskus",
-      "file": "countries/danimarca.mp3",
-      "gain": 9.7,
-      "gate": -57.7,
-      "lead": 87,
-      "matches": "Danimarca",
-      "mos": 2.61,
-      "sha256": "871fcf9e6bf47d0c778441c1e9ae00fefc16e059c5b9f97658556e893ac0d303",
-      "source": "LL-Q652 (ita)-Francyskus-Danimarca.wav"
-    },
-    "Ecuador": {
-      "author": "Francyskus",
-      "file": "countries/ecuador.mp3",
-      "gain": 4.5,
-      "gate": -59.7,
-      "lead": 199,
-      "matches": "Ecuador",
-      "mos": 2.12,
-      "sha256": "365dae95ec6777b3f9dd3b7df2ea2537dd401a19bc836879b7d03ee4d1aebc73",
-      "source": "LL-Q652 (ita)-Francyskus-Ecuador.wav"
-    },
-    "Egitto": {
-      "author": "Francyskus",
-      "file": "countries/egitto.mp3",
-      "gain": 9.7,
-      "gate": -59.0,
-      "lead": 153,
-      "matches": "Egitto",
-      "mos": 2.03,
-      "sha256": "7b4e74e6cd209069a3ef528a9f6a342b24d187f21067c1c437008c22f6aa0b58",
-      "source": "LL-Q652 (ita)-Francyskus-Egitto.wav"
-    },
-    "Etiopia": {
-      "author": "Francyskus",
-      "file": "countries/etiopia.mp3",
-      "gain": 8.4,
-      "gate": -61.1,
-      "lead": 188,
-      "matches": "Etiopia",
-      "mos": 2.51,
-      "sha256": "4946039025d6fe05f6a32da811c1470576377c8d335e8364083297cca002d96a",
-      "source": "LL-Q652 (ita)-Francyskus-Etiopia.wav"
+      "mos": 2.79,
+      "sha256": "b80a42acaf9ec965494b073e57316cc91bedc484aa01e7b5c8c213384df2a79c",
+      "source": "LL-Q652 (ita)-XANA000-Cuba.wav"
     },
     "Finlandia": {
-      "author": "Ciampix",
+      "author": "XANA000",
       "file": "countries/finlandia.mp3",
-      "gain": 8.5,
-      "gate": -75.7,
-      "lead": 163,
+      "gain": -1.4,
+      "gate": -76.0,
+      "lead": 156,
       "matches": "Finlandia",
-      "mos": 2.55,
-      "sha256": "99e8ce79c80131a6e6570634047a9fdd7305c658d7a3e39dad67d66566184ccb",
-      "source": "LL-Q652 (ita)-Ciampix-Finlandia.wav"
+      "mos": 3.02,
+      "sha256": "5bc7ff9dcbf941dcbcae124fa3796cb4326a7436b40df52b0b3284ef84b08566",
+      "source": "LL-Q652 (ita)-XANA000-Finlandia.wav"
     },
     "Francia": {
       "author": "Ciampix",
@@ -1341,26 +1224,6 @@
       "sha256": "b995090e37bbfd011195d708db3978e843b72fbb614ccad96d96ec5b4705897d",
       "source": "LL-Q652 (ita)-Ciampix-Germania.wav"
     },
-    "Ghana": {
-      "author": "Francyskus",
-      "file": "countries/ghana.mp3",
-      "gain": 5.2,
-      "gate": -51.8,
-      "matches": "Ghana",
-      "mos": 1.58,
-      "sha256": "78ea2ef3ac59c8a97222b8d2329bbacaeb6157060ec5074a829c2b4f50dbb415",
-      "source": "LL-Q652 (ita)-Francyskus-Ghana.wav"
-    },
-    "Giappone": {
-      "author": "Francyskus",
-      "file": "countries/giappone.mp3",
-      "gain": 8.5,
-      "gate": -56.5,
-      "matches": "Giappone",
-      "mos": 1.9,
-      "sha256": "a34f99dd846a8c86b2f80d058cdf7b63a5dbe9d2f27ed34f9e2597db6330f308",
-      "source": "LL-Q652 (ita)-Francyskus-Giappone.wav"
-    },
     "Grecia": {
       "author": "Ciampix",
       "file": "countries/grecia.mp3",
@@ -1372,76 +1235,16 @@
       "sha256": "22bccb606d8cebc3819f8a89cf9bbe58b2f665e44e0438a2a3bade5b9d293b0b",
       "source": "LL-Q652 (ita)-Ciampix-Grecia.wav"
     },
-    "India": {
-      "author": "Francyskus",
-      "file": "countries/india.mp3",
-      "gain": 11.8,
-      "gate": -52.4,
-      "matches": "India",
-      "mos": 1.64,
-      "sha256": "7ffc4036d434355598fc2f48a6a6e17ed1c2e6239edc9330b2502487579ae275",
-      "source": "LL-Q652 (ita)-Francyskus-India.wav"
-    },
-    "Indonesia": {
-      "author": "Francyskus",
-      "file": "countries/indonesia.mp3",
-      "gain": 9.3,
-      "gate": -55.6,
-      "matches": "Indonesia",
-      "mos": 2.18,
-      "sha256": "6ee1c01c95de11bbf9fd5865b9609a86e5dcaa6fc877ac2632e2f592454c5ace",
-      "source": "LL-Q652 (ita)-Francyskus-Indonesia.wav"
-    },
-    "Iran": {
-      "author": "Francyskus",
-      "file": "countries/iran.mp3",
-      "gain": 8.1,
-      "gate": -56.1,
-      "matches": "Iran",
-      "mos": 1.44,
-      "sha256": "f27455fe60c44f34e614d28492360f07af7ccfcdc653eb94904e4bad5e172042",
-      "source": "LL-Q652 (ita)-Francyskus-Iran.wav"
-    },
-    "Irlanda": {
-      "author": "Francyskus",
-      "file": "countries/irlanda.mp3",
-      "gain": 5.7,
-      "gate": -53.7,
-      "matches": "Irlanda",
-      "mos": 2.45,
-      "sha256": "e345e8a030afba8cda63839a5ebe6a8f76a0d2c5619cbeb86ca2fa65221a6604",
-      "source": "LL-Q652 (ita)-Francyskus-Irlanda.wav"
-    },
-    "Israele": {
-      "author": "Francyskus",
-      "file": "countries/israele.mp3",
-      "gain": 5.5,
-      "gate": -58.7,
-      "matches": "Israele",
-      "mos": 2.69,
-      "sha256": "590018fa1149b318cd93f0e2d95a5579f8f724514c4d30eb892ba653ae37ef73",
-      "source": "LL-Q652 (ita)-Francyskus-Israele.wav"
-    },
     "Italia": {
-      "author": "XANA000",
+      "author": "Ciampix",
       "file": "countries/italia.mp3",
-      "gain": -4.1,
-      "gate": -69.6,
-      "lead": 214,
+      "gain": 6.0,
+      "gate": -77.2,
+      "lead": 181,
       "matches": "Italia",
-      "mos": 2.64,
-      "sha256": "144bc1bf33cf3a498886463419176efff5a1c61a84266db2c90f237799240d39",
-      "source": "LL-Q652 (ita)-XANA000-Italia.wav"
-    },
-    "Kenya": {
-      "author": "Francyskus",
-      "file": "countries/kenya.mp3",
-      "gain": 3.3,
-      "gate": -54.0,
-      "matches": "Kenya",
-      "mos": 1.57,
-      "sha256": "3622aec7297b635c6a34ad6c20ddea5055079938cbebfb74a508d265f29982a7",
-      "source": "LL-Q652 (ita)-Francyskus-Kenya.wav"
+      "mos": 3.19,
+      "sha256": "321070103d583e428ece84b92dcd6a63b53241e52a62696e8b6ed3cdf6d98439",
+      "source": "LL-Q652 (ita)-Ciampix-Italia.wav"
     },
     "Lussemburgo": {
       "author": "Ciampix",
@@ -1454,48 +1257,6 @@
       "sha256": "cc7c3aac6cced530b420831a7ad023f7fd24462b52408ad6086c475850727fd6",
       "source": "LL-Q652 (ita)-Ciampix-Lussemburgo.wav"
     },
-    "Marocco": {
-      "author": "Francyskus",
-      "file": "countries/marocco.mp3",
-      "gain": 6.0,
-      "gate": -59.3,
-      "lead": 150,
-      "matches": "Marocco",
-      "mos": 2.75,
-      "sha256": "bdedb704b3e03f0ff4e4750f27abd2470a8e62d7b5f4080d9d5aa2318e55f222",
-      "source": "LL-Q652 (ita)-Francyskus-Marocco.wav"
-    },
-    "Messico": {
-      "author": "Francyskus",
-      "file": "countries/messico.mp3",
-      "gain": 8.9,
-      "gate": -58.2,
-      "lead": 8,
-      "matches": "Messico",
-      "mos": 2.54,
-      "sha256": "432df18bd07727376798742c46f1416d5309029ea860f3a2bb11e75ff2ed7b07",
-      "source": "LL-Q652 (ita)-Francyskus-Messico.wav"
-    },
-    "Mozambico": {
-      "author": "Francyskus",
-      "file": "countries/mozambico.mp3",
-      "gain": 7.1,
-      "gate": -54.6,
-      "matches": "Mozambico",
-      "mos": 2.5,
-      "sha256": "c73e02479c3963061a9f8ce51ff0be625853447cff612133ccc9b41f39511bae",
-      "source": "LL-Q652 (ita)-Francyskus-Mozambico.wav"
-    },
-    "Nigeria": {
-      "author": "Francyskus",
-      "file": "countries/nigeria.mp3",
-      "gain": 5.0,
-      "gate": -56.6,
-      "matches": "Nigeria",
-      "mos": 1.6,
-      "sha256": "7d830b8a80cbc28b7a85ae8d8a13593ceaf41ca6459bcbea8fd868c38f6c6800",
-      "source": "LL-Q652 (ita)-Francyskus-Nigeria.wav"
-    },
     "Norvegia": {
       "author": "Ciampix",
       "file": "countries/norvegia.mp3",
@@ -1506,16 +1267,6 @@
       "mos": 3.08,
       "sha256": "318f53ef5e45417b25703a4c15596ff9c81e1a85a6e04babe18eeaf606eab25c",
       "source": "LL-Q652 (ita)-Ciampix-Norvegia.wav"
-    },
-    "Nuova Zelanda": {
-      "author": "Francyskus",
-      "file": "countries/nuovau0020zelanda.mp3",
-      "gain": 4.2,
-      "gate": -54.0,
-      "matches": "Nuova Zelanda",
-      "mos": 2.55,
-      "sha256": "d10f7c7ccbe3a7c0e260e6e53637b8f2f14e5c95dc60c726d5555f12894c54f7",
-      "source": "LL-Q652 (ita)-Francyskus-Nuova Zelanda.wav"
     },
     "Perù": {
       "author": "Ciampix",
@@ -1550,101 +1301,16 @@
       "sha256": "dbe3294fce69f70fb050430382312d91038c2f33b0b11df09c4cb923207df317",
       "source": "LL-Q652 (ita)-Ciampix-Portogallo.wav"
     },
-    "Regno Unito": {
-      "author": "Francyskus",
-      "file": "countries/regnou0020unito.mp3",
-      "gain": 4.3,
-      "gate": -51.4,
-      "lead": 86,
-      "matches": "Regno Unito",
-      "mos": 1.36,
-      "sha256": "1c9f334ec79b5b5c4453a7ca350fa5648706a3a3c97745eaa5c4dcab53e618db",
-      "source": "LL-Q652 (ita)-Francyskus-Regno Unito.wav"
-    },
-    "Repubblica Democratica del Congo": {
-      "author": "Francyskus",
-      "file": "countries/repubblicau0020democraticau0020delu0020congo.mp3",
-      "gain": 7.0,
-      "gate": -56.8,
-      "lead": 74,
-      "matches": "Repubblica Democratica del Congo",
-      "mos": 2.62,
-      "sha256": "1f4dc28ba6ccb8b5f4973e61261a9778dd4118e685055e71e13aa1ebd80a6a5d",
-      "source": "LL-Q652 (ita)-Francyskus-Repubblica Democratica del Congo.wav"
-    },
-    "Romania": {
-      "author": "Francyskus",
-      "file": "countries/romania.mp3",
-      "gain": 5.0,
-      "gate": -59.3,
-      "matches": "Romania",
-      "mos": 2.3,
-      "sha256": "15addf71199a212d9122379d88a2dc8f72615ea3b1f7c742a481f2df6944a9d1",
-      "source": "LL-Q652 (ita)-Francyskus-Romania.wav"
-    },
-    "Ruanda": {
-      "author": "Francyskus",
-      "file": "countries/ruanda.mp3",
-      "gain": 3.6,
-      "gate": -57.6,
-      "matches": "Ruanda",
-      "mos": 2.28,
-      "sha256": "1b46b12b885fc47a4fa9828fa90d1a672f4b2992a0a7bc2a0a9d0533ddd0cb10",
-      "source": "LL-Q652 (ita)-Francyskus-Ruanda.wav"
-    },
-    "Russia": {
-      "author": "Francyskus",
-      "file": "countries/russia.mp3",
-      "gain": 6.8,
-      "gate": -54.7,
-      "lead": 48,
-      "matches": "Russia",
-      "mos": 1.22,
-      "sha256": "ce30c8b219c25ebb52a8830a90d4e69b999a9907b862a0cf708b5d152750079e",
-      "source": "LL-Q652 (ita)-Francyskus-Russia.wav"
-    },
-    "Senegal": {
-      "author": "Francyskus",
-      "file": "countries/senegal.mp3",
-      "gain": 5.3,
-      "gate": -59.9,
-      "lead": 32,
-      "matches": "Senegal",
-      "mos": 2.79,
-      "sha256": "20aea8763fac8eb8cecc64da7636f92de2ec51c46b3c6abd3ef51895324955ac",
-      "source": "LL-Q652 (ita)-Francyskus-Senegal.wav"
-    },
-    "Serbia": {
-      "author": "Francyskus",
-      "file": "countries/serbia.mp3",
-      "gain": 5.0,
-      "gate": -60.8,
-      "lead": 71,
-      "matches": "Serbia",
-      "mos": 2.27,
-      "sha256": "14ea70ee9326df987fa004a1fa388840797cbba9d48b7ce246b52175a7f62bd0",
-      "source": "LL-Q652 (ita)-Francyskus-Serbia.wav"
-    },
-    "Singapore": {
-      "author": "Francyskus",
-      "file": "countries/singapore.mp3",
-      "gain": 5.3,
-      "gate": -54.1,
-      "matches": "Singapore",
-      "mos": 2.36,
-      "sha256": "699374a2e983775e4c989fa4627809a26d8a7e8fe3996efb0fb0bd5a9b4a12c8",
-      "source": "LL-Q652 (ita)-Francyskus-Singapore.wav"
-    },
     "Slovacchia": {
-      "author": "Ciampix",
+      "author": "XANA000",
       "file": "countries/slovacchia.mp3",
-      "gain": 8.3,
-      "gate": -77.6,
-      "lead": 181,
+      "gain": -2.4,
+      "gate": -68.8,
+      "lead": 190,
       "matches": "Slovacchia",
-      "mos": 2.63,
-      "sha256": "93f48cd297d721d98a21fbf4c11092bc25f8fc55d8813a9a45a6d03ee087f3f6",
-      "source": "LL-Q652 (ita)-Ciampix-Slovacchia.wav"
+      "mos": 3.01,
+      "sha256": "4b375d7f01331ddb4c514a956f0d5a860afe1798554b67026f115f902044f14a",
+      "source": "LL-Q652 (ita)-XANA000-Slovacchia.wav"
     },
     "Spagna": {
       "author": "Ciampix",
@@ -1661,7 +1327,7 @@
     "Stati Uniti": {
       "author": "Ciampix",
       "cap": 1.9,
-      "file": "countries/statiu0020uniti.mp3",
+      "file": "countries/stati_uniti.mp3",
       "gain": 6.0,
       "gate": -75.5,
       "lead": 102,
@@ -1669,16 +1335,6 @@
       "mos": 3.12,
       "sha256": "34fe4d82a4beede1734069a67d2312a75c681160bed8176fe6e142cdacbd5e56",
       "source": "LL-Q652 (ita)-Ciampix-Stati Uniti.wav"
-    },
-    "Sudafrica": {
-      "author": "Francyskus",
-      "file": "countries/sudafrica.mp3",
-      "gain": 2.3,
-      "gate": -59.7,
-      "matches": "Sudafrica",
-      "mos": 2.65,
-      "sha256": "4eb9284685ba588b16abaacbbc81225d47cfe29ece9166618f8c6bc77757b203",
-      "source": "LL-Q652 (ita)-Francyskus-Sudafrica.wav"
     },
     "Svezia": {
       "author": "Ciampix",
@@ -1692,78 +1348,26 @@
       "source": "LL-Q652 (ita)-Ciampix-Svezia.wav"
     },
     "Svizzera": {
-      "author": "Ciampix",
+      "author": "XANA000",
       "file": "countries/svizzera.mp3",
-      "gain": 9.7,
-      "gate": -77.5,
-      "lead": 178,
+      "gain": 1.9,
+      "gate": -75.1,
+      "lead": 232,
       "matches": "Svizzera",
-      "mos": 2.39,
-      "sha256": "6017e5e182b433dc1bd3a363684dedddec34ec9366182bc4c6921fccd997888b",
-      "source": "LL-Q652 (ita)-Ciampix-Svizzera.wav"
-    },
-    "Tanzania": {
-      "author": "Francyskus",
-      "file": "countries/tanzania.mp3",
-      "gain": 5.2,
-      "gate": -52.3,
-      "matches": "Tanzania",
-      "mos": 1.53,
-      "sha256": "0ebf14371a539cb0da68d8058fba17db945e0c0020120af9c1af826c774b857c",
-      "source": "LL-Q652 (ita)-Francyskus-Tanzania.wav"
-    },
-    "Thailandia": {
-      "author": "Francyskus",
-      "file": "countries/thailandia.mp3",
-      "gain": 4.4,
-      "gate": -55.6,
-      "lead": 22,
-      "matches": "Thailandia",
-      "mos": 2.57,
-      "sha256": "d30f3307a972f7b2f36a911bc24bf5f6aed4b17a993fab77a64b7bc3fec86c1c",
-      "source": "LL-Q652 (ita)-Francyskus-Thailandia.wav"
-    },
-    "Tunisia": {
-      "author": "Francyskus",
-      "file": "countries/tunisia.mp3",
-      "gain": 7.8,
-      "gate": -49.8,
-      "matches": "Tunisia",
-      "mos": 1.73,
-      "sha256": "a1559feabb5016bb1f76228c8154cfbb6e209312fe2aba5dddd00c16ad3427b3",
-      "source": "LL-Q652 (ita)-Francyskus-Tunisia.wav"
+      "mos": 3.22,
+      "sha256": "d1ce20cb04111f6b01053da972afdfaa351302a7014cc97fcf145cc19e9956e4",
+      "source": "LL-Q652 (ita)-XANA000-Svizzera.wav"
     },
     "Turchia": {
-      "author": "Francyskus",
-      "cap": 2.7,
+      "author": "LangPao",
       "file": "countries/turchia.mp3",
-      "gain": 7.7,
-      "gate": -55.3,
-      "lead": 145,
+      "gain": 5.9,
+      "gate": -73.3,
+      "lead": 187,
       "matches": "Turchia",
-      "mos": 1.88,
-      "sha256": "eee7aa5919b81e9bf1d1fb1b1ca04f295af424e487eafbbe95580ba2836421f7",
-      "source": "LL-Q652 (ita)-Francyskus-Turchia.wav"
-    },
-    "Ucraina": {
-      "author": "Francyskus",
-      "file": "countries/ucraina.mp3",
-      "gain": 4.2,
-      "gate": -50.5,
-      "matches": "Ucraina",
-      "mos": 2.63,
-      "sha256": "5a89dda5f0d45f10cbd319b5d7be58001ae497708fc388bfe4d9a6d0e193503a",
-      "source": "LL-Q652 (ita)-Francyskus-Ucraina.wav"
-    },
-    "Uganda": {
-      "author": "Francyskus",
-      "file": "countries/uganda.mp3",
-      "gain": 0.9,
-      "gate": -54.3,
-      "matches": "Uganda",
-      "mos": 1.21,
-      "sha256": "85d933fd317da561f3eaddbed490fa78d5d0482a8e1d7c733148ab1de08406d2",
-      "source": "LL-Q652 (ita)-Francyskus-Uganda.wav"
+      "mos": 3.21,
+      "sha256": "ad0589b9924bf4877c45db5ff6539b4b91578eb1f29516e94518649497e1f6fa",
+      "source": "LL-Q652 (ita)-LangPao-Turchia.wav"
     },
     "Ungheria": {
       "author": "Ciampix",
@@ -1776,17 +1380,6 @@
       "sha256": "1c0122c3e05432dca2c233d98dcb8ed3f3c00bfd2ea5a21f52cf1326b7c4aac2",
       "source": "LL-Q652 (ita)-Ciampix-Ungheria.wav"
     },
-    "Uruguay": {
-      "author": "Francyskus",
-      "file": "countries/uruguay.mp3",
-      "gain": 5.1,
-      "gate": -54.1,
-      "lead": 60,
-      "matches": "Uruguay",
-      "mos": 2.42,
-      "sha256": "8e58933d0f96a79f4c2395948e9c6fe6bfc92425d33f3814c969854af494bd79",
-      "source": "LL-Q652 (ita)-Francyskus-Uruguay.wav"
-    },
     "Venezuela": {
       "author": "Ciampix",
       "file": "countries/venezuela.mp3",
@@ -1797,17 +1390,6 @@
       "mos": 3.17,
       "sha256": "67a47a2016a5d961c70e53b502c52c7453032fc49847452bd9bf13ef45802668",
       "source": "LL-Q652 (ita)-Ciampix-Venezuela.wav"
-    },
-    "Vietnam": {
-      "author": "Francyskus",
-      "cap": 2.3,
-      "file": "countries/vietnam.mp3",
-      "gain": 10.6,
-      "gate": -59.0,
-      "matches": "Vietnam",
-      "mos": 1.76,
-      "sha256": "01e95fa46f63490eabf6ad347ee84d77bf62c7b8a155da71e8c5c703ad9001df",
-      "source": "LL-Q652 (ita)-Francyskus-Vietnam.wav"
     },
     "italiani": {
       "author": "Ciampix",
@@ -1976,7 +1558,7 @@
   "words": {
     "a causa di": {
       "author": "XANA000",
-      "file": "words/au0020causau0020di.mp3",
+      "file": "words/a_causa_di.mp3",
       "gain": -0.5,
       "lead": 193,
       "matches": "a causa di",
@@ -1986,7 +1568,7 @@
     },
     "a destra": {
       "author": "LangPao",
-      "file": "words/au0020destra.mp3",
+      "file": "words/a_destra.mp3",
       "gain": -0.4,
       "gate": -89.8,
       "lead": 209,
@@ -1997,7 +1579,7 @@
     },
     "a presto": {
       "author": "Marta Carbone, Association Shtooka",
-      "file": "words/au0020presto.mp3",
+      "file": "words/a_presto.mp3",
       "gain": -5.5,
       "gate": -72.6,
       "lead": 252,
@@ -2008,7 +1590,7 @@
     },
     "a sinistra": {
       "author": "XANA000",
-      "file": "words/au0020sinistra.mp3",
+      "file": "words/a_sinistra.mp3",
       "gain": 9.5,
       "matches": "a sinistra",
       "mos": 2.65,
@@ -2016,14 +1598,15 @@
       "source": "LL-Q652 (ita)-XANA000-a sinistra.wav"
     },
     "a volte": {
-      "author": "XANA000",
-      "file": "words/au0020volte.mp3",
-      "gain": 0.7,
-      "lead": 201,
+      "author": "LangPao",
+      "cap": 0.8,
+      "file": "words/a_volte.mp3",
+      "gain": 3.5,
+      "lead": 8,
       "matches": "a volte",
-      "mos": 2.67,
-      "sha256": "e6f7f870ca6b6231b8cc1048efe625ca0b9541b09b010364b91ca870f31440ab",
-      "source": "LL-Q652 (ita)-XANA000-a volte.wav"
+      "mos": 3.0,
+      "sha256": "8514b147c91986f1821a7f0c31013d19525fbe17046f70fb06fa52ef52d8b2d6",
+      "source": "LL-Q652 (ita)-LangPao-a volte.wav"
     },
     "abbastanza": {
       "author": "XANA000",
@@ -2037,19 +1620,18 @@
       "source": "LL-Q652 (ita)-XANA000-abbastanza.wav"
     },
     "abitare": {
-      "author": "XANA000",
+      "author": "Marta Carbone, Association Shtooka",
       "file": "words/abitare.mp3",
-      "gain": -5.4,
-      "gate": -84.7,
-      "lead": 190,
+      "gain": -2.5,
+      "gate": -69.7,
       "matches": "abitare",
-      "mos": 2.55,
-      "sha256": "43463016e4ef5fced2f9dec592773eab465085ba7650e9c31de4189cb38af8da",
-      "source": "LL-Q652 (ita)-XANA000-abitare.wav"
+      "mos": 3.16,
+      "sha256": "be5abe9c8798b439312581c479712e42f53a48ddd5de3c97422fc3f896a5f82b",
+      "source": "It-abitare.ogg"
     },
     "accanto a": {
       "author": "XANA000",
-      "file": "words/accantou0020a.mp3",
+      "file": "words/accanto_a.mp3",
       "gain": -3.9,
       "gate": -77.1,
       "lead": 200,
@@ -2059,15 +1641,15 @@
       "source": "LL-Q652 (ita)-XANA000-accanto a.wav"
     },
     "acqua": {
-      "author": "XANA000",
+      "author": "Ciampix",
       "file": "words/acqua.mp3",
-      "gain": -1.0,
-      "gate": -68.8,
-      "lead": 188,
+      "gain": 7.3,
+      "gate": -79.5,
+      "lead": 187,
       "matches": "acqua",
-      "mos": 2.43,
-      "sha256": "5e4b616b224faa62621a892fb0006c83ac72cefdb4780920168ec3564c7ffa5a",
-      "source": "LL-Q652 (ita)-XANA000-acqua.wav"
+      "mos": 2.76,
+      "sha256": "1880f93d98ab5efacc3b78a450dac53e6492bf038f9209b18995fa9b6f922791",
+      "source": "LL-Q652 (ita)-Ciampix-acqua.wav"
     },
     "adesso": {
       "author": "XANA000",
@@ -2164,37 +1746,36 @@
       "source": "LL-Q652 (ita)-XANA000-aiutare.wav"
     },
     "aiuto": {
-      "author": "XANA000",
+      "author": "LangPao",
+      "cap": 1.5,
       "file": "words/aiuto.mp3",
-      "gain": 3.8,
-      "gate": -94.9,
-      "lead": 77,
+      "gain": 7.6,
+      "lead": 226,
       "matches": "aiuto",
-      "mos": 2.41,
-      "sha256": "1b1b26b04ae9201d583588b6d3597a8337084db8157e30f914bc9d9824739382",
-      "source": "LL-Q652 (ita)-XANA000-aiuto.wav"
+      "mos": 2.85,
+      "sha256": "a858486d48bb494032319d6fa1d0631823607de0b15525c84456820ad5f4203c",
+      "source": "LL-Q652 (ita)-LangPao-aiuto.wav"
     },
     "albergo": {
-      "author": "XANA000",
+      "author": "Ciampix",
       "file": "words/albergo.mp3",
-      "gain": -4.4,
-      "gate": -92.0,
-      "lead": 276,
+      "gain": 4.0,
+      "gate": -77.7,
+      "lead": 193,
       "matches": "albergo",
-      "mos": 2.56,
-      "sha256": "170680cfab92d1aaf69bc87231b387d9792caf27ad63e53209a0715d5c2021ec",
-      "source": "LL-Q652 (ita)-XANA000-albergo.wav"
+      "mos": 3.05,
+      "sha256": "9bd679470c07b46390dc9e2a060c0c4158eaaac99923b9db702ce6a9fd1b3fb4",
+      "source": "LL-Q652 (ita)-Ciampix-albergo.wav"
     },
     "albero": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/albero.mp3",
-      "gain": -5.5,
-      "gate": -69.7,
-      "lead": 201,
+      "gain": 0.7,
+      "lead": 186,
       "matches": "albero",
-      "mos": 2.99,
-      "sha256": "32c2a3d5e2adb57bbd77b8c30160a534ac50d8f10843fb322e9cac5a0455e5e1",
-      "source": "LL-Q652 (ita)-XANA000-albero.wav"
+      "mos": 2.87,
+      "sha256": "f3bc6b6d7b4de6a171f927a269261f354239ac5347d5b172d9761233b46c8d94",
+      "source": "LL-Q652 (ita)-LangPao-albero.wav"
     },
     "alcuni": {
       "author": "XANA000",
@@ -2313,14 +1894,14 @@
       "source": "LL-Q652 (ita)-LangPao-amore.wav"
     },
     "anche": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/anche.mp3",
-      "gain": 0.5,
-      "lead": 249,
+      "gain": 4.0,
+      "lead": 204,
       "matches": "anche",
-      "mos": 2.67,
-      "sha256": "9e9a33b6ba222afab671a37e77988a21ef5153cdd898794d5013a9d6aaba2874",
-      "source": "LL-Q652 (ita)-XANA000-anche.wav"
+      "mos": 3.1,
+      "sha256": "d88aa5fcf641feac74a254403ef915ed12b9e3e7b8222ed91a20843351f1ea98",
+      "source": "LL-Q652 (ita)-LangPao-anche.wav"
     },
     "ancora": {
       "author": "XANA000",
@@ -2449,14 +2030,14 @@
       "source": "LL-Q652 (ita)-LangPao-armadio.wav"
     },
     "arrivare": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/arrivare.mp3",
-      "gain": -4.0,
-      "lead": 200,
+      "gain": 4.4,
+      "lead": 261,
       "matches": "arrivare",
-      "mos": 2.54,
-      "sha256": "b7c7b923c4b06bd36d77ead7d999f7996c7a3a91998aa92923ed05b3d4ae70e2",
-      "source": "LL-Q652 (ita)-XANA000-arrivare.wav"
+      "mos": 2.87,
+      "sha256": "db08dc1a88a7a946db9de1215665338786993e5931dfb536b95fd388c82c0844",
+      "source": "LL-Q652 (ita)-LangPao-arrivare.wav"
     },
     "arrivederci": {
       "author": "XANA000",
@@ -2734,14 +2315,14 @@
       "source": "LL-Q652 (ita)-XANA000-benvenuto.wav"
     },
     "bere": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/bere.mp3",
-      "gain": 0.8,
-      "lead": 164,
+      "gain": 4.4,
+      "lead": 198,
       "matches": "bere",
-      "mos": 2.42,
-      "sha256": "d90cb33ae13e7e39988f6eea2d45c7fd1d061b9d2358d5905608d76f4b23ca36",
-      "source": "LL-Q652 (ita)-XANA000-bere.wav"
+      "mos": 3.04,
+      "sha256": "732cfdd5bc153650e748e3056492f97e5257a4fe625acddcb5de9adfae2f713a",
+      "source": "LL-Q652 (ita)-LangPao-bere.wav"
     },
     "berretto": {
       "author": "DivoLetto",
@@ -2879,19 +2460,19 @@
       "source": "LL-Q652 (ita)-LangPao-bosco.wav"
     },
     "braccio": {
-      "author": "LangPao",
-      "cap": 1.5,
+      "author": "Happypheasant",
       "file": "words/braccio.mp3",
-      "gain": 3.3,
-      "lead": 246,
+      "gain": 0.6,
+      "gate": -94.6,
+      "lead": 240,
       "matches": "braccio",
-      "mos": 2.7,
-      "sha256": "0533b7d33448e129bbbbe3c6b7802fecfb0a441c2d483bd1e364f2b095b14d5b",
-      "source": "LL-Q652 (ita)-LangPao-braccio.wav"
+      "mos": 3.16,
+      "sha256": "1f5de1a92444652ea03d9868bd030c7848ee6765dcc0fdfaf3e51b7d4ff5fa7c",
+      "source": "LL-Q652 (ita)-Happypheasant-braccio.wav"
     },
     "buon viaggio": {
       "author": "XANA000",
-      "file": "words/buonu0020viaggio.mp3",
+      "file": "words/buon_viaggio.mp3",
       "gain": 3.8,
       "lead": 185,
       "matches": "buon viaggio",
@@ -2910,14 +2491,15 @@
       "source": "LL-Q652 (ita)-XANA000-buonanotte.wav"
     },
     "buonasera": {
-      "author": "XANA000",
+      "author": "Marta Carbone, Association Shtooka",
       "file": "words/buonasera.mp3",
-      "gain": 3.0,
-      "lead": 164,
+      "gain": -6.2,
+      "gate": -71.0,
+      "lead": 219,
       "matches": "buonasera",
-      "mos": 2.68,
-      "sha256": "b2cf314817f093a830d9d1b4f7b7a47e94fa0b7755cd1d5e53172d21d09eee1e",
-      "source": "LL-Q652 (ita)-XANA000-buonasera.wav"
+      "mos": 3.05,
+      "sha256": "41ea3b36172e910986b7eee492ffe3f41c89e5a89bd5bbdaa6db9a3262e71b15",
+      "source": "It-buonasera.ogg"
     },
     "buongiorno": {
       "author": "Marta Carbone, Association Shtooka",
@@ -3126,15 +2708,16 @@
       "source": "LL-Q652 (ita)-LangPao-capo.wav"
     },
     "cappotto": {
-      "author": "LangPao",
-      "cap": 3.5,
+      "author": "Happypheasant",
+      "cap": 2.4,
       "file": "words/cappotto.mp3",
-      "gain": 3.7,
-      "lead": 221,
+      "gain": 3.9,
+      "gate": -96.1,
+      "lead": 207,
       "matches": "cappotto",
-      "mos": 2.49,
-      "sha256": "594ff5fd158b569b0ace2f90f3ed4dfbecb6d6937f9955d60ebf87b175ae1066",
-      "source": "LL-Q652 (ita)-LangPao-cappotto.wav"
+      "mos": 2.94,
+      "sha256": "4d40edd2b1dc7bc5bf3bd068e4f20ddf95ad335e60c2a8532f59f4509c425040",
+      "source": "LL-Q652 (ita)-Happypheasant-cappotto.wav"
     },
     "capra": {
       "author": "LangPao",
@@ -3329,14 +2912,15 @@
       "source": "LL-Q652 (ita)-LangPao-cercare.wav"
     },
     "cerotto": {
-      "author": "LangPao",
+      "author": "Happypheasant",
       "file": "words/cerotto.mp3",
-      "gain": 3.7,
-      "lead": 249,
+      "gain": -2.2,
+      "gate": -93.1,
+      "lead": 238,
       "matches": "cerotto",
-      "mos": 2.49,
-      "sha256": "15f636e36d34d6334a8978e1e208f24628284ea1cf48bed1b1705f234fe1c5d5",
-      "source": "LL-Q652 (ita)-LangPao-cerotto.wav"
+      "mos": 3.07,
+      "sha256": "6effd68977077df6248cef884806fa0317143537657aebd6512afc00b9b0e770",
+      "source": "LL-Q652 (ita)-Happypheasant-cerotto.wav"
     },
     "certificato": {
       "author": "LangPao",
@@ -3383,7 +2967,7 @@
     },
     "che cosa": {
       "author": "LangPao",
-      "file": "words/cheu0020cosa.mp3",
+      "file": "words/che_cosa.mp3",
       "gain": 4.8,
       "lead": 206,
       "matches": "che cosa",
@@ -3412,14 +2996,14 @@
       "source": "LL-Q652 (ita)-LangPao-chiacchierare.wav"
     },
     "chiamare": {
-      "author": "LangPao",
+      "author": "Marta Carbone, Association Shtooka",
       "file": "words/chiamare.mp3",
-      "gain": 0.9,
-      "lead": 256,
+      "gain": -3.3,
+      "gate": -71.3,
       "matches": "chiamare",
-      "mos": 2.73,
-      "sha256": "98a1bce9e406508146b0019d14c7ecb9fa615d93caf4e62f112d1551335d96d5",
-      "source": "LL-Q652 (ita)-LangPao-chiamare.wav"
+      "mos": 3.06,
+      "sha256": "d5d2e9b2bed1eeaf4359cf1f4407cec32387a21882a102d7c611eaa5c0505c82",
+      "source": "It-chiamare.ogg"
     },
     "chiave": {
       "author": "LangPao",
@@ -3453,14 +3037,15 @@
       "source": "LL-Q652 (ita)-LangPao-chiesa.wav"
     },
     "chilo": {
-      "author": "LangPao",
+      "author": "Happypheasant",
       "file": "words/chilo.mp3",
-      "gain": 7.4,
-      "lead": 222,
+      "gain": 1.5,
+      "gate": -95.9,
+      "lead": 193,
       "matches": "chilo",
-      "mos": 2.66,
-      "sha256": "2ab48a19ef7ed3b095b4fabda93f7ffbbd6370a6bd5827110ca032f2e484a1a3",
-      "source": "LL-Q652 (ita)-LangPao-chilo.wav"
+      "mos": 3.07,
+      "sha256": "db73481ebd5878cb5222eddd0aee06fd7b664b1cfc8bba29e679d4b42c32bedb",
+      "source": "LL-Q652 (ita)-Happypheasant-chilo.wav"
     },
     "chiudere": {
       "author": "LangPao",
@@ -3484,14 +3069,15 @@
       "source": "LL-Q652 (ita)-LangPao-chiunque.wav"
     },
     "ciao": {
-      "author": "XANA000",
+      "author": "Punsisil",
       "file": "words/ciao.mp3",
-      "gain": 3.8,
-      "lead": 181,
+      "gain": 7.6,
+      "gate": -87.7,
+      "lead": 191,
       "matches": "ciao",
-      "mos": 2.56,
-      "sha256": "b6418c3b63b27b8e3c6ff3ae318ad41e91b2e24b912bb4acd1a101713c8a93a8",
-      "source": "LL-Q652 (ita)-XANA000-ciao.wav"
+      "mos": 3.14,
+      "sha256": "a895c6838ca3ae3c893d91c3bbb5218c5bf05290ad548acfa449156d71780d09",
+      "source": "LL-Q652 (ita)-Punsisil-ciao.wav"
     },
     "cibo": {
       "author": "XANA000",
@@ -3526,15 +3112,14 @@
       "source": "LL-Q652 (ita)-LangPao-cimitero.wav"
     },
     "cinema": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/cinema.mp3",
-      "gain": 3.0,
-      "gate": -55.2,
-      "lead": 198,
+      "gain": 6.7,
+      "lead": 199,
       "matches": "cinema",
-      "mos": 2.38,
-      "sha256": "72a453cfc9f57b27f8c9f1d4c7e3b741372ec98e65183c961e2dddabe2d97135",
-      "source": "LL-Q652 (ita)-XANA000-cinema.wav"
+      "mos": 3.07,
+      "sha256": "5d01f365144a0347a56d40894f2b5add8783f8668e3d8b9d1bef9554a7fedd12",
+      "source": "LL-Q652 (ita)-LangPao-cinema.wav"
     },
     "cintura": {
       "author": "LangPao",
@@ -3911,7 +3496,7 @@
     },
     "crema solare": {
       "author": "LangPao",
-      "file": "words/cremau0020solare.mp3",
+      "file": "words/crema_solare.mp3",
       "gain": 1.5,
       "gate": -99.2,
       "lead": 209,
@@ -3977,15 +3562,15 @@
       "source": "LL-Q652 (ita)-LangPao-cugino.wav"
     },
     "cuore": {
-      "author": "LangPao",
+      "author": "Ciampix",
       "file": "words/cuore.mp3",
-      "gain": -1.4,
-      "gate": -93.2,
-      "lead": 234,
+      "gain": 6.1,
+      "gate": -80.0,
+      "lead": 147,
       "matches": "cuore",
-      "mos": 2.52,
-      "sha256": "6533893170aef73f6a4fcbfd90bd8fc8a055cb769334bddaefb653c242fb5314",
-      "source": "LL-Q652 (ita)-LangPao-cuore.wav"
+      "mos": 2.85,
+      "sha256": "a1ec7f0e3d5e5458cfa92a3b8c29b8f1303e149e6b903b0f0188ddcedc1d2276",
+      "source": "LL-Q652 (ita)-Ciampix-cuore.wav"
     },
     "curare": {
       "author": "LangPao",
@@ -4054,7 +3639,7 @@
     },
     "data di nascita": {
       "author": "LangPao",
-      "file": "words/datau0020diu0020nascita.mp3",
+      "file": "words/data_di_nascita.mp3",
       "gain": 2.2,
       "lead": 224,
       "matches": "data di nascita",
@@ -4064,7 +3649,7 @@
     },
     "datore di lavoro": {
       "author": "LangPao",
-      "file": "words/datoreu0020diu0020lavoro.mp3",
+      "file": "words/datore_di_lavoro.mp3",
       "gain": 5.3,
       "gate": -68.6,
       "lead": 221,
@@ -4127,14 +3712,15 @@
       "source": "LL-Q652 (ita)-LangPao-dentifricio.wav"
     },
     "dentista": {
-      "author": "LangPao",
+      "author": "Happypheasant",
       "file": "words/dentista.mp3",
-      "gain": 5.1,
-      "lead": 182,
+      "gain": 2.4,
+      "gate": -91.5,
+      "lead": 275,
       "matches": "dentista",
-      "mos": 2.66,
-      "sha256": "6f8619b5bfa82adba3e89c2942c2211834af3d51df9a89a8b34fe9bdb466c2ad",
-      "source": "LL-Q652 (ita)-LangPao-dentista.wav"
+      "mos": 3.2,
+      "sha256": "1f4602ed2265c58a6e80f8fc047f1ac0c390b27a9df921c8e9ed9aa7ec743f23",
+      "source": "LL-Q652 (ita)-Happypheasant-dentista.wav"
     },
     "dentro": {
       "author": "XANA000",
@@ -4169,15 +3755,15 @@
       "source": "LL-Q652 (ita)-XANA000-di.wav"
     },
     "di nuovo": {
-      "author": "LangPao",
-      "file": "words/diu0020nuovo.mp3",
-      "gain": 2.9,
-      "gate": -97.6,
-      "lead": 203,
+      "author": "Happypheasant",
+      "file": "words/di_nuovo.mp3",
+      "gain": 2.8,
+      "gate": -97.2,
+      "lead": 265,
       "matches": "di nuovo",
-      "mos": 2.65,
-      "sha256": "300475c165a6aa95c3a74f33524a784a7a446683efa91e049a859a50418fb67d",
-      "source": "LL-Q652 (ita)-LangPao-di nuovo.wav"
+      "mos": 2.99,
+      "sha256": "9716fad5733471e23d79cbc551a6995bfdec637d28252f80ef3ae21582e008f0",
+      "source": "LL-Q652 (ita)-Happypheasant-di nuovo.wav"
     },
     "dietro": {
       "author": "XANA000",
@@ -4200,17 +3786,6 @@
       "sha256": "d72e591883a7aaaa09807ea482f660b95399cb12fc252d926691bc210a8f92dd",
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-differenza.wav"
     },
-    "difficile": {
-      "author": "XANA000",
-      "file": "words/difficile.mp3",
-      "gain": 8.4,
-      "gate": -60.0,
-      "lead": 124,
-      "matches": "difficile",
-      "mos": 2.54,
-      "sha256": "e7e591534a46d86803217c92e1722c0fc707c250c3a97e24aca12a9e2add11c7",
-      "source": "LL-Q652 (ita)-XANA000-difficile.wav"
-    },
     "dimenticare": {
       "author": "LangPao",
       "file": "words/dimenticare.mp3",
@@ -4222,15 +3797,14 @@
       "source": "LL-Q652 (ita)-LangPao-dimenticare.wav"
     },
     "dire": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/dire.mp3",
-      "gain": 2.5,
-      "gate": -68.8,
-      "lead": 157,
+      "gain": 2.3,
+      "lead": 226,
       "matches": "dire",
-      "mos": 2.3,
-      "sha256": "873784ff5fc17818dbf577f3f1df35557972b2fded35448b5cfe18b9e02b8b83",
-      "source": "LL-Q652 (ita)-XANA000-dire.wav"
+      "mos": 2.68,
+      "sha256": "cdb8b1371c0795eaee009648289cbc4acbf84d8b1ff7ad90f6d69cccbe91d50f",
+      "source": "LL-Q652 (ita)-LangPao-dire.wav"
     },
     "direzione": {
       "author": "LangPao",
@@ -4264,17 +3838,6 @@
       "mos": 2.99,
       "sha256": "3cf6afd69e358c9d5655e2444424310b7e2cc781942e7d6fe2aaaabff3c88049",
       "source": "LL-Q652 (ita)-LangPao-dito.wav"
-    },
-    "divano": {
-      "author": "Icedlake",
-      "cap": 5.8,
-      "file": "words/divano.mp3",
-      "gain": -2.3,
-      "gate": -55.8,
-      "matches": "divano",
-      "mos": 1.25,
-      "sha256": "279e3b734ad4bbfb1c775a44a1e85075f3e2a877c55df2ccf4fb41e73ed49511",
-      "source": "It-divano.oga"
     },
     "diverso": {
       "author": "Crunchy Cloaky Crackdown",
@@ -4413,14 +3976,14 @@
       "source": "LL-Q652 (ita)-LangPao-dovere.wav"
     },
     "dritto": {
-      "author": "XANA000",
+      "author": "Marta Carbone, Association Shtooka",
       "file": "words/dritto.mp3",
-      "gain": 1.0,
-      "lead": 189,
+      "gain": -0.3,
+      "gate": -70.3,
       "matches": "dritto",
-      "mos": 2.21,
-      "sha256": "6f7e09cb170be700fb1a850f93c785692452d692652c00861bbcba4e3986021a",
-      "source": "LL-Q652 (ita)-XANA000-dritto.wav"
+      "mos": 2.66,
+      "sha256": "cc398fd7c5bcec30bc22ad863e624dd86675a28b51f847e56609d660e13899ac",
+      "source": "It-dritto.ogg"
     },
     "dubbio": {
       "author": "LangPao",
@@ -4650,7 +4213,7 @@
     },
     "fare il bucato": {
       "author": "LangPao",
-      "file": "words/fareu0020ilu0020bucato.mp3",
+      "file": "words/fare_il_bucato.mp3",
       "gain": 1.7,
       "lead": 144,
       "matches": "fare il bucato",
@@ -4809,18 +4372,19 @@
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-film.wav"
     },
     "finalmente": {
-      "author": "LangPao",
+      "author": "Happypheasant",
       "file": "words/finalmente.mp3",
-      "gain": 3.2,
-      "lead": 183,
+      "gain": 0.2,
+      "gate": -92.4,
+      "lead": 186,
       "matches": "finalmente",
-      "mos": 2.56,
-      "sha256": "79ee193e804056994dee170533e7f9f7511db1aa34a25fe5615e84349ca7a0b2",
-      "source": "LL-Q652 (ita)-LangPao-finalmente.wav"
+      "mos": 3.22,
+      "sha256": "4ce86db1d90c58b36aef47cbc4960eb5b6d858264bb95761d4f61367190fecfb",
+      "source": "LL-Q652 (ita)-Happypheasant-finalmente.wav"
     },
     "fine settimana": {
       "author": "LangPao",
-      "file": "words/fineu0020settimana.mp3",
+      "file": "words/fine_settimana.mp3",
       "gain": 5.0,
       "lead": 196,
       "matches": "fine settimana",
@@ -4852,7 +4416,7 @@
     },
     "fino a": {
       "author": "LangPao",
-      "file": "words/finou0020a.mp3",
+      "file": "words/fino_a.mp3",
       "gain": 2.7,
       "lead": 230,
       "matches": "fino a",
@@ -5021,15 +4585,15 @@
       "source": "It-frigorifero.oga"
     },
     "frutta": {
-      "author": "XANA000",
+      "author": "Yiyi",
       "file": "words/frutta.mp3",
-      "gain": 4.3,
-      "gate": -77.5,
-      "lead": 177,
+      "gain": 1.7,
+      "gate": -85.8,
+      "lead": 172,
       "matches": "frutta",
-      "mos": 2.53,
-      "sha256": "8aa7bc7c16f120a4ad4dd73d9263c09ee27398ae8c1d61043a8d7e12af5529b1",
-      "source": "LL-Q652 (ita)-XANA000-frutta.wav"
+      "mos": 2.87,
+      "sha256": "104425a7c9a4aa76b1f653d241a4becf3e909e1de34c7ab4491c3f7459f2c6a9",
+      "source": "LL-Q652 (ita)-Yiyi-frutta.wav"
     },
     "fulmine": {
       "author": "LangPao",
@@ -5120,26 +4684,26 @@
       "source": "LL-Q652 (ita)-DivoLetto-genitori.wav"
     },
     "giacca": {
-      "author": "LangPao",
-      "cap": 0.2,
+      "author": "Happypheasant",
       "file": "words/giacca.mp3",
-      "gain": 5.7,
-      "lead": 233,
+      "gain": 2.2,
+      "gate": -96.1,
+      "lead": 222,
       "matches": "giacca",
-      "mos": 2.68,
-      "sha256": "97d1d1b421a9265937da2f63988ea4d0d3345202b76eb537d4b3c5e7b2abdfa4",
-      "source": "LL-Q652 (ita)-LangPao-giacca.wav"
+      "mos": 3.04,
+      "sha256": "002f95f6d289e83af4f10c809e0db86877aca2fbb7fab47d59829324ec7a1d72",
+      "source": "LL-Q652 (ita)-Happypheasant-giacca.wav"
     },
     "giallo": {
-      "author": "LangPao",
+      "author": "Marta Carbone, Association Shtooka",
       "file": "words/giallo.mp3",
-      "gain": -0.1,
-      "gate": -98.7,
-      "lead": 29,
+      "gain": -3.3,
+      "gate": -71.0,
+      "lead": 221,
       "matches": "giallo",
-      "mos": 2.39,
-      "sha256": "26ce6c09117ce4f0c431c9debe428ab55abb56efd34387a9bc59d45d65aa2eaa",
-      "source": "LL-Q652 (ita)-LangPao-giallo.wav"
+      "mos": 3.15,
+      "sha256": "de09631ac56726f6a03635fe7a188115ddcbc1b406a70951c3687c3e70f7ddb3",
+      "source": "It-giallo.ogg"
     },
     "ginocchio": {
       "author": "LangPao",
@@ -5279,7 +4843,7 @@
     },
     "grazie mille": {
       "author": "XANA000",
-      "file": "words/grazieu0020mille.mp3",
+      "file": "words/grazie_mille.mp3",
       "gain": 1.8,
       "lead": 186,
       "matches": "grazie mille",
@@ -5288,14 +4852,15 @@
       "source": "LL-Q652 (ita)-XANA000-grazie mille.wav"
     },
     "grigio": {
-      "author": "LangPao",
+      "author": "Marta Carbone, Association Shtooka",
       "file": "words/grigio.mp3",
-      "gain": 5.0,
-      "lead": 217,
+      "gain": -1.4,
+      "gate": -67.1,
+      "lead": 89,
       "matches": "grigio",
-      "mos": 2.42,
-      "sha256": "886fa565723872ea25c451132f9856ead1b9f908a94efaddc6c300c317bb0a2f",
-      "source": "LL-Q652 (ita)-LangPao-grigio.wav"
+      "mos": 2.85,
+      "sha256": "bc39b7c519cb0e578b2d8a88c2105fed0f74ab3a1107b8a089445d5d0f4a28a4",
+      "source": "It-grigio.ogg"
     },
     "guadagnare": {
       "author": "LangPao",
@@ -5362,7 +4927,7 @@
     },
     "imparare a memoria": {
       "author": "LangPao",
-      "file": "words/imparareu0020au0020memoria.mp3",
+      "file": "words/imparare_a_memoria.mp3",
       "gain": 0.2,
       "lead": 200,
       "matches": "imparare a memoria",
@@ -5598,16 +5163,6 @@
       "sha256": "59cdfef6643b1e7f593987fedc4cf238d838017c3998b84cf78f2a0f0cc760a6",
       "source": "LL-Q652 (ita)-LangPao-lasciare.wav"
     },
-    "latte": {
-      "author": "Accurimbono",
-      "file": "words/latte.mp3",
-      "gain": 3.9,
-      "gate": -70.5,
-      "matches": "latte",
-      "mos": 1.1,
-      "sha256": "7707a594068b863bb2e3296880fd5f536996d7d9ec5dbc74962427cd4ddafbcb",
-      "source": "It-latte.ogg"
-    },
     "lavagna": {
       "author": "DivoLetto",
       "file": "words/lavagna.mp3",
@@ -5681,24 +5236,26 @@
       "source": "LL-Q652 (ita)-XANA000-lavoro.wav"
     },
     "legge": {
-      "author": "LangPao",
+      "author": "Happypheasant",
       "file": "words/legge.mp3",
-      "gain": 6.1,
-      "lead": 272,
+      "gain": 0.2,
+      "gate": -93.6,
+      "lead": 229,
       "matches": "legge",
-      "mos": 2.7,
-      "sha256": "cc49349646a833e31abab64b2356aa5ccc58e8f6a944796785d21aad06b2ab62",
-      "source": "LL-Q652 (ita)-LangPao-legge.wav"
+      "mos": 3.07,
+      "sha256": "dc2aaf7bd8eb30528e459eed7dbfbbba95ebe078458715c0f3e6a550c92be7a8",
+      "source": "LL-Q652 (ita)-Happypheasant-legge.wav"
     },
     "leggere": {
-      "author": "LangPao",
+      "author": "Ciampix",
       "file": "words/leggere.mp3",
-      "gain": 1.3,
-      "lead": 211,
+      "gain": 3.4,
+      "gate": -80.9,
+      "lead": 194,
       "matches": "leggere",
-      "mos": 2.56,
-      "sha256": "9e24602a55186de9acbdffde4aee6c0028549b5c94598d799295643c7c7c573f",
-      "source": "LL-Q652 (ita)-LangPao-leggere.wav"
+      "mos": 3.05,
+      "sha256": "f3fcc25cc0b989ff32c241ea5a7a4e6f04bfe7f7e9a8b6548642667fe173e1d3",
+      "source": "LL-Q652 (ita)-Ciampix-leggere.wav"
     },
     "leggero": {
       "author": "Crunchy Cloaky Crackdown",
@@ -6030,15 +5587,15 @@
       "source": "LL-Q652 (ita)-LangPao-mangiare.wav"
     },
     "mano": {
-      "author": "LangPao",
-      "cap": 0.2,
+      "author": "Ciampix",
       "file": "words/mano.mp3",
-      "gain": 8.6,
-      "lead": 243,
+      "gain": 5.0,
+      "gate": -79.3,
+      "lead": 189,
       "matches": "mano",
-      "mos": 2.6,
-      "sha256": "799854d9df6ea2cb57e4fca2d7a9d1795fcdcf4887db7c51cfaa5f2eae38f00a",
-      "source": "LL-Q652 (ita)-LangPao-mano.wav"
+      "mos": 3.16,
+      "sha256": "fd3eb45670ab225124235bfe23599e2f63646620a0b70175c232937ab5d42cd4",
+      "source": "LL-Q652 (ita)-Ciampix-mano.wav"
     },
     "mare": {
       "author": "XANA000",
@@ -6126,14 +5683,15 @@
       "source": "LL-Q652 (ita)-DivoLetto-maturo.wav"
     },
     "medicina": {
-      "author": "LangPao",
+      "author": "Happypheasant",
       "file": "words/medicina.mp3",
-      "gain": 12.2,
-      "lead": 204,
+      "gain": 6.4,
+      "gate": -97.1,
+      "lead": 218,
       "matches": "medicina",
-      "mos": 2.77,
-      "sha256": "b5c5ec11a4e23548a1b4b7d81fded225fc98afa9b6fae640233bec79ca3dff1f",
-      "source": "LL-Q652 (ita)-LangPao-medicina.wav"
+      "mos": 3.16,
+      "sha256": "01b7c7938985f4cc1b22569a329d93677663130679d2818e13a6607748dee98a",
+      "source": "LL-Q652 (ita)-Happypheasant-medicina.wav"
     },
     "medico": {
       "author": "XANA000",
@@ -6166,14 +5724,14 @@
       "source": "LL-Q652 (ita)-LangPao-meno.wav"
     },
     "mercato": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/mercato.mp3",
-      "gain": -3.0,
-      "gate": -86.6,
+      "gain": 6.1,
+      "lead": 264,
       "matches": "mercato",
-      "mos": 2.79,
-      "sha256": "4c110d9cf4c4a08196ee6aab303fe6c30234e84183cf5278e16f3f8acaee7137",
-      "source": "LL-Q652 (ita)-XANA000-mercato.wav"
+      "mos": 3.18,
+      "sha256": "56382e7d7c01402004169b2a238381db877d8d9f7254cc23b862724c3896b4d2",
+      "source": "LL-Q652 (ita)-LangPao-mercato.wav"
     },
     "mescolare": {
       "author": "LangPao",
@@ -6356,15 +5914,14 @@
       "source": "LL-Q652 (ita)-LangPao-moneta.wav"
     },
     "montagna": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/montagna.mp3",
-      "gain": -3.5,
-      "gate": -75.5,
-      "lead": 233,
+      "gain": 3.5,
+      "lead": 194,
       "matches": "montagna",
-      "mos": 2.55,
-      "sha256": "643301d99e8b91d225de80f3f103a2d5f7b7b6b043c1dfd402d5bd3162d9d069",
-      "source": "LL-Q652 (ita)-XANA000-montagna.wav"
+      "mos": 3.13,
+      "sha256": "1f0c02c5ab27a363c54ef2aefa01f6741fd9ed9fc2c8c2e3326e8deb743e6ce7",
+      "source": "LL-Q652 (ita)-LangPao-montagna.wav"
     },
     "morire": {
       "author": "LangPao",
@@ -6572,14 +6129,15 @@
       "source": "LL-Q652 (ita)-LangPao-negozio.wav"
     },
     "nero": {
-      "author": "LangPao",
+      "author": "Ciampix",
       "file": "words/nero.mp3",
-      "gain": 5.7,
-      "lead": 275,
+      "gain": 5.1,
+      "gate": -79.1,
+      "lead": 185,
       "matches": "nero",
-      "mos": 2.58,
-      "sha256": "118bf81f2c938ea493f49cac53972a2a9017908132ab8fc7cf07be7ff3ce6bde",
-      "source": "LL-Q652 (ita)-LangPao-nero.wav"
+      "mos": 3.08,
+      "sha256": "eca6c71aaf18f5321011eaf3779983e6968ea78de29b9142e0b4ea787cda8531",
+      "source": "LL-Q652 (ita)-Ciampix-nero.wav"
     },
     "nervo": {
       "author": "DivoLetto",
@@ -6636,14 +6194,14 @@
       "source": "LL-Q652 (ita)-LangPao-nipote.wav"
     },
     "no": {
-      "author": "LangPao",
+      "author": "XANA000",
       "file": "words/no.mp3",
-      "gain": 6.0,
-      "lead": 229,
+      "gain": 5.3,
+      "lead": 235,
       "matches": "no",
-      "mos": 2.17,
-      "sha256": "80cd510db31c749bdab63a76f7235eb8bfbdfdc36f3b5a16109b5a2c4858ed29",
-      "source": "LL-Q652 (ita)-LangPao-no.wav"
+      "mos": 2.59,
+      "sha256": "31f4b495b1e81fdc70ff957e1167b93b2c165c2026755c9f8b251312a7bb5fa5",
+      "source": "LL-Q652 (ita)-XANA000-NO.wav"
     },
     "noi": {
       "author": "XANA000",
@@ -6897,14 +6455,15 @@
       "source": "LL-Q652 (ita)-DivoLetto-ordinare.wav"
     },
     "orecchio": {
-      "author": "LangPao",
+      "author": "Ciampix",
       "file": "words/orecchio.mp3",
-      "gain": 3.8,
-      "lead": 201,
+      "gain": 3.4,
+      "gate": -80.5,
+      "lead": 190,
       "matches": "orecchio",
-      "mos": 2.38,
-      "sha256": "ff829a42461c9e90502455a893a78ae8a8d6c9258300c41da6ccd095b5f4479a",
-      "source": "LL-Q652 (ita)-LangPao-orecchio.wav"
+      "mos": 2.75,
+      "sha256": "8f214799f71bf473327ec007653404668fe5a360658945dda54db44eee8bd3d1",
+      "source": "LL-Q652 (ita)-Ciampix-orecchio.wav"
     },
     "ospedale": {
       "author": "LangPao",
@@ -6929,13 +6488,15 @@
       "source": "LL-Q652 (ita)-DiplomaticBadger-ospite.wav"
     },
     "osso": {
-      "author": "XANA000",
+      "author": "LangPao",
+      "cap": 1.0,
       "file": "words/osso.mp3",
-      "lead": 279,
+      "gain": 3.6,
+      "lead": 233,
       "matches": "osso",
-      "mos": 2.17,
-      "sha256": "91dc70adc7f5f299abe3bf0d68f5db90e9b65003f7622004b9b4e47154739890",
-      "source": "LL-Q652 (ita)-XANA000-osso.wav"
+      "mos": 2.93,
+      "sha256": "86c63dcd69031431fd9e0ee12914dc15a7b07c3be36e8b0c7e7d6c56d00d61ac",
+      "source": "LL-Q652 (ita)-LangPao-osso.wav"
     },
     "ovest": {
       "author": "LangPao",
@@ -7027,15 +6588,15 @@
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-pancia.wav"
     },
     "pane": {
-      "author": "XANA000",
+      "author": "Ciampix",
       "file": "words/pane.mp3",
-      "gain": -5.0,
-      "gate": -83.7,
-      "lead": 263,
+      "gain": 11.0,
+      "gate": -81.4,
+      "lead": 195,
       "matches": "pane",
-      "mos": 2.43,
-      "sha256": "09ca8e32734507b04b389938fce5a2599331efdd61889274c76ba99dce334b7f",
-      "source": "LL-Q652 (ita)-XANA000-pane.wav"
+      "mos": 2.97,
+      "sha256": "430225f45bb30a88eb4fa80099cd8f879119745e491e6b416dfb6cf7b9b7b803",
+      "source": "LL-Q652 (ita)-Ciampix-pane.wav"
     },
     "pantaloni": {
       "author": "Jennum",
@@ -7049,15 +6610,15 @@
       "source": "LL-Q652 (ita)-Jennum-pantaloni.wav"
     },
     "parco": {
-      "author": "LangPao",
-      "cap": 3.0,
+      "author": "Happypheasant",
       "file": "words/parco.mp3",
-      "gain": 3.5,
-      "lead": 262,
+      "gain": 0.1,
+      "gate": -97.6,
+      "lead": 222,
       "matches": "parco",
-      "mos": 2.62,
-      "sha256": "c2497b02bd23c9ffaf57ee49c3e1a58d976f1177fb684c0176db1f107bdcb84a",
-      "source": "LL-Q652 (ita)-LangPao-parco.wav"
+      "mos": 3.02,
+      "sha256": "e9aec589548975d21c6d67389ade39523b3afbdc9756f0197ed5033000a7f5ed",
+      "source": "LL-Q652 (ita)-Happypheasant-parco.wav"
     },
     "parete": {
       "author": "LangPao",
@@ -7070,14 +6631,15 @@
       "source": "LL-Q652 (ita)-LangPao-parete.wav"
     },
     "parlare": {
-      "author": "LangPao",
+      "author": "Marta Carbone, Association Shtooka",
       "file": "words/parlare.mp3",
-      "gain": 1.9,
-      "lead": 241,
+      "gain": -4.4,
+      "gate": -69.6,
+      "lead": 247,
       "matches": "parlare",
-      "mos": 2.59,
-      "sha256": "ad3c5700638309ff40c3e7c587775021e85b0479ab96fef4473bb10a40597ae3",
-      "source": "LL-Q652 (ita)-LangPao-parlare.wav"
+      "mos": 2.93,
+      "sha256": "de02f0f1b46bcc739acc7002b511f4193b19b23643127fae3137babb2af3b61c",
+      "source": "It-parlare.ogg"
     },
     "parola": {
       "author": "LangPao",
@@ -7239,24 +6801,24 @@
       "source": "LL-Q652 (ita)-XANA000-per.wav"
     },
     "per favore": {
-      "author": "XANA000",
-      "file": "words/peru0020favore.mp3",
-      "gain": -0.3,
-      "lead": 170,
+      "author": "LangPao",
+      "file": "words/per_favore.mp3",
+      "gain": 2.0,
+      "lead": 232,
       "matches": "per favore",
-      "mos": 2.37,
-      "sha256": "e36ff87d8c6db802064ba43e2ffc75fd6e5adff319026db62ccf1a4598102a41",
-      "source": "LL-Q652 (ita)-XANA000-per favore.wav"
+      "mos": 2.73,
+      "sha256": "15f4d7f03ee0239ccdd81717f184d4e4a77d281a4c0de94db79cbd3516655938",
+      "source": "LL-Q652 (ita)-LangPao-per favore.wav"
     },
     "perché": {
-      "author": "XANA000",
+      "author": "Marta Carbone, Association Shtooka",
       "file": "words/perchu00e9.mp3",
-      "gain": 0.7,
-      "lead": 187,
+      "gain": -6.2,
+      "gate": -71.2,
       "matches": "perché",
-      "mos": 2.57,
-      "sha256": "6ff92d3c6983e2d3ec133bce99d4d17e337c7a0e6ff972a9b614f95661d8ed1c",
-      "source": "LL-Q652 (ita)-XANA000-perché.wav"
+      "mos": 3.04,
+      "sha256": "5519b717651cde177c3f08bd3daeb05b708d02144d075d56b2ba4cd067f5aff3",
+      "source": "It-perché.ogg"
     },
     "perdere": {
       "author": "LangPao",
@@ -7313,15 +6875,14 @@
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-pescare.wav"
     },
     "pesce": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/pesce.mp3",
-      "gain": 0.3,
-      "gate": -69.1,
-      "lead": 263,
+      "gain": 5.2,
+      "lead": 247,
       "matches": "pesce",
-      "mos": 2.58,
-      "sha256": "d2a729cb71d35be0bc315e480538c4dcd25c0806c07e927b0ecc3a3961ccb52b",
-      "source": "LL-Q652 (ita)-XANA000-pesce.wav"
+      "mos": 2.91,
+      "sha256": "4bc8103aca574b4a533ada89fa229361a3c64b6ea97c9ce018b4e354f87b2b02",
+      "source": "LL-Q652 (ita)-LangPao-pesce.wav"
     },
     "petto": {
       "author": "Crunchy Cloaky Crackdown",
@@ -7366,15 +6927,15 @@
       "source": "LL-Q652 (ita)-LangPao-piano.wav"
     },
     "pianta": {
-      "author": "XANA000",
+      "author": "LangPao",
+      "cap": 0.9,
       "file": "words/pianta.mp3",
-      "gain": -6.2,
-      "gate": -59.7,
-      "lead": 243,
+      "gain": 4.7,
+      "lead": 199,
       "matches": "pianta",
-      "mos": 2.69,
-      "sha256": "f695dda313ecb6b3fc0607703d9b51bc0e8c8212fb433b42accf1c3cdef62e13",
-      "source": "LL-Q652 (ita)-XANA000-pianta.wav"
+      "mos": 3.05,
+      "sha256": "e7f9f64dec62b085f42d3376b7187e3a51c7002f8a2bb9d37d8ea3aecd1e7efa",
+      "source": "LL-Q652 (ita)-LangPao-pianta.wav"
     },
     "piatto": {
       "author": "LangPao",
@@ -7473,15 +7034,14 @@
       "source": "LL-Q652 (ita)-XANA000-poi.wav"
     },
     "polizia": {
-      "author": "LangPao",
-      "cap": 0.5,
+      "author": "Happypheasant",
       "file": "words/polizia.mp3",
-      "gain": 4.2,
-      "lead": 195,
+      "gain": 4.8,
+      "lead": 201,
       "matches": "polizia",
-      "mos": 2.76,
-      "sha256": "cf325620f89c5b5a5eede05fa4e4701fecd131f4f4f0c9678f096a31183cb9a1",
-      "source": "LL-Q652 (ita)-LangPao-polizia.wav"
+      "mos": 3.16,
+      "sha256": "11f9b04378fe89a2a3f63b0961458603c9e50c568c1c10d86c6cfed3e9675bf5",
+      "source": "LL-Q652 (ita)-Happypheasant-polizia.wav"
     },
     "pollo": {
       "author": "Crunchy Cloaky Crackdown",
@@ -7538,16 +7098,14 @@
       "source": "LL-Q652 (ita)-LangPao-pomodoro.wav"
     },
     "ponte": {
-      "author": "Ciampix",
-      "cap": 2.2,
+      "author": "LangPao",
       "file": "words/ponte.mp3",
-      "gain": 9.9,
-      "gate": -79.3,
-      "lead": 179,
+      "gain": 8.4,
+      "lead": 223,
       "matches": "ponte",
-      "mos": 2.52,
-      "sha256": "1e13b9e92bf697f76cbce604eaeac78b09de49c56e217ddfc638365b952c2277",
-      "source": "LL-Q652 (ita)-Ciampix-ponte.wav"
+      "mos": 2.86,
+      "sha256": "d9752ab494e889d388c064928136ccb26c7565840b471684f178454dcb04ed84",
+      "source": "LL-Q652 (ita)-LangPao-ponte.wav"
     },
     "porta": {
       "author": "LangPao",
@@ -7591,15 +7149,14 @@
       "source": "LL-Q652 (ita)-LangPao-porto.wav"
     },
     "posta": {
-      "author": "LangPao",
-      "cap": 1.2,
+      "author": "Happypheasant",
       "file": "words/posta.mp3",
-      "gain": 3.5,
-      "lead": 246,
+      "gain": 4.4,
+      "lead": 262,
       "matches": "posta",
-      "mos": 2.37,
-      "sha256": "a0b04e5d1249b2fd21df404b51250767e918e34ae61acc69ca62a96674d92572",
-      "source": "LL-Q652 (ita)-LangPao-posta.wav"
+      "mos": 2.89,
+      "sha256": "561eb81c56e64f9c96441e6e23835ab5e0cbf6d8c196dbd8a62ac63649fbd4bc",
+      "source": "LL-Q652 (ita)-Happypheasant-posta.wav"
     },
     "posto": {
       "author": "Jennum",
@@ -7698,15 +7255,14 @@
       "source": "LL-Q652 (ita)-LangPao-prezzo.wav"
     },
     "prima di": {
-      "author": "XANA000",
-      "file": "words/primau0020di.mp3",
-      "gain": -5.6,
-      "gate": -75.2,
-      "lead": 197,
+      "author": "LangPao",
+      "file": "words/prima_di.mp3",
+      "gain": 1.6,
+      "lead": 229,
       "matches": "prima di",
-      "mos": 2.0,
-      "sha256": "96ad1a01c34f86872e4c1ea3324488cdb4304e862a4e6da5d52763601d0f5638",
-      "source": "LL-Q652 (ita)-XANA000-prima di.wav"
+      "mos": 2.77,
+      "sha256": "ff6ef72487b16d4f9a4647ed23893cc224a91e3bc55763174c2b9491afa2db6e",
+      "source": "LL-Q652 (ita)-LangPao-prima di.wav"
     },
     "primo": {
       "author": "XANA000",
@@ -7955,14 +7511,14 @@
       "source": "LL-Q652 (ita)-LangPao-qui.wav"
     },
     "quindi": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/quindi.mp3",
-      "gain": -0.5,
-      "lead": 159,
+      "gain": 7.2,
+      "lead": 180,
       "matches": "quindi",
-      "mos": 2.22,
-      "sha256": "6d007df537f469eff926a8cb2f9090e57ced50bb01fcc313f09c3652896c0ea4",
-      "source": "LL-Q652 (ita)-XANA000-quindi.wav"
+      "mos": 2.7,
+      "sha256": "5657c0fd5fe4760162b966ec1347974164f4a448e5d59dd7349438a02e5fd6ce",
+      "source": "LL-Q652 (ita)-LangPao-quindi.wav"
     },
     "rabbia": {
       "author": "Crunchy Cloaky Crackdown",
@@ -8210,15 +7766,15 @@
       "source": "LL-Q652 (ita)-LangPao-riposare.wav"
     },
     "riso": {
-      "author": "XANA000",
+      "author": "Ciampix",
       "file": "words/riso.mp3",
-      "gain": 2.3,
-      "gate": -69.0,
-      "lead": 259,
+      "gain": 8.9,
+      "gate": -76.5,
+      "lead": 190,
       "matches": "riso",
-      "mos": 2.36,
-      "sha256": "bf69ed26ee6cf474e37809aa3e4a09c2985d43e6d9fa28c8d4d46ba61fc7b213",
-      "source": "LL-Q652 (ita)-XANA000-riso.wav"
+      "mos": 2.96,
+      "sha256": "ed237d4688432cdfd7ac261c5f79019f5b22a56d341e75f3be808e6af5d48c38",
+      "source": "LL-Q652 (ita)-Ciampix-riso.wav"
     },
     "rispondere": {
       "author": "LangPao",
@@ -8318,14 +7874,15 @@
       "source": "LL-Q652 (ita)-XANA000-ruota.wav"
     },
     "sale": {
-      "author": "XANA000",
+      "author": "Ciampix",
       "file": "words/sale.mp3",
-      "gain": -4.8,
-      "gate": -67.1,
+      "gain": 2.5,
+      "gate": -84.0,
+      "lead": 75,
       "matches": "sale",
-      "mos": 2.43,
-      "sha256": "fa335fa5223650502cb3e342c8f853b5be8be968389c238102f677bc3d98d543",
-      "source": "LL-Q652 (ita)-XANA000-sale.wav"
+      "mos": 3.17,
+      "sha256": "73aef97968f9355fc468a7255f61f4795d389cd9bb076cc35016623f65d35116",
+      "source": "LL-Q652 (ita)-Ciampix-sale.wav"
     },
     "salire": {
       "author": "LangPao",
@@ -8539,14 +8096,15 @@
       "source": "LL-Q652 (ita)-XANA000-scusi.wav"
     },
     "se": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/se.mp3",
-      "gain": -0.1,
-      "lead": 54,
+      "gain": -2.6,
+      "gate": -92.9,
+      "lead": 228,
       "matches": "se",
-      "mos": 2.18,
-      "sha256": "f4a4b25822c43acc3d87e9cb744e6340efc877bd2b399212b0cd1418157efb2d",
-      "source": "LL-Q652 (ita)-XANA000-se.wav"
+      "mos": 2.76,
+      "sha256": "3c8ed611aff370bcb28f33783ba14f673045e8e89978c7ebacc90b36bb7f5143",
+      "source": "LL-Q652 (ita)-LangPao-se.wav"
     },
     "secchio": {
       "author": "LangPao",
@@ -8625,15 +8183,14 @@
       "source": "LL-Q652 (ita)-LangPao-semaforo.wav"
     },
     "sempre": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/sempre.mp3",
-      "gain": 4.6,
-      "gate": -58.3,
-      "lead": 120,
+      "gain": 5.5,
+      "lead": 145,
       "matches": "sempre",
-      "mos": 2.3,
-      "sha256": "eb21f754c712aca7555771d13c2d771b16884377ed14b168f2a089a87f59b90e",
-      "source": "LL-Q652 (ita)-XANA000-sempre.wav"
+      "mos": 2.97,
+      "sha256": "261025f665f80d4bc4a36909d552595b688e7087cfcb240bba0ff63fc4ff0e09",
+      "source": "LL-Q652 (ita)-LangPao-sempre.wav"
     },
     "sentire": {
       "author": "LangPao",
@@ -8847,15 +8404,15 @@
       "source": "LL-Q652 (ita)-LangPao-sorella.wav"
     },
     "sorpresa": {
-      "author": "LangPao",
+      "author": "Happypheasant",
       "file": "words/sorpresa.mp3",
-      "gain": -0.3,
-      "gate": -92.2,
-      "lead": 244,
+      "gain": 1.4,
+      "gate": -91.2,
+      "lead": 129,
       "matches": "sorpresa",
-      "mos": 2.71,
-      "sha256": "55a5a067f5689b393d1970299da4bc26a157bed2c73c8322437fe35ea3ba022f",
-      "source": "LL-Q652 (ita)-LangPao-sorpresa.wav"
+      "mos": 3.05,
+      "sha256": "764a826b83f78a179f1091e6d1a1b162905529b72d997de5268bf1332ef1d58a",
+      "source": "LL-Q652 (ita)-Happypheasant-sorpresa.wav"
     },
     "sorridere": {
       "author": "LangPao",
@@ -8946,15 +8503,15 @@
       "source": "LL-Q652 (ita)-LangPao-spesso.wav"
     },
     "spiaggia": {
-      "author": "LangPao",
+      "author": "Happypheasant",
       "file": "words/spiaggia.mp3",
-      "gain": -0.4,
-      "gate": -95.5,
-      "lead": 176,
+      "gain": -0.5,
+      "gate": -95.6,
+      "lead": 230,
       "matches": "spiaggia",
-      "mos": 2.27,
-      "sha256": "868347c98168a3d48dbb9b3ef45b6c1dbd27e4a90f5bbcba8c5a96ec42b27d00",
-      "source": "LL-Q652 (ita)-LangPao-spiaggia.wav"
+      "mos": 2.99,
+      "sha256": "f4ad49c858dc87042e5b825719f443ae3a05c7c719d3f0fafe93665816fc9ccb",
+      "source": "LL-Q652 (ita)-Happypheasant-spiaggia.wav"
     },
     "spiegare": {
       "author": "LangPao",
@@ -9034,7 +8591,7 @@
     },
     "stare in piedi": {
       "author": "LangPao",
-      "file": "words/stareu0020inu0020piedi.mp3",
+      "file": "words/stare_in_piedi.mp3",
       "gain": 0.5,
       "gate": -98.7,
       "lead": 251,
@@ -9056,15 +8613,15 @@
       "source": "LL-Q652 (ita)-LangPao-stazione.wav"
     },
     "stella": {
-      "author": "XANA000",
+      "author": "Ciampix",
       "file": "words/stella.mp3",
-      "gain": -0.8,
-      "gate": -73.3,
-      "lead": 77,
+      "gain": 5.6,
+      "gate": -77.1,
+      "lead": 56,
       "matches": "stella",
-      "mos": 2.49,
-      "sha256": "b680ea08e2cb782d8f93bd423c83060a3a9b242a3a1736b49e87beef4c188f22",
-      "source": "LL-Q652 (ita)-XANA000-stella.wav"
+      "mos": 2.85,
+      "sha256": "3c1d528f86a4a8d1964d23c8ac5c5dcc280d6532d385343cf7432a639d49ac73",
+      "source": "LL-Q652 (ita)-Ciampix-stella.wav"
     },
     "stesso": {
       "author": "XANA000",
@@ -9269,14 +8826,15 @@
       "source": "It-svegliarsi.ogg"
     },
     "sì": {
-      "author": "XANA000",
+      "author": "LangPao",
       "file": "words/su00ec.mp3",
-      "gain": 7.3,
-      "lead": 193,
+      "gain": 3.2,
+      "gate": -94.0,
+      "lead": 194,
       "matches": "sì",
-      "mos": 2.43,
-      "sha256": "07ede09048fddb32b0bdab53082ec6be0c90dad8203d04576c6a897780962e27",
-      "source": "LL-Q652 (ita)-XANA000-sì.wav"
+      "mos": 2.88,
+      "sha256": "3bc84f60a24883522da4197f8e057c0a51a0c12ea68e1408edd1683a93d441e1",
+      "source": "LL-Q652 (ita)-LangPao-sì.wav"
     },
     "taglia": {
       "author": "LangPao",
@@ -9321,15 +8879,15 @@
       "source": "LL-Q652 (ita)-LangPao-tardi.wav"
     },
     "tassa": {
-      "author": "LangPao",
-      "cap": 0.6,
+      "author": "Happypheasant",
       "file": "words/tassa.mp3",
-      "gain": 3.9,
-      "lead": 269,
+      "gain": 1.2,
+      "gate": -98.0,
+      "lead": 205,
       "matches": "tassa",
-      "mos": 2.64,
-      "sha256": "a2fc35cdd000cf15932646fac03551506c432acea1dce7d47c3ffd651ff5de10",
-      "source": "LL-Q652 (ita)-LangPao-tassa.wav"
+      "mos": 2.94,
+      "sha256": "fe23bcc8d724c199770613cc870fed1fbf86b55f5cfec19f8da31232737e4d0f",
+      "source": "LL-Q652 (ita)-Happypheasant-tassa.wav"
     },
     "tastiera": {
       "author": "GiovanniPen",
@@ -9529,15 +9087,15 @@
       "source": "LL-Q652 (ita)-LangPao-tristezza.wav"
     },
     "troppo": {
-      "author": "LangPao",
-      "cap": 0.3,
+      "author": "Marta Carbone, Association Shtooka",
       "file": "words/troppo.mp3",
-      "gain": 8.5,
-      "lead": 213,
+      "gain": -1.7,
+      "gate": -74.6,
+      "lead": 239,
       "matches": "troppo",
-      "mos": 2.41,
-      "sha256": "55a334d928e431414e784d85b355b74c22c16680fc394bedbf097c84912e8109",
-      "source": "LL-Q652 (ita)-LangPao-troppo.wav"
+      "mos": 2.75,
+      "sha256": "df14761c5cfaa9d348b4728533ffe679a007100f0d3808e83a15c31d7a55d913",
+      "source": "It-troppo.ogg"
     },
     "trovare": {
       "author": "LangPao",
@@ -9658,15 +9216,15 @@
       "source": "LL-Q652 (ita)-XANA000-tè.wav"
     },
     "uccello": {
-      "author": "XANA000",
+      "author": "Ciampix",
       "file": "words/uccello.mp3",
-      "gain": -4.1,
-      "gate": -75.2,
-      "lead": 246,
+      "gain": 7.7,
+      "gate": -84.2,
+      "lead": 193,
       "matches": "uccello",
-      "mos": 2.26,
-      "sha256": "6a0711ff3eeda493575093fb86e4a1dac0e63d642bf27d0f355ab0f47ef4dc39",
-      "source": "LL-Q652 (ita)-XANA000-uccello.wav"
+      "mos": 3.01,
+      "sha256": "c7636879e1a78ef8a87ae483b38268fee425c6d0c07f393b8bfb904bb2144842",
+      "source": "LL-Q652 (ita)-Ciampix-uccello.wav"
     },
     "ufficio": {
       "author": "LangPao",
@@ -9924,14 +9482,15 @@
       "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-vestito.wav"
     },
     "viaggiare": {
-      "author": "LangPao",
+      "author": "Happypheasant",
       "file": "words/viaggiare.mp3",
-      "gain": 2.6,
-      "lead": 195,
+      "gain": 0.3,
+      "gate": -97.7,
+      "lead": 216,
       "matches": "viaggiare",
-      "mos": 2.73,
-      "sha256": "f96dad147d31fc7b486a226bb023ff1598027d463e2b2c4df8bec57242f38608",
-      "source": "LL-Q652 (ita)-LangPao-viaggiare.wav"
+      "mos": 3.17,
+      "sha256": "ac8c19e703ce695e68bf77251127d10f21845f3b45d8afab5db5d371e671946b",
+      "source": "LL-Q652 (ita)-Happypheasant-viaggiare.wav"
     },
     "viaggio": {
       "author": "LangPao",

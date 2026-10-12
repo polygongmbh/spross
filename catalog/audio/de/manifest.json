@@ -2,7 +2,7 @@
   "articles": {
     "das Abendessen": {
       "author": "Natschoba",
-      "file": "articles/dasu0020abendessen.mp3",
+      "file": "articles/das_abendessen.mp3",
       "gain": 1.8,
       "gate": -81.5,
       "lead": 202,
@@ -14,7 +14,7 @@
     },
     "das Alter": {
       "author": "Natschoba",
-      "file": "articles/dasu0020alter.mp3",
+      "file": "articles/das_alter.mp3",
       "gain": 7.8,
       "gate": -78.5,
       "lead": 240,
@@ -26,7 +26,7 @@
     },
     "das Angebot": {
       "author": "Natschoba",
-      "file": "articles/dasu0020angebot.mp3",
+      "file": "articles/das_angebot.mp3",
       "gain": 3.5,
       "gate": -80.0,
       "matches": "das Angebot",
@@ -37,7 +37,7 @@
     },
     "das Auge": {
       "author": "Natschoba",
-      "file": "articles/dasu0020auge.mp3",
+      "file": "articles/das_auge.mp3",
       "gain": 7.0,
       "gate": -76.5,
       "lead": 15,
@@ -50,7 +50,7 @@
     "das Auto": {
       "author": "Natschoba",
       "cap": 2.6,
-      "file": "articles/dasu0020auto.mp3",
+      "file": "articles/das_auto.mp3",
       "gain": 4.8,
       "gate": -85.1,
       "lead": 270,
@@ -62,7 +62,7 @@
     },
     "das Bein": {
       "author": "Natschoba",
-      "file": "articles/dasu0020bein.mp3",
+      "file": "articles/das_bein.mp3",
       "gain": 2.9,
       "gate": -77.9,
       "lead": 145,
@@ -74,7 +74,7 @@
     },
     "das Bett": {
       "author": "Natschoba",
-      "file": "articles/dasu0020bett.mp3",
+      "file": "articles/das_bett.mp3",
       "gain": 4.7,
       "gate": -88.5,
       "lead": 204,
@@ -86,7 +86,7 @@
     },
     "das Bild": {
       "author": "Natschoba",
-      "file": "articles/dasu0020bild.mp3",
+      "file": "articles/das_bild.mp3",
       "gain": 6.2,
       "lead": 218,
       "matches": "das Bild",
@@ -97,7 +97,7 @@
     },
     "das Brot": {
       "author": "Natschoba",
-      "file": "articles/dasu0020brot.mp3",
+      "file": "articles/das_brot.mp3",
       "gain": 7.0,
       "gate": -82.0,
       "lead": 184,
@@ -110,7 +110,7 @@
     "das Buch": {
       "author": "Natschoba",
       "cap": 1.4,
-      "file": "articles/dasu0020buch.mp3",
+      "file": "articles/das_buch.mp3",
       "gain": 11.6,
       "lead": 198,
       "matches": "das Buch",
@@ -121,7 +121,7 @@
     },
     "das Büro": {
       "author": "Natschoba",
-      "file": "articles/dasu0020bu00fcro.mp3",
+      "file": "articles/das_bu00fcro.mp3",
       "gain": 11.3,
       "gate": -86.8,
       "lead": 255,
@@ -133,7 +133,7 @@
     },
     "das Dorf": {
       "author": "Natschoba",
-      "file": "articles/dasu0020dorf.mp3",
+      "file": "articles/das_dorf.mp3",
       "gain": 3.3,
       "lead": 194,
       "matches": "das Dorf",
@@ -144,7 +144,7 @@
     },
     "das Ei": {
       "author": "Natschoba",
-      "file": "articles/dasu0020ei.mp3",
+      "file": "articles/das_ei.mp3",
       "gain": 2.3,
       "gate": -90.6,
       "lead": 234,
@@ -156,7 +156,7 @@
     },
     "das Essen": {
       "author": "Natschoba",
-      "file": "articles/dasu0020essen.mp3",
+      "file": "articles/das_essen.mp3",
       "gain": 7.8,
       "gate": -82.5,
       "lead": 94,
@@ -168,7 +168,7 @@
     },
     "das Fahrrad": {
       "author": "Natschoba",
-      "file": "articles/dasu0020fahrrad.mp3",
+      "file": "articles/das_fahrrad.mp3",
       "gain": 5.3,
       "gate": -85.3,
       "matches": "das Fahrrad",
@@ -179,7 +179,7 @@
     },
     "das Fenster": {
       "author": "Natschoba",
-      "file": "articles/dasu0020fenster.mp3",
+      "file": "articles/das_fenster.mp3",
       "gain": 6.8,
       "gate": -84.6,
       "lead": 190,
@@ -191,7 +191,7 @@
     },
     "das Fleisch": {
       "author": "Natschoba",
-      "file": "articles/dasu0020fleisch.mp3",
+      "file": "articles/das_fleisch.mp3",
       "gain": 5.5,
       "gate": -82.5,
       "lead": 265,
@@ -203,7 +203,7 @@
     },
     "das Flugzeug": {
       "author": "Natschoba",
-      "file": "articles/dasu0020flugzeug.mp3",
+      "file": "articles/das_flugzeug.mp3",
       "gain": 1.7,
       "gate": -82.0,
       "lead": 226,
@@ -215,7 +215,7 @@
     },
     "das Frühstück": {
       "author": "Natschoba",
-      "file": "articles/dasu0020fru00fchstu00fcck.mp3",
+      "file": "articles/das_fru00fchstu00fcck.mp3",
       "gain": 6.0,
       "gate": -89.0,
       "matches": "das Frühstück",
@@ -226,7 +226,7 @@
     },
     "das Geld": {
       "author": "Natschoba",
-      "file": "articles/dasu0020geld.mp3",
+      "file": "articles/das_geld.mp3",
       "gain": 7.0,
       "gate": -85.2,
       "lead": 274,
@@ -238,7 +238,7 @@
     },
     "das Gemüse": {
       "author": "Natschoba",
-      "file": "articles/dasu0020gemu00fcse.mp3",
+      "file": "articles/das_gemu00fcse.mp3",
       "gain": 6.5,
       "gate": -80.8,
       "lead": 207,
@@ -250,7 +250,7 @@
     },
     "das Gepäck": {
       "author": "Natschoba",
-      "file": "articles/dasu0020gepu00e4ck.mp3",
+      "file": "articles/das_gepu00e4ck.mp3",
       "gain": 8.5,
       "lead": 222,
       "matches": "das Gepäck",
@@ -261,7 +261,7 @@
     },
     "das Geschenk": {
       "author": "Natschoba",
-      "file": "articles/dasu0020geschenk.mp3",
+      "file": "articles/das_geschenk.mp3",
       "gain": 10.4,
       "lead": 202,
       "matches": "das Geschenk",
@@ -272,7 +272,7 @@
     },
     "das Gesetz": {
       "author": "Natschoba",
-      "file": "articles/dasu0020gesetz.mp3",
+      "file": "articles/das_gesetz.mp3",
       "gate": -79.5,
       "lead": 227,
       "matches": "das Gesetz",
@@ -283,7 +283,7 @@
     },
     "das Gesicht": {
       "author": "Natschoba",
-      "file": "articles/dasu0020gesicht.mp3",
+      "file": "articles/das_gesicht.mp3",
       "gain": 10.8,
       "gate": -73.9,
       "lead": 45,
@@ -295,7 +295,7 @@
     },
     "das Getränk": {
       "author": "Natschoba",
-      "file": "articles/dasu0020getru00e4nk.mp3",
+      "file": "articles/das_getru00e4nk.mp3",
       "gain": 5.3,
       "gate": -84.1,
       "lead": 210,
@@ -307,7 +307,7 @@
     },
     "das Glas": {
       "author": "Natschoba",
-      "file": "articles/dasu0020glas.mp3",
+      "file": "articles/das_glas.mp3",
       "gain": 3.8,
       "gate": -81.0,
       "lead": 229,
@@ -319,7 +319,7 @@
     },
     "das Grab": {
       "author": "Natschoba",
-      "file": "articles/dasu0020grab.mp3",
+      "file": "articles/das_grab.mp3",
       "gain": 6.6,
       "lead": 243,
       "matches": "das Grab",
@@ -330,7 +330,7 @@
     },
     "das Haar": {
       "author": "Natschoba",
-      "file": "articles/dasu0020haar.mp3",
+      "file": "articles/das_haar.mp3",
       "gain": 8.1,
       "gate": -87.2,
       "lead": 190,
@@ -342,7 +342,7 @@
     },
     "das Handy": {
       "author": "Natschoba",
-      "file": "articles/dasu0020handy.mp3",
+      "file": "articles/das_handy.mp3",
       "gain": 5.3,
       "gate": -81.0,
       "lead": 185,
@@ -354,7 +354,7 @@
     },
     "das Haus": {
       "author": "Natschoba",
-      "file": "articles/dasu0020haus.mp3",
+      "file": "articles/das_haus.mp3",
       "gain": 4.3,
       "gate": -80.3,
       "lead": 212,
@@ -366,7 +366,7 @@
     },
     "das Hemd": {
       "author": "Natschoba",
-      "file": "articles/dasu0020hemd.mp3",
+      "file": "articles/das_hemd.mp3",
       "gain": 10.0,
       "lead": 258,
       "matches": "das Hemd",
@@ -377,7 +377,7 @@
     },
     "das Herz": {
       "author": "Natschoba",
-      "file": "articles/dasu0020herz.mp3",
+      "file": "articles/das_herz.mp3",
       "gain": 3.3,
       "gate": -73.9,
       "lead": 52,
@@ -389,7 +389,7 @@
     },
     "das Hotel": {
       "author": "Natschoba",
-      "file": "articles/dasu0020hotel.mp3",
+      "file": "articles/das_hotel.mp3",
       "gain": 5.9,
       "gate": -90.7,
       "lead": 242,
@@ -401,7 +401,7 @@
     },
     "das Internet": {
       "author": "Natschoba",
-      "file": "articles/dasu0020internet.mp3",
+      "file": "articles/das_internet.mp3",
       "gain": 7.2,
       "lead": 235,
       "matches": "das Internet",
@@ -412,7 +412,7 @@
     },
     "das Jahr": {
       "author": "Natschoba",
-      "file": "articles/dasu0020jahr.mp3",
+      "file": "articles/das_jahr.mp3",
       "gain": 5.4,
       "gate": -82.8,
       "lead": 209,
@@ -424,7 +424,7 @@
     },
     "das Jahrhundert": {
       "author": "Natschoba",
-      "file": "articles/dasu0020jahrhundert.mp3",
+      "file": "articles/das_jahrhundert.mp3",
       "gain": 7.0,
       "gate": -82.9,
       "lead": 55,
@@ -436,7 +436,7 @@
     },
     "das Kilo": {
       "author": "Natschoba",
-      "file": "articles/dasu0020kilo.mp3",
+      "file": "articles/das_kilo.mp3",
       "gain": 4.8,
       "gate": -81.1,
       "lead": 241,
@@ -449,7 +449,7 @@
     "das Kind": {
       "author": "Natschoba",
       "cap": 0.6,
-      "file": "articles/dasu0020kind.mp3",
+      "file": "articles/das_kind.mp3",
       "gain": 7.0,
       "gate": -82.7,
       "lead": 89,
@@ -461,7 +461,7 @@
     },
     "das Kino": {
       "author": "Natschoba",
-      "file": "articles/dasu0020kino.mp3",
+      "file": "articles/das_kino.mp3",
       "gain": 5.2,
       "gate": -74.0,
       "lead": 211,
@@ -474,7 +474,7 @@
     "das Kissen": {
       "author": "Natschoba",
       "cap": 0.4,
-      "file": "articles/dasu0020kissen.mp3",
+      "file": "articles/das_kissen.mp3",
       "gain": 13.2,
       "lead": 157,
       "matches": "das Kissen",
@@ -485,7 +485,7 @@
     },
     "das Kleid": {
       "author": "Natschoba",
-      "file": "articles/dasu0020kleid.mp3",
+      "file": "articles/das_kleid.mp3",
       "gain": -1.0,
       "gate": -80.5,
       "lead": 208,
@@ -497,7 +497,7 @@
     },
     "das Knie": {
       "author": "Natschoba",
-      "file": "articles/dasu0020knie.mp3",
+      "file": "articles/das_knie.mp3",
       "gain": 12.3,
       "lead": 211,
       "matches": "das Knie",
@@ -508,7 +508,7 @@
     },
     "das Land": {
       "author": "Natschoba",
-      "file": "articles/dasu0020land.mp3",
+      "file": "articles/das_land.mp3",
       "gain": 1.6,
       "gate": -82.4,
       "lead": 113,
@@ -520,7 +520,7 @@
     },
     "das Leben": {
       "author": "Natschoba",
-      "file": "articles/dasu0020leben.mp3",
+      "file": "articles/das_leben.mp3",
       "gain": 5.4,
       "gate": -79.4,
       "lead": 223,
@@ -532,7 +532,7 @@
     },
     "das Licht": {
       "author": "Natschoba",
-      "file": "articles/dasu0020licht.mp3",
+      "file": "articles/das_licht.mp3",
       "gain": 6.2,
       "gate": -83.2,
       "lead": 239,
@@ -545,7 +545,7 @@
     "das Lied": {
       "author": "Natschoba",
       "cap": 1.8,
-      "file": "articles/dasu0020lied.mp3",
+      "file": "articles/das_lied.mp3",
       "gain": 12.1,
       "lead": 204,
       "matches": "das Lied",
@@ -556,7 +556,7 @@
     },
     "das Meer": {
       "author": "Natschoba",
-      "file": "articles/dasu0020meer.mp3",
+      "file": "articles/das_meer.mp3",
       "gain": 4.5,
       "gate": -84.1,
       "lead": 220,
@@ -568,7 +568,7 @@
     },
     "das Mehl": {
       "author": "Natschoba",
-      "file": "articles/dasu0020mehl.mp3",
+      "file": "articles/das_mehl.mp3",
       "gain": 6.6,
       "gate": -88.9,
       "lead": 247,
@@ -580,7 +580,7 @@
     },
     "das Messer": {
       "author": "Natschoba",
-      "file": "articles/dasu0020messer.mp3",
+      "file": "articles/das_messer.mp3",
       "gain": 5.1,
       "gate": -89.5,
       "lead": 196,
@@ -592,7 +592,7 @@
     },
     "das Motorrad": {
       "author": "Natschoba",
-      "file": "articles/dasu0020motorrad.mp3",
+      "file": "articles/das_motorrad.mp3",
       "gain": 7.7,
       "lead": 198,
       "matches": "das Motorrad",
@@ -603,7 +603,7 @@
     },
     "das Mädchen": {
       "author": "Natschoba",
-      "file": "articles/dasu0020mu00e4dchen.mp3",
+      "file": "articles/das_mu00e4dchen.mp3",
       "gain": 10.6,
       "gate": -80.6,
       "lead": 220,
@@ -615,7 +615,7 @@
     },
     "das Obst": {
       "author": "Natschoba",
-      "file": "articles/dasu0020obst.mp3",
+      "file": "articles/das_obst.mp3",
       "gain": 6.9,
       "gate": -85.1,
       "lead": 196,
@@ -627,7 +627,7 @@
     },
     "das Ohr": {
       "author": "Natschoba",
-      "file": "articles/dasu0020ohr.mp3",
+      "file": "articles/das_ohr.mp3",
       "gain": 3.4,
       "gate": -87.6,
       "lead": 192,
@@ -639,7 +639,7 @@
     },
     "das Papier": {
       "author": "Natschoba",
-      "file": "articles/dasu0020papier.mp3",
+      "file": "articles/das_papier.mp3",
       "gain": 5.6,
       "gate": -81.3,
       "lead": 214,
@@ -651,7 +651,7 @@
     },
     "das Pferd": {
       "author": "Natschoba",
-      "file": "articles/dasu0020pferd.mp3",
+      "file": "articles/das_pferd.mp3",
       "gain": 2.8,
       "gate": -82.1,
       "lead": 115,
@@ -663,7 +663,7 @@
     },
     "das Pflaster": {
       "author": "Natschoba",
-      "file": "articles/dasu0020pflaster.mp3",
+      "file": "articles/das_pflaster.mp3",
       "gain": 6.9,
       "lead": 226,
       "matches": "das Pflaster",
@@ -674,7 +674,7 @@
     },
     "das Problem": {
       "author": "Natschoba",
-      "file": "articles/dasu0020problem.mp3",
+      "file": "articles/das_problem.mp3",
       "gain": 6.4,
       "gate": -83.8,
       "lead": 235,
@@ -686,7 +686,7 @@
     },
     "das Rad": {
       "author": "Natschoba",
-      "file": "articles/dasu0020rad.mp3",
+      "file": "articles/das_rad.mp3",
       "gain": 4.4,
       "gate": -83.3,
       "lead": 226,
@@ -698,7 +698,7 @@
     },
     "das Radio": {
       "author": "Natschoba",
-      "file": "articles/dasu0020radio.mp3",
+      "file": "articles/das_radio.mp3",
       "gain": 0.1,
       "gate": -83.2,
       "lead": 188,
@@ -710,7 +710,7 @@
     },
     "das Restaurant": {
       "author": "Natschoba",
-      "file": "articles/dasu0020restaurant.mp3",
+      "file": "articles/das_restaurant.mp3",
       "gain": 3.4,
       "gate": -79.6,
       "lead": 200,
@@ -722,7 +722,7 @@
     },
     "das Rezept": {
       "author": "Natschoba",
-      "file": "articles/dasu0020rezept.mp3",
+      "file": "articles/das_rezept.mp3",
       "gain": 4.0,
       "gate": -81.4,
       "lead": 100,
@@ -734,7 +734,7 @@
     },
     "das Salz": {
       "author": "Natschoba",
-      "file": "articles/dasu0020salz.mp3",
+      "file": "articles/das_salz.mp3",
       "gain": 3.2,
       "gate": -85.3,
       "lead": 228,
@@ -746,7 +746,7 @@
     },
     "das Schaf": {
       "author": "Natschoba",
-      "file": "articles/dasu0020schaf.mp3",
+      "file": "articles/das_schaf.mp3",
       "gain": 4.7,
       "gate": -80.9,
       "lead": 230,
@@ -758,7 +758,7 @@
     },
     "das Schiff": {
       "author": "Natschoba",
-      "file": "articles/dasu0020schiff.mp3",
+      "file": "articles/das_schiff.mp3",
       "gain": 8.6,
       "gate": -81.0,
       "lead": 62,
@@ -770,7 +770,7 @@
     },
     "das Souvenir": {
       "author": "Natschoba",
-      "file": "articles/dasu0020souvenir.mp3",
+      "file": "articles/das_souvenir.mp3",
       "gain": 11.0,
       "gate": -85.7,
       "lead": 177,
@@ -782,7 +782,7 @@
     },
     "das Spiel": {
       "author": "Natschoba",
-      "file": "articles/dasu0020spiel.mp3",
+      "file": "articles/das_spiel.mp3",
       "gain": 6.3,
       "gate": -85.2,
       "lead": 173,
@@ -794,7 +794,7 @@
     },
     "das Studium": {
       "author": "Natschoba",
-      "file": "articles/dasu0020studium.mp3",
+      "file": "articles/das_studium.mp3",
       "gain": 7.3,
       "gate": -81.6,
       "lead": 235,
@@ -807,7 +807,7 @@
     "das Taxi": {
       "author": "Natschoba",
       "cap": 0.9,
-      "file": "articles/dasu0020taxi.mp3",
+      "file": "articles/das_taxi.mp3",
       "gain": 5.8,
       "gate": -81.2,
       "lead": 132,
@@ -819,7 +819,7 @@
     },
     "das Tier": {
       "author": "Natschoba",
-      "file": "articles/dasu0020tier.mp3",
+      "file": "articles/das_tier.mp3",
       "gain": 2.8,
       "gate": -83.2,
       "lead": 209,
@@ -831,7 +831,7 @@
     },
     "das Training": {
       "author": "Natschoba",
-      "file": "articles/dasu0020training.mp3",
+      "file": "articles/das_training.mp3",
       "gain": 5.6,
       "gate": -93.3,
       "lead": 246,
@@ -843,7 +843,7 @@
     },
     "das Viertel": {
       "author": "Natschoba",
-      "file": "articles/dasu0020viertel.mp3",
+      "file": "articles/das_viertel.mp3",
       "gain": 6.9,
       "gate": -78.2,
       "lead": 186,
@@ -855,7 +855,7 @@
     },
     "das Vorstellungsgespräch": {
       "author": "Natschoba",
-      "file": "articles/dasu0020vorstellungsgespru00e4ch.mp3",
+      "file": "articles/das_vorstellungsgespru00e4ch.mp3",
       "gain": 3.7,
       "gate": -81.0,
       "lead": 190,
@@ -867,7 +867,7 @@
     },
     "das Wasser": {
       "author": "Natschoba",
-      "file": "articles/dasu0020wasser.mp3",
+      "file": "articles/das_wasser.mp3",
       "gain": 3.9,
       "gate": -86.8,
       "lead": 234,
@@ -879,7 +879,7 @@
     },
     "das Wetter": {
       "author": "Natschoba",
-      "file": "articles/dasu0020wetter.mp3",
+      "file": "articles/das_wetter.mp3",
       "gain": 4.9,
       "gate": -95.4,
       "lead": 189,
@@ -891,7 +891,7 @@
     },
     "das Wochenende": {
       "author": "Natschoba",
-      "file": "articles/dasu0020wochenende.mp3",
+      "file": "articles/das_wochenende.mp3",
       "gain": 4.6,
       "gate": -78.6,
       "lead": 187,
@@ -903,7 +903,7 @@
     },
     "das Wort": {
       "author": "Natschoba",
-      "file": "articles/dasu0020wort.mp3",
+      "file": "articles/das_wort.mp3",
       "gain": 3.1,
       "gate": -80.9,
       "lead": 253,
@@ -915,7 +915,7 @@
     },
     "das Ziel": {
       "author": "Natschoba",
-      "file": "articles/dasu0020ziel.mp3",
+      "file": "articles/das_ziel.mp3",
       "gain": 11.1,
       "lead": 257,
       "matches": "das Ziel",
@@ -926,7 +926,7 @@
     },
     "das Zimmer": {
       "author": "Natschoba",
-      "file": "articles/dasu0020zimmer.mp3",
+      "file": "articles/das_zimmer.mp3",
       "gain": 2.6,
       "gate": -91.0,
       "matches": "das Zimmer",
@@ -937,7 +937,7 @@
     },
     "das Öl": {
       "author": "Natschoba",
-      "file": "articles/dasu0020u00f6l.mp3",
+      "file": "articles/das_u00f6l.mp3",
       "gain": 4.6,
       "gate": -77.6,
       "lead": 146,
@@ -949,7 +949,7 @@
     },
     "der Abend": {
       "author": "Natschoba",
-      "file": "articles/deru0020abend.mp3",
+      "file": "articles/der_abend.mp3",
       "gain": 1.1,
       "gate": -89.1,
       "lead": 257,
@@ -961,7 +961,7 @@
     },
     "der Affe": {
       "author": "Natschoba",
-      "file": "articles/deru0020affe.mp3",
+      "file": "articles/der_affe.mp3",
       "gain": 4.3,
       "gate": -81.5,
       "lead": 134,
@@ -973,7 +973,7 @@
     },
     "der Apfel": {
       "author": "Natschoba",
-      "file": "articles/deru0020apfel.mp3",
+      "file": "articles/der_apfel.mp3",
       "gain": 5.8,
       "gate": -86.1,
       "lead": 228,
@@ -985,7 +985,7 @@
     },
     "der Arm": {
       "author": "Natschoba",
-      "file": "articles/deru0020arm.mp3",
+      "file": "articles/der_arm.mp3",
       "gain": 6.6,
       "gate": -91.8,
       "lead": 229,
@@ -997,7 +997,7 @@
     },
     "der Arzt": {
       "author": "Natschoba",
-      "file": "articles/deru0020arzt.mp3",
+      "file": "articles/der_arzt.mp3",
       "gain": 7.6,
       "lead": 224,
       "matches": "der Arzt",
@@ -1008,7 +1008,7 @@
     },
     "der Ausgang": {
       "author": "Natschoba",
-      "file": "articles/deru0020ausgang.mp3",
+      "file": "articles/der_ausgang.mp3",
       "gain": 5.7,
       "lead": 234,
       "matches": "der Ausgang",
@@ -1019,7 +1019,7 @@
     },
     "der Ausweis": {
       "author": "Natschoba",
-      "file": "articles/deru0020ausweis.mp3",
+      "file": "articles/der_ausweis.mp3",
       "gain": 6.8,
       "lead": 267,
       "matches": "der Ausweis",
@@ -1030,7 +1030,7 @@
     },
     "der Bahnhof": {
       "author": "Natschoba",
-      "file": "articles/deru0020bahnhof.mp3",
+      "file": "articles/der_bahnhof.mp3",
       "gain": 5.7,
       "gate": -85.5,
       "lead": 199,
@@ -1042,7 +1042,7 @@
     },
     "der Bauch": {
       "author": "Natschoba",
-      "file": "articles/deru0020bauch.mp3",
+      "file": "articles/der_bauch.mp3",
       "gain": 3.3,
       "gate": -83.2,
       "lead": 263,
@@ -1054,7 +1054,7 @@
     },
     "der Baum": {
       "author": "Natschoba",
-      "file": "articles/deru0020baum.mp3",
+      "file": "articles/der_baum.mp3",
       "gain": 8.4,
       "lead": 221,
       "matches": "der Baum",
@@ -1065,7 +1065,7 @@
     },
     "der Berg": {
       "author": "Natschoba",
-      "file": "articles/deru0020berg.mp3",
+      "file": "articles/der_berg.mp3",
       "gain": 3.4,
       "gate": -95.3,
       "lead": 257,
@@ -1077,7 +1077,7 @@
     },
     "der Beruf": {
       "author": "Natschoba",
-      "file": "articles/deru0020beruf.mp3",
+      "file": "articles/der_beruf.mp3",
       "gain": 11.5,
       "lead": 256,
       "matches": "der Beruf",
@@ -1088,7 +1088,7 @@
     },
     "der Bleistift": {
       "author": "Natschoba",
-      "file": "articles/deru0020bleistift.mp3",
+      "file": "articles/der_bleistift.mp3",
       "gain": 4.4,
       "lead": 261,
       "matches": "der Bleistift",
@@ -1099,7 +1099,7 @@
     },
     "der Brief": {
       "author": "Natschoba",
-      "file": "articles/deru0020brief.mp3",
+      "file": "articles/der_brief.mp3",
       "gain": 6.3,
       "gate": -83.8,
       "lead": 154,
@@ -1112,7 +1112,7 @@
     "der Briefkasten": {
       "author": "Natschoba",
       "cap": 1.4,
-      "file": "articles/deru0020briefkasten.mp3",
+      "file": "articles/der_briefkasten.mp3",
       "gain": 12.3,
       "lead": 257,
       "matches": "der Briefkasten",
@@ -1123,7 +1123,7 @@
     },
     "der Bruder": {
       "author": "Natschoba",
-      "file": "articles/deru0020bruder.mp3",
+      "file": "articles/der_bruder.mp3",
       "gain": 6.7,
       "gate": -86.7,
       "lead": 116,
@@ -1135,7 +1135,7 @@
     },
     "der Campingplatz": {
       "author": "Natschoba",
-      "file": "articles/deru0020campingplatz.mp3",
+      "file": "articles/der_campingplatz.mp3",
       "gain": 8.6,
       "lead": 217,
       "matches": "der Campingplatz",
@@ -1146,7 +1146,7 @@
     },
     "der Chef": {
       "author": "Natschoba",
-      "file": "articles/deru0020chef.mp3",
+      "file": "articles/der_chef.mp3",
       "gain": 5.5,
       "gate": -84.1,
       "lead": 211,
@@ -1158,7 +1158,7 @@
     },
     "der Durst": {
       "author": "Natschoba",
-      "file": "articles/deru0020durst.mp3",
+      "file": "articles/der_durst.mp3",
       "gain": 4.7,
       "gate": -84.6,
       "lead": 232,
@@ -1170,7 +1170,7 @@
     },
     "der Ehemann": {
       "author": "Natschoba",
-      "file": "articles/deru0020ehemann.mp3",
+      "file": "articles/der_ehemann.mp3",
       "gain": 1.3,
       "gate": -81.0,
       "lead": 255,
@@ -1182,7 +1182,7 @@
     },
     "der Elefant": {
       "author": "Natschoba",
-      "file": "articles/deru0020elefant.mp3",
+      "file": "articles/der_elefant.mp3",
       "gain": 7.9,
       "gate": -78.0,
       "lead": 261,
@@ -1194,7 +1194,7 @@
     },
     "der Enkel": {
       "author": "Natschoba",
-      "file": "articles/deru0020enkel.mp3",
+      "file": "articles/der_enkel.mp3",
       "gain": 9.0,
       "lead": 205,
       "matches": "der Enkel",
@@ -1205,7 +1205,7 @@
     },
     "der Esel": {
       "author": "Natschoba",
-      "file": "articles/deru0020esel.mp3",
+      "file": "articles/der_esel.mp3",
       "gain": 5.1,
       "gate": -78.4,
       "lead": 189,
@@ -1217,7 +1217,7 @@
     },
     "der Fall": {
       "author": "Natschoba",
-      "file": "articles/deru0020fall.mp3",
+      "file": "articles/der_fall.mp3",
       "gain": 7.0,
       "gate": -86.8,
       "lead": 244,
@@ -1229,7 +1229,7 @@
     },
     "der Fehler": {
       "author": "Natschoba",
-      "file": "articles/deru0020fehler.mp3",
+      "file": "articles/der_fehler.mp3",
       "gain": 8.6,
       "lead": 189,
       "matches": "der Fehler",
@@ -1240,7 +1240,7 @@
     },
     "der Film": {
       "author": "Natschoba",
-      "file": "articles/deru0020film.mp3",
+      "file": "articles/der_film.mp3",
       "gain": 5.8,
       "gate": -81.0,
       "lead": 247,
@@ -1252,7 +1252,7 @@
     },
     "der Finger": {
       "author": "Natschoba",
-      "file": "articles/deru0020finger.mp3",
+      "file": "articles/der_finger.mp3",
       "gain": 12.7,
       "lead": 243,
       "matches": "der Finger",
@@ -1263,7 +1263,7 @@
     },
     "der Fisch": {
       "author": "Natschoba",
-      "file": "articles/deru0020fisch.mp3",
+      "file": "articles/der_fisch.mp3",
       "gain": 9.6,
       "gate": -87.0,
       "lead": 221,
@@ -1275,7 +1275,7 @@
     },
     "der Flughafen": {
       "author": "Natschoba",
-      "file": "articles/deru0020flughafen.mp3",
+      "file": "articles/der_flughafen.mp3",
       "gain": 5.7,
       "gate": -76.9,
       "lead": 267,
@@ -1287,7 +1287,7 @@
     },
     "der Fluss": {
       "author": "Natschoba",
-      "file": "articles/deru0020fluss.mp3",
+      "file": "articles/der_fluss.mp3",
       "gain": 4.4,
       "gate": -81.3,
       "lead": 207,
@@ -1299,7 +1299,7 @@
     },
     "der Freund": {
       "author": "Natschoba",
-      "file": "articles/deru0020freund.mp3",
+      "file": "articles/der_freund.mp3",
       "gain": 5.9,
       "gate": -91.5,
       "lead": 244,
@@ -1311,7 +1311,7 @@
     },
     "der Frieden": {
       "author": "Natschoba",
-      "file": "articles/deru0020frieden.mp3",
+      "file": "articles/der_frieden.mp3",
       "gain": 8.7,
       "gate": -77.5,
       "lead": 219,
@@ -1323,7 +1323,7 @@
     },
     "der Friedhof": {
       "author": "Natschoba",
-      "file": "articles/deru0020friedhof.mp3",
+      "file": "articles/der_friedhof.mp3",
       "gain": 11.2,
       "gate": -99.2,
       "lead": 202,
@@ -1335,7 +1335,7 @@
     },
     "der Fuß": {
       "author": "Natschoba",
-      "file": "articles/deru0020fuu00df.mp3",
+      "file": "articles/der_fuu00df.mp3",
       "gain": 6.2,
       "gate": -82.2,
       "lead": 232,
@@ -1347,7 +1347,7 @@
     },
     "der Gast": {
       "author": "Natschoba",
-      "file": "articles/deru0020gast.mp3",
+      "file": "articles/der_gast.mp3",
       "gain": 1.4,
       "gate": -86.5,
       "lead": 254,
@@ -1359,7 +1359,7 @@
     },
     "der Geburtstag": {
       "author": "Natschoba",
-      "file": "articles/deru0020geburtstag.mp3",
+      "file": "articles/der_geburtstag.mp3",
       "gain": 2.0,
       "gate": -84.5,
       "lead": 220,
@@ -1371,7 +1371,7 @@
     },
     "der Großvater": {
       "author": "Natschoba",
-      "file": "articles/deru0020grou00dfvater.mp3",
+      "file": "articles/der_grou00dfvater.mp3",
       "gain": 1.4,
       "gate": -77.7,
       "matches": "der Großvater",
@@ -1382,7 +1382,7 @@
     },
     "der Hals": {
       "author": "Natschoba",
-      "file": "articles/deru0020hals.mp3",
+      "file": "articles/der_hals.mp3",
       "gain": 1.5,
       "gate": -70.7,
       "lead": 55,
@@ -1394,7 +1394,7 @@
     },
     "der Himmel": {
       "author": "Natschoba",
-      "file": "articles/deru0020himmel.mp3",
+      "file": "articles/der_himmel.mp3",
       "gain": 7.7,
       "gate": -94.8,
       "lead": 259,
@@ -1406,7 +1406,7 @@
     },
     "der Hund": {
       "author": "Natschoba",
-      "file": "articles/deru0020hund.mp3",
+      "file": "articles/der_hund.mp3",
       "gain": 2.4,
       "gate": -83.8,
       "matches": "der Hund",
@@ -1417,7 +1417,7 @@
     },
     "der Hunger": {
       "author": "Natschoba",
-      "file": "articles/deru0020hunger.mp3",
+      "file": "articles/der_hunger.mp3",
       "gain": 2.1,
       "gate": -83.6,
       "lead": 214,
@@ -1429,7 +1429,7 @@
     },
     "der Händler": {
       "author": "Natschoba",
-      "file": "articles/deru0020hu00e4ndler.mp3",
+      "file": "articles/der_hu00e4ndler.mp3",
       "gain": 1.9,
       "gate": -71.1,
       "lead": 197,
@@ -1441,7 +1441,7 @@
     },
     "der Junge": {
       "author": "Natschoba",
-      "file": "articles/deru0020junge.mp3",
+      "file": "articles/der_junge.mp3",
       "gain": 8.0,
       "lead": 186,
       "matches": "der Junge",
@@ -1452,7 +1452,7 @@
     },
     "der Kaffee": {
       "author": "Natschoba",
-      "file": "articles/deru0020kaffee.mp3",
+      "file": "articles/der_kaffee.mp3",
       "gain": 5.6,
       "gate": -90.8,
       "lead": 207,
@@ -1464,7 +1464,7 @@
     },
     "der Kalender": {
       "author": "Natschoba",
-      "file": "articles/deru0020kalender.mp3",
+      "file": "articles/der_kalender.mp3",
       "gain": -0.4,
       "gate": -77.8,
       "lead": 226,
@@ -1476,7 +1476,7 @@
     },
     "der Knoblauch": {
       "author": "Natschoba",
-      "file": "articles/deru0020knoblauch.mp3",
+      "file": "articles/der_knoblauch.mp3",
       "gain": -0.3,
       "gate": -83.3,
       "lead": 241,
@@ -1488,7 +1488,7 @@
     },
     "der Knochen": {
       "author": "Natschoba",
-      "file": "articles/deru0020knochen.mp3",
+      "file": "articles/der_knochen.mp3",
       "gain": 12.4,
       "lead": 204,
       "matches": "der Knochen",
@@ -1499,7 +1499,7 @@
     },
     "der Kohl": {
       "author": "Natschoba",
-      "file": "articles/deru0020kohl.mp3",
+      "file": "articles/der_kohl.mp3",
       "gain": 3.6,
       "gate": -85.0,
       "lead": 233,
@@ -1511,7 +1511,7 @@
     },
     "der Kollege": {
       "author": "Natschoba",
-      "file": "articles/deru0020kollege.mp3",
+      "file": "articles/der_kollege.mp3",
       "gain": 6.2,
       "gate": -83.0,
       "matches": "der Kollege",
@@ -1522,7 +1522,7 @@
     },
     "der Kopf": {
       "author": "Natschoba",
-      "file": "articles/deru0020kopf.mp3",
+      "file": "articles/der_kopf.mp3",
       "gain": 7.0,
       "gate": -76.7,
       "lead": 69,
@@ -1534,7 +1534,7 @@
     },
     "der Krieg": {
       "author": "Natschoba",
-      "file": "articles/deru0020krieg.mp3",
+      "file": "articles/der_krieg.mp3",
       "gain": 9.1,
       "gate": -77.8,
       "lead": 234,
@@ -1546,7 +1546,7 @@
     },
     "der Kunde": {
       "author": "Natschoba",
-      "file": "articles/deru0020kunde.mp3",
+      "file": "articles/der_kunde.mp3",
       "gain": 4.1,
       "gate": -81.7,
       "lead": 222,
@@ -1558,7 +1558,7 @@
     },
     "der Käse": {
       "author": "Natschoba",
-      "file": "articles/deru0020ku00e4se.mp3",
+      "file": "articles/der_ku00e4se.mp3",
       "gain": 4.6,
       "gate": -89.5,
       "lead": 114,
@@ -1570,7 +1570,7 @@
     },
     "der Kühlschrank": {
       "author": "Natschoba",
-      "file": "articles/deru0020ku00fchlschrank.mp3",
+      "file": "articles/der_ku00fchlschrank.mp3",
       "gain": 6.5,
       "gate": -79.0,
       "lead": 250,
@@ -1582,7 +1582,7 @@
     },
     "der Laden": {
       "author": "Natschoba",
-      "file": "articles/deru0020laden.mp3",
+      "file": "articles/der_laden.mp3",
       "gain": 4.7,
       "lead": 151,
       "matches": "der Laden",
@@ -1593,7 +1593,7 @@
     },
     "der Lastwagen": {
       "author": "Natschoba",
-      "file": "articles/deru0020lastwagen.mp3",
+      "file": "articles/der_lastwagen.mp3",
       "gain": 1.9,
       "gate": -84.7,
       "lead": 223,
@@ -1605,7 +1605,7 @@
     },
     "der Liter": {
       "author": "Natschoba",
-      "file": "articles/deru0020liter.mp3",
+      "file": "articles/der_liter.mp3",
       "gain": 6.9,
       "gate": -88.9,
       "lead": 215,
@@ -1617,7 +1617,7 @@
     },
     "der Löffel": {
       "author": "Natschoba",
-      "file": "articles/deru0020lu00f6ffel.mp3",
+      "file": "articles/der_lu00f6ffel.mp3",
       "gain": 8.5,
       "gate": -87.2,
       "lead": 235,
@@ -1629,7 +1629,7 @@
     },
     "der Magen": {
       "author": "Natschoba",
-      "file": "articles/deru0020magen.mp3",
+      "file": "articles/der_magen.mp3",
       "gain": 3.4,
       "gate": -79.9,
       "lead": 183,
@@ -1641,7 +1641,7 @@
     },
     "der Mann": {
       "author": "Natschoba",
-      "file": "articles/deru0020mann.mp3",
+      "file": "articles/der_mann.mp3",
       "gain": 3.5,
       "gate": -87.4,
       "lead": 241,
@@ -1653,7 +1653,7 @@
     },
     "der Mantel": {
       "author": "Natschoba",
-      "file": "articles/deru0020mantel.mp3",
+      "file": "articles/der_mantel.mp3",
       "gain": 2.8,
       "gate": -82.3,
       "lead": 200,
@@ -1665,7 +1665,7 @@
     },
     "der Markt": {
       "author": "Natschoba",
-      "file": "articles/deru0020markt.mp3",
+      "file": "articles/der_markt.mp3",
       "gain": -2.5,
       "gate": -82.4,
       "lead": 105,
@@ -1677,7 +1677,7 @@
     },
     "der Mensch": {
       "author": "Natschoba",
-      "file": "articles/deru0020mensch.mp3",
+      "file": "articles/der_mensch.mp3",
       "gain": 3.8,
       "gate": -82.9,
       "lead": 17,
@@ -1689,7 +1689,7 @@
     },
     "der Monat": {
       "author": "Natschoba",
-      "file": "articles/deru0020monat.mp3",
+      "file": "articles/der_monat.mp3",
       "gain": 3.8,
       "gate": -79.8,
       "matches": "der Monat",
@@ -1700,7 +1700,7 @@
     },
     "der Mond": {
       "author": "Natschoba",
-      "file": "articles/deru0020mond.mp3",
+      "file": "articles/der_mond.mp3",
       "gain": 10.3,
       "lead": 250,
       "matches": "der Mond",
@@ -1711,7 +1711,7 @@
     },
     "der Mund": {
       "author": "Natschoba",
-      "file": "articles/deru0020mund.mp3",
+      "file": "articles/der_mund.mp3",
       "gain": 9.4,
       "gate": -78.4,
       "lead": 185,
@@ -1723,7 +1723,7 @@
     },
     "der Nachbar": {
       "author": "Natschoba",
-      "file": "articles/deru0020nachbar.mp3",
+      "file": "articles/der_nachbar.mp3",
       "gain": 3.1,
       "gate": -78.7,
       "lead": 190,
@@ -1735,7 +1735,7 @@
     },
     "der Nachmittag": {
       "author": "Natschoba",
-      "file": "articles/deru0020nachmittag.mp3",
+      "file": "articles/der_nachmittag.mp3",
       "gain": 3.6,
       "gate": -78.1,
       "lead": 239,
@@ -1747,7 +1747,7 @@
     },
     "der Nachtisch": {
       "author": "Natschoba",
-      "file": "articles/deru0020nachtisch.mp3",
+      "file": "articles/der_nachtisch.mp3",
       "gain": 4.0,
       "gate": -81.2,
       "lead": 193,
@@ -1759,7 +1759,7 @@
     },
     "der Name": {
       "author": "Natschoba",
-      "file": "articles/deru0020name.mp3",
+      "file": "articles/der_name.mp3",
       "gain": -1.1,
       "gate": -86.3,
       "lead": 159,
@@ -1771,7 +1771,7 @@
     },
     "der Norden": {
       "author": "Natschoba",
-      "file": "articles/deru0020norden.mp3",
+      "file": "articles/der_norden.mp3",
       "gain": 1.3,
       "gate": -84.2,
       "lead": 234,
@@ -1783,7 +1783,7 @@
     },
     "der Onkel": {
       "author": "Natschoba",
-      "file": "articles/deru0020onkel.mp3",
+      "file": "articles/der_onkel.mp3",
       "gate": -86.9,
       "lead": 100,
       "matches": "der Onkel",
@@ -1794,7 +1794,7 @@
     },
     "der Ort": {
       "author": "Natschoba",
-      "file": "articles/deru0020ort.mp3",
+      "file": "articles/der_ort.mp3",
       "gain": 5.5,
       "lead": 213,
       "matches": "der Ort",
@@ -1805,7 +1805,7 @@
     },
     "der Osten": {
       "author": "Natschoba",
-      "file": "articles/deru0020osten.mp3",
+      "file": "articles/der_osten.mp3",
       "gain": 5.4,
       "gate": -85.6,
       "lead": 180,
@@ -1817,7 +1817,7 @@
     },
     "der Plan": {
       "author": "Natschoba",
-      "file": "articles/deru0020plan.mp3",
+      "file": "articles/der_plan.mp3",
       "gain": 6.0,
       "gate": -75.2,
       "lead": 195,
@@ -1829,7 +1829,7 @@
     },
     "der Preis": {
       "author": "Natschoba",
-      "file": "articles/deru0020preis.mp3",
+      "file": "articles/der_preis.mp3",
       "gain": 6.7,
       "gate": -85.8,
       "lead": 252,
@@ -1841,7 +1841,7 @@
     },
     "der Regen": {
       "author": "Natschoba",
-      "file": "articles/deru0020regen.mp3",
+      "file": "articles/der_regen.mp3",
       "gain": 2.5,
       "gate": -92.6,
       "lead": 206,
@@ -1853,7 +1853,7 @@
     },
     "der Regenschirm": {
       "author": "Natschoba",
-      "file": "articles/deru0020regenschirm.mp3",
+      "file": "articles/der_regenschirm.mp3",
       "gain": 0.7,
       "gate": -79.3,
       "lead": 243,
@@ -1865,7 +1865,7 @@
     },
     "der Reis": {
       "author": "Natschoba",
-      "file": "articles/deru0020reis.mp3",
+      "file": "articles/der_reis.mp3",
       "gain": 3.8,
       "gate": -82.1,
       "lead": 268,
@@ -1877,7 +1877,7 @@
     },
     "der Reisepass": {
       "author": "Natschoba",
-      "file": "articles/deru0020reisepass.mp3",
+      "file": "articles/der_reisepass.mp3",
       "gain": 3.5,
       "lead": 244,
       "matches": "der Reisepass",
@@ -1888,7 +1888,7 @@
     },
     "der Rücken": {
       "author": "Natschoba",
-      "file": "articles/deru0020ru00fccken.mp3",
+      "file": "articles/der_ru00fccken.mp3",
       "gain": 12.6,
       "lead": 223,
       "matches": "der Rücken",
@@ -1899,7 +1899,7 @@
     },
     "der Saft": {
       "author": "Natschoba",
-      "file": "articles/deru0020saft.mp3",
+      "file": "articles/der_saft.mp3",
       "gain": 2.1,
       "gate": -83.3,
       "lead": 274,
@@ -1911,7 +1911,7 @@
     },
     "der Satz": {
       "author": "Natschoba",
-      "file": "articles/deru0020satz.mp3",
+      "file": "articles/der_satz.mp3",
       "gain": 6.1,
       "lead": 238,
       "matches": "der Satz",
@@ -1922,7 +1922,7 @@
     },
     "der Schatten": {
       "author": "Natschoba",
-      "file": "articles/deru0020schatten.mp3",
+      "file": "articles/der_schatten.mp3",
       "gain": 11.6,
       "lead": 266,
       "matches": "der Schatten",
@@ -1933,7 +1933,7 @@
     },
     "der Schmerz": {
       "author": "Natschoba",
-      "file": "articles/deru0020schmerz.mp3",
+      "file": "articles/der_schmerz.mp3",
       "gain": 5.8,
       "gate": -73.4,
       "lead": 253,
@@ -1945,7 +1945,7 @@
     },
     "der Schnee": {
       "author": "Natschoba",
-      "file": "articles/deru0020schnee.mp3",
+      "file": "articles/der_schnee.mp3",
       "gain": 5.4,
       "gate": -83.7,
       "lead": 252,
@@ -1957,7 +1957,7 @@
     },
     "der Schuh": {
       "author": "Natschoba",
-      "file": "articles/deru0020schuh.mp3",
+      "file": "articles/der_schuh.mp3",
       "gain": 7.0,
       "gate": -77.2,
       "lead": 63,
@@ -1969,7 +1969,7 @@
     },
     "der Schwiegervater": {
       "author": "Natschoba",
-      "file": "articles/deru0020schwiegervater.mp3",
+      "file": "articles/der_schwiegervater.mp3",
       "gain": 8.5,
       "lead": 173,
       "matches": "der Schwiegervater",
@@ -1980,7 +1980,7 @@
     },
     "der Schüler": {
       "author": "Natschoba",
-      "file": "articles/deru0020schu00fcler.mp3",
+      "file": "articles/der_schu00fcler.mp3",
       "gain": 5.4,
       "gate": -81.5,
       "lead": 227,
@@ -1992,7 +1992,7 @@
     },
     "der Sohn": {
       "author": "Natschoba",
-      "file": "articles/deru0020sohn.mp3",
+      "file": "articles/der_sohn.mp3",
       "gain": 10.5,
       "gate": -86.4,
       "lead": 212,
@@ -2004,7 +2004,7 @@
     },
     "der Spiegel": {
       "author": "Natschoba",
-      "file": "articles/deru0020spiegel.mp3",
+      "file": "articles/der_spiegel.mp3",
       "gain": 6.5,
       "gate": -83.4,
       "lead": 237,
@@ -2016,7 +2016,7 @@
     },
     "der Stern": {
       "author": "Natschoba",
-      "file": "articles/deru0020stern.mp3",
+      "file": "articles/der_stern.mp3",
       "gain": 5.9,
       "gate": -86.6,
       "lead": 240,
@@ -2028,7 +2028,7 @@
     },
     "der Strand": {
       "author": "Natschoba",
-      "file": "articles/deru0020strand.mp3",
+      "file": "articles/der_strand.mp3",
       "gain": 5.6,
       "gate": -74.6,
       "matches": "der Strand",
@@ -2039,7 +2039,7 @@
     },
     "der Stuhl": {
       "author": "Natschoba",
-      "file": "articles/deru0020stuhl.mp3",
+      "file": "articles/der_stuhl.mp3",
       "gain": 5.7,
       "gate": -80.8,
       "lead": 258,
@@ -2051,7 +2051,7 @@
     },
     "der Supermarkt": {
       "author": "Natschoba",
-      "file": "articles/deru0020supermarkt.mp3",
+      "file": "articles/der_supermarkt.mp3",
       "gain": 4.7,
       "gate": -75.7,
       "lead": 98,
@@ -2063,7 +2063,7 @@
     },
     "der Süden": {
       "author": "Natschoba",
-      "file": "articles/deru0020su00fcden.mp3",
+      "file": "articles/der_su00fcden.mp3",
       "gain": 5.0,
       "gate": -82.0,
       "matches": "der Süden",
@@ -2074,7 +2074,7 @@
     },
     "der Tag": {
       "author": "Natschoba",
-      "file": "articles/deru0020tag.mp3",
+      "file": "articles/der_tag.mp3",
       "gain": -1.6,
       "gate": -87.6,
       "lead": 53,
@@ -2086,7 +2086,7 @@
     },
     "der Tee": {
       "author": "Natschoba",
-      "file": "articles/deru0020tee.mp3",
+      "file": "articles/der_tee.mp3",
       "gain": 1.8,
       "gate": -91.7,
       "lead": 215,
@@ -2098,7 +2098,7 @@
     },
     "der Teller": {
       "author": "Natschoba",
-      "file": "articles/deru0020teller.mp3",
+      "file": "articles/der_teller.mp3",
       "gain": 5.6,
       "gate": -82.9,
       "lead": 206,
@@ -2110,7 +2110,7 @@
     },
     "der Termin": {
       "author": "Natschoba",
-      "file": "articles/deru0020termin.mp3",
+      "file": "articles/der_termin.mp3",
       "gain": 4.9,
       "gate": -79.9,
       "lead": 249,
@@ -2122,7 +2122,7 @@
     },
     "der Tisch": {
       "author": "Natschoba",
-      "file": "articles/deru0020tisch.mp3",
+      "file": "articles/der_tisch.mp3",
       "gain": 1.4,
       "gate": -81.1,
       "lead": 196,
@@ -2134,7 +2134,7 @@
     },
     "der Tod": {
       "author": "Natschoba",
-      "file": "articles/deru0020tod.mp3",
+      "file": "articles/der_tod.mp3",
       "gain": 5.4,
       "gate": -84.9,
       "lead": 270,
@@ -2146,7 +2146,7 @@
     },
     "der Topf": {
       "author": "Natschoba",
-      "file": "articles/deru0020topf.mp3",
+      "file": "articles/der_topf.mp3",
       "gain": 7.8,
       "gate": -81.3,
       "lead": 221,
@@ -2158,7 +2158,7 @@
     },
     "der Tourist": {
       "author": "Natschoba",
-      "file": "articles/deru0020tourist.mp3",
+      "file": "articles/der_tourist.mp3",
       "gain": 5.3,
       "gate": -81.8,
       "matches": "der Tourist",
@@ -2169,7 +2169,7 @@
     },
     "der Unterricht": {
       "author": "Natschoba",
-      "file": "articles/deru0020unterricht.mp3",
+      "file": "articles/der_unterricht.mp3",
       "gain": 4.9,
       "lead": 241,
       "matches": "der Unterricht",
@@ -2180,7 +2180,7 @@
     },
     "der Unterschied": {
       "author": "Natschoba",
-      "file": "articles/deru0020unterschied.mp3",
+      "file": "articles/der_unterschied.mp3",
       "gain": 3.5,
       "gate": -80.6,
       "lead": 78,
@@ -2192,7 +2192,7 @@
     },
     "der Urlaub": {
       "author": "Natschoba",
-      "file": "articles/deru0020urlaub.mp3",
+      "file": "articles/der_urlaub.mp3",
       "gain": 5.3,
       "gate": -89.0,
       "lead": 185,
@@ -2204,7 +2204,7 @@
     },
     "der Vater": {
       "author": "Natschoba",
-      "file": "articles/deru0020vater.mp3",
+      "file": "articles/der_vater.mp3",
       "gain": 2.4,
       "gate": -79.1,
       "lead": 218,
@@ -2216,7 +2216,7 @@
     },
     "der Verkäufer": {
       "author": "Natschoba",
-      "file": "articles/deru0020verku00e4ufer.mp3",
+      "file": "articles/der_verku00e4ufer.mp3",
       "gain": 1.9,
       "gate": -80.0,
       "lead": 213,
@@ -2228,7 +2228,7 @@
     },
     "der Vogel": {
       "author": "Natschoba",
-      "file": "articles/deru0020vogel.mp3",
+      "file": "articles/der_vogel.mp3",
       "gain": 3.6,
       "gate": -82.9,
       "lead": 207,
@@ -2240,7 +2240,7 @@
     },
     "der Vorhang": {
       "author": "Natschoba",
-      "file": "articles/deru0020vorhang.mp3",
+      "file": "articles/der_vorhang.mp3",
       "gain": 3.3,
       "lead": 232,
       "matches": "der Vorhang",
@@ -2251,7 +2251,7 @@
     },
     "der Vorname": {
       "author": "Natschoba",
-      "file": "articles/deru0020vorname.mp3",
+      "file": "articles/der_vorname.mp3",
       "gain": 0.3,
       "gate": -84.0,
       "lead": 198,
@@ -2263,7 +2263,7 @@
     },
     "der Wald": {
       "author": "Natschoba",
-      "file": "articles/deru0020wald.mp3",
+      "file": "articles/der_wald.mp3",
       "gain": 1.0,
       "gate": -82.4,
       "lead": 224,
@@ -2275,7 +2275,7 @@
     },
     "der Wecker": {
       "author": "Natschoba",
-      "file": "articles/deru0020wecker.mp3",
+      "file": "articles/der_wecker.mp3",
       "gain": 1.7,
       "gate": -83.1,
       "lead": 221,
@@ -2287,7 +2287,7 @@
     },
     "der Weg": {
       "author": "Natschoba",
-      "file": "articles/deru0020weg.mp3",
+      "file": "articles/der_weg.mp3",
       "gain": 3.4,
       "gate": -85.6,
       "lead": 31,
@@ -2299,7 +2299,7 @@
     },
     "der Westen": {
       "author": "Natschoba",
-      "file": "articles/deru0020westen.mp3",
+      "file": "articles/der_westen.mp3",
       "gain": 3.5,
       "gate": -86.3,
       "lead": 240,
@@ -2311,7 +2311,7 @@
     },
     "der Wind": {
       "author": "Natschoba",
-      "file": "articles/deru0020wind.mp3",
+      "file": "articles/der_wind.mp3",
       "gain": 0.4,
       "lead": 263,
       "matches": "der Wind",
@@ -2322,7 +2322,7 @@
     },
     "der Zahn": {
       "author": "Natschoba",
-      "file": "articles/deru0020zahn.mp3",
+      "file": "articles/der_zahn.mp3",
       "gain": -1.9,
       "gate": -94.4,
       "lead": 220,
@@ -2334,7 +2334,7 @@
     },
     "der Zahnarzt": {
       "author": "Natschoba",
-      "file": "articles/deru0020zahnarzt.mp3",
+      "file": "articles/der_zahnarzt.mp3",
       "gain": 5.4,
       "gate": -82.9,
       "lead": 213,
@@ -2346,7 +2346,7 @@
     },
     "der Zucker": {
       "author": "Natschoba",
-      "file": "articles/deru0020zucker.mp3",
+      "file": "articles/der_zucker.mp3",
       "gain": -0.5,
       "gate": -73.1,
       "lead": 250,
@@ -2358,7 +2358,7 @@
     },
     "der Zug": {
       "author": "Natschoba",
-      "file": "articles/deru0020zug.mp3",
+      "file": "articles/der_zug.mp3",
       "gain": 2.5,
       "gate": -81.1,
       "lead": 235,
@@ -2370,7 +2370,7 @@
     },
     "der Zweifel": {
       "author": "Natschoba",
-      "file": "articles/deru0020zweifel.mp3",
+      "file": "articles/der_zweifel.mp3",
       "gain": 5.7,
       "lead": 201,
       "matches": "der Zweifel",
@@ -2381,7 +2381,7 @@
     },
     "die Adresse": {
       "author": "Natschoba",
-      "file": "articles/dieu0020adresse.mp3",
+      "file": "articles/die_adresse.mp3",
       "gain": 7.2,
       "lead": 240,
       "matches": "die Adresse",
@@ -2392,7 +2392,7 @@
     },
     "die Ampel": {
       "author": "Natschoba",
-      "file": "articles/dieu0020ampel.mp3",
+      "file": "articles/die_ampel.mp3",
       "gain": -1.1,
       "gate": -81.4,
       "lead": 32,
@@ -2404,7 +2404,7 @@
     },
     "die Angst": {
       "author": "Natschoba",
-      "file": "articles/dieu0020angst.mp3",
+      "file": "articles/die_angst.mp3",
       "gain": 2.9,
       "gate": -77.8,
       "lead": 239,
@@ -2416,7 +2416,7 @@
     },
     "die Antwort": {
       "author": "Natschoba",
-      "file": "articles/dieu0020antwort.mp3",
+      "file": "articles/die_antwort.mp3",
       "gain": 1.8,
       "gate": -72.7,
       "lead": 206,
@@ -2429,7 +2429,7 @@
     "die Apotheke": {
       "author": "Natschoba",
       "cap": 2.2,
-      "file": "articles/dieu0020apotheke.mp3",
+      "file": "articles/die_apotheke.mp3",
       "gain": 7.1,
       "lead": 188,
       "matches": "die Apotheke",
@@ -2440,7 +2440,7 @@
     },
     "die Arbeit": {
       "author": "Natschoba",
-      "file": "articles/dieu0020arbeit.mp3",
+      "file": "articles/die_arbeit.mp3",
       "gain": 1.9,
       "gate": -80.0,
       "lead": 174,
@@ -2452,7 +2452,7 @@
     },
     "die Badewanne": {
       "author": "Natschoba",
-      "file": "articles/dieu0020badewanne.mp3",
+      "file": "articles/die_badewanne.mp3",
       "gain": 5.0,
       "lead": 216,
       "matches": "die Badewanne",
@@ -2463,7 +2463,7 @@
     },
     "die Bewerbung": {
       "author": "Natschoba",
-      "file": "articles/dieu0020bewerbung.mp3",
+      "file": "articles/die_bewerbung.mp3",
       "gain": 0.7,
       "gate": -79.3,
       "lead": 173,
@@ -2475,7 +2475,7 @@
     },
     "die Blume": {
       "author": "Natschoba",
-      "file": "articles/dieu0020blume.mp3",
+      "file": "articles/die_blume.mp3",
       "gain": 0.4,
       "gate": -75.6,
       "lead": 5,
@@ -2487,7 +2487,7 @@
     },
     "die Brust": {
       "author": "Natschoba",
-      "file": "articles/dieu0020brust.mp3",
+      "file": "articles/die_brust.mp3",
       "gain": 7.5,
       "lead": 210,
       "matches": "die Brust",
@@ -2498,7 +2498,7 @@
     },
     "die Brücke": {
       "author": "Natschoba",
-      "file": "articles/dieu0020bru00fccke.mp3",
+      "file": "articles/die_bru00fccke.mp3",
       "gain": 5.1,
       "gate": -76.2,
       "lead": 235,
@@ -2510,7 +2510,7 @@
     },
     "die Butter": {
       "author": "Natschoba",
-      "file": "articles/dieu0020butter.mp3",
+      "file": "articles/die_butter.mp3",
       "gain": -0.3,
       "gate": -73.6,
       "lead": 215,
@@ -2522,7 +2522,7 @@
     },
     "die Dusche": {
       "author": "Natschoba",
-      "file": "articles/dieu0020dusche.mp3",
+      "file": "articles/die_dusche.mp3",
       "gain": 4.2,
       "gate": -99.8,
       "lead": 85,
@@ -2534,7 +2534,7 @@
     },
     "die Ecke": {
       "author": "Natschoba",
-      "file": "articles/dieu0020ecke.mp3",
+      "file": "articles/die_ecke.mp3",
       "gain": 4.0,
       "lead": 118,
       "matches": "die Ecke",
@@ -2545,7 +2545,7 @@
     },
     "die Ehefrau": {
       "author": "Natschoba",
-      "file": "articles/dieu0020ehefrau.mp3",
+      "file": "articles/die_ehefrau.mp3",
       "gain": 3.2,
       "lead": 72,
       "matches": "die Ehefrau",
@@ -2556,7 +2556,7 @@
     },
     "die Eifersucht": {
       "author": "Natschoba",
-      "file": "articles/dieu0020eifersucht.mp3",
+      "file": "articles/die_eifersucht.mp3",
       "gain": 5.7,
       "lead": 196,
       "matches": "die Eifersucht",
@@ -2567,7 +2567,7 @@
     },
     "die Eltern": {
       "author": "Natschoba",
-      "file": "articles/dieu0020eltern.mp3",
+      "file": "articles/die_eltern.mp3",
       "gain": 3.5,
       "gate": -83.1,
       "lead": 177,
@@ -2579,7 +2579,7 @@
     },
     "die Enkelin": {
       "author": "Natschoba",
-      "file": "articles/dieu0020enkelin.mp3",
+      "file": "articles/die_enkelin.mp3",
       "gain": 7.7,
       "lead": 117,
       "matches": "die Enkelin",
@@ -2590,7 +2590,7 @@
     },
     "die Familie": {
       "author": "Natschoba",
-      "file": "articles/dieu0020familie.mp3",
+      "file": "articles/die_familie.mp3",
       "gain": 3.2,
       "gate": -78.6,
       "lead": 59,
@@ -2602,7 +2602,7 @@
     },
     "die Farbe": {
       "author": "Natschoba",
-      "file": "articles/dieu0020farbe.mp3",
+      "file": "articles/die_farbe.mp3",
       "gain": -0.6,
       "gate": -81.5,
       "lead": 57,
@@ -2614,7 +2614,7 @@
     },
     "die Firma": {
       "author": "Natschoba",
-      "file": "articles/dieu0020firma.mp3",
+      "file": "articles/die_firma.mp3",
       "gain": 3.5,
       "gate": -86.8,
       "lead": 193,
@@ -2626,7 +2626,7 @@
     },
     "die Frage": {
       "author": "Natschoba",
-      "file": "articles/dieu0020frage.mp3",
+      "file": "articles/die_frage.mp3",
       "gain": 2.8,
       "gate": -83.0,
       "lead": 257,
@@ -2638,7 +2638,7 @@
     },
     "die Frau": {
       "author": "Natschoba",
-      "file": "articles/dieu0020frau.mp3",
+      "file": "articles/die_frau.mp3",
       "gain": 1.3,
       "gate": -88.7,
       "matches": "die Frau",
@@ -2649,7 +2649,7 @@
     },
     "die Freiheit": {
       "author": "Natschoba",
-      "file": "articles/dieu0020freiheit.mp3",
+      "file": "articles/die_freiheit.mp3",
       "gain": 3.4,
       "lead": 206,
       "matches": "die Freiheit",
@@ -2660,7 +2660,7 @@
     },
     "die Freude": {
       "author": "Natschoba",
-      "file": "articles/dieu0020freude.mp3",
+      "file": "articles/die_freude.mp3",
       "gain": 7.3,
       "lead": 233,
       "matches": "die Freude",
@@ -2671,7 +2671,7 @@
     },
     "die Freundin": {
       "author": "Natschoba",
-      "file": "articles/dieu0020freundin.mp3",
+      "file": "articles/die_freundin.mp3",
       "gain": 1.5,
       "gate": -87.0,
       "lead": 196,
@@ -2683,7 +2683,7 @@
     },
     "die Gabel": {
       "author": "Natschoba",
-      "file": "articles/dieu0020gabel.mp3",
+      "file": "articles/die_gabel.mp3",
       "gain": 3.8,
       "gate": -80.9,
       "lead": 17,
@@ -2695,7 +2695,7 @@
     },
     "die Geburt": {
       "author": "Natschoba",
-      "file": "articles/dieu0020geburt.mp3",
+      "file": "articles/die_geburt.mp3",
       "gain": 4.6,
       "gate": -81.0,
       "lead": 167,
@@ -2707,7 +2707,7 @@
     },
     "die Gesundheit": {
       "author": "Natschoba",
-      "file": "articles/dieu0020gesundheit.mp3",
+      "file": "articles/die_gesundheit.mp3",
       "gain": 0.4,
       "gate": -75.1,
       "matches": "die Gesundheit",
@@ -2718,7 +2718,7 @@
     },
     "die Grenze": {
       "author": "Natschoba",
-      "file": "articles/dieu0020grenze.mp3",
+      "file": "articles/die_grenze.mp3",
       "gain": 2.0,
       "gate": -78.8,
       "lead": 106,
@@ -2730,7 +2730,7 @@
     },
     "die Großeltern": {
       "author": "Natschoba",
-      "file": "articles/dieu0020grou00dfeltern.mp3",
+      "file": "articles/die_grou00dfeltern.mp3",
       "gain": 6.5,
       "gate": -84.2,
       "lead": 92,
@@ -2742,7 +2742,7 @@
     },
     "die Haltestelle": {
       "author": "Natschoba",
-      "file": "articles/dieu0020haltestelle.mp3",
+      "file": "articles/die_haltestelle.mp3",
       "gain": 1.7,
       "gate": -82.8,
       "lead": 261,
@@ -2754,7 +2754,7 @@
     },
     "die Hand": {
       "author": "Natschoba",
-      "file": "articles/dieu0020hand.mp3",
+      "file": "articles/die_hand.mp3",
       "gain": 9.0,
       "gate": -79.5,
       "lead": 212,
@@ -2766,7 +2766,7 @@
     },
     "die Hilfe": {
       "author": "Natschoba",
-      "file": "articles/dieu0020hilfe.mp3",
+      "file": "articles/die_hilfe.mp3",
       "gain": 4.0,
       "gate": -92.0,
       "matches": "die Hilfe",
@@ -2777,7 +2777,7 @@
     },
     "die Hochzeit": {
       "author": "Natschoba",
-      "file": "articles/dieu0020hochzeit.mp3",
+      "file": "articles/die_hochzeit.mp3",
       "gain": 4.6,
       "gate": -77.9,
       "lead": 178,
@@ -2789,7 +2789,7 @@
     },
     "die Hose": {
       "author": "Natschoba",
-      "file": "articles/dieu0020hose.mp3",
+      "file": "articles/die_hose.mp3",
       "gain": 5.9,
       "lead": 138,
       "matches": "die Hose",
@@ -2800,7 +2800,7 @@
     },
     "die Karotte": {
       "author": "Natschoba",
-      "file": "articles/dieu0020karotte.mp3",
+      "file": "articles/die_karotte.mp3",
       "gain": 3.0,
       "gate": -82.5,
       "lead": 59,
@@ -2812,7 +2812,7 @@
     },
     "die Kartoffel": {
       "author": "Natschoba",
-      "file": "articles/dieu0020kartoffel.mp3",
+      "file": "articles/die_kartoffel.mp3",
       "gain": 4.8,
       "gate": -80.2,
       "lead": 55,
@@ -2824,7 +2824,7 @@
     },
     "die Kasse": {
       "author": "Natschoba",
-      "file": "articles/dieu0020kasse.mp3",
+      "file": "articles/die_kasse.mp3",
       "gain": 3.9,
       "gate": -80.4,
       "lead": 247,
@@ -2836,7 +2836,7 @@
     },
     "die Katze": {
       "author": "Natschoba",
-      "file": "articles/dieu0020katze.mp3",
+      "file": "articles/die_katze.mp3",
       "gain": 4.1,
       "gate": -82.0,
       "lead": 194,
@@ -2848,7 +2848,7 @@
     },
     "die Kirche": {
       "author": "Natschoba",
-      "file": "articles/dieu0020kirche.mp3",
+      "file": "articles/die_kirche.mp3",
       "gain": 3.4,
       "gate": -84.8,
       "lead": 200,
@@ -2860,7 +2860,7 @@
     },
     "die Kollegin": {
       "author": "Natschoba",
-      "file": "articles/dieu0020kollegin.mp3",
+      "file": "articles/die_kollegin.mp3",
       "gain": 6.6,
       "gate": -83.0,
       "lead": 203,
@@ -2873,7 +2873,7 @@
     "die Krankheit": {
       "author": "Natschoba",
       "cap": 0.4,
-      "file": "articles/dieu0020krankheit.mp3",
+      "file": "articles/die_krankheit.mp3",
       "gain": 6.9,
       "lead": 206,
       "matches": "die Krankheit",
@@ -2884,7 +2884,7 @@
     },
     "die Kreuzung": {
       "author": "Natschoba",
-      "file": "articles/dieu0020kreuzung.mp3",
+      "file": "articles/die_kreuzung.mp3",
       "gain": 6.3,
       "gate": -92.3,
       "lead": 195,
@@ -2896,7 +2896,7 @@
     },
     "die Kuh": {
       "author": "Natschoba",
-      "file": "articles/dieu0020kuh.mp3",
+      "file": "articles/die_kuh.mp3",
       "gain": 13.9,
       "gate": -80.5,
       "lead": 241,
@@ -2908,7 +2908,7 @@
     },
     "die Küste": {
       "author": "Natschoba",
-      "file": "articles/dieu0020ku00fcste.mp3",
+      "file": "articles/die_ku00fcste.mp3",
       "gain": 3.4,
       "gate": -78.4,
       "lead": 179,
@@ -2920,7 +2920,7 @@
     },
     "die Lampe": {
       "author": "Natschoba",
-      "file": "articles/dieu0020lampe.mp3",
+      "file": "articles/die_lampe.mp3",
       "gain": 4.6,
       "gate": -77.7,
       "lead": 180,
@@ -2932,7 +2932,7 @@
     },
     "die Leber": {
       "author": "Natschoba",
-      "file": "articles/dieu0020leber.mp3",
+      "file": "articles/die_leber.mp3",
       "gain": 0.8,
       "gate": -79.9,
       "lead": 193,
@@ -2944,7 +2944,7 @@
     },
     "die Liebe": {
       "author": "Natschoba",
-      "file": "articles/dieu0020liebe.mp3",
+      "file": "articles/die_liebe.mp3",
       "gain": 5.1,
       "gate": -79.3,
       "lead": 183,
@@ -2956,7 +2956,7 @@
     },
     "die Lippe": {
       "author": "Natschoba",
-      "file": "articles/dieu0020lippe.mp3",
+      "file": "articles/die_lippe.mp3",
       "gain": 9.5,
       "lead": 231,
       "matches": "die Lippe",
@@ -2967,7 +2967,7 @@
     },
     "die Maus": {
       "author": "Natschoba",
-      "file": "articles/dieu0020maus.mp3",
+      "file": "articles/die_maus.mp3",
       "gain": 4.7,
       "gate": -80.6,
       "lead": 198,
@@ -2979,7 +2979,7 @@
     },
     "die Milch": {
       "author": "Natschoba",
-      "file": "articles/dieu0020milch.mp3",
+      "file": "articles/die_milch.mp3",
       "gain": 3.5,
       "gate": -81.8,
       "lead": 216,
@@ -2991,7 +2991,7 @@
     },
     "die Minute": {
       "author": "Natschoba",
-      "file": "articles/dieu0020minute.mp3",
+      "file": "articles/die_minute.mp3",
       "gain": 7.9,
       "gate": -76.8,
       "lead": 194,
@@ -3003,7 +3003,7 @@
     },
     "die Musik": {
       "author": "Natschoba",
-      "file": "articles/dieu0020musik.mp3",
+      "file": "articles/die_musik.mp3",
       "gain": 4.5,
       "gate": -75.6,
       "lead": 250,
@@ -3015,7 +3015,7 @@
     },
     "die Mutter": {
       "author": "Natschoba",
-      "file": "articles/dieu0020mutter.mp3",
+      "file": "articles/die_mutter.mp3",
       "gain": 6.6,
       "gate": -86.0,
       "lead": 234,
@@ -3027,7 +3027,7 @@
     },
     "die Muttersprache": {
       "author": "Natschoba",
-      "file": "articles/dieu0020muttersprache.mp3",
+      "file": "articles/die_muttersprache.mp3",
       "gain": 5.0,
       "lead": 254,
       "matches": "die Muttersprache",
@@ -3038,7 +3038,7 @@
     },
     "die Männer": {
       "author": "Natschoba",
-      "file": "articles/dieu0020mu00e4nner.mp3",
+      "file": "articles/die_mu00e4nner.mp3",
       "gain": 0.6,
       "gate": -87.8,
       "lead": 221,
@@ -3050,7 +3050,7 @@
     },
     "die Nachricht": {
       "author": "Natschoba",
-      "file": "articles/dieu0020nachricht.mp3",
+      "file": "articles/die_nachricht.mp3",
       "gain": 0.7,
       "gate": -80.6,
       "lead": 46,
@@ -3062,7 +3062,7 @@
     },
     "die Nachrichten": {
       "author": "Natschoba",
-      "file": "articles/dieu0020nachrichten.mp3",
+      "file": "articles/die_nachrichten.mp3",
       "gain": 2.6,
       "gate": -82.4,
       "lead": 190,
@@ -3074,7 +3074,7 @@
     },
     "die Nacht": {
       "author": "Natschoba",
-      "file": "articles/dieu0020nacht.mp3",
+      "file": "articles/die_nacht.mp3",
       "gain": 1.3,
       "gate": -78.4,
       "lead": 196,
@@ -3086,7 +3086,7 @@
     },
     "die Nase": {
       "author": "Natschoba",
-      "file": "articles/dieu0020nase.mp3",
+      "file": "articles/die_nase.mp3",
       "gain": 2.5,
       "gate": -76.7,
       "lead": 241,
@@ -3098,7 +3098,7 @@
     },
     "die Pause": {
       "author": "Natschoba",
-      "file": "articles/dieu0020pause.mp3",
+      "file": "articles/die_pause.mp3",
       "gain": 2.3,
       "gate": -88.1,
       "lead": 185,
@@ -3110,7 +3110,7 @@
     },
     "die Person": {
       "author": "Natschoba",
-      "file": "articles/dieu0020person.mp3",
+      "file": "articles/die_person.mp3",
       "gain": -1.6,
       "gate": -82.2,
       "matches": "die Person",
@@ -3121,7 +3121,7 @@
     },
     "die Pfanne": {
       "author": "Natschoba",
-      "file": "articles/dieu0020pfanne.mp3",
+      "file": "articles/die_pfanne.mp3",
       "gain": 0.6,
       "gate": -75.3,
       "lead": 175,
@@ -3133,7 +3133,7 @@
     },
     "die Pflanze": {
       "author": "Natschoba",
-      "file": "articles/dieu0020pflanze.mp3",
+      "file": "articles/die_pflanze.mp3",
       "gain": 7.3,
       "lead": 201,
       "matches": "die Pflanze",
@@ -3144,7 +3144,7 @@
     },
     "die Polizei": {
       "author": "Natschoba",
-      "file": "articles/dieu0020polizei.mp3",
+      "file": "articles/die_polizei.mp3",
       "gain": 1.8,
       "gate": -83.6,
       "lead": 24,
@@ -3156,7 +3156,7 @@
     },
     "die Reise": {
       "author": "Natschoba",
-      "file": "articles/dieu0020reise.mp3",
+      "file": "articles/die_reise.mp3",
       "gain": 1.6,
       "gate": -80.9,
       "lead": 236,
@@ -3168,7 +3168,7 @@
     },
     "die Richtung": {
       "author": "Natschoba",
-      "file": "articles/dieu0020richtung.mp3",
+      "file": "articles/die_richtung.mp3",
       "gain": 8.3,
       "lead": 151,
       "matches": "die Richtung",
@@ -3179,7 +3179,7 @@
     },
     "die Schlange": {
       "author": "Natschoba",
-      "file": "articles/dieu0020schlange.mp3",
+      "file": "articles/die_schlange.mp3",
       "gain": 2.0,
       "gate": -79.8,
       "lead": 212,
@@ -3191,7 +3191,7 @@
     },
     "die Schule": {
       "author": "Natschoba",
-      "file": "articles/dieu0020schule.mp3",
+      "file": "articles/die_schule.mp3",
       "gain": 2.9,
       "gate": -85.8,
       "lead": 205,
@@ -3203,7 +3203,7 @@
     },
     "die Schulter": {
       "author": "Natschoba",
-      "file": "articles/dieu0020schulter.mp3",
+      "file": "articles/die_schulter.mp3",
       "gain": 6.1,
       "lead": 203,
       "matches": "die Schulter",
@@ -3214,7 +3214,7 @@
     },
     "die Schwester": {
       "author": "Natschoba",
-      "file": "articles/dieu0020schwester.mp3",
+      "file": "articles/die_schwester.mp3",
       "gain": 3.9,
       "gate": -81.3,
       "lead": 23,
@@ -3226,7 +3226,7 @@
     },
     "die Schwiegermutter": {
       "author": "Natschoba",
-      "file": "articles/dieu0020schwiegermutter.mp3",
+      "file": "articles/die_schwiegermutter.mp3",
       "gain": 5.8,
       "lead": 242,
       "matches": "die Schwiegermutter",
@@ -3237,7 +3237,7 @@
     },
     "die Sehnsucht": {
       "author": "Natschoba",
-      "file": "articles/dieu0020sehnsucht.mp3",
+      "file": "articles/die_sehnsucht.mp3",
       "gain": 7.4,
       "gate": -89.3,
       "lead": 143,
@@ -3249,7 +3249,7 @@
     },
     "die Seite": {
       "author": "Natschoba",
-      "file": "articles/dieu0020seite.mp3",
+      "file": "articles/die_seite.mp3",
       "gain": 5.0,
       "lead": 243,
       "matches": "die Seite",
@@ -3260,7 +3260,7 @@
     },
     "die Socke": {
       "author": "Natschoba",
-      "file": "articles/dieu0020socke.mp3",
+      "file": "articles/die_socke.mp3",
       "gain": 6.0,
       "gate": -85.6,
       "lead": 196,
@@ -3272,7 +3272,7 @@
     },
     "die Sonne": {
       "author": "Natschoba",
-      "file": "articles/dieu0020sonne.mp3",
+      "file": "articles/die_sonne.mp3",
       "gain": 5.4,
       "gate": -78.6,
       "lead": 232,
@@ -3284,7 +3284,7 @@
     },
     "die Sorge": {
       "author": "Natschoba",
-      "file": "articles/dieu0020sorge.mp3",
+      "file": "articles/die_sorge.mp3",
       "gain": 4.5,
       "gate": -78.5,
       "lead": 213,
@@ -3296,7 +3296,7 @@
     },
     "die Soße": {
       "author": "Natschoba",
-      "file": "articles/dieu0020sou00dfe.mp3",
+      "file": "articles/die_sou00dfe.mp3",
       "gain": 7.1,
       "gate": -86.8,
       "lead": 209,
@@ -3308,7 +3308,7 @@
     },
     "die Speisekarte": {
       "author": "Natschoba",
-      "file": "articles/dieu0020speisekarte.mp3",
+      "file": "articles/die_speisekarte.mp3",
       "gain": 6.3,
       "gate": -80.4,
       "matches": "die Speisekarte",
@@ -3319,7 +3319,7 @@
     },
     "die Sprache": {
       "author": "Natschoba",
-      "file": "articles/dieu0020sprache.mp3",
+      "file": "articles/die_sprache.mp3",
       "gain": 1.8,
       "gate": -81.4,
       "lead": 203,
@@ -3331,7 +3331,7 @@
     },
     "die Stadt": {
       "author": "Natschoba",
-      "file": "articles/dieu0020stadt.mp3",
+      "file": "articles/die_stadt.mp3",
       "gain": 3.1,
       "gate": -84.3,
       "lead": 140,
@@ -3343,7 +3343,7 @@
     },
     "die Straße": {
       "author": "Natschoba",
-      "file": "articles/dieu0020strau00dfe.mp3",
+      "file": "articles/die_strau00dfe.mp3",
       "gain": 3.9,
       "gate": -84.1,
       "matches": "die Straße",
@@ -3354,7 +3354,7 @@
     },
     "die Stunde": {
       "author": "Natschoba",
-      "file": "articles/dieu0020stunde.mp3",
+      "file": "articles/die_stunde.mp3",
       "gain": 3.6,
       "gate": -80.7,
       "lead": 217,
@@ -3366,7 +3366,7 @@
     },
     "die Suppe": {
       "author": "Natschoba",
-      "file": "articles/dieu0020suppe.mp3",
+      "file": "articles/die_suppe.mp3",
       "gain": 7.0,
       "gate": -79.4,
       "lead": 225,
@@ -3378,7 +3378,7 @@
     },
     "die Tante": {
       "author": "Natschoba",
-      "file": "articles/dieu0020tante.mp3",
+      "file": "articles/die_tante.mp3",
       "gain": 3.9,
       "gate": -85.5,
       "lead": 190,
@@ -3390,7 +3390,7 @@
     },
     "die Tasse": {
       "author": "Natschoba",
-      "file": "articles/dieu0020tasse.mp3",
+      "file": "articles/die_tasse.mp3",
       "gain": 6.9,
       "lead": 249,
       "matches": "die Tasse",
@@ -3401,7 +3401,7 @@
     },
     "die Tochter": {
       "author": "Natschoba",
-      "file": "articles/dieu0020tochter.mp3",
+      "file": "articles/die_tochter.mp3",
       "gain": 1.5,
       "gate": -82.3,
       "lead": 245,
@@ -3413,7 +3413,7 @@
     },
     "die Toilette": {
       "author": "Natschoba",
-      "file": "articles/dieu0020toilette.mp3",
+      "file": "articles/die_toilette.mp3",
       "gain": -1.8,
       "gate": -80.1,
       "lead": 55,
@@ -3425,7 +3425,7 @@
     },
     "die Tomate": {
       "author": "Natschoba",
-      "file": "articles/dieu0020tomate.mp3",
+      "file": "articles/die_tomate.mp3",
       "gain": -0.5,
       "gate": -83.3,
       "lead": 41,
@@ -3437,7 +3437,7 @@
     },
     "die Treppe": {
       "author": "Natschoba",
-      "file": "articles/dieu0020treppe.mp3",
+      "file": "articles/die_treppe.mp3",
       "gain": 6.1,
       "lead": 29,
       "matches": "die Treppe",
@@ -3448,7 +3448,7 @@
     },
     "die Tür": {
       "author": "Natschoba",
-      "file": "articles/dieu0020tu00fcr.mp3",
+      "file": "articles/die_tu00fcr.mp3",
       "gain": 8.6,
       "gate": -82.5,
       "lead": 28,
@@ -3460,7 +3460,7 @@
     },
     "die Universität": {
       "author": "Natschoba",
-      "file": "articles/dieu0020universitu00e4t.mp3",
+      "file": "articles/die_universitu00e4t.mp3",
       "gain": 1.8,
       "gate": -79.4,
       "lead": 38,
@@ -3472,7 +3472,7 @@
     },
     "die Unterschrift": {
       "author": "Natschoba",
-      "file": "articles/dieu0020unterschrift.mp3",
+      "file": "articles/die_unterschrift.mp3",
       "gain": 8.0,
       "lead": 90,
       "matches": "die Unterschrift",
@@ -3483,7 +3483,7 @@
     },
     "die Vergangenheit": {
       "author": "Natschoba",
-      "file": "articles/dieu0020vergangenheit.mp3",
+      "file": "articles/die_vergangenheit.mp3",
       "gain": 2.7,
       "gate": -79.0,
       "matches": "die Vergangenheit",
@@ -3494,7 +3494,7 @@
     },
     "die Waage": {
       "author": "Natschoba",
-      "file": "articles/dieu0020waage.mp3",
+      "file": "articles/die_waage.mp3",
       "gain": 1.6,
       "lead": 194,
       "matches": "die Waage",
@@ -3505,7 +3505,7 @@
     },
     "die Wahl": {
       "author": "Natschoba",
-      "file": "articles/dieu0020wahl.mp3",
+      "file": "articles/die_wahl.mp3",
       "gain": 2.3,
       "gate": -81.3,
       "matches": "die Wahl",
@@ -3516,7 +3516,7 @@
     },
     "die Wand": {
       "author": "Natschoba",
-      "file": "articles/dieu0020wand.mp3",
+      "file": "articles/die_wand.mp3",
       "gain": 0.1,
       "gate": -74.2,
       "lead": 219,
@@ -3528,7 +3528,7 @@
     },
     "die Woche": {
       "author": "Natschoba",
-      "file": "articles/dieu0020woche.mp3",
+      "file": "articles/die_woche.mp3",
       "gain": 3.6,
       "gate": -82.2,
       "matches": "die Woche",
@@ -3539,7 +3539,7 @@
     },
     "die Wohnung": {
       "author": "Natschoba",
-      "file": "articles/dieu0020wohnung.mp3",
+      "file": "articles/die_wohnung.mp3",
       "gain": 6.5,
       "gate": -79.8,
       "lead": 98,
@@ -3551,7 +3551,7 @@
     },
     "die Wolke": {
       "author": "Natschoba",
-      "file": "articles/dieu0020wolke.mp3",
+      "file": "articles/die_wolke.mp3",
       "gain": 2.1,
       "lead": 170,
       "matches": "die Wolke",
@@ -3562,7 +3562,7 @@
     },
     "die Wunde": {
       "author": "Natschoba",
-      "file": "articles/dieu0020wunde.mp3",
+      "file": "articles/die_wunde.mp3",
       "gain": 4.3,
       "lead": 182,
       "matches": "die Wunde",
@@ -3573,7 +3573,7 @@
     },
     "die Wut": {
       "author": "Natschoba",
-      "file": "articles/dieu0020wut.mp3",
+      "file": "articles/die_wut.mp3",
       "gain": 7.7,
       "gate": -79.1,
       "lead": 39,
@@ -3585,7 +3585,7 @@
     },
     "die Zahnbürste": {
       "author": "Natschoba",
-      "file": "articles/dieu0020zahnbu00fcrste.mp3",
+      "file": "articles/die_zahnbu00fcrste.mp3",
       "gain": 1.7,
       "gate": -92.1,
       "matches": "die Zahnbürste",
@@ -3596,7 +3596,7 @@
     },
     "die Zeit": {
       "author": "Natschoba",
-      "file": "articles/dieu0020zeit.mp3",
+      "file": "articles/die_zeit.mp3",
       "gain": 3.4,
       "gate": -84.0,
       "lead": 254,
@@ -3608,7 +3608,7 @@
     },
     "die Zeitung": {
       "author": "Natschoba",
-      "file": "articles/dieu0020zeitung.mp3",
+      "file": "articles/die_zeitung.mp3",
       "gain": 3.2,
       "gate": -81.0,
       "lead": 186,
@@ -3620,7 +3620,7 @@
     },
     "die Ziege": {
       "author": "Natschoba",
-      "file": "articles/dieu0020ziege.mp3",
+      "file": "articles/die_ziege.mp3",
       "gain": 8.4,
       "gate": -77.1,
       "lead": 167,
@@ -3632,7 +3632,7 @@
     },
     "die Zukunft": {
       "author": "Natschoba",
-      "file": "articles/dieu0020zukunft.mp3",
+      "file": "articles/die_zukunft.mp3",
       "gain": 2.1,
       "gate": -76.3,
       "lead": 108,
@@ -3644,7 +3644,7 @@
     },
     "die Zwiebel": {
       "author": "Natschoba",
-      "file": "articles/dieu0020zwiebel.mp3",
+      "file": "articles/die_zwiebel.mp3",
       "gain": 3.1,
       "gate": -83.3,
       "lead": 238,
@@ -3656,7 +3656,7 @@
     },
     "die Übung": {
       "author": "Natschoba",
-      "file": "articles/dieu0020u00fcbung.mp3",
+      "file": "articles/die_u00fcbung.mp3",
       "gain": 6.9,
       "gate": -81.9,
       "lead": 231,
@@ -3668,21 +3668,23 @@
     }
   },
   "authors": {
+    "Anhezu": "CC BY 3.0",
     "Arnim Faryn": "CC BY-SA 3.0",
     "Bleibein": "CC BY-SA 4.0",
+    "CamelCaseNick": "CC BY-SA 4.0",
     "Dinock90": "CC BY-SA 4.0",
     "Edward Montgomery Harrington": "CC BY-SA 3.0",
-    "Fojhtirf": "CC BY-SA 3.0",
     "Hedwig von Ebbel": "CC BY 3.0",
     "Holunder Gabriel": "CC BY-SA 4.0",
     "Jeuwre": "CC BY-SA 4.0",
     "Kampy": "CC BY-SA 3.0",
-    "Katrin Boxberger, Bernadette Perrin-Riou": "CC BY 3.0 us",
     "Leni Berlin": "CC BY-SA 2.5",
+    "Lucas Werkmeister": "CC0",
+    "Mathieu Kappler": "CC BY-SA 4.0",
     "MiER": "CC BY-SA 3.0",
     "Natschoba": "CC BY-SA 4.0",
-    "Netzize~commonswiki": "CC BY-SA 3.0",
     "Pajz": "Public domain",
+    "Patrick Strasser-Mikhail": "CC0",
     "Pill": "CC BY-SA 3.0",
     "Sebastian Wallroth": "CC0",
     "StMH": "CC BY-SA 3.0",
@@ -4052,7 +4054,7 @@
     },
     "Costa Rica": {
       "author": "Jeuwre",
-      "file": "countries/costau0020rica.mp3",
+      "file": "countries/costa_rica.mp3",
       "gain": -4.2,
       "lead": 319,
       "matches": "Costa Rica",
@@ -4742,14 +4744,14 @@
       "source": "De-Saudi-Arabien.ogg"
     },
     "Schweden": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "countries/schweden.mp3",
-      "gain": -2.2,
-      "gate": -53.0,
+      "gain": -4.3,
+      "lead": 424,
       "matches": "Schweden",
-      "mos": 2.51,
-      "sha256": "f23203471b87c4d3902aa6998b8477925d9a8a1b62411f69ad0abb68e3cedd03",
-      "source": "De-Schweden.ogg"
+      "mos": 3.22,
+      "sha256": "5392a94b326d490aa4b1aa34cfaf959498049ba05b50ec742b122764554b8bee",
+      "source": "De-Schweden2.ogg"
     },
     "Schweizer": {
       "author": "Jeuwre",
@@ -5216,7 +5218,6 @@
   },
   "licenses": {
     "CC BY 3.0": "https://creativecommons.org/licenses/by/3.0/",
-    "CC BY 3.0 us": "https://creativecommons.org/licenses/by/3.0/us/",
     "CC BY-SA 2.5": "https://creativecommons.org/licenses/by-sa/2.5/",
     "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
     "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
@@ -5308,15 +5309,14 @@
       "source": "De-abfahren2.ogg"
     },
     "abgeben": {
-      "author": "Jeuwre",
-      "cap": 3.1,
+      "author": "Kampy",
       "file": "words/abgeben.mp3",
-      "gain": 2.0,
-      "lead": 440,
+      "gain": -2.2,
+      "gate": -59.7,
       "matches": "abgeben",
-      "mos": 2.61,
-      "sha256": "a01dec42f3380295318410d3e25a4810eeb7bf163dd9e42e59568085588821bd",
-      "source": "De-abgeben2.ogg"
+      "mos": 3.17,
+      "sha256": "99a8d30188fa1faf085374c5d6ec2a51fec05fc0ff4ebc630c5c3fe893deda31",
+      "source": "De-abgeben.ogg"
     },
     "ablehnen": {
       "author": "Jeuwre",
@@ -5402,15 +5402,14 @@
       "source": "De-Affe2.ogg"
     },
     "affen": {
-      "author": "Kampy",
-      "cap": 1.3,
+      "author": "Jeuwre",
       "file": "words/affen.mp3",
-      "gain": -1.0,
-      "gate": -69.7,
+      "gain": 1.0,
+      "lead": 438,
       "matches": "affen",
-      "mos": 2.79,
-      "sha256": "0649ee948cd8372c583a237df9b90f2e34e27217065972f6e62f68f4599f667d",
-      "source": "De-Affen.ogg"
+      "mos": 3.17,
+      "sha256": "fcd4b726a60812203fc411c819b6ad3bcacdb22a71942e12d7fd9268359dd401",
+      "source": "De-Affen2.ogg"
     },
     "affix": {
       "author": "Jeuwre",
@@ -5485,7 +5484,7 @@
     },
     "alles gut": {
       "author": "Jeuwre",
-      "file": "words/allesu0020gut.mp3",
+      "file": "words/alles_gut.mp3",
       "gain": -4.0,
       "lead": 399,
       "matches": "alles gut",
@@ -5544,14 +5543,16 @@
       "source": "De-Ampeln.ogg"
     },
     "amt": {
-      "author": "Jeuwre",
+      "author": "Sebastian Wallroth",
+      "cap": 1.4,
       "file": "words/amt.mp3",
-      "gain": -0.2,
-      "lead": 239,
+      "gain": 4.1,
+      "gate": -70.3,
+      "lead": 142,
       "matches": "amt",
-      "mos": 2.24,
-      "sha256": "22d63ce48c1c9318448a42cfc41cb7ee748e3193f8cdb1aa86041209bcf02cab",
-      "source": "De-Amt.ogg"
+      "mos": 2.86,
+      "sha256": "4e7f07bc45d8643a25123cc9cb2f65c2b2c4d2710bdc4ca2cb09b2498d0f17ca",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Amt.wav"
     },
     "andere": {
       "author": "Jeuwre",
@@ -5638,14 +5639,14 @@
       "source": "De-angeln2.ogg"
     },
     "angst": {
-      "author": "Jeuwre",
+      "author": "Kampy",
       "file": "words/angst.mp3",
-      "gain": -0.5,
-      "lead": 443,
+      "gain": 3.6,
+      "gate": -73.4,
       "matches": "angst",
-      "mos": 2.64,
-      "sha256": "87cb1b7819cab21e244f3882c558f264c6909c00f63fb867de38593b791042c6",
-      "source": "De-Angst2.ogg"
+      "mos": 2.95,
+      "sha256": "f84d6acb8af62f4d74ca619ce45e465e6da8d37c135f954095af0679de38b810",
+      "source": "De-Angst.ogg"
     },
     "ankommen": {
       "author": "Jeuwre",
@@ -6119,24 +6120,24 @@
       "source": "De-Ausweise.ogg"
     },
     "ausziehen": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
+      "author": "Jeuwre",
       "file": "words/ausziehen.mp3",
-      "gain": 3.5,
-      "gate": -52.0,
+      "gain": 1.3,
+      "lead": 441,
       "matches": "ausziehen",
-      "mos": 2.54,
-      "sha256": "46a7c930928b15f0dcc9d73984c2b2dbf99ad5517963a25c7c5e378da25a2080",
-      "source": "De-ausziehen.ogg"
+      "mos": 3.21,
+      "sha256": "81278d879a9c572058cd229dd3e8a12012b2118c8cb7eaeed062c815e76fbf46",
+      "source": "De-ausziehen2.ogg"
     },
     "auto": {
-      "author": "Jeuwre",
+      "author": "Kampy",
       "file": "words/auto.mp3",
-      "gain": 2.8,
-      "gate": -62.3,
+      "gain": -1.6,
+      "gate": -58.6,
       "matches": "auto",
-      "mos": 3.1,
-      "sha256": "f782dff79e2fa343d7a9155637461bf173f637e387f2fb4c5b894173d9bc8acd",
-      "source": "De-Auto1.ogg"
+      "mos": 3.22,
+      "sha256": "476d306d4b6e862d16f40426fd40c57fbc2d747cc2bb3c264f1f17953f4ce1c0",
+      "source": "De-Auto.ogg"
     },
     "autos": {
       "author": "Kampy",
@@ -6376,14 +6377,14 @@
       "source": "De-beantragen.ogg"
     },
     "bedeutung": {
-      "author": "Jeuwre",
+      "author": "Anhezu",
       "file": "words/bedeutung.mp3",
-      "gain": -1.6,
-      "lead": 440,
+      "gain": 3.1,
+      "gate": -60.0,
       "matches": "bedeutung",
-      "mos": 2.68,
-      "sha256": "e6fe27e8ed2e11d936c0da9374e49bfcb7c60b01b99b4e9e6aaa210a03aa1998",
-      "source": "De-Bedeutung2.ogg"
+      "mos": 3.22,
+      "sha256": "6a1c21f681824216cd9fde3917edfc67dffa50029779febf56503004aee319bf",
+      "source": "De-Bedeutung.ogg"
     },
     "bedeutungen": {
       "author": "Jeuwre",
@@ -6748,15 +6749,14 @@
       "source": "De-Bibliothek2.ogg"
     },
     "bibliotheken": {
-      "author": "Fojhtirf",
-      "cap": 0.3,
+      "author": "Jeuwre",
       "file": "words/bibliotheken.mp3",
-      "gain": 7.2,
-      "gate": -71.4,
+      "gain": -0.3,
+      "lead": 442,
       "matches": "bibliotheken",
-      "mos": 2.78,
-      "sha256": "b83c50cff35c8df760d38caa3718245b459aee794c7bf58ec42b2f2db5d8ba79",
-      "source": "De-Bibliotheken.ogg"
+      "mos": 3.17,
+      "sha256": "a0b5ec2baa2eded99a576b07be91a5f230c79d3cf51999ef7ee017f5ccdb7a29",
+      "source": "De-Bibliotheken2.ogg"
     },
     "bild": {
       "author": "Jeuwre",
@@ -6820,7 +6820,7 @@
     },
     "bis später": {
       "author": "Natschoba",
-      "file": "words/bisu0020spu00e4ter.mp3",
+      "file": "words/bis_spu00e4ter.mp3",
       "gain": 6.9,
       "gate": -89.6,
       "lead": 226,
@@ -6952,15 +6952,15 @@
       "source": "De-Blumen.ogg"
     },
     "blut": {
-      "author": "Jeuwre",
-      "cap": 0.6,
+      "author": "Patrick Strasser-Mikhail",
       "file": "words/blut.mp3",
-      "gain": 1.7,
-      "lead": 440,
+      "gain": 14.0,
+      "gate": -89.1,
+      "lead": 170,
       "matches": "blut",
-      "mos": 2.68,
-      "sha256": "d35dd4f489d1599129f56e19e65cff51f05750b9371f3c4aaeb44721043c841e",
-      "source": "De-Blut2.ogg"
+      "mos": 3.12,
+      "sha256": "07477bcd07374e37f5c990da630676647501ba22211df205b9e99da3aa6a2077",
+      "source": "LL-Q188 (deu)-Patrick Strasser-Mikhail (Past)-Blut.wav"
     },
     "boden": {
       "author": "Jeuwre",
@@ -7096,14 +7096,16 @@
       "source": "De-Brot2.ogg"
     },
     "brote": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "cap": 1.3,
       "file": "words/brote.mp3",
-      "gain": -3.0,
-      "gate": -46.5,
+      "gain": 1.9,
+      "gate": -97.9,
+      "lead": 439,
       "matches": "brote",
-      "mos": 2.02,
-      "sha256": "e0046ba4900cfe4c0b930433f038f7fdc6d9d81b4c9422b0f957eae9a5b9758d",
-      "source": "De-Brote.ogg"
+      "mos": 2.54,
+      "sha256": "d73175e94304883c9ca202ec37d96c4fbb6c20f0f481f019c8e77081c3759baf",
+      "source": "De-Brote2.ogg"
     },
     "bruder": {
       "author": "Jeuwre",
@@ -7168,14 +7170,14 @@
       "source": "De-Brücken.ogg"
     },
     "brüder": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/bru00fcder.mp3",
-      "gain": -4.9,
-      "gate": -52.4,
+      "gain": -1.4,
+      "lead": 448,
       "matches": "brüder",
-      "mos": 2.74,
-      "sha256": "face122b85029dea271e7b812449d1dc18527e2175b16dcf151f606d4fb3a445",
-      "source": "De-Brüder.ogg"
+      "mos": 3.09,
+      "sha256": "29d580975cf072ce6cf8004c806a7d246bffc8af68c5705ac577376f2a72a2b2",
+      "source": "De-Brüder2.ogg"
     },
     "brüste": {
       "author": "Kampy",
@@ -7319,14 +7321,14 @@
       "source": "De-Büro2.ogg"
     },
     "büros": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/bu00fcros.mp3",
-      "gain": -2.9,
-      "gate": -48.1,
+      "gain": -2.1,
+      "lead": 443,
       "matches": "büros",
-      "mos": 2.77,
-      "sha256": "aa248664ae4b7be39ac3f06cd9ef5810461aa9e37c171b9e2acb307a4577fc8b",
-      "source": "De-Büros.ogg"
+      "mos": 3.33,
+      "sha256": "a7e310c053e2535bb398202fd1ad78e43bba303f0d0985b731bad9dcd9089462",
+      "source": "De-Büros2.ogg"
     },
     "campingplatz": {
       "author": "Jeuwre",
@@ -7409,24 +7411,24 @@
       "source": "De-Cousine.ogg"
     },
     "cousinen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/cousinen.mp3",
-      "gain": -5.4,
-      "gate": -42.9,
+      "gain": -1.6,
+      "lead": 440,
       "matches": "cousinen",
-      "mos": 2.23,
-      "sha256": "c5a3ff114d387923dd76af59c4d4f635efc9bef15c2ca3d18729d5bb82a8f7cc",
-      "source": "De-Cousinen.ogg"
+      "mos": 3.11,
+      "sha256": "c4a534b87df1987bb4f6b54271898b5d68b3b49b456602614f89d3bd19c5c510",
+      "source": "De-Cousinen2.ogg"
     },
     "cousins": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/cousins.mp3",
-      "gain": -4.6,
-      "gate": -43.2,
+      "gain": -4.7,
+      "lead": 449,
       "matches": "cousins",
-      "mos": 2.34,
-      "sha256": "fb3cc859216751469ee75fbf695ac0a9add629a6cd5f33adc7cebeab5bb764d3",
-      "source": "De-Cousins.ogg"
+      "mos": 3.38,
+      "sha256": "7ad46058a0404b61f63d5fc9514dce452fbf04f4a3ea80cca9915510abc734c9",
+      "source": "De-Cousins2.ogg"
     },
     "creme": {
       "author": "Jeuwre",
@@ -7658,14 +7660,15 @@
       "source": "De-Dorf2.ogg"
     },
     "dort": {
-      "author": "Jeuwre",
+      "author": "Bleibein",
       "file": "words/dort.mp3",
-      "gain": -0.2,
-      "lead": 440,
+      "gain": 0.9,
+      "gate": -59.2,
+      "license": "CC BY-SA 3.0",
       "matches": "dort",
-      "mos": 2.69,
-      "sha256": "954c488a9fb05253f619a15d623470a37f2834664d32381dfc79810ebc480af4",
-      "source": "De-dort3.ogg"
+      "mos": 3.13,
+      "sha256": "79419f9df84734ee0d90d79801017249bcc912c25d97eec0d8595708c33c781c",
+      "source": "De-dort.ogg"
     },
     "dose": {
       "author": "Jeuwre",
@@ -7761,15 +7764,15 @@
       "source": "De-Drüsen.ogg"
     },
     "du": {
-      "author": "Jeuwre",
-      "cap": 1.2,
+      "author": "joni",
+      "cap": 0.4,
       "file": "words/du.mp3",
-      "gain": 2.0,
-      "lead": 442,
+      "gain": 13.7,
+      "gate": -84.3,
       "matches": "du",
-      "mos": 2.15,
-      "sha256": "a41975a8510a5df8dc9c4c3d2ad32a7b1e6d82a43ac113e13b11128802b9bf9b",
-      "source": "De-du2.ogg"
+      "mos": 3.05,
+      "sha256": "5b4d8193cf7a863d683e8381c3f1546bbf6e1bafe4216a44b40abb75bc64122d",
+      "source": "De-du.ogg"
     },
     "durst": {
       "author": "Jeuwre",
@@ -7802,14 +7805,14 @@
       "source": "De-duschen2.ogg"
     },
     "därme": {
-      "author": "T.Voekler",
+      "author": "Jeuwre",
       "file": "words/du00e4rme.mp3",
-      "gain": -1.1,
-      "gate": -81.1,
+      "gain": -2.4,
+      "lead": 390,
       "matches": "därme",
-      "mos": 1.91,
-      "sha256": "e7d94b2b3ba90acc77a6f0fbd3551852d7e3bbf64d474f6d476bb6c0daa65978",
-      "source": "De-Därme.ogg"
+      "mos": 3.1,
+      "sha256": "9708f645651f5d933d0397dbf2b335aa6b39ccd6d96cdf4eb3f52e08cd6b70c7",
+      "source": "De-Därme2.ogg"
     },
     "dörfer": {
       "author": "T.Voekler",
@@ -7903,14 +7906,14 @@
       "source": "De-Ehefrau2.ogg"
     },
     "ehefrauen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/ehefrauen.mp3",
-      "gain": -5.6,
-      "gate": -51.0,
+      "gain": -4.4,
+      "lead": 400,
       "matches": "ehefrauen",
-      "mos": 2.69,
-      "sha256": "5e79a3b28ce689eec1c40180d9c1afeb99000ccf64b7d200b5fe05ea93cde1e3",
-      "source": "De-Ehefrauen.ogg"
+      "mos": 3.1,
+      "sha256": "1c01c383744dfecc0d4b5796612d4fe7c4a71ba858b329a666636aecdcd208c1",
+      "source": "De-Ehefrauen2.ogg"
     },
     "ehemann": {
       "author": "Jeuwre",
@@ -7997,7 +8000,7 @@
     },
     "ein bisschen": {
       "author": "Natschoba",
-      "file": "words/einu0020bisschen.mp3",
+      "file": "words/ein_bisschen.mp3",
       "gain": 6.3,
       "gate": -82.0,
       "lead": 268,
@@ -8039,14 +8042,15 @@
       "source": "De-Eingang2.ogg"
     },
     "eingänge": {
-      "author": "T.Voekler",
+      "author": "Jeuwre",
+      "cap": 0.1,
       "file": "words/eingu00e4nge.mp3",
-      "gain": -5.4,
-      "gate": -52.8,
+      "gain": 1.9,
+      "lead": 445,
       "matches": "eingänge",
-      "mos": 2.46,
-      "sha256": "d1733a91257563f764e6a158cfa2081e3191f02d7f8ffa851275ab21fef77968",
-      "source": "De-Eingänge.ogg"
+      "mos": 3.05,
+      "sha256": "64ec0f61df0fdebb6a8965f90d765eac8de66e864a153271421d4dbe1e1cc494",
+      "source": "De-Eingänge2.ogg"
     },
     "einige": {
       "author": "Jeuwre",
@@ -8527,14 +8531,14 @@
       "source": "De-Fahrrad2.ogg"
     },
     "fahrräder": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/fahrru00e4der.mp3",
-      "gain": -7.9,
-      "gate": -53.7,
+      "gain": -0.3,
+      "lead": 404,
       "matches": "fahrräder",
-      "mos": 2.55,
-      "sha256": "032c9f4efe9273a03bd94c9ffb1ea59958641daa228fe0db6e4adb5eefd8ddec",
-      "source": "De-Fahrräder.ogg"
+      "mos": 3.25,
+      "sha256": "7263ccc9c1ae57f9ee1c97d92937e74d804d51f656575db7309a3ccdacc422a8",
+      "source": "De-Fahrräder2.ogg"
     },
     "fall": {
       "author": "Jeuwre",
@@ -8608,25 +8612,24 @@
       "source": "De-Farbe.ogg"
     },
     "farben": {
-      "author": "Netzize~commonswiki",
+      "author": "Jeuwre",
       "file": "words/farben.mp3",
-      "gain": -2.9,
-      "gate": -75.0,
-      "lead": 130,
+      "gain": -0.5,
+      "lead": 397,
       "matches": "farben",
-      "mos": 2.7,
-      "sha256": "6d3bd52199b586b4d5613132dd3f630547de0981341e9dee7d7d2daadc2f6882",
-      "source": "De-Farben.ogg"
+      "mos": 3.06,
+      "sha256": "baf647b51515e8b5a39332c9fe84eafa5087b261c70a6744877aef0d2f9ef87e",
+      "source": "De-Farben2.ogg"
     },
     "fast": {
       "author": "Jeuwre",
       "file": "words/fast.mp3",
-      "gain": -3.4,
-      "lead": 384,
+      "gain": -4.9,
+      "lead": 387,
       "matches": "fast",
-      "mos": 2.51,
-      "sha256": "6ce553c372d1240626e6e1563672e293ef75420fa624f65fbbfdd18fd6e934a8",
-      "source": "De-fast2.ogg"
+      "mos": 2.81,
+      "sha256": "6b93911098aef58ba8b05378f1e6cde7503b51373a5220950b8b05ec6acd8cfb",
+      "source": "De-fast3.ogg"
     },
     "fehler": {
       "author": "Jeuwre",
@@ -8772,14 +8775,14 @@
       "source": "De-film.ogg"
     },
     "filme": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/filme.mp3",
-      "gain": -5.8,
-      "gate": -48.3,
+      "gain": -3.9,
+      "lead": 410,
       "matches": "filme",
-      "mos": 2.2,
-      "sha256": "2c0384e2f4d11f2bfe3163137351b4389bae6b915cf5b0621c2821068998ce3c",
-      "source": "De-Filme.ogg"
+      "mos": 3.14,
+      "sha256": "12f20d9123d740dcfb50172065406f627dd5446cd56b1c3b87600a9e9e40cbf1",
+      "source": "De-filme.ogg"
     },
     "finden": {
       "author": "Jeuwre",
@@ -8833,14 +8836,14 @@
       "source": "De-fisch.ogg"
     },
     "fische": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/fische.mp3",
-      "gain": -6.3,
-      "gate": -44.8,
+      "gain": -1.9,
+      "lead": 406,
       "matches": "fische",
-      "mos": 2.08,
-      "sha256": "0920a7e0354a16679de3f8da9a5754c70a992c3d81c96451243853b32e241cca",
-      "source": "De-Fische.ogg"
+      "mos": 3.23,
+      "sha256": "89fc56f5c1f9d3c7bb87e2d79c158be7aa4fa14283d758687fa52a4b84cfd411",
+      "source": "De-fische.ogg"
     },
     "fleisch": {
       "author": "Jeuwre",
@@ -8883,14 +8886,14 @@
       "source": "De-Flugzeug2.ogg"
     },
     "flugzeuge": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/flugzeuge.mp3",
-      "gain": -4.1,
-      "gate": -47.2,
+      "gain": 2.0,
+      "lead": 397,
       "matches": "flugzeuge",
-      "mos": 2.46,
-      "sha256": "acdb18fe2fdfb42652e36638dfbefc7ec27c16e27b969077824f928f2475707a",
-      "source": "De-Flugzeuge.ogg"
+      "mos": 3.25,
+      "sha256": "692a941a73e44929b24b5aef809fd67d0a42ed6ca44ae0bd02c9ea5979a2c22c",
+      "source": "De-Flugzeuge2.ogg"
     },
     "flur": {
       "author": "Jeuwre",
@@ -8923,14 +8926,14 @@
       "source": "De-Fluss2.ogg"
     },
     "flüsse": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/flu00fcsse.mp3",
-      "gain": -2.5,
-      "gate": -53.2,
+      "gain": -0.1,
+      "lead": 513,
       "matches": "flüsse",
-      "mos": 1.8,
-      "sha256": "be7b822127c2c4fc5f02f5de3cc8d37061be3f4db7983c803bee6cc7d79d3c73",
-      "source": "De-Flüsse.ogg"
+      "mos": 3.18,
+      "sha256": "a4dacb6cdad4330346f033c3841605743d41dae2da68227406c3b73e5c4c90b0",
+      "source": "De-Flüsse2.ogg"
     },
     "flüssig": {
       "author": "Jeuwre",
@@ -9003,14 +9006,14 @@
       "source": "De-Frau2.ogg"
     },
     "frauen": {
-      "author": "joni",
+      "author": "Jeuwre",
       "file": "words/frauen.mp3",
-      "gain": 0.5,
-      "gate": -60.3,
+      "gain": -2.6,
+      "lead": 382,
       "matches": "frauen",
-      "mos": 2.68,
-      "sha256": "a5823ede4a89c5fbcc217949fef4111c5d23dd93d63a7e7abf89a77598eb779a",
-      "source": "De-Frauen.ogg"
+      "mos": 3.12,
+      "sha256": "ed40ffb0e0ab188f1e7e78ec548c2ca132a932b49638cd98fee0abad35b4f019",
+      "source": "De-Frauen2.ogg"
     },
     "freiheit": {
       "author": "Jeuwre",
@@ -9238,14 +9241,14 @@
       "source": "De-für2.ogg"
     },
     "füße": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/fu00fcu00dfe.mp3",
-      "gain": -0.5,
-      "gate": -52.2,
+      "gain": -0.4,
+      "lead": 406,
       "matches": "füße",
-      "mos": 2.38,
-      "sha256": "e6b5074796b6264fd6ce4e8dd2bacb94c6ba854afcc5cbc5524e4901a5b39ce9",
-      "source": "De-Füße.ogg"
+      "mos": 2.95,
+      "sha256": "d038f963c1f890575f54c961f6f1debe9f110991428cab42bd590032cec686ec",
+      "source": "De-Füße2.ogg"
     },
     "gabel": {
       "author": "Jeuwre",
@@ -9300,26 +9303,27 @@
     "gast": {
       "author": "Jeuwre",
       "file": "words/gast.mp3",
-      "gain": -0.1,
-      "lead": 428,
+      "gain": -3.8,
+      "lead": 430,
       "matches": "gast",
-      "mos": 2.5,
-      "sha256": "1aece41b30c166ebbfaf662ee0dbb39dbf84fdc4928725bd2644b8020b931f80",
-      "source": "De-Gast2.ogg"
+      "mos": 3.15,
+      "sha256": "9d0d42805a7acca723bd6d5f80181f00383d7b5bb71ef9972697d65125273ebb",
+      "source": "De-gast.ogg"
     },
     "geben": {
-      "author": "Jeuwre",
+      "author": "Sebastian Wallroth",
       "file": "words/geben.mp3",
-      "gain": 0.4,
-      "lead": 438,
+      "gain": 13.8,
+      "gate": -89.9,
+      "lead": 281,
       "matches": "geben",
-      "mos": 2.69,
-      "sha256": "19ae3ce2b22ca5c960d1be6453347ea2efa88d66428054187fdd6c5dca85e4ea",
-      "source": "De-geben2.ogg"
+      "mos": 3.13,
+      "sha256": "c9a94c6241113dc08d280321aee744af184b7ce2597ccc002d9e8cec61fecf7e",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-geben.wav"
     },
     "geboren werden": {
       "author": "Jeuwre",
-      "file": "words/geborenu0020werden.mp3",
+      "file": "words/geboren_werden.mp3",
       "gain": -2.2,
       "lead": 441,
       "matches": "geboren werden",
@@ -9369,23 +9373,22 @@
     "geburtsort": {
       "author": "Jeuwre",
       "file": "words/geburtsort.mp3",
-      "gain": 0.6,
-      "gate": -78.7,
-      "lead": 76,
+      "gain": -2.3,
+      "lead": 448,
       "matches": "geburtsort",
-      "mos": 2.64,
-      "sha256": "733d0b07199d3c9c02d814f5451ce2f248b3bef354a313d112c427493f4d27c0",
-      "source": "De-Geburtsort.ogg"
+      "mos": 3.2,
+      "sha256": "ad96315065196850f811f0e26c12409f1e348e0a81c1422f5d0daf994e5e5464",
+      "source": "De-Geburtsort2.ogg"
     },
     "geburtsorte": {
       "author": "Jeuwre",
       "file": "words/geburtsorte.mp3",
-      "gain": 2.2,
-      "lead": 29,
+      "gain": -2.4,
+      "lead": 441,
       "matches": "geburtsorte",
-      "mos": 2.64,
-      "sha256": "31fa02b05fafb715230156a10b84f4b2dea4ed4063f651888ff792c0d3accbab",
-      "source": "De-Geburtsorte.ogg"
+      "mos": 3.32,
+      "sha256": "b3db87c3df831da3a2bf4f2d53949255bee73ecac46aab4934b34d3eabea66f8",
+      "source": "De-Geburtsorte2.ogg"
     },
     "geburtstag": {
       "author": "Jeuwre",
@@ -9852,14 +9855,15 @@
       "source": "De-Gleichheit.ogg"
     },
     "gläser": {
-      "author": "Kampy",
+      "author": "Sebastian Wallroth",
       "file": "words/glu00e4ser.mp3",
-      "gain": -6.1,
-      "gate": -44.9,
+      "gain": 5.2,
+      "gate": -79.1,
+      "lead": 228,
       "matches": "gläser",
-      "mos": 2.61,
-      "sha256": "21acdae94de68fa39d84ad01e8417dae5b0a0941410fc2c927b85f6cd8c1f6c6",
-      "source": "De-Gläser.ogg"
+      "mos": 3.1,
+      "sha256": "56e2ff6ba31e1ffc7e6bc5432293a181e49088d1a23b3ccbc185a07e03a9bc4f",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Gläser.wav"
     },
     "grab": {
       "author": "Jeuwre",
@@ -9944,15 +9948,14 @@
       "source": "De-Großeltern.ogg"
     },
     "gräber": {
-      "author": "Bleibein",
+      "author": "Jeuwre",
       "file": "words/gru00e4ber.mp3",
-      "gain": 5.6,
-      "gate": -60.1,
-      "license": "CC BY-SA 3.0",
+      "gain": -2.9,
+      "lead": 436,
       "matches": "gräber",
-      "mos": 2.78,
-      "sha256": "dd855bb0e3c42f172063e23bb9a71a32dd2e5c0b9d34854323e80f83325023b6",
-      "source": "De-Gräber.ogg"
+      "mos": 3.13,
+      "sha256": "cc1981153082550166849796b7d5e864021fd6865dc5559a65134df1988f89d3",
+      "source": "LL-Q188 (deu)-Jeuwre-Gräber.wav"
     },
     "größe": {
       "author": "Jeuwre",
@@ -9997,7 +10000,7 @@
     },
     "gute nacht": {
       "author": "Natschoba",
-      "file": "words/guteu0020nacht.mp3",
+      "file": "words/gute_nacht.mp3",
       "gain": 7.7,
       "gate": -80.4,
       "lead": 211,
@@ -10008,7 +10011,7 @@
     },
     "guten abend": {
       "author": "Natschoba",
-      "file": "words/gutenu0020abend.mp3",
+      "file": "words/guten_abend.mp3",
       "gain": 2.1,
       "gate": -79.4,
       "lead": 240,
@@ -10019,7 +10022,7 @@
     },
     "guten morgen": {
       "author": "Natschoba",
-      "file": "words/gutenu0020morgen.mp3",
+      "file": "words/guten_morgen.mp3",
       "gain": 2.3,
       "gate": -79.9,
       "lead": 217,
@@ -10030,7 +10033,7 @@
     },
     "guten tag": {
       "author": "Natschoba",
-      "file": "words/gutenu0020tag.mp3",
+      "file": "words/guten_tag.mp3",
       "gain": 3.7,
       "gate": -90.0,
       "lead": 178,
@@ -10050,15 +10053,14 @@
       "source": "De-gähnen.ogg"
     },
     "gäste": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/gu00e4ste.mp3",
-      "gain": -0.3,
-      "gate": -61.9,
-      "lead": 17,
+      "gain": 0.3,
+      "lead": 427,
       "matches": "gäste",
-      "mos": 2.59,
-      "sha256": "0915334317e302f35635d9f6040260e74cd97681b2da0266e30940d935d80e7b",
-      "source": "De-Gäste.ogg"
+      "mos": 3.1,
+      "sha256": "f8cc9002a71a704318e9ecf786105b667683e037804e4ed9bffbc4d0b8062a0c",
+      "source": "De-Gäste2.ogg"
     },
     "gürtel": {
       "author": "Jeuwre",
@@ -10081,15 +10083,14 @@
       "source": "De-haar.ogg"
     },
     "haare": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/haare.mp3",
-      "gain": -4.0,
-      "gate": -64.5,
-      "lead": 46,
+      "gain": -1.4,
+      "lead": 594,
       "matches": "haare",
-      "mos": 2.64,
-      "sha256": "cf9f914a310ddf31ea662162f1ae4b232763f0022b7f2b607e21864e2f155551",
-      "source": "De-Haare.ogg"
+      "mos": 3.28,
+      "sha256": "a6bd571279a6f5902efc7c965fdb0d755b4703337fa1604582711732aa9a8fdc",
+      "source": "De-Haare2.ogg"
     },
     "haben": {
       "author": "Jeuwre",
@@ -10183,14 +10184,14 @@
       "source": "De-Handschuh2.ogg"
     },
     "handschuhe": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/handschuhe.mp3",
-      "gain": 1.3,
-      "gate": -47.1,
+      "gain": -3.3,
+      "lead": 399,
       "matches": "handschuhe",
-      "mos": 2.2,
-      "sha256": "af6f5fb83d7d9420e50c8f7756515d696e2f3c785a3bfad0b0b69b59ed4282e6",
-      "source": "De-Handschuhe.ogg"
+      "mos": 3.31,
+      "sha256": "aa32ff3c2ef588da6f53531ad92ac2b6b13adc49bb3e869d289b69cdbaee9b25",
+      "source": "De-Handschuhe2.ogg"
     },
     "handtuch": {
       "author": "Jeuwre",
@@ -10245,13 +10246,12 @@
     "hausaufgabe": {
       "author": "Jeuwre",
       "file": "words/hausaufgabe.mp3",
-      "gain": 2.9,
-      "gate": -72.6,
-      "lead": 166,
+      "gain": -0.4,
+      "lead": 393,
       "matches": "hausaufgabe",
-      "mos": 3.27,
-      "sha256": "f427b0c924454bac4f2caa069c92542b0c1e1a423293023d3e1a06635a936870",
-      "source": "De-Hausaufgabe.ogg"
+      "mos": 3.28,
+      "sha256": "8adbcc46daa6d7339de69a7668764a921ffa644b2cc0035b35c7e451b5819f41",
+      "source": "De-Hausaufgabe2.ogg"
     },
     "hausaufgaben": {
       "author": "Jeuwre",
@@ -10305,14 +10305,14 @@
       "source": "De-heft.ogg"
     },
     "hefte": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/hefte.mp3",
-      "gain": -6.8,
-      "gate": -47.1,
+      "gain": -0.5,
+      "lead": 421,
       "matches": "hefte",
-      "mos": 1.8,
-      "sha256": "693a7965d2b872b397b7903788c53cf9186d7c472ee76ad584e3b34e964970d1",
-      "source": "De-Hefte.ogg"
+      "mos": 3.18,
+      "sha256": "2b07a824f44d825325ae10c93e0b0b6e7b1b46cec182dc7060cc25f1710d5e87",
+      "source": "De-hefte.ogg"
     },
     "heiraten": {
       "author": "Jeuwre",
@@ -10600,14 +10600,14 @@
       "source": "De-Hotel2.ogg"
     },
     "hotels": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/hotels.mp3",
-      "gain": -8.8,
-      "gate": -54.0,
+      "gain": -0.9,
+      "lead": 398,
       "matches": "hotels",
-      "mos": 2.39,
-      "sha256": "4249e656c86330b96d2e3048c896447f0ca5fa8717a6b329b7daa68e2a40bf4b",
-      "source": "De-Hotels.ogg"
+      "mos": 3.16,
+      "sha256": "6112c09977abcac0dccbd0b94cb801cd4be6d978d833da5671e939cf422b81e9",
+      "source": "De-Hotels2.ogg"
     },
     "hund": {
       "author": "Jeuwre",
@@ -10643,13 +10643,13 @@
     "husten": {
       "author": "Jeuwre",
       "file": "words/husten.mp3",
-      "gain": -0.6,
-      "gate": -77.6,
-      "lead": 386,
+      "gain": -1.5,
+      "gate": -98.4,
+      "lead": 380,
       "matches": "husten",
-      "mos": 2.51,
-      "sha256": "a00b6aba842cda9b9f8d9ced86a2c19f8245ec9dff08a8833b8c9fd8c7ee1ed1",
-      "source": "De-husten.ogg"
+      "mos": 3.07,
+      "sha256": "14deeb99e5c439d8127111ca9f0d1a68a61c78cda06af440f4c9f3dd1ea52e8b",
+      "source": "De-Husten.ogg"
     },
     "häfen": {
       "author": "Kampy",
@@ -10672,24 +10672,24 @@
       "source": "De-Hähnchen2.ogg"
     },
     "hälse": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/hu00e4lse.mp3",
-      "gain": -2.9,
-      "gate": -54.8,
+      "gain": -2.7,
+      "lead": 397,
       "matches": "hälse",
-      "mos": 2.34,
-      "sha256": "8540efd3134780dfe125589ea0643ed5805ad5fe553a412ac0c361d6d3311788",
-      "source": "De-Hälse.ogg"
+      "mos": 3.07,
+      "sha256": "d2a7f15c542e3b4caa42bc1f025a5aee69287bddbdfc5229a1180ef01eb7f666",
+      "source": "De-Hälse2.ogg"
     },
     "hände": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/hu00e4nde.mp3",
-      "gain": -2.7,
-      "gate": -43.2,
+      "gain": 1.4,
+      "lead": 401,
       "matches": "hände",
-      "mos": 2.54,
-      "sha256": "df1774d4cbce505c508144c0c52f872b6765131efe3af9a6fbe7bc5149f2437a",
-      "source": "De-Hände.ogg"
+      "mos": 3.0,
+      "sha256": "4765cfc29c3c3ba170a88b50995142e5f85234546412c21b5c8c1d8785a7c4fd",
+      "source": "De-Hände2.ogg"
     },
     "händler": {
       "author": "Jeuwre",
@@ -10784,7 +10784,7 @@
     },
     "ich liebe dich": {
       "author": "Leni Berlin",
-      "file": "words/ichu0020liebeu0020dich.mp3",
+      "file": "words/ich_liebe_dich.mp3",
       "gain": 15.5,
       "gate": -62.8,
       "matches": "ich liebe dich",
@@ -10794,7 +10794,7 @@
     },
     "ich verstehe nicht": {
       "author": "Timwi at English Wikipedia",
-      "file": "words/ichu0020versteheu0020nicht.mp3",
+      "file": "words/ich_verstehe_nicht.mp3",
       "gain": 0.7,
       "gate": -67.4,
       "matches": "ich verstehe nicht",
@@ -10813,14 +10813,15 @@
       "source": "De-ihr2.ogg"
     },
     "immer": {
-      "author": "Jeuwre",
+      "author": "Dinock90",
       "file": "words/immer.mp3",
-      "gain": -1.8,
-      "lead": 447,
+      "gain": 5.6,
+      "gate": -82.4,
+      "lead": 373,
       "matches": "immer",
-      "mos": 2.19,
-      "sha256": "5622dd736f48af7c4da75f6c8c89bc9a5035815ca173b3799d0d01f1cf505ffc",
-      "source": "De-immer2.ogg"
+      "mos": 2.99,
+      "sha256": "a776070dc3897d694dfc546f7562a3ce43980989d28da6a65f1774831b59c980",
+      "source": "De-immer.ogg"
     },
     "impfung": {
       "author": "Jeuwre",
@@ -10985,14 +10986,14 @@
       "source": "De-Jahrhundert2.ogg"
     },
     "jahrhunderte": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/jahrhunderte.mp3",
-      "gain": 0.4,
-      "gate": -43.8,
+      "gain": -3.0,
+      "lead": 425,
       "matches": "jahrhunderte",
-      "mos": 2.57,
-      "sha256": "c53667d9367747ce67e301554c0988edea7c7af82255f95b907464a95aa35fc2",
-      "source": "De-Jahrhunderte.ogg"
+      "mos": 3.35,
+      "sha256": "d5a7c40079db32accc20d6f2880edc5d94a46e05d94e84d11dc900834fd64dd8",
+      "source": "De-Jahrhunderte2.ogg"
     },
     "jahrtausend": {
       "author": "Jeuwre",
@@ -11025,14 +11026,14 @@
       "source": "De-Jahrzehnt2.ogg"
     },
     "jahrzehnte": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/jahrzehnte.mp3",
-      "gain": 3.0,
-      "gate": -45.6,
+      "gain": -1.4,
+      "lead": 423,
       "matches": "jahrzehnte",
-      "mos": 2.62,
-      "sha256": "da7932ef8917e0635c579dc640366c74177ccc598596e03447118999577dde4c",
-      "source": "De-Jahrzehnte.ogg"
+      "mos": 3.29,
+      "sha256": "4a0365bd4683d8ddfbccee7f6fe81fa799b8686f73138ed6638773a4590d2efa",
+      "source": "De-Jahrzehnte2.ogg"
     },
     "jede": {
       "author": "Jeuwre",
@@ -11106,14 +11107,14 @@
       "source": "De-Jugend.ogg"
     },
     "jung": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/jung.mp3",
-      "gain": -4.4,
-      "gate": -57.9,
+      "gain": -1.6,
+      "lead": 407,
       "matches": "jung",
-      "mos": 1.97,
-      "sha256": "86148bff6823031e361cabab4a9f65f7d97acb69e46e7b05de48baaa5887d755",
-      "source": "De-jung.ogg"
+      "mos": 2.88,
+      "sha256": "f36cf7641971c5841604c5daabbb31135e485e478c26c10848d38784d48cd42d",
+      "source": "De-Jung.ogg"
     },
     "junge": {
       "author": "Jeuwre",
@@ -11280,14 +11281,15 @@
       "source": "De-Katze2.ogg"
     },
     "katzen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
+      "cap": 0.2,
       "file": "words/katzen.mp3",
-      "gain": -1.3,
-      "gate": -54.2,
+      "gain": 2.3,
+      "lead": 440,
       "matches": "katzen",
-      "mos": 2.48,
-      "sha256": "7ee41ca7e18117fe054341a5626d7aae90f2b819af2537a704861bb349dddcad",
-      "source": "De-Katzen.ogg"
+      "mos": 3.05,
+      "sha256": "25e5b37fa31a52d288bd87867d6ee7d3b51124f174f1f90ff2d8a1f73b2ae1e3",
+      "source": "De-Katzen2.ogg"
     },
     "kaufen": {
       "author": "Jeuwre",
@@ -11411,14 +11413,14 @@
       "source": "De-Kirche2.ogg"
     },
     "kirchen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/kirchen.mp3",
-      "gain": -3.2,
-      "gate": -61.3,
+      "gain": -1.1,
+      "lead": 442,
       "matches": "kirchen",
-      "mos": 2.51,
-      "sha256": "047433b2f4db238160cf0e6ce6fa0cee991f3de0b49e0965d825f214c36be4bc",
-      "source": "De-Kirchen.ogg"
+      "mos": 3.33,
+      "sha256": "337da870df94695b7afa6dac90b463bf6cfa68ecbcc3f69272522c98941103d6",
+      "source": "De-Kirchen2.ogg"
     },
     "kissen": {
       "author": "Jeuwre",
@@ -11616,15 +11618,15 @@
       "source": "De-Kolleginnen.ogg"
     },
     "kommen": {
-      "author": "Jeuwre",
-      "cap": 0.7,
+      "author": "Lucas Werkmeister",
       "file": "words/kommen.mp3",
-      "gain": 1.9,
-      "lead": 447,
+      "gain": 9.1,
+      "gate": -71.0,
+      "lead": 278,
       "matches": "kommen",
-      "mos": 2.76,
-      "sha256": "90a8be71cc482c54c6e358646b890f0021b87d9918a93aa9e074e5452883d8a0",
-      "source": "De-kommen2.ogg"
+      "mos": 3.16,
+      "sha256": "753d1746f268e882e1d15c34f1ec37ab4dcf5e59162f048ace9536256c404278",
+      "source": "LL-Q188 (deu)-Lucas Werkmeister-kommen.wav"
     },
     "konjugation": {
       "author": "Jeuwre",
@@ -11648,13 +11650,14 @@
     },
     "kopf": {
       "author": "Jeuwre",
+      "cap": 0.4,
       "file": "words/kopf.mp3",
-      "gain": 0.5,
-      "lead": 440,
+      "gain": 1.9,
+      "lead": 403,
       "matches": "kopf",
-      "mos": 2.74,
-      "sha256": "68cea3851de055547ed05bd2362b252094bf10a42ea64c74e29568f1d85b7577",
-      "source": "De-kopf.ogg"
+      "mos": 3.12,
+      "sha256": "645f54d9fed191c4da062498a463de0c22cb253bcecf946cb8220335486c97f7",
+      "source": "De-Kopf2.ogg"
     },
     "kopfhörer": {
       "author": "Jeuwre",
@@ -11699,11 +11702,12 @@
     "kosten": {
       "author": "Jeuwre",
       "file": "words/kosten.mp3",
-      "lead": 448,
+      "gain": -1.6,
+      "lead": 440,
       "matches": "kosten",
-      "mos": 2.67,
-      "sha256": "b831798cc3da18fac738aa3d74c3491687637cf5221dade26e7f5da91198afa5",
-      "source": "De-kosten2.ogg"
+      "mos": 3.03,
+      "sha256": "f84dfa41e22ab1b128b1a7a7f4a3f13b1a049d8fe554511270af21c2dbe09ded",
+      "source": "De-kosten3.ogg"
     },
     "kostenlos": {
       "author": "Jeuwre",
@@ -12015,14 +12019,14 @@
       "source": "De-Körbe.ogg"
     },
     "kühe": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/ku00fche.mp3",
-      "gain": -5.2,
-      "gate": -61.6,
+      "gain": -5.0,
+      "lead": 442,
       "matches": "kühe",
-      "mos": 2.78,
-      "sha256": "f8976bbd7571fb791b82fdd3e8b8c1e81370a919d2f595f1565b24ae838727a4",
-      "source": "De-Kühe.ogg"
+      "mos": 3.08,
+      "sha256": "4b3ba65c82f19a0bedd2cd16aa5c57ab969033abdd4e5f246bb1c3c8fb7c51a7",
+      "source": "De-Kühe2.ogg"
     },
     "kühlschrank": {
       "author": "Jeuwre",
@@ -12035,14 +12039,14 @@
       "source": "De-Kühlschrank2.ogg"
     },
     "kühlschränke": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/ku00fchlschru00e4nke.mp3",
-      "gain": -5.6,
-      "gate": -49.6,
+      "gain": -0.1,
+      "lead": 544,
       "matches": "kühlschränke",
-      "mos": 2.26,
-      "sha256": "004685214eaccb3f48734d19cbba5441a051a31d5c0ad1225c875f50e3a36daa",
-      "source": "De-Kühlschränke.ogg"
+      "mos": 3.26,
+      "sha256": "8c35ce7468eb89de34b297430e0e9005e5cc13e5b6c49b26e32656f86fefce2b",
+      "source": "De-Kühlschränke2.ogg"
     },
     "kündigen": {
       "author": "Jeuwre",
@@ -12623,14 +12627,14 @@
       "source": "De-Läden.ogg"
     },
     "länder": {
-      "author": "Pill",
+      "author": "Jeuwre",
       "file": "words/lu00e4nder.mp3",
-      "gain": 5.3,
-      "gate": -59.5,
+      "gain": 1.6,
+      "lead": 437,
       "matches": "länder",
-      "mos": 2.6,
-      "sha256": "2e100ae409ae3ac79ef9706b1468f178569eb6a130030709f801f42a541f2f16",
-      "source": "De-Länder.ogg"
+      "mos": 2.98,
+      "sha256": "d2643743134400bb38d168ed5d9b2876d8ecbe119f0b9ec6bf42b5948a53d59d",
+      "source": "De-Länder2.ogg"
     },
     "lärm": {
       "author": "Holunder Gabriel",
@@ -12893,15 +12897,14 @@
       "source": "De-meinem.ogg"
     },
     "meinen": {
-      "author": "Katrin Boxberger, Bernadette Perrin-Riou",
+      "author": "Jeuwre",
       "file": "words/meinen.mp3",
-      "gain": -2.1,
-      "gate": -66.9,
-      "lead": 236,
+      "gain": -2.2,
+      "lead": 502,
       "matches": "meinen",
-      "mos": 2.5,
-      "sha256": "aaf13c534316c9d53ea0dc45aaac7a15b24f971d00b6c1ffed3e7b82e58f5e2d",
-      "source": "De-meinen.ogg"
+      "mos": 2.82,
+      "sha256": "52e2325e1a47c08b5dc11569c9401eb2f8bb6681d5589d9d7fbfbdd6ea9ad3d7",
+      "source": "De-meinen2.ogg"
     },
     "meiner": {
       "author": "Dinock90",
@@ -13027,15 +13030,14 @@
       "source": "De-Minuten.ogg"
     },
     "mit": {
-      "author": "Jeuwre",
-      "cap": 1.0,
+      "author": "joni",
       "file": "words/mit.mp3",
-      "gain": 2.2,
-      "lead": 437,
+      "gain": 3.5,
+      "gate": -63.2,
       "matches": "mit",
-      "mos": 2.37,
-      "sha256": "3562ab22f6b0292630648caaef202d1fa6a5c6f5713af0b9bf09ac4313f7ecb4",
-      "source": "De-mit2.ogg"
+      "mos": 2.79,
+      "sha256": "1b52562b5d0196977da6b339385367c18214673107684298eb97ad7768633208",
+      "source": "De-mit.ogg"
     },
     "mitbringen": {
       "author": "Jeuwre",
@@ -13131,14 +13133,14 @@
       "source": "De-Mond.ogg"
     },
     "monde": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/monde.mp3",
-      "gain": -6.4,
-      "gate": -49.8,
+      "gain": -3.3,
+      "lead": 432,
       "matches": "monde",
-      "mos": 2.62,
-      "sha256": "15b96ac426144e585741fd59dbcebd5ab28edd45f08feed62931fbf0f18c32cc",
-      "source": "De-Monde.ogg"
+      "mos": 3.15,
+      "sha256": "90f02306fc6001dd42ace456fe2250781108f825b1bd9fde8d80ea8c8fdd414d",
+      "source": "De-Monde2.ogg"
     },
     "morgen": {
       "author": "Jeuwre",
@@ -13457,15 +13459,14 @@
       "source": "De-Mütze2.ogg"
     },
     "mützen": {
-      "author": "Kampy",
-      "cap": 1.6,
+      "author": "Jeuwre",
       "file": "words/mu00fctzen.mp3",
-      "gain": 2.0,
-      "gate": -57.8,
+      "gain": -2.0,
+      "lead": 434,
       "matches": "mützen",
-      "mos": 2.68,
-      "sha256": "9a1b50fe6dc972d4608726d29e1f05eca708157ffba762ba9efc99c5c5ae329b",
-      "source": "De-Mützen.ogg"
+      "mos": 3.06,
+      "sha256": "283f4e2e600f0f72682e49809ae81a8839d2f245728d6d5987e002fdf608568f",
+      "source": "De-Mützen2.ogg"
     },
     "nach": {
       "author": "Jeuwre",
@@ -13488,14 +13489,14 @@
       "source": "De-Nachbar2.ogg"
     },
     "nachbarn": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/nachbarn.mp3",
-      "gain": -1.1,
-      "gate": -52.9,
+      "gain": -3.5,
+      "lead": 442,
       "matches": "nachbarn",
-      "mos": 2.74,
-      "sha256": "0aae5b650f250e14dc1749afd256aff8364c76e52f0450a1c6846337f561fd5a",
-      "source": "De-Nachbarn.ogg"
+      "mos": 3.23,
+      "sha256": "f1985fcda732747b76c6af5f6e67a91029229b2d80f9462457d5e495e3ce4fe2",
+      "source": "De-Nachbarn2.ogg"
     },
     "nachmittag": {
       "author": "Jeuwre",
@@ -13639,14 +13640,14 @@
       "source": "De-Nase2.ogg"
     },
     "nasen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/nasen.mp3",
-      "gain": -4.3,
-      "gate": -48.4,
+      "gain": -2.2,
+      "lead": 415,
       "matches": "nasen",
-      "mos": 2.43,
-      "sha256": "0afcc2a40703e3304a3509a38af4e9827715309d37d1de1070a9d55a39b38a7f",
-      "source": "De-Nasen.ogg"
+      "mos": 3.12,
+      "sha256": "e383ac841be7f9bd6fb307f0343712a0da97916906602a0623f64f2c6c22604c",
+      "source": "De-Nasen2.ogg"
     },
     "neben": {
       "author": "Jeuwre",
@@ -13659,26 +13660,24 @@
       "source": "De-neben2.ogg"
     },
     "neffe": {
-      "author": "User:Tosca",
+      "author": "Jeuwre",
       "file": "words/neffe.mp3",
-      "gain": 3.8,
-      "gate": -62.2,
-      "lead": 27,
+      "gain": -0.9,
+      "lead": 497,
       "matches": "neffe",
-      "mos": 2.6,
-      "sha256": "28b7ce5fb82a7422f6b7ac866e152541b639f1b34c4a8574fffe62919060c7dd",
-      "source": "De-Neffe.ogg"
+      "mos": 3.17,
+      "sha256": "aefce6b43f896d0075d5211104dc5013fec7b0b4ed02323e4fd1e193fe76fba3",
+      "source": "De-Neffe2.ogg"
     },
     "neffen": {
-      "author": "User:Tosca",
+      "author": "Jeuwre",
       "file": "words/neffen.mp3",
-      "gain": 4.9,
-      "gate": -64.1,
-      "lead": 80,
+      "gain": -0.4,
+      "lead": 507,
       "matches": "neffen",
-      "mos": 2.54,
-      "sha256": "5db49ca6d8398b6721b5cef75bab5673f4f355da813dea0f71fcb200bd05a573",
-      "source": "De-Neffen.ogg"
+      "mos": 3.09,
+      "sha256": "ad385f2475a42750f39aa750e6dbddf9da9a332c978eb4b6b85b3dce9e938c51",
+      "source": "De-Neffen2.ogg"
     },
     "negativ": {
       "author": "Jeuwre",
@@ -13761,14 +13760,14 @@
       "source": "De-nicht2.ogg"
     },
     "nichte": {
-      "author": "User:Tosca",
+      "author": "Jeuwre",
       "file": "words/nichte.mp3",
-      "gain": 6.8,
-      "gate": -59.6,
+      "gain": -1.2,
+      "lead": 437,
       "matches": "nichte",
-      "mos": 2.39,
-      "sha256": "9b0149936ce5c45e9c34ff56136bd310f470cd8281d4e97eef31f53cee9ccd15",
-      "source": "De-Nichte.ogg"
+      "mos": 3.06,
+      "sha256": "116bc5d8675e650bde6b6ddb5bfac137b853763385f7469b8f35cd131b404bf3",
+      "source": "De-Nichte2.ogg"
     },
     "nichten": {
       "author": "User:Tosca",
@@ -13833,15 +13832,14 @@
       "source": "De-Niere2.ogg"
     },
     "nieren": {
-      "author": "T.Voekler",
+      "author": "Jeuwre",
       "file": "words/nieren.mp3",
-      "gain": -5.3,
-      "gate": -59.2,
-      "lead": 2,
+      "gain": -1.4,
+      "lead": 430,
       "matches": "nieren",
-      "mos": 1.92,
-      "sha256": "8be5a25d6bb53bbb7a0772446e1822f824531ff54e4f63114fd701b35922595a",
-      "source": "De-Nieren.ogg"
+      "mos": 2.78,
+      "sha256": "1d877929301b887693a234c7f1b50308079d509aa8a02af4702811d39e55b539",
+      "source": "De-Nieren2.ogg"
     },
     "noch": {
       "author": "Jeuwre",
@@ -14006,14 +14004,13 @@
     },
     "obst": {
       "author": "Jeuwre",
-      "cap": 1.1,
       "file": "words/obst.mp3",
-      "gain": 1.4,
-      "lead": 444,
+      "gain": 2.0,
+      "lead": 435,
       "matches": "obst",
-      "mos": 2.35,
-      "sha256": "587497c887e5e73b8a64a8756489823f3bffc22ff4a4f37041b07fb031bbf663",
-      "source": "De-obst.ogg"
+      "mos": 2.77,
+      "sha256": "1fac26934a6f6dedda79cab93ecbe30e0b1a3afd64167821a3cef9bbbd189287",
+      "source": "De-Obst2.ogg"
     },
     "obwohl": {
       "author": "Jeuwre",
@@ -14200,14 +14197,13 @@
       "source": "De-Papier2.ogg"
     },
     "papiere": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/papiere.mp3",
-      "gain": -4.2,
-      "gate": -46.3,
+      "lead": 509,
       "matches": "papiere",
-      "mos": 2.48,
-      "sha256": "bdb4d7555283f1b398f5b5797cf23dfb2f4e0837f559535d30f161d511c42a60",
-      "source": "De-Papiere.ogg"
+      "mos": 3.0,
+      "sha256": "7952b148a629c57647ba9d638812a1133885e582f8f194b55e070b5ffe61cf64",
+      "source": "De-Papiere2.ogg"
     },
     "park": {
       "author": "Jeuwre",
@@ -14221,14 +14217,15 @@
       "source": "De-park.ogg"
     },
     "parks": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/parks.mp3",
-      "gain": -4.6,
-      "gate": -57.6,
+      "gain": -2.4,
+      "gate": -97.7,
+      "lead": 439,
       "matches": "parks",
-      "mos": 2.71,
-      "sha256": "118ebd9acab9c9987b262386f32070113224c8050abc06a24163ef60ad4448d1",
-      "source": "De-Parks.ogg"
+      "mos": 3.3,
+      "sha256": "951154c74b2732516f9702fe7863a668c072c9a075e44f268e6b9d64111f6fee",
+      "source": "De-Parks2.ogg"
     },
     "pass": {
       "author": "Jeuwre",
@@ -14261,14 +14258,14 @@
       "source": "De-Passagiere.ogg"
     },
     "passieren": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
+      "author": "Jeuwre",
       "file": "words/passieren.mp3",
-      "gain": 3.8,
-      "gate": -53.3,
+      "gain": -2.7,
+      "lead": 555,
       "matches": "passieren",
-      "mos": 2.7,
-      "sha256": "4963a8fb02978f93b319288962cea1cadc9af5171457da2e036e4a1d25a199ab",
-      "source": "De-passieren.ogg"
+      "mos": 3.03,
+      "sha256": "73e193b1b6662a6d622959a275edb7b76750b3b8c394a4427fb37a3c713a1c86",
+      "source": "De-passieren2.ogg"
     },
     "passwort": {
       "author": "Jeuwre",
@@ -14668,14 +14665,14 @@
       "source": "De-Radio2.ogg"
     },
     "radios": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/radios.mp3",
-      "gain": -7.0,
-      "gate": -52.5,
+      "gain": -0.5,
+      "lead": 414,
       "matches": "radios",
-      "mos": 2.69,
-      "sha256": "b306066730a8c0313f26205e7bae0d60c94505d44d59dc26aba664a2400fda58",
-      "source": "De-Radios.ogg"
+      "mos": 3.17,
+      "sha256": "8900fada6d70e7625ee37b56af3be0ed31e5a20d279abe8bce3ed9f2243686bc",
+      "source": "De-Radios2.ogg"
     },
     "rasierer": {
       "author": "Jeuwre",
@@ -14915,14 +14912,14 @@
       "source": "De-Restaurant2.ogg"
     },
     "restaurants": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/restaurants.mp3",
-      "gain": 1.2,
-      "gate": -55.9,
+      "gain": -3.9,
+      "lead": 440,
       "matches": "restaurants",
-      "mos": 2.79,
-      "sha256": "d585208d4f0cb70f27bc919d3963dfc590c05ce60619ae1b37a8a389eafbf931",
-      "source": "De-Restaurants.ogg"
+      "mos": 3.45,
+      "sha256": "516935f5e67251ce505f961574e73dacf26ae82c3be8c68dc1acbe18529814ce",
+      "source": "De-Restaurants2.ogg"
     },
     "rezept": {
       "author": "Jeuwre",
@@ -14968,12 +14965,12 @@
     "rot": {
       "author": "Jeuwre",
       "file": "words/rot.mp3",
-      "gain": -2.0,
-      "lead": 472,
+      "gain": -2.7,
+      "lead": 439,
       "matches": "rot",
-      "mos": 2.77,
-      "sha256": "8052657e93b65534d6033a17db5064e17a9fcf6762bdf725fbb7d7bf81af5990",
-      "source": "De-rot2.ogg"
+      "mos": 3.14,
+      "sha256": "179b981d6871f2c81c0630cf6f3d1c3d90c798796a05346e1c47d18fbdf5fe8f",
+      "source": "De-Rot.ogg"
     },
     "räder": {
       "author": "Jeuwre",
@@ -15221,14 +15218,14 @@
       "source": "De-schiff.ogg"
     },
     "schiffe": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/schiffe.mp3",
-      "gain": -8.0,
-      "gate": -47.2,
+      "gain": -2.5,
+      "lead": 436,
       "matches": "schiffe",
-      "mos": 2.21,
-      "sha256": "5ff9ac7d65351a87c2e74ddea79547065dfcd83636e953cb2fd5c53f09c4a597",
-      "source": "De-Schiffe.ogg"
+      "mos": 3.15,
+      "sha256": "6882d8238112c7ec06a6d969ab45d46ca941fd877aa4e80b9fdcf75837cbf27f",
+      "source": "De-schiffe.ogg"
     },
     "schilddrüse": {
       "author": "Jeuwre",
@@ -15422,14 +15419,14 @@
       "source": "De-Schreibtisch2.ogg"
     },
     "schreibtische": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/schreibtische.mp3",
-      "gain": -6.5,
-      "gate": -54.6,
+      "gain": -1.8,
+      "lead": 427,
       "matches": "schreibtische",
-      "mos": 2.63,
-      "sha256": "cb5abd36c8767f0170b756604e49ff8369b1d13195629e2acaa92404d749b475",
-      "source": "De-Schreibtische.ogg"
+      "mos": 3.36,
+      "sha256": "eba375078b05f687bf3e1ab4be28a517557da8a6ba8d1e49fc62d1761dbc96e3",
+      "source": "De-Schreibtische2.ogg"
     },
     "schuh": {
       "author": "Jeuwre",
@@ -15442,14 +15439,14 @@
       "source": "De-schuh.ogg"
     },
     "schuhe": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/schuhe.mp3",
-      "gain": -0.8,
-      "gate": -53.3,
+      "gain": -4.1,
+      "lead": 425,
       "matches": "schuhe",
-      "mos": 2.24,
-      "sha256": "9f506e256ecc496ede0e2f17858d00f88ab756cbc48ef0c7482b49a99ad42e1e",
-      "source": "De-Schuhe.ogg"
+      "mos": 3.14,
+      "sha256": "52191a640e8320f90ff0c17d3a0da7733bd828e034271116d355bb02cf6589bb",
+      "source": "De-schuhe.ogg"
     },
     "schulabschluss": {
       "author": "Jeuwre",
@@ -15504,14 +15501,14 @@
       "source": "De-schulter.ogg"
     },
     "schultern": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/schultern.mp3",
-      "gain": -2.1,
-      "gate": -56.7,
+      "gain": -4.3,
+      "lead": 418,
       "matches": "schultern",
-      "mos": 2.64,
-      "sha256": "84b40fbfae2dd1cebc8c62a8efffd5acee375235b9e468eac110fffabc503695",
-      "source": "De-Schultern.ogg"
+      "mos": 3.24,
+      "sha256": "5784540a7b000551601118c88be54a081f099da4cf3c8b0e3981adda9c660669",
+      "source": "De-Schultern2.ogg"
     },
     "schwach": {
       "author": "Jeuwre",
@@ -15554,14 +15551,15 @@
       "source": "De-schwarz3.ogg"
     },
     "schwer": {
-      "author": "Jeuwre",
+      "author": "Lucas Werkmeister",
       "file": "words/schwer.mp3",
-      "gain": -2.0,
-      "lead": 111,
+      "gain": 2.9,
+      "gate": -69.4,
+      "lead": 209,
       "matches": "schwer",
-      "mos": 2.63,
-      "sha256": "ff26b350fbc0c6ccd3273f33d1b5310413a1c987f81a84e794a9c0522317f3d4",
-      "source": "De-schwer2.ogg"
+      "mos": 3.21,
+      "sha256": "89117ad7b43c603a909d0e45a881a14205ed39e6963f3649c2fb733d77142e01",
+      "source": "LL-Q188 (deu)-Lucas Werkmeister-schwer.wav"
     },
     "schwester": {
       "author": "Jeuwre",
@@ -16012,7 +16010,7 @@
     },
     "sich fühlen": {
       "author": "Natschoba",
-      "file": "words/sichu0020fu00fchlen.mp3",
+      "file": "words/sich_fu00fchlen.mp3",
       "gain": 4.4,
       "gate": -80.3,
       "lead": 126,
@@ -16023,7 +16021,7 @@
     },
     "sich irren": {
       "author": "Natschoba",
-      "file": "words/sichu0020irren.mp3",
+      "file": "words/sich_irren.mp3",
       "gain": 0.6,
       "gate": -73.1,
       "lead": 102,
@@ -16034,7 +16032,7 @@
     },
     "sich verabschieden": {
       "author": "Natschoba",
-      "file": "words/sichu0020verabschieden.mp3",
+      "file": "words/sich_verabschieden.mp3",
       "gain": 2.1,
       "lead": 71,
       "matches": "sich verabschieden",
@@ -16044,7 +16042,7 @@
     },
     "sich vorstellen": {
       "author": "Natschoba",
-      "file": "words/sichu0020vorstellen.mp3",
+      "file": "words/sich_vorstellen.mp3",
       "gain": 1.4,
       "gate": -76.4,
       "lead": 66,
@@ -16064,14 +16062,14 @@
       "source": "De-sicher2.ogg"
     },
     "sie": {
-      "author": "Jeuwre",
+      "author": "joni",
       "file": "words/sie.mp3",
-      "gain": -0.2,
-      "lead": 419,
+      "gain": 8.7,
+      "gate": -62.6,
       "matches": "sie",
-      "mos": 2.58,
-      "sha256": "805d7ba781fc106a48689c72542a9b1af43e755b8a65bc90a1ce0155798bda2f",
-      "source": "De-sie2.ogg"
+      "mos": 3.04,
+      "sha256": "cad93e12f80606b34232ea836b8836c513e63daec9d0ee07efd80e02d679879b",
+      "source": "De-sie.ogg"
     },
     "sitzen": {
       "author": "Jeuwre",
@@ -16115,14 +16113,14 @@
       "source": "De-Sofa2.ogg"
     },
     "sofas": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/sofas.mp3",
-      "gain": -6.2,
-      "gate": -45.9,
+      "gain": -2.6,
+      "lead": 435,
       "matches": "sofas",
-      "mos": 2.49,
-      "sha256": "1c44f4f4f95654575bf2e2463c8dd2607f3802a5b71a04e20c49fc081736b357",
-      "source": "De-Sofas.ogg"
+      "mos": 3.25,
+      "sha256": "46411965a635c60932952b3c09a598ffd3329149b31c77046e16b3b5734c241d",
+      "source": "De-Sofas2.ogg"
     },
     "sofort": {
       "author": "Jeuwre",
@@ -16165,14 +16163,14 @@
       "source": "De-sonne.ogg"
     },
     "sonnen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/sonnen.mp3",
-      "gain": -6.6,
-      "gate": -47.4,
+      "gain": -3.1,
+      "lead": 414,
       "matches": "sonnen",
-      "mos": 2.64,
-      "sha256": "4af7976b61b465adaa35b1f2cfe6c0e15b7ed5a6a73e6b2a64fd9972ebba7191",
-      "source": "De-Sonnen.ogg"
+      "mos": 3.24,
+      "sha256": "1ac495392070398d15cf44716a1758ddaac3b7259a401bafa86297091c11c307",
+      "source": "De-Sonnen2.ogg"
     },
     "sonnencreme": {
       "author": "Jeuwre",
@@ -16248,7 +16246,7 @@
     },
     "spazieren gehen": {
       "author": "Jeuwre",
-      "file": "words/spazierenu0020gehen.mp3",
+      "file": "words/spazieren_gehen.mp3",
       "gain": -0.5,
       "lead": 315,
       "matches": "spazieren gehen",
@@ -16357,7 +16355,7 @@
     },
     "sprechen sie englisch": {
       "author": "Timwi at English Wikipedia",
-      "file": "words/sprechenu0020sieu0020englisch.mp3",
+      "file": "words/sprechen_sie_englisch.mp3",
       "gain": 1.1,
       "gate": -58.4,
       "matches": "sprechen sie englisch",
@@ -16581,14 +16579,14 @@
       "source": "De-Stern2.ogg"
     },
     "sterne": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/sterne.mp3",
-      "gain": -8.5,
-      "gate": -54.6,
+      "gain": -4.0,
+      "lead": 425,
       "matches": "sterne",
-      "mos": 2.36,
-      "sha256": "8777759fd1771390da35a0dd457ce68c02c4824173c798e6a334a840a004c4dd",
-      "source": "De-Sterne.ogg"
+      "mos": 3.21,
+      "sha256": "c166b7fb05aff81dfdc2c1a9260f53310793c4d413af08ebdfe0eee3a6d1d51e",
+      "source": "De-sterne.ogg"
     },
     "steuer": {
       "author": "Jeuwre",
@@ -16601,14 +16599,14 @@
       "source": "De-steuer.ogg"
     },
     "steuern": {
-      "author": "StMH",
+      "author": "Jeuwre",
       "file": "words/steuern.mp3",
-      "gain": 4.6,
-      "gate": -64.2,
+      "gain": -4.3,
+      "lead": 389,
       "matches": "steuern",
-      "mos": 2.53,
-      "sha256": "c89cf19620c08bbf3d75deafc000517f6d0659dfbb674381cb99c9e326604654",
-      "source": "De-Steuern.ogg"
+      "mos": 3.21,
+      "sha256": "c8929e447ce6e53112fb2610c256f846864980117d563d1ab4d40fef722fc673",
+      "source": "De-Steuern2.ogg"
     },
     "stift": {
       "author": "Jeuwre",
@@ -16621,14 +16619,14 @@
       "source": "De-stift.ogg"
     },
     "stifte": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/stifte.mp3",
-      "gain": -4.0,
-      "gate": -50.3,
+      "gain": 0.8,
+      "lead": 414,
       "matches": "stifte",
-      "mos": 2.46,
-      "sha256": "2286405e97bb08df5598167126e87f4f717427036cac295441749e71b0f472c0",
-      "source": "De-Stifte.ogg"
+      "mos": 3.17,
+      "sha256": "a74e8b61a30a0c5a1daeec0a479efb21eab54bab65658c5e225482f8a7e92c8c",
+      "source": "De-stifte.ogg"
     },
     "stock": {
       "author": "Jeuwre",
@@ -16671,24 +16669,24 @@
       "source": "De-Straße2.ogg"
     },
     "straßen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/strau00dfen.mp3",
-      "gain": -3.4,
-      "gate": -53.8,
+      "gain": -2.6,
+      "lead": 426,
       "matches": "straßen",
-      "mos": 2.28,
-      "sha256": "2cefacc9316a9236d7f19b15e83412bea493032a0861ad5f2a2be2c81c43d219",
-      "source": "De-Straßen.ogg"
+      "mos": 3.29,
+      "sha256": "940b0651b0af9d69aec8e3099812df02c1c1dbb1e8c9d05ebbadab953ce6fd15",
+      "source": "De-Straßen2.ogg"
     },
     "strände": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/stru00e4nde.mp3",
-      "gain": -0.4,
-      "gate": -55.2,
+      "gain": -3.7,
+      "lead": 427,
       "matches": "strände",
-      "mos": 2.67,
-      "sha256": "f7ca7d737c8e18ef2170cc65317e17c5c063f07fc81b623850018a300364c551",
-      "source": "De-Strände.ogg"
+      "mos": 3.21,
+      "sha256": "623b799b900ec0cf37e79a057899313143f762ba7553814e1406a64c919581e5",
+      "source": "De-Strände2.ogg"
     },
     "student": {
       "author": "Kampy",
@@ -16769,6 +16767,16 @@
       "sha256": "1319646d95079ccb29d32710cd4feaeba2911570bdd91754ab4909ec635e6b4f",
       "source": "De-stunde.ogg"
     },
+    "stunden": {
+      "author": "Jeuwre",
+      "file": "words/stunden.mp3",
+      "gain": 1.4,
+      "lead": 412,
+      "matches": "stunden",
+      "mos": 3.09,
+      "sha256": "6c67c105d2164e1e47d2a0e96128a9716ce35ed43f2ef7a11c4fd213f7992e8b",
+      "source": "De-Stunden2.ogg"
+    },
     "stundenplan": {
       "author": "Jeuwre",
       "file": "words/stundenplan.mp3",
@@ -16799,14 +16807,14 @@
       "source": "De-Sturm2.ogg"
     },
     "städte": {
-      "author": "T.Voekler",
+      "author": "Jeuwre",
       "file": "words/stu00e4dte.mp3",
-      "gain": -5.5,
-      "gate": -72.6,
+      "gain": -1.8,
+      "lead": 413,
       "matches": "städte",
-      "mos": 1.95,
-      "sha256": "a86ba57c3a7606ecb96a2e59833219020379f59e6bbd8cea32457b35f567a2fd",
-      "source": "De-Städte.ogg"
+      "mos": 3.28,
+      "sha256": "265e7d73c6fa870e19319aaf88b3187c10e51149374cb43d6358e3287a87a977",
+      "source": "De-Städte2.ogg"
     },
     "stöcke": {
       "author": "Jeuwre",
@@ -16819,24 +16827,24 @@
       "source": "De-Stöcke.ogg"
     },
     "stühle": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/stu00fchle.mp3",
-      "gain": -6.8,
-      "gate": -53.1,
+      "gain": -1.0,
+      "lead": 410,
       "matches": "stühle",
-      "mos": 2.45,
-      "sha256": "e32476ff13d776a7a149d0714d915822ef9a14bcbaa4cd121d265dd78744d926",
-      "source": "De-Stühle.ogg"
+      "mos": 2.81,
+      "sha256": "710c4e7825b4710cabdc63a898772441e5db34402159fe288b3c8407743f11a7",
+      "source": "De-Stühle2.ogg"
     },
     "stürme": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/stu00fcrme.mp3",
-      "gain": -2.8,
-      "gate": -53.2,
+      "gain": -0.6,
+      "lead": 407,
       "matches": "stürme",
-      "mos": 2.19,
-      "sha256": "b6095649da091ea634626162da93e41a7830cd28df22dccd29c58e5d3e89b66b",
-      "source": "De-Stürme.ogg"
+      "mos": 3.08,
+      "sha256": "5e11485c924e357791283f8cad94b37f88b68bea19dd702a89bf176431ddad35",
+      "source": "De-Stürme2.ogg"
     },
     "suchen": {
       "author": "Jeuwre",
@@ -17071,14 +17079,14 @@
       "source": "De-Tasse2.ogg"
     },
     "tassen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/tassen.mp3",
-      "gain": -4.0,
-      "gate": -58.4,
+      "gain": -1.4,
+      "lead": 444,
       "matches": "tassen",
-      "mos": 2.58,
-      "sha256": "d0b25c15bca0ff8defd729e62bd87a7891ea054d442490501c138dd56e5c16a3",
-      "source": "De-Tassen.ogg"
+      "mos": 3.15,
+      "sha256": "037ff8f8fb0e8cd7c6788d7127159edc75287159a800704a42267bac99169dd6",
+      "source": "De-Tassen2.ogg"
     },
     "tastatur": {
       "author": "Jeuwre",
@@ -17122,14 +17130,14 @@
       "source": "De-Taxi2.ogg"
     },
     "taxis": {
-      "author": "Pill",
+      "author": "Jeuwre",
       "file": "words/taxis.mp3",
-      "gain": 4.7,
-      "gate": -59.4,
+      "gain": -2.5,
+      "lead": 447,
       "matches": "taxis",
-      "mos": 2.46,
-      "sha256": "c8c7d8a282696350b313bf4fdfe44513393facb44eaaea55ddb323c8a56b7919",
-      "source": "De-Taxis.ogg"
+      "mos": 3.4,
+      "sha256": "0ab6357ca1897e16005e37b256dcb6ae8d45ad28421a85ab9dc3b92d0d19c511",
+      "source": "De-Taxis3.ogg"
     },
     "tee": {
       "author": "Jeuwre",
@@ -17142,14 +17150,13 @@
       "source": "De-Tee2.ogg"
     },
     "tees": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/tees.mp3",
-      "gain": -5.7,
-      "gate": -44.5,
+      "lead": 394,
       "matches": "tees",
-      "mos": 1.97,
-      "sha256": "8b0c6dd6751110ddce4c15c3e9125b4374b75d1c8aead551b8354ef88e073850",
-      "source": "De-Tees.ogg"
+      "mos": 2.91,
+      "sha256": "6902869933f4406c3d4f64eab4448861f703bc68600443d8e26a2e129038b4f0",
+      "source": "De-Tees2.ogg"
     },
     "teilweise": {
       "author": "Jeuwre",
@@ -17254,14 +17261,14 @@
       "source": "De-Tier2.ogg"
     },
     "tiere": {
-      "author": "Pill",
+      "author": "Jeuwre",
       "file": "words/tiere.mp3",
-      "gain": 6.3,
-      "gate": -61.5,
+      "gain": -1.2,
+      "lead": 438,
       "matches": "tiere",
-      "mos": 2.76,
-      "sha256": "5e3068eb1ae92a3f3de4f2165646f2adc85ec687dfe3368e311fa8a842db8d07",
-      "source": "De-Tiere.ogg"
+      "mos": 3.12,
+      "sha256": "c8b25399d4e2dca3fdf8e50c0deb158bc278172e957f3fc80d1cfd8ae35f9318",
+      "source": "De-Tiere2.ogg"
     },
     "tippen": {
       "author": "Jeuwre",
@@ -17284,14 +17291,14 @@
       "source": "De-tisch.ogg"
     },
     "tische": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/tische.mp3",
-      "gain": -3.5,
-      "gate": -57.6,
+      "gain": -4.8,
+      "lead": 446,
       "matches": "tische",
-      "mos": 2.08,
-      "sha256": "715b063dc1ed1fb870c47345ac731e7b68352ed71440d5e163cab5ed440d5fca",
-      "source": "De-Tische.ogg"
+      "mos": 3.23,
+      "sha256": "d2d564d3451c31210cb5ea2c6bf4c22ff689e2a8f8e680cf9267de3cebd3cd72",
+      "source": "De-tische.ogg"
     },
     "tochter": {
       "author": "Jeuwre",
@@ -18136,7 +18143,7 @@
     },
     "vielen dank": {
       "author": "Natschoba",
-      "file": "words/vielenu0020dank.mp3",
+      "file": "words/vielen_dank.mp3",
       "gain": 3.5,
       "gate": -79.2,
       "lead": 214,
@@ -18379,25 +18386,24 @@
       "source": "De-Vorstellungsgespräche.ogg"
     },
     "väter": {
-      "author": "Bleibein",
+      "author": "Jeuwre",
       "file": "words/vu00e4ter.mp3",
-      "gain": 4.1,
-      "gate": -66.6,
-      "lead": 29,
+      "gain": -2.7,
+      "lead": 353,
       "matches": "väter",
-      "mos": 2.6,
-      "sha256": "3604a4a606c7d3c326c0a7e62bf7ce620ce0ebe49e4f538aab43b3aac1cd553c",
-      "source": "De-Väter.ogg"
+      "mos": 3.15,
+      "sha256": "c1f6b394f56d2eb25fd649139d0b522e3544d1ad6cb521637242e615a99deda5",
+      "source": "De-Väter2.ogg"
     },
     "vögel": {
-      "author": "T.Voekler",
+      "author": "Jeuwre",
       "file": "words/vu00f6gel.mp3",
-      "gain": -3.1,
-      "gate": -93.0,
+      "gain": -0.7,
+      "lead": 380,
       "matches": "vögel",
-      "mos": 2.52,
-      "sha256": "9b525b6504c5504614525548846c4659eeb19246f4d9055817d23ed3f031f067",
-      "source": "De-Vögel.ogg"
+      "mos": 3.06,
+      "sha256": "c5ba75c6ac1c23504647434efb975f942f993a97d2daf5f8d69335fe9fa0ced5",
+      "source": "De-Vögel2.ogg"
     },
     "völlig": {
       "author": "Jeuwre",
@@ -18602,22 +18608,22 @@
     "weg": {
       "author": "Jeuwre",
       "file": "words/weg.mp3",
-      "gain": 1.6,
-      "lead": 432,
+      "gain": 0.4,
+      "lead": 439,
       "matches": "weg",
-      "mos": 2.35,
-      "sha256": "8a1a3850039f04669049361b29381da57f40c620ccc9f173e848ee880c83b5f6",
-      "source": "De-weg.ogg"
+      "mos": 3.07,
+      "sha256": "5090aac426f38764a38df94e9a8c4adf87331cf3047cfa86413001840adad4b6",
+      "source": "De-Weg3.ogg"
     },
     "wege": {
-      "author": "User:Tosca",
+      "author": "Jeuwre",
       "file": "words/wege.mp3",
-      "gain": 4.1,
-      "gate": -57.4,
+      "gain": -1.3,
+      "lead": 418,
       "matches": "wege",
-      "mos": 2.54,
-      "sha256": "44ad3c274cf4cee7313e2a9f8be7768c55761e375622880f941c41a874a33a38",
-      "source": "De-Wege.ogg"
+      "mos": 2.86,
+      "sha256": "6852addbb30ff917d88c6e8eadfe5776d3d1b9dd81ec66f78c027e6e4298a1b5",
+      "source": "De-Wege2.ogg"
     },
     "wegen": {
       "author": "Jeuwre",
@@ -18805,12 +18811,12 @@
     "wenn": {
       "author": "Jeuwre",
       "file": "words/wenn.mp3",
-      "gain": -0.4,
-      "lead": 440,
+      "gain": -5.8,
+      "lead": 439,
       "matches": "wenn",
-      "mos": 2.72,
-      "sha256": "2ef7caca84e446a3ba785891a266ad9e5b9e79b71b49e32f0fd818bb9f202dfe",
-      "source": "De-wenn2.ogg"
+      "mos": 3.02,
+      "sha256": "29674a6a8f9cce79760e0022ec6ab89d3727f33416d2b2796e20e924100d3c17",
+      "source": "De-Wenn.ogg"
     },
     "wer": {
       "author": "Jeuwre",
@@ -18853,18 +18859,19 @@
       "source": "De-wichtig.ogg"
     },
     "wie": {
-      "author": "Jeuwre",
+      "author": "CamelCaseNick",
       "file": "words/wie.mp3",
-      "gain": -0.1,
-      "lead": 435,
+      "gain": 3.6,
+      "gate": -72.0,
+      "lead": 218,
       "matches": "wie",
-      "mos": 2.5,
-      "sha256": "8b40e7faa2e4903b80bacbe634b8b159a5b2791a7d17e022ef259dc7897bfa9b",
-      "source": "De-wie3.ogg"
+      "mos": 2.8,
+      "sha256": "45992881d86b889d9c07e0cfcab8543f06966812037f2004d8d4a1f6f2d2fec2",
+      "source": "LL-Q188 (deu)-CamelCaseNick-wie.wav"
     },
     "wie bitte": {
       "author": "Jeuwre",
-      "file": "words/wieu0020bitte.mp3",
+      "file": "words/wie_bitte.mp3",
       "gain": -5.0,
       "lead": 443,
       "matches": "wie bitte",
@@ -18874,7 +18881,7 @@
     },
     "wie spät ist es": {
       "author": "Jeuwre",
-      "file": "words/wieu0020spu00e4tu0020istu0020es.mp3",
+      "file": "words/wie_spu00e4t_ist_es.mp3",
       "gain": -2.1,
       "lead": 432,
       "matches": "wie spät ist es",
@@ -19047,14 +19054,14 @@
       "source": "De-Wohnung2.ogg"
     },
     "wohnungen": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/wohnungen.mp3",
-      "gain": 0.4,
-      "gate": -43.8,
+      "gain": -1.8,
+      "lead": 430,
       "matches": "wohnungen",
-      "mos": 2.61,
-      "sha256": "3adf42e27d471813c7f6fcfd2f4218ccdefdc364f145f7a0e280b5042caa5645",
-      "source": "De-Wohnungen.ogg"
+      "mos": 3.17,
+      "sha256": "0edc222243731cd44e66de1aebce0981cf5a7ec9e3d5671d29a92151a5d94ae9",
+      "source": "De-Wohnungen2.ogg"
     },
     "wolke": {
       "author": "Jeuwre",
@@ -19189,14 +19196,14 @@
       "source": "De-Wäschen.ogg"
     },
     "wörter": {
-      "author": "User:Tosca",
+      "author": "Jeuwre",
       "file": "words/wu00f6rter.mp3",
-      "gain": -1.1,
-      "gate": -61.3,
+      "gain": -1.9,
+      "lead": 431,
       "matches": "wörter",
-      "mos": 2.65,
-      "sha256": "e20d6a42c56eb3d48b91100267ca179e303a9aaf78040d8b362a4be2bea06260",
-      "source": "De-Wörter.ogg"
+      "mos": 3.06,
+      "sha256": "fcf15cdbad2d12e435138134c7ad3c8a9172102d7dc0b91158f26eb022061959",
+      "source": "De-Wörter2.ogg"
     },
     "wörterbuch": {
       "author": "Jeuwre",
@@ -19281,14 +19288,14 @@
       "source": "De-Zahnpasten.ogg"
     },
     "zahnärzte": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/zahnu00e4rzte.mp3",
-      "gain": -4.1,
-      "gate": -44.8,
+      "gain": -2.0,
+      "lead": 449,
       "matches": "zahnärzte",
-      "mos": 2.6,
-      "sha256": "9b2620da443ab23fceacb4de9e7bf642cbb18332800d27da967ccc9ca984c77f",
-      "source": "De-Zahnärzte.ogg"
+      "mos": 3.35,
+      "sha256": "1b27c83a49ce181063a99864c023eacfbbc0d54eb79d9c7e95c4410dfc1a5a9e",
+      "source": "De-Zahnärzte2.ogg"
     },
     "zeigen": {
       "author": "Jeuwre",
@@ -19443,14 +19450,15 @@
       "source": "De-zucker.ogg"
     },
     "zug": {
-      "author": "Jeuwre",
+      "author": "Mathieu Kappler",
       "file": "words/zug.mp3",
-      "gain": 1.7,
-      "lead": 433,
+      "gain": 1.8,
+      "gate": -66.1,
+      "lead": 163,
       "matches": "zug",
-      "mos": 2.66,
-      "sha256": "e784a2b0b148cc8c36ee99b11b7bd8e7e7033cb79911b5d91a110c59f0fe25b3",
-      "source": "De-Zug2.ogg"
+      "mos": 3.01,
+      "sha256": "85fc42799748d27ab6a16704c07b9c9656702992419c6557c8d6226a3c61b13b",
+      "source": "LL-Q188 (deu)-Mathieu Kappler-Zug.wav"
     },
     "zuhören": {
       "author": "Jeuwre",
@@ -19606,24 +19614,24 @@
       "source": "De-zählen2.ogg"
     },
     "zähne": {
-      "author": "Kampy",
+      "author": "Jeuwre",
       "file": "words/zu00e4hne.mp3",
-      "gain": -4.1,
-      "gate": -43.3,
+      "gain": 0.6,
+      "lead": 434,
       "matches": "zähne",
-      "mos": 2.34,
-      "sha256": "6b4895d450a31e239f51863d2be3270876c3cedcc385029a8a99ddc11a5b73da",
-      "source": "De-Zähne.ogg"
+      "mos": 3.18,
+      "sha256": "5fff9092405e590276e60254dc935fadea3d9778f1abe73f1afb4ef20f1638c2",
+      "source": "De-zähne.ogg"
     },
     "züge": {
-      "author": "T.Voekler",
+      "author": "Jeuwre",
       "file": "words/zu00fcge.mp3",
-      "gain": 0.3,
-      "gate": -56.7,
+      "gain": 0.1,
+      "lead": 416,
       "matches": "züge",
-      "mos": 3.07,
-      "sha256": "4183ce7bbce0f0733f0e1aede6c2f6ed70b64006cef226a28b69890baea0f81d",
-      "source": "De-Züge.ogg"
+      "mos": 3.13,
+      "sha256": "a0113ca76de36607a6cb9658463e47559c57b4b335952608bb1064efbdb50879",
+      "source": "De-Züge2.ogg"
     },
     "ähnlich": {
       "author": "Jeuwre",
