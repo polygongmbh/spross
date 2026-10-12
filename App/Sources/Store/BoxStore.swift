@@ -4,8 +4,7 @@ import WidgetKit
 
 /// File-backed persistence for the box — one document per TARGET language
 /// (`box-<target>.json`), since only one language is ever active and a save should touch
-/// only what moved. A v1 document converts as it is read and is written back under the very
-/// same name (`kern/docs/snapshots.md`).
+/// only what moved (`kern/docs/snapshots.md`).
 ///
 /// The store also decides when a save reaches the disk — what it writes is Kern's `SaveScope`.
 /// The Kern `StoreCodec` is called HERE, on the actor, not by the caller: the document
@@ -63,11 +62,9 @@ actor BoxStore {
         if let cached = held[target] { return cached }
         guard let text = try? String(contentsOf: fileURL(target: target), encoding: .utf8)
         else { return nil }
-        let loaded = try StoreCodec.shared.load(json: text)
-        held[target] = loaded.box
-        // why: a conversion that never reaches disk converts again on every launch.
-        if loaded.converted { try write(loaded.box, target: target) }
-        return loaded.box
+        let box = try StoreCodec.shared.decode(json: text)
+        held[target] = box
+        return box
     }
 
     /// Hands `state` over to be written behind the caller, with what `scope` carries.

@@ -54,15 +54,11 @@ class BoxStore(val files: BoxFiles, private val redrawWidget: suspend () -> Unit
     /**
      * One language's stored box, or null where the device holds none.
      * Throws a [net.spross.kern.store.StoreFormatException] where the file exists but cannot be read.
-     * A v1 document converts as it is read and is written back under the same name —
-     * a conversion that never reaches disk would convert again on every launch.
      */
     fun load(target: String): StoredBox? {
-        val json = files.read(target) ?: return null
-        val loaded = StoreCodec.load(json)
-        if (loaded.converted) files.write(target, StoreCodec.encode(loaded.box))
-        synchronized(this) { boxes = StoredBoxes(boxes.boxes + (target to loaded.box)) }
-        return loaded.box
+        val box = StoreCodec.decode(files.read(target) ?: return null)
+        synchronized(this) { boxes = StoredBoxes(boxes.boxes + (target to box)) }
+        return box
     }
 
     /**
