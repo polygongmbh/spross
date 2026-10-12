@@ -143,14 +143,26 @@ data class LetterRecording(
 /** One credited recording: [label] is the form it speaks, or the letter's glyph. */
 data class AudioCreditFile(
     val label: String,
-    /** The original Commons filename — the credits screen links `File:<source>`. */
+    /** The original Commons filename. */
     val source: String,
     /**
      * The recording itself, so its credit row can play it: [label] as the form, the file's
      * own path and index. The credits screen plays this file and never a voice in its place.
      */
     val pronunciation: Pronunciation,
-)
+) {
+    /**
+     * The file's page on Wikimedia Commons, which the credits screen links.
+     * Every byte of [source] outside the URI's unreserved set is percent-encoded,
+     * since those names carry spaces, dashes and Cyrillic alike.
+     */
+    val pageUrl: String
+        get() = "https://commons.wikimedia.org/wiki/File:" + source.encodeToByteArray().joinToString("") { byte ->
+            val c = byte.toInt().toChar()
+            if (c in 'A'..'Z' || c in 'a'..'z' || c in '0'..'9' || c in "-._~") c.toString()
+            else "%" + (byte.toInt() and 0xFF).toString(16).uppercase().padStart(2, '0')
+        }
+}
 
 /**
  * Every recording one author contributed to one language under one license.

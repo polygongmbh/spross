@@ -183,9 +183,7 @@ private struct CreditGroupRow: View {
             .buttonStyle(.plain)
             .accessibilityHint(Text("a11y.action.pronounce"))
 
-            // Percent-encoded: those names carry spaces and Cyrillic.
-            if let encoded = file.source.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
-               let url = URL(string: "https://commons.wikimedia.org/wiki/File:\(encoded)") {
+            if let url = URL(string: file.pageUrl) {
                 Link(destination: url) {
                     Image(systemName: "arrow.up.right.square")
                         .font(.subheadline)

@@ -30,7 +30,6 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
-import java.net.URLEncoder
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.closeAbout
@@ -162,7 +161,7 @@ private fun CreditGroup(model: AppModel, credit: AudioCredit, chrome: Chrome) {
                 // neither the label nor the source is a unique identity — index it.
                 credit.files.forEachIndexed { index, file ->
                     Spacer(Modifier.height(4.dp))
-                    CreditFileRow(model, file, chrome) { uris.openUri(commonsUrl(file.source)) }
+                    CreditFileRow(model, file, chrome) { uris.openUri(file.pageUrl) }
                     if (index == credit.files.lastIndex) Spacer(Modifier.height(2.dp))
                 }
             }
@@ -257,8 +256,3 @@ private fun FontCredit(chrome: Chrome) {
 
 /** Packaged by `android/build.gradle.kts` from `android/licenses/`. */
 private const val FONT_LICENSE = "licenses/Nunito-OFL.txt"
-
-/** The file's page on Commons — those names carry spaces and Cyrillic alike. */
-private fun commonsUrl(source: String): String =
-    "https://commons.wikimedia.org/wiki/File:" +
-        URLEncoder.encode(source, "UTF-8").replace("+", "%20")
