@@ -26,7 +26,7 @@ internal object LearnerContent {
             addedAt = stampOf(nowEpochMillis),
         )
         val next = state.copy(ownWords = words, cards = rebuilt(state, words))
-        return if (next.cards[word.id] == null) next else BoxEngine.queue(next, listOf(word.id))
+        return if (next.cards[word.id] == null) next else Curation.queue(next, listOf(word.id))
     }
 
     /**
@@ -50,7 +50,7 @@ internal object LearnerContent {
         val next = state.copy(ownWords = words, cards = rebuilt(state, words))
         val joinsNow = next.cards[word.id] != null
         return if (joinsNow && next.scheduling[word.id] == null) {
-            BoxEngine.queue(next, listOf(word.id))
+            Curation.queue(next, listOf(word.id))
         } else {
             next
         }
@@ -117,7 +117,7 @@ internal object LearnerContent {
                 else filed - wordId + (cardId to moved.copy(cardId = cardId))
             },
         )
-        return BoxEngine.queue(merged, listOf(cardId))
+        return Curation.queue(merged, listOf(cardId))
     }
 
     /**

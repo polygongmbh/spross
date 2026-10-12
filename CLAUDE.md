@@ -64,7 +64,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 
 ## Code standards
 
-- Max ~300 lines per file; split at natural boundaries. Modularity over bloat.
+- Past ~300 lines a file is due a look for a natural seam, not a cut to a count:
+  split where a cohesive topic leaves, keep a file whole when none does. Modularity over bloat.
 - Comments only for non-obvious constraints;
   side-effectful effects get a one-line `// why:` (trigger + observable result).
 - Engine APIs name the rule, never the rendering: no screen positions in kern types, bar shared layout data (`net.spross.kern.design`).

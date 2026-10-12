@@ -47,22 +47,39 @@ Neighbors: catalog content `../catalog/backlog.md`.
   drill needing curated component-boundary data, and syllable data would not deliver it since a
   syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries
   "Feier") — considered for word scramble (`drills-words.md`) and left out.
+- The iOS session summary burst has geometry and timing Android does not draw — port it through kern `design/`, or keep it an iOS flourish? (`App/Sources/Design/SessionSummaryView.swift`)
+- Card geometry is still written on both platforms (emoji slot, reveal rule, replay target, verdict tile, card reserves, activity strip gutter) — where does native spacing end and a kern `design/` value begin?
+- Emoji as chrome or content: `Drill.emoji` and `DrillPauseReason.emoji` live in kern while the milestone KDoc calls glyphs chrome — which side owns a glyph?
+- `web/site.js` runs its own numbers ramp beside kern's `NumbersRun` — should the site read kern's JS export instead?
+- The dated audio research docs (`docs/2026-09-28-audio-quality-*.md`, `docs/2026-10-09-audio-rating-sources.md`) and `docs/audio-verdicts.tsv` sit under `docs/` as if current — archive, fold into `docs/audio-format.md`, or keep?
 
 ## Ready
 
 ### Engine
 
+- Rules both phones still mint, each wanting a kern home and two callers: summary hero share `0.45`, reset-export gate `allSettledCount > 0`, Commons credit URL (two encoders), a report's carried answer, own-word row texts, prompt line limits per form (Name differs, 3 vs 2), coach caption.
+- Trainer rules both phones mint: `LetterDrillAvailability.Report.formatOpen`, reference-sheet captions, lock-screen now-playing lines, milestone glyphs beside `DrillPauseReason.emoji`, the numbers run title.
+- Widget rules both phones mint: display sort, strip bar width and gutter, the 🗂️ fallback; Android's widget recomputes the chrome language the snapshot already carries (`WidgetSnapshotView` lacks the accessor).
+- `Realization.article` is kern's, but `DisplayText.swift` and `CardDisplay.kt` still read `grammar["gender"]` themselves.
+- `TurnEffect` and `DrillEffect` repeat `ArmAdvance`/`CancelAdvance`/`Tone`/`ReleaseFocus`, so each app dispatches the cue contract twice.
+- Layout data sits in `trainer/` rather than `design/`: `Drill.chipRows`, `ReferenceColumns.PAIRED_MIN_WIDTH`, `DrillUnlockMark` timings.
+- `CardType.LISTENING_REVEAL_DIVIDED` is a flag nothing flips; drop it and both platforms' `divided` parameters.
+- `PressKind` is read by iOS only since 8.6.0 ruled Android ripple-only, and its KDoc should say so (`kern/.../design/PressKind.kt`).
 
 ### Apps & tooling
 
+- iOS keeps five Design twins of kern types (`SessionOutcome`, `AnswerInputView.Feedback`, `Theme.Gender`, `AreaProgress`, `StageBadge.Stage`) with their `KernBridge` mappings, and `DrillRunResult` copies `DrillRunSummary`.
+- iOS dead code: `SessionView.currentCardID`, `askedByEar`, three `KernBridge` drill extensions, two `hushAnswer()`.
+- iOS hand cuts: the uitest streak seed is still pasted per drill face, `0.25`/`0.2` animation literals stand where `CardMotion` has the value, `controlSurface()` is cut by hand at five sites, and `Watch/Fixtures` ships in Release.
+- Android dead code: `AppModel.pronounceTarget`, `TypedDrillView`'s mirror of `DrillRunProgress` with a dead `bestAnswerStreak`, and the `errorUnknownProfile`/`errorResetFailed` chrome fields.
+- Android hand cuts: the learner name field and the growable sheet are cut by hand, and the box hint walks every card where iOS short-circuits on `AudioCapability`.
 - The watch speed mark (⚡) is visual only: VoiceOver hears right or wrong but not how quick (`WatchQuizView.verdict`).
 - The iOS drill run (`DrillRunView`) still wraps its scaffold by hand, because its run state arrives through `Face.snapshot` rather than kern's run progress — exposing that would let `runScreen` reach it.
 - The widget kind `"SprossWordWidget"` is a literal at the iOS reload sites and in `Widgets/Sources/WordWidget.swift` — one constant in `Shared/Sources`.
 - `HomeStandingTest`, `CardDisplayTest` and `UnlockPriceTest` assert literal German/English copy and break on a copy edit (`android/src/test`).
-- Still over ~300 lines: Android `AppModel.kt` (453, wants holder classes for its private setters), `ListeningService.kt`, `ListeningDriver.kt`;
-  iOS `AppModel.swift` (397), `WatchModel.swift`, `TrainerHubView.swift`, `AnswerInputView.swift`, `Theme.swift`, `BoxSettingsSection.swift`;
-  kern `BoxEngine.kt`;
-  Android `Chrome.kt` (570) is a hand-declared field table the owner may exempt, and the generated `ChromeDe.kt`/`ChromeEn.kt` are exempt by nature.
+- Over ~300 lines with a seam worth checking: Android `AppModel.kt` (wants holder classes for its private setters), `ListeningService.kt`, `ListeningDriver.kt`;
+  iOS `AppModel.swift`, `WatchModel.swift`, `TrainerHubView.swift`, `AnswerInputView.swift`, `Theme.swift`, `BoxSettingsSection.swift`;
+  Android `Chrome.kt` is a hand-declared field table, and the generated `ChromeDe.kt`/`ChromeEn.kt` are exempt by nature.
 - A duplicate-`// why:` scan earns a ranked report, never a commit gate: it reads files that
   duplicate a COMMENT, so a copy whose prose drifted is invisible — it missed two scramble
   screens, a second `DrillBeat` in `TurnFlow`, a third reference sheet in `NumberReferenceTable`
