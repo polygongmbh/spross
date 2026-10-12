@@ -31,7 +31,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
-import net.spross.app.CardDisplay
 import net.spross.app.Chrome
 import net.spross.app.removeOwnWord
 import net.spross.app.reportedIssue
@@ -44,6 +43,7 @@ import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.pronunciation
 import net.spross.kern.model.Card
 import net.spross.kern.model.Realization
+import net.spross.kern.model.article
 import net.spross.kern.model.kindEmoji
 import net.spross.kern.model.shownArticle
 
@@ -235,7 +235,7 @@ fun AppModel.boxPronounceAction(target: Realization): (() -> Unit)? {
     if (!pronouncer.canPronounce(pronunciation)) return null
     // The citation form is the canonical one here — no rotation reaches a browser row — so
     // the voice says it with its article, exactly as the row draws it (`docs/read-aloud.md`).
-    val article = shownArticle(CardDisplay.article(target), target.text, target.text)
+    val article = shownArticle(target.article, target.text, target.text)
     return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, article) }
 }
 

@@ -16,12 +16,6 @@ import net.spross.kern.model.formGlyph
  */
 object CardDisplay {
 
-    /**
-     * The realization's article, for the tint — de `grammar["gender"]` carries the
-     * article itself ("der"/"die"/"das"), never a gender name.
-     */
-    fun article(realization: Realization): String? = realization.grammar["gender"]
-
     /** "auch: …" — the word's family beyond every form already standing on screen. */
     fun alsoLine(realization: Realization, chrome: Chrome, shown: Collection<String>): String? =
         alsoLine(alternates(realization, shown.toList(), realization.forms), chrome)

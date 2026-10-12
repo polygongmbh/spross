@@ -60,7 +60,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 - Rules both phones still mint, each wanting a kern home and two callers: summary hero share `0.45`, reset-export gate `allSettledCount > 0`, Commons credit URL (two encoders), a report's carried answer, own-word row texts, prompt line limits per form (Name differs, 3 vs 2), coach caption.
 - Trainer rules both phones mint: `LetterDrillAvailability.Report.formatOpen`, reference-sheet captions, lock-screen now-playing lines, milestone glyphs beside `DrillPauseReason.emoji`, the numbers run title.
 - Widget rules both phones mint: display sort, strip bar width and gutter, the 🗂️ fallback; Android's widget recomputes the chrome language the snapshot already carries (`WidgetSnapshotView` lacks the accessor).
-- `Realization.article` is kern's, but `DisplayText.swift` and `CardDisplay.kt` still read `grammar["gender"]` themselves.
 - `TurnEffect` and `DrillEffect` repeat `ArmAdvance`/`CancelAdvance`/`Tone`/`ReleaseFocus`, so each app dispatches the cue contract twice.
 - Layout data sits in `trainer/` rather than `design/`: `Drill.chipRows`, `ReferenceColumns.PAIRED_MIN_WIDTH`, `DrillUnlockMark` timings.
 

@@ -4,6 +4,7 @@ import net.spross.app.audio.Pronouncer
 import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.pronunciation
+import net.spross.kern.model.article
 import net.spross.kern.model.shownArticle
 import net.spross.kern.session.Saying
 
@@ -69,7 +70,7 @@ fun AppModel.pronounceAction(form: String): (() -> Unit)? {
  */
 private fun AppModel.spokenArticle(form: String): String? {
     val target = sessionUi?.card?.target ?: return null
-    return shownArticle(CardDisplay.article(target), form, target.text)
+    return shownArticle(target.article, form, target.text)
 }
 
 private fun AppModel.pronunciationOf(form: String): Pronunciation? {
