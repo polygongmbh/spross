@@ -80,7 +80,8 @@ fun SpokenWord(
  *
  * It steps down to fit rather than breaking a word in half ([WholeWordsAutoSize]):
  * "Guten Tag!" wraps between its words, and a word wider than the line shrinks.
- * Only past the floor does a word break, onto a second line rather than clipped.
+ * Only past the floor does a word break, onto a further line rather than clipped.
+ * Two lines, save where a drill's prompt takes its form's ([net.spross.kern.design.CardType.promptLines]).
  *
  * The floor is where iOS bottoms out — its smallest text size (`WholeWords.swift`) —
  * and holds at any font scale, where a scaled floor would clip a long word.
@@ -91,6 +92,7 @@ fun Headword(
     text: AnnotatedString,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,
+    maxLines: Int = 2,
 ) {
     val style = MaterialTheme.typography.headlineMedium
     Text(
@@ -101,7 +103,7 @@ fun Headword(
         style = style.copy(lineHeight = (style.lineHeight.value / style.fontSize.value).em),
         color = color,
         textAlign = TextAlign.Center,
-        maxLines = 2,
+        maxLines = maxLines,
         autoSize = WholeWordsAutoSize(
             min = with(LocalDensity.current) { HEADWORD_FLOOR.toSp() },
             max = style.fontSize,

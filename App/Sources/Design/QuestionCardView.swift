@@ -132,7 +132,7 @@ struct QuestionCardView: View {
                     promptText(side, text)
                         .font(promptFont(side.form))
                         .foregroundStyle(Theme.colors.textPrimary)
-                        .lineLimit(promptLines(side.form))
+                        .lineLimit(Int(CardType.shared.promptLines(form: side.form)))
                         .minimumScaleFactor(0.5)
                         .multilineTextAlignment(.center)
                         .accessibilityLabel(promptLabel ?? promptReading(side, text))

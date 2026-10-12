@@ -30,8 +30,6 @@ internal fun promptSize(form: Question.Form): TextUnit = when (form) {
     else -> Theme.prompt.word
 }
 
-internal fun promptLines(form: Question.Form): Int = if (form == Question.Form.Sentence) 4 else 1
-
 /**
  * The prompt as written, the opening letters a mixed word keeps standing set bold,
  * tagged with its language — save a numeral, which read in the learned language would say the answer.
