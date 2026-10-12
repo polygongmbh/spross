@@ -107,7 +107,13 @@ data class CountryReferenceRow(
     /** The languages spoken there, as each side names them — same order, same length. */
     val sourceLanguages: List<String>,
     val targetLanguages: List<String>,
-)
+) {
+    /** The people and the language(s) as the known side names them, as one line. */
+    val sourcePeople: String get() = (listOf(sourceNationality) + sourceLanguages).joinToString(REFERENCE_SEPARATOR)
+
+    /** The people and the language(s) as the learned side names them, as one line. */
+    val targetPeople: String get() = (listOf(targetNationality) + targetLanguages).joinToString(REFERENCE_SEPARATOR)
+}
 
 /**
  * The reference table, grouped by the tier a row enters the ladder at, innermost first —

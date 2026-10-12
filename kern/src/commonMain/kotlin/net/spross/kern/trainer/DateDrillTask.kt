@@ -73,7 +73,19 @@ data class DateReferenceRow(
     val abbr: String?,
     /** What the name becomes inside a date, where that differs (uk `березня`). */
     val dateForm: String?,
-)
+) {
+    /**
+     * What else the learned name answers to, as one line:
+     * the short form the prompt wears, the other lexemes, and the in-a-date form;
+     * null where there is none.
+     */
+    val otherForms: String?
+        get() = (listOfNotNull(abbr) + teaches + listOfNotNull(dateForm))
+            .takeIf { it.isNotEmpty() }?.joinToString(REFERENCE_SEPARATOR)
+}
+
+/** What joins the forms on one reference caption line. */
+internal const val REFERENCE_SEPARATOR = " · "
 
 /** The reference table's two halves, weekdays before months. */
 data class DateReferenceGroup(val kind: DateTaskKind, val rows: List<DateReferenceRow>)

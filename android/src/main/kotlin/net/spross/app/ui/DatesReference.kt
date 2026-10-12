@@ -8,7 +8,6 @@ import net.spross.app.dateSprosse
 import net.spross.kern.catalog.DateDrillContent
 import net.spross.kern.catalog.dateNotes
 import net.spross.kern.trainer.DateDrill
-import net.spross.kern.trainer.DateReferenceRow
 
 /**
  * The reading half of the dates page: the seven weekdays and the twelve months, both sides
@@ -32,7 +31,7 @@ fun DateReferenceSection(model: AppModel, content: DateDrillContent, chrome: Chr
                 // One bare-name pool — the Sprosse rows above already name the two.
                 caption = chrome.dateSprosse(listOf(group.kind)),
                 rows = group.rows.map {
-                    ReferenceRow(source = it.source, target = it.target, targetUnder = otherForms(it))
+                    ReferenceRow(source = it.source, target = it.target, targetUnder = it.otherForms)
                 },
             )
         }
@@ -41,10 +40,4 @@ fun DateReferenceSection(model: AppModel, content: DateDrillContent, chrome: Chr
 
     val notes = remember(content) { model.catalog?.dateNotes(content.target, content.source).orEmpty() }
     ReferenceNotes(notes, chrome)
-}
-
-/** What else the learned name answers to; null keeps the caption line off the row. */
-private fun otherForms(row: DateReferenceRow): String? {
-    val forms = listOfNotNull(row.abbr) + row.teaches + listOfNotNull(row.dateForm)
-    return if (forms.isEmpty()) null else forms.joinToString(" · ")
 }
