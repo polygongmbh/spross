@@ -18,7 +18,7 @@ xcodebuild -project Spross.xcodeproj -scheme Spross \
   -destination 'platform=iOS Simulator,name=iPhone 17' build   # app build gate
 scripts/run-sim.sh           # build + install + launch on the simulator (--shot, --clean, -- <launch args>)
 scripts/run-emu.sh           # same for Android: boots the AVD, builds, installs, launches (--shot, --clean)
-scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodegen + git hooks
+scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodegen + git hooks + audio .venv
 scripts/strings.py --fix     # run after ANY String Catalog edit — Xcode's formatting, then the Android tables
 scripts/catalog-format.py --fix   # run after ANY catalog/ edit — one line per entry that fits (--check to verify)
 scripts/audio-coverage.py --check # after ANY catalog/audio/ edit — asks git what ships; the pre-commit hook runs it on staged audio

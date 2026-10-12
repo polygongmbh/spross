@@ -7,6 +7,7 @@ the manifest's `gain`/`lead`. NOTHING here writes audio — every run decodes to
 muxer, so the mp3 that ships is byte-for-byte the mp3 that was measured, the "unmodified
 Commons transcode" claim stays true, and the sha256 gate keeps its meaning.
 """
+import audio_env  # noqa: F401 — before numpy: re-runs under the repo .venv
 import concurrent.futures
 import os
 import re
