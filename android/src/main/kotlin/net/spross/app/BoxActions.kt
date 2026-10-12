@@ -30,6 +30,13 @@ fun AppModel.reportIssue(cardId: String, comment: String?, learnerInput: String?
     updateBox { BoxEngine.reportIssue(it, cardId, comment, learnerInput, now()) }
 }
 
+/**
+ * The answer a report on this card travels with: what was typed, else what the report on
+ * file already rode in with ([Feedback.carriedInput]).
+ */
+fun AppModel.carriedReportInput(cardId: String, typed: String): String? =
+    box?.let { Feedback.carriedInput(it, cardId, typed) } ?: typed.takeIf { it.isNotBlank() }
+
 /** Withdraw a report; the card's schedule is untouched either way. */
 fun AppModel.dismissReportedIssue(cardId: String) {
     updateBox { BoxEngine.dismissReportedIssue(it, cardId) }

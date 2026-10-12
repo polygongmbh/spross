@@ -148,7 +148,8 @@ internal object LearnerContent {
     /**
      * File a content problem against ONE card: a wrong translation, a synonym the
      * catalog should accept, a prompt that reads badly. [learnerInput] is whatever they
-     * had typed as their answer — see [ReportedIssue].
+     * had typed as their answer — see [ReportedIssue] — and a blank one keeps the answer
+     * already on file ([Feedback.carriedInput]).
      *
      * Deliberately independent of [BoxEngine.setSuspended]: neither verb implies the other, and
      * reporting never changes what the box schedules. Filing again replaces the earlier
@@ -167,7 +168,7 @@ internal object LearnerContent {
         val issue = ReportedIssue(
             cardId = cardId,
             comment = comment?.takeIf { it.isNotBlank() },
-            learnerInput = learnerInput?.takeIf { it.isNotBlank() },
+            learnerInput = Feedback.carriedInput(state, cardId, learnerInput),
             reportedAt = stampOf(nowEpochMillis),
         )
         return state.copy(reportedIssues = state.reportedIssues + (cardId to issue))

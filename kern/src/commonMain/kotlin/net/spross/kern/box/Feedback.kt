@@ -159,6 +159,15 @@ object Feedback {
     fun isReportable(cardId: String): Boolean = !OwnWords.owns(cardId)
 
     /**
+     * The answer a report on [cardId] travels with: [typed] where it holds one, else what the
+     * report already on file rode in with — an edit filed from a row, where nothing was being
+     * answered, never drops it. [BoxEngine.reportIssue] files this, and a form showing the
+     * answer it will send reads it here.
+     */
+    fun carriedInput(state: BoxState, cardId: String, typed: String?): String? =
+        typed?.takeIf { it.isNotBlank() } ?: state.reportedIssues[cardId]?.learnerInput
+
+    /**
      * The problems standing against CATALOG cards, NEWEST first — the list a surface hands
      * back for review, and the complement of [wordPairs] and [suggestions] in that panel.
      *

@@ -76,11 +76,9 @@ struct ReportIssueSheet: View {
 
     private var onFile: Bool { onFileIssue != nil }
 
-    /// The answer the report travels with: what stands in the field now, or — filing
-    /// again from a row, where nothing was being answered — what the first report
-    /// already rode in with. Editing a report never drops it.
+    /// The answer the report travels with — kern's (`Feedback.carriedInput`).
     private var carriedInput: String {
-        learnerInput.isEmpty ? (onFileIssue?.learnerInput ?? "") : learnerInput
+        model.carriedReportInput(cardID: card.id, typed: learnerInput)
     }
 
     /// Dropping the report, last and set apart: it is the only thing in the form
@@ -141,7 +139,7 @@ struct ReportIssueSheet: View {
     }
 
     private func file() {
-        model.reportIssue(cardID: card.id, comment: comment, learnerInput: carriedInput)
+        model.reportIssue(cardID: card.id, comment: comment, learnerInput: learnerInput)
         dismiss()
     }
 }

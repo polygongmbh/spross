@@ -26,6 +26,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import net.spross.app.AppModel
+import net.spross.app.carriedReportInput
 import net.spross.app.dismissReportedIssue
 import net.spross.app.reportIssue
 import net.spross.app.reportedIssue
@@ -186,9 +187,9 @@ private fun ReportIssueDialog(
                     ),
                     modifier = Modifier.fillMaxWidth().focusRequester(focus),
                 )
-                if (learnerInput.isNotBlank()) {
+                model.carriedReportInput(card.id, learnerInput)?.let { carried ->
                     Text(
-                        "${chrome.reportTyped} $learnerInput",
+                        "${chrome.reportTyped} $carried",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -212,12 +213,7 @@ private fun ReportIssueDialog(
         },
         confirmButton = {
             TextButton(onClick = {
-                // why: an edit is filed from a row, where nothing was being answered — the
-                // answer the first report rode in with must not be dropped for that.
-                val typed = learnerInput.ifBlank {
-                    model.reportedIssue(card.id)?.learnerInput.orEmpty()
-                }
-                model.reportIssue(card.id, comment, typed)
+                model.reportIssue(card.id, comment, learnerInput)
                 onDismiss()
             }) { Text(chrome.reportSend) }
         },

@@ -25,6 +25,13 @@ extension AppModel {
         }
     }
 
+    /// The answer a report on this card travels with: what was typed, else what the report
+    /// on file already rode in with (`Feedback.carriedInput`).
+    func carriedReportInput(cardID: String, typed: String) -> String {
+        guard let box else { return typed }
+        return Feedback.shared.carriedInput(state: box, cardId: cardID, typed: typed) ?? ""
+    }
+
     /// Withdraw a report; the card's schedule is untouched either way.
     func dismissReportedIssue(cardID: String) {
         mutate { $0 = BoxEngine.shared.dismissReportedIssue(state: $0, cardId: cardID) }
