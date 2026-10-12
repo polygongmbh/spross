@@ -63,8 +63,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 - `Realization.article` is kern's, but `DisplayText.swift` and `CardDisplay.kt` still read `grammar["gender"]` themselves.
 - `TurnEffect` and `DrillEffect` repeat `ArmAdvance`/`CancelAdvance`/`Tone`/`ReleaseFocus`, so each app dispatches the cue contract twice.
 - Layout data sits in `trainer/` rather than `design/`: `Drill.chipRows`, `ReferenceColumns.PAIRED_MIN_WIDTH`, `DrillUnlockMark` timings.
-- `CardType.LISTENING_REVEAL_DIVIDED` is a flag nothing flips; drop it and both platforms' `divided` parameters.
-- `PressKind` is read by iOS only since 8.6.0 ruled Android ripple-only, and its KDoc should say so (`kern/.../design/PressKind.kt`).
 
 ### Apps & tooling
 

@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import net.spross.kern.session.Question
-import net.spross.kern.design.CardType
 
 /**
  * The review card: a word over its meaning, set at headword size with its grammar,
@@ -142,7 +141,6 @@ internal fun CardContext.ListeningFace(modifier: Modifier) {
                 // part of the card, and a screen reader reading it would say the meaning early.
                 modifier = Modifier.alpha(meaning.value)
                     .then(if (opens) Modifier else Modifier.clearAndSetSemantics { }),
-                divided = CardType.LISTENING_REVEAL_DIVIDED,
             ) {
                 HeadwordBlock(question.answer, emphasized = true)
             }

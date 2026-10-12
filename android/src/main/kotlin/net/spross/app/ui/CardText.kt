@@ -122,7 +122,6 @@ fun Headword(text: String, modifier: Modifier = Modifier, color: Color = Color.U
 fun CardReveal(
     modifier: Modifier = Modifier,
     note: String? = null,
-    divided: Boolean = true,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Column(
@@ -130,12 +129,10 @@ fun CardReveal(
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.sm),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        if (divided) {
-            Box(
-                Modifier.width(44.dp).height(2.dp)
-                    .background(Theme.colors.separator, RoundedCornerShape(1.dp))
-            )
-        }
+        Box(
+            Modifier.width(44.dp).height(2.dp)
+                .background(Theme.colors.separator, RoundedCornerShape(1.dp))
+        )
         content()
         note?.let { PauseLine(it) }
     }

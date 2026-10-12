@@ -4,6 +4,8 @@ package net.spross.kern.design
  * How far a pressed control shrinks under the thumb, by kind of control.
  * Every press runs the same spring — [RESPONSE] seconds to settle, damped [DAMPING] —
  * so the app has one press, cut a little deeper the smaller the control.
+ *
+ * iOS alone reads it: Android answers a press with Material's ripple and never shrinks a control.
  */
 enum class PressKind(val scale: Double) {
     /** A full action button, primary or soft. */
