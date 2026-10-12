@@ -27,17 +27,11 @@ Every gate appends its rejections to a shared `drops` list rather than printing:
 caller owns the report, and the gates stay pure enough to chain.
 """
 import hashlib
-import html
-import json
 import os
 import re
-import time
 import unicodedata
-import urllib.parse
-import urllib.request
 
-API = 'https://commons.wikimedia.org/w/api.php'
-UA = 'spross-audio-catalog/1.0 (educational vocab app; contact spross@polygon.gmbh)'
+import audio_commons
 
 # Authorship values that name nobody. Matched trimmed and case-insensitively, and
 # ONLY as a whole: `User:Tosca` is a name Commons can resolve, not a placeholder.
@@ -256,31 +250,6 @@ def keep_unambiguous(rows, mp3_dir, drops):
     return kept
 
 
-def commons_authors(sources):
-    """Commons filename → attribution, for rows whose pack authorship names nobody."""
-    resolved = {}
-    for start in range(0, len(sources), 50):
-        batch = sources[start:start + 50]
-        query = urllib.parse.urlencode({
-            'action': 'query', 'format': 'json', 'prop': 'imageinfo',
-            'iiprop': 'user|extmetadata', 'titles': '|'.join('File:' + name for name in batch),
-        })
-        request = urllib.request.Request(API + '?' + query, headers={'User-Agent': UA})
-        with urllib.request.urlopen(request, timeout=90) as response:
-            pages = json.load(response)['query']['pages']
-        for page in pages.values():
-            info = (page.get('imageinfo') or [{}])[0]
-            raw = info.get('extmetadata', {}).get('Artist', {}).get('value') or ''
-            artist = ' '.join(html.unescape(re.sub('<[^>]+>', ' ', raw)).split())
-            # why: the uploader is a weaker credit than the stated author, but a real
-            # one — Commons attributes to the account when the file states nothing.
-            if artist.lower() in JUNK_AUTHORS:
-                artist = 'Wikimedia Commons user %s' % info['user'] if info.get('user') else ''
-            resolved[page['title'].removeprefix('File:').replace('_', ' ')] = artist
-        time.sleep(0.5)
-    return resolved
-
-
 def names_nobody(author):
     """A placeholder or a bot's guess at the uploader: no credit a BY notice can carry."""
     return author.strip().lower() in JUNK_AUTHORS or bool(ASSUMED_AUTHOR.search(author))
@@ -292,7 +261,7 @@ def attribute(rows, drops):
     if not files:
         return rows
     print('  resolving %d unattributed file(s) against Commons…' % len(files))
-    resolved = commons_authors(files)
+    resolved = audio_commons.uploader_credits(files)
     kept = []
     for row in rows:
         author = resolved.get(row['file'].replace('_', ' '), '') if names_nobody(row['author']) else row['author']

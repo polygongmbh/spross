@@ -22,13 +22,16 @@ by the form a recording speaks, never by the concept that shows it:
 a concept's text, a synonym and a tagged form (a plural, a feminine, an agreement form) are one kind of row,
 so a form moving between those roles keeps its recording.
 Every form is looked for bare in the words pack and, where a card shows it with an article, with that article in the articles pack.
+Where each language's recordings are on Commons is one table, `../../scripts/audio_routes.py`,
+and every request goes through one client, `../../scripts/audio_commons.py`, which waits out a dropped
+network or a throttling Commons for up to 15 minutes before an item counts as failed.
 
 After authoring words, per language and one language at a time (Commons throttles parallel
 fetches), a matter of seconds:
 
 ```sh
-../data/reference/audio/build-packs.sh words <lang>          # resolves only what the pack lacks
-../data/reference/audio/build-packs.sh articles <lang>       # the same forms with their article
+scripts/audio-packs.py resolve words <lang>                  # resolves only what the pack lacks
+scripts/audio-packs.py resolve articles <lang>               # the same forms with their article
 scripts/audio-catalog.py --lang <lang> --fill
 scripts/audio-catalog.py --lang <lang> --articles
 scripts/audio-coverage.py --missing <lang>                   # what nobody has recorded

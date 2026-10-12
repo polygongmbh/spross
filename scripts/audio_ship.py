@@ -18,9 +18,9 @@ import shutil
 import sys
 
 from audio_gates import attribute, digest_of, speech_key
-from audio_manifest import ROOT, SECTIONS, AUDIO, audio_dir, put, read_manifest
+from audio_manifest import SECTIONS, AUDIO, audio_dir, put, read_manifest
+from audio_routes import WORKSPACE
 
-WORKSPACE = os.path.normpath(os.path.join(ROOT, '..', 'data', 'reference', 'audio'))
 FIELDS = ('date lang section key from_source from_sha256 to_source to_sha256 author license '
           'mos_from mos_to picker why').split()
 

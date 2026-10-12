@@ -19,10 +19,9 @@ import unicodedata
 import audio_index
 import audio_judge
 from audio_gates import LICENSE_URLS, digest_of, speech_key
+from audio_routes import ROOT, SECTIONS
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUDIO = os.environ.get('AUDIO_CATALOG') or os.path.join(ROOT, 'catalog', 'audio')
-SECTIONS = ('words', 'letters', 'texts', 'articles', 'calendar', 'countries')
 
 
 def audio_dir(lang):
