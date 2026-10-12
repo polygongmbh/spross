@@ -26,13 +26,10 @@ import audio_manifest
 import audio_measure
 import audio_ship
 from audio_fill import fill
-from audio_forms import CATALOG, load_catalog  # noqa: F401 — loaded by path
-from audio_index import ANALYSIS, FFMPEG, INDEX_FIELDS, playback_index  # noqa: F401
-from audio_gates import (UNSHIPPABLE_LICENSES, digest_of, speech_key, split_article,  # noqa: F401
-                         spoken_target_form)
-# why: workspace scripts load this file by path and read these names off it.
-from audio_manifest import (AUDIO, SECTIONS, ascii_stem, audio_dir, form_file,  # noqa: F401
-                            read_manifest, write_manifest)
+from audio_forms import load_catalog
+from audio_index import ANALYSIS, FFMPEG, INDEX_FIELDS, playback_index
+from audio_gates import digest_of
+from audio_manifest import AUDIO, SECTIONS, audio_dir, read_manifest, write_manifest
 
 # The order a language with no manifest yet is filled in: words first, so a collision across
 # sections is decided the way it always was.
@@ -155,8 +152,6 @@ def main():
     parser.add_argument('--fill', action='store_true',
                         help='add what pack-<lang>-<section> has and the shipped section lacks; '
                              'every entry already shipped is left exactly as it is')
-    parser.add_argument('--reseat', action='store_true',
-                        help='with --fill, first --ship --from-packs --section words')
     parser.add_argument('--prune-poor', action='store_true',
                         help='remove shipped recordings the take judge refuses — under their '
                              "language's mos floor, heard as bad, one-sided (scripts/audio_judge.py); "
@@ -205,7 +200,7 @@ def main():
     aliased = [section for section in ('articles', 'calendar', 'countries') if getattr(args, section)]
     if aliased or args.fill:
         sections = aliased or [args.section or 'words']
-        for section in aliased or (['words'] if args.reseat else []):
+        for section in aliased:
             audio_ship.ship(args.packs, args.lang, args.dry_run, True, section)
         return fill_sections(args.packs, args.lang, sections, args.dry_run)
     if not args.lang:
