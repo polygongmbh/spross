@@ -37,6 +37,11 @@ ROUTES = {
     'sw': dict(words=['Sw-ke-{word}.flac', 'Sw-ke-{word}.ogg'], lingualibre='swa', convention_first=True,
                dump='sw-audio-kaikki.tsv',
                forms=['Sw-ke-{text}.flac', 'Sw-ke-{text}.ogg', 'Sw-{text}.flac']),
+    # en is filed per accent; the catalog writes American, so `En-us-` (Dvortygirl, ~700 of the
+    # words) goes before `En-uk-`, whose Shtooka takes say a verb with its `to`. Lingua Libre
+    # covers a few more words but splits them over more voices, and its `eng` category is 109k files.
+    'en': dict(words=['En-us-{word}.ogg', 'En-uk-{word}.ogg'], lingualibre='eng', convention_first=True,
+               forms=['En-us-{text}.ogg', 'En-uk-{text}.ogg'], forms_lingualibre='eng'),
     'fr': dict(words=['Fr-{word}.ogg'], lingualibre='fra', forms=['Fr-{text}.ogg'], forms_lingualibre='fra',
                letters=['LL-Q150 (fra)-Sartus85-{glyph} (lettre).wav']),
     'it': dict(words=['It-{word}.ogg'], lingualibre='ita', forms=['It-{text}.ogg'], forms_lingualibre='ita'),

@@ -148,20 +148,29 @@ def titled_as(name, form):
 
 def variants(text, lang):
     """Surface forms to try against the recording index, best first; a stressed form's own
-    spelling first, then the same forms without the stress mark. Swahili verbs carry a
-    `ku-`/`kw-` citation prefix and adjectives a leading `-` the recordings lack; Spanish
-    opens exclamations with `¡`/`¿`, which nobody pronounces."""
+    spelling first, then the same forms without the stress mark. A verb's citation prefix
+    (`optionalVerbPrefixes`: sw `ku-`/`kw-`, en `to `) is one the recordings lack, as is a
+    Swahili adjective's leading `-`; Spanish opens exclamations with `¡`/`¿`, which nobody pronounces."""
     t = re.sub(r'[!?.,;:]+$', '', unicodedata.normalize('NFC', text.strip()))
     out = [t.lower()]
-    if lang == 'sw':
-        m = re.match(r'^(ku|kw)(.+)$', t.lower())
-        if m:
-            out.append(m.group(2))
-        if t.startswith('-'):
-            out.append(t[1:].lower())
+    stem = verb_stem(t, verb_prefixes(lang))
+    if stem:
+        out.append(stem.lower())
+    if lang == 'sw' and t.startswith('-'):
+        out.append(t[1:].lower())
     if lang == 'es':
         out.append(t.lstrip('¡¿').lower())
     return list(dict.fromkeys(out + [stress_free(v) for v in out]))
+
+
+_PREFIXES = {}
+
+
+def verb_prefixes(lang):
+    if not _PREFIXES:
+        _PREFIXES.update({code: info.get('optionalVerbPrefixes', [])
+                          for code, info in read_json(CATALOG, 'languages.json').items()})
+    return _PREFIXES.get(lang, [])
 
 
 def own_variants(form, lang):

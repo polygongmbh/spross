@@ -13,7 +13,7 @@ VERDICTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs'
 
 # Languages whose device voice is good on both platforms: without a recording the card still
 # speaks, so a recording has to beat that voice rather than silence.
-WELL_VOICED = frozenset({"de", "es", "fr", "it", "uk"})
+WELL_VOICED = frozenset({"de", "en", "es", "fr", "it", "uk"})
 
 # The lowest `mos` a recording may ship at. Where the device voice is missing (eo, sw) the
 # bar only refuses the clearly bad; where it is good, the bar is a notch higher and a word
