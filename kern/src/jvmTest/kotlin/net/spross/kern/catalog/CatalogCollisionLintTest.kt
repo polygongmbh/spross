@@ -312,6 +312,10 @@ class CatalogCollisionLintTest {
                 // split it (als/Messer, than/knife, ol/tranĉilo, que/cuchillo, que/couteau,
                 // di/coltello, kuliko/kisu). The area label tells them apart on produce.
                 "uk ніж: comparison/than, kitchen/knife",
+                // Reviewed 2026-10-16: uk `сідати` is sitting down AND getting on (сідати в
+                // автобус) — one verb, the seat you take; de/en/es/fr/it split it (sich setzen /
+                // einsteigen, s'asseoir / monter). `to-sit` became the action to match es/fr/it.
+                "uk сідати: living/to-sit, transport/to-get-on",
                 // Reviewed 2026-09-25: uk `ім'я` is the name AND the first name on a form —
                 // de/en/eo/es/fr/it/sw all split the pair (Name/Vorname, name/first name,
                 // nomo/antaŭnomo, nombre/nombre de pila, nom/prénom, nome/nome di battesimo,

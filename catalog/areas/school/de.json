@@ -36,7 +36,7 @@
   "to-pronounce": { "text": "aussprechen" },
   "to-teach": { "text": "unterrichten" },
   "report-card": { "text": "Zeugnis", "forms": { "pl": "die Zeugnisse" }, "grammar": { "article": "das" } },
-  "do-the-homework": { "text": "Ich mache die Hausaufgaben." },
+  "do-the-homework": { "text": "Ich mache meine Hausaufgaben.", "accepts": ["Ich mache die Hausaufgaben."] },
   "look-at-the-class-schedule": { "text": "Schau auf den Stundenplan.", "accepts": ["Schauen Sie auf den Stundenplan."] },
   "the-break-is-over": { "text": "Die Pause ist vorbei." },
   "ask-the-teacher": { "text": "Frag den Lehrer.", "accepts": ["Fragen Sie den Lehrer."] },

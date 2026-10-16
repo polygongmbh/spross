@@ -32,7 +32,7 @@
   "light": { "text": "light" },
   "wall": { "text": "wall" },
   "movie": { "text": "movie" },
-  "to-sit": { "text": "to sit" },
+  "to-sit": { "text": "to sit down", "accepts": ["to sit"] },
   "to-laugh": { "text": "to laugh" },
   "furniture": { "text": "furniture" },
   "game": { "text": "game" },

@@ -35,7 +35,7 @@
   "faucet": { "text": "Wasserhahn", "forms": { "pl": "die Wasserhähne" }, "grammar": { "article": "der" } },
   "trash-can": { "text": "Mülleimer", "grammar": { "article": "der", "plural": "=" } },
   "bucket": { "text": "Eimer", "grammar": { "article": "der", "plural": "=" } },
-  "im-taking-a-quick-shower": { "text": "Ich gehe kurz duschen." },
+  "im-taking-a-quick-shower": { "text": "Ich gehe kurz duschen.", "accepts": ["Ich gehe schnell duschen."] },
   "the-bathroom-is-occupied": { "text": "Das Bad ist besetzt!" },
   "the-laundry-is-done": { "text": "Die Wäsche ist fertig." },
   "wheres-my-towel": { "text": "Wo ist mein Handtuch?" },

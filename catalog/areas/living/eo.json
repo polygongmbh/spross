@@ -37,8 +37,8 @@
   "wall": { "text": "muro" },
   "movie": { "text": "filmo" },
   "to-sit": {
-   "text": "sidi",
-   "accepts": ["sidiĝi"],
+   "text": "sidiĝi",
+   "accepts": ["sidi"],
    "notes": { "eo": "sidi estas la stato · sidiĝi estas eksidi." }
   },
   "to-laugh": { "text": "ridi" },

@@ -40,7 +40,10 @@
   "im-in-a-meeting": { "text": "Ich bin in einem Meeting." },
   "dont-disturb-me": { "text": "Stör mich nicht!", "accepts": ["Nicht stören!"] },
   "the-laptop-wont-charge-anymore": { "text": "Der Laptop lädt nicht mehr." },
-  "the-internet-is-gone": { "text": "Das Internet ist weg.", "accepts": ["Das WLAN ist weg."] },
+  "the-internet-is-gone": {
+   "text": "Wir haben kein Internet.",
+   "accepts": ["Das Internet geht nicht.", "Das WLAN geht nicht.", "Das Internet ist weg."]
+  },
   "it-works": { "text": "Es funktioniert.", "accepts": ["Es geht wieder."] },
   "coffee-break": { "text": "Kaffeepause?" },
   "i-have-a-lot-to-do": { "text": "Ich habe viel zu tun." },

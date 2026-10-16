@@ -98,8 +98,8 @@
    "accepts": ["L'ordinateur portable ne se recharge plus.", "Le portable ne charge plus."]
   },
   "the-internet-is-gone": {
-   "text": "Il n'y a plus d'internet.",
-   "accepts": ["Il n'y a plus internet.", "Internet ne marche plus.", "Il n'y a plus de wifi."]
+   "text": "Il n'y a pas d'internet.",
+   "accepts": ["Il n'y a plus d'internet.", "Internet ne marche plus.", "Il n'y a pas de wifi."]
   },
   "it-works": { "text": "Ça marche.", "accepts": ["Ça fonctionne.", "Ça remarche."] },
   "coffee-break": { "text": "Pause café ?", "accepts": ["Une pause café ?", "On prend un café ?"] },

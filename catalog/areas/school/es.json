@@ -71,7 +71,7 @@
   "to-pronounce": { "text": "pronunciar" },
   "to-teach": { "text": "enseñar" },
   "report-card": { "text": "boletín de notas", "accepts": ["notas"], "grammar": { "article": "el" } },
-  "do-the-homework": { "text": "Hago los deberes." },
+  "do-the-homework": { "text": "Hago mis deberes.", "accepts": ["Hago los deberes."] },
   "look-at-the-class-schedule": { "text": "Mira el horario.", "accepts": ["Mire el horario."] },
   "the-break-is-over": { "text": "El descanso ha terminado.", "orders": ["Ha terminado el descanso."] },
   "ask-the-teacher": {

@@ -38,7 +38,11 @@
   "house": { "text": "Haus", "forms": { "pl": "die Häuser" }, "grammar": { "article": "das" } },
   "to-live": { "text": "wohnen" },
   "do-you-have-the-keys": { "text": "Hast du die Schlüssel?", "orders": ["Du hast die Schlüssel?"] },
-  "ill-be-right-back": { "text": "Ich bin gleich zurück!", "orders": ["Gleich bin ich zurück!"] },
+  "ill-be-right-back": {
+   "text": "Ich komme gleich wieder!",
+   "accepts": ["Ich bin gleich zurück!"],
+   "orders": ["Gleich komme ich wieder!"]
+  },
   "hurry-were-late": { "text": "Beeilt euch, wir sind spät dran!" },
   "see-you-later": { "text": "Bis später!" },
   "welcome-home": { "text": "Willkommen zu Hause!" },
