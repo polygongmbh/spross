@@ -7,7 +7,11 @@
   "anger": { "text": "colère", "grammar": { "article": "la" } },
   "fear": { "text": "peur", "grammar": { "article": "la" } },
   "surprise": { "text": "surprise", "grammar": { "article": "la" } },
-  "worry": { "text": "inquiétude", "grammar": { "article": "la" } },
+  "worry": {
+   "text": "inquiétude",
+   "accepts": ["l'inquiétude"],
+   "grammar": { "article": "l'", "gender": "f" }
+  },
   "love": { "text": "amour", "accepts": ["l'amour"], "grammar": { "article": "l'", "gender": "m" } },
   "shame": { "text": "honte", "grammar": { "article": "la" } },
   "jealousy": { "text": "jalousie", "grammar": { "article": "la" } },

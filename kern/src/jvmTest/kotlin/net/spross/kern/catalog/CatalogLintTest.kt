@@ -551,6 +551,24 @@ class CatalogLintTest {
             }
         }
     }
+
+    /**
+     * fr/it singular articles elide before a vowel — `l'erreur`, never `la erreur` — so a
+     * vowel-initial noun authored with le/la/il/lo teaches a form nobody says. An h is left
+     * alone: h aspiré keeps its article (le haricot, la honte), and that is a per-word fact.
+     */
+    @Test
+    fun articlesElideBeforeAVowel() {
+        val elidable = mapOf("fr" to setOf("le", "la"), "it" to setOf("il", "lo", "la"))
+        forEachRealization { area, lang, slug, raw ->
+            val article = raw.grammar["article"] ?: return@forEachRealization
+            if (article !in elidable[lang].orEmpty()) return@forEachRealization
+            assertTrue(
+                raw.text.first().lowercaseChar() !in "aeiouàâéèêëîïôœùûü",
+                "$area/$lang.json $slug.article: \"$article ${raw.text}\" elides — author l' and grammar.gender",
+            )
+        }
+    }
 }
 
 /** `grammar.gender` values: the gender an article hides, `m/f` where the noun takes both (l'élève). */

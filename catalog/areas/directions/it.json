@@ -24,8 +24,8 @@
   },
   "north": { "text": "nord", "grammar": { "article": "il" } },
   "south": { "text": "sud", "grammar": { "article": "il" } },
-  "east": { "text": "est", "grammar": { "article": "il" } },
-  "west": { "text": "ovest", "grammar": { "article": "il" } },
+  "east": { "text": "est", "accepts": ["l'est"], "grammar": { "article": "l'", "gender": "m" } },
+  "west": { "text": "ovest", "accepts": ["l'ovest"], "grammar": { "article": "l'", "gender": "m" } },
   "go-straight-ahead": { "text": "Vada dritto.", "accepts": ["Vai dritto.", "Prosegua dritto."] },
   "turn-left-at-the-corner": {
    "text": "Giri a sinistra all'angolo.",

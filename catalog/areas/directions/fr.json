@@ -26,8 +26,8 @@
   "way": { "text": "chemin", "grammar": { "article": "le" } },
   "north": { "text": "nord", "grammar": { "article": "le" } },
   "south": { "text": "sud", "grammar": { "article": "le" } },
-  "east": { "text": "est", "grammar": { "article": "le" } },
-  "west": { "text": "ouest", "grammar": { "article": "le" } },
+  "east": { "text": "est", "accepts": ["l'est"], "grammar": { "article": "l'", "gender": "m" } },
+  "west": { "text": "ouest", "accepts": ["l'ouest"], "grammar": { "article": "l'", "gender": "m" } },
   "go-straight-ahead": { "text": "Allez tout droit.", "accepts": ["Va tout droit."] },
   "turn-left-at-the-corner": {
    "text": "Tournez à gauche au coin.",

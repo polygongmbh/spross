@@ -44,7 +44,7 @@
    "grammar": { "article": "le" },
    "notes": { "fr": "le sparadrap est le petit pansement qui colle." }
   },
-  "splint": { "text": "attelle", "grammar": { "article": "la" } },
+  "splint": { "text": "attelle", "accepts": ["l'attelle"], "grammar": { "article": "l'", "gender": "f" } },
   "to-recover": {
    "text": "guérir",
    "accepts": ["se remettre"],

@@ -23,7 +23,7 @@
   "remote": { "text": "télécommande", "grammar": { "article": "la" } },
   "floor": { "text": "sol", "grammar": { "article": "le" } },
   "song": { "text": "chanson", "grammar": { "article": "la" } },
-  "story": { "text": "étage", "grammar": { "article": "le" } },
+  "story": { "text": "étage", "accepts": ["l'étage"], "grammar": { "article": "l'", "gender": "m" } },
   "shelf": { "text": "étagère", "accepts": ["l'étagère"], "grammar": { "article": "l'", "gender": "f" } },
   "plant": { "text": "plante", "grammar": { "article": "la" } },
   "window": { "text": "fenêtre", "grammar": { "article": "la" } },
