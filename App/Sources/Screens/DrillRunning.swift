@@ -207,7 +207,7 @@ extension DrillRunning {
         // why: confetti and cheer are one thing (`docs/design.md`); the page the
         // run closes onto rains the one, so the close sounds the other.
         if summary.celebrated { Sound.cheer() }
-        onFinish(DrillRunResult(summary, title: resultTitle))
+        onFinish(DrillRunResult(summary: summary, title: resultTitle))
         dismiss()
     }
 

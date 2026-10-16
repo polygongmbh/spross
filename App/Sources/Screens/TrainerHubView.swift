@@ -112,8 +112,8 @@ struct TrainerHubView: View, LanguageNaming {
     }
 
     private func report(_ result: DrillRunResult) {
-        lastRun = result.worthReporting ? result : nil
-        if result.celebrated { celebrate() }
+        lastRun = result.summary.worthReporting ? result : nil
+        if result.summary.celebrated { celebrate() }
     }
 
     /// The one `destination`, seen through ONE presentation: a binding that

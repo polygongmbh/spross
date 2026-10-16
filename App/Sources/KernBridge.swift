@@ -141,24 +141,6 @@ extension PairDrill {
     func fastPrice(top: Int) -> Int { Int(fastPrice(top: Int32(top))) }
 }
 
-// MARK: - Kern → Design value types
-//
-// The Design value types that stand in for a kern ruling — a run's figures —
-// are built from kern's here. A Design file that renders kern's
-// own value reads it directly instead (`AutoAdvance`, `NumberReferenceTable`,
-// `SessionSummaryView` among them).
-
-extension DrillRunResult {
-    /// The figures a closed run leaves, as the tile above the picks wears them.
-    /// Which of them there are is kern's (`DrillRunSummary`); what the run was
-    /// CALLED is chrome, so it arrives beside them.
-    init(_ summary: DrillRunSummary, title: LocalizedStringKey) {
-        self.init(doneCount: Int(summary.done), bestAnswerStreak: Int(summary.bestAnswerStreak),
-                  newRecord: summary.newRecord, milestone: summary.milestone, timed: summary.timed,
-                  worthReporting: summary.worthReporting, celebrated: summary.celebrated, title: title)
-    }
-}
-
 // The product calibration and `withProductCalibration()` are Kern's
 // (`model/Config.kt`, `store/Calibration.kt`) — a Swift copy of the table would
 // drift from the engine that answers to it.

@@ -96,22 +96,9 @@ struct DrillStopOffer: View {
 /// earn a page, and a page they do not earn is one more ✕ between the learner
 /// and the next run.
 struct DrillRunResult: Equatable {
-    let doneCount: Int
-    let bestAnswerStreak: Int
-    /// The run beat the drill's standing record. A drill that keeps no record
-    /// store leaves it false, which drops the record line and the confetti with it.
-    var newRecord = false
-    /// Which Sprosse the best answer streak earned. Kern's (`DrillRunSummary.milestone`) — the
-    /// ladder is one table, and a second copy of it here is one coincidence away
-    /// from praising a run the engine does not.
-    var milestone: AnswerStreakMilestone = .sprout
-    /// A timed run's score, and the challenge it answered; nil for every other run.
-    var timed: TimedOutcome?
-    /// Long enough to report where nothing asked for it — kern's (`DrillRunSummary.worthReporting`).
-    var worthReporting = true
-    /// The close earns confetti and the cheer — kern's (`DrillRunSummary.celebrated`).
-    var celebrated = false
-    /// What was drilled — the exercise's own name, since a page can host several.
+    /// The figures, and whether they earn a report and the cheer — kern's.
+    let summary: DrillRunSummary
+    /// What was drilled — the exercise's own name (chrome), since a page can host several.
     let title: LocalizedStringKey
 }
 
@@ -121,6 +108,8 @@ struct DrillResultTile: View {
     let result: DrillRunResult
     @Environment(\.locale) private var locale
 
+    private var summary: DrillRunSummary { result.summary }
+
     var body: some View {
         HStack(alignment: .center, spacing: Theme.spacing.lg) {
             Text(verbatim: emoji)
@@ -128,13 +117,13 @@ struct DrillResultTile: View {
                 .sway(angle: 4, period: 3.4)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
-                Text("trainer.result.tasksDone \(result.doneCount)")
+                Text("trainer.result.tasksDone \(Int(summary.done))")
                     .font(Theme.typography.headline)
                     .foregroundStyle(Theme.colors.textPrimary)
-                Text("trainer.result.bestStreak \(result.bestAnswerStreak.formatted())")
+                Text("trainer.result.bestStreak \(Int(summary.bestAnswerStreak).formatted())")
                     .font(Theme.typography.caption)
                     .foregroundStyle(Theme.colors.textSecondary)
-                if let timed = result.timed {
+                if let timed = summary.timed {
                     Text("trainer.run.score \(Int(timed.score))")
                         .font(Theme.typography.caption)
                         .foregroundStyle(Theme.colors.textPrimary)
@@ -151,7 +140,7 @@ struct DrillResultTile: View {
                         .font(Theme.typography.caption)
                     }
                 }
-                if result.newRecord {
+                if summary.newRecord {
                     Text("trainer.result.newRecord")
                         .font(Theme.typography.caption)
                         .foregroundStyle(Theme.colors.accent)
@@ -164,7 +153,7 @@ struct DrillResultTile: View {
         }
         .panelSurface(Theme.colors.surfaceTint)
         // why: one VoiceOver stop, unless a share button must stay reachable.
-        .accessibilityElement(children: result.timed?.replyCode == nil ? .combine : .contain)
+        .accessibilityElement(children: summary.timed?.replyCode == nil ? .combine : .contain)
     }
 
     /// How the score stands against the one a challenge's code arrived with.
@@ -186,7 +175,7 @@ struct DrillResultTile: View {
 
     /// The face of the Sprosse kern says the run reached.
     private var emoji: String {
-        switch result.milestone {
+        switch summary.milestone {
         case .trophy: return "🏆"
         case .cheer: return "🎉"
         case .effort: return "💪"
@@ -199,9 +188,12 @@ struct DrillResultTile: View {
 
 #Preview("Result tile · record") {
     VStack(spacing: Theme.spacing.lg) {
-        DrillResultTile(result: DrillRunResult(doneCount: 17, bestAnswerStreak: 12, newRecord: true,
-                                               milestone: .trophy, title: "trainer.drill.numbers"))
-        DrillResultTile(result: DrillRunResult(doneCount: 4, bestAnswerStreak: 1, title: "trainer.drill.letters"))
+        DrillResultTile(result: DrillRunResult(
+            summary: DrillRunSummary(done: 17, bestAnswerStreak: 12, newRecord: true, timed: nil),
+            title: "trainer.drill.numbers"))
+        DrillResultTile(result: DrillRunResult(
+            summary: DrillRunSummary(done: 4, bestAnswerStreak: 1, newRecord: false, timed: nil),
+            title: "trainer.drill.letters"))
     }
     .padding(Theme.spacing.xl)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
