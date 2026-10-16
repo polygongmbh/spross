@@ -25,6 +25,18 @@ extension View {
         .cardShadow()
     }
 
+    /// A field's or input row's surface: the control corner, filled, with a hairline edge.
+    func controlSurface() -> some View {
+        background(
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                .fill(Theme.colors.surface)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
+                .strokeBorder(Theme.colors.separator, lineWidth: 1)
+        )
+    }
+
     /// The one tinted capsule a standing wears: a word — never a color alone —
     /// over that color's own wash (kern's `Palette.WASH`),
     /// so a badge reads the same on a card as on a recessed row.

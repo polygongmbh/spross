@@ -117,14 +117,7 @@ struct ReportIssueSheet: View {
                 .lineLimit(3...6)
                 .focused($focused)
                 .padding(Theme.spacing.lg)
-                .background(
-                    RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                        .fill(Theme.colors.surface)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                        .strokeBorder(Theme.colors.separator, lineWidth: 1)
-                )
+                .controlSurface()
         }
     }
 

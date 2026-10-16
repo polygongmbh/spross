@@ -59,7 +59,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Apps & tooling
 
-- iOS hand cuts: `controlSurface()` is cut by hand at five sites, and `Watch/Fixtures` ships in Release.
+- iOS: `Watch/Fixtures` ships in Release.
 - Android dead code: `AppModel.pronounceTarget`, `TypedDrillView`'s mirror of `DrillRunProgress` with a dead `bestAnswerStreak`, and the `errorUnknownProfile`/`errorResetFailed` chrome fields.
 - Android hand cuts: the learner name field and the growable sheet are cut by hand, and the box hint walks every card where iOS short-circuits on `AudioCapability`.
 - The watch speed mark (⚡) is visual only: VoiceOver hears right or wrong but not how quick (`WatchQuizView.verdict`).
