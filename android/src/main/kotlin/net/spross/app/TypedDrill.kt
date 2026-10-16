@@ -4,12 +4,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlin.random.Random
-import net.spross.kern.session.AnswerOutcome
-import net.spross.kern.session.Question
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillBookings
 import net.spross.kern.trainer.DrillRunSummary
-import net.spross.kern.trainer.DrillTally
 import net.spross.kern.trainer.PairDrillIntent
 import net.spross.kern.trainer.PairDrillRun
 import net.spross.kern.trainer.PairDrillRunState
@@ -22,8 +19,8 @@ import net.spross.kern.trainer.PairDrillTask
  * rules of its own. What the SCREEN does with either is one thing — a card, a field, one
  * primary action, a beat, a way out — so the run reaches it through this face.
  *
- * Nothing here decides anything: [view] is the run as it stands right now, read fresh every
- * composition, and the rest is the same handful of taps kern already names.
+ * Nothing here decides anything: the run's figures are kern's [DrillRun.progress], read fresh
+ * every composition, and the rest is the same handful of taps kern already names.
  */
 interface TypedDrill : DrillRun {
 
@@ -37,8 +34,8 @@ interface TypedDrill : DrillRun {
      */
     val chosen: String?
 
-    /** The question and the figures as they stand. */
-    fun view(): TypedDrillView
+    /** The Sprosse the run stands on — the one figure a typed run adds to [DrillRun.progress]. */
+    val sprosse: Int
 
     /** A live keystroke: writing the answer out IS the answer, within kern's exact-only guard. */
     fun type(text: String)
@@ -62,19 +59,6 @@ interface TypedDrill : DrillRun {
     fun close(standingRecord: Int): TypedDrillClose
 }
 
-/** One typed run as it stands: the question, the ladder under it, and the score line. */
-data class TypedDrillView(
-    /** Bumped per question — what the card's identity and an autoplay effect key on. */
-    val index: Int,
-    val sprosse: Int,
-    val answerStreak: Int,
-    val bestAnswerStreak: Int,
-    val outcomes: List<AnswerOutcome>,
-    val tally: DrillTally,
-    /** What the card shows. */
-    val question: Question,
-)
-
 /** What a closed typed run owes the page that started it: its figures, and what it files. */
 data class TypedDrillClose(
     /** null ⇒ the run was never answered: dismiss, report nothing. */
@@ -89,7 +73,7 @@ data class TypedDrillClose(
  * Everything decidable is kern's: which question a Sprosse may ask, which row is drawn, what a
  * typed answer earns, how far one answer moves the ramp, which beat is armed. The run itself is
  * [DrillFlow], which every drill stands on; what this adds is the face the shared screen reads —
- * [view], [chosen], and a close that hands back the figures the atlas and the calendar both file.
+ * [sprosse], [chosen], and a close that hands back the figures the atlas and the calendar both file.
  *
  * Stateless like every drill: no review is ever booked and the box is never read at all — the
  * material is the catalog's, not the learner's own words.
@@ -132,16 +116,7 @@ class TypedDrillFlow<T : PairDrillTask>(
         return TypedDrillClose(closed.summary, closed.bookings())
     }
 
-    /** The run as the shared typed-drill screen reads it; a picture's rules are the card's. */
-    override fun view(): TypedDrillView = TypedDrillView(
-        index = state.index,
-        sprosse = state.sprosse,
-        answerStreak = state.answerStreak,
-        bestAnswerStreak = state.bestAnswerStreak,
-        outcomes = state.outcomes,
-        tally = state.tally,
-        question = state.question,
-    )
+    override val sprosse: Int get() = state.sprosse
 
     override fun reduce(state: PairDrillRunState<T>, intent: PairDrillIntent, rng: Random) =
         run.reduce(state, intent, rng).let { DrillStep(it.state, it.effects) }
