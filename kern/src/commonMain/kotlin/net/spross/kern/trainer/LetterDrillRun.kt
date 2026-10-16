@@ -1,15 +1,16 @@
 package net.spross.kern.trainer
 
-import net.spross.kern.session.Saying
 import kotlin.random.Random
 import net.spross.kern.model.Card
 import net.spross.kern.session.AdvanceBeat
+import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.CatalogAnswerGrader
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
+import net.spross.kern.session.Saying
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 import net.spross.kern.session.alsoAccepts
-import net.spross.kern.session.AnswerNormalizer
 
 /**
  * The letter drill as pure state plus one reducer. The run's shape is [LetterDrillRunState];
@@ -107,15 +108,15 @@ object LetterDrillRun {
         if (glyph != task.display) {
             return LetterDrillReduction(
                 picked.copy(feedback = TurnFeedback.Revealed),
-                listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
+                listOf(DrillEffect.Silence, DrillEffect.Cued(Cue.Tone(ToneKind.Wrong))),
             )
         }
         return LetterDrillReduction(
             picked.copy(feedback = TurnFeedback.Correct),
             listOf(
                 DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Correct),
-                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
+                DrillEffect.Cued(Cue.Tone(ToneKind.Correct)),
+                DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit)),
             ),
         )
     }

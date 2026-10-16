@@ -59,7 +59,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Engine
 
-- `TurnEffect` and `DrillEffect` repeat `ArmAdvance`/`CancelAdvance`/`Tone`/`ReleaseFocus`, so each app dispatches the cue contract twice.
 - Layout data sits in `trainer/` rather than `design/`: `Drill.chipRows`, `ReferenceColumns.PAIRED_MIN_WIDTH`, `DrillUnlockMark` timings.
 
 ### Apps & tooling

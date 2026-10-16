@@ -1,6 +1,5 @@
 package net.spross.kern.trainer
 
-import net.spross.kern.session.Saying
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -12,6 +11,8 @@ import net.spross.kern.model.ClosingNote
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.Cue
+import net.spross.kern.session.Saying
 import net.spross.kern.session.TurnFeedback
 
 /** The sentence run: what a placement is worth, where the ladder takes it, what a close books. */
@@ -141,10 +142,10 @@ class SentenceScrambleRunTest {
     fun anArrangementSaysTheAuthoredPhrase() {
         val (task, right) = graded(correctly = true)
         assertEquals(Saying(task.display, "de"), right.state.reading.answer)
-        assertTrue(DrillEffect.ArmAdvance(AdvanceBeat.Explicit) in right.effects)
+        assertTrue(DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit)) in right.effects)
         val (wrongTask, wrong) = graded(correctly = false)
         assertEquals(Saying(wrongTask.display, "de"), wrong.state.reading.answer)
-        assertTrue(wrong.effects.none { it is DrillEffect.ArmAdvance })
+        assertTrue(wrong.effects.none { (it as? DrillEffect.Cued)?.cue is Cue.ArmAdvance })
     }
 
     /** An atom can be taken back while the arrangement is still the learner's to give. */

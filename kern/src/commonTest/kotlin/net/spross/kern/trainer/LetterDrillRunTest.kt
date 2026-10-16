@@ -14,6 +14,7 @@ import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.CatalogAnswerGrader
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -183,8 +184,8 @@ class LetterDrillRunTest {
         assertEquals(
             listOf(
                 DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Correct),
-                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
+                DrillEffect.Cued(Cue.Tone(ToneKind.Correct)),
+                DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit)),
             ),
             hit.effects,
         )
@@ -237,11 +238,11 @@ class LetterDrillRunTest {
         val task = assertNotNull(state.task)
         val done = reduce(state, LetterDrillIntent.InputChanged(task.display), rng)
         assertEquals(TurnFeedback.Correct, done.state.feedback)
-        assertTrue(DrillEffect.ArmAdvance(AdvanceBeat.Live) in done.effects)
+        assertTrue(DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live)) in done.effects)
         // Typing past the answer takes the approval back, so a longer word never books it.
         val past = reduce(done.state, LetterDrillIntent.InputChanged(task.display + "x"), rng)
         assertEquals(TurnFeedback.Neutral, past.state.feedback)
-        assertTrue(DrillEffect.CancelAdvance in past.effects)
+        assertTrue(DrillEffect.Cued(Cue.CancelAdvance) in past.effects)
     }
 
     /** A slip approves nothing live — it pauses on the explicit check, like every typed drill. */

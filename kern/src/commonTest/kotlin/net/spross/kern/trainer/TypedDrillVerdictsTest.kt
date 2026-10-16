@@ -8,6 +8,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -28,7 +29,7 @@ class TypedDrillVerdictsTest {
         val verdict = assertNotNull(TypedDrillVerdicts.typed(TurnFeedback.Neutral) { true })
         assertEquals(TurnFeedback.Correct, verdict.feedback)
         assertEquals(
-            listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceBeat.Live)),
+            listOf(DrillEffect.Cued(Cue.Tone(ToneKind.Correct)), DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live))),
             verdict.effects,
         )
     }
@@ -38,7 +39,7 @@ class TypedDrillVerdictsTest {
     fun aKeystrokeInsideAnApprovedAnswerDoesNotReChime() {
         val verdict = assertNotNull(TypedDrillVerdicts.typed(TurnFeedback.Correct) { true })
         assertEquals(TurnFeedback.Correct, verdict.feedback)
-        assertEquals(listOf(DrillEffect.ArmAdvance(AdvanceBeat.Live)), verdict.effects)
+        assertEquals(listOf(DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live))), verdict.effects)
     }
 
     /** Typing past a finished answer takes the approval back, so it is never booked. */
@@ -46,7 +47,7 @@ class TypedDrillVerdictsTest {
     fun anUnfinishedAnswerWithdrawsTheApproval() {
         val verdict = assertNotNull(TypedDrillVerdicts.typed(TurnFeedback.Correct) { false })
         assertEquals(TurnFeedback.Neutral, verdict.feedback)
-        assertEquals(listOf(DrillEffect.CancelAdvance), verdict.effects)
+        assertEquals(listOf(DrillEffect.Cued(Cue.CancelAdvance)), verdict.effects)
     }
 
     /** A showing pause is the learner's to confirm, so typing on neither grades nor overwrites it. */
@@ -64,8 +65,8 @@ class TypedDrillVerdictsTest {
     fun anExactSubmitArmsTheExplicitBeat() {
         val verdict = TypedDrillVerdicts.submit(Match.Exact)
         assertEquals(TurnFeedback.Correct, verdict.feedback)
-        assertEquals(DrillEffect.ArmAdvance(AdvanceBeat.Explicit), verdict.effects.last())
-        assertTrue(DrillEffect.Tone(ToneKind.Correct) in verdict.effects)
+        assertEquals(DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit)), verdict.effects.last())
+        assertTrue(DrillEffect.Cued(Cue.Tone(ToneKind.Correct)) in verdict.effects)
     }
 
     /** A slip holds on its spelling and gives the keyboard back for the tap it waits on. */
@@ -73,9 +74,9 @@ class TypedDrillVerdictsTest {
     fun aSlipHoldsAlmostWithoutABeat() {
         val verdict = TypedDrillVerdicts.submit(Match.Typo("Ujerumani"))
         assertEquals(almost, verdict.feedback)
-        assertTrue(DrillEffect.ReleaseFocus in verdict.effects)
-        assertTrue(DrillEffect.Tone(ToneKind.Almost) in verdict.effects)
-        assertTrue(verdict.effects.none { it is DrillEffect.ArmAdvance })
+        assertTrue(DrillEffect.Cued(Cue.ReleaseFocus) in verdict.effects)
+        assertTrue(DrillEffect.Cued(Cue.Tone(ToneKind.Almost)) in verdict.effects)
+        assertTrue(verdict.effects.none { (it as? DrillEffect.Cued)?.cue is Cue.ArmAdvance })
     }
 
     /** A refusal reveals, and carries the entry the answer really named where there is one. */
@@ -85,7 +86,7 @@ class TypedDrillVerdictsTest {
         val named = TypedDrillVerdicts.submit(other)
         assertEquals(TurnFeedback.Revealed, named.feedback)
         assertEquals(other, named.otherWord)
-        assertTrue(DrillEffect.Tone(ToneKind.Wrong) in named.effects)
+        assertTrue(DrillEffect.Cued(Cue.Tone(ToneKind.Wrong)) in named.effects)
         assertNull(TypedDrillVerdicts.submit(Match.Wrong).otherWord)
     }
 
@@ -93,7 +94,7 @@ class TypedDrillVerdictsTest {
     fun aLookUpRevealsWithItsOwnTone() {
         val verdict = TypedDrillVerdicts.reveal()
         assertEquals(TurnFeedback.Revealed, verdict.feedback)
-        assertTrue(DrillEffect.Tone(ToneKind.Reveal) in verdict.effects)
+        assertTrue(DrillEffect.Cued(Cue.Tone(ToneKind.Reveal)) in verdict.effects)
     }
 
     /** A verdict silences what is playing, unless the run keeps its answers unsaid anyway. */

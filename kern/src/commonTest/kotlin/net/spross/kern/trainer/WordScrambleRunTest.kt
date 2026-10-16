@@ -12,6 +12,7 @@ import net.spross.kern.model.ClosingNote
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
 
@@ -64,7 +65,7 @@ class WordScrambleRunTest {
         val state = open()
         val typed = reduce(state, WordScrambleIntent.InputChanged(state.task!!.display))
         assertEquals(TurnFeedback.Correct, typed.state.feedback)
-        assertTrue(typed.effects.any { it == DrillEffect.ArmAdvance(AdvanceBeat.Live) })
+        assertTrue(typed.effects.any { it == DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live)) })
     }
 
     /**

@@ -14,8 +14,9 @@ and text reaches a machine only inside an intent — never as state.
   It is opened with a card, its role, its produce prompt, the prompted form,
   whether this is the first exposure and whether the word has settled;
   it answers with the next state plus `TurnEffect`s —
-  `Answer` (the rating leaves for the run), `ArmAdvance`/`CancelAdvance`,
-  `PrimeField`, `Tone` and `ReleaseFocus`.
+  `Answer` (the rating leaves for the run), `PrimeField`,
+  and `Cued` with the `Cue` a drill's `DrillEffect.Cued` carries too —
+  `ArmAdvance`/`CancelAdvance`, `Tone` and `ReleaseFocus` — so each app carries a cue out in one place.
   The one text it holds is the answer it takes out of the field itself (`rejectedAnswer`, below).
   Every rule about what that text is worth is here.
   - **What each branch earns**: a clean answer is `Match.Exact.producedRating()`;

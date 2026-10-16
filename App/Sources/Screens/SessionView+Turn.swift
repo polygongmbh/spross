@@ -28,28 +28,23 @@ extension SessionView {
         switch onEnum(of: effect) {
         case .answer(let done):
             commit(done.rating)
-        case .armAdvance(let arm):
-            // why: AutoAdvance skips the timer under a screen reader (it
-            // truncates the announcement and moves the screen), and the branch
-            // renders "Weiter" there — same rating, through ConfirmPending.
-            // The beat also waits out the answer being said, or the flip would
-            // cut the word off.
-            armAdvance(arm.beat) { dispatch(TurnIntent.AdvanceElapsed.shared) }
-        case .cancelAdvance:
-            autoAdvance?.cancel()
+        case .cued(let cued):
+            // why: the beat renders "Weiter" under a screen reader instead of
+            // running — same rating, through ConfirmPending.
+            carryOut(cued.cue) { dispatch(TurnIntent.AdvanceElapsed.shared) }
         case .primeField(let primed):
             // why: the answer field is the one the turn owns here — a miss
             // never hides it, so there is nothing to re-focus.
             input = primed.text
-        case .tone(let cue):
-            Sound.play(cue.kind)
-        case .releaseFocus:
-            // why: a pause that waits for a tap must not hold the keyboard —
-            // it covers the button the pause is waiting for. The pending
-            // retry is canceled first, or it re-focuses 120 ms later.
-            focusRetry?.cancel()
-            answerFocused = false
         }
+    }
+
+    // why: a pause that waits for a tap must not hold the keyboard —
+    // it covers the button the pause is waiting for. The pending
+    // retry is canceled first, or it re-focuses 120 ms later.
+    func releaseFocus() {
+        focusRetry?.cancel()
+        answerFocused = false
     }
 
     /// Hand the answer to the engine and flip to the next card.

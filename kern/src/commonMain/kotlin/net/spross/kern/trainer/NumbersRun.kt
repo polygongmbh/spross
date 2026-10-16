@@ -2,6 +2,7 @@ package net.spross.kern.trainer
 
 import kotlin.random.Random
 import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -130,7 +131,7 @@ object NumbersRun {
         standingRecord: Int,
         standingProgress: Map<String, Int>,
     ): NumbersClose {
-        val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
+        val effects = listOf(DrillEffect.Cued(Cue.CancelAdvance), DrillEffect.Silence)
         val pending = TypedDrillVerdicts.pending(state.feedback)
             ?.let { NumbersBooking.advanced(state, it.correct, state.cleanness(it)) }
             ?: state
@@ -225,7 +226,7 @@ object NumbersRun {
     /** The run is over; what is pending is the close's to book, as the ✕ would. */
     private fun timeUp(state: NumbersRunState): NumbersReduction =
         if (state.timed && !state.finished) {
-            NumbersReduction(state.copy(finished = true), listOf(DrillEffect.CancelAdvance, DrillEffect.Silence))
+            NumbersReduction(state.copy(finished = true), listOf(DrillEffect.Cued(Cue.CancelAdvance), DrillEffect.Silence))
         } else {
             unchanged(state)
         }

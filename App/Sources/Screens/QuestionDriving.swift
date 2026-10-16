@@ -28,6 +28,8 @@ protocol QuestionDriving {
     var voiceModel: AppModel? { get }
     /// The beat kern armed, until it fires or is canceled.
     var autoAdvance: Task<Void, Never>? { get nonmutating set }
+    /// Dropping the keyboard for a pause that waits for a tap.
+    func releaseFocus()
 }
 
 extension QuestionDriving {
@@ -45,6 +47,21 @@ extension QuestionDriving {
         // silence would cut the word off.
         AutoAdvance.schedule(beat, &autoAdvance, holding: { await reader.saidAnswer() },
                              action: advance)
+    }
+
+    /// What kern's cue becomes on this device, the review turn's and every drill's alike —
+    /// the list Android's `CueActs` carries out. `advance` is what the armed beat fires.
+    func carryOut(_ cue: Cue, advance: @escaping @MainActor () -> Void) {
+        switch onEnum(of: cue) {
+        case .armAdvance(let arm):
+            armAdvance(arm.beat, then: advance)
+        case .cancelAdvance:
+            autoAdvance?.cancel()
+        case .tone(let tone):
+            Sound.play(tone.kind)
+        case .releaseFocus:
+            releaseFocus()
+        }
     }
 
     /// The question screen's body: the card on the stage that flips between questions,

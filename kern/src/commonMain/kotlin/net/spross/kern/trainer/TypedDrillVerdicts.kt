@@ -2,6 +2,7 @@ package net.spross.kern.trainer
 
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -51,16 +52,16 @@ internal object TypedDrillVerdicts {
         if (feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed) return null
         if (!exact()) {
             val withdrawn = if (feedback == TurnFeedback.Correct) TurnFeedback.Neutral else feedback
-            return TypedVerdict(withdrawn, null, listOf(DrillEffect.CancelAdvance))
+            return TypedVerdict(withdrawn, null, listOf(DrillEffect.Cued(Cue.CancelAdvance)))
         }
         // why: the cue sounds once per approval — a keystroke inside an already-approved
         // answer must not re-chime on every letter.
         val tone: List<DrillEffect> =
-            if (feedback == TurnFeedback.Correct) emptyList() else listOf(DrillEffect.Tone(ToneKind.Correct))
+            if (feedback == TurnFeedback.Correct) emptyList() else listOf(DrillEffect.Cued(Cue.Tone(ToneKind.Correct)))
         return TypedVerdict(
             TurnFeedback.Correct,
             null,
-            tone + DrillEffect.ArmAdvance(AdvanceBeat.Live),
+            tone + DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live)),
         )
     }
 
@@ -73,8 +74,8 @@ internal object TypedDrillVerdicts {
             null,
             listOfNotNull(
                 DrillEffect.Silence.takeIf { silence },
-                DrillEffect.Tone(ToneKind.Correct),
-                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
+                DrillEffect.Cued(Cue.Tone(ToneKind.Correct)),
+                DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit)),
             ),
         )
         // why: no beat on a slip — the pause shows the proper spelling and waits for the tap
@@ -84,14 +85,14 @@ internal object TypedDrillVerdicts {
             null,
             listOfNotNull(
                 DrillEffect.Silence.takeIf { silence },
-                DrillEffect.Tone(ToneKind.Almost),
-                DrillEffect.ReleaseFocus,
+                DrillEffect.Cued(Cue.Tone(ToneKind.Almost)),
+                DrillEffect.Cued(Cue.ReleaseFocus),
             ),
         )
         else -> TypedVerdict(
             TurnFeedback.Revealed,
             match as? Match.OtherWord,
-            listOfNotNull(DrillEffect.Silence.takeIf { silence }, DrillEffect.Tone(ToneKind.Wrong)),
+            listOfNotNull(DrillEffect.Silence.takeIf { silence }, DrillEffect.Cued(Cue.Tone(ToneKind.Wrong))),
         )
     }
 
@@ -102,7 +103,7 @@ internal object TypedDrillVerdicts {
     fun reveal(silence: Boolean = true): TypedVerdict = TypedVerdict(
         TurnFeedback.Revealed,
         null,
-        listOfNotNull(DrillEffect.Silence.takeIf { silence }, DrillEffect.Tone(ToneKind.Reveal)),
+        listOfNotNull(DrillEffect.Silence.takeIf { silence }, DrillEffect.Cued(Cue.Tone(ToneKind.Reveal))),
     )
 
     /**

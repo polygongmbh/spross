@@ -67,7 +67,7 @@ data class AnswerControls(
         /** The verdict holds until it is tapped on. */
         Always,
 
-        /** It stands in for the beat, where no beat may run ([TurnEffect.ArmAdvance]). */
+        /** It stands in for the beat, where no beat may run ([Cue.ArmAdvance]). */
         WhenNoBeat,
     }
 

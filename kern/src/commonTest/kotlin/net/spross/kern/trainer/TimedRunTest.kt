@@ -7,6 +7,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import net.spross.kern.session.AnswerControls
+import net.spross.kern.session.Cue
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
@@ -58,7 +59,7 @@ class TimedRunTest {
             val step = NumbersRun.reduce(run, intent, null, Random(9))
             assertEquals(run.index + 1, step.state.index, "$intent")
             assertEquals(TurnFeedback.Neutral, step.state.feedback, "$intent")
-            assertTrue(DrillEffect.Tone(tone) in step.effects, "$intent")
+            assertTrue(DrillEffect.Cued(Cue.Tone(tone)) in step.effects, "$intent")
         }
         assertEquals(1, run.send(NumbersIntent.Submit("nichts")).done)
     }

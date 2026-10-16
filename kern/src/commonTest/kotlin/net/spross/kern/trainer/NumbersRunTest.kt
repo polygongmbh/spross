@@ -1,6 +1,5 @@
 package net.spross.kern.trainer
 
-import net.spross.kern.session.Saying
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -13,7 +12,9 @@ import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
+import net.spross.kern.session.Saying
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
@@ -145,11 +146,11 @@ class NumbersRunTest {
         val answer = state.currentTask.accepted.first()
         val live = reduce(state, NumbersIntent.InputChanged(answer), rng)
         assertEquals(TurnFeedback.Correct, live.state.feedback)
-        assertTrue(DrillEffect.ArmAdvance(AdvanceBeat.Live) in live.effects)
+        assertTrue(DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live)) in live.effects)
 
         val edited = reduce(live.state, NumbersIntent.InputChanged(answer.dropLast(1)), rng)
         assertEquals(TurnFeedback.Neutral, edited.state.feedback)
-        assertTrue(DrillEffect.CancelAdvance in edited.effects)
+        assertTrue(DrillEffect.Cued(Cue.CancelAdvance) in edited.effects)
     }
 
     /** A graded answer says its reading, except in a challenge, where only the tone says how it went. */
@@ -256,7 +257,7 @@ class NumbersRunTest {
         val state = NumbersRun.open(numbers(), 0, emptyMap(), rng)
         val revealed = reduce(state, NumbersIntent.Reveal, rng)
         assertTrue(revealed.state.showsAnswer)
-        assertTrue(DrillEffect.Tone(ToneKind.Reveal) in revealed.effects)
+        assertTrue(DrillEffect.Cued(Cue.Tone(ToneKind.Reveal)) in revealed.effects)
         // Nothing typed is the same ask, so the check button and Enter agree; once the
         // answer is in, nothing is owed and a stray blank changes nothing.
         val blank = reduce(state, NumbersIntent.Submit("   "), rng)

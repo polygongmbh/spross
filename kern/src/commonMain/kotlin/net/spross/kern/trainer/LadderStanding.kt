@@ -1,5 +1,7 @@
 package net.spross.kern.trainer
 
+import net.spross.kern.session.Cue
+
 /**
  * Where a laddered drill run stands, and the booking every such run shares:
  * [WordScrambleRun], [SentenceScrambleRun], [OppositesRun], [LetterDrillRun] and [PairDrillRun]
@@ -59,7 +61,7 @@ internal data class LadderStanding(
     companion object {
 
         /** What a booked answer and a close ask of the surface: the beat disarmed, nothing left speaking. */
-        val EFFECTS: List<DrillEffect> = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
+        val EFFECTS: List<DrillEffect> = listOf(DrillEffect.Cued(Cue.CancelAdvance), DrillEffect.Silence)
 
         /**
          * Leaving the run: a pending accepted answer books exactly as the explicit tap would

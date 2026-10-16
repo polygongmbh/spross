@@ -2,6 +2,7 @@ package net.spross.kern.trainer
 
 import kotlin.random.Random
 import net.spross.kern.session.AdvanceBeat
+import net.spross.kern.session.Cue
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
@@ -101,14 +102,14 @@ object SentenceScrambleRun {
                 next.copy(feedback = TurnFeedback.Correct),
                 listOf(
                     DrillEffect.Silence,
-                    DrillEffect.Tone(ToneKind.Correct),
-                    DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
+                    DrillEffect.Cued(Cue.Tone(ToneKind.Correct)),
+                    DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit)),
                 ),
             )
         } else {
             SentenceScrambleReduction(
                 next.copy(feedback = TurnFeedback.Revealed),
-                listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
+                listOf(DrillEffect.Silence, DrillEffect.Cued(Cue.Tone(ToneKind.Wrong))),
             )
         }
     }

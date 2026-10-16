@@ -23,7 +23,7 @@ class TurnCopyStepTest {
         val written = TurnFixture.step(opened.state, TurnIntent.InputChanged("lugha"))
         assertEquals(true, written.state.copyStep?.written)
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Live)),
+            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live))),
             written.effects,
         )
 
@@ -43,7 +43,7 @@ class TurnCopyStepTest {
         assertTrue(short.effects.isEmpty())
 
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.Answer(Rating.Again)),
+            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Answer(Rating.Again)),
             TurnFixture.step(short.state, TurnIntent.CopySubmit("lugh")).effects,
         )
     }
@@ -53,7 +53,7 @@ class TurnCopyStepTest {
         val written = TurnFixture.state(openWriteOut(), TurnIntent.InputChanged("lugha"))
         val backed = TurnFixture.step(written, TurnIntent.InputChanged("lugh"))
         assertEquals(false, backed.state.copyStep?.written)
-        assertEquals(listOf(TurnEffect.CancelAdvance), backed.effects)
+        assertEquals(listOf(TurnEffect.Cued(Cue.CancelAdvance)), backed.effects)
         assertTrue(TurnFixture.step(backed.state, TurnIntent.AdvanceElapsed).effects.isEmpty())
     }
 
@@ -61,7 +61,7 @@ class TurnCopyStepTest {
     fun aDifferentWordDoesNotPassForTheCopy() {
         val missed = TurnFixture.step(openWriteOut(), TurnIntent.CopySubmit("neno"))
         assertEquals(true, missed.state.copyStep?.missed)
-        assertEquals(listOf(TurnEffect.Tone(ToneKind.Wrong)), missed.effects)
+        assertEquals(listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Wrong))), missed.effects)
 
         // Writing it properly clears the hint and arms the beat.
         val written = TurnFixture.step(missed.state, TurnIntent.InputChanged("lugha"))
@@ -132,7 +132,7 @@ class TurnCopyStepTest {
         assertEquals(Rating.Again, opened.state.copyStep?.pendingRating)
         // Only the target is ever copied, so the played form is what stands to be written.
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Live)),
+            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live))),
             TurnFixture.step(opened.state, TurnIntent.InputChanged("gari")).effects,
         )
     }

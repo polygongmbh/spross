@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import net.spross.kern.session.AdvanceBeat
+import net.spross.kern.session.Cue
 import net.spross.kern.session.ToneKind
 import net.spross.kern.trainer.DrillEffect
 
@@ -62,26 +63,40 @@ class DrillBeat(private val screenReaderOn: () -> Boolean) {
 }
 
 /**
- * What a reduction's effects become on this device. Timers, focus and playback are the
- * platform's; WHICH branch waits and which moves on is the run's rule, which is what the
- * effects say.
+ * What a verdict's cue becomes on this device, for the review turn and every drill run alike:
+ * the beat, the sound, the keyboard. The one place a [Cue] is carried out.
  */
-class DrillActs(
+class CueActs(
     val beat: DrillBeat,
     /** The verdict's cue: the chime, and a haptic under a miss alone (`View.cueTone`). */
     private val onTone: (ToneKind) -> Unit,
     /** A pause that waits for a tap must give the keyboard back, or it covers the button. */
     private val onReleaseFocus: () -> Unit,
+) {
+    fun carryOut(cue: Cue) {
+        when (cue) {
+            is Cue.ArmAdvance -> beat.arm(cue.beat)
+            Cue.CancelAdvance -> beat.cancel()
+            is Cue.Tone -> onTone(cue.kind)
+            Cue.ReleaseFocus -> onReleaseFocus()
+        }
+    }
+}
+
+/**
+ * What a reduction's effects become on this device. Timers, focus and playback are the
+ * platform's; WHICH branch waits and which moves on is the run's rule, which is what the
+ * effects say.
+ */
+class DrillActs(
+    private val cues: CueActs,
     /** Cut whatever is sounding: the reading belongs to the question being left. */
     private val onSilence: () -> Unit,
 ) {
     fun carryOut(effects: List<DrillEffect>) {
         for (effect in effects) {
             when (effect) {
-                is DrillEffect.ArmAdvance -> beat.arm(effect.beat)
-                DrillEffect.CancelAdvance -> beat.cancel()
-                is DrillEffect.Tone -> onTone(effect.kind)
-                DrillEffect.ReleaseFocus -> onReleaseFocus()
+                is DrillEffect.Cued -> cues.carryOut(effect.cue)
                 DrillEffect.Silence -> onSilence()
             }
         }

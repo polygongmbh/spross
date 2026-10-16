@@ -1,6 +1,7 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
+import net.spross.kern.session.Cue
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
@@ -12,7 +13,7 @@ internal object NumbersBooking {
      * nothing is shown, so nothing waits — a shown answer would be a breather against the clock.
      */
     fun raced(state: NumbersRunState, tone: ToneKind, correct: Boolean, clean: Boolean, rng: Random): NumbersReduction =
-        booked(state, correct, clean, rng).let { it.copy(effects = listOf(DrillEffect.Tone(tone)) + it.effects) }
+        booked(state, correct, clean, rng).let { it.copy(effects = listOf(DrillEffect.Cued(Cue.Tone(tone))) + it.effects) }
 
     /** Book the answer, then put the next question up at the Sprossen the booking left. */
     fun booked(
@@ -36,7 +37,7 @@ internal object NumbersBooking {
                 otherWord = null,
                 hintUsed = false,
             )),
-            listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
+            listOf(DrillEffect.Cued(Cue.CancelAdvance), DrillEffect.Silence),
         )
     }
 

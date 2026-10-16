@@ -85,9 +85,6 @@ protocol DrillRunning: View, QuestionDriving {
     /// Silencing whatever the question being left was saying.
     func silence()
 
-    /// Dropping the keyboard for a pause that waits for a tap.
-    func releaseFocus()
-
     /// The run reached the next question — for a drill with something of its
     /// own to do there.
     func movedOn()
@@ -150,14 +147,8 @@ extension DrillRunning {
     /// What a reduction's effects become on this device — the list Android's `DrillActs` carries out.
     func apply(_ effect: DrillEffect) {
         switch onEnum(of: effect) {
-        case .armAdvance(let arm):
-            armAdvance(arm.beat) { dispatch(advanceMove) }
-        case .cancelAdvance:
-            autoAdvance?.cancel()
-        case .tone(let cue):
-            Sound.play(cue.kind)
-        case .releaseFocus:
-            releaseFocus()
+        case .cued(let cued):
+            carryOut(cued.cue) { dispatch(advanceMove) }
         case .silence:
             // why: the reading belongs to the question being left.
             silence()
