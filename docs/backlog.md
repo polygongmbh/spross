@@ -59,7 +59,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Engine
 
-- Layout data sits in `trainer/` rather than `design/`: `ReferenceColumns.PAIRED_MIN_WIDTH`, `DrillUnlockMark` timings.
+- Layout data sits in `trainer/` rather than `design/`: `DrillUnlockMark` timings.
 
 ### Apps & tooling
 
