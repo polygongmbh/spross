@@ -49,6 +49,8 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ## Ready
 
+- Gender hues ignore `grammar.genus`: `articleGender` names none for fr/it `l'` and colours es `el agua` masculine (`kern/src/commonMain/kotlin/net/spross/kern/model/Article.kt`), while the catalog now carries the real gender.
+
 ### Engine
 
 - `VerbSlugRekey` is marked "delete at 7.0+" and still runs on every load at 8.3.0 — delete it with its test and its `snapshots.md` paragraph (`kern/.../store/VerbSlugRekey.kt`).
