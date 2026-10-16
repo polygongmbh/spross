@@ -143,20 +143,23 @@ extension DrillMove {
 }
 
 #if DEBUG
+extension DrillRunCore {
+    /// The counters of a run standing mid-streak — what every drill's
+    /// `-uitest-streak N` seed writes, the rest of the run left as it was.
+    func standingMidStreak(_ answerStreak: Int) -> DrillRunCore {
+        doCopy(done: Int32(answerStreak + 6), answerStreak: Int32(answerStreak),
+               bestAnswerStreak: Int32(max(answerStreak, 12)), missRun: missRun,
+               outcomes: outcomes, solved: solved, slipped: slipped,
+               solvedClean: solvedClean, pacing: pacing)
+    }
+}
+
 /// A pair drill run standing mid-streak, for `DrillFace.seedAnswerStreak`.
 func seededAnswerStreak<Task>(_ run: PairDrillRunState<Task>, _ answerStreak: Int) -> PairDrillRunState<Task> {
     run.doCopy(config: run.config, task: run.task, index: run.index,
                sprosse: run.sprosse, bestSprosse: run.bestSprosse,
                winsAtSprosse: run.winsAtSprosse,
-               core: run.core.doCopy(done: Int32(answerStreak + 6),
-                                     answerStreak: Int32(answerStreak),
-                                     bestAnswerStreak: Int32(max(answerStreak, 12)),
-                                     missRun: run.core.missRun,
-                                     outcomes: run.core.outcomes,
-                                     solved: run.core.solved,
-                                     slipped: run.core.slipped,
-                                     solvedClean: run.core.solvedClean,
-                                     pacing: run.core.pacing),
+               core: run.core.standingMidStreak(answerStreak),
                feedback: run.feedback,
                otherWord: run.otherWord, hinted: run.hinted, finished: run.finished)
 }

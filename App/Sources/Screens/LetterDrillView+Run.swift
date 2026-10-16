@@ -92,15 +92,7 @@ extension LetterDrillView {
         run = run.doCopy(config: run.config, task: run.task, index: run.index,
                          sprosse: run.sprosse, winsAtSprosse: run.winsAtSprosse,
                          clearedSprossen: run.clearedSprossen,
-                         core: run.core.doCopy(done: Int32(answerStreak + 6),
-                                               answerStreak: Int32(answerStreak),
-                                               bestAnswerStreak: Int32(max(answerStreak, 12)),
-                                               missRun: run.core.missRun,
-                                               outcomes: run.core.outcomes,
-                                               solved: run.core.solved,
-                                               slipped: run.core.slipped,
-                                               solvedClean: run.core.solvedClean,
-                                               pacing: run.core.pacing),
+                         core: run.core.standingMidStreak(answerStreak),
                          chosen: run.chosen, feedback: run.feedback,
                          finished: run.finished)
     }
