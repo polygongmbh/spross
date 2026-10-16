@@ -59,7 +59,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Apps & tooling
 
-- Android hand cuts: the growable sheet is cut by hand, and the box hint walks every card where iOS short-circuits on `AudioCapability`.
+- Android: the box hint walks every card where iOS short-circuits on `AudioCapability`.
 - The watch speed mark (⚡) is visual only: VoiceOver hears right or wrong but not how quick (`WatchQuizView.verdict`).
 - The iOS drill run (`DrillRunView`) still wraps its scaffold by hand, because its run state arrives through `Face.snapshot` rather than kern's run progress — exposing that would let `runScreen` reach it.
 - The widget kind `"SprossWordWidget"` is a literal at the iOS reload sites and in `Widgets/Sources/WordWidget.swift` — one constant in `Shared/Sources`.
