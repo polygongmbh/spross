@@ -123,15 +123,8 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         .onDisappear {
             autoAdvance?.cancel()
             // D5: leaving mid-word must silence.
-            hushAnswer()
+            reader.hush()
         }
-    }
-
-    // MARK: - Saying the answer
-
-    /// Every way out of a task goes through here — the next question, the door.
-    func hushAnswer() {
-        reader.hush()
     }
 
     // The draw, the ramp and the verdict ladder are kern's; the driver that

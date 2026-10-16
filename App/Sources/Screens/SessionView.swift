@@ -144,10 +144,6 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
         #endif
     }
 
-    // why: internal, not private — the audio extension reads it to drop a
-    // delayed word whose card has already gone.
-    var currentCardID: String? { model.currentCardId }
-
     /// The card on screen and the answers booked before it — what begins a turn.
     /// The count tells a card dealt again straight after itself from the one it follows.
     private var dealt: CardDeal { CardDeal(card: model.currentCardId, answered: model.sessionSegments.count) }

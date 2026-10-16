@@ -11,12 +11,6 @@ import SprossKern
 /// recording — so the ordinary `pronounceAloud` says them.
 extension NumbersRunView {
 
-    /// Every way out of a task goes through here — the next prompt, the
-    /// summary, the door.
-    func hushAnswer() {
-        reader.hush()
-    }
-
     /// A reveal from a blank field REMOVES it and the next task mounts a fresh
     /// one, so a plain assignment would race the mount (`AnswerFocus`).
     func focusAnswerField() {

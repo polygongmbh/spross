@@ -105,14 +105,6 @@ var drillRandom: KotlinRandom {
 
 /// Sprossen are `Int` everywhere in the drill UI; the ladder is Kotlin `Int`.
 /// Bridged HERE so no view ever writes `Int32(…)` around a Sprosse number.
-extension LetterDrill {
-    func ceiling(dictation: Bool) -> Int { Int(maxSprosse(dictationAvailable: dictation)) }
-
-    func format(sprosse: Int) -> LetterFormat { formatFor(sprosse: Int32(sprosse)) }
-}
-
-/// Same bridge for the atlas drill: its ladder is Kotlin `Int`, its ceiling is
-/// its own, and no view of it writes `Int32(…)`.
 extension CountryDrill {
     var ceiling: Int { Int(MAX_SPROSSE) }
 }
