@@ -132,8 +132,7 @@ struct BoxSearchView: View {
         } label: {
             HStack(alignment: .top, spacing: Theme.spacing.sm) {
                 AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
-                         progress: stats?.progress ?? .empty,
-                         lockedPhrases: stats?.lockedPhrases ?? 0)
+                         stats: stats)
                 Image(systemName: "chevron.right")
                     .font(.caption2)
                     .foregroundStyle(Theme.colors.textSecondary)

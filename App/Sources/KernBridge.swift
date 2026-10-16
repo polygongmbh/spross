@@ -88,14 +88,6 @@ extension AreaStatistics {
     var activeCards: Int { Int(active) }
     var allSettledCards: Int { Int(allSettled) }
     var lockedPhrases: Int { Int(phrasesLocked) }
-
-    /// The area's buckets and what they are measured against, as the design
-    /// system reads them — which card falls in which bucket, and how a stale
-    /// total is clamped, are the engine's rulings (`box/Statistics.kt`).
-    var progress: AreaProgress {
-        AreaProgress(allSettled: Int(allSettled), allGrowing: Int(allGrowing),
-                     queued: Int(queued), progressTotal: Int(progressTotal))
-    }
 }
 
 /// Kotlin's own `Random`, which every draw in a run is spent out of. Named for

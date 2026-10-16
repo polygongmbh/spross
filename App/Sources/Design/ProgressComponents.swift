@@ -8,25 +8,6 @@ import SwiftUI
 
 // MARK: AreaChip
 
-/// An area's cards split into the stretches the bar draws, with what they are
-/// measured against. The split and the denominator are the box's rulings
-/// (`AreaStatistics`); the screen hands them over so Design stays kern-free.
-struct AreaProgress {
-    /// Settled or matured cards — the bar's jade segment.
-    let allSettled: Int
-    /// Every other active card, fresh, growing or lapsed — the counts row's split.
-    let allGrowing: Int
-    /// Cards queued but not yet introduced — the bar's clay segment. A card
-    /// never queued at all gets no segment: it leaves the bar's neutral track
-    /// showing rather than widening a fourth bucket.
-    let queued: Int
-    /// The bar's denominator — never below the introduced count.
-    let progressTotal: Int
-
-    /// What an area with no statistics yet draws: a bare track, no segment on it.
-    static let empty = AreaProgress(allSettled: 0, allGrowing: 0, queued: 0, progressTotal: 1)
-}
-
 /// Per-area chip: emoji + name + settled/growing counts over a bar that
 /// measures both against the area's FULL card count, so the untouched rest
 /// of an area stays visible instead of a bar that always reads as full.
@@ -39,11 +20,11 @@ struct AreaChip: View {
     /// The area's flavor clause, where the catalog authors one — never louder
     /// than the name it sits under, and simply absent otherwise.
     var subtitle: String?
-    let progress: AreaProgress
-    /// Phrases still waiting on their component words to stabilize — not a
-    /// count the bar can place (they aren't scheduled yet), so it only ever
-    /// shows up here, and only when it says something (never at zero).
-    let lockedPhrases: Int
+    /// The area's split into the bar's stretches and what they are measured
+    /// against — the box's rulings (`AreaStatistics`); nil draws a bare track.
+    /// Its locked phrases are no count the bar can place (they aren't scheduled
+    /// yet), so they only show in the counts row, and never at zero.
+    let stats: AreaStatistics?
     /// An area fully queued AND settled swaps its header mark for a jade
     /// one (the screen's own `queueControl`) and has nothing left for the
     /// counts/bar to say — so they step aside, leaving just the emoji/name.
@@ -53,8 +34,8 @@ struct AreaChip: View {
     /// amber stays a badge-only color, distinguishing Fresh/Shaky from
     /// Growing at the per-card level without the bar needing that fine a grain.
     private var bar: AreaBar {
-        AreaBar(settled: Double(progress.allSettled), growing: Double(progress.allGrowing),
-                queued: Double(progress.queued), progressTotal: Int32(progress.progressTotal))
+        AreaBar(settled: Double(stats?.allSettled ?? 0), growing: Double(stats?.allGrowing ?? 0),
+                queued: Double(stats?.queued ?? 0), progressTotal: stats?.progressTotal ?? 1)
     }
 
     private func stops(_ bar: AreaBar) -> [Gradient.Stop] {
@@ -119,11 +100,12 @@ struct AreaChip: View {
     /// so the text keeps the coarse split — cleared the bar, or still short of it —
     /// and the bar alone draws the stage between them.
     private var counts: some View {
-        HStack(spacing: Theme.spacing.md) {
-            Label("progress.allSettledCount \(Int(progress.allSettled))",
+        let lockedPhrases = stats?.lockedPhrases ?? 0
+        return HStack(spacing: Theme.spacing.md) {
+            Label("progress.allSettledCount \(stats?.allSettledCards ?? 0)",
                   systemImage: "checkmark.seal.fill")
                 .foregroundStyle(Theme.colors.settled)
-            Label("progress.allGrowingCount \(Int(progress.allGrowing))", systemImage: "leaf.fill")
+            Label("progress.allGrowingCount \(Int(stats?.allGrowing ?? 0))", systemImage: "leaf.fill")
                 .foregroundStyle(Theme.colors.success)
             if lockedPhrases > 0 {
                 // why: the padlock carries "locked", so the text only has to
@@ -204,6 +186,13 @@ struct StageBadge: View {
 
 // MARK: - Previews
 
+/// An area as the box would count it — every card either settled, growing or queued.
+private func previewArea(settled: Int32, growing: Int32, queued: Int32, locked: Int32 = 0) -> AreaStatistics {
+    AreaStatistics(name: "preview", total: settled + growing + queued,
+                   stages: StageCounts(fresh: 0, growing: growing, lapsed: 0, settled: settled, matured: 0),
+                   queued: queued, phrasesLocked: locked)
+}
+
 /// Every stage a badge can wear, in climbing order, with the colors kern hands the
 /// real row (`CardRowState.Standing.swatch`) written out — a preview has no box to
 /// ask, and seeing the four badges side by side is the point of it.
@@ -225,18 +214,15 @@ private var ladder: some View {
             StreakFlameView(days: 12, emoji: "🎉")
             AreaChip(emoji: "🍳", name: "Küche",
                      subtitle: "Hier duftet es nach Abendessen.",
-                     progress: .init(allSettled: 18, allGrowing: 6, queued: 0, progressTotal: 24),
-                     lockedPhrases: 0)
+                     stats: previewArea(settled: 18, growing: 6, queued: 0))
                 .panelSurface()
                 .cardShadow()
             AreaChip(emoji: "🛁", name: "Bad",
-                     progress: .init(allSettled: 4, allGrowing: 9, queued: 28, progressTotal: 41),
-                     lockedPhrases: 3)
+                     stats: previewArea(settled: 4, growing: 9, queued: 28, locked: 3))
                 .panelSurface()
                 .cardShadow()
             AreaChip(emoji: "🧰", name: "Werkstatt",
-                     progress: .init(allSettled: 0, allGrowing: 0, queued: 17, progressTotal: 17),
-                     lockedPhrases: 0)
+                     stats: previewArea(settled: 0, growing: 0, queued: 17))
                 .panelSurface()
                 .cardShadow()
             // The whole ladder, in the order a card climbs it.
@@ -252,8 +238,7 @@ private var ladder: some View {
         StreakFlameView(days: 3)
         StreakFlameView(days: 3, health: .ending)
         AreaChip(emoji: "🍳", name: "Küche",
-                 progress: .init(allSettled: 18, allGrowing: 6, queued: 28, progressTotal: 52),
-                 lockedPhrases: 2)
+                 stats: previewArea(settled: 18, growing: 6, queued: 28, locked: 2))
             .panelSurface()
             .cardShadow()
         ladder
