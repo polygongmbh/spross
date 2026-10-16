@@ -9,12 +9,12 @@
    "grammar": { "gender": "la" }
   },
   "stove": {
-   "text": "cocina",
-   "accepts": ["fogón", "placa", "estufa"],
-   "grammar": { "gender": "la" },
+   "text": "fogón",
+   "accepts": ["cocina", "placa", "estufa"],
+   "grammar": { "gender": "el" },
    "notes": {
-    "es": "La cocina es el aparato y también el cuarto · encima: en el fuego.",
-    "de": "la cocina ist auch der Raum (Küche); die einzelne Kochplatte heißt la placa, „auf dem Herd“ heißt en el fuego."
+    "es": "El fogón es el aparato; la cocina, también el cuarto · encima: en el fuego.",
+    "de": "el fogón ist der Herd; la cocina heißt Herd und Küche, die einzelne Kochplatte la placa, „auf dem Herd“ heißt en el fuego."
    }
   },
   "oven": { "text": "horno", "grammar": { "gender": "el" } },
