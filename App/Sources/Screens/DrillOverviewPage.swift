@@ -50,7 +50,7 @@ struct DrillOverviewPage<Sections: View>: View {
                 // learner is still looking at. The page comes up to meet it.
                 .onChange(of: lastRun) { _, run in
                     guard run != nil else { return }
-                    withAnimation(.easeOut(duration: 0.25)) {
+                    withAnimation(.cardReveal) {
                         scroll.scrollTo(DrillAnchor.result, anchor: .top)
                     }
                 }

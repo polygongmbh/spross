@@ -133,7 +133,7 @@ extension DrillRunning {
             movedOn()
         }
         let animation: Animation = moved
-            ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
+            ? (reduceMotion ? .cardFlipReduced : .cardFlip)
             : .cardReveal
         withAnimation(animation) { run = step.run }
         for effect in step.effects { apply(effect) }

@@ -52,7 +52,7 @@ extension SessionView {
         autoAdvance?.cancel()
         // why: the next turn begins only once the card has changed (`dealt`), so the
         // outgoing card flips away still showing its own answer.
-        withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .cardFlip) {
+        withAnimation(reduceMotion ? .cardFlipReduced : .cardFlip) {
             model.answerCurrent(rating)
         }
     }

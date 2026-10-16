@@ -71,7 +71,7 @@ struct NumbersOverview: View {
                            normalizer: launch.value.mode.normalizer(model),
                                catalog: model.catalog, model: model,
                                onFinish: { result in
-                                   withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
+                                   withAnimation(.cardReveal) { lastRun = result }
                                })
                 .environment(\.locale, model.knownLocale)
         }

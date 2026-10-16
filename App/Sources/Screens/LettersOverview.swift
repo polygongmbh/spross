@@ -56,7 +56,7 @@ struct LettersOverview: View {
         .fullScreenCover(item: $launch, onDismiss: refreshAvailability) { launch in
             LetterDrillView(model: model, language: launch.value,
                             onFinish: { result in
-                                withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
+                                withAnimation(.cardReveal) { lastRun = result }
                             })
                 .environment(\.locale, model.knownLocale)
         }

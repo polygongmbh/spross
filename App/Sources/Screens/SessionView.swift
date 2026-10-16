@@ -216,7 +216,7 @@ struct SessionView: View, LanguageNaming, QuestionDriving {
         Button("box.card.suspend", systemImage: "moon.zzz") {
             // why: the round moves on with it — being made to rate a word one has just
             // said should never be asked again is the exact busywork this removes.
-            withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .cardFlip) {
+            withAnimation(reduceMotion ? .cardFlipReduced : .cardFlip) {
                 model.suspendCurrentCard()
             }
         }
