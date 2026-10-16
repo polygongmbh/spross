@@ -7,7 +7,7 @@
   "bus": {
    "text": "autobus",
    "accepts": ["l'autobus", "bus"],
-   "grammar": { "article": "l'", "genus": "m", "plural": "=" }
+   "grammar": { "article": "l'", "gender": "m", "plural": "=" }
   },
   "bus-stop": { "text": "fermata", "accepts": ["fermata dell'autobus"], "grammar": { "article": "la" } },
   "train": { "text": "treno", "grammar": { "article": "il" } },
@@ -28,14 +28,14 @@
    "text": "autista",
    "accepts": ["l'autista", "conducente"],
    "forms": { "pl": "gli autisti" },
-   "grammar": { "article": "l'", "genus": "m/f" }
+   "grammar": { "article": "l'", "gender": "m/f" }
   },
   "plane": {
    "text": "aereo",
    "accepts": ["l'aereo", "aeroplano"],
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
-  "airport": { "text": "aeroporto", "accepts": ["l'aeroporto"], "grammar": { "article": "l'", "genus": "m" } },
+  "airport": { "text": "aeroporto", "accepts": ["l'aeroporto"], "grammar": { "article": "l'", "gender": "m" } },
   "motorbike": {
    "text": "moto",
    "accepts": ["motocicletta"],

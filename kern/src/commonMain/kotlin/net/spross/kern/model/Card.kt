@@ -55,7 +55,7 @@ data class Realization(
     val forms: List<TaggedForm> = emptyList(),
     /** Alternative valid word orders of the same sentence — scramble-only, never prompted. */
     val orders: List<String> = emptyList(),
-    /** Language-specific bare facts (`article`/`plural`, …). */
+    /** Language-specific bare facts (`article`/`gender`/`plural`, …). */
     val grammar: Map<String, String> = emptyMap(),
     /**
      * Already selected by the profile's SOURCE language at join time — the UI cannot leak.

@@ -10,11 +10,11 @@
   },
   "goal": { "text": "but", "grammar": { "article": "le" } },
   "to-achieve": { "text": "atteindre" },
-  "exercise": { "text": "exercice", "accepts": ["l'exercice"], "grammar": { "article": "l'", "genus": "m" } },
+  "exercise": { "text": "exercice", "accepts": ["l'exercice"], "grammar": { "article": "l'", "gender": "m" } },
   "training": {
    "text": "entraînement",
    "accepts": ["l'entraînement"],
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "you-can-do-it": {
    "text": "Tu vas sûrement y arriver !",

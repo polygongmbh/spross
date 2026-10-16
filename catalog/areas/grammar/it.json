@@ -4,9 +4,9 @@
  "words": {
   "verb": { "text": "verbo", "grammar": { "article": "il" } },
   "noun": { "text": "sostantivo", "grammar": { "article": "il" } },
-  "adjective": { "text": "aggettivo", "accepts": ["l'aggettivo"], "grammar": { "article": "l'", "genus": "m" } },
+  "adjective": { "text": "aggettivo", "accepts": ["l'aggettivo"], "grammar": { "article": "l'", "gender": "m" } },
   "noun-class": { "text": "classe nominale", "grammar": { "article": "la" } },
-  "affix": { "text": "affisso", "accepts": ["l'affisso"], "grammar": { "article": "l'", "genus": "m" } },
+  "affix": { "text": "affisso", "accepts": ["l'affisso"], "grammar": { "article": "l'", "gender": "m" } },
   "past": { "text": "passato", "grammar": { "article": "il" } },
   "present": { "text": "presente", "grammar": { "article": "il" } },
   "future": { "text": "futuro", "grammar": { "article": "il" } },

@@ -10,7 +10,7 @@
    "text": "uovo",
    "accepts": ["l'uovo"],
    "forms": { "pl": "le uova" },
-   "grammar": { "article": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "it": "un uovo → due uova." }
   },
   "cheese": { "text": "formaggio", "forms": { "pl": "i formaggi" }, "grammar": { "article": "il" } },
@@ -42,7 +42,7 @@
    "text": "olio",
    "accepts": ["l'olio"],
    "forms": { "pl": "gli oli" },
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "flour": { "text": "farina", "grammar": { "article": "la" } },
   "butter": { "text": "burro", "grammar": { "article": "il" } },
@@ -57,7 +57,7 @@
   "cooked-rice": { "text": "riso cotto", "accepts": ["riso bollito"] },
   "cassava": { "text": "manioca", "grammar": { "article": "la" } },
   "bean": { "text": "fagiolo", "grammar": { "article": "il" } },
-  "garlic": { "text": "aglio", "accepts": ["l'aglio"], "grammar": { "article": "l'", "genus": "m" } },
+  "garlic": { "text": "aglio", "accepts": ["l'aglio"], "grammar": { "article": "l'", "gender": "m" } },
   "carrot": { "text": "carota", "grammar": { "article": "la" } },
   "cabbage": { "text": "cavolo", "grammar": { "article": "il" } },
   "porridge": { "text": "pappa", "grammar": { "article": "la" } },
@@ -67,7 +67,7 @@
   "water": {
    "text": "acqua",
    "accepts": ["l'acqua", "un'acqua"],
-   "grammar": { "article": "l'", "genus": "f" }
+   "grammar": { "article": "l'", "gender": "f" }
   },
   "to-eat": { "text": "mangiare" },
   "to-drink": { "text": "bere" },

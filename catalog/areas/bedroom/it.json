@@ -11,7 +11,7 @@
    "text": "armadio",
    "accepts": ["l'armadio"],
    "forms": { "pl": "gli armadi" },
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "alarm-clock": { "text": "sveglia", "grammar": { "article": "la" } },
   "nightstand": { "text": "comodino", "grammar": { "article": "il" } },

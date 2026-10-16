@@ -7,7 +7,7 @@
   "birthday": {
    "text": "anniversaire",
    "accepts": ["l'anniversaire"],
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "birthday-party": { "text": "fête d'anniversaire", "grammar": { "article": "la" } },
   "gift": { "text": "cadeau", "grammar": { "article": "le" } },

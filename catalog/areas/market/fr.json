@@ -2,7 +2,7 @@
  "title": "Au marché",
  "subtitle": "Où le prix se discute encore.",
  "words": {
-  "stall": { "text": "étal", "accepts": ["l'étal", "stand"], "grammar": { "article": "l'", "genus": "m" } },
+  "stall": { "text": "étal", "accepts": ["l'étal", "stand"], "grammar": { "article": "l'", "gender": "m" } },
   "trader": {
    "text": "marchand",
    "forms": { "f": ["la marchande", "la commerçante"] },

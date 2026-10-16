@@ -10,7 +10,7 @@
    "text": "elezione",
    "accepts": ["l'elezione"],
    "forms": { "pl": "le elezioni" },
-   "grammar": { "article": "l'", "genus": "f" }
+   "grammar": { "article": "l'", "gender": "f" }
   },
   "to-vote": { "text": "votare" },
   "border": { "text": "confine", "forms": { "pl": "i confini" }, "grammar": { "article": "il" } }

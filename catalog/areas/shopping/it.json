@@ -7,7 +7,7 @@
   "checkout": { "text": "cassa", "grammar": { "article": "la" } },
   "shop-assistant": { "text": "commesso", "forms": { "f": "la commessa" }, "grammar": { "article": "il" } },
   "shopping-cart": { "text": "carrello", "grammar": { "article": "il" }, "accepts": ["carrello della spesa"] },
-  "offer": { "text": "offerta", "grammar": { "article": "l'", "genus": "f" }, "accepts": ["l'offerta"] },
+  "offer": { "text": "offerta", "grammar": { "article": "l'", "gender": "f" }, "accepts": ["l'offerta"] },
   "size": {
    "text": "taglia",
    "grammar": { "article": "la" },

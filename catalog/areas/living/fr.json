@@ -24,13 +24,13 @@
   "floor": { "text": "sol", "grammar": { "article": "le" } },
   "song": { "text": "chanson", "grammar": { "article": "la" } },
   "story": { "text": "étage", "grammar": { "article": "le" } },
-  "shelf": { "text": "étagère", "accepts": ["l'étagère"], "grammar": { "article": "l'", "genus": "f" } },
+  "shelf": { "text": "étagère", "accepts": ["l'étagère"], "grammar": { "article": "l'", "gender": "f" } },
   "plant": { "text": "plante", "grammar": { "article": "la" } },
   "window": { "text": "fenêtre", "grammar": { "article": "la" } },
   "curtain": { "text": "rideau", "forms": { "pl": "les rideaux" }, "grammar": { "article": "le" } },
   "carpet": { "text": "tapis", "grammar": { "article": "le", "plural": "=" } },
   "lamp": { "text": "lampe", "grammar": { "article": "la" } },
-  "clock": { "text": "horloge", "accepts": ["pendule"], "grammar": { "article": "l'", "genus": "f" } },
+  "clock": { "text": "horloge", "accepts": ["pendule"], "grammar": { "article": "l'", "gender": "f" } },
   "picture": {
    "text": "tableau",
    "forms": { "pl": "les tableaux" },
@@ -67,7 +67,7 @@
   "to-laugh": { "text": "rire" },
   "furniture": {
    "text": "meubles",
-   "grammar": { "article": "les", "genus": "m" },
+   "grammar": { "article": "les", "gender": "m" },
    "notes": { "fr": "au pluriel : les meubles · un meuble, c'est une chaise, une table." }
   },
   "game": { "text": "jeu", "forms": { "pl": "les jeux" }, "grammar": { "article": "le" } },

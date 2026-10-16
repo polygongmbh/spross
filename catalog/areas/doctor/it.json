@@ -14,7 +14,7 @@
    "teaches": ["studio medico"],
    "accepts": ["l'ambulatorio"],
    "forms": { "pl": "gli ambulatori" },
-   "grammar": { "article": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "it": "l'ambulatorio è del medico di base · lo studio medico è privato." }
   },
   "pill": {
@@ -41,17 +41,17 @@
   "health-insurance": {
    "text": "assicurazione sanitaria",
    "accepts": ["l'assicurazione sanitaria", "un'assicurazione sanitaria"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": {
     "it": "cura tutti il Servizio Sanitario Nazionale · l'assicurazione è privata.",
     "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: versorgt wird man über den staatlichen Servizio Sanitario Nazionale; un'assicurazione sanitaria ist meist eine private Zusatzversicherung."
    }
   },
-  "hospital": { "text": "ospedale", "accepts": ["l'ospedale"], "grammar": { "article": "l'", "genus": "m" } },
+  "hospital": { "text": "ospedale", "accepts": ["l'ospedale"], "grammar": { "article": "l'", "gender": "m" } },
   "emergency": {
    "text": "emergenza",
    "accepts": ["l'emergenza", "un'emergenza"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": { "it": "in ospedale si va al pronto soccorso." }
   },
   "doctors-note": {
@@ -78,7 +78,7 @@
    "text": "infermiere",
    "accepts": ["l'infermiere", "un'infermiera"],
    "forms": { "f": "l'infermiera" },
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "dentist": {
    "text": "dentista",
@@ -99,7 +99,7 @@
   "ambulance": {
    "text": "ambulanza",
    "accepts": ["l'ambulanza", "un'ambulanza"],
-   "grammar": { "article": "l'", "genus": "f" }
+   "grammar": { "article": "l'", "gender": "f" }
   },
   "to-look-after": { "text": "curare" },
   "take-the-pills-twice-daily": {

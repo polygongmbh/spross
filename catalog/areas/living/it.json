@@ -25,7 +25,7 @@
   "curtain": { "text": "tenda", "grammar": { "article": "la" } },
   "carpet": { "text": "tappeto", "grammar": { "article": "il" } },
   "lamp": { "text": "lampada", "grammar": { "article": "la" } },
-  "clock": { "text": "orologio", "grammar": { "article": "l'", "genus": "m" } },
+  "clock": { "text": "orologio", "grammar": { "article": "l'", "gender": "m" } },
   "picture": { "text": "quadro", "grammar": { "article": "il" } },
   "to-watch-tv": { "text": "guardare la televisione", "accepts": ["guardare la tv", "vedere la televisione"] },
   "to-read": { "text": "leggere" },

@@ -5,7 +5,7 @@
   "head": { "text": "tête", "grammar": { "article": "la" } },
   "hair": {
    "text": "cheveux",
-   "grammar": { "article": "les", "genus": "m", "plural": "only" },
+   "grammar": { "article": "les", "gender": "m", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : j'ai les cheveux longs." }
   },
   "face": { "text": "visage", "accepts": ["figure"], "grammar": { "article": "le" } },
@@ -13,9 +13,9 @@
    "text": "œil",
    "accepts": ["l'œil", "oeil", "l'oeil"],
    "forms": { "pl": "les yeux" },
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
-  "ear": { "text": "oreille", "accepts": ["l'oreille"], "grammar": { "article": "l'", "genus": "f" } },
+  "ear": { "text": "oreille", "accepts": ["l'oreille"], "grammar": { "article": "l'", "gender": "f" } },
   "nose": { "text": "nez", "grammar": { "article": "le", "plural": "=" } },
   "mouth": { "text": "bouche", "grammar": { "article": "la" } },
   "tooth": { "text": "dent", "grammar": { "article": "la" } },
@@ -38,13 +38,17 @@
     "de": "Französisch trennt, was „Hals“ zusammenfasst: la gorge ist der Rachen (Halsschmerzen), le cou der äußere Hals."
    }
   },
-  "shoulder": { "text": "épaule", "accepts": ["l'épaule"], "grammar": { "article": "l'", "genus": "f" } },
+  "shoulder": { "text": "épaule", "accepts": ["l'épaule"], "grammar": { "article": "l'", "gender": "f" } },
   "knee": { "text": "genou", "forms": { "pl": "les genoux" }, "grammar": { "article": "le" } },
   "chest": { "text": "poitrine", "grammar": { "article": "la" } },
   "heart": { "text": "cœur", "accepts": ["coeur"], "grammar": { "article": "le" } },
   "blood": { "text": "sang", "grammar": { "article": "le" } },
   "skin": { "text": "peau", "forms": { "pl": "les peaux" }, "grammar": { "article": "la" } },
-  "bone": { "text": "os", "accepts": ["l'os"], "grammar": { "article": "l'", "genus": "m", "plural": "=" } },
+  "bone": {
+   "text": "os",
+   "accepts": ["l'os"],
+   "grammar": { "article": "l'", "gender": "m", "plural": "=" }
+  },
   "finger": {
    "text": "doigt",
    "grammar": { "article": "le" },

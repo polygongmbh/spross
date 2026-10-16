@@ -10,7 +10,7 @@
   "human": {
    "text": "être humain",
    "accepts": ["l'être humain"],
-   "grammar": { "article": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "fr": "l'être humain face aux animaux · une personne, c'est quelqu'un." }
   },
   "family": { "text": "famille", "grammar": { "article": "la" } },
@@ -18,10 +18,10 @@
   "father": { "text": "père", "grammar": { "article": "le" } },
   "parents": {
    "text": "parents",
-   "grammar": { "article": "les", "genus": "m" },
+   "grammar": { "article": "les", "gender": "m" },
    "notes": { "fr": "mes parents, c'est mon père et ma mère · un parent est de la famille." }
   },
-  "child": { "text": "enfant", "accepts": ["l'enfant"], "grammar": { "article": "l'", "genus": "m/f" } },
+  "child": { "text": "enfant", "accepts": ["l'enfant"], "grammar": { "article": "l'", "gender": "m/f" } },
   "son": { "text": "fils", "grammar": { "article": "le", "plural": "=" } },
   "daughter": {
    "text": "fille",
@@ -30,7 +30,7 @@
   },
   "brother": { "text": "frère", "grammar": { "article": "le" } },
   "sister": { "text": "sœur", "grammar": { "article": "la" } },
-  "man": { "text": "homme", "accepts": ["l'homme"], "grammar": { "article": "l'", "genus": "m" } },
+  "man": { "text": "homme", "accepts": ["l'homme"], "grammar": { "article": "l'", "gender": "m" } },
   "woman": {
    "text": "femme",
    "grammar": { "article": "la" },
@@ -42,7 +42,7 @@
    "text": "ami",
    "accepts": ["l'ami", "copain", "copine"],
    "forms": { "f": "l'amie" },
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "grandmother": {
    "text": "grand-mère",
@@ -60,10 +60,10 @@
   "wife": {
    "text": "épouse",
    "accepts": ["l'épouse", "femme"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": { "fr": "au quotidien on dit ma femme · épouse est plus officiel." }
   },
-  "uncle": { "text": "oncle", "accepts": ["l'oncle"], "grammar": { "article": "l'", "genus": "m" } },
+  "uncle": { "text": "oncle", "accepts": ["l'oncle"], "grammar": { "article": "l'", "gender": "m" } },
   "aunt": { "text": "tante", "grammar": { "article": "la" } },
   "to-visit": { "text": "rendre visite" },
   "to-marry": { "text": "se marier" },

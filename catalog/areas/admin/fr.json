@@ -5,7 +5,7 @@
   "office": {
    "text": "administration",
    "accepts": ["l'administration"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": { "fr": "la mairie pour la commune, la préfecture pour les papiers." }
   },
   "application": {
@@ -38,13 +38,13 @@
    "teaches": ["agent"],
    "accepts": ["l'employé", "l'agent"],
    "forms": { "f": "l'employée" },
-   "grammar": { "article": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "fr": "au guichet : l'employé ou l'agent · le gestionnaire suit le dossier." }
   },
   "registration": {
    "text": "inscription",
    "accepts": ["l'inscription"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": {
     "fr": "l'inscription sur les listes électorales, à la Sécu, à l'école.",
     "de": "In Frankreich gibt es keine Meldepflicht; l'inscription ist die Eintragung in ein Register, etwa auf der Wählerliste oder bei der Krankenkasse."
@@ -53,7 +53,7 @@
   "documents": {
    "text": "documents",
    "teaches": ["papiers"],
-   "grammar": { "article": "les", "genus": "m" },
+   "grammar": { "article": "les", "gender": "m" },
    "notes": { "fr": "au guichet on demande vos papiers · à l'écrit, les documents." }
   },
   "to-sign": { "text": "signer" },
@@ -84,13 +84,13 @@
   "certificate": {
    "text": "attestation",
    "accepts": ["l'attestation", "certificat"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": { "fr": "l'attestation vient de l'administration, le certificat du médecin." }
   },
   "birth-certificate": {
    "text": "acte de naissance",
    "accepts": ["l'acte de naissance", "extrait de naissance"],
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "notification": {
    "text": "décision",
@@ -101,13 +101,13 @@
   "fee": {
    "text": "frais",
    "accepts": ["frais de dossier"],
-   "grammar": { "article": "les", "genus": "m", "plural": "only" },
+   "grammar": { "article": "les", "gender": "m", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : les frais de dossier, les frais de port." }
   },
   "office-hours": {
    "text": "horaires d'accueil",
    "accepts": ["heures d'accueil", "horaires d'ouverture"],
-   "grammar": { "article": "les", "genus": "m" },
+   "grammar": { "article": "les", "gender": "m" },
    "notes": { "fr": "les horaires d'accueil du public · une permanence est un jour précis." }
   },
   "waiting-room": { "text": "salle d'attente", "grammar": { "article": "la" } },
@@ -115,7 +115,7 @@
   "to-approve": { "text": "approuver", "accepts": ["accorder", "autoriser"] },
   "law": { "text": "loi", "grammar": { "article": "la" } },
   "visa": { "text": "visa", "grammar": { "article": "le" } },
-  "fine": { "text": "amende", "accepts": ["l'amende"], "grammar": { "article": "l'", "genus": "f" } },
+  "fine": { "text": "amende", "accepts": ["l'amende"], "grammar": { "article": "l'", "gender": "f" } },
   "receipt": {
    "text": "reçu",
    "accepts": ["récépissé"],
@@ -125,7 +125,7 @@
   "authority": {
    "text": "autorité",
    "accepts": ["l'autorité", "administration"],
-   "grammar": { "article": "l'", "genus": "f" }
+   "grammar": { "article": "l'", "gender": "f" }
   },
   "responsible": { "text": "responsable", "accepts": ["compétent"] },
   "to-submit-application": { "text": "déposer une demande", "accepts": ["faire une demande"] },

@@ -15,7 +15,7 @@
   "entrance": {
    "text": "entrée",
    "accepts": ["l'entrée"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": {
     "fr": "l'entrée du bâtiment · au restaurant, le plat avant le plat principal.",
     "de": "l'entrée ist der Eingang und zugleich der Flur, in den man tritt — und auf der Karte die Vorspeise."

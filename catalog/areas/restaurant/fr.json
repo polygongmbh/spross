@@ -10,11 +10,11 @@
   "waiter": { "text": "serveur", "forms": { "f": "la serveuse" }, "grammar": { "article": "le" } },
   "table": { "text": "table", "grammar": { "article": "la" } },
   "to-order": { "text": "commander" },
-  "bill": { "text": "addition", "accepts": ["l'addition"], "grammar": { "article": "l'", "genus": "f" } },
+  "bill": { "text": "addition", "accepts": ["l'addition"], "grammar": { "article": "l'", "gender": "f" } },
   "tip": { "text": "pourboire", "grammar": { "article": "le" } },
   "to-reserve": { "text": "réserver" },
   "glass": { "text": "verre", "grammar": { "article": "le" } },
-  "cutlery": { "text": "couverts", "grammar": { "article": "les", "genus": "m", "plural": "only" } },
+  "cutlery": { "text": "couverts", "grammar": { "article": "les", "gender": "m", "plural": "only" } },
   "napkin": {
    "text": "serviette de table",
    "accepts": ["serviette"],

@@ -12,23 +12,23 @@
   "thyroid": { "text": "thyroïde", "accepts": ["la thyroïde"], "grammar": { "article": "la" } },
   "to-breathe": { "text": "respirer" },
   "stomach-organ": { "text": "estomac", "grammar": { "article": "le" } },
-  "artery": { "text": "artère", "grammar": { "article": "l'", "genus": "f" }, "accepts": ["l'artère"] },
+  "artery": { "text": "artère", "grammar": { "article": "l'", "gender": "f" }, "accepts": ["l'artère"] },
   "joint": {
    "text": "articulation",
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "accepts": ["l'articulation"]
   },
   "gland": { "text": "glande", "grammar": { "article": "la" } },
   "spleen": { "text": "rate", "grammar": { "article": "la" } },
   "bile": { "text": "bile", "grammar": { "article": "la" } },
-  "appendix": { "text": "appendice", "grammar": { "article": "l'", "genus": "m" }, "accepts": ["l'appendice"] },
+  "appendix": { "text": "appendice", "grammar": { "article": "l'", "gender": "m" }, "accepts": ["l'appendice"] },
   "womb": {
    "text": "utérus",
-   "grammar": { "article": "l'", "genus": "m", "plural": "=" },
+   "grammar": { "article": "l'", "gender": "m", "plural": "=" },
    "accepts": ["l'utérus"]
   },
   "pancreas": { "text": "pancréas", "grammar": { "article": "le", "plural": "=" } },
-  "ovary": { "text": "ovaire", "grammar": { "article": "l'", "genus": "m" }, "accepts": ["l'ovaire"] },
+  "ovary": { "text": "ovaire", "grammar": { "article": "l'", "gender": "m" }, "accepts": ["l'ovaire"] },
   "tendon": { "text": "tendon", "grammar": { "article": "le" } }
  }
 }

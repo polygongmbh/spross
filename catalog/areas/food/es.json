@@ -13,7 +13,7 @@
   "rice": { "text": "arroz", "grammar": { "article": "el" } },
   "hunger": {
    "text": "hambre",
-   "grammar": { "article": "el", "genus": "f" },
+   "grammar": { "article": "el", "gender": "f" },
    "notes": { "es": "Femenino con el en singular: el hambre, pero mucha hambre · tener hambre." }
   },
   "thirst": { "text": "sed", "grammar": { "article": "la" } },
@@ -51,7 +51,7 @@
   "dinner": { "text": "cena", "grammar": { "article": "la" } },
   "water": {
    "text": "agua",
-   "grammar": { "article": "el", "genus": "f" },
+   "grammar": { "article": "el", "gender": "f" },
    "notes": { "es": "Femenino con el en singular: el agua fría · plural, las aguas." }
   },
   "to-eat": { "text": "comer" },

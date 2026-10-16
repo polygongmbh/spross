@@ -2,7 +2,7 @@
  "title": "La nature",
  "subtitle": "Un bol d'air frais.",
  "words": {
-  "tree": { "text": "arbre", "accepts": ["l'arbre"], "grammar": { "article": "l'", "genus": "m" } },
+  "tree": { "text": "arbre", "accepts": ["l'arbre"], "grammar": { "article": "l'", "gender": "m" } },
   "flower": { "text": "fleur", "grammar": { "article": "la" } },
   "to-go-for-walk": { "text": "se promener", "teaches": ["faire une promenade"], "accepts": ["se balader"] },
   "to-jog": { "text": "faire du jogging", "accepts": ["aller courir"] },
@@ -13,10 +13,10 @@
   "stone": { "text": "pierre", "grammar": { "article": "la" } },
   "stone-wall": { "text": "mur en pierre", "grammar": { "article": "le" } },
   "moon": { "text": "lune", "grammar": { "article": "la" } },
-  "star": { "text": "étoile", "accepts": ["l'étoile"], "grammar": { "article": "l'", "genus": "f" } },
+  "star": { "text": "étoile", "accepts": ["l'étoile"], "grammar": { "article": "l'", "gender": "f" } },
   "wood": { "text": "bois", "grammar": { "article": "le" } },
   "stick": { "text": "bâton", "grammar": { "article": "le" } },
-  "shadow": { "text": "ombre", "accepts": ["l'ombre"], "grammar": { "article": "l'", "genus": "f" } },
+  "shadow": { "text": "ombre", "accepts": ["l'ombre"], "grammar": { "article": "l'", "gender": "f" } },
   "we-are-going-to-the-mountains": {
    "text": "Nous allons à la montagne.",
    "accepts": ["On va à la montagne.", "Nous allons en montagne."],

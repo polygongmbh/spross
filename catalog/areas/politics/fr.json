@@ -6,7 +6,7 @@
   "peace": { "text": "paix", "grammar": { "article": "la", "plural": "=" } },
   "freedom": { "text": "liberté", "grammar": { "article": "la" } },
   "government": { "text": "gouvernement", "grammar": { "article": "le" } },
-  "election": { "text": "élection", "accepts": ["l'élection"], "grammar": { "article": "l'", "genus": "f" } },
+  "election": { "text": "élection", "accepts": ["l'élection"], "grammar": { "article": "l'", "gender": "f" } },
   "to-vote": { "text": "voter" },
   "border": { "text": "frontière", "grammar": { "article": "la" } }
  }

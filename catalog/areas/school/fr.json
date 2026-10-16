@@ -5,7 +5,7 @@
   "school": {
    "text": "école",
    "accepts": ["l'école"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": {
     "fr": "l'école est pour les petits · après vient le collège.",
     "de": "Vorsicht: le collège ist die Mittelstufe, nicht die Schule allgemein."
@@ -34,13 +34,13 @@
   "exercise-book": { "text": "cahier", "grammar": { "article": "le" } },
   "homework": {
    "text": "devoirs",
-   "grammar": { "article": "les", "genus": "m", "plural": "only" },
+   "grammar": { "article": "les", "gender": "m", "plural": "only" },
    "notes": { "fr": "au pluriel : faire ses devoirs." }
   },
   "exam": {
    "text": "examen",
    "accepts": ["l'examen", "contrôle"],
-   "grammar": { "article": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "fr": "le contrôle se passe en classe · l'examen compte beaucoup plus." }
   },
   "break": {
@@ -61,7 +61,7 @@
   "pupil": {
    "text": "élève",
    "accepts": ["l'élève"],
-   "grammar": { "article": "l'", "genus": "m/f" },
+   "grammar": { "article": "l'", "gender": "m/f" },
    "notes": { "fr": "l'élève va à l'école, l'étudiant à l'université." }
   },
   "course": { "text": "cours", "grammar": { "article": "le", "plural": "=" } },
@@ -79,7 +79,7 @@
    "text": "emploi du temps",
    "accepts": ["l'emploi du temps"],
    "forms": { "pl": "les emplois du temps" },
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "to-count": { "text": "compter" },
   "to-learn-by-heart": { "text": "apprendre par cœur", "teaches": ["mémoriser"], "accepts": ["apprendre par coeur"] },

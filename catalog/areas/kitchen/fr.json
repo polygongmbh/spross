@@ -23,7 +23,7 @@
   "knife": { "text": "couteau", "forms": { "pl": "les couteaux" }, "grammar": { "article": "le" } },
   "spoon": { "text": "cuillère", "accepts": ["cuiller"], "grammar": { "article": "la" } },
   "fork": { "text": "fourchette", "grammar": { "article": "la" } },
-  "plate": { "text": "assiette", "accepts": ["l'assiette"], "grammar": { "article": "l'", "genus": "f" } },
+  "plate": { "text": "assiette", "accepts": ["l'assiette"], "grammar": { "article": "l'", "gender": "f" } },
   "to-cook": {
    "text": "cuisiner",
    "accepts": ["faire la cuisine"],

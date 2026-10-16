@@ -14,13 +14,13 @@
    "text": "occhio",
    "accepts": ["l'occhio"],
    "forms": { "pl": "gli occhi" },
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "ear": {
    "text": "orecchio",
    "accepts": ["l'orecchio"],
    "forms": { "pl": "le orecchie" },
-   "grammar": { "article": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "it": "un orecchio → due orecchie." }
   },
   "nose": { "text": "naso", "grammar": { "article": "il" } },
@@ -74,7 +74,7 @@
    "text": "osso",
    "accepts": ["l'osso"],
    "forms": { "pl": "le ossa" },
-   "grammar": { "article": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "it": "un osso → le ossa del corpo · gli ossi sono quelli per il cane." }
   },
   "finger": {

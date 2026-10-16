@@ -10,7 +10,7 @@
   "question": { "text": "domanda", "grammar": { "article": "la" } },
   "answer": { "text": "risposta", "grammar": { "article": "la" } },
   "to-reply": { "text": "rispondere" },
-  "help": { "text": "aiuto", "accepts": ["l'aiuto"], "grammar": { "article": "l'", "genus": "m" } },
+  "help": { "text": "aiuto", "accepts": ["l'aiuto"], "grammar": { "article": "l'", "gender": "m" } },
   "to-need": {
    "text": "avere bisogno di",
    "accepts": ["avere bisogno"],

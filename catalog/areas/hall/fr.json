@@ -6,7 +6,7 @@
    "text": "entrée",
    "teaches": ["couloir"],
    "accepts": ["l'entrée"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": {
     "fr": "l'entrée est juste derrière la porte · le couloir mène aux pièces.",
     "en": "l'entrée is the entryway just inside the front door; the corridor itself is le couloir."
@@ -35,7 +35,7 @@
   "stairs": {
    "text": "escalier",
    "accepts": ["l'escalier", "escaliers"],
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "bag": { "text": "sac", "grammar": { "article": "le" } },
   "to-lock": { "text": "fermer à clé", "accepts": ["verrouiller"] },
@@ -55,14 +55,14 @@
   "apartment": {
    "text": "appartement",
    "accepts": ["l'appartement", "appart"],
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "neighbor": { "text": "voisin", "forms": { "f": "la voisine" }, "grammar": { "article": "le" } },
   "guest": {
    "text": "invité",
    "accepts": ["l'invité"],
    "forms": { "f": "l'invitée" },
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "wallet": {
    "text": "portefeuille",

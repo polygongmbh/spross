@@ -4,13 +4,13 @@
  "words": {
   "bed": { "text": "lit", "grammar": { "article": "le" } },
   "mattress": { "text": "matelas", "grammar": { "article": "le", "plural": "=" } },
-  "pillow": { "text": "oreiller", "accepts": ["l'oreiller"], "grammar": { "article": "l'", "genus": "m" } },
+  "pillow": { "text": "oreiller", "accepts": ["l'oreiller"], "grammar": { "article": "l'", "gender": "m" } },
   "blanket": { "text": "couverture", "grammar": { "article": "la" } },
   "bedding": { "text": "linge de lit", "grammar": { "article": "le" } },
   "wardrobe": {
    "text": "armoire",
    "accepts": ["l'armoire", "penderie"],
-   "grammar": { "article": "l'", "genus": "f" }
+   "grammar": { "article": "l'", "gender": "f" }
   },
   "alarm-clock": { "text": "réveil", "grammar": { "article": "le" } },
   "nightstand": {
@@ -32,13 +32,13 @@
   "to-snore": { "text": "ronfler" },
   "clothes": {
    "text": "vêtements",
-   "grammar": { "article": "les", "genus": "m" },
+   "grammar": { "article": "les", "gender": "m" },
    "notes": { "fr": "presque toujours au pluriel : les vêtements · un seul, un vêtement." }
   },
   "shirt": { "text": "chemise", "grammar": { "article": "la" } },
   "dress": { "text": "robe", "grammar": { "article": "la" } },
   "sweater": { "text": "pull", "accepts": ["pull-over", "chandail"], "grammar": { "article": "le" } },
-  "underwear": { "text": "sous-vêtements", "grammar": { "article": "les", "genus": "m" } },
+  "underwear": { "text": "sous-vêtements", "grammar": { "article": "les", "gender": "m" } },
   "belt": { "text": "ceinture", "grammar": { "article": "la" } },
   "to-make-bed": { "text": "faire le lit" },
   "soft": {

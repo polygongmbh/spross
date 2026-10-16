@@ -50,7 +50,7 @@
    "accepts": ["se remettre"],
    "notes": { "fr": "je guéris vite · le médecin me guérit." }
   },
-  "allergy": { "text": "allergie", "accepts": ["l'allergie"], "grammar": { "article": "l'", "genus": "f" } },
+  "allergy": { "text": "allergie", "accepts": ["l'allergie"], "grammar": { "article": "l'", "gender": "f" } },
   "my-throat-hurts-a-lot": { "text": "J'ai très mal à la gorge.", "accepts": ["Ma gorge me fait très mal."] },
   "ive-had-a-fever-since-yesterday": { "text": "J'ai de la fièvre depuis hier.", "orders": ["Depuis hier, j'ai de la fièvre."] },
   "get-well-soon": { "text": "Bon rétablissement !", "accepts": ["Remets-toi vite !"] },

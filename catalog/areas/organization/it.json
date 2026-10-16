@@ -5,14 +5,14 @@
   "appointment": {
    "text": "appuntamento",
    "accepts": ["l'appuntamento"],
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "date": { "text": "data", "grammar": { "article": "la" } },
   "opening-hours": {
    "text": "orario di apertura",
    "accepts": ["l'orario di apertura", "orario"],
    "forms": { "pl": "gli orari di apertura" },
-   "grammar": { "article": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": {
     "it": "di solito al singolare: l'orario di apertura · spesso solo l'orario.",
     "de": "Italienisch hat keinen festen Plural wie „die Öffnungszeiten“: meist l'orario di apertura, im Alltag oft nur l'orario."

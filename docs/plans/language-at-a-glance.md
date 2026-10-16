@@ -6,7 +6,7 @@ Neighbors: letter sheets `../../catalog/alphabet/README.md`, notes `../../kern/d
 
 - The posters (`../../../sprachposter`) end with a hand-written "<Language> auf einen Blick" page per learned × reader pair (`templates/grammar/fr-de.html`, the German page inside `sprachposter.html`).
   It is the legend for every mark the cards wear: why a regular plural shows nothing, what `= Pl` and `nur Pl.` mean, why `l'` cards carry `m.` / `f.`.
-- The app shows the same marks (`grammar.genus` chip, `forms.pl` only where irregular) and explains none of them.
+- The app shows the same marks (`grammar.gender` chip, `forms.pl` only where irregular) and explains none of them.
   The only rule prose a learner can reach is per-word `notes` and the alphabet's `rule` rows.
 - `../../../data/reference/grammar-{de,sw,uk}.md` are markdown extracts of the DE/SW/UK poster pages, kept as reference.
   They are not a source: the poster HTML is, and nothing derives from the markdown.
@@ -109,4 +109,4 @@ Ship the French sheet end to end, small, then widen.
 - **Single source** in the catalog (recommended), or does the poster repo stay the owner, with the app importing a generated JSON?
 - **Reveal link:** acceptable to add a tappable affordance to the reveal's marks, or must the reveal stay free of anything but the answer (`../design.md` § Review UX rules)?
 - **Verification:** the same independent review sweep as catalog content, with the poster's native-reader check for French?
-- **Backlog hook:** the sheet could also give `docs/backlog.md`'s "gender hues ignore `grammar.genus`" fix a place to teach the neutral `l'` hue; wanted together?
+- **Backlog hook:** the sheet could also give `docs/backlog.md`'s "gender hues ignore `grammar.gender`" fix a place to teach the neutral `l'` hue; wanted together?

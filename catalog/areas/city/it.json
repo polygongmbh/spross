@@ -15,7 +15,7 @@
    "text": "edificio",
    "accepts": ["l'edificio"],
    "forms": { "pl": "gli edifici" },
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "bank": { "text": "banca", "forms": { "pl": "le banche" }, "grammar": { "article": "la" } },
   "post-office": {

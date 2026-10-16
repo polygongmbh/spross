@@ -4,10 +4,10 @@
  "words": {
   "beach": { "text": "plage", "grammar": { "article": "la" } },
   "to-sunbathe": { "text": "prendre le soleil", "accepts": ["bronzer", "se faire bronzer"] },
-  "hotel": { "text": "hôtel", "accepts": ["l'hôtel"], "grammar": { "article": "l'", "genus": "m" } },
+  "hotel": { "text": "hôtel", "accepts": ["l'hôtel"], "grammar": { "article": "l'", "gender": "m" } },
   "luggage": {
    "text": "bagages",
-   "grammar": { "article": "les", "genus": "m", "plural": "only" },
+   "grammar": { "article": "les", "gender": "m", "plural": "only" },
    "notes": { "fr": "au pluriel : les bagages · un bagage, c'est une valise." }
   },
   "to-travel": { "text": "voyager" },
@@ -15,7 +15,7 @@
   "vacation": {
    "text": "vacances",
    "teaches": ["congés"],
-   "grammar": { "article": "les", "genus": "f", "plural": "only" },
+   "grammar": { "article": "les", "gender": "f", "plural": "only" },
    "notes": { "fr": "les vacances d'été · au travail, je prends des congés." }
   },
   "overnight-stay": {

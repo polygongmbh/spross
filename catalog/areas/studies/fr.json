@@ -5,16 +5,16 @@
   "university": {
    "text": "université",
    "accepts": ["l'université", "fac"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": { "fr": "on dit la fac : je vais à la fac." }
   },
   "student": {
    "text": "étudiant",
    "accepts": ["l'étudiant"],
    "forms": { "f": "l'étudiante" },
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
-  "studies": { "text": "études", "grammar": { "article": "les", "genus": "f", "plural": "only" } },
+  "studies": { "text": "études", "grammar": { "article": "les", "gender": "f", "plural": "only" } },
   "to-study-at-university": { "text": "étudier à l'université", "accepts": ["faire des études"] },
   "lecture": {
    "text": "cours magistral",
@@ -35,7 +35,7 @@
   "internship": { "text": "stage", "grammar": { "article": "le" } },
   "further-training": { "text": "formation continue", "grammar": { "article": "la" } },
   "counseling": { "text": "conseil", "accepts": ["orientation"], "grammar": { "article": "le" } },
-  "skills": { "text": "connaissances", "grammar": { "article": "les", "genus": "f", "plural": "only" } },
+  "skills": { "text": "connaissances", "grammar": { "article": "les", "gender": "f", "plural": "only" } },
   "to-finish-training": { "text": "terminer la formation", "accepts": ["finir la formation"] },
   "she-completed-her-training-in-2015": {
    "text": "Elle a terminé sa formation en 2015.",

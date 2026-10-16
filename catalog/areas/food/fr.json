@@ -9,7 +9,7 @@
   "egg": {
    "text": "œuf",
    "accepts": ["l'œuf", "oeuf", "l'oeuf"],
-   "grammar": { "article": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "fr": "un œuf [œf] · des œufs [ø] : le f se tait." }
   },
   "cheese": { "text": "fromage", "grammar": { "article": "le" } },
@@ -38,11 +38,11 @@
    "forms": { "pl": "les pommes de terre" },
    "grammar": { "article": "la" }
   },
-  "onion": { "text": "oignon", "accepts": ["l'oignon"], "grammar": { "article": "l'", "genus": "m" } },
+  "onion": { "text": "oignon", "accepts": ["l'oignon"], "grammar": { "article": "l'", "gender": "m" } },
   "tomato": { "text": "tomate", "grammar": { "article": "la" } },
   "banana": { "text": "banane", "grammar": { "article": "la" } },
   "apple": { "text": "pomme", "grammar": { "article": "la" } },
-  "oil": { "text": "huile", "accepts": ["l'huile"], "grammar": { "article": "l'", "genus": "f" } },
+  "oil": { "text": "huile", "accepts": ["l'huile"], "grammar": { "article": "l'", "gender": "f" } },
   "flour": { "text": "farine", "grammar": { "article": "la" } },
   "butter": { "text": "beurre", "grammar": { "article": "le" } },
   "soup": { "text": "soupe", "grammar": { "article": "la" } },
@@ -51,7 +51,7 @@
   "cooked-rice": { "text": "riz cuit" },
   "cassava": { "text": "manioc", "grammar": { "article": "le" } },
   "bean": { "text": "haricot", "grammar": { "article": "le" } },
-  "garlic": { "text": "ail", "accepts": ["l'ail"], "grammar": { "article": "l'", "genus": "m" } },
+  "garlic": { "text": "ail", "accepts": ["l'ail"], "grammar": { "article": "l'", "gender": "m" } },
   "carrot": { "text": "carotte", "grammar": { "article": "la" } },
   "cabbage": { "text": "chou", "forms": { "pl": "les choux" }, "grammar": { "article": "le" } },
   "porridge": { "text": "bouillie", "grammar": { "article": "la" } },
@@ -63,7 +63,7 @@
    "grammar": { "article": "le" }
   },
   "dinner": { "text": "dîner", "accepts": ["souper"], "grammar": { "article": "le" } },
-  "water": { "text": "eau", "accepts": ["l'eau"], "grammar": { "article": "l'", "genus": "f" } },
+  "water": { "text": "eau", "accepts": ["l'eau"], "grammar": { "article": "l'", "gender": "f" } },
   "to-eat": { "text": "manger" },
   "to-drink": { "text": "boire" },
   "im-hungry": { "text": "J'ai faim." },

@@ -254,7 +254,7 @@ Realization fields — only `text` is required:
   Each entry must tokenize to the same word bag as `text`; an order with different words
   is silently dropped at availability-build time.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
-  labels, no `(selten)` qualifier), one fact per key: `article`, `genus` and `plural`. Omit if empty.
+  labels, no `(selten)` qualifier), one fact per key: `article`, `gender` and `plural`. Omit if empty.
   `article` is the article the learner says, and always one the language declares
   in `languages.json` — de der/die/das, es el/la, and `los`/`las` on the nouns
   whose article genuinely IS the plural one (los auriculares, las vacaciones).
@@ -265,7 +265,7 @@ Realization fields — only `text` is required:
   (fr `le vaccin` on la vaccination), and grading reads that one back instead.
   Omit `article` where the language allows both and neither is taught
   (es `internet`, which RAE writes without an article).
-  `genus` is the gender the article cannot show — `m`, `f`, or `m/f` for a noun that takes
+  `gender` is the gender the article cannot show — `m`, `f`, or `m/f` for a noun that takes
   both (l'élève, l'ospite). Required where the article names none (fr/it `l'`, fr `les`),
   and otherwise allowed only where it contradicts the article (es `el agua` is `f`);
   lint holds both. Grading never reads it; it is for whatever shows gender (hue, poster).

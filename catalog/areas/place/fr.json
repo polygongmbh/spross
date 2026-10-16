@@ -29,7 +29,7 @@
    "text": "endroit",
    "accepts": ["l'endroit"],
    "teaches": ["lieu"],
-   "grammar": { "article": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "country": { "text": "pays", "grammar": { "article": "le", "plural": "=" } },
   "in-front": { "text": "devant" },

@@ -36,7 +36,7 @@
   "allergy": {
    "text": "allergia",
    "accepts": ["l'allergia", "un'allergia"],
-   "grammar": { "article": "l'", "genus": "f" }
+   "grammar": { "article": "l'", "gender": "f" }
   },
   "my-throat-hurts-a-lot": { "text": "Mi fa molto male la gola.", "orders": ["La gola mi fa molto male."] },
   "ive-had-a-fever-since-yesterday": { "text": "Ho la febbre da ieri.", "orders": ["Da ieri ho la febbre."] },

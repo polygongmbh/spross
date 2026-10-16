@@ -4,18 +4,18 @@
  "words": {
   "straight-ahead": { "text": "dritto", "accepts": ["diritto", "sempre dritto"] },
   "to-turn": { "text": "girare", "teaches": ["svoltare"] },
-  "corner": { "text": "angolo", "accepts": ["l'angolo"], "grammar": { "article": "l'", "genus": "m" } },
-  "crossing": { "text": "incrocio", "accepts": ["l'incrocio"], "grammar": { "article": "l'", "genus": "m" } },
+  "corner": { "text": "angolo", "accepts": ["l'angolo"], "grammar": { "article": "l'", "gender": "m" } },
+  "crossing": { "text": "incrocio", "accepts": ["l'incrocio"], "grammar": { "article": "l'", "gender": "m" } },
   "to-cross": { "text": "attraversare" },
   "direction": { "text": "direzione", "grammar": { "article": "la" } },
   "city-map": { "text": "pianta della città", "accepts": ["pianta", "mappa"], "grammar": { "article": "la" } },
   "entrance": {
    "text": "entrata",
    "accepts": ["l'entrata"],
-   "grammar": { "article": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": { "it": "dall'entrata si entra · l'ingresso è lo spazio subito dentro." }
   },
-  "exit": { "text": "uscita", "accepts": ["l'uscita"], "grammar": { "article": "l'", "genus": "f" } },
+  "exit": { "text": "uscita", "accepts": ["l'uscita"], "grammar": { "article": "l'", "gender": "f" } },
   "to-follow": { "text": "seguire" },
   "way": {
    "text": "cammino",
