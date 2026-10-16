@@ -22,6 +22,7 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import net.spross.app.AppModel
 import net.spross.app.Chrome
+import net.spross.app.audioSources
 import net.spross.kern.box.AreaGroupSection
 import net.spross.kern.box.AreaNaming
 import net.spross.kern.box.BoxBrowser
@@ -158,9 +159,12 @@ private fun BoxBrowserScreen(
 
     // The hint is only honest where something can actually be heard — a box whose language
     // has neither a recording nor a device voice for a single word must not promise a tap
-    // that would do nothing everywhere. Remembered: it answers once per box, not per frame.
+    // that would do nothing everywhere. Remembered: it answers once per box, not per frame;
+    // which capability has to ask the cards at all is kern's (`AudioCapability.anyAudible`).
     val anyWordCanBeHeard = remember(catalog, box.cards) {
-        box.cards.values.any { model.boxPronounceAction(it.target) != null }
+        model.audioSources(box.joinStamp.target).anyAudible {
+            box.cards.values.any { model.boxPronounceAction(it.target) != null }
+        }
     }
     Column(Modifier.fillMaxSize().padding(horizontal = Theme.spacing.xl)) {
         LazyColumn(

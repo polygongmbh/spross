@@ -38,6 +38,16 @@ enum class AudioCapability {
 
     /** Nothing can say it. */
     val silent: Boolean get() = this == None
+
+    /**
+     * Whether any word of a set can be heard: a voice says every word and silence none,
+     * so only a pack alone has to be asked word by word ([anyRecorded]), and only then.
+     */
+    fun anyAudible(anyRecorded: () -> Boolean): Boolean = when {
+        hasVoice -> true
+        silent -> false
+        else -> anyRecorded()
+    }
 }
 
 /**
