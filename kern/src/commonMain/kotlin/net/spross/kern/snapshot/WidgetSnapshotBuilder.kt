@@ -133,6 +133,9 @@ class WidgetSnapshotView internal constructor(private val doc: WidgetSnapshotDoc
     fun window(nowEpochMillis: Long, count: Int, stepMillis: Long): List<WidgetExposure> =
         WidgetRotation.window(entries.size, nowEpochMillis, count, stepMillis).map { entries[it] }
 
+    /** The language the tile's own chrome is written in, the one the app's chrome follows. */
+    val chromeLanguage: String get() = doc.chromeLanguage
+
     /** Active cards that have settled — resolved phone-side, it does not move with the clock. */
     val allSettledCount: Int get() = doc.allSettledCount
 

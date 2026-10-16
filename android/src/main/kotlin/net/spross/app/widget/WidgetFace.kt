@@ -87,16 +87,16 @@ object WidgetFaces {
             streak = view.streak(nowEpochMillis, tz),
             health = view.streakHealth(nowEpochMillis, tz),
             bars = view.activityBars(nowEpochMillis, tz),
-            chrome = chrome(context),
+            chrome = Chrome.forLanguage(view.chromeLanguage),
         )
     }
 
     /**
-     * Which chrome the tile speaks. The widget is not in the app's locale environment and
-     * has no model to ask, so it reads the same profile the model does: the box's SOURCE
-     * language decides the chrome, exactly as `Chrome.forSource` decides it for every
-     * screen. Before there is a profile there is no box either, so the device's own
-     * language stands in — which is what onboarding would offer anyway.
+     * Which chrome a tile with no snapshot to draw speaks; a drawn face speaks the one its snapshot carries.
+     * The widget is not in the app's locale environment and has no model to ask, so it reads
+     * the same profile the model does: the box's SOURCE language decides the chrome, exactly as
+     * `Chrome.forSource` decides it for every screen. Before there is a profile there is no box
+     * either, so the device's own language stands in — which is what onboarding would offer anyway.
      */
     fun chrome(context: Context): Chrome {
         val prefs = context.getSharedPreferences(ProfileStore.PREFS_NAME, Context.MODE_PRIVATE)

@@ -549,8 +549,10 @@ interface Chrome {
     val widgetAwaitingBody: String
     companion object {
         /** Which language carries the chrome — and the en fallback — is kern's rule; only the table map is ours. */
-        fun forSource(source: String): Chrome =
-            if (LanguageChoices.chromeLanguage(source) == "de") ChromeDe else ChromeEn
+        fun forSource(source: String): Chrome = forLanguage(LanguageChoices.chromeLanguage(source))
+
+        /** The table for a chrome language kern already chose. */
+        fun forLanguage(chromeLanguage: String): Chrome = if (chromeLanguage == "de") ChromeDe else ChromeEn
     }
 }
 

@@ -57,7 +57,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Engine
 
-- Widget rules both phones mint: display sort, strip bar width and gutter, the 🗂️ fallback; Android's widget recomputes the chrome language the snapshot already carries (`WidgetSnapshotView` lacks the accessor).
+- Widget rules both phones mint: display sort, strip bar width and gutter, the 🗂️ fallback.
 - `TurnEffect` and `DrillEffect` repeat `ArmAdvance`/`CancelAdvance`/`Tone`/`ReleaseFocus`, so each app dispatches the cue contract twice.
 - Layout data sits in `trainer/` rather than `design/`: `Drill.chipRows`, `ReferenceColumns.PAIRED_MIN_WIDTH`, `DrillUnlockMark` timings.
 
