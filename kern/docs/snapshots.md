@@ -57,6 +57,8 @@ Neighbors: the engine contract `../README.md`, what the watch and widgets draw `
   decoding `health` into its own Swift `StreakHealth` off the serialized case name;
   each day also carries the flame's grade for that health (`flameOpacity`, `flameSaturation`),
   which the extension cannot ask the Kotlin enum for.
+  Each entry's `lengthRank` is where it lands among the rows a tile shows, so a tile sorts its window by it;
+  `activityBarWidth` and `activityGutter` carry the strip's fixed columns (`design/WidgetStripColumns`).
 - **WatchSnapshot** (`WatchSnapshotBuilder`): one entry per CARD with BOTH sides pre-resolved,
   plus `chromeLanguage` and `schemaVersion`;
   the watch refuses any other version whole and waits for the phone's next push, as the widget does.

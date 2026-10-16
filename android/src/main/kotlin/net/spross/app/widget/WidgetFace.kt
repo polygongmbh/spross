@@ -23,6 +23,8 @@ data class WidgetWord(
     val word: String,
     /** The source meaning, ♀ marker already baked in by the phone. */
     val meaning: String,
+    /** Where the word lands among the ones a tile shows ([net.spross.kern.snapshot.WidgetExposure.lengthRank]). */
+    val lengthRank: Int,
 )
 
 /**
@@ -78,7 +80,7 @@ object WidgetFaces {
         // window sorted by length would hand a one-cell tile the shortest word rather than
         // the one most worth seeing. Where the cells then land is [GridFace]'s.
         val words = view.window(nowEpochMillis, WINDOW, ROTATION_MILLIS).map {
-            WidgetWord(it.emoji ?: FALLBACK_PICTURE, it.article, it.gender, it.text, it.sourceText)
+            WidgetWord(it.emoji ?: FALLBACK_PICTURE, it.article, it.gender, it.text, it.sourceText, it.lengthRank)
         }
         val tz = TimeZone.getDefault().id
         return WidgetFace(

@@ -135,7 +135,8 @@ struct WordWidgetView: View {
                     .foregroundStyle(.orange)
             }
             Spacer(minLength: 8)
-            WidgetActivityStrip(bars: entry.activityBars, height: entry.activityHeight)
+            WidgetActivityStrip(bars: entry.activityBars, height: entry.activityHeight,
+                                barWidth: entry.activityBarWidth, gutter: entry.activityGutter)
         }
         .font(.caption.weight(.semibold))
     }

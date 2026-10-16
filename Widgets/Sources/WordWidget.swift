@@ -41,6 +41,8 @@ struct WidgetWord {
     let word: String
     /// Source meaning (♀ marker pre-baked by the phone).
     let meaning: String
+    /// Where the word lands among the ones a tile shows (kern `lengthRank`).
+    var lengthRank: Int = 0
 }
 
 struct WordEntry: TimelineEntry {
@@ -62,8 +64,10 @@ struct WordEntry: TimelineEntry {
     let settled: Int
     /// Trailing fortnight of bars for the header strip, as kern sized them.
     let activityBars: [WidgetSnapshot.Bar]
-    /// The height the strip's row reserves.
+    /// The height the strip's row reserves, and each bar's width and gutter.
     var activityHeight: Double = 0
+    var activityBarWidth: Double = 0
+    var activityGutter: Double = 0
     /// The snapshot's chrome language; nil with no snapshot to read.
     var chromeLanguage: String? = nil
 
@@ -89,19 +93,20 @@ struct WordEntry: TimelineEntry {
     static let placeholder = WordEntry(
         date: .now,
         primary: placeholderWords[0],
-        // why: sorted like a real window, or the gallery would advertise a ragged
+        // why: ranked like a real window, or the gallery would advertise a ragged
         // list the placed widget never shows.
-        words: sortedForDisplay(placeholderWords),
+        words: placeholderWords.sorted { $0.lengthRank < $1.lengthRank },
         dueCount: 0, streak: 3, streakHealth: .earned, settled: 12,
-        activityBars: placeholderBars, activityHeight: 16)
+        activityBars: placeholderBars, activityHeight: 16, activityBarWidth: 3, activityGutter: 1.5)
 
+    /// Hand-ranked shortest pair first, as kern would rank them in English.
     private static let placeholderWords = [
-        WidgetWord(emoji: "🧊", word: "friji", meaning: GlanceChrome.sample("widget.sample.fridge")),
-        WidgetWord(emoji: "🍞", word: "mkate", meaning: GlanceChrome.sample("widget.sample.bread")),
-        WidgetWord(emoji: "💧", word: "maji", meaning: GlanceChrome.sample("widget.sample.water")),
-        WidgetWord(emoji: "🌙", word: "mwezi", meaning: GlanceChrome.sample("widget.sample.moon")),
-        WidgetWord(emoji: "🏠", word: "nyumba", meaning: GlanceChrome.sample("widget.sample.house")),
-        WidgetWord(emoji: "☀️", word: "jua", meaning: GlanceChrome.sample("widget.sample.sun")),
+        WidgetWord(emoji: "🧊", word: "friji", meaning: GlanceChrome.sample("widget.sample.fridge"), lengthRank: 4),
+        WidgetWord(emoji: "🍞", word: "mkate", meaning: GlanceChrome.sample("widget.sample.bread"), lengthRank: 3),
+        WidgetWord(emoji: "💧", word: "maji", meaning: GlanceChrome.sample("widget.sample.water"), lengthRank: 1),
+        WidgetWord(emoji: "🌙", word: "mwezi", meaning: GlanceChrome.sample("widget.sample.moon"), lengthRank: 2),
+        WidgetWord(emoji: "🏠", word: "nyumba", meaning: GlanceChrome.sample("widget.sample.house"), lengthRank: 5),
+        WidgetWord(emoji: "☀️", word: "jua", meaning: GlanceChrome.sample("widget.sample.sun"), lengthRank: 0),
     ]
 
     /// A hand-written fortnight, as kern would size it, so the gallery snapshot and the previews
@@ -148,7 +153,7 @@ struct WordProvider: TimelineProvider {
               !snapshot.entries.isEmpty else { return nil }
         let words = snapshot.entries.map {
             WidgetWord(emoji: $0.emoji ?? "🗂️", article: $0.article, gender: $0.gender,
-                       word: $0.text, meaning: $0.sourceText)
+                       word: $0.text, meaning: $0.sourceText, lengthRank: $0.lengthRank)
         }
         let startMillis = Int64(start.timeIntervalSince1970 * 1000)
         let firstStep = startMillis / Self.stepMillis
@@ -165,7 +170,7 @@ struct WordProvider: TimelineProvider {
             let streakDay = snapshot.streakDay(now: date)
             return WordEntry(date: date,
                              primary: window[0],
-                             words: sortedForDisplay(window),
+                             words: window.sorted { $0.lengthRank < $1.lengthRank },
                              dueCount: snapshot.dueCount(now: date),
                              streak: streakDay?.streak ?? 0,
                              streakHealth: streakDay?.health ?? .noRun,
@@ -174,19 +179,10 @@ struct WordProvider: TimelineProvider {
                              settled: snapshot.allSettledCount,
                              activityBars: snapshot.activityBars(now: date),
                              activityHeight: snapshot.activityHeight,
+                             activityBarWidth: snapshot.activityBarWidth,
+                             activityGutter: snapshot.activityGutter,
                              chromeLanguage: snapshot.chromeLanguage)
         }
     }
 
-}
-
-/// Shortest pair first, so a list opens into a cone around its emoji spine and the
-/// grid fills reading order short-to-long. Which cards travel stays kern's attention
-/// ranking; only where they land in the tile is decided here.
-func sortedForDisplay(_ window: [WidgetWord]) -> [WidgetWord] {
-    window.sorted {
-        let left = ($0.word.count + $0.meaning.count, $0.word.count)
-        let right = ($1.word.count + $1.meaning.count, $1.word.count)
-        return left < right
-    }
 }
