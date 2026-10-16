@@ -213,9 +213,6 @@ extension DrillRunning {
 
     // MARK: - The two things the screen reads back
 
-    /// The field's face for where kern says the answer stands.
-    var feedback: AnswerInputView.Feedback { .init(turnFeedback) }
-
     /// VoiceOver and Switch Control both make a timed screen change hostile: it
     /// truncates the correctness announcement and moves the page under the user.
     /// Where either runs, an explicit "Weiter" replaces the beat.

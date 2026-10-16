@@ -53,7 +53,7 @@ extension SessionView {
             // why: the retype already stands — Enter only skips the beat the
             // timer is waiting out, it does not re-grade it.
             dispatch(TurnIntent.ConfirmPending.shared)
-        } else if case .revealed = feedback {
+        } else if feedback is TurnFeedbackRevealed {
             // why: a hardware keyboard still needs a way to give up
             // without finishing the retype.
             dispatch(TurnIntent.GiveUp.shared)

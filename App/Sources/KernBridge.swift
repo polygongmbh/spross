@@ -168,29 +168,6 @@ extension DrillRunResult {
     }
 }
 
-extension AnswerInputView.Feedback {
-    /// The field's face for where kern says the answer stands. `almost` is the
-    /// only state carrying anything — the form the card owes back.
-    init(_ feedback: TurnFeedback) {
-        switch onEnum(of: feedback) {
-        case .neutral: self = .neutral
-        case .correct: self = .correct
-        case .almost(let hold): self = .almost(correctForm: hold.correctForm,
-                                               reason: .init(hold.reason))
-        case .revealed: self = .revealed
-        }
-    }
-}
-
-extension AnswerInputView.AlmostReason {
-    init(_ reason: SprossKern.AlmostReason) {
-        switch reason {
-        case .typo: self = .typo
-        case .merged: self = .merged
-        }
-    }
-}
-
 extension Theme.Gender {
     /// The palette's twin of the box's `Gender` — kern names the gender an
     /// article marks (`model/Article.kt`), the design system names the hue.

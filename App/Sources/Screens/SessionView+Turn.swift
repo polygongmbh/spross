@@ -116,9 +116,7 @@ extension SessionView {
 
     var voiceModel: AppModel? { model }
 
-    var feedback: AnswerInputView.Feedback {
-        turn.map { AnswerInputView.Feedback($0.feedback) } ?? .neutral
-    }
+    var feedback: TurnFeedback { turn?.feedback ?? TurnFeedbackNeutral.shared }
 
     var revealed: Bool { turn?.revealed ?? false }
 

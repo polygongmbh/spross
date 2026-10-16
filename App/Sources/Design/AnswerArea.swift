@@ -27,10 +27,10 @@ struct AnswerArea<Tiles: View>: View {
             slot
             buttons
         }
-        .animation(.cardReveal, value: feedback)
+        .animation(.cardReveal, value: onEnum(of: feedback))
     }
 
-    private var feedback: AnswerInputView.Feedback { .init(controls.fieldFeedback) }
+    private var feedback: TurnFeedback { controls.fieldFeedback }
 
     // MARK: The slot
 

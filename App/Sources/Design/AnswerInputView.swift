@@ -13,34 +13,11 @@ import SwiftUI
 
 struct AnswerInputView: View {
 
-    /// Why a correct answer still owes the learner a look: a slip of spelling,
-    /// or a meaning the word shares with another concept.
-    enum AlmostReason: Equatable {
-        case typo
-        case merged
-
-        var caption: String {
-            switch self {
-            case .typo: return "session.almost.typo"
-            case .merged: return "session.almost.merged"
-            }
-        }
-    }
-
-    enum Feedback: Equatable {
-        case neutral
-        case correct
-        /// Graded correct, but not cleanly. Amber runs the whole state — edge,
-        /// checkmark and box agree — so the green glow stays what it always
-        /// was: the clean answer's alone.
-        case almost(correctForm: String, reason: AlmostReason)
-        /// The word was not produced at all. Carries nothing: the CARD holds
-        /// the answer in every case, so a copy here could only contradict it.
-        case revealed
-    }
-
     @Binding var text: String
-    var feedback: Feedback = .neutral
+    /// Where kern says the answer stands. A near miss (`almost`) runs amber
+    /// throughout — edge, checkmark and box agree — so the green glow stays the
+    /// clean answer's alone; a reveal carries nothing, the CARD holds the answer.
+    var feedback: TurnFeedback = TurnFeedbackNeutral.shared
     /// Resolved by the caller — the String Catalog is the one home for it,
     /// so there is no default to fall through to.
     var placeholder: String
@@ -72,14 +49,16 @@ struct AnswerInputView: View {
             if !isInert {
                 inputField
             }
-            if case .almost(let form, let reason) = feedback {
-                correctionBox(form: form, caption: LocalizedStringKey(reason.caption))
-                    .onAppear { announceCorrection(form: form, reason: reason) }
+            if case .almost(let hold) = state {
+                correctionBox(form: hold.correctForm, caption: LocalizedStringKey(hold.reason.caption))
+                    .onAppear { announceCorrection(form: hold.correctForm, reason: hold.reason) }
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
-        .animation(.cardReveal, value: feedback)
+        .animation(.cardReveal, value: state)
     }
+
+    private var state: Skie.Kern.TurnFeedback.__Sealed { onEnum(of: feedback) }
 
     /// Revealed, locked and empty: the card is carrying the answer and there is
     /// nothing of the learner's here to keep on screen.
@@ -118,10 +97,10 @@ struct AnswerInputView: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                .strokeBorder(borderColor, lineWidth: feedback == .neutral ? 1 : 2)
+                .strokeBorder(borderColor, lineWidth: feedback is TurnFeedbackNeutral ? 1 : 2)
         )
         .shadow(
-            color: feedback == .correct ? Theme.colors.success.opacity(0.35) : .clear,
+            color: feedback is TurnFeedbackCorrect ? Theme.colors.success.opacity(0.35) : .clear,
             radius: 10
         )
         // why: the amber edge is the only thing marking a reveal, and a color
@@ -131,7 +110,7 @@ struct AnswerInputView: View {
     }
 
     private var statusValue: Text {
-        switch feedback {
+        switch state {
         case .neutral: return Text(verbatim: "")
         case .correct: return Text("a11y.verdict.correct")
         // why: amber is all that separates a near miss from a clean answer, and
@@ -148,7 +127,7 @@ struct AnswerInputView: View {
     /// would read as a button.
     @ViewBuilder
     private var statusIcon: some View {
-        switch feedback {
+        switch state {
         case .neutral, .revealed:
             EmptyView()
         case .correct:
@@ -166,12 +145,11 @@ struct AnswerInputView: View {
     }
 
     private var isRevealed: Bool {
-        if case .revealed = feedback { return true }
-        return false
+        feedback is TurnFeedbackRevealed
     }
 
     private var borderColor: Color {
-        switch feedback {
+        switch state {
         // why: the field's edge is a control boundary, not a decorative
         // hairline — the softer Theme.colors.separator hides it against the surface.
         case .neutral: return Theme.colors.borderStrong
@@ -236,6 +214,17 @@ struct AnswerInputView: View {
     }
 }
 
+/// The caption over the owed form: a slip of spelling, or a meaning the word
+/// shares with another concept.
+private extension AlmostReason {
+    var caption: String {
+        switch self {
+        case .typo: return "session.almost.typo"
+        case .merged: return "session.almost.merged"
+        }
+    }
+}
+
 // MARK: - The field's two rules its callers need
 
 extension String {
@@ -276,16 +265,16 @@ private struct AnswerInputPreviewHost: View {
 
     var body: some View {
         VStack(spacing: Theme.spacing.xl) {
-            AnswerInputView(text: $neutral, feedback: .neutral, placeholder: "type here")
-            AnswerInputView(text: $right, feedback: .correct, placeholder: "type here")
+            AnswerInputView(text: $neutral, placeholder: "type here")
+            AnswerInputView(text: $right, feedback: TurnFeedbackCorrect.shared, placeholder: "type here")
             AnswerInputView(text: $slip,
-                            feedback: .almost(correctForm: "kisu", reason: .typo),
+                            feedback: TurnFeedbackAlmost(correctForm: "kisu", reason: .typo),
                             placeholder: "type here",
                             correctionVoice: .init(pronounce: { _ in {} }, isPlaying: { _ in false }))
-            AnswerInputView(text: $wrong, feedback: .revealed, placeholder: "type here")
+            AnswerInputView(text: $wrong, feedback: TurnFeedbackRevealed.shared, placeholder: "type here")
             // Inert: revealed, locked and empty — the field renders nothing at
             // all, so this row is deliberately blank.
-            AnswerInputView(text: $empty, feedback: .revealed, placeholder: "type here")
+            AnswerInputView(text: $empty, feedback: TurnFeedbackRevealed.shared, placeholder: "type here")
         }
         .padding(Theme.spacing.xl)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
