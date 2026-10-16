@@ -495,8 +495,6 @@ internal object ChromeDe : Chrome {
     override val errorCatalogMissing = "Die Inhalte konnten nicht geladen werden. (catalog " +
         "fehlt im App-Bundle)"
     override val errorContentUnavailable = "Die Inhalte konnten nicht geladen werden. (%s)"
-    override val errorUnknownProfile = "Unbekanntes Sprachprofil (%s → %s)."
-    override val errorResetFailed = "Zurücksetzen fehlgeschlagen. (%s)"
     override val sessionDoneTallyNew = "%s gesät"
     override val sessionDoneTallyNewOnly = "%s neue Wörter"
     override val sessionDoneTallyReviewed = "%s gecheckt"

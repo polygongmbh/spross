@@ -486,8 +486,6 @@ internal object ChromeEn : Chrome {
     override val errorCatalogMissing = "The content could not be loaded. (catalog missing " +
         "from the app bundle)"
     override val errorContentUnavailable = "The content could not be loaded. (%s)"
-    override val errorUnknownProfile = "Unknown language profile (%1\$s → %2\$s)."
-    override val errorResetFailed = "Reset failed. (%s)"
     override val sessionDoneTallyNew = "%s sown"
     override val sessionDoneTallyNewOnly = "%s new words"
     override val sessionDoneTallyReviewed = "%s reviewed"

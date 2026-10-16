@@ -519,8 +519,6 @@ interface Chrome {
     val errorTitle: String
     val errorCatalogMissing: String
     val errorContentUnavailable: String // %s
-    val errorUnknownProfile: String     // %1$s %2$s
-    val errorResetFailed: String        // %s
 
     // ── Round completion ────────────────────────────────────────────────────────
     val sessionDoneTallyNew: String          // %d

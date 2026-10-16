@@ -116,6 +116,9 @@ IOS_ONLY = {
     # The same control, named by another key on Android: the session ✕ reads
     # `common.done`.
     'a11y.action.endSession',
+    # iOS's LoadFailure names two failures Android's load reports as the reason alone
+    # (`error.contentUnavailable`).
+    'error.unknownProfile %@ %@', 'error.resetFailed %@',
 }
 # Surfaces iOS ships that Android owes. A key leaves this set by being claimed above,
 # which is what finishing the Android side looks like — and empty is what caught up looks
