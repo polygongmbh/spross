@@ -189,6 +189,11 @@ targets:
         INFOPLIST_KEY_CFBundleDisplayName: "$(APP_DISPLAY_NAME)"
         TARGETED_DEVICE_FAMILY: "4"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      # why: the fixture feeds only the DEBUG `-uitest-snapshot` launch, so a
+      # Release build leaves it out of the bundle it ships.
+      configs:
+        Release:
+          EXCLUDED_SOURCE_FILE_NAMES: WatchFixture.json
   SprossWatchWidgets:
     type: app-extension
     platform: watchOS
