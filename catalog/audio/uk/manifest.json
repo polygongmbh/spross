@@ -4607,6 +4607,16 @@
       "sha256": "a62a243398b5b9760db8abd01fb4b84d01ad6e36c8be42d54f9b1e8191626e9e",
       "source": "Uk-килим.ogg"
     },
+    "кла́сти": {
+      "author": "Галя Раптова, Nicolas Vion",
+      "file": "words/u043au043bu0430u0301u0441u0442u0438.mp3",
+      "gain": -2.1,
+      "gate": -60.2,
+      "matches": "кла́сти",
+      "mos": 2.77,
+      "sha256": "6fcd2dc79ad21a91f2d6a97b563f260110474dc0e5a75a06dcaceab56759ebe2",
+      "source": "Uk-класти.ogg"
+    },
     "клавіату́ра": {
       "author": "Tohaomg",
       "file": "words/u043au043bu0430u0432u0456u0430u0442u0443u0301u0440u0430.mp3",

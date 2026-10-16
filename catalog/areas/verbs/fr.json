@@ -71,7 +71,7 @@
   "to-push": { "text": "pousser" },
   "to-pull": { "text": "tirer" },
   "to-have-to": { "text": "devoir" },
-  "to-put": { "text": "mettre la tasse sur la table", "accepts": ["poser la tasse sur la table", "mettre"] },
+  "to-put": { "text": "mettre" },
   "to-carry": { "text": "porter" },
   "to-happen": { "text": "se passer", "accepts": ["arriver"] },
   "do-you-have-water": {

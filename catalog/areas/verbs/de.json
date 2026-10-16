@@ -38,7 +38,11 @@
   "to-push": { "text": "schieben" },
   "to-pull": { "text": "ziehen" },
   "to-have-to": { "text": "müssen" },
-  "to-put": { "text": "die Tasse auf den Tisch stellen" },
+  "to-put": {
+   "text": "legen",
+   "teaches": ["stellen"],
+   "notes": { "de": "legen: liegend (das Buch auf den Tisch) · stellen: stehend (die Tasse auf den Tisch)." }
+  },
   "to-carry": { "text": "tragen" },
   "to-happen": { "text": "passieren", "accepts": ["geschehen"] },
   "do-you-have-water": { "text": "Haben Sie Wasser?", "accepts": ["Hast du Wasser?"], "orders": ["Sie haben Wasser?"] },

@@ -66,7 +66,7 @@
   "to-push": { "text": "empujar" },
   "to-pull": { "text": "tirar" },
   "to-have-to": { "text": "tener que", "teaches": ["deber"] },
-  "to-put": { "text": "poner la taza en la mesa", "accepts": ["poner"] },
+  "to-put": { "text": "poner" },
   "to-carry": { "text": "llevar" },
   "to-happen": { "text": "pasar", "accepts": ["ocurrir"] },
   "do-you-have-water": { "text": "¿Tiene agua?", "accepts": ["¿Tiene usted agua?", "¿Tienes agua?"] },
