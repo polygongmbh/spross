@@ -81,7 +81,7 @@
   "to-push": { "text": "spingere" },
   "to-pull": { "text": "tirare" },
   "to-have-to": { "text": "dovere" },
-  "to-put": { "text": "mettere" },
+  "to-put": { "text": "mettere la tazza sul tavolo", "accepts": ["mettere"] },
   "to-carry": { "text": "portare" },
   "to-happen": { "text": "succedere" },
   "do-you-have-water": { "text": "Ha acqua?", "accepts": ["Ha dell'acqua?", "Avete acqua?", "Hai acqua?"] },

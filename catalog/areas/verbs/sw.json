@@ -58,7 +58,8 @@
    }
   },
   "to-put": {
-   "text": "kuweka",
+   "text": "kuweka kikombe mezani",
+   "accepts": ["kuweka"],
    "notes": {
     "sw": "Weka hapa! · kuweka juu ya meza, kuweka chini",
     "de": "legen, stellen, setzen: weka hapa = leg es hier hin."

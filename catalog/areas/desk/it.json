@@ -94,7 +94,7 @@
    "text": "Il portatile non si carica più.",
    "accepts": ["Il portatile non carica più.", "Il computer portatile non si carica più."]
   },
-  "the-internet-is-gone": { "text": "Non c'è internet.", "accepts": ["Internet non funziona.", "Non c'è il wifi."] },
+  "the-internet-is-gone": { "text": "Qui non c'è internet.", "accepts": ["Non c'è internet.", "Internet non funziona."] },
   "it-works": { "text": "Funziona.", "accepts": ["Ora funziona.", "Funziona di nuovo."] },
   "coffee-break": { "text": "Pausa caffè?", "accepts": ["Andiamo a prendere un caffè?"] },
   "i-have-a-lot-to-do": { "text": "Ho molto da fare." },

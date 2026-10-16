@@ -31,7 +31,7 @@
   "to-push": { "text": "to push" },
   "to-pull": { "text": "to pull" },
   "to-have-to": { "text": "must", "teaches": ["to have to"] },
-  "to-put": { "text": "to put", "notes": { "en": "put = place something somewhere: put it on the table." } },
+  "to-put": { "text": "to put the cup on the table", "accepts": ["to put"] },
   "to-carry": { "text": "to carry" },
   "to-happen": { "text": "to happen" },
   "do-you-have-water": { "text": "Do you have water?" },

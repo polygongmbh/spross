@@ -41,8 +41,8 @@
   "dont-disturb-me": { "text": "Stör mich nicht!", "accepts": ["Nicht stören!"] },
   "the-laptop-wont-charge-anymore": { "text": "Der Laptop lädt nicht mehr." },
   "the-internet-is-gone": {
-   "text": "Wir haben kein Internet.",
-   "accepts": ["Das Internet geht nicht.", "Das WLAN geht nicht.", "Das Internet ist weg."]
+   "text": "Hier gibt es kein Internet.",
+   "accepts": ["Wir haben kein Internet.", "Das Internet ist weg."]
   },
   "it-works": { "text": "Es funktioniert.", "accepts": ["Es geht wieder."] },
   "coffee-break": { "text": "Kaffeepause?" },

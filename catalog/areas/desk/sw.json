@@ -35,7 +35,7 @@
   "im-in-a-meeting": { "text": "Niko kwenye mkutano." },
   "dont-disturb-me": { "text": "Usinisumbue!" },
   "the-laptop-wont-charge-anymore": { "text": "Kompyuta mpakato haichaji tena." },
-  "the-internet-is-gone": { "text": "Hakuna intaneti.", "accepts": ["Intaneti imekatika."] },
+  "the-internet-is-gone": { "text": "Hapa hakuna intaneti.", "accepts": ["Hakuna intaneti.", "Intaneti imekatika."] },
   "it-works": { "text": "Inafanya kazi." },
   "coffee-break": { "text": "Pumziko la kahawa?" },
   "i-have-a-lot-to-do": { "text": "Nina mengi ya kufanya." },

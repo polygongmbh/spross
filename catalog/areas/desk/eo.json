@@ -65,8 +65,8 @@
    "orders": ["Ne plu ŝargiĝas la tekokomputilo."]
   },
   "the-internet-is-gone": {
-   "text": "Ne estas interreto.",
-   "accepts": ["La interreto malaperis.", "La sendrata reto malaperis."]
+   "text": "Ĉi tie ne estas interreto.",
+   "accepts": ["Ne estas interreto.", "La interreto malaperis."]
   },
   "it-works": { "text": "Ĝi funkcias.", "accepts": ["Ĝi denove funkcias.", "Funkcias."] },
   "coffee-break": { "text": "Kafopaŭzo?", "accepts": ["Ĉu kafopaŭzo?"] },

@@ -90,10 +90,7 @@
    "accepts": ["El portátil ya no se carga.", "El ordenador portátil ya no carga."],
    "orders": ["Ya no carga el portátil."]
   },
-  "the-internet-is-gone": {
-   "text": "No hay internet.",
-   "accepts": ["Se ha cortado internet.", "Se ha ido internet.", "No hay wifi."]
-  },
+  "the-internet-is-gone": { "text": "Aquí no hay internet.", "accepts": ["No hay internet.", "No hay wifi."] },
   "it-works": { "text": "Funciona.", "accepts": ["Ya funciona.", "Sí funciona."] },
   "coffee-break": { "text": "¿Pausa para el café?", "accepts": ["¿Nos tomamos un café?", "¿Un café?"] },
   "i-have-a-lot-to-do": { "text": "Tengo mucho que hacer." },

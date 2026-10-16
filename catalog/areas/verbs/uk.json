@@ -41,7 +41,7 @@
   "to-push": { "text": "штовха́ти" },
   "to-pull": { "text": "тягну́ти" },
   "to-have-to": { "text": "му́сити", "teaches": ["пови́нен"] },
-  "to-put": { "text": "кла́сти", "teaches": ["ста́вити"] },
+  "to-put": { "text": "ста́вити ча́шку на стіл", "accepts": ["ста́вити"] },
   "to-carry": { "text": "нести́" },
   "to-happen": { "text": "ста́тися", "accepts": ["трапитися"] },
   "do-you-have-water": { "text": "У вас є вода́?", "accepts": ["У тебе є вода?"], "orders": ["Вода у вас є?"] },

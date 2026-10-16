@@ -37,8 +37,8 @@
   "dont-disturb-me": { "text": "Don't disturb me!" },
   "the-laptop-wont-charge-anymore": { "text": "The laptop won't charge anymore." },
   "the-internet-is-gone": {
-   "text": "There's no internet.",
-   "accepts": ["The internet is down.", "The wifi isn't working.", "The internet is gone."]
+   "text": "There's no internet here.",
+   "accepts": ["There's no internet.", "The internet is down."]
   },
   "it-works": { "text": "It works.", "accepts": ["It works again."] },
   "coffee-break": { "text": "Coffee break?" },

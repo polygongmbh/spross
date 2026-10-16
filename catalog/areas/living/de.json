@@ -45,7 +45,10 @@
   "furniture": { "text": "Möbel", "grammar": { "article": "die", "plural": "only" } },
   "game": { "text": "Spiel", "forms": { "pl": "die Spiele" }, "grammar": { "article": "das" } },
   "come-sit-with-me": { "text": "Komm, setz dich zu mir!" },
-  "shall-we-watch-a-movie": { "text": "Sollen wir einen Film schauen?", "accepts": ["Wollen wir einen Film schauen?"] },
+  "shall-we-watch-a-movie": {
+   "text": "Schauen wir einen Film?",
+   "accepts": ["Sollen wir einen Film schauen?", "Wollen wir einen Film schauen?"]
+  },
   "lets-hang-the-picture": { "text": "Lass uns das Bild aufhängen!" },
   "the-curtains-hang-over-the-window": {
    "text": "Die Vorhänge hängen vor dem Fenster.",

@@ -49,7 +49,7 @@
   "to-push": { "text": "puŝi" },
   "to-pull": { "text": "tiri" },
   "to-have-to": { "text": "devi" },
-  "to-put": { "text": "meti" },
+  "to-put": { "text": "meti la tason sur la tablon", "accepts": ["meti"] },
   "to-carry": { "text": "porti" },
   "to-happen": { "text": "okazi" },
   "do-you-have-water": { "text": "Ĉu vi havas akvon?", "orders": ["Ĉu akvon vi havas?"] },
