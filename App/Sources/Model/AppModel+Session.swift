@@ -140,9 +140,7 @@ extension AppModel {
 
     /// The answered stretch as the progress bar draws it. Which rating reads as
     /// which outcome is kern's grouping (`AnswerOutcome`); only the hues are ours.
-    var sessionSegments: [SessionOutcome] {
-        (run?.segments ?? []).map(SessionOutcome.init)
-    }
+    var sessionSegments: [AnswerOutcome] { run?.segments ?? [] }
 
     /// What the finished round's summary says — kern's (`RoundSummary`), nil without a run.
     var sessionSummary: RoundSummary? {

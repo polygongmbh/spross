@@ -157,27 +157,6 @@ extension PairDrill {
 // own value reads it directly instead (`AutoAdvance`, `NumberReferenceTable`,
 // `SessionSummaryView` among them).
 
-extension SessionOutcome {
-    /// The bar segment one answer draws. The bucketing is kern's (`AnswerOutcome`).
-    init(_ outcome: AnswerOutcome) {
-        switch outcome {
-        case .right: self = .right
-        case .almost: self = .tough
-        case .wrong: self = .wrong
-        }
-    }
-
-    /// What the three self-grade buttons SAY. The rating it earns is kern's:
-    /// the clock behind `SelfGrading` decides whether a Knew came instantly.
-    var verdict: SelfGrading.Verdict {
-        switch self {
-        case .right: return .knew
-        case .tough: return .tough
-        case .wrong: return .unknown
-        }
-    }
-}
-
 extension DrillRunResult {
     /// The figures a closed run leaves, as the tile above the picks wears them.
     /// Which of them there are is kern's (`DrillRunSummary`); what the run was

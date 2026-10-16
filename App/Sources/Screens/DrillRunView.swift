@@ -100,7 +100,7 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
 
     var body: some View {
         pausable(SessionScaffold.endless(tally: current.tally,
-                                         outcomes: current.outcomes.map { SessionOutcome($0) },
+                                         outcomes: current.outcomes,
                                          // why: the run says its answers out loud, so it
                                          // owes the learner a way to silence them here.
                                          showsMuteButton: true,

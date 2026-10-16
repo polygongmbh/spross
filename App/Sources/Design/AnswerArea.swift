@@ -167,7 +167,7 @@ struct AnswerActions {
     var confirm: () -> Void = {}
     var giveUp: () -> Void = {}
     var stop: () -> Void = {}
-    var selfGrade: (SessionOutcome) -> Void = { _ in }
+    var selfGrade: (SelfGrading.Verdict) -> Void = { _ in }
     var cantListen: () -> Void = {}
     /// The field mounted — where a surface that owns focus claims it.
     var fieldAppeared: () -> Void = {}

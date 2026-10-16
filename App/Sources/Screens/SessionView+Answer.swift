@@ -35,7 +35,7 @@ extension SessionView {
             // why: giving up on a retype ends the card — that field already is the one
             // write-out the word gets, so nothing hands it a second.
             giveUp: { dispatch(writing ? TurnIntent.SkipCopy.shared : TurnIntent.GiveUp.shared) },
-            selfGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) },
+            selfGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0)) },
             cantListen: {
                 // why: the word in the air belongs to a question that is about to stand
                 // in writing — nothing may keep playing over the answer to "I can't listen".

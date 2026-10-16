@@ -13,7 +13,7 @@ extension SessionScaffold {
     /// "position/total", which answers each half of it counts is kern's
     /// rule, and the slash is all this adds (`SessionScaffold.running`).
     static func endless(tally: DrillTally,
-                        outcomes: [SessionOutcome],
+                        outcomes: [AnswerOutcome],
                         showsMuteButton: Bool = false,
                         speaksPastMute: Bool = false,
                         scoreLine: some View,
