@@ -20,6 +20,7 @@
   "curtain": { "text": "Vorhang", "forms": { "pl": "die Vorhänge" }, "grammar": { "gender": "der" } },
   "carpet": { "text": "Teppich", "forms": { "pl": "die Teppiche" }, "grammar": { "gender": "der" } },
   "lamp": { "text": "Lampe", "forms": { "pl": "die Lampen" }, "grammar": { "gender": "die" } },
+  "clock": { "text": "Uhr", "forms": { "pl": "die Uhren" }, "grammar": { "gender": "die" } },
   "picture": { "text": "Bild", "forms": { "pl": "die Bilder" }, "grammar": { "gender": "das" } },
   "to-watch-tv": { "text": "fernsehen" },
   "to-read": { "text": "lesen" },

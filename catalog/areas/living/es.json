@@ -29,6 +29,7 @@
   "curtain": { "text": "cortina", "grammar": { "gender": "la" } },
   "carpet": { "text": "alfombra", "grammar": { "gender": "la" } },
   "lamp": { "text": "lámpara", "grammar": { "gender": "la" } },
+  "clock": { "text": "reloj", "grammar": { "gender": "el" } },
   "picture": { "text": "cuadro", "grammar": { "gender": "el" } },
   "to-watch-tv": { "text": "ver la televisión", "accepts": ["ver la tele"] },
   "to-read": { "text": "leer" },

@@ -16,6 +16,7 @@
   "curtain": { "text": "curtain" },
   "carpet": { "text": "carpet" },
   "lamp": { "text": "lamp" },
+  "clock": { "text": "clock" },
   "picture": { "text": "picture" },
   "to-watch-tv": { "text": "to watch television", "accepts": ["to watch TV"] },
   "to-read": { "text": "to read" },

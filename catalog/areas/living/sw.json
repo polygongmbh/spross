@@ -16,6 +16,7 @@
   "curtain": { "text": "pazia", "forms": { "pl": "mapazia" } },
   "carpet": { "text": "zulia", "forms": { "pl": "mazulia" } },
   "lamp": { "text": "taa", "grammar": { "plural": "=" } },
+  "clock": { "text": "saa", "grammar": { "plural": "=" } },
   "picture": { "text": "picha", "grammar": { "plural": "=" } },
   "to-watch-tv": { "text": "kutazama runinga", "accepts": ["kutazama televisheni"] },
   "to-read": { "text": "kusoma" },

@@ -264,6 +264,11 @@ class CatalogCollisionLintTest {
                 // teach the wrong word; money/cheap carries the de note naming the second
                 // sense, the ndege treatment.
                 "sw rahisi: money/cheap, qualities/easy",
+                // Reviewed 2026-10-16: sw `saa` is the hour AND the clock (and the watch) —
+                // de/en/eo/es/fr/it/uk all split the pair (Stunde/Uhr, hour/clock,
+                // heure/horloge). There is no other everyday word for either; the clock is the
+                // object the hour is read from, a merge rather than a homonym.
+                "sw saa: living/clock, time/hour",
                 // Reviewed 2026-09-02: sw `mpaka` is the border AND the preposition "until" —
                 // de/en/eo/es/fr/it/uk all split the pair (Grenze/bis, border/until,
                 // limo/ĝis, frontera/hasta, frontière/jusqu'à, confine/fino a,

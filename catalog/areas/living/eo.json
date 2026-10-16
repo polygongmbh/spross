@@ -16,6 +16,7 @@
   "curtain": { "text": "kurteno" },
   "carpet": { "text": "tapiŝo" },
   "lamp": { "text": "lampo" },
+  "clock": { "text": "horloĝo" },
   "picture": { "text": "bildo", "accepts": ["pentraĵo"] },
   "to-watch-tv": { "text": "televidi", "accepts": ["rigardi televidon", "spekti televidon"] },
   "to-read": { "text": "legi" },

@@ -30,6 +30,7 @@
   "curtain": { "text": "rideau", "forms": { "pl": "les rideaux" }, "grammar": { "gender": "le" } },
   "carpet": { "text": "tapis", "grammar": { "gender": "le", "plural": "=" } },
   "lamp": { "text": "lampe", "grammar": { "gender": "la" } },
+  "clock": { "text": "horloge", "accepts": ["pendule"], "grammar": { "gender": "l'", "genus": "f" } },
   "picture": {
    "text": "tableau",
    "forms": { "pl": "les tableaux" },
