@@ -188,11 +188,11 @@ struct TrainerHubView: View, LanguageNaming {
         }
     }
 
-    /// The chips cut into the lines kern sizes (`Drill.chipRows`), each line's chips equal width.
+    /// The chips cut into the lines kern sizes (`ChipRows`), each line's chips equal width.
     private var chipRows: [[HubChip]] {
         let chips = chips
         var start = 0
-        return Drill.companion.chipRows(count: Int32(chips.count)).map { size in
+        return ChipRows.shared.of(count: Int32(chips.count)).map { size in
             let row = Array(chips[start..<start + Int(truncating: size)])
             start += Int(truncating: size)
             return row
