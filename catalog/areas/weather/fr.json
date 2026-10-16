@@ -23,7 +23,7 @@
    "orders": ["Aujourd'hui, quel temps fait-il ?"]
   },
   "its-raining": { "text": "Il pleut." },
-  "the-rain-has-stopped": { "text": "Il ne pleut plus.", "accepts": ["La pluie s'est arrêtée.", "La pluie a cessé."] },
+  "the-rain-has-stopped": { "text": "La pluie s'est arrêtée.", "accepts": ["Il ne pleut plus.", "La pluie a cessé."] },
   "the-sun-is-shining": { "text": "Le soleil brille !", "accepts": ["Il y a du soleil !"] },
   "what-a-beautiful-day": { "text": "Quelle belle journée !", "accepts": ["Quelle journée magnifique !"] },
   "we-are-staying-home-because-of-the-rain": {

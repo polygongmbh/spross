@@ -31,7 +31,7 @@
   "folder": { "text": "Ordner", "grammar": { "article": "der", "plural": "=" } },
   "password": { "text": "Passwort", "forms": { "pl": "die Passwörter" }, "grammar": { "article": "das" } },
   "internet": { "text": "Internet", "grammar": { "article": "das" } },
-  "charger": { "text": "Ladekabel", "grammar": { "article": "das", "plural": "=" } },
+  "charger": { "text": "Ladegerät", "accepts": ["Ladekabel"], "grammar": { "article": "das", "plural": "=" } },
   "calendar": { "text": "Kalender", "grammar": { "article": "der", "plural": "=" } },
   "important": { "text": "wichtig" },
   "ready": { "text": "fertig" },
