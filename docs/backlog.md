@@ -59,7 +59,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Apps & tooling
 
-- iOS keeps three Design twins of kern types (`Theme.Gender`, `AreaProgress`, `StageBadge.Stage`) with their `KernBridge` mappings, and `DrillRunResult` copies `DrillRunSummary`.
+- iOS keeps two Design twins of kern types (`AreaProgress`, `StageBadge.Stage`) with their `KernBridge` mappings, and `DrillRunResult` copies `DrillRunSummary`.
 - iOS dead code: `SessionView.currentCardID`, `askedByEar`, three `KernBridge` drill extensions, two `hushAnswer()`.
 - iOS hand cuts: the uitest streak seed is still pasted per drill face, `0.25`/`0.2` animation literals stand where `CardMotion` has the value, `controlSurface()` is cut by hand at five sites, and `Watch/Fixtures` ships in Release.
 - Android dead code: `AppModel.pronounceTarget`, `TypedDrillView`'s mirror of `DrillRunProgress` with a dead `bestAnswerStreak`, and the `errorUnknownProfile`/`errorResetFailed` chrome fields.

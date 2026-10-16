@@ -88,7 +88,7 @@ enum CardDisplay {
                                          targetText: realization.text)
         else { return nil }
         return Theme.Article(article,
-                             gender: Theme.Gender(articleGender(article: article, lang: realization.lang)))
+                             gender: articleGender(article: article, lang: realization.lang))
     }
 
     /// The article the VOICE says in front of `shown`, or nil where there is

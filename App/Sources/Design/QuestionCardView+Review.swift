@@ -155,7 +155,7 @@ extension QuestionCardView {
             .font(headlineFont)
             .foregroundStyle(emphasized ? Theme.colors.accent : Theme.colors.textPrimary)
         guard let article = side.article else { return word }
-        let gender = Theme.Gender(articleGender(article: article, lang: side.lang))
+        let gender = articleGender(article: article, lang: side.lang)
         return Text(verbatim: articledForm(article: article, form: ""))
             .font(headlineFont)
             .foregroundStyle(Theme.genderColor(gender))

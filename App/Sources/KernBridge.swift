@@ -151,9 +151,8 @@ extension PairDrill {
 
 // MARK: - Kern → Design value types
 //
-// The Design value types that stand in for a kern ruling — a bar segment, a
-// self-grade verdict, a run's figures, a field's feedback, a gender hue — are
-// built from kern's here. A Design file that renders kern's
+// The Design value types that stand in for a kern ruling — a run's figures —
+// are built from kern's here. A Design file that renders kern's
 // own value reads it directly instead (`AutoAdvance`, `NumberReferenceTable`,
 // `SessionSummaryView` among them).
 
@@ -165,19 +164,6 @@ extension DrillRunResult {
         self.init(doneCount: Int(summary.done), bestAnswerStreak: Int(summary.bestAnswerStreak),
                   newRecord: summary.newRecord, milestone: summary.milestone, timed: summary.timed,
                   worthReporting: summary.worthReporting, celebrated: summary.celebrated, title: title)
-    }
-}
-
-extension Theme.Gender {
-    /// The palette's twin of the box's `Gender` — kern names the gender an
-    /// article marks (`model/Article.kt`), the design system names the hue.
-    init?(_ gender: SprossKern.Gender?) {
-        guard let gender else { return nil }
-        switch gender {
-        case .masculine: self = .masculine
-        case .feminine: self = .feminine
-        case .neuter: self = .neuter
-        }
     }
 }
 
