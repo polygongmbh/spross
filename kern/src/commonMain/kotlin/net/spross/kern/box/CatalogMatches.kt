@@ -86,7 +86,7 @@ private class CatalogForms(state: BoxState) {
             card.source.teaches.forEach { put(sourceForms, it, card) }
             card.source.accepts.forEach { put(sourceForms, it, card) }
             put(targetForms, card.target.text, card)
-            put(targetForms, articledForm(card.target.grammar["gender"], card.target.text), card)
+            put(targetForms, articledForm(card.target.grammar["article"], card.target.text), card)
             card.target.teaches.forEach { put(targetForms, it, card) }
             card.target.accepts.forEach { put(targetForms, it, card) }
         }

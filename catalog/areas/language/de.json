@@ -2,15 +2,15 @@
  "title": "Sprache lernen",
  "subtitle": "Wörter, Sätze und was sie bedeuten.",
  "words": {
-  "meaning": { "text": "Bedeutung", "forms": { "pl": "die Bedeutungen" }, "grammar": { "gender": "die" } },
+  "meaning": { "text": "Bedeutung", "forms": { "pl": "die Bedeutungen" }, "grammar": { "article": "die" } },
   "to-translate": { "text": "übersetzen" },
-  "sentence": { "text": "Satz", "forms": { "pl": "die Sätze" }, "grammar": { "gender": "der" } },
-  "word": { "text": "Wort", "forms": { "pl": "die Wörter" }, "grammar": { "gender": "das" } },
-  "language": { "text": "Sprache", "forms": { "pl": "die Sprachen" }, "grammar": { "gender": "die" } },
+  "sentence": { "text": "Satz", "forms": { "pl": "die Sätze" }, "grammar": { "article": "der" } },
+  "word": { "text": "Wort", "forms": { "pl": "die Wörter" }, "grammar": { "article": "das" } },
+  "language": { "text": "Sprache", "forms": { "pl": "die Sprachen" }, "grammar": { "article": "die" } },
   "mother-tongue": {
    "text": "Muttersprache",
    "forms": { "pl": "die Muttersprachen" },
-   "grammar": { "gender": "die" }
+   "grammar": { "article": "die" }
   },
   "what-does-this-word-mean": { "text": "Was bedeutet dieses Wort?" },
   "how-do-you-say-this": { "text": "Wie sagt man das {language-in}?" },

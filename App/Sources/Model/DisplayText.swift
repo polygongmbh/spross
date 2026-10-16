@@ -78,10 +78,9 @@ extension Card {
 /// sentinel values via localized chrome strings.
 enum CardDisplay {
 
-    /// The realization's authored article (de `gender` carries the article
-    /// itself: "der"/"die"/"das").
+    /// The realization's authored article ("der"/"die"/"das").
     private static func article(of realization: Realization) -> String? {
-        realization.grammar["gender"]
+        realization.grammar["article"]
     }
 
     /// The article a card face may show in front of `shown`, with the gender it

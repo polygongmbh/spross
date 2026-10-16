@@ -182,7 +182,7 @@ and always through `../scripts/catalog-rename-slugs.py`, which carries every ref
 ```json
 { "title": "Die Küche", "subtitle": "Hier duftet es nach Abendessen.",
   "words": {
-    "fridge": { "text": "Kühlschrank", "forms": { "pl": "die Kühlschränke" }, "grammar": { "gender": "der" } },
+    "fridge": { "text": "Kühlschrank", "forms": { "pl": "die Kühlschränke" }, "grammar": { "article": "der" } },
     "to-cook": { "text": "kochen" },
     "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." } } }
 ```
@@ -233,7 +233,7 @@ Realization fields — only `text` is required:
   a dimension it leaves out is `text`'s value on it.
   `text` stays the citation form and carries no tag.
   A noun's form carries its own article in every language that writes one,
-  just as `grammar.gender` gives `text`'s (`"pl": "die Kühlschränke"`, `"f": "die Lehrerin"`),
+  just as `grammar.article` gives `text`'s (`"pl": "die Kühlschränke"`, `"f": "die Lehrerin"`),
   and grading reads it back; a language without articles writes the form bare.
   The join sets that article apart, so a card shows it tinted and the voice finds an article recording or the bare word, as for `text`.
   **The plural is `pl`**, and how much to author is per language — the test is always the same:
@@ -254,8 +254,8 @@ Realization fields — only `text` is required:
   Each entry must tokenize to the same word bag as `text`; an order with different words
   is silently dropped at availability-build time.
 - `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
-  labels, no `(selten)` qualifier), one fact per key: `gender`, `genus` and `plural`. Omit if empty.
-  `gender` is the ARTICLE the learner says, and always one the language declares
+  labels, no `(selten)` qualifier), one fact per key: `article`, `genus` and `plural`. Omit if empty.
+  `article` is the article the learner says, and always one the language declares
   in `languages.json` — de der/die/das, es el/la, and `los`/`las` on the nouns
   whose article genuinely IS the plural one (los auriculares, las vacaciones).
   That is not decoration: grading reads it back as an article and demotes an
@@ -263,7 +263,7 @@ Realization fields — only `text` is required:
   article on a plural-only noun would mark the one right answer a typo.
   An `accepts` entry of another gender carries its own article
   (fr `le vaccin` on la vaccination), and grading reads that one back instead.
-  Omit `gender` where the language allows both and neither is taught
+  Omit `article` where the language allows both and neither is taught
   (es `internet`, which RAE writes without an article).
   `genus` is the gender the article cannot show — `m`, `f`, or `m/f` for a noun that takes
   both (l'élève, l'ospite). Required where the article names none (fr/it `l'`, fr `les`),

@@ -6,39 +6,39 @@
    "text": "travail",
    "accepts": ["boulot"],
    "forms": { "pl": "les travaux" },
-   "grammar": { "gender": "le" }
+   "grammar": { "article": "le" }
   },
-  "job-application": { "text": "candidature", "accepts": ["demande d'emploi"], "grammar": { "gender": "la" } },
+  "job-application": { "text": "candidature", "accepts": ["demande d'emploi"], "grammar": { "article": "la" } },
   "cv": {
    "text": "CV",
    "teaches": ["curriculum vitae"],
    "accepts": ["curriculum"],
-   "grammar": { "gender": "le", "plural": "=" },
+   "grammar": { "article": "le", "plural": "=" },
    "notes": { "fr": "on dit toujours le CV · en entier, le curriculum vitae." }
   },
-  "contract": { "text": "contrat", "grammar": { "gender": "le" } },
-  "salary": { "text": "salaire", "grammar": { "gender": "le" } },
+  "contract": { "text": "contrat", "grammar": { "article": "le" } },
+  "salary": { "text": "salaire", "grammar": { "article": "le" } },
   "colleague": {
    "text": "collègue",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le collègue, la collègue : le mot ne change pas." }
   },
   "boss": {
    "text": "chef",
    "forms": { "f": "la cheffe" },
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "on écrit la cheffe ; on entend aussi la chef." }
   },
   "shift": {
    "text": "service",
    "accepts": ["poste"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "je prends mon service à six heures · à l'usine, on dit le poste." }
   },
   "company": {
    "text": "entreprise",
    "accepts": ["l'entreprise", "boîte"],
-   "grammar": { "gender": "l'", "genus": "f" }
+   "grammar": { "article": "l'", "genus": "f" }
   },
   "to-apply": {
    "text": "postuler à un poste",
@@ -64,45 +64,45 @@
   "profession": {
    "text": "métier",
    "teaches": ["profession"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "mon métier, c'est boulanger · la profession se met sur le formulaire." }
   },
   "interview": {
    "text": "entretien d'embauche",
    "accepts": ["l'entretien d'embauche", "entretien"],
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
   "working-hours": {
    "text": "horaires de travail",
    "accepts": ["horaire de travail", "temps de travail"],
-   "grammar": { "gender": "les", "genus": "m" },
+   "grammar": { "article": "les", "genus": "m" },
    "notes": { "fr": "au pluriel : mes horaires de travail · la durée, c'est le temps de travail." }
   },
   "full-time": {
    "text": "temps plein",
    "accepts": ["à temps plein", "plein temps"],
-   "grammar": { "gender": "le" }
+   "grammar": { "article": "le" }
   },
   "part-time": {
    "text": "temps partiel",
    "accepts": ["à temps partiel", "mi-temps"],
-   "grammar": { "gender": "le" }
+   "grammar": { "article": "le" }
   },
   "tax": {
    "text": "impôt",
    "accepts": ["l'impôt"],
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "fr": "l'impôt sur le revenu · la taxe se paie pour un service précis." }
   },
-  "work-permit": { "text": "permis de travail", "grammar": { "gender": "le", "plural": "=" } },
+  "work-permit": { "text": "permis de travail", "grammar": { "article": "le", "plural": "=" } },
   "notice": {
    "text": "licenciement",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le patron licencie · le salarié, lui, donne sa démission." }
   },
-  "worker": { "text": "travailleur", "grammar": { "gender": "le" } },
-  "employer": { "text": "employeur", "accepts": ["l'employeur"], "grammar": { "gender": "l'", "genus": "m" } },
-  "customer": { "text": "client", "grammar": { "gender": "le" } },
+  "worker": { "text": "travailleur", "grammar": { "article": "le" } },
+  "employer": { "text": "employeur", "accepts": ["l'employeur"], "grammar": { "article": "l'", "genus": "m" } },
+  "customer": { "text": "client", "grammar": { "article": "le" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Demain, je me présente à l'entreprise.",
    "orders": ["Je me présente à l'entreprise demain."]
@@ -131,7 +131,7 @@
   "workplace": {
    "text": "bureau",
    "forms": { "pl": "les bureaux" },
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "ici la pièce." }
   }
  }

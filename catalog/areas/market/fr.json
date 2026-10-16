@@ -2,25 +2,25 @@
  "title": "Au marché",
  "subtitle": "Où le prix se discute encore.",
  "words": {
-  "stall": { "text": "étal", "accepts": ["l'étal", "stand"], "grammar": { "gender": "l'", "genus": "m" } },
+  "stall": { "text": "étal", "accepts": ["l'étal", "stand"], "grammar": { "article": "l'", "genus": "m" } },
   "trader": {
    "text": "marchand",
    "forms": { "f": ["la marchande", "la commerçante"] },
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "teaches": ["commerçant"]
   },
-  "scales": { "text": "balance", "grammar": { "gender": "la" } },
+  "scales": { "text": "balance", "grammar": { "article": "la" } },
   "to-weigh": { "text": "peser" },
-  "kilo": { "text": "kilo", "grammar": { "gender": "le" } },
-  "gram": { "text": "gramme", "grammar": { "gender": "le" } },
-  "liter": { "text": "litre", "grammar": { "gender": "le" } },
+  "kilo": { "text": "kilo", "grammar": { "article": "le" } },
+  "gram": { "text": "gramme", "grammar": { "article": "le" } },
+  "liter": { "text": "litre", "grammar": { "article": "le" } },
   "fresh": {
    "text": "frais",
    "notes": { "fr": "du pain frais, une salade fraîche · les frais, c'est l'argent à payer." }
   },
   "ripe": { "text": "mûr" },
   "to-haggle": { "text": "marchander" },
-  "market": { "text": "marché", "grammar": { "gender": "le" } },
+  "market": { "text": "marché", "grammar": { "article": "le" } },
   "lets-meet-at-the-market": {
    "text": "On se retrouve au marché.",
    "accepts": ["Retrouvons-nous au marché.", "On se voit au marché."],

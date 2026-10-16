@@ -6,22 +6,22 @@
    "text": "Marktstand",
    "accepts": ["Stand"],
    "forms": { "pl": "die Marktstände" },
-   "grammar": { "gender": "der" }
+   "grammar": { "article": "der" }
   },
   "trader": {
    "text": "Händler",
    "forms": { "f": "die Händlerin", "f.pl": "die Händlerinnen" },
-   "grammar": { "gender": "der", "plural": "=" }
+   "grammar": { "article": "der", "plural": "=" }
   },
-  "scales": { "text": "Waage", "forms": { "pl": "die Waagen" }, "grammar": { "gender": "die" } },
+  "scales": { "text": "Waage", "forms": { "pl": "die Waagen" }, "grammar": { "article": "die" } },
   "to-weigh": { "text": "wiegen" },
   "kilo": {
    "text": "Kilo",
-   "grammar": { "gender": "das", "plural": "=" },
+   "grammar": { "article": "das", "plural": "=" },
    "notes": { "de": "nach einer Zahl unverändert: zwei Kilo Tomaten." }
   },
-  "gram": { "text": "Gramm", "grammar": { "gender": "das", "plural": "=" } },
-  "liter": { "text": "Liter", "grammar": { "gender": "der", "plural": "=" } },
+  "gram": { "text": "Gramm", "grammar": { "article": "das", "plural": "=" } },
+  "liter": { "text": "Liter", "grammar": { "article": "der", "plural": "=" } },
   "fresh": { "text": "frisch" },
   "ripe": { "text": "reif" },
   "to-haggle": {
@@ -31,7 +31,7 @@
     "de": "feilschen meint nur das Handeln um den Preis; handeln heißt auch tun und Handel treiben."
    }
   },
-  "market": { "text": "Markt", "forms": { "pl": "die Märkte" }, "grammar": { "gender": "der" } },
+  "market": { "text": "Markt", "forms": { "pl": "die Märkte" }, "grammar": { "article": "der" } },
   "lets-meet-at-the-market": {
    "text": "Treffen wir uns am Markt.",
    "orders": ["Wir treffen uns am Markt.", "Am Markt treffen wir uns."]

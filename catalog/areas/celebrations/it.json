@@ -2,15 +2,15 @@
  "title": "Feste",
  "subtitle": "Ciò che festeggiamo insieme.",
  "words": {
-  "celebration": { "text": "festa", "grammar": { "gender": "la" } },
+  "celebration": { "text": "festa", "grammar": { "article": "la" } },
   "to-celebrate": { "text": "festeggiare" },
-  "birthday": { "text": "compleanno", "grammar": { "gender": "il" } },
-  "birthday-party": { "text": "festa di compleanno", "grammar": { "gender": "la" } },
-  "gift": { "text": "regalo", "grammar": { "gender": "il" } },
+  "birthday": { "text": "compleanno", "grammar": { "article": "il" } },
+  "birthday-party": { "text": "festa di compleanno", "grammar": { "article": "la" } },
+  "gift": { "text": "regalo", "grammar": { "article": "il" } },
   "to-give-a-present": { "text": "regalare" },
   "to-congratulate": { "text": "congratularsi" },
-  "wedding": { "text": "matrimonio", "grammar": { "gender": "il" } },
-  "birth": { "text": "nascita", "grammar": { "gender": "la" } },
+  "wedding": { "text": "matrimonio", "grammar": { "article": "il" } },
+  "birth": { "text": "nascita", "grammar": { "article": "la" } },
   "we-give-her-something-for-her-birthday": { "text": "Le regaliamo qualcosa per il suo compleanno." },
   "i-congratulate-them-on-their-wedding": { "text": "Mi congratulo con loro per il loro matrimonio." }
  }

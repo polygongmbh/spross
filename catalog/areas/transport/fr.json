@@ -6,38 +6,38 @@
    "text": "feu",
    "accepts": ["feu rouge", "feu de signalisation"],
    "forms": { "pl": "les feux" },
-   "grammar": { "gender": "le" }
+   "grammar": { "article": "le" }
   },
-  "bicycle": { "text": "vélo", "accepts": ["bicyclette"], "grammar": { "gender": "le" } },
-  "bus": { "text": "bus", "accepts": ["autobus"], "grammar": { "gender": "le", "plural": "=" } },
+  "bicycle": { "text": "vélo", "accepts": ["bicyclette"], "grammar": { "article": "le" } },
+  "bus": { "text": "bus", "accepts": ["autobus"], "grammar": { "article": "le", "plural": "=" } },
   "bus-stop": {
    "text": "arrêt de bus",
    "accepts": ["arrêt", "l'arrêt de bus"],
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
-  "train": { "text": "train", "grammar": { "gender": "le" } },
-  "car": { "text": "voiture", "grammar": { "gender": "la" } },
-  "taxi": { "text": "taxi", "grammar": { "gender": "le" } },
-  "train-station": { "text": "gare", "grammar": { "gender": "la" } },
+  "train": { "text": "train", "grammar": { "article": "le" } },
+  "car": { "text": "voiture", "grammar": { "article": "la" } },
+  "taxi": { "text": "taxi", "grammar": { "article": "le" } },
+  "train-station": { "text": "gare", "grammar": { "article": "la" } },
   "ticket": {
    "text": "billet",
    "accepts": ["ticket"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "un billet de train ou d'avion · un ticket de bus ou de métro." }
   },
   "to-ride-bike": { "text": "faire du vélo", "accepts": ["aller à vélo", "rouler à vélo"] },
   "to-take-bus": { "text": "prendre le bus" },
   "to-depart": { "text": "partir", "notes": { "fr": "le train part à huit heures · je pars demain." } },
-  "driver": { "text": "conducteur", "accepts": ["chauffeur"], "grammar": { "gender": "le" } },
-  "plane": { "text": "avion", "accepts": ["l'avion"], "grammar": { "gender": "l'", "genus": "m" } },
-  "airport": { "text": "aéroport", "accepts": ["l'aéroport"], "grammar": { "gender": "l'", "genus": "m" } },
-  "motorbike": { "text": "moto", "accepts": ["motocyclette"], "grammar": { "gender": "la" } },
-  "truck": { "text": "camion", "grammar": { "gender": "le" } },
-  "passenger": { "text": "passager", "grammar": { "gender": "le" } },
-  "wheel": { "text": "roue", "grammar": { "gender": "la" } },
-  "engine": { "text": "moteur", "grammar": { "gender": "le" } },
-  "rail": { "text": "rail", "forms": { "pl": "les rails" }, "grammar": { "gender": "le" } },
-  "fare": { "text": "tarif", "accepts": ["prix du billet"], "grammar": { "gender": "le" } },
+  "driver": { "text": "conducteur", "accepts": ["chauffeur"], "grammar": { "article": "le" } },
+  "plane": { "text": "avion", "accepts": ["l'avion"], "grammar": { "article": "l'", "genus": "m" } },
+  "airport": { "text": "aéroport", "accepts": ["l'aéroport"], "grammar": { "article": "l'", "genus": "m" } },
+  "motorbike": { "text": "moto", "accepts": ["motocyclette"], "grammar": { "article": "la" } },
+  "truck": { "text": "camion", "grammar": { "article": "le" } },
+  "passenger": { "text": "passager", "grammar": { "article": "le" } },
+  "wheel": { "text": "roue", "grammar": { "article": "la" } },
+  "engine": { "text": "moteur", "grammar": { "article": "le" } },
+  "rail": { "text": "rail", "forms": { "pl": "les rails" }, "grammar": { "article": "le" } },
+  "fare": { "text": "tarif", "accepts": ["prix du billet"], "grammar": { "article": "le" } },
   "to-get-off": { "text": "descendre", "notes": { "fr": "descendre du bus, du train · monter dans le bus." } },
   "to-get-on": { "text": "monter" },
   "the-bus-is-coming-soon": {
@@ -53,7 +53,7 @@
   "how-much-is-the-fare": { "text": "Quel est le tarif ?", "accepts": ["Combien coûte le billet ?"] },
   "the-bus-has-already-departed": { "text": "Le bus est déjà parti.", "orders": ["Déjà, le bus est parti."] },
   "my-parents-are-coming-by-train": { "text": "Mes parents viennent en train." },
-  "tire": { "text": "pneu", "grammar": { "gender": "le" } },
+  "tire": { "text": "pneu", "grammar": { "article": "le" } },
   "my-car-has-four-tires": { "text": "Ma voiture a quatre pneus." }
  }
 }

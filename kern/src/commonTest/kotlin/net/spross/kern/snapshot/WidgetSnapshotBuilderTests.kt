@@ -28,7 +28,7 @@ class WidgetSnapshotBuilderTests {
         "wf", 1, emoji = "👩", sourceText = "Kellner", targetText = "ofisantka",
     )
     private val gendered = Snap.card(
-        "wg", 2, emoji = "🧊", sourceText = "Kühlschrank", targetText = "friji", gender = "der",
+        "wg", 2, emoji = "🧊", sourceText = "Kühlschrank", targetText = "friji", article = "der",
     )
     private val verb = Snap.card("wv", 3, kind = CardKind.Verb, targetText = "kupika")
 
@@ -61,8 +61,8 @@ class WidgetSnapshotBuilderTests {
 
     @Test
     fun theGenderIsTheOneTheArticleMarksInTheTargetLanguage() {
-        val french = Snap.card("fr", 7, targetText = "pain", gender = "le", targetLang = "fr")
-        val italian = Snap.card("it", 8, targetText = "mele", gender = "le", targetLang = "it")
+        val french = Snap.card("fr", 7, targetText = "pain", article = "le", targetLang = "fr")
+        val italian = Snap.card("it", 8, targetText = "mele", article = "le", targetLang = "it")
         val cards = listOf(french, italian)
         val state = cards.fold(Snap.state(cards)) { s, card ->
             Box.inject(s, Box.sched(card.id, dueMillis = Box.plusDays(Box.day1, 1.0), lastReviewMillis = Box.day1))

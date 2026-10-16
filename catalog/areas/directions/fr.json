@@ -7,27 +7,27 @@
    "notes": { "fr": "tout droit, sans tourner · à droite, du côté de la main droite." }
   },
   "to-turn": { "text": "tourner" },
-  "corner": { "text": "coin", "grammar": { "gender": "le" } },
-  "crossing": { "text": "carrefour", "accepts": ["croisement"], "grammar": { "gender": "le" } },
+  "corner": { "text": "coin", "grammar": { "article": "le" } },
+  "crossing": { "text": "carrefour", "accepts": ["croisement"], "grammar": { "article": "le" } },
   "to-cross": { "text": "traverser" },
-  "direction": { "text": "direction", "grammar": { "gender": "la" } },
-  "city-map": { "text": "plan de la ville", "accepts": ["plan"], "grammar": { "gender": "le" } },
+  "direction": { "text": "direction", "grammar": { "article": "la" } },
+  "city-map": { "text": "plan de la ville", "accepts": ["plan"], "grammar": { "article": "le" } },
   "entrance": {
    "text": "entrée",
    "accepts": ["l'entrée"],
-   "grammar": { "gender": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "genus": "f" },
    "notes": {
     "fr": "l'entrée du bâtiment · au restaurant, le plat avant le plat principal.",
     "de": "l'entrée ist der Eingang und zugleich der Flur, in den man tritt — und auf der Karte die Vorspeise."
    }
   },
-  "exit": { "text": "sortie", "grammar": { "gender": "la" } },
+  "exit": { "text": "sortie", "grammar": { "article": "la" } },
   "to-follow": { "text": "suivre" },
-  "way": { "text": "chemin", "grammar": { "gender": "le" } },
-  "north": { "text": "nord", "grammar": { "gender": "le" } },
-  "south": { "text": "sud", "grammar": { "gender": "le" } },
-  "east": { "text": "est", "grammar": { "gender": "le" } },
-  "west": { "text": "ouest", "grammar": { "gender": "le" } },
+  "way": { "text": "chemin", "grammar": { "article": "le" } },
+  "north": { "text": "nord", "grammar": { "article": "le" } },
+  "south": { "text": "sud", "grammar": { "article": "le" } },
+  "east": { "text": "est", "grammar": { "article": "le" } },
+  "west": { "text": "ouest", "grammar": { "article": "le" } },
   "go-straight-ahead": { "text": "Allez tout droit.", "accepts": ["Va tout droit."] },
   "turn-left-at-the-corner": {
    "text": "Tournez à gauche au coin.",

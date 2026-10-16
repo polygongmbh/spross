@@ -6,36 +6,36 @@
    "text": "ingresso",
    "teaches": ["corridoio"],
    "accepts": ["l'ingresso"],
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "it": "l'ingresso è subito dopo la porta · il corridoio porta alle stanze." }
   },
-  "door": { "text": "porta", "grammar": { "gender": "la" } },
-  "key": { "text": "chiave", "grammar": { "gender": "la" } },
-  "jacket": { "text": "giacca", "forms": { "pl": "le giacche" }, "grammar": { "gender": "la" } },
-  "coat": { "text": "cappotto", "grammar": { "gender": "il" } },
-  "umbrella": { "text": "ombrello", "accepts": ["l'ombrello"], "grammar": { "gender": "l'", "genus": "m" } },
+  "door": { "text": "porta", "grammar": { "article": "la" } },
+  "key": { "text": "chiave", "grammar": { "article": "la" } },
+  "jacket": { "text": "giacca", "forms": { "pl": "le giacche" }, "grammar": { "article": "la" } },
+  "coat": { "text": "cappotto", "grammar": { "article": "il" } },
+  "umbrella": { "text": "ombrello", "accepts": ["l'ombrello"], "grammar": { "article": "l'", "genus": "m" } },
   "hat": {
    "text": "berretto",
    "teaches": ["cappello"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il berretto è morbido · il cappello ha la tesa." }
   },
   "mailbox": {
    "text": "cassetta della posta",
    "accepts": ["cassetta delle lettere", "buca delle lettere"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "doorbell": { "text": "campanello", "grammar": { "gender": "il" } },
+  "doorbell": { "text": "campanello", "grammar": { "article": "il" } },
   "stairs": {
    "text": "scale",
    "accepts": ["scala"],
-   "grammar": { "gender": "le", "plural": "only" },
+   "grammar": { "article": "le", "plural": "only" },
    "notes": { "it": "le scale sono quelle di casa · la scala si appoggia al muro." }
   },
   "bag": {
    "text": "borsa",
    "accepts": ["borsetta"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la borsa si porta a mano · il sacchetto è della spesa, lo zaino in spalla." }
   },
   "to-lock": { "text": "chiudere a chiave", "accepts": ["chiudere la porta a chiave"] },
@@ -58,23 +58,23 @@
    "accepts": ["salutare", "congedarsi"],
    "notes": { "it": "salutare vale arrivando e andando via · chiaro è dire arrivederci." }
   },
-  "shoe": { "text": "scarpa", "grammar": { "gender": "la" } },
+  "shoe": { "text": "scarpa", "grammar": { "article": "la" } },
   "apartment": {
    "text": "appartamento",
    "accepts": ["l'appartamento"],
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
   "neighbor": {
    "text": "vicino di casa",
    "accepts": ["vicino", "vicina"],
    "forms": { "f": "la vicina di casa" },
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "vicino vuol dire anche non lontano: si dice il vicino di casa." }
   },
   "guest": {
    "text": "ospite",
    "accepts": ["l'ospite", "invitato", "invitata"],
-   "grammar": { "gender": "l'", "genus": "m/f" },
+   "grammar": { "article": "l'", "genus": "m/f" },
    "notes": {
     "it": "l'ospite è chi arriva · chi è stato invitato è l'invitato.",
     "de": "l'ospite meint den Gast und, seltener, den Gastgeber; der Eingeladene heißt l'invitato."
@@ -84,14 +84,14 @@
    "text": "portafoglio",
    "teaches": ["portamonete"],
    "forms": { "pl": "i portafogli" },
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "nel portafoglio stanno soldi e carte · le monete nel portamonete." }
   },
-  "glove": { "text": "guanto", "grammar": { "gender": "il" } },
-  "letter": { "text": "lettera", "grammar": { "gender": "la" } },
+  "glove": { "text": "guanto", "grammar": { "article": "il" } },
+  "letter": { "text": "lettera", "grammar": { "article": "la" } },
   "to-knock-on-door": { "text": "bussare alla porta" },
   "to-enter": { "text": "entrare", "notes": { "it": "entra! a un amico · prego, si accomodi! agli altri." } },
-  "house": { "text": "casa", "grammar": { "gender": "la" } },
+  "house": { "text": "casa", "grammar": { "article": "la" } },
   "to-live": {
    "text": "abitare",
    "accepts": ["vivere"],

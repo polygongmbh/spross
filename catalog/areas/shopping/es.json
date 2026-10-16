@@ -2,20 +2,20 @@
  "title": "En la tienda",
  "subtitle": "Donde el precio ya está en la etiqueta.",
  "words": {
-  "supermarket": { "text": "supermercado", "grammar": { "gender": "el" } },
-  "mall": { "text": "centro comercial", "grammar": { "gender": "el" } },
-  "checkout": { "text": "caja", "grammar": { "gender": "la" } },
+  "supermarket": { "text": "supermercado", "grammar": { "article": "el" } },
+  "mall": { "text": "centro comercial", "grammar": { "article": "el" } },
+  "checkout": { "text": "caja", "grammar": { "article": "la" } },
   "shop-assistant": {
    "text": "dependiente",
    "teaches": ["vendedor"],
    "forms": { "f": ["la dependienta", "la vendedora"] },
-   "grammar": { "gender": "el" }
+   "grammar": { "article": "el" }
   },
-  "shopping-cart": { "text": "carrito", "grammar": { "gender": "el" }, "accepts": ["carrito de la compra"] },
-  "offer": { "text": "oferta", "grammar": { "gender": "la" } },
+  "shopping-cart": { "text": "carrito", "grammar": { "article": "el" }, "accepts": ["carrito de la compra"] },
+  "offer": { "text": "oferta", "grammar": { "article": "la" } },
   "size": {
    "text": "talla",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "La talla es de la ropa; el número, del calzado." }
   },
   "to-shop": {
@@ -23,7 +23,7 @@
    "teaches": ["ir de compras"],
    "notes": { "es": "hacer la compra es la comida; ir de compras es mirar tiendas." }
   },
-  "store": { "text": "tienda", "grammar": { "gender": "la" } },
+  "store": { "text": "tienda", "grammar": { "article": "la" } },
   "open": { "text": "abierto", "forms": { "f": "abierta" } },
   "the-store-is-still-open": { "text": "La tienda todavía está abierta.", "orders": ["Todavía está abierta la tienda."] },
   "do-you-have-this-in-my-size": { "text": "¿Lo tiene en mi talla?", "accepts": ["¿Lo tienes en mi talla?"] }

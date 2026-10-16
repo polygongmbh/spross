@@ -2,32 +2,32 @@
  "title": "Im Laden",
  "subtitle": "Wo der Preis schon am Regal steht.",
  "words": {
-  "supermarket": { "text": "Supermarkt", "forms": { "pl": "die Supermärkte" }, "grammar": { "gender": "der" } },
+  "supermarket": { "text": "Supermarkt", "forms": { "pl": "die Supermärkte" }, "grammar": { "article": "der" } },
   "mall": {
    "text": "Einkaufszentrum",
    "forms": { "pl": "die Einkaufszentren" },
-   "grammar": { "gender": "das" }
+   "grammar": { "article": "das" }
   },
-  "checkout": { "text": "Kasse", "forms": { "pl": "die Kassen" }, "grammar": { "gender": "die" } },
+  "checkout": { "text": "Kasse", "forms": { "pl": "die Kassen" }, "grammar": { "article": "die" } },
   "shop-assistant": {
    "text": "Verkäufer",
    "forms": { "f": "die Verkäuferin", "f.pl": "die Verkäuferinnen" },
-   "grammar": { "gender": "der", "plural": "=" }
+   "grammar": { "article": "der", "plural": "=" }
   },
-  "shopping-cart": { "text": "Einkaufswagen", "grammar": { "gender": "der", "plural": "=" } },
+  "shopping-cart": { "text": "Einkaufswagen", "grammar": { "article": "der", "plural": "=" } },
   "offer": {
    "text": "Angebot",
    "forms": { "pl": "die Angebote" },
-   "grammar": { "gender": "das" },
+   "grammar": { "article": "das" },
    "notes": { "de": "im Angebot heißt reduziert." }
   },
-  "size": { "text": "Größe", "forms": { "pl": "die Größen" }, "grammar": { "gender": "die" } },
+  "size": { "text": "Größe", "forms": { "pl": "die Größen" }, "grammar": { "article": "die" } },
   "to-shop": { "text": "einkaufen" },
   "store": {
    "text": "Laden",
    "accepts": ["Geschäft"],
    "forms": { "pl": "die Läden" },
-   "grammar": { "gender": "der" }
+   "grammar": { "article": "der" }
   },
   "open": { "text": "offen", "teaches": ["geöffnet"] },
   "the-store-is-still-open": { "text": "Der Laden ist noch offen." },

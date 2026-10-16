@@ -2,17 +2,17 @@
  "title": "La politica",
  "subtitle": "Chi governa e su cosa si litiga.",
  "words": {
-  "war": { "text": "guerra", "forms": { "pl": "le guerre" }, "grammar": { "gender": "la" } },
-  "peace": { "text": "pace", "forms": { "pl": "le paci" }, "grammar": { "gender": "la" } },
-  "freedom": { "text": "libertà", "grammar": { "gender": "la", "plural": "=" } },
-  "government": { "text": "governo", "forms": { "pl": "i governi" }, "grammar": { "gender": "il" } },
+  "war": { "text": "guerra", "forms": { "pl": "le guerre" }, "grammar": { "article": "la" } },
+  "peace": { "text": "pace", "forms": { "pl": "le paci" }, "grammar": { "article": "la" } },
+  "freedom": { "text": "libertà", "grammar": { "article": "la", "plural": "=" } },
+  "government": { "text": "governo", "forms": { "pl": "i governi" }, "grammar": { "article": "il" } },
   "election": {
    "text": "elezione",
    "accepts": ["l'elezione"],
    "forms": { "pl": "le elezioni" },
-   "grammar": { "gender": "l'", "genus": "f" }
+   "grammar": { "article": "l'", "genus": "f" }
   },
   "to-vote": { "text": "votare" },
-  "border": { "text": "confine", "forms": { "pl": "i confini" }, "grammar": { "gender": "il" } }
+  "border": { "text": "confine", "forms": { "pl": "i confini" }, "grammar": { "article": "il" } }
  }
 }

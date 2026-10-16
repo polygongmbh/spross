@@ -2,15 +2,15 @@
  "title": "Grammatica",
  "subtitle": "Classi di parole e tempi verbali, nominati.",
  "words": {
-  "verb": { "text": "verbo", "grammar": { "gender": "il" } },
-  "noun": { "text": "sostantivo", "grammar": { "gender": "il" } },
-  "adjective": { "text": "aggettivo", "accepts": ["l'aggettivo"], "grammar": { "gender": "l'", "genus": "m" } },
-  "noun-class": { "text": "classe nominale", "grammar": { "gender": "la" } },
-  "affix": { "text": "affisso", "accepts": ["l'affisso"], "grammar": { "gender": "l'", "genus": "m" } },
-  "past": { "text": "passato", "grammar": { "gender": "il" } },
-  "present": { "text": "presente", "grammar": { "gender": "il" } },
-  "future": { "text": "futuro", "grammar": { "gender": "il" } },
-  "case": { "text": "caso", "grammar": { "gender": "il" } },
-  "conjugation": { "text": "coniugazione", "grammar": { "gender": "la" } }
+  "verb": { "text": "verbo", "grammar": { "article": "il" } },
+  "noun": { "text": "sostantivo", "grammar": { "article": "il" } },
+  "adjective": { "text": "aggettivo", "accepts": ["l'aggettivo"], "grammar": { "article": "l'", "genus": "m" } },
+  "noun-class": { "text": "classe nominale", "grammar": { "article": "la" } },
+  "affix": { "text": "affisso", "accepts": ["l'affisso"], "grammar": { "article": "l'", "genus": "m" } },
+  "past": { "text": "passato", "grammar": { "article": "il" } },
+  "present": { "text": "presente", "grammar": { "article": "il" } },
+  "future": { "text": "futuro", "grammar": { "article": "il" } },
+  "case": { "text": "caso", "grammar": { "article": "il" } },
+  "conjugation": { "text": "coniugazione", "grammar": { "article": "la" } }
  }
 }

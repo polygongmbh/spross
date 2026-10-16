@@ -15,15 +15,15 @@
   },
   "corner": {
    "text": "esquina",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "La esquina es la de la calle; la del cuarto es el rincón." }
   },
-  "crossing": { "text": "cruce", "grammar": { "gender": "el" } },
+  "crossing": { "text": "cruce", "grammar": { "article": "el" } },
   "to-cross": { "text": "cruzar", "teaches": ["atravesar"] },
   "direction": {
    "text": "dirección",
    "forms": { "pl": "las direcciones" },
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "es": "La dirección es hacia dónde vas y también dónde vives.",
     "de": "la dirección ist die Richtung und zugleich die Anschrift; el sentido meint die Fahrtrichtung."
@@ -32,20 +32,20 @@
   "city-map": {
    "text": "plano",
    "accepts": ["plano de la ciudad", "mapa"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": {
     "es": "El plano es de la ciudad; el mapa, del país.",
     "de": "el plano ist der Stadtplan, el mapa die Landkarte — mapa ist trotz -a maskulin."
    }
   },
-  "entrance": { "text": "entrada", "grammar": { "gender": "la" } },
-  "exit": { "text": "salida", "grammar": { "gender": "la" } },
+  "entrance": { "text": "entrada", "grammar": { "article": "la" } },
+  "exit": { "text": "salida", "grammar": { "article": "la" } },
   "to-follow": { "text": "seguir", "notes": { "es": "e → i: sigo, sigues, sigue." } },
-  "way": { "text": "camino", "grammar": { "gender": "el" } },
-  "north": { "text": "norte", "grammar": { "gender": "el" } },
-  "south": { "text": "sur", "grammar": { "gender": "el" } },
-  "east": { "text": "este", "grammar": { "gender": "el" } },
-  "west": { "text": "oeste", "grammar": { "gender": "el" } },
+  "way": { "text": "camino", "grammar": { "article": "el" } },
+  "north": { "text": "norte", "grammar": { "article": "el" } },
+  "south": { "text": "sur", "grammar": { "article": "el" } },
+  "east": { "text": "este", "grammar": { "article": "el" } },
+  "west": { "text": "oeste", "grammar": { "article": "el" } },
   "go-straight-ahead": { "text": "Siga todo recto.", "accepts": ["Sigue todo recto.", "Vaya todo recto."] },
   "turn-left-at-the-corner": {
    "text": "Gire a la izquierda en la esquina.",

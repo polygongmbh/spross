@@ -2,15 +2,15 @@
  "title": "Gramática",
  "subtitle": "Clases de palabras y tiempos verbales, nombrados.",
  "words": {
-  "verb": { "text": "verbo", "grammar": { "gender": "el" } },
-  "noun": { "text": "sustantivo", "grammar": { "gender": "el" } },
-  "adjective": { "text": "adjetivo", "grammar": { "gender": "el" } },
-  "noun-class": { "text": "clase nominal", "grammar": { "gender": "la" } },
-  "affix": { "text": "afijo", "grammar": { "gender": "el" } },
-  "past": { "text": "pasado", "grammar": { "gender": "el" } },
-  "present": { "text": "presente", "grammar": { "gender": "el" } },
-  "future": { "text": "futuro", "grammar": { "gender": "el" } },
-  "case": { "text": "caso", "grammar": { "gender": "el" } },
-  "conjugation": { "text": "conjugación", "grammar": { "gender": "la" } }
+  "verb": { "text": "verbo", "grammar": { "article": "el" } },
+  "noun": { "text": "sustantivo", "grammar": { "article": "el" } },
+  "adjective": { "text": "adjetivo", "grammar": { "article": "el" } },
+  "noun-class": { "text": "clase nominal", "grammar": { "article": "la" } },
+  "affix": { "text": "afijo", "grammar": { "article": "el" } },
+  "past": { "text": "pasado", "grammar": { "article": "el" } },
+  "present": { "text": "presente", "grammar": { "article": "el" } },
+  "future": { "text": "futuro", "grammar": { "article": "el" } },
+  "case": { "text": "caso", "grammar": { "article": "el" } },
+  "conjugation": { "text": "conjugación", "grammar": { "article": "la" } }
  }
 }

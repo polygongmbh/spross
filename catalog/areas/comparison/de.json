@@ -3,7 +3,7 @@
  "subtitle": "Gleich, anders, dafür oder dagegen.",
  "words": {
   "different": { "text": "anders", "teaches": ["verschieden"], "accepts": ["unterschiedlich"] },
-  "difference": { "text": "Unterschied", "forms": { "pl": "die Unterschiede" }, "grammar": { "gender": "der" } },
+  "difference": { "text": "Unterschied", "forms": { "pl": "die Unterschiede" }, "grammar": { "article": "der" } },
   "real": { "text": "echt" },
   "same": { "text": "gleich", "notes": { "de": "das gleiche Wort · Ich komme gleich = kurz warten." } },
   "similar": { "text": "ähnlich" },
@@ -14,7 +14,7 @@
   "neutral": { "text": "neutral" },
   "aggressive": { "text": "aggressiv" },
   "defensive": { "text": "defensiv" },
-  "equality": { "text": "Gleichheit", "grammar": { "gender": "die" } },
+  "equality": { "text": "Gleichheit", "grammar": { "article": "die" } },
   "than": { "text": "als", "notes": { "de": "größer als ich." } }
  }
 }

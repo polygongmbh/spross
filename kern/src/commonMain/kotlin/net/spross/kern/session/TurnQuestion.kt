@@ -91,5 +91,5 @@ private fun TurnState.targetSide(form: String): Question.Side {
 
 /** The article [form] is shown with: the card's own on its citation, a tagged form's own, none on a synonym. */
 internal fun TurnState.formArticle(form: String): String? =
-    shownArticle(card.target.grammar["gender"], form, card.target.text)
+    shownArticle(card.target.grammar["article"], form, card.target.text)
         ?: card.target.forms.firstOrNull { it.text == form }?.article

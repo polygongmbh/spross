@@ -57,9 +57,9 @@
   "lightweight": { "text": "ligero", "forms": { "f": "ligera" } },
   "difficult": { "text": "difícil" },
   "easy": { "text": "fácil" },
-  "problem": { "text": "problema", "grammar": { "gender": "el" } },
+  "problem": { "text": "problema", "grammar": { "article": "el" } },
   "to-solve": { "text": "resolver", "teaches": ["solucionar"] },
-  "challenge": { "text": "desafío", "forms": { "pl": "los desafíos" }, "grammar": { "gender": "el" } },
+  "challenge": { "text": "desafío", "forms": { "pl": "los desafíos" }, "grammar": { "article": "el" } },
   "clean-adj": { "text": "limpio", "forms": { "f": "limpia" } },
   "sharp": {
    "text": "afilado",
@@ -83,7 +83,7 @@
   "dry": { "text": "seco" },
   "pretty": { "text": "bonito", "forms": { "f": "bonita" } },
   "beautiful": { "text": "hermoso", "forms": { "f": "hermosa" } },
-  "health": { "text": "salud", "grammar": { "gender": "la" } },
+  "health": { "text": "salud", "grammar": { "article": "la" } },
   "healthy": {
    "text": "sano",
    "teaches": ["saludable"],

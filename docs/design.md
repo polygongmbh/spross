@@ -244,7 +244,7 @@ Warm, card-centric, emoji as illustration.
 Article colors: der=blue, die=berry, das=green;
 two-gender languages fold onto the same two hues,
 and an article marking both genders (`l'`, fr `les`) stays neutral.
-The rendered article is always the one `grammar.gender` names, prepended.
+The rendered article is always the one `grammar.article` names, prepended.
 Palette: stone-and-moss paper, clay headline, ocean/forest secondaries,
 every pairing clearing WCAG AA in both schemes.
 

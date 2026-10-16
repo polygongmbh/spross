@@ -2,19 +2,19 @@
  "title": "Fêtes",
  "subtitle": "Ce qu'on célèbre ensemble.",
  "words": {
-  "celebration": { "text": "fête", "grammar": { "gender": "la" } },
+  "celebration": { "text": "fête", "grammar": { "article": "la" } },
   "to-celebrate": { "text": "fêter", "accepts": ["célébrer"] },
   "birthday": {
    "text": "anniversaire",
    "accepts": ["l'anniversaire"],
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
-  "birthday-party": { "text": "fête d'anniversaire", "grammar": { "gender": "la" } },
-  "gift": { "text": "cadeau", "grammar": { "gender": "le" } },
+  "birthday-party": { "text": "fête d'anniversaire", "grammar": { "article": "la" } },
+  "gift": { "text": "cadeau", "grammar": { "article": "le" } },
   "to-give-a-present": { "text": "offrir" },
   "to-congratulate": { "text": "féliciter" },
-  "wedding": { "text": "mariage", "grammar": { "gender": "le" } },
-  "birth": { "text": "naissance", "grammar": { "gender": "la" } },
+  "wedding": { "text": "mariage", "grammar": { "article": "le" } },
+  "birth": { "text": "naissance", "grammar": { "article": "la" } },
   "we-give-her-something-for-her-birthday": {
    "text": "On lui offre quelque chose pour son anniversaire.",
    "accepts": ["Nous lui offrons quelque chose pour son anniversaire."]

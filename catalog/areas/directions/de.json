@@ -4,13 +4,13 @@
  "words": {
   "straight-ahead": { "text": "geradeaus" },
   "to-turn": { "text": "abbiegen", "notes": { "de": "trennbar, ab steht hinten: Biegen Sie links ab." } },
-  "corner": { "text": "Ecke", "forms": { "pl": "die Ecken" }, "grammar": { "gender": "die" } },
-  "crossing": { "text": "Kreuzung", "forms": { "pl": "die Kreuzungen" }, "grammar": { "gender": "die" } },
+  "corner": { "text": "Ecke", "forms": { "pl": "die Ecken" }, "grammar": { "article": "die" } },
+  "crossing": { "text": "Kreuzung", "forms": { "pl": "die Kreuzungen" }, "grammar": { "article": "die" } },
   "to-cross": { "text": "überqueren" },
-  "direction": { "text": "Richtung", "forms": { "pl": "die Richtungen" }, "grammar": { "gender": "die" } },
-  "city-map": { "text": "Stadtplan", "forms": { "pl": "die Stadtpläne" }, "grammar": { "gender": "der" } },
-  "entrance": { "text": "Eingang", "forms": { "pl": "die Eingänge" }, "grammar": { "gender": "der" } },
-  "exit": { "text": "Ausgang", "forms": { "pl": "die Ausgänge" }, "grammar": { "gender": "der" } },
+  "direction": { "text": "Richtung", "forms": { "pl": "die Richtungen" }, "grammar": { "article": "die" } },
+  "city-map": { "text": "Stadtplan", "forms": { "pl": "die Stadtpläne" }, "grammar": { "article": "der" } },
+  "entrance": { "text": "Eingang", "forms": { "pl": "die Eingänge" }, "grammar": { "article": "der" } },
+  "exit": { "text": "Ausgang", "forms": { "pl": "die Ausgänge" }, "grammar": { "article": "der" } },
   "to-follow": {
    "text": "folgen",
    "notes": {
@@ -19,11 +19,11 @@
     "es": "folgen rige dativo: Folgen Sie mir, folgen Sie dem Schild."
    }
   },
-  "way": { "text": "Weg", "forms": { "pl": "die Wege" }, "grammar": { "gender": "der" } },
-  "north": { "text": "Norden", "grammar": { "gender": "der" } },
-  "south": { "text": "Süden", "grammar": { "gender": "der" } },
-  "east": { "text": "Osten", "grammar": { "gender": "der" } },
-  "west": { "text": "Westen", "grammar": { "gender": "der" } },
+  "way": { "text": "Weg", "forms": { "pl": "die Wege" }, "grammar": { "article": "der" } },
+  "north": { "text": "Norden", "grammar": { "article": "der" } },
+  "south": { "text": "Süden", "grammar": { "article": "der" } },
+  "east": { "text": "Osten", "grammar": { "article": "der" } },
+  "west": { "text": "Westen", "grammar": { "article": "der" } },
   "go-straight-ahead": {
    "text": "Gehen Sie geradeaus.",
    "accepts": ["Geh geradeaus."],

@@ -2,7 +2,7 @@
  "title": "L'argent et les prix",
  "subtitle": "Ce que coûte une chose et comment on la règle.",
  "words": {
-  "price": { "text": "prix", "grammar": { "gender": "le", "plural": "=" } },
+  "price": { "text": "prix", "grammar": { "article": "le", "plural": "=" } },
   "to-cost": { "text": "coûter" },
   "expensive": { "text": "cher" },
   "cheap": {
@@ -13,23 +13,23 @@
   "to-sell": { "text": "vendre" },
   "cash": {
    "text": "espèces",
-   "grammar": { "gender": "les", "genus": "f", "plural": "only" },
+   "grammar": { "article": "les", "genus": "f", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : payer en espèces." },
    "teaches": ["liquide"]
   },
-  "bank-card": { "text": "carte bancaire", "accepts": ["carte", "carte bleue"], "grammar": { "gender": "la" } },
+  "bank-card": { "text": "carte bancaire", "accepts": ["carte", "carte bleue"], "grammar": { "article": "la" } },
   "coin": {
    "text": "pièce de monnaie",
    "accepts": ["pièce"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "une pièce de deux euros · une pièce est aussi une salle." }
   },
   "change-money": {
    "text": "monnaie",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "le vendeur rend la monnaie · l'euro, le dollar sont des devises." }
   },
-  "money": { "text": "argent", "accepts": ["l'argent"], "grammar": { "gender": "l'", "genus": "m" } },
+  "money": { "text": "argent", "accepts": ["l'argent"], "grammar": { "article": "l'", "genus": "m" } },
   "to-buy": { "text": "acheter" },
   "to-pay": { "text": "payer" },
   "rich": { "text": "riche" },

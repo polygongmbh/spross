@@ -6,29 +6,29 @@
    "text": "nevera",
    "teaches": ["frigorífico"],
    "accepts": ["frigo", "refrigerador", "heladera"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "stove": {
    "text": "fogón",
    "accepts": ["cocina", "placa", "estufa"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": {
     "es": "El fogón es el aparato; la cocina, también el cuarto · encima: en el fuego.",
     "de": "el fogón ist der Herd; la cocina heißt Herd und Küche, die einzelne Kochplatte la placa, „auf dem Herd“ heißt en el fuego."
    }
   },
-  "oven": { "text": "horno", "grammar": { "gender": "el" } },
+  "oven": { "text": "horno", "grammar": { "article": "el" } },
   "dishwasher": {
    "text": "lavavajillas",
    "accepts": ["lavaplatos"],
-   "grammar": { "gender": "el", "plural": "=" }
+   "grammar": { "article": "el", "plural": "=" }
   },
-  "pot": { "text": "olla", "accepts": ["cacerola"], "grammar": { "gender": "la" } },
-  "pan": { "text": "sartén", "grammar": { "gender": "la" } },
-  "knife": { "text": "cuchillo", "grammar": { "gender": "el" } },
-  "spoon": { "text": "cuchara", "grammar": { "gender": "la" } },
-  "fork": { "text": "tenedor", "grammar": { "gender": "el" } },
-  "plate": { "text": "plato", "grammar": { "gender": "el" } },
+  "pot": { "text": "olla", "accepts": ["cacerola"], "grammar": { "article": "la" } },
+  "pan": { "text": "sartén", "grammar": { "article": "la" } },
+  "knife": { "text": "cuchillo", "grammar": { "article": "el" } },
+  "spoon": { "text": "cuchara", "grammar": { "article": "la" } },
+  "fork": { "text": "tenedor", "grammar": { "article": "el" } },
+  "plate": { "text": "plato", "grammar": { "article": "el" } },
   "to-cook": { "text": "cocinar", "notes": { "es": "cocinar es preparar comida; el agua se hierve." } },
   "to-bake": { "text": "hornear", "accepts": ["cocer al horno", "hacer al horno"] },
   "to-cut": { "text": "cortar" },
@@ -40,11 +40,11 @@
   "to-stir": { "text": "remover", "accepts": ["revolver"] },
   "to-take-out-trash": { "text": "sacar la basura" },
   "caution": { "text": "cuidado", "accepts": ["ojo"] },
-  "cup": { "text": "taza", "grammar": { "gender": "la" } },
-  "bowl": { "text": "cuenco", "accepts": ["bol", "tazón"], "grammar": { "gender": "el" } },
-  "basket": { "text": "cesta", "accepts": ["cesto", "canasta"], "grammar": { "gender": "la" } },
-  "tin-can": { "text": "lata", "grammar": { "gender": "la" } },
-  "gas": { "text": "gas", "grammar": { "gender": "el" } },
+  "cup": { "text": "taza", "grammar": { "article": "la" } },
+  "bowl": { "text": "cuenco", "accepts": ["bol", "tazón"], "grammar": { "article": "el" } },
+  "basket": { "text": "cesta", "accepts": ["cesto", "canasta"], "grammar": { "article": "la" } },
+  "tin-can": { "text": "lata", "grammar": { "article": "la" } },
+  "gas": { "text": "gas", "grammar": { "article": "el" } },
   "tasty": { "text": "sabroso", "forms": { "f": "sabrosa" } },
   "the-knife-is-sharp": {
    "text": "¡El cuchillo está afilado!",

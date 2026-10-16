@@ -2,34 +2,34 @@
  "title": "La città",
  "subtitle": "C'è sempre movimento.",
  "words": {
-  "street": { "text": "strada", "grammar": { "gender": "la" } },
-  "park": { "text": "parco", "forms": { "pl": "i parchi" }, "grammar": { "gender": "il" } },
-  "city": { "text": "città", "grammar": { "gender": "la", "plural": "=" } },
+  "street": { "text": "strada", "grammar": { "article": "la" } },
+  "park": { "text": "parco", "forms": { "pl": "i parchi" }, "grammar": { "article": "il" } },
+  "city": { "text": "città", "grammar": { "article": "la", "plural": "=" } },
   "village": {
    "text": "paese",
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il paese è il piccolo centro e anche lo Stato: i paesi europei." }
   },
-  "neighborhood": { "text": "quartiere", "grammar": { "gender": "il" } },
+  "neighborhood": { "text": "quartiere", "grammar": { "article": "il" } },
   "building": {
    "text": "edificio",
    "accepts": ["l'edificio"],
    "forms": { "pl": "gli edifici" },
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
-  "bank": { "text": "banca", "forms": { "pl": "le banche" }, "grammar": { "gender": "la" } },
+  "bank": { "text": "banca", "forms": { "pl": "le banche" }, "grammar": { "article": "la" } },
   "post-office": {
    "text": "posta",
    "teaches": ["ufficio postale"],
    "accepts": ["l'ufficio postale"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "church": { "text": "chiesa", "grammar": { "gender": "la" } },
-  "mosque": { "text": "moschea", "grammar": { "gender": "la" } },
-  "library": { "text": "biblioteca", "forms": { "pl": "le biblioteche" }, "grammar": { "gender": "la" } },
-  "police": { "text": "polizia", "grammar": { "gender": "la" } },
-  "cinema": { "text": "cinema", "grammar": { "gender": "il", "plural": "=" } },
-  "bridge": { "text": "ponte", "grammar": { "gender": "il" } },
+  "church": { "text": "chiesa", "grammar": { "article": "la" } },
+  "mosque": { "text": "moschea", "grammar": { "article": "la" } },
+  "library": { "text": "biblioteca", "forms": { "pl": "le biblioteche" }, "grammar": { "article": "la" } },
+  "police": { "text": "polizia", "grammar": { "article": "la" } },
+  "cinema": { "text": "cinema", "grammar": { "article": "il", "plural": "=" } },
+  "bridge": { "text": "ponte", "grammar": { "article": "il" } },
   "is-there-a-bank-here": {
    "text": "C'è una banca qui?",
    "accepts": ["C'è una banca qui vicino?", "Qui c'è una banca?"],

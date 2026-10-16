@@ -29,9 +29,9 @@
    "text": "endroit",
    "accepts": ["l'endroit"],
    "teaches": ["lieu"],
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
-  "country": { "text": "pays", "grammar": { "gender": "le", "plural": "=" } },
+  "country": { "text": "pays", "grammar": { "article": "le", "plural": "=" } },
   "in-front": { "text": "devant" },
   "next-to": { "text": "à côté de" },
   "to-be-there": { "text": "être là" },
@@ -50,6 +50,6 @@
    "accepts": ["Tu rentres déjà ?"],
    "orders": ["Déjà, vous rentrez ?"]
   },
-  "center": { "text": "centre", "grammar": { "gender": "le" } }
+  "center": { "text": "centre", "grammar": { "article": "le" } }
  }
 }

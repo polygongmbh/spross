@@ -2,20 +2,20 @@
  "title": "Rendez-vous et délais",
  "subtitle": "Pour ne rien laisser passer.",
  "words": {
-  "appointment": { "text": "rendez-vous", "accepts": ["rdv"], "grammar": { "gender": "le", "plural": "=" } },
-  "date": { "text": "date", "grammar": { "gender": "la" } },
+  "appointment": { "text": "rendez-vous", "accepts": ["rdv"], "grammar": { "article": "le", "plural": "=" } },
+  "date": { "text": "date", "grammar": { "article": "la" } },
   "opening-hours": {
    "text": "heures d'ouverture",
    "accepts": ["horaires d'ouverture"],
-   "grammar": { "gender": "les", "genus": "f", "plural": "only" }
+   "grammar": { "article": "les", "genus": "f", "plural": "only" }
   },
   "deadline": {
    "text": "délai",
    "teaches": ["date limite"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "un délai de deux semaines · la date limite est le dernier jour." }
   },
-  "plan": { "text": "plan", "grammar": { "gender": "le" } },
+  "plan": { "text": "plan", "grammar": { "article": "le" } },
   "to-meet": { "text": "se réunir" },
   "to-invite": { "text": "inviter" },
   "to-arrange": {
@@ -30,7 +30,7 @@
   "to-be-late": { "text": "être en retard", "accepts": ["arriver en retard"] },
   "punctual": { "text": "ponctuel", "accepts": ["à l'heure"], "forms": { "f": "ponctuelle" } },
   "urgent": { "text": "urgent", "forms": { "f": "urgente" } },
-  "list": { "text": "liste", "grammar": { "gender": "la" } },
+  "list": { "text": "liste", "grammar": { "article": "la" } },
   "to-finish": { "text": "finir", "teaches": ["terminer"] },
   "to-take-care-of": { "text": "s'occuper de" },
   "i-would-like-to-arrange-an-appointment": {

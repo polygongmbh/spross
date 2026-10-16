@@ -6,57 +6,57 @@
    "text": "médecin",
    "accepts": ["docteur"],
    "forms": { "f": "la docteure" },
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le médecin vaut pour tous · pour une femme : la docteure, une médecin." }
   },
   "practice": {
    "text": "cabinet",
    "accepts": ["cabinet médical"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le cabinet est le lieu · la consultation est le rendez-vous." }
   },
   "pill": {
    "text": "comprimé",
    "accepts": ["cachet"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "on prend un comprimé ou un cachet · la pilule est contraceptive." }
   },
   "prescription": {
    "text": "ordonnance",
    "accepts": ["l'ordonnance"],
-   "grammar": { "gender": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "genus": "f" },
    "notes": { "fr": "le médecin fait une ordonnance, le pharmacien la lit." }
   },
-  "pharmacy": { "text": "pharmacie", "grammar": { "gender": "la" } },
+  "pharmacy": { "text": "pharmacie", "grammar": { "article": "la" } },
   "insurance-card": {
    "text": "carte Vitale",
    "accepts": ["carte d'assurance maladie"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "la carte Vitale est la carte verte de la Sécu : on la donne au médecin." }
   },
   "health-insurance": {
    "text": "assurance maladie",
    "accepts": ["l'assurance maladie"],
-   "grammar": { "gender": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "genus": "f" },
    "notes": { "fr": "la Sécurité sociale (la Sécu) rembourse ; la mutuelle paie le reste." }
   },
   "hospital": {
    "text": "hôpital",
    "accepts": ["l'hôpital"],
    "forms": { "pl": "les hôpitaux" },
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
   "emergency": {
    "text": "urgence",
    "accepts": ["l'urgence"],
-   "grammar": { "gender": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "genus": "f" },
    "notes": { "fr": "à l'hôpital, on va aux urgences, toujours au pluriel." }
   },
   "doctors-note": {
    "text": "arrêt de travail",
    "accepts": ["l'arrêt de travail", "arrêt maladie"],
    "forms": { "pl": "les arrêts de travail" },
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "fr": "le médecin donne un arrêt de travail : on est en arrêt maladie." }
   },
   "to-examine": { "text": "examiner", "accepts": ["ausculter"] },
@@ -69,23 +69,23 @@
   },
   "medicine": {
    "text": "médicament",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "on prend un médicament · la médecine est la science du médecin." }
   },
   "nurse": {
    "text": "infirmier",
    "accepts": ["l'infirmier"],
    "forms": { "f": "l'infirmière" },
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
-  "dentist": { "text": "dentiste", "accepts": ["chirurgien-dentiste"], "grammar": { "gender": "le" } },
+  "dentist": { "text": "dentiste", "accepts": ["chirurgien-dentiste"], "grammar": { "article": "le" } },
   "vaccination": {
    "text": "vaccination",
    "accepts": ["le vaccin"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "la vaccination est l'acte, le vaccin le produit : se faire vacciner." }
   },
-  "ambulance": { "text": "ambulance", "accepts": ["l'ambulance"], "grammar": { "gender": "l'", "genus": "f" } },
+  "ambulance": { "text": "ambulance", "accepts": ["l'ambulance"], "grammar": { "article": "l'", "genus": "f" } },
   "to-look-after": { "text": "soigner" },
   "take-the-pills-twice-daily": {
    "text": "Prenez les comprimés deux fois par jour.",

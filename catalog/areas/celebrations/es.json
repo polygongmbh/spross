@@ -2,15 +2,15 @@
  "title": "Celebraciones",
  "subtitle": "Lo que celebramos juntos.",
  "words": {
-  "celebration": { "text": "fiesta", "teaches": ["celebración"], "grammar": { "gender": "la" } },
+  "celebration": { "text": "fiesta", "teaches": ["celebración"], "grammar": { "article": "la" } },
   "to-celebrate": { "text": "celebrar" },
-  "birthday": { "text": "cumpleaños", "grammar": { "gender": "el", "plural": "=" } },
-  "birthday-party": { "text": "fiesta de cumpleaños", "grammar": { "gender": "la" } },
-  "gift": { "text": "regalo", "grammar": { "gender": "el" } },
+  "birthday": { "text": "cumpleaños", "grammar": { "article": "el", "plural": "=" } },
+  "birthday-party": { "text": "fiesta de cumpleaños", "grammar": { "article": "la" } },
+  "gift": { "text": "regalo", "grammar": { "article": "el" } },
   "to-give-a-present": { "text": "regalar" },
   "to-congratulate": { "text": "felicitar" },
-  "wedding": { "text": "boda", "grammar": { "gender": "la" } },
-  "birth": { "text": "nacimiento", "grammar": { "gender": "el" } },
+  "wedding": { "text": "boda", "grammar": { "article": "la" } },
+  "birth": { "text": "nacimiento", "grammar": { "article": "el" } },
   "we-give-her-something-for-her-birthday": { "text": "Le regalamos algo por su cumpleaños." },
   "i-congratulate-them-on-their-wedding": { "text": "Los felicito por su boda." }
  }

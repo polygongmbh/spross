@@ -4,7 +4,7 @@
  "switzerland": {
   "text": "die Schweiz",
   "accepts": ["Schweiz"],
-  "grammar": { "gender": "die" },
+  "grammar": { "article": "die" },
   "nationality": { "text": "Schweizer", "accepts": ["Schweizerin"] }
  },
  "united-kingdom": {
@@ -15,7 +15,7 @@
  "usa": {
   "text": "die USA",
   "accepts": ["USA", "die Vereinigten Staaten", "Vereinigte Staaten", "Amerika"],
-  "grammar": { "gender": "die", "plural": "only" },
+  "grammar": { "article": "die", "plural": "only" },
   "nationality": { "text": "Amerikaner", "accepts": ["Amerikanerin", "US-Amerikaner"] }
  },
  "spain": { "text": "Spanien", "nationality": { "text": "Spanier", "accepts": ["Spanierin"] } },
@@ -29,7 +29,7 @@
  "ukraine": {
   "text": "die Ukraine",
   "accepts": ["Ukraine"],
-  "grammar": { "gender": "die" },
+  "grammar": { "article": "die" },
   "nationality": { "text": "Ukrainer", "accepts": ["Ukrainerin"] }
  },
  "france": {
@@ -45,7 +45,7 @@
  "netherlands": {
   "text": "die Niederlande",
   "accepts": ["Niederlande", "Holland"],
-  "grammar": { "gender": "die", "plural": "only" },
+  "grammar": { "article": "die", "plural": "only" },
   "nationality": { "text": "Niederländer", "accepts": ["Niederländerin", "Holländer", "Holländerin"] }
  },
  "belgium": { "text": "Belgien", "nationality": { "text": "Belgier", "accepts": ["Belgierin"] } },
@@ -53,7 +53,7 @@
  "turkey": {
   "text": "die Türkei",
   "accepts": ["Türkei"],
-  "grammar": { "gender": "die" },
+  "grammar": { "article": "die" },
   "nationality": { "text": "Türken", "accepts": ["Türke", "Türkin"] }
  },
  "greece": {
@@ -87,7 +87,7 @@
  "slovakia": {
   "text": "die Slowakei",
   "accepts": ["Slowakei"],
-  "grammar": { "gender": "die" },
+  "grammar": { "article": "die" },
   "nationality": { "text": "Slowaken", "accepts": ["Slowake", "Slowakin"] }
  },
  "luxembourg": { "text": "Luxemburg", "nationality": { "text": "Luxemburger", "accepts": ["Luxemburgerin"] } },
@@ -108,7 +108,7 @@
  "iran": {
   "text": "der Iran",
   "accepts": ["Iran"],
-  "grammar": { "gender": "der" },
+  "grammar": { "article": "der" },
   "nationality": { "text": "Iraner", "accepts": ["Iranerin"] }
  },
  "saudi-arabia": {
@@ -126,7 +126,7 @@
  "senegal": {
   "text": "der Senegal",
   "accepts": ["Senegal"],
-  "grammar": { "gender": "der" },
+  "grammar": { "article": "der" },
   "nationality": { "text": "Senegalesen", "accepts": ["Senegalese", "Senegalesin"] }
  },
  "algeria": { "text": "Algerien", "nationality": { "text": "Algerier", "accepts": ["Algerierin"] } },
@@ -134,7 +134,7 @@
  "dr-congo": {
   "text": "die Demokratische Republik Kongo",
   "accepts": ["Demokratische Republik Kongo", "DR Kongo", "Kongo"],
-  "grammar": { "gender": "die" },
+  "grammar": { "article": "die" },
   "nationality": { "text": "Kongolesen", "accepts": ["Kongolese", "Kongolesin"] }
  },
  "mozambique": { "text": "Mosambik", "nationality": { "text": "Mosambikaner", "accepts": ["Mosambikanerin"] } },

@@ -5,41 +5,41 @@
   "washing-machine": {
    "text": "machine à laver",
    "forms": { "pl": "les machines à laver" },
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "laundry": {
    "text": "linge",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le linge, ce sont les vêtements à laver · la lessive, le lavage et le produit." }
   },
   "toilet": {
    "text": "toilettes",
    "accepts": ["WC"],
-   "grammar": { "gender": "les", "genus": "f", "plural": "only" },
+   "grammar": { "article": "les", "genus": "f", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : les toilettes · la toilette, c'est se laver." }
   },
-  "shower": { "text": "douche", "grammar": { "gender": "la" } },
+  "shower": { "text": "douche", "grammar": { "article": "la" } },
   "sink": {
    "text": "lavabo",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le lavabo est dans la salle de bains, l'évier dans la cuisine." }
   },
-  "mirror": { "text": "miroir", "grammar": { "gender": "le" } },
+  "mirror": { "text": "miroir", "grammar": { "article": "le" } },
   "toothbrush": {
    "text": "brosse à dents",
    "forms": { "pl": "les brosses à dents" },
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "toothpaste": { "text": "dentifrice", "grammar": { "gender": "le" } },
+  "toothpaste": { "text": "dentifrice", "grammar": { "article": "le" } },
   "towel": {
    "text": "serviette",
    "accepts": ["serviette de bain"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "serviette de bain pour le corps, serviette de table à table." }
   },
-  "soap": { "text": "savon", "grammar": { "gender": "le" } },
-  "shampoo": { "text": "shampooing", "accepts": ["shampoing"], "grammar": { "gender": "le" } },
-  "hairdryer": { "text": "sèche-cheveux", "grammar": { "gender": "le", "plural": "=" } },
+  "soap": { "text": "savon", "grammar": { "article": "le" } },
+  "shampoo": { "text": "shampooing", "accepts": ["shampoing"], "grammar": { "article": "le" } },
+  "hairdryer": { "text": "sèche-cheveux", "grammar": { "article": "le", "plural": "=" } },
   "to-take-shower": { "text": "se doucher", "accepts": ["prendre une douche"] },
   "to-do-laundry": { "text": "laver le linge", "teaches": ["faire la lessive"] },
   "to-brush-teeth": { "text": "se brosser les dents" },
@@ -49,14 +49,14 @@
   "to-shave": { "text": "se raser" },
   "to-comb-hair": { "text": "se peigner", "accepts": ["se peigner les cheveux", "se coiffer"] },
   "to-apply-lotion": { "text": "se mettre de la crème", "accepts": ["mettre de la crème", "se crémer"] },
-  "bathtub": { "text": "baignoire", "grammar": { "gender": "la" } },
-  "toilet-paper": { "text": "papier toilette", "accepts": ["papier hygiénique"], "grammar": { "gender": "le" } },
-  "razor": { "text": "rasoir", "grammar": { "gender": "le" } },
-  "sponge": { "text": "éponge", "accepts": ["l'éponge"], "grammar": { "gender": "l'", "genus": "f" } },
-  "cream": { "text": "crème", "grammar": { "gender": "la" } },
-  "faucet": { "text": "robinet", "grammar": { "gender": "le" } },
-  "trash-can": { "text": "poubelle", "grammar": { "gender": "la" } },
-  "bucket": { "text": "seau", "forms": { "pl": "les seaux" }, "grammar": { "gender": "le" } },
+  "bathtub": { "text": "baignoire", "grammar": { "article": "la" } },
+  "toilet-paper": { "text": "papier toilette", "accepts": ["papier hygiénique"], "grammar": { "article": "le" } },
+  "razor": { "text": "rasoir", "grammar": { "article": "le" } },
+  "sponge": { "text": "éponge", "accepts": ["l'éponge"], "grammar": { "article": "l'", "genus": "f" } },
+  "cream": { "text": "crème", "grammar": { "article": "la" } },
+  "faucet": { "text": "robinet", "grammar": { "article": "le" } },
+  "trash-can": { "text": "poubelle", "grammar": { "article": "la" } },
+  "bucket": { "text": "seau", "forms": { "pl": "les seaux" }, "grammar": { "article": "le" } },
   "im-taking-a-quick-shower": {
    "text": "Je vais vite me doucher.",
    "accepts": ["Je vais me doucher rapidement.", "Je vais prendre une douche rapide."],

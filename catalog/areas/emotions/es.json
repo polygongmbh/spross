@@ -2,16 +2,16 @@
  "title": "Emociones",
  "subtitle": "Los ánimos que colorean un día.",
  "words": {
-  "joy": { "text": "alegría", "grammar": { "gender": "la" } },
-  "sadness": { "text": "tristeza", "grammar": { "gender": "la" } },
-  "anger": { "text": "ira", "grammar": { "gender": "la" } },
-  "fear": { "text": "miedo", "grammar": { "gender": "el" } },
-  "surprise": { "text": "sorpresa", "grammar": { "gender": "la" } },
-  "worry": { "text": "preocupación", "grammar": { "gender": "la" } },
-  "love": { "text": "amor", "grammar": { "gender": "el" } },
-  "shame": { "text": "vergüenza", "grammar": { "gender": "la" } },
-  "jealousy": { "text": "celos", "grammar": { "gender": "los" } },
-  "smile": { "text": "sonrisa", "grammar": { "gender": "la" } },
+  "joy": { "text": "alegría", "grammar": { "article": "la" } },
+  "sadness": { "text": "tristeza", "grammar": { "article": "la" } },
+  "anger": { "text": "ira", "grammar": { "article": "la" } },
+  "fear": { "text": "miedo", "grammar": { "article": "el" } },
+  "surprise": { "text": "sorpresa", "grammar": { "article": "la" } },
+  "worry": { "text": "preocupación", "grammar": { "article": "la" } },
+  "love": { "text": "amor", "grammar": { "article": "el" } },
+  "shame": { "text": "vergüenza", "grammar": { "article": "la" } },
+  "jealousy": { "text": "celos", "grammar": { "article": "los" } },
+  "smile": { "text": "sonrisa", "grammar": { "article": "la" } },
   "to-smile": { "text": "sonreír" },
   "to-feel": {
    "text": "sentirse",
@@ -19,9 +19,9 @@
    "notes": { "es": "¿Cómo se siente? · en la consulta, ¿Cómo se encuentra?" }
   },
   "to-cry": { "text": "llorar" },
-  "longing": { "text": "anhelo", "grammar": { "gender": "el" } },
+  "longing": { "text": "anhelo", "grammar": { "article": "el" } },
   "to-long-for": { "text": "anhelar" },
-  "doubt": { "text": "duda", "grammar": { "gender": "la" } },
+  "doubt": { "text": "duda", "grammar": { "article": "la" } },
   "to-confuse": { "text": "confundir" },
   "to-be-confused": { "text": "estar confundido" }
  }

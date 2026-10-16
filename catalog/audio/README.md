@@ -172,7 +172,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   `word` is carried rather than derived — cutting a leading article off is a guess, and
   an elided one (`l'acqua`) has no space to cut at.
   The article must be one a card shows in front of that word — a realization's own
-  `grammar.gender`, or the article a tagged form was authored with (`die Lehrerin`) —
+  `grammar.article`, or the article a tagged form was authored with (`die Lehrerin`) —
   because a recording is the only thing that teaches a gender aloud and a wrong one
   teaches it wrong; the `word` may be any form the realization carries, so a file saying
   "der Großvater" ships as a recording of the form it actually says.

@@ -7,10 +7,10 @@
   "to-speak": { "text": "parlare" },
   "to-repeat-word": { "text": "ripetere la parola" },
   "to-ask": { "text": "chiedere", "accepts": ["domandare"] },
-  "question": { "text": "domanda", "grammar": { "gender": "la" } },
-  "answer": { "text": "risposta", "grammar": { "gender": "la" } },
+  "question": { "text": "domanda", "grammar": { "article": "la" } },
+  "answer": { "text": "risposta", "grammar": { "article": "la" } },
   "to-reply": { "text": "rispondere" },
-  "help": { "text": "aiuto", "accepts": ["l'aiuto"], "grammar": { "gender": "l'", "genus": "m" } },
+  "help": { "text": "aiuto", "accepts": ["l'aiuto"], "grammar": { "article": "l'", "genus": "m" } },
   "to-need": {
    "text": "avere bisogno di",
    "accepts": ["avere bisogno"],

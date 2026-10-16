@@ -2,7 +2,7 @@
  "title": "Los colores",
  "subtitle": "Rojo, azul y todo lo demás.",
  "words": {
-  "color": { "text": "color", "grammar": { "gender": "el" } },
+  "color": { "text": "color", "grammar": { "article": "el" } },
   "white": { "text": "blanco", "forms": { "f": "blanca" } },
   "black": { "text": "negro", "forms": { "f": "negra" } },
   "red": { "text": "rojo", "forms": { "f": "roja" } },

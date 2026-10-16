@@ -2,91 +2,91 @@
  "title": "Il corpo",
  "subtitle": "Dalla testa ai piedi.",
  "words": {
-  "head": { "text": "testa", "grammar": { "gender": "la" } },
-  "hair": { "text": "capelli", "grammar": { "gender": "i", "plural": "only" } },
+  "head": { "text": "testa", "grammar": { "article": "la" } },
+  "hair": { "text": "capelli", "grammar": { "article": "i", "plural": "only" } },
   "face": {
    "text": "faccia",
    "teaches": ["viso"],
    "forms": { "pl": "le facce" },
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "eye": {
    "text": "occhio",
    "accepts": ["l'occhio"],
    "forms": { "pl": "gli occhi" },
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
   "ear": {
    "text": "orecchio",
    "accepts": ["l'orecchio"],
    "forms": { "pl": "le orecchie" },
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "it": "un orecchio → due orecchie." }
   },
-  "nose": { "text": "naso", "grammar": { "gender": "il" } },
-  "mouth": { "text": "bocca", "forms": { "pl": "le bocche" }, "grammar": { "gender": "la" } },
-  "tooth": { "text": "dente", "grammar": { "gender": "il" } },
+  "nose": { "text": "naso", "grammar": { "article": "il" } },
+  "mouth": { "text": "bocca", "forms": { "pl": "le bocche" }, "grammar": { "article": "la" } },
+  "tooth": { "text": "dente", "grammar": { "article": "il" } },
   "lip": {
    "text": "labbro",
    "forms": { "pl": "le labbra" },
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "un labbro → due labbra." }
   },
   "hand": {
    "text": "mano",
    "forms": { "pl": "le mani" },
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la mano è femminile nonostante la -o: la mano destra, le mani." }
   },
   "arm": {
    "text": "braccio",
    "forms": { "pl": "le braccia" },
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "un braccio → due braccia." }
   },
-  "foot": { "text": "piede", "grammar": { "gender": "il" } },
-  "leg": { "text": "gamba", "grammar": { "gender": "la" } },
+  "foot": { "text": "piede", "grammar": { "article": "il" } },
+  "leg": { "text": "gamba", "grammar": { "article": "la" } },
   "stomach": {
    "text": "pancia",
    "accepts": ["ventre"],
    "forms": { "pl": "le pance" },
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "mi fa male la pancia · lo stomaco è dentro, il ventre è formale." }
   },
-  "back": { "text": "schiena", "grammar": { "gender": "la" } },
+  "back": { "text": "schiena", "grammar": { "article": "la" } },
   "throat": {
    "text": "gola",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la gola fa male quando si è raffreddati · il collo è fuori." }
   },
-  "shoulder": { "text": "spalla", "grammar": { "gender": "la" } },
+  "shoulder": { "text": "spalla", "grammar": { "article": "la" } },
   "knee": {
    "text": "ginocchio",
    "forms": { "pl": "le ginocchia" },
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "un ginocchio → due ginocchia." }
   },
-  "chest": { "text": "petto", "grammar": { "gender": "il" } },
-  "heart": { "text": "cuore", "grammar": { "gender": "il" } },
-  "blood": { "text": "sangue", "grammar": { "gender": "il" } },
-  "skin": { "text": "pelle", "grammar": { "gender": "la" } },
+  "chest": { "text": "petto", "grammar": { "article": "il" } },
+  "heart": { "text": "cuore", "grammar": { "article": "il" } },
+  "blood": { "text": "sangue", "grammar": { "article": "il" } },
+  "skin": { "text": "pelle", "grammar": { "article": "la" } },
   "bone": {
    "text": "osso",
    "accepts": ["l'osso"],
    "forms": { "pl": "le ossa" },
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "it": "un osso → le ossa del corpo · gli ossi sono quelli per il cane." }
   },
   "finger": {
    "text": "dito",
    "forms": { "pl": "le dita" },
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "un dito → due dita · anche del piede: il dito del piede." }
   },
-  "neck": { "text": "collo", "grammar": { "gender": "il" } },
-  "brain": { "text": "cervello", "forms": { "pl": "i cervelli" }, "grammar": { "gender": "il" } },
-  "muscle": { "text": "muscolo", "forms": { "pl": "i muscoli" }, "grammar": { "gender": "il" } },
-  "nipple": { "text": "capezzolo", "forms": { "pl": "i capezzoli" }, "grammar": { "gender": "il" } },
+  "neck": { "text": "collo", "grammar": { "article": "il" } },
+  "brain": { "text": "cervello", "forms": { "pl": "i cervelli" }, "grammar": { "article": "il" } },
+  "muscle": { "text": "muscolo", "forms": { "pl": "i muscoli" }, "grammar": { "article": "il" } },
+  "nipple": { "text": "capezzolo", "forms": { "pl": "i capezzoli" }, "grammar": { "article": "il" } },
   "my-head-hurts": { "text": "Mi fa male la testa.", "orders": ["La testa mi fa male."] },
   "give-me-your-hand": { "text": "Dammi la mano.", "accepts": ["Dammi la tua mano."] },
   "open-your-mouth": { "text": "Apri la bocca." },

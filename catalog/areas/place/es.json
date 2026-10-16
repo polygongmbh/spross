@@ -22,8 +22,8 @@
   "between": { "text": "entre" },
   "near": { "text": "cerca" },
   "far": { "text": "lejos" },
-  "place": { "text": "lugar", "teaches": ["sitio"], "grammar": { "gender": "el" } },
-  "country": { "text": "país", "forms": { "pl": "los países" }, "grammar": { "gender": "el" } },
+  "place": { "text": "lugar", "teaches": ["sitio"], "grammar": { "article": "el" } },
+  "country": { "text": "país", "forms": { "pl": "los países" }, "grammar": { "article": "el" } },
   "in-front": { "text": "delante" },
   "next-to": { "text": "al lado de" },
   "to-be-there": { "text": "estar" },
@@ -42,6 +42,6 @@
    "accepts": ["¿Ya os vais a casa?", "¿Ya te vas a casa?"],
    "orders": ["¿Se van ya a casa?"]
   },
-  "center": { "text": "centro", "grammar": { "gender": "el" } }
+  "center": { "text": "centro", "grammar": { "article": "el" } }
  }
 }

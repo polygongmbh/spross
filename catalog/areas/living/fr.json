@@ -2,39 +2,39 @@
  "title": "Le salon",
  "subtitle": "L'heure de se détendre.",
  "words": {
-  "sofa": { "text": "canapé", "accepts": ["sofa"], "grammar": { "gender": "le" } },
+  "sofa": { "text": "canapé", "accepts": ["sofa"], "grammar": { "article": "le" } },
   "dining-table": {
    "text": "table à manger",
    "accepts": ["table de salle à manger"],
    "forms": { "pl": "les tables à manger" },
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "chair": { "text": "chaise", "grammar": { "gender": "la" } },
+  "chair": { "text": "chaise", "grammar": { "article": "la" } },
   "tv": {
    "text": "télévision",
    "teaches": ["téléviseur"],
    "accepts": ["télé"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "fr": "on dit la télé · le téléviseur est l'appareil.",
     "de": "im Alltag fast immer la télé; le téléviseur ist das Gerät, la télévision auch das Programm."
    }
   },
-  "remote": { "text": "télécommande", "grammar": { "gender": "la" } },
-  "floor": { "text": "sol", "grammar": { "gender": "le" } },
-  "song": { "text": "chanson", "grammar": { "gender": "la" } },
-  "story": { "text": "étage", "grammar": { "gender": "le" } },
-  "shelf": { "text": "étagère", "accepts": ["l'étagère"], "grammar": { "gender": "l'", "genus": "f" } },
-  "plant": { "text": "plante", "grammar": { "gender": "la" } },
-  "window": { "text": "fenêtre", "grammar": { "gender": "la" } },
-  "curtain": { "text": "rideau", "forms": { "pl": "les rideaux" }, "grammar": { "gender": "le" } },
-  "carpet": { "text": "tapis", "grammar": { "gender": "le", "plural": "=" } },
-  "lamp": { "text": "lampe", "grammar": { "gender": "la" } },
-  "clock": { "text": "horloge", "accepts": ["pendule"], "grammar": { "gender": "l'", "genus": "f" } },
+  "remote": { "text": "télécommande", "grammar": { "article": "la" } },
+  "floor": { "text": "sol", "grammar": { "article": "le" } },
+  "song": { "text": "chanson", "grammar": { "article": "la" } },
+  "story": { "text": "étage", "grammar": { "article": "le" } },
+  "shelf": { "text": "étagère", "accepts": ["l'étagère"], "grammar": { "article": "l'", "genus": "f" } },
+  "plant": { "text": "plante", "grammar": { "article": "la" } },
+  "window": { "text": "fenêtre", "grammar": { "article": "la" } },
+  "curtain": { "text": "rideau", "forms": { "pl": "les rideaux" }, "grammar": { "article": "le" } },
+  "carpet": { "text": "tapis", "grammar": { "article": "le", "plural": "=" } },
+  "lamp": { "text": "lampe", "grammar": { "article": "la" } },
+  "clock": { "text": "horloge", "accepts": ["pendule"], "grammar": { "article": "l'", "genus": "f" } },
   "picture": {
    "text": "tableau",
    "forms": { "pl": "les tableaux" },
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "un tableau au mur · à l'école, le tableau où le maître écrit." }
   },
   "to-watch-tv": { "text": "regarder la télévision", "accepts": ["regarder la télé"] },
@@ -52,13 +52,13 @@
   },
   "room": {
    "text": "pièce",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "un appartement de trois pièces · la chambre est pour dormir." }
   },
-  "newspaper": { "text": "journal", "forms": { "pl": "les journaux" }, "grammar": { "gender": "le" } },
-  "light": { "text": "lumière", "grammar": { "gender": "la" } },
-  "wall": { "text": "mur", "grammar": { "gender": "le" } },
-  "movie": { "text": "film", "grammar": { "gender": "le" } },
+  "newspaper": { "text": "journal", "forms": { "pl": "les journaux" }, "grammar": { "article": "le" } },
+  "light": { "text": "lumière", "grammar": { "article": "la" } },
+  "wall": { "text": "mur", "grammar": { "article": "le" } },
+  "movie": { "text": "film", "grammar": { "article": "le" } },
   "to-sit": {
    "text": "s'asseoir",
    "accepts": ["être assis"],
@@ -67,10 +67,10 @@
   "to-laugh": { "text": "rire" },
   "furniture": {
    "text": "meubles",
-   "grammar": { "gender": "les", "genus": "m" },
+   "grammar": { "article": "les", "genus": "m" },
    "notes": { "fr": "au pluriel : les meubles · un meuble, c'est une chaise, une table." }
   },
-  "game": { "text": "jeu", "forms": { "pl": "les jeux" }, "grammar": { "gender": "le" } },
+  "game": { "text": "jeu", "forms": { "pl": "les jeux" }, "grammar": { "article": "le" } },
   "come-sit-with-me": {
    "text": "Viens, assieds-toi à côté de moi !",
    "accepts": ["Viens t'asseoir à côté de moi !", "Viens, assieds-toi près de moi !"]

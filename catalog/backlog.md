@@ -58,7 +58,7 @@ Neighbors: app and code issues `../docs/backlog.md`.
   frame — ordinals are drilled bare meanwhile (`docs/number-forms.md`), and Swahili cannot
   drill them at all.
 - Swahili noun class is a frame-only fact (`swahiliNounClass` names it per phrase frame) while
-  the nouns carry no class the way de/fr/es nouns carry `grammar.gender`; a catalog
+  the nouns carry no class the way de/fr/es nouns carry `grammar.article`; a catalog
   `"grammar": { "class": "KI_VI" }` on `catalog/areas/*/sw.json` would let an author state it
   once for the frames, the card itself and a future concord drill.
 
@@ -96,7 +96,7 @@ Neighbors: app and code issues `../docs/backlog.md`.
   (`data/orchestration/audio-langs-2026-07/es-content/final/REPORT.md` §5 A first, then the
   seven `drafts/*-notes.md` "Review disputes"; method `../../docs/sprachposter-learnings.md`),
   while five cross-cutting rulings stay with the catalog owner (REPORT §5 C: C2 `desk/internet`
-  ships without `gender`, C3 cross-gender synonyms under the wrong article tint, C6 `accepts`
+  ships without `article`, C3 cross-gender synonyms under the wrong article tint, C6 `accepts`
   as a demotion bucket, C7 Tatoeba-verbatim strings, C8 cross-area accept-set overlaps) — rule
   on each, or delegate them to the native reviewer with the disputes?
 - 38 open questions on `catalog/alphabet/{uk,de,es}.json` wait on a native sweep — 12 uk («йот»

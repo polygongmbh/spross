@@ -8,7 +8,7 @@
    "accepts": ["distinta", "distintos"],
    "forms": { "pl": "diferentes" }
   },
-  "difference": { "text": "diferencia", "grammar": { "gender": "la" } },
+  "difference": { "text": "diferencia", "grammar": { "article": "la" } },
   "real": { "text": "real" },
   "same": {
    "text": "mismo",
@@ -28,7 +28,7 @@
   "neutral": { "text": "neutral", "accepts": ["neutro"] },
   "aggressive": { "text": "agresivo", "forms": { "f": "agresiva" } },
   "defensive": { "text": "defensivo", "forms": { "f": "defensiva" } },
-  "equality": { "text": "igualdad", "grammar": { "gender": "la" } },
+  "equality": { "text": "igualdad", "grammar": { "article": "la" } },
   "than": { "text": "que", "notes": { "es": "más grande que yo." } }
  }
 }

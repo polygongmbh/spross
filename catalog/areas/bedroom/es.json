@@ -2,22 +2,22 @@
  "title": "El dormitorio",
  "subtitle": "Hora de acostarse.",
  "words": {
-  "bed": { "text": "cama", "grammar": { "gender": "la" } },
-  "mattress": { "text": "colchón", "grammar": { "gender": "el" } },
-  "pillow": { "text": "almohada", "grammar": { "gender": "la" } },
-  "blanket": { "text": "manta", "accepts": ["frazada", "cobija"], "grammar": { "gender": "la" } },
-  "bedding": { "text": "ropa de cama", "grammar": { "gender": "la" } },
-  "wardrobe": { "text": "armario", "accepts": ["ropero", "clóset"], "grammar": { "gender": "el" } },
-  "alarm-clock": { "text": "despertador", "grammar": { "gender": "el" } },
+  "bed": { "text": "cama", "grammar": { "article": "la" } },
+  "mattress": { "text": "colchón", "grammar": { "article": "el" } },
+  "pillow": { "text": "almohada", "grammar": { "article": "la" } },
+  "blanket": { "text": "manta", "accepts": ["frazada", "cobija"], "grammar": { "article": "la" } },
+  "bedding": { "text": "ropa de cama", "grammar": { "article": "la" } },
+  "wardrobe": { "text": "armario", "accepts": ["ropero", "clóset"], "grammar": { "article": "el" } },
+  "alarm-clock": { "text": "despertador", "grammar": { "article": "el" } },
   "nightstand": {
    "text": "mesilla de noche",
    "accepts": ["mesita de noche", "mesilla", "velador"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "pajamas": { "text": "pijama", "accepts": ["piyama"], "grammar": { "gender": "el" } },
-  "sock": { "text": "calcetín", "accepts": ["media"], "grammar": { "gender": "el" } },
-  "pants": { "text": "pantalones", "accepts": ["pantalón"], "grammar": { "gender": "los" } },
-  "t-shirt": { "text": "camiseta", "accepts": ["playera", "remera"], "grammar": { "gender": "la" } },
+  "pajamas": { "text": "pijama", "accepts": ["piyama"], "grammar": { "article": "el" } },
+  "sock": { "text": "calcetín", "accepts": ["media"], "grammar": { "article": "el" } },
+  "pants": { "text": "pantalones", "accepts": ["pantalón"], "grammar": { "article": "los" } },
+  "t-shirt": { "text": "camiseta", "accepts": ["playera", "remera"], "grammar": { "article": "la" } },
   "to-sleep": { "text": "dormir" },
   "to-wake-up": { "text": "despertarse" },
   "to-get-up": { "text": "levantarse" },
@@ -25,17 +25,17 @@
   "to-cuddle": { "text": "acurrucarse", "teaches": ["hacerse mimos"], "accepts": ["achucharse", "abrazarse"] },
   "to-yawn": { "text": "bostezar" },
   "to-snore": { "text": "roncar" },
-  "clothes": { "text": "ropa", "grammar": { "gender": "la" } },
-  "shirt": { "text": "camisa", "grammar": { "gender": "la" } },
-  "dress": { "text": "vestido", "grammar": { "gender": "el" } },
+  "clothes": { "text": "ropa", "grammar": { "article": "la" } },
+  "shirt": { "text": "camisa", "grammar": { "article": "la" } },
+  "dress": { "text": "vestido", "grammar": { "article": "el" } },
   "sweater": {
    "text": "jersey",
    "accepts": ["jerséi", "suéter"],
    "forms": { "pl": "los jerséis" },
-   "grammar": { "gender": "el" }
+   "grammar": { "article": "el" }
   },
-  "underwear": { "text": "ropa interior", "grammar": { "gender": "la" } },
-  "belt": { "text": "cinturón", "accepts": ["correa"], "grammar": { "gender": "el" } },
+  "underwear": { "text": "ropa interior", "grammar": { "article": "la" } },
+  "belt": { "text": "cinturón", "accepts": ["correa"], "grammar": { "article": "el" } },
   "to-make-bed": { "text": "hacer la cama" },
   "soft": {
    "text": "blando",
@@ -54,6 +54,6 @@
    "notes": { "es": "Te quiero en el día a día; te amo suena a película." }
   },
   "i-have-to-rest": { "text": "Tengo que descansar." },
-  "soft-mattress": { "text": "colchón blando", "grammar": { "gender": "el" } }
+  "soft-mattress": { "text": "colchón blando", "grammar": { "article": "el" } }
  }
 }

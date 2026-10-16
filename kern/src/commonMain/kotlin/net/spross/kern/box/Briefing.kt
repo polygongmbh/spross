@@ -183,7 +183,7 @@ object Briefings {
 
     /** The target form as the brief writes it — with its article, like every spoken one. */
     private fun targetForm(card: Card): String =
-        articledForm(card.target.grammar["gender"], card.target.text)
+        articledForm(card.target.grammar["article"], card.target.text)
 
     /** ENGLISH first — the brief's own language — then the learner's, then the bare key. */
     private fun areaTitle(catalog: Catalog, state: BoxState, area: String): String =

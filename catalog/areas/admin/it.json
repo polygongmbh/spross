@@ -7,40 +7,40 @@
    "teaches": ["pubblica amministrazione"],
    "accepts": ["l'ufficio pubblico"],
    "forms": { "pl": "gli uffici pubblici" },
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "it": "il comune, l'anagrafe, la questura: ogni ufficio ha il suo nome." }
   },
   "application": {
    "text": "richiesta",
    "accepts": ["domanda", "istanza"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la richiesta e la domanda sono la stessa cosa: presentare domanda." }
   },
   "id-card": {
    "text": "carta d'identità",
    "accepts": ["carta di identità"],
    "forms": { "pl": "le carte d'identità" },
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la carta d'identità è di tutti · gli stranieri hanno il permesso di soggiorno." }
   },
-  "residence-permit": { "text": "permesso di soggiorno", "grammar": { "gender": "il" } },
+  "residence-permit": { "text": "permesso di soggiorno", "grammar": { "article": "il" } },
   "ticket-number": {
    "text": "numero di attesa",
    "accepts": ["numero", "numerino", "numero d'attesa"],
-   "grammar": { "gender": "il" }
+   "grammar": { "article": "il" }
   },
   "case-worker": {
    "text": "impiegato",
    "teaches": ["funzionario"],
    "accepts": ["l'impiegato", "un'impiegata"],
    "forms": { "f": ["l'impiegata", "la funzionaria"] },
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "it": "l'impiegato sta allo sportello · il funzionario decide la pratica." }
   },
   "registration": {
    "text": "iscrizione anagrafica",
    "accepts": ["l'iscrizione anagrafica", "un'iscrizione anagrafica", "residenza", "cambio di residenza"],
-   "grammar": { "gender": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "genus": "f" },
    "notes": {
     "it": "si dice fare la residenza e si fa al comune.",
     "de": "Die Wohnsitzanmeldung heißt iscrizione anagrafica; im Alltag sagt man fare la residenza, angemeldet wird man beim comune."
@@ -48,7 +48,7 @@
   },
   "documents": {
    "text": "documenti",
-   "grammar": { "gender": "i" },
+   "grammar": { "article": "i" },
    "notes": { "it": "i documenti sono anche la carta d'identità: Documenti, per favore!" }
   },
   "to-sign": { "text": "firmare" },
@@ -66,47 +66,47 @@
   },
   "to-bring": { "text": "portare" },
   "to-copy": { "text": "copiare", "accepts": ["fotocopiare"] },
-  "passport": { "text": "passaporto", "grammar": { "gender": "il" } },
-  "certificate": { "text": "certificato", "accepts": ["attestato"], "grammar": { "gender": "il" } },
+  "passport": { "text": "passaporto", "grammar": { "article": "il" } },
+  "certificate": { "text": "certificato", "accepts": ["attestato"], "grammar": { "article": "il" } },
   "birth-certificate": {
    "text": "certificato di nascita",
    "teaches": ["atto di nascita"],
-   "grammar": { "gender": "il" }
+   "grammar": { "article": "il" }
   },
   "notification": {
    "text": "comunicazione",
    "teaches": ["provvedimento"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la comunicazione è la lettera che arriva · il provvedimento è la decisione." }
   },
   "fee": {
    "text": "tassa",
    "accepts": ["contributo"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la tassa si paga per un servizio · l'imposta è quella sul reddito." }
   },
   "office-hours": {
    "text": "orario di ricevimento",
    "accepts": ["l'orario di ricevimento", "orario di ricevimento al pubblico"],
    "forms": { "pl": "gli orari di ricevimento" },
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "it": "di ricevimento = quando ricevono il pubblico · di apertura = quando è aperto." }
   },
-  "waiting-room": { "text": "sala d'attesa", "accepts": ["sala di attesa"], "grammar": { "gender": "la" } },
+  "waiting-room": { "text": "sala d'attesa", "accepts": ["sala di attesa"], "grammar": { "article": "la" } },
   "to-reject": {
    "text": "respingere",
    "teaches": ["rifiutare"],
    "notes": { "it": "una domanda viene respinta · rifiutare è dire di no a qualcosa." }
   },
   "to-approve": { "text": "approvare", "accepts": ["autorizzare", "concedere"] },
-  "law": { "text": "legge", "grammar": { "gender": "la" } },
-  "visa": { "text": "visto", "grammar": { "gender": "il" } },
-  "fine": { "text": "multa", "grammar": { "gender": "la" } },
-  "receipt": { "text": "ricevuta", "accepts": ["scontrino"], "grammar": { "gender": "la" } },
+  "law": { "text": "legge", "grammar": { "article": "la" } },
+  "visa": { "text": "visto", "grammar": { "article": "il" } },
+  "fine": { "text": "multa", "grammar": { "article": "la" } },
+  "receipt": { "text": "ricevuta", "accepts": ["scontrino"], "grammar": { "article": "la" } },
   "authority": {
    "text": "autorità",
    "accepts": ["l'autorità", "ente pubblico"],
-   "grammar": { "gender": "l'", "genus": "f", "plural": "=" }
+   "grammar": { "article": "l'", "genus": "f", "plural": "=" }
   },
   "responsible": { "text": "responsabile", "accepts": ["competente"] },
   "to-submit-application": { "text": "presentare una domanda", "accepts": ["presentare una richiesta", "fare domanda"] },

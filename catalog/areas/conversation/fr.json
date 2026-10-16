@@ -22,10 +22,10 @@
     "de": "demander heißt fragen und um etwas bitten: demander l'addition · eine Frage stellen ist poser une question."
    }
   },
-  "question": { "text": "question", "grammar": { "gender": "la" } },
-  "answer": { "text": "réponse", "grammar": { "gender": "la" } },
+  "question": { "text": "question", "grammar": { "article": "la" } },
+  "answer": { "text": "réponse", "grammar": { "article": "la" } },
   "to-reply": { "text": "répondre", "notes": { "fr": "répondre à la question · répondre à Paul." } },
-  "help": { "text": "aide", "accepts": ["l'aide"], "grammar": { "gender": "l'", "genus": "f" } },
+  "help": { "text": "aide", "accepts": ["l'aide"], "grammar": { "article": "l'", "genus": "f" } },
   "to-need": { "text": "avoir besoin de" },
   "to-know-something": { "text": "savoir", "notes": { "fr": "savoir nager, savoir où c'est." } },
   "to-know-person": { "text": "connaître quelqu'un", "notes": { "fr": "aussi les lieux : connaître Paris." } },

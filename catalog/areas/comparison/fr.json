@@ -3,7 +3,7 @@
  "subtitle": "Pareil, différent, pour ou contre.",
  "words": {
   "different": { "text": "différent", "forms": { "f": "différente", "pl": "différents" } },
-  "difference": { "text": "différence", "grammar": { "gender": "la" } },
+  "difference": { "text": "différence", "grammar": { "article": "la" } },
   "real": { "text": "réel" },
   "same": {
    "text": "même",
@@ -18,7 +18,7 @@
   "neutral": { "text": "neutre" },
   "aggressive": { "text": "agressif", "forms": { "f": "agressive" } },
   "defensive": { "text": "défensif", "forms": { "f": "défensive" } },
-  "equality": { "text": "égalité", "grammar": { "gender": "l'", "genus": "f" }, "accepts": ["l'égalité"] },
+  "equality": { "text": "égalité", "grammar": { "article": "l'", "genus": "f" }, "accepts": ["l'égalité"] },
   "than": { "text": "que", "notes": { "fr": "plus grand que moi." } }
  }
 }

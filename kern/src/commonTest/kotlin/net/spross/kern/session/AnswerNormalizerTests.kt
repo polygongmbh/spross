@@ -140,10 +140,10 @@ class AnswerNormalizerTests {
 
     @Test
     fun typoToleranceScalesWithLength() {
-        val kuehlschrank = card("de", "Kühlschrank", grammar = mapOf("gender" to "der"))
+        val kuehlschrank = card("de", "Kühlschrank", grammar = mapOf("article" to "der"))
         // corrected carries the catalog spelling, never the lowercased comparison form
         assertEquals(Match.Typo("Kühlschrank"), de.evaluate("Kuhlschrank", kuehlschrank))
-        val spuelmaschine = card("de", "Spülmaschine", grammar = mapOf("gender" to "die"))
+        val spuelmaschine = card("de", "Spülmaschine", grammar = mapOf("article" to "die"))
         assertEquals(Match.Typo("Spülmaschine"), de.evaluate("Spolmascine", spuelmaschine)) // long: two slips
         assertEquals(Match.Wrong, de.evaluate("Spilmoskina", spuelmaschine))
         assertEquals(Match.Typo("friji"), sw.evaluate("firji", card("sw", "friji"))) // transposition
@@ -184,7 +184,7 @@ class AnswerNormalizerTests {
      */
     @Test
     fun germanUmlautDigraphsFoldLikeEsszett() {
-        val kueche = card("de", "Küche", grammar = mapOf("gender" to "die"))
+        val kueche = card("de", "Küche", grammar = mapOf("article" to "die"))
         assertEquals(Match.Exact, deDigraphs.evaluate("Kueche", kueche))
         assertEquals(Match.Exact, deDigraphs.evaluate("Küche", kueche))
         assertEquals(Match.Exact, deDigraphs.evaluate("Küche", card("de", "Kueche")))
@@ -257,14 +257,14 @@ class AnswerNormalizerTests {
     /** A `teaches` entry is another word whose article the catalog does not know; text and `accepts` share the card's. */
     @Test
     fun aTaughtAlternatesOwnArticleNeverDemotes() {
-        val vaccine = card("it", "vaccino", grammar = mapOf("gender" to "il"), teaches = listOf("vaccinazione"))
+        val vaccine = card("it", "vaccino", grammar = mapOf("article" to "il"), teaches = listOf("vaccinazione"))
         assertEquals(Match.Exact, it.evaluate("la vaccinazione", vaccine))
         assertEquals(Match.Exact, it.evaluate("il vaccino", vaccine))
         assertEquals(Match.Typo("vaccino"), it.evaluate("la vaccino", vaccine))
-        val medicine = card("it", "medicina", grammar = mapOf("gender" to "la"), teaches = listOf("farmaco"))
+        val medicine = card("it", "medicina", grammar = mapOf("article" to "la"), teaches = listOf("farmaco"))
         assertEquals(Match.Exact, it.evaluate("il farmaco", medicine))
         // A variant is a surface of the same word, so the card's article still binds it.
-        val water = card("it", "acqua", grammar = mapOf("gender" to "l'"), accepts = listOf("l'acqua"))
+        val water = card("it", "acqua", grammar = mapOf("article" to "l'"), accepts = listOf("l'acqua"))
         assertEquals(Match.Exact, it.evaluate("l'acqua", water))
         assertEquals(Match.Typo("acqua"), it.evaluate("la acqua", water))
     }
@@ -272,7 +272,7 @@ class AnswerNormalizerTests {
     /** An `accepts` entry authored with its own article is read back against that article, not the card's. */
     @Test
     fun anAcceptedFormsOwnArticleBindsIt() {
-        val vaccination = card("fr", "vaccination", grammar = mapOf("gender" to "la"), accepts = listOf("le vaccin"))
+        val vaccination = card("fr", "vaccination", grammar = mapOf("article" to "la"), accepts = listOf("le vaccin"))
         assertEquals(Match.Exact, fr.evaluate("le vaccin", vaccination))
         assertEquals(Match.Exact, fr.evaluate("vaccin", vaccination))
         assertEquals(Match.Typo("le vaccin"), fr.evaluate("la vaccin", vaccination))

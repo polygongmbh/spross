@@ -2,11 +2,11 @@
  "title": "El cuarto de baño",
  "subtitle": "Fresco y limpio.",
  "words": {
-  "washing-machine": { "text": "lavadora", "accepts": ["lavarropas"], "grammar": { "gender": "la" } },
+  "washing-machine": { "text": "lavadora", "accepts": ["lavarropas"], "grammar": { "article": "la" } },
   "laundry": {
    "text": "colada",
    "accepts": ["ropa sucia"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "es": "La colada es la ropa que se lava o se tiende.",
     "de": "die Wäsche als Ladung, die man wäscht oder aufhängt; Kleidung allgemein ist la ropa"
@@ -16,26 +16,26 @@
    "text": "inodoro",
    "teaches": ["váter"],
    "accepts": ["wáter", "retrete"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": {
     "es": "En casa, el váter; en un bar se pregunta por los servicios o el aseo.",
     "de": "el inodoro ist das neutrale Wort für die Schüssel, umgangssprachlich sagt man in Spanien el váter; nach der öffentlichen Toilette fragt man mit los servicios oder el aseo"
    }
   },
-  "shower": { "text": "ducha", "accepts": ["regadera"], "grammar": { "gender": "la" } },
-  "sink": { "text": "lavabo", "accepts": ["lavamanos"], "grammar": { "gender": "el" } },
-  "mirror": { "text": "espejo", "grammar": { "gender": "el" } },
-  "toothbrush": { "text": "cepillo de dientes", "grammar": { "gender": "el" } },
+  "shower": { "text": "ducha", "accepts": ["regadera"], "grammar": { "article": "la" } },
+  "sink": { "text": "lavabo", "accepts": ["lavamanos"], "grammar": { "article": "el" } },
+  "mirror": { "text": "espejo", "grammar": { "article": "el" } },
+  "toothbrush": { "text": "cepillo de dientes", "grammar": { "article": "el" } },
   "toothpaste": {
    "text": "pasta de dientes",
    "teaches": ["dentífrico"],
    "accepts": ["pasta dentífrica"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "towel": { "text": "toalla", "grammar": { "gender": "la" } },
-  "soap": { "text": "jabón", "grammar": { "gender": "el" } },
-  "shampoo": { "text": "champú", "grammar": { "gender": "el" } },
-  "hairdryer": { "text": "secador", "accepts": ["secador de pelo"], "grammar": { "gender": "el" } },
+  "towel": { "text": "toalla", "grammar": { "article": "la" } },
+  "soap": { "text": "jabón", "grammar": { "article": "el" } },
+  "shampoo": { "text": "champú", "grammar": { "article": "el" } },
+  "hairdryer": { "text": "secador", "accepts": ["secador de pelo"], "grammar": { "article": "el" } },
   "to-take-shower": { "text": "ducharse" },
   "to-do-laundry": { "text": "hacer la colada", "accepts": ["lavar la ropa", "poner una lavadora"] },
   "to-brush-teeth": { "text": "lavarse los dientes", "teaches": ["cepillarse los dientes"] },
@@ -45,22 +45,22 @@
   "to-shave": { "text": "afeitarse", "accepts": ["rasurarse"] },
   "to-comb-hair": { "text": "peinarse", "accepts": ["peinarse el pelo"] },
   "to-apply-lotion": { "text": "ponerse crema", "accepts": ["echarse crema", "darse crema", "aplicarse crema"] },
-  "bathtub": { "text": "bañera", "accepts": ["tina"], "grammar": { "gender": "la" } },
-  "toilet-paper": { "text": "papel higiénico", "accepts": ["papel de váter"], "grammar": { "gender": "el" } },
+  "bathtub": { "text": "bañera", "accepts": ["tina"], "grammar": { "article": "la" } },
+  "toilet-paper": { "text": "papel higiénico", "accepts": ["papel de váter"], "grammar": { "article": "el" } },
   "razor": {
    "text": "maquinilla de afeitar",
    "accepts": ["maquinilla", "cuchilla de afeitar"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "sponge": { "text": "esponja", "grammar": { "gender": "la" } },
-  "cream": { "text": "crema", "grammar": { "gender": "la" } },
-  "faucet": { "text": "grifo", "accepts": ["canilla", "llave del agua"], "grammar": { "gender": "el" } },
+  "sponge": { "text": "esponja", "grammar": { "article": "la" } },
+  "cream": { "text": "crema", "grammar": { "article": "la" } },
+  "faucet": { "text": "grifo", "accepts": ["canilla", "llave del agua"], "grammar": { "article": "el" } },
   "trash-can": {
    "text": "cubo de la basura",
    "accepts": ["papelera", "basurero", "bote de basura"],
-   "grammar": { "gender": "el" }
+   "grammar": { "article": "el" }
   },
-  "bucket": { "text": "cubo", "accepts": ["balde"], "grammar": { "gender": "el" } },
+  "bucket": { "text": "cubo", "accepts": ["balde"], "grammar": { "article": "el" } },
   "im-taking-a-quick-shower": {
    "text": "Me voy a duchar rápido.",
    "accepts": ["Voy a ducharme rápido.", "Me doy una ducha rápida."]

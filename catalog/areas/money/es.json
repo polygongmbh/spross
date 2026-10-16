@@ -2,25 +2,25 @@
  "title": "Dinero y precios",
  "subtitle": "Lo que cuesta algo y cómo se paga.",
  "words": {
-  "price": { "text": "precio", "grammar": { "gender": "el" } },
+  "price": { "text": "precio", "grammar": { "article": "el" } },
   "to-cost": { "text": "costar", "notes": { "es": "o → ue: cuesta, cuestan." } },
   "expensive": { "text": "caro" },
   "cheap": { "text": "barato" },
   "to-sell": { "text": "vender" },
-  "cash": { "text": "efectivo", "grammar": { "gender": "el" }, "notes": { "es": "pagar en efectivo." } },
+  "cash": { "text": "efectivo", "grammar": { "article": "el" }, "notes": { "es": "pagar en efectivo." } },
   "bank-card": {
    "text": "tarjeta",
    "accepts": ["tarjeta bancaria", "tarjeta de crédito"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "coin": { "text": "moneda", "grammar": { "gender": "la" } },
+  "coin": { "text": "moneda", "grammar": { "article": "la" } },
   "change-money": {
    "text": "cambio",
    "accepts": ["vuelto", "vuelta"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "En España el cambio; en gran parte de América, el vuelto." }
   },
-  "money": { "text": "dinero", "accepts": ["plata"], "grammar": { "gender": "el" } },
+  "money": { "text": "dinero", "accepts": ["plata"], "grammar": { "article": "el" } },
   "to-buy": { "text": "comprar" },
   "to-pay": { "text": "pagar" },
   "rich": { "text": "rico" },

@@ -5,18 +5,18 @@
   "office": {
    "text": "administration",
    "accepts": ["l'administration"],
-   "grammar": { "gender": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "genus": "f" },
    "notes": { "fr": "la mairie pour la commune, la préfecture pour les papiers." }
   },
   "application": {
    "text": "demande",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "faire une demande de titre de séjour, une demande de bourse." }
   },
   "id-card": {
    "text": "carte d'identité",
    "accepts": ["carte nationale d'identité", "CNI"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "fr": "la carte nationale d'identité (CNI) est celle des Français.",
     "de": "Der französische Ausweis ist la carte nationale d'identité (CNI); Ausländer bekommen stattdessen un titre de séjour."
@@ -25,26 +25,26 @@
   "residence-permit": {
    "text": "titre de séjour",
    "teaches": ["carte de séjour"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le titre de séjour est le droit, la carte de séjour le papier." }
   },
   "ticket-number": {
    "text": "numéro d'attente",
    "accepts": ["ticket d'attente", "numéro"],
-   "grammar": { "gender": "le" }
+   "grammar": { "article": "le" }
   },
   "case-worker": {
    "text": "employé",
    "teaches": ["agent"],
    "accepts": ["l'employé", "l'agent"],
    "forms": { "f": "l'employée" },
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "fr": "au guichet : l'employé ou l'agent · le gestionnaire suit le dossier." }
   },
   "registration": {
    "text": "inscription",
    "accepts": ["l'inscription"],
-   "grammar": { "gender": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "genus": "f" },
    "notes": {
     "fr": "l'inscription sur les listes électorales, à la Sécu, à l'école.",
     "de": "In Frankreich gibt es keine Meldepflicht; l'inscription ist die Eintragung in ein Register, etwa auf der Wählerliste oder bei der Krankenkasse."
@@ -53,7 +53,7 @@
   "documents": {
    "text": "documents",
    "teaches": ["papiers"],
-   "grammar": { "gender": "les", "genus": "m" },
+   "grammar": { "article": "les", "genus": "m" },
    "notes": { "fr": "au guichet on demande vos papiers · à l'écrit, les documents." }
   },
   "to-sign": { "text": "signer" },
@@ -80,52 +80,52 @@
    }
   },
   "to-copy": { "text": "copier", "accepts": ["photocopier"] },
-  "passport": { "text": "passeport", "grammar": { "gender": "le" } },
+  "passport": { "text": "passeport", "grammar": { "article": "le" } },
   "certificate": {
    "text": "attestation",
    "accepts": ["l'attestation", "certificat"],
-   "grammar": { "gender": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "genus": "f" },
    "notes": { "fr": "l'attestation vient de l'administration, le certificat du médecin." }
   },
   "birth-certificate": {
    "text": "acte de naissance",
    "accepts": ["l'acte de naissance", "extrait de naissance"],
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
   "notification": {
    "text": "décision",
    "teaches": ["notification"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "la décision est la réponse · la notification est la lettre qui l'apporte." }
   },
   "fee": {
    "text": "frais",
    "accepts": ["frais de dossier"],
-   "grammar": { "gender": "les", "genus": "m", "plural": "only" },
+   "grammar": { "article": "les", "genus": "m", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : les frais de dossier, les frais de port." }
   },
   "office-hours": {
    "text": "horaires d'accueil",
    "accepts": ["heures d'accueil", "horaires d'ouverture"],
-   "grammar": { "gender": "les", "genus": "m" },
+   "grammar": { "article": "les", "genus": "m" },
    "notes": { "fr": "les horaires d'accueil du public · une permanence est un jour précis." }
   },
-  "waiting-room": { "text": "salle d'attente", "grammar": { "gender": "la" } },
+  "waiting-room": { "text": "salle d'attente", "grammar": { "article": "la" } },
   "to-reject": { "text": "refuser", "teaches": ["rejeter"] },
   "to-approve": { "text": "approuver", "accepts": ["accorder", "autoriser"] },
-  "law": { "text": "loi", "grammar": { "gender": "la" } },
-  "visa": { "text": "visa", "grammar": { "gender": "le" } },
-  "fine": { "text": "amende", "accepts": ["l'amende"], "grammar": { "gender": "l'", "genus": "f" } },
+  "law": { "text": "loi", "grammar": { "article": "la" } },
+  "visa": { "text": "visa", "grammar": { "article": "le" } },
+  "fine": { "text": "amende", "accepts": ["l'amende"], "grammar": { "article": "l'", "genus": "f" } },
   "receipt": {
    "text": "reçu",
    "accepts": ["récépissé"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "au guichet : un récépissé · au magasin : le ticket de caisse." }
   },
   "authority": {
    "text": "autorité",
    "accepts": ["l'autorité", "administration"],
-   "grammar": { "gender": "l'", "genus": "f" }
+   "grammar": { "article": "l'", "genus": "f" }
   },
   "responsible": { "text": "responsable", "accepts": ["compétent"] },
   "to-submit-application": { "text": "déposer une demande", "accepts": ["faire une demande"] },

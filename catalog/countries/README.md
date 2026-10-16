@@ -25,7 +25,7 @@ no `atlas.json`, no drill; a language without `countries/<lang>.json` has no atl
 `countries/<lang>.json` is keyed by the manifest's slugs:
 
 ```json
-{ "switzerland": { "text": "die Schweiz", "accepts": ["Schweiz"], "grammar": { "gender": "die" },
+{ "switzerland": { "text": "die Schweiz", "accepts": ["Schweiz"], "grammar": { "article": "die" },
                    "nationality": { "text": "Schweizer", "accepts": ["Schweizerin"] } } }
 ```
 

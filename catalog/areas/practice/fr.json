@@ -8,13 +8,13 @@
    "accepts": ["réviser"],
    "notes": { "fr": "réviser ou étudier pour un examen · apprendre une chose nouvelle." }
   },
-  "goal": { "text": "but", "grammar": { "gender": "le" } },
+  "goal": { "text": "but", "grammar": { "article": "le" } },
   "to-achieve": { "text": "atteindre" },
-  "exercise": { "text": "exercice", "accepts": ["l'exercice"], "grammar": { "gender": "l'", "genus": "m" } },
+  "exercise": { "text": "exercice", "accepts": ["l'exercice"], "grammar": { "article": "l'", "genus": "m" } },
   "training": {
    "text": "entraînement",
    "accepts": ["l'entraînement"],
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
   "you-can-do-it": {
    "text": "Tu vas sûrement y arriver !",

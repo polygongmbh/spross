@@ -109,7 +109,7 @@ class AnswerNormalizer(
     /**
      * Grade [input] against every accepted target form. Verb-prefix leniency applies
      * iff `kind == verb`; the article-mismatch demotion applies iff the target's
-     * grammar carries `gender` and the form matched is the text or an `accepts` entry (a PRESENT
+     * grammar carries `article` and the form matched is the text or an `accepts` entry (a PRESENT
      * leading article that disagrees is a typo, a missing one stays exact; an `accepts` entry
      * authored with its own article is read back against that one) — a `teaches` entry
      * is another word whose article the catalog does not carry, so its own article
@@ -120,7 +120,7 @@ class AnswerNormalizer(
     fun evaluate(input: String, card: Card, promptTag: FormTag? = null): Match {
         val forms = answerForms(card, promptTag)
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
-        val expectedArticle = card.target.grammar["gender"]?.let { cleaned(it.lowercase()).trim() }
+        val expectedArticle = card.target.grammar["article"]?.let { cleaned(it.lowercase()).trim() }
         // A form authored with its own article is read back against it; one without (a language that writes none) never against the citation's.
         val genderedForms = listOf(card.target.text) + card.target.accepts +
             card.target.forms.filter { it.article != null }.map { it.written }

@@ -8,23 +8,23 @@
    "forms": { "f": "silenziosa" },
    "notes": { "it": "una stanza silenziosa · si parla piano o a bassa voce." }
   },
-  "noise": { "text": "rumore", "grammar": { "gender": "il" } },
-  "music": { "text": "musica", "grammar": { "gender": "la" } },
-  "radio": { "text": "radio", "grammar": { "gender": "la" } },
+  "noise": { "text": "rumore", "grammar": { "article": "il" } },
+  "music": { "text": "musica", "grammar": { "article": "la" } },
+  "radio": { "text": "radio", "grammar": { "article": "la" } },
   "speaker": {
    "text": "altoparlante",
    "accepts": ["l'altoparlante"],
    "forms": { "pl": "gli altoparlanti" },
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
   "headphones": {
    "text": "cuffie",
    "teaches": ["auricolari"],
-   "grammar": { "gender": "le", "plural": "only" },
+   "grammar": { "article": "le", "plural": "only" },
    "notes": { "it": "solo al plurale: le cuffie · gli auricolari stanno nell'orecchio." }
   },
-  "microphone": { "text": "microfono", "grammar": { "gender": "il" } },
-  "volume": { "text": "volume", "grammar": { "gender": "il" } },
+  "microphone": { "text": "microfono", "grammar": { "article": "il" } },
+  "volume": { "text": "volume", "grammar": { "article": "il" } },
   "to-listen-to": { "text": "ascoltare" },
   "to-listen-to-music": { "text": "ascoltare musica", "accepts": ["ascoltare la musica"] },
   "to-play-instrument": { "text": "suonare uno strumento" },

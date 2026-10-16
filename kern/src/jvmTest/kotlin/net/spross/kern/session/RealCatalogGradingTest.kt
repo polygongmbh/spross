@@ -23,12 +23,12 @@ class RealCatalogGradingTest {
             for (target in catalog.availableTargets(source).map { it.code }) {
                 val normalizer = AnswerNormalizer(catalog.languages.getValue(target))
                 for (card in catalog.join(source, target)) {
-                    val gender = card.target.grammar["gender"] ?: continue
+                    val article = card.target.grammar["article"] ?: continue
                     // why: an elided article writes onto its noun — the citation an
                     // it/fr reveal teaches is "l'acqua", never a spaced "l' acqua",
                     // and the authored elided variant is what accepts it.
                     val citation =
-                        if (gender.endsWith("'")) "$gender${card.target.text}" else "$gender ${card.target.text}"
+                        if (article.endsWith("'")) "$article${card.target.text}" else "$article ${card.target.text}"
                     examined++
                     assertEquals(
                         Match.Exact,

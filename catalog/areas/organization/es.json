@@ -2,19 +2,19 @@
  "title": "Citas y plazos",
  "subtitle": "Para que nada se te escape.",
  "words": {
-  "appointment": { "text": "cita", "grammar": { "gender": "la" } },
-  "date": { "text": "fecha", "grammar": { "gender": "la" } },
+  "appointment": { "text": "cita", "grammar": { "article": "la" } },
+  "date": { "text": "fecha", "grammar": { "article": "la" } },
   "opening-hours": {
    "text": "horario de apertura",
    "accepts": ["horario", "horario comercial"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": {
     "es": "En singular: el horario de apertura · en el día a día, el horario.",
     "de": "Spanisch hat keinen Plural wie „die Öffnungszeiten“: el horario de apertura steht im Singular, im Alltag oft nur el horario."
    }
   },
-  "deadline": { "text": "plazo", "teaches": ["fecha límite"], "grammar": { "gender": "el" } },
-  "plan": { "text": "plan", "grammar": { "gender": "el" } },
+  "deadline": { "text": "plazo", "teaches": ["fecha límite"], "grammar": { "article": "el" } },
+  "plan": { "text": "plan", "grammar": { "article": "el" } },
   "to-meet": { "text": "reunirse" },
   "to-invite": { "text": "invitar" },
   "to-arrange": { "text": "concertar", "teaches": ["acordar"], "accepts": ["pedir"] },
@@ -25,7 +25,7 @@
   "to-be-late": { "text": "llegar tarde", "teaches": ["retrasarse"] },
   "punctual": { "text": "puntual" },
   "urgent": { "text": "urgente" },
-  "list": { "text": "lista", "grammar": { "gender": "la" } },
+  "list": { "text": "lista", "grammar": { "article": "la" } },
   "to-finish": { "text": "terminar", "teaches": ["acabar"] },
   "to-take-care-of": { "text": "encargarse de", "teaches": ["ocuparse de"] },
   "i-would-like-to-arrange-an-appointment": {

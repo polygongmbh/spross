@@ -2,25 +2,25 @@
  "title": "La scrivania",
  "subtitle": "È ora di concentrarsi.",
  "words": {
-  "desk": { "text": "scrivania", "grammar": { "gender": "la" } },
+  "desk": { "text": "scrivania", "grammar": { "article": "la" } },
   "laptop": {
    "text": "portatile",
    "accepts": ["computer portatile", "laptop"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il portatile è il computer portatile: ho il portatile in borsa." }
   },
-  "keyboard": { "text": "tastiera", "grammar": { "gender": "la" } },
-  "screen": { "text": "schermo", "accepts": ["monitor"], "grammar": { "gender": "lo" } },
-  "mouse": { "text": "mouse", "grammar": { "gender": "il", "plural": "=" } },
-  "cable": { "text": "cavo", "grammar": { "gender": "il" } },
+  "keyboard": { "text": "tastiera", "grammar": { "article": "la" } },
+  "screen": { "text": "schermo", "accepts": ["monitor"], "grammar": { "article": "lo" } },
+  "mouse": { "text": "mouse", "grammar": { "article": "il", "plural": "=" } },
+  "cable": { "text": "cavo", "grammar": { "article": "il" } },
   "pen": {
    "text": "penna",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la penna scrive a inchiostro.", "de": "„Stift“ ist hier der Kugelschreiber: la penna." }
   },
-  "notebook": { "text": "taccuino", "accepts": ["blocco note"], "grammar": { "gender": "il" } },
-  "printer": { "text": "stampante", "grammar": { "gender": "la" } },
-  "socket": { "text": "presa", "accepts": ["presa di corrente"], "grammar": { "gender": "la" } },
+  "notebook": { "text": "taccuino", "accepts": ["blocco note"], "grammar": { "article": "il" } },
+  "printer": { "text": "stampante", "grammar": { "article": "la" } },
+  "socket": { "text": "presa", "accepts": ["presa di corrente"], "grammar": { "article": "la" } },
   "to-work": { "text": "lavorare" },
   "to-type": { "text": "digitare", "accepts": ["battere a macchina", "scrivere a macchina"] },
   "to-print": { "text": "stampare" },
@@ -37,12 +37,12 @@
   "phone": {
    "text": "cellulare",
    "accepts": ["telefonino", "telefono cellulare", "telefono"],
-   "grammar": { "gender": "il" }
+   "grammar": { "article": "il" }
   },
   "email": {
    "text": "e-mail",
    "accepts": ["l'e-mail", "un'e-mail", "mail", "posta elettronica"],
-   "grammar": { "gender": "l'", "genus": "f", "plural": "=" },
+   "grammar": { "article": "l'", "genus": "f", "plural": "=" },
    "notes": {
     "it": "l'e-mail è femminile e non cambia: un'e-mail, le e-mail.",
     "de": "l'e-mail ist feminin und unveränderlich: un'e-mail, le e-mail. Die förmliche Form ist la posta elettronica."
@@ -50,11 +50,11 @@
   },
   "paper": {
    "text": "carta",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la carta è il materiale · il foglio è un pezzo di carta." }
   },
-  "folder": { "text": "cartella", "accepts": ["raccoglitore"], "grammar": { "gender": "la" } },
-  "password": { "text": "password", "grammar": { "gender": "la", "plural": "=" } },
+  "folder": { "text": "cartella", "accepts": ["raccoglitore"], "grammar": { "article": "la" } },
+  "password": { "text": "password", "grammar": { "article": "la", "plural": "=" } },
   "internet": {
    "text": "internet",
    "notes": { "it": "di solito senza articolo: c'è internet? · non ho internet." }
@@ -62,13 +62,13 @@
   "charger": {
    "text": "caricabatterie",
    "accepts": ["caricatore", "cavo di ricarica"],
-   "grammar": { "gender": "il", "plural": "=" }
+   "grammar": { "article": "il", "plural": "=" }
   },
   "calendar": {
    "text": "calendario",
    "teaches": ["agenda"],
    "forms": { "pl": "i calendari" },
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il calendario sta al muro · l'agenda porta gli appuntamenti." }
   },
   "important": { "text": "importante" },
@@ -87,7 +87,7 @@
    "forms": { "f": "rotta" },
    "notes": { "it": "va con essere: il telefono è rotto · se non funziona è guasto." }
   },
-  "message": { "text": "messaggio", "grammar": { "gender": "il" } },
+  "message": { "text": "messaggio", "grammar": { "article": "il" } },
   "im-in-a-meeting": { "text": "Sono in riunione.", "accepts": ["Sono in una riunione."] },
   "dont-disturb-me": { "text": "Non disturbarmi!", "accepts": ["Non disturbare!"] },
   "the-laptop-wont-charge-anymore": {
@@ -99,7 +99,7 @@
   "coffee-break": { "text": "Pausa caffè?", "accepts": ["Andiamo a prendere un caffè?"] },
   "i-have-a-lot-to-do": { "text": "Ho molto da fare." },
   "send-him-the-email": { "text": "Mandagli l'e-mail.", "accepts": ["Inviagli l'e-mail.", "Mandagli la mail."] },
-  "pencil": { "text": "matita", "grammar": { "gender": "la" } },
-  "plug": { "text": "spina", "grammar": { "gender": "la" } }
+  "pencil": { "text": "matita", "grammar": { "article": "la" } },
+  "plug": { "text": "spina", "grammar": { "article": "la" } }
  }
 }

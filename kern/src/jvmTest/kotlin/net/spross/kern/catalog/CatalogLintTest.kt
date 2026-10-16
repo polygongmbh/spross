@@ -497,7 +497,7 @@ class CatalogLintTest {
     }
 
     /**
-     * Plural articles, per language that authors `gender` — not derivable, since German's
+     * Plural articles, per language that authors `article` — not derivable, since German's
      * is homographic with the feminine singular and no shipped noun tells the uses apart.
      */
     private val pluralArticles = mapOf(
@@ -508,7 +508,7 @@ class CatalogLintTest {
     )
 
     /**
-     * Bare values, no labels — plus the closed domain `gender` carries. It IS the article
+     * Bare values, no labels — plus the closed domain `article` carries. It IS the article
      * the learner says, so it must be one the language declares, and on a `plural: "only"`
      * noun it must be the plural one: grading reads the value back and demotes an answer
      * whose PRESENT leading article disagrees, so a singular `el` on *auriculares* marks
@@ -530,23 +530,23 @@ class CatalogLintTest {
             }
             val genus = raw.grammar["genus"]
             genus?.let { assertTrue(it in GENERA, "$area/$lang.json $slug.genus: \"$it\" is none of $GENERA") }
-            val gender = raw.grammar["gender"]
-            if (gender == null) {
+            val article = raw.grammar["article"]
+            if (article == null) {
                 assertTrue(genus == null, "$area/$lang.json $slug.genus: a genus without an article to complete")
                 return@forEachRealization
             }
-            val where = "$area/$lang.json $slug.gender"
-            assertTrue(gender in catalog.languages.getValue(lang).articles, "$where: no declared $lang article")
+            val where = "$area/$lang.json $slug.article"
+            assertTrue(article in catalog.languages.getValue(lang).articles, "$where: no declared $lang article")
             if (raw.grammar["plural"] == "only") {
-                assertTrue(gender in pluralArticles[lang].orEmpty(), "$where: \"$gender\" is not plural")
+                assertTrue(article in pluralArticles[lang].orEmpty(), "$where: \"$article\" is not plural")
             }
             // `genus` is the gender the article cannot show: required where it names none
             // (fr/it l', fr les), and otherwise only where it contradicts it (es el agua).
-            when (val shown = articleGender(gender, lang)) {
-                null -> assertTrue(genus != null, "$where: \"$gender\" hides the gender — add grammar.genus")
+            when (val shown = articleGender(article, lang)) {
+                null -> assertTrue(genus != null, "$where: \"$article\" hides the gender — add grammar.genus")
                 else -> assertTrue(
                     genus == null || genus != GENUS_OF.getValue(shown),
-                    "$area/$lang.json $slug.genus: \"$genus\" repeats what \"$gender\" already shows",
+                    "$area/$lang.json $slug.genus: \"$genus\" repeats what \"$article\" already shows",
                 )
             }
         }

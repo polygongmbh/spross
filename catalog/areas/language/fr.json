@@ -2,12 +2,12 @@
  "title": "Apprendre la langue",
  "subtitle": "Les mots, les phrases et leur sens.",
  "words": {
-  "meaning": { "text": "sens", "grammar": { "gender": "le", "plural": "=" } },
+  "meaning": { "text": "sens", "grammar": { "article": "le", "plural": "=" } },
   "to-translate": { "text": "traduire" },
-  "sentence": { "text": "phrase", "grammar": { "gender": "la" } },
-  "word": { "text": "mot", "grammar": { "gender": "le" } },
-  "language": { "text": "langue", "grammar": { "gender": "la" } },
-  "mother-tongue": { "text": "langue maternelle", "grammar": { "gender": "la" } },
+  "sentence": { "text": "phrase", "grammar": { "article": "la" } },
+  "word": { "text": "mot", "grammar": { "article": "le" } },
+  "language": { "text": "langue", "grammar": { "article": "la" } },
+  "mother-tongue": { "text": "langue maternelle", "grammar": { "article": "la" } },
   "what-does-this-word-mean": {
    "text": "Que veut dire ce mot ?",
    "accepts": ["Que signifie ce mot ?", "Qu'est-ce que ce mot veut dire ?"]

@@ -3,7 +3,7 @@
  "subtitle": "Lo que se dice al encontrarse.",
  "words": {
   "to-thank": { "text": "agradecer", "teaches": ["dar las gracias"] },
-  "name": { "text": "nombre", "grammar": { "gender": "el" } },
+  "name": { "text": "nombre", "grammar": { "article": "el" } },
   "to-be-called": { "text": "llamarse" },
   "hello": { "text": "¡Hola!" },
   "good-day": {

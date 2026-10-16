@@ -4,18 +4,18 @@
  "words": {
   "time": {
    "text": "tiempo",
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": {
     "es": "tiempo es el que pasa y el que hace: ¿Qué tiempo hace?",
     "de": "tiempo heißt auch Wetter: ¿Qué tiempo hace? · das einzelne Mal ist una vez."
    }
   },
-  "day": { "text": "día", "grammar": { "gender": "el" } },
-  "week": { "text": "semana", "grammar": { "gender": "la" } },
-  "hour": { "text": "hora", "grammar": { "gender": "la" } },
-  "minute": { "text": "minuto", "grammar": { "gender": "el" } },
-  "month": { "text": "mes", "grammar": { "gender": "el" } },
-  "year": { "text": "año", "grammar": { "gender": "el" } },
+  "day": { "text": "día", "grammar": { "article": "el" } },
+  "week": { "text": "semana", "grammar": { "article": "la" } },
+  "hour": { "text": "hora", "grammar": { "article": "la" } },
+  "minute": { "text": "minuto", "grammar": { "article": "el" } },
+  "month": { "text": "mes", "grammar": { "article": "el" } },
+  "year": { "text": "año", "grammar": { "article": "el" } },
   "now": { "text": "ahora" },
   "today": { "text": "hoy" },
   "tomorrow": { "text": "mañana", "notes": { "es": "Hasta mañana · hoy por la mañana" } },
@@ -23,18 +23,18 @@
   "day-before-yesterday": { "text": "anteayer" },
   "early": { "text": "temprano" },
   "soon": { "text": "pronto" },
-  "noon": { "text": "mediodía", "grammar": { "gender": "el" } },
-  "midnight": { "text": "medianoche", "grammar": { "gender": "la" } },
+  "noon": { "text": "mediodía", "grammar": { "article": "el" } },
+  "midnight": { "text": "medianoche", "grammar": { "article": "la" } },
   "evening": {
    "text": "tarde",
    "accepts": ["noche"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "es": "¡Buenas tardes! hasta que oscurece · luego, ¡Buenas noches!",
     "de": "kein eigenes Wort für Abend: bis zum Dunkelwerden la tarde, danach la noche — Guten Abend = buenas tardes bzw. buenas noches."
    }
   },
-  "night": { "text": "noche", "grammar": { "gender": "la" } },
+  "night": { "text": "noche", "grammar": { "article": "la" } },
   "first": { "text": "primero", "accepts": ["primer"], "forms": { "f": "primera" } },
   "second": { "text": "segundo", "forms": { "f": "segunda" } },
   "next": { "text": "próximo", "accepts": ["siguiente"], "forms": { "f": "próxima" } },
@@ -45,10 +45,10 @@
   "day-after-tomorrow": { "text": "pasado mañana" },
   "since": { "text": "desde" },
   "right-now": { "text": "ahora mismo", "teaches": ["enseguida"] },
-  "weekend": { "text": "fin de semana", "grammar": { "gender": "el" } },
-  "century": { "text": "siglo", "grammar": { "gender": "el" } },
-  "decade": { "text": "década", "grammar": { "gender": "la" } },
-  "millennium": { "text": "milenio", "grammar": { "gender": "el" } },
+  "weekend": { "text": "fin de semana", "grammar": { "article": "el" } },
+  "century": { "text": "siglo", "grammar": { "article": "el" } },
+  "decade": { "text": "década", "grammar": { "article": "la" } },
+  "millennium": { "text": "milenio", "grammar": { "article": "el" } },
   "nowadays": { "text": "hoy en día", "teaches": ["actualmente"] },
   "to-last": { "text": "durar" },
   "i-have-no-time": { "text": "No tengo tiempo." },

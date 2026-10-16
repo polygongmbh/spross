@@ -8,7 +8,7 @@ import net.spross.kern.model.Language
 import net.spross.kern.model.articleGender
 
 /** The article the TARGET is shown with, or null where its grammar carries none. */
-internal fun article(card: Card): String? = card.target.grammar["gender"]
+internal fun article(card: Card): String? = card.target.grammar["article"]
 
 /**
  * The gender [article] marks in the target's own language, as the wire spells it

@@ -20,7 +20,7 @@ def load_catalog():
     Which concept shows a form is never asked: a recording is filed under the form it speaks,
     so a form moving between a concept's text, a synonym and a tagged form leaves audio alone.
     The second is what an ARTICLE recording is measured against: a realization's own
-    `grammar.gender` in front of each form it shows, and each tagged form with the article
+    `grammar.article` in front of each form it shows, and each tagged form with the article
     it was authored with — only those show an article to say.
     """
     areas = [area['area'] for group in read_json(CATALOG, 'areas.json') for area in group['areas']]
@@ -48,8 +48,8 @@ def load_catalog():
                 shown_here = shown_by + [
                     stem for stem in (verb_stem(form, prefixes.get(lang, [])) for form in shown_by) if stem]
                 shown.setdefault(lang, set()).update(speech_key(form) for form in shown_here)
-                gender = word.get('grammar', {}).get('gender')
-                said = [(gender, form) for form in shown_by[:len(shown_by) - len(tagged)] if gender]
+                authored = word.get('grammar', {}).get('article')
+                said = [(authored, form) for form in shown_by[:len(shown_by) - len(tagged)] if authored]
                 said += [(article, form) for article, form in tagged if article]
                 for article, form in said:
                     articled.setdefault(lang, {}).setdefault(
@@ -80,11 +80,11 @@ def card_forms(lang, articled):
             text = (word.get('text') or '').strip()
             if not text:
                 continue
-            gender = (word.get('grammar') or {}).get('gender')
+            authored = (word.get('grammar') or {}).get('article')
             if not articled:
                 out.append((area, text))
-            elif gender:
-                out.append((area, spoken_target_form(gender, text)))
+            elif authored:
+                out.append((area, spoken_target_form(authored, text)))
             for value in (word.get('forms') or {}).values():
                 for form in (value if isinstance(value, list) else [value]):
                     article, bare = split_article(form, articles)

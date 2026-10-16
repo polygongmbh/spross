@@ -66,9 +66,9 @@
   },
   "difficult": { "text": "difficile" },
   "easy": { "text": "facile" },
-  "problem": { "text": "problème", "grammar": { "gender": "le" } },
+  "problem": { "text": "problème", "grammar": { "article": "le" } },
   "to-solve": { "text": "résoudre" },
-  "challenge": { "text": "défi", "forms": { "pl": "les défis" }, "grammar": { "gender": "le" } },
+  "challenge": { "text": "défi", "forms": { "pl": "les défis" }, "grammar": { "article": "le" } },
   "clean-adj": { "text": "propre", "notes": { "fr": "une chambre propre · ma propre chambre = à moi." } },
   "sharp": {
    "text": "tranchant",
@@ -94,7 +94,7 @@
   "dry": { "text": "sec" },
   "pretty": { "text": "joli", "forms": { "f": "jolie" } },
   "beautiful": { "text": "beau", "accepts": ["bel"], "forms": { "f": "belle" } },
-  "health": { "text": "santé", "grammar": { "gender": "la" } },
+  "health": { "text": "santé", "grammar": { "article": "la" } },
   "healthy": {
    "text": "sain",
    "teaches": ["en bonne santé"],

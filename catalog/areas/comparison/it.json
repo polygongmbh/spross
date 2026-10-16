@@ -7,7 +7,7 @@
    "teaches": ["differente"],
    "forms": { "f": "diversa", "pl": "diversi", "f.pl": "diverse" }
   },
-  "difference": { "text": "differenza", "grammar": { "gender": "la" } },
+  "difference": { "text": "differenza", "grammar": { "article": "la" } },
   "real": { "text": "reale" },
   "same": {
    "text": "stesso",
@@ -29,7 +29,7 @@
   "defensive": { "text": "difensivo", "forms": { "f": "difensiva" } },
   "equality": {
    "text": "uguaglianza",
-   "grammar": { "gender": "l'", "genus": "f" },
+   "grammar": { "article": "l'", "genus": "f" },
    "accepts": ["l'uguaglianza"]
   },
   "than": { "text": "di", "notes": { "it": "più grande di me." } }

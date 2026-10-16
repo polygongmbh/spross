@@ -5,30 +5,34 @@
   "desk": {
    "text": "bureau",
    "forms": { "pl": "les bureaux" },
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "ici le meuble." }
   },
   "laptop": {
    "text": "ordinateur portable",
    "accepts": ["l'ordinateur portable", "portable", "PC portable"],
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "fr": "on dit surtout mon portable · mais le portable, c'est aussi le téléphone." }
   },
-  "keyboard": { "text": "clavier", "grammar": { "gender": "le" } },
-  "screen": { "text": "écran", "accepts": ["l'écran"], "grammar": { "gender": "l'", "genus": "m" } },
-  "mouse": { "text": "souris", "grammar": { "gender": "la", "plural": "=" } },
-  "cable": { "text": "câble", "grammar": { "gender": "le" } },
+  "keyboard": { "text": "clavier", "grammar": { "article": "le" } },
+  "screen": { "text": "écran", "accepts": ["l'écran"], "grammar": { "article": "l'", "genus": "m" } },
+  "mouse": { "text": "souris", "grammar": { "article": "la", "plural": "=" } },
+  "cable": { "text": "câble", "grammar": { "article": "le" } },
   "pen": {
    "text": "stylo",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le stylo écrit à l’encre.", "de": "„Stift“ ist hier der Kugelschreiber: le stylo." }
   },
-  "notebook": { "text": "carnet", "accepts": ["bloc-notes"], "grammar": { "gender": "le" } },
-  "printer": { "text": "imprimante", "accepts": ["l'imprimante"], "grammar": { "gender": "l'", "genus": "f" } },
+  "notebook": { "text": "carnet", "accepts": ["bloc-notes"], "grammar": { "article": "le" } },
+  "printer": {
+   "text": "imprimante",
+   "accepts": ["l'imprimante"],
+   "grammar": { "article": "l'", "genus": "f" }
+  },
   "socket": {
    "text": "prise",
    "accepts": ["prise de courant", "prise électrique"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "to-work": { "text": "travailler" },
   "to-type": { "text": "taper", "accepts": ["saisir", "taper à l'ordinateur"] },
@@ -42,32 +46,32 @@
   "phone": {
    "text": "téléphone",
    "accepts": ["portable", "téléphone portable", "mobile"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le portable, c'est le téléphone qu'on met dans la poche." }
   },
   "email": {
    "text": "e-mail",
    "accepts": ["l'e-mail", "mail", "courriel", "courrier électronique"],
-   "grammar": { "gender": "l'", "genus": "m" },
+   "grammar": { "article": "l'", "genus": "m" },
    "notes": { "fr": "on dit le mail ou l'e-mail ; le courriel est la forme officielle." }
   },
-  "paper": { "text": "papier", "grammar": { "gender": "le" } },
+  "paper": { "text": "papier", "grammar": { "article": "le" } },
   "folder": {
    "text": "dossier",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "un dossier sur l'ordinateur, un dossier de papiers sur le bureau." }
   },
-  "password": { "text": "mot de passe", "forms": { "pl": "les mots de passe" }, "grammar": { "gender": "le" } },
+  "password": { "text": "mot de passe", "forms": { "pl": "les mots de passe" }, "grammar": { "article": "le" } },
   "internet": {
    "text": "internet",
    "notes": { "fr": "souvent sans article : je n'ai pas internet, il n'y a plus d'internet." }
   },
-  "charger": { "text": "chargeur", "accepts": ["câble de recharge"], "grammar": { "gender": "le" } },
+  "charger": { "text": "chargeur", "accepts": ["câble de recharge"], "grammar": { "article": "le" } },
   "calendar": {
    "text": "calendrier",
    "teaches": ["agenda"],
    "accepts": ["l'agenda"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le calendrier est au mur · les rendez-vous vont dans l'agenda." }
   },
   "important": { "text": "important", "forms": { "f": "importante" } },
@@ -86,7 +90,7 @@
    "forms": { "f": "cassée" },
    "notes": { "fr": "un verre cassé · un appareil qui ne marche plus est en panne." }
   },
-  "message": { "text": "message", "grammar": { "gender": "le" } },
+  "message": { "text": "message", "grammar": { "article": "le" } },
   "im-in-a-meeting": { "text": "Je suis en réunion." },
   "dont-disturb-me": { "text": "Ne me dérange pas !", "accepts": ["Ne pas déranger !"] },
   "the-laptop-wont-charge-anymore": {
@@ -101,7 +105,7 @@
   "coffee-break": { "text": "Pause café ?", "accepts": ["Une pause café ?", "On prend un café ?"] },
   "i-have-a-lot-to-do": { "text": "J'ai beaucoup à faire.", "accepts": ["J'ai beaucoup de choses à faire."] },
   "send-him-the-email": { "text": "Envoie-lui l'e-mail.", "accepts": ["Envoie-lui le mail.", "Envoie-lui le courriel."] },
-  "pencil": { "text": "crayon", "forms": { "pl": "les crayons" }, "grammar": { "gender": "le" } },
-  "plug": { "text": "fiche", "forms": { "pl": "les fiches" }, "grammar": { "gender": "la" } }
+  "pencil": { "text": "crayon", "forms": { "pl": "les crayons" }, "grammar": { "article": "le" } },
+  "plug": { "text": "fiche", "forms": { "pl": "les fiches" }, "grammar": { "article": "la" } }
  }
 }

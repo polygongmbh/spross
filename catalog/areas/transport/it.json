@@ -2,25 +2,25 @@
  "title": "I trasporti",
  "subtitle": "Si parte!",
  "words": {
-  "traffic-light": { "text": "semaforo", "grammar": { "gender": "il" } },
-  "bicycle": { "text": "bicicletta", "accepts": ["bici"], "grammar": { "gender": "la" } },
+  "traffic-light": { "text": "semaforo", "grammar": { "article": "il" } },
+  "bicycle": { "text": "bicicletta", "accepts": ["bici"], "grammar": { "article": "la" } },
   "bus": {
    "text": "autobus",
    "accepts": ["l'autobus", "bus"],
-   "grammar": { "gender": "l'", "genus": "m", "plural": "=" }
+   "grammar": { "article": "l'", "genus": "m", "plural": "=" }
   },
-  "bus-stop": { "text": "fermata", "accepts": ["fermata dell'autobus"], "grammar": { "gender": "la" } },
-  "train": { "text": "treno", "grammar": { "gender": "il" } },
+  "bus-stop": { "text": "fermata", "accepts": ["fermata dell'autobus"], "grammar": { "article": "la" } },
+  "train": { "text": "treno", "grammar": { "article": "il" } },
   "car": {
    "text": "macchina",
    "teaches": ["auto"],
    "accepts": ["l'auto", "un'auto", "automobile"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "l'auto viene da automobile ed è femminile: le auto." }
   },
-  "taxi": { "text": "taxi", "accepts": ["tassì"], "grammar": { "gender": "il", "plural": "=" } },
-  "train-station": { "text": "stazione", "accepts": ["stazione ferroviaria"], "grammar": { "gender": "la" } },
-  "ticket": { "text": "biglietto", "grammar": { "gender": "il" } },
+  "taxi": { "text": "taxi", "accepts": ["tassì"], "grammar": { "article": "il", "plural": "=" } },
+  "train-station": { "text": "stazione", "accepts": ["stazione ferroviaria"], "grammar": { "article": "la" } },
+  "ticket": { "text": "biglietto", "grammar": { "article": "il" } },
   "to-ride-bike": { "text": "andare in bicicletta", "accepts": ["andare in bici", "pedalare"] },
   "to-take-bus": { "text": "prendere l'autobus", "accepts": ["prendere il bus"] },
   "to-depart": { "text": "partire", "notes": { "it": "il treno parte alle otto." } },
@@ -28,26 +28,26 @@
    "text": "autista",
    "accepts": ["l'autista", "conducente"],
    "forms": { "pl": "gli autisti" },
-   "grammar": { "gender": "l'", "genus": "m/f" }
+   "grammar": { "article": "l'", "genus": "m/f" }
   },
   "plane": {
    "text": "aereo",
    "accepts": ["l'aereo", "aeroplano"],
-   "grammar": { "gender": "l'", "genus": "m" }
+   "grammar": { "article": "l'", "genus": "m" }
   },
-  "airport": { "text": "aeroporto", "accepts": ["l'aeroporto"], "grammar": { "gender": "l'", "genus": "m" } },
+  "airport": { "text": "aeroporto", "accepts": ["l'aeroporto"], "grammar": { "article": "l'", "genus": "m" } },
   "motorbike": {
    "text": "moto",
    "accepts": ["motocicletta"],
-   "grammar": { "gender": "la", "plural": "=" },
+   "grammar": { "article": "la", "plural": "=" },
    "notes": { "it": "la moto viene da motocicletta ed è femminile: le moto." }
   },
-  "truck": { "text": "camion", "grammar": { "gender": "il", "plural": "=" } },
-  "passenger": { "text": "passeggero", "grammar": { "gender": "il" } },
-  "wheel": { "text": "ruota", "grammar": { "gender": "la" } },
-  "engine": { "text": "motore", "grammar": { "gender": "il" } },
-  "rail": { "text": "rotaia", "grammar": { "gender": "la" } },
-  "fare": { "text": "tariffa", "accepts": ["prezzo del biglietto"], "grammar": { "gender": "la" } },
+  "truck": { "text": "camion", "grammar": { "article": "il", "plural": "=" } },
+  "passenger": { "text": "passeggero", "grammar": { "article": "il" } },
+  "wheel": { "text": "ruota", "grammar": { "article": "la" } },
+  "engine": { "text": "motore", "grammar": { "article": "il" } },
+  "rail": { "text": "rotaia", "grammar": { "article": "la" } },
+  "fare": { "text": "tariffa", "accepts": ["prezzo del biglietto"], "grammar": { "article": "la" } },
   "to-get-off": { "text": "scendere" },
   "to-get-on": { "text": "salire" },
   "the-bus-is-coming-soon": {
@@ -62,7 +62,7 @@
   },
   "the-bus-has-already-departed": { "text": "L'autobus è già partito." },
   "my-parents-are-coming-by-train": { "text": "I miei genitori vengono in treno.", "orders": ["In treno vengono i miei genitori."] },
-  "tire": { "text": "pneumatico", "grammar": { "gender": "il" } },
+  "tire": { "text": "pneumatico", "grammar": { "article": "il" } },
   "my-car-has-four-tires": { "text": "La mia macchina ha quattro gomme." }
  }
 }
