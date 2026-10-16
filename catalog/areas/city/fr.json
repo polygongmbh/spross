@@ -15,7 +15,7 @@
    "grammar": { "gender": "la" },
    "notes": { "fr": "la poste apporte le courrier · le bureau de poste est le bâtiment." }
   },
-  "church": { "text": "église", "accepts": ["l'église"], "grammar": { "gender": "l'" } },
+  "church": { "text": "église", "accepts": ["l'église"], "grammar": { "gender": "l'", "genus": "f" } },
   "mosque": { "text": "mosquée", "grammar": { "gender": "la" } },
   "library": { "text": "bibliothèque", "grammar": { "gender": "la" } },
   "police": { "text": "police", "grammar": { "gender": "la" } },

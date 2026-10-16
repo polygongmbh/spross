@@ -20,7 +20,7 @@
   "headphones": {
    "text": "écouteurs",
    "accepts": ["casque", "casque audio"],
-   "grammar": { "gender": "les", "plural": "only" },
+   "grammar": { "gender": "les", "genus": "m", "plural": "only" },
    "notes": { "fr": "au pluriel : les écouteurs dans les oreilles · le casque sur la tête." }
   },
   "microphone": { "text": "microphone", "accepts": ["micro"], "grammar": { "gender": "le" } },

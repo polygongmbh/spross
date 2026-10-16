@@ -8,7 +8,7 @@
   "death": { "text": "morte", "grammar": { "gender": "la" } },
   "to-die": { "text": "morire" },
   "to-be-born": { "text": "nascere" },
-  "childhood": { "text": "infanzia", "accepts": ["l'infanzia"], "grammar": { "gender": "l'" } },
+  "childhood": { "text": "infanzia", "accepts": ["l'infanzia"], "grammar": { "gender": "l'", "genus": "f" } },
   "youth": { "text": "giovinezza", "accepts": ["gioventù"], "grammar": { "gender": "la" } },
   "to-grow-up": { "text": "crescere" },
   "to-get-old": { "text": "invecchiare" },

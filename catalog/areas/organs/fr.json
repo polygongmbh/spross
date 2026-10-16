@@ -12,15 +12,23 @@
   "thyroid": { "text": "thyroïde", "accepts": ["la thyroïde"], "grammar": { "gender": "la" } },
   "to-breathe": { "text": "respirer" },
   "stomach-organ": { "text": "estomac", "grammar": { "gender": "le" } },
-  "artery": { "text": "artère", "grammar": { "gender": "l'" }, "accepts": ["l'artère"] },
-  "joint": { "text": "articulation", "grammar": { "gender": "l'" }, "accepts": ["l'articulation"] },
+  "artery": { "text": "artère", "grammar": { "gender": "l'", "genus": "f" }, "accepts": ["l'artère"] },
+  "joint": {
+   "text": "articulation",
+   "grammar": { "gender": "l'", "genus": "f" },
+   "accepts": ["l'articulation"]
+  },
   "gland": { "text": "glande", "grammar": { "gender": "la" } },
   "spleen": { "text": "rate", "grammar": { "gender": "la" } },
   "bile": { "text": "bile", "grammar": { "gender": "la" } },
-  "appendix": { "text": "appendice", "grammar": { "gender": "l'" }, "accepts": ["l'appendice"] },
-  "womb": { "text": "utérus", "grammar": { "gender": "l'", "plural": "=" }, "accepts": ["l'utérus"] },
+  "appendix": { "text": "appendice", "grammar": { "gender": "l'", "genus": "m" }, "accepts": ["l'appendice"] },
+  "womb": {
+   "text": "utérus",
+   "grammar": { "gender": "l'", "genus": "m", "plural": "=" },
+   "accepts": ["l'utérus"]
+  },
   "pancreas": { "text": "pancréas", "grammar": { "gender": "le", "plural": "=" } },
-  "ovary": { "text": "ovaire", "grammar": { "gender": "l'" }, "accepts": ["l'ovaire"] },
+  "ovary": { "text": "ovaire", "grammar": { "gender": "l'", "genus": "m" }, "accepts": ["l'ovaire"] },
   "tendon": { "text": "tendon", "grammar": { "gender": "le" } }
  }
 }

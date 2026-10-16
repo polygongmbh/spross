@@ -4,7 +4,11 @@
  "words": {
   "celebration": { "text": "fête", "grammar": { "gender": "la" } },
   "to-celebrate": { "text": "fêter", "accepts": ["célébrer"] },
-  "birthday": { "text": "anniversaire", "accepts": ["l'anniversaire"], "grammar": { "gender": "l'" } },
+  "birthday": {
+   "text": "anniversaire",
+   "accepts": ["l'anniversaire"],
+   "grammar": { "gender": "l'", "genus": "m" }
+  },
   "birthday-party": { "text": "fête d'anniversaire", "grammar": { "gender": "la" } },
   "gift": { "text": "cadeau", "grammar": { "gender": "le" } },
   "to-give-a-present": { "text": "offrir" },

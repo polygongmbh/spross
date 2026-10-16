@@ -5,7 +5,7 @@
   "head": { "text": "tête", "grammar": { "gender": "la" } },
   "hair": {
    "text": "cheveux",
-   "grammar": { "gender": "les", "plural": "only" },
+   "grammar": { "gender": "les", "genus": "m", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : j'ai les cheveux longs." }
   },
   "face": { "text": "visage", "accepts": ["figure"], "grammar": { "gender": "le" } },
@@ -13,9 +13,9 @@
    "text": "œil",
    "accepts": ["l'œil", "oeil", "l'oeil"],
    "forms": { "pl": "les yeux" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
-  "ear": { "text": "oreille", "accepts": ["l'oreille"], "grammar": { "gender": "l'" } },
+  "ear": { "text": "oreille", "accepts": ["l'oreille"], "grammar": { "gender": "l'", "genus": "f" } },
   "nose": { "text": "nez", "grammar": { "gender": "le", "plural": "=" } },
   "mouth": { "text": "bouche", "grammar": { "gender": "la" } },
   "tooth": { "text": "dent", "grammar": { "gender": "la" } },
@@ -38,13 +38,13 @@
     "de": "Französisch trennt, was „Hals“ zusammenfasst: la gorge ist der Rachen (Halsschmerzen), le cou der äußere Hals."
    }
   },
-  "shoulder": { "text": "épaule", "accepts": ["l'épaule"], "grammar": { "gender": "l'" } },
+  "shoulder": { "text": "épaule", "accepts": ["l'épaule"], "grammar": { "gender": "l'", "genus": "f" } },
   "knee": { "text": "genou", "forms": { "pl": "les genoux" }, "grammar": { "gender": "le" } },
   "chest": { "text": "poitrine", "grammar": { "gender": "la" } },
   "heart": { "text": "cœur", "accepts": ["coeur"], "grammar": { "gender": "le" } },
   "blood": { "text": "sang", "grammar": { "gender": "le" } },
   "skin": { "text": "peau", "forms": { "pl": "les peaux" }, "grammar": { "gender": "la" } },
-  "bone": { "text": "os", "accepts": ["l'os"], "grammar": { "gender": "l'", "plural": "=" } },
+  "bone": { "text": "os", "accepts": ["l'os"], "grammar": { "gender": "l'", "genus": "m", "plural": "=" } },
   "finger": {
    "text": "doigt",
    "grammar": { "gender": "le" },

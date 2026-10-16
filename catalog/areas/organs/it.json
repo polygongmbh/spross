@@ -9,7 +9,7 @@
    "text": "intestino",
    "accepts": ["l'intestino"],
    "forms": { "pl": "gli intestini" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "bladder": { "text": "vescica", "forms": { "pl": "le vesciche" }, "grammar": { "gender": "la" } },
   "nerve": { "text": "nervo", "forms": { "pl": "i nervi" }, "grammar": { "gender": "il" } },
@@ -26,13 +26,13 @@
   "artery": {
    "text": "arteria",
    "forms": { "pl": "le arterie" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "accepts": ["l'arteria"]
   },
   "joint": {
    "text": "articolazione",
    "forms": { "pl": "le articolazioni" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "accepts": ["l'articolazione"]
   },
   "gland": { "text": "ghiandola", "forms": { "pl": "le ghiandole" }, "grammar": { "gender": "la" } },
@@ -41,13 +41,13 @@
   "appendix": {
    "text": "appendice",
    "forms": { "pl": "le appendici" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "accepts": ["l'appendice"]
   },
   "womb": {
    "text": "utero",
    "forms": { "pl": "gli uteri" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "accepts": ["l'utero"]
   },
   "pancreas": { "text": "pancreas", "grammar": { "gender": "il", "plural": "=" } },
@@ -55,7 +55,7 @@
    "text": "ovaia",
    "accepts": ["l'ovaia", "ovario"],
    "forms": { "pl": "le ovaie" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "f" }
   },
   "tendon": { "text": "tendine", "grammar": { "gender": "il" } }
  }

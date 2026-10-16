@@ -11,7 +11,7 @@
   "wind": { "text": "vent", "grammar": { "gender": "le" } },
   "storm": { "text": "tempête", "grammar": { "gender": "la" } },
   "thunder": { "text": "tonnerre", "grammar": { "gender": "le" } },
-  "lightning": { "text": "éclair", "accepts": ["l'éclair"], "grammar": { "gender": "l'" } },
+  "lightning": { "text": "éclair", "accepts": ["l'éclair"], "grammar": { "gender": "l'", "genus": "m" } },
   "humid": { "text": "humide" },
   "hows-the-weather-today": {
    "text": "Quel temps fait-il aujourd'hui ?",

@@ -6,7 +6,7 @@
    "text": "animal",
    "accepts": ["l'animal"],
    "forms": { "pl": "les animaux" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "dog": { "text": "chien", "grammar": { "gender": "le" } },
   "cat": { "text": "chat", "grammar": { "gender": "le" } },
@@ -14,17 +14,17 @@
    "text": "oiseau",
    "accepts": ["l'oiseau"],
    "forms": { "pl": "les oiseaux" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "cow": { "text": "vache", "grammar": { "gender": "la" } },
   "goat": { "text": "chèvre", "grammar": { "gender": "la" } },
   "sheep": { "text": "mouton", "grammar": { "gender": "le" } },
-  "donkey": { "text": "âne", "accepts": ["l'âne"], "grammar": { "gender": "l'" } },
+  "donkey": { "text": "âne", "accepts": ["l'âne"], "grammar": { "gender": "l'", "genus": "m" } },
   "horse": { "text": "cheval", "forms": { "pl": "les chevaux" }, "grammar": { "gender": "le" } },
-  "elephant": { "text": "éléphant", "accepts": ["l'éléphant"], "grammar": { "gender": "l'" } },
+  "elephant": { "text": "éléphant", "accepts": ["l'éléphant"], "grammar": { "gender": "l'", "genus": "m" } },
   "monkey": { "text": "singe", "grammar": { "gender": "le" } },
   "snake": { "text": "serpent", "grammar": { "gender": "le" } },
-  "insect": { "text": "insecte", "accepts": ["l'insecte"], "grammar": { "gender": "l'" } },
+  "insect": { "text": "insecte", "accepts": ["l'insecte"], "grammar": { "gender": "l'", "genus": "m" } },
   "look-a-bird": { "text": "Regarde, un oiseau !" },
   "the-dog-is-barking": { "text": "Le chien aboie." },
   "the-cat-is-meowing": { "text": "Le chat miaule." },

@@ -5,7 +5,7 @@
   "university": {
    "text": "università",
    "accepts": ["l'università", "un'università", "uni"],
-   "grammar": { "gender": "l'", "plural": "=" }
+   "grammar": { "gender": "l'", "genus": "f", "plural": "=" }
   },
   "student": { "text": "studente", "forms": { "f": "la studentessa" }, "grammar": { "gender": "lo" } },
   "studies": { "text": "studi", "grammar": { "gender": "gli", "plural": "only" } },
@@ -21,7 +21,7 @@
   "vocational-school": {
    "text": "istituto professionale",
    "accepts": ["l'istituto professionale"],
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "internship": { "text": "tirocinio", "accepts": ["stage"], "grammar": { "gender": "il" } },
   "further-training": { "text": "formazione continua", "grammar": { "gender": "la" } },

@@ -2,7 +2,7 @@
  "title": "La natura",
  "subtitle": "Aria fresca e cielo aperto.",
  "words": {
-  "tree": { "text": "albero", "accepts": ["l'albero"], "grammar": { "gender": "l'" } },
+  "tree": { "text": "albero", "accepts": ["l'albero"], "grammar": { "gender": "l'", "genus": "m" } },
   "flower": { "text": "fiore", "grammar": { "gender": "il" } },
   "to-go-for-walk": { "text": "fare una passeggiata", "teaches": ["passeggiare"] },
   "to-jog": { "text": "correre", "teaches": ["fare jogging"], "accepts": ["andare a correre"] },
@@ -21,7 +21,7 @@
   "star": { "text": "stella", "grammar": { "gender": "la" } },
   "wood": { "text": "legno", "grammar": { "gender": "il" } },
   "stick": { "text": "bastone", "grammar": { "gender": "il" } },
-  "shadow": { "text": "ombra", "accepts": ["l'ombra"], "grammar": { "gender": "l'" } },
+  "shadow": { "text": "ombra", "accepts": ["l'ombra"], "grammar": { "gender": "l'", "genus": "f" } },
   "we-are-going-to-the-mountains": {
    "text": "Andiamo in montagna.",
    "accepts": ["Andiamo sulle montagne."],

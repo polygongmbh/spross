@@ -24,7 +24,7 @@
   "prescription": {
    "text": "ordonnance",
    "accepts": ["l'ordonnance"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "notes": { "fr": "le médecin fait une ordonnance, le pharmacien la lit." }
   },
   "pharmacy": { "text": "pharmacie", "grammar": { "gender": "la" } },
@@ -37,26 +37,26 @@
   "health-insurance": {
    "text": "assurance maladie",
    "accepts": ["l'assurance maladie"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "notes": { "fr": "la Sécurité sociale (la Sécu) rembourse ; la mutuelle paie le reste." }
   },
   "hospital": {
    "text": "hôpital",
    "accepts": ["l'hôpital"],
    "forms": { "pl": "les hôpitaux" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "emergency": {
    "text": "urgence",
    "accepts": ["l'urgence"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "notes": { "fr": "à l'hôpital, on va aux urgences, toujours au pluriel." }
   },
   "doctors-note": {
    "text": "arrêt de travail",
    "accepts": ["l'arrêt de travail", "arrêt maladie"],
    "forms": { "pl": "les arrêts de travail" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "fr": "le médecin donne un arrêt de travail : on est en arrêt maladie." }
   },
   "to-examine": { "text": "examiner", "accepts": ["ausculter"] },
@@ -76,7 +76,7 @@
    "text": "infirmier",
    "accepts": ["l'infirmier"],
    "forms": { "f": "l'infirmière" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "dentist": { "text": "dentiste", "accepts": ["chirurgien-dentiste"], "grammar": { "gender": "le" } },
   "vaccination": {
@@ -85,7 +85,7 @@
    "grammar": { "gender": "la" },
    "notes": { "fr": "la vaccination est l'acte, le vaccin le produit : se faire vacciner." }
   },
-  "ambulance": { "text": "ambulance", "accepts": ["l'ambulance"], "grammar": { "gender": "l'" } },
+  "ambulance": { "text": "ambulance", "accepts": ["l'ambulance"], "grammar": { "gender": "l'", "genus": "f" } },
   "to-look-after": { "text": "soigner" },
   "take-the-pills-twice-daily": {
    "text": "Prenez les comprimés deux fois par jour.",

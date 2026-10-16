@@ -5,7 +5,7 @@
   "form": { "text": "formulaire", "grammar": { "gender": "le" } },
   "to-fill-in": { "text": "remplir" },
   "signature": { "text": "signature", "grammar": { "gender": "la" } },
-  "address": { "text": "adresse", "accepts": ["l'adresse"], "grammar": { "gender": "l'" } },
+  "address": { "text": "adresse", "accepts": ["l'adresse"], "grammar": { "gender": "l'", "genus": "f" } },
   "first-name": { "text": "prénom", "grammar": { "gender": "le" } },
   "surname": { "text": "nom de famille", "accepts": ["nom"], "grammar": { "gender": "le" } },
   "date-of-birth": { "text": "date de naissance", "grammar": { "gender": "la" } },
@@ -17,7 +17,7 @@
   "email-address": {
    "text": "adresse e-mail",
    "accepts": ["l'adresse e-mail", "adresse mail"],
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "f" }
   },
   "nationality": { "text": "nationalité", "grammar": { "gender": "la" } },
   "sex": { "text": "sexe", "grammar": { "gender": "le" } },
@@ -32,7 +32,7 @@
   "married": { "text": "marié", "forms": { "f": "mariée" } },
   "divorced": { "text": "divorcé", "forms": { "f": "divorcée" } },
   "widowed": { "text": "veuf", "forms": { "f": "veuve" } },
-  "age": { "text": "âge", "accepts": ["l'âge"], "grammar": { "gender": "l'" } },
+  "age": { "text": "âge", "accepts": ["l'âge"], "grammar": { "gender": "l'", "genus": "m" } },
   "fill-out-the-form": { "text": "Remplissez le formulaire.", "accepts": ["Remplis le formulaire."] },
   "what-is-your-last-name": { "text": "Quel est votre nom de famille ?" },
   "she-is-divorced": { "text": "Elle est divorcée." },

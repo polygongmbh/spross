@@ -13,7 +13,7 @@
   "ship": { "text": "bateau", "forms": { "pl": "les bateaux" }, "grammar": { "gender": "le" } },
   "boat": { "text": "barque", "teaches": ["canot"], "grammar": { "gender": "la" } },
   "port": { "text": "port", "grammar": { "gender": "le" } },
-  "island": { "text": "île", "accepts": ["l'île"], "grammar": { "gender": "l'" } },
+  "island": { "text": "île", "accepts": ["l'île"], "grammar": { "gender": "l'", "genus": "f" } },
   "coast": { "text": "côte", "grammar": { "gender": "la" } },
   "wave": { "text": "vague", "grammar": { "gender": "la" } },
   "to-swim": { "text": "nager" },

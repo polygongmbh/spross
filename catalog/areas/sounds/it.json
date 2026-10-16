@@ -15,7 +15,7 @@
    "text": "altoparlante",
    "accepts": ["l'altoparlante"],
    "forms": { "pl": "gli altoparlanti" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "headphones": {
    "text": "cuffie",

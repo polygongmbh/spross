@@ -14,7 +14,7 @@
    "teaches": ["studio medico"],
    "accepts": ["l'ambulatorio"],
    "forms": { "pl": "gli ambulatori" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "it": "l'ambulatorio è del medico di base · lo studio medico è privato." }
   },
   "pill": {
@@ -41,17 +41,17 @@
   "health-insurance": {
    "text": "assicurazione sanitaria",
    "accepts": ["l'assicurazione sanitaria", "un'assicurazione sanitaria"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "notes": {
     "it": "cura tutti il Servizio Sanitario Nazionale · l'assicurazione è privata.",
     "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: versorgt wird man über den staatlichen Servizio Sanitario Nazionale; un'assicurazione sanitaria ist meist eine private Zusatzversicherung."
    }
   },
-  "hospital": { "text": "ospedale", "accepts": ["l'ospedale"], "grammar": { "gender": "l'" } },
+  "hospital": { "text": "ospedale", "accepts": ["l'ospedale"], "grammar": { "gender": "l'", "genus": "m" } },
   "emergency": {
    "text": "emergenza",
    "accepts": ["l'emergenza", "un'emergenza"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "notes": { "it": "in ospedale si va al pronto soccorso." }
   },
   "doctors-note": {
@@ -78,7 +78,7 @@
    "text": "infermiere",
    "accepts": ["l'infermiere", "un'infermiera"],
    "forms": { "f": "l'infermiera" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "dentist": {
    "text": "dentista",
@@ -96,7 +96,11 @@
     "de": "il vaccino ist der Impfstoff und im Alltag die Impfung: fare il vaccino; la vaccinazione ist der formale Vorgang."
    }
   },
-  "ambulance": { "text": "ambulanza", "accepts": ["l'ambulanza", "un'ambulanza"], "grammar": { "gender": "l'" } },
+  "ambulance": {
+   "text": "ambulanza",
+   "accepts": ["l'ambulanza", "un'ambulanza"],
+   "grammar": { "gender": "l'", "genus": "f" }
+  },
   "to-look-after": { "text": "curare" },
   "take-the-pills-twice-daily": {
    "text": "Prenda le pastiglie due volte al giorno.",

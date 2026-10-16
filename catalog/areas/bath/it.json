@@ -27,14 +27,18 @@
   "mirror": { "text": "specchio", "forms": { "pl": "gli specchi" }, "grammar": { "gender": "lo" } },
   "toothbrush": { "text": "spazzolino da denti", "accepts": ["spazzolino"], "grammar": { "gender": "lo" } },
   "toothpaste": { "text": "dentifricio", "forms": { "pl": "i dentifrici" }, "grammar": { "gender": "il" } },
-  "towel": { "text": "asciugamano", "accepts": ["l'asciugamano"], "grammar": { "gender": "l'" } },
+  "towel": {
+   "text": "asciugamano",
+   "accepts": ["l'asciugamano"],
+   "grammar": { "gender": "l'", "genus": "m" }
+  },
   "soap": { "text": "sapone", "grammar": { "gender": "il" } },
   "shampoo": { "text": "shampoo", "grammar": { "gender": "lo", "plural": "=" } },
   "hairdryer": {
    "text": "asciugacapelli",
    "teaches": ["phon"],
    "accepts": ["l'asciugacapelli", "fon"],
-   "grammar": { "gender": "l'", "plural": "=" }
+   "grammar": { "gender": "l'", "genus": "m", "plural": "=" }
   },
   "to-take-shower": { "text": "farsi la doccia", "accepts": ["fare la doccia"] },
   "to-do-laundry": { "text": "fare il bucato", "accepts": ["lavare i panni"] },

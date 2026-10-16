@@ -33,7 +33,11 @@
   "band-aid": { "text": "cerotto", "grammar": { "gender": "il" } },
   "splint": { "text": "stecca", "grammar": { "gender": "la" } },
   "to-recover": { "text": "guarire", "accepts": ["rimettersi"] },
-  "allergy": { "text": "allergia", "accepts": ["l'allergia", "un'allergia"], "grammar": { "gender": "l'" } },
+  "allergy": {
+   "text": "allergia",
+   "accepts": ["l'allergia", "un'allergia"],
+   "grammar": { "gender": "l'", "genus": "f" }
+  },
   "my-throat-hurts-a-lot": { "text": "Mi fa molto male la gola.", "orders": ["La gola mi fa molto male."] },
   "ive-had-a-fever-since-yesterday": { "text": "Ho la febbre da ieri.", "orders": ["Da ieri ho la febbre."] },
   "get-well-soon": { "text": "Guarisci presto!", "accepts": ["Guarisca presto!", "Rimettiti presto!"] },

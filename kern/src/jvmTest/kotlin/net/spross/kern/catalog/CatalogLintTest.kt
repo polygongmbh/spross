@@ -1,6 +1,8 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.Gender
+import net.spross.kern.model.articleGender
 import net.spross.kern.model.nfcNormalized
 import net.spross.kern.model.stressFolded
 import java.io.File
@@ -512,6 +514,8 @@ class CatalogLintTest {
      * whose PRESENT leading article disagrees, so a singular `el` on *auriculares* marks
      * the only right answer, `los auriculares`, a typo. That is what makes es
      * el/la/los/las the same rule as de's der/die/das rather than a de-shaped exception.
+     * Where that article cannot carry the gender — fr/it `l'`, fr `les`, es `el agua` —
+     * `genus` does, so a poster or a hue never has to guess it.
      */
     @Test
     fun grammarValuesAreWellFormed() {
@@ -524,15 +528,34 @@ class CatalogLintTest {
             raw.grammar["plural"]?.let {
                 assertTrue(it == "=" || it == "only", "$area/$lang.json $slug: a plural form belongs in forms.pl, not grammar (\"$it\")")
             }
-            val gender = raw.grammar["gender"] ?: return@forEachRealization
+            val genus = raw.grammar["genus"]
+            genus?.let { assertTrue(it in GENERA, "$area/$lang.json $slug.genus: \"$it\" is none of $GENERA") }
+            val gender = raw.grammar["gender"]
+            if (gender == null) {
+                assertTrue(genus == null, "$area/$lang.json $slug.genus: a genus without an article to complete")
+                return@forEachRealization
+            }
             val where = "$area/$lang.json $slug.gender"
             assertTrue(gender in catalog.languages.getValue(lang).articles, "$where: no declared $lang article")
             if (raw.grammar["plural"] == "only") {
                 assertTrue(gender in pluralArticles[lang].orEmpty(), "$where: \"$gender\" is not plural")
             }
+            // `genus` is the gender the article cannot show: required where it names none
+            // (fr/it l', fr les), and otherwise only where it contradicts it (es el agua).
+            when (val shown = articleGender(gender, lang)) {
+                null -> assertTrue(genus != null, "$where: \"$gender\" hides the gender — add grammar.genus")
+                else -> assertTrue(
+                    genus == null || genus != GENUS_OF.getValue(shown),
+                    "$area/$lang.json $slug.genus: \"$genus\" repeats what \"$gender\" already shows",
+                )
+            }
         }
     }
 }
+
+/** `grammar.genus` values: the gender an article hides, `m/f` where the noun takes both (l'élève). */
+private val GENERA = setOf("m", "f", "m/f")
+private val GENUS_OF = mapOf(Gender.Masculine to "m", Gender.Feminine to "f", Gender.Neuter to "n")
 
 /** The alphabet's apostrophe — see [CatalogLintTest.contentWritesTheTypewriterApostrophe]. */
 private const val MODIFIER_APOSTROPHE = '\u02BC'

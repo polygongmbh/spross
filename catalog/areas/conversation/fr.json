@@ -25,7 +25,7 @@
   "question": { "text": "question", "grammar": { "gender": "la" } },
   "answer": { "text": "réponse", "grammar": { "gender": "la" } },
   "to-reply": { "text": "répondre", "notes": { "fr": "répondre à la question · répondre à Paul." } },
-  "help": { "text": "aide", "accepts": ["l'aide"], "grammar": { "gender": "l'" } },
+  "help": { "text": "aide", "accepts": ["l'aide"], "grammar": { "gender": "l'", "genus": "f" } },
   "to-need": { "text": "avoir besoin de" },
   "to-know-something": { "text": "savoir", "notes": { "fr": "savoir nager, savoir où c'est." } },
   "to-know-person": { "text": "connaître quelqu'un", "notes": { "fr": "aussi les lieux : connaître Paris." } },

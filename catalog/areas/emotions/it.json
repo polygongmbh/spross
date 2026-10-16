@@ -12,7 +12,7 @@
    "text": "amore",
    "accepts": ["l'amore"],
    "forms": { "pl": "gli amori" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "shame": { "text": "vergogna", "grammar": { "gender": "la" } },
   "jealousy": { "text": "gelosia", "grammar": { "gender": "la" } },

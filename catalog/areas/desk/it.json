@@ -42,7 +42,7 @@
   "email": {
    "text": "e-mail",
    "accepts": ["l'e-mail", "un'e-mail", "mail", "posta elettronica"],
-   "grammar": { "gender": "l'", "plural": "=" },
+   "grammar": { "gender": "l'", "genus": "f", "plural": "=" },
    "notes": {
     "it": "l'e-mail è femminile e non cambia: un'e-mail, le e-mail.",
     "de": "l'e-mail ist feminin und unveränderlich: un'e-mail, le e-mail. Die förmliche Form ist la posta elettronica."

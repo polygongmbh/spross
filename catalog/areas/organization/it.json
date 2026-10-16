@@ -2,13 +2,17 @@
  "title": "Appuntamenti e scadenze",
  "subtitle": "Così non ti sfugge niente.",
  "words": {
-  "appointment": { "text": "appuntamento", "accepts": ["l'appuntamento"], "grammar": { "gender": "l'" } },
+  "appointment": {
+   "text": "appuntamento",
+   "accepts": ["l'appuntamento"],
+   "grammar": { "gender": "l'", "genus": "m" }
+  },
   "date": { "text": "data", "grammar": { "gender": "la" } },
   "opening-hours": {
    "text": "orario di apertura",
    "accepts": ["l'orario di apertura", "orario"],
    "forms": { "pl": "gli orari di apertura" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": {
     "it": "di solito al singolare: l'orario di apertura · spesso solo l'orario.",
     "de": "Italienisch hat keinen festen Plural wie „die Öffnungszeiten“: meist l'orario di apertura, im Alltag oft nur l'orario."

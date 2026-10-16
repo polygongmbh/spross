@@ -8,12 +8,16 @@
   "death": { "text": "mort", "grammar": { "gender": "la" } },
   "to-die": { "text": "mourir" },
   "to-be-born": { "text": "naître" },
-  "childhood": { "text": "enfance", "accepts": ["l'enfance"], "grammar": { "gender": "l'" } },
+  "childhood": { "text": "enfance", "accepts": ["l'enfance"], "grammar": { "gender": "l'", "genus": "f" } },
   "youth": { "text": "jeunesse", "grammar": { "gender": "la" } },
   "to-grow-up": { "text": "grandir" },
   "to-get-old": { "text": "vieillir" },
   "dead": { "text": "décédé", "accepts": ["mort", "morte"], "forms": { "f": "décédée" } },
-  "funeral": { "text": "enterrement", "accepts": ["l'enterrement", "obsèques"], "grammar": { "gender": "l'" } },
+  "funeral": {
+   "text": "enterrement",
+   "accepts": ["l'enterrement", "obsèques"],
+   "grammar": { "gender": "l'", "genus": "m" }
+  },
   "grave": { "text": "tombe", "grammar": { "gender": "la" } },
   "cemetery": { "text": "cimetière", "grammar": { "gender": "le" } },
   "to-bury": { "text": "enterrer" },

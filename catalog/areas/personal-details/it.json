@@ -5,7 +5,7 @@
   "form": { "text": "modulo", "grammar": { "gender": "il" } },
   "to-fill-in": { "text": "compilare", "accepts": ["riempire"] },
   "signature": { "text": "firma", "grammar": { "gender": "la" } },
-  "address": { "text": "indirizzo", "accepts": ["l'indirizzo"], "grammar": { "gender": "l'" } },
+  "address": { "text": "indirizzo", "accepts": ["l'indirizzo"], "grammar": { "gender": "l'", "genus": "m" } },
   "first-name": { "text": "nome di battesimo", "accepts": ["nome"], "grammar": { "gender": "il" } },
   "surname": { "text": "cognome", "grammar": { "gender": "il" } },
   "date-of-birth": { "text": "data di nascita", "grammar": { "gender": "la" } },
@@ -17,7 +17,7 @@
   "email-address": {
    "text": "indirizzo email",
    "accepts": ["l'indirizzo email", "indirizzo e-mail"],
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "nationality": { "text": "cittadinanza", "accepts": ["nazionalità"], "grammar": { "gender": "la" } },
   "sex": { "text": "sesso", "grammar": { "gender": "il" } },
@@ -28,7 +28,11 @@
   "married": { "text": "sposato", "accepts": ["coniugato", "coniugata"], "forms": { "f": "sposata" } },
   "divorced": { "text": "divorziato", "forms": { "f": "divorziata" } },
   "widowed": { "text": "vedovo", "forms": { "f": "vedova" } },
-  "age": { "text": "età", "accepts": ["l'età"], "grammar": { "gender": "l'", "plural": "=" } },
+  "age": {
+   "text": "età",
+   "accepts": ["l'età"],
+   "grammar": { "gender": "l'", "genus": "f", "plural": "=" }
+  },
   "fill-out-the-form": { "text": "Compili il modulo.", "accepts": ["Compila il modulo.", "Riempia il modulo."] },
   "what-is-your-last-name": { "text": "Qual è il suo cognome?" },
   "she-is-divorced": { "text": "È divorziata.", "accepts": ["Lei è divorziata."] },

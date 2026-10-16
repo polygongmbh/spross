@@ -10,7 +10,7 @@
   },
   "classroom": {
    "text": "aula",
-   "grammar": { "gender": "el" },
+   "grammar": { "gender": "el", "genus": "f" },
    "notes": {
     "es": "Femenino con el en singular: el aula, plural las aulas.",
     "de": "aula ist feminin, nimmt im Singular aber el (betontes a-): el aula, Plural las aulas."

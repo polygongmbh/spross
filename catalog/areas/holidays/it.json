@@ -9,7 +9,7 @@
    "teaches": ["hotel"],
    "accepts": ["l'albergo", "l'hotel"],
    "forms": { "pl": "gli alberghi" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "luggage": { "text": "bagaglio", "forms": { "pl": "i bagagli" }, "grammar": { "gender": "il" } },
   "to-travel": { "text": "viaggiare" },

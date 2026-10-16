@@ -33,7 +33,7 @@
    "text": "azienda",
    "teaches": ["ditta"],
    "accepts": ["l'azienda", "un'azienda", "società"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "notes": {
     "it": "l'azienda o la ditta è dove si lavora · la firma sta sul foglio.",
     "de": "Vorsicht: la firma ist die Unterschrift; „die Firma“ heißt l'azienda oder la ditta."
@@ -82,7 +82,7 @@
    "text": "orario di lavoro",
    "accepts": ["l'orario di lavoro"],
    "forms": { "pl": "gli orari di lavoro" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "full-time": {
    "text": "tempo pieno",
@@ -98,7 +98,7 @@
   "tax": {
    "text": "imposta",
    "accepts": ["l'imposta", "un'imposta", "tassa"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "notes": { "it": "l'imposta è quella sul reddito · la tassa si paga per un servizio." }
   },
   "work-permit": { "text": "permesso di lavoro", "grammar": { "gender": "il" } },
@@ -135,6 +135,6 @@
    "accepts": ["Leggi bene il contratto.", "Legga attentamente il contratto."]
   },
   "we-knock-off-at-5": { "text": "Oggi stacchiamo alle 5.", "orders": ["Stacchiamo oggi alle 5."] },
-  "workplace": { "text": "ufficio", "grammar": { "gender": "l'" }, "accepts": ["l'ufficio"] }
+  "workplace": { "text": "ufficio", "grammar": { "gender": "l'", "genus": "m" }, "accepts": ["l'ufficio"] }
  }
 }

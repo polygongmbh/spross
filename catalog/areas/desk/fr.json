@@ -11,11 +11,11 @@
   "laptop": {
    "text": "ordinateur portable",
    "accepts": ["l'ordinateur portable", "portable", "PC portable"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "fr": "on dit surtout mon portable · mais le portable, c'est aussi le téléphone." }
   },
   "keyboard": { "text": "clavier", "grammar": { "gender": "le" } },
-  "screen": { "text": "écran", "accepts": ["l'écran"], "grammar": { "gender": "l'" } },
+  "screen": { "text": "écran", "accepts": ["l'écran"], "grammar": { "gender": "l'", "genus": "m" } },
   "mouse": { "text": "souris", "grammar": { "gender": "la", "plural": "=" } },
   "cable": { "text": "câble", "grammar": { "gender": "le" } },
   "pen": {
@@ -24,7 +24,7 @@
    "notes": { "fr": "le stylo écrit à l’encre.", "de": "„Stift“ ist hier der Kugelschreiber: le stylo." }
   },
   "notebook": { "text": "carnet", "accepts": ["bloc-notes"], "grammar": { "gender": "le" } },
-  "printer": { "text": "imprimante", "accepts": ["l'imprimante"], "grammar": { "gender": "l'" } },
+  "printer": { "text": "imprimante", "accepts": ["l'imprimante"], "grammar": { "gender": "l'", "genus": "f" } },
   "socket": {
    "text": "prise",
    "accepts": ["prise de courant", "prise électrique"],
@@ -48,7 +48,7 @@
   "email": {
    "text": "e-mail",
    "accepts": ["l'e-mail", "mail", "courriel", "courrier électronique"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "fr": "on dit le mail ou l'e-mail ; le courriel est la forme officielle." }
   },
   "paper": { "text": "papier", "grammar": { "gender": "le" } },

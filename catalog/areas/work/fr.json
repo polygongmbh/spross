@@ -35,7 +35,11 @@
    "grammar": { "gender": "le" },
    "notes": { "fr": "je prends mon service à six heures · à l'usine, on dit le poste." }
   },
-  "company": { "text": "entreprise", "accepts": ["l'entreprise", "boîte"], "grammar": { "gender": "l'" } },
+  "company": {
+   "text": "entreprise",
+   "accepts": ["l'entreprise", "boîte"],
+   "grammar": { "gender": "l'", "genus": "f" }
+  },
   "to-apply": {
    "text": "postuler à un poste",
    "accepts": ["postuler", "poser sa candidature"],
@@ -66,12 +70,12 @@
   "interview": {
    "text": "entretien d'embauche",
    "accepts": ["l'entretien d'embauche", "entretien"],
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "working-hours": {
    "text": "horaires de travail",
    "accepts": ["horaire de travail", "temps de travail"],
-   "grammar": { "gender": "les" },
+   "grammar": { "gender": "les", "genus": "m" },
    "notes": { "fr": "au pluriel : mes horaires de travail · la durée, c'est le temps de travail." }
   },
   "full-time": {
@@ -87,7 +91,7 @@
   "tax": {
    "text": "impôt",
    "accepts": ["l'impôt"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "fr": "l'impôt sur le revenu · la taxe se paie pour un service précis." }
   },
   "work-permit": { "text": "permis de travail", "grammar": { "gender": "le", "plural": "=" } },
@@ -97,7 +101,7 @@
    "notes": { "fr": "le patron licencie · le salarié, lui, donne sa démission." }
   },
   "worker": { "text": "travailleur", "grammar": { "gender": "le" } },
-  "employer": { "text": "employeur", "accepts": ["l'employeur"], "grammar": { "gender": "l'" } },
+  "employer": { "text": "employeur", "accepts": ["l'employeur"], "grammar": { "gender": "l'", "genus": "m" } },
   "customer": { "text": "client", "grammar": { "gender": "le" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Demain, je me présente à l'entreprise.",

@@ -6,14 +6,14 @@
    "text": "ingresso",
    "teaches": ["corridoio"],
    "accepts": ["l'ingresso"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "it": "l'ingresso è subito dopo la porta · il corridoio porta alle stanze." }
   },
   "door": { "text": "porta", "grammar": { "gender": "la" } },
   "key": { "text": "chiave", "grammar": { "gender": "la" } },
   "jacket": { "text": "giacca", "forms": { "pl": "le giacche" }, "grammar": { "gender": "la" } },
   "coat": { "text": "cappotto", "grammar": { "gender": "il" } },
-  "umbrella": { "text": "ombrello", "accepts": ["l'ombrello"], "grammar": { "gender": "l'" } },
+  "umbrella": { "text": "ombrello", "accepts": ["l'ombrello"], "grammar": { "gender": "l'", "genus": "m" } },
   "hat": {
    "text": "berretto",
    "teaches": ["cappello"],
@@ -59,7 +59,11 @@
    "notes": { "it": "salutare vale arrivando e andando via · chiaro è dire arrivederci." }
   },
   "shoe": { "text": "scarpa", "grammar": { "gender": "la" } },
-  "apartment": { "text": "appartamento", "accepts": ["l'appartamento"], "grammar": { "gender": "l'" } },
+  "apartment": {
+   "text": "appartamento",
+   "accepts": ["l'appartamento"],
+   "grammar": { "gender": "l'", "genus": "m" }
+  },
   "neighbor": {
    "text": "vicino di casa",
    "accepts": ["vicino", "vicina"],
@@ -70,7 +74,7 @@
   "guest": {
    "text": "ospite",
    "accepts": ["l'ospite", "invitato", "invitata"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m/f" },
    "notes": {
     "it": "l'ospite è chi arriva · chi è stato invitato è l'invitato.",
     "de": "l'ospite meint den Gast und, seltener, den Gastgeber; der Eingeladene heißt l'invitato."

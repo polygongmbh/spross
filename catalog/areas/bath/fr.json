@@ -15,7 +15,7 @@
   "toilet": {
    "text": "toilettes",
    "accepts": ["WC"],
-   "grammar": { "gender": "les", "plural": "only" },
+   "grammar": { "gender": "les", "genus": "f", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : les toilettes · la toilette, c'est se laver." }
   },
   "shower": { "text": "douche", "grammar": { "gender": "la" } },
@@ -52,7 +52,7 @@
   "bathtub": { "text": "baignoire", "grammar": { "gender": "la" } },
   "toilet-paper": { "text": "papier toilette", "accepts": ["papier hygiénique"], "grammar": { "gender": "le" } },
   "razor": { "text": "rasoir", "grammar": { "gender": "le" } },
-  "sponge": { "text": "éponge", "accepts": ["l'éponge"], "grammar": { "gender": "l'" } },
+  "sponge": { "text": "éponge", "accepts": ["l'éponge"], "grammar": { "gender": "l'", "genus": "f" } },
   "cream": { "text": "crème", "grammar": { "gender": "la" } },
   "faucet": { "text": "robinet", "grammar": { "gender": "le" } },
   "trash-can": { "text": "poubelle", "grammar": { "gender": "la" } },

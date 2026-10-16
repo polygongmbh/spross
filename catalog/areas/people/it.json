@@ -6,7 +6,7 @@
   "human": {
    "text": "essere umano",
    "accepts": ["l'essere umano"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "it": "l'essere umano è la specie · la persona è una sola." }
   },
   "family": { "text": "famiglia", "grammar": { "gender": "la" } },
@@ -26,7 +26,7 @@
    "text": "uomo",
    "accepts": ["l'uomo"],
    "forms": { "pl": "gli uomini" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "woman": { "text": "donna", "grammar": { "gender": "la" } },
   "boy": { "text": "ragazzo", "grammar": { "gender": "il" } },
@@ -41,7 +41,7 @@
    "text": "amico",
    "accepts": ["l'amico", "un'amica"],
    "forms": { "f": "l'amica", "pl": "gli amici", "f.pl": "le amiche" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "grandmother": { "text": "nonna", "grammar": { "gender": "la" } },
   "grandfather": { "text": "nonno", "grammar": { "gender": "il" } },

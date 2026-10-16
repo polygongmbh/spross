@@ -10,7 +10,11 @@
   },
   "bicycle": { "text": "vélo", "accepts": ["bicyclette"], "grammar": { "gender": "le" } },
   "bus": { "text": "bus", "accepts": ["autobus"], "grammar": { "gender": "le", "plural": "=" } },
-  "bus-stop": { "text": "arrêt de bus", "accepts": ["arrêt", "l'arrêt de bus"], "grammar": { "gender": "l'" } },
+  "bus-stop": {
+   "text": "arrêt de bus",
+   "accepts": ["arrêt", "l'arrêt de bus"],
+   "grammar": { "gender": "l'", "genus": "m" }
+  },
   "train": { "text": "train", "grammar": { "gender": "le" } },
   "car": { "text": "voiture", "grammar": { "gender": "la" } },
   "taxi": { "text": "taxi", "grammar": { "gender": "le" } },
@@ -25,8 +29,8 @@
   "to-take-bus": { "text": "prendre le bus" },
   "to-depart": { "text": "partir", "notes": { "fr": "le train part à huit heures · je pars demain." } },
   "driver": { "text": "conducteur", "accepts": ["chauffeur"], "grammar": { "gender": "le" } },
-  "plane": { "text": "avion", "accepts": ["l'avion"], "grammar": { "gender": "l'" } },
-  "airport": { "text": "aéroport", "accepts": ["l'aéroport"], "grammar": { "gender": "l'" } },
+  "plane": { "text": "avion", "accepts": ["l'avion"], "grammar": { "gender": "l'", "genus": "m" } },
+  "airport": { "text": "aéroport", "accepts": ["l'aéroport"], "grammar": { "gender": "l'", "genus": "m" } },
   "motorbike": { "text": "moto", "accepts": ["motocyclette"], "grammar": { "gender": "la" } },
   "truck": { "text": "camion", "grammar": { "gender": "le" } },
   "passenger": { "text": "passager", "grammar": { "gender": "le" } },

@@ -7,7 +7,7 @@
    "teaches": ["pubblica amministrazione"],
    "accepts": ["l'ufficio pubblico"],
    "forms": { "pl": "gli uffici pubblici" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "it": "il comune, l'anagrafe, la questura: ogni ufficio ha il suo nome." }
   },
   "application": {
@@ -34,13 +34,13 @@
    "teaches": ["funzionario"],
    "accepts": ["l'impiegato", "un'impiegata"],
    "forms": { "f": ["l'impiegata", "la funzionaria"] },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "it": "l'impiegato sta allo sportello · il funzionario decide la pratica." }
   },
   "registration": {
    "text": "iscrizione anagrafica",
    "accepts": ["l'iscrizione anagrafica", "un'iscrizione anagrafica", "residenza", "cambio di residenza"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "notes": {
     "it": "si dice fare la residenza e si fa al comune.",
     "de": "Die Wohnsitzanmeldung heißt iscrizione anagrafica; im Alltag sagt man fare la residenza, angemeldet wird man beim comune."
@@ -89,7 +89,7 @@
    "text": "orario di ricevimento",
    "accepts": ["l'orario di ricevimento", "orario di ricevimento al pubblico"],
    "forms": { "pl": "gli orari di ricevimento" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "it": "di ricevimento = quando ricevono il pubblico · di apertura = quando è aperto." }
   },
   "waiting-room": { "text": "sala d'attesa", "accepts": ["sala di attesa"], "grammar": { "gender": "la" } },
@@ -106,7 +106,7 @@
   "authority": {
    "text": "autorità",
    "accepts": ["l'autorità", "ente pubblico"],
-   "grammar": { "gender": "l'", "plural": "=" }
+   "grammar": { "gender": "l'", "genus": "f", "plural": "=" }
   },
   "responsible": { "text": "responsabile", "accepts": ["competente"] },
   "to-submit-application": { "text": "presentare una domanda", "accepts": ["presentare una richiesta", "fare domanda"] },

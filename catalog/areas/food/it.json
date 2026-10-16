@@ -10,7 +10,7 @@
    "text": "uovo",
    "accepts": ["l'uovo"],
    "forms": { "pl": "le uova" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "it": "un uovo → due uova." }
   },
   "cheese": { "text": "formaggio", "forms": { "pl": "i formaggi" }, "grammar": { "gender": "il" } },
@@ -42,7 +42,7 @@
    "text": "olio",
    "accepts": ["l'olio"],
    "forms": { "pl": "gli oli" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "flour": { "text": "farina", "grammar": { "gender": "la" } },
   "butter": { "text": "burro", "grammar": { "gender": "il" } },
@@ -57,14 +57,18 @@
   "cooked-rice": { "text": "riso cotto", "accepts": ["riso bollito"] },
   "cassava": { "text": "manioca", "grammar": { "gender": "la" } },
   "bean": { "text": "fagiolo", "grammar": { "gender": "il" } },
-  "garlic": { "text": "aglio", "accepts": ["l'aglio"], "grammar": { "gender": "l'" } },
+  "garlic": { "text": "aglio", "accepts": ["l'aglio"], "grammar": { "gender": "l'", "genus": "m" } },
   "carrot": { "text": "carota", "grammar": { "gender": "la" } },
   "cabbage": { "text": "cavolo", "grammar": { "gender": "il" } },
   "porridge": { "text": "pappa", "grammar": { "gender": "la" } },
   "samosa": { "text": "samosa", "grammar": { "gender": "la" } },
   "breakfast": { "text": "colazione", "accepts": ["prima colazione"], "grammar": { "gender": "la" } },
   "dinner": { "text": "cena", "grammar": { "gender": "la" } },
-  "water": { "text": "acqua", "accepts": ["l'acqua", "un'acqua"], "grammar": { "gender": "l'" } },
+  "water": {
+   "text": "acqua",
+   "accepts": ["l'acqua", "un'acqua"],
+   "grammar": { "gender": "l'", "genus": "f" }
+  },
   "to-eat": { "text": "mangiare" },
   "to-drink": { "text": "bere" },
   "im-hungry": { "text": "Ho fame." },

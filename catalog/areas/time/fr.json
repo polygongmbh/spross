@@ -14,13 +14,13 @@
    "notes": { "fr": "trois jours · la journée dure de l'aube à la nuit." }
   },
   "week": { "text": "semaine", "grammar": { "gender": "la" } },
-  "hour": { "text": "heure", "accepts": ["l'heure"], "grammar": { "gender": "l'" } },
+  "hour": { "text": "heure", "accepts": ["l'heure"], "grammar": { "gender": "l'", "genus": "f" } },
   "minute": { "text": "minute", "grammar": { "gender": "la" } },
   "month": { "text": "mois", "grammar": { "gender": "le", "plural": "=" } },
   "year": {
    "text": "an",
    "accepts": ["l'an", "année", "l'année"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": {
     "fr": "j'ai trente ans, trois ans · Bonne année ! toute l'année.",
     "de": "l'an zählt Jahre: deux ans, l'an prochain. Als Zeitraum steht l'année: Bonne année !"
@@ -36,7 +36,7 @@
   "soon": { "text": "bientôt" },
   "noon": { "text": "midi", "grammar": { "gender": "le" } },
   "midnight": { "text": "minuit", "grammar": { "gender": "le" } },
-  "afternoon": { "text": "après-midi", "accepts": ["l'après-midi"], "grammar": { "gender": "l'" } },
+  "afternoon": { "text": "après-midi", "accepts": ["l'après-midi"], "grammar": { "gender": "l'", "genus": "m" } },
   "morning": { "text": "matin", "grammar": { "gender": "le" } },
   "evening": { "text": "soir", "grammar": { "gender": "le" } },
   "night": { "text": "nuit", "grammar": { "gender": "la" } },

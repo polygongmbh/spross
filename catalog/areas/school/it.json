@@ -6,7 +6,7 @@
   "classroom": {
    "text": "aula",
    "accepts": ["l'aula", "un'aula"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "notes": { "it": "l'aula è la stanza, le aule · la classe sono i compagni." }
   },
   "teacher": {
@@ -25,11 +25,11 @@
    "grammar": { "gender": "i", "plural": "only" },
    "notes": { "it": "solo al plurale: fare i compiti." }
   },
-  "exam": { "text": "esame", "accepts": ["l'esame", "prova"], "grammar": { "gender": "l'" } },
+  "exam": { "text": "esame", "accepts": ["l'esame", "prova"], "grammar": { "gender": "l'", "genus": "m" } },
   "break": {
    "text": "intervallo",
    "accepts": ["l'intervallo", "ricreazione", "pausa"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": {
     "it": "a scuola c'è l'intervallo · alle elementari la ricreazione.",
     "de": "l'intervallo ist die Schulpause, in der Grundschule la ricreazione; die allgemeine Pause heißt la pausa."
@@ -44,7 +44,7 @@
   "pupil": {
    "text": "alunno",
    "forms": { "f": "l'alunna" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "it": "l'alunno va a scuola · lo studente anche all'università." },
    "accepts": ["l'alunno"]
   },
@@ -62,7 +62,7 @@
    "text": "orario",
    "accepts": ["l'orario", "orario delle lezioni"],
    "forms": { "pl": "gli orari" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "m" },
    "notes": { "it": "l'orario è ogni orario · a scuola è l'orario delle lezioni." }
   },
   "to-count": { "text": "contare" },

@@ -9,10 +9,10 @@
   },
   "day": { "text": "giorno", "accepts": ["giornata"], "grammar": { "gender": "il" } },
   "week": { "text": "settimana", "grammar": { "gender": "la" } },
-  "hour": { "text": "ora", "accepts": ["l'ora", "un'ora"], "grammar": { "gender": "l'" } },
+  "hour": { "text": "ora", "accepts": ["l'ora", "un'ora"], "grammar": { "gender": "l'", "genus": "f" } },
   "minute": { "text": "minuto", "grammar": { "gender": "il" } },
   "month": { "text": "mese", "grammar": { "gender": "il" } },
-  "year": { "text": "anno", "accepts": ["l'anno"], "grammar": { "gender": "l'" } },
+  "year": { "text": "anno", "accepts": ["l'anno"], "grammar": { "gender": "l'", "genus": "m" } },
   "now": {
    "text": "adesso",
    "accepts": ["ora"],

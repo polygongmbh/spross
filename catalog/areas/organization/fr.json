@@ -7,7 +7,7 @@
   "opening-hours": {
    "text": "heures d'ouverture",
    "accepts": ["horaires d'ouverture"],
-   "grammar": { "gender": "les", "plural": "only" }
+   "grammar": { "gender": "les", "genus": "f", "plural": "only" }
   },
   "deadline": {
    "text": "délai",

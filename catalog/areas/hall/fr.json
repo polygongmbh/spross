@@ -6,7 +6,7 @@
    "text": "entrée",
    "teaches": ["couloir"],
    "accepts": ["l'entrée"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "gender": "l'", "genus": "f" },
    "notes": {
     "fr": "l'entrée est juste derrière la porte · le couloir mène aux pièces.",
     "en": "l'entrée is the entryway just inside the front door; the corridor itself is le couloir."
@@ -32,7 +32,11 @@
    "grammar": { "gender": "la" }
   },
   "doorbell": { "text": "sonnette", "grammar": { "gender": "la" } },
-  "stairs": { "text": "escalier", "accepts": ["l'escalier", "escaliers"], "grammar": { "gender": "l'" } },
+  "stairs": {
+   "text": "escalier",
+   "accepts": ["l'escalier", "escaliers"],
+   "grammar": { "gender": "l'", "genus": "m" }
+  },
   "bag": { "text": "sac", "grammar": { "gender": "le" } },
   "to-lock": { "text": "fermer à clé", "accepts": ["verrouiller"] },
   "to-ring": {
@@ -48,13 +52,17 @@
   "to-greet": { "text": "saluer" },
   "to-say-goodbye": { "text": "dire au revoir", "accepts": ["prendre congé"] },
   "shoe": { "text": "chaussure", "grammar": { "gender": "la" } },
-  "apartment": { "text": "appartement", "accepts": ["l'appartement", "appart"], "grammar": { "gender": "l'" } },
+  "apartment": {
+   "text": "appartement",
+   "accepts": ["l'appartement", "appart"],
+   "grammar": { "gender": "l'", "genus": "m" }
+  },
   "neighbor": { "text": "voisin", "forms": { "f": "la voisine" }, "grammar": { "gender": "le" } },
   "guest": {
    "text": "invité",
    "accepts": ["l'invité"],
    "forms": { "f": "l'invitée" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "gender": "l'", "genus": "m" }
   },
   "wallet": {
    "text": "portefeuille",

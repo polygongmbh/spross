@@ -13,7 +13,7 @@
   "to-sell": { "text": "vendre" },
   "cash": {
    "text": "espèces",
-   "grammar": { "gender": "les", "plural": "only" },
+   "grammar": { "gender": "les", "genus": "f", "plural": "only" },
    "notes": { "fr": "toujours au pluriel : payer en espèces." },
    "teaches": ["liquide"]
   },
@@ -29,7 +29,7 @@
    "grammar": { "gender": "la" },
    "notes": { "fr": "le vendeur rend la monnaie · l'euro, le dollar sont des devises." }
   },
-  "money": { "text": "argent", "accepts": ["l'argent"], "grammar": { "gender": "l'" } },
+  "money": { "text": "argent", "accepts": ["l'argent"], "grammar": { "gender": "l'", "genus": "m" } },
   "to-buy": { "text": "acheter" },
   "to-pay": { "text": "payer" },
   "rich": { "text": "riche" },
