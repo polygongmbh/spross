@@ -2,14 +2,14 @@ import SwiftUI
 import SprossKern
 
 /// How an overview row that just unlocked is marked, once (kern's `DrillUnlockMark`
-/// decides which and times it): the padlock it wore fades where it stood while a wash behind
+/// decides which, `UnlockMarkMotion` times it): the padlock it wore fades where it stood while a wash behind
 /// the row fades with it. Short and quiet on purpose — it confirms what the
 /// learner earned rather than celebrating it.
 enum UnlockMark {
-    static let hold: Duration = .milliseconds(Int(DrillUnlockMark.shared.HOLD_MS))
-    static let fade: Animation = .easeOut(duration: Double(DrillUnlockMark.shared.FADE_MS) / 1000)
-    static let shrink = CGFloat(DrillUnlockMark.shared.PADLOCK_SHRINK)
-    static let wash = DrillUnlockMark.shared.WASH_ALPHA
+    static let hold: Duration = .milliseconds(Int(UnlockMarkMotion.shared.HOLD_MS))
+    static let fade: Animation = .easeOut(duration: Double(UnlockMarkMotion.shared.FADE_MS) / 1000)
+    static let shrink = CGFloat(UnlockMarkMotion.shared.PADLOCK_SHRINK)
+    static let wash = UnlockMarkMotion.shared.WASH_ALPHA
 
     /// Says the unlocked rows once, a beat after the page settles.
     @MainActor
@@ -18,7 +18,7 @@ enum UnlockMark {
         let text = String(format: ChromeStrings.string("a11y.trainer.unlocked %@", locale: locale),
                           titles.formatted(.list(type: .and).locale(locale)))
         Task { @MainActor in
-            try? await Task.sleep(for: .milliseconds(Int(DrillUnlockMark.shared.ANNOUNCE_DELAY_MS)))
+            try? await Task.sleep(for: .milliseconds(Int(UnlockMarkMotion.shared.ANNOUNCE_DELAY_MS)))
             AccessibilityNotification.Announcement(text).post()
         }
     }

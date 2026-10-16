@@ -57,10 +57,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 - Gender hues ignore `grammar.gender`: `articleGender` names none for fr/it `l'` and colours es `el agua` masculine (`kern/src/commonMain/kotlin/net/spross/kern/model/Article.kt`), while the catalog now carries the real gender.
 
-### Engine
-
-- Layout data sits in `trainer/` rather than `design/`: `DrillUnlockMark` timings.
-
 ### Apps & tooling
 
 - iOS keeps five Design twins of kern types (`SessionOutcome`, `AnswerInputView.Feedback`, `Theme.Gender`, `AreaProgress`, `StageBadge.Stage`) with their `KernBridge` mappings, and `DrillRunResult` copies `DrillRunSummary`.
