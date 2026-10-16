@@ -135,13 +135,8 @@ struct AreaChip: View {
 /// once (`CardRowState.Standing.swatch`) so a row's badge and the shelf's own bar,
 /// which reads the same three tokens, cannot paint one stage two ways.
 struct StageBadge: View {
-    /// Kern's `ActiveStage` in Design's own terms — see `BoxCardRow.badgeStage`.
-    /// It picks the WORD and the glyph; the color arrives with [growth] instead.
-    enum Stage: CaseIterable {
-        case fresh, growing, lapsed, settled
-    }
-
-    let stage: Stage
+    /// Picks the WORD and the glyph; the color arrives with [growth] instead.
+    let stage: ActiveStage
     /// The stage's color as the box resolved it.
     let growth: Color
 
