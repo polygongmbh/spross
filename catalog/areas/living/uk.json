@@ -6,7 +6,7 @@
   "dining-table": { "text": "обі́дній стіл", "forms": { "pl": "обі́дні столи́" } },
   "chair": { "text": "стіле́ць", "forms": { "pl": "стільці́" } },
   "tv": { "text": "телеві́зор" },
-  "remote": { "text": "пульт від телеві́зора", "accepts": ["пульт"] },
+  "remote": { "text": "пульт дистанці́йного керува́ння", "accepts": ["пульт", "пульт від телеві́зора"] },
   "floor": { "text": "підло́га" },
   "song": { "text": "пі́сня" },
   "story": { "text": "по́верх" },
@@ -37,7 +37,11 @@
   "furniture": { "text": "ме́блі", "grammar": { "plural": "only" } },
   "game": { "text": "гра", "forms": { "pl": "і́гри" } },
   "come-sit-with-me": { "text": "Ходи́ сюди́, сіда́й по́руч зі мно́ю!" },
-  "shall-we-watch-a-movie": { "text": "Мо́же, поди́вимося фільм?", "orders": ["Може, фільм подивимося?"] },
+  "shall-we-watch-a-movie": {
+   "text": "Поди́вимося фільм?",
+   "accepts": ["Мо́же, поди́вимося фільм?"],
+   "orders": ["Фільм подивимося?"]
+  },
   "lets-hang-the-picture": { "text": "Пові́симо карти́ну!" },
   "the-curtains-hang-over-the-window": { "text": "Што́ри ви́сять пе́ред вікно́м.", "orders": ["Перед вікном висять штори."] },
   "the-window-is-closed": { "text": "Вікно́ зачи́нене." },
