@@ -11,10 +11,10 @@ import net.spross.kern.model.Realization
  */
 class ArticleColorTest {
 
-    private fun noun(lang: String, text: String, gender: String? = null) = Realization(
+    private fun noun(lang: String, text: String, article: String? = null) = Realization(
         lang = lang,
         text = text,
-        grammar = gender?.let { mapOf("gender" to it) } ?: emptyMap(),
+        grammar = article?.let { mapOf("article" to it) } ?: emptyMap(),
     )
 
     /**

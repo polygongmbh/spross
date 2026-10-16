@@ -19,14 +19,14 @@ class CatalogMatchesTests {
         known: String,
         learning: String,
         teaches: List<String> = emptyList(),
-        gender: String? = null,
+        article: String? = null,
     ) = Card(
         id = id, kind = CardKind.Noun, area = "area1", emoji = null, seedIndex = 1,
         components = emptyList(),
         source = Realization(lang = "de", text = known),
         target = Realization(
             lang = "sw", text = learning, teaches = teaches,
-            grammar = gender?.let { mapOf("gender" to it) } ?: emptyMap(),
+            grammar = article?.let { mapOf("article" to it) } ?: emptyMap(),
         ),
     )
 

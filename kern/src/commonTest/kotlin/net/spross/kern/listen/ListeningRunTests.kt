@@ -240,6 +240,6 @@ class ListeningRunTests {
         seedIndex = 1,
         components = emptyList(),
         source = Realization(lang = "de", text = source),
-        target = Realization(lang = "sw", text = target, grammar = mapOf("gender" to article)),
+        target = Realization(lang = "sw", text = target, grammar = mapOf("article" to article)),
     )
 }

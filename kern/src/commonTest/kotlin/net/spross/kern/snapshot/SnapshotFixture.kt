@@ -21,7 +21,7 @@ internal object Snap {
         targetText: String = "t-$id",
         teaches: List<String> = emptyList(),
         accepts: List<String> = emptyList(),
-        gender: String? = null,
+        article: String? = null,
         targetLang: String = "sw",
     ): Card = Card(
         id = id, kind = kind, area = area, emoji = emoji, seedIndex = seed,
@@ -29,7 +29,7 @@ internal object Snap {
         source = Realization("de", sourceText),
         target = Realization(
             targetLang, targetText, teaches = teaches, accepts = accepts,
-            grammar = if (gender != null) mapOf("gender" to gender) else emptyMap(),
+            grammar = if (article != null) mapOf("article" to article) else emptyMap(),
         ),
     )
 

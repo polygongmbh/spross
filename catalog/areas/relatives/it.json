@@ -2,21 +2,21 @@
  "title": "I parenti",
  "subtitle": "Tutti quelli che vengono alle feste di famiglia.",
  "words": {
-  "grandparents": { "text": "nonni", "grammar": { "gender": "i", "plural": "only" } },
-  "siblings": { "text": "fratelli", "grammar": { "gender": "i", "plural": "only" } },
-  "cousin": { "text": "cugino", "forms": { "f": "la cugina" }, "grammar": { "gender": "il" } },
+  "grandparents": { "text": "nonni", "grammar": { "article": "i", "plural": "only" } },
+  "siblings": { "text": "fratelli", "grammar": { "article": "i", "plural": "only" } },
+  "cousin": { "text": "cugino", "forms": { "f": "la cugina" }, "grammar": { "article": "il" } },
   "nephew": {
    "text": "nipote",
    "notes": {
     "it": "il nipote è il figlio del fratello, e anche il figlio del figlio: zio e nonno dicono la stessa parola."
    },
-   "grammar": { "gender": "il" }
+   "grammar": { "article": "il" }
   },
-  "brother-in-law": { "text": "cognato", "grammar": { "gender": "il" } },
-  "sister-in-law": { "text": "cognata", "grammar": { "gender": "la" } },
-  "parents-in-law": { "text": "suoceri", "grammar": { "gender": "i", "plural": "only" } },
-  "father-in-law": { "text": "suocero", "grammar": { "gender": "il" } },
-  "mother-in-law": { "text": "suocera", "grammar": { "gender": "la" } },
+  "brother-in-law": { "text": "cognato", "grammar": { "article": "il" } },
+  "sister-in-law": { "text": "cognata", "grammar": { "article": "la" } },
+  "parents-in-law": { "text": "suoceri", "grammar": { "article": "i", "plural": "only" } },
+  "father-in-law": { "text": "suocero", "grammar": { "article": "il" } },
+  "mother-in-law": { "text": "suocera", "grammar": { "article": "la" } },
   "do-you-have-siblings": { "text": "Avete fratelli?" },
   "my-mother-in-law-lives-with-us": {
    "text": "Mia suocera abita da noi.",

@@ -2,15 +2,15 @@
  "title": "Au magasin",
  "subtitle": "Où le prix est déjà sur l'étiquette.",
  "words": {
-  "supermarket": { "text": "supermarché", "grammar": { "gender": "le" } },
-  "mall": { "text": "centre commercial", "grammar": { "gender": "le" } },
-  "checkout": { "text": "caisse", "grammar": { "gender": "la" } },
-  "shop-assistant": { "text": "vendeur", "forms": { "f": "la vendeuse" }, "grammar": { "gender": "le" } },
-  "shopping-cart": { "text": "chariot", "grammar": { "gender": "le" } },
-  "offer": { "text": "promotion", "accepts": ["promo"], "grammar": { "gender": "la" } },
+  "supermarket": { "text": "supermarché", "grammar": { "article": "le" } },
+  "mall": { "text": "centre commercial", "grammar": { "article": "le" } },
+  "checkout": { "text": "caisse", "grammar": { "article": "la" } },
+  "shop-assistant": { "text": "vendeur", "forms": { "f": "la vendeuse" }, "grammar": { "article": "le" } },
+  "shopping-cart": { "text": "chariot", "grammar": { "article": "le" } },
+  "offer": { "text": "promotion", "accepts": ["promo"], "grammar": { "article": "la" } },
   "size": {
    "text": "taille",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "fr": "quelle taille pour les vêtements · quelle pointure pour les chaussures.",
     "de": "la taille ist die Größe und zugleich die Taille am Körper; die Schuhgröße heißt la pointure."
@@ -21,7 +21,7 @@
    "teaches": ["faire les magasins"],
    "notes": { "fr": "faire les courses, c'est acheter à manger · faire les magasins, se promener." }
   },
-  "store": { "text": "magasin", "accepts": ["boutique"], "grammar": { "gender": "le" } },
+  "store": { "text": "magasin", "accepts": ["boutique"], "grammar": { "article": "le" } },
   "open": { "text": "ouvert", "forms": { "f": "ouverte" } },
   "the-store-is-still-open": { "text": "Le magasin est encore ouvert." },
   "do-you-have-this-in-my-size": { "text": "Vous l'avez à ma taille ?", "accepts": ["Est-ce que vous l'avez à ma taille ?"] }

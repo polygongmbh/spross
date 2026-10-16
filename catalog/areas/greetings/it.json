@@ -3,7 +3,7 @@
  "subtitle": "Quello che si dice quando ci si incontra.",
  "words": {
   "to-thank": { "text": "ringraziare" },
-  "name": { "text": "nome", "grammar": { "gender": "il" } },
+  "name": { "text": "nome", "grammar": { "article": "il" } },
   "to-be-called": { "text": "chiamarsi" },
   "hello": { "text": "Ciao!", "accepts": ["Salve!"] },
   "good-day": {

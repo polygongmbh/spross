@@ -1,0 +1,5 @@
+numpy>=2
+onnxruntime>=1.30
+mosqito>=1.2
+# why: mosqito imports matplotlib without declaring it.
+matplotlib>=3

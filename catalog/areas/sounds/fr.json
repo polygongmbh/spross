@@ -13,18 +13,18 @@
    "forms": { "f": "basse" },
    "notes": { "fr": "parle plus bas · une machine silencieuse ne fait pas de bruit." }
   },
-  "noise": { "text": "bruit", "grammar": { "gender": "le" } },
-  "music": { "text": "musique", "grammar": { "gender": "la" } },
-  "radio": { "text": "radio", "grammar": { "gender": "la" } },
-  "speaker": { "text": "haut-parleur", "forms": { "pl": "les haut-parleurs" }, "grammar": { "gender": "le" } },
+  "noise": { "text": "bruit", "grammar": { "article": "le" } },
+  "music": { "text": "musique", "grammar": { "article": "la" } },
+  "radio": { "text": "radio", "grammar": { "article": "la" } },
+  "speaker": { "text": "haut-parleur", "forms": { "pl": "les haut-parleurs" }, "grammar": { "article": "le" } },
   "headphones": {
    "text": "écouteurs",
    "accepts": ["casque", "casque audio"],
-   "grammar": { "gender": "les", "plural": "only" },
+   "grammar": { "article": "les", "gender": "m", "plural": "only" },
    "notes": { "fr": "au pluriel : les écouteurs dans les oreilles · le casque sur la tête." }
   },
-  "microphone": { "text": "microphone", "accepts": ["micro"], "grammar": { "gender": "le" } },
-  "volume": { "text": "volume", "grammar": { "gender": "le" } },
+  "microphone": { "text": "microphone", "accepts": ["micro"], "grammar": { "article": "le" } },
+  "volume": { "text": "volume", "grammar": { "article": "le" } },
   "to-listen-to": { "text": "écouter" },
   "to-listen-to-music": {
    "text": "écouter de la musique",

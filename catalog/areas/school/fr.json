@@ -5,7 +5,7 @@
   "school": {
    "text": "école",
    "accepts": ["l'école"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": {
     "fr": "l'école est pour les petits · après vient le collège.",
     "de": "Vorsicht: le collège ist die Mittelstufe, nicht die Schule allgemein."
@@ -15,38 +15,38 @@
    "text": "salle de classe",
    "accepts": ["salle de cours"],
    "forms": { "pl": "les salles de classe" },
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "teacher": {
    "text": "professeur",
    "teaches": ["enseignant"],
    "accepts": ["prof"],
    "forms": { "f": ["la professeure", "l'enseignante"] },
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "à l'école : le maître, la maîtresse · au collège : le professeur, le prof." }
   },
   "board": {
    "text": "tableau",
    "accepts": ["tableau noir", "tableau blanc"],
    "forms": { "pl": "les tableaux" },
-   "grammar": { "gender": "le" }
+   "grammar": { "article": "le" }
   },
-  "exercise-book": { "text": "cahier", "grammar": { "gender": "le" } },
+  "exercise-book": { "text": "cahier", "grammar": { "article": "le" } },
   "homework": {
    "text": "devoirs",
-   "grammar": { "gender": "les", "plural": "only" },
+   "grammar": { "article": "les", "gender": "m", "plural": "only" },
    "notes": { "fr": "au pluriel : faire ses devoirs." }
   },
   "exam": {
    "text": "examen",
    "accepts": ["l'examen", "contrôle"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "fr": "le contrôle se passe en classe · l'examen compte beaucoup plus." }
   },
   "break": {
    "text": "récréation",
    "accepts": ["la récréation", "récré", "pause"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "à l'école, la récréation (la récré) · ailleurs, la pause." }
   },
   "to-pass-exam": {
@@ -61,33 +61,33 @@
   "pupil": {
    "text": "élève",
    "accepts": ["l'élève"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "m/f" },
    "notes": { "fr": "l'élève va à l'école, l'étudiant à l'université." }
   },
-  "course": { "text": "cours", "grammar": { "gender": "le", "plural": "=" } },
+  "course": { "text": "cours", "grammar": { "article": "le", "plural": "=" } },
   "lesson": {
    "text": "classe",
    "accepts": ["leçon"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "j'ai cours aujourd'hui · la classe est aussi la salle et le groupe." }
   },
-  "page": { "text": "page", "grammar": { "gender": "la" } },
-  "grade": { "text": "note", "grammar": { "gender": "la" } },
+  "page": { "text": "page", "grammar": { "article": "la" } },
+  "grade": { "text": "note", "grammar": { "article": "la" } },
   "to-correct": { "text": "corriger" },
-  "book": { "text": "livre", "grammar": { "gender": "le" } },
+  "book": { "text": "livre", "grammar": { "article": "le" } },
   "class-schedule": {
    "text": "emploi du temps",
    "accepts": ["l'emploi du temps"],
    "forms": { "pl": "les emplois du temps" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "to-count": { "text": "compter" },
   "to-learn-by-heart": { "text": "apprendre par cœur", "teaches": ["mémoriser"], "accepts": ["apprendre par coeur"] },
   "to-read-aloud": { "text": "lire à voix haute", "accepts": ["lire à haute voix"] },
-  "dictionary": { "text": "dictionnaire", "grammar": { "gender": "le" } },
+  "dictionary": { "text": "dictionnaire", "grammar": { "article": "le" } },
   "to-pronounce": { "text": "prononcer" },
   "to-teach": { "text": "enseigner" },
-  "report-card": { "text": "bulletin scolaire", "accepts": ["bulletin"], "grammar": { "gender": "le" } },
+  "report-card": { "text": "bulletin scolaire", "accepts": ["bulletin"], "grammar": { "article": "le" } },
   "do-the-homework": { "text": "Je fais mes devoirs." },
   "look-at-the-class-schedule": { "text": "Regarde l'emploi du temps.", "accepts": ["Regardez l'emploi du temps."] },
   "the-break-is-over": { "text": "La pause est finie.", "accepts": ["La pause est terminée."] },
@@ -99,7 +99,7 @@
    "orders": ["Dans la salle de classe, nous allons."]
   },
   "the-exam-is-already-corrected": { "text": "L'examen est déjà corrigé.", "orders": ["Déjà, l'examen est corrigé."] },
-  "mistake": { "text": "erreur", "grammar": { "gender": "la" } },
+  "mistake": { "text": "erreur", "accepts": ["l'erreur"], "grammar": { "article": "l'", "gender": "f" } },
   "to-be-wrong": { "text": "se tromper" }
  }
 }

@@ -229,7 +229,7 @@ fun localizedTarget(text: String, lang: Language): AnnotatedString =
  * The citation form as one line — "el frigorífico" — with the leading article in its
  * color where the grammar carries a gender.
  *
- * The article comes from `grammar.gender` and is PREPENDED; it is never sliced out of
+ * The article comes from `grammar.article` and is PREPENDED; it is never sliced out of
  * `text`, which carries the bare word in every language. Reading the first word as an
  * article held only because German nouns are one word: es has 32 multi-word nouns, and
  * *pasta de dientes* would have rendered its own head tinted as though *pasta* were an

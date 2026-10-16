@@ -2,11 +2,11 @@
  "title": "Il bagno",
  "subtitle": "Fresco e pulito.",
  "words": {
-  "washing-machine": { "text": "lavatrice", "grammar": { "gender": "la" } },
+  "washing-machine": { "text": "lavatrice", "grammar": { "article": "la" } },
   "laundry": {
    "text": "bucato",
    "accepts": ["panni sporchi"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": {
     "it": "il bucato è la roba da lavare: fare il bucato, stendere il bucato.",
     "de": "il bucato ist die Wäsche als Ladung, die man wäscht oder aufhängt; Kleidung allgemein sind i vestiti."
@@ -16,25 +16,29 @@
    "text": "gabinetto",
    "teaches": ["water"],
    "accepts": ["WC", "tazza"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": {
     "it": "il gabinetto è il water (si dice vater) · si chiede Dov'è il bagno?",
     "en": "Italian il water (from water closet, said vater) is the toilet bowl, not water; ask for one with Dov'è il bagno?"
    }
   },
-  "shower": { "text": "doccia", "forms": { "pl": "le docce" }, "grammar": { "gender": "la" } },
-  "sink": { "text": "lavandino", "accepts": ["lavabo"], "grammar": { "gender": "il" } },
-  "mirror": { "text": "specchio", "forms": { "pl": "gli specchi" }, "grammar": { "gender": "lo" } },
-  "toothbrush": { "text": "spazzolino da denti", "accepts": ["spazzolino"], "grammar": { "gender": "lo" } },
-  "toothpaste": { "text": "dentifricio", "forms": { "pl": "i dentifrici" }, "grammar": { "gender": "il" } },
-  "towel": { "text": "asciugamano", "accepts": ["l'asciugamano"], "grammar": { "gender": "l'" } },
-  "soap": { "text": "sapone", "grammar": { "gender": "il" } },
-  "shampoo": { "text": "shampoo", "grammar": { "gender": "lo", "plural": "=" } },
+  "shower": { "text": "doccia", "forms": { "pl": "le docce" }, "grammar": { "article": "la" } },
+  "sink": { "text": "lavandino", "accepts": ["lavabo"], "grammar": { "article": "il" } },
+  "mirror": { "text": "specchio", "forms": { "pl": "gli specchi" }, "grammar": { "article": "lo" } },
+  "toothbrush": { "text": "spazzolino da denti", "accepts": ["spazzolino"], "grammar": { "article": "lo" } },
+  "toothpaste": { "text": "dentifricio", "forms": { "pl": "i dentifrici" }, "grammar": { "article": "il" } },
+  "towel": {
+   "text": "asciugamano",
+   "accepts": ["l'asciugamano"],
+   "grammar": { "article": "l'", "gender": "m" }
+  },
+  "soap": { "text": "sapone", "grammar": { "article": "il" } },
+  "shampoo": { "text": "shampoo", "grammar": { "article": "lo", "plural": "=" } },
   "hairdryer": {
    "text": "asciugacapelli",
    "teaches": ["phon"],
    "accepts": ["l'asciugacapelli", "fon"],
-   "grammar": { "gender": "l'", "plural": "=" }
+   "grammar": { "article": "l'", "gender": "m", "plural": "=" }
   },
   "to-take-shower": { "text": "farsi la doccia", "accepts": ["fare la doccia"] },
   "to-do-laundry": { "text": "fare il bucato", "accepts": ["lavare i panni"] },
@@ -55,20 +59,20 @@
    "text": "vasca da bagno",
    "accepts": ["vasca"],
    "forms": { "pl": "le vasche da bagno" },
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "toilet-paper": { "text": "carta igienica", "grammar": { "gender": "la" } },
-  "razor": { "text": "rasoio", "forms": { "pl": "i rasoi" }, "grammar": { "gender": "il" } },
-  "sponge": { "text": "spugna", "grammar": { "gender": "la" } },
-  "cream": { "text": "crema", "grammar": { "gender": "la" } },
-  "faucet": { "text": "rubinetto", "grammar": { "gender": "il" } },
+  "toilet-paper": { "text": "carta igienica", "grammar": { "article": "la" } },
+  "razor": { "text": "rasoio", "forms": { "pl": "i rasoi" }, "grammar": { "article": "il" } },
+  "sponge": { "text": "spugna", "grammar": { "article": "la" } },
+  "cream": { "text": "crema", "grammar": { "article": "la" } },
+  "faucet": { "text": "rubinetto", "grammar": { "article": "il" } },
   "trash-can": {
    "text": "pattumiera",
    "accepts": ["cestino", "secchio della spazzatura", "bidone"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la pattumiera sta in cucina · il cestino è piccolo, per la carta." }
   },
-  "bucket": { "text": "secchio", "forms": { "pl": "i secchi" }, "grammar": { "gender": "il" } },
+  "bucket": { "text": "secchio", "forms": { "pl": "i secchi" }, "grammar": { "article": "il" } },
   "im-taking-a-quick-shower": {
    "text": "Vado a farmi una doccia veloce.",
    "accepts": ["Mi faccio una doccia veloce.", "Vado a fare una doccia veloce."]

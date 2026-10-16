@@ -12,7 +12,8 @@ over them — a fill and a ship take what is not `refused`, a prune removes what
   · `doubted` — heard as mediocre or worse, by a POOR voice, or under the reconsider bar;
   · `vouched` — heard as okay or better.
 
-The source checks need no bytes (`source_refusal`).
+The source checks need no bytes (`source_refusal`); `measure` reads everything else a judgement
+needs off the bytes in one process, so a picker measures its takes in a pool and caches them.
 """
 import collections
 
@@ -48,12 +49,28 @@ def source_refusal(take):
     return None
 
 
-def judge(take, index=False):
+def measure(path, scored=True):
+    """What [judge] reads off a take's bytes short of its playback gain, in one process:
+    `balance`, `peak`, `loudness` and — [scored] — `mos` and `silent`."""
+    if scored:
+        levels = audio_measure.measure(audio_index.FFMPEG, path)
+        loudness, peak = levels[0], levels[2]
+        out = dict(mos=None if levels[5] is None else round(levels[5], 2), silent=loudness is None or peak is None)
+    else:
+        peak, loudness = audio_measure.peak_and_loudness(audio_index.FFMPEG, path)
+        out = {}
+    return dict(out, balance=audio_measure.side_balance(audio_index.FFMPEG, path), peak=peak, loudness=loudness)
+
+
+def judge(take, index=False, measured=None):
     """`Judged` for [take]; [index] is its playback index where already measured
-    (None for a take that decodes to silence), else the bytes are measured here."""
+    (None for a take that decodes to silence), [measured] its [measure] where that is known instead,
+    else the bytes are measured here."""
     lang, author, path = take['lang'], take['author'], take['path']
     digest = take.get('sha256') or digest_of(path)
-    if index is False:
+    if measured is not None:
+        index = None if measured.get('silent') else {'mos': measured.get('mos', take.get('mos'))}
+    elif index is False:
         index = audio_index.analyze([path])[path]
     mos = index.get('mos') if index else None
     refused = source_refusal(take)
@@ -64,13 +81,16 @@ def judge(take, index=False):
     if not refused and mos is not None and mos < mos_floor(lang):
         refused = 'poor', 'mos %.2f, floor is %.2f' % (mos, mos_floor(lang))
     if not refused:
-        balance = audio_measure.side_balance(audio_index.FFMPEG, path)
+        balance = (measured or {}).get('balance')
+        if balance is None:
+            balance = audio_measure.side_balance(audio_index.FFMPEG, path)
         if is_one_sided(balance):
             refused = 'one-sided', '%.1f dB between its sides' % balance
     if not refused and abs(index.get('gain', 0)) > audio_index.GAIN_LIMIT_DB:
         refused = 'unmeasurable', 'gain %.1f dB is past ±%.0f — clipped' % (index['gain'],
                                                                           audio_index.GAIN_LIMIT_DB)
-    return Judged(mos=mos, refused=refused,
-                  hot=is_squashed(*audio_measure.peak_and_loudness(audio_index.FFMPEG, path)),
+    levels = ((measured['peak'], measured['loudness']) if measured is not None
+              else audio_measure.peak_and_loudness(audio_index.FFMPEG, path))
+    return Judged(mos=mos, refused=refused, hot=is_squashed(*levels),
                   doubted=is_doubted(digest, lang, author) or (mos is not None and mos < RECONSIDER_MOS),
                   vouched=is_vouched(digest))

@@ -13,7 +13,7 @@ VERDICTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs'
 
 # Languages whose device voice is good on both platforms: without a recording the card still
 # speaks, so a recording has to beat that voice rather than silence.
-WELL_VOICED = frozenset({"de", "es", "fr", "it", "uk"})
+WELL_VOICED = frozenset({"de", "en", "es", "fr", "it", "uk"})
 
 # The lowest `mos` a recording may ship at. Where the device voice is missing (eo, sw) the
 # bar only refuses the clearly bad; where it is good, the bar is a notch higher and a word
@@ -31,6 +31,22 @@ def mos_floor(lang):
 # Under this `mos` a shipped take goes up for a sweep: every other take of its word is fetched
 # and the best one may replace it. Well over every floor, because here the score only ranks.
 RECONSIDER_MOS = 2.8
+
+# What a challenger has to beat a passable incumbent by: a swap costs a voice change and a
+# re-credit, and a single file's score strays by a few tenths. Also the most a consolidation may
+# give up for a tidier credits screen.
+SWAP_MARGIN = 0.3
+
+# Takes a voice ships in a language before it counts as established: every new speaker is another
+# voice change on the cards and another credit group, so a picker takes an established voice's
+# take over a slightly better stranger's. A voice with ONE_OFF_TAKES or fewer is moved onto an
+# established one wherever it can be.
+ESTABLISHED_TAKES = 5
+ONE_OFF_TAKES = 3
+
+# The most energy above 6 kHz (`audio_measure.brightness`) a consolidation may give up: a take lopped
+# off at 7 kHz has no hiss because it has nothing up there, scores clean and sounds like a telephone.
+DULLNESS_DB = 12.0
 
 
 # The least a take's sample peak may stand over its integrated loudness. Speech keeps its

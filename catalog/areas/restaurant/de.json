@@ -2,28 +2,28 @@
  "title": "Im Restaurant",
  "subtitle": "Wo man bedient wird.",
  "words": {
-  "menu": { "text": "Speisekarte", "forms": { "pl": "die Speisekarten" }, "grammar": { "gender": "die" } },
+  "menu": { "text": "Speisekarte", "forms": { "pl": "die Speisekarten" }, "grammar": { "article": "die" } },
   "waiter": {
    "text": "Kellner",
    "forms": { "f": "die Kellnerin", "f.pl": "die Kellnerinnen" },
-   "grammar": { "gender": "der", "plural": "=" }
+   "grammar": { "article": "der", "plural": "=" }
   },
-  "table": { "text": "Tisch", "forms": { "pl": "die Tische" }, "grammar": { "gender": "der" } },
+  "table": { "text": "Tisch", "forms": { "pl": "die Tische" }, "grammar": { "article": "der" } },
   "to-order": { "text": "bestellen" },
-  "bill": { "text": "Rechnung", "forms": { "pl": "die Rechnungen" }, "grammar": { "gender": "die" } },
-  "tip": { "text": "Trinkgeld", "forms": { "pl": "die Trinkgelder" }, "grammar": { "gender": "das" } },
+  "bill": { "text": "Rechnung", "forms": { "pl": "die Rechnungen" }, "grammar": { "article": "die" } },
+  "tip": { "text": "Trinkgeld", "forms": { "pl": "die Trinkgelder" }, "grammar": { "article": "das" } },
   "to-reserve": { "text": "reservieren" },
-  "glass": { "text": "Glas", "forms": { "pl": "die Gläser" }, "grammar": { "gender": "das" } },
-  "cutlery": { "text": "Besteck", "forms": { "pl": "die Bestecke" }, "grammar": { "gender": "das" } },
-  "napkin": { "text": "Serviette", "forms": { "pl": "die Servietten" }, "grammar": { "gender": "die" } },
+  "glass": { "text": "Glas", "forms": { "pl": "die Gläser" }, "grammar": { "article": "das" } },
+  "cutlery": { "text": "Besteck", "forms": { "pl": "die Bestecke" }, "grammar": { "article": "das" } },
+  "napkin": { "text": "Serviette", "forms": { "pl": "die Servietten" }, "grammar": { "article": "die" } },
   "dessert": {
    "text": "Nachtisch",
    "teaches": ["Dessert"],
    "forms": { "pl": "die Nachtische" },
-   "grammar": { "gender": "der" }
+   "grammar": { "article": "der" }
   },
-  "beverage": { "text": "Getränk", "forms": { "pl": "die Getränke" }, "grammar": { "gender": "das" } },
-  "restaurant": { "text": "Restaurant", "forms": { "pl": "die Restaurants" }, "grammar": { "gender": "das" } },
+  "beverage": { "text": "Getränk", "forms": { "pl": "die Getränke" }, "grammar": { "article": "das" } },
+  "restaurant": { "text": "Restaurant", "forms": { "pl": "die Restaurants" }, "grammar": { "article": "das" } },
   "a-table-for-two": { "text": "Einen Tisch für zwei, bitte." },
   "id-like-to-order": { "text": "Ich möchte bestellen." },
   "is-this-vegetarian": { "text": "Ist das vegetarisch?", "orders": ["Das ist vegetarisch?"] },

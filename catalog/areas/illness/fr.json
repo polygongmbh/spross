@@ -2,12 +2,12 @@
  "title": "La maladie",
  "subtitle": "Ce que tu as, et ce qui aide.",
  "words": {
-  "pain": { "text": "douleur", "grammar": { "gender": "la" } },
-  "fever": { "text": "fièvre", "grammar": { "gender": "la" } },
-  "cough": { "text": "toux", "grammar": { "gender": "la", "plural": "=" } },
+  "pain": { "text": "douleur", "grammar": { "article": "la" } },
+  "fever": { "text": "fièvre", "grammar": { "article": "la" } },
+  "cough": { "text": "toux", "grammar": { "article": "la", "plural": "=" } },
   "cold": {
    "text": "rhume",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "j'ai un rhume · je suis enrhumé." }
   },
   "to-hurt": {
@@ -19,21 +19,21 @@
   },
   "to-cough": { "text": "tousser" },
   "sick": { "text": "malade" },
-  "illness": { "text": "maladie", "grammar": { "gender": "la" } },
+  "illness": { "text": "maladie", "grammar": { "article": "la" } },
   "tired": { "text": "fatigué", "forms": { "f": "fatiguée" } },
   "weak": { "text": "faible" },
   "dizziness": {
    "text": "vertige",
    "accepts": ["vertiges"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "souvent au pluriel : j'ai des vertiges." }
   },
-  "wound": { "text": "blessure", "accepts": ["plaie"], "grammar": { "gender": "la" } },
+  "wound": { "text": "blessure", "accepts": ["plaie"], "grammar": { "article": "la" } },
   "to-hurt-oneself": { "text": "se blesser", "accepts": ["se faire mal"] },
   "bandage": {
    "text": "pansement",
    "accepts": ["bandage"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": {
     "fr": "le pansement couvre la plaie · le bandage s'enroule et serre.",
     "de": "le pansement ist Verband und Pflaster zugleich; un bandage ist die elastische Binde."
@@ -41,16 +41,16 @@
   },
   "band-aid": {
    "text": "sparadrap",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le sparadrap est le petit pansement qui colle." }
   },
-  "splint": { "text": "attelle", "grammar": { "gender": "la" } },
+  "splint": { "text": "attelle", "accepts": ["l'attelle"], "grammar": { "article": "l'", "gender": "f" } },
   "to-recover": {
    "text": "guérir",
    "accepts": ["se remettre"],
    "notes": { "fr": "je guéris vite · le médecin me guérit." }
   },
-  "allergy": { "text": "allergie", "accepts": ["l'allergie"], "grammar": { "gender": "l'" } },
+  "allergy": { "text": "allergie", "accepts": ["l'allergie"], "grammar": { "article": "l'", "gender": "f" } },
   "my-throat-hurts-a-lot": { "text": "J'ai très mal à la gorge.", "accepts": ["Ma gorge me fait très mal."] },
   "ive-had-a-fever-since-yesterday": { "text": "J'ai de la fièvre depuis hier.", "orders": ["Depuis hier, j'ai de la fièvre."] },
   "get-well-soon": { "text": "Bon rétablissement !", "accepts": ["Remets-toi vite !"] },

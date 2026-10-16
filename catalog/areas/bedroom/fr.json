@@ -2,23 +2,27 @@
  "title": "La chambre",
  "subtitle": "L'heure d'aller au lit.",
  "words": {
-  "bed": { "text": "lit", "grammar": { "gender": "le" } },
-  "mattress": { "text": "matelas", "grammar": { "gender": "le", "plural": "=" } },
-  "pillow": { "text": "oreiller", "accepts": ["l'oreiller"], "grammar": { "gender": "l'" } },
-  "blanket": { "text": "couverture", "grammar": { "gender": "la" } },
-  "bedding": { "text": "linge de lit", "grammar": { "gender": "le" } },
-  "wardrobe": { "text": "armoire", "accepts": ["l'armoire", "penderie"], "grammar": { "gender": "l'" } },
-  "alarm-clock": { "text": "réveil", "grammar": { "gender": "le" } },
+  "bed": { "text": "lit", "grammar": { "article": "le" } },
+  "mattress": { "text": "matelas", "grammar": { "article": "le", "plural": "=" } },
+  "pillow": { "text": "oreiller", "accepts": ["l'oreiller"], "grammar": { "article": "l'", "gender": "m" } },
+  "blanket": { "text": "couverture", "grammar": { "article": "la" } },
+  "bedding": { "text": "linge de lit", "grammar": { "article": "le" } },
+  "wardrobe": {
+   "text": "armoire",
+   "accepts": ["l'armoire", "penderie"],
+   "grammar": { "article": "l'", "gender": "f" }
+  },
+  "alarm-clock": { "text": "réveil", "grammar": { "article": "le" } },
   "nightstand": {
    "text": "table de nuit",
    "accepts": ["table de chevet"],
    "forms": { "pl": "les tables de nuit" },
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "pajamas": { "text": "pyjama", "grammar": { "gender": "le" } },
-  "sock": { "text": "chaussette", "grammar": { "gender": "la" } },
-  "pants": { "text": "pantalon", "grammar": { "gender": "le" } },
-  "t-shirt": { "text": "T-shirt", "accepts": ["tee-shirt"], "grammar": { "gender": "le" } },
+  "pajamas": { "text": "pyjama", "grammar": { "article": "le" } },
+  "sock": { "text": "chaussette", "grammar": { "article": "la" } },
+  "pants": { "text": "pantalon", "grammar": { "article": "le" } },
+  "t-shirt": { "text": "T-shirt", "accepts": ["tee-shirt"], "grammar": { "article": "le" } },
   "to-sleep": { "text": "dormir" },
   "to-wake-up": { "text": "se réveiller" },
   "to-get-up": { "text": "se lever" },
@@ -28,14 +32,14 @@
   "to-snore": { "text": "ronfler" },
   "clothes": {
    "text": "vêtements",
-   "grammar": { "gender": "les" },
+   "grammar": { "article": "les", "gender": "m" },
    "notes": { "fr": "presque toujours au pluriel : les vêtements · un seul, un vêtement." }
   },
-  "shirt": { "text": "chemise", "grammar": { "gender": "la" } },
-  "dress": { "text": "robe", "grammar": { "gender": "la" } },
-  "sweater": { "text": "pull", "accepts": ["pull-over", "chandail"], "grammar": { "gender": "le" } },
-  "underwear": { "text": "sous-vêtements", "grammar": { "gender": "les" } },
-  "belt": { "text": "ceinture", "grammar": { "gender": "la" } },
+  "shirt": { "text": "chemise", "grammar": { "article": "la" } },
+  "dress": { "text": "robe", "grammar": { "article": "la" } },
+  "sweater": { "text": "pull", "accepts": ["pull-over", "chandail"], "grammar": { "article": "le" } },
+  "underwear": { "text": "sous-vêtements", "grammar": { "article": "les", "gender": "m" } },
+  "belt": { "text": "ceinture", "grammar": { "article": "la" } },
   "to-make-bed": { "text": "faire le lit" },
   "soft": {
    "text": "doux",
@@ -56,6 +60,6 @@
   },
   "i-love-you": { "text": "Je t'aime." },
   "i-have-to-rest": { "text": "Je dois me reposer." },
-  "soft-mattress": { "text": "matelas moelleux", "grammar": { "gender": "le", "plural": "=" } }
+  "soft-mattress": { "text": "matelas moelleux", "grammar": { "article": "le", "plural": "=" } }
  }
 }

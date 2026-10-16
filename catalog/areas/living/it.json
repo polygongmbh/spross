@@ -2,30 +2,31 @@
  "title": "Il soggiorno",
  "subtitle": "È ora di rilassarsi.",
  "words": {
-  "sofa": { "text": "divano", "grammar": { "gender": "il" } },
-  "dining-table": { "text": "tavolo da pranzo", "accepts": ["tavolo"], "grammar": { "gender": "il" } },
-  "chair": { "text": "sedia", "grammar": { "gender": "la" } },
+  "sofa": { "text": "divano", "grammar": { "article": "il" } },
+  "dining-table": { "text": "tavolo da pranzo", "accepts": ["tavolo"], "grammar": { "article": "il" } },
+  "chair": { "text": "sedia", "grammar": { "article": "la" } },
   "tv": {
    "text": "televisione",
    "teaches": ["televisore"],
    "accepts": ["tv", "tivù"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "it": "parlando si dice la tv · il televisore è l'apparecchio.",
     "de": "Im Alltag sagt man la tv; il televisore ist das Gerät, la televisione auch das Programm."
    }
   },
-  "remote": { "text": "telecomando", "grammar": { "gender": "il" } },
-  "floor": { "text": "pavimento", "grammar": { "gender": "il" } },
-  "song": { "text": "canzone", "grammar": { "gender": "la" } },
-  "story": { "text": "piano", "grammar": { "gender": "il" } },
-  "shelf": { "text": "scaffale", "grammar": { "gender": "lo" } },
-  "plant": { "text": "pianta", "grammar": { "gender": "la" } },
-  "window": { "text": "finestra", "grammar": { "gender": "la" } },
-  "curtain": { "text": "tenda", "grammar": { "gender": "la" } },
-  "carpet": { "text": "tappeto", "grammar": { "gender": "il" } },
-  "lamp": { "text": "lampada", "grammar": { "gender": "la" } },
-  "picture": { "text": "quadro", "grammar": { "gender": "il" } },
+  "remote": { "text": "telecomando", "grammar": { "article": "il" } },
+  "floor": { "text": "pavimento", "grammar": { "article": "il" } },
+  "song": { "text": "canzone", "grammar": { "article": "la" } },
+  "story": { "text": "piano", "grammar": { "article": "il" } },
+  "shelf": { "text": "scaffale", "grammar": { "article": "lo" } },
+  "plant": { "text": "pianta", "grammar": { "article": "la" } },
+  "window": { "text": "finestra", "grammar": { "article": "la" } },
+  "curtain": { "text": "tenda", "grammar": { "article": "la" } },
+  "carpet": { "text": "tappeto", "grammar": { "article": "il" } },
+  "lamp": { "text": "lampada", "grammar": { "article": "la" } },
+  "clock": { "text": "orologio", "grammar": { "article": "l'", "gender": "m" } },
+  "picture": { "text": "quadro", "grammar": { "article": "il" } },
   "to-watch-tv": { "text": "guardare la televisione", "accepts": ["guardare la tv", "vedere la televisione"] },
   "to-read": { "text": "leggere" },
   "to-relax": { "text": "rilassarsi" },
@@ -40,17 +41,17 @@
   "room": {
    "text": "stanza",
    "teaches": ["camera"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la stanza è ogni stanza · la camera è quella da letto." }
   },
-  "newspaper": { "text": "giornale", "teaches": ["quotidiano"], "grammar": { "gender": "il" } },
-  "light": { "text": "luce", "grammar": { "gender": "la" } },
+  "newspaper": { "text": "giornale", "teaches": ["quotidiano"], "grammar": { "article": "il" } },
+  "light": { "text": "luce", "grammar": { "article": "la" } },
   "wall": {
    "text": "parete",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la parete divide le stanze." }
   },
-  "movie": { "text": "film", "grammar": { "gender": "il", "plural": "=" } },
+  "movie": { "text": "film", "grammar": { "article": "il", "plural": "=" } },
   "to-sit": {
    "text": "sedersi",
    "accepts": ["essere seduto"],
@@ -60,10 +61,10 @@
   "furniture": {
    "text": "mobili",
    "accepts": ["mobile"],
-   "grammar": { "gender": "i", "plural": "only" },
+   "grammar": { "article": "i", "plural": "only" },
    "notes": { "it": "quasi sempre al plurale: i mobili · un mobile è uno solo." }
   },
-  "game": { "text": "gioco", "forms": { "pl": "i giochi" }, "grammar": { "gender": "il" } },
+  "game": { "text": "gioco", "forms": { "pl": "i giochi" }, "grammar": { "article": "il" } },
   "come-sit-with-me": {
    "text": "Vieni, siediti con me!",
    "accepts": ["Vieni, siediti accanto a me!", "Vieni, siediti vicino a me!"]

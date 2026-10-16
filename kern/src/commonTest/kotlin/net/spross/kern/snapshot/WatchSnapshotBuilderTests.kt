@@ -16,7 +16,7 @@ class WatchSnapshotBuilderTests {
     private val fem = Snap.card(
         "wf", 1, emoji = "👩", sourceText = "Kellner", targetText = "Kellnerin",
         teaches = listOf("Serviererin"), accepts = listOf("Bedienung"),
-        gender = "die",
+        article = "die",
     )
 
     @Test

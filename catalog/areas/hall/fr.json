@@ -6,21 +6,21 @@
    "text": "entrée",
    "teaches": ["couloir"],
    "accepts": ["l'entrée"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": {
     "fr": "l'entrée est juste derrière la porte · le couloir mène aux pièces.",
     "en": "l'entrée is the entryway just inside the front door; the corridor itself is le couloir."
    }
   },
-  "door": { "text": "porte", "grammar": { "gender": "la" } },
-  "key": { "text": "clé", "accepts": ["clef"], "grammar": { "gender": "la" } },
-  "jacket": { "text": "veste", "grammar": { "gender": "la" } },
-  "coat": { "text": "manteau", "forms": { "pl": "les manteaux" }, "grammar": { "gender": "le" } },
-  "umbrella": { "text": "parapluie", "grammar": { "gender": "le" } },
+  "door": { "text": "porte", "grammar": { "article": "la" } },
+  "key": { "text": "clé", "accepts": ["clef"], "grammar": { "article": "la" } },
+  "jacket": { "text": "veste", "grammar": { "article": "la" } },
+  "coat": { "text": "manteau", "forms": { "pl": "les manteaux" }, "grammar": { "article": "le" } },
+  "umbrella": { "text": "parapluie", "grammar": { "article": "le" } },
   "hat": {
    "text": "bonnet",
    "teaches": ["casquette"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": {
     "fr": "le bonnet n'a pas de visière · la casquette en a une, le chapeau des bords.",
     "en": "le bonnet is the knit cap with no brim; a peaked cap is la casquette and a brimmed hat le chapeau."
@@ -29,11 +29,15 @@
   "mailbox": {
    "text": "boîte aux lettres",
    "forms": { "pl": "les boîtes aux lettres" },
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "doorbell": { "text": "sonnette", "grammar": { "gender": "la" } },
-  "stairs": { "text": "escalier", "accepts": ["l'escalier", "escaliers"], "grammar": { "gender": "l'" } },
-  "bag": { "text": "sac", "grammar": { "gender": "le" } },
+  "doorbell": { "text": "sonnette", "grammar": { "article": "la" } },
+  "stairs": {
+   "text": "escalier",
+   "accepts": ["l'escalier", "escaliers"],
+   "grammar": { "article": "l'", "gender": "m" }
+  },
+  "bag": { "text": "sac", "grammar": { "article": "le" } },
   "to-lock": { "text": "fermer à clé", "accepts": ["verrouiller"] },
   "to-ring": {
    "text": "sonner",
@@ -47,26 +51,30 @@
   "to-arrive": { "text": "arriver" },
   "to-greet": { "text": "saluer" },
   "to-say-goodbye": { "text": "dire au revoir", "accepts": ["prendre congé"] },
-  "shoe": { "text": "chaussure", "grammar": { "gender": "la" } },
-  "apartment": { "text": "appartement", "accepts": ["l'appartement", "appart"], "grammar": { "gender": "l'" } },
-  "neighbor": { "text": "voisin", "forms": { "f": "la voisine" }, "grammar": { "gender": "le" } },
+  "shoe": { "text": "chaussure", "grammar": { "article": "la" } },
+  "apartment": {
+   "text": "appartement",
+   "accepts": ["l'appartement", "appart"],
+   "grammar": { "article": "l'", "gender": "m" }
+  },
+  "neighbor": { "text": "voisin", "forms": { "f": "la voisine" }, "grammar": { "article": "le" } },
   "guest": {
    "text": "invité",
    "accepts": ["l'invité"],
    "forms": { "f": "l'invitée" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "wallet": {
    "text": "portefeuille",
    "teaches": ["porte-monnaie"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "le portefeuille pour les billets · le porte-monnaie pour les pièces." }
   },
-  "glove": { "text": "gant", "grammar": { "gender": "le" } },
-  "letter": { "text": "lettre", "grammar": { "gender": "la" } },
+  "glove": { "text": "gant", "grammar": { "article": "le" } },
+  "letter": { "text": "lettre", "grammar": { "article": "la" } },
   "to-knock-on-door": { "text": "frapper à la porte", "accepts": ["toquer à la porte"] },
   "to-enter": { "text": "entrer", "notes": { "fr": "on invite : Entre ! ou Entrez !" } },
-  "house": { "text": "maison", "grammar": { "gender": "la" } },
+  "house": { "text": "maison", "grammar": { "article": "la" } },
   "to-live": {
    "text": "habiter",
    "notes": { "fr": "habiter à Paris, dans une maison · vivre, c'est être en vie." }

@@ -2,7 +2,7 @@
  "title": "Les couleurs",
  "subtitle": "Rouge, bleu et tout le reste.",
  "words": {
-  "color": { "text": "couleur", "grammar": { "gender": "la" } },
+  "color": { "text": "couleur", "grammar": { "article": "la" } },
   "white": { "text": "blanc", "forms": { "f": "blanche" } },
   "black": { "text": "noir", "forms": { "f": "noire" } },
   "red": { "text": "rouge" },

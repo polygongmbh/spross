@@ -2,20 +2,24 @@
  "title": "Appuntamenti e scadenze",
  "subtitle": "Così non ti sfugge niente.",
  "words": {
-  "appointment": { "text": "appuntamento", "accepts": ["l'appuntamento"], "grammar": { "gender": "l'" } },
-  "date": { "text": "data", "grammar": { "gender": "la" } },
+  "appointment": {
+   "text": "appuntamento",
+   "accepts": ["l'appuntamento"],
+   "grammar": { "article": "l'", "gender": "m" }
+  },
+  "date": { "text": "data", "grammar": { "article": "la" } },
   "opening-hours": {
    "text": "orario di apertura",
    "accepts": ["l'orario di apertura", "orario"],
    "forms": { "pl": "gli orari di apertura" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": {
     "it": "di solito al singolare: l'orario di apertura · spesso solo l'orario.",
     "de": "Italienisch hat keinen festen Plural wie „die Öffnungszeiten“: meist l'orario di apertura, im Alltag oft nur l'orario."
    }
   },
-  "deadline": { "text": "scadenza", "accepts": ["termine", "data di scadenza"], "grammar": { "gender": "la" } },
-  "plan": { "text": "piano", "accepts": ["programma"], "grammar": { "gender": "il" } },
+  "deadline": { "text": "scadenza", "accepts": ["termine", "data di scadenza"], "grammar": { "article": "la" } },
+  "plan": { "text": "piano", "accepts": ["programma"], "grammar": { "article": "il" } },
   "to-meet": { "text": "incontrarsi" },
   "to-invite": { "text": "invitare" },
   "to-arrange": {
@@ -31,7 +35,7 @@
   "to-be-late": { "text": "essere in ritardo", "teaches": ["fare tardi"], "accepts": ["arrivare in ritardo"] },
   "punctual": { "text": "puntuale" },
   "urgent": { "text": "urgente" },
-  "list": { "text": "lista", "accepts": ["elenco"], "grammar": { "gender": "la" } },
+  "list": { "text": "lista", "accepts": ["elenco"], "grammar": { "article": "la" } },
   "to-finish": { "text": "finire", "teaches": ["terminare"], "accepts": ["concludere"] },
   "to-take-care-of": { "text": "occuparsi di", "teaches": ["sbrigare"] },
   "i-would-like-to-arrange-an-appointment": {

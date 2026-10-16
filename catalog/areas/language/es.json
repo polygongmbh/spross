@@ -2,17 +2,17 @@
  "title": "Aprender el idioma",
  "subtitle": "Palabras, frases y lo que significan.",
  "words": {
-  "meaning": { "text": "significado", "grammar": { "gender": "el" } },
+  "meaning": { "text": "significado", "grammar": { "article": "el" } },
   "to-translate": { "text": "traducir" },
-  "sentence": { "text": "frase", "teaches": ["oración"], "grammar": { "gender": "la" } },
-  "word": { "text": "palabra", "grammar": { "gender": "la" } },
+  "sentence": { "text": "frase", "teaches": ["oración"], "grammar": { "article": "la" } },
+  "word": { "text": "palabra", "grammar": { "article": "la" } },
   "language": {
    "text": "idioma",
    "teaches": ["lengua"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "el idioma español · ¿Qué idioma habla usted?" }
   },
-  "mother-tongue": { "text": "lengua materna", "grammar": { "gender": "la" } },
+  "mother-tongue": { "text": "lengua materna", "grammar": { "article": "la" } },
   "what-does-this-word-mean": { "text": "¿Qué significa esta palabra?", "accepts": ["¿Qué quiere decir esta palabra?"] },
   "how-do-you-say-this": { "text": "¿Cómo se dice esto {language-in}?", "accepts": ["¿Cómo se dice eso {language-in}?"] },
   "im-learning-your-language": { "text": "Estoy aprendiendo {language}.", "accepts": ["Aprendo {language}."] },

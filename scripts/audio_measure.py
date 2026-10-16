@@ -7,6 +7,7 @@ the manifest's `gain`/`lead`. NOTHING here writes audio — every run decodes to
 muxer, so the mp3 that ships is byte-for-byte the mp3 that was measured, the "unmodified
 Commons transcode" claim stays true, and the sha256 gate keeps its meaning.
 """
+import audio_env  # noqa: F401 — before numpy: re-runs under the repo .venv
 import concurrent.futures
 import os
 import re
@@ -95,6 +96,26 @@ def peak_and_loudness(binary, path):
     peak = PEAK_LEVEL.findall(run.stderr)
     return (float(peak[-1]) if peak and peak[-1] != '-inf' else None,
             float(loudness[-1]) if loudness and loudness[-1] != '-inf' else None)
+
+
+# Four cascaded 2nd-order sections ≈ 48 dB/octave: a single `highpass` leaks so much of the band
+# below it that a 7 kHz-lopped recording and a full-band one measure alike.
+HIGHPASS_6K = ','.join(['highpass=f=6000:poles=2'] * 4)
+RMS_LEVEL = re.compile(r'RMS level dB:\s*(-?[\d.]+)')
+
+
+def brightness(binary, path):
+    """dB the energy above 6 kHz stands under the file's own overall level, where sibilants and stop
+    releases live — relative, so a quiet take is not mistaken for a dull one; None for silence."""
+    def rms(filters):
+        run = subprocess.run([binary, '-hide_banner', '-nostats', '-i', path, '-af', filters, '-f', 'null', '-'],
+                             capture_output=True, text=True)
+        found = RMS_LEVEL.findall(run.stderr)
+        return float(found[-1]) if found else None
+
+    overall = rms('astats=metadata=1:reset=0')
+    high = rms(HIGHPASS_6K + ',astats=metadata=1:reset=0')
+    return None if overall is None or high is None else high - overall
 
 
 def side_balance(binary, path):

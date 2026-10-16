@@ -2,22 +2,22 @@
  "title": "El transporte",
  "subtitle": "¡En marcha!",
  "words": {
-  "traffic-light": { "text": "semáforo", "grammar": { "gender": "el" } },
-  "bicycle": { "text": "bicicleta", "accepts": ["bici"], "grammar": { "gender": "la" } },
-  "bus": { "text": "autobús", "accepts": ["bus", "guagua"], "grammar": { "gender": "el" } },
-  "bus-stop": { "text": "parada", "accepts": ["parada de autobús"], "grammar": { "gender": "la" } },
-  "train": { "text": "tren", "grammar": { "gender": "el" } },
-  "car": { "text": "coche", "accepts": ["carro", "auto"], "grammar": { "gender": "el" } },
-  "taxi": { "text": "taxi", "grammar": { "gender": "el" } },
+  "traffic-light": { "text": "semáforo", "grammar": { "article": "el" } },
+  "bicycle": { "text": "bicicleta", "accepts": ["bici"], "grammar": { "article": "la" } },
+  "bus": { "text": "autobús", "accepts": ["bus", "guagua"], "grammar": { "article": "el" } },
+  "bus-stop": { "text": "parada", "accepts": ["parada de autobús"], "grammar": { "article": "la" } },
+  "train": { "text": "tren", "grammar": { "article": "el" } },
+  "car": { "text": "coche", "accepts": ["carro", "auto"], "grammar": { "article": "el" } },
+  "taxi": { "text": "taxi", "grammar": { "article": "el" } },
   "train-station": {
    "text": "estación de tren",
    "accepts": ["estación", "estación de ferrocarril"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "ticket": {
    "text": "billete",
    "accepts": ["boleto", "pasaje"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "En España el billete, también el de dinero; en América, boleto o pasaje." }
   },
   "to-ride-bike": {
@@ -30,21 +30,21 @@
    "notes": { "es": "En España coger el autobús; en América, tomar — allí coger es vulgar." }
   },
   "to-depart": { "text": "salir", "notes": { "es": "Trenes y autobuses salen: el tren sale a las ocho." } },
-  "driver": { "text": "conductor", "accepts": ["chofer", "chófer"], "grammar": { "gender": "el" } },
-  "plane": { "text": "avión", "grammar": { "gender": "el" } },
-  "airport": { "text": "aeropuerto", "grammar": { "gender": "el" } },
+  "driver": { "text": "conductor", "accepts": ["chofer", "chófer"], "grammar": { "article": "el" } },
+  "plane": { "text": "avión", "grammar": { "article": "el" } },
+  "airport": { "text": "aeropuerto", "grammar": { "article": "el" } },
   "motorbike": {
    "text": "moto",
    "accepts": ["motocicleta"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "La moto es corto de la motocicleta y sigue siendo femenina." }
   },
-  "truck": { "text": "camión", "grammar": { "gender": "el" } },
-  "passenger": { "text": "pasajero", "grammar": { "gender": "el" } },
-  "wheel": { "text": "rueda", "grammar": { "gender": "la" } },
-  "engine": { "text": "motor", "grammar": { "gender": "el" } },
-  "rail": { "text": "riel", "forms": { "pl": "los rieles" }, "grammar": { "gender": "el" } },
-  "fare": { "text": "tarifa", "grammar": { "gender": "la" } },
+  "truck": { "text": "camión", "grammar": { "article": "el" } },
+  "passenger": { "text": "pasajero", "grammar": { "article": "el" } },
+  "wheel": { "text": "rueda", "grammar": { "article": "la" } },
+  "engine": { "text": "motor", "grammar": { "article": "el" } },
+  "rail": { "text": "riel", "forms": { "pl": "los rieles" }, "grammar": { "article": "el" } },
+  "fare": { "text": "tarifa", "grammar": { "article": "la" } },
   "to-get-off": { "text": "bajarse", "accepts": ["bajar"], "notes": { "es": "Reflexivo: me bajo aquí." } },
   "to-get-on": { "text": "subirse", "accepts": ["subir"] },
   "the-bus-is-coming-soon": {
@@ -56,7 +56,7 @@
   "how-much-is-the-fare": { "text": "¿Cuál es la tarifa?", "accepts": ["¿Cuánto cuesta el pasaje?"] },
   "the-bus-has-already-departed": { "text": "El autobús ya ha salido.", "orders": ["Ya ha salido el autobús."] },
   "my-parents-are-coming-by-train": { "text": "Mis padres vienen en tren.", "orders": ["En tren vienen mis padres."] },
-  "tire": { "text": "neumático", "grammar": { "gender": "el" } },
+  "tire": { "text": "neumático", "grammar": { "article": "el" } },
   "my-car-has-four-tires": { "text": "Mi coche tiene cuatro neumáticos." }
  }
 }

@@ -3,7 +3,7 @@
  "subtitle": "Ce qu'on se dit quand on se rencontre.",
  "words": {
   "to-thank": { "text": "remercier" },
-  "name": { "text": "nom", "grammar": { "gender": "le" } },
+  "name": { "text": "nom", "grammar": { "article": "le" } },
   "to-be-called": { "text": "s'appeler" },
   "hello": { "text": "Salut !", "notes": { "fr": "Salut ! ton familier · au guichet, Bonjour !" } },
   "good-day": { "text": "Bonjour !", "notes": { "fr": "Bonjour ! · dès 18 h, Bonsoir !" } },

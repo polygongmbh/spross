@@ -23,3 +23,4 @@ web/dist/
 marketing/print/out/
 marketing/print/html/
 marketing/print/preview/
+.venv/

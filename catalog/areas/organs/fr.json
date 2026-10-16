@@ -2,25 +2,33 @@
  "title": "Les organes",
  "subtitle": "Ce qui est à l'intérieur et se dit chez le médecin.",
  "words": {
-  "lung": { "text": "poumon", "grammar": { "gender": "le" } },
-  "liver": { "text": "foie", "grammar": { "gender": "le" } },
-  "kidney": { "text": "rein", "grammar": { "gender": "le" } },
-  "intestine": { "text": "intestin", "grammar": { "gender": "le" } },
-  "bladder": { "text": "vessie", "grammar": { "gender": "la" } },
-  "nerve": { "text": "nerf", "grammar": { "gender": "le" } },
-  "vein": { "text": "veine", "grammar": { "gender": "la" } },
-  "thyroid": { "text": "thyroïde", "accepts": ["la thyroïde"], "grammar": { "gender": "la" } },
+  "lung": { "text": "poumon", "grammar": { "article": "le" } },
+  "liver": { "text": "foie", "grammar": { "article": "le" } },
+  "kidney": { "text": "rein", "grammar": { "article": "le" } },
+  "intestine": { "text": "intestin", "accepts": ["l'intestin"], "grammar": { "article": "l'", "gender": "m" } },
+  "bladder": { "text": "vessie", "grammar": { "article": "la" } },
+  "nerve": { "text": "nerf", "grammar": { "article": "le" } },
+  "vein": { "text": "veine", "grammar": { "article": "la" } },
+  "thyroid": { "text": "thyroïde", "accepts": ["la thyroïde"], "grammar": { "article": "la" } },
   "to-breathe": { "text": "respirer" },
-  "stomach-organ": { "text": "estomac", "grammar": { "gender": "le" } },
-  "artery": { "text": "artère", "grammar": { "gender": "l'" }, "accepts": ["l'artère"] },
-  "joint": { "text": "articulation", "grammar": { "gender": "l'" }, "accepts": ["l'articulation"] },
-  "gland": { "text": "glande", "grammar": { "gender": "la" } },
-  "spleen": { "text": "rate", "grammar": { "gender": "la" } },
-  "bile": { "text": "bile", "grammar": { "gender": "la" } },
-  "appendix": { "text": "appendice", "grammar": { "gender": "l'" }, "accepts": ["l'appendice"] },
-  "womb": { "text": "utérus", "grammar": { "gender": "l'", "plural": "=" }, "accepts": ["l'utérus"] },
-  "pancreas": { "text": "pancréas", "grammar": { "gender": "le", "plural": "=" } },
-  "ovary": { "text": "ovaire", "grammar": { "gender": "l'" }, "accepts": ["l'ovaire"] },
-  "tendon": { "text": "tendon", "grammar": { "gender": "le" } }
+  "stomach-organ": { "text": "estomac", "accepts": ["l'estomac"], "grammar": { "article": "l'", "gender": "m" } },
+  "artery": { "text": "artère", "grammar": { "article": "l'", "gender": "f" }, "accepts": ["l'artère"] },
+  "joint": {
+   "text": "articulation",
+   "grammar": { "article": "l'", "gender": "f" },
+   "accepts": ["l'articulation"]
+  },
+  "gland": { "text": "glande", "grammar": { "article": "la" } },
+  "spleen": { "text": "rate", "grammar": { "article": "la" } },
+  "bile": { "text": "bile", "grammar": { "article": "la" } },
+  "appendix": { "text": "appendice", "grammar": { "article": "l'", "gender": "m" }, "accepts": ["l'appendice"] },
+  "womb": {
+   "text": "utérus",
+   "grammar": { "article": "l'", "gender": "m", "plural": "=" },
+   "accepts": ["l'utérus"]
+  },
+  "pancreas": { "text": "pancréas", "grammar": { "article": "le", "plural": "=" } },
+  "ovary": { "text": "ovaire", "grammar": { "article": "l'", "gender": "m" }, "accepts": ["l'ovaire"] },
+  "tendon": { "text": "tendon", "grammar": { "article": "le" } }
  }
 }

@@ -24,10 +24,10 @@ import subprocess
 import sys
 
 from audio_gates import speech_key
+from audio_routes import SECTIONS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'catalog')
-SECTIONS = ('words', 'letters', 'texts', 'articles', 'calendar', 'countries')
 
 
 def read_json(*parts):

@@ -2,35 +2,35 @@
  "title": "El trabajo",
  "subtitle": "¡Mucho éxito!",
  "words": {
-  "work": { "text": "trabajo", "grammar": { "gender": "el" } },
+  "work": { "text": "trabajo", "grammar": { "article": "el" } },
   "job-application": {
    "text": "solicitud de empleo",
    "teaches": ["candidatura"],
    "accepts": ["solicitud de trabajo"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "cv": {
    "text": "currículum",
    "accepts": ["currículum vítae", "currículum vitae", "CV"],
    "forms": { "pl": "los currículums" },
-   "grammar": { "gender": "el" }
+   "grammar": { "article": "el" }
   },
-  "contract": { "text": "contrato", "grammar": { "gender": "el" } },
-  "salary": { "text": "sueldo", "teaches": ["salario"], "grammar": { "gender": "el" } },
+  "contract": { "text": "contrato", "grammar": { "article": "el" } },
+  "salary": { "text": "sueldo", "teaches": ["salario"], "grammar": { "article": "el" } },
   "colleague": {
    "text": "compañero",
    "teaches": ["colega"],
    "accepts": ["compañero de trabajo"],
    "forms": { "f": "la compañera" },
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El compañero de trabajo · colega en España es también amigo." }
   },
-  "boss": { "text": "jefe", "forms": { "f": "la jefa" }, "grammar": { "gender": "el" } },
-  "shift": { "text": "turno", "grammar": { "gender": "el" } },
+  "boss": { "text": "jefe", "forms": { "f": "la jefa" }, "grammar": { "article": "el" } },
+  "shift": { "text": "turno", "grammar": { "article": "el" } },
   "company": {
    "text": "empresa",
    "accepts": ["compañía"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "es": "La empresa es donde trabajas; la firma es la del papel.",
     "de": "Vorsicht: la firma ist vor allem die Unterschrift; „die Firma“ heißt la empresa."
@@ -59,39 +59,39 @@
   "to-hire": { "text": "contratar", "accepts": ["emplear"] },
   "to-help": { "text": "ayudar" },
   "to-work-overtime": { "text": "hacer horas extra", "accepts": ["hacer horas extras", "hacer horas extraordinarias"] },
-  "profession": { "text": "profesión", "accepts": ["oficio"], "grammar": { "gender": "la" } },
+  "profession": { "text": "profesión", "accepts": ["oficio"], "grammar": { "article": "la" } },
   "interview": {
    "text": "entrevista de trabajo",
    "accepts": ["entrevista laboral", "entrevista"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "working-hours": {
    "text": "horario de trabajo",
    "accepts": ["jornada laboral", "horario laboral"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El horario de trabajo es el del día; en el contrato, la jornada laboral." }
   },
   "full-time": {
    "text": "jornada completa",
    "accepts": ["a jornada completa", "tiempo completo"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "part-time": {
    "text": "media jornada",
    "accepts": ["a media jornada", "jornada parcial", "tiempo parcial"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "tax": { "text": "impuesto", "grammar": { "gender": "el" } },
-  "work-permit": { "text": "permiso de trabajo", "grammar": { "gender": "el" } },
+  "tax": { "text": "impuesto", "grammar": { "article": "el" } },
+  "work-permit": { "text": "permiso de trabajo", "grammar": { "article": "el" } },
   "notice": {
    "text": "despido",
    "accepts": ["carta de despido"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El despido lo decide la empresa; la dimisión la decide uno mismo." }
   },
-  "worker": { "text": "trabajador", "grammar": { "gender": "el" } },
-  "employer": { "text": "empleador", "grammar": { "gender": "el" } },
-  "customer": { "text": "cliente", "grammar": { "gender": "el" } },
+  "worker": { "text": "trabajador", "grammar": { "article": "el" } },
+  "employer": { "text": "empleador", "grammar": { "article": "el" } },
+  "customer": { "text": "cliente", "grammar": { "article": "el" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Mañana me presento en la empresa.",
    "accepts": ["Mañana me presento en la compañía."],
@@ -115,6 +115,6 @@
    "text": "Hoy salimos del trabajo a las cinco.",
    "orders": ["Salimos del trabajo a las cinco hoy."]
   },
-  "workplace": { "text": "oficina", "forms": { "pl": "las oficinas" }, "grammar": { "gender": "la" } }
+  "workplace": { "text": "oficina", "forms": { "pl": "las oficinas" }, "grammar": { "article": "la" } }
  }
 }

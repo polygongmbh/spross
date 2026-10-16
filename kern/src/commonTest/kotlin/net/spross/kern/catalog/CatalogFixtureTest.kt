@@ -169,7 +169,7 @@ class CatalogFixtureTest {
     @Test
     fun grammarRidesThroughPerSide() {
         val door = catalog.join("de", "uk").byId("door")
-        assertEquals(mapOf("gender" to "die"), door.source.grammar)
+        assertEquals(mapOf("article" to "die"), door.source.grammar)
         assertEquals(mapOf("plural" to "only"), door.target.grammar)
     }
 

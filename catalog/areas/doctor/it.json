@@ -6,7 +6,7 @@
    "text": "medico",
    "accepts": ["dottore"],
    "forms": { "f": "la dottoressa" },
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "si dice la dottoressa · medico resta al maschile: è un bravo medico." }
   },
   "practice": {
@@ -14,13 +14,13 @@
    "teaches": ["studio medico"],
    "accepts": ["l'ambulatorio"],
    "forms": { "pl": "gli ambulatori" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "it": "l'ambulatorio è del medico di base · lo studio medico è privato." }
   },
   "pill": {
    "text": "pastiglia",
    "accepts": ["compressa", "pillola"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "it": "parlando si dice pastiglia · sulla scatola c'è compressa.",
     "de": "Alltagswort ist la pastiglia; auf der Packung steht la compressa, und la pillola meint meist die Antibabypille."
@@ -29,35 +29,35 @@
   "prescription": {
    "text": "ricetta",
    "accepts": ["ricetta medica"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la ricetta è quella del medico ed è anche quella di cucina." }
   },
-  "pharmacy": { "text": "farmacia", "grammar": { "gender": "la" } },
+  "pharmacy": { "text": "farmacia", "grammar": { "article": "la" } },
   "insurance-card": {
    "text": "tessera sanitaria",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la tessera sanitaria porta anche il codice fiscale." }
   },
   "health-insurance": {
    "text": "assicurazione sanitaria",
    "accepts": ["l'assicurazione sanitaria", "un'assicurazione sanitaria"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": {
     "it": "cura tutti il Servizio Sanitario Nazionale · l'assicurazione è privata.",
     "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: versorgt wird man über den staatlichen Servizio Sanitario Nazionale; un'assicurazione sanitaria ist meist eine private Zusatzversicherung."
    }
   },
-  "hospital": { "text": "ospedale", "accepts": ["l'ospedale"], "grammar": { "gender": "l'" } },
+  "hospital": { "text": "ospedale", "accepts": ["l'ospedale"], "grammar": { "article": "l'", "gender": "m" } },
   "emergency": {
    "text": "emergenza",
    "accepts": ["l'emergenza", "un'emergenza"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": { "it": "in ospedale si va al pronto soccorso." }
   },
   "doctors-note": {
    "text": "certificato medico",
    "accepts": ["certificato di malattia"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il medico manda il certificato · a te resta il numero di protocollo." }
   },
   "to-examine": { "text": "visitare", "notes": { "it": "il medico visita · la visita è quella dal medico." } },
@@ -71,32 +71,36 @@
   "medicine": {
    "text": "medicina",
    "teaches": ["farmaco"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la medicina si prende ed è anche la materia · sulla scatola: farmaco." }
   },
   "nurse": {
    "text": "infermiere",
    "accepts": ["l'infermiere", "un'infermiera"],
    "forms": { "f": "l'infermiera" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "dentist": {
    "text": "dentista",
    "accepts": ["odontoiatra"],
    "forms": { "pl": "i dentisti" },
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il dentista, la dentista: cambia solo l'articolo." }
   },
   "vaccination": {
    "text": "vaccino",
    "teaches": ["vaccinazione"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": {
     "it": "si dice fare il vaccino · la vaccinazione è la parola formale.",
     "de": "il vaccino ist der Impfstoff und im Alltag die Impfung: fare il vaccino; la vaccinazione ist der formale Vorgang."
    }
   },
-  "ambulance": { "text": "ambulanza", "accepts": ["l'ambulanza", "un'ambulanza"], "grammar": { "gender": "l'" } },
+  "ambulance": {
+   "text": "ambulanza",
+   "accepts": ["l'ambulanza", "un'ambulanza"],
+   "grammar": { "article": "l'", "gender": "f" }
+  },
   "to-look-after": { "text": "curare" },
   "take-the-pills-twice-daily": {
    "text": "Prenda le pastiglie due volte al giorno.",

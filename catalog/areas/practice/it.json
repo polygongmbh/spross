@@ -8,11 +8,15 @@
    "text": "obiettivo",
    "accepts": ["l'obiettivo"],
    "forms": { "pl": "gli obiettivi" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "to-achieve": { "text": "raggiungere" },
-  "exercise": { "text": "esercizio", "accepts": ["l'esercizio"], "grammar": { "gender": "l'" } },
-  "training": { "text": "allenamento", "accepts": ["l'allenamento"], "grammar": { "gender": "l'" } },
+  "exercise": { "text": "esercizio", "accepts": ["l'esercizio"], "grammar": { "article": "l'", "gender": "m" } },
+  "training": {
+   "text": "allenamento",
+   "accepts": ["l'allenamento"],
+   "grammar": { "article": "l'", "gender": "m" }
+  },
   "you-can-do-it": {
    "text": "Ce la farai di sicuro!",
    "accepts": ["Ce la puoi fare!"],

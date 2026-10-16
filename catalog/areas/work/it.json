@@ -2,38 +2,38 @@
  "title": "Il lavoro",
  "subtitle": "Buon lavoro!",
  "words": {
-  "work": { "text": "lavoro", "grammar": { "gender": "il" } },
+  "work": { "text": "lavoro", "grammar": { "article": "il" } },
   "job-application": {
    "text": "candidatura",
    "accepts": ["domanda di lavoro", "domanda di assunzione"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "cv": {
    "text": "curriculum",
    "accepts": ["curriculum vitae", "CV"],
-   "grammar": { "gender": "il", "plural": "=" }
+   "grammar": { "article": "il", "plural": "=" }
   },
-  "contract": { "text": "contratto", "grammar": { "gender": "il" } },
+  "contract": { "text": "contratto", "grammar": { "article": "il" } },
   "salary": {
    "text": "stipendio",
    "teaches": ["salario"],
    "forms": { "pl": "gli stipendi" },
-   "grammar": { "gender": "lo" },
+   "grammar": { "article": "lo" },
    "notes": { "it": "lo stipendio arriva ogni mese · il salario si conta sul lavoro fatto." }
   },
   "colleague": {
    "text": "collega",
    "forms": { "pl": "i colleghi" },
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il collega, la collega: cambia solo l'articolo." }
   },
-  "boss": { "text": "capo", "grammar": { "gender": "il" } },
-  "shift": { "text": "turno", "grammar": { "gender": "il" } },
+  "boss": { "text": "capo", "grammar": { "article": "il" } },
+  "shift": { "text": "turno", "grammar": { "article": "il" } },
   "company": {
    "text": "azienda",
    "teaches": ["ditta"],
    "accepts": ["l'azienda", "un'azienda", "società"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": {
     "it": "l'azienda o la ditta è dove si lavora · la firma sta sul foglio.",
     "de": "Vorsicht: la firma ist die Unterschrift; „die Firma“ heißt l'azienda oder la ditta."
@@ -69,53 +69,53 @@
   "profession": {
    "text": "professione",
    "teaches": ["mestiere"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la professione si studia · il mestiere si impara facendo." }
   },
   "interview": {
    "text": "colloquio di lavoro",
    "accepts": ["colloquio"],
    "forms": { "pl": "i colloqui di lavoro" },
-   "grammar": { "gender": "il" }
+   "grammar": { "article": "il" }
   },
   "working-hours": {
    "text": "orario di lavoro",
    "accepts": ["l'orario di lavoro"],
    "forms": { "pl": "gli orari di lavoro" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "full-time": {
    "text": "tempo pieno",
    "accepts": ["a tempo pieno", "full-time"],
-   "grammar": { "gender": "il" }
+   "grammar": { "article": "il" }
   },
   "part-time": {
    "text": "tempo parziale",
    "accepts": ["a tempo parziale", "part-time"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "sul contratto a tempo pieno o parziale · parlando full-time e part-time." }
   },
   "tax": {
    "text": "imposta",
    "accepts": ["l'imposta", "un'imposta", "tassa"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": { "it": "l'imposta è quella sul reddito · la tassa si paga per un servizio." }
   },
-  "work-permit": { "text": "permesso di lavoro", "grammar": { "gender": "il" } },
+  "work-permit": { "text": "permesso di lavoro", "grammar": { "article": "il" } },
   "notice": {
    "text": "licenziamento",
    "accepts": ["lettera di licenziamento"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il licenziamento viene dall'azienda · le dimissioni le dai tu." }
   },
   "worker": {
    "text": "lavoratore",
    "teaches": ["operaio"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il lavoratore è chiunque lavori · l'operaio sta in fabbrica." }
   },
-  "employer": { "text": "datore di lavoro", "grammar": { "gender": "il" } },
-  "customer": { "text": "cliente", "grammar": { "gender": "il" } },
+  "employer": { "text": "datore di lavoro", "grammar": { "article": "il" } },
+  "customer": { "text": "cliente", "grammar": { "article": "il" } },
   "tomorrow-i-have-a-job-interview": {
    "text": "Domani mi presento in azienda.",
    "accepts": ["Domani mi presento in ditta.", "Domani mi presento all'azienda."],
@@ -135,6 +135,6 @@
    "accepts": ["Leggi bene il contratto.", "Legga attentamente il contratto."]
   },
   "we-knock-off-at-5": { "text": "Oggi stacchiamo alle 5.", "orders": ["Stacchiamo oggi alle 5."] },
-  "workplace": { "text": "ufficio", "grammar": { "gender": "l'" }, "accepts": ["l'ufficio"] }
+  "workplace": { "text": "ufficio", "grammar": { "article": "l'", "gender": "m" }, "accepts": ["l'ufficio"] }
  }
 }

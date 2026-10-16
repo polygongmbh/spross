@@ -22,7 +22,7 @@ class ElidedArticleTests {
         id = "guest", kind = CardKind.Noun, area = "hall", emoji = null, seedIndex = 0,
         components = emptyList(), source = Realization("en", "guest"),
         target = Realization(
-            "fr", "invité", grammar = mapOf("gender" to "l'"),
+            "fr", "invité", grammar = mapOf("article" to "l'"),
             // As the join leaves it: the authored `l'invitée` with its article set apart.
             forms = listOf(TaggedForm(FormTag.FEMININE, "invitée", article = "l'")),
         ),

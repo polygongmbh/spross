@@ -10507,16 +10507,6 @@
       "sha256": "e4a3fd8832e8b90f5949bebb00ac8b0897a812bb55cf1b3c44f48101a595d97e",
       "source": "De-himmel.ogg"
     },
-    "hinlegen": {
-      "author": "Jeuwre",
-      "file": "words/hinlegen.mp3",
-      "gain": -4.3,
-      "lead": 369,
-      "matches": "hinlegen",
-      "mos": 3.03,
-      "sha256": "78d2afd05c5491703ce889ee19bb4d37301fee250a118bf16acc4fd22275d2fa",
-      "source": "De-hinlegen2.ogg"
-    },
     "hinter": {
       "author": "Jeuwre",
       "file": "words/hinter.mp3",

@@ -2,15 +2,15 @@
  "title": "Al negozio",
  "subtitle": "Dove il prezzo è già sull'etichetta.",
  "words": {
-  "supermarket": { "text": "supermercato", "grammar": { "gender": "il" } },
-  "mall": { "text": "centro commerciale", "grammar": { "gender": "il" } },
-  "checkout": { "text": "cassa", "grammar": { "gender": "la" } },
-  "shop-assistant": { "text": "commesso", "forms": { "f": "la commessa" }, "grammar": { "gender": "il" } },
-  "shopping-cart": { "text": "carrello", "grammar": { "gender": "il" }, "accepts": ["carrello della spesa"] },
-  "offer": { "text": "offerta", "grammar": { "gender": "l'" }, "accepts": ["l'offerta"] },
+  "supermarket": { "text": "supermercato", "grammar": { "article": "il" } },
+  "mall": { "text": "centro commerciale", "grammar": { "article": "il" } },
+  "checkout": { "text": "cassa", "grammar": { "article": "la" } },
+  "shop-assistant": { "text": "commesso", "forms": { "f": "la commessa" }, "grammar": { "article": "il" } },
+  "shopping-cart": { "text": "carrello", "grammar": { "article": "il" }, "accepts": ["carrello della spesa"] },
+  "offer": { "text": "offerta", "grammar": { "article": "l'", "gender": "f" }, "accepts": ["l'offerta"] },
   "size": {
    "text": "taglia",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la taglia è dei vestiti · il numero è delle scarpe." }
   },
   "to-shop": {
@@ -19,7 +19,7 @@
    "accepts": ["fare shopping"],
    "notes": { "it": "fare la spesa è al supermercato · fare spese è nei negozi." }
   },
-  "store": { "text": "negozio", "forms": { "pl": "i negozi" }, "grammar": { "gender": "il" } },
+  "store": { "text": "negozio", "forms": { "pl": "i negozi" }, "grammar": { "article": "il" } },
   "open": { "text": "aperto", "forms": { "f": "aperta" } },
   "the-store-is-still-open": { "text": "Il negozio è ancora aperto." },
   "do-you-have-this-in-my-size": { "text": "Ce l'ha nella mia taglia?", "accepts": ["Ce l'hai nella mia taglia?"] }

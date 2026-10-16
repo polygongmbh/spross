@@ -2,28 +2,28 @@
  "title": "La cuisine",
  "subtitle": "Ici, ça sent le dîner.",
  "words": {
-  "fridge": { "text": "réfrigérateur", "accepts": ["frigo", "frigidaire"], "grammar": { "gender": "le" } },
+  "fridge": { "text": "réfrigérateur", "accepts": ["frigo", "frigidaire"], "grammar": { "article": "le" } },
   "stove": {
    "text": "cuisinière",
    "accepts": ["gazinière", "plaque de cuisson"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "fr": "la cuisinière chauffe les plats · c'est aussi la femme qui cuisine.",
     "de": "la cuisinière ist der Herd als Gerät (und auch die Köchin); „auf dem Herd“ heißt sur le feu."
    }
   },
-  "oven": { "text": "four", "grammar": { "gender": "le" } },
-  "dishwasher": { "text": "lave-vaisselle", "grammar": { "gender": "le", "plural": "=" } },
-  "pot": { "text": "casserole", "accepts": ["marmite", "faitout"], "grammar": { "gender": "la" } },
+  "oven": { "text": "four", "grammar": { "article": "le" } },
+  "dishwasher": { "text": "lave-vaisselle", "grammar": { "article": "le", "plural": "=" } },
+  "pot": { "text": "casserole", "accepts": ["marmite", "faitout"], "grammar": { "article": "la" } },
   "pan": {
    "text": "poêle",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "la poêle pour cuire · le poêle chauffe la maison." }
   },
-  "knife": { "text": "couteau", "forms": { "pl": "les couteaux" }, "grammar": { "gender": "le" } },
-  "spoon": { "text": "cuillère", "accepts": ["cuiller"], "grammar": { "gender": "la" } },
-  "fork": { "text": "fourchette", "grammar": { "gender": "la" } },
-  "plate": { "text": "assiette", "accepts": ["l'assiette"], "grammar": { "gender": "l'" } },
+  "knife": { "text": "couteau", "forms": { "pl": "les couteaux" }, "grammar": { "article": "le" } },
+  "spoon": { "text": "cuillère", "accepts": ["cuiller"], "grammar": { "article": "la" } },
+  "fork": { "text": "fourchette", "grammar": { "article": "la" } },
+  "plate": { "text": "assiette", "accepts": ["l'assiette"], "grammar": { "article": "l'", "gender": "f" } },
   "to-cook": {
    "text": "cuisiner",
    "accepts": ["faire la cuisine"],
@@ -54,16 +54,16 @@
    "notes": { "fr": "on sort la poubelle, pas les ordures." }
   },
   "caution": { "text": "attention" },
-  "cup": { "text": "tasse", "grammar": { "gender": "la" } },
-  "bowl": { "text": "bol", "grammar": { "gender": "le" } },
-  "basket": { "text": "panier", "accepts": ["corbeille"], "grammar": { "gender": "le" } },
+  "cup": { "text": "tasse", "grammar": { "article": "la" } },
+  "bowl": { "text": "bol", "grammar": { "article": "le" } },
+  "basket": { "text": "panier", "accepts": ["corbeille"], "grammar": { "article": "le" } },
   "tin-can": {
    "text": "boîte de conserve",
    "accepts": ["conserve"],
    "forms": { "pl": "les boîtes de conserve" },
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
-  "gas": { "text": "gaz", "grammar": { "gender": "le", "plural": "=" } },
+  "gas": { "text": "gaz", "grammar": { "article": "le", "plural": "=" } },
   "tasty": { "text": "délicieux", "forms": { "f": "délicieuse" } },
   "the-knife-is-sharp": {
    "text": "Le couteau est tranchant !",

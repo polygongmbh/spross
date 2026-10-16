@@ -3,33 +3,37 @@ The bundled recordings' file format, naming and provenance fields.
 Neighbors: engine `../../kern/docs/audio.md`, when one is heard `../../docs/read-aloud.md`, whose they are `../../docs/audio-licensing.md`.
 
 Bundled pronunciation recordings, one folder per language, **generated** by
-`app/scripts/audio-catalog.py --packs <workspace>` — edit packs, not this directory.
-`--articles`, `--calendar` and `--countries` rebuild only their own section of what ships,
-so a late pack lands without re-deriving the others.
+`app/scripts/audio-catalog.py` out of the workspace's packs — edit packs, not this directory.
+A full convert builds a language that ships no manifest yet and refuses one that does.
 
-**`--fill` is how a language catches up with the catalog**, and the only way that should be
-used: it ADDS words the manifest lacks and leaves every entry it already has byte-identical
-— file, digest and credit. A plain re-convert replaces a language wholesale out of a
-workspace that has moved on, which would discard the German pack's reseated rows (the fix
-for its hiss) and several packs' hand-curated tails. A fill also refuses a row whose spoken
-form a SHIPPED row already claims under different bytes: two files for one sound leave the
-runtime nothing to pick, so filling one word would silence another. German `poor` is
-"arm", which the body part already speaks; French `entrance` and `fresh` are the same story.
+**`--fill [--section S]` is how a language catches up with the catalog**, in any section:
+it ADDS forms the section lacks and leaves every entry it already has byte-identical
+— file, digest and credit — so the German pack's reseated rows (the fix for its hiss) and
+several packs' hand-curated tails survive whatever the workspace has moved on to.
+A fill also refuses a row whose spoken form a SHIPPED row already claims under different bytes:
+two files for one sound leave the runtime nothing to pick, so filling one word would silence another.
+German `poor` is "arm", which the body part already speaks; French `entrance` and `fresh` are the same story.
+A row whose bytes already ship in that section is that entry, under the key it was moved to.
+`--articles`, `--calendar` and `--countries` ship their section's staged pack swaps (`--ship --from-packs`),
+then fill it.
 
 The packs (`pack-<lang>-words`, `pack-<lang>-articles` and their siblings) are keyed like this manifest,
 by the form a recording speaks, never by the concept that shows it:
 a concept's text, a synonym and a tagged form (a plural, a feminine, an agreement form) are one kind of row,
 so a form moving between those roles keeps its recording.
 Every form is looked for bare in the words pack and, where a card shows it with an article, with that article in the articles pack.
+Where each language's recordings are on Commons is one table, `../../scripts/audio_routes.py`,
+and every request goes through one client, `../../scripts/audio_commons.py`, which waits out a dropped
+network or a throttling Commons for up to 15 minutes before an item counts as failed.
 
 After authoring words, per language and one language at a time (Commons throttles parallel
 fetches), a matter of seconds:
 
 ```sh
-../data/reference/audio/build-packs.sh words <lang>          # resolves only what the pack lacks
-../data/reference/audio/build-packs.sh articles <lang>       # the same forms with their article
-scripts/audio-catalog.py --packs ../data/reference/audio --lang <lang> --fill
-scripts/audio-catalog.py --packs ../data/reference/audio --lang <lang> --articles
+scripts/audio-packs.py resolve words <lang>                  # resolves only what the pack lacks
+scripts/audio-packs.py resolve articles <lang>               # the same forms with their article
+scripts/audio-catalog.py --lang <lang> --fill
+scripts/audio-catalog.py --lang <lang> --articles
 scripts/audio-coverage.py --missing <lang>                   # what nobody has recorded
 ```
 
@@ -48,31 +52,34 @@ The score ranks voices the way the ear does, but a single file strays by a few t
 picks among takes and refuses only the clearly bad.
 
 ```sh
-W=../data/reference/audio   # <route> is the language's from $W/build-packs.sh
-scripts/audio-restress.py --lang <lang>                     # after a stress-mark edit: shipped takes follow the marked form
-$W/sync-from-shipped.py <lang>                              # every pack says what ships
-$W/consolidate-pack.py --lang <lang> <route> --pack <each pack> --groups-from <its siblings>
-                                                            # voices with ≤3 takes onto established ones
-$W/requalify-pack.py --lang <lang> <route>                  # under 2.8, squashed or one-sided: the best other take
-$W/requalify-pack.py --lang <lang> --pack $W/pack-<lang>-<section> <route>  # the same for calendar, countries
-scripts/audio-catalog.py --ship --from-packs --lang <lang> --dry-run   # the swaps the packs now name, judged
-scripts/audio-catalog.py --ship --from-packs --lang <lang>             # ships them, any section but letters
+scripts/audio-packs.py consolidate <lang>... --apply        # voices with ≤3 takes onto established ones
+scripts/audio-packs.py sweep <lang>... --apply              # poor, doubted, squashed, one-sided or refused: the best other take
+scripts/audio-catalog.py --ship --lang <lang> --dry-run     # the staged swaps, judged
+scripts/audio-catalog.py --ship --lang <lang>               # ships them
 scripts/audio-catalog.py --lang <lang> --prune-poor         # what the judge still refuses
 ```
 
+A sweep runs for hours: every run prints its `tail -f` line first and tees each pack's log to
+`$W/logs/<date>-<command>/`, beside a one-line-per-pack `summary.log`.
+One run at a time — Commons throttles a second.
+`--only <forms>` reconsiders named forms whatever they score, and a rerun resumes:
+fetches and measures are cached in the workspace, and a key already staged against what ships is passed over.
+An item Commons stays unreachable for keeps its take, and the run exits nonzero with the count.
+
 A take whose peak stands less than `audio_voices.SQUASH_FLOOR_DB` over its loudness was limited at its source:
 the score hears it as clean, the ear hears it squashed, and no gain undoes that.
-Requalification reconsiders it like a poor take and never swaps one in.
+A sweep reconsiders it like a poor take and never swaps one in.
 
-Both reseating scripts only report until given `--apply`.
+Both pickers only print until given `--apply`, and never write a pack: a swap is a row in
+`$W/staged.tsv`, its bytes in `$W/staged/`, and a form that ships nothing yet is staged against nothing.
 `--ship` replaces a take only while the one it was chosen over still ships, and only once the
 take judge passes the replacement; a refused swap leaves the old recording standing.
-It applies `$W/staged.tsv` (bytes in `$W/staged/`), `--from-packs` first stages every pack row
-naming another Commons file than what ships, and each applied swap is appended to `$W/shipped.tsv`.
+Each applied swap is appended to `$W/shipped.tsv`;
+`--from-packs` first stages every pack row naming another Commons file than what ships under its form.
 A new speaker is another voice change on the cards and another credit group, so every
 picker takes an established voice's take over a slightly better stranger's, and a voice
 with three recordings or fewer is moved onto an established one wherever it can be —
-never onto a take requalification would refuse.
+never onto a take the sweep would refuse.
 A second voice earns its place with a chunk of words, never a scattering of one-offs:
 where the main voice is poor, a few good voices each take every word they say well.
 
@@ -91,7 +98,9 @@ those bytes: bad never ships, and bad or mediocre has every other take of its wo
 A voice heard as bad across its takes is a POOR voice (`../../scripts/audio_voices.py`),
 and every take of it counts as bad unless a listener passed that file.
 A listening set is about 15 takes beside a TSV naming them, rated one key per take with
-`../../scripts/audio-listen.py`, which writes the verdicts itself.
+`../../scripts/audio-listen.py`, which writes the verdicts itself;
+`audio-listen.py sample NAME --from shipped|journal` draws one out of unrated takes —
+the lowest scorers that ship, or the staged and shipped swaps most likely to be wrong.
 
 The packs (Wikimedia Commons transcodes plus a `manifest.tsv` of provenance) are
 unversioned research input; what is committed here is the shipped bytes and the
@@ -163,7 +172,7 @@ on one machine and in no checkout; the script asks `git ls-files` instead.
   `word` is carried rather than derived — cutting a leading article off is a guess, and
   an elided one (`l'acqua`) has no space to cut at.
   The article must be one a card shows in front of that word — a realization's own
-  `grammar.gender`, or the article a tagged form was authored with (`die Lehrerin`) —
+  `grammar.article`, or the article a tagged form was authored with (`die Lehrerin`) —
   because a recording is the only thing that teaches a gender aloud and a wrong one
   teaches it wrong; the `word` may be any form the realization carries, so a file saying
   "der Großvater" ships as a recording of the form it actually says.

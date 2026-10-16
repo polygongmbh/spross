@@ -20,7 +20,7 @@ class CatalogArticleAudioLintTest {
     /**
      * An article entry says an article some card in its language shows, in front of the
      * form it stands before there, and its `word` names which one: a realization's own
-     * `grammar.gender` before any form it carries, or a tagged form's authored article
+     * `grammar.article` before any form it carries, or a tagged form's authored article
      * before that form (`die Lehrerin`).
      *
      * The article is pinned because a recording is the only thing that can teach a gender

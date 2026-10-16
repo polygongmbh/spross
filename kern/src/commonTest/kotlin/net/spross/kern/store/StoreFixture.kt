@@ -21,7 +21,7 @@ internal object StoreFixture {
         Card(
             id = "fixture-noun", kind = CardKind.Noun, area = "fixture-area",
             emoji = "🧊", seedIndex = 0, components = emptyList(),
-            source = Realization("de", "Kühlschrank", grammar = mapOf("gender" to "der")),
+            source = Realization("de", "Kühlschrank", grammar = mapOf("article" to "der")),
             target = Realization("uk", "холодильник", teaches = listOf("рефрижератор")),
         ),
         Card(

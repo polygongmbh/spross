@@ -2,12 +2,12 @@
  "title": "Política",
  "subtitle": "Quién gobierna y por qué se discute.",
  "words": {
-  "war": { "text": "guerra", "grammar": { "gender": "la" } },
-  "peace": { "text": "paz", "grammar": { "gender": "la" } },
-  "freedom": { "text": "libertad", "forms": { "pl": "las libertades" }, "grammar": { "gender": "la" } },
-  "government": { "text": "gobierno", "grammar": { "gender": "el" } },
-  "election": { "text": "elección", "forms": { "pl": "las elecciones" }, "grammar": { "gender": "la" } },
+  "war": { "text": "guerra", "grammar": { "article": "la" } },
+  "peace": { "text": "paz", "grammar": { "article": "la" } },
+  "freedom": { "text": "libertad", "forms": { "pl": "las libertades" }, "grammar": { "article": "la" } },
+  "government": { "text": "gobierno", "grammar": { "article": "el" } },
+  "election": { "text": "elección", "forms": { "pl": "las elecciones" }, "grammar": { "article": "la" } },
   "to-vote": { "text": "votar" },
-  "border": { "text": "frontera", "grammar": { "gender": "la" } }
+  "border": { "text": "frontera", "grammar": { "article": "la" } }
  }
 }

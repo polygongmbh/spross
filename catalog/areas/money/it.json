@@ -2,28 +2,28 @@
  "title": "Soldi e prezzi",
  "subtitle": "Quanto costa una cosa e come si paga.",
  "words": {
-  "price": { "text": "prezzo", "grammar": { "gender": "il" } },
+  "price": { "text": "prezzo", "grammar": { "article": "il" } },
   "to-cost": { "text": "costare" },
   "expensive": { "text": "caro", "teaches": ["costoso"] },
   "cheap": { "text": "economico", "accepts": ["a buon mercato"] },
   "to-sell": { "text": "vendere" },
   "cash": {
    "text": "contanti",
-   "grammar": { "gender": "i", "plural": "only" },
+   "grammar": { "article": "i", "plural": "only" },
    "notes": { "it": "sempre al plurale: pagare in contanti." }
   },
   "bank-card": {
    "text": "bancomat",
    "accepts": ["carta", "carta di credito"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il bancomat è la carta e anche la macchina dei soldi." }
   },
-  "coin": { "text": "moneta", "grammar": { "gender": "la" } },
-  "change-money": { "text": "resto", "grammar": { "gender": "il" } },
+  "coin": { "text": "moneta", "grammar": { "article": "la" } },
+  "change-money": { "text": "resto", "grammar": { "article": "il" } },
   "money": {
    "text": "soldi",
    "teaches": ["denaro"],
-   "grammar": { "gender": "i", "plural": "only" },
+   "grammar": { "article": "i", "plural": "only" },
    "notes": { "it": "soldi è sempre plurale: ho pochi soldi · il denaro è formale." }
   },
   "to-buy": { "text": "comprare" },

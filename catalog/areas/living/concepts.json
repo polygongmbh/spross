@@ -17,6 +17,7 @@
  { "slug": "game", "kind": "noun", "emoji": "🎲" },
  { "slug": "dining-table", "kind": "noun", "emoji": "🍽️" },
  { "slug": "lamp", "kind": "noun", "emoji": "💡" },
+ { "slug": "clock", "kind": "noun", "emoji": "🕰️" },
  { "slug": "picture", "kind": "noun", "emoji": "🖼️" },
  { "slug": "to-tidy-up", "kind": "verb", "emoji": "🧹" },
  { "slug": "to-move-in", "kind": "verb" },

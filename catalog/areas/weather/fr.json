@@ -2,16 +2,20 @@
  "title": "Le temps",
  "subtitle": "Ce que le ciel nous réserve aujourd'hui.",
  "words": {
-  "weather": { "text": "temps", "grammar": { "gender": "le" }, "notes": { "de": "le temps heißt auch Zeit." } },
-  "sky": { "text": "ciel", "grammar": { "gender": "le" } },
-  "sun": { "text": "soleil", "grammar": { "gender": "le" } },
-  "cloud": { "text": "nuage", "grammar": { "gender": "le" } },
-  "rain": { "text": "pluie", "grammar": { "gender": "la" } },
-  "snow": { "text": "neige", "grammar": { "gender": "la" } },
-  "wind": { "text": "vent", "grammar": { "gender": "le" } },
-  "storm": { "text": "tempête", "grammar": { "gender": "la" } },
-  "thunder": { "text": "tonnerre", "grammar": { "gender": "le" } },
-  "lightning": { "text": "éclair", "accepts": ["l'éclair"], "grammar": { "gender": "l'" } },
+  "weather": {
+   "text": "temps",
+   "grammar": { "article": "le" },
+   "notes": { "de": "le temps heißt auch Zeit." }
+  },
+  "sky": { "text": "ciel", "grammar": { "article": "le" } },
+  "sun": { "text": "soleil", "grammar": { "article": "le" } },
+  "cloud": { "text": "nuage", "grammar": { "article": "le" } },
+  "rain": { "text": "pluie", "grammar": { "article": "la" } },
+  "snow": { "text": "neige", "grammar": { "article": "la" } },
+  "wind": { "text": "vent", "grammar": { "article": "le" } },
+  "storm": { "text": "tempête", "grammar": { "article": "la" } },
+  "thunder": { "text": "tonnerre", "grammar": { "article": "le" } },
+  "lightning": { "text": "éclair", "accepts": ["l'éclair"], "grammar": { "article": "l'", "gender": "m" } },
   "humid": { "text": "humide" },
   "hows-the-weather-today": {
    "text": "Quel temps fait-il aujourd'hui ?",
@@ -19,7 +23,7 @@
    "orders": ["Aujourd'hui, quel temps fait-il ?"]
   },
   "its-raining": { "text": "Il pleut." },
-  "the-rain-has-stopped": { "text": "Il ne pleut plus.", "accepts": ["La pluie s'est arrêtée.", "La pluie a cessé."] },
+  "the-rain-has-stopped": { "text": "La pluie s'est arrêtée.", "accepts": ["Il ne pleut plus.", "La pluie a cessé."] },
   "the-sun-is-shining": { "text": "Le soleil brille !", "accepts": ["Il y a du soleil !"] },
   "what-a-beautiful-day": { "text": "Quelle belle journée !", "accepts": ["Quelle journée magnifique !"] },
   "we-are-staying-home-because-of-the-rain": {

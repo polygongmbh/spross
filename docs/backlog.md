@@ -55,6 +55,8 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ## Ready
 
+- Gender hues ignore `grammar.gender`: `articleGender` names none for fr/it `l'` and colours es `el agua` masculine (`kern/src/commonMain/kotlin/net/spross/kern/model/Article.kt`), while the catalog now carries the real gender.
+
 ### Engine
 
 - Widget rules both phones mint: display sort, strip bar width and gutter, the 🗂️ fallback.

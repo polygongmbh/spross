@@ -1,6 +1,8 @@
 package net.spross.kern.catalog
 
 import net.spross.kern.model.CardKind
+import net.spross.kern.model.Gender
+import net.spross.kern.model.articleGender
 import net.spross.kern.model.nfcNormalized
 import net.spross.kern.model.stressFolded
 import java.io.File
@@ -496,7 +498,7 @@ class CatalogLintTest {
     }
 
     /**
-     * Plural articles, per language that authors `gender` — not derivable, since German's
+     * Plural articles, per language that authors `article` — not derivable, since German's
      * is homographic with the feminine singular and no shipped noun tells the uses apart.
      */
     private val pluralArticles = mapOf(
@@ -507,12 +509,14 @@ class CatalogLintTest {
     )
 
     /**
-     * Bare values, no labels — plus the closed domain `gender` carries. It IS the article
+     * Bare values, no labels — plus the closed domain `article` carries. It IS the article
      * the learner says, so it must be one the language declares, and on a `plural: "only"`
      * noun it must be the plural one: grading reads the value back and demotes an answer
      * whose PRESENT leading article disagrees, so a singular `el` on *auriculares* marks
      * the only right answer, `los auriculares`, a typo. That is what makes es
      * el/la/los/las the same rule as de's der/die/das rather than a de-shaped exception.
+     * Where that article cannot carry the gender — fr/it `l'`, fr `les`, es `el agua` —
+     * `gender` does, so a poster or a hue never has to guess it.
      */
     @Test
     fun grammarValuesAreWellFormed() {
@@ -525,15 +529,52 @@ class CatalogLintTest {
             raw.grammar["plural"]?.let {
                 assertTrue(it == "=" || it == "only", "$area/$lang.json $slug: a plural form belongs in forms.pl, not grammar (\"$it\")")
             }
-            val gender = raw.grammar["gender"] ?: return@forEachRealization
-            val where = "$area/$lang.json $slug.gender"
-            assertTrue(gender in catalog.languages.getValue(lang).articles, "$where: no declared $lang article")
+            val gender = raw.grammar["gender"]
+            gender?.let { assertTrue(it in GENDERS, "$area/$lang.json $slug.gender: \"$it\" is none of $GENDERS") }
+            val article = raw.grammar["article"]
+            if (article == null) {
+                assertTrue(gender == null, "$area/$lang.json $slug.gender: a gender without an article to complete")
+                return@forEachRealization
+            }
+            val where = "$area/$lang.json $slug.article"
+            assertTrue(article in catalog.languages.getValue(lang).articles, "$where: no declared $lang article")
             if (raw.grammar["plural"] == "only") {
-                assertTrue(gender in pluralArticles[lang].orEmpty(), "$where: \"$gender\" is not plural")
+                assertTrue(article in pluralArticles[lang].orEmpty(), "$where: \"$article\" is not plural")
+            }
+            // `gender` is what the article cannot show: required where it names none
+            // (fr/it l', fr les), and otherwise only where it contradicts it (es el agua).
+            when (val shown = articleGender(article, lang)) {
+                null -> assertTrue(gender != null, "$where: \"$article\" hides the gender — add grammar.gender")
+                else -> assertTrue(
+                    gender == null || gender != CODE_OF.getValue(shown),
+                    "$area/$lang.json $slug.gender: \"$gender\" repeats what \"$article\" already shows",
+                )
             }
         }
     }
+
+    /**
+     * fr/it singular articles elide before a vowel — `l'erreur`, never `la erreur` — so a
+     * vowel-initial noun authored with le/la/il/lo teaches a form nobody says. An h is left
+     * alone: h aspiré keeps its article (le haricot, la honte), and that is a per-word fact.
+     */
+    @Test
+    fun articlesElideBeforeAVowel() {
+        val elidable = mapOf("fr" to setOf("le", "la"), "it" to setOf("il", "lo", "la"))
+        forEachRealization { area, lang, slug, raw ->
+            val article = raw.grammar["article"] ?: return@forEachRealization
+            if (article !in elidable[lang].orEmpty()) return@forEachRealization
+            assertTrue(
+                raw.text.first().lowercaseChar() !in "aeiouàâéèêëîïôœùûü",
+                "$area/$lang.json $slug.article: \"$article ${raw.text}\" elides — author l' and grammar.gender",
+            )
+        }
+    }
 }
+
+/** `grammar.gender` values: the gender an article hides, `m/f` where the noun takes both (l'élève). */
+private val GENDERS = setOf("m", "f", "m/f")
+private val CODE_OF = mapOf(Gender.Masculine to "m", Gender.Feminine to "f", Gender.Neuter to "n")
 
 /** The alphabet's apostrophe — see [CatalogLintTest.contentWritesTheTypewriterApostrophe]. */
 private const val MODIFIER_APOSTROPHE = '\u02BC'

@@ -6,25 +6,25 @@
    "text": "médico",
    "accepts": ["doctor", "doctora"],
    "forms": { "f": "la médica" },
-   "grammar": { "gender": "el" }
+   "grammar": { "article": "el" }
   },
   "practice": {
    "text": "consulta",
    "accepts": ["consultorio"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "La consulta es la sala del médico; la pública está en el centro de salud." }
   },
   "pill": {
    "text": "pastilla",
    "accepts": ["comprimido", "tableta"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "Se dice pastilla; en la caja pone comprimido." }
   },
-  "prescription": { "text": "receta", "accepts": ["receta médica"], "grammar": { "gender": "la" } },
-  "pharmacy": { "text": "farmacia", "grammar": { "gender": "la" } },
+  "prescription": { "text": "receta", "accepts": ["receta médica"], "grammar": { "article": "la" } },
+  "pharmacy": { "text": "farmacia", "grammar": { "article": "la" } },
   "insurance-card": {
    "text": "tarjeta sanitaria",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "es": "La tarjeta sanitaria da acceso a la sanidad pública.",
     "de": "In Spanien ist es die tarjeta sanitaria der öffentlichen Gesundheitsversorgung — sie ersetzt die Versichertenkarte."
@@ -33,23 +33,23 @@
   "health-insurance": {
    "text": "seguro médico",
    "accepts": ["seguro de salud"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": {
     "es": "La sanidad pública va por la Seguridad Social; el seguro médico es privado.",
     "de": "Eine Krankenkasse wie in Deutschland gibt es nicht: gesetzlich versichert ist man über la Seguridad Social; un seguro médico ist meist eine private Zusatzversicherung."
    }
   },
-  "hospital": { "text": "hospital", "grammar": { "gender": "el" } },
+  "hospital": { "text": "hospital", "grammar": { "article": "el" } },
   "emergency": {
    "text": "emergencia",
    "teaches": ["urgencia"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "En el hospital se llama urgencias: ir a urgencias." }
   },
   "doctors-note": {
    "text": "baja",
    "accepts": ["baja médica", "parte de baja"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "Corto de la baja médica; el papel es el parte de baja." }
   },
   "to-examine": { "text": "examinar", "accepts": ["explorar", "reconocer"] },
@@ -60,15 +60,15 @@
    "accepts": ["pedir la baja", "darse de baja", "ponerse de baja"],
    "notes": { "es": "La da el médico: coger la baja, estar de baja · en América, coger es vulgar." }
   },
-  "medicine": { "text": "medicamento", "accepts": ["medicina"], "grammar": { "gender": "el" } },
-  "nurse": { "text": "enfermero", "forms": { "f": "la enfermera" }, "grammar": { "gender": "el" } },
-  "dentist": { "text": "dentista", "accepts": ["odontólogo"], "grammar": { "gender": "el" } },
+  "medicine": { "text": "medicamento", "accepts": ["medicina"], "grammar": { "article": "el" } },
+  "nurse": { "text": "enfermero", "forms": { "f": "la enfermera" }, "grammar": { "article": "el" } },
+  "dentist": { "text": "dentista", "accepts": ["odontólogo"], "grammar": { "article": "el" } },
   "vaccination": {
    "text": "vacuna",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "La vacuna se pone; el acto es la vacunación." }
   },
-  "ambulance": { "text": "ambulancia", "grammar": { "gender": "la" } },
+  "ambulance": { "text": "ambulancia", "grammar": { "article": "la" } },
   "to-look-after": { "text": "cuidar" },
   "take-the-pills-twice-daily": {
    "text": "Tome las pastillas dos veces al día.",

@@ -2,32 +2,32 @@
  "title": "El escritorio",
  "subtitle": "Hora de concentrarse.",
  "words": {
-  "desk": { "text": "escritorio", "grammar": { "gender": "el" } },
+  "desk": { "text": "escritorio", "grammar": { "article": "el" } },
   "laptop": {
    "text": "portátil",
    "accepts": ["ordenador portátil", "computadora portátil", "laptop"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "Forma corta de ordenador portátil: llevo el portátil." }
   },
-  "keyboard": { "text": "teclado", "grammar": { "gender": "el" } },
-  "screen": { "text": "pantalla", "grammar": { "gender": "la" } },
-  "mouse": { "text": "ratón", "accepts": ["mouse"], "grammar": { "gender": "el" } },
-  "cable": { "text": "cable", "grammar": { "gender": "el" } },
+  "keyboard": { "text": "teclado", "grammar": { "article": "el" } },
+  "screen": { "text": "pantalla", "grammar": { "article": "la" } },
+  "mouse": { "text": "ratón", "accepts": ["mouse"], "grammar": { "article": "el" } },
+  "cable": { "text": "cable", "grammar": { "article": "el" } },
   "pen": {
    "text": "bolígrafo",
    "accepts": ["boli"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": {
     "es": "En el día a día se dice el boli: déjame un boli.",
     "de": "„Stift“ ist hier der Kugelschreiber: el bolígrafo, ugs. el boli."
    }
   },
-  "notebook": { "text": "libreta", "accepts": ["cuaderno"], "grammar": { "gender": "la" } },
-  "printer": { "text": "impresora", "grammar": { "gender": "la" } },
+  "notebook": { "text": "libreta", "accepts": ["cuaderno"], "grammar": { "article": "la" } },
+  "printer": { "text": "impresora", "grammar": { "article": "la" } },
   "socket": {
    "text": "enchufe",
    "accepts": ["toma de corriente", "tomacorriente"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El enchufe es la toma de la pared." }
   },
   "to-work": { "text": "trabajar" },
@@ -46,25 +46,25 @@
   "phone": {
    "text": "móvil",
    "accepts": ["teléfono móvil", "celular", "teléfono celular"],
-   "grammar": { "gender": "el" }
+   "grammar": { "article": "el" }
   },
   "email": {
    "text": "correo electrónico",
    "accepts": ["correo", "email", "mail"],
-   "grammar": { "gender": "el" }
+   "grammar": { "article": "el" }
   },
-  "paper": { "text": "papel", "grammar": { "gender": "el" } },
-  "folder": { "text": "carpeta", "accepts": ["archivador"], "grammar": { "gender": "la" } },
-  "password": { "text": "contraseña", "grammar": { "gender": "la" } },
+  "paper": { "text": "papel", "grammar": { "article": "el" } },
+  "folder": { "text": "carpeta", "accepts": ["archivador"], "grammar": { "article": "la" } },
+  "password": { "text": "contraseña", "grammar": { "article": "la" } },
   "internet": {
    "text": "internet",
    "notes": { "es": "Casi siempre sin artículo: ¿Hay internet? · No tengo internet." }
   },
-  "charger": { "text": "cargador", "accepts": ["cable de carga"], "grammar": { "gender": "el" } },
+  "charger": { "text": "cargador", "accepts": ["cable de carga"], "grammar": { "article": "el" } },
   "calendar": {
    "text": "calendario",
    "teaches": ["agenda"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El calendario cuelga en la pared; las citas van en la agenda." }
   },
   "important": { "text": "importante" },
@@ -82,7 +82,7 @@
     "de": "Mit estar: el móvil está roto. Ein Gerät, das nur nicht mehr geht, ist estropeado."
    }
   },
-  "message": { "text": "mensaje", "grammar": { "gender": "el" } },
+  "message": { "text": "mensaje", "grammar": { "article": "el" } },
   "im-in-a-meeting": { "text": "Estoy en una reunión." },
   "dont-disturb-me": { "text": "¡No me molestes!", "accepts": ["¡No molestar!"] },
   "the-laptop-wont-charge-anymore": {
@@ -90,10 +90,7 @@
    "accepts": ["El portátil ya no se carga.", "El ordenador portátil ya no carga."],
    "orders": ["Ya no carga el portátil."]
   },
-  "the-internet-is-gone": {
-   "text": "No hay internet.",
-   "accepts": ["Se ha cortado internet.", "Se ha ido internet.", "No hay wifi."]
-  },
+  "the-internet-is-gone": { "text": "Aquí no hay internet.", "accepts": ["No hay internet.", "No hay wifi."] },
   "it-works": { "text": "Funciona.", "accepts": ["Ya funciona.", "Sí funciona."] },
   "coffee-break": { "text": "¿Pausa para el café?", "accepts": ["¿Nos tomamos un café?", "¿Un café?"] },
   "i-have-a-lot-to-do": { "text": "Tengo mucho que hacer." },
@@ -101,7 +98,7 @@
    "text": "Mándale el correo.",
    "accepts": ["Envíale el correo.", "Mándale el correo electrónico.", "Mándale el email."]
   },
-  "pencil": { "text": "lápiz", "forms": { "pl": "los lápices" }, "grammar": { "gender": "el" } },
-  "plug": { "text": "clavija", "forms": { "pl": "las clavijas" }, "grammar": { "gender": "la" } }
+  "pencil": { "text": "lápiz", "forms": { "pl": "los lápices" }, "grammar": { "article": "el" } },
+  "plug": { "text": "clavija", "forms": { "pl": "las clavijas" }, "grammar": { "article": "la" } }
  }
 }

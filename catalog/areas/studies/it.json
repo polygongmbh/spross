@@ -5,28 +5,28 @@
   "university": {
    "text": "università",
    "accepts": ["l'università", "un'università", "uni"],
-   "grammar": { "gender": "l'", "plural": "=" }
+   "grammar": { "article": "l'", "gender": "f", "plural": "=" }
   },
-  "student": { "text": "studente", "forms": { "f": "la studentessa" }, "grammar": { "gender": "lo" } },
-  "studies": { "text": "studi", "grammar": { "gender": "gli", "plural": "only" } },
+  "student": { "text": "studente", "forms": { "f": "la studentessa" }, "grammar": { "article": "lo" } },
+  "studies": { "text": "studi", "grammar": { "article": "gli", "plural": "only" } },
   "to-study-at-university": { "text": "studiare all'università" },
-  "lecture": { "text": "lezione frontale", "grammar": { "gender": "la" } },
-  "school-diploma": { "text": "diploma di maturità", "accepts": ["maturità"], "grammar": { "gender": "il" } },
+  "lecture": { "text": "lezione frontale", "grammar": { "article": "la" } },
+  "school-diploma": { "text": "diploma di maturità", "accepts": ["maturità"], "grammar": { "article": "il" } },
   "vocational-training": {
    "text": "formazione professionale",
    "accepts": ["formazione"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "it": "la formazione professionale è a scuola · l'apprendistato è in azienda." }
   },
   "vocational-school": {
    "text": "istituto professionale",
    "accepts": ["l'istituto professionale"],
-   "grammar": { "gender": "l'" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
-  "internship": { "text": "tirocinio", "accepts": ["stage"], "grammar": { "gender": "il" } },
-  "further-training": { "text": "formazione continua", "grammar": { "gender": "la" } },
-  "counseling": { "text": "consulenza", "grammar": { "gender": "la" } },
-  "skills": { "text": "conoscenze", "grammar": { "gender": "le", "plural": "only" } },
+  "internship": { "text": "tirocinio", "accepts": ["stage"], "grammar": { "article": "il" } },
+  "further-training": { "text": "formazione continua", "grammar": { "article": "la" } },
+  "counseling": { "text": "consulenza", "grammar": { "article": "la" } },
+  "skills": { "text": "conoscenze", "grammar": { "article": "le", "plural": "only" } },
   "to-finish-training": {
    "text": "finire la formazione",
    "accepts": ["completare la formazione", "terminare la formazione"]

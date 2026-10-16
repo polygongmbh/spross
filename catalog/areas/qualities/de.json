@@ -17,12 +17,12 @@
   "lightweight": { "text": "leicht", "notes": { "de": "ein leichter Tisch · eine leichte Frage = einfach." } },
   "difficult": { "text": "schwierig" },
   "easy": { "text": "einfach" },
-  "problem": { "text": "Problem", "forms": { "pl": "die Probleme" }, "grammar": { "gender": "das" } },
+  "problem": { "text": "Problem", "forms": { "pl": "die Probleme" }, "grammar": { "article": "das" } },
   "to-solve": { "text": "lösen" },
   "challenge": {
    "text": "Herausforderung",
    "forms": { "pl": "die Herausforderungen" },
-   "grammar": { "gender": "die" }
+   "grammar": { "article": "die" }
   },
   "clean-adj": { "text": "sauber" },
   "sharp": { "text": "scharf" },
@@ -36,7 +36,7 @@
   "dry": { "text": "trocken" },
   "pretty": { "text": "schön" },
   "beautiful": { "text": "wunderschön", "notes": { "de": "schön → wunderschön · schöner geht nicht." } },
-  "health": { "text": "Gesundheit", "grammar": { "gender": "die" } },
+  "health": { "text": "Gesundheit", "grammar": { "article": "die" } },
   "healthy": { "text": "gesund" },
   "firm": { "text": "fest", "teaches": ["stabil"] },
   "liquid": { "text": "flüssig" },

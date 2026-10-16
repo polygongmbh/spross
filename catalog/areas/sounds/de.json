@@ -3,13 +3,13 @@
  "words": {
   "loud": { "text": "laut" },
   "quiet": { "text": "leise" },
-  "noise": { "text": "Lärm", "grammar": { "gender": "der" } },
-  "music": { "text": "Musik", "grammar": { "gender": "die" } },
-  "radio": { "text": "Radio", "forms": { "pl": "die Radios" }, "grammar": { "gender": "das" } },
-  "speaker": { "text": "Lautsprecher", "grammar": { "gender": "der", "plural": "=" } },
-  "headphones": { "text": "Kopfhörer", "grammar": { "gender": "der", "plural": "=" } },
-  "microphone": { "text": "Mikrofon", "forms": { "pl": "die Mikrofone" }, "grammar": { "gender": "das" } },
-  "volume": { "text": "Lautstärke", "grammar": { "gender": "die" } },
+  "noise": { "text": "Lärm", "grammar": { "article": "der" } },
+  "music": { "text": "Musik", "grammar": { "article": "die" } },
+  "radio": { "text": "Radio", "forms": { "pl": "die Radios" }, "grammar": { "article": "das" } },
+  "speaker": { "text": "Lautsprecher", "grammar": { "article": "der", "plural": "=" } },
+  "headphones": { "text": "Kopfhörer", "grammar": { "article": "der", "plural": "=" } },
+  "microphone": { "text": "Mikrofon", "forms": { "pl": "die Mikrofone" }, "grammar": { "article": "das" } },
+  "volume": { "text": "Lautstärke", "grammar": { "article": "die" } },
   "to-listen-to": {
    "text": "zuhören",
    "notes": { "de": "Hör zu! = aufmerksam · Musik hören (nicht: Musik zuhören)." }

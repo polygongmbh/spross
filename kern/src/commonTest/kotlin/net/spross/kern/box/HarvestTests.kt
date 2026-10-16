@@ -12,13 +12,13 @@ class HarvestTests {
     private fun state() = Box.state((1..3).map { Box.word(it, area = "alpha") })
 
     /** A card written in the words a real conversation would hand back. */
-    private fun card(target: String, source: String, gender: String? = null): Card =
+    private fun card(target: String, source: String, article: String? = null): Card =
         Box.word(1, area = "alpha").copy(
             source = Realization(lang = "de", text = source),
             target = Realization(
                 lang = "sw",
                 text = target,
-                grammar = gender?.let { mapOf("gender" to it) } ?: emptyMap(),
+                grammar = article?.let { mapOf("article" to it) } ?: emptyMap(),
             ),
         )
 
@@ -92,7 +92,7 @@ class HarvestTests {
     /** Written back with the article it was taught with, it is still the same word. */
     @Test
     fun holdsAWordHandedBackWithItsArticle() {
-        val box = Box.state(listOf(card(target = "Amt", source = "Behörde", gender = "das")))
+        val box = Box.state(listOf(card(target = "Amt", source = "Behörde", article = "das")))
 
         assertEquals(HarvestKind.Held, one("```spross\ndas Amt = office\n```", box).kind)
     }

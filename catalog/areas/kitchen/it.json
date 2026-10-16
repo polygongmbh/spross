@@ -2,28 +2,28 @@
  "title": "La cucina",
  "subtitle": "Qui c'è profumo di cena.",
  "words": {
-  "fridge": { "text": "frigorifero", "accepts": ["frigo"], "grammar": { "gender": "il" } },
+  "fridge": { "text": "frigorifero", "accepts": ["frigo"], "grammar": { "article": "il" } },
   "stove": {
    "text": "fornello",
    "accepts": ["cucina", "piano cottura"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": {
     "it": "si cuoce sul fornello · il forno è quello per il pane e i dolci.",
     "de": "il fornello ist die Kochstelle, il forno der Backofen; „auf dem Herd“ heißt sul fornello oder sul fuoco. Das Gerät selbst heißt auch la cucina — wie der Raum."
    }
   },
-  "oven": { "text": "forno", "grammar": { "gender": "il" } },
+  "oven": { "text": "forno", "grammar": { "article": "il" } },
   "dishwasher": {
    "text": "lavastoviglie",
    "accepts": ["lavapiatti"],
-   "grammar": { "gender": "la", "plural": "=" }
+   "grammar": { "article": "la", "plural": "=" }
   },
-  "pot": { "text": "pentola", "accepts": ["casseruola"], "grammar": { "gender": "la" } },
-  "pan": { "text": "padella", "grammar": { "gender": "la" } },
-  "knife": { "text": "coltello", "grammar": { "gender": "il" } },
-  "spoon": { "text": "cucchiaio", "forms": { "pl": "i cucchiai" }, "grammar": { "gender": "il" } },
-  "fork": { "text": "forchetta", "grammar": { "gender": "la" } },
-  "plate": { "text": "piatto", "grammar": { "gender": "il" } },
+  "pot": { "text": "pentola", "accepts": ["casseruola"], "grammar": { "article": "la" } },
+  "pan": { "text": "padella", "grammar": { "article": "la" } },
+  "knife": { "text": "coltello", "grammar": { "article": "il" } },
+  "spoon": { "text": "cucchiaio", "forms": { "pl": "i cucchiai" }, "grammar": { "article": "il" } },
+  "fork": { "text": "forchetta", "grammar": { "article": "la" } },
+  "plate": { "text": "piatto", "grammar": { "article": "il" } },
   "to-cook": { "text": "cucinare", "notes": { "it": "si cucina il pranzo · l'acqua si fa bollire." } },
   "to-bake": {
    "text": "cuocere al forno",
@@ -45,17 +45,17 @@
    "accepts": ["portare fuori l'immondizia", "buttare la spazzatura"]
   },
   "caution": { "text": "attenzione" },
-  "cup": { "text": "tazza", "grammar": { "gender": "la" } },
-  "bowl": { "text": "ciotola", "accepts": ["scodella"], "grammar": { "gender": "la" } },
-  "basket": { "text": "cesto", "accepts": ["cesta"], "grammar": { "gender": "il" } },
+  "cup": { "text": "tazza", "grammar": { "article": "la" } },
+  "bowl": { "text": "ciotola", "accepts": ["scodella"], "grammar": { "article": "la" } },
+  "basket": { "text": "cesto", "accepts": ["cesta"], "grammar": { "article": "il" } },
   "tin-can": {
    "text": "barattolo",
    "teaches": ["lattina"],
    "accepts": ["scatoletta"],
-   "grammar": { "gender": "il" },
+   "grammar": { "article": "il" },
    "notes": { "it": "il barattolo è di vetro o di latta · la lattina è della bibita." }
   },
-  "gas": { "text": "gas", "grammar": { "gender": "il", "plural": "=" } },
+  "gas": { "text": "gas", "grammar": { "article": "il", "plural": "=" } },
   "tasty": { "text": "gustoso", "teaches": ["saporito"], "forms": { "f": "gustosa" } },
   "the-knife-is-sharp": { "text": "Il coltello è affilato!", "accepts": ["Il coltello taglia bene!"] },
   "this-is-very-tasty": {

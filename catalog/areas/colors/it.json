@@ -2,7 +2,7 @@
  "title": "I colori",
  "subtitle": "Rosso, blu e tutto il resto.",
  "words": {
-  "color": { "text": "colore", "grammar": { "gender": "il" } },
+  "color": { "text": "colore", "grammar": { "article": "il" } },
   "white": { "text": "bianco", "forms": { "f": "bianca" } },
   "black": { "text": "nero", "forms": { "f": "nera" } },
   "red": { "text": "rosso", "forms": { "f": "rossa" } },

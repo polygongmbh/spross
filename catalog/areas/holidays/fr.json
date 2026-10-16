@@ -2,33 +2,33 @@
  "title": "Vacances",
  "subtitle": "C'est les vacances !",
  "words": {
-  "beach": { "text": "plage", "grammar": { "gender": "la" } },
+  "beach": { "text": "plage", "grammar": { "article": "la" } },
   "to-sunbathe": { "text": "prendre le soleil", "accepts": ["bronzer", "se faire bronzer"] },
-  "hotel": { "text": "hôtel", "accepts": ["l'hôtel"], "grammar": { "gender": "l'" } },
+  "hotel": { "text": "hôtel", "accepts": ["l'hôtel"], "grammar": { "article": "l'", "gender": "m" } },
   "luggage": {
    "text": "bagages",
-   "grammar": { "gender": "les", "plural": "only" },
+   "grammar": { "article": "les", "gender": "m", "plural": "only" },
    "notes": { "fr": "au pluriel : les bagages · un bagage, c'est une valise." }
   },
   "to-travel": { "text": "voyager" },
-  "journey": { "text": "voyage", "grammar": { "gender": "le" } },
+  "journey": { "text": "voyage", "grammar": { "article": "le" } },
   "vacation": {
    "text": "vacances",
    "teaches": ["congés"],
-   "grammar": { "gender": "les", "plural": "only" },
+   "grammar": { "article": "les", "gender": "f", "plural": "only" },
    "notes": { "fr": "les vacances d'été · au travail, je prends des congés." }
   },
   "overnight-stay": {
    "text": "nuit",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "une nuit en hôtel, pas un hébergement — c'est ce qu'on réserve." }
   },
   "to-book-a-room": { "text": "réserver une chambre" },
-  "tourist": { "text": "touriste", "grammar": { "gender": "le" } },
-  "souvenir": { "text": "souvenir", "grammar": { "gender": "le" } },
-  "sunscreen": { "text": "crème solaire", "grammar": { "gender": "la" } },
+  "tourist": { "text": "touriste", "grammar": { "article": "le" } },
+  "souvenir": { "text": "souvenir", "grammar": { "article": "le" } },
+  "sunscreen": { "text": "crème solaire", "grammar": { "article": "la" } },
   "to-pack": { "text": "faire les valises", "accepts": ["faire sa valise"] },
-  "campsite": { "text": "camping", "grammar": { "gender": "le" } },
+  "campsite": { "text": "camping", "grammar": { "article": "le" } },
   "lets-go-to-the-beach": { "text": "Allons à la plage !", "accepts": ["On va à la plage !"] },
   "im-looking-for-a-hotel": { "text": "Je cherche un hôtel." },
   "have-a-good-journey": { "text": "Bon voyage !" },

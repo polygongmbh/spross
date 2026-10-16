@@ -5,33 +5,33 @@
   "office": {
    "text": "oficina pública",
    "teaches": ["administración"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "Cada oficina tiene su nombre: el ayuntamiento · la oficina de extranjería." }
   },
-  "application": { "text": "solicitud", "accepts": ["instancia", "petición"], "grammar": { "gender": "la" } },
+  "application": { "text": "solicitud", "accepts": ["instancia", "petición"], "grammar": { "article": "la" } },
   "id-card": {
    "text": "carné de identidad",
    "teaches": ["DNI"],
    "accepts": ["carnet de identidad", "carné"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "En España es el DNI; para extranjeros, el NIE o la TIE." }
   },
   "residence-permit": {
    "text": "permiso de residencia",
    "teaches": ["tarjeta de residencia"],
-   "grammar": { "gender": "el" }
+   "grammar": { "article": "el" }
   },
-  "ticket-number": { "text": "número de turno", "accepts": ["turno", "número"], "grammar": { "gender": "el" } },
+  "ticket-number": { "text": "número de turno", "accepts": ["turno", "número"], "grammar": { "article": "el" } },
   "case-worker": {
    "text": "funcionario",
    "teaches": ["tramitador"],
    "forms": { "f": ["la funcionaria", "la tramitadora"] },
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El funcionario atiende en ventanilla; el tramitador lleva el expediente." }
   },
   "registration": {
    "text": "empadronamiento",
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": {
     "es": "El empadronamiento se hace en el ayuntamiento.",
     "de": "Die Wohnsitzanmeldung heißt in Spanien empadronamiento; man meldet sich im ayuntamiento (Rathaus) an."
@@ -41,7 +41,7 @@
    "text": "documentación",
    "teaches": ["documentos"],
    "accepts": ["papeles"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "es": "Singular para todos los papeles: trae toda la documentación.",
     "de": "la documentación ist Singular und steht für alle Papiere zusammen — anders als „die Unterlagen“."
@@ -58,36 +58,36 @@
   "to-extend": { "text": "renovar", "accepts": ["prolongar", "alargar"] },
   "to-bring": { "text": "traer" },
   "to-copy": { "text": "copiar", "accepts": ["fotocopiar"] },
-  "passport": { "text": "pasaporte", "grammar": { "gender": "el" } },
-  "certificate": { "text": "certificado", "grammar": { "gender": "el" } },
+  "passport": { "text": "pasaporte", "grammar": { "article": "el" } },
+  "certificate": { "text": "certificado", "grammar": { "article": "el" } },
   "birth-certificate": {
    "text": "certificado de nacimiento",
    "teaches": ["partida de nacimiento"],
-   "grammar": { "gender": "el" }
+   "grammar": { "article": "el" }
   },
   "notification": {
    "text": "resolución",
    "teaches": ["notificación"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "La resolución es la decisión; la notificación, su entrega." }
   },
-  "fee": { "text": "tasa", "accepts": ["tarifa"], "grammar": { "gender": "la" } },
+  "fee": { "text": "tasa", "accepts": ["tarifa"], "grammar": { "article": "la" } },
   "office-hours": {
    "text": "horario de atención",
    "teaches": ["horario de atención al público"],
-   "grammar": { "gender": "el" }
+   "grammar": { "article": "el" }
   },
-  "waiting-room": { "text": "sala de espera", "grammar": { "gender": "la" } },
+  "waiting-room": { "text": "sala de espera", "grammar": { "article": "la" } },
   "to-reject": { "text": "rechazar", "teaches": ["denegar"] },
   "to-approve": { "text": "aprobar", "accepts": ["autorizar", "conceder"] },
-  "law": { "text": "ley", "grammar": { "gender": "la" } },
-  "visa": { "text": "visado", "accepts": ["visa"], "grammar": { "gender": "el" } },
-  "fine": { "text": "multa", "grammar": { "gender": "la" } },
-  "receipt": { "text": "recibo", "grammar": { "gender": "el" } },
+  "law": { "text": "ley", "grammar": { "article": "la" } },
+  "visa": { "text": "visado", "accepts": ["visa"], "grammar": { "article": "el" } },
+  "fine": { "text": "multa", "grammar": { "article": "la" } },
+  "receipt": { "text": "recibo", "grammar": { "article": "el" } },
   "authority": {
    "text": "autoridad",
    "accepts": ["organismo público", "administración"],
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "responsible": { "text": "responsable", "accepts": ["competente"] },
   "to-submit-application": { "text": "presentar una solicitud" },

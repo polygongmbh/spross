@@ -58,6 +58,21 @@ Where a language genuinely has no equivalent --
 a greeting formula, `Feierabend`, the Swahili clock --
 a `notes` entry carries the gap.
 
+**The majority sets the baseline, and no language is the fixed point.**
+When the languages disagree, lay all eight side by side and ask which way most of them go:
+`to-put` is one generic verb in en/fr/es/it/eo/sw, and de `legen`/`stellen` and uk
+`класти`/`ставити` are the exceptions -- so the concept stays bare and those two teach both,
+rather than every language growing a phrase to suit German.
+The same goes for a phrase: pick the wording that is idiomatic AND mirrors in the most
+languages, and move the rest toward it (`Hier gibt es kein Internet.` / `There's no internet here.`,
+not `Wir haben kein Internet.` against `There's no internet.`).
+A verb card stays a verb with at most a qualifying object, never a sentence --
+and a card whose text is a phrase never accepts its bare verb.
+
+**A phrase fits one line** -- about 38 characters of German, 42 of the others --
+because it is also printed on the posters (`../../../sprachposter/`).
+Unlike a poster-only phrase it smuggles in no extra adjective for vocabulary's sake.
+
 **Idioms are the exception.**
 An idiom (`kind: "idiom"`, `idioms/`) is figurative by definition,
 so faking word-correspondence would teach the wrong idiom.

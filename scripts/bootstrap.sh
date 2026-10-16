@@ -19,6 +19,15 @@ elif [ "$HOOKS" != "scripts/hooks" ]; then
   echo "note: core.hooksPath is '$HOOKS' — scripts/hooks/pre-commit is not running." >&2
 fi
 
+# why: the audio scripts' measures need numpy and onnxruntime, and onnxruntime ships wheels a
+# Python minor behind Homebrew's python3 — so they get their own venv on the newest Python
+# that has them (scripts/audio_env.py re-runs every audio script there).
+AUDIO_PYTHON=${AUDIO_PYTHON:-python3.14}
+if [ ! -x .venv/bin/python ] && command -v "$AUDIO_PYTHON" >/dev/null 2>&1; then
+  "$AUDIO_PYTHON" -m venv .venv && .venv/bin/pip install -q -r scripts/requirements-audio.txt \
+    && echo "Created .venv for the audio scripts ($AUDIO_PYTHON)."
+fi
+
 if ! ./gradlew --version >/dev/null 2>&1; then
   echo "error: bootstrap: './gradlew --version' failed — is a JDK (21) installed?" >&2
   exit 1

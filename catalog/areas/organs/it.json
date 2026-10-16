@@ -2,19 +2,19 @@
  "title": "Gli organi",
  "subtitle": "Ciò che sta dentro e si dice dal medico.",
  "words": {
-  "lung": { "text": "polmone", "forms": { "pl": "i polmoni" }, "grammar": { "gender": "il" } },
-  "liver": { "text": "fegato", "grammar": { "gender": "il" } },
-  "kidney": { "text": "rene", "forms": { "pl": "i reni" }, "grammar": { "gender": "il" } },
+  "lung": { "text": "polmone", "forms": { "pl": "i polmoni" }, "grammar": { "article": "il" } },
+  "liver": { "text": "fegato", "grammar": { "article": "il" } },
+  "kidney": { "text": "rene", "forms": { "pl": "i reni" }, "grammar": { "article": "il" } },
   "intestine": {
    "text": "intestino",
    "accepts": ["l'intestino"],
    "forms": { "pl": "gli intestini" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
-  "bladder": { "text": "vescica", "forms": { "pl": "le vesciche" }, "grammar": { "gender": "la" } },
-  "nerve": { "text": "nervo", "forms": { "pl": "i nervi" }, "grammar": { "gender": "il" } },
-  "vein": { "text": "vena", "forms": { "pl": "le vene" }, "grammar": { "gender": "la" } },
-  "thyroid": { "text": "tiroide", "forms": { "pl": "le tiroidi" }, "grammar": { "gender": "la" } },
+  "bladder": { "text": "vescica", "forms": { "pl": "le vesciche" }, "grammar": { "article": "la" } },
+  "nerve": { "text": "nervo", "forms": { "pl": "i nervi" }, "grammar": { "article": "il" } },
+  "vein": { "text": "vena", "forms": { "pl": "le vene" }, "grammar": { "article": "la" } },
+  "thyroid": { "text": "tiroide", "forms": { "pl": "le tiroidi" }, "grammar": { "article": "la" } },
   "to-breathe": {
    "text": "respirare",
    "notes": {
@@ -22,41 +22,41 @@
     "de": "Nicht können heißt hier non riuscire a respirare, nicht non potere."
    }
   },
-  "stomach-organ": { "text": "stomaco", "forms": { "pl": "gli stomachi" }, "grammar": { "gender": "lo" } },
+  "stomach-organ": { "text": "stomaco", "forms": { "pl": "gli stomachi" }, "grammar": { "article": "lo" } },
   "artery": {
    "text": "arteria",
    "forms": { "pl": "le arterie" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "accepts": ["l'arteria"]
   },
   "joint": {
    "text": "articolazione",
    "forms": { "pl": "le articolazioni" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "accepts": ["l'articolazione"]
   },
-  "gland": { "text": "ghiandola", "forms": { "pl": "le ghiandole" }, "grammar": { "gender": "la" } },
-  "spleen": { "text": "milza", "forms": { "pl": "le milze" }, "grammar": { "gender": "la" } },
-  "bile": { "text": "bile", "grammar": { "gender": "la" } },
+  "gland": { "text": "ghiandola", "forms": { "pl": "le ghiandole" }, "grammar": { "article": "la" } },
+  "spleen": { "text": "milza", "forms": { "pl": "le milze" }, "grammar": { "article": "la" } },
+  "bile": { "text": "bile", "grammar": { "article": "la" } },
   "appendix": {
    "text": "appendice",
    "forms": { "pl": "le appendici" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "accepts": ["l'appendice"]
   },
   "womb": {
    "text": "utero",
    "forms": { "pl": "gli uteri" },
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "m" },
    "accepts": ["l'utero"]
   },
-  "pancreas": { "text": "pancreas", "grammar": { "gender": "il", "plural": "=" } },
+  "pancreas": { "text": "pancreas", "grammar": { "article": "il", "plural": "=" } },
   "ovary": {
    "text": "ovaia",
    "accepts": ["l'ovaia", "ovario"],
    "forms": { "pl": "le ovaie" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "article": "l'", "gender": "f" }
   },
-  "tendon": { "text": "tendine", "grammar": { "gender": "il" } }
+  "tendon": { "text": "tendine", "grammar": { "article": "il" } }
  }
 }

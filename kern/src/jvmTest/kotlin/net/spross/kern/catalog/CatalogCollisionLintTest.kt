@@ -264,6 +264,11 @@ class CatalogCollisionLintTest {
                 // teach the wrong word; money/cheap carries the de note naming the second
                 // sense, the ndege treatment.
                 "sw rahisi: money/cheap, qualities/easy",
+                // Reviewed 2026-10-16: sw `saa` is the hour AND the clock (and the watch) —
+                // de/en/eo/es/fr/it/uk all split the pair (Stunde/Uhr, hour/clock,
+                // heure/horloge). There is no other everyday word for either; the clock is the
+                // object the hour is read from, a merge rather than a homonym.
+                "sw saa: living/clock, time/hour",
                 // Reviewed 2026-09-02: sw `mpaka` is the border AND the preposition "until" —
                 // de/en/eo/es/fr/it/uk all split the pair (Grenze/bis, border/until,
                 // limo/ĝis, frontera/hasta, frontière/jusqu'à, confine/fino a,
@@ -307,6 +312,10 @@ class CatalogCollisionLintTest {
                 // split it (als/Messer, than/knife, ol/tranĉilo, que/cuchillo, que/couteau,
                 // di/coltello, kuliko/kisu). The area label tells them apart on produce.
                 "uk ніж: comparison/than, kitchen/knife",
+                // Reviewed 2026-10-16: uk `сідати` is sitting down AND getting on (сідати в
+                // автобус) — one verb, the seat you take; de/en/es/fr/it split it (sich setzen /
+                // einsteigen, s'asseoir / monter). `to-sit` became the action to match es/fr/it.
+                "uk сідати: living/to-sit, transport/to-get-on",
                 // Reviewed 2026-09-25: uk `ім'я` is the name AND the first name on a form —
                 // de/en/eo/es/fr/it/sw all split the pair (Name/Vorname, name/first name,
                 // nomo/antaŭnomo, nombre/nombre de pila, nom/prénom, nome/nome di battesimo,

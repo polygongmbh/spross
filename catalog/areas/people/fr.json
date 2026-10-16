@@ -4,67 +4,67 @@
  "words": {
   "person": {
    "text": "personne",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "une personne gentille · je ne vois personne = aucune personne." }
   },
   "human": {
    "text": "être humain",
    "accepts": ["l'être humain"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": { "fr": "l'être humain face aux animaux · une personne, c'est quelqu'un." }
   },
-  "family": { "text": "famille", "grammar": { "gender": "la" } },
-  "mother": { "text": "mère", "grammar": { "gender": "la" } },
-  "father": { "text": "père", "grammar": { "gender": "le" } },
+  "family": { "text": "famille", "grammar": { "article": "la" } },
+  "mother": { "text": "mère", "grammar": { "article": "la" } },
+  "father": { "text": "père", "grammar": { "article": "le" } },
   "parents": {
    "text": "parents",
-   "grammar": { "gender": "les" },
+   "grammar": { "article": "les", "gender": "m" },
    "notes": { "fr": "mes parents, c'est mon père et ma mère · un parent est de la famille." }
   },
-  "child": { "text": "enfant", "accepts": ["l'enfant"], "grammar": { "gender": "l'" } },
-  "son": { "text": "fils", "grammar": { "gender": "le", "plural": "=" } },
+  "child": { "text": "enfant", "accepts": ["l'enfant"], "grammar": { "article": "l'", "gender": "m/f" } },
+  "son": { "text": "fils", "grammar": { "article": "le", "plural": "=" } },
   "daughter": {
    "text": "fille",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "ma fille, c'est mon enfant · une petite fille joue dans la cour." }
   },
-  "brother": { "text": "frère", "grammar": { "gender": "le" } },
-  "sister": { "text": "sœur", "grammar": { "gender": "la" } },
-  "man": { "text": "homme", "accepts": ["l'homme"], "grammar": { "gender": "l'" } },
+  "brother": { "text": "frère", "grammar": { "article": "le" } },
+  "sister": { "text": "sœur", "grammar": { "article": "la" } },
+  "man": { "text": "homme", "accepts": ["l'homme"], "grammar": { "article": "l'", "gender": "m" } },
   "woman": {
    "text": "femme",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "fr": "ma femme, c'est mon épouse · une femme passe dans la rue." }
   },
-  "boy": { "text": "garçon", "grammar": { "gender": "le" } },
-  "baby": { "text": "bébé", "grammar": { "gender": "le" } },
+  "boy": { "text": "garçon", "grammar": { "article": "le" } },
+  "baby": { "text": "bébé", "grammar": { "article": "le" } },
   "friend": {
    "text": "ami",
    "accepts": ["l'ami", "copain", "copine"],
    "forms": { "f": "l'amie" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
   "grandmother": {
    "text": "grand-mère",
    "accepts": ["mamie"],
    "forms": { "pl": "les grands-mères" },
-   "grammar": { "gender": "la" }
+   "grammar": { "article": "la" }
   },
   "grandfather": {
    "text": "grand-père",
    "accepts": ["papi"],
    "forms": { "pl": "les grands-pères" },
-   "grammar": { "gender": "le" }
+   "grammar": { "article": "le" }
   },
-  "husband": { "text": "mari", "teaches": ["époux"], "grammar": { "gender": "le" } },
+  "husband": { "text": "mari", "teaches": ["époux"], "grammar": { "article": "le" } },
   "wife": {
    "text": "épouse",
    "accepts": ["l'épouse", "femme"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": { "fr": "au quotidien on dit ma femme · épouse est plus officiel." }
   },
-  "uncle": { "text": "oncle", "accepts": ["l'oncle"], "grammar": { "gender": "l'" } },
-  "aunt": { "text": "tante", "grammar": { "gender": "la" } },
+  "uncle": { "text": "oncle", "accepts": ["l'oncle"], "grammar": { "article": "l'", "gender": "m" } },
+  "aunt": { "text": "tante", "grammar": { "article": "la" } },
   "to-visit": { "text": "rendre visite" },
   "to-marry": { "text": "se marier" },
   "this-is-my-mother": { "text": "C'est ma mère." },

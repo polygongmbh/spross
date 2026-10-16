@@ -13,10 +13,10 @@ enum class Gender { Masculine, Feminine, Neuter }
 
 /**
  * The article this realization's word is cited with ("der", "la", "l'"), or null where the catalog authored none.
- * The catalog writes it under `grammar["gender"]`: the article itself, never a gender name.
+ * The catalog writes it under `grammar["article"]`.
  */
 val Realization.article: String?
-    get() = grammar["gender"]
+    get() = grammar["article"]
 
 /**
  * Which gender a target-language article marks, or null when the box cannot

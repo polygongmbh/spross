@@ -5,37 +5,37 @@
   "university": {
    "text": "université",
    "accepts": ["l'université", "fac"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "f" },
    "notes": { "fr": "on dit la fac : je vais à la fac." }
   },
   "student": {
    "text": "étudiant",
    "accepts": ["l'étudiant"],
    "forms": { "f": "l'étudiante" },
-   "grammar": { "gender": "l'" }
+   "grammar": { "article": "l'", "gender": "m" }
   },
-  "studies": { "text": "études", "grammar": { "gender": "les", "plural": "only" } },
+  "studies": { "text": "études", "grammar": { "article": "les", "gender": "f", "plural": "only" } },
   "to-study-at-university": { "text": "étudier à l'université", "accepts": ["faire des études"] },
   "lecture": {
    "text": "cours magistral",
    "forms": { "pl": "les cours magistraux" },
-   "grammar": { "gender": "le" }
+   "grammar": { "article": "le" }
   },
-  "school-diploma": { "text": "baccalauréat", "accepts": ["bac"], "grammar": { "gender": "le" } },
+  "school-diploma": { "text": "baccalauréat", "accepts": ["bac"], "grammar": { "article": "le" } },
   "vocational-training": {
    "text": "formation professionnelle",
    "accepts": ["formation"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": {
     "fr": "la formation professionnelle se fait à l'école, l'apprentissage en entreprise.",
     "de": "Die duale Ausbildung heißt in Frankreich l'apprentissage; la formation professionnelle ist die schulisch organisierte Berufsausbildung."
    }
   },
-  "vocational-school": { "text": "lycée professionnel", "grammar": { "gender": "le" } },
-  "internship": { "text": "stage", "grammar": { "gender": "le" } },
-  "further-training": { "text": "formation continue", "grammar": { "gender": "la" } },
-  "counseling": { "text": "conseil", "accepts": ["orientation"], "grammar": { "gender": "le" } },
-  "skills": { "text": "connaissances", "grammar": { "gender": "les", "plural": "only" } },
+  "vocational-school": { "text": "lycée professionnel", "grammar": { "article": "le" } },
+  "internship": { "text": "stage", "grammar": { "article": "le" } },
+  "further-training": { "text": "formation continue", "grammar": { "article": "la" } },
+  "counseling": { "text": "conseil", "accepts": ["orientation"], "grammar": { "article": "le" } },
+  "skills": { "text": "connaissances", "grammar": { "article": "les", "gender": "f", "plural": "only" } },
   "to-finish-training": { "text": "terminer la formation", "accepts": ["finir la formation"] },
   "she-completed-her-training-in-2015": {
    "text": "Elle a terminé sa formation en 2015.",

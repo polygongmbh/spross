@@ -5,12 +5,12 @@
   "school": {
    "text": "escuela",
    "teaches": ["colegio"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "La escuela es general: la escuela de idiomas · los niños van al colegio." }
   },
   "classroom": {
    "text": "aula",
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el", "gender": "f" },
    "notes": {
     "es": "Femenino con el en singular: el aula, plural las aulas.",
     "de": "aula ist feminin, nimmt im Singular aber el (betontes a-): el aula, Plural las aulas."
@@ -21,25 +21,25 @@
    "teaches": ["maestro"],
    "accepts": ["profe"],
    "forms": { "f": ["la profesora", "la maestra"] },
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": {
     "es": "El profesor da clase en el instituto y en los cursos.",
     "de": "el maestro unterrichtet in der Grundschule, el profesor an weiterführenden Schulen und im Sprachkurs."
    }
   },
-  "board": { "text": "pizarra", "accepts": ["pizarrón"], "grammar": { "gender": "la" } },
-  "exercise-book": { "text": "cuaderno", "grammar": { "gender": "el" } },
+  "board": { "text": "pizarra", "accepts": ["pizarrón"], "grammar": { "article": "la" } },
+  "exercise-book": { "text": "cuaderno", "grammar": { "article": "el" } },
   "homework": {
    "text": "deberes",
    "accepts": ["tarea", "tareas"],
-   "grammar": { "gender": "los", "plural": "only" },
+   "grammar": { "article": "los", "plural": "only" },
    "notes": { "es": "Solo en plural: hacer los deberes." }
   },
-  "exam": { "text": "examen", "accepts": ["prueba"], "grammar": { "gender": "el" } },
+  "exam": { "text": "examen", "accepts": ["prueba"], "grammar": { "article": "el" } },
   "break": {
    "text": "recreo",
    "accepts": ["descanso", "pausa"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El recreo es el del colegio; en el trabajo, el descanso." }
   },
   "to-pass-exam": {
@@ -48,30 +48,30 @@
    "notes": { "es": "aprobar el examen · lo contrario es suspender." }
   },
   "to-raise-hand": { "text": "levantar la mano", "accepts": ["alzar la mano"] },
-  "pupil": { "text": "alumno", "forms": { "f": "la alumna" }, "grammar": { "gender": "el" } },
-  "course": { "text": "curso", "grammar": { "gender": "el" } },
+  "pupil": { "text": "alumno", "forms": { "f": "la alumna" }, "grammar": { "article": "el" } },
+  "course": { "text": "curso", "grammar": { "article": "el" } },
   "lesson": {
    "text": "clase",
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "Casi siempre en singular: hoy tengo clase." }
   },
-  "page": { "text": "página", "grammar": { "gender": "la" } },
-  "grade": { "text": "nota", "grammar": { "gender": "la" } },
+  "page": { "text": "página", "grammar": { "article": "la" } },
+  "grade": { "text": "nota", "grammar": { "article": "la" } },
   "to-correct": { "text": "corregir" },
-  "book": { "text": "libro", "grammar": { "gender": "el" } },
+  "book": { "text": "libro", "grammar": { "article": "el" } },
   "class-schedule": {
    "text": "horario",
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El horario sirve para cualquier plan; el del colegio es el horario de clases." }
   },
   "to-count": { "text": "contar", "notes": { "es": "contar también es narrar: cuéntame qué pasó." } },
   "to-learn-by-heart": { "text": "aprender de memoria", "teaches": ["memorizar"] },
   "to-read-aloud": { "text": "leer en voz alta" },
-  "dictionary": { "text": "diccionario", "grammar": { "gender": "el" } },
+  "dictionary": { "text": "diccionario", "grammar": { "article": "el" } },
   "to-pronounce": { "text": "pronunciar" },
   "to-teach": { "text": "enseñar" },
-  "report-card": { "text": "boletín de notas", "accepts": ["notas"], "grammar": { "gender": "el" } },
-  "do-the-homework": { "text": "Hago los deberes." },
+  "report-card": { "text": "boletín de notas", "accepts": ["notas"], "grammar": { "article": "el" } },
+  "do-the-homework": { "text": "Hago mis deberes.", "accepts": ["Hago los deberes."] },
   "look-at-the-class-schedule": { "text": "Mira el horario.", "accepts": ["Mire el horario."] },
   "the-break-is-over": { "text": "El descanso ha terminado.", "orders": ["Ha terminado el descanso."] },
   "ask-the-teacher": {
@@ -82,7 +82,7 @@
   "i-have-a-good-grade": { "text": "Tengo una buena nota." },
   "we-go-to-the-classroom": { "text": "Vamos al aula.", "orders": ["Al aula vamos."] },
   "the-exam-is-already-corrected": { "text": "El examen ya está corregido.", "orders": ["Ya está corregido el examen."] },
-  "mistake": { "text": "error", "grammar": { "gender": "el" } },
+  "mistake": { "text": "error", "grammar": { "article": "el" } },
   "to-be-wrong": { "text": "equivocarse" }
  }
 }

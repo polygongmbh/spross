@@ -133,10 +133,10 @@ internal object Fixture {
         "areas/alpha/de.json" to """
             { "title": "Alpha",
               "words": {
-                "waiter": { "text": "Kellner", "grammar": { "gender": "der", "plural": "=" } },
-                "waiter-f": { "text": "Kellnerin", "forms": { "pl": "Kellnerinnen" }, "grammar": { "gender": "die" } },
+                "waiter": { "text": "Kellner", "grammar": { "article": "der", "plural": "=" } },
+                "waiter-f": { "text": "Kellnerin", "forms": { "pl": "Kellnerinnen" }, "grammar": { "article": "die" } },
                 "cook": { "text": "kochen" },
-                "mouse": { "text": "Maus", "forms": { "pl": "die Mäuse" }, "grammar": { "gender": "die" } },
+                "mouse": { "text": "Maus", "forms": { "pl": "die Mäuse" }, "grammar": { "article": "die" } },
                 "hello": { "text": "Hallo!" },
                 "the-mouse-runs": { "text": "Sehen Sie die Maus?", "accepts": ["Siehst du die Maus?"] },
                 "the-mouse-sprints": { "text": "Die Maus sprintet los." } } }
@@ -181,8 +181,8 @@ internal object Fixture {
         "areas/beta/de.json" to """
             { "title": "Beta",
               "words": {
-                "royal": { "text": "Fürst", "forms": { "pl": "Fürsten" }, "grammar": { "gender": "der" } },
-                "royal-f": { "text": "Fürstin", "forms": { "pl": "Fürstinnen" }, "grammar": { "gender": "die" } },
+                "royal": { "text": "Fürst", "forms": { "pl": "Fürsten" }, "grammar": { "article": "der" } },
+                "royal-f": { "text": "Fürstin", "forms": { "pl": "Fürstinnen" }, "grammar": { "article": "die" } },
                 "greet": { "text": "grüßen" } } }
         """.trimIndent(),
         "areas/beta/uk.json" to """
@@ -200,7 +200,7 @@ internal object Fixture {
             { "title": "Gamma", "subtitle": "Alles dreht sich.",
               "words": {
                 "door": { "text": "T${du}r", "teaches": ["die  T${du}re"], "forms": { "pl": "T${du}ren" },
-                          "grammar": { "gender": "die" } },
+                          "grammar": { "article": "die" } },
                 "im-learning": { "text": "Ich lerne {language}." },
                 "i-speak-a-little": { "text": "Ich spreche ein bisschen {language}." },
                 "how-do-you-say-this": { "text": "Wie sagt man das {language-in}?" } } }

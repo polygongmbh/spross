@@ -5,27 +5,27 @@
   "hallway": {
    "text": "pasillo",
    "teaches": ["recibidor"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El pasillo va entre las habitaciones; la entrada es el recibidor." }
   },
-  "door": { "text": "puerta", "grammar": { "gender": "la" } },
-  "key": { "text": "llave", "grammar": { "gender": "la" } },
-  "jacket": { "text": "chaqueta", "grammar": { "gender": "la" } },
-  "coat": { "text": "abrigo", "grammar": { "gender": "el" } },
-  "umbrella": { "text": "paraguas", "grammar": { "gender": "el", "plural": "=" } },
+  "door": { "text": "puerta", "grammar": { "article": "la" } },
+  "key": { "text": "llave", "grammar": { "article": "la" } },
+  "jacket": { "text": "chaqueta", "grammar": { "article": "la" } },
+  "coat": { "text": "abrigo", "grammar": { "article": "el" } },
+  "umbrella": { "text": "paraguas", "grammar": { "article": "el", "plural": "=" } },
   "hat": {
    "text": "gorro",
    "teaches": ["gorra"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El gorro es de lana, sin visera; con visera es la gorra." }
   },
-  "mailbox": { "text": "buzón", "grammar": { "gender": "el" } },
-  "doorbell": { "text": "timbre", "grammar": { "gender": "el" } },
-  "stairs": { "text": "escalera", "accepts": ["escaleras"], "grammar": { "gender": "la" } },
+  "mailbox": { "text": "buzón", "grammar": { "article": "el" } },
+  "doorbell": { "text": "timbre", "grammar": { "article": "el" } },
+  "stairs": { "text": "escalera", "accepts": ["escaleras"], "grammar": { "article": "la" } },
   "bag": {
    "text": "bolsa",
    "teaches": ["bolso"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "La bolsa es de la compra; el bolso se lleva al hombro." }
   },
   "to-lock": { "text": "cerrar con llave", "accepts": ["echar la llave"] },
@@ -42,31 +42,31 @@
   "to-arrive": { "text": "llegar" },
   "to-greet": { "text": "saludar" },
   "to-say-goodbye": { "text": "despedirse" },
-  "shoe": { "text": "zapato", "grammar": { "gender": "el" } },
+  "shoe": { "text": "zapato", "grammar": { "article": "el" } },
   "apartment": {
    "text": "piso",
    "teaches": ["apartamento"],
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "En España se vive en un piso; el apartamento es pequeño o de vacaciones." }
   },
-  "neighbor": { "text": "vecino", "forms": { "f": "la vecina" }, "grammar": { "gender": "el" } },
+  "neighbor": { "text": "vecino", "forms": { "f": "la vecina" }, "grammar": { "article": "el" } },
   "guest": {
    "text": "invitado",
    "forms": { "f": "la invitada" },
-   "grammar": { "gender": "el" },
+   "grammar": { "article": "el" },
    "notes": { "es": "El invitado viene a casa; en el hotel es el huésped." }
   },
   "wallet": {
    "text": "cartera",
    "teaches": ["monedero"],
-   "grammar": { "gender": "la" },
+   "grammar": { "article": "la" },
    "notes": { "es": "La cartera lleva billetes y tarjetas; las monedas, el monedero." }
   },
-  "glove": { "text": "guante", "grammar": { "gender": "el" } },
-  "letter": { "text": "carta", "grammar": { "gender": "la" } },
+  "glove": { "text": "guante", "grammar": { "article": "el" } },
+  "letter": { "text": "carta", "grammar": { "article": "la" } },
   "to-knock-on-door": { "text": "llamar a la puerta", "accepts": ["tocar a la puerta"] },
   "to-enter": { "text": "entrar", "notes": { "es": "Para invitar a entrar: ¡Pasa! · con usted, ¡Pase!" } },
-  "house": { "text": "casa", "grammar": { "gender": "la" } },
+  "house": { "text": "casa", "grammar": { "article": "la" } },
   "to-live": {
    "text": "vivir",
    "notes": {

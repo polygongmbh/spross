@@ -2,25 +2,29 @@
  "title": "Émotions",
  "subtitle": "Les humeurs qui colorent une journée.",
  "words": {
-  "joy": { "text": "joie", "grammar": { "gender": "la" } },
-  "sadness": { "text": "tristesse", "grammar": { "gender": "la" } },
-  "anger": { "text": "colère", "grammar": { "gender": "la" } },
-  "fear": { "text": "peur", "grammar": { "gender": "la" } },
-  "surprise": { "text": "surprise", "grammar": { "gender": "la" } },
-  "worry": { "text": "inquiétude", "grammar": { "gender": "la" } },
-  "love": { "text": "amour", "accepts": ["l'amour"], "grammar": { "gender": "l'" } },
-  "shame": { "text": "honte", "grammar": { "gender": "la" } },
-  "jealousy": { "text": "jalousie", "grammar": { "gender": "la" } },
+  "joy": { "text": "joie", "grammar": { "article": "la" } },
+  "sadness": { "text": "tristesse", "grammar": { "article": "la" } },
+  "anger": { "text": "colère", "grammar": { "article": "la" } },
+  "fear": { "text": "peur", "grammar": { "article": "la" } },
+  "surprise": { "text": "surprise", "grammar": { "article": "la" } },
+  "worry": {
+   "text": "inquiétude",
+   "accepts": ["l'inquiétude"],
+   "grammar": { "article": "l'", "gender": "f" }
+  },
+  "love": { "text": "amour", "accepts": ["l'amour"], "grammar": { "article": "l'", "gender": "m" } },
+  "shame": { "text": "honte", "grammar": { "article": "la" } },
+  "jealousy": { "text": "jalousie", "grammar": { "article": "la" } },
   "smile": {
    "text": "sourire",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "Le verbe est le même mot : sourire." }
   },
   "to-feel": { "text": "se sentir" },
   "to-cry": { "text": "pleurer" },
-  "longing": { "text": "nostalgie", "grammar": { "gender": "la" } },
+  "longing": { "text": "nostalgie", "grammar": { "article": "la" } },
   "to-long-for": { "text": "désirer ardemment" },
-  "doubt": { "text": "doute", "grammar": { "gender": "le" } },
+  "doubt": { "text": "doute", "grammar": { "article": "le" } },
   "to-confuse": { "text": "embrouiller" },
   "to-be-confused": { "text": "être confus" }
  }

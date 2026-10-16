@@ -12,22 +12,18 @@ file name follow it, while bytes, `sha256`, credit and the measured index stay. 
 readings, and which one a take says is a judgement this script never makes: those are printed
 and left alone. `--check` prints what would move and exits 1 if anything would.
 
-After a run, `$W/sync-from-shipped.py <lang>` carries the new keys into the pack.
+The pack keeps its row under the plain spelling, and a fill passes it over: its bytes already ship.
 """
 import argparse
 import glob
-import importlib.util
 import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import audio_forms  # noqa: E402
 import audio_manifest  # noqa: E402
 from audio_gates import speech_key, stress_free  # noqa: E402
-
-_spec = importlib.util.spec_from_file_location('audio_catalog', os.path.join(HERE, 'audio-catalog.py'))
-_catalog = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(_catalog)
 
 
 def restressed(key, stressed):
@@ -44,8 +40,8 @@ def displayed_forms(lang):
     `accepts` are typed and never shown, so a plain spelling kept there for grading
     holds no recording back from its stressed card."""
     keys = set()
-    for path in glob.glob(os.path.join(_catalog.CATALOG, 'areas', '*', '%s.json' % lang)):
-        for word in _catalog.read_json(path).get('words', {}).values():
+    for path in glob.glob(os.path.join(audio_forms.CATALOG, 'areas', '*', '%s.json' % lang)):
+        for word in audio_manifest.read_json(path).get('words', {}).values():
             forms = [word['text']] + word.get('teaches', [])
             for value in word.get('forms', {}).values():
                 forms += value if isinstance(value, list) else [value]
@@ -91,7 +87,7 @@ def main():
     parser.add_argument('--lang', action='append', help='only this language (repeatable)')
     parser.add_argument('--check', action='store_true', help='report what would move, write nothing')
     args = parser.parse_args()
-    shown, _ = _catalog.load_catalog()
+    shown, _ = audio_forms.load_catalog()
     audio = audio_manifest.AUDIO
     langs = args.lang or sorted(name for name in os.listdir(audio) if os.path.isdir(os.path.join(audio, name)))
     pending = sum(restress(lang, shown, args.check) for lang in langs)

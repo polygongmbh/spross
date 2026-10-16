@@ -4,23 +4,23 @@
  "words": {
   "time": {
    "text": "temps",
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "j'ai le temps · une fois, trois fois, pas trois temps." }
   },
   "day": {
    "text": "jour",
    "accepts": ["journée"],
-   "grammar": { "gender": "le" },
+   "grammar": { "article": "le" },
    "notes": { "fr": "trois jours · la journée dure de l'aube à la nuit." }
   },
-  "week": { "text": "semaine", "grammar": { "gender": "la" } },
-  "hour": { "text": "heure", "accepts": ["l'heure"], "grammar": { "gender": "l'" } },
-  "minute": { "text": "minute", "grammar": { "gender": "la" } },
-  "month": { "text": "mois", "grammar": { "gender": "le", "plural": "=" } },
+  "week": { "text": "semaine", "grammar": { "article": "la" } },
+  "hour": { "text": "heure", "accepts": ["l'heure"], "grammar": { "article": "l'", "gender": "f" } },
+  "minute": { "text": "minute", "grammar": { "article": "la" } },
+  "month": { "text": "mois", "grammar": { "article": "le", "plural": "=" } },
   "year": {
    "text": "an",
    "accepts": ["l'an", "année", "l'année"],
-   "grammar": { "gender": "l'" },
+   "grammar": { "article": "l'", "gender": "m" },
    "notes": {
     "fr": "j'ai trente ans, trois ans · Bonne année ! toute l'année.",
     "de": "l'an zählt Jahre: deux ans, l'an prochain. Als Zeitraum steht l'année: Bonne année !"
@@ -34,12 +34,16 @@
   "early": { "text": "tôt", "accepts": ["de bonne heure"] },
   "late": { "text": "tard" },
   "soon": { "text": "bientôt" },
-  "noon": { "text": "midi", "grammar": { "gender": "le" } },
-  "midnight": { "text": "minuit", "grammar": { "gender": "le" } },
-  "afternoon": { "text": "après-midi", "accepts": ["l'après-midi"], "grammar": { "gender": "l'" } },
-  "morning": { "text": "matin", "grammar": { "gender": "le" } },
-  "evening": { "text": "soir", "grammar": { "gender": "le" } },
-  "night": { "text": "nuit", "grammar": { "gender": "la" } },
+  "noon": { "text": "midi", "grammar": { "article": "le" } },
+  "midnight": { "text": "minuit", "grammar": { "article": "le" } },
+  "afternoon": {
+   "text": "après-midi",
+   "accepts": ["l'après-midi"],
+   "grammar": { "article": "l'", "gender": "m" }
+  },
+  "morning": { "text": "matin", "grammar": { "article": "le" } },
+  "evening": { "text": "soir", "grammar": { "article": "le" } },
+  "night": { "text": "nuit", "grammar": { "article": "la" } },
   "first": { "text": "premier", "forms": { "f": "première" } },
   "second": { "text": "deuxième", "accepts": ["second", "seconde"] },
   "next": { "text": "prochain", "accepts": ["suivant"], "forms": { "f": "prochaine" } },
@@ -50,10 +54,10 @@
   "day-after-tomorrow": { "text": "après-demain" },
   "since": { "text": "depuis" },
   "right-now": { "text": "tout de suite" },
-  "weekend": { "text": "week-end", "grammar": { "gender": "le" } },
-  "century": { "text": "siècle", "grammar": { "gender": "le" } },
-  "decade": { "text": "décennie", "grammar": { "gender": "la" } },
-  "millennium": { "text": "millénaire", "grammar": { "gender": "le" } },
+  "weekend": { "text": "week-end", "grammar": { "article": "le" } },
+  "century": { "text": "siècle", "grammar": { "article": "le" } },
+  "decade": { "text": "décennie", "grammar": { "article": "la" } },
+  "millennium": { "text": "millénaire", "grammar": { "article": "le" } },
   "nowadays": { "text": "de nos jours", "teaches": ["actuellement"] },
   "to-last": { "text": "durer" },
   "i-have-no-time": { "text": "Je n'ai pas le temps." },
