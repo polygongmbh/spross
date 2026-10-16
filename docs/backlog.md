@@ -59,7 +59,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ### Apps & tooling
 
-- Android dead code: `AppModel.pronounceTarget`, `TypedDrillView`'s mirror of `DrillRunProgress` with a dead `bestAnswerStreak`, and the `errorUnknownProfile`/`errorResetFailed` chrome fields.
+- Android dead code: `TypedDrillView`'s mirror of `DrillRunProgress` with a dead `bestAnswerStreak`, and the `errorUnknownProfile`/`errorResetFailed` chrome fields.
 - Android hand cuts: the learner name field and the growable sheet are cut by hand, and the box hint walks every card where iOS short-circuits on `AudioCapability`.
 - The watch speed mark (⚡) is visual only: VoiceOver hears right or wrong but not how quick (`WatchQuizView.verdict`).
 - The iOS drill run (`DrillRunView`) still wraps its scaffold by hand, because its run state arrives through `Face.snapshot` rather than kern's run progress — exposing that would let `runScreen` reach it.

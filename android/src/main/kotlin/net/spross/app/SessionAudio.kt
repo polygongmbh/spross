@@ -40,12 +40,6 @@ fun AppModel.sayOnTap(saying: Saying): (() -> Unit)? {
     return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, saying.article) }
 }
 
-/** Says [form] of the card in play on a tap, which is a request and passes both mutes. */
-fun AppModel.pronounceTarget(form: String) {
-    val pronunciation = pronunciationOf(form) ?: return
-    pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, spokenArticle(form))
-}
-
 /**
  * Tap-to-replay for [form], null where the device can neither play nor speak it —
  * a word that cannot be heard grows no gesture that does nothing. The hit area on
