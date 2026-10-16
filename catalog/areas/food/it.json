@@ -82,7 +82,6 @@
    "text": "È pronto!",
    "accepts": ["Il cibo è pronto!", "È pronto in tavola!", "A tavola!"],
    "notes": { "it": "a tavola si dice È pronto! oppure A tavola!" }
-  },
-  "ugali": { "text": "ugali", "accepts": ["l'ugali"], "grammar": { "article": "l'", "gender": "m" } }
+  }
  }
 }

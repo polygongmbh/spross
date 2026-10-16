@@ -64,6 +64,7 @@ Neighbors: app and code issues `../docs/backlog.md`.
 
 ## Ready
 
+- Culture-bound concepts carry a loan only in their own language: audit the rest like `food/ugali` (now sw + de Maisbrei only) — every other language gets a native word or no realization, never a transliteration that teaches nothing.
 - sw class agreement is only partly tagged: the `-zuri`-style stems still list their agreement forms as untagged `teaches`, and `wa`/`ya` agreements (`wa kutosha`, `wa pili`) stay `accepts` — tag them with their class (`forms`, `catalog/README.md`) for future agreement-built phrases.
 - uk `the-exam-is-already-corrected` is built on `перевірити` (check) while the `to-correct`
   component it unlocks from is `виправляти` (fix errors) — phrase and gate name different verbs.
