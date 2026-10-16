@@ -201,20 +201,26 @@ private fun LearnerNameSetting(model: AppModel) {
     var draft by rememberSaveable { mutableStateOf(model.learnerName.orEmpty()) }
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(chrome.settingsNameTitle, style = MaterialTheme.typography.titleMedium)
-        OutlinedTextField(
-            value = draft,
-            onValueChange = { draft = it; model.renameLearner(it) },
-            singleLine = true,
-            placeholder = { Text(chrome.settingsNamePlaceholder) },
-            keyboardOptions = KeyboardOptions(
-                capitalization = KeyboardCapitalization.Words,
-                autoCorrectEnabled = false,
-                imeAction = ImeAction.Done,
-            ),
-            modifier = Modifier.fillMaxWidth(),
-        )
+        LearnerNameField(chrome, draft) { draft = it; model.renameLearner(it) }
         SettingHint(chrome.settingsNameHint)
     }
+}
+
+/** The learner's name, as onboarding asks it and settings changes it: one field, written once. */
+@Composable
+internal fun LearnerNameField(chrome: Chrome, value: String, onValueChange: (String) -> Unit) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        singleLine = true,
+        placeholder = { Text(chrome.settingsNamePlaceholder) },
+        keyboardOptions = KeyboardOptions(
+            capitalization = KeyboardCapitalization.Words,
+            autoCorrectEnabled = false,
+            imeAction = ImeAction.Done,
+        ),
+        modifier = Modifier.fillMaxWidth(),
+    )
 }
 
 @Composable
