@@ -31,6 +31,12 @@
   "faucet": { "text": "faucet", "teaches": ["tap"] },
   "trash-can": { "text": "trash can", "teaches": ["bin"] },
   "bucket": { "text": "bucket" },
+  "to-wash-up": { "text": "to wash up", "accepts": ["to wash oneself", "to get washed"] },
+  "to-put-on-makeup": { "text": "to put on makeup", "accepts": ["to do your makeup", "to do one's makeup"] },
+  "to-blow-dry-hair": {
+   "text": "to blow-dry your hair",
+   "accepts": ["to blow-dry one's hair", "to blow dry your hair", "to dry your hair"]
+  },
   "im-taking-a-quick-shower": { "text": "I'm going for a quick shower." },
   "the-bathroom-is-occupied": { "text": "The bathroom is occupied!" },
   "the-laundry-is-done": { "text": "The laundry is done." },

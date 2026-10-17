@@ -57,6 +57,9 @@
   "faucet": { "text": "robinet", "grammar": { "article": "le" } },
   "trash-can": { "text": "poubelle", "grammar": { "article": "la" } },
   "bucket": { "text": "seau", "forms": { "pl": "les seaux" }, "grammar": { "article": "le" } },
+  "to-wash-up": { "text": "se laver" },
+  "to-put-on-makeup": { "text": "se maquiller" },
+  "to-blow-dry-hair": { "text": "se sécher les cheveux" },
   "im-taking-a-quick-shower": {
    "text": "Je vais vite me doucher.",
    "accepts": ["Je vais me doucher rapidement.", "Je vais prendre une douche rapide."],

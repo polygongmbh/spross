@@ -73,6 +73,9 @@
    "notes": { "it": "la pattumiera sta in cucina · il cestino è piccolo, per la carta." }
   },
   "bucket": { "text": "secchio", "forms": { "pl": "i secchi" }, "grammar": { "article": "il" } },
+  "to-wash-up": { "text": "lavarsi" },
+  "to-put-on-makeup": { "text": "truccarsi" },
+  "to-blow-dry-hair": { "text": "asciugarsi i capelli" },
   "im-taking-a-quick-shower": {
    "text": "Vado a farmi una doccia veloce.",
    "accepts": ["Mi faccio una doccia veloce.", "Vado a fare una doccia veloce."]

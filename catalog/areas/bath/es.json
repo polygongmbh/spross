@@ -61,6 +61,9 @@
    "grammar": { "article": "el" }
   },
   "bucket": { "text": "cubo", "accepts": ["balde"], "grammar": { "article": "el" } },
+  "to-wash-up": { "text": "lavarse" },
+  "to-put-on-makeup": { "text": "maquillarse" },
+  "to-blow-dry-hair": { "text": "secarse el pelo", "accepts": ["secarse el cabello"] },
   "im-taking-a-quick-shower": {
    "text": "Me voy a duchar rápido.",
    "accepts": ["Voy a ducharme rápido.", "Me doy una ducha rápida."]

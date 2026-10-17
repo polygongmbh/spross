@@ -28,6 +28,9 @@
  { "slug": "sponge", "kind": "noun", "emoji": "🧽" },
  { "slug": "toilet-paper", "kind": "noun", "emoji": "🧻" },
  { "slug": "hairdryer", "kind": "noun", "emoji": "💨" },
+ { "slug": "to-wash-up", "kind": "verb", "emoji": "🫧" },
+ { "slug": "to-put-on-makeup", "kind": "verb", "emoji": "💄" },
+ { "slug": "to-blow-dry-hair", "kind": "verb", "emoji": "💨" },
  {
   "slug": "im-taking-a-quick-shower",
   "kind": "phrase",

@@ -47,6 +47,9 @@
   "faucet": { "text": "krano", "accepts": ["akvokrano"] },
   "trash-can": { "text": "rubujo", "accepts": ["rubkorbo"] },
   "bucket": { "text": "sitelo" },
+  "to-wash-up": { "text": "lavi sin", "accepts": ["sin lavi", "laviĝi"] },
+  "to-put-on-makeup": { "text": "ŝminki sin", "accepts": ["sin ŝminki"] },
+  "to-blow-dry-hair": { "text": "sekigi la harojn", "accepts": ["sekigi al si la harojn"] },
   "im-taking-a-quick-shower": {
    "text": "Mi iras rapide duŝi min.",
    "accepts": ["Mi rapide duŝas min.", "Mi iras duŝi min."],
