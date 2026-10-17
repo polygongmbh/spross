@@ -341,6 +341,12 @@ class CatalogCollisionLintTest {
                 // medianoche/norte, minuit/nord, mezzanotte/nord, usiku wa manane/kaskazini).
                 // `опівніч` is the adverb, not a second noun, so both stay.
                 "uk північ: directions/north, time/midnight",
+                // Reviewed 2026-10-17: uk `приходити` is coming AND arriving on foot — the everyday
+                // word for both, where de/en/eo/es/fr/it/sw split the pair (kommen/ankommen,
+                // come/arrive, veni/alveni, venir/llegar, venir/arriver, venire/arrivare, kuja/kufika).
+                // `прибувати` is the timetable register, so hall/to-arrive teaches it beside
+                // приходити, and its note sets приїжджати (by vehicle) apart.
+                "uk приходити: hall/to-arrive, verbs/to-come",
                 // Reviewed 2026-09-05: uk `що` is what AND the conjunction that — every other
                 // language splits the pair (was/dass, what/that, kio/ke, qué/que, quoi/que,
                 // che cosa/che, nini/kwamba). No second Ukrainian word for either, so both stay.
