@@ -15,6 +15,7 @@
   "to-congratulate": { "text": "féliciter" },
   "wedding": { "text": "mariage", "grammar": { "article": "le" } },
   "birth": { "text": "naissance", "grammar": { "article": "la" } },
+  "to-receive-guests": { "text": "recevoir des invités", "accepts": ["recevoir des amis", "avoir des invités"] },
   "we-give-her-something-for-her-birthday": {
    "text": "On lui offre quelque chose pour son anniversaire.",
    "accepts": ["Nous lui offrons quelque chose pour son anniversaire."]

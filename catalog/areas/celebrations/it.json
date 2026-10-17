@@ -11,6 +11,7 @@
   "to-congratulate": { "text": "congratularsi" },
   "wedding": { "text": "matrimonio", "grammar": { "article": "il" } },
   "birth": { "text": "nascita", "grammar": { "article": "la" } },
+  "to-receive-guests": { "text": "ricevere ospiti", "accepts": ["avere ospiti"] },
   "we-give-her-something-for-her-birthday": { "text": "Le regaliamo qualcosa per il suo compleanno." },
   "i-congratulate-them-on-their-wedding": { "text": "Mi congratulo con loro per il loro matrimonio." }
  }

@@ -11,6 +11,10 @@
   "to-congratulate": { "text": "to congratulate" },
   "wedding": { "text": "wedding" },
   "birth": { "text": "birth" },
+  "to-receive-guests": {
+   "text": "to receive guests",
+   "accepts": ["to have guests", "to have guests over", "to host guests"]
+  },
   "we-give-her-something-for-her-birthday": {
    "text": "We're giving her something for her birthday.",
    "accepts": ["We are giving her something for her birthday."]

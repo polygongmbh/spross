@@ -11,6 +11,7 @@
   "to-congratulate": { "text": "felicitar" },
   "wedding": { "text": "boda", "grammar": { "article": "la" } },
   "birth": { "text": "nacimiento", "grammar": { "article": "el" } },
+  "to-receive-guests": { "text": "recibir invitados", "accepts": ["recibir visitas"] },
   "we-give-her-something-for-her-birthday": { "text": "Le regalamos algo por su cumpleaños." },
   "i-congratulate-them-on-their-wedding": { "text": "Los felicito por su boda." }
  }

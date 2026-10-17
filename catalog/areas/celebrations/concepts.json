@@ -8,6 +8,7 @@
  { "slug": "to-congratulate", "kind": "verb", "emoji": "👏" },
  { "slug": "wedding", "kind": "noun", "emoji": "💒" },
  { "slug": "birth", "kind": "noun", "emoji": "👶" },
+ { "slug": "to-receive-guests", "kind": "verb" },
  {
   "slug": "we-give-her-something-for-her-birthday",
   "kind": "phrase",

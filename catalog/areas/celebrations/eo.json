@@ -11,6 +11,7 @@
   "to-congratulate": { "text": "gratuli" },
   "wedding": { "text": "nupto" },
   "birth": { "text": "naskiĝo" },
+  "to-receive-guests": { "text": "akcepti gastojn", "accepts": ["gastigi", "ricevi gastojn"] },
   "we-give-her-something-for-her-birthday": { "text": "Ni donacas al ŝi ion por ŝia naskiĝtago." },
   "i-congratulate-them-on-their-wedding": { "text": "Mi gratulas ilin pro ilia nupto.", "accepts": ["Mi gratulas ilin pro ilia geedziĝo."] }
  }

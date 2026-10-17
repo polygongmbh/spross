@@ -11,6 +11,7 @@
   "to-congratulate": { "text": "віта́ти", "accepts": ["поздоровляти"] },
   "wedding": { "text": "весі́лля" },
   "birth": { "text": "наро́дження" },
+  "to-receive-guests": { "text": "прийма́ти госте́й" },
   "we-give-her-something-for-her-birthday": { "text": "Ми дару́ємо їй щось на день наро́дження." },
   "i-congratulate-them-on-their-wedding": { "text": "Я віта́ю їх з весі́ллям." }
  }
