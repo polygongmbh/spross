@@ -44,6 +44,9 @@
    "notes": { "es": "blando = almohada, cojín · suave = piel, tela." }
   },
   "to-rest": { "text": "descansar" },
+  "to-change-clothes": { "text": "cambiarse", "accepts": ["cambiarse de ropa"] },
+  "to-fall-asleep": { "text": "dormirse", "accepts": ["quedarse dormido"] },
+  "to-iron": { "text": "planchar" },
   "sleep-well": { "text": "¡Que duermas bien!", "accepts": ["¡Duerme bien!"] },
   "good-morning-my-love": { "text": "¡Buenos días, mi amor!", "accepts": ["¡Buenos días, cariño!"] },
   "im-tired": { "text": "Estoy cansado.", "forms": { "f": "Estoy cansada." } },

@@ -45,6 +45,9 @@
   "to-make-bed": { "text": "fare il letto" },
   "soft": { "text": "morbido", "forms": { "f": "morbida" } },
   "to-rest": { "text": "riposare", "accepts": ["riposarsi"] },
+  "to-change-clothes": { "text": "cambiarsi", "accepts": ["cambiarsi i vestiti"] },
+  "to-fall-asleep": { "text": "addormentarsi" },
+  "to-iron": { "text": "stirare" },
   "sleep-well": { "text": "Dormi bene!" },
   "good-morning-my-love": {
    "text": "Buongiorno, amore mio!",

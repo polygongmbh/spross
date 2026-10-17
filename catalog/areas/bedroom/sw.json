@@ -30,6 +30,9 @@
   "to-make-bed": { "text": "kutandika kitanda" },
   "soft": { "text": "laini" },
   "to-rest": { "text": "kupumzika" },
+  "to-change-clothes": { "text": "kubadilisha nguo" },
+  "to-fall-asleep": { "text": "kupata usingizi" },
+  "to-iron": { "text": "kupiga pasi" },
   "sleep-well": { "text": "Lala salama!" },
   "good-morning-my-love": {
    "text": "Habari za asubuhi, mpenzi wangu!",

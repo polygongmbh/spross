@@ -47,6 +47,9 @@
    "notes": { "fr": "une peau douce, une voix douce." }
   },
   "to-rest": { "text": "se reposer" },
+  "to-change-clothes": { "text": "se changer" },
+  "to-fall-asleep": { "text": "s'endormir" },
+  "to-iron": { "text": "repasser" },
   "sleep-well": { "text": "Dors bien !" },
   "good-morning-my-love": {
    "text": "Bonjour, mon amour !",
