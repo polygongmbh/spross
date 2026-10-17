@@ -20,6 +20,7 @@
   "sunscreen": { "text": "mafuta ya jua", "grammar": { "plural": "=" } },
   "to-pack": { "text": "kufunga mizigo" },
   "campsite": { "text": "kambi", "grammar": { "plural": "=" } },
+  "to-take-pictures": { "text": "kupiga picha" },
   "lets-go-to-the-beach": { "text": "Twende ufukweni!", "accepts": ["Twende pwani!"] },
   "im-looking-for-a-hotel": { "text": "Natafuta hoteli." },
   "have-a-good-journey": { "text": "Safari njema!" },

@@ -29,6 +29,7 @@
    "forms": { "pl": "die Campingplätze" },
    "grammar": { "article": "der" }
   },
+  "to-take-pictures": { "text": "fotografieren", "accepts": ["Fotos machen"] },
   "lets-go-to-the-beach": {
    "text": "Gehen wir an den Strand!",
    "accepts": ["Lass uns an den Strand gehen!"],

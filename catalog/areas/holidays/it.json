@@ -27,6 +27,7 @@
   "sunscreen": { "text": "crema solare", "grammar": { "article": "la" } },
   "to-pack": { "text": "fare le valigie", "accepts": ["fare la valigia"] },
   "campsite": { "text": "campeggio", "grammar": { "article": "il" } },
+  "to-take-pictures": { "text": "fotografare", "accepts": ["fare foto", "fare delle foto"] },
   "lets-go-to-the-beach": { "text": "Andiamo in spiaggia!", "accepts": ["Andiamo alla spiaggia!", "Andiamo al mare!"] },
   "im-looking-for-a-hotel": { "text": "Cerco un albergo.", "accepts": ["Sto cercando un albergo.", "Cerco un hotel."] },
   "have-a-good-journey": { "text": "Buon viaggio!" },

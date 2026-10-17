@@ -16,6 +16,10 @@
   "sunscreen": { "text": "sunscreen", "accepts": ["sunblock"] },
   "to-pack": { "text": "to pack" },
   "campsite": { "text": "campsite", "accepts": ["camping site"] },
+  "to-take-pictures": {
+   "text": "to take pictures",
+   "accepts": ["to take photos", "to photograph", "to take a picture", "to take a photo"]
+  },
   "lets-go-to-the-beach": { "text": "Let's go to the beach!" },
   "im-looking-for-a-hotel": { "text": "I'm looking for a hotel." },
   "have-a-good-journey": { "text": "Have a good journey!", "accepts": ["Have a good trip!"] },

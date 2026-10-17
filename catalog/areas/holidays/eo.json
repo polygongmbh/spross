@@ -16,6 +16,7 @@
   "sunscreen": { "text": "sunkremo" },
   "to-pack": { "text": "paki" },
   "campsite": { "text": "tendumejo", "accepts": ["kampejo"] },
+  "to-take-pictures": { "text": "fotografi", "accepts": ["foti"] },
   "lets-go-to-the-beach": { "text": "Ni iru al la plaĝo!", "orders": ["Al la plaĝo ni iru!"] },
   "im-looking-for-a-hotel": { "text": "Mi serĉas hotelon.", "orders": ["Hotelon mi serĉas."] },
   "have-a-good-journey": { "text": "Bonan vojaĝon!" },

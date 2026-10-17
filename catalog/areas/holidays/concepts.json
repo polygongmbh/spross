@@ -13,6 +13,7 @@
  { "slug": "sunscreen", "kind": "noun", "emoji": "🧴" },
  { "slug": "to-pack", "kind": "verb", "emoji": "🧳" },
  { "slug": "campsite", "kind": "noun", "emoji": "⛺" },
+ { "slug": "to-take-pictures", "kind": "verb" },
  { "slug": "lets-go-to-the-beach", "kind": "phrase", "emoji": "🏖️", "components": ["beach"] },
  { "slug": "im-looking-for-a-hotel", "kind": "phrase", "emoji": "🏨", "components": ["hotel"] },
  { "slug": "have-a-good-journey", "kind": "phrase", "emoji": "🗺️", "components": ["journey"] },

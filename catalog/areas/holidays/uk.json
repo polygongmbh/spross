@@ -16,6 +16,7 @@
   "sunscreen": { "text": "сонцезахисни́й крем" },
   "to-pack": { "text": "пакува́ти валі́зу", "accepts": ["збирати валізу"] },
   "campsite": { "text": "ке́мпінг" },
+  "to-take-pictures": { "text": "фотографува́ти" },
   "lets-go-to-the-beach": { "text": "Ході́мо на пляж!", "orders": ["На пляж ходімо!"] },
   "im-looking-for-a-hotel": { "text": "Я шука́ю готе́ль." },
   "have-a-good-journey": { "text": "Га́рної по́дорожі!", "accepts": ["Щасливої дороги!"] },
