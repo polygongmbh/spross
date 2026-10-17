@@ -19,6 +19,7 @@
   "to-confuse": { "text": "verwirren" },
   "to-be-confused": { "text": "verwirrt sein" },
   "longing": { "text": "Sehnsucht", "forms": { "pl": "die Sehnsüchte" }, "grammar": { "article": "die" } },
-  "to-long-for": { "text": "sich sehnen" }
+  "to-long-for": { "text": "sich sehnen" },
+  "to-love": { "text": "lieben" }
  }
 }

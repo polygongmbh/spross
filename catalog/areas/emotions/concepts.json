@@ -16,5 +16,6 @@
  { "slug": "to-confuse", "kind": "verb" },
  { "slug": "to-be-confused", "kind": "verb", "emoji": "😵‍💫" },
  { "slug": "longing", "kind": "noun", "emoji": "🥺" },
- { "slug": "to-long-for", "kind": "verb" }
+ { "slug": "to-long-for", "kind": "verb" },
+ { "slug": "to-love", "kind": "verb" }
 ]

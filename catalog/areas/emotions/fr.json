@@ -26,6 +26,7 @@
   "to-long-for": { "text": "désirer ardemment" },
   "doubt": { "text": "doute", "grammar": { "article": "le" } },
   "to-confuse": { "text": "embrouiller" },
-  "to-be-confused": { "text": "être confus" }
+  "to-be-confused": { "text": "être confus" },
+  "to-love": { "text": "aimer" }
  }
 }

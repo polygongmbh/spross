@@ -23,6 +23,7 @@
   "to-long-for": { "text": "anhelar" },
   "doubt": { "text": "duda", "grammar": { "article": "la" } },
   "to-confuse": { "text": "confundir" },
-  "to-be-confused": { "text": "estar confundido" }
+  "to-be-confused": { "text": "estar confundido" },
+  "to-love": { "text": "querer", "teaches": ["amar"] }
  }
 }

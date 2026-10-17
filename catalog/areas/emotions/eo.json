@@ -24,6 +24,7 @@
   "to-long-for": { "text": "sopiri" },
   "doubt": { "text": "dubo" },
   "to-confuse": { "text": "konfuzi" },
-  "to-be-confused": { "text": "esti konfuzita" }
+  "to-be-confused": { "text": "esti konfuzita" },
+  "to-love": { "text": "ami" }
  }
 }

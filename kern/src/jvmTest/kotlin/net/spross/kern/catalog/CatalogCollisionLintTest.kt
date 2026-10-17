@@ -167,6 +167,10 @@ class CatalogCollisionLintTest {
                 // (als/dass, than/that, ol/ke, di/che, kuliko/kwamba, ніж/що). No second
                 // Spanish word for either, so both stay.
                 "es que: comparison/than, connectors/that-conj",
+                // Reviewed 2026-10-17: es `querer` is to want AND to love (te quiero) — de/en/eo/fr/it/uk
+                // all split the pair (wollen/lieben, want/love, voli/ami, vouloir/aimer, volere/amare,
+                // хотіти/кохати). `amar` is the film register, so it is taught beside querer, not instead.
+                "es querer: emotions/to-love, verbs/to-want",
                 "es tiempo: time/time, weather/weather",
                 // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
                 // classroom board — genuine French polysemy, one word both areas need
