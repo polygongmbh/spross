@@ -53,6 +53,7 @@
    "notes": { "eo": "difektita ne plu funkcias · rompita estas en pecoj." }
   },
   "message": { "text": "mesaĝo" },
+  "to-click": { "text": "klaki" },
   "im-in-a-meeting": {
    "text": "Mi estas en kunsido.",
    "accepts": ["Mi estas en renkontiĝo."],

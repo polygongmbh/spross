@@ -83,6 +83,7 @@
    }
   },
   "message": { "text": "mensaje", "grammar": { "article": "el" } },
+  "to-click": { "text": "hacer clic", "accepts": ["clicar", "cliquear", "hacer click"] },
   "im-in-a-meeting": { "text": "Estoy en una reunión." },
   "dont-disturb-me": { "text": "¡No me molestes!", "accepts": ["¡No molestar!"] },
   "the-laptop-wont-charge-anymore": {

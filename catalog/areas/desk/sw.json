@@ -32,6 +32,7 @@
   "ready": { "text": "tayari" },
   "broken": { "text": "-bovu", "teaches": ["mbovu", "wabovu", "kibovu", "vibovu", "mabovu", "mibovu"] },
   "message": { "text": "ujumbe", "forms": { "pl": "jumbe" } },
+  "to-click": { "text": "kubofya" },
   "im-in-a-meeting": { "text": "Niko kwenye mkutano." },
   "dont-disturb-me": { "text": "Usinisumbue!" },
   "the-laptop-wont-charge-anymore": { "text": "Kompyuta mpakato haichaji tena." },

@@ -33,6 +33,7 @@
   "ready": { "text": "ready" },
   "broken": { "text": "broken" },
   "message": { "text": "message" },
+  "to-click": { "text": "to click" },
   "im-in-a-meeting": { "text": "I'm in a meeting." },
   "dont-disturb-me": { "text": "Don't disturb me!" },
   "the-laptop-wont-charge-anymore": { "text": "The laptop won't charge anymore." },

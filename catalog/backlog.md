@@ -19,10 +19,10 @@ Neighbors: app and code issues `../docs/backlog.md`.
   unfixable at runtime, so Spanish meets the morning only as `de la mañana` in
   `time/nine-am-sharp` — accept the gap, allow one form on two cards in one area (a lint
   change), or move one of each pair to another area?
-- `food` holds 47 concepts and `desk` and `admin` 41 each, all past the ~40 line
+- `food` holds 47 concepts, `desk` 42, `time` and `hall` 41 each, all past the ~40 line
   (`catalog/areas/README.md` § which area a concept lives in), and `food`'s seam is raw
   ingredients against meals and drinks — name the new shelf and its members, or accept the
-  three past the line?
+  others past the line?
 - Italian dates: the dayMonth reveal teaches `il otto`/`il undici marzo` on 2 of 31 days
   because a static pattern cannot elide, though the elided `l'{day} {month}` already grades as
   a variant (`catalog/dates/it.json`) — elision-aware date patterns in the engine, or wait for

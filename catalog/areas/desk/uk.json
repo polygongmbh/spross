@@ -33,6 +33,7 @@
   "ready": { "text": "гото́вий" },
   "broken": { "text": "зла́маний", "accepts": ["поламаний"] },
   "message": { "text": "повідо́млення" },
+  "to-click": { "text": "кла́цати", "accepts": ["клікати", "натискати"] },
   "im-in-a-meeting": { "text": "Я на зу́стрічі." },
   "dont-disturb-me": { "text": "Не заважа́й мені́!", "orders": ["Мені не заважай!"] },
   "the-laptop-wont-charge-anymore": { "text": "Ноутбу́к бі́льше не заряджа́ється." },

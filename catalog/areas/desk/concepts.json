@@ -32,6 +32,7 @@
  { "slug": "broken", "kind": "adjective" },
  { "slug": "to-repair", "kind": "verb", "emoji": "🔧" },
  { "slug": "message", "kind": "noun", "emoji": "💬" },
+ { "slug": "to-click", "kind": "verb" },
  { "slug": "it-works", "kind": "phrase", "emoji": "✅", "components": [] },
  { "slug": "coffee-break", "kind": "phrase", "emoji": "☕", "components": ["to-take-break"] },
  { "slug": "i-have-a-lot-to-do", "kind": "phrase", "emoji": "📋", "components": [] },
