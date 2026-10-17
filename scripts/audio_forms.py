@@ -97,8 +97,11 @@ def card_forms(lang, articled):
 
 def example_texts(lang):
     """Every `exampleText` the alphabet states — reference words no concept covers (de `sechs`,
-    the es `pero`/`perro` minimal pair)."""
-    entries = read_json(CATALOG, 'alphabet', '%s.json' % lang)['entries']
+    the es `pero`/`perro` minimal pair); none where [lang] has no alphabet (en, sw)."""
+    path = os.path.join(CATALOG, 'alphabet', '%s.json' % lang)
+    if not os.path.isfile(path):
+        return []
+    entries = read_json(path)['entries']
     return list(dict.fromkeys(e['exampleText'] for e in entries if e.get('exampleText')))
 
 
