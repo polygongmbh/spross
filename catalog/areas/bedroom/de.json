@@ -31,7 +31,7 @@
   "sweater": { "text": "Pullover", "grammar": { "article": "der", "plural": "=" } },
   "underwear": { "text": "Unterwäsche", "grammar": { "article": "die" } },
   "belt": { "text": "Gürtel", "grammar": { "article": "der", "plural": "=" } },
-  "to-make-bed": { "text": "Bett machen" },
+  "to-make-bed": { "text": "das Bett machen", "accepts": ["Bett machen"] },
   "soft": { "text": "weich" },
   "to-rest": { "text": "sich ausruhen" },
   "to-change-clothes": { "text": "sich umziehen" },
