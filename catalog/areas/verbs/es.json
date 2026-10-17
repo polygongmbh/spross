@@ -69,6 +69,8 @@
   "to-put": { "text": "poner" },
   "to-carry": { "text": "llevar" },
   "to-happen": { "text": "pasar", "accepts": ["ocurrir"] },
+  "to-turn-on": { "text": "encender", "accepts": ["prender"] },
+  "to-turn-off": { "text": "apagar" },
   "do-you-have-water": { "text": "¿Tiene agua?", "accepts": ["¿Tiene usted agua?", "¿Tienes agua?"] },
   "where-are-you-from": {
    "text": "¿De dónde es usted?",

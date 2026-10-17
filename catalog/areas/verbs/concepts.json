@@ -33,6 +33,8 @@
  { "slug": "to-improve", "kind": "verb", "emoji": "📈" },
  { "slug": "to-suggest", "kind": "verb", "emoji": "💡" },
  { "slug": "to-happen", "kind": "verb" },
+ { "slug": "to-turn-on", "kind": "verb" },
+ { "slug": "to-turn-off", "kind": "verb" },
  { "slug": "do-you-have-water", "kind": "phrase", "emoji": "💧", "components": ["to-have"] },
  { "slug": "where-are-you-from", "kind": "phrase", "emoji": "🌍", "components": ["to-come"] },
  { "slug": "can-you-see-him", "kind": "phrase", "emoji": "👀", "components": ["to-see"] },

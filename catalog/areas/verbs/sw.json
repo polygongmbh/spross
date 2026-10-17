@@ -66,6 +66,8 @@
   },
   "to-carry": { "text": "kubeba" },
   "to-happen": { "text": "kutokea" },
+  "to-turn-on": { "text": "kuwasha" },
+  "to-turn-off": { "text": "kuzima" },
   "do-you-have-water": { "text": "Una maji?" },
   "where-are-you-from": { "text": "Unatoka wapi?" },
   "can-you-see-him": { "text": "Unamwona?" },
