@@ -3668,12 +3668,8 @@
     }
   },
   "authors": {
-    "Anhezu": "CC BY 3.0",
-    "Arnim Faryn": "CC BY-SA 3.0",
-    "Bleibein": "CC BY-SA 4.0",
-    "CamelCaseNick": "CC BY-SA 4.0",
+    "Bleibein": "CC BY-SA 3.0",
     "Dinock90": "CC BY-SA 4.0",
-    "Edward Montgomery Harrington": "CC BY-SA 3.0",
     "Hedwig von Ebbel": "CC BY 3.0",
     "Holunder Gabriel": "CC BY-SA 4.0",
     "Jeuwre": "CC BY-SA 4.0",
@@ -3683,16 +3679,12 @@
     "Mathieu Kappler": "CC BY-SA 4.0",
     "MiER": "CC BY-SA 3.0",
     "Natschoba": "CC BY-SA 4.0",
-    "Pajz": "Public domain",
     "Patrick Strasser-Mikhail": "CC0",
-    "Pill": "CC BY-SA 3.0",
     "Sebastian Wallroth": "CC0",
     "StMH": "CC BY-SA 3.0",
     "T.Voekler": "CC BY-SA 3.0",
-    "Thegurke": "CC BY-SA 3.0",
     "Timwi at English Wikipedia": "Public domain",
     "User:Tosca": "CC BY-SA 3.0",
-    "Wikimedia Commons user Jakob.scholbach": "CC BY-SA 3.0",
     "joni": "CC BY-SA 3.0"
   },
   "calendar": {
@@ -5269,14 +5261,14 @@
       "source": "De-Abend2.ogg"
     },
     "abende": {
-      "author": "Arnim Faryn",
+      "author": "Jeuwre",
       "file": "words/abende.mp3",
-      "gain": -0.7,
-      "gate": -55.1,
+      "gain": -2.3,
+      "lead": 448,
       "matches": "abende",
-      "mos": 3.19,
-      "sha256": "b7c69959b7e4465c7fc1ba3c8fcee9faabbef3ae5dbcaf9805750e154216e297",
-      "source": "De-Abende.ogg"
+      "mos": 3.15,
+      "sha256": "14de7965214d8a0815985fec0ad2bcf27bb7db44e722c588a90e962b2c929336",
+      "source": "De-Abende2.ogg"
     },
     "abendessen": {
       "author": "Jeuwre",
@@ -6018,14 +6010,14 @@
       "source": "De-Auge2.ogg"
     },
     "augen": {
-      "author": "Edward Montgomery Harrington",
+      "author": "Jeuwre",
       "file": "words/augen.mp3",
-      "gain": -2.9,
-      "gate": -55.2,
+      "gain": -3.7,
+      "lead": 446,
       "matches": "augen",
-      "mos": 2.95,
-      "sha256": "2705ca661058ea9d07f8e30a6d2bf9a957ebf5848d7236ea74da16f11cc97c03",
-      "source": "De-Augen.ogg"
+      "mos": 3.24,
+      "sha256": "de4118c8078696a110ddb0a760ab0544fc9c66c3790cd797f0a31273a63f5771",
+      "source": "De-Augen2.ogg"
     },
     "ausbildung": {
       "author": "Jeuwre",
@@ -6068,15 +6060,15 @@
       "source": "De-Ausgang2.ogg"
     },
     "ausgänge": {
-      "author": "T.Voekler",
+      "author": "Sebastian Wallroth",
       "file": "words/ausgu00e4nge.mp3",
-      "gain": -4.4,
-      "gate": -62.4,
-      "license": "Public domain",
+      "gain": 7.6,
+      "gate": -77.7,
+      "lead": 203,
       "matches": "ausgänge",
-      "mos": 2.98,
-      "sha256": "c0ee24cb7510c597d53ab013825689c3223dbc186ac2f7c80cf906764c13d143",
-      "source": "De-Ausgänge.ogg"
+      "mos": 2.96,
+      "sha256": "a51f95a7640cfbda24c848054281597edac0dae354f14a186709ea18ec521675",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Ausgänge.wav"
     },
     "aussprechen": {
       "author": "Jeuwre",
@@ -6377,14 +6369,15 @@
       "source": "De-beantragen.ogg"
     },
     "bedeutung": {
-      "author": "Anhezu",
+      "author": "Sebastian Wallroth",
       "file": "words/bedeutung.mp3",
-      "gain": 3.1,
-      "gate": -60.0,
+      "gain": 3.4,
+      "gate": -78.5,
+      "lead": 189,
       "matches": "bedeutung",
-      "mos": 3.22,
-      "sha256": "6a1c21f681824216cd9fde3917edfc67dffa50029779febf56503004aee319bf",
-      "source": "De-Bedeutung.ogg"
+      "mos": 2.98,
+      "sha256": "78527fd17c26f905e372ca8d85f395d5240527de7fe6c86ccb76ceed1be6f045",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Bedeutung.wav"
     },
     "bedeutungen": {
       "author": "Jeuwre",
@@ -7390,15 +7383,15 @@
       "source": "De-Chefs.ogg"
     },
     "cousin": {
-      "author": "Hedwig von Ebbel",
+      "author": "Sebastian Wallroth",
       "file": "words/cousin.mp3",
-      "gain": -12.0,
-      "lead": 537,
-      "license": "CC BY-SA 3.0",
+      "gain": 1.0,
+      "gate": -74.1,
+      "lead": 202,
       "matches": "cousin",
-      "mos": 3.04,
-      "sha256": "5c005e395f9c72194c46f1d34a743d3fd244ec039619fdf4bb7aef28ea637bc7",
-      "source": "De-Cousin.ogg"
+      "mos": 3.08,
+      "sha256": "7e0193c87ed2be760a0ec4617b0dd5194e27459e23fe9735ac67f5fc3839a7c1",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Cousin.wav"
     },
     "cousine": {
       "author": "Kampy",
@@ -7664,7 +7657,6 @@
       "file": "words/dort.mp3",
       "gain": 0.9,
       "gate": -59.2,
-      "license": "CC BY-SA 3.0",
       "matches": "dort",
       "mos": 3.13,
       "sha256": "79419f9df84734ee0d90d79801017249bcc912c25d97eec0d8595708c33c781c",
@@ -8153,15 +8145,14 @@
       "source": "De-einstellen.ogg"
     },
     "einziehen": {
-      "author": "Wikimedia Commons user Jakob.scholbach",
+      "author": "Jeuwre",
       "file": "words/einziehen.mp3",
-      "gain": 3.2,
-      "gate": -57.8,
-      "lead": 18,
+      "gain": 2.5,
+      "lead": 429,
       "matches": "einziehen",
-      "mos": 2.94,
-      "sha256": "2e266a1b0342e349f9709168b0e8ccc3e2cebd642b79a9387831e8dce45bf7e2",
-      "source": "De-einziehen.ogg"
+      "mos": 3.09,
+      "sha256": "a97001feeb740978a488bab47b361ea2529cb71543b4f4e236217d8a0d72dc19",
+      "source": "De-einziehen2.ogg"
     },
     "elefant": {
       "author": "Jeuwre",
@@ -10825,15 +10816,15 @@
       "source": "De-Impfung2.ogg"
     },
     "impfungen": {
-      "author": "Thegurke",
+      "author": "Jeuwre",
+      "cap": 0.3,
       "file": "words/impfungen.mp3",
-      "gain": 19.9,
-      "gate": -78.9,
-      "lead": 1126,
+      "gain": 2.1,
+      "lead": 440,
       "matches": "impfungen",
-      "mos": 2.99,
-      "sha256": "5147d0e810ea80469e2b852f300ac703002b9e6e20f1a0882f7ba297dce563e6",
-      "source": "De-Impfungen.ogg"
+      "mos": 3.1,
+      "sha256": "f5b12a259947bac318afdc1e902e015f8e7c65dec2fc5c5c665bdeffc5d8cc1a",
+      "source": "De-Impfungen2.ogg"
     },
     "in": {
       "author": "Jeuwre",
@@ -10956,14 +10947,15 @@
       "source": "De-Jahr2.ogg"
     },
     "jahre": {
-      "author": "Pajz",
+      "author": "Sebastian Wallroth",
       "file": "words/jahre.mp3",
-      "gain": -4.4,
-      "gate": -60.2,
+      "gain": 2.7,
+      "gate": -75.3,
+      "lead": 200,
       "matches": "jahre",
-      "mos": 3.05,
-      "sha256": "71e7d080ade94aff18044faf0a26d491cf6f4782a2f78843921e85ab5af5635f",
-      "source": "De-Jahre.ogg"
+      "mos": 2.84,
+      "sha256": "3f03182323ceedc72f718300be401dc24e801ed6bc5ad5587eec1bbaf8208121",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Jahre.wav"
     },
     "jahrhundert": {
       "author": "Jeuwre",
@@ -11576,15 +11568,14 @@
       "source": "De-Kollege2.ogg"
     },
     "kollegen": {
-      "author": "Bleibein",
+      "author": "Jeuwre",
       "file": "words/kollegen.mp3",
-      "gain": 1.5,
-      "gate": -44.4,
-      "license": "CC BY-SA 3.0",
+      "gain": 0.1,
+      "lead": 443,
       "matches": "kollegen",
-      "mos": 2.8,
-      "sha256": "2c10a4d053a419236894f06129c989706b763ea9c670ec59a1b25813ab437c0e",
-      "source": "De-Kollegen.ogg"
+      "mos": 3.1,
+      "sha256": "bd93486e3d63d53706e9d0e69c69a9b1a7b385b4cfd2600fecce5a76de059752",
+      "source": "De-Kollegen2.ogg"
     },
     "kollegin": {
       "author": "Jeuwre",
@@ -13173,14 +13164,14 @@
       "source": "De-Motor2.ogg"
     },
     "motoren": {
-      "author": "Bleibein",
+      "author": "Jeuwre",
       "file": "words/motoren.mp3",
-      "gain": 1.7,
-      "gate": -66.0,
+      "gain": -1.7,
+      "lead": 432,
       "matches": "motoren",
-      "mos": 3.17,
-      "sha256": "e4943f617c0391d58093eab4575a65289eaf0aff9d561fb8b99bca0cb7a36cc7",
-      "source": "De-Motoren.ogg"
+      "mos": 3.0,
+      "sha256": "c1fa243311a8be14e83ba9541d311e7b3a00519a47aeb18440a5654ea112cea2",
+      "source": "De-Motoren2.ogg"
     },
     "motorrad": {
       "author": "Jeuwre",
@@ -13429,14 +13420,15 @@
       "source": "De-müssen3.ogg"
     },
     "mütter": {
-      "author": "Bleibein",
+      "author": "Sebastian Wallroth",
       "file": "words/mu00fctter.mp3",
-      "gain": -4.9,
-      "gate": -51.6,
+      "gain": 6.0,
+      "gate": -74.6,
+      "lead": 259,
       "matches": "mütter",
-      "mos": 2.94,
-      "sha256": "7fa363f349ba05de3a61b42598a783a8a9659ef9975caee2b24ab3e2c2aa8048",
-      "source": "De-Mütter.ogg"
+      "mos": 2.88,
+      "sha256": "186a4935abb3518f0130faf574ee3620127139621ac7a65e6ffb8587bfb6cdff",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Mütter.wav"
     },
     "mütze": {
       "author": "Jeuwre",
@@ -15541,15 +15533,15 @@
       "source": "De-schwarz3.ogg"
     },
     "schwer": {
-      "author": "Lucas Werkmeister",
+      "author": "Sebastian Wallroth",
       "file": "words/schwer.mp3",
-      "gain": 2.9,
-      "gate": -69.4,
-      "lead": 209,
+      "gain": 7.2,
+      "gate": -96.1,
+      "lead": 220,
       "matches": "schwer",
-      "mos": 3.21,
-      "sha256": "89117ad7b43c603a909d0e45a881a14205ed39e6963f3649c2fb733d77142e01",
-      "source": "LL-Q188 (deu)-Lucas Werkmeister-schwer.wav"
+      "mos": 3.14,
+      "sha256": "90e8268dc540c87b7265d516902f243795ac805849340ad0b6a574405687f885",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-schwer.wav"
     },
     "schwester": {
       "author": "Jeuwre",
@@ -16325,14 +16317,15 @@
       "source": "De-Sprache2.ogg"
     },
     "sprachen": {
-      "author": "Edward Montgomery Harrington",
+      "author": "Sebastian Wallroth",
       "file": "words/sprachen.mp3",
-      "gain": -3.8,
-      "gate": -77.4,
+      "gain": 4.2,
+      "gate": -76.3,
+      "lead": 10,
       "matches": "sprachen",
-      "mos": 3.15,
-      "sha256": "3d9768713e733647cb40971d96310c646d706f67cb5d4dd5fdcbb40c986898b6",
-      "source": "De-Sprachen.ogg"
+      "mos": 2.93,
+      "sha256": "03c2b0485ae6ae45167889c99fb65c5c11d8ee0d8762bcf2223cd30edb539909",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Sprachen.wav"
     },
     "sprechen": {
       "author": "Jeuwre",
@@ -17009,14 +17002,15 @@
       "source": "De-Tag2.ogg"
     },
     "tage": {
-      "author": "Pill",
+      "author": "Sebastian Wallroth",
       "file": "words/tage.mp3",
-      "gain": 1.5,
-      "gate": -62.7,
+      "gain": 5.0,
+      "gate": -80.0,
+      "lead": 262,
       "matches": "tage",
-      "mos": 2.98,
-      "sha256": "07609ceb35a9c10a25059ea2437f2931ad97db42e3e7df936ba0dc1b272c74d0",
-      "source": "De-Tage.ogg"
+      "mos": 3.18,
+      "sha256": "1f857d4b9b0eb4936e50dfbcafce2f282b607d871e198f0668058ddd2400d6e9",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-Tage.wav"
     },
     "tante": {
       "author": "Jeuwre",
@@ -17524,14 +17518,15 @@
       "source": "De-tschüss.ogg"
     },
     "töchter": {
-      "author": "Bleibein",
+      "author": "Natschoba",
       "file": "words/tu00f6chter.mp3",
-      "gain": -0.2,
-      "gate": -69.3,
+      "gain": 5.7,
+      "gate": -85.1,
+      "lead": 169,
       "matches": "töchter",
-      "mos": 3.38,
-      "sha256": "915444009d0d52eb281e70dbd24f7f070a84580b38b9b82fa0bc42cacb63f9b0",
-      "source": "De-Töchter.ogg"
+      "mos": 3.2,
+      "sha256": "f20418b30e8e919a870c9ad9b0c8cce4910b00da61cf063530f671707e210fe1",
+      "source": "LL-Q188 (deu)-Natschoba-Töchter.wav"
     },
     "töpfe": {
       "author": "Jeuwre",
@@ -18849,15 +18844,16 @@
       "source": "De-wichtig.ogg"
     },
     "wie": {
-      "author": "CamelCaseNick",
+      "author": "Sebastian Wallroth",
+      "cap": 0.2,
       "file": "words/wie.mp3",
-      "gain": 3.6,
-      "gate": -72.0,
-      "lead": 218,
+      "gain": 15.0,
+      "gate": -90.2,
+      "lead": 173,
       "matches": "wie",
       "mos": 2.8,
-      "sha256": "45992881d86b889d9c07e0cfcab8543f06966812037f2004d8d4a1f6f2d2fec2",
-      "source": "LL-Q188 (deu)-CamelCaseNick-wie.wav"
+      "sha256": "200efd35b6b0e28f8bc815ad88c83687df4b351af83620da542b62d14db719df",
+      "source": "LL-Q188 (deu)-Sebastian Wallroth-wie.wav"
     },
     "wie bitte": {
       "author": "Jeuwre",
