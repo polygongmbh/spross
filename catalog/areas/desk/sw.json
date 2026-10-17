@@ -2,7 +2,12 @@
  "title": "Dawati",
  "subtitle": "Wakati wa kutulia.",
  "words": {
-  "desk": { "text": "meza ya kazi", "forms": { "pl": "meza za kazi" } },
+  "desk": {
+   "text": "meza ya kuandikia",
+   "teaches": ["dawati"],
+   "accepts": ["meza ya kazi"],
+   "forms": { "pl": "meza za kuandikia" }
+  },
   "laptop": { "text": "kompyuta mpakato", "grammar": { "plural": "=" } },
   "keyboard": { "text": "kibodi", "grammar": { "plural": "=" } },
   "screen": { "text": "skrini", "grammar": { "plural": "=" } },

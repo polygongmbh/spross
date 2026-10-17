@@ -187,7 +187,7 @@ class CatalogCollisionLintTest {
                 // Reviewed 2026-09-17: fr `bureau` is the desk (le meuble) AND the office
                 // (la pièce) — de/en/eo/es/it/sw/uk all split the pair (Schreibtisch/Büro,
                 // desk/office, skribotablo/oficejo, escritorio/oficina, scrivania/ufficio,
-                // meza ya kazi/ofisi, письмовий стіл/офіс). No second French word for
+                // meza ya kuandikia/ofisi, письмовий стіл/офіс). No second French word for
                 // either — `pupitre` is a school desk, `lieu de travail` is HR speak.
                 "fr bureau: desk/desk, work/workplace",
                 "fr entrée: directions/entrance, hall/hallway",
