@@ -65,6 +65,9 @@
   },
   "gas": { "text": "gaz", "grammar": { "article": "le", "plural": "=" } },
   "tasty": { "text": "délicieux", "forms": { "f": "délicieuse" } },
+  "to-freeze": { "text": "congeler" },
+  "to-season": { "text": "assaisonner" },
+  "to-peel": { "text": "éplucher", "accepts": ["peler"] },
   "the-knife-is-sharp": {
    "text": "Le couteau est tranchant !",
    "accepts": ["Le couteau est bien aiguisé !", "Le couteau coupe bien !"]

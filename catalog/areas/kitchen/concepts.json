@@ -26,6 +26,9 @@
  { "slug": "tin-can", "kind": "noun", "emoji": "🥫" },
  { "slug": "gas", "kind": "noun" },
  { "slug": "tasty", "kind": "adjective" },
+ { "slug": "to-freeze", "kind": "verb", "emoji": "❄️" },
+ { "slug": "to-season", "kind": "verb", "emoji": "🧂" },
+ { "slug": "to-peel", "kind": "verb" },
  {
   "slug": "the-knife-is-sharp",
   "kind": "phrase",

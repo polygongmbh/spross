@@ -40,6 +40,9 @@
    "text": "tamu",
    "notes": { "sw": "chai tamu = yenye sukari · chakula kitamu = chenye ladha nzuri" }
   },
+  "to-freeze": { "text": "kugandisha" },
+  "to-season": { "text": "kukoleza" },
+  "to-peel": { "text": "kumenya" },
   "the-knife-is-sharp": { "text": "Kisu ni kikali!" },
   "this-is-very-tasty": { "text": "Hii ni tamu sana!" },
   "are-you-cooking-rice-today": {

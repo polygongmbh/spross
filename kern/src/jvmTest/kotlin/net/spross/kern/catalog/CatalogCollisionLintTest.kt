@@ -316,6 +316,11 @@ class CatalogCollisionLintTest {
                 // автобус) — one verb, the seat you take; de/en/es/fr/it split it (sich setzen /
                 // einsteigen, s'asseoir / monter). `to-sit` became the action to match es/fr/it.
                 "uk сідати: living/to-sit, transport/to-get-on",
+                // Reviewed 2026-10-17: uk `чистити` is cleaning AND peeling (чистити картоплю) —
+                // de/en/eo/es/fr/it/sw all split the pair (putzen/schälen, clean/peel, purigi/senŝeligi,
+                // limpiar/pelar, nettoyer/éplucher, pulire/sbucciare, kusafisha/kumenya).
+                // `знімати шкірку` is a description, not what a cook says, so both stay.
+                "uk чистити: bath/to-clean, kitchen/to-peel",
                 // Reviewed 2026-09-25: uk `ім'я` is the name AND the first name on a form —
                 // de/en/eo/es/fr/it/sw all split the pair (Name/Vorname, name/first name,
                 // nomo/antaŭnomo, nombre/nombre de pila, nom/prénom, nome/nome di battesimo,

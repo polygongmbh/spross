@@ -37,6 +37,9 @@
   "tin-can": { "text": "ladskatolo", "accepts": ["lada skatolo", "konservujo"] },
   "gas": { "text": "gaso" },
   "tasty": { "text": "bongusta" },
+  "to-freeze": { "text": "frostigi" },
+  "to-season": { "text": "spici", "accepts": ["spicigi"] },
+  "to-peel": { "text": "senŝeligi", "accepts": ["ŝeli"] },
   "the-knife-is-sharp": { "text": "La tranĉilo estas akra!" },
   "this-is-very-tasty": { "text": "Tio estas tre bongusta!", "accepts": ["Ĉi tio estas tre bongusta!"] },
   "are-you-cooking-rice-today": {

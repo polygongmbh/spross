@@ -33,6 +33,9 @@
   },
   "gas": { "text": "газ" },
   "tasty": { "text": "смачни́й", "forms": { "f": "смачна́", "n": "смачне́" } },
+  "to-freeze": { "text": "заморо́жувати" },
+  "to-season": { "text": "приправля́ти" },
+  "to-peel": { "text": "чи́стити" },
   "the-knife-is-sharp": { "text": "Ніж го́стрий!" },
   "this-is-very-tasty": { "text": "Це ду́же сма́чно!", "accepts": ["Це так смачно!"] },
   "are-you-cooking-rice-today": {

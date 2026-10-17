@@ -57,6 +57,9 @@
   },
   "gas": { "text": "gas", "grammar": { "article": "il", "plural": "=" } },
   "tasty": { "text": "gustoso", "teaches": ["saporito"], "forms": { "f": "gustosa" } },
+  "to-freeze": { "text": "congelare" },
+  "to-season": { "text": "condire", "accepts": ["insaporire"] },
+  "to-peel": { "text": "sbucciare", "accepts": ["pelare"] },
   "the-knife-is-sharp": { "text": "Il coltello è affilato!", "accepts": ["Il coltello taglia bene!"] },
   "this-is-very-tasty": {
    "text": "Questo è molto buono!",

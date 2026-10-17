@@ -46,6 +46,9 @@
   "tin-can": { "text": "lata", "grammar": { "article": "la" } },
   "gas": { "text": "gas", "grammar": { "article": "el" } },
   "tasty": { "text": "sabroso", "forms": { "f": "sabrosa" } },
+  "to-freeze": { "text": "congelar" },
+  "to-season": { "text": "sazonar", "accepts": ["condimentar", "aliñar"] },
+  "to-peel": { "text": "pelar" },
   "the-knife-is-sharp": {
    "text": "¡El cuchillo está afilado!",
    "accepts": ["¡El cuchillo corta mucho!"],
