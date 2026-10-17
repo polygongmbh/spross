@@ -4585,15 +4585,15 @@
       "source": "It-frigorifero.oga"
     },
     "frutta": {
-      "author": "Yiyi",
+      "author": "Happypheasant",
       "file": "words/frutta.mp3",
-      "gain": 1.7,
-      "gate": -85.8,
-      "lead": 172,
+      "gain": 2.7,
+      "gate": -97.1,
+      "lead": 192,
       "matches": "frutta",
-      "mos": 2.87,
-      "sha256": "104425a7c9a4aa76b1f653d241a4becf3e909e1de34c7ab4491c3f7459f2c6a9",
-      "source": "LL-Q652 (ita)-Yiyi-frutta.wav"
+      "mos": 2.71,
+      "sha256": "37cdfb4aeee931f681a962d9a368956472318d18e16095972f8d1e5ee352a933",
+      "source": "LL-Q652 (ita)-Happypheasant-frutta.wav"
     },
     "fulmine": {
       "author": "LangPao",
