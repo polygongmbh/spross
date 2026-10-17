@@ -33,7 +33,7 @@
   "to-wash-up": { "text": "kujiosha" },
   "to-put-on-makeup": { "text": "kujipodoa" },
   "to-blow-dry-hair": { "text": "kukausha nywele" },
-  "im-taking-a-quick-shower": { "text": "Naenda kuoga kidogo." },
+  "im-taking-a-quick-shower": { "text": "Naenda kuoga haraka.", "accepts": ["Naenda kuoga kidogo."] },
   "the-bathroom-is-occupied": { "text": "Bafu inatumika!" },
   "the-laundry-is-done": { "text": "Nguo ziko tayari." },
   "wheres-my-towel": { "text": "Taulo langu liko wapi?" },
