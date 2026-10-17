@@ -305,17 +305,11 @@
   "authors": {
     "0x010C": "CC BY-SA 4.0",
     "Adem M.": "CC BY-SA 4.0",
-    "Adjoumani512": "CC0",
     "Aemines1": "CC BY-SA 4.0",
     "Aemines5": "CC BY 4.0",
-    "Althea81": "CC0",
     "Ash Crow": "CC BY-SA 4.0",
     "Aurore1212121": "CC BY-SA 4.0",
-    "Axel toualy": "CC0",
-    "Baidax": "CC BY-SA 4.0",
     "Bananax47": "CC0",
-    "Ben": "CC0",
-    "Benoît Prieur": "CC0",
     "DSwissK": "CC BY-SA 4.0",
     "Damian B.": "CC BY-SA 4.0",
     "DenisdeShawi": "CC BY-SA 4.0",
@@ -323,13 +317,11 @@
     "Eihel": "CC BY-SA 3.0",
     "FASETECLO": "CC BY-SA 4.0",
     "Fabe56": "CC BY-SA 4.0",
-    "Fhala.K": "CC0",
     "GrandCelinien": "CC BY-SA 4.0",
     "Guilhelma": "CC BY-SA 4.0",
     "Hanavaï C.": "CC BY-SA 4.0",
     "Helenou66": "CC0",
     "Issakaf": "CC0",
-    "Johanboss": "CC0",
     "Jules78120": "CC0",
     "Julien Baley": "CC BY-SA 4.0",
     "Justforoc": "CC BY-SA 4.0",
@@ -338,13 +330,10 @@
     "Le Commissaire": "CC BY-SA 4.0",
     "Lepticed7": "CC BY-SA 4.0",
     "LoquaxFR": "CC BY-SA 4.0",
-    "Ltrlg": "CC BY-SA 4.0",
     "Lyokoï": "CC BY-SA 4.0",
     "Mecanautes": "CC0",
     "Pamputt": "CC0",
-    "Penegal": "CC BY-SA 4.0",
     "Poslovitch": "CC0",
-    "ProjetSamantha": "CC BY-SA 4.0",
     "Roptat": "CC BY-SA 4.0",
     "Sagnamadr": "CC BY-SA 4.0",
     "Sarah2149": "CC BY-SA 4.0",
@@ -2782,26 +2771,27 @@
       "source": "LL-Q150 (fra)-LoquaxFR-beau.wav"
     },
     "beau-frère": {
-      "author": "Fhala.K",
+      "author": "Vion Nicolas",
       "file": "words/beau-fru00e8re.mp3",
-      "gain": 13.9,
-      "gate": -77.1,
-      "lead": 115,
+      "gain": -1.1,
+      "gate": -63.8,
+      "lead": 2,
       "matches": "beau-frère",
       "mos": 3.01,
-      "sha256": "9cbeb7154c5d6a222db133942cdcec3e01b12ea6fc2282ccb857d718bf5dac2c",
-      "source": "LL-Q150 (fra)-Fhala.K-beau-frère.wav"
+      "sha256": "9efbc57767e135601a54656273a0d33657e4023b878e29054465fd9fa3a99152",
+      "source": "Fr-beau-frère.ogg"
     },
     "beau-père": {
-      "author": "Fhala.K",
+      "author": "Sartus85",
+      "cap": 1.2,
       "file": "words/beau-pu00e8re.mp3",
-      "gain": 11.8,
-      "gate": -77.8,
-      "lead": 156,
+      "gain": 8.9,
+      "gate": -84.8,
+      "lead": 115,
       "matches": "beau-père",
-      "mos": 3.22,
-      "sha256": "f608aa934dd2a83ed59959df75ea49027293b801121532df735660799f35d637",
-      "source": "LL-Q150 (fra)-Fhala.K-beau-père.wav"
+      "mos": 3.05,
+      "sha256": "dac39332db4c9db7e594d213e739ef32a39273c3421f2191ca7060bd18310a13",
+      "source": "LL-Q150 (fra)-Sartus85-beau-père.wav"
     },
     "beaucoup": {
       "author": "Vion Nicolas",
@@ -2991,16 +2981,15 @@
       "source": "LL-Q150 (fra)-Mecanautes-Blanche.wav"
     },
     "blessure": {
-      "author": "DSwissK",
+      "author": "Sartus85",
       "file": "words/blessure.mp3",
-      "gain": 7.0,
-      "gate": -82.1,
-      "lead": 378,
-      "license": "CC BY 4.0",
+      "gain": 11.9,
+      "gate": -84.1,
+      "lead": 87,
       "matches": "blessure",
-      "mos": 3.28,
-      "sha256": "54c986f8b6805dbb8455ba2984851a4de154bf4453a27b7bcf24d5697983fad8",
-      "source": "LL-Q150 (fra)-DSwissK-blessure.wav"
+      "mos": 2.99,
+      "sha256": "ddaf01562810cd3bba96ab38883ee377429555194883f908ba6430251690f17b",
+      "source": "LL-Q150 (fra)-Sartus85-blessure.wav"
     },
     "bleu": {
       "author": "Vion Nicolas",
@@ -3570,15 +3559,14 @@
       "source": "LL-Q150 (fra)-Sartus85-cela.wav"
     },
     "centre": {
-      "author": "Benoît Prieur",
+      "author": "LoquaxFR",
       "file": "words/centre.mp3",
-      "gain": -2.0,
-      "gate": -96.7,
-      "lead": 256,
+      "gain": 7.4,
+      "lead": 105,
       "matches": "centre",
-      "mos": 2.94,
-      "sha256": "a68dbb9ed9441a150971dfae06f640bab4627821142a1738504cfc0f79a4221e",
-      "source": "LL-Q150 (fra)-Benoît Prieur-Centre.wav"
+      "mos": 2.77,
+      "sha256": "2e5c6e65881e19ec47c466134dd4b67405e51371d790a6c1df03854e5b7dd68b",
+      "source": "LL-Q150 (fra)-LoquaxFR-centre.wav"
     },
     "centre commercial": {
       "author": "Lyokoï",
@@ -3723,15 +3711,14 @@
       "source": "LL-Q150 (fra)-Poslovitch-chaussure.wav"
     },
     "chef": {
-      "author": "Aemines1",
+      "author": "Bananax47",
       "file": "words/chef.mp3",
-      "gain": 6.0,
-      "gate": -86.8,
-      "lead": 199,
+      "gain": 2.8,
+      "lead": 169,
       "matches": "chef",
-      "mos": 3.11,
-      "sha256": "f2956131bd5c07bcd206d5fe03de389877b12ed3a851d519b5b45a0ba6ad1d62",
-      "source": "LL-Q150 (fra)-Aemines1-chef.wav"
+      "mos": 2.81,
+      "sha256": "edaa50d6c98bf261fddd6dfe1f1d252c355be2289299ce376c2a0521319dffed",
+      "source": "LL-Q150 (fra)-Bananax47-chef.wav"
     },
     "cheffe": {
       "author": "Lepticed7",
@@ -4493,15 +4480,14 @@
       "source": "Fr-date.ogg"
     },
     "date de naissance": {
-      "author": "Benoît Prieur",
+      "author": "Lepticed7",
       "file": "words/date_de_naissance.mp3",
-      "gain": -1.4,
-      "gate": -88.6,
-      "lead": 99,
+      "gain": 7.1,
+      "gate": -79.1,
       "matches": "date de naissance",
-      "mos": 3.11,
-      "sha256": "c34d392c40dfb3eb64a84cc25b531a9ae964728d685de7fa16f6dc7af624b620",
-      "source": "LL-Q150 (fra)-Benoît Prieur-date de naissance.wav"
+      "mos": 3.25,
+      "sha256": "eaa53c1e0c17d5041723a42cf9be37df1b3730537f53a09d786c8f72e45468e2",
+      "source": "LL-Q150 (fra)-Lepticed7-date de naissance.wav"
     },
     "de nos jours": {
       "author": "WikiLucas00",
@@ -4580,15 +4566,15 @@
       "source": "Fr-demander.ogg"
     },
     "dent": {
-      "author": "Aemines1",
+      "author": "Poslovitch",
       "file": "words/dent.mp3",
-      "gain": 8.9,
-      "gate": -87.1,
-      "lead": 204,
+      "gain": 0.5,
+      "gate": -69.8,
+      "lead": 112,
       "matches": "dent",
-      "mos": 2.94,
-      "sha256": "4060db77eca4d0d9cda34969ba7a1d24d36aabfb484c37ca073cfd5de04ff118",
-      "source": "LL-Q150 (fra)-Aemines1-dent.wav"
+      "mos": 2.64,
+      "sha256": "ad295dbdab76da67cac4596f6d155a339aa9836bd5839ae07ff9efa14c5844bb",
+      "source": "LL-Q150 (fra)-Poslovitch-dent.wav"
     },
     "dentifrice": {
       "author": "Poslovitch",
@@ -5973,15 +5959,15 @@
       "source": "LL-Q150 (fra)-Sartus85-forte.wav"
     },
     "forêt": {
-      "author": "Penegal",
+      "author": "WikiLucas00",
       "file": "words/foru00eat.mp3",
-      "gain": 3.7,
-      "gate": -84.0,
-      "lead": 163,
+      "gain": 1.5,
+      "gate": -91.9,
+      "lead": 169,
       "matches": "forêt",
-      "mos": 3.27,
-      "sha256": "006481a76531204e79a1a7e5737e15badd847fa49b6e39ef920d42da9504f2f9",
-      "source": "LL-Q150 (fra)-Penegal-forêt.wav"
+      "mos": 2.99,
+      "sha256": "7b98b528089d434055fb7277dcdda92e104119cd87ceb44779b01feba3b76cc1",
+      "source": "LL-Q150 (fra)-WikiLucas00-forêt.wav"
     },
     "four": {
       "author": "Aemines5",
@@ -6815,15 +6801,14 @@
       "source": "Fr-J'ai mal à la tête.ogg"
     },
     "jalousie": {
-      "author": "ProjetSamantha",
+      "author": "LoquaxFR",
       "file": "words/jalousie.mp3",
-      "gain": 2.2,
-      "gate": -84.4,
-      "lead": 199,
+      "gain": 4.1,
+      "gate": -91.7,
       "matches": "jalousie",
-      "mos": 2.9,
-      "sha256": "5f9e5ca30f967c7cc1eb05619df6f810217fbcaca54cce4bfd2a2992f7f46f8a",
-      "source": "LL-Q150 (fra)-ProjetSamantha (Mathsou)-jalousie.wav"
+      "mos": 2.75,
+      "sha256": "88cedafe9a99451cc9049420f67664a95b5a16fd5244f455b85503de6a2ffb6e",
+      "source": "LL-Q150 (fra)-LoquaxFR-jalousie.wav"
     },
     "jamais": {
       "author": "Vion Nicolas",
@@ -7285,14 +7270,15 @@
       "source": "LL-Q150 (fra)-Eihel-loin.wav"
     },
     "long": {
-      "author": "Johanboss",
+      "author": "Sartus85",
       "file": "words/long.mp3",
-      "gain": 4.6,
-      "lead": 163,
+      "gain": 6.2,
+      "gate": -88.3,
+      "lead": 178,
       "matches": "long",
-      "mos": 3.07,
-      "sha256": "f1350275bb2534368d5d237a8850d0b48f5e1d95153391e219c5491154bc332e",
-      "source": "LL-Q150 (fra)-Johanboss-long.wav"
+      "mos": 2.88,
+      "sha256": "81abefe0c2e15f27536609c965044846509fe44c4ea0045e79499164a96c878b",
+      "source": "LL-Q150 (fra)-Sartus85-long.wav"
     },
     "longue": {
       "author": "Sartus85",
@@ -7361,15 +7347,16 @@
       "source": "LL-Q150 (fra)-WikiLucas00-lycée professionnel.wav"
     },
     "là": {
-      "author": "Ash Crow",
+      "author": "Eihel",
       "file": "words/lu00e0.mp3",
-      "gain": 5.6,
-      "gate": -87.6,
-      "lead": 243,
+      "gain": 0.7,
+      "gate": -85.5,
+      "lead": 266,
+      "license": "CC0",
       "matches": "là",
-      "mos": 3.1,
-      "sha256": "08b54095de4c34ada2d3790e580767531554ace3bb3d490b9c6d239bcbf561a3",
-      "source": "LL-Q150 (fra)-Ash Crow-là.wav"
+      "mos": 2.82,
+      "sha256": "bd88acd6d7b5e6207e7ddbeca8879519128bed520275370c022761338368d206",
+      "source": "LL-Q150 (fra)-Eihel-là.wav"
     },
     "lèvre": {
       "author": "Poslovitch",
@@ -7437,15 +7424,15 @@
       "source": "LL-Q150 (fra)-Sartus85-magasin.wav"
     },
     "main": {
-      "author": "Guilhelma",
+      "author": "Lepticed7",
       "file": "words/main.mp3",
-      "gain": 5.4,
-      "gate": -91.1,
-      "lead": 182,
+      "gain": 6.1,
+      "gate": -85.5,
+      "lead": 151,
       "matches": "main",
-      "mos": 3.13,
-      "sha256": "01b6bb690aa05d3b7b913c232d6bd8e720bce16c0c3038032b9c7020902a3ab6",
-      "source": "LL-Q150 (fra)-Guilhelma-main.wav"
+      "mos": 3.04,
+      "sha256": "de1364ed1b62d3d94d7e165de1aa36c9a86ab901b1d73b8eff25cfde23dc7985",
+      "source": "LL-Q150 (fra)-Lepticed7-main.wav"
     },
     "maintenant": {
       "author": "Poslovitch",
@@ -8957,15 +8944,14 @@
       "source": "LL-Q150 (fra)-Poslovitch-pays.wav"
     },
     "peau": {
-      "author": "Ash Crow",
+      "author": "LoquaxFR",
       "file": "words/peau.mp3",
-      "gain": 13.6,
-      "gate": -83.7,
-      "lead": 205,
+      "gain": 9.1,
+      "lead": 91,
       "matches": "peau",
-      "mos": 2.96,
-      "sha256": "a8f04d3522110ef8af899d0062f3f5168b5c066bf6c18e04a33941932f764e31",
-      "source": "LL-Q150 (fra)-Ash Crow-peau.wav"
+      "mos": 2.66,
+      "sha256": "7470d7a156714668e5c71f74f79251c6faf2669c14e412cdc57a999d5c5f2df7",
+      "source": "LL-Q150 (fra)-LoquaxFR-peau.wav"
     },
     "peaux": {
       "author": "WikiLucas00",
@@ -9045,27 +9031,27 @@
       "source": "Fr-petit-déjeuner.ogg"
     },
     "petit-fils": {
-      "author": "Fhala.K",
+      "author": "Lepticed7",
       "file": "words/petit-fils.mp3",
-      "gain": 15.6,
-      "gate": -76.7,
-      "lead": 209,
+      "gain": 11.7,
+      "gate": -80.3,
+      "lead": 179,
       "matches": "petit-fils",
-      "mos": 3.24,
-      "sha256": "7e3230504363158bc0a73ec01189aa15c04b88cc5bb9fa04feca9109e9dc45a6",
-      "source": "LL-Q150 (fra)-Fhala.K-petit-fils.wav"
+      "mos": 3.03,
+      "sha256": "2c8ed7c583b61d902b6ff87886bbb12a9a02230fe37cf1ec0b4ed12aee528bd0",
+      "source": "LL-Q150 (fra)-Lepticed7-petit-fils.wav"
     },
     "petite": {
-      "author": "Ben",
-      "cap": 1.6,
+      "author": "Pamputt",
+      "cap": 0.2,
       "file": "words/petite.mp3",
-      "gain": 12.9,
-      "gate": -98.5,
-      "lead": 176,
+      "gain": 17.8,
+      "gate": -65.8,
+      "lead": 254,
       "matches": "petite",
-      "mos": 2.56,
-      "sha256": "dfb0e8e5bb164ce81305ebf6dcfc829b4438ade327f626e66ef9934ab0e97202",
-      "source": "LL-Q150 (fra)-Ben (Mathsou)-petite.wav"
+      "mos": 2.69,
+      "sha256": "954b420b5d794cc14f4cc9d2c0c6eca3551087bc73d42138a2f779227188a7ee",
+      "source": "LL-Q150 (fra)-Pamputt-petite.wav"
     },
     "petite-fille": {
       "author": "Poslovitch",
@@ -9616,15 +9602,15 @@
       "source": "LL-Q150 (fra)-LoquaxFR-prendre.wav"
     },
     "presque": {
-      "author": "Ben",
+      "author": "Vion Nicolas",
       "file": "words/presque.mp3",
-      "gain": 7.1,
-      "gate": -98.0,
-      "lead": 124,
+      "gain": -0.4,
+      "gate": -73.1,
+      "lead": 87,
       "matches": "presque",
-      "mos": 2.69,
-      "sha256": "4795b54c637488d81350d29fa438ee12bfc9c14baafe5d19314279746f6cb7b2",
-      "source": "LL-Q150 (fra)-Ben (Mathsou)-presque.wav"
+      "mos": 2.51,
+      "sha256": "47c67a1236fb72ddd26c6fb27edd082ddbd1d53c3aa193bdbd57831598935373",
+      "source": "Fr-presque.ogg"
     },
     "prise": {
       "author": "Vion Nicolas",
@@ -9866,15 +9852,15 @@
       "source": "LL-Q150 (fra)-Mecanautes-quand.wav"
     },
     "quartier": {
-      "author": "Althea81",
+      "author": "Sartus85",
       "file": "words/quartier.mp3",
-      "gain": 1.4,
-      "gate": -79.1,
-      "lead": 164,
+      "gain": 11.1,
+      "gate": -93.4,
+      "lead": 160,
       "matches": "quartier",
       "mos": 2.73,
-      "sha256": "d872aaa612dd72c9486bc218fdb2a4211bf3e0c1af1d42254a8c639b20a31fc9",
-      "source": "LL-Q150 (fra)-Althea81-quartier.wav"
+      "sha256": "65fa347fb3eed178860d82497b9e4d3fce6ba8f6a2957395abccdfa0e0238dfc",
+      "source": "LL-Q150 (fra)-Sartus85-quartier.wav"
     },
     "que": {
       "author": "Mecanautes",
@@ -10999,15 +10985,14 @@
       "source": "LL-Q150 (fra)-Poslovitch-seau.wav"
     },
     "seaux": {
-      "author": "Axel toualy",
+      "author": "Lyokoï",
       "file": "words/seaux.mp3",
-      "gain": 7.0,
-      "gate": -78.2,
-      "lead": 75,
+      "gate": -69.3,
+      "lead": 225,
       "matches": "seaux",
-      "mos": 2.76,
-      "sha256": "47c9b1d336e72d684bf1a1a6191914971cb189de74448c5c0ee1f6e5cf137d2f",
-      "source": "LL-Q150 (fra)-Axel toualy-seaux.wav"
+      "mos": 3.05,
+      "sha256": "9fa4ebff19910b2b71489f862a0b70ac38279660f191ea4c1457a24661bc3c84",
+      "source": "LL-Q150 (fra)-Lyokoï-seaux.wav"
     },
     "sec": {
       "author": "Fabe56",
@@ -11422,15 +11407,15 @@
       "source": "LL-Q150 (fra)-WikiLucas00-stage.wav"
     },
     "stylo": {
-      "author": "Ltrlg",
+      "author": "DenisdeShawi",
       "file": "words/stylo.mp3",
-      "gain": 5.4,
-      "gate": -75.1,
-      "lead": 218,
+      "gain": 3.1,
+      "gate": -74.2,
+      "lead": 246,
       "matches": "stylo",
-      "mos": 2.95,
-      "sha256": "1864ba260020ef700780d2eb6366ea7401ea1316c79d80cbbf2e08f6b887cf73",
-      "source": "LL-Q150 (fra)-Ltrlg-stylo.wav"
+      "mos": 2.79,
+      "sha256": "aa25f296f3ae8e3c895ab761873dac2edac4f43a5876ec592304c6698603e13e",
+      "source": "LL-Q150 (fra)-DenisdeShawi-stylo.wav"
     },
     "substantif": {
       "author": "LoquaxFR",
@@ -11929,15 +11914,15 @@
       "source": "LL-Q150 (fra)-Poslovitch-tout droit.wav"
     },
     "toutes": {
-      "author": "Ben",
-      "cap": 0.2,
+      "author": "Sartus85",
       "file": "words/toutes.mp3",
-      "gain": 11.9,
-      "lead": 169,
+      "gain": 14.7,
+      "gate": -84.2,
+      "lead": 160,
       "matches": "toutes",
-      "mos": 2.7,
-      "sha256": "b4ebf49ed051a79e7ba39370104b63d62f851db40dff683a819c8e1cab9e9446",
-      "source": "LL-Q150 (fra)-Ben (Mathsou)-toutes.wav"
+      "mos": 2.61,
+      "sha256": "55972e2e164cce4300c6c5019c2cdebb3605679f28e45587d33591c3818621e2",
+      "source": "LL-Q150 (fra)-Sartus85-toutes.wav"
     },
     "toux": {
       "author": "Vion Nicolas",
@@ -12489,15 +12474,15 @@
       "source": "LL-Q150 (fra)-Poslovitch-vie.wav"
     },
     "vieille": {
-      "author": "Adjoumani512",
+      "author": "Sartus85",
       "file": "words/vieille.mp3",
-      "gain": 4.7,
-      "gate": -66.3,
-      "lead": 93,
+      "gain": 2.6,
+      "gate": -89.6,
+      "lead": 108,
       "matches": "vieille",
-      "mos": 2.7,
-      "sha256": "def855ff06d39c6e3d9696c33625edf40c60e96169a3985a7e94bd64be868e12",
-      "source": "LL-Q150 (fra)-Adjoumani512-vieille.wav"
+      "mos": 2.89,
+      "sha256": "1d52623792ed3aff0c892a64d41195c1a80e60e16c7c85fb4d48abca6ebf546d",
+      "source": "LL-Q150 (fra)-Sartus85-vieille.wav"
     },
     "vieillir": {
       "author": "Lyokoï",
@@ -12521,15 +12506,15 @@
       "source": "LL-Q150 (fra)-LoquaxFR-vieux.wav"
     },
     "village": {
-      "author": "Baidax",
+      "author": "Sartus85",
       "file": "words/village.mp3",
-      "gain": -2.0,
-      "gate": -85.1,
-      "lead": 232,
+      "gain": 1.4,
+      "gate": -81.7,
+      "lead": 170,
       "matches": "village",
-      "mos": 3.15,
-      "sha256": "501d399ceac4321de1f31e160bbd170184ba54c9c2c873d6e4b283bf3f689754",
-      "source": "LL-Q150 (fra)-Baidax-village.wav"
+      "mos": 2.86,
+      "sha256": "ba903ef8efc6f8b49cd3cb2d2dad96181b74e8880847ae4fe6a87a9896d9c8e7",
+      "source": "LL-Q150 (fra)-Sartus85-village.wav"
     },
     "ville": {
       "author": "Poslovitch",
