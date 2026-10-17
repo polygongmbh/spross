@@ -1,6 +1,5 @@
 {
   "authors": {
-    "CasteloBranco diskuto": "CC BY-SA 4.0",
     "Castelobranco": "CC BY-SA 4.0",
     "Citoyenovice": "CC BY-SA 4.0",
     "DanieruOtakuBoy": "CC0",
@@ -118,14 +117,15 @@
   },
   "countries": {
     "Alĝerio": {
-      "author": "CasteloBranco diskuto",
+      "author": "Lepticed7",
       "file": "countries/alu011derio.mp3",
-      "gain": 1.1,
-      "lead": 1133,
+      "gain": 8.8,
+      "gate": -80.4,
+      "lead": 241,
       "matches": "Alĝerio",
-      "mos": 3.15,
-      "sha256": "a9a8c2a6f6b1ab0a9391f18929cfc40741971e887d26d9207e24bc2932dce2c7",
-      "source": "Eo-Alĝerio.ogg"
+      "mos": 3.0,
+      "sha256": "5560eaa1239b4bcac43de209604e5b9593eaf13ff6ac44183b9f09b1ca6a5806",
+      "source": "LL-Q143 (epo)-Lepticed7-Alĝerio.wav"
     },
     "Angolo": {
       "author": "Castelobranco",
@@ -858,24 +858,26 @@
       "source": "LL-Q143 (epo)-Lepticed7-Ĉeĥio.wav"
     },
     "Ĉilio": {
-      "author": "CasteloBranco diskuto",
+      "author": "Wierzbowski",
       "file": "countries/u0109ilio.mp3",
-      "gain": -3.8,
-      "lead": 1154,
+      "gain": 5.7,
+      "gate": -91.2,
+      "lead": 208,
       "matches": "Ĉilio",
-      "mos": 2.92,
-      "sha256": "dffe453dbb607a3e2c2611fc4d18f6e2facf7ff7b056507d7377e73695f85ba3",
-      "source": "Eo-Ĉilio.ogg"
+      "mos": 3.18,
+      "sha256": "4acb2e4a43ba570939bc75a4665ed35f5c02d72cde99d780dcdc3c9140fbdf7b",
+      "source": "LL-Q143 (epo)-Wierzbowski-ĉilio.wav"
     },
     "Ĉinio": {
-      "author": "CasteloBranco diskuto",
+      "author": "Lepticed7",
       "file": "countries/u0109inio.mp3",
-      "gain": -4.1,
-      "lead": 1276,
+      "gain": 14.4,
+      "gate": -78.5,
+      "lead": 195,
       "matches": "Ĉinio",
-      "mos": 2.89,
-      "sha256": "e714e84a79d2b7db7efb0535e39796a58e9bc79a3f2193536dbbf97ba0bf5a50",
-      "source": "Eo-Ĉinio.ogg"
+      "mos": 3.14,
+      "sha256": "1dfdc5249483fbd8dcbddd1c13514cc20d2db2dec4f87b14a89056323ff45e28",
+      "source": "LL-Q143 (epo)-Lepticed7-Ĉinio.wav"
     }
   },
   "language": "eo",
