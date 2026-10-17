@@ -1,7 +1,6 @@
 {
   "authors": {
     "AdrianAbdulBaha": "CC BY-SA 4.0",
-    "Ahoraes": "CC BY-SA 4.0",
     "Akhram": "CC0",
     "Anonymât": "CC BY-SA 4.0",
     "Arca~commonswiki": "CC BY-SA 3.0",
@@ -21,7 +20,6 @@
     "Millars": "CC BY-SA 4.0",
     "Nicocortegoso": "CC BY-SA 4.0",
     "Octavio Paniagua-Taboada (Mexico)": "CC BY-SA 4.0",
-    "Oiews": "CC0",
     "Orgullomoore": "CC BY-SA 3.0",
     "Precision27": "CC BY 4.0",
     "Rachlel": "CC0",
@@ -134,15 +132,15 @@
       "source": "LL-Q1321 (spa)-Eavqwiki-junio.wav"
     },
     "lunes": {
-      "author": "Ahoraes",
+      "author": "Eavqwiki",
       "file": "calendar/lunes.mp3",
-      "gain": -1.1,
-      "gate": -77.4,
-      "lead": 271,
+      "gain": 15.2,
+      "gate": -88.4,
+      "lead": 139,
       "matches": "lunes",
-      "mos": 2.94,
-      "sha256": "3085ed9189edbb1783c189704fae733a687c4d37e2f1633855a939faa165f49b",
-      "source": "LL-Q1321 (spa)-Ahoraes-lunes.wav"
+      "mos": 2.68,
+      "sha256": "882ed2f879affdc01276fc019c93088f1ee8352f0137566ced7496795d1a4710",
+      "source": "LL-Q1321 (spa)-Eavqwiki-lunes.wav"
     },
     "martes": {
       "author": "Eavqwiki",
@@ -2798,15 +2796,15 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-cena.wav"
     },
     "centro": {
-      "author": "Rachlel",
+      "author": "AdrianAbdulBaha",
       "file": "words/centro.mp3",
-      "gain": 6.6,
-      "gate": -85.3,
-      "lead": 121,
+      "gain": 2.6,
+      "gate": -74.1,
+      "lead": 73,
       "matches": "centro",
-      "mos": 2.74,
-      "sha256": "587fa06e8fc25fcd5248bbe13ff29213198242729579429afabd6851d4131e87",
-      "source": "LL-Q1321 (spa)-Rachlel-centro.wav"
+      "mos": 3.12,
+      "sha256": "a9bfb46263100c1e09f40385b9b7e7a879e8e80596efbf17c8bc3db4a413cbac",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-centro.wav"
     },
     "cepillo de dientes": {
       "author": "Marreromarco",
@@ -4732,15 +4730,15 @@
       "source": "LL-Q1321 (spa)-Marreromarco-felicitar.wav"
     },
     "femenino": {
-      "author": "Oiews",
+      "author": "AdrianAbdulBaha",
       "file": "words/femenino.mp3",
-      "gain": -2.5,
-      "gate": -66.9,
-      "lead": 158,
+      "gain": 3.0,
+      "gate": -70.3,
+      "lead": 190,
       "matches": "femenino",
-      "mos": 3.02,
-      "sha256": "6d6a3c9b207d08233e3791f34e87d3721a90910bcfbc371a9e918e8ae30ff45d",
-      "source": "LL-Q1321 (spa)-Oiews-femenino.wav"
+      "mos": 3.06,
+      "sha256": "2528b7aacb323a35b970fe86c5e122c11236e53b9eb7cfd08bb7c1a0e31965e4",
+      "source": "LL-Q1321 (spa)-AdrianAbdulBaha-femenino.wav"
     },
     "fiebre": {
       "author": "AdrianAbdulBaha",
@@ -6517,15 +6515,15 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-mezquita.wav"
     },
     "mi": {
-      "author": "Rachlel",
+      "author": "Eavqwiki",
       "file": "words/mi.mp3",
-      "gain": 9.6,
-      "gate": -85.0,
-      "lead": 192,
+      "gain": 5.8,
+      "gate": -85.8,
+      "lead": 198,
       "matches": "mi",
-      "mos": 2.36,
-      "sha256": "2255c04d41447101a4b59bdb3de5e510f4e98b4cebc3e49b9c170e8cb556e942",
-      "source": "LL-Q1321 (spa)-Rachlel-mi.wav"
+      "mos": 2.7,
+      "sha256": "c4b5e8f11a78e796c538423360f8fc5817c3ee10f0595f4032118f8de614e5ec",
+      "source": "LL-Q1321 (spa)-Eavqwiki-mi.wav"
     },
     "miedo": {
       "author": "Rodrigo5260",
