@@ -65,6 +65,7 @@
     "en": "loĝi is to live somewhere, to reside; being alive is vivi."
    }
   },
+  "to-climb-stairs": { "text": "supreniri la ŝtuparon" },
   "do-you-have-the-keys": { "text": "Ĉu vi havas la ŝlosilojn?", "orders": ["Ĉu la ŝlosilojn vi havas?"] },
   "ill-be-right-back": { "text": "Mi tuj revenos!", "accepts": ["Mi revenos tuj!"], "orders": ["Tuj mi revenos!"] },
   "take-off-your-shoes": {

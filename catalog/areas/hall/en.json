@@ -33,6 +33,10 @@
   "to-enter": { "text": "to come in" },
   "house": { "text": "house" },
   "to-live": { "text": "to live" },
+  "to-climb-stairs": {
+   "text": "to climb the stairs",
+   "accepts": ["to climb stairs", "to take the stairs", "to go up the stairs"]
+  },
   "do-you-have-the-keys": { "text": "Do you have the keys?" },
   "ill-be-right-back": { "text": "I'll be right back!" },
   "hurry-were-late": { "text": "Hurry up, we're late!" },

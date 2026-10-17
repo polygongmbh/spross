@@ -45,6 +45,7 @@
     "de": "жити = leben und wohnen (Alltag) · мешкати = wohnen, amtlich."
    }
   },
+  "to-climb-stairs": { "text": "підніма́тися схо́дами" },
   "do-you-have-the-keys": { "text": "У те́бе є ключі́?", "orders": ["Ключі у тебе є?"] },
   "ill-be-right-back": {
    "text": "Я за́раз поверну́ся!",

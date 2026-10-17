@@ -74,6 +74,7 @@
     "de": "vivir = wohnen und leben."
    }
   },
+  "to-climb-stairs": { "text": "subir las escaleras", "accepts": ["subir escaleras"] },
   "do-you-have-the-keys": { "text": "¿Tienes las llaves?", "accepts": ["¿Llevas las llaves?"] },
   "ill-be-right-back": { "text": "¡Ahora vuelvo!", "accepts": ["¡Vuelvo enseguida!", "¡Enseguida vuelvo!"] },
   "take-off-your-shoes": { "text": "Quítate los zapatos.", "accepts": ["Sácate los zapatos."] },

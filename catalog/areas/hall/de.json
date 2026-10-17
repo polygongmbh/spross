@@ -37,6 +37,7 @@
   "to-enter": { "text": "hereinkommen", "accepts": ["reinkommen"] },
   "house": { "text": "Haus", "forms": { "pl": "die Häuser" }, "grammar": { "article": "das" } },
   "to-live": { "text": "wohnen" },
+  "to-climb-stairs": { "text": "Treppen steigen", "accepts": ["Treppe steigen", "die Treppe hochgehen"] },
   "do-you-have-the-keys": { "text": "Hast du die Schlüssel?", "orders": ["Du hast die Schlüssel?"] },
   "ill-be-right-back": {
    "text": "Ich komme gleich zurück!",

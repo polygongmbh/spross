@@ -30,6 +30,7 @@
   "to-enter": { "text": "kuingia" },
   "house": { "text": "nyumba", "grammar": { "plural": "=" } },
   "to-live": { "text": "kuishi" },
+  "to-climb-stairs": { "text": "kupanda ngazi" },
   "do-you-have-the-keys": { "text": "Unazo funguo?" },
   "ill-be-right-back": { "text": "Narudi sasa hivi!", "orders": ["Sasa hivi narudi!"] },
   "hurry-were-late": { "text": "Fanyeni haraka, tumechelewa!" },

@@ -100,6 +100,7 @@
     "de": "abitare heißt wohnen; vivere heißt leben und kann auch wohnen bedeuten."
    }
   },
+  "to-climb-stairs": { "text": "salire le scale" },
   "do-you-have-the-keys": { "text": "Hai le chiavi?", "accepts": ["Hai preso le chiavi?"] },
   "ill-be-right-back": { "text": "Torno subito!", "accepts": ["Torno tra un attimo!"], "orders": ["Subito torno!"] },
   "take-off-your-shoes": { "text": "Togliti le scarpe.", "accepts": ["Levati le scarpe."] },
