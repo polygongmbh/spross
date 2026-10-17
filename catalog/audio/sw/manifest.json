@@ -492,14 +492,15 @@
       "source": "Sw-ke-Senegal.flac"
     },
     "Tanzania": {
-      "author": "Byera04",
+      "author": "Waithera Were",
       "file": "countries/tanzania.mp3",
-      "gain": 1.4,
-      "gate": -56.7,
+      "gain": -7.3,
+      "gate": -62.9,
+      "lead": 48,
       "matches": "Tanzania",
-      "mos": 2.6,
-      "sha256": "1d69971083a6b60e334cfee3f5b9bfc5fbd63d17eb1b1642cbc3020211a0cdea",
-      "source": "LL-Q7838 (swa)-Byera04-Tanzania.wav"
+      "mos": 2.76,
+      "sha256": "9edd69b482a5063376547e06e64e65cb7bc5854cb1484fd19a8e2f28754f28d9",
+      "source": "Sw-ke-Tanzania.flac"
     },
     "Tunisia": {
       "author": "Waithera Were",
