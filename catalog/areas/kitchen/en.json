@@ -21,7 +21,7 @@
   "to-boil": { "text": "to boil" },
   "to-reheat": { "text": "to reheat" },
   "to-stir": { "text": "to stir" },
-  "to-take-out-trash": { "text": "to take out the trash" },
+  "to-throw-away-trash": { "text": "to throw away the trash" },
   "caution": { "text": "caution", "accepts": ["careful"] },
   "cup": { "text": "cup" },
   "bowl": { "text": "bowl" },

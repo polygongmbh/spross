@@ -48,11 +48,7 @@
   "to-boil": { "text": "bouillir", "accepts": ["faire bouillir"] },
   "to-reheat": { "text": "réchauffer", "accepts": ["faire réchauffer"] },
   "to-stir": { "text": "remuer", "accepts": ["mélanger", "touiller"] },
-  "to-take-out-trash": {
-   "text": "sortir la poubelle",
-   "accepts": ["sortir les poubelles", "descendre la poubelle"],
-   "notes": { "fr": "on sort la poubelle, pas les ordures." }
-  },
+  "to-throw-away-trash": { "text": "jeter les ordures" },
   "caution": { "text": "attention" },
   "cup": { "text": "tasse", "grammar": { "article": "la" } },
   "bowl": { "text": "bol", "grammar": { "article": "le" } },
