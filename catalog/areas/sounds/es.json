@@ -28,6 +28,7 @@
   "to-listen-to": { "text": "escuchar" },
   "to-listen-to-music": { "text": "escuchar música" },
   "to-play-instrument": { "text": "tocar un instrumento" },
+  "to-sing": { "text": "cantar" },
   "louder": { "text": "¡Más fuerte!", "accepts": ["¡Más alto!"] }
  }
 }

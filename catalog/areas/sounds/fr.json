@@ -32,6 +32,7 @@
    "notes": { "fr": "quantité non comptée : écouter de la musique, boire de l'eau." }
   },
   "to-play-instrument": { "text": "jouer d'un instrument", "notes": { "fr": "jouer du piano, de la guitare." } },
+  "to-sing": { "text": "chanter" },
   "louder": { "text": "Plus fort !" }
  }
 }

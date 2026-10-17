@@ -13,6 +13,7 @@
   "to-listen-to": { "text": "слу́хати" },
   "to-listen-to-music": { "text": "слу́хати му́зику" },
   "to-play-instrument": { "text": "гра́ти на інструме́нті", "notes": { "uk": "грати на гітарі, на піаніно." } },
+  "to-sing": { "text": "співа́ти" },
   "louder": { "text": "Голосні́ше!", "accepts": ["Гучніше!"] }
  }
 }

@@ -13,6 +13,7 @@
   "to-listen-to": { "text": "to listen" },
   "to-listen-to-music": { "text": "to listen to music" },
   "to-play-instrument": { "text": "to play an instrument" },
+  "to-sing": { "text": "to sing" },
   "louder": { "text": "Louder!" }
  }
 }

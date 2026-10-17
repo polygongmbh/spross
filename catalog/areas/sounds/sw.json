@@ -27,6 +27,7 @@
    "accepts": ["kupiga ala"],
    "notes": { "sw": "kupiga gitaa, kupiga piano." }
   },
+  "to-sing": { "text": "kuimba" },
   "louder": { "text": "Kwa sauti zaidi!", "accepts": ["Kwa sauti kubwa zaidi!"] }
  }
 }

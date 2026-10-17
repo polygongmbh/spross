@@ -11,5 +11,6 @@
  { "slug": "to-listen-to", "kind": "verb" },
  { "slug": "to-listen-to-music", "kind": "verb", "emoji": "🎵" },
  { "slug": "to-play-instrument", "kind": "verb", "emoji": "🎻" },
+ { "slug": "to-sing", "kind": "verb", "emoji": "🧑‍🎤" },
  { "slug": "louder", "kind": "phrase", "emoji": "🔊", "components": ["loud"] }
 ]
