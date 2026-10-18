@@ -9507,17 +9507,6 @@
       "sha256": "0acc51e0fe7c05500dc86c00cf2d62ed54169e31940b0b5371140b8d1ebf3ccb",
       "source": "LL-Q143 (epo)-Poslovitch-tago.wav"
     },
-    "tajpi": {
-      "author": "Lepticed7",
-      "file": "words/tajpi.mp3",
-      "gain": -0.8,
-      "gate": -72.2,
-      "lead": 189,
-      "matches": "tajpi",
-      "mos": 2.91,
-      "sha256": "3067470cfaa309753e021390f837d767d0c5691c2a1e22ebe8f1a3a78229ea0e",
-      "source": "LL-Q143 (epo)-Lepticed7-tajpi.wav"
-    },
     "taksio": {
       "author": "Lepticed7",
       "cap": 0.4,

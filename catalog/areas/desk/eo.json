@@ -20,7 +20,6 @@
   "printer": { "text": "presilo", "accepts": ["printilo"] },
   "socket": { "text": "ŝtopilingo", "notes": { "eo": "ŝtopilingo estas en la muro." } },
   "to-work": { "text": "labori" },
-  "to-type": { "text": "tajpi" },
   "to-print": { "text": "presi", "accepts": ["printi"] },
   "to-save": { "text": "konservi" },
   "to-take-break": { "text": "fari paŭzon", "accepts": ["paŭzi"] },

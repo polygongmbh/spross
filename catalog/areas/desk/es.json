@@ -31,7 +31,6 @@
    "notes": { "es": "El enchufe es la toma de la pared." }
   },
   "to-work": { "text": "trabajar" },
-  "to-type": { "text": "teclear", "accepts": ["mecanografiar", "escribir a máquina"] },
   "to-print": { "text": "imprimir" },
   "to-save": { "text": "guardar", "accepts": ["almacenar"] },
   "to-take-break": { "text": "hacer una pausa", "accepts": ["hacer un descanso", "tomarse un descanso"] },

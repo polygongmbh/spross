@@ -22,7 +22,6 @@
   "printer": { "text": "stampante", "grammar": { "article": "la" } },
   "socket": { "text": "presa", "accepts": ["presa di corrente"], "grammar": { "article": "la" } },
   "to-work": { "text": "lavorare" },
-  "to-type": { "text": "digitare", "accepts": ["battere a macchina", "scrivere a macchina"] },
   "to-print": { "text": "stampare" },
   "to-save": { "text": "salvare", "accepts": ["memorizzare"] },
   "to-take-break": { "text": "fare una pausa", "accepts": ["prendersi una pausa"] },

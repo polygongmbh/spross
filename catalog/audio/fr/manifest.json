@@ -11637,17 +11637,6 @@
       "sha256": "b231e57d7e3f6d8d5934708c4654e9ce086eb08de8f1c241a55382dd8ff05a1d",
       "source": "LL-Q150 (fra)-Lepticed7-tante.wav"
     },
-    "taper": {
-      "author": "Vion Nicolas",
-      "file": "words/taper.mp3",
-      "gain": -1.0,
-      "gate": -72.5,
-      "lead": 8,
-      "matches": "taper",
-      "mos": 3.16,
-      "sha256": "10cdeb9344059777f7ce9c354ef1a2f997c64c3a2cd0800d9e3fd48b095015b8",
-      "source": "Fr-taper.ogg"
-    },
     "tapis": {
       "author": "LoquaxFR",
       "cap": 1.2,

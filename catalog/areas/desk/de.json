@@ -17,7 +17,6 @@
   "printer": { "text": "Drucker", "grammar": { "article": "der", "plural": "=" } },
   "socket": { "text": "Steckdose", "forms": { "pl": "die Steckdosen" }, "grammar": { "article": "die" } },
   "to-work": { "text": "arbeiten" },
-  "to-type": { "text": "tippen" },
   "to-print": { "text": "drucken" },
   "to-save": { "text": "speichern" },
   "to-take-break": { "text": "Pause machen" },

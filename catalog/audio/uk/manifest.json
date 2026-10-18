@@ -3607,16 +3607,6 @@
       "sha256": "013a94c111a386d5522942dd0606b5af45ce7ec403ce873dc1eaef869295f25e",
       "source": "Uk-дружина.ogg"
     },
-    "друкува́ти": {
-      "author": "Галя Раптова, Nicolas Vion",
-      "file": "words/u0434u0440u0443u043au0443u0432u0430u0301u0442u0438.mp3",
-      "gain": -2.6,
-      "gate": -54.1,
-      "matches": "друкува́ти",
-      "mos": 3.11,
-      "sha256": "b4467db0e83f8e06c1f181157cbc940d66137ce3fa4480d55bf9f7395f0e7653",
-      "source": "Uk-друкувати.ogg"
-    },
     "ду́же": {
       "author": "Галя Раптова, Nicolas Vion",
       "file": "words/u0434u0443u0301u0436u0435.mp3",

@@ -61,7 +61,6 @@ Neighbors: app and code issues `../docs/backlog.md`.
   the nouns carry no class the way de/fr/es nouns carry `grammar.article`; a catalog
   `"grammar": { "class": "KI_VI" }` on `catalog/areas/*/sw.json` would let an author state it
   once for the frames, the card itself and a future concord drill.
-- `desk/to-type` is a natural bare verb in only 5 of 8 languages (de tippen, en to type, eo tajpi, it digitare, uk друкувати; fr `taper` and es `teclear` lean on context, sw has none and stays unrealized) — keep it bare, re-cut it as a phrase with an object, or make it a noun?
 
 ## Ready
 

@@ -16,7 +16,6 @@
  { "slug": "screen", "kind": "noun", "emoji": "🖥️" },
  { "slug": "to-save", "kind": "verb", "emoji": "💾" },
  { "slug": "to-print", "kind": "verb", "emoji": "🖨️" },
- { "slug": "to-type", "kind": "verb", "emoji": "⌨️" },
  { "slug": "to-delete", "kind": "verb", "emoji": "🗑️" },
  { "slug": "password", "kind": "noun", "emoji": "🔒" },
  { "slug": "folder", "kind": "noun", "emoji": "📁" },

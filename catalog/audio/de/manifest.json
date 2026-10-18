@@ -17254,16 +17254,6 @@
       "sha256": "c8b25399d4e2dca3fdf8e50c0deb158bc278172e957f3fc80d1cfd8ae35f9318",
       "source": "De-Tiere2.ogg"
     },
-    "tippen": {
-      "author": "Jeuwre",
-      "file": "words/tippen.mp3",
-      "gain": -0.5,
-      "lead": 442,
-      "matches": "tippen",
-      "mos": 3.0,
-      "sha256": "16bca13b391951918067242bafd83728081066be98691b63e3aa25eea2495189",
-      "source": "De-tippen.ogg"
-    },
     "tisch": {
       "author": "Jeuwre",
       "file": "words/tisch.mp3",

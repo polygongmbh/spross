@@ -10548,16 +10548,6 @@
       "sha256": "0e468037de95e6cf9308c40af7a41573ffd8e41d17c40cdcdc0dbc02f487020e",
       "source": "En-us-turn.ogg"
     },
-    "type": {
-      "author": "Dvortygirl",
-      "file": "words/type.mp3",
-      "gain": -1.8,
-      "gate": -71.7,
-      "matches": "type",
-      "mos": 3.2,
-      "sha256": "2c97e868ae246ef562963a69d7e68240ef08806fd8ec9ca4c0f13604454d473a",
-      "source": "En-us-type.ogg"
-    },
     "umbrella": {
       "author": "Dvortygirl",
       "file": "words/umbrella.mp3",

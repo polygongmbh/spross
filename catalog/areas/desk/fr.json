@@ -35,7 +35,6 @@
    "grammar": { "article": "la" }
   },
   "to-work": { "text": "travailler" },
-  "to-type": { "text": "taper", "accepts": ["saisir", "taper à l'ordinateur"] },
   "to-print": { "text": "imprimer" },
   "to-save": { "text": "enregistrer", "teaches": ["sauvegarder"] },
   "to-take-break": { "text": "faire une pause", "accepts": ["prendre une pause"] },
