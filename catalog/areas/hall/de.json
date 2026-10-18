@@ -13,7 +13,10 @@
   "doorbell": { "text": "Klingel", "forms": { "pl": "die Klingeln" }, "grammar": { "article": "die" } },
   "stairs": { "text": "Treppe", "forms": { "pl": "die Treppen" }, "grammar": { "article": "die" } },
   "bag": { "text": "Tasche", "forms": { "pl": "die Taschen" }, "grammar": { "article": "die" } },
-  "to-lock": { "text": "abschließen" },
+  "to-lock": {
+   "text": "abschließen",
+   "accepts": ["zuschließen", "zusperren", "mit dem Schlüssel schließen", "mit dem Schlüssel zuschließen"]
+  },
   "to-ring": { "text": "klingeln" },
   "to-take-off-shoes": { "text": "Schuhe ausziehen" },
   "to-set-off": { "text": "von zu Hause losgehen" },

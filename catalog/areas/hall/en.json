@@ -13,7 +13,7 @@
   "doorbell": { "text": "doorbell" },
   "stairs": { "text": "stairs", "grammar": { "plural": "only" } },
   "bag": { "text": "bag" },
-  "to-lock": { "text": "to lock" },
+  "to-lock": { "text": "to lock", "accepts": ["to close with a key", "to close with the key"] },
   "to-ring": { "text": "to ring" },
   "to-take-off-shoes": { "text": "to take off one's shoes" },
   "to-set-off": { "text": "to set off from home" },

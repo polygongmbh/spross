@@ -13,7 +13,7 @@
   "doorbell": { "text": "дзвіно́к", "forms": { "pl": "дзвінки́" } },
   "stairs": { "text": "схо́ди", "grammar": { "plural": "only" } },
   "bag": { "text": "су́мка" },
-  "to-lock": { "text": "замика́ти на ключ" },
+  "to-lock": { "text": "замика́ти", "accepts": ["замикати на ключ"] },
   "to-ring": { "text": "дзвони́ти у две́рі" },
   "to-take-off-shoes": { "text": "зніма́ти взуття́" },
   "to-set-off": { "text": "вихо́дити з до́му" },
