@@ -1,6 +1,6 @@
 {
  "title": "Die Küche",
- "subtitle": "Hier duftet es nach Abendessen.",
+ "subtitle": "Hier duftet es nach Essen.",
  "words": {
   "fridge": { "text": "Kühlschrank", "forms": { "pl": "die Kühlschränke" }, "grammar": { "article": "der" } },
   "stove": { "text": "Herd", "forms": { "pl": "die Herde" }, "grammar": { "article": "der" } },

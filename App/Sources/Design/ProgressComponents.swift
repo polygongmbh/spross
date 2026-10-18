@@ -224,7 +224,7 @@ private var ladder: some View {
             StreakFlameView(days: 12, health: .ending)
             StreakFlameView(days: 12, emoji: "🎉")
             AreaChip(emoji: "🍳", name: "Küche",
-                     subtitle: "Hier duftet es nach Abendessen.",
+                     subtitle: "Hier duftet es nach Essen.",
                      progress: .init(allSettled: 18, allGrowing: 6, queued: 0, progressTotal: 24),
                      lockedPhrases: 0)
                 .panelSurface()

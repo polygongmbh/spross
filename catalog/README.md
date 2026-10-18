@@ -180,7 +180,7 @@ and always through `../scripts/catalog-rename-slugs.py`, which carries every ref
 
 **`areas/<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
-{ "title": "Die Küche", "subtitle": "Hier duftet es nach Abendessen.",
+{ "title": "Die Küche", "subtitle": "Hier duftet es nach Essen.",
   "words": {
     "fridge": { "text": "Kühlschrank", "forms": { "pl": "die Kühlschränke" }, "grammar": { "article": "der" } },
     "to-cook": { "text": "kochen" },
