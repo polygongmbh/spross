@@ -59,6 +59,8 @@
   },
   "i-love-you": { "text": "Mi amas vin.", "orders": ["Vin mi amas."] },
   "i-have-to-rest": { "text": "Mi devas ripozi." },
-  "soft-mattress": { "text": "mola matraco" }
+  "soft-mattress": { "text": "mola matraco" },
+  "cant-you-fall-asleep": { "text": "Ĉu vi ne povas ekdormi?" },
+  "the-children-are-already-asleep": { "text": "La infanoj jam dormas." }
  }
 }

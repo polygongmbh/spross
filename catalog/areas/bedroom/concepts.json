@@ -36,5 +36,17 @@
  { "slug": "im-tired", "kind": "phrase", "emoji": "🥱", "components": [] },
  { "slug": "did-you-set-the-alarm", "kind": "phrase", "emoji": "⏰", "components": ["alarm-clock"] },
  { "slug": "i-love-you", "kind": "phrase", "emoji": "❤️", "components": [] },
- { "slug": "i-have-to-rest", "kind": "phrase", "emoji": "🛌", "components": ["to-rest"] }
+ { "slug": "i-have-to-rest", "kind": "phrase", "emoji": "🛌", "components": ["to-rest"] },
+ {
+  "slug": "cant-you-fall-asleep",
+  "kind": "phrase",
+  "emoji": "🌙",
+  "components": ["to-fall-asleep"]
+ },
+ {
+  "slug": "the-children-are-already-asleep",
+  "kind": "phrase",
+  "emoji": "😴",
+  "components": ["to-sleep"]
+ }
 ]

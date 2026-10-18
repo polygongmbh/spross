@@ -44,6 +44,11 @@
   "did-you-set-the-alarm": { "text": "Umeweka saa ya kengele?" },
   "i-love-you": { "text": "Nakupenda." },
   "i-have-to-rest": { "text": "Lazima nipumzike.", "accepts": ["Ninahitaji kupumzika."] },
-  "soft-mattress": { "text": "godoro laini", "forms": { "pl": "magodoro laini" } }
+  "soft-mattress": { "text": "godoro laini", "forms": { "pl": "magodoro laini" } },
+  "cant-you-fall-asleep": { "text": "Huwezi kusinzia?", "accepts": ["Huwezi kupata usingizi?", "Huwezi kulala usingizi?"] },
+  "the-children-are-already-asleep": {
+   "text": "Watoto wameshalala.",
+   "accepts": ["Watoto wamelala tayari.", "Watoto wamekwisha kulala."]
+  }
  }
 }

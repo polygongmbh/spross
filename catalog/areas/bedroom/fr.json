@@ -63,6 +63,12 @@
   },
   "i-love-you": { "text": "Je t'aime." },
   "i-have-to-rest": { "text": "Je dois me reposer." },
-  "soft-mattress": { "text": "matelas moelleux", "grammar": { "article": "le", "plural": "=" } }
+  "soft-mattress": { "text": "matelas moelleux", "grammar": { "article": "le", "plural": "=" } },
+  "cant-you-fall-asleep": {
+   "text": "Tu n'arrives pas à t'endormir ?",
+   "accepts": ["Tu ne peux pas t'endormir ?"],
+   "notes": { "fr": "Je n'arrive pas à dormir : je veux, mais je ne peux pas." }
+  },
+  "the-children-are-already-asleep": { "text": "Les enfants dorment déjà." }
  }
 }

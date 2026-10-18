@@ -57,6 +57,8 @@
    "notes": { "es": "Te quiero en el día a día; te amo suena a película." }
   },
   "i-have-to-rest": { "text": "Tengo que descansar." },
-  "soft-mattress": { "text": "colchón blando", "grammar": { "article": "el" } }
+  "soft-mattress": { "text": "colchón blando", "grammar": { "article": "el" } },
+  "cant-you-fall-asleep": { "text": "¿No puedes dormirte?", "accepts": ["¿No te puedes dormir?"] },
+  "the-children-are-already-asleep": { "text": "Los niños ya duermen.", "accepts": ["Los niños ya están dormidos."] }
  }
 }

@@ -60,6 +60,12 @@
    "notes": { "it": "ti amo si dice al partner · alla famiglia si dice ti voglio bene." }
   },
   "i-have-to-rest": { "text": "Devo riposare.", "accepts": ["Devo riposarmi."] },
-  "soft-mattress": { "text": "materasso soffice", "grammar": { "article": "il" } }
+  "soft-mattress": { "text": "materasso soffice", "grammar": { "article": "il" } },
+  "cant-you-fall-asleep": {
+   "text": "Non riesci ad addormentarti?",
+   "accepts": ["Non puoi addormentarti?"],
+   "notes": { "it": "Non riesco a dormire: voglio, ma non posso." }
+  },
+  "the-children-are-already-asleep": { "text": "I bambini dormono già." }
  }
 }

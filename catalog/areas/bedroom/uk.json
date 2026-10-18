@@ -43,6 +43,8 @@
   },
   "i-love-you": { "text": "Я тебе́ коха́ю.", "orders": ["Я кохаю тебе."] },
   "i-have-to-rest": { "text": "Мені́ тре́ба відпочи́ти.", "orders": ["Мені відпочити треба."] },
-  "soft-mattress": { "text": "м'яки́й матра́ц" }
+  "soft-mattress": { "text": "м'яки́й матра́ц" },
+  "cant-you-fall-asleep": { "text": "Не мо́жеш засну́ти?", "accepts": ["Ти не можеш заснути?"] },
+  "the-children-are-already-asleep": { "text": "Ді́ти вже сплять." }
  }
 }

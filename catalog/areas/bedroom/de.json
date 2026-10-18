@@ -43,6 +43,8 @@
   "did-you-set-the-alarm": { "text": "Hast du den Wecker gestellt?", "orders": ["Du hast den Wecker gestellt?"] },
   "i-love-you": { "text": "Ich liebe dich.", "orders": ["Dich liebe ich."] },
   "i-have-to-rest": { "text": "Ich muss mich ausruhen." },
-  "soft-mattress": { "text": "weiche Matratze" }
+  "soft-mattress": { "text": "weiche Matratze" },
+  "cant-you-fall-asleep": { "text": "Kannst du nicht einschlafen?" },
+  "the-children-are-already-asleep": { "text": "Die Kinder schlafen schon." }
  }
 }
