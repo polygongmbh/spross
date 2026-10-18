@@ -39,6 +39,10 @@
    "accepts": ["The exam has already been corrected.", "The exam is already graded."]
   },
   "mistake": { "text": "mistake" },
-  "to-be-wrong": { "text": "to be wrong" }
+  "to-be-wrong": { "text": "to be wrong" },
+  "look-up-the-word-in-the-dictionary": {
+   "text": "Look up the word in the dictionary.",
+   "accepts": ["Look the word up in the dictionary."]
+  }
  }
 }

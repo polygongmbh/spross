@@ -38,5 +38,11 @@
  { "slug": "ask-the-teacher", "kind": "phrase", "emoji": "🧑‍🏫", "components": ["teacher"] },
  { "slug": "i-have-a-good-grade", "kind": "phrase", "components": ["grade"] },
  { "slug": "we-go-to-the-classroom", "kind": "phrase", "components": ["classroom"] },
- { "slug": "the-exam-is-already-corrected", "kind": "phrase", "components": ["exam", "to-correct"] }
+ { "slug": "the-exam-is-already-corrected", "kind": "phrase", "components": ["exam", "to-correct"] },
+ {
+  "slug": "look-up-the-word-in-the-dictionary",
+  "kind": "phrase",
+  "emoji": "🔤",
+  "components": ["dictionary"]
+ }
 ]

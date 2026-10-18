@@ -43,6 +43,10 @@
    "notes": { "sw": "umeshasahihishwa = tayari umesahihishwa" }
   },
   "mistake": { "text": "kosa", "forms": { "pl": "makosa" } },
-  "to-be-wrong": { "text": "kukosea" }
+  "to-be-wrong": { "text": "kukosea" },
+  "look-up-the-word-in-the-dictionary": {
+   "text": "Tafuteni neno kamusini.",
+   "accepts": ["Tafuteni neno katika kamusi.", "Tafuteni neno kwenye kamusi."]
+  }
  }
 }

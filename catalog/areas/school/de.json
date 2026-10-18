@@ -44,6 +44,7 @@
   "we-go-to-the-classroom": { "text": "Wir gehen ins Klassenzimmer.", "orders": ["Ins Klassenzimmer gehen wir."] },
   "the-exam-is-already-corrected": { "text": "Die Prüfung ist schon korrigiert." },
   "mistake": { "text": "Fehler", "grammar": { "article": "der", "plural": "=" } },
-  "to-be-wrong": { "text": "sich irren" }
+  "to-be-wrong": { "text": "sich irren" },
+  "look-up-the-word-in-the-dictionary": { "text": "Schlagt das Wort im Wörterbuch nach.", "accepts": ["Sucht das Wort im Wörterbuch."] }
  }
 }

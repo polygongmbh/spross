@@ -83,6 +83,10 @@
   "we-go-to-the-classroom": { "text": "Vamos al aula.", "orders": ["Al aula vamos."] },
   "the-exam-is-already-corrected": { "text": "El examen ya está corregido.", "orders": ["Ya está corregido el examen."] },
   "mistake": { "text": "error", "grammar": { "article": "el" } },
-  "to-be-wrong": { "text": "equivocarse" }
+  "to-be-wrong": { "text": "equivocarse" },
+  "look-up-the-word-in-the-dictionary": {
+   "text": "Buscad la palabra en el diccionario.",
+   "accepts": ["Busquen la palabra en el diccionario."]
+  }
  }
 }

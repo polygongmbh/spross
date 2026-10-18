@@ -39,6 +39,10 @@
   "we-go-to-the-classroom": { "text": "Ми йдемо́ до кла́су.", "orders": ["До класу ми йдемо."] },
   "the-exam-is-already-corrected": { "text": "І́спит уже́ переві́рений.", "accepts": ["Іспит уже перевірено."] },
   "mistake": { "text": "помилка" },
-  "to-be-wrong": { "text": "помиля́тися" }
+  "to-be-wrong": { "text": "помиля́тися" },
+  "look-up-the-word-in-the-dictionary": {
+   "text": "Шука́йте сло́во в словнику́.",
+   "accepts": ["Знайдіть слово в словнику.", "Подивіться слово в словнику."]
+  }
  }
 }

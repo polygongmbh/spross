@@ -61,6 +61,7 @@
   "we-go-to-the-classroom": { "text": "Ni iras en la klasĉambron.", "orders": ["En la klasĉambron ni iras."] },
   "the-exam-is-already-corrected": { "text": "La ekzameno jam estas korektita.", "orders": ["La ekzameno estas jam korektita."] },
   "mistake": { "text": "eraro" },
-  "to-be-wrong": { "text": "erari" }
+  "to-be-wrong": { "text": "erari" },
+  "look-up-the-word-in-the-dictionary": { "text": "Serĉu la vorton en la vortaro." }
  }
 }

@@ -100,6 +100,7 @@
   },
   "the-exam-is-already-corrected": { "text": "L'examen est déjà corrigé.", "orders": ["Déjà, l'examen est corrigé."] },
   "mistake": { "text": "erreur", "accepts": ["l'erreur"], "grammar": { "article": "l'", "gender": "f" } },
-  "to-be-wrong": { "text": "se tromper" }
+  "to-be-wrong": { "text": "se tromper" },
+  "look-up-the-word-in-the-dictionary": { "text": "Cherchez le mot dans le dictionnaire." }
  }
 }
