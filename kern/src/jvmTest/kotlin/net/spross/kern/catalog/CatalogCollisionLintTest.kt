@@ -283,6 +283,11 @@ class CatalogCollisionLintTest {
                 // a homonym, not a merge: de/en/eo/es/fr/it/uk all split it (rechts/weinen). The
                 // area label tells them apart on produce, and the verb has no other everyday word.
                 "sw kulia: emotions/to-cry, place/right",
+                // Reviewed 2026-10-18: sw `kupenda` is to like AND to love (Napenda chai · Nakupenda) —
+                // one verb, the merge the kuacha entry describes; de/en/eo/es/fr/it/uk all split the
+                // pair (mögen/lieben, like/love, ŝati/ami, gustar/amar, aimer bien/aimer, piacere/amare,
+                // любити/кохати). There is no second everyday Swahili word for either, so both stay.
+                "sw kupenda: emotions/to-love, verbs/to-like",
                 // Reviewed 2026-10-03: sw `kidogo` is "a little" AND the ki-class form of
                 // `-dogo` (small) that qualities/small teaches — one word, since the adverb
                 // is that agreement form; every other language splits the pair (wenig/klein).

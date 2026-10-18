@@ -19,6 +19,7 @@
   "to-confuse": { "text": "kuchanganya" },
   "to-be-confused": { "text": "kuchanganyikiwa" },
   "longing": { "text": "hamu", "grammar": { "plural": "=" } },
-  "to-long-for": { "text": "kuwa na hamu" }
+  "to-long-for": { "text": "kuwa na hamu" },
+  "to-love": { "text": "kupenda" }
  }
 }
