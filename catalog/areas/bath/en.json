@@ -31,7 +31,11 @@
   "faucet": { "text": "faucet", "teaches": ["tap"] },
   "trash-can": { "text": "trash can", "teaches": ["bin"] },
   "bucket": { "text": "bucket" },
-  "to-wash-up": { "text": "to wash up", "accepts": ["to wash oneself", "to get washed"] },
+  "to-wash-up": {
+   "text": "to wash up",
+   "accepts": ["to wash oneself", "to get washed"],
+   "notes": { "en": "In British English, to wash up means doing the dishes." }
+  },
   "to-put-on-makeup": { "text": "to put on makeup", "accepts": ["to do your makeup", "to do one's makeup"] },
   "to-blow-dry-hair": {
    "text": "to blow-dry your hair",
