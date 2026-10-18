@@ -11,7 +11,7 @@
   "to-congratulate": { "text": "kupongeza" },
   "wedding": { "text": "harusi", "accepts": ["arusi"], "grammar": { "plural": "=" } },
   "birth": { "text": "uzazi" },
-  "to-receive-guests": { "text": "kukaribisha wageni" },
+  "to-receive-guests": { "text": "kupokea wageni", "teaches": ["kukaribisha wageni"] },
   "we-give-her-something-for-her-birthday": {
    "text": "Tunamzawadia kitu kwa siku yake ya kuzaliwa.",
    "accepts": ["Tunampa zawadi kwa siku yake ya kuzaliwa."]
