@@ -45,6 +45,8 @@
   "lets-hang-the-picture": { "text": "Пові́симо карти́ну!" },
   "the-curtains-hang-over-the-window": { "text": "Што́ри ви́сять пе́ред вікно́м.", "orders": ["Перед вікном висять штори."] },
   "the-window-is-closed": { "text": "Вікно́ зачи́нене." },
-  "the-window-is-open": { "text": "Вікно́ відчи́нене." }
+  "the-window-is-open": { "text": "Вікно́ відчи́нене." },
+  "the-remote-is-on-the-sofa": { "text": "Пульт лежи́ть на дива́ні.", "accepts": ["Пульт на дивані."] },
+  "children-turn-off-the-tv": { "text": "Ді́ти, ви́мкніть телеві́зор!" }
  }
 }

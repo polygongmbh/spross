@@ -86,6 +86,11 @@
    "orders": ["Devant la fenêtre pendent les rideaux."]
   },
   "the-window-is-closed": { "text": "La fenêtre est fermée." },
-  "the-window-is-open": { "text": "La fenêtre est ouverte." }
+  "the-window-is-open": { "text": "La fenêtre est ouverte." },
+  "the-remote-is-on-the-sofa": { "text": "La télécommande est sur le canapé." },
+  "children-turn-off-the-tv": {
+   "text": "Les enfants, éteignez la télé !",
+   "accepts": ["Les enfants, éteignez la télévision !"]
+  }
  }
 }

@@ -40,6 +40,8 @@
   "lets-hang-the-picture": { "text": "Tutundike picha!" },
   "the-curtains-hang-over-the-window": { "text": "Mapazia yananing'inia mbele ya dirisha." },
   "the-window-is-closed": { "text": "Dirisha limefungwa." },
-  "the-window-is-open": { "text": "Dirisha liko wazi." }
+  "the-window-is-open": { "text": "Dirisha liko wazi." },
+  "the-remote-is-on-the-sofa": { "text": "Rimoti iko juu ya kochi.", "accepts": ["Rimoti iko kochini."] },
+  "children-turn-off-the-tv": { "text": "Watoto, zimeni runinga!", "accepts": ["Watoto, zimeni televisheni!"] }
  }
 }

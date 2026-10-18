@@ -55,6 +55,11 @@
    "orders": ["Vor dem Fenster hängen die Vorhänge."]
   },
   "the-window-is-closed": { "text": "Das Fenster ist geschlossen." },
-  "the-window-is-open": { "text": "Das Fenster ist offen." }
+  "the-window-is-open": { "text": "Das Fenster ist offen." },
+  "the-remote-is-on-the-sofa": {
+   "text": "Die Fernbedienung liegt auf dem Sofa.",
+   "accepts": ["Die Fernbedienung ist auf dem Sofa."]
+  },
+  "children-turn-off-the-tv": { "text": "Kinder, schaltet den Fernseher aus!" }
  }
 }

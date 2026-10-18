@@ -64,6 +64,8 @@
    "orders": ["Antaŭ la fenestro pendas la kurtenoj."]
   },
   "the-window-is-closed": { "text": "La fenestro estas fermita." },
-  "the-window-is-open": { "text": "La fenestro estas malfermita." }
+  "the-window-is-open": { "text": "La fenestro estas malfermita." },
+  "the-remote-is-on-the-sofa": { "text": "La teleregilo estas sur la sofo.", "accepts": ["La teleregilo kuŝas sur la sofo."] },
+  "children-turn-off-the-tv": { "text": "Infanoj, malŝaltu la televidilon!" }
  }
 }

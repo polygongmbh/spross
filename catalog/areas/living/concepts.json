@@ -43,5 +43,12 @@
   "components": ["curtain", "window"]
  },
  { "slug": "the-window-is-closed", "kind": "phrase", "emoji": "🪟", "components": ["window"] },
- { "slug": "the-window-is-open", "kind": "phrase", "emoji": "🪟", "components": ["window"] }
+ { "slug": "the-window-is-open", "kind": "phrase", "emoji": "🪟", "components": ["window"] },
+ {
+  "slug": "the-remote-is-on-the-sofa",
+  "kind": "phrase",
+  "emoji": "🛋️",
+  "components": ["remote", "sofa"]
+ },
+ { "slug": "children-turn-off-the-tv", "kind": "phrase", "emoji": "📺", "components": ["tv"] }
 ]

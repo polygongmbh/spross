@@ -44,6 +44,11 @@
    "orders": ["In front of the window hang the curtains."]
   },
   "the-window-is-closed": { "text": "The window is closed." },
-  "the-window-is-open": { "text": "The window is open." }
+  "the-window-is-open": { "text": "The window is open." },
+  "the-remote-is-on-the-sofa": { "text": "The remote is on the sofa.", "accepts": ["The remote control is on the sofa."] },
+  "children-turn-off-the-tv": {
+   "text": "Children, turn off the TV!",
+   "accepts": ["Children, turn off the television!", "Children, turn the TV off!"]
+  }
  }
 }
