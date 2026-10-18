@@ -9,6 +9,7 @@
   "umbrella": { "text": "mwavuli", "forms": { "pl": "miavuli" } },
   "hat": { "text": "kofia", "grammar": { "plural": "=" } },
   "mailbox": { "text": "sanduku la barua", "forms": { "pl": "masanduku ya barua" } },
+  "hallway": { "text": "korido", "grammar": { "plural": "=" } },
   "doorbell": { "text": "kengele", "grammar": { "plural": "=" } },
   "stairs": { "text": "ngazi", "grammar": { "plural": "=" } },
   "bag": { "text": "begi", "teaches": ["mfuko"], "forms": { "pl": "mabegi" } },
