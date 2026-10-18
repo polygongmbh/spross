@@ -41,6 +41,7 @@
   "dont-forget-your-jacket": { "text": "Usisahau jaketi lako!" },
   "put-on-the-jacket": { "text": "kuvaa jaketi" },
   "take-off-your-shoes": { "text": "Vua viatu vyako." },
-  "children-where-are-your-shoes": { "text": "Watoto, viatu vyenu viko wapi?" }
+  "children-where-are-your-shoes": { "text": "Watoto, viatu vyenu viko wapi?" },
+  "someones-ringing-the-doorbell": { "text": "Mtu anapiga kengele.", "accepts": ["Kengele inalia."] }
  }
 }

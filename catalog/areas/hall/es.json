@@ -92,6 +92,7 @@
   "children-where-are-your-shoes": {
    "text": "Niños, ¿dónde están vuestros zapatos?",
    "accepts": ["Niños, ¿dónde están sus zapatos?"]
-  }
+  },
+  "someones-ringing-the-doorbell": { "text": "Tocan el timbre.", "accepts": ["Suena el timbre."] }
  }
 }

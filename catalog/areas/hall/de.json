@@ -52,6 +52,7 @@
   "dont-forget-your-jacket": { "text": "Vergiss deine Jacke nicht!" },
   "put-on-the-jacket": { "text": "die Jacke anziehen" },
   "take-off-your-shoes": { "text": "Zieh deine Schuhe aus." },
-  "children-where-are-your-shoes": { "text": "Kinder, wo sind eure Schuhe?" }
+  "children-where-are-your-shoes": { "text": "Kinder, wo sind eure Schuhe?" },
+  "someones-ringing-the-doorbell": { "text": "Es klingelt an der Tür.", "accepts": ["Es klingelt.", "Jemand klingelt an der Tür."] }
  }
 }

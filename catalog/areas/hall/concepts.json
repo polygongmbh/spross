@@ -48,5 +48,11 @@
   "emoji": "🧥",
   "components": ["to-get-dressed", "jacket"]
  },
- { "slug": "children-where-are-your-shoes", "kind": "phrase", "components": ["shoe"] }
+ { "slug": "children-where-are-your-shoes", "kind": "phrase", "components": ["shoe"] },
+ {
+  "slug": "someones-ringing-the-doorbell",
+  "kind": "phrase",
+  "emoji": "🔔",
+  "components": ["to-ring"]
+ }
 ]

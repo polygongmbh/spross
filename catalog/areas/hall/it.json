@@ -108,6 +108,7 @@
    "accepts": ["Non dimenticarti la giacca!", "Non dimenticare la tua giacca!"]
   },
   "put-on-the-jacket": { "text": "mettersi la giacca" },
-  "children-where-are-your-shoes": { "text": "Bambini, dove sono le vostre scarpe?" }
+  "children-where-are-your-shoes": { "text": "Bambini, dove sono le vostre scarpe?" },
+  "someones-ringing-the-doorbell": { "text": "Suonano alla porta.", "accepts": ["Suonano il campanello."] }
  }
 }
