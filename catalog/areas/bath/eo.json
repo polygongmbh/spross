@@ -65,6 +65,7 @@
    "orders": ["La dentojn ne forgesu brosi!"]
   },
   "wash-your-hands": { "text": "Lavu viajn manojn.", "accepts": ["Lavu la manojn.", "Lavu al vi la manojn."] },
-  "the-laundry-is-being-washed": { "text": "La tolaĵo estas lavata nun.", "orders": ["Nun la tolaĵo estas lavata."] }
+  "the-laundry-is-being-washed": { "text": "La tolaĵo estas lavata nun.", "orders": ["Nun la tolaĵo estas lavata."] },
+  "theres-no-more-soap": { "text": "Ne plu estas sapo.", "accepts": ["Ne plu restas sapo."] }
  }
 }

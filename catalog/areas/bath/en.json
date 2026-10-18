@@ -51,6 +51,7 @@
   "the-laundry-is-being-washed": {
    "text": "The laundry is being washed right now.",
    "orders": ["Right now, the laundry is being washed."]
-  }
+  },
+  "theres-no-more-soap": { "text": "There's no more soap.", "accepts": ["There is no more soap.", "We're out of soap."] }
  }
 }

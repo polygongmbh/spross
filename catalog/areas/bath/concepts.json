@@ -57,5 +57,6 @@
   "slug": "the-laundry-is-being-washed",
   "kind": "phrase",
   "components": ["laundry", "to-do-laundry"]
- }
+ },
+ { "slug": "theres-no-more-soap", "kind": "phrase", "emoji": "🧼", "components": ["soap"] }
 ]

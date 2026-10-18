@@ -84,6 +84,7 @@
   "the-laundry-is-being-washed": {
    "text": "La colada se está lavando ahora mismo.",
    "orders": ["Se está lavando la colada ahora mismo."]
-  }
+  },
+  "theres-no-more-soap": { "text": "Ya no hay jabón.", "accepts": ["No queda jabón."] }
  }
 }
