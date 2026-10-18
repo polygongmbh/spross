@@ -169,7 +169,9 @@ class CatalogCollisionLintTest {
                 "es que: comparison/than, connectors/that-conj",
                 // Reviewed 2026-10-17: es `querer` is to want AND to love (te quiero) — de/en/eo/fr/it/uk
                 // all split the pair (wollen/lieben, want/love, voli/ami, vouloir/aimer, volere/amare,
-                // хотіти/кохати). `amar` is the film register, so it is taught beside querer, not instead.
+                // хотіти/кохати). Reviewed 2026-10-18: emotions/to-love is `amar`, the verb that names
+                // love and nothing else; `querer` is the everyday te quiero, so the card teaches it
+                // beside amar, and as a teaches entry it still prompts — hence the pin stays.
                 "es querer: emotions/to-love, verbs/to-want",
                 "es tiempo: time/time, weather/weather",
                 // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
