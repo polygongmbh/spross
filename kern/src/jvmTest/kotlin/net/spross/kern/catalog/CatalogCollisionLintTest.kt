@@ -174,6 +174,11 @@ class CatalogCollisionLintTest {
                 // beside amar, and as a teaches entry it still prompts — hence the pin stays.
                 "es querer: emotions/to-love, verbs/to-want",
                 "es tiempo: time/time, weather/weather",
+                // Reviewed 2026-10-18: es `tirar` is ziehen (tirar de la cuerda) AND
+                // wegwerfen (tirar la basura) — genuine Spanish polysemy; de/en/eo/fr/it/
+                // sw/uk all split the pair. `botar` for throwing away is regional and
+                // `jalar` for pulling is American, so both stay the everyday `tirar`.
+                "es tirar: kitchen/to-throw-away, verbs/to-pull",
                 // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
                 // classroom board — genuine French polysemy, one word both areas need
                 // as their first pick. Repicking picture as `cadre` would teach the

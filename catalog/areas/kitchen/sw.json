@@ -22,6 +22,7 @@
   "to-reheat": { "text": "kupasha moto" },
   "to-stir": { "text": "kukoroga" },
   "to-take-out-trash": { "text": "kutoa taka nje" },
+  "to-throw-away": { "text": "kutupa" },
   "caution": {
    "text": "tahadhari",
    "accepts": ["angalia"],

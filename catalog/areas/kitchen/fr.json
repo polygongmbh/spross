@@ -53,6 +53,7 @@
    "accepts": ["sortir les poubelles", "descendre la poubelle"],
    "notes": { "fr": "on sort la poubelle, pas les ordures." }
   },
+  "to-throw-away": { "text": "jeter" },
   "caution": { "text": "attention" },
   "cup": { "text": "tasse", "grammar": { "article": "la" } },
   "bowl": { "text": "bol", "grammar": { "article": "le" } },

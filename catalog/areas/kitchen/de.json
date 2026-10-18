@@ -30,6 +30,7 @@
   "to-reheat": { "text": "aufwärmen" },
   "to-stir": { "text": "umrühren" },
   "to-take-out-trash": { "text": "den Müll rausbringen", "accepts": ["Müll rausbringen"] },
+  "to-throw-away": { "text": "wegwerfen" },
   "caution": { "text": "Vorsicht" },
   "cup": { "text": "Tasse", "forms": { "pl": "die Tassen" }, "grammar": { "article": "die" } },
   "bowl": { "text": "Schüssel", "forms": { "pl": "die Schüsseln" }, "grammar": { "article": "die" } },

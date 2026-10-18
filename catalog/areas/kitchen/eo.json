@@ -30,6 +30,7 @@
   "to-reheat": { "text": "revarmigi" },
   "to-stir": { "text": "kirli" },
   "to-take-out-trash": { "text": "elporti la rubon", "accepts": ["elporti la rubaĵon"] },
+  "to-throw-away": { "text": "forĵeti" },
   "caution": { "text": "atentu", "accepts": ["gardu vin"] },
   "cup": { "text": "taso" },
   "bowl": { "text": "bovlo" },

@@ -44,6 +44,7 @@
    "text": "portare fuori la spazzatura",
    "accepts": ["portare fuori l'immondizia", "buttare la spazzatura"]
   },
+  "to-throw-away": { "text": "buttare via", "accepts": ["buttare"] },
   "caution": { "text": "attenzione" },
   "cup": { "text": "tazza", "grammar": { "article": "la" } },
   "bowl": { "text": "ciotola", "accepts": ["scodella"], "grammar": { "article": "la" } },
