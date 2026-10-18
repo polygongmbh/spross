@@ -17,7 +17,6 @@
  { "slug": "to-say-goodbye", "kind": "verb", "emoji": "👋" },
  { "slug": "to-take-off-shoes", "kind": "verb", "emoji": "👟" },
  { "slug": "to-lock", "kind": "verb", "emoji": "🔒" },
- { "slug": "to-unlock", "kind": "verb", "emoji": "🔓" },
  { "slug": "to-knock-on-door", "kind": "verb", "emoji": "🚪" },
  { "slug": "to-ring", "kind": "verb", "emoji": "🔔" },
  { "slug": "coat", "kind": "noun", "emoji": "🥼" },

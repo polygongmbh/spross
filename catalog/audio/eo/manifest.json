@@ -6143,17 +6143,6 @@
       "sha256": "b77d1235bcb4cd1adaafdac32534b1e491cfd3b13e56fe67f9ab7bee80b5ffac",
       "source": "LL-Q143 (epo)-Lepticed7-malĝojo.wav"
     },
-    "malŝlosi": {
-      "author": "Lepticed7",
-      "file": "words/malu015dlosi.mp3",
-      "gain": 3.7,
-      "gate": -74.7,
-      "lead": 231,
-      "matches": "malŝlosi",
-      "mos": 3.09,
-      "sha256": "12ee1f6700d6d9bfec0f7a4de19fc02952d050c5aed4a27fd1ecf8b2daeded9e",
-      "source": "LL-Q143 (epo)-Lepticed7-malŝlosi.wav"
-    },
     "manioko": {
       "author": "Lepticed7",
       "file": "words/manioko.mp3",

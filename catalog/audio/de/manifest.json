@@ -5948,16 +5948,6 @@
       "sha256": "5ff61c5911854d1c8202b391a06b13af7fc055a10d45d719171413b3ab6ee9c2",
       "source": "De-aufräumen.ogg"
     },
-    "aufschließen": {
-      "author": "Jeuwre",
-      "file": "words/aufschlieu00dfen.mp3",
-      "gain": -1.1,
-      "lead": 447,
-      "matches": "aufschließen",
-      "mos": 2.86,
-      "sha256": "79057343ac6bdf1a53703f599dab9da96c0b3842c318a978b243556ddc4b48db",
-      "source": "De-aufschließen2.ogg"
-    },
     "aufstehen": {
       "author": "Jeuwre",
       "file": "words/aufstehen.mp3",

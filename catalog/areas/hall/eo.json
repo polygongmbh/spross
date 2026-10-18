@@ -39,7 +39,6 @@
   },
   "to-take-off-shoes": { "text": "demeti la ŝuojn", "accepts": ["demeti ŝuojn", "senŝuiĝi"] },
   "to-set-off": { "text": "foriri de hejme", "accepts": ["eliri el la hejmo", "ekiri de hejme"] },
-  "to-unlock": { "text": "malŝlosi" },
   "to-get-dressed": { "text": "vesti sin", "accepts": ["sin vesti", "vestiĝi"] },
   "to-arrive": { "text": "alveni" },
   "to-greet": { "text": "saluti" },

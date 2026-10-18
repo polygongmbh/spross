@@ -5100,17 +5100,6 @@
       "sha256": "56cc70f77944f1bf5fe64ce4ffa366dfd6b1ff50d69365291a3fb09ac279696d",
       "source": "Fr-déposer.ogg"
     },
-    "déverrouiller": {
-      "author": "Jérémy-Günther-Heinz Jähnick",
-      "file": "words/du00e9verrouiller.mp3",
-      "gain": 1.8,
-      "gate": -73.2,
-      "lead": 125,
-      "matches": "déverrouiller",
-      "mos": 2.98,
-      "sha256": "8eefc83aeb3d5ad04ae001f7815f7ebb179f07003fe869185a68f933e98c9e95",
-      "source": "LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-déverrouiller.wav"
-    },
     "dîner": {
       "author": "Vion Nicolas",
       "file": "words/du00eener.mp3",

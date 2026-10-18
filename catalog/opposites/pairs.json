@@ -38,7 +38,6 @@
  ["everyone", "no-one"],
  ["to-buy", "to-sell"],
  ["to-open", "to-close"],
- ["to-lock", "to-unlock"],
  ["to-push", "to-pull"],
  ["to-lose", "to-find"],
  ["to-give", "to-take"],

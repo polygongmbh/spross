@@ -10622,17 +10622,6 @@
       "sha256": "1fb3e8fdb647c6cd29bf0fec721e577d9c5c8fbdfcac5e3488ba4ee1b7c56712",
       "source": "En-us-university.ogg"
     },
-    "unlock": {
-      "author": "Vealhurl",
-      "file": "words/unlock.mp3",
-      "gain": 6.2,
-      "gate": -75.7,
-      "lead": 183,
-      "matches": "unlock",
-      "mos": 2.36,
-      "sha256": "c0466068184d29fb6f06ede808c9d3264a98dce7751e291c5323419d1777c042",
-      "source": "LL-Q1860 (eng)-Vealhurl-unlock.wav"
-    },
     "until": {
       "author": "Dvortygirl",
       "file": "words/until.mp3",

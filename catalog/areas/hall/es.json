@@ -37,7 +37,6 @@
   },
   "to-take-off-shoes": { "text": "quitarse los zapatos", "accepts": ["sacarse los zapatos", "descalzarse"] },
   "to-set-off": { "text": "salir de casa" },
-  "to-unlock": { "text": "abrir con llave" },
   "to-get-dressed": { "text": "vestirse" },
   "to-arrive": { "text": "llegar" },
   "to-greet": { "text": "saludar" },

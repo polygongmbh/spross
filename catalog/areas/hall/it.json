@@ -46,10 +46,6 @@
   },
   "to-take-off-shoes": { "text": "togliersi le scarpe", "accepts": ["levarsi le scarpe"] },
   "to-set-off": { "text": "uscire di casa" },
-  "to-unlock": {
-   "text": "aprire con la chiave",
-   "notes": { "it": "non c'è un verbo solo: apro la porta con la chiave." }
-  },
   "to-get-dressed": { "text": "vestirsi" },
   "to-arrive": { "text": "arrivare" },
   "to-greet": { "text": "salutare" },
