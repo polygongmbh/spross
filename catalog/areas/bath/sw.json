@@ -3,7 +3,7 @@
  "subtitle": "Safi kabisa.",
  "words": {
   "washing-machine": { "text": "mashine ya kufulia", "forms": { "pl": "mashine za kufulia" } },
-  "laundry": { "text": "nguo za kufua", "grammar": { "plural": "only" } },
+  "laundry": { "text": "nguo ya kufua", "forms": { "pl": "nguo za kufua" } },
   "toilet": { "text": "choo", "forms": { "pl": "vyoo" } },
   "shower": { "text": "shawa", "grammar": { "plural": "=" } },
   "sink": { "text": "sinki la kunawa", "forms": { "pl": "masinki ya kunawa" } },
