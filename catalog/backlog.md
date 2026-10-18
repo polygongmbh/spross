@@ -138,3 +138,9 @@ Neighbors: app and code issues `../docs/backlog.md`.
   `../../docs/sprachposter-learnings.md`); uk carries 3 of 9 (сьоме небо, як з відра, тримати
   кулаки) and sw 0, and filling them needs a speaker finding real equivalents, not a
   translation pass.
+- A Ukrainian speaker's wording queue, two `bath` cards: `to-put-on-makeup` (de `sich schminken`)
+  reads `фарбува́тися`, which also means dyeing one's hair — is `роби́ти макія́ж` (wörtlich
+  Make-up machen, now only accepted) the better text? And `im-taking-a-quick-shower`
+  (de `Ich gehe kurz duschen.`) reads `Я йду швиде́нько в душ.` (wörtlich ich gehe schnell in
+  die Dusche), which sounds stiff — would `Я швиде́нько схожу́ в душ.` (ich geh schnell mal in
+  die Dusche) or `Я піду́ швиде́нько в душ.` (ich werde schnell in die Dusche gehen) say it?
