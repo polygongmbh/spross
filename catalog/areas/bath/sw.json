@@ -28,7 +28,11 @@
   "sponge": { "text": "sifongo", "grammar": { "plural": "=" } },
   "cream": { "text": "krimu", "grammar": { "plural": "=" } },
   "faucet": { "text": "bomba la maji", "forms": { "pl": "mabomba ya maji" } },
-  "trash-can": { "text": "pipa la taka", "forms": { "pl": "mapipa ya taka" } },
+  "trash-can": {
+   "text": "pipa la takataka",
+   "forms": { "pl": "mapipa ya takataka" },
+   "accepts": ["pipa la taka"]
+  },
   "bucket": { "text": "ndoo", "grammar": { "plural": "=" } },
   "to-wash-up": { "text": "kujiosha" },
   "to-put-on-makeup": { "text": "kujipodoa" },
