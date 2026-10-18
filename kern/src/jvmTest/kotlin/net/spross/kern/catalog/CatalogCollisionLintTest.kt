@@ -352,7 +352,7 @@ class CatalogCollisionLintTest {
                 // word for both, where de/en/eo/es/fr/it/sw split the pair (kommen/ankommen,
                 // come/arrive, veni/alveni, venir/llegar, venir/arriver, venire/arrivare, kuja/kufika).
                 // `прибувати` is the timetable register, so hall/to-arrive teaches it beside
-                // приходити, and its note sets приїжджати (by vehicle) apart.
+                // приходити, and teaches приїжджати too, which its note sets apart (by vehicle).
                 "uk приходити: hall/to-arrive, verbs/to-come",
                 // Reviewed 2026-09-05: uk `що` is what AND the conjunction that — every other
                 // language splits the pair (was/dass, what/that, kio/ke, qué/que, quoi/que,
