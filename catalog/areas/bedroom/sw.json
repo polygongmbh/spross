@@ -31,7 +31,7 @@
   "soft": { "text": "laini" },
   "to-rest": { "text": "kupumzika" },
   "to-change-clothes": { "text": "kubadilisha nguo" },
-  "to-fall-asleep": { "text": "kupata usingizi" },
+  "to-fall-asleep": { "text": "kusinzia", "accepts": ["kupata usingizi"] },
   "to-iron": { "text": "kupiga pasi" },
   "sleep-well": { "text": "Lala salama!" },
   "good-morning-my-love": {
