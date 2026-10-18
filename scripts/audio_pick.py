@@ -48,7 +48,7 @@ class Measures:
     def submit(self, sha, path, scored=True):
         """A future of the measures of [path]; an unreadable take answers None rather than raising."""
         held = self.known.get(sha)
-        if held and ('mos' in held or not scored):
+        if held and 'balance' in held and ('mos' in held or not scored):
             done = concurrent.futures.Future()
             done.set_result(held)
             return done
