@@ -1,6 +1,6 @@
 {
  "title": "Die Schule",
- "subtitle": "Ein ganz normaler Schultag.",
+ "subtitle": "Lass uns zusammen lernen!",
  "words": {
   "school": { "text": "Schule", "forms": { "pl": "die Schulen" }, "grammar": { "article": "die" } },
   "classroom": { "text": "Klassenzimmer", "grammar": { "article": "das", "plural": "=" } },

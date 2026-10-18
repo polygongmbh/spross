@@ -1,6 +1,6 @@
 {
  "title": "Der Flur",
- "subtitle": "Ankommen und wieder losgehen.",
+ "subtitle": "Willkommen zu Hause!",
  "words": {
   "hallway": { "text": "Flur", "forms": { "pl": "die Flure" }, "grammar": { "article": "der" } },
   "door": { "text": "Tür", "forms": { "pl": "die Türen" }, "grammar": { "article": "die" } },

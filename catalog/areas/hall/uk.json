@@ -1,6 +1,6 @@
 {
  "title": "У передпокої",
- "subtitle": "Тут заходять і виходять.",
+ "subtitle": "З поверненням додому!",
  "words": {
   "hallway": { "text": "коридо́р", "teaches": ["передпо́кій"] },
   "door": { "text": "две́рі", "grammar": { "plural": "only" } },

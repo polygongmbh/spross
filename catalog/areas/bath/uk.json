@@ -1,6 +1,6 @@
 {
  "title": "У ванній",
- "subtitle": "Свіжо й чисто.",
+ "subtitle": "Чистенько!",
  "words": {
   "washing-machine": { "text": "пра́льна маши́на", "forms": { "pl": "пра́льні маши́ни" } },
   "laundry": { "text": "біли́зна", "teaches": ["прання́"] },

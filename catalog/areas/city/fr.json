@@ -1,6 +1,6 @@
 {
  "title": "La ville",
- "subtitle": "Il y a toujours de l'animation.",
+ "subtitle": "Allez, on sort !",
  "words": {
   "street": { "text": "rue", "grammar": { "article": "la" } },
   "park": { "text": "parc", "grammar": { "article": "le" } },

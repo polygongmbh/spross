@@ -1,6 +1,6 @@
 {
  "title": "Die Stadt",
- "subtitle": "Immer etwas los.",
+ "subtitle": "Auf zum Bummel!",
  "words": {
   "street": { "text": "Straße", "forms": { "pl": "die Straßen" }, "grammar": { "article": "die" } },
   "park": { "text": "Park", "forms": { "pl": "die Parks" }, "grammar": { "article": "der" } },

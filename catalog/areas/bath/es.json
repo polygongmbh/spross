@@ -1,6 +1,6 @@
 {
  "title": "El cuarto de baño",
- "subtitle": "Fresco y limpio.",
+ "subtitle": "¡Todo reluciente!",
  "words": {
   "washing-machine": { "text": "lavadora", "accepts": ["lavarropas"], "grammar": { "article": "la" } },
   "laundry": {

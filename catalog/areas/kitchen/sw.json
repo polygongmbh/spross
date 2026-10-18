@@ -1,6 +1,6 @@
 {
  "title": "Jikoni",
- "subtitle": "Harufu ya chakula cha jioni.",
+ "subtitle": "Karibu chakula!",
  "words": {
   "fridge": { "text": "friji", "grammar": { "plural": "=" } },
   "stove": { "text": "jiko", "forms": { "pl": "majiko" } },

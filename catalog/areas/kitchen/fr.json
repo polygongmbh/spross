@@ -1,6 +1,6 @@
 {
  "title": "La cuisine",
- "subtitle": "Ici, ça sent le dîner.",
+ "subtitle": "Bon appétit !",
  "words": {
   "fridge": { "text": "réfrigérateur", "accepts": ["frigo", "frigidaire"], "grammar": { "article": "le" } },
   "stove": {

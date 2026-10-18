@@ -1,6 +1,6 @@
 {
  "title": "El salón",
- "subtitle": "Hora de descansar.",
+ "subtitle": "¡A relajarse!",
  "words": {
   "sofa": { "text": "sofá", "grammar": { "article": "el" } },
   "dining-table": { "text": "mesa de comedor", "accepts": ["mesa del comedor"], "grammar": { "article": "la" } },

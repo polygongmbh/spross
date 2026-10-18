@@ -1,6 +1,6 @@
 {
  "title": "La skribotablo",
- "subtitle": "Tempo por koncentriĝi.",
+ "subtitle": "Bonan laboron!",
  "words": {
   "desk": { "text": "skribotablo", "accepts": ["skribtablo"] },
   "laptop": { "text": "tekokomputilo", "accepts": ["portebla komputilo", "tekkomputilo"] },

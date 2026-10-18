@@ -1,6 +1,6 @@
 {
  "title": "La città",
- "subtitle": "C'è sempre movimento.",
+ "subtitle": "Andiamo a fare un giro!",
  "words": {
   "street": { "text": "strada", "grammar": { "article": "la" } },
   "park": { "text": "parco", "forms": { "pl": "i parchi" }, "grammar": { "article": "il" } },

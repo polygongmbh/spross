@@ -1,6 +1,6 @@
 {
  "title": "La cucina",
- "subtitle": "Qui c'è profumo di cena.",
+ "subtitle": "Buon appetito!",
  "words": {
   "fridge": { "text": "frigorifero", "accepts": ["frigo"], "grammar": { "article": "il" } },
   "stove": {

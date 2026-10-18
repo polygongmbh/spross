@@ -1,6 +1,6 @@
 {
  "title": "El dormitorio",
- "subtitle": "Hora de acostarse.",
+ "subtitle": "¡Dulces sueños!",
  "words": {
   "bed": { "text": "cama", "grammar": { "article": "la" } },
   "mattress": { "text": "colchón", "grammar": { "article": "el" } },

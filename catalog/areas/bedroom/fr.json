@@ -1,6 +1,6 @@
 {
  "title": "La chambre",
- "subtitle": "L'heure d'aller au lit.",
+ "subtitle": "Fais de beaux rêves !",
  "words": {
   "bed": { "text": "lit", "grammar": { "article": "le" } },
   "mattress": { "text": "matelas", "grammar": { "article": "le", "plural": "=" } },

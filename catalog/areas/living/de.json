@@ -1,6 +1,6 @@
 {
  "title": "Das Wohnzimmer",
- "subtitle": "Zeit zum Ausruhen.",
+ "subtitle": "Mach's dir gemütlich!",
  "words": {
   "sofa": { "text": "Sofa", "forms": { "pl": "die Sofas" }, "grammar": { "article": "das" } },
   "dining-table": { "text": "Esstisch", "forms": { "pl": "die Esstische" }, "grammar": { "article": "der" } },

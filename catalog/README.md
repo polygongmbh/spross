@@ -180,7 +180,7 @@ and always through `../scripts/catalog-rename-slugs.py`, which carries every ref
 
 **`areas/<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
-{ "title": "Die Küche", "subtitle": "Hier duftet es nach Essen.",
+{ "title": "Die Küche", "subtitle": "Guten Appetit!",
   "words": {
     "fridge": { "text": "Kühlschrank", "forms": { "pl": "die Kühlschränke" }, "grammar": { "article": "der" } },
     "to-cook": { "text": "kochen" },
@@ -193,6 +193,9 @@ and always through `../scripts/catalog-rename-slugs.py`, which carries every ref
   Never the title again and never a fragment of it, and per area it is **all-or-nothing
   across the declared languages**: a clause only one language carries reads as a hole
   in every other reader's box. Lint holds both.
+  Unlike a realization it does not mirror: each language says what its speakers would say
+  (a room's is a short greeting, `Guten Appetit!` / `Bon appétit !` / `Karibu chakula!`),
+  while the posters keep a longer sentence per room in `../../sprachposter/templates/subtitles.toml`.
 
 Realization fields — only `text` is required:
 - `text` — the canonical answer/display form, nothing else: no embedded gloss, label or

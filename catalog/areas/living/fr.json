@@ -1,6 +1,6 @@
 {
  "title": "Le salon",
- "subtitle": "L'heure de se détendre.",
+ "subtitle": "Mets-toi à l'aise !",
  "words": {
   "sofa": { "text": "canapé", "accepts": ["sofa"], "grammar": { "article": "le" } },
   "dining-table": {

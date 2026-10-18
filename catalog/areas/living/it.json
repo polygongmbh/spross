@@ -1,6 +1,6 @@
 {
  "title": "Il soggiorno",
- "subtitle": "È ora di rilassarsi.",
+ "subtitle": "Mettiti a tuo agio!",
  "words": {
   "sofa": { "text": "divano", "grammar": { "article": "il" } },
   "dining-table": { "text": "tavolo da pranzo", "accepts": ["tavolo"], "grammar": { "article": "il" } },
