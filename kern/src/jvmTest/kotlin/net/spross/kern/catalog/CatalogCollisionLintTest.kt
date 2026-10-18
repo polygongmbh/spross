@@ -176,8 +176,8 @@ class CatalogCollisionLintTest {
                 "es tiempo: time/time, weather/weather",
                 // Reviewed 2026-10-18: es `tirar` is ziehen (tirar de la cuerda) AND
                 // wegwerfen (tirar la basura) — genuine Spanish polysemy; de/en/eo/fr/it/
-                // sw/uk all split the pair. `botar` for throwing away is regional and
-                // `jalar` for pulling is American, so both stay the everyday `tirar`.
+                // sw/uk all split the pair. `botar` (throwing away) and `jalar` (pulling)
+                // are Latin American, so both stay the everyday `tirar`.
                 "es tirar: kitchen/to-throw-away, verbs/to-pull",
                 // Reviewed 2026-08-15: `le tableau` is the picture on the wall AND the
                 // classroom board — genuine French polysemy, one word both areas need
@@ -291,7 +291,7 @@ class CatalogCollisionLintTest {
                 // area label tells them apart on produce, and the verb has no other everyday word.
                 "sw kulia: emotions/to-cry, place/right",
                 // Reviewed 2026-10-18: sw `kupenda` is to like AND to love (Napenda chai · Nakupenda) —
-                // one verb, the merge the kuacha entry describes; de/en/eo/es/fr/it/uk all split the
+                // one verb, the merge catalog/README.md describes for kuacha; de/en/eo/es/fr/it/uk all split the
                 // pair (mögen/lieben, like/love, ŝati/ami, gustar/amar, aimer bien/aimer, piacere/amare,
                 // любити/кохати). There is no second everyday Swahili word for either, so both stay.
                 "sw kupenda: emotions/to-love, verbs/to-like",
