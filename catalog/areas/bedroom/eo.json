@@ -43,7 +43,7 @@
   "to-make-bed": { "text": "ordigi la liton", "accepts": ["aranĝi la liton", "fari la liton"] },
   "soft": { "text": "mola", "notes": { "eo": "mola kiel lito aŭ haŭto · glata estas sen malglataĵoj." } },
   "to-rest": { "text": "ripozi" },
-  "to-change-clothes": { "text": "alivestiĝi", "accepts": ["ŝanĝi la vestojn"] },
+  "to-change-clothes": { "text": "alivestiĝi", "accepts": ["ŝanĝi la vestojn", "alivesti sin"] },
   "to-fall-asleep": { "text": "ekdormi", "accepts": ["endormiĝi"] },
   "to-iron": { "text": "gladi" },
   "sleep-well": { "text": "Dormu bone!" },
