@@ -21,7 +21,7 @@
   "to-boil": { "text": "kuchemsha" },
   "to-reheat": { "text": "kupasha moto" },
   "to-stir": { "text": "kukoroga" },
-  "to-throw-away-trash": { "text": "kutupa taka" },
+  "to-take-out-trash": { "text": "kutoa taka nje" },
   "caution": {
    "text": "tahadhari",
    "accepts": ["angalia"],

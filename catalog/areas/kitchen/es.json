@@ -38,7 +38,7 @@
   "to-boil": { "text": "hervir" },
   "to-reheat": { "text": "calentar", "teaches": ["recalentar"] },
   "to-stir": { "text": "remover", "accepts": ["revolver"] },
-  "to-throw-away-trash": { "text": "tirar la basura" },
+  "to-take-out-trash": { "text": "sacar la basura" },
   "caution": { "text": "cuidado", "accepts": ["ojo"] },
   "cup": { "text": "taza", "grammar": { "article": "la" } },
   "bowl": { "text": "cuenco", "accepts": ["bol", "tazón"], "grammar": { "article": "el" } },

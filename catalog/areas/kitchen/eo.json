@@ -29,7 +29,7 @@
   "to-boil": { "text": "boli" },
   "to-reheat": { "text": "revarmigi" },
   "to-stir": { "text": "kirli" },
-  "to-throw-away-trash": { "text": "forĵeti la rubon", "accepts": ["forĵeti la rubaĵon"] },
+  "to-take-out-trash": { "text": "elporti la rubon", "accepts": ["elporti la rubaĵon"] },
   "caution": { "text": "atentu", "accepts": ["gardu vin"] },
   "cup": { "text": "taso" },
   "bowl": { "text": "bovlo" },

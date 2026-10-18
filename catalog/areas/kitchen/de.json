@@ -29,7 +29,7 @@
   "to-fry": { "text": "braten" },
   "to-reheat": { "text": "aufwärmen" },
   "to-stir": { "text": "umrühren" },
-  "to-throw-away-trash": { "text": "den Müll wegwerfen", "accepts": ["Müll wegwerfen"] },
+  "to-take-out-trash": { "text": "den Müll rausbringen", "accepts": ["Müll rausbringen"] },
   "caution": { "text": "Vorsicht" },
   "cup": { "text": "Tasse", "forms": { "pl": "die Tassen" }, "grammar": { "article": "die" } },
   "bowl": { "text": "Schüssel", "forms": { "pl": "die Schüsseln" }, "grammar": { "article": "die" } },

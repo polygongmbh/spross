@@ -40,7 +40,10 @@
   "to-boil": { "text": "bollire", "accepts": ["far bollire"] },
   "to-reheat": { "text": "riscaldare", "accepts": ["scaldare"] },
   "to-stir": { "text": "mescolare", "accepts": ["rimescolare", "girare"] },
-  "to-throw-away-trash": { "text": "buttare la spazzatura" },
+  "to-take-out-trash": {
+   "text": "portare fuori la spazzatura",
+   "accepts": ["portare fuori l'immondizia", "buttare la spazzatura"]
+  },
   "caution": { "text": "attenzione" },
   "cup": { "text": "tazza", "grammar": { "article": "la" } },
   "bowl": { "text": "ciotola", "accepts": ["scodella"], "grammar": { "article": "la" } },
