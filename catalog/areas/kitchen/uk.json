@@ -21,7 +21,7 @@
   "to-boil": { "text": "вари́ти" },
   "to-reheat": { "text": "розігріва́ти" },
   "to-stir": { "text": "помі́шувати" },
-  "to-take-out-trash": { "text": "виносити сміття" },
+  "to-take-out-trash": { "text": "виносити сміття", "accepts": ["викидати сміття"] },
   "to-throw-away": { "text": "викида́ти" },
   "caution": { "text": "обере́жно" },
   "cup": { "text": "ча́шка" },

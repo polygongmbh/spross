@@ -14,10 +14,7 @@
   "to-make": { "text": "kufanya" },
   "to-like": {
    "text": "kupenda",
-   "notes": {
-    "sw": "Napenda lugha yako · Nakupenda!",
-    "de": "deckt mögen und lieben ab: Napenda chai · Nakupenda = Ich liebe dich."
-   }
+   "notes": { "sw": "Napenda lugha yako.", "de": "Napenda chai = Ich mag Tee." }
   },
   "to-can": {
    "text": "kuweza",
