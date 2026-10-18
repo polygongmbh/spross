@@ -307,6 +307,7 @@
     "Adem M.": "CC BY-SA 4.0",
     "Aemines1": "CC BY-SA 4.0",
     "Aemines5": "CC BY 4.0",
+    "Aemines6": "CC BY 4.0",
     "Ash Crow": "CC BY-SA 4.0",
     "Aurore1212121": "CC BY-SA 4.0",
     "Bananax47": "CC0",
@@ -333,6 +334,7 @@
     "Lyokoï": "CC BY-SA 4.0",
     "Mecanautes": "CC0",
     "Pamputt": "CC0",
+    "Penegal": "CC BY-SA 4.0",
     "Poslovitch": "CC0",
     "Roptat": "CC BY-SA 4.0",
     "Sagnamadr": "CC BY-SA 4.0",
@@ -4566,15 +4568,15 @@
       "source": "Fr-demander.ogg"
     },
     "dent": {
-      "author": "Poslovitch",
+      "author": "Aemines1",
       "file": "words/dent.mp3",
-      "gain": 0.5,
-      "gate": -69.8,
-      "lead": 112,
+      "gain": 8.9,
+      "gate": -87.1,
+      "lead": 204,
       "matches": "dent",
-      "mos": 2.64,
-      "sha256": "ad295dbdab76da67cac4596f6d155a339aa9836bd5839ae07ff9efa14c5844bb",
-      "source": "LL-Q150 (fra)-Poslovitch-dent.wav"
+      "mos": 2.94,
+      "sha256": "4060db77eca4d0d9cda34969ba7a1d24d36aabfb484c37ca073cfd5de04ff118",
+      "source": "LL-Q150 (fra)-Aemines1-dent.wav"
     },
     "dentifrice": {
       "author": "Poslovitch",
@@ -5741,15 +5743,15 @@
       "source": "LL-Q150 (fra)-Lepticed7-femme.wav"
     },
     "fenêtre": {
-      "author": "Sartus85",
+      "author": "Aemines6",
       "file": "words/fenu00eatre.mp3",
-      "gain": 4.9,
-      "gate": -87.9,
-      "lead": 126,
+      "gain": 3.3,
+      "gate": -81.1,
+      "lead": 122,
       "matches": "fenêtre",
-      "mos": 2.75,
-      "sha256": "9c1231c39332805142a86ec3924df25dd26c5481259e914aeb9e966ec3bf669a",
-      "source": "LL-Q150 (fra)-Sartus85-fenêtre.wav"
+      "mos": 3.13,
+      "sha256": "099faf4328894da04ea5763114c3ca463603fce4932ea3f280dfa6544dd16058",
+      "source": "LL-Q150 (fra)-Aemines6-fenêtre.wav"
     },
     "fermer": {
       "author": "Poslovitch",
@@ -7225,15 +7227,15 @@
       "source": "LL-Q150 (fra)-LoquaxFR-livre.wav"
     },
     "livrer": {
-      "author": "Vion Nicolas",
+      "author": "Penegal",
       "file": "words/livrer.mp3",
-      "gain": 0.6,
-      "gate": -71.6,
-      "lead": 168,
+      "gain": 1.6,
+      "gate": -72.0,
+      "lead": 10,
       "matches": "livrer",
-      "mos": 2.75,
-      "sha256": "f7b1c39565d830ab86d5fd6030668489e33b920fc74fde2bc06b8dbc2e1f435f",
-      "source": "Fr-livrer.ogg"
+      "mos": 3.12,
+      "sha256": "5416e61958b3117e2fe93209ee7ffc5f059579bda97f8aadde62f0a6f444104c",
+      "source": "LL-Q150 (fra)-Penegal-livrer.wav"
     },
     "loi": {
       "author": "Sartus85",
@@ -8933,14 +8935,15 @@
       "source": "LL-Q150 (fra)-Poslovitch-pays.wav"
     },
     "peau": {
-      "author": "LoquaxFR",
+      "author": "Ash Crow",
       "file": "words/peau.mp3",
-      "gain": 9.1,
-      "lead": 91,
+      "gain": 13.6,
+      "gate": -83.7,
+      "lead": 205,
       "matches": "peau",
-      "mos": 2.66,
-      "sha256": "7470d7a156714668e5c71f74f79251c6faf2669c14e412cdc57a999d5c5f2df7",
-      "source": "LL-Q150 (fra)-LoquaxFR-peau.wav"
+      "mos": 2.96,
+      "sha256": "a8f04d3522110ef8af899d0062f3f5168b5c066bf6c18e04a33941932f764e31",
+      "source": "LL-Q150 (fra)-Ash Crow-peau.wav"
     },
     "peaux": {
       "author": "WikiLucas00",
