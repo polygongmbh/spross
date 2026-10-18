@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Rate a listening set by ear, one key per take, straight into `docs/audio-verdicts.tsv`.
 
-    scripts/audio-listen.py <set.tsv>
+    scripts/audio-listen.py <set.tsv> [FILE]
     scripts/audio-listen.py sample NAME --from shipped|journal [--lang L] [--section S] [--voice V]
                                         [--mos-below X] [-n 15]
 
-A set is a TSV beside its mp3s (or naming absolute paths) with the columns `file lang word
-speaker source sha256 mos` and an optional `context`; the set's folder name stands in for a
-missing context. Each take plays on arrival:
+A set is a TSV beside its mp3s (or naming absolute paths), columns `file lang word speaker
+source sha256 mos` and an optional `context` (default: the set's folder name). [FILE] re-rates
+just that one take, rated already or not. Each take plays on arrival:
 
     1-5  rate it bad, mediocre, okay, good, great — and move on
     r    play it again (space too)
@@ -15,8 +15,6 @@ missing context. Each take plays on arrival:
     n    add a note first
     s    skip it
     q    stop; a later run resumes at the first take not yet rated in this context
-
-Sets stay small, about 15 takes, so one sitting finishes one.
 
 `sample` writes one to `../data/review/<date>-NAME/` out of takes nobody rated yet: `--from shipped`
 the lowest scorers of what ships, `--from journal` the swaps staged or shipped (`$W/staged.tsv`,
@@ -166,18 +164,24 @@ def play(path, player):
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == 'sample':
         return sample(sys.argv[2:])
-    if len(sys.argv) != 2:
+    if len(sys.argv) not in (2, 3):
         sys.exit(__doc__)
     path = sys.argv[1]
     base = os.path.dirname(os.path.abspath(path))
     rows = list(csv.DictReader(open(path, encoding='utf-8'), delimiter='\t'))
     default_context = os.path.basename(base)
-    with open(VERDICTS, encoding='utf-8') as handle:
-        fields = handle.readline().rstrip('\n').split('\t')
-        done = {(row['sha256'], row['context'])
-                for row in csv.DictReader(handle, fieldnames=fields, delimiter='\t')}
-    todo = [row for row in rows
-            if (row['sha256'], row.get('context') or default_context) not in done]
+    if len(sys.argv) == 3:
+        rerate = sys.argv[2]
+        todo = [row for row in rows if row['file'] == rerate]
+        if not todo:
+            sys.exit('%s names no row in %s' % (rerate, path))
+    else:
+        with open(VERDICTS, encoding='utf-8') as handle:
+            fields = handle.readline().rstrip('\n').split('\t')
+            done = {(row['sha256'], row['context'])
+                    for row in csv.DictReader(handle, fieldnames=fields, delimiter='\t')}
+        todo = [row for row in rows
+                if (row['sha256'], row.get('context') or default_context) not in done]
     print('%d of %d takes to rate\n  1 bad  2 mediocre  3 okay  4 good  5 great'
           '  ·  r replay  d defect  n note  s skip  q quit\n' % (len(todo), len(rows)))
     player = None
