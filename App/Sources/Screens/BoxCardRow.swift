@@ -156,9 +156,11 @@ struct BoxCardRow: View {
                     .foregroundStyle(Theme.colors.textSecondary)
                     .lineLimit(1)
             }
-            // why: the word's two lines are the one element that speaks; the row's
-            // unsuspend and queue controls stay elements of their own beside it.
+            // why: the word's two lines are the one element that speaks, its paused and
+            // reported marks folded in as its value; the row's unsuspend and queue
+            // controls stay elements of their own beside it.
             .accessibilityElement(children: .combine)
+            .accessibilityValue(markings)
             .pronounceOnTap(pronounce)
             Spacer(minLength: Theme.spacing.sm)
             // why: standing apart from `standing` on purpose — a report says
@@ -166,7 +168,7 @@ struct BoxCardRow: View {
             // whatever badge it had.
             if model.reportedIssue(for: card.id) != nil {
                 Text(verbatim: "🚩")
-                    .accessibilityLabel("a11y.report.reported")
+                    .accessibilityHidden(true)
             }
             standing
         }
@@ -180,6 +182,16 @@ struct BoxCardRow: View {
         )
         .saysOnTap(pronounce)
         .sheet(item: $sheet) { sheetBody($0) }
+    }
+
+    /// The row's 💤 and 🚩 in words, spoken as the word's own value.
+    private var markings: Text {
+        var parts: [Text] = []
+        if case .suspended = onEnum(of: model.cardRowState(card.id, queueOffered: queue != nil)) {
+            parts.append(Text("a11y.box.card.suspended"))
+        }
+        if model.reportedIssue(for: card.id) != nil { parts.append(Text("a11y.report.reported")) }
+        return parts.joined(separator: ", ") ?? Text(verbatim: "")
     }
 
     /// The citation form, with its article in the gender's own color — the same
@@ -211,7 +223,7 @@ struct BoxCardRow: View {
         switch onEnum(of: model.cardRowState(card.id, queueOffered: queue != nil)) {
         case .suspended:
             Text(verbatim: "💤")
-                .accessibilityLabel("a11y.box.card.suspended")
+                .accessibilityHidden(true)
             Button("box.card.unsuspend") {
                 model.setSuspended(cardID: card.id, suspended: false)
             }

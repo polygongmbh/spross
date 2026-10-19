@@ -103,9 +103,10 @@ fun StageBadge(standing: CardRowState.Standing, chrome: Chrome) {
             SEAL, color,
             modifier = Modifier.semantics { contentDescription = chrome.a11yBoxStageSettled },
         )
-        ActiveStage.Growing -> Pill("$HERB ${chrome.boxStageGrowing}", color)
-        ActiveStage.Lapsed -> Pill("$LEAF ${chrome.boxStageLapsed}", color)
-        ActiveStage.Fresh -> Pill("$LEAF ${chrome.boxStageFresh}", color)
+        // why: the stages on the way up are the eye's; only Settled is read.
+        ActiveStage.Growing -> Pill("$HERB ${chrome.boxStageGrowing}", color, Modifier.clearAndSetSemantics { })
+        ActiveStage.Lapsed -> Pill("$LEAF ${chrome.boxStageLapsed}", color, Modifier.clearAndSetSemantics { })
+        ActiveStage.Fresh -> Pill("$LEAF ${chrome.boxStageFresh}", color, Modifier.clearAndSetSemantics { })
     }
 }
 

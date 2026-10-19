@@ -164,7 +164,8 @@ internal fun ReportedRow(model: AppModel, card: Card) {
         verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.a11yReportReported })
+            // why: the section's own title already says these are reported.
+            Text("🚩", modifier = Modifier.clearAndSetSemantics { })
             Text(
                 card.pairLine,
                 style = MaterialTheme.typography.bodyLarge,

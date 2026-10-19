@@ -25,9 +25,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
@@ -96,6 +96,12 @@ fun BoxCardRow(
         }
     }
 
+    val reported = model.reportedIssue(card.id) != null
+    val markings = listOfNotNull(
+        chrome.a11yBoxCardSuspended.takeIf { standing == CardRowState.Suspended },
+        chrome.a11yReportReported.takeIf { reported },
+    ).joinToString(", ")
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -104,7 +110,11 @@ fun BoxCardRow(
                 MaterialTheme.colorScheme.surfaceVariant,
                 MaterialTheme.shapes.small,
             )
-            .semantics { customActions = actions }
+            // why: the row is one stop, its paused and reported marks folded in as its state.
+            .semantics {
+                customActions = actions
+                markings.takeIf { it.isNotEmpty() }?.let { stateDescription = it }
+            }
             .combinedClickable(
                 interactionSource = interaction,
                 indication = null,
@@ -158,8 +168,8 @@ fun BoxCardRow(
         }
         // why: standing apart from the badge on purpose — a report says nothing about where
         // the word stands, and a reported word keeps whatever badge it had.
-        if (model.reportedIssue(card.id) != null) {
-            Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.a11yReportReported })
+        if (reported) {
+            Text("🚩", modifier = Modifier.clearAndSetSemantics { })
         }
         CardStanding(model, card, standing, queue, chrome)
         BoxRowMenu(
@@ -191,7 +201,7 @@ private fun CardStanding(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
-            Text("💤", modifier = Modifier.semantics { contentDescription = chrome.a11yBoxCardSuspended })
+            Text("💤", modifier = Modifier.clearAndSetSemantics { })
             TextButton(onClick = {
                 model.updateBox { BoxEngine.setSuspended(it, card.id, false, model.now()) }
             }) {

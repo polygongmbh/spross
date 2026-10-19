@@ -125,8 +125,9 @@ extension BoxOwnContentSection {
 
     private func reportRow(_ issue: ReportedIssue, card: Card) -> some View {
         HStack(alignment: .top, spacing: Theme.spacing.md) {
+            // why: the section's own title already says these are reported.
             Text(verbatim: "🚩")
-                .accessibilityLabel("a11y.report.reported")
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 Text(verbatim: card.pairLine)
                     .font(Theme.typography.body)

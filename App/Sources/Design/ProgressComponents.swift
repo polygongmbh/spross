@@ -172,6 +172,8 @@ struct StageBadge: View {
                     // it wraps ("Ne/u"); it keeps its width and the word beside it gives.
                     .lineLimit(1)
                     .fixedSize(horizontal: true, vertical: false)
+                    // why: the stages on the way up are the eye's; only Settled is read.
+                    .accessibilityHidden(true)
             }
         }
         .pill(growth)
