@@ -181,7 +181,7 @@ private fun CreditFileRow(model: AppModel, file: AudioCreditFile, chrome: Chrome
         Column(
             modifier = Modifier
                 .weight(1f)
-                .clickable(onClickLabel = chrome.a11yActionPronounce) {
+                .clickable {
                     model.pronouncer.pronounce(
                         file.pronunciation, PronounceTrigger.Tap, recordingOnly = true,
                     )

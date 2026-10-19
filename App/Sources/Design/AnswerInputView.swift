@@ -122,26 +122,20 @@ struct AnswerInputView: View {
     }
 
     /// The checkmark says ACCEPTED and rides both correct states; its color
-    /// says how cleanly, and its label says the same in words. A reveal gets no
-    /// mark at all — the amber edge already carries the state, and a mark here
-    /// would read as a button.
+    /// says how cleanly. It is silent: the field's own value speaks the verdict.
+    /// A reveal gets no mark at all — the amber edge already carries the state,
+    /// and a mark here would read as a button.
     @ViewBuilder
     private var statusIcon: some View {
         switch state {
         case .neutral, .revealed:
             EmptyView()
-        case .correct:
-            statusCheck(label: "a11y.verdict.correct")
-        case .almost:
-            statusCheck(label: "a11y.verdict.almost")
+        case .correct, .almost:
+            Image(systemName: "checkmark.circle.fill")
+                .font(.title3)
+                .foregroundStyle(borderColor)
+                .accessibilityHidden(true)
         }
-    }
-
-    private func statusCheck(label: LocalizedStringKey) -> some View {
-        Image(systemName: "checkmark.circle.fill")
-            .font(.title3)
-            .foregroundStyle(borderColor)
-            .accessibilityLabel(label)
     }
 
     private var isRevealed: Bool {

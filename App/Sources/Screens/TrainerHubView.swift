@@ -206,8 +206,6 @@ struct TrainerHubView: View, LanguageNaming {
             chipLabel(emoji: chip.emoji, title: Text(chip.title))
         }
         .buttonStyle(ChipButtonStyle())
-        .accessibilityLabel(Text(chip.title)
-            + Text("a11y.suffix.practice \(languageName(drillLanguage ?? ""))"))
     }
 
     /// One chip's face.

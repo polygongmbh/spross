@@ -24,7 +24,9 @@ struct WatchQuizView: View {
         Group {
             if let question = model.currentQuestion {
                 quiz(question)
-                    .navigationTitle(progressTitle)
+                    // why: a title takes no hidden modifier, so an empty label keeps the
+                    // counter off VoiceOver — progress is the eye's alone.
+                    .navigationTitle(Text(verbatim: progressTitle).accessibilityLabel(Text(verbatim: "")))
             } else {
                 completion
             }

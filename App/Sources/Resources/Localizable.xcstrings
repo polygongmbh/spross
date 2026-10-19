@@ -85,23 +85,6 @@
         }
       }
     },
-    "a11y.box.card.noAudio" : {
-      "comment" : "Beside a word neither a recording nor the device's voice can say — the tap that does nothing.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kein Ton für dieses Wort"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No audio for this word"
-          }
-        }
-      }
-    },
     "a11y.box.card.suspended" : {
       "comment" : "the sleeping mark's name",
       "localizations" : {
@@ -472,23 +455,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "on"
-          }
-        }
-      }
-    },
-    "a11y.suffix.practice %@" : {
-      "comment" : "What a hub chip is FOR, appended to its name for a reader the glyph tells nothing: %s = the language being practiced. Leads with a space — it finishes the chip's own name rather than standing as a sentence.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " üben, auf %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " practice, in %@"
           }
         }
       }

@@ -148,7 +148,7 @@ struct BoxCardRow: View {
                         Image(systemName: "speaker.slash")
                             .font(.caption2)
                             .foregroundStyle(Theme.colors.textSecondary)
-                            .accessibilityLabel("a11y.box.card.noAudio")
+                            .accessibilityHidden(true)
                     }
                 }
                 Text(card.source.text)

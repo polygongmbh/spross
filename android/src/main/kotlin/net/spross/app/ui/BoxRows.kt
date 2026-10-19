@@ -142,7 +142,7 @@ fun BoxCardRow(
                 if (pronounce == null) {
                     Icon(
                         SprossIcons.SpeakerOff,
-                        contentDescription = chrome.a11yBoxCardNoAudio,
+                        contentDescription = null,
                         tint = Theme.colors.textSecondary,
                         modifier = Modifier.size(SPEAKER_GLYPH),
                     )

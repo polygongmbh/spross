@@ -75,14 +75,10 @@ fun TrainerHubCard(model: AppModel) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         model.trainer.hubResult?.let { DrillResultTile(it, model.trainer.hubResultTitle, chrome) }
-        // why: the chips name an exercise and nothing else — spoken, "Numbers" could
-        // be an area of the box. The suffix says it is practice, and in which language.
-        val practice =
-            chrome.a11ySuffixPractice.format(model.languageName(model.box?.joinStamp?.target.orEmpty()))
         Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             chipRows(chips).forEach { row ->
                 Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                    row.forEach { EntryChip(it, practice) }
+                    row.forEach { EntryChip(it) }
                 }
             }
         }
@@ -140,18 +136,16 @@ internal fun AppModel.open(drill: Drill): Unit = when (drill) {
  * under it — the iOS chip's face, stacked so three names share the row without shrinking
  * to fit beside their glyphs. The label still steps down rather than wrapping, but only
  * where a name alone outgrows a third of the screen.
- *
- * [suffix] finishes the spoken name.
  */
 @Composable
-private fun RowScope.EntryChip(chip: HubChip, suffix: String) {
+private fun RowScope.EntryChip(chip: HubChip) {
     Column(
         modifier = Modifier
             .weight(1f)
             .clip(MaterialTheme.shapes.medium)
             .background(Theme.colors.surfaceTint)
             .clickable(role = Role.Button, onClick = chip.open)
-            .semantics(mergeDescendants = true) { contentDescription = chip.title + suffix }
+            .semantics(mergeDescendants = true) { contentDescription = chip.title }
             .heightIn(min = Theme.reserve.tile)
             .padding(horizontal = Theme.spacing.xs, vertical = Theme.spacing.sm),
         horizontalAlignment = Alignment.CenterHorizontally,

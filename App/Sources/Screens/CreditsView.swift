@@ -181,7 +181,6 @@ private struct CreditGroupRow: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .accessibilityHint(Text("a11y.action.pronounce"))
 
             if let url = URL(string: file.pageUrl) {
                 Link(destination: url) {

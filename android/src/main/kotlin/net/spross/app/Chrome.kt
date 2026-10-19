@@ -141,7 +141,6 @@ interface Chrome {
     val legalPrivacy: String
     val trainerHubTitle: String
     val trainerHubSubtitle: String
-    val a11ySuffixPractice: String
     val trainerDrillLetters: String
     val lettersAskHear: String
     val lettersAskSpell: String
@@ -184,7 +183,6 @@ interface Chrome {
     val trainerOverviewStart: String
     val trainerReferenceTapToHear: String
     val boxTapToHear: String
-    val a11yBoxCardNoAudio: String
     val numbersReference: String
     val commonNotes: String
     val datesNewWord: String                // %s
