@@ -21,7 +21,9 @@ Neighbors: engine `../kern/docs/audio.md`, licensing `audio-licensing.md`.
   a line in the audio setting and one dismissible notice on Home.
   The voice table is dropped on every foreground.
 - **A review card says both its sides, each once: the word and its meaning.**
-  Hearing them paired binds them, and each side is said where the card shows it.
+  Hearing them paired binds them, and each side is said where the card shows it:
+  audio alone trains the ear, and the written form beside it is what carries form and meaning
+  (Sydorenko 2010, *Language Learning & Technology* 14(2)).
   The meaning is the learner's own language, on until the audio setting's "Say the meaning too" turns it off.
 - **The target language is spoken with its article; the learner's own language is not.**
   The voice says "das Brot"; kern decides whether there is an article (`shownArticle`).

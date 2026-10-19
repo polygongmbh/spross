@@ -82,11 +82,17 @@ The tile is app-private like the box, and one the launcher has just placed shows
   so the numbers are as fresh as the last answer, and the words turn over on the half hour whether or not anyone opened the app.
 - Watch: one graded **multiple-choice** loop —
   the watch never types, and the options arrive ranked from kern so that nothing but meaning tells the answer from its company:
-  word class, then how the sentence closes, then area, then string shape (`../kern/docs/snapshots.md`).
+  word class, then how the sentence closes, then area, then string shape (`../kern/docs/snapshots.md`) —
+  competitive, hard-to-guess options are also the ones that improve retention
+  (Little, Bjork, Bjork & Angello 2012, *Psychological Science*; van den Broek et al. 2023, below).
   No self-grading: correctness and response time derive the rating.
   Every question shows its prompt alone first, for as long as the Good window gives the prompt's own characters,
   so the answer is recalled before options can be spotted; a tap shows them early, the response clock starts when they appear,
   and VoiceOver skips the pause.
+  Holding the options back while the learner tries to recall improved delayed retention
+  (van den Broek et al. 2023, "Delayed display of answer alternatives enhances vocabulary learning", *Journal of Educational Psychology*);
+  the study held them 4 s, and the shorter pause is the middle ground between that and none,
+  since a wrist answer has to stay quick (user ruling 2026-10-19).
   Multiple choice on a keyboard-less device is a deliberate concession to the recall-first rule, with the latency curve compensating for it.
   Answers return as events; the phone reschedules against real timestamps and re-pushes.
   Until it does, the watch keeps each card's last rating;

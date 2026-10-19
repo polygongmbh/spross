@@ -53,6 +53,8 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   Handing the same letters back as tiles would leave nothing to retrieve but their order,
   where writing the word out IS the spelling —
   so this drill wears the typed card every other trainer drill wears rather than a tile bank.
+  A word solved out of its letters is generated rather than read, and generated words outlast read ones
+  (Bertsch et al. 2007, *Memory & Cognition* 35(2)).
 - **Its Sprossen are formats in the letter drill's sense**,
   changing what the question IS rather than how long the word is:
   what they take away is how much of the word stands where the spelling put it
@@ -101,7 +103,9 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
 - **The prompt is a word the box holds, and the answer is its opposite TYPED in the same language** —
   weiß → schwarz, oben → unten, kaufen → verkaufen.
   Both sides are the language being learned, so the drill asks a second retrieval of words already met,
-  and a pair is asked only once BOTH its words have arrived.
+  and a pair is asked only once BOTH its words have arrived:
+  antonyms are learned well as pairs and poorly where either meaning is still unknown
+  (Yang 2021, *Chinese as a Second Language* 56(1)).
   Either word of a pair is a prompt; the relation is symmetric, so there is no reverse switch.
 - **Every word comes from the catalog, and the drill authors only pairs** (`../catalog/opposites/README.md`).
 - **A word written alike for two meanings is ONE prompt with every opposite right** —

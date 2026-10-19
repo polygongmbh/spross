@@ -41,12 +41,15 @@ Neighbors: the contract `../README.md` §3, how a meaning answer is graded `grad
   so a word that has not settled is always typed.
   Once settled, typing every produce turn mostly buys time spent typing:
   the breadth goal is better served by more words per minute,
-  so every other produce turn asks the same question with no field — recall, reveal, self-grade.
+  so every other produce turn asks the same question with no field — recall, reveal, self-grade;
+  a recall made in the head practices about as well as one given aloud (Smith, Roediger & Karpicke 2013, *JEP: LMC* 39(6)).
   Typing stays on the other half so the spelling keeps being written.
   Not a third role: the question and its direction are unchanged, only the way the answer is given.
 - **Emoji cue** (`emojiCue`): WHEN the picture appears, never whether or where (that is the renderer's, and fixed).
   **Upfront** iff role == Produce and the word has not landed —
-  a produce prompt already names the concept in the source language, so the picture supports recall without giving the answer away;
+  a produce prompt already names the concept in the source language, so the picture supports recall without giving the answer away,
+  a cue a learner leans on while the word is weak and loses once it lands —
+  fading cues help exactly where plain retrieval fails (Fiechter & Benjamin 2018, *Psychonomic Bulletin & Review* 25);
   **OnReveal** everywhere else, recognition prompts and the first exposure included.
   Having landed, not the FSRS phase, is what "still landing" means.
   Once a word has landed the picture still comes on the reveal, where it can leak nothing
@@ -54,5 +57,7 @@ Neighbors: the contract `../README.md` §3, how a meaning answer is graded `grad
   On a self-graded card the picture depicts the very concept being asked for,
   and "the emoji was obvious" reaches the button exactly like "I knew the word";
   the first exposure is where that costs most, since that answer decides how long the word goes away for.
+  Pictures that help retrieve the answer lower recall days later, while the same pictures after the attempt do not
+  (van den Broek et al. 2021, "Images that reveal the answer reduce vocabulary learning", *Journal of Educational Psychology* 113(8)).
   The target form, its sound and the reveal still teach a first sight;
   the picture lands on the typed produce turn that follows, the first one that asks the learner to know the word.
