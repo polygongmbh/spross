@@ -189,4 +189,23 @@ class CatalogAudioParseTest {
         }
         assertTrue("matches" in error.message.orEmpty(), error.message.orEmpty())
     }
+
+    @Test
+    fun anAlternateMayNotClaimAFormOfItsOwn() {
+        // An alternate is another take of its key — what it says is the key's to state.
+        val error = assertFailsWith<CatalogFormatException> {
+            AudioFixture.catalogWith(
+                "audio/uk/manifest.json",
+                """
+                { "language": "uk",
+                  "authors": { "Tabrus": "Public domain" }, "licenses": { "Public domain": null },
+                  "words": { "двері": { "file": "words/door.mp3", "matches": "двері",
+                                        "author": "Tabrus", "source": "s.ogg", "sha256": "u1",
+                                        "alternates": [ { "file": "words/door.2.mp3", "matches": "двері",
+                                                          "author": "Tabrus", "source": "t.ogg", "sha256": "u2" } ] } } }
+                """.trimIndent(),
+            )
+        }
+        assertTrue("alternates[0]" in error.message.orEmpty(), error.message.orEmpty())
+    }
 }

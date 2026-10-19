@@ -12,6 +12,9 @@ internal object AudioManifestParser {
     private val LETTER_KEYS = WORD_KEYS - "matches"
     private val ARTICLE_KEYS = WORD_KEYS + "word"
 
+    /** What an alternate carries: a take's own fields, never the key's `matches` or `word`. */
+    private val TAKE_KEYS = LETTER_KEYS
+
     /** Five seconds of dead air is not a lead-in, it is the wrong recording. */
     private const val LEAD_LIMIT_MS = 5_000L
 
@@ -77,7 +80,8 @@ internal object AudioManifestParser {
     /**
      * Parses one keyed section; `matches` and `word` are each required exactly where the
      * key set allows them — the letters speak a name rather than a form, and only an
-     * article entry carries the bare word inside what it says.
+     * article entry carries the bare word inside what it says. An entry's `alternates` are
+     * further takes of its key, which say what the entry says and so share its two.
      */
     private fun section(
         path: String,
@@ -90,27 +94,49 @@ internal object AudioManifestParser {
         return section.entries.associate { (id, element) ->
             val context = "$key.$id"
             val entry = element.obj(path, context)
-            entry.rejectUnknownKeys(path, context, known)
-            val author = entry.requireNonBlank(path, context, "author")
-            val license = credits.license(
-                path, context, entry.optionalString(path, context, "license"), author,
-            )
-            id to AudioRecording(
-                file = entry.requireNonBlank(path, context, "file"),
-                matches = if ("matches" in known) entry.requireNonBlank(path, context, "matches") else null,
-                word = if ("word" in known) entry.requireNonBlank(path, context, "word") else null,
-                license = license,
-                licenseUrl = credits.deed(license),
-                author = author,
-                source = entry.requireNonBlank(path, context, "source"),
-                sha256 = entry.requireNonBlank(path, context, "sha256"),
-                gain = entry.gain(path, context, "gain"),
-                cap = entry.optionalCap(path, context, "cap") ?: 0.0,
-                leadMs = entry.leadMs(path, context),
-                mos = entry.optionalDouble(path, context, "mos") ?: 0.0,
-                gate = entry.gate(path, context),
-            )
+            entry.rejectUnknownKeys(path, context, known + "alternates")
+            val matches = if ("matches" in known) entry.requireNonBlank(path, context, "matches") else null
+            val word = if ("word" in known) entry.requireNonBlank(path, context, "word") else null
+            val alternates = entry["alternates"]?.arr(path, "$context.alternates").orEmpty()
+                .mapIndexed { n, alternate ->
+                    val where = "$context.alternates[$n]"
+                    val fields = alternate.obj(path, where)
+                    fields.rejectUnknownKeys(path, where, TAKE_KEYS)
+                    take(path, where, fields, matches, word, credits, emptyList())
+                }
+            id to take(path, context, entry, matches, word, credits, alternates)
         }
+    }
+
+    private fun take(
+        path: String,
+        context: String,
+        entry: JsonObject,
+        matches: String?,
+        word: String?,
+        credits: Credits,
+        alternates: List<AudioRecording>,
+    ): AudioRecording {
+        val author = entry.requireNonBlank(path, context, "author")
+        val license = credits.license(
+            path, context, entry.optionalString(path, context, "license"), author,
+        )
+        return AudioRecording(
+            file = entry.requireNonBlank(path, context, "file"),
+            matches = matches,
+            word = word,
+            license = license,
+            licenseUrl = credits.deed(license),
+            author = author,
+            source = entry.requireNonBlank(path, context, "source"),
+            sha256 = entry.requireNonBlank(path, context, "sha256"),
+            gain = entry.gain(path, context, "gain"),
+            cap = entry.optionalCap(path, context, "cap") ?: 0.0,
+            leadMs = entry.leadMs(path, context),
+            mos = entry.optionalDouble(path, context, "mos") ?: 0.0,
+            gate = entry.gate(path, context),
+            alternates = alternates,
+        )
     }
 
     private fun JsonObject.requireNonBlank(path: String, context: String, key: String): String =

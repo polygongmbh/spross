@@ -123,6 +123,20 @@ class CatalogAudioLintTest {
         }
     }
 
+    /** An alternate is filed beside its key: the first take's file with `.<n>` before `.mp3`, n from 2. */
+    @Test
+    fun everyAlternateIsFiledBesideItsKey() {
+        for ((lang, manifest) in catalog.audio) {
+            for (recording in manifest.words.values + manifest.letters.values + manifest.texts.values +
+                manifest.articles.values + manifest.calendar.values + manifest.countries.values) {
+                val beside = Regex("^${Regex.escape(recording.file.removeSuffix(".mp3"))}\\.([2-9]|[1-9][0-9]+)\\.mp3$")
+                for (alternate in recording.alternates) {
+                    assertTrue(beside.matches(alternate.file), "audio/$lang/${alternate.file}: not beside ${recording.file}")
+                }
+            }
+        }
+    }
+
     /** The converter's file-stem rule: [a-z0-9-] survives, a space is `_`, the rest `u<hex>`. */
     private fun asciiStem(form: String): String = buildString {
         for (ch in form.trim().lowercase()) {

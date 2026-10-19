@@ -59,6 +59,36 @@ class CatalogAudioLookupTest {
         assertNull(pack.pronunciation("sw", "kusoma").recordingPath)
     }
 
+    /**
+     * A key with several takes plays the one its draw picks, wraps past the last, and
+     * credits every take under its own voice.
+     */
+    @Test
+    fun aDrawPicksAmongAKeysTakes() {
+        val pack = AudioFixture.catalogWith("audio/uk/manifest.json", """
+            { "language": "uk",
+              "authors": { "Ivan": "Public domain", "Olena": "Public domain" },
+              "licenses": { "Public domain": null },
+              "words": {
+                "двері": { "file": "words/door.mp3", "matches": "двері",
+                           "author": "Ivan", "source": "Uk-двері.ogg", "sha256": "u1",
+                           "alternates": [ { "file": "words/door.2.mp3", "author": "Olena",
+                                             "source": "LL-Olena-двері.wav", "sha256": "u2", "gain": 3.0 } ] } },
+              "letters": {
+                "ж": { "file": "letters/u0436.mp3", "author": "Ivan", "source": "Жж.ogg", "sha256": "u3",
+                       "alternates": [ { "file": "letters/u0436.2.mp3", "author": "Olena",
+                                         "source": "LL-Olena-же.wav", "sha256": "u4" } ] } } }
+        """.trimIndent())
+        assertEquals("audio/uk/words/door.mp3", pack.pronunciation("uk", "двері").recordingPath)
+        val second = pack.pronunciation("uk", "двері", null, take = 1)
+        assertEquals("audio/uk/words/door.2.mp3", second.recordingPath)
+        assertEquals(3.0, second.gain)
+        assertEquals("audio/uk/words/door.mp3", pack.pronunciation("uk", "двері", null, take = 2).recordingPath)
+        assertEquals("audio/uk/letters/u0436.2.mp3", pack.letterRecording("uk", "ж", take = 1)?.path)
+        val olena = pack.audioCredits().single { it.author == "Olena" }
+        assertEquals(listOf("двері", "ж"), olena.files.map { it.label })
+    }
+
     // -- speechKey / utterance ---------------------------------------------------------
 
     @Test

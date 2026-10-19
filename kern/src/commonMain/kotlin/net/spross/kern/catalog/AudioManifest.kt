@@ -59,7 +59,21 @@ internal data class AudioRecording(
      * gain — where a player's noise gate sits ([AudioIndex.gate]). Null means no gate.
      */
     val gate: Double?,
-)
+    /**
+     * Further takes of the same key, mostly by other voices — this recording is the first.
+     * They speak what it speaks ([matches], [word]) and are never nested.
+     */
+    val alternates: List<AudioRecording> = emptyList(),
+) {
+    /** Every take of this key, this one first. */
+    val takes: List<AudioRecording> get() = listOf(this) + alternates
+
+    /**
+     * The take [draw] picks — any number a caller drew, wrapped onto [takes], so the same
+     * draw always plays the same take and a replay says it again in the same voice.
+     */
+    fun take(draw: Int): AudioRecording = takes[draw.mod(takes.size)]
+}
 
 /**
  * One language's audio manifest. Recordings are addressed by the form they SPEAK,
@@ -173,24 +187,26 @@ internal class AudioManifest(
         return articlesByWord[speechKey(visibleForm)]
     }
 
-    /** The letter's recording, NFC-folded so a decomposed glyph still resolves. */
+    /** The letter's recording (its first take), NFC-folded so a decomposed glyph still resolves. */
     fun letterRecording(glyph: String): AudioRecording? = byGlyph[nfcNormalized(glyph)]
 
     /** Catalog-relative path of one of this manifest's recordings ("audio/de/words/hund.mp3"). */
     fun path(recording: AudioRecording): String = "audio/$language/${recording.file}"
 
     /**
-     * (label, recording) for the credits screen, manifest order: words labeled by the
+     * (label, take) for the credits screen, manifest order: words labeled by the
      * form they speak, then letters by their glyph, then the alphabet's own example words,
-     * the article recordings, the calendar's weekday and month names, and the atlas'.
+     * the article recordings, the calendar's weekday and month names, and the atlas' —
+     * every take of a key, each under its key's label.
      */
     fun creditRows(): List<Pair<String, AudioRecording>> =
-        words.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
+        (words.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
             letters.map { (glyph, recording) -> glyph to recording } +
             texts.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
             articles.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
             calendar.values.mapNotNull { recording -> recording.matches?.let { it to recording } } +
-            countries.values.mapNotNull { recording -> recording.matches?.let { it to recording } }
+            countries.values.mapNotNull { recording -> recording.matches?.let { it to recording } })
+            .flatMap { (label, recording) -> recording.takes.map { label to it } }
 
     /** Spoken-form key → recording, or → null where entries disagree about non-identical bytes. */
     private fun index(

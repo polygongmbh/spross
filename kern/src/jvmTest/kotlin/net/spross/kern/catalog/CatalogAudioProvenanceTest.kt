@@ -28,14 +28,16 @@ class CatalogAudioProvenanceTest {
      */
     private val assumedAuthor = Regex("assumed \\(based on copyright claims\\)", RegexOption.IGNORE_CASE)
 
+    /** [action] over every take of every entry, alternates included. */
     private fun forEachEntry(action: (lang: String, id: String, recording: AudioRecording) -> Unit) {
         for ((lang, manifest) in catalog.audio) {
-            for ((form, recording) in manifest.words) action(lang, form, recording)
-            for ((glyph, recording) in manifest.letters) action(lang, glyph, recording)
-            for ((form, recording) in manifest.texts) action(lang, form, recording)
-            for ((form, recording) in manifest.articles) action(lang, "$form (article)", recording)
-            for ((form, recording) in manifest.calendar) action(lang, form, recording)
-            for ((form, recording) in manifest.countries) action(lang, form, recording)
+            val each = { id: String, recording: AudioRecording -> recording.takes.forEach { action(lang, id, it) } }
+            for ((form, recording) in manifest.words) each(form, recording)
+            for ((glyph, recording) in manifest.letters) each(glyph, recording)
+            for ((form, recording) in manifest.texts) each(form, recording)
+            for ((form, recording) in manifest.articles) each("$form (article)", recording)
+            for ((form, recording) in manifest.calendar) each(form, recording)
+            for ((form, recording) in manifest.countries) each(form, recording)
         }
     }
 
@@ -148,9 +150,9 @@ class CatalogAudioProvenanceTest {
     fun everyAudioFileShipsAndIsReferencedExactlyOnce() {
         val referenced = mutableListOf<String>()
         for ((lang, manifest) in catalog.audio) {
-            for (recording in manifest.words.values + manifest.letters.values +
+            for (recording in (manifest.words.values + manifest.letters.values +
                 manifest.texts.values + manifest.articles.values + manifest.calendar.values +
-                manifest.countries.values) {
+                manifest.countries.values).flatMap { it.takes }) {
                 val relative = "$lang/${recording.file}"
                 assertTrue(File(audioRoot, relative).isFile, "audio/$relative: missing on disk")
                 referenced += relative
@@ -176,8 +178,8 @@ class CatalogAudioProvenanceTest {
         assertTrue(catalog.audio["uk"]?.letters?.isNotEmpty() == true, "uk ships no letter recordings")
         val credits = catalog.audioCredits()
         for ((lang, manifest) in catalog.audio) {
-            for ((glyph, recording) in manifest.letters) {
-                val where = "audio/$lang letter \"$glyph\""
+            for ((glyph, letter) in manifest.letters) for (recording in letter.takes) {
+                val where = "audio/$lang letter \"$glyph\" ${recording.source}"
                 val group = assertNotNull(
                     credits.singleOrNull {
                         it.language == lang && it.author == recording.author && it.license == recording.license
@@ -200,14 +202,14 @@ class CatalogAudioProvenanceTest {
     @Test
     fun audioFilesMatchTheirManifestHashes() {
         for ((lang, manifest) in catalog.audio) {
-            for (entry in manifest.words.entries + manifest.letters.entries +
-                manifest.texts.entries + manifest.articles.entries + manifest.calendar.entries +
-                manifest.countries.entries) {
-                val file = File(audioRoot, "$lang/${entry.value.file}")
+            for (take in (manifest.words.values + manifest.letters.values +
+                manifest.texts.values + manifest.articles.values + manifest.calendar.values +
+                manifest.countries.values).flatMap { it.takes }) {
+                val file = File(audioRoot, "$lang/${take.file}")
                 if (!file.isFile) continue // reported by everyAudioFileShipsAndIsReferencedExactlyOnce
                 val digest = MessageDigest.getInstance("SHA-256").digest(file.readBytes())
                     .joinToString("") { "%02x".format(it) }
-                assertEquals(entry.value.sha256, digest, "audio/$lang/${entry.value.file}: bytes differ (re-encoded?)")
+                assertEquals(take.sha256, digest, "audio/$lang/${take.file}: bytes differ (re-encoded?)")
             }
         }
     }

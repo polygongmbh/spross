@@ -190,6 +190,13 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   so the lookup returns null and the visible form is spoken live instead of guessed at.
   That state may not ship: `CatalogAudioLintTest.noAmbiguousMatchedForm` fails the build,
   and the converter resolves collisions when it generates the manifest.
+- **A key may hold several takes, and a draw picks one.**
+  An entry's `alternates` are further takes of its key, mostly by other voices (`../catalog/audio/README.md`);
+  lookup finds the key exactly as above, then `AudioRecording.take(draw)` wraps the draw onto its takes, the entry itself first,
+  so one draw always plays one take.
+  `Catalog.pronunciation(lang, form, article, take)` and `Catalog.letterRecording(lang, glyph, take)` carry the draw,
+  and the plain overloads play the first take.
+  Every take is credited under its own voice.
 - **Kern returns paths and strings, never bytes.**
   Manifests are JSON text read through `CatalogSource` like every other catalog file;
   recording paths come back catalog-relative (`audio/de/words/hund.mp3`),
@@ -233,7 +240,7 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   every entry is keyed by the form it speaks, and that form stands on some card of its language —
   any realization's `text`, `teaches`, `accepts` or tagged form, or a verb's bare stem —
   an article entry's article being one a card shows in front of its word;
-  no ambiguous speech key, ASCII-stem-named form files and codepoint-named letter files (glyph filenames decompose under NFD on APFS), every file ships and is referenced exactly once, each sha256 re-hashed against the committed bytes —
+  no ambiguous speech key, ASCII-stem-named form files and codepoint-named letter files (glyph filenames decompose under NFD on APFS), alternates filed beside their key's file, every file ships and is referenced exactly once, each sha256 re-hashed against the committed bytes —
   Commons transcodes ship untouched (`audio-licensing.md` §3) —
   every `authors` and `licenses` row is used by some recording, and no author is a placeholder.
 - **Playback trusts the index only so far** (`catalog/Playback.kt`).

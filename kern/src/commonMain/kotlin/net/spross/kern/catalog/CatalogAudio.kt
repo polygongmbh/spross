@@ -38,12 +38,19 @@ fun Catalog.hasRecordings(lang: Language): Boolean = audio[lang]?.isEmpty == fal
  * Commons often has sw `piga simu` where the card shows `kupiga simu`, and the stem said
  * aloud beats a silent card in a language with no device voice.
  */
-fun Catalog.pronunciation(lang: Language, visibleForm: String, article: String? = null): Pronunciation {
+fun Catalog.pronunciation(lang: Language, visibleForm: String, article: String? = null): Pronunciation =
+    pronunciation(lang, visibleForm, article, take = 0)
+
+/**
+ * [pronunciation] out of the take [take] picks where the form has several
+ * ([AudioRecording.take]) — a caller that varies voices draws it once per question.
+ */
+fun Catalog.pronunciation(lang: Language, visibleForm: String, article: String?, take: Int): Pronunciation {
     val manifest = audio[lang]
     val recording = manifest?.let { pack ->
         pack.recording(visibleForm, article)
             ?: verbStem(visibleForm, languages[lang]?.optionalVerbPrefixes.orEmpty())?.let(pack::recording)
-    }
+    }?.take(take)
     return Pronunciation(
         form = visibleForm,
         utterance = utterance(visibleForm),
@@ -60,9 +67,12 @@ fun Catalog.pronunciation(lang: Language, visibleForm: String, article: String? 
  * The letter's recording and how to play it; null → the drill speaks its NAME instead.
  * The letters' half of [pronunciation] — they carry no visible form to look up.
  */
-fun Catalog.letterRecording(lang: Language, glyph: String): LetterRecording? {
+fun Catalog.letterRecording(lang: Language, glyph: String): LetterRecording? = letterRecording(lang, glyph, take = 0)
+
+/** [letterRecording] out of the take [take] picks where the letter has several ([AudioRecording.take]). */
+fun Catalog.letterRecording(lang: Language, glyph: String, take: Int): LetterRecording? {
     val manifest = audio[lang] ?: return null
-    val recording = manifest.letterRecording(glyph) ?: return null
+    val recording = manifest.letterRecording(glyph)?.take(take) ?: return null
     return LetterRecording(manifest.path(recording), recording.gain,
                            recording.cap, recording.leadMs, recording.gate)
 }
