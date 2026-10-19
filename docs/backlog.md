@@ -70,7 +70,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
   to `gradle/libs.versions.toml` once the android-37 platform is installed, plus a separate
   re-check of `targetSdk`, since compiling against 37 does not opt the app into its runtime behavior.
 
-- Pronouncer parity: a held or unsayable word still calls `onFinish` on Android but not on iOS, where the reader polls to a ceiling; one end-of-reading signal would let kern rule it (`App/Sources/Audio/Pronouncer.swift`, `android/.../audio/Pronouncer.kt`).
 
 ## Revisit when it grows
 

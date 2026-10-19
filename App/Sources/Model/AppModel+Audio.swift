@@ -150,13 +150,18 @@ extension AppModel {
     /// with an utterance for the live voice — so this speaks a GENERATED drill
     /// answer ("dreihundertsiebenundvierzig") exactly as readily as a
     /// catalogued word, and stays silent only where the language has no voice
-    /// and no recording either.
-    func pronounceAloud(_ form: String, lang: String, article: String? = nil) {
+    /// and no recording either. `onFinish` is the reading's end (`Pronouncer.pronounce`),
+    /// at once where there is nothing to say.
+    func pronounceAloud(_ form: String, lang: String, article: String? = nil,
+                        onFinish: (@MainActor () -> Void)? = nil) {
         guard let pronunciation = catalog?.pronunciation(lang: lang, visibleForm: form,
-                                                         article: article) else { return }
+                                                         article: article) else {
+            onFinish?()
+            return
+        }
         Pronouncer.shared.pronounce(pronunciation,
                                     recordingURL: audioURL(pronunciation.recordingPath),
-                                    trigger: .auto, article: article)
+                                    trigger: .auto, article: article, onFinish: onFinish)
     }
 
     /// What a letter-drill question SAYS, and out of which recording — the

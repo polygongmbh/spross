@@ -63,6 +63,9 @@ final class Pronouncer {
     /// this to know whether IT is the one pulsing.
     private(set) var playingKey: String?
 
+    /// The end owed to the word sounding now, settled once however it ends.
+    private var owedFinish: (@MainActor () -> Void)?
+
     init() {
         readAloud = .atLaunch
     }
@@ -115,15 +118,20 @@ final class Pronouncer {
     /// recording says what was recorded, and re-cutting one is an edit to bytes
     /// the app never edits (`docs/read-aloud.md`).
     ///
-    /// `fadeDb` is the listening run's bedtime ramp and 0 everywhere else;
-    /// `onFinish` is what lets a run arm its next beat off this one.
+    /// `fadeDb` is the listening run's bedtime ramp and 0 everywhere else.
+    /// `onFinish` is the end of the reading, fired once on every path: the word
+    /// said out, cut off by `stop()` or a newer word, or never sounding at all
+    /// (held, no voice, a file that will not open) — what a run or a beat waits on.
     /// `recordingOnly` skips the Speech preference: the credits screen plays
     /// the file it credits, never a voice in its place.
     func pronounce(_ pronunciation: Pronunciation, recordingURL: URL?, trigger: Trigger,
                    article: String? = nil, fadeDb: Double = 0,
                    recordingOnly: Bool = false,
                    onFinish: (@MainActor () -> Void)? = nil) {
-        if trigger.held(muted: muted, readsScreenAloud: UIAccessibility.isVoiceOverRunning) { return }
+        if trigger.held(muted: muted, readsScreenAloud: UIAccessibility.isVoiceOverRunning) {
+            onFinish?()
+            return
+        }
         switch trigger {
         case .auto:
             AudioSession.useStanding()
@@ -138,6 +146,7 @@ final class Pronouncer {
         }
         // why: one word at a time — a new fire replaces whatever is sounding.
         stop()
+        owedFinish = onFinish
         let key = Self.key(for: pronunciation)
         let lang = pronunciation.lang
         let prefersSpeech = voiceSource(for: lang) == .tts
@@ -152,30 +161,31 @@ final class Pronouncer {
             let started = player.play(url: recordingURL, gainDb: pronunciation.gain, capDb: pronunciation.cap,
                                       leadMs: pronunciation.leadMs,
                                       gate: pronunciation.gate?.doubleValue, fadeDb: fadeDb) { [weak self] in
-                self?.clearPlaying(key)
-                onFinish?()
+                self?.ended(key)
             }
             if started { return }
             playingKey = nil
             branch = soundBranch(prefersSpeech: prefersSpeech, recordingOnly: recordingOnly,
                                  hasVoice: canSpeak(language: lang), hasRecording: false)
-            // why: a recording that failed to open still ends, so a listening run moves on.
-            if branch != .speech { onFinish?() }
         }
-        guard branch == .speech else { return }
-        say(key: key, text: spoken(pronunciation, article: article),
-            language: lang, fadeDb: fadeDb, onFinish: onFinish)
+        // why: a word that cannot sound is over at once, so nothing waits out a ceiling on it.
+        guard branch == .speech, say(key: key, text: spoken(pronunciation, article: article),
+                                     language: lang, fadeDb: fadeDb)
+        else {
+            settle()
+            return
+        }
     }
 
-    /// The synthesized branch — the only one the article reaches.
-    private func say(key: String, text: String, language: String, fadeDb: Double,
-                     onFinish: (@MainActor () -> Void)?) {
+    /// The synthesized branch — the only one the article reaches; false where no voice answered.
+    private func say(key: String, text: String, language: String, fadeDb: Double) -> Bool {
         playingKey = key
-        speaker.speak(text, language: language,
-                      volume: Self.volume(fadeDb: fadeDb)) { [weak self] in
-            self?.clearPlaying(key)
-            onFinish?()
+        let started = speaker.speak(text, language: language,
+                                    volume: Self.volume(fadeDb: fadeDb)) { [weak self] in
+            self?.ended(key)
         }
+        if !started { playingKey = nil }
+        return started
     }
 
     /// What the live voice is handed: the form with its article where the card
@@ -202,6 +212,19 @@ final class Pronouncer {
         player.stop()
         speaker.stop()
         playingKey = nil
+        settle()
+    }
+
+    /// A word said out: it stops pulsing and its reading ends.
+    private func ended(_ key: String) {
+        clearPlaying(key)
+        settle()
+    }
+
+    private func settle() {
+        let finished = owedFinish
+        owedFinish = nil
+        finished?()
     }
 
     /// A stale finish — from a `stop()` or a newer word already sounding —

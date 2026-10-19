@@ -67,6 +67,9 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
     /** Bumped by every fire and stop, so only the latest word's end clears [sounding]. */
     private var fires = 0
 
+    /** The end owed to the word sounding now, settled once however it ends. */
+    private var owedFinish: (() -> Unit)? = null
+
     /**
      * What THIS launch has picked, per language — everything else answers from the
      * preferences. Compose state, because the box picker renders it.
@@ -188,9 +191,9 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      * [recordingOnly] skips the Speech preference: the credits screen plays the file it
      * credits, never a voice in its place.
      *
-     * [onFinish] fires ONCE on the main thread when the word has been said — including the
-     * cases where nothing sounds at all, so a run armed off it can never wedge on a silent
-     * word. It does not fire for a word this call itself cut off.
+     * [onFinish] is the end of the reading, fired ONCE on the main thread on every path: the
+     * word said out, cut off by [stop] or a newer word, or never sounding at all (held, no
+     * voice, a file that will not open) — what a run or a beat waits on.
      */
     fun pronounce(
         pronunciation: Pronunciation,
@@ -207,11 +210,16 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
             return
         }
         speaker.stop()
+        // why: the word this one replaces has ended, cut off.
+        settle()
+        owedFinish = onFinish
         val fire = ++fires
         sounding = pronunciation
         val ended: () -> Unit = {
-            if (fires == fire) sounding = null
-            onFinish?.invoke()
+            if (fires == fire) {
+                sounding = null
+                settle()
+            }
         }
         val lang = pronunciation.lang
         val path = pronunciation.recordingPath
@@ -254,6 +262,13 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
         player.stop()
         speaker.stop()
         loaded = null
+        settle()
+    }
+
+    private fun settle() {
+        val finished = owedFinish ?: return
+        owedFinish = null
+        finished()
     }
 
     /** From `AppModel.onCleared()`: the decoded clip and the engine binding both go. */

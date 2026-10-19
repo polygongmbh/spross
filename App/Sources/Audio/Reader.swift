@@ -18,8 +18,11 @@ final class Reader {
     /// The sides already said under `key`: false the prompt, true the answer.
     private var said: Set<Bool> = []
     private var pending: Task<Void, Never>?
-    /// The answer being said, until the reader is hushed — what a beat waits on.
-    private var owed: (form: String, lang: String, model: AppModel)?
+    /// Whether the answer is still being said — set when it is owed, cleared by
+    /// its reading's end (`Pronouncer.pronounce`'s `onFinish`); what a beat waits on.
+    private var answerSounding = false
+    /// Which answer `answerSounding` is about, so an older reading's end cannot clear a newer one.
+    private var answerCount = 0
 
     /// Says whatever of `reading` has not been said yet. Idempotent: every
     /// hook that may see a new question or a verdict calls it, and only the
@@ -44,13 +47,18 @@ final class Reader {
 
     private func sayAnswer(_ answer: Saying, via model: AppModel) {
         pending?.cancel()
-        owed = (answer.form, answer.lang, model)
+        answerCount += 1
+        let count = answerCount
+        answerSounding = true
         pending = Task { @MainActor in
             // why: the correct/wrong chime lands first, or the word starts under it.
             try? await Task.sleep(for: .milliseconds(READING_CHIME_CLEARANCE_MS))
             guard !Task.isCancelled else { return }
             pending = nil
-            model.pronounceAloud(answer.form, lang: answer.lang, article: answer.article)
+            model.pronounceAloud(answer.form, lang: answer.lang, article: answer.article) { [weak self] in
+                guard let self, count == answerCount else { return }
+                answerSounding = false
+            }
         }
     }
 
@@ -58,14 +66,9 @@ final class Reader {
     /// (muted, no voice, cut off by a tap).
     func saidAnswer() async {
         let start = ContinuousClock.now
-        while saying, !Task.isCancelled, ContinuousClock.now - start < Self.longestReading {
+        while answerSounding, !Task.isCancelled, ContinuousClock.now - start < Self.longestReading {
             try? await Task.sleep(for: .milliseconds(100))
         }
-    }
-
-    private var saying: Bool {
-        guard let owed else { return false }
-        return pending != nil || owed.model.isPronouncing(owed.form, lang: owed.lang)
     }
 
     /// A new turn under the same key — a card dealt again straight after itself
@@ -80,7 +83,7 @@ final class Reader {
     func hush() {
         pending?.cancel()
         pending = nil
-        owed = nil
+        answerSounding = false
         Pronouncer.shared.stop()
     }
 }
