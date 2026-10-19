@@ -61,10 +61,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 - `kern/docs` `grading.md`, `catalog.md`, `audio.md`, `reports.md`, the head of `snapshots.md` and all of `turns.md`,
   plus `catalog/README.md`, `catalog/audio/README.md`, `catalog/alphabet/README.md`, `docs/date-readings.md`, `RUNBOOK-android.md` and `docs/backlog.md`,
   still hard-wrap at a column instead of semantic linebreaks.
-- `compileSdk` sits at 36 and holds androidx back — lifecycle 2.11 refuses to resolve below
-  37 (`checkDebugAarMetadata`) and the next Compose BOM will follow — so the bump is one edit
-  to `gradle/libs.versions.toml` once the android-37 platform is installed, plus a separate
-  re-check of `targetSdk`, since compiling against 37 does not opt the app into its runtime behavior.
+- `targetSdk` sits at 36: re-check the Android 17 behavior changes before raising it, since compiling against 37 does not opt the app into them.
 
 
 ## Revisit when it grows
