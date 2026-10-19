@@ -174,13 +174,14 @@ struct AnswerInputView: View {
                     .font(Theme.typography.headline)
                     .foregroundStyle(Theme.colors.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
+                    .pronounceAction(correctionVoice?.pronounce(form))
             }
             Spacer(minLength: 0)
             if let correctionVoice, let pronounce = correctionVoice.pronounce(form) {
                 SpeakerIcon(size: .small,
                             isPlaying: correctionVoice.isPlaying(form),
                             pronounce: pronounce)
-                    .accessibilityLabel("a11y.action.pronounce")
+                    .accessibilityHidden(true)
             }
         }
         .padding(Theme.spacing.lg)
@@ -192,9 +193,8 @@ struct AnswerInputView: View {
             RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
                 .strokeBorder(Theme.colors.amber.opacity(Palette.shared.EDGE), lineWidth: 1)
         )
-        // why: `contain`, not `combine` — combining would swallow the speaker,
-        // and a correction the learner cannot replay is the thing this box
-        // exists to fix. Caption and form stay two stops.
+        // why: `contain`, not `combine` — caption and form stay two stops, and the
+        // replay stays an action on the form itself.
         .accessibilityElement(children: .contain)
     }
 

@@ -7,7 +7,9 @@ import SprossKern
 // (`pronounceOnTap`, `SpokenWord.swift`) and no icon is drawn at all —
 // the reference tables, the box list, the produce narration lines.
 // Where there is not — a card headline, the big glyph of a pure-listening
-// drill, the correction box — the icon IS the control.
+// drill, the correction box — the icon IS the tap target; beside a word it is
+// hidden from assistive tech, which hears the word through the word's own
+// action instead (`pronounceAction`).
 //
 // One reference page keeps it a control: an alphabet row holds TWO sounds,
 // the letter's name and its example word, so which one a tap wants has to be

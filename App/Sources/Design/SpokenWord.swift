@@ -11,6 +11,9 @@ import SwiftUI
 // ballast the word sits visibly off the one above it, because the two faces of
 // a card carry different accessories (the target side has the speaker, the
 // source side does not).
+//
+// To a screen reader the speaker is no stop of its own: hearing the word is a
+// named action on the word itself, as on Android (`pronounceOnTap`).
 
 struct SpokenWord<Word: View>: View {
     /// nil where the word can neither be played nor spoken — the icon and its
@@ -29,7 +32,7 @@ struct SpokenWord<Word: View>: View {
                     .hidden()
                     .allowsHitTesting(false)
                     .accessibilityHidden(true)
-                word
+                word.pronounceAction(pronounce)
                 accessories
             }
         } else {
@@ -44,7 +47,7 @@ struct SpokenWord<Word: View>: View {
         HStack(spacing: Theme.spacing.sm) {
             if let pronounce {
                 SpeakerIcon(size: .small, isPlaying: isPlaying, pronounce: pronounce)
-                    .accessibilityLabel("a11y.action.pronounce")
+                    .accessibilityHidden(true)
                     .frame(width: 26)
             }
             badge
@@ -91,6 +94,19 @@ extension View {
             saysOnTap(pronounce)
                 .accessibilityAddTraits(.isButton)
                 .accessibilityAction(.default, pronounce)
+                .accessibilityAction(named: Text("a11y.action.pronounce"), pronounce)
+        } else {
+            self
+        }
+    }
+
+    /// Hearing a word as a named action on the word's own element, for a word whose
+    /// speaker is drawn beside it and hidden from assistive tech (`SpokenWord`,
+    /// the correction box).
+    @ViewBuilder
+    func pronounceAction(_ pronounce: (() -> Void)?) -> some View {
+        if let pronounce {
+            accessibilityElement(children: .combine)
                 .accessibilityAction(named: Text("a11y.action.pronounce"), pronounce)
         } else {
             self

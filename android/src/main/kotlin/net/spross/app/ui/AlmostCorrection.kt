@@ -25,11 +25,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.LiveRegionMode
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.liveRegion
-import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import net.spross.app.Chrome
@@ -81,12 +81,19 @@ fun AlmostCorrection(
         Column(
             // why: TalkBack has no autoplay to tell it what became of the answer — the
             // correction announces itself where the learner's focus already is. Merged, so
-            // caption and form arrive as one announcement instead of two; the speaker stays
-            // outside it, a stop of its own, because a correction that cannot be replayed is
-            // the thing this box exists to fix.
+            // caption and form arrive as one announcement instead of two; replaying it is
+            // the merged stop's own action, so the speaker beside it is no stop of its own.
             modifier = Modifier
                 .weight(1f)
-                .semantics(mergeDescendants = true) { liveRegion = LiveRegionMode.Polite },
+                .semantics(mergeDescendants = true) {
+                    liveRegion = LiveRegionMode.Polite
+                    if (pronounce != null) {
+                        customActions = listOf(CustomAccessibilityAction(chrome.a11yActionPronounce) {
+                            pronounce()
+                            true
+                        })
+                    }
+                },
             verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
         ) {
             Text(
@@ -105,11 +112,8 @@ fun AlmostCorrection(
                 modifier = Modifier
                     .size(48.dp)
                     .clip(CircleShape)
-                    .clickable(onClick = pronounce)
-                    .semantics(mergeDescendants = true) {
-                        role = Role.Button
-                        contentDescription = chrome.a11yActionPronounce
-                    },
+                    .clearAndSetSemantics { }
+                    .clickable(onClick = pronounce),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
