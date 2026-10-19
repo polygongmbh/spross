@@ -42,8 +42,7 @@ and text reaches a machine only inside an intent — never as state.
     from the only place it stood, and `answerForReport(fieldText)` is what a report about the
     card carries: the word the catalog refused where there was one, else what stands written.
     A synonym marked wrong IS the report, so it may not be lost to the field it was typed in.
-  - **The write-out** (`CopyStep`): a missed word is typed once with the answer in view —
-    a miss is learned from only once the answer is shown (Pashler et al. 2005, *JEP: LMC* 31(1)).
+  - **The write-out** (`CopyStep`): a missed word is typed once with the answer in view.
     Only Again asks for it, only for a word that has not settled,
     and only where writing it is more than copying it off the prompt —
     production, or the first exposure, where the word is being taught.

@@ -4,9 +4,6 @@ Neighbors: every drill `drills.md`, readings `number-forms.md`, `clock-registers
 
 ## Zahlen — the numbers page
 
-- **Numbers earn a drill of their own** because number facts learned in one language
-  are retrieved fastest in that language and do not carry over for free
-  (Spelke & Tsivkin 2001, *Cognition* 78(1)).
 - **Which exercises a learner may pick is derived from one stored number per exercise** —
   the highest Sprosse ever reached — through kern's unlock table.
   Picking SEVERAL of them for one run is itself earned:

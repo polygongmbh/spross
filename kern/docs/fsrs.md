@@ -2,8 +2,6 @@
 The FSRS-6 reference implementation's own facts, kept where the golden vectors can be checked against them.
 Neighbors: what the product decided on top `../README.md` §5.
 
-- The model descends from Ye, Su & Cao (2022), "A stochastic shortest path algorithm for optimizing spaced repetition scheduling", KDD,
-  benchmarked against SM-2 and others on real review logs at `open-spaced-repetition/srs-benchmark`.
 - 21 weights; defaults = ts-fsrs v5.4.1 / py-fsrs v6.3.1 (identical), **w20 decay 0.1542**
   (the brief's 0.2 was a pre-release value).
   Formula set and cross-check resolutions per the pinned reference report:

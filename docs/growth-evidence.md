@@ -1,6 +1,6 @@
-# What the evidence says about pacing
-The literature behind how the box bounds new words, which words arrive together and how a missed word comes back.
-Neighbors: the resulting rules `../kern/README.md` §6.
+# What the evidence says
+The literature behind the box's learning rules: pacing first, then how a word is asked, the picture, the watch and the drills.
+Neighbors: the resulting rules `../kern/README.md` §5–6, `../kern/docs/presentation.md`, `surfaces.md`, `drills-words.md`.
 
 The box is breadth-first: exposure to a lot of the language, accepting that any
 single word may not stick.
@@ -187,9 +187,45 @@ so the box went silent at the moment the learner re-engaged.
 Practitioner consensus converges on a number because everyone copied one;
 where the authors say why, the reason is review load.
 
+## The scheduling model
+
+FSRS descends from Ye, Su & Cao (2022), "A stochastic shortest path algorithm for optimizing spaced repetition scheduling", KDD,
+and is benchmarked against SM-2 and others on real review logs at `open-spaced-repetition/srs-benchmark`.
+
+## How a word is asked
+
+- A recall made in the head practices about as well as one given aloud (Smith, Roediger & Karpicke 2013, *JEP: LMC* 39(6)) — the settled word's untyped produce turn.
+- A miss is learned from once the answer is shown (Pashler et al. 2005, *JEP: LMC* 31(1)) — the write-out.
+- Learners overrate what they know (Dunlosky & Rawson 2012, *Learning and Instruction* 22(4)), and response time has driven an adaptive scheduler well (Mettler, Massey & Kellman 2016, *JEP: General* 145(7)) — Easy earned by the clock.
+- Audio alone trains the ear, and the written form beside it carries form and meaning (Sydorenko 2010, *Language Learning & Technology* 14(2)) — saying a word where the card shows it.
+
+## The picture
+
+Upfront on a produce prompt before the word lands is a fading cue:
+support while learning is weak, withdrawn as it grows, helps where plain retrieval fails
+(Fiechter & Benjamin 2018, *Psychonomic Bulletin & Review* 25; Finley et al. 2011, *JML*).
+On the reveal once it has landed: pictures that help retrieve the answer lower recall days later,
+the same pictures after the attempt do not
+(van den Broek et al. 2021, "Images that reveal the answer reduce vocabulary learning", *Journal of Educational Psychology* 113(8)).
+
+## The watch
+
+Holding the options back while the learner tries to recall improved delayed retention
+(van den Broek et al. 2023, "Delayed display of answer alternatives enhances vocabulary learning", *Journal of Educational Psychology*).
+The study held them 4 s; the watch holds less on purpose, a middle ground that keeps a wrist answer quick (user ruling 2026-10-19).
+The same study, and Little, Bjork, Bjork & Angello (2012), *Psychological Science*,
+found competitive, hard-to-guess options improve retention — the distractor ranking.
+
+## The drills
+
+- **Numbers**: number facts learned in one language are retrieved fastest in that language and do not carry over for free (Spelke & Tsivkin 2001, *Cognition* 78(1)).
+- **Word scramble**: a word solved out of its letters is generated rather than read, and generated words outlast read ones (Bertsch et al. 2007, *Memory & Cognition* 35(2)).
+- **Opposites**: antonyms are learned well as pairs and poorly where either meaning is still unknown (Yang 2021, *Chinese as a Second Language* 56(1)) — why both words must have arrived.
+
 ## Verification note
 
-The load-bearing findings above are from accessible primary sources.
+The load-bearing findings above are from accessible primary sources;
+those from "The scheduling model" on were checked against abstracts.
 A few older figures could not be confirmed at source and are cited only where
 the direction, not the number, carries the argument.
 

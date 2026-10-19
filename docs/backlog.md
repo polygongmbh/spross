@@ -46,6 +46,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
   drill needing curated component-boundary data, and syllable data would not deliver it since a
   syllable split cuts through a stem rather than landing on a seam ("Fei-er-tag" buries
   "Feier") — considered for word scramble (`drills-words.md`) and left out.
+- The letter drill sounds each letter in one recording or voice, while high-variability phonetic training (Thomson 2018, *Journal of Second Language Pronunciation* 4(2)) finds several talkers teach a sound better — play a second voice where one exists? (`LetterDrill`)
 
 ## Ready
 
