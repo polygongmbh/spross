@@ -196,6 +196,9 @@ Neighbors: the recordings' format `audio-format.md` and licenses `audio-licensin
   so one draw always plays one take.
   `Catalog.pronunciation(lang, form, article, take)` and `Catalog.letterRecording(lang, glyph, take)` carry the draw,
   and the plain overloads play the first take.
+  The letter drill draws one per question (`LetterDrillTask.take`), so a run moves between voices —
+  several talkers teach a sound better than one (Thomson 2018, *Journal of Second Language Pronunciation* 4(2)) —
+  while a replay repeats the voice it asked in.
   Every take is credited under its own voice.
 - **Kern returns paths and strings, never bytes.**
   Manifests are JSON text read through `CatalogSource` like every other catalog file;

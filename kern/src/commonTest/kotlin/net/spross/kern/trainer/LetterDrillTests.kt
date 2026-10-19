@@ -36,6 +36,13 @@ class LetterDrillTests {
         assertEquals(LetterFormat.Dictation, LetterDrill.formatFor(99))
     }
 
+    /** Each question draws its own take, so a letter with two voices is heard in both over a run. */
+    @Test
+    fun questionsMoveBetweenTakes() {
+        val takes = (1..20).map { seed -> sample(1, seed).take.mod(2) }.toSet()
+        assertEquals(setOf(0, 1), takes)
+    }
+
     @Test
     fun onlyEntriesThatCanBeAskedAreEverPrompted() {
         val asked = (1..400).map { sample(sprosse = 1, seed = it).answerRef }.toSet()

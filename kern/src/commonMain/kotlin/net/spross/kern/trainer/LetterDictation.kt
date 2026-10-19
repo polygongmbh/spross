@@ -76,6 +76,7 @@ internal object LetterDictation {
             accepted = listOf(card.target.text),
             display = card.target.text,
             gloss = card.source.text,
+            take = rng.nextInt(Int.MAX_VALUE),
         )
     }
 

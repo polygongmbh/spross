@@ -63,12 +63,13 @@ extension AppModel {
 
     /// A letter's NAME, out of the letters pack. The one lookup that is NOT
     /// keyed by the visible form: what is written (р) and what is said («ер»)
-    /// are different strings, so the manifest is addressed by the glyph.
-    func letterPronunciation(name: String, glyph: String, lang: String) -> Pronunciation {
+    /// are different strings, so the manifest is addressed by the glyph;
+    /// `take` picks among the letter's takes where it has several.
+    func letterPronunciation(name: String, glyph: String, lang: String, take: Int32 = 0) -> Pronunciation {
         // why: the whole recording, not just its path — the letters are the
         // quietest and latest-starting files we ship, and the drill is where
         // that is heard, so the analysis index travels with them.
-        let recording = catalog?.letterRecording(lang: lang, glyph: glyph)
+        let recording = catalog?.letterRecording(lang: lang, glyph: glyph, take: take)
         return Pronunciation(form: name,
                              utterance: SprossKern.utterance(form: name),
                              lang: lang,
@@ -84,9 +85,11 @@ extension AppModel {
     ///
     /// `article` is what the card shows in front of the word, and picks the
     /// recording that says it too where the pack has one; nil is the source
-    /// side and everything a card rotated in, which stay bare.
-    func formPronunciation(_ form: String, lang: String, article: String? = nil) -> Pronunciation? {
-        catalog?.pronunciation(lang: lang, visibleForm: form, article: article)
+    /// side and everything a card rotated in, which stay bare. `take` picks
+    /// among the form's takes where it has several.
+    func formPronunciation(_ form: String, lang: String, article: String? = nil,
+                           take: Int32 = 0) -> Pronunciation? {
+        catalog?.pronunciation(lang: lang, visibleForm: form, article: article, take: take)
     }
 
     /// A form with NO recording looked up at all: the live voice reads what
@@ -170,14 +173,15 @@ extension AppModel {
         switch task.promptKind {
         case .name:
             guard let glyph = task.promptGlyph else { return nil }
-            return letterPronunciation(name: task.promptText, glyph: glyph, lang: task.language)
+            return letterPronunciation(name: task.promptText, glyph: glyph, lang: task.language,
+                                       take: task.take)
         case .word:
-            return formPronunciation(task.promptText, lang: task.language)
+            return formPronunciation(task.promptText, lang: task.language, take: task.take)
         case .plainText:
             // why: an alphabet `exampleText` carries no slug but the manifest records the
             // FORM (`texts{}`), so reference words like sechs and the pero/perro pair are
             // heard as a voice recorded them; synthesis is the fallback, not the rule.
-            return formPronunciation(task.promptText, lang: task.language)
+            return formPronunciation(task.promptText, lang: task.language, take: task.take)
                 ?? spokenPronunciation(task.promptText, lang: task.language)
         }
     }

@@ -47,4 +47,10 @@ data class LetterDrillTask(
     val display: String,
     /** Shown on the reveal only — the drill never puts a cue on screen before the answer. */
     val gloss: String?,
+    /**
+     * Which take of the prompt's recording plays where it has several
+     * (`AudioRecording.take`): drawn once per question, so the drill moves between voices —
+     * several talkers teach a sound better than one — while a replay repeats the same one.
+     */
+    val take: Int = 0,
 )

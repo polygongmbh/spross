@@ -123,6 +123,7 @@ object LetterDrill {
             accepted = listOf(entry.glyph),
             display = entry.glyph,
             gloss = prompt.gloss,
+            take = rng.nextInt(Int.MAX_VALUE),
         )
     }
 

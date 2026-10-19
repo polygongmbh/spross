@@ -24,7 +24,7 @@ fun AppModel.letterPrompt(task: LetterDrillTask): Pronunciation? = when (task.pr
     // why: the ONE lookup NOT keyed by the visible form — what is written (р) and what is
     // said («ер») are different strings, so the manifest is addressed by the glyph.
     LetterPromptKind.Name -> task.promptGlyph?.let { glyph ->
-        letterName(task.promptText, glyph, task.language)
+        letterName(task.promptText, glyph, task.language, task.take)
     }
     // A word the catalog owns, and an `exampleText` that no concept does: both take the
     // matched-form lookup the review cards use. An `exampleText` carries no slug, but the
@@ -32,7 +32,7 @@ fun AppModel.letterPrompt(task: LetterDrillTask): Pronunciation? = when (task.pr
     // recording and can reach no other word's — which is the D2 guarantee itself, not an
     // exception to it. Synthesis is the fallback, as it is for an unrecorded word.
     LetterPromptKind.Word, LetterPromptKind.PlainText ->
-        catalog?.pronunciation(task.language, task.promptText)
+        catalog?.pronunciation(task.language, task.promptText, null, task.take)
 }
 
 /**
@@ -71,13 +71,13 @@ fun AppModel.letterSpeaker(task: LetterDrillTask, form: String): (() -> Unit)? =
 /**
  * A letter's own NAME — «ер», never the bare glyph, which a synthesizer reads as anything
  * from a spelling alphabet to a pause. The letters pack answers it where a recording
- * exists; the voice where it does not.
+ * exists — the one [take] picks where it has several — and the voice where it does not.
  *
  * why: the whole recording, not just its path — the letters are the quietest and
  * latest-starting files we ship, so the analysis index travels with them.
  */
-fun AppModel.letterName(name: String, glyph: String, lang: Language): Pronunciation {
-    val recording = catalog?.letterRecording(lang, glyph)
+fun AppModel.letterName(name: String, glyph: String, lang: Language, take: Int = 0): Pronunciation {
+    val recording = catalog?.letterRecording(lang, glyph, take)
     return Pronunciation(
         form = name,
         utterance = utterance(name),
