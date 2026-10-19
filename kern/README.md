@@ -193,6 +193,9 @@ the numbers behind each setting are on `BoxConfig` itself, and the three stabili
   The clock can only ever UPGRADE a Knew to Easy,
   so Easy is earned rather than chosen --
   which takes away the incentive to grade a session shorter than it was.
+  Learners overrate what they know (Dunlosky & Rawson 2012, *Learning and Instruction* 22(4)),
+  and response time is a measure an adaptive scheduler has used to good effect
+  (Mettler, Massey & Kellman 2016, *JEP: General* 145(7)).
   The span measured is the recall attempt (prompt shown -> answer asked for).
 
 - **A turn is a machine, not a screen** (`session.TurnMachine`):
@@ -225,7 +228,8 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   Zero-component phrases follow seed order, never the unlock fast path.
 - **Related words arrive together.**
   Seed order runs an area's related words side by side (spoon, fork, knife),
-  so a round introduces them together and the learner meets them as a set to relate.
+  so a round introduces them together and the learner meets them as a set to relate:
+  a set costs early misses rather than retention (`docs/growth-evidence.md`).
 - **Intake is bounded per round, and by nothing else.**
   A round's worth of first sights, across EVERY composed round and including queued cards.
   **Nothing throttles on how shaky the material is,

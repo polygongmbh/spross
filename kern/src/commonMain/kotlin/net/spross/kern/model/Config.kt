@@ -49,8 +49,8 @@ data class BoxConfig(
      * the step says. Repeated fails climb instead of repeating the first entry (see
      * [net.spross.kern.fsrs.FsrsScheduler]) and stop at the last step, which is a MONTH:
      * a word still missed after four same-day pairs has earned no further repetition —
-     * what the evidence supports there is rewriting the word or letting it go, and
-     * nothing supports drilling it — but the box does not suspend on its own, so the
+     * no study supports drilling it further, and rewriting the word or letting it go is the
+     * practitioners' advice — but the box does not suspend on its own, so the
      * last step parks it within reach instead of dropping it. Every rating but `Again`
      * graduates it immediately from wherever the ladder sits.
      */

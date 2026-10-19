@@ -1,5 +1,5 @@
-# What the evidence says about new-word intake
-The literature behind how the box bounds new words.
+# What the evidence says about pacing
+The literature behind how the box bounds new words, which words arrive together and how a missed word comes back.
 Neighbors: the resulting rules `../kern/README.md` §6.
 
 The box is breadth-first: exposure to a lot of the language, accepting that any
@@ -81,6 +81,8 @@ the mirror image of the list-length effect -- and by far the larger.
 Osth et al. (2018): the number of items tested matters more than the number studied.
 
 **This argues for bounding the sitting length (`sessionCap`), not the intake.**
+The measurement is word-list recognition over 150 trials,
+so it sets the direction and not the number 24.
 
 ## A cap on the sitting is free; the floor under it needs a different argument
 
@@ -102,7 +104,14 @@ so reviewing near-certain recall buys almost nothing
 Soonest-due-first pulls cards closest to needing review anyway;
 the engine's `fillOut` sorts by due.
 
-## Semantic clustering is weaker than the folklore
+## Related words cost trials, not retention
+
+Seed order deliberately lets an area's related words arrive together (`../kern/README.md` §6).
+The early evidence is against SEMANTIC sets (spoon, fork, knife):
+Tinkham (1993), *System* 21(3), found them needing more trials than unrelated words,
+and Waring (1997), "The negative effects of learning words in semantic sets: A replication", *System* 25(2), confirmed it.
+Thematic sets (words of one scene) helped where semantic ones hurt (Tinkham 1997, *Second Language Research* 13(2)),
+and later studies split both ways rather than replicating the harm.
 
 Nakata & Suzuki (2019), *SSLA* 41(2)
 ([Cambridge](https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/effects-of-massing-and-spacing-on-the-learning-of-semantically-related-and-unrelated-words/F58BA8D70385603B9C42E408BFCB8A10)):
@@ -114,12 +123,42 @@ meta-analysis where the outcome measure decides the answer:
 Their own study (N = 133): no relatedness effect at one week;
 within-set confusion during learning 8.22% vs 2.69% (d = 0.86).
 
+So the cost is paid in early misses and the retention is the same,
+while a set shows what an unrelated list cannot — how the language builds its words:
+antonyms learned as pairs (Yang 2021, *Chinese as a Second Language* 56(1)),
+and a stem met across its family (rein-/rausgehen), the unit Bauer & Nation (1993), *International Journal of Lexicography* 6(4), count vocabulary in.
+
 ## The tuning trap
 
 In-session accuracy reliably improves when batches shrink
-and reliably fails to predict retention.
+and reliably fails to predict retention
+(Soderstrom & Bjork 2015, "Learning versus performance", *Perspectives on Psychological Science* 10(2)).
 A scheduler tuned to maximize in-session correctness is optimizing
 the illusion of a good round.
+
+## A missed word comes back soon, then later
+
+The retry ladder (`BoxConfig.stepsSeconds`) alternates ten minutes with growing day-scale waits.
+Latimier, Peyre & Ramus (2021), *Educational Psychology Review* 33, 959-987, meta-analyzed 29 studies:
+spaced retrieval beats massed by g = 0.74,
+while expanding against uniform gaps is g = 0.034, n.s. --
+spacing matters and the schedule's shape barely does,
+so the first gap only has to be short enough for the next attempt to succeed.
+Expanding gained a little as the number of tests grew, which the widening day steps keep.
+
+A failed attempt with the answer shown is worth about a restudy for an arbitrary pair like a translation:
+errorful generation strengthens the cue and the target on their own but not the link between them
+(Seabrooke et al. 2019, *JML*).
+Potts & Shanks (2014), *JEP: General* 143(2), found the opposite with foreign-word translations,
+so the reading is contested; neither side argues for pushing a missed word further out.
+
+The retry belongs to the next sitting rather than the tail of this one:
+one correct recall in each of three spaced sessions beat three in a single session
+(Rawson & Dunlosky 2022, "Successive relearning", *Current Directions in Psychological Science*).
+
+A word still missed at the top of the ladder is a leech,
+and no study says what to do with one;
+rewriting the word or letting it go is practitioner advice (Wozniak's "Twenty rules of formulating knowledge").
 
 ## A standing backlog is the normal state, and no gate should close on it
 
