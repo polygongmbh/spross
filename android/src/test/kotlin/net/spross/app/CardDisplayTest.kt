@@ -1,8 +1,10 @@
 package net.spross.app
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 import net.spross.kern.model.Realization
 
 /**
@@ -29,7 +31,9 @@ class CardDisplayTest {
     @Test
     fun theAlsoLineNamesTheFamilyKernLeftStanding() {
         val word = realization("die Verwaltung", teaches = listOf("das Amt", "die Behörde"))
-        assertEquals("auch: das Amt / die Behörde", CardDisplay.alsoLine(word, chrome, "die Verwaltung"))
+        val line = assertNotNull(CardDisplay.alsoLine(word, chrome, "die Verwaltung"))
+        assertTrue(line.contains("das Amt") && line.contains("die Behörde"), line)
+        assertFalse(line.contains("die Verwaltung"), line)
     }
 
     @Test

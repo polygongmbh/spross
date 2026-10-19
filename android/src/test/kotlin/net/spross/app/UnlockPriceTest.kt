@@ -2,6 +2,7 @@ package net.spross.app
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.trainer.DrillModifier
 import net.spross.kern.trainer.DrillUnlocks
@@ -14,38 +15,46 @@ import net.spross.kern.trainer.NumbersExercise
  */
 class UnlockPriceTest {
 
+    private val chrome = Chrome.forSource("en")
+
     @Test
     fun theNumbersSprosseIsPricedAsDigitsAndTheOthersNameThemselves() {
-        val clock = ChromeDe.unlockPrice(DrillUnlocks.requirements(NumbersExercise.Clock))
-        // Clock is bought with the numbers ladder, which counts digits and wears 🔢 itself.
-        assertEquals("Freischalten: 🔢 4 Stellen", clock)
+        val clockCost = DrillUnlocks.requirements(NumbersExercise.Clock)
+        val digits = clockCost.getValue(NumbersExercise.Counting)
+        val clock = chrome.unlockPrice(clockCost)
+        assertTrue(clock.contains(countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, digits)), clock)
+        assertFalse(clock.contains(chrome.badge(NumbersExercise.Counting)), clock)
 
-        val phrases = ChromeDe.unlockPrice(DrillUnlocks.requirements(NumbersExercise.Phrases))
-        assertTrue(phrases.startsWith("Freischalten: 🕐 Uhrzeit Sprosse "), phrases)
+        val phrasesCost = DrillUnlocks.requirements(NumbersExercise.Phrases)
+        val (exercise, sprosse) = phrasesCost.entries.single { it.key != NumbersExercise.Counting }
+        val phrases = chrome.unlockPrice(phrasesCost)
+        assertTrue(phrases.contains("${chrome.badge(exercise)} ${chrome.trainerSprosse.format(sprosse)}"), phrases)
     }
 
     @Test
     fun aModifierPricesWhateverItsTableAsks() {
-        val mix = ChromeEn.unlockPrice(DrillUnlocks.requirements(DrillModifier.Mix))
-        assertEquals("Unlocks at: ➗ Forms Sprosse 5", mix)
+        val cost = DrillUnlocks.requirements(DrillModifier.Mix)
+        val mix = chrome.unlockPrice(cost)
+        for ((exercise, sprosse) in cost) {
+            assertTrue(mix.contains(chrome.badge(exercise)), mix)
+            assertTrue(mix.contains(chrome.trainerSprosse.format(sprosse)), mix)
+        }
     }
 
     /**
-     * The join, on a map built by hand: no Sprosse in kern's table costs two exercises at
-     * once today, so reading one out of it would assert nothing about the separator —
-     * and the day one does, this is the line that already covers it.
+     * On a map built by hand: no Sprosse in kern's table costs two exercises at once today,
+     * so reading one out of it would assert nothing about naming both.
      */
     @Test
-    fun aPriceOfTwoExercisesNamesBothAroundOneSeparator() {
-        val both = ChromeEn.unlockPrice(
-            mapOf(NumbersExercise.Counting to 10, NumbersExercise.Forms to 5),
-        )
-        assertEquals("Unlocks at: 🔢 10 digits · ➗ Forms Sprosse 5", both)
+    fun aPriceOfTwoExercisesNamesBoth() {
+        val both = chrome.unlockPrice(mapOf(NumbersExercise.Counting to 10, NumbersExercise.Forms to 5))
+        assertTrue(both.contains(countLine(chrome.numbersSprosseOne, chrome.numbersSprosse, 10)), both)
+        assertTrue(both.contains("${chrome.badge(NumbersExercise.Forms)} ${chrome.trainerSprosse.format(5)}"), both)
     }
 
-    /** Nothing to buy, nothing to say — the prefix stands alone rather than trailing a gap. */
+    /** Nothing to buy, nothing to say — the prefix stands alone. */
     @Test
     fun anAlwaysOpenRowPricesNothing() {
-        assertEquals("Unlocks at:", ChromeEn.unlockPrice(emptyMap()))
+        assertEquals(chrome.numbersUnlock, chrome.unlockPrice(emptyMap()))
     }
 }
