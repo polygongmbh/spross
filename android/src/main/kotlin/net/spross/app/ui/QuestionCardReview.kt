@@ -100,7 +100,7 @@ internal fun CardContext.HeadwordBlock(side: Question.Side, emphasized: Boolean)
     ) {
         SpokenWord(pronounce(side), chrome, Modifier.weight(1f, fill = false)) {
             Headword(
-                tagged(Theme.colors.articleColoredText(side.article, text, side.lang), side.lang),
+                tagged(Theme.colors.articleColoredText(side.article, text, side.gender), side.lang),
                 color = if (emphasized) Theme.colors.accent else Color.Unspecified,
                 modifier = Modifier.weight(1f, fill = false),
             )

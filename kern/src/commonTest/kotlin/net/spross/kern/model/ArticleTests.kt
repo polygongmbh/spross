@@ -66,6 +66,26 @@ class ArticleTests {
         assertNull(articleGender("ein")) // German's indefinites are not in the table
     }
 
+    private fun noun(lang: String, article: String, gender: String? = null) = Realization(
+        lang = lang, text = "x",
+        grammar = mapOf("article" to article) + (gender?.let { mapOf("gender" to it) } ?: emptyMap()),
+    )
+
+    @Test
+    fun theAuthoredGenderOutranksTheArticle() {
+        assertEquals(Gender.Feminine, noun("es", "el", gender = "f").gender) // el agua
+        assertEquals(Gender.Masculine, noun("fr", "l'", gender = "m").gender) // l'arbre
+        assertNull(noun("fr", "l'", gender = "m/f").gender) // l'élève takes both
+        assertEquals(Gender.Masculine, noun("es", "el").gender) // nothing authored: the article's
+    }
+
+    @Test
+    fun aTaggedFormsOwnArticleMarksItsOwnGender() {
+        assertEquals(Gender.Feminine, noun("es", "el", gender = "f").shownGender("el")) // el agua
+        assertEquals(Gender.Feminine, noun("de", "der").shownGender("die")) // der Lehrer's die Lehrerin
+        assertNull(noun("de", "der").shownGender(null))
+    }
+
     @Test
     fun articleShowsOnlyOnTheCanonicalForm() {
         assertEquals("die", shownArticle("die", shownForm = "Kellnerin", targetText = "Kellnerin"))

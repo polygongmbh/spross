@@ -49,11 +49,9 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 ## Ready
 
-- Gender hues ignore `grammar.gender`: `articleGender` names none for fr/it `l'` and colours es `el agua` masculine (`kern/src/commonMain/kotlin/net/spross/kern/model/Article.kt`), while the catalog now carries the real gender.
 
 ### Apps & tooling
 
-- The watch speed mark (⚡) is visual only: VoiceOver hears right or wrong but not how quick (`WatchQuizView.verdict`).
 - The iOS drill run (`DrillRunView`) still wraps its scaffold by hand, because its run state arrives through `Face.snapshot` rather than kern's run progress — exposing that would let `runScreen` reach it.
 - The widget kind `"SprossWordWidget"` is a literal at the iOS reload sites and in `Widgets/Sources/WordWidget.swift` — one constant in `Shared/Sources`.
 - `HomeStandingTest`, `CardDisplayTest` and `UnlockPriceTest` assert literal German/English copy and break on a copy edit (`android/src/test`).

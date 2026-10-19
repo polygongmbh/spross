@@ -79,16 +79,16 @@ extension Card {
 enum CardDisplay {
 
     /// The article a card face may show in front of `shown`, with the gender it
-    /// marks — both rules are the box's (`model/Article.kt`): a rotated synonym
+    /// tints — both rules are the box's (`model/Article.kt`): a rotated synonym
     /// is a different word, so the card's article steps aside rather than
-    /// mislabel it, and which article marks which gender is stated there once.
+    /// mislabel it, and the word's gender (authored, else its article's) is stated there once.
     static func articleLabel(of realization: Realization, shown: String) -> Theme.Article? {
         guard let article = shownArticle(article: realization.article,
                                          shownForm: shown,
                                          targetText: realization.text)
         else { return nil }
         return Theme.Article(article,
-                             gender: articleGender(article: article, lang: realization.lang))
+                             gender: realization.shownGender(shown: article))
     }
 
     /// The article the VOICE says in front of `shown`, or nil where there is

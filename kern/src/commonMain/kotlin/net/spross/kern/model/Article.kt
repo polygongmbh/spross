@@ -50,6 +50,30 @@ fun articleGender(article: String?, lang: Language? = null): Gender? = when (art
 }
 
 /**
+ * The gender this realization's word carries: the catalog's `grammar.gender` where it
+ * authored one — the gender its article cannot show (fr/it `l'`) or contradicts (es `el agua`) —
+ * and otherwise the one its [article] marks ([articleGender]).
+ * A noun taking both (`m/f`, l'élève) names none.
+ */
+val Realization.gender: Gender?
+    get() = when (grammar["gender"]) {
+        null -> articleGender(article, lang)
+        "m" -> Gender.Masculine
+        "f" -> Gender.Feminine
+        else -> null
+    }
+
+/**
+ * The gender [shown] marks in front of a form of this realization: the word's own [gender]
+ * where it is the cited [article], the article's alone where a tagged form brings its own.
+ */
+fun Realization.shownGender(shown: String?): Gender? = when (shown) {
+    null -> null
+    article -> gender
+    else -> articleGender(shown, lang)
+}
+
+/**
  * The article that may be shown in front of [shownForm] — the card's article
  * only when the form on screen IS the canonical [targetText].
  *

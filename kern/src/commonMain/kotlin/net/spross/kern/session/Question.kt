@@ -4,6 +4,7 @@ import net.spross.kern.model.Alternate
 import net.spross.kern.model.ClosingNote
 import net.spross.kern.model.EmojiCue
 import net.spross.kern.model.FormTag
+import net.spross.kern.model.Gender
 import net.spross.kern.model.Language
 import net.spross.kern.model.PluralForm
 import net.spross.kern.trainer.CountryTaskKind
@@ -57,6 +58,8 @@ data class Question(
         val form: Form,
         /** The article set in front of [text] and tinted by its gender; null where none shows. */
         val article: String? = null,
+        /** The gender that tints [article] — the word's own where the article cannot show it; null where none. */
+        val gender: Gender? = null,
         val plural: PluralForm? = null,
         /** Which form [text] stands for where it cannot show it itself (`teacher` ♀ for `Lehrerin`); null marks none. */
         val marker: FormTag? = null,

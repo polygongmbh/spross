@@ -23,8 +23,6 @@ import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.sp
 import net.spross.app.R
 import net.spross.kern.model.Gender
-import net.spross.kern.model.Language
-import net.spross.kern.model.articleGender
 
 // Spross design tokens, Android cut: the corner family, the type ramp, the spacing and
 // reserve scales, and the theme that provides them. The colors are ThemeColors.kt.
@@ -250,16 +248,12 @@ object Theme {
 }
 
 /**
- * The hue an ARTICLE wears: masculine blue, feminine berry, German's neuter green,
- * and nothing where the box cannot name a gender.
+ * The hue a [gender] wears: masculine blue, feminine berry, German's neuter green,
+ * and nothing where the box names none.
  *
- * Which article marks which gender is content, so [articleGender] answers it once for
- * every surface; only the three colors are this platform's, and they stay here. [lang]
- * settles the one form two languages share; a surface without it leaves that form neutral.
+ * Which gender a word carries is content, so kern answers it once for every surface;
+ * only the three colors are this platform's, and they stay here.
  */
-fun ThemeColors.articleTint(article: String?, lang: Language? = null): Color? = genderTint(articleGender(article, lang))
-
-/** The hue a [gender] wears; null where the box names none. */
 fun ThemeColors.genderTint(gender: Gender?): Color? = when (gender) {
     Gender.Masculine -> der
     Gender.Feminine -> die

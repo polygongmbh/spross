@@ -1,6 +1,7 @@
 package net.spross.kern.listen
 
 import net.spross.kern.model.Card
+import net.spross.kern.model.shownGender
 import net.spross.kern.session.Question
 
 /**
@@ -13,7 +14,10 @@ import net.spross.kern.session.Question
 fun ListeningTurn.question(card: Card?, opens: Boolean): Question = Question(
     key = cardId,
     ask = null,
-    prompt = Question.Side(targetForm, card?.target?.lang, Question.Form.Word, article = spokenArticle),
+    prompt = Question.Side(
+        targetForm, card?.target?.lang, Question.Form.Word,
+        article = spokenArticle, gender = card?.target?.shownGender(spokenArticle),
+    ),
     answer = Question.Side(sourceForm, card?.source?.lang, Question.Form.Word),
     emoji = card?.emoji,
     emojiCue = LISTENING_EMOJI_CUE,

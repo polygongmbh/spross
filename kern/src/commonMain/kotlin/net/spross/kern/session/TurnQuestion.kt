@@ -12,6 +12,7 @@ import net.spross.kern.model.closingNote
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.pluralForm
 import net.spross.kern.model.shownArticle
+import net.spross.kern.model.shownGender
 
 /** Between the forms of one side said in the same breath — a meaning and what it also teaches. */
 internal const val FORM_JOIN = " / "
@@ -85,6 +86,7 @@ private fun TurnState.targetSide(form: String): Question.Side {
     return Question.Side(
         text = form, lang = card.target.lang, form = Question.Form.Word,
         article = article,
+        gender = card.target.shownGender(article),
         plural = pluralForm(card.target).takeIf { form == card.target.text },
         saying = Saying(form, card.target.lang, article),
     )

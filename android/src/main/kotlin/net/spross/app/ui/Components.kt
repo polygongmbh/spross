@@ -39,10 +39,12 @@ import net.spross.kern.box.CardRowState
 import net.spross.kern.box.swatch
 import net.spross.kern.model.FormDimension
 import net.spross.kern.model.FormTag
+import net.spross.kern.model.Gender
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
 import net.spross.kern.model.article
 import net.spross.kern.model.articledForm
+import net.spross.kern.model.gender
 
 /**
  * The one tinted capsule the app's standings wear: a word (never a color alone) over its
@@ -227,7 +229,7 @@ fun localizedTarget(text: String, lang: Language): AnnotatedString =
 
 /**
  * The citation form as one line — "el frigorífico" — with the leading article in its
- * color where the grammar carries a gender.
+ * color where the word carries a gender (kern's [gender]: authored, else its article's).
  *
  * The article comes from `grammar.article` and is PREPENDED; it is never sliced out of
  * `text`, which carries the bare word in every language. Reading the first word as an
@@ -238,15 +240,15 @@ fun localizedTarget(text: String, lang: Language): AnnotatedString =
  * Genderless targets render exactly the text and nothing else.
  */
 fun ThemeColors.articleColoredText(realization: Realization): AnnotatedString =
-    articleColoredText(realization.article, realization.text, realization.lang)
+    articleColoredText(realization.article, realization.text, realization.gender)
 
-/** [text] behind [article] in its gender's tint; no article renders the text alone. */
-fun ThemeColors.articleColoredText(article: String?, text: String, lang: Language?): AnnotatedString {
+/** [text] behind [article] in [gender]'s tint; no article renders the text alone. */
+fun ThemeColors.articleColoredText(article: String?, text: String, gender: Gender?): AnnotatedString {
     if (article == null) return AnnotatedString(text)
     val shown = articledForm(article, text)
     val head = article.trim()
     return buildAnnotatedString {
-        withStyle(SpanStyle(color = articleTint(article, lang) ?: Color.Unspecified)) {
+        withStyle(SpanStyle(color = genderTint(gender) ?: Color.Unspecified)) {
             append(head)
         }
         append(shown.removePrefix(head))
