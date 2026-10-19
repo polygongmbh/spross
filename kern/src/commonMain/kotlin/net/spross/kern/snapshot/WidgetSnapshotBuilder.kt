@@ -22,7 +22,7 @@ import net.spross.kern.trainer.letters
  * in its bundle, tight memory cap), so everything it renders is pre-resolved here on
  * every persist, the streak and the activity strip included for every day it will be rendered on
  * ([WidgetSnapshotDoc.streakByDay], [WidgetSnapshotDoc.activityByDay]) — only `dueCount(now)`,
- * which genuinely moves within a day, runs at render time. Who decodes it how: `kern/docs/snapshots.md`.
+ * which genuinely moves within a day, runs at render time. Who decodes it how: `docs/snapshots.md`.
  */
 object WidgetSnapshotBuilder {
     const val SCHEMA_VERSION: Int = 12

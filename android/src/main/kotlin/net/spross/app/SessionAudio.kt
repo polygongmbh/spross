@@ -14,7 +14,7 @@ import net.spross.kern.session.Saying
  * said is [net.spross.app.ui.rememberReadAloud]'s, and whether it may be heard is [Pronouncer].
  *
  * The iOS twin is `SessionView+Audio.swift`; the firing table both follow is
- * docs/read-aloud.md.
+ * docs/audio.md.
  */
 
 /**
@@ -56,7 +56,7 @@ fun AppModel.pronounceAction(form: String): (() -> Unit)? {
 /**
  * The article the VOICE says in front of [form] — "das Brot", never a bare stem, because an
  * article is half of what knowing a noun means and a word only ever heard bare is a word
- * never heard right (`docs/read-aloud.md`).
+ * never heard right (`docs/audio.md`).
  *
  * Kern decides whether there is one to say: a rotated synonym may carry another gender, so
  * [shownArticle] keeps it off anything but the canonical form. Only the synthesized branch

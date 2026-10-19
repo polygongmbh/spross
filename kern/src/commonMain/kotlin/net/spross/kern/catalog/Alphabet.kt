@@ -32,7 +32,7 @@ data class AlphabetSection(
 }
 
 /** One row of `catalog/alphabet/<lang>.json`; hand-parsed by [AlphabetParser]. */
-data class AlphabetEntry( // data class: Swift sees value equality (`kern/docs/build.md`)
+data class AlphabetEntry( // data class: Swift sees value equality (`docs/build.md`)
     /** The stable key every reference uses: the authored `id`, else the [glyph]. */
     val ref: String,
     /** Lowercase form, or the multigraph as written; NFC-stored. */

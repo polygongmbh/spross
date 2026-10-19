@@ -10,7 +10,7 @@ import android.media.AudioManager
  *
  * Every other sound the app makes shares the device with whatever else is playing, because a
  * chime or a single word has no business interrupting a podcast. A listening run is the one
- * exception (`docs/read-aloud.md`): a mode meant to be listened to that lands on top of
+ * exception (`docs/audio.md`): a mode meant to be listened to that lands on top of
  * something else is a mode nobody hears. So it asks for `AUDIOFOCUS_GAIN` — the platform's
  * way of saying "this is the playback now" — and gives it back when the run stops, at which
  * point whatever was interrupted resumes by itself.

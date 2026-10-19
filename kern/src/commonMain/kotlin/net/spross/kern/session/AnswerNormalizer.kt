@@ -12,7 +12,7 @@ import net.spross.kern.model.article
  * profile's target) from `languages.json` — recognize units are self-graded and
  * never pass through here.
  *
- * Pipeline (`kern/docs/grading.md`, both sides symmetric): NFC, stress marks dropped, lowercase, ß→ss, the answer
+ * Pipeline (`docs/grading.md`, both sides symmetric): NFC, stress marks dropped, lowercase, ß→ss, the answer
  * language's digraph spellings (de ä→ae, ö→oe, ü→ue), delete the
  * joiners `-'’`, other punctuation → space (incl. `…—`), collapse whitespace →
  * ONE leading listed article of the answer language is optional → iff the card is

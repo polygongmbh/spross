@@ -23,7 +23,7 @@ The box was built toward this without the word being used:
   Everything but `due` is derived from the log.
 - `answerDays()` (`kern/.../box/AnswerDays.kt`) counts the day tallies off the logs
   rather than keeping a counter beside them.
-- `BoxBackup` (`kern/docs/snapshots.md`) is the file format already carrying every target's
+- `BoxBackup` (`../snapshots.md`) is the file format already carrying every target's
   document, and the settings screens already write and read it.
 - The App Group container is **device-local** — the widget and watch read it, nothing syncs it.
   A device backup carries it; that is Apple's or Google's function, not a sync path.
@@ -66,7 +66,7 @@ same box whichever way round they are merged, and merging a second time changes 
 ## The steps
 
 1. **Merge in kern, and import that uses it.** `BoxMerge` plus its tests, then restore
-   merges instead of replacing (`BoxBackup` and `kern/docs/snapshots.md` both state the
+   merges instead of replacing (`BoxBackup` and `../snapshots.md` both state the
    replace rule and change with it). This already earns its keep with no server at all:
    export on the iPhone, import on the Android phone, keep both.
 2. **One sync step in the app layer**, transport-agnostic: read the remote document,

@@ -3,7 +3,7 @@ package net.spross.kern.store
 /**
  * What one save of the box writes: the box document, the snapshots drawn from it, or both.
  *
- * The snapshots are the widget's and the watch's (`kern/docs/snapshots.md`).
+ * The snapshots are the widget's and the watch's (`docs/snapshots.md`).
  * Building them walks the exposure ranking, the active cards and every day the box has tallied,
  * and what they show is long-term exposure, which a round's staleness does not touch —
  * so an answer inside a round and a change nothing derived reads (an export stamp) write the box alone,

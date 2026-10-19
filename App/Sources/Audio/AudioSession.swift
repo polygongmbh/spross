@@ -55,7 +55,7 @@ enum AudioSession {
     /// deliberately WITHOUT `.mixWithOthers`, so whatever podcast was playing
     /// stops rather than plays under the words. A mode meant to be listened to
     /// that lands on top of something else is a mode nobody hears — it
-    /// interrupts as a player, not as a notification (`docs/read-aloud.md`).
+    /// interrupts as a player, not as a notification (`docs/audio.md`).
     ///
     /// Activated by hand, unlike every other sound in the app: a run keeps
     /// playing with the screen locked, and background audio needs a session

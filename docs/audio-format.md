@@ -1,6 +1,6 @@
 # Why the recordings are mp3
 Why the recordings are mp3: what the bundled audio costs, why the codec is not ours to pick and what switching would buy, measured 2026-08-22.
-Neighbors: licenses `audio-licensing.md`, engine `../kern/docs/audio.md`, manifest schema `../catalog/audio/README.md`.
+Neighbors: licenses `audio-licensing.md`, playback `audio.md`, manifest schema `../catalog/audio/README.md`.
 
 ## What ships
 

@@ -17,7 +17,7 @@ data class Saying(val form: String, val lang: Language, val article: String? = n
  * What one question on screen says — a review card and a drill task alike: its [prompt] as it
  * goes up, and its [answer] once it has settled. Each side is said at most once per [key],
  * and only from the moment it stops being null; both apps' one reader fires it
- * (`docs/read-aloud.md`), so no screen decides on its own what is heard.
+ * (`docs/audio.md`), so no screen decides on its own what is heard.
  */
 data class Reading(val key: String, val prompt: Saying?, val answer: Saying?)
 

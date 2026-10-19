@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 
 /**
  * The alphabet rules only the REAL catalog can break — everything here is content lint
- * over the shipped `alphabet/` files (`kern/docs/catalog.md`). Parse-shape rules (unknown
+ * over the shipped `alphabet/` files (`docs/catalog.md`). Parse-shape rules (unknown
  * keys, ipa-or-hint, reader keys ⊆ declared, ref resolution, id-on-duplicate-glyph) need
  * no test of their own: [RealCatalog.catalog] parses every shipped file, so a violation
  * fails every jvmTest that touches the catalog. `AlphabetFixtureTest` pins those rules on

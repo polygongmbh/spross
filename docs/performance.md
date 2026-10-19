@@ -1,6 +1,6 @@
 # What may run when
 What is cached, where and keyed on what, and what may run when.
-Neighbors: the kern time boundary `../kern/docs/build.md`, the snapshots a finished round writes `../kern/docs/snapshots.md`.
+Neighbors: the kern time boundary `build.md`, the snapshots a finished round writes `snapshots.md`.
 
 Cache what is expensive, and key the cache on everything the answer depends on.
 
@@ -16,7 +16,7 @@ Two things kern does not do.
 It never reads a clock —
 `nowEpochMillis` and `tzId` are parameters, which is what makes a rule testable at a pinned moment.
 And it never decides for itself when to refresh something whose truth is the platform's:
-a voice arriving from Settings while the app slept is not an event kern can observe, so `LetterDrillAvailability` and `ListeningPool` answer freshly every time and the platform owns the rebuild trigger (`kern/docs/turns.md`).
+a voice arriving from Settings while the app slept is not an event kern can observe, so `LetterDrillAvailability` and `ListeningPool` answer freshly every time and the platform owns the rebuild trigger (`listening.md`).
 
 Both apps are shaped the same way:
 a screen reads values off the model, and the model takes those values when something moves.
@@ -33,7 +33,7 @@ Not a re-composition of the round, not the day's report, not a serialization of 
 The document is written by the store, off the main thread, coalesced.
 
 The last answer of a round is an answer like any other, and it is the most expensive one:
-finishing books the day, which triggers the save that carries the snapshots (`../kern/docs/snapshots.md`).
+finishing books the day, which triggers the save that carries the snapshots (`snapshots.md`).
 None of that may sit on the frame that raises the summary —
 the watch snapshot alone ranks every scheduled card against each of the entries it ships, and on the main thread that pause was the summary's.
 iOS builds both away from it and skips the watch one outright where no watch is paired to receive it;

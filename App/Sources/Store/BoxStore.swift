@@ -4,7 +4,7 @@ import WidgetKit
 
 /// File-backed persistence for the box — one document per TARGET language
 /// (`box-<target>.json`), since only one language is ever active and a save should touch
-/// only what moved (`kern/docs/snapshots.md`).
+/// only what moved (`docs/snapshots.md`).
 ///
 /// The store also decides when a save reaches the disk — what it writes is Kern's `SaveScope`.
 /// The Kern `StoreCodec` is called HERE, on the actor, not by the caller: the document
@@ -152,7 +152,7 @@ actor BoxStore {
     /// Kern `WidgetSnapshotBuilder` JSON for the decode-only iOS widget, written next to the
     /// box documents. Built here for the same reason the box is encoded here: it walks the
     /// exposure ranking, the active cards and every day the logs carry
-    /// (`kern/docs/snapshots.md`). Carries the other languages' days because the run is one
+    /// (`docs/snapshots.md`). Carries the other languages' days because the run is one
     /// commitment across every box.
     private func writeWidgetSnapshot(state: BoxState, at nowEpochMillis: Int64) {
         let target = state.joinStamp.target

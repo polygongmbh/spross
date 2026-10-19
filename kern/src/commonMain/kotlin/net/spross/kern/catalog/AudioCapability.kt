@@ -56,7 +56,7 @@ enum class AudioCapability {
  * [hasVoice] is the caller's, for the same reason it is [audible]'s: whether a synthesizer
  * has this language is the single platform fact kern cannot know, and it is never cached
  * here — a voice installed while the app slept has to be picked up on return
- * (`LetterDrillAvailability`, `docs/read-aloud.md`).
+ * (`LetterDrillAvailability`, `docs/audio.md`).
  *
  * The catalog half is a map lookup, not a walk: a pack is registered by
  * `audio/<lang>/manifest.json` existing at load, so asking costs nothing and no surface has

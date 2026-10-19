@@ -26,7 +26,7 @@ import net.spross.kern.listen.NowPlayingLines
  *
  * That is the point of the mode: it is for the hours the phone is in a pocket, and one that
  * stopped at the lock screen would be a mode for staring at a phone that is already speaking
- * (`docs/surfaces.md`). Two platform facts make it work. A FOREGROUND service is what keeps
+ * (`docs/listening.md`). Two platform facts make it work. A FOREGROUND service is what keeps
  * the process out of the reaper's way while nothing is on screen; a [MediaSession] is what
  * makes the run a PLAYER as far as the system is concerned, which is what puts the word on
  * the lock screen and routes a headphone button at it.

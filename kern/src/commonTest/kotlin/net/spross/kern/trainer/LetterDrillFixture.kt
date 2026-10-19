@@ -70,7 +70,7 @@ internal object LetterDrillFixture {
 
     /**
      * The one slug `xx` realizes — `light` is deliberately absent (example resolution
-     * degrades per reader, `kern/docs/catalog.md`).
+     * degrades per reader, `docs/catalog.md`).
      */
     private val realized = mapOf("street" to "Straße")
 

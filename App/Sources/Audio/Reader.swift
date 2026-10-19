@@ -3,7 +3,7 @@ import SprossKern
 
 /// The one place a question's `Reading` becomes sound, for a review card and a
 /// drill alike: the prompt at once, the answer once the verdict's chime has
-/// landed, each at most once per `Reading.key` (`docs/read-aloud.md`). What is
+/// landed, each at most once per `Reading.key` (`docs/audio.md`). What is
 /// said is kern's; this only times it. The Android twin is `rememberReadAloud`.
 ///
 /// The answer's wait is held rather than fired and forgotten: the beat outlives

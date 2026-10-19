@@ -23,7 +23,7 @@ import net.spross.kern.store.StoredBoxes
  * it returns, for the caller that may not outlive a queued write.
  *
  * The widget's snapshot is built and written here too, beside the box, and [redrawWidget]
- * tells the placed tiles once it is on disk (`kern/docs/snapshots.md`).
+ * tells the placed tiles once it is on disk (`docs/snapshots.md`).
  */
 class BoxStore(val files: BoxFiles, private val redrawWidget: suspend () -> Unit) {
 

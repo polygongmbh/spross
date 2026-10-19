@@ -45,13 +45,13 @@ import net.spross.kern.listen.question
  * where the word and what it means meet. The picture comes with it for the same reason.
  *
  * FOUR controls and no fifth. There is no mute button: entering a surface whose only content
- * is a sound is itself the request to hear one (`docs/read-aloud.md`), so neither mute
+ * is a sound is itself the request to hear one (`docs/audio.md`), so neither mute
  * reaches this screen and a switch would only offer to break it. There is no end screen and
  * no progress either — a run the learner ends when they like has nothing to celebrate, and
  * nothing here is being graded.
  *
  * The set of controls, their order, their copy and their states are the OTHER phone's too;
- * only the drawing is this one's (`docs/surfaces.md` § Android companion).
+ * only the drawing is this one's (`docs/design.md` § App structure).
  */
 @Composable
 fun ListeningScreen(model: AppModel) {
@@ -114,7 +114,7 @@ fun ListeningScreen(model: AppModel) {
  * The way out. A back ARROW rather than the ✕ the drills wear: those two sit in a bar beside
  * the read-aloud switch, and the tinted disc is what makes the pair read as chrome instead of
  * two loose glyphs — alone on a screen with neither, the disc is a gray blob. Back and ✕ do
- * the same thing here (`docs/surfaces.md`), which was never a promise to wear the same glyph.
+ * the same thing here (`docs/listening.md`), which was never a promise to wear the same glyph.
  */
 @Composable
 private fun BackFromRun(chrome: Chrome, onClose: () -> Unit) {

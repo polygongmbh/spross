@@ -43,7 +43,7 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   Dictation asks the one word that played, not the card behind it:
   a synonym or variant of that card is a miss, and the reveal shows the played word alone.
 - **Correctness is never color alone** (checkmark/X over the tint); a miss never auto-advances.
-  Neither mute reaches the drill and it carries no mute button (`read-aloud.md` owns why),
+  Neither mute reaches the drill and it carries no mute button (`audio.md` owns why),
   so no run of it can open on a card with nothing to answer.
 
 ## Word scramble
@@ -55,6 +55,9 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   so this drill wears the typed card every other trainer drill wears rather than a tile bank.
 - **Its Sprossen ask longer words, and the opening letter always stands where the spelling put it**
   (`WordScrambleMasking`): without it the question turns from recalling a word into solving a puzzle.
+  The first letter is the one a word is found by (Rayner, White, Johnson & Liversedge 2006, *Psychological Science* 17(3)),
+  and a harder anagram buys no more memory than an easy one (Zacks, Hasher, Sanft & Rose 1983);
+  solving one at all is what helps, since a generated word outlasts a read one (Bertsch et al. 2007, *Memory & Cognition* 35(2)).
   It draws only words the learner can already produce,
   since a scramble is no cue at all for a word they cannot.
 - **The reveal carries the TRANSLATION**, the way the letter drill's dictation does:
@@ -89,7 +92,7 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   "Mom, help me!" is as right as "Help me, Mom!", so no catalog entry authors that order (`ScrambleCommaSwap`).
 - **Its Sprossen are bands of difficulty, easiest first, that share no phrase** —
   so a miss drops to phrases genuinely easier than the one missed,
-  and the ladder ends at its hardest band rather than counting on past it (`../kern/docs/turns.md`).
+  and the ladder ends at its hardest band rather than counting on past it (`drills-runs.md`).
 - **Nothing says what the phrase MEANS until it is graded** —
   the arrangement is made on word order alone,
   and the translation is part of what the card grows afterwards rather than a prompt above it.
@@ -99,7 +102,8 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
 - **The prompt is a word the box holds, and the answer is its opposite TYPED in the same language** —
   weiß → schwarz, oben → unten, kaufen → verkaufen.
   Both sides are the language being learned, so the drill asks a second retrieval of words already met,
-  and a pair is asked only once BOTH its words have arrived.
+  and a pair is asked only once BOTH its words have arrived:
+  antonyms are learned well as pairs and poorly where either meaning is still unknown (Yang 2021, *Chinese as a Second Language* 56(1)).
   Either word of a pair is a prompt; the relation is symmetric, so there is no reverse switch.
 - **Every word comes from the catalog, and the drill authors only pairs** (`../catalog/opposites/README.md`).
 - **A word written alike for two meanings is ONE prompt with every opposite right** —
@@ -107,4 +111,4 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   The reveal names all of them, each with its meaning, so the merge is the lesson rather than a trap;
   an opposite the learner has not met yet still answers, and the reveal is where they meet it.
   Typing the prompt back is a miss, however close it lands to an opposite.
-- **Its Sprossen are three bands that share no prompt** (`../kern/docs/turns.md`).
+- **Its Sprossen are three bands that share no prompt** (`drills-runs.md`).

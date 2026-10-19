@@ -109,7 +109,7 @@ internal data class RawFrame(
 
 /**
  * One concept as the alphabet's example resolver sees it — the two halves of example
- * resolution (`kern/docs/catalog.md`) kept apart: [realizations] answers "does THIS
+ * resolution (`docs/catalog.md`) kept apart: [realizations] answers "does THIS
  * language have a word for it" per language, so the target-side example and the
  * reader-side meaning never depend on each other.
  */

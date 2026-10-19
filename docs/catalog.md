@@ -1,6 +1,6 @@
 # Catalog schema — engine-side rules
 What the engine requires of the catalog and the lint that holds it.
-Neighbors: the engine contract `../README.md`, the file format `../../catalog/README.md`.
+Neighbors: the engine contract `../kern/README.md`, the file format `../catalog/README.md`.
 
 - `areas.json`: a group's `areas` is an array of **objects** (`{ "area", "emoji" }`).
   The emoji is language-neutral display metadata, so the catalog owns the area icon and both apps read the same one.
@@ -23,9 +23,9 @@ Neighbors: the engine contract `../README.md`, the file format `../../catalog/RE
   A note explains the language it sits on, so the prompt side never carries one —
   a German learner of Swahili is not there to be told what `wegen` does to its case.
   Which of the two to author is a content decision, not the engine's —
-  `../../catalog/areas/README.md` states it.
+  `../catalog/areas/README.md` states it.
 - Realization: `accepts: [String]` next to `teaches` —
-  a **display/accept distinction only**, never a scheduling one (`../README.md` §3):
+  a **display/accept distinction only**, never a scheduling one (`../kern/README.md` §3):
   `teaches` rotates as recognition prompt forms and shows on reveal;
   `accepts` grades silently and is never prompted.
   A form nobody can type belongs in `accepts`, never in `text`:
@@ -33,7 +33,7 @@ Neighbors: the engine contract `../README.md`, the file format `../../catalog/RE
 - **CatalogLintTest** (permanent, on the real catalog) enforces:
   parse/shape/order rules, slug charset (no `|`), seedIndex uniqueness, teaches ≠ text, no duplicate `teaches`/`accepts` entries, no `" / "` in text, components resolve same-area, concept emoji well-formed, every manifest area carries an emoji.
 - **Homonym gates** (**`CatalogCollisionLintTest`**; no schema field —
-  the area label is the disambiguator, `../README.md` §2/§3).
+  the area label is the disambiguator, `../kern/README.md` §2/§3).
   Lint owns what the engine cannot fix, runtime tolerates the rest:
   - `noPromptCollisionWithinAnArea` —
     a display-identical prompt inside ONE area is a hard error:
@@ -84,7 +84,7 @@ Neighbors: the engine contract `../README.md`, the file format `../../catalog/RE
   Read through the **RAW** source, not the fingerprinting wrapper —
   a calendar joins no card, so editing one must not restamp a running box (the atlas' exemption, for its reason).
   `Catalog.dateDrillContent(source, target)` joins a pair and is null where either side has no file or the TARGET has no trainer pack —
-  the day of the month is the pack's to read (`../../docs/date-readings.md`),
+  the day of the month is the pack's to read (`date-readings.md`),
   so a pack-less calendar may prompt and never answer.
   Parse-shape rules (unknown keys, wrong list lengths, a pattern marker its kind does not take, `dateForm` echoing its `text`) hard-fail the load;
   **`CatalogDatesLintTest`**
@@ -105,7 +105,7 @@ Neighbors: the engine contract `../README.md`, the file format `../../catalog/RE
   and `CatalogFrameLintTest` adds the two rules only a frame can break —
   text and accepts agree on carrying one, and a marked frame joins every pair its realizations otherwise allow.
 - `catalog/phrases/` —
-  the sentence frames, a top-level sibling outside `areas.json` (format owned by `../../catalog/phrases/README.md`).
+  the sentence frames, a top-level sibling outside `areas.json` (format owned by `../catalog/phrases/README.md`).
   A frame is a concept + per-language realizations, joined at runtime like a card, but it is not a card:
   no area, no `seedIndex`, outside the phrase-unlock gate.
   **Frames are read through the RAW `CatalogSource`, not the fingerprinting wrapper** —

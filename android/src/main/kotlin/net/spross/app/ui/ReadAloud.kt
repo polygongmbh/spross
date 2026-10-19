@@ -15,7 +15,7 @@ import net.spross.kern.session.Reading
 /**
  * The one place a question's [Reading] becomes sound, for a review card and a drill alike:
  * the prompt at once, the answer once the verdict's chime has landed, each at most once per
- * [Reading.key] (`docs/read-aloud.md`). What is said is kern's; this only times it.
+ * [Reading.key] (`docs/audio.md`). What is said is kern's; this only times it.
  *
  * Returns whether the answer is still sounding — what an armed beat waits out, so a clean
  * answer is never cut off by its own advance. The iOS twin is `Reader`.

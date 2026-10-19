@@ -119,5 +119,5 @@ Android builds Mac-free — commands, SDK setup, emulator, install steps: `RUNBO
 `scripts/run-emu.sh` is the emulator counterpart of `run-sim.sh`.
 
 Framework mechanism: a pre-build phase stages `SprossKern.framework`
-via `scripts/build-kern.sh` (integration detail: `kern/docs/build.md`).
+via `scripts/build-kern.sh` (integration detail: `docs/build.md`).
 After adding/removing Swift source files or switching commits: `scripts/gen.sh` (`run-sim.sh` runs it on every build).

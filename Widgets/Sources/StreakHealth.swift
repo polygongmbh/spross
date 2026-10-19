@@ -2,7 +2,7 @@ import Foundation
 
 /// Kern's `StreakHealth` (`box/Statistics.kt`) for the widget, which links no Kotlin:
 /// the same cases in Swift's casing, decoded from the case name kern serializes.
-/// Which day puts a run in which case is kern's ruling (`kern/docs/reports.md`).
+/// Which day puts a run in which case is kern's ruling (`docs/reports.md`).
 enum StreakHealth: String, Decodable {
     case earned, bridgeable, ending, noRun
 

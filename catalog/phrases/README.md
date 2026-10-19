@@ -1,6 +1,6 @@
 # Drill frames
 The sentence frames the generated number, year, clock, fraction and phone-number drills fill, and how one is authored.
-Neighbors: what the engine generates into them `../../kern/docs/catalog.md`.
+Neighbors: what the engine generates into them `../../docs/catalog.md`.
 
 Sentence frames for the procedural drills:
 a curated sentence whose single `{slot}` the engine fills with a generated

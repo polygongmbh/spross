@@ -27,7 +27,7 @@ built to sit beside native-speaker conversation or a structured course, never to
 - `web/index.html` + `web/site.css` + `web/site.js` — hand-authored, no framework, light+dark via `prefers-color-scheme`.
 - The drill runs on the real kern: `:kern` has a `js { browser() }` target whose `jsMain` facade
   (`net.spross.kern.web`) exports numbers-drill entry points over `Numbers` + `AnswerNormalizer`
-  (target/pin details: `kern/docs/build.md`).
+  (target/pin details: `../build.md`).
 - `scripts/build-web.sh` assembles a deployable `web/dist/` (gitignored):
   runs `:kern:jsBrowserDistribution`, copies the bundle beside the static files.
   Every `web/*.html` ships, so a new page needs no edit there.

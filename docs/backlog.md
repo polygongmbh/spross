@@ -27,7 +27,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
   since `fb7668f4` dropped the lap jitter —
   should words of similar standing reorder again, and does kern or Swift decide it?
   (`WatchModel.practiceLap`)
-- Phone recognition could ask by multiple choice after the watch's recall pause instead of self-grading, with time-based ratings moved into kern so iOS, Android and the watch grade alike (`WatchGrading`, `kern/docs/presentation.md`).
+- Phone recognition could ask by multiple choice after the watch's recall pause instead of self-grading, with time-based ratings moved into kern so iOS, Android and the watch grade alike (`WatchGrading`, `review.md`).
 - `tools/FaceGen --seed` reads the retired `vocab-*.json` and a `../../content` that no longer exists —
   port it to the catalog join or delete it (`docs/facegen.md`).
 - Audio ships un-thinned: both installs copy all of `catalog/audio/` (129 MB, 13–25 MB per language —
@@ -77,6 +77,6 @@ Neighbors: catalog content `../catalog/backlog.md`.
 
 - Watch snapshot entry cap (`WatchSnapshotBuilder.ENTRY_CAP`, 120):
   due-first ranking keeps due cards on-watch,
-  but revisit the cap if the active box outgrows it (`../kern/docs/snapshots.md`).
+  but revisit the cap if the active box outgrows it (`snapshots.md`).
 - Android's `NumberReferenceTable` renders every band eagerly inside one `verticalScroll` —
   fine at today's ~50 rows, revisit if a band grows (`android/.../ui/NumberReference.kt`).

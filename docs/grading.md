@@ -1,6 +1,6 @@
 # Grading — how a typed answer becomes a rating
 The machinery that turns a typed answer on the produce path into a rating.
-Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGrading`.
+Neighbors: the leniency rule `../kern/README.md`, recognition's self-grade `SelfGrading`.
 
 ## The normalizer
 
@@ -71,7 +71,7 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
   consulted on its bare-name Sprossen only and skipping the entry that was asked,
   whose `dateForm` it owns without the Sprosse accepting it.
   Coverage is deliberately best-effort:
-  a colliding pair outside the index's reach stays the forgiven slip it always was, and no sweep pins the tail (which readings a clock may share at all is `../../docs/clock-registers.md`).
+  a colliding pair outside the index's reach stays the forgiven slip it always was, and no sweep pins the tail (which readings a clock may share at all is `clock-registers.md`).
   A welded compound above the index within its word's cap (it `centotrentuno` for 121) can pass as a slip —
   rare, and still held as a near-miss.
   `matchingPrefixWordCount(input, answer)` is a UI-only sibling of `evaluate` —
@@ -94,7 +94,7 @@ Neighbors: the leniency rule `../README.md`, recognition's self-grade `SelfGradi
   it grades `Match.OtherWord(word, meanings)` —
   no typo credit, and the reveal can name what was written (`meanings` = the source words of every owning concept, seed order).
   Exact on the prompted card always wins, so a form two concepts share stays correct;
-  the feminine base leniency (`../README.md` §3) is left to its own demotion;
+  the feminine base leniency (`../kern/README.md` §3) is left to its own demotion;
   and dropping a citation prefix off the INPUT reaches verb owners only (a noun never owns `kupika`).
   Only the collision is catalog-wide — nothing else about "wrong" widens.
 - **The meaning side reads the join from the other end** —

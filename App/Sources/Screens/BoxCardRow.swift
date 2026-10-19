@@ -136,7 +136,7 @@ struct BoxCardRow: View {
                 .font(.title3)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
-                // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
+                // Exposure surfaces render the TARGET side first (`docs/reports.md`).
                 HStack(spacing: Theme.spacing.xs) {
                     citation
                         .lineLimit(1)

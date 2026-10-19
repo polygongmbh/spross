@@ -4,6 +4,8 @@ Neighbors: every drill `drills.md`, readings `number-forms.md`, `clock-registers
 
 ## Zahlen — the numbers page
 
+- **Numbers earn a drill of their own**: number facts learned in one language are retrieved fastest in that language and do not carry over for free
+  (Spelke & Tsivkin 2001, *Cognition* 78(1)).
 - **Which exercises a learner may pick is derived from one stored number per exercise** —
   the highest Sprosse ever reached — through kern's unlock table.
   Picking SEVERAL of them for one run is itself earned:
@@ -30,7 +32,7 @@ Neighbors: every drill `drills.md`, readings `number-forms.md`, `clock-registers
   and an empty field offers Skip, an immediate miss, where a practice run offers the reveal.
   Its score line carries the clock and the score in the answer streak's place,
   and it offers neither the look-up nor the early "Fertig": against a clock, one is a shortcut and the other is the clock's job.
-  A screen reader never sees its section, since a run ending under the learner is the timed change `../kern/docs/turns.md` keeps from one.
+  A screen reader never sees its section, since a run ending under the learner is the timed change `drills-runs.md` keeps from one.
   Its questions are a script rather than a ramp, which would part the two runs at the first miss,
   and only what never shows the learner's own language travels, so Phrases stays home.
   It books neither ladder nor record: the tile sets its score against the one the code arrived with,

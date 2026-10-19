@@ -1,6 +1,6 @@
 # Language at a glance — a rules sheet per learned language
 Plan for a short, hand-written sheet of the rules that hold for every card of the language being learned (genders and their endings, the regular plural, elision, core verbs), shown in the app and printed on the posters from one source.
-Neighbors: letter sheets `../../catalog/alphabet/README.md`, notes `../../kern/docs/catalog.md`, card marks `../design.md`.
+Neighbors: letter sheets `../../catalog/alphabet/README.md`, notes `../catalog.md`, card marks `../design.md`.
 
 ## What exists
 

@@ -9,7 +9,7 @@ import net.spross.kern.model.Language
  * What the drills say out loud, outside the letter drill's own prompts.
  *
  * A drill card is a review card, so its revealed reading is spoken and replayable like any
- * other answer (`docs/read-aloud.md`) — and the alphabet sheet, being reading matter rather
+ * other answer (`docs/audio.md`) — and the alphabet sheet, being reading matter rather
  * than a run, sounds only on a tap and then always.
  */
 

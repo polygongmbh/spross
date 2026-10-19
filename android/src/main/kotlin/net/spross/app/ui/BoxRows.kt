@@ -134,7 +134,7 @@ fun BoxCardRow(
             modifier = Modifier.clearAndSetSemantics {},
         )
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
-            // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
+            // Exposure surfaces render the TARGET side first (`docs/reports.md`).
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(Theme.spacing.xs),
@@ -244,7 +244,7 @@ fun AppModel.boxPronounceAction(target: Realization): (() -> Unit)? {
         catalog?.pronunciation(target.lang, target.text) ?: return null
     if (!pronouncer.canPronounce(pronunciation)) return null
     // The citation form is the canonical one here — no rotation reaches a browser row — so
-    // the voice says it with its article, exactly as the row draws it (`docs/read-aloud.md`).
+    // the voice says it with its article, exactly as the row draws it (`docs/audio.md`).
     val article = shownArticle(target.article, target.text, target.text)
     return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, article) }
 }

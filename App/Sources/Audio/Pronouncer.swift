@@ -116,7 +116,7 @@ final class Pronouncer {
     /// word, already vetted by `shownArticle` — a rotated synonym arrives here
     /// as nil. It reaches the live voice ONLY (`spokenTargetForm`): a bundled
     /// recording says what was recorded, and re-cutting one is an edit to bytes
-    /// the app never edits (`docs/read-aloud.md`).
+    /// the app never edits (`docs/audio.md`).
     ///
     /// `fadeDb` is the listening run's bedtime ramp and 0 everywhere else.
     /// `onFinish` is the end of the reading, fired once on every path: the word

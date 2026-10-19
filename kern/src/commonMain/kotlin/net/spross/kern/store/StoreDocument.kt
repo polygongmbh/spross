@@ -25,7 +25,7 @@ import net.spross.kern.model.ReviewLogEntry
 internal const val STORE_SCHEMA_VERSION: Int = 2
 
 /**
- * One language's stored box (`box-<target>.json`, `kern/docs/snapshots.md`), and the
+ * One language's stored box (`box-<target>.json`, `docs/snapshots.md`), and the
  * envelope an export wraps every language in.
  *
  * A card is `[dueEpochSeconds, [[answerEpochSeconds, rating], …]]` and nothing else: memory,

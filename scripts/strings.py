@@ -58,7 +58,7 @@ from sibling import load
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, 'App/Sources/Resources/Localizable.xcstrings')
 # The watch app, the complication and the iOS widget: bundles that never see the app's
-# catalog, looked up by the snapshot's chrome language (kern/docs/snapshots.md). Held to
+# catalog, looked up by the snapshot's chrome language (docs/snapshots.md). Held to
 # the same formatting, translation and plural rules; the %@ twins, the --built diff and
 # the Android tables are the app catalog's alone.
 GLANCE = os.path.join(ROOT, 'Shared/Resources/Glance.xcstrings')

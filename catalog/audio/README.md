@@ -1,6 +1,6 @@
 # Audio
 The bundled recordings' file format, naming and provenance fields.
-Neighbors: engine `../../kern/docs/audio.md`, when one is heard `../../docs/read-aloud.md`, whose they are `../../docs/audio-licensing.md`.
+Neighbors: when and how a recording is heard `../../docs/audio.md`, whose they are `../../docs/audio-licensing.md`.
 
 Bundled pronunciation recordings, one folder per language, **generated** by `app/scripts/audio-catalog.py` out of the workspace's packs —
 edit packs, not this directory.
@@ -196,7 +196,7 @@ the script asks `git ls-files` instead.
   playback is keyed by what stands on the card, never by the concept that shows it,
   so a rotated synonym nobody recorded falls through to the app's own voice instead of playing the canonical word.
   It may differ from `text` in case (`unterlagen` / "Unterlagen"), edge punctuation (`hallo` / "Hallo!") or the citation dash (`zuri` / "-zuri") —
-  the engine folds those away (`../../kern/docs/audio.md`).
+  the engine folds those away (`../../docs/audio.md`).
   Letters carry no `matches`: they speak a name, and that string belongs to the alphabet file.
 - `source` — the original Commons filename;
   the credits screen links `File:<source>`,

@@ -7,7 +7,7 @@ import SprossKern
 /// pocket, over a sink of dishes.
 ///
 /// It books no review, writes no schedule and moves no streak, so it can be
-/// closed at any moment and costs the box nothing (`docs/surfaces.md`
+/// closed at any moment and costs the box nothing (`docs/listening.md`
 /// § Listening). The whole machine is kern's (`ListeningRun`); the driver that
 /// turns its effects into sound is `ListeningDriver`, and this is only the face.
 ///

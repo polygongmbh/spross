@@ -1,57 +1,6 @@
-# Surfaces beyond the review loop
-Listening, the wrist and the Android companion.
-Neighbors: the hub's drills `drills.md`, the review loop and its auto-advance `design.md`.
-
-## Listening
-
-- **Listening is not a drill.** Only a skill with a ladder to climb earns a chip on the hub (`drills.md`);
-  listening asks nothing, grades nothing and has no Sprosse to reach, so a chip would call it a peer of counting and spelling when it is a different kind of thing.
-  It gets ONE CARD on Home, under the day's round:
-  the round is what the box asks of the learner, and this is what the learner can do when answering is not on the table —
-  a walk, a commute, the dishes.
-  Its title names the mode once, and its second line carries the two facts the name cannot:
-  which words it leans on, and that it needs no hands.
-- **It keeps the drill contract even so**: it books no review and writes no schedule, so a run costs the box nothing and can be closed at any moment.
-  Unlike a drill it asks nothing, so it moves no streak either.
-  It has no end screen —
-  a run that only laps counts no stretch to celebrate —
-  and no way of ending by itself:
-  it laps for as long as it is left playing.
-- **What it plays is the box, short of the words it already calls settled, shakiest first**, never ordered by what is due —
-  a schedule is about when to ASK, and nothing is being asked.
-  New words take a fixed share from the first turn, queued words leading them, so the mode that asks the least still honors the queue the day's round does;
-  suspended words are in the pool, since they are exactly the ones a due-driven surface never reaches.
-  Hearing a word does NOT introduce it: introduction is the first ANSWER, and this surface has none.
-  The deal and its numbers are `../kern/docs/turns.md`.
-- **It plays with the screen locked.** That is the point of it —
-  the mode is for the hours the phone is in a pocket, and one that stopped at the lock screen would be a mode for staring at a phone that is already speaking.
-  Both platforms put the run on the lock screen and take play/pause/next from it and from a headphone button, driving the same reducer the on-screen buttons drive;
-  how it is spoken, and what it does to whatever else was playing, is `read-aloud.md`.
-  What that card SAYS is the run and never the turn:
-  the app icon, the app and mode as the title, the pair of languages under it, and nothing that moves word to word.
-  That is what lets it be PUSHED when the run changes —
-  opened, paused, resumed, given a bedtime, closed —
-  rather than three times a minute:
-  the artwork crosses to the system whole on every push, and a mode built for the hours a phone spends in a pocket cannot pay that per word.
-  A bedtime, and only a bedtime, gives the card a progress bar:
-  it is the one thing a run that otherwise laps forever has a length of, and the system runs the bar on between pushes.
-
-## Android companion
-
-`android/` renders THIS contract with Compose on the same engine facades, so the turn and the drill runs follow the same rules by construction, not by porting discipline.
-The hub ships there whole (`drills.md`).
-Platform deltas only: the catalog and the chimes ship as APK assets synced from `catalog/` and `App/Resources/Sounds/`, the box is app-private, runs are full screens rather than covers,
-and Back mirrors ✕ everywhere — inside a run the reference panel eats Back first.
-The trees and the round summary's tree are Android's own drawing of kern's `growthByArea`, stood and grown by kern (`TreesLayout`, `AreaTree`) exactly as on iOS.
-The summary's tree rises, and confetti falls, only while the system's animations are on.
-The home-screen tile ships there too, in Glance, and it is ONE grid sized to the tile rather than iOS's three home-screen families (§ Watch & widgets): an Android tile is dragged to any shape, so a bucket boundary would change what the tile IS over a cell of width nobody can see.
-Columns and rows come off the size the host hands over, against a minimum readable cell and a bound the platform's ten-children container forces —
-the smallest tile is one word, and every shape up to that bound fills with as many as fit.
-Only the cell's TYPE moves with it, and it moves in steps, off the cell's own box:
-the picture over the pair, beside it where a tile one row tall leaves no third line.
-The tile is app-private like the box, and one the launcher has just placed shows the platform's own loading face until the first composition lands.
-
-## Watch & widgets (decode-only)
+# Watch & widgets — the wrist and the home-screen tiles
+The watch's multiple-choice loop and the tiles on both phones: what each holds, how it rotates and how the wrist grades; every one decodes the snapshots the phone precomputes.
+Neighbors: the snapshots they decode `snapshots.md`, the review card on the phone `review.md`.
 
 - The phone precomputes both snapshots on every persist;
   the surfaces decode and draw, and never compute what the phone could pre-resolve.
@@ -82,7 +31,7 @@ The tile is app-private like the box, and one the launcher has just placed shows
   so the numbers are as fresh as the last answer, and the words turn over on the half hour whether or not anyone opened the app.
 - Watch: one graded **multiple-choice** loop —
   the watch never types, and the options arrive ranked from kern so that nothing but meaning tells the answer from its company:
-  word class, then how the sentence closes, then area, then string shape (`../kern/docs/snapshots.md`).
+  word class, then how the sentence closes, then area, then string shape (`snapshots.md`).
   No self-grading: correctness and response time derive the rating.
   Every question shows its prompt alone first, for as long as the Good window gives the prompt's own characters,
   so the answer is recalled before options can be spotted; a tap shows them early, the response clock starts when they appear,
@@ -107,8 +56,25 @@ The tile is app-private like the box, and one the launcher has just placed shows
   the right answer's feedback is the subtlest the wrist has.
 - **The picture arrives with the answer.** A card that has an emoji shows it on the watch's prompt line once a tile is tapped, never before:
   on a recognition question the picture depicts the very meaning being asked for.
-  The emoji cue picks which KEY the picture travels under (`../kern/docs/snapshots.md`), so no surface can show one early by reading the wrong field.
+  The emoji cue picks which KEY the picture travels under (`snapshots.md`), so no surface can show one early by reading the wrong field.
   It joins the prompt line instead of taking a slot of its own, so an answered card never reflows under the thumb.
 - Two runs, and only one of them ends:
   the **due batch** is a counter that reaches its end and returns to the start screen by itself, while **free practice** takes the words weakest first in the order the phone ships, lap after lap, carrying the answer streak in place of a total.
   Practice has no end screen — a run the learner ends when they like has nothing to celebrate.
+
+## The Android tile
+
+The home-screen tile ships there too, in Glance, and it is ONE grid sized to the tile rather than iOS's three home-screen families (above): an Android tile is dragged to any shape, so a bucket boundary would change what the tile IS over a cell of width nobody can see.
+Columns and rows come off the size the host hands over, against a minimum readable cell and a bound the platform's ten-children container forces —
+the smallest tile is one word, and every shape up to that bound fills with as many as fit.
+Only the cell's TYPE moves with it, and it moves in steps, off the cell's own box:
+the picture over the pair, beside it where a tile one row tall leaves no third line.
+The tile is app-private like the box, and one the launcher has just placed shows the platform's own loading face until the first composition lands.
+
+## Evidence
+
+Holding the options back while the learner tries to recall improved delayed retention
+(van den Broek et al. 2023, "Delayed display of answer alternatives enhances vocabulary learning", *Journal of Educational Psychology*).
+The study held them 4 s; the watch holds less on purpose, a middle ground that keeps a wrist answer quick (user ruling 2026-10-19).
+The same study, and Little, Bjork, Bjork & Angello (2012), *Psychological Science*,
+found competitive, hard-to-guess options improve retention — the distractor ranking.

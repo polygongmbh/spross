@@ -182,7 +182,7 @@ class Pronouncer(context: Context, private val prefs: SharedPreferences) {
      * decided by kern's `shownArticle` rule so a rotated synonym carrying another gender
      * gets none. It never reaches a recording: a recording says what was recorded, and the
      * two branches sounding different is the accepted cost of teaching the article at all
-     * (`docs/read-aloud.md`).
+     * (`docs/audio.md`).
      *
      * [fadeDb] is kern's listening ramp (`listeningGainDb`), 0 everywhere else. It rides the
      * volume on top of a recording's own index, never instead of it — kern adds the two and

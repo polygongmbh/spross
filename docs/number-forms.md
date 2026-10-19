@@ -1,6 +1,6 @@
 # Number forms — what each language reads
 What each language reads for the numbers drill's seven forms beyond the cardinal (negative, decimal, percentage, multiplicative, fraction, ordinal, price) and the source that decided it.
-Neighbors: drawing and prompting `../kern/docs/trainer.md`, grading `../kern/docs/grading.md`, a date's numeral `date-readings.md`.
+Neighbors: drawing and prompting `drills-runs.md`, grading `grading.md`, a date's numeral `date-readings.md`.
 
 The code is one `<Lang>Forms.kt` per language
 under `../kern/src/commonMain/kotlin/net/spross/kern/trainer/`,
@@ -50,7 +50,7 @@ where the cents run to two digits and the units stay below a hundred,
 where it can be heard as nothing but a price.
 
 The same reach feeds `NumberReadingIndex`, the drill's value check
-(`../kern/docs/grading.md`): every reading a pack can be asked is indexed
+(`grading.md`): every reading a pack can be asked is indexed
 back to its value through `NumberFormsAnswerSpace`, so a pack owes the index
 nothing beyond honest `FormLimits` — a form read outside them is invisible
 to the check and a slip there stays a forgiven typo.
@@ -347,7 +347,7 @@ Sources: [Académie française, Questions de langue](https://www.academie-franca
   and `centouno` says the number with nothing given up.
   The twin that could NOT be avoided is `ventotto` ↔ `centotto`,
   where both spellings are the canonical reading of their own number;
-  the drill's value check refuses it (`../kern/docs/grading.md`),
+  the drill's value check refuses it (`grading.md`),
   as it does `ventesimo` ↔ `centesimo` in the forms space.
 - **`uno` needs the noun that the bare prompt has not got.**
   It agrees with a feminine one (`una volta`), apocopates before any noun (`ventun volte`, `ventun minuti`)

@@ -1,6 +1,6 @@
 # Drills -- the hub, the Sprosse and the run
 What a Sprosse is, what earns a chip on the hub, which drill Home suggests, and the shape every overview page and every run wears.
-Neighbors: each drill `drills-tables.md` and `drills-words.md`, surfaces around them `surfaces.md`, the review loop `design.md`.
+Neighbors: each drill `drills-tables.md` and `drills-words.md`, how a run is made and played `drills-runs.md`, the card a drill wears `review.md`.
 
 ## The words
 
@@ -34,7 +34,7 @@ Nothing wears a prefix one scope wider than what it serves.
   counting content, an alphabet file, a joined atlas or calendars,
   a settled word long enough to scramble, a phrase of three words
   or enough opposite pairs whose both words have arrived
-  (`../kern/docs/turns.md`) --
+  (`drills-runs.md`) --
   and the hub offers only languages with authored content.
 - **The roster is kern's `Drill`, and its order is the chip order.**
   The seven are enumerated there and nowhere else:
@@ -63,7 +63,7 @@ Nothing wears a prefix one scope wider than what it serves.
 - Clock, sentences and number forms are exercises a run selects, not chips:
   a chip apiece would say they are alternatives to counting rather than what counting earns.
 - **A drill card is a review card** -- same face, same reveal,
-  and the graded answer is spoken, right or wrong, and replayable (`read-aloud.md`) --
+  and the graded answer is spoken, right or wrong, and replayable (`audio.md`) --
   and carries nothing but the prompt:
   the run's header line already names what is drilled,
   and the field's placeholder names what is owed.
@@ -103,7 +103,7 @@ Nothing wears a prefix one scope wider than what it serves.
 - **It turns over with the greeting and never between renders**:
   a small seeded nudge per drill, keyed on the greeting's stretch of the day,
   settles close calls, and a closed run moves its drill's last-run stamp
-  (`../kern/docs/turns.md` storage contract).
+  (`drills-runs.md` storage contract).
 
 ## The overview page
 
@@ -122,7 +122,7 @@ Nothing wears a prefix one scope wider than what it serves.
   kern names its bands and the app words their headings.
   A Sprosse the run just earned unlocks its row on the way back out.
   Every row is READ by tapping the row itself,
-  spoken in the language being learned (`read-aloud.md`).
+  spoken in the language being learned (`audio.md`).
 - **Two to four authored prose notes sit under a generated table**,
   on what trips a learner up in that language.
 - **Every Sprosse row is ONE line**, named for what the Sprosse asks or adds.
@@ -152,7 +152,7 @@ Nothing wears a prefix one scope wider than what it serves.
   filled ocean where one has reached it,
   filled forest where one run answered EVERY question of it before its first miss or almost --
   a run that has slipped once clears nothing more, in every drill that files Sprossen
-  (`DrillSprossen`, `../kern/docs/turns.md`) --
+  (`DrillSprossen`, `drills-runs.md`) --
   and only a Sprosse that enumerates can earn forest,
   so assembled date Sprossen never turn forest.
   The start button opens on the lowest Sprosse no run has answered out
@@ -160,7 +160,7 @@ Nothing wears a prefix one scope wider than what it serves.
   and a row the learner has been on is a control that opens a run on its own Sprosse
   (`NumbersMode.openable`).
   What a run answered out is filed per DIRECTION
-  (`../kern/docs/turns.md` storage contract),
+  (`drills-runs.md` storage contract),
   and the ladder the reverse switch shows reads its own direction's mask.
 - **The numbers page prints the Sprosse each exercise has been climbed to**
   under the exercise's own name,
@@ -171,7 +171,7 @@ Nothing wears a prefix one scope wider than what it serves.
   a Sprosse goes on counting past the last named one (`DrillRamp.step`).
 - **The two scrambles and the opposites have no page to wear a ladder on, and fast-climb one anyway.**
   A run opens at Sprosse 1 and passes each Sprosse an earlier run cleared on one clean answer
-  until its own first slip (`../kern/docs/turns.md` storage contract), filed per learned language.
+  until its own first slip (`drills-runs.md` storage contract), filed per learned language.
   Nothing overrides where it opens: there is no row to tap and no direction to turn.
   The letter drill files its tile and typed formats the same way (`drills-words.md`).
 - **An endless run offers its exit where it is wanted, and pauses at a natural stop.**
@@ -194,7 +194,7 @@ Nothing wears a prefix one scope wider than what it serves.
   A timed run ends on its clock and never pauses;
   each clean answer adds a second to that clock per non-zero digit of the number it asked.
   What ends a run unasked is running OUT of questions:
-  a run asks each prompt once (`../kern/docs/turns.md`),
+  a run asks each prompt once (`drills-runs.md`),
   so a ladder answered out hands its figures over.
 - **A run is a FULL screen however it was started, and its X is the one way out.**
   The four overviews open theirs in a cover;

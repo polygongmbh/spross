@@ -12,10 +12,10 @@ import kotlin.test.assertTrue
 import kotlin.test.fail
 
 /**
- * Permanent lint over the REAL catalog: every content rule (`kern/docs/catalog.md`).
+ * Permanent lint over the REAL catalog: every content rule (`docs/catalog.md`).
  * Structural rules (shape, unknown keys, reference resolution, slug uniqueness,
  * orphan realizations) are enforced by the parser itself — [catalogParsesClean] locks those in.
- * The audio rules (`kern/docs/audio.md`) live beside this in [CatalogAudioLintTest].
+ * The audio rules (`docs/audio.md`) live beside this in [CatalogAudioLintTest].
  */
 class CatalogLintTest {
     private val catalog get() = RealCatalog.catalog

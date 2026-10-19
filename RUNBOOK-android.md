@@ -1,6 +1,6 @@
 # RUNBOOK — building and running the Android app
 Building, running and testing the Android app from the command line on macOS or Linux.
-Neighbors: what the Android app does `docs/surfaces.md`.
+Neighbors: where the Android app differs `docs/design.md` § App structure.
 
 The `:android` module and the SprossKern engine build fine without a Mac;
 only the iOS/watch surfaces need Xcode.

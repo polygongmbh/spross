@@ -93,7 +93,7 @@ struct HomeView: View {
 
     // MARK: - Listening
 
-    /// `docs/design.md`, `docs/surfaces.md` § Listening.
+    /// `docs/design.md`, `docs/listening.md` § Listening.
     @ViewBuilder
     private var listeningCard: some View {
         // why: a box with words, and something able to say both sides of a turn.

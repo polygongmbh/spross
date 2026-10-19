@@ -32,7 +32,7 @@ data class WidgetWord(
  * shows, and the numbers the header states.
  *
  * Nothing here is computed from the catalog — the phone pre-resolved every row on its
- * last snapshot save (`kern/docs/snapshots.md`), and the only work left is the handful of
+ * last snapshot save (`docs/snapshots.md`), and the only work left is the handful of
  * answers that move with the clock.
  */
 class WidgetFace(

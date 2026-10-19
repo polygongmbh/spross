@@ -1,6 +1,6 @@
 # SprossKern -- engine contract
 The engine's standing contract (scheduling, growth, sessions, grading, snapshots) and its product frame.
-Neighbors: app-layer rules `../docs/design.md`, each topic's machinery its page under `docs/`.
+Neighbors: app-layer rules `../docs/design.md`, each element's page under `../docs/`.
 
 Product frame:
 any source (known) / target (learning) language pair from the catalog;
@@ -25,17 +25,19 @@ what stays here is what no single declaration can say --
 a decision someone made, a rule that spans several of them,
 or a bug a restatement would bring back.
 
-The engine's own semantics are below. Ten domains have a page of their own:
-`docs/presentation.md` (what a prompt shows, and when),
-`docs/fsrs.md` (parameters, provenance and graduation),
-`docs/turns.md` (the turn machine, the drills and listening),
-`docs/trainer.md` (the language packs and frames a drill is made of),
-`docs/grading.md` (how a typed answer becomes a rating),
-`docs/reports.md` (the read models a surface draws the box from),
-`docs/snapshots.md` (the box document and the watch/widget wire),
-`docs/catalog.md` (what the engine needs of the catalog),
-`docs/audio.md` (pronunciation rules),
-`docs/build.md` (KMP pins and the Xcode hand-off).
+The engine's own semantics are below. Each element the learner meets has a page of its own, engine and app rules together:
+`../docs/review.md` (what a prompt shows, the turn, the card on screen),
+`../docs/scheduling.md` (FSRS-6 parameters, provenance and the retry ladder's evidence),
+`../docs/listening.md` (the playlist),
+`../docs/drills-runs.md` (what a drill is made of and how a run plays it),
+`../docs/grading.md` (how a typed answer becomes a rating),
+`../docs/audio.md` (when and how a word is spoken),
+`../docs/watch-and-widgets.md` (the wrist and the tiles);
+and the machinery behind them:
+`../docs/reports.md` (the read models a surface draws the box from),
+`../docs/snapshots.md` (the box document and the watch/widget wire),
+`../docs/catalog.md` (what the engine needs of the catalog),
+`../docs/build.md` (KMP pins and the Xcode hand-off).
 The one engine rule that is not the box's own work is the seam to an outside chat assistant:
 `Briefing` writes what it may be told about a learner
 and `Harvest` reads back what it sends home;
@@ -77,7 +79,7 @@ the rules the declarations cannot state are here.
   From the TARGET side the same merge is not a residue but a fact of the word:
   a form more than one concept prints means all of what they mean
   (sw `ndege` is Vogel AND Flugzeug),
-  so a card asked what it MEANS credits any of them (`docs/grading.md`).
+  so a card asked what it MEANS credits any of them (`../docs/grading.md`).
 - **Grammar display is target-side only**:
   the plural line and the article coloring render for the target realization alone
   (`model/DisplayText.kt`).
@@ -115,18 +117,18 @@ both feeding the one schedule ("every answer event is an FSRS review" holds).
     the per-card phase offset keeps the box from flipping in sync.
 - **Recalled production** (`produceAnswer`): past the settled bar (`SETTLED_STABILITY`),
   every other produce turn is recalled in the head, revealed and self-graded instead of typed;
-  a word under the bar is always typed (`docs/presentation.md`).
+  a word under the bar is always typed (`../docs/review.md`).
 - **Form rotation** on both roles' prompts, and **sound-prompted production**
   (`producePrompt`): asking a word by ear WITHDRAWS the meaning rather than adding support,
   so it needs the growing bar (section 5),
-  and what is typed back is the meaning, in the source language (`docs/presentation.md`).
+  and what is typed back is the meaning, in the source language (`../docs/review.md`).
 - **The target is spoken with its article; the source is not** (user ruling 2026-08-21).
 - **Emoji cue**: `emojiCue(role, growing)` answers WHEN the picture appears,
   never whether or where:
   **Upfront** iff role == Produce and the word has not landed (section 5),
   **OnReveal** everywhere else --
   **the first exposure included** (ruling 2026-08-07).
-  Why each branch falls where it does is `docs/presentation.md`.
+  Why each branch falls where it does is `../docs/review.md`.
 - Composition is **role-agnostic** -- plans carry card ids;
   the role of each entry is resolved at render from the card's log count.
 - Scheduling keys are source-agnostic -> **switching source preserves every schedule**.
@@ -143,11 +145,11 @@ and the rest are private constants beside the rule each serves
 (`SessionComposer`, `TodayReport`, `net.spross.kern.listen`).
 `BoxConfig.product()` hands the shipped calibration out as a value,
 because Kotlin default arguments do not cross the ObjC boundary
-(`docs/snapshots.md` re-applies it to every loaded box).
+(`../docs/snapshots.md` re-applies it to every loaded box).
 
 ## 5. FSRS-6
 
-Parameters, provenance and the golden vectors are `docs/fsrs.md`;
+Parameters, provenance and the golden vectors are `../docs/scheduling.md`;
 the numbers behind each setting are on `BoxConfig` itself, and the three stability bars in `box/StabilityBars.kt`.
 
 - **ONE ALTERNATING ladder, `stepsSeconds`, shared by Learning and Relearning**
@@ -166,7 +168,7 @@ the numbers behind each setting are on `BoxConfig` itself, and the three stabili
   High on the ladder that hands a `Hard` a SHORTER interval than another step would have.
   **No in-session lapse retry** (breadth ruling 2026-07-22):
   the run a card lapsed in does not wait for it
-  (the watch alone folds enough misses back into a round, `../docs/surfaces.md`);
+  (the watch alone folds enough misses back into a round, `../docs/watch-and-widgets.md`);
   by role resolution (section 3), the retry that follows is the typed production attempt.
   Suspension is the learner's own call -- `setSuspended`, reversible from the Box.
 - **A graduated interval floors at one day.**
@@ -200,7 +202,7 @@ the numbers behind each setting are on `BoxConfig` itself, and the three stabili
   and **the learner's TEXT is never in the state** --
   the platform owns the field and hands text in through intents.
   Every rule about what that text is worth is the engine's.
-  The beats, the write-out, the recall span and the asked-by-ear rules are `docs/turns.md`.
+  The beats, the write-out, the recall span and the asked-by-ear rules are `../docs/review.md`.
 
 The engine also owns budgets and the growth-reserve formula, the silent answer drop,
 the extra round, endless, the urgency order (`Urgency`), statistics, streak forgiveness,
@@ -216,7 +218,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   Suspended and unjoined schedules count too: the answer really happened.
   A round's budget reads reviews alone (`answersOn`), so drilling never eats the day's round.
   Every other bucket (`activeCount`, `dueCount`, the areas) stays scoped to the join in view.
-  `WidgetSnapshotBuilder.build` takes the same parameter (`docs/snapshots.md`).
+  `WidgetSnapshotBuilder.build` takes the same parameter (`../docs/snapshots.md`).
 - **Introduction is the card's first answer.**
   `queued` holds card ids, stored oldest-queued first;
   queued cards lead composition **most recently queued first**
@@ -280,7 +282,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
 - **No surface derives a card's standing from a raw phase** --
   the engine reports the stage (`GrowthStage`),
   and every listing carries it whole (`CardRowState.Standing.stage`, an `ActiveStage`).
-  The read models a surface draws the box from are `docs/reports.md`.
+  The read models a surface draws the box from are `../docs/reports.md`.
   **The color a stage wears is the same fact, extended to drawing**:
   `CardRowState.Standing.swatch` resolves it once, off `net.spross.kern.design.Palette`,
   so a row's badge and the shelf's progress bar read the identical color on both platforms.
@@ -312,18 +314,18 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   and **one injected `Random` per run** feeds every draw,
   so a seeded run is reproducible end to end.
   Drills book no reviews and their storage keys are byte-identical across the two stores.
-  The ladder, the modes and the availability gates are `docs/turns.md`.
+  The ladder, the modes and the availability gates are `../docs/drills-runs.md`.
 - **Listening is a playlist over the learner's own words** (`net.spross.kern.listen`) --
   target word, meaning in the source language, then the target again.
   Hearing a word does not introduce it --
   `ListeningRun` holds no `BoxState` at all.
-  The pool, the ladder, the deal, the beats and the bedtime fade are `docs/turns.md`.
+  The pool, the ladder, the deal, the beats and the bedtime fade are `../docs/listening.md`.
 - **Leniency is safe only to the extent the catalog can disprove it.**
   The typo budget forgives a slip,
   and `CatalogAnswerGrader` withdraws that credit wherever the typed form
   is really another concept's word.
   A drill grades with the same budget and refuses a slip that names another number.
-  The pipeline, the budgets and the sweeps are `docs/grading.md`.
+  The pipeline, the budgets and the sweeps are `../docs/grading.md`.
 - **`Match.producedRating()` is the one place a produce match becomes a rating** --
   both apps call it rather than re-deciding the mapping.
 - **Own words** (`OwnWord`, `OwnWords`, `BoxEngine.addOwnWord/updateOwnWord/removeOwnWord`) --
@@ -365,7 +367,7 @@ deterministic orderings, and the `yyyy-MM-dd` day key. Beyond those:
   Suspended if either was, the queue slot moves across,
   and a merged suggestion queues the catalog word in its place.
   The fuzziness is `FormLikeness`, shared with the arrival matcher and deliberately NOT with
-  grading: they share the distance and not the budget (`docs/grading.md`).
+  grading: they share the distance and not the budget (`../docs/grading.md`).
   `clearFeedback` is the bulk deletion, and it reaches the OUTBOX rather than the words:
   every suggestion, every remark and every filed report go together.
   A word written in both languages is never cleared -- it is a card with progress on it.

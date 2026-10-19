@@ -23,7 +23,7 @@ import androidx.glance.text.TextStyle
 import net.spross.app.Chrome
 
 /**
- * ONE grid, sized to the tile — `docs/surfaces.md` § Android companion.
+ * ONE grid, sized to the tile — `docs/watch-and-widgets.md` § The Android tile.
  *
  * An Android tile is dragged to any shape, so columns and rows are cut from the size the
  * host hands over against a minimum readable cell: the smallest tile holds one word with

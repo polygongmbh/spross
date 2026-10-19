@@ -90,7 +90,7 @@ class CatalogAudioPlaybackTest {
      * sound of its own, and it is a map lookup rather than a walk — which is only safe while
      * the map and the folders agree. Dropping a pack in registers a language, and this is
      * what says so out loud rather than leaving a segment that promises a sound nothing can
-     * make (`docs/read-aloud.md`).
+     * make (`docs/audio.md`).
      */
     @Test
     fun everyShippedPackIsOneTheCatalogAdmitsTo() {

@@ -212,7 +212,7 @@ fun AppModel.newTurn(
     val grader = produceGrader ?: return null
     val words = normalizer ?: return null
     // The card asked by ear is typed in the SOURCE language, so kern grades it with that
-    // language's own rules rather than the target's (`kern/docs/presentation.md`).
+    // language's own rules rather than the target's (`docs/review.md`).
     val meanings = meaningNormalizer ?: return null
     val machine = TurnMachine(grader, words, meanings)
     return TurnFlow(

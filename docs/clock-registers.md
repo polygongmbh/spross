@@ -1,6 +1,6 @@
 # Clock registers
 How the clock drill decides what a time is called in each authored language: the parts of the day, the display/accepted/gloss split, the collision rule.
-Neighbors: generators `*Clock.kt`, grading `../kern/docs/grading.md`, dates `date-readings.md`.
+Neighbors: generators `*Clock.kt`, grading `grading.md`, dates `date-readings.md`.
 
 ## The three slots
 

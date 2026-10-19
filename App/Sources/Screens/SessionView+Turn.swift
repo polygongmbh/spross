@@ -72,7 +72,7 @@ extension SessionView {
         guard let card = model.currentCard,
               let normalizer = model.answerNormalizer,
               // A card asked by ear is typed in the SOURCE language, so kern grades
-              // it under that language's rules (`kern/docs/presentation.md`).
+              // it under that language's rules (`docs/review.md`).
               let meanings = model.meaningNormalizer,
               let grader = model.produceGrader else {
             machine = nil

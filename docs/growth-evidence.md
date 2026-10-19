@@ -1,6 +1,6 @@
-# What the evidence says
-The literature behind the box's learning rules: pacing first, then how a word is asked, the picture, the watch and the drills.
-Neighbors: the resulting rules `../kern/README.md` §5–6, `../kern/docs/presentation.md`, `surfaces.md`, `drills-words.md`.
+# What the evidence says about new-word intake
+The literature behind how the box bounds new words and which words arrive together; each other rule's studies sit in its own page.
+Neighbors: the resulting rules `../kern/README.md` §6, the retry ladder's evidence `scheduling.md`.
 
 The box is breadth-first: exposure to a lot of the language, accepting that any
 single word may not stick.
@@ -136,30 +136,6 @@ and reliably fails to predict retention
 A scheduler tuned to maximize in-session correctness is optimizing
 the illusion of a good round.
 
-## A missed word comes back soon, then later
-
-The retry ladder (`BoxConfig.stepsSeconds`) alternates ten minutes with growing day-scale waits.
-Latimier, Peyre & Ramus (2021), *Educational Psychology Review* 33, 959-987, meta-analyzed 29 studies:
-spaced retrieval beats massed by g = 0.74,
-while expanding against uniform gaps is g = 0.034, n.s. --
-spacing matters and the schedule's shape barely does,
-so the first gap only has to be short enough for the next attempt to succeed.
-Expanding gained a little as the number of tests grew, which the widening day steps keep.
-
-A failed attempt with the answer shown is worth about a restudy for an arbitrary pair like a translation:
-errorful generation strengthens the cue and the target on their own but not the link between them
-(Seabrooke et al. 2019, *JML*).
-Potts & Shanks (2014), *JEP: General* 143(2), found the opposite with foreign-word translations,
-so the reading is contested; neither side argues for pushing a missed word further out.
-
-The retry belongs to the next sitting rather than the tail of this one:
-one correct recall in each of three spaced sessions beat three in a single session
-(Rawson & Dunlosky 2022, "Successive relearning", *Current Directions in Psychological Science*).
-
-A word still missed at the top of the ladder is a leech,
-and no study says what to do with one;
-rewriting the word or letting it go is practitioner advice (Wozniak's "Twenty rules of formulating knowledge").
-
 ## A standing backlog is the normal state, and no gate should close on it
 
 **What intake costs is the reviews it draws.**
@@ -183,46 +159,9 @@ and a word met once (S 2.31) at 0.65.
 Practitioner consensus converges on a number because everyone copied one;
 where the authors say why, the reason is review load.
 
-## The scheduling model
-
-FSRS descends from Ye, Su & Cao (2022), "A stochastic shortest path algorithm for optimizing spaced repetition scheduling", KDD,
-and is benchmarked against SM-2 and others on real review logs at `open-spaced-repetition/srs-benchmark`.
-
-## How a word is asked
-
-- A recall made in the head practices about as well as one given aloud (Smith, Roediger & Karpicke 2013, *JEP: LMC* 39(6)) — the settled word's untyped produce turn.
-- A miss is learned from once the answer is shown (Pashler et al. 2005, *JEP: LMC* 31(1)) — the write-out.
-- Learners overrate what they know (Dunlosky & Rawson 2012, *Learning and Instruction* 22(4)), and response time has driven an adaptive scheduler well (Mettler, Massey & Kellman 2016, *JEP: General* 145(7)) — Easy earned by the clock.
-- Audio alone trains the ear, and the written form beside it carries form and meaning (Sydorenko 2010, *Language Learning & Technology* 14(2)) — saying a word where the card shows it.
-
-## The picture
-
-Upfront on a produce prompt before the word lands is a fading cue:
-support while learning is weak, withdrawn as it grows, helps where plain retrieval fails
-(Fiechter & Benjamin 2018, *Psychonomic Bulletin & Review* 25; Finley et al. 2011, *JML*).
-On the reveal once it has landed: pictures that help retrieve the answer lower recall days later,
-the same pictures after the attempt do not
-(van den Broek et al. 2021, "Images that reveal the answer reduce vocabulary learning", *Journal of Educational Psychology* 113(8)).
-
-## The watch
-
-Holding the options back while the learner tries to recall improved delayed retention
-(van den Broek et al. 2023, "Delayed display of answer alternatives enhances vocabulary learning", *Journal of Educational Psychology*).
-The study held them 4 s; the watch holds less on purpose, a middle ground that keeps a wrist answer quick (user ruling 2026-10-19).
-The same study, and Little, Bjork, Bjork & Angello (2012), *Psychological Science*,
-found competitive, hard-to-guess options improve retention — the distractor ranking.
-
-## The drills
-
-- **Numbers**: number facts learned in one language are retrieved fastest in that language and do not carry over for free (Spelke & Tsivkin 2001, *Cognition* 78(1)).
-- **Word scramble**: a word solved out of its letters is generated rather than read, and generated words outlast read ones (Bertsch et al. 2007, *Memory & Cognition* 35(2)).
-- **Word scramble**: a harder anagram buys no more memory than an easy one (Zacks, Hasher, Sanft & Rose 1983), and the first letter is the one a word is found by (Rayner, White, Johnson & Liversedge 2006, *Psychological Science* 17(3)) — why it always stands.
-- **Opposites**: antonyms are learned well as pairs and poorly where either meaning is still unknown (Yang 2021, *Chinese as a Second Language* 56(1)) — why both words must have arrived.
-
 ## Verification note
 
-The load-bearing findings above are from accessible primary sources;
-those from "The scheduling model" on were checked against abstracts.
+The load-bearing findings above are from accessible primary sources.
 A few older figures could not be confirmed at source and are cited only where
 the direction, not the number, carries the argument.
 

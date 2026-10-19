@@ -2,7 +2,7 @@ import Foundation
 import SprossKern
 
 /// Carrying the boxes across a reinstall or to another phone: one file with every
-/// language in it (`BoxBackup`, `kern/docs/snapshots.md`).
+/// language in it (`BoxBackup`, `docs/snapshots.md`).
 extension AppModel {
     /// The backup file's text — `only`, or every language, without what belongs to this
     /// device alone.

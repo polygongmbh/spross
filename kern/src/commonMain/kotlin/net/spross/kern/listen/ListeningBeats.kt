@@ -8,7 +8,7 @@ enum class ListeningBeat { Target, Meaning, Echo }
  *
  * [inTarget] picks the language: the target the learner is learning, or their own.
  * [article] rides the target sayings alone —
- * the meaning is there to identify the word, and its grammar is not what is taught (`docs/read-aloud.md`).
+ * the meaning is there to identify the word, and its grammar is not what is taught (`docs/audio.md`).
  */
 data class ListeningSaying(
     val beat: ListeningBeat,

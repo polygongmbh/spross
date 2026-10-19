@@ -113,7 +113,7 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 > The notes below are current design, not data-preservation vows.
 
 - Inner → outer: App depends on the kern (SprossKern framework), never the reverse;
-  only the app target links Kotlin (`kern/docs/build.md`).
+  only the app target links Kotlin (`docs/build.md`).
 - A behavioral rule lives in kern once — a platform may READ a kern decision, never MINT one
   (`LayerBoundaryTest`, waivable per line with `// layer-ok: <reason>`);
   nothing is written twice across platforms: any value, proportion, curve, timeline, threshold or random draw

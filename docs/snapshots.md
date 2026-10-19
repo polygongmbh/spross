@@ -1,6 +1,6 @@
 # Store & snapshots
 The persisted box document, the backup file, and the watch/widget snapshots the phone precomputes.
-Neighbors: the engine contract `../README.md`, what the watch and widgets draw `../../docs/surfaces.md`.
+Neighbors: the engine contract `../kern/README.md`, what the watch and widgets draw `watch-and-widgets.md`.
 
 - One document per TARGET: `box-<target>.json` (schema version 2, `store/StoreDocument.kt`) in the App Group `project.yml` names (`APP_GROUP_ID`).
   Only one language is ever active, so a save encodes and writes that one alone;
@@ -18,7 +18,7 @@ Neighbors: the engine contract `../README.md`, what the watch and widgets draw `
   Calibration is the BUILD's:
   `StoredBox.join` applies `BoxConfig.product()`, and the file holds no configuration at all.
   A word suspended before it was ever answered is an id in `suspended` and has no card entry;
-  `queued`, `ownWords` (the document's only content, `../README.md` §6) and `reportedIssues` carry the rest.
+  `queued`, `ownWords` (the document's only content, `../kern/README.md` §6) and `reportedIssues` carry the rest.
   Timestamps are epoch seconds, and the engine floors every stamp it mints (`box/Time.kt`, `stampOf`),
   so a live box equals its own reloaded self.
   kotlinx.serialization;
@@ -70,7 +70,7 @@ Neighbors: the engine contract `../README.md`, what the watch and widgets draw `
   **The wire carries only what a surface draws**:
   no `accepted[]` family, because the watch answers by picking a tile and has no face to list alternates on —
   should it grow the phone's "auch: …" line, the field comes back with the surface that reads it.
-- **The picture ships under the key of its cue** (`../README.md` §3):
+- **The picture ships under the key of its cue** (`../kern/README.md` §3):
   `emoji` for one the learner may see from frame one, `revealEmoji` for one seen only once a tile has been tapped,
   exactly one of them set.
   Two keys rather than one plus a flag,

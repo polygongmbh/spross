@@ -24,7 +24,7 @@ The rights holder is Polygon GmbH, the same entity the Impressum names
   packs under their per-file terms (`audio-licensing.md`), and the dependencies — kotlinx, AndroidX, Compose,
   Glance, SKIE — under their own, which a `NOTICE` has to list. Confirm each before publishing.
 - **The FSRS golden vectors are copied verbatim** from ts-fsrs and py-fsrs with provenance
-  (`kern/docs/fsrs.md`). A test corpus is still someone else's file: check those repos'
+  (`scheduling.md`). A test corpus is still someone else's file: check those repos'
   licenses and carry whatever notice they ask for.
 - **The catalog is content, not code.** Either the license file says code only and the
   catalog stays reserved, or the catalog gets its own grant — CC BY-SA 4.0 matches the

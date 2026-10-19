@@ -10,7 +10,7 @@ import kotlinx.serialization.json.JsonObject
 class StoreFormatException(message: String) : Exception(message)
 
 /**
- * The narrow public store facade (`kern/docs/snapshots.md`): ONE document per TARGET
+ * The narrow public store facade (`docs/snapshots.md`): ONE document per TARGET
  * language, since only one is ever active and a save should touch only what moved.
  *
  * Encoding is deterministic — sorted keys, seconds for every timestamp — so identical boxes

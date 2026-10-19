@@ -115,7 +115,7 @@ fun listeningGainDb(msRemaining: Long, totalMs: Long): Double {
  * already 15 dB down and on one playing as it was recorded — and the first crosses the room's
  * own noise floor long before the second. sw, whose phone-plane index is a pack-wide -12 dB,
  * is the one that vanishes: the ramp was reducing every word equally and only sounded like it
- * was singling that pack out (`kern/docs/audio.md`). Floored on the sum, the ramp takes each
+ * was singling that pack out (`docs/audio.md`). Floored on the sum, the ramp takes each
  * word as far as the floor and no further, and a run's last minutes are equally quiet rather
  * than equally attenuated.
  *

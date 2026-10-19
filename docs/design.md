@@ -1,6 +1,6 @@
 # Spross — app design
 The app-layer rules every screen answers to: what the app composes, how an answer is asked, graded and shown, how copy speaks, the visual language; one screen's layout, element order, sizes, timings and inventories are the code's, not this page's.
-Neighbors: drills `drills.md`, listening/wrist/Android `surfaces.md`, audio `read-aloud.md`, engine `../kern/README.md`.
+Neighbors: the review card `review.md`, drills `drills.md`, listening `listening.md`, the wrist and the tiles `watch-and-widgets.md`, audio `audio.md`, engine `../kern/README.md`.
 
 ## North star
 
@@ -178,7 +178,7 @@ What licenses a second component is a parameter attempted and found not to carry
   The tab bar stands on those three and on nothing else.
 - **Home** carries the day: the round, listening, the drills, the companion, the trees.
   - The line over the round carries the language being learned in words that fit the hour
-    (`../kern/docs/reports.md`, `GreetingPlan` over `dayPart`/`partVariant`).
+    (`reports.md`, `GreetingPlan` over `dayPart`/`partVariant`).
     Two registers: the target speaking for itself, or the known language asking about it.
     The spoken lines lead and may address the learner by name (`Greetings.addressed`).
     Every chrome line asks — never states.
@@ -243,6 +243,12 @@ What licenses a second component is a parameter attempted and found not to carry
   A report carries the typed answer along without asking about it,
   and reopens on the existing report.
   Suspending (`SessionIntent.SuspendCurrent`) asks no rating and shrinks the round total.
+- **Android** renders THIS contract with Compose on the same engine facades, so the turn and the drill runs follow the same rules by construction, not by porting discipline.
+  The hub ships there whole (`drills.md`).
+  Platform deltas only: the catalog and the chimes ship as APK assets synced from `catalog/` and `App/Resources/Sounds/`, the box is app-private, runs are full screens rather than covers,
+  and Back mirrors ✕ everywhere — inside a run the reference panel eats Back first.
+  The trees and the round summary's tree are Android's own drawing of kern's `growthByArea`, stood and grown by kern (`TreesLayout`, `AreaTree`) exactly as on iOS.
+  The summary's tree rises, and confetti falls, only while the system's animations are on.
 
 ## Design language
 

@@ -3,7 +3,7 @@ package net.spross.app
 import java.io.File
 
 /**
- * One JSON document per target language, `box-<target>.json` (kern/docs/snapshots.md):
+ * One JSON document per target language, `box-<target>.json` (docs/snapshots.md):
  * only one language is ever active, so a save touches only what moved. Android has no App
  * Group; the app-private files dir is the single owner.
  */

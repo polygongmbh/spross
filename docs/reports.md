@@ -1,6 +1,6 @@
 # Read models — what a surface draws the box from
 The read models a surface draws the box from (the day, one card's standing, the browsable box, the greeting clock); nothing here changes what the box does.
-Neighbors: the engine contract `../README.md` §6, what a screen makes of them `../../docs/design.md`.
+Neighbors: the engine contract `../kern/README.md` §6, what a screen makes of them `design.md`.
 
 ## The day
 

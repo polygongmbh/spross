@@ -18,7 +18,7 @@ Two pieces have to exist first:
 - **A quiet flag** — concept-level, owned by kern and read by both platforms:
   never autoplay, excluded from listening playlists, still speakable on an
   explicit tap. Nothing in the catalog can say this today
-  (`docs/read-aloud.md` states that words are read aloud, full stop).
+  (`../../../docs/audio.md` states that words are read aloud, full stop).
 - **A settings toggle** that hides the area, default off, on both platforms.
   `BoxEngine.dequeueArea` takes cards out of the queue but the seed order still
   walks every area, so there is no mechanism to hide one yet.

@@ -73,6 +73,6 @@ internal const val PAIR_JOINER = " → "
 
 /**
  * The card as one line — target side first, as every exposure surface reads it
- * (`kern/docs/reports.md`): a reported card's row, a catalog match's word.
+ * (`docs/reports.md`): a reported card's row, a catalog match's word.
  */
 val Card.pairLine: String get() = target.text + PAIR_JOINER + source.text

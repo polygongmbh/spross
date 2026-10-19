@@ -33,8 +33,8 @@ import net.spross.app.SprossActivity
  * today still owes the run.
  *
  * Decode-only — the tile reads the snapshot the app wrote on its last snapshot save and never
- * runs the join (`kern/docs/snapshots.md`). What a tile of a given shape holds is
- * `docs/surfaces.md` § Android companion; [GridFace] draws it.
+ * runs the join (`docs/snapshots.md`). What a tile of a given shape holds is
+ * `docs/watch-and-widgets.md` § The Android tile; [GridFace] draws it.
  */
 class WordWidget : GlanceAppWidget() {
 

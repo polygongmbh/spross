@@ -30,7 +30,7 @@ object MultipleChoice {
      * offers the same handful until the next push.
      *
      * Sized for variety, not for the wire — trim it first if the watch snapshot
-     * ever crowds its size cap (`kern/docs/snapshots.md`).
+     * ever crowds its size cap (`docs/snapshots.md`).
      */
     const val SHORTLIST: Int = 10
 

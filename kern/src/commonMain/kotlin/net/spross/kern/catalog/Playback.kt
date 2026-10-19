@@ -6,7 +6,7 @@ import kotlin.math.pow
  * How far a player may trust a recording's ANALYSIS INDEX.
  *
  * The index (`gain`, `lead`, `gate`) is a MEASUREMENT of the shipped bytes and never an edit to
- * them (`kern/docs/audio.md`), so every number can only ever be as good as the measurement:
+ * them (`docs/audio.md`), so every number can only ever be as good as the measurement:
  * the bounds below are what a broken one is held to, stated once so the manifest parser,
  * an iOS equalizer and an Android loudness enhancer cannot drift apart about them.
  *

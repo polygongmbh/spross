@@ -32,7 +32,7 @@ Wiktionary dumps, FreeDict and Tatoeba, inventoried in its `reference/README.md`
   Asked the other way —
   what does this word MEAN —
   the merge is simply honored:
-  every concept printing the form answers for it, and the reveal names the rest (`../kern/docs/grading.md`).
+  every concept printing the form answers for it, and the reveal names the rest (`../docs/grading.md`).
 
 ## Layout
 
@@ -134,7 +134,7 @@ the content only supplies the default.
   so stripping a listed prefix only ever yields the same stem.
 - `diacriticDigraphs` —
   established lossless ASCII spellings of single letters, keyed by the lowercase letter (de `ä`→`ae`, `ö`→`oe`, `ü`→`ue`);
-  grading folds them on both sides like `ß`→`ss` (`../kern/docs/grading.md`).
+  grading folds them on both sides like `ß`→`ss` (`../docs/grading.md`).
   Omit where the language has none.
 
 **`areas/<area>/concepts.json`** — ordered, language-neutral.
@@ -215,7 +215,7 @@ Realization fields — only `text` is required:
   Homonyms are handled by the area rule above, not inside the string.
   A form that only ever appears bound carries its leading dash (sw `-zuri`, which takes the noun's class prefix):
   it is the citation convention, grading ignores the dash,
-  and the engine takes it off again wherever the dash alone would identify the answer among plain words (`../kern/docs/snapshots.md`).
+  and the engine takes it off again wherever the dash alone would identify the answer among plain words (`../docs/snapshots.md`).
   The agreement forms themselves go in `teaches`,
   so recognition rotates through them and a multiple-choice tile never shows the bare stem.
 - `teaches` — DISTINCT-KNOWLEDGE alternates of `text` (array; omit if none):
@@ -295,7 +295,7 @@ Realization fields — only `text` is required:
   A note reaches a card only while this file's language is the one being LEARNED, never while it is the learner's own —
   so it is always written for somebody meeting this word.
   Key it by the FILE'S OWN language and it is the shared wording, which every reader falls to.
-  Key it by another language and it is written for that reader alone, beating the shared one for them (`../kern/docs/catalog.md`) and reaching nobody else —
+  Key it by another language and it is written for that reader alone, beating the shared one for them (`../docs/catalog.md`) and reaching nobody else —
   so writing one is a promise to write it for every reader who needs it.
   Which of the two to write, and what earns a note at all, is `areas/README.md`.
 

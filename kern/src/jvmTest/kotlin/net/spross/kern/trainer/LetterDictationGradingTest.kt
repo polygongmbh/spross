@@ -31,7 +31,7 @@ class LetterDictationGradingTest {
     private val catalog get() = RealCatalog.catalog
 
     /**
-     * The drill's normalizer: articles graded as typed (`kern/docs/grading.md`).
+     * The drill's normalizer: articles graded as typed (`docs/grading.md`).
      */
     private fun normalizer(target: Language) =
         AnswerNormalizer(catalog.languages.getValue(target), articleLeniency = false)
@@ -62,7 +62,7 @@ class LetterDictationGradingTest {
 
     @Test
     fun theUkrainianNumberPairIsNotBridgedEither() {
-        // The pair the typo-bridge guard names for uk (`kern/docs/grading.md`): it lives in
+        // The pair the typo-bridge guard names for uk (`docs/grading.md`): it lives in
         // the number pack rather than the catalog, so it can never be DICTATED — but it is
         // the language's known one-edit collision, and the grading path is the same one.
         val nine = Numbers.number(9, "uk").display

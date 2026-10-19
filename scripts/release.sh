@@ -92,7 +92,7 @@ python3 scripts/arch-status.py --check
 
 # The app gate is the only one that sees a Swift call site: a Kotlin change can leave
 # every Kotlin gate green and still fail to compile against the framework
-# (kern/docs/build.md § Swift ergonomics). Unsigned simulator build — a signing or
+# (docs/build.md § Swift ergonomics). Unsigned simulator build — a signing or
 # provisioning failure is the Mac's, never the release's.
 if [ "$APP_GATE" -eq 1 ] && command -v xcodebuild >/dev/null 2>&1; then
   SIM=$(xcrun simctl list devices available | awk -F' \\(' '/^ +iPhone/ { print $1; exit }' | sed 's/^ *//')

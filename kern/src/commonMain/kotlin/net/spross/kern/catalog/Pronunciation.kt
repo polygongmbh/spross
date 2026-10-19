@@ -15,7 +15,7 @@ import net.spross.kern.model.shownArticle
 private const val EDGE_PUNCTUATION = "!?¡¿.,;:…\"'«»„“”‘’‹›"
 
 /**
- * The normative speech normalization (`kern/docs/audio.md`): trim whitespace, strip ONE
+ * The normative speech normalization (`docs/audio.md`): trim whitespace, strip ONE
  * leading `-` (the adjective stem citation Swahili authors as `-zuri`), strip leading and
  * trailing sentence punctuation, NFC, lowercase, and fold the inner apostrophe class
  * to U+02BC.
@@ -56,7 +56,7 @@ fun utterance(form: String): String = form.trim().removePrefix("-").trim()
  * Target-language speech gains its article; source-language speech does not. An article is
  * grammar the learner has to hear — in German it is half of what knowing a noun means, and a
  * word met a hundred times as a bare stem is a word learned wrong. This reverses
- * `docs/read-aloud.md`'s "only the headword is ever spoken", and it applies wherever a target
+ * `docs/audio.md`'s "only the headword is ever spoken", and it applies wherever a target
  * word is synthesized, not only in listening mode.
  *
  * It lives beside [utterance] because it is the same question — what string is this word

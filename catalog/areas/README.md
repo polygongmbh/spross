@@ -127,7 +127,7 @@ stops reaching the widget.
 **Pick the word a speaker says, never the word that sits furthest from another card.**
 Two realizations one edit apart are safe by construction:
 a typed form that is exactly some card's answer grades `Match.OtherWord`
-(`../../kern/docs/grading.md` catalog-wide collision).
+(`../../docs/grading.md` catalog-wide collision).
 The bar that does bind is a display-identical prompt inside ONE area,
 where the area label would be the same cue on both -- and lint holds that.
 
