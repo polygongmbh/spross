@@ -35,11 +35,8 @@
   "to-read": { "text": "leer" },
   "to-relax": { "text": "relajarse" },
   "to-tidy-up": { "text": "ordenar", "teaches": ["recoger"] },
-  "to-move-in": { "text": "entrar a vivir" },
-  "to-move-out": {
-   "text": "mudarse",
-   "notes": { "es": "Se dice al salir y al entrar: me mudo de una casa a otra." }
-  },
+  "to-move-in": { "text": "irse a vivir", "accepts": ["entrar a vivir", "mudarse"] },
+  "to-move-out": { "text": "irse de casa" },
   "to-water-plants": { "text": "regar las plantas" },
   "to-play": { "text": "jugar" },
   "to-talk": {

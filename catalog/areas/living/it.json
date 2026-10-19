@@ -31,11 +31,8 @@
   "to-read": { "text": "leggere" },
   "to-relax": { "text": "rilassarsi" },
   "to-tidy-up": { "text": "riordinare", "accepts": ["mettere in ordine", "fare ordine"] },
-  "to-move-in": { "text": "andare a vivere", "accepts": ["andare ad abitare"] },
-  "to-move-out": {
-   "text": "traslocare",
-   "notes": { "it": "Vale per andare via e per arrivare: trasloco da una casa a un'altra." }
-  },
+  "to-move-in": { "text": "andare a vivere", "accepts": ["andare ad abitare", "trasferirsi"] },
+  "to-move-out": { "text": "andare via di casa" },
   "to-water-plants": { "text": "annaffiare le piante", "accepts": ["innaffiare le piante", "bagnare le piante"] },
   "to-play": { "text": "giocare", "notes": { "it": "i bambini giocano a carte." } },
   "to-talk": {
