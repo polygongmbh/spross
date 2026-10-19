@@ -3,35 +3,36 @@ The catalog's file shapes and what each field means.
 Neighbors: what earns a card and its wording `areas/README.md`, each subfolder's files its own README.
 
 Language learning content organized **one folder per area**.
-Designed for reuse (any language pair is a runtime join of shared parts)
-and potential future crowdsourced per-language contribution.
+Designed for reuse (any language pair is a runtime join of shared parts) and potential future crowdsourced per-language contribution.
 
 Reference grammars, audit logs and offline dictionaries live in a content workspace OUTSIDE the repo (`data/`, beside the checkout; no clone carries it) —
-check a target-language fact there before the web: Wiktionary dumps, FreeDict and Tatoeba, inventoried in its `reference/README.md`.
+check a target-language fact there before the web:
+Wiktionary dumps, FreeDict and Tatoeba, inventoried in its `reference/README.md`.
 
 ## The key modeling decision: everything is a concept
 
-- A **concept** is language-neutral: a `slug`, a `kind`
-  (`noun` | `verb` | `adjective` | `phrase` | `idiom`), and an optional `emoji`.
+- A **concept** is language-neutral:
+  a `slug`, a `kind` (`noun` | `verb` | `adjective` | `phrase` | `idiom`), and an optional `emoji`.
   Words and phrases live in one ordered list.
 - A **realization** is one concept rendered in one language (`text` + grammar + notes).
-- A **pair** (any two of the languages `languages.json` declares) is a **runtime join** on slug — never stored.
+- A **pair** (any two of the languages `languages.json` declares) is a **runtime join** on slug —
+  never stored.
   Each language file is authored once and serves every pair it joins.
 - **Coverage may be non-uniform.**
   A concept without a realization in a language never appears in pairs involving that language.
-  This is how pair-specific content works: `relax` has `de`, `en` and `uk` realizations and no `sw`,
-  because the Swahili word would be the same as for `rest`.
+  This is how pair-specific content works:
+  `relax` has `de`, `en` and `uk` realizations and no `sw`, because the Swahili word would be the same as for `rest`.
 - **Homonyms & target-language merges.** Slugs are unique, but realization *texts* are not:
-  one text may legitimately serve two concepts in two areas — usually because the target language
-  merges a distinction the source draws (sw `kuacha` = `verlassen` AND `aufhören`, and with an
-  object `kuacha kazi` = `kündigen`).
-  The **area** is the disambiguator, and the engine renders the area label on an ambiguous
-  *produce* prompt only — never on recognize, where any cue strong enough to identify the concept
-  would reveal the answer.
-  Tolerated cross-area collisions are pinned by `CatalogCollisionLintTest`, so minting a new one has to be
-  a conscious decision. Asked the other way — what does this word MEAN — the merge is simply
-  honored: every concept printing the form answers for it, and the reveal names the rest
-  (`../kern/docs/grading.md`).
+  one text may legitimately serve two concepts in two areas —
+  usually because the target language merges a distinction the source draws (sw `kuacha` = `verlassen` AND `aufhören`, and with an object `kuacha kazi` = `kündigen`).
+  The **area** is the disambiguator, and the engine renders the area label on an ambiguous *produce* prompt only —
+  never on recognize, where any cue strong enough to identify the concept would reveal the answer.
+  Tolerated cross-area collisions are pinned by `CatalogCollisionLintTest`,
+  so minting a new one has to be a conscious decision.
+  Asked the other way —
+  what does this word MEAN —
+  the merge is simply honored:
+  every concept printing the form answers for it, and the reveal names the rest (`../kern/docs/grading.md`).
 
 ## Layout
 
@@ -76,16 +77,15 @@ catalog/
 ```
 
 The json files are hand-edited, and their shape is part of the review unit:
-an entry that fits on one line stays on one line
-(`{ "slug": "seventh-heaven", "kind": "idiom" }`, `"notes": { "en": "…" }`),
+an entry that fits on one line stays on one line (`{ "slug": "seventh-heaven", "kind": "idiom" }`, `"notes": { "en": "…" }`),
 so an area file reads as the word list it is and a reordering diff shows the new order rather than a reflow.
 `../scripts/catalog-format.py --fix` applies that layout and `--check` holds it;
 the rules it follows are in its own header, and it owns every catalog file except the generated `audio/` manifests.
 
 ## Schemas
 
-**`areas.json`** — the ordering + grouping manifest (the ONE place cross-area
-structure, group display titles, and per-area language-neutral metadata live;
+**`areas.json`** —
+the ordering + grouping manifest (the ONE place cross-area structure, group display titles, and per-area language-neutral metadata live;
 area titles live in the area's own files):
 ```json
 [ { "group": "home",
@@ -93,13 +93,17 @@ area titles live in the area's own files):
     "areas": [ { "area": "kitchen", "emoji": "🍳" },
                { "area": "living",  "emoji": "🛋️" } ] } ]
 ```
-Default global order = groups top-to-bottom, areas as listed. "Pull one area ahead"
-is a runtime/user-preference concern; the content only supplies the default.
-- `titles` — the group heading, keyed by reader language; required for every declared language.
-- `area` — the folder name; globally unique across groups.
-- `emoji` — the area's illustrative icon. **Language-neutral display metadata owned by the
-  catalog**, exactly as concept `emoji` is, so both apps show the same icon instead of each
-  carrying its own map. Required and validated at parse time by the same rule as concept emoji,
+Default global order = groups top-to-bottom, areas as listed.
+"Pull one area ahead" is a runtime/user-preference concern;
+the content only supplies the default.
+- `titles` — the group heading, keyed by reader language;
+  required for every declared language.
+- `area` — the folder name;
+  globally unique across groups.
+- `emoji` — the area's illustrative icon.
+  **Language-neutral display metadata owned by the catalog**, exactly as concept `emoji` is,
+  so both apps show the same icon instead of each carrying its own map.
+  Required and validated at parse time by the same rule as concept emoji,
   so adding an area fails the gate rather than silently losing its icon.
 
 **`languages.json`** — per-language metadata, keyed by lang code:
@@ -111,26 +115,30 @@ is a runtime/user-preference concern; the content only supplies the default.
 ```
 - `name` — the language's own name for itself ("Deutsch", "Українська");
   language pickers use this so speakers always recognize their language.
-- `englishName` — English exonym ("German", "Ukrainian"). Required, non-empty.
+- `englishName` — English exonym ("German", "Ukrainian").
+  Required, non-empty.
 - `flag` — exactly ONE emoji flag sequence for chrome/badges (sw uses 🇹🇿 Tanzania);
   a language with no country of its own carries one badge emoji instead (eo 💚).
 - `articles` — the language's articles (de `der/die/das/ein/eine`, en `the/a/an`).
   ONE leading listed article is optional when grading input in this language;
   it also drives article coloring in the UI.
   Omit for articleless languages (sw, uk).
-- `optionalVerbPrefixes` — array of infinitive citation prefixes on this language's
-  verb realizations (en `"to cook"`, sw `"kupika"`/`"kwenda"`). A leading occurrence of
-  ANY listed prefix is **optional when grading input**: the answer matches with or
-  without it (`cook` == `to cook`, `pika` == `kupika`, `enda` == `kwenda`), while display
-  keeps the full citation form. Swahili lists both `ku` and its pre-vowel coalesced form
-  `kw` (`ku+enda → kwenda`). Omit for languages with no such prefix (de `-en` suffix, uk
-  `-ти` suffix). Harmless to over-list: every verb is stored in infinitive form, so
-  stripping a listed prefix only ever yields the same stem.
-- `diacriticDigraphs` — established lossless ASCII spellings of single letters, keyed by
-  the lowercase letter (de `ä`→`ae`, `ö`→`oe`, `ü`→`ue`); grading folds them on both
-  sides like `ß`→`ss` (`../kern/docs/grading.md`). Omit where the language has none.
+- `optionalVerbPrefixes` —
+  array of infinitive citation prefixes on this language's verb realizations (en `"to cook"`, sw `"kupika"`/`"kwenda"`).
+  A leading occurrence of ANY listed prefix is **optional when grading input**:
+  the answer matches with or without it (`cook` == `to cook`, `pika` == `kupika`, `enda` == `kwenda`),
+  while display keeps the full citation form.
+  Swahili lists both `ku` and its pre-vowel coalesced form `kw` (`ku+enda → kwenda`).
+  Omit for languages with no such prefix (de `-en` suffix, uk `-ти` suffix).
+  Harmless to over-list: every verb is stored in infinitive form,
+  so stripping a listed prefix only ever yields the same stem.
+- `diacriticDigraphs` —
+  established lossless ASCII spellings of single letters, keyed by the lowercase letter (de `ä`→`ae`, `ö`→`oe`, `ü`→`ue`);
+  grading folds them on both sides like `ß`→`ss` (`../kern/docs/grading.md`).
+  Omit where the language has none.
 
-**`areas/<area>/concepts.json`** — ordered, language-neutral. Order across all kinds IS seed/introduction order.
+**`areas/<area>/concepts.json`** — ordered, language-neutral.
+Order across all kinds IS seed/introduction order.
 A phrase with `components` follows its area's words, so the building blocks land first;
 a component-free phrase is a building block itself (a greeting, `ja`, `bitte`) and may stand anywhere,
 which is how `greetings` opens the whole course on `Hallo!` and `basics` on `Ja.`:
@@ -143,24 +151,26 @@ which is how `greetings` opens the whole course on `Hallo!` and `basics` on `Ja.
     "components": ["fridge"] } ]
 ```
 Slugs are readable English lemmas, **globally unique across every area** (lint-enforced).
-English doubles as the keying language AND a content language: the slug is the identity,
-`en.json` carries the English realization (display text may differ from the slug —
+English doubles as the keying language AND a content language:
+the slug is the identity, `en.json` carries the English realization (display text may differ from the slug —
 verb `to-cook` → `"to cook"`, phrase `the-fridge-is-empty` → `"The fridge is empty."`).
 A verb slug carries `to-` and nothing else does (lint-enforced), so `help`/`to-help` never contend.
-- `emoji` — optional on EVERY kind, not just nouns. It is the engine's meaning cue, shown
-  upfront on a first exposure and on an unsettled produce prompt (`../kern/README.md` §3).
+- `emoji` — optional on EVERY kind, not just nouns.
+  It is the engine's meaning cue, shown upfront on a first exposure and on an unsettled produce prompt (`../kern/README.md` §3).
   Which concepts get one, and which must not, is `areas/README.md`.
-- `formEmoji` — optional, a picture per form tag (`{ "f": "👩‍🏫" }`), which a prompt in that form shows instead of `emoji`.
+- `formEmoji` —
+  optional, a picture per form tag (`{ "f": "👩‍🏫" }`), which a prompt in that form shows instead of `emoji`.
 - `components` (phrases only) — same-area word slugs the phrase is built from;
-  the box gates a phrase's unlock on those words being learned. Empty = no gate.
+  the box gates a phrase's unlock on those words being learned.
+  Empty = no gate.
   A gate can only name a concept that HAS a card and that every target realizes.
-- `idiom` — a figurative expression, curated (not auto-linked) for genuine
-  cross-language meaning-equivalence (`areas/README.md`).
+- `idiom` —
+  a figurative expression, curated (not auto-linked) for genuine cross-language meaning-equivalence (`areas/README.md`).
   Structurally forbidden from carrying `emoji`, `formEmoji` or `components` —
-  the parser rejects a concept that tries. Every idiom card shows the engine's
-  fixed `IDIOM_EMOJI` instead (`../kern/README.md` §2), and idioms carry no
-  unlock gate, so ordering (last group in `areas.json`) is what keeps them
-  behind the vocabulary they presuppose.
+  the parser rejects a concept that tries.
+  Every idiom card shows the engine's fixed `IDIOM_EMOJI` instead (`../kern/README.md` §2),
+  and idioms carry no unlock gate,
+  so ordering (last group in `areas.json`) is what keeps them behind the vocabulary they presuppose.
 - `adjective` is the catch-all for single words that are neither noun nor verb:
   adjectives, adverbs, and interjections (`draußen`, `immer`, `Vorsicht`).
 - A feminine noun is its base word's `f` form (de `"f": "die Lehrerin"`), never a concept of its own:
@@ -174,9 +184,10 @@ Global uniqueness is what makes that safe:
 two areas claiming one slug would fuse two concepts into a single schedule,
 so a genuine repeat across areas is disambiguated by qualifying the slug.
 The price is that **renaming a slug is a breaking act**:
-it orphans the schedule and the word returns as new — so rename deliberately, never just to polish a lemma,
-and always through `../scripts/catalog-rename-slugs.py`, which carries every reference along
-(recordings, shipped and in the audio packs, are keyed by the form they speak, so none moves).
+it orphans the schedule and the word returns as new —
+so rename deliberately, never just to polish a lemma,
+and always through `../scripts/catalog-rename-slugs.py`,
+which carries every reference along (recordings, shipped and in the audio packs, are keyed by the form they speak, so none moves).
 
 **`areas/<area>/<lang>.json`** — title + realizations keyed by slug:
 ```json
@@ -186,48 +197,48 @@ and always through `../scripts/catalog-rename-slugs.py`, which carries every ref
     "to-cook": { "text": "kochen" },
     "the-fridge-is-empty": { "text": "Der Kühlschrank ist leer." } } }
 ```
-- `title` — the area's plain NAME, nothing appended. It doubles as the disambiguating
-  cue on an ambiguous produce prompt, where a flavor tail glued on with `·` would
-  turn a label into a sentence.
+- `title` — the area's plain NAME, nothing appended.
+  It doubles as the disambiguating cue on an ambiguous produce prompt,
+  where a flavor tail glued on with `·` would turn a label into a sentence.
 - `subtitle` — OPTIONAL flavor clause rendered under the title, one short line.
-  Never the title again and never a fragment of it, and per area it is **all-or-nothing
-  across the declared languages**: a clause only one language carries reads as a hole
-  in every other reader's box. Lint holds both.
-  Unlike a realization it does not mirror: each language says what its speakers would say
-  (a room's is a short greeting, `Guten Appetit!` / `Bon appétit !` / `Karibu chakula!`),
+  Never the title again and never a fragment of it, and per area it is **all-or-nothing across the declared languages**:
+  a clause only one language carries reads as a hole in every other reader's box.
+  Lint holds both.
+  Unlike a realization it does not mirror:
+  each language says what its speakers would say (a room's is a short greeting, `Guten Appetit!` / `Bon appétit !` / `Karibu chakula!`),
   while the posters keep a longer sentence per room in `../../sprachposter/templates/subtitles.toml`.
 
 Realization fields — only `text` is required:
-- `text` — the canonical answer/display form, nothing else: no embedded gloss, label or
-  bracketed disambiguator (`"mto (Kissen)"`), because everything in `text` has to be typed.
+- `text` —
+  the canonical answer/display form, nothing else:
+  no embedded gloss, label or bracketed disambiguator (`"mto (Kissen)"`), because everything in `text` has to be typed.
   Homonyms are handled by the area rule above, not inside the string.
-  A form that only ever appears bound carries its leading dash (sw `-zuri`, which takes the
-  noun's class prefix): it is the citation convention, grading ignores the dash, and the
-  engine takes it off again wherever the dash alone would identify the answer among plain
-  words (`../kern/docs/snapshots.md`). The agreement forms themselves go in `teaches`,
+  A form that only ever appears bound carries its leading dash (sw `-zuri`, which takes the noun's class prefix):
+  it is the citation convention, grading ignores the dash,
+  and the engine takes it off again wherever the dash alone would identify the answer among plain words (`../kern/docs/snapshots.md`).
+  The agreement forms themselves go in `teaches`,
   so recognition rotates through them and a multiple-choice tile never shows the bare stem.
 - `teaches` — DISTINCT-KNOWLEDGE alternates of `text` (array; omit if none):
-  genuinely different lexemes for the same concept that a learner must recognize
-  on their own (uk `office` установа/відомство, uk `boss` шеф/керівник),
+  genuinely different lexemes for the same concept that a learner must recognize on their own (uk `office` установа/відомство, uk `boss` шеф/керівник),
   and the agreement forms of a bound stem (sw `-zuri` → nzuri/mzuri/kizuri/wazuri),
   which are what a learner meets in the wild.
   The name is the behavior: the card TEACHES these, so each entry is **prompt-worthy** —
-  it grades as correct when producing this language, and takes its turn as the recognize
-  prompt when learning FROM it, on the concept's one schedule, never as a unit of its own
-  (`../kern/README.md` §3).
+  it grades as correct when producing this language,
+  and takes its turn as the recognize prompt when learning FROM it, on the concept's one schedule, never as a unit of its own (`../kern/README.md` §3).
   NOT a home for distinct learnable items: a feminine noun is the base's `f` form,
   and different-meaning words belong to their own concept.
 - `accepts` — ACCEPTED surface forms of the SAME knowledge (array; omit if none):
-  alternate renderings a learner already knows if they know `text` — register pairs
-  (de Sie-form in `text`, du-form here; es `Gire`/`Gira`), diminutives (uk миша/мишка),
-  internationalism spellings (uk договір/контракт).
+  alternate renderings a learner already knows if they know `text` —
+  register pairs (de Sie-form in `text`, du-form here; es `Gire`/`Gira`), diminutives (uk миша/мишка), internationalism spellings (uk договір/контракт).
   Agreement and number forms (gender, case, Swahili class, plural) are taught, so they are `forms`.
-  The name is again the whole of the behavior: the card ACCEPTS them on produce and does
-  nothing else with them — **never scheduled, never shown**. `text` is the form prompted on
-  recognize and the form the reveal teaches, and the `teaches` entries rotate beside it.
+  The name is again the whole of the behavior:
+  the card ACCEPTS them on produce and does nothing else with them —
+  **never scheduled, never shown**.
+  `text` is the form prompted on recognize and the form the reveal teaches, and the `teaches` entries rotate beside it.
 
-  Which of the two an alternate belongs in is the question the two names ask — does the card
-  teach it, or merely accept it — against what a learner already knows from `text`;
+  Which of the two an alternate belongs in is the question the two names ask —
+  does the card teach it, or merely accept it —
+  against what a learner already knows from `text`;
   `areas/README.md` works it through.
 - `forms` — INFLECTED forms of `text`, keyed by tag (object; omit if none):
   `{ "f": "larga", "pl": "largos", "f.pl": "largas" }`, a value one form or an array of them.
@@ -237,69 +248,73 @@ Realization fields — only `text` is required:
   `text` stays the citation form and carries no tag.
   A noun's form carries its own article in every language that writes one,
   just as `grammar.article` gives `text`'s (`"pl": "die Kühlschränke"`, `"f": "die Lehrerin"`),
-  and grading reads it back; a language without articles writes the form bare.
-  The join sets that article apart, so a card shows it tinted and the voice finds an article recording or the bare word, as for `text`.
-  **The plural is `pl`**, and how much to author is per language — the test is always the same:
-  write it down when the learner could not derive it.
+  and grading reads it back;
+  a language without articles writes the form bare.
+  The join sets that article apart,
+  so a card shows it tinted and the voice finds an article recording or the bare word, as for `text`.
+  **The plural is `pl`**, and how much to author is per language —
+  the test is always the same: write it down when the learner could not derive it.
   de and sw author every countable noun — German plurals are unpredictable by class,
   and a Swahili plural IS the noun class (`kiti`→`viti`), the most load-bearing fact about the word.
-  en and uk author only what the regular pattern does not give: en beyond a bare +s
-  (`knife`→`knives`), uk beyond swapping the ending — stem alternations (`ніж`→`ножі`),
-  fleeting vowels (`день`→`дні`), suppletives (`людина`→`люди`),
+  en and uk author only what the regular pattern does not give:
+  en beyond a bare +s (`knife`→`knives`), uk beyond swapping the ending —
+  stem alternations (`ніж`→`ножі`), fleeting vowels (`день`→`дні`), suppletives (`людина`→`люди`),
   and phrases whose other words have to agree (`письмовий стіл`→`письмові столи`).
-- `orders` — alternative valid **word orders** of the same sentence (array; omit if none):
-  grammatically valid rearrangements whose atoms are a permutation of `text`'s atoms
-  (de "Gehen Sie geradeaus." → order "Sie gehen geradeaus.").
+- `orders` —
+  alternative valid **word orders** of the same sentence (array; omit if none):
+  grammatically valid rearrangements whose atoms are a permutation of `text`'s atoms (de "Gehen Sie geradeaus." → order "Sie gehen geradeaus.").
   **Scramble-only**: the sentence scramble accepts any of these as correct;
   other drills ignore the field entirely.
   Because the alternative order may carry a different meaning,
   no gloss is shown on the reveal when one matches — only the canonical `text` form.
-  Each entry must tokenize to the same word bag as `text`; an order with different words
-  is silently dropped at availability-build time.
-- `grammar` — language-specific, open keys, **bare values** (no `"Pl."`/`"die"`
-  labels, no `(selten)` qualifier), one fact per key: `article`, `gender` and `plural`. Omit if empty.
-  `article` is the article the learner says, and always one the language declares
-  in `languages.json` — de der/die/das, es el/la, and `los`/`las` on the nouns
-  whose article genuinely IS the plural one (los auriculares, las vacaciones).
-  That is not decoration: grading reads it back as an article and demotes an
-  otherwise exact answer whose PRESENT leading article disagrees, so a singular
-  article on a plural-only noun would mark the one right answer a typo.
-  An `accepts` entry of another gender carries its own article
-  (fr `le vaccin` on la vaccination), and grading reads that one back instead.
-  Omit `article` where the language allows both and neither is taught
-  (es `internet`, which RAE writes without an article).
-  `gender` is the gender the article cannot show — `m`, `f`, or `m/f` for a noun that takes
-  both (l'élève, l'ospite). Required where the article names none (fr/it `l'`, fr `les`),
+  Each entry must tokenize to the same word bag as `text`;
+  an order with different words is silently dropped at availability-build time.
+- `grammar` —
+  language-specific, open keys, **bare values** (no `"Pl."`/`"die"` labels, no `(selten)` qualifier), one fact per key:
+  `article`, `gender` and `plural`.
+  Omit if empty.
+  `article` is the article the learner says, and always one the language declares in `languages.json` —
+  de der/die/das, es el/la, and `los`/`las` on the nouns whose article genuinely IS the plural one (los auriculares, las vacaciones).
+  That is not decoration: grading reads it back as an article and demotes an otherwise exact answer whose PRESENT leading article disagrees,
+  so a singular article on a plural-only noun would mark the one right answer a typo.
+  An `accepts` entry of another gender carries its own article (fr `le vaccin` on la vaccination),
+  and grading reads that one back instead.
+  Omit `article` where the language allows both and neither is taught (es `internet`, which RAE writes without an article).
+  `gender` is the gender the article cannot show —
+  `m`, `f`, or `m/f` for a noun that takes both (l'élève, l'ospite).
+  Required where the article names none (fr/it `l'`, fr `les`),
   and otherwise allowed only where it contradicts the article (es `el agua` is `f`);
-  lint holds both. Grading never reads it; it is for whatever shows gender (hue, poster).
-  `plural` holds only what is no form: `"="` (identical to the singular → render `"= Pl."`,
-  uk indeclinables and `-ння` neuters) or `"only"` (pluralia tantum, no singular → render `"nur Pl."`);
+  lint holds both.
+  Grading never reads it;
+  it is for whatever shows gender (hue, poster).
+  `plural` holds only what is no form:
+  `"="` (identical to the singular → render `"= Pl."`, uk indeclinables and `-ння` neuters) or `"only"` (pluralia tantum, no singular → render `"nur Pl."`);
   a plural that IS a form is `forms.pl`, and lint holds the split.
   True uncountables (Regen, Hunger) carry neither.
 - `notes` — keyed by the language the note is WRITTEN IN, and that key decides who reads it.
-  A note reaches a card only while this file's language is the one being LEARNED, never
-  while it is the learner's own — so it is always written for somebody meeting this word.
+  A note reaches a card only while this file's language is the one being LEARNED, never while it is the learner's own —
+  so it is always written for somebody meeting this word.
   Key it by the FILE'S OWN language and it is the shared wording, which every reader falls to.
-  Key it by another language and it is written for that reader alone, beating the shared one
-  for them (`../kern/docs/catalog.md`) and reaching nobody else — so writing one is a promise
-  to write it for every reader who needs it.
+  Key it by another language and it is written for that reader alone, beating the shared one for them (`../kern/docs/catalog.md`) and reaching nobody else —
+  so writing one is a promise to write it for every reader who needs it.
   Which of the two to write, and what earns a note at all, is `areas/README.md`.
 
 ## Parked areas
 
 An area folder that is deliberately absent from `areas.json`.
-The manifest is what the loader reads, so a parked area takes no seed index, joins no card
-and reaches no box — it is content kept in the catalog rather than in a branch, because the
-catalog is where it will land and where the gates can watch it.
+The manifest is what the loader reads, so a parked area takes no seed index, joins no card and reaches no box —
+it is content kept in the catalog rather than in a branch,
+because the catalog is where it will land and where the gates can watch it.
 
 Parking is for content whose GUARD is missing, never for content that is unfinished:
 a half-written area belongs on a branch, where nothing has to explain it.
 What earns the state is work that is done and must not yet be met —
 `reproduction` waits on a quiet flag and a default-off setting, not on its own wording.
 
-The declaration is `CatalogLintTest.parkedAreas`, beside the collision list and reviewed the
-same way: a folder missing from the manifest is a hole unless that set says otherwise.
-While it waits, `parkedAreasStayActivatable` holds only what decides whether it can still
-land — its slugs are card ids, so one minted live in the meantime would fuse two concepts,
-and a missing language file would ship a hole. The content rules do NOT apply, because a
-parked area is not in `catalog.areas`; activation is a review, not a rename.
+The declaration is `CatalogLintTest.parkedAreas`, beside the collision list and reviewed the same way:
+a folder missing from the manifest is a hole unless that set says otherwise.
+While it waits, `parkedAreasStayActivatable` holds only what decides whether it can still land —
+its slugs are card ids, so one minted live in the meantime would fuse two concepts,
+and a missing language file would ship a hole.
+The content rules do NOT apply, because a parked area is not in `catalog.areas`;
+activation is a review, not a rename.

@@ -2,44 +2,47 @@
 The persisted box document, the backup file, and the watch/widget snapshots the phone precomputes.
 Neighbors: the engine contract `../README.md`, what the watch and widgets draw `../../docs/surfaces.md`.
 
-- One document per TARGET: `box-<target>.json` (schema version 2, `store/StoreDocument.kt`)
-  in the App Group `project.yml` names (`APP_GROUP_ID`). Only one language is ever active, so a save encodes and
-  writes that one alone; each file carries its own `schemaVersion` beside its fields,
+- One document per TARGET: `box-<target>.json` (schema version 2, `store/StoreDocument.kt`) in the App Group `project.yml` names (`APP_GROUP_ID`).
+  Only one language is ever active, so a save encodes and writes that one alone;
+  each file carries its own `schemaVersion` beside its fields,
   and one declaring any other version refuses to load like a corrupt file.
-  `source` names the known language the box was last studied under — the target names the
-  file and this names the other half of the pair, so a document that travels re-opens the
-  pair its progress was made in rather than whichever one the receiving device is set to;
+  `source` names the known language the box was last studied under —
+  the target names the file and this names the other half of the pair,
+  so a document that travels re-opens the pair its progress was made in rather than whichever one the receiving device is set to;
   a file written before it carries none and the device's own setting stands.
   A card is `[dueEpochSeconds, [[answerEpochSeconds, rating], …]]` and nothing else:
-  memory, phase and step are REPLAYED from that log as it decodes
-  (`box/Answer.kt`, `replayed`), so the file carries only what a replay cannot give back.
-  `due` is stored for exactly that reason — a retention or ladder change then moves future
-  answers rather than reshuffling every pending date.
-  Calibration is the BUILD's: `StoredBox.join` applies `BoxConfig.product()`, and the file
-  holds no configuration at all.
+  memory, phase and step are REPLAYED from that log as it decodes (`box/Answer.kt`, `replayed`),
+  so the file carries only what a replay cannot give back.
+  `due` is stored for exactly that reason —
+  a retention or ladder change then moves future answers rather than reshuffling every pending date.
+  Calibration is the BUILD's:
+  `StoredBox.join` applies `BoxConfig.product()`, and the file holds no configuration at all.
   A word suspended before it was ever answered is an id in `suspended` and has no card entry;
-  `queued`, `ownWords` (the document's only content, `../README.md` §6) and `reportedIssues`
-  carry the rest.
-  Timestamps are epoch seconds, and the engine floors every stamp it mints (`box/Time.kt`,
-  `stampOf`), so a live box equals its own reloaded self.
-  kotlinx.serialization; the facade encodes with **sorted keys** (deterministic bytes).
-  All `@Serializable` types are `internal`; the public surface is a narrow facade
-  (`encode` / `decode`) — keeps the ObjC header small (probe showed serialization
-  internals otherwise flood it).
-- **The backup** (`store/BoxBackup.kt`) — the settings' export and import file — is every
-  language in ONE envelope under a single `schemaVersion`
-  — `{"schemaVersion": 2, "boxes": {<target>: …}}`, sorted keys.
-  Only the languages with something in them ride along (`StoredBox.hasContent`), and the
-  export offers the one language on screen instead (`BoxBackup.encode`'s `only`): a box the
-  learner merely opened would land as an emptiness over a real box on the other phone.
-  A restore replaces every language the file carries and leaves the rest alone
-  (`StoredBoxes.restoring`); one box it cannot read refuses the whole file.
+  `queued`, `ownWords` (the document's only content, `../README.md` §6) and `reportedIssues` carry the rest.
+  Timestamps are epoch seconds, and the engine floors every stamp it mints (`box/Time.kt`, `stampOf`),
+  so a live box equals its own reloaded self.
+  kotlinx.serialization;
+  the facade encodes with **sorted keys** (deterministic bytes).
+  All `@Serializable` types are `internal`;
+  the public surface is a narrow facade (`encode` / `decode`) —
+  keeps the ObjC header small (probe showed serialization internals otherwise flood it).
+- **The backup** (`store/BoxBackup.kt`) —
+  the settings' export and import file —
+  is every language in ONE envelope under a single `schemaVersion` —
+  `{"schemaVersion": 2, "boxes": {<target>: …}}`, sorted keys.
+  Only the languages with something in them ride along (`StoredBox.hasContent`),
+  and the export offers the one language on screen instead (`BoxBackup.encode`'s `only`):
+  a box the learner merely opened would land as an emptiness over a real box on the other phone.
+  A restore replaces every language the file carries and leaves the rest alone (`StoredBoxes.restoring`);
+  one box it cannot read refuses the whole file.
   Boxes only — name, audio choice and drill Sprossen are device settings and stay behind;
   the pair does not, since each box names the known language it was studied under.
-- **WidgetSnapshot** (`WidgetSnapshotBuilder`): the phone precomputes it on the saves whose `SaveScope` carries
-  the snapshots — never per answer; which saves those are, and why, is that type's.
-  A widget decodes and draws; it cannot run the join
-  (no catalog in its bundle, ~30 MB extension memory cap against a 33 MB Kotlin debug framework).
+- **WidgetSnapshot** (`WidgetSnapshotBuilder`):
+  the phone precomputes it on the saves whose `SaveScope` carries the snapshots —
+  never per answer;
+  which saves those are, and why, is that type's.
+  A widget decodes and draws;
+  it cannot run the join (no catalog in its bundle, ~30 MB extension memory cap against a 33 MB Kotlin debug framework).
   Everything clock-free is resolved phone-side;
   what ages with the clock ships raw (per-card `due`) or resolved per render day (`streakByDay`, `activityByDay`).
   **Both sides of the wire are kern's answer, nowhere re-derived.**
