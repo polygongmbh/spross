@@ -26,7 +26,7 @@ import audio_lingualibre
 import audio_measure
 import audio_resolve
 from audio_forms import catalog_forms, titled_as
-from audio_gates import digest_of, speech_key
+from audio_gates import digest_of, speech_key, takes
 from audio_manifest import audio_dir, read_manifest
 from audio_routes import WORKSPACE, pack_dir, route
 from audio_ship import read_rows, write_rows
@@ -86,11 +86,12 @@ def wanted_keys(lang, section, catalog):
 def incumbents(lang, section, catalog):
     """Every incumbent of one section, each a take dict plus `mos`, `shipped` and `shared`."""
     manifest = read_manifest(audio_dir(lang))
-    known = {item['sha256']: item.get('mos') for name, entries in manifest.items()
+    known = {take['sha256']: take.get('mos') for name, entries in manifest.items()
              if isinstance(entries, dict) and name != 'authors' and name != 'licenses'
-             for item in entries.values() if isinstance(item, dict) and 'sha256' in item}
-    elsewhere = {item['sha256'] for name, entries in manifest.items() if name not in (section, 'authors', 'licenses')
-                 and isinstance(entries, dict) for item in entries.values() if isinstance(item, dict)}
+             for item in entries.values() if isinstance(item, dict) and 'sha256' in item for take in takes(item)}
+    elsewhere = {take['sha256'] for name, entries in manifest.items() if name not in (section, 'authors', 'licenses')
+                 and isinstance(entries, dict) for item in entries.values() if isinstance(item, dict)
+                 for take in takes(item)}
     shipped = manifest.get(section, {})
     out = [dict(lang=lang, section=section, key=key, source=item['source'], author=item['author'],
                 license=item['license'], sha256=item['sha256'], mos=item.get('mos'), shipped=True,
@@ -175,9 +176,9 @@ def judged(take, name, record, path, measured):
 def credit_groups(lang):
     """Takes per (voice, license) over everything [lang] ships — where the credits screen counts."""
     manifest = read_manifest(audio_dir(lang))
-    return collections.Counter((item['author'], item['license']) for name, entries in manifest.items()
+    return collections.Counter((take['author'], take['license']) for name, entries in manifest.items()
                                if isinstance(entries, dict) and name not in ('authors', 'licenses')
-                               for item in entries.values() if isinstance(item, dict))
+                               for item in entries.values() if isinstance(item, dict) for take in takes(item))
 
 
 def voices(lang):

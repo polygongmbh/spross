@@ -28,7 +28,7 @@ import audio_ship
 from audio_fill import fill
 from audio_forms import load_catalog
 from audio_index import ANALYSIS, FFMPEG, INDEX_FIELDS, playback_index
-from audio_gates import digest_of
+from audio_gates import digest_of, takes
 from audio_manifest import AUDIO, SECTIONS, audio_dir, read_manifest, write_manifest
 
 # The order a language with no manifest yet is filled in: words first, so a collision across
@@ -47,13 +47,13 @@ def reindex(lang):
     """
     out_dir = audio_dir(lang)
     manifest = read_manifest(out_dir)
-    entries = {(section, key): item
+    entries = {(section, key, take['file']): take
                for section in SECTIONS if section in manifest
-               for key, item in manifest[section].items()}
+               for key, item in manifest[section].items() for take in takes(item)}
     measured = audio_measure.measure_all(
         FFMPEG, sorted({os.path.join(out_dir, item['file']) for item in entries.values()}))
     moved, limited = [], 0
-    for (section, key), item in sorted(entries.items()):
+    for _, item in sorted(entries.items()):
         path = os.path.join(out_dir, item['file'])
         if digest_of(path) != item['sha256']:
             sys.exit('%s: sha256 no longer matches — the bytes changed, re-run the convert'
@@ -71,7 +71,7 @@ def reindex(lang):
             limited += 1
     write_manifest(out_dir, manifest)
     moved.sort()
-    print('  %s: %d entries, %d re-gained (median %+.1f dB, widest %+.1f), %d held by the '
+    print('  %s: %d takes, %d re-gained (median %+.1f dB, widest %+.1f), %d held by the '
           'peak ceiling' % (lang, len(entries), len(moved),
                             moved[len(moved) // 2] if moved else 0,
                             max(moved, key=abs) if moved else 0, limited))
@@ -93,8 +93,8 @@ def prune_poor(languages):
         if not os.path.isdir(out_dir):
             continue
         manifest = read_manifest(out_dir)
-        entries = [(section, key, item) for section in SECTIONS
-                   for key, item in manifest.get(section, {}).items()]
+        entries = [(section, key, take) for section in SECTIONS
+                   for key, item in manifest.get(section, {}).items() for take in takes(item)]
         # why: the shipped index stands for the bytes its sha256 pins, so only what it does
         # not carry (the side balance, the squash) is measured, a few ffmpeg passes per file.
         with concurrent.futures.ThreadPoolExecutor(max_workers=audio_measure.WORKERS) as pool:
@@ -102,14 +102,29 @@ def prune_poor(languages):
                 shipped_take(lang, e[0], e[1], e[2], out_dir),
                 {field: e[2][field] for field in INDEX_FIELDS if field in e[2]}), entries))
         pruned = []
-        for (section, key, item), verdict in zip(entries, judged):
+        for (section, key, take), verdict in zip(entries, judged):
             if verdict.refused:
-                os.remove(os.path.join(out_dir, item['file']))
-                del manifest[section][key]
+                os.remove(os.path.join(out_dir, take['file']))
+                drop_take(manifest[section], key, take)
                 pruned.append('%s/%s %s: %s' % (section, key, verdict.refused[0], verdict.refused[1]))
         print('  %s: %d pruned%s' % (lang, len(pruned), ''.join('\n    ' + p for p in pruned)))
         if pruned:
             write_manifest(out_dir, manifest)
+
+
+def drop_take(section, key, take):
+    """[take] out of [key]'s entry in [section]: an alternate goes alone, a first take hands the
+    key to its first alternate, and a key with no take left goes."""
+    item = section[key]
+    rest = [other for other in takes(item) if other['file'] != take['file']]
+    if not rest:
+        del section[key]
+        return
+    first = dict(rest[0], **{field: item[field] for field in ('matches', 'word') if field in item})
+    first.pop('alternates', None)
+    if rest[1:]:
+        first['alternates'] = rest[1:]
+    section[key] = first
 
 
 def languages_with(packs, section):
@@ -168,7 +183,9 @@ def main():
                         help='put back the entry and bytes KEY held at --from REV')
     parser.add_argument('--from', dest='rev', metavar='REV', help='the git revision --restore reads')
     parser.add_argument('--remove', nargs=3, metavar=('LANG', 'SECTION', 'KEY'),
-                        help='drop one shipped entry and its file')
+                        help='drop one shipped entry and every take of it')
+    parser.add_argument('--take', metavar='SOURCE',
+                        help='with --remove, drop only the alternate taken from this Commons file')
     args = parser.parse_args()
     if args.ship:
         return audio_ship.ship(args.packs, args.lang, args.dry_run, args.from_packs, args.section)
@@ -178,7 +195,8 @@ def main():
         item = audio_manifest.restore(*args.restore, args.rev)
         return print('  restore %s %s' % (args.restore[2], item['source']))
     if args.remove:
-        return print('  remove %s %s' % (args.remove[2], audio_manifest.remove(*args.remove)['source']))
+        gone = audio_manifest.remove(*args.remove, source=args.take)
+        return print('  remove %s %s' % (args.remove[2], gone['source']))
     if args.prune_poor:
         return prune_poor(args.lang)
 

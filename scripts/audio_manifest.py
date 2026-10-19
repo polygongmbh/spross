@@ -18,7 +18,7 @@ import unicodedata
 
 import audio_index
 import audio_judge
-from audio_gates import LICENSE_URLS, digest_of, speech_key
+from audio_gates import LICENSE_URLS, digest_of, speech_key, takes as shipped_takes
 from audio_routes import ROOT, SECTIONS
 
 AUDIO = os.environ.get('AUDIO_CATALOG') or os.path.join(ROOT, 'catalog', 'audio')
@@ -38,8 +38,9 @@ def inline_licenses(manifest):
     authors = manifest.get('authors', {})
     for name in SECTIONS:
         for item in manifest.get(name, {}).values():
-            if 'license' not in item:
-                item['license'] = authors[item['author']]
+            for take in shipped_takes(item):
+                if 'license' not in take:
+                    take['license'] = authors[take['author']]
     return manifest
 
 
@@ -67,9 +68,9 @@ def credit_index(sections, where):
     """
     per_author = {}
     for section in sections:
-        for item in section.values():
-            counts = per_author.setdefault(item['author'], {})
-            counts[item['license']] = counts.get(item['license'], 0) + 1
+        for take in (take for item in section.values() for take in shipped_takes(item)):
+            counts = per_author.setdefault(take['author'], {})
+            counts[take['license']] = counts.get(take['license'], 0) + 1
     authors = {author: min(sorted(counts), key=lambda name: (-counts[name], name))
                for author, counts in sorted(per_author.items())}
     used = sorted({license for counts in per_author.values() for license in counts})
@@ -87,7 +88,10 @@ def attributed(item, authors):
     dropped = {'licenseUrl'}
     if item['license'] == authors[item['author']]:
         dropped.add('license')
-    return {key: value for key, value in item.items() if key not in dropped}
+    out = {key: value for key, value in item.items() if key not in dropped}
+    if 'alternates' in out:
+        out['alternates'] = [attributed(take, authors) for take in out['alternates']]
+    return out
 
 
 def write_manifest(out_dir, manifest):
@@ -136,6 +140,14 @@ def section_file(section, key):
     return letter_file(key) if section == 'letters' else form_file(section, key)
 
 
+def alternate_file(section, key, item):
+    """`<section file>.<n>.mp3` for a further take of [item]'s key, n the least from 2 no take
+    of it holds — `ascii_stem` and `letter_file` never write a dot, so nothing else collides."""
+    held = {take['file'] for take in shipped_takes(item)}
+    stem = section_file(section, key)[:-len('.mp3')]
+    return next(name for name in ('%s.%d.mp3' % (stem, n) for n in range(2, 100)) if name not in held)
+
+
 def entry(file, license, author, source, digest, index, matches=None, word=None):
     """One manifest value, licensed inline; `write_manifest` factors that out again."""
     record = {'file': file, 'license': license, 'author': author,
@@ -179,12 +191,13 @@ def copy_and_analyze(copies):
 
 def put(lang, takes, dry_run=False):
     """Ship [takes] — dicts of `section key mp3 source author license` and, for an article, `word` —
-    into [lang]'s manifest, each replacing whatever its key held.
-    → `{(section, key): (refusal or None, mos)}`.
+    into [lang]'s manifest, each replacing its key's first take, or with `alternate` set adding
+    a further one beside it. → `{(section, key): (refusal or None, mos)}`.
 
     Every take is copied aside, measured and judged (`audio_judge.py`) first; only one that passes replaces the
     entry and file standing under its key, so a refused take leaves the recording it would have
-    replaced exactly where it was. [dry_run] judges and writes nothing.
+    replaced exactly where it was; a replaced first take keeps its key's alternates.
+    [dry_run] judges and writes nothing.
     """
     out_dir = audio_dir(lang)
     manifest = read_manifest(out_dir)
@@ -200,6 +213,21 @@ def put(lang, takes, dry_run=False):
             shipped = manifest.setdefault(section, {})
             digest = digest_of(path)
             judged = audio_judge.judge(dict(take, lang=lang, sha256=digest, path=path), indexes[path])
+            old = shipped.get(key)
+            if take.get('alternate'):
+                why = judged.refused or (
+                    ('no first take', '"%s" ships nothing to stand beside' % key) if not old else
+                    ('already ships', '"%s" ships these bytes' % key)
+                    if digest in {held['sha256'] for held in shipped_takes(old)} else None)
+                outcome[(section, key)] = why, judged.mos
+                if why or dry_run:
+                    continue
+                file = alternate_file(section, key, old)
+                if copy_verified(path, os.path.join(out_dir, file)) != digest:
+                    sys.exit('%s: landed as other bytes than were measured' % file)
+                old.setdefault('alternates', []).append(
+                    entry(file, take['license'], take['author'], take['source'], digest, indexes[path]))
+                continue
             why = judged.refused or next(
                 (('shipped-collision', '"%s" already ships as other bytes' % other)
                  for other, item in shipped.items()
@@ -207,7 +235,6 @@ def put(lang, takes, dry_run=False):
             outcome[(section, key)] = why, judged.mos
             if why or dry_run:
                 continue
-            old = shipped.get(key)
             file = section_file(section, key)
             if old and old['file'] != file:
                 os.remove(os.path.join(out_dir, old['file']))
@@ -217,6 +244,14 @@ def put(lang, takes, dry_run=False):
             word = take.get('word') or (old or {}).get('word')
             shipped[key] = entry(file, take['license'], take['author'], take['source'], digest,
                                  indexes[path], None if section == 'letters' else key, word)
+            kept = []
+            for held in (old or {}).get('alternates', []):
+                if held['sha256'] != digest:
+                    kept.append(held)
+                else:
+                    os.remove(os.path.join(out_dir, held['file']))
+            if kept:
+                shipped[key]['alternates'] = kept
         if not dry_run and any(why is None for why, _ in outcome.values()):
             write_manifest(out_dir, manifest)
         return outcome
@@ -224,16 +259,28 @@ def put(lang, takes, dry_run=False):
         shutil.rmtree(aside, ignore_errors=True)
 
 
-def remove(lang, section, key):
-    """Drops one entry and its file; returns the entry."""
+def remove(lang, section, key, source=None):
+    """Drops one entry and every take's file, or with [source] only the alternate taken from that
+    Commons file; returns what went."""
     out_dir = audio_dir(lang)
     manifest = read_manifest(out_dir)
-    item = manifest.get(section, {}).pop(key, None)
+    item = manifest.get(section, {}).get(key)
     if item is None:
         sys.exit('%s: no %s entry "%s"' % (lang, section, key))
-    os.remove(os.path.join(out_dir, item['file']))
+    if source:
+        gone = next((take for take in item.get('alternates', []) if take['source'] == source), None)
+        if gone is None:
+            sys.exit('%s: %s "%s" has no alternate from %s' % (lang, section, key, source))
+        item['alternates'].remove(gone)
+        if not item['alternates']:
+            del item['alternates']
+        dropped = [gone]
+    else:
+        dropped = shipped_takes(manifest[section].pop(key))
+    for take in dropped:
+        os.remove(os.path.join(out_dir, take['file']))
     write_manifest(out_dir, manifest)
-    return item
+    return dropped[0]
 
 
 def rename(lang, section, old, new):
@@ -242,9 +289,14 @@ def rename(lang, section, old, new):
     out_dir = audio_dir(lang)
     manifest = read_manifest(out_dir)
     item = manifest[section].pop(old)
-    moved = section_file(section, new)
-    os.rename(os.path.join(out_dir, item['file']), os.path.join(out_dir, moved))
-    manifest[section][new] = dict(item, file=moved, **({'matches': new} if 'matches' in item else {}))
+    was, now = section_file(section, old)[:-len('.mp3')], section_file(section, new)[:-len('.mp3')]
+    for take in shipped_takes(item):
+        moved = now + take['file'][len(was):]
+        os.rename(os.path.join(out_dir, take['file']), os.path.join(out_dir, moved))
+        take['file'] = moved
+    if 'matches' in item:
+        item['matches'] = new
+    manifest[section][new] = item
     write_manifest(out_dir, manifest)
 
 
@@ -263,20 +315,24 @@ def restore(lang, section, key, rev):
     item = then.get(section, {}).get(key)
     if item is None:
         sys.exit('%s: %s held no %s entry "%s"' % (lang, rev, section, key))
-    data = git_show(rev, '%s/%s' % (tracked, item['file']))
-    if hashlib.sha256(data).hexdigest() != item['sha256']:
-        sys.exit('%s/%s at %s: bytes differ from its sha256' % (tracked, item['file'], rev))
+    data = {}
+    for take in shipped_takes(item):
+        data[take['file']] = git_show(rev, '%s/%s' % (tracked, take['file']))
+        if hashlib.sha256(data[take['file']]).hexdigest() != take['sha256']:
+            sys.exit('%s/%s at %s: bytes differ from its sha256' % (tracked, take['file'], rev))
     out_dir = audio_dir(lang)
     manifest = read_manifest(out_dir)
     old = manifest.setdefault(section, {}).get(key)
-    if old and old['file'] != item['file']:
-        os.remove(os.path.join(out_dir, old['file']))
-    target = os.path.join(out_dir, item['file'])
-    os.makedirs(os.path.dirname(target), exist_ok=True)
-    with open(target, 'wb') as f:
-        f.write(data)
-    if digest_of(target) != item['sha256']:
-        sys.exit('%s: what landed is not what %s held' % (target, rev))
+    for take in shipped_takes(old) if old else []:
+        if take['file'] not in data:
+            os.remove(os.path.join(out_dir, take['file']))
+    for take in shipped_takes(item):
+        target = os.path.join(out_dir, take['file'])
+        os.makedirs(os.path.dirname(target), exist_ok=True)
+        with open(target, 'wb') as f:
+            f.write(data[take['file']])
+        if digest_of(target) != take['sha256']:
+            sys.exit('%s: what landed is not what %s held' % (target, rev))
     manifest[section][key] = item
     write_manifest(out_dir, manifest)
     return item

@@ -32,6 +32,7 @@ import sys
 import termios
 import tty
 
+from audio_gates import takes
 from audio_routes import WORKSPACE
 from audio_voices import ESTABLISHED_TAKES
 
@@ -51,16 +52,16 @@ def rows(path):
 
 
 def shipped_entries():
-    """{lang: [(section, key, entry)]} over every shipped manifest."""
+    """{lang: [(section, key, take)]} over every take of every shipped manifest."""
     out = {}
     for lang in sorted(os.listdir(AUDIO)):
         path = os.path.join(AUDIO, lang, 'manifest.json')
         if os.path.isfile(path):
             with open(path, encoding='utf-8') as handle:
                 manifest = json.load(handle)
-            out[lang] = [(section, key, item) for section, entries in manifest.items()
+            out[lang] = [(section, key, take) for section, entries in manifest.items()
                          if section not in ('language', 'authors', 'licenses')
-                         for key, item in entries.items()]
+                         for key, item in entries.items() for take in takes(item)]
     return out
 
 

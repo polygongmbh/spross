@@ -23,7 +23,7 @@ import os
 import subprocess
 import sys
 
-from audio_gates import speech_key
+from audio_gates import speech_key, takes
 from audio_routes import SECTIONS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -114,12 +114,12 @@ def credit_rows(shipped):
     for lang, manifest in shipped.items():
         authors = manifest['authors']
         for section in SECTIONS:
-            entries = manifest.get(section, {})
+            entries = [take for item in manifest.get(section, {}).values() for take in takes(item)]
             if not entries:
                 continue
             licenses = collections.Counter(
-                entry.get('license') or authors[entry['author']] for entry in entries.values())
-            who = collections.Counter(entry['author'] for entry in entries.values())
+                entry.get('license') or authors[entry['author']] for entry in entries)
+            who = collections.Counter(entry['author'] for entry in entries)
             where = 'audio/%s/%s/' % (lang, section)
             rows[where] = (
                 str(len(entries)),
@@ -138,7 +138,7 @@ def headline(shipped):
     for lang, manifest in shipped.items():
         authors = manifest['authors']
         for section in SECTIONS:
-            for entry in manifest.get(section, {}).values():
+            for entry in (take for item in manifest.get(section, {}).values() for take in takes(item)):
                 buckets[family(entry.get('license') or authors[entry['author']])] += 1
     return ('%d mp3 files, ~%d MB, all of them Wikimedia Commons transcodes:'
             % (len(tracked), round(megabytes)),
@@ -168,12 +168,12 @@ def check(shipped):
     named, untracked = 0, []
     for lang, manifest in shipped.items():
         for section in SECTIONS:
-            for entry in manifest.get(section, {}).values():
+            for entry in (take for item in manifest.get(section, {}).values() for take in takes(item)):
                 named += 1
                 path = 'catalog/audio/%s/%s' % (lang, entry['file'])
                 if path not in tracked:
                     untracked.append(path)
-    print('%d manifest entries, %d named but untracked' % (named, len(untracked)))
+    print('%d manifest takes, %d named but untracked' % (named, len(untracked)))
     for path in untracked[:20]:
         print('  ', path)
     return 1 if untracked else 0

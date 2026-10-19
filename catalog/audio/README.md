@@ -201,6 +201,13 @@ the script asks `git ls-files` instead.
 - `source` — the original Commons filename;
   the credits screen links `File:<source>`,
   which is what keeps attribution checkable rather than merely present.
+- `alternates` (optional, on an entry in any section) lists further takes of the same key, mostly by other voices.
+  The entry itself stays the key's first take;
+  an alternate carries a take's own fields (`file`, `author`, `source`, `sha256`, a departing `license`, the measurements)
+  and never `matches` or `word`, which belong to the key.
+  Which take plays is the engine's choice (`../../docs/audio.md`);
+  sweeps and consolidation judge the first take only,
+  and `scripts/audio-catalog.py --remove <lang> <section> <key> --take <source>` drops one alternate.
 - A form-keyed file is its form's ASCII stem under its section's folder —
   `[a-z0-9-]` stays, a space becomes `_`, every other character `u<hex>`,
   so `die Adresse` is `articles/die_adresse.mp3`;
@@ -210,6 +217,7 @@ the script asks `git ls-files` instead.
   A sequence rather than one codepoint because a named row may be a digraph (es `ch`),
   which a single codepoint would file under `c`.
   The manifest maps the glyph, so the name is purely internal.
+  An alternate's file is its key's with `.<n>` before `.mp3`, n from 2 — no stem carries a dot.
 - **The mp3 bytes are the Commons transcode untouched**, renamed and nothing else:
   re-encoding, loudness normalization included, is ruled out by `../../docs/audio-licensing.md` §3,
   so packs differ in loudness.

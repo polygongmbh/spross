@@ -13,7 +13,7 @@ but letters, whose takes say a letter's name rather than its glyph).
 import os
 
 from audio_gates import (UNSHIPPABLE_LICENSES, attribute, digest_of, keep_article_forms,
-                         keep_named_by_its_file, keep_reachable, keep_unambiguous, speech_key)
+                         keep_named_by_its_file, keep_reachable, keep_unambiguous, speech_key, takes)
 from audio_manifest import audio_dir, put, read_manifest
 from audio_ship import pack_mp3, read_rows
 
@@ -47,7 +47,7 @@ def fill(packs, lang, section, catalog, dry_run=False):
     # rows, and a new form claiming a shipped one's sound mutes both. Bytes that already ship
     # under another key (a form restress moved) are that entry, not a new one.
     spoken = {speech_key(form): item['sha256'] for form, item in shipped.items()}
-    held = {item['sha256'] for item in shipped.values()}
+    held = {take['sha256'] for item in shipped.values() for take in takes(item)}
     drops, rows = [], []
     for row in pack_rows(pack, section):
         if not os.path.isfile(pack_mp3(pack, row)):

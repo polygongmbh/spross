@@ -120,6 +120,12 @@ def digest_of(path):
         return hashlib.sha256(f.read()).hexdigest()
 
 
+def takes(item):
+    """A manifest entry's takes, its own first: the entry is its key's first take, and its
+    `alternates` are further takes of the same key, mostly by other voices."""
+    return [item] + item.get('alternates', [])
+
+
 def verb_stem(form, prefixes):
     """kern `verbStem`: [form] without the first optional verb prefix it starts with, else None."""
     trimmed = form.strip()
