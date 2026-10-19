@@ -9,7 +9,9 @@ import net.spross.kern.box.FeedbackScope
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
 import net.spross.kern.box.ReportedIssue
+import net.spross.kern.box.profileLine
 import net.spross.kern.model.Card
+import net.spross.kern.model.pairLine
 
 /**
  * What the learner does to ONE word of their box, and what they send back about the catalog.
@@ -29,6 +31,13 @@ fun AppModel.reportedIssue(cardId: String): ReportedIssue? = box?.reportedIssues
 fun AppModel.reportIssue(cardId: String, comment: String?, learnerInput: String?) {
     updateBox { BoxEngine.reportIssue(it, cardId, comment, learnerInput, now()) }
 }
+
+/**
+ * The answer a report on this card travels with: what was typed, else what the report on
+ * file already rode in with ([Feedback.carriedInput]).
+ */
+fun AppModel.carriedReportInput(cardId: String, typed: String): String? =
+    box?.let { Feedback.carriedInput(it, cardId, typed) } ?: typed.takeIf { it.isNotBlank() }
 
 /** Withdraw a report; the card's schedule is untouched either way. */
 fun AppModel.dismissReportedIssue(cardId: String) {
@@ -119,17 +128,6 @@ val AppModel.reportedCatalogCards: List<Card>
         val state = box ?: return emptyList()
         return Feedback.catalogIssues(state).mapNotNull { state.cards[it.cardId] }
     }
-
-/** The half a suggestion does carry, whichever language it is in. */
-fun AppModel.suggestionText(word: OwnWord): String =
-    word.languages.firstOrNull()?.let { word.texts[it] }.orEmpty()
-
-/**
- * A pair this profile cannot study, read in the order kern names its languages — both
- * halves the learner wrote, neither of them the known or the learning side here.
- */
-fun AppModel.otherPairText(word: OwnWord): String =
-    word.languages.mapNotNull { word.texts[it] }.joinToString(" → ")
 
 /**
  * The flags of the languages it is written in that this pair cannot read
@@ -231,18 +229,8 @@ fun AppModel.merge(matches: List<CatalogMatch>) {
     }
 }
 
-/**
- * The catalog's own writing of a matched card, target side first as every exposure surface
- * reads (`kern/docs/reports.md`).
- */
-fun AppModel.catalogText(match: CatalogMatch): String {
-    val card = box?.cards?.get(match.cardId) ?: return ""
-    return "${card.target.text} → ${card.source.text}"
-}
+/** The catalog's own writing of a matched card ([pairLine]). */
+fun AppModel.catalogText(match: CatalogMatch): String = box?.cards?.get(match.cardId)?.pairLine.orEmpty()
 
-/** The learner's own word as they wrote it, read the same way round. */
-fun AppModel.writtenText(match: CatalogMatch): String {
-    val stamp = box?.joinStamp ?: return ""
-    val word = match.word
-    return listOfNotNull(word.texts[stamp.target], word.texts[stamp.source]).joinToString(" → ")
-}
+/** The learner's own word as they wrote it, read the same way round ([profileLine]). */
+fun AppModel.writtenText(match: CatalogMatch): String = box?.joinStamp?.let { match.word.profileLine(it) }.orEmpty()

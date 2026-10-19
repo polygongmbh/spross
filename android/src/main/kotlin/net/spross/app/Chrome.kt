@@ -59,13 +59,9 @@ interface Chrome {
     val onboardingNameQuestion: String
     val onboardingStart: String
     val commonBack: String
-    val onboardingWhyTitle: String
-    val onboardingWhyBreadthTitle: String
-    val onboardingWhyBreadthBody: String
-    val onboardingWhyCompanionTitle: String
-    val onboardingWhyCompanionBody: String
-    val onboardingWhyGrammarTitle: String
-    val onboardingWhyGrammarBody: String
+    val onboardingTourTitle: String
+    val onboardingTourHome: String
+    val onboardingTourBox: String
     val onboardingFirstRoundTitle: String
     val onboardingFirstRoundRecognize: String
     val onboardingFirstRoundGrade: String
@@ -206,8 +202,6 @@ interface Chrome {
     val trainerModifierFastHint: String   // %d
     val trainerModifierMix: String
     val trainerModifierMixHint: String
-    val trainerModifierTimed: String
-    val trainerModifierTimedHint: String  // %d
     val trainerChallengeTitle: String
     val trainerChallengeHint: String      // %d
     val trainerChallengeStart: String
@@ -525,8 +519,6 @@ interface Chrome {
     val errorTitle: String
     val errorCatalogMissing: String
     val errorContentUnavailable: String // %s
-    val errorUnknownProfile: String     // %1$s %2$s
-    val errorResetFailed: String        // %s
 
     // ── Round completion ────────────────────────────────────────────────────────
     val sessionDoneTallyNew: String          // %d
@@ -555,8 +547,10 @@ interface Chrome {
     val widgetAwaitingBody: String
     companion object {
         /** Which language carries the chrome — and the en fallback — is kern's rule; only the table map is ours. */
-        fun forSource(source: String): Chrome =
-            if (LanguageChoices.chromeLanguage(source) == "de") ChromeDe else ChromeEn
+        fun forSource(source: String): Chrome = forLanguage(LanguageChoices.chromeLanguage(source))
+
+        /** The table for a chrome language kern already chose. */
+        fun forLanguage(chromeLanguage: String): Chrome = if (chromeLanguage == "de") ChromeDe else ChromeEn
     }
 }
 

@@ -1,5 +1,7 @@
 package net.spross.kern.design
 
+import net.spross.kern.session.Question
+
 /** The letter case a card sets a line in, whatever its string table holds. */
 enum class LetterCase { AsWritten, Upper }
 
@@ -12,8 +14,12 @@ object CardType {
     val askCase: LetterCase = LetterCase.Upper
 
     /**
-     * The listening card's meaning comes in under the reveal's divider, as every card's answer does:
-     * the divider is what marks a line as the answer rather than more of the prompt.
+     * The lines a drill prompt may wrap to, by what it asks: a sentence reads over four,
+     * a name or a dated line over three, and anything else stands on one.
      */
-    const val LISTENING_REVEAL_DIVIDED: Boolean = true
+    fun promptLines(form: Question.Form): Int = when (form) {
+        Question.Form.Sentence -> 4
+        Question.Form.Name -> 3
+        else -> 1
+    }
 }

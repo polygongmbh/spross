@@ -8,8 +8,7 @@ import net.spross.kern.model.PromptForm
 import net.spross.kern.model.Rating
 
 /**
- * The produce/recognize turn as pure state plus one reducer — the machine both apps
- * used to re-derive, each drifting its own way (a pickable Easy here, no retype there).
+ * The produce/recognize turn as pure state plus one reducer, the one machine both apps drive.
  *
  * Same shape as [SessionRun]: immutable state, sealed intents, a reduction of state + effects,
  * and `nowEpochMillis` from the caller. Grading needs catalog context, so [grader] and
@@ -118,14 +117,14 @@ class TurnMachine(
             if (state.feedback != TurnFeedback.Correct) return unchanged(state)
             return TurnReduction(
                 state.copy(feedback = TurnFeedback.Neutral),
-                listOf(TurnEffect.CancelAdvance),
+                listOf(TurnEffect.Cued(Cue.CancelAdvance)),
             )
         }
         val cue: List<TurnEffect> =
-            if (state.feedback == TurnFeedback.Correct) emptyList() else listOf(TurnEffect.Tone(ToneKind.Correct))
+            if (state.feedback == TurnFeedback.Correct) emptyList() else listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)))
         return TurnReduction(
             state.copy(feedback = TurnFeedback.Correct),
-            cue + TurnEffect.ArmAdvance(AdvanceBeat.Live),
+            cue + TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live)),
         )
     }
 
@@ -140,12 +139,12 @@ class TurnMachine(
             // why: backing out takes the parked rating with it, or it would fire on a word
             // that no longer stands written.
             if (!state.retryApproved) return unchanged(state)
-            return TurnReduction(state.copy(retryApproved = false), listOf(TurnEffect.CancelAdvance))
+            return TurnReduction(state.copy(retryApproved = false), listOf(TurnEffect.Cued(Cue.CancelAdvance)))
         }
         if (state.retryApproved) return unchanged(state)
         return TurnReduction(
             state.copy(retryApproved = true),
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Live)),
+            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live))),
         )
     }
 
@@ -184,7 +183,7 @@ class TurnMachine(
 
     private fun accepted(state: TurnState): TurnReduction = TurnReduction(
         state.copy(feedback = TurnFeedback.Correct),
-        listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Explicit)),
+        listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit))),
     )
 
     /**
@@ -199,8 +198,8 @@ class TurnMachine(
     ): TurnReduction = TurnReduction(
         state.copy(feedback = TurnFeedback.Almost(correctForm, reason), pendingRating = rating),
         listOf(
-            TurnEffect.Tone(if (reason == AlmostReason.Typo) ToneKind.Almost else ToneKind.Correct),
-            TurnEffect.ReleaseFocus,
+            TurnEffect.Cued(Cue.Tone(if (reason == AlmostReason.Typo) ToneKind.Almost else ToneKind.Correct)),
+            TurnEffect.Cued(Cue.ReleaseFocus),
         ),
     )
 
@@ -211,7 +210,7 @@ class TurnMachine(
      */
     private fun missed(state: TurnState, text: String, other: Match.OtherWord?): TurnReduction = TurnReduction(
         state.copy(feedback = TurnFeedback.Revealed, otherWord = other, rejectedAnswer = text.trim()),
-        listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField(grading.primed(state, text))),
+        listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Wrong)), TurnEffect.PrimeField(grading.primed(state, text))),
     )
 
     /**
@@ -236,7 +235,7 @@ class TurnMachine(
         if (state.revealed || state.feedback != TurnFeedback.Neutral) return unchanged(state)
         return TurnReduction(
             state.copy(revealed = true, recallMs = nowEpochMillis - state.promptShownAtMillis),
-            listOf(TurnEffect.Tone(ToneKind.Reveal)),
+            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Reveal))),
         )
     }
 

@@ -85,9 +85,6 @@ protocol DrillRunning: View, QuestionDriving {
     /// Silencing whatever the question being left was saying.
     func silence()
 
-    /// Dropping the keyboard for a pause that waits for a tap.
-    func releaseFocus()
-
     /// The run reached the next question — for a drill with something of its
     /// own to do there.
     func movedOn()
@@ -136,7 +133,7 @@ extension DrillRunning {
             movedOn()
         }
         let animation: Animation = moved
-            ? (reduceMotion ? .easeOut(duration: 0.2) : .cardFlip)
+            ? (reduceMotion ? .cardFlipReduced : .cardFlip)
             : .cardReveal
         withAnimation(animation) { run = step.run }
         for effect in step.effects { apply(effect) }
@@ -150,14 +147,8 @@ extension DrillRunning {
     /// What a reduction's effects become on this device — the list Android's `DrillActs` carries out.
     func apply(_ effect: DrillEffect) {
         switch onEnum(of: effect) {
-        case .armAdvance(let arm):
-            armAdvance(arm.beat) { dispatch(advanceMove) }
-        case .cancelAdvance:
-            autoAdvance?.cancel()
-        case .tone(let cue):
-            Sound.play(cue.kind)
-        case .releaseFocus:
-            releaseFocus()
+        case .cued(let cued):
+            carryOut(cued.cue) { dispatch(advanceMove) }
         case .silence:
             // why: the reading belongs to the question being left.
             silence()
@@ -216,14 +207,11 @@ extension DrillRunning {
         // why: confetti and cheer are one thing (`docs/design.md`); the page the
         // run closes onto rains the one, so the close sounds the other.
         if summary.celebrated { Sound.cheer() }
-        onFinish(DrillRunResult(summary, title: resultTitle))
+        onFinish(DrillRunResult(summary: summary, title: resultTitle))
         dismiss()
     }
 
     // MARK: - The two things the screen reads back
-
-    /// The field's face for where kern says the answer stands.
-    var feedback: AnswerInputView.Feedback { .init(turnFeedback) }
 
     /// VoiceOver and Switch Control both make a timed screen change hostile: it
     /// truncates the correctness announcement and moves the page under the user.

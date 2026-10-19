@@ -154,19 +154,13 @@ extension AppModel {
         }
     }
 
-    /// The catalog's own writing of a matched card, target side first as every exposure
-    /// surface reads (`kern/docs/reports.md`).
+    /// The catalog's own writing of a matched card (`Card.pairLine`).
     func catalogText(_ match: CatalogMatch) -> String {
-        guard let card = card(match.cardId) else { return "" }
-        return "\(card.target.text) → \(card.source.text)"
+        card(match.cardId)?.pairLine ?? ""
     }
 
-    /// The learner's own word as they wrote it, read the same way round.
+    /// The learner's own word as they wrote it, read the same way round (`OwnWord.profileLine`).
     func writtenText(_ match: CatalogMatch) -> String {
-        let word = match.word
-        guard let box else { return "" }
-        let targetText = word.texts[box.joinStamp.target]
-        let sourceText = word.texts[box.joinStamp.source]
-        return [targetText, sourceText].compactMap { $0 }.joined(separator: " → ")
+        box.map { match.word.profileLine(stamp: $0.joinStamp) } ?? ""
     }
 }

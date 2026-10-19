@@ -30,9 +30,7 @@ extension LettersOverview {
     }
 
     /// The run's shape, in the order it is climbed.
-    static var formats: [LetterFormat] {
-        [.choiceEasy, .choiceConfusable, .typed, .dictation]
-    }
+    static var formats: [LetterFormat] { LetterFormat.allCases }
 
     // MARK: - What a run asks
 
@@ -107,12 +105,8 @@ extension LettersOverview {
     /// found; the drill says so on its own prompt card instead (§6.1).
     var drillAvailable: Bool { availability?.drillAvailable ?? false }
 
-    /// Dictation needs a pool of playable words the learner already holds; below
-    /// that floor the ramp stops one Sprosse short of it, so the row is a padlock
-    /// with its price rather than a format that never arrives.
     func reachable(_ format: LetterFormat) -> Bool {
-        guard let availability, availability.drillAvailable else { return false }
-        return format != .dictation || availability.dictationAvailable
+        availability?.report.formatOpen(format: format) ?? false
     }
 
     // MARK: - Los

@@ -5,8 +5,8 @@ import net.spross.kern.catalog.RealCatalog
 import net.spross.kern.model.Language
 
 /**
- * The real catalog's frames, joined. Frames are content now, so the phrase suites read them
- * the way the app does — `Catalog.phraseTemplates(source, target)` — instead of a Kotlin table.
+ * The real catalog's frames, joined. Frames are catalog content, so the phrase suites read them
+ * the way the app does — `Catalog.phraseTemplates(source, target)`.
  */
 internal object RealFrames {
 
@@ -28,13 +28,13 @@ internal object RealFrames {
     fun frame(target: Language, slug: String, source: Language = "de"): PhraseTemplate =
         of(source, target).first { it.id == slug }
 
-    /**
-     * One hand-picked task per template, whatever its slot takes — what the structural
-     * sweeps want, and the reason they no longer spell every slot value as a [Long].
-     */
     /** A fixed number of [target]'s own plan, so a sweep reads the same one every run. */
     fun phone(target: Language): String = checkNotNull(Numbers.pack(target).phonePlan).draw(Random(7))
 
+    /**
+     * One hand-picked task per template, whatever its slot takes — what the structural
+     * sweeps want.
+     */
     fun instantiate(
         template: PhraseTemplate,
         value: Long,

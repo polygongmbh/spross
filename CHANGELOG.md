@@ -6,6 +6,10 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 - On the watch, a word to produce now also shows alone for a moment before its options appear, as a word to recognize already did.
 - Word scramble keeps a word's first letter in place at every step, so climbing asks for longer words instead of a blind anagram.
+- The numbers page drops its Timed switch: a challenge, started from your picks or from a code, is now the one race against the clock.
+- In a numbers challenge, every answer now moves straight on with only its sound, Skip replaces Reveal, and no hints, notes or spoken answers appear.
+- In a numbers challenge, the line above the card no longer shows the answer streak, which the score already stands in for.
+- Onboarding now points to where the day's round starts and how to choose what you learn in the Orchard, in place of a page about what Spross is for, and its first-round lines are shorter.
 
 ## 8.7.0 — 2026-10-09
 

@@ -1,69 +1,21 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
-import net.spross.kern.session.Match
-import net.spross.kern.session.TurnFeedback
+import net.spross.kern.catalog.CountryDrillContent
+import net.spross.kern.model.ClosingNote
+import net.spross.kern.model.emojiCue
+import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.Match
+import net.spross.kern.session.Question
+import net.spross.kern.session.QuestionAsk
+import net.spross.kern.session.Saying
 
 /**
- * The atlas drill as pure state plus one reducer — the third sibling of [NumbersRun] and
- * [LetterDrillRun]. The run's shape is [CountryDrillRunState]; what it can ask is
- * [CountryDrill].
- *
- * It types like the slot run — writing the name out IS the answer — and climbs like the
- * letter run, one ladder for the whole run rather than one per exercise. That, and the Sprosse
- * it REACHED being what a close reports, is the whole of what it does not share with them;
- * the ramp, the effects and the summary are the same ones.
- *
- * Kern never self-randomizes: every draw takes the caller's [Random]. No clock is needed, so
- * none is taken. No default arguments: they do not cross the ObjC boundary.
+ * The atlas drill's run: the shared pair drill reducer ([PairDrillRun]) over the atlas.
+ * What it can ask is [CountryDrill]; what the run is fixed to is [CountryDrillRunConfig].
  */
-object CountryDrillRun {
-
-    /** A fresh run from the foot of the ladder. */
-    fun open(config: CountryDrillRunConfig, rng: Random): CountryDrillRunState =
-        openAt(config, 1, rng)
-
-    /**
-     * A fresh run opened ON [sprosse], clamped to the ladder. The page opens a run on the lowest
-     * Sprosse the learner has not answered out ([CountryDrillClose.clearedSprossen]), or on
-     * the one they tapped.
-     */
-    fun openAt(config: CountryDrillRunConfig, sprosse: Int, rng: Random): CountryDrillRunState {
-        val start = sprosse.coerceIn(1, CountryDrill.MAX_SPROSSE)
-        // A run opens on a Sprosse ARRIVED at — the lowest one not answered out, or the one
-        // tapped — so its first question is one that Sprosse added.
-        val opening =
-            CountryDrill.draw(config.content, start, config.reverse, null, emptySet(), rng, arriving = true)
-        val content = config.content
-        return CountryDrillRunState(
-            config = config,
-            // why: nothing is solved yet, so only an atlas with no rows at all comes back empty.
-            task = requireNotNull(opening.task) {
-                "no atlas question for ${content.source}→${content.target}"
-            },
-            index = 0,
-            sprosse = opening.sprosse,
-            bestSprosse = opening.sprosse,
-            winsAtSprosse = 0,
-            core = DrillRunCore(pacing = DrillPacing.opening(opening.sprosse, config.standingRecord)),
-            feedback = TurnFeedback.Neutral,
-            finished = false,
-        )
-    }
-
-    fun reduce(
-        state: CountryDrillRunState,
-        intent: CountryDrillIntent,
-        rng: Random,
-    ): CountryDrillReduction = when (intent) {
-        is CountryDrillIntent.InputChanged -> typed(state, intent.text)
-        is CountryDrillIntent.Submit -> submit(state, intent.text)
-        CountryDrillIntent.Reveal -> reveal(state)
-        CountryDrillIntent.ConfirmPending -> confirm(state, rng)
-        CountryDrillIntent.AdvanceElapsed -> elapsed(state, rng)
-        CountryDrillIntent.KeepPracticing -> unchanged(state.copy(core = state.core.resumed()))
-    }
+object CountryDrillRun : PairDrillRun<CountryDrillTask>() {
 
     /**
      * Grade [input] against every form the task accepts, the way a drill grades: no
@@ -74,11 +26,7 @@ object CountryDrillRun {
      * kind ([CountryNameIndex]): `Ĉilio` for `Ĉinio` is Chile, not a typo of China, and the
      * refusal carries which.
      */
-    fun grade(
-        input: String,
-        task: CountryDrillTask,
-        config: CountryDrillRunConfig,
-    ): Match {
+    fun grade(input: String, task: CountryDrillTask, config: CountryDrillRunConfig): Match {
         val match = gradeDrillAnswer(
             input = input,
             accepted = task.accepted,
@@ -90,139 +38,70 @@ object CountryDrillRun {
         if (match == Match.Exact) return match
         return config.nameIndex?.otherName(task.kind, input) ?: match
     }
+}
 
-    /**
-     * Leaving, from the corner or from "Fertig". A pending accepted answer books first,
-     * exactly as the explicit tap would — closing may neither lose it nor upgrade it — and a
-     * revealed answer nobody confirmed books nothing. An untouched run reports nothing at
-     * all, though it still names the Sprosse it opened on, which the page files either way.
-     *
-     * [standingRecord] is what the platform's store holds now; the write is strictly
-     * greater, so re-closing a resumed run never double-claims.
-     */
-    fun close(state: CountryDrillRunState, standingRecord: Int): CountryDrillClose {
-        val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
-        val pending = TypedDrillVerdicts.pending(state.feedback)
-            ?.let { advanced(state, it.correct, it.clean) }
-            ?: state
-        val ended = pending.copy(feedback = TurnFeedback.Neutral, otherWord = null, finished = true)
-        val summary = if (ended.done == 0) {
-            null
-        } else {
-            DrillRunSummary(ended.done, ended.bestAnswerStreak, ended.bestAnswerStreak > standingRecord)
-        }
-        val cleared = CountryDrill.cleared(state.config.content, state.config.reverse, ended.core.solvedClean)
-        return CountryDrillClose(ended, summary, ended.bestSprosse, cleared, effects)
+/**
+ * Everything one atlas run is fixed to ([PairDrillRunConfig]): the joined atlas, handed over
+ * once by the page that opened the run, and how its questions are drawn, graded and shown.
+ */
+class CountryDrillRunConfig(
+    val content: CountryDrillContent,
+    reverse: Boolean,
+    fast: Boolean,
+    normalizer: AnswerNormalizer?,
+    standingRecord: Int = 0,
+    cleared: Set<Int> = emptySet(),
+) : PairDrillRunConfig<CountryDrillTask>(
+    content.source, content.target, reverse, fast, normalizer, standingRecord, cleared,
+) {
+    /** The atlas turned around for the refusal check — null exactly where [normalizer] is. */
+    internal val nameIndex: CountryNameIndex? by lazy {
+        normalizer?.let { CountryNameIndex(content, reverse, it) }
     }
 
-    // MARK: - Intents
+    override val drill: Drill get() = Drill.Countries
 
-    /**
-     * "Finishing the name IS the answer" — the live approve, the review loop's rule and the
-     * one a learner arrives here already knowing ([TypedDrillVerdicts.typed]).
-     */
-    private fun typed(state: CountryDrillRunState, text: String): CountryDrillReduction {
-        val verdict = TypedDrillVerdicts.typed(state.feedback) {
-            grade(text, state.task, state.config) == Match.Exact
-        } ?: return unchanged(state)
-        return CountryDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
-    }
+    override val storageKey: String get() = CountryDrill.storageKey(content.source, content.target)
 
-    /**
-     * The explicit check. Nothing typed means the ask to see the answer ([reveal]) — the run
-     * has ONE primary action, and its button and its Enter key may not disagree on it.
-     */
-    private fun submit(state: CountryDrillRunState, text: String): CountryDrillReduction {
-        if (!state.owesAnswer) return unchanged(state)
-        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
-        val verdict = TypedDrillVerdicts.submit(grade(text, state.task, state.config))
-        return CountryDrillReduction(
-            state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord),
-            verdict.effects,
-        )
-    }
+    override val top: Int get() = CountryDrill.MAX_SPROSSE
 
-    private fun reveal(state: CountryDrillRunState): CountryDrillReduction {
-        if (!state.owesAnswer) return unchanged(state)
-        val verdict = TypedDrillVerdicts.reveal()
-        return CountryDrillReduction(state.copy(feedback = verdict.feedback), verdict.effects)
-    }
-
-    private fun confirm(state: CountryDrillRunState, rng: Random): CountryDrillReduction =
-        TypedDrillVerdicts.confirmed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
-    private fun elapsed(state: CountryDrillRunState, rng: Random): CountryDrillReduction =
-        TypedDrillVerdicts.elapsed(state.feedback)
-            ?.let { booked(state, it.correct, it.clean, rng) }
-            ?: unchanged(state)
-
-    // MARK: - Booking
-
-    /** Book the answer, then put the next question up at the Sprosse the booking left. */
-    private fun booked(
-        state: CountryDrillRunState,
-        correct: Boolean,
-        clean: Boolean,
+    override fun draw(
+        sprosse: Int,
+        avoid: CountryDrillTask?,
+        solved: Set<String>,
         rng: Random,
-    ): CountryDrillReduction {
-        val next = advanced(state, correct, clean)
-        // why: sampled against the id it must avoid — kern resamples once, so a repeat needs
-        // two unlucky draws rather than one.
-        val draw = CountryDrill.draw(
-            state.config.content,
-            next.sprosse,
-            state.config.reverse,
-            state.task.id,
-            next.solved,
-            rng,
-            arriving = next.sprosse > state.sprosse,
-        )
-        return CountryDrillReduction(
-            paced(next.copy(
-                // Nothing left to ask: end on the summary, never on a question already answered.
-                task = draw.task ?: state.task,
-                finished = draw.task == null,
-                sprosse = draw.sprosse,
-                // A Sprosse the run answered out is a Sprosse it stood on, and the wins banked on the
-                // one below stay behind with it.
-                bestSprosse = maxOf(next.bestSprosse, draw.sprosse),
-                winsAtSprosse = if (draw.sprosse == next.sprosse) next.winsAtSprosse else 0,
-                index = state.index + 1,
-                // why: cleared in the SAME transaction as the question — the next card must
-                // never render one frame carrying the last one's answer.
-                feedback = TurnFeedback.Neutral,
-                otherWord = null,
-            )),
-            listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
+        arriving: Boolean,
+    ): DrillLadder.Sprosse<CountryDrillTask> =
+        CountryDrill.draw(content, sprosse, reverse, avoid?.id, solved, rng, arriving)
+            .let { DrillLadder.Sprosse(it.task, it.sprosse) }
+
+    override fun grade(input: String, task: CountryDrillTask): Match = CountryDrillRun.grade(input, task, this)
+
+    override fun solvedKey(task: CountryDrillTask): String = DrillSolved.key(task)
+
+    override fun answeredOut(solved: Set<String>): Set<Int> = CountryDrill.cleared(content, reverse, solved)
+
+    /** A flag is written in no language, so a question it alone asks carries none; the giveaway flag waits for the reveal. */
+    override fun question(run: PairDrillRunState<CountryDrillTask>): Question {
+        val task = run.task
+        return Question(
+            key = run.index.toString(),
+            ask = QuestionAsk.Country(task.kind),
+            prompt = Question.Side(
+                task.promptText, promptLanguage.takeIf { task.promptText != null }, Question.Form.Name,
+                saying = run.promptSaying,
+            ),
+            answer = Question.Side(task.display, answerLanguage, Question.Form.Name, saying = Saying(task.display, answerLanguage)),
+            emoji = task.promptEmoji,
+            emojiCue = emojiCue(givesAnswerAway = task.emojiIsGiveaway),
+            emojiIsQuestion = task.kind == CountryTaskKind.FlagCountry,
+            opens = run.showsAnswer,
+            closing = Question.Closing(note = task.gloss?.let { ClosingNote.Own(it) }),
+            otherWord = run.otherWord,
         )
     }
 
-    /** The pause a booked answer leaves due, if one is ([DrillPacing]). */
-    private fun paced(state: CountryDrillRunState): CountryDrillRunState =
-        state.copy(core = state.core.paced(state.sprosse, state.newSprossen, endless = !state.finished))
-
-    /** The booking itself: the ramp, the answer streak, the tallies — the Sprosse it reached included. */
-    private fun advanced(
-        state: CountryDrillRunState,
-        correct: Boolean,
-        clean: Boolean,
-    ): CountryDrillRunState {
-        val step = CountryDrill.step(
-            sprosse = state.sprosse,
-            winsAtSprosse = state.winsAtSprosse,
-            correct = correct,
-            clean = clean,
-            fast = state.config.fast,
-        )
-        return state.copy(
-            sprosse = step.sprosse,
-            bestSprosse = maxOf(state.bestSprosse, step.sprosse),
-            winsAtSprosse = step.winsAtSprosse,
-            core = state.core.book(correct, clean, DrillSolved.key(state.task)),
-        )
-    }
-
-    private fun unchanged(state: CountryDrillRunState) = CountryDrillReduction(state, emptyList())
+    /** Every name is written, in the language it is owed in. */
+    override fun controls(run: PairDrillRunState<CountryDrillTask>): AnswerControls =
+        run.answerControls(run.typedSlot(answerLanguage))
 }

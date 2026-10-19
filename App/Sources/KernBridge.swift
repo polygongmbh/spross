@@ -14,7 +14,7 @@ extension Date {
     }
 }
 
-/// Engine boundary time zone: device-current per call (v1 parity).
+/// Engine boundary time zone: device-current per call.
 func currentTzId() -> String { TimeZone.current.identifier }
 
 extension KotlinInstant {
@@ -88,14 +88,6 @@ extension AreaStatistics {
     var activeCards: Int { Int(active) }
     var allSettledCards: Int { Int(allSettled) }
     var lockedPhrases: Int { Int(phrasesLocked) }
-
-    /// The area's buckets and what they are measured against, as the design
-    /// system reads them — which card falls in which bucket, and how a stale
-    /// total is clamped, are the engine's rulings (`box/Statistics.kt`).
-    var progress: AreaProgress {
-        AreaProgress(allSettled: Int(allSettled), allGrowing: Int(allGrowing),
-                     queued: Int(queued), progressTotal: Int(progressTotal))
-    }
 }
 
 /// Kotlin's own `Random`, which every draw in a run is spent out of. Named for
@@ -113,26 +105,8 @@ var drillRandom: KotlinRandom {
 
 /// Sprossen are `Int` everywhere in the drill UI; the ladder is Kotlin `Int`.
 /// Bridged HERE so no view ever writes `Int32(…)` around a Sprosse number.
-extension LetterDrill {
-    func ceiling(dictation: Bool) -> Int { Int(maxSprosse(dictationAvailable: dictation)) }
-
-    func format(sprosse: Int) -> LetterFormat { formatFor(sprosse: Int32(sprosse)) }
-}
-
-/// Same bridge for the atlas drill: its ladder is Kotlin `Int`, its ceiling and
-/// its Sprosse length are its own, and no view of it writes `Int32(…)`.
 extension CountryDrill {
     var ceiling: Int { Int(MAX_SPROSSE) }
-
-    func step(sprosse: Int, winsAtSprosse: Int, correct: Bool, clean: Bool,
-              fast: Bool) -> DrillRamp.SprosseStep {
-        step(sprosse: Int32(sprosse), winsAtSprosse: Int32(winsAtSprosse),
-             correct: correct, clean: clean, fast: fast)
-    }
-
-    /// Whether the top Sprosse has EVER been stood on — the whole price of fast
-    /// mode, kept in kern so the page never spells the number out itself.
-    func fastUnlocked(bestSprosse: Int) -> Bool { fastUnlocked(bestSprosse: Int32(bestSprosse)) }
 }
 
 /// Same bridge for the dates drill. Its ladder has no constant ceiling: how
@@ -143,91 +117,20 @@ extension DateDrill {
         Int(maxSprosse(content: content, reverse: reverse))
     }
 
-    /// Whether the top Sprosse has EVER been stood on — the whole price of fast
-    /// mode, kept in kern so the page never spells the number out itself.
-    func fastUnlocked(bestSprosse: Int, content: DateDrillContent, reverse: Bool) -> Bool {
-        fastUnlocked(bestSprosse: Int32(bestSprosse), content: content, reverse: reverse)
-    }
-
     func kinds(content: DateDrillContent, sprosse: Int, reverse: Bool) -> [DateTaskKind] {
         kinds(content: content, sprosse: Int32(sprosse), reverse: reverse)
     }
 }
 
-// MARK: - Kern → Design value types
-//
-// `App/Sources/Design` is kern-free by design, so every rule it renders arrives
-// as one of its own value types. These are the only places the two meet — bar
-// the Design files where the rendered thing IS kern's own value and a copy would
-// drift: `AutoAdvance` (the two beat lengths), `NumberReferenceTable` (the primer
-// rows) and `SessionSummaryView` (the round's tally parts).
-
-extension SessionOutcome {
-    /// The bar segment one answer draws. The bucketing is kern's (`AnswerOutcome`).
-    init(_ outcome: AnswerOutcome) {
-        switch outcome {
-        case .right: self = .right
-        case .almost: self = .tough
-        case .wrong: self = .wrong
-        }
+/// The pricing both pair drills share, on the drill's own ceiling.
+extension PairDrill {
+    /// Whether the top Sprosse has EVER been stood on — the whole price of fast
+    /// mode, kept in kern so the page never spells the number out itself.
+    func fastUnlocked(bestSprosse: Int, top: Int) -> Bool {
+        fastUnlocked(bestSprosse: Int32(bestSprosse), top: Int32(top))
     }
 
-    /// What the three self-grade buttons SAY. The rating it earns is kern's:
-    /// the clock behind `SelfGrading` decides whether a Knew came instantly.
-    var verdict: SelfGrading.Verdict {
-        switch self {
-        case .right: return .knew
-        case .tough: return .tough
-        case .wrong: return .unknown
-        }
-    }
-}
-
-extension DrillRunResult {
-    /// The figures a closed run leaves, as the tile above the picks wears them.
-    /// Which of them there are is kern's (`DrillRunSummary`); what the run was
-    /// CALLED is chrome, so it arrives beside them.
-    init(_ summary: DrillRunSummary, title: LocalizedStringKey) {
-        self.init(doneCount: Int(summary.done), bestAnswerStreak: Int(summary.bestAnswerStreak),
-                  newRecord: summary.newRecord, milestone: summary.milestone, timed: summary.timed,
-                  worthReporting: summary.worthReporting, celebrated: summary.celebrated, title: title)
-    }
-}
-
-extension AnswerInputView.Feedback {
-    /// The field's face for where kern says the answer stands. `almost` is the
-    /// only state carrying anything — the form the card owes back.
-    init(_ feedback: TurnFeedback) {
-        switch onEnum(of: feedback) {
-        case .neutral: self = .neutral
-        case .correct: self = .correct
-        case .almost(let hold): self = .almost(correctForm: hold.correctForm,
-                                               reason: .init(hold.reason))
-        case .revealed: self = .revealed
-        }
-    }
-}
-
-extension AnswerInputView.AlmostReason {
-    init(_ reason: SprossKern.AlmostReason) {
-        switch reason {
-        case .typo: self = .typo
-        case .merged: self = .merged
-        }
-    }
-}
-
-extension Theme.Gender {
-    /// The palette's twin of the box's `Gender` — kern names the gender an
-    /// article marks (`model/Article.kt`), the design system names the hue.
-    init?(_ gender: SprossKern.Gender?) {
-        guard let gender else { return nil }
-        switch gender {
-        case .masculine: self = .masculine
-        case .feminine: self = .feminine
-        case .neuter: self = .neuter
-        }
-    }
+    func fastPrice(top: Int) -> Int { Int(fastPrice(top: Int32(top))) }
 }
 
 // The product calibration and `withProductCalibration()` are Kern's

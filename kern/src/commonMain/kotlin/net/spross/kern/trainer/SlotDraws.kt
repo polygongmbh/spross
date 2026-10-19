@@ -6,11 +6,9 @@ import net.spross.kern.model.Language
 /**
  * What a slot was drawn AS, before any language renders it.
  *
- * The drill used to recover its value from the rendered prompt (`slot.prompt.toLong()`),
- * which only works while every slot kind renders as a run of digits — no fraction survives
- * it, and a Kotlin throw crossing the ObjC boundary is an app crash. Drawing the value
- * first and instantiating from it removes the round-trip: nothing parses a display string
- * back into a number.
+ * The value is drawn first and the prompt instantiated from it, so nothing parses a display string back into a number:
+ * a parse (`slot.prompt.toLong()`) only works while every slot kind renders as a run of digits — no fraction survives it —
+ * and a Kotlin throw crossing the ObjC boundary is an app crash.
  */
 internal sealed interface SlotValue {
     data class Count(val n: Long) : SlotValue

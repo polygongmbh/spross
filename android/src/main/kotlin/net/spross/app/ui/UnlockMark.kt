@@ -26,15 +26,15 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import kotlinx.coroutines.delay
 import net.spross.app.Chrome
-import net.spross.kern.trainer.DrillUnlockMark
+import net.spross.kern.design.UnlockMarkMotion
 
 /*
- * How an overview row that just unlocked is marked, once (kern's [DrillUnlockMark] decides
- * which and times it): the padlock it wore fades where it stood while a wash over the row fades with it.
+ * How an overview row that just unlocked is marked, once (kern's [net.spross.kern.trainer.DrillUnlockMark] decides
+ * which, [UnlockMarkMotion] times it): the padlock it wore fades where it stood while a wash over the row fades with it.
  * Short and quiet on purpose — it confirms what the learner earned rather than celebrating it.
  */
-private const val HOLD_MS = DrillUnlockMark.HOLD_MS.toLong()
-private const val FADE_MS = DrillUnlockMark.FADE_MS
+private const val HOLD_MS = UnlockMarkMotion.HOLD_MS.toLong()
+private const val FADE_MS = UnlockMarkMotion.FADE_MS
 
 /** Whether a newly unlocked row's padlock is still standing: true for [HOLD_MS], then false. */
 @Composable
@@ -55,7 +55,7 @@ fun UnlockingMark(newlyUnlocked: Boolean, mark: @Composable () -> Unit) {
         targetState = padlockStanding(newlyUnlocked),
         transitionSpec = {
             fadeIn(tween(FADE_MS)) togetherWith
-                (fadeOut(tween(FADE_MS)) + scaleOut(tween(FADE_MS), targetScale = DrillUnlockMark.PADLOCK_SHRINK.toFloat()))
+                (fadeOut(tween(FADE_MS)) + scaleOut(tween(FADE_MS), targetScale = UnlockMarkMotion.PADLOCK_SHRINK.toFloat()))
         },
         contentAlignment = Alignment.Center,
         label = "unlock",
@@ -89,7 +89,7 @@ fun Modifier.unlockWash(newlyUnlocked: Boolean): Modifier = composed {
         delay(HOLD_MS)
         alpha.animateTo(0f, tween(FADE_MS, easing = FastOutSlowInEasing))
     }
-    val wash = Theme.colors.accent.copy(alpha = DrillUnlockMark.WASH_ALPHA.toFloat())
+    val wash = Theme.colors.accent.copy(alpha = UnlockMarkMotion.WASH_ALPHA.toFloat())
     drawBehind { drawRect(wash.copy(alpha = wash.alpha * alpha.value)) }
 }
 
@@ -102,7 +102,7 @@ fun AnnounceUnlocks(titles: List<String>, chrome: Chrome) {
     val view = LocalView.current
     LaunchedEffect(titles) {
         if (titles.isEmpty()) return@LaunchedEffect
-        delay(DrillUnlockMark.ANNOUNCE_DELAY_MS.toLong())
+        delay(UnlockMarkMotion.ANNOUNCE_DELAY_MS.toLong())
         @Suppress("DEPRECATION") // why: the one call that speaks without moving focus
         view.announceForAccessibility(chrome.a11yTrainerUnlocked.format(titles.joinToString(", ")))
     }

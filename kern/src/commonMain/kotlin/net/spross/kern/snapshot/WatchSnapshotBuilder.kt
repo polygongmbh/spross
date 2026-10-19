@@ -13,6 +13,7 @@ import net.spross.kern.model.Language
 import net.spross.kern.model.PresentationRole
 import net.spross.kern.model.Realization
 import net.spross.kern.model.SharedTargetForms
+import net.spross.kern.model.article
 import net.spross.kern.model.emojiCue
 import net.spross.kern.model.presentationRole
 import net.spross.kern.model.recognitionPromptForm
@@ -209,7 +210,7 @@ object WatchSnapshotBuilder {
             // one of the two is ever set, and neither for a card with no emoji.
             emoji = card.emoji?.takeIf { cue == EmojiCue.Upfront },
             revealEmoji = card.emoji?.takeIf { cue == EmojiCue.OnReveal },
-            article = article(card),
+            article = card.target.article,
             gender = wireGender(card),
             due = sched.due!!.toEpochMilliseconds(),
             nextRole = when (nextRole) {

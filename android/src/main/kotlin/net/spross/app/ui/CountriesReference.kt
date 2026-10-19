@@ -27,10 +27,8 @@ fun CountryReferenceSection(model: AppModel, content: CountryDrillContent, chrom
                         source = row.source,
                         target = row.target,
                         emoji = row.flag,
-                        sourceUnder = (listOf(row.sourceNationality) + row.sourceLanguages)
-                            .joinToString(" · "),
-                        targetUnder = (listOf(row.targetNationality) + row.targetLanguages)
-                            .joinToString(" · "),
+                        sourceUnder = row.sourcePeople,
+                        targetUnder = row.targetPeople,
                     )
                 },
             )

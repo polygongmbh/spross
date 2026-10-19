@@ -40,6 +40,10 @@ extension Animation {
     /// The one animation used for the between-questions flip.
     static let cardFlip = Animation.easeInOut(duration: Double(CardMotion.shared.FLIP_MS) / 1000)
 
+    /// The flip under Reduce Motion: a short fade, no turn. iOS's alone —
+    /// Android scales its animations by the system's animator setting instead.
+    static let cardFlipReduced = Animation.easeOut(duration: 0.2)
+
     /// A reveal growing onto the answer, a correction box coming in, a field taking its verdict.
     static let cardReveal = Animation.easeOut(duration: Double(CardMotion.shared.REVEAL_MS) / 1000)
 }

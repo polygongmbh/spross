@@ -27,10 +27,10 @@ struct AnswerArea<Tiles: View>: View {
             slot
             buttons
         }
-        .animation(.cardReveal, value: feedback)
+        .animation(.cardReveal, value: onEnum(of: feedback))
     }
 
-    private var feedback: AnswerInputView.Feedback { .init(controls.fieldFeedback) }
+    private var feedback: TurnFeedback { controls.fieldFeedback }
 
     // MARK: The slot
 
@@ -119,17 +119,23 @@ struct AnswerArea<Tiles: View>: View {
         }
     }
 
-    /// ONE primary action, and kern decides which: a blank submit reveals, a typed one checks.
-    /// The label only says which.
+    /// ONE primary action, and kern decides which: a blank submit reveals (or skips, in a race),
+    /// a typed one checks. The label only says which.
     private func primaryButton(_ primary: AnswerControls.Primary) -> some View {
         Button(action: primary == .reveal ? actions.reveal : actions.submit) {
-            Text(primary == .reveal || text.isBlankAnswer ? "common.reveal" : "common.check")
+            Text(primaryLabel(primary))
                 .frame(maxWidth: .infinity)
                 .contentTransition(.opacity)
         }
         .buttonStyle(PrimaryButtonStyle())
         .keyboardShortcut(.defaultAction)
         .animation(.easeOut(duration: 0.15), value: text.isBlankAnswer)
+    }
+
+    private func primaryLabel(_ primary: AnswerControls.Primary) -> LocalizedStringKey {
+        if primary == .reveal { return "common.reveal" }
+        if !text.isBlankAnswer { return "common.check" }
+        return primary == .submitOrSkip ? "session.skip" : "common.reveal"
     }
 
     /// A verdict that holds stands until tapped; one kern arms a beat for needs the tap only
@@ -161,7 +167,7 @@ struct AnswerActions {
     var confirm: () -> Void = {}
     var giveUp: () -> Void = {}
     var stop: () -> Void = {}
-    var selfGrade: (SessionOutcome) -> Void = { _ in }
+    var selfGrade: (SelfGrading.Verdict) -> Void = { _ in }
     var cantListen: () -> Void = {}
     /// The field mounted — where a surface that owns focus claims it.
     var fieldAppeared: () -> Void = {}

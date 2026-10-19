@@ -16,10 +16,9 @@ enum class NumbersExercise { Counting, Clock, Phrases, Forms }
  * How a run is played, orthogonal to which [NumbersExercise]s it offers.
  * [Reverse] flips the direction (words shown, digits typed), [Fast] halves the
  * Sprosse length, [Mix] flips direction per task and lets Forms draw their magnitude
- * from the Numbers ladder instead of their own gentler one, and [Timed] ends the run
- * on a clock and scores it ([TimedRun]).
+ * from the Numbers ladder instead of their own gentler one.
  */
-enum class DrillModifier { Reverse, Fast, Mix, Timed }
+enum class DrillModifier { Reverse, Fast, Mix }
 
 /**
  * The unlock ladder, as one table rather than a chain of conditions:
@@ -57,8 +56,6 @@ object DrillUnlocks {
         // carries the numbers climb with it, and asking for the billions on top would
         // price a way of PLAYING a run above the exercises it plays.
         DrillModifier.Mix to mapOf(NumbersExercise.Forms to 5),
-        // why: a race scores by Sprosse, so it opens with the clock, once the ladder has height.
-        DrillModifier.Timed to mapOf(NumbersExercise.Counting to 4),
     )
 
     /** What [exercise] costs, as exercise → Sprosse reached. Empty = always available. */
@@ -86,6 +83,14 @@ object DrillUnlocks {
  * reads the Fast modifier); what a Sprosse DOES with an answer is decided here once.
  */
 object DrillRamp {
+
+    /**
+     * Three clean answers carry a Sprosse on every ladder but the numbers one
+     * ([Numbers.winsToAdvance]), each drill naming it as its own `WINS_TO_ADVANCE`.
+     * With two, clean–almost–clean promoted and read as if the almost had counted;
+     * three in a row already say as much about one difficulty as five would.
+     */
+    internal const val USUAL_WINS: Int = 3
 
     /**
      * [winsRequired] clean wins up, one miss down, floor 1.
@@ -173,8 +178,7 @@ internal object DrillSprossen {
  * Sprosse has left to ask.
  *
  * Each drill keeps its own draw type (they cross to Swift, where a generic would arrive
- * opaque) and its own sampler; what they share, and what lived four times before, is the
- * climb itself.
+ * opaque) and its own sampler; what they share is the climb itself.
  */
 internal object DrillLadder {
 

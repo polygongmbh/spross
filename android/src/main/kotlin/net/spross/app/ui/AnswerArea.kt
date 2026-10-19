@@ -175,8 +175,8 @@ private fun Buttons(
 }
 
 /**
- * ONE primary action, and kern decides which: a blank submit reveals, a typed one checks
- * (`AnswerNormalizer.isBlankAnswer`). The label only says which.
+ * ONE primary action, and kern decides which: a blank submit reveals (or skips, in a race),
+ * a typed one checks (`AnswerNormalizer.isBlankAnswer`). The label only says which.
  */
 @Composable
 private fun PrimaryAction(primary: Primary, text: String, chrome: Chrome, onClick: () -> Unit) {
@@ -186,7 +186,12 @@ private fun PrimaryAction(primary: Primary, text: String, chrome: Chrome, onClic
         shape = MaterialTheme.shapes.small,
     ) {
         Text(
-            if (primary == Primary.Reveal || AnswerNormalizer.isBlankAnswer(text)) chrome.commonReveal else chrome.commonCheck,
+            when {
+                primary == Primary.Reveal -> chrome.commonReveal
+                !AnswerNormalizer.isBlankAnswer(text) -> chrome.commonCheck
+                primary == Primary.SubmitOrSkip -> chrome.sessionSkip
+                else -> chrome.commonReveal
+            },
         )
     }
 }

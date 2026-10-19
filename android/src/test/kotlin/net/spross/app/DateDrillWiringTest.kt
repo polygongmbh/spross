@@ -61,7 +61,7 @@ class DateDrillWiringTest {
     )
 
     private fun dates(platform: DrillPlatform, reverse: Boolean = false, seed: Int = 5) =
-        DateDrillFlow(
+        TypedDrillFlow(
             start = DateDrillRun.open(
                 DateDrillRunConfig(
                     content = calendars,
@@ -72,6 +72,7 @@ class DateDrillWiringTest {
                 ),
                 Random(seed),
             ),
+            run = DateDrillRun,
             rng = Random(seed),
             onTone = { platform.tones += it },
             onReleaseFocus = { platform.focusReleases += 1 },

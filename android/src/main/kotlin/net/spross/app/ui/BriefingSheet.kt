@@ -8,18 +8,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,8 +42,8 @@ import net.spross.kern.box.HarvestWord
  * intent, and whichever chat the learner already has takes it from there. What that text may
  * say is kern's ([net.spross.kern.box.Briefing]) and is never shown here: 7 KB of prompt
  * scrolling past is a wall, not a preview. What the sheet spends its words on instead is the
- * three moves the loop takes — the counts that once stood in for the text named the box back
- * at the learner, who already has it.
+ * three moves the loop takes; the box's counts would only name the box back at the learner,
+ * who already has it.
  *
  * The way back is the half that pays: a conversation turns up words no catalog has, the
  * assistant is asked to list them, and pasting that list here reads them into own words
@@ -68,57 +64,50 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
     var picked by remember { mutableStateOf(emptySet<String>()) }
     var pasteWasEmpty by remember { mutableStateOf(false) }
 
-    ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState()) {
-        // why: the primary action stands OUTSIDE the scrolling half, so a harvest long
-        // enough to outgrow the sheet never scrolls the "keep" button out of reach.
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Column(
-                modifier = Modifier
-                    .weight(1f, fill = false)
-                    .verticalScroll(rememberScrollState())
-                    .padding(Theme.spacing.lg),
-                verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-            ) {
-                Text(chrome.briefingTitle, style = MaterialTheme.typography.titleLarge)
-                Text(chrome.briefingLead, style = MaterialTheme.typography.bodyMedium)
-                BriefingSteps(chrome)
-                Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
-                    TextButton(onClick = {
-                        context.copyBrief(chrome.briefingTitle, briefing.text)
-                        copied = true
-                    }) { Text(if (copied) chrome.briefingCopied else chrome.commonCopy) }
-                    TextButton(onClick = { context.shareBrief(chrome.briefingTitle, briefing.text) }) {
-                        Text(chrome.briefingShare)
-                    }
-                }
-                HorizontalDivider(color = Theme.colors.separator)
-                Text(chrome.briefingReturnTitle, style = MaterialTheme.typography.titleMedium)
-                Text(
-                    chrome.briefingReturnLead,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+    GrowableSheet(
+        onDismiss = onDismiss,
+        content = {
+            Text(chrome.briefingTitle, style = MaterialTheme.typography.titleLarge)
+            Text(chrome.briefingLead, style = MaterialTheme.typography.bodyMedium)
+            BriefingSteps(chrome)
+            Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
                 TextButton(onClick = {
-                    val found = model.harvest(context.clipboardText())
-                    harvested = found
-                    picked = found.filter { it.kind == HarvestKind.New }
-                        .mapTo(mutableSetOf()) { it.word.target }
-                    pasteWasEmpty = found.isEmpty()
-                }) { Text(chrome.briefingReturnPaste) }
-                if (pasteWasEmpty) {
-                    Text(
-                        chrome.briefingReturnEmpty,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-                val toggle: (String) -> Unit = { target ->
-                    picked = if (target in picked) picked - target else picked + target
-                }
-                harvested.groupBy { it.kind }.forEach { (kind, words) ->
-                    HarvestGroup(heading(kind, chrome), words, picked, toggle)
+                    context.copyBrief(chrome.briefingTitle, briefing.text)
+                    copied = true
+                }) { Text(if (copied) chrome.briefingCopied else chrome.commonCopy) }
+                TextButton(onClick = { context.shareBrief(chrome.briefingTitle, briefing.text) }) {
+                    Text(chrome.briefingShare)
                 }
             }
+            HorizontalDivider(color = Theme.colors.separator)
+            Text(chrome.briefingReturnTitle, style = MaterialTheme.typography.titleMedium)
+            Text(
+                chrome.briefingReturnLead,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            TextButton(onClick = {
+                val found = model.harvest(context.clipboardText())
+                harvested = found
+                picked = found.filter { it.kind == HarvestKind.New }
+                    .mapTo(mutableSetOf()) { it.word.target }
+                pasteWasEmpty = found.isEmpty()
+            }) { Text(chrome.briefingReturnPaste) }
+            if (pasteWasEmpty) {
+                Text(
+                    chrome.briefingReturnEmpty,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            val toggle: (String) -> Unit = { target ->
+                picked = if (target in picked) picked - target else picked + target
+            }
+            harvested.groupBy { it.kind }.forEach { (kind, words) ->
+                HarvestGroup(heading(kind, chrome), words, picked, toggle)
+            }
+        },
+        action = {
             if (harvested.isNotEmpty()) {
                 val kept = harvested.filter { it.word.target in picked }.map { it.word }
                 Button(
@@ -135,8 +124,8 @@ internal fun BriefingSheet(model: AppModel, onDismiss: () -> Unit) {
                     Text(label.format(kept.size))
                 }
             }
-        }
-    }
+        },
+    )
 }
 
 /** The loop in three moves, numbered: take it out, talk, bring the words back. */

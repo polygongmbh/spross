@@ -22,7 +22,7 @@ enum class PresentationRole {
  * The SECOND review (count 1) is ALWAYS production — the word
  * has been seen once, now attempt it (ruling 2026-07-22: "returns the same
  * session as production"). Thereafter roles alternate per review with a stable
- * per-card phase offset (v1's mixedDirections parity, hash bit-exact) so the
+ * per-card phase offset (the parity of [fnv1a64] over the card id) so the
  * box does not flip in sync.
  */
 fun presentationRole(cardId: String, reviewCount: Int): PresentationRole {
@@ -48,7 +48,7 @@ enum class ProducePrompt {
 /**
  * When a produce review asks by ear instead of by sight.
  *
- * Not a third [PresentationRole]: the role function is a bit-exact v1 contract, and a word
+ * Not a third [PresentationRole]: a word
  * asked from its sound is still being produced — only the side the card asks FROM moves, so
  * one FSRS schedule still sees one kind of answer. The answer moves with it: the meaning is
  * what is owed back, because a word heard and written down again has been transcribed, not
@@ -138,8 +138,8 @@ enum class EmojiCue {
  *
  * The one-line rule, named here so no platform writes it out: a picture that would give the
  * answer away waits for the reveal, and one that cannot is there from the start. Surfaces
- * outside the review loop — the atlas card, the listening playlist — carry the fact and would
- * otherwise each spell the mapping, which is how the two phones came to disagree once already.
+ * outside the review loop — the atlas card, the listening playlist — carry the fact,
+ * and this mapping is the one both phones read rather than each spelling its own.
  */
 fun emojiCue(givesAnswerAway: Boolean): EmojiCue =
     if (givesAnswerAway) EmojiCue.OnReveal else EmojiCue.Upfront
@@ -220,7 +220,7 @@ fun meaningCue(
     }
 
 /**
- * FNV-1a 64-bit over UTF-8 — bit-exact port of v1's `BoxEngine.stableHash`
+ * FNV-1a 64-bit over UTF-8
  * (deterministic across platforms sharing state; never a runtime-seeded hash).
  */
 internal fun fnv1a64(text: String): ULong {

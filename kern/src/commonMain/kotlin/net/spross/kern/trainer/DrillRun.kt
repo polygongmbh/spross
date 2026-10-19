@@ -1,8 +1,7 @@
 package net.spross.kern.trainer
 
-import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerOutcome
-import net.spross.kern.session.ToneKind
+import net.spross.kern.session.Cue
 
 // What the two ENDLESS drills — the slot run and the letter run — put around whatever they
 // happen to be asking. Their state machines stay apart (a heard glyph and a typed numeral share
@@ -16,16 +15,8 @@ import net.spross.kern.session.ToneKind
  * moves on is the run's rule, which is what these say.
  */
 sealed class DrillEffect {
-    /** Arm (or re-arm) the beat before the run moves on; a screen reader renders a tap instead. */
-    data class ArmAdvance(val beat: AdvanceBeat) : DrillEffect()
-
-    data object CancelAdvance : DrillEffect()
-
-    /** Sound the verdict. */
-    data class Tone(val kind: ToneKind) : DrillEffect()
-
-    /** A pause that waits for a tap must give the keyboard back, or it covers the button. */
-    data object ReleaseFocus : DrillEffect()
+    /** The verdict's cue around the run — the beat, the sound, the keyboard. */
+    data class Cued(val cue: Cue) : DrillEffect()
 
     /**
      * Cut whatever is sounding — the reading belongs to the question being left (D5).
@@ -71,12 +62,9 @@ data class DrillRunSummary(
      * false, which drops the record line and the celebration with it.
      */
     val newRecord: Boolean,
-    /** A timed run's score, and the challenge it answered; null for a run that was not timed. */
+    /** A challenge's score and the challenge it answered; null for every other run. */
     val timed: TimedOutcome? = null,
 ) {
-    /** The record figure: a timed run's score, otherwise the best answer streak. */
-    val recordFigure: Int get() = timed?.score ?: bestAnswerStreak
-
     /**
      * Whether the figures are worth reporting where nothing asked for them — a drill with no
      * page of its own reports on the hub only after a stretch a pause could also have

@@ -30,9 +30,8 @@ const val IDIOM_EMOJI = "🎭"
  * start with the same blank.
  *
  * Kern's rather than each app's, and for once not because a rule lives here: it is
- * a MAP, and a map two platforms each keep is a map that ends up disagreeing. It
- * already had: one phone fell back to the kind's glyph and the other to a sprout,
- * so the same word wore two different pictures.
+ * a MAP, and a map two platforms each keep is a map that ends up disagreeing,
+ * until the same word wears two different pictures.
  */
 fun kindEmoji(kind: CardKind): String = when (kind) {
     CardKind.Noun -> "🧩"

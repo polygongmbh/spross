@@ -39,14 +39,7 @@ struct SearchField: View {
         }
         .padding(.horizontal, Theme.spacing.lg)
         .frame(minHeight: 52) // card-parity: the control row's own height, not a card reserve
-        .background(
-            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                .fill(Theme.colors.surface)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                .strokeBorder(Theme.colors.separator, lineWidth: 1)
-        )
+        .controlSurface()
         .onAppear { focused = true }
     }
 }

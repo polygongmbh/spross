@@ -1,14 +1,11 @@
 package net.spross.kern.session
 
-import net.spross.kern.model.APOSTROPHES
 import net.spross.kern.model.Card
 import net.spross.kern.model.CardKind
 import net.spross.kern.model.FormTag
 import net.spross.kern.model.LanguageInfo
 import net.spross.kern.model.answerForms
-import net.spross.kern.model.hyphensAndApostrophesStripped
-import net.spross.kern.model.nfcNormalized
-import net.spross.kern.model.stressFolded
+import net.spross.kern.model.article
 
 /**
  * Typed-answer grading for PRODUCE units, configured per ANSWER language (the
@@ -44,21 +41,14 @@ class AnswerNormalizer(
     /** Lenient vocab-review default; the explicit secondary init keeps the ObjC/Swift signature. */
     constructor(answerLanguage: LanguageInfo) : this(answerLanguage, articleLeniency = true)
 
-    /** Declared before [articleForms]: [cleaned] reads it, and that field is built through [cleaned]. */
-    private val digraphFolds: List<Pair<String, String>> = answerLanguage.diacriticDigraphs
-        .map { (letter, digraph) -> letter.lowercase() to digraph.lowercase() }
+    /** Declared before [articleForms] and [verbPrefixes]: both are built through it. */
+    private val shape = ComparisonShape(answerLanguage)
 
-    private val articles: Set<String> = answerLanguage.articles.map { it.lowercase() }.toSet()
-
-    /** The listed articles that elide (`l'`), without their apostrophe. */
-    private val elidedArticles: List<String> =
-        articles.filter { it.lastOrNull() in APOSTROPHES }.map { it.dropLast(1) }.filter { it.isNotEmpty() }
-
-    /** The same articles in comparison shape, so a typed token can be measured against them. */
-    private val articleForms: Set<String> =
-        articles.map { cleaned(it).trim() }.filter { it.isNotEmpty() }.toSet()
+    /** The listed articles in comparison shape, so a typed token can be measured against them. */
+    private val articleForms: Set<String> = answerLanguage.articles
+        .map { shape.cleaned(it.lowercase()).trim() }.filter { it.isNotEmpty() }.toSet()
     private val verbPrefixes: List<String> = answerLanguage.optionalVerbPrefixes
-        .map(::normalizedPrefix)
+        .map(shape::normalizedPrefix)
         .filter { it.isNotEmpty() }
 
     /**
@@ -67,7 +57,7 @@ class AnswerNormalizer(
      * "die Spülmaschine"; with leniency off the article stays part of the form.
      */
     fun normalize(raw: String): String {
-        var words = tokenize(raw)
+        var words = shape.tokenize(raw)
         if (articleLeniency && words.size > 1 && words.first() in articleForms) words = words.subList(1, words.size)
         return words.joinToString(" ")
     }
@@ -86,8 +76,8 @@ class AnswerNormalizer(
         val expected = words(answer)
         var count = 0
         while (count < typed.size && count < expected.size) {
-            val a = cleaned(typed[count]).trim()
-            val b = cleaned(expected[count]).trim()
+            val a = shape.cleaned(typed[count]).trim()
+            val b = shape.cleaned(expected[count]).trim()
             if (b.isEmpty() || damerauLevenshtein(a, b) > prefixWordBudget(b)) break
             count++
         }
@@ -109,7 +99,7 @@ class AnswerNormalizer(
     /**
      * Grade [input] against every accepted target form. Verb-prefix leniency applies
      * iff `kind == verb`; the article-mismatch demotion applies iff the target's
-     * grammar carries `article` and the form matched is the text or an `accepts` entry (a PRESENT
+     * grammar carries `gender` and the form matched is the text or an `accepts` entry (a PRESENT
      * leading article that disagrees is a typo, a missing one stays exact; an `accepts` entry
      * authored with its own article is read back against that one) — a `teaches` entry
      * is another word whose article the catalog does not carry, so its own article
@@ -120,7 +110,7 @@ class AnswerNormalizer(
     fun evaluate(input: String, card: Card, promptTag: FormTag? = null): Match {
         val forms = answerForms(card, promptTag)
         val prefixes = if (card.kind == CardKind.Verb) verbPrefixes else emptyList()
-        val expectedArticle = card.target.grammar["article"]?.let { cleaned(it.lowercase()).trim() }
+        val expectedArticle = card.target.article?.let { shape.cleaned(it.lowercase()).trim() }
         // A form authored with its own article is read back against it; one without (a language that writes none) never against the citation's.
         val genderedForms = listOf(card.target.text) + card.target.accepts +
             card.target.forms.filter { it.article != null }.map { it.written }
@@ -243,38 +233,13 @@ class AnswerNormalizer(
      * whole rule exists to read back.
      */
     private fun readsAsArticle(token: String): Boolean {
-        val typed = cleaned(token).trim()
+        val typed = shape.cleaned(token).trim()
         return articleForms.any { damerauLevenshtein(typed, it) <= maxOf(1, allowedTypos(it.length)) }
     }
 
-    /** Is [input] within the slips [candidate] forgives, its digits typed exactly? */
-    private fun withinBudget(input: String, candidate: String): Boolean {
-        if (digitWords(input) != digitWords(candidate)) return false
-        if (damerauLevenshtein(input, candidate) > allowedTypos(candidate.count { it != ' ' })) return false
-        val typed = input.split(' ')
-        val expected = candidate.split(' ')
-        // why: the per-word cap needs the words to line up — a dropped or added
-        // word leaves the whole-form budget alone to decide.
-        if (typed.size != expected.size) return true
-        return expected.indices.all { i -> damerauLevenshtein(typed[i], expected[i]) <= wordCap(expected[i]) }
-    }
-
-    private fun wordCap(word: String): Int = (word.length + LETTERS_PER_WORD_SLIP - 1) / LETTERS_PER_WORD_SLIP
-
-    private fun digitWords(form: String): List<String> =
-        form.split(' ').filter { word -> word.any { it.isDigit() } }
-
-    /**
-     * One word's slips for [matchingPrefixWordCount]'s retry-priming rule:
-     * the length-scaled formula measured per word, so a short mistyped word
-     * never keeps more of the retry field than a retry is meant to prime.
-     */
-    private fun prefixWordBudget(word: String): Int =
-        if (word.any { it.isDigit() }) 0 else allowedTypos(word.length)
-
     /** The listed leading article a raw answer starts with (only when more words follow). */
     private fun leadingArticle(raw: String): String? {
-        val words = tokenize(raw)
+        val words = shape.tokenize(raw)
         return words.firstOrNull()?.takeIf { it in articleForms && words.size > 1 }
     }
 
@@ -288,56 +253,6 @@ class AnswerNormalizer(
         }
         return variants
     }
-
-    private fun tokenize(raw: String): List<String> =
-        cleaned(elisionSeparated(raw)).split(' ').filter { it.isNotEmpty() }
-
-    /**
-     * [raw] with a leading elided article (fr/it `l'`) set apart as its own word, so the article
-     * rules see it as they see `la` — the apostrophe pass would otherwise glue it on (`linvitée`).
-     */
-    private fun elisionSeparated(raw: String): String {
-        val trimmed = raw.trimStart()
-        val head = trimmed.lowercase()
-        for (article in elidedArticles) {
-            if (head.length > article.length && head.startsWith(article) && head[article.length] in APOSTROPHES) {
-                return trimmed.substring(0, article.length + 1) + " " + trimmed.substring(article.length + 1)
-            }
-        }
-        return raw
-    }
-
-    /**
-     * The one character pass everything shares, so tokenization can never disagree:
-     * NFC, stress marks dropped (uk `пі́вніч` is typed `північ`), lowercase, ß→ss (2 edits — too far for short words' typo budget), the answer
-     * language's [LanguageInfo.diacriticDigraphs] (de ä→ae, ö→oe, ü→ue), joiners
-     * `-` and the apostrophe class deleted outright ("E-Mail"/"Email", "geht's"/"gehts"), every other
-     * non-alphanumeric — punctuation incl. `…—`, and whitespace — becomes a space.
-     *
-     * The digraph fold runs on both sides like ß→ss does, and for the same reason: it is
-     * a full, established ASCII spelling of the letter rather than a slip, so "Kueche"
-     * grades [Match.Exact] on a "Küche" card. Folding also LENGTHENS a short word before
-     * [allowedTypos] measures it — "für" becomes "fuer" and forgives the slip three
-     * letters could not. Dropping a diacritic outright is the other rule and stays out of
-     * here on purpose: it is free inside [damerauLevenshtein] only, so it can never reach
-     * the exact test and bypass [CatalogAnswerGrader]'s collision check.
-     */
-    private fun cleaned(raw: String): String {
-        var lowered = stressFolded(nfcNormalized(raw)).lowercase().replace("ß", "ss")
-        for ((letter, digraph) in digraphFolds) lowered = lowered.replace(letter, digraph)
-        val out = StringBuilder(lowered.length)
-        for (ch in hyphensAndApostrophesStripped(lowered)) {
-            when {
-                ch.isLetter() || ch.isDigit() -> out.append(ch)
-                else -> out.append(' ')
-            }
-        }
-        return out.toString()
-    }
-
-    /** Prefix in comparison shape, space-preserving: en `"to "` keeps its trailing space. */
-    private fun normalizedPrefix(raw: String): String =
-        cleaned(raw).replace(whitespaceRun, " ")
 
     companion object {
         /**
@@ -363,7 +278,7 @@ class AnswerNormalizer(
          */
         private const val MAX_LEADING_SLIP_LENGTH = 4
 
-        private val whitespaceRun = Regex("\\s+")
+        internal val whitespaceRun = Regex("\\s+")
 
         /**
          * The words an answer is graded and primed by, so a caller that counts them
@@ -371,28 +286,5 @@ class AnswerNormalizer(
          */
         internal fun words(text: String): List<String> =
             text.trim().split(whitespaceRun).filter { it.isNotEmpty() }
-
-        /**
-         * ~⅙ of letters, but never for words under [MIN_TYPO_LENGTH]:
-         * a four-letter word forgives one slip and a long phrase a slip per six letters.
-         * That much is safe because [CatalogAnswerGrader] withdraws the credit wherever the
-         * typed form is really another concept's word (RealCatalogGradingTest
-         * sweeps the shipping catalog for exactly that).
-         *
-         * A dropped diacritic never needs this budget at all: [damerauLevenshtein]
-         * charges nothing for it, so fr "ou" for "où" is a typo even at the floor
-         * where the budget is zero — which is the whole point, short accented words
-         * being where the floor bit hardest.
-         */
-        private fun allowedTypos(letters: Int): Int =
-            if (letters < MIN_TYPO_LENGTH) 0 else maxOf(1, letters / TYPO_LETTERS_PER_SLIP)
-
-        /** Below this many letters an answer is graded exact-only. */
-        private const val MIN_TYPO_LENGTH = 4
-
-        private const val TYPO_LETTERS_PER_SLIP = 6
-
-        /** A word's own cap on its share of the budget: a slip per this many letters, rounded up. */
-        private const val LETTERS_PER_WORD_SLIP = 4
     }
 }

@@ -53,7 +53,7 @@ extension DrillRunning {
                    @ViewBuilder content: () -> some View) -> some View {
         if asking {
             pausable(SessionScaffold.endless(tally: run.tally,
-                                             outcomes: run.outcomes.map { SessionOutcome($0) },
+                                             outcomes: run.outcomes,
                                              showsMuteButton: showsMuteButton,
                                              speaksPastMute: speaksPastMute,
                                              scoreLine: scoreLine,

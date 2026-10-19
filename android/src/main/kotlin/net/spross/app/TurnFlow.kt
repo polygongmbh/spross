@@ -38,8 +38,8 @@ class TurnFlow(
     private val nowMillis: () -> Long,
     private val onAnswer: (Rating) -> Unit,
     /** The verdict's cue. What it feels or sounds like is the platform's. */
-    private val onTone: (ToneKind) -> Unit = {},
-    private val onReleaseFocus: () -> Unit = {},
+    onTone: (ToneKind) -> Unit = {},
+    onReleaseFocus: () -> Unit = {},
     /** Whether a screen reader is reading the screen ([DrillBeat]). */
     screenReaderOn: () -> Boolean = { false },
     /** Whether the meaning may be read aloud too ([TurnState.reading]). */
@@ -65,6 +65,8 @@ class TurnFlow(
         private set
 
     private val beat = DrillBeat(screenReaderOn)
+
+    private val cues = CueActs(beat, onTone, onReleaseFocus)
 
     override val armedBeat: AdvanceBeat? get() = beat.armed
 
@@ -185,13 +187,10 @@ class TurnFlow(
                 beat.cancel()
                 onAnswer(effect.rating)
             }
-            is TurnEffect.ArmAdvance -> beat.arm(effect.beat)
-            TurnEffect.CancelAdvance -> beat.cancel()
+            is TurnEffect.Cued -> cues.carryOut(effect.cue)
             // why: the field the turn owns here is the answer field — a miss never hides
             // it, so the retype picks up where the slip started.
             is TurnEffect.PrimeField -> input = effect.text
-            is TurnEffect.Tone -> onTone(effect.kind)
-            TurnEffect.ReleaseFocus -> onReleaseFocus()
         }
     }
 

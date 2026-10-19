@@ -75,6 +75,12 @@ object AreaTree {
     const val HERO_MIN = 78.0
     const val HERO_MAX = 190.0
 
+    /**
+     * The share of a summary screen's height its hero may grow to — the [heroHeight] ceiling —
+     * so a grown tree fills a tall phone rather than leaving two-thirds of it empty.
+     */
+    const val HERO_SHARE = 0.45
+
     /** The box a tree's wood is fitted into, in heights wide. */
     const val CROWN_BOX = 1.44
 

@@ -2,6 +2,7 @@ package net.spross.kern.trainer
 
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AlmostReason
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -26,8 +27,9 @@ internal data class DrillBooking(val correct: Boolean, val clean: Boolean)
  * almost hold that shows a spelling, the reveal that counts as a miss. Written once, because
  * two copies is how the same slip comes to be worth two different things.
  *
- * The slot run shares the approve and the bookings; its submit and reveal stay its own
- * ([NumbersRun]), since a timed run keeps a clean answer unsaid and a reversed one says its prompt.
+ * The slot run shares the whole ladder but for the [DrillEffect.Silence] a verdict opens on
+ * ([submit] and [reveal] take `silence = false` there), since a timed run keeps a clean answer
+ * unsaid and a reversed one says its prompt.
  */
 internal object TypedDrillVerdicts {
 
@@ -50,30 +52,30 @@ internal object TypedDrillVerdicts {
         if (feedback is TurnFeedback.Almost || feedback == TurnFeedback.Revealed) return null
         if (!exact()) {
             val withdrawn = if (feedback == TurnFeedback.Correct) TurnFeedback.Neutral else feedback
-            return TypedVerdict(withdrawn, null, listOf(DrillEffect.CancelAdvance))
+            return TypedVerdict(withdrawn, null, listOf(DrillEffect.Cued(Cue.CancelAdvance)))
         }
         // why: the cue sounds once per approval — a keystroke inside an already-approved
         // answer must not re-chime on every letter.
         val tone: List<DrillEffect> =
-            if (feedback == TurnFeedback.Correct) emptyList() else listOf(DrillEffect.Tone(ToneKind.Correct))
+            if (feedback == TurnFeedback.Correct) emptyList() else listOf(DrillEffect.Cued(Cue.Tone(ToneKind.Correct)))
         return TypedVerdict(
             TurnFeedback.Correct,
             null,
-            tone + DrillEffect.ArmAdvance(AdvanceBeat.Live),
+            tone + DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live)),
         )
     }
 
     /**
      * An answer handed in: taken, held for its spelling, or refused with what it really named.
      */
-    fun submit(match: Match): TypedVerdict = when (match) {
+    fun submit(match: Match, silence: Boolean = true): TypedVerdict = when (match) {
         Match.Exact -> TypedVerdict(
             TurnFeedback.Correct,
             null,
             listOfNotNull(
-                DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Correct),
-                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
+                DrillEffect.Silence.takeIf { silence },
+                DrillEffect.Cued(Cue.Tone(ToneKind.Correct)),
+                DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit)),
             ),
         )
         // why: no beat on a slip — the pause shows the proper spelling and waits for the tap
@@ -82,15 +84,15 @@ internal object TypedDrillVerdicts {
             TurnFeedback.Almost(match.corrected, AlmostReason.Typo),
             null,
             listOfNotNull(
-                DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Almost),
-                DrillEffect.ReleaseFocus,
+                DrillEffect.Silence.takeIf { silence },
+                DrillEffect.Cued(Cue.Tone(ToneKind.Almost)),
+                DrillEffect.Cued(Cue.ReleaseFocus),
             ),
         )
         else -> TypedVerdict(
             TurnFeedback.Revealed,
             match as? Match.OtherWord,
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Wrong)),
+            listOfNotNull(DrillEffect.Silence.takeIf { silence }, DrillEffect.Cued(Cue.Tone(ToneKind.Wrong))),
         )
     }
 
@@ -98,10 +100,10 @@ internal object TypedDrillVerdicts {
      * The look-up. The field stays EMPTY — the card is where the answer stands, and typing it
      * in for the learner would put the same words on screen twice.
      */
-    fun reveal(): TypedVerdict = TypedVerdict(
+    fun reveal(silence: Boolean = true): TypedVerdict = TypedVerdict(
         TurnFeedback.Revealed,
         null,
-        listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)),
+        listOfNotNull(DrillEffect.Silence.takeIf { silence }, DrillEffect.Cued(Cue.Tone(ToneKind.Reveal))),
     )
 
     /**

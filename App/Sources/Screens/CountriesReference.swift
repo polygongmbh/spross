@@ -37,12 +37,10 @@ struct CountriesReference: View {
             Text(verbatim: row.flag)
                 .font(.system(size: 28)) // card-parity: a picture, not a type role
                 .accessibilityHidden(true)
-            side(name: row.source, nationality: row.sourceNationality,
-                 languages: row.sourceLanguages, tint: Theme.colors.textPrimary,
+            side(name: row.source, people: row.sourcePeople, tint: Theme.colors.textPrimary,
                  alignment: .leading, language: source)
             Spacer(minLength: Theme.spacing.sm)
-            side(name: row.target, nationality: row.targetNationality,
-                 languages: row.targetLanguages, tint: Theme.colors.accent,
+            side(name: row.target, people: row.targetPeople, tint: Theme.colors.accent,
                  alignment: .trailing, language: target)
         }
     }
@@ -56,11 +54,10 @@ struct CountriesReference: View {
 
     /// [language] tags the column for VoiceOver, so the learned side is read in
     /// its own voice instead of spelled out in the reader's.
-    private func side(name: String, nationality: String, languages: [String],
+    private func side(name: String, people: String,
                       tint: Color, alignment: HorizontalAlignment,
                       language: String) -> some View {
-        let people = ([nationality] + languages).joined(separator: " · ")
-        return VStack(alignment: alignment, spacing: 2) {
+        VStack(alignment: alignment, spacing: 2) {
             Text(verbatim: name)
                 .font(Theme.typography.headline)
                 .foregroundStyle(tint)

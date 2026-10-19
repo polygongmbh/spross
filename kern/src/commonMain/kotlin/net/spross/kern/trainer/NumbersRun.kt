@@ -1,15 +1,14 @@
 package net.spross.kern.trainer
 
 import kotlin.random.Random
-import net.spross.kern.session.AdvanceBeat
-import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
 
 /**
- * The slot drill as pure state plus one reducer — the machine both apps used to re-derive.
+ * The slot drill as pure state plus one reducer, the one machine both apps drive.
  * The run's shape is [NumbersRunState]; what it is spelled out of is [NumbersMode].
  *
  * Kern never self-randomizes: every draw takes the caller's [Random]. No clock is read
@@ -73,9 +72,9 @@ object NumbersRun {
         normalizer: AnswerNormalizer?,
         rng: Random,
     ): NumbersReduction = when (intent) {
-        is NumbersIntent.InputChanged -> typed(state, intent.text, normalizer)
-        is NumbersIntent.Submit -> submit(state, intent.text, normalizer)
-        NumbersIntent.Reveal -> reveal(state)
+        is NumbersIntent.InputChanged -> typed(state, intent.text, normalizer, rng)
+        is NumbersIntent.Submit -> submit(state, intent.text, normalizer, rng)
+        NumbersIntent.Reveal -> reveal(state, rng)
         NumbersIntent.LookUp -> lookUp(state)
         NumbersIntent.ConfirmPending -> confirm(state, rng)
         NumbersIntent.AdvanceElapsed -> elapsed(state, rng)
@@ -132,9 +131,9 @@ object NumbersRun {
         standingRecord: Int,
         standingProgress: Map<String, Int>,
     ): NumbersClose {
-        val effects = listOf(DrillEffect.CancelAdvance, DrillEffect.Silence)
+        val effects = listOf(DrillEffect.Cued(Cue.CancelAdvance), DrillEffect.Silence)
         val pending = TypedDrillVerdicts.pending(state.feedback)
-            ?.let { advanced(state, it.correct, state.cleanness(it)) }
+            ?.let { NumbersBooking.advanced(state, it.correct, state.cleanness(it)) }
             ?: state
         val ended = pending.copy(feedback = TurnFeedback.Neutral, otherWord = null, hintUsed = false, finished = true)
         if (ended.done == 0) {
@@ -146,11 +145,10 @@ object NumbersRun {
             .map { (exercise, best) -> state.mode.progressKey(exercise) to best }
             .filter { (key, best) -> best > (standingProgress[key] ?: 0) }
             .toMap()
-        val timed = if (state.timed) TimedOutcome(ended.score, state.challenge) else null
-        val figure = timed?.score ?: ended.bestAnswerStreak
+        val timed = state.challenge?.let { TimedOutcome(ended.score, it) }
         return NumbersClose(
             state = ended,
-            summary = DrillRunSummary(ended.done, ended.bestAnswerStreak, !scripted && figure > standingRecord, timed),
+            summary = DrillRunSummary(ended.done, ended.bestAnswerStreak, !scripted && ended.bestAnswerStreak > standingRecord, timed),
             recordKey = state.mode.recordKey,
             progressBookings = bookings,
             effects = effects,
@@ -167,25 +165,20 @@ object NumbersRun {
         state: NumbersRunState,
         text: String,
         normalizer: AnswerNormalizer?,
+        rng: Random,
     ): NumbersReduction {
         if (!state.owesAnswer) return unchanged(state)
-        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state)
-        return when (val match = grade(text, state.currentTask, normalizer)) {
-            Match.Exact -> NumbersReduction(
-                state.copy(feedback = TurnFeedback.Correct),
-                listOf(DrillEffect.Tone(ToneKind.Correct), DrillEffect.ArmAdvance(AdvanceBeat.Explicit)),
-            )
-            // why: no beat on a slip — the pause shows the proper spelling, and the tap that ends
-            // it books the answer almost.
-            is Match.Typo -> NumbersReduction(
-                state.copy(feedback = TurnFeedback.Almost(match.corrected, AlmostReason.Typo)),
-                listOf(DrillEffect.Tone(ToneKind.Almost), DrillEffect.ReleaseFocus),
-            )
-            else -> NumbersReduction(
-                state.copy(feedback = TurnFeedback.Revealed, otherWord = match as? Match.OtherWord),
-                listOf(DrillEffect.Tone(ToneKind.Wrong)),
-            )
+        if (AnswerNormalizer.isBlankAnswer(text)) return reveal(state, rng)
+        val match = grade(text, state.currentTask, normalizer)
+        if (state.timed) {
+            return when (match) {
+                Match.Exact -> NumbersBooking.raced(state, ToneKind.Correct, correct = true, clean = true, rng)
+                is Match.Typo -> NumbersBooking.raced(state, ToneKind.Almost, correct = true, clean = false, rng)
+                else -> NumbersBooking.raced(state, ToneKind.Wrong, correct = false, clean = false, rng)
+            }
         }
+        val verdict = TypedDrillVerdicts.submit(match, silence = false)
+        return NumbersReduction(state.copy(feedback = verdict.feedback, otherWord = verdict.otherWord), verdict.effects)
     }
 
     /**
@@ -196,6 +189,7 @@ object NumbersRun {
         state: NumbersRunState,
         text: String,
         normalizer: AnswerNormalizer?,
+        rng: Random,
     ): NumbersReduction {
         val trimmed = text.trim()
         val verdict = TypedDrillVerdicts.typed(state.feedback) {
@@ -203,17 +197,18 @@ object NumbersRun {
                 !stillGrowing(trimmed, state.currentTask) &&
                 grade(trimmed, state.currentTask, normalizer) == Match.Exact
         } ?: return unchanged(state)
+        if (state.timed && verdict.feedback == TurnFeedback.Correct) {
+            return NumbersBooking.raced(state, ToneKind.Correct, correct = true, clean = true, rng)
+        }
         return NumbersReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
-    private fun reveal(state: NumbersRunState): NumbersReduction {
+    /** The answer asked for on an empty field; a challenge's Skip books the miss instead, its answer never shown. */
+    private fun reveal(state: NumbersRunState, rng: Random): NumbersReduction {
         if (!state.owesAnswer) return unchanged(state)
-        // why: the field stays empty — the card is where the answer stands, and typing it in for
-        // the learner would put the same word on screen twice.
-        return NumbersReduction(
-            state.copy(feedback = TurnFeedback.Revealed),
-            listOf(DrillEffect.Tone(ToneKind.Reveal)),
-        )
+        if (state.timed) return NumbersBooking.raced(state, ToneKind.Wrong, correct = false, clean = false, rng)
+        val verdict = TypedDrillVerdicts.reveal(silence = false)
+        return NumbersReduction(state.copy(feedback = verdict.feedback), verdict.effects)
     }
 
     /**
@@ -225,108 +220,21 @@ object NumbersRun {
 
     private fun confirm(state: NumbersRunState, rng: Random): NumbersReduction =
         TypedDrillVerdicts.confirmed(state.feedback)
-            ?.let { booked(state, it.correct, state.cleanness(it), rng) }
+            ?.let { NumbersBooking.booked(state, it.correct, state.cleanness(it), rng) }
             ?: unchanged(state)
 
     /** The run is over; what is pending is the close's to book, as the ✕ would. */
     private fun timeUp(state: NumbersRunState): NumbersReduction =
         if (state.timed && !state.finished) {
-            NumbersReduction(state.copy(finished = true), listOf(DrillEffect.CancelAdvance, DrillEffect.Silence))
+            NumbersReduction(state.copy(finished = true), listOf(DrillEffect.Cued(Cue.CancelAdvance), DrillEffect.Silence))
         } else {
             unchanged(state)
         }
 
     private fun elapsed(state: NumbersRunState, rng: Random): NumbersReduction =
         TypedDrillVerdicts.elapsed(state.feedback)
-            ?.let { booked(state, it.correct, state.cleanness(it), rng) }
+            ?.let { NumbersBooking.booked(state, it.correct, state.cleanness(it), rng) }
             ?: unchanged(state)
-
-    // MARK: - Booking
-
-    /** Book the answer, then put the next question up at the Sprossen the booking left. */
-    private fun booked(
-        state: NumbersRunState,
-        correct: Boolean,
-        clean: Boolean,
-        rng: Random,
-    ): NumbersReduction {
-        val next = advanced(state, correct, clean)
-        val draw = next.challenge?.drawAt(state.index + 1, next.sprossen)
-            ?: next.mode.draw(next.sprossen, state.currentTask.prompt, next.solved, rng)
-        return NumbersReduction(
-            paced(climbed(next, draw).copy(
-                // Nothing left to ask anywhere: end on the summary, never on a repeat.
-                current = draw.drawn ?: next.current,
-                finished = draw.drawn == null,
-                index = state.index + 1,
-                // why: cleared in the SAME transaction as the question — the next prompt must
-                // never render one frame carrying the last one's answer or its almost debt.
-                feedback = TurnFeedback.Neutral,
-                otherWord = null,
-                hintUsed = false,
-            )),
-            listOf(DrillEffect.CancelAdvance, DrillEffect.Silence),
-        )
-    }
-
-    /**
-     * The pause a booked answer leaves due, if one is ([DrillPacing]).
-     * A timed run ends on its clock and a challenge on its script, so neither pauses.
-     */
-    private fun paced(state: NumbersRunState): NumbersRunState = state.copy(
-        core = state.core.paced(
-            // why: a mixed run climbs one ladder per exercise, and no one of them is the run's.
-            sprosse = state.mode.exercises.singleOrNull()?.let { state.sprossen[it] },
-            newSprossen = state.newSprossen,
-            endless = !state.finished && !state.timed && state.challenge == null,
-        ),
-    )
-
-    /**
-     * Adopt the Sprossen the draw climbed to. A Sprosse the run was carried past because its prompts
-     * were answered out is a Sprosse it STOOD on, so the close books it like any other; the wins
-     * banked on the one below stay behind with it.
-     */
-    private fun climbed(state: NumbersRunState, draw: NumbersDraw): NumbersRunState {
-        val moved = draw.sprossen.filter { (exercise, sprosse) -> sprosse != state.sprossen[exercise] }
-        if (moved.isEmpty()) return state
-        return state.copy(
-            sprossen = draw.sprossen,
-            winsAtSprosse = state.winsAtSprosse + moved.map { (exercise, _) -> exercise to 0 },
-            bestSprossen = state.bestSprossen + moved.map { (exercise, sprosse) ->
-                exercise to maxOf(state.bestSprossen[exercise] ?: 1, sprosse)
-            },
-        )
-    }
-
-    /**
-     * The booking itself: the ramp for the exercise that asked, the answer streak, the tallies. The other
-     * exercises of a mixed run stand exactly where they were.
-     */
-    private fun advanced(state: NumbersRunState, correct: Boolean, clean: Boolean): NumbersRunState {
-        val exercise = state.currentExercise
-        val step = DrillRamp.step(
-            sprosse = state.currentSprosse,
-            winsAtSprosse = state.winsAtSprosse[exercise] ?: 0,
-            correct = correct,
-            clean = clean,
-            winsRequired = state.mode.winsToAdvance,
-        )
-        return state.copy(
-            sprossen = state.sprossen + (exercise to step.sprosse),
-            winsAtSprosse = state.winsAtSprosse + (exercise to step.winsAtSprosse),
-            bestSprossen = state.bestSprossen + (exercise to maxOf(state.bestSprossen[exercise] ?: 1, step.sprosse)),
-            seenDigitCounts = state.currentDigits
-                ?.let { state.seenDigitCounts + it }
-                ?: state.seenDigitCounts,
-            seenFormKeys = state.currentFormKey
-                ?.let { state.seenFormKeys + it }
-                ?: state.seenFormKeys,
-            core = state.core.book(correct, clean, DrillSolved.key(exercise, state.currentTask)),
-            score = state.score + TimedRun.points(state.currentSprosse, correct, clean),
-            earnedSeconds = state.earnedSeconds + TimedRun.bonusSeconds(state.currentTask, correct, clean),
-        )
-    }
 
     private fun unchanged(state: NumbersRunState) = NumbersReduction(state, emptyList())
 }

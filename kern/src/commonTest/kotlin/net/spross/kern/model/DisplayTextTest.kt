@@ -19,7 +19,7 @@ class DisplayTextTest {
         assertEquals(PluralForm.Form("die Häuser"), pluralForm(haus))
     }
 
-    /** An authored-but-empty plural is not a form — it used to render a bare label. */
+    /** An authored-but-empty plural is not a form, so it renders no bare label. */
     @Test
     fun anEmptyPluralIsNoPluralAtAll() {
         assertNull(pluralForm(realization("nyumba", plural = "")))
@@ -42,9 +42,9 @@ class DisplayTextTest {
     }
 
     /**
-     * The regression: a rotated recognition prompt puts a SYNONYM on screen, and the line
-     * used to offer it back as though it were another word — while dropping the citation
-     * form the learner had not seen.
+     * A rotated recognition prompt puts a SYNONYM on screen,
+     * so the line leaves that synonym out rather than offer it back as though it were another word,
+     * and keeps the citation form the learner has not seen.
      */
     @Test
     fun theFormOnScreenNeverAppearsAmongItsOwnAlternatives() {

@@ -63,8 +63,15 @@ data class NumbersClose(
     fun bookings(): DrillBookings = DrillBookings.of(
         Drill.Numbers, state.mode.language, summary,
         sprossen = if (summary == null) emptyMap() else progressBookings,
-        records = summary?.takeIf { it.newRecord }?.let { mapOf(recordKey to it.recordFigure) } ?: emptyMap(),
+        records = summary?.takeIf { it.newRecord }?.let { mapOf(recordKey to it.bestAnswerStreak) } ?: emptyMap(),
     )
+}
+
+/** What a numbers run is named after: the challenge it plays, the one exercise it asks, or the trainer where it asks several. */
+sealed interface NumbersRunName {
+    data object Challenge : NumbersRunName
+    data class Exercise(val exercise: NumbersExercise) : NumbersRunName
+    data object Trainer : NumbersRunName
 }
 
 /**
@@ -128,8 +135,8 @@ data class NumbersRunState(
             maxOf(0, best - maxOf(1, standingSprossen[exercise] ?: 0))
         }
 
-    /** The run ends on a clock and is scored ([TimedRun]). */
-    val timed: Boolean get() = mode.isTimed
+    /** A challenge ends on a clock and is scored ([TimedRun]); every other run is endless. */
+    val timed: Boolean get() = challenge != null
 
     /** A timed run ends on its clock, so it offers no way out of its own beyond the ✕. */
     override val offersFinish: Boolean get() = !timed && super.offersFinish
@@ -152,6 +159,13 @@ data class NumbersRunState(
     /** A run that asks one thing has already said what it asks. */
     val severalExercises: Boolean get() = mode.exercises.size > 1
 
+    /** What the run's result is named after; each app words it. */
+    val namedAfter: NumbersRunName
+        get() = when {
+            challenge != null -> NumbersRunName.Challenge
+            else -> mode.exercises.singleOrNull()?.let { NumbersRunName.Exercise(it) } ?: NumbersRunName.Trainer
+        }
+
     /**
      * The Sprosse part of the score line, for the exercise that just asked; null where it has one Sprosse.
      * Counting is worded in digits, which already wears 🔢, so it takes no face;
@@ -173,20 +187,17 @@ data class NumbersRunState(
         get() = if (currentReversed) Saying(currentTask.prompt, currentTask.language) else null
 
     /**
-     * The reading a forward task owed; a reversed one was heard as its prompt already.
-     * A clean answer stays unsaid in a timed run: the clock is running, and the beat would wait the reading out.
+     * The reading a forward task owed; a reversed one was heard as its prompt already,
+     * and a challenge reads no answer out: only its tone says how one went.
      */
     override val answerSaying: Saying?
-        get() = if (currentReversed || timed && feedback == TurnFeedback.Correct) {
-            null
-        } else {
-            Saying(currentTask.display, currentTask.language)
-        }
+        get() = if (currentReversed || timed) null else Saying(currentTask.display, currentTask.language)
 
     /**
      * A prompt made of words is set like one, wrapped, where a numeral gets the one big line —
      * asked of the prompt, so a composed sentence and a reversed reading read as what they are.
-     * A reversed task owes digits. One first-sight hint at a time, the form's winning over the place's.
+     * A reversed task owes digits. One first-sight hint at a time, the form's winning over the place's;
+     * a challenge shows neither, nor the task's gloss, since a race leaves no time to read.
      */
     override val question: Question
         get() {
@@ -211,14 +222,14 @@ data class NumbersRunState(
                 ),
                 emoji = null,
                 emojiCue = EmojiCue.Upfront,
-                hint = formHint?.let { QuestionHint.NewForm(it) } ?: placeValueHint?.let { QuestionHint.NewPlace(it) },
+                hint = if (timed) null else formHint?.let { QuestionHint.NewForm(it) } ?: placeValueHint?.let { QuestionHint.NewPlace(it) },
                 opens = showsAnswer,
-                closing = Question.Closing(note = currentTask.gloss?.let { ClosingNote.Own(it) }),
+                closing = Question.Closing(note = currentTask.gloss?.takeUnless { timed }?.let { ClosingNote.Own(it) }),
                 otherWord = otherWord,
             )
         }
 
-    /** A reversed task owes digits, on the number pad where every accepted form fits it. */
+    /** A reversed task owes digits, on the number pad where every accepted form fits it; a challenge skips rather than reveals. */
     override val controls: AnswerControls
         get() = answerControls(
             typedSlot(
@@ -226,7 +237,7 @@ data class NumbersRunState(
                 digits = currentReversed,
                 numberPad = currentReversed && typableOnNumberPad(currentTask.accepted),
             ),
-        )
+        ).let { if (timed && it.primary != null) it.copy(primary = AnswerControls.Primary.SubmitOrSkip) else it }
 
     /** The numbers page link shows on numbers tasks only, and never in a timed run. */
     val offersLookUp: Boolean get() = currentExercise == NumbersExercise.Counting && !timed

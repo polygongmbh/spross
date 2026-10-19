@@ -179,17 +179,14 @@ extension AppModel {
     }
 
     /// Whether a single word in the box can be said aloud here — `anyWordAudible`
-    /// holds the answer. A device voice says yes without looking and nothing at
-    /// all says no without looking; only a queue has to be asked card by card,
-    /// because it covers the forms it recorded and no others.
+    /// holds the answer. Which capability has to ask the cards is kern's (`AudioCapability.anyAudible`).
     func composedAnyWordAudible() -> Bool {
         guard let target = targetLanguage else { return false }
-        let sources = audioSources(target)
-        if sources.hasVoice { return true }
-        if sources.silent { return false }
-        return box?.cards.values.contains { card in
-            pronounceAction(for: card.target.text, lang: card.target.lang) != nil
-        } ?? false
+        return audioSources(target).anyAudible {
+            KotlinBoolean(bool: self.box?.cards.values.contains { card in
+                self.pronounceAction(for: card.target.text, lang: card.target.lang) != nil
+            } ?? false)
+        }
     }
 
     /// The fold the Box browser opens on (`BoxFold.opening`); nothing folds open before there are statistics.

@@ -51,8 +51,7 @@ struct BoxAreaSection: View {
         HStack(alignment: .top, spacing: Theme.spacing.sm) {
             AreaChip(emoji: model.areaEmoji(area), name: model.areaTitle(area),
                      subtitle: model.areaSubtitle(area),
-                     progress: stats?.progress ?? .empty,
-                     lockedPhrases: stats?.lockedPhrases ?? 0,
+                     stats: stats,
                      hideProgress: model.shelfControl(area: area).hidesProgress)
             FoldChevron(open: expanded)
                 .foregroundStyle(Theme.colors.textSecondary)

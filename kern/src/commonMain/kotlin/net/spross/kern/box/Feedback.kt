@@ -159,14 +159,22 @@ object Feedback {
     fun isReportable(cardId: String): Boolean = !OwnWords.owns(cardId)
 
     /**
+     * The answer a report on [cardId] travels with: [typed] where it holds one, else what the
+     * report already on file rode in with — an edit filed from a row, where nothing was being
+     * answered, never drops it. [BoxEngine.reportIssue] files this, and a form showing the
+     * answer it will send reads it here.
+     */
+    fun carriedInput(state: BoxState, cardId: String, typed: String?): String? =
+        typed?.takeIf { it.isNotBlank() } ?: state.reportedIssues[cardId]?.learnerInput
+
+    /**
      * The problems standing against CATALOG cards, NEWEST first — the list a surface hands
      * back for review, and the complement of [wordPairs] and [suggestions] in that panel.
      *
      * Newest first because a review list is a queue of what still wants dealing with, and
      * the freshest problem is the one the learner can still say something about. The export
-     * keeps the opposite order for the opposite reason ([issuesSince]). Both orders are
-     * decided here: a surface that sorted for itself is how the two apps came to read the
-     * same list in opposite directions.
+     * keeps the opposite order for the opposite reason ([issuesSince]).
+     * Both orders are decided here, so the two apps never read the same list in opposite directions.
      *
      * Own words are left out ([isReportable]): a reported one already stands in the list
      * above wearing its flag, and naming it twice in one section reads as two problems.

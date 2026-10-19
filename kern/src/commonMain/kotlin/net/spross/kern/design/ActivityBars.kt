@@ -51,6 +51,15 @@ class ActivityScale private constructor(val maxHeight: Double, val minHeight: Do
 }
 
 /**
+ * The widget header strip's columns, in points (dp): each bar's fixed width and the gutter between two.
+ * The app's strip shares its row out among the days instead, so only the widget's are fixed.
+ */
+object WidgetStripColumns {
+    const val BAR_WIDTH: Double = 3.0
+    const val GUTTER: Double = 1.5
+}
+
+/**
  * Every activity strip's arithmetic — the app's and the widget's.
  *
  * The √-scale is the rule the look is built on: one 40-review day must not squash every

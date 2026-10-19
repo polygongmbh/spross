@@ -47,32 +47,8 @@ object DateDrill {
     /** Where a pair's calendar ladder is filed — [CountryDrill.storageKey]'s twin. */
     fun storageKey(source: Language, target: Language): String = "dates.$source-$target"
 
-    /** Three clean wins a Sprosse — the country drill's pacing, for the country drill's reason. */
-    const val WINS_TO_ADVANCE = 3
-
-    fun winsToAdvance(fast: Boolean): Int = if (fast) 1 else WINS_TO_ADVANCE
-
     /** How tall this pair's ladder is: one Sprosse per kind the pair can ask. */
     fun maxSprosse(content: DateDrillContent, reverse: Boolean): Int = sprossen(content, reverse).size
-
-    /** Fast is earned by having EVER stood on this ladder's top Sprosse, like the atlas'. */
-    fun fastUnlocked(bestSprosse: Int, content: DateDrillContent, reverse: Boolean): Boolean =
-        bestSprosse >= fastPrice(content, reverse)
-
-    /** The Sprosse that earns Fast, as the locked switch prices it: this ladder's top one. */
-    fun fastPrice(content: DateDrillContent, reverse: Boolean): Int = maxSprosse(content, reverse)
-
-    /** The Sprosse ramp, on this ladder's Sprosse length ([DrillRamp.step]). */
-    fun step(
-        content: DateDrillContent,
-        reverse: Boolean,
-        sprosse: Int,
-        winsAtSprosse: Int,
-        correct: Boolean,
-        clean: Boolean,
-        fast: Boolean,
-    ): DrillRamp.SprosseStep =
-        DrillRamp.step(sprosse, winsAtSprosse, correct, clean, winsToAdvance(fast))
 
     /**
      * What [sprosse] may ask: the kind it introduces, and every kind below it — except the
@@ -161,14 +137,6 @@ object DateDrill {
         }
         return keys
     }
-
-    /** The language an answer is owed in — the learned one, or the learner's own reversed. */
-    fun answerLanguage(content: DateDrillContent, reverse: Boolean): Language =
-        if (reverse) content.source else content.target
-
-    /** The other side of the same pair: the language the prompt is written in. */
-    fun promptLanguage(content: DateDrillContent, reverse: Boolean): Language =
-        if (reverse) content.target else content.source
 
     /**
      * The word this language ADDS to assemble [kind], in the language itself — sw `tarehe`

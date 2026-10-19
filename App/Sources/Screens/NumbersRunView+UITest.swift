@@ -13,8 +13,7 @@ import SprossKern
 extension NumbersRunView {
 
     func seedAnswerStreak(_ answerStreak: Int) {
-        run = run.seeded(done: Int32(answerStreak + 6), answerStreak: Int32(answerStreak),
-                         bestAnswerStreak: Int32(max(answerStreak, 12)))
+        run = run.seeded(core: run.core.standingMidStreak(answerStreak))
     }
 
     /// `-uitest-level N` starts the run's FIRST exercise at that Sprosse (numbers:
@@ -61,26 +60,25 @@ extension NumbersRunState {
     /// does not touch. No default argument crosses the ObjC boundary, so the
     /// unchanged fields are written once here rather than at three call sites — the
     /// counters among them, which live in the run's shared `DrillRunCore`.
-    func seeded(done: Int32? = nil,
-                answerStreak: Int32? = nil,
-                bestAnswerStreak: Int32? = nil,
+    func seeded(core seed: DrillRunCore? = nil,
                 missRun: Int32? = nil,
                 feedback: (any TurnFeedback)? = nil) -> NumbersRunState {
-        doCopy(mode: mode,
+        let base = seed ?? core
+        return doCopy(mode: mode,
                current: current,
                index: index,
                sprossen: sprossen,
                winsAtSprosse: winsAtSprosse,
                bestSprossen: bestSprossen,
-               core: core.doCopy(done: done ?? core.done,
-                                 answerStreak: answerStreak ?? core.answerStreak,
-                                 bestAnswerStreak: bestAnswerStreak ?? core.bestAnswerStreak,
-                                 missRun: missRun ?? core.missRun,
-                                 outcomes: core.outcomes,
-                                 solved: core.solved,
-                                 slipped: core.slipped,
-                                 solvedClean: core.solvedClean,
-                                 pacing: core.pacing),
+               core: base.doCopy(done: base.done,
+                                 answerStreak: base.answerStreak,
+                                 bestAnswerStreak: base.bestAnswerStreak,
+                                 missRun: missRun ?? base.missRun,
+                                 outcomes: base.outcomes,
+                                 solved: base.solved,
+                                 slipped: base.slipped,
+                                 solvedClean: base.solvedClean,
+                                 pacing: base.pacing),
                seenDigitCounts: seenDigitCounts,
                seenFormKeys: seenFormKeys,
                hintUsed: hintUsed,

@@ -264,14 +264,7 @@ struct OwnWordFormView: View {
                 .padding(.horizontal, Theme.spacing.lg)
                 .padding(.vertical, prose ? Theme.spacing.md : 0)
                 .frame(minHeight: 52) // card-parity: the field's own height, not a card reserve
-                .background(
-                    RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                        .fill(Theme.colors.surface)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                        .strokeBorder(Theme.colors.separator, lineWidth: 1)
-                )
+                .controlSurface()
         }
     }
 

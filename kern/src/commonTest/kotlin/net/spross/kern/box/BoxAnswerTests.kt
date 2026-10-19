@@ -78,8 +78,8 @@ class BoxAnswerTests {
     }
 
     // Repeated fails widen the gap instead of repeating the same short wait: relearning
-    // steps grow with each consecutive Again (product ruling 2026-09-01, supersedes the
-    // leech ruling — a lapse no longer auto-suspends).
+    // steps grow with each consecutive Again (product ruling 2026-09-01: a lapse never
+    // auto-suspends).
     @Test
     fun consecutiveLapsesGrowTheRelearningWaitThenGoodGraduatesImmediately() {
         var state = Box.state(listOf(Box.word(1)))

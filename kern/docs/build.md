@@ -18,7 +18,7 @@ Neighbors: the engine contract `../README.md`, the trainer packs `trainer.md`.
   An in-target xcodegen `preBuildScripts` phase branches on `$CONFIGURATION`/`$SDK_NAME`,
   runs the matching `linkDebug/ReleaseFramework<Target>` Gradle task,
   and copies the framework to a configuration-neutral search path.
-  `scripts/bootstrap.sh` for fresh clones; a Release archive smoke check joins the gates.
+  `scripts/bootstrap.sh` for fresh clones; the archive runs in CI after the tag (`../../docs/distribution.md`).
   Only the APP target links Kotlin; widget/watch/complication are decode-only Swift (`snapshots.md`).
 - Swift ergonomics: UI-crossing Kotlin types are data classes;
   `App/Sources/KernBridge.swift` adds `Date ↔ epochMillis` helpers and `Identifiable`/`Equatable` conformances;
@@ -35,7 +35,7 @@ Neighbors: the engine contract `../README.md`, the trainer packs `trainer.md`.
 - Android: `androidLibrary` KMP target
   (`com.android.kotlin.multiplatform.library`, AGP 9.3.1, compileSdk 36 / minSdk 26);
   androidMain's NFC actual mirrors jvmMain, and `:android` consumes the same facades.
-  Gate: `./gradlew :kern:compileAndroidMain`.
+  Gate: `./gradlew :android:testDebugUnitTest`, which compiles androidMain on the way.
 - Web: `js { browser() }` target feeds the spross.net drill.
   `binaries.executable()` → one webpack bundle, `:kern:jsBrowserDistribution` →
   `kern/build/dist/js/productionExecutable/kern.js` (UMD global `kern`).
@@ -45,4 +45,4 @@ Neighbors: the engine contract `../README.md`, the trainer packs `trainer.md`.
   jsMain's NFC actual is `String.prototype.normalize("NFC")`.
   Gradle provisions Node/Yarn on first build (network) and pins
   `kotlin-js-store/yarn.lock` (committed).
-  Gate: `./gradlew :kern:jsBrowserDistribution`.
+  `scripts/build-web.sh` runs it; no gate does.

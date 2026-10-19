@@ -14,6 +14,7 @@ import net.spross.kern.session.AlmostReason
 import net.spross.kern.session.AnswerNormalizer
 import net.spross.kern.session.AnswerOutcome
 import net.spross.kern.session.CatalogAnswerGrader
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
 import net.spross.kern.session.ToneKind
 import net.spross.kern.session.TurnFeedback
@@ -183,8 +184,8 @@ class LetterDrillRunTest {
         assertEquals(
             listOf(
                 DrillEffect.Silence,
-                DrillEffect.Tone(ToneKind.Correct),
-                DrillEffect.ArmAdvance(AdvanceBeat.Explicit),
+                DrillEffect.Cued(Cue.Tone(ToneKind.Correct)),
+                DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit)),
             ),
             hit.effects,
         )
@@ -219,10 +220,7 @@ class LetterDrillRunTest {
         assertEquals(LetterFormat.Typed, state.format)
         assertTrue(state.typing)
         val revealed = reduce(state, LetterDrillIntent.Reveal, rng)
-        assertEquals(
-            listOf(DrillEffect.Silence, DrillEffect.Tone(ToneKind.Reveal)),
-            revealed.effects,
-        )
+        assertEquals(TypedDrillVerdicts.reveal().effects, revealed.effects)
         assertTrue(revealed.state.showsAnswer)
         // Nothing typed is the same ask, so the check button and Enter agree; once the
         // answer is in, nothing is owed and a stray blank changes nothing.
@@ -240,11 +238,11 @@ class LetterDrillRunTest {
         val task = assertNotNull(state.task)
         val done = reduce(state, LetterDrillIntent.InputChanged(task.display), rng)
         assertEquals(TurnFeedback.Correct, done.state.feedback)
-        assertTrue(DrillEffect.ArmAdvance(AdvanceBeat.Live) in done.effects)
+        assertTrue(DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live)) in done.effects)
         // Typing past the answer takes the approval back, so a longer word never books it.
         val past = reduce(done.state, LetterDrillIntent.InputChanged(task.display + "x"), rng)
         assertEquals(TurnFeedback.Neutral, past.state.feedback)
-        assertTrue(DrillEffect.CancelAdvance in past.effects)
+        assertTrue(DrillEffect.Cued(Cue.CancelAdvance) in past.effects)
     }
 
     /** A slip approves nothing live — it pauses on the explicit check, like every typed drill. */
@@ -406,22 +404,11 @@ class LetterDrillRunTest {
 
     // MARK: - Closing
 
+    /** Closing books a pending answer as the tap would ([LadderStanding.closing]). */
     @Test
-    fun closingBooksAPendingAnswerAndKeepsNoRecord() {
-        val rng = Random(31)
-        val state = LetterDrillRun.openAt(config(report()), 6, rng)
-
-        val untouched = LetterDrillRun.close(state)
-        assertNull(untouched.summary)
-        assertTrue(DrillEffect.Silence in untouched.effects)
-
+    fun closingBooksAPendingAnswer() {
+        val state = LetterDrillRun.openAt(config(report()), 6, Random(31))
         val almost = LetterDrillRun.close(state.copy(feedback = TurnFeedback.Almost("м", AlmostReason.Typo)))
         assertEquals(listOf(AnswerOutcome.Almost), almost.state.outcomes)
-        assertEquals(1, almost.summary?.done)
-        assertEquals(false, almost.summary?.newRecord, "the letter drill keeps no record store")
-        assertEquals(6, almost.state.sprosse, "closing may not upgrade an almost answer")
-
-        // A revealed answer nobody confirmed is not accepted, so closing books nothing.
-        assertNull(LetterDrillRun.close(state.copy(feedback = TurnFeedback.Revealed)).summary)
     }
 }

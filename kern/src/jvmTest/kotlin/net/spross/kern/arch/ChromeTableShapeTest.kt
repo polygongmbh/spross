@@ -3,6 +3,7 @@ package net.spross.kern.arch
 import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertTrue
+import net.spross.kern.repoRoot
 
 /**
  * The chrome table's SHAPE, gated rather than written down.
@@ -18,7 +19,7 @@ import kotlin.test.assertTrue
  */
 class ChromeTableShapeTest {
 
-    private val chrome = File("../android/src/main/kotlin/net/spross/app/Chrome.kt")
+    private val chrome = File(repoRoot, "android/src/main/kotlin/net/spross/app/Chrome.kt")
 
     /**
      * A chrome table is an INTERFACE that two generated objects implement, never a class with
@@ -98,7 +99,7 @@ class ChromeTableShapeTest {
     }
 
     private fun platformSources(): List<File> =
-        listOf(File("../android/src/main/kotlin"))
+        listOf(File(repoRoot, "android/src/main/kotlin"))
             .flatMap { it.walkTopDown().filter { f -> f.isFile && f.extension == "kt" } }
 
     private companion object {

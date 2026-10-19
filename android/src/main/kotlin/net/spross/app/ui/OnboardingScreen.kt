@@ -13,10 +13,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,8 +28,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
@@ -42,7 +38,7 @@ import net.spross.kern.catalog.Onboarding
 import net.spross.kern.catalog.OnboardingPage
 
 /**
- * First launch, in three pages: the pair, what Spross is for ([PrinciplesPage]),
+ * First launch, in three pages: the pair, where things are ([TourPage]),
  * and what a round asks of you ([FirstRoundPage]).
  * Only the last one commits — the two before it merely turn the page —
  * so the box is joined once, behind something worth reading.
@@ -160,7 +156,7 @@ fun OnboardingScreen(model: AppModel) {
                 }
             }
 
-            OnboardingPage.Why -> PrinciplesPage(
+            OnboardingPage.Tour -> TourPage(
                 chrome = chrome,
                 emoji = current.emoji,
                 onNext = { current.next?.let { page = it } },
@@ -197,18 +193,7 @@ fun OnboardingScreen(model: AppModel) {
 private fun NameSection(chrome: Chrome, name: String, onName: (String) -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(chrome.onboardingNameQuestion, style = MaterialTheme.typography.titleSmall)
-        OutlinedTextField(
-            value = name,
-            onValueChange = onName,
-            singleLine = true,
-            placeholder = { Text(chrome.settingsNamePlaceholder) },
-            keyboardOptions = KeyboardOptions(
-                capitalization = KeyboardCapitalization.Words,
-                autoCorrectEnabled = false,
-                imeAction = ImeAction.Done,
-            ),
-            modifier = Modifier.fillMaxWidth(),
-        )
+        LearnerNameField(chrome, name, onName)
     }
 }
 

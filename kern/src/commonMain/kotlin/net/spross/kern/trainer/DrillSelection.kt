@@ -38,7 +38,6 @@ internal val DrillModifier.storageTag: String
         DrillModifier.Reverse -> "rev"
         DrillModifier.Fast -> "fast"
         DrillModifier.Mix -> "mix"
-        DrillModifier.Timed -> "timed"
     }
 
 /**

@@ -1,7 +1,9 @@
-package net.spross.kern.trainer
+package net.spross.kern.design
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import net.spross.kern.trainer.Numbers
+import net.spross.kern.trainer.ReferenceEntry
 
 /** Which bands of the counting table stand in two columns. */
 class ReferenceColumnsTest {

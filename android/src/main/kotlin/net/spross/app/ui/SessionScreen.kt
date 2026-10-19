@@ -19,7 +19,7 @@ import net.spross.app.SessionCoach
 import net.spross.app.SessionUi
 import net.spross.app.areaTitle
 import net.spross.app.newTurn
-import net.spross.kern.model.PresentationRole
+import net.spross.kern.session.Coaching
 
 @Composable
 fun SessionScreen(model: AppModel) {
@@ -82,9 +82,8 @@ private fun TurnCard(model: AppModel, ui: SessionUi) {
         }
         // Recognition is never typed: a reveal, then an honest self-grade — so no schedule is
         // ever graded against a language it was not learned with (contract §3).
-        if (ui.role == PresentationRole.Recognize && model.coachActive) {
-            SessionCoach.recognizeLine(model.chrome, ui.role, flow.answerRevealed)?.let { PauseLine(it) }
-        }
+        Coaching.promptLine(model.coachActive, ui.role, flow.answerRevealed)
+            ?.let { PauseLine(SessionCoach.line(model.chrome, it)) }
         ReviewAnswer(model, ui, flow)
         Spacer(Modifier.height(Theme.spacing.sm))
     }

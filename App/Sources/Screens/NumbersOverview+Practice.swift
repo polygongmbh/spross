@@ -20,7 +20,7 @@ extension NumbersOverview {
                 }
             }
             VStack(alignment: .leading, spacing: Theme.spacing.lg) {
-                ForEach(playable, id: \.self) { modifierRow($0) }
+                ForEach(DrillModifier.allCases, id: \.self) { modifierRow($0) }
             }
             .panelSurface()
             startButton
@@ -70,11 +70,6 @@ extension NumbersOverview {
     }
 
     // MARK: - How it is played
-
-    /// Every modifier, minus Timed under VoiceOver or Switch Control.
-    private var playable: [DrillModifier] {
-        DrillModifier.allCases.filter { $0 != .timed || !AutoAdvance.screenReaderOn }
-    }
 
     /// A switch with a line under it saying what it does — the settings pattern,
     /// because a modifier changes the whole run rather than adding to what it asks.

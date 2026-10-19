@@ -37,7 +37,7 @@ class TurnTest {
         val typed = TurnFixture.step(TurnFixture.produce(TurnFixture.knife), TurnIntent.InputChanged("kisu"))
         assertEquals(TurnFeedback.Correct, typed.state.feedback)
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Live)),
+            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live))),
             typed.effects,
         )
         assertEquals(
@@ -51,7 +51,7 @@ class TurnTest {
         val submitted = TurnFixture.step(TurnFixture.produce(TurnFixture.knife), TurnIntent.Submit("kisu"))
         assertEquals(TurnFeedback.Correct, submitted.state.feedback)
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Explicit)),
+            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit))),
             submitted.effects,
         )
         assertEquals(
@@ -65,7 +65,7 @@ class TurnTest {
         val green = TurnFixture.state(TurnFixture.produce(TurnFixture.knife), TurnIntent.InputChanged("kisu"))
         val backed = TurnFixture.step(green, TurnIntent.InputChanged("kis"))
         assertEquals(TurnFeedback.Neutral, backed.state.feedback)
-        assertEquals(listOf(TurnEffect.CancelAdvance), backed.effects)
+        assertEquals(listOf(TurnEffect.Cued(Cue.CancelAdvance)), backed.effects)
         // The beat it canceled cannot book afterwards either.
         assertTrue(TurnFixture.step(backed.state, TurnIntent.AdvanceElapsed).effects.isEmpty())
     }
@@ -76,7 +76,7 @@ class TurnTest {
         assertEquals(TurnFeedback.Almost("kisu", AlmostReason.Typo), held.state.feedback)
         assertEquals(Rating.Hard, held.state.pendingRating)
         // No beat: the pause is the point, and it hands the keyboard back.
-        assertEquals(listOf(TurnEffect.Tone(ToneKind.Almost), TurnEffect.ReleaseFocus), held.effects)
+        assertEquals(listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Almost)), TurnEffect.Cued(Cue.ReleaseFocus)), held.effects)
 
         val done = TurnFixture.step(held.state, TurnIntent.ConfirmPending)
         assertEquals(listOf(TurnEffect.Answer(Rating.Hard)), done.effects)
@@ -103,7 +103,7 @@ class TurnTest {
         val missed = TurnFixture.step(TurnFixture.produce(TurnFixture.open), TurnIntent.Submit("kufunga"))
         assertEquals(TurnFeedback.Revealed, missed.state.feedback)
         assertEquals(Match.OtherWord("kufunga", listOf("schließen")), missed.state.otherWord)
-        assertEquals(listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField("")), missed.effects)
+        assertEquals(listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Wrong)), TurnEffect.PrimeField("")), missed.effects)
     }
 
     @Test
@@ -112,7 +112,7 @@ class TurnTest {
         val missed = TurnFixture.step(TurnFixture.produce(departs), TurnIntent.Submit("treni linaondoka"))
         assertEquals(TurnFeedback.Revealed, missed.state.feedback)
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField("Treni inaondoka ")),
+            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Wrong)), TurnEffect.PrimeField("Treni inaondoka ")),
             missed.effects,
         )
     }
@@ -124,7 +124,7 @@ class TurnTest {
         // The card holds its reveal open while the field turns right.
         assertEquals(TurnFeedback.Revealed, retyped.state.feedback)
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Live)),
+            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live))),
             retyped.effects,
         )
 
@@ -159,7 +159,7 @@ class TurnTest {
         val retyped = TurnFixture.state(missedLanguage(), TurnIntent.InputChanged("lugha"))
         val backed = TurnFixture.step(retyped, TurnIntent.InputChanged("lugh"))
         assertFalse(backed.state.retryApproved)
-        assertEquals(listOf(TurnEffect.CancelAdvance), backed.effects)
+        assertEquals(listOf(TurnEffect.Cued(Cue.CancelAdvance)), backed.effects)
         assertTrue(TurnFixture.step(backed.state, TurnIntent.AdvanceElapsed).effects.isEmpty())
     }
 
@@ -186,7 +186,7 @@ class TurnTest {
         val revealed = TurnFixture.step(start, TurnIntent.Reveal, TurnFixture.T0 + 3_000)
         assertEquals(3_000L, revealed.state.recallMs)
         assertTrue(revealed.state.revealed)
-        assertEquals(listOf(TurnEffect.Tone(ToneKind.Reveal)), revealed.effects)
+        assertEquals(listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Reveal))), revealed.effects)
 
         // Asked once: a second ask neither restarts nor re-closes the span.
         val again = TurnFixture.step(revealed.state, TurnIntent.Reveal, TurnFixture.T0 + 9_000)
@@ -217,7 +217,7 @@ class TurnTest {
         val exact = TurnFixture.step(byEar(), TurnIntent.Submit("Auto"))
         assertEquals(TurnFeedback.Correct, exact.state.feedback)
         assertEquals(
-            listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ArmAdvance(AdvanceBeat.Explicit)),
+            listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Explicit))),
             exact.effects,
         )
     }
@@ -279,7 +279,7 @@ class TurnTest {
         val held = TurnFixture.step(byEar(TurnFixture.leave), TurnIntent.Submit("aufhören"))
         assertEquals(TurnFeedback.Almost("verlassen", AlmostReason.Merged), held.state.feedback)
         assertEquals(Rating.Good, held.state.pendingRating)
-        assertEquals(listOf(TurnEffect.Tone(ToneKind.Correct), TurnEffect.ReleaseFocus), held.effects)
+        assertEquals(listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)), TurnEffect.Cued(Cue.ReleaseFocus)), held.effects)
 
         // One answer, one review, on the card that was asked.
         val booked = TurnFixture.step(held.state, TurnIntent.ConfirmPending)
@@ -344,7 +344,7 @@ class TurnTest {
         val taken = TurnFixture.step(byEar(), TurnIntent.Submit("Messer"))
         assertEquals(TurnFeedback.Revealed, taken.state.feedback)
         assertNull(taken.state.otherWord)
-        assertEquals(listOf(TurnEffect.Tone(ToneKind.Wrong), TurnEffect.PrimeField("")), taken.effects)
+        assertEquals(listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Wrong)), TurnEffect.PrimeField("")), taken.effects)
     }
 
     @Test

@@ -50,7 +50,7 @@ struct DrillOverviewPage<Sections: View>: View {
                 // learner is still looking at. The page comes up to meet it.
                 .onChange(of: lastRun) { _, run in
                     guard run != nil else { return }
-                    withAnimation(.easeOut(duration: 0.25)) {
+                    withAnimation(.cardReveal) {
                         scroll.scrollTo(DrillAnchor.result, anchor: .top)
                     }
                 }
@@ -84,7 +84,7 @@ struct DrillOverviewPage<Sections: View>: View {
         // why: the confetti rains over the page the run came back to — a wave
         // retires itself, so no dismissal and no state to clear.
         .overlay {
-            if lastRun?.celebrated == true {
+            if lastRun?.summary.celebrated == true {
                 ConfettiView().ignoresSafeArea().allowsHitTesting(false)
             }
         }

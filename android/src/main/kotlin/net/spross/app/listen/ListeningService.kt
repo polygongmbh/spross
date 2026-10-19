@@ -19,6 +19,7 @@ import android.os.PowerManager
 import androidx.core.graphics.createBitmap
 import net.spross.app.R
 import net.spross.app.SprossActivity
+import net.spross.kern.listen.NowPlayingLines
 
 /**
  * What keeps a listening run playing with the screen off, and puts it on the lock screen.
@@ -45,7 +46,7 @@ class ListeningService : Service() {
     private var foreground = false
 
     /** The run's name in the learner's language, kept for the channel a null state leaves. */
-    private var title = SPROSS_BRAND
+    private var title = NowPlayingLines.BRAND
 
     override fun onBind(intent: Intent?): IBinder? = null
 

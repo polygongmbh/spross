@@ -227,7 +227,7 @@ struct BoxSettingsSection: View {
     }
 
     private func startReset() {
-        guard (model.stats?.allSettledCount ?? 0) > 0, let target = model.targetLanguage else {
+        guard BoxBackup.shared.offeredBeforeReset(stats: model.stats), let target = model.targetLanguage else {
             confirmingReset = true
             return
         }

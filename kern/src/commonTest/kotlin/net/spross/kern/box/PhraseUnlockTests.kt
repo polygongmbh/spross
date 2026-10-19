@@ -40,7 +40,7 @@ class PhraseUnlockTests {
 
     // Unlock reads the growing bar alone (user ruling 2026-09-01): a suspended component
     // the learner already knows is still stable knowledge to build a phrase on, and
-    // suspension is no longer what a struggling component looks like (that is a low
+    // suspension is not what a struggling component looks like (that is a low
     // stability, gated by componentBelowUnlockStabilityKeepsPhraseLocked instead).
     @Test
     fun suspendedButGrowingComponentStillUnlocks() {

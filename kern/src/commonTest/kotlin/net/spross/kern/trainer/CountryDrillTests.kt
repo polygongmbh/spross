@@ -335,17 +335,6 @@ class CountryDrillTests {
         assertTrue((1..CountryDrill.MAX_SPROSSE).none { CountryDrill.repeatsBelow(it, reverse = false) })
     }
 
-    /**
-     * Fast is earned by having STOOD on the top Sprosse, not by standing there now: the app
-     * keeps the highest Sprosse any run reached, and that is what buys the modifier.
-     */
-    @Test
-    fun fastIsOfferedOnlyOnceTheTopSprosseHasBeenReached() {
-        assertFalse(CountryDrill.fastUnlocked(CountryDrill.MAX_SPROSSE / 2))
-        assertTrue(CountryDrill.fastUnlocked(CountryDrill.MAX_SPROSSE))
-        assertTrue(CountryDrill.fastUnlocked(CountryDrill.MAX_SPROSSE + 3), "a stored best above the top")
-    }
-
     @Test
     fun theSameSeedDrawsTheSameRun() {
         fun run(): List<String> {
@@ -377,16 +366,9 @@ class CountryDrillTests {
         assertEquals(listOf("Kijerumani"), row.targetLanguages)
     }
 
-    /** The named Sprossen cap the CONTENT; the number climbs on so a climbed-out atlas still counts. */
+    /** The named Sprossen cap the CONTENT: a Sprosse the number climbs to past the top asks the top one's questions. */
     @Test
-    fun theSprosseKeepsCountingPastTheLaddersTop() {
-        val step = CountryDrill.step(CountryDrill.MAX_SPROSSE, CountryDrill.WINS_TO_ADVANCE - 1, correct = true, clean = true)
-        assertEquals(CountryDrill.MAX_SPROSSE + 1, step.sprosse)
-        assertEquals(
-            CountryDrill.kinds(CountryDrill.MAX_SPROSSE),
-            CountryDrill.kinds(step.sprosse),
-            "and asks the top Sprosse's questions up there",
-        )
+    fun aSprossePastTheTopAsksTheTopSprossesQuestions() {
+        assertEquals(CountryDrill.kinds(CountryDrill.MAX_SPROSSE), CountryDrill.kinds(CountryDrill.MAX_SPROSSE + 1))
     }
-
 }

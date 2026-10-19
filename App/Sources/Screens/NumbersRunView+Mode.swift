@@ -42,13 +42,6 @@ extension NumbersMode {
                     phraseSource: source, templates: templates)
     }
 
-    /// Catalog key for the run title — the exercise's own where the run asks one
-    /// thing, and the trainer's own name where it asks several. Chrome, so it
-    /// lives here: kern names the rule, never the rendering.
-    var titleKey: LocalizedStringKey {
-        exercises.count == 1 ? exercises[0].trainerTitleKey : "trainer.hub.title"
-    }
-
     /// The grader this run is played with — one home, because both surfaces that
     /// open a run owe it the same one. Drills grade strictly (no article
     /// forgiveness, digits exact-only), and kern's value check keeps one number
@@ -63,7 +56,7 @@ extension NumbersMode {
 private extension NumbersMode {
     /// Run-through hooks, applied wherever a mode is built out of picks: the
     /// overview starts with counting selected, so `-uitest-exercises
-    /// numbers,clock,forms,phrases` and `-uitest-modifiers rev,fast,mix,timed` are the
+    /// numbers,clock,forms,phrases` and `-uitest-modifiers rev,fast,mix` are the
     /// only way to photograph a selection or a modifier. An unknown word is ignored.
     static var uitestExercises: [NumbersExercise]? {
         let known: [String: NumbersExercise] = ["numbers": .counting, "clock": .clock,
@@ -73,8 +66,7 @@ private extension NumbersMode {
     }
 
     static var uitestModifiers: Set<DrillModifier> {
-        let known: [String: DrillModifier] = ["rev": .reverse, "fast": .fast, "mix": .mix,
-                                             "timed": .timed]
+        let known: [String: DrillModifier] = ["rev": .reverse, "fast": .fast, "mix": .mix]
         return Set(uitestWords("uitest-modifiers").compactMap { known[$0] })
     }
 
@@ -88,9 +80,8 @@ private extension NumbersMode {
 
 extension NumbersReading {
     /// The ladder a reading is climbed on. Year maps onto Counting because it has no
-    /// Sprosse of its own: the standalone years drill was dropped as redundant, and
-    /// years live on only as a phrase slot, as a phone number does. Fraction is a phrase slot too, and belongs
-    /// to Forms — a fraction is one of the number forms.
+    /// Sprosse of its own: a year is a phrase slot, as a phone number is. Fraction is
+    /// a phrase slot too, and belongs to Forms — a fraction is one of the number forms.
     var exercise: NumbersExercise {
         switch self {
         case .cardinal, .year, .phone: return .counting

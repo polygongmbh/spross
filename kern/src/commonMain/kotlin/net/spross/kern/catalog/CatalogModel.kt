@@ -126,6 +126,4 @@ internal class CatalogArea(
     val subtitles: Map<Language, String>,
     /** lang → slug → realization; only languages whose file exists. */
     val realizations: Map<Language, Map<String, RawRealization>>,
-) {
-    val conceptsBySlug: Map<String, CatalogConcept> = concepts.associateBy { it.slug }
-}
+)

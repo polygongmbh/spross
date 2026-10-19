@@ -32,6 +32,7 @@ import net.spross.app.startSentenceScramble
 import net.spross.app.startOpposites
 import net.spross.app.startWordScramble
 import net.spross.app.trainerHubOffered
+import net.spross.kern.design.ChipRows
 import net.spross.kern.trainer.Drill
 
 /**
@@ -88,10 +89,10 @@ fun TrainerHubCard(model: AppModel) {
     }
 }
 
-/** The chips cut into the lines kern sizes ([Drill.Companion.chipRows]), each line's chips equal width. */
+/** The chips cut into the lines kern sizes ([ChipRows]), each line's chips equal width. */
 fun chipRows(chips: List<HubChip>): List<List<HubChip>> {
     var start = 0
-    return Drill.chipRows(chips.size).map { size -> chips.subList(start, start + size).also { start += size } }
+    return ChipRows.of(chips.size).map { size -> chips.subList(start, start + size).also { start += size } }
 }
 
 /** Every entry this profile can reach, in the order the card offers them. */

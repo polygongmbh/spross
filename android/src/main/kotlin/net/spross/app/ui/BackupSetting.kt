@@ -20,7 +20,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import java.time.LocalDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -73,11 +72,9 @@ fun BackupSetting(model: AppModel, catalog: Catalog, target: String) {
         }
     }
 
-    // why: the file is named for what it carries, so two of them in one folder are told
-    // apart before either is opened.
     val start = { pick: String? ->
         only = pick
-        export.launch("Spross-${pick?.let { "$it-" } ?: ""}${LocalDate.now()}.json")
+        export.launch(BoxBackup.fileName(pick, model.now(), model.tz()) + ".json")
     }
 
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {

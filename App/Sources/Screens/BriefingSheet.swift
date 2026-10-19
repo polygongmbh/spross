@@ -8,8 +8,8 @@ import SprossKern
 /// share sheet, and whichever chat the learner already pays for takes it from there.
 /// What that text may say is Kern's (`Briefing`) and is never shown here: 7 KB of prompt
 /// scrolling past is a wall, not a preview. What the sheet spends its words on instead is
-/// the three moves the loop takes — the counts that once stood in for the text named the
-/// box back at the learner, who already has it.
+/// the three moves the loop takes; the box's counts would only name the box back at the
+/// learner, who already has it.
 ///
 /// The way back is the half that pays: a conversation turns up words no catalog has,
 /// the assistant is asked to list them, and pasting that list here reads them into

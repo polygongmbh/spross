@@ -41,6 +41,15 @@ class WidgetSnapshotBuilderTests {
         }
 
     @Test
+    fun shorterPairsRankFirstInTheLayout() {
+        val entries = WidgetSnapshotBuilder.doc(scheduledState(), Box.day1, Box.TZ, exposureLimit = 10).entries
+        val pairLengths = entries.sortedBy { it.lengthRank }.map { it.text.length + it.sourceText.length }
+
+        assertEquals(pairLengths.sorted(), pairLengths)
+        assertEquals(entries.indices.toSet(), entries.map { it.lengthRank }.toSet())
+    }
+
+    @Test
     fun entriesRenderTargetSideWithTint() {
         val doc = WidgetSnapshotBuilder.doc(scheduledState(), Box.day1, Box.TZ, exposureLimit = 10)
         val byCard = doc.entries.associateBy { it.cardId }

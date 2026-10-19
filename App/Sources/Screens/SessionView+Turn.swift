@@ -28,28 +28,23 @@ extension SessionView {
         switch onEnum(of: effect) {
         case .answer(let done):
             commit(done.rating)
-        case .armAdvance(let arm):
-            // why: AutoAdvance skips the timer under a screen reader (it
-            // truncates the announcement and moves the screen), and the branch
-            // renders "Weiter" there — same rating, through ConfirmPending.
-            // The beat also waits out the answer being said, or the flip would
-            // cut the word off.
-            armAdvance(arm.beat) { dispatch(TurnIntent.AdvanceElapsed.shared) }
-        case .cancelAdvance:
-            autoAdvance?.cancel()
+        case .cued(let cued):
+            // why: the beat renders "Weiter" under a screen reader instead of
+            // running — same rating, through ConfirmPending.
+            carryOut(cued.cue) { dispatch(TurnIntent.AdvanceElapsed.shared) }
         case .primeField(let primed):
             // why: the answer field is the one the turn owns here — a miss
             // never hides it, so there is nothing to re-focus.
             input = primed.text
-        case .tone(let cue):
-            Sound.play(cue.kind)
-        case .releaseFocus:
-            // why: a pause that waits for a tap must not hold the keyboard —
-            // it covers the button the pause is waiting for. The pending
-            // retry is canceled first, or it re-focuses 120 ms later.
-            focusRetry?.cancel()
-            answerFocused = false
         }
+    }
+
+    // why: a pause that waits for a tap must not hold the keyboard —
+    // it covers the button the pause is waiting for. The pending
+    // retry is canceled first, or it re-focuses 120 ms later.
+    func releaseFocus() {
+        focusRetry?.cancel()
+        answerFocused = false
     }
 
     /// Hand the answer to the engine and flip to the next card.
@@ -57,7 +52,7 @@ extension SessionView {
         autoAdvance?.cancel()
         // why: the next turn begins only once the card has changed (`dealt`), so the
         // outgoing card flips away still showing its own answer.
-        withAnimation(reduceMotion ? .easeOut(duration: 0.2) : .cardFlip) {
+        withAnimation(reduceMotion ? .cardFlipReduced : .cardFlip) {
             model.answerCurrent(rating)
         }
     }
@@ -121,9 +116,7 @@ extension SessionView {
 
     var voiceModel: AppModel? { model }
 
-    var feedback: AnswerInputView.Feedback {
-        turn.map { AnswerInputView.Feedback($0.feedback) } ?? .neutral
-    }
+    var feedback: TurnFeedback { turn?.feedback ?? TurnFeedbackNeutral.shared }
 
     var revealed: Bool { turn?.revealed ?? false }
 
@@ -151,13 +144,4 @@ extension SessionView {
     /// The card was asked by ear and the learner could not listen: the word
     /// stands on it as text for the rest of the turn.
     var promptInText: Bool { turn?.promptInText ?? false }
-
-    /// Whether the card on screen is asked by ear — the TURN's own fact, never a
-    /// re-reading of the device: audibility can change under a card (a volume
-    /// key, headphones out), and a face that flipped mid-turn would show the
-    /// source word while kern still grades the meaning. The model answers only
-    /// before the turn exists, which is the one moment it cannot have changed.
-    func askedByEar(_ card: Card) -> Bool {
-        (turn?.prompt ?? model.producePrompt(for: card)) == .sound
-    }
 }

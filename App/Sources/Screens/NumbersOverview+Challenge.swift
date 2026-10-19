@@ -44,14 +44,7 @@ extension NumbersOverview {
                 .submitLabel(.go)
                 .onSubmit(acceptChallenge)
                 .padding(Theme.spacing.md)
-                .background(
-                    RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                        .fill(Theme.colors.surface)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                        .strokeBorder(Theme.colors.separator, lineWidth: 1)
-                )
+                .controlSurface()
             Button("trainer.challenge.accept", action: acceptChallenge)
                 .buttonStyle(SoftButtonStyle())
                 .fixedSize()

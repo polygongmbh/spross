@@ -114,7 +114,7 @@ protocol DrillFace {
 // MARK: - What the two sides say to each other
 
 /// What the learner did, as the shared screen knows it. Kern spells each of
-/// these as an intent of its own per drill; the face is where the vocabularies
+/// these as an intent of its run's own; the face is where the vocabularies
 /// meet, so the screen never names one machine's.
 enum DrillMove {
     /// A live keystroke: an answer finished exactly right needs no check tap.
@@ -128,6 +128,42 @@ enum DrillMove {
     /// Keep practicing, from a pause kern called.
     case keptPracticing
 }
+
+extension DrillMove {
+    /// The move in kern's pair drill vocabulary — one for the atlas and the calendar alike.
+    var pairIntent: PairDrillIntent {
+        switch self {
+        case .typed(let text): return PairDrillIntent.InputChanged(text: text)
+        case .submitted(let text): return PairDrillIntent.Submit(text: text)
+        case .confirmed: return PairDrillIntent.ConfirmPending.shared
+        case .advanced: return PairDrillIntent.AdvanceElapsed.shared
+        case .keptPracticing: return PairDrillIntent.KeepPracticing.shared
+        }
+    }
+}
+
+#if DEBUG
+extension DrillRunCore {
+    /// The counters of a run standing mid-streak — what every drill's
+    /// `-uitest-streak N` seed writes, the rest of the run left as it was.
+    func standingMidStreak(_ answerStreak: Int) -> DrillRunCore {
+        doCopy(done: Int32(answerStreak + 6), answerStreak: Int32(answerStreak),
+               bestAnswerStreak: Int32(max(answerStreak, 12)), missRun: missRun,
+               outcomes: outcomes, solved: solved, slipped: slipped,
+               solvedClean: solvedClean, pacing: pacing)
+    }
+}
+
+/// A pair drill run standing mid-streak, for `DrillFace.seedAnswerStreak`.
+func seededAnswerStreak<Task>(_ run: PairDrillRunState<Task>, _ answerStreak: Int) -> PairDrillRunState<Task> {
+    run.doCopy(config: run.config, task: run.task, index: run.index,
+               sprosse: run.sprosse, bestSprosse: run.bestSprosse,
+               winsAtSprosse: run.winsAtSprosse,
+               core: run.core.standingMidStreak(answerStreak),
+               feedback: run.feedback,
+               otherWord: run.otherWord, hinted: run.hinted, finished: run.finished)
+}
+#endif
 
 /// One reduction: the run that follows, and what it asks the platform for.
 struct DrillStep<Run> {

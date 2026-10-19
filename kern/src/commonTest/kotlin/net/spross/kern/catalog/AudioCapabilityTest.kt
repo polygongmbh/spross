@@ -85,4 +85,17 @@ class AudioCapabilityTest {
                      AudioCapability.VoiceOnly.preference(muted = false, prefersSpeech = false))
         assertEquals(AudioPreference.Off, AudioCapability.Both.preference(muted = true, prefersSpeech = true))
     }
+
+    /**
+     * RULE: whether any word can be heard asks the words only where a pack stands alone.
+     * WHY: a voice says every word and silence none, so walking a whole box for either
+     * answer is work the capability already did.
+     */
+    @Test
+    fun onlyAPackAloneAsksTheWords() {
+        val never = { error("asked the words") }
+        assertTrue(AudioCapability.VoiceOnly.anyAudible(never))
+        assertFalse(AudioCapability.None.anyAudible(never))
+        assertFalse(AudioCapability.RecordingsOnly.anyAudible { false })
+    }
 }

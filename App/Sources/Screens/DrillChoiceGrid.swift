@@ -38,7 +38,7 @@ struct DrillChoiceGrid: View {
                 tile(option)
             }
         }
-        .animation(.easeOut(duration: 0.2), value: chosen)
+        .animation(.cardReveal, value: chosen)
     }
 
     private func tile(_ option: String) -> some View {

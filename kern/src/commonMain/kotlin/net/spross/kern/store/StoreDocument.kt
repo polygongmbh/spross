@@ -181,10 +181,6 @@ private fun dto(obj: JsonObject, where: String): StoredBoxDto = try {
 private fun JsonElement.asMap(): Map<String, JsonElement> =
     (this as? JsonObject)?.toMap() ?: emptyMap()
 
-/** The schema a document declares, or null where it declares none. */
-internal fun versionOf(json: String): Int? =
-    (parseObject(json, "store")["schemaVersion"] as? JsonPrimitive)?.intOrNull
-
 private fun StoredBoxDto.toStored(target: Language): StoredBox {
     val scheduler = FsrsScheduler(BoxConfig.product().fsrsParameters())
     val suspendedIds = suspended.toSet()

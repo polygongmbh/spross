@@ -13,13 +13,12 @@ import androidx.compose.ui.unit.dp
  * The app's affordances, drawn.
  *
  * Everything a learner is meant to ACT on — close, go deeper, hear it, the three verdicts —
- * used to be a character in a `Text`: `✕ › ✓ ✗` and the 🔊/🔇 emoji. Two things were wrong
- * with that. The glyphs are not in Nunito (the theme's own note says so for `♀` and `✔`), so
- * they dropped to the platform symbol font and sat at a different optical weight beside every
- * word around them; and an emoji is multi-color artwork that cannot take a tint, so the one
- * speaker on a stone-and-moss card was rendered in Noto's blues.
+ * is a vector here, never a character in a `Text`: a symbol glyph is not in Nunito (the
+ * theme's own note says so for `♀` and `✔`) and falls to the platform symbol font at a
+ * different optical weight from the words around it, and an emoji is multi-color artwork
+ * that cannot take a tint.
  *
- * These are cut to one system instead: a 24 unit box, a 2 unit stroke, round caps and joins.
+ * They are cut to one system: a 24 unit box, a 2 unit stroke, round caps and joins.
  * They are drawn in black and TINTED at the call site — `Icon` color-filters the whole
  * vector — so every glyph takes `Theme.colors` like the text it sits with.
  *

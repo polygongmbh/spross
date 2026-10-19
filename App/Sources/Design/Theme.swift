@@ -171,20 +171,14 @@ enum Theme {
         let das = Color(Palette.shared.das)
     }
 
-    /// The grammatical gender a word's article marks, as this palette reads it.
-    /// The Design-local twin of the box's `Gender`, so components stay kern-free.
-    enum Gender {
-        case masculine, feminine, neuter
-    }
-
     /// An article as a card face shows it: the word itself and the gender it marks,
     /// as ONE value so the two can never disagree. The screen resolves the gender
     /// when it builds the face — the design system only paints it.
     struct Article {
         let text: String
-        let gender: Gender?
+        let gender: SprossKern.Gender?
 
-        init(_ text: String, gender: Gender?) {
+        init(_ text: String, gender: SprossKern.Gender?) {
             self.text = text
             self.gender = gender
         }
@@ -199,7 +193,7 @@ enum Theme {
     /// target already does. Widget and watch surfaces mirror this mapping in their
     /// own palettes. WHICH article marks which gender is not decided here:
     /// that list is `kern/model/Article.kt`.
-    static func genderColor(_ gender: Gender?) -> Color {
+    static func genderColor(_ gender: SprossKern.Gender?) -> Color {
         switch gender {
         case .masculine: return colors.der
         case .feminine: return colors.die

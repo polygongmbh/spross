@@ -56,7 +56,7 @@ struct DatesReference: View {
                     .font(Theme.typography.headline)
                     .foregroundStyle(Theme.colors.accent)
                     .spoken(row.target, language: target)
-                if let under = Self.otherForms(row) {
+                if let under = row.otherForms {
                     Text(verbatim: under)
                         .font(Theme.typography.caption)
                         .foregroundStyle(Theme.colors.textSecondary)
@@ -66,16 +66,6 @@ struct DatesReference: View {
             .multilineTextAlignment(.trailing)
         }
         .fixedSize(horizontal: false, vertical: true)
-    }
-
-    /// What else the learned name answers to, on one caption line: the short
-    /// form the prompt wears, the other lexemes, and the in-a-date form.
-    private static func otherForms(_ row: DateReferenceRow) -> String? {
-        var forms: [String] = []
-        if let abbr = row.abbr { forms.append(abbr) }
-        forms += row.teaches
-        if let dateForm = row.dateForm { forms.append(dateForm) }
-        return forms.isEmpty ? nil : forms.joined(separator: " · ")
     }
 
     /// Hearing a name in the language being learned — nil where the device can

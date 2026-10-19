@@ -27,10 +27,10 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.Chrome
 import net.spross.app.speakFormOnTap
+import net.spross.kern.design.ReferenceColumns
 import net.spross.kern.model.Language
-import net.spross.kern.trainer.ReferenceColumns
-import net.spross.kern.trainer.ReferenceEntry
 import net.spross.kern.trainer.Numbers
+import net.spross.kern.trainer.ReferenceEntry
 
 /**
  * How a language counts, as a table: every band kern names, each row a written value beside

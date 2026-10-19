@@ -28,9 +28,9 @@ import net.spross.kern.catalog.Playback
  * STORED rather than deflated — see the `noCompress` pin in android/build.gradle.kts.
  *
  * why a worker thread: create/setDataSource/prepare/release and the enhancer's init are
- * binder calls into audioserver — seconds each when that process wedges — and they used
- * to run on the main thread at every reveal autoplay, which is an ANR at a tap. One
- * [HandlerThread] owns the whole player lifecycle; the main thread only posts requests.
+ * binder calls into audioserver — seconds each when that process wedges — and on the main
+ * thread a reveal autoplay would be an ANR at a tap. One [HandlerThread] owns the whole
+ * player lifecycle; the main thread only posts requests.
  */
 class PronunciationPlayer {
 

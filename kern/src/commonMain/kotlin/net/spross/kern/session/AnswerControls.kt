@@ -58,13 +58,16 @@ data class AnswerControls(
 
         /** Show the answer; nothing is typed ([TurnIntent.Reveal]). */
         Reveal,
+
+        /** Check what stands, or skip on a blank field: a race books the miss and shows no answer. */
+        SubmitOrSkip,
     }
 
     enum class Confirm {
         /** The verdict holds until it is tapped on. */
         Always,
 
-        /** It stands in for the beat, where no beat may run ([TurnEffect.ArmAdvance]). */
+        /** It stands in for the beat, where no beat may run ([Cue.ArmAdvance]). */
         WhenNoBeat,
     }
 

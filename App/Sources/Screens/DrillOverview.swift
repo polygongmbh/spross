@@ -81,7 +81,7 @@ struct DrillOverview<Face: DrillFace>: View {
                                        fast: launch.value.fast, sprosse: launch.value.sprosse,
                                        storageKey: storageKey,
                                        onFinish: { result in
-                                           withAnimation(.easeOut(duration: 0.25)) { lastRun = result }
+                                           withAnimation(.cardReveal) { lastRun = result }
                                        })
                 }
             }

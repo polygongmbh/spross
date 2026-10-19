@@ -70,6 +70,16 @@ class FeedbackTests {
         assertEquals("second", state.reportedIssues.getValue("w01").comment)
     }
 
+    /** An edit filed from a row, where nothing was being answered, keeps the answer the first report rode in with. */
+    @Test
+    fun filingAgainWithoutAnAnswerKeepsTheOneOnFile() {
+        var state = BoxEngine.reportIssue(box(), "w01", "first", "t2", Box.day1)
+        state = BoxEngine.reportIssue(state, "w01", "second", " ", Box.day1)
+        assertEquals("t2", state.reportedIssues.getValue("w01").learnerInput)
+        state = BoxEngine.reportIssue(state, "w01", "third", "t3", Box.day1)
+        assertEquals("t3", state.reportedIssues.getValue("w01").learnerInput)
+    }
+
     @Test
     fun anUnjoinedCardCannotBeReported() {
         assertEquals(box(), BoxEngine.reportIssue(box(), "nope", "wrong", null, Box.day1))

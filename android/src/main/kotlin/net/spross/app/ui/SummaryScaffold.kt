@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.spross.app.Chrome
+import net.spross.kern.design.AreaTree
 
 /**
  * The screen a round stops on — the session summary and a drill's pause alike, standing in
@@ -103,9 +104,7 @@ private fun SummaryLayout(
         RunCloseButton(onDone, chrome.commonDone, Modifier.align(Alignment.Start))
         // why: the actions stay on the bottom edge however far the results scroll.
         BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
-            // why: a grown tree's box reaches 45 % of the screen it is given, so the summary
-            // fills a tall phone rather than leaving two-thirds of it empty.
-            val ceiling = maxHeight * 0.45f
+            val ceiling = maxHeight * AreaTree.HERO_SHARE.toFloat()
             Column(
                 modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.Center,

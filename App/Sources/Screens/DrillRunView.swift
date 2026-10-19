@@ -54,7 +54,8 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     @State var chosen: String?
     // why: internal, not private — the +Run extension arms and cancels it.
     @State var autoAdvance: Task<Void, Never>?
-    /// Says each graded answer kern hands over (`DrillEffect.SayAnswer`).
+    /// Says the run's `reading`: the prompt where the drill has one, and each
+    /// graded answer.
     // why: internal, not private — the +Run extension hands it to the driver.
     @State var reader = Reader()
     @FocusState var answerFocused: Bool
@@ -99,7 +100,7 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
 
     var body: some View {
         pausable(SessionScaffold.endless(tally: current.tally,
-                                         outcomes: current.outcomes.map { SessionOutcome($0) },
+                                         outcomes: current.outcomes,
                                          // why: the run says its answers out loud, so it
                                          // owes the learner a way to silence them here.
                                          showsMuteButton: true,
@@ -122,15 +123,8 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
         .onDisappear {
             autoAdvance?.cancel()
             // D5: leaving mid-word must silence.
-            hushAnswer()
+            reader.hush()
         }
-    }
-
-    // MARK: - Saying the answer
-
-    /// Every way out of a task goes through here — the next question, the door.
-    func hushAnswer() {
-        reader.hush()
     }
 
     // The draw, the ramp and the verdict ladder are kern's; the driver that

@@ -28,13 +28,14 @@ import androidx.compose.ui.unit.dp
 import net.spross.app.AppModel
 import net.spross.app.otherPairFlags
 import net.spross.app.otherPairLanguageNames
-import net.spross.app.otherPairText
 import net.spross.app.removeOwnWord
 import net.spross.app.reportedIssue
-import net.spross.app.suggestionText
 import net.spross.kern.box.OwnWord
 import net.spross.kern.box.OwnWords
+import net.spross.kern.box.suggestionText
+import net.spross.kern.box.writtenLine
 import net.spross.kern.model.Card
+import net.spross.kern.model.pairLine
 
 /**
  * One word waiting for its other half.
@@ -47,7 +48,7 @@ internal fun SuggestionRow(model: AppModel, word: OwnWord, onEdit: () -> Unit) {
     EntryRow(
         model, word,
         lines = 1,
-        line = model.suggestionText(word),
+        line = word.suggestionText,
         said = word.comment,
         tail = model.chrome.boxOwnWordNeedsTranslation,
         editLabel = model.chrome.boxOwnEntryEdit,
@@ -67,7 +68,7 @@ internal fun OtherPairRow(model: AppModel, word: OwnWord, onWriteOwn: (OwnWordDr
     EntryRow(
         model, word,
         lines = 1,
-        line = model.otherPairText(word),
+        line = word.writtenLine,
         said = word.comment,
         tail = model.otherPairFlags(word),
         tailSaid = model.otherPairLanguageNames(word),
@@ -163,9 +164,8 @@ internal fun ReportedRow(model: AppModel, card: Card) {
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md)) {
             Text("🚩", modifier = Modifier.semantics { contentDescription = chrome.a11yReportReported })
-            // Exposure surfaces render the TARGET side first (`kern/docs/reports.md`).
             Text(
-                "${card.target.text} → ${card.source.text}",
+                card.pairLine,
                 style = MaterialTheme.typography.bodyLarge,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,

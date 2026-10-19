@@ -23,6 +23,8 @@ data class WidgetWord(
     val word: String,
     /** The source meaning, ♀ marker already baked in by the phone. */
     val meaning: String,
+    /** Where the word lands among the ones a tile shows ([net.spross.kern.snapshot.WidgetExposure.lengthRank]). */
+    val lengthRank: Int,
 )
 
 /**
@@ -78,7 +80,7 @@ object WidgetFaces {
         // window sorted by length would hand a one-cell tile the shortest word rather than
         // the one most worth seeing. Where the cells then land is [GridFace]'s.
         val words = view.window(nowEpochMillis, WINDOW, ROTATION_MILLIS).map {
-            WidgetWord(it.emoji ?: FALLBACK_PICTURE, it.article, it.gender, it.text, it.sourceText)
+            WidgetWord(it.emoji ?: FALLBACK_PICTURE, it.article, it.gender, it.text, it.sourceText, it.lengthRank)
         }
         val tz = TimeZone.getDefault().id
         return WidgetFace(
@@ -87,16 +89,16 @@ object WidgetFaces {
             streak = view.streak(nowEpochMillis, tz),
             health = view.streakHealth(nowEpochMillis, tz),
             bars = view.activityBars(nowEpochMillis, tz),
-            chrome = chrome(context),
+            chrome = Chrome.forLanguage(view.chromeLanguage),
         )
     }
 
     /**
-     * Which chrome the tile speaks. The widget is not in the app's locale environment and
-     * has no model to ask, so it reads the same profile the model does: the box's SOURCE
-     * language decides the chrome, exactly as `Chrome.forSource` decides it for every
-     * screen. Before there is a profile there is no box either, so the device's own
-     * language stands in — which is what onboarding would offer anyway.
+     * Which chrome a tile with no snapshot to draw speaks; a drawn face speaks the one its snapshot carries.
+     * The widget is not in the app's locale environment and has no model to ask, so it reads
+     * the same profile the model does: the box's SOURCE language decides the chrome, exactly as
+     * `Chrome.forSource` decides it for every screen. Before there is a profile there is no box
+     * either, so the device's own language stands in — which is what onboarding would offer anyway.
      */
     fun chrome(context: Context): Chrome {
         val prefs = context.getSharedPreferences(ProfileStore.PREFS_NAME, Context.MODE_PRIVATE)

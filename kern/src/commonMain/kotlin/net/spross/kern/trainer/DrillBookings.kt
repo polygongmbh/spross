@@ -4,7 +4,7 @@ import net.spross.kern.model.Language
 
 /**
  * Everything a closed run leaves behind, keyed where each store files it — the platforms write it and decide nothing.
- * Each close builds its own ([CountryDrillClose.bookings] and its siblings), so which stores a drill writes is said once.
+ * Each close builds its own ([PairDrillClose.bookings] and its siblings), so which stores a drill writes is said once.
  *
  * The stores keep the higher of a figure and what stands ([sprossen], [answers]) and OR a mask in ([cleared]);
  * [records] holds only a record the run beat.
@@ -55,7 +55,7 @@ data class DrillBookings(
             drill, target, summary,
             sprossen = mapOf(key to bestSprosse),
             cleared = mapOf(NumbersMode.clearedKey(key, reverse) to cleared),
-            records = summary?.takeIf { it.newRecord }?.let { mapOf(key to it.recordFigure) } ?: emptyMap(),
+            records = summary?.takeIf { it.newRecord }?.let { mapOf(key to it.bestAnswerStreak) } ?: emptyMap(),
             answers = summary?.let { mapOf(key to it.done) } ?: emptyMap(),
         )
 

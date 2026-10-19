@@ -92,8 +92,8 @@ class SessionRunWiringTest {
 
     /**
      * The three numbers the summary line formats, straight off the run's buckets — a first
-     * meeting is "neu" and nothing else, where the app used to call any non-Again answer
-     * "gefestigt" and every answer a repetition.
+     * meeting is "neu" and nothing else, whatever its rating: never "gefestigt", never a
+     * repetition.
      */
     @Test
     fun theSummaryLineReadsFirstMeetingsAsNewAndNothingElse() {
@@ -119,7 +119,7 @@ class SessionRunWiringTest {
     }
 
     /**
-     * Drift 3, the lost fold: `SprossActivity.onStop` writes the box, and the day is already
+     * `SprossActivity.onStop` writes the box, and the day is already
      * in it — every answer lands in the box and asks for a save as it does, so an evicted
      * app loses nothing the learner demonstrated.
      */
@@ -141,9 +141,9 @@ class SessionRunWiringTest {
     }
 
     /**
-     * Drift 1, the extra round: the app hands kern the intent and no longer picks the
-     * composition itself. On a drained box that means the MIXING round — every card in it
-     * has been answered before — where trying endless first came back all first sights.
+     * The extra round: the app hands kern the intent and never picks the composition
+     * itself. On a drained box that means the MIXING round — every card in it has been
+     * answered before — not an endless draw of first sights.
      */
     @Test
     fun theExtraRoundPullsWorkForwardRatherThanOpeningNewWords() {

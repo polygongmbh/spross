@@ -78,22 +78,17 @@ extension Card {
 /// sentinel values via localized chrome strings.
 enum CardDisplay {
 
-    /// The realization's authored article ("der"/"die"/"das").
-    private static func article(of realization: Realization) -> String? {
-        realization.grammar["article"]
-    }
-
     /// The article a card face may show in front of `shown`, with the gender it
     /// marks — both rules are the box's (`model/Article.kt`): a rotated synonym
     /// is a different word, so the card's article steps aside rather than
     /// mislabel it, and which article marks which gender is stated there once.
     static func articleLabel(of realization: Realization, shown: String) -> Theme.Article? {
-        guard let article = shownArticle(article: article(of: realization),
+        guard let article = shownArticle(article: realization.article,
                                          shownForm: shown,
                                          targetText: realization.text)
         else { return nil }
         return Theme.Article(article,
-                             gender: Theme.Gender(articleGender(article: article, lang: realization.lang)))
+                             gender: articleGender(article: article, lang: realization.lang))
     }
 
     /// The article the VOICE says in front of `shown`, or nil where there is
@@ -103,7 +98,7 @@ enum CardDisplay {
     /// `spokenTargetForm`, which both the voice and the `articles{}` recording
     /// lookup are handed.
     static func spokenArticle(of realization: Realization, shown: String) -> String? {
-        shownArticle(article: article(of: realization), shownForm: shown,
+        shownArticle(article: realization.article, shownForm: shown,
                      targetText: realization.text)
     }
 

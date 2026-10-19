@@ -179,7 +179,7 @@ private fun CardContext.DrillPrompt() {
                     if (promptLabel == null) Modifier else Modifier.semantics { contentDescription = promptLabel },
                 )
                 if (side.form == Question.Form.Name) {
-                    Headword(promptText(side, text), modifier = labeled)
+                    Headword(promptText(side, text), modifier = labeled, maxLines = CardType.promptLines(side.form))
                 } else {
                     Text(
                         promptText(side, text),
@@ -189,7 +189,7 @@ private fun CardContext.DrillPrompt() {
                             fontFamily = if (side.form == Question.Form.Numeral) FontFamily.Monospace else FontFamily.Default,
                         ),
                         textAlign = TextAlign.Center,
-                        maxLines = promptLines(side.form),
+                        maxLines = CardType.promptLines(side.form),
                         modifier = labeled,
                     )
                 }

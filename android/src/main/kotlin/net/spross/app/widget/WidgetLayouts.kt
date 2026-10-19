@@ -92,10 +92,6 @@ private val STRIP_WIDTH = 160.dp
  */
 private val CELL_GUTTER = 8.dp
 
-/** Shortest pair first: where a card lands is the tile's business, which ones travel is kern's. */
-private val SHORTEST_FIRST =
-    compareBy<WidgetWord>({ it.word.length + it.meaning.length }, { it.word.length })
-
 /** The tile's words, in as many cells as [size] fits, under the stats line. */
 @Composable
 fun GridFace(face: WidgetFace, size: DpSize) {
@@ -109,7 +105,7 @@ fun GridFace(face: WidgetFace, size: DpSize) {
     val cells = if (inner.height < FOLD_HEIGHT) 0 else columns * rows
     Column(modifier = GlanceModifier.fillMaxSize()) {
         StatsHeader(face, full = inner.width >= STRIP_WIDTH)
-        face.words.take(cells).sortedWith(SHORTEST_FIRST).chunked(columns)
+        face.words.take(cells).sortedBy { it.lengthRank }.chunked(columns)
             .forEach { line ->
                 // The rows carry the slack in their own weight rather than in spacers
                 // between them: a Column of rows and spacers alike would spend the child

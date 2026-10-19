@@ -16,6 +16,8 @@ struct WidgetSnapshot: Decodable {
         var emoji: String?
         var article: String?
         var gender: SnapshotGender?
+        /// Where the row lands among the ones a tile shows: a window is laid out by ascending rank.
+        var lengthRank: Int
     }
 
     /// One active card schedule — the render-time due-count input.
@@ -44,7 +46,7 @@ struct WidgetSnapshot: Decodable {
     }
 
     /// The one version this build reads (kern `WidgetSnapshotBuilder.SCHEMA_VERSION`).
-    static let currentSchemaVersion = 11
+    static let currentSchemaVersion = 12
 
     var schemaVersion: Int
     /// The language the widget's chrome is written in, the one the app's own chrome follows.
@@ -59,6 +61,9 @@ struct WidgetSnapshot: Decodable {
     var activityByDay: [String: [Bar]]
     /// The height the strip's row reserves, its tallest bar's (kern `ActivityScale.widget`).
     var activityHeight: Double
+    /// Each strip bar's width and the gutter between two (kern `WidgetStripColumns`).
+    var activityBarWidth: Double
+    var activityGutter: Double
     /// The streak for each day from the snapshot's own through the first with no run left
     /// (kern `streakTimeline`), keyed by ISO `yyyy-MM-dd`.
     var streakByDay: [String: StreakDay]

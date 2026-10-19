@@ -12,7 +12,7 @@ import net.spross.kern.trainer.Drill
  * The atlas drill: name the country, the people, the language — and say which is spoken
  * where. Typed answers only, in whichever direction the page was started with.
  *
- * Every rule is kern's `CountryDrill`, reached through `CountryDrillFlow`; every pixel is
+ * Every rule is kern's `CountryDrill`, reached through `newCountryDrill`; every pixel is
  * [TypedDrillScreen], the screen this shares with the dates drill. What is left here is
  * the three things that tell the two apart.
  */

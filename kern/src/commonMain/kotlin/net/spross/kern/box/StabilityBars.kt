@@ -16,10 +16,10 @@ package net.spross.kern.box
  * answer says otherwise — where Easy, which only a fast learner-reported Knew
  * can earn ([net.spross.kern.session.SelfGrading]), clears the bar on the spot.
  *
- * A separate, faster `settledStability` of 2.0 used to gate presentation support
- * on its own. It sat BELOW S0(Good), so a single Good — the emoji-lucky case
- * included — withdrew the emoji from the very next review, which is the first
- * TYPED one and the first that can actually catch the guess.
+ * This bar alone gates presentation support.
+ * A separate, faster bar below S0(Good) would let a single Good — the emoji-lucky case included —
+ * withdraw the emoji from the very next review,
+ * which is the first TYPED one and the first that can actually catch the guess.
  */
 const val GROWING_STABILITY: Double = 6.0
 

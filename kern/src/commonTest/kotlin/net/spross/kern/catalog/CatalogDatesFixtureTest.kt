@@ -10,8 +10,8 @@ import kotlin.test.assertTrue
 /** Calendar parsing and the dates join over the synthetic [DatesFixture]. */
 class CatalogDatesFixtureTest {
     private val catalog = DatesFixture.catalog()
-    private val de = catalog.dateNames("de") ?: throw AssertionError("no de calendar")
-    private val uk = catalog.dateNames("uk") ?: throw AssertionError("no uk calendar")
+    private val de = catalog.dateCalendars["de"] ?: throw AssertionError("no de calendar")
+    private val uk = catalog.dateCalendars["uk"] ?: throw AssertionError("no uk calendar")
 
     private fun rejects(build: () -> Catalog): String =
         assertFailsWith<CatalogFormatException>(block = build).message.orEmpty()
@@ -22,8 +22,6 @@ class CatalogDatesFixtureTest {
     fun filePresenceIsTheRegistry() {
         assertEquals("de", de.language)
         assertEquals(listOf("de", "pt", "uk"), catalog.dateCalendars.keys.sorted())
-        assertNull(catalog.dateNames("en"))
-        assertNull(catalog.dateNames("sw"))
     }
 
     /** A calendar joins no card, so editing one must never restamp a running box. */
@@ -53,7 +51,7 @@ class CatalogDatesFixtureTest {
 
     @Test
     fun variantsFollowTheRealizationSchema() {
-        val pt = assertNotNull(catalog.dateNames("pt"))
+        val pt = assertNotNull(catalog.dateCalendars["pt"])
         assertEquals(listOf("segunda"), pt.weekdays.first().accepts)
         assertEquals(listOf("sabado"), pt.weekdays[5].accepts)
     }
@@ -65,7 +63,7 @@ class CatalogDatesFixtureTest {
      */
     @Test
     fun dateNotesAreTheCalendarsOwnAndFallBackToEnglish() {
-        val pt = assertNotNull(catalog.dateNames("pt"))
+        val pt = assertNotNull(catalog.dateCalendars["pt"])
         assertEquals(setOf("de"), pt.notes.keys)
         assertEquals(2, catalog.dateNotes("pt", "de").size)
         assertTrue(catalog.dateNotes("pt", "en").isEmpty(), "no English authored, no fallback to find")

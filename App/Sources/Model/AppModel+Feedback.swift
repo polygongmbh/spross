@@ -25,6 +25,13 @@ extension AppModel {
         }
     }
 
+    /// The answer a report on this card travels with: what was typed, else what the report
+    /// on file already rode in with (`Feedback.carriedInput`).
+    func carriedReportInput(cardID: String, typed: String) -> String {
+        guard let box else { return typed }
+        return Feedback.shared.carriedInput(state: box, cardId: cardID, typed: typed) ?? ""
+    }
+
     /// Withdraw a report; the card's schedule is untouched either way.
     func dismissReportedIssue(cardID: String) {
         mutate { $0 = BoxEngine.shared.dismissReportedIssue(state: $0, cardId: cardID) }
@@ -42,19 +49,6 @@ extension AppModel {
     var catalogReports: [ReportedIssue] {
         guard let box else { return [] }
         return Feedback.shared.catalogIssues(state: box)
-    }
-
-    /// The half a suggestion does carry, whichever language it is in. A suggestion
-    /// joins nothing and is never scheduled (`OwnWords.cards`), so the box holds no
-    /// card to read it off, and the one text it has is the one to show.
-    func suggestionText(_ word: OwnWord) -> String {
-        word.languages.first.flatMap { word.texts[$0] } ?? ""
-    }
-
-    /// A pair this profile cannot study, read in the order kern names its languages —
-    /// both halves the learner wrote, neither of them the known or the learning side here.
-    func otherPairText(_ word: OwnWord) -> String {
-        word.languages.compactMap { word.texts[$0] }.joined(separator: " → ")
     }
 
     /// The flags of the languages it is written in that this pair cannot read
@@ -119,8 +113,8 @@ extension AppModel {
     /// Stamped rather than mutated: `mutate` re-walks the whole box for the statistics,
     /// the trees and the activity strip and re-encodes it for the watch and the widget,
     /// and the stamp feeds none of them — it is read by this file alone. Paying for all
-    /// of that is what made the copy button hang, and what left the mail button's share
-    /// of it landing as the app came back.
+    /// of that would hang the copy button and leave the mail button's share of it
+    /// landing as the app came back.
     func markExported(scope: FeedbackScope) {
         stamp { BoxEngine.shared.markExported(state: $0, nowEpochMillis: Date().epochMillis,
                                               scope: scope) }

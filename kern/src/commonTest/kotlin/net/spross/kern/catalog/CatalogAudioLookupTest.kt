@@ -180,6 +180,16 @@ class CatalogAudioLookupTest {
         assertEquals("Жж – ukrainian.ogg", letters.files.first { it.label == "ж" }.source)
     }
 
+    /** A credit links its file's Commons page, the name percent-encoded whatever script it is in. */
+    @Test
+    fun aCreditLinksItsFilesCommonsPage() {
+        val letter = catalog.audioCredits().flatMap { it.files }.first { it.label == "ж" }
+        assertEquals(
+            "https://commons.wikimedia.org/wiki/File:%D0%96%D0%B6%20%E2%80%93%20ukrainian.ogg",
+            letter.pageUrl,
+        )
+    }
+
     // -- fingerprint exemption ---------------------------------------------------------
 
     @Test

@@ -10,26 +10,24 @@ import UIKit
 // The sounds are bundled files rather than Apple's built-in UISounds ids
 // (1053/1054/1057 and friends). Those ids carry the system alert haptic with
 // them on Taptic iPhones — it follows Sounds & Haptics › Haptics and there is
-// no per-call opt-out, so a correct answer buzzed even though nothing here
-// asked it to. Custom files never do that, which puts every vibration in this
-// file back under our control.
+// no per-call opt-out, so a correct answer would buzz even though nothing here
+// asked it to. Custom files never do that, which keeps every vibration in this
+// file under our control.
 //
 // They are played by `AVAudioPlayer` on the app's OWN audio session, not by
 // AudioToolbox's system-sound server. That server is a SEPARATE VOLUME DOMAIN:
 // on iOS it follows the ringer, while everything an app plays for itself
-// follows media. Nothing noticed while the app only ever chimed — the ringer
-// was the only slider in play — but since the words got a voice the two are
-// heard against each other, and a chime on the ringer sits below a word on
-// media by whatever gap the two sliders happen to hold. At a low ringer it is
-// not quiet, it is gone, and no amount of level in `scripts/sounds.py` reaches
-// it. One domain for both is what makes those levels mean anything.
+// follows media. A chime and a word are heard against each other, and a chime
+// on the ringer would sit below a word on media by whatever gap the two sliders
+// happen to hold: at a low ringer it is not quiet, it is gone, and no amount of
+// level in `scripts/sounds.py` reaches it. One domain for both is what makes
+// those levels mean anything.
 //
 // The session is the app's own, never activated by hand, and the chimes play
 // under the STANDING category (`AudioSession`) exactly as autoplay does: they
-// follow the ring/silent switch the way the system-sound route used to
-// guarantee, and they follow a hand-switched read-aloud past it. Only a
-// deliberate tap on a word is louder than the phone — a chime never asks for
-// that, because nobody ever asked for a chime.
+// follow the ring/silent switch, and they follow a hand-switched read-aloud
+// past it. Only a deliberate tap on a word is louder than the phone — a chime
+// never asks for that, because nobody ever asked for a chime.
 
 @MainActor
 enum Sound {

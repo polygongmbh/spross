@@ -4,7 +4,8 @@ Neighbors: the engine contract `../README.md`, what the watch and widgets draw `
 
 - One document per TARGET: `box-<target>.json` (schema version 2, `store/StoreDocument.kt`)
   in the App Group `project.yml` names (`APP_GROUP_ID`). Only one language is ever active, so a save encodes and
-  writes that one alone; each file carries its own `schemaVersion` beside its fields.
+  writes that one alone; each file carries its own `schemaVersion` beside its fields,
+  and one declaring any other version refuses to load like a corrupt file.
   `source` names the known language the box was last studied under — the target names the
   file and this names the other half of the pair, so a document that travels re-opens the
   pair its progress was made in rather than whichever one the receiving device is set to;
@@ -21,19 +22,10 @@ Neighbors: the engine contract `../README.md`, what the watch and widgets draw `
   carry the rest.
   Timestamps are epoch seconds, and the engine floors every stamp it mints (`box/Time.kt`,
   `stampOf`), so a live box equals its own reloaded self.
-  `BoxState.rekeyingPrefixedVerbs()` still runs on load (`BoxEngine.open`), a temporary migration (delete at 7.0+)
-  moving progress stored under a bare verb slug onto the `to-` prefixed card the 2026-09-03
-  ruling renamed it to.
   kotlinx.serialization; the facade encodes with **sorted keys** (deterministic bytes).
   All `@Serializable` types are `internal`; the public surface is a narrow facade
-  (`encode` / `decode` / `load`) — keeps the ObjC header small (probe showed serialization
+  (`encode` / `decode`) — keeps the ObjC header small (probe showed serialization
   internals otherwise flood it).
-- **A v1 document converts in place** (`store/LegacyStore.kt`, `store/LegacyDocument.kt`):
-  `StoreCodec.load` routes on the version the file declares, replays a v1 box's logs, keeps its
-  stored `due`, and lifts the leech-era suspensions the removed 2026-09-01 rule left behind (by
-  the lapse count v1 wrote, not a replayed one). The file keeps its NAME, so a conversion is a
-  rewrite and never a move: the platform writes back whatever `load` reports as converted, and
-  an interrupted migration simply runs again. Both files go once no device can hold a v1 box.
 - **The backup** (`store/BoxBackup.kt`) — the settings' export and import file — is every
   language in ONE envelope under a single `schemaVersion`
   — `{"schemaVersion": 2, "boxes": {<target>: …}}`, sorted keys.
@@ -65,6 +57,8 @@ Neighbors: the engine contract `../README.md`, what the watch and widgets draw `
   decoding `health` into its own Swift `StreakHealth` off the serialized case name;
   each day also carries the flame's grade for that health (`flameOpacity`, `flameSaturation`),
   which the extension cannot ask the Kotlin enum for.
+  Each entry's `lengthRank` is where it lands among the rows a tile shows, so a tile sorts its window by it;
+  `activityBarWidth` and `activityGutter` carry the strip's fixed columns (`design/WidgetStripColumns`).
 - **WatchSnapshot** (`WatchSnapshotBuilder`): one entry per CARD with BOTH sides pre-resolved,
   plus `chromeLanguage` and `schemaVersion`;
   the watch refuses any other version whole and waits for the phone's next push, as the widget does.

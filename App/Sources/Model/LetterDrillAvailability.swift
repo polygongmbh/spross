@@ -23,7 +23,6 @@ struct LetterDrillAvailability {
     }
 
     var drillAvailable: Bool { report.drillAvailable }
-    var dictationAvailable: Bool { report.dictationAvailable }
     /// The format a run would OPEN on — kern's step from the words the learner
     /// already holds, above what earlier runs climbed off clean.
     func openingFormat(_ cleared: Set<KotlinInt>) -> LetterFormat { report.openingFormat(cleared: cleared) }

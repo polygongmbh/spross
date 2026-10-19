@@ -26,7 +26,6 @@ class BoxStatisticsTests {
     fun streakSingleGapForgiven() {
         val stats = BoxEngine.statistics(statsState(listOf(1, 2, 4)), Box.millis(2026, 7, 4), Box.TZ)
         assertEquals(3, stats.streak)
-        assertEquals(3, stats.longestStreak, "the record bridges a forgiven day like the walk back")
     }
 
     @Test
@@ -41,25 +40,15 @@ class BoxStatisticsTests {
         val days = listOf(1, 2, 3, 4, 5, 7, 8, 9, 11, 12)
         val stats = BoxEngine.statistics(statsState(days), Box.millis(2026, 7, 12), Box.TZ)
         assertEquals(10, stats.streak)
-        assertEquals(10, stats.longestStreak)
     }
 
     @Test
     fun streakTodayInProgressIsNoMissAtAll() {
         val stats = BoxEngine.statistics(statsState(listOf(2, 3, 4)), Box.millis(2026, 7, 5), Box.TZ)
         assertEquals(3, stats.streak)
-        assertEquals(3, stats.longestStreak)
         // An empty today does not pair with an empty yesterday — the day isn't over.
         assertEquals(3, BoxEngine.statistics(statsState(listOf(1, 2, 3)), Box.millis(2026, 7, 5), Box.TZ).streak)
         assertEquals(0, BoxEngine.statistics(statsState(emptyList()), now, Box.TZ).streak)
-    }
-
-    @Test
-    fun longestStreakSurvivesTheRunThatBrokeIt() {
-        // 1,2,3 · gap · gap · 6,7 — the early run is the record, today's is 2 long.
-        val stats = BoxEngine.statistics(statsState(listOf(1, 2, 3, 6, 7)), Box.millis(2026, 7, 7), Box.TZ)
-        assertEquals(2, stats.streak)
-        assertEquals(3, stats.longestStreak)
     }
 
     @Test
@@ -125,7 +114,6 @@ class BoxStatisticsTests {
             otherLanguagesAnswerDays = siblings,
         )
         assertEquals(4, combined.streak)
-        assertEquals(4, combined.longestStreak)
     }
 
     @Test
@@ -157,7 +145,6 @@ class BoxStatisticsTests {
         val stats = BoxEngine.statistics(state, now, Box.TZ)
         assertEquals(2, stats.activeCount)
         assertEquals(1, stats.dueCount)
-        assertEquals(1, stats.suspendedCount)
     }
 
     @Test

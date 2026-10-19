@@ -11,8 +11,7 @@ import net.spross.kern.model.Rating
 /**
  * Rounds the learner asks for — the extra round off a finished day, and each endless refill.
  * Both are [SessionComposer.composeRound]: user agency decides WHETHER a round opens, never
- * what goes in it. They used to have a composer each, which is the whole reason this file
- * exists — one came back all first sights, the other all cards dragged forward.
+ * what goes in it, so neither comes back all first sights or all cards dragged forward.
  */
 class ExtraSessionTests {
     private val day0 = Box.day1

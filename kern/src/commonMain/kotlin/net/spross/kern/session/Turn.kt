@@ -261,24 +261,11 @@ sealed class TurnEffect {
     /** Terminal: hand the rating to the run ([SessionIntent.Answer]). The turn is over. */
     data class Answer(val rating: Rating) : TurnEffect()
 
-    /**
-     * Arm (or re-arm) the beat before the turn moves on.
-     * Where a screen reader runs a timed change is hostile — it truncates the announcement and
-     * moves the page under the user — so the platform skips the timer and renders the explicit
-     * button instead, which books the same rating through [TurnIntent.ConfirmPending].
-     */
-    data class ArmAdvance(val beat: AdvanceBeat) : TurnEffect()
-
-    data object CancelAdvance : TurnEffect()
+    /** The verdict's cue around the turn — the beat, the sound, the keyboard. */
+    data class Cued(val cue: Cue) : TurnEffect()
 
     /** Put [text] in the field the turn owns — the CONTENT is the rule, the field is not. */
     data class PrimeField(val text: String) : TurnEffect()
-
-    /** Sound the verdict. */
-    data class Tone(val kind: ToneKind) : TurnEffect()
-
-    /** A pause that waits for a tap must give the keyboard back, or it covers the button. */
-    data object ReleaseFocus : TurnEffect()
 }
 
 /** The closed result of one intent: the next state plus what it asks for. */

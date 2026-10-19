@@ -1,20 +1,17 @@
 import SprossKern
 import SwiftUI
-import SprossKern
 
 // MARK: - SessionScaffold
 //
 // Session container chrome: close button + session progress bar on top,
 // arbitrary content below. Pure chrome — knows nothing about cards.
 
-/// One answered item in a session/drill, for the segmented progress bar.
-enum SessionOutcome: Equatable {
-    case right, tough, wrong
-
+/// One answered item's segment hue — which answer reads as which outcome is kern's (`AnswerOutcome`).
+extension AnswerOutcome {
     var color: Color {
         switch self {
         case .right: return Theme.colors.success
-        case .tough: return Theme.colors.amber
+        case .almost: return Theme.colors.amber
         case .wrong: return Theme.colors.wrong
         }
     }
@@ -27,7 +24,7 @@ struct SessionScaffold<Content: View>: View {
     /// Answered items in order; when non-empty the bar renders one colored
     /// segment per answer (green right / amber tough / brick wrong) with
     /// the unanswered remainder neutral.
-    var outcomes: [SessionOutcome] = []
+    var outcomes: [AnswerOutcome] = []
     /// The figures beside the bar; nil where the bar alone says where the round stands.
     var counter: String?
     /// Opt-in: only runs that read words aloud show the switch for it.
@@ -52,7 +49,7 @@ struct SessionScaffold<Content: View>: View {
             return Text("session.cardPosition \(position.formatted()) \(total.formatted())")
         }
         let right = outcomes.filter { $0 == .right }.count
-        let tough = outcomes.filter { $0 == .tough }.count
+        let tough = outcomes.filter { $0 == .almost }.count
         let wrong = outcomes.filter { $0 == .wrong }.count
         return Text("a11y.count.sessionTally \(right.formatted()) \(tough.formatted()) \(wrong.formatted())")
     }
@@ -173,7 +170,7 @@ extension SessionScaffold {
     static func running(endless: Bool,
                         position: Int = 1,
                         total: Int = 1,
-                        outcomes: [SessionOutcome],
+                        outcomes: [AnswerOutcome],
                         counter: String? = nil,
                         showsMuteButton: Bool = false,
                         speaksPastMute: Bool = false,

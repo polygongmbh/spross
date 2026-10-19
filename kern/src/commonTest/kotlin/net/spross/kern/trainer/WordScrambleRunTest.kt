@@ -12,6 +12,7 @@ import net.spross.kern.model.ClosingNote
 import net.spross.kern.session.AdvanceBeat
 import net.spross.kern.session.AnswerControls
 import net.spross.kern.session.AnswerOutcome
+import net.spross.kern.session.Cue
 import net.spross.kern.session.Match
 import net.spross.kern.session.TurnFeedback
 
@@ -64,7 +65,7 @@ class WordScrambleRunTest {
         val state = open()
         val typed = reduce(state, WordScrambleIntent.InputChanged(state.task!!.display))
         assertEquals(TurnFeedback.Correct, typed.state.feedback)
-        assertTrue(typed.effects.any { it == DrillEffect.ArmAdvance(AdvanceBeat.Live) })
+        assertTrue(typed.effects.any { it == DrillEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live)) })
     }
 
     /**
@@ -179,19 +180,12 @@ class WordScrambleRunTest {
         }
     }
 
-    /** Closing books a pending answer exactly as the tap would, and an untouched run reports nothing. */
+    /** Closing books a pending answer as the tap would ([LadderStanding.closing]). */
     @Test
-    fun closingBooksWhatWeiterWouldAndNothingMore() {
-        assertNull(WordScrambleRun.close(open()).summary)
-
+    fun closingBooksAPendingAnswer() {
         val state = open()
         val accepted = reduce(state, WordScrambleIntent.Submit(state.task!!.display)).state
-        val closed = WordScrambleRun.close(accepted)
-        val summary = assertNotNull(closed.summary)
-        assertEquals(1, summary.done)
-        assertEquals(1, summary.bestAnswerStreak)
-        assertFalse(summary.newRecord, "the drill keeps no streak record")
-        assertTrue(closed.state.finished)
+        assertEquals(1, assertNotNull(WordScrambleRun.close(accepted).summary).done)
     }
 
     // MARK: - The ladder

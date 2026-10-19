@@ -41,6 +41,7 @@ import net.spross.kern.model.FormDimension
 import net.spross.kern.model.FormTag
 import net.spross.kern.model.Language
 import net.spross.kern.model.Realization
+import net.spross.kern.model.article
 import net.spross.kern.model.articledForm
 
 /**
@@ -237,7 +238,7 @@ fun localizedTarget(text: String, lang: Language): AnnotatedString =
  * Genderless targets render exactly the text and nothing else.
  */
 fun ThemeColors.articleColoredText(realization: Realization): AnnotatedString =
-    articleColoredText(CardDisplay.article(realization), realization.text, realization.lang)
+    articleColoredText(realization.article, realization.text, realization.lang)
 
 /** [text] behind [article] in its gender's tint; no article renders the text alone. */
 fun ThemeColors.articleColoredText(article: String?, text: String, lang: Language?): AnnotatedString {

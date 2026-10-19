@@ -3,9 +3,13 @@ package net.spross.kern.store
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import net.spross.kern.box.Box
 import net.spross.kern.box.BoxState
+import net.spross.kern.box.BoxStatistics
+import net.spross.kern.box.StageCounts
+import net.spross.kern.box.StreakHealth
 import net.spross.kern.model.JoinStamp
 import net.spross.kern.model.Rating
 
@@ -59,18 +63,6 @@ class BoxBackupTests {
         assertTrue(json.startsWith("""{"boxes":{"""), json)
     }
 
-    @Test
-    fun aRestoreReplacesWhatItCarriesAndKeepsTheRest() {
-        val sw = swahili()
-        val held = boxes.with(sw)
-        val imported = BoxBackup.decode(BoxBackup.encode(StoredBoxes.EMPTY.with(state)))
-
-        val restored = held.restoring(imported)
-        assertEquals(setOf("uk", "sw"), restored.boxes.keys)
-        assertEquals(state.scheduling, restored.boxes.getValue("uk").scheduling)
-        assertEquals(sw.scheduling, restored.boxes.getValue("sw").scheduling)
-    }
-
     /** A language only ever opened would land as an emptiness over a real box. */
     @Test
     fun anUntouchedBoxIsNotCarried() {
@@ -100,5 +92,21 @@ class BoxBackupTests {
     fun aTargetThatIsNoLanguageCodeIsRefused() {
         val shouty = """{"boxes":{"UK":{"cards":{}}},"schemaVersion":2}"""
         assertFailsWith<StoreFormatException> { BoxBackup.decode(shouty) }
+    }
+
+    /** The file is named for what it carries and the learner's own day, not the UTC one. */
+    @Test
+    fun anExportIsNamedForWhatItCarriesAndTheLocalDay() {
+        val laEvening = 1_791_774_000_000L // 2026-10-12T03:00Z, still the 11th in Los Angeles
+        assertEquals("Spross-sw-2026-10-11", BoxBackup.fileName("sw", laEvening, "America/Los_Angeles"))
+        assertEquals("Spross-2026-10-12", BoxBackup.fileName(null, laEvening, "UTC"))
+    }
+
+    /** A box with a settled word offers its export before a reset; one still growing goes straight to the question. */
+    @Test
+    fun aResetOffersTheExportOnceAWordHasSettled() {
+        fun stats(stages: StageCounts) = BoxStatistics(stages, 0, 0, StreakHealth.NoRun, emptyList())
+        assertTrue(BoxBackup.offeredBeforeReset(stats(StageCounts(growing = 5, settled = 1))))
+        assertFalse(BoxBackup.offeredBeforeReset(stats(StageCounts(fresh = 2, growing = 5))))
     }
 }

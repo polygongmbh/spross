@@ -31,10 +31,10 @@ object LetterDrill {
     const val CHOICE_COUNT = 4
 
     /**
-     * Three clean wins a Sprosse, as in the atlas ([CountryDrill.WINS_TO_ADVANCE]): each Sprosse
-     * asks from the whole alphabet, so a climb should see more than a couple of its rows.
+     * Three clean wins a Sprosse ([DrillRamp.USUAL_WINS]): each Sprosse asks from the whole
+     * alphabet, so a climb should see more than a couple of its rows.
      */
-    const val WINS_TO_ADVANCE = 3
+    const val WINS_TO_ADVANCE = DrillRamp.USUAL_WINS
 
     /** The same floor on the gap word's arrived-first preference; below it, the whole pool. */
     private const val MIN_ARRIVED_CANDIDATES = 3

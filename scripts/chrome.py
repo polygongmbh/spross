@@ -2,10 +2,8 @@
 """Write the Android chrome tables from the iOS String Catalog.
 
 One surface, one sentence: `Localizable.xcstrings` holds every chrome string the
-product says, and `ChromeDe.kt`/`ChromeEn.kt` are generated from it. The two tables
-used to be kept in step by hand and had drifted on some fifty strings — the same
-button reading "Sprecher & Lizenzen" on one phone and "Impressum & Lizenzen" on the
-other — which is exactly what a generator cannot let happen.
+product says, and `ChromeDe.kt`/`ChromeEn.kt` are generated from it, so the same
+button cannot read "Sprecher & Lizenzen" on one phone and "Impressum & Lizenzen" on the other.
 
 No flag reports drift and exits non-zero on it; --fix rewrites both tables.
 
@@ -118,6 +116,9 @@ IOS_ONLY = {
     # The same control, named by another key on Android: the session ✕ reads
     # `common.done`.
     'a11y.action.endSession',
+    # iOS's LoadFailure names two failures Android's load reports as the reason alone
+    # (`error.contentUnavailable`).
+    'error.unknownProfile %@ %@', 'error.resetFailed %@',
 }
 # Surfaces iOS ships that Android owes. A key leaves this set by being claimed above,
 # which is what finishing the Android side looks like — and empty is what caught up looks

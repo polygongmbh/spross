@@ -49,9 +49,8 @@ if printf '%s\n' "$STAGED" | grep -qx "$GLANCE"; then
   rm -f "$GLANCE_BYTES"
 fi
 
-# The content catalog's layout is generated too, and its rule lived only in CLAUDE.md —
-# where 78% of catalog commits shipped off-layout anyway. Recorded audio carries no
-# layout, so a commit that only moves mp3s is not held up for it.
+# The content catalog's layout is generated too, so a staged catalog edit is held to it here.
+# Recorded audio carries no layout, so a commit that only moves mp3s is not held up for it.
 if printf '%s\n' "$STAGED" | grep -E '^catalog/' | grep -qv '^catalog/audio/'; then
   if ! python3 scripts/catalog-format.py --check >/dev/null 2>&1; then
     echo "error: catalog/ is staged off its canonical layout." >&2
@@ -80,9 +79,7 @@ if printf '%s\n' "$STAGED" | grep -qE '^catalog/audio/'; then
 fi
 
 # The card faces are one composition on two phones, and nothing but a screenshot of both
-# says so — which is why nine of these divergences shipped and were corrected again, eight
-# of them across a session boundary. The check is text-only, so it holds on the machines
-# with no Xcode too.
+# would say so — this check reads the text instead, so it holds on the machines with no Xcode too.
 if printf '%s\n' "$STAGED" | grep -qE '^(App/Sources/(Design|Screens)|android/src/main/kotlin/net/spross/app/ui)/'; then
   if ! python3 scripts/card-parity.py --check; then
     echo "error: a card states a number the design tokens already name." >&2
@@ -93,7 +90,7 @@ if printf '%s\n' "$STAGED" | grep -qE '^(App/Sources/(Design|Screens)|android/sr
 fi
 
 # A turn machine written once per platform is an ABSENCE — no search returns the kern run
-# that was never written, so only this check reports it, and only while the pair is new.
+# that was never written, so only this check reports it.
 if printf '%s\n' "$STAGED" | grep -qE '^(kern/src/commonMain|App/Sources|android/src/main)/'; then
   if ! python3 scripts/arch-status.py --check; then
     echo "       Give the machine a run in kern, or fold the platform half into an existing one." >&2

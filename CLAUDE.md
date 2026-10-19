@@ -22,6 +22,7 @@ scripts/bootstrap.sh         # fresh clone: JDK check + first framework + xcodeg
 scripts/strings.py --fix     # run after ANY String Catalog edit — Xcode's formatting, then the Android tables
 scripts/catalog-format.py --fix   # run after ANY catalog/ edit — one line per entry that fits (--check to verify)
 scripts/audio-coverage.py --check # after ANY catalog/audio/ edit — asks git what ships; the pre-commit hook runs it on staged audio
+scripts/arch-status.py --check    # which turn machines have a kern home; the pre-commit hook runs it on staged kern/app sources
 scripts/release.sh <version>      # cut a release: changelog heading, version, gates, tag, push (docs/distribution.md)
 ```
 
@@ -63,7 +64,8 @@ The emulator needs a GPU and virtualization, so it is local-only too — cloud s
 
 ## Code standards
 
-- Max ~300 lines per file; split at natural boundaries. Modularity over bloat.
+- Past ~300 lines a file is due a look for a natural seam, not a cut to a count:
+  split where a cohesive topic leaves, keep a file whole when none does. Modularity over bloat.
 - Comments only for non-obvious constraints;
   side-effectful effects get a one-line `// why:` (trigger + observable result).
 - Engine APIs name the rule, never the rendering: no screen positions in kern types, bar shared layout data (`net.spross.kern.design`).

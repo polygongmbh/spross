@@ -37,7 +37,8 @@ extension NumbersRunView {
     }
 
     private func scoreLine(timed: [Text]) -> some View {
-        DrillStreakLine(sprosse: sprosseText, timed: timed, answerStreak: Int(run.answerStreak))
+        // why: a timed run is scored, not streaked — its line holds the clock and the score instead.
+        DrillStreakLine(sprosse: sprosseText, timed: timed, answerStreak: run.timed ? nil : Int(run.answerStreak))
     }
 
     /// The Sprosse part of the score line, worded as kern's `sprosseLine` says.

@@ -291,8 +291,8 @@ class AnswerNormalizerTests {
 
     /**
      * The peel reads a MISTYPED ARTICLE, so a language listing none never peels: sw
-     * "muda nini" for "wann" used to lose its first word and come back as a spelling
-     * slip of "lini" — while "nini" is a catalog word of its own, one row above.
+     * "muda nini" for "wann" keeps its first word rather than coming back as a spelling
+     * slip of "lini" — "nini" is a catalog word of its own, one row above.
      */
     @Test
     fun aLanguageWithoutArticlesNeverPeelsALeadingWord() {
@@ -306,7 +306,7 @@ class AnswerNormalizerTests {
     /**
      * The rescue is a vocab-review rule. A drill grades every word, because in a
      * clock reading every word names WHICH time it is — and the rescue recurses,
-     * peeling one word per level, so a reading used to decay onto other times'
+     * peeling one word per level, so a reading would decay onto other times'
      * answers ("fünf vor halb sieben" → "halb sieben", 18:25 accepted at 18:30).
      */
     @Test

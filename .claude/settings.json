@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ \"${CLAUDE_CODE_REMOTE:-}\" = true ] && exit 0; jq -r '[.tool_name, (.tool_response.filePath // .tool_input.file_path)] | @tsv' | { read -r tool f; case \"$f\" in *project.yml) ;; *.swift) [ \"$tool\" = Write ] || exit 0 ;; *) exit 0 ;; esac; cd /Users/tj/IT/duolernen/app && xcodegen generate; } 2>&1",
+            "command": "[ \"${CLAUDE_CODE_REMOTE:-}\" = true ] && exit 0; jq -r '[.tool_name, (.tool_response.filePath // .tool_input.file_path)] | @tsv' | { read -r tool f; case \"$f\" in *project.yml) ;; *.swift) [ \"$tool\" = Write ] || exit 0 ;; *) exit 0 ;; esac; r=$(git rev-parse --show-toplevel) && cd \"$r\" && scripts/gen.sh; } 2>&1",
             "statusMessage": "Regenerating Xcode project (sources or project.yml changed)..."
           }
         ]

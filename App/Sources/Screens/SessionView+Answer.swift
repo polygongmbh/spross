@@ -16,7 +16,8 @@ extension SessionView {
                    correctionVoice: .init(pronounce: { correctionSpeaker($0) },
                                           isPlaying: { correctionIsPlaying($0) }),
                    nextLocale: model.targetChromeLocale,
-                   caption: writing ? (model.coachActive ? SessionCoach.writeLine : nil) : gradeCaption)
+                   caption: Coaching.shared.controlsLine(coaching: model.coachActive, writing: writing)
+                       .map(SessionCoach.key))
     }
 
     /// The write-out step stands: its field, not the answer's, is the one on screen.
@@ -34,7 +35,7 @@ extension SessionView {
             // why: giving up on a retype ends the card — that field already is the one
             // write-out the word gets, so nothing hands it a second.
             giveUp: { dispatch(writing ? TurnIntent.SkipCopy.shared : TurnIntent.GiveUp.shared) },
-            selfGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0.verdict)) },
+            selfGrade: { dispatch(TurnIntent.SelfGrade(verdict: $0)) },
             cantListen: {
                 // why: the word in the air belongs to a question that is about to stand
                 // in writing — nothing may keep playing over the answer to "I can't listen".
@@ -52,7 +53,7 @@ extension SessionView {
             // why: the retype already stands — Enter only skips the beat the
             // timer is waiting out, it does not re-grade it.
             dispatch(TurnIntent.ConfirmPending.shared)
-        } else if case .revealed = feedback {
+        } else if feedback is TurnFeedbackRevealed {
             // why: a hardware keyboard still needs a way to give up
             // without finishing the retype.
             dispatch(TurnIntent.GiveUp.shared)

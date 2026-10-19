@@ -4,6 +4,7 @@ import net.spross.app.audio.Pronouncer
 import net.spross.kern.catalog.PronounceTrigger
 import net.spross.kern.catalog.Pronunciation
 import net.spross.kern.catalog.pronunciation
+import net.spross.kern.model.article
 import net.spross.kern.model.shownArticle
 import net.spross.kern.session.Saying
 
@@ -39,12 +40,6 @@ fun AppModel.sayOnTap(saying: Saying): (() -> Unit)? {
     return { pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, saying.article) }
 }
 
-/** Says [form] of the card in play on a tap, which is a request and passes both mutes. */
-fun AppModel.pronounceTarget(form: String) {
-    val pronunciation = pronunciationOf(form) ?: return
-    pronouncer.pronounce(pronunciation, PronounceTrigger.Tap, spokenArticle(form))
-}
-
 /**
  * Tap-to-replay for [form], null where the device can neither play nor speak it —
  * a word that cannot be heard grows no gesture that does nothing. The hit area on
@@ -69,7 +64,7 @@ fun AppModel.pronounceAction(form: String): (() -> Unit)? {
  */
 private fun AppModel.spokenArticle(form: String): String? {
     val target = sessionUi?.card?.target ?: return null
-    return shownArticle(CardDisplay.article(target), form, target.text)
+    return shownArticle(target.article, form, target.text)
 }
 
 private fun AppModel.pronunciationOf(form: String): Pronunciation? {

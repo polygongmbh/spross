@@ -52,7 +52,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
     val flow = rememberRun(model, page.back, key = reverse to fast) {
         page.open(hooks.tone, hooks.releaseFocus)
     } ?: return
-    val run = flow.view()
+    val run = flow.progress
     val store = model.trainer.store
     val key = page.key
 
@@ -74,7 +74,7 @@ fun TypedDrillScreen(model: AppModel, reverse: Boolean, fast: Boolean, page: Typ
         leave = leave,
         outcomes = run.outcomes,
         tally = run.tally,
-        sprosse = chrome.trainerSprosse.format(run.sprosse),
+        sprosse = chrome.trainerSprosse.format(flow.sprosse),
         answerStreak = run.answerStreak,
         // why: the run says its answers (and, reversed, its prompts) out loud, so it
         // owes the learner a way to silence them here.

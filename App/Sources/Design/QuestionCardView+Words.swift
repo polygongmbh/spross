@@ -18,14 +18,6 @@ extension QuestionCardView {
         }
     }
 
-    func promptLines(_ form: Question.Form) -> Int {
-        switch form {
-        case .sentence: return 4
-        case .name: return 3
-        default: return 1
-        }
-    }
-
     /// A reveal under a sentence is set no larger than a line of it.
     var drillAnswerFont: Font {
         question.prompt.form == .sentence || question.answer.form == .sentence

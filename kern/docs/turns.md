@@ -14,12 +14,11 @@ and text reaches a machine only inside an intent — never as state.
   It is opened with a card, its role, its produce prompt, the prompted form,
   whether this is the first exposure and whether the word has settled;
   it answers with the next state plus `TurnEffect`s —
-  `Answer` (the rating leaves for the run), `ArmAdvance`/`CancelAdvance`,
-  `PrimeField`, `Tone` and `ReleaseFocus`.
+  `Answer` (the rating leaves for the run), `PrimeField`,
+  and `Cued` with the `Cue` a drill's `DrillEffect.Cued` carries too —
+  `ArmAdvance`/`CancelAdvance`, `Tone` and `ReleaseFocus` — so each app carries a cue out in one place.
   The one text it holds is the answer it takes out of the field itself (`rejectedAnswer`, below).
-  Every rule about what that text is worth is here,
-  because it lived twice before and drifted both ways —
-  a pickable Easy on one platform, no retype after a miss on the other.
+  Every rule about what that text is worth is here.
   - **What each branch earns**: a clean answer is `Match.Exact.producedRating()`;
     a typo and a borrowed meaning are `TurnFeedback.Almost`, holding the rating grading decided
     until the owed form has been seen; finishing the retype after a miss is
@@ -125,8 +124,13 @@ and text reaches a machine only inside an intent — never as state.
   `CountryDrillRun` the atlas, `DateDrillRun` the calendar,
   `WordScrambleRun` the spelling scramble, `SentenceScrambleRun` the word-order one
   and `OppositesRun` the opposites drill.
-  Each keeps its own CONCRETE draw type: they cross to Swift, where a generic arrives opaque,
-  so there is no shared `ScrambleRun<T>` however alike two of them read.
+  The atlas and the calendar are one machine, `PairDrillRun<T>`, typed by the question they hold:
+  a generic CLASS crosses to Swift typed, each drill's run an object of its own on it,
+  while a generic FUNCTION arrives opaque — so a shared reducer is a class, never a function over a type parameter.
+  Each drill's config supplies what is its own: the draw, the grade and the card.
+  What never crosses is shared instead: every run but `NumbersRun` books an answer onto its ladder,
+  carries it to the Sprosse the next question was drawn at and books a pending answer on close
+  through one internal `LadderStanding`, read out of its own state and copied back.
 - **One injected `Random` per run** feeds every draw — task, exercise, phrase frame, direction flip,
   the letters a word scramble mixes and the atoms a sentence scramble deals out —
   so a seeded run is reproducible end to end and identical on both platforms —
@@ -173,8 +177,7 @@ and text reaches a machine only inside an intent — never as state.
   `DrillTally` names the counter for every drill at once — clean wins over the answers
   judged either way, with almost in neither half for `DrillRamp.step`'s reason;
   the "2/3" string is rendering.
-- **Storage contract**: the answer-streak record under `trainer.record.<key>` —
-  a timed run's is its score instead (`DrillRunSummary.recordFigure`), on a key its own modifier already separates —
+- **Storage contract**: the answer-streak record under `trainer.record.<key>`,
   per-exercise Sprosse progress under `trainer.level.<key>`,
   the most answers one run took under `trainer.answers.<key>` (`DrillRunSummary.done`, right or wrong),
   and the cleared Sprossen as a bitmask under `trainer.cleared.<key>` —
@@ -251,7 +254,7 @@ and text reaches a machine only inside an intent — never as state.
   and one prompt stands per FORM the target writes, so concepts written alike merge
   and every opposite of every one of them answers it, held or not.
   Its Sprossen are bands that overlap nothing, like the sentence scramble's:
-  adjectives, then verbs and nouns, then every prompt with more than one opposite.
+  adjectives and adverbs, then verbs and nouns, then every prompt with more than one opposite.
   `OppositesRun.grade` refuses the prompt itself before the typo budget can read it as a slip of its opposite.
 
 ## The question on screen

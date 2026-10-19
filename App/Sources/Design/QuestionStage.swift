@@ -21,6 +21,6 @@ struct QuestionStage<Key: Hashable, Card: View>: View {
         }
         // why: the stage animates its own switch — a review's next turn begins from an
         // onChange, outside any withAnimation, and would otherwise swap the card unturned.
-        .animation(reduceMotion ? .easeOut(duration: 0.2) : .cardFlip, value: key)
+        .animation(reduceMotion ? .cardFlipReduced : .cardFlip, value: key)
     }
 }

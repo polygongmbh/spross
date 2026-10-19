@@ -17,14 +17,12 @@ class CardDisplayTest {
         text: String,
         plural: String? = null,
         teaches: List<String> = emptyList(),
-        article: String? = null,
     ) = Realization(
         lang = "de",
         text = text,
         teaches = teaches,
         grammar = buildMap {
             plural?.let { put("plural", it) }
-            article?.let { put("article", it) }
         },
     )
 
@@ -44,11 +42,5 @@ class CardDisplayTest {
                 listOf("das Amt", "die Behörde"),
             ),
         )
-    }
-
-    @Test
-    fun theArticleComesOffTheGrammar() {
-        assertEquals("die", CardDisplay.article(realization("die Küche", article = "die")))
-        assertNull(CardDisplay.article(realization("nyumba")))
     }
 }

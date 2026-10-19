@@ -18,14 +18,14 @@ import SprossKern
 // name. Ordered best to worst, so the miss ends up under a resting thumb and
 // the two opposite verdicts are kept apart by the middle one.
 //
-// They emit `SessionOutcome`, the same three the progress bar draws, in the
-// same three colors — the button you press is the segment you get.
+// They emit kern's `SelfGrading.Verdict` in the progress bar's three colors —
+// the button you press is the segment you get.
 // Colorblind-safe: every one carries a distinct icon AND label, so color
 // never has to be read on its own.
 
 struct RatingButtonsView: View {
 
-    var onGrade: (SessionOutcome) -> Void
+    var onGrade: (SelfGrading.Verdict) -> Void
     /// What stands under the row. The standing question by default; the first
     /// round's coaching replaces it, so only ever one line sits there.
     var caption: LocalizedStringKey = "session.rating.question"
@@ -33,72 +33,80 @@ struct RatingButtonsView: View {
     var body: some View {
         VStack(spacing: Theme.spacing.sm) {
             HStack(spacing: Theme.spacing.sm) {
-                button(.right)
+                button(.knew)
                 button(.tough)
-                button(.wrong)
+                button(.unknown)
             }
             Text(caption)
                 .pauseLine()
         }
     }
 
-    private func button(_ outcome: SessionOutcome) -> some View {
-        GradeButton(outcome: outcome) { onGrade(outcome) }
+    private func button(_ verdict: SelfGrading.Verdict) -> some View {
+        GradeButton(verdict: verdict) { onGrade(verdict) }
     }
 }
 
 // MARK: - Button face
 
-private extension SessionOutcome {
+private extension SelfGrading.Verdict {
     var label: LocalizedStringKey {
         switch self {
-        case .right: return "session.rating.good"
+        case .knew: return "session.rating.good"
         case .tough: return "session.rating.hard"
-        case .wrong: return "session.rating.unknown"
+        case .unknown: return "session.rating.unknown"
         }
     }
 
     var icon: String {
         switch self {
-        case .right: return "checkmark"
+        case .knew: return "checkmark"
         case .tough: return "circle.fill"
-        case .wrong: return "xmark"
+        case .unknown: return "xmark"
+        }
+    }
+
+    var color: Color {
+        switch self {
+        case .knew: return Theme.colors.success
+        case .tough: return Theme.colors.amber
+        case .unknown: return Theme.colors.wrong
         }
     }
 }
 
 private struct GradeButton: View {
-    let outcome: SessionOutcome
+    let verdict: SelfGrading.Verdict
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             VStack(spacing: Theme.spacing.xs + 2) {
-                Image(systemName: outcome.icon)
+                Image(systemName: verdict.icon)
                     .font(.body.weight(.bold))
                     // why: the glyphs differ in height, which pushed the labels
                     // of neighboring buttons off each other's line.
                     .frame(height: 22)
-                Text(outcome.label)
+                Text(verdict.label)
                     .font(Theme.typography.caption)
                     .lineLimit(2)
                     .minimumScaleFactor(0.7)
                     .multilineTextAlignment(.center)
             }
-            .foregroundStyle(outcome.color)
+            .foregroundStyle(verdict.color)
             .frame(maxWidth: .infinity)
             .frame(minHeight: 60) // card-parity: the rating row's own height, not a card reserve
             .background(
                 RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                    .fill(outcome.color.opacity(Palette.shared.WASH))
+                    .fill(verdict.color.opacity(Palette.shared.WASH))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: Theme.radius.control, style: .continuous)
-                    .strokeBorder(outcome.color.opacity(Palette.shared.EDGE), lineWidth: 1)
+                    .strokeBorder(verdict.color.opacity(Palette.shared.EDGE), lineWidth: 1)
             )
         }
         .buttonStyle(PressableStyle())
-        .accessibilityLabel(outcome.label)
+        .accessibilityLabel(verdict.label)
     }
 }
 

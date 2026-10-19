@@ -86,7 +86,7 @@ UNEXTRACTABLE = {
 # says — scripts/chrome.py generates the Kotlin tables from it — so these live here with
 # the rest and no Swift will ever ask for them.
 ANDROID_ONLY = {
-    'a11y.state.collapsed', 'a11y.state.expanded', 'a11y.verdict.wrong',
+    'a11y.state.collapsed', 'a11y.state.expanded',
     # box.card.actions is the row's long-press label; iOS's context menu takes none.
     'box.card.actions', 'box.card.due', 'settings.about',
     # The bundled typeface's notice; iOS sets the system face and bundles no font.

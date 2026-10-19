@@ -51,7 +51,7 @@ abstract class DrillFlow<S : DrillRunProgress, I>(
     screenReaderOn: () -> Boolean,
 ) : DrillRun {
     private val beat = DrillBeat(screenReaderOn)
-    private val acts = DrillActs(beat, onTone, onReleaseFocus, onSilence)
+    private val acts = DrillActs(CueActs(beat, onTone, onReleaseFocus), onSilence)
 
     /** Kern's whole run state, replaced whole by every reduction. */
     var state by mutableStateOf(start)

@@ -16,9 +16,6 @@ import net.spross.kern.model.formGlyph
  */
 object CardDisplay {
 
-    /** The realization's authored article ("der"/"die"/"das"), for the tint. */
-    fun article(realization: Realization): String? = realization.grammar["article"]
-
     /** "auch: …" — the word's family beyond every form already standing on screen. */
     fun alsoLine(realization: Realization, chrome: Chrome, shown: Collection<String>): String? =
         alsoLine(alternates(realization, shown.toList(), realization.forms), chrome)

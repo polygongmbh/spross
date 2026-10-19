@@ -4,9 +4,7 @@
 Every prompt card on either phone is one composition of shared primitives, and the
 numbers it is built from live in the two token tables — `App/Sources/Design/Theme.swift`
 and `android/.../ui/Theme.kt`. A raw pt/dp/sp number inside a card file is how a second
-layout gets born: nine of these divergences were introduced and corrected again over
-three weeks, and in none of them was an existing shared component skipped — the canonical
-form was near-identical code in a sibling file nobody had to look at.
+layout gets born — every divergence so far was a sibling file's near-identical code cut fresh.
 
 Three checks, no build required (pure text, so it runs on a machine with no Xcode):
 

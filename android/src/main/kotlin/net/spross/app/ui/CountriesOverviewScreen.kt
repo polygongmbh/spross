@@ -6,6 +6,7 @@ import net.spross.app.TrainerStore
 import net.spross.app.countrySprosse
 import net.spross.app.startCountryDrill
 import net.spross.kern.trainer.CountryDrill
+import net.spross.kern.trainer.PairDrill
 
 /**
  * The Countries entry: the world as the two languages name it, and the place its drill is
@@ -30,14 +31,14 @@ fun CountriesOverviewScreen(model: AppModel) {
             title = chrome.countriesTitle.format(model.languageName(content.target)),
             page = TrainerStore.countriesKey(content.source, content.target),
             standing = standing,
-            fastHint = chrome.trainerModifierFastHint.format(CountryDrill.winsToAdvance(fast = false)),
+            fastHint = chrome.trainerModifierFastHint.format(PairDrill.winsToAdvance(fast = false)),
             reverseHint = { reverse ->
                 reverseHint(model, chrome.countriesReverseHint, content.source, content.target, reverse)
             },
             // The atlas ladder is one fixed height, whichever way round it asks.
             ceiling = { CountryDrill.MAX_SPROSSE },
-            fastOpen = { CountryDrill.fastUnlocked(standing.bestSprosse) },
-            fastPrice = { CountryDrill.FAST_PRICE },
+            fastOpen = { PairDrill.fastUnlocked(standing.bestSprosse, CountryDrill.MAX_SPROSSE) },
+            fastPrice = { PairDrill.fastPrice(CountryDrill.MAX_SPROSSE) },
             sprosse = { sprosse, reverse -> chrome.countrySprosse(sprosse, reverse) },
             start = model::startCountryDrill,
         ),

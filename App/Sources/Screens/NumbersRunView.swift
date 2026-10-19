@@ -111,7 +111,7 @@ struct NumbersRunView: View, LanguageNaming {
         .onDisappear {
             autoAdvance?.cancel()
             focusRetry?.cancel()
-            hushAnswer()
+            reader.hush()
         }
         #if DEBUG
         .onAppear { uitestStart() }

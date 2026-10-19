@@ -49,13 +49,6 @@ fun Catalog.countryDrillContent(source: Language, target: Language): CountryDril
 }
 
 /**
- * The calendar authored for [lang], null where no file is authored. File presence IS
- * the registry, exactly as [alphabet]'s is — adding a language's calendar is dropping
- * a file, and no code lists which languages have one.
- */
-fun Catalog.dateNames(lang: Language): DateCalendar? = dateCalendars[lang]
-
-/**
  * The two calendars joined for one profile, or null where this pair has no drill:
  * a side with no `dates/<lang>.json`, or a target the trainer cannot read days for.
  *

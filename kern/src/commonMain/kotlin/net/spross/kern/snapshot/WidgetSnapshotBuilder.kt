@@ -9,8 +9,10 @@ import net.spross.kern.box.StreakHealth
 import net.spross.kern.box.answerDays
 import net.spross.kern.box.mergeAnswerDays
 import net.spross.kern.design.ActivityScale
+import net.spross.kern.design.WidgetStripColumns
 import net.spross.kern.model.Card
 import net.spross.kern.model.Gender
+import net.spross.kern.model.article
 import net.spross.kern.store.StoreJson
 import net.spross.kern.trainer.letters
 
@@ -23,9 +25,9 @@ import net.spross.kern.trainer.letters
  * which genuinely moves within a day, runs at render time. Who decodes it how: `kern/docs/snapshots.md`.
  */
 object WidgetSnapshotBuilder {
-    const val SCHEMA_VERSION: Int = 11
+    const val SCHEMA_VERSION: Int = 12
 
-    /** v1 widget timeline depth (24 quarter-hour rotations). */
+    /** Widget timeline depth (24 quarter-hour rotations). */
     const val DEFAULT_EXPOSURE_LIMIT: Int = 24
 
     /**
@@ -78,14 +80,17 @@ object WidgetSnapshotBuilder {
         exposureLimit: Int,
         otherLanguagesAnswerDays: Map<String, Int> = emptyMap(),
     ): WidgetSnapshotDoc {
-        val entries = Exposure.exposureCards(state, exposureLimit, ::fitsOnWidget).map { card ->
+        val shown = Exposure.exposureCards(state, exposureLimit, ::fitsOnWidget)
+        val ranks = lengthRanks(shown)
+        val entries = shown.mapIndexed { index, card ->
             WidgetEntryDto(
                 cardId = card.id,
                 text = card.target.text,
                 sourceText = card.source.text,
                 emoji = card.emoji,
-                article = article(card),
+                article = card.target.article,
                 gender = wireGender(card),
+                lengthRank = ranks[index],
             )
         }
         val active = Inventory.active(state)
@@ -103,8 +108,24 @@ object WidgetSnapshotBuilder {
             allSettledCount = active.count { Statistics.hasSettled(it) },
             activityByDay = activityTimeline(combinedDailyStats, nowEpochMillis, tzId),
             activityHeight = ActivityScale.widget.maxHeight,
+            activityBarWidth = WidgetStripColumns.BAR_WIDTH,
+            activityGutter = WidgetStripColumns.GUTTER,
             streakByDay = streakTimeline(combinedDailyStats, nowEpochMillis, tzId),
         )
+    }
+
+    /**
+     * Each of [cards]' place, by index, in the order a tile lays out the rows it shows:
+     * shortest pair first, then shortest target, ties kept in attention order.
+     */
+    private fun lengthRanks(cards: List<Card>): IntArray {
+        val order = cards.indices.sortedWith(
+            compareBy(
+                { cards[it].target.text.letters().size + cards[it].source.text.letters().size },
+                { cards[it].target.text.letters().size },
+            ),
+        )
+        return IntArray(cards.size).also { ranks -> order.forEachIndexed { rank, index -> ranks[index] = rank } }
     }
 
     /**
@@ -125,12 +146,15 @@ class WidgetSnapshotView internal constructor(private val doc: WidgetSnapshotDoc
 
     /** Pre-resolved exposure rows, most attention-worthy first. */
     val entries: List<WidgetExposure> = doc.entries.map {
-        WidgetExposure(it.cardId, it.text, it.sourceText, it.emoji, it.article, genderOf(it.gender))
+        WidgetExposure(it.cardId, it.text, it.sourceText, it.emoji, it.article, genderOf(it.gender), it.lengthRank)
     }
 
     /** The rows a tile of [count] cells shows at [nowEpochMillis], head first ([WidgetRotation]). */
     fun window(nowEpochMillis: Long, count: Int, stepMillis: Long): List<WidgetExposure> =
         WidgetRotation.window(entries.size, nowEpochMillis, count, stepMillis).map { entries[it] }
+
+    /** The language the tile's own chrome is written in, the one the app's chrome follows. */
+    val chromeLanguage: String get() = doc.chromeLanguage
 
     /** Active cards that have settled — resolved phone-side, it does not move with the clock. */
     val allSettledCount: Int get() = doc.allSettledCount
@@ -159,6 +183,8 @@ data class WidgetExposure(
     val article: String? = null,
     /** The gender [article] marks, which is what tints the row; null where the box names none. */
     val gender: Gender? = null,
+    /** Where the row lands among the ones a tile shows: those are laid out by ascending rank ([WidgetEntryDto.lengthRank]). */
+    val lengthRank: Int = 0,
 )
 
 /** Widget document; all dates are epoch millis for trivial Swift decoding. */
@@ -177,6 +203,9 @@ internal data class WidgetSnapshotDoc(
     val activityByDay: Map<String, List<WidgetBar>>,
     /** The height the strip's row reserves, its tallest bar's ([ActivityScale.widget]). */
     val activityHeight: Double,
+    /** Each strip bar's width and the gutter between two ([WidgetStripColumns]). */
+    val activityBarWidth: Double,
+    val activityGutter: Double,
     /**
      * The streak for each day a widget may render on ([streakTimeline]), read by [onRenderDay] —
      * a widget extension with no Kotlin cannot ask [Statistics] later, so it looks its day up here.
@@ -194,6 +223,11 @@ internal data class WidgetEntryDto(
     val article: String? = null,
     /** `masculine`/`feminine`/`neuter` ([wireGender]); the tint reads this, never [article]. */
     val gender: String? = null,
+    /**
+     * This row's place in the order a tile lays out whichever rows it shows — shortest pair first.
+     * Which rows a tile shows stays the attention order of the entries; sorting any window by this rank lays it out.
+     */
+    val lengthRank: Int,
 )
 
 /** One active card schedule: `dueCount(now)` = cards with `due <= now`. */

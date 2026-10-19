@@ -28,7 +28,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
-import java.time.LocalDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,6 +39,7 @@ import net.spross.kern.box.BoxEngine
 import net.spross.kern.box.BoxState
 import net.spross.kern.catalog.Catalog
 import net.spross.kern.catalog.LanguageChoices
+import net.spross.kern.store.BoxBackup
 
 /**
  * What the settings hold: which pair is being learned, whether words are read aloud,
@@ -142,8 +142,10 @@ fun BoxSettingsSection(model: AppModel, catalog: Catalog, box: BoxState) {
             Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
                 TextButton(
                     onClick = {
-                        if ((model.stats?.allSettledCount ?: 0) > 0) {
-                            resetExport.launch("Spross-${box.joinStamp.target}-${LocalDate.now()}.json")
+                        if (BoxBackup.offeredBeforeReset(model.stats)) {
+                            resetExport.launch(
+                                BoxBackup.fileName(box.joinStamp.target, model.now(), model.tz()) + ".json",
+                            )
                         } else {
                             confirmingReset = true
                         }
@@ -199,20 +201,26 @@ private fun LearnerNameSetting(model: AppModel) {
     var draft by rememberSaveable { mutableStateOf(model.learnerName.orEmpty()) }
     Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.xs)) {
         Text(chrome.settingsNameTitle, style = MaterialTheme.typography.titleMedium)
-        OutlinedTextField(
-            value = draft,
-            onValueChange = { draft = it; model.renameLearner(it) },
-            singleLine = true,
-            placeholder = { Text(chrome.settingsNamePlaceholder) },
-            keyboardOptions = KeyboardOptions(
-                capitalization = KeyboardCapitalization.Words,
-                autoCorrectEnabled = false,
-                imeAction = ImeAction.Done,
-            ),
-            modifier = Modifier.fillMaxWidth(),
-        )
+        LearnerNameField(chrome, draft) { draft = it; model.renameLearner(it) }
         SettingHint(chrome.settingsNameHint)
     }
+}
+
+/** The learner's name, as onboarding asks it and settings changes it: one field, written once. */
+@Composable
+internal fun LearnerNameField(chrome: Chrome, value: String, onValueChange: (String) -> Unit) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        singleLine = true,
+        placeholder = { Text(chrome.settingsNamePlaceholder) },
+        keyboardOptions = KeyboardOptions(
+            capitalization = KeyboardCapitalization.Words,
+            autoCorrectEnabled = false,
+            imeAction = ImeAction.Done,
+        ),
+        modifier = Modifier.fillMaxWidth(),
+    )
 }
 
 @Composable

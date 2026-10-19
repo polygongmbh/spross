@@ -8,12 +8,12 @@ struct WidgetActivityStrip: View {
     let bars: [WidgetSnapshot.Bar]
     /// The row's reserved height, the tallest a bar grows.
     let height: Double
-
-    private static let barWidth: CGFloat = 3
-    private static let spacing: CGFloat = 1.5
+    /// Each bar's width and the gutter between two (kern `WidgetStripColumns`).
+    let barWidth: Double
+    let gutter: Double
 
     var body: some View {
-        HStack(alignment: .bottom, spacing: Self.spacing) {
+        HStack(alignment: .bottom, spacing: gutter) {
             ForEach(Array(bars.enumerated()), id: \.offset) { index, bar in
                 barShape(bar, isToday: index == bars.count - 1)
             }
@@ -29,7 +29,7 @@ struct WidgetActivityStrip: View {
         let hue = isToday ? WidgetColors.accent : WidgetColors.success
         return Capsule()
             .fill(bar.worked ? hue.opacity(bar.fillOpacity) : Color.secondary.opacity(0.3))
-            .frame(width: Self.barWidth, height: bar.height)
+            .frame(width: barWidth, height: bar.height)
     }
 
     private var label: Text {

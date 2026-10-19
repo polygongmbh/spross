@@ -138,6 +138,8 @@ if the words are what you came to look at.
 The launcher wears the iOS icon's artwork; `scripts/android-icon.py` re-derives the
 adaptive foregrounds from it, and prints the plate color `ic_launcher_background` has to
 carry. Run it whenever `App/Resources/Assets.xcassets/AppIcon.appiconset` is repainted.
+`scripts/font-stress-anchors.py` runs whenever `res/font/nunito.ttf` is refreshed:
+it anchors the Ukrainian stress mark over the vowels Nunito ships without one (`--check` says whether any is missing).
 
 ## One SDK
 

@@ -24,10 +24,11 @@ import net.spross.app.ui.ThemeColors
 import net.spross.app.ui.ThemeDark
 import net.spross.app.ui.ThemeLight
 import net.spross.kern.design.ActivityScale
+import net.spross.kern.design.WidgetStripColumns
 import net.spross.kern.snapshot.WidgetBar
 
-private val BAR_WIDTH = 3.dp
-private val GUTTER = 1.5.dp
+private val BAR_WIDTH = WidgetStripColumns.BAR_WIDTH.dp
+private val GUTTER = WidgetStripColumns.GUTTER.dp
 
 /**
  * The fortnight of practice in the header, one bar per day, oldest first and today last,

@@ -50,12 +50,12 @@ internal class TurnWriteOut(private val normalizer: AnswerNormalizer) {
         if (!written) {
             // why: backing out of a finished word takes the green with it.
             if (!step.written) return unchanged(state)
-            return TurnReduction(state.copy(copyStep = step.copy(written = false)), listOf(TurnEffect.CancelAdvance))
+            return TurnReduction(state.copy(copyStep = step.copy(written = false)), listOf(TurnEffect.Cued(Cue.CancelAdvance)))
         }
-        val cue: List<TurnEffect> = if (step.written) emptyList() else listOf(TurnEffect.Tone(ToneKind.Correct))
+        val cue: List<TurnEffect> = if (step.written) emptyList() else listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct)))
         return TurnReduction(
             state.copy(copyStep = step.copy(written = true, missed = false)),
-            cue + TurnEffect.ArmAdvance(AdvanceBeat.Live),
+            cue + TurnEffect.Cued(Cue.ArmAdvance(AdvanceBeat.Live)),
         )
     }
 
@@ -69,10 +69,10 @@ internal class TurnWriteOut(private val normalizer: AnswerNormalizer) {
         if (normalizer.evaluate(trimmed, state.card, state.promptTag) == Match.Wrong) {
             return TurnReduction(
                 state.copy(copyStep = step.copy(missed = true)),
-                listOf(TurnEffect.Tone(ToneKind.Wrong)),
+                listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Wrong))),
             )
         }
-        return applyPending(state, step, listOf(TurnEffect.Tone(ToneKind.Correct)))
+        return applyPending(state, step, listOf(TurnEffect.Cued(Cue.Tone(ToneKind.Correct))))
     }
 
     /**

@@ -5,16 +5,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -56,36 +52,29 @@ internal fun CatalogMatchSheet(model: AppModel, onDismiss: () -> Unit) {
         mutableStateOf(matches.filter { it.side == MatchSide.Both }.map { it.word.id }.toSet())
     }
 
-    ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState()) {
-        // why: the primary action stands OUTSIDE the scrolling half, so a long run of
-        // matches never scrolls the "merge" button out of reach.
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Column(
-                modifier = Modifier
-                    .weight(1f, fill = false)
-                    .verticalScroll(rememberScrollState())
-                    .padding(Theme.spacing.lg),
-                verticalArrangement = Arrangement.spacedBy(Theme.spacing.md),
-            ) {
-                Text(chrome.boxOwnMatchTitle, style = MaterialTheme.typography.titleLarge)
-                if (matches.isEmpty()) {
-                    Text(
-                        chrome.boxOwnMatchNone,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                } else {
-                    val toggle: (String) -> Unit = { id ->
-                        picked = if (id in picked) picked - id else picked + id
-                    }
-                    // Kern hands the list back with the whole matches leading, so a run of
-                    // one side is one heading — and a side kern grows later heads itself
-                    // rather than going unshown.
-                    matches.groupBy { it.side }.forEach { (side, run) ->
-                        MatchGroup(model, heading(side, chrome), run, picked, toggle)
-                    }
+    GrowableSheet(
+        onDismiss = onDismiss,
+        content = {
+            Text(chrome.boxOwnMatchTitle, style = MaterialTheme.typography.titleLarge)
+            if (matches.isEmpty()) {
+                Text(
+                    chrome.boxOwnMatchNone,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            } else {
+                val toggle: (String) -> Unit = { id ->
+                    picked = if (id in picked) picked - id else picked + id
+                }
+                // Kern hands the list back with the whole matches leading, so a run of
+                // one side is one heading — and a side kern grows later heads itself
+                // rather than going unshown.
+                matches.groupBy { it.side }.forEach { (side, run) ->
+                    MatchGroup(model, heading(side, chrome), run, picked, toggle)
                 }
             }
+        },
+        action = {
             if (matches.isNotEmpty()) {
                 val kept = matches.filter { it.word.id in picked }
                 Button(
@@ -101,8 +90,8 @@ internal fun CatalogMatchSheet(model: AppModel, onDismiss: () -> Unit) {
                     Text(chrome.boxOwnMatchMerge.format(kept.size))
                 }
             }
-        }
-    }
+        },
+    )
 }
 
 /**
