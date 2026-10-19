@@ -956,6 +956,18 @@
       "source": "LL-Q8798 (ukr)-Tohaomg-апостроф.wav"
     },
     "а": {
+      "alternates": [
+        {
+          "author": "Po ukraińsku (Andriana)",
+          "file": "letters/u0430.2.mp3",
+          "gain": 11.7,
+          "gate": -80.0,
+          "lead": 211,
+          "mos": 2.79,
+          "sha256": "cd7962c8ae41591d2224eb909c863b7038ebd16c0c9afb61226de31a43862ff6",
+          "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-А.wav"
+        }
+      ],
       "author": "Tabrus",
       "cap": 1.4,
       "file": "letters/u0430.mp3",
@@ -1006,6 +1018,28 @@
       "source": "Дд – ukrainian.ogg"
     },
     "е": {
+      "alternates": [
+        {
+          "author": "Tohaomg",
+          "file": "letters/u0435.2.mp3",
+          "gain": -3.7,
+          "gate": -93.4,
+          "lead": 220,
+          "mos": 2.05,
+          "sha256": "6d6117418884e82b91ad553eba2762bc357a5bff4274bff1260275d1cea746bd",
+          "source": "LL-Q8798 (ukr)-Tohaomg-Е.wav"
+        },
+        {
+          "author": "Po ukraińsku (Andriana)",
+          "file": "letters/u0435.3.mp3",
+          "gain": 2.5,
+          "gate": -76.9,
+          "lead": 246,
+          "mos": 2.5,
+          "sha256": "8215bdaea871b296f0080c9a1dadac3191a2d9f89f6ad4594e93c9a62a87c49d",
+          "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-е.wav"
+        }
+      ],
       "author": "Tabrus",
       "cap": 1.6,
       "file": "letters/u0435.mp3",
@@ -1035,6 +1069,27 @@
       "source": "Зз – ukrainian.ogg"
     },
     "и": {
+      "alternates": [
+        {
+          "author": "Tohaomg",
+          "file": "letters/u0438.2.mp3",
+          "gain": 3.9,
+          "lead": 243,
+          "mos": 2.09,
+          "sha256": "5d6a970da76c4926eec68d1fd2ce194a80722d48946f423ae3a4854b0908adc9",
+          "source": "LL-Q8798 (ukr)-Tohaomg-И.wav"
+        },
+        {
+          "author": "Po ukraińsku (Andriana)",
+          "file": "letters/u0438.3.mp3",
+          "gain": -3.0,
+          "gate": -68.2,
+          "lead": 204,
+          "mos": 2.79,
+          "sha256": "84a36b916c31aaa77d4ff8ae6cff879bce6d5ea45286adff7ccdf30eb5b3697b",
+          "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-и.wav"
+        }
+      ],
       "author": "Tabrus",
       "cap": 1.2,
       "file": "letters/u0438.mp3",
@@ -1094,6 +1149,17 @@
       "source": "Нн – ukrainian.ogg"
     },
     "о": {
+      "alternates": [
+        {
+          "author": "Tohaomg",
+          "file": "letters/u043e.2.mp3",
+          "gain": -3.9,
+          "lead": 56,
+          "mos": 1.7,
+          "sha256": "1d53517efc3a37651e6b1346c7d8440cc0ccadc7ea6280d95481c1585d9cd5dd",
+          "source": "LL-Q8798 (ukr)-Tohaomg-О.wav"
+        }
+      ],
       "author": "Tabrus",
       "cap": 2.7,
       "file": "letters/u043e.mp3",
@@ -1132,6 +1198,18 @@
       "source": "Сс – ukrainian.ogg"
     },
     "т": {
+      "alternates": [
+        {
+          "author": "UnconcernedCape",
+          "file": "letters/u0442.2.mp3",
+          "gain": 3.1,
+          "gate": -86.7,
+          "lead": 156,
+          "mos": 2.45,
+          "sha256": "63b53d2f55bb2e1ba434997bc1403ba1f60ee1add40bad384806dc447fdaeaec",
+          "source": "LL-Q8798 (ukr)-UnconcernedCape-те.wav"
+        }
+      ],
       "author": "Tabrus",
       "file": "letters/u0442.mp3",
       "gain": 17.9,
@@ -1141,6 +1219,28 @@
       "source": "Тт – ukrainian.ogg"
     },
     "у": {
+      "alternates": [
+        {
+          "author": "Tohaomg",
+          "file": "letters/u0443.2.mp3",
+          "gain": 0.6,
+          "lead": 31,
+          "mos": 1.85,
+          "sha256": "3753cb56048dcd625a977d6c182a8c5b6fbc71abf266664d4a28c7cd907a42c0",
+          "source": "LL-Q8798 (ukr)-Tohaomg-У.wav"
+        },
+        {
+          "author": "UnconcernedCape",
+          "cap": 1.2,
+          "file": "letters/u0443.3.mp3",
+          "gain": 13.4,
+          "gate": -75.6,
+          "lead": 182,
+          "mos": 2.73,
+          "sha256": "a362cd6944009adf354d090668085d98f24d8064d3bb8ba976cbf8be21ffa3a6",
+          "source": "LL-Q8798 (ukr)-UnconcernedCape-у.wav"
+        }
+      ],
       "author": "Tabrus",
       "cap": 0.7,
       "file": "letters/u0443.mp3",
@@ -1171,6 +1271,18 @@
       "source": "Хх – ukrainian.ogg"
     },
     "ц": {
+      "alternates": [
+        {
+          "author": "UnconcernedCape",
+          "file": "letters/u0446.2.mp3",
+          "gain": 2.0,
+          "gate": -87.8,
+          "lead": 202,
+          "mos": 2.96,
+          "sha256": "1447e65b9edfe82dd98808e51aadca38360cc282e631b9b48d04dabe336bc8f9",
+          "source": "LL-Q8798 (ukr)-UnconcernedCape-це.wav"
+        }
+      ],
       "author": "Tabrus",
       "file": "letters/u0446.mp3",
       "gain": 20.0,
@@ -1189,6 +1301,18 @@
       "source": "Чч – ukrainian.ogg"
     },
     "ш": {
+      "alternates": [
+        {
+          "author": "Po ukraińsku (Andriana)",
+          "file": "letters/u0448.2.mp3",
+          "gain": 10.1,
+          "gate": -79.2,
+          "lead": 164,
+          "mos": 2.97,
+          "sha256": "4e56c6d006d7f6e2681949c72279299496ec89e795ee2f09f9e5ee5735f409a9",
+          "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-ша.wav"
+        }
+      ],
       "author": "Tabrus",
       "cap": 2.2,
       "file": "letters/u0448.mp3",
@@ -1208,6 +1332,18 @@
       "source": "Щщ – ukrainian.ogg"
     },
     "ю": {
+      "alternates": [
+        {
+          "author": "Tohaomg",
+          "file": "letters/u044e.2.mp3",
+          "gain": -0.3,
+          "gate": -96.9,
+          "lead": 203,
+          "mos": 2.7,
+          "sha256": "23d9bcf5d297bf7f395ff6c92768c56d0feeeaada235c6627d4bb22a9dca8d29",
+          "source": "LL-Q8798 (ukr)-Tohaomg-Ю.wav"
+        }
+      ],
       "author": "Tabrus",
       "cap": 0.5,
       "file": "letters/u044e.mp3",
@@ -1218,6 +1354,28 @@
       "source": "Юю – ukrainian.ogg"
     },
     "я": {
+      "alternates": [
+        {
+          "author": "Tohaomg",
+          "file": "letters/u044f.2.mp3",
+          "gain": -2.3,
+          "gate": -97.4,
+          "lead": 227,
+          "mos": 2.72,
+          "sha256": "bd7e98945ccf1afca6a32ad83f17590f137c122f14d7124e1e590474ee38dab1",
+          "source": "LL-Q8798 (ukr)-Tohaomg-Я.wav"
+        },
+        {
+          "author": "UnconcernedCape",
+          "file": "letters/u044f.3.mp3",
+          "gain": 7.1,
+          "gate": -81.0,
+          "lead": 193,
+          "mos": 2.7,
+          "sha256": "19de6a4bb73ac6434cd9e57614e49ff3c704dbc584bebbad3ac3ee862c01fdcb",
+          "source": "LL-Q8798 (ukr)-UnconcernedCape-я.wav"
+        }
+      ],
       "author": "Tabrus",
       "file": "letters/u044f.mp3",
       "gain": 17.6,
@@ -1227,6 +1385,18 @@
       "source": "Яя – ukrainian.ogg"
     },
     "є": {
+      "alternates": [
+        {
+          "author": "Tohaomg",
+          "file": "letters/u0454.2.mp3",
+          "gain": -5.1,
+          "gate": -73.6,
+          "lead": 185,
+          "mos": 2.27,
+          "sha256": "38df37493de4463471b5e87ef4758d67ee5ad2362e7a888772096191cbb1a338",
+          "source": "LL-Q8798 (ukr)-Tohaomg-Є.wav"
+        }
+      ],
       "author": "Tabrus",
       "file": "letters/u0454.mp3",
       "gain": 14.4,
@@ -1236,6 +1406,25 @@
       "source": "Єє – ukrainian.ogg"
     },
     "і": {
+      "alternates": [
+        {
+          "author": "Tohaomg",
+          "file": "letters/u0456.2.mp3",
+          "gain": -1.5,
+          "mos": 1.59,
+          "sha256": "1395a2eacd5090da6b81d21b18059a47c685ec2592ab0015f2f1944c2a368156",
+          "source": "LL-Q8798 (ukr)-Tohaomg-І.wav"
+        },
+        {
+          "author": "UnconcernedCape",
+          "file": "letters/u0456.3.mp3",
+          "gain": 13.2,
+          "gate": -72.8,
+          "mos": 2.67,
+          "sha256": "bd7d44e70afa36f6a80c2812aa0c4874426e36c207f14076c383b0d419a9b104",
+          "source": "LL-Q8798 (ukr)-UnconcernedCape-і.wav"
+        }
+      ],
       "author": "Tabrus",
       "cap": 0.3,
       "file": "letters/u0456.mp3",
@@ -1246,6 +1435,28 @@
       "source": "Іі – ukrainian.ogg"
     },
     "ї": {
+      "alternates": [
+        {
+          "author": "Tohaomg",
+          "file": "letters/u0457.2.mp3",
+          "gain": -2.6,
+          "gate": -92.2,
+          "lead": 263,
+          "mos": 1.93,
+          "sha256": "07d213fa81f2b88c55fda90976267cc89fe2f1c9c92107e64b490c87b6c6be38",
+          "source": "LL-Q8798 (ukr)-Tohaomg-Ї.wav"
+        },
+        {
+          "author": "Po ukraińsku (Andriana)",
+          "file": "letters/u0457.3.mp3",
+          "gain": 11.7,
+          "gate": -71.5,
+          "lead": 195,
+          "mos": 2.63,
+          "sha256": "700ec93cbb5c0a6cf00f8842f2cbc93bdac4a6bfeb94c3f2bbe025f2ecb95208",
+          "source": "LL-Q8798 (ukr)-Po ukraińsku (Andriana)-ї.wav"
+        }
+      ],
       "author": "Tabrus",
       "file": "letters/u0457.mp3",
       "gain": 18.9,

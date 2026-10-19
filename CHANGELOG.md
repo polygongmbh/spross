@@ -4,6 +4,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 
 ## Unreleased
 
+- The letter drill now says every Esperanto letter and some Ukrainian, French, Italian and Spanish ones in more than one voice, changing voice from question to question, and Italian b and p now have a recording.
 - French and Italian nouns behind l' and Spanish nouns like el agua now wear their real gender's color.
 - On the watch, a word to produce now also shows alone for a moment before its options appear, as a word to recognize already did.
 - Word scramble keeps a word's first letter in place at every step, so climbing asks for longer words instead of a blind anagram.

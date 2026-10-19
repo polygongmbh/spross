@@ -1415,6 +1415,15 @@
       "sha256": "7c741aa0c8745ccf627df74827b1df9fe6ea45050818b8d531dcce650db91460",
       "source": "LL-Q652 (ita)-XANA000-a.wav"
     },
+    "b": {
+      "author": "XANA000",
+      "file": "letters/u0062.mp3",
+      "gain": 7.6,
+      "lead": 131,
+      "mos": 2.44,
+      "sha256": "f0c2b120497d21f2be2cd93f49df8562065e5576ac1bd3103567b35eb4cff426",
+      "source": "LL-Q652 (ita)-XANA000-BI.wav"
+    },
     "c": {
       "author": "XANA000",
       "file": "letters/u0063.mp3",
@@ -1436,6 +1445,18 @@
       "source": "LL-Q652 (ita)-XANA000-di.wav"
     },
     "e": {
+      "alternates": [
+        {
+          "author": "Crunchy Cloaky Crackdown",
+          "file": "letters/u0065.2.mp3",
+          "gain": 7.4,
+          "gate": -90.0,
+          "lead": 153,
+          "mos": 2.78,
+          "sha256": "9ea4fb60f8550cfd780bacebc6ab585efd2d97452ecfda3e6153a11a1040cebf",
+          "source": "LL-Q652 (ita)-Crunchy Cloaky Crackdown-e.wav"
+        }
+      ],
       "author": "XANA000",
       "file": "letters/u0065.mp3",
       "gain": 1.7,
@@ -1473,6 +1494,18 @@
       "source": "LL-Q652 (ita)-XANA000-i.wav"
     },
     "o": {
+      "alternates": [
+        {
+          "author": "LangPao",
+          "cap": 2.1,
+          "file": "letters/u006f.2.mp3",
+          "gain": 6.1,
+          "lead": 196,
+          "mos": 2.57,
+          "sha256": "28c882730432ebe5d3ec959aecb80e9d487b75711b8e2fb19bae65f0fad1fd6c",
+          "source": "LL-Q652 (ita)-LangPao-o.wav"
+        }
+      ],
       "author": "XANA000",
       "file": "letters/u006f.mp3",
       "gain": 4.4,
@@ -1481,6 +1514,15 @@
       "mos": 2.5,
       "sha256": "d2ca2b0dc1c4400019c3189214c78d9f38750c83aea40209bf3dcff6d403d200",
       "source": "LL-Q652 (ita)-XANA000-o.wav"
+    },
+    "p": {
+      "author": "XANA000",
+      "file": "letters/u0070.mp3",
+      "gain": 10.1,
+      "lead": 257,
+      "mos": 2.48,
+      "sha256": "e77cb359b298bb2abf1295523e881c9ea2abe1faa519f78d7cecf89a40068aaf",
+      "source": "LL-Q652 (ita)-XANA000-PI.wav"
     },
     "s": {
       "author": "XANA000",
@@ -1492,6 +1534,18 @@
       "source": "LL-Q652 (ita)-XANA000-esse.wav"
     },
     "t": {
+      "alternates": [
+        {
+          "author": "LangPao",
+          "cap": 2.8,
+          "file": "letters/u0074.2.mp3",
+          "gain": 10.2,
+          "lead": 237,
+          "mos": 2.66,
+          "sha256": "f2f943ff165a2763634acddc07120704f3b4754eb4488e107a001b73f9b5fc05",
+          "source": "LL-Q652 (ita)-LangPao-ti.wav"
+        }
+      ],
       "author": "XANA000",
       "file": "letters/u0074.mp3",
       "gain": -0.9,

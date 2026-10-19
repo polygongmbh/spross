@@ -883,6 +883,18 @@
   "language": "eo",
   "letters": {
     "a": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0061.2.mp3",
+          "gain": -0.5,
+          "gate": -68.1,
+          "lead": 200,
+          "mos": 2.89,
+          "sha256": "2b617ccc9c9925a40fb4e2fd867f3b2d6be44607e5c5d6548893a2ce307aa0ac",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-a.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0061.mp3",
       "gain": 2.8,
@@ -893,6 +905,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-a.wav"
     },
     "b": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0062.2.mp3",
+          "gain": 0.5,
+          "gate": -68.2,
+          "lead": 211,
+          "mos": 2.66,
+          "sha256": "33f15ff208b2444655374537de7712819ba59674cd81ee1a32673cbb5bb6ac93",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-bo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0062.mp3",
       "gain": 13.7,
@@ -903,6 +927,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-bo.wav"
     },
     "c": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0063.2.mp3",
+          "gain": 2.8,
+          "gate": -66.9,
+          "lead": 224,
+          "mos": 2.95,
+          "sha256": "5e739ef6d961bf3705d263211f402442b1e73edea1d922f2668961c3c8f406ec",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-co.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0063.mp3",
       "gain": 9.3,
@@ -913,6 +949,38 @@
       "source": "LL-Q143 (epo)-Lepticed7-co.wav"
     },
     "d": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0064.2.mp3",
+          "gain": -1.1,
+          "gate": -67.2,
+          "lead": 113,
+          "mos": 2.67,
+          "sha256": "5399ec5ce6283aa84e8afbc528950cabd1a61338eee6b6b4333adcdcda495bea",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-do.wav"
+        },
+        {
+          "author": "Wierzbowski",
+          "file": "letters/u0064.3.mp3",
+          "gain": -0.9,
+          "gate": -86.6,
+          "lead": 217,
+          "mos": 3.0,
+          "sha256": "e5522e775c97000c8d26391c411a7953de4352db3debd0ad47d7b67990e8099d",
+          "source": "LL-Q143 (epo)-Wierzbowski-do.wav"
+        },
+        {
+          "author": "DanieruOtakuBoy",
+          "file": "letters/u0064.4.mp3",
+          "gain": 1.6,
+          "gate": -73.8,
+          "lead": 110,
+          "mos": 2.78,
+          "sha256": "4a0ebf105d6e92a6e9f36be039ebdd8572334790c1cbd2f629e40719c48c1e56",
+          "source": "LL-Q143 (epo)-DanieruOtakuBoy-do.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0064.mp3",
       "gain": 13.2,
@@ -923,6 +991,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-do.wav"
     },
     "e": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0065.2.mp3",
+          "gain": -1.0,
+          "gate": -67.2,
+          "lead": 212,
+          "mos": 2.72,
+          "sha256": "7e044130db855f306c4962e55f17e0b7083e7a1e922cf0763fe5121be60607a1",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-e.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0065.mp3",
       "gain": 5.3,
@@ -933,6 +1013,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-e.wav"
     },
     "f": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0066.2.mp3",
+          "gain": 3.9,
+          "gate": -65.0,
+          "lead": 38,
+          "mos": 2.78,
+          "sha256": "84e25120b19257219794a05c0bb8d84ca5fa3879a3937c767a7e0a5d1336b8da",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-fo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0066.mp3",
       "gain": 13.0,
@@ -943,6 +1035,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-fo.wav"
     },
     "g": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0067.2.mp3",
+          "gain": 2.8,
+          "gate": -68.5,
+          "lead": 168,
+          "mos": 2.84,
+          "sha256": "398cd5e4598d03b8ce530c5797fee5fd077276933e7b38214c662e34e26d7e04",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-go.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0067.mp3",
       "gain": 10.5,
@@ -953,6 +1057,38 @@
       "source": "LL-Q143 (epo)-Lepticed7-go.wav"
     },
     "h": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0068.2.mp3",
+          "gain": -0.1,
+          "gate": -68.3,
+          "lead": 241,
+          "mos": 3.03,
+          "sha256": "4f4952358b4ae30f5c258ee19c82f7edf8f78383522247e7784068aa414cb663",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-ho.wav"
+        },
+        {
+          "author": "Wierzbowski",
+          "file": "letters/u0068.3.mp3",
+          "gain": 2.2,
+          "gate": -84.8,
+          "lead": 182,
+          "mos": 2.51,
+          "sha256": "55ad4e263fadacd784f23ee181630e297363f579dd91fcd0919d9f0ddd7b1033",
+          "source": "LL-Q143 (epo)-Wierzbowski-ho.wav"
+        },
+        {
+          "author": "DanieruOtakuBoy",
+          "file": "letters/u0068.4.mp3",
+          "gain": 5.1,
+          "gate": -75.1,
+          "lead": 195,
+          "mos": 2.57,
+          "sha256": "f2bab10cfdbd4d55b09ed3fc4bc9c73fb721e5ce6670273aa36513042fe554fd",
+          "source": "LL-Q143 (epo)-DanieruOtakuBoy-ho.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0068.mp3",
       "gain": 9.2,
@@ -963,6 +1099,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-ho.wav"
     },
     "i": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0069.2.mp3",
+          "gain": 10.7,
+          "gate": -64.0,
+          "lead": 270,
+          "mos": 2.69,
+          "sha256": "542de4a895390865d1561634086ae6c0b43297a8eac9d40dfa9f5635e71431d5",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-i.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0069.mp3",
       "gain": 16.4,
@@ -973,6 +1121,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-i.wav"
     },
     "j": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u006a.2.mp3",
+          "gain": 1.1,
+          "gate": -68.6,
+          "lead": 228,
+          "mos": 3.03,
+          "sha256": "1706aab15bfc681605177adc92e46b0d1687e2a49e3b5cce99c15477c570343f",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-jo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u006a.mp3",
       "gain": 10.6,
@@ -983,6 +1143,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-jo.wav"
     },
     "k": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u006b.2.mp3",
+          "gain": -0.3,
+          "gate": -67.7,
+          "lead": 235,
+          "mos": 3.08,
+          "sha256": "68d63bc26c778fd888738c4f0bffb1cb388774deaa7f3f2bfb45306f14b745b2",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-ko.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u006b.mp3",
       "gain": 9.1,
@@ -993,6 +1165,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-ko.wav"
     },
     "l": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u006c.2.mp3",
+          "gain": 0.2,
+          "gate": -66.9,
+          "lead": 212,
+          "mos": 3.0,
+          "sha256": "bb135e3e9c270254840bae9adfe1d103e1ff43c3e78048523e35e02d82ff27b2",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-lo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u006c.mp3",
       "gain": 2.7,
@@ -1003,6 +1187,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-lo.wav"
     },
     "m": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u006d.2.mp3",
+          "gain": 0.4,
+          "gate": -66.4,
+          "lead": 241,
+          "mos": 3.13,
+          "sha256": "97c42e48450fbd259927c24663777631a282d72a784cb08a5e8d52ee32896fb8",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-mo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u006d.mp3",
       "gain": 7.9,
@@ -1013,6 +1209,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-mo.wav"
     },
     "n": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u006e.2.mp3",
+          "gain": 0.8,
+          "gate": -68.3,
+          "lead": 248,
+          "mos": 3.09,
+          "sha256": "c17beeff9ecce7af264f624c6a97d39f5d979f2b75c3a52f276363df7d40cbca",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-no.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u006e.mp3",
       "gain": 8.7,
@@ -1023,6 +1231,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-no.wav"
     },
     "o": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u006f.2.mp3",
+          "gain": 3.2,
+          "gate": -67.8,
+          "lead": 184,
+          "mos": 2.86,
+          "sha256": "4e7dd25226da43ea4c29425c699f70df0c873e17333a5d9ec1c8a2523ca17c53",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-o.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u006f.mp3",
       "gain": 8.7,
@@ -1032,6 +1252,28 @@
       "source": "LL-Q143 (epo)-Lepticed7-o.wav"
     },
     "p": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0070.2.mp3",
+          "gain": -0.7,
+          "gate": -67.8,
+          "lead": 234,
+          "mos": 2.6,
+          "sha256": "c299d0fa27222f4fdc6cd1e27f1ba8e0dc850160eef3041af55cf64fb4ffdf10",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-po.wav"
+        },
+        {
+          "author": "Wierzbowski",
+          "file": "letters/u0070.3.mp3",
+          "gain": 8.7,
+          "gate": -93.2,
+          "lead": 245,
+          "mos": 2.98,
+          "sha256": "abab4e4f74444d4a8905d34b4cdb6900f0fdeb6211af7bbe3df0cb0beda316d8",
+          "source": "LL-Q143 (epo)-Wierzbowski-po.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0070.mp3",
       "gain": 4.4,
@@ -1042,6 +1284,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-po.wav"
     },
     "r": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0072.2.mp3",
+          "gain": 1.7,
+          "gate": -66.8,
+          "lead": 132,
+          "mos": 2.91,
+          "sha256": "63df34403397ffe39489eb25bdc21b6f347be6cdf1571c935c3d520e9e07b369",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-ro.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0072.mp3",
       "gain": 2.4,
@@ -1052,6 +1306,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-ro.wav"
     },
     "s": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0073.2.mp3",
+          "gain": -0.4,
+          "gate": -67.1,
+          "lead": 213,
+          "mos": 3.06,
+          "sha256": "19cd15bd06ede45c9e155db43047b822a03262c079fb7babe10423eb3378e01f",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-so.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0073.mp3",
       "gain": 4.6,
@@ -1062,6 +1328,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-so.wav"
     },
     "t": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0074.2.mp3",
+          "gain": 0.1,
+          "gate": -66.4,
+          "lead": 185,
+          "mos": 3.13,
+          "sha256": "4d2fefd10f9b47a7052388ae28020178c1507959e723114403b4cbdcef3b5366",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-to.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0074.mp3",
       "gain": 12.1,
@@ -1072,6 +1350,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-to.wav"
     },
     "u": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0075.2.mp3",
+          "gain": 7.0,
+          "gate": -66.3,
+          "lead": 199,
+          "mos": 2.76,
+          "sha256": "5ea2f9da24ce270a5748393ce0b265f4b9ee571f05eb95b0ea321d8e30a391fd",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-u.wav"
+        }
+      ],
       "author": "Lepticed7",
       "cap": 1.0,
       "file": "letters/u0075.mp3",
@@ -1083,6 +1373,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-u.wav"
     },
     "v": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0076.2.mp3",
+          "gain": 3.5,
+          "gate": -66.1,
+          "lead": 210,
+          "mos": 3.25,
+          "sha256": "cf40ab6e6b10efaffe0d6ecbe8af83d82903e63b9ca1a6ffde8503d0271656e0",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-vo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0076.mp3",
       "gain": 4.1,
@@ -1093,6 +1395,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-vo.wav"
     },
     "z": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u007a.2.mp3",
+          "gain": 1.0,
+          "gate": -67.3,
+          "lead": 230,
+          "mos": 3.25,
+          "sha256": "03c9dc85915731a98b1c8b96991adde1a046661b491a55071f808d69fc21d99d",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-zo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u007a.mp3",
       "gain": 1.6,
@@ -1103,6 +1417,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-zo.wav"
     },
     "ĉ": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0109.2.mp3",
+          "gain": 1.5,
+          "gate": -68.0,
+          "lead": 199,
+          "mos": 2.99,
+          "sha256": "d89d6f06535411db00eb6bfe9b2499eb065d14e63ca169ed17ee629322489e90",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-ĉo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0109.mp3",
       "gain": 7.9,
@@ -1113,6 +1439,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-ĉo.wav"
     },
     "ĝ": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u011d.2.mp3",
+          "gain": 2.3,
+          "gate": -67.7,
+          "lead": 195,
+          "mos": 3.25,
+          "sha256": "07dc4a1321832a3fd564d16f6becc000f1a0c6fea4818e51f10f5904fd2ca4f9",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-ĝo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u011d.mp3",
       "gain": 8.4,
@@ -1123,6 +1461,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-ĝo.wav"
     },
     "ĥ": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0125.2.mp3",
+          "gain": 2.9,
+          "gate": -65.9,
+          "lead": 233,
+          "mos": 3.01,
+          "sha256": "b45ab7c05f9baf45b43e83672df0ea098ae27689962b03ca30b7960715c16705",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-ĥo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0125.mp3",
       "gain": 7.2,
@@ -1133,6 +1483,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-ĥo.wav"
     },
     "ĵ": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u0135.2.mp3",
+          "gain": 3.0,
+          "gate": -68.1,
+          "lead": 193,
+          "mos": 3.01,
+          "sha256": "8c95613ae913909c652fd6e1b62bcb197777ebea9c1b7ad17e249c69cd1c4a60",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-ĵo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u0135.mp3",
       "gain": 10.1,
@@ -1143,6 +1505,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-ĵo.wav"
     },
     "ŝ": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u015d.2.mp3",
+          "gain": 0.4,
+          "gate": -67.6,
+          "lead": 205,
+          "mos": 2.97,
+          "sha256": "0432ea9b06e5efdbb800304c2ecfe71c3e596f2f9f626cbc2c203057b5055b8f",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-ŝo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u015d.mp3",
       "gain": 3.8,
@@ -1153,6 +1527,18 @@
       "source": "LL-Q143 (epo)-Lepticed7-ŝo.wav"
     },
     "ŭ": {
+      "alternates": [
+        {
+          "author": "Robin van der Vliet",
+          "file": "letters/u016d.2.mp3",
+          "gain": 0.8,
+          "gate": -68.0,
+          "lead": 265,
+          "mos": 3.07,
+          "sha256": "8900e4de9be7224c979e475ce9c9a561c5fea36576861835ce8649b5ef20aa7a",
+          "source": "LL-Q143 (epo)-Robin van der Vliet-ŭo.wav"
+        }
+      ],
       "author": "Lepticed7",
       "file": "letters/u016d.mp3",
       "gain": 7.4,
