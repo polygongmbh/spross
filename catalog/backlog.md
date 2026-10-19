@@ -1,5 +1,5 @@
 # Catalog backlog
-Open catalog work, one pointered bullet each, filed by who moves it next: the owner, a decision (ends in its question), ready for any session, or a native speaker; never a gap a script lists (`audio-coverage.py --missing`, `audio_voices.is_squashed`).
+Open catalog work, one pointered bullet each, filed by who moves it next: the owner, a decision (ends in its question), ready for any session, or a native speaker; never an area still under its 50-card line, never a gap a script lists (`audio-coverage.py --missing`, `audio_voices.is_squashed`).
 Neighbors: app and code issues `../docs/backlog.md`.
 
 ## Needs the owner
@@ -19,11 +19,6 @@ Neighbors: app and code issues `../docs/backlog.md`.
   unfixable at runtime, so Spanish meets the morning only as `de la mañana` in
   `time/nine-am-sharp` — accept the gap, allow one form on two cards in one area (a lint
   change), or move one of each pair to another area?
-- `food` holds 47 concepts, `living` 42, `desk`, `time`, `hall` and `bath` 41 each,
-  between the few dozen `catalog/areas/README.md` § which area a concept lives in describes
-  and the line `CatalogLintTest.noAreaGrowsIntoADrawer` holds,
-  and `food`'s seam is raw ingredients against meals and drinks —
-  is 50 the line, or 40 with waivers?
 - Italian dates: the dayMonth reveal teaches `il otto`/`il undici marzo` on 2 of 31 days
   because a static pattern cannot elide, though the elided `l'{day} {month}` already grades as
   a variant (`catalog/dates/it.json`) — elision-aware date patterns in the engine, or wait for
