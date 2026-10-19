@@ -307,7 +307,6 @@
     "Adem M.": "CC BY-SA 4.0",
     "Aemines1": "CC BY-SA 4.0",
     "Aemines5": "CC BY 4.0",
-    "Aemines6": "CC BY 4.0",
     "Ash Crow": "CC BY-SA 4.0",
     "Aurore1212121": "CC BY-SA 4.0",
     "Bananax47": "CC0",
@@ -1824,15 +1823,15 @@
       "source": "LL-Q150 (fra)-Jules78120-États-Unis.wav"
     },
     "Éthiopie": {
-      "author": "Didierwiki",
+      "author": "GrandCelinien",
       "file": "countries/u00e9thiopie.mp3",
-      "gain": 8.5,
-      "gate": -82.7,
-      "lead": 189,
+      "gain": 3.7,
+      "gate": -73.5,
+      "lead": 231,
       "matches": "Éthiopie",
-      "mos": 3.01,
-      "sha256": "fcccc1aafafa3c5dad886724c5aed8fa30fea8fd58c037922f68ff17c8ec78de",
-      "source": "LL-Q150 (fra)-Didierwiki-Éthiopie.wav"
+      "mos": 2.97,
+      "sha256": "ff18c3660da5a0bfdc31a9f6accc77edae4f71b0cb2011d0c0323b83e401077c",
+      "source": "LL-Q150 (fra)-GrandCelinien-Éthiopie.wav"
     }
   },
   "language": "fr",
@@ -4568,15 +4567,15 @@
       "source": "Fr-demander.ogg"
     },
     "dent": {
-      "author": "Aemines1",
+      "author": "Mecanautes",
       "file": "words/dent.mp3",
-      "gain": 8.9,
-      "gate": -87.1,
-      "lead": 204,
+      "gain": 7.5,
+      "gate": -90.2,
+      "lead": 165,
       "matches": "dent",
-      "mos": 2.94,
-      "sha256": "4060db77eca4d0d9cda34969ba7a1d24d36aabfb484c37ca073cfd5de04ff118",
-      "source": "LL-Q150 (fra)-Aemines1-dent.wav"
+      "mos": 2.88,
+      "sha256": "1ec1d8941f889aeafbb2bf4cfb93f8b93bd73dde4f97d349de865a5aa4aa0471",
+      "source": "LL-Q150 (fra)-Mecanautes-dent.wav"
     },
     "dentifrice": {
       "author": "Poslovitch",
@@ -5743,15 +5742,15 @@
       "source": "LL-Q150 (fra)-Lepticed7-femme.wav"
     },
     "fenêtre": {
-      "author": "Aemines6",
+      "author": "0x010C",
       "file": "words/fenu00eatre.mp3",
-      "gain": 3.3,
-      "gate": -81.1,
-      "lead": 122,
+      "gain": -4.2,
+      "gate": -68.1,
+      "lead": 189,
       "matches": "fenêtre",
-      "mos": 3.13,
-      "sha256": "099faf4328894da04ea5763114c3ca463603fce4932ea3f280dfa6544dd16058",
-      "source": "LL-Q150 (fra)-Aemines6-fenêtre.wav"
+      "mos": 2.85,
+      "sha256": "28a7bb5050fc040e923dbf73367ecde9494377fecc38598ac9900323d075ef5f",
+      "source": "LL-Q150 (fra)-0x010C-fenêtre.wav"
     },
     "fermer": {
       "author": "Poslovitch",
@@ -8935,15 +8934,15 @@
       "source": "LL-Q150 (fra)-Poslovitch-pays.wav"
     },
     "peau": {
-      "author": "Ash Crow",
+      "author": "GrandCelinien",
       "file": "words/peau.mp3",
-      "gain": 13.6,
-      "gate": -83.7,
-      "lead": 205,
+      "gain": 5.1,
+      "gate": -74.6,
+      "lead": 203,
       "matches": "peau",
-      "mos": 2.96,
-      "sha256": "a8f04d3522110ef8af899d0062f3f5168b5c066bf6c18e04a33941932f764e31",
-      "source": "LL-Q150 (fra)-Ash Crow-peau.wav"
+      "mos": 2.7,
+      "sha256": "81707b9cc4cdd0725666c27748f7217195fe9effcbd0f7a52e0da8d0ed948adb",
+      "source": "LL-Q150 (fra)-GrandCelinien-peau.wav"
     },
     "peaux": {
       "author": "WikiLucas00",

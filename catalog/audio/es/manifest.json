@@ -6,7 +6,6 @@
     "Arca~commonswiki": "CC BY-SA 3.0",
     "CaroEspinoza": "CC0",
     "Eavqwiki": "CC BY-SA 4.0",
-    "Elxavovel": "CC BY 4.0",
     "Emanuelps27": "CC BY 4.0",
     "Enohecruzl79": "CC BY 4.0",
     "Fibonacci": "CC BY-SA 2.5",
@@ -1398,15 +1397,15 @@
       "source": "LL-Q1321 (spa)-AdrianAbdulBaha-ahora.wav"
     },
     "ahí": {
-      "author": "Elxavovel",
+      "author": "Anonymât",
       "file": "words/ahu00ed.mp3",
-      "gain": 4.6,
-      "gate": -86.8,
-      "lead": 183,
+      "gain": 3.3,
+      "gate": -61.9,
+      "lead": 185,
       "matches": "ahí",
-      "mos": 2.85,
-      "sha256": "82682449518c6dd367aa45c13a40f2f78c4697f3592f62e4ea8d78d2692ad66e",
-      "source": "LL-Q1321 (spa)-Elxavovel-ahí.wav"
+      "mos": 2.64,
+      "sha256": "1e61e1c63d5c1c6ee6d65735bf70b2654a6d14cae676dbfb3423a99c773fa250",
+      "source": "LL-Q1321 (spa)-Anonymât (Kvardek du)-ahí.wav"
     },
     "ajo": {
       "author": "Millars",

@@ -5,7 +5,6 @@
     "Association Shtooka, Judith Franck": "CC BY 3.0 us",
     "Back ache": "CC BY-SA 4.0",
     "Berrely": "CC0",
-    "BirdHopper": "CC BY-SA 4.0",
     "Dvortybot": "Public domain",
     "Dvortygirl": "CC BY-SA 3.0",
     "EncycloPetey": "CC BY-SA 3.0",
@@ -2607,14 +2606,15 @@
       "source": "En-us-chair.ogg"
     },
     "challenge": {
-      "author": "BirdHopper",
+      "author": "Simplificationalizer",
       "file": "words/challenge.mp3",
-      "gain": -2.4,
-      "lead": 49,
+      "gain": 5.4,
+      "gate": -84.3,
+      "lead": 145,
       "matches": "challenge",
-      "mos": 3.18,
-      "sha256": "d180a1066dab68715c8ca438782e503483034e2d9bc67f3b9348fe5f4ffdf950",
-      "source": "En-us-challenge.ogg"
+      "mos": 3.08,
+      "sha256": "c317d77c6d89fecb801705c4156bbdc6442bdf07a40e98ca710e7829615e1672",
+      "source": "LL-Q1860 (eng)-Simplificationalizer-challenge.wav"
     },
     "change": {
       "author": "Dvortygirl",
