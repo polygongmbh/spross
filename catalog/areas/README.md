@@ -196,10 +196,10 @@ The full gate stays `./gradlew :kern:jvmTest` after a content edit.
 
 ## Which area a concept lives in
 
-**An area holds a few dozen cards, 50 at most.**
+**An area holds a few dozen cards.**
 It is a shelf a learner can hold in their head and choose to pull forward,
 not a drawer everything vaguely related falls into --
-so an area growing past 50 (`CatalogLintTest.noAreaGrowsIntoADrawer`) asks to be cut along the seam a learner would name.
+so an area growing past the line `CatalogLintTest.noAreaGrowsIntoADrawer` holds asks to be cut along the seam a learner would name.
 The cut is cheap: the slug carries no area, so nobody's schedule notices.
 
 **A front-group slot is earned by what a learner can use on the first day.**
