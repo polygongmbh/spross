@@ -1,8 +1,8 @@
-# Spross — growing-box vocabulary app
+# Spross — curated vocabulary app
 The rules every session pays for on every edit (commands, commit rules, code and text standards, invariants), one terse line each; a topic's own rules live in the `docs/` page that owns it.
 
-A personal spaced-repetition "growing box" app:
-FSRS-6-scheduled vocab that only grows while material sits, phrases unlock from their component words.
+A curated vocabulary app that supports getting to actually speaking a language;
+what sets it apart — and what every user-facing change answers to — is `README.md` § What sets it apart.
 Native iOS (SwiftUI) app "Spross" in `app/` with a Kotlin Multiplatform core (SprossKern);
 scheduling, growth, session and grading rules are `kern/README.md` and the KDoc on the type it names,
 screen and copy rules `docs/design.md` — read the side you are changing.

@@ -1,18 +1,44 @@
 # Spross
 What Spross is, how to build and run it, and where each part is documented; the rules themselves live in `docs/` and `kern/`.
 
-A personal "growing box" vocabulary app:
+A curated vocabulary app that supports getting to actually speaking a language:
 pick the language you know (source) and the one you learn (target)
 from the in-repo catalog (eight languages, declared in `catalog/languages.json`).
 Native iOS (SwiftUI, iOS 17+) + watchOS companion, fully offline,
 plus an Android app (Jetpack Compose) on the same engine.
 
-The box only grows while your material sits:
-each round offers a round's worth of new cards and nothing throttles that but the round,
-phrases unlock once their component words are stable,
-and everything is scheduled by a golden-vector-tested FSRS-6 engine.
-Each card keeps ONE memory — reviews alternate between typed production
-and self-graded recognition of the same schedule.
+## What sets it apart
+
+Against Anki: curation and the mini games.
+Against Duolingo: it never nags, and the learner sets the curriculum.
+
+- **Curated for fluency** —
+  the catalog is hand-built around the situations a speaker meets,
+  with a literal match across every language.
+- **The learner's curriculum** —
+  they choose which situations to be ready for, and nothing forces a path.
+- **A full card per word** —
+  audio and a small illustration on each,
+  ways of answering that get harder as the word settles,
+  and a reveal that teaches its synonyms.
+- **Known words are shelved fast** —
+  the way a word is introduced lets one already known step aside after a single quick answer.
+- **Mini games** (the code's drills) for what single cards cannot teach:
+  numbers, the clock, dates, letters, countries, word order, opposites.
+- **No nagging** — not to practice, not to pay.
+- **A companion to real speaking** —
+  beside a course, a native speaker or a chat assistant,
+  it expands and solidifies the vocabulary those conversations need.
+- **On the wrist** — the Apple Watch reviews the box by multiple choice.
+- **One box, any direction** —
+  words are shared concepts rather than courses,
+  so any catalog language can be learned from any other,
+  and switching the known language keeps every word's progress.
+- **Every learning element refined with research** — the evidence lives in each part's own doc.
+
+Underneath, FSRS-6 schedules ONE memory per card,
+new words are bounded by the round alone (`docs/growth-evidence.md`),
+and phrases unlock once their component words are stable (`kern/README.md`).
 
 ## What it looks like
 
