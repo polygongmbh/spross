@@ -78,24 +78,8 @@ final class AppModel {
     /// voice this is a walk of every card asking the catalog for a recording,
     /// so it is answered when the join or the device's voices can move, never per redraw.
     private(set) var anyWordAudible = false
-    /// Whether the profile's pair joins a country atlas, and the sentence frames
-    /// it joins. Both are catalog walks — the atlas one builds every country row
-    /// and every language name — and the trainer card asks on every redraw, so
-    /// they are resolved when the PROFILE changes and never per composition.
-    private(set) var atlasJoinsPair = false
-    /// Whether the pair joins the two calendars the dates drill needs — the
-    /// same kind of walk, resolved beside the atlas and never per composition.
-    private(set) var datesJoinPair = false
-    /// The joined calendars, which set how tall the dates ladder runs — what the
-    /// suggestion reads "mastered" against, out of the same join.
-    private(set) var dates: DateDrillContent?
-    private(set) var phraseTemplatesForPair: [PhraseTemplate] = []
-    /// The target languages the settings picker offers. Resolving it is a full
-    /// catalog JOIN per candidate language — every card of every pair built and
-    /// thrown away — so it is held here and never asked from a view body.
-    private(set) var targetChoices: [String] = []
-    /// Every shelf's heading, resolved for the reader once per join (`AreaNaming`).
-    private(set) var areaNaming: AreaNaming?
+    /// What the catalog offers this pair beyond its cards, resolved per profile.
+    private(set) var pairContent = PairContent.none
 
     /// Each area's numbers by name. `BoxStatistics.areas` is a LIST, so finding
     /// one area in it is a scan — and both the browser and the Trees picture do it once
@@ -357,28 +341,9 @@ final class AppModel {
     /// What the trainer card can offer for this pair. A catalog question, not a
     /// box one, so it is asked when the profile changes rather than with the rest.
     func refreshTrainerContent() {
-        guard let catalog, let target = targetLanguage, sourceLanguage != target,
-              catalog.languages[sourceLanguage] != nil, catalog.languages[target] != nil
-        else {
-            atlasJoinsPair = false
-            datesJoinPair = false
-            dates = nil
-            phraseTemplatesForPair = []
-            targetChoices = []
-            areaNaming = nil
-            return
-        }
-        // why: kern throws on an unknown or self-paired language rather than
-        // returning empty, and a Kotlin throw crossing back is a crash — hence
-        // the guard above.
-        atlasJoinsPair = catalog.countryDrillContent(source: sourceLanguage, target: target) != nil
-        dates = catalog.dateDrillContent(source: sourceLanguage, target: target)
-        datesJoinPair = dates != nil
-        phraseTemplatesForPair = catalog.phraseTemplates(source: sourceLanguage, target: target)
-        targetChoices = LanguageChoices.shared.targetChoices(
-            catalog: catalog,
-            selection: LanguageChoices.Selection(source: sourceLanguage, target: target))
-        areaNaming = composedAreaNaming(catalog: catalog)
+        pairContent = PairContent.resolve(catalog: catalog, source: sourceLanguage,
+                                          target: targetLanguage,
+                                          areaNaming: composedAreaNaming(catalog:))
     }
 
     /// Re-asks `anyWordAudible`, wherever the join or the device's voices can have moved.

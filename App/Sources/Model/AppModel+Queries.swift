@@ -139,7 +139,7 @@ extension AppModel {
     func areaSubtitle(_ area: String) -> String? { naming.subtitle(area: area) }
     func areaEmoji(_ area: String) -> String { naming.emoji(area: area) }
 
-    private var naming: AreaNaming { areaNaming ?? composedAreaNaming(catalog: nil) }
+    private var naming: AreaNaming { pairContent.areaNaming ?? composedAreaNaming(catalog: nil) }
 
     func composedAreaNaming(catalog: Catalog?) -> AreaNaming {
         AreaNaming(catalog: catalog, source: catalog == nil ? nil : sourceLanguage,

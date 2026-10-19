@@ -18,7 +18,7 @@ extension TrainerHubView {
         let standings = Drill.allCases.filter { destination(for: $0) != nil }.map { drill in
             let key = DrillSuggestion.shared.lastRunKey(drill: drill, language: language)
             let ladder = DrillLadders.shared.ladder(drill: drill, source: model.sourceLanguage, target: language,
-                                                    box: box, oppositePairs: pairs, dates: model.dates,
+                                                    box: box, oppositePairs: pairs, dates: model.pairContent.dates,
                                                     store: store)
             return DrillSuggestion.Standing(drill: drill,
                                             lastRunEpochMillis: TrainerProgress.lastRun(key).map { KotlinLong(value: $0) },

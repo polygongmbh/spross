@@ -260,7 +260,7 @@ struct BoxSettingsSection: View {
     /// the swap row only where the swapped pair actually teaches something.
     /// Resolved when the profile changes: asking counts the cards of every pair
     /// the catalog could teach, which means joining all of them.
-    private var targetChoices: [String] { model.targetChoices }
+    private var targetChoices: [String] { model.pairContent.targetChoices }
 
     private var sourceBinding: Binding<String> {
         Binding(

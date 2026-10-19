@@ -43,7 +43,7 @@ struct TrainerHubView: View, LanguageNaming {
     /// for the pair, always asked known-language prompt → learned-language answer.
     var phraseDrill: (source: String, target: String, templates: [PhraseTemplate])? {
         guard let target = drillLanguage else { return nil }
-        let templates = model.phraseTemplatesForPair
+        let templates = model.pairContent.phraseTemplates
         return templates.isEmpty ? nil : (source: model.sourceLanguage, target: target,
                                           templates: templates)
     }
@@ -52,14 +52,14 @@ struct TrainerHubView: View, LanguageNaming {
     /// joins none — registry by FILE, exactly as the alphabet's is. Kern is the
     /// only judge of that, so nothing here counts countries.
     var atlasPair: (source: String, target: String)? {
-        guard model.atlasJoinsPair, let target = drillLanguage else { return nil }
+        guard model.pairContent.atlasJoinsPair, let target = drillLanguage else { return nil }
         return (source: model.sourceLanguage, target: target)
     }
 
     /// The pair whose calendars this profile can drill, or nil where the
     /// catalog joins none — the atlas' registry rule, on the dates files.
     var datesPair: (source: String, target: String)? {
-        guard model.datesJoinPair, let target = drillLanguage else { return nil }
+        guard model.pairContent.datesJoinPair, let target = drillLanguage else { return nil }
         return (source: model.sourceLanguage, target: target)
     }
 
