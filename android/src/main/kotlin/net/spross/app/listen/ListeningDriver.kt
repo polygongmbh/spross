@@ -22,9 +22,7 @@ import net.spross.kern.listen.ListeningSaying
 import net.spross.kern.listen.ListeningSeam
 import net.spross.kern.listen.ListeningTurn
 import net.spross.kern.listen.NowPlayingLines
-import net.spross.kern.listen.listeningGainDb
 import net.spross.kern.listen.listeningSeam
-import net.spross.kern.listen.listeningTimerStepMs
 import net.spross.kern.listen.sayings
 
 /**
@@ -60,17 +58,8 @@ class ListeningDriver(
     var revealed by mutableStateOf(false)
         private set
 
-    /**
-     * The stretch the bedtime standing runs over, in milliseconds; 0 is off, which is where a
-     * run starts. Every tap resets it — a bedtime extended at midnight is a new stretch, not
-     * the old one with a longer tail, so kern's ramp starts over from full.
-     */
-    var timerTotalMs by mutableStateOf(0L)
-        private set
-
-    /** When the bedtime falls, or null while the run laps for as long as it is left alone. */
-    var deadline by mutableStateOf<Long?>(null)
-        private set
+    /** The run's bedtime; off until the chip is tapped. */
+    val bedtime = ListeningBedtime()
 
     val turn: ListeningTurn? get() = state?.turn
     val active: Boolean get() = state?.active == true
@@ -105,8 +94,7 @@ class ListeningDriver(
     /** Opens the playlist. A pool with nothing in it never opens a run at all. */
     fun start(candidates: List<ListeningCandidate>) {
         if (active || candidates.isEmpty()) return
-        timerTotalMs = 0
-        deadline = null
+        bedtime.clear()
         pausedByFocus = false
         focus.take()
         ListeningBridge.controls = this
@@ -139,8 +127,7 @@ class ListeningDriver(
         generation++
         state = null
         revealed = false
-        deadline = null
-        timerTotalMs = 0
+        bedtime.clear()
         pausedByFocus = false
         focus.release()
         ListeningBridge.controls = null
@@ -148,15 +135,9 @@ class ListeningDriver(
         ListeningService.stop(app)
     }
 
-    /**
-     * Adds kern's five minutes to WHAT IS LEFT of the bedtime — never to what was picked, so a
-     * run four minutes into a five-minute bedtime gets six more and not ten
-     * (`listeningTimerStepMs`). Every tap only ever ADDS: the minutes never come down by
-     * tapping, and the chip's long press is the one way back to off.
-     */
+    /** A tap on the chip: kern's five minutes more ([ListeningBedtime.extend]). */
     fun cycleTimer() {
-        timerTotalMs = listeningTimerStepMs(remainingMs() ?: 0L, 1)
-        deadline = System.currentTimeMillis() + timerTotalMs
+        bedtime.extend()
         // why: the lock screen's progress bar is the same clock the chip is, so it is
         // redrawn on the tap rather than waiting out the word in the air.
         publish()
@@ -167,13 +148,9 @@ class ListeningDriver(
      * gesture that reaches zero, which the tap never can.
      */
     fun turnOffTimer() {
-        timerTotalMs = 0
-        deadline = null
+        bedtime.clear()
         publish()
     }
-
-    /** How long the bedtime has left, or null where none was set. */
-    fun remainingMs(): Long? = deadline?.let { it - System.currentTimeMillis() }
 
     private fun dispatch(intent: ListeningIntent) {
         val current = state ?: return
@@ -217,9 +194,7 @@ class ListeningDriver(
                 title = NowPlayingLines.title(chrome.listenTitle),
                 languages = languages(),
                 paused = run.paused,
-                bedtime = remainingMs()?.let {
-                    ListeningBedtimeProgress(timerTotalMs - it.coerceAtLeast(0L), timerTotalMs)
-                },
+                bedtime = bedtime.progress(),
                 pauseLabel = chrome.listenPause,
                 resumeLabel = chrome.listenResume,
                 skipLabel = chrome.listenSkip,
@@ -249,7 +224,7 @@ class ListeningDriver(
         val token = ++generation
         val saying = sayings.getOrNull(index)
         if (saying == null) {
-            when (listeningSeam(remainingMs())) {
+            when (listeningSeam(bedtime.remainingMs())) {
                 ListeningSeam.End -> model.closeListening()
                 ListeningSeam.Advance -> dispatch(ListeningIntent.Advance)
             }
@@ -285,7 +260,7 @@ class ListeningDriver(
             pronunciation,
             PronounceTrigger.Listening,
             saying.article,
-            fadeDb(),
+            bedtime.gainDb(),
             onFinish = finish,
         )
         // why: insurance, not timing — a word whose end is never reported would leave the
@@ -293,12 +268,4 @@ class ListeningDriver(
         // Kern owns the ceiling so the two phones cannot wait different lengths.
         handler.postDelayed({ finish() }, LISTENING_WATCHDOG_MS)
     }
-
-    /**
-     * Kern's bedtime ramp at this moment: quieter by degrees over the whole run rather than a
-     * dimming that starts. The length rides along with what is left of it, so the ramp is a
-     * fraction of the bedtime and every length ends in the same place.
-     */
-    private fun fadeDb(): Double =
-        remainingMs()?.let { listeningGainDb(it, timerTotalMs) } ?: 0.0
 }

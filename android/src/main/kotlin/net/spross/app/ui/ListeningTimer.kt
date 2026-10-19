@@ -51,8 +51,8 @@ fun SleepTimerChip(model: AppModel) {
     var minutesLeft by remember { mutableStateOf<Int?>(null) }
     // why: the deadline is a moment, not a countdown — this wakes when kern's minute turns,
     // and on the bedtime itself, and not at all while none is set.
-    LaunchedEffect(run.deadline) {
-        val deadline = run.deadline
+    LaunchedEffect(run.bedtime.deadline) {
+        val deadline = run.bedtime.deadline
         if (deadline == null) {
             minutesLeft = null
             return@LaunchedEffect
