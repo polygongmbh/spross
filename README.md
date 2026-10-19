@@ -54,7 +54,8 @@ The drills stand on both phones too, each run on kern's rules.
 
 ## Install
 
-Spross is not yet published to the Stores, so it needs to be sideloaded.
+**iPhone and Apple Watch** — [**Spross on the App Store**](https://apps.apple.com/app/id6810577722) (`net.spross.app`).
+Android is not in a store yet, so it is sideloaded.
 How a build is cut, signed and published is `docs/distribution.md`.
 
 **Android** — [**Add Spross to Obtainium**](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https%3A%2F%2Fgithub.com%2Fpolygongmbh%2Fspross),
@@ -72,7 +73,7 @@ Neither of those is required:
 [latest release](https://github.com/polygongmbh/spross/releases/latest)
 is the same file, installed by hand and updated the same way.
 
-**iPhone.**
+**iPhone test builds.**
 Registered test devices only, and updates arrive as new builds rather than in place.
 Each release carries an `itms-services://` link to open in Safari **on the device**;
 internal TestFlight testers get the same build minutes after the tag, without review.

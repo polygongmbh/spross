@@ -5,13 +5,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 ## Needs the owner
 
 - Reconcile the `website` branch (`../app-website` worktree, `docs/plans/website.md`) with `main` and decide what of it ships.
-- No release has carried an IPA yet: the `ios` job needs the App Store Connect secrets
-  (`docs/distribution.md` § Secrets) present to get past `App Store Connect API key from
-  secret`, and iPhones are served by `scripts/deploy-devices.sh` until a run has published one.
-- A live spross.net gates the iPhone install link: GitHub renders the release notes'
-  `itms-services://` URL as code, not a tappable link (`.github/workflows/release.yml:229`),
-  and a `web/install.html` taking `?v=` would make it a button (`docs/plans/website.md`).
-- CC BY-SA §2(a)(5)(B) vs FairPlay needs a legal read before the FIRST submission
+- CC BY-SA §2(a)(5)(B) vs FairPlay needs a legal read now that the app is on the App Store
   (`docs/audio-licensing.md` § 6 item 1: 2094 of 3597 files, mitigation on record); items 2–3
   there are the es accent and Azure S0.
 - Real hardware has to time the assembled dates accepted set, an uncapped cross-product graded

@@ -230,6 +230,11 @@ It is also the one step allowed to fail without taking the release down —
 the GitHub release is the delivery that must not depend on Apple being up, so a failed upload shows as a warning on the run and the APK and IPA publish anyway.
 `CFBundleVersion` is the workflow's run number, which never repeats, because App Store Connect rejects a build number it has already seen for a version.
 
+## iPhone — App Store
+
+Spross is listed at `https://apps.apple.com/app/id6810577722`, Apple Watch app included.
+A release reaches it from the same App Store Connect build TestFlight serves, submitted for App Review in the App Store Connect UI.
+
 ## What the runners do
 
 `ubuntu-latest` builds the APK behind the text lints, `:kern:jvmTest` and `:android:testDebugUnitTest`.

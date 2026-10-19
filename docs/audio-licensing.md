@@ -165,14 +165,16 @@ Notable rejections:
 
 ## 6. Open items for the owner
 
-1. **BY-SA section 2(a)(5)(B) versus App Store DRM -- the pre-submission gate.**
+1. **BY-SA section 2(a)(5)(B) versus App Store DRM.**
    The license forbids "Effective Technological Measures" on the shared material,
    and every App Store binary is FairPlay-encrypted;
    2094 of the 3597 files are BY-SA.
    **Mitigation on record:** additionally publish the same recordings at a public un-DRM'd URL
    under the same licenses, in **separate per-language files** --
    the `catalog/audio/<lang>/` split already prepares that shape.
-   This needs a legal read before the first submission.
+   The app is on the App Store, so this needs a legal read now.
+   The public repository already serves the same files unencrypted, with their manifests;
+   Creative Commons left parallel distribution out of 4.0, so that is a mitigation, not a safe harbor.
 2. **The es accent caveat.**
    The catalog is authored in Peninsular Spanish (distincion);
    the pack does not claim to match it.
