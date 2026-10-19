@@ -79,13 +79,13 @@ internal object DrillSolved {
     fun sentenceKey(cardId: String): String = "sentence:$cardId"
 
     /**
-     * A word scramble asks the same word differently up its ladder — the letters left standing
-     * are the Sprosse — so the SPROSSE carries the identity alongside the card.
+     * A word scramble asks a word the same way at every Sprosse — the Sprosse only sets how long
+     * a word must be — so the card alone carries the identity.
      */
-    fun key(task: WordScrambleTask): String = wordKey(task.sprosse, task.cardId)
+    fun key(task: WordScrambleTask): String = wordKey(task.cardId)
 
     /** The same key from the parts, for a draw that is choosing what to build. */
-    fun wordKey(sprosse: Int, cardId: String): String = "word:$sprosse:$cardId"
+    fun wordKey(cardId: String): String = "word:$cardId"
 
     /** An opposites prompt stands in one band only, so its card alone carries the identity. */
     fun key(task: OppositesTask): String = oppositeKey(task.cardId)

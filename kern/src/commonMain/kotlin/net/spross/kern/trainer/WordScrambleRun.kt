@@ -215,7 +215,7 @@ object WordScrambleRun {
     ): WordScrambleTask? {
         val floor = report.lettersAt(sprosse)
         val open = report.words
-            .filter { DrillSolved.wordKey(sprosse, it.card.id) !in solved }
+            .filter { DrillSolved.wordKey(it.card.id) !in solved }
             .map { it to it.formsFrom(floor) }
             .filter { (_, forms) -> forms.isNotEmpty() }
         if (open.isEmpty()) return null

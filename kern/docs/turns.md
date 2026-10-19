@@ -144,9 +144,8 @@ and text reaches a machine only inside an intent — never as state.
   A Sprosse answered out is climbed past rather than repeated, and the Sprosse it climbs to is booked
   like any other, since answering a Sprosse out is standing on it; the wins banked below stay behind.
   A whole ladder answered out ends the run on its summary.
-  What a key names is each drill's own question: a word scramble carries its Sprosse in the key,
-  because the letters a Sprosse leaves standing make the same word a different ask,
-  while a phrase carries none — its word order does not change with the Sprosse it was drawn at.
+  What a key names is each drill's own question: a scrambled word and a phrase are one question at every Sprosse,
+  so neither key carries the Sprosse it was drawn at.
   The atlas and the letter drill can ENUMERATE a Sprosse and filter it;
   the slot drill draws values rather than picking them out of a list, so there
   `DrillSolved.SPENT_ATTEMPTS` repeats in a row is what "spent" can honestly mean,

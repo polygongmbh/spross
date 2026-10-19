@@ -160,21 +160,19 @@ class WordScrambleRunTest {
     }
 
     /**
-     * A word spelled clean is not asked again at that Sprosse — but the SAME word at a harder
-     * mixing is a question of its own, so the pool refills as the ladder rises.
+     * A word spelled clean is not asked again in the run, at any Sprosse: the mix asks it the
+     * same way all the way up.
      */
     @Test
-    fun aWordSpelledCleanIsRetiredAtThatSprosseOnly() {
+    fun aWordSpelledCleanIsRetiredForTheRun() {
         var state = open()
         val first = assertNotNull(state.task).cardId
         state = reduce(state, WordScrambleIntent.Submit(state.task!!.display)).state
         state = reduce(state, WordScrambleIntent.ConfirmPending).state
-        assertTrue(DrillSolved.wordKey(1, first) in state.solved)
-        assertFalse(DrillSolved.wordKey(2, first) in state.solved)
-        // A look-up keeps the run at the foot of the ladder, where that word is now spent.
+        assertTrue(DrillSolved.wordKey(first) in state.solved)
         repeat(6) { round ->
             val task = assertNotNull(state.task, "the pool ran dry after $round rounds")
-            if (task.sprosse == 1) assertFalse(task.cardId == first, "asked ${task.cardId} again")
+            assertFalse(task.cardId == first, "asked ${task.cardId} again")
             state = reduce(state, WordScrambleIntent.Reveal).state
             state = reduce(state, WordScrambleIntent.ConfirmPending).state
         }
