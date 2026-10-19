@@ -53,8 +53,7 @@ Nothing wears a prefix one scope wider than what it serves.
 - **A Sprosse adds exactly ONE thing where it opens a new KIND of question** --
   a question or a wider pool, never both:
   a learner who slips has to be able to name what got harder.
-  A Sprosse that only turns the same demand up owes nothing of the sort,
-  so the word scramble's climb takes a cue away and asks a longer word at once.
+  A Sprosse that only turns the same demand up owes nothing of the sort.
   Inside a Sprosse the shorter eligible words still come first.
 - **A Sprosse costs three clean wins, two in a drill that generates every question.**
   A pool of rows -- the atlas, the letters, the scrambles, the calendar's names --

@@ -10,9 +10,9 @@ import net.spross.kern.session.TurnFeedback
  * what it can ask is [WordScrambleAvailability.Report].
  *
  * It TYPES like the atlas and the slot run — writing the word out is the answer — so a Sprosse
- * changes how much help the cue gives and how much word there is to spell: the third takes the
- * opening letter away ([WordScrambleMasking]) and every Sprosse raises the minimum word length
- * ([WordScrambleAvailability.Report.lettersAt]). The ladder STOPS at the longest Sprosse the
+ * changes how much word there is to spell: every Sprosse raises the minimum word length
+ * ([WordScrambleAvailability.Report.lettersAt]), while the opening letter stands throughout
+ * ([WordScrambleMasking]). The ladder STOPS at the longest Sprosse the
  * pool fills ([DrillRamp.step]'s `top`), so answering it out ends the run. Nothing it does books
  * a review; spelling a word back from its own letters is not the recall the schedule measures.
  *
@@ -281,7 +281,7 @@ object WordScrambleRun {
             cardId = card.id,
             language = card.target.lang,
             sprosse = sprosse,
-            scrambled = WordScrambleMasking.scramble(form, sprosse, rng),
+            scrambled = WordScrambleMasking.scramble(form, rng),
             accepted = listOf(form),
             display = form,
             gloss = card.source.text,

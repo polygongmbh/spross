@@ -20,7 +20,7 @@ import net.spross.kern.model.CardKind
 object WordScrambleAvailability {
 
     /**
-     * Below four LETTERS an anchored Sprosse leaves two to move, and two letters have exactly
+     * Below four LETTERS the anchored opening letter leaves two to move, and two letters have exactly
      * one arrangement that is not the spelling — the same mix every time the word comes round.
      * Letters, never characters: sw "-pya" measures four only by counting a hyphen that is no
      * letter to hand over.
@@ -60,13 +60,8 @@ object WordScrambleAvailability {
         val drillAvailable: Boolean get() = words.size >= POOL_FLOOR
 
         /**
-         * The Sprosse ceiling, read off the POOL rather than off the masking ladder: the
-         * highest Sprosse [POOL_FLOOR] words still clear the floor of, so no Sprosse exists that
-         * the learner's own words cannot fill.
-         *
-         * [WordScrambleMasking] tops out at three — the opening letter anchored, then
-         * nothing — and the Sprossen above it go on lengthening the word with nothing anchored,
-         * which is where a well-grown box spends most of its climb.
+         * The Sprosse ceiling, read off the POOL: the highest Sprosse [POOL_FLOOR] words still
+         * clear the floor of, so no Sprosse exists that the learner's own words cannot fill.
          */
         val maxSprosse: Int by lazy {
             val nth = words.map { it.reach }.sortedDescending().getOrNull(POOL_FLOOR - 1)
@@ -90,7 +85,7 @@ object WordScrambleAvailability {
      *
      * A word the target writes as more than one token is out: a separable or reflexive verb
      * ("sich waschen") is two spellings and a word order, which is neither what this asks nor
-     * what its ladder anchors.
+     * what its mix anchors.
      */
     fun report(box: BoxState): Report = Report(
         Inventory.active(box)
@@ -142,8 +137,8 @@ object WordScrambleAvailability {
      * apostrophe, which sw "ng'ombe" and uk "м'який" are SPELLED with rather than merely punctuated by.
      *
      * The guard is the character class rather than the hyphen alone. Whatever a letter scramble
-     * mixes has to BE a letter, or the Sprosse that anchors "the first letter" anchors a dash,
-     * and the one above it shuffles that dash into the middle of the word.
+     * mixes has to BE a letter, or the anchored "first letter" is a dash, or a dash is shuffled
+     * into the middle of the word.
      */
     private fun writtenInLetters(word: String): Boolean =
         word.letters().all { it.first().isLetter() || it.first() in APOSTROPHES }

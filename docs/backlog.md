@@ -55,7 +55,7 @@ Neighbors: catalog content `../catalog/backlog.md`.
 ### Engine
 
 - `VerbSlugRekey` is marked "delete at 7.0+" and still runs on every load at 8.3.0 — delete it with its test and its `snapshots.md` paragraph (`kern/.../store/VerbSlugRekey.kt`).
-- Only tests read `AreaStatistics.notIntroduced`, `CatalogArea.conceptsBySlug`, `WordScrambleMasking.fullyScrambled` and `Catalog.dateNames` (the last documented as API in `kern/docs/catalog.md`) — drop each with its test.
+- Only tests read `AreaStatistics.notIntroduced`, `CatalogArea.conceptsBySlug` and `Catalog.dateNames` (the last documented as API in `kern/docs/catalog.md`) — drop each with its test.
 - `CountryDrillRun` and `DateDrillRun` reduce near line for line (~200 lines), and `CountryDrill`/`DateDrill` repeat `answerLanguage`, `promptLanguage`, `winsToAdvance` and `fastUnlocked`; one shared reducer changes the ObjC header, so both apps move with it.
 - `TypedDrillVerdicts` is pinned only through `CountryDrillRunTest`; a direct test would let the country run's verdict tests shrink to wiring.
 - Both phones mint rules kern should name: an own word's id side and trimming (`ui/BoxLogic.kt` `OwnWordDraft.word`), the shelf's "fully queued and settled" (`BoxAreaSection.swift` `fullyQueuedAndSettled`, `ui/BoxSections.kt:120`) and the backup file name `Spross-<lang>-<day>` (`BackupRow.swift` `BackupFile.taken`, `ui/BackupSetting.kt:80`).

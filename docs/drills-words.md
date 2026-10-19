@@ -53,10 +53,8 @@ Neighbors: every drill `drills.md`, which alphabet rows lend a word `../catalog/
   Handing the same letters back as tiles would leave nothing to retrieve but their order,
   where writing the word out IS the spelling —
   so this drill wears the typed card every other trainer drill wears rather than a tile bank.
-- **Its Sprossen are formats in the letter drill's sense**,
-  changing what the question IS rather than how long the word is:
-  what they take away is how much of the word stands where the spelling put it
-  (`WordScrambleMasking`).
+- **Its Sprossen ask longer words, and the opening letter always stands where the spelling put it**
+  (`WordScrambleMasking`): without it the question turns from recalling a word into solving a puzzle.
   It draws only words the learner can already produce,
   since a scramble is no cue at all for a word they cannot.
 - **The reveal carries the TRANSLATION**, the way the letter drill's dictation does:

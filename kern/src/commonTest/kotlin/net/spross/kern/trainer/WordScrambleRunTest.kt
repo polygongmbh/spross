@@ -42,7 +42,7 @@ class WordScrambleRunTest {
         cardId = cardId,
         language = ScrambleFixture.TARGET,
         sprosse = 1,
-        scrambled = WordScrambleMasking.scramble(display, 1, Random(1)),
+        scrambled = WordScrambleMasking.scramble(display, Random(1)),
         accepted = accepted,
         display = display,
         gloss = "en-$cardId",

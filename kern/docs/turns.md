@@ -235,9 +235,7 @@ and text reaches a machine only inside an intent — never as state.
   spelling a four-letter word back stops being a question once ten-letter ones are being spelled —
   and its ceiling is read off the pool: the highest Sprosse `POOL_FLOOR` of the learner's own words
   still clear, so no Sprosse exists that their box cannot fill,
-  while `WordScrambleMasking.MAX_SPROSSE` only names the last Sprosse that changes the CUE
-  (the opening letter anchored, then nothing) and every Sprosse above it goes on
-  lengthening the word with nothing anchored.
+  and every Sprosse keeps the opening letter anchored (`WordScrambleMasking`).
   The mix itself owes two things beyond the same letters:
   it never reads as the spelling, and it is not one adjacent swap off it either —
   a word that admits nothing better gets the swap, since the alternative is the word itself.

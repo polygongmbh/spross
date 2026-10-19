@@ -7,9 +7,9 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 /**
- * The masking ladder: what each Sprosse leaves standing, what it mixes, and the three things
- * every Sprosse owes — the same letters, an arrangement that is not the spelling, and one that
- * is not a single adjacent swap off it either.
+ * The masking: what stands, what is mixed, and the three things every mix owes — the same
+ * letters, an arrangement that is not the spelling, and one that is not a single adjacent swap
+ * off it either.
  */
 class WordScrambleMaskingTest {
 
@@ -23,46 +23,22 @@ class WordScrambleMaskingTest {
      * move, which is one possible mix and therefore the same question every time.
      */
     @Test
-    fun theFirstTwoSprossenAnchorTheOpeningLetterAlone() {
+    fun theOpeningLetterAloneStands() {
         for (rng in seeds()) {
-            for (sprosse in 1..2) {
-                val mixed = WordScrambleMasking.scramble(word, sprosse, rng)
-                assertEquals(1, mixed.fixedLeading)
-                assertEquals("F", mixed.display.take(1))
-                assertEquals(letters(word), letters(mixed.display))
-            }
-        }
-    }
-
-    /**
-     * The third anchors nothing — including the capital, which would otherwise point at the
-     * very letter the Sprosse withheld.
-     */
-    @Test
-    fun theThirdSprosseAnchorsNothingAndKeepsNoCapital() {
-        for (rng in seeds()) {
-            val mixed = WordScrambleMasking.scramble(word, 3, rng)
-            assertTrue(mixed.fullyScrambled)
-            assertEquals(mixed.display.lowercase(), mixed.display)
+            val mixed = WordScrambleMasking.scramble(word, rng)
+            assertEquals(1, mixed.fixedLeading)
+            assertEquals("F", mixed.display.take(1))
+            assertEquals(mixed.display.drop(1).lowercase(), mixed.display.drop(1))
             assertEquals(letters(word), letters(mixed.display))
         }
-    }
-
-    /** Past the named Sprossen the content stands still: nothing harder than mixing everything. */
-    @Test
-    fun aSprosseAboveTheLadderStillAnchorsNothing() {
-        val mixed = WordScrambleMasking.scramble(word, WordScrambleMasking.MAX_SPROSSE + 4, Random(7))
-        assertTrue(mixed.fullyScrambled)
     }
 
     /** A mix that reads as the spelling is no question at all, so it is rolled again. */
     @Test
     fun theMixNeverReadsAsTheWordItAsksFor() {
         for (rng in seeds()) {
-            for (sprosse in 1..WordScrambleMasking.MAX_SPROSSE) {
-                val mixed = WordScrambleMasking.scramble(word, sprosse, rng)
-                assertNotEquals(word.lowercase(), mixed.display.lowercase())
-            }
+            val mixed = WordScrambleMasking.scramble(word, rng)
+            assertNotEquals(word.lowercase(), mixed.display.lowercase())
         }
     }
 
@@ -73,11 +49,9 @@ class WordScrambleMaskingTest {
     @Test
     fun theMixIsNeverOneAdjacentSwapOffTheWord() {
         for (rng in seeds()) {
-            for (sprosse in 1..WordScrambleMasking.MAX_SPROSSE) {
-                val mixed = WordScrambleMasking.scramble(word, sprosse, rng).display.lowercase()
-                val moved = word.lowercase().indices.filter { mixed[it] != word.lowercase()[it] }
-                assertTrue(moved.size != 2 || moved[1] != moved[0] + 1, "$sprosse: $mixed")
-            }
+            val mixed = WordScrambleMasking.scramble(word, rng).display.lowercase()
+            val moved = word.lowercase().indices.filter { mixed[it] != word.lowercase()[it] }
+            assertTrue(moved.size != 2 || moved[1] != moved[0] + 1, mixed)
         }
     }
 
@@ -88,7 +62,7 @@ class WordScrambleMaskingTest {
     @Test
     fun aWordThatAdmitsNothingBetterGetsTheSwap() {
         for (rng in seeds()) {
-            assertEquals("Tla", WordScrambleMasking.scramble("Tal", 1, rng).display)
+            assertEquals("Tla", WordScrambleMasking.scramble("Tal", rng).display)
         }
     }
 
@@ -98,14 +72,14 @@ class WordScrambleMaskingTest {
      */
     @Test
     fun aWordWithNothingLeftToMoveComesBackAsAuthored() {
-        assertEquals("Ei", WordScrambleMasking.scramble("Ei", 1, Random(3)).display)
+        assertEquals("Ei", WordScrambleMasking.scramble("Ei", Random(3)).display)
     }
 
     /** A stress mark is part of its vowel, so it moves with it and never lands on another letter. */
     @Test
     fun aStressMarkMovesWithItsVowel() {
         for (rng in seeds()) {
-            val mixed = WordScrambleMasking.scramble("пі\u0301вніч", 3, rng).display
+            val mixed = WordScrambleMasking.scramble("пі\u0301вніч", rng).display
             assertEquals(1, Regex("і\u0301").findAll(mixed).count(), mixed)
             assertEquals(1, mixed.count { it == '\u0301' }, mixed)
         }

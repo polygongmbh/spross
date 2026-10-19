@@ -220,6 +220,7 @@ found competitive, hard-to-guess options improve retention — the distractor ra
 
 - **Numbers**: number facts learned in one language are retrieved fastest in that language and do not carry over for free (Spelke & Tsivkin 2001, *Cognition* 78(1)).
 - **Word scramble**: a word solved out of its letters is generated rather than read, and generated words outlast read ones (Bertsch et al. 2007, *Memory & Cognition* 35(2)).
+- **Word scramble**: a harder anagram buys no more memory than an easy one (Zacks, Hasher, Sanft & Rose 1983), and the first letter is the one a word is found by (Rayner, White, Johnson & Liversedge 2006, *Psychological Science* 17(3)) — why it always stands.
 - **Opposites**: antonyms are learned well as pairs and poorly where either meaning is still unknown (Yang 2021, *Chinese as a Second Language* 56(1)) — why both words must have arrived.
 
 ## Verification note

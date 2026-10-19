@@ -5,6 +5,7 @@ Neighbors: what earns an entry and its wording `docs/distribution.md`.
 ## Unreleased
 
 - On the watch, a word to produce now also shows alone for a moment before its options appear, as a word to recognize already did.
+- Word scramble keeps a word's first letter in place at every step, so climbing asks for longer words instead of a blind anagram.
 
 ## 8.7.0 — 2026-10-09
 
