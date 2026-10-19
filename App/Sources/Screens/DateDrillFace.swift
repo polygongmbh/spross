@@ -103,11 +103,7 @@ enum DateDrillFace: DrillFace {
     }
 
     static func snapshot(_ run: PairDrillRunState<DateDrillTask>) -> DrillSnapshot {
-        DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
-                      answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
-                      tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
-                      finished: run.finished,
-                      answerLanguage: run.answerLanguage, question: run.question,
+        DrillSnapshot(sprosse: Int(run.sprosse), answerLanguage: run.answerLanguage,
                       choices: run.task.choices, digits: run.task.digits)
     }
 

@@ -90,7 +90,7 @@ protocol DrillFace {
                      normalizer: AnswerNormalizer?, sprosse: Int?, standingRecord: Int,
                      cleared: Set<KotlinInt>) -> Run
 
-    /// The run as the screen draws it.
+    /// What the screen draws that kern's run progress does not carry.
     static func snapshot(_ run: Run) -> DrillSnapshot
 
     /// One event, put to kern in its own vocabulary.
@@ -180,24 +180,13 @@ struct DrillEnd<Run> {
     let effects: [DrillEffect]
 }
 
-/// The whole of what the drill screen draws: the question on the card and the
-/// figures around it, lifted off kern's run so the screen reads one shape
-/// whichever machine is running under it.
+/// What the drill screen draws beyond kern's run progress (`DrillRunProgress`),
+/// lifted off the concrete run so the screen reads one shape whichever machine
+/// is running under it.
 struct DrillSnapshot {
-    /// Bumped per question — the card's identity and what an autoplay keys on.
-    let index: Int
     let sprosse: Int
-    let answerStreak: Int
-    let bestAnswerStreak: Int
-    let tally: DrillTally
-    let outcomes: [AnswerOutcome]
-    let feedback: TurnFeedback
-    /// Nothing left to ask.
-    let finished: Bool
     /// BCP-47 of the language the answer is owed in.
     let answerLanguage: String
-    /// The card, as kern states it.
-    let question: Question
     /// The tiles this question is answered off, in kern's own shuffled order —
     /// nil where it is written instead, which is every Sprosse above the
     /// calendar's warm-up.

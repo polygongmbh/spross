@@ -97,11 +97,7 @@ enum CountryDrillFace: DrillFace {
     }
 
     static func snapshot(_ run: PairDrillRunState<CountryDrillTask>) -> DrillSnapshot {
-        DrillSnapshot(index: Int(run.index), sprosse: Int(run.sprosse),
-                      answerStreak: Int(run.answerStreak), bestAnswerStreak: Int(run.bestAnswerStreak),
-                      tally: run.tally, outcomes: run.outcomes, feedback: run.feedback,
-                      finished: run.finished,
-                      answerLanguage: run.answerLanguage, question: run.question,
+        DrillSnapshot(sprosse: Int(run.sprosse), answerLanguage: run.answerLanguage,
                       // The atlas is written all the way up: nothing is ever
                       // tapped, and every answer it takes is words.
                       choices: nil, digits: false)

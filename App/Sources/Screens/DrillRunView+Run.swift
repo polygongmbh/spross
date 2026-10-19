@@ -20,10 +20,6 @@ extension DrillRunView: DrillRunning {
         Face.reduce(run, move)
     }
 
-    func questionIndex(_ run: Face.Run) -> Int { Face.snapshot(run).index }
-
-    func isFinished(_ run: Face.Run) -> Bool { Face.snapshot(run).finished }
-
     func typedMove(_ text: String) -> DrillMove? { .typed(text) }
 
     func submitMove(_ text: String) -> DrillMove? { .submitted(text) }
@@ -33,8 +29,6 @@ extension DrillRunView: DrillRunning {
     var advanceMove: DrillMove { .advanced }
 
     var keepPracticingMove: DrillMove { .keptPracticing }
-
-    var turnFeedback: TurnFeedback { current.feedback }
 
     var resultTitle: LocalizedStringKey { Face.resultTitle }
 

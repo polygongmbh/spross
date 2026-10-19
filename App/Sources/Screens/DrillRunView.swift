@@ -88,8 +88,8 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
                                                                                       reverse: reverse))))
     }
 
-    /// The question on screen and the figures around it. A fresh join always has
-    /// one — a Sprosse with none is not a Sprosse the learner could climb off.
+    /// What the face alone knows about the question on screen; the run's progress
+    /// — the question, the counters, the feedback — is read off `run` itself.
     var current: DrillSnapshot { Face.snapshot(run) }
 
     /// A tapped question has no field to fill, and a keyboard raised over the
@@ -99,16 +99,12 @@ struct DrillRunView<Face: DrillFace>: View, LanguageNaming {
     var namingCatalog: Catalog? { model.catalog }
 
     var body: some View {
-        pausable(SessionScaffold.endless(tally: current.tally,
-                                         outcomes: current.outcomes,
-                                         // why: the run says its answers out loud, so it
-                                         // owes the learner a way to silence them here.
-                                         showsMuteButton: true,
-                                         scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(current.sprosse.formatted())"),
-                                                                    answerStreak: current.answerStreak),
-                                         onClose: { closeRun() }) {
+        // why: the run says its answers out loud, so it owes the learner a way to silence them here.
+        runScreen(showsMuteButton: true,
+                  scoreLine: DrillStreakLine(sprosse: Text("trainer.sprosse \(current.sprosse.formatted())"),
+                                             answerStreak: Int(run.answerStreak))) {
             drillContent
-        })
+        }
         .onAppear {
             answerFocused = wantsKeyboard
             #if DEBUG
