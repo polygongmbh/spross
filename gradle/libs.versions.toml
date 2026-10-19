@@ -10,7 +10,7 @@ compose-bom = "2026.09.00"
 activity-compose = "1.13.0"
 # The Android SDK pin both modules build against.
 compileSdk = "37"
-targetSdk = "36"
+targetSdk = "37"
 # Min Android 8.0.
 minSdk = "26"
 lifecycle = "2.11.0"
