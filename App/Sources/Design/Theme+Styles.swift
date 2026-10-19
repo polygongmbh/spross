@@ -123,3 +123,13 @@ struct IconButtonStyle: ButtonStyle {
             .press(configuration.isPressed, .icon)
     }
 }
+
+/// Pressed-state feedback for every chip-shaped control (mirrors the shared button springs):
+/// the hub's chips, a drill's choice tiles, a scramble's tile bank and the listening row.
+struct ChipButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .opacity(configuration.isPressed ? 0.7 : 1)
+            .press(configuration.isPressed, .chip)
+    }
+}
