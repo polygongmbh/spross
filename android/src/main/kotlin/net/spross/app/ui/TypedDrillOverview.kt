@@ -120,7 +120,6 @@ fun TypedDrillOverview(
                     sprosse = sprosse,
                     name = ladder.sprosse(sprosse, reverse),
                     mark = SprosseMark.of(sprosse, cleared, ladder.standing.bestSprosse),
-                    entry = sprosse == entry,
                     open = NumbersMode.openable(sprosse, cleared, ladder.standing.bestSprosse, ceiling),
                     chrome = chrome,
                     onClick = { ladder.start(reverse, fast, sprosse) },
@@ -175,25 +174,18 @@ private fun SprosseRow(
     sprosse: Int,
     name: String,
     mark: SprosseMark,
-    entry: Boolean,
     open: Boolean,
     chrome: Chrome,
     onClick: () -> Unit,
 ) {
-    val state = when {
-        entry -> chrome.a11yTrainerSprosseEntry
-        mark == SprosseMark.Cleared -> chrome.a11yTrainerSprosseCleared
-        mark == SprosseMark.Reached -> chrome.a11yTrainerSprosseReached
-        else -> null
-    }
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(min = 48.dp)
             // why: one Sprosse is one TalkBack stop — the mark and the name describe a single
-            // thing, and the state says what the circle's fill says.
+            // thing; the record the circle wears is the eye's, a locked row says so.
             .then(if (open) Modifier.clickable(role = Role.Button, onClick = onClick) else Modifier)
-            .semantics(mergeDescendants = true) { state?.let { stateDescription = it } },
+            .semantics(mergeDescendants = true) { if (!open) stateDescription = chrome.a11yTrainerSprosseLocked },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {

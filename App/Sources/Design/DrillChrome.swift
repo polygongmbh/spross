@@ -52,7 +52,10 @@ struct DrillStreakLine: View {
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
             .animation(.easeOut(duration: 0.2), value: answerStreak)
-            .accessibilityLabel(accessibility)
+            // why: the Sprosse and the streak are the eye's; a timed run's clock and score are
+            // what a screen reader keeps.
+            .accessibilityLabel(timed.joined(separator: ", ") ?? Text(verbatim: ""))
+            .accessibilityHidden(timed.isEmpty)
     }
 
     /// Composed as `Text` (not a joined String) so each part localizes via the
@@ -63,11 +66,6 @@ struct DrillStreakLine: View {
         parts += timed
         if let answerStreak { parts.append(Text("trainer.run.streak \(answerStreak.formatted())")) }
         return parts.joined() ?? Text(verbatim: "")
-    }
-
-    private var accessibility: Text {
-        let streakSpoken = answerStreak.map { [Text("a11y.count.streakInARow \($0.formatted())")] } ?? []
-        return (timed + streakSpoken).joined(separator: ", ") ?? Text(verbatim: "")
     }
 }
 
@@ -221,15 +219,6 @@ extension SprosseMark {
         case .untouched: return Theme.colors.textSecondary
         case .reached: return Theme.colors.teal
         default: return Theme.colors.success
-        }
-    }
-
-    /// What VoiceOver says of the row, where the shape says something.
-    var a11y: LocalizedStringKey? {
-        switch self {
-        case .untouched: return nil
-        case .reached: return "a11y.trainer.sprosse.reached"
-        default: return "a11y.trainer.sprosse.cleared"
         }
     }
 }

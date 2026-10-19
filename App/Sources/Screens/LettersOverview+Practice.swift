@@ -51,6 +51,7 @@ extension LettersOverview {
                 Image(systemName: "lock.fill")
                     .font(.title3)
                     .foregroundStyle(Theme.colors.textSecondary)
+                    .accessibilityHidden(true)
             }
             VStack(alignment: .leading, spacing: 2) {
                 Text(Self.title(format))
@@ -71,9 +72,9 @@ extension LettersOverview {
         }
         .unlockWash(newlyUnlocked)
         // why: one format is one VoiceOver stop — the mark and the name describe a
-        // single thing, and the value says what the filled circle says.
+        // single thing; the circle is the eye's, a locked row says so.
         .accessibilityElement(children: .combine)
-        .accessibilityValue(Text(entry ? LocalizedStringKey("a11y.trainer.sprosse.entry") : (mark.a11y ?? "")))
+        .accessibilityValue(open ? Text(verbatim: "") : Text("a11y.trainer.sprosse.locked"))
     }
 
     /// Climbed off clean beats where the run opens; the rest are outlines.

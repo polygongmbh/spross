@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -56,13 +57,16 @@ fun DrillStreakLine(
 ) {
     val streak = answerStreak.takeIf { timed == null }
     val parts = listOfNotNull(sprosse, timed, streak?.let { chrome.trainerRunStreak.format(it) })
-    val spoken = listOfNotNull(timed, streak?.let { chrome.a11yCountStreakInARow.format(it) }).joinToString(", ")
     Text(
         parts.joinToString(" · "),
         style = MaterialTheme.typography.titleMedium,
         color = if ((streak ?: 0) > 0) Theme.colors.accent else Theme.colors.textSecondary,
         textAlign = TextAlign.Center,
-        modifier = Modifier.fillMaxWidth().semantics { contentDescription = spoken },
+        // why: the Sprosse and the streak are the eye's; a timed run's clock and score are what
+        // TalkBack keeps.
+        modifier = Modifier.fillMaxWidth().then(
+            if (timed == null) Modifier.clearAndSetSemantics { } else Modifier.semantics { contentDescription = timed },
+        ),
     )
 }
 
@@ -101,7 +105,7 @@ fun DrillResultTile(summary: DrillRunSummary, title: String, chrome: Chrome) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.lg),
     ) {
-        Text(milestoneEmoji(summary.milestone), fontSize = 40.sp) // card-parity: the milestone emoji's own size, not a prompt role
+        Text(milestoneEmoji(summary.milestone), fontSize = 40.sp, modifier = Modifier.clearAndSetSemantics { }) // card-parity: the milestone emoji's own size, not a prompt role
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(2.dp), // card-parity: the tally lines sit tighter than xs

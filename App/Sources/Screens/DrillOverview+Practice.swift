@@ -55,7 +55,6 @@ extension DrillOverview {
     private func sprosseRow(_ number: Int, _ title: LocalizedStringKey) -> some View {
         let mark = mark(number)
         let open = openable(number)
-        let value: LocalizedStringKey? = number == entrySprosse ? "a11y.trainer.sprosse.entry" : mark.a11y
         let label = HStack(alignment: .center, spacing: Theme.spacing.md) {
             SprosseCircle(number: number, mark: mark)
             Text(title)
@@ -74,9 +73,9 @@ extension DrillOverview {
             }
         }
         // why: one Sprosse is one VoiceOver stop — the mark and the name describe
-        // a single thing, and the value says what the circle's fill says.
+        // a single thing; the record the circle wears is the eye's, a locked row says so.
         .accessibilityElement(children: .combine)
-        .accessibilityValue(Text(value ?? ""))
+        .accessibilityValue(open ? Text(verbatim: "") : Text("a11y.trainer.sprosse.locked"))
     }
 
     private func mark(_ number: Int) -> SprosseMark {

@@ -98,13 +98,8 @@ private fun FormatRow(
             .fillMaxWidth()
             .unlockWash(unlocking)
             // why: one format is one TalkBack stop — the mark and the name describe a single
-            // thing, and the state says what the filled circle says.
-            .semantics(mergeDescendants = true) {
-                when {
-                    entry -> stateDescription = chrome.a11yTrainerSprosseEntry
-                    mark == SprosseMark.Cleared -> stateDescription = chrome.a11yTrainerSprosseCleared
-                }
-            },
+            // thing; the circle is the eye's, a locked row says so.
+            .semantics(mergeDescendants = true) { if (!open) stateDescription = chrome.a11yTrainerSprosseLocked },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Theme.spacing.md),
     ) {

@@ -226,23 +226,6 @@
         }
       }
     },
-    "a11y.count.streakInARow %@" : {
-      "comment" : "%d — the score line as a screen reader hears it",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Serie: %@ in Folge"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Streak: %@ in a row"
-          }
-        }
-      }
-    },
     "a11y.glyph.feminineForm" : {
       "comment" : "The ♀ badge's name — a glyph outside the reading order until it is given one.",
       "localizations" : {
@@ -459,56 +442,20 @@
         }
       }
     },
-    "a11y.trainer.sprosse.cleared" : {
-      "comment" : "Screen-reader value of a Sprosse row a run has answered out",
+    "a11y.trainer.sprosse.locked" : {
+      "comment" : "Screen-reader value of a Sprosse row that cannot be started yet",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "alle Fragen beantwortet"
+            "value" : "gesperrt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "every question answered"
-          }
-        }
-      }
-    },
-    "a11y.trainer.sprosse.entry" : {
-      "comment" : "Screen-reader value of the Sprosse row a run opens on",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "hier geht es los"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "your run starts here"
-          }
-        }
-      }
-    },
-    "a11y.trainer.sprosse.reached" : {
-      "comment" : "Screen-reader value of a Sprosse row some run has stood on",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "erreicht"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "reached"
+            "value" : "locked"
           }
         }
       }

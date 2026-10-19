@@ -150,10 +150,8 @@ interface Chrome {
     val trainerSprosse: String             // %d
     val trainerLadderTap: String
     val trainerLadderBest: String          // %1$s %2$s
-    val a11yTrainerSprosseEntry: String
+    val a11yTrainerSprosseLocked: String
     val a11yTrainerUnlocked: String  // %s
-    val a11yTrainerSprosseReached: String
-    val a11yTrainerSprosseCleared: String
     val trainerRunStreak: String            // %d
     val trainerRunScoreOne: String
     val trainerRunScore: String            // %d
@@ -220,7 +218,6 @@ interface Chrome {
     // ── Inside a run ────────────────────────────────────────────────────────────
     val numbersSprosseOne: String
     val numbersSprosse: String            // %d
-    val a11yCountStreakInARow: String      // %d
     val numbersAnswerPlaceholder: String
     val numbersNewPlace: String          // %s
     val numbersNewForm: String           // %s
