@@ -4,6 +4,7 @@
     scripts/audio-catalog.py --fill [--section S] --lang L [--dry-run]   # what a section lacks
     scripts/audio-catalog.py --ship [--from-packs] [--lang L] [--dry-run] # staged swaps
     scripts/audio-catalog.py --packs <workspace> --lang L                 # a language with no manifest yet
+    scripts/audio-catalog.py --add-voice L SECTION SPEAKER [--dry-run]   # a second voice beside each key
 
 The packs (`pack-<lang>-<section>/manifest.tsv` + `mp3/`, keyed by the form each row speaks, the letters
 by their glyph) are unversioned research input; `catalog/audio/` is the versioned provenance record.
@@ -25,6 +26,7 @@ import audio_judge
 import audio_manifest
 import audio_measure
 import audio_ship
+import audio_voice
 from audio_fill import fill
 from audio_forms import load_catalog
 from audio_index import ANALYSIS, FFMPEG, INDEX_FIELDS, playback_index
@@ -189,6 +191,9 @@ def main():
     parser.add_argument('--from', dest='rev', metavar='REV', help='the git revision --restore reads')
     parser.add_argument('--remove', nargs=3, metavar=('LANG', 'SECTION', 'KEY'),
                         help='drop one shipped entry and every take of it')
+    parser.add_argument('--add-voice', nargs=3, metavar=('LANG', 'SECTION', 'SPEAKER'),
+                        help="ship a Lingua Libre speaker's takes of a section: beside each key another "
+                             'voice says, as the first take where none ships (--dry-run judges only)')
     parser.add_argument('--take', metavar='SOURCE',
                         help='with --remove, drop only the alternate taken from this Commons file')
     args = parser.parse_args()
@@ -204,6 +209,9 @@ def main():
         return print('  remove %s %s' % (args.remove[2], gone['source']))
     if args.prune_poor:
         return prune_poor(args.lang)
+    if args.add_voice:
+        lang, section, speaker = args.add_voice
+        return audio_voice.add_voice(lang, section, speaker, args.dry_run)
 
     # why: gain/lead are this build's numbers to a decimal, so another ffmpeg silently
     # rewrites manifests that were otherwise byte-identical — say so rather than surprise

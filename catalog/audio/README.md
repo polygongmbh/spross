@@ -205,6 +205,8 @@ the script asks `git ls-files` instead.
   The entry itself stays the key's first take;
   an alternate carries a take's own fields (`file`, `author`, `source`, `sha256`, a departing `license`, the measurements)
   and never `matches` or `word`, which belong to the key.
+  `scripts/audio-catalog.py --add-voice <lang> <section> <speaker>` ships a Lingua Libre speaker's takes of a section,
+  beside each key another voice says and as the first take where none ships.
   Which take plays is the engine's choice (`../../docs/audio.md`);
   sweeps and consolidation judge the first take only,
   and `scripts/audio-catalog.py --remove <lang> <section> <key> --take <source>` drops one alternate.
